@@ -1,205 +1,187 @@
-Return-Path: <devicetree+bounces-55927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76D7D896EFC
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 14:39:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1DDF896F12
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 14:42:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B2A61C21C7D
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 12:39:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BAC21F232BA
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 12:42:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CECF758112;
-	Wed,  3 Apr 2024 12:39:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94D17143899;
+	Wed,  3 Apr 2024 12:41:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="B2u3Aj7J"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CqqIT3v9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6CD91C683;
-	Wed,  3 Apr 2024 12:39:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C155C5B05E;
+	Wed,  3 Apr 2024 12:41:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712147975; cv=none; b=CauaBvQN/sGjmfB26ys+nFkja71njZmAQLaJZm5Us3eSuWw845RUWo+wkrzHAQz/GhK3f2kQ1K/pK7baEknK5AmgAYYiVSP5HAB9Dml7vBefjUzHCSeG7hyLWRAOaDFfP3RynIVJYr+QroWIyhdYdDJVTdRCrJ0O2XMBpWtttDk=
+	t=1712148106; cv=none; b=qWkQS8Gb9O8NgkCUUUCDN/imh00R169Gmrh5rKTIJQWTgGvqu6tgLgT9LtVAHyc5lRsCMJ4OabPk8HD0UvQPhCSnNkGrn+lSWG0dX2Skwzdev4k7qQNYDLPvf9LN0tay+xRDBovUfo1qjnyXj510BCEW/C0vDFsg3C9gJaZ7vz0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712147975; c=relaxed/simple;
-	bh=56cFVVN36vdvA9j0k6U4c9Yyi7PsljXwFIP8sKfDAn4=;
+	s=arc-20240116; t=1712148106; c=relaxed/simple;
+	bh=4LdezfRohLDwiQJGR9wslgydZEdUGpcVaPaT2+7yROg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RZPIWcFRd3dp1PjmeYMy3nTYvYtoUPLeXR0v4edGJYoDOVsiIJR+sZn6DWS8wFI3lhU3XHQHUINBR0DpTcBzfywvkX3A23qRZqfrO4qzyLJlJYJ4M2OBHs95Tw6qdn5Lc4ZNAptDkNbW26GTqbP5eVgxQJlJJlJ6U6ocoIRlZ3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=B2u3Aj7J; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1712147972;
-	bh=56cFVVN36vdvA9j0k6U4c9Yyi7PsljXwFIP8sKfDAn4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=B2u3Aj7JWJ8T2VlEkSysWrQyL+7YwxPLSHmUGGV4BCQp8UFuxEVhBu/+jKSjZtaER
-	 vCqPQtjmwNfKZQbcMUePtxgVz+Kj6lPlMzM07fINBNnFf+6jGU+LlFRayM31Mee6jO
-	 XuvzckZb1w9G7nOLmdyKUFnydK0J1mornC2SEZ+eBKyBG9MGasDoorQ1E6ijzyLNs6
-	 ynJ4qR7K9G5Ho7qktbwUev0m2NHYsNYnU5F7PhHp6POrq4/5xNyXLkKGSkgt0Mib4z
-	 YVajJb6UlXXb08K4lXDsHnTQ0hmKMZpZoRKAcrJ4tXGDyyYDrL77NcPxfclDI4Ercj
-	 shje3a066P9Qw==
-Received: from localhost (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sebastianfricke)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id C26C6378200D;
-	Wed,  3 Apr 2024 12:39:31 +0000 (UTC)
-Date: Wed, 3 Apr 2024 14:39:30 +0200
-From: Sebastian Fricke <sebastian.fricke@collabora.com>
-To: Yunfei Dong <yunfei.dong@mediatek.com>
-Cc: =?utf-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4=?= Prado <nfraprado@collabora.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	Nathan Hebert <nhebert@chromium.org>,
-	Hsin-Yi Wang <hsinyi@chromium.org>,
-	Fritz Koenig <frkoenig@chromium.org>,
-	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH] media: mediatek: vcodec: fix the error sizeimage for
- 10bit bitstream
-Message-ID: <20240403123930.wkzgxb6lymzb7hng@basti-XPS-13-9310>
-References: <20240403093018.13168-1-yunfei.dong@mediatek.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=WvoJVANyvFLAyCaL+lVKG2kHo2VTD38MLs43BWybGbt1kwEhmrv7ddKTsFgqybveSUBacnzKfnt67bkP3V3mmsWBNHrR1w2TxFJyeE4kLeSMPi7WKCHtzP7pndX5c+BLjBZlGX1be+ppwGtE8Rp/1LcoovEgvtr9eruNFfypyW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CqqIT3v9; arc=none smtp.client-ip=209.85.214.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-1dff837d674so49888035ad.3;
+        Wed, 03 Apr 2024 05:41:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712148104; x=1712752904; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LegyacEHrLw0exuWMYz7mVagVL/ivvgsfQicrbS4J3E=;
+        b=CqqIT3v9TYuIAYt5H+YL9lqo+hhGBvGpQQLKLfTRdhbhH5YtBdaJjnqOpGCCholptg
+         MVJyde4ZQo5lHOAO6iFycQsj5zs0G1rdUcEpVpqEYJtSLCP94JTGyH/3HaMaKcOnb8zw
+         MSoJrBpgQc7Q7rb4w7a6SJ+/1Mn4RShY3U4ct88/JDBxxYFkGuoP3aWRuLoHEsw7zTEW
+         ug5wwZRWOmZlywzk3t7XH/fdQnh1PIfu8JvO4lTKn7ARhKSP41MTipENdOQoiuC0NXSP
+         WyzFwJn+pF4oAZpFAlYI7kPnNiapXKpUGQIOU8jCE7ydvydAuMXbYwAbfdXI/T6ewm1R
+         CXOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712148104; x=1712752904;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LegyacEHrLw0exuWMYz7mVagVL/ivvgsfQicrbS4J3E=;
+        b=vw5wj78OMdzxDWqlu6ktdwxDlU6rD5S1gRgrcqBADJtIOEUOimWOWGtHsfj4PRpJx4
+         wlskJ4NJVuSs+3emd6a0igvrf0uEnx29Iq6RGmTKVkFSU1wqmOoa7LR/5NkEzLoDW9TV
+         ldEVuO2JM8pnTY1cGMk6flPWFvmMOL8CSSJoorOT0HqC6yXfsPO/jqCV4CeLFOF1PrnC
+         /gElv8KUDcxtes93CCZQBUybgbBbbZQkhzAH39+iBOzGYJFXGc4DRMPsXE6kjQHoQLXN
+         F0gemkDhZhftYiqx4dm3rpex7yOw//Dolj3FsFrPNADMPR4hMKBZEqb7TeVc595ZMDd/
+         VQdA==
+X-Forwarded-Encrypted: i=1; AJvYcCWLSFKq2QOLEqXZMltKIvShiqeys0rRLyVQQp9ZXs0eJ925NuEov8YEM10OfS45eA9A+urXwys+nLQeyo7mllUkd6YpS09+hvLEe8c2G5zFUk0fRYi6qnJXqaj3W6ZFNMf+A0/sUiMGJLQS7icaup/QENEaEggS+GwTkBNOpBnv4tdNZlqGQb76
+X-Gm-Message-State: AOJu0Yz7K8b6Jyyt+c4aYOZDDWA26rJSPdJb1Zn6DxDe2znUxIUyNeRV
+	25dTQWlDz+ThR4bFyihIgV1P+Whh1CDEEbyFLLlrkItmlpYL7Dk6
+X-Google-Smtp-Source: AGHT+IGuj7F88Ztl6J+2YZCPyQ+J8i6U/HfwKVd62W0ZFgBlt7d/Xsa+I2YwXm5q43DCvaCxKaPRQQ==
+X-Received: by 2002:a17:902:e94f:b0:1e2:88c9:6c08 with SMTP id b15-20020a170902e94f00b001e288c96c08mr3839019pll.49.1712148103885;
+        Wed, 03 Apr 2024 05:41:43 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id c12-20020a170902c1cc00b001e27dcfdf15sm3243944plc.145.2024.04.03.05.41.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Apr 2024 05:41:42 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Wed, 3 Apr 2024 05:41:41 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Lee Jones <lee@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-watchdog@vger.kernel.org
+Subject: Re: [RFC PATCH 5/6] watchdog: ROHM BD96801 PMIC WDG driver
+Message-ID: <d2ab33e6-4d3e-472a-b4d7-b703955989ba@roeck-us.net>
+References: <cover.1712058690.git.mazziesaccount@gmail.com>
+ <f8e743a6c49607de0dd7a27778383477e051b130.1712058690.git.mazziesaccount@gmail.com>
+ <4fa3a64b-60fb-4e5e-8785-0f14da37eea2@roeck-us.net>
+ <279336b3-f28d-48ee-a10f-47abba7b0b89@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240403093018.13168-1-yunfei.dong@mediatek.com>
+In-Reply-To: <279336b3-f28d-48ee-a10f-47abba7b0b89@gmail.com>
 
-Hey Yunfei,
+On Wed, Apr 03, 2024 at 09:34:35AM +0300, Matti Vaittinen wrote:
+> Hi Guenter,
+> 
+> First of all, thanks for the review. It was quick! Especially when we speak
+> of a RFC series. Very much appreciated.
+> 
+> On 4/2/24 20:11, Guenter Roeck wrote:
+> > On Tue, Apr 02, 2024 at 04:11:41PM +0300, Matti Vaittinen wrote >> +static int init_wdg_hw(struct wdtbd96801 *w)
+> > > +{
+> > > +	u32 hw_margin[2];
+> > > +	int count, ret;
+> > > +	u32 hw_margin_max = BD96801_WDT_DEFAULT_MARGIN, hw_margin_min = 0;
+> > > +
+> > > +	count = device_property_count_u32(w->dev->parent, "rohm,hw-timeout-ms");
+> > > +	if (count < 0 && count != -EINVAL)
+> > > +		return count;
+> > > +
+> > > +	if (count > 0) {
+> > > +		if (count > ARRAY_SIZE(hw_margin))
+> > > +			return -EINVAL;
+> > > +
+> > > +		ret = device_property_read_u32_array(w->dev->parent,
+> > > +						     "rohm,hw-timeout-ms",
+> > > +						     &hw_margin[0], count);
+> > > +		if (ret < 0)
+> > > +			return ret;
+> > > +
+> > > +		if (count == 1)
+> > > +			hw_margin_max = hw_margin[0];
+> > > +
+> > > +		if (count == 2) {
+> > > +			hw_margin_max = hw_margin[1];
+> > > +			hw_margin_min = hw_margin[0];
+> > > +		}
+> > > +	}
+> > > +
+> > > +	ret = bd96801_set_wdt_mode(w, hw_margin_max, hw_margin_min);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	ret = device_property_match_string(w->dev->parent, "rohm,wdg-action",
+> > > +					   "prstb");
+> > > +	if (ret >= 0) {
+> > > +		ret = regmap_update_bits(w->regmap, BD96801_REG_WD_CONF,
+> > > +				 BD96801_WD_ASSERT_MASK,
+> > > +				 BD96801_WD_ASSERT_RST);
+> > > +		return ret;
+> > > +	}
+> > > +
+> > > +	ret = device_property_match_string(w->dev->parent, "rohm,wdg-action",
+> > > +					   "intb-only");
+> > > +	if (ret >= 0) {
+> > > +		ret = regmap_update_bits(w->regmap, BD96801_REG_WD_CONF,
+> > > +				 BD96801_WD_ASSERT_MASK,
+> > > +				 BD96801_WD_ASSERT_IRQ);
+> > > +		return ret;
+> > > +	}
+> > 
+> > I don't see the devicetree bindings documented in the series.
+> 
+> Seems like I have missed this WDG binding. But after reading your comment
+> below, I am wondering if I should just drop the binding and default to
+> "prstb" (shutdown should the feeding be skipped) - and leave the "intb-only"
+> case for one who actually needs such.
+> 
+> > I am also a bit surprised that the interrupt isn't handled in the driver.
+> > Please explain.
+> 
+> Basically, I just had no idea what the IRQ should do in the generic case. If
+> we get an interrupt, it means the WDG feeding has failed. My thinking is
+> that, what should happen is forced reset. I don't see how that can be done
+> in reliably manner from an IRQ handler.
+> 
+> When the "prstb WDG action" is set (please, see the above DT binding
+> handling), the PMIC shall shut down power outputs. This should get the
+> watchdog's job done.
+> 
+> With the "intb-only"-option, PMIC will not turn off the power. I'd expect
+> there to be some external HW connection which handles the reset by HW.
+> 
+> After all this being said, I wonder if I should just unconditionally
+> configure the PMIC to always turn off the power (prstb option) should the
+> feeding fail? Or do someone have some suggestion what the IRQ handler should
+> do (except maybe print an error msg)?
+> 
 
-On 03.04.2024 17:30, Yunfei Dong wrote:
->The sizeimage of each plane are calculated the same way for 8bit and
+Other watchdog drivers call emergency_restart() if the watchdog times out
+and triggers an interrupt. Are you saying this won't work for this system ?
+If so, please explain.
 
-s/The sizeimage of each plane are/The sizeimage for each plane is/
-
->10bit bitstream. Need to enlarge the sizeimage with simeimage*5/4 for
->10bit bitstream when try and set fmt.
-
-s/bitstream/bistreams/
-s/Need to enlarge the sizeimage with simeimage*5/4 for 10bit bitstream when try and set fmt./
-   Scale up the sizeimage by 25% for 10-bit bitstreams in try_fmt./
-
->
->Fixes: 9d86be9bda6c ("media: mediatek: vcodec: Add driver to support 10bit")
->Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
->---
-> .../mediatek/vcodec/decoder/mtk_vcodec_dec.c  | 47 ++++++++++++++-----
-> 1 file changed, 34 insertions(+), 13 deletions(-)
->
->diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
->index 9107707de6c4..45209894f1fe 100644
->--- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
->+++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
->@@ -259,6 +259,7 @@ static int vidioc_try_fmt(struct mtk_vcodec_dec_ctx *ctx, struct v4l2_format *f,
-> 		pix_fmt_mp->num_planes = 1;
-> 		pix_fmt_mp->plane_fmt[0].bytesperline = 0;
-> 	} else if (f->type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE) {
->+		unsigned int dram_y, dram_c, dram_y_10bit, dram_c_10bit;
-> 		int tmp_w, tmp_h;
->
-> 		/*
->@@ -280,22 +281,42 @@ static int vidioc_try_fmt(struct mtk_vcodec_dec_ctx *ctx, struct v4l2_format *f,
-> 		    (pix_fmt_mp->height + 64) <= frmsize->max_height)
-> 			pix_fmt_mp->height += 64;
->
->-		mtk_v4l2_vdec_dbg(0, ctx,
->-				  "before resize wxh=%dx%d, after resize wxh=%dx%d, sizeimage=%d",
->-				  tmp_w, tmp_h, pix_fmt_mp->width, pix_fmt_mp->height,
->-				  pix_fmt_mp->width * pix_fmt_mp->height);
->+		dram_y = pix_fmt_mp->width * pix_fmt_mp->height;
->+		dram_c = dram_y / 2;
->+
->+		dram_y_10bit = dram_y * 5 / 4;
->+		dram_c_10bit = dram_y_10bit / 2;
-
-I'd skip the two 10 bit variables (dram_y_10bit & dram_c_10bit) and
-instead do it like this:
-
-```
-   dram_stride = pix_fmt_mp->width;
-   if (ctx->is_10bit_bitstream)
-     dram_stride = dram_stride * 5 / 4;
-
-   dram_y = dram_stride * pix_fmt_mp->height;
-   dram_c = dram_y / 2;
-
-   if (pix_fmt_mp->num_planes == 1) {
-     pix_fmt_mp->plane_fmt[0].bytesperline = dram_stride;
-     pix_fmt_mp->plane_fmt[0].sizeimage = dram_y + dram_c;
-   } else {
-     pix_fmt_mp->plane_fmt[0].bytesperline = dram_stride;
-     pix_fmt_mp->plane_fmt[1].bytesperline = dram_stride;
-     pix_fmt_mp->plane_fmt[0].sizeimage = dram_y;
-     pix_fmt_mp->plane_fmt[1].sizeimage = dram_c;
-     ...
-   }
-```
-
-Also, why do you call all the variables dram?
-
-Please this isn't tested, but shows the general direction to repeat a
-lot less code.
-
-Greetings,
-Sebastian
-
->
-> 		pix_fmt_mp->num_planes = fmt->num_planes;
->-		pix_fmt_mp->plane_fmt[0].sizeimage =
->-				pix_fmt_mp->width * pix_fmt_mp->height;
->-		pix_fmt_mp->plane_fmt[0].bytesperline = pix_fmt_mp->width;
->-
->-		if (pix_fmt_mp->num_planes == 2) {
->-			pix_fmt_mp->plane_fmt[1].sizeimage =
->-				(pix_fmt_mp->width * pix_fmt_mp->height) / 2;
->-			pix_fmt_mp->plane_fmt[1].bytesperline =
->-				pix_fmt_mp->width;
->+		if (pix_fmt_mp->num_planes == 1) {
->+			if (ctx->is_10bit_bitstream) {
->+				pix_fmt_mp->plane_fmt[0].bytesperline = pix_fmt_mp->width * 5 / 4;
->+				pix_fmt_mp->plane_fmt[0].sizeimage = dram_y_10bit + dram_c_10bit;
->+			} else {
->+				pix_fmt_mp->plane_fmt[0].bytesperline = pix_fmt_mp->width;
->+				pix_fmt_mp->plane_fmt[0].sizeimage = dram_y + dram_c;
->+			}
->+		} else {
->+			if (ctx->is_10bit_bitstream) {
->+				pix_fmt_mp->plane_fmt[0].bytesperline = pix_fmt_mp->width * 5 / 4;
->+				pix_fmt_mp->plane_fmt[1].bytesperline = pix_fmt_mp->width * 5 / 4;
->+
->+				pix_fmt_mp->plane_fmt[0].sizeimage = dram_y_10bit;
->+				pix_fmt_mp->plane_fmt[1].sizeimage = dram_c_10bit;
->+			} else {
->+				pix_fmt_mp->plane_fmt[0].bytesperline = pix_fmt_mp->width;
->+				pix_fmt_mp->plane_fmt[1].bytesperline = pix_fmt_mp->width;
->+
->+				pix_fmt_mp->plane_fmt[0].sizeimage = dram_y;
->+				pix_fmt_mp->plane_fmt[1].sizeimage = dram_c;
->+			}
-> 		}
->+
->+		mtk_v4l2_vdec_dbg(0, ctx,
->+				  "before resize:%dx%d, after resize:%dx%d, sizeimage=0x%x_0x%x",
->+				  tmp_w, tmp_h, pix_fmt_mp->width, pix_fmt_mp->height,
->+				  pix_fmt_mp->plane_fmt[0].sizeimage,
->+				  pix_fmt_mp->plane_fmt[1].sizeimage);
-> 	}
->
-> 	pix_fmt_mp->flags = 0;
->-- 
->2.25.1
->
+Thanks,
+Guenter
 
