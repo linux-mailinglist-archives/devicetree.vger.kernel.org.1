@@ -1,84 +1,204 @@
-Return-Path: <devicetree+bounces-56024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21A228975BC
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 18:58:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E4738975CD
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 19:00:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D042928BC52
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 16:58:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C03281F21E12
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 17:00:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11BB7152162;
-	Wed,  3 Apr 2024 16:58:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D16241514FA;
+	Wed,  3 Apr 2024 17:00:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ojtKpnha"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XM83IQSW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8B991514DB;
-	Wed,  3 Apr 2024 16:58:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 509C918E20;
+	Wed,  3 Apr 2024 17:00:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712163487; cv=none; b=JIkxp9SiJzDD/c+8V4dlV0PFsXXjegqhdTcSBd/UbWif+s9P51XtU83IKMulqeTYepJYxsa4xT1onzkEiDgY4T1Os2+GZB3dR2WNQrdPSnAEqy5Zv5lsDCKKh3UDYr4vcN8Lw3Ap+qe1JGx1qyDYBHVqlQjbvKu57JaAqmHOEtg=
+	t=1712163614; cv=none; b=IZoiXoJstKozalS8WNBefQL3gYlgQkafsqLMQs4PAd/9hv3OG0/4yCxeXRdN/ma94Vrpt46MGwC6mxXYjw/jMj30CwBuNItmgmIB5wv/iA4wdXqEeTLkZ4nUE0vjaa2cCALCwbLfQ+yCIcssKeUS6HpydDYjrlTadMkvKjc3BHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712163487; c=relaxed/simple;
-	bh=9rLMe366FhUw6+imqIqQBG1vHsoorewZtvDCW2ZLNc0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r7pbgh6EVhoKoIW71OW+7VTcR9J1QkUjsWiwRDpQYT3rIaaQswEH5ST+MgWwYLueVxFr41FzEaHo/VdhnMzlJjh+vt7BvLKo4wmwtRSyBzpnQ26MCIlvNrcUbRgi64pyjNMyMK1LRq9gXiXctZ7qorYnUhf0WdrWkzdcmAU4ROc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ojtKpnha; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4985DC43390;
-	Wed,  3 Apr 2024 16:58:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712163486;
-	bh=9rLMe366FhUw6+imqIqQBG1vHsoorewZtvDCW2ZLNc0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ojtKpnhaY1d27rxoQjGBAiQWNjZzZPL6hc2QUxgcI/wE3dDp9TLn0J74mI6ZpFs7j
-	 L4zAvkuZxjNKKErcfxMJ+gAgGOWOTaJAVjIRPswKCQ+IE76rFuysjOLhG2nNU4YCdU
-	 cgoG6fg7cdOmTXdVaW7HZqxAzeaDqKAxDVjDNSIJwOB0+OSAzqnB48n1OsceSX70lu
-	 gtDLarjj37V5cCJ0Yj51P5lcsjdNFBp9YYIYLGicmJU4vxALZ9a1crs+rcyVydYzKz
-	 FgsUcavs7X0Hnk3SAdrmdZN+Y0NyiMJQzmkq5c3cgMz7H7V8bt/ddjEDXUF3tceZGZ
-	 ooXOVE1bt9nRQ==
-Date: Wed, 3 Apr 2024 11:58:04 -0500
-From: Rob Herring <robh@kernel.org>
-To: Hiago De Franco <hiagofranco@gmail.com>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>, imx@lists.linux.dev,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	linux-kernel@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	s=arc-20240116; t=1712163614; c=relaxed/simple;
+	bh=z3FscXihxwpOV4ROqTZ5m0E+vHpG1jkSs+uhYwvMfYI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=L24nVwndyTKLZ7YqaeLTOMCSfK/Mbkbjeh9GkrwS7UUnTjdhf9mWVvzoUXlhjGM71EJ60ycvK/01I8TpCrIXp1xeqbk7Xb0I/7edxhgIvjIbahAD3WLVlGiyXOAQpycxcurzkiB7aBBbZyGFACZdYtF2DW2UBe9gSp9n8f4QLhA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XM83IQSW; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-6e704078860so13892b3a.0;
+        Wed, 03 Apr 2024 10:00:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712163612; x=1712768412; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/iqVZ5gA1EsiAAqdiE1q1pz002POsB1V3jfn1PcyLTU=;
+        b=XM83IQSWa7qfNLPwsPoBsXpZSGMdmh0qUJvLGXx3OGN8oH+hY579EKjiZEo4UVj7tb
+         52bYdnvw9tzqII5Roc6KtPLRQGbKKxK5VtXdZDcuko2B4ZuWzu+06zUup/yxqz/tmz3q
+         GR99pCJuqu/rePZ9zOO/v8TBNq7Z85ml9jtUNxzt9qLLdXcciAL+oPsqyC4hRh9eEEQ7
+         Ygq772lCdD/JCDeukDwTyzVaJMLLPxYFYyoON9bO20f3AUMOrKS5FUpKgYNEuRRM0L5T
+         ok2Mo2awpFcQWstxbV/4YhiyOfHc1fklDHyfYSopoKfRSgCqud42Jx4q+W65lTNHKTey
+         FnZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712163612; x=1712768412;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/iqVZ5gA1EsiAAqdiE1q1pz002POsB1V3jfn1PcyLTU=;
+        b=oO1ybnP4Og0JMFkjNVAeeydML1t8SB1Mjubr8v9i21vMPcnq2yukX3wSKGDORIv2V1
+         pnFSoVirPrc+azr3V7VzKsQcoIT96ujg94E/55WiygQRzlfje42tX0RYE7pAUq/mtdfU
+         yq0AfV9t7E3Qggq0218vuGcb547WBE50C8fkCS5cbZ4uFGflqjnPf8ofLYoKIC7Pd1a0
+         SvONK4hu0ayz7lSSHaJgRDbVm9lTk3hfRiEISSI8vaq4vREPebor8q886plhrl8/iRv/
+         Kc4gEhGA4i2QvxxBK7vsFmOGKMkX3ISAtZR4ndSO9rVswn5Q6YjMiPZBfPt7daUcHSCz
+         HsbA==
+X-Forwarded-Encrypted: i=1; AJvYcCUdQy4axrM1Dv+pGjnuqUN+bRyuPAPS9d9oUANtIRp7uh54nEyMxNbbRLtXmy7LS/qwQaq6wum6dnKYzFqy6NuS+CjB0I5qgwp9Yc14zagQVzU4Ix90v/hE+5Fqlh78DoLwFjbnInDHeg==
+X-Gm-Message-State: AOJu0YzuiXJdqy90SgRcObRcc5IMytWJhBFe+hzyWKVDIJE64Uq20pbu
+	PSES0PTbfhA/m3CBqVHUoojWfjNWsDadRALrxo/24dJrUc5cqv6S
+X-Google-Smtp-Source: AGHT+IEGnCuTqwRJlWkcslahpnxgW2v/avadB030lgfgF5175R9lm9IIeIXhMbMokkf1DfF6h9e5WA==
+X-Received: by 2002:a05:6a00:21cc:b0:6ea:e31e:dc75 with SMTP id t12-20020a056a0021cc00b006eae31edc75mr121993pfj.5.1712163612561;
+        Wed, 03 Apr 2024 10:00:12 -0700 (PDT)
+Received: from localhost.localdomain ([203.188.229.101])
+        by smtp.gmail.com with ESMTPSA id c2-20020a056a000ac200b006eaf3057352sm8891925pfl.85.2024.04.03.10.00.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Apr 2024 10:00:12 -0700 (PDT)
+From: Mighty <bavishimithil@gmail.com>
+To: 
+Cc: bavishimithil@gmail.com,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Hiago De Franco <hiago.franco@toradex.com>
-Subject: Re: [PATCH v1 3/4] dt-bindings: arm: fsl: Add Colibri iMX8DX
-Message-ID: <171216347777.3984715.9828328734762234096.robh@kernel.org>
-References: <20240402193512.240417-1-hiagofranco@gmail.com>
- <20240402193512.240417-4-hiagofranco@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	alsa-devel@alsa-project.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: omap-mcpdm: Convert to DT schema
+Date: Wed,  3 Apr 2024 22:29:50 +0530
+Message-Id: <20240403165950.75-1-bavishimithil@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240402193512.240417-4-hiagofranco@gmail.com>
+Content-Transfer-Encoding: 8bit
 
+Convert the OMAP4+ McPDM bindings to DT schema.
 
-On Tue, 02 Apr 2024 16:35:11 -0300, Hiago De Franco wrote:
-> From: Hiago De Franco <hiago.franco@toradex.com>
-> 
-> Add support for Toradex Colibri iMX8DX SoM. As the i.MX8QXP variant is
-> already supported, update the description with i.MX8DX and add
-> 'fsl,imx8dx' item as well.
-> 
-> Signed-off-by: Hiago De Franco <hiago.franco@toradex.com>
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
-> 
+Signed-off-by: Mighty <bavishimithil@gmail.com>
+---
+ .../devicetree/bindings/sound/omap-mcpdm.txt  | 30 ----------
+ .../devicetree/bindings/sound/omap-mcpdm.yaml | 58 +++++++++++++++++++
+ 2 files changed, 58 insertions(+), 30 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/omap-mcpdm.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/omap-mcpdm.yaml
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+diff --git a/Documentation/devicetree/bindings/sound/omap-mcpdm.txt b/Documentation/devicetree/bindings/sound/omap-mcpdm.txt
+deleted file mode 100644
+index ff98a0cb5..000000000
+--- a/Documentation/devicetree/bindings/sound/omap-mcpdm.txt
++++ /dev/null
+@@ -1,30 +0,0 @@
+-* Texas Instruments OMAP4+ McPDM
+-
+-Required properties:
+-- compatible: "ti,omap4-mcpdm"
+-- reg: Register location and size as an array:
+-       <MPU access base address, size>,
+-       <L3 interconnect address, size>;
+-- interrupts: Interrupt number for McPDM
+-- ti,hwmods: Name of the hwmod associated to the McPDM
+-- clocks:  phandle for the pdmclk provider, likely <&twl6040>
+-- clock-names: Must be "pdmclk"
+-
+-Example:
+-
+-mcpdm: mcpdm@40132000 {
+-	compatible = "ti,omap4-mcpdm";
+-	reg = <0x40132000 0x7f>, /* MPU private access */
+-	      <0x49032000 0x7f>; /* L3 Interconnect */
+-	interrupts = <0 112 0x4>;
+-	interrupt-parent = <&gic>;
+-	ti,hwmods = "mcpdm";
+-};
+-
+-In board DTS file the pdmclk needs to be added:
+-
+-&mcpdm {
+-	clocks = <&twl6040>;
+-	clock-names = "pdmclk";
+-	status = "okay";
+-};
+diff --git a/Documentation/devicetree/bindings/sound/omap-mcpdm.yaml b/Documentation/devicetree/bindings/sound/omap-mcpdm.yaml
+new file mode 100644
+index 000000000..8c9ff9d90
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/omap-mcpdm.yaml
+@@ -0,0 +1,58 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/omap-mcpdm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: OMAP McPDM
++
++maintainers:
++  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
++
++description:
++  OMAP ALSA SoC DAI driver using McPDM port used by TWL6040
++
++properties:
++  compatible:
++    const: ti,omap4-mcpdm
++
++  reg:
++    description: 'Register location and size as an array:
++       <MPU access base address, size>,
++       <L3 interconnect address, size>;'
++
++  interrupts:
++    description: Interrupt number for McPDM
++
++  ti,hwmods:
++    description: Name of the hwmod associated to the McPDM
++
++  clocks:
++    description: phandle for the pdmclk provider, likely <&twl6040>
++
++  clock-names:
++    description: Must be "pdmclk"
++
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - ti,hwmods
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  - |
++    mcpdm: mcpdm@40132000 {
++      compatible = "ti,omap4-mcpdm";
++      reg = <0x40132000 0x7f>, /* MPU private access */
++            <0x49032000 0x7f>; /* L3 Interconnect */
++      interrupts = <0 112 0x4>;
++      interrupt-parent = <&gic>;
++      ti,hwmods = "mcpdm";
++      clocks = <&twl6040>;
++      clock-names = "pdmclk";
++    };
+-- 
+2.34.1
 
 
