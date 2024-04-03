@@ -1,108 +1,88 @@
-Return-Path: <devicetree+bounces-55716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00D1E89622C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 03:43:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9578C896238
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 03:46:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B6C928C08D
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 01:43:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D16628DBB2
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 01:46:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20B861C68A;
-	Wed,  3 Apr 2024 01:42:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A17214006;
+	Wed,  3 Apr 2024 01:46:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="aD38luKq"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="HqMo8bGW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-177132.yeah.net (mail-177132.yeah.net [123.58.177.132])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C0631BC4B;
-	Wed,  3 Apr 2024 01:42:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.132
+Received: from mail-177131.yeah.net (mail-177131.yeah.net [123.58.177.131])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE327125CC;
+	Wed,  3 Apr 2024 01:46:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712108526; cv=none; b=k4UzvXG+P2McOa6C4FVuxmHZazS4gIXg3RDpCsYSIdjjeYveeR1bLH5FrICVI51zoY6bJt5j9aiRpDl1lDvMdl6gL14KF8DQQn1aNID2R0Yx7MZI1w11lSGypiMkPYCfh4bOe4hl/jNEXTm4hVFZ7jfW/7nIGpfrwdOlItrxI+o=
+	t=1712108786; cv=none; b=pF1niQ392ex7yG1Yi+qcsq/fAfGD2Bds4e8A/gE0nv32CN4uLpeezEUvWM9Y6JMAkDj5ejS6FvHBbFleQU4Q+Z2oF3TNG2qS6MX+dzQJ62BjmO9Hsj7xRRxCvMxq77aO36OoPYjlT9i//uY+hvmMLs9a53DKjOZEVPRiop277ho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712108526; c=relaxed/simple;
-	bh=apm/cyErWPKZfHanGyHQ8pZ64PmEZzN6lIff+v3a0bo=;
+	s=arc-20240116; t=1712108786; c=relaxed/simple;
+	bh=MuznxIArtT+GpJBNXazw+Q5Rm/vUC2YziMQinmmP118=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bRMiBitcENFTsw0HrIDZprclc4T64PuzkNrr4eOQJ6qeH6WeQNG9/QZ/+Xgejwd4ZjQgkjtuzVagvG8bXZDqynCrrI1WegtgjCg+qId2y3FJMlMKZCBPe3l5ptnYJLZxx+OuhfJBj38plYiK6cg9H9fsyJ7Y4kCikandgwCQUKU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=aD38luKq; arc=none smtp.client-ip=123.58.177.132
+	 Content-Type:Content-Disposition:In-Reply-To; b=baQz7wKjekgOMq9XBsyxHNC0zltmY5dTNxPP6VXnAHTYr2soJOGPwsn7sMFhpIKaZJcNTq2Cgo/3PGZE9pjT1/eyzimCsmAyRcZVl5iaR9kU5/uWB81RXnS4orTVX3mjn2ela20w6ZI6+X0jn4JhwxZ3idj4nvhqY/oBKRUMI84=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=HqMo8bGW; arc=none smtp.client-ip=123.58.177.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=Mbtxsma7yyIkq9ySu8dVUD5R+zMrmAtoSbh78F9Br7k=;
-	b=aD38luKqCmv3cW5ZHyJcYv1DB+sQshRn7hTUuUAx1aDSBQiE5aaFBbK7h4JFP8
-	+lRq5gOYBXXAH+LgVINRaXcPd/EGJy1wSrpgwG+Q7L6gQiPf71Bh2yEQXj8NpBm6
-	qiDtZ0EdIJEnuFsIWbWOHwbbhorjt4dt0wiQDyRSy0rus=
+	Content-Type; bh=wI38BOff83Z3O570b58MMMyCQE8jw/HSaBPct6nheZw=;
+	b=HqMo8bGW80N59J7AVklQNLtkhdt3Lmt0/fjZ14xq1zmIzbw+7qekdRb8+pgTlB
+	Vzj+uQB0/oWpr99oTyFv/P9X34eXQxMr2xez6/lxTMBkkXDPQP5IlVdQZtpI23Ze
+	3Nf4/GJjatmsrgJlNcQn8TpFyMsFeWFegEcYy8C+ZDPEw=
 Received: from dragon (unknown [223.68.79.243])
-	by smtp2 (Coremail) with SMTP id C1UQrADXPhjGswxmoDmzAg--.46730S3;
-	Wed, 03 Apr 2024 09:41:27 +0800 (CST)
-Date: Wed, 3 Apr 2024 09:41:26 +0800
+	by smtp1 (Coremail) with SMTP id ClUQrADnDyDQtAxmZ6ytAQ--.3637S3;
+	Wed, 03 Apr 2024 09:45:53 +0800 (CST)
+Date: Wed, 3 Apr 2024 09:45:52 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Fabio Estevam <festevam@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-	Philippe Schenker <philippe.schenker@toradex.com>,
-	Max Krummenacher <max.krummenacher@toradex.com>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Dong Aisheng <aisheng.dong@nxp.com>,
+	Peng Fan <peng.fan@nxp.com>,
 	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Joakim Zhang <qiangqing.zhang@nxp.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: Re: [PATCH 1/7] arm64: dts: imx8-ss-lsio: fix pwm lpcg indices
-Message-ID: <ZgyzxmuMIK87C2nW@dragon>
-References: <20240401-dts_fix-v1-0-8c51ce52d411@nxp.com>
- <20240401-dts_fix-v1-1-8c51ce52d411@nxp.com>
- <CAOMZO5AJrQ5jyV4A-tvX93-R0_nEWpEO9YY3f5DpeXaAFO4cSA@mail.gmail.com>
- <ZgwfnZJDRYmYy7Qt@lizhi-Precision-Tower-5810>
+	Alice Guo <alice.guo@nxp.com>
+Subject: Re: [PATCH v5 0/4] arm64: dts: imx8: add cm40 and cm40_uart
+Message-ID: <Zgy00Iky4hXlK+Gc@dragon>
+References: <20240402-m4_lpuart-v5-0-3292629ba808@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZgwfnZJDRYmYy7Qt@lizhi-Precision-Tower-5810>
-X-CM-TRANSID:C1UQrADXPhjGswxmoDmzAg--.46730S3
-X-Coremail-Antispam: 1Uf129KBjvdXoWrZw4Duw18XrWfZF17CFW7urg_yoWfuFXEgw
-	4kZFs3tr1Duwn3Jan5Ar4rJ3yDJa4q9r45Xr95Ww17Xas8W3yUGF1UWa48ZrW7GFZaqrn8
-	JFnrJFWqq34SvjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU0CJmUUUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiGAm1ZV6Nnqo1hQAAsW
+In-Reply-To: <20240402-m4_lpuart-v5-0-3292629ba808@nxp.com>
+X-CM-TRANSID:ClUQrADnDyDQtAxmZ6ytAQ--.3637S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUsyCJDUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiBRG1ZVsVCbg3pQAAsp
 
-On Tue, Apr 02, 2024 at 11:09:17AM -0400, Frank Li wrote:
-> On Mon, Apr 01, 2024 at 08:04:56PM -0300, Fabio Estevam wrote:
-> > On Mon, Apr 1, 2024 at 7:25 PM Frank Li <Frank.Li@nxp.com> wrote:
-> > >
-> > > lpcg's arg0 should use clock indices instead of index.
-> > >
-> > > pwm0_lpcg: clock-controller@5d400000 {
-> > >         ...                                                // Col1  Col2
-> > >         clocks = <&clk IMX_SC_R_PWM_0 IMX_SC_PM_CLK_PER>,  // 0     0
-> > >                  <&clk IMX_SC_R_PWM_0 IMX_SC_PM_CLK_PER>,  // 1     1
-> > >                  <&clk IMX_SC_R_PWM_0 IMX_SC_PM_CLK_PER>,  // 2     4
-> > >                  <&lsio_bus_clk>,                          // 3     5
-> > >                  <&clk IMX_SC_R_PWM_0 IMX_SC_PM_CLK_PER>;  // 4     6
-> > >         clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_1>,
-> > >                         <IMX_LPCG_CLK_4>, <IMX_LPCG_CLK_5>,
-> > >                         <IMX_LPCG_CLK_6>;
-> > > };
-> > >
-> > > Col1: index, which exited dts try to get.
-> > 
-> > I cannot understand this sentence, sorry.
+On Tue, Apr 02, 2024 at 10:41:27AM -0400, Frank Li wrote:
+> Alice Guo (1):
+>       arm64: dts: imx8dxl: add lpuart device in cm40 subsystem
 > 
-> This base on downstream dts code.  Downstream code use index in 'Col1' to
-> get clock.
+> Dong Aisheng (1):
+>       arm64: dts: imx8: add cm40 subsystem dtsi
+> 
+> Frank Li (2):
+>       arm64: dts: imx8dxl: update cm40 irq number information
+>       dts: arm64: imx8dxl-evk: add lpuart1 and cm40 uart
 
-So s/exited/existing you meant?
+arm64: dts: imx8dxl-evk: ...
+
+Fixed it up and applied the series, thanks!
 
 Shawn
 
