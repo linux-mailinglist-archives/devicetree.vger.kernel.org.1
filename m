@@ -1,641 +1,117 @@
-Return-Path: <devicetree+bounces-55745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A1F489638C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 06:35:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F4C38963A1
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 06:45:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B00B1F235E5
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 04:35:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 283B0B223B0
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 04:45:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF61445C14;
-	Wed,  3 Apr 2024 04:34:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDE5D44C87;
+	Wed,  3 Apr 2024 04:45:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="s5oHQ2IP"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="Cn68qSYi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 206224EB2E
-	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 04:34:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+Received: from mail-177132.yeah.net (mail-177132.yeah.net [123.58.177.132])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 338BB2AE8E;
+	Wed,  3 Apr 2024 04:45:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712118888; cv=none; b=Wwj3Iu8UJadm4SKTrl9A7141n4Irj70hr0oIjEcc/pOskl71WuTYOg6ZHjTqtA101E+tuFdnv29RCQ27hISSpNIytLW3ji6sNnvGSGgM2F2xgNmxpyMwENgjr49dmnFmG/yH4SpxZTIH45H6LVeh/+DRQQi7w0RX+22BD8Hn/7o=
+	t=1712119546; cv=none; b=jkXXzxfJT1a2W1u43e0mIPqq5OXaDbcb7iAlkdwtp7dCGNU46TDBogm4ch4bRT43+FeRLx/UGoTo4NhX6F3uPEnpukCNvWRQR/ufK65EYFD0PuNcfIhYTPMDSdRioPf4+/FORWge4eAqV8S5HDl7WqXonqoJhkilnmTVxpHAAcY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712118888; c=relaxed/simple;
-	bh=7GhYbOtb83rAmQ+qmPqwraB4zBIOCOW8vfT9dpSAQbM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=R6C3C0US5nj6GfOjFK4sqmE1/Y3vDIdoUOo8Noj/nwWCZnGACoxybRGtNpzGKPnXEdB6HEMzbt9eMBuhGIu4OY8ZlRRInMUQ2AdGYB9PEKIRLc7OWbgiKDDqR3IInjxHsP8mERKSm5O+tdMjT/W9WDnFZZdT2Z0T6SNZ7FDq3RE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=s5oHQ2IP; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-1e27e174ccbso8148945ad.2
-        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 21:34:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712118886; x=1712723686; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XkhQVd82cIp1WKzy//c11C0Lv0bwxk73j3BRxuDvF6w=;
-        b=s5oHQ2IPOvcxdmAeT0GTRlNlaqRXldPjJYjx1qbxlvA0yWFsYubJ/TLr9Z9CHtt1k/
-         GZOnSGHAqvob0Wx8Z+HjgTki0QJ3D1L+h8yFUQb5pLUVD1HbdrMK3jLhGFAf+XpABZSQ
-         0fDmeYzxs1geFeofNB4dZC5UlvOwMIDT7uHe2uv5qcUBRWclGMf8Se8JkIvB350BQPDA
-         aSOT762FI/gtHMgUeXsIeBaWQP7AzJMOqD1SXfAM98v4ThlC5REUHllMDQBetiqoc13T
-         DCLB0M39NcnicpIIwHjWNvZLIP61UtX5RYP7RP7uy28hS98TYaSDu0tAl8O77Xpl0qmm
-         zVHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712118886; x=1712723686;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XkhQVd82cIp1WKzy//c11C0Lv0bwxk73j3BRxuDvF6w=;
-        b=nJIaohnpOnk4vzHZvA845TZtNcPjW4TF722t8mosjv39ELkt0uPWiEq7Y590oK50w5
-         YDMLuZs840LGLgUdFwrUmXxL4zLzeI6H0c/RGCOkMZvqA1HHOyApA5upnWzV7eylY2xq
-         yED4dp9Ik5/nkD78PD1W4Y2XxRQtBpJmPADX+qRezthUaDNms3uPkh1jFi/wtfG5RtFg
-         N/4UYkMTRFvg7Cv8ncM1OjF4MYtrnuQSDdINA4UPAwNL66pU2qIkvYUNWEGW67OlKo7X
-         TTvodUlUhARINUfSs9trzxWFh/6klm/EwS7OsyonaaXbiPmYkrpHsufkb/Wias+8UMFi
-         Mxdg==
-X-Forwarded-Encrypted: i=1; AJvYcCUUdNt7KehPFwNoUN5pOf4vxZiXS3REpLDJiCEEOVQwwFLAS/xWeIRI4QBVDuD76O+BYx0UFQL0pHl/+OFrIHkkPH2toV7/DpnfWQ==
-X-Gm-Message-State: AOJu0YzgpotZvbKK4Yco5fpBZY0gptDmyiayHmYYfOPZd+Zm+Xtzdxuv
-	w/HUI9py5mWPKvcB1MF4T87Vz1Eajzn6oOyto8qqdMjcLSApQbro7i+3IHfOhA0=
-X-Google-Smtp-Source: AGHT+IH+y+4AYTrQz4RnCBhyIkuAaXWXdODny4WIkA4rX7Z1DQEXnbQvFuZ+ZrXKzFnLtjE7hC5JGw==
-X-Received: by 2002:a17:902:b588:b0:1e2:86f:d268 with SMTP id a8-20020a170902b58800b001e2086fd268mr13933462pls.19.1712118886357;
-        Tue, 02 Apr 2024 21:34:46 -0700 (PDT)
-Received: from sumit-X1.. ([223.178.212.199])
-        by smtp.gmail.com with ESMTPSA id cp12-20020a170902e78c00b001e2059a6386sm12074634plb.12.2024.04.02.21.34.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Apr 2024 21:34:46 -0700 (PDT)
-From: Sumit Garg <sumit.garg@linaro.org>
-To: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: andersson@kernel.org,
-	konrad.dybcio@linaro.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	stephan@gerhold.net,
-	caleb.connolly@linaro.org,
-	neil.armstrong@linaro.org,
-	dmitry.baryshkov@linaro.org,
-	laetitia.mariottini@se.com,
-	pascal.eberhard@se.com,
-	abdou.saker@se.com,
-	jimmy.lalande@se.com,
-	benjamin.missey@non.se.com,
-	daniel.thompson@linaro.org,
-	linux-kernel@vger.kernel.org,
-	Sumit Garg <sumit.garg@linaro.org>,
-	Jagdish Gediya <jagdish.gediya@linaro.org>
-Subject: [PATCH v5 3/3] arm64: dts: qcom: apq8016: Add Schneider HMIBSC board DTS
-Date: Wed,  3 Apr 2024 10:04:16 +0530
-Message-Id: <20240403043416.3800259-4-sumit.garg@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240403043416.3800259-1-sumit.garg@linaro.org>
-References: <20240403043416.3800259-1-sumit.garg@linaro.org>
+	s=arc-20240116; t=1712119546; c=relaxed/simple;
+	bh=RKRjGazQgi9/wy1ZAhmHmX3W2MvlUVydC1Fm+Jjp4lg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EBsjXgydKw4s6rN5DLYGBYve5cED4UoDJbhHCmeFYNM0hfIjA8c3RnM24tIx3N7KkAvSqna6vt52hfdutFJK7vZtDvG/d1ITnzWzAI1oVFchPB3MlmYdH+5Uby0tMuE+PSWRwtIicxdcm5YB44tmibqOPxFGAYW1wfNMBJvUsTY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=Cn68qSYi; arc=none smtp.client-ip=123.58.177.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=uqX62Bf+JcrmBQv01/Vx3mbSrOugBLWbo5yWq5zhEF0=;
+	b=Cn68qSYiu/cNf66cDzMKChseMZEtIq+6n/0ljmod+U1HDeD/QZo0TYcSi/xUvT
+	/GkgzXYtXAzlJumWi1KSd5uQXdkTO1ibihOj4bp+JXJQmZR12YkuV41qb/2fnlGU
+	At/deTB46fkinM5OX5MH6DDalYzfmNzY2muIVT/BQ/wwY=
+Received: from dragon (unknown [223.68.79.243])
+	by smtp2 (Coremail) with SMTP id C1UQrACH7xjG3gxmxeC1Ag--.47054S3;
+	Wed, 03 Apr 2024 12:44:55 +0800 (CST)
+Date: Wed, 3 Apr 2024 12:44:54 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Fabio Estevam <festevam@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+	Philippe Schenker <philippe.schenker@toradex.com>,
+	Max Krummenacher <max.krummenacher@toradex.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Joakim Zhang <qiangqing.zhang@nxp.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: Re: [PATCH 1/7] arm64: dts: imx8-ss-lsio: fix pwm lpcg indices
+Message-ID: <ZgzexmiPVXJjEFRe@dragon>
+References: <20240401-dts_fix-v1-0-8c51ce52d411@nxp.com>
+ <20240401-dts_fix-v1-1-8c51ce52d411@nxp.com>
+ <CAOMZO5AJrQ5jyV4A-tvX93-R0_nEWpEO9YY3f5DpeXaAFO4cSA@mail.gmail.com>
+ <ZgwfnZJDRYmYy7Qt@lizhi-Precision-Tower-5810>
+ <ZgyzxmuMIK87C2nW@dragon>
+ <ZgzIjziArPh8wnHA@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZgzIjziArPh8wnHA@lizhi-Precision-Tower-5810>
+X-CM-TRANSID:C1UQrACH7xjG3gxmxeC1Ag--.47054S3
+X-Coremail-Antispam: 1Uf129KBjvdXoWruF18tw45AF1xAw4kJF1DKFg_yoWktFbEga
+	1kZrs2yr1Du3ZrJan5Ar4rJ3yDJa4qkr15Xr95Wr17XasxJ34UJF1UKry8ZrW7GFZxtrn8
+	JFnxJFWYq3ySvjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU0CJmUUUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiBR+1ZVsVCbh9qgABsj
 
-Add Schneider Electric HMIBSC board DTS. The HMIBSC board is an IIoT Edge
-Box Core board based on the Qualcomm APQ8016E SoC.
+On Tue, Apr 02, 2024 at 11:10:07PM -0400, Frank Li wrote:
+> On Wed, Apr 03, 2024 at 09:41:26AM +0800, Shawn Guo wrote:
+> > On Tue, Apr 02, 2024 at 11:09:17AM -0400, Frank Li wrote:
+> > > On Mon, Apr 01, 2024 at 08:04:56PM -0300, Fabio Estevam wrote:
+> > > > On Mon, Apr 1, 2024 at 7:25 PM Frank Li <Frank.Li@nxp.com> wrote:
+> > > > >
+> > > > > lpcg's arg0 should use clock indices instead of index.
+> > > > >
+> > > > > pwm0_lpcg: clock-controller@5d400000 {
+> > > > >         ...                                                // Col1  Col2
+> > > > >         clocks = <&clk IMX_SC_R_PWM_0 IMX_SC_PM_CLK_PER>,  // 0     0
+> > > > >                  <&clk IMX_SC_R_PWM_0 IMX_SC_PM_CLK_PER>,  // 1     1
+> > > > >                  <&clk IMX_SC_R_PWM_0 IMX_SC_PM_CLK_PER>,  // 2     4
+> > > > >                  <&lsio_bus_clk>,                          // 3     5
+> > > > >                  <&clk IMX_SC_R_PWM_0 IMX_SC_PM_CLK_PER>;  // 4     6
+> > > > >         clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_1>,
+> > > > >                         <IMX_LPCG_CLK_4>, <IMX_LPCG_CLK_5>,
+> > > > >                         <IMX_LPCG_CLK_6>;
+> > > > > };
+> > > > >
+> > > > > Col1: index, which exited dts try to get.
+> > > > 
+> > > > I cannot understand this sentence, sorry.
+> > > 
+> > > This base on downstream dts code.  Downstream code use index in 'Col1' to
+> > > get clock.
+> > 
+> > So s/exited/existing you meant?
+> 
+> Yes, sorry for typo. 
 
-Support for Schneider Electric HMIBSC. Features:
-- Qualcomm Snapdragon 410C SoC - APQ8016 (4xCortex A53, Adreno 306)
-- 1GiB RAM
-- 8GiB eMMC, SD slot
-- WiFi and Bluetooth
-- 2x Host, 1x Device USB port
-- HDMI
-- Discrete TPM2 chip over SPI
-- USB ethernet adaptors (soldered)
+I fixed the typo and applied the series, thanks!
 
-Co-developed-by: Jagdish Gediya <jagdish.gediya@linaro.org>
-Signed-off-by: Jagdish Gediya <jagdish.gediya@linaro.org>
-Reviewed-by: Caleb Connolly <caleb.connolly@linaro.org>
-Reviewed-by: Stephan Gerhold <stephan@gerhold.net>
-Signed-off-by: Sumit Garg <sumit.garg@linaro.org>
----
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- .../dts/qcom/apq8016-schneider-hmibsc.dts     | 491 ++++++++++++++++++
- 2 files changed, 492 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 39889d5f8e12..ad55e52e950b 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -5,6 +5,7 @@ apq8016-sbc-usb-host-dtbs	:= apq8016-sbc.dtb apq8016-sbc-usb-host.dtbo
- 
- dtb-$(CONFIG_ARCH_QCOM)	+= apq8016-sbc-usb-host.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= apq8016-sbc-d3-camera-mezzanine.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= apq8016-schneider-hmibsc.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= apq8039-t2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= apq8094-sony-xperia-kitakami-karin_windy.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-db820c.dtb
-diff --git a/arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts b/arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts
-new file mode 100644
-index 000000000000..75c6137e5a11
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts
-@@ -0,0 +1,491 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2015, The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2024, Linaro Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include "msm8916-pm8916.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-+#include <dt-bindings/pinctrl/qcom,pmic-mpp.h>
-+#include <dt-bindings/sound/apq8016-lpass.h>
-+
-+/ {
-+	model = "Schneider Electric HMIBSC Board";
-+	compatible = "schneider,apq8016-hmibsc", "qcom,apq8016";
-+
-+	aliases {
-+		i2c1 = &blsp_i2c6;
-+		i2c3 = &blsp_i2c4;
-+		i2c4 = &blsp_i2c3;
-+		mmc0 = &sdhc_1; /* eMMC */
-+		mmc1 = &sdhc_2; /* SD card */
-+		serial0 = &blsp_uart1;
-+		serial1 = &blsp_uart2;
-+		spi0 = &blsp_spi5;
-+		usid0 = &pm8916_0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0";
-+	};
-+
-+	hdmi-out {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_con: endpoint {
-+				remote-endpoint = <&adv7533_out>;
-+			};
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		autorepeat;
-+		pinctrl-0 = <&msm_key_volp_n_default>;
-+		pinctrl-names = "default";
-+
-+		button {
-+			label = "Volume Up";
-+			linux,code = <KEY_VOLUMEUP>;
-+			gpios = <&tlmm 107 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-0 = <&pm8916_mpps_leds>;
-+		pinctrl-names = "default";
-+
-+		led-1 {
-+			function = LED_FUNCTION_WLAN;
-+			color = <LED_COLOR_ID_YELLOW>;
-+			gpios = <&pm8916_mpps 2 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "phy0tx";
-+			default-state = "off";
-+		};
-+
-+		led-2 {
-+			function = LED_FUNCTION_BLUETOOTH;
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&pm8916_mpps 3 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "bluetooth-power";
-+			default-state = "off";
-+		};
-+	};
-+
-+	memory@80000000 {
-+		reg = <0 0x80000000 0 0x40000000>;
-+	};
-+
-+	reserved-memory {
-+		ramoops@bff00000 {
-+			compatible = "ramoops";
-+			reg = <0x0 0xbff00000 0x0 0x100000>;
-+			record-size = <0x20000>;
-+			console-size = <0x20000>;
-+			ftrace-size = <0x20000>;
-+			ecc-size = <16>;
-+		};
-+	};
-+
-+	usb-hub {
-+		compatible = "smsc,usb3503";
-+		reset-gpios = <&pm8916_gpios 1 GPIO_ACTIVE_LOW>;
-+		initial-mode = <1>;
-+	};
-+
-+	usb_id: usb-id {
-+		compatible = "linux,extcon-usb-gpio";
-+		id-gpios = <&tlmm 110 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&usb_id_default>;
-+		pinctrl-names = "default";
-+	};
-+};
-+
-+&blsp_i2c3 {
-+	status = "okay";
-+
-+	eeprom@50 {
-+		compatible = "atmel,24c32";
-+		reg = <0x50>;
-+	};
-+};
-+
-+&blsp_i2c4 {
-+	status = "okay";
-+
-+	adv_bridge: bridge@39 {
-+		compatible = "adi,adv7533";
-+		reg = <0x39>;
-+		interrupts-extended = <&tlmm 31 IRQ_TYPE_EDGE_FALLING>;
-+
-+		adi,dsi-lanes = <4>;
-+		clocks = <&rpmcc RPM_SMD_BB_CLK2>;
-+		clock-names = "cec";
-+		pd-gpios = <&tlmm 32 GPIO_ACTIVE_HIGH>;
-+
-+		avdd-supply = <&pm8916_l6>;
-+		a2vdd-supply = <&pm8916_l6>;
-+		dvdd-supply = <&pm8916_l6>;
-+		pvdd-supply = <&pm8916_l6>;
-+		v1p2-supply = <&pm8916_l6>;
-+		v3p3-supply = <&pm8916_l17>;
-+
-+		pinctrl-0 = <&adv7533_int_active &adv7533_switch_active>;
-+		pinctrl-1 = <&adv7533_int_suspend &adv7533_switch_suspend>;
-+		pinctrl-names = "default","sleep";
-+		#sound-dai-cells = <0>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				adv7533_in: endpoint {
-+					remote-endpoint = <&mdss_dsi0_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+				adv7533_out: endpoint {
-+					remote-endpoint = <&hdmi_con>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&blsp_i2c6 {
-+	status = "okay";
-+
-+	rtc@30 {
-+		compatible = "sii,s35390a";
-+		reg = <0x30>;
-+	};
-+
-+	eeprom@50 {
-+		compatible = "atmel,24c256";
-+		reg = <0x50>;
-+	};
-+};
-+
-+&blsp_spi5 {
-+	cs-gpios = <&tlmm 18 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+
-+	tpm@0 {
-+		compatible = "infineon,slb9670", "tcg,tpm_tis-spi";
-+		reg = <0>;
-+		spi-max-frequency = <500000>;
-+	};
-+};
-+
-+&blsp_uart1 {
-+	label = "UART0";
-+	status = "okay";
-+};
-+
-+&blsp_uart2 {
-+	label = "UART1";
-+	status = "okay";
-+};
-+
-+&lpass {
-+	status = "okay";
-+};
-+
-+&mdss {
-+	status = "okay";
-+};
-+
-+&mdss_dsi0_out {
-+	data-lanes = <0 1 2 3>;
-+	remote-endpoint = <&adv7533_in>;
-+};
-+
-+&pm8916_codec {
-+	qcom,mbhc-vthreshold-low = <75 150 237 450 500>;
-+	qcom,mbhc-vthreshold-high = <75 150 237 450 500>;
-+	status = "okay";
-+};
-+
-+&pm8916_gpios {
-+	gpio-line-names =
-+		"USB_HUB_RESET_N_PM",
-+		"USB_SW_SEL_PM",
-+		"NC",
-+		"NC";
-+
-+	usb_hub_reset_pm: usb-hub-reset-pm-state {
-+		pins = "gpio1";
-+		function = PMIC_GPIO_FUNC_NORMAL;
-+		input-disable;
-+		output-high;
-+	};
-+
-+	usb_hub_reset_pm_device: usb-hub-reset-pm-device-state {
-+		pins = "gpio1";
-+		function = PMIC_GPIO_FUNC_NORMAL;
-+		input-disable;
-+		output-low;
-+	};
-+
-+	usb_sw_sel_pm: usb-sw-sel-pm-state {
-+		pins = "gpio2";
-+		function = PMIC_GPIO_FUNC_NORMAL;
-+		power-source = <PM8916_GPIO_VPH>;
-+		input-disable;
-+		output-high;
-+	};
-+
-+	usb_sw_sel_pm_device: usb-sw-sel-pm-device-state {
-+		pins = "gpio2";
-+		function = PMIC_GPIO_FUNC_NORMAL;
-+		power-source = <PM8916_GPIO_VPH>;
-+		input-disable;
-+		output-low;
-+	};
-+};
-+
-+&pm8916_mpps {
-+	gpio-line-names =
-+		"NC",
-+		"WLAN_LED_CTRL",
-+		"BT_LED_CTRL",
-+		"NC";
-+
-+	pm8916_mpps_leds: pm8916-mpps-state {
-+		pins = "mpp2", "mpp3";
-+		function = "digital";
-+		output-low;
-+	};
-+};
-+
-+&pm8916_resin {
-+	linux,code = <KEY_POWER>;
-+	status = "okay";
-+};
-+
-+&pm8916_rpm_regulators {
-+	pm8916_l17: l17 {
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+};
-+
-+&sdhc_1 {
-+	status = "okay";
-+};
-+
-+&sdhc_2 {
-+	pinctrl-0 = <&sdc2_default &sdc2_cd_default>;
-+	pinctrl-1 = <&sdc2_sleep &sdc2_cd_default>;
-+	pinctrl-names = "default", "sleep";
-+	cd-gpios = <&tlmm 38 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+};
-+
-+&sound {
-+	pinctrl-0 = <&cdc_pdm_default &sec_mi2s_default>;
-+	pinctrl-1 = <&cdc_pdm_sleep &sec_mi2s_sleep>;
-+	pinctrl-names = "default", "sleep";
-+	model = "HMIBSC";
-+	audio-routing =
-+		"AMIC2", "MIC BIAS Internal2",
-+		"AMIC3", "MIC BIAS External1";
-+	status = "okay";
-+
-+	quaternary-dai-link {
-+		link-name = "ADV7533";
-+		cpu {
-+			sound-dai = <&lpass MI2S_QUATERNARY>;
-+		};
-+		codec {
-+			sound-dai = <&adv_bridge 0>;
-+		};
-+	};
-+
-+	primary-dai-link {
-+		link-name = "WCD";
-+		cpu {
-+			sound-dai = <&lpass MI2S_PRIMARY>;
-+		};
-+		codec {
-+			sound-dai = <&lpass_codec 0>, <&pm8916_codec 0>;
-+		};
-+	};
-+
-+	tertiary-dai-link {
-+		link-name = "WCD-Capture";
-+		cpu {
-+			sound-dai = <&lpass MI2S_TERTIARY>;
-+		};
-+		codec {
-+			sound-dai = <&lpass_codec 1>, <&pm8916_codec 1>;
-+		};
-+	};
-+};
-+
-+&tlmm {
-+	pinctrl-0 = <&uart1_mux0_rs232_high &uart1_mux1_rs232_low>;
-+	pinctrl-names = "default";
-+
-+	adv7533_int_active: adv533-int-active-state {
-+		pins = "gpio31";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+	};
-+
-+	adv7533_int_suspend: adv7533-int-suspend-state {
-+		pins = "gpio31";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	adv7533_switch_active: adv7533-switch-active-state {
-+		pins = "gpio32";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+	};
-+
-+	adv7533_switch_suspend: adv7533-switch-suspend-state {
-+		pins = "gpio32";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	msm_key_volp_n_default: msm-key-volp-n-default-state {
-+		pins = "gpio107";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+
-+	sdc2_cd_default: sdc2-cd-default-state {
-+		pins = "gpio38";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	/*
-+	 * UART1 being the debug console supports various modes of
-+	 * operation (RS-232/485/422) controlled via GPIOs configured
-+	 * mux as follows:
-+	 *
-+	 *   gpio100    gpio99    UART mode
-+	 *   0          0         loopback
-+	 *   0          1         RS-232
-+	 *   1          0         RS-485
-+	 *   1          1         RS-422
-+	 *
-+	 * The default mode configured here is RS-232 mode.
-+	 */
-+	uart1_mux0_rs232_high: uart1-mux0-rs232-state {
-+		bootph-all;
-+		pins = "gpio99";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+		output-high;
-+	};
-+
-+	uart1_mux1_rs232_low: uart1-mux1-rs232-state {
-+		bootph-all;
-+		pins = "gpio100";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+		output-low;
-+	};
-+
-+	usb_id_default: usb-id-default-state {
-+		pins = "gpio110";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+};
-+
-+&usb {
-+	extcon = <&usb_id>, <&usb_id>;
-+	pinctrl-0 = <&usb_sw_sel_pm &usb_hub_reset_pm>;
-+	pinctrl-1 = <&usb_sw_sel_pm_device &usb_hub_reset_pm_device>;
-+	pinctrl-names = "default", "device";
-+	status = "okay";
-+};
-+
-+&usb_hs_phy {
-+	extcon = <&usb_id>;
-+};
-+
-+&wcnss {
-+	firmware-name = "qcom/apq8016/wcnss.mbn";
-+	status = "okay";
-+};
-+
-+&wcnss_ctrl {
-+	firmware-name = "qcom/apq8016/WCNSS_qcom_wlan_nv_sbc.bin";
-+};
-+
-+&wcnss_iris {
-+	compatible = "qcom,wcn3620";
-+};
-+
-+&wcnss_mem {
-+	status = "okay";
-+};
-+
-+/* PINCTRL - additions to nodes defined in msm8916.dtsi */
-+
-+/*
-+ * 2mA drive strength is not enough when connecting multiple
-+ * I2C devices with different pull up resistors.
-+ */
-+&blsp_i2c4_default {
-+	drive-strength = <16>;
-+};
-+
-+&blsp_i2c6_default {
-+	drive-strength = <16>;
-+};
-+
-+&blsp_uart1_default {
-+	bootph-all;
-+};
-+
-+/* Enable CoreSight */
-+&cti0 { status = "okay"; };
-+&cti1 { status = "okay"; };
-+&cti12 { status = "okay"; };
-+&cti13 { status = "okay"; };
-+&cti14 { status = "okay"; };
-+&cti15 { status = "okay"; };
-+&debug0 { status = "okay"; };
-+&debug1 { status = "okay"; };
-+&debug2 { status = "okay"; };
-+&debug3 { status = "okay"; };
-+&etf { status = "okay"; };
-+&etm0 { status = "okay"; };
-+&etm1 { status = "okay"; };
-+&etm2 { status = "okay"; };
-+&etm3 { status = "okay"; };
-+&etr { status = "okay"; };
-+&funnel0 { status = "okay"; };
-+&funnel1 { status = "okay"; };
-+&replicator { status = "okay"; };
-+&stm { status = "okay"; };
-+&tpiu { status = "okay"; };
--- 
-2.34.1
+Shawn
 
 
