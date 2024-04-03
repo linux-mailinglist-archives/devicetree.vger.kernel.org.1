@@ -1,209 +1,367 @@
-Return-Path: <devicetree+bounces-55694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE98789615A
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 02:29:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5932C896173
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 02:32:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 838B228895C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 00:29:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C22B01F2A4E8
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 00:32:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA92C5C96;
-	Wed,  3 Apr 2024 00:27:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F19B2579;
+	Wed,  3 Apr 2024 00:30:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QEIFKcI5"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="n4qZ49fW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E967B1870;
-	Wed,  3 Apr 2024 00:26:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.46
+Received: from mail-177131.yeah.net (mail-177131.yeah.net [123.58.177.131])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6425D27D
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 00:30:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712104020; cv=none; b=mQDaoIpw1l/3TWJOLR/apScbZm2O05g2OjBQP1W6YyXNS2m3P4XguoK2G0A0AuD1YXQ+1iXTTA1hvTPqEjLi46dMbeNKDDHq8JICnn6OuuAnu3omI6mieUeEpH8QyGsZ6N2z/X0mL9pzkfNjsmAHXQo6nAwsfnYy0SiLYuJ7MGo=
+	t=1712104258; cv=none; b=b2LZZ8PE7Zv3zlpLZoV6SBUOfs+x002QfKVlVw6LNNiOiCG3xSI4i/+upx5kNVUQq1HGecwh6zMa//KbR5eUV+HzFCe4baEtrzK2cY8oyTNhmldML4MKJmh8Wz6ZjSoxBHIb+gt1TkP6OxfwoPJtA2EiOHOMHE+bp4EeW624byI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712104020; c=relaxed/simple;
-	bh=KUIMvQFpEGXh2hYj0le3llFT2iS+yt6YfWMAnT/9QfA=;
-	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-	 In-Reply-To:Content-Type; b=iDF3EbVZuQJEC8XKjf97JQqA9a0OkIoA7/H2m6aaK2XONxXNZNEynujH0PvSJ5TuiWD8jzEXhSGVbHJu9qymJ1u7p8r3ojP05HDMa0NzgNgbGnOESyv8oBEvyAod2Ttw8QlCfP9mkoH9hGd4XU+11F6ZyOtoXV+aGqkrq9hNXvQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QEIFKcI5; arc=none smtp.client-ip=209.85.161.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f46.google.com with SMTP id 006d021491bc7-5a4b35ff84eso3722396eaf.2;
-        Tue, 02 Apr 2024 17:26:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712104017; x=1712708817; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FJynIROMAU+9B7UDiFFRoCdDhIpw65xNX+rGxpgSGeo=;
-        b=QEIFKcI56bhoTNUHxDTX2HzuunjDtiPcd6BtgQ+kPACCpnyiAn7GsH2oPIJXrbdtZR
-         ohlSFybYjbBDrAps7wKMK1XOYPZUzj0dlgSUlJI2Z4DPYUebNIYt/2IJqZfWjQhqBKAF
-         z4ZvTHg2+uGNmRKqHSWce8MxBoIdQW135nojW58vyOBVp3GPkqjX7AK039GRsPbRBIKD
-         zi9xFVr0coNjU6d63gYKE818e/J4yfiM1aWR3k/AZirMJYBkgBIMLadDfcfMfYQg/8sk
-         JSaFD7iExnuqR8b1j8kG/eI/4S7gR/hl9C+KetvL/X/a8KLX79hm4F7/tgXDU77JKPBu
-         Rq2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712104017; x=1712708817;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FJynIROMAU+9B7UDiFFRoCdDhIpw65xNX+rGxpgSGeo=;
-        b=HuQpm41t8YzWtXf8BaWxQHfM0nNFyHRPuXTULd7Ea8AM9d4uWcsENWBh9gJ+GAIZTu
-         i5+RfP9yRjWv0IyAeHBg5ROU5IH15SZp7Byg/yaBY7pDv0nHJ5HmbpvXEB1pWA0i39Lx
-         15iEe65F87JmykwpWRKLP4mBARDviSqE5IXCMHPaqAx47/QV9U3ujXOJn4K7i7JiWuhz
-         udmxfLymu3DMf20ZERHMdIAYWBU9bbd9ka/M9E81/EaYWVj1tOuKfByHpTG3Rgc8fYiP
-         HudsBojQVGli1rYbliqDyd+cNobVIYC80bwt5R+pttKjTjlSGfpX3w3OS4eKfW3USNVF
-         cSgA==
-X-Forwarded-Encrypted: i=1; AJvYcCV+aPQOHGD7DluoSmV3mNJoBE3Tlr23lqxWKjEkM90Lxyo9N2E5BuKQxNAu+KQZwRteXk1qe+StsIAWOpz3Wt7aQIeRiBwmX08S6lZ6D8oJJbuxs/r3r4DQXWKa8h9v6zk3gsFm2HnHTBWiTsZGBxRwJ99b3tLDeaNVKi1o/QmO2L3oiw==
-X-Gm-Message-State: AOJu0YyQFmqQ1B52ovR8jYqM5ay4oegIZQShKB61M04tRX1mtXd2KqOI
-	tL4+MTa8sDPDScuS+/hofJIaSH/KjpEJZie5ZWIWn6MMrzq4peyhyGPUF8w8gTY=
-X-Google-Smtp-Source: AGHT+IHhljBegJ+lKt5ZBT0wk8a5MZ4tYNQVcpSUH/dt+V7eojih7U8r9PBN6Az5f3nk+1efsx40eg==
-X-Received: by 2002:a05:6358:49f:b0:183:630a:a88d with SMTP id x31-20020a056358049f00b00183630aa88dmr1197722rwi.9.1712104016926;
-        Tue, 02 Apr 2024 17:26:56 -0700 (PDT)
-Received: from [192.168.0.13] ([172.92.174.232])
-        by smtp.gmail.com with ESMTPSA id a10-20020a63e84a000000b005dc491ccdcesm10213080pgk.14.2024.04.02.17.26.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Apr 2024 17:26:56 -0700 (PDT)
-Subject: Re: [PATCH v3] clk: starfive: pll: Fix lower rate of CPUfreq by
- setting PLL0 rate to 1.5GHz
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Xingyu Wu <xingyu.wu@starfivetech.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Conor Dooley <conor@kernel.org>,
- Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Hal Feng <hal.feng@starfivetech.com>, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org
-References: <20240402090920.11627-1-xingyu.wu@starfivetech.com>
- <8d21b1bc-9402-41d4-bd81-c521c8a33d2d@kernel.org>
-From: Bo Gan <ganboing@gmail.com>
-Message-ID: <7e363fb9-5dff-b8de-fd4f-54b3596ad179@gmail.com>
-Date: Tue, 2 Apr 2024 17:26:54 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+	s=arc-20240116; t=1712104258; c=relaxed/simple;
+	bh=swZSrKG0qB/Jjtliaitcljm/bXavS5dlU8K/wHD+3bw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DMSO3W/socZueSQHEX6X5oVST+jo7uIATQ/3/XHa3EA1Alx3Mv6b9oYEls1qLox32wtb4mmPqp0Byqtx9uRC49ge8iC2a/i7BAIhneqWZS3wWpWhFg4xgFey1SH4xA6yanCylDNc5zzZi3eJrNqhS/60KYGqmwg9lPTroeBxu48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=n4qZ49fW; arc=none smtp.client-ip=123.58.177.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=10vJT0Uk2ARxAvksKrhWVkuBaK22icnr/l5cuBxbE54=;
+	b=n4qZ49fWFIgA8d1UyNEwguiwVviSfM3NETSTKaqVjjYOuT3NlEhhGL0KBcFwXN
+	IdW1nY2c4K+HABW03BwusZmZ7qUvbmzyNzNNM7y4ZjYZJDDDl+KwAR3t5nUdHGaZ
+	+xRsj39InjqjXz5DIQ01I8qWRkgMaskVm5TnIIxNUncVY=
+Received: from dragon (unknown [223.68.79.243])
+	by smtp1 (Coremail) with SMTP id ClUQrADXHyEUowxm85CsAQ--.30521S3;
+	Wed, 03 Apr 2024 08:30:13 +0800 (CST)
+Date: Wed, 3 Apr 2024 08:30:11 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Trevor Zaharichuk <trevor@au-zone.com>,
+	Greg Lytle <greg@au-zone.com>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH 5/5] arm64: dts: Add device tree source for the Au-Zone
+ Maivin Starter Kit
+Message-ID: <ZgyjE05p/1NZnzaK@dragon>
+References: <20240325203245.31660-1-laurent.pinchart@ideasonboard.com>
+ <20240325203245.31660-6-laurent.pinchart@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <8d21b1bc-9402-41d4-bd81-c521c8a33d2d@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240325203245.31660-6-laurent.pinchart@ideasonboard.com>
+X-CM-TRANSID:ClUQrADXHyEUowxm85CsAQ--.30521S3
+X-Coremail-Antispam: 1Uf129KBjvJXoWxKrykJF15CrW3Xw4ruF1fXrb_yoWxCFWfpF
+	9rA39rWrWrXr47Aa4qqa1xKr9xtws5K3yq9w1DCFy8CFs2kasrtFn8Krs8Cr1fGrs8Xw4F
+	kF1rZr42kFnIq3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jc0edUUUUU=
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiBRW1ZVsVCbgBnwAAsh
 
-On 4/2/24 9:18 AM, Krzysztof Kozlowski wrote:
-> On 02/04/2024 11:09, Xingyu Wu wrote:
->> CPUfreq supports 4 cpu frequency loads on 375/500/750/1500MHz.
->> But now PLL0 rate is 1GHz and the cpu frequency loads become
->> 333/500/500/1000MHz in fact.
->>
->> So PLL0 rate should be default set to 1.5GHz. But setting the
->> PLL0 rate need certain steps:
->>
->> 1. Change the parent of cpu_root clock to OSC clock.
->> 2. Change the divider of cpu_core if PLL0 rate is higher than
->>     1.25GHz before CPUfreq boot.
->> 3. Change the parent of cpu_root clock back to PLL0 clock.
->>
->> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
->> Fixes: e2c510d6d630 ("riscv: dts: starfive: Add cpu scaling for JH7110 SoC")
->> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
->> ---
->>
->> Hi Stephen and Emil,
->>
->> This patch fixes the issue about lower rate of CPUfreq[1] by setting PLL0
->> rate to 1.5GHz.
->>
->> In order not to affect the cpu operation, setting the PLL0 rate need
->> certain steps. The cpu_root's parent clock should be changed first. And
->> the divider of the cpu_core clock should be set to 2 so they won't crash
->> when setting 1.5GHz without voltage regulation. Due to PLL driver boot
->> earlier than SYSCRG driver, cpu_core and cpu_root clocks are using by
->> ioremap().
->>
->> [1]: https://github.com/starfive-tech/VisionFive2/issues/55
->>
->> Previous patch link:
->> v2: https://lore.kernel.org/all/20230821152915.208366-1-xingyu.wu@starfivetech.com/
->> v1: https://lore.kernel.org/all/20230811033631.160912-1-xingyu.wu@starfivetech.com/
->>
->> Thanks,
->> Xingyu Wu
->> ---
->>   .../jh7110-starfive-visionfive-2.dtsi         |   5 +
->>   .../clk/starfive/clk-starfive-jh7110-pll.c    | 102 ++++++++++++++++++
+On Mon, Mar 25, 2024 at 10:32:45PM +0200, Laurent Pinchart wrote:
+> The Maivin board is an AI vision starter kit sold by Au-Zone
+> Technologies, developed in collaboration with Toradex and Vision
+> Components. It is based on a Toradex Verdin i.MX8MP SoM.
 > 
-> Please do not mix DTS and driver code. That's not really portable. DTS
-> is being exported and used in other projects.
+> Add a device tree that covers the base set the peripherals found on the
+> board:
 > 
-> ...
+> - Ethernet
+> - USB
+> - SD card slot
+> - CAN and serial ports (RS232 and RS485)
+> - DACs, EEPROMs, temperature sensor
+> - PCI M.2 and CSI regulators
 > 
->>   
->> @@ -458,6 +535,8 @@ static int jh7110_pll_probe(struct platform_device *pdev)
->>   	struct jh7110_pll_priv *priv;
->>   	unsigned int idx;
->>   	int ret;
->> +	struct device_node *np;
->> +	struct resource res;
->>   
->>   	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
->>   	if (!priv)
->> @@ -489,6 +568,29 @@ static int jh7110_pll_probe(struct platform_device *pdev)
->>   			return ret;
->>   	}
->>   
->> +	priv->is_first_set = true;
->> +	np = of_find_compatible_node(NULL, NULL, "starfive,jh7110-syscrg");
+> An additional pinctrl group is included for the M.2 modem, but hasn't
+> been tested due to lack of compatible hardware.
 > 
-> Your drivers should not do it. It's fragile, hides true link/dependency.
-> Please use phandles.
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+>  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+>  .../boot/dts/freescale/imx8mp-maivin.dts      | 236 ++++++++++++++++++
+>  2 files changed, 237 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-maivin.dts
 > 
+> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> index 045250d0a040..03af8c242649 100644
+> --- a/arch/arm64/boot/dts/freescale/Makefile
+> +++ b/arch/arm64/boot/dts/freescale/Makefile
+> @@ -165,6 +165,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-pdk2.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-pdk3.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-icore-mx8mp-edimm2.2.dtb
+> +dtb-$(CONFIG_ARCH_MXC) += imx8mp-maivin.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-msc-sm2s-ep1.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revb-hdmi.dtb
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-maivin.dts b/arch/arm64/boot/dts/freescale/imx8mp-maivin.dts
+> new file mode 100644
+> index 000000000000..2d1c8e782465
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-maivin.dts
+> @@ -0,0 +1,236 @@
+> +// SPDX-License-Identifier: GPL-2.0+ OR MIT
+> +/*
+> + * Copyright 2021 Au-Zone Technologies
+> + * Copyright 2024 Ideas on Board
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/linux-event-codes.h>
+> +#include <dt-bindings/leds/common.h>
+> +
+> +#include "imx8mp-verdin.dtsi"
+> +#include "imx8mp-verdin-nonwifi.dtsi"
+> +
+> +/ {
+> +	model = "Au-Zone Maivin AI Vision Starter Kit";
+> +	compatible = "au-zone,maivin-starter-kit",
+> +		     "toradex,verdin-imx8mp-nonwifi",
+> +		     "toradex,verdin-imx8mp",
+> +		     "fsl,imx8mp";
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +		pinctrl-0 = <&pinctrl_sw1>;
+> +
+> +		button-0 {
+> +			label = "SW1";
+> +			linux,code = <BTN_MISC>;
+> +			interrupts-extended = <&gpio3 16 IRQ_TYPE_LEVEL_LOW>;
+> +		};
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +		pinctrl-0 = <&pinctrl_led>;
+> +
+> +		led-0 {
+> +			color = <LED_COLOR_ID_BLUE>;
+> +			function = LED_FUNCTION_STATUS;
+> +			linux,default-trigger = "heartbeat";
+> +			gpios = <&gpio3 14 GPIO_ACTIVE_HIGH>;
+> +		};
+> +	};
+> +
+> +	csi_3v3: regulator-csi-3v3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "CSI_3V3";
+> +		pinctrl-0 = <&pinctrl_csi_3v3>;
+> +		gpio = <&gpio3 7 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +		startup-delay-us = <50000>;	/* TODO: Determine the right value */
+> +	};
+> +
+> +	m2_3v3: regulator-m2-3v3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "M2_3V3";
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-min-microvolt = <3300000>;
+> +		pinctrl-0 = <&pinctrl_m2_3v3>;
+> +		gpio = <&gpio3 1 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +	};
+> +
+> +	/* Carrier Board Supply 3V3_SW */
+> +	reg_3v3: regulator-3v3-sw {
+> +		compatible = "regulator-fixed";
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-name = "3V3_SW";
+> +	};
+> +};
+> +
+> +&eqos {
+> +	status = "okay";
+> +};
+> +
+> +/* Verdin CAN_1 */
+> +&flexcan1 {
+> +	status = "okay";
+> +};
+> +
+> +/* Verdin CAN_2 */
+> +&flexcan2 {
+> +	status = "okay";
+> +};
+> +
+> +/* Verdin I2C_2_DSI */
+> +&i2c2 {
+> +	status = "okay";
+> +
+> +	clock-frequency = <400000>;
+> +	scl-gpios = <&gpio5 16 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> +	sda-gpios = <&gpio5 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+
+We usually end property list with 'status'.
+
+> +
+> +	dac@d {
+> +		compatible = "ti,dac081c081";
+> +		reg = <0x0d>;
+> +		vref-supply = <&csi_3v3>;
+> +	};
+> +};
+> +
+> +/* Verdin I2C_4_CSI */
+> +&i2c3 {
+> +	status = "okay";
+> +
+> +	dac@d {
+> +		compatible = "ti,dac081c081";
+> +		reg = <0x0d>;
+> +		vref-supply = <&csi_3v3>;
+> +	};
+> +};
+> +
+> +/* Verdin I2C_1 */
+> +&i2c4 {
+> +	status = "okay";
+> +
+> +	temp-sensor@4b {
+> +		compatible = "ti,tmp102";
+> +		reg = <0x4b>;
+> +	};
+> +
+> +	/* EEPROM on the rear connector interface */
+> +	eeprom@54 {
+> +		compatible = "st,24c02", "atmel,24c02";
+> +		pagesize = <16>;
+> +		reg = <0x54>;
+> +	};
+> +};
+> +
+> +/* EEPROM on the carrier board */
+> +&eeprom_carrier_board {
+> +	status = "okay";
+> +};
+> +
+> +&iomuxc {
+> +	pinctrl_csi_3v3: csi-3v3-grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_NAND_DATA01__GPIO3_IO07		0x184	/* SODIMM 58 */
+> +		>;
+> +	};
+> +
+> +	gpio7grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_SAI1_RXD1__GPIO4_IO03		0x82	/* SODIMM 220 */
+> +		>;
+> +	};
+> +
+> +	gpio8grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_SAI1_RXC__GPIO4_IO01		0x82	/* SODIMM 222 */
+> +		>;
+> +	};
+> +
+> +	pinctrl_led: ledgrp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_NAND_DQS__GPIO3_IO14		0x82	/* SODIMM 66 */
+> +		>;
+> +	};
+> +
+> +	/* M.2 power off and reset */
+> +	pinctrl_m2: m2grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_NAND_DATA00__GPIO3_IO06		0x82	/* SODIMM 56 */
+> +			MX8MP_IOMUXC_NAND_DATA03__GPIO3_IO09		0x82	/* SODIMM 62 */
+> +		>;
+> +	};
+> +
+> +	pinctrl_m2_3v3: m2-3v3-grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_NAND_CE0_B__GPIO3_IO01		0x82	/* SODIMM 54 */
+> +		>;
+> +	};
+> +
+> +	pinctrl_sw1: sw1grp {
+> +		fsl,pins = <
+> +			/*
+> +			 * SW1 shortens the pin to ground when pressed, enable
+> +			 * the internal pull-up.
+> +			 */
+> +			MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16		0x1c0	/* SODIMM 64 */
+> +		>;
+> +	};
+> +};
+> +
+> +&reg_usdhc2_vmmc {
+> +	vin-supply = <&reg_3v3>;
+> +};
+> +
+> +/* Verdin UART_1 */
+> +/* Enabling RS-485 operation */
+> +&uart1 {
+> +	fsl,uart-has-rtscts;
+
+uart-has-rtscts instead.
+
+Shawn
+
+> +	linux,rs485-enabled-at-boot-time;
+> +};
+> +
+> +/* Verdin UART_2, for M.2 card slot */
+> +&uart2 {
+> +	status = "okay";
+> +};
+> +
+> +/* Verdin UART_3, used as the Linux Console */
+> +&uart3 {
+> +	status = "okay";
+> +};
+> +
+> +/* Verdin USB_1, USB recovery */
+> +&usb3_phy0 {
+> +	status = "okay";
+> +};
+> +
+> +&usb3_0 {
+> +	status = "okay";
+> +};
+> +
+> +&usb_dwc3_0 {
+> +	status = "okay";
+> +};
+> +
+> +/* Verdin USB_2, for M.2 card slot */
+> +&usb3_phy1 {
+> +	status = "okay";
+> +};
+> +
+> +&usb3_1 {
+> +	status = "okay";
+> +};
+> +
+> +&usb_dwc3_1 {
+> +	status = "okay";
+> +};
+> +
+> +/* Verdin SD_1, for SD card slot */
+> +&usdhc2 {
+> +	status = "okay";
+> +};
+> -- 
+> Regards,
 > 
->> +	if (!np) {
->> +		ret = PTR_ERR(np);
->> +		dev_err(priv->dev, "failed to get syscrg node\n");
->> +		goto np_put;
->> +	}
->> +
->> +	ret = of_address_to_resource(np, 0, &res);
->> +	if (ret) {
->> +		dev_err(priv->dev, "failed to get syscrg resource\n");
->> +		goto np_put;
->> +	}
->> +
->> +	priv->syscrg_base = ioremap(res.start, resource_size(&res));
->> +	if (!priv->syscrg_base)
->> +		ret = -ENOMEM;
-> 
-> Why are you mapping other device's IO? How are you going to ensure
-> synced access to registers?
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> Laurent Pinchart
 > 
 
-Hi Xingyu,
-
-Echoing Krzysztof's point. This piece code seems wrong to me. This logic belongs
-to syscrg, rather than pll. Why don't you do the pll0->osc->pll0 switching from
-syscrg side during probing?
-
-Bo
 
