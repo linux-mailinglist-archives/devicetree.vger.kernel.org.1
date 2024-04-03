@@ -1,177 +1,131 @@
-Return-Path: <devicetree+bounces-55932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D821A896FD5
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 15:05:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D340B8970EF
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 15:28:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50EF41F21656
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 13:05:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 885421F22E90
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 13:28:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F6C8147C7D;
-	Wed,  3 Apr 2024 13:05:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F0541487CC;
+	Wed,  3 Apr 2024 13:26:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="Yp8+JLC4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XuT87jJO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FCCB146D72
-	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 13:05:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 233CA1482FA;
+	Wed,  3 Apr 2024 13:26:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712149539; cv=none; b=DCCIODciTQGo6dpOqRYFcGHM8XGL/UB/y7VzRvbI+bnea4Im9odGrk8wFeJUZGePQKo5yQGdVwns1uNqK4bLvbUGixAVq+2voYkgp0M21X53MnPwVBJQofE4BgJ4X+7tTcf4bptAxp1XwZn1vI5xskU9Sa3EWM9RzQ+FWvJNOvg=
+	t=1712150791; cv=none; b=aO6hNjtggY3PWUfVNreqQLfwFzpP/n279sHU523kvmCezvvxv38CxhDN4WvYnMogzDmE4KTtK1d+YhaE7PY0WCq7asxCZ7LgVgdurqqcviIeiVrzTkgaY/36GftL47KvoHqGYK7nYNTHY8kh79gyz2qQEk1kYkW7E6FQYyDB/GA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712149539; c=relaxed/simple;
-	bh=9W7EaQCc71PpFxZtrRnJbzx0Wp7qmcJCqdZHuoipVxg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NFD69faGd7KmjAZt5SHJqW/Q9YXAt1bpywRlP1DQpMW+Xyripym9P6LL5hfkI44DrRzZu/3h7llGimZoWMIBmKZ2D6TNhzwXU6O3yJcgN5AjHUDgorFLPmm8u2UsHxqq78HSPNjWqxAMO4/M6IQtm5ECnGBS3kTdl1MiWhFnsoE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=Yp8+JLC4; arc=none smtp.client-ip=209.85.218.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a4e61accceaso509255066b.2
-        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 06:05:36 -0700 (PDT)
+	s=arc-20240116; t=1712150791; c=relaxed/simple;
+	bh=pNqIMk3dXJAK1dmFXhtlvHJm8YAeYjgoXwxpjzjBV7c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QuJygQCCKClXQoKoC+tu3+0ltQoacWZ2ZwMYt17YBomfl4/y63CrT2IYNfQUc6W3Bc+eOkFreGz8nmbR8jdBtepICqQ3Dh8elrFSAasvCFAhsfKLuI5ecKDFLw0zz+LUffVHnmEZz5LhJ5DYcGUDYUOQQonHrowHfimJI0mIsT0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XuT87jJO; arc=none smtp.client-ip=209.85.210.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-6ea838bf357so5167258b3a.0;
+        Wed, 03 Apr 2024 06:26:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1712149535; x=1712754335; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0Yy1+Kh6mnrNkIsDDzZC6QpS6YqOrI64OZBtZfxhZvo=;
-        b=Yp8+JLC4SPLKM4TkVloMV8ZmkijWh8KYEeT7OsNRtkFTs4qmfh9n529qIxghmpnjMY
-         eQxlytlGYbGqGR4wW70dYFyeylcLjxIBI+eIqb1P7/sNo7peVHKH5PTwVPzw6QeiEAXJ
-         rxgCHTGr5LSnH3/+gsa7cPWUJohayHeoPSd/iiW4nXYcN2lgz7Hf0DJMHAC9+aR6tfAQ
-         irMlf+VoSlICeF+Rert9dAhbURD8h/DyToyA29umQgNxbF7bIs76Sp1Q0yG94Tk51NyL
-         i3Mm1IdpXjQoTD79nIVW7RLnGui0K+G7sdygtdthLqyqK3y8ks1E2S/XDBIWDRPQqVc2
-         bicw==
+        d=gmail.com; s=20230601; t=1712150789; x=1712755589; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tv8iMSkszzMWqrID5CXG8dHdxUEdUozJG+zGUFmwB4A=;
+        b=XuT87jJOzluj5tMRmm1aaER7kM7bvaF3RGuBsVZPrnUSMovBeIaVfszsRsHvdJj6Ds
+         9J3j86OZ3J2XCi5NWtxEtQDIa23CSORM6rzBrSrVmuNBrBht1shdDy8VgcQdZWjmwlJh
+         +O5sQE7mjYdp6vqiPPvPXJYSch5D/+JnAf+2Q4QqrjF8n1VIbOp6c8J5xhhWZgJv1Y51
+         iv1xz0t6+QXk5GFboJ2O5a0eU3yScuja/2NbF3Ij6uO1pNaCPpvjqhTk5VxG4Jh+yeF/
+         /cy1Zzn3BSTjD5eKnNZr1tE9rn8itp7KfZGw0nou9kk9OsMbqrEYf8DTnH6yyd/2Fz2V
+         qXFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712149535; x=1712754335;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0Yy1+Kh6mnrNkIsDDzZC6QpS6YqOrI64OZBtZfxhZvo=;
-        b=hfCj15Z9FXyOaCoqm5hOZLrztx2E128xByWLqfGjuBlBY8qMGVmFFeLSQDa7+QvuUG
-         ijZOhrO70uMNHUyS1B0KqvvdhPJXZqCNExdc8WH4wSujrCDCulkrFrxoUgHnLDHv/1TJ
-         XX96pwtEmRq8mBjMem61GUlJXbKRLN0uV+ffzgKYD9Z+PFad6MkYeVyn1ZB598bb4vDn
-         qdXXb+JgYsSwKXadPK6E4TjDMLTmf6jDuODPNI694zptL2/OmAJvH5LtzJ6tE85ztWHV
-         8J2LJLcCCh8vt5p3tZMzdlCu2IpWcO+s0d5FExUFfsqtUS+5RoVp5HyZRAOXbbZnjwnc
-         rDew==
-X-Forwarded-Encrypted: i=1; AJvYcCVB98BJ3C/jkvSBQJE65cZsLD6CkERq3e9TCD+IQiLNafWfyStVRY3N2ZqQRk9kos4trudzwaWSiIKp8jUz+BOxBghitFKg+SKCww==
-X-Gm-Message-State: AOJu0Yz7XQPolwwI/Sjgus4b0dVbRdbWYclLihAs3XlaHqkPajWcu4+6
-	Dv/sf2MH9ZxD+arQPcE/w96dQkSEXfFXiLsDar98MeEj8e0g75/nCToPR+PkzpI=
-X-Google-Smtp-Source: AGHT+IHvCjxIoDEM81ThMFGXmAee2lKZJYRPwGZglynP/ylH/CdDRIdN1evuMgXWrVvChyW1q2UCWw==
-X-Received: by 2002:a17:906:d28e:b0:a4e:648c:1138 with SMTP id ay14-20020a170906d28e00b00a4e648c1138mr6161495ejb.67.1712149535307;
-        Wed, 03 Apr 2024 06:05:35 -0700 (PDT)
-Received: from ?IPV6:2a02:8428:2a4:1a01:79e6:9288:5142:9623? ([2a02:8428:2a4:1a01:79e6:9288:5142:9623])
-        by smtp.gmail.com with ESMTPSA id xh12-20020a170906da8c00b00a4e579ce949sm4817000ejb.51.2024.04.03.06.05.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Apr 2024 06:05:35 -0700 (PDT)
-Message-ID: <91031ed0-104a-4752-8b1e-0dbe15ebf201@freebox.fr>
-Date: Wed, 3 Apr 2024 15:05:33 +0200
+        d=1e100.net; s=20230601; t=1712150789; x=1712755589;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tv8iMSkszzMWqrID5CXG8dHdxUEdUozJG+zGUFmwB4A=;
+        b=wI1u6B1EBrJLHn5/c5Awqbtugmt22WITdaj1ddiEXVIKu1HbnXYSA6xyFl80U+LXyx
+         smuhXfxlZtTic/GllQxsCeWlE9YWKK/QaKEdxFuOODnbl6MGRBspn/id6xQflrc2HbKA
+         rwLa8fMqdpP18R95QzVDC1/Vn4/sI7UbfWWjvf+MdxCR3613dtnj6wvZfDXf5RE4BhLF
+         Ra+LKmZTW28RsEeC/enA0RVVE4XrqdEuHCRIqB0KbgebOQELvWLHX9kUGKMCliuiJ1dX
+         yB3Mf5vwvDM2lJhFky3SX8SNPMB5SQGoOZB8/HHOrr/U/ei5yHj7PT/BWqhDNMmhyZoq
+         QPVw==
+X-Forwarded-Encrypted: i=1; AJvYcCWrn3OUNqzoL3WmWebbol1z1ANMPLg1CfUlTSgGrTY5cNuQe5LEPz/xZhn+08xq/Q2CxTPELAVJcMVZ3h7gVsXMf0oz9Mil0mEKHBnUmXYMieYoEJOwqn0FHM6Olum2lSwH52g07MBw7hUTvJNMDXakH5TmGzY9i+7WL3PW6w7+W9xTBXtOCAZk
+X-Gm-Message-State: AOJu0YyCfo982xCFNJJHR58VdvHvqjtv8z99m206+3vJg4/t8JIQjk9D
+	qXL10PUkpjm1MQmSjEuuvyI/XTsUgmmW18kM6Tp3TZ+c9LCYL5Rx
+X-Google-Smtp-Source: AGHT+IHPQcf1KauRRFFf95OsXrrxpcYKnvhoiA5NT6n4jVd/PqAHKw35hLjTyYgdc6RpO6DQuMy3vQ==
+X-Received: by 2002:a05:6a00:1413:b0:6e6:89ad:1233 with SMTP id l19-20020a056a00141300b006e689ad1233mr17299843pfu.2.1712150788005;
+        Wed, 03 Apr 2024 06:26:28 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id fd30-20020a056a002e9e00b006eaf43b5982sm8479994pfb.108.2024.04.03.06.26.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Apr 2024 06:26:26 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Wed, 3 Apr 2024 06:26:25 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Lee Jones <lee@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-watchdog@vger.kernel.org
+Subject: Re: [RFC PATCH 5/6] watchdog: ROHM BD96801 PMIC WDG driver
+Message-ID: <d7522458-35b1-40ca-84a3-eaf1127a1e4e@roeck-us.net>
+References: <cover.1712058690.git.mazziesaccount@gmail.com>
+ <f8e743a6c49607de0dd7a27778383477e051b130.1712058690.git.mazziesaccount@gmail.com>
+ <4fa3a64b-60fb-4e5e-8785-0f14da37eea2@roeck-us.net>
+ <279336b3-f28d-48ee-a10f-47abba7b0b89@gmail.com>
+ <d2ab33e6-4d3e-472a-b4d7-b703955989ba@roeck-us.net>
+ <1d956aab-2892-4a2b-a4b3-0a93504668eb@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: msm8998: set
- qcom,no-msa-ready-indicator for wifi
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Kalle Valo <kvalo@kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>,
- ath10k <ath10k@lists.infradead.org>,
- wireless <linux-wireless@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
- MSM <linux-arm-msm@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
- Bjorn Andersson <andersson@kernel.org>,
- Jami Kettunen <jamipkettunen@gmail.com>,
- Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-References: <fd26ce4a-a9f3-4ada-8d46-ed36fb2456ca@freebox.fr>
- <5cdad89c-282a-4df5-a286-b8404bc4dd81@freebox.fr>
- <252618e8-9e80-4774-a96c-caa7f838ef01@linaro.org>
- <502322f1-4f66-4922-bc4e-46bacac23410@linaro.org>
- <0ca1221b-b707-450f-877d-ca07a601624d@freebox.fr>
- <CAA8EJppeREj-0g9oGCzzKx5ywhg1mgmJR1q8yvXKN7N45do1Xg@mail.gmail.com>
-Content-Language: en-US
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-In-Reply-To: <CAA8EJppeREj-0g9oGCzzKx5ywhg1mgmJR1q8yvXKN7N45do1Xg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1d956aab-2892-4a2b-a4b3-0a93504668eb@gmail.com>
 
-On 02/04/2024 17:55, Dmitry Baryshkov wrote:
-
-> On Tue, 2 Apr 2024 at 18:31, Marc Gonzalez wrote:
->
->> So, if I understand correctly, I take this to mean that I should:
->>
->> 1) DELETE the qcom,no-msa-ready-indicator boolean property,
->> 2) ADD a "qcom,msm8998-wifi" (name OK?) compatible,
+On Wed, Apr 03, 2024 at 03:47:12PM +0300, Matti Vaittinen wrote:
+> > 
+> > Other watchdog drivers call emergency_restart() if the watchdog times out
+> > and triggers an interrupt. Are you saying this won't work for this system ?
+> > If so, please explain.
+> > 
 > 
-> I'd say, this is not correct. There is no "msm8998-wifi".
+> Thanks Guenter. If it works with systems using other devices, then it should
+> work (to the same extent) with systems using this PMIC. Thanks.
+> 
 
-Can you explain what you mean by:
-'There is no "msm8998-wifi".' ?
+You might also consider to just call panic(). What is what we do if the
+pretimeout panic governor is enabled.
 
-Do you mean that: this compatible string does not exist?
-(I am proposing that it be created.)
+That makes me wonder if it would make sense to introduce watchdog timeout
+governors, similar to the existing pretimeout governors. Maybe if I ever
+find the time to do it ...
 
-Or do you mean that: "msm8998-wifi" is a bad name?
+Guenter
 
-
-I meant to mimic these strings for various sub-blocks:
-
-arch/arm64/boot/dts/qcom/msm8998.dtsi:          compatible = "qcom,msm8998-rpm-proc", "qcom,rpm-proc";
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                                  compatible = "qcom,msm8998-rpmpd";
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                  compatible = "qcom,msm8998-qfprom", "qcom,qfprom";
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                  compatible = "qcom,msm8998-tsens", "qcom,tsens-v2";
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                  compatible = "qcom,msm8998-tsens", "qcom,tsens-v2";
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                  compatible = "qcom,msm8998-smmu-v2", "qcom,smmu-v2";
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                  compatible = "qcom,msm8998-smmu-v2", "qcom,smmu-v2";
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                  compatible = "qcom,msm8998-qmp-pcie-phy";
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                  compatible = "qcom,msm8998-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                  compatible = "qcom,msm8998-qmp-ufs-phy";
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                  compatible = "qcom,msm8998-tcsr", "syscon";
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                  compatible = "qcom,msm8998-tcsr", "syscon";
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                  compatible = "qcom,msm8998-pinctrl";
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                  compatible = "qcom,msm8998-mss-pil";
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                  compatible = "qcom,msm8998-smmu-v2", "qcom,smmu-v2",
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                  compatible = "qcom,msm8998-gpucc";
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                  compatible = "qcom,msm8998-slpi-pas";
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                  compatible = "qcom,msm8998-dwc3", "qcom,dwc3";
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                  compatible = "qcom,msm8998-qmp-usb3-phy";
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                  compatible = "qcom,msm8998-qusb2-phy";
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                  compatible = "qcom,msm8998-sdhci", "qcom,sdhci-msm-v4";
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                  compatible = "qcom,msm8998-mdss";
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                          compatible = "qcom,msm8998-dpu";
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                          compatible = "qcom,msm8998-dsi-ctrl", "qcom,mdss-dsi-ctrl";
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                          compatible = "qcom,msm8998-dsi-ctrl", "qcom,mdss-dsi-ctrl";
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                  compatible = "qcom,msm8998-venus";
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                  compatible = "qcom,msm8998-smmu-v2", "qcom,smmu-v2";
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                  compatible = "qcom,msm8998-adsp-pas";
-arch/arm64/boot/dts/qcom/msm8998.dtsi:                  compatible = "qcom,msm8998-apcs-hmss-global",
-
-
-And these strings in ath11k:
-
-Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml:      - qcom,ipq8074-wifi
-Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml:      - qcom,ipq6018-wifi
-Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml:      - qcom,wcn6750-wifi
-Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml:      - qcom,ipq5018-wifi
-
-
-> I'd say, we should take a step back and actually verify how this was
-> handled in the vendor kernel.
-
-In our commercial product, we use the ath10k driver in the vendor kernel (v4.4 r38-rel).
-
-It looks like Jeff has already performed the code analysis
-wrt vendor vs mainline (including user-space tools).
-
-Regards
-
+> I'll add the IRQ handling to next version - but it may take a while as I'm
+> currently having some problems with the IRQs in general, and because I'll
+> wait for feedback from Mark to the regulator part.
+> 
+> Yours,
+> 	-- Matti
+> 
+> -- 
+> Matti Vaittinen
+> Linux kernel developer at ROHM Semiconductors
+> Oulu Finland
+> 
+> ~~ When things go utterly wrong vim users can always type :help! ~~
+> 
 
