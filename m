@@ -1,167 +1,297 @@
-Return-Path: <devicetree+bounces-55997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3206489740C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 17:32:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF768897432
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 17:40:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99DA81F216DA
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 15:32:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2B051C22424
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 15:40:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B4D6139D17;
-	Wed,  3 Apr 2024 15:32:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90E4814A0B4;
+	Wed,  3 Apr 2024 15:40:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=oltmanns.dev header.i=@oltmanns.dev header.b="Zj3aw+bf"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="JNVpZrHT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F549149DFD;
-	Wed,  3 Apr 2024 15:32:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D3C714A0A2
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 15:40:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712158327; cv=none; b=bndFbxRvGPn8yKpHOawTQIi6xAKQ/7hbauLLBK59qTk/u6m+QbNkRq1/H5Ds0sN3WtCFO7a/feVeocXsOmQIUCLx6xGm/o7pDI9HNsNK25q60Z1SdDDalMA4K3R/dJa8fvOLWdNhqJXx4Zk6JA/e48reIlEbQB67ETMv2S/SGdM=
+	t=1712158855; cv=none; b=qAN0ZCSThWTb6yHsjU01pkqK6BRrPPOvRf1L7pD9gya1bNXFAf+fWfz6KmsdPCfyhaoDUL8tSe9htUz3DpgvSmo92L/s/ajIHKF4iOqJlLerLIuYZFs8qI4J/v4uSBOYshoquwQMgvCWykFxEKDRwV9e7xipZLmuqA9nzM0r1Qc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712158327; c=relaxed/simple;
-	bh=yWSydggSbm1G+VEOEgMaeofH6CeF1v5JS+YuRRk5dZ4=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=BNsG5XiUz2Rk54hAyOgBk9NHLlnvKIwEAhgAbfLeJMvBdLaBfdS6Qmlpf+7M5taEnXan+1VR6cY7hb+tbkaExO0r8tHnEp1KIocneVFY3d81u0TiNLMIla8cvZwlp/J/4MAlYvMnFStWvpv/tH38JP2O5aRLSNX5x6WsV9658A0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oltmanns.dev; spf=pass smtp.mailfrom=oltmanns.dev; dkim=pass (2048-bit key) header.d=oltmanns.dev header.i=@oltmanns.dev header.b=Zj3aw+bf; arc=none smtp.client-ip=80.241.56.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oltmanns.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oltmanns.dev
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4V8pdX4LwNz9t5n;
-	Wed,  3 Apr 2024 17:32:00 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oltmanns.dev;
-	s=MBO0001; t=1712158320;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=n2n+ZKpSrp4swBYXFDHQkoo9IbN9JMu4th1fbKoqZBc=;
-	b=Zj3aw+bfzHPcedx2v+nnf9eMoegQ03ywBf22sAYq1igWjyjxfWspgpEdXP+toRFDfjWILC
-	31YpGl3BaR7xvYNvRNHU+XG6npSj3PWOz1grAoSDd8y/V7hyMjH6hkiZmJCN8Yfv0HlyB8
-	OfyGMlJZ3IIx2SDx8StMvAPWOFwO3/YHN8RMPf38YqlOh90PpyydehqkyAzWHuyxEJaw0A
-	6hU4M7i8WtArjTGGwQlrZ45LqrogdpVKoRMsHLCCtCEn8elKxvrYVGOSLnTuCDRDz1sdHN
-	J41aLXX41KWhJwVppvieT755HFxfVJR6LCB3CwQebhH8TNSqGUU180kEN4PNgA==
-From: Frank Oltmanns <frank@oltmanns.dev>
-To: Michael Turquette <mturquette@baylibre.com>,  Stephen Boyd
- <sboyd@kernel.org>,  Chen-Yu Tsai <wens@csie.org>,  Jernej Skrabec
- <jernej.skrabec@gmail.com>,  Samuel Holland <samuel@sholland.org>,  Maxime
- Ripard <mripard@kernel.org>
-Cc: Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>,  Purism Kernel Team
- <kernel@puri.sm>,
-  Ondrej Jirman <megi@xff.cz>,  Neil Armstrong <neil.armstrong@linaro.org>,
-  Jessica Zhang <quic_jesszhan@quicinc.com>,  Sam Ravnborg
- <sam@ravnborg.org>,  Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>,  Thomas Zimmermann
- <tzimmermann@suse.de>,  David Airlie <airlied@gmail.com>,  Daniel Vetter
- <daniel@ffwll.ch>,  Rob Herring <robh+dt@kernel.org>,  Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
-  linux-clk@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
-  linux-sunxi@lists.linux.dev,  linux-kernel@vger.kernel.org,
-  dri-devel@lists.freedesktop.org,  devicetree@vger.kernel.org,
-  stable@vger.kernel.org,  Diego Roversi <diegor@tiscali.it>,  Erico Nunes
- <nunes.erico@gmail.com>
-Subject: Re: [PATCH v4 0/5] Pinephone video out fixes (flipping between two
- frames)
-In-Reply-To: <20240310-pinephone-pll-fixes-v4-0-46fc80c83637@oltmanns.dev>
-	(Frank Oltmanns's message of "Sun, 10 Mar 2024 14:21:10 +0100")
-References: <20240310-pinephone-pll-fixes-v4-0-46fc80c83637@oltmanns.dev>
-Date: Wed, 03 Apr 2024 17:31:47 +0200
-Message-ID: <87frw2a2e4.fsf@oltmanns.dev>
+	s=arc-20240116; t=1712158855; c=relaxed/simple;
+	bh=71HGpz3bu1XDU0ChqyX7V270qylnWQI/CQmlprroP9Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZW5nbTocZJMoy6DZKTZMydCKc+x6juoG+8kkK1JE1BeMQBQU3YYqJ5qmEdCH4Qa7StjE3wy9OAEEYemgNciBOl5+eASPrCnyK5q/jBYliJdHVh2tGEOFD0jH0bHwspBaXvNwa4s44D3lPC1+N99+Fb4wISMgJ88GMUSkMmFvihw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=JNVpZrHT; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2d4360ab3daso86061361fa.3
+        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 08:40:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712158851; x=1712763651; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sEfL+KtRzP5VGoQFCUbE4sa/jrpJAy8sRsW3/DJwOpQ=;
+        b=JNVpZrHTqiLRern+TappnwIRBenKhCr+Y2IYUg7PhBk05gU7mq0L4T/WHaSyd5jccu
+         10v4wIZhHPCg0VsmbkfsfgiHhxxNAGf0wfZy57hDz3XzCGdVLWW3yXRdBalUyWRG5FQ6
+         ltd1bhNa5sSuMN+7atN2FFID+eVW0UTC+zRkLUwHNZOrsRdPXvxjS7Tx/Q9dZ0RkJ8df
+         PTfiYQ+Yw6XfLUQozIKf15QAEL5GkZ/5TC5D/hiGv90rtRzUmu07P98Op22lpjoL22s/
+         C0gS/n7nSNcJUeYQ6wPJOYZUbvdRE6++Yvdr8Vyzr2HCwCIDv+j8tPaaNy+lVf6hGSyo
+         h4/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712158851; x=1712763651;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=sEfL+KtRzP5VGoQFCUbE4sa/jrpJAy8sRsW3/DJwOpQ=;
+        b=A8z4PfFmNtCwXMPZB2PNlSAu+Z+BH+7RlK7AT2YCG+kYy8B5UAvISrVTesQ9Y2Y+bG
+         1eJYXI+WsahGu8Bpg/pfiuhU49ZajFa5N+Z7Lc9TxUlaWJe2pWYwpnDZmdV1BnK0ssw9
+         ji8XZdChD7pnuMfpyCu9ezYbFYISnL/nL0pr/Dho6A50Zq2jhDJxGKTzVfOWijybeuFz
+         vRiK/SqF08BlOP2avwWI/QymUmQaRRBrgNegmcpjsRW+s5VL6QshAMQmVnXMOcgt50tM
+         ldU0On6cMW3nDKNpXZjGOYEVO4xsZ89n+Pz7194IXAsI992ICLhS5YdbgPkzUa1I3m5e
+         Sqhw==
+X-Forwarded-Encrypted: i=1; AJvYcCXtqagUfMLp8eCkpf9r+qqaEJMJL4ClDv1Or6QN6raJrF858i8pM1iqd0teS9Bfhpd5EG+z1dqJpef2sPFXMATza7qKHhmntLk6Aw==
+X-Gm-Message-State: AOJu0YwyUrhWus13TA+p26mNp7ueYUmznAmvkgUngqrbbT8djJZ+/QGC
+	sByDLBbpS6JfEEFdIVc3r3bjsjOSMWSfdgWDhQnL91pX+mBjdJNaQYtHS2Qcd1NbFvxYnqeQu+S
+	PP77qXlLskn1NzrRTwfbkkySbO/ohCPNKaEqC1w==
+X-Google-Smtp-Source: AGHT+IFPoZ5LKOh6VIQyxGEDW1MJSsgvKWiqYEr33OpuO+5YGw2wi8BAE5xhL2PmHMYV6XsvdtZC/+qNSzSfLhGHfNs=
+X-Received: by 2002:a2e:8004:0:b0:2d6:c7eb:8837 with SMTP id
+ j4-20020a2e8004000000b002d6c7eb8837mr1883ljg.46.1712158851383; Wed, 03 Apr
+ 2024 08:40:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Rspamd-Queue-Id: 4V8pdX4LwNz9t5n
+References: <20240401-ad4111-v1-0-34618a9cc502@analog.com> <20240401-ad4111-v1-1-34618a9cc502@analog.com>
+ <CAMknhBHeKAQ45=5-dL1T1tv-mZcPN+bNo3vxWJYgWpEPE+8p3Q@mail.gmail.com> <25cb3514-1281-49a8-9e9b-40ead9b050dc@gmail.com>
+In-Reply-To: <25cb3514-1281-49a8-9e9b-40ead9b050dc@gmail.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Wed, 3 Apr 2024 10:40:39 -0500
+Message-ID: <CAMknhBHu8DveBgV3cor8RP2Up4Zs-+QRx7S2aoHZ_3iKiErVjg@mail.gmail.com>
+Subject: Re: [PATCH 1/6] dt-bindings: adc: ad7173: add support for ad411x
+To: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
+Cc: dumitru.ceclan@analog.com, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Dear clk and sunxi-ng maintainers,
+On Wed, Apr 3, 2024 at 2:43=E2=80=AFAM Ceclan, Dumitru <mitrutzceclan@gmail=
+.com> wrote:
+>
+> On 01/04/2024 22:37, David Lechner wrote:
+> > On Mon, Apr 1, 2024 at 10:10=E2=80=AFAM Dumitru Ceclan via B4 Relay
+> > <devnull+dumitru.ceclan.analog.com@kernel.org> wrote:
+> >>
+> >> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
+>
+> ...
+>
+> >>      properties:
+> >>        reg:
+> >> +        description:
+> >> +          Reg values 16-19 are only permitted for ad4111/ad4112 curre=
+nt channels.
+> >>          minimum: 0
+> >> -        maximum: 15
+> >> +        maximum: 19
+> >
+> > This looks wrong. Isn't reg describing the number of logical channels
+> > (# of channel config registers)?
+> >
+> > After reviewing the driver, I see that > 16 is used as a way of
+> > flagging current inputs, but still seems like the wrong way to do it.
+> > See suggestion below.
+> >
+>
+> This was a suggestion from Jonathan, maybe I implemented it wrong.
+> Other alternative that came to my mind: attribute "adi,current-channel".
 
-Patches 1-4 have been reviewed and there are no pending issues. If there
-is something else you need me to do to get this applied, please let me
-know.
+Having a boolean flag like this would make more sense to me if we
+don't agree that the suggestion below is simpler.
 
-Thanks,
-  Frank
+> >>
+> >>        diff-channels:
+> >> +        description:
+> >> +          For using current channels specify only the positive channe=
+l.
+> >> +            (IIN2+, IIN2=E2=88=92) -> diff-channels =3D <2 0>
+> >
+> > I find this a bit confusing since 2 is already VIN2 and 0 is already
+> > VIN0. I think it would make more sense to assign unique channel
+> > numbers individually to the negative and positive current inputs.
+> > Also, I think it makes sense to use the same numbers that the
+> > registers in the datasheet use (8 - 11 for negative and 12 to 15 for
+> > positive).
+> >
+> > So: (IIN2+, IIN2=E2=88=92) -> diff-channels =3D <13 10>
+> >
+> >
+> It would mean for the user to look in the datasheet at the possible
+> channel INPUT configurations values, decode the bit field into two
+> integer values and place it here (0110101010) -> 13 10. This is
+> cumbersome for just choosing current input 2.
 
-On 2024-03-10 at 14:21:10 +0100, Frank Oltmanns <frank@oltmanns.dev> wrote:
-> On some pinephones the video output sometimes freezes (flips between two
-> frames) [1]. It seems to be that the reason for this behaviour is that
-> PLL-MIPI is outside its limits, and the GPU is not running at a fixed
-> rate.
+It could be documented in the devicetree bindings, just as it is done
+in adi,ad4130.yaml so that users of the bindings don't have to
+decipher the datasheet.
+
 >
-> In this patch series I propose the following changes:
->   1. sunxi-ng: Adhere to the following constraints given in the
->      Allwinner A64 Manual regarding PLL-MIPI:
->       * M/N <= 3
->       * (PLL_VIDEO0)/M >= 24MHz
->       * 500MHz <= clockrate <= 1400MHz
+> >> +
+> >> +          Family AD411x supports a dedicated VCOM voltage input.
+> >> +          To select it set the second channel to 16.
+> >> +            (VIN2, VCOM) -> diff-channels =3D <2 16>
+> >
+> > The 411x datasheets call this pin VINCOM so calling it VCOM here is a
+> > bit confusing.
+> >
 >
->   2. Remove two operating points from the A64 DTS OPPs, so that the GPU
->      runs at a fixed rate of 432 MHz.
+> Sure, I'll rename to VINCOM.
 >
-> Note, that when pinning the GPU to 432 MHz the issue [1] completely
-> disappears for me. I've searched the BSP and could not find any
-> indication that supports the idea of having the three OPPs. The only
-> frequency I found in the BPSs for A64 is 432 MHz, which has also proven
-> stable for me.
+> > Also, do we need to add a vincom-supply to get this voltage? Or is it
+> > safe to assume it is always connected to AVSS? The datasheet seems to
+> > indicate that the latter is the case. But then it also has this
+> > special case (at least for AD4116, didn't check all datasheets)
+> > "VIN10, VINCOM (single-ended or differential pair)". If it can be used
+> > as part of a fully differential input, we probably need some extra
+> > flag to indicate that case.
+> >
 >
-> I very much appreciate your feedback!
+> I cannot see any configuration options for these use cases. All inputs
+> are routed to the same mux and routed to the differential positive and
+> negative ADC inputs.
 >
-> [1] https://gitlab.com/postmarketOS/pmaports/-/issues/805
+> "VIN10, VINCOM (single-ended or differential pair)" the only difference
+> between these two use cases is if you connected VINCOM to AVSS (with
+> unipolar coding) or not with bipolar encoding. The channel is still
+> measuring the difference between the two selected inputs and comparing
+> to the selected reference.
 >
-> Signed-off-by: Frank Oltmanns <frank@oltmanns.dev>
-> ---
-> Changes in v4:
-> - sunxi-ng: common: Address review comments.
-> - Link to v3: https://lore.kernel.org/r/20240304-pinephone-pll-fixes-v3-0-94ab828f269a@oltmanns.dev
+> > Similarly, do we need special handling for ADCIN15 on AD4116? It has a
+> > "(pseudo differential or differential pair)" notation that other
+> > inputs don't. In other words, it is more like VINCOM than it is to the
+> > other ADCINxx pins. So we probably need an adcin15-supply for this pin
+> > to properly get the right channel configuration. I.e. the logic in the
+> > IIO driver would be if adcin15-supply is present, any channels that
+> > use this input are pseudo-differential, otherwise any channels that
+> > use it are fully differential.
+> >
 >
-> Changes in v3:
-> - dts: Pin GPU to 432 MHz.
-> - nkm and a64: Move minimum and maximum rate handling to the common part
->   of the sunxi-ng driver.
-> - Removed st7703 patch from series.
-> - Link to v2: https://lore.kernel.org/r/20240205-pinephone-pll-fixes-v2-0-96a46a2d8c9b@oltmanns.dev
+> I cannot seem to understand what would a adcin15-supply be needed for.
+> This input, the same as all others, enters the mux and is routed to
+> either positive or negative input of the ADC.
 >
-> Changes in v2:
-> - dts: Increase minimum GPU frequency to 192 MHz.
-> - nkm and a64: Add minimum and maximum rate for PLL-MIPI.
-> - nkm: Use the same approach for skipping invalid rates in
->   ccu_nkm_find_best() as in ccu_nkm_find_best_with_parent_adj().
-> - nkm: Improve names for ratio struct members and hence get rid of
->   describing comments.
-> - nkm and a64: Correct description in the commit messages: M/N <= 3
-> - Remove patches for nm as they were not needed.
-> - st7703: Rework the commit message to cover more background for the
->   change.
-> - Link to v1: https://lore.kernel.org/r/20231218-pinephone-pll-fixes-v1-0-e238b6ed6dc1@oltmanns.dev
+> The voltage on the ADCIN15 pin is not important to the user, just the
+> difference in voltage between that pin and the other one selected.
 >
-> ---
-> Frank Oltmanns (5):
->       clk: sunxi-ng: common: Support minimum and maximum rate
->       clk: sunxi-ng: a64: Set minimum and maximum rate for PLL-MIPI
->       clk: sunxi-ng: nkm: Support constraints on m/n ratio and parent rate
->       clk: sunxi-ng: a64: Add constraints on PLL-MIPI's n/m ratio and parent rate
->       arm64: dts: allwinner: a64: Run GPU at 432 MHz
+
+These suggestions come from some recent discussion about
+pseudo-differential vs. fully differential inputs (e.g. search the IIO
+mailing list for AD7380).
+
+So what I suggested here might be more technically correct according
+to what I got out of that discussion. But for this specific case, I
+agree it is good enough to just treat all inputs as always
+fully-differential to keep things from getting too unwieldy.
+
+> >>          items:
+> >>            minimum: 0
+> >>            maximum: 31
+> >> @@ -166,7 +191,6 @@ allOf:
+> >>    - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> >>
+> >>    # Only ad7172-4, ad7173-8 and ad7175-8 support vref2
+> >> -  # Other models have [0-3] channel registers
+> >
+> > Did you forget to remove
+> >
+> >             reg:
+> >               maximum: 3
+> >
+> > from this if statement that this comment is referring to?
+> >
+> >
 >
->  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi |  8 --------
->  drivers/clk/sunxi-ng/ccu-sun50i-a64.c         | 14 +++++++++-----
->  drivers/clk/sunxi-ng/ccu_common.c             | 19 +++++++++++++++++++
->  drivers/clk/sunxi-ng/ccu_common.h             |  3 +++
->  drivers/clk/sunxi-ng/ccu_nkm.c                | 21 +++++++++++++++++++++
->  drivers/clk/sunxi-ng/ccu_nkm.h                |  2 ++
->  6 files changed, 54 insertions(+), 13 deletions(-)
-> ---
-> base-commit: dcb6c8ee6acc6c347caec1e73fb900c0f4ff9806
-> change-id: 20231218-pinephone-pll-fixes-0ccdfde273e4
 >
-> Best regards,
+> Other way around, forgot in a previous patch to remove the comment.
+> I'll move this change to a precursor patch.
+>
+> >>    - if:
+> >>        properties:
+> >>          compatible:
+> >> @@ -187,6 +211,37 @@ allOf:
+> >>                  - vref
+> >>                  - refout-avss
+> >>                  - avdd
+> >> +
+> >> +  - if:
+> >> +      properties:
+> >> +        compatible:
+> >> +          contains:
+> >> +            enum:
+> >> +              - adi,ad4114
+> >> +              - adi,ad4115
+> >> +              - adi,ad4116
+> >> +              - adi,ad7173-8
+> >> +              - adi,ad7175-8
+> >> +    then:
+> >> +      patternProperties:
+> >> +        "^channel@[0-9a-f]$":
+> >> +          properties:
+> >> +            reg:
+> >> +              maximum: 15
+> >
+> > As with the previous reg comment, this if statement should not be
+> > needed since maximum should not be changed to 19.
+> >
+>
+> We'll see what is the best approach regarding the current channels,
+> perhaps the one you mentioned in the later reply with always configuring
+> like the temp channel.
+>
+> >> +
+> >> +  - if:
+> >> +      properties:
+> >> +        compatible:
+> >> +          contains:
+> >> +            enum:
+> >> +              - adi,ad7172-2
+> >> +              - adi,ad7175-2
+> >> +              - adi,ad7176-2
+> >> +              - adi,ad7177-2
+> >> +    then:
+> >> +      patternProperties:
+> >> +        "^channel@[0-9a-f]$":
+> >> +          properties:
+> >>              reg:
+> >>                maximum: 3
+> >
+> > It looks to me like AD7172-4 actually has 8 possible channels rather
+> > than 16. So it would need a special condition as well. But that is a
+> > bug in the previous bindings and should therefore be fixed in a
+> > separate patch.
+>
+> It is addressed already in the binding:
+> "
+>   - if:
+>       properties:
+>         compatible:
+>           contains:
+>             const: adi,ad7172-4
+> [...]
+>               maximum: 7
+> "
+
+Ah, I missed it hiding with adi,reference-select overrides.
 
