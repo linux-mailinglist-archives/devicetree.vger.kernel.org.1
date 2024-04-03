@@ -1,190 +1,192 @@
-Return-Path: <devicetree+bounces-55816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C23EF896732
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 09:51:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93FD9896736
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 09:51:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E526B1C209DE
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 07:51:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47C09283BED
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 07:51:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E849E5D74C;
-	Wed,  3 Apr 2024 07:50:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A3DC6BFB1;
+	Wed,  3 Apr 2024 07:51:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sPz8nm66"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JKjT50fK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DA655D73D
-	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 07:50:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45B8D5C8E6;
+	Wed,  3 Apr 2024 07:51:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712130642; cv=none; b=W7mtvDGvaI8n3h6DbBmWgZQJJoWcUMoXLdINxCfv1r9MWKe0/UhHY0ofqXDzVebr3CpWjawFR7EyLhBSUd746kfJ+1cBcdDnRpzNwrOIKt88IevCq5y7jg4nOhoE+oTo382lrKejbhrp7qpDJLK7JCFIL5pWebvD0T6cK7Jy3C0=
+	t=1712130662; cv=none; b=sTiqeqVd1CtIaK4BIJXOcvFrLMSYUFy0f6mfXyhzK48zXKOoEU4Cp5pUansZx3sdf+04Ssy1LJOs5/IygmhzkQ+Bj2sW0l9zOIduhRzVXji1KdtDWSjgly1Do05hadxfuRiK8R0ScktZPomj4Wtk7n9OAlQVgrsfP4TRhusv+UQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712130642; c=relaxed/simple;
-	bh=ut1sxqvB3b/HbqUP1v7D+mFfXIsosevL57FgdmoAXho=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lq8t/yx1RWeol6sj33NibdzLI4yWu+GS4sWkpjgM+GzZd5RmoM6QehIIywlHcma38MjU8rpLgQrRGD6AM/qnkIez7rrHvcT4KHQMjGAb7XVMF+EujEa9xQzz66I6nUC37vK9W5CY2GOYDpJmKFQh9+h9rKSC69MQ0djz+i4sXcU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sPz8nm66; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1e0878b76f3so5611995ad.0
-        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 00:50:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712130640; x=1712735440; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=hyHSDC/vVjVH3KtBQTZvNF7eu/gn8gGU1GGy/JDCDjk=;
-        b=sPz8nm668l2HyIGIFjKcepO2alT8DrbDtuqFIULDdqaDSxeJ+cg4+e8+OhJW/j3Qs8
-         n13LYUm9tB0h7/ZE9i0I1IC80WAsnaAEP+CQXZWDlusgfEO14iKL9wmICvc3dvEXgjyY
-         mLsjKA78YFZ1ddLfWnu/EB+/1LXTzXil8menbN0GZshGxWkrhB/hw2IOF5QvpULLDot5
-         XpAyJ8XcPEd9IoxdYHHkc7OVvELSibevktkgboXaN5yhNLKqqj6pvqwDzcp70KMuloVi
-         b7mK5IvXIEOyINGseMK9A9Zjevk2DfHhiZnPOPs9S6CmNkcdGlshWRRWjla0wG+IDD0N
-         0hdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712130640; x=1712735440;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hyHSDC/vVjVH3KtBQTZvNF7eu/gn8gGU1GGy/JDCDjk=;
-        b=NvjOMmTj5Ho2rwjxGD2/l1lVm4DvpjwrHomwpMFP452pYcly7J/SfG/HflpTAJegFL
-         oERXW6Knp8xFlVqdbGWG0vygd96c27ndW/qvuZJHAKWGXu0yAoR3IIStvxvBMzHYoudE
-         GfMyuj4+2NWOJW/2w0ACldG4L8HdDMGdOL3cQtCt4DW3J9haMzFaZb5XfRsoCGdCjHhO
-         9hcY1P5+Y7kJ6XcdbrsIwGesGOIWjKzQxalHZqhQLw7bF/Yb698zKdOdXxjQtbqsuyJj
-         1ClIKH2OkQKthhyu1CaeDWN4BY9e/i4UKwWQ6mqk+4h8ukK0T0pr00Copt7IkRg5bOIo
-         kJhg==
-X-Forwarded-Encrypted: i=1; AJvYcCX8X1eA67RvR8DpbEdU5HV+LSS5gMpclxGkuw5/BfAOwfeb8LJXX6+uz5z6K6JEzqnGttIDfej0Lui7XkHSiMXFXedNFTJqgKEMJQ==
-X-Gm-Message-State: AOJu0YwnP+p7HYHS9/KGWqf0T+NUC+cH53wnlvyaeX9tjgyKJssRIUWZ
-	RFQNS26c3AxgbkTB+AkGkDKidLFRfmcvh7YWEEF0FSBxkdWJh6PaQCo0imBWSQ==
-X-Google-Smtp-Source: AGHT+IGHxQcAvNq1SVAZKqs98Q6Tn8kDvER6z4KgHIbUtFfBKz7ADPqs9lBDYFyL3DdTX4eDyCwPow==
-X-Received: by 2002:a17:902:ce8c:b0:1e0:c88f:654f with SMTP id f12-20020a170902ce8c00b001e0c88f654fmr2580878plg.33.1712130640300;
-        Wed, 03 Apr 2024 00:50:40 -0700 (PDT)
-Received: from thinkpad ([103.28.246.48])
-        by smtp.gmail.com with ESMTPSA id z10-20020a170903018a00b001e0a8812ccesm12480324plg.262.2024.04.03.00.50.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Apr 2024 00:50:39 -0700 (PDT)
-Date: Wed, 3 Apr 2024 13:20:34 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Damien Le Moal <dlemoal@kernel.org>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	Rick Wertenbroek <rick.wertenbroek@gmail.com>,
-	Wilfred Mallawa <wilfred.mallawa@wdc.com>,
-	Niklas Cassel <cassel@kernel.org>
-Subject: Re: [PATCH v2 00/18] Improve PCI memory mapping API
-Message-ID: <20240403075034.GF25309@thinkpad>
-References: <20240330041928.1555578-1-dlemoal@kernel.org>
+	s=arc-20240116; t=1712130662; c=relaxed/simple;
+	bh=xXt761hXGOhChVVs4hvJ3+oYCtJUQLEzwivwDFsgV6o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ENkMpQJw8fbD/s7SqOhz4VjgtLeUfSS/2UGl4Ig6KoVD2WrPUtiv82xHzVZGz/cSTd54/9BOWV9YGAbJqeeoTaao1B6DH7+L844TBOgrmoyTbwHUJZf2TBs5MV/j8VTpO2E4aD9sfY3ehI9AQvF6AWUa/cWsB+HsOIssoGETZNE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JKjT50fK; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4335Qtot010714;
+	Wed, 3 Apr 2024 07:50:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=5qlywn2ge3g3LY0/ZvHLN9/fbluGe4eXWRjDIrYfvhM=; b=JK
+	jT50fKoi9esukAGMTXCUXLabOHr36KpTdyAScChJ7DrxK3pUxx+tdsgtfgEXNIDp
+	blIGKKS4qRXiz9tFdp1FQCSmotWGYbsgPo2H23IlH/z78Sj/EyBk5WyZaAT+kqsM
+	kXAmScz4QERxaqWzC8qCSPjN5gC+2Kz/FKJBEL9HS3/U2QYKLT0B35Nojt5Ue3MP
+	/5j2gOsNHEhIWinzyGB5d45/DEwyVMKBThUPnKMK53pps60UOAKguCDqzvi1rPMz
+	qpH1vTzM/zY0mPNe9K+Lp4VzBN8QPoaycFbaYFvvK9dXSBUBAThVY0y+XUN5Kaww
+	sKJ7TuSv+bpkXpdfHkmA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x9077gb25-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 03 Apr 2024 07:50:55 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4337orN6013826
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 3 Apr 2024 07:50:53 GMT
+Received: from [10.216.63.221] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Wed, 3 Apr 2024
+ 00:50:49 -0700
+Message-ID: <5354493b-63de-43bb-9871-73918f123661@quicinc.com>
+Date: Wed, 3 Apr 2024 13:20:46 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240330041928.1555578-1-dlemoal@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: qdu1000-idp: enable USB nodes
+Content-Language: en-US
+To: Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@linaro.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>
+CC: Komal Bajaj <quic_kbajaj@quicinc.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Amrit Anand <quic_amrianan@quicinc.com>
+References: <20240319091020.15137-1-quic_kbajaj@quicinc.com>
+ <20240319091020.15137-3-quic_kbajaj@quicinc.com>
+ <CAA8EJprXPvji8TgZu1idH7y4GtHtD4VmQABFBcRt-9BQaCberg@mail.gmail.com>
+ <Zgs7Yau1/jYvys4i@hu-bjorande-lv.qualcomm.com>
+From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <Zgs7Yau1/jYvys4i@hu-bjorande-lv.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: BXDdKxPkfqVEz4Hil2WW7hUn9PBp4Ku3
+X-Proofpoint-ORIG-GUID: BXDdKxPkfqVEz4Hil2WW7hUn9PBp4Ku3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-03_06,2024-04-01_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ malwarescore=0 adultscore=0 suspectscore=0 clxscore=1015
+ priorityscore=1501 lowpriorityscore=0 spamscore=0 phishscore=0 bulkscore=0
+ impostorscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2403210001 definitions=main-2404030053
 
-On Sat, Mar 30, 2024 at 01:19:10PM +0900, Damien Le Moal wrote:
-> This series introduces the new functions pci_epc_map_align(),
-> pci_epc_mem_map() and pci_epc_mem_unmap() to improve handling of the
-> PCI address mapping alignment constraints of endpoint controllers in a
-> controller independent manner.
-> 
-> The issue fixed is that the fixed alignment defined by the "align" field
-> of struct pci_epc_features assumes that the alignment of the endpoint
-> memory used to map a RC PCI address range is independent of the PCI
-> address being mapped. But that is not the case for the rk3399 SoC
-> controller: in endpoint mode, this controller uses the lower bits of the
-> local endpoint memory address as the lower bits for the PCI addresses
-> for data transfers. That is, when mapping local memory, one must take
-> into account the number of bits of the RC PCI address that change from
-> the start address of the mapping.
-> 
-> To fix this, the new endpoint controller method .map_align is introduced
-> and called from pci_epc_map_align(). This method is optional and for
-> controllers that do not define it, the mapping information returned
-> is based of the fixed alignment constraint as defined by the align
-> feature.
-> 
-> The functions pci_epc_mem_map() is a helper function which obtains
-> mapping information, allocates endpoint controller memory according to
-> the mapping size obtained and maps the memory. pci_epc_mem_map() unmaps
-> and frees the endpoint memory.
-> 
-> This series is organized as follows:
->  - Patch 1 tidy up the epc core code
->  - Patch 2 and 3 introduce the new map_align endpoint controller method
->    and related epc functions.
->  - Patch 4 to 6 modify the test endpoint driver to use these new
->    functions and improve the code of this driver.
 
-While posting the next version, please split the endpoint patches into a
-separate series. It helps in code review and can be applied separately.
 
-- Mani
-
->  - Finally, Patch 7 to 18 fix the rk3399 endpoint driver, defining a
->    .map_align method for it and improving its overall code readability
->    and features.
+On 4/2/2024 4:25 AM, Bjorn Andersson wrote:
+> On Tue, Mar 19, 2024 at 11:52:15AM +0200, Dmitry Baryshkov wrote:
+>> On Tue, 19 Mar 2024 at 11:11, Komal Bajaj <quic_kbajaj@quicinc.com> wrote:
+>>>
+>>> Enable both USB controllers and associated hsphy and qmp phy
+>>> nodes on QDU1000 IDP. Add the usb type B port linked with the
+>>> DWC3 USB controller switched to OTG mode and tagged with
+>>> usb-role-switch.
+>>>
+>>> Co-developed-by: Amrit Anand <quic_amrianan@quicinc.com>
+>>> Signed-off-by: Amrit Anand <quic_amrianan@quicinc.com>
+>>> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+>>> ---
+>>>   arch/arm64/boot/dts/qcom/qdu1000-idp.dts | 65 ++++++++++++++++++++++++
+>>>   1 file changed, 65 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+>>> index 89b84fb0f70a..26442e707b5e 100644
+>>> --- a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+>>> +++ b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+>>> @@ -46,6 +46,33 @@ ppvar_sys: ppvar-sys-regulator {
+>>>                  regulator-boot-on;
+>>>          };
+>>>
+>>> +       usb_conn_gpio: usb-conn-gpio {
+>>> +               compatible = "gpio-usb-b-connector";
+>>
+>> If this board has only a USB-B connector, can it really handle USB 3.0?
+>>
 > 
-> Changes from v1:
->  - Changed pci_epc_check_func() to pci_epc_function_is_valid() in patch
->    1.
->  - Removed patch "PCI: endpoint: Improve pci_epc_mem_alloc_addr()"
->    (former patch 2 of v1)
->  - Various typos cleanups all over. Also fixed some blank space
->    indentation.
->  - Added review tags
+> Here's a USB 3.0 Type-B cable, so no problem there:
+> https://en.wikipedia.org/wiki/USB_hardware#/media/File:USB_3.0_plug,_type_B_-_1709.jpg
 > 
-> Damien Le Moal (17):
->   PCI: endpoint: Introduce pci_epc_function_is_valid()
->   PCI: endpoint: Introduce pci_epc_map_align()
->   PCI: endpoint: Introduce pci_epc_mem_map()/unmap()
->   PCI: endpoint: test: Use pci_epc_mem_map/unmap()
->   PCI: endpoint: test: Synchronously cancel command handler work
->   PCI: endpoint: test: Implement link_down event operation
->   PCI: rockchip-ep: Fix address translation unit programming
->   PCI: rockchip-ep: Use a macro to define EP controller .align feature
->   PCI: rockchip-ep: Improve rockchip_pcie_ep_unmap_addr()
->   PCI: rockchip-ep: Improve rockchip_pcie_ep_map_addr()
->   PCI: rockchip-ep: Implement the map_align endpoint controller operation
->   PCI: rockchip-ep: Refactor rockchip_pcie_ep_probe() memory allocations
->   PCI: rockchip-ep: Refactor rockchip_pcie_ep_probe() MSI-X hiding
->   PCI: rockchip-ep: Refactor endpoint link training enable
->   PCI: rockship-ep: Introduce rockchip_pcie_ep_stop()
->   PCI: rockchip-ep: Improve link training
->   PCI: rockchip-ep: Handle PERST# signal in endpoint mode
 > 
-> Wilfred Mallawa (1):
->   dt-bindings: pci: rockchip,rk3399-pcie-ep: Add ep-gpios property
-> 
->  .../bindings/pci/rockchip,rk3399-pcie-ep.yaml |   3 +
->  drivers/pci/controller/pcie-rockchip-ep.c     | 393 ++++++++++++++----
->  drivers/pci/controller/pcie-rockchip.c        |  17 +-
->  drivers/pci/controller/pcie-rockchip.h        |  22 +
->  drivers/pci/endpoint/functions/pci-epf-test.c | 390 +++++++++--------
->  drivers/pci/endpoint/pci-epc-core.c           | 213 +++++++---
->  include/linux/pci-epc.h                       |  39 ++
->  7 files changed, 768 insertions(+), 309 deletions(-)
-> 
-> -- 
-> 2.44.0
+> @Komal, please confirm that this is the connector you have on the IDP?
 > 
 
--- 
-மணிவண்ணன் சதாசிவம்
+Hi Bjorn,
+
+  Sorry for the confusion. The QDU1000 IDP has a Type-C connector. The 
+type-c switch present between SoC and the connector is HD3SS3220 (from TI).
+
+  I think Dmitry's comment was that if it is 3.0, is it Type-C ? and if 
+it is Type-C, then the compatible written in the being 
+"gpio-usb-b-connector" would mean that there is a Type-B connector for 
+someone who looks at the DT. (Dmitry, Please correct me if I understood 
+the comment wrong).
+
+  I tried to push a series for adding a compatible to gpio conn driver 
+[1] to resolve this and explained the connection specifics to Dmitry [2] 
+and he suggested me to add a compatible for just the switch present on 
+qdu1000 idp.
+
+Dmitry, Krzysztof,
+
+I was looking into the code again and it turns out there is a driver 
+specific to HD3SS3220 switch [3] in linux already. I tried to check if 
+it can be reused here but that driver relies on I2C communication 
+between the SoC and the HD3SS3220 chip to get information on role 
+switch. But in QDU1000 IDP board, there is no I2C communication present 
+between SoC and the switch. Those lines have been cut off. The SoC only 
+knows about VBUS/ID pins (other than DM/DP/SS Lanes) and no other I2C 
+connections between the switch and the SoC. We still need to make use of 
+vbus/id pins to decide which role we need to shift into. Can we still go 
+ahead with using usb-conn-gpio driver by adding the compatible 
+(qcom,qdu1000-hd3ss3220) and using it in DT ?
+
+Let me know your thoughts on this.
+
+[1]: 
+https://lore.kernel.org/all/6f2df222-36d4-468e-99a7-9c48fae85aa9@quicinc.com/
+
+[2]: 
+https://lore.kernel.org/all/6f2df222-36d4-468e-99a7-9c48fae85aa9@quicinc.com/
+
+[3]: 
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/usb/typec/hd3ss3220.c?h=v6.9-rc2
+
+Regards,
+Krishna,
+
+
+
 
