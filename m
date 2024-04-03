@@ -1,103 +1,180 @@
-Return-Path: <devicetree+bounces-56023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B24988975BA
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 18:57:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1551A8975BE
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 18:58:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 688DF1F27EC9
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 16:57:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BAFF21F29248
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 16:58:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F23531514EC;
-	Wed,  3 Apr 2024 16:57:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DDA915218F;
+	Wed,  3 Apr 2024 16:58:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W+rl5fcW"
+	dkim=pass (1024-bit key) header.d=megous.com header.i=@megous.com header.b="aGWPpAO4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C70E63E487;
-	Wed,  3 Apr 2024 16:57:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2963A3E487;
+	Wed,  3 Apr 2024 16:58:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.181.215.36
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712163443; cv=none; b=A0+kBFuX95nt9AOWmsaGcASRpQh3e9uwgtuxYJFgPay49N/jFzxMDFDQXzNf5FzhFOe43DnUPemiri4z8VpBF+ji26eBxh9ZspfBB1+p6vgjUyDB9X/jKpZOri7zY9LbrK/zQpz9iMTRFySttAXDU3lmgHktW10FnjRbQSzR2Wc=
+	t=1712163488; cv=none; b=NMuEklHoPtU3UfpTFG2SB12MDAgp7OB+0ryhl04agW4HXtP4GvGhpU4LNTFdiM5eX5mBibdy4IHYbVPJtsWFakNobc9+w9mJKL2K9zUQ7EqqXxkcCioCorBmX4Aiv05M3MC7DD4/QN6C5ZRVMiY4nOo1z0r8IH2AOBeC8OLPUOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712163443; c=relaxed/simple;
-	bh=Lyo2Jkd+NP2jcyMjfmSSDQpvC/i5lfwUw1klvOt8u4M=;
+	s=arc-20240116; t=1712163488; c=relaxed/simple;
+	bh=2G4Q5SYQyElPkNHgWqe4JSo8rDfwCuoyLkkH6dTtzAs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a/GJvqAhDi0hUj8L7rX+y36aBnVWe0UlrwVEAiO30C+7hbGqZRNFAVD4HM0Oa/d74B1vivSQBRKxHEvUggk4vbRHaVt2ixMBhm8A+FKMs7Yx/vblsiLbghD8VOBoere/grTx+4Pug9htbzB6fuJezd3E1Qe4PxCtYqSIrxwxydk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W+rl5fcW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20326C433C7;
-	Wed,  3 Apr 2024 16:57:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712163443;
-	bh=Lyo2Jkd+NP2jcyMjfmSSDQpvC/i5lfwUw1klvOt8u4M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=W+rl5fcWtGDnzgkuQ9dJB/MwuM578FH1ChxNzfvkUSA1zsCW76Y+Jb4K9xEuvgOV9
-	 tjL5skqR7xA4W7dv6pD6ffSM0hGgqXNvpUa8crYjhlaVvlVOm6GZImf5s+rCDgvLdL
-	 d8n4yFN+d9HK5MX0H5vxMv30iOwMHPwedVEyhg7j9qrLoH4jHgIXBqjhCXPXmppdMF
-	 Z3dJ9WiTjuNXu4DHm6rMM79HQcX33+Ni+dUKHOwTBKt3heDHMBYh2j2WN8lWTxBfzw
-	 ITXeEK9Ygz/3cFHNLCE7mVVIaBGfeJc1qe84Gn7G++0NFjlAUIhvQRbJOOkF+nkLk/
-	 +ZXGCFDUSq93g==
-Date: Wed, 3 Apr 2024 11:57:21 -0500
-From: Rob Herring <robh@kernel.org>
-To: Hiago De Franco <hiagofranco@gmail.com>
-Cc: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hiago De Franco <hiago.franco@toradex.com>, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/4] dt-bindings: arm: fsl: remove reduntant
- toradex,colibri-imx8x
-Message-ID: <20240403165721.GA3980362-robh@kernel.org>
-References: <20240402193512.240417-1-hiagofranco@gmail.com>
- <20240402193512.240417-3-hiagofranco@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=MLgyGHN6Gaf9DkeZyjtSh+2WcYjtOhDh1XYILOpLNXD8gc/Yo/aulT0jErETDCISlqGMWjQasdriVl++3QC2Gmn0MLp8PpNIdHpPRQzvR5E61YciOqLsEWy/xDzMzT2QYGE8J/91bmqlFRRb/rEkmR7DCA3l4GikYlJhbF4ZPUQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=megous.com; spf=pass smtp.mailfrom=megous.com; dkim=pass (1024-bit key) header.d=megous.com header.i=@megous.com header.b=aGWPpAO4; arc=none smtp.client-ip=195.181.215.36
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=megous.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=megous.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
+	t=1712163476; bh=2G4Q5SYQyElPkNHgWqe4JSo8rDfwCuoyLkkH6dTtzAs=;
+	h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
+	b=aGWPpAO4EGmkLK+EJPwzMzLQMWWL3m3dZUipkrCENdnh0eDNEuyHm50zbmNnn8Ds/
+	 vDBksoqrLbzk9nnIEPB8TTBK/lh+JLYmm7ZrErL+8C0FpMIvVgYUxDyUko/gFBEMHd
+	 1RmiypFsgbwGYUk/LyDA2fRmDNKuduVhpSAFpgwk=
+Date: Wed, 3 Apr 2024 18:57:56 +0200
+From: =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: git@luigi311.com, linux-media@vger.kernel.org, 
+	dave.stevenson@raspberrypi.com, jacopo.mondi@ideasonboard.com, mchehab@kernel.org, 
+	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
+	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, pavel@ucw.cz, 
+	phone-devel@vger.kernel.org
+Subject: Re: [PATCH v3 23/25] drivers: media: i2c: imx258: Add support for
+ powerdown gpio
+Message-ID: <wjlcde7yoooygj4hhdmiwrdloh6l4p6i2qbmjek5uwsifyzwgu@xjhutvmsdfou>
+Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, git@luigi311.com, linux-media@vger.kernel.org, 
+	dave.stevenson@raspberrypi.com, jacopo.mondi@ideasonboard.com, mchehab@kernel.org, 
+	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
+	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, pavel@ucw.cz, 
+	phone-devel@vger.kernel.org
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
+References: <20240403150355.189229-1-git@luigi311.com>
+ <20240403150355.189229-24-git@luigi311.com>
+ <Zg2DBasC501hMQSS@kekkonen.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240402193512.240417-3-hiagofranco@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Zg2DBasC501hMQSS@kekkonen.localdomain>
 
-On Tue, Apr 02, 2024 at 04:35:10PM -0300, Hiago De Franco wrote:
-> From: Hiago De Franco <hiago.franco@toradex.com>
+Hi Sakari and Luis,
+
+On Wed, Apr 03, 2024 at 04:25:41PM GMT, Sakari Ailus wrote:
+> Hi Luis, Ondrej,
 > 
-> 'toradex,colibri-imx8x' is already present as a constant value for
-> 'i.MX8QP Board with Toradex Colibri iMX8X Modules', so there is no need
-> to keep it twice as a enum value for 'i.MX8QXP based Boards'.
-
-If the module can operate on its own, then it would be valid to have 
-just "toradex,colibri-imx8x". If not, then:
-
-Acked-by: Rob Herring <robh@kernel.org>
-
+> On Wed, Apr 03, 2024 at 09:03:52AM -0600, git@luigi311.com wrote:
+> > From: Luis Garcia <git@luigi311.com>
+> > 
+> > On some boards powerdown signal needs to be deasserted for this
+> > sensor to be enabled.
+> > 
+> > Signed-off-by: Ondrej Jirman <megi@xff.cz>
+> > Signed-off-by: Luis Garcia <git@luigi311.com>
+> > ---
+> >  drivers/media/i2c/imx258.c | 13 +++++++++++++
+> >  1 file changed, 13 insertions(+)
+> > 
+> > diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
+> > index 30352c33f63c..163f04f6f954 100644
+> > --- a/drivers/media/i2c/imx258.c
+> > +++ b/drivers/media/i2c/imx258.c
+> > @@ -679,6 +679,8 @@ struct imx258 {
+> >  	unsigned int lane_mode_idx;
+> >  	unsigned int csi2_flags;
+> >  
+> > +	struct gpio_desc *powerdown_gpio;
+> > +
+> >  	/*
+> >  	 * Mutex for serialized access:
+> >  	 * Protect sensor module set pad format and start/stop streaming safely.
+> > @@ -1213,6 +1215,8 @@ static int imx258_power_on(struct device *dev)
+> >  	struct imx258 *imx258 = to_imx258(sd);
+> >  	int ret;
+> >  
+> > +	gpiod_set_value_cansleep(imx258->powerdown_gpio, 0);
 > 
-> Signed-off-by: Hiago De Franco <hiago.franco@toradex.com>
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 1 -
->  1 file changed, 1 deletion(-)
+> What does the spec say? Should this really happen before switching on the
+> supplies below?
+
+There's no powerdown input in the IMX258 manual. The manual only mentions
+that XCLR (reset) should be held low during power on.
+
+https://megous.com/dl/tmp/15b0992a720ab82d.png
+
+https://megous.com/dl/tmp/f2cc991046d97641.png
+
+   This sensor doesn’t have a built-in “Power ON Reset” function. The XCLR pin
+   is set to “LOW” and the power supplies are brought up. Then the XCLR pin
+   should be set to “High” after INCK supplied.
+
+So this input is some feature on camera module itself outside of the
+IMX258 chip, which I think is used to gate power to the module. Eg. on Pinephone
+Pro, there are two modules with shared power rails, so enabling supply to
+one module enables it to the other one, too. So this input becomes the only way
+to really enable/disable power to the chip when both are used at once at some
+point, because regulator_bulk_enable/disable becomes ineffective at that point.
+
+Luis, maybe you saw some other datasheet that mentions this input? IMO,
+it just gates the power rails via some mosfets on the module itself, since
+there's not power down input to the chip itself.
+
+kind regards,
+	o.
+
+> > +
+> >  	ret = regulator_bulk_enable(IMX258_NUM_SUPPLIES,
+> >  				    imx258->supplies);
+> >  	if (ret) {
+> > @@ -1224,6 +1228,7 @@ static int imx258_power_on(struct device *dev)
+> >  	ret = clk_prepare_enable(imx258->clk);
+> >  	if (ret) {
+> >  		dev_err(dev, "failed to enable clock\n");
+> > +		gpiod_set_value_cansleep(imx258->powerdown_gpio, 1);
+> >  		regulator_bulk_disable(IMX258_NUM_SUPPLIES, imx258->supplies);
+> >  	}
+> >  
+> > @@ -1238,6 +1243,8 @@ static int imx258_power_off(struct device *dev)
+> >  	clk_disable_unprepare(imx258->clk);
+> >  	regulator_bulk_disable(IMX258_NUM_SUPPLIES, imx258->supplies);
+> >  
+> > +	gpiod_set_value_cansleep(imx258->powerdown_gpio, 1);
+> > +
+> >  	return 0;
+> >  }
+> >  
+> > @@ -1541,6 +1548,12 @@ static int imx258_probe(struct i2c_client *client)
+> >  	if (!imx258->variant_cfg)
+> >  		imx258->variant_cfg = &imx258_cfg;
+> >  
+> > +	/* request optional power down pin */
+> > +	imx258->powerdown_gpio = devm_gpiod_get_optional(&client->dev, "powerdown",
+> > +						    GPIOD_OUT_HIGH);
+> > +	if (IS_ERR(imx258->powerdown_gpio))
+> > +		return PTR_ERR(imx258->powerdown_gpio);
+> > +
+> >  	/* Initialize subdev */
+> >  	v4l2_i2c_subdev_init(&imx258->sd, client, &imx258_subdev_ops);
+> >  
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index 0027201e19f8..6fdfa10af43c 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -1218,7 +1218,6 @@ properties:
->            - enum:
->                - einfochips,imx8qxp-ai_ml  # i.MX8QXP AI_ML Board
->                - fsl,imx8qxp-mek           # i.MX8QXP MEK Board
-> -              - toradex,colibri-imx8x     # Colibri iMX8X Modules
->            - const: fsl,imx8qxp
->  
->        - description: i.MX8DXL based Boards
 > -- 
-> 2.39.2
+> Regards,
 > 
+> Sakari Ailus
 
