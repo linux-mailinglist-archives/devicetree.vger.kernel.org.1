@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-56038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56039-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7575389775F
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 19:53:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20D9D897762
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 19:53:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0288328D611
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 17:53:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB71C28DDDA
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 17:53:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 646E615442C;
-	Wed,  3 Apr 2024 17:37:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A4A3155748;
+	Wed,  3 Apr 2024 17:38:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RYiUckUz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Vnhtyz1u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C121153583
-	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 17:37:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1765315445F
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 17:38:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712165879; cv=none; b=XDJjxLRyRnMn6WLYECRWba7tdHapSlHgJA5jJWdlZSjZr9x5lm+FO5FXLREG+NO2pL6YBtRq71o4c0IgrbayuUhO1hOx7f+laAIxVziwxstsk2UbRVnqzCTly8XRXuilYxrsuO9YFGU4PKrLikYgRTYeSglQW4lflFVA7ZvaugY=
+	t=1712165937; cv=none; b=tsTmRJHBhm9eihJ6ysiIY+k1012f8/I2xQHP1i1yRp0hAXmhnX4hzzpdzisagfQWIeG8Zs4jAeoP2GOnm3jdActFdyhRWwrrqWJ2rPtay1anVDl+y7eaFW+3dNbgg3M3Kpb6v5VuDJpjZZFDYTzN9SeSd8jkFZxH8FAzU6cuqCo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712165879; c=relaxed/simple;
-	bh=ra9udlrsP1LZeqsTZuzFHjBE/Jhohg/y6A5nl4xoNrs=;
+	s=arc-20240116; t=1712165937; c=relaxed/simple;
+	bh=l9OHJibJhF3bDqK+37elpO+FJ/BEq7B7LhRTZbPS3f0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m9RU2eth2SrC8jM8NBha7y6c0mZOo145OwQ/uTVIZXZ9gLp4vLKOltgjE2tYQrxbclnAACkHmvx64Y/z//yWxJDN9Cfv/Btc0tKkh1xIBPBDT5X2egMmWBMQmkSjSlSClB6ixYWjGlslzC7yn9ZHMbkYSQ67DMSGr9YeMqpR0f8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RYiUckUz; arc=none smtp.client-ip=209.85.218.49
+	 In-Reply-To:Content-Type; b=cJ+6mQmH+FRc+D9Z+JaCmGVShHaC7kE0OFyFrmH5UW7lq412g//uf5sNx2lO2T8h/Rm8wlBpsPYZsRX8/uO+Y3eEQ2AQLBroHJWIDlQygsGifr/IZJD0TJbcGZ5wBVJbzpupOVuA07/T0Ui0G/a1C77Cn8XfNI+FoijxNP9sGkU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Vnhtyz1u; arc=none smtp.client-ip=209.85.218.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a45f257b81fso19023866b.0
-        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 10:37:57 -0700 (PDT)
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a4e5ee91879so16135366b.3
+        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 10:38:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712165876; x=1712770676; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712165933; x=1712770733; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=LxoI1opATw8Rb6R6z0Sf//pYUFJC5qhTSpe8fxqLo9Y=;
-        b=RYiUckUztvA0gPGFWfcSlMXLad8JdXLrJ0TQLB+F2KOEYffRzOspq+KKTjo2XZXGi3
-         KZVsY9BOeEnumTI5bzSzGDOUutu1b40NmL+UIcA/F7cjCU+skLNFaShjEJKkEKgBhpPy
-         y7ej+2AsiXk348T3ptiNOS5eQt09UWQqidq07CfSrMkro/qPeYkvdYiX03+yUE3S+7s+
-         J6cisHjTaiBFlPbTZdgBl9x8ZePkCDOh9+euIbyJgz75cDCDkDXZ00taTF+XN5W28oJd
-         Wq72k6SwedbX81we/hDbF+Wz4rAU9X6Wehm5GwfCVhU/27pIfHPskU0I05No79hkGnLO
-         37+A==
+        bh=smCMiV726QBOj801CvyUB4QpR4iY1i2Heb0clLKfLCU=;
+        b=Vnhtyz1usDCZR/MB3wrHpJfinhSqBTgZy2XtyAl3Dxl6RYtrdkKdZ5zVWpi6upZx1S
+         Avh/KfCj+8VHUL2Km/oz5S2kbyYNlWm8/et6siy28h6mihxJ6oZ31lpaJChWLzDWumzY
+         i3ESjvFvcPHM1xA/1KdLFdKsxuny+gshVfb+y0uYRSVszVKKc9kQ+XX0gLuPHHTx7/1y
+         1EvYpn1Ay1wfewstqwgvI04V+EHoUHImTHQa0LDjrnzYhsimGM3rZU0fmwHStXC/kkZj
+         TH4y8Fe9xtWVDrsyuOYiWUhTeE65UGx894xIc5AFcE6+O/+xupi8kiuQLG3C4JBb2R3r
+         CwJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712165876; x=1712770676;
+        d=1e100.net; s=20230601; t=1712165933; x=1712770733;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=LxoI1opATw8Rb6R6z0Sf//pYUFJC5qhTSpe8fxqLo9Y=;
-        b=qbSuFzEDcnbuZiBiypoLb+DOxNvYzK7b//Pzz2ZeS8PBYhRYk073uswOAZPDbCPTdz
-         yM7/xW+01i9fXGflwa7gkRAgooVc381SzeAkWPpSWcMjxRX43oU3o4a4fl4KmAeb0S3L
-         +D1HSXQKf6lgRc8avPD55vkG3gWY9TRoWQ9V49VyLcR57ZoispqqwWjTlFrHYQD8CvKE
-         x/ybiutulurho0aLPHmj/wp8phGTl8V6btgeYCtv1217Teo5OgxkZ0hvD0qH1C6P/pf0
-         JO2UTpaQzl3PZre1+f2OakthbPzM1sc1y5B4+b3/2bs190sU9sap4i0kBG2HCTUFl9Y0
-         JZNA==
-X-Forwarded-Encrypted: i=1; AJvYcCW9cir08S3/rq8+du+KWpt3WajC/y2q/uun8ZPuEIxlH4TSfSkFgKBwu/GbJbtnTeKheNDMq9l2esVBExjKtG+00YAvDB0/lbBAuQ==
-X-Gm-Message-State: AOJu0YyjN4d2WB3neWDTVSiNSZIs+9iwVaT/HjejNbopNkLwZ92xhzlk
-	Mwa9H5FsF06nUdt6fgv7iBLho0vHfs/eu7GPgglTkV76LwKNrq9LmCTemr91t3g=
-X-Google-Smtp-Source: AGHT+IETxUK21A0KsNzK9uV4jSaqPiHsT4Z04ne4/mLarpl+PLnigTZaYl1e7uHL+dwx5qwbEwnH9Q==
-X-Received: by 2002:a17:906:a57:b0:a4f:c80c:1b69 with SMTP id x23-20020a1709060a5700b00a4fc80c1b69mr17634ejf.8.1712165875715;
-        Wed, 03 Apr 2024 10:37:55 -0700 (PDT)
+        bh=smCMiV726QBOj801CvyUB4QpR4iY1i2Heb0clLKfLCU=;
+        b=Uo1GOtjh0XrXFMUXnb141v5RoR1uruO4bMac7zBFusSYKJh+M+UxByeA76dbFkVuZw
+         YKcvQS0ZEhP7iQhCDhPdNGkJIUmWomwWIU5rVh+JQc3Daa+dOcKp2zXfUf9RiKv3jQLP
+         3Xeg7WkeyA/O6T+uvkLc9W8XcFrdKTaSEV6F+S/vg/m7UwStYqEBHTCZsn8ynoTk3UZz
+         dclYxsnt2jLDvKIWc3LpluljO8wDyAB+3jWHKJZ/v52IFYhgRdQk5YL33pP2XOVH04j7
+         YJKtoFVlTWWNryucsksOTMnprl97q7W9sf8eWHT1YV2Ryc+aboEyDNuvRGZXkhzZtM1q
+         2Pbw==
+X-Forwarded-Encrypted: i=1; AJvYcCX6eRhI5tJfFqnTA+fjkSqVDivz4KB2GFDFBHZe59eqnH3V5WEL12F9YcHmrm8u36Pk5gH/spIMAy+wqt7XSMFeUF9ezGJNs/jvoA==
+X-Gm-Message-State: AOJu0YxaarKFi2TKE13MvYnBJ20aa5GEudy+eBbCRBUu/jy68QHwywol
+	FQkjGY7oxGNoxpLrdX8HuqzxBsmJUjZub7hIFloQwk1Zey+n55NPxtHap+yrTm4=
+X-Google-Smtp-Source: AGHT+IFYMHtCjQ4/pwXUdf3NVsI2/w4quh6q7XCCXFphmBGfy6ZYwD3rbNLIWDHICtxEdWaRYAAfAg==
+X-Received: by 2002:a17:906:f2d9:b0:a4e:1ba4:f73d with SMTP id gz25-20020a170906f2d900b00a4e1ba4f73dmr10402ejb.22.1712165933484;
+        Wed, 03 Apr 2024 10:38:53 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id ay12-20020a170906d28c00b00a46a9c38b16sm7954412ejb.138.2024.04.03.10.37.54
+        by smtp.gmail.com with ESMTPSA id y17-20020a170906071100b00a4e6626ae21sm4225478ejb.0.2024.04.03.10.38.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Apr 2024 10:37:55 -0700 (PDT)
-Message-ID: <10f02618-f16c-47d4-a27f-074b1ecffaa1@linaro.org>
-Date: Wed, 3 Apr 2024 19:37:53 +0200
+        Wed, 03 Apr 2024 10:38:53 -0700 (PDT)
+Message-ID: <9c330a82-7b52-4d45-a2db-66350c6a37a7@linaro.org>
+Date: Wed, 3 Apr 2024 19:38:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,14 +77,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: Add basic support for LG G4 (H815)
-To: Alexander Reimelt <alexander.reimelt@posteo.de>, andersson@kernel.org,
- pvorel@suse.cz, konrad.dybcio@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240403104415.30636-1-alexander.reimelt@posteo.de>
- <20240403104415.30636-3-alexander.reimelt@posteo.de>
+Subject: Re: [PATCH v3 22/25] dt-bindings: media: imx258: Add binding for
+ powerdown-gpio
+To: git@luigi311.com, linux-media@vger.kernel.org
+Cc: dave.stevenson@raspberrypi.com, jacopo.mondi@ideasonboard.com,
+ mchehab@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+ kernel@pengutronix.de, festevam@gmail.com, sakari.ailus@linux.intel.com,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ pavel@ucw.cz, phone-devel@vger.kernel.org, Ondrej Jirman <megi@xff.cz>
+References: <20240403150355.189229-1-git@luigi311.com>
+ <20240403150355.189229-23-git@luigi311.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -131,149 +135,20 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240403104415.30636-3-alexander.reimelt@posteo.de>
+In-Reply-To: <20240403150355.189229-23-git@luigi311.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 03/04/2024 12:43, Alexander Reimelt wrote:
-> To make it easier for downstream projects and avoid duplication of work.
-> Makes the device bootable and enables all buttons, most regulators, hall sensor, eMMC and SD-Card.
+On 03/04/2024 17:03, git@luigi311.com wrote:
+> From: Luis Garcia <git@luigi311.com>
 > 
-> Signed-off-by: Alexander Reimelt <alexander.reimelt@posteo.de>
+> Add powerdown-gpio binding as it is required for some boards
+> 
+> Signed-off-by: Ondrej Jirman <megi@xff.cz>
+> Signed-off-by: Luis Garcia <git@luigi311.com>
 > ---
->  arch/arm64/boot/dts/qcom/Makefile            |   1 +
->  arch/arm64/boot/dts/qcom/msm8992-lg-h815.dts | 422 +++++++++++++++++++
->  2 files changed, 423 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/msm8992-lg-h815.dts
-> 
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching.
-
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 7d40ec5e7d21..5b7f8741006f 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -62,6 +62,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8956-sony-xperia-loire-kugo.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8956-sony-xperia-loire-suzu.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-lg-bullhead-rev-10.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-lg-bullhead-rev-101.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-lg-h815.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-msft-lumia-octagon-talkman.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-xiaomi-libra.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8994-huawei-angler-rev-101.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/msm8992-lg-h815.dts b/arch/arm64/boot/dts/qcom/msm8992-lg-h815.dts
-> new file mode 100644
-> index 000000000000..b7fa48337e25
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/msm8992-lg-h815.dts
-> @@ -0,0 +1,422 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +/*
-> + * MSM8992 LG G4 (h815) device tree.
-> + *
-> + * Copyright (c) 2024, Alexander Reimelt <alexander.reimelt@posteo.de>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "msm8992.dtsi"
-> +#include "pm8994.dtsi"
-> +#include "pmi8994.dtsi"
-> +#include <dt-bindings/leds/common.h>
-> +
-> +/* different mapping */
-> +/delete-node/ &cont_splash_mem;
-> +
-> +/* disabled downstream */
-> +/delete-node/ &dfps_data_mem;
-> +
-> +&CPU0 {
-> +	enable-method = "spin-table";
-> +};
-> +
-> +&CPU1 {
-> +	enable-method = "spin-table";
-> +};
-> +
-> +&CPU2 {
-> +	enable-method = "spin-table";
-> +};
-> +
-> +&CPU3 {
-> +	enable-method = "spin-table";
-> +};
-> +
-> +&CPU4 {
-> +	enable-method = "spin-table";
-> +};
-> +
-> +&CPU5 {
-> +	enable-method = "spin-table";
-> +};
-
-That's wrong order. Top level nodes goes after node deletions. Please
-observe DTS coding style.
-
-> +
-> +/ {
-> +	model = "LG G4 (International)";
-> +	compatible = "lg,h815", "qcom,msm8992";
-> +	chassis-type = "handset";
-> +
-> +	qcom,msm-id = <251 0>;
-> +	qcom,pmic-id = <0x10009 0x1000a 0x00 0x00>;
-> +	qcom,board-id = <0xb64 0>;
-> +
-> +	/* psci is broken */
-> +	/delete-node/ psci;
-> +
-> +	chosen {
-> +		bootargs = "earlycon=tty0 console=tty0";
-
-Drop
-
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		spin-table@6000000 {
-> +			reg = <0 0x6000000 0 0x1000>;
-> +			no-map;
-> +		};
-> +
-> +		ramoops@ff00000 {
-> +			compatible = "ramoops";
-> +			reg = <0x0 0xff00000 0x0 0x100000>;
-> +			console-size = <0x20000>;
-> +			pmsg-size = <0x20000>;
-> +			record-size = <0x10000>;
-> +			ecc-size = <0x10>;
-> +		};
-> +
-> +		cont_splash_mem: fb@3400000 {
-> +			compatible = "framebuffer";
-> +			reg = <0 0x3400000 0 0xc00000>;
-> +			no-map;
-> +		};
-> +
-> +		crash_fb_mem: crash_fb@4000000 {
-
-No undercores in node names. Please open DTS coding style and follow it.
-
-....
-
-> +
-> +&pm8994_resin {
-> +	status = "okay";
-
-status is the last property.
-
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
