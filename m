@@ -1,258 +1,253 @@
-Return-Path: <devicetree+bounces-55864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8713896B27
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 11:55:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D211D896B14
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 11:53:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D907B216DC
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 09:49:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87ED528EDB2
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 09:53:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 985EF1353E4;
-	Wed,  3 Apr 2024 09:48:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D4E3134CE0;
+	Wed,  3 Apr 2024 09:53:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mHJDPhfQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c4CHKIj/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B90871353EF
-	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 09:48:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73A716EB73;
+	Wed,  3 Apr 2024 09:53:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712137730; cv=none; b=M+XRQKm3+/bzOpqSITkdv7WfF2DEjtr/zMMXk+TfWH8eJK5zr3JrqHeMJFcdgHKnOiqm+qoKTJRIJNuzwKws5x/D43ozBpseDwEzikoTGU7F+IoC3CHFKxU2fu1UcYElUNX9CngfOwW2u9BNtjAumDY5rokbKxAuYWD0VzGK3qg=
+	t=1712137989; cv=none; b=hdw8smOus0BlWfCV7muVKSiZ2j2lsH0p3q7hYOpucpmm10VpNInb7qfSwXAV/Ayih8QKLEg8C/f/lAQ5eum8TLZDpwbHw9FCphacLCUN6CCOmRLS2ku/mguEJTH3E/tOfbDGfDdYROI6qsX0IPtNwfwUI4hdgwlbQbajrMhg274=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712137730; c=relaxed/simple;
-	bh=VZVjk4Lg+32DYX1V0hHFzAoXwy2zWj8ikBfocb2aiao=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tWzu4t8HoY2xA6RtQut9YenlMxkkhK4JvtgNoa/F76CQa7iT9ti7cf3nrfQqIOrYsy1is4p9iRhL2b8Lsrv9qdKVdtBQylCEnO6eMvBmtURlrqoPCXerRopnc2XHeVHBFZSrh8C0YpyG32NcNs7Nb/5CTYP6M8I9hSIBcFLhkS4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mHJDPhfQ; arc=none smtp.client-ip=209.85.166.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-io1-f46.google.com with SMTP id ca18e2360f4ac-7d0486cf91aso337831039f.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 02:48:47 -0700 (PDT)
+	s=arc-20240116; t=1712137989; c=relaxed/simple;
+	bh=nVU7niFzDwvRHhsC91XdjmYYEnpugKgc/2s1l6flgyI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GUWwC30gYbIlMYkdlxyy9GinJkEGQanDb0FJsAHb4vtIA3b7yy9qKAJFuQ+NQlDMXgdgdolYcCQgJPmVLJfDdsJlUTOKL+IBDFCWW1TZ61NvvgYjcP/nTeTIYWYh9RybbZX6JQXpdd85B73s4xylSw22eQVLIzsANj31xMumV2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c4CHKIj/; arc=none smtp.client-ip=209.85.160.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f181.google.com with SMTP id d75a77b69052e-430a25ed4e7so40794221cf.0;
+        Wed, 03 Apr 2024 02:53:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712137727; x=1712742527; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=EPXFh7gsPyAU+iXcewtYZIELGdFkMytovmlJfVGNhNo=;
-        b=mHJDPhfQel320iBKatX5c98HlzL0+RusBU927Aguf3ZWD+PLIChNO0C0bIGBtxi1e0
-         7WsKbKV/pcnU9+iPPiW/33xY1+aCbBoh3bp2iC0n9IBoPx8kqk/xiEDpZVJbDGQjfZyG
-         gZheo0KYEG6HoQMe9yrzBn+6nrBDhN1myjir+nGtNXMilN4Dmpzh9i21/rf5Ybsm5GQ5
-         aSNMLLtoMMqX4EO/8n1+wOCfu77mKzil+54g9QiG+RUUAqSyYerhe8TmXymrcWezwAtr
-         O/d7K5/eQYZJOMLd2LVmT0dWWRjTTFbimtD7OyKVuSIVUsCnDKOYGDLI3Ld8Wv4qZ6jz
-         Talg==
+        d=gmail.com; s=20230601; t=1712137986; x=1712742786; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WJEtfEgGOvZ4NQDXQ/7+cf0sv8jHi6x8Pc+R36zNRao=;
+        b=c4CHKIj/od518Y8ZYB2C4XQMk0FWdxDsjraMHSwBn+JUvc+8Q3W4QP6a6w3DZ2a1JD
+         1RFk0v/pF/N3wJB3+gzUZ/jNe+Z45I+Cl8iuqnZ813hex1UcicocpJRvJYoTC3TTGccO
+         yyj/DNzjTWW3G/yQ2SeajsUMZsD8HDgUVz3dCURheeDeeKx+vZelMBs5CuRhrdDyd1+y
+         V5OhgsTWH3LNiD3PBX6apfn7+j/mwig/H35Tyjdd0y8mx17KpdY00ALsE/UTuWsAE8Y/
+         9ZoIKG9D+mCJp/ssUyLJ1wGbtTA0RGQRyeDHkXhnxiru758bF9J6J96HVxu/HOk6cSPP
+         EiDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712137727; x=1712742527;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1712137986; x=1712742786;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EPXFh7gsPyAU+iXcewtYZIELGdFkMytovmlJfVGNhNo=;
-        b=OweY4b2ScncPSh7Qxepgx8j5NtBUibsmqT+n4+A4Qp/bUvuqFGQAW0cr5J0dYIawFD
-         HadYUTOu3qotWdSoWyAmN8zqCUXG2kP3NBdCNUhIgADHr//Yag0r20uR1ZRUq3lTkmNz
-         IpQIESBpVR8AgJYONclMOdADztya5DlYJ9UILJ99Q8uiAKWqkjyK0rs1s601GnT7EEDs
-         G9UH7TFjPQSQyJP5GTn4Pyjk4M/9A8Hg54dEqPv0afoeaS0yFcip3Zg/8VFaK9SI+pvu
-         joKd6pA25u+OHyXN9fT2HFC4uOCMKOTjHvwz64zGaG0B+ZbVbBtSBg0aNqln3DYb2kDc
-         7rWw==
-X-Forwarded-Encrypted: i=1; AJvYcCW+YBLrNwrFDrCxqMUsUCdCk1BfcAm/eWAwZsHgcx3s+6AlCOCFtKwJykP6v4T6GJoG7Ot13ZdYMww+eRa42uxcFOqWt7GXc7tFng==
-X-Gm-Message-State: AOJu0YxPpOK2Ap5Oa0VFugAeL03N7C5sECTLjihYQBO1CGfsH3fmraEw
-	7IxGWtnKpbs9OUsajqjWiwFSmouwttq/tuemxWdLV/2JztRvwQWD/SBeLftXOw==
-X-Google-Smtp-Source: AGHT+IEbUkv1YVum64pYJ7p3hjvBN8WVLeTTz4TjDHu3j5DUSh/cjz4maB41kqZEWFfHUMT1vj9VFA==
-X-Received: by 2002:a05:6e02:1c08:b0:369:efba:71c1 with SMTP id l8-20020a056e021c0800b00369efba71c1mr1638352ilh.16.1712137726677;
-        Wed, 03 Apr 2024 02:48:46 -0700 (PDT)
-Received: from thinkpad ([103.28.246.48])
-        by smtp.gmail.com with ESMTPSA id d21-20020a634f15000000b005dbd0facb4dsm10931377pgb.61.2024.04.03.02.48.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Apr 2024 02:48:46 -0700 (PDT)
-Date: Wed, 3 Apr 2024 15:18:40 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Damien Le Moal <dlemoal@kernel.org>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	Rick Wertenbroek <rick.wertenbroek@gmail.com>,
-	Wilfred Mallawa <wilfred.mallawa@wdc.com>,
-	Niklas Cassel <cassel@kernel.org>
-Subject: Re: [PATCH v2 03/18] PCI: endpoint: Introduce
- pci_epc_mem_map()/unmap()
-Message-ID: <20240403094840.GI25309@thinkpad>
-References: <20240330041928.1555578-1-dlemoal@kernel.org>
- <20240330041928.1555578-4-dlemoal@kernel.org>
+        bh=WJEtfEgGOvZ4NQDXQ/7+cf0sv8jHi6x8Pc+R36zNRao=;
+        b=HPfA4y4/Ta7HXdkqhAHCRo0c2wDhGLPdF2lQx36tT+/zOcjv8PG0HjHel6PYDpz+xS
+         /kheD+O2e6CMApyPpxzHPUaMas9140LqhemlT7E9LWV7ZCXt6vDpfzSbwS2YV/RLuWgz
+         cr+SFZ/OFjF+iT10vgXpHnleBm7uysJwKdDWs4p1CvLu9Z1/IzUS7ZHrSPLLe7GtTvR/
+         Gr7gkn/nc+8Ik6WUUHmqp6BXr8J2LTFNF9obrBxBaek98JBqdpcNo5GJWwJCSRIbHKvi
+         BKq7cube8o7YdYWkFU/chDINjGWY7BjIpvbU4lwb5Fipu+uJ4tKq5xZsuOwKvHa+kG7j
+         zsoA==
+X-Forwarded-Encrypted: i=1; AJvYcCVDrWhaUlyKRSgllM7HgpgKOVgjytzISzlXvBohkH95RqTwO1QCC/KmiRiQGI/Ho/X3FiqvaP47SceWNB6FZZoFDgDPROVAW3pz8I+nfFQ0q/b/g7c6Z2geiwqyIfGkl3nXFKA69kvt6m8QrLf17t5YdEboucdvQIHjdN4K43YKyiNKrg==
+X-Gm-Message-State: AOJu0Yz/9xoXQtrflj9kxMAnCA+wXSkmNfGaWW5cozeYj3KlB+wIJRuP
+	jIn8SdQ12p7lOGuQdWbioye/Dl6xgEAxiLCgJJze4ufBp+qiVJsa
+X-Google-Smtp-Source: AGHT+IGk3Sphsu/CS6tCyXd5ivhB2YIIX7J+CLaAoaRbfEpzUhcezLUU4kLxt4hyV0KYHMfLxSDbcQ==
+X-Received: by 2002:a05:622a:491:b0:431:7c36:7f86 with SMTP id p17-20020a05622a049100b004317c367f86mr17090861qtx.59.1712137986137;
+        Wed, 03 Apr 2024 02:53:06 -0700 (PDT)
+Received: from [10.76.84.174] ([5.2.194.157])
+        by smtp.gmail.com with ESMTPSA id et16-20020a05622a4b1000b00430b385f721sm6385650qtb.15.2024.04.03.02.53.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Apr 2024 02:53:05 -0700 (PDT)
+Message-ID: <c7c26d36-ab08-420c-b634-8eb6d9cee9b5@gmail.com>
+Date: Wed, 3 Apr 2024 12:53:02 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6/6] iio: adc: ad7173: Add support for AD411x devices
+To: David Lechner <dlechner@baylibre.com>, dumitru.ceclan@analog.com
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240401-ad4111-v1-0-34618a9cc502@analog.com>
+ <20240401-ad4111-v1-6-34618a9cc502@analog.com>
+ <CAMknhBFdtv84E_S4wa4UW0pO2yiUEk9=jn=_i4F=b8VHdR6v+w@mail.gmail.com>
+Content-Language: en-US
+From: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
+In-Reply-To: <CAMknhBFdtv84E_S4wa4UW0pO2yiUEk9=jn=_i4F=b8VHdR6v+w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240330041928.1555578-4-dlemoal@kernel.org>
 
-On Sat, Mar 30, 2024 at 01:19:13PM +0900, Damien Le Moal wrote:
-> Introduce the function pci_epc_mem_map() to facilitate controller memory
-> address allocation and mapping to a RC PCI address region in endpoint
-> function drivers.
+
+On 01/04/2024 22:45, David Lechner wrote:
+> On Mon, Apr 1, 2024 at 10:10 AM Dumitru Ceclan via B4 Relay
+> <devnull+dumitru.ceclan.analog.com@kernel.org> wrote:
+>>
+>> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
+>>
+
+...
+
+>>  #define AD7175_2_ID                    0x0cd0
+>>  #define AD7172_4_ID                    0x2050
+>>  #define AD7173_ID                      0x30d0
+>> +#define AD4111_ID                      0x30d0
+>> +#define AD4112_ID                      0x30d0
+>> +#define AD4114_ID                      0x30d0
 > 
-> This function first uses pci_epc_map_align() to determine the controller
-> memory address alignment (offset and size) constraints. The result of
-> this function is used to allocate a controller physical memory region
-> using pci_epc_mem_alloc_addr() and map it to the RC PCI address
-> space with pci_epc_map_addr(). Since pci_epc_map_align() may indicate
-> that a mapping can be smaller than the requested size, pci_epc_mem_map()
-> may only partially map the RC PCI address region specified and return
-> a smaller size for the effective mapping.
+> It might make it a bit more obvious that not all chips have a unique
+> ID if we rename AD7173_ID to AD7173_AD4111_AD4112_AD4114_ID rather
+> than introducing multiple macros with the same value.
 > 
-> The counterpart of pci_epc_mem_map() to unmap and free the controller
-> memory address region is pci_epc_mem_unmap().
-> 
-> Both functions operate using struct pci_epc_map data structure which is
-> extended to contain the physical and virtual addresses of the allocated
-> controller memory. Endpoint function drivers can use struct pci_epc_map
-> to implement read/write accesses within the mapped RC PCI address region
-> using the ->virt_addr and ->size fields.
-> 
-> This commit contains contributions from Rick Wertenbroek
-> <rick.wertenbroek@gmail.com>.
+> Or leave it as AD7173_ID to keep it short and add a comment where it
+> is used with 411x chips in ad7173_device_info[].
 > 
 
-Adding 'Co-developed-by && Signed-off-by' tags would give the due credit.
+Sure
 
-> Signed-off-by: Damien Le Moal <dlemoal@kernel.org>
-> ---
->  drivers/pci/endpoint/pci-epc-core.c | 68 +++++++++++++++++++++++++++++
->  include/linux/pci-epc.h             |  6 +++
->  2 files changed, 74 insertions(+)
+>> +#define AD4116_ID                      0x34d0
+>> +#define AD4115_ID                      0x38d0
+>>  #define AD7175_8_ID                    0x3cd0
+>>  #define AD7177_ID                      0x4fd0
+>>  #define AD7173_ID_MASK                 GENMASK(15, 4)
+
+...
+
+>>  struct ad7173_device_info {
+>>         const unsigned int *sinc5_data_rates;
+>>         unsigned int num_sinc5_data_rates;
+>>         unsigned int odr_start_value;
+>> +       unsigned int num_inputs_with_divider;
+>>         unsigned int num_channels;
+>>         unsigned int num_configs;
+>>         unsigned int num_inputs;
 > 
-> diff --git a/drivers/pci/endpoint/pci-epc-core.c b/drivers/pci/endpoint/pci-epc-core.c
-> index 37758ca91d7f..0095b54bdf9e 100644
-> --- a/drivers/pci/endpoint/pci-epc-core.c
-> +++ b/drivers/pci/endpoint/pci-epc-core.c
-> @@ -530,6 +530,74 @@ int pci_epc_map_addr(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
->  }
->  EXPORT_SYMBOL_GPL(pci_epc_map_addr);
->  
-> +/**
-> + * pci_epc_mem_map() - allocate and map CPU address to PCI address
-
-How about, 'pci_epc_alloc_map()'? I think the 'mem' prefix was added to the
-existing APIs since the function definitions are in pci-epc-mem driver, but
-not needed here.
-
-> + * @epc: the EPC device on which the CPU address is to be allocated and mapped
-> + * @func_no: the physical endpoint function number in the EPC device
-> + * @vfunc_no: the virtual endpoint function number in the physical function
-> + * @pci_addr: PCI address to which the CPU address should be mapped
-> + * @size: the number of bytes to map starting from @pci_addr
-> + * @map: where to return the mapping information
-> + *
-> + * Allocate a controller physical address region and map it to a RC PCI address
-
-"Allocate an EPC address space region..."
-
-> + * region, taking into account the controller physical address mapping
-> + * constraints (if any). Returns the effective size of the mapping, which may
-
-Return value should be specified separately for Kdoc.
-
-> + * be less than @size, or a negative error code in case of error.
-> + */
-> +ssize_t pci_epc_mem_map(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
-> +			u64 pci_addr, size_t size, struct pci_epc_map *map)
-> +{
-> +	int ret;
-> +
-> +	ret = pci_epc_map_align(epc, func_no, vfunc_no, pci_addr, size, map);
-> +	if (ret)
-> +		return ret;
-> +
-> +	map->virt_base = pci_epc_mem_alloc_addr(epc, &map->phys_base,
-> +						map->map_size);
-
-It'd be nice to move pci_epc_map_align() inside the existing
-pci_epc_mem_alloc_addr() API to make sure that the allocated memory follows the
-constraints of the EPC.
-
-Would that make sense?
-
-- Mani
-
-> +	if (!map->virt_base)
-> +		return -ENOMEM;
-> +
-> +	map->phys_addr = map->phys_base + map->map_ofst;
-> +	map->virt_addr = map->virt_base + map->map_ofst;
-> +
-> +	ret = pci_epc_map_addr(epc, func_no, vfunc_no, map->phys_base,
-> +			       map->map_pci_addr, map->map_size);
-> +	if (ret) {
-> +		pci_epc_mem_free_addr(epc, map->phys_base, map->virt_base,
-> +				      map->map_size);
-> +		return ret;
-> +	}
-> +
-> +	return map->pci_size;
-> +}
-> +EXPORT_SYMBOL_GPL(pci_epc_mem_map);
-> +
-> +/**
-> + * pci_epc_mem_unmap() - unmap from PCI address and free a CPU address region
-> + * @epc: the EPC device on which the CPU address is allocated and mapped
-> + * @func_no: the physical endpoint function number in the EPC device
-> + * @vfunc_no: the virtual endpoint function number in the physical function
-> + * @map: the mapping information
-> + *
-> + * Allocate and map local CPU address to a PCI address, accounting for the
-> + * controller local CPU address alignment constraints.
-> + */
-> +void pci_epc_mem_unmap(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
-> +		       struct pci_epc_map *map)
-> +{
-> +	if (!pci_epc_function_is_valid(epc, func_no, vfunc_no))
-> +		return;
-> +
-> +	if (!map || !map->pci_size)
-> +		return;
-> +
-> +	pci_epc_unmap_addr(epc, func_no, vfunc_no, map->phys_base);
-> +	pci_epc_mem_free_addr(epc, map->phys_base, map->virt_base,
-> +			      map->map_size);
-> +}
-> +EXPORT_SYMBOL_GPL(pci_epc_mem_unmap);
-> +
->  /**
->   * pci_epc_clear_bar() - reset the BAR
->   * @epc: the EPC device for which the BAR has to be cleared
-> diff --git a/include/linux/pci-epc.h b/include/linux/pci-epc.h
-> index 8cfb4aaf2628..86397a500b54 100644
-> --- a/include/linux/pci-epc.h
-> +++ b/include/linux/pci-epc.h
-> @@ -304,4 +304,10 @@ void __iomem *pci_epc_mem_alloc_addr(struct pci_epc *epc,
->  				     phys_addr_t *phys_addr, size_t size);
->  void pci_epc_mem_free_addr(struct pci_epc *epc, phys_addr_t phys_addr,
->  			   void __iomem *virt_addr, size_t size);
-> +
-> +ssize_t pci_epc_mem_map(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
-> +			u64 pci_addr, size_t size, struct pci_epc_map *map);
-> +void pci_epc_mem_unmap(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
-> +		       struct pci_epc_map *map);
-> +
->  #endif /* __LINUX_PCI_EPC_H */
-> -- 
-> 2.44.0
+> Probably a good idea to change num_inputs to num_voltage_inputs so it
+> isn't confused with the total number of inputs.
+> 
+> Similarly num_voltage_inputs_with_divider instead of num_inputs_with_divider.
+> 
+> Also could use a comment to make it clear if num_voltage_inputs
+> includes num_voltage_inputs_with_divider or not. And that it doesn't
+> include VINCOM.
 > 
 
--- 
-மணிவண்ணன் சதாசிவம்
+Alright for these 3 statements above.
+
+> Probably also need some flag here to differentiate ADCINxx voltage
+> inputs on AD4116.
+> 
+
+That is the purpose of num_inputs_with_divider. Mangled some changes
+when splitting into individual patches. Will include in V2.
+"
+if (ain[1] == AD411X_VCOM_INPUT &&
+		    ain[0] >= st->info->num_inputs_with_divider)
+			return dev_err_probe(dev, -EINVAL,
+		"VCOM must be paired with inputs having divider.\n");
+"
+
+...
+
+>>
+>> +static unsigned int ad4111_current_channel_config[] = {
+>> +       [AD4111_CURRENT_IN0P_IN0N] = 0x1E8,
+>> +       [AD4111_CURRENT_IN1P_IN1N] = 0x1C9,
+>> +       [AD4111_CURRENT_IN2P_IN2N] = 0x1AA,
+>> +       [AD4111_CURRENT_IN3P_IN3N] = 0x18B,
+>> +};
+> 
+> As mentioned in the DT bindings review, it would make more sense to
+> just use the datasheet numbers for the current input channels in the
+> diff-channels DT property, then we don't need this lookup table.
+>
+Yet, the datasheet does not specify the numbers, just a single bitfield
+for each pair. It is too much of a churn to need to decode that bitfield
+into individual values when the user just wants to select a single pair.
+
+...
+
+>> +               case IIO_CURRENT:
+>> +                       *val = ad7173_get_ref_voltage_milli(st, ch->cfg.ref_sel);
+>> +                       *val /= AD4111_SHUNT_RESISTOR_OHM;
+>> +                       *val2 = chan->scan_type.realbits - !!(ch->cfg.bipolar);
+> 
+> Static analysis tools like to complain about using bool as int.
+> Probably more clear to write it as (ch->cfg.bipolar ? 1 : 0) anyway.
+> 
+Maybe it does not apply here, but i followed this advice:
+
+Andy Shevchenko V1 of AD7173 (named initially ad717x)
+"
+> +	return (bool)(value & mask);
+
+This is weird. You have int which you get from bool, wouldn't be better
+to use
+!!(...) as other GPIO drivers do?
+
+"
+
+
+>> +               case IIO_CURRENT:
+>>                         *val = -BIT(chan->scan_type.realbits - 1);
+> 
+> Expecting a special case here, at least when ADCIN15 is configured for
+> pseudo-differential inputs.
+> 
+
+And what configuration would that be?
+The only configurable part is the BI_UNIPOLARx bit in the channel
+register, which is addressed here.
+
+There seems to be a confusion similar to what we had with single-ended
+channels. The ADC is differential. Pseudo-differential in this datasheet
+just means that you wired a fixed voltage(higher than 0) to the negative
+analog input.
+
+ Which you can also do on the other inputs with a divider.
+
+...
+
+>> -               chan_st_priv->ain = AD7173_CH_ADDRESS(ain[0], ain[1]);
+>> +               if (reg >= AD4111_CURRENT_CHAN_CUTOFF) {
+>> +                       chan->type = IIO_CURRENT;
+>> +                       chan->channel = ain[0];
+>> +                       chan_st_priv->ain = ad4111_current_channel_config[ain[0]];
+>> +               } else {
+>> +                       chan->channel = ain[0];
+>> +                       chan->channel2 = ain[1];
+>> +                       chan->differential = true;
+> 
+> Expecting chan->differential = false when ADCIN15 is configured for
+> pseudo-differential inputs.
+> 
+> Also, perhaps missed in previous reviews, I would expect
+> chan->differential = false when channels are used as single-ended.
+>
+Why?
+Also, how would one detect if you are using single-ended channels?
+
+The ADC is still differential. Single ended is represented as connecting
+AVSS(or another fixed voltage) and only letting the AIN+ input to fluctuate.
+
+In the IIO framework the only difference this makes is in the naming of
+the channel:
+ voltage0-voltage1 vs just voltage0
+
+All channels are differential. Pseudo differential: still differential.
 
