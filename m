@@ -1,293 +1,443 @@
-Return-Path: <devicetree+bounces-55700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AA08896183
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 02:34:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2296C89618A
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 02:37:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4FD2D28B27B
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 00:34:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 57E7CB21BA4
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 00:36:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41C1EDDC3;
-	Wed,  3 Apr 2024 00:33:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7549D4409;
+	Wed,  3 Apr 2024 00:36:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="utJzlHS/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Js3M7E09"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53C4A18C08;
-	Wed,  3 Apr 2024 00:33:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CF3B2579
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 00:36:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712104418; cv=none; b=Z4qUJjsD9eMot+8UprbXltvLldINNLlWAL80VU9xgTfOhEH/C2OAGxBMR9wZ0DAnR9Ri4VP8sfaK+E5tBr2IvDL6rkt8A6h5fMHoQRranT5TRuIBZ2wYLaynyzlRmWfMpOeWT4zgXoP0LjvN+D3srjsUCIuVyPrDfSaFb12wk6c=
+	t=1712104612; cv=none; b=gjkz2HuzROpO/7WHx6y8/rmMgPdb1nsteI9HuD8vzlmhBHL39N54Iu17nnvA/qbQlX+6bH0FDT/79pr5fHXpCLoDhzLNFTHWZdzLeIF9GnOIzVBQlDyl3rtEYXIq7XiErSqy6h5/P604r1JCz1F/V/8W4OQMX5YXtwwdTUFLxuA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712104418; c=relaxed/simple;
-	bh=jW9xMmvpEpmPxk2p23Th/IyphzTu3uEvC5PNV2iqlGI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=d6RDAcHNs9IThcgP7aBcidyrxL44HRmMBP760l1Y2dhEExsY3FapBNspXvR10uX4l/DDbj8UQDeiM7SlpotAf4m5OZUX0RdUIlDn8SF/amy/072v6UNU3xBZPwR41Z97j0JjZnLJ+i3CJ+b2Ap7WA1ENOuEAuvDWL6cnX406jb4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=utJzlHS/; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4330Wl4T033971;
-	Tue, 2 Apr 2024 19:32:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1712104367;
-	bh=qbuXX2bCLsh+4t5MU/bGmr/vnTMLEc4fmpQlFBaMSJk=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=utJzlHS/AQXNajtItufa0pR6r9+JMrDskFUBam6KhE0Z+y9TXg1Z76jyt5i21Tdf+
-	 b5MOUsk7FHq7eNebVsLpPkBj67g8dcih3b0ZMs8o3rkZCp9MBYpqo1a+lGRSVDZcZB
-	 VkbAgJSsp4uELvDHyBbXGiCJ4VO022xdn/HBBePo=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4330WlTP093090
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 2 Apr 2024 19:32:47 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 2
- Apr 2024 19:32:47 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 2 Apr 2024 19:32:47 -0500
-Received: from LT5CG31242FY.dhcp.ti.com ([10.250.160.249])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4330W2JD079729;
-	Tue, 2 Apr 2024 19:32:39 -0500
-From: Shenghao Ding <shenghao-ding@ti.com>
-To: <linux-kernel@vger.kernel.org>
-CC: <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <perex@perex.cz>, <tiwai@suse.com>, <13916275206@139.com>,
-        <mohit.chawla@ti.com>, <soyer@irl.hu>, <jkhuang3@ti.com>,
-        <tiwai@suse.de>, <pdjuandi@ti.com>, <manisha.agrawal@ti.com>,
-        <aviel@ti.com>, <hnagalla@ti.com>, <praneeth@ti.com>,
-        <Baojun.Xu@fpt.com>, Shenghao Ding
-	<shenghao-ding@ti.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v8 4/4] ASoc: dt-bindings: PCM6240: Add initial DT binding
-Date: Wed, 3 Apr 2024 08:31:58 +0800
-Message-ID: <20240403003159.389-5-shenghao-ding@ti.com>
-X-Mailer: git-send-email 2.33.0.windows.2
-In-Reply-To: <20240403003159.389-1-shenghao-ding@ti.com>
-References: <20240403003159.389-1-shenghao-ding@ti.com>
+	s=arc-20240116; t=1712104612; c=relaxed/simple;
+	bh=9o0SYy5CVgwzI8UVqOnxPd3o8m0wfqi4eghSlwDDHjs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=U/PQ7tjOEbcuds6Fm6byc8qa1evJzI2OLVZQOGTQMle+qzfNU8Mjm7SOkZFpAL0or4Cmw0+OcfryOD71nHq5bIRbt1Mmlvl/r3WmKBfrVPAVRsCbR7Xtrz9A9Y9d4TKc+AN6DyJPF2CZujnp7JOBg1JsjyT2HLUuK3lj2iDgcCQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Js3M7E09; arc=none smtp.client-ip=209.85.128.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-615038fc5baso21614707b3.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 17:36:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712104609; x=1712709409; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=NNfAfOqwnizaLfnkW7XQbz4Wiw97ypK4zCmV2dzlDVQ=;
+        b=Js3M7E09yzwXKPucP8K+4pGiF4ezNcaOYYS8vjjaM0Bu78LPZYS5DsQpwG904DGt8y
+         g3OSBZurcRIE9FXY39bvd/ORFgUnrDfOXl2j/O5FGz13QW9d1qEw0fDGon88Z8wS+0No
+         FJ1Cy2ZIvR5m1LsVOeNw5XdqPCFlo1jdhgHRCwjgIFb4Gn9UVSKNBCdwHFUA5OApCz9Q
+         gMr9E8I5A5+Z+oYIXrmLLGGj4S1nt91zI8HpzyoGxNsUCltSha1FucjDiMhSo9RReWYB
+         fsf1I8Zv5KZ2b8LJcfp/6by7StGt+vNKUp5SXaNTWuVVGXI8sXaOkHphecd2TXlK0L3n
+         1ybA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712104609; x=1712709409;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NNfAfOqwnizaLfnkW7XQbz4Wiw97ypK4zCmV2dzlDVQ=;
+        b=TQL5K/wlO2jtqrI878IKF+buIh0DNzNNv2Nw/H8xXeiZCWvf6J2oVvsi14vfCz4ZV6
+         /IGWjMdDZvcts5ORPAU38VZ8Gy8+5XmDKx+YTi2xeQbyjEPybgfPdlALeLKmkUj5wRri
+         vzVskmDgnfD/TF2n2tVfIcAGtNIhaJVw7M647vWMm9sfdyjBF6GvEqqaFX8hA9DrTgvB
+         7wODGdHNA358N6C/nE+CMnEIuyult36+QjAZRVxj2NJzIMlozdch+4fEeaesxjzb2VdX
+         D44mwruz2Bw/KEktfXAQA3qxL/wGr/6piHPV5/sJRedlC5grE+lrHVslRIwRmOz34rGE
+         rn0Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXwxF1mrYUlxte9biTtHojvOpdavvSrMq/CWCnWzN1nkHMc6Hf/a0LuDaBDFqMdBTCZDyVkJwnirglECo87HnjzpE58Cgk7xO2rsw==
+X-Gm-Message-State: AOJu0YzeCUglyCThiVEyHHe0T0EtaoavZiDZER3Aa2Fw0YdQkTU3WM04
+	/DaMnx0WZRHZeA28N78gQSxRaYNb4rgm+Q96pkeyqB6/aIFoxG1LkzHWOY4SN1SGtcXN2YgLBOp
+	NMjnuTpRn7v0SkzA5UPb5OKcO7CnhZ7pcBqhg/g==
+X-Google-Smtp-Source: AGHT+IHchjPKf5JP8I8RwISTBYNSBIBlEkA1lbeWOcex2zS0dL4ezb19JC5wl5pDL5F0VCZszKDF4RAepSsgurZwmQU=
+X-Received: by 2002:a25:ae8a:0:b0:dc7:8c3a:4e42 with SMTP id
+ b10-20020a25ae8a000000b00dc78c3a4e42mr12455333ybj.30.1712104608945; Tue, 02
+ Apr 2024 17:36:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20240330-lg-sw43408-panel-v1-0-f5580fc9f2da@linaro.org>
+ <20240330-lg-sw43408-panel-v1-3-f5580fc9f2da@linaro.org> <554zkisebym7gbbom3657ws7kqvyidggfmcvetjm6vrnwts3gl@l53hejt72b5q>
+ <CAA8EJpowdjcN8KzGRVLrGx8L8Fi5Drs-C62VZKd5VbmDHsCg+Q@mail.gmail.com>
+ <fn3r4ykwxvgf4ujmpevpsrcwmwzpjl5bhcp6ekyebowgf4rpz3@fyxcwjgn6abg>
+ <CAA8EJprRHg2KH7H6SPF3yfg8HCT2Fe2Hg-LXU19ak78TkKWwjA@mail.gmail.com> <rdvcvkofafpdovldlibvobsxlk7nt3cc4kysm4aiafux7bmai6@nsqs7ofgr3ol>
+In-Reply-To: <rdvcvkofafpdovldlibvobsxlk7nt3cc4kysm4aiafux7bmai6@nsqs7ofgr3ol>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Wed, 3 Apr 2024 03:36:37 +0300
+Message-ID: <CAA8EJpoV2XuaURyPgyqVu2EZwbUC7xdK5xiHi9aw+q1ktD3=-g@mail.gmail.com>
+Subject: Re: [PATCH 3/3] drm: panel: Add LG sw43408 panel driver
+To: Marijn Suijten <marijn.suijten@somainline.org>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>, Caleb Connolly <caleb.connolly@linaro.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Vinod Koul <vkoul@kernel.org>, Caleb Connolly <caleb@connolly.tech>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-PCM6240 family chips are popular among audio customers, in spite of only a
-portion of the functionality of codec, such as ADC or DAC, and so on, for
-different Specifications, range from Personal Electric to Automotive
-Electric, even some professional fields. Yet their audio performance is far
-superior to the codec's, and cost is lower than codec, and much easier to
-program than codec.
+On Tue, 2 Apr 2024 at 23:57, Marijn Suijten
+<marijn.suijten@somainline.org> wrote:
+>
+> On 2024-04-01 22:11:48, Dmitry Baryshkov wrote:
+> > On Mon, 1 Apr 2024 at 13:29, Marijn Suijten
+> > <marijn.suijten@somainline.org> wrote:
+> > >
+> > > On 2024-03-30 16:37:08, Dmitry Baryshkov wrote:
+> > > > On Sat, 30 Mar 2024 at 12:27, Marijn Suijten
+> > > > <marijn.suijten@somainline.org> wrote:
+> > > > >
+> > > > > On 2024-03-30 05:59:30, Dmitry Baryshkov wrote:
+> > > > > > From: Sumit Semwal <sumit.semwal@linaro.org>
+> > > > > >
+> > > > > > LG SW43408 is 1080x2160, 4-lane MIPI-DSI panel, used in some Pixel3
+> > > > > > phones.
+> > > > > >
+> > > > > > Whatever init sequence we have for this panel isn't capable of
+> > > > > > initialising it completely, toggling the reset gpio ever causes the
+> > > > > > panel to die. Until this is resolved we avoid resetting the panel. The
+> > > > >
+> > > > > Are you sure it is avoided?  This patch seems to be toggling reset_gpio in
+> > > > > sw43408_prepare()?
+> > > > >
+> > > > > > disable/unprepare functions only put the panel to sleep mode and
+> > > > > > disable the backlight.
+> > > > > >
+> > > > > > Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
+> > > > > > [vinod: Add DSC support]
+> > > > > > Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> > > > > > [caleb: cleanup and support turning off the panel]
+> > > > > > Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+> > > > > > [DB: partially rewrote the driver and fixed DSC programming]
+> > > > > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > > > > ---
+> > > > > >  MAINTAINERS                              |   8 +
+> > > > > >  drivers/gpu/drm/panel/Kconfig            |  11 ++
+> > > > > >  drivers/gpu/drm/panel/Makefile           |   1 +
+> > > > > >  drivers/gpu/drm/panel/panel-lg-sw43408.c | 322 +++++++++++++++++++++++++++++++
+> > > > > >  4 files changed, 342 insertions(+)
+> > > > > >
+> > > > > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > > > > index 4b511a55101c..f4cf7ee97376 100644
+> > > > > > --- a/MAINTAINERS
+> > > > > > +++ b/MAINTAINERS
+> > > > > > @@ -6755,6 +6755,14 @@ S:     Maintained
+> > > > > >  F:   Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
+> > > > > >  F:   drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
+> > > > > >
+> > > > > > +DRM DRIVER FOR LG SW43408 PANELS
+> > > > > > +M:   Sumit Semwal <sumit.semwal@linaro.org>
+> > > > > > +M:   Caleb Connolly <caleb.connolly@linaro.org>
+> > > > > > +S:   Maintained
+> > > > > > +T:   git git://anongit.freedesktop.org/drm/drm-misc
+> > > > > > +F:   Documentation/devicetree/bindings/display/panel/lg,sw43408.yaml
+> > > > > > +F:   drivers/gpu/drm/panel/panel-lg-sw43408.c
+> > > > > > +
+> > > > > >  DRM DRIVER FOR LOGICVC DISPLAY CONTROLLER
+> > > > > >  M:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > > > > >  S:   Supported
+> > > > > > diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+> > > > > > index d037b3b8b999..f94c702735cb 100644
+> > > > > > --- a/drivers/gpu/drm/panel/Kconfig
+> > > > > > +++ b/drivers/gpu/drm/panel/Kconfig
+> > > > > > @@ -335,6 +335,17 @@ config DRM_PANEL_LG_LG4573
+> > > > > >         Say Y here if you want to enable support for LG4573 RGB panel.
+> > > > > >         To compile this driver as a module, choose M here.
+> > > > > >
+> > > > > > +config DRM_PANEL_LG_SW43408
+> > > > > > +     tristate "LG SW43408 panel"
+> > > > > > +     depends on OF
+> > > > > > +     depends on DRM_MIPI_DSI
+> > > > > > +     depends on BACKLIGHT_CLASS_DEVICE
+> > > > > > +     help
+> > > > > > +       Say Y here if you want to enable support for LG sw43408 panel.
+> > > > > > +       The panel has a 1080x2160 resolution and uses
+> > > > > > +       24 bit RGB per pixel. It provides a MIPI DSI interface to
+> > > > > > +       the host and has a built-in LED backlight.
+> > > > > > +
+> > > > > >  config DRM_PANEL_MAGNACHIP_D53E6EA8966
+> > > > > >       tristate "Magnachip D53E6EA8966 DSI panel"
+> > > > > >       depends on OF && SPI
+> > > > > > diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
+> > > > > > index f156d7fa0bcc..a75687d13caf 100644
+> > > > > > --- a/drivers/gpu/drm/panel/Makefile
+> > > > > > +++ b/drivers/gpu/drm/panel/Makefile
+> > > > > > @@ -34,6 +34,7 @@ obj-$(CONFIG_DRM_PANEL_LEADTEK_LTK050H3146W) += panel-leadtek-ltk050h3146w.o
+> > > > > >  obj-$(CONFIG_DRM_PANEL_LEADTEK_LTK500HD1829) += panel-leadtek-ltk500hd1829.o
+> > > > > >  obj-$(CONFIG_DRM_PANEL_LG_LB035Q02) += panel-lg-lb035q02.o
+> > > > > >  obj-$(CONFIG_DRM_PANEL_LG_LG4573) += panel-lg-lg4573.o
+> > > > > > +obj-$(CONFIG_DRM_PANEL_LG_SW43408) += panel-lg-sw43408.o
+> > > > > >  obj-$(CONFIG_DRM_PANEL_MAGNACHIP_D53E6EA8966) += panel-magnachip-d53e6ea8966.o
+> > > > > >  obj-$(CONFIG_DRM_PANEL_NEC_NL8048HL11) += panel-nec-nl8048hl11.o
+> > > > > >  obj-$(CONFIG_DRM_PANEL_NEWVISION_NV3051D) += panel-newvision-nv3051d.o
+> > > > > > diff --git a/drivers/gpu/drm/panel/panel-lg-sw43408.c b/drivers/gpu/drm/panel/panel-lg-sw43408.c
+> > > > > > new file mode 100644
+> > > > > > index 000000000000..365d25e14d54
+> > > > > > --- /dev/null
+> > > > > > +++ b/drivers/gpu/drm/panel/panel-lg-sw43408.c
+> > > > > > @@ -0,0 +1,322 @@
+> > > > > > +// SPDX-License-Identifier: GPL-2.0+
+> > > > > > +/*
+> > > > > > + * Copyright (C) 2019-2024 Linaro Ltd
+> > > > > > + * Author: Sumit Semwal <sumit.semwal@linaro.org>
+> > > > > > + *    Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > > > > + */
+> > > > > > +
+> > > > > > +#include <linux/backlight.h>
+> > > > > > +#include <linux/delay.h>
+> > > > > > +#include <linux/gpio/consumer.h>
+> > > > > > +#include <linux/module.h>
+> > > > > > +#include <linux/of.h>
+> > > > > > +#include <linux/regulator/consumer.h>
+> > > > > > +
+> > > > > > +#include <video/mipi_display.h>
+> > > > > > +
+> > > > > > +#include <drm/drm_mipi_dsi.h>
+> > > > > > +#include <drm/drm_panel.h>
+> > > > > > +#include <drm/drm_probe_helper.h>
+> > > > > > +#include <drm/display/drm_dsc.h>
+> > > > > > +#include <drm/display/drm_dsc_helper.h>
+> > > > > > +
+> > > > > > +#define NUM_SUPPLIES 2
+> > > > > > +
+> > > > > > +struct sw43408_panel {
+> > > > > > +     struct drm_panel base;
+> > > > > > +     struct mipi_dsi_device *link;
+> > > > > > +
+> > > > > > +     const struct drm_display_mode *mode;
+> > > > > > +
+> > > > > > +     struct regulator_bulk_data supplies[NUM_SUPPLIES];
+> > > > > > +
+> > > > > > +     struct gpio_desc *reset_gpio;
+> > > > > > +};
+> > > > > > +
+> > > > > > +static inline struct sw43408_panel *to_panel_info(struct drm_panel *panel)
+> > > > > > +{
+> > > > > > +     return container_of(panel, struct sw43408_panel, base);
+> > > > > > +}
+> > > > > > +
+> > > > > > +static int sw43408_unprepare(struct drm_panel *panel)
+> > > > > > +{
+> > > > > > +     struct sw43408_panel *ctx = to_panel_info(panel);
+> > > > > > +     int ret;
+> > > > > > +
+> > > > > > +     ret = mipi_dsi_dcs_set_display_off(ctx->link);
+> > > > > > +     if (ret < 0)
+> > > > > > +             dev_err(panel->dev, "set_display_off cmd failed ret = %d\n", ret);
+> > > > > > +
+> > > > > > +     ret = mipi_dsi_dcs_enter_sleep_mode(ctx->link);
+> > > > > > +     if (ret < 0)
+> > > > > > +             dev_err(panel->dev, "enter_sleep cmd failed ret = %d\n", ret);
+> > > > > > +
+> > > > > > +     msleep(100);
+> > > > > > +
+> > > > > > +     gpiod_set_value(ctx->reset_gpio, 1);
+> > > > > > +
+> > > > > > +     return regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
+> > > > > > +}
+> > > > > > +
+> > > > > > +static int sw43408_program(struct drm_panel *panel)
+> > > > > > +{
+> > > > > > +     struct sw43408_panel *ctx = to_panel_info(panel);
+> > > > > > +     struct drm_dsc_picture_parameter_set pps;
+> > > > > > +     u8 dsc_en = 0x11;
+> > > > >
+> > > > > Yeah, this is completely strange. Bit 0, 0x1, is to enable DSC which is
+> > > > > normal. 0x10 however, which is bit 4, selects PPS table 2.  Do you ever set
+> > > > > pps_identifier in struct drm_dsc_picture_parameter_set to 2?  Or is the table
+> > > > > that you send below bogus and/or not used?  Maybe the Driver IC on the other
+> > > > > end of the DSI link has a default PPS table with identifier 2 that works out of
+> > > > > the box?
+> > > >
+> > > > Note, MIPI standard also requires two bytes argument. I suspect that
+> > > > LG didn't fully follow the standard here.
+> > >
+> > > Have you read this command from downstream DTS, or have you tried sending 2
+> > > bytes and seen the panel breaking?  The second byte is marked as reserved and
+> > > should be equal to 0; if the Driver IC is okay with sending either 1 or 2 bytes
+> > > I'd strive to stick with the defined length of 2 bytes for this DCS.
+> > >
+> > > Have you played around with the PPS table?  What if you change
+> > > drm_dsc_picture_paremeter_set::pps_identifier to the second table, will the
+> > > panel stop working as expected again?  This could indicate that the PPS that is
+> > > sent is incorrect (even though the information in the original DSC config was
+> > > enough to set up the DPU and DSI correctly).
+> > >
+> > > According to the DSI spec it is allowed to have a pre-stored/pre-programmed
+> > > PPS table, which could be used here making the current call to
+> > > mipi_dsi_picture_parameter_set() useless and "confusing"?
+> >
+> > Ok, some short summary of my tests.
+> >
+> > Skipping PPS doesn't work at all, so there is no default.
+> >
+> > Adding a second zero byte doesn't seem to change anything. Dropping
+> > the 0x1 bit ('enable') doesn't seem to change anything.
+> >
+> > If I send COMPRESSION_MODE before sending the PPS, various combinations work.
+> > If I send COMPRESSION_MODE after sending the PPS, the follow combos work:
+> >
+> > pps_identifier = 0x0, COMPRESSION_MODE = 0x11
+> > pps_identifier = 0x1, COMPRESSION_MODE = 0x21
+>
+> Thanks, this must really be an off-by-one table identifier.  I presume you've
+> tested pps_identifier=0x2 with COMPRESSION_MODE=0x31, and that there are only 2
+> tables and not 3 or 4?
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+I was not able to get either pps_identifier = 0x2 or
+COMPRESSION_MODE=0x31 to work.
 
-Signed-off-by: Shenghao Ding <shenghao-ding@ti.com>
+>
+> From this we can also assume that sending a new PPS will automatically switch
+> the compression mode to the pps_identifier in that PPS, COMPRESSION_MODE doesn't
+> seem to affect it when sent too early.
 
----
-v8:
- - use some reasonable format of changelog.
- - Link to v5: https://lore.kernel.org/all/20240221051501.627-4-shenghao-ding@ti.com/
----
- .../devicetree/bindings/sound/ti,pcm6240.yaml | 177 ++++++++++++++++++
- 1 file changed, 177 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/ti,pcm6240.yaml
+No. Omitting COMPRESSION_MODE packet breaks the display. Actually,
+this was one of the issues: we were sending an incorrect packet. So
+both are required.
 
-diff --git a/Documentation/devicetree/bindings/sound/ti,pcm6240.yaml b/Documentation/devicetree/bindings/sound/ti,pcm6240.yaml
-new file mode 100644
-index 000000000000..dd5b08e3d7a1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/ti,pcm6240.yaml
-@@ -0,0 +1,177 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2022 - 2024 Texas Instruments Incorporated
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/ti,pcm6240.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments PCM6240 Family Audio ADC/DAC
-+
-+maintainers:
-+  - Shenghao Ding <shenghao-ding@ti.com>
-+
-+description: |
-+  The PCM6240 Family is a big family of Audio ADC/DAC for
-+  different Specifications, range from Personal Electric
-+  to Automotive Electric, even some professional fields.
-+
-+  Specifications about the audio chip can be found at:
-+    https://www.ti.com/lit/gpn/tlv320adc3120
-+    https://www.ti.com/lit/gpn/tlv320adc5120
-+    https://www.ti.com/lit/gpn/tlv320adc6120
-+    https://www.ti.com/lit/gpn/dix4192
-+    https://www.ti.com/lit/gpn/pcm1690
-+    https://www.ti.com/lit/gpn/pcm3120-q1
-+    https://www.ti.com/lit/gpn/pcm3140-q1
-+    https://www.ti.com/lit/gpn/pcm5120-q1
-+    https://www.ti.com/lit/gpn/pcm6120-q1
-+    https://www.ti.com/lit/gpn/pcm6260-q1
-+    https://www.ti.com/lit/gpn/pcm9211
-+    https://www.ti.com/lit/gpn/pcmd3140
-+    https://www.ti.com/lit/gpn/pcmd3180
-+    https://www.ti.com/lit/gpn/taa5212
-+    https://www.ti.com/lit/gpn/tad5212
-+
-+properties:
-+  compatible:
-+    description: |
-+      ti,adc3120: Stereo-channel, 768-kHz, Burr-Brown™ audio analog-to-
-+      digital converter (ADC) with 106-dB SNR.
-+
-+      ti,adc5120: 2-Channel, 768-kHz, Burr-Brown™ Audio ADC with 120-dB SNR.
-+
-+      ti,adc6120: Stereo-channel, 768-kHz, Burr-Brown™ audio analog-to-
-+      digital converter (ADC) with 123-dB SNR.
-+
-+      ti,dix4192: 216-kHz digital audio converter with Quad-Channel In
-+      and One-Channel Out.
-+
-+      ti,pcm1690: Automotive Catalog 113dB SNR 8-Channel Audio DAC with
-+      Differential Outputs.
-+
-+      ti,pcm3120: Automotive, stereo, 106-dB SNR, 768-kHz, low-power
-+      software-controlled audio ADC.
-+
-+      ti,pcm3140: Automotive, Quad-Channel, 768-kHz, Burr-Brown™ Audio ADC
-+      with 106-dB SNR.
-+
-+      ti,pcm5120: Automotive, stereo, 120-dB SNR, 768-kHz, low-power
-+      software-controlled audio ADC.
-+
-+      ti,pcm5140: Automotive, Quad-Channel, 768-kHz, Burr-Brown™ Audio ADC
-+      with 120-dB SNR.
-+
-+      ti,pcm6120: Automotive, stereo, 123-dB SNR, 768-kHz, low-power
-+      software-controlled audio ADC.
-+
-+      ti,pcm6140: Automotive, Quad-Channel, 768-kHz, Burr-Brown™ Audio ADC
-+      with 123-dB SNR.
-+
-+      ti,pcm6240: Automotive 4-ch audio ADC with integrated programmable mic
-+      bias, boost and input diagnostics.
-+
-+      ti,pcm6260: Automotive 6-ch audio ADC with integrated programmable mic
-+      bias, boost and input diagnostics.
-+
-+      ti,pcm9211: 216-kHz digital audio converter With Stereo ADC and
-+      Routing.
-+
-+      ti,pcmd3140: Four-channel PDM-input to TDM or I2S output converter.
-+
-+      ti,pcmd3180: Eight-channel pulse-density-modulation input to TDM or
-+      I2S output converter.
-+
-+      ti,taa5212: Low-power high-performance stereo audio ADC with 118-dB
-+      dynamic range.
-+
-+      ti,tad5212: Low-power stereo audio DAC with 120-dB dynamic range.
-+    oneOf:
-+      - items:
-+          - enum:
-+              - ti,adc3120
-+              - ti,adc5120
-+              - ti,pcm3120
-+              - ti,pcm5120
-+              - ti,pcm6120
-+          - const: ti,adc6120
-+      - items:
-+          - enum:
-+              - ti,pcmd512x
-+              - ti,pcm9211
-+              - ti,taa5212
-+              - ti,tad5212
-+          - const: ti,adc6120
-+      - items:
-+          - enum:
-+              - ti,pcm3140
-+              - ti,pcm5140
-+              - ti,dix4192
-+              - ti,pcm6140
-+              - ti,pcm6260
-+          - const: ti,pcm6240
-+      - items:
-+          - enum:
-+              - ti,pcmd3140
-+              - ti,pcmd3180
-+              - ti,pcm1690
-+              - ti,taa5412
-+              - ti,tad5412
-+          - const: ti,pcm6240
-+      - enum:
-+          - ti,adc6120
-+          - ti,pcm6240
-+
-+  reg:
-+    description:
-+      I2C address, in multiple pcmdevices case, all the i2c address
-+      aggregate as one Audio Device to support multiple audio slots.
-+    minItems: 1
-+    maxItems: 4
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+    description:
-+      Invalid only for ti,pcm1690 because of no INT pin.
-+
-+  '#sound-dai-cells':
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - ti,pcm1690
-+    then:
-+      properties:
-+        interrupts: false
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+   #include <dt-bindings/gpio/gpio.h>
-+   i2c {
-+     /* example for two devices with interrupt support */
-+     #address-cells = <1>;
-+     #size-cells = <0>;
-+     pcm6240: audio-codec@48 {
-+       compatible = "ti,pcm6240";
-+       reg = <0x48>, /* primary-device */
-+             <0x4b>; /* secondary-device */
-+       #sound-dai-cells = <0>;
-+       reset-gpios = <&gpio1 10 GPIO_ACTIVE_HIGH>;
-+       interrupt-parent = <&gpio1>;
-+       interrupts = <15>;
-+     };
-+   };
-+...
--- 
-2.34.1
+>
+> > > > Basically that's the reason why I went for the _raw function instead
+> > > > of adding PPS and codec arguments to the existing function.
+> > > >
+> > > > >
+> > > > > > +     mipi_dsi_dcs_write_seq(ctx->link, MIPI_DCS_SET_GAMMA_CURVE, 0x02);
+> > > > > > +
+> > > > > > +     mipi_dsi_dcs_set_tear_on(ctx->link, MIPI_DSI_DCS_TEAR_MODE_VBLANK);
+> > > > > > +
+> > > > > > +     mipi_dsi_dcs_write_seq(ctx->link, 0x53, 0x0c, 0x30);
+> > > > > > +     mipi_dsi_dcs_write_seq(ctx->link, 0x55, 0x00, 0x70, 0xdf, 0x00, 0x70, 0xdf);
+> > > > > > +     mipi_dsi_dcs_write_seq(ctx->link, 0xf7, 0x01, 0x49, 0x0c);
+> > > > > > +
+> > > > > > +     mipi_dsi_dcs_exit_sleep_mode(ctx->link);
+> > > > > > +
+> > > > > > +     msleep(135);
+> > > > > > +
+> > > > > > +     mipi_dsi_compression_mode_raw(ctx->link, &dsc_en, 1);
+> > > > >
+> > > > > Even though I think we should change this function to describe the known
+> > > > > bit layout of command 0x7 per the VESA DSI spec, for now replace 1 with
+> > > > > sizeof(dsc_en)?
+> > > >
+> > > > If dsc_en were an array, it would have been a proper thing. Maybe I
+> > > > should change it to the array to remove confusion.
+> > >
+> > > It should work even with a single byte, just to clarify to readers that the 3rd
+> > > argument is the byte-size of the input.
+> > >
+> > > > > > +     mipi_dsi_dcs_write_seq(ctx->link, 0xb0, 0xac);
+> > > > > > +     mipi_dsi_dcs_write_seq(ctx->link, 0xe5,
+> > > > > > +                            0x00, 0x3a, 0x00, 0x3a, 0x00, 0x0e, 0x10);
+> > > > > > +     mipi_dsi_dcs_write_seq(ctx->link, 0xb5,
+> > > > > > +                            0x75, 0x60, 0x2d, 0x5d, 0x80, 0x00, 0x0a, 0x0b,
+> > > > > > +                            0x00, 0x05, 0x0b, 0x00, 0x80, 0x0d, 0x0e, 0x40,
+> > > > > > +                            0x00, 0x0c, 0x00, 0x16, 0x00, 0xb8, 0x00, 0x80,
+> > > > > > +                            0x0d, 0x0e, 0x40, 0x00, 0x0c, 0x00, 0x16, 0x00,
+> > > > > > +                            0xb8, 0x00, 0x81, 0x00, 0x03, 0x03, 0x03, 0x01,
+> > > > > > +                            0x01);
+> > > > > > +     msleep(85);
+> > > > > > +     mipi_dsi_dcs_write_seq(ctx->link, 0xcd,
+> > > > > > +                            0x00, 0x00, 0x00, 0x19, 0x19, 0x19, 0x19, 0x19,
+> > > > > > +                            0x19, 0x19, 0x19, 0x19, 0x19, 0x19, 0x19, 0x19,
+> > > > > > +                            0x16, 0x16);
+> > > > > > +     mipi_dsi_dcs_write_seq(ctx->link, 0xcb, 0x80, 0x5c, 0x07, 0x03, 0x28);
+> > > > > > +     mipi_dsi_dcs_write_seq(ctx->link, 0xc0, 0x02, 0x02, 0x0f);
+> > > > > > +     mipi_dsi_dcs_write_seq(ctx->link, 0x55, 0x04, 0x61, 0xdb, 0x04, 0x70, 0xdb);
+> > > > > > +     mipi_dsi_dcs_write_seq(ctx->link, 0xb0, 0xca);
+> > > > > > +
+> > > > > > +     mipi_dsi_dcs_set_display_on(ctx->link);
+> > > > >
+> > > > > Any specific reason to not have the (un)blanking sequence in the enable/disable
+> > > > > callbacks and leaving display configuration in (un)prepare?
+> > > >
+> > > > We are back to the question on when it's fine to send the commands. I
+> > > > think the current agreement is to send everything in the
+> > > > prepare/unprepare, because of some strange hosts.
+> > >
+> > > For my panel drivers I'm sticking with having `post-on` commands (from
+> > > downstream) in `enable/disable`, which is typically only `set_display_on`.  In
+> > > hopes of proposing a `prepare_atomic()` some time to allow mode selection.
+> > >
+> > > In a short test on recent -next I am once again allowed to send DSI commands in
+> > > both .disable and .unprepare, making both functions a "clean" inverse of .enable
+> > > and .prepare respectively.
+> >
+> > The world isn't limited to the MSM hosts.
+>
+> If I'm not mistaken this was an ordering issue in the drm_bridge implementation.
 
+No. I think sunxi didn't support sending DSI commands after starting
+the video stream.
+
+>
+> But you are right that some hosts might not be all too happy with sending
+> commands (like unblanking?) after the cmd/video stream started, and before the
+> stream stops.  Which, as far as I know, are what .enable and .disable do.  On
+> the other hand, I was under the impression that this split mainly existed to do
+> all the heavy/required lifting up-front, and only unblank when there's a video
+> signal to combat any possible observed corruption?
+
+In the ideal world that would be true. But we are not living in the
+ideal world. I still have hopes to get back to the idea of reworling
+this part of the DSI framework.
+
+> In the end I'm just curious if there's a specific reason - that I need
+> to take into account when resending all my panel patches - to /not/
+> use .enable/.disable?
+
+I have bookmarked this email as a main reference for the topic:
+https://lore.kernel.org/dri-devel/CAPY8ntBrhYAmsraDqJGuTrSL6VjGXBAMVoN7xweV7E4qZv+v3Q@mail.gmail.com/
+
+>
+> - Marijn
+>
+> > > > > > +     msleep(50);
+> > > > > > +
+> > > > > > +     ctx->link->mode_flags &= ~MIPI_DSI_MODE_LPM;
+> > > > > > +
+> > > > > > +     drm_dsc_pps_payload_pack(&pps, ctx->link->dsc);
+> > > > > > +     mipi_dsi_picture_parameter_set(ctx->link, &pps);
+> > > > >
+> > > > > I'm always surprised why this is sent _after_ turning the display on (unblanking
+> > > > > it).  Wouldn't that cause unnecessary corruption?
+> > > >
+> > > > No idea. I followed the dowsntream command sequences here. Most likely
+> > > > the panel is not fully on until it receives the full frame to be
+> > > > displayed.
+> > >
+> > > According to the DSI spec a PPS update is allowed to happen every frame, and
+> > > (for cmdmode panels) will take effect after the next TE trigger.  Unsure if a TE
+> > > event happens before the first frame, otherwise this may start taking effect
+> > > on the second frame onwards only.
+> > >
+> > > If there's no corruption on the first frame there might be a pre-programmed PPS
+> > > table in slot 2, supporting the theory above.
+> >
+> >
+> >
+> > --
+> > With best wishes
+> > Dmitry
+
+
+
+--
+With best wishes
+Dmitry
 
