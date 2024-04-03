@@ -1,67 +1,68 @@
-Return-Path: <devicetree+bounces-56027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE32D8975D2
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 19:02:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC02D8975E4
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 19:04:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 024BFB2153D
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 17:02:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 087281C2638C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 17:04:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65CF9152193;
-	Wed,  3 Apr 2024 17:02:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7A53152530;
+	Wed,  3 Apr 2024 17:03:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rx/GFrI/"
+	dkim=pass (1024-bit key) header.d=megous.com header.i=@megous.com header.b="MO0npq4t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EA611514D2;
-	Wed,  3 Apr 2024 17:02:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D326E152505;
+	Wed,  3 Apr 2024 17:03:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.181.215.36
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712163740; cv=none; b=JTig32J50p1+ESVHrYXI3eHrBiBwOYcA3blOmBiMJQUAZDTOjDAjowHvh0k8hh8LHZiJ7kVHExMTpL5AF/rEc2SyJg1lsgEmuGuoMqWbC5WFWmFJM6Xid/6wcz07BJQxdHydNphG/qNKEsbAgo1IowWt8Oe/xIDUj2Gt9k5q/g4=
+	t=1712163821; cv=none; b=eLcThpO9FWblRYa/HqfFwe33T/IwtCb7etjlKjxD9xUBlcjbC4NRR5mixLaOh9NGl4czDdOQ2EcKPHpAPHR46lQy4yWXWU8MkcB6soo6yyNnUXCOyFfShy6mAqGxP/RHO3ED5hishINqg14lWLPlKH8J5NiYlGi6lXt+0B0bT8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712163740; c=relaxed/simple;
-	bh=2oGsbwbq15QL3wvwkV7hEBDpgVGRbcvJNrIyVScYh6g=;
+	s=arc-20240116; t=1712163821; c=relaxed/simple;
+	bh=5oQ9PAIUbskmpNMMQyZgPbJVk82PwBM3Z1uyb7nioaQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AGEfiepnNSLcUDJdMm/aPAcP+s2deE5d4S327TdYLK+0a2VGUfqRllhLMsHf7hX4cqvduxzW84QzlPiZWiVF4N04HTpuxEJF4u8luuCZFvIgX0W9OVkfCnksvN4d4d2CChc+Odr+z2yWv35+oysKqsyS0DrxrFkVxoX5hAnQ5rw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rx/GFrI/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87308C43390;
-	Wed,  3 Apr 2024 17:02:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712163739;
-	bh=2oGsbwbq15QL3wvwkV7hEBDpgVGRbcvJNrIyVScYh6g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Rx/GFrI/POAqeyJagkVNQjQ4UaDfYwJqjMkwf9+CnS/ac8n2Nb03EXzq0FqdGLE7L
-	 SZlx7hdF0VWhMXORF4dGtipOW3bT9HocxdzMhoTdJYCqsTyqw1jJwz77HENtm8I2jE
-	 SiV5GRjTCv6qotdJjr41qnIewCD/i3z3HkxRIam96U0DRROD8MUYtopJRnM2djQMGN
-	 Ugyl4CkPhuqxLmbQGsEFgLHry+oNQbGVmqF8a5j2HFVlqXWG5fXewg9exJ4EfF7u/Z
-	 TrLZZPmB8o5YgFCKltUaE9VjMDWMnB4gPxiekAKLQ/s45NQ6VdGym9etkYC0lIJgmC
-	 6n23OeoB3gvgw==
-Date: Wed, 3 Apr 2024 12:02:17 -0500
-From: Rob Herring <robh@kernel.org>
-To: Arseniy Krasnov <avkrasnov@salutedevices.com>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-	oxffffaa@gmail.com, kernel@sberdevices.ru
-Subject: Re: [PATCH v1 1/2] dt-bindings: mtd: amlogic,meson-nand: support
- fields for boot ROM code
-Message-ID: <20240403170217.GA3984955-robh@kernel.org>
-References: <20240402202705.2355326-1-avkrasnov@salutedevices.com>
- <20240402202705.2355326-2-avkrasnov@salutedevices.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=JaKGG3zG8DNohxOksv5TmXW4vR7kAgUqWYTM6PmESelSX8j7p3Dr/FCT42R/lcBtBXWWLd+WrzYueXSvFcJTvDykLjZ3GsIEoWhr1D092S74mH7TelITQRbTNMy5oYcpYqvFjt1TCZ77D+7bUglDj+JH0nmhLjwli30s4bmE9ZY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=megous.com; spf=pass smtp.mailfrom=megous.com; dkim=pass (1024-bit key) header.d=megous.com header.i=@megous.com header.b=MO0npq4t; arc=none smtp.client-ip=195.181.215.36
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=megous.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=megous.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
+	t=1712163817; bh=5oQ9PAIUbskmpNMMQyZgPbJVk82PwBM3Z1uyb7nioaQ=;
+	h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
+	b=MO0npq4tWyuGwTaav38LDUD379CLRTbjTWXhqWWD37o4lA9WmySm+7G11xnzxBRPb
+	 Z45Lio0muMx4UnX1rh3TZ/e8jt0gHKbwnkkVk17k7CySVgjnOhhlvkOYBzN79HZ4PM
+	 vP3xXserb4s+Fr3wQRSguRa794bvKuUKqqolPs2k=
+Date: Wed, 3 Apr 2024 19:03:37 +0200
+From: =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: git@luigi311.com, linux-media@vger.kernel.org, 
+	dave.stevenson@raspberrypi.com, jacopo.mondi@ideasonboard.com, mchehab@kernel.org, 
+	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
+	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, pavel@ucw.cz, 
+	phone-devel@vger.kernel.org
+Subject: Re: [PATCH v3 24/25] drivers: media: i2c: imx258: Add support for
+ reset gpio
+Message-ID: <vesqdx7w2sobjnx7tmk6s6i5zplbhsphamoalysx625r4aqffq@hos5otov5ids>
+Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, git@luigi311.com, linux-media@vger.kernel.org, 
+	dave.stevenson@raspberrypi.com, jacopo.mondi@ideasonboard.com, mchehab@kernel.org, 
+	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
+	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, pavel@ucw.cz, 
+	phone-devel@vger.kernel.org
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
+References: <20240403150355.189229-1-git@luigi311.com>
+ <20240403150355.189229-25-git@luigi311.com>
+ <Zg2Dy2QBguXQoR3P@kekkonen.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,64 +71,92 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240402202705.2355326-2-avkrasnov@salutedevices.com>
+In-Reply-To: <Zg2Dy2QBguXQoR3P@kekkonen.localdomain>
 
-On Tue, Apr 02, 2024 at 11:27:04PM +0300, Arseniy Krasnov wrote:
-> Boot ROM code on Meson requires that some pages on NAND must be written
-> in special mode: "short" ECC mode where each block is 384 bytes and
-> scrambling mode is on. Such pages located with the specified interval
-> within specified offset. Both interval and offset are located in the
-> device tree and used by driver if 'nand-is-boot-medium' is set for
-> NAND chip.
+Hi,
+
+On Wed, Apr 03, 2024 at 04:28:59PM GMT, Sakari Ailus wrote:
+> Hi Luis,
 > 
-> Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
-> ---
->  .../bindings/mtd/amlogic,meson-nand.yaml         | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
+> Could you unify the subject prefix for the driver patches, please? E.g.
+> "media: imx258: " would be fine.
 > 
-> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-> index 57b6957c8415..f49819ee76b8 100644
-> --- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-> @@ -64,11 +64,27 @@ patternProperties:
->          items:
->            maximum: 0
->  
-> +      meson,boot-page-last:
+> On Wed, Apr 03, 2024 at 09:03:53AM -0600, git@luigi311.com wrote:
+> > From: Luis Garcia <git@luigi311.com>
+> > 
+> > It was documented in DT, but not implemented.
+> > 
+> > Signed-off-by: Ondrej Jirman <megous@megous.com>
+> > Signed-off-by: Luis Garcia <git@luigi311.com>
+> > ---
+> >  drivers/media/i2c/imx258.c | 14 +++++++++++++-
+> >  1 file changed, 13 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
+> > index 163f04f6f954..4c117c4829f1 100644
+> > --- a/drivers/media/i2c/imx258.c
+> > +++ b/drivers/media/i2c/imx258.c
+> > @@ -680,6 +680,7 @@ struct imx258 {
+> >  	unsigned int csi2_flags;
+> >  
+> >  	struct gpio_desc *powerdown_gpio;
+> > +	struct gpio_desc *reset_gpio;
+> >  
+> >  	/*
+> >  	 * Mutex for serialized access:
+> > @@ -1232,7 +1233,11 @@ static int imx258_power_on(struct device *dev)
+> >  		regulator_bulk_disable(IMX258_NUM_SUPPLIES, imx258->supplies);
+> >  	}
+> >  
+> > -	return ret;
+> > +	gpiod_set_value_cansleep(imx258->reset_gpio, 0);
+> > +
+> > +	usleep_range(400, 500);
+> 
+> You could mention this at least in the commit message.
 
-'meson' is not a valid vendor.
+This is T6 in the datasheet: https://megous.com/dl/tmp/92c9223ce877216e.png
 
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description:
-> +          The NFC driver needs this information to select ECC
-> +          algorithms supported by the boot ROM.
-> +          Only used in combination with 'nand-is-boot-medium'.
 
-No need to state what's captured with constraints.
+> > +
+> > +	return 0;
+> >  }
+> >  
+> >  static int imx258_power_off(struct device *dev)
+> > @@ -1243,6 +1248,7 @@ static int imx258_power_off(struct device *dev)
+> >  	clk_disable_unprepare(imx258->clk);
+> >  	regulator_bulk_disable(IMX258_NUM_SUPPLIES, imx258->supplies);
+> >  
+> > +	gpiod_set_value_cansleep(imx258->reset_gpio, 1);
+> 
+> Same question than on the other GPIO: does this belong here?
 
-> +
-> +      meson,boot-page-step:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description:
-> +          The NFC driver needs this information to select ECC
-> +          algorithms supported by the boot ROM.
-> +          Only used in combination with 'nand-is-boot-medium'.
+No, this should be before the regulator_bulk_disable.
 
-step is in blocks/pages/bytes?
+See: https://megous.com/dl/tmp/c96180b23d7ce63a.png
 
-> +
->      unevaluatedProperties: false
->  
->      dependencies:
->        nand-ecc-strength: [nand-ecc-step-size]
->        nand-ecc-step-size: [nand-ecc-strength]
-> +      meson,boot-page-last: [nand-is-boot-medium]
-> +      meson,boot-page-step: [nand-is-boot-medium]
+kind regards,
+	o.
 
-I assume both properties must be present? If so:
-
-meson,boot-page-last: ['meson,boot-page-step']
-meson,boot-page-step: ['meson,boot-page-last']
-
-Rob
+> >  	gpiod_set_value_cansleep(imx258->powerdown_gpio, 1);
+> >  
+> >  	return 0;
+> > @@ -1554,6 +1560,12 @@ static int imx258_probe(struct i2c_client *client)
+> >  	if (IS_ERR(imx258->powerdown_gpio))
+> >  		return PTR_ERR(imx258->powerdown_gpio);
+> >  
+> > +	/* request optional reset pin */
+> > +	imx258->reset_gpio = devm_gpiod_get_optional(&client->dev, "reset",
+> > +						    GPIOD_OUT_HIGH);
+> > +	if (IS_ERR(imx258->reset_gpio))
+> > +		return PTR_ERR(imx258->reset_gpio);
+> > +
+> >  	/* Initialize subdev */
+> >  	v4l2_i2c_subdev_init(&imx258->sd, client, &imx258_subdev_ops);
+> >  
+> 
+> -- 
+> Regards,
+> 
+> Sakari Ailus
 
