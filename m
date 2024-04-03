@@ -1,96 +1,109 @@
-Return-Path: <devicetree+bounces-55715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 300C8896218
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 03:40:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00D1E89622C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 03:43:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AC754B26DAD
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 01:40:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B6C928C08D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 01:43:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F25B18039;
-	Wed,  3 Apr 2024 01:40:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20B861C68A;
+	Wed,  3 Apr 2024 01:42:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eEKNiE9u"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="aD38luKq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D73515ACB;
-	Wed,  3 Apr 2024 01:40:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from mail-177132.yeah.net (mail-177132.yeah.net [123.58.177.132])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C0631BC4B;
+	Wed,  3 Apr 2024 01:42:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712108435; cv=none; b=vGnR+juFy+DTpAkEkT9SlkWj587MoLc7c2zxPYXZp7BiKTcaCKwc2RPTQHk4LGrEyv2wGA5lBryqkvQ5C8nVX+A4ebNXW31WBLv/GxsiDVhbVcGDsKg5k1gxBpPZZyB0s+Z7tNuv5UK1eHwlLxxwGThouxlAkF006JdTxTfdCHk=
+	t=1712108526; cv=none; b=k4UzvXG+P2McOa6C4FVuxmHZazS4gIXg3RDpCsYSIdjjeYveeR1bLH5FrICVI51zoY6bJt5j9aiRpDl1lDvMdl6gL14KF8DQQn1aNID2R0Yx7MZI1w11lSGypiMkPYCfh4bOe4hl/jNEXTm4hVFZ7jfW/7nIGpfrwdOlItrxI+o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712108435; c=relaxed/simple;
-	bh=2Cqggvi+FITuLPU6Wtv6kILJujsOux5eJcik4zu5h0w=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=iTbRDnVy9Z+38O79PKzyTaYi0su+pZwdi9O0l7UcrH8jvTKTfR1hg2TIPL/ZrxzT48lXHlf9rvv1L+TXwhN6V1bsTom9wBVBEzk6woSj5+el4XLBidH5t9y0PQsj9nyJDP2jtKcP/PpADV50lcX8tg1I2yLetnaq/f9ZXl2iHFg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eEKNiE9u; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E665CC43601;
-	Wed,  3 Apr 2024 01:40:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712108435;
-	bh=2Cqggvi+FITuLPU6Wtv6kILJujsOux5eJcik4zu5h0w=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=eEKNiE9uepjjn0InblW6b5qc1Cjff2kGHNImum7Ny2o6p/g0QHemub4K7RpYYWcpv
-	 eamDHMzJ3CAKm3I5fkkBDh6XjxrvByJ/9z2YKVrx+SN+xQWk7oYLgfeDyP3tDFuJF7
-	 mgPn/ReFV4rpRnSlzBYwPxtRh23STkx5fPOtzQSdhWSaGxI/SPsKsaD79avuKWEPVj
-	 /7adJHehvQpkdcgJ65FR0MGkBQEiw//gyDKhwTh3hAFqE2p02faFTZKYETVivEJbyY
-	 O+hI2Q+TZXnV+HEp7zAQ04Nu/fMtWaC7C+TJH4s3rmi+v3fxjV6oxYyHBYQSGSGg6B
-	 RVv543O8rgxqQ==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id DDB22D8BD1F;
-	Wed,  3 Apr 2024 01:40:34 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1712108526; c=relaxed/simple;
+	bh=apm/cyErWPKZfHanGyHQ8pZ64PmEZzN6lIff+v3a0bo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bRMiBitcENFTsw0HrIDZprclc4T64PuzkNrr4eOQJ6qeH6WeQNG9/QZ/+Xgejwd4ZjQgkjtuzVagvG8bXZDqynCrrI1WegtgjCg+qId2y3FJMlMKZCBPe3l5ptnYJLZxx+OuhfJBj38plYiK6cg9H9fsyJ7Y4kCikandgwCQUKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=aD38luKq; arc=none smtp.client-ip=123.58.177.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=Mbtxsma7yyIkq9ySu8dVUD5R+zMrmAtoSbh78F9Br7k=;
+	b=aD38luKqCmv3cW5ZHyJcYv1DB+sQshRn7hTUuUAx1aDSBQiE5aaFBbK7h4JFP8
+	+lRq5gOYBXXAH+LgVINRaXcPd/EGJy1wSrpgwG+Q7L6gQiPf71Bh2yEQXj8NpBm6
+	qiDtZ0EdIJEnuFsIWbWOHwbbhorjt4dt0wiQDyRSy0rus=
+Received: from dragon (unknown [223.68.79.243])
+	by smtp2 (Coremail) with SMTP id C1UQrADXPhjGswxmoDmzAg--.46730S3;
+	Wed, 03 Apr 2024 09:41:27 +0800 (CST)
+Date: Wed, 3 Apr 2024 09:41:26 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Fabio Estevam <festevam@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+	Philippe Schenker <philippe.schenker@toradex.com>,
+	Max Krummenacher <max.krummenacher@toradex.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Joakim Zhang <qiangqing.zhang@nxp.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: Re: [PATCH 1/7] arm64: dts: imx8-ss-lsio: fix pwm lpcg indices
+Message-ID: <ZgyzxmuMIK87C2nW@dragon>
+References: <20240401-dts_fix-v1-0-8c51ce52d411@nxp.com>
+ <20240401-dts_fix-v1-1-8c51ce52d411@nxp.com>
+ <CAOMZO5AJrQ5jyV4A-tvX93-R0_nEWpEO9YY3f5DpeXaAFO4cSA@mail.gmail.com>
+ <ZgwfnZJDRYmYy7Qt@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [net-next,v2] dt-bindings: net: renesas,ethertsn: Create child-node
- for MDIO bus
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <171210843490.14193.13793539310642230479.git-patchwork-notify@kernel.org>
-Date: Wed, 03 Apr 2024 01:40:34 +0000
-References: <20240330131228.1541227-1-niklas.soderlund+renesas@ragnatech.se>
-In-Reply-To: <20240330131228.1541227-1-niklas.soderlund+renesas@ragnatech.se>
-To: =?utf-8?q?Niklas_S=C3=B6derlund_=3Cniklas=2Esoderlund+renesas=40ragnatech=2E?=@codeaurora.org,
-	=?utf-8?q?se=3E?=@codeaurora.org
-Cc: s.shtylyov@omp.ru, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- geert+renesas@glider.be, netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, robh@kernel.org
+In-Reply-To: <ZgwfnZJDRYmYy7Qt@lizhi-Precision-Tower-5810>
+X-CM-TRANSID:C1UQrADXPhjGswxmoDmzAg--.46730S3
+X-Coremail-Antispam: 1Uf129KBjvdXoWrZw4Duw18XrWfZF17CFW7urg_yoWfuFXEgw
+	4kZFs3tr1Duwn3Jan5Ar4rJ3yDJa4q9r45Xr95Ww17Xas8W3yUGF1UWa48ZrW7GFZaqrn8
+	JFnrJFWqq34SvjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU0CJmUUUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiGAm1ZV6Nnqo1hQAAsW
 
-Hello:
-
-This patch was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Sat, 30 Mar 2024 14:12:28 +0100 you wrote:
-> The bindings for Renesas Ethernet TSN was just merged in v6.9 and the
-> design for the bindings followed that of other Renesas Ethernet drivers
-> and thus did not force a child-node for the MDIO bus. As there
-> are no upstream drivers or users of this binding yet take the
-> opportunity to correct this and force the usage of a child-node for the
-> MDIO bus.
+On Tue, Apr 02, 2024 at 11:09:17AM -0400, Frank Li wrote:
+> On Mon, Apr 01, 2024 at 08:04:56PM -0300, Fabio Estevam wrote:
+> > On Mon, Apr 1, 2024 at 7:25 PM Frank Li <Frank.Li@nxp.com> wrote:
+> > >
+> > > lpcg's arg0 should use clock indices instead of index.
+> > >
+> > > pwm0_lpcg: clock-controller@5d400000 {
+> > >         ...                                                // Col1  Col2
+> > >         clocks = <&clk IMX_SC_R_PWM_0 IMX_SC_PM_CLK_PER>,  // 0     0
+> > >                  <&clk IMX_SC_R_PWM_0 IMX_SC_PM_CLK_PER>,  // 1     1
+> > >                  <&clk IMX_SC_R_PWM_0 IMX_SC_PM_CLK_PER>,  // 2     4
+> > >                  <&lsio_bus_clk>,                          // 3     5
+> > >                  <&clk IMX_SC_R_PWM_0 IMX_SC_PM_CLK_PER>;  // 4     6
+> > >         clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_1>,
+> > >                         <IMX_LPCG_CLK_4>, <IMX_LPCG_CLK_5>,
+> > >                         <IMX_LPCG_CLK_6>;
+> > > };
+> > >
+> > > Col1: index, which exited dts try to get.
+> > 
+> > I cannot understand this sentence, sorry.
 > 
-> [...]
+> This base on downstream dts code.  Downstream code use index in 'Col1' to
+> get clock.
 
-Here is the summary with links:
-  - [net-next,v2] dt-bindings: net: renesas,ethertsn: Create child-node for MDIO bus
-    https://git.kernel.org/netdev/net-next/c/8da891720cd4
+So s/exited/existing you meant?
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+Shawn
 
 
