@@ -1,115 +1,169 @@
-Return-Path: <devicetree+bounces-55902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55903-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC199896C96
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 12:33:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49533896CDD
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 12:43:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 298561C26BE5
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 10:33:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3DDB28A6DA
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 10:43:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64A3514199C;
-	Wed,  3 Apr 2024 10:31:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D743145B20;
+	Wed,  3 Apr 2024 10:42:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="fcOKvHeZ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pMqWthw/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE207137777;
-	Wed,  3 Apr 2024 10:31:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E622B143874;
+	Wed,  3 Apr 2024 10:42:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712140315; cv=none; b=efUZl064cAQpGD4RsCoAhyalV350tGC331eLmwozbyAoEh2Dq1xRJW8sS8yL3sxQbBgCgtbSu1LKuJySIMUU2MwVfJfQLU2zTg95W6vnnDphR/EuYUnhfOhqFzIBxrn3VVWFdpVBJDF8SfFIOtKsPbCKkG+G1O+gKcN5i7N+doo=
+	t=1712140962; cv=none; b=aF0UaTPT6V7qDHAx6a3P5C8l+LXHzxp2d9LdQH7mOcRZIl7zjVQcp8AppiBRW+pXDnhqfu95D7JnFCyrGBPbVGfD/e0r6lyo+4Ij1CBxnqmZKwZ7JFJL/++Knm9nNbG883syqIf5kkQEWTAgP+uEuTeqf7eyqWk52gqAYao0rRU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712140315; c=relaxed/simple;
-	bh=bKmDSIDkCEXhaz2uF+QbMZ0GeW+xwltWAAyCQPnHrsU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EJkzhXBDD5pyzLeKmypD3G4tCn7VBGlXZNwDUfaRrjfekbXdcPdegExsLG8OXHv/wxaZ6yiraUR2Z6gE2pde8ZWjdBwHykmxpGXu6Y4i5rLOzE4ipasdkklAQXAX+hDSzwew1wnng7PRLauMZ9O8SLT4yM8T+q+/5ldjAZyIlJI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=fcOKvHeZ; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1712140312;
-	bh=bKmDSIDkCEXhaz2uF+QbMZ0GeW+xwltWAAyCQPnHrsU=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=fcOKvHeZ4iWpHRfxSuyrNsWLaqd0HmGeQy95YGjLOp/I7wVH+kBZSnB/6qJHevjpO
-	 iBYwjU0GA/A46YUUoCyNcrDFD8KVxGZhhPgwWiIWCFn1ZrSq3vlRKTzrkKSPULW8UK
-	 5q36mLKNLcHE1XWYhRGNmKmPU5FSJECCoapJ32tMshBSWBpnC3wualBqNpin0b1Jy+
-	 zrbfCRF3abIDHaxxQo8JSSVP++ecaWF7w3n9cgCjZaASLqm4e1v4i8RVKBb58221dZ
-	 qDIRAMpEUvFQah2UOt635+rQLYPMogbRaBGtuh1WgOHcDhfgtTWdIMD2LSa8vaGC7T
-	 CbK1JyivpJi9w==
-Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id EA82C37820F3;
-	Wed,  3 Apr 2024 10:31:50 +0000 (UTC)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: linux-mediatek@lists.infradead.org,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	kernel@collabora.com,
-	robh+dt@kernel.org,
-	nbd@nbd.name,
-	john@phrozen.org,
-	dd@embedd.com,
-	catalin.marinas@arm.com,
-	will@kernel.org,
-	upstream@airoha.com,
-	lorenzo.bianconi83@gmail.com
-Subject: Re: [PATCH v4 0/4] arm64: Add support for Airoha EN7581 Soc
-Date: Wed,  3 Apr 2024 12:31:44 +0200
-Message-ID: <171213798076.111748.1656778458419095721.b4-ty@collabora.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <cover.1709975956.git.lorenzo@kernel.org>
-References: <cover.1709975956.git.lorenzo@kernel.org>
+	s=arc-20240116; t=1712140962; c=relaxed/simple;
+	bh=e4j6cfrHaaHCrFec1tqnvuZ8iYnYtRh9G16FJOoCfS0=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=J+1dZzh5guf2oDaUAcsTXVMSGePUbmFaFN002uw0Zu9vQ/DVznZ4SRzELqKo/uaBAFhOKSOOqWy2fhvI42PiyiwUD14JJB8Zh/Fky5GZjTUE10w25YQ5WxBT00KTPcolGzm6HjwycOL8pKH7G0tNWWoa3HrqAaxcYO8xOUAeBP8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=pMqWthw/; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43386MEr015094;
+	Wed, 3 Apr 2024 10:42:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=JpieIyE
+	kDxsw3072e1J13lEaIa/3khLxcjiUmz1Ptjg=; b=pMqWthw/72gLoncYjf2zHhj
+	2V5S/GdLrWv8EKCL/Z5IgH04JVKmdeSVVkhhqXFAbDIYaeX3FxbfWQGuxnAlHux4
+	gV69dFWOMT/6TdDTuKw7fX4qmLPYc6ftjFTsRNFrABwYPcWOU9nkIoZs2IwJemos
+	aYtw8zg7I7Tt0Cb0Qm7ffKVdaTBGWslPfZP7NEJZqWwj3/uXqAAghGtg/NMcrEAf
+	V+qWz5C3xhd847dpLoFiXrv1euPc4elhSFhPUpjqcRB5Eo7Ut1p5f2fGS1Svm8R/
+	EBLui2i1pVn3tI355qYpl5OnUNmdYwyQNLDEwtkkZClgQ2pBQ7agU58S0F0QJlg=
+	=
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x93a5gbhg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 03 Apr 2024 10:42:36 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 433Agapm026194
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 3 Apr 2024 10:42:36 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.4; Wed, 3 Apr 2024 03:42:31 -0700
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <djakov@kernel.org>,
+        <dmitry.baryshkov@linaro.org>, <quic_varada@quicinc.com>,
+        <quic_anusha@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>
+Subject: [PATCH v7 0/5] Add interconnect driver for IPQ9574 SoC
+Date: Wed, 3 Apr 2024 16:12:15 +0530
+Message-ID: <20240403104220.1092431-1-quic_varada@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: wQW29ViqT1UpRccDJglcqQ5GhGrHEc1u
+X-Proofpoint-ORIG-GUID: wQW29ViqT1UpRccDJglcqQ5GhGrHEc1u
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-03_09,2024-04-01_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 malwarescore=0
+ bulkscore=0 priorityscore=1501 lowpriorityscore=0 mlxscore=0
+ impostorscore=0 phishscore=0 clxscore=1011 suspectscore=0 mlxlogscore=980
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2403210001 definitions=main-2404030074
 
-On Sat, 09 Mar 2024 10:32:13 +0100, Lorenzo Bianconi wrote:
-> Introduce basic support for Airoha EN7581 Soc and EN7581 Evaluation Board.
-> 
-> Changes since v3:
-> - remove unnecessary entries in Kconfig ARCH_AIROHA section
-> - cosmetics
-> 
-> Changes since v2:
-> - fix cpu-map definition
-> - add more cache info
-> - add missing soc node
-> - remove unnecessary definitions
-> 
-> [...]
+MSM platforms manage NoC related clocks and scaling from RPM.
+However, in IPQ SoCs, RPM is not involved in managing NoC
+related clocks and there is no NoC scaling.
 
-Applied to v6.9-next/dts64, thanks!
+However, there is a requirement to enable some NoC interface
+clocks for the accessing the peripherals present in the
+system. Hence add a minimalistic interconnect driver that
+establishes a path from the processor/memory to those peripherals
+and vice versa.
 
-[1/4] dt-bindings: arm64: dts: airoha: Add en7581 entry
-      commit: 82aefd8f1f1e73f95523a8eebf3d52719a946120
-[2/4] arm64: dts: Add Airoha EN7581 SoC and EN7581 Evaluation Board
-      commit: a8ffe7cfce40c20a2508c474e49bfd9f29d0e253
-[3/4] arm64: add Airoha EN7581 platform
-      commit: 91ed3fc5e3a3b33ce73374715f3be97367caf402
-[4/4] arm64: defconfig: enable Airoha platform
-      commit: e9340b4423db78a31ed156a92af9eb2fd7df9456
+---
+v7:	Fix macro names in dt-bindings header
+	Do clock get in icc driver
 
-Cheers,
-Angelo
+v6:	Removed 'Reviewed-by: Krzysztof' from dt-bindings patch
+	Remove clock get from ICC driver as suggested by Stephen Boyd
+	so that the actual peripheral can do the clock get
+	first_id -> icc_first_node_id
+	Remove tristate from INTERCONNECT_CLK
+v5:
+	Split gcc-ipq9574.c and common.c changes into separate patches
+	Introduce devm_icc_clk_register
+	Fix error handling
+v4:
+gcc-ipq9574.c
+	Use clk_hw instead of indices
+common.c
+	Do icc register in qcom_cc_probe() call stream
+common.h
+	Add icc clock info to qcom_cc_desc structure
+
+v3:
+qcom,ipq9574.h
+	Move 'first id' define to clock driver
+gcc-ipq9574.c:
+	Use indexed identifiers here to avoid confusion
+	Fix error messages and move code to common.c as it can be
+	shared with future SoCs
+
+v2:
+qcom,ipq9574.h
+	Fix license identifier
+	Rename macros
+qcom,ipq9574-gcc.yaml
+	Include interconnect-cells
+gcc-ipq9574.c
+	Update commit log
+	Remove IS_ENABLED(CONFIG_INTERCONNECT) and auto select it from Kconfig
+ipq9574.dtsi
+	Moved to separate patch
+	Include interconnect-cells to clock controller node
+drivers/clk/qcom/Kconfig:
+	Auto select CONFIG_INTERCONNECT & CONFIG_INTERCONNECT_CLK
+
+Varadarajan Narayanan (5):
+  dt-bindings: interconnect: Add Qualcomm IPQ9574 support
+  interconnect: icc-clk: Add devm_icc_clk_register
+  clk: qcom: common: Add interconnect clocks support
+  clk: qcom: ipq9574: Use icc-clk for enabling NoC related clocks
+  arm64: dts: qcom: ipq9574: Add icc provider ability to gcc
+
+ .../bindings/clock/qcom,ipq9574-gcc.yaml      |  3 +
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi         |  2 +
+ drivers/clk/qcom/Kconfig                      |  2 +
+ drivers/clk/qcom/common.c                     | 31 ++++++-
+ drivers/clk/qcom/common.h                     |  3 +
+ drivers/clk/qcom/gcc-ipq9574.c                | 30 +++++++
+ drivers/interconnect/icc-clk.c                | 18 ++++
+ .../dt-bindings/interconnect/qcom,ipq9574.h   | 87 +++++++++++++++++++
+ include/linux/interconnect-clk.h              |  2 +
+ 9 files changed, 177 insertions(+), 1 deletion(-)
+ create mode 100644 include/dt-bindings/interconnect/qcom,ipq9574.h
+
+-- 
+2.34.1
 
 
