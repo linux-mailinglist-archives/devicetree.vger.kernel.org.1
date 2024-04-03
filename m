@@ -1,185 +1,218 @@
-Return-Path: <devicetree+bounces-55829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEF31896878
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 10:25:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE328896887
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 10:27:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE17E1C21EDD
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 08:25:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B98F1F21348
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 08:27:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 109A276402;
-	Wed,  3 Apr 2024 08:15:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VnuixuCh"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE3FA82D93;
+	Wed,  3 Apr 2024 08:18:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D6FC6D1A0;
-	Wed,  3 Apr 2024 08:15:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 681FD73186
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 08:18:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712132110; cv=none; b=Y1KNL6f+h7Pai9XM5scZYQMl/pLpp6yUdEwUT6M8QWDXmP15d7hVmCO42zPDWSWAPg4FkeqMesnZfmNG0ncVAW/b0xW31zpW4RQStd7zMB64Kr2Gwuvr6KI0RupixMV1HerkKcPhFTGOuIAOTta5eXdt45ENl5BV0t7LLPCMClY=
+	t=1712132333; cv=none; b=ObhOXj9ubXUg7IX/CJ/FOpC9kMEQRZfJz5dRSHMh2wWBVZdHVYLPZ+VbyNylFU97xDow2LshnFMBiGFlnhILyPMy1bHd9DCPe0EmHMDXUDLKXpYX2c5GIsxbhqmnM0EuXIhmhBzthGdh/OLvkAJs7obnjHlrKbt13KIyhaDAIPc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712132110; c=relaxed/simple;
-	bh=79GzaC/wpL41mVe8DAzcTk67Vg58jXpGHfv9U5F10FM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qp7vhHxeMTLypETXk+78+SFZqN/8cpIaXaydIlfTmPWuRhNoAhKyMNRT6YVp46gbesV/6yO9BWM4tY4LdqVughha5Bv13O0GKuvK289eTBcT5UiAKFlTEkbpAlWq50/FmvoUXtWAl8dVRUR/x3GxITnVKE6byZ3KhxgqcnHOap8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VnuixuCh; arc=none smtp.client-ip=209.85.222.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-789fb1f80f5so396349285a.3;
-        Wed, 03 Apr 2024 01:15:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712132108; x=1712736908; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=s/y2MMICNyue6gWd8hqMT90GtZtiQiQJemVpU+jOY2c=;
-        b=VnuixuChz3al4xn9YzKvuYPA19zOh7KhePgBd6cVKTpduzmByr3hs5U8+qbsG/+GDd
-         6HVgKwg/V30tNuG+TUShMd9tAElCzoADvULPGPUlpajSDcv7k9L2SwuXLJpKFhrKsBlW
-         5IYOtXMnGdrnl3mCQUxiQmwz2QbywHTEYjNIwHGR+2CYROM3z7YI6pj6eaJL/wmUSM6B
-         VHJHZ0AVpWz3hgPpB3BoRD6hAIas8N68giXcM7lvYue8Gve1jXZiWsC8tINMg80QVVSL
-         dDctUfc7sPqZsCT7AuLjdFHjUZ4tV22Az6zKNJbWobMu5uO2aREw3e7Ilm2whMI3jZIy
-         TR0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712132108; x=1712736908;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=s/y2MMICNyue6gWd8hqMT90GtZtiQiQJemVpU+jOY2c=;
-        b=M3ZEgknhuv4XFsAv2EAW45FNtD6f8ivHDfEClugG41DvYTWStqcZYuAOn+BMHe6atV
-         dYUzjG+jFlNFD4GLn1m9LkKvmFy2S4G8arvnKmozjV9wKPTo3Md+5z2n+EH8lg9vCvRl
-         heQoSsJTtpgFUYZhF+40sdX+FTP31M1EpD3dPFbDjcB/gZDyCzEy2urlptNYgV/FDsfp
-         08KNEgACflElmik9T4gpldrw3plqt0lcacajE/r6dFcrByrosuY1Nokp0fldHrRah3hh
-         DNkLUrz1+x3LQXBFb3lbNLH6lEzJA+5BLFVj/HzIxEf04jxDNcXya7AFClrdocp6fvUp
-         jQfQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWZU2WmVV6BuLoyfA1QqIhgdiIRuzy57XmyS3/mijgXYVh2T3kWvRxjc76RDcB5WrMPP2bzlAxtlM1CPEvVYFt6KRBVMpXBZGnvVZTwXcdTYgWcMQTNL7fxbijVMBM4DxPrHf/FFN+BJiftMfM66nM6CWeiyhUv736dSf3vVOQ2uS5VuA==
-X-Gm-Message-State: AOJu0YzYY22D6x9ntyHjc4FNcAnG9vE9rQLAr8LXa+k5v5uXQhgv+58z
-	GCzkNviZntJBWmHMNZMDCbTd76wpB0BKp42XC7TipAtCYFDf5S9w
-X-Google-Smtp-Source: AGHT+IHhStCUqTQ4sURggWKUyR75zMC8OhVbI0+OQ+WlbDB0d6z2beYwUbOhPoPpY6zUZ1oesxm8qg==
-X-Received: by 2002:a05:620a:55ac:b0:78b:eac4:a023 with SMTP id vr12-20020a05620a55ac00b0078beac4a023mr5447001qkn.39.1712132107971;
-        Wed, 03 Apr 2024 01:15:07 -0700 (PDT)
-Received: from [10.76.84.174] ([5.2.194.157])
-        by smtp.gmail.com with ESMTPSA id p11-20020a05620a056b00b0078a210372fasm4909954qkp.86.2024.04.03.01.15.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Apr 2024 01:15:07 -0700 (PDT)
-Message-ID: <77064a96-c195-4f34-a323-ac01137e448d@gmail.com>
-Date: Wed, 3 Apr 2024 11:15:04 +0300
+	s=arc-20240116; t=1712132333; c=relaxed/simple;
+	bh=LHMKNwipL5y/ze/oXu72nsM/oT8i12x7vNUYNMYtPUc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ujQoQFXAScR5mREoww7E5mYJIjKdwFlHVOeUScTFux0AQWP8Ti4KmciMl/SG7dVuYVokJqvJVoilFS7kBT3n63j8qtgnjKrxj8etpsI4P0J+mqW9779CAvA0KEbkl05IL59grSxeJQDv9Db4EuT+7F51lAy1H/pVXKdZk4OlbW0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <m.grzeschik@pengutronix.de>)
+	id 1rrvpP-0006HX-8w; Wed, 03 Apr 2024 10:18:39 +0200
+Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <m.grzeschik@pengutronix.de>)
+	id 1rrvpO-00A8kA-BN; Wed, 03 Apr 2024 10:18:38 +0200
+Received: from localhost ([::1] helo=dude04.red.stw.pengutronix.de)
+	by dude04.red.stw.pengutronix.de with esmtp (Exim 4.96)
+	(envelope-from <m.grzeschik@pengutronix.de>)
+	id 1rrvpO-008gNm-0w;
+	Wed, 03 Apr 2024 10:18:38 +0200
+From: Michael Grzeschik <m.grzeschik@pengutronix.de>
+Date: Wed, 03 Apr 2024 10:18:27 +0200
+Subject: [PATCH v2] ARM: dts: imx27-phytec: Add USB support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/6] iio: adc: ad7173: Add support for AD411x devices
-To: David Lechner <dlechner@baylibre.com>, dumitru.ceclan@analog.com
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240401-ad4111-v1-0-34618a9cc502@analog.com>
- <20240401-ad4111-v1-6-34618a9cc502@analog.com>
- <CAMknhBH-YmFrqNTQCB_KafCTxEqSL+36pkE0O44NqiL89hm64Q@mail.gmail.com>
-Content-Language: en-US
-From: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
-In-Reply-To: <CAMknhBH-YmFrqNTQCB_KafCTxEqSL+36pkE0O44NqiL89hm64Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240328-pca100-v2-1-d7ff1679f75b@pengutronix.de>
+X-B4-Tracking: v=1; b=H4sIANIQDWYC/2WNywqDMBBFf0Vm3ZRJfKVd9T+KixhHHZAoiYpF8
+ u9N3XZ5DpdzTwjkmQI8sxM87Rx4dgnULQM7GjeQ4C4xKFQF5kqLxRqJKEyFaGyR64JqSOPWBBK
+ tN86Oae62aUpy8dTzcdXfTeKRwzr7z3W2y5/96+5SSFHqrq9qq+yjxNdCbthWPzs+7h1BE2P8A
+ uz6M6i2AAAA
+To: Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Michael Grzeschik <m.grzeschik@pengutronix.de>
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3522;
+ i=m.grzeschik@pengutronix.de; h=from:subject:message-id;
+ bh=LHMKNwipL5y/ze/oXu72nsM/oT8i12x7vNUYNMYtPUc=;
+ b=owEBbQKS/ZANAwAKAb9pWET5cfSrAcsmYgBmDRDZzMhmunN9ug9rzy06HHj5WPF6gun35cFy1
+ KLMS6DkzUSJAjMEAAEKAB0WIQQV2+2Fpbqd6fvv0Gi/aVhE+XH0qwUCZg0Q2QAKCRC/aVhE+XH0
+ q92LD/0WTMs+v39Y4IJL6d/wevTebFY46OnfupWCUeJz0nIlp0toCyPkERXJAGh2apomolp4SCV
+ +RShO18zsICBs/1hqpMFo71aW7d4syZrR6nZLX5GgGxzlGZS/c5kOzbxqtVGeuZg0wCCEY47l0f
+ Ps30Bu7IzssQ/Tov6cp/VPgDrL8MVzLnrXwZqfsefjsp/474p1UeP6tDgA+VR0v/8hCGWCmV11c
+ Xu4wL6WCVjqBfc/mvYupRQq1ujfH8LESAPjMNVWS3hL4jaLBTjUYJbEE/1vXMs5nn4F5qbZ1FEa
+ Ie+s2nNy14CjMgU5/U6Sqd3kScj7aGaIJ/qiyEWePZVKTgWTNhr7stuucQi8ctd55ukErRkGzhE
+ 4ZeHMo6K7ee8eIQwkoEGrkwnVUYrXFHwZkmD9qlDdy/Mg24OmSKm+g5WRsJdMLzSNBUqAROCa5q
+ dzQdg5JYrSprMQbmlLLJV+eRJKuke9TaFNGYbUNzVvd8LvoyqBypWvHRQyNtZ8fXZfA1rN6bA/g
+ LireZNOJcrSiesQnM+C/teQIcXMs5DmVjuhy8Cz+WV9GQvz/2c8iAwcMiEmlhr/naXne5v/JaEg
+ Uw/MG8WBa7Te0LWmpXHtU37RuAx9JhrzBhCB8hnwo/QxK3DGAtCysBF7Z1ilBUBinpFbrRwF3+h
+ ALhat8wtk+lkUYw==
+X-Developer-Key: i=m.grzeschik@pengutronix.de; a=openpgp;
+ fpr=957BC452CE953D7EA60CF4FC0BE9E3157A1E2C64
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: m.grzeschik@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 02/04/2024 00:53, David Lechner wrote:
-> On Mon, Apr 1, 2024 at 10:10 AM Dumitru Ceclan via B4 Relay
-> <devnull+dumitru.ceclan.analog.com@kernel.org> wrote:
->>
->> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
->>
->> Add support for AD4111/AD4112/AD4114/AD4115/AD4116.
->>
->> The AD411X family encompasses a series of low power, low noise, 24-bit,
->> sigma-delta analog-to-digital converters that offer a versatile range of
->> specifications.
->>
->> This family of ADCs integrates an analog front end suitable for processing
->> both fully differential and single-ended, bipolar voltage inputs
->> addressing a wide array of industrial and instrumentation requirements.
->>
->> - All ADCs have inputs with a precision voltage divider with a division
->>   ratio of 10.
->> - AD4116 has 5 low level inputs without a voltage divider.
->> - AD4111 and AD4112 support current inputs (0 mA to 20 mA) using a 50ohm
->>   shunt resistor.
->>
->> Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>
->> ---
-> 
-> ...
-> 
->> @@ -951,7 +1117,7 @@ static int ad7173_fw_parse_channel_config(struct iio_dev *indio_dev)
->>         struct device *dev = indio_dev->dev.parent;
->>         struct iio_chan_spec *chan_arr, *chan;
->>         unsigned int ain[2], chan_index = 0;
->> -       int ref_sel, ret, num_channels;
->> +       int ref_sel, ret, reg, num_channels;
->>
->>         num_channels = device_get_child_node_count(dev);
->>
-> 
-> Another thing that is missing in this function both for the chips
-> being added here and the existing chips are channels for _all_
-> possible inputs. The driver is adding a fixed input channel for the
-> temperature sensor, as it should. But all of the chips also have a
-> similar input channel configuration that measures the reference
-> voltage. Currently, there doesn't seem to be a way to make use of this
-> feature. I would expect a hard-coded voltage input channel that is
-> always added for this reference voltage similar to the temperature
-> channel.
-> 
+This patch adds the pinmux and nodes for usbotg and usbh2.
 
-AD7173-8:
- Channel input configs:
-AINPOS0: REF+ 10101: 21
-AINNEG0: REF- 10110: 22
+In v6 revision of the pca100 the usb phys were changed to usb3320 which
+are connected by their reset pins. We add the phy configuration to the
+description.
 
-For the user to define the REF measurement channel:
- diff-channels = <21 22>;
-So it is possible from the binding side. It would just need support from
-the driver as currently any value above the stated number of inputs is
-rejected. Maybe document this in a comment like you suggested below.
+Signed-off-by: Michael Grzeschik <m.grzeschik@pengutronix.de>
+---
+Changes in v2:
+- changed prefix to "ARM: dts: imx27-phytec:"
+- Link to v1: https://lore.kernel.org/r/20240328-pca100-v1-1-58df67c2c950@pengutronix.de
+---
+ .../dts/nxp/imx/imx27-phytec-phycard-s-som.dtsi    | 78 ++++++++++++++++++++++
+ 1 file changed, 78 insertions(+)
 
-I really do not agree with using up channels without letting the user
-decide. I can accept to dedicate one for the temp where applicable but
-more than that and it feels like we are restricting the usage too much.
+diff --git a/arch/arm/boot/dts/nxp/imx/imx27-phytec-phycard-s-som.dtsi b/arch/arm/boot/dts/nxp/imx/imx27-phytec-phycard-s-som.dtsi
+index abc9233c5a1b1..31b3fc972abbf 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx27-phytec-phycard-s-som.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx27-phytec-phycard-s-som.dtsi
+@@ -15,6 +15,22 @@ memory@a0000000 {
+ 		device_type = "memory";
+ 		reg = <0xa0000000 0x08000000>; /* 128MB */
+ 	};
++
++	usbotgphy: usbotgphy {
++		compatible = "usb-nop-xceiv";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_usbotgphy>;
++		reset-gpios = <&gpio2 25 GPIO_ACTIVE_LOW>;
++		#phy-cells = <0>;
++	};
++
++	usbh2phy: usbh2phy {
++		compatible = "usb-nop-xceiv";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_usbh2phy>;
++		reset-gpios = <&gpio2 22 GPIO_ACTIVE_LOW>;
++		#phy-cells = <0>;
++	};
+ };
+ 
+ &cspi1 {
+@@ -84,6 +100,52 @@ MX27_PAD_NFRE_B__NFRE_B 0x0
+ 				MX27_PAD_NFWE_B__NFWE_B 0x0
+ 			>;
+ 		};
++
++		pinctrl_usbotgphy: usbotgphygrp {
++			fsl,pins = <
++				MX27_PAD_USBH1_RCV__GPIO2_25		0x1 /* reset gpio */
++			>;
++		};
++
++		pinctrl_usbotg: usbotggrp {
++			fsl,pins = <
++				MX27_PAD_USBOTG_CLK__USBOTG_CLK		0x0
++				MX27_PAD_USBOTG_DIR__USBOTG_DIR		0x0
++				MX27_PAD_USBOTG_NXT__USBOTG_NXT		0x0
++				MX27_PAD_USBOTG_STP__USBOTG_STP		0x0
++				MX27_PAD_USBOTG_DATA0__USBOTG_DATA0	0x0
++				MX27_PAD_USBOTG_DATA1__USBOTG_DATA1	0x0
++				MX27_PAD_USBOTG_DATA2__USBOTG_DATA2	0x0
++				MX27_PAD_USBOTG_DATA3__USBOTG_DATA3	0x0
++				MX27_PAD_USBOTG_DATA4__USBOTG_DATA4	0x0
++				MX27_PAD_USBOTG_DATA5__USBOTG_DATA5	0x0
++				MX27_PAD_USBOTG_DATA6__USBOTG_DATA6	0x0
++				MX27_PAD_USBOTG_DATA7__USBOTG_DATA7	0x0
++			>;
++		};
++
++		pinctrl_usbh2phy: usbh2phygrp {
++			fsl,pins = <
++				MX27_PAD_USBH1_SUSP__GPIO2_22		0x0 /* reset gpio */
++			>;
++		};
++
++		pinctrl_usbh2: usbh2grp {
++			fsl,pins = <
++				MX27_PAD_USBH2_CLK__USBH2_CLK		0x0
++				MX27_PAD_USBH2_DIR__USBH2_DIR		0x0
++				MX27_PAD_USBH2_NXT__USBH2_NXT		0x0
++				MX27_PAD_USBH2_STP__USBH2_STP		0x0
++				MX27_PAD_CSPI2_SCLK__USBH2_DATA0	0x0
++				MX27_PAD_CSPI2_MOSI__USBH2_DATA1	0x0
++				MX27_PAD_CSPI2_MISO__USBH2_DATA2	0x0
++				MX27_PAD_CSPI2_SS1__USBH2_DATA3		0x0
++				MX27_PAD_CSPI2_SS2__USBH2_DATA4		0x0
++				MX27_PAD_CSPI1_SS2__USBH2_DATA5		0x0
++				MX27_PAD_CSPI2_SS0__USBH2_DATA6		0x0
++				MX27_PAD_USBH2_DATA7__USBH2_DATA7	0x0
++			>;
++		};
+ 	};
+ };
+ 
+@@ -95,3 +157,19 @@ &nfc {
+ 	nand-on-flash-bbt;
+ 	status = "okay";
+ };
++
++&usbotg {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_usbotg>;
++	phy_type = "ulpi";
++	phys = <&usbotgphy>;
++	status = "okay";
++};
++
++&usbh2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_usbh2>;
++	phy_type = "ulpi";
++	phys = <&usbh2phy>;
++	status = "okay";
++};
 
+---
+base-commit: 5bab5dc780c9ed0c69fc2f828015532acf4a7848
+change-id: 20240328-pca100-a600ac4384e7
 
-> The ad717x chips (except AD7173-8 and AD7176-2) also have a common
-> mode voltage input ("((AVDD1 − AVSS)/5)") that could work the same.
-> 
-
-Again, would be resolved if I added support from the driver.
-
-> In the case of the ad717x chips though, it looks like these channels
-> are not "fixed" like they are in ad411x. It looks like these inputs
-> can be mixed and matched with AINx inputs and/or each other as
-> differential pairs. So if that is actually the case, I would expect
-> the DT bindings for ad717x to look like adi,ad4130.yaml where these
-> additional input sources are listed in the diff-channels property
-> instead of having hard-coded channels in the driver like I have
-> suggested above.
-> 
-
-Yep, agree.
-
-> But, as always, fixes for ad717x should be in a separate patch series.
-> Still, I think adding a hard-coded channel for the reference voltage
-> input for ad411x chips in this patch makes sense.
-
-As stated above, not comfortable with using up channels with hard-coded
-values.
+Best regards,
+-- 
+Michael Grzeschik <m.grzeschik@pengutronix.de>
 
 
