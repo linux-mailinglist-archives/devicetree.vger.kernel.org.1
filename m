@@ -1,200 +1,188 @@
-Return-Path: <devicetree+bounces-55840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55842-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 054C88968EF
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 10:40:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DECA896952
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 10:46:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 244871C239F9
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 08:40:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C16AE1F2BDF4
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 08:46:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D80C6DCE3;
-	Wed,  3 Apr 2024 08:39:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 269527174F;
+	Wed,  3 Apr 2024 08:43:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="aZxM0Fzc"
+	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="LZgQZ15Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE3F56FE13
-	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 08:39:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 337D06D1AF;
+	Wed,  3 Apr 2024 08:43:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.50.62.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712133581; cv=none; b=pJuTtI3AK6gexNwU4adqwGES0ft/aouJDY7+lFVJ+4rfyGItVrPpgueHkJjLU4KT3yZHLsKlAz3UN5JEESeiHGMQsxBUkiZCN3DZue0/2hJ8r4hfP5mk1jNWePx/MIYvJfB1u6BDCZj3M+4+0yPqepHvDijYsO3KhiB4ZAJJoHo=
+	t=1712133810; cv=none; b=FeB5zUfcH94rcJc28y8AmilW0I4INT+Z1vCTMUg+XKiYDQQPd3wlpoRP0hchHdZUaWnyURFEJtkqJnsoZY5EsuyuVzsjtPdVAcXUphCL+ASTtE9bi6EyitAZiAPusMYRRawQu653RBQMSaUPxTpxiFT6PhY81/R3SP+OUl2FKRw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712133581; c=relaxed/simple;
-	bh=oX1f18o8YYXgxS133FsNouB7LDA9X+oiIEuwMjfh7cs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QqToPBhXGGmYwqnVs9NE/lTiWrDU9wOiSOxEL5+wqtNwf9hR3x1UduM3hbosUYP+HJ+17MwuVowRnk8sVKeKFgx57VTdjRJjwR2kC4ICXzV5IlBWRSuNWpCxBMdTicLADFHFXjYZ0nzBRrpozXUwrxncvCO12taFa+g/xHhV1yw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=aZxM0Fzc; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1712133578;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=YOAN9UDBf2fvp2SNU3Z3PBO73HHDwz2R1xk7y6LptS8=;
-	b=aZxM0Fzc7gvPYnHHBFLcdX4N6lBPA/+i54cbSx/zqnCvXStZ5Xi+x0MO3kj6QdopNedS36
-	NToClnOHiyaCXhUDxuJjbqJLQ89w+V4EYqXA8jHd6FTU/QnRRpYlnMHFnuK6VPevhmPpOr
-	V2rFjV3fRXILhyBxpi8tOGLQYYyKUc0=
-Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com
- [209.85.167.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-528-2EsZHvA3Mv-DjTF9eZnyVA-1; Wed, 03 Apr 2024 04:39:36 -0400
-X-MC-Unique: 2EsZHvA3Mv-DjTF9eZnyVA-1
-Received: by mail-lf1-f70.google.com with SMTP id 2adb3069b0e04-516ae539accso2992674e87.3
-        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 01:39:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712133575; x=1712738375;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YOAN9UDBf2fvp2SNU3Z3PBO73HHDwz2R1xk7y6LptS8=;
-        b=YW4PwkFlgtJcxa4yZykCmvChumr6OdtAnK1M22jJQb/sYN4gFgzxswK/pw2gXNpccW
-         CIbXDkBmC4Nxtp8xEoGsM3viDIv+4g921Iz2hV2eynr1sZR8f6hRSJDUZXqybGxgZxf2
-         efmIYU2u4rC5krXn8PAi7ypg/0ozMw7NWI4XQ6vnQKwkhhQQKxbQXX6qmWo7VVlHiT/I
-         qJyrrrwivOnfGQtRNWL4YrF+UHhz9WC8hIZOEUBgWlClOlKKKXbvgEsRpUr7NJySSvLw
-         3o8SGLj1i3TiOycsxXNXLHTTMQU1KLZC3aiC+vCR+w15rnYpaVu9J+tuQqaulcN7JMoz
-         +3Fg==
-X-Forwarded-Encrypted: i=1; AJvYcCXXMxKRfBan/H6JqUL1m8cOIBmae94C2aUvu763GHHwMi0ZFrhF0fptWeIDK5JX6WmZqi1dTGlq87liiMHqnEDGVXrZiM9DmutZ7A==
-X-Gm-Message-State: AOJu0Yw6WVLKfhfrHHocO2lp800Yd24droNULTQCuJE1Wn+Aeh6Mfoa5
-	IX2CqWFuvpGaa8zsXLraZD15HU7Km5hZNCb5lRHi0yms8KMAXWAV0Gn5oC1zf/hIo+SMqGoqRdg
-	P4QeY4ic3xna1e4ulp6Gia8JuKiTW5jc+mQMiR2NcOIWDe7y7xfP2tOBu5Jg=
-X-Received: by 2002:a19:5e03:0:b0:516:9ee4:72ca with SMTP id s3-20020a195e03000000b005169ee472camr3454535lfb.21.1712133575191;
-        Wed, 03 Apr 2024 01:39:35 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGuArrLUAVWnRMIygSAlLs5UMP2oskkC8LAqbo6b1gMKytLI0T2wbEK04cJ5pWLegUSDDUcWg==
-X-Received: by 2002:a19:5e03:0:b0:516:9ee4:72ca with SMTP id s3-20020a195e03000000b005169ee472camr3454522lfb.21.1712133574736;
-        Wed, 03 Apr 2024 01:39:34 -0700 (PDT)
-Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec? (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl. [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
-        by smtp.gmail.com with ESMTPSA id r20-20020a17090638d400b00a4e59587f63sm4421923ejd.193.2024.04.03.01.39.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Apr 2024 01:39:34 -0700 (PDT)
-Message-ID: <4956933c-49c4-49ab-a91a-7e0efcc211d5@redhat.com>
-Date: Wed, 3 Apr 2024 10:39:33 +0200
+	s=arc-20240116; t=1712133810; c=relaxed/simple;
+	bh=mHSoyErBlwfvYg/gMJJkI++JTVkBL4ufvPQJSVNK/kM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ayrVvIPzWjy1MPOeNKAyrz0lkQ8I+/riD2HQw6PTj4BYwrhQmH5wy/fTOK/Vg/W5clqpl/iFB5GR5f3Oml3YtoS49I8Ef7Za1Lr44xRPlNwtcSSPGixzZ4tna1dJgGT/9KKBJxtID9DC1kURmpMWiXqCzdRi/frPi0WYX9l5SOs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com; spf=fail smtp.mailfrom=atomide.com; dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b=LZgQZ15Q; arc=none smtp.client-ip=74.50.62.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=atomide.com
+Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
+	by mail5.25mail.st (Postfix) with ESMTPSA id A6160604F3;
+	Wed,  3 Apr 2024 08:43:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
+	s=25mailst; t=1712133807;
+	bh=mHSoyErBlwfvYg/gMJJkI++JTVkBL4ufvPQJSVNK/kM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LZgQZ15QEnUqjUcnkb72dYvtWDUEoTLTE3qyB8z8+B1xUmOwOLqU927M0TKhv8kLT
+	 1UvjPBF7OLFR0GHaGfRH/Tj7uVZCIhJLl9+t1imEmj7sEYeNkGme164nE+JUEz/Icr
+	 WgO0huSe7n8pbOmnjtshSQQaIlyZXQVgZH17SwB8lZQDWwiRpQlY5rZg7AwMAO+ufE
+	 EQNL6TBKHu0Z9lQqL+0UAS4NKFp68wGvNjbqhFvi2tnubHjCSeRigBNjclESrgn35U
+	 xTx1tqor6aPiq+PVfQQZYeD6IcnKprjSuDUPp8vgiBfWu6eyeaklp7J16iFkwmFuJc
+	 GGXqn1AWuvivA==
+Date: Wed, 3 Apr 2024 11:43:19 +0300
+From: Tony Lindgren <tony@atomide.com>
+To: linux-omap@vger.kernel.org
+Cc: =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 00/12] Use clksel for more clocks for dra7
+Message-ID: <20240403084319.GK5132@atomide.com>
+References: <20240327073856.21517-1-tony@atomide.com>
+ <20240328113133.GG5132@atomide.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: leds: add LED_FUNCTION_FNLOCK
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Gergo Koteles <soyer@irl.hu>, Ike Panhc <ike.pan@canonical.com>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: platform-driver-x86@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-leds@vger.kernel.org, devicetree@vger.kernel.org
-References: <cover.1712063200.git.soyer@irl.hu>
- <8ac95e85a53dc0b8cce1e27fc1cab6d19221543b.1712063200.git.soyer@irl.hu>
- <6b47886e-09ac-4cb9-ab53-ca64f5320005@linaro.org>
- <39acb3b9-a69f-4654-9749-a9af42fea39e@redhat.com>
- <368e9817-0000-4f69-9f09-568827466121@linaro.org>
-Content-Language: en-US, nl
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <368e9817-0000-4f69-9f09-568827466121@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240328113133.GG5132@atomide.com>
 
-Hi,
+* Tony Lindgren <tony@atomide.com> [240328 11:31]:
+> * Tony Lindgren <tony@atomide.com> [240327 09:39]:
+> > The DPLL output clocks are problematic at this point as the
+> > clock driver makes assumptions based on no reg property in
+> > _register_dpll_x2() for the ti,omap4-dpll-x2-clock. After
+> > the driver issues are solved, the DPLL output related clocks
+> > can also use the clksel binding.
+> 
+> Actually the driver needs changes only for clocks where there's no
+> reg entry. For the clocks with a reg entry like dpll_per m2 outputs,
+> the following seems to work based on light testing.
 
-On 4/3/24 10:36 AM, Krzysztof Kozlowski wrote:
-> On 03/04/2024 10:31, Hans de Goede wrote:
->> Hi Krzysztof,
->>
->> On 4/2/24 3:55 PM, Krzysztof Kozlowski wrote:
->>> On 02/04/2024 15:21, Gergo Koteles wrote:
->>>> Newer laptops have FnLock LED.
->>>>
->>>> Add a define for this very common function.
->>>>
->>>> Signed-off-by: Gergo Koteles <soyer@irl.hu>
->>>> ---
->>>>  include/dt-bindings/leds/common.h | 1 +
->>>
->>> Do we really need to define all these possible LED functions? Please
->>> link to DTS user for this.
->>
->> It is useful to have well established names for common
->> LED functions instead of having each driver come up
->> with its own name with slightly different spelling
->> for various fixed function LEDs.
->>
->> This is even documented in:
->>
->> Documentation/leds/leds-class.rst :
->>
->> """
->> LED Device Naming
->> =================
->>
->> Is currently of the form:
->>
->>         "devicename:color:function"
->>
->> ...
->>
->>
->> - function:
->>         one of LED_FUNCTION_* definitions from the header
->>         include/dt-bindings/leds/common.h.
->> """
->>
->> Note this even specifies these definitions should go into
->> include/dt-bindings/leds/common.h .
->>
->> In this case there is no dts user (yet) only an in kernel
->> driver which wants to use a LED_FUNCTION_* define to
->> establish how to identify FN-lock LEDs going forward.
-> 
-> Ack, reasonable.
-> 
->>
->> Since a lot of LED_FUNCTION_* defines happen to be used
->> in dts files these happen to live under include/dt-bindings/
->> but the dts files are not the only consumer of these defines (1).
-> 
-> Yes, but if there was no DTS consumer at all, then it is not a binding,
-> so it should not go to include/dt-bindings.
-> 
->>
->> IMHO having a hard this must be used in a dts file rule
->> is not helpful for these kinda files with defines shared
->> between dts and non dts cases.
->>
->> If we were to follow this logic then any addition to
->>
->> include/uapi/linux/input-event-codes.h
->>
->> must have a dts user before being approved too ? Since
->> that file is included from include/dt-bindings/input/input.h ?
-> 
-> Wait, that's UAPI :) and we just share the constants. That's kind of
-> special case, but I get what you mean.
-> 
->>
->> TL;DR: not only is this patch fine, this is actually
->> the correct place to add such a define according to
->> the docs in Documentation/leds/leds-class.rst :
->>
->> Reviewed-by: Hans de Goede <hdegoede@redhat.com>
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Thanks. Is it ok for me to merge this through the pdx86
-tree (once I've reviewed the other 2 patches) ?
+Oh but below dpll_per_x2_ck has no reg yet we now add the reg property.
+Likely the additional patch below can't be used without driver changes
+for _register_dpll_x2().
 
 Regards,
 
-Hans
+Tony
 
-
-
+> 8< -----------------
+> diff --git a/arch/arm/boot/dts/ti/omap/dra7xx-clocks.dtsi b/arch/arm/boot/dts/ti/omap/dra7xx-clocks.dtsi
+> --- a/arch/arm/boot/dts/ti/omap/dra7xx-clocks.dtsi
+> +++ b/arch/arm/boot/dts/ti/omap/dra7xx-clocks.dtsi
+> @@ -1425,6 +1425,7 @@ dpll_per_byp_mux: clock@23 {
+>  		};
+>  	};
+>  
+> +	/* CM_CLKSEL_DPLL_PER */
+>  	dpll_per_ck: clock@140 {
+>  		#clock-cells = <0>;
+>  		compatible = "ti,omap4-dpll-clock";
+> @@ -1433,16 +1434,43 @@ dpll_per_ck: clock@140 {
+>  		reg = <0x0140>, <0x0144>, <0x014c>, <0x0148>;
+>  	};
+>  
+> -	dpll_per_m2_ck: clock-dpll-per-m2-8@150 {
+> -		#clock-cells = <0>;
+> -		compatible = "ti,divider-clock";
+> -		clock-output-names = "dpll_per_m2_ck";
+> -		clocks = <&dpll_per_ck>;
+> -		ti,max-div = <31>;
+> -		ti,autoidle-shift = <8>;
+> -		reg = <0x0150>;
+> -		ti,index-starts-at-one;
+> -		ti,invert-autoidle-bit;
+> +	/* CM_DIV_M2_DPLL_PER */
+> +	clock@150 {
+> +		compatible = "ti,clksel";
+> +		reg = <0x150>;
+> +		#clock-cells = <2>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		dpll_per_m2x2_ck: clock@0 {
+> +			reg = <0>;
+> +			#clock-cells = <0>;
+> +			compatible = "ti,divider-clock";
+> +			clock-output-names = "dpll_per_m2x2_ck";
+> +			clocks = <&dpll_per_x2_ck>;
+> +			ti,max-div = <31>;
+> +			ti,autoidle-shift = <8>;
+> +			ti,index-starts-at-one;
+> +			ti,invert-autoidle-bit;
+> +		};
+> +
+> +		dpll_per_m2_ck: clock@8 {
+> +			compatible = "fixed-factor-clock";
+> +			reg = <8>;
+> +			#clock-cells = <0>;
+> +			clocks = <&dpll_per_m2x2_ck>;
+> +			clock-mult = <1>;
+> +			clock-div = <2>;
+> +			clock-output-names = "dpll_per_m2_ck";
+> +		};
+> +
+> +		dpll_per_x2_ck: clock@10 {
+> +			reg = <10>;
+> +			#clock-cells = <0>;
+> +			compatible = "ti,omap4-dpll-x2-clock";
+> +			clock-output-names = "dpll_per_x2_ck";
+> +			clocks = <&dpll_per_ck>;
+> +		};
+>  	};
+>  
+>  	func_96m_aon_dclk_div: clock-func-96m-aon-dclk-div {
+> @@ -1503,13 +1531,6 @@ dpll_pcie_ref_m2_ck: clock-dpll-pcie-ref-m2-8@210 {
+>  		ti,invert-autoidle-bit;
+>  	};
+>  
+> -	dpll_per_x2_ck: clock-dpll-per-x2 {
+> -		#clock-cells = <0>;
+> -		compatible = "ti,omap4-dpll-x2-clock";
+> -		clock-output-names = "dpll_per_x2_ck";
+> -		clocks = <&dpll_per_ck>;
+> -	};
+> -
+>  	dpll_per_h11x2_ck: clock-dpll-per-h11x2-8@158 {
+>  		#clock-cells = <0>;
+>  		compatible = "ti,divider-clock";
+> @@ -1558,18 +1579,6 @@ dpll_per_h14x2_ck: clock-dpll-per-h14x2-8@164 {
+>  		ti,invert-autoidle-bit;
+>  	};
+>  
+> -	dpll_per_m2x2_ck: clock-dpll-per-m2x2-8@150 {
+> -		#clock-cells = <0>;
+> -		compatible = "ti,divider-clock";
+> -		clock-output-names = "dpll_per_m2x2_ck";
+> -		clocks = <&dpll_per_x2_ck>;
+> -		ti,max-div = <31>;
+> -		ti,autoidle-shift = <8>;
+> -		reg = <0x0150>;
+> -		ti,index-starts-at-one;
+> -		ti,invert-autoidle-bit;
+> -	};
+> -
+>  	dpll_usb_clkdcoldo: clock-dpll-usb-clkdcoldo {
+>  		#clock-cells = <0>;
+>  		compatible = "fixed-factor-clock";
+> -- 
+> 2.44.0
+> 
 
