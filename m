@@ -1,132 +1,143 @@
-Return-Path: <devicetree+bounces-55960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B3228972F1
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 16:45:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 981FD897321
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 16:56:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C458FB26364
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 14:44:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA5AF1C26A1D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 14:56:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47BAC146A91;
-	Wed,  3 Apr 2024 14:44:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2CAD149C41;
+	Wed,  3 Apr 2024 14:56:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KL/hqdY7"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="aKnImIsP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16C4213A40B;
-	Wed,  3 Apr 2024 14:44:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBCB31494BA
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 14:56:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712155491; cv=none; b=pyl4H+oKIkETLVhvfPHQXTHDvlTyeaK7hDJqNbeSuy6PbgtHx7ePwWhbN90zaOoKuHKKn58bXTtPviTDDDhyboPzKOIUiCDyDoQlUkXhX4u2flb7d3TvBs54nJz1w0p//whaCBSIvhdBwdSYvsn45mspvx6B9NLHxBiqIuFOyNY=
+	t=1712156175; cv=none; b=hu6sN2jg3W7gI/J6HizJkzbLG9NpeGHcftFtTHbyrZ3hn1Ucsee4nYigUsGv/wROGQbyIWKLeTp8jm2AwKvuui7bjrfFAYapeYH0FCItFazvLTtCPhlDngsdUU7tEFiu0BEZXOpoeh03LsIfMEz2vz5H+Tz65O38Vsyo2Rzj1pA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712155491; c=relaxed/simple;
-	bh=/bUWFCezkgyy5S4CuqWiKnU6VWsOo2TS23X0CcIeO3A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=snzGs1MsU2T+2K3LeLjEUM5reRHwVsbK+h2Fj8OWU1bcmw/gqjys+OkVjkXeRed5oePx5fXrPUOBCgJ0Mq7FoIxAHllgylXXOxstAcP6AnFXvGfGdbgE1q6A/XNrW39UcLH97sV613FC4e8BoJ2fjcMWfn1GShck1XVP5MmEUzM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KL/hqdY7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CD74C43390;
-	Wed,  3 Apr 2024 14:44:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712155490;
-	bh=/bUWFCezkgyy5S4CuqWiKnU6VWsOo2TS23X0CcIeO3A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KL/hqdY7g7A3rt3L64YGc6y7NTX5V8jEgRH7IAkb8JOPoYIVE5QOrXyy0d/eqhXw9
-	 vY4wymhn3lErTVlrTnXatW6LuhTFrVc37KKda09EL13L58Ihpz0i36/j1CDth4MoRn
-	 rQNJJvgojQa3hyCq/7MTOiyksIwuFCX/KjEhX0aXwK4rswWATSChfDtanxwrBYF3gC
-	 Zp/K7R7J/Dc/83hOszq7jPMoIhVgdNoqzvBdYaDbknJP7SGf1VJEkxR3hjLQmZ35hZ
-	 AlRbfVhB7SyO/JkEnmBQbn7Wl+WzxvFtKRBNG1aRrQy2S6TndM+I0M3swW1nbA595R
-	 U/Oh06gBLL9ZQ==
-Date: Wed, 3 Apr 2024 09:44:48 -0500
-From: Rob Herring <robh@kernel.org>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Kory Maincent <kory.maincent@bootlin.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-	Dent Project <dentproject@linuxfoundation.org>
-Subject: Re: [PATCH net-next v6 11/17] dt-bindings: net: pse-pd: Add another
- way of describing several PSE PIs
-Message-ID: <20240403144448.GB3508225-robh@kernel.org>
-References: <20240326-feature_poe-v6-0-c1011b6ea1cb@bootlin.com>
- <20240326-feature_poe-v6-11-c1011b6ea1cb@bootlin.com>
- <20240402132637.GA3744978-robh@kernel.org>
- <ZgworgDAXXOpf3QV@pengutronix.de>
+	s=arc-20240116; t=1712156175; c=relaxed/simple;
+	bh=qIMp/Bi43gG5OxVpu00ce21O5fSpFFXCTZkgJC0kaJQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=X/e9igxKp1MV7GMwsRzeKIkEm6Xaki3rari/H7hABq/te6Jbi3bxNuWuPLFZ6Hf+Vh7YLyVIA+p/vyhA0nmChMgQvcKfzRkQjexqse0tnmX98IE+NWDvRzWg5vyELXsYd2yxM/gfapXq8Kc/7RDyrzZCIAVOLmU4AGy4dHUNQMo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=aKnImIsP; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-516c114addaso418606e87.3
+        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 07:56:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1712156172; x=1712760972; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0AEDPySL2e/8A7unRrzw52gMZQYQQOXlB4w/mt06n1w=;
+        b=aKnImIsP8DZAEOQspUmW8LWc/9dXAMfFVzUOfjLRQsExSm+YC8ycRjE9jQg1o6dCoh
+         5iCfqS8uDMWH8uO6lMAz2bXbEK1O0D1nYOBbq3XqtW79q/Cc7cVCG/R+muXrspBOhUUm
+         wadCcstUMIMt3R/oSq96Xl2cpKgJiSVRjicPLlU31sGKvbVAKvjSD7hEZhM0KUek9PDj
+         D9ZxTZrrn2A9yTFvjpckb3yAeEfUcfL7ftrnJfDZXwe2Sxq44SAu4rCtOAIHV/88Fhxr
+         lrLYKerwj6Ig9SZ5Ouak9rn5oo6VaMzJgxH0mXFJBHIYX3GIlS7S/g+p7/JVK98F7huP
+         C6Vg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712156172; x=1712760972;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0AEDPySL2e/8A7unRrzw52gMZQYQQOXlB4w/mt06n1w=;
+        b=ps+1kqAZwoTXgpyojQ8CWMXjFNvah1Tl4WWWhrg7wZ25axfpt2e2DhpUq6ASAsUaCD
+         nqH+dG5gp9gLnQLRV1qAR6VhTMcADk/JTMc5Cgs3pQzFzeStUlDypcnRZrkVt9ZDwCG6
+         l5a9gJDzyIPo92KuwZMyro+vzMXWFtuDRYH5t6V51xiL/qXgrZPuQOjn4+3fwuuu/VWV
+         Hg9HJL7eY8W7xp8UdTx6LwpeAykvnMHS4KB+zjzwGNgRA7UgNpe8T57zHnGCjbTJInvj
+         fumbZFYQ7SbVrG4bFO0ZMqUWvN+EehkMFZskrZFC/+362WB7OAS/Va1bCVmQqMYa4Uf7
+         eHwA==
+X-Forwarded-Encrypted: i=1; AJvYcCXXt8468ngIPtW8bOBf/ppNyrAU8zv65zBYf/gSa9QiDaV6Cqwu2ibHOVJSUpEicS6aFep6NjFm/Kfr0tjgScu18PWN85iLLXB6qw==
+X-Gm-Message-State: AOJu0Yx35Q05/8EN/E/WKmSYtAsvArDL7Efb0a42URqdFxcBPlwWpK2J
+	EKugyzVhzqNSTMgZL6YSoDO3Akhv7UhibtAttxUVFBdGPMPzej3mSc0lAxllZNEx+K8UyCpBFC1
+	Mpy3M1AFZ2DeglS+qhvJtmSzKrh9szlD3Nttttw==
+X-Google-Smtp-Source: AGHT+IH1uAqfWGiUk+RIbBgdGkD1xZiuVe0WG6sH6tI1B254BJw9nsHUMXBNKMkZlc7467jz/bVPfZDn3fzBPSidFbA=
+X-Received: by 2002:a05:6512:36d2:b0:515:c17e:ddb1 with SMTP id
+ e18-20020a05651236d200b00515c17eddb1mr11741487lfs.50.1712156171964; Wed, 03
+ Apr 2024 07:56:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZgworgDAXXOpf3QV@pengutronix.de>
+References: <20240325131624.26023-1-brgl@bgdev.pl> <20240325131624.26023-6-brgl@bgdev.pl>
+ <87msqm8l6q.fsf@kernel.org>
+In-Reply-To: <87msqm8l6q.fsf@kernel.org>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Wed, 3 Apr 2024 16:56:01 +0200
+Message-ID: <CAMRc=MeCjNn7QdDrcQMuj32JFYoemQ6A8WOYcwKJo1YhDTfY+Q@mail.gmail.com>
+Subject: Re: [PATCH v6 05/16] dt-bindings: net: wireless: describe the ath12k
+ PCI module
+To: Kalle Valo <kvalo@kernel.org>
+Cc: Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Saravana Kannan <saravanak@google.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Arnd Bergmann <arnd@arndb.de>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Marek Szyprowski <m.szyprowski@samsung.com>, 
+	Alex Elder <elder@linaro.org>, Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Abel Vesa <abel.vesa@linaro.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Lukas Wunner <lukas@wunner.de>, 
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, linux-bluetooth@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-pci@vger.kernel.org, linux-pm@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 02, 2024 at 05:47:58PM +0200, Oleksij Rempel wrote:
-> On Tue, Apr 02, 2024 at 08:26:37AM -0500, Rob Herring wrote:
-> > > +          pairsets:
-> > > +            $ref: /schemas/types.yaml#/definitions/phandle-array
-> > > +            description:
-> > > +              List of phandles, each pointing to the power supply for the
-> > > +              corresponding pairset named in 'pairset-names'. This property
-> > > +              aligns with IEEE 802.3-2022, Section 33.2.3 and 145.2.4.
-> > > +              PSE Pinout Alternatives (as per IEEE 802.3-2022 Table 145\u20133)
-> > > +              |-----------|---------------|---------------|---------------|---------------|
-> > > +              | Conductor | Alternative A | Alternative A | Alternative B | Alternative B |
-> > > +              |           |    (MDI-X)    |     (MDI)     |      (X)      |      (S)      |
-> > > +              |-----------|---------------|---------------|---------------|---------------|
-> > > +              | 1         | Negative VPSE | Positive VPSE | \u2014             | \u2014             |
-> > > +              | 2         | Negative VPSE | Positive VPSE | \u2014             | \u2014             |
-> > > +              | 3         | Positive VPSE | Negative VPSE | \u2014             | \u2014             |
-> > > +              | 4         | \u2014             | \u2014             | Negative VPSE | Positive VPSE |
-> > > +              | 5         | \u2014             | \u2014             | Negative VPSE | Positive VPSE |
-> > > +              | 6         | Positive VPSE | Negative VPSE | \u2014             | \u2014             |
-> > > +              | 7         | \u2014             | \u2014             | Positive VPSE | Negative VPSE |
-> > > +              | 8         | \u2014             | \u2014             | Positive VPSE | Negative VPSE |
-> > > +            minItems: 1
-> > > +            maxItems: 2
-> > 
-> > "pairsets" does not follow the normal design pattern of foos, foo-names, 
-> > and #foo-cells. You could add #foo-cells I suppose, but what would cells 
-> > convey? I don't think it's a good fit for what you need.
-> > 
-> > The other oddity is the number of entries and the names are fixed. That 
-> > is usually defined per consumer. 
-> > 
-> > As each entry is just a power rail, why can't the regulator binding be 
-> > used here?
-> 
-> I'm not against describing it consequent with regulator till the wire
-> end, but right now I have no idea how it should be described by using
-> regulator bindings. There are maximum 2 rails going in to PSE PI on one
-> side and 4 rails with at least 5 combinations supported by standard on
-> other side. Instead of inventing anything new, I suggested to describe
-> supported output combinations by using IEEE 802.3 standard.
+On Mon, Mar 25, 2024 at 3:01=E2=80=AFPM Kalle Valo <kvalo@kernel.org> wrote=
+:
+>
+> Bartosz Golaszewski <brgl@bgdev.pl> writes:
+>
+> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >
+> > +
+> > +maintainers:
+> > +  - Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>
+> IMHO it would be better to have just driver maintainers listed here.
+>
 
-There's 4 combinations above, what's the 5th combination? SPE?
+Why? What's wrong with having the author of the bindings in the Cc list?
 
-Seems to me you just describe the 2 rails going to the connector and 
-then describe all the variations the connector supports. The PSE 
-(h/w) has little to do with which variations are supported, right? 
-For example, MDI-X vs. MDI support is determined by the PHY, right? Or 
-it has to be supported by both the PHY and PSE?
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - vddaon-supply
+> > +  - vddwlcx-supply
+> > +  - vddwlmx-supply
+> > +  - vddrfacmn-supply
+> > +  - vddrfa0p8-supply
+> > +  - vddrfa1p2-supply
+> > +  - vddrfa1p8-supply
+> > +  - vddpcie0p9-supply
+> > +  - vddpcie1p8-supply
+>
+> Same comment here as in patch 4. There are also ath12k PCI devices which
+> don't need DT at all. I don't know if that should be reflected in the
+> bindings doc but I want to point out this.
+>
 
-Rob
+But DT bindings don't apply to devices that don't have DT nodes. This
+isn't an issue at all.
+
+Bart
 
