@@ -1,51 +1,52 @@
-Return-Path: <devicetree+bounces-55910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0862D896D04
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 12:45:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BD26896D06
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 12:45:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A6B51C26E65
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 10:45:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5563028A33D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 10:45:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 160E713A271;
-	Wed,  3 Apr 2024 10:44:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D88F145B3D;
+	Wed,  3 Apr 2024 10:44:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="JA9p8GO3"
+	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="FMspfFXl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 280CE139CF3
-	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 10:44:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DB8F13958E
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 10:44:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712141096; cv=none; b=T4wUes+OMQWiVJKue/geC29zrqlCn6SC4758NJPSs/Bq0TGuphWHjhf00AtkbLCGlbQC45RPq2MSTvYXHSLjnBsmEcgaIaq/bKuGRY/tYGGOs/s2MvJap2d5ACxy5NbuVP0BCtkk1szM+f0FIA/EWE/UqHxaNVw5CcElZ0KHFqY=
+	t=1712141097; cv=none; b=izoe9FV6mNBF0DhCVjjHUi5ospsHJJWEi2Hl0PS1IhO++CqNvrVIDQjFDBHq6u2adRm57zlN2hEjP93E2J6ojX+6KxFDzBcufJdW5KMR6YjKsLJeRBYXI0zLGN6bP+ZwV+eDgSSQhiEXpXKu3j+/t0Ga8/DOY2GG96FXBuhdEVM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712141096; c=relaxed/simple;
-	bh=0S8b1fvqHo8aPEbPXCG10GqehUDxwKWnBk3bILVaB3M=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=FfM7pOA2vcRDtobx4DsAQ207qw00riK60QVb2Ih8wbV5MEiGbdtNSAqW3jFhajKvlW8bm0FP16vWn67gCU8B2WvjnMWiHxwqREhd74sCe14lj9hvI09GKdT4jrAWsu0QcOyPtoADf+SzEqk0TI6NzirwiGpdixAouH2ILjAiJgQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=JA9p8GO3; arc=none smtp.client-ip=185.67.36.66
+	s=arc-20240116; t=1712141097; c=relaxed/simple;
+	bh=Pi0U5AZkjMe4lXemTVOzXIlfpNO/K4FeBDBX8b2DQ5A=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=WYnPp7b+YUHn86nfNdrKJOOyyIVwbAp6WpV28ghi5uccNLcLwpTRxYlIj34wFPI0rvk7W5DJg5UhfriVv0sQbWggKwpHSSD5iVYqdzuIPWmypIVj88m+uRldOf+11DR8v24VWXyjsg/QDThMpzJQkmhWvmu4cpDlpQeRWH07dHA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=FMspfFXl; arc=none smtp.client-ip=185.67.36.65
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
 Received: from submission (posteo.de [185.67.36.169]) 
-	by mout02.posteo.de (Postfix) with ESMTPS id 50354240107
-	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 12:44:52 +0200 (CEST)
+	by mout01.posteo.de (Postfix) with ESMTPS id 6A27124002D
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 12:44:53 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.de; s=2017;
-	t=1712141092; bh=0S8b1fvqHo8aPEbPXCG10GqehUDxwKWnBk3bILVaB3M=;
+	t=1712141093; bh=Pi0U5AZkjMe4lXemTVOzXIlfpNO/K4FeBDBX8b2DQ5A=;
 	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:
 	 Content-Transfer-Encoding:Autocrypt:OpenPGP:From;
-	b=JA9p8GO3GBevnnVCnHQNcx4SbpnrIRO24TjL4IT33GPylQITt5+njniat916/+WKM
-	 R7p04+91TbzknBIhgGw2jXVgnVnrd5RC4E/avFjHTTXGmyTdcTgGSf1Nd9v53SOYAv
-	 j5RsWrgUdA/yc1oAYI98giqKINvByBIYON5PWPdJZVO/sMND/PpF+kxy8+EhJ+HFJk
-	 3t3+ASNJUIap3ZO6z6fj/BZ3vBZgbxre3XTv0yhlW0xyoKLoRGi8aG7wUWWCga9nVa
-	 tDVhXg+oQM3UJkH08Lk1vG1u6QdbefP5Dd4jpGQScSAcr7bqZreNLEA9EjXQSu5CQf
-	 Te83SEmeZ0LZw==
+	b=FMspfFXloRJvCUXCstiM7oec7eIyP+Z/4rPGQgJvW7KsMkGZ1yv0vvx9y2+qegAKL
+	 bfRluCS7kQXDLfHjSAuexO+W9v74xeR3wD26mQ/q0ZQJEr5znyVqhhjC8DJrJLh0ny
+	 iZq08YOOh6d3S4pIoCf6uweaaFYM2Pe5i+tbzCcwh0OUbg3ER+b6HvtdItF5luBpp1
+	 f9LpVGuDkJTaR/76/KtfRuFamASeZNf1OHvuseRBHyVnx5ztVdDLnj2ylaeuJYeL5Z
+	 ciOGhzZzPFVd7IV7tkovHa7AUqrbBYlEHgwW4WfpKtGl3sJYlz37LGXrSHiipxEata
+	 BahZUb7ASS02Q==
 Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4V8hGB720hz9rxL;
-	Wed,  3 Apr 2024 12:44:50 +0200 (CEST)
+	by submission (posteo.de) with ESMTPSA id 4V8hGC75Q5z9rxK;
+	Wed,  3 Apr 2024 12:44:51 +0200 (CEST)
 From: Alexander Reimelt <alexander.reimelt@posteo.de>
 To: andersson@kernel.org,
 	pvorel@suse.cz,
@@ -56,9 +57,11 @@ To: andersson@kernel.org,
 Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 0/2] arm64: Add basic support for LG H815
-Date: Wed,  3 Apr 2024 10:43:28 +0000
-Message-ID: <20240403104415.30636-1-alexander.reimelt@posteo.de>
+Subject: [PATCH 1/2] dt-bindings: arm: qcom: Add LG G4 (h815)
+Date: Wed,  3 Apr 2024 10:43:29 +0000
+Message-ID: <20240403104415.30636-2-alexander.reimelt@posteo.de>
+In-Reply-To: <20240403104415.30636-1-alexander.reimelt@posteo.de>
+References: <20240403104415.30636-1-alexander.reimelt@posteo.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,34 +80,25 @@ Autocrypt: addr=alexander.reimelt@posteo.de;
   F51wyGAjYXSmn5qFoNHu3yXyLUkFz1ME
 OpenPGP: url=https://posteo.de/keys/alexander.reimelt@posteo.de.asc
 
-Hello,
+International variant of the LG G4 from 2015.
 
-These patches add initial support for the LG H815.
-They are enough to boot the device on postmarketOS
-and have some basic functionality. Connecting to the
-device over USB networking via ssh, buttons, SD-Card,
-eMMC and regulators work. The dtb_checker shows some
-warnings, but they come from the msm8994.dtsi.
+Signed-off-by: Alexander Reimelt <alexander.reimelt@posteo.de>
+---
+ Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-For CPU bring up lk2nd is required. The DMA controller
-module fails to load and from time to time the SMD clock
-driver fails.
-
-But I hope to prevent duplicate work and make it more accessible.
-
-Best regards
-Alex
-
-Alexander Reimelt (2):
-  dt-bindings: arm: qcom: Add LG G4 (h815)
-  arm64: dts: qcom: Add basic support for LG G4 (H815)
-
- .../devicetree/bindings/arm/qcom.yaml         |   1 +
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- arch/arm64/boot/dts/qcom/msm8992-lg-h815.dts  | 422 ++++++++++++++++++
- 3 files changed, 424 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/msm8992-lg-h815.dts
-
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index 66beaac60e1d..76aefd4aac67 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -237,6 +237,7 @@ properties:
+       - items:
+           - enum:
+               - lg,bullhead
++              - lg,h815
+               - microsoft,talkman
+               - xiaomi,libra
+           - const: qcom,msm8992
 -- 
 2.44.0
 
