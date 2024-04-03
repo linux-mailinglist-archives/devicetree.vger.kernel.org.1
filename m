@@ -1,127 +1,323 @@
-Return-Path: <devicetree+bounces-55832-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43E8C89689B
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 10:29:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1FC58968B5
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 10:32:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDC631F28E78
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 08:29:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6CF511F2A91E
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 08:32:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 582EE12BE9E;
-	Wed,  3 Apr 2024 08:24:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B9A270CDF;
+	Wed,  3 Apr 2024 08:31:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RaD3L1HW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A8YEFwZb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9160E6FE04;
-	Wed,  3 Apr 2024 08:23:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D4036FE38;
+	Wed,  3 Apr 2024 08:31:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712132640; cv=none; b=E022XuXj4cIBa8HQsuil2I/JOPfpLDBbtebiTzFEgDe+SPbqRSaE4zqvsLuAHsOxD/VhHKFzpvcSsSXfpVi7/8vG2ocIy9bFQGX38uwrnj1HA9rKjhLDAvsKWmWDuM9Nz257bZ9ujN652r2nEJi19fdnQLMvnmrpqaA6BHisxwQ=
+	t=1712133096; cv=none; b=KQs7mrsUakRfIbYrcSTwfrn8hbwSLbNrw2kPg59Z28kUI9OdiAZC3+N8t4vzmILWcV6gNYgLvvR5rpA8WCjcMn41TOFLdt6sFSaf8CZAPzOzelTPIZKwl9QUOMa8b4UJXbXXWgkw7m/5Oax6DR4EFzypMwL0L2PMQ1T1CJzk/WE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712132640; c=relaxed/simple;
-	bh=+M42Bao+ClNNeoWyVzyTejnWVkvKqhDo99qvjTGhSSQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=rRa3DKiHUx+5oZZUCTDhUfULiMHvG0q4MmScGuKR28oHa8maaA0puJOU1LMQ9XdLayq0EFFHV83T+WGxBKWHsdlVrNvmFRj/wUv47IKJMD6vidxcNtLhwwW55xkA1yp3TyqmjUrkvvxcV7ztPJC5I8yYoOrM/YnBbZ+LPfjgdBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RaD3L1HW; arc=none smtp.client-ip=209.85.167.41
+	s=arc-20240116; t=1712133096; c=relaxed/simple;
+	bh=A1G/EIuOOJ8i0ld+6c8uAOSUiMqgigZKLLDXzVvHmWA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ok/rOu44NPWMR7j37nYJXUYtRE2quW+MA8q/B9PT2gmD+g6nOpmVytYxn3tUAbHOYE39SoBoxlVI0k22aiVXbb9k45I0Yuhp0qEiFfID1ZqN1L/gnqqJOWTZVDgXeVUOInrK1PclcBmkFiCXFBQSwrLiiOSL4TxpQrqAZob+wYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A8YEFwZb; arc=none smtp.client-ip=209.85.221.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-51588f70d2dso7997938e87.3;
-        Wed, 03 Apr 2024 01:23:58 -0700 (PDT)
+Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-4d8804a553dso2265824e0c.1;
+        Wed, 03 Apr 2024 01:31:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712132637; x=1712737437; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eJ4Sw0ukh/12TacOdDd7Bi3/+M5GpiW9CnKijj1wT7c=;
-        b=RaD3L1HWDc+0w6d7yfbmhDSZI/XBRRBxaUuyCn1lEqUTRXz2wEAf76MIZQlEg+Gkhz
-         p+VJBnZPZAkEeZlvaFP0JyEpfavaHlGtI4ZenGOIeZGJfeEWYzCiZFiD8Mag+5jRoyh2
-         iw/1UBtRWe5LQUpRO2YJU646WB4h6hz600aReMnOcGy84t12NbqX+VW5jTUr45KQ9d6q
-         bsq0br7/lqhd8mDSdbXNuHZXvWTyZxwHMDFr5BfBx2aJ5BIWLPUBKZh0pniZY/6uV/5R
-         owpyCW+engZLdOqwH2xek35LKSeeYnHDg41WChg+4m4ms2rJNz2GohA5vlO0T9XndguQ
-         r8RQ==
+        d=gmail.com; s=20230601; t=1712133093; x=1712737893; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=daDbH/60UyjrEKswcrfKWNqjEeojw6n8trzSoXESKFE=;
+        b=A8YEFwZbebD8GurWczbEIv9v4Em8k2Qq9OujPo2bJFAVVZZUQQDzSfP1z+wGNK0Sd2
+         /mwzgX49JWoxKXrekNYEpowJlLVg8mAImm/aiG+antQ2wkMd6XYLid4iZFa6N4qLMcmJ
+         XzuYLUfBIWOTlirxbDFuMJh1FdJlg/xYWcAEdVCzXvEA1S51ChaXxVtNKVw6qQSbUH85
+         p6caoxYrRTQoas88OngQrXY/Rv9w38Gufs0s+1gB03THZkUvoU4WqsU2tVGTGUziUsDQ
+         NYhpiaFgeyC+NAN3CDVDineEkq3MnE2yHE4SjaEYhY87Nglde9aougEAFvbAUyBkKLpA
+         VGIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712132637; x=1712737437;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eJ4Sw0ukh/12TacOdDd7Bi3/+M5GpiW9CnKijj1wT7c=;
-        b=dLOrCAe91Y/jMU/DfLGa31xZ2DNlYqo4SjT8+1FXN+iI9NyY7ePM3YUtCs3sGW+VaA
-         bxQQcbSSgdEr8h1L51DB/jsdqo/XKEFDcP9/vRm9Awm3dQknCF91+VHUIUtBjsErMtKl
-         WlE8beiao9fBjWIx+B4E06p+WzeLDZzZYYcxtu7vKR9f90z774fEqayZcX3JNKku8Cll
-         EIIRmfzbaiO31q5FRWdb+IwULQjpR++d+G3Angb8V5LFKrkOH8S0gAEthIAsm8VL6DML
-         pJPzy6eziMcAcr+H/eq+Rw1H+lNCGHlIsRYumgLHc7FCefG2dxkuj+xE5arh1pX6rli+
-         Ib9g==
-X-Forwarded-Encrypted: i=1; AJvYcCVdK+2dGidrpzy2bjGDcgD6YL4srcefA0620Pc9Hbu9PWrQ6xv1jJwTyaAnEEk6VToqH0hTfJ+9Tf1I0ehC7TtYKs/R48Tih2Zt9Efg3QJBxPWtLX9E+HdFwanZTluCZ8YaeTTH/d4QLw==
-X-Gm-Message-State: AOJu0Yyf9GmnM5lRyzezIGpbVAzXYn/WzwnTmFh22L30gSDQ8bVLoxP1
-	Q836ZT8CiiXqFMega0fdpDlMF9MA3Z2SblY2FOTVSj9/g0PyiV7q9KTQ7ACX
-X-Google-Smtp-Source: AGHT+IELzTtNIEw+C4X9+qkLnlcWx3mAWu3YHSZjHWNQnqwNrTFWo5wmP+OjKO1XHFk6cHVHQXuoSg==
-X-Received: by 2002:a19:5519:0:b0:513:2c86:3498 with SMTP id n25-20020a195519000000b005132c863498mr1309585lfe.48.1712132636692;
-        Wed, 03 Apr 2024 01:23:56 -0700 (PDT)
-Received: from [172.16.183.82] ([213.255.186.46])
-        by smtp.gmail.com with ESMTPSA id g19-20020a056512119300b00513ddd1760fsm1964610lfr.122.2024.04.03.01.23.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Apr 2024 01:23:56 -0700 (PDT)
-Message-ID: <f875655f-3e80-41e4-8994-e5d30aea7003@gmail.com>
-Date: Wed, 3 Apr 2024 11:23:55 +0300
+        d=1e100.net; s=20230601; t=1712133093; x=1712737893;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=daDbH/60UyjrEKswcrfKWNqjEeojw6n8trzSoXESKFE=;
+        b=iRWx7YJcSNBGvp5xyAh64ZgTd/NCJeZ5sMwxMXwcXaUpE1JlPbC3Y8QvbXyRmAPVYo
+         4iPD3+pPzY3uEzBfHx5PDyF/1QZn4AbTMX2mgRmG2Sp0R/+/Ekj7PEsZDiBilvPU2hXq
+         Tg7Tl7xdKEUbv0qIPDtvlNxkZq4bJSI1RWEHnMyANRiDIrZcKRg4E8ZO9BbOxJPVSlsh
+         oKE28ZZjHLNN91KB/OLaD4eZUm0zwkgc9TZWuJKE6yvqTVuIX8qAJYS1v7oR+r8BSvrL
+         eOhL3qL6KMh/barHHIM/rUsxLPVYy8Ebcc+T1caJhN0gdAv8e52drXfLb7HIiCyx/1ZY
+         UKwA==
+X-Forwarded-Encrypted: i=1; AJvYcCWvYYN6QTDVhzDAnaTqnc6XUwz+LJX8Pq56LQqM0Z6FXm6bW3UJzeb2o2VI4RSE+1O9GIFGZkU58V2bUfldmigG4tVqo+yasJo8r5z0qKoUFPkg/UVDR9g7EagD+1eS8Jtt7d6FN9+pGg==
+X-Gm-Message-State: AOJu0YyDclwl88NHxIYiP6YqaoXlPaAtnmdLHO3d9AjeNoU84rHPBJVt
+	EA8k55Yk6xn/T80wX3foPiOKmHgbpv0wPT7OoPwqtnNsYpGfUeED8Hv6hswsqzH6O2Jdnu4I5AN
+	w//bJbWh5SCeV+eSILbCgvhr9bA0=
+X-Google-Smtp-Source: AGHT+IHJRryfwFuo5gBjI0T5UhyruMMscThBoq8U+Q3bt7qRjGQ6ABaez5cGEHQNFjsIA/5zjf0xpnQyxRQbwVNJaEY=
+X-Received: by 2002:a1f:e4c2:0:b0:4d4:eff:454 with SMTP id b185-20020a1fe4c2000000b004d40eff0454mr10249167vkh.1.1712133092081;
+ Wed, 03 Apr 2024 01:31:32 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: mfd: Add ROHM BD71879
-Content-Language: en-US, en-GB
-To: Andreas Kemnade <andreas@kemnade.info>, lee@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240402193515.513713-1-andreas@kemnade.info>
- <20240402193515.513713-2-andreas@kemnade.info>
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20240402193515.513713-2-andreas@kemnade.info>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240222094006.1030709-1-apatel@ventanamicro.com> <20240222094006.1030709-2-apatel@ventanamicro.com>
+In-Reply-To: <20240222094006.1030709-2-apatel@ventanamicro.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Wed, 3 Apr 2024 09:29:43 +0100
+Message-ID: <CA+V-a8tGucbJ87hsMQDEgcor5BzDmB_WnRsEn6c9F_HzucWLXQ@mail.gmail.com>
+Subject: Re: [PATCH v14 01/18] irqchip/sifive-plic: Convert PLIC driver into a
+ platform driver
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Thomas Gleixner <tglx@linutronix.de>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Marc Zyngier <maz@kernel.org>, =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>, 
+	Atish Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>, 
+	Sunil V L <sunilvl@ventanamicro.com>, Saravana Kannan <saravanak@google.com>, 
+	Anup Patel <anup@brainfault.org>, linux-riscv@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 4/2/24 22:35, Andreas Kemnade wrote:
-> As this chip was seen in several devices in the wild, add it.
-> 
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> Suggested-by: Matti Vaittinen <mazziesaccount@gmail.com>
+Hi Anup,
 
-
-Acked-by: Matti Vaittinen <mazziesaccount@gmail.com>
-
+On Thu, Feb 22, 2024 at 9:41=E2=80=AFAM Anup Patel <apatel@ventanamicro.com=
+> wrote:
+>
+> The PLIC driver does not require very early initialization so convert
+> it into a platform driver.
+>
+> After conversion, the PLIC driver is probed after CPUs are brought-up
+> so setup cpuhp state after context handler of all online CPUs are
+> initialized otherwise PLIC driver crashes for platforms with multiple
+> PLIC instances.
+>
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
 > ---
->   Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml | 4 +++-
->   1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
-> index 0b62f854bf6b..e4df09e8961c 100644
-> --- a/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
-> @@ -17,7 +17,9 @@ description: |
->   
->   properties:
->     compatible:
-> -    const: rohm,bd71828
-> +    enum:
-> +      - rohm,bd71828
-> +      - rohm,bd71879
->   
->     reg:
->       description:
+>  drivers/irqchip/irq-sifive-plic.c | 101 ++++++++++++++++++------------
+>  1 file changed, 61 insertions(+), 40 deletions(-)
+>
+This patch seems to have broken things on RZ/Five SoC, after reverting
+this patch I get to boot it back again on v6.9-rc2. Looks like there
+is some probe order issue after switching to platform driver?
 
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
+Cheers,
+Prabhakar
 
-~~ When things go utterly wrong vim users can always type :help! ~~
-
+> diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifi=
+ve-plic.c
+> index 5b7bc4fd9517..7400a07fc479 100644
+> --- a/drivers/irqchip/irq-sifive-plic.c
+> +++ b/drivers/irqchip/irq-sifive-plic.c
+> @@ -64,6 +64,7 @@
+>  #define PLIC_QUIRK_EDGE_INTERRUPT      0
+>
+>  struct plic_priv {
+> +       struct device *dev;
+>         struct cpumask lmask;
+>         struct irq_domain *irqdomain;
+>         void __iomem *regs;
+> @@ -406,30 +407,50 @@ static int plic_starting_cpu(unsigned int cpu)
+>         return 0;
+>  }
+>
+> -static int __init __plic_init(struct device_node *node,
+> -                             struct device_node *parent,
+> -                             unsigned long plic_quirks)
+> +static const struct of_device_id plic_match[] =3D {
+> +       { .compatible =3D "sifive,plic-1.0.0" },
+> +       { .compatible =3D "riscv,plic0" },
+> +       { .compatible =3D "andestech,nceplic100",
+> +         .data =3D (const void *)BIT(PLIC_QUIRK_EDGE_INTERRUPT) },
+> +       { .compatible =3D "thead,c900-plic",
+> +         .data =3D (const void *)BIT(PLIC_QUIRK_EDGE_INTERRUPT) },
+> +       {}
+> +};
+> +
+> +static int plic_probe(struct platform_device *pdev)
+>  {
+>         int error =3D 0, nr_contexts, nr_handlers =3D 0, i;
+> -       u32 nr_irqs;
+> -       struct plic_priv *priv;
+> +       struct device *dev =3D &pdev->dev;
+> +       unsigned long plic_quirks =3D 0;
+>         struct plic_handler *handler;
+> +       struct plic_priv *priv;
+> +       bool cpuhp_setup;
+>         unsigned int cpu;
+> +       u32 nr_irqs;
+> +
+> +       if (is_of_node(dev->fwnode)) {
+> +               const struct of_device_id *id;
+> +
+> +               id =3D of_match_node(plic_match, to_of_node(dev->fwnode))=
+;
+> +               if (id)
+> +                       plic_quirks =3D (unsigned long)id->data;
+> +       }
+>
+>         priv =3D kzalloc(sizeof(*priv), GFP_KERNEL);
+>         if (!priv)
+>                 return -ENOMEM;
+>
+> +       priv->dev =3D dev;
+>         priv->plic_quirks =3D plic_quirks;
+>
+> -       priv->regs =3D of_iomap(node, 0);
+> +       priv->regs =3D of_iomap(to_of_node(dev->fwnode), 0);
+>         if (WARN_ON(!priv->regs)) {
+>                 error =3D -EIO;
+>                 goto out_free_priv;
+>         }
+>
+>         error =3D -EINVAL;
+> -       of_property_read_u32(node, "riscv,ndev", &nr_irqs);
+> +       of_property_read_u32(to_of_node(dev->fwnode), "riscv,ndev", &nr_i=
+rqs);
+>         if (WARN_ON(!nr_irqs))
+>                 goto out_iounmap;
+>
+> @@ -439,13 +460,13 @@ static int __init __plic_init(struct device_node *n=
+ode,
+>         if (!priv->prio_save)
+>                 goto out_free_priority_reg;
+>
+> -       nr_contexts =3D of_irq_count(node);
+> +       nr_contexts =3D of_irq_count(to_of_node(dev->fwnode));
+>         if (WARN_ON(!nr_contexts))
+>                 goto out_free_priority_reg;
+>
+>         error =3D -ENOMEM;
+> -       priv->irqdomain =3D irq_domain_add_linear(node, nr_irqs + 1,
+> -                       &plic_irqdomain_ops, priv);
+> +       priv->irqdomain =3D irq_domain_add_linear(to_of_node(dev->fwnode)=
+, nr_irqs + 1,
+> +                                               &plic_irqdomain_ops, priv=
+);
+>         if (WARN_ON(!priv->irqdomain))
+>                 goto out_free_priority_reg;
+>
+> @@ -455,7 +476,7 @@ static int __init __plic_init(struct device_node *nod=
+e,
+>                 int cpu;
+>                 unsigned long hartid;
+>
+> -               if (of_irq_parse_one(node, i, &parent)) {
+> +               if (of_irq_parse_one(to_of_node(dev->fwnode), i, &parent)=
+) {
+>                         pr_err("failed to parse parent for context %d.\n"=
+, i);
+>                         continue;
+>                 }
+> @@ -491,7 +512,7 @@ static int __init __plic_init(struct device_node *nod=
+e,
+>
+>                 /* Find parent domain and register chained handler */
+>                 if (!plic_parent_irq && irq_find_host(parent.np)) {
+> -                       plic_parent_irq =3D irq_of_parse_and_map(node, i)=
+;
+> +                       plic_parent_irq =3D irq_of_parse_and_map(to_of_no=
+de(dev->fwnode), i);
+>                         if (plic_parent_irq)
+>                                 irq_set_chained_handler(plic_parent_irq,
+>                                                         plic_handle_irq);
+> @@ -533,20 +554,29 @@ static int __init __plic_init(struct device_node *n=
+ode,
+>
+>         /*
+>          * We can have multiple PLIC instances so setup cpuhp state
+> -        * and register syscore operations only when context handler
+> -        * for current/boot CPU is present.
+> +        * and register syscore operations only once after context
+> +        * handlers of all online CPUs are initialized.
+>          */
+> -       handler =3D this_cpu_ptr(&plic_handlers);
+> -       if (handler->present && !plic_cpuhp_setup_done) {
+> -               cpuhp_setup_state(CPUHP_AP_IRQ_SIFIVE_PLIC_STARTING,
+> -                                 "irqchip/sifive/plic:starting",
+> -                                 plic_starting_cpu, plic_dying_cpu);
+> -               register_syscore_ops(&plic_irq_syscore_ops);
+> -               plic_cpuhp_setup_done =3D true;
+> +       if (!plic_cpuhp_setup_done) {
+> +               cpuhp_setup =3D true;
+> +               for_each_online_cpu(cpu) {
+> +                       handler =3D per_cpu_ptr(&plic_handlers, cpu);
+> +                       if (!handler->present) {
+> +                               cpuhp_setup =3D false;
+> +                               break;
+> +                       }
+> +               }
+> +               if (cpuhp_setup) {
+> +                       cpuhp_setup_state(CPUHP_AP_IRQ_SIFIVE_PLIC_STARTI=
+NG,
+> +                                         "irqchip/sifive/plic:starting",
+> +                                         plic_starting_cpu, plic_dying_c=
+pu);
+> +                       register_syscore_ops(&plic_irq_syscore_ops);
+> +                       plic_cpuhp_setup_done =3D true;
+> +               }
+>         }
+>
+> -       pr_info("%pOFP: mapped %d interrupts with %d handlers for"
+> -               " %d contexts.\n", node, nr_irqs, nr_handlers, nr_context=
+s);
+> +       pr_info("%pOFP: mapped %d interrupts with %d handlers for %d cont=
+exts.\n",
+> +               to_of_node(dev->fwnode), nr_irqs, nr_handlers, nr_context=
+s);
+>         return 0;
+>
+>  out_free_enable_reg:
+> @@ -563,20 +593,11 @@ static int __init __plic_init(struct device_node *n=
+ode,
+>         return error;
+>  }
+>
+> -static int __init plic_init(struct device_node *node,
+> -                           struct device_node *parent)
+> -{
+> -       return __plic_init(node, parent, 0);
+> -}
+> -
+> -IRQCHIP_DECLARE(sifive_plic, "sifive,plic-1.0.0", plic_init);
+> -IRQCHIP_DECLARE(riscv_plic0, "riscv,plic0", plic_init); /* for legacy sy=
+stems */
+> -
+> -static int __init plic_edge_init(struct device_node *node,
+> -                                struct device_node *parent)
+> -{
+> -       return __plic_init(node, parent, BIT(PLIC_QUIRK_EDGE_INTERRUPT));
+> -}
+> -
+> -IRQCHIP_DECLARE(andestech_nceplic100, "andestech,nceplic100", plic_edge_=
+init);
+> -IRQCHIP_DECLARE(thead_c900_plic, "thead,c900-plic", plic_edge_init);
+> +static struct platform_driver plic_driver =3D {
+> +       .driver =3D {
+> +               .name           =3D "riscv-plic",
+> +               .of_match_table =3D plic_match,
+> +       },
+> +       .probe =3D plic_probe,
+> +};
+> +builtin_platform_driver(plic_driver);
+> --
+> 2.34.1
+>
+>
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
 
