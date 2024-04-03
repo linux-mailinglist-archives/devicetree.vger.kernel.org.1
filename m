@@ -1,190 +1,104 @@
-Return-Path: <devicetree+bounces-55955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CE858972A3
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 16:31:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A3A38972AE
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 16:33:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6F571F217E0
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 14:31:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 68381B29525
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 14:33:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2AE03716D;
-	Wed,  3 Apr 2024 14:31:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBDF3433A7;
+	Wed,  3 Apr 2024 14:33:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DPbur/z4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FpTFLIFg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91B38D272;
-	Wed,  3 Apr 2024 14:31:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 594343611A;
+	Wed,  3 Apr 2024 14:33:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712154705; cv=none; b=WcgeDu01JuQW87Zf06uZGwPxmaf23oyoAVaBLWuyqPeHpQ8NfsxEYXamr+K8wIewyKCaR7UAdXU7e8Zxv1abOmDZ53WlTdF78Ckkh21v91PrFwUvKKYATnLM5zGIImMZ0n9IA3HhuoGu6ycAwTOg5SNiul3y+rOkdgSrVI/DNjI=
+	t=1712154781; cv=none; b=InbU8P8yeVaIrUtaBGH6148u4IuFUGe9tVY/ezefcY3kM+FhOthCZ3NoXl8qRe4HfGnEQYXYvMgaa6YQepeddmtFLnT9rqjFtsER3J7EYOZEBn2cT6gg7DcG7pkWuL4PGkMIcZsiH+olgEU3m6cMCzLkvz3h1mavrYdBOAA4kW0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712154705; c=relaxed/simple;
-	bh=awzNNZdI5HcMDUhEsGuSnb6/bioiSNUyQOEbMy3wFkM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b8ycIvMxLMziBy9rrifKZIGfa1+n4g7uSVa9ttNWbgsSpsrJo4QcFEFRR0pfdI2h5cO6oWYBbqC1/L9UxDxItmxgT1mlCrCULmzlWaNOXdFqlTfXEXRNYoWSVjHcxdRcJv5or5x/pRwzBsecGo1NWjOqf8nkKS2zcCJMEV43Yjk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DPbur/z4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE051C433F1;
-	Wed,  3 Apr 2024 14:31:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712154705;
-	bh=awzNNZdI5HcMDUhEsGuSnb6/bioiSNUyQOEbMy3wFkM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DPbur/z4a1tQGEOZanah0R5lQ40TUPfDY6onBOSULbDggoXDaa6XJlzOl5449fH1H
-	 orrjhONQ+tBaJewJdR1NbiPAxAKoKqCihxzjaxJ/c/JSYol0i4gVmPL1G+CETej73T
-	 L4CevX5bm3JoMhgDu4BDtPLqBDZgPwgXebq1/f1BUtnv6DLd0qxi6klKbPjjrwcCwD
-	 QrqCYWqQOrHfSy+R/gku28usZNMd3AKh87sIhB6tHjjfyVBugCmkGK9/VPrKbpFl6w
-	 7YhMetzwM7LnqvGLx479DRvuqF5HrX/B/LQJpVyQTguBkc9YFzpBbWe2QH8OIk+Yyx
-	 NNS7WMYUjX6Iw==
-Date: Wed, 3 Apr 2024 09:31:42 -0500
-From: Rob Herring <robh@kernel.org>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	Mark Brown <broonie@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-	Dent Project <dentproject@linuxfoundation.org>
-Subject: Re: [PATCH net-next v6 11/17] dt-bindings: net: pse-pd: Add another
- way of describing several PSE PIs
-Message-ID: <20240403143142.GA3508225-robh@kernel.org>
-References: <20240326-feature_poe-v6-0-c1011b6ea1cb@bootlin.com>
- <20240326-feature_poe-v6-11-c1011b6ea1cb@bootlin.com>
- <20240402132637.GA3744978-robh@kernel.org>
- <20240403111548.30e780b5@kmaincent-XPS-13-7390>
+	s=arc-20240116; t=1712154781; c=relaxed/simple;
+	bh=OUJHSpU0stUn/PZ2Ed30p8qw/Z2Mp8wLrkvOjaU9UMI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JAPIdlG+JRe176CUUboKYu8PtOBjjkFtWYZaN4Wk0InK5c8m+ziuJozPEOH6XnpaFwFDysA2JMA8shML7ct7TQSQ2e+wS//Hqk4vrPMnny8EdSeZnK4BGwblgy3rgXI8uPK6GRU7/UOmxh/jiqB4pcym8j1bN+t1tnNgUFhX/pQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FpTFLIFg; arc=none smtp.client-ip=209.85.216.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-2a26243d9c4so395192a91.0;
+        Wed, 03 Apr 2024 07:33:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712154780; x=1712759580; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OUJHSpU0stUn/PZ2Ed30p8qw/Z2Mp8wLrkvOjaU9UMI=;
+        b=FpTFLIFg7VTkEBEgBgUjcS0HuObawWTLKfBxLY0PnuN+RWj7jtG3rPya1ztVxoSpJv
+         gS6rYvoKuSPQLabrTv59Ln/3FH79XD8AweAuFooWEpvrjy53PboM/PvxmHGzJreAF/Yq
+         qXVnh57yFV0zBYtGnlhasvEfCqMmQSfwyyR6jvkzP9vfS3VshQjimVD6W8dx01sjSOYK
+         Y/OfY4vlzAWMpsg+a5NAglGMaUlowwndp6B2EQ3syFQrBaSCOH1aDjqK3Vxn79jrF1EP
+         tYp0ogGVZh23cFQaHnsVRSRxRfIp/Sjw16piNlclSJVvwF7OoEZQ1YNVibaUhnLRH4np
+         n9vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712154780; x=1712759580;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=OUJHSpU0stUn/PZ2Ed30p8qw/Z2Mp8wLrkvOjaU9UMI=;
+        b=STdsjsGobB7FLZ1mYjwvnrtPkjkpvpaYWoKbdm03jf0e08qljCMD7UmZIbeGCMCBhF
+         Eh3MEaEpVcFKrRBi8ixwwvo08IzllHfe79PKsjKaOj5MVQQU/k1szJ+d8g/emj+YqGS9
+         w0WvLBz2j/a+bvseB3HVmWASDqHxiakNITcXr0lHaZZL9AfneyRbXolfKBGZ3SZxIP4x
+         Re9lCs+Y8tiwNxYCjo8+mZDX1zr8zDFTtUAajhyckj4CeJNzP6eu/Bgm0koOtbvZU9NB
+         hhjTwuQXrd5lYLrAgW0VvahoLgTeTh+8pFVIGA8VRC5BwfXOuNXK6/DLYIX/wpHOdXn0
+         qaOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUgXmLjwB6rzHPKaiKov8iKdjb0MezyTL4dGAZ4DDhmlOEj7hM9ofS6Bz6lsXz6HAnLfFPgpTMIcq4xmdvlOrCDIQuFkn8aXIg2hrVa+Wr1r38i9ZbRqQ4yL7/I1WxW1hC1cbChwbRK
+X-Gm-Message-State: AOJu0YwcCZJiO16yn/AdEU6vbd8OZyoe64l5ksXwpYE7hNbHg8oQoaa7
+	e9jhqv09syFd5k8Dro9UvKaF1iX0pAw0otxau3r+KmIhVjZc7Ln/wJCWGl3dhih5feV9MSJ2Cyh
+	CcueQvOEZZATqrN4Oet2z8eUDcro=
+X-Google-Smtp-Source: AGHT+IHWD11ulIJ1gHLJMETQReusUkHa/La2cTxwumjKPDyB4FsMTVQjn746D+1Obn8syZMkbkr5xY8NreFTIJu3mRY=
+X-Received: by 2002:a17:90b:124a:b0:2a2:666f:966d with SMTP id
+ gx10-20020a17090b124a00b002a2666f966dmr4091940pjb.1.1712154779670; Wed, 03
+ Apr 2024 07:32:59 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240403111548.30e780b5@kmaincent-XPS-13-7390>
+References: <20240326231033.2048193-1-festevam@gmail.com> <ZgPtolH796HER4cP@kekkonen.localdomain>
+ <CAOMZO5AYjNPWZfy_dN12K9JNwWaWThpMs0W-FzETF5k8fobgeg@mail.gmail.com>
+ <ZgSeACFfBAmOPXdt@kekkonen.localdomain> <CAOMZO5BGYhnhOrBRS9zBeYYJFHXnQkqZCAV2wGtdpmiA3HZTqA@mail.gmail.com>
+ <ZgvCJ5F6KlhVGRPC@kekkonen.localdomain>
+In-Reply-To: <ZgvCJ5F6KlhVGRPC@kekkonen.localdomain>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Wed, 3 Apr 2024 11:32:47 -0300
+Message-ID: <CAOMZO5Ck5W3M_eWFqvQAtPcUUQDyF1fwvZ_Pi9vHgiPp7nsEXA@mail.gmail.com>
+Subject: Re: [PATCH] media: dt-bindings: ovti,ov2680: Document clock/data-lanes
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: rmfrfs@gmail.com, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	Fabio Estevam <festevam@denx.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Apr 03, 2024 at 11:15:48AM +0200, Kory Maincent wrote:
-> On Tue, 2 Apr 2024 08:26:37 -0500
-> Rob Herring <robh@kernel.org> wrote:
-> 
-> > > +          pairset-names:
-> > > +            $ref: /schemas/types.yaml#/definitions/string-array
-> > > +            description:
-> > > +              Names of the pairsets as per IEEE 802.3-2022, Section
-> > > 145.2.4.
-> > > +              Valid values are "alternative-a" and "alternative-b". Each
-> > > name  
-> > 
-> > Don't state constraints in prose which are defined as schema 
-> > constraints.
-> 
-> Ok, I will remove the line.
-> 
-> > > +          pairsets:
-> > > +            $ref: /schemas/types.yaml#/definitions/phandle-array
-> > > +            description:
-> > > +              List of phandles, each pointing to the power supply for the
-> > > +              corresponding pairset named in 'pairset-names'. This property
-> > > +              aligns with IEEE 802.3-2022, Section 33.2.3 and 145.2.4.
-> > > +              PSE Pinout Alternatives (as per IEEE 802.3-2022 Table
-> > > 145\u20133)
-> > > +
-> > > |-----------|---------------|---------------|---------------|---------------|
-> > > +              | Conductor | Alternative A | Alternative A | Alternative B
-> > > | Alternative B |
-> > > +              |           |    (MDI-X)    |     (MDI)     |      (X)
-> > > |      (S)      |
-> > > +
-> > > |-----------|---------------|---------------|---------------|---------------|
-> > > +              | 1         | Negative VPSE | Positive VPSE | \u2014
-> > >     | \u2014             |
-> > > +              | 2         | Negative VPSE | Positive VPSE | \u2014
-> > >     | \u2014             |
-> > > +              | 3         | Positive VPSE | Negative VPSE | \u2014
-> > >     | \u2014             |
-> > > +              | 4         | \u2014             | \u2014             |
-> > > Negative VPSE | Positive VPSE |
-> > > +              | 5         | \u2014             | \u2014             |
-> > > Negative VPSE | Positive VPSE |
-> > > +              | 6         | Positive VPSE | Negative VPSE | \u2014
-> > >     | \u2014             |
-> > > +              | 7         | \u2014             | \u2014             |
-> > > Positive VPSE | Negative VPSE |
-> > > +              | 8         | \u2014             | \u2014             |
-> > > Positive VPSE | Negative VPSE |
-> > > +            minItems: 1
-> > > +            maxItems: 2  
-> > 
-> > "pairsets" does not follow the normal design pattern of foos, foo-names, 
-> > and #foo-cells. You could add #foo-cells I suppose, but what would cells 
-> > convey? I don't think it's a good fit for what you need.
-> > 
-> > The other oddity is the number of entries and the names are fixed. That 
-> > is usually defined per consumer. 
-> 
-> Theoretically if the RJ45 port binding was supported it would make more sense,
-> but in reality it's not feasible as the PSE controller need this information
-> in its init process.
-> The PSE controller reset all its port to apply a configuration so we can't do
-> it when the consumer (RJ45) probe. It would reset the other ports if one
-> consumer is probed later in the process.
+Hi Sakari,
 
-There is no reason other than convenience that all information some 
-driver needs has to be in one node or one hierarchy of nodes. You can 
-fetch anything from anywhere in the DT. It does feel like some of this 
-belongs in a connector node. We often haven't described connectors in DT 
-and stick connector properties in the controller node associated with 
-the connector. Then as things get more complicated, it becomes a mess. 
+On Tue, Apr 2, 2024 at 5:30=E2=80=AFAM Sakari Ailus
+<sakari.ailus@linux.intel.com> wrote:
 
+> If it's a problem with the driver, you should fix the driver instead of
+> working around it in DT. Just remove the check.
 
-> > As each entry is just a power rail, why can't the regulator binding be 
-> > used here?
-> 
-> Olekisj already answered about it.
-> PSE PI is like a regulator but with few different features and more information
-> like the pinout and the polarity, so we could not really fully rely on the
-> regulator binding style.
-> 
-> > > +
-> > > +          polarity-supported:
-> > > +            $ref: /schemas/types.yaml#/definitions/string-array
-> > > +            description:
-> > > +              Polarity configuration supported by the PSE PI pairsets.
-> > > +            minItems: 1
-> > > +            maxItems: 4
-> > > +            items:
-> > > +              enum:
-> > > +                - MDI-X
-> > > +                - MDI
-> > > +                - X
-> > > +                - S
-> > > +
-> > > +          vpwr-supply:
-> > > +            description: Regulator power supply for the PSE PI.  
-> > 
-> > I don't see this being used anywhere.
-> 
-> Right, I forgot to add it to the PD692x0 and TPS23881 binding example!
+Makes sense. I will send a driver patch to remove the check.
 
-But is this really common/generic? I would think input power rails would 
-be chip specific.
+I will wait for my ov2680 patches to be applied first and then I will
+submit an additional one.
 
-Rob
+Thanks
 
