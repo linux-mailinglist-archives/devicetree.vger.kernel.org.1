@@ -1,148 +1,144 @@
-Return-Path: <devicetree+bounces-55945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 287148971F7
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 16:09:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72E3F89720C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 16:12:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AAB59286CDD
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 14:09:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A36C71C26FCB
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 14:12:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74DC6148FF1;
-	Wed,  3 Apr 2024 14:09:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D096148FF9;
+	Wed,  3 Apr 2024 14:12:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ej5TuduV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="N5KuUDxP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4383148831;
-	Wed,  3 Apr 2024 14:09:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC015148FE4
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 14:12:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712153361; cv=none; b=YB+2F0tDP1mwS3W4RkTQ8axqmognJkOFMrOYw45oSBAfo3iXqdZhChQ6hi8QkAajSAuKty2+AqMMEr0zDFLFVyPVdVecHbgh18MW1jtOSrhEuMYCsvBd99eUZZQ82AZdkEH68m3ukSkac0TUyCztz/YZNluTCfthYBpAzpIcMiU=
+	t=1712153564; cv=none; b=MVkE5O+ZiH91/v7EZPGdoec5JwZS9hXJGlK2I8U7ZvHjjjIfaE0uu7hjtNSzzhDEWmhDJuvOw3CM8Jrm6odU9WS42WjwsN30P70UP/nWWALEKw4H66/JTEQj+xp7BFqLYV0nfpOJZ3IgHddXqblnX4nGgDK9m8JJxI/xQXBGiHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712153361; c=relaxed/simple;
-	bh=agTHV4kamLLPYcNHOfaIhrtk8c/lda8kF/YWjh1kBJo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Puvw8YLfBR2R+vytGC0dMLTmM8FSXNesMLWJaQd5pI6rnI0zEib8F7jB4sQSsUpXgwCIMjHpabBV6+B6+nJodh05t6DX8G2wUieyR8090qOpLrdvb+HgVADZhBpkNEqPnzDEfSTxRF53lRM1aWXYwyqaipM2+JdDQ/Tl5o5gXtQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ej5TuduV; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1712153358;
-	bh=agTHV4kamLLPYcNHOfaIhrtk8c/lda8kF/YWjh1kBJo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ej5TuduVQzkPKOqmLXBWFS4juFDp4MmlKPVPcTaeoSqlAy48WAn1nq0ecYlAIQow6
-	 J6TlBihY4qc7QNKs9/1bOWSpoNpAndiX5VWK+c5LnV7z1vcADEOzZUEdLIQ0EwxrS0
-	 Ru8uWgGZZOmthtVp/8LCe/1/PDhwVA33EnZUzGvCqClWTmlJXIdZODfRAzRdcsw6QO
-	 LEUPf4ZMmk8WIvt/EKwilFZ3oOXrIV2eSy66+zHF9cH9tPVoajTUo/RLplO5XmtOp0
-	 tBZ65nThRBz5Fp2SVGYPf4AuGbV4z0R+xST8gP6it6QkMgNgk3yg6qlDrc96fmLaRr
-	 9ul7GpGOBrqGQ==
-Received: from mercury (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id E10B037814A4;
-	Wed,  3 Apr 2024 14:09:17 +0000 (UTC)
-Received: by mercury (Postfix, from userid 1000)
-	id D07B01060E07; Wed,  3 Apr 2024 15:52:11 +0200 (CEST)
-Date: Wed, 3 Apr 2024 15:52:11 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Pratham Patel <prathampatel@thefossguy.com>
-Cc: Saravana Kannan <saravanak@google.com>, 
-	Dragan Simic <dsimic@manjaro.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, regressions@lists.linux.dev, 
-	stable@vger.kernel.org
-Subject: Re: Fixing the devicetree of Rock 5 Model B (and possibly others)
-Message-ID: <4zlnwwycmjt4p2efqvvxirgcxqyyptf4ndqmbm5uxjjbk2toyz@uyxh2lmwb2fz>
-References: <tQ0L3-34g4t-mzfQIP6KDe5OYelGnEo6Udzq6Kb_nEcljppSQUXOktpE__nL-CdLOu9gW-4tIIbjtSbqrdCrjEkdhZLPiiHTqRcCB6WORuM=@thefossguy.com>
- <ac4246bf3786230eb9ca85b329e7d0df@manjaro.org>
- <CAGETcx89V5CJrAq6XwuGiusQnkR804pTgYAtS94v7Q+v=Cv+qA@mail.gmail.com>
- <D0A122WK7CB9.33B2TP6UCMJBJ@thefossguy.com>
- <CAGETcx_ToHsp_c+Yt0qqST4Zd-GC7dPn_j=PpB1n1xpZtOnMfg@mail.gmail.com>
- <D0A2ZL6S8UG6.2BQKIBQWYB36D@thefossguy.com>
+	s=arc-20240116; t=1712153564; c=relaxed/simple;
+	bh=L95afQaQo0dSJzbw6btPTwqY5s5R0D8EwWHW4Vk9aw8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=R9fu92kjVw6KCj8qldRZCcPaoKLCcSLko5fvTGHMNSmP3w3g5hsIYJ3uVDsMy7ZU7Src9ETZaC0Rv5gcNlhkPSKM4LMXA0YkPIJa8jUsHXmLKjrtjUdr0ocU9/3hyMLyfHtQC5rTjC2yY6adn/Qu93gvgsWMC/HDaPeagJTVh9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=N5KuUDxP; arc=none smtp.client-ip=209.85.219.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-ddaebc9d6c9so6039159276.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 07:12:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712153562; x=1712758362; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=fwnBjxEZZcPm2O8OkmbkyXZ2vtpbjoy3qG8K3meKtNY=;
+        b=N5KuUDxPeTtvOETGQoXOjnUukdxRjSzmCSAN07612FebSllAPZ3iFBx9irggn2t1Yc
+         DNz2YC6sAMo3paj9C14gkiAeG+A/rrSaAfC2C8AwZd4i48xgTQLNqXiJf8tYhrR0iyj2
+         QI3Xzz84X7yITlQHtVPdSlSIVHNlPzb4ilb0An645AoUsinVBfmKZKJVYgvzeoS1jHZk
+         bzg4RwKeHx58iDz7oROX3moC3GN7R4DWN2olsyGrwJE09QHheXtS4HBunUnhNwuIMhb6
+         WZWyKXD9+pheRL7vOkxoBNl34p7N76vGXj8ZK/vqhfKjhaUgEJ2tbBrZq8AlNS1njE6h
+         DaWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712153562; x=1712758362;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fwnBjxEZZcPm2O8OkmbkyXZ2vtpbjoy3qG8K3meKtNY=;
+        b=BnKdK/SjtnW3je7ZzWk/aMmYmd8Kwr2Vt2KXk9mXHVYqYTDBqWvgudERUbFzbg09qF
+         yEREofyZGc7bw4voNDTV+Wft9hK2ZP/5cw+Fu1mkrJSq0rkXl5NpmAggFcMyrHR4CVaR
+         11KPEhLIMQ37ScXY+18PYSrlULyGi2Y0kMxVX19SNczXsp4PWl14V3sEHhLl0DmE9r1K
+         IOtyLqNLAxF5PJcbTIhbiMFz+PxlPpzLrLGOhgtUyHSBeWRbEBqbbrAuXPSNeke6Mw7S
+         8r/fBZOYIiseJnGrx4d2x3q1kx8OJ3CSaVLmPDzf0qxfj8OxRVF0zvwT7nu8G0l5ER9n
+         ks7g==
+X-Forwarded-Encrypted: i=1; AJvYcCXv0zpk9CYVthgtrKl5Gc5be8z3/jBzmIS+SQgf03rNT//pdP8yvJ1ft0S6NFxd90Ocev5Afc+rIIpAOHch/WVXaiok+4s6Ab0VDg==
+X-Gm-Message-State: AOJu0YzdWHarrASGQACchW891TBNcMqs3PySHAEKmeLKRDJz8DFozXJi
+	PL6mfIjC8isqpMhDpie/UUvkWuCUNTY3pjQpCEtBsHn5vzXrz2w4Dvi0G/PoBpr29GZnHNDoXNv
+	pJNg6VZa8ZZpMGe7ywb3ZGrqEx1cwbCsQttMhXw==
+X-Google-Smtp-Source: AGHT+IFdlFDZF9JLA4BV3VvkLV2yX2UyfubxSqjpKX9avJfAKmAztGCS242oKGU4jwHzDnC9jCvS8z+XSH1kr3q9Uek=
+X-Received: by 2002:a05:6902:82:b0:dcc:140a:a71f with SMTP id
+ h2-20020a056902008200b00dcc140aa71fmr13245031ybs.60.1712153561979; Wed, 03
+ Apr 2024 07:12:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="4danktmrrrxcg4g2"
-Content-Disposition: inline
-In-Reply-To: <D0A2ZL6S8UG6.2BQKIBQWYB36D@thefossguy.com>
+References: <fd26ce4a-a9f3-4ada-8d46-ed36fb2456ca@freebox.fr>
+ <5cdad89c-282a-4df5-a286-b8404bc4dd81@freebox.fr> <252618e8-9e80-4774-a96c-caa7f838ef01@linaro.org>
+ <502322f1-4f66-4922-bc4e-46bacac23410@linaro.org> <0ca1221b-b707-450f-877d-ca07a601624d@freebox.fr>
+ <CAA8EJppeREj-0g9oGCzzKx5ywhg1mgmJR1q8yvXKN7N45do1Xg@mail.gmail.com> <91031ed0-104a-4752-8b1e-0dbe15ebf201@freebox.fr>
+In-Reply-To: <91031ed0-104a-4752-8b1e-0dbe15ebf201@freebox.fr>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Wed, 3 Apr 2024 17:12:29 +0300
+Message-ID: <CAA8EJpooJLbV+nVWedru=r6fascd8ZxKumiMm_iyzzJwyQ-tig@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: msm8998: set qcom,no-msa-ready-indicator
+ for wifi
+To: Marc Gonzalez <mgonzalez@freebox.fr>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Kalle Valo <kvalo@kernel.org>, 
+	Jeff Johnson <quic_jjohnson@quicinc.com>, ath10k <ath10k@lists.infradead.org>, 
+	wireless <linux-wireless@vger.kernel.org>, DT <devicetree@vger.kernel.org>, 
+	MSM <linux-arm-msm@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>, 
+	Bjorn Andersson <andersson@kernel.org>, Jami Kettunen <jamipkettunen@gmail.com>, 
+	Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 
-
---4danktmrrrxcg4g2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-On Wed, Apr 03, 2024 at 01:03:07AM +0000, Pratham Patel wrote:
-> > > > Also, can you give the output of <debugfs>/devices_deferred for the
-> > > > good vs bad case?
-> > >
-> > > I can't provide you with requested output from the bad case, since the
-> > > kernel never moves past this to an initramfs rescue shell, but follow=
-ing
-> > > is the output from v6.8.1 (**with aforementioned patch reverted**).
-> > >
-> > > # cat /sys/kernel/debug/devices_deferred
-> > > fc400000.usb    platform: wait for supplier /phy@fed90000/usb3-port
-> > > 1-0022  typec_fusb302: cannot register tcpm port
-> > > fc000000.usb    platform: wait for supplier /phy@fed80000/usb3-port
-> > >
-> > > It seems that v6.8.2 works _without needing to revert the patch_. I w=
-ill
-> > > have to look into this sometime this week but it seems like
-> > > a8037ceb8964 (arm64: dts: rockchip: drop rockchip,trcm-sync-tx-only f=
-rom rk3588 i2s)
-> > > seems to be the one that fixed the root issue. I will have to test it
-> > > sometime later this week.
+On Wed, 3 Apr 2024 at 16:05, Marc Gonzalez <mgonzalez@freebox.fr> wrote:
+>
+> On 02/04/2024 17:55, Dmitry Baryshkov wrote:
+>
+> > On Tue, 2 Apr 2024 at 18:31, Marc Gonzalez wrote:
 > >
-> > Ok, once you find the patch that fixes things, let me know too.
->=20
-> Will do!
+> >> So, if I understand correctly, I take this to mean that I should:
+> >>
+> >> 1) DELETE the qcom,no-msa-ready-indicator boolean property,
+> >> 2) ADD a "qcom,msm8998-wifi" (name OK?) compatible,
+> >
+> > I'd say, this is not correct. There is no "msm8998-wifi".
+>
+> Can you explain what you mean by:
+> 'There is no "msm8998-wifi".' ?
+>
+> Do you mean that: this compatible string does not exist?
+> (I am proposing that it be created.)
+>
+> Or do you mean that: "msm8998-wifi" is a bad name?
 
-FWIW the v6.8.1 kernel referenced above is definitely patched, since
-upstream's Rock 5B DT does neither describe fusb302, nor the USB
-port it is connected to.
+I mean, it is qcom,wcn3990-wifi, because the chip is wcn3990.
 
-We have a few Rock 5B in Kernel CI and upstream boots perfectly
-fine:
+> And these strings in ath11k:
+>
+> Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml:      - qcom,ipq8074-wifi
+> Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml:      - qcom,ipq6018-wifi
+> Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml:      - qcom,wcn6750-wifi
+> Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml:      - qcom,ipq5018-wifi
 
-https://lava.collabora.dev/scheduler/device_type/rk3588-rock-5b
+I must admit, I don't know the IPQ product naming (it well might be
+that it is both the name of the SoC and the WiFI SoC).
 
-So it could be one of your downstream patches, which is introducing
-this problem.
+>
+> > I'd say, we should take a step back and actually verify how this was
+> > handled in the vendor kernel.
+>
+> In our commercial product, we use the ath10k driver in the vendor kernel (v4.4 r38-rel).
 
--- Sebastian
+I see.
 
---4danktmrrrxcg4g2
-Content-Type: application/pgp-signature; name="signature.asc"
+> It looks like Jeff has already performed the code analysis
+> wrt vendor vs mainline (including user-space tools).
 
------BEGIN PGP SIGNATURE-----
+From his message it looks like we are expected to get MSA READY even on msm8998.
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmYNXwcACgkQ2O7X88g7
-+ppSBQ//WsXoLg+w00Vt6lS7Fu+Ry1/gMQ7+0b0R66GBVrconK+w8cdxwNCmJe+z
-0/5ehaf6Wd4Btp2YcDywLFVFv+nHEg6H3t+PSyVzST2EnEGpJBzL9FBGq/J8XIVv
-TSyMJPEb911F63xSgZXoqlLa/Jti4ccqYIJUy6LYLJ97/3Wm1rtzPvPyrs2ySJ8I
-5l3zLA4POdS6I7vdbPNVjzY4LVEG9CwQIJIwGoScCwoxESlMpiB1+hLYil/2GsVq
-1OKAwEZuRycmROdMobiYYsO/a1GQU2FcIcZ4ocmX5e1U94qmP578endIVW+lFz8+
-S5FXoSOmxCZY6x4mczQ2nrGNI0vHfUuiNZHOxpoUZa2Y6Lw1D1v2a9Ek1IKH0LUt
-t8vp4w2k9nvMAXpRXaCK17zR/x92osn5SNNKz7RCd2Q9yGeB4a0iSDoA82xCYpGd
-lTtrxBkBSLKJlraVeeCuuwRxINRRg5DFwhleXfSEvIFXOHPVV+Fc/UPoq1bNzgF/
-jDVLTdRtfiWgl0c833WyLvCU7A3AjuFmO3AmxV+Z6gvv97o7JknuX5fsW5cjfAHx
-UIp/OBj+aEG/fZc5cG74LxfVZbxpK9McusBysf8BsFNAmHIzMoCsnGstfmSNHGr+
-fRntqsaKh8rDFgN5rKRB7svYg2dmFVKjtH7uPmQl9DPhfx5zSG8=
-=feq8
------END PGP SIGNATURE-----
-
---4danktmrrrxcg4g2--
+-- 
+With best wishes
+Dmitry
 
