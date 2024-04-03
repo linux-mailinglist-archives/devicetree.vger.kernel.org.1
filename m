@@ -1,127 +1,242 @@
-Return-Path: <devicetree+bounces-55794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39C06896649
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 09:24:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AEF5289664B
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 09:24:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 977261F22220
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 07:24:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 279C81F23E45
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 07:24:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E28BE5A7A0;
-	Wed,  3 Apr 2024 07:22:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 395D25A7A3;
+	Wed,  3 Apr 2024 07:23:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Qjgl+J6x"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JnLFN5iG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DB2D58AB2;
-	Wed,  3 Apr 2024 07:22:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D86158208;
+	Wed,  3 Apr 2024 07:23:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712128964; cv=none; b=sQahQQxSA9fQRu7put180OFgy22bPmWJ79S9wkyavVSVPPp/gdtuO96rjXT3BLnYJb4sUwU1oeBUQEMYxoTEXmHs0gdm2Gnq2dJQOCrwfmvR+OSbLEUaD47beNpuG46kXF5Yi/zYY7yLILkDVDexJ8BVATupEUEYDEHoVdka3ck=
+	t=1712129022; cv=none; b=G6LJIIAg5whlZEhkTSYCi7zHWe9TgNBR6U9BhH7riPs/vz0uQI6/Q01tTbaAduRueghhAGCeLUION0GoH0WUYlNIhP6P1zP7ApgzFL8eu4iMWdZc561GhftLqEiUv/zQqAhiyXnuzB+WTSZKzoYnXT9lTC6Mu57dSdiIw5Cc/xQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712128964; c=relaxed/simple;
-	bh=ckDelCKrcS824I6TwBoYPREwnSmEG2XAmq9iPVrsNXo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mQMJeOy3EmQOo/tHYpIVXXB2vKI037c3PUE4+TDJRjPqkcIwlUpKC257NaHihhy1oJlFQxH9hnN9oM/Lr8Sk9cf4KrpxPZfuMBzJF2P1CR+nHSRlS3lrDlS+whSguEvyD5OaSLrJHcWsG+MzRDsStL0KmM1Rij7vPgE8iSr9Zq4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Qjgl+J6x; arc=none smtp.client-ip=209.85.128.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-60a3c48e70fso58812507b3.1;
-        Wed, 03 Apr 2024 00:22:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712128962; x=1712733762; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=74psJ5ywI9NINM0wbw/pHVabtXYorhznJeykBwPE8oo=;
-        b=Qjgl+J6xdYnB7oIs558ehjEBQ1EdWUt/UvMY2CruaatLi8cl49FrUVNOBm6uOqQ6BE
-         dThPp6hzwD16ZkRJx1ND5j9I9s+PLTTOrOgfJoWL++dx9pBZvaRGqZeMjjTl2cKBmJbx
-         S6fFtyZQrr9Y6gsPzZMBJ609eyEM94gjMsFLf6kTVW4gRnLoeNGxJCtZZ9i17h6k5NVa
-         coDc+s+Qlj7//JT2Ng6l9qPWDdC1nR10QZ81oDSofWUNkTc5hJ7Z7HaCoiiBI+4rY8wX
-         hz0fByYlyYMoPfwbn/YK9jYu3oJanTqG+Fvg+YkAdWR3eqDvXlDSSok2s2JgxpGvjohj
-         +1jw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712128962; x=1712733762;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=74psJ5ywI9NINM0wbw/pHVabtXYorhznJeykBwPE8oo=;
-        b=eoprIXlm0hNuBuPGrSK7WHE67KEBjzZ8c8AO3R3Ev9JTfQ10LMvdpD2cEwX5UGmaqY
-         fg6OeT9z+zxmpP+x9QCLKJKycib8UJcwWOIBgoKJC/RC3J3Sc+FhSnF2fXGhrXU+On1q
-         sM47lxac9rOScdN0f6TeM0+wiGZ0TbmufItBqyhsDb9gYTycwnbrcwJ25JhV08Avwz1g
-         17YCSPHty9RER/xRrZyh5Kecp7aXifymp1Pa+PZgyKdT1B1guzLVEkY1yAz15V1KHa+/
-         QbX9Efhj92jRlC5Kc+oGXzQv60cpWgQAZ1oNCe+GFy4nuAjiSZ9UK1521pig2/2jwiuS
-         OKGQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUkn5ihL+tk8AZmLAbbM7Q3NgPtB+dH4GSeOuhBdjEwOCClN9CTANmI92cdsevnhC75w7kAYYPGj5gsJ1sS0AJ8x4gFrrqSSeqMEHtzi7kUd9CA5p828R8G/8XuhYQne9jbydRueg==
-X-Gm-Message-State: AOJu0Yzz+vUunzxVSMmHizE7+NiNMVD8s8E+EMnfi0HPhhmY2LQJcLxM
-	xVPCKy6zBAJ29wZASkoYfV3yewkNi/MfGG7k+IpvxwUdB4fGTTxLU3tmNg3bTz0IPS9VYY1KR2B
-	SR8dxvnwffeIh4TK84mGU8+LqZzLSzdwYpoWW5xCX
-X-Google-Smtp-Source: AGHT+IFiYm6/3//pbivCiacIiXyrTXVy+5Q2Y9k+w+VbqHhlit69Rd0mSnb9ARnxgK1oHVS+FySZphf5EjdpNdZYs4w=
-X-Received: by 2002:a81:4f4c:0:b0:615:59c5:bf03 with SMTP id
- d73-20020a814f4c000000b0061559c5bf03mr1209815ywb.4.1712128962368; Wed, 03 Apr
- 2024 00:22:42 -0700 (PDT)
+	s=arc-20240116; t=1712129022; c=relaxed/simple;
+	bh=6HqhTpg6hJ6e3zeFzvf8NRUha1X4YypuenPq4riKi2w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VqLaeczaygqGsxJ6ZEbp+wg8vF3LX3IV03ctzDBQ8rMwgWYZfFIuGlnIJMIOfCECIWyzwY4AzdD56KK8biuVDd/0HoVuxBeBlBJF3un4Qp35OiQPPGrW/EGWpZPmjCBAHdugT1Sr9OPwcVLuPKQ8xtM5dKUPjH605aSPVupDTLA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JnLFN5iG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DA15C433F1;
+	Wed,  3 Apr 2024 07:23:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712129021;
+	bh=6HqhTpg6hJ6e3zeFzvf8NRUha1X4YypuenPq4riKi2w=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=JnLFN5iG6jR127kBF3VJGNw7pcD+kle+rRfAj4a/YIRawTPNtzjs71teD2VI/d3q8
+	 rbnvy7DLs3lIGJ/rpPUY11FMQ39c0o1WZBFKvl2o6iKe0060p/pxuzKY85jqk3juYr
+	 qs1AEBS0RaMWoU46OYeGUCXQlZNouBf/W6nz0NeNu6DH247T82aIPsAmT3XhzUN7oH
+	 4TKZN7qQLu7ON/kvrdJXyUsCL/aiWPjS6kil+9P6XhJvzEjI6eN81wuOuIRg5pJgKc
+	 gGwRtVbXKFbzlQ9qUhegj5T1P2+vZPfZ5diQUzMqkoDSx1ODiiEAgXFXVJIJ7U7aQB
+	 He5v/QQv4N7sg==
+Message-ID: <bcf12c0b-d569-4d64-adfb-bad053c182a8@kernel.org>
+Date: Wed, 3 Apr 2024 09:23:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1711953223.git.zhoubinbin@loongson.cn> <edad2bb5b0045c633734c1499fb163c3c6776121.1711953223.git.zhoubinbin@loongson.cn>
- <20240402174051.GA324804-robh@kernel.org> <CAMpQs4K_VSqdm7x=cSyMTBYQyOm=th0YrYKdZ74dp35hyRBXgQ@mail.gmail.com>
- <d0769eb1-984b-4e2c-8d9f-818113d8afb2@linaro.org>
-In-Reply-To: <d0769eb1-984b-4e2c-8d9f-818113d8afb2@linaro.org>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Wed, 3 Apr 2024 13:22:30 +0600
-Message-ID: <CAMpQs4JrVJ4rOE+XvMQ51qrV3gP-EgcmZdK9J_a_xvEia3Y4vA@mail.gmail.com>
-Subject: Re: [PATCH v1 1/5] dt-bindings: pwm: Add Loongson PWM controller
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Binbin Zhou <zhoubinbin@loongson.cn>, 
-	Huacai Chen <chenhuacai@loongson.cn>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Huacai Chen <chenhuacai@kernel.org>, loongson-kernel@lists.loongnix.cn, 
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] clk: starfive: pll: Fix lower rate of CPUfreq by
+ setting PLL0 rate to 1.5GHz
+To: Xingyu Wu <xingyu.wu@starfivetech.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Conor Dooley <conor@kernel.org>,
+ Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Hal Feng <hal.feng@starfivetech.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+ "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20240402090920.11627-1-xingyu.wu@starfivetech.com>
+ <8d21b1bc-9402-41d4-bd81-c521c8a33d2d@kernel.org>
+ <NTZPR01MB095662C4A6FCAEB7B35C48FF9F3DA@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <NTZPR01MB095662C4A6FCAEB7B35C48FF9F3DA@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Apr 3, 2024 at 1:00=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 03/04/2024 04:37, Binbin Zhou wrote:
-> > Hi Rob:
-> >
-> > Thanks for your reply.
-> >
-> > On Tue, Apr 2, 2024 at 11:40=E2=80=AFPM Rob Herring <robh@kernel.org> w=
-rote:
-> >>
-> >> On Tue, Apr 02, 2024 at 03:58:38PM +0800, Binbin Zhou wrote:
-> >>> Add Loongson PWM controller binding with DT schema format using
-> >>> json-schema.
-> >>>
-> >>> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> >>> ---
-> >>>  .../devicetree/bindings/pwm/pwm-loongson.yaml | 64 +++++++++++++++++=
-++
-> >>
-> >> Filename should match compatible.
-> >
-> > Emm... How about renaming it as loongson, pwm.yaml?
->
-> Use the fallback, so loongson,ls7a-pwm.yaml
+On 03/04/2024 09:19, Xingyu Wu wrote:
+> On 03/04/2024 0:18, Krzysztof Kozlowski wrote:
+>>
+>> On 02/04/2024 11:09, Xingyu Wu wrote:
+>>> CPUfreq supports 4 cpu frequency loads on 375/500/750/1500MHz.
+>>> But now PLL0 rate is 1GHz and the cpu frequency loads become
+>>> 333/500/500/1000MHz in fact.
+>>>
+>>> So PLL0 rate should be default set to 1.5GHz. But setting the
+>>> PLL0 rate need certain steps:
+>>>
+>>> 1. Change the parent of cpu_root clock to OSC clock.
+>>> 2. Change the divider of cpu_core if PLL0 rate is higher than
+>>>    1.25GHz before CPUfreq boot.
+>>> 3. Change the parent of cpu_root clock back to PLL0 clock.
+>>>
+>>> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
+>>> Fixes: e2c510d6d630 ("riscv: dts: starfive: Add cpu scaling for JH7110
+>>> SoC")
+>>> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+>>> ---
+>>>
+>>> Hi Stephen and Emil,
+>>>
+>>> This patch fixes the issue about lower rate of CPUfreq[1] by setting
+>>> PLL0 rate to 1.5GHz.
+>>>
+>>> In order not to affect the cpu operation, setting the PLL0 rate need
+>>> certain steps. The cpu_root's parent clock should be changed first.
+>>> And the divider of the cpu_core clock should be set to 2 so they won't
+>>> crash when setting 1.5GHz without voltage regulation. Due to PLL
+>>> driver boot earlier than SYSCRG driver, cpu_core and cpu_root clocks
+>>> are using by ioremap().
+>>>
+>>> [1]: https://github.com/starfive-tech/VisionFive2/issues/55
+>>>
+>>> Previous patch link:
+>>> v2:
+>>> https://lore.kernel.org/all/20230821152915.208366-1-xingyu.wu@starfive
+>>> tech.com/
+>>> v1:
+>>> https://lore.kernel.org/all/20230811033631.160912-1-xingyu.wu@starfive
+>>> tech.com/
+>>>
+>>> Thanks,
+>>> Xingyu Wu
+>>> ---
+>>>  .../jh7110-starfive-visionfive-2.dtsi         |   5 +
+>>>  .../clk/starfive/clk-starfive-jh7110-pll.c    | 102 ++++++++++++++++++
+>>
+>> Please do not mix DTS and driver code. That's not really portable. DTS is being
+>> exported and used in other projects.
+> 
+> OK, I will submit that in two patches.
+> 
+>>
+>> ...
+>>
+>>>
+>>> @@ -458,6 +535,8 @@ static int jh7110_pll_probe(struct platform_device
+>> *pdev)
+>>>  	struct jh7110_pll_priv *priv;
+>>>  	unsigned int idx;
+>>>  	int ret;
+>>> +	struct device_node *np;
+>>> +	struct resource res;
+>>>
+>>>  	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
+>>>  	if (!priv)
+>>> @@ -489,6 +568,29 @@ static int jh7110_pll_probe(struct platform_device
+>> *pdev)
+>>>  			return ret;
+>>>  	}
+>>>
+>>> +	priv->is_first_set = true;
+>>> +	np = of_find_compatible_node(NULL, NULL, "starfive,jh7110-syscrg");
+>>
+>> Your drivers should not do it. It's fragile, hides true link/dependency.
+>> Please use phandles.
+>>
+>>
+>>> +	if (!np) {
+>>> +		ret = PTR_ERR(np);
+>>> +		dev_err(priv->dev, "failed to get syscrg node\n");
+>>> +		goto np_put;
+>>> +	}
+>>> +
+>>> +	ret = of_address_to_resource(np, 0, &res);
+>>> +	if (ret) {
+>>> +		dev_err(priv->dev, "failed to get syscrg resource\n");
+>>> +		goto np_put;
+>>> +	}
+>>> +
+>>> +	priv->syscrg_base = ioremap(res.start, resource_size(&res));
+>>> +	if (!priv->syscrg_base)
+>>> +		ret = -ENOMEM;
+>>
+>> Why are you mapping other device's IO? How are you going to ensure synced
+>> access to registers?
+> 
+> Because setting PLL0 rate need specific steps and use the clocks of SYSCRG.
 
-Ok, I got it.
+That's not a reason to map other device's IO. That could be a reason for
+having syscon or some other sort of relationship, like clock or reset.
 
-Thanks.
-Binbin
->
-> Best regards,
-> Krzysztof
->
+> But SYSCRG driver also need PLL clock to be clock source when adding clock
+> providers. I tried to add SYSCRG clocks in 'clocks' property in DT and use
+> clk_get() to get the clocks. But it could not run and crash. So I use ioremap()
+> instead.
+
+So instead of properly model the relationship, you entangle the drivers
+even more.
+
+Please come with a proper design for this. I have no clue about your
+hardware, but that looks like you are asynchronously configuring the
+same hardware in two different places.
+
+Sorry, that's poor code.
+
+Best regards,
+Krzysztof
+
 
