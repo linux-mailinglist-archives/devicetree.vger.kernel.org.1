@@ -1,278 +1,146 @@
-Return-Path: <devicetree+bounces-56019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56020-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22D2D89755C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 18:38:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4E8A89756D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 18:43:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 460741C24B47
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 16:38:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53B751F274FF
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 16:43:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA571152167;
-	Wed,  3 Apr 2024 16:38:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F59D14F13F;
+	Wed,  3 Apr 2024 16:43:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="mSeckWOl"
+	dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b="naXJo8yB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09C3514AD15
-	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 16:38:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06D891509BA
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 16:43:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712162284; cv=none; b=Ywv27mbltLEZk9cjdfqcchR5XIQVBIxoH1SPcCVx+tMZIiVX3lBpfQYza6Si7JuKZxgQKDUK6I/6DyR1WvMYSEGohaJPKBdtERGS4p4hV/NSCqD1Jwfs+DnLHdiaYXR3HnyjCcRhw7v45aVGCMySEym1XC+GK88y8DjssQDEtUc=
+	t=1712162583; cv=none; b=HlnXa8sqgKqGW/V4n9StZ+GUTCqfP/fBqxziYE+O/04ZR8mJmpWBItE9lOZZmh8w+pfMoS0Ie7bDP/snyYkRUeIkgtVSi7df86ey5VuIhX+X3wZGGmFa0XsG6ntoYugz5pM+EUrrsKKdIetnP1BGRvne6LpxVaf7hShS24QsLY8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712162284; c=relaxed/simple;
-	bh=Giq7R76xZqUySEf7R34j+dGGeGtp38CHprsEw+dSA0E=;
+	s=arc-20240116; t=1712162583; c=relaxed/simple;
+	bh=Gco9AHEogz8wRiHKn22/x6SZepvKYQXuhwQs8RmLgEQ=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SrYmVeG0ZS1SqxOMYZywQVGhSKyLlw/9f138dd6CjChlQRtr8X1fcXsfOZjBLE4J+9GQvb93SZL7IQpnPPT2QsvjxjGCo+8f8QMQZSV/o5qGo8rRv6a4FNGM4ok2fhFvRPqHSNdFX922S+abvCHt6gelIZ9krb8veBWl+PKNfNM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=mSeckWOl; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2d4360ab3daso87133781fa.3
-        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 09:38:01 -0700 (PDT)
+	 To:Cc:Content-Type; b=smqf90dDMmTdLNawt5dAjeOnRtRLre3yJGcPd/1sVvw6jsA3hfEaDKVihkrrrmMomPfhiB88pjWYua5Gtqj60X44Rtv46oKyc9LGvA+CUknu8hFGERnGIHRGT7p3A+46im1AnkRlkJ9WCvbkkojar7NzZ0ZPgc/izhwUYInsUHA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org; spf=none smtp.mailfrom=brainfault.org; dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b=naXJo8yB; arc=none smtp.client-ip=209.85.166.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=brainfault.org
+Received: by mail-io1-f46.google.com with SMTP id ca18e2360f4ac-7d33ccdb531so2767639f.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 09:43:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712162280; x=1712767080; darn=vger.kernel.org;
+        d=brainfault-org.20230601.gappssmtp.com; s=20230601; t=1712162581; x=1712767381; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=8VAwBegNB+ejGvlVIKZPfY1+rXl1zIDBpfKpOZezbB0=;
-        b=mSeckWOlwsEz6B2ALe37Mf8yiSWrlNo2sQguc32Mxf3z2SxrWruloNQpoV77xN6F2K
-         3lGd9WBCmDcmhuJFwrRj4rT4034vDoZYpckJwA8kCUpN0E/O+A6rtMGjTLFE66SeYn8X
-         wotKHWm8Sa+KJVrjFLrZKgY2aeNgsAHRwWt6jM7ITTaGLA7SYxUoHqPMSiKOM32+9BRr
-         0noVaKys5HVu4XyMiSoCMDnE57Hc2do83wTn7zDaM981wNb6mckOkpoVE4FmZSkKHG5o
-         JdPhmPBepo0Emo4/eBbcSGZlJQatH3pYodHeQvcORFgqfrHyheObp6k6qKP7UBJVdGSF
-         lElA==
+        bh=+ldYJZM3ZNQODceb54+safcmgQ5V5QG7ihgBUD2TQZ0=;
+        b=naXJo8yBnpQx1lvWqEEZ9NCTDv/sXdIsn0ffwDK6R3PTFdN3s2wF3q51pY3dJ5Lf8r
+         RVLeWeiKTR9NJKY+D4HoPW14kMkRCYI6T9Ob7Gx4XFMaR2p8geeDEZWzOaUpQ8PviyYO
+         P1f4gxAfZDkTcO1psJIwrdh6ODFlQoJcs0Rzq8Po7iUJx4+aJDGEMiJYsQfvoyYRiilE
+         uGb5A6vILz9VZJUONVjb2btLz/oUQKtzm4KVuuh0ZizeE5AAt2m81+5OK5qxjVHDmiU4
+         Mtd32CA/U81rJt/savLKI0jnc5zq7TosaH4sOZKiadFBNSTW+6e2xasfGsiX/o1ZYydL
+         E3hg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712162280; x=1712767080;
+        d=1e100.net; s=20230601; t=1712162581; x=1712767381;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=8VAwBegNB+ejGvlVIKZPfY1+rXl1zIDBpfKpOZezbB0=;
-        b=C4xEZzNKjpIosYzgt4T3rfxVP3T3C5cP626NL8jhpz3dbbGeUTb2A1WZ/8yKd7dLI/
-         PedhFLp92aZFHwlnz3FK5kUJy/cqEiQLh085ATlajMxvmfPmXU5bWGQg+yPm7oTwmBU2
-         yuhnVcbjZ2KhWMduitMTkXdsyXdUfjnkDTDt8usEbCJzBybMffMTGyfHrDAm2R6EywNC
-         tnDsZv2G6Gyr4OC2Yp4FWEboOXSaJQkx1BnY0CJocOE8xJ4/Xj4Tv3fScEZIfXNsuTza
-         Nnox6224DJmGO5waErGgCNkWJGUU16kTquw9ouf4sbpB3aoDmG8hqZG2rdHI20f5H8ec
-         toew==
-X-Forwarded-Encrypted: i=1; AJvYcCVuFYnAfGe6yINp+qn8AcAXNbZ5dEQRq0vdUZn0i4wUK6toJSlbvR7zmnP6zH9bKqI+tbtcWpz4ae67bMx1hZgvmSiOyOVYg25oXQ==
-X-Gm-Message-State: AOJu0Yz6j9XOzIwHb/0rfA7wHgv0ToHy76c2mOP2enJXT/EAQiTX5Fx+
-	93Uj4n8N4NPXsyTsGqqsMm6wsXvKWAKDzwaSO0t8iebBSedcXagHJk20HvA3kGKf+Y4MzfcVCYL
-	vkbyelGuB+QDzqZKV/teMct7nbZ7JeUwnnEi0QA==
-X-Google-Smtp-Source: AGHT+IGAywR9Uy125qfFJ1X4pBurkesXRwKzT38wdpNo5Q4NTcpbgaRUf5WXVt7SKnHgElyGJALlJ1K6jC7Jdecw+bo=
-X-Received: by 2002:a05:651c:a06:b0:2d8:34ec:54e6 with SMTP id
- k6-20020a05651c0a0600b002d834ec54e6mr159118ljq.33.1712162279945; Wed, 03 Apr
- 2024 09:37:59 -0700 (PDT)
+        bh=+ldYJZM3ZNQODceb54+safcmgQ5V5QG7ihgBUD2TQZ0=;
+        b=l0YndzdjqSWT7EpjWnGLAcWyxsO60I2znVRFn8hA95lT58ytdQW9G5A9RZNih1x92Y
+         PGt4LlSoQKxPku1kRjg4ligQb4k9Ss6r5jvml/IrrWjZzeN16HFsqDn8TqZfdW881NKK
+         Jlga6CNVtojfKdls9JNwpoVMVtZE5s9D/HvCaJdCDigmPgZPuWmvahkq04kHmJeQIhND
+         P6i4/SEdZyiMjMgeErmr3eHGXeB3pVRzjtqoPUea9imiYmVV0nsCfc/Ey0zW9WbF+vUr
+         pirkW+cL82vuh2MtKMcNVarx5kkB0pUW2rSzN2H5SJlJ1xt6i38ra7e3q5Nxh+JLeGQ/
+         t7Kg==
+X-Forwarded-Encrypted: i=1; AJvYcCVjPpaUK0FKdFCayyz/mmneF1L0ssZHmmKoh3Ic3fW+NSUPCtvtvnwgAjJwHoKsHfZMdnVfyOEB2hp7jVH82LG7c04d3ju2LLy12w==
+X-Gm-Message-State: AOJu0YzKjZjLJtR53ft9MGgH6CTpKW+4+6Kh2fNbaBw6lD8jsfZwdzMR
+	M5JCMqI+pxGVgaBpXcyuAmUvnma1CY510G7lggcYsnQDBwndzkB0D5GegMfGME04aHJj4dCipud
+	ZRRr1H/g2Cn3rJrA8WRD92MeTZJsNOZd5BOAaZA==
+X-Google-Smtp-Source: AGHT+IETZsCmYZR+7MNOTFHFuZFLWE66bnvv0TlpnZS/RG9obXEpluMFpdguyK8UQZTF5zYgpmG2F2lenvvxyMTZHlc=
+X-Received: by 2002:a05:6e02:1caf:b0:369:95dc:e4ed with SMTP id
+ x15-20020a056e021caf00b0036995dce4edmr136568ill.15.1712162581079; Wed, 03 Apr
+ 2024 09:43:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240401-ad4111-v1-0-34618a9cc502@analog.com> <20240401-ad4111-v1-6-34618a9cc502@analog.com>
- <CAMknhBFdtv84E_S4wa4UW0pO2yiUEk9=jn=_i4F=b8VHdR6v+w@mail.gmail.com> <c7c26d36-ab08-420c-b634-8eb6d9cee9b5@gmail.com>
-In-Reply-To: <c7c26d36-ab08-420c-b634-8eb6d9cee9b5@gmail.com>
-From: David Lechner <dlechner@baylibre.com>
-Date: Wed, 3 Apr 2024 11:37:48 -0500
-Message-ID: <CAMknhBFZKKim4JyXLpHY=EoyW4ZPp03aHte5xy0ZkDnW16sfeA@mail.gmail.com>
-Subject: Re: [PATCH 6/6] iio: adc: ad7173: Add support for AD411x devices
-To: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
-Cc: dumitru.ceclan@analog.com, Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+References: <20240222094006.1030709-1-apatel@ventanamicro.com>
+ <20240222094006.1030709-2-apatel@ventanamicro.com> <CA+V-a8tGucbJ87hsMQDEgcor5BzDmB_WnRsEn6c9F_HzucWLXQ@mail.gmail.com>
+ <CAK9=C2VgiRcQjBEPmZjdcMf221omKS8ntdcenSE7G__4xYcCUA@mail.gmail.com> <CA+V-a8ser=hDmst6+XSeOWaEoOd+iY3Ys6bYBWDa5UYPfT+Pug@mail.gmail.com>
+In-Reply-To: <CA+V-a8ser=hDmst6+XSeOWaEoOd+iY3Ys6bYBWDa5UYPfT+Pug@mail.gmail.com>
+From: Anup Patel <anup@brainfault.org>
+Date: Wed, 3 Apr 2024 22:12:49 +0530
+Message-ID: <CAAhSdy15r+mx8+HYV5Xe9BYTy0BYk50Nds=qgfBwosEDb63aNw@mail.gmail.com>
+Subject: Re: [PATCH v14 01/18] irqchip/sifive-plic: Convert PLIC driver into a
+ platform driver
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Anup Patel <apatel@ventanamicro.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Marc Zyngier <maz@kernel.org>, =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>, 
+	Atish Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>, 
+	Sunil V L <sunilvl@ventanamicro.com>, Saravana Kannan <saravanak@google.com>, 
+	linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Apr 3, 2024 at 4:53=E2=80=AFAM Ceclan, Dumitru <mitrutzceclan@gmail=
-.com> wrote:
+On Wed, Apr 3, 2024 at 9:19=E2=80=AFPM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
 >
->
-> On 01/04/2024 22:45, David Lechner wrote:
-> > On Mon, Apr 1, 2024 at 10:10=E2=80=AFAM Dumitru Ceclan via B4 Relay
-> > <devnull+dumitru.ceclan.analog.com@kernel.org> wrote:
-> >>
-> >> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
-> >>
->
-> ...
->
-> >>  #define AD7175_2_ID                    0x0cd0
-> >>  #define AD7172_4_ID                    0x2050
-> >>  #define AD7173_ID                      0x30d0
-> >> +#define AD4111_ID                      0x30d0
-> >> +#define AD4112_ID                      0x30d0
-> >> +#define AD4114_ID                      0x30d0
+> On Wed, Apr 3, 2024 at 3:17=E2=80=AFPM Anup Patel <apatel@ventanamicro.co=
+m> wrote:
 > >
-> > It might make it a bit more obvious that not all chips have a unique
-> > ID if we rename AD7173_ID to AD7173_AD4111_AD4112_AD4114_ID rather
-> > than introducing multiple macros with the same value.
+> > On Wed, Apr 3, 2024 at 2:01=E2=80=AFPM Lad, Prabhakar
+> > <prabhakar.csengg@gmail.com> wrote:
+> > >
+> > > Hi Anup,
+> > >
+> > > On Thu, Feb 22, 2024 at 9:41=E2=80=AFAM Anup Patel <apatel@ventanamic=
+ro.com> wrote:
+> > > >
+> > > > The PLIC driver does not require very early initialization so conve=
+rt
+> > > > it into a platform driver.
+> > > >
+> > > > After conversion, the PLIC driver is probed after CPUs are brought-=
+up
+> > > > so setup cpuhp state after context handler of all online CPUs are
+> > > > initialized otherwise PLIC driver crashes for platforms with multip=
+le
+> > > > PLIC instances.
+> > > >
+> > > > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > > > ---
+> > > >  drivers/irqchip/irq-sifive-plic.c | 101 ++++++++++++++++++--------=
+----
+> > > >  1 file changed, 61 insertions(+), 40 deletions(-)
+> > > >
+> > > This patch seems to have broken things on RZ/Five SoC, after revertin=
+g
+> > > this patch I get to boot it back again on v6.9-rc2. Looks like there
+> > > is some probe order issue after switching to platform driver?
 > >
-> > Or leave it as AD7173_ID to keep it short and add a comment where it
-> > is used with 411x chips in ad7173_device_info[].
+> > Yes, this is most likely related to probe ordering based on your DT.
 > >
+> > Can you share the failing boot log and DT ?
 >
-> Sure
->
-> >> +#define AD4116_ID                      0x34d0
-> >> +#define AD4115_ID                      0x38d0
-> >>  #define AD7175_8_ID                    0x3cd0
-> >>  #define AD7177_ID                      0x4fd0
-> >>  #define AD7173_ID_MASK                 GENMASK(15, 4)
->
-> ...
->
-> >>  struct ad7173_device_info {
-> >>         const unsigned int *sinc5_data_rates;
-> >>         unsigned int num_sinc5_data_rates;
-> >>         unsigned int odr_start_value;
-> >> +       unsigned int num_inputs_with_divider;
-> >>         unsigned int num_channels;
-> >>         unsigned int num_configs;
-> >>         unsigned int num_inputs;
-> >
-> > Probably a good idea to change num_inputs to num_voltage_inputs so it
-> > isn't confused with the total number of inputs.
-> >
-> > Similarly num_voltage_inputs_with_divider instead of num_inputs_with_di=
-vider.
-> >
-> > Also could use a comment to make it clear if num_voltage_inputs
-> > includes num_voltage_inputs_with_divider or not. And that it doesn't
-> > include VINCOM.
-> >
->
-> Alright for these 3 statements above.
->
-> > Probably also need some flag here to differentiate ADCINxx voltage
-> > inputs on AD4116.
-> >
->
-> That is the purpose of num_inputs_with_divider. Mangled some changes
-> when splitting into individual patches. Will include in V2.
-> "
-> if (ain[1] =3D=3D AD411X_VCOM_INPUT &&
->                     ain[0] >=3D st->info->num_inputs_with_divider)
->                         return dev_err_probe(dev, -EINVAL,
->                 "VCOM must be paired with inputs having divider.\n");
-> "
->
-> ...
->
-> >>
-> >> +static unsigned int ad4111_current_channel_config[] =3D {
-> >> +       [AD4111_CURRENT_IN0P_IN0N] =3D 0x1E8,
-> >> +       [AD4111_CURRENT_IN1P_IN1N] =3D 0x1C9,
-> >> +       [AD4111_CURRENT_IN2P_IN2N] =3D 0x1AA,
-> >> +       [AD4111_CURRENT_IN3P_IN3N] =3D 0x18B,
-> >> +};
-> >
-> > As mentioned in the DT bindings review, it would make more sense to
-> > just use the datasheet numbers for the current input channels in the
-> > diff-channels DT property, then we don't need this lookup table.
-> >
-> Yet, the datasheet does not specify the numbers, just a single bitfield
-> for each pair. It is too much of a churn to need to decode that bitfield
-> into individual values when the user just wants to select a single pair.
->
-> ...
->
-> >> +               case IIO_CURRENT:
-> >> +                       *val =3D ad7173_get_ref_voltage_milli(st, ch->=
-cfg.ref_sel);
-> >> +                       *val /=3D AD4111_SHUNT_RESISTOR_OHM;
-> >> +                       *val2 =3D chan->scan_type.realbits - !!(ch->cf=
-g.bipolar);
-> >
-> > Static analysis tools like to complain about using bool as int.
-> > Probably more clear to write it as (ch->cfg.bipolar ? 1 : 0) anyway.
-> >
-> Maybe it does not apply here, but i followed this advice:
->
-> Andy Shevchenko V1 of AD7173 (named initially ad717x)
-> "
-> > +     return (bool)(value & mask);
->
-> This is weird. You have int which you get from bool, wouldn't be better
-> to use
-> !!(...) as other GPIO drivers do?
+> non working case, https://paste.debian.net/1312947/
 
-As long as the build bots don't complain, there isn't a reason to
-change it. It is just a matter of personal preference at that point.
+> after reverting, https://paste.debian.net/1312948/
+> (attached is the DTB)
 
-I got a sparse warning for something like this recently [1], but maybe
-that case was just because it was inside of a FIELD_PREP() using it as
-bit logic instead of addition and we won't get any warnings here.
+Can you add "console=3DttySC0,115200" to kernel parameters and
+share updated boot logs ?
 
-[1]: https://lore.kernel.org/linux-iio/20240129195611.701611-3-dlechner@bay=
-libre.com/
-
->
-> "
->
->
-> >> +               case IIO_CURRENT:
-> >>                         *val =3D -BIT(chan->scan_type.realbits - 1);
-> >
-> > Expecting a special case here, at least when ADCIN15 is configured for
-> > pseudo-differential inputs.
-> >
->
-> And what configuration would that be?
-> The only configurable part is the BI_UNIPOLARx bit in the channel
-> register, which is addressed here.
->
-> There seems to be a confusion similar to what we had with single-ended
-> channels. The ADC is differential. Pseudo-differential in this datasheet
-> just means that you wired a fixed voltage(higher than 0) to the negative
-> analog input.
->
->  Which you can also do on the other inputs with a divider.
->
-
-As discussed elsewhere, you can disregard this suggestion.
-
-> ...
->
-> >> -               chan_st_priv->ain =3D AD7173_CH_ADDRESS(ain[0], ain[1]=
-);
-> >> +               if (reg >=3D AD4111_CURRENT_CHAN_CUTOFF) {
-> >> +                       chan->type =3D IIO_CURRENT;
-> >> +                       chan->channel =3D ain[0];
-> >> +                       chan_st_priv->ain =3D ad4111_current_channel_c=
-onfig[ain[0]];
-> >> +               } else {
-> >> +                       chan->channel =3D ain[0];
-> >> +                       chan->channel2 =3D ain[1];
-> >> +                       chan->differential =3D true;
-> >
-> > Expecting chan->differential =3D false when ADCIN15 is configured for
-> > pseudo-differential inputs.
-> >
-> > Also, perhaps missed in previous reviews, I would expect
-> > chan->differential =3D false when channels are used as single-ended.
-> >
-> Why?
-> Also, how would one detect if you are using single-ended channels?
->
-> The ADC is still differential. Single ended is represented as connecting
-> AVSS(or another fixed voltage) and only letting the AIN+ input to fluctua=
-te.
->
-> In the IIO framework the only difference this makes is in the naming of
-> the channel:
->  voltage0-voltage1 vs just voltage0
->
-> All channels are differential. Pseudo differential: still differential.
-
-In the discussions on the AD7380 patch series, we came to the
-conclusion that pseduo-differential is technically not differential in
-the context of the .differential flag in IIO.
-
-But as mentioned in my follow up, for this driver it is going to make
-things far simpler if we just ignore that and treat
-pseudo-differential the same as fully differential.
+Regards,
+Anup
 
