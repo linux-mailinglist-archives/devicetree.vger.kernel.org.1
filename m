@@ -1,126 +1,141 @@
-Return-Path: <devicetree+bounces-55820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 403DE896765
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 09:59:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6601896766
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 09:59:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 07381B25B24
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 07:58:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 13D791C26644
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 07:59:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14DF65BAD7;
-	Wed,  3 Apr 2024 07:58:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04D305D8F8;
+	Wed,  3 Apr 2024 07:59:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mxf93bp6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W0A9Xjnp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E205A5D73D;
-	Wed,  3 Apr 2024 07:58:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89BF45CDE1;
+	Wed,  3 Apr 2024 07:59:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712131127; cv=none; b=fSOPafJYAu62N1nxdNQERRGstpJQ3Q7ZpwpVNjDnTZ8DBtS4Wmw3i3A7zsmHGXclWQdZtb2FB8vB1KeJVz1ig/zvehodewFWdS6henXDzXKioe1c6eqJFeaGsyPrIYKfIZgDKJ4FJX/rDXqKf3NFJnHldfO+ZsnPANfyysS8I4w=
+	t=1712131169; cv=none; b=XLr6HFrKbP7GILBQJKxsaCQcCqvAIRIR4oBPqjy6CknlCt0twNk/CGev0wDok+wzlsoD+5yJpraumQFveZS7fcJSEBwAkKLSWqROf28YitpiXbaC5a41q6fyD1fBUDBIOno+5wKmJDzkTCHDm8MQFqDYuuiYqIAEPzsBmXotXbI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712131127; c=relaxed/simple;
-	bh=rff1smmYpqyVpVVfAiWjpMpTYNbLSpbWFwSmqO/3U4g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fVWEES5J+0VzwYuP7KDqT/9IxHlxfW7gaFtOMNoTWCKdlT3U34nrIgfSpeIPKsiVfzCyOqIIEX8/8KnmmPpfHGSZLEyDUf9Swt8a7CX6thlQi0fF3389m/5U6JmRlA7Fxud/YrWdAqmucylM495hO8SIyoeQXgEeXT5GjX08foQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mxf93bp6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD8A6C433F1;
-	Wed,  3 Apr 2024 07:58:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712131126;
-	bh=rff1smmYpqyVpVVfAiWjpMpTYNbLSpbWFwSmqO/3U4g=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Mxf93bp6wDizDIACTo4UdoDT5pg99FD2NqYFnuCZMDNdqh6VsEeWgF+VKKwu1x43i
-	 P+5tYJSLJWqv/gy7hxE/lNOQ4Suik163ZcbxSP+RBZdHCnvBxikA4xXjnb8QSt5taY
-	 hkG+omhxKCxYgQrZxOWXEZ2a92soCc2fzkeX84hURgDFbHp2+qn78zUVmNmvBG32VB
-	 oKJgyXLeDksYFuH71EZaIGxi5LD+bQq49jT2P3J3owdEL+h0oaXAvZXh2oiHM67OQH
-	 JG1z2uIMMMtW5pHoz1BEGR3CfY2/+14nsN1ZdqW6Zk65aSOgttY35xhGInQ5L2x69Z
-	 W2+sPk5raT2CQ==
-Message-ID: <2cdc7045-e277-4d1f-ad7c-66e4ac819a41@kernel.org>
-Date: Wed, 3 Apr 2024 16:58:42 +0900
+	s=arc-20240116; t=1712131169; c=relaxed/simple;
+	bh=Mqs11XDvSzMb00a/L3tUp4N7WbZfs5QSZUdg9Qd2nR8=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=UVfxYMPW7kunu1SsFZd206xeOlNjKeFrPn1ItTuvGOaUKNYNFg3XPg65aqj8qr++FsVCVd8Vxx1SZmFmeBpJfAkNB7WbzL3ZH1YPbY7HPhPw1CoeHWr9fqypHXaYjYmE/OTkGDOrKuA0rGYdKyirDrtPNmAqpMaSnqqNyhSaV9g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W0A9Xjnp; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-6eaf1005fcaso2785252b3a.3;
+        Wed, 03 Apr 2024 00:59:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712131168; x=1712735968; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YeXMBV/DDbXYMSIOdbEvhHUID1HnBQQHNSOBZwWjgL8=;
+        b=W0A9XjnpkWTvAu6e1BHmGnhcrEGJ8DFzZAfKxfNqOJgwMz22khas7wOAc00VedLDBT
+         olzGiiG9/ahJd/Ax+XQbevIuiZ1/UNHxaflU9087Mp2mCCOhQnacbUy3EKtw2CbT4MCh
+         proHuqMeTy14Q0oSV1k10B3Qu4XwuNQKYbTE7wpWigIEYMDhQ4AWl6MbQIzFTcaj09+S
+         KqZow6WCRbZ1NVUif8KYWcOKUTNFmGwj0/HfSuWOBpv813RcyoqYTr/H1peTuX7PUsfY
+         e5Fz40udEBpDMmLonXgmR0t+bnJxr1L6FT3FJlruElkIEVWfCJC2hxbzpW3oDIp5ogje
+         9oFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712131168; x=1712735968;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YeXMBV/DDbXYMSIOdbEvhHUID1HnBQQHNSOBZwWjgL8=;
+        b=v6NaTKWlO2RBiU66x2BdfNK9Sh51tggFqaVxp6GdTa74MZ8KR7JjB5OW3OsH8zn6rt
+         Ch34hrhtjJsG/EfJKy/VyhXaGvcctW5OWh0iQU/s5ArzjBuKQz3QLszlsLYDCAalWRsY
+         TciPxsSaBjyRGM9JMRRpZ8oaV1KBp6eqBudBJasMaMSsP82Xk2b4jC/oKWeE3zIZbBxJ
+         gguxK6/yZquGqhjwlRqe9xiiyoaLtCyF+h9f0p3lrn2qNg8tEmmy2yxN6mXwVRIYAXrN
+         4UdXoh7H/X09rxPpu+E+GlcaBkI10pHJJBVr855mIPM4Llw5Bd19Ta7vCON04cfE8vR7
+         sqtw==
+X-Forwarded-Encrypted: i=1; AJvYcCXZkjZadZMRiFeVN9PwVfMHT1gQcQUpZAMAMEocvFcb1aTXIRLJqUMFhFQEcgIOc0SJ2uw5Xh3LauqPsgSODXR+3RxnKjSzC5c1S+k1iw6KQS8UsQdoc2kt2PZ5ieOFC5OA4wrxkx/IjQ==
+X-Gm-Message-State: AOJu0YzZA5b28oa1nvMfmhvFMH/SnxS6yNkQwvSEo8ctA6OVSGmZQfb/
+	4hVedRVa0zZR4wV+bAcCHA3YrPJJgkWm6w1FQNVdFOOqUFXeG6wQao9ToVyGY0zUOg==
+X-Google-Smtp-Source: AGHT+IGy1/ipZnnxBslaBMOtfbRbw5ZxCaIZRbUfDoiUz9M2U3w3UDxRiZx7620AoOukewYjyFNLmA==
+X-Received: by 2002:a05:6a00:ccb:b0:6eb:3ffa:8131 with SMTP id b11-20020a056a000ccb00b006eb3ffa8131mr9378678pfv.12.1712131167725;
+        Wed, 03 Apr 2024 00:59:27 -0700 (PDT)
+Received: from localhost.localdomain ([221.220.133.103])
+        by smtp.gmail.com with ESMTPSA id fk15-20020a056a003a8f00b006e6c74eac34sm11108652pfb.151.2024.04.03.00.59.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Apr 2024 00:59:27 -0700 (PDT)
+From: Jianfeng Liu <liujianfeng1994@gmail.com>
+To: heiko@sntech.de
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	liujianfeng1994@gmail.com,
+	robh@kernel.org,
+	sfr@canb.auug.org.au
+Subject: Re: Re: [PATCH] arm64: dts: rockchip: remove startup-delay-us from vcc3v3_pcie2x1l0 on rock-5b
+Date: Wed,  3 Apr 2024 15:59:16 +0800
+Message-Id: <20240403075916.1025550-1-liujianfeng1994@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <2535182.Sgy9Pd6rRy@diego>
+References: <2535182.Sgy9Pd6rRy@diego>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 00/18] Improve PCI memory mapping API
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
- <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Rick Wertenbroek <rick.wertenbroek@gmail.com>,
- Wilfred Mallawa <wilfred.mallawa@wdc.com>, Niklas Cassel <cassel@kernel.org>
-References: <20240330041928.1555578-1-dlemoal@kernel.org>
- <20240403075034.GF25309@thinkpad>
-Content-Language: en-US
-From: Damien Le Moal <dlemoal@kernel.org>
-Organization: Western Digital Research
-In-Reply-To: <20240403075034.GF25309@thinkpad>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 4/3/24 16:50, Manivannan Sadhasivam wrote:
-> On Sat, Mar 30, 2024 at 01:19:10PM +0900, Damien Le Moal wrote:
->> This series introduces the new functions pci_epc_map_align(),
->> pci_epc_mem_map() and pci_epc_mem_unmap() to improve handling of the
->> PCI address mapping alignment constraints of endpoint controllers in a
->> controller independent manner.
->>
->> The issue fixed is that the fixed alignment defined by the "align" field
->> of struct pci_epc_features assumes that the alignment of the endpoint
->> memory used to map a RC PCI address range is independent of the PCI
->> address being mapped. But that is not the case for the rk3399 SoC
->> controller: in endpoint mode, this controller uses the lower bits of the
->> local endpoint memory address as the lower bits for the PCI addresses
->> for data transfers. That is, when mapping local memory, one must take
->> into account the number of bits of the RC PCI address that change from
->> the start address of the mapping.
->>
->> To fix this, the new endpoint controller method .map_align is introduced
->> and called from pci_epc_map_align(). This method is optional and for
->> controllers that do not define it, the mapping information returned
->> is based of the fixed alignment constraint as defined by the align
->> feature.
->>
->> The functions pci_epc_mem_map() is a helper function which obtains
->> mapping information, allocates endpoint controller memory according to
->> the mapping size obtained and maps the memory. pci_epc_mem_map() unmaps
->> and frees the endpoint memory.
->>
->> This series is organized as follows:
->>  - Patch 1 tidy up the epc core code
->>  - Patch 2 and 3 introduce the new map_align endpoint controller method
->>    and related epc functions.
->>  - Patch 4 to 6 modify the test endpoint driver to use these new
->>    functions and improve the code of this driver.
-> 
-> While posting the next version, please split the endpoint patches into a
-> separate series. It helps in code review and can be applied separately.
+Hi Heiko,
 
-Which patches ? They are all endpoint related:
- (1) Core code
- (2) test function driver
- (3) rockchip rk3399 controller
+Tue, 02 Apr 2024 12:39:17 +0200, Heiko Stübner wrote:
+>Does the pcie driver enable the regulator too late somehow?
+The pcie driver will enable the regulator imediately when it is probed.
+I added log at when driver is probed and when regulator is enabled.
+Here is the log with "startup-delay-us = <50000>":
+```
+[    1.572991] rockchip-dw-pcie a40800000.pcie: rockchip_pcie_probe start
+[    1.573697] rockchip-dw-pcie a40800000.pcie: going to enable vpcie3v3 regulator
+[    1.575194] rockchip-dw-pcie a40800000.pcie: enable vpcie3v3 regulator done
+```
 
-(2) and (3) depend on the patches in (1), so splitting the series is a big
-possible only if (1) is applied first, so that is a source of delays and breaks
-the context of the patches...
+And here is the log without "startup-delay-us":
+```
+[    1.518490] rockchip-dw-pcie a40800000.pcie: rockchip_pcie_probe start
+[    1.518603] rockchip-dw-pcie a40800000.pcie: going to enable vpcie3v3 regulator
+[    1.518610] rockchip-dw-pcie a40800000.pcie: enable vpcie3v3 regulator done
+```
 
--- 
-Damien Le Moal
-Western Digital Research
+We can see startup-delay-us will delay the driver probe.
 
+I also take a look at rockchip's SDK kernel, their pci driver is probed
+very late:
+```
+[    3.398682] dw-pcie fe170000.pcie: invalid resource
+[    3.398686] dw-pcie fe170000.pcie: Failed to initialize host
+[    3.398688] dw-pcie: probe of fe170000.pcie failed with error -22
+[    3.399396] rk-pcie fe170000.pcie: invalid prsnt-gpios property in node
+[    3.399410] rk-pcie fe170000.pcie: Looking up vpcie3v3-supply from device tree
+[    3.405195] rk-pcie fe170000.pcie: host bridge /pcie@fe170000 ranges:
+[    3.405253] rk-pcie fe170000.pcie:       IO 0x00f2100000..0x00f21fffff -> 0x00f2100000
+[    3.405283] rk-pcie fe170000.pcie:      MEM 0x00f2200000..0x00f2ffffff -> 0x00f2200000
+[    3.405310] rk-pcie fe170000.pcie:      MEM 0x0980000000..0x09bfffffff -> 0x0980000000
+[    3.405372] rk-pcie fe170000.pcie: iATU unroll: enabled
+[    3.405381] rk-pcie fe170000.pcie: iATU regions: 8 ob, 8 ib, align 64K, limit 8G
+[    3.666917] rk-pcie fe170000.pcie: PCIe Link up, LTSSM is 0x30011
+[    3.666932] rk-pcie fe170000.pcie: PCIe Gen.1 x1 link up
+[    3.667139] rk-pcie fe170000.pcie: PCI host bridge to bus 0002:20
+```
+
+And it is reported that startup-delay-us is necessary in rockchip's SDK
+kernel. But in mainline kernel it is different.
+
+Jianfeng
 
