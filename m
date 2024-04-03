@@ -1,193 +1,324 @@
-Return-Path: <devicetree+bounces-55765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55767-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC93B8964B2
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 08:44:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87E338964CB
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 08:46:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A0181F22BE6
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 06:44:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1D6EF1F23241
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 06:46:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FAB3210F8;
-	Wed,  3 Apr 2024 06:44:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 962FC4EB5F;
+	Wed,  3 Apr 2024 06:46:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JtwN+Rot"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fktE8wSR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 863D917BDD
-	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 06:44:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A20B0548E3
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 06:46:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712126694; cv=none; b=nBxUW45SWhTPdSCAsreFtB2KZtCNWuf+Av7oLGB0AiZD+14JZAHG4on0qFkZzP9qQmFBlMv4HfXxomsH0RGIldtO9xOPydLJopIlbB7H+DiIpt10QPCJgU0tOW/WAronZLrrtBJXPLkpF/pTu1h1UNxJfBBXVR2R7xnyUBjWF24=
+	t=1712126781; cv=none; b=HRLuDWdb+5XqGR0n19ulHIXhenaTHwDa6OZf0qRYGZMWurWEnWKEtkTMw4QoplrtvXapLV7rDlZza/4ZwZpjRX3lwG9jM8Dvp90VJXty2ndL5xADXaLe1DnSPjvjMOP4feQKmUwNFMtzzWtpd5sZgxQJvOcPmRfe4aE2UdenaI0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712126694; c=relaxed/simple;
-	bh=us7MqpjHfnTc7dW6DdJb/B6eLXrrOlR+YDgMN07W/hs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GiOS9Tbs7Z5r0V6F0r1Fq4UWoS/Boh6mJH2IM1ouqsM0SkNw98JxNCnqdsGZvAbVkhuGGCTXm0zRbPs6VWRvWmOgl6TKVGzcNqFTNsbgP6zfNpXr8X7CY5tMTdTbOOFaPqcuhf2WqL4T1oPuoe87hUVVoWzgrpOAK0gD1ov8aTU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JtwN+Rot; arc=none smtp.client-ip=209.85.208.41
+	s=arc-20240116; t=1712126781; c=relaxed/simple;
+	bh=EtLzbRs1jyXC2EzWtrlyjhshVeLBDRwrWIp3gdtJp2g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bX6NepcMVt4UFrmfyoHuB2pKOba44Yeswh4CN2NO7nxr9XnPZVmikWgKLEKVv4KWdq1ph+0vSyxNAFeTeyPZNeMeEHwVjO+XBunLu2+TU37T1a+Sk/1wQEU96TJM8yT2fr+v4BWzz6eqXgEAJzgSac13mlTTa/K1uNpt6lAdYcg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fktE8wSR; arc=none smtp.client-ip=209.85.160.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5684db9147dso6729871a12.2
-        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 23:44:52 -0700 (PDT)
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-22e7444c5a0so702851fac.2
+        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 23:46:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712126691; x=1712731491; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=mqzG+GVTYlLCvJp4qtTWcyIY70wgO0A+rDrRVUSez5Q=;
-        b=JtwN+RotWS1ET9lvdOxlcBxdLAw4ux5P3Jzxsf6uy8/FFJZLwLZyhPZplNQyWqqeKa
-         mwlyYiEcOvHwRlBleVoI9Fsb/gCHtqVXQj0f9x9Yn9sGCz7O7Jy7p0iwRqH8UTyyTfUc
-         FTwh9QK8gBiU6s1PwbcFujmV6wLw/gW3oJQ5aRuQymgo3t60XLSy2bdehkGZ8rPrY6iv
-         sYZ6YdcTNX5yNiW12/SbvGovwH+Qw/yaGPpZebfYV4vcNO8FkIkI0YF055qpoF39oqtc
-         OT5XkOULGr+D4fxgx5u4VSSuGaJgTmSDcyEawI36xthOLHD7bN6s8Ivo7HGui78k0opM
-         j+4g==
+        d=linaro.org; s=google; t=1712126778; x=1712731578; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=t7PxrVKW+xziJG22nruxVobi3iX95Q/TH3TNd20dcL8=;
+        b=fktE8wSRoxw/1c74LY4UcOYVWm6DBRDTpxKt5Dv4mjFdU1465t1PghL0lZJK3f36RQ
+         9aVAKuDTHD9lUmXPwIjfMZLD0LWAI4XEHHXTCcDDsQw8hIWOKI7rPZNaAJU8VvxgGeKP
+         kgO0VUGUFxZldXXZyDm72ZaJj1eJIqikFKU4tG4KqO0Js9unWiCAG8WswS2FvQMzECpY
+         CzZQJ5Uv7CcmtyVAmAnS3U4bu6ju0Scm5KnWpYkAIJ/umNsQtovG0WcKN0teOPfCmneF
+         iHGV75XbNY0m6A/w38GrVTP5yoFb1l8l7CkRVUq/DvkhRLPCiYUqGk79zBiWw/8kVTll
+         /LnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712126691; x=1712731491;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mqzG+GVTYlLCvJp4qtTWcyIY70wgO0A+rDrRVUSez5Q=;
-        b=XskuXJ2W4U1pT/yJrlBTe7BUHTfiHZFcbw3jALc1t/SXDgLzBLAH0WbXyYGItlFcR2
-         vW9nYpeR+2NvhJFqoRMK323q/qA9r8f5mxgvXU8KkITwYiL8wu+NkA/zFheBvyvsc+sZ
-         j6b/8pKSTIsP3+Kbl4Uh6ckqduTkIzXlyRlGKmtGDnJpopZVkcAVUTWvEc3sT1+rUXjE
-         /pFu8PcJgXxsP4fWHctU45MOg5mRs+jcJ8QbiA21N3WoqO0xyFsM27jI7BsGKzZt/yvS
-         CO9vnuJfnXRoAtxv9uVlQ32ERqUXNZAaTpBoHm2EAHPgoc7r8vNY/1+ACROizpvlzAtN
-         XGLQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVQG7JSf4apma6ddfgjc70vE6cG1IhKO/ookabKMGbMPuMtW8DRET85jD/OveznjWGJjX1Uh9qATMfh+7zqeK2eV51J2y6B9JfihA==
-X-Gm-Message-State: AOJu0Yx2gIa7rey08/wh839e3CccGs/hCRQfZRZo3n8ZpPmT2ClqTQKQ
-	qRBXFDuxk42feIZohCCeQAQFk7+42XYYp1YQjAquHXX3ZF0eMtYgh1SiCqP0kk4=
-X-Google-Smtp-Source: AGHT+IF1uLL1pPHXISWPCfPmatN0dRkigzOt05swpo3k6uWmGxqKf1SISJl1Y7/Pj0xYoM/BIfIN0Q==
-X-Received: by 2002:a17:906:f6d1:b0:a4e:1b02:81d6 with SMTP id jo17-20020a170906f6d100b00a4e1b0281d6mr1123667ejb.10.1712126690625;
-        Tue, 02 Apr 2024 23:44:50 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id n12-20020a1709061d0c00b00a4da28f42f1sm7459338ejh.177.2024.04.02.23.44.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Apr 2024 23:44:49 -0700 (PDT)
-Message-ID: <1a9de041-8d17-42eb-85c5-9e8f280a1985@linaro.org>
-Date: Wed, 3 Apr 2024 08:44:47 +0200
+        d=1e100.net; s=20230601; t=1712126778; x=1712731578;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=t7PxrVKW+xziJG22nruxVobi3iX95Q/TH3TNd20dcL8=;
+        b=Nv0Nd2wPrjHZOLdnqHmlHKEKqI115ggPReb5BD8HVoBsWUw6ObAyRC2S7jurN/bp7V
+         UeuR0fcIFtkL2w+gIvSjC1CytZw6FEPXcwPEPwQyO1NaiUWf+4GAyMCnf4/GELeJo2lB
+         2i7yhCdIxDVn0RqNqq1E1mSALXLYMrKTygKRoL8n5icc5c3Nagc2rSsVEIsw+KC0V0xz
+         lHdistMoxUCuz9GuE1KzD4/soDLdtTCVTzVpRqDVU2NHO17f7+q35yda8J9uvDHhfXva
+         EY6SFitqvpSDLQ1cpSmgwcpqYluljp2uT0LLYP0lUkQ2WAvwtmMUbgI4SswvgvgDkFeq
+         7/eg==
+X-Forwarded-Encrypted: i=1; AJvYcCWZPSi5/CRiq87jjn9OPPqdgWJbjVleTCtQ1AWj5yDYEtF/IWfBSG1HD98uMFA82iJnTh9jI4uWXf31aNUuHlcNLOTYqgz4K+ILCg==
+X-Gm-Message-State: AOJu0Yy07KtcTBJ/kYOI+Ww1z1z+af4LCTS8LAmHhrVdyOJ4bpTUkgMn
+	ABhQUSyO9OHsv3Mk72TpTTCB87Q+aUk/ByiSUN47HYpSC4tEv+jz09pD429Qvw==
+X-Google-Smtp-Source: AGHT+IGpI2xtNByiryiE2cJzVu481+eI1+G8W13TvfGzP3+1XQ6iPKh97Q6OebN9sY+msv6hN6A8yg==
+X-Received: by 2002:a05:6871:547:b0:22e:7c64:af74 with SMTP id t7-20020a056871054700b0022e7c64af74mr2036337oal.44.1712126777521;
+        Tue, 02 Apr 2024 23:46:17 -0700 (PDT)
+Received: from thinkpad ([103.28.246.48])
+        by smtp.gmail.com with ESMTPSA id j15-20020aa7928f000000b006ea7d877191sm11041957pfa.2.2024.04.02.23.46.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Apr 2024 23:46:17 -0700 (PDT)
+Date: Wed, 3 Apr 2024 12:16:10 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Damien Le Moal <dlemoal@kernel.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+	Wilfred Mallawa <wilfred.mallawa@wdc.com>,
+	Niklas Cassel <cassel@kernel.org>
+Subject: Re: [PATCH v2 01/18] PCI: endpoint: Introduce
+ pci_epc_function_is_valid()
+Message-ID: <20240403064610.GB25309@thinkpad>
+References: <20240330041928.1555578-1-dlemoal@kernel.org>
+ <20240330041928.1555578-2-dlemoal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: net: wireless: ath10k: add
- qcom,no-msa-ready-indicator prop
-To: Marc Gonzalez <mgonzalez@freebox.fr>, Kalle Valo <kvalo@kernel.org>,
- Jeff Johnson <quic_jjohnson@quicinc.com>, ath10k <ath10k@lists.infradead.org>
-Cc: wireless <linux-wireless@vger.kernel.org>, DT
- <devicetree@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Jami Kettunen <jamipkettunen@gmail.com>,
- Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-References: <fd26ce4a-a9f3-4ada-8d46-ed36fb2456ca@freebox.fr>
- <84f20fb5-5d48-419c-8eff-d7044afb81c0@freebox.fr>
- <72c162cc-45e0-48b6-8d90-d59fac299375@linaro.org>
- <6bd3db0f-2e18-4ad1-abc2-f59c6acc8037@linaro.org>
- <ea18f91a-710a-4eac-903d-90928caa3090@freebox.fr>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ea18f91a-710a-4eac-903d-90928caa3090@freebox.fr>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240330041928.1555578-2-dlemoal@kernel.org>
 
-On 30/03/2024 23:04, Marc Gonzalez wrote:
-> On 30/03/2024 19:23, Krzysztof Kozlowski wrote:
+On Sat, Mar 30, 2024 at 01:19:11PM +0900, Damien Le Moal wrote:
+> Introduce the epc core helper function pci_epc_function_is_valid() to
+> verify that an epc pointer, a physical function number and a virtual
+> function number are all valid. This avoids repeating the code pattern:
 > 
->> On 30/03/2024 19:20, Krzysztof Kozlowski wrote:
->>
->>> On 28/03/2024 18:36, Marc Gonzalez wrote:
->>>
->>>> The ath10k driver waits for an "MSA_READY" indicator
->>>> to complete initialization. If the indicator is not
->>>> received, then the device remains unusable.
->>>>
->>>> cf. ath10k_qmi_driver_event_work()
->>>>
->>>> Several msm8998-based devices are affected by this issue.
->>>> Oddly, it seems safe to NOT wait for the indicator, and
->>>> proceed immediately when QMI_EVENT_SERVER_ARRIVE.
->>>
->>> This is v2, so where is the changelog?
->>
->> Expecting reviewer to dig previous discussions will not help your case.
->> It helps reviewers if you provide necessary information, like resolution
->> of previous discussion in the changelog.
->>
->> I dig the previous discussion, since you did not mention it here, and it
->> seems you entirely ignored its outcome. That's not a DT property.
->>
->> NAK, sorry. Please go back to v1 and read the comments you got there.
+> if (IS_ERR_OR_NULL(epc) || func_no >= epc->max_functions)
+> 	return err;
 > 
-> My apologies for omitting the changelog.
+> if (vfunc_no > 0 && (!epc->max_vfs || vfunc_no > epc->max_vfs[func_no]))
+> 	return err;
 > 
-> And I don't blame you for missing the thread's resolution,
-> since I made a bit of a mess of it with my various messages.
+> in many functions of the endpoint controller core code.
 > 
-> The firmware-5.bin approach was deemed DOA since these files
-> are parsed too late with respect to the required work-around.
-> Thus, we went back to either DT or a to-be-written system used
-> in the vendor driver.
+> Signed-off-by: Damien Le Moal <dlemoal@kernel.org>
 
-Then please mention it briefly in the commit msg. Explain there why such
-implementation is the correct way to solve your problem.
+One nit below. With that fixed,
 
-Best regards,
-Krzysztof
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
+> ---
+>  drivers/pci/endpoint/pci-epc-core.c | 79 +++++++++++------------------
+>  1 file changed, 31 insertions(+), 48 deletions(-)
+> 
+> diff --git a/drivers/pci/endpoint/pci-epc-core.c b/drivers/pci/endpoint/pci-epc-core.c
+> index da3fc0795b0b..754afd115bbd 100644
+> --- a/drivers/pci/endpoint/pci-epc-core.c
+> +++ b/drivers/pci/endpoint/pci-epc-core.c
+> @@ -126,6 +126,18 @@ enum pci_barno pci_epc_get_next_free_bar(const struct pci_epc_features
+>  }
+>  EXPORT_SYMBOL_GPL(pci_epc_get_next_free_bar);
+>  
+> +static inline bool pci_epc_function_is_valid(struct pci_epc *epc,
+> +					     u8 func_no, u8 vfunc_no)
+
+No need to add 'inline' keyword to function definitions in a .c file. Compiler
+will handle that.
+
+- Mani
+
+> +{
+> +	if (IS_ERR_OR_NULL(epc) || func_no >= epc->max_functions)
+> +		return false;
+> +
+> +	if (vfunc_no > 0 && (!epc->max_vfs || vfunc_no > epc->max_vfs[func_no]))
+> +		return false;
+> +
+> +	return true;
+> +}
+> +
+>  /**
+>   * pci_epc_get_features() - get the features supported by EPC
+>   * @epc: the features supported by *this* EPC device will be returned
+> @@ -143,10 +155,7 @@ const struct pci_epc_features *pci_epc_get_features(struct pci_epc *epc,
+>  {
+>  	const struct pci_epc_features *epc_features;
+>  
+> -	if (IS_ERR_OR_NULL(epc) || func_no >= epc->max_functions)
+> -		return NULL;
+> -
+> -	if (vfunc_no > 0 && (!epc->max_vfs || vfunc_no > epc->max_vfs[func_no]))
+> +	if (!pci_epc_function_is_valid(epc, func_no, vfunc_no))
+>  		return NULL;
+>  
+>  	if (!epc->ops->get_features)
+> @@ -216,10 +225,7 @@ int pci_epc_raise_irq(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
+>  {
+>  	int ret;
+>  
+> -	if (IS_ERR_OR_NULL(epc) || func_no >= epc->max_functions)
+> -		return -EINVAL;
+> -
+> -	if (vfunc_no > 0 && (!epc->max_vfs || vfunc_no > epc->max_vfs[func_no]))
+> +	if (!pci_epc_function_is_valid(epc, func_no, vfunc_no))
+>  		return -EINVAL;
+>  
+>  	if (!epc->ops->raise_irq)
+> @@ -260,10 +266,7 @@ int pci_epc_map_msi_irq(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
+>  {
+>  	int ret;
+>  
+> -	if (IS_ERR_OR_NULL(epc))
+> -		return -EINVAL;
+> -
+> -	if (vfunc_no > 0 && (!epc->max_vfs || vfunc_no > epc->max_vfs[func_no]))
+> +	if (!pci_epc_function_is_valid(epc, func_no, vfunc_no))
+>  		return -EINVAL;
+>  
+>  	if (!epc->ops->map_msi_irq)
+> @@ -291,10 +294,7 @@ int pci_epc_get_msi(struct pci_epc *epc, u8 func_no, u8 vfunc_no)
+>  {
+>  	int interrupt;
+>  
+> -	if (IS_ERR_OR_NULL(epc) || func_no >= epc->max_functions)
+> -		return 0;
+> -
+> -	if (vfunc_no > 0 && (!epc->max_vfs || vfunc_no > epc->max_vfs[func_no]))
+> +	if (!pci_epc_function_is_valid(epc, func_no, vfunc_no))
+>  		return 0;
+>  
+>  	if (!epc->ops->get_msi)
+> @@ -327,11 +327,10 @@ int pci_epc_set_msi(struct pci_epc *epc, u8 func_no, u8 vfunc_no, u8 interrupts)
+>  	int ret;
+>  	u8 encode_int;
+>  
+> -	if (IS_ERR_OR_NULL(epc) || func_no >= epc->max_functions ||
+> -	    interrupts < 1 || interrupts > 32)
+> +	if (!pci_epc_function_is_valid(epc, func_no, vfunc_no))
+>  		return -EINVAL;
+>  
+> -	if (vfunc_no > 0 && (!epc->max_vfs || vfunc_no > epc->max_vfs[func_no]))
+> +	if (interrupts < 1 || interrupts > 32)
+>  		return -EINVAL;
+>  
+>  	if (!epc->ops->set_msi)
+> @@ -359,10 +358,7 @@ int pci_epc_get_msix(struct pci_epc *epc, u8 func_no, u8 vfunc_no)
+>  {
+>  	int interrupt;
+>  
+> -	if (IS_ERR_OR_NULL(epc) || func_no >= epc->max_functions)
+> -		return 0;
+> -
+> -	if (vfunc_no > 0 && (!epc->max_vfs || vfunc_no > epc->max_vfs[func_no]))
+> +	if (!pci_epc_function_is_valid(epc, func_no, vfunc_no))
+>  		return 0;
+>  
+>  	if (!epc->ops->get_msix)
+> @@ -395,11 +391,10 @@ int pci_epc_set_msix(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
+>  {
+>  	int ret;
+>  
+> -	if (IS_ERR_OR_NULL(epc) || func_no >= epc->max_functions ||
+> -	    interrupts < 1 || interrupts > 2048)
+> +	if (!pci_epc_function_is_valid(epc, func_no, vfunc_no))
+>  		return -EINVAL;
+>  
+> -	if (vfunc_no > 0 && (!epc->max_vfs || vfunc_no > epc->max_vfs[func_no]))
+> +	if (interrupts < 1 || interrupts > 2048)
+>  		return -EINVAL;
+>  
+>  	if (!epc->ops->set_msix)
+> @@ -426,10 +421,7 @@ EXPORT_SYMBOL_GPL(pci_epc_set_msix);
+>  void pci_epc_unmap_addr(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
+>  			phys_addr_t phys_addr)
+>  {
+> -	if (IS_ERR_OR_NULL(epc) || func_no >= epc->max_functions)
+> -		return;
+> -
+> -	if (vfunc_no > 0 && (!epc->max_vfs || vfunc_no > epc->max_vfs[func_no]))
+> +	if (!pci_epc_function_is_valid(epc, func_no, vfunc_no))
+>  		return;
+>  
+>  	if (!epc->ops->unmap_addr)
+> @@ -457,10 +449,7 @@ int pci_epc_map_addr(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
+>  {
+>  	int ret;
+>  
+> -	if (IS_ERR_OR_NULL(epc) || func_no >= epc->max_functions)
+> -		return -EINVAL;
+> -
+> -	if (vfunc_no > 0 && (!epc->max_vfs || vfunc_no > epc->max_vfs[func_no]))
+> +	if (!pci_epc_function_is_valid(epc, func_no, vfunc_no))
+>  		return -EINVAL;
+>  
+>  	if (!epc->ops->map_addr)
+> @@ -487,12 +476,11 @@ EXPORT_SYMBOL_GPL(pci_epc_map_addr);
+>  void pci_epc_clear_bar(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
+>  		       struct pci_epf_bar *epf_bar)
+>  {
+> -	if (IS_ERR_OR_NULL(epc) || func_no >= epc->max_functions ||
+> -	    (epf_bar->barno == BAR_5 &&
+> -	     epf_bar->flags & PCI_BASE_ADDRESS_MEM_TYPE_64))
+> +	if (!pci_epc_function_is_valid(epc, func_no, vfunc_no))
+>  		return;
+>  
+> -	if (vfunc_no > 0 && (!epc->max_vfs || vfunc_no > epc->max_vfs[func_no]))
+> +	if (epf_bar->barno == BAR_5 &&
+> +	    epf_bar->flags & PCI_BASE_ADDRESS_MEM_TYPE_64)
+>  		return;
+>  
+>  	if (!epc->ops->clear_bar)
+> @@ -519,18 +507,16 @@ int pci_epc_set_bar(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
+>  	int ret;
+>  	int flags = epf_bar->flags;
+>  
+> -	if (IS_ERR_OR_NULL(epc) || func_no >= epc->max_functions ||
+> -	    (epf_bar->barno == BAR_5 &&
+> -	     flags & PCI_BASE_ADDRESS_MEM_TYPE_64) ||
+> +	if (!pci_epc_function_is_valid(epc, func_no, vfunc_no))
+> +		return -EINVAL;
+> +
+> +	if ((epf_bar->barno == BAR_5 && flags & PCI_BASE_ADDRESS_MEM_TYPE_64) ||
+>  	    (flags & PCI_BASE_ADDRESS_SPACE_IO &&
+>  	     flags & PCI_BASE_ADDRESS_IO_MASK) ||
+>  	    (upper_32_bits(epf_bar->size) &&
+>  	     !(flags & PCI_BASE_ADDRESS_MEM_TYPE_64)))
+>  		return -EINVAL;
+>  
+> -	if (vfunc_no > 0 && (!epc->max_vfs || vfunc_no > epc->max_vfs[func_no]))
+> -		return -EINVAL;
+> -
+>  	if (!epc->ops->set_bar)
+>  		return 0;
+>  
+> @@ -559,10 +545,7 @@ int pci_epc_write_header(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
+>  {
+>  	int ret;
+>  
+> -	if (IS_ERR_OR_NULL(epc) || func_no >= epc->max_functions)
+> -		return -EINVAL;
+> -
+> -	if (vfunc_no > 0 && (!epc->max_vfs || vfunc_no > epc->max_vfs[func_no]))
+> +	if (!pci_epc_function_is_valid(epc, func_no, vfunc_no))
+>  		return -EINVAL;
+>  
+>  	/* Only Virtual Function #1 has deviceID */
+> -- 
+> 2.44.0
+> 
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
