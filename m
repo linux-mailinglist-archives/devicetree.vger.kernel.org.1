@@ -1,74 +1,57 @@
-Return-Path: <devicetree+bounces-56034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 065C389761B
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 19:16:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A858E89763D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 19:19:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6537128E3F6
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 17:16:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46C651F2B270
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 17:19:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE5C4152E0E;
-	Wed,  3 Apr 2024 17:15:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A75A153BD9;
+	Wed,  3 Apr 2024 17:17:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Crn2Bypv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GhnEHUTo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF6DC152DE8;
-	Wed,  3 Apr 2024 17:15:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5B1A153BCF;
+	Wed,  3 Apr 2024 17:16:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712164525; cv=none; b=JKRKpD/vpxjQKCQ9tnfxsKu0da8ZkibS/423UFAae3iQvZPUpsXUMhfHSU6tD8tXWcbcujWhlzNWfqu8IH+pSj+jltbFsqdMCLVEvGyC00ey99n+hP+J/73X5AyLLOW8PYQ3SohTnQJGbmtSS10kC0n1OD/MIbynvNvLeXrG1hg=
+	t=1712164620; cv=none; b=FHVQt1c3PzUhx5g12JHIchCOkt+bj7SIK3InDoM0uxosFGiwXoKdDGwbU8blA1TSJgJffujb4iPS4klqq7txt/5o3DeaGb1X8bDeM4HXkDdxGb/cQmcuxXM8se3gCR1E0dZH3Drmw7HoLyxNGtSGwhC5SBaa1JP4qoBeMMTFN90=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712164525; c=relaxed/simple;
-	bh=LU4Fr44tzUgk3hAyzANG0d2RG8nR6qdxsxdjqxB5zO4=;
+	s=arc-20240116; t=1712164620; c=relaxed/simple;
+	bh=5IR++65FlHu01isFQjZhfdhp3KWxn+RRSi/SkhjyoCs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QIRnyQP0duexhbvY8OvijZjC64hjLsUoY1ILFIEzEHQgtpKN+8MTjIRhoc6Cm/yl5SwY34H642N66VqdI4idUoOHZQpDsvLiOTJKsMaBkLkvk+8H/YUqL0v3eSKjsQ4gqfL2ocxfPSv98FdfqZ93T/zm3zeZD1wWLOmOedMVgts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Crn2Bypv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E04CC43399;
-	Wed,  3 Apr 2024 17:15:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=D1CC6SIGIL4vm1TnzRoRtWOa7KGVGdHyygkOyFf2J596aUFBDlTCJwiTw0LdsTo53QUjBP8TDH3gvVXL0qFMiqaY4CnlP6cQd4kt8uAWSl7izUoxMitFx1PqBS5OzIVcBRosKzeAUmll0VOPNMVTMpPZ0mmbraChgGZHQTvwgnc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GhnEHUTo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A38BC433F1;
+	Wed,  3 Apr 2024 17:16:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712164525;
-	bh=LU4Fr44tzUgk3hAyzANG0d2RG8nR6qdxsxdjqxB5zO4=;
+	s=k20201202; t=1712164619;
+	bh=5IR++65FlHu01isFQjZhfdhp3KWxn+RRSi/SkhjyoCs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Crn2Bypvo3Kv0F/G3kczzQFESKl58l7QIP+KlF5HW2ukxnJddUqfeWcVj2sibhi6r
-	 Wd4pAC48+U3CzabQU/ScGSwvstLaVOAenqS+JANq9rVVusFqiX8CZsZz9Yu7IQE06P
-	 dN61bJcHFau91VNy3QNbrlcU5t2RpnRl22f2UaWjMoMqKUuTPMNOxL8vgYtFaj4Qah
-	 mD+UlGcjt9JtvGnhOe6FDnxJK10I1bP/zZQOPKLhLrIaWjD8/L1yWpxm7e33T26IV5
-	 /FPvSBI+GIFCJPeP6n2EDA5WlPj8vgjmsy0twk/tcWyBo6Vr6TY9o1opeuGt+O40yd
-	 SRup2Djue5aSg==
-Date: Wed, 3 Apr 2024 12:15:23 -0500
+	b=GhnEHUToenowUMHc5izmmF0gkGcEyLNaISwSPjnOMg520ayyheT4/geJrmwRWvdra
+	 zegsuX2X0ZhTGeHFiq6TuS/1zF/mRfDq+V1hUrc/ZLlo88qMxp9gXQiCcJLDSOgjQs
+	 iSlBBCNcFpE7FCYfOQoGS20D1EnLh8E3/FfpvcShzp7CYmjWdPcvtfNzQNsHLJFDKT
+	 9WURIeaOKU21946bpaGNKEbpDHyqOrgYErOx/Khm7Wxqzjp6cREtEGHVcyYVrNmBIf
+	 pNFkwSRVcJ1nUHqoma3PIJ0WUcFDIO61zM8eO2hw2RahgRIFFuouwcYzRI9fiIAF/l
+	 306sp4TlGhnWA==
+Date: Wed, 3 Apr 2024 12:16:57 -0500
 From: Rob Herring <robh@kernel.org>
-To: Tan Chun Hau <chunhau.tan@starfivetech.com>
-Cc: Andrew Halaney <ahalaney@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
-	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
-	"David S . Miller" <davem@davemloft.net>,
-	Jakub Kicinski <kuba@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Russell King <rmk+kernel@armlinux.org.uk>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Rob Herring <robh+dt@kernel.org>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Jee Heng Sia <jeeheng.sia@starfivetech.com>,
-	Paolo Abeni <pabeni@redhat.com>, linux-riscv@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Eric Dumazet <edumazet@google.com>, devicetree@vger.kernel.org,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v6 1/1] dt-bindings: net: starfive,jh7110-dwmac: Add
- StarFive JH8100 support
-Message-ID: <171216452060.4016592.7318363130745016894.robh@kernel.org>
-References: <20240403100549.78719-1-chunhau.tan@starfivetech.com>
- <20240403100549.78719-2-chunhau.tan@starfivetech.com>
+To: Alexander Reimelt <alexander.reimelt@posteo.de>
+Cc: konrad.dybcio@linaro.org, devicetree@vger.kernel.org, pvorel@suse.cz,
+	andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+	robh+dt@kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Add LG G4 (h815)
+Message-ID: <171216461463.4018435.3466905061314737419.robh@kernel.org>
+References: <20240403104415.30636-1-alexander.reimelt@posteo.de>
+ <20240403104415.30636-2-alexander.reimelt@posteo.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,35 +60,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240403100549.78719-2-chunhau.tan@starfivetech.com>
+In-Reply-To: <20240403104415.30636-2-alexander.reimelt@posteo.de>
 
 
-On Wed, 03 Apr 2024 03:05:49 -0700, Tan Chun Hau wrote:
-> Add StarFive JH8100 dwmac support.
-> The JH8100 dwmac shares the same driver code as the JH7110 dwmac
-> and has only one reset signal.
+On Wed, 03 Apr 2024 10:43:29 +0000, Alexander Reimelt wrote:
+> International variant of the LG G4 from 2015.
 > 
-> Please refer to below:
-> 
->   JH8100: reset-names = "stmmaceth";
->   JH7110: reset-names = "stmmaceth", "ahb";
->   JH7100: reset-names = "ahb";
-> 
-> Example usage of JH8100 in the device tree:
-> 
-> gmac0: ethernet@16030000 {
->         compatible = "starfive,jh8100-dwmac",
->                      "starfive,jh7110-dwmac",
->                      "snps,dwmac-5.20";
->         ...
-> };
-> 
-> Signed-off-by: Tan Chun Hau <chunhau.tan@starfivetech.com>
+> Signed-off-by: Alexander Reimelt <alexander.reimelt@posteo.de>
 > ---
->  .../bindings/net/starfive,jh7110-dwmac.yaml   | 28 +++++++++++++++----
->  1 file changed, 23 insertions(+), 5 deletions(-)
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
 
 
