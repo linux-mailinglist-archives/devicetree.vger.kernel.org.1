@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-55789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1E3C8965AF
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 09:12:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C495E8965C4
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 09:14:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 88924283FC1
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 07:12:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DCD71F24337
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 07:14:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A49905C8E6;
-	Wed,  3 Apr 2024 07:11:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 374A955E4C;
+	Wed,  3 Apr 2024 07:14:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UUBtL0di"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Rlcqe+Pu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1A3C55E74
-	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 07:11:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71C5B54918
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 07:14:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712128306; cv=none; b=sC6aFX67CD6RDbb6cRU033qL4eKm1VhtseOxce+20zvLa0Y7ETFBBSSMSQdcYVe0qvhvYvcYNOpoIlziLNLdlnWqM19TwsdrIy3xP281eMWtgMzLkqBhlTcIRY71QzeAnjjl4W2L4JC5hfppfUcoLx6p0qQViV5EmeX+CzSSgQo=
+	t=1712128457; cv=none; b=Kr68US0UpE86oNrj0rsSdaYc89sIs9OmO5QfU2bm1TC6g0bnW5Chm6j3hnNXB4r74l8Are0c8JJorvK1tVcfgMwggRN65xGc0ilalHNQLH2IeA4Uf6uuk6uJN5eA+0vTOcHPxWXRawMawr/ySkXfCYU4WWnumiYyT7aS9Pju/d4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712128306; c=relaxed/simple;
-	bh=yW1wMSjwUT6UBDzAMQBeDv1XjsKC2CWDXtg1QVTtX9A=;
+	s=arc-20240116; t=1712128457; c=relaxed/simple;
+	bh=DzCS5Vkh5bKlXMS2fHbcV/ttPcBGt2o4DFdKKeTk4tg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WuqSEC3FqchGaAJK0msGrmdKTgQBMJyVlrMBKSyUGW8/5YMecTax8nLFArX4h7D4Vhi0XMZhO531JDMZOZpkRMeKHy/OhvAm+rOfvugBV9Abjx+klIt5LyPsB4+SMoO3JdePhie79X2ksBP1tH1OjjZSudC6u8GOV3P/Jvg2UTA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UUBtL0di; arc=none smtp.client-ip=209.85.218.47
+	 In-Reply-To:Content-Type; b=PwQJvgUDZ1bdzKKmCWUgaV7UdK1hFQJi0HpopL5mUPtBNtS1lYfdTdFAoaldXYc0vgAwOuHRrT/FYn7OaqqEVCPUMdvfvJYVMBQ+kmLmhVh9FgN8ReBaVUs9DvLT/S2U3snjIOvNithXiYOcTsQ8JV0++IeXal0mFV6/zltsqeU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Rlcqe+Pu; arc=none smtp.client-ip=209.85.208.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a50f170b7e3so7490866b.2
-        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 00:11:44 -0700 (PDT)
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-56e030624d1so938834a12.2
+        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 00:14:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712128303; x=1712733103; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712128454; x=1712733254; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=eSl+u8dEasrOIaRrdpO4QMlXyyio20Nz1bnAXO9MgKs=;
-        b=UUBtL0di3T8Hatb3q9GqhTUhRosomZP4NJOqsoBrIe0js6tAAuOCN6ExGvShQ3XdU+
-         YHq32z1LjFSm148QEH5SHrQhL8OjdidZicKsGFVQQX8R1UnQVs743eIbFMHlALnqUbhk
-         UrMniabIcCCHW/uWZI03dPSBg3OsGg+OyChHNZGAdU/23Mx0VrxCsFGTHBm9C88p/I/Z
-         SOOHCuOfNMAoVfgCvP+xGFmPmhSkQulpm+HdKGXcDA9oUo9qGn7YV8ILfSyy2PJItue9
-         SidN7nF7WrX0bgtjXFwnQ6w00E0rmu0vrDhwqbyMDLuuFK+Qjk8syign6THOYs1aOEd2
-         4Ksg==
+        bh=5ipvdD4/sbVMbw9/+TDuWNFlLetbY2+c+TxLSBeZ084=;
+        b=Rlcqe+PubjcDS9ificGBfSdSo61E7m0tcsfyfH+//Z2hR/YEnk0HmAJCnJ4NQqhs07
+         CInjTx0NIfhWrL/6S+WWRoiCWQLANSo1mX6dytBk3m+fEWaWegkBJ4yJPdhtH0+gxL8A
+         27MXqL9PIu0n8xKgpAVsIYs+Yrl6YDMfFAO92ChBt6jTV1BZg2ciM2EpPC26RHT5CiKu
+         9GswoXVUQagDkIHMf7HkNJ6PfaZ4/e55DFshxDE4lqR2tyZUlF66VVKqK17twM4rdQyd
+         9QtyzDPAe0InbxXqseVZ9/1TqF5JA+fFv9nPitc0MR5IduCWyAx57w3+mQSEvR6FjBLJ
+         Q39Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712128303; x=1712733103;
+        d=1e100.net; s=20230601; t=1712128454; x=1712733254;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=eSl+u8dEasrOIaRrdpO4QMlXyyio20Nz1bnAXO9MgKs=;
-        b=c/H77rZpxOtthwP6PdFxxDimCmbWlPyKsWxTr3WOed/dAJLOCMFJL3pWiy2ThzjIG1
-         862+LlMiOhQxkywc1Htzzi9LxhSE9yXL/QIXHkH5aJlDBRpA009AyNqrCFEGUDn11XS0
-         YbhM4VtpVAiikZIiOe6kG1hXo2exrPNh8jh+cxxM4tYIUurjyTfFPsZTVe5jvHIpkmJZ
-         4yA0O9yESQbtVrPczkLAWEsoOtcmtv39Z2i9c57GWj18VtVb0jL7ya/TatTYb9mShMS4
-         i4QtPdOAkVjq5UwE8GXt62VtwZsT3F9sKAAy4QrNgj2oP8H6DOdD+CHrz5DqJySpN1xK
-         3wJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWvGoPmO4bdGztdsz5j/eRFKBehLciR0JzVO8m8R3213cQJwu+OetoWBoFzAqYO0Z6VvDkgp/8ZsZnmWcZVEqGOVIEXjXdDHUSAOw==
-X-Gm-Message-State: AOJu0Yzd2FxMGCDPpi/flihwAx/DOJcG7Y0xG3yP6WPWSBq6Lw7eMeJk
-	WYoqApgIAU+aIZFtA6GTTIkpFOFFMsFDllcIafmoy1mh5MIGXqENkjbBb6tsM48=
-X-Google-Smtp-Source: AGHT+IHINt9VbsM5Bdmm5hPgJahtIS6eDrQGtiFIizXfFgzKaaXBKCjNATBlGoL/86nefaycQW4euA==
-X-Received: by 2002:a17:906:7f99:b0:a4d:f1b4:6235 with SMTP id f25-20020a1709067f9900b00a4df1b46235mr10034311ejr.27.1712128303130;
-        Wed, 03 Apr 2024 00:11:43 -0700 (PDT)
+        bh=5ipvdD4/sbVMbw9/+TDuWNFlLetbY2+c+TxLSBeZ084=;
+        b=mIHDzn+HtfyNSd7BUPrKF3eV3fLrN3ha3wjB7IhKzbSepNCqp1LeZAzoIkvH2EATgc
+         S8b3JWdA/m0Qb8ePg2VYD9QMqM3kSBGwe+lRkN90oMZMQyHyoLhLSMVygEH/cQPPhRbR
+         Qts1tRtd9UMtFlHvnHkw2FcJJGlVIChIRGvK/apmiEkgWRDFVXpH/Yeh2DqMBeeH5jcL
+         oabItB/SBN3eS5Ht3ax1IMnTjQhsNWSGRJDqIqruMuqZPD+hGgLl+pnj55iQgmwphEOF
+         dhf/osSVDJoJIoidXpN3GtqpJFW3ReD9tObE8vrA1d8+yeKAyYPaY3fqfli5Sda4Bw+c
+         ctSg==
+X-Forwarded-Encrypted: i=1; AJvYcCUkzrXbjYhWGo3J04Y82gZEj5Ob0ATHoAVZItwOi8PzbK4px+qJLk88C4BL/2QePrKl6t+ILCvXqm/Y9fGZWmTX95letDHfhfnb9A==
+X-Gm-Message-State: AOJu0YzLCrNLDoW+v5eLZ7HwKrjHapZhgUoYYVOu9RQfJpLbW+osM+4N
+	M09E9aSfpWkOC56PctfAs13i0ygafEAepte9lkOsaOCfsQAZQF1x3kaOpn0VVIs=
+X-Google-Smtp-Source: AGHT+IGZ6Bo3UHF6MZU7Pc/EE5bfGkIP1uRtIisqeyXKQ0hYM30SO/vghsxufGYgzR8zPovW93LBUw==
+X-Received: by 2002:a50:d58a:0:b0:56c:2a90:9c29 with SMTP id v10-20020a50d58a000000b0056c2a909c29mr10957155edi.28.1712128453684;
+        Wed, 03 Apr 2024 00:14:13 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id v18-20020a170906339200b00a4df78425dbsm7348184eja.36.2024.04.03.00.11.41
+        by smtp.gmail.com with ESMTPSA id i23-20020a05640200d700b0056ddc4415eesm2628846edu.14.2024.04.03.00.14.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Apr 2024 00:11:42 -0700 (PDT)
-Message-ID: <d9058f73-a229-45c1-8478-88b7f36745e0@linaro.org>
-Date: Wed, 3 Apr 2024 09:11:41 +0200
+        Wed, 03 Apr 2024 00:14:13 -0700 (PDT)
+Message-ID: <bad88189-cf70-4200-9fa3-650ea923b4b8@linaro.org>
+Date: Wed, 3 Apr 2024 09:14:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,16 +77,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/7] arm64: dts: qcom: ipq9574: add PCIe2 nodes
+Subject: Re: [PATCH 3/7] dt-bindings: PCI: qcom: Add IPQ9574 PCIe controller
 To: Alexandru Gagniuc <mr.nuke.me@gmail.com>,
  Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Bjorn Helgaas
+ <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
+ Conor Dooley <conor+dt@kernel.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 Cc: ansuelsmth@gmail.com, robimarko@gmail.com, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
 References: <20240402192555.1955204-1-mr.nuke.me@gmail.com>
- <20240402192555.1955204-7-mr.nuke.me@gmail.com>
+ <20240402192555.1955204-3-mr.nuke.me@gmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -133,77 +138,67 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240402192555.1955204-7-mr.nuke.me@gmail.com>
+In-Reply-To: <20240402192555.1955204-3-mr.nuke.me@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 02/04/2024 21:25, Alexandru Gagniuc wrote:
-> On ipq9574, there are 4 PCIe controllers. Describe the pcie2 node, and
-> its PHY in devicetree.
-> 
-> Only pcie2 is described, because only hardware using that controller
-> was available for testing.
+> IPQ9574 has PCIe controllers which are almost identical to IPQ6018.
+> The only difference is that the "iface" clock is not required.
+> Document this difference along with the compatible string.
 > 
 > Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
 > ---
->  arch/arm64/boot/dts/qcom/ipq9574.dtsi | 93 ++++++++++++++++++++++++++-
->  1 file changed, 92 insertions(+), 1 deletion(-)
+>  .../devicetree/bindings/pci/qcom,pcie.yaml    | 32 +++++++++++++++++++
+>  1 file changed, 32 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> index 7f2e5cbf3bbb..626d6359d750 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> @@ -300,7 +300,7 @@ gcc: clock-controller@1800000 {
->  				 <0>,
->  				 <0>,
->  				 <0>,
-> -				 <0>,
-> +				 <&pcie2_qmp_phy>,
->  				 <0>,
->  				 <0>;
->  			#clock-cells = <1>;
-> @@ -745,6 +745,97 @@ frame@b128000 {
->  				status = "disabled";
->  			};
->  		};
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> index cf9a6910b542..6eb29547c18e 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> @@ -26,6 +26,7 @@ properties:
+>            - qcom,pcie-ipq8064-v2
+>            - qcom,pcie-ipq8074
+>            - qcom,pcie-ipq8074-gen3
+> +          - qcom,pcie-ipq9574
+>            - qcom,pcie-msm8996
+>            - qcom,pcie-qcs404
+>            - qcom,pcie-sdm845
+> @@ -383,6 +384,35 @@ allOf:
+>              - const: axi_s # AXI Slave clock
+>              - const: axi_bridge # AXI bridge clock
+>              - const: rchng
 > +
-> +		pcie2_qmp_phy: phy@8c000 {
-> +			compatible = "qcom,ipq9574-qmp-gen3x2-pcie-phy";
-> +			reg = <0x0008c000 0x14f4>;
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,pcie-ipq9574
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 4
+> +          maxItems: 4
+> +        clock-names:
+> +          items:
+> +            - const: axi_m # AXI Master clock
+> +            - const: axi_s # AXI Slave clock
+> +            - const: axi_bridge # AXI bridge clock
+> +            - const: rchng
 > +
-> +			clocks = <&gcc GCC_PCIE2_AUX_CLK>,
-> +				 <&gcc GCC_PCIE2_AHB_CLK>,
-> +				 <&gcc GCC_PCIE2_PIPE_CLK>,
-> +				 <&gcc GCC_ANOC_PCIE2_2LANE_M_CLK>,
-> +				 <&gcc GCC_SNOC_PCIE2_2LANE_S_CLK>;
-> +			clock-names = "aux",
-> +				      "cfg_ahb",
-> +				      "pipe",
-> +				      "anoc",
-> +				      "snoc";
-> +
-> +			clock-output-names = "pcie_phy2_pipe_clk";
-> +			#clock-cells = <0>;
-> +			#phy-cells = <0>;
-> +
-> +			resets = <&gcc GCC_PCIE2_PHY_BCR>,
-> +				 <&gcc GCC_PCIE2PHY_PHY_BCR>;
-> +			reset-names = "phy",
-> +				      "common";
-> +			status = "disabled";
-> +		};
-> +
-> +		pcie2: pcie@20000000 {
-> +			compatible = "qcom,pcie-ipq9574";
-> +			reg = <0x20000000 0xf1d>,
-> +			      <0x20000f20 0xa8>,
-> +			      <0x20001000 0x1000>,
-> +			      <0x00088000 0x4000>,
-> +			      <0x20100000 0x1000>;
-> +			reg-names = "dbi", "elbi", "atu", "parf", "config";
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,pcie-ipq6018
+> +              - qcom,pcie-ipq8074-gen3
+> +              - qcom,pcie-ipq9574
+> +    then:
 
-Put ranges here.
-
+Do not introduce inconsistent style. All if:then: define both clocks and
+resets, right? And after your patch not anymore?
 
 Best regards,
 Krzysztof
