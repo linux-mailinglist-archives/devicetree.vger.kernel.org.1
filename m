@@ -1,74 +1,48 @@
-Return-Path: <devicetree+bounces-55763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E38189649B
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 08:34:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 477BF8964A3
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 08:40:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE9FA1F2437A
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 06:34:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 751E11C210F3
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 06:40:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D241917BC2;
-	Wed,  3 Apr 2024 06:34:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0392E17C68;
+	Wed,  3 Apr 2024 06:40:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="miDeKGY2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IqUAQ/gC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D205316426;
-	Wed,  3 Apr 2024 06:34:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD45733F9;
+	Wed,  3 Apr 2024 06:40:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712126080; cv=none; b=YgpUHh8wOqH5ZhUrlv9wzBCwUAZoxhSz4zv1/E1NxU6PoqbCAH+EszicloceX95YiIH0lSB3d8evn775JswRlGxXn+psMXr7n6nmmYGb3N+uYW3O8bwg7MD1FMmGDu4gJGa7KSBDDu8nkynkpcIVeOtIIVfYNsND4hx8qdzRLaM=
+	t=1712126425; cv=none; b=TgLK+xSHt7R2bIOROxo2DoDPndjk2OwKV4fQ65gGzqRzUMbOqz0XTfYgnCl+Um3hUFkt3L6iFxA8LNIzR/reKPmLrAcsfu7JQmzC1rjhJdWO5Qbu8naG1d/UfOARPGEzeMUSHyi+XKbEmwUi3uMGD+GpMglsPctWT/1Zmq9qba4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712126080; c=relaxed/simple;
-	bh=LsqiMQRj1wLiHq3ixUN2WdUJjb05d/kIG70zyVbhQmM=;
+	s=arc-20240116; t=1712126425; c=relaxed/simple;
+	bh=1W65hmedM/cTWDS6TB/8KfE7+mFA66kSmp3Dq/GjtSQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=k/nBahoAC8BJMWX6xZOBmFVlPq+gUd+zNMgBBWW5/piPFETkjrj3JodJbYxOlB4G4fQfBtz2lBF0i9e7OvSTAibIb6VA9dVtcaQNjP5yUL7o9b3D4qkMqVYgvJ14EFfrOvhuHDINxUnBkcx2EHGX+p/bJXyX4ox4uT9P0e5SMRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=miDeKGY2; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-513e25afabaso6631256e87.2;
-        Tue, 02 Apr 2024 23:34:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712126077; x=1712730877; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OYW+AlVSbomobMt65A43JiBTiKdCWd+FhRAeUO4UCk0=;
-        b=miDeKGY26beikKOSEWmnvyaXWXLcPY0VuMginmTs8v5ftz4qgjkGN5ABmA5mREsqB9
-         JVpAwCKfMYUWoEQ9oQ57IQWx99D/Hu9p+byjOqib7dKE/6XyfXo/udsh/jpS4DT9o2vb
-         nQ45qHxeG+gp7/K+y0Re3EA6Y2Wu8IC1+GFpGA8KHvX/79yWaLcWwAyAOtACxKzuGJeT
-         1CZVAZTeCQHudjgdIEdwc79PN7Zbg3WdCbWeF0fPzlSzJkb0K+Y8ioCAl3FMdKYszih9
-         RtAzQdtOKOjSZxcAeOxq9+Ygp3WGlQwf5L/doKq1bq60IUhltVkpObfZcomL1DXxn1it
-         TEBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712126077; x=1712730877;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OYW+AlVSbomobMt65A43JiBTiKdCWd+FhRAeUO4UCk0=;
-        b=drH5+ayMmPtO3mcMHcYcX60ueYm2ap5i7904HelEUMVPiQ18A4iIYjbj3gge898agp
-         c82RS9bAL2q9CFvWqRvOxevD2Qw4eapsnWkuRJSetf6lM6WI8kiguPjhwMU0wjCsW5mt
-         u6gz2FFyOGaMTXqoE1KX157yGpXuVb0jtUyReJuKO5o/Z/3nh8RHVMydY9nvs9899tIV
-         IELisEYi/e80dqSs+J6+riu5n5gQpu9slbltB7m889Lx66YvaSd3YJpp0GB/7JQSF+ZN
-         zI7R/8Tp73gcB1gjrYHrc1eiu3O0tQRPP8HSNSLhKtTklWvl3zR6A6di2V1W6zIz/Zhe
-         CEEA==
-X-Forwarded-Encrypted: i=1; AJvYcCW6B9CazS0LQwIvtpChkdNFxiqTRS6nTg5zK9tSZd4h369/Xs3LdeNh3SSQmB9iFp3AGA3LqRizjMZ5iMgHILvugi+7AYzphcTO+xCCh+iWTB5UQ3BbNLD7Q+QqaSuo8+Ucut31NUsfbh60ASzSOdqTger9YoPrUYTJ3EdMEjnkCvuAnPZi0rIa
-X-Gm-Message-State: AOJu0YwsvN2YcwAjwaLbX341KvjKRG5DEJK8KKlXpssuZ7EBweZRy3Sv
-	BIWTsOLK0jMSTDNAEdRj/TpKKOb3LDFGSNZohEmVgCBd2RkqtZNk
-X-Google-Smtp-Source: AGHT+IGWzVyYdrudwcj1Pmu++3KZb9mW8E8mBL+bBIcA60MJSmD0OL1V9LOTjIn04uB7VvLV7F+HRA==
-X-Received: by 2002:ac2:562c:0:b0:512:a4ce:abaa with SMTP id b12-20020ac2562c000000b00512a4ceabaamr9103494lff.48.1712126076579;
-        Tue, 02 Apr 2024 23:34:36 -0700 (PDT)
-Received: from [172.16.183.82] ([213.255.186.46])
-        by smtp.gmail.com with ESMTPSA id k17-20020a05651210d100b00515c8ff6f52sm1915386lfg.229.2024.04.02.23.34.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Apr 2024 23:34:36 -0700 (PDT)
-Message-ID: <279336b3-f28d-48ee-a10f-47abba7b0b89@gmail.com>
-Date: Wed, 3 Apr 2024 09:34:35 +0300
+	 In-Reply-To:Content-Type; b=rj9FDblbMWoquOoJaaTq1xD7IKheN9xGUEzFQahS5rZc8ehsPf/I8Ac2lvELtb644vLEtLb+CqQvSbNcwmb+BFbNvEiQUsxk5l5A1oPl9Y9tLCbwlvKT/m6VUTU2LDs13oaiFIqX0b61WHHhUHIfhluyBJDHjfJnBYl/6PcvZxM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IqUAQ/gC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 471CDC433F1;
+	Wed,  3 Apr 2024 06:40:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712126425;
+	bh=1W65hmedM/cTWDS6TB/8KfE7+mFA66kSmp3Dq/GjtSQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=IqUAQ/gC9cYncOCkqyLgCkYtsm57mStkmVNE7ze/4h//76FoFUHDHaOTmN7lwVehv
+	 gu3UTBAMQgyPfoYJLKo0G2SNBbOc57NQqPM4woEQTvkFwEfakH1X5C724x6yFNKjJ+
+	 3fpvbgXFhESsZgDzFovvbR8VKGjlemGYI5CMwdLNbc2ienQBW3VM67z+9mx3RbGgFU
+	 AJM2rauLQrOS9vuuoqCtctSUmRBwy6sueVlpWWBPL6OqH2k2m15uaxGdq1FqQdMfrJ
+	 5bh+2MisL1AfWwghgIHgL4+AjJg4cqcx7j6au/2TYNuJbNpPcrB0njGgRvYNcBU30F
+	 BSsP5MPHGUCgA==
+Message-ID: <083e50de-1c99-4a58-8b55-4dec26d97c1b@kernel.org>
+Date: Wed, 3 Apr 2024 08:40:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,215 +50,141 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 5/6] watchdog: ROHM BD96801 PMIC WDG driver
-Content-Language: en-US, en-GB
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Lee Jones <lee@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
+Subject: Re: [PATCH] dt-bindings: mfd: syscon: Add ti,am62p-cpsw-mac-efuse
+ compatible
+To: Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-watchdog@vger.kernel.org
-References: <cover.1712058690.git.mazziesaccount@gmail.com>
- <f8e743a6c49607de0dd7a27778383477e051b130.1712058690.git.mazziesaccount@gmail.com>
- <4fa3a64b-60fb-4e5e-8785-0f14da37eea2@roeck-us.net>
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <4fa3a64b-60fb-4e5e-8785-0f14da37eea2@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ linux-arm-kernel@lists.infradead.org, srk@ti.com
+References: <20240402105708.4114146-1-s-vadapalli@ti.com>
+ <2e9b6a91-43d3-4b23-830d-40e607505d8c@kernel.org>
+ <30065bdc-ccef-4610-b1c1-7661f801b8e9@ti.com>
+ <4b1380a8-0136-4395-ba42-9bcff2e1bdb0@kernel.org>
+ <aabea385-16e0-4116-a12b-3ce1e06574e3@ti.com>
+ <eb7a0d5c-c197-44b9-baea-e9b54792b447@kernel.org>
+ <af61424e-7006-49f5-b614-3caa3674685a@ti.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <af61424e-7006-49f5-b614-3caa3674685a@ti.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Hi Guenter,
-
-First of all, thanks for the review. It was quick! Especially when we 
-speak of a RFC series. Very much appreciated.
-
-On 4/2/24 20:11, Guenter Roeck wrote:
-> On Tue, Apr 02, 2024 at 04:11:41PM +0300, Matti Vaittinen wrote >> +static int init_wdg_hw(struct wdtbd96801 *w)
->> +{
->> +	u32 hw_margin[2];
->> +	int count, ret;
->> +	u32 hw_margin_max = BD96801_WDT_DEFAULT_MARGIN, hw_margin_min = 0;
->> +
->> +	count = device_property_count_u32(w->dev->parent, "rohm,hw-timeout-ms");
->> +	if (count < 0 && count != -EINVAL)
->> +		return count;
->> +
->> +	if (count > 0) {
->> +		if (count > ARRAY_SIZE(hw_margin))
->> +			return -EINVAL;
->> +
->> +		ret = device_property_read_u32_array(w->dev->parent,
->> +						     "rohm,hw-timeout-ms",
->> +						     &hw_margin[0], count);
->> +		if (ret < 0)
->> +			return ret;
->> +
->> +		if (count == 1)
->> +			hw_margin_max = hw_margin[0];
->> +
->> +		if (count == 2) {
->> +			hw_margin_max = hw_margin[1];
->> +			hw_margin_min = hw_margin[0];
->> +		}
->> +	}
->> +
->> +	ret = bd96801_set_wdt_mode(w, hw_margin_max, hw_margin_min);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = device_property_match_string(w->dev->parent, "rohm,wdg-action",
->> +					   "prstb");
->> +	if (ret >= 0) {
->> +		ret = regmap_update_bits(w->regmap, BD96801_REG_WD_CONF,
->> +				 BD96801_WD_ASSERT_MASK,
->> +				 BD96801_WD_ASSERT_RST);
->> +		return ret;
->> +	}
->> +
->> +	ret = device_property_match_string(w->dev->parent, "rohm,wdg-action",
->> +					   "intb-only");
->> +	if (ret >= 0) {
->> +		ret = regmap_update_bits(w->regmap, BD96801_REG_WD_CONF,
->> +				 BD96801_WD_ASSERT_MASK,
->> +				 BD96801_WD_ASSERT_IRQ);
->> +		return ret;
->> +	}
+On 03/04/2024 08:32, Siddharth Vadapalli wrote:
+> On Wed, Apr 03, 2024 at 08:27:06AM +0200, Krzysztof Kozlowski wrote:
+>> On 03/04/2024 07:35, Siddharth Vadapalli wrote:
+>>> On Tue, Apr 02, 2024 at 08:06:27PM +0200, Krzysztof Kozlowski wrote:
+>>>> On 02/04/2024 14:30, Siddharth Vadapalli wrote:
+>>>>> On Tue, Apr 02, 2024 at 02:08:32PM +0200, Krzysztof Kozlowski wrote:
+>>>>>> On 02/04/2024 12:57, Siddharth Vadapalli wrote:
+>>>>>>> The CTRLMMR_MAC_IDx registers within the CTRL_MMR space of TI's AM62p SoC
+>>>>>>> contain the MAC Address programmed in the eFuse. Add compatible for
+>>>>>>> allowing the CPSW driver to obtain a regmap for the CTRLMMR_MAC_IDx
+>>>>>>> registers within the System Controller device-tree node. The default MAC
+>>>>>>> Address for the interface corresponding to the first MAC port will be set
+>>>>>>> to the value programmed in the eFuse.
+>>>>>>>
+>>>>>>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>>>>>>> ---
+>>>>>>>
+>>>>>>> This patch is based on linux-next tagged next-20240402.
+>>>>>>
+>>>>>> Where is the DTS using it?
+>>>>>
+>>>>> The current implementation in the device-tree for older TI K3 SoCs is as
+>>>>> follows:
+>>>>>
+>>>>> 	cpsw_port1: port@1 {
+>>>>> 		reg = <1>;
+>>>>> 		ti,mac-only;
+>>>>> 		label = "port1";
+>>>>> 		phys = <&phy_gmii_sel 1>;
+>>>>> 		mac-address = [00 00 00 00 00 00];
+>>>>> 		ti,syscon-efuse = <&wkup_conf 0x200>;
+>>>>> 	};
+>>>>>
+>>>>> The "ti,syscon-efuse" property passes the reference to the System
+>>>>> Controller node as well as the offset to the CTRLMMR_MAC_IDx registers
+>>>>> within the CTRL_MMR space.
+>>>>
+>>>> Please reference upstream DTS or lore link to patch under review.
+>>>
+>>> An example of the existing implementation in the device-tree for AM64x
+>>> is:
+>>> https://github.com/torvalds/linux/blob/d4e8c8ad5d14ad51ed8813442d81c43019fd669d/arch/arm64/boot/dts/ti/k3-am64-main.dtsi#L697
+>>> It uses:
+>>> 	ti,syscon-efuse = <&main_conf 0x200>;
+>>>
+>>> and "main_conf" node is defined at:
+>>> https://github.com/torvalds/linux/blob/d4e8c8ad5d14ad51ed8813442d81c43019fd669d/arch/arm64/boot/dts/ti/k3-am64-main.dtsi#L40
+>>
+>> It is quite different than your bindings, so your bindings are incorrect.
 > 
-> I don't see the devicetree bindings documented in the series.
-
-Seems like I have missed this WDG binding. But after reading your 
-comment below, I am wondering if I should just drop the binding and 
-default to "prstb" (shutdown should the feeding be skipped) - and leave 
-the "intb-only" case for one who actually needs such.
-
-> I am also a bit surprised that the interrupt isn't handled in the driver.
-> Please explain.
-
-Basically, I just had no idea what the IRQ should do in the generic 
-case. If we get an interrupt, it means the WDG feeding has failed. My 
-thinking is that, what should happen is forced reset. I don't see how 
-that can be done in reliably manner from an IRQ handler.
-
-When the "prstb WDG action" is set (please, see the above DT binding 
-handling), the PMIC shall shut down power outputs. This should get the 
-watchdog's job done.
-
-With the "intb-only"-option, PMIC will not turn off the power. I'd 
-expect there to be some external HW connection which handles the reset 
-by HW.
-
-After all this being said, I wonder if I should just unconditionally 
-configure the PMIC to always turn off the power (prstb option) should 
-the feeding fail? Or do someone have some suggestion what the IRQ 
-handler should do (except maybe print an error msg)?
-
+> Sorry I didn't understand what you mean. The references I have provided
+> are for existing DTS where "main_conf"/"wkup_conf" (System Controller
+> nodes) have the compatible "syscon", unlike in AM62p at:
+> https://github.com/torvalds/linux/blob/20f8173afaac90dd9dca11be4aa602a47776077f/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi#L8
+> which has the "simple-bus" compatible for the "wkup_conf" node.
 > 
->> +
->> +	return 0;
->> +}
->> +
->> +static int bd96801_wdt_probe(struct platform_device *pdev)
->> +{
->> +	struct wdtbd96801 *w;
->> +	int ret;
->> +	unsigned int val;
->> +
->> +	w = devm_kzalloc(&pdev->dev, sizeof(*w), GFP_KERNEL);
->> +	if (!w)
->> +		return -ENOMEM;
->> +
->> +	w->regmap = dev_get_regmap(pdev->dev.parent, NULL);
+> Also, shouldn't the device-tree bindings patches be posted first and get
+> merged before I post the device-tree patches that utilize the
+> compatible/properties that have been added in the bindings? That is the
+> reason why I had shared the "DIFF" for the DTS changes that I will be
+> posting once this patch for the new compatible is accepted.
 > 
-> dev_get_regmap() can return NULL.
-> 
->> +	w->dev = &pdev->dev;
->> +
->> +	w->wdt.info = &bd96801_wdt_info;
->> +	w->wdt.ops =  &bd96801_wdt_ops;
->> +	w->wdt.parent = pdev->dev.parent;
->> +	w->wdt.timeout = DEFAULT_TIMEOUT;
->> +	watchdog_set_drvdata(&w->wdt, w);
->> +
->> +	w->always_running = device_property_read_bool(pdev->dev.parent,
->> +						      "always-running");
->> +
-> Without documentation, it looks like the always-running (from
-> linux,wdt-gpio.yaml) may be abused. Its defined meaning is
-> "the watchdog is always running and can not be stopped". Its
-> use here seems to be "start watchdog when loading the module and
-> prevent it from being stopped".
 
-Yes. You're right.
+That's not the process. I will be NAKing bindings which do not have any
+users, because I do not trust you test them.
 
-> Oh well, looks like the abuse was introduced with bd9576_wdt. That
-> doesn't make it better. At the very least it needs to be documented
-> that the property does not have the intended (documented) meaning.
+The process is almost always:
+1. Send bindings,
+2. Send driver changes (if applicable) in the same patchset.
+3. Send DTS, usually in separate patches and provide lore link to the
+bindings in the changelog or cover letter.
 
-I can raise my hand for a sign of an error here. I've been misreading 
-the intended meaning of the always-running. Not sure if I've picked it 
-from another driver (maybe GPIO watchdog), or if I've just 
-misinterpreted the binding docs.
-
-Do you suggest me to add a note in the BD9576 binding doc (there is no 
-BD9576 specific binding doc for watchdog. I wonder whether this warrants 
-adding one under watchdog or if the note can be added under 
-Documentation/devicetree/bindings/mfd/rohm,bd9576...).
-
->> +	ret = regmap_read(w->regmap, BD96801_REG_WD_CONF, &val);
->> +	if (ret)
->> +		return dev_err_probe(&pdev->dev, ret,
->> +				     "Failed to get the watchdog state\n");
->> +
->> +	/*
->> +	 * If the WDG is already enabled we assume it is configured by boot.
->> +	 * In this case we just update the hw-timeout based on values set to
->> +	 * the timeout / mode registers and leave the hardware configs
->> +	 * untouched.
->> +	 */
->> +	if ((val & BD96801_WD_EN_MASK) != BD96801_WD_DISABLE) {
->> +		dev_dbg(&pdev->dev, "watchdog was running during probe\n");
->> +		ret = bd96801_set_heartbeat_from_hw(w, val);
->> +		if (ret)
->> +			return ret;
->> +
->> +		set_bit(WDOG_HW_RUNNING, &w->wdt.status);
->> +	} else {
->> +		/* If WDG is not running so we will initializate it */
->> +		ret = init_wdg_hw(w);
->> +		if (ret)
->> +			return ret;
->> +	}
->> +
->> +	watchdog_init_timeout(&w->wdt, 0, pdev->dev.parent);
->> +	watchdog_set_nowayout(&w->wdt, nowayout);
->> +	watchdog_stop_on_reboot(&w->wdt);
->> +
->> +	if (w->always_running)
->> +		bd96801_wdt_start(&w->wdt);
-> 
-> I think this needs to set WDOG_HW_RUNNING or the watchdog will trigger
-> a reboot if the watchdog device is not opened and the watchdog wasn't
-> already running when the module was loaded.
-
-I believe you're right. Seems I haven't properly tested this path.
-
-> That makes me wonder what happens if the property is set and the
-> watchdog daemon isn't started in the bd9576_wdt driver.
-
-My assumption is the dog starts barking. I'll see if I find the BD9576 
-break-out board from one of my boxes to wire it up and test this. If the 
-always-running is not working it might be justified to just drop it from 
-both drivers. I believe it'd be indication that no-one is really using 
-the always-running with the upstream driver.
-
-Thanks a ton!
-
-Yours,
-	-- Matti
-
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
+Best regards,
+Krzysztof
 
 
