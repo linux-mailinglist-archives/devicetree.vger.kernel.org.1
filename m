@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-55831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11CE889688F
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 10:28:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43E8C89689B
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 10:29:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A7D381F23C16
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 08:28:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDC631F28E78
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 08:29:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 036FE6EB70;
-	Wed,  3 Apr 2024 08:21:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 582EE12BE9E;
+	Wed,  3 Apr 2024 08:24:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M+MECMRM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RaD3L1HW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F1585C909;
-	Wed,  3 Apr 2024 08:21:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9160E6FE04;
+	Wed,  3 Apr 2024 08:23:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712132511; cv=none; b=XCIkz56YR0rMo8xKRe7FMf44CYORbYCISMmti4qDtVER0KF++/MpIIF3QYqMczFssQ8mQkAyfCoVf9JSNdhLX4o92NkwvT2u7RLjQsrLXVMd4UNVbvMoC7i747EoxffW0i0SWVnHU7g52nfOCHOsk4Ilx9H6jXcbvhWr6BK8WDk=
+	t=1712132640; cv=none; b=E022XuXj4cIBa8HQsuil2I/JOPfpLDBbtebiTzFEgDe+SPbqRSaE4zqvsLuAHsOxD/VhHKFzpvcSsSXfpVi7/8vG2ocIy9bFQGX38uwrnj1HA9rKjhLDAvsKWmWDuM9Nz257bZ9ujN652r2nEJi19fdnQLMvnmrpqaA6BHisxwQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712132511; c=relaxed/simple;
-	bh=0u5pDssKyWkYQsTffNHzasSNhkOtut+vEZs+EvBKuWk=;
+	s=arc-20240116; t=1712132640; c=relaxed/simple;
+	bh=+M42Bao+ClNNeoWyVzyTejnWVkvKqhDo99qvjTGhSSQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=rUAHpAWITjIGnx+PKXyuyHpRVVTCfK3ia+IqjR0haT7z6xYiXjQyTYe/ltJp7UCSTWRen2vJ6U+i/JL+g5ctxhq+Bpbjx50Ug0Y+YxT8lTxoBPD0d7Hiph5TFttR1ul30w1JDPL5uFCK57JbfKGsvMHyL8geEtFgix99w535kYM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M+MECMRM; arc=none smtp.client-ip=209.85.128.42
+	 In-Reply-To:Content-Type; b=rRa3DKiHUx+5oZZUCTDhUfULiMHvG0q4MmScGuKR28oHa8maaA0puJOU1LMQ9XdLayq0EFFHV83T+WGxBKWHsdlVrNvmFRj/wUv47IKJMD6vidxcNtLhwwW55xkA1yp3TyqmjUrkvvxcV7ztPJC5I8yYoOrM/YnBbZ+LPfjgdBE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RaD3L1HW; arc=none smtp.client-ip=209.85.167.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-41624fe40a2so657325e9.3;
-        Wed, 03 Apr 2024 01:21:50 -0700 (PDT)
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-51588f70d2dso7997938e87.3;
+        Wed, 03 Apr 2024 01:23:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712132509; x=1712737309; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1712132637; x=1712737437; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zOtG2aZPYvMjEsq2Lkc7OY8kMcgQN0ZYfGaU64JVs2s=;
-        b=M+MECMRMB1TtZqoOPt/+I7nd23HJPk6APjgru3a4bIj1KGsyIGfaPcqBT3dVPVGX2N
-         WQvuFb/8rQNPVrT7P8VybjINx4Imd+n6PMccxYneg6gOBxF1/WV+ceiX63C9lgJDi1U2
-         dedS3t+7hUr4FENd65R9TU0pFq7qq3XzhL+zVgyPVvr6VKo3tUXswRUQbneGj4z2RpxR
-         bWVW32pju+qm7UOc8zJiCAabkGvn9DhW62BJtejPnmxGNxT6hLafrWxFTU/M9rGdMADO
-         KP5nPsNxmQ16fT8VE6zDmJ6lhvMsGeswChAzylwNdAEapWgOA08ZaTp7ETCbmPq4QHyH
-         lixA==
+        bh=eJ4Sw0ukh/12TacOdDd7Bi3/+M5GpiW9CnKijj1wT7c=;
+        b=RaD3L1HWDc+0w6d7yfbmhDSZI/XBRRBxaUuyCn1lEqUTRXz2wEAf76MIZQlEg+Gkhz
+         p+VJBnZPZAkEeZlvaFP0JyEpfavaHlGtI4ZenGOIeZGJfeEWYzCiZFiD8Mag+5jRoyh2
+         iw/1UBtRWe5LQUpRO2YJU646WB4h6hz600aReMnOcGy84t12NbqX+VW5jTUr45KQ9d6q
+         bsq0br7/lqhd8mDSdbXNuHZXvWTyZxwHMDFr5BfBx2aJ5BIWLPUBKZh0pniZY/6uV/5R
+         owpyCW+engZLdOqwH2xek35LKSeeYnHDg41WChg+4m4ms2rJNz2GohA5vlO0T9XndguQ
+         r8RQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712132509; x=1712737309;
+        d=1e100.net; s=20230601; t=1712132637; x=1712737437;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zOtG2aZPYvMjEsq2Lkc7OY8kMcgQN0ZYfGaU64JVs2s=;
-        b=sYe5wybUFr3PBroREcYKIqftpFSvG9X+F8epZc9wKUSkmeecMGQ+PHbATTr1wzVLfq
-         O+dKhGZEdwhsMqdABx5wBHM5IA3ZIcdv3uT755uHG+dxyVRKS/exWiaCaF65l7ycBaKO
-         LSbWIdFbSPCTVX/2+gw2S2StCdfJjt6RIlJri3smnTSxT4pDH/t1EZsIDrXwg7NNiOTh
-         dSnWijbPaoNIjxWMHrrHQ+Vb8n4Id0zpmvZ1lLLvQKlN/QaproJ3oI6lvi9lQDfv56EW
-         LhnKd5R/9GVoqM1pdNRfP7lw3ScjhtmXfP+sTkwK0c+AsdQVvmQ3CosNs05SYYfRZaoL
-         MFfQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVObD5++MKPYr+/X09FSY//bZuZEZ3Z3DShY9JDITQx9jY4ODEQV6qN6gQr8JzxInb9RUP8qMGm6+Mz/3ZaicVVkd4dv/GeXNvPq79zUtnAWxQA8MOkh8BAC4hL3tKR0oWX5I68smT4yQ==
-X-Gm-Message-State: AOJu0Yy3bH0Qz0IPR2VPTm2jtooSOUI3fTmlEO9cFAiHaTurjWcBfk0P
-	JdLGtYRLvEmk3f7DqO6ZW1SaBXTm7Vk9J9e+3NgtFfaunJMj6ZWRo3/bpKoT
-X-Google-Smtp-Source: AGHT+IHITiCw+ZyHNOdPQS4ZwDtmgS1xNc7Gi8xEVH0jXDD9oxZTwKeiVBidxGx8bj2wxcXhkn0Y5A==
-X-Received: by 2002:a2e:9189:0:b0:2d6:c43e:f0b3 with SMTP id f9-20020a2e9189000000b002d6c43ef0b3mr1091942ljg.50.1712132485169;
-        Wed, 03 Apr 2024 01:21:25 -0700 (PDT)
+        bh=eJ4Sw0ukh/12TacOdDd7Bi3/+M5GpiW9CnKijj1wT7c=;
+        b=dLOrCAe91Y/jMU/DfLGa31xZ2DNlYqo4SjT8+1FXN+iI9NyY7ePM3YUtCs3sGW+VaA
+         bxQQcbSSgdEr8h1L51DB/jsdqo/XKEFDcP9/vRm9Awm3dQknCF91+VHUIUtBjsErMtKl
+         WlE8beiao9fBjWIx+B4E06p+WzeLDZzZYYcxtu7vKR9f90z774fEqayZcX3JNKku8Cll
+         EIIRmfzbaiO31q5FRWdb+IwULQjpR++d+G3Angb8V5LFKrkOH8S0gAEthIAsm8VL6DML
+         pJPzy6eziMcAcr+H/eq+Rw1H+lNCGHlIsRYumgLHc7FCefG2dxkuj+xE5arh1pX6rli+
+         Ib9g==
+X-Forwarded-Encrypted: i=1; AJvYcCVdK+2dGidrpzy2bjGDcgD6YL4srcefA0620Pc9Hbu9PWrQ6xv1jJwTyaAnEEk6VToqH0hTfJ+9Tf1I0ehC7TtYKs/R48Tih2Zt9Efg3QJBxPWtLX9E+HdFwanZTluCZ8YaeTTH/d4QLw==
+X-Gm-Message-State: AOJu0Yyf9GmnM5lRyzezIGpbVAzXYn/WzwnTmFh22L30gSDQ8bVLoxP1
+	Q836ZT8CiiXqFMega0fdpDlMF9MA3Z2SblY2FOTVSj9/g0PyiV7q9KTQ7ACX
+X-Google-Smtp-Source: AGHT+IELzTtNIEw+C4X9+qkLnlcWx3mAWu3YHSZjHWNQnqwNrTFWo5wmP+OjKO1XHFk6cHVHQXuoSg==
+X-Received: by 2002:a19:5519:0:b0:513:2c86:3498 with SMTP id n25-20020a195519000000b005132c863498mr1309585lfe.48.1712132636692;
+        Wed, 03 Apr 2024 01:23:56 -0700 (PDT)
 Received: from [172.16.183.82] ([213.255.186.46])
-        by smtp.gmail.com with ESMTPSA id e4-20020a2eb1c4000000b002d71a341375sm1457593lja.41.2024.04.03.01.21.24
+        by smtp.gmail.com with ESMTPSA id g19-20020a056512119300b00513ddd1760fsm1964610lfr.122.2024.04.03.01.23.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Apr 2024 01:21:24 -0700 (PDT)
-Message-ID: <8bd6e631-ea7d-4380-be98-9719279111a4@gmail.com>
-Date: Wed, 3 Apr 2024 11:21:24 +0300
+        Wed, 03 Apr 2024 01:23:56 -0700 (PDT)
+Message-ID: <f875655f-3e80-41e4-8994-e5d30aea7003@gmail.com>
+Date: Wed, 3 Apr 2024 11:23:55 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,47 +76,46 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] mfd: rohm-bd71828: Add software-compatible variant
- BD71879
+Subject: Re: [PATCH 1/2] dt-bindings: mfd: Add ROHM BD71879
 Content-Language: en-US, en-GB
 To: Andreas Kemnade <andreas@kemnade.info>, lee@kernel.org,
  robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20240402193515.513713-1-andreas@kemnade.info>
- <20240402193515.513713-3-andreas@kemnade.info>
+ <20240402193515.513713-2-andreas@kemnade.info>
 From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20240402193515.513713-3-andreas@kemnade.info>
+In-Reply-To: <20240402193515.513713-2-andreas@kemnade.info>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 4/2/24 22:35, Andreas Kemnade wrote:
-> Add the BD71879 PMIC which is software-compatible to the BD71828, so reuse
-> the same device_type enum.
+> As this chip was seen in several devices in the wild, add it.
 > 
 > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
 > Suggested-by: Matti Vaittinen <mazziesaccount@gmail.com>
 
+
 Acked-by: Matti Vaittinen <mazziesaccount@gmail.com>
 
 > ---
->   drivers/mfd/rohm-bd71828.c | 4 ++++
->   1 file changed, 4 insertions(+)
+>   Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml | 4 +++-
+>   1 file changed, 3 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/mfd/rohm-bd71828.c b/drivers/mfd/rohm-bd71828.c
-> index 4a1fa8a0d76a..f0b444690d4d 100644
-> --- a/drivers/mfd/rohm-bd71828.c
-> +++ b/drivers/mfd/rohm-bd71828.c
-> @@ -585,6 +585,10 @@ static const struct of_device_id bd71828_of_match[] = {
->   	{
->   		.compatible = "rohm,bd71828",
->   		.data = (void *)ROHM_CHIP_TYPE_BD71828,
-> +	}, {
-> +		.compatible = "rohm,bd71879",
-> +		/* equivalent from a software point of view */
-> +		.data = (void *)ROHM_CHIP_TYPE_BD71828,
->   	}, {
->   		.compatible = "rohm,bd71815",
->   		.data = (void *)ROHM_CHIP_TYPE_BD71815,
+> diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
+> index 0b62f854bf6b..e4df09e8961c 100644
+> --- a/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
+> @@ -17,7 +17,9 @@ description: |
+>   
+>   properties:
+>     compatible:
+> -    const: rohm,bd71828
+> +    enum:
+> +      - rohm,bd71828
+> +      - rohm,bd71879
+>   
+>     reg:
+>       description:
 
 -- 
 Matti Vaittinen
