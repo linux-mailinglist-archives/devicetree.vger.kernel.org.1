@@ -1,114 +1,94 @@
-Return-Path: <devicetree+bounces-55711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B41688961CE
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 03:11:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DB928961D0
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 03:15:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5E1B41F21BB5
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 01:11:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3113E1C22238
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 01:15:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADE7C107A9;
-	Wed,  3 Apr 2024 01:11:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 214FCFC01;
+	Wed,  3 Apr 2024 01:15:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b+EfHFkf"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="otPkQs9R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 231F3FC12;
-	Wed,  3 Apr 2024 01:11:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
+Received: from mail-177132.yeah.net (mail-177132.yeah.net [123.58.177.132])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C930833E1
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 01:15:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712106689; cv=none; b=L2LCVLxLXIKUXlQQOusA9fziXgcq43RyZ9Knu61DAH93wSXvBNiGaUZ+bhejHy9iUvXMRFvaOYcZHKo0vKtFCGX0S6vzVsQ7tEz7CebmxMXTW2GOGY1M7At6hNwDFgwH8H7oyez6dy+0DcKqfVrPkzSfeMjGJHc0RmrfvFkpke8=
+	t=1712106952; cv=none; b=OLLRj33WEHpD+x5/2o1Jb7NxjdNSMY7RM/RDtirHFm4qKP3l6n9Va0PYFaJb1JqkQ9fYzMCMk7YIzhF7k5ScFDo1ArdwjbjsnbsVUvthlqy0LdVllO0YnGG32o6DaocJcmIMS7ate3OQu7T9AEih4lEOgqOM6YwU4MOd2twvUNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712106689; c=relaxed/simple;
-	bh=lnTs2cVXM93CsaTLuEe4HYuxRslxisuZ0kDsO5APKs8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SWzNTQO4WO52+wty+WpUfu/dvv7SbplmGkmDPpNQyVjVGNfGaElD6wVw3VpzimMak25pXZ95LLo96zsa8UnXmZcCPZna9FKZhy7a/XMpPP28FELW6A9XpE3Xa5k9sv+wdMXCSDae3piIScbJ9RALwy/9XsPHTQHqySdL0/NYEW4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=b+EfHFkf; arc=none smtp.client-ip=209.85.128.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-614426b016aso8593237b3.0;
-        Tue, 02 Apr 2024 18:11:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712106687; x=1712711487; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Z73wb+SKG9jSZ/Yydm0AUJwXmsHQ5eHka22JkZx8e+M=;
-        b=b+EfHFkfPa2Zng1k/aqfCQEGL4LeFGL7xTQy1O6NqJ07Pk/GPdHPzG0SHXBuXjSxO3
-         7vdPGvrpTp+HhKwU+1siz+HLgTOOwvSPFRlLsNEPj4kuZPRnuYTxIqNllMDCPVy77Cxf
-         JY/LTQzrWLZNKk5/w5vBTRZ/EmchsHxEemPU90vmocWFQDXSzqeJpxE+npOf9gZ7AGIj
-         dYPut4jC725x8raHPreiP3npZP2tde19NpiR3vowxI1xbnyXuJEOgrhrofDgWmA/5Zkc
-         t7Vgl7Z5LSq+JLonEDSrBnv1UnKfOflruvghcHOkg3d6CE2EON/oWQyeu61S0WDQHNm1
-         PeVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712106687; x=1712711487;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Z73wb+SKG9jSZ/Yydm0AUJwXmsHQ5eHka22JkZx8e+M=;
-        b=CRKocypY7qIqTlfY+Sr3FC6sVMs0SBRTbA6DddsmIYyHmRBNT4+sXpBowx4Jnq2htB
-         SBLbuJRaZvSUTH34NhiNay4AAn5i3O76Iy6uSQS0io8qm9oByXcztodKAS79Qzmxvxj0
-         zE5Yhu/ZP0riZbtG20p+87nnP5Yd9yq8ZiYR05AA773QM8gk59B6WBzVrfox+uQWEAvH
-         JbkhmrZHlIJoqWOf71Asb6Q53B/Ai1B3/apCHtZojgrMxMhP25aD6KzPHACrj5wXWSu+
-         bSNLcWNwMQyYdlM+QZ4PxcpyiEHU4BNGvIckXsilp9UxamsPafVJWEELIs2B2KY2kJgU
-         lzBg==
-X-Forwarded-Encrypted: i=1; AJvYcCUiRK7z+mfsAc5KchxmA5s6fvpphCtPZ1G4+mp/LsJ7HpjmRbwMaLjHZytZB8HRzFny0lyrhV9BYHWZXbmmRSlrRBhevsGRhEr7HtatS6bMRev9S8MgeCO5ag/w83wjOXVQ1V/wRgn0Ww==
-X-Gm-Message-State: AOJu0YwdQqJaCeSSDPht9UeO8zZo9608+fzYB5THeB7aZdSe3t4wTSEE
-	BFYUsDQDtjWtJFogIwSdXlusDC4xrp71cMBu6m4HGbO/2tMM7+ENVOd9Z1DRd/auD/QT+b3z5Xv
-	sR0dpZxFkTa/fRJwa9x+W0W5JgmY=
-X-Google-Smtp-Source: AGHT+IFquNV7etgb2w5kQlbd8NCb/0m/IZnAutbSyCn47svG6p/9K8iqIcJf4IS+AFN9acf4nFrrk9isPtaGO0YKFFI=
-X-Received: by 2002:a25:b910:0:b0:dcc:a446:55b with SMTP id
- x16-20020a25b910000000b00dcca446055bmr8770788ybj.5.1712106687196; Tue, 02 Apr
- 2024 18:11:27 -0700 (PDT)
+	s=arc-20240116; t=1712106952; c=relaxed/simple;
+	bh=dWBHMCmaitAP48db4fAIbcveiAUCQHjT59JZeexowBc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=N4ILdOnttg7b1qameCnlmNa+4IVwAta8yW76PS5NcLMto82pCaZc/suLVzSxAHyanABa3BU0+7gl9EWEOBFl67XGDTt9lDIw2LPyFEhA+CQKU9yKjtCzmCYdeBqDUvddWEKq57pFDZ6BouP00NGAoIVA1hjeu6MnJtUbAEkHa4g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=otPkQs9R; arc=none smtp.client-ip=123.58.177.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=ELALI0ShQWbaJT/YcQMzlTzqIqgf0G8wMIxnIcbfiEo=;
+	b=otPkQs9RyhbGWBBwpBPiZXIeVxLXAZhJNiU9DE0r2iY/Zn9UhtA3+uzVzKP4ts
+	S0jSn7HFrvuVF5YqA/p/po6QFe75xG1aMlZF+9vOa+rxQcmQt2eNJZBDvxbta1Bn
+	QxUXCVsM8pOTTMIFciyreShbSyFdaXDzRu0xCUMZ16Fbw=
+Received: from dragon (unknown [223.68.79.243])
+	by smtp2 (Coremail) with SMTP id C1UQrADnD1CprQxmgt6yAg--.10300S3;
+	Wed, 03 Apr 2024 09:15:23 +0800 (CST)
+Date: Wed, 3 Apr 2024 09:15:21 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Gilles Talis <gilles.talis@gmail.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, conor+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, robh@kernel.org,
+	shawnguo@kernel.org, festevam@gmail.com, alex@voxelbotics.com,
+	andrew@lunn.ch
+Subject: Re: [PATCH v2 0/3] Add support for Emcraft Systems NavQ+ kit
+Message-ID: <ZgytqXy/S63iXbTD@dragon>
+References: <20240330133410.41408-1-gilles.talis@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240402193355.2333597-1-tharvey@gateworks.com>
-In-Reply-To: <20240402193355.2333597-1-tharvey@gateworks.com>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Tue, 2 Apr 2024 22:11:14 -0300
-Message-ID: <CAOMZO5D7bL0TiPHu4mVsO093Xnp2eYQXm+5gPxojFGoqh_xEJQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8m*-venice-gw7: Fix TPM schema violations
-To: Tim Harvey <tharvey@gateworks.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Lukas Wunner <lukas@wunner.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240330133410.41408-1-gilles.talis@gmail.com>
+X-CM-TRANSID:C1UQrADnD1CprQxmgt6yAg--.10300S3
+X-Coremail-Antispam: 1Uf129KBjvdXoW7GFyrurWfuw13KryrZF15twb_yoWfCwb_ur
+	WkAa1fZr4DJr48Ka10ya18XrWYkFWaqrW3A34Dtw1fKFy7ZFZ3trZ7GrnY9w18CrW8uF9F
+	vr17JrZY9Fy3GjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU0tl1DUUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiDRC1ZVszXX8yJQAAsQ
 
-Hi Tim,
+On Sat, Mar 30, 2024 at 09:34:07AM -0400, Gilles Talis wrote:
+> Hello
+> 
+> This series adds a device tree file for the Emcraft Systems NavQ+ kit [1]
+> 
+> The first patch adds a new vendor prefix for Emcraft Systems
+> The second one adds the board to the arm/fsl.yaml DT bindings.
+> Last patch adds device tree file for the kit.
+> 
+> [1] https://www.emcraft.com/products/1222
+> 
+> Changes in v2:
+> - Add Acked-by review tags
+> - Fixed device tree warnings reported by dtbs_check
+> - Reworked leds node
+> - Remove unused i2c6 pinctrl entry
+> - Removed unused regulator node in Ethernet entry
+> - Link to v1: https://lore.kernel.org/imx/20240328202320.187596-1-gilles.talis@gmail.com/
+> ---
+> Gilles Talis (3):
+>   dt-bindings: vendor-prefixes: Add Emcraft Systems
+>   dt-bindings: arm: Add Emcraft Systems i.MX8M Plus NavQ+ Kit
+>   arm64: dts: freescale: Add device tree for Emcraft Systems NavQ+ Kit
 
-On Tue, Apr 2, 2024 at 4:34=E2=80=AFPM Tim Harvey <tharvey@gateworks.com> w=
-rote:
->
-> Since commit 26c9d152ebf3 ("dt-bindings: tpm: Consolidate TCG TIS
-> bindings"), several issues are reported by "make dtbs_check" for arm64
-> devicetrees:
->
-> The compatible property needs to contain the chip's name in addition to
-> the generic "tcg,tpm_tis-spi".
->
-> tpm@1: compatible: ['tcg,tpm_tis-spi'] is too short
->         from schema $id:
-> http://devicetree.org/schemas/tpm/tcg,tpm_tis-spi.yaml#
->
-> Fix these schema violations.
->
-> Gateworks Venice uses an Atmel ATTPM20P:
-> https://trac.gateworks.com/wiki/tpm
+Applied all, thanks! 
 
-Thanks for the fix.
-
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
 
