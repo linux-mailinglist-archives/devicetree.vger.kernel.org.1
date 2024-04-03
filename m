@@ -1,80 +1,84 @@
-Return-Path: <devicetree+bounces-55994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91F6289741A
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 17:35:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE2AE8973CC
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 17:18:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AD141B29DD4
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 15:24:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4DF521F299FC
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 15:18:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8D6514A090;
-	Wed,  3 Apr 2024 15:24:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E88A14BF95;
+	Wed,  3 Apr 2024 15:15:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b="QvPdXUFu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YeNKtqii"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-108-mta248.mxroute.com (mail-108-mta248.mxroute.com [136.175.108.248])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4868A149C68
-	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 15:24:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=136.175.108.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6111A14A60A;
+	Wed,  3 Apr 2024 15:15:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712157858; cv=none; b=hZ/9vg5bSYAVDULCXOLb6dva0oK2c6pJgb1oh3f8ORzEh3HkaEoma0yZjHZ5T7yqhgQyoD1iTOivZ1qgBHRxnuxEzgHvKElKQqydunB5t2JTrDenemaqNS+CCgj3BonCS+Ogv7ez2vsYZC6X/sDx1ozs33UzMcL1TUmm9r26E90=
+	t=1712157309; cv=none; b=BkbftcPeTOjHIKrCAg0aU/ms/3L1xUmnrvOhPXP2xyobCS/hatZ0Egxt3Dc/jWCjI3WFhgBs47j37gN18hKqT/HwhxKtjv0ULHyZYMLDwrMocezIG8UQMADpaYGemmegdethjwuS5+04vWj2xCCUDGmQu+D0mYSwNGnPZzHed4Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712157858; c=relaxed/simple;
-	bh=P6sFYE2RFyMP+jyTKPG/NPzsohsjE50jpPWJbVR2FnQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=kEahYGJTgvpqWy+sLe4VYnN+GZdVNXIjFBzy6yTIxuHgjKdYfsvn8B/ulAVzmgH69k3lXRuZ4vUcYqJLccV3Vkrumgf6l6JtJkMQNV0qjQjd5Wm5mnWmtd1MpmGUzItEyaIg9z8Rg6lUd9nGnmQWOKbeVW02I50PacYK9n6/1cU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com; spf=pass smtp.mailfrom=luigi311.com; dkim=pass (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b=QvPdXUFu; arc=none smtp.client-ip=136.175.108.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=luigi311.com
-Received: from filter006.mxroute.com ([136.175.111.2] filter006.mxroute.com)
- (Authenticated sender: mN4UYu2MZsgR)
- by mail-108-mta248.mxroute.com (ZoneMTA) with ESMTPSA id 18ea48ace6d0003bea.00f
- for <devicetree@vger.kernel.org>
- (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
- Wed, 03 Apr 2024 15:19:04 +0000
-X-Zone-Loop: 61e6ef7f43a587252701bc0aaad2876f2e162237cfc1
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=luigi311.com; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
-	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=tn3xRU5mtzTvJZghODMqRw0ULnXG09wTsVZrMIwsFGY=; b=QvPdXUFuy1A7P9ydQKgHJhheqt
-	WkdvfyKXwUD+FqZFlZUYxyspghJF4mEzHneCx7CQ6m4BnYfkMAOF8aZy6D9gArVw5WT09Bhsu8Hlu
-	qrsgyHQrHFvHG20wAUvM88NEktefZ5yqJ8SUgXzlSzCIAaYAEiw0v2z8Lvayn8eNswCrf+7PxdxXp
-	MXgwgvnct48JPZExsc1lGu/vywnnys5hasjdYaO8pXtzcUMya65yu0Yr+JDTuIbE8gKKqJysT6eOe
-	9zW9Amw9H0cCF8OGSzZaMRIYWRMEDTyUAPMcL+EAJ62tC87t+xl5ANGN5r9XDpxSDqpAAzKh4Uhps
-	G0NUIlrA==;
-From: git@luigi311.com
-To: linux-media@vger.kernel.org
-Cc: dave.stevenson@raspberrypi.com,
-	jacopo.mondi@ideasonboard.com,
-	mchehab@kernel.org,
-	robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	sakari.ailus@linux.intel.com,
+	s=arc-20240116; t=1712157309; c=relaxed/simple;
+	bh=ojPSlFbdpLpb3Lx36s9cTAlTP11v33uMUFmCosQmlco=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NcNIjgk5Gpan8SxDXV8y3lM9M/NfYSZtUneJsLLHV18w0lURM7hkRbp+lLemeDiruwD3EW1VmQ0QnTpTOpN606UAIWodHr7Y67UNduEI8yadRfJkIPhSUWXIYw+4CBPQFqGliuquH0Dzzuqwr/FEY3tXvUN2JH0+q0DqaVdWXRA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YeNKtqii; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-516ab4b3251so3385369e87.0;
+        Wed, 03 Apr 2024 08:15:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712157306; x=1712762106; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=l0UnXIFWFvFekuBRfpEmUMyu/jbDLvMT34GdY2MCbqY=;
+        b=YeNKtqiiJQmqkckVtflMBv8kPsaBS1seL9IX0uM6V5W1fREnWirXSIzd7zQ4/v02FT
+         ePO7AhpPNrGXsHv4yV0+X2MWFr7Qzg+sTZ6lVIsuOh7jKDr+QZ4/gH1VAHyX5CF/oESc
+         yXopyQaIqNZzrM852Qpd2JXZG9AL7SRUgSpgNXWnkBuLsdrwJyExJax9Gy1SE2+PHpZm
+         xALWWOVooecbJbgwOqllZu5NggNbVBjpvU6pz5s1C5vyBp6PP858JROkivIit3cDlhkX
+         GsQ5N12K6dlJnM8XpvoRDMfIsRgMwNBqc3AniT6Qykxwnc3qNXWt6DledumY+KfgyZsp
+         OtxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712157306; x=1712762106;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=l0UnXIFWFvFekuBRfpEmUMyu/jbDLvMT34GdY2MCbqY=;
+        b=ldEP0N989Dy8s5ozEmNG54eRD9kjqlUoQLDmZ0oRXSn5YXMr1hKts90lifAvgKjOYT
+         Yop5XmhFfVWMExIhBpuz+pCiTABf7m87E5FBK+xFYjXowC1D5AlMUwBQ67LLepaGGTyY
+         aLc+NnWqKT/uvD4Zb2a8PpqXP/lsDMGhNgIicWIdTGvj8HDG6z/g52vAmB3AwvBLnECV
+         1/fOPkhbq7Lc1MHZztO97MD+6qEpQOMLcLZlRVqkHJPnPruFqL3w50gWyHjcQB0lC4cD
+         kCctA1foi/76NPPKR0Z/fRfqboa1xAb4TODtvFr2C+tDVsyhCZw9ThvZQL42I29/HY58
+         4EGA==
+X-Forwarded-Encrypted: i=1; AJvYcCU60C/ogYhq2LEjglMQDP05Lfh3Q9UKOP5U8LNA+jah0RT5dahMP41PBadelKX3lX0Xl0IWqq9C8QVTxIn1LZ+TGZuTfOqaOpsTjLVxKrCmMkNhqGQ+rjjSnmKevBcQlf3KX9vUc4BICQ==
+X-Gm-Message-State: AOJu0YyCd8zvhR1VRNQWjDmkafCkIyJNhvcilyjB+lddrfnzAZQhLpY7
+	jCasXuuoYdzywE+Qb9B/d/rqoWy85947VvkTmT8+0pgoSiKe4Lh6
+X-Google-Smtp-Source: AGHT+IH75StaU8ogu0GxyZE3WtrOvlufmCkqvJQSA5reLsG08AdbtTHZDIDj5OVE1GjN2uAQANQggg==
+X-Received: by 2002:a05:6512:36d2:b0:515:c17e:ddb1 with SMTP id e18-20020a05651236d200b00515c17eddb1mr11784578lfs.50.1712157302621;
+        Wed, 03 Apr 2024 08:15:02 -0700 (PDT)
+Received: from yoga-710.tas.nnz-ipc.net ([178.218.200.115])
+        by smtp.gmail.com with ESMTPSA id d6-20020a0565123d0600b00515c1b1fb85sm2055092lfv.233.2024.04.03.08.15.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Apr 2024 08:15:02 -0700 (PDT)
+From: Dmitry Yashin <dmt.yashin@gmail.com>
+To: Heiko Stuebner <heiko@sntech.de>,
+	linux-rockchip@lists.infradead.org
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
 	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	pavel@ucw.cz,
-	phone-devel@vger.kernel.org,
-	Luis Garcia <git@luigi311.com>
-Subject: [PATCH v3 25/25] media:i2c: imx258: Use v4l2_link_freq_to_bitmap helper
-Date: Wed,  3 Apr 2024 09:03:54 -0600
-Message-ID: <20240403150355.189229-26-git@luigi311.com>
-In-Reply-To: <20240403150355.189229-1-git@luigi311.com>
-References: <20240403150355.189229-1-git@luigi311.com>
+	Dmitry Yashin <dmt.yashin@gmail.com>
+Subject: [PATCH v2 0/3] arm64: dts: rockchip: add Forlinx OK3588-C
+Date: Wed,  3 Apr 2024 20:12:26 +0500
+Message-ID: <20240403151229.30577-1-dmt.yashin@gmail.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,49 +86,44 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Authenticated-Id: personal@luigi311.com
 
-From: Luis Garcia <git@luigi311.com>
+This series add support for Forlinx RK3588 based SoM and carrier board.
+Devicetree split into .dtsi (FET3588-C SoM) and .dts (OK3588-C Board).
 
-Use the v4l2_link_freq_to_bitmap() helper to figure out which
-driver-supported link freq can be used on a given system.
+v1 Link: https://lore.kernel.org/all/cover.1710506373.git.dmt.yashin@gmail.com/
 
-Signed-off-by: Luis Garcia <git@luigi311.com>
----
- drivers/media/i2c/imx258.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Changes in v2:
+Patch 1:
+- no changes
+Patch 2:
+- rename dtsi to rk3588-fet3588-c.dtsi
+- reorder regulator nodes
+- reorder properties in sdhci
+- drop regulator-always-on from vdd_gpu_s0
+- enable tsadc
+Patch 3:
+- update dtsi include
+- set more generic names for tca6424a, nau8822 and sound nodes
+- reorder regulator and nodes in pinctrl
+- reorder properties in gmac and sdmmc
+- drop vmmc-supply from sdmmc and update max-frequency
+- enable gpu (depends on for-next branch)
+- enable usb_host nodes
 
-diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
-index 4c117c4829f1..038f40a1f800 100644
---- a/drivers/media/i2c/imx258.c
-+++ b/drivers/media/i2c/imx258.c
-@@ -674,6 +674,7 @@ struct imx258 {
- 	/* Current mode */
- 	const struct imx258_mode *cur_mode;
- 
-+	unsigned long link_freq_bitmap;
- 	const struct imx258_link_freq_config *link_freq_configs;
- 	const s64 *link_freq_menu_items;
- 	unsigned int lane_mode_idx;
-@@ -1533,6 +1534,17 @@ static int imx258_probe(struct i2c_client *client)
- 		return ret;
- 	}
- 
-+	ret = v4l2_link_freq_to_bitmap(&client->dev,
-+				ep.link_frequencies,
-+				ep.nr_of_link_frequencies,
-+				imx258->link_freq_menu_items,
-+				ARRAY_SIZE(link_freq_menu_items_19_2),
-+				&imx258->link_freq_bitmap);
-+	if (ret) {
-+		dev_err(&client->dev, "Link frequency not supported\n");
-+		goto error_endpoint_free;
-+	}
-+
- 	/* Get number of data lanes */
- 	switch (ep.bus.mipi_csi2.num_data_lanes) {
- 	case 2:
+Dmitry Yashin (3):
+  dt-bindings: arm: rockchip: add Forlinx FET3588-C
+  arm64: dts: rockchip: add Forlinx FET3588-C
+  arm64: dts: rockchip: add Forlinx OK3588-C
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   7 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3588-fet3588-c.dtsi   | 558 ++++++++++++++++++
+ .../boot/dts/rockchip/rk3588-ok3588-c.dts     | 409 +++++++++++++
+ 4 files changed, 975 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-fet3588-c.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-ok3588-c.dts
+
 -- 
-2.42.0
+2.39.2
 
 
