@@ -1,170 +1,168 @@
-Return-Path: <devicetree+bounces-56044-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56045-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9501D89780A
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 20:19:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 061EF8977EF
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 20:16:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7BC97B42438
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 18:13:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 72EAE1F214D2
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 18:16:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ACA51534EB;
-	Wed,  3 Apr 2024 18:12:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D65CD153511;
+	Wed,  3 Apr 2024 18:16:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZBHw4ak6"
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="uEGRsZqx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC226154BEF;
-	Wed,  3 Apr 2024 18:12:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB1A31534EB
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 18:16:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712167943; cv=none; b=O0fi5dIv0qp6/7Hsc5tScWcJtOTJZMC/JV5l4Dbr87F2U9hbNSLKZlSE/piZ0D/34+Nu4JMkKf5V57Ruh2QEJkR3Lclhs+D6WxwOT8gsBxJrHUO3ooKKbyAvwxPeblL3XHcgsD30PN2AQ/6UxgjV0XYDd+BT7CivQFBZxkAE0eM=
+	t=1712168169; cv=none; b=nIn3n11V3j6OGqKa3SMK6EIInVaxPA56Uz7X5dAKXoAwYt19d2dYFm0rzrShwkq9wsxtyxNxnOn4g7qMLG1hkjSjMtmt5uvaG7GyHvs6B4ExWcyUJWoZjpRA/wNyvAUxu865dRb6c1ZM1X9XHYe742aaBcA2mi5CcKXPuY/8mgo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712167943; c=relaxed/simple;
-	bh=8xHv3oyWik1X+pB1D6LHL4+E5z+BFONERpUXyTJcEbs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Z5HScwtkrP0HWyueSh9cNfjTIl6/o2diLCnLpOUKkc+3yzxMeVrHtHg+insSfx9I8ziQYYy/SxkSGeSW0u69raitt4ENSKHvfQZEO69qkePeqO9QfUUIGs4mhLeD7d/Xr0BqzviJdS/NIOXB95zxVCAqRNcCScC5l8RNaKZOp38=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZBHw4ak6; arc=none smtp.client-ip=209.85.221.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-4d43b3fc06cso33929e0c.3;
-        Wed, 03 Apr 2024 11:12:21 -0700 (PDT)
+	s=arc-20240116; t=1712168169; c=relaxed/simple;
+	bh=a9E2mGfmVxcJ7x2M2sf17xeANHcNSUBMmGhTG7nDg+Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jmAAB2xLH0W/3Hei9AI2Vz5aRU4wkcmDMB/WZNNEDxOUBTgTmNI40B/wYldMzUSd/LrJdTUGgE6ZR3On3U4KBL3PAKTDyQJy7TxwToyYYdmckRneuhK4xDLEvIFAUBtSkgZItqaCbG2/JKOUwvJpbic4yaGrsZzBH3IMwgAv8YM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=uEGRsZqx; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3436b096690so989449f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 11:16:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712167940; x=1712772740; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2LPRUCfO8vLA+VTuxeAjc+lg7ZeBV4TKM1NgQNqaX4o=;
-        b=ZBHw4ak6buEMI4ESelBXVSkn4JsJJQZWUvmo/3hVXRnB4yuWcttWw+d2Mzsv6pUzha
-         TJImE+8OvNeMUsiD5xpzxNa7sF0ufh3Jq6HLPSiTvh1DVOp1oLRICsIcCpaDHK/2e3yO
-         pqcU0WQMXpko5YkRnyuacFO+n7pZTh6JVdckGI4rQIvxIVlDHn1Efqpd9HSoHhiz6v4l
-         0TKH8V+ON3ffWjEPIxS5aiPn57LgbrvWUdChOPC48m0JtmGvdesOOiKM/gHeSCkiSmsI
-         +JGJYtVO3/yxZodDEYvIyqlyZ0rsg/6rq4BwUG9ixA0880JPp80lI/sKq9cDgkv2ldLn
-         i7JQ==
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1712168166; x=1712772966; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yMk/LPFqs7VskBV22jyb1Tdh2P4ZoSSQNrYCMOikFmQ=;
+        b=uEGRsZqxt+GOjRB5J5PpXP7ZWa4Ht1abkW1eOQsIyRJr59DE8s2vIVZnkr4nz0JhPs
+         SpM/bQRkYB2hVEOLFioBdnA53+W+/0dm5bHzNltzFVoWgisdadiznKVdHh7nwF0K5Upf
+         J5XwvHQpDMCLz+CK+VTBO2hEc8nQ37wIxFhJgj6nudCYnC6uAXubuB91RekmkJMr4Y85
+         JJUtxqGzbT5mc0KN6Ji6vybIvbOLTvSYMEwD4DBLr0rO2IcR6WNFkGQ69Hqyzc1B1YXO
+         9IZg3Gp9sFoxHFwoPowZpqr2Rw1PicP6pRnltje7TLCHRLwB3g4E1wXE53DmGKgCXii0
+         prXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712167940; x=1712772740;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2LPRUCfO8vLA+VTuxeAjc+lg7ZeBV4TKM1NgQNqaX4o=;
-        b=N45U6w2I4/S9JmqfmKRvyON+woKhtzEPMdM5+VykaqtJuuzQMjeZfrQFjA3s2cUloJ
-         Q9+fhyRaQate7UE8MG4YgNiSEWdsllo96M2AL3WYAz8edfQpJIvCiNGx2HAajtdgnR3J
-         5YuvfTNClxdHpCw8NIQiFsm1HSpRbkdW8V4mKG7vF0fXu3l9lYB85oEi3hYx1q5oLRbK
-         R3snyMZSTrrAxl8AVF40cM8klMWqW9mDp6nCqDKg1+kGr8N1XMCHBiTXw8o3YAZzsmP/
-         NRpm7/dM73XYlRA+SnKc516raFfAv3VG4QcSee7K/MfzVdP7w5z2EGCHmFaJBFkIQVLE
-         5n2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXPaBbDMt2CbQWBwvB2VcoDdpqr0UiTivWGfYul/2jjwmEaYbpyZuKbibo/3wPSDZhq1vZNrl8jrGvxpBKlQc8W+H7X/+iPY9klHhv+HKQY+1TAF9CpDlEAW1X1htabPg3s3WH1J/UkJw==
-X-Gm-Message-State: AOJu0YzZZ44j8eAB69w1AqLEu3j/BW41Udgct3eGDYewck+r32pD4bA1
-	OGXuA6FW34/i54t8CLIKHwTNrtsQWHX+gtEEN/QnZtJ7K9gXygT/R3jmPsHelb8JNhVjo6kFX5I
-	JusRPxUyN87Gr0NEHvTbxrSML8PY=
-X-Google-Smtp-Source: AGHT+IHrrkiSOm6wLnFKQHKdrarP92qhgfwfDo/mPb5qCUU7DxYQE24BY/ERiXN9pre31elgG8R8MxOj8He3tkMs4Vk=
-X-Received: by 2002:a05:6122:189c:b0:4ca:80c5:753d with SMTP id
- bi28-20020a056122189c00b004ca80c5753dmr40719vkb.4.1712167940470; Wed, 03 Apr
- 2024 11:12:20 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1712168166; x=1712772966;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yMk/LPFqs7VskBV22jyb1Tdh2P4ZoSSQNrYCMOikFmQ=;
+        b=cp++C81cs6w9bWjEYjGt3MODwI2uXPI1tXGydqrsu+2/6q7LinQ51SlbY5e7Lq9G9X
+         flf4OfLeCbnJB3kDiV1XZK/VpLrSrFm+/zHGGE0DLhqo8DS1w+xKcntkdWcuRzyRoL/o
+         Zb+ZVQCHPA62PtkioQ2N6bmzld8dj5VUAtNFl8eieHjfo0io0HX0M4u/h37Dd12GMb9Q
+         76wxi1BzPSAG6SiiBrsxNTojwzHG7Wcok2/EfkzsNxVZXvGH5lGA4HXKPHXNUDHR8osp
+         uQGvitvIle3lDC/68Ea3VITgCKQRnoLReo7iP01ryE1STTHGC+Wm6IcJzzGXzA5KfEz5
+         qeow==
+X-Forwarded-Encrypted: i=1; AJvYcCXXlY9TUBr+oazubzMjQVUcMIQrJTmk4BncnPVaylOtA4ltYx7suCtQF8cWj4ccdJn1C5DSatkuln1pDrO56H+kathH5YZceWZz4A==
+X-Gm-Message-State: AOJu0Ywee1Y2j0c0UFKDjgakxS6sOZw2y25GP0+Ob5gGRBIUhwAhQ0jd
+	A9x7PPzqg8xy3O9HnhIWNCSIJrCbeGV//LtC81LLswjdPc2HPdtilejCM4SybEE=
+X-Google-Smtp-Source: AGHT+IGo6IK4jzvPBeq+2C/SXoVrcSjTLf8DS+QLbHtNh0mgQm3NoGkkSkE8i74VGzKZ5Xv8eEXnFQ==
+X-Received: by 2002:a5d:690d:0:b0:343:8485:4edd with SMTP id t13-20020a5d690d000000b0034384854eddmr3336441wru.23.1712168165964;
+        Wed, 03 Apr 2024 11:16:05 -0700 (PDT)
+Received: from ?IPV6:2a02:8428:2a4:1a01:79e6:9288:5142:9623? ([2a02:8428:2a4:1a01:79e6:9288:5142:9623])
+        by smtp.gmail.com with ESMTPSA id t10-20020a05600c450a00b004161b59e230sm6352480wmo.41.2024.04.03.11.16.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Apr 2024 11:16:05 -0700 (PDT)
+Message-ID: <43e18846-cc4f-4b30-8019-4617359ddaa0@freebox.fr>
+Date: Wed, 3 Apr 2024 20:16:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240222094006.1030709-1-apatel@ventanamicro.com>
- <20240222094006.1030709-2-apatel@ventanamicro.com> <CA+V-a8tGucbJ87hsMQDEgcor5BzDmB_WnRsEn6c9F_HzucWLXQ@mail.gmail.com>
- <CAK9=C2VgiRcQjBEPmZjdcMf221omKS8ntdcenSE7G__4xYcCUA@mail.gmail.com>
- <CA+V-a8ser=hDmst6+XSeOWaEoOd+iY3Ys6bYBWDa5UYPfT+Pug@mail.gmail.com> <4dbd5daf-d100-4ae2-8bda-c657e23a809e@sifive.com>
-In-Reply-To: <4dbd5daf-d100-4ae2-8bda-c657e23a809e@sifive.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Wed, 3 Apr 2024 19:10:31 +0100
-Message-ID: <CA+V-a8uLjEb==sTXa3WePqTWn4ejVNJfMu+qTXSNZz1Uw+U5oA@mail.gmail.com>
-Subject: Re: [PATCH v14 01/18] irqchip/sifive-plic: Convert PLIC driver into a
- platform driver
-To: Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>
-Cc: Anup Patel <apatel@ventanamicro.com>, devicetree@vger.kernel.org, 
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Marc Zyngier <maz@kernel.org>, Atish Patra <atishp@atishpatra.org>, linux-kernel@vger.kernel.org, 
-	Saravana Kannan <saravanak@google.com>, =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Thomas Gleixner <tglx@linutronix.de>, 
-	Frank Rowand <frowand.list@gmail.com>, linux-riscv@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, Andrew Jones <ajones@ventanamicro.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: msm8998: set
+ qcom,no-msa-ready-indicator for wifi
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Kalle Valo <kvalo@kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>,
+ ath10k <ath10k@lists.infradead.org>,
+ wireless <linux-wireless@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
+ MSM <linux-arm-msm@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Jami Kettunen <jamipkettunen@gmail.com>,
+ Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+References: <fd26ce4a-a9f3-4ada-8d46-ed36fb2456ca@freebox.fr>
+ <5cdad89c-282a-4df5-a286-b8404bc4dd81@freebox.fr>
+ <252618e8-9e80-4774-a96c-caa7f838ef01@linaro.org>
+ <502322f1-4f66-4922-bc4e-46bacac23410@linaro.org>
+ <0ca1221b-b707-450f-877d-ca07a601624d@freebox.fr>
+ <CAA8EJppeREj-0g9oGCzzKx5ywhg1mgmJR1q8yvXKN7N45do1Xg@mail.gmail.com>
+ <91031ed0-104a-4752-8b1e-0dbe15ebf201@freebox.fr>
+ <CAA8EJpooJLbV+nVWedru=r6fascd8ZxKumiMm_iyzzJwyQ-tig@mail.gmail.com>
+Content-Language: en-US
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+In-Reply-To: <CAA8EJpooJLbV+nVWedru=r6fascd8ZxKumiMm_iyzzJwyQ-tig@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Samuel and Anup,
+On 03/04/2024 16:12, Dmitry Baryshkov wrote:
 
-On Wed, Apr 3, 2024 at 5:28=E2=80=AFPM Samuel Holland <samuel.holland@sifiv=
-e.com> wrote:
->
-> Hi Prabhakar,
->
-> On 2024-04-03 10:49 AM, Lad, Prabhakar wrote:
-> > On Wed, Apr 3, 2024 at 3:17=E2=80=AFPM Anup Patel <apatel@ventanamicro.=
-com> wrote:
-> >>
-> >> On Wed, Apr 3, 2024 at 2:01=E2=80=AFPM Lad, Prabhakar
-> >> <prabhakar.csengg@gmail.com> wrote:
-> >>>
-> >>> Hi Anup,
-> >>>
-> >>> On Thu, Feb 22, 2024 at 9:41=E2=80=AFAM Anup Patel <apatel@ventanamic=
-ro.com> wrote:
-> >>>>
-> >>>> The PLIC driver does not require very early initialization so conver=
-t
-> >>>> it into a platform driver.
-> >>>>
-> >>>> After conversion, the PLIC driver is probed after CPUs are brought-u=
-p
-> >>>> so setup cpuhp state after context handler of all online CPUs are
-> >>>> initialized otherwise PLIC driver crashes for platforms with multipl=
-e
-> >>>> PLIC instances.
-> >>>>
-> >>>> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> >>>> ---
-> >>>>  drivers/irqchip/irq-sifive-plic.c | 101 ++++++++++++++++++---------=
----
-> >>>>  1 file changed, 61 insertions(+), 40 deletions(-)
-> >>>>
-> >>> This patch seems to have broken things on RZ/Five SoC, after revertin=
-g
-> >>> this patch I get to boot it back again on v6.9-rc2. Looks like there
-> >>> is some probe order issue after switching to platform driver?
-> >>
-> >> Yes, this is most likely related to probe ordering based on your DT.
-> >>
-> >> Can you share the failing boot log and DT ?
-> >
-> > non working case, https://paste.debian.net/1312947/
->
-> Looks like you need to add "keep_bootcon" to your kernel command line to =
-get a
-> full log here.
->
-Thanks for the pointer, that helped me to get to the root cause.
+> From [Jeff's] message it looks like we are expected to get MSA READY even on msm8998.
 
-> > after reverting, https://paste.debian.net/1312948/
-> > (attached is the DTB)
->
-> I don't see anything suspicious between the "riscv-intc" lines and the "F=
-ixed
-> dependency cycle(s)" lines that looks like it would depend on the PLIC IR=
-Q
-> domain. Maybe there is some driver that does not handle -EPROBE_DEFER? It=
-'s hard
-> to tell without the full log from the failure case.
->
-The clock required for the PLIC wasnt available during the probe of
-this driver. This bug got hidden when the PLIC driver was probed
-earlier  in boot where it used an incorrect clock source. Ive created
-a patch which adds a missing clock for the PLIC.
+This is the code we're using:
 
-Sorry for the noise!
+https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blob/caf_migration/kernel.lnx.4.4.r38-rel/drivers/net/wireless/ath/ath10k/qmi.c
 
-Cheers,
-Prabhakar
+When ATH10K_SNOC_DRIVER_EVENT_SERVER_ARRIVE,
+driver registers an "indicator handler"
+ath10k_snoc_qmi_wlfw_clnt_ind()
+
+It handles QMI_WLFW_FW_READY_IND_V01 by posting
+ATH10K_SNOC_DRIVER_EVENT_FW_READY_IND
+which is handled in the
+ath10k_snoc_driver_event_work() work queue.
+
+But QMI_WLFW_MSA_READY_IND_V01 only triggers
+a debug log and setting qmi_cfg->msa_ready = true;
+
+$ git grep '\<msa_ready\>'
+drivers/net/wireless/ath/ath10k/qmi.c:          qmi_cfg->msa_ready = true;
+drivers/net/wireless/ath/ath10k/qmi.c:  qmi_cfg->msa_ready = false;
+drivers/net/wireless/ath/ath10k/qmi.h: * msa_ready: wlan firmware msa memory ready for board data download
+drivers/net/wireless/ath/ath10k/qmi.h:  bool msa_ready;
+
+So basically, the vendor ath10k driver ignores QMI_WLFW_MSA_READY_IND_V01.
+
+
+I will test the following patch which aligns the behavior
+of mainline driver to that of vendor driver:
+
+diff --git a/drivers/net/wireless/ath/ath10k/qmi.c b/drivers/net/wireless/ath/ath10k/qmi.c
+index 38e939f572a9e..0e1ab5aca663b 100644
+--- a/drivers/net/wireless/ath/ath10k/qmi.c
++++ b/drivers/net/wireless/ath/ath10k/qmi.c
+@@ -1040,6 +1040,7 @@ static void ath10k_qmi_driver_event_work(struct work_struct *work)
+ 		switch (event->type) {
+ 		case ATH10K_QMI_EVENT_SERVER_ARRIVE:
+ 			ath10k_qmi_event_server_arrive(qmi);
++			ath10k_qmi_event_msa_ready(qmi);
+ 			break;
+ 		case ATH10K_QMI_EVENT_SERVER_EXIT:
+ 			ath10k_qmi_event_server_exit(qmi);
+@@ -1048,7 +1049,7 @@ static void ath10k_qmi_driver_event_work(struct work_struct *work)
+ 			ath10k_qmi_event_fw_ready_ind(qmi);
+ 			break;
+ 		case ATH10K_QMI_EVENT_MSA_READY_IND:
+-			ath10k_qmi_event_msa_ready(qmi);
++			printk(KERN_WARNING "IGNORING MSA_READY INDICATOR");
+ 			break;
+ 		default:
+ 			ath10k_warn(ar, "invalid event type: %d", event->type);
+
+
+Dmitry Baryshkov reported:
+Works on sm8150, sdm845, qrb2210
+
+Regards
+
 
