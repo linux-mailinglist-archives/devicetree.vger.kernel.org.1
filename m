@@ -1,178 +1,167 @@
-Return-Path: <devicetree+bounces-55759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44FDA896471
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 08:16:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBB9C896481
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 08:27:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 636711C214EF
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 06:16:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 540DD284C47
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 06:27:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C15C4D9FA;
-	Wed,  3 Apr 2024 06:16:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A70554EB2E;
+	Wed,  3 Apr 2024 06:27:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=shruggie-ro.20230601.gappssmtp.com header.i=@shruggie-ro.20230601.gappssmtp.com header.b="WYnKe0dG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jMpfz+Pa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62057645
-	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 06:16:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75F1A45941;
+	Wed,  3 Apr 2024 06:27:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712125006; cv=none; b=gHnX4VOEyJpXOOJmO5prNDmipg3Kr1W0oReFi2cscCLT97Rn1EoKRmYuKomw/1o6nmmc+HXsn1b7EVVS3DDtwAspa9AcLJiklMkAPVYjLYphoCRSuhrA6KciOYrgn1EJxCcSDpuLuETViQ8kN2kbyD3IICyy1v5HieWhF53ZUT8=
+	t=1712125631; cv=none; b=I0TPu8OHOdnFf4gnDTr+CjsV+ys2GoI0jWGbpWiIYigGHyMWqdUBKcQ4nCSiWyyXe/vdnByQ+KvIzuYwvKZcD6YBBkMBabzPV2SXa7hhPlNRo7DAbrgo44Rj1Gc2EoOmv9CwRJtwPRWqTheImx/7yN/PK+ybg9lIglBo1iaGiBU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712125006; c=relaxed/simple;
-	bh=kIy7qWFiBqN1u57DhH/gWej2UMvzk3eu0cayWgZ2JQk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XUvCC15pMNJW0opier/ljQyJlLUIDuwmY8XTRR+qdO2ZnsGKC6VaXGq6TpFMHJnKyhvUsRaLStLF8J1hZKNEty2TPtGyAB3jQ/pYOBYHNIo2ALDRAkZJBjf16MZ0ojPIsVHSNMs1su2LPsTGhKBGuzrhF7ctAMRW96P42Fl858M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=shruggie.ro; spf=pass smtp.mailfrom=shruggie.ro; dkim=pass (2048-bit key) header.d=shruggie-ro.20230601.gappssmtp.com header.i=@shruggie-ro.20230601.gappssmtp.com header.b=WYnKe0dG; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=shruggie.ro
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=shruggie.ro
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-515b3077d09so6491101e87.1
-        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 23:16:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=shruggie-ro.20230601.gappssmtp.com; s=20230601; t=1712125002; x=1712729802; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TUWOAlRew8Y9zlqvI12IsW4qhw1mXgmiBgk1qsYuJAE=;
-        b=WYnKe0dGvTr9j6X5aXCcWIfdx2bUHfe74Jj6bJL7ZhwSMSMLFuRU7YifVtqiGayr22
-         KRWYtxbZi/9tp5/AjRmH1p7LiG4OmN5ubZVp/WiNkZFXWUrKnBrJk8NsdwXAlwZXKV8N
-         GI2iQlHDmFqA0KVpaG22dRYOUXejHjJBXEgjzerLPtnMrvksMxuOFfrClLOARj3YRbPg
-         Y68Tu1U1Vo6FdqMBh5RJ4NtqSqfbuh+xDRgwJaMoHSb8KhSLoXN4eRb6MUl7rFr6MVkY
-         c6uoys7i/MTqBZydngoJ0OaXRMAoM8frvu4+jR9V734i1WNJaLQDHSIfdGjHQxzftRKU
-         r3lw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712125002; x=1712729802;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TUWOAlRew8Y9zlqvI12IsW4qhw1mXgmiBgk1qsYuJAE=;
-        b=sozQtEQx4JCY/aUTp5IfCbFl9c2fQ8jfUfzH+GTC0A16OtSdUBE8pZ6D3k0+MnzGLa
-         eaG8T1yMrBB8lxdH19dDUxlheb/YCIaUBsPDyCtsaRPxktjAp5hDu+Qm+TGjGvlS0sNm
-         G+m16a79Lfptv6/x7nSZvcDttBcW+QBeO0PNPCaFgqpidBN6MrX79dYAF2Gz/s7MNsOF
-         0VlC85yvFpkg3pU4VAVWajoJp16NXTZBDhqoV6qKBfyZdB9q8FNcO73mYjPoc6mHqmSo
-         zxyi1lA0iyuw5yEAHH0IIllaXF27ehwNENYnngHqaYsv7iVAi2LqqZKuQ9OJuiEn5kil
-         nOZw==
-X-Forwarded-Encrypted: i=1; AJvYcCU19yf9n/WRXCDS/LczQ4hge/YpHrDHMUXhlu32jpt5FQ7/fgwVyLr7+gQwjb6h1AIlDmVK2hxtdhYKIS3a69cb4EQRBQwV32VOkQ==
-X-Gm-Message-State: AOJu0YxfF36gBPA/L2cgHpJG4SPPnwmsS+FUqLqPiLcdAasJU+JrnTZj
-	W+lGQSrI2X0gGYNXZ3M2cBm4RugCxr+tgItsyxBgZhRchqp74WQY4kr7PLigC9cTjlR2r1TcjpV
-	xVGKmnop2+0WLmUSC1cNyyke5WCX8f6PnbYfxMA==
-X-Google-Smtp-Source: AGHT+IHxy5L7IuAClTzOQvPqVmBmGzm4Jxd5dXHEawLJyCom6nIx29NzDwr6gHy4UOjn+UPEdfsKmGeIOhgk1vX2hCY=
-X-Received: by 2002:a19:6a13:0:b0:516:a0a5:a444 with SMTP id
- u19-20020a196a13000000b00516a0a5a444mr8832014lfu.2.1712125002295; Tue, 02 Apr
- 2024 23:16:42 -0700 (PDT)
+	s=arc-20240116; t=1712125631; c=relaxed/simple;
+	bh=WAGggC/YAADO88TPD8W+g1SxwOBampJG3PNx3bfTBRc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uif1tqtWK+acGMFBK2typ7Jvovx8TMmRWRMGNYVKDFcJcfTPRV8ukXa4JeXj4FTJaqXFrSSZuF+/QrjHwOiz18DH4dcjN3FOL3/5gAeWPRq9s+DnLov3g03LhT+iryl+ii0w/Rka7jsGfOZlGASKIztbJBvGZQJt5ZZ0P8a7B/Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jMpfz+Pa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 926E4C433C7;
+	Wed,  3 Apr 2024 06:27:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712125631;
+	bh=WAGggC/YAADO88TPD8W+g1SxwOBampJG3PNx3bfTBRc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=jMpfz+PaMyh+vTpK5hcgRa8CvA805HLL/3vHGwMf3rTtc/hwY0TmpiJreMln5R9nS
+	 l8AkUxCJsO071XpXvp2kW5CvMwMULt9TG+zMK6uNILeb53wr+1d7daun2hNqxIiAsS
+	 zpzNslfl/rzMfYRBpFJDqAJm8Cy2iMEDo0sC0jDT2niaz5xWT6D+fu9rX0cLx3Hsvb
+	 FWwwcZ9HXCvDQh/ppTAltsUh1yPpu7RupJLo4E177ftZ7EOAOxsivL7vebwUTtU/iE
+	 YZdkhV52ywoyHljtbIKFaHwOWZrmCdGcdA0DZnmHCpwt5QtvVkzF7KvDUl5YOFcC7q
+	 rbHOaueEZMb6g==
+Message-ID: <eb7a0d5c-c197-44b9-baea-e9b54792b447@kernel.org>
+Date: Wed, 3 Apr 2024 08:27:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240402105925.905144-1-alex@shruggie.ro> <20240402105925.905144-2-alex@shruggie.ro>
- <20240402-sheet-retread-025759b22faf@spud>
-In-Reply-To: <20240402-sheet-retread-025759b22faf@spud>
-From: Alexandru Ardelean <alex@shruggie.ro>
-Date: Wed, 3 Apr 2024 09:16:31 +0300
-Message-ID: <CAH3L5QooAXDYAxOdMkPrW1mx04ZgTv_kMU5VSAby9J3Hb_RFOg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: display: bridge: lt8912b: document
- 'lontium,pn-swap' property
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, adrien.grassein@gmail.com, 
-	andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, 
-	airlied@gmail.com, daniel@ffwll.ch, maarten.lankhorst@linux.intel.com, 
-	mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	stefan.eichenberger@toradex.com, francesco.dolcini@toradex.com, 
-	marius.muresan@mxt.ro, irina.muresan@mxt.ro
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: mfd: syscon: Add ti,am62p-cpsw-mac-efuse
+ compatible
+To: Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, srk@ti.com
+References: <20240402105708.4114146-1-s-vadapalli@ti.com>
+ <2e9b6a91-43d3-4b23-830d-40e607505d8c@kernel.org>
+ <30065bdc-ccef-4610-b1c1-7661f801b8e9@ti.com>
+ <4b1380a8-0136-4395-ba42-9bcff2e1bdb0@kernel.org>
+ <aabea385-16e0-4116-a12b-3ce1e06574e3@ti.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <aabea385-16e0-4116-a12b-3ce1e06574e3@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Apr 2, 2024 at 9:06=E2=80=AFPM Conor Dooley <conor@kernel.org> wrot=
-e:
->
-> On Tue, Apr 02, 2024 at 01:59:25PM +0300, Alexandru Ardelean wrote:
-> > On some HW designs, it's easier for the layout if the P/N pins are swap=
-ped.
-> > The driver currently has a DT property to do that.
->
-> "currently", because 1/2 adds it. bindings patches should precede the
-> driver patches in the series, so please swap the patches and remove this
-> portion of the description.
+On 03/04/2024 07:35, Siddharth Vadapalli wrote:
+> On Tue, Apr 02, 2024 at 08:06:27PM +0200, Krzysztof Kozlowski wrote:
+>> On 02/04/2024 14:30, Siddharth Vadapalli wrote:
+>>> On Tue, Apr 02, 2024 at 02:08:32PM +0200, Krzysztof Kozlowski wrote:
+>>>> On 02/04/2024 12:57, Siddharth Vadapalli wrote:
+>>>>> The CTRLMMR_MAC_IDx registers within the CTRL_MMR space of TI's AM62p SoC
+>>>>> contain the MAC Address programmed in the eFuse. Add compatible for
+>>>>> allowing the CPSW driver to obtain a regmap for the CTRLMMR_MAC_IDx
+>>>>> registers within the System Controller device-tree node. The default MAC
+>>>>> Address for the interface corresponding to the first MAC port will be set
+>>>>> to the value programmed in the eFuse.
+>>>>>
+>>>>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>>>>> ---
+>>>>>
+>>>>> This patch is based on linux-next tagged next-20240402.
+>>>>
+>>>> Where is the DTS using it?
+>>>
+>>> The current implementation in the device-tree for older TI K3 SoCs is as
+>>> follows:
+>>>
+>>> 	cpsw_port1: port@1 {
+>>> 		reg = <1>;
+>>> 		ti,mac-only;
+>>> 		label = "port1";
+>>> 		phys = <&phy_gmii_sel 1>;
+>>> 		mac-address = [00 00 00 00 00 00];
+>>> 		ti,syscon-efuse = <&wkup_conf 0x200>;
+>>> 	};
+>>>
+>>> The "ti,syscon-efuse" property passes the reference to the System
+>>> Controller node as well as the offset to the CTRLMMR_MAC_IDx registers
+>>> within the CTRL_MMR space.
+>>
+>> Please reference upstream DTS or lore link to patch under review.
+> 
+> An example of the existing implementation in the device-tree for AM64x
+> is:
+> https://github.com/torvalds/linux/blob/d4e8c8ad5d14ad51ed8813442d81c43019fd669d/arch/arm64/boot/dts/ti/k3-am64-main.dtsi#L697
+> It uses:
+> 	ti,syscon-efuse = <&main_conf 0x200>;
+> 
+> and "main_conf" node is defined at:
+> https://github.com/torvalds/linux/blob/d4e8c8ad5d14ad51ed8813442d81c43019fd669d/arch/arm64/boot/dts/ti/k3-am64-main.dtsi#L40
 
-ack;
-i'll invert the order and remove this;
+It is quite different than your bindings, so your bindings are incorrect.
 
->
-> >
-> > This change documents the 'lontium,pn-swap' property.
-> >
-> > Signed-off-by: Alexandru Ardelean <alex@shruggie.ro>
-> > ---
-> >  .../devicetree/bindings/display/bridge/lontium,lt8912b.yaml | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/bridge/lontium,l=
-t8912b.yaml b/Documentation/devicetree/bindings/display/bridge/lontium,lt89=
-12b.yaml
-> > index 2cef252157985..3a804926b288a 100644
-> > --- a/Documentation/devicetree/bindings/display/bridge/lontium,lt8912b.=
-yaml
-> > +++ b/Documentation/devicetree/bindings/display/bridge/lontium,lt8912b.=
-yaml
-> > @@ -24,6 +24,12 @@ properties:
-> >      maxItems: 1
-> >      description: GPIO connected to active high RESET pin.
-> >
-> > +  lontium,pn-swap:
-> > +    description: Swap the polarities of the P/N pins in software.
-> > +      On some HW designs, the layout is simplified if the P/N pins
-> > +      are inverted.
->
-> Please explain what configuration of a board would cause these to be
-> swapped, rather than why someone might want to configure the board this
-> way. I've got no idea what this hardware is actually doing, so this is
-> being pulled out of a hat, but I'd expect something like "Some boards
-> swap the polarity of the P/N pins, use this property to indicate this to
-> software".
+Please fix them and send when your DTS is ready.
 
-ack
-if it's fine with you, i'll use your suggested description;
 
-for a broader context, we were using a DSI-HDMI converter [1] from
-SomLabs on a different (than SomLabs) board;
-and we were not seeing anything on the HDMI-connected display;
-as I understand it, some DSI-HDMI bridges support P/N auto-inversion;
-this one doesn't AFAICT;
-on this DSI-HDMI converter [1], we've noticed that the P/N pins were
-inverted from the DSI to the chip (vs what we expected to see)
-after changing the register value (for the P/N swap), it worked;
-our conclusion was that, the design of the converter (board) was done
-as-such, because it made the layout easier
+Best regards,
+Krzysztof
 
-[1] https://wiki.somlabs.com/index.php/SL-MIPI-LVDS-HDMI-CNV-11_Datasheet_a=
-nd_Pinout
-
->
-> > +    type: boolean
->
-> The type here should be flag.
-
-ack; i'll change the type
-
->
-> Cheers,
-> Conor.
->
-> > +
-> >    ports:
-> >      $ref: /schemas/graph.yaml#/properties/ports
-> >
-> > --
-> > 2.44.0
-> >
 
