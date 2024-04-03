@@ -1,162 +1,172 @@
-Return-Path: <devicetree+bounces-56028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC02D8975E4
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 19:04:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A97548975F8
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 19:10:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 087281C2638C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 17:04:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD4091C21210
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 17:10:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7A53152530;
-	Wed,  3 Apr 2024 17:03:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE2D4152DE1;
+	Wed,  3 Apr 2024 17:10:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=megous.com header.i=@megous.com header.b="MO0npq4t"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LpEwSx23"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D326E152505;
-	Wed,  3 Apr 2024 17:03:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.181.215.36
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5CF7152527
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 17:10:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712163821; cv=none; b=eLcThpO9FWblRYa/HqfFwe33T/IwtCb7etjlKjxD9xUBlcjbC4NRR5mixLaOh9NGl4czDdOQ2EcKPHpAPHR46lQy4yWXWU8MkcB6soo6yyNnUXCOyFfShy6mAqGxP/RHO3ED5hishINqg14lWLPlKH8J5NiYlGi6lXt+0B0bT8A=
+	t=1712164229; cv=none; b=NVGOnCDbOMYRAwQ0Rs8liOJTaXjTChnLs12LUW9L7YiFeEiqVoMkJROKnwCiEP/byj1HS+RSSHxiBOqyILCIPy+lSlfQvaZmEHOIa/cn0tGbpzkEWTFVF8opRstOrC0XxntjMGdhtPMt1hHiA0svyM0b9WOppiP/qNgWDcBajkU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712163821; c=relaxed/simple;
-	bh=5oQ9PAIUbskmpNMMQyZgPbJVk82PwBM3Z1uyb7nioaQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JaKGG3zG8DNohxOksv5TmXW4vR7kAgUqWYTM6PmESelSX8j7p3Dr/FCT42R/lcBtBXWWLd+WrzYueXSvFcJTvDykLjZ3GsIEoWhr1D092S74mH7TelITQRbTNMy5oYcpYqvFjt1TCZ77D+7bUglDj+JH0nmhLjwli30s4bmE9ZY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=megous.com; spf=pass smtp.mailfrom=megous.com; dkim=pass (1024-bit key) header.d=megous.com header.i=@megous.com header.b=MO0npq4t; arc=none smtp.client-ip=195.181.215.36
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=megous.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=megous.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-	t=1712163817; bh=5oQ9PAIUbskmpNMMQyZgPbJVk82PwBM3Z1uyb7nioaQ=;
-	h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
-	b=MO0npq4tWyuGwTaav38LDUD379CLRTbjTWXhqWWD37o4lA9WmySm+7G11xnzxBRPb
-	 Z45Lio0muMx4UnX1rh3TZ/e8jt0gHKbwnkkVk17k7CySVgjnOhhlvkOYBzN79HZ4PM
-	 vP3xXserb4s+Fr3wQRSguRa794bvKuUKqqolPs2k=
-Date: Wed, 3 Apr 2024 19:03:37 +0200
-From: =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: git@luigi311.com, linux-media@vger.kernel.org, 
-	dave.stevenson@raspberrypi.com, jacopo.mondi@ideasonboard.com, mchehab@kernel.org, 
-	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
-	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, pavel@ucw.cz, 
-	phone-devel@vger.kernel.org
-Subject: Re: [PATCH v3 24/25] drivers: media: i2c: imx258: Add support for
- reset gpio
-Message-ID: <vesqdx7w2sobjnx7tmk6s6i5zplbhsphamoalysx625r4aqffq@hos5otov5ids>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, git@luigi311.com, linux-media@vger.kernel.org, 
-	dave.stevenson@raspberrypi.com, jacopo.mondi@ideasonboard.com, mchehab@kernel.org, 
-	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
-	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, pavel@ucw.cz, 
-	phone-devel@vger.kernel.org
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <20240403150355.189229-1-git@luigi311.com>
- <20240403150355.189229-25-git@luigi311.com>
- <Zg2Dy2QBguXQoR3P@kekkonen.localdomain>
+	s=arc-20240116; t=1712164229; c=relaxed/simple;
+	bh=6yB8jITO6dm5A3iw3f6NpbSDj6c1Ihz8ymCz6gkRHfw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=BJLPoO1dDYqKhjMHjzAExcfTgD17ZSnCzZJmkLB5fEFz3H5vWTaShDTCByw4oUUjO9ofSaHR9YX+c2GsDFRTAdttWvE8PgWHkkVl/+w1osmNCbgPHjeEwJPWmzza20PDhKG/abjJK71Jp9LfGsjQzZQ4Ue4Kgrf8O0okdKSJYLI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LpEwSx23; arc=none smtp.client-ip=209.85.208.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2d848973b57so438431fa.3
+        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 10:10:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712164226; x=1712769026; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y+zN2ir3wcSw60JnUZhYl89sqH9XQ6cSsnDil8Gkw6Q=;
+        b=LpEwSx23Ocx22OXlGw5Aq1KX7NIewun91yQ87su7GOBhwZ+7F7E81w/dis+Ms1id75
+         bjczScq2vZOvyx+YCwD26m5ug6fwiMNNyyppIVPAmzLhycFGkObN45MSHJIS5gykEPUx
+         5mL1QBdMiLFNSrsNBHbzFZFiO/6pqANX1FRfruhQwJjVvnSNMXMYucZ3rHLCeCiTfpfD
+         /s69xyjGj/lGAi2Mh1+Lx94yhpMy0SrVrWvChp0uk+zQItIElxXOUMrwQP5cBakOXXKz
+         JHPFZNAHJXKow4cAa+LepigbxEO45tYEBORp3+edyfNAVSAnRVSFXU6rqDExkHVVebGK
+         NyBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712164226; x=1712769026;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Y+zN2ir3wcSw60JnUZhYl89sqH9XQ6cSsnDil8Gkw6Q=;
+        b=r4LICRt7h+eCeAE9gOXMp3qVNhDTTIwMeF7HcexJ/Y2UYAsOXgdXXBv1vVG8ZVpPse
+         TiNyCE0gvlpmWj9KfWESGPwRaeKF5c3tWU8vx+N8+s0r4iAqLX7uz70L7IIiUUwDC9WY
+         scnPiUdIBukApApnRN5ykrUplUNj+/7HVlM9gFliwTBBd19ZlH/UWjwSlutnIS1xqEHH
+         3SPju1SlQtZ/CyZtozPwQnHHJZyxmyvW85J1fgaUoyUhQ7BbbE+Kb/O6SiThpw/L8RXR
+         zpnzwMagPnPa2kCik/NVWMCnyC9AFzvswES6r4LjsDDZdz7SekbBrZgqG9NpYAtUGRoB
+         Zx7A==
+X-Forwarded-Encrypted: i=1; AJvYcCWWQfCXFJsanNiNNPdKirgWQV3EqR3YF5pirpC8irWkWMWRVpkbL8YWudw3cKby7eKVnzwGpDFEp4efWQ60PGpLAWI6nRJ05Egi0g==
+X-Gm-Message-State: AOJu0YxRbctDD+V+WnLQzdwVAiB5N48WtCT8x8N5y4+a3ipepreCGyAb
+	JX6UPSLYYwC5ppDP2trWkZDQuj8fkb+1/U0Eo5Ar4DRFvtjKsLNihES6xFSAQAIzln8CrEuBGEN
+	s
+X-Google-Smtp-Source: AGHT+IHm0F0qkDxHvy9yc52xu5a2NgU4D/4+ae7i/3qwVDw/rcFHypOJAe9JvNFwb9ysbJ3Cb2nWnw==
+X-Received: by 2002:a2e:99c9:0:b0:2d4:6c1c:7734 with SMTP id l9-20020a2e99c9000000b002d46c1c7734mr175643ljj.26.1712164225597;
+        Wed, 03 Apr 2024 10:10:25 -0700 (PDT)
+Received: from umbar.lan ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id x2-20020a2e8382000000b002d71b89f93bsm1450472ljg.27.2024.04.03.10.10.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Apr 2024 10:10:14 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Wed, 03 Apr 2024 20:10:12 +0300
+Subject: [PATCH] arm64: dts: qcom: sm8150-hdk: enable WiFI support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zg2Dy2QBguXQoR3P@kekkonen.localdomain>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240403-sm8150-hdk-wifi-v1-1-8da3063829c2@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAHONDWYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDEwNj3eJcC0NTA92MlGzd8sy0TF1zk5TUxNTkRCBOUgLqKihKTcusAJs
+ YHVtbCwDns67HYQAAAA==
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Kalle Valo <kvalo@kernel.org>, 
+ Jeff Johnson <quic_jjohnson@quicinc.com>, ath10k@lists.infradead.org
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2493;
+ i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
+ bh=6yB8jITO6dm5A3iw3f6NpbSDj6c1Ihz8ymCz6gkRHfw=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmDY12yuwPHmKtZ/NmXgv95SvLL8Lw5Bwr9uyrx
+ bgLSjDONPGJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZg2NdgAKCRCLPIo+Aiko
+ 1ZXrB/9KjPWcjTMwwhwi6z4mOT/+a+pLQR8GOe50+v8JgBsbPQKKrZ4lMcQM2zpYFWSYtNLlsuV
+ mRbXt33qWd3lQoE52zFumkOQt1o08pz/C3wHG3yHXuWnYLLgr7pl361cV9tHwAEsvBH2mE1r1+t
+ wOveXqo44Vxpr8Wj1ZUDkyq5YbiGebY7KkOnzw3rSdC300CkxPEm1PHB4YY2WYcxPVfSs2OcdQc
+ CDDFg+dKqg0olvxx4MPefEYtnbQbs+s9fpHb9FTOsjYd+tTKEbV4rPKol0TDf9LoZH+6jbpus7t
+ oVmXy1wnN46PxruG/KzqnjSREzgrNI4xusQbWUYM/Rvb1ZKM
+X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-Hi,
+Enable modem DSP and WiFI devices on the SM8150 HDK device. The HDK is
+manufactured by Lantronix, but it attributed to Qualcomm, so the
+calibration string uses Qualcomm as manufacturer.
 
-On Wed, Apr 03, 2024 at 04:28:59PM GMT, Sakari Ailus wrote:
-> Hi Luis,
-> 
-> Could you unify the subject prefix for the driver patches, please? E.g.
-> "media: imx258: " would be fine.
-> 
-> On Wed, Apr 03, 2024 at 09:03:53AM -0600, git@luigi311.com wrote:
-> > From: Luis Garcia <git@luigi311.com>
-> > 
-> > It was documented in DT, but not implemented.
-> > 
-> > Signed-off-by: Ondrej Jirman <megous@megous.com>
-> > Signed-off-by: Luis Garcia <git@luigi311.com>
-> > ---
-> >  drivers/media/i2c/imx258.c | 14 +++++++++++++-
-> >  1 file changed, 13 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
-> > index 163f04f6f954..4c117c4829f1 100644
-> > --- a/drivers/media/i2c/imx258.c
-> > +++ b/drivers/media/i2c/imx258.c
-> > @@ -680,6 +680,7 @@ struct imx258 {
-> >  	unsigned int csi2_flags;
-> >  
-> >  	struct gpio_desc *powerdown_gpio;
-> > +	struct gpio_desc *reset_gpio;
-> >  
-> >  	/*
-> >  	 * Mutex for serialized access:
-> > @@ -1232,7 +1233,11 @@ static int imx258_power_on(struct device *dev)
-> >  		regulator_bulk_disable(IMX258_NUM_SUPPLIES, imx258->supplies);
-> >  	}
-> >  
-> > -	return ret;
-> > +	gpiod_set_value_cansleep(imx258->reset_gpio, 0);
-> > +
-> > +	usleep_range(400, 500);
-> 
-> You could mention this at least in the commit message.
+For reference:
 
-This is T6 in the datasheet: https://megous.com/dl/tmp/92c9223ce877216e.png
+ath10k_snoc 18800000.wifi: qmi chip_id 0x30224 chip_family 0x4001 board_id 0x55 soc_id 0x40060000
+ath10k_snoc 18800000.wifi: qmi fw_version 0x32040163 fw_build_timestamp 2019-10-08 05:42 fw_build_id QC_IMAGE_VERSION_STRING=WLAN.HL.3.2.0-00355-QCAHLSWMTPLZ-1
+ath10k_snoc 18800000.wifi: wcn3990 hw1.0 target 0x00000008 chip_id 0x00000000 sub 0000:0000
+ath10k_snoc 18800000.wifi: kconfig debug 1 debugfs 0 tracing 0 dfs 0 testmode 0
+ath10k_snoc 18800000.wifi: firmware ver  api 5 features wowlan,mgmt-tx-by-reference,non-bmi crc32 b3d4b790
+ath10k_snoc 18800000.wifi: htt-ver 3.73 wmi-op 4 htt-op 3 cal file max-sta 32 raw 0 hwcrypto 1
+ath10k_snoc 18800000.wifi: invalid MAC address; choosing random
 
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+Note the device also uses updated wlanmdsp, so it will be updated with
+firmware-name for WiFi once [1] is merged.
 
-> > +
-> > +	return 0;
-> >  }
-> >  
-> >  static int imx258_power_off(struct device *dev)
-> > @@ -1243,6 +1248,7 @@ static int imx258_power_off(struct device *dev)
-> >  	clk_disable_unprepare(imx258->clk);
-> >  	regulator_bulk_disable(IMX258_NUM_SUPPLIES, imx258->supplies);
-> >  
-> > +	gpiod_set_value_cansleep(imx258->reset_gpio, 1);
-> 
-> Same question than on the other GPIO: does this belong here?
+[   68.236220] ath10k_snoc 18800000.wifi: chan info: invalid frequency 0 (idx 41 out of bounds)
+[   69.426700] ath10k_snoc 18800000.wifi: chan info: invalid frequency 0 (idx 41 out of bounds)o
 
-No, this should be before the regulator_bulk_disable.
+[1] https://lore.kernel.org/ath10k/20240306-wcn3990-firmware-path-v2-0-f89e98e71a57@linaro.org/
+---
+ arch/arm64/boot/dts/qcom/sm8150-hdk.dts | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-See: https://megous.com/dl/tmp/c96180b23d7ce63a.png
+diff --git a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
+index de670b407ef1..6cb6f503fdac 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
++++ b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
+@@ -609,6 +609,11 @@ &remoteproc_cdsp {
+ 	firmware-name = "qcom/sm8150/cdsp.mbn";
+ };
+ 
++&remoteproc_mpss {
++	firmware-name = "qcom/sm8150/modem.mbn";
++	status = "okay";
++};
++
+ &remoteproc_slpi {
+ 	status = "okay";
+ 
+@@ -713,3 +718,14 @@ &usb_1_dwc3_ss {
+ &usb_2_dwc3 {
+ 	dr_mode = "host";
+ };
++
++&wifi {
++	status = "okay";
++
++	vdd-0.8-cx-mx-supply = <&vreg_l1a_0p75>;
++	vdd-1.8-xo-supply = <&vreg_l7a_1p8>;
++	vdd-1.3-rfa-supply = <&vreg_l2c_1p3>;
++	vdd-3.3-ch0-supply = <&vreg_l11c_3p3>;
++
++	qcom,ath10k-calibration-variant = "Qualcomm_sm8150hdk";
++};
 
-kind regards,
-	o.
+---
+base-commit: abfb54bc2d2b925336c6ea9ae2b335e3867ceb89
+change-id: 20240403-sm8150-hdk-wifi-74deaecaaecb
 
-> >  	gpiod_set_value_cansleep(imx258->powerdown_gpio, 1);
-> >  
-> >  	return 0;
-> > @@ -1554,6 +1560,12 @@ static int imx258_probe(struct i2c_client *client)
-> >  	if (IS_ERR(imx258->powerdown_gpio))
-> >  		return PTR_ERR(imx258->powerdown_gpio);
-> >  
-> > +	/* request optional reset pin */
-> > +	imx258->reset_gpio = devm_gpiod_get_optional(&client->dev, "reset",
-> > +						    GPIOD_OUT_HIGH);
-> > +	if (IS_ERR(imx258->reset_gpio))
-> > +		return PTR_ERR(imx258->reset_gpio);
-> > +
-> >  	/* Initialize subdev */
-> >  	v4l2_i2c_subdev_init(&imx258->sd, client, &imx258_subdev_ops);
-> >  
-> 
-> -- 
-> Regards,
-> 
-> Sakari Ailus
+Best regards,
+-- 
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
 
