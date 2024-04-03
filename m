@@ -1,181 +1,172 @@
-Return-Path: <devicetree+bounces-55957-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55959-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE9788972AF
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 16:34:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F3CC8972D5
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 16:39:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DAB4F1C233B5
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 14:34:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CACFF28B234
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 14:39:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2318433C6;
-	Wed,  3 Apr 2024 14:34:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F3FD85C4E;
+	Wed,  3 Apr 2024 14:39:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="dfJ2hSUi"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="LBAgTOnl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04on2069.outbound.protection.outlook.com [40.107.102.69])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFC879461;
-	Wed,  3 Apr 2024 14:34:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712154860; cv=none; b=qgMHf9y+uKviV1DBqsvyMJk0mJCeEBOSRcJiE/66WHa+eO6IKrPpF9ZSQW0yAv731IKiMd0EUBlyMVZ6hvh+n7OGQhUQ1r9FxDI6XKS3SMKAtq1MMqKYqLM3VcEIllhnxX0v9ATIRP2R3kTzWGr/foiJfKPuK245il2qMuUY3Gs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712154860; c=relaxed/simple;
-	bh=IAYJLk6DU8cPwm4Sq8ppOSGbg/MjkwMiUAFWzHaDr2E=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1C7913AA52;
+	Wed,  3 Apr 2024 14:39:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.102.69
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712155181; cv=fail; b=Z16KaIgQzsw8Izm9Xcu8BZr/k//MKMeeqCuGTZinZayGUgraXoxFdnYWZzLBXrZ06faQT4EEfJyoHOe1kqHoAnGAFtTUumBH3Km7K5j46OIqW+XAjORTMWeb7zRGia9usu2qtVlZw6yVE0669MHgV30ikWJiz3CV1CeUkLPUHt8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712155181; c=relaxed/simple;
+	bh=SeHFsi/jE9Sli2ABs52FxobNHyEarVSWqCyUWnUT4fQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=rk1imBJWsedYTX4qdQHNXRYUTtSgX1k8g3LZwU47aj6sZwGqbJLuoFdKkbJuiCDFFsKGBWPTgZzt+R1bi2310Z3PO5GT8tNdgrFjBFP/raHBO2wQCWXajnBdCc0Vo1v1SL+URW/Wb8y/Ii5cv5872LLZh2GxHmwn6nHDMkF++Ow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=dfJ2hSUi; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 433EY47Y103082;
-	Wed, 3 Apr 2024 09:34:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1712154844;
-	bh=9nvuNv2peLEBbIQzidVWKZxcdEr6uidwXCp/+6d7NzI=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=dfJ2hSUi8FPR1Lo44762Gc1y+RmW8gSWFEDWAvau7ccV6o9Pz4mfY2WdVD3auEH2x
-	 P8JvxfQ7hXxXQl+aT8D4drzm8X6UNVbhxbXqUL/fxYuzn/rmkFQ7fM5pkUABrBMHE0
-	 4Y6c7OtROgPQ5X2wulXHnMBRFXuzXGZtS6ShE0nY=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 433EY4GQ021774
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 3 Apr 2024 09:34:04 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 3
- Apr 2024 09:34:04 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 3 Apr 2024 09:34:03 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 433EY3jB031913;
-	Wed, 3 Apr 2024 09:34:03 -0500
-Message-ID: <67c8028c-0d22-447a-8856-0c42d1cdeb64@ti.com>
-Date: Wed, 3 Apr 2024 09:34:03 -0500
+	 In-Reply-To:Content-Type; b=gll56TsnnaprqxPkXuVGFFKWixViGJCACs06yygnoL44cVe2dK8Z6KlaWN/126D3EjQx1kV7XpP5E4x9KEWxyD50B5PYZyiS4aoyULQ8dtoz/YlJOanvLBhy5UUSTTWbBEauRLZI0rZNi55YxJBZBZbD4s+WQRFTLv6pyJPgu5c=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=LBAgTOnl; arc=fail smtp.client-ip=40.107.102.69
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=R2ma9uTN2Lq14xIjDMfpxJ/Nb32rbWaZ2FHIuEEkKnGimVo/8OjoXfAS84nWeakb6dr47u7k4iDp4PNfSbhir4FIKpwGgrrqULZud0BRQthCItfRgor4VT1eYeLQjPALgcqki3a2J92U/EdZTUOrtFteq94gKDEwfALdQ5Lf+dIsdDfFlXqO+AA488IRo6pypii5M0JSOfVzOMnsXCJizhyKBai7HAuFtHOXLXJl4jIw0sU+BI/MQrRA3tJrulkTwl+RSpVA4UPLr+FJz+5+XPeOKRH2GSjOiUra+OAMxedg2j6we9Aw6M2NcvnxvNC507UVWv4D4Mkx4m4lPVdi/g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5n5ovgyBLWFpDC63S7gdyQw8luP9t99OKImKzGoEgYU=;
+ b=Zh+KcHPhH3+7ar7ns+GPmcktb4T66gnYV7M3+aIhBuvw2pRZgJgSOc9XMiIXHWRagC3FKUrliQknCTwrB3b33jJP1zgjZJvJVbulXwGa0pOTqxm51Lz7vVpj2F1eHWeWz9q05omIc/fk1ICLCrVNiNg+vQ2coeNgWfvOxFA3GYyczpoyY1SuDmfD1dqqcJ5SpRP/gjQ0p39zRFHtyR3gS7J3ms6XGfk1b05FYUkQAdsw01neASL2cMDSmxCOuw5y5DShcilP/fe2kjlW2UaAZklTgyfRzmStDD6T5UxqE4rWf3OK509DKxsRb47bRSqBfyOG81eknkmBJLqMtsWVZg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=linaro.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5n5ovgyBLWFpDC63S7gdyQw8luP9t99OKImKzGoEgYU=;
+ b=LBAgTOnlT00Ry0B35yALepJggrraUOFsS/Gy9T1l1YVV6nh0RU8jYu1URIB0yiRoqE2wSjp4VtEbwU1ybp1nzpLjH+m0If7XFO54VXBBymdy2XDxnxIJk/idnTTrUSfvbdBLzCGGFlHlEPnEtCo1dpeEmWPoO+uTFaxiSttMuKDICQf3YybfM1JondPYbcKU3nYB0LM2gFNVHr3428WS1pkgK1hv/jMDV+tA2VOiu7WOm3NJYCvUS4X/pExvVqQiBofBnN8c+fl570zUseyqlwJcDg6B61Oz+T2emh2QDUsowmzUHsG7RnqOvJVwAlkSZX6Mpfbcl4Eq1pcmn9iKgQ==
+Received: from PH7PR10CA0020.namprd10.prod.outlook.com (2603:10b6:510:23d::18)
+ by CH3PR12MB8306.namprd12.prod.outlook.com (2603:10b6:610:12c::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Wed, 3 Apr
+ 2024 14:39:33 +0000
+Received: from CY4PEPF0000EE3C.namprd03.prod.outlook.com
+ (2603:10b6:510:23d:cafe::67) by PH7PR10CA0020.outlook.office365.com
+ (2603:10b6:510:23d::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46 via Frontend
+ Transport; Wed, 3 Apr 2024 14:39:33 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ CY4PEPF0000EE3C.mail.protection.outlook.com (10.167.242.16) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7452.22 via Frontend Transport; Wed, 3 Apr 2024 14:39:32 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Wed, 3 Apr 2024
+ 07:39:20 -0700
+Received: from [10.41.21.79] (10.126.231.35) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.12; Wed, 3 Apr
+ 2024 07:39:16 -0700
+Message-ID: <b1ef6c21-075c-13bc-89cc-078e8b94ed3d@nvidia.com>
+Date: Wed, 3 Apr 2024 20:09:14 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-{am62p,j722s}: Disable ethernet by
- default
-To: Michael Walle <mwalle@kernel.org>,
-        Francesco Dolcini
-	<francesco@dolcini.it>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20240403101545.3932437-1-mwalle@kernel.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [Patch v2 1/2] dt-bindings: make sid and broadcast reg optional
 Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20240403101545.3932437-1-mwalle@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Jon Hunter
+	<jonathanh@nvidia.com>, <robh@kernel.org>, <conor+dt@kernel.org>,
+	<maz@kernel.org>, <mark.rutland@arm.com>, <treding@nvidia.com>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-tegra@vger.kernel.org>, <amhetre@nvidia.com>, <bbasu@nvidia.com>,
+	Sumit Gupta <sumitg@nvidia.com>
+References: <20240402132626.24693-1-sumitg@nvidia.com>
+ <20240402132626.24693-2-sumitg@nvidia.com>
+ <025ed42a-c6f2-48e6-a8d1-b6de79d6957b@nvidia.com>
+ <c51653d1-1a76-45de-93e0-ee5d341649e9@linaro.org>
+From: Sumit Gupta <sumitg@nvidia.com>
+In-Reply-To: <c51653d1-1a76-45de-93e0-ee5d341649e9@linaro.org>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
+ rnnvmail201.nvidia.com (10.129.68.8)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3C:EE_|CH3PR12MB8306:EE_
+X-MS-Office365-Filtering-Correlation-Id: e9b048d9-9749-444e-4f37-08dc53ebe082
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	fvSbNzKjr1pAZzGWydwN7GkzXcooPgnXrAYILsrMBiownRjTo/tgs7qoayhcSXZ1r9jvotKM6TvlojMt7ZI0xzigr+7Gik8BB2eL3wjOonLDVH+sJM9BO+pItQ0arGzwmoRymKeQWmXH7BzE5aXTuFXldEdEq3HJHtdb2bF5lLDldLu0la91YcpV3wSmHbb1RklttgfIWVTGlnzVN9gwv2W1SMcipo9CHsWht7d+S2Eu/MNagLpmWwOOzwSW21W2WoTEP1PAg3cNsyV/hwSyaxAu3AXadHu2jFFpkKSaVfAbvgkcyea7myUeo0aj1iH4U+HuQMloU+q9Of2bww4TDiEXm5F7SWWkFCnlEg6vWihXTayxfQTUeqTXUoNGAWCavFFC3oEhIKMwXC2jmToiln5A61lJLvsUkoC8gwJCtARqQrqGCt9Z/z5tdc19hhOEJaJ1ATLnlrgOLC22DmEPKgGtCyKlc2PEhEQMMy0iyKQRyD02Dfm8axLPOABKwjBC3OCn74kh8wsK1929qEcthM8pFQ+by0uuxPC8idxPC1AfoONt4CTJk4UJSopDR5felquwic9Bn+cTjTeJX1wk3v1s85ajkKvfpH8olEciM6qHD628MznFvsHEy962Fj7ozc5OklP1XfpGVEZHCq1yd40SwHONkHB0Hdr34SyV6h1cI7hF/JMVYv+Z4Ig03KiYZzUyft9GLxf/FTIAZS0CYkuSHYkjkYMpT0EgTOYJ7uuYcupfiIskUqtS9vWy1dPp
+X-Forefront-Antispam-Report:
+	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230031)(1800799015)(36860700004)(82310400014)(376005);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2024 14:39:32.7730
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e9b048d9-9749-444e-4f37-08dc53ebe082
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CY4PEPF0000EE3C.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8306
 
-On 4/3/24 5:15 AM, Michael Walle wrote:
-> Device tree best practice is to disable any external interface in the
-> dtsi and just enable them if needed in the device tree. Thus, disable
-> the ethernet switch and its ports by default and just enable the ones
-> used by the EVMs in their device trees.
-> 
-> There is no functional change.
-> 
-> Signed-off-by: Michael Walle <mwalle@kernel.org>
-> ---
 
-Acked-by: Andrew Davis <afd@ti.com>
-
-> v2:
->   - move the status propert into k3-am62p5-main.dtsi, thus also update
->     the k3-am62p5-sk.dts
->   - put "status" last
-> ---
->   arch/arm64/boot/dts/ti/k3-am62p-main.dtsi | 3 +++
->   arch/arm64/boot/dts/ti/k3-am62p5-sk.dts   | 3 +++
->   arch/arm64/boot/dts/ti/k3-j722s-evm.dts   | 5 +----
->   3 files changed, 7 insertions(+), 4 deletions(-)
+>>
+>> On 02/04/2024 14:26, Sumit Gupta wrote:
+>>> MC SID and Broadbast channel register access is restricted for Guest VM.
+>>> Make both the regions as optional for SoC's from Tegra186 onwards.
+>>> Tegra MC driver will skip access to the restricted registers from Guest
+>>> if the respective regions are not present in the memory-controller node
+>>> of Guest DT.
+>>>
+>>> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
+>>> ---
+>>>    .../memory-controllers/nvidia,tegra186-mc.yaml | 18 +++++++++---------
+>>>    1 file changed, 9 insertions(+), 9 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
+>>> index 935d63d181d9..c52c259f7ec5 100644
+>>> --- a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
+>>> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
+>>> @@ -146,17 +146,17 @@ allOf:
+>>>        then:
+>>>          properties:
+>>>            reg:
+>>> -          maxItems: 6
+>>> +          maxItems: 4
+>>
+>> minItems?
+>>
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
-> index 7337a9e13535..88bc64111234 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
-> @@ -673,6 +673,7 @@ cpsw3g: ethernet@8000000 {
->   		assigned-clock-parents = <&k3_clks 13 11>;
->   		clock-names = "fck";
->   		power-domains = <&k3_pds 13 TI_SCI_PD_EXCLUSIVE>;
-> +		status = "disabled";
->   
->   		dmas = <&main_pktdma 0xc600 15>,
->   		       <&main_pktdma 0xc601 15>,
-> @@ -696,6 +697,7 @@ cpsw_port1: port@1 {
->   				label = "port1";
->   				phys = <&phy_gmii_sel 1>;
->   				mac-address = [00 00 00 00 00 00];
-> +				status = "disabled";
->   			};
->   
->   			cpsw_port2: port@2 {
-> @@ -704,6 +706,7 @@ cpsw_port2: port@2 {
->   				label = "port2";
->   				phys = <&phy_gmii_sel 2>;
->   				mac-address = [00 00 00 00 00 00];
-> +				status = "disabled";
->   			};
->   		};
->   
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-> index 6694087b3665..6a9c99c5fb2a 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-> @@ -431,16 +431,19 @@ &cpsw3g {
->   	pinctrl-names = "default";
->   	pinctrl-0 = <&main_rgmii1_pins_default>,
->   		    <&main_rgmii2_pins_default>;
-> +	status = "okay";
->   };
->   
->   &cpsw_port1 {
->   	phy-mode = "rgmii-rxid";
->   	phy-handle = <&cpsw3g_phy0>;
-> +	status = "okay";
->   };
->   
->   &cpsw_port2 {
->   	phy-mode = "rgmii-rxid";
->   	phy-handle = <&cpsw3g_phy1>;
-> +	status = "okay";
->   };
->   
->   &cpsw3g_mdio {
-> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-> index 6b148da2bcdc..8a38e5ae7d4f 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-> @@ -226,10 +226,7 @@ cpsw3g_phy0: ethernet-phy@0 {
->   &cpsw_port1 {
->   	phy-mode = "rgmii-rxid";
->   	phy-handle = <&cpsw3g_phy0>;
-> -};
-> -
-> -&cpsw_port2 {
-> -	status = "disabled";
-> +	status = "okay";
->   };
->   
->   &main_gpio1 {
+> If the intention was to make it variable, then yes, missing minItems.
+> But more important: why patch was sent without any testing?
+> 
+> Best regards,
+> Krzysztof
+> 
+
+I tested yaml file after doing the change for Tegra194 and Tegra234.
+Changed the Tegra186 entry later and didn't verify that. My bad as
+missed the obvious. Will correct the yaml file and send v3.
+
+Will wait if any comments on 'Patch 2' before sending v3.
+
+Best Regards,
+Sumit Gupta
 
