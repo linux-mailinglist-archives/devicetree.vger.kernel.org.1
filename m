@@ -1,137 +1,199 @@
-Return-Path: <devicetree+bounces-55866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7728C896B22
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 11:55:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6C8D896B45
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 12:01:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3308128C8DD
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 09:55:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F8411F297D5
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 10:01:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 240EE1353F5;
-	Wed,  3 Apr 2024 09:55:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5447413541E;
+	Wed,  3 Apr 2024 10:01:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ayUYoXrE"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="Vs3rG+aK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2059.outbound.protection.outlook.com [40.107.237.59])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DAE4134CE8;
-	Wed,  3 Apr 2024 09:55:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.177
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712138123; cv=none; b=nXxDuRZWEr3WCwj5wot/GTI6BXq6hqQX1UgLLqjgiAleDX5hf0dd4KBHr81ym9xlVOkXL9a1b9GeTONSj/hopRbupcQbbNhMf5XcJHZ7FB2UAH3ysP3E43iHRvjmDNYXEoEdjKL+VvJc0zBrf1xfrT/EABANUd4iT1qPFVlCXE4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712138123; c=relaxed/simple;
-	bh=YU/CeHp5UjL8NmS2ndGli5ANSlG4vJ1uOK5fYMDiHrc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QM436lsPSLhr/74OuboqDIULogALI6VsbJuKNqanjoWBHkzAAHK+vaY1iRBrXP+tMuem5tlVNPXnfZxSnasWq/YIoJNSgOw6fcNf4MWIwnJcOOVduJZ76rIWNl1a0+9ElG3mDggyIMiXzsa8z/yPC2eAchfr1x+krfNDoN78KvM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ayUYoXrE; arc=none smtp.client-ip=209.85.222.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f177.google.com with SMTP id af79cd13be357-789db18e24eso431103785a.1;
-        Wed, 03 Apr 2024 02:55:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712138120; x=1712742920; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CKc40d6Asw6pSQJAyAFc8NNjkra9w0OeaNrald7prfk=;
-        b=ayUYoXrEjVZBW9ucmlYex9s1WFxoQZ75BfpcZzPLvmZ/gx1aW+FtyF/ZHbGtiYcGUf
-         iN2uodikqzR9iTDreIn9GxBlmklr28L9KPbgGCDVkodCk6NbV6mklrm8Km/8PAnHMD7E
-         A4OUCAyblfvlbNddlHbFeK41QFS07O46Vjuc1VkxXjtnYjx9egjrvSP1+DtWxLyKJAYP
-         t930DSuH03b9ZJl3aCpZK70tKB/yhgNNgqZ/cRajU49btNYrAc4dwylFkLCaSNQ7wgL4
-         01vOAwGCs+fbh0APj46mZZhv9xkjVeMJxqqqq/aoDuUqNv4ha38pblUTD2WC4sOWKvLA
-         qesQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712138120; x=1712742920;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CKc40d6Asw6pSQJAyAFc8NNjkra9w0OeaNrald7prfk=;
-        b=VLSnHWSl60rHLvurAth7S05PFGWlQicxfM/bODV1/1u8/fx1si4ysoPfDfQwhKAWqy
-         b3hAydDdoC2CypfcpHbaED7IgIe7bhfo2kA6uaPRhzsaq/zVxZGn/bt9bgr9MhYELjiN
-         0u+u1O2UMr6HPEoKhw/i9dvJFWRY2hlAoBEN96f2G9mxzlYTCLRpP7uU/boX55s01ynQ
-         fKRpR7ACSdHgkiWc6SELQRH7xX2/uLibp1b2vnOAEtKGmfGjQjm1Ozp2LDv1x8rPPXb0
-         d6fa+qFdP6sq83spsxBjXcta62srjAyT5VLN6EWA8fKC2kFBDstECh6Z4ORcbAkH+i2u
-         pyQA==
-X-Forwarded-Encrypted: i=1; AJvYcCVBfwxsaHfe94T5BqGj2PQLKHU6f6fgYGf4e5kHVInw74vDHfb5g/XAD68cVTVkuq5HickrWitqSNHocu7239B82KSHDjB+YAHB0Cqvg/+kt1UraDC6zwzCajamixd1h4yZcteAiE08Ao3rHxLOKRwjOKhwATqYqNzKCEaFjkdKrUEW1A==
-X-Gm-Message-State: AOJu0YyrMix9xvivSAF0KeOtFK/Rm/sw+NlB3dKKUxl7aelMCtWUrdZN
-	pDLyuuIkmoedUEHKfdUjya2xU24q9jPJ9gmoLtPK9BmYxFE5p+iW
-X-Google-Smtp-Source: AGHT+IE0Xsxgk/+2l7vSmJfThk9WB0+LdrirAKzL6+1ZVVNasrfCE4ZcyDXWlXDB9TZ89qi9jSUsMg==
-X-Received: by 2002:ad4:40d0:0:b0:699:2523:65a9 with SMTP id x16-20020ad440d0000000b00699252365a9mr2168628qvp.3.1712138120330;
-        Wed, 03 Apr 2024 02:55:20 -0700 (PDT)
-Received: from [10.76.84.174] ([5.2.194.157])
-        by smtp.gmail.com with ESMTPSA id ke11-20020a056214300b00b006915ae114efsm6327187qvb.52.2024.04.03.02.55.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Apr 2024 02:55:20 -0700 (PDT)
-Message-ID: <b3088d35-fb66-4736-8c6c-f80b05a380c6@gmail.com>
-Date: Wed, 3 Apr 2024 12:55:17 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C147135405;
+	Wed,  3 Apr 2024 10:01:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.237.59
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712138483; cv=fail; b=Ztd61le9FG4hbeLUbqlgBm7CUF7gPw7ntan/dvc2nHHN8KjZcAFzUvO7sSOTPrKHd6n31xKx+7IaM+Pfame1yfcxG1exbeDRng8mUfHw5avmRKjm11vSwOWk53CxIiCFjsDnGIIsZAreT4dG+ULtVEGFS0M0l8fXLf5RbvZy17Q=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712138483; c=relaxed/simple;
+	bh=qRcEjrdWwqkGGVZloK+maEf/zhvVuXqoZvTMBjVHlUE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=lre5lDk4yrvLE/9eGj+9x6SbSB5W/j1qrsi5PSBMEldiq0xiunrm5ZdsaQKJhkDbqZ3YdskQzcE2Rx/yZ1fxv2JEoU/ZZroGcFVUUrG1WG5uxiQ0kc1KuvRpbnoqcE4hZuVZ2USaqaeVry5CvIbWm5IRS87K1bskmhapklW42H8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=Vs3rG+aK; arc=fail smtp.client-ip=40.107.237.59
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DVNQ9s6g/DX/cXLxhC3EdZURk2Drlr1DwEavso2y+q+EXqagpJQ/vlKKcEA4rzFTDm8J/DsNolALtUYAng/HDwfZi1WjFdYCvviXIIwRIdbJ/7bHw/HalHzKv6Az58+z0JPkgjDf9xJOpEwsjJfsDegFxU92nyHNz7aJYIbSThClavQse3LxNhch/5MoLh4Hl1LKHO/8txuttwxJUXHFjfNyNLYx1hHDKBXbbeMIJP+i2ywTMfHPDAQcOLXQqdo/3uE26yc0MdkYiUMSCgOI1pf6ypKbBjWt58H0WIR1+MS0bmhmeHaJGrtJWRauQ1duYnfGJrmZbvzr9Qe1v70hrQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=egAVd7N1brwmQ6m13nvCT5Ot41J04KNSDuLqKvaNUdo=;
+ b=gS/XaehyCU7ofzuWh0C3wkzwnXWVZETXzrq0Al0fq/8BiHMJKzOMSJrTh7L8eujWhplV6x83FkhWFqOMmZ5VuWWaHrvHteg59941UMCwbFtR5PEzGpLzy4IZTbQrmHh3SGAQN/VtRQOftteRC3k1xihEzBCiFPLdJGqIQFws5a0ZuXW7Es2zpzCnnj4JYjx3ug2er1mlv5jW5GMXzO+ty9OxmZ5ehM63R6f9uMOHMbAW/7TWwGqyr/2i9dKJPZM6vKBmsr+7yXnQJ89Rvcf3rZY3Th/pi0luRLacnuN2qs4c7tgCtIumdKP9Ud6RxgunpcHvC0VnEfo34p9Y25Bt8Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.118.233) smtp.rcpttodomain=gondor.apana.org.au
+ smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
+ header.from=nvidia.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=egAVd7N1brwmQ6m13nvCT5Ot41J04KNSDuLqKvaNUdo=;
+ b=Vs3rG+aKahTN0rwic2zPRuHkFoeo4bKL+NHJq6hipahdBY2y3DBvuN+sQq2mX7pm/PzhG/93e2S4FgSIxTIqA4hRWKQaVn4mbQbkxI/RfsT9zaJVxy5RgiwjJak/WvHPoKfGuHwMG2zLSTnd0klofbl/dPi8AD6GkRBr4AFkSYN28H+ErjOrXWkl3kMDL2nD7KWj6NreiMxPoNwjxJtNJvYWgbw1iJOnA8AtI1BGWI6GtxxC6/ntE6ANlEIT3C+G5yLMVGQw+I08fQz+P60Ic6PArPPLoXfOE8fKjyfhwoneOr5kowaf70pxCJ4/DTS/zq2V0+5MY7W4hH2K6Kp4qg==
+Received: from BL6PEPF00013DFC.NAMP222.PROD.OUTLOOK.COM
+ (2603:10b6:22e:400:0:1001:0:21) by DS0PR12MB9324.namprd12.prod.outlook.com
+ (2603:10b6:8:1b6::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Wed, 3 Apr
+ 2024 10:01:17 +0000
+Received: from BL6PEPF0001AB73.namprd02.prod.outlook.com
+ (2a01:111:f403:f903::) by BL6PEPF00013DFC.outlook.office365.com
+ (2603:1036:903:4::4) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46 via Frontend
+ Transport; Wed, 3 Apr 2024 10:01:17 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.233)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.118.233 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.118.233; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.118.233) by
+ BL6PEPF0001AB73.mail.protection.outlook.com (10.167.242.166) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7452.22 via Frontend Transport; Wed, 3 Apr 2024 10:01:17 +0000
+Received: from drhqmail202.nvidia.com (10.126.190.181) by mail.nvidia.com
+ (10.127.129.6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Wed, 3 Apr 2024
+ 03:00:59 -0700
+Received: from drhqmail201.nvidia.com (10.126.190.180) by
+ drhqmail202.nvidia.com (10.126.190.181) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.12; Wed, 3 Apr 2024 03:00:58 -0700
+Received: from BUILDSERVER-IO-L4T.nvidia.com (10.127.8.14) by mail.nvidia.com
+ (10.126.190.180) with Microsoft SMTP Server id 15.2.1258.12 via Frontend
+ Transport; Wed, 3 Apr 2024 03:00:53 -0700
+From: Akhil R <akhilrajeev@nvidia.com>
+To: <herbert@gondor.apana.org.au>, <davem@davemloft.net>, <robh@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+	<catalin.marinas@arm.com>, <will@kernel.org>, <mperttunen@nvidia.com>,
+	<airlied@gmail.com>, <daniel@ffwll.ch>, <linux-crypto@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<dri-devel@lists.freedesktop.org>
+CC: Akhil R <akhilrajeev@nvidia.com>
+Subject: [PATCH v7 0/5] Add Tegra Security Engine driver
+Date: Wed, 3 Apr 2024 15:30:34 +0530
+Message-ID: <20240403100039.33146-1-akhilrajeev@nvidia.com>
+X-Mailer: git-send-email 2.43.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/6] iio: adc: ad7173: Add support for AD411x devices
-To: David Lechner <dlechner@baylibre.com>, dumitru.ceclan@analog.com
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240401-ad4111-v1-0-34618a9cc502@analog.com>
- <20240401-ad4111-v1-6-34618a9cc502@analog.com>
- <CAMknhBFdtv84E_S4wa4UW0pO2yiUEk9=jn=_i4F=b8VHdR6v+w@mail.gmail.com>
- <CAMknhBHf_9kFfLySJmRyoUS6UFfTeLW3bfEi1-3ApEDHyyVhCw@mail.gmail.com>
-Content-Language: en-US
-From: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
-In-Reply-To: <CAMknhBHf_9kFfLySJmRyoUS6UFfTeLW3bfEi1-3ApEDHyyVhCw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+X-NVConfidentiality: public
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB73:EE_|DS0PR12MB9324:EE_
+X-MS-Office365-Filtering-Correlation-Id: 83cfa25b-9f7f-4f7f-b32c-08dc53c5011f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	yvfagaMqM9mF8xvya+XBkmROp9r7ZRUw5gaHiOFyerrfTu6avQtwA7h+v7ZPTvBDgMk7XBE95gM8sI1wWbQo9hfM+18hQF2TQSX/LcEklP7n+XJITKgTYvbaUO4/t1LziLbxg2+6Nbpt52CYCLTTt4/TQ2SP47YC5rZFoPoKYKBk5uFAM/RO0W+woA3/wWQZxEY+xIdQxKvfUTTWB6pr0vM5BUrpSlXTnb9G9yMGvdRX2XvlEBYFrD4xNpNTmWkSLK3Zc8rcIKBoXp4KSUXbZjQyj+OqVyXcIJm9zn4cwM67UfUWk0vsIWpAIifR4PpJPcxKlHCRLiRxk8c+m10hwdyWsQE/aznL1tMY9VTsK8v/7t10TxWx7W0eEYwCp1cUFweITP0MRAzGe8kVHwVwCWlUAXw/wE+md/3dYl6ixi89wmsBj14iVohiRZXWgK7ciK8gN8r6/iVxl6rl/c4iZEMtMVNcSVzLwjjum2B7/EUHdx6b0nzjjOENHu+V7NiK8WmX9x5XPVjYFKsb8YzAEfm7V6xj7/X25cCqvBp/aU8MAH1oc3FcRfYA9cN87gPDXxq6nboMFeQhgEloynJ4VY12qI8ADxG7yLOa5ZVnnnP8M/LtovM6FVHGYFlVCfzJhtcbBq+6tbC5hTYRp0Gba24pemeslMsoCXZQVIdlIcTfhfoPrAlXaqT0hRHpSgRDJQjUrJY0Xf0XvV9wr+mSPAk10+JBwMR+0/HfyOExPuc23KGjD6rqGhQBcx38uO7T9bFWjXzPlAE8AKLcAVUHwg==
+X-Forefront-Antispam-Report:
+	CIP:216.228.118.233;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge2.nvidia.com;CAT:NONE;SFS:(13230031)(36860700004)(7416005)(376005)(82310400014)(1800799015)(921011);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2024 10:01:17.0254
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 83cfa25b-9f7f-4f7f-b32c-08dc53c5011f
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.233];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BL6PEPF0001AB73.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB9324
 
-On 02/04/2024 17:00, David Lechner wrote:
-> On Mon, Apr 1, 2024 at 2:45 PM David Lechner <dlechner@baylibre.com> wrote:
->>
->> On Mon, Apr 1, 2024 at 10:10 AM Dumitru Ceclan via B4 Relay
->> <devnull+dumitru.ceclan.analog.com@kernel.org> wrote:
+Add support for Tegra Security Engine which can accelerates various
+crypto algorithms. The Engine has two separate instances within for
+AES and HASH algorithms respectively.
 
-...
+The driver registers two crypto engines - one for AES and another for
+HASH algorithms and these operate independently and both uses the host1x
+bus. Additionally, it provides  hardware-assisted key protection for up to
+15 symmetric keys which it can use for the cipher operations.
 
->>>                 *chan = ad7173_channel_template;
->>>                 chan->address = chan_index;
->>>                 chan->scan_index = chan_index;
->>> -               chan->channel = ain[0];
->>> -               chan->channel2 = ain[1];
->>> -               chan->differential = true;
->>>
->>> -               chan_st_priv->ain = AD7173_CH_ADDRESS(ain[0], ain[1]);
->>> +               if (reg >= AD4111_CURRENT_CHAN_CUTOFF) {
->>> +                       chan->type = IIO_CURRENT;
->>> +                       chan->channel = ain[0];
->>> +                       chan_st_priv->ain = ad4111_current_channel_config[ain[0]];
->>> +               } else {
->>> +                       chan->channel = ain[0];
->>> +                       chan->channel2 = ain[1];
->>> +                       chan->differential = true;
->>
->> Expecting chan->differential = false when ADCIN15 is configured for
->> pseudo-differential inputs.
->>
->> Also, perhaps missed in previous reviews, I would expect
->> chan->differential = false when channels are used as single-ended.
->>
-> 
-> After sleeping on it, I came to the concision that these parts are
-> probably too complex to try to worry about differential vs.
-> pseudo-differential/single-ended (what the datasheet calls
-> single-ended is really pseudo-differential).
-> 
-> So I take back my comments about expecting differential = false in those cases.
+v6->v7:
+* Move fallback_tfm and fallback_req to end of struct
+* Set reqsize and statesize based on fallback_tfm
+* Remove ofb(aes)
+v5->v6:
+* Move copy/pase of intermediate results in export()/import() to
+  'update()' callback for CMAC as well.
+* Check for rctx size when using fallback alg.
+* Updated blocksizes to align with generic implementation
+* Combined GCM and CCM init into aead_cra_init
+* Updates to handle invalid cases better
+* Reduce log levels for invalid cases to dev_dbg
+v4->v5:
+* Move copy/paste of intermediate results in export()/import() to
+  'update()' callback
+v3->v4:
+* Remove unused header in bindings doc.
+* Update commit message in host1x change.
+* Fix test bot warning.
+v2->v3:
+* Update compatible in driver and device trees.
+* Remove extra new lines and symbols in binding doc.
+v1->v2:
+* Update probe errors with 'dev_err_probe'.
+* Clean up function prototypes and redundant prints.
+* Remove readl/writel wrappers.
+* Fix test bot warnings.
 
-Alrighty then
+
+Akhil R (5):
+  dt-bindings: crypto: Add Tegra Security Engine
+  gpu: host1x: Add Tegra SE to SID table
+  crypto: tegra: Add Tegra Security Engine driver
+  arm64: defconfig: Enable Tegra Security Engine
+  arm64: tegra: Add Tegra Security Engine DT nodes
+
+ .../crypto/nvidia,tegra234-se-aes.yaml        |   52 +
+ .../crypto/nvidia,tegra234-se-hash.yaml       |   52 +
+ MAINTAINERS                                   |    5 +
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi      |   16 +
+ arch/arm64/configs/defconfig                  |    1 +
+ drivers/crypto/Kconfig                        |    8 +
+ drivers/crypto/Makefile                       |    1 +
+ drivers/crypto/tegra/Makefile                 |    9 +
+ drivers/crypto/tegra/tegra-se-aes.c           | 1933 +++++++++++++++++
+ drivers/crypto/tegra/tegra-se-hash.c          | 1060 +++++++++
+ drivers/crypto/tegra/tegra-se-key.c           |  156 ++
+ drivers/crypto/tegra/tegra-se-main.c          |  439 ++++
+ drivers/crypto/tegra/tegra-se.h               |  560 +++++
+ drivers/gpu/host1x/dev.c                      |   24 +
+ 14 files changed, 4316 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/crypto/nvidia,tegra234-se-aes.yaml
+ create mode 100644 Documentation/devicetree/bindings/crypto/nvidia,tegra234-se-hash.yaml
+ create mode 100644 drivers/crypto/tegra/Makefile
+ create mode 100644 drivers/crypto/tegra/tegra-se-aes.c
+ create mode 100644 drivers/crypto/tegra/tegra-se-hash.c
+ create mode 100644 drivers/crypto/tegra/tegra-se-key.c
+ create mode 100644 drivers/crypto/tegra/tegra-se-main.c
+ create mode 100644 drivers/crypto/tegra/tegra-se.h
+
+-- 
+2.43.2
+
 
