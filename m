@@ -1,145 +1,128 @@
-Return-Path: <devicetree+bounces-56069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1837A8979E7
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 22:37:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42E3B897A7C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 23:13:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 49B5F1C251B1
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 20:37:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74A9D1C26E57
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 21:13:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F6A7156968;
-	Wed,  3 Apr 2024 20:36:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E25D156667;
+	Wed,  3 Apr 2024 21:13:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OKKWNDJw"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="qcAhwz51"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D135115687B;
-	Wed,  3 Apr 2024 20:36:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 453A0156663;
+	Wed,  3 Apr 2024 21:13:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712176603; cv=none; b=GIDitObpJF/6QF8TxDP9v0OtN7M2DgYHYGusSQgTW1kNNu0zX7kdVce7UqBdxnmY2v9IWooMKuxevhEVQ1sbo8YA9GvmyUJezR2DeV+kYSB2UsBHkyue9KwddA8O4xoXiVEKGGM7NY0devMtA40fQLVuPN/0vC2ZbShf1RZavjk=
+	t=1712178829; cv=none; b=qeRTy0JSyeYphvEPhpYUG/F0l1/qiziSJL2kUVrpg3aTom7M3SIjWjxHJnNk/xu/lqYKYQQ3jIcYrXcezNmo9YoRKE4nlYo3RUnhOrBMLXbUBh5elTtfGhYRhdkXikwxeVRYFCtuP4zWiKmc0GfKo8fRIELcyHuYghqdy0WwMxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712176603; c=relaxed/simple;
-	bh=ym1B+YotZWSerPjFBcgO+xOuTrBddbeFCi8NmEi2Rhk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=W2UHCTBZ10jUiDkSEE2wvmtwG87wZ05DUIVPbDN480+zFdb2oE3GLyGdRWHX76z3G5wVUNNnKDAlC3bdIVKnbSHC69YUGpir4DO3QLxLPxQepDIAQAuIxDsT7Dh0IYZ5iRvxtE82Ins7EK/c0MgCCH4d/5+Su0slGrifWEyHOAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OKKWNDJw; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4148c6132b4so8434615e9.1;
-        Wed, 03 Apr 2024 13:36:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712176599; x=1712781399; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jSGypoDfqpqf30JRW1cSjKb3kn4Y8om8katFtm1k9j8=;
-        b=OKKWNDJwRYiEQExvMkuDSUAPwJOCPMxVjFNv9oTL0Lm7GX3hZzmvTMCPx56ofZk15G
-         Bln8I9UhabF5MSb3s8koii/uw4msU5UHz/HjiYmn986trP1LDWjKd6YmJSa9GMkYgsNJ
-         pwxuNio1QRZrI37v7uCI3piEafaOnVlskw3zcSXoCLriYGZA53X2IAlWnnK0jLcUBiyw
-         ERJmrUCvzxqzR/x/3Iwci9eqOp35pI720YKVojzIlhk/VZit8Ts8JKnAtRpaXavMjNho
-         vvGpBVAdz6immsQ+u/oe+YHqhS7fG29B3W365Nfnpg57GnE6hzBcPgmAfA7FAklytVJY
-         aAEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712176599; x=1712781399;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jSGypoDfqpqf30JRW1cSjKb3kn4Y8om8katFtm1k9j8=;
-        b=M4hhZJyUI7O/91rHrBHHoIeuRcWMSpFa9OpmVX//VUDB0RLBclbcg3ECxuo9Jvz7b3
-         nxO6DpdGCKTAGhX4labPMOz/xg21TaUnpLeYsH2O4linHF256yV3QN9FL8ECSJBNRJ9b
-         MtdJDCnV1xuQ5Ex4T+g9pTrrQzFy92B9OsbMIRpeSOcp4TDfciWKM3itcGtzsfwsVkzi
-         GmPEPu6JZO2kv4YW/pXIUDYGh6XN8Wn0d37M4MQmZFClB7mfCsgRx9OLUXxqwNYR2MjV
-         ccC1vBKHrGk+TWbg4szjiv6QdY9nX0nSaaYS9lhfU2eR3KYg6ddKYlDCSO/FXbKHijhT
-         zRWg==
-X-Forwarded-Encrypted: i=1; AJvYcCXVaCm9b8Jih1NDqjLXl+Ws5msYX1PvSx+B3ocbg1x+vqS12n7Zf9YbEiOT3rjsRcRGMKzU6yTdlSZkm6y5o1PYlgUrRcJz80zxvoxBNGcrszbTMZdGzDLlUQf281cu2vfjDR4ejudLlrihxEdv
-X-Gm-Message-State: AOJu0Yw4TBX7N9t02W06NBvdDwhtaudIj7046+AypZUUvVDYw2430xbo
-	M4hxiezsY1SxmqDpu90zrzWQh9GOJ56sVAmZ1fZ5phGgFasg9OSFSAZZEwxc
-X-Google-Smtp-Source: AGHT+IFyZ/P7OD6dXKo56fesVxWbcmlAoQodU4rrW7wCYbFjzNMLINpZAc8FOrmJHkASHxkvyr9Gjg==
-X-Received: by 2002:a5d:5447:0:b0:343:7f4b:6da5 with SMTP id w7-20020a5d5447000000b003437f4b6da5mr2931617wrv.17.1712176599471;
-        Wed, 03 Apr 2024 13:36:39 -0700 (PDT)
-Received: from prasmi.home ([2a00:23c8:2500:a01:5eb:3d93:f2b6:25e8])
-        by smtp.gmail.com with ESMTPSA id p4-20020a05600c468400b00415f496b9b7sm244910wmo.39.2024.04.03.13.36.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Apr 2024 13:36:38 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>
-Cc: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2 5/5] riscv: dts: renesas: rzfive-smarc-som: Drop deleting interrupt properties from ETH0/1 nodes
-Date: Wed,  3 Apr 2024 21:35:03 +0100
-Message-Id: <20240403203503.634465-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240403203503.634465-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20240403203503.634465-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=arc-20240116; t=1712178829; c=relaxed/simple;
+	bh=A63swF0NGtwa4y1vtkAq5Zk0Yp4g068uJTxXmn8Afd8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dCK5xuEud2NM0w4azvYmJ6/vIJYBzwzhtBZeeD5mtqhx59z64+dtf3pWFDRct9UDaNgr2Toov2/1LoFvXa21G5QngEp/EubH7hu/OANDRoxs7a6UQDg81l9Bp3ZjaqhKrHNZC2mE2wDv8ncuVi4e73/rZ+RQDJ8wi8B2x1tFfos=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=qcAhwz51; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1712178826;
+	bh=A63swF0NGtwa4y1vtkAq5Zk0Yp4g068uJTxXmn8Afd8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qcAhwz51NDjcmLMjMRi/zox0xmX5lsI1Rr2tTZrzWWWz/9mA7LSbVYz7Hci7Ew4id
+	 1F7eNbZHsZso1j8597z0gnhOB8G6qhf/bEoC9OWds0qh41gOSYgucuV2xsD/fMBtBq
+	 OUT4w3neJyVb2a/SrrOFqhS/EuYHrGwnz8POAoWXEp0BYpbCkDysX374Ltr6fVCcWR
+	 2UCnKyQUGH4Ux70SdvGPzJxtCnvKogTLbbZe4ZSOWA/hW2oh9jnF983jUT8Jj8KG8N
+	 1bodhTlhcLUDNF/q4hDH4lT9A5jg7ZBffRxgBM/5OB0beTb8wHbhUyQ4qNMqohTONx
+	 AhEn/qVTSBHrA==
+Received: from localhost (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dbrouwer)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id C1DD237813DC;
+	Wed,  3 Apr 2024 21:13:45 +0000 (UTC)
+Date: Wed, 3 Apr 2024 14:13:43 -0700
+From: Deborah Brouwer <deborah.brouwer@collabora.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Shreeya Patel <shreeya.patel@collabora.com>, mchehab@kernel.org,
+	hverkuil@xs4all.nl, hverkuil-cisco@xs4all.nl, heiko@sntech.de,
+	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+	p.zabel@pengutronix.de, shawn.wen@rock-chips.com,
+	kernel@collabora.com, linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-clk@vger.kernel.org,
+	linux-arm@lists.infradead.org
+Subject: Re: [PATCH v3 0/6] Add Synopsys DesignWare HDMI RX Controller
+Message-ID: <Zg3Gh8P97GaBtgAB@mz550>
+References: <20240327225057.672304-1-shreeya.patel@collabora.com>
+ <35e566-660d2080-1-7eb9eb00@16488675>
+ <a2f88176-b4e1-4202-843c-a00c5a2b1622@linaro.org>
+ <35f774-660d3b80-3-513fcf80@97941910>
+ <86150c89-11d5-4d52-987e-974b1a03018f@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <86150c89-11d5-4d52-987e-974b1a03018f@linaro.org>
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Wed, Apr 03, 2024 at 01:24:05PM +0200, Krzysztof Kozlowski wrote:
+> On 03/04/2024 13:20, Shreeya Patel wrote:
+> > On Wednesday, April 03, 2024 15:51 IST, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> > 
+> >> On 03/04/2024 11:24, Shreeya Patel wrote:
+> >>> On Thursday, March 28, 2024 04:20 IST, Shreeya Patel <shreeya.patel@collabora.com> wrote:
+> >>>
+> >>>> This series implements support for the Synopsys DesignWare
+> >>>> HDMI RX Controller, being compliant with standard HDMI 1.4b
+> >>>> and HDMI 2.0.
+> >>>>
+> >>>
+> >>> Hi Mauro and Hans,
+> >>>
+> >>> I haven't received any reviews so far. Hence, this is just a gentle reminder to review this patch series.
+> >>
+> >> Why did you put clk changes here? These go via different subsystem. That
+> >> might be one of obstacles for your patchset.
+> >>
+> > 
+> > I added clock changes in this patch series because HDMIRX driver depends on it.
+> > I thought it is wrong to send the driver patches which don't even compile?
+> 
+> Hm, why HDMIRX driver depends on clock? How? This sounds really wrong.
+> Please get it reviewed internally first.
+> 
+> > 
+> > Since you are a more experienced developer, can you help me understand what would
+> > be the right way to send patches in such scenarios?
+> 
+> I am not the substitute for your Collabora engineers and peers. You do
+> not get free work from the community. First, do the work and review
+> internally, to solve all trivial things, like how to submit patches
+> upstream or how to make your driver buildable, and then ask community
+> for the review.
 
-Now that we have enabled IRQC support for RZ/Five SoC switch to interrupt
-mode for ethernet0/1 PHYs instead of polling mode.
+I don't think Shreeya was asking for "free" work from the community.
+Her question wasn't trivial or obvious since reasonable people seem to sometimes
+disagree about where to send a patch especially if it's needed to make a series compile.
+I heard the issue was already resolved but had to say something since this accusation
+seemed so unfair.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v1->v2
-- Included RB tag from Geert
----
- .../riscv/boot/dts/renesas/rzfive-smarc-som.dtsi | 16 ----------------
- 1 file changed, 16 deletions(-)
-
-diff --git a/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi b/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
-index 72d9b6fba526..86b2f15375ec 100644
---- a/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
-+++ b/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
-@@ -7,22 +7,6 @@
- 
- #include <arm64/renesas/rzg2ul-smarc-som.dtsi>
- 
--#if (!SW_ET0_EN_N)
--&eth0 {
--	phy0: ethernet-phy@7 {
--		/delete-property/ interrupt-parent;
--		/delete-property/ interrupts;
--	};
--};
--#endif
--
--&eth1 {
--	phy1: ethernet-phy@7 {
--		/delete-property/ interrupt-parent;
--		/delete-property/ interrupts;
--	};
--};
--
- &sbc {
- 	status = "disabled";
- };
--- 
-2.34.1
-
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
 
