@@ -1,107 +1,190 @@
-Return-Path: <devicetree+bounces-55857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55858-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 812C9896A56
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 11:18:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9756896A60
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 11:21:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 364F31F24C80
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 09:18:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FAEA28C2AE
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 09:21:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3E5470CAD;
-	Wed,  3 Apr 2024 09:18:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ABA970CC5;
+	Wed,  3 Apr 2024 09:21:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FIHMSw16"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rbIFSyD5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 573376F085;
-	Wed,  3 Apr 2024 09:18:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 969446EB51
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 09:21:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712135915; cv=none; b=emZZ25Cc9KTHcwmtAsw1HHwNVzD3lZ7nJgjSuqNyUxTM0Wp7bdgA7Ux9QJvvavqVYxtJM+5a6LfzD/YaBZAF1RywQlmd09qRJSw2GdytpAGwQQzztBWoqa4kwU4YQU1EvfDmYKg35sA8Rtuyg5rFvKvr/W1+EzS1wyBgdq8xh0U=
+	t=1712136084; cv=none; b=G3IaEdjH/bVA2BWhQQ/3+V0oOjs7ET1SYpk0jT/iv9J+O+6BXHSAfl9nNfUpzDPqNYSHoK6/DMDV0fkkPwZNtKZob5XN/9lHWTMVagP4fpwKiMZGtb635j7KHLV1o4f+ubGvXDm4I4cFWtiTfCXGn0AMy/Lb+TAKtisEwXfQat8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712135915; c=relaxed/simple;
-	bh=CzfsKrznimmus6818cmtZRxRPiIEQhbv31NtqO99GAk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TaQLg0GIw148TxZ2ELrfOfMfGQoU7TjZ6ZH05tua/jDC83u0R4WnqcHJrCS+wdIKOYk+x512YFVFf7STfnRg+izC/VMYwI53Evht+VB10/EREAUUkHnqux7yz/WtxeQTdxRSrmxGK2FO0HIyXSZI6UKWUeJWZnb1o3ma2OnUIJk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FIHMSw16; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1e0bfc42783so51661395ad.0;
-        Wed, 03 Apr 2024 02:18:34 -0700 (PDT)
+	s=arc-20240116; t=1712136084; c=relaxed/simple;
+	bh=H5d8DlzGND/H/f1KN3Yf4Lvv14SA1lkHDdHDkosRGD4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ccyk2Kqq4c5WnW1sLyioMJ7u3ySGVvBK+Y1YZxgqP379FCxrJvfFraE2ly8XmZ9PQrGs3Lyptl6U5IAQWQT8B5hAVl5sXjRDX29a60jfdtYgLW28otmp1Ab9evG5iqxXxeMqFy/WtH6gGgw57pwoX1/T9kgIw2HYDbDfW9k5fvk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rbIFSyD5; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-6e703e0e5deso4979407b3a.3
+        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 02:21:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712135913; x=1712740713; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=J/UVKbDArSXf9OPq4uUdi846hr4Zk17CJip7zdbVBGE=;
-        b=FIHMSw16xUQtnVxJ3KRn8JVdL/IUIvMw9CpzUoOnlHSGHg8bPYrU73msAPxYtNtL+B
-         3lD6eonkSZkBw+s+ULKS/i/vwd0/7irOTmatpv11mplSqw0bjoUp0rN7I4t8XDyUxRaB
-         MUnFlLE7kFrfCR+LhFivCIqYDa3lQGbhoKQ2fDPWT1oe3NYoCDc+QLTs/Y3jtjT/2GKO
-         rPH8PXcL3uhz6ProH74unm2SxYfyzyZrjiTQZUs2npAsfg4M83NwsaSfETZqLiOy+XNX
-         gFEXPyW/NRLSpK4eb0jriQEA9lEbBZrPR6hkpIruU7vRxTp84Ni9FGcL2aUiGofuBbzI
-         uQLw==
+        d=linaro.org; s=google; t=1712136082; x=1712740882; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=vtLqEmydzrCNnRTSENhA+AKBW/+wQJ0+bubWJxgXh7o=;
+        b=rbIFSyD5ctdxcZva8oXACTINt88ARST4xLi7z4YPRUHD8j4D02O8VUadGBWMwPZ8gN
+         zF7J3lHfdz+sEjMm1XcD62KWDae5mwA+wxiVLMisGNyG4IFwduVisstvQw9oAHv+7+PG
+         kTpYUg77xl/MbeAVLQ4bLPIN/axilV4dq3pOJ7Wp0pQNz480ILFmNJQZx61FwUf/nnts
+         t3jlQfDjmm4kALVRX2tEl/2FKexf3NLfHdO9YgVgUtEgPe8mQp0AYLOGOcubNJzflghM
+         2Wqho9+ANeGCJv7Uw2kqNp+kkmpvkXCnjd3XYNlVFL6Od09V6zxqXAx3rEY/ScM2pMOC
+         IS8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712135913; x=1712740713;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1712136082; x=1712740882;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=J/UVKbDArSXf9OPq4uUdi846hr4Zk17CJip7zdbVBGE=;
-        b=sWZV+5PkH5Bt4bGsOwf61QYPYYAUDWDnLqoQYW8gdI18j+4Luhw9RPheJ3NYIZ/nqP
-         x9RtJYMKz4wrLxbVx8buv8/Z/h3g5XVI5j8EKNjJWSvlS3MbzE/hM/VJ2nLb+v7g0oTx
-         BVRH4o+3XvFpSmZrZ24oxWtFJNlNkabRcEuc+E4m/IJoeCxkc8NRU4a1tPDAcYYQnLKL
-         zUSm7NRroBc+m7GNVa5t35Ogu/CVC2gmO7f8saGsD2h6otmFKLwfRIsp84CE9jPm5udm
-         PHdSLUZ7lAmN/+gJ/1rLASubXnPoAIeRcziIgd6+oHImQM9GG2D9xPLfdWyyzCNa9Sw2
-         Cx7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVlAo8mE5taDG2KizMa5BEmJHl0m+gFSNYizlgvJidzCBQqhwwDQll0tlPVIwY2qOfMAgjHHKVLVd2P+lts1iqnG7F0WJYx/bgwgYDiF+YoRCVefCmPwLSVDfBY9BMxyVowaTl7I9g3NkeO7fkLmtSrf417Q1biBMiD/Yw1SfHFpBa57LB+WbfZ
-X-Gm-Message-State: AOJu0Yy33zgePobfXQYAuDnGF2peS/W1DjMT20WqRKiTNj7IrypSaDyI
-	SFuGrdxqE3AMR8EGEFobCfmJ30j/nxM6e6HNisCTE+yjqzw7VAUW
-X-Google-Smtp-Source: AGHT+IEaFhwRz3VWSg65jk6f3e+gnvcIMOhfysLRN3LKjo7jt1SN05PzLJCLDWUi6JBCZtwahwn/sw==
-X-Received: by 2002:a17:902:f644:b0:1e2:926c:f16d with SMTP id m4-20020a170902f64400b001e2926cf16dmr1041331plg.63.1712135913591;
-        Wed, 03 Apr 2024 02:18:33 -0700 (PDT)
-Received: from ?IPV6:2001:b400:e307:843c:cd04:f62d:553a:c932? (2001-b400-e307-843c-cd04-f62d-553a-c932.emome-ip6.hinet.net. [2001:b400:e307:843c:cd04:f62d:553a:c932])
-        by smtp.gmail.com with ESMTPSA id q4-20020a17090311c400b001e2881c8de5sm1921544plh.82.2024.04.03.02.18.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Apr 2024 02:18:33 -0700 (PDT)
-Message-ID: <79b7e2ef-6f53-4642-ad3f-99b8ce780a7f@gmail.com>
-Date: Wed, 3 Apr 2024 17:18:29 +0800
+        bh=vtLqEmydzrCNnRTSENhA+AKBW/+wQJ0+bubWJxgXh7o=;
+        b=HTu6WeIbiJJSwdEewEf25FbkJTa0y8UIm9KZbfQaxbZ8D/j7LRZ3Gs+oBoIPphheLc
+         sI7X3FL4+u7UgLGb6ZIfsxjXEHxFzRYhA4svKNOfghyxxtjx33lsj3r7bGBOQIt83jar
+         I9cP+ed53NRinwndpoJMZRzy1JytOoRxD7m4o1FLYlv4eESHWAX4w0omPhGUJ+Hqa0S3
+         AR836mIfOMDvCWHTVl7DXqJtmHk3HBI+WA0ds76R4VzNwdXp1KCtKZpSRvnNOGcZNnJH
+         B1YgrIEG5jr5NkS+GyJVM6WQ54GgqsacO6OZTtsYmAUja5z8QftL95xTtOR2AQa32JTu
+         ccsA==
+X-Forwarded-Encrypted: i=1; AJvYcCWPhJddwRWTi5FtbRtwgg037HBQdD7Dg+2N8OyOVQHtatteVF+wTAuddXaVUlAeguh5Xfp2KVmDJObarHeO4dndiJXTkcsMmtoBiQ==
+X-Gm-Message-State: AOJu0YzfG1Dj/CC3DVaH3gy46CKXePN69h9SdBPyPLMEicnIvb8BxtX6
+	PRnj+fj+fLp2lVq/IMqaMG4Y/3YpFCFEdSDNwCWO+nNhkHCZv9RF3HIdI2IzwA==
+X-Google-Smtp-Source: AGHT+IHI/Dy9/VZiFVNF4MsqF+YXBPtwtdyt2Oqfn6ZAyRQOCFBvez6QTVmfCs6rxrt5RobVKu/RUw==
+X-Received: by 2002:a05:6a00:391b:b0:6ea:b690:f146 with SMTP id fh27-20020a056a00391b00b006eab690f146mr16024936pfb.15.1712136081817;
+        Wed, 03 Apr 2024 02:21:21 -0700 (PDT)
+Received: from thinkpad ([103.28.246.48])
+        by smtp.gmail.com with ESMTPSA id d12-20020a056a00244c00b006ecd9cb9035sm216831pfj.177.2024.04.03.02.21.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Apr 2024 02:21:21 -0700 (PDT)
+Date: Wed, 3 Apr 2024 14:51:14 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Damien Le Moal <dlemoal@kernel.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+	Wilfred Mallawa <wilfred.mallawa@wdc.com>,
+	Niklas Cassel <cassel@kernel.org>
+Subject: Re: [PATCH v2 02/18] PCI: endpoint: Introduce pci_epc_map_align()
+Message-ID: <20240403092114.GG25309@thinkpad>
+References: <20240330041928.1555578-1-dlemoal@kernel.org>
+ <20240330041928.1555578-3-dlemoal@kernel.org>
+ <20240403074520.GC25309@thinkpad>
+ <eb580d64-1110-479a-9a0b-c2f1eacd23e7@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 3/4] dt-bindings: watchdog: aspeed-wdt: Add aspeed,scu
-To: Andrew Jeffery <andrew@codeconstruct.com.au>,
- Rob Herring <robh@kernel.org>
-Cc: patrick@stwcx.xyz, Wim Van Sebroeck <wim@linux-watchdog.org>,
- Guenter Roeck <linux@roeck-us.net>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org
-References: <20240328022231.3649741-1-peteryin.openbmc@gmail.com>
- <20240328022231.3649741-4-peteryin.openbmc@gmail.com>
- <20240401135637.GA342928-robh@kernel.org>
- <ab76b0549172cf3e33d6242fa9ea3e6a87b4a58e.camel@codeconstruct.com.au>
-Content-Language: en-US
-From: PeterYin <peteryin.openbmc@gmail.com>
-In-Reply-To: <ab76b0549172cf3e33d6242fa9ea3e6a87b4a58e.camel@codeconstruct.com.au>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <eb580d64-1110-479a-9a0b-c2f1eacd23e7@kernel.org>
 
-Thanks, I can wait you update it and send a new version for wdt driver.
+On Wed, Apr 03, 2024 at 04:54:32PM +0900, Damien Le Moal wrote:
+> On 4/3/24 16:45, Manivannan Sadhasivam wrote:
+> > On Sat, Mar 30, 2024 at 01:19:12PM +0900, Damien Le Moal wrote:
+> >> Some endpoint controllers have requirements on the alignment of the
+> >> controller physical memory address that must be used to map a RC PCI
+> >> address region. For instance, the rockchip endpoint controller uses
+> >> at most the lower 20 bits of a physical memory address region as the
+> >> lower bits of an RC PCI address. For mapping a PCI address region of
+> >> size bytes starting from pci_addr, the exact number of address bits
+> >> used is the number of address bits changing in the address range
+> >> [pci_addr..pci_addr + size - 1].
+> >>
+> >> For this example, this creates the following constraints:
+> >> 1) The offset into the controller physical memory allocated for a
+> >>    mapping depends on the mapping size *and* the starting PCI address
+> >>    for the mapping.
+> >> 2) A mapping size cannot exceed the controller windows size (1MB) minus
+> >>    the offset needed into the allocated physical memory, which can end
+> >>    up being a smaller size than the desired mapping size.
+> >>
+> >> Handling these constraints independently of the controller being used in
+> >> a PCI EP function driver is not possible with the current EPC API as
+> >> it only provides the ->align field in struct pci_epc_features.
+> >> Furthermore, this alignment is static and does not depend on a mapping
+> >> pci address and size.
+> >>
+> >> Solve this by introducing the function pci_epc_map_align() and the
+> >> endpoint controller operation ->map_align to allow endpoint function
+> >> drivers to obtain the size and the offset into a controller address
+> >> region that must be used to map an RC PCI address region. The size
+> >> of the physical address region provided by pci_epc_map_align() can then
+> >> be used as the size argument for the function pci_epc_mem_alloc_addr().
+> >> The offset into the allocated controller memory can be used to
+> >> correctly handle data transfers. Of note is that pci_epc_map_align() may
+> >> indicate upon return a mapping size that is smaller (but not 0) than the
+> >> requested PCI address region size. For such case, an endpoint function
+> >> driver must handle data transfers in fragments.
+> >>
+> > 
+> > Is there any incentive in exposing pci_epc_map_align()? I mean, why can't it be
+> > hidden inside the new alloc() API itself?
+> 
+> I could drop pci_epc_map_align(), but the idea here was to have an API that is
+> not restrictive. E.g., a function driver could allocate memory, keep it and
+> repetedly use map_align and map() function to remap it to different PCI
+> addresses. With your suggestion, that would not be possible.
+> 
 
-Andrew Jeffery 於 4/2/24 20:09 寫道:
-> I had a patch converting it in a local branch which I've now sent:
+Is there any requirement currently? If not, let's try to introduce it when the
+actual requirement comes.
+
+> > 
+> > Furthermore, is it possible to avoid the map_align() callback and handle the
+> > alignment within the EPC driver?
 > 
-> https://lore.kernel.org/all/20240402120118.282035-1-andrew@codeconstruct.com.au/
+> I am not so sure that this is possible because handling the alignment can
+> potentially result in changing the amount of memory to allocate, based on the
+> PCI address also. So the allocation API would need to change, a lot.
 > 
-> Perhaps we can pull it into this series?
+
+Hmm, looking at patch 11/18, I think it might become complicated.
+
+- Mani
+
+> >> +	/*
+> >> +	 * Assume a fixed alignment constraint as specified by the controller
+> >> +	 * features.
+> >> +	 */
+> >> +	features = pci_epc_get_features(epc, func_no, vfunc_no);
+> >> +	if (!features || !features->align) {
+> >> +		map->map_pci_addr = pci_addr;
+> >> +		map->map_size = size;
+> >> +		map->map_ofst = 0;
+> > 
+> > These values are overwritten anyway below.
+> 
+> Looks like "return" got dropped. Bug. Will re-add it.
+> 
+> 
+> -- 
+> Damien Le Moal
+> Western Digital Research
+> 
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
