@@ -1,163 +1,278 @@
-Return-Path: <devicetree+bounces-56018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5287897539
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 18:29:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22D2D89755C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 18:38:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA191B2496E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 16:29:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 460741C24B47
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 16:38:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 582D9150990;
-	Wed,  3 Apr 2024 16:29:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA571152167;
+	Wed,  3 Apr 2024 16:38:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nB6WncOC"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="mSeckWOl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B499E139D17;
-	Wed,  3 Apr 2024 16:29:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09C3514AD15
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 16:38:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712161748; cv=none; b=H4gGb46i4yFvErrNn0VE0+1Ile8PLMtqSv9H8w3HWrRDqZ9NFghQUcWdt5+qZQaEhF2MfH8KkGBRgAdHfUlMMzeeCiGmYDGwxms6TQtawHHY2xbhGgjr2IYTEpVp2UHXivUlP7xwVVUldCyDxT6lxWtl5FDTO9i1SY/jsyjHq/Y=
+	t=1712162284; cv=none; b=Ywv27mbltLEZk9cjdfqcchR5XIQVBIxoH1SPcCVx+tMZIiVX3lBpfQYza6Si7JuKZxgQKDUK6I/6DyR1WvMYSEGohaJPKBdtERGS4p4hV/NSCqD1Jwfs+DnLHdiaYXR3HnyjCcRhw7v45aVGCMySEym1XC+GK88y8DjssQDEtUc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712161748; c=relaxed/simple;
-	bh=mhuKbmAv0FK32oWKE8zDOqzcjDgwcdmOI00I9TTS6DI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=heI+Z8m4rHaLsKhw8+E6txBHNBCZ8+7nWN4WW5L/SipVs3elwQrIS95PSTaYeDuMmIoYaf8yfebiNznucIsEkr7gScPMy2EU2mGfaBkYRCRgI6E7LBmtCu1Qw+bIUaWDDyHjOQe9KYUkeTHIRUKlLOmDAWrUOnrCWV/1puIvjXE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nB6WncOC; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1712161746; x=1743697746;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=mhuKbmAv0FK32oWKE8zDOqzcjDgwcdmOI00I9TTS6DI=;
-  b=nB6WncOCdoRIuSwbsy6I5dC1iHkLY/Rcj7WO522/HZZ3J+e1IM3wE6Z0
-   Pveikps4kDrMhQGcvH3dKtPfJ37K/YNz74b0STf80jAQ85Sdv2VLyELGq
-   GowYFtnGIlObGf/ORoAOqxelRR12lathtxfXG5tTHDSvb20bPk3JkDBO7
-   5tBg3JOU3aZ4WWN+pC/h0p55TyL5yjMieenGLhle/ORv/VzGOL6kNfdrS
-   SA/4yWbRcG1JDutu5znIW9d+yOvDLMAZzpPYAYnQu8yNnFDkGYZOR+8s6
-   d3PKzDpVixmfknO3wB/SD7HLhHQsp5jMAVcFygvAn40kncSRbfbfMINPi
-   Q==;
-X-CSE-ConnectionGUID: Hdgps/tvQy6OWHvkzm621g==
-X-CSE-MsgGUID: UX/7Zy+URf2QY8Id50WmMw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11033"; a="24912199"
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; 
-   d="scan'208";a="24912199"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Apr 2024 09:29:05 -0700
-X-CSE-ConnectionGUID: m6ew5ttxTs6sDcZnFGoCRQ==
-X-CSE-MsgGUID: lf/Y9co2QV+RE2aMxcSKCw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; 
-   d="scan'208";a="18419481"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Apr 2024 09:29:02 -0700
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 7BCC311F811;
-	Wed,  3 Apr 2024 19:28:59 +0300 (EEST)
-Date: Wed, 3 Apr 2024 16:28:59 +0000
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: git@luigi311.com
-Cc: linux-media@vger.kernel.org, dave.stevenson@raspberrypi.com,
-	jacopo.mondi@ideasonboard.com, mchehab@kernel.org, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	pavel@ucw.cz, phone-devel@vger.kernel.org,
-	Ondrej Jirman <megous@megous.com>
-Subject: Re: [PATCH v3 24/25] drivers: media: i2c: imx258: Add support for
- reset gpio
-Message-ID: <Zg2Dy2QBguXQoR3P@kekkonen.localdomain>
-References: <20240403150355.189229-1-git@luigi311.com>
- <20240403150355.189229-25-git@luigi311.com>
+	s=arc-20240116; t=1712162284; c=relaxed/simple;
+	bh=Giq7R76xZqUySEf7R34j+dGGeGtp38CHprsEw+dSA0E=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SrYmVeG0ZS1SqxOMYZywQVGhSKyLlw/9f138dd6CjChlQRtr8X1fcXsfOZjBLE4J+9GQvb93SZL7IQpnPPT2QsvjxjGCo+8f8QMQZSV/o5qGo8rRv6a4FNGM4ok2fhFvRPqHSNdFX922S+abvCHt6gelIZ9krb8veBWl+PKNfNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=mSeckWOl; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2d4360ab3daso87133781fa.3
+        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 09:38:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712162280; x=1712767080; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8VAwBegNB+ejGvlVIKZPfY1+rXl1zIDBpfKpOZezbB0=;
+        b=mSeckWOlwsEz6B2ALe37Mf8yiSWrlNo2sQguc32Mxf3z2SxrWruloNQpoV77xN6F2K
+         3lGd9WBCmDcmhuJFwrRj4rT4034vDoZYpckJwA8kCUpN0E/O+A6rtMGjTLFE66SeYn8X
+         wotKHWm8Sa+KJVrjFLrZKgY2aeNgsAHRwWt6jM7ITTaGLA7SYxUoHqPMSiKOM32+9BRr
+         0noVaKys5HVu4XyMiSoCMDnE57Hc2do83wTn7zDaM981wNb6mckOkpoVE4FmZSkKHG5o
+         JdPhmPBepo0Emo4/eBbcSGZlJQatH3pYodHeQvcORFgqfrHyheObp6k6qKP7UBJVdGSF
+         lElA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712162280; x=1712767080;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8VAwBegNB+ejGvlVIKZPfY1+rXl1zIDBpfKpOZezbB0=;
+        b=C4xEZzNKjpIosYzgt4T3rfxVP3T3C5cP626NL8jhpz3dbbGeUTb2A1WZ/8yKd7dLI/
+         PedhFLp92aZFHwlnz3FK5kUJy/cqEiQLh085ATlajMxvmfPmXU5bWGQg+yPm7oTwmBU2
+         yuhnVcbjZ2KhWMduitMTkXdsyXdUfjnkDTDt8usEbCJzBybMffMTGyfHrDAm2R6EywNC
+         tnDsZv2G6Gyr4OC2Yp4FWEboOXSaJQkx1BnY0CJocOE8xJ4/Xj4Tv3fScEZIfXNsuTza
+         Nnox6224DJmGO5waErGgCNkWJGUU16kTquw9ouf4sbpB3aoDmG8hqZG2rdHI20f5H8ec
+         toew==
+X-Forwarded-Encrypted: i=1; AJvYcCVuFYnAfGe6yINp+qn8AcAXNbZ5dEQRq0vdUZn0i4wUK6toJSlbvR7zmnP6zH9bKqI+tbtcWpz4ae67bMx1hZgvmSiOyOVYg25oXQ==
+X-Gm-Message-State: AOJu0Yz6j9XOzIwHb/0rfA7wHgv0ToHy76c2mOP2enJXT/EAQiTX5Fx+
+	93Uj4n8N4NPXsyTsGqqsMm6wsXvKWAKDzwaSO0t8iebBSedcXagHJk20HvA3kGKf+Y4MzfcVCYL
+	vkbyelGuB+QDzqZKV/teMct7nbZ7JeUwnnEi0QA==
+X-Google-Smtp-Source: AGHT+IGAywR9Uy125qfFJ1X4pBurkesXRwKzT38wdpNo5Q4NTcpbgaRUf5WXVt7SKnHgElyGJALlJ1K6jC7Jdecw+bo=
+X-Received: by 2002:a05:651c:a06:b0:2d8:34ec:54e6 with SMTP id
+ k6-20020a05651c0a0600b002d834ec54e6mr159118ljq.33.1712162279945; Wed, 03 Apr
+ 2024 09:37:59 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240403150355.189229-25-git@luigi311.com>
+References: <20240401-ad4111-v1-0-34618a9cc502@analog.com> <20240401-ad4111-v1-6-34618a9cc502@analog.com>
+ <CAMknhBFdtv84E_S4wa4UW0pO2yiUEk9=jn=_i4F=b8VHdR6v+w@mail.gmail.com> <c7c26d36-ab08-420c-b634-8eb6d9cee9b5@gmail.com>
+In-Reply-To: <c7c26d36-ab08-420c-b634-8eb6d9cee9b5@gmail.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Wed, 3 Apr 2024 11:37:48 -0500
+Message-ID: <CAMknhBFZKKim4JyXLpHY=EoyW4ZPp03aHte5xy0ZkDnW16sfeA@mail.gmail.com>
+Subject: Re: [PATCH 6/6] iio: adc: ad7173: Add support for AD411x devices
+To: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
+Cc: dumitru.ceclan@analog.com, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Luis,
+On Wed, Apr 3, 2024 at 4:53=E2=80=AFAM Ceclan, Dumitru <mitrutzceclan@gmail=
+.com> wrote:
+>
+>
+> On 01/04/2024 22:45, David Lechner wrote:
+> > On Mon, Apr 1, 2024 at 10:10=E2=80=AFAM Dumitru Ceclan via B4 Relay
+> > <devnull+dumitru.ceclan.analog.com@kernel.org> wrote:
+> >>
+> >> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
+> >>
+>
+> ...
+>
+> >>  #define AD7175_2_ID                    0x0cd0
+> >>  #define AD7172_4_ID                    0x2050
+> >>  #define AD7173_ID                      0x30d0
+> >> +#define AD4111_ID                      0x30d0
+> >> +#define AD4112_ID                      0x30d0
+> >> +#define AD4114_ID                      0x30d0
+> >
+> > It might make it a bit more obvious that not all chips have a unique
+> > ID if we rename AD7173_ID to AD7173_AD4111_AD4112_AD4114_ID rather
+> > than introducing multiple macros with the same value.
+> >
+> > Or leave it as AD7173_ID to keep it short and add a comment where it
+> > is used with 411x chips in ad7173_device_info[].
+> >
+>
+> Sure
+>
+> >> +#define AD4116_ID                      0x34d0
+> >> +#define AD4115_ID                      0x38d0
+> >>  #define AD7175_8_ID                    0x3cd0
+> >>  #define AD7177_ID                      0x4fd0
+> >>  #define AD7173_ID_MASK                 GENMASK(15, 4)
+>
+> ...
+>
+> >>  struct ad7173_device_info {
+> >>         const unsigned int *sinc5_data_rates;
+> >>         unsigned int num_sinc5_data_rates;
+> >>         unsigned int odr_start_value;
+> >> +       unsigned int num_inputs_with_divider;
+> >>         unsigned int num_channels;
+> >>         unsigned int num_configs;
+> >>         unsigned int num_inputs;
+> >
+> > Probably a good idea to change num_inputs to num_voltage_inputs so it
+> > isn't confused with the total number of inputs.
+> >
+> > Similarly num_voltage_inputs_with_divider instead of num_inputs_with_di=
+vider.
+> >
+> > Also could use a comment to make it clear if num_voltage_inputs
+> > includes num_voltage_inputs_with_divider or not. And that it doesn't
+> > include VINCOM.
+> >
+>
+> Alright for these 3 statements above.
+>
+> > Probably also need some flag here to differentiate ADCINxx voltage
+> > inputs on AD4116.
+> >
+>
+> That is the purpose of num_inputs_with_divider. Mangled some changes
+> when splitting into individual patches. Will include in V2.
+> "
+> if (ain[1] =3D=3D AD411X_VCOM_INPUT &&
+>                     ain[0] >=3D st->info->num_inputs_with_divider)
+>                         return dev_err_probe(dev, -EINVAL,
+>                 "VCOM must be paired with inputs having divider.\n");
+> "
+>
+> ...
+>
+> >>
+> >> +static unsigned int ad4111_current_channel_config[] =3D {
+> >> +       [AD4111_CURRENT_IN0P_IN0N] =3D 0x1E8,
+> >> +       [AD4111_CURRENT_IN1P_IN1N] =3D 0x1C9,
+> >> +       [AD4111_CURRENT_IN2P_IN2N] =3D 0x1AA,
+> >> +       [AD4111_CURRENT_IN3P_IN3N] =3D 0x18B,
+> >> +};
+> >
+> > As mentioned in the DT bindings review, it would make more sense to
+> > just use the datasheet numbers for the current input channels in the
+> > diff-channels DT property, then we don't need this lookup table.
+> >
+> Yet, the datasheet does not specify the numbers, just a single bitfield
+> for each pair. It is too much of a churn to need to decode that bitfield
+> into individual values when the user just wants to select a single pair.
+>
+> ...
+>
+> >> +               case IIO_CURRENT:
+> >> +                       *val =3D ad7173_get_ref_voltage_milli(st, ch->=
+cfg.ref_sel);
+> >> +                       *val /=3D AD4111_SHUNT_RESISTOR_OHM;
+> >> +                       *val2 =3D chan->scan_type.realbits - !!(ch->cf=
+g.bipolar);
+> >
+> > Static analysis tools like to complain about using bool as int.
+> > Probably more clear to write it as (ch->cfg.bipolar ? 1 : 0) anyway.
+> >
+> Maybe it does not apply here, but i followed this advice:
+>
+> Andy Shevchenko V1 of AD7173 (named initially ad717x)
+> "
+> > +     return (bool)(value & mask);
+>
+> This is weird. You have int which you get from bool, wouldn't be better
+> to use
+> !!(...) as other GPIO drivers do?
 
-Could you unify the subject prefix for the driver patches, please? E.g.
-"media: imx258: " would be fine.
+As long as the build bots don't complain, there isn't a reason to
+change it. It is just a matter of personal preference at that point.
 
-On Wed, Apr 03, 2024 at 09:03:53AM -0600, git@luigi311.com wrote:
-> From: Luis Garcia <git@luigi311.com>
-> 
-> It was documented in DT, but not implemented.
-> 
-> Signed-off-by: Ondrej Jirman <megous@megous.com>
-> Signed-off-by: Luis Garcia <git@luigi311.com>
-> ---
->  drivers/media/i2c/imx258.c | 14 +++++++++++++-
->  1 file changed, 13 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
-> index 163f04f6f954..4c117c4829f1 100644
-> --- a/drivers/media/i2c/imx258.c
-> +++ b/drivers/media/i2c/imx258.c
-> @@ -680,6 +680,7 @@ struct imx258 {
->  	unsigned int csi2_flags;
->  
->  	struct gpio_desc *powerdown_gpio;
-> +	struct gpio_desc *reset_gpio;
->  
->  	/*
->  	 * Mutex for serialized access:
-> @@ -1232,7 +1233,11 @@ static int imx258_power_on(struct device *dev)
->  		regulator_bulk_disable(IMX258_NUM_SUPPLIES, imx258->supplies);
->  	}
->  
-> -	return ret;
-> +	gpiod_set_value_cansleep(imx258->reset_gpio, 0);
-> +
-> +	usleep_range(400, 500);
+I got a sparse warning for something like this recently [1], but maybe
+that case was just because it was inside of a FIELD_PREP() using it as
+bit logic instead of addition and we won't get any warnings here.
 
-You could mention this at least in the commit message.
+[1]: https://lore.kernel.org/linux-iio/20240129195611.701611-3-dlechner@bay=
+libre.com/
 
-> +
-> +	return 0;
->  }
->  
->  static int imx258_power_off(struct device *dev)
-> @@ -1243,6 +1248,7 @@ static int imx258_power_off(struct device *dev)
->  	clk_disable_unprepare(imx258->clk);
->  	regulator_bulk_disable(IMX258_NUM_SUPPLIES, imx258->supplies);
->  
-> +	gpiod_set_value_cansleep(imx258->reset_gpio, 1);
+>
+> "
+>
+>
+> >> +               case IIO_CURRENT:
+> >>                         *val =3D -BIT(chan->scan_type.realbits - 1);
+> >
+> > Expecting a special case here, at least when ADCIN15 is configured for
+> > pseudo-differential inputs.
+> >
+>
+> And what configuration would that be?
+> The only configurable part is the BI_UNIPOLARx bit in the channel
+> register, which is addressed here.
+>
+> There seems to be a confusion similar to what we had with single-ended
+> channels. The ADC is differential. Pseudo-differential in this datasheet
+> just means that you wired a fixed voltage(higher than 0) to the negative
+> analog input.
+>
+>  Which you can also do on the other inputs with a divider.
+>
 
-Same question than on the other GPIO: does this belong here?
+As discussed elsewhere, you can disregard this suggestion.
 
->  	gpiod_set_value_cansleep(imx258->powerdown_gpio, 1);
->  
->  	return 0;
-> @@ -1554,6 +1560,12 @@ static int imx258_probe(struct i2c_client *client)
->  	if (IS_ERR(imx258->powerdown_gpio))
->  		return PTR_ERR(imx258->powerdown_gpio);
->  
-> +	/* request optional reset pin */
-> +	imx258->reset_gpio = devm_gpiod_get_optional(&client->dev, "reset",
-> +						    GPIOD_OUT_HIGH);
-> +	if (IS_ERR(imx258->reset_gpio))
-> +		return PTR_ERR(imx258->reset_gpio);
-> +
->  	/* Initialize subdev */
->  	v4l2_i2c_subdev_init(&imx258->sd, client, &imx258_subdev_ops);
->  
+> ...
+>
+> >> -               chan_st_priv->ain =3D AD7173_CH_ADDRESS(ain[0], ain[1]=
+);
+> >> +               if (reg >=3D AD4111_CURRENT_CHAN_CUTOFF) {
+> >> +                       chan->type =3D IIO_CURRENT;
+> >> +                       chan->channel =3D ain[0];
+> >> +                       chan_st_priv->ain =3D ad4111_current_channel_c=
+onfig[ain[0]];
+> >> +               } else {
+> >> +                       chan->channel =3D ain[0];
+> >> +                       chan->channel2 =3D ain[1];
+> >> +                       chan->differential =3D true;
+> >
+> > Expecting chan->differential =3D false when ADCIN15 is configured for
+> > pseudo-differential inputs.
+> >
+> > Also, perhaps missed in previous reviews, I would expect
+> > chan->differential =3D false when channels are used as single-ended.
+> >
+> Why?
+> Also, how would one detect if you are using single-ended channels?
+>
+> The ADC is still differential. Single ended is represented as connecting
+> AVSS(or another fixed voltage) and only letting the AIN+ input to fluctua=
+te.
+>
+> In the IIO framework the only difference this makes is in the naming of
+> the channel:
+>  voltage0-voltage1 vs just voltage0
+>
+> All channels are differential. Pseudo differential: still differential.
 
--- 
-Regards,
+In the discussions on the AD7380 patch series, we came to the
+conclusion that pseduo-differential is technically not differential in
+the context of the .differential flag in IIO.
 
-Sakari Ailus
+But as mentioned in my follow up, for this driver it is going to make
+things far simpler if we just ignore that and treat
+pseudo-differential the same as fully differential.
 
