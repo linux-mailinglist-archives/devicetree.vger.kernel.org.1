@@ -1,312 +1,266 @@
-Return-Path: <devicetree+bounces-55805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D5618966F0
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 09:45:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19BC98966FA
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 09:46:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 537FD286BDC
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 07:45:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C276028881F
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 07:46:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B280A5D467;
-	Wed,  3 Apr 2024 07:45:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0778C5C90F;
+	Wed,  3 Apr 2024 07:46:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XeteDm/y"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uWJXGLGT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB2225CDE1
-	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 07:45:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18489219E5
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 07:46:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712130329; cv=none; b=mSs8AiwY0tPtiRPWkrA/w6IQ9ZScISNs1et598v2RBxX8+/+OR8foLF8M5DQ4eJEqMt9Fppdn6nF9SAfdqNhkZYGYQ/WJtsmeFRcySJqF0S7lMlSSPdjEF0HgFYcA+hCtBXhJnNPQQmvLugTJ3H2RQDV7/wlsUacqMsx5QcjYK4=
+	t=1712130404; cv=none; b=qmsf9Is+cyX5/YVdOrDGtTDIdxFx99d1J4/6a+LckMode5rdt2UTTLl25/mJWa/NsppcKymgIqKPxxj0u/RuJLVeoa9xrqDa+jIfVwsEfFen1OIVjBwLyfSrylSW6Z2fOvEdA1zCJ5TogasyO7gLtOPLo7zhEAbSM0sK3vBngcs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712130329; c=relaxed/simple;
-	bh=Aww32PZqcrKI+74yjaQgLehm8AcPZpUS6mONnwAizNY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W8nbCIJBdM79A/vB39pP9MW7Ddg8nbY6vEWlGbsj5vz8ME6FOaSq6bwDERjTbBRQurjjkR9scK/oqB5L5JtSgIwT+XB4nwT/OUilpKHF1oKlUDGoOwkhmfRdPATluAXIW8YS/Qb9cs4Z6Omb18FbZGnSfqK2j4EPmnRof2x9pts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XeteDm/y; arc=none smtp.client-ip=209.85.210.46
+	s=arc-20240116; t=1712130404; c=relaxed/simple;
+	bh=aEM9Na1E19MklSmNSuW8iA22W0ERaeQmoCjkiGVlIKE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=mi0QOWVML99B6AdjnjW1lacmBRXmSsJUyY132+o9LQFyLQX9WsovsBd/UQURfcf84XnU++nYvl+hSP1OkXYYnS4emfNgCW+MNDFBGsc9YhBx3kAjEohG97PRMtp0+WqbWsFRhj5AlSshnulOfnFZNLiBfmDj/YH+wUALg0Lgy+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uWJXGLGT; arc=none smtp.client-ip=209.85.221.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-6e68d358974so2911531a34.3
-        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 00:45:27 -0700 (PDT)
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-34005b5927eso4441614f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 00:46:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712130327; x=1712735127; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ZWk9El4Lm3wepAZ5sfSyl/9NPNe+Zi8lm5GB50a25NM=;
-        b=XeteDm/yqg31FdrLWTORGxuRN8W1+VR4cAeLJklR67ZeYJ+mfhNx1HZoqcSt76RB1J
-         qLKauyOe7gFewUcFfKdG8RFDIXNV+PqbGjgZPA/+yj6ws0QsDO5Cpksal3CC2J3zNcPq
-         M7EY0pJ2413ToGmyh5uU0Is5dSvr3lEJ3Wn5BRzprK+UrkGM48LU4PkT9a8V0VHg+Me7
-         LMmqz/434ilmyrcVrLG+OqrybZxGM5XRukCj7Wcos8u7tdUuoWdkrk3fhRlrUXoRioJQ
-         hcNgE/Rp8xqjOo/beMIZYTlFoZrrPGtbY8gaVd/bL7EMifaaKrD4jb6EyrcxaoU8jVDd
-         A2NA==
+        d=linaro.org; s=google; t=1712130401; x=1712735201; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=DgA3Xl8NwLbQEb1I2dslsED25sNgXx7L9wZQN4DRB8k=;
+        b=uWJXGLGTfn7fsvKUyPf487emkZur2f3d+rMvthIa5lBxRjJiD1/j4aS36i1W9XCytp
+         hZXRPCqAxSqngMrmJ5BjgbWhavKKevdkauEOfYpfwyDcRQdciUw0En95KzXWgseHLqKn
+         zACUiVVrTvFKOjBlqSZkaG6CJ7Mjrpjt0Dr7oVeBXDcYHrlPZk3gXRyv09duo4d3CDt2
+         rgVOpmIHgt63+LUT0caMh5gAH8eKXTja2UqzeHlvtHzhfF0ocY5Psp+MKDjlW/ff/AFc
+         DWzggnIlPiIjYlzW1GfWQ5cGcBRM3PK6OvL+d/I/BXQ93h8uHVz/FK53pBbkQkd1FQlE
+         t5iw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712130327; x=1712735127;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZWk9El4Lm3wepAZ5sfSyl/9NPNe+Zi8lm5GB50a25NM=;
-        b=lxd0OVvNCRrTxVeGqYMAXV2dQhGecjJbXvOSswWhHlSuPcyObSwj8zdqxA7jmLK3Sa
-         +wrlLXsKn9jpG0wA6jCLzha3xUheWtmR0wCz6pa7QGp6ElyzodX9EbWwjb8kTumHMsLD
-         329+Xaxzz9k4+MMGoXfpkdU5QOVm2y7HGus69ON6SibEfPpIM7MgoYF8wkiiaSxr7rp4
-         x7q7D9bW5nIFpMX3ZHxtsFioVYWwwk+EOFfPTRpGtMdRptVngsNtU23SSFwp/sHs4CEN
-         PrVRdxjnakb5kuC9NaNuiL90MBNjqG99ultYYJBF4EkC+Oxs7pDnRGMn1cAfwyV36twE
-         cpog==
-X-Forwarded-Encrypted: i=1; AJvYcCVk4X2b6rxIp9yOvzo6iGmip3MgYQWr0fBYiBnHFINaniaIENbFASk8vLc21TEjN1TU3vH1O9vDNz4qN/ix1l9sSFt1u5wbZDQjnw==
-X-Gm-Message-State: AOJu0Yy2bkgksNZ3DBM6Rf8R2NynQpN8U0iLFD0Qdw2yEfq9Ri5SYyAv
-	IJTHeZAhW4nqDVrsNmchLtAku1AMI25dJF8aQdKTrdcHumxT58R2ZacfOFymrw==
-X-Google-Smtp-Source: AGHT+IH1o7euhPMeJu1aV4prKfsRLmXBWFYLQAmv0oAcS137zWtzJ3rt386Xo4IhuwD9OZNuO6sdgg==
-X-Received: by 2002:a05:6830:1e10:b0:6e8:9f1b:6e03 with SMTP id s16-20020a0568301e1000b006e89f1b6e03mr1994894otr.7.1712130326654;
-        Wed, 03 Apr 2024 00:45:26 -0700 (PDT)
-Received: from thinkpad ([103.28.246.48])
-        by smtp.gmail.com with ESMTPSA id b20-20020a631b14000000b005cfb6e7b0c7sm10974501pgb.39.2024.04.03.00.45.22
+        d=1e100.net; s=20230601; t=1712130401; x=1712735201;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DgA3Xl8NwLbQEb1I2dslsED25sNgXx7L9wZQN4DRB8k=;
+        b=md5CQgDq1bo94yV492gWQO+surEcu3oebuWokr9BUd7mbr8RbWtpBeP6rU4kg+Ss1W
+         BPxR7HBe1tOLWToP4V2jy23iJ/YGcb0Xyz0N9FSK1S06DQxOc7l16syHodtSUI/37Kky
+         jqjISVC5W74fa+cIDciC9NUApkjU6Ds6NKpkVWwsyXqu81Pcfx44Xh3VlK6VABPKeoQi
+         XEJXPhSZnGh3VnXH0PYyaBLDCooAaiSF0pyXfZkzGUIsuT6dtQ11HQMqMxsx8yeNwN50
+         zfY4yjLrZHeLmAAHKj2h25ai2mPaaypxbzTCBhDhzHF921fuGs5gKozujjJfuJgEIMV9
+         LIjw==
+X-Gm-Message-State: AOJu0YzLqsf1To4yygWYzIOXf+Erp6dsq/oja9LQdPuHSINr+nmoMPLo
+	YMeMJzz4uloPT4YQAp5AsGcgVpc+tMsvXWUdazIQKC8VvjvUq85zu0LUG0mdmy0=
+X-Google-Smtp-Source: AGHT+IFMjG1vdNJVFYE8mg1DVFjPhwU9QdLDSDGRH3V0PpqQ6CsUjyghuPq4TXRvvtCJewDiTFEFHQ==
+X-Received: by 2002:a05:6000:1085:b0:343:2d7a:143e with SMTP id y5-20020a056000108500b003432d7a143emr1209096wrw.48.1712130401299;
+        Wed, 03 Apr 2024 00:46:41 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id cc13-20020a5d5c0d000000b00341b8edbe8csm14021282wrb.87.2024.04.03.00.46.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Apr 2024 00:45:26 -0700 (PDT)
-Date: Wed, 3 Apr 2024 13:15:20 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Damien Le Moal <dlemoal@kernel.org>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	Rick Wertenbroek <rick.wertenbroek@gmail.com>,
-	Wilfred Mallawa <wilfred.mallawa@wdc.com>,
-	Niklas Cassel <cassel@kernel.org>
-Subject: Re: [PATCH v2 02/18] PCI: endpoint: Introduce pci_epc_map_align()
-Message-ID: <20240403074520.GC25309@thinkpad>
-References: <20240330041928.1555578-1-dlemoal@kernel.org>
- <20240330041928.1555578-3-dlemoal@kernel.org>
+        Wed, 03 Apr 2024 00:46:40 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v12 0/7] drm/meson: add support for MIPI DSI Display
+Date: Wed, 03 Apr 2024 09:46:31 +0200
+Message-Id: <20240403-amlogic-v6-4-upstream-dsi-ccf-vim3-v12-0-99ecdfdc87fc@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240330041928.1555578-3-dlemoal@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFcJDWYC/5XQTW7CMBAF4Ksgr+vKHv+z6j2qLhx7ApZCgmyIW
+ iHu3gGppVU2YTlv8b2ZubCGtWBj282FVZxLK9NIg4SXDUv7OO6Ql0wBAwFKGAk8HoZpVxKfLdf
+ 8fGynivHAcys8pZ7P5aB459GAdCh7HRlBXWzIuxrHtCdqPA8DhceKffm8V79/0Lwv7TTVr/sms
+ 76lT3XOmgsOJkCCgBGsehvKGOv0OtUdu/mzed40ZBqLnYs6G7pqYdrnTUtmnyGm4LXRDhame5h
+ eqFWmI9NZABn6ZDrwC9P/mlKKsMr0ZHqJOiLmKMPyn+GPCXqVGcgMBuilWaqAdmFK8YNqAcKsQ
+ qUgNSdhhVPZKCWWqnyoClaqklShe2Myam2F/qder9dvQqQKljsDAAA=
+To: Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Jagan Teki <jagan@amarulasolutions.com>, 
+ Nicolas Belin <nbelin@baylibre.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Conor Dooley <conor.dooley@microchip.com>, 
+ "Lukas F. Hartmann" <lukas@mntre.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6741;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=aEM9Na1E19MklSmNSuW8iA22W0ERaeQmoCjkiGVlIKE=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBmDQlcVdDx00Oh76x+vyFJ924OUDv9Fu9OQ6xIMwoO
+ BO7hsB6JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZg0JXAAKCRB33NvayMhJ0QFfD/
+ 4jQg1fn2MuwLT/8aWKll71dka1V8Rx5Z4p43Xml+QKrzhc4HeZ9sqisCt8I8Nba801A0tD4iPx5B6c
+ gNafEXq/DMQx2QWEplY1vN0bPLyxdLAI15KcZND/4WcObaOBLC2jnIc1E/FTu4T4SfYj2R86ji8Ek6
+ VDiWXok8Z/u6Y3GBPxFF1/MhaRO1ro4bEBRVT2S+w5wr0YXCm5O9izWdFn6UrrjXXjORhwUnFLVxHl
+ EeWRgzbbECAoBpMde9FIxkmWKxoEOyswo6cwrm3QYwc57e5MQkwnpOTVmkKDyuYGn0RPkareYRWGdo
+ wSLivTAi3yLdIbP6tA6N+O00iFRtt0c+BLrf15na3rmF6KA/t/egTthMnw/guEGjZZ8Fz5ECl1vMBH
+ P3Qdr3s4QFT50lMQRU1PZrzRFS5SUf/x1zHRZ0inuM1s8AH1RG6YsN2MrEBKkIr9xw0SwjCchzknbC
+ VPysOXYYo/esWp8PTUnS28ZbgS1j3bw5r2kQTYUTUOf4c4THOZO0mrfU4p4u+fm1kPgW5hy35VMXp5
+ pnsSeIKP+F1IyIU1yTfEXaJF7zzu/JHbxqnSeJSAzyPpqnves9IvrMgVLiXYlTQ5jIPwkkMZ8Nbz5p
+ s+ZKr3rYIojJaluB9ZLX5hL1JMgOZD2hrYYbeg0XFCsF2ZipSmDFUCE04Pkg==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-On Sat, Mar 30, 2024 at 01:19:12PM +0900, Damien Le Moal wrote:
-> Some endpoint controllers have requirements on the alignment of the
-> controller physical memory address that must be used to map a RC PCI
-> address region. For instance, the rockchip endpoint controller uses
-> at most the lower 20 bits of a physical memory address region as the
-> lower bits of an RC PCI address. For mapping a PCI address region of
-> size bytes starting from pci_addr, the exact number of address bits
-> used is the number of address bits changing in the address range
-> [pci_addr..pci_addr + size - 1].
-> 
-> For this example, this creates the following constraints:
-> 1) The offset into the controller physical memory allocated for a
->    mapping depends on the mapping size *and* the starting PCI address
->    for the mapping.
-> 2) A mapping size cannot exceed the controller windows size (1MB) minus
->    the offset needed into the allocated physical memory, which can end
->    up being a smaller size than the desired mapping size.
-> 
-> Handling these constraints independently of the controller being used in
-> a PCI EP function driver is not possible with the current EPC API as
-> it only provides the ->align field in struct pci_epc_features.
-> Furthermore, this alignment is static and does not depend on a mapping
-> pci address and size.
-> 
-> Solve this by introducing the function pci_epc_map_align() and the
-> endpoint controller operation ->map_align to allow endpoint function
-> drivers to obtain the size and the offset into a controller address
-> region that must be used to map an RC PCI address region. The size
-> of the physical address region provided by pci_epc_map_align() can then
-> be used as the size argument for the function pci_epc_mem_alloc_addr().
-> The offset into the allocated controller memory can be used to
-> correctly handle data transfers. Of note is that pci_epc_map_align() may
-> indicate upon return a mapping size that is smaller (but not 0) than the
-> requested PCI address region size. For such case, an endpoint function
-> driver must handle data transfers in fragments.
-> 
+The Amlogic G12A, G12B & SM1 SoCs embeds a Synopsys DW-MIPI-DSI transceiver (ver 1.21a),
+with a custom glue managing the IP resets, clock and data input similar to the DW-HDMI
+glue on the same Amlogic SoCs.
 
-Is there any incentive in exposing pci_epc_map_align()? I mean, why can't it be
-hidden inside the new alloc() API itself?
+This is a follow-up of v5 now the DRM patches are applied, the clk & DT changes
+remains for a full DSI support on G12A & SM1 platforms.
 
-Furthermore, is it possible to avoid the map_align() callback and handle the
-alignment within the EPC driver?
+The DW-MIPI-DSI transceiver + D-PHY are clocked by the GP0 PLL, and the ENCL encoder + VIU
+pixel reader by the VCLK2 clock using the HDMI PLL.
 
-- Mani
+The DW-MIPI-DSI transceiver gets this pixel stream as input clocked with the VCLK2 clock.
 
-> The controller operation ->map_align is optional: controllers that do
-> not have any address alignment constraints for mapping a RC PCI address
-> region do not need to implement this operation. For such controllers,
-> pci_epc_map_align() always returns the mapping size as equal
-> to the requested size and an offset equal to 0.
-> 
-> The structure pci_epc_map is introduced to represent a mapping start PCI
-> address, size and the size and offset into the controller memory needed
-> for mapping the PCI address region.
-> 
-> Signed-off-by: Damien Le Moal <dlemoal@kernel.org>
-> ---
->  drivers/pci/endpoint/pci-epc-core.c | 66 +++++++++++++++++++++++++++++
->  include/linux/pci-epc.h             | 33 +++++++++++++++
->  2 files changed, 99 insertions(+)
-> 
-> diff --git a/drivers/pci/endpoint/pci-epc-core.c b/drivers/pci/endpoint/pci-epc-core.c
-> index 754afd115bbd..37758ca91d7f 100644
-> --- a/drivers/pci/endpoint/pci-epc-core.c
-> +++ b/drivers/pci/endpoint/pci-epc-core.c
-> @@ -433,6 +433,72 @@ void pci_epc_unmap_addr(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
->  }
->  EXPORT_SYMBOL_GPL(pci_epc_unmap_addr);
->  
-> +/**
-> + * pci_epc_map_align() - Get the offset into and the size of a controller memory
-> + *			 address region needed to map a RC PCI address region
-> + * @epc: the EPC device on which address is allocated
-> + * @func_no: the physical endpoint function number in the EPC device
-> + * @vfunc_no: the virtual endpoint function number in the physical function
-> + * @pci_addr: PCI address to which the physical address should be mapped
-> + * @size: the size of the mapping starting from @pci_addr
-> + * @map: populate here the actual size and offset into the controller memory
-> + *       that must be allocated for the mapping
-> + *
-> + * Invoke the controller map_align operation to obtain the size and the offset
-> + * into a controller address region that must be allocated to map @size
-> + * bytes of the RC PCI address space starting from @pci_addr.
-> + *
-> + * The size of the mapping that can be handled by the controller is indicated
-> + * using the pci_size field of @map. This size may be smaller than the requested
-> + * @size. In such case, the function driver must handle the mapping using
-> + * several fragments. The offset into the controller memory for the effective
-> + * mapping of the @pci_addr..@pci_addr+@map->pci_size address range is indicated
-> + * using the map_ofst field of @map.
-> + */
-> +int pci_epc_map_align(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
-> +		      u64 pci_addr, size_t size, struct pci_epc_map *map)
-> +{
-> +	const struct pci_epc_features *features;
-> +	size_t mask;
-> +	int ret;
-> +
-> +	if (!pci_epc_function_is_valid(epc, func_no, vfunc_no))
-> +		return -EINVAL;
-> +
-> +	if (!size || !map)
-> +		return -EINVAL;
-> +
-> +	memset(map, 0, sizeof(*map));
-> +	map->pci_addr = pci_addr;
-> +	map->pci_size = size;
-> +
-> +	if (epc->ops->map_align) {
-> +		mutex_lock(&epc->lock);
-> +		ret = epc->ops->map_align(epc, func_no, vfunc_no, map);
-> +		mutex_unlock(&epc->lock);
-> +		return ret;
-> +	}
-> +
-> +	/*
-> +	 * Assume a fixed alignment constraint as specified by the controller
-> +	 * features.
-> +	 */
-> +	features = pci_epc_get_features(epc, func_no, vfunc_no);
-> +	if (!features || !features->align) {
-> +		map->map_pci_addr = pci_addr;
-> +		map->map_size = size;
-> +		map->map_ofst = 0;
+An optional "MEAS" clock can be enabled to measure the delay between each vsync feeding the
+DW-MIPI-DSI transceiver.
 
-These values are overwritten anyway below.
+The clock setup has been redesigned to use CCF, a common PLL (GP0) and the VCLK2 clock
+path for DSI in preparation of full CCF support and possibly dual display with HDMI.
 
-> +	}
-> +
-> +	mask = features->align - 1;
-> +	map->map_pci_addr = map->pci_addr & ~mask;
-> +	map->map_ofst = map->pci_addr & mask;
-> +	map->map_size = ALIGN(map->map_ofst + map->pci_size, features->align);
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(pci_epc_map_align);
-> +
->  /**
->   * pci_epc_map_addr() - map CPU address to PCI address
->   * @epc: the EPC device on which address is allocated
-> diff --git a/include/linux/pci-epc.h b/include/linux/pci-epc.h
-> index cc2f70d061c8..8cfb4aaf2628 100644
-> --- a/include/linux/pci-epc.h
-> +++ b/include/linux/pci-epc.h
-> @@ -32,11 +32,40 @@ pci_epc_interface_string(enum pci_epc_interface_type type)
->  	}
->  }
->  
-> +/**
-> + * struct pci_epc_map - information about EPC memory for mapping a RC PCI
-> + *                      address range
-> + * @pci_addr: start address of the RC PCI address range to map
-> + * @pci_size: size of the RC PCI address range to map
-> + * @map_pci_addr: RC PCI address used as the first address mapped
-> + * @map_size: size of the controller memory needed for the mapping
-> + * @map_ofst: offset into the controller memory needed for the mapping
-> + * @phys_base: base physical address of the allocated EPC memory
-> + * @phys_addr: physical address at which @pci_addr is mapped
-> + * @virt_base: base virtual address of the allocated EPC memory
-> + * @virt_addr: virtual address at which @pci_addr is mapped
-> + */
-> +struct pci_epc_map {
-> +	phys_addr_t	pci_addr;
-> +	size_t		pci_size;
-> +
-> +	phys_addr_t	map_pci_addr;
-> +	size_t		map_size;
-> +	phys_addr_t	map_ofst;
-> +
-> +	phys_addr_t	phys_base;
-> +	phys_addr_t	phys_addr;
-> +	void __iomem	*virt_base;
-> +	void __iomem	*virt_addr;
-> +};
-> +
->  /**
->   * struct pci_epc_ops - set of function pointers for performing EPC operations
->   * @write_header: ops to populate configuration space header
->   * @set_bar: ops to configure the BAR
->   * @clear_bar: ops to reset the BAR
-> + * @map_align: operation to get the size and offset into a controller memory
-> + *             window needed to map an RC PCI address region
->   * @map_addr: ops to map CPU address to PCI address
->   * @unmap_addr: ops to unmap CPU address and PCI address
->   * @set_msi: ops to set the requested number of MSI interrupts in the MSI
-> @@ -61,6 +90,8 @@ struct pci_epc_ops {
->  			   struct pci_epf_bar *epf_bar);
->  	void	(*clear_bar)(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
->  			     struct pci_epf_bar *epf_bar);
-> +	int	(*map_align)(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
-> +			    struct pci_epc_map *map);
->  	int	(*map_addr)(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
->  			    phys_addr_t addr, u64 pci_addr, size_t size);
->  	void	(*unmap_addr)(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
-> @@ -234,6 +265,8 @@ int pci_epc_set_bar(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
->  		    struct pci_epf_bar *epf_bar);
->  void pci_epc_clear_bar(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
->  		       struct pci_epf_bar *epf_bar);
-> +int pci_epc_map_align(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
-> +		      u64 pci_addr, size_t size, struct pci_epc_map *map);
->  int pci_epc_map_addr(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
->  		     phys_addr_t phys_addr,
->  		     u64 pci_addr, size_t size);
-> -- 
-> 2.44.0
-> 
+The change from v5 is that now we use a "VCLK" driver instead of notifier and rely
+on CLK_SET_RATE_GATE to ensure the VCLK gate operation are called.
 
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v12:
+- fix parameters alignment in patch 2
+- update g12a_mipi_dsi_pxclk_div_table comment with jerome's suggestions
+- fix dtbs overlay build, fix missed v11... thx khadas for reporting it off-list & testing
+- Link to v11: https://lore.kernel.org/r/20240325-amlogic-v6-4-upstream-dsi-ccf-vim3-v11-0-04f55de44604@linaro.org
+
+Changes in v11:
+- Rebased on v6.9-rc1
+- Fixed overlay handling/creation
+- Link to v10: https://lore.kernel.org/r/20240205-amlogic-v6-4-upstream-dsi-ccf-vim3-v10-0-dc06073d5330@linaro.org
+
+Changes in v10:
+- Rename regmap_vclk to meson_clk and add _gate for the gate
+- Move COMMON_CLK_MESON_VCLK to following patch
+- Remove CLK_SET_RATE_PARENT from g12a_vclk2_sel, keep it only on mipi_dsi_pxclk_sel
+- Add more info on commit message to specify how clock setup is designed
+- Remove forgotten CLK_IGNORE_UNUSED on g12a_vclk2_input
+- Remove useless CLK_SET_RATE_PARENT on g12a_vclk2_div to stop propagatting rate _after_ vclk2_div
+- Remove invalid CLK_SET_RATE_GATE on g12a_vclk2 since it's not a divider...
+- Drop already applied patches
+- move Khadas TS050 changes as an overlay
+- Link to v9: https://lore.kernel.org/r/20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-0-95256ed139e6@linaro.org
+
+Changes in v9:
+- Colledte reviewed-bys
+- Fixed patches 2 & 4, commit messages and bindings format
+- Link to v8: https://lore.kernel.org/r/20231109-amlogic-v6-4-upstream-dsi-ccf-vim3-v8-0-81e4aeeda193@linaro.org
+
+Changes in v8:
+- Switch vclk clk driver to parm as requested by Jerome
+- Added bindings fixes to amlogic,meson-axg-mipi-pcie-analog & amlogic,g12a-mipi-dphy-analog
+- Fixed DT errors in vim3 example and MNT Reform DT
+- Rebased on next-20231107, successfully tested on VIM3L
+- Link to v7: https://lore.kernel.org/r/20230803-amlogic-v6-4-upstream-dsi-ccf-vim3-v7-0-762219fc5b28@linaro.org
+
+Changes in v7:
+- Added review tags
+- Fixed patch 5 thanks to George
+- Link to v6: https://lore.kernel.org/r/20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v6-0-fd2ac9845472@linaro.org
+
+Changes in v6:
+- dropped applied DRM patches
+- dropped clk private prefix patches
+- rebased on top of 20230607-topic-amlogic-upstream-clkid-public-migration-v2-0-38172d17c27a@linaro.org
+- re-ordered/cleaned ENCL patches to match clkid public migration
+- Added new "vclk" driver
+- uses vclk driver instead of notifier
+- cleaned VCLK2 clk flags
+- add px_clk gating from DSI driver
+- Link to v5: https://lore.kernel.org/r/20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-0-56eb7a4d5b8e@linaro.org
+
+Changes in v5:
+- Aded PRIV all the G12 internal clk IDS to simplify public exposing
+- Fixed the DSI bindings
+- Fixed the DSI HSYNC/VSYNC polarity handling
+- Fixed the DSI clock setup
+- Fixed the DSI phy timings
+- Dropped components for DSI, only keeping it for HDMI
+- Added MNT Reform 2 CM4 DT
+- Dropped already applied PHY fix
+- Link to v4: https://lore.kernel.org/r/20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-0-2592c29ea263@linaro.org
+
+Changes from v3 at [3]:
+- switched all clk setup via CCF
+- using single PLL for DSI controller & ENCL encoder
+- added ENCL clocks to CCF
+- make the VCLK2 clocks configuration by CCF
+- fixed probe/bind of DSI controller to work with panels & bridges
+- added bit_clk to controller to it can setup the BIT clock aswell
+- added fix for components unbind
+- added fix for analog phy setup value
+- added TS050 timings fix
+- dropped previous clk control patch
+
+Changes from v2 at [2]:
+- Fixed patch 3
+- Added reviews from Jagan
+- Rebased on v5.19-rc1
+
+Changes from v1 at [1]:
+- fixed DSI host bindings
+- add reviewed-by tags for bindings
+- moved magic values to defines thanks to Martin's searches
+- added proper prefixes to defines
+- moved phy_configure to phy_init() dw-mipi-dsi callback
+- moved phy_on to a new phy_power_on() dw-mipi-dsi callback
+- correctly return phy_init/configure errors to callback returns
+
+[1] https://lore.kernel.org/r/20200907081825.1654-1-narmstrong@baylibre.com
+[2] https://lore.kernel.org/r/20220120083357.1541262-1-narmstrong@baylibre.com
+[3] https://lore.kernel.org/r/20220617072723.1742668-1-narmstrong@baylibre.com
+
+---
+Neil Armstrong (7):
+      dt-bindings: arm: amlogic: Document the MNT Reform 2 CM4 adapter with a BPI-CM4 Module
+      clk: meson: add vclk driver
+      clk: meson: g12a: make VCLK2 and ENCL clock path configurable by CCF
+      drm/meson: gate px_clk when setting rate
+      arm64: meson: g12-common: add the MIPI DSI nodes
+      arm64: meson: khadas-vim3l: add TS050 DSI panel overlay
+      arm64: dts: amlogic: meson-g12b-bananapi-cm4: add support for MNT Reform2 with CM4 adaper
+
+ Documentation/devicetree/bindings/arm/amlogic.yaml |   1 +
+ arch/arm64/boot/dts/amlogic/Makefile               |   5 +
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi  |  70 ++++
+ .../meson-g12b-bananapi-cm4-mnt-reform2.dts        | 384 +++++++++++++++++++++
+ .../boot/dts/amlogic/meson-khadas-vim3-ts050.dtso  | 108 ++++++
+ drivers/clk/meson/Kconfig                          |   5 +
+ drivers/clk/meson/Makefile                         |   1 +
+ drivers/clk/meson/g12a.c                           |  76 ++--
+ drivers/clk/meson/vclk.c                           | 141 ++++++++
+ drivers/clk/meson/vclk.h                           |  51 +++
+ drivers/gpu/drm/meson/meson_dw_mipi_dsi.c          |   7 +
+ 11 files changed, 829 insertions(+), 20 deletions(-)
+---
+base-commit: 4cece764965020c22cff7665b18a012006359095
+change-id: 20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-b8e5217e1f4a
+
+Best regards,
 -- 
-மணிவண்ணன் சதாசிவம்
+Neil Armstrong <neil.armstrong@linaro.org>
+
 
