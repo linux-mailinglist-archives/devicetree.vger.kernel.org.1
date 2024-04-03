@@ -1,219 +1,367 @@
-Return-Path: <devicetree+bounces-55726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 233548962DE
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 05:17:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3014E8962E6
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 05:21:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8B015B22229
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 03:17:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D91B1285901
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 03:21:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4636D1C68A;
-	Wed,  3 Apr 2024 03:17:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83F8D1F958;
+	Wed,  3 Apr 2024 03:21:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U7NNhTlV"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="NpflSBWd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 716521BF5C;
-	Wed,  3 Apr 2024 03:17:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31A291BF5C;
+	Wed,  3 Apr 2024 03:21:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712114230; cv=none; b=U7xXwSQ6yRY3dC6UUvz/1GL7ZnykV9E98RQl0GLRig8f9xV8fdVKiVspXPe0nTSojJkcY3Uo4SyxMhJGaQRlVXYoTzpU1GqZ3NAEiIaCBF3nu13ItT8u7ps4xuwTOKZBwPfX3ts5qDZiavdLqYCwdavKLCs3uPuTXiZSBY6zlC8=
+	t=1712114486; cv=none; b=f4EhIO5AVUtos58HNdJGAs7JK7y7VawKdmAgfgvnGDbwZGULnJRkdzEWPJ+AHY0Mf5uBBKuN2mkKNRlk+qzKY9W37Um3cf/qzKM3FbL6LwenQG57TY6Bbhra5/BPbIJvQpCmdNH+y2AmbLgNnFp87/ragyoOv2Ri3YvC34WYwDg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712114230; c=relaxed/simple;
-	bh=yhQ+21CPCFYTMIUz2qCScIEhQV56wfigMKX3S42g66o=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UBlEhfFMMixgkw2UcUEkWVaKMDvLUG6lyfS2bmvPu6UHtZRfm/an0c3rjiHcsPU5g1PXuVIYnBerCmKAucEbLIVjUNV9DJ/bi43w5CRpidHlOgCzaPBt9tj6tkTHKdFh/xtNQ3Dw5bZfG78XKH4aYYZez5Q1Y7p/EyjeBWvLqFY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U7NNhTlV; arc=none smtp.client-ip=209.85.128.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-611248b4805so58681987b3.0;
-        Tue, 02 Apr 2024 20:17:08 -0700 (PDT)
+	s=arc-20240116; t=1712114486; c=relaxed/simple;
+	bh=un05Zp/ImXKjgDyQu270iLtmkuoxwls6ndISI3iH85E=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=BYJduHd/LxiFhQfX5EtLzIgeIl26hvBcavADR5qZzAM9cFKS/DC836LXBU1Xtw+izfGFvIYLI6/Kz/rr2rek4Im6/9xj6QbQ3BbkQSq50B1Dfw1r526s4lA19sTENry1BX64wn4mzsqgO5xxYQK6edLTKI1sRe3lEZwWZleQGr0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=NpflSBWd; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+Received: from [192.168.68.112] (ppp118-210-182-70.adl-adc-lon-bras34.tpg.internode.on.net [118.210.182.70])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 1806420075;
+	Wed,  3 Apr 2024 11:21:07 +0800 (AWST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712114227; x=1712719027; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oxaRFGmx+WSsmKEhp791K8SdbyUX+9RouzVHok6AmNg=;
-        b=U7NNhTlVS6uIwrGKE1wsPVuGVyfM6sszx8Mp9MGt2AXYgxvxzwN/yhki3j8FiTV8HP
-         z7WtxzbrUpSCP+7WG7S/NVhXrHMnnlLcI/RBMQ1exyatoE9ElxdEQK6gZVgv+1pT513G
-         u0EZ+X3xeEzzw0zp5bM8qzD7xPJhLWq8NliZAUZBEo5pe87oa08ctcx97+NZ6anAgTz0
-         1NrEvcyhbgRv3fzrY6vjSFW5sPi+fJSv+jK35bHv9w3ycViuAZRZ4xkoTKiFDuklUg52
-         xLHoUPNfTYVI78kYQATC8X7K2yPNBLcW0b89/MJJYUIghGGahWXCG7Ly6mqQWw5MsOm5
-         xUcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712114227; x=1712719027;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oxaRFGmx+WSsmKEhp791K8SdbyUX+9RouzVHok6AmNg=;
-        b=Oink6vP/D8woRi4p7k4WnBoGJ2aPff19BON5DZV+mVq8/UNjxee6+KOpS3gmNpLqRd
-         WVUYaTy8BCQ85IHYfC8IVsYt89EQSD+3vdUAqsTsgn7/42O0lK1T9nnp2dBx+Sptu2Ed
-         OWy9w1864/XnjXnp2j0iJ+HtXqx67AGvjYsTNzws7m64IdwgxLyJGngFFetrNq0YETS3
-         vkrkFK49sXixmBUI2W75FA1/S2oDhlUKU2SNFBzTmdz8IOijtMoh76D1Lmwf+sre1sAI
-         HDx/fpniDZmAUWoCjmqDYkUk4eI74MtDLxHwVSuTNvjU4hzwjHVgl9sbETRWsF4Dwglc
-         V97w==
-X-Forwarded-Encrypted: i=1; AJvYcCWCdhGvg9Xbna9j0537w7fS9QTl4YPR+MVOazDX/Gy7RyY6buinFpShQ5h4Hw2GFn3ptnRDxcNpoLsEp1F878dL0n1Md+S3B6qQyeNsOODsh5nhx2tWQ7vNOFxQzpU69Xs7u/FumA==
-X-Gm-Message-State: AOJu0Yy4eOs8OF0Iif2zGImgdnu4tUM8nSywNypi8HBLkNSqji8FCBb0
-	L0AmPw9VsIFrZ7vwIfVOdtTlpPaG7ntlFz2OT5l8fL9r6+EDKvOVxcOP5elKyclqtmkg4KXXGMS
-	/psLyQ+c3CziJqOPtDh1Rx2BLRZs=
-X-Google-Smtp-Source: AGHT+IHWRC5LpLfu/wtnI0l/D2WZg+NDAOe9Kd128q9MD+uFGyISgzNo3A4sV+IzL6895DEl8uJ88vz2YXhGAdS5rNQ=
-X-Received: by 2002:a0d:d544:0:b0:615:175f:ae2b with SMTP id
- x65-20020a0dd544000000b00615175fae2bmr1530729ywd.2.1712114227362; Tue, 02 Apr
- 2024 20:17:07 -0700 (PDT)
+	d=codeconstruct.com.au; s=2022a; t=1712114479;
+	bh=ihCa6WKSA/WbdOR35DutY2Up4nYKVpfJqb5uMJHHlDg=;
+	h=Subject:From:To:Date:In-Reply-To:References;
+	b=NpflSBWdGcgyEymG4qxPXgsd6Po5FikbCaLFEFc+dFj6qiCmHRtAelZtJOC6mtkOT
+	 XoqEuPXAcdkwvNtRTbCZDNk5jwT3HVPEAWXTkJ+MQLXuX7zqy61sHBmCty1Vy+nUHS
+	 Xizu2sPyHorbKBXLiCqUY4XOwdv4VvN1UeJ9yExMJWiDk5OrqZrLIuCdKVACeRQQJy
+	 rH+iNXy6DY/hgdxtHGqzdzywjfvWY3wjC2zmYD66Vn51kjRnO6MYhz7gsH/uLwVeol
+	 a26xaqyKvPMfiukImhUYN07ZoAzeWxoKcTsEkkMxhWbdcCJi+cTMEV4onc1IAb0SgC
+	 FcMZp7vi8ouug==
+Message-ID: <5f1c7ac66f0ae68bbab0011c1ab5b020ecdb16b6.camel@codeconstruct.com.au>
+Subject: Re: [PATCH 1/3] ARM: dts: Modify GPIO table for Asrock X570D4U BMC
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Renze Nicolai <renze@rnplus.nl>, linux-arm-kernel@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-aspeed@lists.ozlabs.org, arnd@arndb.de, olof@lixom.net,
+ soc@kernel.org,  robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ joel@jms.id.au,  andrew@aj.id.au
+Date: Wed, 03 Apr 2024 13:51:06 +1030
+In-Reply-To: <20240329130152.878944-2-renze@rnplus.nl>
+References: <20240329130152.878944-1-renze@rnplus.nl>
+	 <20240329130152.878944-2-renze@rnplus.nl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1711953223.git.zhoubinbin@loongson.cn> <edad2bb5b0045c633734c1499fb163c3c6776121.1711953223.git.zhoubinbin@loongson.cn>
- <20240402174051.GA324804-robh@kernel.org> <CAMpQs4K_VSqdm7x=cSyMTBYQyOm=th0YrYKdZ74dp35hyRBXgQ@mail.gmail.com>
-In-Reply-To: <CAMpQs4K_VSqdm7x=cSyMTBYQyOm=th0YrYKdZ74dp35hyRBXgQ@mail.gmail.com>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Wed, 3 Apr 2024 09:16:54 +0600
-Message-ID: <CAMpQs4Ks2DLoDEg=wT8Vpc9MrSTV4WQsvC9jHv9d5maVw8WsdA@mail.gmail.com>
-Subject: Re: [PATCH v1 1/5] dt-bindings: pwm: Add Loongson PWM controller
-To: Rob Herring <robh@kernel.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Huacai Chen <chenhuacai@kernel.org>, loongson-kernel@lists.loongnix.cn, 
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Apr 3, 2024 at 8:37=E2=80=AFAM Binbin Zhou <zhoubb.aaron@gmail.com>=
- wrote:
->
-> Hi Rob:
->
-> Thanks for your reply.
->
-> On Tue, Apr 2, 2024 at 11:40=E2=80=AFPM Rob Herring <robh@kernel.org> wro=
-te:
-> >
-> > On Tue, Apr 02, 2024 at 03:58:38PM +0800, Binbin Zhou wrote:
-> > > Add Loongson PWM controller binding with DT schema format using
-> > > json-schema.
-> > >
-> > > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> > > ---
-> > >  .../devicetree/bindings/pwm/pwm-loongson.yaml | 64 +++++++++++++++++=
-++
-> >
-> > Filename should match compatible.
->
-> Emm... How about renaming it as loongson, pwm.yaml?
->
-> >
-> > >  MAINTAINERS                                   |  6 ++
-> > >  2 files changed, 70 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-loongso=
-n.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/pwm/pwm-loongson.yaml =
-b/Documentation/devicetree/bindings/pwm/pwm-loongson.yaml
-> > > new file mode 100644
-> > > index 000000000000..d25904468353
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/pwm/pwm-loongson.yaml
-> > > @@ -0,0 +1,64 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/pwm/pwm-loongson.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Loongson PWM Controller
-> > > +
-> > > +maintainers:
-> > > +  - Binbin Zhou <zhoubinbin@loongson.cn>
-> > > +
-> > > +description:
-> > > +  It is the generic PWM framework driver for Loongson family.
-> >
-> > That's describing the driver. Not really relevant to the binding.
-> >
-> Ok ,I will rewrite this part.
->
-> >
-> > > +  Each PWM has one pulse width output signal and one pulse input
-> > > +  signal to be measured.
-> > > +  It can be found on Loongson-2K series cpus and Loongson LS7A bridg=
-e chips.
-> > > +
-> > > +allOf:
-> > > +  - $ref: pwm.yaml#
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    oneOf:
-> > > +      - const: loongson,ls7a-pwm
-> > > +      - items:
-> > > +          - enum:
-> > > +              - loongson,ls2k0500-pwm
-> > > +              - loongson,ls2k1000-pwm
-> > > +              - loongson,ls2k2000-pwm
-> > > +          - const: loongson,ls7a-pwm
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    maxItems: 1
-> > > +
-> > > +  '#pwm-cells':
-> > > +    const: 3
-> >
-> > Please define what is in each cell. If there's only 2 signals, then the
-> > first cell defines the output or input (what value for which one?).
+Hi Renze,
 
-Hi Rob:
+Do you mind running this patch and the others in the series through
+./scripts/checkpatch.pl? Generally patches sent to the list should not
+generate warnings.
 
-Sorry, the previous email did not answer this question.
-The first cell defines the output signal, and its value is 0.
+It looks like these patches are generated against Joel's bmc/for-next
+branch. He's applied your original X570D4U devicetree patch there,
+(though that also causes checkpatch warnings).
 
-Thanks.
-Binbin
-> >
-> > Really, the PWM binding is only for outputs, so is a cell even needed? =
-I
-> > suppose we could use it for inputs too, but that's really "input
-> > capture" type operation that timers often have. I'll defer to the PWM
-> > maintainers...
->
-> Ok, I will try to add some description about it.
->
-> If I understand correctly, the meaning of each cell in "#pwm-cells"is
-> determined.
-> The first cell specifies the per-chip index of the PWM to use, the
-> second cell is the period in nanoseconds and the third cell is the
-> polarity.
->
-> >
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - interrupts
-> > > +  - clocks
-> > > +  - '#pwm-cells'
-> >
-> > pwm.yaml makes this required already.
-> >
-> Yes, this is unnecessary. I will drop it in the next version.
->
-> Thanks.
-> Binbin
-> > Rob
-> >
+On Fri, 2024-03-29 at 14:01 +0100, Renze Nicolai wrote:
+> This commit removes button-nmi-n, this board does not have support for an=
+ NMI button.
+> Input status-locatorled-n has been renamed to input-locatorled-n to bette=
+r indicate the signal type.
+> The suffix -n has been appended to the name of control-locatorbutton, but=
+ton-power, control-power, button-reset, control-reset, input-id0, input-id1=
+, input-id2, output-bmc-ready to reflect the inverted signal polarity.
+> GPIO output-rtc-battery-voltage-read-enable has been renamed to output-hw=
+m-vbat-enable, input-alert1-n to input-aux-smb-alert-n, input-alert3-n to i=
+nput-psu-smb-alert-n, input-mfg to input-mfg-mode-n and input-caseopen to i=
+nput-case-open-n.
+> And GPIOs input-bmc-smb-present-n, input-pcie-wake-n, input-sleep-s3-n, i=
+nput-sleep-s5-n and input-power-good have been added.
+>=20
+
+For instance, checkpatch warns about these lines in the commit message
+being too long. They should be wrapped at 72 characters.
+
+Additionally, the description forms a bit of a list of things the patch
+is doing. Patches are easier to review when they only do one thing, as
+it removes the need to assess whether there are subtle interactions
+between the several things, and if so, whether they're expected and
+correct.
+
+I'd prefer this change be split up so there's no need for such
+concerns.
+
+> Signed-off-by: Renze Nicolai <renze@rnplus.nl>
+> ---
+>  .../dts/aspeed/aspeed-bmc-asrock-x570d4u.dts  | 116 +++++++++---------
+>  1 file changed, 58 insertions(+), 58 deletions(-)
+>=20
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x570d4u.dts b/arc=
+h/arm/boot/dts/aspeed/aspeed-bmc-asrock-x570d4u.dts
+> index 3c975bc41ae7..34bc382bf492 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x570d4u.dts
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x570d4u.dts
+> @@ -79,64 +79,64 @@ iio-hwmon {
+>  &gpio {
+>  	status =3D "okay";
+>  	gpio-line-names =3D
+> -	/*A0-A3*/       "status-locatorled-n",                    "",          =
+            "button-nmi-n",          "",
+> -	/*A4-A7*/       "",                                       "",          =
+            "",                      "",
+> -	/*B0-B3*/       "input-bios-post-cmplt-n",                "",          =
+            "",                      "",
+> -	/*B4-B7*/       "",                                       "",          =
+            "",                      "",
+> -	/*C0-C3*/       "",                                       "",          =
+            "",                      "",
+> -	/*C4-C7*/       "",                                       "",          =
+            "control-locatorbutton", "",
+> -	/*D0-D3*/       "button-power",                           "control-powe=
+r",         "button-reset",          "control-reset",
+> -	/*D4-D7*/       "",                                       "",          =
+            "",                      "",
+> -	/*E0-E3*/       "",                                       "",          =
+            "",                      "",
+> -	/*E4-E7*/       "",                                       "",          =
+            "",                      "",
+> -	/*F0-F3*/       "",                                       "",          =
+            "",                      "",
+> -	/*F4-F7*/       "",                                       "",          =
+            "",                      "",
+> -	/*G0-G3*/       "output-rtc-battery-voltage-read-enable", "input-id0", =
+            "input-id1",             "input-id2",
+> -	/*G4-G7*/       "input-alert1-n",                         "input-alert2=
+-n",        "input-alert3-n",        "",
+> -	/*H0-H3*/       "",                                       "",          =
+            "",                      "",
+> -	/*H4-H7*/       "input-mfg",                              "",          =
+            "led-heartbeat-n",       "input-caseopen",
+> -	/*I0-I3*/       "",                                       "",          =
+            "",                      "",
+> -	/*I4-I7*/       "",                                       "",          =
+            "",                      "",
+> -	/*J0-J3*/       "output-bmc-ready",                       "",          =
+            "",                      "",
+> -	/*J4-J7*/       "",                                       "",          =
+            "",                      "",
+> -	/*K0-K3*/       "",                                       "",          =
+            "",                      "",
+> -	/*K4-K7*/       "",                                       "",          =
+            "",                      "",
+> -	/*L0-L3*/       "",                                       "",          =
+            "",                      "",
+> -	/*L4-L7*/       "",                                       "",          =
+            "",                      "",
+> -	/*M0-M3*/       "",                                       "",          =
+            "",                      "",
+> -	/*M4-M7*/       "",                                       "",          =
+            "",                      "",
+> -	/*N0-N3*/       "",                                       "",          =
+            "",                      "",
+> -	/*N4-N7*/       "",                                       "",          =
+            "",                      "",
+> -	/*O0-O3*/       "",                                       "",          =
+            "",                      "",
+> -	/*O4-O7*/       "",                                       "",          =
+            "",                      "",
+> -	/*P0-P3*/       "",                                       "",          =
+            "",                      "",
+> -	/*P4-P7*/       "",                                       "",          =
+            "",                      "",
+> -	/*Q0-Q3*/       "",                                       "",          =
+            "",                      "",
+> -	/*Q4-Q7*/       "",                                       "",          =
+            "",                      "",
+> -	/*R0-R3*/       "",                                       "",          =
+            "",                      "",
+> -	/*R4-R7*/       "",                                       "",          =
+            "",                      "",
+> -	/*S0-S3*/       "input-bmc-pchhot-n",                     "",          =
+            "",                      "",
+> -	/*S4-S7*/       "",                                       "",          =
+            "",                      "",
+> -	/*T0-T3*/       "",                                       "",          =
+            "",                      "",
+> -	/*T4-T7*/       "",                                       "",          =
+            "",                      "",
+> -	/*U0-U3*/       "",                                       "",          =
+            "",                      "",
+> -	/*U4-U7*/       "",                                       "",          =
+            "",                      "",
+> -	/*V0-V3*/       "",                                       "",          =
+            "",                      "",
+> -	/*V4-V7*/       "",                                       "",          =
+            "",                      "",
+> -	/*W0-W3*/       "",                                       "",          =
+            "",                      "",
+> -	/*W4-W7*/       "",                                       "",          =
+            "",                      "",
+> -	/*X0-X3*/       "",                                       "",          =
+            "",                      "",
+> -	/*X4-X7*/       "",                                       "",          =
+            "",                      "",
+> -	/*Y0-Y3*/       "",                                       "",          =
+            "",                      "",
+> -	/*Y4-Y7*/       "",                                       "",          =
+            "",                      "",
+> -	/*Z0-Z3*/       "",                                       "",          =
+            "led-fault-n",           "output-bmc-throttle-n",
+> -	/*Z4-Z7*/       "",                                       "",          =
+            "",                      "",
+> -	/*AA0-AA3*/     "input-cpu1-thermtrip-latch-n",           "",          =
+            "input-cpu1-prochot-n",  "",
+> -	/*AA4-AC7*/     "",                                       "",          =
+            "",                      "",
+> -	/*AB0-AB3*/     "",                                       "",          =
+            "",                      "",
+> -	/*AB4-AC7*/     "",                                       "",          =
+            "",                      "",
+> -	/*AC0-AC3*/     "",                                       "",          =
+            "",                      "",
+> -	/*AC4-AC7*/     "",                                       "",          =
+            "",                      "";
+> +	/*A0-A3*/       "input-locatorled-n",                     "",          =
+            "",                        "",
+> +	/*A4-A7*/       "",                                       "",          =
+            "",                        "",
+> +	/*B0-B3*/       "input-bios-post-cmplt-n",                "",          =
+            "",                        "",
+> +	/*B4-B7*/       "",                                       "",          =
+            "",                        "",
+> +	/*C0-C3*/       "",                                       "",          =
+            "",                        "",
+> +	/*C4-C7*/       "",                                       "",          =
+            "control-locatorbutton-n", "",
+> +	/*D0-D3*/       "button-power-n",                         "control-powe=
+r-n",       "button-reset-n",          "control-reset-n",
+> +	/*D4-D7*/       "",                                       "",          =
+            "",                        "",
+> +	/*E0-E3*/       "",                                       "",          =
+            "",                        "",
+> +	/*E4-E7*/       "",                                       "",          =
+            "",                        "",
+> +	/*F0-F3*/       "",                                       "",          =
+            "",                        "",
+> +	/*F4-F7*/       "",                                       "",          =
+            "",                        "",
+> +	/*G0-G3*/       "output-hwm-vbat-enable",                 "input-id0-n"=
+,           "input-id1-n",             "input-id2-n",
+> +	/*G4-G7*/       "input-aux-smb-alert-n",                  "",          =
+            "input-psu-smb-alert-n",   "",
+> +	/*H0-H3*/       "",                                       "",          =
+            "",                        "",
+> +	/*H4-H7*/       "input-mfg-mode-n",                       "",          =
+            "led-heartbeat-n",         "input-case-open-n",
+> +	/*I0-I3*/       "",                                       "",          =
+            "",                        "",
+> +	/*I4-I7*/       "",                                       "",          =
+            "",                        "",
+> +	/*J0-J3*/       "output-bmc-ready-n",                     "",          =
+            "",                        "",
+> +	/*J4-J7*/       "",                                       "",          =
+            "",                        "",
+> +	/*K0-K3*/       "",                                       "",          =
+            "",                        "",
+> +	/*K4-K7*/       "",                                       "",          =
+            "",                        "",
+> +	/*L0-L3*/       "",                                       "",          =
+            "",                        "",
+> +	/*L4-L7*/       "",                                       "",          =
+            "",                        "",
+> +	/*M0-M3*/       "",                                       "",          =
+            "",                        "",
+> +	/*M4-M7*/       "",                                       "",          =
+            "",                        "",
+> +	/*N0-N3*/       "",                                       "",          =
+            "",                        "",
+> +	/*N4-N7*/       "",                                       "",          =
+            "",                        "",
+> +	/*O0-O3*/       "",                                       "",          =
+            "",                        "",
+> +	/*O4-O7*/       "",                                       "",          =
+            "",                        "",
+> +	/*P0-P3*/       "",                                       "",          =
+            "",                        "",
+> +	/*P4-P7*/       "",                                       "",          =
+            "",                        "",
+> +	/*Q0-Q3*/       "",                                       "",          =
+            "",                        "",
+> +	/*Q4-Q7*/       "input-bmc-smb-present-n",                "",          =
+            "",                        "input-pcie-wake-n",
+> +	/*R0-R3*/       "",                                       "",          =
+            "",                        "",
+> +	/*R4-R7*/       "",                                       "",          =
+            "",                        "",
+> +	/*S0-S3*/       "input-bmc-pchhot-n",                     "",          =
+            "",                        "",
+> +	/*S4-S7*/       "",                                       "",          =
+            "",                        "",
+> +	/*T0-T3*/       "",                                       "",          =
+            "",                        "",
+> +	/*T4-T7*/       "",                                       "",          =
+            "",                        "",
+> +	/*U0-U3*/       "",                                       "",          =
+            "",                        "",
+> +	/*U4-U7*/       "",                                       "",          =
+            "",                        "",
+> +	/*V0-V3*/       "",                                       "",          =
+            "",                        "",
+> +	/*V4-V7*/       "",                                       "",          =
+            "",                        "",
+> +	/*W0-W3*/       "",                                       "",          =
+            "",                        "",
+> +	/*W4-W7*/       "",                                       "",          =
+            "",                        "",
+> +	/*X0-X3*/       "",                                       "",          =
+            "",                        "",
+> +	/*X4-X7*/       "",                                       "",          =
+            "",                        "",
+> +	/*Y0-Y3*/       "input-sleep-s3-n",                       "input-sleep-=
+s5-n",      "",                        "",
+> +	/*Y4-Y7*/       "",                                       "",          =
+            "",                        "",
+> +	/*Z0-Z3*/       "",                                       "",          =
+            "led-fault-n",             "output-bmc-throttle-n",
+> +	/*Z4-Z7*/       "",                                       "",          =
+            "",                        "",
+> +	/*AA0-AA3*/     "input-cpu1-thermtrip-latch-n",           "",          =
+            "input-cpu1-prochot-n",    "",
+> +	/*AA4-AC7*/     "",                                       "",          =
+            "",                        "",
+> +	/*AB0-AB3*/     "",                                       "input-power-=
+good",      "",                        "",
+> +	/*AB4-AC7*/     "",                                       "",          =
+            "",                        "",
+> +	/*AC0-AC3*/     "",                                       "",          =
+            "",                        "",
+> +	/*AC4-AC7*/     "",                                       "",          =
+            "",                        "";
+>  };
+> =20
+
+I'd like some discussion in the commit message of whether these names
+align with net names in the schematic, follow the OpenBMC GPIO naming
+guidelines, or use some other strategy entirely.
+
+Also, the columnisation of the names leads to more warnings from
+checkpatch (due to line length). Other Aspeed-based devicetrees tend
+not to make the whitespace so significant, and generally group the
+GPIOs by complete banks. I prefer that the X570D4U devicetree is
+consistent with the others.
+
+Andrew
 
