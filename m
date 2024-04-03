@@ -1,100 +1,142 @@
-Return-Path: <devicetree+bounces-55920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07391896DF7
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 13:20:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08760896E30
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 13:27:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ABC3D28DFB9
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 11:20:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 89D98B2CE11
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 11:21:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FCCE1420A2;
-	Wed,  3 Apr 2024 11:20:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AFF1142E97;
+	Wed,  3 Apr 2024 11:21:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IyGuMKYC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C54891353E2;
-	Wed,  3 Apr 2024 11:20:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 778CD1420B8
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 11:21:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712143208; cv=none; b=qgZDO5FXK37ISIITeEUWaYefJ7WHVs+egfDnGGipQmEdVAsHlH3tULQUplkmAPyV5VLYRNkAghpCPfVnsvTYs2DUk1wWqirwuVeFL4xwgLx06DlvmxkbP1JlwBK2s9+LN2gvZhOiKgyuPWECdjwMQweOo2N+/B7It3ES6XTARV4=
+	t=1712143297; cv=none; b=DhPqQjrnMq88bH63CqHiqQyhc86eCclSnZCevhsprQzVJ0sV8WnqOVv+44cOraXImZPlNFfcyOuyoeWd2sLTTgNB/HrHcXyME9P2jmSkymV+XSF5pt9rUuKucIH6FMtI+Uy/N0xm7vWvqepMK6blIu/zBXurSaCjwvbc7U+Y9Dc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712143208; c=relaxed/simple;
-	bh=LZcCaweuM6QMzoYUQ4SVyuK0er0XsmfzNV90+UiZHx4=;
-	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
-	 Message-ID:Subject; b=WGz1yPOow/GUaFHyb5px5keyEwZ+85pfWHu5fa050pHfeIRrlqfdZhjXkcsM4TgbvNHCukoIiNU57CVggcgTEJKqE1vOo00QZiOKWCnFSPNUWEh92CiUM/Tfq4YUYoUCixzvkgONpUBNKlnks1byUo13+cVg3si3kAi/vcwxSCI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-Received: from harlem.collaboradmins.com (harlem.collaboradmins.com [IPv6:2a01:4f8:1c0c:5936::1])
-	by madrid.collaboradmins.com (Postfix) with ESMTP id 81D8037820E7;
-	Wed,  3 Apr 2024 11:20:03 +0000 (UTC)
-From: "Shreeya Patel" <shreeya.patel@collabora.com>
-In-Reply-To: <a2f88176-b4e1-4202-843c-a00c5a2b1622@linaro.org>
-Content-Type: text/plain; charset="utf-8"
-X-Forward: 127.0.0.1
-References: <20240327225057.672304-1-shreeya.patel@collabora.com>
- <35e566-660d2080-1-7eb9eb00@16488675> <a2f88176-b4e1-4202-843c-a00c5a2b1622@linaro.org>
-Date: Wed, 03 Apr 2024 12:20:03 +0100
-Cc: mchehab@kernel.org, hverkuil@xs4all.nl, hverkuil-cisco@xs4all.nl, heiko@sntech.de, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de, shawn.wen@rock-chips.com, kernel@collabora.com, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-clk@vger.kernel.org, linux-arm@lists.infradead.org
-To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1712143297; c=relaxed/simple;
+	bh=14A2zGvt71HCwM6O6gK42NmYjcKdFxMOyjGXH9M8uaU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=OK7/1dIEEX+jIXjCw2Qqnv0S3JqBs9UdRbm4tSNc40ILPWnbBdgDW5yQDnVzfNPxamMIHKkkNYs6hYc0nlCEtQI9DEP1G8NKOWQa8yQyXBo+d08jx+dm9OQVbBWjKYzKzEImX509+uYDRMTel0TibqiGpRzvHYwZX4nF4lGBCFY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IyGuMKYC; arc=none smtp.client-ip=209.85.219.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-dc6d8bd612dso6290806276.1
+        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 04:21:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712143294; x=1712748094; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=lF+T4bxnDZj7vHWxhdfHcPO4VDzU3zVkWYi0IqT5ix0=;
+        b=IyGuMKYCNcOdj5zfUJMfwLXjQxs/QumlNmkmfT3cw1Til7Omi0PtrwB/QZHbGgMzKX
+         SjRMQWV+hxVdIFkbklSq+gOhEywIm0JKTe8lKi4D9AHXowyOd4fuR8/kH3CfFgfJpayj
+         LLiUy2+frpgvRV4C8icpjezhPAT5ekYkBpETxXo+4qtTBBTNRkoGBaYQROZYcWRgY1Ay
+         ttB+RYBzWxe6OqOVDXQugdOkbNVbp7Tb9R7UKTUXRAKVWdKDn0l3CiDaeTIRoWusCO+L
+         hvb8jNJ+ML76ZA4v9mRde7zB7y0WpQ7Y1m05K30IqUjnTXFibl3XWOVpjcW23ipUjuxp
+         nZ4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712143294; x=1712748094;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lF+T4bxnDZj7vHWxhdfHcPO4VDzU3zVkWYi0IqT5ix0=;
+        b=E3YCoRpvAdgpIKhhL7S3eOnq19/xqHCtelsXCMU41fcytspo/JaT09qVvNfNMiYela
+         iRVqP7SVrk0X3QFF0ZUyPlzkbuepPawPiS8PZ8ihpoLjNv2F0KdSyiU4zk5AMlfU6XcG
+         k/KU2/AHhxYlY8btJ1LuKaxgMdO69v3JTvRY6lOtthSo1YKAwHMzE8LXI2u8gylYRxUW
+         KXYEa/r3yKNnl2wo3cqLUh/9pKEjZRaQnnPdOmpvVyuil6zLFhOLkx2q2OwrTLazBNGz
+         sVV1ighgv8hA2ekuxX6DSB2/ledVj8/gcqa8GxChJzNRdIlLH8ubFOB0G9jFMyuhOjXd
+         Zqhg==
+X-Forwarded-Encrypted: i=1; AJvYcCWCsdw1tNGN5ws/S8NiqIzhs1uvh8A0BZXYidDk6oQMLEb6xSYRkWSF22vw6SRIVUnZnXDqd1mzKFD0Gsu8g+cg4TrzJlNCfrHatw==
+X-Gm-Message-State: AOJu0YztmeJIq3bRINuP5fV84zdSwOaLHOPxNHE7ZTFurVtihZ5bnRvp
+	VrfjsefiOLYOJ3tc5s3RHmFyuEEk3UVVtCwLSd27xpLXAxQH77XxDCIlPv0TUeVnzyx8FDDjC7b
+	jnK/HLRsRplnynACZS+u57YrqrE7dm4Nt2hQpKQ==
+X-Google-Smtp-Source: AGHT+IFtc7mBgFp3kaw9P5n/Or46d3MjVihrSW5DyRrTli9K6KFjlNUz651nVrW1gUHor3EUrMSY621ZfPcAB6Oktbw=
+X-Received: by 2002:a25:b198:0:b0:dcf:56c3:336e with SMTP id
+ h24-20020a25b198000000b00dcf56c3336emr13726871ybj.35.1712143294469; Wed, 03
+ Apr 2024 04:21:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <35f774-660d3b80-3-513fcf80@97941910>
-Subject: =?utf-8?q?Re=3A?= [PATCH v3 0/6] Add Synopsys DesignWare HDMI RX Controller
-User-Agent: SOGoMail 5.10.0
-Content-Transfer-Encoding: quoted-printable
+References: <20240328095044.2926125-1-quic_sibis@quicinc.com>
+ <20240328095044.2926125-6-quic_sibis@quicinc.com> <Zgvnh0J2a_fBH0bR@bogus>
+In-Reply-To: <Zgvnh0J2a_fBH0bR@bogus>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Wed, 3 Apr 2024 13:20:58 +0200
+Message-ID: <CAPDyKFous+aoopf+=ZRugR78jyekobODqn7tqWRCyirPD+=eYw@mail.gmail.com>
+Subject: Re: [PATCH 5/5] arm64: dts: qcom: x1e80100: Enable cpufreq
+To: Sudeep Holla <sudeep.holla@arm.com>
+Cc: Sibi Sankar <quic_sibis@quicinc.com>, cristian.marussi@arm.com, andersson@kernel.org, 
+	konrad.dybcio@linaro.org, jassisinghbrar@gmail.com, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	quic_rgottimu@quicinc.com, quic_kshivnan@quicinc.com, conor+dt@kernel.org, 
+	quic_gkohli@quicinc.com, quic_nkela@quicinc.com, quic_psodagud@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
 
-On Wednesday, April 03, 2024 15:51 IST, Krzysztof Kozlowski <krzysztof.=
-kozlowski@linaro.org> wrote:
-
-> On 03/04/2024 11:24, Shreeya Patel wrote:
-> > On Thursday, March 28, 2024 04:20 IST, Shreeya Patel <shreeya.patel=
-@collabora.com> wrote:
-> >=20
-> >> This series implements support for the Synopsys DesignWare
-> >> HDMI RX Controller, being compliant with standard HDMI 1.4b
-> >> and HDMI 2.0.
-> >>
-> >=20
-> > Hi Mauro and Hans,
-> >=20
-> > I haven't received any reviews so far. Hence, this is just a gentle=
- reminder to review this patch series.
->=20
-> Why did you put clk changes here? These go via different subsystem. T=
-hat
-> might be one of obstacles for your patchset.
->=20
-
-I added clock changes in this patch series because HDMIRX driver depend=
-s on it.
-I thought it is wrong to send the driver patches which don't even compi=
-le?
-
-Since you are a more experienced developer, can you help me understand =
-what would
-be the right way to send patches in such scenarios?
-
-Thanks,
-Shreeya Patel
-
-> Also, you sent it just a week ago and you already ping. Please relax,
-> and help out by reviewing other patches on the mailing lists in order=
- to
-> relieve the burden of maintainers and move your patches higher up the=
- list.
->=20
->=20
-> Best regards,
-> Krzysztof
+On Tue, 2 Apr 2024 at 13:10, Sudeep Holla <sudeep.holla@arm.com> wrote:
 >
+> On Thu, Mar 28, 2024 at 03:20:44PM +0530, Sibi Sankar wrote:
+> > Enable cpufreq on X1E80100 SoCs through the SCMI perf protocol node.
+> >
+> > Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 27 ++++++++++++++++++++++++++
+> >  1 file changed, 27 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> > index 4e0ec859ed61..d1d232cd1f25 100644
+> > --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> > @@ -68,6 +68,7 @@ CPU0: cpu@0 {
+> >                       compatible = "qcom,oryon";
+> >                       reg = <0x0 0x0>;
+> >                       enable-method = "psci";
+> > +                     clocks = <&scmi_dvfs 0>;
+> >                       next-level-cache = <&L2_0>;
+> >                       power-domains = <&CPU_PD0>;
+> >                       power-domain-names = "psci";
+>
+>
+> Any reason why you wouldn't want to use the new genpd based perf controls.
+> IIRC it was added based on mainly Qcom platform requirements.
+>
+> -                     clocks = <&scmi_dvfs 0>;
+>                       next-level-cache = <&L2_0>;
+> -                     power-domains = <&CPU_PD0>;
+> -                     power-domain-names = "psci";
+> +                     power-domains = <&CPU_PD0>, <&scmi_dvfs 0>;
+> +                     power-domain-names = "psci", "perf";
+>
+>
+> And the associated changes in the scmi dvfs node for cells property.
+>
+> This change is OK but just wanted to check the reasoning for the choice.
 
+To me, it seems reasonable to move to the new binding with
+#power-domain-cells for protocol@13. This becomes more future proof,
+as it can then easily be extended to be used beyond CPUs.
+
+That said, I just submitted a patch [1] to update the examples in the
+scmi DT doc to use  #power-domain-cells in favor of #clock-cells. I
+don't know if there is a better way to promote the new bindings?
+Perhaps moving Juno to use this too?
+
+Kind regards
+Uffe
+
+[1]
+https://lore.kernel.org/all/20240403111106.1110940-1-ulf.hansson@linaro.org/
 
