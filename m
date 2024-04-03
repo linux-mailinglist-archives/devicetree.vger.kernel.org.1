@@ -1,168 +1,108 @@
-Return-Path: <devicetree+bounces-55796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F90589669A
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 09:36:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80EE68966B1
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 09:38:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 372D01F27083
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 07:36:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37A28281216
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 07:38:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB3E35FB85;
-	Wed,  3 Apr 2024 07:33:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64F5A6E2A3;
+	Wed,  3 Apr 2024 07:35:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iV76gXcb"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="iIF4Aq58"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32FF082D7C;
-	Wed,  3 Apr 2024 07:33:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C69136D1AE
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 07:35:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712129618; cv=none; b=VekOKK46ISUV0z0exHFGBu2X9tMI/3JSEDzrf73VBa7s1FsuzfzjLKeC0nhG1ZqgZbTfSr84ao2qhxPFmhcRuh2ibl7G7/ErIvSpiv82sK/MW5jOvQp+ZouHpGwaKuuZ+a2AA6mG1Wa6LlTxXyWaiq7Ilne4H/W2nuVhco/8Vvs=
+	t=1712129739; cv=none; b=WK63EUq8mrfGav/6qZSpO25umuscsLiiYEqNLPV8gWFS6wQ2wxovCbEzgx7hl3Y5PAGUPZdExpnkrpw11cqUie5S18Jso17qv+XO6a9r5LkYGluVx1NJ1xm6QSFvFekzyWBuYu28qr/PhiD5qXoIiy+0tHekxm811XTxUoA/ORs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712129618; c=relaxed/simple;
-	bh=A/OR6DO71iCj8J60e0zgSTpWmgsrZqjY3mHCSsVS3Y8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=dVAL+lr3z2FNzy5PXfaRYajskUpU8KbBIDtgFeSIMjYJQts5kvyMy1V4jQ7AZrQxbQ2dlTOkROxexQIbMVNU521NSj3hnP/Bedc0Ons4rFN5E57Rc5LaQuEcjS4dxOeyt5NNE+Pb2k3VpDAFkMH1OjfwLJOw0/8aM59w1qAsvIg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=iV76gXcb; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4334dt9q013313;
-	Wed, 3 Apr 2024 07:33:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=+Jw9NbToDRM5ffmq/HmPeRrtpdoCyhAFrW68RwEoAh8=; b=iV
-	76gXcbODyTAEhYpCAF3yVID3NTVT6vNT3VFf4qT0sd8UbZCDsck0OlfNxNpfIkFP
-	QkV/h95eyGtvqNV9VKIrtpHWgh3/Kx8dLNQqbcv9VXiD5VVDR7iU1MdMZ+99ktuf
-	+LfXag/eXd9uVSduXaBWxZJorYFacTmS5XBzNNYfV1v2jNz1r+n0eXwbbJgIX+Z/
-	gmaJL+ujz8uhsMy9Kk4KRzQPDRdPW7HtgtF3iueFn9nAHY6VZMMmPDJ3YMPKdnJI
-	ev2WbsOaJlGZ8nkrX5CHyasnlhcxWjR+Ai1VyDl5Pqe94SjLBEDBuRhpJPadLnpj
-	8/Swf/53OtItQlswyMXw==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x8xrx0er5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 03 Apr 2024 07:33:31 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4337XUI1021948
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 3 Apr 2024 07:33:30 GMT
-Received: from [10.216.63.221] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Wed, 3 Apr 2024
- 00:33:24 -0700
-Message-ID: <c30811e6-2a1e-4b26-8b94-7c67000b8568@quicinc.com>
-Date: Wed, 3 Apr 2024 13:03:21 +0530
+	s=arc-20240116; t=1712129739; c=relaxed/simple;
+	bh=kUuJoXklxwcVwYwh1KHqc0nVIfvCjiFCTE9UekJ4cYM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ja0AKOWPdPQs7PfvkuV6nSDZTKc+3VKgEL/W5E4n42V8ACcizm8vuKQ3HQM/w1YshWSfWcYgPxB4pX1AtlZbAiAbiE6viEWihG3CQN2AojogACcWq7Yn1onIoWabFEhrsz/MmYGOv/zhDhp1g0+/rXN6qqSxRSA5GtNETwHaZnE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=iIF4Aq58; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id F19883A3;
+	Wed,  3 Apr 2024 09:34:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1712129699;
+	bh=kUuJoXklxwcVwYwh1KHqc0nVIfvCjiFCTE9UekJ4cYM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iIF4Aq58HBl0RTO5peg/bN8ERJVlXfVrXuN8Uo81fvXk/u6uesH5p7gBoXk20+xsx
+	 S4VA4T+OYQWbQuwXcsXdMY7elsjdcIHNiLgVPh0wBbWoVLxAW7wj2SJ1+COkU5JcTj
+	 d9jFjOgb8tFAqtZ0/niXe+gje1Oa7CPjnrSDP3hU=
+Date: Wed, 3 Apr 2024 10:35:24 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Francesco Dolcini <francesco@dolcini.it>
+Cc: Shawn Guo <shawnguo2@yeah.net>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	Trevor Zaharichuk <trevor@au-zone.com>,
+	Greg Lytle <greg@au-zone.com>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH 5/5] arm64: dts: Add device tree source for the Au-Zone
+ Maivin Starter Kit
+Message-ID: <20240403073524.GK16740@pendragon.ideasonboard.com>
+References: <20240325203245.31660-1-laurent.pinchart@ideasonboard.com>
+ <20240325203245.31660-6-laurent.pinchart@ideasonboard.com>
+ <ZgyjE05p/1NZnzaK@dragon>
+ <20240403070651.GB5070@francesco-nb>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v18 2/9] usb: dwc3: core: Access XHCI address space
- temporarily to read port info
-To: Johan Hovold <johan@kernel.org>
-CC: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        "Bjorn
- Andersson" <andersson@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Conor Dooley <conor+dt@kernel.org>, "Felipe
- Balbi" <balbi@kernel.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        "linux-arm-msm@vger.kernel.org"
-	<linux-arm-msm@vger.kernel.org>,
-        "linux-usb@vger.kernel.org"
-	<linux-usb@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        "quic_ppratap@quicinc.com"
-	<quic_ppratap@quicinc.com>,
-        "quic_jackp@quicinc.com"
-	<quic_jackp@quicinc.com>,
-        Johan Hovold <johan+linaro@kernel.org>
-References: <20240326113253.3010447-1-quic_kriskura@quicinc.com>
- <20240326113253.3010447-3-quic_kriskura@quicinc.com>
- <20240402233218.5kngtj56qellnrmo@synopsys.com>
- <39010f95-b08f-4a57-b3af-f34eb1069865@quicinc.com>
- <Zgz_3AspRRfYqOwZ@hovoldconsulting.com>
-Content-Language: en-US
-From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <Zgz_3AspRRfYqOwZ@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 0TmoQqVEfHcWGL7ekMy2hSYiQF2HMnKF
-X-Proofpoint-ORIG-GUID: 0TmoQqVEfHcWGL7ekMy2hSYiQF2HMnKF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-03_06,2024-04-01_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 malwarescore=0
- spamscore=0 adultscore=0 bulkscore=0 suspectscore=0 lowpriorityscore=0
- phishscore=0 impostorscore=0 priorityscore=1501 mlxscore=0 mlxlogscore=875
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2403210001
- definitions=main-2404030050
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240403070651.GB5070@francesco-nb>
 
-
-
-On 4/3/2024 12:36 PM, Johan Hovold wrote:
-> On Wed, Apr 03, 2024 at 10:54:25AM +0530, Krishna Kurapati PSSNV wrote:
->   
->>>> +static int dwc3_read_port_info(struct dwc3 *dwc)
->>>> +{
->>>> +	void __iomem *base;
->>>> +	u8 major_revision;
->>>> +	u32 offset;
->>>> +	u32 val;
->>>> +
->>>> +	/*
->>>> +	 * Remap xHCI address space to access XHCI ext cap regs since it is
->>>> +	 * needed to get information on number of ports present.
->>>> +	 */
->>>> +	base = ioremap(dwc->xhci_resources[0].start,
->>>> +		       resource_size(&dwc->xhci_resources[0]));
->>>> +	if (IS_ERR(base))
->>>> +		return PTR_ERR(base);
->>>
->>> Looks like you forgot to address some of the comments you said you'd
->>> update previously if you submit a new version to the series.
->>>
->>> [*] https://lore.kernel.org/linux-usb/af73110d-e13e-4183-af11-aed869ac0a31@quicinc.com/
->>>
->>
->> Apologies. I agree. I was too much focused on acpi removal and interrupt
->> cleanup, I forgot the last comment you gave.
->>
->> Can I send in a separate patch for this ?
+On Wed, Apr 03, 2024 at 09:06:51AM +0200, Francesco Dolcini wrote:
+> Hello Laurent,
 > 
-> The series has not been merged yet so you can address both issues in a
-> v19. Perhaps wait a day or two in case Thinh has further comments.
+> On Wed, Apr 03, 2024 at 08:30:11AM +0800, Shawn Guo wrote:
+> > On Mon, Mar 25, 2024 at 10:32:45PM +0200, Laurent Pinchart wrote:
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-maivin.dts b/arch/arm64/boot/dts/freescale/imx8mp-maivin.dts
+> > > new file mode 100644
+> > > index 000000000000..2d1c8e782465
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-maivin.dts
+> > > @@ -0,0 +1,236 @@
 > 
+> [...]
+> 
+> > > +/* Verdin I2C_2_DSI */
+> > > +&i2c2 {
+> > > +	status = "okay";
+> > > +
+> > > +	clock-frequency = <400000>;
+> > > +	scl-gpios = <&gpio5 16 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> > > +	sda-gpios = <&gpio5 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> > 
+> > We usually end property list with 'status'.
+> 
+> This is now a written and explicit guideline, no longer tribal knowledge,
+> see https://docs.kernel.org/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node
 
-Sure Johan.
+Thanks.
 
-Also after making the following two changes:
+Any chance to teach checkpatch.pl (and/or the DT checker) about that ? :-)
 
-1. Rename dwc3_read_port_info(...) to dwc3_get_num_ports(...)
-2. Changing "if (IS_ERR(base))" to "if (!base)"
-
-Can I still retain your RB tag ?
-
+-- 
 Regards,
-Krishna,
+
+Laurent Pinchart
 
