@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-55780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55781-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 508CE896525
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 08:59:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE81489653B
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 09:01:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74E551C21643
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 06:59:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A48B32843B4
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 07:01:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA56C56B9E;
-	Wed,  3 Apr 2024 06:56:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 551615380C;
+	Wed,  3 Apr 2024 07:00:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Xp7UDEAy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IC1x669g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0353217C64
-	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 06:56:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B67A17C64
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 07:00:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712127417; cv=none; b=R4aM/aAGc34q6aNVo8xDQ5PL2vSmA3lxP+ahVvynNWunCJheiCi5VDT4HEONxBuot4cnPNOB2MZmNrxN4AaEN9WoSmHuXO/VxW0/iDauqmTNYqwbvk3haXFM65UQoGUGWCLGfD2XdGa7PMlEoVW9AB+BePclRt6r852jQK4/JOc=
+	t=1712127623; cv=none; b=elRUSKWBPu01pS3JMYHcHSeuviYGc6/U92VRAFGKi3BKS23kMxMOsg8ugEO6w2vsvg7mXfbtQYC1joSgATRC0Hr1jfwyLNmkufmNL1sHdhhAomtMVY2vOo0vA/c8G1N7MTeYKgoJH09NanDKGOkS0G5PiPf9jIut4jeO5cx913w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712127417; c=relaxed/simple;
-	bh=f+q/StljaB1S8TLkEx5I/uMxp6wwUZnh0WqjPDNxsUM=;
+	s=arc-20240116; t=1712127623; c=relaxed/simple;
+	bh=8Umyj7Zu6QVO6Rv3Gx0Q+Z9lAaxN7gnQQWMfRL912CE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G+gMIy1cl3bPq4xXsCpaftX30278+lRugANNsQcUbFMjzzH3+BVdeJimhLlivvVNlWrmPGTKrMBySSIGRTUYp92nAk6+y+up7FWUhkLRCOFSX2fzY0R2CPQfY9tPOfqV8mC7iuqttjuO9mIH8bo5qxed7JjjAfVxLrtT2iRlJuI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Xp7UDEAy; arc=none smtp.client-ip=209.85.208.42
+	 In-Reply-To:Content-Type; b=VJjQGRx2zbSmlv/61VSxwgGdGz8iDJ3q0hcaEZ7ul3XSUX0hoVciehTpngDlzKeFYAJX28dFJazNDUtsZq7IoyyOzbb05FXXP+s+j1tSOLwSiCGvpfedulo7WF1W24YVA2ANp7FBFSnfmDEn3nujim5hVAMLaJiSE1+se1QjWhg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IC1x669g; arc=none smtp.client-ip=209.85.208.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-56c5d05128dso4674109a12.0
-        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 23:56:54 -0700 (PDT)
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5684db9147dso6748524a12.2
+        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 00:00:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712127413; x=1712732213; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712127619; x=1712732419; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=2LLHLweBnC/A4Inn3QBZB0cfVArcIS5qzK+VqPYegTY=;
-        b=Xp7UDEAyMRJ3zoIKWGjOJdFmduMNm14UDhbkaBE7dhsex0MVKVTjOScnmolNn9XZzF
-         dPoz/jT8EHKJurr78f5eE/uArOuoswOXQJ7Q21IuNkTTtP2RK2urfqDoj7FOjv3nfEa6
-         Flyhsy2D41+Y3VFCzEfwa7Cikm8snObPp1IxyEuUkzw2ePkJoJ3h/APwElFZwc1ukpvy
-         SYmvTfWO4CZc9e0x9Log/LQUmLDwhLkfRN9xd/Kf428703ZorQ7jBZI/WyXJLRQVZhzz
-         htbt7O7lWqSzEIt10bU8yhvZCRRQMhUk6z+EMrE1X47mdco84nsPnDXqV0IeiS6asjXx
-         qChg==
+        bh=XOyTIAcv3DSfoR4/wUjQ8NrAHjvlEtu1ujIm+W39vX4=;
+        b=IC1x669gb97Hb9nnxkwybiqj0ehP4ritfemPjPbpr1YGfhxDzfupIN0YYDlpZrZoZn
+         wnxRqvql1PbRiOwciLaLFILwtcfjSOYf83qejfEl90vnWmhk4Ek1fL9sziPbW5ndVTMY
+         ewOsW1/kJNRiL+Yy98PywuVgJr9u0DAnFNFbaUmNNsMLkyFcNSx6inI4NcasDwXXSRdD
+         vVpCXmfZP7pM2+wyeLaMpLEK5EAHRKk3+XE+hFZHj+R67zxINfrekOHnm056USGNkktR
+         kKJMt1CJhjwvzpWm0XWKE/6y0gg8zRlqOLHaPb5zSmy05EH5xk7b1Q6JPSb80UOYqTBv
+         8ejQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712127413; x=1712732213;
+        d=1e100.net; s=20230601; t=1712127619; x=1712732419;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=2LLHLweBnC/A4Inn3QBZB0cfVArcIS5qzK+VqPYegTY=;
-        b=cQ/GD/TZALCmioGsh4vJRIRKMa2RU4dlVFr2UpUW9imsnWg99rwxJYk3pbnPz2NTwJ
-         I1lC8NhCui7lIxyrw5YVe6NPiL4U8XbFDZqAKMCzXohEa/5aGwMpPbjL8nu9j73snKOq
-         AJtp1yRu6zak/4lpLztJwWJGEMI5+BG6Xi6mak3LVyfeTENtAW+utgt/IkU+3UuVNSct
-         x/bWs+RYzz2f/sH3cj7wrBcvXzs3ndr4h6azxJcxxMxEUit5L7nF2jb3vd4oNHZXfDzo
-         m3TqxSNl/p+SHjCdt7S2utQvERoYQeeMOa9MFrVsCTPV6wojVBDcR+fCzfL2xOBvaL2x
-         MS0w==
-X-Gm-Message-State: AOJu0YyUX7MYZfTwscfYDlYdICbbJsYZ8+SFYl2UemOW2k67HG0Iebev
-	xHjeM9rOU7nunhiYqZfAqxg/gYUpxTJo6TToEhOFXOfUyKRurpMPLFnzj68mDEA=
-X-Google-Smtp-Source: AGHT+IFto/6DjID+G8YvVM3HsTGozfRdFHnQLOECeAtwELsOd5Qk5D3QGQ1SnQUhsQ5nkDOTM9ipxA==
-X-Received: by 2002:a17:906:2a15:b0:a4e:2873:e94b with SMTP id j21-20020a1709062a1500b00a4e2873e94bmr9429279eje.6.1712127413312;
-        Tue, 02 Apr 2024 23:56:53 -0700 (PDT)
+        bh=XOyTIAcv3DSfoR4/wUjQ8NrAHjvlEtu1ujIm+W39vX4=;
+        b=SWSvO3223c8G0vEGaXW/9Gj9NM+YhG293myKFgV7VkdLnAbtUhGtk5hsPSe5cr7JyI
+         /WOmoEAwC5imZINLgqY+X2VkoycdTBMQGlK7gz7KSinTRm5yVYGiQHMqk9Mj4ZWJlQox
+         1TC47qOMzuwpKF7tu4bYYtu95IAl7SUeafU8UkKwJj+ByKj4pnagO3gT+LAOPd/aA/BW
+         5uQNL+2rUL/nUSaiZ1nnyTZG5sUZrztfbcc3kTH18OTjBLdK2SOt/cQKjh+2c+OXGLdc
+         nrOAGhDSIuPumqsxoK+WeSxIMXYh+++UpP7Bp/vKl8H0NJlXQOvtM8xP+Y17+rUxm82Q
+         ycmg==
+X-Forwarded-Encrypted: i=1; AJvYcCV1kxE7JzYcm15A3ClWRz9P8Cjv78J0SADZJKh4PpOI0aUUycio34Y2bkVCZd2kW1re1ahmQJYH7aqHzsotF2vA3BuT88EF5aVnuQ==
+X-Gm-Message-State: AOJu0YwkvjJnSfG07B5wEICd8lp9VYVdUBO+5bgGkUcHezzTYW7EF7fE
+	bAdd/RHDkdNaVBBEOXj3jXFh4LRlXbjmbi11UTK2Of6OD/WpGo3N0beryhlq7dU=
+X-Google-Smtp-Source: AGHT+IEjZmEIm8e+Tm5pvPv+GaXHDjF2pye0BRyq9Je2gL3MsbNPssQA+BdtXMmy16ASRaRTZ9dKjA==
+X-Received: by 2002:a50:d6c1:0:b0:565:7ce5:abdc with SMTP id l1-20020a50d6c1000000b005657ce5abdcmr1233424edj.10.1712127618866;
+        Wed, 03 Apr 2024 00:00:18 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id wn2-20020a170907068200b00a4e781bd30dsm2550482ejb.24.2024.04.02.23.56.52
+        by smtp.gmail.com with ESMTPSA id n24-20020a05640204d800b0056c5d0c932bsm6515031edw.53.2024.04.03.00.00.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Apr 2024 23:56:52 -0700 (PDT)
-Message-ID: <c51653d1-1a76-45de-93e0-ee5d341649e9@linaro.org>
-Date: Wed, 3 Apr 2024 08:56:51 +0200
+        Wed, 03 Apr 2024 00:00:18 -0700 (PDT)
+Message-ID: <d0769eb1-984b-4e2c-8d9f-818113d8afb2@linaro.org>
+Date: Wed, 3 Apr 2024 09:00:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,15 +77,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [Patch v2 1/2] dt-bindings: make sid and broadcast reg optional
-To: Jon Hunter <jonathanh@nvidia.com>, Sumit Gupta <sumitg@nvidia.com>,
- robh@kernel.org, conor+dt@kernel.org, maz@kernel.org, mark.rutland@arm.com,
- treding@nvidia.com
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-tegra@vger.kernel.org, amhetre@nvidia.com, bbasu@nvidia.com
-References: <20240402132626.24693-1-sumitg@nvidia.com>
- <20240402132626.24693-2-sumitg@nvidia.com>
- <025ed42a-c6f2-48e6-a8d1-b6de79d6957b@nvidia.com>
+Subject: Re: [PATCH v1 1/5] dt-bindings: pwm: Add Loongson PWM controller
+To: Binbin Zhou <zhoubb.aaron@gmail.com>, Rob Herring <robh@kernel.org>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen
+ <chenhuacai@loongson.cn>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+ <u.kleine-koenig@pengutronix.de>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>,
+ loongson-kernel@lists.loongnix.cn, linux-pwm@vger.kernel.org,
+ devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
+ loongarch@lists.linux.dev
+References: <cover.1711953223.git.zhoubinbin@loongson.cn>
+ <edad2bb5b0045c633734c1499fb163c3c6776121.1711953223.git.zhoubinbin@loongson.cn>
+ <20240402174051.GA324804-robh@kernel.org>
+ <CAMpQs4K_VSqdm7x=cSyMTBYQyOm=th0YrYKdZ74dp35hyRBXgQ@mail.gmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -131,41 +137,30 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <025ed42a-c6f2-48e6-a8d1-b6de79d6957b@nvidia.com>
+In-Reply-To: <CAMpQs4K_VSqdm7x=cSyMTBYQyOm=th0YrYKdZ74dp35hyRBXgQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 02/04/2024 21:15, Jon Hunter wrote:
+On 03/04/2024 04:37, Binbin Zhou wrote:
+> Hi Rob:
 > 
+> Thanks for your reply.
 > 
-> On 02/04/2024 14:26, Sumit Gupta wrote:
->> MC SID and Broadbast channel register access is restricted for Guest VM.
->> Make both the regions as optional for SoC's from Tegra186 onwards.
->> Tegra MC driver will skip access to the restricted registers from Guest
->> if the respective regions are not present in the memory-controller node
->> of Guest DT.
+> On Tue, Apr 2, 2024 at 11:40 PM Rob Herring <robh@kernel.org> wrote:
 >>
->> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
->> ---
->>   .../memory-controllers/nvidia,tegra186-mc.yaml | 18 +++++++++---------
->>   1 file changed, 9 insertions(+), 9 deletions(-)
+>> On Tue, Apr 02, 2024 at 03:58:38PM +0800, Binbin Zhou wrote:
+>>> Add Loongson PWM controller binding with DT schema format using
+>>> json-schema.
+>>>
+>>> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+>>> ---
+>>>  .../devicetree/bindings/pwm/pwm-loongson.yaml | 64 +++++++++++++++++++
 >>
->> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
->> index 935d63d181d9..c52c259f7ec5 100644
->> --- a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
->> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
->> @@ -146,17 +146,17 @@ allOf:
->>       then:
->>         properties:
->>           reg:
->> -          maxItems: 6
->> +          maxItems: 4
+>> Filename should match compatible.
 > 
-> minItems?
-> 
+> Emm... How about renaming it as loongson, pwm.yaml?
 
-If the intention was to make it variable, then yes, missing minItems.
-But more important: why patch was sent without any testing?
+Use the fallback, so loongson,ls7a-pwm.yaml
 
 Best regards,
 Krzysztof
