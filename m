@@ -1,167 +1,162 @@
-Return-Path: <devicetree+bounces-56334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E361189888D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 15:09:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6D1D89889B
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 15:14:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 59356B258B8
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 13:09:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C494D1C21226
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 13:14:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 678AA86ADC;
-	Thu,  4 Apr 2024 13:09:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 310AF1272A0;
+	Thu,  4 Apr 2024 13:14:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f3huWUUd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QCwQTXUs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94CC61EB56;
-	Thu,  4 Apr 2024 13:09:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6491B82869
+	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 13:14:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712236142; cv=none; b=AVU048JsiRAkuj5Hi5wf9EyDefxS3AS/dRKueU38TzFEZS0igfNYjH41xx7/BEcU2giYZUXXm6JSPEsUcdclQgIwlEK8bXopl+B5HO0Jg2rtVgumphZJfuhKXO+4XU4OC10m8GR73RNH2uWUVbIqmkai1GLstPu3iRWj/sGxkv4=
+	t=1712236455; cv=none; b=OdHJkW8DZmZnuNsc2g3CICzdGCS/V/HFB+2n2ieC0JlwzaOSCiA2KLJt6RvH399r6jd+w2wN2G+ML59fmI+fhaZ3u6mQhs2dCbUf9IfYmI+bubJVoMiXK3+0bLqj3FV/MyaLVoaV8i03sSOUccqjplIJEDbApvVdXYJaKDwG5K4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712236142; c=relaxed/simple;
-	bh=h2UbZkyXiaKgL6uH4uuNeFsZ2ez34zgm0Oisdg5vyqg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qkzsQrfmSR+4EIJUaEX5jzbp+PgT2eMwI3MVdE0OQBON4PYPHnbLAq92S5b8HzK3IWWied6YKShn7u99kWgvH07cNP7YdLvorutcFr4dmH7b/U3VXEmeFzXL7+hK2KjFVNZ55mQ0igHW2yBHv24q+WjedVvQFZSbemL9z9DQW/Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f3huWUUd; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-343b7c015a8so602455f8f.1;
-        Thu, 04 Apr 2024 06:09:00 -0700 (PDT)
+	s=arc-20240116; t=1712236455; c=relaxed/simple;
+	bh=TvVo9cCYyR632GL7Cc0fqR3Kh9+qrXT134eJYEYfMZI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pc9IeTk2zxUfps/7moCWXdwFTxZGk3lzjt+MgeVjk6zLOoU03PXYWJL786niHq7knShQx31t6UvgQ9H+9w9i7K5+ccYTmzaKoKBo96heKVrg5LKjszyDy3yVU+0CcZN873H6TP/lkkb2ttvSMLJNID81ryFmOTDRwSbHVDMZ+58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QCwQTXUs; arc=none smtp.client-ip=209.85.128.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-6152be7c58bso10527427b3.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Apr 2024 06:14:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712236139; x=1712840939; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pv/Qi7KoaOEOMUmjC6u59B8rww1PLzXdvZJxWlohLyk=;
-        b=f3huWUUdFHC7NF9ANT4gubAf+iqJR/pAReY2bjZ+as2hwd0/2BPlw33ppR7PkjZIbU
-         ZgwqQ0KQGOsRZwdZE3bf+BFa/CtEi/a4XGGTHahqNltMxlk/kDu5BRfDgJj4KmK2y+0n
-         C2CLCG+68FgmCkh2dB188r/KkKRaNz4DcKnSV1NABTubyhBlDMDJW4XcAvwHm7eof+Vc
-         JHDfARukpwPZjsLnzGmmQqN0FWkN0OHqJzMuk9OZF5I2uM3rFecFny75R73CosfTFujX
-         kPFT4/CHSydNDObMLAPJpdUHwHbEiE4xFjRZxHAyYa4wC6e46iZzhavVSfD8f6WToekJ
-         hECw==
+        d=linaro.org; s=google; t=1712236452; x=1712841252; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=tknSODYMU/l/2VPgjwwryjgmML6llAA/U7CzR6kpVHI=;
+        b=QCwQTXUsjxHVDw6kc1QhrXrHBl7OZSxalSAqJgIWQorp1SSNS7tcpYj8+KxuymXMAG
+         3l5SZy8RPm9EfT6De3dAeiFjf3rZXtzdqlhG1xVjxEluN+zqn0hh1qLBbr8wzi4wDyUE
+         v/juRr40Bpln/wr5QopjwTep8aCQmeqrckSgU31vPKcIS3MK1S5G8RxITI2xM8FGhd85
+         MYoB+MALAEt1iXahOqSnrsDvMZlx/JSll/y0l6OuqQ9A2OYg6xOZ6B7DgurpVWEk44FU
+         kwSoXsUJrs4RFC/HAE7AcKksifNIZldTWhXu3qeH66VBSQ6nK96C7jiwsc8ATq3wvUYl
+         iaIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712236139; x=1712840939;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pv/Qi7KoaOEOMUmjC6u59B8rww1PLzXdvZJxWlohLyk=;
-        b=QNtloPSqHN7rpr3jh86Liuv67KvfeyX8QaaYnBIwSOR3scEcjYQ8zJN7gW4kkWvLQE
-         pPM3lQPo5cQKgK+8/PrqZS2+QTTIOltP6ZCHl520jGZbYpyyXrbeLhUqF5ab+yyNEKNr
-         JuxvKNiPmkFwbgJTCmmfZVk7zckfUVBUPOyAIHrIBeHnQcx+7PanBEjgOSOj3Ak9IqYj
-         64XdsaTpOyePIR2H8U3xD2DeU2R2ZzIXNFrGEvgDagSoOfbAxOnEPZfYA3lfMVB1oYH1
-         bBtbCrAPsiOilInfK1cjmRfDYPyN8uiopfRLP/C3WBK7IL5lPn2H7Dx8Cxtr2dfCP1/n
-         OH7g==
-X-Forwarded-Encrypted: i=1; AJvYcCVML4LvNX3uahFclvqCZ0OjqhISoikpWEgpFk46eq5fU0q7f4ayXOHgYZofzqOGbh3XobE2l+u1wTVAXAYzi/N/uc4XuOad4BWdT533TiTVSFEpyth8fSC5D/JYp2Io6QiMU8fO3InaCI2qdF+G9hnTi5xrq79hUfGATMAU+jZVE9d6uQ==
-X-Gm-Message-State: AOJu0YwL+Y5vcogsAJrAI12J2dAUbpWmKYx0YixTCBMfHVsIuTOqrjGu
-	KqfEM6KnzK4rYXH4FXifMICMXUCA9k6jKujMi/z0qqzABeoyjh7t
-X-Google-Smtp-Source: AGHT+IHZ5ilaONhEc/8resaz7bIMJaPEbNbv2CtcO8bEWOzL11rySsrX3HZyWDX2SNIHxZNkYKa9/w==
-X-Received: by 2002:a5d:4a8e:0:b0:343:98ee:524 with SMTP id o14-20020a5d4a8e000000b0034398ee0524mr1825796wrq.36.1712236138600;
-        Thu, 04 Apr 2024 06:08:58 -0700 (PDT)
-Received: from [10.76.84.174] ([5.2.194.157])
-        by smtp.gmail.com with ESMTPSA id y17-20020a056000109100b00341de3abb0esm19986243wrw.20.2024.04.04.06.08.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Apr 2024 06:08:57 -0700 (PDT)
-Message-ID: <aa84a3c5-a3e6-4c76-9b67-624ed8d8c704@gmail.com>
-Date: Thu, 4 Apr 2024 16:08:56 +0300
+        d=1e100.net; s=20230601; t=1712236452; x=1712841252;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tknSODYMU/l/2VPgjwwryjgmML6llAA/U7CzR6kpVHI=;
+        b=EQaM/CK6MxJdwrU9tVaK4kCqPGv89YWmxECCEoFbrUORKgeS1cJgdxMZiN29OcA+9f
+         sKEQNw/btAJBGpQTcSlnBOiKh8PtlQorJQTmKfpAiRLN9fnSMq/gYOSBNvPXAmGOQuo8
+         NYCmTHYNcO030oeVJMkJ8y2gWHx3pA3rVf33dgmUdQs3alTGKk+zMa3FQu84A62NOb8r
+         oYvxjXCLq4C3soDaRz0gbGgpOjnvP/ctyO4meieQWroMIpN3VL3gnHI9LdzsNgmBo0pl
+         zXLRb6/J9MOxKUWaXEa0Q2NvP65/UyMNmnk0EJS/+uaRNPm0ECBdU3RPUxfs644WhD5T
+         j58g==
+X-Forwarded-Encrypted: i=1; AJvYcCUjFh6wvM1lCr9skZkmzkgpv5DA9wyytLpYH9SyWGLxhzrrw0aWe53hYLyreFnhP/ghnIjVVN6tJRwZRwOFgFC5rluMlK/YxqSpGg==
+X-Gm-Message-State: AOJu0Yw0IdcQOngvxathRH+5/WPUTNRvo1yOZ0BMU6PTZgfAwpnJRLW+
+	lghx/u5AG1ISQTHErpWCgrTscL8rEjraXvd35ns+2Hdy1mnX+h0xpfcQj/cAcMbH4nYbp0/ZkJQ
+	cUSiShgIbHtYlZCHqILJtySvxAcyVHTHcl4NfNg==
+X-Google-Smtp-Source: AGHT+IHryU3PLO20GBRCCgKMJ6XaprTWbXPQPdQ4lA3pQDeAvfm7RbBhJGsftpZ1ACzQsnluXERsu8pQW/NEsN9JBts=
+X-Received: by 2002:a25:2e4b:0:b0:dc6:8534:bb06 with SMTP id
+ b11-20020a252e4b000000b00dc68534bb06mr2340069ybn.17.1712236452434; Thu, 04
+ Apr 2024 06:14:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] dt-bindings: adc: ad7173: add support for ad411x
-To: David Lechner <dlechner@baylibre.com>
-Cc: dumitru.ceclan@analog.com, Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240401-ad4111-v1-0-34618a9cc502@analog.com>
- <20240401-ad4111-v1-1-34618a9cc502@analog.com>
- <CAMknhBHeKAQ45=5-dL1T1tv-mZcPN+bNo3vxWJYgWpEPE+8p3Q@mail.gmail.com>
- <CAMknhBGVuMSg+OpS5QTLWi9vA=Xa33AJ+cVS8ZCDyKsAVEe-ww@mail.gmail.com>
- <0a72de29-6d25-4d2d-9824-ca407af69153@gmail.com>
- <CAMknhBHhxi7mN88+peU7BGkzSP2vtipCuvM-XfQzgusqKvARsg@mail.gmail.com>
-Content-Language: en-US
-From: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
-In-Reply-To: <CAMknhBHhxi7mN88+peU7BGkzSP2vtipCuvM-XfQzgusqKvARsg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <fd26ce4a-a9f3-4ada-8d46-ed36fb2456ca@freebox.fr>
+ <5cdad89c-282a-4df5-a286-b8404bc4dd81@freebox.fr> <252618e8-9e80-4774-a96c-caa7f838ef01@linaro.org>
+ <502322f1-4f66-4922-bc4e-46bacac23410@linaro.org> <0ca1221b-b707-450f-877d-ca07a601624d@freebox.fr>
+ <CAA8EJppeREj-0g9oGCzzKx5ywhg1mgmJR1q8yvXKN7N45do1Xg@mail.gmail.com>
+ <87ttkh49xi.fsf@kernel.org> <e804b257-4dc0-45f1-a5c5-66bda51cf296@freebox.fr>
+In-Reply-To: <e804b257-4dc0-45f1-a5c5-66bda51cf296@freebox.fr>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 4 Apr 2024 16:14:01 +0300
+Message-ID: <CAA8EJprBe_th5n_J4BRxUhAO1k89cZOGyTfCBzGQazN5fe9Nuw@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: msm8998: set qcom,no-msa-ready-indicator
+ for wifi
+To: Marc Gonzalez <mgonzalez@freebox.fr>
+Cc: Kalle Valo <kvalo@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Jeff Johnson <quic_jjohnson@quicinc.com>, 
+	ath10k <ath10k@lists.infradead.org>, wireless <linux-wireless@vger.kernel.org>, 
+	DT <devicetree@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>, 
+	Bjorn Andersson <andersson@kernel.org>, Jami Kettunen <jamipkettunen@gmail.com>, 
+	Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On 03/04/2024 18:22, David Lechner wrote:
-> On Wed, Apr 3, 2024 at 2:50 AM Ceclan, Dumitru <mitrutzceclan@gmail.com> wrote:
->> On 02/04/2024 00:16, David Lechner wrote:
->>> On Mon, Apr 1, 2024 at 2:37 PM David Lechner <dlechner@baylibre.com> wrote:
->>>> On Mon, Apr 1, 2024 at 10:10 AM Dumitru Ceclan via B4 Relay
->>>> <devnull+dumitru.ceclan.analog.com@kernel.org> wrote:
->>>>> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
->>>>>
->> ...
->>
->>>>>      properties:
->>>>>        reg:
->>>>> +        description:
->>>>> +          Reg values 16-19 are only permitted for ad4111/ad4112 current channels.
->>>>>          minimum: 0
->>>>> -        maximum: 15
->>>>> +        maximum: 19
->>>> This looks wrong. Isn't reg describing the number of logical channels
->>>> (# of channel config registers)?
->>>>
->>>> After reviewing the driver, I see that > 16 is used as a way of
->>>> flagging current inputs, but still seems like the wrong way to do it.
->>>> See suggestion below.
->>>>
->>>>>        diff-channels:
->>>>> +        description:
->>>>> +          For using current channels specify only the positive channel.
->>>>> +            (IIN2+, IIN2−) -> diff-channels = <2 0>
->>>> I find this a bit confusing since 2 is already VIN2 and 0 is already
->>>> VIN0. I think it would make more sense to assign unique channel
->>>> numbers individually to the negative and positive current inputs.
->>>> Also, I think it makes sense to use the same numbers that the
->>>> registers in the datasheet use (8 - 11 for negative and 12 to 15 for
->>>> positive).
->>>>
->>>> So: (IIN2+, IIN2−) -> diff-channels = <13 10>
->>> Thinking about this a bit more...
->>>
->>> Since the current inputs have dedicated pins and aren't mix-and-match
->>> with multiple valid wiring configurations like the voltage inputs, do
->>> we even need to describe them in the devicetree?
->>>
->>> In the driver, the current channels would just be hard-coded like the
->>> temperature channel since there isn't any application-specific
->>> variation.
->>  Sure, but we still need to offer the user a way to configure which
->> current inputs he wants and if they should use bipolar or unipolar coding.
-> From the datasheet, it looks like only positive current input is
-> allowed so I'm not sure bipolar applies here. But, yes, if there is
-> some other variation in wiring or electrical signal that needs to be
-> describe here, then it makes sense to allow a channel configuration
-> node for it.
+On Thu, 4 Apr 2024 at 15:30, Marc Gonzalez <mgonzalez@freebox.fr> wrote:
+>
+> On 04/04/2024 13:57, Kalle Valo wrote:
+>
+> > Dmitry Baryshkov wrote:
+> >
+> >> I'd say, we should take a step back and actually verify how this was
+> >> handled in the vendor kernel.
+> >
+> > One comment related to this: usually vendor driver and firmware branches
+> > go "hand in hand", meaning that a version of driver supports only one
+> > specific firmware branch. And there can be a lot of branches. So even if
+> > one branch might have a check for something specific, there are no
+> > guarantees what the other N+1 branches do :/
+>
+> The consequences and ramifications of the above comment are not clear to me.
+>
+> Does this mean:
+> "It is pointless to analyze a given version (or even several versions)
+> of the vendor driver downstream, because there are exist a large number
+> of variations of the code." ?
+>
+> And thus, "it is nonsensical to try to "align" the mainline driver to
+> "the" vendor driver, as there is no single "vendor driver"" ?
+>
+> Thus, the following patch (or one functionally-equivalent) is not acceptable?
 
-AD4111 datasheet pg.29:
-When the ADC is configured for bipolar operation, the output
-code is offset binary with a negative full-scale voltage resulting
-in a code of 000 … 000, a zero differential input voltage resulting in
-a code of 100 … 000, and a positive full-scale input voltage
-resulting in a code of 111 … 111. The output code for any
-analog input voltage can be represented as
-Code = 2^(N – 1) × ((V_IN × 0.1/V REF) + 1)
-The output code for any input current is represented as
-Code = 2^(N − 1) × ((I_IN × 50 Ω/V REF) + 1)
+For reference, I tested this patch on sdm845 (db845c), qcm2290 aka
+qrb2210 (rb1), sm6115 aka qrb4210 (rb2) and sm8150 platforms.
+I was not able to fully test it on sda660, modem crashes without this
+patch (there is no MSA_READY indication) and with the patch applied
+the device hangs, most likely because of the IOMMU or clocking issue.
 
-I would say bipolar applies here, not a great idea because of the limitation on
- the negative side (Input Current Range min:−0.5 max:+24 mA) so still, the option
- is available.
+>
+> diff --git a/drivers/net/wireless/ath/ath10k/qmi.c b/drivers/net/wireless/ath/ath10k/qmi.c
+> index 38e939f572a9e..fd9ac9717488a 100644
+> --- a/drivers/net/wireless/ath/ath10k/qmi.c
+> +++ b/drivers/net/wireless/ath/ath10k/qmi.c
+> @@ -1040,6 +1040,8 @@ static void ath10k_qmi_driver_event_work(struct work_struct *work)
+>                 switch (event->type) {
+>                 case ATH10K_QMI_EVENT_SERVER_ARRIVE:
+>                         ath10k_qmi_event_server_arrive(qmi);
+> +                       printk(KERN_NOTICE "NOT WAITING FOR MSA_READY INDICATOR");
+> +                       ath10k_qmi_event_msa_ready(qmi);
+>                         break;
+>                 case ATH10K_QMI_EVENT_SERVER_EXIT:
+>                         ath10k_qmi_event_server_exit(qmi);
+> @@ -1048,7 +1050,7 @@ static void ath10k_qmi_driver_event_work(struct work_struct *work)
+>                         ath10k_qmi_event_fw_ready_ind(qmi);
+>                         break;
+>                 case ATH10K_QMI_EVENT_MSA_READY_IND:
+> -                       ath10k_qmi_event_msa_ready(qmi);
+> +                       printk(KERN_NOTICE "IGNORING ACTUAL MSA_READY INDICATOR");
+>                         break;
+>                 default:
+>                         ath10k_warn(ar, "invalid event type: %d", event->type);
+>
+>
+>
+> Regards
+>
 
+
+-- 
+With best wishes
+Dmitry
 
