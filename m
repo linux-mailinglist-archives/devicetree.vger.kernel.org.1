@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-56197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A474898141
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 08:13:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22D18898148
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 08:16:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA1462823F1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 06:13:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3DBA81C21534
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 06:16:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0147A45977;
-	Thu,  4 Apr 2024 06:13:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B3DC482EE;
+	Thu,  4 Apr 2024 06:15:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FVRlZdYl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YAgLNSig"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EE161CFB9
-	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 06:13:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BF3F3E498
+	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 06:15:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712211190; cv=none; b=s+Y9Ys0xE/BQnyzLMFSp73LH6oDVHwXnSJSDOSmd/z8oxW1JpQGhMgcrAkLDQu9OpE8mP67Gk0eB3KWPHQh+rGzsVmKaWP/xayjF37lTLnm1iGzrHBkl9Uh2M2N7oKdVVdq8NVNJgKwmTlEzqwus1UP224lPn2J/d9P/znix3hU=
+	t=1712211356; cv=none; b=mBpuuGdpjoAGD8RIeB3qAAnGHqqwGNOCKVu0mWfFm0Wd4KuWboHouyDRia91X2uWFUK/5gY5bfCN2u1kxhLCr8fRRqDii2Ib4qhYaRngKDx02mdNINjX9dR1vlKbGMeVx6Ddzho2QA9wiGmhcmaQ0xvexxQ/Mg1eymFr+iQ9CyI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712211190; c=relaxed/simple;
-	bh=rHmTkYpIBqSyVHb4G2+ckKwMZTeB4ETzUbEMu6gP++g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Wh97vMJT3J2USm5SxXe3qXdRcEfZtUZO81IPY+2nCQxwpTCkpW7Hsgq8OQ9bEffOJlFX7MQ1gmKo8q5ZW07PohsDYAqBAT4yfA+7UO9oBzsVUEFDK9xowrZk6rMC8NfxBxJiBJMPdLw9RmyfZQnpcQJ8ehSYAfjQJDPJR+uLIKI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FVRlZdYl; arc=none smtp.client-ip=209.85.218.50
+	s=arc-20240116; t=1712211356; c=relaxed/simple;
+	bh=oEfmaNWz0Z/HE/GpBGwT412D1LQTjGwAgrYN+Del55M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UksUJwB/uGkTbsT6n5B3b9wIht8xgTitNk9ElKQrubs9YLm78PwmoW2IWRy9JH3gc9G0Ggv2GpI0k3peRwYxw8AxjQhMxprqIcXXrLgNeEVNTbYX1fQ6NZD+RsoDBs/onwhwFQP00jdhZm/sjiQTJwaTwmAXB/3nGC/oBxzBlEE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YAgLNSig; arc=none smtp.client-ip=209.85.208.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a518a516bf7so27703166b.3
-        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 23:13:08 -0700 (PDT)
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-56c5d05128dso629375a12.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 23:15:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712211187; x=1712815987; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712211353; x=1712816153; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=1DVSsv7THCi6XQHrrg2cA1+xOVbZs1gNs2CPHL9fNGE=;
-        b=FVRlZdYlEx9Z8vMDy4r3fz0sJiCxmrjJyima7Y2xymT/IVh32N8yILsvnWnvvH80vk
-         1Dx49B5sQkzbRWUow7wjQIYKf2LwsgczDNVqYW/eKtz3EgRzLlUvI7PtKKUI5XeQSZW7
-         aNQcCjHahjN4XG7l+erzzq5L8YrGruAZV0/xaKYsGSvQfN+3R9F5eic4s5w9kGwpxf3n
-         2DHp84/V8NSGaYR8Wk1DIHjbVSn6sGATHeFYmESjRNqAk2RexTIUnCvIoUCGLOdv8nHw
-         RYor9tyivFUHe3i3Ik65IZQ9S9PMYGsWB+7jnbiAD/pMpP5aDvwCzjOZEvKgRoKsRBme
-         +I+A==
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=bkkryztGvxqua4G6Yd1fhJtXsUUxe+HUuwQ8GN8ouqc=;
+        b=YAgLNSigoKeywtPTAlXlJ99hECTa9+fjbY7QQ4dcm/CY+iwnAyGjgU9zmHOwS8bHMK
+         T29chX/qVYPWdQSD8APel2Xo5Ul/KV/tDKs71AEzS+07cEgPfZd4F8+LOtZUlmZTRyRw
+         uUs2UZr9mdSUIkIK3xTrn1iWeT4Nps1Bm/GWikGip/Irc0KSHXL763DCj0OpxoyaJSla
+         USTGSXt7uG920c3KkujD3GNe7t9g9h7bSq0x+/RjzKGwanm4yl8ZJQ6S5gbL5JDjC9Bc
+         shgE3U2zuL1VibMGWCqvEppZjz15nXnVUQtkb7AUq3zNsv4gnlwz5oQFF5v1mtZXpr20
+         aVwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712211187; x=1712815987;
+        d=1e100.net; s=20230601; t=1712211353; x=1712816153;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1DVSsv7THCi6XQHrrg2cA1+xOVbZs1gNs2CPHL9fNGE=;
-        b=n+CUqAzFnEID6dlKm50CkH7rIFKt+1xTQXlHTzyrnbHXi3j9PdF0Wc+ZdiP9ADV7sK
-         4+RidYNI8THuvO7ShNNSGnZWsN3y7btjLOLkGYlKhMloCgKcUm5wZKRCq7ClZvVffK9z
-         LWe5AeQRR5b9Lc34tpICRrV27fGE1ll4u7uuHvkACx4EoHmJACAg6cFIKzSdKNjrx177
-         nBSdjzuicQVTPF0cJtRdnmnKwFDcSAeAx85d6PxII74DukJPAgs7/KGXdDZgv89gDEtz
-         x6TOXu+OWugojDmIB/WnDvvM+wXBWWaFocVCqifbYE8UtOwBdXfntEyIynSmQVbsk7TG
-         tnwg==
-X-Forwarded-Encrypted: i=1; AJvYcCWHMG1y9Zh5Q+aGaMdp4S8bHaWwRD5A9D1ccfz0cL1DtIsHoMAEbt/hXkfAtt7oq+KVXj3AANtc0ZPfiaXh6JOFv1t2JBjtTIchGA==
-X-Gm-Message-State: AOJu0YwGLNq3C3x/gCjUJX0S6lbD7AWEa6ohMIQdt3l418u514Lha4Jb
-	zlVa6lpMqc9n/75K+M96Kd627vTgdhFpD/0qR7WuuUbee3PK9Q27lQSMU2lnEPU=
-X-Google-Smtp-Source: AGHT+IEnMWo3Ix2WIjHU21kRXOIGK/LiNiLJ3XFQIu2+0T7hCs0JKp5egQL4YfTWd2wmbONdZMLNbg==
-X-Received: by 2002:a17:906:4ad5:b0:a4e:2532:ae9 with SMTP id u21-20020a1709064ad500b00a4e25320ae9mr1019030ejt.27.1712211187582;
-        Wed, 03 Apr 2024 23:13:07 -0700 (PDT)
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bkkryztGvxqua4G6Yd1fhJtXsUUxe+HUuwQ8GN8ouqc=;
+        b=MeHjq250HvBN2QvFGgWsu44oeuqalHRIK8WoQ4c/pyf3ziCHeaYeqoQXNTot2juGG1
+         EHm5FYu9RI2oEiGruUNqicKLd8wO7+UXYJT3y509mq61BVSxyRrC2d9LeZAD7MlC4ftT
+         zlZ+x5x19c2UlVbMecY/7TZTdzWQ/tyB4i8xaQ3kGW69/e17oozfKWkFZlI1Mxme+jy1
+         N/RnCHhxksb/K42qc81SEy3xSoEE3VdA2nLAQdxnmXi1WlpWNu+01mNDJe4kJiOOqtzD
+         gMlCpSdBZWqC+7fUfEu+2HHtrzKVPZ67Mxsv2/zX2TPesgJUJfB1jD25CEHJSrd5kQS9
+         1Wyw==
+X-Forwarded-Encrypted: i=1; AJvYcCUQpvxaHM/oRipKY0jpH72Nz1LbNunGcCjQ0LAbC9whdC1jclvzIX4eG7FvHD1uRe8TlFsoxDRYwz6RPVlAtdW985iNvFL6d76eHg==
+X-Gm-Message-State: AOJu0YyI5P48yl/a14AtvIhAOuXo5hVsXKGPLbytZWxvWCuVeyWO7zle
+	WG/32TWRUbfs6WMgNBjQUJ3dD9a60164+Qym8Ld9L/YcNu/qdOc4uGm5dZ9PQkk=
+X-Google-Smtp-Source: AGHT+IECxEGe1zWvmCgAOpHAIAYRCeDTejPuXOKuqZUxaRFgNCPybdhXgvVdvf3cPcwAdtHZQFMMaA==
+X-Received: by 2002:a50:cd4e:0:b0:56d:f637:451c with SMTP id d14-20020a50cd4e000000b0056df637451cmr805971edj.32.1712211352779;
+        Wed, 03 Apr 2024 23:15:52 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id m16-20020a170906581000b00a4a3807929esm8554214ejq.119.2024.04.03.23.13.06
+        by smtp.gmail.com with ESMTPSA id m7-20020aa7c487000000b0056bf2e2c898sm8832781edq.1.2024.04.03.23.15.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Apr 2024 23:13:06 -0700 (PDT)
-Message-ID: <c3902c6e-c38e-4604-b79e-2b5406274d8f@linaro.org>
-Date: Thu, 4 Apr 2024 08:13:05 +0200
+        Wed, 03 Apr 2024 23:15:52 -0700 (PDT)
+Message-ID: <c790c8ba-a9bd-4820-8084-1294e5e523d9@linaro.org>
+Date: Thu, 4 Apr 2024 08:15:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,17 +77,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] ARM: dts: aspeed: greatlakes: correct Mellanox
- multi-host property
-To: Andrew Jeffery <andrew@codeconstruct.com.au>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+Subject: Re: [PATCH v3 0/6] Add Synopsys DesignWare HDMI RX Controller
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ Shreeya Patel <shreeya.patel@collabora.com>
+Cc: mchehab@kernel.org, hverkuil@xs4all.nl, hverkuil-cisco@xs4all.nl,
+ robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+ shawn.wen@rock-chips.com, kernel@collabora.com,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-References: <20231209104412.12916-1-krzysztof.kozlowski@linaro.org>
- <171213860535.16780.4635499105199545058.b4-ty@linaro.org>
- <8610e0a8aa5c2916fa04292a10e8a843862ff0ee.camel@codeconstruct.com.au>
+ linux-rockchip@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-arm@lists.infradead.org
+References: <20240327225057.672304-1-shreeya.patel@collabora.com>
+ <35f774-660d3b80-3-513fcf80@97941910>
+ <86150c89-11d5-4d52-987e-974b1a03018f@linaro.org> <3049149.687JKscXgg@diego>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -134,49 +137,82 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <8610e0a8aa5c2916fa04292a10e8a843862ff0ee.camel@codeconstruct.com.au>
+In-Reply-To: <3049149.687JKscXgg@diego>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 04/04/2024 03:41, Andrew Jeffery wrote:
-> On Wed, 2024-04-03 at 12:04 +0200, Krzysztof Kozlowski wrote:
->> On Sat, 09 Dec 2023 11:44:09 +0100, Krzysztof Kozlowski wrote:
->>> "mlx,multi-host" is using incorrect vendor prefix and is not documented.
+On 04/04/2024 00:48, Heiko Stübner wrote:
+> Am Mittwoch, 3. April 2024, 13:24:05 CEST schrieb Krzysztof Kozlowski:
+>> On 03/04/2024 13:20, Shreeya Patel wrote:
+>>> On Wednesday, April 03, 2024 15:51 IST, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 >>>
+>>>> On 03/04/2024 11:24, Shreeya Patel wrote:
+>>>>> On Thursday, March 28, 2024 04:20 IST, Shreeya Patel <shreeya.patel@collabora.com> wrote:
+>>>>>
+>>>>>> This series implements support for the Synopsys DesignWare
+>>>>>> HDMI RX Controller, being compliant with standard HDMI 1.4b
+>>>>>> and HDMI 2.0.
+>>>>>>
+>>>>>
+>>>>> Hi Mauro and Hans,
+>>>>>
+>>>>> I haven't received any reviews so far. Hence, this is just a gentle reminder to review this patch series.
+>>>>
+>>>> Why did you put clk changes here? These go via different subsystem. That
+>>>> might be one of obstacles for your patchset.
+>>>>
 >>>
+>>> I added clock changes in this patch series because HDMIRX driver depends on it.
+>>> I thought it is wrong to send the driver patches which don't even compile?
 >>
->> These wait for ~4 months and they were not picked up. Let me know if anyone
->> else wants to take these.
->>
->> Applied, thanks!
->>
->> [1/4] ARM: dts: aspeed: greatlakes: correct Mellanox multi-host property
->>       https://git.kernel.org/krzk/linux-dt/c/7da85354c4fa35b862294dbbb450baeb405b5a92
->> [2/4] ARM: dts: aspeed: minerva-cmc: correct Mellanox multi-host property
->>       https://git.kernel.org/krzk/linux-dt/c/e515719c17beb9625a90039f6c45fa36d58bdda2
->> [3/4] ARM: dts: aspeed: yosemite4: correct Mellanox multi-host property
->>       https://git.kernel.org/krzk/linux-dt/c/af3deaf9bcb4571feb89a4050c7ad75de9aa8e1e
->> [4/4] ARM: dts: aspeed: yosemitev2: correct Mellanox multi-host property
->>       https://git.kernel.org/krzk/linux-dt/c/cac1c1dda6130771e06ace030b1b0ed62096a912
->>
->> Best regards,
+>> Hm, why HDMIRX driver depends on clock? How? This sounds really wrong.
+>> Please get it reviewed internally first.
 > 
-> Ah, my apologies. Joel's on leave and I'm accumulating patches in a
-> tree for him in the mean time. I've had some things going on
-> professionally (changed jobs) and personally, and these fell into a bit
-> of a hole.
+> For the change in question, the clock controller on the soc also handles
+> the reset controls (hence its name CRU, clock-and-reset-unit) .
 > 
-> I'm okay for these patches to be integrated through your tree, given
-> you've already applied them. Feel free to add acks if your branch
-> allows:
+> There are at least 660 reset lines in the unit and it seems the hdmi-rx one
+> was overlooked on the initial submission, hence patches 1+2 add the
+> reset-line.
 > 
-> Acked-by: Andrew Jeffery <andrew@codeconstruct.com.au>
-> 
-> I'm working to stay on top of things a bit more now than I have in the
-> recent past, so hopefully I won't miss patches again in the future.
+> Of course, here only the "arm64: dts:" patch depends on the clock
+> change, is it references the new reset-id.
 
-Stephen reported conflict, although trivial, but maybe better if you
-take them? I can rebase and resend.
+Wait, that's expected, but it is not what was written. Claim was HDMIRX
+driver depends *build time* ("don't even compile").
+
+> 
+> 
+> Am Mittwoch, 3. April 2024, 12:22:57 CEST schrieb Krzysztof Kozlowski:
+>> Please do not engage multiple subsystems in one patchset, if not
+>> necessary. Especially do not mix DTS into media or USB subsystems. And
+>> do not put DTS in the middle!
+> 
+> picking up your reply from patch 4/6, there seem to be different "schools
+> of thought" for this. Some maintainers might want to really only see
+> patches that are explicitly for their subsystem - I guess networking
+> might be a prime example for that, who will essentially apply whole series'
+> if nobody protests in time (including dts patches)
+
+There is no school saying DTS is allowed to be in the middle.
+
+Other schools are indeed saying that seeing DTS is good and
+recommendation is to post it separate and provide a link. That's way you
+avoid DTS being pulled by Greg, media or networking.
+
+> 
+> On the other hand I also remember seeing requests for "the full picture"
+> and individual maintainers then just picking and applying the patches
+> meant for their subsystem.
+> 
+> The series as it stands right now is nice in that it allows (random)
+> developers to just pick it up, apply it to a tree and test the actual driver
+> without needing to hunt for multiple dependant series.
+> 
+> 
+> Of course you're right, the "arm64: dts:" patch should be the last in the
+> series and not be in the middle of it.
+
 
 Best regards,
 Krzysztof
