@@ -1,74 +1,70 @@
-Return-Path: <devicetree+bounces-56243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7E938982FC
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 10:18:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB59D898307
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 10:19:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 134E11C20CFE
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 08:18:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4522C1F21237
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 08:19:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CCFA679F3;
-	Thu,  4 Apr 2024 08:18:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98A01210E4;
+	Thu,  4 Apr 2024 08:19:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="dStsbZdk"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fQtDUe9h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16AF85EE76;
-	Thu,  4 Apr 2024 08:18:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B4636BB30;
+	Thu,  4 Apr 2024 08:18:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712218695; cv=none; b=KZcPCRYxkOu82wgpT1EFBcGUfAcWIn+1DUm7FbchpDatU6ojoz554wU1LwE1lkoKIks0/bvJ2sVNSg8afjI9UuTa3YY1S+LkB8QbgFOobohC3LfYmITtg+6A56US31PRyafP1wVX2/CBUeeHKQgO6AAe1GGQu+TlhMQE01+y+vA=
+	t=1712218741; cv=none; b=m3432AGqLJA+kv4RDl4PfAWSK1ZXyuFZIspUTUR6z9jfz1VbM/1PK5dp2Pukd+1lST44ybCsfiA9YteBem6GtUv6MqjcvcnilQcCm0CC/CDOiYMa13322x1RX9prCBWz6Wk/wdX3baK8e9QujnqkxL36Yjud/kHqb8/j2wxOpV8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712218695; c=relaxed/simple;
-	bh=qNIQsRN63cUz3fWMTVMY3OVNv9ArpXhRU38uV3pGBZ0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=k7o8aouN4lIoiGfWsYJof4fGyBfAgXk48bBZ0YvyS3KrA1zG1DS8KJWtOFOe3zmGSTEaPJ8PtlpVFzs91B0JBN+T2K9OKigYvgIBz1m6VQEi6w9p+Z/pK5bnlobv0H4PD8l2x5tTZkXIzjrtIG0u23XR0mhLQKPtBFNrhdib0Xs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=dStsbZdk; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1712218692;
-	bh=qNIQsRN63cUz3fWMTVMY3OVNv9ArpXhRU38uV3pGBZ0=;
-	h=From:To:Cc:Subject:Date:From;
-	b=dStsbZdkhPsfyZzFRVUrtm8IM9PzGbB+AuNpRGGes+uBvZ+QtQzq2WBq3QNL8z2zH
-	 gDXj9viF/xWxNYcQDCmbWhQIMGxLf3qqH49Eq2ONQRU8r/ZPLsCa3IyP+2gUuhnVaP
-	 eaaBPWWm2sFzSumPhqCenBWwip1uubRdLyIlcfB3raBaSvqy9178CDNoYMgDE+j+BQ
-	 F1ioO9xsIkbFGspD+V5OQXNQDbRNqcjnhO8WF4dxhetawSczO2yZOWPk+g7h8ZvXE0
-	 cihfTVlHQFlKgKwA9VAI5VLALS/RqnAvvftMNGt/0/V3sjOt1+Bhn7MfFSbydtxGgr
-	 W2qTevEKwiXSA==
-Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 94749378200D;
-	Thu,  4 Apr 2024 08:18:11 +0000 (UTC)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: u.kleine-koenig@pengutronix.de
-Cc: robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	jitao.shi@mediatek.com,
-	thierry.reding@gmail.com,
-	miles.chen@mediatek.com,
-	xinlei.lee@mediatek.com,
-	linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	wenst@chromium.org,
-	kernel@collabora.com
-Subject: [PATCH] dt-bindings: pwm: mediatek,pwm-disp: Document power-domains property
-Date: Thu,  4 Apr 2024 10:18:08 +0200
-Message-ID: <20240404081808.92199-1-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.44.0
+	s=arc-20240116; t=1712218741; c=relaxed/simple;
+	bh=N7ewqZhBqQkO15NwCpEWNIRWEPWgoPN+ZDkzw8ksoB8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZO9xfiLM7Ir+aAvT2PpjxOvsD5KIFV8bKzZmJdNT1DSFS7rSUITURNEn4GIC7qhmOW+ELjLpSTA/k08l/4vCyp2K3gepAIQ8cPddaKw1djcBaW8b0/7KORPMV7Os4VjaDpu/GtVp1V2VzeSz53/Kc0KhobZIePY32h9n3iVRbXE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fQtDUe9h; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4348InAS112112;
+	Thu, 4 Apr 2024 03:18:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1712218729;
+	bh=Eoxu7O7Eh1P0shb/ON+em0LKUOZSFLCOVZfXDOQN4ic=;
+	h=From:To:CC:Subject:Date;
+	b=fQtDUe9hCKMEb+9JgeRSe+MLOQYYjyykQqQ5wztSk7x17UKRpI9p6mYi/yJQo9pIk
+	 GRhEaZdT1TDdBmeBIZryLcQ5eRgzxOlB+l8LmdFbZ3Wztd/LGO7SMKPFVKWv/pe0ar
+	 B8d422zmfH89b/UL9ZQzjKF9fbS3tIpFGjJYne/w=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4348Ind3115471
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 4 Apr 2024 03:18:49 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 4
+ Apr 2024 03:18:49 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 4 Apr 2024 03:18:49 -0500
+Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [172.24.227.9])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4348IjHU101663;
+	Thu, 4 Apr 2024 03:18:46 -0500
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: [PATCH v2] arm64: dts: ti: k3-am62p: use eFuse MAC Address for CPSW3G Port 1
+Date: Thu, 4 Apr 2024 13:48:45 +0530
+Message-ID: <20240404081845.622707-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,31 +72,82 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Allow the power-domains property to the PWM_DISP block as on some SoCs
-this does need at most one power domain.
+Add the "cpsw-mac-efuse" node within "wkup_conf" node corresponding to the
+CTRLMMR_MAC_IDx registers within the CTRL_MMR space. Assign the compatible
+"ti,am62p-cpsw-mac-efuse" to enable "syscon_regmap" operations on these
+registers. The MAC Address programmed in the eFuse is accessible through
+the CTRLMMR_MAC_IDx registers. The "ti,syscon-efuse" device-tree property
+points to the CTRLMMR_MAC_IDx registers, allowing the CPSW driver to fetch
+the MAC Address and assign it to the network interface associated with
+CPSW3G MAC Port 1.
 
-Fixes: b09b179bac0a ("dt-bindings: pwm: Convert pwm-mtk-disp.txt to mediatek,pwm-disp.yaml format")
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
 ---
- Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml | 3 +++
- 1 file changed, 3 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml b/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
-index afcdeed4e88a..bc813fe74fab 100644
---- a/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
-+++ b/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
-@@ -52,6 +52,9 @@ properties:
-       - const: main
-       - const: mm
+This patch is based on linux-next tagged next-20240404.
+Patch depends on:
+https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240402105708.4114146-1-s-vadapalli@ti.com/
+for the newly added "ti,am62p-cpsw-mac-efuse" compatible.
+
+v1:
+https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240402094200.4036076-1-s-vadapalli@ti.com/
+Changes since v1:
+- Since "wkup_conf" is modelled as a "simple-bus" rather than being
+  modelled as a System Controller node with the "syscon" compatible,
+  directly passing the reference to the "wkup_conf" node using the
+  "ti,syscon-efuse" device-tree property will not work.
+  Therefore, I posted the patch at:
+  https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240402105708.4114146-1-s-vadapalli@ti.com/
+  in order to add a new compatible to be used for modelling the
+  CTRLMMR_MAC_IDx registers as System Controller nodes, thereby
+  allowing the existing "ti,syscon-efuse" property to be used.
+  Now, "ti,syscon-efuse" points to the "cpsw_mac_efuse" node within
+  "wkup_conf" node, with "cpsw_mac_efuse" being a "syscon" node.
+
+Logs verifying that the CPSW driver assigns the MAC Address from the
+eFuse based on the CTRLMMR_MAC_IDx registers at 0x43000200 and 0x43000204
+to the interface eth0 corresponding to CPSW3G MAC Port 1:
+https://gist.github.com/Siddharth-Vadapalli-at-TI/9982c6f13bf9b8cfaf97e8517e7dea13
+
+Regards,
+Siddharth.
+
+ arch/arm64/boot/dts/ti/k3-am62p-main.dtsi   | 1 +
+ arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi | 5 +++++
+ 2 files changed, 6 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+index 7337a9e13535..848ca454a411 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+@@ -696,6 +696,7 @@ cpsw_port1: port@1 {
+ 				label = "port1";
+ 				phys = <&phy_gmii_sel 1>;
+ 				mac-address = [00 00 00 00 00 00];
++				ti,syscon-efuse = <&cpsw_mac_efuse 0x0>;
+ 			};
  
-+  power-domains:
-+    maxItems: 1
+ 			cpsw_port2: port@2 {
+diff --git a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
+index a84756c336d0..df9d40f64e3b 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
+@@ -18,6 +18,11 @@ chipid: chipid@14 {
+ 			reg = <0x14 0x4>;
+ 			bootph-all;
+ 		};
 +
- required:
-   - compatible
-   - reg
++		cpsw_mac_efuse: cpsw-mac-efuse@200 {
++			compatible = "ti,am62p-cpsw-mac-efuse", "syscon";
++			reg = <0x200 0x8>;
++		};
+ 	};
+ 
+ 	wkup_uart0: serial@2b300000 {
 -- 
-2.44.0
+2.40.1
 
 
