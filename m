@@ -1,126 +1,122 @@
-Return-Path: <devicetree+bounces-56355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3501F898B1A
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 17:27:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3679898B1D
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 17:28:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0894BB30894
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 15:26:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9250F1F2F175
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 15:28:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 622C91CD03;
-	Thu,  4 Apr 2024 15:26:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D436A763F4;
+	Thu,  4 Apr 2024 15:28:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="VEDjnj55"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B4ZyxnWR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-174.mta0.migadu.com (out-174.mta0.migadu.com [91.218.175.174])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D75051BC57;
-	Thu,  4 Apr 2024 15:26:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A776C12B95;
+	Thu,  4 Apr 2024 15:28:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712244405; cv=none; b=gEMbVudtbCRR6dEEPFZqpchKeq15bnr2grLRcQfk+TZ/iZorLNkI/josukxGMJV6+SGRAhZv8UrgMhVGzehFXEMd0N/pgj+Ng4DEfl3VUVqyyQbD0wVu7++HBR/rtUcffg1owHyjDwUVL8AQrXws9PvV5a+ewZm85p3S6nApOng=
+	t=1712244492; cv=none; b=kFImk/KnSbtckkcPwL3wtAs5rRBSIJxil7Ds9Ef13+Fy6AFiPm25ra135Cl0kwRJLMDDZJ7P8FWkBGd97apWAoKZFSmK3GK5Z6CC2PKiQk2CDq4VyvadWfSiE4FZsGZUXsXI7rUnA1N5Z7O8phlJI8BPW5nqwaMvnnEhQWlWD0Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712244405; c=relaxed/simple;
-	bh=PFoS6hGk1IYChkt0D459qrPjdqLmDhjdygszllD3YAs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FwgNCltLrC/5yyXv6KuLEU65/Fqowg+Apzeq2pgsyAnc7nKtCAMkzN9cDzM7BC5PpXeTeaDt/6PO00hbIlq8E8oYbRqoa3FWOb23L1lGrc8NTvtPbW5Sn9gys+crIed5WV+NR4ajxzcgrkZ79Y5cmzFy6up7lTpIfSMaeRXEhVw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=VEDjnj55; arc=none smtp.client-ip=91.218.175.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1712244400;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nx5b7zK0NZWAaBwpJhf7wUMpMip3NAQgikWPRpdfU/s=;
-	b=VEDjnj55HYYX44F3SuiljmNJkHo5+iLbvSgua8D3T4kwvjS+DkWwii4Kr/mnD+9v0XBEKI
-	BRh7vcE0eA7VaS8dN1L8R2GPwciFFrb0ONJa3xiFeRPzPhjM7kgibR7/tXdRNeSSr86Wi3
-	0ZSPD910rVrxnRdAAjbchIysPPJQTyHjofD7U+mYM4ruorO56lB2AIMyeikNpPW01BEBOl
-	aBncoK0NemwlH5GiCG/yleySg9yGf7idy/ctsUKunshPNUXeBbCs7wat/d8YPAsOMHKzdW
-	4h1vhIN6mg2Thnzmt+P0WFSeY2rxGaWxVo84PzM5ROZ3LqqbLWC51zTYyuaE0g==
-From: Diederik de Haas <didi.debian@cknow.org>
-To: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: linux-rockchip@lists.infradead.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- David Jander <david@protonic.nl>, Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: add Protonic MECSBC device-tree
-Date: Thu, 04 Apr 2024 17:26:29 +0200
-Message-ID: <4371633.n8APD0IoSg@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <9d325b4e-031c-4f6c-9788-fa5a68470efa@lunn.ch>
-References:
- <20240404-protonic-mecsbc-v1-0-ad5b42ade6c6@pengutronix.de>
- <20240404-protonic-mecsbc-v1-2-ad5b42ade6c6@pengutronix.de>
- <9d325b4e-031c-4f6c-9788-fa5a68470efa@lunn.ch>
+	s=arc-20240116; t=1712244492; c=relaxed/simple;
+	bh=kFnpx5tB/cOSNRhheZ9+fj6gL/PgrOpF3Q++o3JjWqk=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
+	 MIME-Version:Content-Type; b=JRsKPwfLyRStnmdRznIicfX0P8zIeWtoVnmVHZ3XYro6PcyQkLeSBOqMqNCRb6wfUra8sJPJPeQihb6D2fTTdvznvOp8mK5zM0bhvVP0ARHlonkIxGTO3YN6A6u3O0BJvPdnkkyix/Q2xOaWiviPLtcPoTkp2X7kbpKj1ZJy9ec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B4ZyxnWR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 143BAC433C7;
+	Thu,  4 Apr 2024 15:28:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712244492;
+	bh=kFnpx5tB/cOSNRhheZ9+fj6gL/PgrOpF3Q++o3JjWqk=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=B4ZyxnWRY6QDwGCgzRK4sS9Yr2ohJAEihjYC01BJTA4XOv0BmXoLAISwpDGrqqnTv
+	 4rsINRdWvn358oQM52XmkKPAG4zc6Z6p+UlPKTvWKQtYj/r4MPYi5N3rcNnywlovgx
+	 SJrZCysgn21LtHWb07jv2DT0xovACa/ctMomGNZO82crfF1SZgMiv5qax8V7A85vZS
+	 vyOF1P2Fm2/Ez+cz9cYKGXKFOLH0/9tYkxDwEEcjBgASsHcAUIhom7iGM8gXdT+j4Q
+	 5ufnKF2//xDq5kDV0176Xn0N827UWHzbpg/Vp/waZ6sXnXO4UFCgoFdA1tARewulLw
+	 aqe68yIK0sG2Q==
+From: Kalle Valo <kvalo@kernel.org>
+To: Marc Gonzalez <mgonzalez@freebox.fr>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,  Konrad Dybcio
+ <konrad.dybcio@linaro.org>,  Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>,  Jeff Johnson
+ <quic_jjohnson@quicinc.com>,  ath10k <ath10k@lists.infradead.org>,
+  wireless <linux-wireless@vger.kernel.org>,  DT
+ <devicetree@vger.kernel.org>,  MSM <linux-arm-msm@vger.kernel.org>,  Rob
+ Herring <robh+dt@kernel.org>,  Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
+  Pierre-Hugues Husson <phhusson@freebox.fr>,  Arnaud Vrac
+ <avrac@freebox.fr>,  Bjorn Andersson <andersson@kernel.org>,  Jami
+ Kettunen <jamipkettunen@gmail.com>,  Jeffrey Hugo
+ <jeffrey.l.hugo@gmail.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: msm8998: set
+ qcom,no-msa-ready-indicator for wifi
+References: <fd26ce4a-a9f3-4ada-8d46-ed36fb2456ca@freebox.fr>
+	<5cdad89c-282a-4df5-a286-b8404bc4dd81@freebox.fr>
+	<252618e8-9e80-4774-a96c-caa7f838ef01@linaro.org>
+	<502322f1-4f66-4922-bc4e-46bacac23410@linaro.org>
+	<0ca1221b-b707-450f-877d-ca07a601624d@freebox.fr>
+	<CAA8EJppeREj-0g9oGCzzKx5ywhg1mgmJR1q8yvXKN7N45do1Xg@mail.gmail.com>
+	<87ttkh49xi.fsf@kernel.org>
+	<e804b257-4dc0-45f1-a5c5-66bda51cf296@freebox.fr>
+Date: Thu, 04 Apr 2024 18:28:07 +0300
+In-Reply-To: <e804b257-4dc0-45f1-a5c5-66bda51cf296@freebox.fr> (Marc
+	Gonzalez's message of "Thu, 4 Apr 2024 14:30:40 +0200")
+Message-ID: <87h6gh406w.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart1929697.ULixQHqF2j";
- micalg="pgp-sha256"; protocol="application/pgp-signature"
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain
 
---nextPart1929697.ULixQHqF2j
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Diederik de Haas <didi.debian@cknow.org>
-To: Sascha Hauer <s.hauer@pengutronix.de>
-Date: Thu, 04 Apr 2024 17:26:29 +0200
-Message-ID: <4371633.n8APD0IoSg@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <9d325b4e-031c-4f6c-9788-fa5a68470efa@lunn.ch>
-MIME-Version: 1.0
+Marc Gonzalez <mgonzalez@freebox.fr> writes:
 
-On Thursday, 4 April 2024 17:10:41 CEST Andrew Lunn wrote:
-> > +&gmac1 {
-> > +	assigned-clocks = <&cru SCLK_GMAC1_RX_TX>, <&cru SCLK_GMAC1>;
-> > +	assigned-clock-parents = <&cru SCLK_GMAC1_RGMII_SPEED>, <&cru
-> > CLK_MAC1_2TOP>; +	phy-handle = <&rgmii_phy1>;
-> > +	phy-mode = "rgmii";
-> > +	clock_in_out = "output";
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&gmac1m1_miim
-> > +		     &gmac1m1_tx_bus2
-> > +		     &gmac1m1_rx_bus2
-> > +		     &gmac1m1_rgmii_clk
-> > +		     &gmac1m1_clkinout
-> > +		     &gmac1m1_rgmii_bus>;
-> > +	status = "okay";
-> > +	tx_delay = <0x30>;
-> > +	rx_delay = <0x10>;
-> > +};
-> 
-> There was a discussion about phy-mode = "rgmii"; and these
-> tx/rx_delays last month. Please could you go read that discussion and
-> them make use of rgmii-id, and change the delays.
+> On 04/04/2024 13:57, Kalle Valo wrote:
+>
+>> Dmitry Baryshkov wrote:
+>> 
+>>> I'd say, we should take a step back and actually verify how this was
+>>> handled in the vendor kernel.
+>> 
+>> One comment related to this: usually vendor driver and firmware branches
+>> go "hand in hand", meaning that a version of driver supports only one
+>> specific firmware branch. And there can be a lot of branches. So even if
+>> one branch might have a check for something specific, there are no
+>> guarantees what the other N+1 branches do :/
+>
+> The consequences and ramifications of the above comment are not clear to me.
+>
+> Does this mean:
+> "It is pointless to analyze a given version (or even several versions)
+> of the vendor driver downstream, because there are exist a large number
+> of variations of the code." ?
 
-https://lore.kernel.org/linux-rockchip/20240304084612.711678-2-ukleinek@debian.org/
-titled "[PATCH] arm64: dts: rockchip: qnap-ts433: Simplify network PHY connection"
---nextPart1929697.ULixQHqF2j
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+I was trying to say that because the design philosophy between vendor
+drivers and upstream drivers is very different, we can't 100% trust
+vendor drivers. It's a very good idea to check what vendor drivers do
+but we just need to be careful before making any conclusions. Testing
+real hardware (and corresponding firmware) is the most reliable way to
+know how different products/firmware work, unfortunately.
 
------BEGIN PGP SIGNATURE-----
+> And thus, "it is nonsensical to try to "align" the mainline driver to
+> "the" vendor driver, as there is no single "vendor driver"" ?
 
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZg7GpQAKCRDXblvOeH7b
-bikgAQDxjNxJBtSfyXYuHl2r99LKDknNDnlaMsWaOdSg4gJNTgD/Uz5yWKZKbPYB
-F61sFHT10aYaICXDOe/OgVF1lODpWQM=
-=boHv
------END PGP SIGNATURE-----
+No no, I'm not saying that. I have suffered this "N+1 different firmware
+branches behaving slighly differently" problem since ath6kl days so for
+me this is business as usual, sadly. I'm sure we can find a solution for
+ath10k.
 
---nextPart1929697.ULixQHqF2j--
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-
-
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
