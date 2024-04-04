@@ -1,138 +1,161 @@
-Return-Path: <devicetree+bounces-56326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 075C68987DF
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 14:35:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E06CA8987E1
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 14:35:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DEE2F1C21DFA
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 12:35:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B62E1C21E29
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 12:35:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73CA4266D4;
-	Thu,  4 Apr 2024 12:30:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3534B86245;
+	Thu,  4 Apr 2024 12:30:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TGMfSK4c"
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="UdPpvlmz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C127E18EA8
-	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 12:30:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3550243AA4
+	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 12:30:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712233825; cv=none; b=kL817FShRg3HX3SxwfRPzuRRdbaPhccOCLxi/oZsDPNWd8V0ikooRuqPApfg500cfVZ5Zj73aTGNWRFfToLpbOylBHj1qD9Q8woouY5eeILNgaQ2eDny6f1Su4P0Y6AAg36nDoVqP7JGcjrE+EmBhEoi0wqcK/QsgxDPh2y+Jv4=
+	t=1712233846; cv=none; b=OJUdZbVuK0KDFtT5PGUFph/OSLx0IlxbWePDCRiQusulU0Vg47Yb28wfcD/aogHzOoPL/k2Py/PCyvW1euM2oLHcwdvD5iilqm8JrqiHMJ+eCo10FNQhTi7zOzo2G39moCnJnhX4uEAb5GWqg3VrDnIBUdZlIepzXc2UJfHWV1U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712233825; c=relaxed/simple;
-	bh=hMGCi5U/GTUr4s1TD2pXM9wRWDVE6D4wK5xdmE2YqBg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=n2zhoSgT0bFGvMcrT9sylKbifljpq85nqQ/vaNVyxhvuRdWwZQhbE+vmCVKOErPruU6d/mR/EO8H7TeK/O17oGAzNSIhpNNdj9UpPk8KNzps5SKNhSl2he7qn/1mM3wyxJH1SIMXkcFiLAKDBhoQqk/updBirjFNA8ZBPBx6y1k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TGMfSK4c; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-516cdb21b34so744113e87.1
-        for <devicetree@vger.kernel.org>; Thu, 04 Apr 2024 05:30:23 -0700 (PDT)
+	s=arc-20240116; t=1712233846; c=relaxed/simple;
+	bh=f28NbA4ZuZA/fyXjKOiLtArFZfgGGB0391csJcl81uI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gY8wbSXTrjuDmzoyyNIRdjoSb3ssB3IIKPdWRB3Dq6MGKH7/5vibzsmJt8GypbydD4NbDPjiy9IccNIw8yROARuVyPZSrVZgLXkUpLWAnRM34Kz/7AlhCHhqemBjTi943WNHIPM59VTzaAe4i20NJIh+b9eaxqTOOMbMBdpdlys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=UdPpvlmz; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-415515178ceso6948465e9.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Apr 2024 05:30:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712233822; x=1712838622; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=X20l1OIbEglZq76t9YzipvH9/8wF8pWqOBX+VeO6mJ4=;
-        b=TGMfSK4ciAXhlZwN9Hw9BKWPyBitGFbI9rBqnGcUjxFtEZpKc1hfHxYLZbVGmnRd3r
-         LhaDVaC7ylco8IfsqX6N14ilVKuRIoCY/qTj7oz8zDVwtGClFGduq59c7ve+r7XW4KfP
-         5RGajWt9QpMgGiuTsY4R4pTk1f9F7JHyWryr7ycu2Ta7zuT8gjZnjba6BHvG5xYl8m7W
-         5baGQj63oAKDwyLGKOOEgjdlyMIt0bSaIezmlequmffOelRSsls6asYpAjaCHRpb+fZb
-         cHzKgoYGGQeNMOHMzrZin+bvplbyyDKeh5tvnmP9EuEtl42qTLG/hTevIj7rPwjlAbI4
-         kUHg==
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1712233841; x=1712838641; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3+BMPQleoesnEmuZIKvnJIR9RrNyhXeocOmGMELh+Uw=;
+        b=UdPpvlmzbkRG0OBRspo3R6mr9qaIOIjxZ3kgoE+5VEYXEL0mQgi2XxI7E2yA7sSkP9
+         2It8Fbwdwvf3cwC6wQ36RsqylPkisJvFNs64yUQahiBxtGZODn0TjkEsicM0HdeqUmys
+         PVF4DoUzvrwAAN/I7G3AnJ+vbXnNN1c7y0BIbSJfP+qOgmI5QaHcFW2Za1wHY2YHj9Y3
+         okSQgifFnSEurZ441Nh9NBkFymOqlRA8iCOIl8IYMDE8ghZ83NLvo3vyjCO5kypkYfl2
+         C3AakstAoqzTWK0ctR00oDwjj1eE7htJoeilH/H5eRXyxXHarWWzHf9fTAsMb4TcGWxm
+         UOkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712233822; x=1712838622;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=X20l1OIbEglZq76t9YzipvH9/8wF8pWqOBX+VeO6mJ4=;
-        b=ib5crC94JAfZVFRYzbEWvjQEYCo+DMP+reV/g414NGkbI6dyiNjHG9zUk7qNLwvmGR
-         +fuxpoV7xTTkQK32t9J59c7a/7Hf8g/toCcAdbpUDI1ahENEJIHVAXQJo5ChZEZsvNTn
-         hKseZsZrjgO2bMfDUnkIy69OiS67EmprsuM5EHB13gsuu/lA1s1p2X1VHuTixOsDnk/R
-         LLqLdcvJoEavxtb2P549ScV9wilHMEJ3OGpZRoZuywt3px5Bd2sNM7n0S26QAtP5Mtfy
-         c2t48QTn2SyFmN771ocrrjTrsqw35sTRGatUK8nqURHsWdLhFnNDyOM5oX1sCZuyxWbg
-         et+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWCpnuOjGzdGmIR7dP2VCT3CG42FRqbaDgr9WuALYe/qelMJCW7m2cytUV21NjXYIuPYfr7bT9pAYt8jPRN2QL5k005+3Obnf9Avg==
-X-Gm-Message-State: AOJu0YyiSo2441wAFigSrpIxBZmvCll6k2QelIHEMoLYjKYnvPfwU2Bm
-	rOFXAphP6oS8m08sYEmwhA6vZfw8jqxPYvBzKsPeIg3iOhN8YwBLCjuHdn3nZBM=
-X-Google-Smtp-Source: AGHT+IFUb5zsg1JnqPSDM6WCJg3DgMPy79GM9WkgadXKzQqBbfSPE4iFlNdz1Kc4Oxni4f8yZOheig==
-X-Received: by 2002:a05:6512:3707:b0:516:a115:4a4d with SMTP id z7-20020a056512370700b00516a1154a4dmr1578665lfr.68.1712233822050;
-        Thu, 04 Apr 2024 05:30:22 -0700 (PDT)
-Received: from eriador.lan (dzyjmhyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a00e:a300::227])
-        by smtp.gmail.com with ESMTPSA id b19-20020a056512071300b00515abab7697sm2286667lfs.55.2024.04.04.05.30.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Apr 2024 05:30:21 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: dri-devel@lists.freedesktop.org,
-	Adam Ford <aford173@gmail.com>
-Cc: aford@beaconembedded.com,
-	laurent.pinchart@ideasonboard.com,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH V2 1/2] drm/bridge: adv7511: Allow IRQ to share GPIO pins
-Date: Thu,  4 Apr 2024 15:30:19 +0300
-Message-ID: <171223381119.1231870.1373781151741394452.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240305004859.201085-1-aford173@gmail.com>
-References: <20240305004859.201085-1-aford173@gmail.com>
+        d=1e100.net; s=20230601; t=1712233841; x=1712838641;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3+BMPQleoesnEmuZIKvnJIR9RrNyhXeocOmGMELh+Uw=;
+        b=LJ53wNw1WBsvld+hyjES2au2KYrMCDcnT026Jw3EcHv0Gfauy/iD7np8e0dblOSlvy
+         Swo+exHZWqyEcWCS57+/p8daga0fVnlnXN7jtmliLliDjInUy78nsJT7Yk3v1TLqtihJ
+         rujY7cVUHvOZuxG57FPCUnNU3+yA52RuGef9QAmCN/vw1YkO8zLVLj/L8buX+DZ0wmwH
+         NUptOZZmJEvibEkbqd9yUsNRbwUD8Psb8SA19trJIMdaR6wHNCUdlPgmw3eUA31K9eyX
+         EzquJqIr/ITXNeAl0P4LA9VsqfvgaZrqyFOsc3y58DUCdkFRfJUAuIIaLh47m4eXZaU3
+         46dQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXWrgr8BfotRpYnPFaiKVAVx0mwSo9QXAthocpCxScfY9JTdYKjAr61I6OIc72OPSHvC/wsvOah0fx38GO+T5vj4hk8WBiNVHTK0A==
+X-Gm-Message-State: AOJu0YytoDEGWK11bHwnmblAllgRe6789u1HtvpwIFimUvChU/yElgxt
+	MbV7RzkY/ToWGahttTV8Yh13CiWrUINbbfhpllZR7mcpNHWwsS+n/AC54+1VAPL2MU1yR1zpjm/
+	P
+X-Google-Smtp-Source: AGHT+IEV9SRf3L1IqaNEnuhHOMN7UgW5DwSVakpA51/xjM2jO4fLk72OjgqTkeR4uvMKVXqT36uwBA==
+X-Received: by 2002:a05:600c:3115:b0:416:1d2e:62f1 with SMTP id g21-20020a05600c311500b004161d2e62f1mr1874361wmo.5.1712233841414;
+        Thu, 04 Apr 2024 05:30:41 -0700 (PDT)
+Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id bg2-20020a05600c3c8200b004149530aa97sm2617799wmb.10.2024.04.04.05.30.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Apr 2024 05:30:41 -0700 (PDT)
+Message-ID: <e804b257-4dc0-45f1-a5c5-66bda51cf296@freebox.fr>
+Date: Thu, 4 Apr 2024 14:30:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: msm8998: set
+ qcom,no-msa-ready-indicator for wifi
+To: Kalle Valo <kvalo@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Jeff Johnson <quic_jjohnson@quicinc.com>, ath10k
+ <ath10k@lists.infradead.org>, wireless <linux-wireless@vger.kernel.org>,
+ DT <devicetree@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Jami Kettunen <jamipkettunen@gmail.com>,
+ Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+References: <fd26ce4a-a9f3-4ada-8d46-ed36fb2456ca@freebox.fr>
+ <5cdad89c-282a-4df5-a286-b8404bc4dd81@freebox.fr>
+ <252618e8-9e80-4774-a96c-caa7f838ef01@linaro.org>
+ <502322f1-4f66-4922-bc4e-46bacac23410@linaro.org>
+ <0ca1221b-b707-450f-877d-ca07a601624d@freebox.fr>
+ <CAA8EJppeREj-0g9oGCzzKx5ywhg1mgmJR1q8yvXKN7N45do1Xg@mail.gmail.com>
+ <87ttkh49xi.fsf@kernel.org>
+Content-Language: en-US
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+In-Reply-To: <87ttkh49xi.fsf@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, 04 Mar 2024 18:48:57 -0600, Adam Ford wrote:
-> The IRQ registration currently assumes that the GPIO is dedicated
-> to it, but that may not necessarily be the case. If the board has
-> another device sharing the GPIO, it won't be registered and the
-> hot-plug detect fails to function.
+On 04/04/2024 13:57, Kalle Valo wrote:
+
+> Dmitry Baryshkov wrote:
 > 
-> Currently, the handler reads two registers and blindly
-> assumes one of them caused the interrupt and returns IRQ_HANDLED
-> unless there is an error. In order to properly do this, the IRQ
-> handler needs to check if it needs to handle the IRQ and return
-> IRQ_NONE if there is nothing to handle.  With the check added
-> and the return code properly indicating whether or not it there
-> was an IRQ, the IRQF_SHARED can be set to share a GPIO IRQ.
+>> I'd say, we should take a step back and actually verify how this was
+>> handled in the vendor kernel.
 > 
-> [...]
+> One comment related to this: usually vendor driver and firmware branches
+> go "hand in hand", meaning that a version of driver supports only one
+> specific firmware branch. And there can be a lot of branches. So even if
+> one branch might have a check for something specific, there are no
+> guarantees what the other N+1 branches do :/
 
-Applied to drm-misc-next, thanks!
+The consequences and ramifications of the above comment are not clear to me.
 
-[1/2] drm/bridge: adv7511: Allow IRQ to share GPIO pins
-      commit: f3d9683346d6b1d6e24f57e954385995601594d4
+Does this mean:
+"It is pointless to analyze a given version (or even several versions)
+of the vendor driver downstream, because there are exist a large number
+of variations of the code." ?
 
-Best regards,
--- 
-With best wishes
-Dmitry
+And thus, "it is nonsensical to try to "align" the mainline driver to
+"the" vendor driver, as there is no single "vendor driver"" ?
+
+Thus, the following patch (or one functionally-equivalent) is not acceptable?
+
+diff --git a/drivers/net/wireless/ath/ath10k/qmi.c b/drivers/net/wireless/ath/ath10k/qmi.c
+index 38e939f572a9e..fd9ac9717488a 100644
+--- a/drivers/net/wireless/ath/ath10k/qmi.c
++++ b/drivers/net/wireless/ath/ath10k/qmi.c
+@@ -1040,6 +1040,8 @@ static void ath10k_qmi_driver_event_work(struct work_struct *work)
+                switch (event->type) {
+                case ATH10K_QMI_EVENT_SERVER_ARRIVE:
+                        ath10k_qmi_event_server_arrive(qmi);
++                       printk(KERN_NOTICE "NOT WAITING FOR MSA_READY INDICATOR");
++                       ath10k_qmi_event_msa_ready(qmi);
+                        break;
+                case ATH10K_QMI_EVENT_SERVER_EXIT:
+                        ath10k_qmi_event_server_exit(qmi);
+@@ -1048,7 +1050,7 @@ static void ath10k_qmi_driver_event_work(struct work_struct *work)
+                        ath10k_qmi_event_fw_ready_ind(qmi);
+                        break;
+                case ATH10K_QMI_EVENT_MSA_READY_IND:
+-                       ath10k_qmi_event_msa_ready(qmi);
++                       printk(KERN_NOTICE "IGNORING ACTUAL MSA_READY INDICATOR");
+                        break;
+                default:
+                        ath10k_warn(ar, "invalid event type: %d", event->type);
+
+
+
+Regards
 
 
