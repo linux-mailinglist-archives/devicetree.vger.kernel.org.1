@@ -1,115 +1,106 @@
-Return-Path: <devicetree+bounces-56416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFFBD899133
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 00:20:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF3FA89914F
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 00:29:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 90A9C1F24D54
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 22:20:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C98341C21AB9
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 22:29:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E0CC13C666;
-	Thu,  4 Apr 2024 22:20:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE5AF13C667;
+	Thu,  4 Apr 2024 22:29:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="sGX0qgz5"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b="VT8yPpxE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail2.andi.de1.cc (vmd64148.contaboserver.net [161.97.139.27])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-108-mta243.mxroute.com (mail-108-mta243.mxroute.com [136.175.108.243])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C38D613473D;
-	Thu,  4 Apr 2024 22:20:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=161.97.139.27
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CBBF13C3E3
+	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 22:29:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=136.175.108.243
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712269225; cv=none; b=RHUqwcofh++lRkpcmdNhFsJuBPKwmKZ0XMFFHUQu8HlNeQld8LMbrsz6+TxKq3EyRUYJYm0DOKmEdUGRW0R1AB2F50KlBmou2zEnOgpY5qviuhlqKoy02z2fr0bmwL8cdXovZfL0iThOdJ84H1J3iqG12KR7Z6bHOX7MFFqcPGk=
+	t=1712269765; cv=none; b=mSa8TT0zLK+dm1aX0IgdQjGCrmbp6X0VdZvFxDeLd1WoA8IAYeWjkwd04jG9CqyORdENUB/dEYX13H4I7cZ9LVLNr0TszfdwPy3o8wRaQXXDnwSOFd6Fuzu1tSebv2NisfEHzGmR2NMmEl8e7pRFTmNK3/ghtFnP11NHfIj7JBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712269225; c=relaxed/simple;
-	bh=1amtG1tMvtsm2W9ukj3lLmNfIaNpzMvJZ/j8etMTEYY=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=OpoWZxkHDh6hZTZSZdlzeGE+hR5pGK5mWGo2If1y/kziiWX9EcGetjXpId7Gn6z2xGtEW6iCEoI1Blb6xjdu4+0hnyxcKylH6LevBEC06xbgxrqF9L89il9olrzyE7QyBJhzTRlzi7/413gVWMyu6WX6dEj1L/3cOfoLwdhlCww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=sGX0qgz5; arc=none smtp.client-ip=161.97.139.27
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
-	by mail2.andi.de1.cc with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <andreas@kemnade.info>)
-	id 1rsVRR-003r6M-2c;
-	Fri, 05 Apr 2024 00:20:17 +0200
+	s=arc-20240116; t=1712269765; c=relaxed/simple;
+	bh=7gOnPN1J8zc+sOjKnhu29RZ/HZGY4Msw0cPdBeM4CQw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZN2YZC3cdSScTftiKXSBM78U8gEn3HYIiPx2XF5iWN1B6IzDRgxlMqNulFnZVQ71wKJspzro0a0SXFNiKiOg0Nx9WtPBglO5u5tGhaUWuV/yPuSiz8qHM9TeUt1l+MoJRrDOt7qMcLZLCAmPVoV4cWVEv8vahmGzIYAXP5/e0hY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com; spf=pass smtp.mailfrom=luigi311.com; dkim=pass (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b=VT8yPpxE; arc=none smtp.client-ip=136.175.108.243
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=luigi311.com
+Received: from filter006.mxroute.com ([136.175.111.2] filter006.mxroute.com)
+ (Authenticated sender: mN4UYu2MZsgR)
+ by mail-108-mta243.mxroute.com (ZoneMTA) with ESMTPSA id 18eab3b056b0003bea.00f
+ for <devicetree@vger.kernel.org>
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+ Thu, 04 Apr 2024 22:29:15 +0000
+X-Zone-Loop: 2651607568485f58849d306c3871bf569b53b6dcbd40
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-Id:Date:Subject:To:From:Sender:Reply-To:Cc:
-	Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=XI+TA2dvHhHhLvWbTaAQjVRQOBUokh+WbPMJYzMObwc=; b=sGX0qgz53gmLTGQ7Bew1xFzn1B
-	yDlEmdUZ0e13eiWAGlYS4IgZKRe7e1lCqBxQf6RlrW81g8sP2cavbeTiqMOqTAtX27qOP+rsr9C6M
-	ueEImF+ydnemTb7ojw570D25Y4+Utb+jaJ1D3U4LhMKNwvwHYw/c4pqvgVNo2a7ZIqKoknn6HjN68
-	J5Rvd75Bry0Yq5Olu1Msl1QINTt3eN4AL6RpOL8Gg2uI8B90LpnAOOSdYK6rJZkt+rUq/IP3Pcr++
-	BLqNhAcNrYV51xy37F0oSuZcISux7Po4fkt/2ie52etq9ZZF3I+/AYiANOBH65LbXY16UHD3+Am0q
-	cOoz71PA==;
-Received: from p2003010777026a001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:107:7702:6a00:1a3d:a2ff:febf:d33a] helo=aktux)
-	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <andreas@kemnade.info>)
-	id 1rsVRP-000Nwr-1D;
-	Fri, 05 Apr 2024 00:20:15 +0200
-Received: from andi by aktux with local (Exim 4.96)
-	(envelope-from <andreas@kemnade.info>)
-	id 1rsVRP-002oTv-0l;
-	Fri, 05 Apr 2024 00:20:15 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: dmitry.torokhov@gmail.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	andreas@kemnade.info,
-	o.rempel@pengutronix.de,
-	u.kleine-koenig@pengutronix.de,
-	hdegoede@redhat.com,
-	andy.shevchenko@gmail.com,
-	ye.xingchen@zte.com.cn,
-	p.puschmann@pironex.com,
-	linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	caleb.connolly@linaro.org
-Subject: [PATCH v2 2/2] Input: edt-ft5x06 - add ft5426
-Date: Fri,  5 Apr 2024 00:20:09 +0200
-Message-Id: <20240404222009.670685-3-andreas@kemnade.info>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240404222009.670685-1-andreas@kemnade.info>
-References: <20240404222009.670685-1-andreas@kemnade.info>
+	d=luigi311.com; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+	From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=b0vJntwX4Lap8ep/ms4s2qljGex8NbqYYt5JzOJnwNk=; b=VT8yPpxETHdqpbnHBBV74VKE38
+	LlhHBt61GXAtPGRCgkd4bAC67Inwzf7tnU0sITgWiXRDE8BiQ0wlxsrSqk+DuZcaO4aaBvRva9Jzz
+	hNPVirkAFp3MeQP9Xq8U/bABDC+FiQQt5JdX3pmeOkOu8c1m4T0ysTALzEQ7VvAVlrXWk8Kpm1yCU
+	pUN6eCaFwnAivyDEs0pYjb4qiXpgazk1D2v6o4RXFVlwJc2CPlay5JN40sCigInJXO5G5Vevslv+i
+	nM6iO21uhfOR4dTxVooMzNJg7SqX1BKf/MY+A3WTgO9+HUBdDGC9aTfC2GK2LlRHw1f1b2w5jZ0Vn
+	wajJm28Q==;
+Message-ID: <6c15e492-411a-40aa-b02e-83b8a6d107da@luigi311.com>
+Date: Thu, 4 Apr 2024 16:29:11 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 12/25] media: i2c: imx258: Allow configuration of clock
+ lane behaviour
+To: Pavel Machek <pavel@ucw.cz>
+Cc: linux-media@vger.kernel.org, dave.stevenson@raspberrypi.com,
+ jacopo.mondi@ideasonboard.com, mchehab@kernel.org, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org,
+ s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+ sakari.ailus@linux.intel.com, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org
+References: <20240403150355.189229-1-git@luigi311.com>
+ <20240403150355.189229-13-git@luigi311.com> <Zg2kcI/1Gdgt0ilB@duo.ucw.cz>
+Content-Language: en-US
+From: Luigi311 <git@luigi311.com>
+In-Reply-To: <Zg2kcI/1Gdgt0ilB@duo.ucw.cz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authenticated-Id: git@luigi311.com
 
-As ft5426 seems to be compatible with this driver, add it.
-Debug output during identification: Model "generic ft5x06 (79)", Rev. "
+On 4/3/24 12:48, Pavel Machek wrote:
+> Hi!
+> 
+>> The sensor supports the clock lane either remaining in HS mode
+>> during frame blanking, or dropping to LP11.
+>>
+>> Add configuration of the mode via V4L2_MBUS_CSI2_NONCONTINUOUS_CLOCK.
+> 
+>> +	ret = imx258_write_reg(imx258, IMX258_CLK_BLANK_STOP,
+>> +			       IMX258_REG_VALUE_08BIT,
+>> +			       imx258->csi2_flags & V4L2_MBUS_CSI2_NONCONTINUOUS_CLOCK ?
+>> +			       1 : 0);
+> 
+> !! can be used to turn value into 1/0. I find it easier to read than ?
+> 1 : 0  combination, but possibly that's fine, too.
+> 
+> Best regards,
+> 								Pavel
+> 
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- drivers/input/touchscreen/edt-ft5x06.c | 1 +
- 1 file changed, 1 insertion(+)
+I assume you mean by using 
 
-diff --git a/drivers/input/touchscreen/edt-ft5x06.c b/drivers/input/touchscreen/edt-ft5x06.c
-index 2a1db1134476..4e7621a80175 100644
---- a/drivers/input/touchscreen/edt-ft5x06.c
-+++ b/drivers/input/touchscreen/edt-ft5x06.c
-@@ -1484,6 +1484,7 @@ static const struct of_device_id edt_ft5x06_of_match[] = {
- 	{ .compatible = "edt,edt-ft5206", .data = &edt_ft5x06_data },
- 	{ .compatible = "edt,edt-ft5306", .data = &edt_ft5x06_data },
- 	{ .compatible = "edt,edt-ft5406", .data = &edt_ft5x06_data },
-+	{ .compatible = "focaltech,ft5426", .data = &edt_ft5506_data },
- 	{ .compatible = "edt,edt-ft5506", .data = &edt_ft5506_data },
- 	{ .compatible = "evervision,ev-ft5726", .data = &edt_ft5506_data },
- 	/* Note focaltech vendor prefix for compatibility with ft6236.c */
--- 
-2.39.2
+!!(imx258->csi2_flags & V4L2_MBUS_CSI2_NONCONTINUOUS_CLOCK)
 
+I can go ahead and use that instead
 
