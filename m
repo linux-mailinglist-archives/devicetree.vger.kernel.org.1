@@ -1,95 +1,83 @@
-Return-Path: <devicetree+bounces-56213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4011898191
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 08:40:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 122F3898195
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 08:46:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 39034B223DD
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 06:40:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B27B72865AD
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 06:46:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D115D31A8F;
-	Thu,  4 Apr 2024 06:40:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DD843D576;
+	Thu,  4 Apr 2024 06:46:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DxEnoAYb"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OL/XYWWT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F3552574F
-	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 06:40:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4817634CD8;
+	Thu,  4 Apr 2024 06:46:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712212832; cv=none; b=QT6ErRBZSSv1kc8S9p7KwbFIN2R+fWHmeyu8tJpbO5lwNtYdND+PI91LNlFR36JhCyxnojeQCYs+JcRyxXam7sFBVvf9VJiYLkMDi35CEi9LmU5lbYeasJJM8Vkx48TvLnwJKUS5nIZULhgCWpJ7vj8vuIfRyoSdAduDwow+ftA=
+	t=1712213210; cv=none; b=Hp+NoJeyIQ3RDwdRV3Eff6o5TxKFTvE7HSAumTWVvuTI7VmH/EZ8tYTaEVeXmqeJVo0l28VTi+kAr5TGnkt419GSiEUPIPEiviYj+JfjAGVncTiixH2KkiqjiwcwN98kbS8vMzzn0K61zbvJ+ILHfNsHRaGvH4FycAdcEFPMFvs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712212832; c=relaxed/simple;
-	bh=345Y31+/CGyl0VNnjAwh/6woDFo67XzbRr5nBCDRsRk=;
+	s=arc-20240116; t=1712213210; c=relaxed/simple;
+	bh=bMDLNBhBvkhLFpcvsy0yCqj4AI0a6AiW29CLCySMGFE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pTpeGmrZyIpfx1GmfVeyDRlSeMaGBVBbpKJORXlfxJmv9PsBCyGU3fJEysInn1UNDq+weZ1hvAeAXWcQUt8SIpHDe7c68uohUHz2kmXJ9oGrdWwVFxS/c3YZTUbS05k+cFCIzn6RDzVKuPtRZOexex7nKZhtPAIqTVF6FqpflE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DxEnoAYb; arc=none smtp.client-ip=209.85.210.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-6ecec796323so288707b3a.3
-        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 23:40:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712212831; x=1712817631; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=sTfKjM314F+9yuuvd2dnBl05a+EUksaSOuF5rUZDqRE=;
-        b=DxEnoAYb+4VS+jtOFKkvFKnn+GzB++63XStiVdXS5E2f8BPeLnHTt60VRFcf77soW7
-         6l9yoqap9HP1oNtqkYbC0WEBQx16o/9FtoG2vderiMe3sDM2FvnHnG3Kg18Csw2qk1o1
-         c1UNDWeZW2Nj3+6VzVcyHcW85Z8OWf2yqV2qNztjBgra4uX5T1BCqAzH6p4KVn24hCu8
-         f5G28i1aLlkw8MUk72nW6+2zU1awOoGbECioOvPRF24o8m+Mdev962oUUcWHMoSFC+vM
-         VU5qYa0blN3Umxkm24p94g50eZGXoNc77l2f5khXOuqQd6NLdQqXYr8fnRUnq6ESC3Xl
-         nOvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712212831; x=1712817631;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sTfKjM314F+9yuuvd2dnBl05a+EUksaSOuF5rUZDqRE=;
-        b=u/i2/nTlaaVj6OFwyvuuIKqezRUge9CbNW8CVVV9Yyw3A1dDok+6fKBiCb7vSC/mj1
-         LHQFyXr3oGG7odW9zbBxuAu3ZDahL/tx07pPdwDnZhvFmwNShvtaE3gIwWkcp9z4LIPA
-         dQ5SRdRL8bKCJTYoEqSslaZNkd0VWUuObOS0beigTRT4hiK1IIAvKUb/PJwAFwEuvJbW
-         2vldBoS7u3a/5sLpvylI+yJ9mG56GNKPgVbbzkk7utxurvc0+TzAqyLDgh8BGhUTrPIB
-         09qtihzp95EWYZVFJ8Xwx2AKqsc34bBI60WfHpDN1dPk93f4fxIp6iB2TjvJ9Lz3DOOw
-         Aw3A==
-X-Forwarded-Encrypted: i=1; AJvYcCV2lXIncxRi7EFMrvip9//o39/kXelbd7QQ3YcSGf56sWhHrH8OtvW8slVgG5QR3ubZJqFRT3D595LM5Ichp5QxNwiFIOEMoujNGw==
-X-Gm-Message-State: AOJu0Yx5jbQdyCVt5KZSxD7D9NbE7kn1l3QleHcNaCyiI3ImHkQxA9be
-	Dio0L8n1uyxSiQyyHbfpoKKN5Azb4jTEAkn8Z9L90cljRlmH3wljgJnRxfDhHrI=
-X-Google-Smtp-Source: AGHT+IFVOKVaqyVx23c/MS763nz5MYjoPJ6L/5Bhuu+heY75JfG1zsfK6FvTXL+3XuILEy2awOITdA==
-X-Received: by 2002:a05:6a20:9752:b0:1a3:ae4a:92f with SMTP id hs18-20020a056a20975200b001a3ae4a092fmr1526347pzc.32.1712212830512;
-        Wed, 03 Apr 2024 23:40:30 -0700 (PDT)
-Received: from localhost ([122.172.85.206])
-        by smtp.gmail.com with ESMTPSA id kt1-20020a056a004ba100b006eae6c8d2c3sm11141871pfb.106.2024.04.03.23.40.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Apr 2024 23:40:30 -0700 (PDT)
-Date: Thu, 4 Apr 2024 12:10:27 +0530
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Yangtao Li <tiny.windzz@gmail.com>, Viresh Kumar <vireshk@kernel.org>,
-	Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	"Rafael J . Wysocki" <rafael@kernel.org>, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Brandon Cheo Fusi <fusibrandon13@gmail.com>,
-	Martin Botka <martin.botka@somainline.org>,
-	Martin Botka <martin.botka1@gmail.com>,
-	Chris Morgan <macroalpha82@gmail.com>,
-	Ryan Walklin <ryan@testtoast.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>
-Subject: Re: [PATCH v4 0/8] cpufreq: sun50i: Add Allwinner H616 support
-Message-ID: <20240404064027.shjqvqih7s5rnv2i@vireshk-i7>
-References: <20240329141311.27158-1-andre.przywara@arm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Cza/Iyu1bYGeBv034TB6wh/9VfbrQU5wyowdlBPbi7GQijaq478Rw9B15CDqkHkPwAeGOQDGYw1Zsz7XwZgw5+0pPGTnUjD95dtDJQGQlGt5dY1TlqL6RF7CazCVLZrmQyD2g0/ec1EWu94552tSARAwV/TSi9URAlkWwpCWDIQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=OL/XYWWT; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1712213208; x=1743749208;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=bMDLNBhBvkhLFpcvsy0yCqj4AI0a6AiW29CLCySMGFE=;
+  b=OL/XYWWTKz4CzHFjNlOgxSQzTAn7SxKbDpqwTut3JCHRx0xxqfL3nkH1
+   C00MwkU09kkEZ/DSwwu5EkEtX9tXq9zTDG2wpoylAJ8CMOYRxB7w1ZKhT
+   SH89gCpZIbO7lcJarzvJC03iaV/zpGM4NnyZIJSndmaEHlFVWZw+1LyYL
+   /kkCYvmS8YetvfvdpFRRh+14IrRxXQzLjXF58RasB1S7gZuciMy88r3ZI
+   kWrXWa7qqz2GUyUHTpkOIbtnPyBgmBSStDCzXK610qPO2tiszaFd5k1vN
+   2SxZD3JZXLjUiQR1R54sfH/dFwFTqyU2uxGLloVwgCEK2nalsVLDpCTkg
+   A==;
+X-CSE-ConnectionGUID: GiunqB3hSoeVRSfS4kHMBQ==
+X-CSE-MsgGUID: sW1oCmmGQt6JpM0ylrgh+Q==
+X-IronPort-AV: E=McAfee;i="6600,9927,11033"; a="7379357"
+X-IronPort-AV: E=Sophos;i="6.07,178,1708416000"; 
+   d="scan'208";a="7379357"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Apr 2024 23:46:47 -0700
+X-CSE-ConnectionGUID: VdGosPykQImF++czo0WKFw==
+X-CSE-MsgGUID: 5Z/d2OWiTuSW0zkKSBOjTA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,178,1708416000"; 
+   d="scan'208";a="18525005"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Apr 2024 23:46:42 -0700
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 3D31211F855;
+	Thu,  4 Apr 2024 09:46:39 +0300 (EEST)
+Date: Thu, 4 Apr 2024 06:46:39 +0000
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Luigi311 <git@luigi311.com>
+Cc: linux-media@vger.kernel.org, dave.stevenson@raspberrypi.com,
+	jacopo.mondi@ideasonboard.com, mchehab@kernel.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	pavel@ucw.cz, phone-devel@vger.kernel.org,
+	Ondrej Jirman <megi@xff.cz>
+Subject: Re: [PATCH v3 21/25] drivers: media: i2c: imx258: Use macros
+Message-ID: <Zg5Mz0QSqNDXzY4o@kekkonen.localdomain>
+References: <20240403150355.189229-1-git@luigi311.com>
+ <20240403150355.189229-22-git@luigi311.com>
+ <Zg2CirmwL3JfjA8s@kekkonen.localdomain>
+ <df8c245a-40e9-4bf5-b870-7efe321d820a@luigi311.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,18 +86,97 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240329141311.27158-1-andre.przywara@arm.com>
+In-Reply-To: <df8c245a-40e9-4bf5-b870-7efe321d820a@luigi311.com>
 
-On 29-03-24, 14:13, Andre Przywara wrote:
-> This series adds cpufreq support to the Allwinner H616 SoC.
-> v4 allows compilation outside of arm/arm64, by making the SMCCC call
-> optional, the rest of the changes are added tags and cosmetic fixes.
-> This is based on Martin's original series from about half a year ago[1].
-> Thanks for the comments on the list!
-> See below for a changelog.
+On Wed, Apr 03, 2024 at 01:17:26PM -0600, Luigi311 wrote:
+> On 4/3/24 10:23, Sakari Ailus wrote:
+> > Hi Luis,
+> > 
+> > On Wed, Apr 03, 2024 at 09:03:50AM -0600, git@luigi311.com wrote:
+> >> From: Luis Garcia <git@luigi311.com>
+> >>
+> >> Use understandable macros instead of raw values.
+> >>
+> >> Signed-off-by: Ondrej Jirman <megi@xff.cz>
+> >> Signed-off-by: Luis Garcia <git@luigi311.com>
+> >> ---
+> >>  drivers/media/i2c/imx258.c | 434 ++++++++++++++++++-------------------
+> >>  1 file changed, 207 insertions(+), 227 deletions(-)
+> >>
+> >> diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
+> >> index e2ecf6109516..30352c33f63c 100644
+> >> --- a/drivers/media/i2c/imx258.c
+> >> +++ b/drivers/media/i2c/imx258.c
+> >> @@ -33,8 +33,6 @@
+> >>  #define IMX258_VTS_30FPS_VGA		0x034c
+> >>  #define IMX258_VTS_MAX			65525
+> >>  
+> >> -#define IMX258_REG_VTS			0x0340
+> >> -
+> >>  /* HBLANK control - read only */
+> >>  #define IMX258_PPL_DEFAULT		5352
+> >>  
+> >> @@ -90,6 +88,53 @@
+> >>  #define IMX258_PIXEL_ARRAY_WIDTH	4208U
+> >>  #define IMX258_PIXEL_ARRAY_HEIGHT	3120U
+> >>  
+> >> +/* regs */
+> >> +#define IMX258_REG_PLL_MULT_DRIV                  0x0310
+> >> +#define IMX258_REG_IVTPXCK_DIV                    0x0301
+> >> +#define IMX258_REG_IVTSYCK_DIV                    0x0303
+> >> +#define IMX258_REG_PREPLLCK_VT_DIV                0x0305
+> >> +#define IMX258_REG_IOPPXCK_DIV                    0x0309
+> >> +#define IMX258_REG_IOPSYCK_DIV                    0x030b
+> >> +#define IMX258_REG_PREPLLCK_OP_DIV                0x030d
+> >> +#define IMX258_REG_PHASE_PIX_OUTEN                0x3030
+> >> +#define IMX258_REG_PDPIX_DATA_RATE                0x3032
+> >> +#define IMX258_REG_SCALE_MODE                     0x0401
+> >> +#define IMX258_REG_SCALE_MODE_EXT                 0x3038
+> >> +#define IMX258_REG_AF_WINDOW_MODE                 0x7bcd
+> >> +#define IMX258_REG_FRM_LENGTH_CTL                 0x0350
+> >> +#define IMX258_REG_CSI_LANE_MODE                  0x0114
+> >> +#define IMX258_REG_X_EVN_INC                      0x0381
+> >> +#define IMX258_REG_X_ODD_INC                      0x0383
+> >> +#define IMX258_REG_Y_EVN_INC                      0x0385
+> >> +#define IMX258_REG_Y_ODD_INC                      0x0387
+> >> +#define IMX258_REG_BINNING_MODE                   0x0900
+> >> +#define IMX258_REG_BINNING_TYPE_V                 0x0901
+> >> +#define IMX258_REG_FORCE_FD_SUM                   0x300d
+> >> +#define IMX258_REG_DIG_CROP_X_OFFSET              0x0408
+> >> +#define IMX258_REG_DIG_CROP_Y_OFFSET              0x040a
+> >> +#define IMX258_REG_DIG_CROP_IMAGE_WIDTH           0x040c
+> >> +#define IMX258_REG_DIG_CROP_IMAGE_HEIGHT          0x040e
+> >> +#define IMX258_REG_SCALE_M                        0x0404
+> >> +#define IMX258_REG_X_OUT_SIZE                     0x034c
+> >> +#define IMX258_REG_Y_OUT_SIZE                     0x034e
+> >> +#define IMX258_REG_X_ADD_STA                      0x0344
+> >> +#define IMX258_REG_Y_ADD_STA                      0x0346
+> >> +#define IMX258_REG_X_ADD_END                      0x0348
+> >> +#define IMX258_REG_Y_ADD_END                      0x034a
+> >> +#define IMX258_REG_EXCK_FREQ                      0x0136
+> >> +#define IMX258_REG_CSI_DT_FMT                     0x0112
+> >> +#define IMX258_REG_LINE_LENGTH_PCK                0x0342
+> >> +#define IMX258_REG_SCALE_M_EXT                    0x303a
+> >> +#define IMX258_REG_FRM_LENGTH_LINES               0x0340
+> >> +#define IMX258_REG_FINE_INTEG_TIME                0x0200
+> >> +#define IMX258_REG_PLL_IVT_MPY                    0x0306
+> >> +#define IMX258_REG_PLL_IOP_MPY                    0x030e
+> >> +#define IMX258_REG_REQ_LINK_BIT_RATE_MBPS_H       0x0820
+> >> +#define IMX258_REG_REQ_LINK_BIT_RATE_MBPS_L       0x0822
+> >> +
+> >> +#define REG8(a, v) { a, v }
+> >> +#define REG16(a, v) { a, ((v) >> 8) & 0xff }, { (a) + 1, (v) & 0xff }
+> > 
+> > The patch is nice but these macros are better replaced by the V4L2 CCI
+> > helper that also offers register access functions. Could you add a patch to
+> > convert the driver to use it (maybe after this one)?
+> > 
+> 
+> Ohh perfect, using something else would be great. Ill go ahead and see
+> if I can get that working.
 
-Is it okay to merge all the changes via the cpufreq tree ?
+Thanks. It may be easier to just do it in this one actually. Up to you.
 
 -- 
-viresh
+Sakari Ailus
 
