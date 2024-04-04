@@ -1,126 +1,98 @@
-Return-Path: <devicetree+bounces-56390-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56391-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79B91898F28
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 21:43:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23B4C898F40
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 21:54:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3714E282007
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 19:43:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9C9328A74B
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 19:54:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82A111339AB;
-	Thu,  4 Apr 2024 19:43:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 937FF134435;
+	Thu,  4 Apr 2024 19:54:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="kr0buz8g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mail2.andi.de1.cc (vmd64148.contaboserver.net [161.97.139.27])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F44212D76B;
-	Thu,  4 Apr 2024 19:43:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E370513441C;
+	Thu,  4 Apr 2024 19:54:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=161.97.139.27
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712259804; cv=none; b=g1ER/mNZniydwsUsNlos6zNNz1zaNApQGBCaRXDZAYkam2XrDkSBqFr5FzOSNRfO5I9ov+rHcNWHuejpG4uh15CEXj+Y4syVWxGhhgl9GhLczzI6Lz2kUxAOzeVFz6ezvqtK8hZfNKrKRpisFW0JfoM0xLVpwcgTD0Wo/5jZYGs=
+	t=1712260471; cv=none; b=AEXoU/ZcpW1pf66pYtfhWAVVOBgaxprJG81Nc6Kng2xu3jA93v0t8uGS9Z94S+CaPNBY9MdV17g+RsB+IYHJatHF6aWq97zyyMAqjwC8IFf+ocjLTrGOyBpBMzTBvG6ZJOLpc71TAitOjp/2MniUaYsXroUHNfiw6fIvfxZNWX8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712259804; c=relaxed/simple;
-	bh=zUDgi6iudoTJasQRtCJQcwLNiKQJmhurWg2xbJqb//k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=PUs52ogJC4Ndgop8m0VZPMqjJaMhGBJ1WywD+FBqBG2NkANNCYl9JPt7JA9ea4+5ibuyIEbcbuN1v9+4EbZtNySvY3Vr+Ya2OYCZ+3gVKTqEKZzK7u91jGeQg5BzCkjcSGe0g5SW0HeNK4ehf/Du/UG9Ok9Qj0Ld7jHhOxsk+64=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875aaf.versanet.de ([83.135.90.175] helo=phil.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rsSzU-0005We-Pz; Thu, 04 Apr 2024 21:43:16 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>
-Cc: linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, David Jander <david@protonic.nl>,
- Sascha Hauer <s.hauer@pengutronix.de>
-Subject: Re: [PATCH] clk: rockchip: clk-rk3568.c: Add missing USB480M_PHY mux
-Date: Thu, 04 Apr 2024 21:43:15 +0200
-Message-ID: <3612648.44csPzL39Z@phil>
-In-Reply-To:
- <20240404-clk-rockchip-rk3568-add-usb480m-phy-mux-v1-1-e8542afd58b9@pengutronix.de>
-References:
- <20240404-clk-rockchip-rk3568-add-usb480m-phy-mux-v1-1-e8542afd58b9@pengutronix.de>
+	s=arc-20240116; t=1712260471; c=relaxed/simple;
+	bh=WCDOqr6T0DsPX0MrpS9Z6MYxudmPTc8g6TlfS4Ix9zU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=cuXC/ohPD0764seCDF9Eb051fxDr+KxZUN2Vzo7bh+HEJXONPzFS3ZcDL7Enn9sQUPmx/7vVwikm5H0zOQOLgvseeqV/zzgspgIEbhjs1LDBApkXb2WSdp2Uh+KQXRKX17U3uQIwKWCcjzFzYvLULR2J7votLetm0DKJr5xboow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=kr0buz8g; arc=none smtp.client-ip=161.97.139.27
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
+	by mail2.andi.de1.cc with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <andreas@kemnade.info>)
+	id 1rsTAJ-003qnh-15;
+	Thu, 04 Apr 2024 21:54:27 +0200
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:MIME-Version:
+	Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=TbywA3K21x1kIvOru3LrZgufkrtlW6LRTTh7bpqzLBE=; b=kr0buz8gu+4rcb7e4h/Yrr3FeK
+	RlAofRkZMrVg531SyNH5LePYOMx6ZPXdXfHrJC7Jlz5PkLogIvyPUcA2mS+hkfSyE9MWOaZfTV/VF
+	mVXaFC06TpkgS3srXMl8iCbe0otxmbSKEDh9hHcWF36M9KEZ7N/IRC+oXvimUvYGjNFwmAo30qAW4
+	MVPsA5WECY+slpovUCddRvKk/VRfvTyzRZGIzJhi+xtMyph0pyMXIGcoy1pYLYvjwlxsFcwokH7bv
+	BbE6qYe+iDXrA8dNcclSd/b6g5hkWr+CiKOwZ2EuprS6lQX3f2ZHtFBVZ7PinljXRj6H0Pz5mG6NC
+	E7ha40Pw==;
+Received: from p2003010777026a001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:107:7702:6a00:1a3d:a2ff:febf:d33a] helo=aktux)
+	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <andreas@kemnade.info>)
+	id 1rsTAH-000Ngh-1W;
+	Thu, 04 Apr 2024 21:54:25 +0200
+Received: from andi by aktux with local (Exim 4.96)
+	(envelope-from <andreas@kemnade.info>)
+	id 1rsTAH-002nNP-0N;
+	Thu, 04 Apr 2024 21:54:25 +0200
+From: Andreas Kemnade <andreas@kemnade.info>
+To: lee@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	mazziesaccount@gmail.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH v2 0/2] mfd: Add ROHM BD71879
+Date: Thu,  4 Apr 2024 21:54:21 +0200
+Message-Id: <20240404195423.666446-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 
-Hi Sascha,
+Add software-compatible variant of the BD71828.
 
-Am Donnerstag, 4. April 2024, 09:27:01 CEST schrieb Sascha Hauer:
-> From: David Jander <david@protonic.nl>
-> 
-> The USB480M clock can source from a MUX that selects the clock to come
-> from either of the USB-phy internal 480MHz PLLs. These clocks are
-> provided by the USB phy driver.
-> 
-> Signed-off-by: David Jander <david@protonic.nl>
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> ---
->  drivers/clk/rockchip/clk-rk3568.c      | 4 ++++
->  include/dt-bindings/clock/rk3568-cru.h | 1 +
->  2 files changed, 5 insertions(+)
-> 
-> diff --git a/drivers/clk/rockchip/clk-rk3568.c b/drivers/clk/rockchip/clk-rk3568.c
-> index 8cb21d10beca2..2d44bcaef046b 100644
-> --- a/drivers/clk/rockchip/clk-rk3568.c
-> +++ b/drivers/clk/rockchip/clk-rk3568.c
-> @@ -215,6 +215,7 @@ static const struct rockchip_cpuclk_reg_data rk3568_cpuclk_data = {
->  
->  PNAME(mux_pll_p)			= { "xin24m" };
->  PNAME(mux_usb480m_p)			= { "xin24m", "usb480m_phy", "clk_rtc_32k" };
-> +PNAME(mux_usb480m_phy_p)		= { "clk_usbphy0_480m", "clk_usbphy1_480m"};
->  PNAME(mux_armclk_p)			= { "apll", "gpll" };
->  PNAME(clk_i2s0_8ch_tx_p)		= { "clk_i2s0_8ch_tx_src", "clk_i2s0_8ch_tx_frac", "i2s0_mclkin", "xin_osc0_half" };
->  PNAME(clk_i2s0_8ch_rx_p)		= { "clk_i2s0_8ch_rx_src", "clk_i2s0_8ch_rx_frac", "i2s0_mclkin", "xin_osc0_half" };
-> @@ -485,6 +486,9 @@ static struct rockchip_clk_branch rk3568_clk_branches[] __initdata = {
->  	MUX(USB480M, "usb480m", mux_usb480m_p, CLK_SET_RATE_PARENT,
->  			RK3568_MODE_CON0, 14, 2, MFLAGS),
->  
-> +	MUX(USB480M_PHY, "usb480m_phy", mux_usb480m_phy_p, CLK_SET_RATE_PARENT,
-> +			RK3568_MISC_CON2, 15, 1, MFLAGS),
-> +
->  	/* PD_CORE */
->  	COMPOSITE(0, "sclk_core_src", apll_gpll_npll_p, CLK_IGNORE_UNUSED,
->  			RK3568_CLKSEL_CON(2), 8, 2, MFLAGS, 0, 4, DFLAGS | CLK_DIVIDER_READ_ONLY,
-> diff --git a/include/dt-bindings/clock/rk3568-cru.h b/include/dt-bindings/clock/rk3568-cru.h
-> index d29890865150d..5263085c5b238 100644
-> --- a/include/dt-bindings/clock/rk3568-cru.h
-> +++ b/include/dt-bindings/clock/rk3568-cru.h
-> @@ -78,6 +78,7 @@
->  #define CPLL_333M		9
->  #define ARMCLK			10
->  #define USB480M			11
-> +#define USB480M_PHY		12
->  #define ACLK_CORE_NIU2BUS	18
->  #define CLK_CORE_PVTM		19
->  #define CLK_CORE_PVTM_CORE	20
-> 
+Changes in v2:
+allow compatible = "rohm,bd71879", "rohm,bd71828"
 
-Please separate the code change and clock-id addition into separate
-patches. That way dt-maintainers will more easily see that there are
-changes to the dt-binding inside.
+Andreas Kemnade (2):
+  dt-bindings: mfd: Add ROHM BD71879
+  mfd: rohm-bd71828: Add software-compatible variant BD71879
 
-Other than that, the change looks fine :-)
+ .../devicetree/bindings/mfd/rohm,bd71828-pmic.yaml         | 7 ++++++-
+ drivers/mfd/rohm-bd71828.c                                 | 4 ++++
+ 2 files changed, 10 insertions(+), 1 deletion(-)
 
-
-Thanks
-Heiko
-
-
+-- 
+2.39.2
 
 
