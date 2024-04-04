@@ -1,152 +1,168 @@
-Return-Path: <devicetree+bounces-56336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13CD289889F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 15:16:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D0618988BE
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 15:24:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A83C31F234D0
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 13:16:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C9DF1C21734
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 13:24:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF82C1272AF;
-	Thu,  4 Apr 2024 13:16:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB12B127B7E;
+	Thu,  4 Apr 2024 13:24:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Oq4vWqDz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="STX2NdSO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15EBF86245;
-	Thu,  4 Apr 2024 13:15:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF9DF86AEE
+	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 13:24:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712236561; cv=none; b=TC74HvwL7C1zTjUHigmnDLGFNORXD6+hVuLb9C7IkxFa4WJcLLOsVoaJSNwy2WRZOVQL9m5x31YLNk9vyfPKzWGZowIAPZT7KdkfEavdwzFKYcx7Tv5Z+O4XZztujVNDq5806+0Xd4shfy9yv91PNf6jyTkEJdZ93kFjwAOo2QI=
+	t=1712237084; cv=none; b=tTGNKGYFMHuFjQNccp/7zjaUcDSw5a9+N1KCzGswyvOirUHfBaBAGc7cbYJeuHtngvtiT2VLjawRnt8bzkojaRipStGob0RsY0xGKglorUx+n+Idw2lseY6suC9OJSk2LPI3yrKfVDafRSK14Jp+9/jABVjsh26tuaqmqsjoQe8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712236561; c=relaxed/simple;
-	bh=/gCKA/oReueBMsYxeYFIKM9dWH0tB6N2OUmuLZEgT1A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pVEcywnIlsTRXYjtNYWgoEGMNye1E1x6sIUbs4BExZ4s14qOUR45Lr5FDPDEZ7xQwXkTR+kDK0bNj+PDmmW1t8nAaVQGNJCmMbAvlXwZ2LnJh6xZnfgO9JR0zasUQaAHd/Aj3ypCQj7Wdo5rtdVwI9e/PEJXdhV7ftHSxEz1FJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Oq4vWqDz; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-516c11b6af9so1367757e87.2;
-        Thu, 04 Apr 2024 06:15:59 -0700 (PDT)
+	s=arc-20240116; t=1712237084; c=relaxed/simple;
+	bh=nBXwkA4A0krstFpyvfjsEVO0w0Xz+CnGhEwhMIz2nxA=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Kge4+HHP/y5eiFoONPrk+XO7l1y5ri/PAlimI6gApAkQbAkay6xhUA8JJqCffb8jfAZPyfzUOTFkSZjp0nNctqSV3Mfwyk+mGado4sEMc01x7BNBy1OJKEzyy8MyYLmEr0EuFXtEk1Y6zKWUUlWN4jWuStn/zkTwhz1NCjoI0cw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=STX2NdSO; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2d23114b19dso11257231fa.3
+        for <devicetree@vger.kernel.org>; Thu, 04 Apr 2024 06:24:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712236558; x=1712841358; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9FbFTfD/TvLUw6fU15r42KRVHlg7cUmb8nJYcUP4iv4=;
-        b=Oq4vWqDzq+CIjmJddOh1qNEWdNUCysErHnKZRo44dje+w5uY/g56BN/KShvxrYfGY7
-         vadOcy9ZyVm9tSCxpPBn64SL4fhsz3mW5DaOxzae+HeQ3FsF4dcO/A0peWrAHAU39Iu3
-         cGszU+BhsSoI3hPXPhx1pMThe5A1rMaRP6OQZeq8PTYJ8SPl3PWBekTwgZp4itDgBQ3S
-         yBC//TqUe5QoNaQ+uef6HMuLEBM6thT4fq8i7Dzd5hc/o+xJuDeQ8aBuGH/MkHhfktCB
-         S5IJVEqSQZRKug4BPmvfrY1jskvlldToK6Hz2rpFHWfGQI6ueIWvgZDjHe+SMwAWHXmu
-         ub8A==
+        d=linaro.org; s=google; t=1712237080; x=1712841880; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=QPezEfD0t1esOw49T38S7/dvcH4ZrRMz2JA7Keo/jF4=;
+        b=STX2NdSOVMuHrqgjp5g0ZlGQ3/lhfA1n/DToyUa6dsG1jme+LaJV+O+ZDeiU1YN0ST
+         UlqSF+RKNCBNLs/P7taD2sF1Wp/peVWN3MnryMvCCae5gPD5XmBLfDZCAWX8xEUX32iX
+         QGQgA+veb2nXHXHAqxi6rA734/xn+TouYaU7uwAo1gF7nOaKboymvviE+YJ4s3GVN1tZ
+         q4XHZM+1HHEMF5MriJOKsiBCHqS+HblnZcB23DlFxUajGItk3Rlu398kxgXNTLeFOWr4
+         livV6E/0xQZO/lwC2K1dfZUZqY3kYTH3iWknanPYamF76AzNzuovVSyTo/+WPSUFwgzi
+         yBSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712236558; x=1712841358;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9FbFTfD/TvLUw6fU15r42KRVHlg7cUmb8nJYcUP4iv4=;
-        b=oT4VK/dlOQgDIvkTHFUMsHwFzXGbGcF++N8WLqvsjqJdx+2OfbnjFmO9VfdLRrUvTs
-         6BSV3hmRUicamY92ww0QhwByserpx4dWKFAdswy5MAWClopxQp+MZykdITbMsPq+1bXS
-         ONrvuN4tUNBTilvZMo0WU2ZGwMDe+Qqwg4j9NR2dgeLEMBJ1aBroX2PDbyvMuuWIs/CD
-         atS2gSaL6j9xK2YhFGJI68APtSIAm2ZNIIl+8ebM9asCReuMqljzVRwIQ4swa8EMo97f
-         gewAL5V/Y41UcuXdGHRYOC3dc/Wfu0xkYuSh7lQHayx5tzqwLBBGqgPNg7+21Xr/i9za
-         1I6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVOJBHckdrPaTZ8sMpF4k6qm5mjl8vQnASLeqb89gSX74DAzZWTfa4Pt7TlltUeH3IyqhlbpSZLRje+FWfstgCcPN+cSzqx9lbCVGtCxsqowch1gDOC08f2+mpclxdMRwUVBG3jQAnhKeIi1yUdwW09e8H40Lu/iq4x27YlzofcL/Z07xnqWXeX
-X-Gm-Message-State: AOJu0YwY1fhf2opnYDz+WZMyZMSVoRx3VpZFQr/PJanJuL2xAF0dCbLd
-	2XnVwsDD3DTN/FveGWLA5ruvWBAYxPNfg7WllziPq7HNZwDhRXNj
-X-Google-Smtp-Source: AGHT+IFpvBBKlDlenBy4zyj+4duAMba2fIxXc6gDdHoGF1BQpu9586dGzFH3NKdaIHnKmAo1FqvnfA==
-X-Received: by 2002:ac2:51aa:0:b0:515:8bb2:72a2 with SMTP id f10-20020ac251aa000000b005158bb272a2mr1505812lfk.55.1712236557860;
-        Thu, 04 Apr 2024 06:15:57 -0700 (PDT)
-Received: from [172.16.183.82] ([213.255.186.46])
-        by smtp.gmail.com with ESMTPSA id q27-20020ac2515b000000b00516c8e144adsm191259lfd.172.2024.04.04.06.15.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Apr 2024 06:15:57 -0700 (PDT)
-Message-ID: <b6279be8-cf7d-4608-b556-3c01587f0d43@gmail.com>
-Date: Thu, 4 Apr 2024 16:15:56 +0300
+        d=1e100.net; s=20230601; t=1712237080; x=1712841880;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QPezEfD0t1esOw49T38S7/dvcH4ZrRMz2JA7Keo/jF4=;
+        b=l0ukeb1zOwTuoLSnF2FMkz71N9klbFj0jPmNbaaCCHV7rxB8YTVN4o1yUVnu7WzyXk
+         aO1Z3d+DhlpHRbW586FXS6ko7o582w25skbwSYjDh6TljZlzVqK8cOTO/Xiksn+gpWcQ
+         ubK4spx/jg8LNKi32+MuPtmxdEv9dUuPRE+egBCFw6YdyhAMDGoM2oI2jf/Csb5twZsr
+         UhlztTxjlDR/8BeCJLv7spFddM371I0xn5XGvjD7m5ed7fYw88rn3Qg/3UxbH451P0H9
+         zwBnnWcwKZJh0GqvP2And0IMKlV2LhlhjYTaoUW8BLKqMLz6Y7XQkc8g/EUwEZWaevkt
+         uT5w==
+X-Forwarded-Encrypted: i=1; AJvYcCUa3a8L/DFQZ/qo6vnmQv5Tb/hiX9YOzlH9lTzqi9bO6RwvkpQj8ilU79U4gv6LW+d1OurFwDoHh/Beyz4uJvtAgV7NzUahplFCMA==
+X-Gm-Message-State: AOJu0Yy7eC8L0RIUPD7T7HvMaT1OcQHLgy60o26GeA5oIWI7pgM5ce4K
+	XkTWLZugNZOv4BBU0AgDyAYuPIXN5HRjPTA7Pv120mAZn9eLBW7IwcrhtQK2HlA=
+X-Google-Smtp-Source: AGHT+IGxgH9A5s0WiNgOB7bXFCAvV00A/PQ0OT0BzurZEBZ4YAccdY+QiP2+2qjmMUfFLq93x9ZqAg==
+X-Received: by 2002:a2e:7c0a:0:b0:2d8:274a:db16 with SMTP id x10-20020a2e7c0a000000b002d8274adb16mr2125485ljc.17.1712237079816;
+        Thu, 04 Apr 2024 06:24:39 -0700 (PDT)
+Received: from draszik.lan ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id v3-20020a5d59c3000000b00341cc9c1871sm20435575wry.0.2024.04.04.06.24.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Apr 2024 06:24:39 -0700 (PDT)
+Message-ID: <61f427ab3793def23d80d94457ff1568cae5ee11.camel@linaro.org>
+Subject: Re: [PATCH 08/17] clk: samsung: gs101: add support for cmu_hsi2
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Peter Griffin <peter.griffin@linaro.org>, mturquette@baylibre.com, 
+ sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+  vkoul@kernel.org, kishon@kernel.org, alim.akhtar@samsung.com,
+ avri.altman@wdc.com,  bvanassche@acm.org, s.nawrocki@samsung.com,
+ cw00.choi@samsung.com,  jejb@linux.ibm.com, martin.petersen@oracle.com,
+ chanho61.park@samsung.com,  ebiggers@kernel.org
+Cc: linux-scsi@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, tudor.ambarus@linaro.org, 
+	saravanak@google.com, willmcvicker@google.com
+Date: Thu, 04 Apr 2024 14:24:37 +0100
+In-Reply-To: <20240404122559.898930-9-peter.griffin@linaro.org>
+References: <20240404122559.898930-1-peter.griffin@linaro.org>
+	 <20240404122559.898930-9-peter.griffin@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.3-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 0/6] Support ROHM BD96801 scalable PMIC
-Content-Language: en-US, en-GB
-To: Mark Brown <broonie@kernel.org>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
- <linux@roeck-us.net>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
-References: <cover.1712058690.git.mazziesaccount@gmail.com>
- <f7d454ac-6ecb-4431-a1de-c9b5d1240969@gmail.com>
- <eb03ec33-0627-4986-be04-8e35da390d6b@sirena.org.uk>
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <eb03ec33-0627-4986-be04-8e35da390d6b@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
 
-Hi Mark,
+Hi Pete,
 
-On 4/4/24 15:09, Mark Brown wrote:
-> On Thu, Apr 04, 2024 at 10:26:34AM +0300, Matti Vaittinen wrote:
-> 
->> 1. Should we be able to have more than 1 IRQ domain / device?
->> 2. Should regmap_irq support having more than 1 HWIRQ
-> 
-> I would expect each parent interrupt to show up as a separate remap_irq.
-> 
->> then it seems that reading the IRQ information from the /proc/interrupts
->> works as expected. Here I am making a wild guess that the name of the domain
->> is used as a key for some data-lookups, and having two domains with a same
->> name will either overwrite something or cause wrong domain data to be
->> fetched. (This is just guessing for now).
-> 
-> So if we arrange to supply a name when we register multiple domains
-> things should work fine?
+Thanks for this!
 
-Thanks for taking the time to look at my questions :)
-I have been debugging this thing whole day today, without getting too 
-far :) It seems there is something beyond the name collision though.
+I haven't reviewed this, but one immediate comment...
 
-After I tried adding '-1' to the end of the other domain name to avoid 
-the debugfs name collision I managed to do couple of successful runs - 
-after which I reported here that problem seems to be just the naming. 
-Soon after sending that mail I hit the oops again even though the naming 
-was fixed.
+On Thu, 2024-04-04 at 13:25 +0100, Peter Griffin wrote:
+> [...]
+> diff --git a/drivers/clk/samsung/clk-gs101.c b/drivers/clk/samsung/clk-gs=
+101.c
+> index d065e343a85d..b9f84c7d5c22 100644
+> --- a/drivers/clk/samsung/clk-gs101.c
+> +++ b/drivers/clk/samsung/clk-gs101.c
+> @@ -22,6 +22,7 @@
+> =C2=A0#define CLKS_NR_MISC	(CLK_GOUT_MISC_XIU_D_MISC_ACLK + 1)
+> =C2=A0#define CLKS_NR_PERIC0	(CLK_GOUT_PERIC0_SYSREG_PERIC0_PCLK + 1)
+> =C2=A0#define CLKS_NR_PERIC1	(CLK_GOUT_PERIC1_SYSREG_PERIC1_PCLK + 1)
+> +#define CLKS_NR_HSI2	(CLK_GOUT_HSI2_XIU_P_HSI2_ACLK + 1)
 
-Further debugging shows that the desc->action->name for the last 28 
-'errb' IRQs get corrupted. This might point more to the IRQ requester 
-side - so I need to further study the BD96801 driver side as well as the 
-regulator_irq_helper. I'm having the creeping feeling that at the end of 
-the day I need to find the guilty one from the mirror :)
+Can you please keep the #defines alphabetical (hsi before misc).
 
-But yes, creating 2 regmap-IRQ controllers for one device seems to 
-generate naming conflict in the debugfs - so unless I'm mistaken, with 
-the current regmap-IRQ we can't have more than 1 regmap-IRQ entity for a 
-single device.
+> =C2=A0
+> =C2=A0/* ---- CMU_TOP ---------------------------------------------------=
+---------- */
+> =C2=A0
+> @@ -3409,6 +3410,560 @@ static const struct samsung_cmu_info peric1_cmu_i=
+nfo __initconst =3D {
+> =C2=A0	.clk_name		=3D "bus",
+> =C2=A0};
+> =C2=A0
+> +/* ---- CMU_HSI2 -------------------------------------------------------=
+--- */
 
-Just please give me some more time to see if I find the cause of the 
-corruption and I hope I can write more concrete description. For now it 
-was enough for me to hear having more than 1 IRQ domain / device is not 
-something on the "DON'T DO THIS" -list.
+and this code block should be earlier in the file
 
-Yours,
-	-- Matti
+> [..]
+=C2=A0
+> =C2=A0static int __init gs101_cmu_probe(struct platform_device *pdev)
+> @@ -3432,6 +3987,9 @@ static const struct of_device_id gs101_cmu_of_match=
+[] =3D {
+> =C2=A0	}, {
+> =C2=A0		.compatible =3D "google,gs101-cmu-peric1",
+> =C2=A0		.data =3D &peric1_cmu_info,
+> +	}, {
+> +		.compatible =3D "google,gs101-cmu-hsi2",
+> +		.data =3D &hsi2_cmu_info,
+> =C2=A0	}, {
 
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
+and this block should move up
 
-~~ When things go utterly wrong vim users can always type :help! ~~
+> =C2=A0	},
+> =C2=A0};
+> diff --git a/include/dt-bindings/clock/google,gs101.h b/include/dt-bindin=
+gs/clock/google,gs101.h
+> index 3dac3577788a..ac239ce6821b 100644
+> --- a/include/dt-bindings/clock/google,gs101.h
+> +++ b/include/dt-bindings/clock/google,gs101.h
+> @@ -518,4 +518,67 @@
+> =C2=A0#define CLK_GOUT_PERIC1_CLK_PERIC1_USI9_USI_CLK		45
+> =C2=A0#define CLK_GOUT_PERIC1_SYSREG_PERIC1_PCLK		46
+> =C2=A0
+> +/* CMU_HSI2 */
+
+and all these defines, too.
+
+
+
+Cheers,
+Andre'
 
 
