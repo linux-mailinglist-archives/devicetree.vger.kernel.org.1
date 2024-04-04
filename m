@@ -1,159 +1,115 @@
-Return-Path: <devicetree+bounces-56331-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56332-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 736FB898829
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 14:46:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03A89898859
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 14:58:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 138071F22ADE
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 12:46:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3354E1C2183C
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 12:58:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B9894DA1F;
-	Thu,  4 Apr 2024 12:46:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0194885925;
+	Thu,  4 Apr 2024 12:58:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="INwBympi"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="oakJHHe8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66E3E7492;
-	Thu,  4 Apr 2024 12:46:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4743745C4;
+	Thu,  4 Apr 2024 12:58:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712234790; cv=none; b=Nu5MMDqMsH0WQcOj3I3+OhsytcquqgwtHH8pHUolX3WmSqa0Tk0EbPe5Zy5i5+xQUAey1gkRTcpXBFHxJ8wgWwMFj3fCQqR/kxerUkplb+gWPcgC4lowrWNb+PCWyCQ9j5kyR//Pq7R47unptad1B3p2EFYjSlfCyGOou6nLDgU=
+	t=1712235512; cv=none; b=ihuZdeGY6txpWt6j0CLbOpxzjHFhIrvf3uXIJA+6Pd/+3TuFAz/+0yDHRdr5zAwIR5axvHTY/eWNB7RJHVwOi7cXFPBAcUulOrIPBxc/sFxMCWidU69K0MtkijRhXpgmuGDRdyNBm8aMp8T9XALi5FW73UxVZMrWpM/V9a5Ccx0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712234790; c=relaxed/simple;
-	bh=vSfmQlOnTjFhj0V1lM1jgKnxEb4/A8CPTuffchOy/y4=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Re0/+TT5DkdRPqQio5Wnpz8wMokz7VhXSSdqLHASKtAMuytTynXercI+0GA/DT42f9Z9qEwZxl6yQ1TIyJU0rNJP3UAlCeCSZfvwuFaY3UMWGdw1XeLtVZnw2kHdlIl7w198GMkl/tqLKZlaGvqUUmrD3yt/6XocOWehb7QPf0s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=INwBympi; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 434CkJtG031225;
-	Thu, 4 Apr 2024 07:46:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1712234779;
-	bh=qJg1mXxEBeSMHwRCIuB9hLceXhAMTVZyXHOqCCpB/kQ=;
-	h=From:To:CC:Subject:Date;
-	b=INwBympiz9+H+p/rPLx76IjQMfYsO/3ee8Tdgq2rZ6cihVSpKNxClCFjo6vQzHf0Z
-	 ZirSByzB+OKq7vqWy4DehAgkZj04M4v5iPTNbighs48m53yaeQRf0oXjA17XWe7xH3
-	 15brUwoJlVCBZf85ecWPkejaFTWte8UCQGk2lcTQ=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 434CkJwv119773
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 4 Apr 2024 07:46:19 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 4
- Apr 2024 07:46:19 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 4 Apr 2024 07:46:18 -0500
-Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [172.24.227.9])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 434CkFK0077955;
-	Thu, 4 Apr 2024 07:46:16 -0500
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: [PATCH v3] arm64: dts: ti: k3-am62p: use eFuse MAC Address for CPSW3G Port 1
-Date: Thu, 4 Apr 2024 18:16:14 +0530
-Message-ID: <20240404124614.891416-1-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.40.1
+	s=arc-20240116; t=1712235512; c=relaxed/simple;
+	bh=BozSj0OlHtb5l5pjhkdBvyLiA2cXqWoE42TakhWx8TI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kJ0M49u+srJP53UK1xdQZ9FJj4KS8OXpuWHNf59mdFKpZasjr9HnIVeG5T6p4xg0rgW5i3LXDkGSob8Q4lxQWUC/AWJIt2xWVRmSqVDy4kffxM7d1+K9cFNvEOTKB/sg8vbxc9YLxKF0GbquGWCfi0qxZGOsA73pwhZXQaa9HcE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=oakJHHe8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A79A3C433F1;
+	Thu,  4 Apr 2024 12:58:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1712235512;
+	bh=BozSj0OlHtb5l5pjhkdBvyLiA2cXqWoE42TakhWx8TI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oakJHHe8oRQSq3GpOrjs6UB13j/7/4vfGmbVmsov4vw7zoBTvGLzufyTLfyCrRHss
+	 f8QAkoY6fhy3FVWicECagTYXH0+7S3+ryWfOjddJk01dp80x0VmGq6qO8tJs/GiPR+
+	 3W4zCHro+Te4iuPBdVxFdN1StpZpMRm18PhIS+Xs=
+Date: Thu, 4 Apr 2024 14:58:29 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Johan Hovold <johan@kernel.org>,
+	Krishna Kurapati <quic_kriskura@quicinc.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+	linux-kernel@vger.kernel.org, quic_ppratap@quicinc.com,
+	quic_jackp@quicinc.com, Johan Hovold <johan+linaro@kernel.org>
+Subject: Re: [PATCH v19 2/9] usb: dwc3: core: Access XHCI address space
+ temporarily to read port info
+Message-ID: <2024040455-sitting-dictator-170c@gregkh>
+References: <20240404051229.3082902-1-quic_kriskura@quicinc.com>
+ <20240404051229.3082902-3-quic_kriskura@quicinc.com>
+ <Zg5VDnbaaBXJyRjV@hovoldconsulting.com>
+ <f16e1280-8f7e-40a7-ab45-9acaeb3e90cb@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f16e1280-8f7e-40a7-ab45-9acaeb3e90cb@linaro.org>
 
-Add the "ethernet-mac-syscon" node within "wkup_conf" node corresponding to
-the CTRLMMR_MAC_IDx registers within the CTRL_MMR space. Assign the
-compatible "ti,am62p-cpsw-mac-efuse" to enable "syscon_regmap" operations
-on these registers. The MAC Address programmed in the eFuse is accessible
-through the CTRLMMR_MAC_IDx registers. The "ti,syscon-efuse" device-tree
-property points to the CTRLMMR_MAC_IDx registers, allowing the CPSW driver
-to fetch the MAC Address and assign it to the network interface associated
-with CPSW3G MAC Port 1.
+On Thu, Apr 04, 2024 at 10:07:27AM +0200, Krzysztof Kozlowski wrote:
+> On 04/04/2024 09:21, Johan Hovold wrote:
+> > On Thu, Apr 04, 2024 at 10:42:22AM +0530, Krishna Kurapati wrote:
+> >  
+> >> +static int dwc3_get_num_ports(struct dwc3 *dwc)
+> >> +{
+> >> +	void __iomem *base;
+> >> +	u8 major_revision;
+> >> +	u32 offset;
+> >> +	u32 val;
+> >> +
+> >> +	/*
+> >> +	 * Remap xHCI address space to access XHCI ext cap regs since it is
+> >> +	 * needed to get information on number of ports present.
+> >> +	 */
+> >> +	base = ioremap(dwc->xhci_resources[0].start,
+> >> +		       resource_size(&dwc->xhci_resources[0]));
+> >> +	if (!base)
+> >> +		return PTR_ERR(base);
+> > 
+> > This is obviously still broken. You need to update the return value as
+> > well.
+> > 
+> > Fix in v20.
+> 
+> If one patchset reaches 20 versions, I think it is time to stop and
+> really think from the beginning, why issues keep appearing and reviewers
+> are still not happy.
+> 
+> Maybe you did not perform extensive internal review, which you are
+> encouraged to by your own internal policies, AFAIR. Before posting next
+> version, please really get some internal review first.
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
+Also get those internal reviewers to sign-off on the commits and have
+that show up when you post them next.  That way they are also
+responsible for this patchset, it's not fair that they are making you do
+all the work here :)
 
-This patch is based on linux-next tagged next-20240404.
-Patch depends on:
-https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240402105708.4114146-1-s-vadapalli@ti.com/
-for the newly added "ti,am62p-cpsw-mac-efuse" compatible.
+thanks,
 
-v2:
-https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240404081845.622707-1-s-vadapalli@ti.com/
-Changes since v2:
-- Renamed "cpsw-mac-efuse" node as "ethernet-mac-syscon" based on
-  Krzysztof's suggestion.
-- Renamed "cpsw_mac_efuse" label as "cpsw_mac_syscon" to match
-  node naming convention.
-- Updated node-name in commit message to "ethernet-mac-syscon".
-
-v1:
-https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240402094200.4036076-1-s-vadapalli@ti.com/
-Changes since v1:
-- Since "wkup_conf" is modelled as a "simple-bus" rather than being
-  modelled as a System Controller node with the "syscon" compatible,
-  directly passing the reference to the "wkup_conf" node using the
-  "ti,syscon-efuse" device-tree property will not work.
-  Therefore, I posted the patch at:
-  https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240402105708.4114146-1-s-vadapalli@ti.com/
-  in order to add a new compatible to be used for modelling the
-  CTRLMMR_MAC_IDx registers as System Controller nodes, thereby
-  allowing the existing "ti,syscon-efuse" property to be used.
-  Now, "ti,syscon-efuse" points to the "cpsw_mac_efuse" node within
-  "wkup_conf" node, with "cpsw_mac_efuse" being a "syscon" node.
-
-Logs verifying that the CPSW driver assigns the MAC Address from the
-eFuse based on the CTRLMMR_MAC_IDx registers at 0x43000200 and 0x43000204
-to the interface eth0 corresponding to CPSW3G MAC Port 1:
-https://gist.github.com/Siddharth-Vadapalli-at-TI/63473d68e7a34860566c1339ce3da9f0
-
- arch/arm64/boot/dts/ti/k3-am62p-main.dtsi   | 1 +
- arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi | 5 +++++
- 2 files changed, 6 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
-index 7337a9e13535..21020b7d3034 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
-@@ -696,6 +696,7 @@ cpsw_port1: port@1 {
- 				label = "port1";
- 				phys = <&phy_gmii_sel 1>;
- 				mac-address = [00 00 00 00 00 00];
-+				ti,syscon-efuse = <&cpsw_mac_syscon 0x0>;
- 			};
- 
- 			cpsw_port2: port@2 {
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
-index a84756c336d0..7469b3d3a8c9 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
-@@ -18,6 +18,11 @@ chipid: chipid@14 {
- 			reg = <0x14 0x4>;
- 			bootph-all;
- 		};
-+
-+		cpsw_mac_syscon: ethernet-mac-syscon@200 {
-+			compatible = "ti,am62p-cpsw-mac-efuse", "syscon";
-+			reg = <0x200 0x8>;
-+		};
- 	};
- 
- 	wkup_uart0: serial@2b300000 {
--- 
-2.40.1
-
+greg k-h
 
