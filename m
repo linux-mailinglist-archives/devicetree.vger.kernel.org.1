@@ -1,167 +1,180 @@
-Return-Path: <devicetree+bounces-56299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56300-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 115538986B3
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 14:01:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B63998986C1
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 14:04:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 147B31C25DA3
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 12:01:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC1641C210DE
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 12:04:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C230186244;
-	Thu,  4 Apr 2024 12:01:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DB9D84D35;
+	Thu,  4 Apr 2024 12:04:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FOGF+/Zn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zpaaywsu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3217984FD4;
-	Thu,  4 Apr 2024 12:01:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA22A83CDE
+	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 12:04:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712232063; cv=none; b=G0ZIoQ+oSiyiY1K7KNxIRNlh28ujIAgX9GEEyNDIL2mwa2IbRBrcBkjEQsQag7LnEaoxO+83e1ARsG++qtpDfs36hRZi01mmed/Vq7siIh2Z8cngi/iTCDR1x7Huy2qkNjKtwzou0xHCb8m5X3y87MBBElVICYe813+aapd8Rhc=
+	t=1712232257; cv=none; b=EptbHbkEmZxVCNwRZNRF1NzNMoyyDzdevLltderQY268cU1jfEKGd9pUkVQJKl3m4gvZ8L9TbPp8obbfPpqfVoJuz936gOfyKt6oXV3hjoDXdcRN4kLC+04nqm/a98VxCl8rk+K8d2acnnliP9AHV5igtayxFxQ0soV0Hko8NGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712232063; c=relaxed/simple;
-	bh=Aqeqvw4GrvT18e980JUpO21rtv2qBW15mhfK8EzHsvM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Na70TxuYkDB65Z8YXOh3vy92mefAWhEj5//XqXSqj9GsXYtBhPVYw1EPzlMDCjvH8mK0kABP+cbVKu8pT6cJT9f0xYDMLZ5G1ycMcTTcVa9QN2SQd+J+gC+bpVukooMYf8+Tpe+yGLqSHKgnGZpE6fC7N2gwpCFdKOMTIL0NVU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FOGF+/Zn; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-1e2178b2cf2so7866425ad.0;
-        Thu, 04 Apr 2024 05:01:01 -0700 (PDT)
+	s=arc-20240116; t=1712232257; c=relaxed/simple;
+	bh=UScraqXPPVJ0cjYlAUkodB9M6d9/T5aTAQ5aSjNT6F0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KyFJPmWcHyecke1rk35SsF3VU0gx7MNzcqtPsJL3iLfnXa4edY/nmc3x1kZBaZFRO6CSEV070FkFuSglSBvik+qtFkxnNqi9EXKIknHXf2z3wMF6enxKwv19jgV0mU3SCgol5D9u2TG3n7tGACrx/5q+va1+09tMKnrJrpAVJzE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zpaaywsu; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-516cbf3fd3dso732780e87.2
+        for <devicetree@vger.kernel.org>; Thu, 04 Apr 2024 05:04:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712232061; x=1712836861; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wL4i2rxVSO4Dx2Z9A/DMCu9nioCZUVI1YGXCUgVZyec=;
-        b=FOGF+/ZnEOR3ylocD/3UAgQUSu5k4swk5sdbNcjNvN15GsLjR09ummw3pEQm6lf6st
-         E9K5y2x53vH5VseLux3zfbz8ewsXkyY3sAlz9Qx8BPedJDJE0w0fklwvpsYU+FjZcu8a
-         pFBRhDo/GOEys99km8ZP8/NnqMn6Ar150eHs2rSNOI9kC2+0A0cE+H5V4w+pvCXUVMv1
-         mW3fzRGGjUjNQhbzftFOKij8CrUbJ4imJ9k742VUcvqg+/DAsHFulDXeaFrchfylyY6H
-         OlBgQnpCiSO8oxT0W0v/M1+NxcJtc1cJxV+KiexsRJf5bK0hH9XdOw2zbacUF/YhoTnF
-         bWbw==
+        d=linaro.org; s=google; t=1712232254; x=1712837054; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=m9cPHQQe1Hj9Ffz8OM+GePjteUbhs1Uu0DY8ScLn9tQ=;
+        b=zpaaywsumuLi3VFJf2xTDyGjAzfZCvMFltEwOvYSuE3lMk7YCXojzhZjCyJcAsCpbP
+         6f4BbjpxoLnzuvxQGVxxADfu9KLIrlBkw9hA90+ECbtllzkN1hvyj3QAt3h+TdAflpJA
+         Fn65B671RFFMTLOprzc0sKhOvfCe6r+tC6fkWs9RNUrQFcAl1APcPboMqBm8haKnfhpa
+         FB9jQFqtGmMDmT11OdhQT/D4x6OAMCJzb8FGzIU6WvNROFgNSf0g7dJr8BLC0oRPgn1b
+         Ognnnefsey1eJLQPXJj1iuSbB85p1BwNn4Cfo/YMn2Se0OL2BY1yUzqPZyTA9rs2uWKO
+         8BLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712232061; x=1712836861;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wL4i2rxVSO4Dx2Z9A/DMCu9nioCZUVI1YGXCUgVZyec=;
-        b=TYmOJQmWmy1GgZvqQMql+t1Zl4XQjacTAc9hyuflmo1Mu4lyhFmi2q7wV01fwOLgHX
-         1DOySzUwZPh/NSZYNRtpyTVpnT9VXK+YjZryEii8V6vJyi4EuCYQdl6TgHkSK6HHNGDW
-         YrOvW2xBKOo1zBsjooaEMwvBHXie30HjQbNZeELEEsZZNlH4H6YmMMWEkJNSem7k6gSM
-         +dHrnArJmLk6mX97CtGrhqr1c2IJuTLjdv+VX3Wao5TPY6KUjpntiXFkAOEBgsKqnvL+
-         MY14zD9bG+2GcrLmL8By3vq05WPyoN2pIxZQ/tmDGfkoUFPhz5104H3zZfo1oR46LG2c
-         URbw==
-X-Forwarded-Encrypted: i=1; AJvYcCWCX6PuDHXSUP8379vjf0UUre12hLJC42HbA7JvmXevafjs1fDz8RkzOFAJ+Vzvjrk2l3DeMSnzFdl/oTRDxgsANV+ZlVPHlgtZPkmHZFV9xfGIKI1TNa6SZ4SlHObmWsLHIvBhlVwWjw==
-X-Gm-Message-State: AOJu0YxZbdeZ4Ip5cZa33mm5ByHg96OVR3BAhdPm2WIeIT4UN7LUkRgz
-	3PBOhn5KOqkqy/qrsWkYffSokNCyiMBwTqfIzSxckjrlCnbY80f2N7y7vRSQCsRQTMdyJd1eSmQ
-	ZKvnV+ke5M8Wp81jmGc5riEc0yZw=
-X-Google-Smtp-Source: AGHT+IGcM7phzQ4a6LWlb+ZbUy46QOrWqPtD6hZ2VF2T8uxuZk2nkBNtUNgHlEIleOyY0tflROY1ahFFF1Z2hTRU4SA=
-X-Received: by 2002:a17:902:7282:b0:1e2:7356:aa31 with SMTP id
- d2-20020a170902728200b001e27356aa31mr1882050pll.34.1712232061199; Thu, 04 Apr
- 2024 05:01:01 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1712232254; x=1712837054;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=m9cPHQQe1Hj9Ffz8OM+GePjteUbhs1Uu0DY8ScLn9tQ=;
+        b=kdSAEmeHkolOUAcMWgEvK2UVyqU9ofLFE4xx0PN7O7yfaXOKLuo1SZ91i7ZUoASoKN
+         vMmhwcaaf5Qv9IsPAXbusa2P+Ibkou16DIM+Je5W+YXXkW+y//bb0ybymwaKF4eST9qr
+         Vgg151zetTGMgJnWxIgEFfnmBEOwss+G/AsrdAaDFhU4+LKHIABsg6GnuWlafDefISdh
+         1IsmJc21B3WEXPsX10dUdVaGYawvM5P2wTSpKHjos+Fvfk2n8//DQG96ehTUzgP1Unmd
+         GxX1ngwVkPlXLMgiDL8HetMzsTJBMzy6pDlxzxdn0DwRbv5vkk5GGSug/bx0yQps6D2p
+         hG8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXAV0G8WSk735ntPQFScljYu3MDaC6+XHb3TfaZd81grqbNF6Wb/DPLKgUh1FUNl3tvK8iQAKxdu9Hn3nlHV1SzCxAldmMvxgkXcg==
+X-Gm-Message-State: AOJu0YwOEimcp8tI9O6wQ0oSdJwgNGzpqhCHTU6kx9JxX47yuhFQBTxO
+	AaTfLvi2qcHD66rfQfy9d2pETLVKGlp5hzsUJmnSbYQshTX4GJribn7ppJPVbVE=
+X-Google-Smtp-Source: AGHT+IFcCvhoAGbUsaHwpZRA4Qosof6fz75O3swKqNETnkXCzHGAatydq/YMcmYrcoCpZ2LVIWrLYw==
+X-Received: by 2002:a05:6512:748:b0:513:bf92:79ad with SMTP id c8-20020a056512074800b00513bf9279admr1633910lfs.45.1712232253993;
+        Thu, 04 Apr 2024 05:04:13 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id ew12-20020a056402538c00b0056a033fa007sm9068238edb.64.2024.04.04.05.04.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Apr 2024 05:04:13 -0700 (PDT)
+Message-ID: <8f37211a-57ed-48ab-8de8-cd5a0d4c6609@linaro.org>
+Date: Thu, 4 Apr 2024 14:04:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240305004859.201085-1-aford173@gmail.com> <20240305081816.GF12503@pendragon.ideasonboard.com>
-In-Reply-To: <20240305081816.GF12503@pendragon.ideasonboard.com>
-From: Adam Ford <aford173@gmail.com>
-Date: Thu, 4 Apr 2024 07:00:49 -0500
-Message-ID: <CAHCN7xKwScoXouUHyH=dPZ0fgibmEUXRFwFPUF8mdKMf8YNA2g@mail.gmail.com>
-Subject: Re: [PATCH V2 1/2] drm/bridge: adv7511: Allow IRQ to share GPIO pins
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: dri-devel@lists.freedesktop.org, aford@beaconembedded.com, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: mfd: Add ROHM BD71879
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: lee@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, mazziesaccount@gmail.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240402193515.513713-1-andreas@kemnade.info>
+ <20240402193515.513713-2-andreas@kemnade.info>
+ <6420ac43-f200-459c-8c38-7cd55c64a155@linaro.org>
+ <20240404123010.69454fda@aktux>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240404123010.69454fda@aktux>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Mar 5, 2024 at 2:18=E2=80=AFAM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hello Adam,
->
-> Thank you for the patch.
->
-> On Mon, Mar 04, 2024 at 06:48:57PM -0600, Adam Ford wrote:
-> > The IRQ registration currently assumes that the GPIO is dedicated
-> > to it, but that may not necessarily be the case. If the board has
-> > another device sharing the GPIO, it won't be registered and the
-> > hot-plug detect fails to function.
-> >
-> > Currently, the handler reads two registers and blindly
-> > assumes one of them caused the interrupt and returns IRQ_HANDLED
-> > unless there is an error. In order to properly do this, the IRQ
-> > handler needs to check if it needs to handle the IRQ and return
-> > IRQ_NONE if there is nothing to handle.  With the check added
-> > and the return code properly indicating whether or not it there
-> > was an IRQ, the IRQF_SHARED can be set to share a GPIO IRQ.
-> >
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
->
-> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+On 04/04/2024 12:30, Andreas Kemnade wrote:
+> On Thu, 4 Apr 2024 08:59:54 +0200
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> 
+>> On 02/04/2024 21:35, Andreas Kemnade wrote:
+>>> As this chip was seen in several devices in the wild, add it.
+>>>
+>>> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+>>> Suggested-by: Matti Vaittinen <mazziesaccount@gmail.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml | 4 +++-
+>>>  1 file changed, 3 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
+>>> index 0b62f854bf6b..e4df09e8961c 100644
+>>> --- a/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
+>>> +++ b/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
+>>> @@ -17,7 +17,9 @@ description: |
+>>>  
+>>>  properties:
+>>>    compatible:
+>>> -    const: rohm,bd71828
+>>> +    enum:
+>>> +      - rohm,bd71828
+>>> +      - rohm,bd71879  
+>>
+>> In your second commit you claim they are compatible, so why they are not
+>> marked as such?
+>>
+> so you mean allowing
+> 
+> compatible = "rohm,bd71828"
+> and
+> compatible = "rohm,bd71879", "rohm,bd71828"
 
+Yes. If there are reasons against, please briefly mention them in commit
+msg.
 
-Gentle nudge on this one.   It's been about a month, and without it,
-it is preventing hot-plug detection on one board for me.
+Best regards,
+Krzysztof
 
-Thanks
-
-adam
-
->
-> > ---
-> > V2:  Add check to see if there is IRQ data to handle
-> >
-> > diff --git a/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c b/drivers/gpu=
-/drm/bridge/adv7511/adv7511_drv.c
-> > index b5518ff97165..f3b4616a8fb6 100644
-> > --- a/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c
-> > +++ b/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c
-> > @@ -477,6 +477,11 @@ static int adv7511_irq_process(struct adv7511 *adv=
-7511, bool process_hpd)
-> >       if (ret < 0)
-> >               return ret;
-> >
-> > +     /* If there is no IRQ to handle, exit indicating no IRQ data */
-> > +     if (!(irq0 & (ADV7511_INT0_HPD | ADV7511_INT0_EDID_READY)) &&
-> > +         !(irq1 & ADV7511_INT1_DDC_ERROR))
-> > +             return -ENODATA;
-> > +
-> >       regmap_write(adv7511->regmap, ADV7511_REG_INT(0), irq0);
-> >       regmap_write(adv7511->regmap, ADV7511_REG_INT(1), irq1);
-> >
-> > @@ -1318,7 +1323,8 @@ static int adv7511_probe(struct i2c_client *i2c)
-> >
-> >               ret =3D devm_request_threaded_irq(dev, i2c->irq, NULL,
-> >                                               adv7511_irq_handler,
-> > -                                             IRQF_ONESHOT, dev_name(de=
-v),
-> > +                                             IRQF_ONESHOT | IRQF_SHARE=
-D,
-> > +                                             dev_name(dev),
-> >                                               adv7511);
-> >               if (ret)
-> >                       goto err_unregister_audio;
->
-> --
-> Regards,
->
-> Laurent Pinchart
 
