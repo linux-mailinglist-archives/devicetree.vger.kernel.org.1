@@ -1,259 +1,151 @@
-Return-Path: <devicetree+bounces-56276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1CB8898485
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 12:00:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9F59898492
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 12:03:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D8562B27E89
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 10:00:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 52B171F255F4
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 10:03:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DAC874C0E;
-	Thu,  4 Apr 2024 10:00:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C071757F8;
+	Thu,  4 Apr 2024 10:02:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Omc8JwnB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LvLnljlt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 188135D8EB
-	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 10:00:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAE6C74C17
+	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 10:02:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712224816; cv=none; b=fEnWOeD5uGoQwDRuVb0VOaks9Nj5I3gSmqIJWFOlSIuHk84i+0Q2tMg+A0Wq6Z8VDyXAMJlFeiuIdBpLv9DeU2wTXULUFVdSIduMUdtHe9vZ8vpvtB3hECXvnZyFMmrS/wGLhyni6tFOkPbi6WaZNvuldpKzuUOLj2LHhZW5mD4=
+	t=1712224979; cv=none; b=huQWBG7gesOEndYpds0WSRq6+CFMaHHHVc/VUx0zQTgMloMOLQuN+E5UXV0n1wl4fiw7/VxRoo6dNAzERoo8IqN0N881Y5scG+duOfWd9+5Iruf6Tg96VV5GqMu5gecSsmv42RzIwmcsd28EdFzotZGfnq/0ITHtkvK9M92QHD4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712224816; c=relaxed/simple;
-	bh=/Zv2Mmkyeknbs1cQs3cIQ1t1IUN6v39fcrntA/XgcZU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gCdwqd44rRvQ5vSys8qPKdeW9S+V/RfgXEmARZ4KND6KDUbKTVBsDfTSR0rr8YvMP8CqVJrMdZ9IhDck+2F8pEq9cHHFhUfzRX2WzOVA5h06dbVPaGkF80yxUBoISZt0X7kB6Yd7YsQO+jPlIdTdLXdwP1T4dqG//FY526e94oc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Omc8JwnB; arc=none smtp.client-ip=209.85.218.52
+	s=arc-20240116; t=1712224979; c=relaxed/simple;
+	bh=GjQ6i597e+Tg5kZEZuOxHNpqIK+6JUo1PoPMIlQjjss=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Mk4ONpAvgF2rdE19Njpmr2OSPiEPzRkSLhcWntjDGBlav1lWpKY9rECYX1hMMSCSTQmsMDfuhGkCfw+nFO8yG6eqwm/nWuiTNXlKH7g7wIpk//bVqUi9SBTbudqBvDs3fwsFqKc0I56iqtJbHKcVsLXi7mMEy4hCxVYYHFGFiLI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LvLnljlt; arc=none smtp.client-ip=209.85.219.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a44665605f3so86708966b.2
-        for <devicetree@vger.kernel.org>; Thu, 04 Apr 2024 03:00:13 -0700 (PDT)
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-ddaad2aeab1so764660276.3
+        for <devicetree@vger.kernel.org>; Thu, 04 Apr 2024 03:02:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712224812; x=1712829612; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=PLemqlCVgdSk6fHHLXtaSYo8vRodhoKn4waofG0cC2g=;
-        b=Omc8JwnBeoIKbndedzc/605jVynUCgcQ7rRFOQUOHOEWEu45s133KGuLMKbF5B7rN0
-         c/uv2s2LcG7b/JhiAtjxRBR7UWXgXt1/Sx8G0YdG2aw2+Ge5L4vyug7VXMaGi59nmqhb
-         U3Cx5WTKfyqA4sqSJoqiXkTpOBgG7aAEaPtdCmzi+KhANvQGKwWyp0udbmzpXYeVUxCe
-         fsTWEzimSPS9aEKIAqfwhkKmspgDpDSN2IyEnysurW8EiZc5tT+xuuqxJKGGhahKbN2Z
-         9o6JcUVwtVCv2gzflhYem8+vhTSgCQRTcINNyj7EnUBR1fExj85mXr0X6ZTCydfquWya
-         mYRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712224812; x=1712829612;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1712224977; x=1712829777; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=PLemqlCVgdSk6fHHLXtaSYo8vRodhoKn4waofG0cC2g=;
-        b=UpEViVufLM2JltrOBFhJJmOB0pZtVMx5ySLV2bsHxcwcTyLzEm+56Y43rPPGXoqLXI
-         OA5Y7recZG5Hzj2toiXmjvWp81Ow8DS26upYM40Z/9G/rqXgelKQDgkYNkM9Wof8r2L9
-         sPLGFwnNfcCMcPLqXOCoeosdPoWcYxSygP/ZeGylEFmHhnALYxwYQ3TKukrIeuupq5Aw
-         uwF/9kiZDRvdAEHQnVG726lh9EdkDbcrdcD+KRvut1vSLCgzQw4jwdBUdyKYeKuacvnm
-         dAU3nEJhsTahJ9IVyeEqP0cT6vEr0RR9V2qG+dC44xwN5AtofppNrun/RJ/ucEPTL8Vi
-         G+/w==
-X-Forwarded-Encrypted: i=1; AJvYcCXeptmp9oT+kpfwqUow2HOBK+AhSEDh5rB9t6K3maOTcqhwPPFwOl9tKfEA0HCrIiVFZBCkZVbzG0xwyKETtW/b8fOS+h/fXNxnPw==
-X-Gm-Message-State: AOJu0YyHdCNwXeE1Y+KCJ8p9xA9gHYUY2smGPT5S38c2cxbDS1aKZQ/Y
-	BBfPUv3IeZTNk9PlejYh9ThXvFqCLiDXNk32pzDpXaUVuD2cuqspNamW7HKv8rg=
-X-Google-Smtp-Source: AGHT+IH3aNut1aQM1czCUuksasKGSfNmvmvxaL0dMKQ3yeF/mmfQCxRSAnuXsKxW+T2V2jB9s/kASw==
-X-Received: by 2002:a17:906:a51:b0:a4a:aaa9:8b3b with SMTP id x17-20020a1709060a5100b00a4aaaa98b3bmr1070546ejf.77.1712224812361;
-        Thu, 04 Apr 2024 03:00:12 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id js19-20020a170906ca9300b00a4e8353be19sm3361456ejb.224.2024.04.04.03.00.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Apr 2024 03:00:11 -0700 (PDT)
-Message-ID: <903ad855-ab26-4ef3-80bd-249917056188@linaro.org>
-Date: Thu, 4 Apr 2024 12:00:09 +0200
+        bh=WSM3SSSDRISKG2xzZd8Db84CV8c+qWu1nf3t0po6PQs=;
+        b=LvLnljlt5unQGgxgL7KbB19HHX5HApqdiAJs2lZNm61Fi/nwRSPmV2MU0JaoHarWIt
+         KJr3XthYcUoQQjzTlDvqS2lhH+iUK9Gxv86VbUvANtvYy9Zc2yn6/wclct5DJ0814Hdx
+         AWJQOOWFlCZvsOoOfmL1Ow35LdtmFcrgRvF+AWGtxDbMOn6KMV6Fw2VNLobAt66kcMeE
+         39kiLMQXPWGK35gJjSv3aZo9CQVoC9lBw8xaMHC0Buw1KVgGlFxjvbNDirVy+StLjdZ1
+         pUMKbG2onmgBk9sK0njjQAHjF/fvkZcTE0eK83SWNjFpvLfrshL5zTgaCi0SR7hrKrdv
+         oQAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712224977; x=1712829777;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WSM3SSSDRISKG2xzZd8Db84CV8c+qWu1nf3t0po6PQs=;
+        b=r8wWjgGH7TsmNpYCB4y3qmoK35BDHTeIugOUtH0U551YfCacNyDknxxt9fD0CyyXgv
+         brM/yIp223TLUYDSXWd1i0jTF2Tquv2T0tNdVVuMF8QbrhgOu1OmnUzWF37pvZGWuVNA
+         DCQ3IwSjo60Tej2BKQ/fYUw5JwjsnrDJb8FJk5NWLAm5PbhWNci534itAYy2ncr9MS9m
+         Aj9TxumjoINiEjxT046OMPR4v0du9a1xTjaJCegKhEBrS/HaFXZp1ubl/lDzXS3dvBlD
+         2SlMj8AXeqL7Gpa4MctvK6brfCGI2YMW1684k+5Vs5FfnWVkM15iU2rMh/tJsf3gWX/C
+         YfzQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVUAfO/lLty8rOaZUWaBMp58s6oc8s2ywPAkUhc1gOkFkDnFuLAW+eB8HJ7Di1Y85E/6WdGB30e5bXJpmFKZSOSSIHlB3gCU21b8A==
+X-Gm-Message-State: AOJu0Ywrd/vZlS+W5wj9wZDnMFwtBcdriSyqy4wnJe4sxjN7QyeeOLVa
+	biDIMTKZQ78RRV1VLFXtKN7Gd3wPYuYu3kex7aUrLkoHx1zqwOZuI+mozsFBp/J4jEd/+WcsTE3
+	84jV3Xycbn3SIs3r9A5yV4J1/e+D9N6aWpTiZtg==
+X-Google-Smtp-Source: AGHT+IFm7zNDK6Xa3wkE7uder3AalB0PkZD0+78hHLf6dJfB6CcQXZnHbo8l7Iyk/qJcWuVWDZVuQ9UpgQfDLkYdDWQ=
+X-Received: by 2002:a25:1e54:0:b0:dc6:ff6b:71b2 with SMTP id
+ e81-20020a251e54000000b00dc6ff6b71b2mr1790403ybe.4.1712224976606; Thu, 04 Apr
+ 2024 03:02:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am62p: use eFuse MAC Address for
- CPSW3G Port 1
-To: Siddharth Vadapalli <s-vadapalli@ti.com>, afd@ti.com
-Cc: nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- srk@ti.com
-References: <20240404081845.622707-1-s-vadapalli@ti.com>
- <18eb0e55-38ad-44f9-90b7-1917d8c0d5bb@linaro.org>
- <75b53dda-23aa-4915-944a-4d9a619bd165@ti.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <75b53dda-23aa-4915-944a-4d9a619bd165@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240327055732.28198-1-yu-chang.lee@mediatek.com>
+ <20240327055732.28198-3-yu-chang.lee@mediatek.com> <6dd9959e-f741-47af-b10a-1894f72ae78f@linaro.org>
+ <c3ca3d90-898e-44b0-ad0f-dd78c09c5fcd@linaro.org> <f3eedfb3495bb9c28b5cbf466387c24822c5b6f6.camel@mediatek.com>
+ <7ff9c4c7-3b56-4a5b-95b7-c37cbf8bcd6d@linaro.org> <b957b072d5d88ed315982e914a7f700e0ccafb83.camel@mediatek.com>
+ <038ccb20-71cb-40d2-9720-ce1a0d3eac8c@linaro.org> <7f24ca2806a7199e4de6fad17b8dc1f127c82180.camel@mediatek.com>
+ <c59f2f33-ad6b-469d-96be-9345920370b4@linaro.org> <CAFGrd9qZhObQXvm2_abqaX83xMLqxjQETB2=wXpobDWU1CnvkA@mail.gmail.com>
+ <3b04c5344435cdb941b5d132e8f5fbfdf9188d67.camel@mediatek.com>
+In-Reply-To: <3b04c5344435cdb941b5d132e8f5fbfdf9188d67.camel@mediatek.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Thu, 4 Apr 2024 12:02:20 +0200
+Message-ID: <CAPDyKFpokXV2gJDgowbixTvOH_5VL3B5H8eyhP+KJ5Fasm2rFg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: power: Add mediatek larb definition
+To: =?UTF-8?B?WXUtY2hhbmcgTGVlICjmnY7nprnnkosp?= <Yu-chang.Lee@mediatek.com>
+Cc: "amergnat@baylibre.com" <amergnat@baylibre.com>, 
+	"krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>, 
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>, 
+	=?UTF-8?B?TWFuZHlKSCBMaXUgKOWKieS6uuWDlik=?= <MandyJH.Liu@mediatek.com>, 
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	Project_Global_Chrome_Upstream_Group <Project_Global_Chrome_Upstream_Group@mediatek.com>, 
+	"robh@kernel.org" <robh@kernel.org>, =?UTF-8?B?WGl1ZmVuZyBMaSAo5p2O56eA5bOwKQ==?= <Xiufeng.Li@mediatek.com>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, 
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, =?UTF-8?B?RmFuIENoZW4gKOmZs+WHoSk=?= <fan.chen@mediatek.com>, 
+	"angelogioacchino.delregno@collabora.com" <angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 04/04/2024 11:12, Siddharth Vadapalli wrote:
-> On Thu, Apr 04, 2024 at 10:43:04AM +0200, Krzysztof Kozlowski wrote:
->> On 04/04/2024 10:18, Siddharth Vadapalli wrote:
->>> Add the "cpsw-mac-efuse" node within "wkup_conf" node corresponding to the
->>> CTRLMMR_MAC_IDx registers within the CTRL_MMR space. Assign the compatible
->>> "ti,am62p-cpsw-mac-efuse" to enable "syscon_regmap" operations on these
->>> registers. The MAC Address programmed in the eFuse is accessible through
->>> the CTRLMMR_MAC_IDx registers. The "ti,syscon-efuse" device-tree property
->>> points to the CTRLMMR_MAC_IDx registers, allowing the CPSW driver to fetch
->>> the MAC Address and assign it to the network interface associated with
->>> CPSW3G MAC Port 1.
->>>
->>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
->>> ---
->>>
->>> This patch is based on linux-next tagged next-20240404.
->>> Patch depends on:
->>> https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240402105708.4114146-1-s-vadapalli@ti.com/
->>> for the newly added "ti,am62p-cpsw-mac-efuse" compatible.
->>>
->>> v1:
->>> https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240402094200.4036076-1-s-vadapalli@ti.com/
->>> Changes since v1:
->>> - Since "wkup_conf" is modelled as a "simple-bus" rather than being
->>
->> And maybe the hardware representation is not correct? What bus is it?
-> 
-> I will let Andrew comment on it. Andrew had posted a patch at:
-> https://lore.kernel.org/r/20240124184722.150615-10-afd@ti.com/
-> to convert an equivalent "main_conf" node for AM62 SoC to "simple-bus"
-> from the existing "syscon".
-> 
->>
->>>   modelled as a System Controller node with the "syscon" compatible,
->>>   directly passing the reference to the "wkup_conf" node using the
->>>   "ti,syscon-efuse" device-tree property will not work.
->>>   Therefore, I posted the patch at:
->>>   https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240402105708.4114146-1-s-vadapalli@ti.com/
->>>   in order to add a new compatible to be used for modelling the
->>>   CTRLMMR_MAC_IDx registers as System Controller nodes, thereby
->>>   allowing the existing "ti,syscon-efuse" property to be used.
->>>   Now, "ti,syscon-efuse" points to the "cpsw_mac_efuse" node within
->>>   "wkup_conf" node, with "cpsw_mac_efuse" being a "syscon" node.
->>>
->>> Logs verifying that the CPSW driver assigns the MAC Address from the
->>> eFuse based on the CTRLMMR_MAC_IDx registers at 0x43000200 and 0x43000204
->>> to the interface eth0 corresponding to CPSW3G MAC Port 1:
->>> https://gist.github.com/Siddharth-Vadapalli-at-TI/9982c6f13bf9b8cfaf97e8517e7dea13
->>>
->>> Regards,
->>> Siddharth.
->>>
->>>  arch/arm64/boot/dts/ti/k3-am62p-main.dtsi   | 1 +
->>>  arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi | 5 +++++
->>>  2 files changed, 6 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
->>> index 7337a9e13535..848ca454a411 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
->>> +++ b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
->>> @@ -696,6 +696,7 @@ cpsw_port1: port@1 {
->>>  				label = "port1";
->>>  				phys = <&phy_gmii_sel 1>;
->>>  				mac-address = [00 00 00 00 00 00];
->>> +				ti,syscon-efuse = <&cpsw_mac_efuse 0x0>;
->>
->> Why this is not nvmem cell, like or efuses?
-> 
-> Since it belongs to the MMIO register set. You had recommended *not*
-> using nvmem for such MMIO registers at:
-> https://lore.kernel.org/r/48902771-5d3b-448a-8a74-ac18fb4f1a86@linaro.org/
-> "nvmem is for non-volatile memory, like OCOTP and eFUSE. This is not for
-> accessing regular MMIO registers of system-controller..."
-> 
-> Despite the "ti,syscon-efuse" property containing the term "efuse" in its
-> name, it is reading the CTRLMMR_MAC_IDx MMIO registers. So I assumed that
-> the existing approach which has been used on all K3 SoCs apart from this
-> one, will be suitable for this SoC as well.
+On Thu, 28 Mar 2024 at 07:06, Yu-chang Lee (=E6=9D=8E=E7=A6=B9=E7=92=8B)
+<Yu-chang.Lee@mediatek.com> wrote:
+>
+> On Wed, 2024-03-27 at 12:55 +0100, Alexandre Mergnat wrote:
+> >
+> > External email : Please do not click links or open attachments until
+> > you have verified the sender or the content.
+> >  Hello Yu-chang Lee,
+> >
+> > SMI LARB must have a power domain, according to "mediatek,smi-
+> > larb.yaml"
+> > Now you try to create a link from power domain to larb.
+> >
+> > Here is my understanding: when you enable/disable power domain, the
+> > larb linked to this power domain may have an issue. Then you want to
+> > retrieve de LARB linked to the power domain though the dts to manage
+> > the LARB.
+>
+> Yes, this is what I am trying to do.
+>
+> > IMHO, using the dts to have this information into the power
+> > driver isn't necessary and may introduce some bugs if the LARB node
+> > and power node in the DTS aren't aligned.
+> >
+> > It seems not implemented today but during the LARB probe, it should
+> > "subscribe" to the linked power domain. Then, when the power domain
+> > status is changing, it is able to "notify" (callback) the LARB, then
+> > implement the good stuff to handle this power domain status change
+> > into LARB driver.
+> >
+>
+> The problem with this method and why "smi clamp" is in power domain
+> driver is that our HW designer gave us a programming guide strictly
+> states the sequence of what we need to do to power on/off power domain.
+> Using callback, this sequence is no longer guaranteed and the side
+> effect is unknown...
 
-OK, I totally forgot we discussed this.
+In most cases, using the runtime PM callbacks in the consumer driver
+(LARB driver) is sufficient to deal with resets. For some special
+cases drivers are making use of the genpd on/off notifiers
+(GENPD_NOTIFY_*), as they really need to know when their devices have
+been power collapsed. Have you tried both these options?
 
-> 
->>
->>>  			};
->>>  
->>>  			cpsw_port2: port@2 {
->>> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
->>> index a84756c336d0..df9d40f64e3b 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
->>> +++ b/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
->>> @@ -18,6 +18,11 @@ chipid: chipid@14 {
->>>  			reg = <0x14 0x4>;
->>>  			bootph-all;
->>>  		};
->>> +
->>> +		cpsw_mac_efuse: cpsw-mac-efuse@200 {
->>
->> Node names should be generic. See also an explanation and list of
->> examples (not exhaustive) in DT specification:
->> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> 
-> I was following the convention that other mfd-syscon compatible nodes
-> seemed to be using:
-> https://github.com/torvalds/linux/blob/41bccc98fb7931d63d03f326a746ac4d429c1dd3/arch/arm64/boot/dts/ti/k3-am65-main.dtsi#L502
-> The node is:
-> dss_oldi_io_ctrl: dss-oldi-io-ctrl@41e0
-> corresponding to the compatible:
-> "ti,am654-dss-oldi-io-ctrl"
-> which was added by commit:
-> https://github.com/torvalds/linux/commit/cb523495ee2a5938fbdd30b8a35094d386c55c12
+[...]
 
-So if that one was wrong, then what? I don't know really what type of
-device is it, but just because one contributor called it that way, does
-not mean you should keep going. Maybe investigate why that contributor
-did not decide to follow Devicetree spec recommendation?
-
-Best regards,
-Krzysztof
-
+Kind regards
+Uffe
 
