@@ -1,82 +1,75 @@
-Return-Path: <devicetree+bounces-56366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BF2F898C6E
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 18:44:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE21F898C77
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 18:46:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6262BB2CED7
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 16:42:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF55B1C21465
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 16:46:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB1E31C6BC;
-	Thu,  4 Apr 2024 16:41:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC3061CA84;
+	Thu,  4 Apr 2024 16:46:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iggpkPB0"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="sMwiRra1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.205])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26C681C6AF;
-	Thu,  4 Apr 2024 16:41:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D1B21BDCD
+	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 16:46:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.205
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712248908; cv=none; b=FyDK5T+96Jc6RcupcZ/RAEdg+YPevI6IYjzCbC80fPlszF8XrJug/774lEjLemUHaPNPx7SGJS1DBL6VKYNeYgQaEx4/m53X5VYNkZZrjdqZxuEppVaDaxZTWVsCYV1e/sA6Nn1OucalMialRL3VWHsY9z9lmzq8zHG6WgLawws=
+	t=1712249211; cv=none; b=dP0+mSC2fRImqKrgLKDOqcnqahIdewckUvtIzBllYCR76SVJfaraqSJJfC8Q+gT6bIBBIaI8F26wCV7d6SA16TqXCt7Gct3m70WjbESWEdSZyR3DLRnAwvOAjCcqh67sTI/vLozfJVTXbJYxH7B/zQ8LpUuHiwaX9/XaVkL9Wac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712248908; c=relaxed/simple;
-	bh=xkAVjtlxvl6Lk9vMGY3Al4wPhonWzXqqcR3D/GDcytM=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=dTHjq8LBccmFfDelglyhdXMgyKhkOvyrx1Ed/KX2Ks9+RGkUC2VnngCkO3VlxeXsNPjdaIm4dCu8VUXDjm+B6BM+a8u8EBEcjs5vwuYfWRwVkISgNaBpyLmXms898xjUmMyD6heqZbGVvjpE/XwtnFMkrDOwPpF2UNcrLEteRZI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iggpkPB0; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-1e0e89faf47so3035315ad.1;
-        Thu, 04 Apr 2024 09:41:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712248906; x=1712853706; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=BRydtaGCEtU6C2jPZzNOrIpYyTJCBJSa2+2D+RooaRU=;
-        b=iggpkPB0NgSGsgoNRjFam3VMcVx0g6PBD+yDVtfFWVwgCc9aumoR1Ch5CcOpG86Dma
-         0Ud8FasKKnyan+xawJRvRt0SBkUvnZDjJXV6DSlQpo5TlHXc4txfLzsdCRPO5diUaZWQ
-         ro/pXLqX5JvKuNXQ7aRXxfCQO9EBUnebNVfYuHh7A8dLWzrK4vqInmdUcuPzDPSH/Bhr
-         e+LT5sIbyX7yz1FQSu2VE0nArOrIVjJ+MLHSYn7SN/7DrOfxqjNpBdlAYV2kgapcXDeL
-         zKos2dxfb8aPzUuRcZ4z1J3C5wB6ToYApWl9E7oxC4/jWuqiykNI2wo690VQNxWDAGdF
-         MDLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712248906; x=1712853706;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BRydtaGCEtU6C2jPZzNOrIpYyTJCBJSa2+2D+RooaRU=;
-        b=KjAJRaQie0k+Qw/oZzj2TzvwySPQmeQfYN1aliPIplYay9/shv+0V3u7kjakqmbDEd
-         e8qhJAlGrOijGQ3FxPt4m/00Ya8x1lNf8QRuSaBoPEf3T++atUzQrfBkXX3k8bAsXw/7
-         KCOE4Ae2CRjDPjQN7MkO96Wjk4mV1rpMnymxPk4sS4pxC/P7LO7i0RPaYxpplSCTVLjn
-         /5jgwneiQIhODWCdbdDX5qBvGO1N5GjrbNEyu/n+Bg90Nvepuec9090zMh5aMn5+2a+D
-         deJM9x6qqUg0AtHJLQhsqv7yt2ivSnMJ8e2/r13OGJ+VJVSFNnS0sMe1S8iTziKPqDcL
-         0MaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXMblP1xetwJLs+69qLlI7XVOWB0QbOu/LMm1qubHZiSYSLEPZiUKn/kWsIpWuUK08FC9d2QueUbwpobTCmeV8/PHQdzhiZ8xEPMNNeKfNmR8Cx6o+Vsnm1+Gwso0GoNvsl9WCj+w==
-X-Gm-Message-State: AOJu0YzxRrn+Da7T27G0dY/VDolvUQGzqiIsgX26Ed6M9wwKWZGxo164
-	X/bouDGYCsx3lMvVgFIcatbMgnma/6qv+mpQGPdJNfzFQMNG8o0tifJluHZm
-X-Google-Smtp-Source: AGHT+IE0D+ZL45vK9ZgNxgLa4HEyfm7+JD7z3l7MVdPH2KTrX7mAS2dq1j01RCxtWoCjmoQo4SgUaw==
-X-Received: by 2002:a17:903:1c5:b0:1dd:5a49:7a98 with SMTP id e5-20020a17090301c500b001dd5a497a98mr3031863plh.3.1712248906266;
-        Thu, 04 Apr 2024 09:41:46 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:9c:998:79c7:d666])
-        by smtp.gmail.com with ESMTPSA id h21-20020a170902f7d500b001e2814e08b9sm5495480plw.32.2024.04.04.09.41.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Apr 2024 09:41:45 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: gregkh@linuxfoundation.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-usb@vger.kernel.org,
+	s=arc-20240116; t=1712249211; c=relaxed/simple;
+	bh=gYcRzLmwDOU0zotiBjYSsFEyAV9WB7UV2OzWD7A3stk=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=C1Y2HgIIVOW3dga6aAN/dDykmFN1iaIVFzM1YD6hLpiTXqgJxDLUz/aP7ThFVxRek17H599aq+C1zC5Iohswtldo2J5q6KzHRcNznmajJppdZyIpWr4Ua5W50tP/ANdtL5x3ZdOoN0u15odRA05Fd6SgRa5vqXIJQqzxbm2n0mA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=sMwiRra1; arc=none smtp.client-ip=192.19.144.205
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: from mail-lvn-it-01.lvn.broadcom.net (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
+	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id AA115C0000ED;
+	Thu,  4 Apr 2024 09:46:41 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com AA115C0000ED
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
+	s=dkimrelay; t=1712249201;
+	bh=gYcRzLmwDOU0zotiBjYSsFEyAV9WB7UV2OzWD7A3stk=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=sMwiRra1/+WlNL8oBaeZKwWLwXyApApc8K5/BlHmXfaI/5RrnSNo5C3PyxuH/jp8h
+	 mehvMe3fnx7Y9dnjyDP7OSKTzQorn6WJ0cvZIejTKyBcZxjeWKFAFo6DCOw96CTKdu
+	 2D9qWccbL7dYL/tIc5/Re8N3DJW0UN0rvYNj/FdA=
+Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id C75B718041CAC4;
+	Thu,  4 Apr 2024 09:46:39 -0700 (PDT)
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+To: bcm-kernel-feedback-list@broadcom.com,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
 	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] dt-bindings: usb: Document the Microchip USB2514 hub
-Date: Thu,  4 Apr 2024 13:41:40 -0300
-Message-Id: <20240404164140.662361-1-festevam@gmail.com>
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: Florian Fainelli <f.fainelli@gmail.com>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Naushir Patuck <naush@raspberrypi.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Ray Jui <rjui@broadcom.com>,
+	Rob Herring <robh@kernel.org>,
+	Scott Branden <sbranden@broadcom.com>,
+	Stefan Wahren <wahrenst@gmx.net>
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: bcm: raspberrypi,bcm2835-firmware: Add gpio child node
+Date: Thu,  4 Apr 2024 09:46:40 -0700
+Message-Id: <20240404164641.2598280-1-florian.fainelli@broadcom.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240326195807.15163-2-laurent.pinchart@ideasonboard.com>
+References: <20240326195807.15163-1-laurent.pinchart@ideasonboard.com> <20240326195807.15163-2-laurent.pinchart@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,76 +78,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Fabio Estevam <festevam@denx.de>
+From: Florian Fainelli <f.fainelli@gmail.com>
 
-Document the Microchip USB2514, USB2412, and USB2417 USB hubs.
+On Tue, 26 Mar 2024 21:58:05 +0200, Laurent Pinchart <laurent.pinchart@ideasonboard.com> wrote:
+> Unlike the other child nodes of the raspberrypi,bcm2835-firmware device,
+> the gpio child is documented in a legacy text-based binding in
+> gpio/raspberrypi,firmware-gpio.txt. This causes DT validation failures:
+> 
+> arch/arm64/boot/dts/broadcom/bcm2711-rpi-4-b.dtb: 'gpio' does not match any of the regexes: 'pinctrl-[0-9]+'
+>         from schema $id: http://devicetree.org/schemas/arm/bcm/raspberrypi,bcm2835-firmware.yaml#
+> 
+> Convert the binding to YAML and move it to
+> raspberrypi,bcm2835-firmware.yaml.
+> 
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- .../bindings/usb/microchip,usb2514.yaml       | 53 +++++++++++++++++++
- 1 file changed, 53 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/usb/microchip,usb2514.yaml
-
-diff --git a/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml b/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml
-new file mode 100644
-index 000000000000..8df7a5adfbe8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml
-@@ -0,0 +1,53 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/usb/microchip,usb2514.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microchip USB2514 Hub Controller
-+
-+maintainers:
-+  - Fabio Estevam <festevam@gmail.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - usb424,2412
-+      - usb424,2514
-+      - usb424,2417
-+
-+  reg: true
-+
-+  reset-gpios:
-+    description: GPIO connected to the RESET_N pin.
-+
-+  vdd-supply:
-+    description: 3.3V power supply.
-+
-+  clocks:
-+    description: External 24MHz clock connected to the CLKIN pin.
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: true
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/imx6qdl-clock.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    usb {
-+        dr_mode = "host";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        hub@1 {
-+          compatible = "usb424,2514";
-+          reg = <1>;
-+          clocks = <&clks IMX6QDL_CLK_CKO>;
-+          reset-gpios = <&gpio7 12 GPIO_ACTIVE_LOW>;
-+          vdd-supply = <&reg_3v3_hub>;
-+        };
-+    };
--- 
-2.34.1
-
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
+--
+Florian
 
