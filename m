@@ -1,199 +1,207 @@
-Return-Path: <devicetree+bounces-56362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEEB5898BC8
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 18:05:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DAFA898BD1
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 18:07:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE4811C267EC
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 16:05:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57894283961
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 16:07:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AD6E12AAE0;
-	Thu,  4 Apr 2024 16:05:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D38612D1FA;
+	Thu,  4 Apr 2024 16:07:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UDiDUDsa"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R7vzq0mt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2927A12AACB
-	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 16:05:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A632712D201;
+	Thu,  4 Apr 2024 16:07:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712246756; cv=none; b=Zw1cLGUe3ILoQx1lnfDSGv5IMZCqhZCspmZYmz9Oy5XKQZaBBZ+TuJWUEpCIt3cUS2zdkHfD0GB0NuORYKkwOM7mPazW9rYgnzBR2ba7P6uCt41VE7h/u69om/prrle5wLeJp/XhpG9yfbCD9iM83bT0F//UxpS6DcYATL3mSD0=
+	t=1712246826; cv=none; b=g1qoWpuUZ4dW6lUF4M1Rh1fztV8TDDZMok0okrwsLF/UGCq99lTyJ2femBkSAHGCf3XrgnWDo9n/LtPjRg1fDoIIsBIORd6PNu9ZjKiJxVaWoa351N7E/R207r8nP2xjxFEUQ+P9dBQH4Qb19gerV2SqEBS4VN4K046RHLb4pNk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712246756; c=relaxed/simple;
-	bh=Dju+y0EjZuxJaGKBRNnKMWatS2Hwo2dPJEG3wzZyBXU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bxAzxNas6eCH0iZYOMBf3SMJdCW1aA8+CiDTyrUtxxIb0vJ6xKDyq4XexTEnZBUi6KZ4dvoiG/meIXboFDHe7QodeME0FWY0ZXMThyCHZfOw30hJV6MO+eGAIZe/QqKnym42o/9HBOWSIG1Wm8G2PSZX9f3qs/ZPJMSWreE8Bac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UDiDUDsa; arc=none smtp.client-ip=209.85.219.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-dc6cbe1ac75so892602276.1
-        for <devicetree@vger.kernel.org>; Thu, 04 Apr 2024 09:05:53 -0700 (PDT)
+	s=arc-20240116; t=1712246826; c=relaxed/simple;
+	bh=YsR66LWGItmKjfFG/4thl5QkI/T85/VwbY4I36tSedw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=gTyHtd7W+WHxDCcVSrXWsjf099xWWxKM7eESh/ywHLw2FHYJcdQs7eXk8kp2lbZn6EWADRPLCxtnMlApyC/eV7YM3M3uSpyWZ4h05EOwsAD5Gn4GjJtUZlQGwYnush4yqV2L623uopBZxgiK9lv52cnvAFwVmhfDlP2agdDVghk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R7vzq0mt; arc=none smtp.client-ip=209.85.215.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-5ce2aada130so874971a12.1;
+        Thu, 04 Apr 2024 09:07:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712246753; x=1712851553; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=XYk+z4GPlvSLgbb1+lB3Uw//BsSPlCRUU8yX8yl3BmQ=;
-        b=UDiDUDsaIn/pr8iKPMZ6qHf04NHSkJ78dFI9O7tBmgMlcHs3S6XEUwWltqiwc4nsBa
-         m9WRtMVo5B/mD0mJhYbfSGf6t6EQCSg8FbcEp5fxmor115O7CHpLp3z05MxzD296O7Hk
-         uqVZzLSxF/juipEDzi+tWTDUqhP57mWuoGG3BXu0KooJep1SvOs5vbdLR01GXveo6vE6
-         U1V+HtAb2lE5fN7/70pvJpJqsE3/+BsOnL/o4cBMg4aafUyjL+Waeq+w1Hww0OEEXZIX
-         nuzTW9kzKxeZgNdSxAMapKQhGvEAUz/FCulRbSL0hSKetcTEjucXDYQkWXtMWi7vQegk
-         EXww==
+        d=gmail.com; s=20230601; t=1712246824; x=1712851624; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LwkMEGu4bH84VlMdGnCK4KPRxbhmbdEM0Bw2IunWXXM=;
+        b=R7vzq0mtho5WmQX+rPI4dBoqeSFZsHzivsGCvSz4BVVms805y5ed9oD2nxvkZI0snm
+         jAtuccmu70AIWQpBNusRa3OS4IN+bvOfmmivw2YFziNjA8nkVske76qvn+gpAad/Rftf
+         VMRiyD+Y32qDdaA7CQuAmYI4cXfzeZ29cJnXuYgZS2KFZeDQgkPIq3i0n0MSpmA9BWeY
+         yOCi0CMe6uCaJ2IHrWMRVFGyArXFx7W5GIr92fomuKbL4vN+LY4M7QYuZVg7Ol0AXJWM
+         EWvitP6dgJKniJhTFae52QDlqJSo7LmpTGt3sz7yXD86QlrCO4qHdzKPU+ZwMspEpxGW
+         X9qA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712246753; x=1712851553;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1712246824; x=1712851624;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=XYk+z4GPlvSLgbb1+lB3Uw//BsSPlCRUU8yX8yl3BmQ=;
-        b=hNTGV4Cp/s0U9+ihkZV6ZGAal7ZSM1ClJQ4WNSBKsTSrOWTmWlttRjRn9mroQ7IDZA
-         WmGMze6jH4LN2zpEYwRyQVu7pd2QJl5j35zHtQJHcp5sWStA74W2aAxpHvHbVEjP1PzZ
-         57psdTfwg7CGDzdidZcgjJSQTZSW2ygWBsUnB3Ws2gI96CDpjaKvrZ8Ti98zqXQYs3VG
-         KD7Eem8s2U4DDXe7D+uHUYT3EjOoaGSqrWEb9Z5ky6baTX8CRng9p4+hA0o1BUYkRQqz
-         NOkVnUMLCfNn0B5q2NKhAinN9AusY8dzHO52ESV/5ERlp7oPuoQrDNSfNHVuan7Z3i+G
-         5q5g==
-X-Forwarded-Encrypted: i=1; AJvYcCXFdD7/bVuMf0J3WhUkxI+TJKoAiUZ3vsMBWThNEAdj4dZuBr57pgMlbjqdP1Xlc8uNWX+VN2cTsxfaDykFdIznYW1L3Dtf0JWqHg==
-X-Gm-Message-State: AOJu0YwHQ9C44ztpcsJyqK6eNCptB/umeKNoD2Mn/PPInVcH9btBkbtX
-	5BD1nY2nXJUCkaTKBp1h/96LpZ+2s1UBZ5jtZyXTkj1VbqKIdWjKv3R+xuIqWeri7XC3d3wNjB4
-	wn6iV5rokqcDjSzQr09+XQLnfrlxj+YSAXS653w==
-X-Google-Smtp-Source: AGHT+IGLJgrzGkNaXq+Qj98xX/89ja6NF4j8NNNnlNdPgtZgZ99WA8WhUPyLVw3mozNsp2SP2VGgg/Z0Pkk8RGS2d3s=
-X-Received: by 2002:a25:8d0f:0:b0:ddd:7a88:2cd7 with SMTP id
- n15-20020a258d0f000000b00ddd7a882cd7mr4635600ybl.18.1712246753095; Thu, 04
- Apr 2024 09:05:53 -0700 (PDT)
+        bh=LwkMEGu4bH84VlMdGnCK4KPRxbhmbdEM0Bw2IunWXXM=;
+        b=MxmTrQJct7K5arIRXxH296zY4Y91T2DnlANc7snOPp/etWh6KUEXFj7sCs287ZLYAU
+         rbvDK7gKf7RG3RbdwX0jjg+n96dHXe4rtMWtO+pIa85lu8S7yz5mmEryIh7wwHt82p76
+         LyPSkXmAxoqDyWDPKYMyo1DhPtBGUBHjXkgRWI71GQgorhlTPYJLYhU92BStfCEHIHlK
+         MCUJUVfW6CHzSlc6tXKHuKbhq0qEeGU7e0sCnk4RjThGEPO+ZpG7rqc1LSqp2vOvosEs
+         A7Mx7tOq/OoucaENMMXa7UgeIaRmQBv+8U0/liCwCN8lfOnOFij+ZXJo1KMbnn7QWPse
+         MS3w==
+X-Forwarded-Encrypted: i=1; AJvYcCX1izD8X7i8F5NrSHGmupuFmq6Wu1B93E4xxajm5Uea/92RDZj0m3iI2cjVj9c5X3NasZM/L9cC16CEBi5BMOZ+6mC1kXOwCSn8YAZepRbZLEFd4xMXMJEcO3k4jPYZjFjDwTXEQDMNNA==
+X-Gm-Message-State: AOJu0YwlfGfdjOk7Epq6WltngSIyqnDPHv1ixM32RCtriscd/RM/Vj57
+	zwr8tu73NH4wEXXQq9GNEIvvwWCzjBOWhYaLTVuaGRI7lQA5xyG1
+X-Google-Smtp-Source: AGHT+IHibPG0W6H55vie7dFKnWlXEFmJq9c7f5VRpXhqgGA+gL558fvkCHxdOte330lCDtfdPWWS2w==
+X-Received: by 2002:a17:90a:b10f:b0:29b:b3fa:b7a5 with SMTP id z15-20020a17090ab10f00b0029bb3fab7a5mr2556863pjq.7.1712246822352;
+        Thu, 04 Apr 2024 09:07:02 -0700 (PDT)
+Received: from localhost.localdomain ([203.188.229.101])
+        by smtp.gmail.com with ESMTPSA id g14-20020a17090ace8e00b002a2979a8651sm1685928pju.54.2024.04.04.09.06.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Apr 2024 09:07:01 -0700 (PDT)
+From: Mighty <bavishimithil@gmail.com>
+To: 
+Cc: Mithil Bavishi <bavishimithil@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	alsa-devel@alsa-project.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: omap-mcpdm: Convert to DT schema
+Date: Thu,  4 Apr 2024 21:36:49 +0530
+Message-Id: <20240404160649.967-1-bavishimithil@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240321092529.13362-1-quic_jkona@quicinc.com>
- <20240321092529.13362-7-quic_jkona@quicinc.com> <CAA8EJppHGS+W-aiXvJ2cE=jCbua8Y0Q+zv_QTs+C9V5+Y1vuZg@mail.gmail.com>
- <008d574f-9c9e-48c6-b64e-89fb469cbde4@quicinc.com> <b3464321-0c52-4c41-9198-e9e7b16aa419@quicinc.com>
- <CAA8EJpqDwCVAjDphnC-HdfseMJ-xd8VVxb5+9UcGEcKLcn-heg@mail.gmail.com>
- <fba2474e-31a6-4fef-acf9-7069933584c8@quicinc.com> <CAA8EJprfaALkQe-wUrBow6B1A66ro0AoVpfnQJLXgqFmL8isNQ@mail.gmail.com>
- <8a5a3cf8-5b4f-487f-ad91-00499509f8ec@quicinc.com>
-In-Reply-To: <8a5a3cf8-5b4f-487f-ad91-00499509f8ec@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 4 Apr 2024 19:05:42 +0300
-Message-ID: <CAA8EJpoW8MQQ3OPfOVYRJtgsn1JgKd5Ew7vqgWx3xWE-xJ=R-g@mail.gmail.com>
-Subject: Re: [PATCH V2 RESEND 6/6] arm64: dts: qcom: sm8650: Add video and
- camera clock controllers
-To: Jagadeesh Kona <quic_jkona@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Taniya Das <quic_tdas@quicinc.com>, 
-	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>, Ajit Pandey <quic_ajipan@quicinc.com>, 
-	Imran Shaik <quic_imrashai@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Thu, 4 Apr 2024 at 13:06, Jagadeesh Kona <quic_jkona@quicinc.com> wrote:
->
->
->
-> On 4/4/2024 11:00 AM, Dmitry Baryshkov wrote:
-> > On Thu, 4 Apr 2024 at 08:13, Jagadeesh Kona <quic_jkona@quicinc.com> wrote:
-> >>
-> >>
-> >>
-> >> On 4/3/2024 9:24 PM, Dmitry Baryshkov wrote:
-> >>> On Wed, 3 Apr 2024 at 10:16, Jagadeesh Kona <quic_jkona@quicinc.com> wrote:
-> >>>>
-> >>>>
-> >>>>
-> >>>> On 3/25/2024 11:38 AM, Jagadeesh Kona wrote:
-> >>>>>
-> >>>>>
-> >>>>> On 3/21/2024 6:43 PM, Dmitry Baryshkov wrote:
-> >>>>>> On Thu, 21 Mar 2024 at 11:27, Jagadeesh Kona <quic_jkona@quicinc.com>
-> >>>>>> wrote:
-> >>>>>>>
-> >>>>>>> Add device nodes for video and camera clock controllers on Qualcomm
-> >>>>>>> SM8650 platform.
-> >>>>>>>
-> >>>>>>> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
-> >>>>>>> ---
-> >>>>>>>     arch/arm64/boot/dts/qcom/sm8650.dtsi | 28 ++++++++++++++++++++++++++++
-> >>>>>>>     1 file changed, 28 insertions(+)
-> >>>>>>>
-> >>>>>>> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> >>>>>>> b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> >>>>>>> index 32c0a7b9aded..d862aa6be824 100644
-> >>>>>>> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> >>>>>>> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> >>>>>>> @@ -4,6 +4,8 @@
-> >>>>>>>      */
-> >>>>>>>
-> >>>>>>>     #include <dt-bindings/clock/qcom,rpmh.h>
-> >>>>>>> +#include <dt-bindings/clock/qcom,sm8450-videocc.h>
-> >>>>>>> +#include <dt-bindings/clock/qcom,sm8650-camcc.h>
-> >>>>>>>     #include <dt-bindings/clock/qcom,sm8650-dispcc.h>
-> >>>>>>>     #include <dt-bindings/clock/qcom,sm8650-gcc.h>
-> >>>>>>>     #include <dt-bindings/clock/qcom,sm8650-gpucc.h>
-> >>>>>>> @@ -3110,6 +3112,32 @@ opp-202000000 {
-> >>>>>>>                            };
-> >>>>>>>                    };
-> >>>>>>>
-> >>>>>>> +               videocc: clock-controller@aaf0000 {
-> >>>>>>> +                       compatible = "qcom,sm8650-videocc";
-> >>>>>>> +                       reg = <0 0x0aaf0000 0 0x10000>;
-> >>>>>>> +                       clocks = <&bi_tcxo_div2>,
-> >>>>>>> +                                <&gcc GCC_VIDEO_AHB_CLK>;
-> >>>>>>> +                       power-domains = <&rpmhpd RPMHPD_MMCX>;
-> >>>>>>> +                       required-opps = <&rpmhpd_opp_low_svs>;
-> >>>>>>
-> >>>>>> The required-opps should no longer be necessary.
-> >>>>>>
-> >>>>>
-> >>>>> Sure, will check and remove this if not required.
-> >>>>
-> >>>>
-> >>>> I checked further on this and without required-opps, if there is no vote
-> >>>> on the power-domain & its peer from any other consumers, when runtime
-> >>>> get is called on device, it enables the power domain just at the minimum
-> >>>> non-zero level. But in some cases, the minimum non-zero level of
-> >>>> power-domain could be just retention and is not sufficient for clock
-> >>>> controller to operate, hence required-opps property is needed to specify
-> >>>> the minimum level required on power-domain for this clock controller.
-> >>>
-> >>> In which cases? If it ends up with the retention vote, it is a bug
-> >>> which must be fixed.
-> >>>
-> >>
-> >> The minimum non-zero level(configured from bootloaders) of MMCX is
-> >> retention on few chipsets but it can vary across the chipsets. Hence to
-> >> be on safer side from our end, it is good to have required-opps in DT to
-> >> specify the minimum level required for this clock controller.
-> >
-> > We are discussing sm8650, not some abstract chipset. Does it list
-> > retention or low_svs as a minimal level for MMCX?
-> >
->
-> Actually, the minimum level for MMCX is external to the clock
-> controllers.
+From: Mithil Bavishi <bavishimithil@gmail.com>
 
-Yes, it comes from cmd-db
+Convert the OMAP4+ McPDM bindings to DT schema.
 
->  But the clock controller requires MMCX to be atleast at
-> lowsvs for it to be functional.
+Signed-off-by: Mighty <bavishimithil@gmail.com>
+---
+ .../devicetree/bindings/sound/omap-mcpdm.txt  | 30 ----------
+ .../bindings/sound/ti,omap-mcpdm.yaml         | 59 +++++++++++++++++++
+ 2 files changed, 59 insertions(+), 30 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/omap-mcpdm.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/ti,omap-mcpdm.yaml
 
-Correct
-
-> Hence we need to keep required-opps to
-> ensure the same without relying on the actual minimum level for MMCX.
-
-And this is not correct. There is no need for the DT to be redundant.
-I plan to send patches removing the existing required-opps when they
-are not required.
-
+diff --git a/Documentation/devicetree/bindings/sound/omap-mcpdm.txt b/Documentation/devicetree/bindings/sound/omap-mcpdm.txt
+deleted file mode 100644
+index ff98a0cb5..000000000
+--- a/Documentation/devicetree/bindings/sound/omap-mcpdm.txt
++++ /dev/null
+@@ -1,30 +0,0 @@
+-* Texas Instruments OMAP4+ McPDM
+-
+-Required properties:
+-- compatible: "ti,omap4-mcpdm"
+-- reg: Register location and size as an array:
+-       <MPU access base address, size>,
+-       <L3 interconnect address, size>;
+-- interrupts: Interrupt number for McPDM
+-- ti,hwmods: Name of the hwmod associated to the McPDM
+-- clocks:  phandle for the pdmclk provider, likely <&twl6040>
+-- clock-names: Must be "pdmclk"
+-
+-Example:
+-
+-mcpdm: mcpdm@40132000 {
+-	compatible = "ti,omap4-mcpdm";
+-	reg = <0x40132000 0x7f>, /* MPU private access */
+-	      <0x49032000 0x7f>; /* L3 Interconnect */
+-	interrupts = <0 112 0x4>;
+-	interrupt-parent = <&gic>;
+-	ti,hwmods = "mcpdm";
+-};
+-
+-In board DTS file the pdmclk needs to be added:
+-
+-&mcpdm {
+-	clocks = <&twl6040>;
+-	clock-names = "pdmclk";
+-	status = "okay";
+-};
+diff --git a/Documentation/devicetree/bindings/sound/ti,omap-mcpdm.yaml b/Documentation/devicetree/bindings/sound/ti,omap-mcpdm.yaml
+new file mode 100644
+index 000000000..4d5d37e98
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/ti,omap-mcpdm.yaml
+@@ -0,0 +1,59 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/ti,omap-mcpdm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: OMAP McPDM
++
++maintainers:
++  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
++
++description:
++  OMAP ALSA SoC DAI driver using McPDM port used by TWL6040
++
++properties:
++  compatible:
++    const: ti,omap4-mcpdm
++
++  reg:
++    description:
++      Register location and size as an array
++      <MPU access base address, size>,
++      <L3 interconnect address, size>;
++
++  interrupts:
++    maxItems: 1
++
++  ti,hwmods:
++    maxItems: 1
++
++  clocks:
++    description: phandle for the pdmclk provider, likely <&twl6040>
++
++  clock-names:
++    description: Must be "pdmclk"
++
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - ti,hwmods
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  - |
++    mcpdm@0 {
++      compatible = "ti,omap4-mcpdm";
++      reg = <0x40132000 0x7f>, /* MPU private access */
++            <0x49032000 0x7f>; /* L3 Interconnect */
++      interrupts = <0 112 0x4>;
++      interrupt-parent = <&gic>;
++      ti,hwmods = "mcpdm";
++      clocks = <&twl6040>;
++      clock-names = "pdmclk";
++    };
 -- 
-With best wishes
-Dmitry
+2.34.1
+
 
