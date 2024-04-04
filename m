@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-56367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56368-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE21F898C77
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 18:46:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5166B898C79
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 18:47:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF55B1C21465
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 16:46:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8264C1C21465
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 16:47:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC3061CA84;
-	Thu,  4 Apr 2024 16:46:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC6841C6BF;
+	Thu,  4 Apr 2024 16:47:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="sMwiRra1"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="X0G3zFuV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.205])
+Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.208])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D1B21BDCD
-	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 16:46:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.205
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEE991C6A5
+	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 16:47:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.208
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712249211; cv=none; b=dP0+mSC2fRImqKrgLKDOqcnqahIdewckUvtIzBllYCR76SVJfaraqSJJfC8Q+gT6bIBBIaI8F26wCV7d6SA16TqXCt7Gct3m70WjbESWEdSZyR3DLRnAwvOAjCcqh67sTI/vLozfJVTXbJYxH7B/zQ8LpUuHiwaX9/XaVkL9Wac=
+	t=1712249222; cv=none; b=PmBFCXs0hjsxE0fZdKWOfy2lj+9gTId00jm2Tq8zfSxOvHghDtkr6zfqyAwoA9cEFu/X00RQ9bZN41r9e7e7LI6m5cEyZNvXpVf8w7BMt7zWEuKZCT/9s6+/Z2LOz99WYjSB5jfmVUoe5N/+/jxOSgu+OmfYp39Cij5dvVMfgis=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712249211; c=relaxed/simple;
-	bh=gYcRzLmwDOU0zotiBjYSsFEyAV9WB7UV2OzWD7A3stk=;
+	s=arc-20240116; t=1712249222; c=relaxed/simple;
+	bh=DTki/MoV8bztqiawIGvg1tXQhkORgVuj92eKUrpM8ug=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=C1Y2HgIIVOW3dga6aAN/dDykmFN1iaIVFzM1YD6hLpiTXqgJxDLUz/aP7ThFVxRek17H599aq+C1zC5Iohswtldo2J5q6KzHRcNznmajJppdZyIpWr4Ua5W50tP/ANdtL5x3ZdOoN0u15odRA05Fd6SgRa5vqXIJQqzxbm2n0mA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=sMwiRra1; arc=none smtp.client-ip=192.19.144.205
+	 MIME-Version; b=mmTeiANhSrE3TZBVPTUAgzqBau2iLOwNE00vPrwCDv5w0hmoRBkf8hL9BjeOKbwW2z/8QYtOE1g5io2/pAK+jxRTHZ06tAJndXJi5P0/ad0pvke0xoCZtPZi17C+tGzs59Z/pQKIVY6aGJhrkJNIRqsgz7djRvXU4U47M9CLdUU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=X0G3zFuV; arc=none smtp.client-ip=192.19.144.208
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
 Received: from mail-lvn-it-01.lvn.broadcom.net (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
-	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id AA115C0000ED;
-	Thu,  4 Apr 2024 09:46:41 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com AA115C0000ED
+	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 3F5FFC0000EA;
+	Thu,  4 Apr 2024 09:46:54 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 3F5FFC0000EA
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-	s=dkimrelay; t=1712249201;
-	bh=gYcRzLmwDOU0zotiBjYSsFEyAV9WB7UV2OzWD7A3stk=;
+	s=dkimrelay; t=1712249214;
+	bh=DTki/MoV8bztqiawIGvg1tXQhkORgVuj92eKUrpM8ug=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=sMwiRra1/+WlNL8oBaeZKwWLwXyApApc8K5/BlHmXfaI/5RrnSNo5C3PyxuH/jp8h
-	 mehvMe3fnx7Y9dnjyDP7OSKTzQorn6WJ0cvZIejTKyBcZxjeWKFAFo6DCOw96CTKdu
-	 2D9qWccbL7dYL/tIc5/Re8N3DJW0UN0rvYNj/FdA=
+	b=X0G3zFuV83tobfV5LOUU/XuvTgMuvyi34UopwzGnlobVdwjektcN5QWNo0T3GTYH3
+	 O0ZX+cYePBGCi4CN8eJi6Ijlm3Rqy9ZA8qEDgCbPBp5o8ObakS7ekIOHJCY/cRS4jG
+	 0gDdleTRzPOhNu29wtefA2+MasOocByqIjA4KzM4=
 Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id C75B718041CAC4;
-	Thu,  4 Apr 2024 09:46:39 -0700 (PDT)
+	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id 6423318041CAC4;
+	Thu,  4 Apr 2024 09:46:52 -0700 (PDT)
 From: Florian Fainelli <florian.fainelli@broadcom.com>
 To: bcm-kernel-feedback-list@broadcom.com,
 	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
@@ -56,20 +56,19 @@ To: bcm-kernel-feedback-list@broadcom.com,
 Cc: Florian Fainelli <f.fainelli@gmail.com>,
 	Dave Stevenson <dave.stevenson@raspberrypi.com>,
 	Naushir Patuck <naush@raspberrypi.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
+	Nicolas Saenz Julienne <nsaenz@kernel.org>,
 	Ray Jui <rjui@broadcom.com>,
 	Rob Herring <robh@kernel.org>,
 	Scott Branden <sbranden@broadcom.com>,
 	Stefan Wahren <wahrenst@gmx.net>
-Subject: Re: [PATCH v2 1/3] dt-bindings: arm: bcm: raspberrypi,bcm2835-firmware: Add gpio child node
-Date: Thu,  4 Apr 2024 09:46:40 -0700
-Message-Id: <20240404164641.2598280-1-florian.fainelli@broadcom.com>
+Subject: Re: [PATCH v2 2/3] firmware: raspberrypi: Use correct device for DMA mappings
+Date: Thu,  4 Apr 2024 09:46:53 -0700
+Message-Id: <20240404164653.2598364-1-florian.fainelli@broadcom.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240326195807.15163-2-laurent.pinchart@ideasonboard.com>
-References: <20240326195807.15163-1-laurent.pinchart@ideasonboard.com> <20240326195807.15163-2-laurent.pinchart@ideasonboard.com>
+In-Reply-To: <20240326195807.15163-3-laurent.pinchart@ideasonboard.com>
+References: <20240326195807.15163-1-laurent.pinchart@ideasonboard.com> <20240326195807.15163-3-laurent.pinchart@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,19 +79,19 @@ Content-Transfer-Encoding: 8bit
 
 From: Florian Fainelli <f.fainelli@gmail.com>
 
-On Tue, 26 Mar 2024 21:58:05 +0200, Laurent Pinchart <laurent.pinchart@ideasonboard.com> wrote:
-> Unlike the other child nodes of the raspberrypi,bcm2835-firmware device,
-> the gpio child is documented in a legacy text-based binding in
-> gpio/raspberrypi,firmware-gpio.txt. This causes DT validation failures:
+On Tue, 26 Mar 2024 21:58:06 +0200, Laurent Pinchart <laurent.pinchart@ideasonboard.com> wrote:
+> The buffer used to transfer data over the mailbox interface is mapped
+> using the client's device. This is incorrect, as the device performing
+> the DMA transfer is the mailbox itself. Fix it by using the mailbox
+> controller device instead.
 > 
-> arch/arm64/boot/dts/broadcom/bcm2711-rpi-4-b.dtb: 'gpio' does not match any of the regexes: 'pinctrl-[0-9]+'
->         from schema $id: http://devicetree.org/schemas/arm/bcm/raspberrypi,bcm2835-firmware.yaml#
+> This requires including the mailbox_controller.h header to dereference
+> the mbox_chan and mbox_controller structures. The header is not meant to
+> be included by clients. This could be fixed by extending the client API
+> with a function to access the controller's device.
 > 
-> Convert the binding to YAML and move it to
-> raspberrypi,bcm2835-firmware.yaml.
-> 
+> Fixes: 4e3d60656a72 ("ARM: bcm2835: Add the Raspberry Pi firmware driver")
 > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
 
 Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
