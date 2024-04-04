@@ -1,180 +1,108 @@
-Return-Path: <devicetree+bounces-56300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B63998986C1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 14:04:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ECE88986D1
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 14:09:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC1641C210DE
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 12:04:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 23E1A1F26111
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 12:09:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DB9D84D35;
-	Thu,  4 Apr 2024 12:04:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 504BF8527B;
+	Thu,  4 Apr 2024 12:09:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zpaaywsu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tO1YE7yI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA22A83CDE
-	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 12:04:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 233BA84D35;
+	Thu,  4 Apr 2024 12:09:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712232257; cv=none; b=EptbHbkEmZxVCNwRZNRF1NzNMoyyDzdevLltderQY268cU1jfEKGd9pUkVQJKl3m4gvZ8L9TbPp8obbfPpqfVoJuz936gOfyKt6oXV3hjoDXdcRN4kLC+04nqm/a98VxCl8rk+K8d2acnnliP9AHV5igtayxFxQ0soV0Hko8NGM=
+	t=1712232582; cv=none; b=CHGFhWGA+eAUIi53+oKSgCs6yPVMrWKyENQvayQcrQtUIHkg2z71ihVJuk9pM2YUtw6YFUCOL3OdkVSP+2wRIbhgzm86jvAk1YiAkcTNpDjcngf26SsywoCx3Hdc2To2eySvtGZ0VAD1sBRis3VjqeiHLWfzHWlxwu21IxMLi3o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712232257; c=relaxed/simple;
-	bh=UScraqXPPVJ0cjYlAUkodB9M6d9/T5aTAQ5aSjNT6F0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KyFJPmWcHyecke1rk35SsF3VU0gx7MNzcqtPsJL3iLfnXa4edY/nmc3x1kZBaZFRO6CSEV070FkFuSglSBvik+qtFkxnNqi9EXKIknHXf2z3wMF6enxKwv19jgV0mU3SCgol5D9u2TG3n7tGACrx/5q+va1+09tMKnrJrpAVJzE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zpaaywsu; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-516cbf3fd3dso732780e87.2
-        for <devicetree@vger.kernel.org>; Thu, 04 Apr 2024 05:04:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712232254; x=1712837054; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=m9cPHQQe1Hj9Ffz8OM+GePjteUbhs1Uu0DY8ScLn9tQ=;
-        b=zpaaywsumuLi3VFJf2xTDyGjAzfZCvMFltEwOvYSuE3lMk7YCXojzhZjCyJcAsCpbP
-         6f4BbjpxoLnzuvxQGVxxADfu9KLIrlBkw9hA90+ECbtllzkN1hvyj3QAt3h+TdAflpJA
-         Fn65B671RFFMTLOprzc0sKhOvfCe6r+tC6fkWs9RNUrQFcAl1APcPboMqBm8haKnfhpa
-         FB9jQFqtGmMDmT11OdhQT/D4x6OAMCJzb8FGzIU6WvNROFgNSf0g7dJr8BLC0oRPgn1b
-         Ognnnefsey1eJLQPXJj1iuSbB85p1BwNn4Cfo/YMn2Se0OL2BY1yUzqPZyTA9rs2uWKO
-         8BLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712232254; x=1712837054;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=m9cPHQQe1Hj9Ffz8OM+GePjteUbhs1Uu0DY8ScLn9tQ=;
-        b=kdSAEmeHkolOUAcMWgEvK2UVyqU9ofLFE4xx0PN7O7yfaXOKLuo1SZ91i7ZUoASoKN
-         vMmhwcaaf5Qv9IsPAXbusa2P+Ibkou16DIM+Je5W+YXXkW+y//bb0ybymwaKF4eST9qr
-         Vgg151zetTGMgJnWxIgEFfnmBEOwss+G/AsrdAaDFhU4+LKHIABsg6GnuWlafDefISdh
-         1IsmJc21B3WEXPsX10dUdVaGYawvM5P2wTSpKHjos+Fvfk2n8//DQG96ehTUzgP1Unmd
-         GxX1ngwVkPlXLMgiDL8HetMzsTJBMzy6pDlxzxdn0DwRbv5vkk5GGSug/bx0yQps6D2p
-         hG8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXAV0G8WSk735ntPQFScljYu3MDaC6+XHb3TfaZd81grqbNF6Wb/DPLKgUh1FUNl3tvK8iQAKxdu9Hn3nlHV1SzCxAldmMvxgkXcg==
-X-Gm-Message-State: AOJu0YwOEimcp8tI9O6wQ0oSdJwgNGzpqhCHTU6kx9JxX47yuhFQBTxO
-	AaTfLvi2qcHD66rfQfy9d2pETLVKGlp5hzsUJmnSbYQshTX4GJribn7ppJPVbVE=
-X-Google-Smtp-Source: AGHT+IFcCvhoAGbUsaHwpZRA4Qosof6fz75O3swKqNETnkXCzHGAatydq/YMcmYrcoCpZ2LVIWrLYw==
-X-Received: by 2002:a05:6512:748:b0:513:bf92:79ad with SMTP id c8-20020a056512074800b00513bf9279admr1633910lfs.45.1712232253993;
-        Thu, 04 Apr 2024 05:04:13 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id ew12-20020a056402538c00b0056a033fa007sm9068238edb.64.2024.04.04.05.04.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Apr 2024 05:04:13 -0700 (PDT)
-Message-ID: <8f37211a-57ed-48ab-8de8-cd5a0d4c6609@linaro.org>
-Date: Thu, 4 Apr 2024 14:04:11 +0200
+	s=arc-20240116; t=1712232582; c=relaxed/simple;
+	bh=iF+hZYmZWLuY/qpKYXvimUzQbVkITzEoCicAm2QU+ug=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=L7uPWS/NHtr4Nf++vpsE9CZdynR69ptwJ5Wspet22EG0Z+TSA/D/qMHxMeQZ5qDwhSF00RpVeWN1lz5/+nXNLr0g4/XsPQ4ZzNB81qkNvjif6SJBYlcM/7HSl3r4BFIMkGbFdWrH9akJ3qPrW7UlN0KZR9r0ChmlyatA3ZXoT4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tO1YE7yI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40BA0C433F1;
+	Thu,  4 Apr 2024 12:09:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712232581;
+	bh=iF+hZYmZWLuY/qpKYXvimUzQbVkITzEoCicAm2QU+ug=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tO1YE7yIHQ3qHA2nwtm0ZGmT8/uAMAQ4HLwBOrTlncFnT6lriWguTpZpABNNIHW5Y
+	 qW3rMAAWv4c0Ok75qIfpTLWIaIs3z0scaY8iS9B46CBHfZBgDB0Wjc4jdGd6jyr1LO
+	 gYQsN3RT7xMVJd95yiqSqpPArJGXx2gEUAO0DKw7qZugdu2OzMwnkDwOQ7hZ6F1qqZ
+	 RCIeBIyNT866v7M20DFMDH5TChLGS/VOTCCGTR/TLtY2pve92qhd9BEq59iq30dINh
+	 bj8OGhSALLZCuTkrSXp/Hz6Ebp4fnWqFD9WQ+i7JDmfJBmUFy45D5Wcd8g0DmpQ9Bg
+	 BSvBdwPyFGYqg==
+Date: Thu, 4 Apr 2024 13:09:36 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
+Subject: Re: [RFC PATCH 0/6] Support ROHM BD96801 scalable PMIC
+Message-ID: <eb03ec33-0627-4986-be04-8e35da390d6b@sirena.org.uk>
+References: <cover.1712058690.git.mazziesaccount@gmail.com>
+ <f7d454ac-6ecb-4431-a1de-c9b5d1240969@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: mfd: Add ROHM BD71879
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: lee@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, mazziesaccount@gmail.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240402193515.513713-1-andreas@kemnade.info>
- <20240402193515.513713-2-andreas@kemnade.info>
- <6420ac43-f200-459c-8c38-7cd55c64a155@linaro.org>
- <20240404123010.69454fda@aktux>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240404123010.69454fda@aktux>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="bLwWuxLdQRd8U3iv"
+Content-Disposition: inline
+In-Reply-To: <f7d454ac-6ecb-4431-a1de-c9b5d1240969@gmail.com>
+X-Cookie: Buckle up!
 
-On 04/04/2024 12:30, Andreas Kemnade wrote:
-> On Thu, 4 Apr 2024 08:59:54 +0200
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> 
->> On 02/04/2024 21:35, Andreas Kemnade wrote:
->>> As this chip was seen in several devices in the wild, add it.
->>>
->>> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
->>> Suggested-by: Matti Vaittinen <mazziesaccount@gmail.com>
->>> ---
->>>  Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml | 4 +++-
->>>  1 file changed, 3 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
->>> index 0b62f854bf6b..e4df09e8961c 100644
->>> --- a/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
->>> +++ b/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
->>> @@ -17,7 +17,9 @@ description: |
->>>  
->>>  properties:
->>>    compatible:
->>> -    const: rohm,bd71828
->>> +    enum:
->>> +      - rohm,bd71828
->>> +      - rohm,bd71879  
->>
->> In your second commit you claim they are compatible, so why they are not
->> marked as such?
->>
-> so you mean allowing
-> 
-> compatible = "rohm,bd71828"
-> and
-> compatible = "rohm,bd71879", "rohm,bd71828"
 
-Yes. If there are reasons against, please briefly mention them in commit
-msg.
+--bLwWuxLdQRd8U3iv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Best regards,
-Krzysztof
+On Thu, Apr 04, 2024 at 10:26:34AM +0300, Matti Vaittinen wrote:
 
+> 1. Should we be able to have more than 1 IRQ domain / device?
+> 2. Should regmap_irq support having more than 1 HWIRQ
+
+I would expect each parent interrupt to show up as a separate remap_irq.
+
+> then it seems that reading the IRQ information from the /proc/interrupts
+> works as expected. Here I am making a wild guess that the name of the domain
+> is used as a key for some data-lookups, and having two domains with a same
+> name will either overwrite something or cause wrong domain data to be
+> fetched. (This is just guessing for now).
+
+So if we arrange to supply a name when we register multiple domains
+things should work fine?
+
+--bLwWuxLdQRd8U3iv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmYOmH8ACgkQJNaLcl1U
+h9CueAf/QxTLrSUED3FleSmC99lu2f6hCDoyehpmImkDa1WIGmVrBCv6Rr9IIogs
+u4+/eLtbZ/A8yxKJz7qEXBNwwS5LOpZpPPZvrTe9sZ6E5vbZq1EWP2M3OdnsB9XS
+64XavlWRYG6MgbYLx3G4E7xHzfAFmEBY3e9s2eaxYpH3iWiTruN8sSsS2Qx4ji8Z
+DDiD4SVtDHtHT/Njz2bR1iEw2Dq5yVRGRahTcmL7mGfcskcB/KB4x7dV4WfOJN27
+WZ5tTG2wDMRlan9AY9myMordW5FIPqzOhE4MdU3bmNNU/AcvrqRw0qrgvlKcik7r
+q0m/K5N4s/Bmnod2mW0p9r0Z7vHSig==
+=1Y5H
+-----END PGP SIGNATURE-----
+
+--bLwWuxLdQRd8U3iv--
 
