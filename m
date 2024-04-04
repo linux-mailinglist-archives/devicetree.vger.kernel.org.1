@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-56199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E92D89814F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 08:18:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3508D898153
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 08:18:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BD718B213BD
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 06:18:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DEE1A28373B
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 06:18:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 318584AEE1;
-	Thu,  4 Apr 2024 06:17:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE341495FD;
+	Thu,  4 Apr 2024 06:18:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fWwKBcu8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uBRpsB9L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39C80482C9
-	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 06:17:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1821148CCC
+	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 06:18:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712211477; cv=none; b=mCYgBIGrNaVUMLEDmoLcat/UGEMpq2psYBsDSVG2AzGe8JljqDSJlB5PaohJNlMtEsmeRAY9+v7Tr3cTVc51zHx0YdBZjpzCiFcphAriOiPE1VmLxRQXm+RdZp5pFXbytgpGr7f9KwfhwxzvusYhuLOG2iQnhlNPASQ0sVZebjA=
+	t=1712211521; cv=none; b=CdfrOykARlUeeLtwGazjDTqhI6g3zabeXN+BEWyZu1sDSsgsbEU+ADDosN2xVuw1fPfeT081sZbw0oty5DQfYp2kDH1/Mjzqo65xGS29KCBBBM6urqs5JSeSsYRWnrzHhAKHk99Lg6VVy1BzfqPk4ZBh3vQHDzvSBcbh+hyoTUE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712211477; c=relaxed/simple;
-	bh=ZJ7R9ncDVXtptVEBCmWeFsuNoZap0993lo95uag14cE=;
+	s=arc-20240116; t=1712211521; c=relaxed/simple;
+	bh=2J7Re/HyvlV+/ExJlexrUrhdCVIk2oInihJetZ94u+k=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jb15pSRGeirSkLtnk3YHEmpFfUyDd+60DVqk52HAWHeJ78gTeXE0xrugHqfqfQaJWNNdAMoGsa+UMA0fsmR+Kl2hNlut7/313uE6b0PykYDqHOdX9CCYUCqn87DN6FuZ831W+Wl3RKfW6hhH01pOeKMaF06dcieNsAwHvBX7zzM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fWwKBcu8; arc=none smtp.client-ip=209.85.218.46
+	 In-Reply-To:Content-Type; b=PRTMpSakgpZaz6eQJrl+13cl4jiKvv3/9/haZVv1cdEuEJgvkKTAWqseCQx8Y39ym9U3i67Vrk2mMtrTbuWC8W+upPNRPGtSTCrD1U4mu7/BzQoDwGJdj7lYTog0IY4f52cBbbkNH6Ii4rlr/mFlYUY7ATaZBIF9qu41DULFtO8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uBRpsB9L; arc=none smtp.client-ip=209.85.208.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a517d773844so77054566b.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 23:17:55 -0700 (PDT)
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-56845954ffeso987096a12.2
+        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 23:18:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712211473; x=1712816273; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712211518; x=1712816318; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=QstkA/0puettnYJmAHPNH5ZaCqi91hpEvWVtbV4p+ks=;
-        b=fWwKBcu8jDOhCYNszm7P9KA0hpyPg3PQmx1tCqsPNM2ba11gTTXgZfEkU29F1dRw9A
-         QBxAtjzR+KrMhPGoi1q++HvopurLSwy0B/kauv9/U4g8BGD8/PbuV7/IkcOZIq80bzbw
-         AhOydA9nPAq/jUnEnjVAuQ0Sp7UA9ON/RL9POrvfhl9cV55cnc+N5daolovfRrUR9uSy
-         scaIzGdpPKi/P+Ql3i+P2tR8wqlJcSmRy7Cr9ER+q9DNUoxV1oIqslHVC3BzwQc/rFpP
-         ERq//LbPeUdPKMLmN66BtHXOcyTFjyWN5+V1TZe3pQ50Xus6LQbzMfypzRtoWHTy/Sx6
-         fTjQ==
+        bh=0qKZ+iYWQHqYn9Rd3HRahOpCkdY1YAxGTET1Vitiv1k=;
+        b=uBRpsB9L9MfvKOfuSaSdGho9/DM4FZGlLw281grWQiwYWQd/ifuAgOXf45B9XTo5Xu
+         w7zd5VqzWZxsO80KA0VmaXqQA9NYKGyiwtp3hy2l3WCP0vrsIbdKVkkLDGu+WyQagF/n
+         V/H/tnLMmHvp/EAo6oCKxLK6+YDSjaDvgnkvzZPR4nxz2J62y0wVycDU11f6E3IeEIs+
+         bJLkQjpEA1H9n9EC6QJt/9ToKLY9nXEhnyfwIeq2WQ9uAHw+6u/tD5+jmcwoCnwSGg0S
+         RGGLmGKEAa+UVNqo+U19MiygWChq1EDiGsrQ5HokZEQakMoJwk/olHeu08f/DwbjF+nn
+         fCsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712211473; x=1712816273;
+        d=1e100.net; s=20230601; t=1712211518; x=1712816318;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=QstkA/0puettnYJmAHPNH5ZaCqi91hpEvWVtbV4p+ks=;
-        b=ICbKPoIQydH4PZIpwf8hHJ6nKvese5LDIZdLqZNGU8+aqR+720bFxxogOL1ljMU3Jr
-         6pQNauiT/FcGu9IizaJtCF0PF2ypmeIPIlQMo8oYZzaEhGkWTUrYOJuk3ufG38kwIFWn
-         w7J/1L7m9vAnjRCb/rMnPNIWoqbHx1iGhgIwPkp4/OyhgXs/R7dUyUItD/3foKYT25dY
-         icDD/uAaMiiRPCVE0AUMq3y83rj/H2s5LG7Hrux+7VbggwbLIpxlwlQoMBvWJ4V11am+
-         Fxmch24iEPU/LU+tBEORjmCod0jztPDPoiP2xpQ0KRY9bylSEzS1u/8clf1vL2aoRghf
-         KK/w==
-X-Forwarded-Encrypted: i=1; AJvYcCXyBaz6Da0llNqiEo8mYtFiXod2kMh5YApo4/uEogdSnNtf9qytoyRzUyPzPcIsMUQpVUbdpj206clms/VpNWKAhmaSkrLLGzhNAQ==
-X-Gm-Message-State: AOJu0YyHXY5sBSkI4rTp2mjCwoqwfUXGmvD+uPHxtoVbfzk93TsuYZQC
-	tswK7JC+68h23DRk6LQ1hZJQHaRVN74e9X6wdKvXGZJzlvTM9i6mE9CK9H7YxIE=
-X-Google-Smtp-Source: AGHT+IEENym2ijmiU/kB6DhuJTWO7Em2jtRiY2Gc4RM4VO0AhN926Sag75h5SCWL36XOduQzAl1fEg==
-X-Received: by 2002:a17:906:2a52:b0:a46:5e1b:58a3 with SMTP id k18-20020a1709062a5200b00a465e1b58a3mr875670eje.35.1712211473598;
-        Wed, 03 Apr 2024 23:17:53 -0700 (PDT)
+        bh=0qKZ+iYWQHqYn9Rd3HRahOpCkdY1YAxGTET1Vitiv1k=;
+        b=tsxlnhRD+9BFMmhO7h2bQsY+HhuQ+TqBiWWD/R8eMBAxSfXaSg0tM6umkfzQgoAw9g
+         UvtdrqwMUY6m7ZtI9ApYcOvwS2eyvHsD265vz/RKlIc0Wa0SeFLgnTUSK2cvEmrIckEU
+         33tIifnn+UkHhQhPF18JuITBZ25Yhyb80Tux4B6PqGbb5DT/FZIpJvn5//cS9CiQnXy+
+         2hIw06J6fu9B+m7DStWIv+YMN1GtAaztcmHh3UVqJMep1b+2WeJ7FUIsZR7rDqcqCvpg
+         X+iMiLSSWwt4MqoTfeZnrGVC04QBlCouv3oB68DA1IkyzVTLSPsiehs76fNpmg+haPyb
+         CLUg==
+X-Forwarded-Encrypted: i=1; AJvYcCXLz43+D2Zg2gRjkM4GgPQZlhIn7/28putLfR13WwnHa//I6td10PsuT9BYvEJw5zEtHodFCeRsCFiRNG9lyzXYDt2xAUrOhaqiTg==
+X-Gm-Message-State: AOJu0YzCVnFQGkaL847IUduGJuqSb7AXlKX7aYJjBxLVgd5lq7aUMHRS
+	BClDnzjj6zjx49mJZwE52un2PNslEdSIg0qoIbRJX8lqnmGozZNGVwLPwWd3Ct4=
+X-Google-Smtp-Source: AGHT+IE//YeUlWWl3VoukJKYZwvGoO7B7ADUvRMkhV4WjlUseoXIiGv4d/HSDyWXfteAYqN8TIYTlA==
+X-Received: by 2002:a50:9e46:0:b0:56d:fc9e:5143 with SMTP id z64-20020a509e46000000b0056dfc9e5143mr916358ede.14.1712211518504;
+        Wed, 03 Apr 2024 23:18:38 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id bb1-20020a1709070a0100b00a4e7dfb5abasm3550712ejc.171.2024.04.03.23.17.51
+        by smtp.gmail.com with ESMTPSA id ew12-20020a056402538c00b0056a033fa007sm8745811edb.64.2024.04.03.23.18.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Apr 2024 23:17:52 -0700 (PDT)
-Message-ID: <e6e8c1b1-e1e5-4598-83ac-654c242dc6fc@linaro.org>
-Date: Thu, 4 Apr 2024 08:17:51 +0200
+        Wed, 03 Apr 2024 23:18:37 -0700 (PDT)
+Message-ID: <8e5fb9c0-fa7a-4691-a9f4-f2b42b66d1e5@linaro.org>
+Date: Thu, 4 Apr 2024 08:18:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,22 +77,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/6] Add Synopsys DesignWare HDMI RX Controller
-To: Deborah Brouwer <deborah.brouwer@collabora.com>
-Cc: Shreeya Patel <shreeya.patel@collabora.com>, mchehab@kernel.org,
- hverkuil@xs4all.nl, hverkuil-cisco@xs4all.nl, heiko@sntech.de,
- robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
- shawn.wen@rock-chips.com, kernel@collabora.com,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-arm@lists.infradead.org
-References: <20240327225057.672304-1-shreeya.patel@collabora.com>
- <35e566-660d2080-1-7eb9eb00@16488675>
- <a2f88176-b4e1-4202-843c-a00c5a2b1622@linaro.org>
- <35f774-660d3b80-3-513fcf80@97941910>
- <86150c89-11d5-4d52-987e-974b1a03018f@linaro.org> <Zg3Gh8P97GaBtgAB@mz550>
+Subject: Re: [PATCH 3/7] dt-bindings: PCI: qcom: Add IPQ9574 PCIe controller
+To: mr.nuke.me@gmail.com, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Bjorn Helgaas
+ <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: ansuelsmth@gmail.com, robimarko@gmail.com, linux-arm-msm@vger.kernel.org,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240402192555.1955204-1-mr.nuke.me@gmail.com>
+ <20240402192555.1955204-3-mr.nuke.me@gmail.com>
+ <bad88189-cf70-4200-9fa3-650ea923b4b8@linaro.org>
+ <d35c96ca-24af-fbad-74fe-ad85a433caa2@gmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -139,60 +139,86 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <Zg3Gh8P97GaBtgAB@mz550>
+In-Reply-To: <d35c96ca-24af-fbad-74fe-ad85a433caa2@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 03/04/2024 23:13, Deborah Brouwer wrote:
-> On Wed, Apr 03, 2024 at 01:24:05PM +0200, Krzysztof Kozlowski wrote:
->> On 03/04/2024 13:20, Shreeya Patel wrote:
->>> On Wednesday, April 03, 2024 15:51 IST, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
->>>
->>>> On 03/04/2024 11:24, Shreeya Patel wrote:
->>>>> On Thursday, March 28, 2024 04:20 IST, Shreeya Patel <shreeya.patel@collabora.com> wrote:
->>>>>
->>>>>> This series implements support for the Synopsys DesignWare
->>>>>> HDMI RX Controller, being compliant with standard HDMI 1.4b
->>>>>> and HDMI 2.0.
->>>>>>
->>>>>
->>>>> Hi Mauro and Hans,
->>>>>
->>>>> I haven't received any reviews so far. Hence, this is just a gentle reminder to review this patch series.
->>>>
->>>> Why did you put clk changes here? These go via different subsystem. That
->>>> might be one of obstacles for your patchset.
->>>>
->>>
->>> I added clock changes in this patch series because HDMIRX driver depends on it.
->>> I thought it is wrong to send the driver patches which don't even compile?
->>
->> Hm, why HDMIRX driver depends on clock? How? This sounds really wrong.
->> Please get it reviewed internally first.
->>
->>>
->>> Since you are a more experienced developer, can you help me understand what would
->>> be the right way to send patches in such scenarios?
->>
->> I am not the substitute for your Collabora engineers and peers. You do
->> not get free work from the community. First, do the work and review
->> internally, to solve all trivial things, like how to submit patches
->> upstream or how to make your driver buildable, and then ask community
->> for the review.
+On 03/04/2024 20:05, mr.nuke.me@gmail.com wrote:
 > 
-> I don't think Shreeya was asking for "free" work from the community.
-> Her question wasn't trivial or obvious since reasonable people seem to sometimes
-> disagree about where to send a patch especially if it's needed to make a series compile.
-> I heard the issue was already resolved but had to say something since this accusation
-> seemed so unfair.
+> 
+> On 4/3/24 02:14, Krzysztof Kozlowski wrote:
+>> On 02/04/2024 21:25, Alexandru Gagniuc wrote:
+>>> IPQ9574 has PCIe controllers which are almost identical to IPQ6018.
+>>> The only difference is that the "iface" clock is not required.
+>>> Document this difference along with the compatible string.
+>>>
+>>> Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
+>>> ---
+>>>   .../devicetree/bindings/pci/qcom,pcie.yaml    | 32 +++++++++++++++++++
+>>>   1 file changed, 32 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>>> index cf9a6910b542..6eb29547c18e 100644
+>>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>>> @@ -26,6 +26,7 @@ properties:
+>>>             - qcom,pcie-ipq8064-v2
+>>>             - qcom,pcie-ipq8074
+>>>             - qcom,pcie-ipq8074-gen3
+>>> +          - qcom,pcie-ipq9574
+>>>             - qcom,pcie-msm8996
+>>>             - qcom,pcie-qcs404
+>>>             - qcom,pcie-sdm845
+>>> @@ -383,6 +384,35 @@ allOf:
+>>>               - const: axi_s # AXI Slave clock
+>>>               - const: axi_bridge # AXI bridge clock
+>>>               - const: rchng
+>>> +
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - qcom,pcie-ipq9574
+>>> +    then:
+>>> +      properties:
+>>> +        clocks:
+>>> +          minItems: 4
+>>> +          maxItems: 4
+>>> +        clock-names:
+>>> +          items:
+>>> +            - const: axi_m # AXI Master clock
+>>> +            - const: axi_s # AXI Slave clock
+>>> +            - const: axi_bridge # AXI bridge clock
+>>> +            - const: rchng
+>>> +
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - qcom,pcie-ipq6018
+>>> +              - qcom,pcie-ipq8074-gen3
+>>> +              - qcom,pcie-ipq9574
+>>> +    then:
+>>
+>> Do not introduce inconsistent style. All if:then: define both clocks and
+>> resets, right? And after your patch not anymore?
+>>
+> I kept the resets in one place because they are the same cross the ipq* 
+> variants.
+> 
+> Do I understand correctly that you wish me to split up the resets as well?
+> 
+>      if ipq8074 ipq6018
+>          clocks
+>          resets
+> 
+>      if ipq9754
+>          clocks
+>          resets
 
-If HDMI driver does not build because of clock driver, something is
-really wrong at the basics level. Therefore I am sure my statement was
-fair,. based on Shreeya statement of build failure.
-
-I am sorry, but independence of drivers and independence of DTS is a
-basic thing, so to solve such you can easily get help internally from
-your experienced folks (which you have).
+Yes, keep it consistent with all other cases.
 
 Best regards,
 Krzysztof
