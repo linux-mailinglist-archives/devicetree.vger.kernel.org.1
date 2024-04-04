@@ -1,168 +1,132 @@
-Return-Path: <devicetree+bounces-56420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D53689919A
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 00:53:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88E368991BE
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 01:02:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE6811C21FC1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 22:53:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 293501F2263F
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 23:02:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4631E12D214;
-	Thu,  4 Apr 2024 22:53:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0300130AE1;
+	Thu,  4 Apr 2024 23:02:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jI6yA9Ei"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RQboHFS7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D78F71723;
-	Thu,  4 Apr 2024 22:53:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF959286A6;
+	Thu,  4 Apr 2024 23:02:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712271203; cv=none; b=CQHoQL6+vktB/WTYdn0XDtDQarNlL4Iwp1gxFX0D7LTA5Qw+zgYPa159skWaEMjlYCBeyExL+V1UXKBonxOWPtLjjHrF7L6gyW2st/YYhQ8HpFsK+wxnXtf/+sKM+kj9MH8pUW/eZiiu3pZ/VLYh5kgN9v/aGLfQS7zxfoivkEo=
+	t=1712271755; cv=none; b=fo+nu4584LMjOguPfRKWewEOTpQ4yJCtlRWa7yaE2dgp8IpbeSkbKPPYrqRFAg9bUDy+ChpJi+0a4ctPTncpSSiazY4MHmiLKRgK7LOMKzuY4K4IA/3fFHnUZGnL4ssAEwfukY+TVKY6BsYKyxqNUnHZB3vgE66xYMFChEZg5JI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712271203; c=relaxed/simple;
-	bh=nHDeIZjgG/ABq+COPbhriixxj1CJ1aiFsFPnz9B5/Ew=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nzXPltvc/38mxa0NM3bUVoz3/WDmJV9bb4Gffd77wvu/IRggzZ5bcSn0Ahz1dyD3UxIdk8C9x/x6KqNR3HfzjMM1eCmSdUtrmOv9wgJLJxxiAmHZ214Jkl4+nW3AGm91VaCm+GxrJ4Jomqbwu0L/Y6jd2OM2OZ6H4HDP1ghhQq0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jI6yA9Ei; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1712271202; x=1743807202;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=nHDeIZjgG/ABq+COPbhriixxj1CJ1aiFsFPnz9B5/Ew=;
-  b=jI6yA9Ein2vQr/xrpwN8Wdagm7yBeJxof7VWn5CEPxe/EsC71g1w9spL
-   Y+VSCINywYjsWn4HO8pgnux8klDq/AJ4LGrR0UIyHE2tduDWPEIrx6IRg
-   Fpe7WN5hDQpt/GaO7Fo0cb2yFBTxU1Tgjq+EeDtn6R1yEEP9CoggIE28E
-   XHyyct9M1XPrvh6lVz6z7eW5Plzsyl0MpUh/X76w5Fj0weCWVjYMHycQt
-   r7J+3KzNtqMPZFwbTN1M8Ux+1+g6Z6Bc1CNRqylefVbjnTnrZnySJjGI/
-   HaY73yb3c9C07Q99wWYCCrNFAcsH+Yd+Nh1d3IDcDISvD8zA4rCAm1a8S
-   w==;
-X-CSE-ConnectionGUID: AxPZNNiXQ+Sm++dRuJQXTQ==
-X-CSE-MsgGUID: DGEll113QRa54DvJegj47A==
-X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="7747184"
-X-IronPort-AV: E=Sophos;i="6.07,180,1708416000"; 
-   d="scan'208";a="7747184"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Apr 2024 15:53:21 -0700
-X-CSE-ConnectionGUID: DMVI8dVNQt+mFpCKldjuFw==
-X-CSE-MsgGUID: qHDgff3ISNujXJMguBDG9Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,180,1708416000"; 
-   d="scan'208";a="50191958"
-Received: from lkp-server01.sh.intel.com (HELO e61807b1d151) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 04 Apr 2024 15:53:14 -0700
-Received: from kbuild by e61807b1d151 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rsVxH-0001b6-2d;
-	Thu, 04 Apr 2024 22:53:11 +0000
-Date: Fri, 5 Apr 2024 06:52:21 +0800
-From: kernel test robot <lkp@intel.com>
-To: Peter Griffin <peter.griffin@linaro.org>, mturquette@baylibre.com,
-	sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org,
-	alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
-	s.nawrocki@samsung.com, cw00.choi@samsung.com, jejb@linux.ibm.com,
-	martin.petersen@oracle.com, chanho61.park@samsung.com,
-	ebiggers@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, linux-scsi@vger.kernel.org,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	tudor.ambarus@linaro.org, andre.draszik@linaro.org,
-	saravanak@google.com, willmcvicker@google.com,
-	Peter Griffin <peter.griffin@linaro.org>
-Subject: Re: [PATCH 08/17] clk: samsung: gs101: add support for cmu_hsi2
-Message-ID: <202404050633.EZfOttFD-lkp@intel.com>
-References: <20240404122559.898930-9-peter.griffin@linaro.org>
+	s=arc-20240116; t=1712271755; c=relaxed/simple;
+	bh=zHgnA+az/AHN+9Bc+MNoJKbYM23a7xXZZrs4jZdhGP4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Foj+R0O+Dt0IWzl0q/rFn/wdK8Da6nxX8K+fbEBOwGIiyMgikn7sHE3HGq3GueZDeUgBKB+F7HgQ5ej96Rjiceujq2Gc2XWJxcguBAhPlOZB7HhoUyt18Val8tVmszwlG2AV7ss4YcjZfDgG9cCj/a6gx95t+zLMJDQxC4rRUoo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=RQboHFS7; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 434LNHow012929;
+	Thu, 4 Apr 2024 23:02:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=KiPpkxDkZcXdtwbyPMmI8BmVH2/5c7HbjeyOjw18SX4=; b=RQ
+	boHFS7AC4+tyeInS93Alj539CnL3v7mfP5WYbe7+Sm1qLMP0mTdrh0viKJaG2abn
+	W5nDfNayh/xVydzqm7un6Z3agTi49r0UbIhNTg559jTRBxeUO/fEKU6ZImmf+4jZ
+	ws6NEccS3zn2N6jDFPb7Loj4Dg9eOkPrbntHoDD573rHV1GR02ANrt+RqbIZO2Si
+	lIUcWwTJgtUYI7gQFTAaY6CBWy13wvR5/M4MoDex+XC+ZW4TOONkQ+n29Au3ewol
+	x7o+SWVN4jqcDlurI45qt+kKW9gC9VzNbn63+N07qTxpvFhs0ELHT0oWjzLLBLSj
+	90rHxkWp41LvlUckCVaA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xa2q389c9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 04 Apr 2024 23:02:20 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 434N2JuF028919
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 4 Apr 2024 23:02:19 GMT
+Received: from [10.110.52.194] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Thu, 4 Apr 2024
+ 16:02:18 -0700
+Message-ID: <1d2d231a-ab2e-4552-9e72-2655d778f3b8@quicinc.com>
+Date: Thu, 4 Apr 2024 16:02:18 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240404122559.898930-9-peter.griffin@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 0/2] Add Qualcomm PCIe ECAM root complex driver
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <linux-pci@vger.kernel.org>, <lpieralisi@kernel.org>, <kw@linux.com>,
+        <robh@kernel.org>, <bhelgaas@google.com>, <andersson@kernel.org>,
+        <manivannan.sadhasivam@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <quic_ramkri@quicinc.com>,
+        <quic_nkela@quicinc.com>, <quic_shazhuss@quicinc.com>,
+        <quic_msarkar@quicinc.com>, <quic_nitegupt@quicinc.com>
+References: <1712257884-23841-1-git-send-email-quic_mrana@quicinc.com>
+ <42d1281e-9546-4af1-a30b-8a0c3969be6b@linaro.org>
+Content-Language: en-US
+From: Mayank Rana <quic_mrana@quicinc.com>
+In-Reply-To: <42d1281e-9546-4af1-a30b-8a0c3969be6b@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: KXi3EU77--FG8qSn1aR12HQ5hm9oxjo9
+X-Proofpoint-GUID: KXi3EU77--FG8qSn1aR12HQ5hm9oxjo9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-04_19,2024-04-04_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ priorityscore=1501 clxscore=1011 malwarescore=0 bulkscore=0
+ mlxlogscore=999 adultscore=0 impostorscore=0 lowpriorityscore=0
+ spamscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404040166
 
-Hi Peter,
+Hi Krzysztof
 
-kernel test robot noticed the following build warnings:
+On 4/4/2024 12:33 PM, Krzysztof Kozlowski wrote:
+> On 04/04/2024 21:11, Mayank Rana wrote:
+>> On some of Qualcomm platform, firmware takes care of system resources
+>> related to PCIe PHY and controller as well bringing up PCIe link and
+>> having static iATU configuration for PCIe controller to work into
+>> ECAM compliant mode. Hence add Qualcomm PCIe ECAM root complex driver.
+>>
+>> Tested:
+>> - Validated NVME functionality with PCIe0 and PCIe1 on SA877p-ride platform
+>>
+> 
+> RFC means code is not ready, right? Please get internal review done and
+> send it when it is ready. I am not sure if you expect any reviews. Some
+> people send RFC and do not expect reviews. Some expect. I have no clue
+> and I do not want to waste my time. Please clarify what you expect from
+> maintainers regarding this contribution.
+> 
+> Best regards,
+> Krzysztof
+> 
+Thanks for initial comments.
+yes, this is work in progress. There are still more functionalities 
+planned to be added as part of this driver. Although purpose of sending 
+initial change here to get feedback and review comments in terms of 
+usage of generic Qualcomm PCIe ECAM driver, and usage of MSI 
+functionality with it. I missed mentioning this as part of cover letter. 
+So please help to review and provide feedback.
 
-[auto build test WARNING on krzk/for-next]
-[also build test WARNING on robh/for-next clk/clk-next linus/master v6.9-rc2 next-20240404]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Peter-Griffin/dt-bindings-clock-google-gs101-clock-add-HSI2-clock-management-unit/20240404-205113
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240404122559.898930-9-peter.griffin%40linaro.org
-patch subject: [PATCH 08/17] clk: samsung: gs101: add support for cmu_hsi2
-config: arm64-defconfig (https://download.01.org/0day-ci/archive/20240405/202404050633.EZfOttFD-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240405/202404050633.EZfOttFD-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202404050633.EZfOttFD-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from drivers/clk/samsung/clk-gs101.c:16:
->> drivers/clk/samsung/clk-gs101.c:3640:7: warning: 'mout_hsi2_mmc_card_p' defined but not used [-Wunused-const-variable=]
-    3640 | PNAME(mout_hsi2_mmc_card_p)     = { "fout_shared2_pll", "fout_shared3_pll",
-         |       ^~~~~~~~~~~~~~~~~~~~
-   drivers/clk/samsung/clk.h:229:44: note: in definition of macro 'PNAME'
-     229 | #define PNAME(x) static const char * const x[] __initconst
-         |                                            ^
->> drivers/clk/samsung/clk-gs101.c:3633:7: warning: 'mout_hsi2_bus_p' defined but not used [-Wunused-const-variable=]
-    3633 | PNAME(mout_hsi2_bus_p)          = { "dout_cmu_shared0_div4",
-         |       ^~~~~~~~~~~~~~~
-   drivers/clk/samsung/clk.h:229:44: note: in definition of macro 'PNAME'
-     229 | #define PNAME(x) static const char * const x[] __initconst
-         |                                            ^
->> drivers/clk/samsung/clk-gs101.c:3631:7: warning: 'mout_hsi2_pcie_p' defined but not used [-Wunused-const-variable=]
-    3631 | PNAME(mout_hsi2_pcie_p)         = { "oscclk", "dout_cmu_shared2_div2" };
-         |       ^~~~~~~~~~~~~~~~
-   drivers/clk/samsung/clk.h:229:44: note: in definition of macro 'PNAME'
-     229 | #define PNAME(x) static const char * const x[] __initconst
-         |                                            ^
->> drivers/clk/samsung/clk-gs101.c:3628:7: warning: 'mout_hsi2_ufs_embd_p' defined but not used [-Wunused-const-variable=]
-    3628 | PNAME(mout_hsi2_ufs_embd_p)     = { "oscclk", "dout_cmu_shared0_div4",
-         |       ^~~~~~~~~~~~~~~~~~~~
-   drivers/clk/samsung/clk.h:229:44: note: in definition of macro 'PNAME'
-     229 | #define PNAME(x) static const char * const x[] __initconst
-         |                                            ^
-
-
-vim +/mout_hsi2_mmc_card_p +3640 drivers/clk/samsung/clk-gs101.c
-
-  3627	
-> 3628	PNAME(mout_hsi2_ufs_embd_p)	= { "oscclk", "dout_cmu_shared0_div4",
-  3629					    "dout_cmu_shared2_div2", "fout_spare_pll" };
-  3630	
-> 3631	PNAME(mout_hsi2_pcie_p)		= { "oscclk", "dout_cmu_shared2_div2" };
-  3632	
-> 3633	PNAME(mout_hsi2_bus_p)		= { "dout_cmu_shared0_div4",
-  3634					    "dout_cmu_shared1_div4",
-  3635					    "dout_cmu_shared2_div2",
-  3636					    "dout_cmu_shared3_div2",
-  3637					    "fout_spare_pll", "oscclk", "oscclk",
-  3638					    "oscclk" };
-  3639	
-> 3640	PNAME(mout_hsi2_mmc_card_p)	= { "fout_shared2_pll", "fout_shared3_pll",
-  3641					    "dout_cmu_shared0_div4", "fout_spare_pll" };
-  3642	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Regards,
+Mayank
 
