@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-56195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99C1C898138
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 08:08:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F39F89813E
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 08:12:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4FFB3287B62
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 06:08:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B54F1C21982
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 06:12:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4996245942;
-	Thu,  4 Apr 2024 06:08:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02222482C9;
+	Thu,  4 Apr 2024 06:12:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="L9n4cMxJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cOhQxYQl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F3514776E
-	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 06:08:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 248D245977
+	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 06:12:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712210906; cv=none; b=aia2rrL6iuDkKsTR2pjPhEecbijxcbSdvJuRCS8NIs1ewn4Ow/9aa4SPIbMGasX0X1ic8G+ajrYxo2LmhwahtIqG19sI93qh6ClInuZ8XQt3hpXZFkDDuzAMQd2EgJuuQy4hKTAY69FRoREdSHdNS0HIsbvf2moUsHDZLhtKNFc=
+	t=1712211143; cv=none; b=Z2q+DhhEltjfFFKZV/rnN8I6O+lSF/L8YMMrs8b1wQxiKRZJAq5+NElerCLO+zZL+CzGHQHklMVeEECnsKwfmaz/XNUENEOcSFZqZaql9NmTSIk1+f4CfS5t8ZBzfO1AQpDtrGLiUnAs9jEhxxkArJodO7Kuuc/fFaS4S2l9jIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712210906; c=relaxed/simple;
-	bh=ck5HlJSGfEIktIG5FSqBkHcuiI35GZ/YtcLCexW15Ng=;
+	s=arc-20240116; t=1712211143; c=relaxed/simple;
+	bh=Nz+GVvdYNt7j15z0S4gwY8j7t8Bi+495AqApM45teJE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CC1qEQmaxvvdhNdMqCxe+yDQAuUiOswLOmyfFtiGR/d0KqxsJMAO6A2o6IqaULclwxYD9N4OOyvCwV3iRDvqLhF6bklWZiVo9DZckPvXyu9HIivLWZv5YDL0VR3OgcQxnq/c9p8M+VF6IMf9Xa+xrq2s+ggFkAHI1qnfQDUmlX0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=L9n4cMxJ; arc=none smtp.client-ip=209.85.218.47
+	 In-Reply-To:Content-Type; b=h/nGeaJlPn+Q4UOv2P4CWub/aXzvFyHUt4W73XdlksYbJJWCw/tLDo5thtGbJpYBBcU0dEmOd8zQslnRgEN9m6glzU1RagqwLqglJRlr+MgE6BM25RL11z8I4izD5qsQs+37Crp2f0pIwYMUhTA9kGqeJ5ZZcRnlmbvaJ0t5WMY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cOhQxYQl; arc=none smtp.client-ip=209.85.208.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a472f8c6a55so79168366b.0
-        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 23:08:23 -0700 (PDT)
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-56bf6591865so812843a12.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 23:12:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712210902; x=1712815702; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712211140; x=1712815940; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=rxTZ85unwyVpbZ07p+2JFJ30WK5iCDVvonlCXKZGiyE=;
-        b=L9n4cMxJQe5qz0Hxe/fWe2WOKF2mfQiqAfdge1PC5bSmf7WEG05O3aqy2NOlA/gNqg
-         4D+BW4mStGYPpGjTQHCvd72SUftzuLTXp3iYu3APlbwBxUNEwNUHIvrmH+NO/QcsnvtI
-         s4Z06FvNY/vuxHiwlgdwsEZmdElONLolx84oP6yCId7rGqtTEBwJO9BV/uLUTrRRoIyy
-         w+LW/oOuMGV8OrnabxDnnBUtKtyO8uaGfaAaqcFazljtdWf51d6YsI5//M+4n8Gab5TI
-         NOExZLGeIBekQAw6wYssWREdwBA0o2/4H6Dc7NzFza2MTywWZ12Uiu3sOiutAf6UR1iR
-         b9RA==
+        bh=t6Jlsz6LxsqJXvoRYoB8EPQkaZhGyWROKtJ1IOS+vn8=;
+        b=cOhQxYQlquuHLckGetZEUfMQrIfe1ZrZw22kEnv+uWFavtsse83zprPrBr4xOzsQFU
+         pXHigfYmj7jWtyPhRglKIxJTnPblFh45bVXSiyXc3/aAyGwl9+0OUGl7TsELxXqeDuTG
+         rgM/aCcQQPebbYMITfEZlGJY7dxF1HVDNUcK659H4ycnW+jTPgWSw+RZGXVRo+TUhLJF
+         7bzUj64PwFbcmqF/guNvQLBfEOhK5LHCr+By30W15VTUVeKiO46WGpD66v0eW9FV1575
+         5LgpgbVO9Hnj1MN8SG0HbKaHLvzcY3SNoyCWnt8ow7T6LKtPWRFji6Iy9SX9L8Y35kHJ
+         uHlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712210902; x=1712815702;
+        d=1e100.net; s=20230601; t=1712211140; x=1712815940;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=rxTZ85unwyVpbZ07p+2JFJ30WK5iCDVvonlCXKZGiyE=;
-        b=M1P3fLRaVt1rS8EEZ95DVTjrGmSCf8UXxl790IpjsczW2xHyJNlXWqwgJdZ861k+aa
-         oVo+quuH9+wiawaBrz6zTWfB16lZPvv/UPRlWzcJ0oefzJfcJZOt9hc28ter/Zy1NTMU
-         WZ/7ZM5WLp2YJpHivNHc1KlPDkct3VGmIWOMsvu84Msvz5J6XNSzoksXCg/j1GOBsNdA
-         sJy7xe0zbOJUniGB3R7wHmHG6RCRAkKZEeloLfvIRAPNPZ0F3YlAyIi/imoI4g1rR4bc
-         imq3F6BmouTCJg4rBpFOOF/rGsPSslY2fedlEN9jhHCS20BJRjWSSHbJtrCmLFWpsI2G
-         ofXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUlJpsgsSMiDJANg7C3L6gXg8xM4cVVFnzZtxuqiPOD25/mJgXvLTzpiLsvgOpRkk4Zkt5rKUxh8iwAn/PAJoe1Fu9hZ1QdqKRm6w==
-X-Gm-Message-State: AOJu0YxeuANxYcHGSI8SG0hlKR+K1qEUUWg52BW9YmahssOKmYCr1D1O
-	K5212ozxWe/j9e1DCXA/UW7EziQtVJ8u0yA9U3gPUCXGMResYzxREm3/4JotV8M=
-X-Google-Smtp-Source: AGHT+IFI/qIkJNXTS6UHJf3srgzvcentyDoh5xx2aALaAXZXdTsCp8+U/4aUbwmbKXwuQRzaZ/XKDQ==
-X-Received: by 2002:a17:906:6607:b0:a4e:207e:b71 with SMTP id b7-20020a170906660700b00a4e207e0b71mr909877ejp.6.1712210902408;
-        Wed, 03 Apr 2024 23:08:22 -0700 (PDT)
+        bh=t6Jlsz6LxsqJXvoRYoB8EPQkaZhGyWROKtJ1IOS+vn8=;
+        b=gHLhubG4kFA7D/J9hV0+egbElih+qRnSgPmpXSkg3X6UW/mMJgLwrchRYTbdipcGTd
+         eNOuE6xJSqYaL3X+cvJtAwvNM4F6p6GJdHoF7ey7Ue8trmU//Gmm3sP1gA/bn2SmHi6P
+         KCKuET/7fwXJi1iQVLJrshgNIRjr/G/cRimNLH47CRPJPh5y4BInYIYIWywabJ7zLdag
+         /JOF32f9o2nqA319kqYL1MopOyb/6vOct+XPXH4zvLVvTATx41AqRajC1SOAtjhJHUxg
+         FRragJ0pygb2+TYfF+NeNM9R6WgGt0BTv9ubIX+eoVQ7eRJWPCvLvt7qa+Eo/Ix5JZWB
+         LMfQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVHqAiNWb5ubOyAHkbpR2vv0rHYx9z6yt5NqKGnxSoGEYno1OablXGIBOqYojKmaDgp7GqWl9Isxce4yLIX2UdgvGSDsTPqo7MqjA==
+X-Gm-Message-State: AOJu0YyfnsTXJ8Ko8gVIQt8J6gP2Bu0az7MA2nHXeEcYJrDG8fqWq2fW
+	GZPlMf9/1rjnpqvGnfctj0CqpBrOcWHrtMe4/1EZgIjy5EXPx24PVihsU01oZB4=
+X-Google-Smtp-Source: AGHT+IFmunps1EQCiMcWoc5T3Kdy549PJ5ZS+UHkfJMHVxrflDzob/XaPxmD0eHcAksWfbYZPEwcCg==
+X-Received: by 2002:a17:907:e86:b0:a51:81e2:4200 with SMTP id ho6-20020a1709070e8600b00a5181e24200mr1013418ejc.72.1712211140448;
+        Wed, 03 Apr 2024 23:12:20 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id w17-20020a170906185100b00a4e9359fbe8sm2307025eje.44.2024.04.03.23.08.18
+        by smtp.gmail.com with ESMTPSA id u23-20020a170906125700b00a47522c193asm8619473eja.196.2024.04.03.23.12.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Apr 2024 23:08:21 -0700 (PDT)
-Message-ID: <f73c3130-3121-4339-8f7a-8870a841005c@linaro.org>
-Date: Thu, 4 Apr 2024 08:08:17 +0200
+        Wed, 03 Apr 2024 23:12:19 -0700 (PDT)
+Message-ID: <194aa24c-2763-47e2-8ccc-1637d299c1ba@linaro.org>
+Date: Thu, 4 Apr 2024 08:12:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,51 +77,33 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND v7 04/37] dt-bindings: interrupt-controller: Add header
- for Renesas SH3/4 INTC.
-To: Yoshinori Sato <ysato@users.sourceforge.jp>, linux-sh@vger.kernel.org
-Cc: Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Thomas Gleixner <tglx@linutronix.de>, Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+Subject: Re: [PATCH v6 1/2] dt-bindings: usb: Add the binding example for the
+ Genesys Logic GL3523 hub
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Rob Herring <robh@kernel.org>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Rich Felker <dalias@libc.org>,
- John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
- Lee Jones <lee@kernel.org>, Helge Deller <deller@gmx.de>,
- Heiko Stuebner <heiko.stuebner@cherry.de>, Shawn Guo <shawnguo@kernel.org>,
- Sebastian Reichel <sre@kernel.org>, Chris Morgan <macromorgan@hotmail.com>,
- Linus Walleij <linus.walleij@linaro.org>, Arnd Bergmann <arnd@arndb.de>,
- David Rientjes <rientjes@google.com>, Hyeonggon Yoo <42.hyeyoo@gmail.com>,
- Vlastimil Babka <vbabka@suse.cz>, Baoquan He <bhe@redhat.com>,
- Andrew Morton <akpm@linux-foundation.org>, Guenter Roeck
- <linux@roeck-us.net>, Kefeng Wang <wangkefeng.wang@huawei.com>,
- Stephen Rothwell <sfr@canb.auug.org.au>,
- Javier Martinez Canillas <javierm@redhat.com>, Guo Ren <guoren@kernel.org>,
- Azeem Shaikh <azeemshaikh38@gmail.com>, Max Filippov <jcmvbkbc@gmail.com>,
- Jonathan Corbet <corbet@lwn.net>, Jacky Huang <ychuang3@nuvoton.com>,
- Herve Codina <herve.codina@bootlin.com>,
- Manikanta Guntupalli <manikanta.guntupalli@amd.com>,
- Anup Patel <apatel@ventanamicro.com>, Biju Das <biju.das.jz@bp.renesas.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Sam Ravnborg <sam@ravnborg.org>, Sergey Shtylyov <s.shtylyov@omp.ru>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-pci@vger.kernel.org, linux-serial@vger.kernel.org,
- linux-fbdev@vger.kernel.org
-References: <cover.1712207606.git.ysato@users.sourceforge.jp>
- <d50827196f7e1201bb9a62656fb04223a8989f1d.1712207606.git.ysato@users.sourceforge.jp>
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ linux-amlogic@lists.infradead.org, Conor Dooley
+ <conor.dooley@microchip.com>, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231204144429.45197-1-linux.amoon@gmail.com>
+ <21673bfd-bb87-4c7d-a53f-337c263f3a00@linaro.org>
+ <CANAwSgSo37B0zg-xjrmqndSZ5SbyB3m27_wRsqqN9WTONooeiw@mail.gmail.com>
+ <604e653d-c1e2-45c7-b121-8a6b4be5c6bb@linaro.org>
+ <CANAwSgRB=XWo2-40rDru=Zy277-kgGNjozJ8Lxnxgv_4ABB-kg@mail.gmail.com>
+ <1a78d453-62a2-410a-a40f-1ff0c2b62e86@linaro.org>
+ <CANAwSgTy4N7Q8e0OQLsFRkRDWksTSbkOetKQGygaqsQ8++U1_g@mail.gmail.com>
+ <2e688f4e-11d7-4f8e-b8ec-58f4a97304a8@linaro.org>
+ <CANAwSgQstkS-SDaV2hj0fimt7vgfEgOT_x4efshZ6sZQ0gWSEA@mail.gmail.com>
+ <8f28ea77-b3d0-445e-8d8e-80f980775f89@linaro.org>
+ <CANAwSgRLORHb6qiHWRBR0tMbYB=O=gwatuGhk72SwZyhYMopCw@mail.gmail.com>
+ <d2962ffb-badd-44a6-bdcc-53e15d4a4379@linaro.org>
+ <CANAwSgSpuh-+HFYg2UTgX27SHFyCBddV46MgKakiSCOtFX4+aw@mail.gmail.com>
+ <436ed6a4-2ed9-47bc-bcc9-18a52b1a791b@linaro.org>
+ <CANAwSgS8ip+FvuvgusjNwnVL5Z68PRmEdwfQxhst_ZoVZFoFNw@mail.gmail.com>
+ <CANAwSgSftb3KkXvzNyGGixVtK8SWcOYjxO9WWpLt-B3mf_B6tg@mail.gmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -168,27 +150,61 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <d50827196f7e1201bb9a62656fb04223a8989f1d.1712207606.git.ysato@users.sourceforge.jp>
+In-Reply-To: <CANAwSgSftb3KkXvzNyGGixVtK8SWcOYjxO9WWpLt-B3mf_B6tg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/04/2024 07:14, Yoshinori Sato wrote:
-> Renesas SH7751 Interrupt controller priority register define.
+On 04/04/2024 06:27, Anand Moon wrote:
+> Hi Krzysztof,
 > 
-> Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
+> On Tue, 12 Dec 2023 at 18:47, Anand Moon <linux.amoon@gmail.com> wrote:
+>>
+>> Hi Krzysztof,
+>>
+>> On Tue, 12 Dec 2023 at 18:39, Krzysztof Kozlowski
+>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>
+>>> On 12/12/2023 13:51, Anand Moon wrote:
+>>>> Hi Krzysztof,
+>>>>
+>>>> On Tue, 12 Dec 2023 at 17:22, Krzysztof Kozlowski
+>>>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>>>
+>>>>> On 12/12/2023 12:37, Anand Moon wrote:
+>>>>>>
+>>>>>> Here is the list of warnings I observed with this patch
+>>>>>>
+>>>>>>   DTC_CHK Documentation/devicetree/bindings/usb/nvidia,tegra186-xusb.example.dtb
+>>>>>> /home/amoon/mainline/linux-amlogic-6.y-devel/Documentation/devicetree/bindings/usb/usb-device.example.dtb:
+>>>>>> hub@1: 'vdd-supply' is a required property
+>>>>>
+>>>>> You always require the property, but it is not valid for some devices.
+>>>>> Just require it only where it is applicable (in if:then: clause).
+>>>>>
+>>>> I had already done this check many times before.
+>>>
+>>> I don't ask you to check. I ask you to change the code.
+>>>
+>> I have tried this and it's not working for me.
+>>
+>>>> my v6 original patch was doing the same and it passed all the tests
+>>>> but since I updated the required field it not parsing correctly.
+>>>
+>>> Your original v6 patch was different. I don't understand what you are
+>>> trying to achieve. Or rather: how is it different, that my simple advice
+>>> above does not work for you  (as in the past you reply with some really
+>>> unrelated sentence).
+>>>
+>> Ok, It's my poor English grammar, thanks for your review comments.
+>>
+>>> Best regards,
+>>> Krzysztof
+>>>
+> 
+> Any reason this device tree binding got removed,I cannot find this file
+> Can not find the commit which removed this file.
 
-I got two 37-patchsets...
-
-Anyway, this also did not improve. NAK.
-
-This is a friendly reminder during the review process.
-
-It seems my or other reviewer's previous comments were not fully
-addressed. Maybe the feedback got lost between the quotes, maybe you
-just forgot to apply it. Please go back to the previous discussion and
-either implement all requested changes or keep discussing them.
-
-Thank you.
+Use git log.
 
 Best regards,
 Krzysztof
