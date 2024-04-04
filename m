@@ -1,296 +1,415 @@
-Return-Path: <devicetree+bounces-56344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E83F89893A
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 15:52:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A816898949
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 15:54:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BF2F1C20869
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 13:52:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 955541C2125D
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 13:54:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3255F1292D2;
-	Thu,  4 Apr 2024 13:52:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D926512882C;
+	Thu,  4 Apr 2024 13:54:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Htu1n548"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="ukCnlCA1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04FBE12883A;
-	Thu,  4 Apr 2024 13:52:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC94512839D;
+	Thu,  4 Apr 2024 13:53:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712238724; cv=none; b=bqDAzNJxpGULmCDZjfKCqpiIA3QcGu+1nNrhxaIXJUC8LSpdILQz3rDBK6lw3nwgCdd5gkHr0IN0jOX9te7GPzg9Bo9zWUR23IivSSeCFyquVcUj40WSOkuuOlM9ltrQ44o1qlPdp1/A+uIyGRGjnAenQiEZI3EZUWH/NlN7o1g=
+	t=1712238841; cv=none; b=BCmO4Fug8+z7dNDd1IvPDnVJ1OqVhm2CKtcz5mWFrJMHelF1I3xG13CH44H8ex4kU/61WXiALTmhcSN0GVmSmUPcjLkcicDsXVYqm3lf7GtOOeWR2eOI8f51yiQBF4n7a56tjFbFChf/Ew1PhAEOl5x9o1xE8+EbvWO6gujvEbc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712238724; c=relaxed/simple;
-	bh=khwWR3rI5XzHD4dY/fRGosZpnquqiEUj4rWVxL1XoF0=;
+	s=arc-20240116; t=1712238841; c=relaxed/simple;
+	bh=rHGwoKG09JOiSfZHMXZ5zTOUqRGK+5ViCwByZmRhBC8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qeclfZ4S1mwZeStA9vO+yJRTitSQsPx85ixXFWYWSq5VKBv/noX0l8ENrCf4qAKmSnMJRbsXnwFX8ToagzGvH6wB2eGcMYX5+6Q+h7jw2lyJwzeiaayuImfYfIvp66BVER/rClwcHt2JhMYhIYzO7Dkk64TLprsSu9XgEV/tzZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Htu1n548; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EFCBC433C7;
-	Thu,  4 Apr 2024 13:52:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712238723;
-	bh=khwWR3rI5XzHD4dY/fRGosZpnquqiEUj4rWVxL1XoF0=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=VVQxe6VT2k2WxnsbMaZgKIz5CByQmqQTfiU7YvGzLV8jLslXzCoSwOJ3IVRKll+B+Dt+DnZDxELF5FWiNNH6gCTfJL890zBhS+QfdUiQkvrrCORMnRqzbBZ/SgOOc8nFJHOoAeqGZrbCliAWeVjeq3RZfmUrE8nNR6Zz9q3vxBY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=ukCnlCA1; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id BABE21A2;
+	Thu,  4 Apr 2024 15:53:19 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1712238799;
+	bh=rHGwoKG09JOiSfZHMXZ5zTOUqRGK+5ViCwByZmRhBC8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Htu1n548aFT5j5HZ1Xn6EoDEqknBrRcPvpfU250rJA7DaU/+60rk9ZS5TxniTvQeO
-	 zn0kuh/fIDbBuBKWdUu+EimtBy1aRV6QBMSBV1goYVlCxWtzDvYP8cSyLJlLXBsK0K
-	 k9cmFFVP0m318hGH7Tk6SUeCUv5e5RCWLt2F4T2q1SzUQzDmp9HI/V3r+SVWCdybN2
-	 5ZqFkIPaUdXOpZ3rOxJCTVOyNbuWD1XUMYpHUzZl7G+ZSZugZIDfFztlb5OCz4n33b
-	 POMibXl6qDjLDWEKE9/WfjH2dr9i+h3luaRse7t3eYU2rM1wrMt69PUvFjBUP7AgUI
-	 GWnQmBjJYSjKg==
-Date: Thu, 4 Apr 2024 08:52:01 -0500
-From: Rob Herring <robh@kernel.org>
-To: gabriel.fernandez@foss.st.com
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	b=ukCnlCA18C9A3PJMUFiAZbCtNS7P877Mnm3qCnTQQVb5mx+hByjlkmdrXzE6pNYRR
+	 YJWIBWv9qBNriaI8oKqifnBGbwW4KaV7Fp8/G21dOYNyF7R+uUSBEnJIfIe7ZQ4vp0
+	 y7VTHYAtom3sUwhVKvMbKofEci68GDK/AMbyGgzI=
+Date: Thu, 4 Apr 2024 16:53:46 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc: linux-media@vger.kernel.org,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	David Plowman <david.plowman@raspberrypi.com>,
+	Jean-Michel Hautbois <jeanmichel.hautbois@yoseli.org>,
+	Naushir Patuck <naush@raspberrypi.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	kernel-list@raspberrypi.com, linux-rpi-kernel@lists.infradead.org,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	bcm-kernel-feedback-list@broadcom.com,
 	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [RESEND PATCH v9 2/4] dt-bindings: stm32: update DT bingding for
- stm32mp25
-Message-ID: <20240404135201.GA2320777-robh@kernel.org>
-References: <20240402125312.277052-1-gabriel.fernandez@foss.st.com>
- <20240402125312.277052-3-gabriel.fernandez@foss.st.com>
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v9 04/10] media: bcm2835-unicam: Add support for
+ CCP2/CSI2 camera interface
+Message-ID: <20240404135346.GA12590@pendragon.ideasonboard.com>
+References: <20240402000424.4650-1-laurent.pinchart@ideasonboard.com>
+ <20240402000424.4650-5-laurent.pinchart@ideasonboard.com>
+ <11107704-46a7-4228-99da-55389e210553@xs4all.nl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240402125312.277052-3-gabriel.fernandez@foss.st.com>
+In-Reply-To: <11107704-46a7-4228-99da-55389e210553@xs4all.nl>
 
-On Tue, Apr 02, 2024 at 02:53:10PM +0200, gabriel.fernandez@foss.st.com wrote:
-> From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+Hi Hans,
+
+On Thu, Apr 04, 2024 at 03:36:12PM +0200, Hans Verkuil wrote:
+> Just two minor comments:
+
+For a new large driver, I'll take this as a sign we're very close to
+completion :-)
+
+> On 02/04/2024 02:04, Laurent Pinchart wrote:
+> > From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> > 
+> > Add a driver for the Unicam camera receiver block on BCM283x processors.
+> > It is represented as two video device nodes: unicam-image and
+> > unicam-embedded which are connected to an internal subdev (named
+> > unicam-subdev) in order to manage streams routing.
+> > 
+> > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> > Co-developed-by: Naushir Patuck <naush@raspberrypi.com>
+> > Signed-off-by: Naushir Patuck <naush@raspberrypi.com>
+> > Co-developed-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
+> > Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
+> > Co-developed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > ---
+> > Changes since v8:
+> > 
+> > - Use MIPI_CSI2_DT_* macros
+> > - Disable image stream on start error
+> > - Move hardware configuration to unicam_sd_enable_streams()
+> > - Get VC and DT from frame descriptor
+> > - Don't cache fmtinfo in unicam_node
+> > - Calculate line_int_freq based on subdev format
+> > - Fix try_fmt_meta regression from v5
+> > 
+> > Changes since v7:
+> > 
+> > - Indentation, line wrap and white space fixes
+> > - Add copyright notice for Ideas on Board
+> > - Use unsigned values for shifts in macro
+> > - Replace condition and assignment with max()
+> > - Don't set the serial to an empty string manually
+> > - Don't use loop for lane clocks setting
+> > - Store PUM value in struct unicam_format_info
+> > 
+> > Changes since v6:
+> > 
+> > - Fix typos in comments
+> > - Drop outdated comment
+> > - Indentation fixes
+> > - Turn UNICAM_SD_PAD_* into an enum
+> > - Drop unicam_format_info.metadata_fmt
+> > - Remove unneeded dev_dbg()
+> > - Report meta frame sizes as V4L2_FRMSIZE_TYPE_STEPWISE
+> > - Drop stray semicolons
+> > - Set V4L2_FMT_FLAG_META_LINE_BASED for metadata format
+> > - Rename error label
+> > - Use .get_mbus_config() to get number of data lanes
+> > - Drop minimum of 3 buffers in .queue_setup()
+> > - Merge locks for the two video nodes
+> > - Rework start/stop to avoid race conditions
+> > 
+> > Changes since v5:
+> > 
+> > - Move to drivers/media/platform/broadcom/
+> > - Port to the upstream V4L2 streams API
+> > - Rebase on latest metadata API proposal
+> > - Add missing error message
+> > - Drop unneeded documentation block for unicam_isr()
+> > - Drop unneeded dev_dbg() and dev_err() messages
+> > - Drop unneeded streams_mask and fmt checks
+> > - Drop unused unicam_sd_pad_is_sink()
+> > - Drop unneeded includes
+> > - Drop v4l2_ctrl_subscribe_event() call
+> > - Use pm_runtime_resume_and_get()
+> > - Indentation and line wrap fixes
+> > - Let the framework set bus_info
+> > - Use v4l2_fwnode_endpoint_parse()
+> > - Fix media device cleanup
+> > - Drop lane reordering checks
+> > - Fix subdev state locking
+> > - Drop extra debug messages
+> > - Move clock handling to runtime PM handlers
+> > - Reorder functions
+> > - Rename init functions for more clarity
+> > - Initialize runtime PM earlier
+> > - Clarify error messages
+> > - Simplify subdev init with local variable
+> > - Fix subdev cleanup
+> > - Fix typos and indentation
+> > - Don't initialize local variables needlessly
+> > - Simplify num lanes check
+> > - Fix metadata handling in subdev set_fmt
+> > - Drop manual fallback to .s_stream()
+> > - Pass v4l2_pix_format to unicam_calc_format_size_bpl()
+> > - Simplify unicam_set_default_format()
+> > - Fix default format settings
+> > - Add busy check in unicam_s_fmt_meta()
+> > - Add missing \n at end of format strings
+> > - Fix metadata handling in subdev set_fmt
+> > - Fix locking when starting streaming
+> > - Return buffers from start streaming fails
+> > - Fix format validation for metadata node
+> > - Use video_device_pipeline_{start,stop}() helpers
+> > - Simplify format enumeration
+> > - Drop unset variable
+> > - Update MAINTAINERS entry
+> > - Update to the upstream v4l2_async_nf API
+> > - Update to the latest subdev routing API
+> > - Update to the latest subdev state API
+> > - Move from subdev .init_cfg() to .init_state()
+> > - Update to the latest videobuf2 API
+> > - Fix v4l2_subdev_enable_streams() error check
+> > - Use correct pad for the connected subdev
+> > - Return buffers to vb2 when start streaming fails
+> > - Improve debugging in start streaming handler
+> > - Simplify DMA address management
+> > - Drop comment about bcm2835-camera driver
+> > - Clarify comments that explain min/max sizes
+> > - Pass v4l2_pix_format to unicam_try_fmt()
+> > - Drop unneeded local variables
+> > - Rename image-related constants and functions
+> > - Turn unicam_fmt.metadata_fmt into bool
+> > - Rename unicam_fmt to unicam_format_info
+> > - Rename unicam_format_info variables to fmtinfo
+> > - Rename unicam_node.v_fmt to fmt
+> > - Add metadata formats for RAW10, RAW12 and RAW14
+> > - Make metadata formats line-based
+> > - Validate format on metadata video device
+> > - Add Co-devlopped-by tags
+> > 
+> > Changes since v3:
+> > 
+> > - Add the vendor prefix for DT name
+> > - Use the reg-names in DT parsing
+> > - Remove MAINTAINERS entry
+> > 
+> > Changes since v2:
+> > 
+> > - Change code organization
+> > - Remove unused variables
+> > - Correct the fmt_meta functions
+> > - Rewrite the start/stop streaming
+> >   - You can now start the image node alone, but not the metadata one
+> >   - The buffers are allocated per-node
+> >   - only the required stream is started, if the route exists and is
+> >     enabled
+> > - Prefix the macros with UNICAM_ to not have too generic names
+> > - Drop colorspace support
+> > 
+> > Changes since v1:
+> > 
+> > - Replace the unicam_{info,debug,error} macros with dev_*()
+> > ---
+> >  MAINTAINERS                                   |    1 +
+> >  drivers/media/platform/Kconfig                |    1 +
+> >  drivers/media/platform/Makefile               |    1 +
+> >  drivers/media/platform/broadcom/Kconfig       |   23 +
+> >  drivers/media/platform/broadcom/Makefile      |    3 +
+> >  .../platform/broadcom/bcm2835-unicam-regs.h   |  246 ++
+> >  .../media/platform/broadcom/bcm2835-unicam.c  | 2745 +++++++++++++++++
+> >  7 files changed, 3020 insertions(+)
+> >  create mode 100644 drivers/media/platform/broadcom/Kconfig
+> >  create mode 100644 drivers/media/platform/broadcom/Makefile
+> >  create mode 100644 drivers/media/platform/broadcom/bcm2835-unicam-regs.h
+> >  create mode 100644 drivers/media/platform/broadcom/bcm2835-unicam.c
+> > 
 > 
-> Now RCC driver use '.index' of clk_parent_data struct to define a parent.
-> The majority of parents are SCMI clocks, then dt-bindings must be fixed.
-
-This is an ABI change. Please make that clear and justify why that is 
-okay. Changing a driver is not a valid reason. What about other drivers 
-besides Linux?
-
+> <snip>
 > 
-> Fixes: b5be49db3d47 ("dt-bindings: stm32: add clocks and reset binding for stm32mp25 platform")
+> > diff --git a/drivers/media/platform/broadcom/bcm2835-unicam.c b/drivers/media/platform/broadcom/bcm2835-unicam.c
+> > new file mode 100644
+> > index 000000000000..1418f209d6ad
+> > --- /dev/null
+> > +++ b/drivers/media/platform/broadcom/bcm2835-unicam.c
+> > @@ -0,0 +1,2745 @@
 > 
-
-Should not have a blank line here.
-
-> Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-> ---
-
-Please put version history for a patch within the patch here.
-
->  .../bindings/clock/st,stm32mp25-rcc.yaml      | 171 ++++++++++++++++--
->  1 file changed, 155 insertions(+), 16 deletions(-)
+> <snip>
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml b/Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml
-> index 7732e79a42b9..57bd4e7157bd 100644
-> --- a/Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml
-> @@ -38,22 +38,87 @@ properties:
->        - description: CK_SCMI_MSI Low Power Internal oscillator (~ 4 MHz or ~ 16 MHz)
->        - description: CK_SCMI_LSE Low Speed External oscillator (32 KHz)
->        - description: CK_SCMI_LSI Low Speed Internal oscillator (~ 32 KHz)
-> -
-> -  clock-names:
-> -    items:
-> -      - const: hse
-> -      - const: hsi
-> -      - const: msi
-> -      - const: lse
-> -      - const: lsi
-> -
-> +      - description: CK_SCMI_HSE_DIV2 CK_SCMI_HSE divided by 2 (coud be gated)
-> +      - description: CK_SCMI_ICN_HS_MCU High Speed interconnect bus clock
-> +      - description: CK_SCMI_ICN_LS_MCU Low Speed interconnect bus clock
-> +      - description: CK_SCMI_ICN_SDMMC SDMMC interconnect bus clock
-> +      - description: CK_SCMI_ICN_DDR DDR interconnect bus clock
-> +      - description: CK_SCMI_ICN_DISPLAY Display interconnect bus clock
-> +      - description: CK_SCMI_ICN_HSL HSL interconnect bus clock
-> +      - description: CK_SCMI_ICN_NIC NIC interconnect bus clock
-> +      - description: CK_SCMI_ICN_VID Video interconnect bus clock
-> +      - description: CK_SCMI_FLEXGEN_07 flexgen clock 7
-> +      - description: CK_SCMI_FLEXGEN_08 flexgen clock 8
-> +      - description: CK_SCMI_FLEXGEN_09 flexgen clock 9
-> +      - description: CK_SCMI_FLEXGEN_10 flexgen clock 10
-> +      - description: CK_SCMI_FLEXGEN_11 flexgen clock 11
-> +      - description: CK_SCMI_FLEXGEN_12 flexgen clock 12
-> +      - description: CK_SCMI_FLEXGEN_13 flexgen clock 13
-> +      - description: CK_SCMI_FLEXGEN_14 flexgen clock 14
-> +      - description: CK_SCMI_FLEXGEN_15 flexgen clock 15
-> +      - description: CK_SCMI_FLEXGEN_16 flexgen clock 16
-> +      - description: CK_SCMI_FLEXGEN_17 flexgen clock 17
-> +      - description: CK_SCMI_FLEXGEN_18 flexgen clock 18
-> +      - description: CK_SCMI_FLEXGEN_19 flexgen clock 19
-> +      - description: CK_SCMI_FLEXGEN_20 flexgen clock 20
-> +      - description: CK_SCMI_FLEXGEN_21 flexgen clock 21
-> +      - description: CK_SCMI_FLEXGEN_22 flexgen clock 22
-> +      - description: CK_SCMI_FLEXGEN_23 flexgen clock 23
-> +      - description: CK_SCMI_FLEXGEN_24 flexgen clock 24
-> +      - description: CK_SCMI_FLEXGEN_25 flexgen clock 25
-> +      - description: CK_SCMI_FLEXGEN_26 flexgen clock 26
-> +      - description: CK_SCMI_FLEXGEN_27 flexgen clock 27
-> +      - description: CK_SCMI_FLEXGEN_28 flexgen clock 28
-> +      - description: CK_SCMI_FLEXGEN_29 flexgen clock 29
-> +      - description: CK_SCMI_FLEXGEN_30 flexgen clock 30
-> +      - description: CK_SCMI_FLEXGEN_31 flexgen clock 31
-> +      - description: CK_SCMI_FLEXGEN_32 flexgen clock 32
-> +      - description: CK_SCMI_FLEXGEN_33 flexgen clock 33
-> +      - description: CK_SCMI_FLEXGEN_34 flexgen clock 34
-> +      - description: CK_SCMI_FLEXGEN_35 flexgen clock 35
-> +      - description: CK_SCMI_FLEXGEN_36 flexgen clock 36
-> +      - description: CK_SCMI_FLEXGEN_37 flexgen clock 37
-> +      - description: CK_SCMI_FLEXGEN_38 flexgen clock 38
-> +      - description: CK_SCMI_FLEXGEN_39 flexgen clock 39
-> +      - description: CK_SCMI_FLEXGEN_40 flexgen clock 40
-> +      - description: CK_SCMI_FLEXGEN_41 flexgen clock 41
-> +      - description: CK_SCMI_FLEXGEN_42 flexgen clock 42
-> +      - description: CK_SCMI_FLEXGEN_43 flexgen clock 43
-> +      - description: CK_SCMI_FLEXGEN_44 flexgen clock 44
-> +      - description: CK_SCMI_FLEXGEN_45 flexgen clock 45
-> +      - description: CK_SCMI_FLEXGEN_46 flexgen clock 46
-> +      - description: CK_SCMI_FLEXGEN_47 flexgen clock 47
-> +      - description: CK_SCMI_FLEXGEN_48 flexgen clock 48
-> +      - description: CK_SCMI_FLEXGEN_49 flexgen clock 49
-> +      - description: CK_SCMI_FLEXGEN_50 flexgen clock 50
-> +      - description: CK_SCMI_FLEXGEN_51 flexgen clock 51
-> +      - description: CK_SCMI_FLEXGEN_52 flexgen clock 52
-> +      - description: CK_SCMI_FLEXGEN_53 flexgen clock 53
-> +      - description: CK_SCMI_FLEXGEN_54 flexgen clock 54
-> +      - description: CK_SCMI_FLEXGEN_55 flexgen clock 55
-> +      - description: CK_SCMI_FLEXGEN_56 flexgen clock 56
-> +      - description: CK_SCMI_FLEXGEN_57 flexgen clock 57
-> +      - description: CK_SCMI_FLEXGEN_58 flexgen clock 58
-> +      - description: CK_SCMI_FLEXGEN_59 flexgen clock 59
-> +      - description: CK_SCMI_FLEXGEN_60 flexgen clock 60
-> +      - description: CK_SCMI_FLEXGEN_61 flexgen clock 61
-> +      - description: CK_SCMI_FLEXGEN_62 flexgen clock 62
-> +      - description: CK_SCMI_FLEXGEN_63 flexgen clock 63
-> +      - description: CK_SCMI_ICN_APB1 Peripheral bridge 1
-> +      - description: CK_SCMI_ICN_APB2 Peripheral bridge 2
-> +      - description: CK_SCMI_ICN_APB3 Peripheral bridge 3
-> +      - description: CK_SCMI_ICN_APB4 Peripheral bridge 4
-> +      - description: CK_SCMI_ICN_APBDBG Peripheral bridge for degub
-> +      - description: CK_SCMI_TIMG1 Peripheral bridge for timer1
-> +      - description: CK_SCMI_TIMG2 Peripheral bridge for timer2
-> +      - description: CK_SCMI_PLL3 PLL3 clock
-> +      - description: clk_dsi_txbyte DSI byte clock
-
-Need a blank line here.
-
->  required:
->    - compatible
->    - reg
->    - '#clock-cells'
->    - '#reset-cells'
->    - clocks
-> -  - clock-names
->  
->  additionalProperties: false
->  
-> @@ -66,11 +131,85 @@ examples:
->          reg = <0x44200000 0x10000>;
->          #clock-cells = <1>;
->          #reset-cells = <1>;
-> -        clock-names = "hse", "hsi", "msi", "lse", "lsi";
-> -        clocks = <&scmi_clk CK_SCMI_HSE>,
-> -                 <&scmi_clk CK_SCMI_HSI>,
-> -                 <&scmi_clk CK_SCMI_MSI>,
-> -                 <&scmi_clk CK_SCMI_LSE>,
-> -                 <&scmi_clk CK_SCMI_LSI>;
-> +        clocks =  <&scmi_clk CK_SCMI_HSE>,
-> +                  <&scmi_clk CK_SCMI_HSI>,
-> +                  <&scmi_clk CK_SCMI_MSI>,
-> +                  <&scmi_clk CK_SCMI_LSE>,
-> +                  <&scmi_clk CK_SCMI_LSI>,
-> +                  <&scmi_clk CK_SCMI_HSE_DIV2>,
-> +                  <&scmi_clk CK_SCMI_ICN_HS_MCU>,
-> +                  <&scmi_clk CK_SCMI_ICN_LS_MCU>,
-> +                  <&scmi_clk CK_SCMI_ICN_SDMMC>,
-> +                  <&scmi_clk CK_SCMI_ICN_DDR>,
-> +                  <&scmi_clk CK_SCMI_ICN_DISPLAY>,
-> +                  <&scmi_clk CK_SCMI_ICN_HSL>,
-> +                  <&scmi_clk CK_SCMI_ICN_NIC>,
-> +                  <&scmi_clk CK_SCMI_ICN_VID>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_07>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_08>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_09>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_10>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_11>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_12>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_13>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_14>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_15>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_16>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_17>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_18>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_19>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_20>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_21>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_22>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_23>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_24>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_25>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_26>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_27>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_28>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_29>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_30>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_31>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_32>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_33>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_34>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_35>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_36>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_37>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_38>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_39>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_40>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_41>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_42>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_43>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_44>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_45>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_46>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_47>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_48>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_49>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_50>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_51>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_52>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_53>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_54>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_55>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_56>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_57>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_58>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_59>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_60>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_61>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_62>,
-> +                  <&scmi_clk CK_SCMI_FLEXGEN_63>,
-> +                  <&scmi_clk CK_SCMI_ICN_APB1>,
-> +                  <&scmi_clk CK_SCMI_ICN_APB2>,
-> +                  <&scmi_clk CK_SCMI_ICN_APB3>,
-> +                  <&scmi_clk CK_SCMI_ICN_APB4>,
-> +                  <&scmi_clk CK_SCMI_ICN_APBDBG>,
-> +                  <&scmi_clk CK_SCMI_TIMG1>,
-> +                  <&scmi_clk CK_SCMI_TIMG2>,
-> +                  <&scmi_clk CK_SCMI_PLL3>,
-> +                  <&clk_dsi_txbyte>;
->      };
->  ...
-> -- 
-> 2.25.1
+> > +static int unicam_start_streaming(struct vb2_queue *vq, unsigned int count)
+> > +{
+> > +	struct unicam_node *node = vb2_get_drv_priv(vq);
+> > +	struct unicam_device *unicam = node->dev;
+> > +	struct unicam_buffer *buf;
+> > +	struct media_pipeline_pad_iter iter;
+> > +	struct media_pad *pad;
+> > +	unsigned long flags;
+> > +	int ret;
+> > +
+> > +	dev_dbg(unicam->dev, "Starting stream on %s device\n",
+> > +		is_metadata_node(node) ? "metadata" : "image");
+> > +
+> > +	/*
+> > +	 * Start the pipeline. This validates all links, and populates the
+> > +	 * pipeline structure.
+> > +	 */
+> > +	ret = video_device_pipeline_start(&node->video_dev, &unicam->pipe.pipe);
+> > +	if (ret < 0) {
+> > +		dev_dbg(unicam->dev, "Failed to start media pipeline: %d\n", ret);
+> > +		goto err_buffers;
+> > +	}
+> > +
+> > +	/*
+> > +	 * Determine which video nodes are included in the pipeline, and get the
+> > +	 * number of data lanes.
+> > +	 */
+> > +	if (unicam->pipe.pipe.start_count == 1) {
+> > +		unicam->pipe.nodes = 0;
+> > +
+> > +		media_pipeline_for_each_pad(&unicam->pipe.pipe, &iter, pad) {
+> > +			if (pad->entity != &unicam->subdev.sd.entity)
+> > +				continue;
+> > +
+> > +			if (pad->index == UNICAM_SD_PAD_SOURCE_IMAGE)
+> > +				unicam->pipe.nodes |= BIT(UNICAM_IMAGE_NODE);
+> > +			else if (pad->index == UNICAM_SD_PAD_SOURCE_METADATA)
+> > +				unicam->pipe.nodes |= BIT(UNICAM_METADATA_NODE);
+> > +		}
+> > +
+> > +		if (!(unicam->pipe.nodes & BIT(UNICAM_IMAGE_NODE))) {
+> > +			dev_dbg(unicam->dev,
+> > +				"Pipeline does not include image node\n");
+> > +			ret = -EPIPE;
+> > +			goto err_pipeline;
+> > +		}
+> > +
+> > +		ret = unicam_num_data_lanes(unicam);
+> > +		if (ret < 0)
+> > +			goto err_pipeline;
+> > +
+> > +		unicam->pipe.num_data_lanes = ret;
+> > +
+> > +		dev_dbg(unicam->dev, "Running with %u data lanes, nodes %u\n",
+> > +			unicam->pipe.num_data_lanes, unicam->pipe.nodes);
+> > +	}
+> > +
+> > +	node->streaming = true;
 > 
+> Hmm, do you need to keep track of this here? Can't you use vb2_start_streaming_called()?
+> 
+> Generally I dislike keeping track of the same information in two places.
+
+It looks like I can, I'll give it a try for the next version.
+
+> > +
+> > +	/* Arm the node with the first buffer from the DMA queue. */
+> > +	spin_lock_irqsave(&node->dma_queue_lock, flags);
+> > +	buf = list_first_entry(&node->dma_queue, struct unicam_buffer, list);
+> > +	node->cur_frm = buf;
+> > +	node->next_frm = buf;
+> > +	list_del(&buf->list);
+> > +	spin_unlock_irqrestore(&node->dma_queue_lock, flags);
+> > +
+> > +	/*
+> > +	 * Wait for all the video devices in the pipeline to have been started
+> > +	 * before starting the hardware. In the general case, this would
+> > +	 * prevent capturing multiple streams independently. However, the
+> > +	 * Unicam DMA engines are not generic, they have been designed to
+> > +	 * capture image data and embedded data from the same camera sensor.
+> > +	 * Not only does the main use case not benefit from independent
+> > +	 * capture, it requires proper synchronization of the streams at start
+> > +	 * time.
+> > +	 */
+> > +	if (unicam->pipe.pipe.start_count < hweight32(unicam->pipe.nodes))
+> > +		return 0;
+> > +
+> > +	ret = pm_runtime_resume_and_get(unicam->dev);
+> > +	if (ret < 0) {
+> > +		dev_err(unicam->dev, "PM runtime resume failed: %d\n", ret);
+> > +		goto err_pipeline;
+> > +	}
+> > +
+> > +	/* Enable the streams on the source. */
+> > +	ret = v4l2_subdev_enable_streams(&unicam->subdev.sd,
+> > +					 UNICAM_SD_PAD_SOURCE_IMAGE,
+> > +					 BIT(0));
+> > +	if (ret < 0) {
+> > +		dev_err(unicam->dev, "stream on failed in subdev\n");
+> > +		goto err_pm_put;
+> > +	}
+> > +
+> > +	if (unicam->pipe.nodes & BIT(UNICAM_METADATA_NODE)) {
+> > +		ret = v4l2_subdev_enable_streams(&unicam->subdev.sd,
+> > +						 UNICAM_SD_PAD_SOURCE_METADATA,
+> > +						 BIT(0));
+> > +		if (ret < 0) {
+> > +			dev_err(unicam->dev, "stream on failed in subdev\n");
+> > +			goto err_disable_streams;
+> > +		}
+> > +	}
+> > +
+> > +	return 0;
+> > +
+> > +err_disable_streams:
+> > +	v4l2_subdev_disable_streams(&unicam->subdev.sd,
+> > +				    UNICAM_SD_PAD_SOURCE_IMAGE, BIT(0));
+> > +err_pm_put:
+> > +	pm_runtime_put_sync(unicam->dev);
+> > +err_pipeline:
+> > +	video_device_pipeline_stop(&node->video_dev);
+> > +err_buffers:
+> > +	unicam_return_buffers(node, VB2_BUF_STATE_QUEUED);
+> > +	node->streaming = false;
+> > +	return ret;
+> > +}
+> 
+> <snip>
+> 
+> > +static void unicam_unregister_nodes(struct unicam_device *unicam)
+> > +{
+> > +	unsigned int i;
+> > +
+> > +	for (i = 0; i < ARRAY_SIZE(unicam->node); i++) {
+> > +		struct unicam_node *node = &unicam->node[i];
+> > +
+> > +		if (node->dummy_buf_cpu_addr)
+> > +			dma_free_coherent(unicam->dev, node->dummy_buf.size,
+> > +					  node->dummy_buf_cpu_addr,
+> > +					  node->dummy_buf.dma_addr);
+> > +
+> > +		if (node->registered) {
+> > +			video_unregister_device(&node->video_dev);
+> 
+> Call vb2_video_unregister_device instead of video_unregister_device.
+> That ensures that unregistering the device will also stop streaming.
+> See comments in include/media/videobuf2-v4l2.h.
+
+I had forgotten about that function. I'll do so.
+
+> > +			node->registered = false;
+> > +		}
+> > +	}
+> > +}
+> 
+> <snip>
+
+-- 
+Regards,
+
+Laurent Pinchart
 
