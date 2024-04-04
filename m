@@ -1,63 +1,66 @@
-Return-Path: <devicetree+bounces-56109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 244F5897D75
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 03:42:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C450897D82
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 03:50:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC1A71F25849
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 01:42:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BBB581F270BC
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 01:50:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E014D101DB;
-	Thu,  4 Apr 2024 01:41:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4709718AF4;
+	Thu,  4 Apr 2024 01:50:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Rd7AfLqq"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="btSvpyF/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2800314285;
-	Thu,  4 Apr 2024 01:41:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE72318641;
+	Thu,  4 Apr 2024 01:50:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712194915; cv=none; b=uw3d72832JtlFy0zxPuRJ9hlfadZjdrzGcQ2ytmQ75a5c3nXnTvk2V4J0JK3Da8HKmV7KllsrQ9dxJj+GO2O4w4TgB6ygFoxrSusoyGk5FiMtROQrDV4++eb4J9KqJsg2qK3PiRe7GF9qy8Ren2FdXKYTHwS/s8fWX8kQfdnhfU=
+	t=1712195438; cv=none; b=Ykez/mFnrt4nz5q9SN2sCzDgu76LU+GyoKAsGpqEVPTgvRd22WplTRwPXN1kZ3iUCQYImAUZ5dpjbUTHketZt+5+xiH62vgzfLpQJOQOe/i/ATwTirS9oeQUESeDsNUVG/631xajn7L9sUKmfEbwvz+1wezezPShG+eZaDOyh0w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712194915; c=relaxed/simple;
-	bh=k5pZjV7/RGdylgzBC888Uj6ijWFfoEo8rl/duzOWrhw=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=m4PzThAdgbxkfE27eKI8+H7xOky0x82D1TRjZxYchfgT+RX5lSJOc9zc9ZTglhLyVCE67nCOGc2MlV0Mrg0IsMHTSB94MZpIW0VSyfCSpPsnVeHW84HR9EDXAjF2wklnpXlYe3JtcR9xQJkCCX9BDIti/WE4iTM+CRohU7HR2/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Rd7AfLqq; arc=none smtp.client-ip=203.29.241.158
+	s=arc-20240116; t=1712195438; c=relaxed/simple;
+	bh=sMJgocwG0ejwyAHece1APU7sO/OMGd+TkWb7n4BBNGU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=EAxyqNv9PUmYpTxgJkzYJDNsDUfC+xI13YAhrIM/y04Hw1SWoRQBR3VOgqJ5m6+/sVtwLa/5SKba7leWA+u6Wtppyivut3+Z6gpNKHo2Nu+60pUj1URPAn6gOFEAg5J7dGs2ccOqcqcB57oEsI4yR9+miEzqKB32zBLfJcc3/cw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=btSvpyF/; arc=none smtp.client-ip=203.29.241.158
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 Received: from [192.168.68.112] (ppp118-210-182-70.adl-adc-lon-bras34.tpg.internode.on.net [118.210.182.70])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 896E520172;
-	Thu,  4 Apr 2024 09:41:49 +0800 (AWST)
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id D9EC420172;
+	Thu,  4 Apr 2024 09:50:32 +0800 (AWST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1712194911;
-	bh=W1rbTsbAAc/AY4aRyLkyhlHpWGVkjcjrUfElUyeAL+U=;
-	h=Subject:From:To:Date:In-Reply-To:References;
-	b=Rd7AfLqqaJYPit6Ul8UxmB8t1ecf1btM92WAriPvXV7pbzzbn2zUNTh2jFfru/mBp
-	 g7pF0Vz+rmxtckPjnbdR9CwIeHWQvU5yfY7qEmAp0q7N5ZccNZ1eMz56R+KvRaaPMa
-	 3s3ZXX74Csgfh7O0sZ86yY/HEMrplzGxldN8Sg54aCiuam152zMnBTXsnSJWeJqkBk
-	 I8sTyKvAIah0lsCBmlVRCJrVFCyDr/PUrEkd6YcQQ73wD0VG6zBlWwtVRpnH9m/ZLr
-	 XeMHqOMpJvXUWwF87YiAlWwRnFR0NaDMJyD4VvL73ugbL6YNmA3mPTpRceEtStuMdS
-	 5arEaLy77C+8w==
-Message-ID: <8610e0a8aa5c2916fa04292a10e8a843862ff0ee.camel@codeconstruct.com.au>
-Subject: Re: [PATCH 1/4] ARM: dts: aspeed: greatlakes: correct Mellanox
- multi-host property
+	d=codeconstruct.com.au; s=2022a; t=1712195434;
+	bh=sMJgocwG0ejwyAHece1APU7sO/OMGd+TkWb7n4BBNGU=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=btSvpyF/upHJlsVY8A2BssX/zqlj3zpfHSY1CIG5LVwOc0UpxoxWMkucfh2t3i+p8
+	 E7CJivKe9hMaSPzA9E4bjWTAWDOYq+OGPU8LyUoHijDpFzfxA8P7Y7+CMRpMjF/GSx
+	 N0LkeNhlDrCSC5QDz6xApCRiFWIxK7PVzLjGfqIASC56VWuxOc38lRvUfGe9wfqEeu
+	 DSgVlNui06ZG43jhwOqBk39HlSEgT1rP77E6NCxV3EXvmFqgQgr3y2+oigk4Iph8vW
+	 LDRZnm5zCU1GRNDVRL5hxFO9fQb1E34YVPVIHg2dhtCfhrJv0fO3dSVH2CJwlSjDoz
+	 Ddefked6QnxEA==
+Message-ID: <496c6b2bf10bd8a1313740cd4047a2a153c13da8.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v6 3/4] dt-bindings: watchdog: aspeed-wdt: Add aspeed,scu
 From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
+To: PeterYin <peteryin.openbmc@gmail.com>, Rob Herring <robh@kernel.org>
+Cc: patrick@stwcx.xyz, Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter
+ Roeck <linux@roeck-us.net>, Krzysztof Kozlowski
  <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
- Joel Stanley <joel@jms.id.au>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
- linux-kernel@vger.kernel.org
-Date: Thu, 04 Apr 2024 12:11:48 +1030
-In-Reply-To: <171213860535.16780.4635499105199545058.b4-ty@linaro.org>
-References: <20231209104412.12916-1-krzysztof.kozlowski@linaro.org>
-	 <171213860535.16780.4635499105199545058.b4-ty@linaro.org>
+ Joel Stanley <joel@jms.id.au>, linux-watchdog@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Date: Thu, 04 Apr 2024 12:20:32 +1030
+In-Reply-To: <79b7e2ef-6f53-4642-ad3f-99b8ce780a7f@gmail.com>
+References: <20240328022231.3649741-1-peteryin.openbmc@gmail.com>
+	 <20240328022231.3649741-4-peteryin.openbmc@gmail.com>
+	 <20240401135637.GA342928-robh@kernel.org>
+	 <ab76b0549172cf3e33d6242fa9ea3e6a87b4a58e.camel@codeconstruct.com.au>
+	 <79b7e2ef-6f53-4642-ad3f-99b8ce780a7f@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
@@ -68,47 +71,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
-On Wed, 2024-04-03 at 12:04 +0200, Krzysztof Kozlowski wrote:
-> On Sat, 09 Dec 2023 11:44:09 +0100, Krzysztof Kozlowski wrote:
-> > "mlx,multi-host" is using incorrect vendor prefix and is not documented=
-.
-> >=20
-> >=20
->=20
-> These wait for ~4 months and they were not picked up. Let me know if anyo=
-ne
-> else wants to take these.
->=20
-> Applied, thanks!
->=20
-> [1/4] ARM: dts: aspeed: greatlakes: correct Mellanox multi-host property
->       https://git.kernel.org/krzk/linux-dt/c/7da85354c4fa35b862294dbbb450=
-baeb405b5a92
-> [2/4] ARM: dts: aspeed: minerva-cmc: correct Mellanox multi-host property
->       https://git.kernel.org/krzk/linux-dt/c/e515719c17beb9625a90039f6c45=
-fa36d58bdda2
-> [3/4] ARM: dts: aspeed: yosemite4: correct Mellanox multi-host property
->       https://git.kernel.org/krzk/linux-dt/c/af3deaf9bcb4571feb89a4050c7a=
-d75de9aa8e1e
-> [4/4] ARM: dts: aspeed: yosemitev2: correct Mellanox multi-host property
->       https://git.kernel.org/krzk/linux-dt/c/cac1c1dda6130771e06ace030b1b=
-0ed62096a912
->=20
-> Best regards,
+On Wed, 2024-04-03 at 17:18 +0800, PeterYin wrote:
+> Thanks, I can wait you update it and send a new version for wdt driver.
 
-Ah, my apologies. Joel's on leave and I'm accumulating patches in a
-tree for him in the mean time. I've had some things going on
-professionally (changed jobs) and personally, and these fell into a bit
-of a hole.
+I've sent v2:
 
-I'm okay for these patches to be integrated through your tree, given
-you've already applied them. Feel free to add acks if your branch
-allows:
 
-Acked-by: Andrew Jeffery <andrew@codeconstruct.com.au>
+https://lore.kernel.org/linux-watchdog/20240403020439.418788-1-andrew@codec=
+onstruct.com.au/
 
-I'm working to stay on top of things a bit more now than I have in the
-recent past, so hopefully I won't miss patches again in the future.
+Rob's okay with it:
+
+https://lore.kernel.org/linux-watchdog/20240403171321.GA3996007-robh@kernel=
+.org/
+
+Feel free to address his comment there if you integrate it into your
+series, though make sure to add his tag, keep my authorship, and append
+your own S-o-b if you do.
 
 Andrew
+
 
