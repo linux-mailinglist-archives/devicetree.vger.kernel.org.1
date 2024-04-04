@@ -1,352 +1,393 @@
-Return-Path: <devicetree+bounces-56340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C3AE8988D8
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 15:35:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC4218988E0
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 15:36:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA3F81F21ACE
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 13:35:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8263E28F717
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 13:36:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18051127B46;
-	Thu,  4 Apr 2024 13:35:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SNX4k0ej"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED759127B46;
+	Thu,  4 Apr 2024 13:36:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com [209.85.217.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 324AC8613E;
-	Thu,  4 Apr 2024 13:35:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D05138528B;
+	Thu,  4 Apr 2024 13:36:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712237709; cv=none; b=kU7jXMGzFPps9gsmlBOI7Gb+hnmsz+qWDhuhHKgt616ZhC1iUhcqNRUlwn7hA/NwdLDlR7Uklrv3z4vFN2j9MAZb9NbzjT28Cxw+rMuIWs7VJFzFR4hSWo3MHOMrGNDvuaJETpZDFNd6AdCE2YL2VXUc0ap4aNz47oObLU6NRt0=
+	t=1712237778; cv=none; b=ChB+L8cEDv7WnJNueFLzGGtSq32H2IuDftQCJEI+JYTxlv212fQ8VYylCFJvRDkJ5BpUQOyDAwbin/H4409uLmOtgYeUCH2Jy6sJymuAmMiY5cM9VAt73mj3BSkcuHWA6Ts1Cs6tNHyihswu29gfFcoswAGsxW2qDcFxzQH9bhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712237709; c=relaxed/simple;
-	bh=YfyzMeF6cXpeiNvp249LcMAU4DwRm9i3zFbC0zXRdLg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=S7ZV4VNk2E2K8thZJVspvaJJtzAI0J5ieencWOHNsRs216/ZO/9PHbjSG0obPsb6cdHNPL2fHR2C7dqc5jESpYo/fr1YnxknQfuFPIUC9NGo2TNRGhHiPb0JfDOhx80P/kiECLmQtOP5nZbPHnt8VB9DQxPDdtTgjvmV/eg0Vd4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SNX4k0ej; arc=none smtp.client-ip=209.85.217.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-479cc1791bfso210096137.3;
-        Thu, 04 Apr 2024 06:35:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712237706; x=1712842506; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UFKCNlBFBmvvJg8tbNOd+dvwn4RRHL754vXI+45uAlI=;
-        b=SNX4k0ej7Q9XVrTqGuH/RWG9Vm/VdG78YHjOC3gdgb31LVoeBkOHoL78ocEjZw8KFK
-         JnfVmIFVtAVOaGpEwPNO/OZm7NGOB9fg+IrZB0GGIuzwX2/80JCdoVWpWU9fS6H/w3J7
-         0/C09NlEGP+Pc/U91w4HPExXhJKO5eLQI1YI62GE7oLNLe5OW1OhLA1LJxDEvKWcY88D
-         7NYF9ffMywtQsP3QrDi2+c+acu4ggr/zU00mNRnTCs1TOpuIjyzqHLeeeeYp2SIWERip
-         7y3/JvXv+PmLhRv9ALYwp0/EoKshzBuD/diNNNYusp1YRqzlApV2ClELfAZYId5AOrkF
-         N/CQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712237706; x=1712842506;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UFKCNlBFBmvvJg8tbNOd+dvwn4RRHL754vXI+45uAlI=;
-        b=WjC4n+CGZzExitcpAvoWRLDuNdZZAYbE5nx6VgaA3/OQqXNXnIIYnntEVM8O4wVDpd
-         O+USC195z/+k6oOIbPTg7AgFfJWixIg76BzLujn3siSyZw3fCKCqCxWAAamEhZQb1SYY
-         ZgpV7bMG3KXzJv70c1fR9/1SvORtwdFqgNMUzKDO9Fktpzftlfp1eeT5LQOVL5vs5mNy
-         TEMAsfEuTskOAwW+SrwscJHjoqHVxgkZ+7UEyOLNZ49/Gd+lBOA+rjThLPYclFG2hJxz
-         Zw0pvy5MODXKuOXtGaW9KKAT4IvCZd74B+//wOSWitnWshxhpPHXr0KwEPkU33l+aICq
-         yH0Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWjoVHtYIo7Do8GUbyWKZgLIn9Xxcn22pwkbndTdTX27pFMBomKDhGhvlil2G6RIzwf7hidvIalmJWO/P5XRJoRY7w/3Eoeiu0VsHM+GfrMtOkBTJwm6b9JnNQZ4n/btYFpdjnJ0WjDnu78ca29g4EPZ6iPigLwV2ndCdRrbbXc50sLfRgZe6XF52c9
-X-Gm-Message-State: AOJu0YyBOU0gCbX6kGq2ptnfByC0Y588D/oIs5nSQsUmQGNtYPq4WWBz
-	tEEgvuDqr34fKPzK9S4UWOFsNkhfjXmmoV/mllfvkvSRqvxY/MighMEKjvyH/uqDVWf7usct954
-	6mUHg8ub1TQTvYmF9rpIgNKbwlaU=
-X-Google-Smtp-Source: AGHT+IHxijyUV1tt95o6QXEOZgm8gs7pq3/V0IbiiDujjNbDN0XvONN6co6X4+U+1QRcVai+xwZuZ0zTvqSDZSgS3fY=
-X-Received: by 2002:a1f:fc06:0:b0:4d8:797b:94d5 with SMTP id
- a6-20020a1ffc06000000b004d8797b94d5mr1817963vki.3.1712237706051; Thu, 04 Apr
- 2024 06:35:06 -0700 (PDT)
+	s=arc-20240116; t=1712237778; c=relaxed/simple;
+	bh=D78tVMWbxjP85JEIbB025UO64yyRg+3ECNq9tSr2+nA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DYwMID7Qn+1LFM1diWNHnIUnajQawO4aBUa7uSY3k5Iw7kxfI2oTDrcZeFNGBF7WrRR5u5HCC1nl0dicJj8qijJiYDBJToowkklG7jYo1+0QgHu5z76MYpRjKfGQ68T+X54VWQucbX8rznWTxHa4nZC48slFCQIASITLU6TW/Cc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED2EEC433F1;
+	Thu,  4 Apr 2024 13:36:14 +0000 (UTC)
+Message-ID: <11107704-46a7-4228-99da-55389e210553@xs4all.nl>
+Date: Thu, 4 Apr 2024 15:36:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240403203503.634465-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240403203503.634465-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <OSAPR01MB1587ED05696A111612424CF6863C2@OSAPR01MB1587.jpnprd01.prod.outlook.com>
- <CA+V-a8s94e9PLuLipQo+rGZ8g7UHxZJJAZZgvL3PQ4b8PKR2Xw@mail.gmail.com> <OSAPR01MB15878C2C2EE7905D33182CFF863C2@OSAPR01MB1587.jpnprd01.prod.outlook.com>
-In-Reply-To: <OSAPR01MB15878C2C2EE7905D33182CFF863C2@OSAPR01MB1587.jpnprd01.prod.outlook.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Thu, 4 Apr 2024 14:34:39 +0100
-Message-ID: <CA+V-a8vjB-A+BRSpxk-dsu6XMvpG1y2f8g+LYcWV+gh2cx+6+g@mail.gmail.com>
-Subject: Re: [PATCH v2 2/5] irqchip/renesas-rzg2l: Add support for RZ/Five SoC
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Thomas Gleixner <tglx@linutronix.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 04/10] media: bcm2835-unicam: Add support for CCP2/CSI2
+ camera interface
+Content-Language: en-US, nl
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ linux-media@vger.kernel.org
+Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ David Plowman <david.plowman@raspberrypi.com>,
+ Jean-Michel Hautbois <jeanmichel.hautbois@yoseli.org>,
+ Naushir Patuck <naush@raspberrypi.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, kernel-list@raspberrypi.com,
+ linux-rpi-kernel@lists.infradead.org,
+ Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
+ <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ bcm-kernel-feedback-list@broadcom.com, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20240402000424.4650-1-laurent.pinchart@ideasonboard.com>
+ <20240402000424.4650-5-laurent.pinchart@ideasonboard.com>
+From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <20240402000424.4650-5-laurent.pinchart@ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Apr 4, 2024 at 2:31=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.com=
-> wrote:
->
-> Hi Lad, Prabhakar,
->
-> > -----Original Message-----
-> > From: Lad, Prabhakar <prabhakar.csengg@gmail.com>
-> > Sent: Thursday, April 4, 2024 2:27 PM
-> > Subject: Re: [PATCH v2 2/5] irqchip/renesas-rzg2l: Add support for RZ/F=
-ive SoC
-> >
-> > Hi Biju,
-> >
-> > Thank you for the review.
-> >
-> > On Thu, Apr 4, 2024 at 8:44=E2=80=AFAM Biju Das <biju.das.jz@bp.renesas=
-.com> wrote:
-> > >
-> > > Hi Prabhakar,
-> > >
-> > > Thanks for the patch.
-> > >
-> > > > -----Original Message-----
-> > > > From: Prabhakar <prabhakar.csengg@gmail.com>
-> > > > Sent: Wednesday, April 3, 2024 9:35 PM
-> > > > Subject: [PATCH v2 2/5] irqchip/renesas-rzg2l: Add support for
-> > > > RZ/Five SoC
-> > > >
-> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > >
-> > > > The IX45 block has additional mask registers (NMSK/IMSK/TMSK) as
-> > > > compared to the RZ/G2L (family) SoC.
-> > > >
-> > > > Introduce masking/unmasking support for IRQ and TINT interrupts in
-> > > > IRQC controller driver. Two new registers, IMSK and TMSK, are
-> > > > defined to handle masking on RZ/Five SoC. The implementation
-> > > > utilizes a new data structure, `struct rzg2l_irqc_data`, to determi=
-ne mask support for a
-> > specific controller instance.
-> > > >
-> > > > Signed-off-by: Lad Prabhakar
-> > > > <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > ---
-> > > > v1->v2
-> > > > - Added IRQCHIP_MATCH() for RZ/Five
-> > > > - Retaining a copy of OF data in priv
-> > > > - Rebased the changes
-> > > > ---
-> > > >  drivers/irqchip/irq-renesas-rzg2l.c | 137
-> > > > +++++++++++++++++++++++++++-
-> > > >  1 file changed, 132 insertions(+), 5 deletions(-)
-> > > >
-> > > > diff --git a/drivers/irqchip/irq-renesas-rzg2l.c
-> > > > b/drivers/irqchip/irq-renesas-rzg2l.c
-> > > > index f6484bf15e0b..6fa8d65605dc 100644
-> > > > --- a/drivers/irqchip/irq-renesas-rzg2l.c
-> > > > +++ b/drivers/irqchip/irq-renesas-rzg2l.c
-> > > > @@ -37,6 +37,8 @@
-> > > >  #define TSSEL_SHIFT(n)                       (8 * (n))
-> > > >  #define TSSEL_MASK                   GENMASK(7, 0)
-> > > >  #define IRQ_MASK                     0x3
-> > > > +#define IMSK                         0x10010
-> > > > +#define TMSK                         0x10020
-> > > >
-> > > >  #define TSSR_OFFSET(n)                       ((n) % 4)
-> > > >  #define TSSR_INDEX(n)                        ((n) / 4)
-> > > > @@ -66,15 +68,25 @@ struct rzg2l_irqc_reg_cache {
-> > > >       u32     titsr[2];
-> > > >  };
-> > > >
-> > > > +/**
-> > > > + * struct rzg2l_irqc_of_data - OF data structure
-> > > > + * @mask_supported: Indicates if mask registers are available  */
-> > > > +struct rzg2l_irqc_of_data {
-> > > > +     bool    mask_supported;
-> > > > +};
-> > > > +
-> > > >  /**
-> > > >   * struct rzg2l_irqc_priv - IRQ controller private data structure
-> > > >   * @base:    Controller's base address
-> > > > + * @data:    OF data pointer
-> > > >   * @fwspec:  IRQ firmware specific data
-> > > >   * @lock:    Lock to serialize access to hardware registers
-> > > >   * @cache:   Registers cache for suspend/resume
-> > > >   */
-> > > >  static struct rzg2l_irqc_priv {
-> > > >       void __iomem                    *base;
-> > > > +     const struct rzg2l_irqc_of_data *data;
-> > > >       struct irq_fwspec               fwspec[IRQC_NUM_IRQ];
-> > > >       raw_spinlock_t                  lock;
-> > > >       struct rzg2l_irqc_reg_cache     cache;
-> > > > @@ -138,18 +150,102 @@ static void rzg2l_irqc_eoi(struct irq_data *=
-d)
-> > > >       irq_chip_eoi_parent(d);
-> > > >  }
-> > > >
-> > > > +static void rzg2l_irqc_mask_irq_interrupt(struct rzg2l_irqc_priv *=
-priv,
-> > > > +                                       unsigned int hwirq) {
-> > > > +     u32 imsk =3D readl_relaxed(priv->base + IMSK);
-> > > > +     u32 bit =3D BIT(hwirq - IRQC_IRQ_START);
-> > > > +
-> > > > +     writel_relaxed(imsk | bit, priv->base + IMSK); }
-> > > > +
-> > > > +static void rzg2l_irqc_unmask_irq_interrupt(struct rzg2l_irqc_priv=
- *priv,
-> > > > +                                         unsigned int hwirq) {
-> > > > +     u32 imsk =3D readl_relaxed(priv->base + IMSK);
-> > > > +     u32 bit =3D BIT(hwirq - IRQC_IRQ_START);
-> > > > +
-> > > > +     writel_relaxed(imsk & ~bit, priv->base + IMSK); }
-> > > > +
-> > > > +static void rzg2l_irqc_mask_tint_interrupt(struct rzg2l_irqc_priv =
-*priv,
-> > > > +                                        unsigned int hwirq) {
-> > > > +     u32 tmsk =3D readl_relaxed(priv->base + TMSK);
-> > > > +     u32 bit =3D BIT(hwirq - IRQC_TINT_START);
-> > > > +
-> > > > +     writel_relaxed(tmsk | bit, priv->base + TMSK); }
-> > > > +
-> > > > +static void rzg2l_irqc_unmask_tint_interrupt(struct rzg2l_irqc_pri=
-v *priv,
-> > > > +                                          unsigned int hwirq) {
-> > > > +     u32 tmsk =3D readl_relaxed(priv->base + TMSK);
-> > > > +     u32 bit =3D BIT(hwirq - IRQC_TINT_START);
-> > > > +
-> > > > +     writel_relaxed(tmsk & ~bit, priv->base + TMSK); }
-> > > > +
-> > > > +/* Must be called while priv->lock is held */ static void
-> > > > +rzg2l_irqc_mask_once(struct rzg2l_irqc_priv *priv, unsigned int
-> > > > +hwirq) {
-> > > > +     if (!priv->data->mask_supported)
-> > > > +             return;
-> > > > +
-> > > > +     if (hwirq >=3D IRQC_IRQ_START && hwirq <=3D IRQC_IRQ_COUNT)
-> > > > +             rzg2l_irqc_mask_irq_interrupt(priv, hwirq);
-> > > > +     else if (hwirq >=3D IRQC_TINT_START && hwirq < IRQC_NUM_IRQ)
-> > > > +             rzg2l_irqc_mask_tint_interrupt(priv, hwirq); }
-> > > > +
-> > > > +static void rzg2l_irqc_mask(struct irq_data *d) {
-> > > > +     struct rzg2l_irqc_priv *priv =3D irq_data_to_priv(d);
-> > > > +
-> > > > +     raw_spin_lock(&priv->lock);
-> > > > +     rzg2l_irqc_mask_once(priv, irqd_to_hwirq(d));
-> > > > +     raw_spin_unlock(&priv->lock);
-> > > > +     irq_chip_mask_parent(d);
-> > > > +}
-> > > > +
-> > > > +/* Must be called while priv->lock is held */ static void
-> > > > +rzg2l_irqc_unmask_once(struct rzg2l_irqc_priv *priv, unsigned int
-> > > > +hwirq) {
-> > > > +     if (!priv->data->mask_supported)
-> > > > +             return;
-> > > > +
-> > > > +     if (hwirq >=3D IRQC_IRQ_START && hwirq <=3D IRQC_IRQ_COUNT)
-> > > > +             rzg2l_irqc_unmask_irq_interrupt(priv, hwirq);
-> > > > +     else if (hwirq >=3D IRQC_TINT_START && hwirq < IRQC_NUM_IRQ)
-> > > > +             rzg2l_irqc_unmask_tint_interrupt(priv, hwirq); }
-> > > > +
-> > > > +static void rzg2l_irqc_unmask(struct irq_data *d) {
-> > > > +     struct rzg2l_irqc_priv *priv =3D irq_data_to_priv(d);
-> > > > +
-> > > > +     raw_spin_lock(&priv->lock);
-> > > > +     rzg2l_irqc_unmask_once(priv, irqd_to_hwirq(d));
-> > > > +     raw_spin_unlock(&priv->lock);
-> > > > +     irq_chip_unmask_parent(d);
-> > > > +}
-> > > > +
-> > > >  static void rzg2l_tint_irq_endisable(struct irq_data *d, bool
-> > > > enable)  {
-> > > > +     struct rzg2l_irqc_priv *priv =3D irq_data_to_priv(d);
-> > > >       unsigned int hw_irq =3D irqd_to_hwirq(d);
-> > > >
-> > > >       if (hw_irq >=3D IRQC_TINT_START && hw_irq < IRQC_NUM_IRQ) {
-> > > > -             struct rzg2l_irqc_priv *priv =3D irq_data_to_priv(d);
-> > > >               u32 offset =3D hw_irq - IRQC_TINT_START;
-> > > >               u32 tssr_offset =3D TSSR_OFFSET(offset);
-> > > >               u8 tssr_index =3D TSSR_INDEX(offset);
-> > > >               u32 reg;
-> > > >
-> > > >               raw_spin_lock(&priv->lock);
-> > > > +             if (enable)
-> > > > +                     rzg2l_irqc_unmask_once(priv, hw_irq);
-> > > > +             else
-> > > > +                     rzg2l_irqc_mask_once(priv, hw_irq);
-> > > >               reg =3D readl_relaxed(priv->base + TSSR(tssr_index));
-> > > >               if (enable)
-> > > >                       reg |=3D TIEN << TSSEL_SHIFT(tssr_offset); @@
-> > > > -157,6 +253,13 @@ static void rzg2l_tint_irq_endisable(struct irq_d=
-ata *d, bool enable)
-> > > >                       reg &=3D ~(TIEN << TSSEL_SHIFT(tssr_offset));
-> > > >               writel_relaxed(reg, priv->base + TSSR(tssr_index));
-> > > >               raw_spin_unlock(&priv->lock);
-> > > > +     } else {
-> > > > +             raw_spin_lock(&priv->lock);
-> > > > +             if (enable)
-> > > > +                     rzg2l_irqc_unmask_once(priv, hw_irq);
-> > > > +             else
-> > > > +                     rzg2l_irqc_mask_once(priv, hw_irq);
-> > > > +             raw_spin_unlock(&priv->lock);
-> > > >       }
-> > > >  }
-> > > >
-> > > > @@ -324,8 +427,8 @@ static struct syscore_ops rzg2l_irqc_syscore_op=
-s
-> > > > =3D {  static const struct irq_chip irqc_chip =3D {
-> > > >       .name                   =3D "rzg2l-irqc",
-> > > >       .irq_eoi                =3D rzg2l_irqc_eoi,
-> > > > -     .irq_mask               =3D irq_chip_mask_parent,
-> > > > -     .irq_unmask             =3D irq_chip_unmask_parent,
-> > > > +     .irq_mask               =3D rzg2l_irqc_mask,
-> > > > +     .irq_unmask             =3D rzg2l_irqc_unmask,
-> > >
-> > > I feel this will be clean, if we have
-> > >
-> > > static const struct irq_chip rzg2l_irqc_chip =3D {
-> > >         .name                   =3D "rzg2l-irqc",
-> > >         ...
-> > >         .irq_mask               =3D irq_chip_mask_parent,
-> > >         .irq_unmask             =3D irq_chip_unmask_parent,
-> > >         ....
-> > > };
-> > >
-> > > static const struct irq_chip rzfive_irqc_chip =3D {
-> > >         .name                   =3D "rzfive-irqc",
-> > >         ...
-> > >         .irq_mask               =3D rzfive_irqc_mask,
-> > >         .irq_unmask             =3D rzfive_irqc_unmask,
-> > >         ....
-> > > };
-> > >
-> > > And passing this in rzg2l_irqc_init() and rzfive_irqc_init(), see
-> > > below
-> > >
-> > > return rzg2l_irqc_init_helper(node, parent, & rzg2l_irqc_chip); retur=
-n
-> > > rzg2l_irqc_init_helper(node, parent, & rzfive_irqc_chip);
-> > >
-> > If we do the above we are stuck with "struct irq_chip" as data, for fur=
-ther upcoming SoCs (for
-> > example RZ/V2H) which have more features we need to pass custom data to=
- handle these features.
->
-> That time device data can be extended like below
->
-> struct rz_g2l_irq_chip {
->         struct irq_chip;
->         void *data; /* custom data */
-> }
->
-Ok, but i'll wait for Geert to come back on this as Geert suggested to
-me to do it this way.
+Just two minor comments:
 
-Cheers,
-Prabhakar
+On 02/04/2024 02:04, Laurent Pinchart wrote:
+> From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> 
+> Add a driver for the Unicam camera receiver block on BCM283x processors.
+> It is represented as two video device nodes: unicam-image and
+> unicam-embedded which are connected to an internal subdev (named
+> unicam-subdev) in order to manage streams routing.
+> 
+> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> Co-developed-by: Naushir Patuck <naush@raspberrypi.com>
+> Signed-off-by: Naushir Patuck <naush@raspberrypi.com>
+> Co-developed-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
+> Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
+> Co-developed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+> Changes since v8:
+> 
+> - Use MIPI_CSI2_DT_* macros
+> - Disable image stream on start error
+> - Move hardware configuration to unicam_sd_enable_streams()
+> - Get VC and DT from frame descriptor
+> - Don't cache fmtinfo in unicam_node
+> - Calculate line_int_freq based on subdev format
+> - Fix try_fmt_meta regression from v5
+> 
+> Changes since v7:
+> 
+> - Indentation, line wrap and white space fixes
+> - Add copyright notice for Ideas on Board
+> - Use unsigned values for shifts in macro
+> - Replace condition and assignment with max()
+> - Don't set the serial to an empty string manually
+> - Don't use loop for lane clocks setting
+> - Store PUM value in struct unicam_format_info
+> 
+> Changes since v6:
+> 
+> - Fix typos in comments
+> - Drop outdated comment
+> - Indentation fixes
+> - Turn UNICAM_SD_PAD_* into an enum
+> - Drop unicam_format_info.metadata_fmt
+> - Remove unneeded dev_dbg()
+> - Report meta frame sizes as V4L2_FRMSIZE_TYPE_STEPWISE
+> - Drop stray semicolons
+> - Set V4L2_FMT_FLAG_META_LINE_BASED for metadata format
+> - Rename error label
+> - Use .get_mbus_config() to get number of data lanes
+> - Drop minimum of 3 buffers in .queue_setup()
+> - Merge locks for the two video nodes
+> - Rework start/stop to avoid race conditions
+> 
+> Changes since v5:
+> 
+> - Move to drivers/media/platform/broadcom/
+> - Port to the upstream V4L2 streams API
+> - Rebase on latest metadata API proposal
+> - Add missing error message
+> - Drop unneeded documentation block for unicam_isr()
+> - Drop unneeded dev_dbg() and dev_err() messages
+> - Drop unneeded streams_mask and fmt checks
+> - Drop unused unicam_sd_pad_is_sink()
+> - Drop unneeded includes
+> - Drop v4l2_ctrl_subscribe_event() call
+> - Use pm_runtime_resume_and_get()
+> - Indentation and line wrap fixes
+> - Let the framework set bus_info
+> - Use v4l2_fwnode_endpoint_parse()
+> - Fix media device cleanup
+> - Drop lane reordering checks
+> - Fix subdev state locking
+> - Drop extra debug messages
+> - Move clock handling to runtime PM handlers
+> - Reorder functions
+> - Rename init functions for more clarity
+> - Initialize runtime PM earlier
+> - Clarify error messages
+> - Simplify subdev init with local variable
+> - Fix subdev cleanup
+> - Fix typos and indentation
+> - Don't initialize local variables needlessly
+> - Simplify num lanes check
+> - Fix metadata handling in subdev set_fmt
+> - Drop manual fallback to .s_stream()
+> - Pass v4l2_pix_format to unicam_calc_format_size_bpl()
+> - Simplify unicam_set_default_format()
+> - Fix default format settings
+> - Add busy check in unicam_s_fmt_meta()
+> - Add missing \n at end of format strings
+> - Fix metadata handling in subdev set_fmt
+> - Fix locking when starting streaming
+> - Return buffers from start streaming fails
+> - Fix format validation for metadata node
+> - Use video_device_pipeline_{start,stop}() helpers
+> - Simplify format enumeration
+> - Drop unset variable
+> - Update MAINTAINERS entry
+> - Update to the upstream v4l2_async_nf API
+> - Update to the latest subdev routing API
+> - Update to the latest subdev state API
+> - Move from subdev .init_cfg() to .init_state()
+> - Update to the latest videobuf2 API
+> - Fix v4l2_subdev_enable_streams() error check
+> - Use correct pad for the connected subdev
+> - Return buffers to vb2 when start streaming fails
+> - Improve debugging in start streaming handler
+> - Simplify DMA address management
+> - Drop comment about bcm2835-camera driver
+> - Clarify comments that explain min/max sizes
+> - Pass v4l2_pix_format to unicam_try_fmt()
+> - Drop unneeded local variables
+> - Rename image-related constants and functions
+> - Turn unicam_fmt.metadata_fmt into bool
+> - Rename unicam_fmt to unicam_format_info
+> - Rename unicam_format_info variables to fmtinfo
+> - Rename unicam_node.v_fmt to fmt
+> - Add metadata formats for RAW10, RAW12 and RAW14
+> - Make metadata formats line-based
+> - Validate format on metadata video device
+> - Add Co-devlopped-by tags
+> 
+> Changes since v3:
+> 
+> - Add the vendor prefix for DT name
+> - Use the reg-names in DT parsing
+> - Remove MAINTAINERS entry
+> 
+> Changes since v2:
+> 
+> - Change code organization
+> - Remove unused variables
+> - Correct the fmt_meta functions
+> - Rewrite the start/stop streaming
+>   - You can now start the image node alone, but not the metadata one
+>   - The buffers are allocated per-node
+>   - only the required stream is started, if the route exists and is
+>     enabled
+> - Prefix the macros with UNICAM_ to not have too generic names
+> - Drop colorspace support
+> 
+> Changes since v1:
+> 
+> - Replace the unicam_{info,debug,error} macros with dev_*()
+> ---
+>  MAINTAINERS                                   |    1 +
+>  drivers/media/platform/Kconfig                |    1 +
+>  drivers/media/platform/Makefile               |    1 +
+>  drivers/media/platform/broadcom/Kconfig       |   23 +
+>  drivers/media/platform/broadcom/Makefile      |    3 +
+>  .../platform/broadcom/bcm2835-unicam-regs.h   |  246 ++
+>  .../media/platform/broadcom/bcm2835-unicam.c  | 2745 +++++++++++++++++
+>  7 files changed, 3020 insertions(+)
+>  create mode 100644 drivers/media/platform/broadcom/Kconfig
+>  create mode 100644 drivers/media/platform/broadcom/Makefile
+>  create mode 100644 drivers/media/platform/broadcom/bcm2835-unicam-regs.h
+>  create mode 100644 drivers/media/platform/broadcom/bcm2835-unicam.c
+> 
+
+<snip>
+
+> diff --git a/drivers/media/platform/broadcom/bcm2835-unicam.c b/drivers/media/platform/broadcom/bcm2835-unicam.c
+> new file mode 100644
+> index 000000000000..1418f209d6ad
+> --- /dev/null
+> +++ b/drivers/media/platform/broadcom/bcm2835-unicam.c
+> @@ -0,0 +1,2745 @@
+
+<snip>
+
+> +static int unicam_start_streaming(struct vb2_queue *vq, unsigned int count)
+> +{
+> +	struct unicam_node *node = vb2_get_drv_priv(vq);
+> +	struct unicam_device *unicam = node->dev;
+> +	struct unicam_buffer *buf;
+> +	struct media_pipeline_pad_iter iter;
+> +	struct media_pad *pad;
+> +	unsigned long flags;
+> +	int ret;
+> +
+> +	dev_dbg(unicam->dev, "Starting stream on %s device\n",
+> +		is_metadata_node(node) ? "metadata" : "image");
+> +
+> +	/*
+> +	 * Start the pipeline. This validates all links, and populates the
+> +	 * pipeline structure.
+> +	 */
+> +	ret = video_device_pipeline_start(&node->video_dev, &unicam->pipe.pipe);
+> +	if (ret < 0) {
+> +		dev_dbg(unicam->dev, "Failed to start media pipeline: %d\n", ret);
+> +		goto err_buffers;
+> +	}
+> +
+> +	/*
+> +	 * Determine which video nodes are included in the pipeline, and get the
+> +	 * number of data lanes.
+> +	 */
+> +	if (unicam->pipe.pipe.start_count == 1) {
+> +		unicam->pipe.nodes = 0;
+> +
+> +		media_pipeline_for_each_pad(&unicam->pipe.pipe, &iter, pad) {
+> +			if (pad->entity != &unicam->subdev.sd.entity)
+> +				continue;
+> +
+> +			if (pad->index == UNICAM_SD_PAD_SOURCE_IMAGE)
+> +				unicam->pipe.nodes |= BIT(UNICAM_IMAGE_NODE);
+> +			else if (pad->index == UNICAM_SD_PAD_SOURCE_METADATA)
+> +				unicam->pipe.nodes |= BIT(UNICAM_METADATA_NODE);
+> +		}
+> +
+> +		if (!(unicam->pipe.nodes & BIT(UNICAM_IMAGE_NODE))) {
+> +			dev_dbg(unicam->dev,
+> +				"Pipeline does not include image node\n");
+> +			ret = -EPIPE;
+> +			goto err_pipeline;
+> +		}
+> +
+> +		ret = unicam_num_data_lanes(unicam);
+> +		if (ret < 0)
+> +			goto err_pipeline;
+> +
+> +		unicam->pipe.num_data_lanes = ret;
+> +
+> +		dev_dbg(unicam->dev, "Running with %u data lanes, nodes %u\n",
+> +			unicam->pipe.num_data_lanes, unicam->pipe.nodes);
+> +	}
+> +
+> +	node->streaming = true;
+
+Hmm, do you need to keep track of this here? Can't you use vb2_start_streaming_called()?
+
+Generally I dislike keeping track of the same information in two places.
+
+> +
+> +	/* Arm the node with the first buffer from the DMA queue. */
+> +	spin_lock_irqsave(&node->dma_queue_lock, flags);
+> +	buf = list_first_entry(&node->dma_queue, struct unicam_buffer, list);
+> +	node->cur_frm = buf;
+> +	node->next_frm = buf;
+> +	list_del(&buf->list);
+> +	spin_unlock_irqrestore(&node->dma_queue_lock, flags);
+> +
+> +	/*
+> +	 * Wait for all the video devices in the pipeline to have been started
+> +	 * before starting the hardware. In the general case, this would
+> +	 * prevent capturing multiple streams independently. However, the
+> +	 * Unicam DMA engines are not generic, they have been designed to
+> +	 * capture image data and embedded data from the same camera sensor.
+> +	 * Not only does the main use case not benefit from independent
+> +	 * capture, it requires proper synchronization of the streams at start
+> +	 * time.
+> +	 */
+> +	if (unicam->pipe.pipe.start_count < hweight32(unicam->pipe.nodes))
+> +		return 0;
+> +
+> +	ret = pm_runtime_resume_and_get(unicam->dev);
+> +	if (ret < 0) {
+> +		dev_err(unicam->dev, "PM runtime resume failed: %d\n", ret);
+> +		goto err_pipeline;
+> +	}
+> +
+> +	/* Enable the streams on the source. */
+> +	ret = v4l2_subdev_enable_streams(&unicam->subdev.sd,
+> +					 UNICAM_SD_PAD_SOURCE_IMAGE,
+> +					 BIT(0));
+> +	if (ret < 0) {
+> +		dev_err(unicam->dev, "stream on failed in subdev\n");
+> +		goto err_pm_put;
+> +	}
+> +
+> +	if (unicam->pipe.nodes & BIT(UNICAM_METADATA_NODE)) {
+> +		ret = v4l2_subdev_enable_streams(&unicam->subdev.sd,
+> +						 UNICAM_SD_PAD_SOURCE_METADATA,
+> +						 BIT(0));
+> +		if (ret < 0) {
+> +			dev_err(unicam->dev, "stream on failed in subdev\n");
+> +			goto err_disable_streams;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +
+> +err_disable_streams:
+> +	v4l2_subdev_disable_streams(&unicam->subdev.sd,
+> +				    UNICAM_SD_PAD_SOURCE_IMAGE, BIT(0));
+> +err_pm_put:
+> +	pm_runtime_put_sync(unicam->dev);
+> +err_pipeline:
+> +	video_device_pipeline_stop(&node->video_dev);
+> +err_buffers:
+> +	unicam_return_buffers(node, VB2_BUF_STATE_QUEUED);
+> +	node->streaming = false;
+> +	return ret;
+> +}
+
+<snip>
+
+> +static void unicam_unregister_nodes(struct unicam_device *unicam)
+> +{
+> +	unsigned int i;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(unicam->node); i++) {
+> +		struct unicam_node *node = &unicam->node[i];
+> +
+> +		if (node->dummy_buf_cpu_addr)
+> +			dma_free_coherent(unicam->dev, node->dummy_buf.size,
+> +					  node->dummy_buf_cpu_addr,
+> +					  node->dummy_buf.dma_addr);
+> +
+> +		if (node->registered) {
+> +			video_unregister_device(&node->video_dev);
+
+Call vb2_video_unregister_device instead of video_unregister_device.
+That ensures that unregistering the device will also stop streaming.
+See comments in include/media/videobuf2-v4l2.h.
+
+> +			node->registered = false;
+> +		}
+> +	}
+> +}
+
+<snip>
+
+Regards,
+
+	Hans
+
 
