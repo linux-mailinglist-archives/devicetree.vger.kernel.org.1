@@ -1,62 +1,70 @@
-Return-Path: <devicetree+bounces-56408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4500899041
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 23:27:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB002899047
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 23:27:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 692D21F2516F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 21:27:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 346E4B289A0
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 21:27:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E583C13D270;
-	Thu,  4 Apr 2024 21:23:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A8FC13C3E6;
+	Thu,  4 Apr 2024 21:23:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tPQw2N2D"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RWrALn8C"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBE1913D268;
-	Thu,  4 Apr 2024 21:23:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2277F13D2B1;
+	Thu,  4 Apr 2024 21:23:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712265817; cv=none; b=aQI0vrPbRKTjVFCFVvNRUgiBH/VZ1YlaZi93NCq6HMLAsH0oSE6wQ/mVnBUSRN5xJr6+Mv3b6jCTs4dlBuWCHXRzAXG4i7+JQrCedUlrJEpIWu0HAaakGej2nIZ0Vtuf7mh5MMydB2qnEdHNq3hTvhO27ozWs0to0AtHpzeNkx4=
+	t=1712265820; cv=none; b=fpoqDho2660+T2akgJVFoOA3vVlxM7MQ8uYpVPVaWnxgNzlhYr9ytTtP0sC5zF7E2UNlNFek+SrtdWZRY0YUYhc8xU++5AkZXUdoXFEjpld1WbqoRqigkPtpZDHJoUWpIsb6shteuucQyOl+mPzxk5kBL6JVnrvpY4hJB3CBstI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712265817; c=relaxed/simple;
-	bh=c5zAjmoJZmt72yR4k8XASOxNoLs2SQoqSwHDS65AUTc=;
+	s=arc-20240116; t=1712265820; c=relaxed/simple;
+	bh=Oidh6B9bbP2Pc5RZRraXn5UQ9FQ/xwkOwxjLS2hH8Yc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=aXORy2nZXAibhHObOT3CODXv4inURlEBwxsUJVTMlI1lTOjPv2A7wohFOxxVyFvNamA/OsoLtXK+ctT8xlOPJlymlDuiRSeSRCnswCcGE+rjeaTV0WGxbPVJd+bXYHC+Ty+mYkk7LmWAwbAPiVtbcsY+XaP0O5jhYg1GAZk2/UY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tPQw2N2D; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 773D0C433B1;
-	Thu,  4 Apr 2024 21:23:36 +0000 (UTC)
+	 MIME-Version:Content-Type; b=R08SuX1Of8bQ0oS7T7NYYI0E6atJ4K/8RF7Z7/Qwnj8EvUeYoYWsChKFqnhbgjUte6uN7SEs0kmIpMiSQImLgmYXZwrb7rEes3x2kTjQ6DcjaX2/BdQi/XuvAFc/9gHzoFR7Mnonmzif1JPCEQgDuGeTrUSYMgnCSUxVggkF4dE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RWrALn8C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5836FC433C7;
+	Thu,  4 Apr 2024 21:23:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712265817;
-	bh=c5zAjmoJZmt72yR4k8XASOxNoLs2SQoqSwHDS65AUTc=;
+	s=k20201202; t=1712265819;
+	bh=Oidh6B9bbP2Pc5RZRraXn5UQ9FQ/xwkOwxjLS2hH8Yc=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=tPQw2N2DPWrJ6+Ld+p13NFJkLMcZ3PYoIFG5MHtGqFB9WJIFfkcVsgAnDYLAZ7Moc
-	 gSAnDufxoFm7D2QAS2F29Lh7qSBB1SfI28j6J6GR44LWtGNhCfw0bhUmAb6UKHqc7o
-	 4JdC71yK48Dvs2DwozCb+aLpH4mQb2UKMK61v8/1fdedDxNlwFSBI+e2NYbM+arbAf
-	 /kcfYaZwALla7oFpZL545Gmato9khf96L0vRORhPY/DRiGlI7VUcU0TDmfmbdHrjmS
-	 2WfSi4OZ31BCmGfR8/EAPZOhrP3cQIpqPYcAX0Sx5l4FAT1AbAWM5cKoSndUZdue4M
-	 g9oa5B3FkGsmQ==
+	b=RWrALn8CedLpjk176Jk/8n7eIfwQ40nJzRLMLHKwXhR4fJu6eMOEPlf7ltUrdSGvv
+	 wUsnyUHWFk2XHaKuWQOMMYZEQHSbaXgmKbysr5Vyrzah2wzpJioCh/3QFzhjkqJgWn
+	 u8IYhsB+8/f5M9U/k/oIWxEPUsRvVV4XbMUQcpFU2610MdThFIIyiRQ1INqQin5KXN
+	 eOLC1zWwnB8kAtHGRHsPuKIKAnNiHL55Jf+trUmAGQY5HPOhKx/5w8cNuoMiKy0Kx+
+	 YgaFDByQFUHi97vh7OLpI82RDVYBHC6iNdkbXHOUmKpR8AtUR8k4LcY9NrkFjTAy5o
+	 iqjk80qsw3wsQ==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+To: cros-qcom-dts-watchers@chromium.org,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Bjorn Andersson <quic_bjorande@quicinc.com>
 Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Krishna Kurapati <quic_kriskura@quicinc.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sm8650: fix usb interrupts properties
-Date: Thu,  4 Apr 2024 16:23:03 -0500
-Message-ID: <171226578681.615813.7106670457726286494.b4-ty@kernel.org>
+	linux-arm-kernel@lists.infradead.org,
+	Douglas Anderson <dianders@chromium.org>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+Subject: Re: (subset) [PATCH v2 0/6] arm64: dts: qcom: qcs6490-rb3gen2: Enable two displays
+Date: Thu,  4 Apr 2024 16:23:05 -0500
+Message-ID: <171226578688.615813.575478189424711884.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240314-topic-sm8650-upstream-usb-dt-irq-fix-v1-1-ea8ab2051869@linaro.org>
-References: <20240314-topic-sm8650-upstream-usb-dt-irq-fix-v1-1-ea8ab2051869@linaro.org>
+In-Reply-To: <20240326-rb3gen2-dp-connector-v2-0-a9f1bc32ecaf@quicinc.com>
+References: <20240326-rb3gen2-dp-connector-v2-0-a9f1bc32ecaf@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,26 +75,21 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Thu, 14 Mar 2024 09:53:06 +0100, Neil Armstrong wrote:
-> Update the usb interrupts properties to fix the following
-> bindings check errors:
-> usb@a6f8800: interrupt-names:0: 'pwr_event' was expected
->         from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
-> usb@a6f8800: interrupt-names:1: 'hs_phy_irq' was expected
-> 	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
-> usb@a6f8800: interrupt-names:2: 'dp_hs_phy_irq' was expected
->         from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
-> usb@a6f8800: interrupt-names:3: 'dm_hs_phy_irq' was expected
->         from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
-> usb@a6f8800: interrupt-names: ['hs_phy_irq', 'ss_phy_irq', 'dm_hs_phy_irq', 'dp_hs_phy_irq'] is too short
->         from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
+On Tue, 26 Mar 2024 19:04:17 -0700, Bjorn Andersson wrote:
+> RB3Gen2 is capable of producing DisplayPort output on a dedicated
+> mini-DP connector and USB Type-C.
+> 
+> Utilize Abel's work for DP vs eDP selection to allow configuring both
+> controllers in DP-mode, then enable the two output paths.
+> 
+> Tested by driving fbcon to 4k@60 + 4k@30 concurrently.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sm8650: fix usb interrupts properties
-      commit: 9f42f7380f6757ce7f0cab5bad56fb350941d32b
+[6/6] arm64: defconfig: Enable sc7280 display and gpu clock controllers
+      commit: a97b6c42a7b823c429fac562a02d291b47b98d7e
 
 Best regards,
 -- 
