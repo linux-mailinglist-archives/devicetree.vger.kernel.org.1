@@ -1,226 +1,168 @@
-Return-Path: <devicetree+bounces-56419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A8CC899192
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 00:49:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D53689919A
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 00:53:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 69731B2322F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 22:49:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE6811C21FC1
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 22:53:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 336C270CBF;
-	Thu,  4 Apr 2024 22:49:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4631E12D214;
+	Thu,  4 Apr 2024 22:53:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b="P4xoFD9+"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jI6yA9Ei"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-108-mta211.mxroute.com (mail-108-mta211.mxroute.com [136.175.108.211])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7741B6FE10
-	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 22:49:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=136.175.108.211
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D78F71723;
+	Thu,  4 Apr 2024 22:53:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712270961; cv=none; b=rDcOvKU9RPPj5NEa0RxBM5QDBNUQ7XTI3lJwhXOKNArpUSGIIwag3YeNOZWCV51oDcXVeX500Rx0IddtVpjwEXzKLEWdui/bHdQFPRp46OYlZ0pp0OO2CosZqy8xWYCp10TCZbqXXA1A+PeiTkf1efn9hr/pU1rNFae2T9J0EIc=
+	t=1712271203; cv=none; b=CQHoQL6+vktB/WTYdn0XDtDQarNlL4Iwp1gxFX0D7LTA5Qw+zgYPa159skWaEMjlYCBeyExL+V1UXKBonxOWPtLjjHrF7L6gyW2st/YYhQ8HpFsK+wxnXtf/+sKM+kj9MH8pUW/eZiiu3pZ/VLYh5kgN9v/aGLfQS7zxfoivkEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712270961; c=relaxed/simple;
-	bh=4F48DbPAZTaQbmsS4zILjS/2SL+3NYNZv4tNShQAY9Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Vl92+YwR3poabAmT4vUXE80tVrS3/OW/c24OzjKvod9r75vdnrlEAwMhzx4djXotW11PERP3GEvzBpro6cP6u2fn61BN8Pu/vh4i2vdYr1rRCC4LCxdroYjE/nVGVClquxUHT+qXw/EK6GoZBfsKm8oHUiwdYRtgVPqpJ1l7aC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com; spf=pass smtp.mailfrom=luigi311.com; dkim=pass (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b=P4xoFD9+; arc=none smtp.client-ip=136.175.108.211
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=luigi311.com
-Received: from filter006.mxroute.com ([136.175.111.2] filter006.mxroute.com)
- (Authenticated sender: mN4UYu2MZsgR)
- by mail-108-mta211.mxroute.com (ZoneMTA) with ESMTPSA id 18eab48ac4f0003bea.00f
- for <devicetree@vger.kernel.org>
- (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
- Thu, 04 Apr 2024 22:44:10 +0000
-X-Zone-Loop: 68e775baebec322900200182cdce06faeaacb4fa3007
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=luigi311.com; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
-	From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=pKWa1rLBYgiYR8KNxTp6qkp4Py0+RJpW5btHSLGQ1SE=; b=P4xoFD9+PO2Kx4t9TlLMeOLHxU
-	IUbGD7YtGzwoG7vXLHevCPuReRiRKx8Xfn27PklTzl1Xh20ncdtPPL6ulqRbEtXrEDq0e37fEnBHf
-	t7KsBij2b2dpCr5Nd9+zkehEMr9QRu3M0WUnpTQ5uVxOM7dVfemQM2BsnZU2eTfONsTOPRejpdMKE
-	Ja1FwyQnR6jmCFXJcQwNSe27eV3oVbF7s1yllaOkYOVTW3cZ0QYnPfx4rexysg969BKsEnZtL8RlZ
-	0d5+ga5g4E7RlK0l7yHJUqtIvWCaHf8tm/CQ1wPK5iew1gsu51PEXwMDPJz7VTEHs+EHlHtXTxWDD
-	jqf2VwGA==;
-Message-ID: <998efafa-699b-4226-91d4-2ebba85d63ec@luigi311.com>
-Date: Thu, 4 Apr 2024 16:44:05 -0600
+	s=arc-20240116; t=1712271203; c=relaxed/simple;
+	bh=nHDeIZjgG/ABq+COPbhriixxj1CJ1aiFsFPnz9B5/Ew=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nzXPltvc/38mxa0NM3bUVoz3/WDmJV9bb4Gffd77wvu/IRggzZ5bcSn0Ahz1dyD3UxIdk8C9x/x6KqNR3HfzjMM1eCmSdUtrmOv9wgJLJxxiAmHZ214Jkl4+nW3AGm91VaCm+GxrJ4Jomqbwu0L/Y6jd2OM2OZ6H4HDP1ghhQq0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jI6yA9Ei; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1712271202; x=1743807202;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=nHDeIZjgG/ABq+COPbhriixxj1CJ1aiFsFPnz9B5/Ew=;
+  b=jI6yA9Ein2vQr/xrpwN8Wdagm7yBeJxof7VWn5CEPxe/EsC71g1w9spL
+   Y+VSCINywYjsWn4HO8pgnux8klDq/AJ4LGrR0UIyHE2tduDWPEIrx6IRg
+   Fpe7WN5hDQpt/GaO7Fo0cb2yFBTxU1Tgjq+EeDtn6R1yEEP9CoggIE28E
+   XHyyct9M1XPrvh6lVz6z7eW5Plzsyl0MpUh/X76w5Fj0weCWVjYMHycQt
+   r7J+3KzNtqMPZFwbTN1M8Ux+1+g6Z6Bc1CNRqylefVbjnTnrZnySJjGI/
+   HaY73yb3c9C07Q99wWYCCrNFAcsH+Yd+Nh1d3IDcDISvD8zA4rCAm1a8S
+   w==;
+X-CSE-ConnectionGUID: AxPZNNiXQ+Sm++dRuJQXTQ==
+X-CSE-MsgGUID: DGEll113QRa54DvJegj47A==
+X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="7747184"
+X-IronPort-AV: E=Sophos;i="6.07,180,1708416000"; 
+   d="scan'208";a="7747184"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Apr 2024 15:53:21 -0700
+X-CSE-ConnectionGUID: DMVI8dVNQt+mFpCKldjuFw==
+X-CSE-MsgGUID: qHDgff3ISNujXJMguBDG9Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,180,1708416000"; 
+   d="scan'208";a="50191958"
+Received: from lkp-server01.sh.intel.com (HELO e61807b1d151) ([10.239.97.150])
+  by fmviesa001.fm.intel.com with ESMTP; 04 Apr 2024 15:53:14 -0700
+Received: from kbuild by e61807b1d151 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rsVxH-0001b6-2d;
+	Thu, 04 Apr 2024 22:53:11 +0000
+Date: Fri, 5 Apr 2024 06:52:21 +0800
+From: kernel test robot <lkp@intel.com>
+To: Peter Griffin <peter.griffin@linaro.org>, mturquette@baylibre.com,
+	sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org,
+	alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
+	s.nawrocki@samsung.com, cw00.choi@samsung.com, jejb@linux.ibm.com,
+	martin.petersen@oracle.com, chanho61.park@samsung.com,
+	ebiggers@kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, linux-scsi@vger.kernel.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	tudor.ambarus@linaro.org, andre.draszik@linaro.org,
+	saravanak@google.com, willmcvicker@google.com,
+	Peter Griffin <peter.griffin@linaro.org>
+Subject: Re: [PATCH 08/17] clk: samsung: gs101: add support for cmu_hsi2
+Message-ID: <202404050633.EZfOttFD-lkp@intel.com>
+References: <20240404122559.898930-9-peter.griffin@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 19/25] media: i2c: imx258: Change register settings for
- variants of the sensor
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: linux-media@vger.kernel.org, dave.stevenson@raspberrypi.com,
- jacopo.mondi@ideasonboard.com, mchehab@kernel.org, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org,
- s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- pavel@ucw.cz, phone-devel@vger.kernel.org
-References: <20240403150355.189229-1-git@luigi311.com>
- <20240403150355.189229-20-git@luigi311.com>
- <Zg2BZXQpzsm7jMnc@kekkonen.localdomain>
-Content-Language: en-US
-From: Luigi311 <git@luigi311.com>
-In-Reply-To: <Zg2BZXQpzsm7jMnc@kekkonen.localdomain>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authenticated-Id: git@luigi311.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240404122559.898930-9-peter.griffin@linaro.org>
 
-On 4/3/24 10:18, Sakari Ailus wrote:
-> Hi Luis, Dave,
-> 
-> On Wed, Apr 03, 2024 at 09:03:48AM -0600, git@luigi311.com wrote:
->> From: Dave Stevenson <dave.stevenson@raspberrypi.com>
->>
->> Sony have advised that there are variants of the IMX258 sensor which
->> require slightly different register configuration to the mainline
->> imx258 driver defaults.
->>
->> There is no available run-time detection for the variant, so add
->> configuration via the DT compatible string.
->>
->> The Vision Components imx258 module supports PDAF, so add the
->> register differences for that variant
->>
->> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
->> Signed-off-by: Luis Garcia <git@luigi311.com>
->> ---
->>  drivers/media/i2c/imx258.c | 48 ++++++++++++++++++++++++++++++++++----
->>  1 file changed, 44 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
->> index 775d957c9b87..fa48da212037 100644
->> --- a/drivers/media/i2c/imx258.c
->> +++ b/drivers/media/i2c/imx258.c
->> @@ -6,6 +6,7 @@
->>  #include <linux/delay.h>
->>  #include <linux/i2c.h>
->>  #include <linux/module.h>
->> +#include <linux/of_device.h>
->>  #include <linux/pm_runtime.h>
->>  #include <linux/regulator/consumer.h>
->>  #include <media/v4l2-ctrls.h>
->> @@ -321,8 +322,6 @@ static const struct imx258_reg mipi_642mbps_24mhz_4l[] = {
->>  
->>  static const struct imx258_reg mode_common_regs[] = {
->>  	{ 0x3051, 0x00 },
->> -	{ 0x3052, 0x00 },
->> -	{ 0x4E21, 0x14 },
->>  	{ 0x6B11, 0xCF },
->>  	{ 0x7FF0, 0x08 },
->>  	{ 0x7FF1, 0x0F },
->> @@ -345,7 +344,6 @@ static const struct imx258_reg mode_common_regs[] = {
->>  	{ 0x7FA8, 0x03 },
->>  	{ 0x7FA9, 0xFE },
->>  	{ 0x7B24, 0x81 },
->> -	{ 0x7B25, 0x00 },
->>  	{ 0x6564, 0x07 },
->>  	{ 0x6B0D, 0x41 },
->>  	{ 0x653D, 0x04 },
->> @@ -460,6 +458,33 @@ static const struct imx258_reg mode_1048_780_regs[] = {
->>  	{ 0x034F, 0x0C },
->>  };
->>  
->> +struct imx258_variant_cfg {
->> +	const struct imx258_reg *regs;
->> +	unsigned int num_regs;
->> +};
->> +
->> +static const struct imx258_reg imx258_cfg_regs[] = {
->> +	{ 0x3052, 0x00 },
->> +	{ 0x4E21, 0x14 },
->> +	{ 0x7B25, 0x00 },
->> +};
->> +
->> +static const struct imx258_variant_cfg imx258_cfg = {
->> +	.regs = imx258_cfg_regs,
->> +	.num_regs = ARRAY_SIZE(imx258_cfg_regs),
->> +};
->> +
->> +static const struct imx258_reg imx258_pdaf_cfg_regs[] = {
->> +	{ 0x3052, 0x01 },
->> +	{ 0x4E21, 0x10 },
->> +	{ 0x7B25, 0x01 },
->> +};
->> +
->> +static const struct imx258_variant_cfg imx258_pdaf_cfg = {
->> +	.regs = imx258_pdaf_cfg_regs,
->> +	.num_regs = ARRAY_SIZE(imx258_pdaf_cfg_regs),
->> +};
->> +
->>  static const char * const imx258_test_pattern_menu[] = {
->>  	"Disabled",
->>  	"Solid Colour",
->> @@ -637,6 +662,8 @@ struct imx258 {
->>  	struct v4l2_subdev sd;
->>  	struct media_pad pad;
->>  
->> +	const struct imx258_variant_cfg *variant_cfg;
->> +
->>  	struct v4l2_ctrl_handler ctrl_handler;
->>  	/* V4L2 Controls */
->>  	struct v4l2_ctrl *link_freq;
->> @@ -1104,6 +1131,14 @@ static int imx258_start_streaming(struct imx258 *imx258)
->>  		return ret;
->>  	}
->>  
->> +	ret = imx258_write_regs(imx258, imx258->variant_cfg->regs,
->> +				imx258->variant_cfg->num_regs);
->> +	if (ret) {
->> +		dev_err(&client->dev, "%s failed to set variant config\n",
->> +			__func__);
->> +		return ret;
->> +	}
->> +
->>  	ret = imx258_write_reg(imx258, IMX258_CLK_BLANK_STOP,
->>  			       IMX258_REG_VALUE_08BIT,
->>  			       imx258->csi2_flags & V4L2_MBUS_CSI2_NONCONTINUOUS_CLOCK ?
->> @@ -1492,6 +1527,10 @@ static int imx258_probe(struct i2c_client *client)
->>  
->>  	imx258->csi2_flags = ep.bus.mipi_csi2.flags;
->>  
->> +	imx258->variant_cfg = of_device_get_match_data(&client->dev);
-> 
-> You'll also need to keep this working for ACPI based systems. I.e. in
-> practice remove "of_" prefix here and add the non-PDAF variant data to the
-> relevant ACPI ID list.
-> 
+Hi Peter,
 
-Removing of_ is easy enough and looking at all the other commits that make
-this change in other drivers I dont see anything else being done besides
-adding in the .data section that is down below for both imx258 and pdaf
-versions. Is that what you are referencing or is there some other place
-to add variant data to ACPI ID list?
+kernel test robot noticed the following build warnings:
 
->> +	if (!imx258->variant_cfg)
->> +		imx258->variant_cfg = &imx258_cfg;
->> +
->>  	/* Initialize subdev */
->>  	v4l2_i2c_subdev_init(&imx258->sd, client, &imx258_subdev_ops);
->>  
->> @@ -1579,7 +1618,8 @@ MODULE_DEVICE_TABLE(acpi, imx258_acpi_ids);
->>  #endif
->>  
->>  static const struct of_device_id imx258_dt_ids[] = {
->> -	{ .compatible = "sony,imx258" },
->> +	{ .compatible = "sony,imx258", .data = &imx258_cfg },
->> +	{ .compatible = "sony,imx258-pdaf", .data = &imx258_pdaf_cfg },
->>  	{ /* sentinel */ }
->>  };
->>  MODULE_DEVICE_TABLE(of, imx258_dt_ids);
-> 
+[auto build test WARNING on krzk/for-next]
+[also build test WARNING on robh/for-next clk/clk-next linus/master v6.9-rc2 next-20240404]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Peter-Griffin/dt-bindings-clock-google-gs101-clock-add-HSI2-clock-management-unit/20240404-205113
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux.git for-next
+patch link:    https://lore.kernel.org/r/20240404122559.898930-9-peter.griffin%40linaro.org
+patch subject: [PATCH 08/17] clk: samsung: gs101: add support for cmu_hsi2
+config: arm64-defconfig (https://download.01.org/0day-ci/archive/20240405/202404050633.EZfOttFD-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240405/202404050633.EZfOttFD-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202404050633.EZfOttFD-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from drivers/clk/samsung/clk-gs101.c:16:
+>> drivers/clk/samsung/clk-gs101.c:3640:7: warning: 'mout_hsi2_mmc_card_p' defined but not used [-Wunused-const-variable=]
+    3640 | PNAME(mout_hsi2_mmc_card_p)     = { "fout_shared2_pll", "fout_shared3_pll",
+         |       ^~~~~~~~~~~~~~~~~~~~
+   drivers/clk/samsung/clk.h:229:44: note: in definition of macro 'PNAME'
+     229 | #define PNAME(x) static const char * const x[] __initconst
+         |                                            ^
+>> drivers/clk/samsung/clk-gs101.c:3633:7: warning: 'mout_hsi2_bus_p' defined but not used [-Wunused-const-variable=]
+    3633 | PNAME(mout_hsi2_bus_p)          = { "dout_cmu_shared0_div4",
+         |       ^~~~~~~~~~~~~~~
+   drivers/clk/samsung/clk.h:229:44: note: in definition of macro 'PNAME'
+     229 | #define PNAME(x) static const char * const x[] __initconst
+         |                                            ^
+>> drivers/clk/samsung/clk-gs101.c:3631:7: warning: 'mout_hsi2_pcie_p' defined but not used [-Wunused-const-variable=]
+    3631 | PNAME(mout_hsi2_pcie_p)         = { "oscclk", "dout_cmu_shared2_div2" };
+         |       ^~~~~~~~~~~~~~~~
+   drivers/clk/samsung/clk.h:229:44: note: in definition of macro 'PNAME'
+     229 | #define PNAME(x) static const char * const x[] __initconst
+         |                                            ^
+>> drivers/clk/samsung/clk-gs101.c:3628:7: warning: 'mout_hsi2_ufs_embd_p' defined but not used [-Wunused-const-variable=]
+    3628 | PNAME(mout_hsi2_ufs_embd_p)     = { "oscclk", "dout_cmu_shared0_div4",
+         |       ^~~~~~~~~~~~~~~~~~~~
+   drivers/clk/samsung/clk.h:229:44: note: in definition of macro 'PNAME'
+     229 | #define PNAME(x) static const char * const x[] __initconst
+         |                                            ^
+
+
+vim +/mout_hsi2_mmc_card_p +3640 drivers/clk/samsung/clk-gs101.c
+
+  3627	
+> 3628	PNAME(mout_hsi2_ufs_embd_p)	= { "oscclk", "dout_cmu_shared0_div4",
+  3629					    "dout_cmu_shared2_div2", "fout_spare_pll" };
+  3630	
+> 3631	PNAME(mout_hsi2_pcie_p)		= { "oscclk", "dout_cmu_shared2_div2" };
+  3632	
+> 3633	PNAME(mout_hsi2_bus_p)		= { "dout_cmu_shared0_div4",
+  3634					    "dout_cmu_shared1_div4",
+  3635					    "dout_cmu_shared2_div2",
+  3636					    "dout_cmu_shared3_div2",
+  3637					    "fout_spare_pll", "oscclk", "oscclk",
+  3638					    "oscclk" };
+  3639	
+> 3640	PNAME(mout_hsi2_mmc_card_p)	= { "fout_shared2_pll", "fout_shared3_pll",
+  3641					    "dout_cmu_shared0_div4", "fout_spare_pll" };
+  3642	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
