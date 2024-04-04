@@ -1,330 +1,243 @@
-Return-Path: <devicetree+bounces-56423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56424-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4B338991F1
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 01:16:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F655899204
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 01:18:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C47131C20C32
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 23:16:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8C712B24A4B
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 23:18:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E104413C3CA;
-	Thu,  4 Apr 2024 23:15:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23DEA13C3FC;
+	Thu,  4 Apr 2024 23:18:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="1NeFl5Sx"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b="OmhWcmTc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+Received: from mail-108-mta27.mxroute.com (mail-108-mta27.mxroute.com [136.175.108.27])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AAE013A41A
-	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 23:15:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53B08137C24
+	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 23:18:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=136.175.108.27
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712272559; cv=none; b=fVUcW+Px6xP5wyYdYViioeaiUrVtdhu76cp43Q8AqGGnohKHK8WLoOIaDqbff2vKtVPedmUBTHllphyTR/v/5oYMndImcWCMwQteOPEdOb9b96vwJemzvhJrx99dewFHlQWbzIqkHT3iz2oB2jPTqEVrppKaOYUzH/N55QO3MUM=
+	t=1712272707; cv=none; b=Ez1NFN794Y1LEo0s/fabHXzEmIfuKV4GGHUKUa6M/NmHnQQ/cmQK1FKQcnJjbM7RGuvIBSQpjXYpG4HC/7btYheLP/7spqE6GqSZ1KhfY79V3Qv9uFsUzrK4jh8v/TOavWW0Cgw005ATuwsrScCPN2sCJV1P7mdusVcDUrF2qw4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712272559; c=relaxed/simple;
-	bh=q7Rmob6dx38Tia7j2342w5w2ow7VgzMTr/CsK1WSk6Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FAcn+qkaGF4uBm4Sc0co72clhXMn1sNNt8vhLJr4lmp7EhEqUEc8+W5hTtdGIPaag0PZVvhU7TotPzJyzrdSQ1Wd9rJ7uaNXP8UYjVAJp9Ac5ekx9IZfSFRt5yjEDT1rF2VydVRSKy+LP0aLvlyu9cvN2PlhrEI6H9kigfsRe4k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=1NeFl5Sx; arc=none smtp.client-ip=209.85.160.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-430d3fcc511so67911cf.1
-        for <devicetree@vger.kernel.org>; Thu, 04 Apr 2024 16:15:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1712272557; x=1712877357; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sKddqz6smnqmh9exl0udqVZxjHW77Ue+RMv6tUW1JN4=;
-        b=1NeFl5SxPNDinhtQ6Ty8eE0Sn8E2NmdKOaLffWEUVMq4W79yRCg7dKYtXawDEW7Wvc
-         6UoYAqmwItyLvtb1H/LxB2T7irJYxF5bDq/qVzHmZMzgZbFU2eH7+JUbvVfwH68MvQsO
-         cipqhy9LcyHPKvd52aAHxn76IFN1dpX6aSoqhthz2WyyN2At1LUUeLvgbZPW4kMivd5p
-         Ojg7ahmnmRbGFQiZDWE+3HtXVx+Mum+AqcR3NQD57w87q052McPEO23CC5kJ6RuQcfht
-         mB/FrN90GNA8dkMw57Qbbh3UtA3D1rySh532E5n3fg2gJAQI34LP4O2KwRnOEj2m/38O
-         WbQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712272557; x=1712877357;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sKddqz6smnqmh9exl0udqVZxjHW77Ue+RMv6tUW1JN4=;
-        b=UGchjHFtRICmuTv6hWtzByYl+/NdEnq00/YktwG+I1ZzCQ6d4kq/EZ7eLGk/gCTr3z
-         v3qCyimWEivqL8U0oRoYEM1UJR5OkpWD6Blvasyjwn4yQzvGM0mhwSi3Vc4ZSKR/95Zj
-         nZ4PRfBvs4rQU7HZMs5fChzNN/3aL36Aqx0CooaRBEW5Xg9p92/Diqw9vYA1DHdLijet
-         KDURyb4SrBQ2WxCSMCiBfZg2CuWA0ZtCTwekPOv9eUaVR8re5t71uV4a/PdKkztfKQb0
-         EqzyihOLOa8kH5vMWB4B/e3lAPc3Pw2AAXQHiCylbNXarhIbBfm7gVgfH4VYcLrTWp62
-         rmcA==
-X-Forwarded-Encrypted: i=1; AJvYcCWXMsdF+VNuPKvs9EQyowHeUblfirlcxFkepZ6JtMGDF7MI9cV5SEZJwJY0J7bFs+fB6blloynridCk7cZPkogAZVZnl5tpoZVw9g==
-X-Gm-Message-State: AOJu0YwlrKulf1bQHoUsDQn5my6pNzFmcpXVTlWZ9cLO39d+3z72dqcl
-	aTMXXur77yVfq2mCOBiv29Ep00LxhDn6a9+v1QHsxrMHACGpRjgyU5RCXU68vzUPqfjFPkGSzvD
-	F3Blv/c/wji3JaDV+aPmhUVyUJgu4U2u4HthhZZp3PzWPwHWZgNkC
-X-Google-Smtp-Source: AGHT+IFNa111IpFNNKGnkOs93VqeaMLso4SJe3rpUiVsiWHi4ul+ZGr3gl8Qzih4k80HP8F/ZJAFbIFEx3TNhryu9Gc=
-X-Received: by 2002:a05:622a:1b19:b0:434:36fe:6d3 with SMTP id
- bb25-20020a05622a1b1900b0043436fe06d3mr354666qtb.0.1712272556757; Thu, 04 Apr
- 2024 16:15:56 -0700 (PDT)
+	s=arc-20240116; t=1712272707; c=relaxed/simple;
+	bh=Mrk+i3rtrrQiqKcF5jKGWs2vl61KOuvTlYIW8k8/MPg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZLL95AzEfVWmaL/OZP3xaMbuHvJeo27nrvXL+1HdVOkfe8OFeFx+RaDLwPKpNsMIIx1Bb0JpLzH6R6LiRmIgDy/ttMNj7Vx6vthMUjBEJMEKZZ50dAHKxxBoBs6omqlt1Zzw4NNLV+28ZgKobu9mGsxIGeL3KpTCQYqzIgI+D14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com; spf=pass smtp.mailfrom=luigi311.com; dkim=pass (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b=OmhWcmTc; arc=none smtp.client-ip=136.175.108.27
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=luigi311.com
+Received: from filter006.mxroute.com ([136.175.111.2] filter006.mxroute.com)
+ (Authenticated sender: mN4UYu2MZsgR)
+ by mail-108-mta27.mxroute.com (ZoneMTA) with ESMTPSA id 18eab67d9c60003bea.010
+ for <devicetree@vger.kernel.org>
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+ Thu, 04 Apr 2024 23:18:13 +0000
+X-Zone-Loop: 981fe25ee843edd4332467a1b71bfb0a4ff5d40376af
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=luigi311.com; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+	From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=bwJMNX6ZJRpOtWTanY4h6tkZAqYIG8MU3/GQ1Ir4QUU=; b=OmhWcmTc+ZWR/7jOr0eC8Did2s
+	XaOoTRQprjnw/jOSBzBf8qWj4VGuJQeZpp4OgU0Hw2+W1MiG9Wk/SxJNk1reSX2pGyLm/gEQCX52F
+	4b1FZmdNB3tD+nQKSDI1X+febDGcaztfxp8JtdCKzM3rCz3UKdlaTsOc7oVzH0FNPcz8hglFypx5G
+	bRC0hI/GUwYgZZTKujRC4dBuxtGTl5q7BJRfYoaDpgQKYeUo5Kz5na9OiIpUYk7nhgV4wQZ0OFI1h
+	qxbHga8hBpyvNgXQgtEvyIjpn0AYllXKbBB9Z/4n0OIaRiacb22SxckwpIxE4zU0zulY4T46I9GGn
+	PTn0YqIA==;
+Message-ID: <a1db5dc8-5370-4fb8-ad22-2a5c1e45ad58@luigi311.com>
+Date: Thu, 4 Apr 2024 17:18:09 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240404-dt-cleanup-free-v1-0-c60e6cba8da9@kernel.org> <20240404-dt-cleanup-free-v1-2-c60e6cba8da9@kernel.org>
-In-Reply-To: <20240404-dt-cleanup-free-v1-2-c60e6cba8da9@kernel.org>
-From: Saravana Kannan <saravanak@google.com>
-Date: Thu, 4 Apr 2024 16:15:20 -0700
-Message-ID: <CAGETcx_H_vvK9y-51JTcz8F7GDThBwC+t=k2i6r4Nst3H6-TUg@mail.gmail.com>
-Subject: Re: [PATCH 2/3] of: Use scope based kfree() cleanups
-To: Rob Herring <robh@kernel.org>
-Cc: Jonathan Cameron <jic23@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 23/25] drivers: media: i2c: imx258: Add support for
+ powerdown gpio
+To: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc: =?UTF-8?Q?Ond=C5=99ej_Jirman?= <megous@megous.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org,
+ jacopo.mondi@ideasonboard.com, mchehab@kernel.org, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org,
+ s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ pavel@ucw.cz, phone-devel@vger.kernel.org
+References: <20240403150355.189229-1-git@luigi311.com>
+ <20240403150355.189229-24-git@luigi311.com>
+ <Zg2DBasC501hMQSS@kekkonen.localdomain>
+ <wjlcde7yoooygj4hhdmiwrdloh6l4p6i2qbmjek5uwsifyzwgu@xjhutvmsdfou>
+ <dd0e64c8-5eef-421a-9d9f-8a5865743369@luigi311.com>
+ <CAPY8ntAcB3wyLj1wNE5YBx0_UGRiXEv6057XfEBfjk8NOLC9yQ@mail.gmail.com>
+Content-Language: en-US
+From: Luis Garcia <git@luigi311.com>
+In-Reply-To: <CAPY8ntAcB3wyLj1wNE5YBx0_UGRiXEv6057XfEBfjk8NOLC9yQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Authenticated-Id: git@luigi311.com
 
-On Thu, Apr 4, 2024 at 7:15=E2=80=AFAM Rob Herring <robh@kernel.org> wrote:
->
-> Use the relatively new scope based kfree() cleanup to simplify error
-> handling. Doing so reduces the chances of memory leaks and simplifies
-> error paths by avoiding the need for goto statements.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  drivers/of/base.c     | 34 ++++++++--------------------------
->  drivers/of/dynamic.c  | 11 ++++-------
->  drivers/of/resolver.c | 35 +++++++++++++----------------------
->  3 files changed, 25 insertions(+), 55 deletions(-)
->
-> diff --git a/drivers/of/base.c b/drivers/of/base.c
-> index 8856c67c466a..20603d3c9931 100644
-> --- a/drivers/of/base.c
-> +++ b/drivers/of/base.c
-> @@ -16,6 +16,7 @@
->
->  #define pr_fmt(fmt)    "OF: " fmt
->
-> +#include <linux/cleanup.h>
->  #include <linux/console.h>
->  #include <linux/ctype.h>
->  #include <linux/cpu.h>
-> @@ -1393,8 +1394,10 @@ int of_parse_phandle_with_args_map(const struct de=
-vice_node *np,
->                                    const char *stem_name,
->                                    int index, struct of_phandle_args *out=
-_args)
->  {
-> -       char *cells_name, *map_name =3D NULL, *mask_name =3D NULL;
-> -       char *pass_name =3D NULL;
-> +       char *cells_name __free(kfree) =3D kasprintf(GFP_KERNEL, "#%s-cel=
-ls", stem_name);
-> +       char *map_name __free(kfree) =3D kasprintf(GFP_KERNEL, "%s-map", =
-stem_name);
-> +       char *mask_name __free(kfree) =3D kasprintf(GFP_KERNEL, "%s-map-m=
-ask", stem_name);
-> +       char *pass_name __free(kfree) =3D kasprintf(GFP_KERNEL, "%s-map-p=
-ass-thru", stem_name);
+On 4/4/24 08:12, Dave Stevenson wrote:
+> Hi Luigi
+> 
+> On Wed, 3 Apr 2024 at 20:34, Luigi311 <git@luigi311.com> wrote:
+>>
+>> On 4/3/24 10:57, Ondřej Jirman wrote:
+>>> Hi Sakari and Luis,
+>>>
+>>> On Wed, Apr 03, 2024 at 04:25:41PM GMT, Sakari Ailus wrote:
+>>>> Hi Luis, Ondrej,
+>>>>
+>>>> On Wed, Apr 03, 2024 at 09:03:52AM -0600, git@luigi311.com wrote:
+>>>>> From: Luis Garcia <git@luigi311.com>
+>>>>>
+>>>>> On some boards powerdown signal needs to be deasserted for this
+>>>>> sensor to be enabled.
+>>>>>
+>>>>> Signed-off-by: Ondrej Jirman <megi@xff.cz>
+>>>>> Signed-off-by: Luis Garcia <git@luigi311.com>
+>>>>> ---
+>>>>>  drivers/media/i2c/imx258.c | 13 +++++++++++++
+>>>>>  1 file changed, 13 insertions(+)
+>>>>>
+>>>>> diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
+>>>>> index 30352c33f63c..163f04f6f954 100644
+>>>>> --- a/drivers/media/i2c/imx258.c
+>>>>> +++ b/drivers/media/i2c/imx258.c
+>>>>> @@ -679,6 +679,8 @@ struct imx258 {
+>>>>>     unsigned int lane_mode_idx;
+>>>>>     unsigned int csi2_flags;
+>>>>>
+>>>>> +   struct gpio_desc *powerdown_gpio;
+>>>>> +
+>>>>>     /*
+>>>>>      * Mutex for serialized access:
+>>>>>      * Protect sensor module set pad format and start/stop streaming safely.
+>>>>> @@ -1213,6 +1215,8 @@ static int imx258_power_on(struct device *dev)
+>>>>>     struct imx258 *imx258 = to_imx258(sd);
+>>>>>     int ret;
+>>>>>
+>>>>> +   gpiod_set_value_cansleep(imx258->powerdown_gpio, 0);
+>>>>
+>>>> What does the spec say? Should this really happen before switching on the
+>>>> supplies below?
+>>>
+>>> There's no powerdown input in the IMX258 manual. The manual only mentions
+>>> that XCLR (reset) should be held low during power on.
+>>>
+>>> https://megous.com/dl/tmp/15b0992a720ab82d.png
+>>>
+>>> https://megous.com/dl/tmp/f2cc991046d97641.png
+>>>
+>>>    This sensor doesn’t have a built-in “Power ON Reset” function. The XCLR pin
+>>>    is set to “LOW” and the power supplies are brought up. Then the XCLR pin
+>>>    should be set to “High” after INCK supplied.
+>>>
+>>> So this input is some feature on camera module itself outside of the
+>>> IMX258 chip, which I think is used to gate power to the module. Eg. on Pinephone
+>>> Pro, there are two modules with shared power rails, so enabling supply to
+>>> one module enables it to the other one, too. So this input becomes the only way
+>>> to really enable/disable power to the chip when both are used at once at some
+>>> point, because regulator_bulk_enable/disable becomes ineffective at that point.
+>>>
+>>> Luis, maybe you saw some other datasheet that mentions this input? IMO,
+>>> it just gates the power rails via some mosfets on the module itself, since
+>>> there's not power down input to the chip itself.
+>>>
+>>> kind regards,
+>>>       o.
+>>>
+>>
+>> Ondrej, I did not see anything else in the datasheet since I'm pretty sure
+>> I'm looking at the same datasheet as it was supplied to me by Pine64. I'm
+>> not sure what datasheet Dave has access to since he got his for a
+>> completely different module than what we are testing with though.
+> 
+> I only have a leaked datasheet (isn't the internet wonderful!)  [1]
+> XCLR is documented in that, as Ondrej has said.
+> 
+> If this powerdown GPIO is meant to be driving XCLR, then it is in the
+> wrong order against the supplies.
+> 
+> This does make me confused over the difference between this powerdown
+> GPIO and the reset GPIO that you implement in 24/25.
+> 
+> Following the PinePhone Pro DT [3] and schematics [4]
+> reset-gpios = <&gpio1 RK_PA0 GPIO_ACTIVE_LOW>;
+> powerdown-gpios = <&gpio2 RK_PD4 GPIO_ACTIVE_HIGH>;
+> 
+> Schematic page 11 upper right block
+> GPIO1_A0/ISP0_SHUTTER_EN/ISP1_SHUTTER_EN/TCPD_VBUS_SINK_EN_d becomes
+> Camera_RST_L. Page 18 feeds that through to the RESET on the camera
+> connector.
+> Page 11 left middle block GPIO2_D4/SDIO0_BKPWR_d becomes DVP_PDN1_H.
+> Page 18 feeds that through to the PWDN on the camera connector.
+> 
+> Seeing as we apparently have a lens driver kicking around as well,
+> potentially one is reset to the VCM, and one to the sensor? DW9714
+> does have an XSD shutdown pin.
+> Only the module integrator is going to really know the answer,
+> although potentially a little poking with gpioset and i2cdetect may
+> tell you more.
+> 
+>   Dave
+> 
+> [1] https://web.archive.org/web/20201027131326/www.hi.app/IMX258-datasheet.pdf
+> [2] https://files.pine64.org/doc/PinePhonePro/PinephonePro-Schematic-V1.0-20211127.pdf
+> [3] https://xff.cz/git/linux/tree/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts?h=orange-pi-5.18#n868
+> [4] https://files.pine64.org/doc/PinePhonePro/PinephonePro-Schematic-V1.0-20211127.pdf
+> 
+> 
 
-With the scoped stuff, do these function calls need to be in the same
-line we are defining these variables? If not, I'd rather that the
-calls remain where they were. It feels like a lote to visually parse
-and take in from a readability perspective.
+Out of curiosity I dropped this and tested it on my PPP and it still loads
+up the camera correctly so I am fine with dropping this and patch 22 that
+adds in the dt binding
 
->         struct device_node *cur, *new =3D NULL;
->         const __be32 *map, *mask, *pass;
->         static const __be32 dummy_mask[] =3D { [0 ... MAX_PHANDLE_ARGS] =
-=3D cpu_to_be32(~0) };
-> @@ -1407,27 +1410,13 @@ int of_parse_phandle_with_args_map(const struct d=
-evice_node *np,
->         if (index < 0)
->                 return -EINVAL;
->
-> -       cells_name =3D kasprintf(GFP_KERNEL, "#%s-cells", stem_name);
-> -       if (!cells_name)
-> +       if (!cells_name || !map_name || !mask_name || !pass_name)
->                 return -ENOMEM;
->
-> -       ret =3D -ENOMEM;
-> -       map_name =3D kasprintf(GFP_KERNEL, "%s-map", stem_name);
-> -       if (!map_name)
-> -               goto free;
-> -
-> -       mask_name =3D kasprintf(GFP_KERNEL, "%s-map-mask", stem_name);
-> -       if (!mask_name)
-> -               goto free;
-> -
-> -       pass_name =3D kasprintf(GFP_KERNEL, "%s-map-pass-thru", stem_name=
-);
-> -       if (!pass_name)
-> -               goto free;
-> -
->         ret =3D __of_parse_phandle_with_args(np, list_name, cells_name, -=
-1, index,
->                                            out_args);
->         if (ret)
-> -               goto free;
-> +               return ret;
->
->         /* Get the #<list>-cells property */
->         cur =3D out_args->np;
-> @@ -1444,8 +1433,7 @@ int of_parse_phandle_with_args_map(const struct dev=
-ice_node *np,
->                 /* Get the <list>-map property */
->                 map =3D of_get_property(cur, map_name, &map_len);
->                 if (!map) {
-> -                       ret =3D 0;
-> -                       goto free;
-> +                       return 0;
->                 }
->                 map_len /=3D sizeof(u32);
->
-> @@ -1521,12 +1509,6 @@ int of_parse_phandle_with_args_map(const struct de=
-vice_node *np,
->  put:
->         of_node_put(cur);
->         of_node_put(new);
-> -free:
-> -       kfree(mask_name);
-> -       kfree(map_name);
-> -       kfree(cells_name);
-> -       kfree(pass_name);
-> -
->         return ret;
->  }
->  EXPORT_SYMBOL(of_parse_phandle_with_args_map);
-> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
-> index af7c57a7a25d..43f4e2c93bd2 100644
-> --- a/drivers/of/dynamic.c
-> +++ b/drivers/of/dynamic.c
-> @@ -9,6 +9,7 @@
->
->  #define pr_fmt(fmt)    "OF: " fmt
->
-> +#include <linux/cleanup.h>
->  #include <linux/of.h>
->  #include <linux/spinlock.h>
->  #include <linux/slab.h>
-> @@ -1019,10 +1020,9 @@ int of_changeset_add_prop_u32_array(struct of_chan=
-geset *ocs,
->                                     const u32 *array, size_t sz)
->  {
->         struct property prop;
-> -       __be32 *val;
-> -       int i, ret;
-> +       __be32 *val __free(kfree) =3D kcalloc(sz, sizeof(__be32), GFP_KER=
-NEL);
-> +       int i;
->
-> -       val =3D kcalloc(sz, sizeof(__be32), GFP_KERNEL);
->         if (!val)
->                 return -ENOMEM;
->
-> @@ -1032,9 +1032,6 @@ int of_changeset_add_prop_u32_array(struct of_chang=
-eset *ocs,
->         prop.length =3D sizeof(u32) * sz;
->         prop.value =3D (void *)val;
->
-> -       ret =3D of_changeset_add_prop_helper(ocs, np, &prop);
-> -       kfree(val);
-> -
-> -       return ret;
-> +       return of_changeset_add_prop_helper(ocs, np, &prop);
->  }
->  EXPORT_SYMBOL_GPL(of_changeset_add_prop_u32_array);
-> diff --git a/drivers/of/resolver.c b/drivers/of/resolver.c
-> index b278ab4338ce..2780928764a4 100644
-> --- a/drivers/of/resolver.c
-> +++ b/drivers/of/resolver.c
-> @@ -8,6 +8,7 @@
->
->  #define pr_fmt(fmt)    "OF: resolver: " fmt
->
-> +#include <linux/cleanup.h>
->  #include <linux/kernel.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
-> @@ -74,11 +75,11 @@ static int update_usages_of_a_phandle_reference(struc=
-t device_node *overlay,
->  {
->         struct device_node *refnode;
->         struct property *prop;
-> -       char *value, *cur, *end, *node_path, *prop_name, *s;
-> +       char *value __free(kfree) =3D kmemdup(prop_fixup->value, prop_fix=
-up->length, GFP_KERNEL);
-> +       char *cur, *end, *node_path, *prop_name, *s;
->         int offset, len;
->         int err =3D 0;
->
-> -       value =3D kmemdup(prop_fixup->value, prop_fixup->length, GFP_KERN=
-EL);
->         if (!value)
->                 return -ENOMEM;
->
-> @@ -89,23 +90,19 @@ static int update_usages_of_a_phandle_reference(struc=
-t device_node *overlay,
->
->                 node_path =3D cur;
->                 s =3D strchr(cur, ':');
-> -               if (!s) {
-> -                       err =3D -EINVAL;
-> -                       goto err_fail;
-> -               }
-> +               if (!s)
-> +                       return -EINVAL;
->                 *s++ =3D '\0';
->
->                 prop_name =3D s;
->                 s =3D strchr(s, ':');
-> -               if (!s) {
-> -                       err =3D -EINVAL;
-> -                       goto err_fail;
-> -               }
-> +               if (!s)
-> +                       return -EINVAL;
->                 *s++ =3D '\0';
->
->                 err =3D kstrtoint(s, 10, &offset);
->                 if (err)
-> -                       goto err_fail;
-> +                       return err;
->
->                 refnode =3D __of_find_node_by_full_path(of_node_get(overl=
-ay), node_path);
->                 if (!refnode)
-> @@ -117,22 +114,16 @@ static int update_usages_of_a_phandle_reference(str=
-uct device_node *overlay,
->                 }
->                 of_node_put(refnode);
->
-> -               if (!prop) {
-> -                       err =3D -ENOENT;
-> -                       goto err_fail;
-> -               }
-> +               if (!prop)
-> +                       return -ENOENT;
->
-> -               if (offset < 0 || offset + sizeof(__be32) > prop->length)=
- {
-> -                       err =3D -EINVAL;
-> -                       goto err_fail;
-> -               }
-> +               if (offset < 0 || offset + sizeof(__be32) > prop->length)
-> +                       return -EINVAL;
->
->                 *(__be32 *)(prop->value + offset) =3D cpu_to_be32(phandle=
-);
->         }
->
-> -err_fail:
-> -       kfree(value);
-> -       return err;
-> +       return 0;
->  }
->
->  /* compare nodes taking into account that 'name' strips out the @ part *=
-/
+>>>>> +
+>>>>>     ret = regulator_bulk_enable(IMX258_NUM_SUPPLIES,
+>>>>>                                 imx258->supplies);
+>>>>>     if (ret) {
+>>>>> @@ -1224,6 +1228,7 @@ static int imx258_power_on(struct device *dev)
+>>>>>     ret = clk_prepare_enable(imx258->clk);
+>>>>>     if (ret) {
+>>>>>             dev_err(dev, "failed to enable clock\n");
+>>>>> +           gpiod_set_value_cansleep(imx258->powerdown_gpio, 1);
+>>>>>             regulator_bulk_disable(IMX258_NUM_SUPPLIES, imx258->supplies);
+>>>>>     }
+>>>>>
+>>>>> @@ -1238,6 +1243,8 @@ static int imx258_power_off(struct device *dev)
+>>>>>     clk_disable_unprepare(imx258->clk);
+>>>>>     regulator_bulk_disable(IMX258_NUM_SUPPLIES, imx258->supplies);
+>>>>>
+>>>>> +   gpiod_set_value_cansleep(imx258->powerdown_gpio, 1);
+>>>>> +
+>>>>>     return 0;
+>>>>>  }
+>>>>>
+>>>>> @@ -1541,6 +1548,12 @@ static int imx258_probe(struct i2c_client *client)
+>>>>>     if (!imx258->variant_cfg)
+>>>>>             imx258->variant_cfg = &imx258_cfg;
+>>>>>
+>>>>> +   /* request optional power down pin */
+>>>>> +   imx258->powerdown_gpio = devm_gpiod_get_optional(&client->dev, "powerdown",
+>>>>> +                                               GPIOD_OUT_HIGH);
+>>>>> +   if (IS_ERR(imx258->powerdown_gpio))
+>>>>> +           return PTR_ERR(imx258->powerdown_gpio);
+>>>>> +
+>>>>>     /* Initialize subdev */
+>>>>>     v4l2_i2c_subdev_init(&imx258->sd, client, &imx258_subdev_ops);
+>>>>>
+>>>>
+>>>> --
+>>>> Regards,
+>>>>
+>>>> Sakari Ailus
+>>
 
-Reviewed-by: Saravana Kannan <saravanak@google.com>
-
--Saravana
 
