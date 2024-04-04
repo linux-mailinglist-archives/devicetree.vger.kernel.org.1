@@ -1,217 +1,130 @@
-Return-Path: <devicetree+bounces-56191-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6700F898102
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 07:30:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2094A898122
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 07:59:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B5E228EE4B
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 05:30:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B46D01F22599
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 05:59:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2836122611;
-	Thu,  4 Apr 2024 05:30:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9C2540BE6;
+	Thu,  4 Apr 2024 05:59:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bSqC/7Wo"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="LgfwWiA0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D7963DBBC
-	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 05:30:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5AB745942
+	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 05:59:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712208623; cv=none; b=miYfPpW1kmKMzGQp9Bxjd8Th05vqUV40SU90LZnbIAztxYM4nCYGG98mU8MTUcIFDqpR3jMI6QOWxDHMcCHZJpoeSns9wsNPUMRKM5IedpP5PT2U5of3FNKqp5rffVZSYBGVKlzmRQE9gWxUcwUxkSdH6Uielh7eTRuSE2R/nyM=
+	t=1712210391; cv=none; b=MhoI96+LWv4lXYJw6/r60jUy88n8ytOgV4i4K3pIkSx+8cd2FLVConRPAeXw8JYPSl3g7WvyDXpkcCq0Gy0y/P0g0HIfpQx2W1fDY7C0K4vdJFRzOhZvh9shccNfo4GEWZaAK6slowY4OX1LTVpfNWdcnzXZaa8XiKpjYE4dmIM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712208623; c=relaxed/simple;
-	bh=hrT6CSkkEiHpCL2254tYrBO7lscNQ5B7mlo/PBHS4j0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XdWyuv6kr4W55naWZY7AfMFpZNCL9l5uSqv1j9KTwc9XSCFcZW8t5QKGEY48LPFz3nbtXrV142Ax2v3TkhjbhntFd95iSfte86kW0BQUBouk8oKeOChyy0Y7G+MFsagXBLqw/S7mlyjCC4GJg2UVsD9LKja2vvDEVOpoKwNpmyk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bSqC/7Wo; arc=none smtp.client-ip=209.85.219.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-dc6d8bd612dso670583276.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 22:30:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712208619; x=1712813419; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=dyCeaWOBhvl6G+/jJPj4WdMHHOTtXZ5RKep0At0rnzE=;
-        b=bSqC/7WoEKjeLBagHHQRVLrCAnZqnGOYuY3dE1kpze4f+wTIVMtf96YNg6Fkw9kjVt
-         lvw32mLtESFM+qvHkD9TO7Mup9cr3vyq38TlZ7brIrQdrmkz2e3cquAXSZHXHAJvpjxp
-         0E+8SG6mfhwYWUiRvzB26GguW8GRMVEy6ycgCI9DP6nCvO2T35UF/7Uele5Pn7aMhDJ8
-         f3Bud8+uC5IjpV1uns2GOt3U8SiuQ/8917g065Bb+xsQIlRJAsXkEuCAKmVmTZbwT55f
-         r94s4Eu5+AqmTaJmHZFEVuHYqlZODvif85p4U8mlIDBSDxVfgIqYlhdc6MLmcgC08h5M
-         evAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712208619; x=1712813419;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dyCeaWOBhvl6G+/jJPj4WdMHHOTtXZ5RKep0At0rnzE=;
-        b=hx0bN2wTrXuvSci8RL7M5GngS3zJypTP7w6nyIqTPyyrDBaDX0y2N1+/W0iB/hLNXm
-         kgvhBUv3bO+8gCAcb8tdtWIcioi41rSEVlev4Hl3tDLTgaEeog/7NTlcpsAb/+FtdkWv
-         Edi7+cCfNaaC4k+JTytX8Owd/19J8/U6WuceIUre/ze8LyNmorbbcybfrot3H2hearch
-         8PNsB1qDIWWcxsJXn8ILSIXdPX9+EjjMEHkWOnhOGXwfA+3JfkJTIZD40Q2fpeK3J3dX
-         SSecr4Tft8Yp3CTjD8nqJbPPDJBanZZwjbXdIR7cgJ6cw1NszragIIbO/BarSq+EmwVv
-         Qe+A==
-X-Forwarded-Encrypted: i=1; AJvYcCXbUsoI8HFxFESgho3D1692Xw2ZZKj6YwibIMMDo+lAASaPXvYQ3lJfTXJO/SBmYKLRaUnDiyOpa9ZPyn0yrZ2Bp7xWaKVRUfA/oA==
-X-Gm-Message-State: AOJu0YwdVVCcrBJhfJr51Va3duazvzWRlgz5N4C1zSlJ6jxafV4A0jU+
-	zqxmK6Be0Xfh4CcZUQgcHXXcWPOV3dDS/Rwdqp+YFpm0zIX5dP1n8gcuxVfwYCcXJH7G4CCYjzP
-	XtCIhjE6AJwvUvuUHCi0Yw7StOIME3XVKnlhNhA==
-X-Google-Smtp-Source: AGHT+IGKRxJEtdCBGlcL3OcZ4OT75D2VZtdOqbw13TdwBYkQp+Ruc2ZWNb86Z/W+QS4HrKFAfGGKYy4zaXWCiIsdQH4=
-X-Received: by 2002:a25:5f45:0:b0:ddd:696a:8656 with SMTP id
- h5-20020a255f45000000b00ddd696a8656mr1475611ybm.41.1712208619210; Wed, 03 Apr
- 2024 22:30:19 -0700 (PDT)
+	s=arc-20240116; t=1712210391; c=relaxed/simple;
+	bh=aIZ71xpdNE319zeVgp11x3qaqeydbVVrYQzt/n5Sdts=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=p8PdEfnah16FxzgnUQrjkCLIUjx/OBjbgOeN6sF6rEkYGr9UIjfTUKidtZWy2mCdBL9JMcqkx8GDDLnNzyxWBPE9uHPicIrgEtUPcvybIaIaFvzeeTqajymZgR4TOCyiS1iK6AIAwewmIka7V30DWuU06qeRqWooNQGEywmkdPE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=LgfwWiA0; arc=none smtp.client-ip=91.26.50.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+	q=dns/txt; i=@phytec.de; t=1712209479; x=1714801479;
+	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=aIZ71xpdNE319zeVgp11x3qaqeydbVVrYQzt/n5Sdts=;
+	b=LgfwWiA0KuCL5AgPtvRoD0H1hzXnLqPjE3VI4uP4wnW8n5gX63LXcbRnnsXia2Ho
+	hIKCEB3Act5XzYrj9x9ymQaVEpK/9osfslPoa21JxzXXI4XZV7Eo4tSaWPhYtPMz
+	JJxAHQdE/hzE2ehNmtdCx4xf+7+JLgLYzowPdflPfkw=;
+X-AuditID: ac14000a-fbefe7000000290d-4f-660e3e476d60
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(Client did not present a certificate)
+	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 52.87.10509.74E3E066; Thu,  4 Apr 2024 07:44:39 +0200 (CEST)
+Received: from [172.25.39.28] (172.25.0.11) by Berlix.phytec.de (172.25.0.12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Thu, 4 Apr 2024
+ 07:44:37 +0200
+Message-ID: <962bd104-b30f-4fad-a41e-d0db349d8bd2@phytec.de>
+Date: Thu, 4 Apr 2024 07:44:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240321092529.13362-1-quic_jkona@quicinc.com>
- <20240321092529.13362-7-quic_jkona@quicinc.com> <CAA8EJppHGS+W-aiXvJ2cE=jCbua8Y0Q+zv_QTs+C9V5+Y1vuZg@mail.gmail.com>
- <008d574f-9c9e-48c6-b64e-89fb469cbde4@quicinc.com> <b3464321-0c52-4c41-9198-e9e7b16aa419@quicinc.com>
- <CAA8EJpqDwCVAjDphnC-HdfseMJ-xd8VVxb5+9UcGEcKLcn-heg@mail.gmail.com> <fba2474e-31a6-4fef-acf9-7069933584c8@quicinc.com>
-In-Reply-To: <fba2474e-31a6-4fef-acf9-7069933584c8@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 4 Apr 2024 08:30:07 +0300
-Message-ID: <CAA8EJprfaALkQe-wUrBow6B1A66ro0AoVpfnQJLXgqFmL8isNQ@mail.gmail.com>
-Subject: Re: [PATCH V2 RESEND 6/6] arm64: dts: qcom: sm8650: Add video and
- camera clock controllers
-To: Jagadeesh Kona <quic_jkona@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Taniya Das <quic_tdas@quicinc.com>, 
-	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>, Ajit Pandey <quic_ajipan@quicinc.com>, 
-	Imran Shaik <quic_imrashai@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-am642-phyboard-electra-rdk:
+ Increase CAN max bitrate
+To: Nathan Morrisson <nmorrisson@phytec.com>, <nm@ti.com>, <vigneshr@ti.com>,
+	<kristo@kernel.org>, <robh@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <upstream@lists.phytec.de>
+References: <20240402160825.1516036-1-nmorrisson@phytec.com>
+ <20240402160825.1516036-3-nmorrisson@phytec.com>
+Content-Language: en-US
+From: Wadim Egorov <w.egorov@phytec.de>
+In-Reply-To: <20240402160825.1516036-3-nmorrisson@phytec.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
+ (172.25.0.12)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprGIsWRmVeSWpSXmKPExsWyRpKBR9fdji/NoO+UmMWaveeYLOYfOcdq
+	sfzzbHaLvhcPmS02Pb7GanF51xw2izc/zjJZfGjczGbxf88Odovud+oW/89+YHfg9ti0qpPN
+	4861PWwem5fUe/R3t7B6/Ln4jtXj+I3tTB6fN8kFsEdx2aSk5mSWpRbp2yVwZVx/n1iwgavi
+	3aX5zA2MWzi6GDk4JARMJE5eDOhi5OIQEljCJPHs4wZ2COcOo8S95olsXYycHLwCNhI9B2+z
+	g9gsAioS7yb/YYGIC0qcnPkEzBYVkJe4f2sGWI2wQJLE4V2rwGwRgS2MEu3fVECGMgu0MUo8
+	eXiAGSQhJJAv8av9CROIzSwgLnHryXwwm01AXeLOhm+sIDangK3Eo5u9UDUWEovfHGSHsOUl
+	tr+dAzVHXuLFpeVgR0gA2dPOvWaGsEMltn7ZzjSBUXgWkltnIVk3C8nYWUjGLmBkWcUolJuZ
+	nJ1alJmtV5BRWZKarJeSuokRFHciDFw7GPvmeBxiZOJgPMQowcGsJMLb7cCbJsSbklhZlVqU
+	H19UmpNafIhRmoNFSZx3dUdwqpBAemJJanZqakFqEUyWiYNTqoGxqDpZe+4hq0Ns+SlTCoqf
+	KZTY5F75N7V1Rq9yXVvHujM3rL8e/qNvfmnbfr86H5VYq2OMkfce/fyolfDm2TYOz4yNh2V8
+	7qw4w1PCdyrb8/amMvGN+UsNLm7l+h1t72yk1r8/gV2j8H3zr9udXQzGi3xtTl4MV/tR3eI1
+	5873h44OBlzMJsuUWIozEg21mIuKEwENjWfcqQIAAA==
 
-On Thu, 4 Apr 2024 at 08:13, Jagadeesh Kona <quic_jkona@quicinc.com> wrote:
->
->
->
-> On 4/3/2024 9:24 PM, Dmitry Baryshkov wrote:
-> > On Wed, 3 Apr 2024 at 10:16, Jagadeesh Kona <quic_jkona@quicinc.com> wrote:
-> >>
-> >>
-> >>
-> >> On 3/25/2024 11:38 AM, Jagadeesh Kona wrote:
-> >>>
-> >>>
-> >>> On 3/21/2024 6:43 PM, Dmitry Baryshkov wrote:
-> >>>> On Thu, 21 Mar 2024 at 11:27, Jagadeesh Kona <quic_jkona@quicinc.com>
-> >>>> wrote:
-> >>>>>
-> >>>>> Add device nodes for video and camera clock controllers on Qualcomm
-> >>>>> SM8650 platform.
-> >>>>>
-> >>>>> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
-> >>>>> ---
-> >>>>>    arch/arm64/boot/dts/qcom/sm8650.dtsi | 28 ++++++++++++++++++++++++++++
-> >>>>>    1 file changed, 28 insertions(+)
-> >>>>>
-> >>>>> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> >>>>> b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> >>>>> index 32c0a7b9aded..d862aa6be824 100644
-> >>>>> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> >>>>> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> >>>>> @@ -4,6 +4,8 @@
-> >>>>>     */
-> >>>>>
-> >>>>>    #include <dt-bindings/clock/qcom,rpmh.h>
-> >>>>> +#include <dt-bindings/clock/qcom,sm8450-videocc.h>
-> >>>>> +#include <dt-bindings/clock/qcom,sm8650-camcc.h>
-> >>>>>    #include <dt-bindings/clock/qcom,sm8650-dispcc.h>
-> >>>>>    #include <dt-bindings/clock/qcom,sm8650-gcc.h>
-> >>>>>    #include <dt-bindings/clock/qcom,sm8650-gpucc.h>
-> >>>>> @@ -3110,6 +3112,32 @@ opp-202000000 {
-> >>>>>                           };
-> >>>>>                   };
-> >>>>>
-> >>>>> +               videocc: clock-controller@aaf0000 {
-> >>>>> +                       compatible = "qcom,sm8650-videocc";
-> >>>>> +                       reg = <0 0x0aaf0000 0 0x10000>;
-> >>>>> +                       clocks = <&bi_tcxo_div2>,
-> >>>>> +                                <&gcc GCC_VIDEO_AHB_CLK>;
-> >>>>> +                       power-domains = <&rpmhpd RPMHPD_MMCX>;
-> >>>>> +                       required-opps = <&rpmhpd_opp_low_svs>;
-> >>>>
-> >>>> The required-opps should no longer be necessary.
-> >>>>
-> >>>
-> >>> Sure, will check and remove this if not required.
-> >>
-> >>
-> >> I checked further on this and without required-opps, if there is no vote
-> >> on the power-domain & its peer from any other consumers, when runtime
-> >> get is called on device, it enables the power domain just at the minimum
-> >> non-zero level. But in some cases, the minimum non-zero level of
-> >> power-domain could be just retention and is not sufficient for clock
-> >> controller to operate, hence required-opps property is needed to specify
-> >> the minimum level required on power-domain for this clock controller.
-> >
-> > In which cases? If it ends up with the retention vote, it is a bug
-> > which must be fixed.
-> >
->
-> The minimum non-zero level(configured from bootloaders) of MMCX is
-> retention on few chipsets but it can vary across the chipsets. Hence to
-> be on safer side from our end, it is good to have required-opps in DT to
-> specify the minimum level required for this clock controller.
+Am 02.04.24 um 18:08 schrieb Nathan Morrisson:
+> The phyBOARD-Electra has two TCAN1044VDD CAN transceivers which
+> support CAN FD at 8 Mbps.
+> 
+> Increase the maximum bitrate to 8 Mbps.
+> 
+> Signed-off-by: Nathan Morrisson <nmorrisson@phytec.com>
 
-We are discussing sm8650, not some abstract chipset. Does it list
-retention or low_svs as a minimal level for MMCX?
+For both patches
 
->
-> Thanks,
-> Jagadeesh
->
-> >>
-> >> Thanks,
-> >> Jagadeesh
-> >>
-> >>>
-> >>>>> +                       #clock-cells = <1>;
-> >>>>> +                       #reset-cells = <1>;
-> >>>>> +                       #power-domain-cells = <1>;
-> >>>>> +               };
-> >>>>> +
-> >>>>> +               camcc: clock-controller@ade0000 {
-> >>>>> +                       compatible = "qcom,sm8650-camcc";
-> >>>>> +                       reg = <0 0x0ade0000 0 0x20000>;
-> >>>>> +                       clocks = <&gcc GCC_CAMERA_AHB_CLK>,
-> >>>>> +                                <&bi_tcxo_div2>,
-> >>>>> +                                <&bi_tcxo_ao_div2>,
-> >>>>> +                                <&sleep_clk>;
-> >>>>> +                       power-domains = <&rpmhpd RPMHPD_MMCX>;
-> >>>>> +                       required-opps = <&rpmhpd_opp_low_svs>;
-> >>>>> +                       #clock-cells = <1>;
-> >>>>> +                       #reset-cells = <1>;
-> >>>>> +                       #power-domain-cells = <1>;
-> >>>>> +               };
-> >>>>> +
-> >>>>>                   mdss: display-subsystem@ae00000 {
-> >>>>>                           compatible = "qcom,sm8650-mdss";
-> >>>>>                           reg = <0 0x0ae00000 0 0x1000>;
-> >>>>> --
-> >>>>> 2.43.0
-> >>>>>
-> >>>>>
-> >>>>
-> >>>>
-> >
-> >
-> >
+Reviewed-by: Wadim Egorov <w.egorov@phytec.de>
 
 
-
--- 
-With best wishes
-Dmitry
+> ---
+>   arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts b/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts
+> index 8237b8c815b8..522699ec65e8 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts
+> @@ -42,7 +42,7 @@ can_tc1: can-phy0 {
+>   		pinctrl-names = "default";
+>   		pinctrl-0 = <&can_tc1_pins_default>;
+>   		#phy-cells = <0>;
+> -		max-bitrate = <5000000>;
+> +		max-bitrate = <8000000>;
+>   		standby-gpios = <&main_gpio0 32 GPIO_ACTIVE_HIGH>;
+>   	};
+>   
+> @@ -51,7 +51,7 @@ can_tc2: can-phy1 {
+>   		pinctrl-names = "default";
+>   		pinctrl-0 = <&can_tc2_pins_default>;
+>   		#phy-cells = <0>;
+> -		max-bitrate = <5000000>;
+> +		max-bitrate = <8000000>;
+>   		standby-gpios = <&main_gpio0 35 GPIO_ACTIVE_HIGH>;
+>   	};
+>   
 
