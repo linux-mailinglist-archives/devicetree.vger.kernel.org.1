@@ -1,264 +1,93 @@
-Return-Path: <devicetree+bounces-56347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 059FC8989A6
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 16:13:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 479BA8989AF
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 16:15:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22C971C29DB7
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 14:13:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BACAFB24CA9
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 14:15:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93FE2129A9E;
-	Thu,  4 Apr 2024 14:13:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD4E31292F2;
+	Thu,  4 Apr 2024 14:15:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="mUA21glA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="da6dwdfX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B318129A78
-	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 14:12:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8617C1CD03;
+	Thu,  4 Apr 2024 14:15:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712239981; cv=none; b=NMDpXA1SVhWU986phmIpZkXR9BGTnjs6FHCWamTBMJNPW73eJGozvJ0wJKlhqbIUhevIQi7utJA1bb48MTNTf5ULDwVx52TlS1XhwBJrTbVZ/lsNoEJuPj/HSXA/iSu1lwzXU8gQ7bjT/HoesndC+Dvlv7kpU7w+atSGq287kvU=
+	t=1712240133; cv=none; b=no/Oap6Qs5gf2GEQOnO7Yig9iruyls3jy/ZsczyQKPVy9lF/1WTm3gepPQrSRzupaOp74XvCZSb0m6rfuPPJPi2e8F8Y3982Ny2M4tDTHrx5emKSotPsAx8TMqGgvj/kVY34/x7OsqC00a930ZwXnR84FoxPcUtHD3G7bAKIiNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712239981; c=relaxed/simple;
-	bh=24DVCB0AtO6sSu8g6iu7VSYImGTEkT8jVFxncvRBhFk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Nad4Iebw5fjAsCwM5KgUTfLOuEdVzDkzM/JhBYvtC+eH3MXO+tfaTBCvLj5Y/obVG3drBG9uZZaQcPmuEZwd5/6XFtR4g9xdBELm0QCrXD5cUvkqa86edtRKZzKx9NSQbt5g2srmZHNkz3hsjwy+4rQ2nmnw/MpH/YuulHQ4XzA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=mUA21glA; arc=none smtp.client-ip=209.85.219.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raspberrypi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-dcd9e34430cso1225095276.1
-        for <devicetree@vger.kernel.org>; Thu, 04 Apr 2024 07:12:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1712239978; x=1712844778; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ptApJg0lZA58LEoF0DTe5yUBAeVKWs9Xi1CFZCKcXxk=;
-        b=mUA21glAzn3GYXuuB27gAwTa61C8yJVtmMH0SkjKgjmOefSpecUzJXvLpjtOxAK7/a
-         lgg27jOxkUSqqOf6rqk6Z4X95V5saD8PE3oTlZB7qURtAqbZjBit8V9SnXLbDn0E/w5O
-         azwFkwg/4ec8fgoV/jXskWsaZ5jTHMVbvjHbTKdy3HSnAnzmUQwOYRdp7Gdu0Lt32w8q
-         4zAM5f4A76HuxkINeFcA15Emm83Xh/+jGdWkeEtFeIMj5VZh3ernuXl27V0Q99B1PSsE
-         kHnZ3FfqhkxzJqh2JbHVyoPADdh7QV/lsrqJ1cytAKXsZZfTC58h1PVeTFQQVa3yOMz7
-         U6+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712239978; x=1712844778;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ptApJg0lZA58LEoF0DTe5yUBAeVKWs9Xi1CFZCKcXxk=;
-        b=UV5d40jkQ8U0GP4rGcXl4t22+0PdMSLxnljmM2lmy6zUjBmeZQHns0eQK8qMNfDAyQ
-         u+T6WWmZwSBc5UHmIM7xl82mR7gFIoC0gp219aDdueriSrxOu9h8hdWLuyQEurrF26TO
-         rrx3RNYnRoULbxL0tZutBzgN8MVXpUS+dzhkFrKF2Tr4o3ABjKxGXjWkoIa3nu8FDoLz
-         Cf2L2v6FfEYh//IipdnDUEkW4dCehnjHs+0M2xP4CLSYqiTF7DZjWl6IaBwvOQVyo5w+
-         unjDr1hLtzXjSTQ3danPGx7lixumKd8x3kJmLKroFdngXguDg84daAsTP10argU6aMzO
-         Ee3w==
-X-Forwarded-Encrypted: i=1; AJvYcCWqjyWhcPW+KrpMYStK/NmL7f4QUJw+yg9OIO1c9Cb41xvhEyBYNzK6NXhr0hVJBZwGLr/Uwekf+RIH2Ji7mdF8WKsG7SZ2SLvq2w==
-X-Gm-Message-State: AOJu0Yz8GuIXow44MTgBkbwOhpSQy3Lp8kfha0DZymAn3C/gsdTeOFHp
-	HHFcfua3VA0Uh2A5IXiTTZqKeSpOOsO1NjgscOnhuMTaqTkCEsDJvHvd45sdj9YBd5CCLgrAcIj
-	AuD7i4p1roeUy8g1OOBwwZFyX0WFuh6BgHPFA1g==
-X-Google-Smtp-Source: AGHT+IFY4/FdCnSuzKJ1eMiQ01HA592h+X+sKaRzMe2lVBT5Rjt65RxAtvBBhTXwCHu7tLtZ/tYJJVE8QkX+SGVDQGs=
-X-Received: by 2002:a25:848e:0:b0:dcf:a52d:6134 with SMTP id
- v14-20020a25848e000000b00dcfa52d6134mr2583779ybk.26.1712239978579; Thu, 04
- Apr 2024 07:12:58 -0700 (PDT)
+	s=arc-20240116; t=1712240133; c=relaxed/simple;
+	bh=5mRLZJpdw6WkB0SSyJ4/aJtAg0Lr9QOhnDLZhWIwlXw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=UCC/dsVbfMuYNng94agqeLSu7eDHl39J3wwT6tjwcK9vXllmeL4VV5FpY1AY37Wbj7CYg8nMn5DW3d9aszs7m8axQ8fb+kerI0S74gZQwIfiqb88R3FL/C2f1wpI0kizUYpVc8dKwJsu+cZMLxHzGTqAUkzbSOucYcyDhNhJ1UA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=da6dwdfX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBC8FC433C7;
+	Thu,  4 Apr 2024 14:15:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712240133;
+	bh=5mRLZJpdw6WkB0SSyJ4/aJtAg0Lr9QOhnDLZhWIwlXw=;
+	h=From:Subject:Date:To:Cc:From;
+	b=da6dwdfXp3t2QYrMLxkFcWIl33faaUCyNJbw3kCwhWnRoswr+xjeEMWJ+1SdBThLQ
+	 6yoD9iBh6AI6zMFk0ECjZwjIVB6XB2bUaDYr4jEHGwRfZA5nkVfwr/tVPqGPj32Nmp
+	 SE1WF9nRvd+Mk7BZ35WB7ufFakN+T1Fjt+wC9ke3PxebP5mMsPe8pKKebOuHKN7ajy
+	 raLjGlqsCweFmM5lHFeamClTwCmJHXq0I4XLHomObMbwsk2nzpHHLY/Ho59erKMSRs
+	 Oxv5fGAm4jYgvZ+b200OZFN/ylpqE3nCxX3vtU+9xvOnQCA+05GfZHxdNh17dii7Ym
+	 PA8LhGrLdYpjw==
+From: Rob Herring <robh@kernel.org>
+Subject: [PATCH 0/3] of: Use __free() based cleanups
+Date: Thu, 04 Apr 2024 09:15:09 -0500
+Message-Id: <20240404-dt-cleanup-free-v1-0-c60e6cba8da9@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240403150355.189229-1-git@luigi311.com> <20240403150355.189229-24-git@luigi311.com>
- <Zg2DBasC501hMQSS@kekkonen.localdomain> <wjlcde7yoooygj4hhdmiwrdloh6l4p6i2qbmjek5uwsifyzwgu@xjhutvmsdfou>
- <dd0e64c8-5eef-421a-9d9f-8a5865743369@luigi311.com>
-In-Reply-To: <dd0e64c8-5eef-421a-9d9f-8a5865743369@luigi311.com>
-From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Thu, 4 Apr 2024 15:12:42 +0100
-Message-ID: <CAPY8ntAcB3wyLj1wNE5YBx0_UGRiXEv6057XfEBfjk8NOLC9yQ@mail.gmail.com>
-Subject: Re: [PATCH v3 23/25] drivers: media: i2c: imx258: Add support for
- powerdown gpio
-To: Luigi311 <git@luigi311.com>
-Cc: =?UTF-8?Q?Ond=C5=99ej_Jirman?= <megous@megous.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org, 
-	jacopo.mondi@ideasonboard.com, mchehab@kernel.org, robh@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org, 
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	pavel@ucw.cz, phone-devel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAO21DmYC/x2MQQqAIBAAvxJ7bsHSJPpKdLBcayEstCIQ/57En
+ OYwkyBSYIowVAkCPRz58EWauoJlM34lZFscWtEqUUB74bKT8feJLhChtp2Ualaz1D2U6gzk+P2
+ P45TzBx0o0jxhAAAA
+To: Saravana Kannan <saravanak@google.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+X-Mailer: b4 0.13-dev
 
-Hi Luigi
+This small series converts the DT code to use __free() based cleanups 
+for kfree() and of_node_put(). Using __free() simplifies function exit 
+handling. Initial support for struct device_node was added in commit 
+9448e55d032d ("of: Add cleanup.h based auto release via 
+__free(device_node) markings").
 
-On Wed, 3 Apr 2024 at 20:34, Luigi311 <git@luigi311.com> wrote:
->
-> On 4/3/24 10:57, Ond=C5=99ej Jirman wrote:
-> > Hi Sakari and Luis,
-> >
-> > On Wed, Apr 03, 2024 at 04:25:41PM GMT, Sakari Ailus wrote:
-> >> Hi Luis, Ondrej,
-> >>
-> >> On Wed, Apr 03, 2024 at 09:03:52AM -0600, git@luigi311.com wrote:
-> >>> From: Luis Garcia <git@luigi311.com>
-> >>>
-> >>> On some boards powerdown signal needs to be deasserted for this
-> >>> sensor to be enabled.
-> >>>
-> >>> Signed-off-by: Ondrej Jirman <megi@xff.cz>
-> >>> Signed-off-by: Luis Garcia <git@luigi311.com>
-> >>> ---
-> >>>  drivers/media/i2c/imx258.c | 13 +++++++++++++
-> >>>  1 file changed, 13 insertions(+)
-> >>>
-> >>> diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
-> >>> index 30352c33f63c..163f04f6f954 100644
-> >>> --- a/drivers/media/i2c/imx258.c
-> >>> +++ b/drivers/media/i2c/imx258.c
-> >>> @@ -679,6 +679,8 @@ struct imx258 {
-> >>>     unsigned int lane_mode_idx;
-> >>>     unsigned int csi2_flags;
-> >>>
-> >>> +   struct gpio_desc *powerdown_gpio;
-> >>> +
-> >>>     /*
-> >>>      * Mutex for serialized access:
-> >>>      * Protect sensor module set pad format and start/stop streaming =
-safely.
-> >>> @@ -1213,6 +1215,8 @@ static int imx258_power_on(struct device *dev)
-> >>>     struct imx258 *imx258 =3D to_imx258(sd);
-> >>>     int ret;
-> >>>
-> >>> +   gpiod_set_value_cansleep(imx258->powerdown_gpio, 0);
-> >>
-> >> What does the spec say? Should this really happen before switching on =
-the
-> >> supplies below?
-> >
-> > There's no powerdown input in the IMX258 manual. The manual only mentio=
-ns
-> > that XCLR (reset) should be held low during power on.
-> >
-> > https://megous.com/dl/tmp/15b0992a720ab82d.png
-> >
-> > https://megous.com/dl/tmp/f2cc991046d97641.png
-> >
-> >    This sensor doesn=E2=80=99t have a built-in =E2=80=9CPower ON Reset=
-=E2=80=9D function. The XCLR pin
-> >    is set to =E2=80=9CLOW=E2=80=9D and the power supplies are brought u=
-p. Then the XCLR pin
-> >    should be set to =E2=80=9CHigh=E2=80=9D after INCK supplied.
-> >
-> > So this input is some feature on camera module itself outside of the
-> > IMX258 chip, which I think is used to gate power to the module. Eg. on =
-Pinephone
-> > Pro, there are two modules with shared power rails, so enabling supply =
-to
-> > one module enables it to the other one, too. So this input becomes the =
-only way
-> > to really enable/disable power to the chip when both are used at once a=
-t some
-> > point, because regulator_bulk_enable/disable becomes ineffective at tha=
-t point.
-> >
-> > Luis, maybe you saw some other datasheet that mentions this input? IMO,
-> > it just gates the power rails via some mosfets on the module itself, si=
-nce
-> > there's not power down input to the chip itself.
-> >
-> > kind regards,
-> >       o.
-> >
->
-> Ondrej, I did not see anything else in the datasheet since I'm pretty sur=
-e
-> I'm looking at the same datasheet as it was supplied to me by Pine64. I'm
-> not sure what datasheet Dave has access to since he got his for a
-> completely different module than what we are testing with though.
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+Rob Herring (3):
+      of: Add a helper to free property struct
+      of: Use scope based kfree() cleanups
+      of: Use scope based of_node_put() cleanups
 
-I only have a leaked datasheet (isn't the internet wonderful!)  [1]
-XCLR is documented in that, as Ondrej has said.
+ drivers/of/address.c    | 60 ++++++++++++++++---------------------------------
+ drivers/of/base.c       | 34 +++++++---------------------
+ drivers/of/dynamic.c    | 37 +++++++++++++-----------------
+ drivers/of/of_private.h |  1 +
+ drivers/of/overlay.c    | 11 +++------
+ drivers/of/property.c   | 22 ++++++------------
+ drivers/of/resolver.c   | 35 +++++++++++------------------
+ drivers/of/unittest.c   | 12 +++-------
+ 8 files changed, 70 insertions(+), 142 deletions(-)
+---
+base-commit: 4cece764965020c22cff7665b18a012006359095
+change-id: 20240404-dt-cleanup-free-6d5334b4b368
 
-If this powerdown GPIO is meant to be driving XCLR, then it is in the
-wrong order against the supplies.
+Best regards,
+-- 
+Rob Herring <robh@kernel.org>
 
-This does make me confused over the difference between this powerdown
-GPIO and the reset GPIO that you implement in 24/25.
-
-Following the PinePhone Pro DT [3] and schematics [4]
-reset-gpios =3D <&gpio1 RK_PA0 GPIO_ACTIVE_LOW>;
-powerdown-gpios =3D <&gpio2 RK_PD4 GPIO_ACTIVE_HIGH>;
-
-Schematic page 11 upper right block
-GPIO1_A0/ISP0_SHUTTER_EN/ISP1_SHUTTER_EN/TCPD_VBUS_SINK_EN_d becomes
-Camera_RST_L. Page 18 feeds that through to the RESET on the camera
-connector.
-Page 11 left middle block GPIO2_D4/SDIO0_BKPWR_d becomes DVP_PDN1_H.
-Page 18 feeds that through to the PWDN on the camera connector.
-
-Seeing as we apparently have a lens driver kicking around as well,
-potentially one is reset to the VCM, and one to the sensor? DW9714
-does have an XSD shutdown pin.
-Only the module integrator is going to really know the answer,
-although potentially a little poking with gpioset and i2cdetect may
-tell you more.
-
-  Dave
-
-[1] https://web.archive.org/web/20201027131326/www.hi.app/IMX258-datasheet.=
-pdf
-[2] https://files.pine64.org/doc/PinePhonePro/PinephonePro-Schematic-V1.0-2=
-0211127.pdf
-[3] https://xff.cz/git/linux/tree/arch/arm64/boot/dts/rockchip/rk3399-pinep=
-hone-pro.dts?h=3Dorange-pi-5.18#n868
-[4] https://files.pine64.org/doc/PinePhonePro/PinephonePro-Schematic-V1.0-2=
-0211127.pdf
-
-
-> >>> +
-> >>>     ret =3D regulator_bulk_enable(IMX258_NUM_SUPPLIES,
-> >>>                                 imx258->supplies);
-> >>>     if (ret) {
-> >>> @@ -1224,6 +1228,7 @@ static int imx258_power_on(struct device *dev)
-> >>>     ret =3D clk_prepare_enable(imx258->clk);
-> >>>     if (ret) {
-> >>>             dev_err(dev, "failed to enable clock\n");
-> >>> +           gpiod_set_value_cansleep(imx258->powerdown_gpio, 1);
-> >>>             regulator_bulk_disable(IMX258_NUM_SUPPLIES, imx258->suppl=
-ies);
-> >>>     }
-> >>>
-> >>> @@ -1238,6 +1243,8 @@ static int imx258_power_off(struct device *dev)
-> >>>     clk_disable_unprepare(imx258->clk);
-> >>>     regulator_bulk_disable(IMX258_NUM_SUPPLIES, imx258->supplies);
-> >>>
-> >>> +   gpiod_set_value_cansleep(imx258->powerdown_gpio, 1);
-> >>> +
-> >>>     return 0;
-> >>>  }
-> >>>
-> >>> @@ -1541,6 +1548,12 @@ static int imx258_probe(struct i2c_client *cli=
-ent)
-> >>>     if (!imx258->variant_cfg)
-> >>>             imx258->variant_cfg =3D &imx258_cfg;
-> >>>
-> >>> +   /* request optional power down pin */
-> >>> +   imx258->powerdown_gpio =3D devm_gpiod_get_optional(&client->dev, =
-"powerdown",
-> >>> +                                               GPIOD_OUT_HIGH);
-> >>> +   if (IS_ERR(imx258->powerdown_gpio))
-> >>> +           return PTR_ERR(imx258->powerdown_gpio);
-> >>> +
-> >>>     /* Initialize subdev */
-> >>>     v4l2_i2c_subdev_init(&imx258->sd, client, &imx258_subdev_ops);
-> >>>
-> >>
-> >> --
-> >> Regards,
-> >>
-> >> Sakari Ailus
->
 
