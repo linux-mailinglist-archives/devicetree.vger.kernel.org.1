@@ -1,229 +1,160 @@
-Return-Path: <devicetree+bounces-56365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20D1E898C17
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 18:29:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BF2F898C6E
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 18:44:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 423991C21F6F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 16:29:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6262BB2CED7
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 16:42:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AE4912BEA7;
-	Thu,  4 Apr 2024 16:29:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB1E31C6BC;
+	Thu,  4 Apr 2024 16:41:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="zMxwsJVw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iggpkPB0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 343201E522;
-	Thu,  4 Apr 2024 16:29:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26C681C6AF;
+	Thu,  4 Apr 2024 16:41:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712248146; cv=none; b=c+dHEo1Utb1G2ETwrfaIkstPfOg8Pj0D/UrNHME6otIhb9tRW+9Nnwzmwg/mtKSHBcXqP/iY+JNbl15e4O/+EyDD5Q+Tun9HjfKH1oPQFoQw6/JpxIu0N/8UKHkuXC5cHQUO8S26gwOPr1MHkLfjtNP1m4w1zXUdDf2FoslQABg=
+	t=1712248908; cv=none; b=FyDK5T+96Jc6RcupcZ/RAEdg+YPevI6IYjzCbC80fPlszF8XrJug/774lEjLemUHaPNPx7SGJS1DBL6VKYNeYgQaEx4/m53X5VYNkZZrjdqZxuEppVaDaxZTWVsCYV1e/sA6Nn1OucalMialRL3VWHsY9z9lmzq8zHG6WgLawws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712248146; c=relaxed/simple;
-	bh=ZDSXC0SJ+CerDgWVbaTYvwjZpvTsijT6HMMUXVGDLpw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=I+ANRsAT6XgbjTQRLUGD8E8KhToSZ/EeT2mn9+iqYHJajwa5AkcmGppG2atbLLFNSevRbzOZy0QloBgbusbclSTaLv4WGMZYIPyt0ckN4RkZy5nfguGuiBUAda09ececF/gyeaQ8bf5mbWA7jeE8FvKi102Q1WmR70QrdcLebdg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=zMxwsJVw; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 434GSq2U114723;
-	Thu, 4 Apr 2024 11:28:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1712248132;
-	bh=8QSW8mPiC0nENIietXOD7FuT/weRbNpR3GRy7poQaQA=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=zMxwsJVwRBjhGETfhL6jy4OlQufSTYwXXhXo4pqrqCIbI8QYkbAAtNZNlsmO8ooCw
-	 8lrFlnViQSXCb2VzvasQx3i5gvqlX8L8Lbc3I3t+eErlH0hXU4WsT15Nen/Zw/sDv1
-	 +gyfZH7GAg/iNChoXK5zAPZ5cZwnCY+oRVWyw6qw=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 434GSqse053068
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 4 Apr 2024 11:28:52 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 4
- Apr 2024 11:28:51 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 4 Apr 2024 11:28:51 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 434GSp17117692;
-	Thu, 4 Apr 2024 11:28:51 -0500
-Message-ID: <6d11aed3-242d-45c4-9647-894eea4e427b@ti.com>
-Date: Thu, 4 Apr 2024 11:28:51 -0500
+	s=arc-20240116; t=1712248908; c=relaxed/simple;
+	bh=xkAVjtlxvl6Lk9vMGY3Al4wPhonWzXqqcR3D/GDcytM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=dTHjq8LBccmFfDelglyhdXMgyKhkOvyrx1Ed/KX2Ks9+RGkUC2VnngCkO3VlxeXsNPjdaIm4dCu8VUXDjm+B6BM+a8u8EBEcjs5vwuYfWRwVkISgNaBpyLmXms898xjUmMyD6heqZbGVvjpE/XwtnFMkrDOwPpF2UNcrLEteRZI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iggpkPB0; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-1e0e89faf47so3035315ad.1;
+        Thu, 04 Apr 2024 09:41:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712248906; x=1712853706; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BRydtaGCEtU6C2jPZzNOrIpYyTJCBJSa2+2D+RooaRU=;
+        b=iggpkPB0NgSGsgoNRjFam3VMcVx0g6PBD+yDVtfFWVwgCc9aumoR1Ch5CcOpG86Dma
+         0Ud8FasKKnyan+xawJRvRt0SBkUvnZDjJXV6DSlQpo5TlHXc4txfLzsdCRPO5diUaZWQ
+         ro/pXLqX5JvKuNXQ7aRXxfCQO9EBUnebNVfYuHh7A8dLWzrK4vqInmdUcuPzDPSH/Bhr
+         e+LT5sIbyX7yz1FQSu2VE0nArOrIVjJ+MLHSYn7SN/7DrOfxqjNpBdlAYV2kgapcXDeL
+         zKos2dxfb8aPzUuRcZ4z1J3C5wB6ToYApWl9E7oxC4/jWuqiykNI2wo690VQNxWDAGdF
+         MDLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712248906; x=1712853706;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BRydtaGCEtU6C2jPZzNOrIpYyTJCBJSa2+2D+RooaRU=;
+        b=KjAJRaQie0k+Qw/oZzj2TzvwySPQmeQfYN1aliPIplYay9/shv+0V3u7kjakqmbDEd
+         e8qhJAlGrOijGQ3FxPt4m/00Ya8x1lNf8QRuSaBoPEf3T++atUzQrfBkXX3k8bAsXw/7
+         KCOE4Ae2CRjDPjQN7MkO96Wjk4mV1rpMnymxPk4sS4pxC/P7LO7i0RPaYxpplSCTVLjn
+         /5jgwneiQIhODWCdbdDX5qBvGO1N5GjrbNEyu/n+Bg90Nvepuec9090zMh5aMn5+2a+D
+         deJM9x6qqUg0AtHJLQhsqv7yt2ivSnMJ8e2/r13OGJ+VJVSFNnS0sMe1S8iTziKPqDcL
+         0MaQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXMblP1xetwJLs+69qLlI7XVOWB0QbOu/LMm1qubHZiSYSLEPZiUKn/kWsIpWuUK08FC9d2QueUbwpobTCmeV8/PHQdzhiZ8xEPMNNeKfNmR8Cx6o+Vsnm1+Gwso0GoNvsl9WCj+w==
+X-Gm-Message-State: AOJu0YzxRrn+Da7T27G0dY/VDolvUQGzqiIsgX26Ed6M9wwKWZGxo164
+	X/bouDGYCsx3lMvVgFIcatbMgnma/6qv+mpQGPdJNfzFQMNG8o0tifJluHZm
+X-Google-Smtp-Source: AGHT+IE0D+ZL45vK9ZgNxgLa4HEyfm7+JD7z3l7MVdPH2KTrX7mAS2dq1j01RCxtWoCjmoQo4SgUaw==
+X-Received: by 2002:a17:903:1c5:b0:1dd:5a49:7a98 with SMTP id e5-20020a17090301c500b001dd5a497a98mr3031863plh.3.1712248906266;
+        Thu, 04 Apr 2024 09:41:46 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:9c:998:79c7:d666])
+        by smtp.gmail.com with ESMTPSA id h21-20020a170902f7d500b001e2814e08b9sm5495480plw.32.2024.04.04.09.41.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Apr 2024 09:41:45 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: gregkh@linuxfoundation.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH] dt-bindings: usb: Document the Microchip USB2514 hub
+Date: Thu,  4 Apr 2024 13:41:40 -0300
+Message-Id: <20240404164140.662361-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am62p: use eFuse MAC Address for
- CPSW3G Port 1
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Siddharth Vadapalli
-	<s-vadapalli@ti.com>
-CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>
-References: <20240404081845.622707-1-s-vadapalli@ti.com>
- <18eb0e55-38ad-44f9-90b7-1917d8c0d5bb@linaro.org>
- <75b53dda-23aa-4915-944a-4d9a619bd165@ti.com>
- <903ad855-ab26-4ef3-80bd-249917056188@linaro.org>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <903ad855-ab26-4ef3-80bd-249917056188@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 
-On 4/4/24 5:00 AM, Krzysztof Kozlowski wrote:
-> On 04/04/2024 11:12, Siddharth Vadapalli wrote:
->> On Thu, Apr 04, 2024 at 10:43:04AM +0200, Krzysztof Kozlowski wrote:
->>> On 04/04/2024 10:18, Siddharth Vadapalli wrote:
->>>> Add the "cpsw-mac-efuse" node within "wkup_conf" node corresponding to the
->>>> CTRLMMR_MAC_IDx registers within the CTRL_MMR space. Assign the compatible
->>>> "ti,am62p-cpsw-mac-efuse" to enable "syscon_regmap" operations on these
->>>> registers. The MAC Address programmed in the eFuse is accessible through
->>>> the CTRLMMR_MAC_IDx registers. The "ti,syscon-efuse" device-tree property
->>>> points to the CTRLMMR_MAC_IDx registers, allowing the CPSW driver to fetch
->>>> the MAC Address and assign it to the network interface associated with
->>>> CPSW3G MAC Port 1.
->>>>
->>>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
->>>> ---
->>>>
->>>> This patch is based on linux-next tagged next-20240404.
->>>> Patch depends on:
->>>> https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240402105708.4114146-1-s-vadapalli@ti.com/
->>>> for the newly added "ti,am62p-cpsw-mac-efuse" compatible.
->>>>
->>>> v1:
->>>> https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240402094200.4036076-1-s-vadapalli@ti.com/
->>>> Changes since v1:
->>>> - Since "wkup_conf" is modelled as a "simple-bus" rather than being
->>>
->>> And maybe the hardware representation is not correct? What bus is it?
->>
->> I will let Andrew comment on it. Andrew had posted a patch at:
->> https://lore.kernel.org/r/20240124184722.150615-10-afd@ti.com/
->> to convert an equivalent "main_conf" node for AM62 SoC to "simple-bus"
->> from the existing "syscon".
->>
->>>
->>>>    modelled as a System Controller node with the "syscon" compatible,
->>>>    directly passing the reference to the "wkup_conf" node using the
->>>>    "ti,syscon-efuse" device-tree property will not work.
->>>>    Therefore, I posted the patch at:
->>>>    https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240402105708.4114146-1-s-vadapalli@ti.com/
->>>>    in order to add a new compatible to be used for modelling the
->>>>    CTRLMMR_MAC_IDx registers as System Controller nodes, thereby
->>>>    allowing the existing "ti,syscon-efuse" property to be used.
->>>>    Now, "ti,syscon-efuse" points to the "cpsw_mac_efuse" node within
->>>>    "wkup_conf" node, with "cpsw_mac_efuse" being a "syscon" node.
->>>>
->>>> Logs verifying that the CPSW driver assigns the MAC Address from the
->>>> eFuse based on the CTRLMMR_MAC_IDx registers at 0x43000200 and 0x43000204
->>>> to the interface eth0 corresponding to CPSW3G MAC Port 1:
->>>> https://gist.github.com/Siddharth-Vadapalli-at-TI/9982c6f13bf9b8cfaf97e8517e7dea13
->>>>
->>>> Regards,
->>>> Siddharth.
->>>>
->>>>   arch/arm64/boot/dts/ti/k3-am62p-main.dtsi   | 1 +
->>>>   arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi | 5 +++++
->>>>   2 files changed, 6 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
->>>> index 7337a9e13535..848ca454a411 100644
->>>> --- a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
->>>> +++ b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
->>>> @@ -696,6 +696,7 @@ cpsw_port1: port@1 {
->>>>   				label = "port1";
->>>>   				phys = <&phy_gmii_sel 1>;
->>>>   				mac-address = [00 00 00 00 00 00];
->>>> +				ti,syscon-efuse = <&cpsw_mac_efuse 0x0>;
->>>
->>> Why this is not nvmem cell, like or efuses?
->>
->> Since it belongs to the MMIO register set. You had recommended *not*
->> using nvmem for such MMIO registers at:
->> https://lore.kernel.org/r/48902771-5d3b-448a-8a74-ac18fb4f1a86@linaro.org/
->> "nvmem is for non-volatile memory, like OCOTP and eFUSE. This is not for
->> accessing regular MMIO registers of system-controller..."
->>
->> Despite the "ti,syscon-efuse" property containing the term "efuse" in its
->> name, it is reading the CTRLMMR_MAC_IDx MMIO registers. So I assumed that
->> the existing approach which has been used on all K3 SoCs apart from this
->> one, will be suitable for this SoC as well.
-> 
-> OK, I totally forgot we discussed this.
-> 
+From: Fabio Estevam <festevam@denx.de>
 
-Discussed but never finalized, here is the last message[0] but with
-no response.
+Document the Microchip USB2514, USB2412, and USB2417 USB hubs.
 
-You even asked above, "Why this is not nvmem cell", you should trust
-your instincts, this *should* be a NVMEM cell. That is how everyone else
-handles eFused MACs, no clue why you want us to use syscon?? We would
-have no way forward in removing all our DT check warnings with syscon.
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ .../bindings/usb/microchip,usb2514.yaml       | 53 +++++++++++++++++++
+ 1 file changed, 53 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/microchip,usb2514.yaml
 
-Syscon is a hacky dead-end filled with custom compatible strings like
-"ti,am62p-cpsw-mac-efuse" and custom properties like "ti,syscon-efuse".
+diff --git a/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml b/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml
+new file mode 100644
+index 000000000000..8df7a5adfbe8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml
+@@ -0,0 +1,53 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/usb/microchip,usb2514.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Microchip USB2514 Hub Controller
++
++maintainers:
++  - Fabio Estevam <festevam@gmail.com>
++
++properties:
++  compatible:
++    enum:
++      - usb424,2412
++      - usb424,2514
++      - usb424,2417
++
++  reg: true
++
++  reset-gpios:
++    description: GPIO connected to the RESET_N pin.
++
++  vdd-supply:
++    description: 3.3V power supply.
++
++  clocks:
++    description: External 24MHz clock connected to the CLKIN pin.
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: true
++
++examples:
++  - |
++    #include <dt-bindings/clock/imx6qdl-clock.h>
++    #include <dt-bindings/gpio/gpio.h>
++
++    usb {
++        dr_mode = "host";
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        hub@1 {
++          compatible = "usb424,2514";
++          reg = <1>;
++          clocks = <&clks IMX6QDL_CLK_CKO>;
++          reset-gpios = <&gpio7 12 GPIO_ACTIVE_LOW>;
++          vdd-supply = <&reg_3v3_hub>;
++        };
++    };
+-- 
+2.34.1
 
-NVMEM is a standard, forcing us to use TI custom syscon properties will
-prevent our DT from working on anything other than Linux (unless we go
-manually add support for every TI custom property to every DT using SW,
-defeats the whole purpose DT).
-
-Andrew
-
-[0] https://lore.kernel.org/all/e7114cb4-e24f-4e78-a89f-4e2e2e704b8a@ti.com/
-
->>
->>>
->>>>   			};
->>>>   
->>>>   			cpsw_port2: port@2 {
->>>> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
->>>> index a84756c336d0..df9d40f64e3b 100644
->>>> --- a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
->>>> +++ b/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
->>>> @@ -18,6 +18,11 @@ chipid: chipid@14 {
->>>>   			reg = <0x14 0x4>;
->>>>   			bootph-all;
->>>>   		};
->>>> +
->>>> +		cpsw_mac_efuse: cpsw-mac-efuse@200 {
->>>
->>> Node names should be generic. See also an explanation and list of
->>> examples (not exhaustive) in DT specification:
->>> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
->>
->> I was following the convention that other mfd-syscon compatible nodes
->> seemed to be using:
->> https://github.com/torvalds/linux/blob/41bccc98fb7931d63d03f326a746ac4d429c1dd3/arch/arm64/boot/dts/ti/k3-am65-main.dtsi#L502
->> The node is:
->> dss_oldi_io_ctrl: dss-oldi-io-ctrl@41e0
->> corresponding to the compatible:
->> "ti,am654-dss-oldi-io-ctrl"
->> which was added by commit:
->> https://github.com/torvalds/linux/commit/cb523495ee2a5938fbdd30b8a35094d386c55c12
-> 
-> So if that one was wrong, then what? I don't know really what type of
-> device is it, but just because one contributor called it that way, does
-> not mean you should keep going. Maybe investigate why that contributor
-> did not decide to follow Devicetree spec recommendation?
-> 
-> Best regards,
-> Krzysztof
-> 
 
