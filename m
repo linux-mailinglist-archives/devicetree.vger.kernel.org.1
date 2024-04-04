@@ -1,151 +1,175 @@
-Return-Path: <devicetree+bounces-56277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9F59898492
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 12:03:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECB22898483
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 11:59:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 52B171F255F4
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 10:03:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4F23BB27CB5
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 09:59:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C071757F8;
-	Thu,  4 Apr 2024 10:02:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7920174BFE;
+	Thu,  4 Apr 2024 09:59:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LvLnljlt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PJmGjTmK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAE6C74C17
-	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 10:02:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 997D559B7F;
+	Thu,  4 Apr 2024 09:59:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712224979; cv=none; b=huQWBG7gesOEndYpds0WSRq6+CFMaHHHVc/VUx0zQTgMloMOLQuN+E5UXV0n1wl4fiw7/VxRoo6dNAzERoo8IqN0N881Y5scG+duOfWd9+5Iruf6Tg96VV5GqMu5gecSsmv42RzIwmcsd28EdFzotZGfnq/0ITHtkvK9M92QHD4=
+	t=1712224785; cv=none; b=bIPhb4jH8iswp8KZWq4LBM4obguVU8AKj4hqQCATuylhDloLiBupGAuG/11XYJa/3w591t6B/akbCVMYJUcvC2SUV9ZRCHq86x5dcit2HSIShqZsmWLThLfCYieBk0/Vc+lvhG2ovpO8WAMmOnsM5XtkysHtqbnGZUzPe8kfY5g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712224979; c=relaxed/simple;
-	bh=GjQ6i597e+Tg5kZEZuOxHNpqIK+6JUo1PoPMIlQjjss=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Mk4ONpAvgF2rdE19Njpmr2OSPiEPzRkSLhcWntjDGBlav1lWpKY9rECYX1hMMSCSTQmsMDfuhGkCfw+nFO8yG6eqwm/nWuiTNXlKH7g7wIpk//bVqUi9SBTbudqBvDs3fwsFqKc0I56iqtJbHKcVsLXi7mMEy4hCxVYYHFGFiLI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LvLnljlt; arc=none smtp.client-ip=209.85.219.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-ddaad2aeab1so764660276.3
-        for <devicetree@vger.kernel.org>; Thu, 04 Apr 2024 03:02:57 -0700 (PDT)
+	s=arc-20240116; t=1712224785; c=relaxed/simple;
+	bh=K9jyeAW3b9xiehY1R2atVc4L81XP/EW9P/MrHMwolt8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=oungqvleW9mG5FIbUL7zy+jEiv6rCllNcghddWsoTjMY7UKYjk2j/51GFI6wfsBMrs1fF4sLfyDvosfwhMXNBjMa3PrIFV8AxCnUS4yOmWnqvNgA8cgoiOIc0Hvl/kq5zJ+eEICuXh0O4Es+yWZwJuBcbgIpe7wveE2wev6SprA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PJmGjTmK; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-513e25afabaso1096066e87.2;
+        Thu, 04 Apr 2024 02:59:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712224977; x=1712829777; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WSM3SSSDRISKG2xzZd8Db84CV8c+qWu1nf3t0po6PQs=;
-        b=LvLnljlt5unQGgxgL7KbB19HHX5HApqdiAJs2lZNm61Fi/nwRSPmV2MU0JaoHarWIt
-         KJr3XthYcUoQQjzTlDvqS2lhH+iUK9Gxv86VbUvANtvYy9Zc2yn6/wclct5DJ0814Hdx
-         AWJQOOWFlCZvsOoOfmL1Ow35LdtmFcrgRvF+AWGtxDbMOn6KMV6Fw2VNLobAt66kcMeE
-         39kiLMQXPWGK35gJjSv3aZo9CQVoC9lBw8xaMHC0Buw1KVgGlFxjvbNDirVy+StLjdZ1
-         pUMKbG2onmgBk9sK0njjQAHjF/fvkZcTE0eK83SWNjFpvLfrshL5zTgaCi0SR7hrKrdv
-         oQAA==
+        d=gmail.com; s=20230601; t=1712224782; x=1712829582; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=K9jyeAW3b9xiehY1R2atVc4L81XP/EW9P/MrHMwolt8=;
+        b=PJmGjTmKEHdX7zsY7H1xSEMx/RSuwIY3ngMP+GfuPDOLiqyVktwmkGTNiM6mpUW9BM
+         a0AUDHcYHz4BQyg5g+BWVf/uB5u0FtmGNc3ac8rYcMMtnekobvuE/j+LwQy9ZeFcHmQK
+         wGnFiupv9BmTVhPbTx3U7X2H1JKNL1stVjI5c/1lqWWXAwdns3rOo2ncrjVbPeTLpwLG
+         X+ioJvPGYGZTGW+fW33ToDiZw/LFScz9R4IKtG+rkOFo0QS2DHHunJe7/W0ZX5BggtMw
+         GA/s3JvzN1NwA8dKVo1qfVNNuwx0Oh4H94JOleDBDuTecU0YWU7Vi77ZPztM0FhzG0TM
+         65MA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712224977; x=1712829777;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WSM3SSSDRISKG2xzZd8Db84CV8c+qWu1nf3t0po6PQs=;
-        b=r8wWjgGH7TsmNpYCB4y3qmoK35BDHTeIugOUtH0U551YfCacNyDknxxt9fD0CyyXgv
-         brM/yIp223TLUYDSXWd1i0jTF2Tquv2T0tNdVVuMF8QbrhgOu1OmnUzWF37pvZGWuVNA
-         DCQ3IwSjo60Tej2BKQ/fYUw5JwjsnrDJb8FJk5NWLAm5PbhWNci534itAYy2ncr9MS9m
-         Aj9TxumjoINiEjxT046OMPR4v0du9a1xTjaJCegKhEBrS/HaFXZp1ubl/lDzXS3dvBlD
-         2SlMj8AXeqL7Gpa4MctvK6brfCGI2YMW1684k+5Vs5FfnWVkM15iU2rMh/tJsf3gWX/C
-         YfzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVUAfO/lLty8rOaZUWaBMp58s6oc8s2ywPAkUhc1gOkFkDnFuLAW+eB8HJ7Di1Y85E/6WdGB30e5bXJpmFKZSOSSIHlB3gCU21b8A==
-X-Gm-Message-State: AOJu0Ywrd/vZlS+W5wj9wZDnMFwtBcdriSyqy4wnJe4sxjN7QyeeOLVa
-	biDIMTKZQ78RRV1VLFXtKN7Gd3wPYuYu3kex7aUrLkoHx1zqwOZuI+mozsFBp/J4jEd/+WcsTE3
-	84jV3Xycbn3SIs3r9A5yV4J1/e+D9N6aWpTiZtg==
-X-Google-Smtp-Source: AGHT+IFm7zNDK6Xa3wkE7uder3AalB0PkZD0+78hHLf6dJfB6CcQXZnHbo8l7Iyk/qJcWuVWDZVuQ9UpgQfDLkYdDWQ=
-X-Received: by 2002:a25:1e54:0:b0:dc6:ff6b:71b2 with SMTP id
- e81-20020a251e54000000b00dc6ff6b71b2mr1790403ybe.4.1712224976606; Thu, 04 Apr
- 2024 03:02:56 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1712224782; x=1712829582;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=K9jyeAW3b9xiehY1R2atVc4L81XP/EW9P/MrHMwolt8=;
+        b=ePxxubynpI83A8RmUVTqBVTGQ/w+1VY55HOWQccE1xDxD43mK9EtuXl/2md1ZmQoeG
+         IXJiCJ6Qo2EU1fN/jNb80ht6RhEACnvyDc7uMcPJMmpyk3VhnuHB7axCP9fVMvUsLpNO
+         yNM/R0FblpGVGbpHTS+qIxTdVxEoje7vgaE8Jl7G7jf8UPcf8mSOeQkXyFQ5RmD/oous
+         fy7HHw60t9DbyEuk24wljetsb8OwQP6q6VlP0JdRrp4N49rnrnHsqTmrzKONlne//FEX
+         51utDFQDfvVguiGJpFrBhfQmkUfrlkroxE4paNSlilAWPa+oj52PPcB5ViPmT4VJd9FF
+         597Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXGHy8mmDcSnaBYilHlqwbfqXO3dTbrLz/CQf7WbwtmHcxrynClBqyehmaPQOwIokUt05KqpDIpLx/Ugbmwb7qIhllTOSocLa9tVw==
+X-Gm-Message-State: AOJu0YzBiaMmOAWdgImglDqGFe6rrkuuxwwi2stpDm/+/ggd70DsKhfB
+	ZuoLS0DXse2EoAFMh8iaETnDRH9Qhq+rYrfd23ATqG8UJ4cUVDzT
+X-Google-Smtp-Source: AGHT+IFN36OpGXEpf40sX/jBo1J3scSd6dmPFlGB9m5JLDeVagOQuG1BK8CZpTs9DIMJPjcTjgufgg==
+X-Received: by 2002:a05:6512:3683:b0:513:c9ca:1333 with SMTP id d3-20020a056512368300b00513c9ca1333mr1364876lfs.22.1712224781472;
+        Thu, 04 Apr 2024 02:59:41 -0700 (PDT)
+Received: from ?IPv6:2003:f6:ef1b:2000:15d4:fc17:481e:8afe? (p200300f6ef1b200015d4fc17481e8afe.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:15d4:fc17:481e:8afe])
+        by smtp.gmail.com with ESMTPSA id qk11-20020a1709077f8b00b00a5189707091sm634063ejc.154.2024.04.04.02.59.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Apr 2024 02:59:40 -0700 (PDT)
+Message-ID: <04e2a0569953792673319f7fcab3fe03e6670c03.camel@gmail.com>
+Subject: Re: [PATCH 06/10] dt-bindings: iio: dac: add bindings doc for AXI
+ DAC driver
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Rob Herring <robh@kernel.org>, Nuno Sa <nuno.sa@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Dragos Bogdan
+ <dragos.bogdan@analog.com>, Jonathan Cameron <jic23@kernel.org>, Lars-Peter
+ Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Olivier Moysan <olivier.moysan@foss.st.com>
+Date: Thu, 04 Apr 2024 12:03:12 +0200
+In-Reply-To: <20240401135948.GA349128-robh@kernel.org>
+References: <20240328-iio-backend-axi-dac-v1-0-afc808b3fde3@analog.com>
+	 <20240328-iio-backend-axi-dac-v1-6-afc808b3fde3@analog.com>
+	 <20240401135948.GA349128-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.0 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240327055732.28198-1-yu-chang.lee@mediatek.com>
- <20240327055732.28198-3-yu-chang.lee@mediatek.com> <6dd9959e-f741-47af-b10a-1894f72ae78f@linaro.org>
- <c3ca3d90-898e-44b0-ad0f-dd78c09c5fcd@linaro.org> <f3eedfb3495bb9c28b5cbf466387c24822c5b6f6.camel@mediatek.com>
- <7ff9c4c7-3b56-4a5b-95b7-c37cbf8bcd6d@linaro.org> <b957b072d5d88ed315982e914a7f700e0ccafb83.camel@mediatek.com>
- <038ccb20-71cb-40d2-9720-ce1a0d3eac8c@linaro.org> <7f24ca2806a7199e4de6fad17b8dc1f127c82180.camel@mediatek.com>
- <c59f2f33-ad6b-469d-96be-9345920370b4@linaro.org> <CAFGrd9qZhObQXvm2_abqaX83xMLqxjQETB2=wXpobDWU1CnvkA@mail.gmail.com>
- <3b04c5344435cdb941b5d132e8f5fbfdf9188d67.camel@mediatek.com>
-In-Reply-To: <3b04c5344435cdb941b5d132e8f5fbfdf9188d67.camel@mediatek.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 4 Apr 2024 12:02:20 +0200
-Message-ID: <CAPDyKFpokXV2gJDgowbixTvOH_5VL3B5H8eyhP+KJ5Fasm2rFg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: power: Add mediatek larb definition
-To: =?UTF-8?B?WXUtY2hhbmcgTGVlICjmnY7nprnnkosp?= <Yu-chang.Lee@mediatek.com>
-Cc: "amergnat@baylibre.com" <amergnat@baylibre.com>, 
-	"krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>, 
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>, 
-	=?UTF-8?B?TWFuZHlKSCBMaXUgKOWKieS6uuWDlik=?= <MandyJH.Liu@mediatek.com>, 
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	Project_Global_Chrome_Upstream_Group <Project_Global_Chrome_Upstream_Group@mediatek.com>, 
-	"robh@kernel.org" <robh@kernel.org>, =?UTF-8?B?WGl1ZmVuZyBMaSAo5p2O56eA5bOwKQ==?= <Xiufeng.Li@mediatek.com>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, 
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, =?UTF-8?B?RmFuIENoZW4gKOmZs+WHoSk=?= <fan.chen@mediatek.com>, 
-	"angelogioacchino.delregno@collabora.com" <angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, 28 Mar 2024 at 07:06, Yu-chang Lee (=E6=9D=8E=E7=A6=B9=E7=92=8B)
-<Yu-chang.Lee@mediatek.com> wrote:
->
-> On Wed, 2024-03-27 at 12:55 +0100, Alexandre Mergnat wrote:
-> >
-> > External email : Please do not click links or open attachments until
-> > you have verified the sender or the content.
-> >  Hello Yu-chang Lee,
-> >
-> > SMI LARB must have a power domain, according to "mediatek,smi-
-> > larb.yaml"
-> > Now you try to create a link from power domain to larb.
-> >
-> > Here is my understanding: when you enable/disable power domain, the
-> > larb linked to this power domain may have an issue. Then you want to
-> > retrieve de LARB linked to the power domain though the dts to manage
-> > the LARB.
->
-> Yes, this is what I am trying to do.
->
-> > IMHO, using the dts to have this information into the power
-> > driver isn't necessary and may introduce some bugs if the LARB node
-> > and power node in the DTS aren't aligned.
-> >
-> > It seems not implemented today but during the LARB probe, it should
-> > "subscribe" to the linked power domain. Then, when the power domain
-> > status is changing, it is able to "notify" (callback) the LARB, then
-> > implement the good stuff to handle this power domain status change
-> > into LARB driver.
-> >
->
-> The problem with this method and why "smi clamp" is in power domain
-> driver is that our HW designer gave us a programming guide strictly
-> states the sequence of what we need to do to power on/off power domain.
-> Using callback, this sequence is no longer guaranteed and the side
-> effect is unknown...
+On Mon, 2024-04-01 at 08:59 -0500, Rob Herring wrote:
+> On Thu, Mar 28, 2024 at 02:22:30PM +0100, Nuno Sa wrote:
+> > This adds the bindings documentation for the AXI DAC driver.
+>=20
+> Bindings are for h/w blocks, not 'drivers'.
+>=20
+> Reword the subject to only say 'bindings' once.
+>=20
+>=20
+> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> > ---
+> > =C2=A0.../devicetree/bindings/iio/dac/adi,axi-dac.yaml=C2=A0=C2=A0 | 62
+> > ++++++++++++++++++++++
+> > =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 7 +++
+> > =C2=A02 files changed, 69 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
+> > b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
+> > new file mode 100644
+> > index 000000000000..1018fd274f04
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
+> > @@ -0,0 +1,62 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/iio/dac/adi,axi-dac.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Analog Devices AXI DAC IP core
+> > +
+> > +maintainers:
+> > +=C2=A0 - Nuno Sa <nuno.sa@analog.com>
+> > +
+> > +description: |
+> > +=C2=A0 Analog Devices Generic AXI DAC IP core for interfacing a DAC de=
+vice
+> > +=C2=A0 with a high speed serial (JESD204B/C) or source synchronous par=
+allel
+> > +=C2=A0 interface (LVDS/CMOS).
+> > +=C2=A0 Usually, some other interface type (i.e SPI) is used as a contr=
+ol
+> > +=C2=A0 interface for the actual DAC, while this IP core will interface
+> > +=C2=A0 to the data-lines of the DAC and handle the streaming of data i=
+nto
+> > +=C2=A0 memory via DMA.
+> > +
+> > +=C2=A0 https://wiki.analog.com/resources/fpga/docs/axi_dac_ip
+> > +
+> > +properties:
+> > +=C2=A0 compatible:
+> > +=C2=A0=C2=A0=C2=A0 enum:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - adi,axi-dac-9.1.b
+> > +
+> > +=C2=A0 reg:
+> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > +
+> > +=C2=A0 dmas:
+> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > +
+> > +=C2=A0 dma-names:
+> > +=C2=A0=C2=A0=C2=A0 items:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: tx
+>=20
+> You don't need *-names if there is only 1 entry.
 
-In most cases, using the runtime PM callbacks in the consumer driver
-(LARB driver) is sufficient to deal with resets. For some special
-cases drivers are making use of the genpd on/off notifiers
-(GENPD_NOTIFY_*), as they really need to know when their devices have
-been power collapsed. Have you tried both these options?
+Looking at the dmaengine code [1], it actually looks like I should have thi=
+s
+property required, no?
 
-[...]
+[1]: https://elixir.bootlin.com/linux/v6.9-rc2/source/drivers/dma/of-dma.c#=
+L270
 
-Kind regards
-Uffe
+- Nuno S=C3=A1
+
+
 
