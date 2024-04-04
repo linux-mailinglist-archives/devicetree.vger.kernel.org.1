@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-56108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2CB5897D5B
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 03:17:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 244F5897D75
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 03:42:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 39D641F28802
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 01:17:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC1A71F25849
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 01:42:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5EF55C99;
-	Thu,  4 Apr 2024 01:17:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E014D101DB;
+	Thu,  4 Apr 2024 01:41:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="C7w/5INM"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Rd7AfLqq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFD498C06;
-	Thu,  4 Apr 2024 01:17:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2800314285;
+	Thu,  4 Apr 2024 01:41:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712193474; cv=none; b=bQi183i3wmzSbyhIiPzDfa45K37RDUkDk6MpJKinXENaTjXs5tFH6OV1KrF0Fkcr3WI78M6pWQVEzdxTWOyTj2UK7STd49Z9wH4tKRgbodZY8bLUiSf+0ZRhlwzOZp8TAJ4IojNwnsdbf0lkB+wfmS2w0kCNsHJAnUfvsZhroIE=
+	t=1712194915; cv=none; b=uw3d72832JtlFy0zxPuRJ9hlfadZjdrzGcQ2ytmQ75a5c3nXnTvk2V4J0JK3Da8HKmV7KllsrQ9dxJj+GO2O4w4TgB6ygFoxrSusoyGk5FiMtROQrDV4++eb4J9KqJsg2qK3PiRe7GF9qy8Ren2FdXKYTHwS/s8fWX8kQfdnhfU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712193474; c=relaxed/simple;
-	bh=Dt5497XqBT8wkrfVHptycgzBoditRUn2tucDSvLDxv8=;
+	s=arc-20240116; t=1712194915; c=relaxed/simple;
+	bh=k5pZjV7/RGdylgzBC888Uj6ijWFfoEo8rl/duzOWrhw=;
 	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=upyBmZ+KJ9xy5t3nInWu5tUGcc661gC9QpSPbCr8o+lrbvmykywvFIz92oLX3Js2UgUn0M8NiZm5cvWzPxpGdhswpPb+KQ+PC+t3W7z2691u8iwoW8Lgy+5tgOePKCnDM6fkf3IZxU4qduWAkwckaGUyrHJBRon0ormSeM3P7iM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=C7w/5INM; arc=none smtp.client-ip=203.29.241.158
+	 Content-Type:MIME-Version; b=m4PzThAdgbxkfE27eKI8+H7xOky0x82D1TRjZxYchfgT+RX5lSJOc9zc9ZTglhLyVCE67nCOGc2MlV0Mrg0IsMHTSB94MZpIW0VSyfCSpPsnVeHW84HR9EDXAjF2wklnpXlYe3JtcR9xQJkCCX9BDIti/WE4iTM+CRohU7HR2/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Rd7AfLqq; arc=none smtp.client-ip=203.29.241.158
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 Received: from [192.168.68.112] (ppp118-210-182-70.adl-adc-lon-bras34.tpg.internode.on.net [118.210.182.70])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id CB38C20172;
-	Thu,  4 Apr 2024 09:17:39 +0800 (AWST)
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 896E520172;
+	Thu,  4 Apr 2024 09:41:49 +0800 (AWST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1712193470;
-	bh=AnZy1ul9z22wLV53sWsuV/QLH4baWunjG6AMLZ7wkaE=;
+	d=codeconstruct.com.au; s=2022a; t=1712194911;
+	bh=W1rbTsbAAc/AY4aRyLkyhlHpWGVkjcjrUfElUyeAL+U=;
 	h=Subject:From:To:Date:In-Reply-To:References;
-	b=C7w/5INMzf9doVl0bXoxlonTUfuLxaoa0qEhYhcoJ7nRVWjtwpusMfDVmGMFfl+sZ
-	 Gn2mVUSGFpGWgHBi/s8l0kMXpL0k+aFdGA25ZQ0K4HrvwaFqlUj5dhIO6f4+l24LQi
-	 mdQkJ18moNCE/X6VGdnL2UgMSMS/J1hPM8Vhg1ofpiRLjnxxbjUmmZpzexQbdn4zm2
-	 rg3LUl2DyrcFfBg+pmVamLUY44RgJuxvCvGZ3TKUQm9fsqTNLPOmWbGSZXHN40jwDc
-	 2rE6kcULCi3NSPh6vAajadYiY73FuQI+vyAk0mhb1ij16iOes/VtcCcLZyE/k8APSI
-	 AF07bWtSMGCsw==
-Message-ID: <77829355a18f2afd64343e7e19498473d9263ef6.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v2 1/3] ARM: dts: Modify GPIO table for Asrock X570D4U
- BMC
+	b=Rd7AfLqqaJYPit6Ul8UxmB8t1ecf1btM92WAriPvXV7pbzzbn2zUNTh2jFfru/mBp
+	 g7pF0Vz+rmxtckPjnbdR9CwIeHWQvU5yfY7qEmAp0q7N5ZccNZ1eMz56R+KvRaaPMa
+	 3s3ZXX74Csgfh7O0sZ86yY/HEMrplzGxldN8Sg54aCiuam152zMnBTXsnSJWeJqkBk
+	 I8sTyKvAIah0lsCBmlVRCJrVFCyDr/PUrEkd6YcQQ73wD0VG6zBlWwtVRpnH9m/ZLr
+	 XeMHqOMpJvXUWwF87YiAlWwRnFR0NaDMJyD4VvL73ugbL6YNmA3mPTpRceEtStuMdS
+	 5arEaLy77C+8w==
+Message-ID: <8610e0a8aa5c2916fa04292a10e8a843862ff0ee.camel@codeconstruct.com.au>
+Subject: Re: [PATCH 1/4] ARM: dts: aspeed: greatlakes: correct Mellanox
+ multi-host property
 From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Renze Nicolai <renze@rnplus.nl>, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-aspeed@lists.ozlabs.org, arnd@arndb.de, olof@lixom.net,
- soc@kernel.org,  robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- joel@jms.id.au,  andrew@aj.id.au
-Date: Thu, 04 Apr 2024 11:47:38 +1030
-In-Reply-To: <20240403133037.37782-2-renze@rnplus.nl>
-References: <20240403133037.37782-1-renze@rnplus.nl>
-	 <20240403133037.37782-2-renze@rnplus.nl>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
+ Joel Stanley <joel@jms.id.au>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+ linux-kernel@vger.kernel.org
+Date: Thu, 04 Apr 2024 12:11:48 +1030
+In-Reply-To: <171213860535.16780.4635499105199545058.b4-ty@linaro.org>
+References: <20231209104412.12916-1-krzysztof.kozlowski@linaro.org>
+	 <171213860535.16780.4635499105199545058.b4-ty@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
@@ -67,43 +68,47 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
-Hi Renze,
-
-In the future, the start of the subject should also include 'aspeed: ',
-so:
-
-    ARM: dts: aspeed: Modify GPIO table for Asrock X570D4U BMC
-
-On Wed, 2024-04-03 at 15:28 +0200, Renze Nicolai wrote:
-> Restructure GPIO table to fit maximum line length.
+On Wed, 2024-04-03 at 12:04 +0200, Krzysztof Kozlowski wrote:
+> On Sat, 09 Dec 2023 11:44:09 +0100, Krzysztof Kozlowski wrote:
+> > "mlx,multi-host" is using incorrect vendor prefix and is not documented=
+.
+> >=20
+> >=20
 >=20
-> Fix mistakes found while working on OpenBMC
-> userland configuration and based on probing
-> the board.
+> These wait for ~4 months and they were not picked up. Let me know if anyo=
+ne
+> else wants to take these.
 >=20
-> Schematic for this board is not available.
-> Because of this the choice was made to
-> use a descriptive method for naming the
-> GPIOs.
+> Applied, thanks!
 >=20
->  - Push-pull outputs start with output-*
->  - Open-drain outputs start with control-*
->  - LED outputs start with led-*
->  - Inputs start with input-*
->  - Button inputs start with button-*
->  - Active low signals end with *-n
+> [1/4] ARM: dts: aspeed: greatlakes: correct Mellanox multi-host property
+>       https://git.kernel.org/krzk/linux-dt/c/7da85354c4fa35b862294dbbb450=
+baeb405b5a92
+> [2/4] ARM: dts: aspeed: minerva-cmc: correct Mellanox multi-host property
+>       https://git.kernel.org/krzk/linux-dt/c/e515719c17beb9625a90039f6c45=
+fa36d58bdda2
+> [3/4] ARM: dts: aspeed: yosemite4: correct Mellanox multi-host property
+>       https://git.kernel.org/krzk/linux-dt/c/af3deaf9bcb4571feb89a4050c7a=
+d75de9aa8e1e
+> [4/4] ARM: dts: aspeed: yosemitev2: correct Mellanox multi-host property
+>       https://git.kernel.org/krzk/linux-dt/c/cac1c1dda6130771e06ace030b1b=
+0ed62096a912
+>=20
+> Best regards,
 
-This seems to be a bit of a mix of following conventions in [1] and
-not. It might be helpful to weigh in on that document with your ideas.
+Ah, my apologies. Joel's on leave and I'm accumulating patches in a
+tree for him in the mean time. I've had some things going on
+professionally (changed jobs) and personally, and these fell into a bit
+of a hole.
 
-[1]: https://github.com/openbmc/docs/blob/master/designs/device-tree-gpio-n=
-aming.md
+I'm okay for these patches to be integrated through your tree, given
+you've already applied them. Feel free to add acks if your branch
+allows:
 
-I'll put this series in a tree for Joel for now though, with the
-subject fix mentioned above.
+Acked-by: Andrew Jeffery <andrew@codeconstruct.com.au>
 
-I've also re-wrapped the commit messages as it seems you stopped a bit
-short of the allowable line length.
+I'm working to stay on top of things a bit more now than I have in the
+recent past, so hopefully I won't miss patches again in the future.
 
 Andrew
 
