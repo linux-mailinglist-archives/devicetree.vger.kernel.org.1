@@ -1,402 +1,229 @@
-Return-Path: <devicetree+bounces-56364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81ED4898BFA
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 18:19:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20D1E898C17
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 18:29:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4005E2837C5
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 16:19:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 423991C21F6F
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 16:29:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C8A4129A99;
-	Thu,  4 Apr 2024 16:19:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AE4912BEA7;
+	Thu,  4 Apr 2024 16:29:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="qsLmga+j"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="zMxwsJVw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2104.outbound.protection.outlook.com [40.107.22.104])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B1B517BA8;
-	Thu,  4 Apr 2024 16:19:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.104
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712247577; cv=fail; b=tlrl158uOE5vwOJNPOsxV4mglvF5hzULAIstC7wdHHcVtMvWr/3kW9lqHjDiuxga45kEKRkpEczFVqB+iXPk/PWr2vxacRul4uWYb2z5okM834pu/gi8QgZlWuHLvMX2WhEDfD1TXdUOm7QWg88k84fab6FnKaBxsg5VCc9gLNE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712247577; c=relaxed/simple;
-	bh=srYiov+bI4PV8aC3Ad5CrZJXP3DgFkpmt+xoy0yS6yc=;
-	h=From:To:Subject:Date:Message-Id:Content-Type:MIME-Version; b=UxeLvkZlvSV6lK0oRq10OGIKPbkoalJOlKsj3ETee3coij7g932H44ofZmoWRUj3fXcxzHkEFJqijSJ244sM9zE5zSkHy4Oiy2QhCNt00TGOCNgFW+jCuVeYW+mhe3a8IIxaS6Mwo7CesDeieGtfthATGBAkgTGrCVhVuKga0q0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=qsLmga+j; arc=fail smtp.client-ip=40.107.22.104
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lUM1MYi/e1UirZU/qvfJ5jyJzBRv+KlugIbmoKychEr/Tbj/5PWNgNs0CuOvtQoi7b5TkBJmbyJmy0IIZjpdM/+291vdTZXzhlMMZVFTu/yYp7Dx8LtyUQq+Zfo+iYDhLw4ah+WVGce5UcOfyWhrWQXypwTiuHXPZzF/nP/NOomi9IuBXuDtOJdnO9uGqP/NmTl6XJcaU6RnpFnpj0+4B4H/M2ONnkvnp5gPPCQq9He2aEzVGxAKuhl8t2CyQpzfCxc1tqS/6xubACWBTyQ5Q8ESdKvMNmo2S6RRnOdrDgwhzDh3oQIHH8B70bcH+YhCv+iEkuf0WizYWCLu4LoVpg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iAQc60o0VgCHDyvwhk5AxFCYBn0J5WYZlBB9ZBlFbug=;
- b=iNLrDp+Br+p22Z3vkn1V2YeurYxSeqFvTuot5/K/IIz0ef8qGO55umeZuz3rCSr0oFlOJ2utp/+ikHHyUAmULNdwB5W3jE60fnUzIXLsvK7H3pGx+1mY5kanYYb3vqDoQwHLMYpKyMNef7dT3+Fh8llGHpVUrHoHsGMBeLDwFYC0hVM4d19F1Hq3lGAV7ZRtQZ2+2bhphameKAlsYfyTS9qAI50a6ThTU7hWxdSsIf83HFkeo8Y8raOLTtS+3T/eEGPwWo/w19Oqy2utNhSYej9g1CNTNI0bQ4tNGJxN++4zYqz8V1RPQFga6yRcH+9e54MskI2QQWq8lDndfAn2og==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iAQc60o0VgCHDyvwhk5AxFCYBn0J5WYZlBB9ZBlFbug=;
- b=qsLmga+jgNppxppeIzTItblJCxE7jwFqjrFa4Q7rQTCFld8qR1gbKpXGDXkoW23RGt36ZakiUYHBwqBbUoLIwq48XyR+ItSdGy92kNcRq7Cn0eTIxpvS4s5o75f/AETlMFkMDiJjehkMHeF45YZlFOw0AXD7B5yUN+3j/N/Odnw=
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DU2PR04MB8663.eurprd04.prod.outlook.com (2603:10a6:10:2de::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Thu, 4 Apr
- 2024 16:19:31 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::3168:91:27c6:edf6]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::3168:91:27c6:edf6%3]) with mapi id 15.20.7409.042; Thu, 4 Apr 2024
- 16:19:31 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	imx@lists.linux.dev (open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 1/1] arm64: dts: imx8qxp-mek: add cm40_i2c, wm8960/wm8962 and sai[0,1,4,5]
-Date: Thu,  4 Apr 2024 12:19:13 -0400
-Message-Id: <20240404161914.1655305-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR05CA0125.namprd05.prod.outlook.com
- (2603:10b6:a03:33d::10) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 343201E522;
+	Thu,  4 Apr 2024 16:29:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712248146; cv=none; b=c+dHEo1Utb1G2ETwrfaIkstPfOg8Pj0D/UrNHME6otIhb9tRW+9Nnwzmwg/mtKSHBcXqP/iY+JNbl15e4O/+EyDD5Q+Tun9HjfKH1oPQFoQw6/JpxIu0N/8UKHkuXC5cHQUO8S26gwOPr1MHkLfjtNP1m4w1zXUdDf2FoslQABg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712248146; c=relaxed/simple;
+	bh=ZDSXC0SJ+CerDgWVbaTYvwjZpvTsijT6HMMUXVGDLpw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=I+ANRsAT6XgbjTQRLUGD8E8KhToSZ/EeT2mn9+iqYHJajwa5AkcmGppG2atbLLFNSevRbzOZy0QloBgbusbclSTaLv4WGMZYIPyt0ckN4RkZy5nfguGuiBUAda09ececF/gyeaQ8bf5mbWA7jeE8FvKi102Q1WmR70QrdcLebdg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=zMxwsJVw; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 434GSq2U114723;
+	Thu, 4 Apr 2024 11:28:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1712248132;
+	bh=8QSW8mPiC0nENIietXOD7FuT/weRbNpR3GRy7poQaQA=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=zMxwsJVwRBjhGETfhL6jy4OlQufSTYwXXhXo4pqrqCIbI8QYkbAAtNZNlsmO8ooCw
+	 8lrFlnViQSXCb2VzvasQx3i5gvqlX8L8Lbc3I3t+eErlH0hXU4WsT15Nen/Zw/sDv1
+	 +gyfZH7GAg/iNChoXK5zAPZ5cZwnCY+oRVWyw6qw=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 434GSqse053068
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 4 Apr 2024 11:28:52 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 4
+ Apr 2024 11:28:51 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 4 Apr 2024 11:28:51 -0500
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 434GSp17117692;
+	Thu, 4 Apr 2024 11:28:51 -0500
+Message-ID: <6d11aed3-242d-45c4-9647-894eea4e427b@ti.com>
+Date: Thu, 4 Apr 2024 11:28:51 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DU2PR04MB8663:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	uCBTQRkGNMcs0ERtt0WEboUaBqoUQ9CSMO+//L+6oQub0BRsB1oAVvHc5rPUaDc5oYLZRkp7gI85UwjuDxDc3hu9+sGCX7GRMdOvanrFAnfJof8TC3/jfI5IkRurtLqAH733xACPI/i141yBlzwMzZvxiD297MuF+HW80vnHFXPHACzSWE4wsEMaCWAYOPjuNKk/2jy4+01ERWmrv95RLrTxib2vZb4mLkdr+fYo3vz9VqF9FIcsyQC4mVs41cab8Be/o4Q1iFkstNU5zgckK13OGyzgkY5GUZuz/kdInjCwMlC/mfgEugz/2F0RP1e5B9G9yG4mIwpClo6xjjS3mcPb2ZmCblZaVBmSlkHrUZf5xL8IUj5ogjPnDWNlRY0pHCtg3jyrrHvOUwrJ2Na674py3TbRfxcLhHlc4GDVxPWoLui6HLheSD3DZVWrGbDasKzlcAL3RTWa5FNqZFwnb602bkhjefWm/4TULbr1vGaOua4SNuVs/TDLZX2nj+cPfJNk03dFI8nJeLKcp6i7KD7q3utYxaLxfPODeIAIoxmNpyeVLo43X+51G8kQ/Rxjc+NJJ1gKUeSTYihERchdrxdjaatW19f2YhpLHMbpjcVzY7gO9U+FYWBJtpFH3ifw8tpB6mCteHQlNHNpMGB1DICdrKk1/+Iu8xx4Lqvi6VmQqAxHK6kobgQUjC9G/ZynKjc9QDvgOT1CaFmRVlWY8jT1KJuW9cUBZqzbO5jjn9c=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(366007)(52116005)(1800799015)(7416005)(921011)(38350700005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?J+E5neu+Arl7h57r+sJQHqBgNZ5ytZzjpjlsVJn5vq5HDTI1tK6xHja7J9QR?=
- =?us-ascii?Q?cdElml4K574cZsf4edUx+DkKQ0Os8c6DARMLpPITccd9tkN7O3wqpMS18bYb?=
- =?us-ascii?Q?PHJkPaEjmmsZu9LdcL35BUNkSWd2HJV5mDh7QF9zS0pFp/cS1JCT8hdsyEde?=
- =?us-ascii?Q?8PLyxm491OlvhdZ7YLdbGQwsXXX/MGT16zMrIFeXMTvsom5Wwva/BU6mKKy6?=
- =?us-ascii?Q?M5uVF++Smy34qfwpw2VnN/PGkV3CtYJKiEpI7V9+DlOkqcA769NnCNNwO8Dg?=
- =?us-ascii?Q?NsfgieEmDASajdjEXJjNP5cgV4Ki0RovznySQnyPtwZHSzs2FNmEf56MCZ6h?=
- =?us-ascii?Q?qEi07n18cw55j36ftBYgm5OIGxn7xNGB8pXpZoIpnroc9SYK6PdCA4DMymHG?=
- =?us-ascii?Q?cd9komm5TDWVPpu9EURgKaKV4m1lGGoUT4Ly6xmk8NNuU6C7vDL4brkdeAOY?=
- =?us-ascii?Q?GeXoUWvD+e/W/qKHdK/G9LVfamiWsTSZIhuO65ffQkzfZsvwR29cRxlJdNiH?=
- =?us-ascii?Q?V477V0E7S+06YMafU/EqGi+bdpy5LkPFDDN1c3UYHSSkzN4sUEZYnJM3ar9b?=
- =?us-ascii?Q?C5JiOt0yzjT4pjEOs2GnXeYtj6rmjx/dVkQnLwQDyVPIjdq/uqTuANSrOhqY?=
- =?us-ascii?Q?rbNH6wawrjbnAeIj+YuVnUnl2E40X0Tfm/7n3mkHWjCJkOwLOofZMmOR291j?=
- =?us-ascii?Q?IBwNyV4gHNA2z8sz1E+Sk6fiXLDiak6s0MHljm/2BqLXAnqh9brKz0ttYEBL?=
- =?us-ascii?Q?u8MLBH7y5pQl62EB+aktd/ZFnfnFLlVElzA0fPwk52mpWoEOEVP2K4/gDxSf?=
- =?us-ascii?Q?EI9DLCa84RhX4kIPdl9nioI5WsGujlmfSVWHwyIxJAOSg6a8Vps4+/rwDOc6?=
- =?us-ascii?Q?DdcfFg5Cy6WRS3BCz8NuT2C+6Ne7ZQr/sFmelh74Dn8Oct4KJQ2Nrabk1Npt?=
- =?us-ascii?Q?hhRPzg2HVyncM+4IXE4SA3AsOakDLku6QdpHUsGvyzqipQRJS7akuhHA1CNU?=
- =?us-ascii?Q?4rl7blH5i3Xjr6mYbWGhgElFppc3H96AO5jAjo78EzdE2pWhuxIIqLRIBVo7?=
- =?us-ascii?Q?i2YZ62Dz8en7CKB71IOTxZT+xYH2IZ+ADS4ZPU+qpN8vwRvSkTieagy3SPCN?=
- =?us-ascii?Q?TKzSClVrBKhnXkRMTulz/kz1YfgzHXbzfrqhtE/s0t91Z18niE2l5IOuSH8a?=
- =?us-ascii?Q?46w8qJqrxUzD+hvmMMX2EmF9j0zkWX3uO+XOgcDlQu3ATxzoKjNjTqySq1iz?=
- =?us-ascii?Q?4u+ytqK3JCPCyjdDzkTVmyH81YjUT3yQRc706MiHmEROT/9JMzewTF+QQqiJ?=
- =?us-ascii?Q?GP7cS/FnuqTkD2/VzeKjHATW0LQCkkedDc/xIyBn+GgRXLDFuCKuz/+YToxX?=
- =?us-ascii?Q?QzPO7e8EnqAZUlhMlrCUpxOiAzbPxXyy5vWSejJGVDirrtDWsy5DY5YG2ass?=
- =?us-ascii?Q?39uVUrxvGDzewnEsRZ2WFzv6ScdQw7kiFDAc5VJNsfGRMOB2KdEa6mPlx/sl?=
- =?us-ascii?Q?WCOI+7cp5fTujuamx+EekIOXMrrYw/7gcDtd6jgz65Xe89O03Mtx1pMyVXE7?=
- =?us-ascii?Q?RDKElXkkgFwr5BsRy9nl96gvIuX184Xf25/4qf0G?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7ca91fc9-5564-4cf0-b584-08dc54c3020e
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Apr 2024 16:19:31.1343
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gqHsnpOEChPa0v32lL5mhvN1ojYJi7IjF6Fq814LTFGbTAKJb6JEVPc9G4qww66FZlI5/CD0BWQcM66hMuHwrg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8663
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-am62p: use eFuse MAC Address for
+ CPSW3G Port 1
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Siddharth Vadapalli
+	<s-vadapalli@ti.com>
+CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>
+References: <20240404081845.622707-1-s-vadapalli@ti.com>
+ <18eb0e55-38ad-44f9-90b7-1917d8c0d5bb@linaro.org>
+ <75b53dda-23aa-4915-944a-4d9a619bd165@ti.com>
+ <903ad855-ab26-4ef3-80bd-249917056188@linaro.org>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <903ad855-ab26-4ef3-80bd-249917056188@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-imx8qxp-mek use two kind audio codec, wm8960 and wm8962. Using dummy gpio
-i2c bus mux to connect both i2c devices. One will probe failure and other
-will probe success when devices driver check whoami. So one dtb can cover
-both board configuration.
+On 4/4/24 5:00 AM, Krzysztof Kozlowski wrote:
+> On 04/04/2024 11:12, Siddharth Vadapalli wrote:
+>> On Thu, Apr 04, 2024 at 10:43:04AM +0200, Krzysztof Kozlowski wrote:
+>>> On 04/04/2024 10:18, Siddharth Vadapalli wrote:
+>>>> Add the "cpsw-mac-efuse" node within "wkup_conf" node corresponding to the
+>>>> CTRLMMR_MAC_IDx registers within the CTRL_MMR space. Assign the compatible
+>>>> "ti,am62p-cpsw-mac-efuse" to enable "syscon_regmap" operations on these
+>>>> registers. The MAC Address programmed in the eFuse is accessible through
+>>>> the CTRLMMR_MAC_IDx registers. The "ti,syscon-efuse" device-tree property
+>>>> points to the CTRLMMR_MAC_IDx registers, allowing the CPSW driver to fetch
+>>>> the MAC Address and assign it to the network interface associated with
+>>>> CPSW3G MAC Port 1.
+>>>>
+>>>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>>>> ---
+>>>>
+>>>> This patch is based on linux-next tagged next-20240404.
+>>>> Patch depends on:
+>>>> https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240402105708.4114146-1-s-vadapalli@ti.com/
+>>>> for the newly added "ti,am62p-cpsw-mac-efuse" compatible.
+>>>>
+>>>> v1:
+>>>> https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240402094200.4036076-1-s-vadapalli@ti.com/
+>>>> Changes since v1:
+>>>> - Since "wkup_conf" is modelled as a "simple-bus" rather than being
+>>>
+>>> And maybe the hardware representation is not correct? What bus is it?
+>>
+>> I will let Andrew comment on it. Andrew had posted a patch at:
+>> https://lore.kernel.org/r/20240124184722.150615-10-afd@ti.com/
+>> to convert an equivalent "main_conf" node for AM62 SoC to "simple-bus"
+>> from the existing "syscon".
+>>
+>>>
+>>>>    modelled as a System Controller node with the "syscon" compatible,
+>>>>    directly passing the reference to the "wkup_conf" node using the
+>>>>    "ti,syscon-efuse" device-tree property will not work.
+>>>>    Therefore, I posted the patch at:
+>>>>    https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240402105708.4114146-1-s-vadapalli@ti.com/
+>>>>    in order to add a new compatible to be used for modelling the
+>>>>    CTRLMMR_MAC_IDx registers as System Controller nodes, thereby
+>>>>    allowing the existing "ti,syscon-efuse" property to be used.
+>>>>    Now, "ti,syscon-efuse" points to the "cpsw_mac_efuse" node within
+>>>>    "wkup_conf" node, with "cpsw_mac_efuse" being a "syscon" node.
+>>>>
+>>>> Logs verifying that the CPSW driver assigns the MAC Address from the
+>>>> eFuse based on the CTRLMMR_MAC_IDx registers at 0x43000200 and 0x43000204
+>>>> to the interface eth0 corresponding to CPSW3G MAC Port 1:
+>>>> https://gist.github.com/Siddharth-Vadapalli-at-TI/9982c6f13bf9b8cfaf97e8517e7dea13
+>>>>
+>>>> Regards,
+>>>> Siddharth.
+>>>>
+>>>>   arch/arm64/boot/dts/ti/k3-am62p-main.dtsi   | 1 +
+>>>>   arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi | 5 +++++
+>>>>   2 files changed, 6 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+>>>> index 7337a9e13535..848ca454a411 100644
+>>>> --- a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+>>>> +++ b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+>>>> @@ -696,6 +696,7 @@ cpsw_port1: port@1 {
+>>>>   				label = "port1";
+>>>>   				phys = <&phy_gmii_sel 1>;
+>>>>   				mac-address = [00 00 00 00 00 00];
+>>>> +				ti,syscon-efuse = <&cpsw_mac_efuse 0x0>;
+>>>
+>>> Why this is not nvmem cell, like or efuses?
+>>
+>> Since it belongs to the MMIO register set. You had recommended *not*
+>> using nvmem for such MMIO registers at:
+>> https://lore.kernel.org/r/48902771-5d3b-448a-8a74-ac18fb4f1a86@linaro.org/
+>> "nvmem is for non-volatile memory, like OCOTP and eFUSE. This is not for
+>> accessing regular MMIO registers of system-controller..."
+>>
+>> Despite the "ti,syscon-efuse" property containing the term "efuse" in its
+>> name, it is reading the CTRLMMR_MAC_IDx MMIO registers. So I assumed that
+>> the existing approach which has been used on all K3 SoCs apart from this
+>> one, will be suitable for this SoC as well.
+> 
+> OK, I totally forgot we discussed this.
+> 
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8qxp-mek.dts | 210 ++++++++++++++++++
- 1 file changed, 210 insertions(+)
+Discussed but never finalized, here is the last message[0] but with
+no response.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-index 8360bb851ac03..adff87c7cf305 100644
---- a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-@@ -30,6 +30,13 @@ reg_usdhc2_vmmc: usdhc2-vmmc {
- 		enable-active-high;
- 	};
- 
-+	reg_audio: regulator-wm8962 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3v3_aud";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
- 	gpio-sbu-mux {
- 		compatible = "nxp,cbdtu02043", "gpio-sbu-mux";
- 		pinctrl-names = "default";
-@@ -44,6 +51,105 @@ usb3_data_ss: endpoint {
- 			};
- 		};
- 	};
-+
-+	sound-wm8960 {
-+		compatible = "fsl,imx-audio-wm8960";
-+		model = "wm8960-audio";
-+		audio-cpu = <&sai1>;
-+		audio-codec = <&wm8960>;
-+		hp-det-gpio = <&lsio_gpio1 0 GPIO_ACTIVE_HIGH>;
-+		audio-routing =
-+			"Headphone Jack", "HP_L",
-+			"Headphone Jack", "HP_R",
-+			"Ext Spk", "SPK_LP",
-+			"Ext Spk", "SPK_LN",
-+			"Ext Spk", "SPK_RP",
-+			"Ext Spk", "SPK_RN",
-+			"LINPUT1", "Mic Jack",
-+			"Mic Jack", "MICB";
-+	};
-+
-+	sound-wm8962 {
-+		compatible = "fsl,imx-audio-wm8962";
-+		model = "wm8962-audio";
-+		audio-cpu = <&sai1>;
-+		audio-codec = <&wm8962>;
-+		hp-det-gpio = <&lsio_gpio1 0 GPIO_ACTIVE_HIGH>;
-+		audio-routing =
-+			"Headphone Jack", "HPOUTL",
-+			"Headphone Jack", "HPOUTR",
-+			"Ext Spk", "SPKOUTL",
-+			"Ext Spk", "SPKOUTR",
-+			"AMIC", "MICBIAS",
-+			"IN3R", "AMIC",
-+			"IN1R", "AMIC";
-+	};
-+
-+	/*
-+	 * This dummy i2c mux. GPIO actually will not impact selection. At actual boards, only 1
-+	 * device connectted. I2C client driver will check ID when probe. Only matched ID's driver
-+	 * probe successfully.
-+	 */
-+	i2cvmux: i2cmux {
-+		compatible = "i2c-mux-gpio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		mux-gpios = <&lsio_gpio5 0 GPIO_ACTIVE_HIGH>; /* use an unused gpio */
-+		i2c-parent = <&cm40_i2c>;
-+
-+		i2c@0 {
-+			reg = <0>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			/* WCPU boards SCH-54536 */
-+			wm8962: wm8962@1a {
-+				compatible = "wlf,wm8962";
-+				reg = <0x1a>;
-+				clocks = <&mclkout0_lpcg IMX_LPCG_CLK_0>;
-+				assigned-clocks = <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_PLL>,
-+						  <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_SLV_BUS>,
-+						  <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_MST_BUS>,
-+						  <&mclkout0_lpcg IMX_LPCG_CLK_0>;
-+				assigned-clock-rates = <786432000>,
-+						       <49152000>,
-+						       <12288000>,
-+						       <12288000>;
-+				DCVDD-supply = <&reg_audio>;
-+				DBVDD-supply = <&reg_audio>;
-+				AVDD-supply = <&reg_audio>;
-+				CPVDD-supply = <&reg_audio>;
-+				MICVDD-supply = <&reg_audio>;
-+				PLLVDD-supply = <&reg_audio>;
-+				SPKVDD1-supply = <&reg_audio>;
-+				SPKVDD2-supply = <&reg_audio>;
-+			};
-+		};
-+
-+		i2c@1 {
-+			reg = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			wm8960: wm8960@1a {
-+				compatible = "wlf,wm8960";
-+				reg = <0x1a>;
-+				clocks = <&mclkout0_lpcg IMX_LPCG_CLK_0>;
-+				clock-names = "mclk";
-+				wlf,shared-lrclk;
-+				wlf,hp-cfg = <2 2 3>;
-+				wlf,gpio-cfg = <1 3>;
-+				assigned-clocks = <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_PLL>,
-+						  <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_SLV_BUS>,
-+						  <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_MST_BUS>,
-+						  <&mclkout0_lpcg IMX_LPCG_CLK_0>;
-+				assigned-clock-rates = <786432000>,
-+						       <49152000>,
-+						       <12288000>,
-+						       <12288000>;
-+			};
-+		};
-+	};
- };
- 
- &dsp {
-@@ -188,6 +294,29 @@ typec_con_ss: endpoint {
- 
- };
- 
-+&cm40_i2c {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default", "gpio";
-+	pinctrl-0 = <&pinctrl_cm40_i2c>;
-+	pinctrl-1 = <&pinctrl_cm40_i2c_gpio>;
-+	scl-gpios = <&lsio_gpio1 10 GPIO_ACTIVE_HIGH>;
-+	sda-gpios = <&lsio_gpio1 9 GPIO_ACTIVE_HIGH>;
-+	status = "okay";
-+
-+	pca6416: gpio@20 {
-+		compatible = "ti,tca6416";
-+		reg = <0x20>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
-+};
-+
-+&cm40_intmux {
-+	status = "okay";
-+};
-+
- &lpuart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_lpuart0>;
-@@ -218,6 +347,53 @@ &scu_key {
- 	status = "okay";
- };
- 
-+&sai0 {
-+	#sound-dai-cells = <0>;
-+	assigned-clocks = <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_PLL>,
-+			  <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_SLV_BUS>,
-+			  <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_MST_BUS>,
-+			  <&sai0_lpcg IMX_LPCG_CLK_0>;
-+	assigned-clock-rates = <786432000>, <49152000>, <12288000>, <49152000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_sai0>;
-+	status = "okay";
-+};
-+
-+&sai1 {
-+	assigned-clocks = <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_PLL>,
-+			  <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_SLV_BUS>,
-+			  <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_MST_BUS>,
-+			  <&sai1_lpcg IMX_LPCG_CLK_0>;
-+	assigned-clock-rates = <786432000>, <49152000>, <12288000>, <49152000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_sai1>;
-+	status = "okay";
-+};
-+
-+&sai4 {
-+	assigned-clocks = <&acm IMX_ADMA_ACM_SAI4_MCLK_SEL>,
-+			  <&clk IMX_SC_R_AUDIO_PLL_1 IMX_SC_PM_CLK_PLL>,
-+			  <&clk IMX_SC_R_AUDIO_PLL_1 IMX_SC_PM_CLK_SLV_BUS>,
-+			  <&clk IMX_SC_R_AUDIO_PLL_1 IMX_SC_PM_CLK_MST_BUS>,
-+			  <&sai4_lpcg IMX_LPCG_CLK_0>;
-+	assigned-clock-parents = <&aud_pll_div1_lpcg IMX_LPCG_CLK_0>;
-+	assigned-clock-rates = <0>, <786432000>, <98304000>, <12288000>, <98304000>;
-+	fsl,sai-asynchronous;
-+	status = "okay";
-+};
-+
-+&sai5 {
-+	assigned-clocks = <&acm IMX_ADMA_ACM_SAI5_MCLK_SEL>,
-+			  <&clk IMX_SC_R_AUDIO_PLL_1 IMX_SC_PM_CLK_PLL>,
-+			  <&clk IMX_SC_R_AUDIO_PLL_1 IMX_SC_PM_CLK_SLV_BUS>,
-+			  <&clk IMX_SC_R_AUDIO_PLL_1 IMX_SC_PM_CLK_MST_BUS>,
-+			  <&sai5_lpcg IMX_LPCG_CLK_0>;
-+	assigned-clock-parents = <&aud_pll_div1_lpcg IMX_LPCG_CLK_0>;
-+	assigned-clock-rates = <0>, <786432000>, <98304000>, <12288000>, <98304000>;
-+	fsl,sai-asynchronous;
-+	status = "okay";
-+};
-+
- &thermal_zones {
- 	pmic-thermal {
- 		polling-delay-passive = <250>;
-@@ -314,6 +490,21 @@ &vpu_core1 {
- };
- 
- &iomuxc {
-+
-+	pinctrl_cm40_i2c: cm40i2cgrp {
-+		fsl,pins = <
-+			IMX8QXP_ADC_IN1_M40_I2C0_SDA                            0x0600004c
-+			IMX8QXP_ADC_IN0_M40_I2C0_SCL                            0x0600004c
-+		>;
-+	};
-+
-+	pinctrl_cm40_i2c_gpio: cm40i2cgpio-grp {
-+		fsl,pins = <
-+			IMX8QXP_ADC_IN1_LSIO_GPIO1_IO09				0xc600004c
-+			IMX8QXP_ADC_IN0_LSIO_GPIO1_IO10				0xc600004c
-+		>;
-+	};
-+
- 	pinctrl_fec1: fec1grp {
- 		fsl,pins = <
- 			IMX8QXP_ENET0_MDC_CONN_ENET0_MDC			0x06000020
-@@ -385,6 +576,25 @@ IMX8QXP_ENET0_REFCLK_125M_25M_LSIO_GPIO5_IO09           0x60
- 		>;
- 	};
- 
-+	pinctrl_sai0: sai0grp {
-+		fsl,pins = <
-+			IMX8QXP_SAI0_TXD_ADMA_SAI0_TXD		0x06000060
-+			IMX8QXP_SAI0_RXD_ADMA_SAI0_RXD		0x06000040
-+			IMX8QXP_SAI0_TXC_ADMA_SAI0_TXC		0x06000040
-+			IMX8QXP_SAI0_TXFS_ADMA_SAI0_TXFS	0x06000040
-+		>;
-+	};
-+
-+	pinctrl_sai1: sai1grp {
-+		fsl,pins = <
-+			IMX8QXP_SAI1_RXD_ADMA_SAI1_RXD     0x06000040
-+			IMX8QXP_SAI1_RXC_ADMA_SAI1_TXC     0x06000040
-+			IMX8QXP_SAI1_RXFS_ADMA_SAI1_TXFS   0x06000040
-+			IMX8QXP_SPI0_CS1_ADMA_SAI1_TXD     0x06000060
-+			IMX8QXP_SPI2_CS0_LSIO_GPIO1_IO00   0x06000040
-+		>;
-+	};
-+
- 	pinctrl_usdhc1: usdhc1grp {
- 		fsl,pins = <
- 			IMX8QXP_EMMC0_CLK_CONN_EMMC0_CLK			0x06000041
--- 
-2.34.1
+You even asked above, "Why this is not nvmem cell", you should trust
+your instincts, this *should* be a NVMEM cell. That is how everyone else
+handles eFused MACs, no clue why you want us to use syscon?? We would
+have no way forward in removing all our DT check warnings with syscon.
 
+Syscon is a hacky dead-end filled with custom compatible strings like
+"ti,am62p-cpsw-mac-efuse" and custom properties like "ti,syscon-efuse".
+
+NVMEM is a standard, forcing us to use TI custom syscon properties will
+prevent our DT from working on anything other than Linux (unless we go
+manually add support for every TI custom property to every DT using SW,
+defeats the whole purpose DT).
+
+Andrew
+
+[0] https://lore.kernel.org/all/e7114cb4-e24f-4e78-a89f-4e2e2e704b8a@ti.com/
+
+>>
+>>>
+>>>>   			};
+>>>>   
+>>>>   			cpsw_port2: port@2 {
+>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
+>>>> index a84756c336d0..df9d40f64e3b 100644
+>>>> --- a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
+>>>> +++ b/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
+>>>> @@ -18,6 +18,11 @@ chipid: chipid@14 {
+>>>>   			reg = <0x14 0x4>;
+>>>>   			bootph-all;
+>>>>   		};
+>>>> +
+>>>> +		cpsw_mac_efuse: cpsw-mac-efuse@200 {
+>>>
+>>> Node names should be generic. See also an explanation and list of
+>>> examples (not exhaustive) in DT specification:
+>>> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+>>
+>> I was following the convention that other mfd-syscon compatible nodes
+>> seemed to be using:
+>> https://github.com/torvalds/linux/blob/41bccc98fb7931d63d03f326a746ac4d429c1dd3/arch/arm64/boot/dts/ti/k3-am65-main.dtsi#L502
+>> The node is:
+>> dss_oldi_io_ctrl: dss-oldi-io-ctrl@41e0
+>> corresponding to the compatible:
+>> "ti,am654-dss-oldi-io-ctrl"
+>> which was added by commit:
+>> https://github.com/torvalds/linux/commit/cb523495ee2a5938fbdd30b8a35094d386c55c12
+> 
+> So if that one was wrong, then what? I don't know really what type of
+> device is it, but just because one contributor called it that way, does
+> not mean you should keep going. Maybe investigate why that contributor
+> did not decide to follow Devicetree spec recommendation?
+> 
+> Best regards,
+> Krzysztof
+> 
 
