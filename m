@@ -1,131 +1,133 @@
-Return-Path: <devicetree+bounces-56384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56385-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A10E2898EE3
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 21:21:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71977898EE8
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 21:22:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 41975B20D4A
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 19:21:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2CB8E28BFDF
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 19:22:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48703133987;
-	Thu,  4 Apr 2024 19:21:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3702D133987;
+	Thu,  4 Apr 2024 19:22:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="KBQj/lSE"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="DiO4IAai"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2BFD131BDE
-	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 19:21:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 485F2131BDE;
+	Thu,  4 Apr 2024 19:22:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712258474; cv=none; b=pbMILH252/IVYRSmzfLik4Yv40vNeAkGV3meIgKP3tL3nJ+Tm8bC+UrGvrCcp+I+ld5deM0pW+WA9vsuch3eqLbz03UNtBQQ590kzsatLTg2twNm0TmKCik0c5j6MaTeEXbZwLBv6Vuwg2dTQpTd8tPPPCPyKyS9pIHxFQUoU+0=
+	t=1712258534; cv=none; b=SxlkkFWfTOBhuCYrK5je1smlm/ScGxcS8hQCtpbO6MpWnbKGOfMYDRqBOFC233q3ZQ43pVRb3+NVxgZniTU1k10cx8XiMeG7eIxOqyLDUwqSwUYUF8Wfuukx8h0gfWxEGk8w86OQmT/uZ7TKf1QJQbTDS4kBPu2OrjZZWcA5owQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712258474; c=relaxed/simple;
-	bh=CVr2IxXDHjqtPIjdakFNnsSdpqceotjDCl0kfyrywLA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iN3iyYiu5Oh1Fk1CL6hJ8iut91NeVi98ECRp7lovWGuz+DhxOQfyfQcpSWvPuY+rdVadfPYx20tQvRU19acqzHUdiC8eXG4k4EJWqgR8LYU8ai0JYH7um9lpFhAsul+4cLiKKfd2faI/9VlousE8HVPKhztGhN8LPWwdo++uOSs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=KBQj/lSE; arc=none smtp.client-ip=209.85.128.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-614b02f8ed6so21959387b3.0
-        for <devicetree@vger.kernel.org>; Thu, 04 Apr 2024 12:21:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1712258472; x=1712863272; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Dl/FopeODNdULB5NSwrsajN91zng/VnqM090COn1yWc=;
-        b=KBQj/lSEZpu6lpVtuj6vzcFweWjT8/rKVwz+ZUh6Lv3d8KOkBbvx5uXejk73IwFE35
-         wdKPc+rm0gS14kpdoo06ZOpjSb8GIKeVAh6ZDJdBKJXsIXoB2ZmYJU+yy6gzGJJFmX3P
-         rcJe1Uhilps6C5LDxJUWay3FSyt4mwewYB2J5ANZB/0e6H/WDkTSyoZCL4stNx6dkZjM
-         j2NvxGCyjfPxVs47V+zWIOO9AZmtUvBT4m0snww90NXGvRpfGyUiyUDiIP77xBYD5pZO
-         9Gv2qNFtM1BalkylcoJUt6mXM834x79Rr0oVTr6MaUbOo0F5ZN/Dfr8aNgjNkpR9ePCW
-         +DhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712258472; x=1712863272;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Dl/FopeODNdULB5NSwrsajN91zng/VnqM090COn1yWc=;
-        b=GlaJ/IwEEcNVng/fmz/Nrft1MH1sCTs7ih5zGxn18wD7voyjquL+/kTffx6OzZsTIf
-         +08vAWrhAm5PCNOQOEoo3FDTZ316E34BV/7Y9qTB4utcQdUe2rCpakULHrLIn9KDsUBf
-         YkufQJC/Vx9OzYcf1t4izGm5QFZlu5bWrFpfy8qqQZfmXnVQ6/az/wwFmyudjLVSpRSB
-         pXBcQnAv1GKfh0rSQkt9RXeQRKqKt0aWgW98KS+GBGIO5FfJe+NcZD6vRC9ohuvcEBm/
-         gVXRSCzVzUkRcQTqMPTIPRTe2KoFUHFycgdoCTExkO0339lEHlIWYRhrnqJ26dm9Qowl
-         kQCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX7Z1pfX8+NjpbbyRp+4ZFccugSj/OSVuVnBZe1EWld9+dc9npjKDYfpHHVIdprUqnBQb+E+fT4gS67pXStQYwSAIK5FB70gnCFPg==
-X-Gm-Message-State: AOJu0Yxoo8XqgZeLdJtUISKXOQsA2twQjX5iHdqmJi/MRzJaROxU/GKG
-	DW13ZOkPQC3+yLkPjynLS9j7YuXcVXUVWQgQIgFOtR5ZnGKn12D+AJNIX/zMBNLWkrBbhUZqGEk
-	gJefvWX6gU8yw2WMas8+x7NK3YWwUnaMzNIQUbw==
-X-Google-Smtp-Source: AGHT+IGyZ3JMNrz8F2bkpirKnyuGQawxZoeXVCC/y6GzZBE4nmRVGOFkLbxGUyQaEHSmHXKt9NtfMMywjFKnI39zfuA=
-X-Received: by 2002:a0d:dd8c:0:b0:615:e10:691c with SMTP id
- g134-20020a0ddd8c000000b006150e10691cmr414269ywe.1.1712258471733; Thu, 04 Apr
- 2024 12:21:11 -0700 (PDT)
+	s=arc-20240116; t=1712258534; c=relaxed/simple;
+	bh=Egp1NO+BBlQy6ZZGKntrh5fzBSDWHai2iUKm4Jo2cmg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WWKBq0GLmZqVHU3u5KnnXUdLsYqsSHtblpzFh9ZzAvV3bDICRBFaz/HeVaZB3YURRpOB0V5u2h5qzmDXdYFcRZLcBwacyhyQB+G279TKafQuaSCrVlcbQNakjnYoY+JpLtL0af7GcxO9Dipe7PrLZJvDNneJq5Ilb/f7xOvHJ3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=DiO4IAai; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1712258532; x=1743794532;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Egp1NO+BBlQy6ZZGKntrh5fzBSDWHai2iUKm4Jo2cmg=;
+  b=DiO4IAaih9vj+aJns5ZcMwztJ1Tm5SOZQ4lnypenLOMzA/VbYU2Dn7VG
+   N42kcCWwtDknBtZLGd5imwd5Y5bZpznmiQw6ghCdQsjopN2wqR9AFJe3K
+   uMQ0osGK4zEXTCG544BPAMQTwQvh5iqp+R6601RqSEe7WjdD+fOTaXqHU
+   5rDooBr8oxohzqDEgEP3frxQ/HvG45+7xn9W23WfCwKa3JpztPI/pFdpm
+   KVAiuJWAWOMm2k7idSqZnNZ3RRmq775zyjoQinhsswoIL7WyjhhsVCIkA
+   bQRcKiUqjzXuvKT9euIX3pOPesKprGgwi9sx4JiLGt//22dG4QsJVKWR/
+   w==;
+X-CSE-ConnectionGUID: E/n14+tmT6yK0/6MFkVLxw==
+X-CSE-MsgGUID: uTQMLcOZQgOirF/mMzxKPA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="7413478"
+X-IronPort-AV: E=Sophos;i="6.07,179,1708416000"; 
+   d="scan'208";a="7413478"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Apr 2024 12:22:11 -0700
+X-CSE-ConnectionGUID: a/A4cP3QR6+wDOFXpyubLg==
+X-CSE-MsgGUID: wvMv0wbdQuWynV1lIHOBrg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,179,1708416000"; 
+   d="scan'208";a="18911324"
+Received: from lkp-server01.sh.intel.com (HELO e61807b1d151) ([10.239.97.150])
+  by fmviesa006.fm.intel.com with ESMTP; 04 Apr 2024 12:22:06 -0700
+Received: from kbuild by e61807b1d151 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rsSex-0001PS-2d;
+	Thu, 04 Apr 2024 19:22:03 +0000
+Date: Fri, 5 Apr 2024 03:21:55 +0800
+From: kernel test robot <lkp@intel.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	chunkuang.hu@kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+	tzimmermann@suse.de, matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com, shawn.sung@mediatek.com,
+	yu-chang.lee@mediatek.com, ck.hu@mediatek.com,
+	jitao.shi@mediatek.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linux-mediatek@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, wenst@chromium.org,
+	kernel@collabora.com
+Subject: Re: [PATCH v1 2/3] dt-bindings: arm: mediatek: mmsys: Add OF graph
+ support for board path
+Message-ID: <202404050315.7WBDW2E8-lkp@intel.com>
+References: <20240404081635.91412-3-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240403234054.2020347-1-debug@rivosinc.com> <20240403234054.2020347-9-debug@rivosinc.com>
- <8fb37319-288c-4f77-9cd7-92f17bb567ee@redhat.com> <d3689521-58a7-47df-bd6a-0e2e60464491@sirena.org.uk>
- <604863a6-0387-4f29-9c4e-5ef86a8ca904@redhat.com>
-In-Reply-To: <604863a6-0387-4f29-9c4e-5ef86a8ca904@redhat.com>
-From: Deepak Gupta <debug@rivosinc.com>
-Date: Thu, 4 Apr 2024 12:21:00 -0700
-Message-ID: <CAKC1njRT0GHJEY2NYWuPm7Az7yCj0ZWSevYj1NY6npr136jfsA@mail.gmail.com>
-Subject: Re: [PATCH v3 08/29] mm: Define VM_SHADOW_STACK for RISC-V
-To: David Hildenbrand <david@redhat.com>
-Cc: Mark Brown <broonie@kernel.org>, paul.walmsley@sifive.com, 
-	rick.p.edgecombe@intel.com, Szabolcs.Nagy@arm.com, kito.cheng@sifive.com, 
-	keescook@chromium.org, ajones@ventanamicro.com, conor.dooley@microchip.com, 
-	cleger@rivosinc.com, atishp@atishpatra.org, alex@ghiti.fr, bjorn@rivosinc.com, 
-	alexghiti@rivosinc.com, samuel.holland@sifive.com, conor@kernel.org, 
-	linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-mm@kvack.org, 
-	linux-arch@vger.kernel.org, linux-kselftest@vger.kernel.org, corbet@lwn.net, 
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, oleg@redhat.com, akpm@linux-foundation.org, 
-	arnd@arndb.de, ebiederm@xmission.com, Liam.Howlett@oracle.com, vbabka@suse.cz, 
-	lstoakes@gmail.com, shuah@kernel.org, brauner@kernel.org, 
-	andy.chiu@sifive.com, jerry.shih@sifive.com, hankuan.chen@sifive.com, 
-	greentime.hu@sifive.com, evan@rivosinc.com, xiao.w.wang@intel.com, 
-	charlie@rivosinc.com, apatel@ventanamicro.com, mchitale@ventanamicro.com, 
-	dbarboza@ventanamicro.com, sameo@rivosinc.com, shikemeng@huaweicloud.com, 
-	willy@infradead.org, vincent.chen@sifive.com, guoren@kernel.org, 
-	samitolvanen@google.com, songshuaishuai@tinylab.org, gerg@kernel.org, 
-	heiko@sntech.de, bhe@redhat.com, jeeheng.sia@starfivetech.com, 
-	cyy@cyyself.name, maskray@google.com, ancientmodern4@gmail.com, 
-	mathis.salmen@matsal.de, cuiyunhui@bytedance.com, bgray@linux.ibm.com, 
-	mpe@ellerman.id.au, baruch@tkos.co.il, alx@kernel.org, 
-	catalin.marinas@arm.com, revest@chromium.org, josh@joshtriplett.org, 
-	shr@devkernel.io, deller@gmx.de, omosnace@redhat.com, ojeda@kernel.org, 
-	jhubbard@nvidia.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240404081635.91412-3-angelogioacchino.delregno@collabora.com>
 
-On Thu, Apr 4, 2024 at 12:15=E2=80=AFPM David Hildenbrand <david@redhat.com=
-> wrote:
->
-> On 04.04.24 21:04, Mark Brown wrote:
-> > On Thu, Apr 04, 2024 at 08:58:06PM +0200, David Hildenbrand wrote:
-> >
-> >> or even introduce some ARCH_HAS_SHADOW_STACK so we can remove these
-> >> arch-specific thingies here.
-> >
-> > It would be convenient if you could pull the ARCH_HAS_USER_SHADOW_STACK
-> > patch out of my clone3 series to do that:
-> >
-> >     https://lore.kernel.org/all/20240203-clone3-shadow-stack-v5-3-322c6=
-9598e4b@kernel.org/
->
-> Crazy, I completely forgot about that one. Yes!
+Hi AngeloGioacchino,
 
-I missed that. Roger.
-Will do that in the next series.
-Thanks.
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on drm-misc/drm-misc-next]
+[also build test WARNING on robh/for-next pza/reset/next linus/master v6.9-rc2 next-20240404]
+[cannot apply to pza/imx-drm/next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/AngeloGioacchino-Del-Regno/dt-bindings-display-mediatek-Add-OF-graph-support-for-board-path/20240404-161930
+base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
+patch link:    https://lore.kernel.org/r/20240404081635.91412-3-angelogioacchino.delregno%40collabora.com
+patch subject: [PATCH v1 2/3] dt-bindings: arm: mediatek: mmsys: Add OF graph support for board path
+compiler: loongarch64-linux-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20240405/202404050315.7WBDW2E8-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202404050315.7WBDW2E8-lkp@intel.com/
+
+dtcheck warnings: (new ones prefixed by >>)
+>> Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml: properties:port:properties:required: ['endpoint@0'] is not of type 'object', 'boolean'
+   	from schema $id: http://json-schema.org/draft-07/schema#
+>> Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml: properties:port:properties: 'required' should not be valid under {'$ref': '#/definitions/json-schema-prop-names'}
+   	hint: A json-schema keyword was found instead of a DT property name.
+   	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+>> Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml: properties:port:properties:required: ['endpoint@0'] is not of type 'object', 'boolean'
+   	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+--
+>> Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml: ignoring, error in schema: properties: port: properties: required
+   Documentation/devicetree/bindings/net/snps,dwmac.yaml: mac-mode: missing type definition
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
