@@ -1,110 +1,148 @@
-Return-Path: <devicetree+bounces-56105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4EB1897CFA
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 02:20:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23C08897D09
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 02:27:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 39575B29ACD
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 00:20:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CCCB928C6A2
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 00:27:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 515881848;
-	Thu,  4 Apr 2024 00:20:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 670351FC4;
+	Thu,  4 Apr 2024 00:27:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="gfnYfENW"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="KMKihofe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ABED1370
-	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 00:20:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2844A184D;
+	Thu,  4 Apr 2024 00:27:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712190024; cv=none; b=aGrKfEiFmw6HAPPU3eiotJnwcuXTYe8fnOH8I9UlGGYqdrgBbd0HuHN8F9+PiG8gcqHdUs9oqPsFnj8XcFZi6FQqnLVPh5To2qj0cEVuX7n3Ng6VYNRFm1JbU1dBISt8MMRAVbjX3J9K9ActiHFVB8/ImyfcCOu/pS0NLIwzy00=
+	t=1712190436; cv=none; b=h5klxbAfaSpz0zndZiGa5BdKfaw8A92wbc0SP2nbjcI6JOXZyHIrEdtnY36XPlQveI+PszcSJXNLqblW/HtVOMDmlz/uAQesGmexkYtc06aDcrCwMcwwZGpRDGGqYs2xoz+Dzy8DyjAQTmGSlPrCRNnKaBaqB0f5NZLo3yQvGjY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712190024; c=relaxed/simple;
-	bh=UKsWN2uz9h3bn7/ge9MZHCvsdhP/ReXNUWuB2NQX+6A=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BzIwurd8rPT2Q15UoQRhEvaBqLaYZADkv+Fg4PYjg42tFsN+z2tqtIIWxnvFRNHw6rFWIcp7AHw0yzB/ekbyKER4+vLvgvs9vvJO5STuDxQE2+AfuptGCCwakO6TabBrICSXIwIwMWqdQBJs2B2qc1TkCpTICWGyoW//o+aIip8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=gfnYfENW; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A86E13A3;
-	Thu,  4 Apr 2024 02:19:42 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1712189982;
-	bh=UKsWN2uz9h3bn7/ge9MZHCvsdhP/ReXNUWuB2NQX+6A=;
-	h=From:To:Cc:Subject:Date:From;
-	b=gfnYfENWAR7J/fbxS6cTzH+MCI/XcGgmubOexT9qBdaHVMzUGna4g/5CIO4vja6/E
-	 lJQkzVNfx166v1Tep/wdZkXUkDR44SIUPnaLiLKcYjOQWZvdg8OdNEs438xSsY9524
-	 X9a7LxbwGN8nRT/SnT1y8s8LJiKvyVeCMxQBd/w4=
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Cc: Jacopo Mondi <jacopo@jmondi.org>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	Shawn Guo <shawnguo@kernel.org>
-Subject: [PATCH v2] arm64: dts: debix-a: Disable i2c2 in base .dts
-Date: Thu,  4 Apr 2024 03:20:09 +0300
-Message-ID: <20240404002009.10052-1-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.43.2
+	s=arc-20240116; t=1712190436; c=relaxed/simple;
+	bh=v/vIa/rR8iRyMy4mIpAf1wWxqzwbq+JhVF4Y2ktEIAQ=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=YW5JHVlJ7866pl79e5/cnAcEQrcQPOskDkCnx989SOJNsPVUBpmc+bvnnbSvHZTtN8QBjSjK1Ldj8kFeKVhDpKFrz2gO9zfQ/rd/l5EoxxB1k0c8xB4b0/xZCNeLslxdPiRLaVDJ5KemHLxCS4tBOa+FX1XD4q7p1gPW9voDFKc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=KMKihofe; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+Received: from [192.168.68.112] (ppp118-210-182-70.adl-adc-lon-bras34.tpg.internode.on.net [118.210.182.70])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id CD58320172;
+	Thu,  4 Apr 2024 08:27:01 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1712190426;
+	bh=7XBJv5sXFllW6o2Z1qUfGGSmKeySAzOgxYx/fU65DDo=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=KMKihofeIwJ5nFzr9rQ6jaTGM8JkIsM88UxAya7N3V3td2wYInXkbxhN4x2bfPXnc
+	 6bc4M7rVw0UfgL1YD1QunC9k4bPWoTwTPRMghNm9ELeJyAy5a9QMUgXIQ2NNuoTTpR
+	 RNBzwmlKIwzeVisUPu/Sin/4XaD+G9S5+9UbnpBwldoxXicbThPk3FX/37bSTiHuMv
+	 hTD+rMM5ubqiu0BIG/tRIQ08n34xFzDKtPOICO9DhZFFDQF6si5kqe9Fhbm15OJXYx
+	 Jp1qcUoBGCJpXndHnXvBOnr3T5xX0ARuczw0DPLlZkYyEIKNlYNNqMZrrOiY9WGA7+
+	 wtT+HTc+9+kEw==
+Message-ID: <cfc735c787707298ef3e2e1f5aa6f3096326a26b.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v2] dt-bindings: watchdog: aspeed,ast2400-wdt: Convert
+ to DT schema
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Rob Herring <robh@kernel.org>
+Cc: wim@linux-watchdog.org, linux@roeck-us.net, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, joel@jms.id.au, 
+	zev@bewilderbeest.net, linux-watchdog@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Date: Thu, 04 Apr 2024 10:56:59 +1030
+In-Reply-To: <20240403171321.GA3996007-robh@kernel.org>
+References: <20240403020439.418788-1-andrew@codeconstruct.com.au>
+	 <20240403171321.GA3996007-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-From: Jacopo Mondi <jacopo@jmondi.org>
+On Wed, 2024-04-03 at 12:13 -0500, Rob Herring wrote:
+> On Wed, Apr 03, 2024 at 12:34:39PM +1030, Andrew Jeffery wrote:
+> > Squash warnings such as:
+> >=20
+> > ```
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-galaxy100.dtb: /ahb/apb@1e=
+600000/watchdog@1e785000: failed to match any schema with compatible: ['asp=
+eed,ast2400-wdt']
+> > ```
+> >=20
+> > The schema binding additionally defines the clocks property over the
+> > prose binding to align with use of the node in the DTS files.
+> >=20
+> > Signed-off-by: Andrew Jeffery <andrew@codeconstruct.com.au>
+> > ---
+> > v2: Address feedback from Rob and Zev
+> >=20
+> >     - Rob: https://lore.kernel.org/linux-watchdog/20240402180718.GA3585=
+05-robh@kernel.org/
+> >     - Zev: https://lore.kernel.org/linux-watchdog/65722a59-2e94-4616-81=
+e1-835615b0e600@hatter.bewilderbeest.net/
+> >=20
+> > v1: https://lore.kernel.org/linux-watchdog/20240402120118.282035-1-andr=
+ew@codeconstruct.com.au/
+> >=20
+> >  .../bindings/watchdog/aspeed,ast2400-wdt.yaml | 142 ++++++++++++++++++
+> >  .../bindings/watchdog/aspeed-wdt.txt          |  73 ---------
+> >  2 files changed, 142 insertions(+), 73 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/watchdog/aspeed,a=
+st2400-wdt.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/watchdog/aspeed-w=
+dt.txt
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/watchdog/aspeed,ast2400-=
+wdt.yaml b/Documentation/devicetree/bindings/watchdog/aspeed,ast2400-wdt.ya=
+ml
+> > new file mode 100644
+> > index 000000000000..be78a9865584
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/watchdog/aspeed,ast2400-wdt.yam=
+l
+> > @@ -0,0 +1,142 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/watchdog/aspeed,ast2400-wdt.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Aspeed watchdog timer controllers
+> > +
+> > +maintainers:
+> > +  - Andrew Jeffery <andrew@codeconstruct.com.au>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - aspeed,ast2400-wdt
+> > +      - aspeed,ast2500-wdt
+> > +      - aspeed,ast2600-wdt
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +    description: >
+>=20
+> You don't need '>' either. I guess it is equivalent here as there are no=
+=20
+> double newlines. Drop these if you respin, otherwise:
+>=20
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-The I2C2 bus is used for the CSI and DSI connectors only, no devices are
-connected to it on neither the Debix Model A nor its IO board. Disable
-the bus in the board's .dts and remove its clock frequency settings, as
-the value depends solely on the devices conncted to the CSI and DSI
-connectors. Display panel or camera sensor overlays will configure and
-enable the bus when necessary.
+Thanks. I've made a note for the future to avoid `>` if it's not
+necessary, but at the time I figured it wasn't incorrect to include it.
 
-Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Reviewed-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
----
-Changes since v1:
-
-- Don't drop the bus, just disable it
----
- arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts | 2 --
- 1 file changed, 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-index 2c19766ebf09..9b8f97a84e61 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-@@ -197,10 +197,8 @@ ldo5: LDO5 {
- };
- 
- &i2c2 {
--	clock-frequency = <100000>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_i2c2>;
--	status = "okay";
- };
- 
- &i2c3 {
-
-base-commit: 4cece764965020c22cff7665b18a012006359095
--- 
-Regards,
-
-Laurent Pinchart
-
+Andrew
 
