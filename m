@@ -1,133 +1,277 @@
-Return-Path: <devicetree+bounces-56385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71977898EE8
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 21:22:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13300898F08
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 21:30:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2CB8E28BFDF
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 19:22:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 314341C2265F
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 19:30:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3702D133987;
-	Thu,  4 Apr 2024 19:22:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA1FE134435;
+	Thu,  4 Apr 2024 19:30:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="DiO4IAai"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Nj1OcjXG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 485F2131BDE;
-	Thu,  4 Apr 2024 19:22:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A728313341E
+	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 19:30:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712258534; cv=none; b=SxlkkFWfTOBhuCYrK5je1smlm/ScGxcS8hQCtpbO6MpWnbKGOfMYDRqBOFC233q3ZQ43pVRb3+NVxgZniTU1k10cx8XiMeG7eIxOqyLDUwqSwUYUF8Wfuukx8h0gfWxEGk8w86OQmT/uZ7TKf1QJQbTDS4kBPu2OrjZZWcA5owQ=
+	t=1712259034; cv=none; b=uRBDQGCuszGKr2O3yZ+Qo++TwTB+bvUjTa6YOnz7xv+LH7O8fvALOLiC4H7YtFDrb3DhW4Z6Koti6dPm0bfwsaxqI0juZtJ8cB/7a3BBgJvhOr6f1SdMFGSkh+Xd+HBvCqh2psMFNJiYun84zWton1+7mkyf4K7dQ+1qRe6RrBY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712258534; c=relaxed/simple;
-	bh=Egp1NO+BBlQy6ZZGKntrh5fzBSDWHai2iUKm4Jo2cmg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WWKBq0GLmZqVHU3u5KnnXUdLsYqsSHtblpzFh9ZzAvV3bDICRBFaz/HeVaZB3YURRpOB0V5u2h5qzmDXdYFcRZLcBwacyhyQB+G279TKafQuaSCrVlcbQNakjnYoY+JpLtL0af7GcxO9Dipe7PrLZJvDNneJq5Ilb/f7xOvHJ3M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=DiO4IAai; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1712258532; x=1743794532;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Egp1NO+BBlQy6ZZGKntrh5fzBSDWHai2iUKm4Jo2cmg=;
-  b=DiO4IAaih9vj+aJns5ZcMwztJ1Tm5SOZQ4lnypenLOMzA/VbYU2Dn7VG
-   N42kcCWwtDknBtZLGd5imwd5Y5bZpznmiQw6ghCdQsjopN2wqR9AFJe3K
-   uMQ0osGK4zEXTCG544BPAMQTwQvh5iqp+R6601RqSEe7WjdD+fOTaXqHU
-   5rDooBr8oxohzqDEgEP3frxQ/HvG45+7xn9W23WfCwKa3JpztPI/pFdpm
-   KVAiuJWAWOMm2k7idSqZnNZ3RRmq775zyjoQinhsswoIL7WyjhhsVCIkA
-   bQRcKiUqjzXuvKT9euIX3pOPesKprGgwi9sx4JiLGt//22dG4QsJVKWR/
-   w==;
-X-CSE-ConnectionGUID: E/n14+tmT6yK0/6MFkVLxw==
-X-CSE-MsgGUID: uTQMLcOZQgOirF/mMzxKPA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="7413478"
-X-IronPort-AV: E=Sophos;i="6.07,179,1708416000"; 
-   d="scan'208";a="7413478"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Apr 2024 12:22:11 -0700
-X-CSE-ConnectionGUID: a/A4cP3QR6+wDOFXpyubLg==
-X-CSE-MsgGUID: wvMv0wbdQuWynV1lIHOBrg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,179,1708416000"; 
-   d="scan'208";a="18911324"
-Received: from lkp-server01.sh.intel.com (HELO e61807b1d151) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 04 Apr 2024 12:22:06 -0700
-Received: from kbuild by e61807b1d151 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rsSex-0001PS-2d;
-	Thu, 04 Apr 2024 19:22:03 +0000
-Date: Fri, 5 Apr 2024 03:21:55 +0800
-From: kernel test robot <lkp@intel.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	chunkuang.hu@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	tzimmermann@suse.de, matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com, shawn.sung@mediatek.com,
-	yu-chang.lee@mediatek.com, ck.hu@mediatek.com,
-	jitao.shi@mediatek.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, wenst@chromium.org,
-	kernel@collabora.com
-Subject: Re: [PATCH v1 2/3] dt-bindings: arm: mediatek: mmsys: Add OF graph
- support for board path
-Message-ID: <202404050315.7WBDW2E8-lkp@intel.com>
-References: <20240404081635.91412-3-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1712259034; c=relaxed/simple;
+	bh=w5sLbhKNiFT6ejKWbgQ77eClEuya0F+lt7zUWfg8hZY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IARimXzcHaSPgkpQszCHW2BVa94JFiEYDCD+A4O0EHeETNybOlB1Nvbaau8aPzgM+2gvZt8WfZSjHnIpfSdj3/sdO+RoEx2pAWNoGAKqALqvf7j5EpSeVPdqQVMIPnGSCW1o0SK8urO4oVLQH8whvR91s5Iw4kqRlSyYZi7gosM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Nj1OcjXG; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-516bf5a145aso1791845e87.1
+        for <devicetree@vger.kernel.org>; Thu, 04 Apr 2024 12:30:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712259031; x=1712863831; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Yg07bkYSH6sLrzzElg+Rn2GgV4JOOW7i3DjKAoQu/3k=;
+        b=Nj1OcjXG4RlGoFrR1T0QlPntZ5c+KK/p9b6lCOemMW5+jQ3yKCOk6DweDvAF9NU5fM
+         5FH0RrYOL0kZqLwLVswuTxJbEia6zUT/ACOYKxW0SIX22pHtQJu9g8/oEwipj662+TtI
+         pja2mVZqQHkdRl9xw07cfPOkVN4RlWP9I6l0i+UEgsILwis9AyhwQ/KO0zKi9lWrMsw4
+         X6gSwWIJ41i2CYvVXnMrqp1EqTYI/4rHnSSIubxc82aoIWbJUYtuO5pE0QMi0lhhesDf
+         CMaWGVEB6J7P+nAci/MdKtNWEuw8M3qg9chXm2A7Ngq/LojZqvDD4IsVjDSHVz0ALNwq
+         FkXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712259031; x=1712863831;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Yg07bkYSH6sLrzzElg+Rn2GgV4JOOW7i3DjKAoQu/3k=;
+        b=C5RezTyIkBRPZB6XaXLgIWhMhqmBtFNDu27AYNq+G1YbI76MF7TOvxVLeBJDxW7+mK
+         +cczVYJdBpUv66BsdxYJi/7o4fYoVyr9MLANEdhPlSATP0dX9yJ32E7yjEmXiUX2IDhY
+         fApeuqERtPNob1vOKzkzvKheFNYkhcpKYfYN6iTNtdbPFwQqoQrgdWJ3Uyx6eEbqXu2R
+         4kw8WdreOhbeiDJobuqficOKt5KyD4PTLOC/DtTxoFwh3mr5k6fYSyizcz6M1vcI0WTH
+         FmJRJOGUAck5jmJVYXSOdrFGz9DSlNio4cS8uwjm2YKcCNYsmhaxDPJrN3HSE6yS85hk
+         zQvQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX9XYY2VlLQEtSE9cKz8CiT39cYO/Ds2zNar+X7xoaFQ9+BXefWhDglQ6wZEMOJZmg4KvDpCSJG4ds5ihid0uN43qIZ32hn20UWcg==
+X-Gm-Message-State: AOJu0YzhRkXgBh7bupIp5fhxA+pDVGdVwEBpgtY842ozR4c+nu2V4mQB
+	gZLrO3MyraRWC/eCbTR3ceoMGSw9JCPp75bTUhEcedjJ5WLcgtUT6WapVw+qtZ0=
+X-Google-Smtp-Source: AGHT+IEvm1G5SQhUJuZ3P5dxlFI0YClZgQrdPKzn3m0pg7Qe3F9PkbTeOFDk4DtBnzuHzYqohzn5rQ==
+X-Received: by 2002:ac2:5150:0:b0:516:a908:1880 with SMTP id q16-20020ac25150000000b00516a9081880mr209765lfd.31.1712259030708;
+        Thu, 04 Apr 2024 12:30:30 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id he18-20020a1709073d9200b00a4729f093ecsm9331068ejc.53.2024.04.04.12.30.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Apr 2024 12:30:30 -0700 (PDT)
+Message-ID: <51b02d02-0e20-49df-ad13-e3dbe3c3214f@linaro.org>
+Date: Thu, 4 Apr 2024 21:30:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240404081635.91412-3-angelogioacchino.delregno@collabora.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 1/2] dt-bindings: pcie: Document QCOM PCIE ECAM
+ compatible root complex
+To: Mayank Rana <quic_mrana@quicinc.com>, linux-pci@vger.kernel.org,
+ lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, bhelgaas@google.com,
+ andersson@kernel.org, manivannan.sadhasivam@linaro.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org
+Cc: linux-arm-msm@vger.kernel.org, quic_ramkri@quicinc.com,
+ quic_nkela@quicinc.com, quic_shazhuss@quicinc.com, quic_msarkar@quicinc.com,
+ quic_nitegupt@quicinc.com
+References: <1712257884-23841-1-git-send-email-quic_mrana@quicinc.com>
+ <1712257884-23841-2-git-send-email-quic_mrana@quicinc.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <1712257884-23841-2-git-send-email-quic_mrana@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi AngeloGioacchino,
+On 04/04/2024 21:11, Mayank Rana wrote:
+> On some of Qualcomm platform, firmware configures PCIe controller in RC
 
-kernel test robot noticed the following build warnings:
+On which?
 
-[auto build test WARNING on drm-misc/drm-misc-next]
-[also build test WARNING on robh/for-next pza/reset/next linus/master v6.9-rc2 next-20240404]
-[cannot apply to pza/imx-drm/next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Your commit or binding must answer to all such questions.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/AngeloGioacchino-Del-Regno/dt-bindings-display-mediatek-Add-OF-graph-support-for-board-path/20240404-161930
-base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
-patch link:    https://lore.kernel.org/r/20240404081635.91412-3-angelogioacchino.delregno%40collabora.com
-patch subject: [PATCH v1 2/3] dt-bindings: arm: mediatek: mmsys: Add OF graph support for board path
-compiler: loongarch64-linux-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20240405/202404050315.7WBDW2E8-lkp@intel.com/reproduce)
+> mode with static iATU window mappings of configuration space for entire
+> supported bus range in ECAM compatible mode. Firmware also manages PCIe
+> PHY as well required system resources. Here document properties and
+> required configuration to power up QCOM PCIe ECAM compatible root complex
+> and PHY for PCIe functionality.
+> 
+> Signed-off-by: Mayank Rana <quic_mrana@quicinc.com>
+> ---
+>  .../devicetree/bindings/pci/qcom,pcie-ecam.yaml    | 94 ++++++++++++++++++++++
+>  1 file changed, 94 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/qcom,pcie-ecam.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ecam.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ecam.yaml
+> new file mode 100644
+> index 00000000..c209f12
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ecam.yaml
+> @@ -0,0 +1,94 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pci/qcom,pcie-ecam.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm ECAM compliant PCI express root complex
+> +
+> +description: |
+Do not need '|' unless you need to preserve formatting.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202404050315.7WBDW2E8-lkp@intel.com/
 
-dtcheck warnings: (new ones prefixed by >>)
->> Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml: properties:port:properties:required: ['endpoint@0'] is not of type 'object', 'boolean'
-   	from schema $id: http://json-schema.org/draft-07/schema#
->> Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml: properties:port:properties: 'required' should not be valid under {'$ref': '#/definitions/json-schema-prop-names'}
-   	hint: A json-schema keyword was found instead of a DT property name.
-   	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
->> Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml: properties:port:properties:required: ['endpoint@0'] is not of type 'object', 'boolean'
-   	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
---
->> Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml: ignoring, error in schema: properties: port: properties: required
-   Documentation/devicetree/bindings/net/snps,dwmac.yaml: mac-mode: missing type definition
+> +  Qualcomm SOC based ECAM compatible PCIe root complex supporting MSI controller.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Which SoC?
+
+> +  Firmware configures PCIe controller in RC mode with static iATU window mappings
+> +  of configuration space for entire supported bus range in ECAM compatible mode.
+> +
+> +maintainers:
+> +  - Mayank Rana <quic_mrana@quicinc.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/pci/pci-bus.yaml#
+> +  - $ref: /schemas/power-domain/power-domain-consumer.yaml
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,pcie-ecam-rc
+
+No, this must have SoC specific compatibles.
+
+> +
+> +  reg:
+> +    minItems: 1
+
+maxItems instead
+
+> +    description: ECAM address space starting from root port till supported bus range
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 8
+
+This is way too unspecific.
+
+> +
+> +  ranges:
+> +    minItems: 2
+> +    maxItems: 3
+
+Why variable?
+
+> +
+> +  iommu-map:
+> +    minItems: 1
+> +    maxItems: 16
+
+Why variable?
+
+Open existing bindings and look how it is done.
+
+
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +    description: A phandle to node which is able support way to communicate with firmware
+> +        for enabling PCIe controller and PHY as well managing all system resources needed to
+> +        make both controller and PHY operational for PCIe functionality.
+
+This description does not tell me much. Say something specific. And drop
+redundant parts like phandle.
+
+
+> +
+> +  dma-coherent: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - ranges
+> +  - power-domains
+> +  - device_type
+> +  - linux,pci-domain
+> +  - bus-range
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +        pcie0: pci@1c00000 {
+> +            compatible = "qcom,pcie-ecam-rc";
+> +            reg = <0x4 0x00000000 0 0x10000000>;
+> +            device_type = "pci";
+> +            #address-cells = <3>;
+> +            #size-cells = <2>;
+> +            ranges = <0x01000000 0x0 0x40000000 0x0 0x40000000 0x0 0x100000>,
+> +                <0x02000000 0x0 0x40100000 0x0 0x40100000 0x0 0x1ff00000>,
+> +                <0x43000000 0x4 0x10100000 0x4 0x10100000 0x0 0x100000>;
+
+Follow DTS coding style about placement and alignment.
+
+Best regards,
+Krzysztof
+
 
