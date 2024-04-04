@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-56204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A178489816E
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 08:26:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AE36898171
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 08:29:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 576E12866F1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 06:26:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A79651F258BB
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 06:29:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61D474CB3D;
-	Thu,  4 Apr 2024 06:26:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C52FB4CE09;
+	Thu,  4 Apr 2024 06:28:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JTUd74/R"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fxwFl5IC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90FD94C634
-	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 06:26:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6BB74CB37
+	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 06:28:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712211981; cv=none; b=ZnhqGA5/AG1yvk0INEG6Wa6CMpdGdYa1EZljFmx2B+TDMkIruV7OA2/aXerYy7cdFZgv3eSOl3N3Gj/NIxgAhGst9R8kXTjxnj6cKMyhXmkjUurc9Cs3fdw+fbn/0TKdVHl/rEBR9EPvVdvWdKl2f+cnIKe/kih99fUWhxsEFe0=
+	t=1712212139; cv=none; b=HANN3ImoBL0sn5YrB/Cj1XzAdRmWy3wAb8ZYYUwzaymYQ6O+DAGgA18wFRIto8Mk8H0oM7wf1jo8rc2tLINYnUP+wGKgkEefJsz6PtAtV+7VkO43LuW5eg+2861wyFFepkuO7OKQPO5cPZNhkG13gt4U3o4zAuFIgF7E7iACHBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712211981; c=relaxed/simple;
-	bh=DXMdBYy+JURPXBmu6wf7aZo7UWB6Ed5DGqd53HDljvA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=r5JuHsc4aDJoI/w/3vf8wxjB2BkJWrROsN03YH4b5PS4a+8fkyvhu5HJmrgfRPCLq4rz4vQE6RncZyioyaH65PQg9u4xx2mATQXMb+lwIfpWY4tSHxpr4TiL/XyP3PJURR0rJgukQAGFoaCEY0ShXUmDAUmiI4+HjunrxJzKlrQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JTUd74/R; arc=none smtp.client-ip=209.85.218.47
+	s=arc-20240116; t=1712212139; c=relaxed/simple;
+	bh=P891P7FcFjkHvWoaTDGtfZs15HNWBmNUKuNxyZnEDmE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pCA3Og6/0An6Hc0Wh9r8hKGHWN0tfsMc2Id7FbyOTLZkvvcsZej/JaiLNWK19TD9+Qj3eHr3bTVQANXAyjZHsjLGclhdIM3S178yZQPPvrOI5MlkPBGg9QxoqRqgPp08hbtxrgE6VKlw7e8yN4Nk09XeEGD66edPkXMjUuitlYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fxwFl5IC; arc=none smtp.client-ip=209.85.218.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a46ea03c2a5so101046166b.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 23:26:19 -0700 (PDT)
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a4e34d138f9so81270866b.2
+        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 23:28:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712211978; x=1712816778; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712212136; x=1712816936; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=iSAY67R1WFy93YDpr7xFqvywbHMfxkjyKwnhViSeBMI=;
-        b=JTUd74/RhnvsWkM27Q0P9WRq0YMV+Wye3yuRXsTGYpNG2UZ56IX72pHL4Ti+jgcoXd
-         KZSx7A5IophK+iKcMJJRfya6gqNZ8Z/V74fIVnyqd+ecWiK8rRS8c+XANCHPgrQH7aGl
-         ZL+V8C1NWryF2RYM8mL8fL1yH8DYrQt9GRwuezr1hN29V7Y9UD99t/nZ8MQfhuT1Bvvy
-         T7gLfv9qJvwcnwQ9hO5xJcNFhyBPw6kWAbDpVjbREyPpq//YRjD2L5tRNRBYQkIYI273
-         LHOCPxO6lh8ORmEsLHdRKbNr9LGnTiGauZCQjVK1ZE3MAIX0VCx0eG5c5GQZd+L7VLZS
-         aTTA==
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ms5IhlohGptfvc7pjsAJh17tRK7tr8jNQiSFppSgCfk=;
+        b=fxwFl5ICEP4Vl8FlC2tGYrasA1wlRZUSEyZIOZ8/WMLT5CrE6pNb6frH+qR1sANAPf
+         j8bJLip5lgL24EMogb3IhKc2LHi8rhbNf9gfhlU/IA2/2WWgWF2upuFTmSpvWL31McuZ
+         ciIbDz0pzJMOTTIkcxN2o8Go9Tjj0P8vEyjQynQ9fF9TzfpApDzdKtEejA11+5KUoSWh
+         emilpQ+vxs1uwCawTDP+kCdnE68nEGvZiIMrWQVeCFqs6OfxFgwsnd06mBdYlrhTNwY3
+         NcU57ycvryG/ynoaobtF7XB3S2VBPTgNn1km414nSqZv2hccrCNdfs3G95BifEgFyf9z
+         RgLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712211978; x=1712816778;
+        d=1e100.net; s=20230601; t=1712212136; x=1712816936;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=iSAY67R1WFy93YDpr7xFqvywbHMfxkjyKwnhViSeBMI=;
-        b=pn8gjlzHIoqXNisyKLOTPTmKGQSbWS0HJKZnMWKWOa7z530QWK6Z5WWz8rxzlDRUIw
-         mxDi79l28X5aKaupJoMuLGZnOa6U8xP9o7jMsDEhIPpr6GsIS+WZ01lAgZ0BzwmgeDWU
-         lYrvxR7sse9V3a3SoQRgoMmw5JcQtdQQOLtvzaINiNFY9B+WJUuScChEEHdz26GCJVdW
-         32+gSt3FLngUAc11NNDMbLZLTOw2MfY8riuewSAgbHHlPtf3mm604kLva7s/ZUyHqadK
-         uO0Ezs3gJ4/d6CyW8MBRJDVqh2IddmDFCU3Ydj8o+C0O7a5v70dF1Uz8LF0x2K0Act4l
-         2+DQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUeJBdVrdpsI6kyb9Hj3zBxrvKkYhDYDYz9A5jZBoyTo2WEAXZ9JMhWeSE4rfBMavkpkHNsfiSx0/hhlGMsj5fkmYamJnqJTSyZIw==
-X-Gm-Message-State: AOJu0YxfyN3IRNkZXifVjIIkdItnONqoonX/IpThnADL6w32Z5BEqBJA
-	JyXbQ9xvC5K0UvUCK2O7pvcaXpIuMx2J6h36wwTrJpw2GYUOM+UAeFk1dNireA8=
-X-Google-Smtp-Source: AGHT+IGBi+x3KcN//qD9D955Pat0vd8vxE5gcHmyvGdVx4wJ4DYpPNiVD0vAZDXzv9VQ8nJasXiTOA==
-X-Received: by 2002:a17:906:110c:b0:a4e:eb64:f669 with SMTP id h12-20020a170906110c00b00a4eeb64f669mr1512163eja.1.1712211977965;
-        Wed, 03 Apr 2024 23:26:17 -0700 (PDT)
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ms5IhlohGptfvc7pjsAJh17tRK7tr8jNQiSFppSgCfk=;
+        b=pgdPFyNZLOEn2axc4oDrBY+VWNzp0Qm+ilt4smy8WDnyAHdcqAqNnzs82VUij2hZ2E
+         UNBdEldOQpjWhaT+0FZCtMRA0nNkCrVslp+hIQ1mFU88Wi0oNqyYegX63MI7Yd9J7lY1
+         F2QpwmcSXfb8IOjAIy+H4mGffFQEKyECGZaBqCnSCx30qy13mLMl3rKYZxzqAFsEm5id
+         jWZ7aJHYG7F4FplI9dIaY0nxMRzk8DKZ+nG5+STmsgoXo+nM9+RtX+z3tlKb3jxlmZ+U
+         vmAiNSbOTdPBkbxHVr9sLPRx+HmeshjfvOMJ21R7Gl8Gg1ZHCWtRJBh5GfZ0Wmx3Hy7S
+         SqCQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUKjPXjRIHewLcwT7kAS/VPeBmtV0Wa1sLweIEcU2UdMllsqI3EOgilH12gB7yldg/URw6xAC/RyIOFh4PhQ3LsUvLTRz+Y2ScoOA==
+X-Gm-Message-State: AOJu0YwXaBjMkGNxy6lmZ2fYTzLHzrFXYwk3538hYcF5hV4s4GxBymHs
+	9I2zXF8R+uF0ygeaASaqckVwQ50k6O1UqcBev9cGueh8Dvu1mVvStViRNaKtcBs=
+X-Google-Smtp-Source: AGHT+IH0sNA8ezJ9BPsyg614V2etJpPGQCn1fiGBVZ4cQzvMRbB2/Jbg8WAoXHIfXhuzfcxUvefLoA==
+X-Received: by 2002:a17:906:3606:b0:a50:c5d1:8e73 with SMTP id q6-20020a170906360600b00a50c5d18e73mr793179ejb.1.1712212136221;
+        Wed, 03 Apr 2024 23:28:56 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id wk8-20020a170907054800b00a4e2d7dd2d8sm7825972ejb.182.2024.04.03.23.26.16
+        by smtp.gmail.com with ESMTPSA id g15-20020a170906538f00b00a4e98679e7dsm2008475ejo.87.2024.04.03.23.28.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Apr 2024 23:26:17 -0700 (PDT)
-Message-ID: <af602862-5120-4717-adb6-694ada09e8d8@linaro.org>
-Date: Thu, 4 Apr 2024 08:26:15 +0200
+        Wed, 03 Apr 2024 23:28:55 -0700 (PDT)
+Message-ID: <3f18098e-f067-4b00-a567-2c9d7db5007f@linaro.org>
+Date: Thu, 4 Apr 2024 08:28:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,24 +77,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] dt-bindings: media: imx-jpeg: add
- clocks,clock-names,slot to fix warning
-To: Frank Li <Frank.Li@nxp.com>, Mirela Rabulea <mirela.rabulea@nxp.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 1/5] dt-bindings: interrupt-controller:
+ renesas,rzg2l-irqc: Document RZ/Five SoC
+To: Prabhakar <prabhakar.csengg@gmail.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- "open list:NXP i.MX 8QXP/8QM JPEG V4L2 DRIVER" <imx@lists.linux.dev>,
- "open list:NXP i.MX 8QXP/8QM JPEG V4L2 DRIVER"
- <linux-media@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>,
- open list <linux-kernel@vger.kernel.org>
-References: <20240404035205.59492-1-Frank.Li@nxp.com>
+ Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-riscv@lists.infradead.org,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20240403203503.634465-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240403203503.634465-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -141,38 +137,58 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240404035205.59492-1-Frank.Li@nxp.com>
+In-Reply-To: <20240403203503.634465-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/04/2024 05:52, Frank Li wrote:
-> Fix below DTB_CHECK warning.
+On 03/04/2024 22:34, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> make CHECK_DTBS=y freescale/imx8qxp-mek.dtb
->   DTC_CHK arch/arm64/boot/dts/freescale/imx8qxp-mek.dtb
-> arch/arm64/boot/dts/freescale/imx8qxp-mek.dtb: jpegdec@58400000: 'assigned-clock-rates', 'assigned-clocks', 'clock-names', 'clocks', 'slot' do not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/media/nxp,imx8-jpeg.yaml#
-
-No, that's not the reason to add properties. Add them if they are valid.
-
-
-
+> Document RZ/Five (R9A07G043F) IRQC bindings. The IRQC block on the RZ/Five
+> SoC is almost identical to the one found on the RZ/G2L SoC, with the only
+> difference being that it has additional mask control registers for
+> NMI/IRQ/TINT.
+> 
+> Hence new compatible string "renesas,r9a07g043f-irqc" is added for RZ/Five
+> SoC.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v1->v2
+> - Dropped the checks for interrupts as its already handled
+> - Added SoC specific compat string
+> ---
+>  .../renesas,rzg2l-irqc.yaml                     | 17 ++++++++++-------
+>  1 file changed, 10 insertions(+), 7 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml b/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
+> index daef4ee06f4e..2a871cbf6f87 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
+> @@ -21,13 +21,16 @@ description: |
 >  
-> +  slot:
-> +    description: Certain slot number is used.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 3
+>  properties:
+>    compatible:
+> -    items:
+> -      - enum:
+> -          - renesas,r9a07g043u-irqc   # RZ/G2UL
+> -          - renesas,r9a07g044-irqc    # RZ/G2{L,LC}
+> -          - renesas,r9a07g054-irqc    # RZ/V2L
+> -          - renesas,r9a08g045-irqc    # RZ/G3S
+> -      - const: renesas,rzg2l-irqc
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - renesas,r9a07g043u-irqc        # RZ/G2UL
+> +              - renesas,r9a07g044-irqc         # RZ/G2{L,LC}
+> +              - renesas,r9a07g054-irqc         # RZ/V2L
+> +              - renesas,r9a08g045-irqc         # RZ/G3S
+> +          - const: renesas,rzg2l-irqc
+> +      - items:
 
-NAK. Every time.
+This is just const, no need for items.
 
-Fix your DTS instead.
-
-Please read the feedback instead of pushing this stuff for the third time!
-
-https://lore.kernel.org/all/bbb1875b-7980-46aa-80b4-dbaf2a2d5755@linaro.org/
-
-Can NXP take responsibility for this piece of code?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
