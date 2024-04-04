@@ -1,139 +1,138 @@
-Return-Path: <devicetree+bounces-56268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56263-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B98F8983A3
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 10:57:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D9DD89838D
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 10:55:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C0A41F230BA
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 08:57:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D76741F22800
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 08:55:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFC8F73504;
-	Thu,  4 Apr 2024 08:57:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30B2B71B5C;
+	Thu,  4 Apr 2024 08:55:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OrSSdmPM"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="hi4BgndK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 961B273177;
-	Thu,  4 Apr 2024 08:57:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97A3D4597A;
+	Thu,  4 Apr 2024 08:55:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712221047; cv=none; b=Hrk+arx7wpa60C4WA1qVkisi0sKfj/IjmsS2YwyW9Tk2RVlV7eWGUPC2zW6rLdAvvz5MnyudesdFo96g8Y9aWqTLWllUh6IKdg/kfFKTN71K5OX1ed8G6LiBBn3AjSHCV1+A3PgCTFT+X6GgKxxH5dtranAxahyhKf3IqvQH5Ew=
+	t=1712220927; cv=none; b=QKuJ+rWi6Y4dPcFIo4nCFyeqLeAH1kQGaulqGbOzLPweiC1jRzjLhQRuiItKgCQtYn3A6DcCO5V1fv9vhvESxgUt0gs4V3Ov6kgmkSvHO7+cpkDPDYxaKNpxlluGcpuXz1dJfe0FKxIZuVpb3V1OIVOfvHEU9j1l0+NCB4FR30k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712221047; c=relaxed/simple;
-	bh=p4+j6w82VtZsXD54otR28kqbdlSqj2lBQn5BULCsTuI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rMEki8MEAJ+oqFoahCZl66EwxdWIGkzeLuk0CGAJs/06hAlICU/EIZ6vr8LkqqFFF331O3nkFB8i4RZXtr99GgsdkHuL6jdh5yeJGmh26o5H7lnm3MeF5o3U3+un6rEHfJdpfTsD1+S9YNpdKQ7aCYBmEGzN6OfDUKItLkbDJNs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OrSSdmPM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 696C3C433C7;
-	Thu,  4 Apr 2024 08:57:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712221046;
-	bh=p4+j6w82VtZsXD54otR28kqbdlSqj2lBQn5BULCsTuI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OrSSdmPMU6cWGOIr9aIskTMnP8lznE37P4IduwDpwKp3RdRq6oxH6mocD8usInBAX
-	 i2A+iyNbl/SPYw5dIBuNlZq/bbGA7xIZiv9wXrh6gQ35UDdVkoiC0/3ZfJTATXOWEA
-	 tTa0HoCmv8io5VFKBeR4xw2WKAh0IAlvoj8lCoFxGvfUkpMM3VSTuFVTwHAuB3ZrU4
-	 hQ5fjsPiYJrsQANelWYTuAOYilDzl1O/RrwmlZ30q+i6kwUkAyIVX/a0oDnTXGEj7L
-	 vouNyKqJNxdmg76aSfA6TdyWaITg8PxUcmixsyBN+ovqOU9OvWsxw8yfeH9sRqpuOD
-	 wsFfMzZRz9HUw==
-Date: Thu, 4 Apr 2024 10:57:23 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-clk@vger.kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-	linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	nbd@nbd.name, john@phrozen.org, devicetree@vger.kernel.org,
-	dd@embedd.com, catalin.marinas@arm.com, will@kernel.org,
-	upstream@airoha.com, lorenzo.bianconi83@gmail.com
-Subject: Re: [PATCH 2/4] arm64: dts: airoha: Add EN7581 clock node
-Message-ID: <Zg5rc2GIwpN7f9Z2@lore-desk>
-References: <cover.1712160869.git.lorenzo@kernel.org>
- <8465b7562bcf53a0adfdd4ae01b3ed94d6d5bc54.1712160869.git.lorenzo@kernel.org>
- <abff4844-b444-48cc-8dad-18eefa6c386c@collabora.com>
+	s=arc-20240116; t=1712220927; c=relaxed/simple;
+	bh=Bmluy+xRk8DrXO78R+oX07cL8R8W3C8ZFNiksVO25b4=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=Ew/HxNh0jLEhTTRXE+JliBxBjcWFTfZMlrz63Ezj1uKGbFMapEYrvHM4VXqzIMnS4LuSkdi3ORf/lZ4m8Kxet3mvKDJqh6qGvEhjfSwzW3FZ6GE7t7vAkJwY7LGYyfZ/tk7IAqzud6KUehDF0Rqlq8YM85dVAywf5aTe3wTzMGE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=hi4BgndK; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4348kTIh001466;
+	Thu, 4 Apr 2024 04:55:11 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
+	from:subject:date:message-id:mime-version:content-type
+	:content-transfer-encoding:to:cc; s=DKIM; bh=L+/ZK/+9rFTuwo2kmZ4
+	T+prN647kubpX9fiMdgLiuh8=; b=hi4BgndKCb4a5mU/Wp7mVQ0ud488/LsuL9p
+	cD348Fh3a+twr8UhKJt/TKHyCocAuXXGC0RWeq4K5eN/Yp9pzjB4kZKoHBPLakCY
+	yMAhhNplPT2dpHatZyWIErrhTgMbDRHXMyxk2z5Xz8Kw0Ab3PEjZpMR8i0+FQYSp
+	LSLfoY0Qq368Eb6AYSbIGkd31bT0GJrvdAFtdQW/teGpSP3rzh4bIo/f9I5kUf6s
+	G1HRps7V4a4JEqKFDsk4ZP/hAqk/G8225Pw/ZLRBIwskUQJNdBq4LiRb5am9nQAx
+	dIJsI11Q3MkqxYUT1FCT+En1vgNB56mnHSUvBvvrEBYKqmQqgSg==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3x9eks27d1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 04 Apr 2024 04:55:11 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 4348t9hA008114
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 4 Apr 2024 04:55:09 -0400
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Thu, 4 Apr 2024 04:55:09 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Thu, 4 Apr 2024 04:55:08 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Thu, 4 Apr 2024 04:55:08 -0400
+Received: from [127.0.0.1] ([10.44.3.56])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 4348sssd001282;
+	Thu, 4 Apr 2024 04:54:58 -0400
+From: Nuno Sa <nuno.sa@analog.com>
+Subject: [PATCH v5 0/2] iio: temperature: ltc2983: small improvements
+Date: Thu, 4 Apr 2024 10:58:16 +0200
+Message-ID: <20240404-ltc2983-misc-improv-v5-0-c1f58057fcea@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="oY2uhKuCtxC5QYl0"
-Content-Disposition: inline
-In-Reply-To: <abff4844-b444-48cc-8dad-18eefa6c386c@collabora.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAKhrDmYC/33NQQqDMBCF4atI1k2Jozamq96jdBHGUQfUSCKhR
+ bx7o6sWSpf/g/lmFYE8UxDXbBWeIgd2U4rqlAns7dSR5Ca1AAWlAgA5LAimLuTIASWPs3dR5qi
+ trgnJFK1Il7Onlp+Hen+k7jkszr+OJzHf1/9ezKWS2OqmLCtNpsabnezgujO6UexghE/E/EZgR
+ /DSqqKxUIH5QrZtewOTrBli/AAAAA==
+To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1712221106; l=766;
+ i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
+ bh=Bmluy+xRk8DrXO78R+oX07cL8R8W3C8ZFNiksVO25b4=;
+ b=HpLMtPF7iT2Fv7afGShjfQTLveJwpvqS2Hcgpbif2nHRaN8RBKzXzSQ8reWIKtKlOyxcrJN3Q
+ x0bDHO7OuJhDQr5Lctaqrrex+IM2y3mUyt/g2RMxvbnAWrQthSDazJM
+X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
+ pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: nw88TIYCfixt9pBhNiLqEDawMs7aIxpa
+X-Proofpoint-ORIG-GUID: nw88TIYCfixt9pBhNiLqEDawMs7aIxpa
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-04_04,2024-04-04_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=664 clxscore=1011
+ suspectscore=0 bulkscore=0 spamscore=0 priorityscore=1501 phishscore=0
+ lowpriorityscore=0 malwarescore=0 impostorscore=0 mlxscore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2404010003
+ definitions=main-2404040058
 
+Hi Jonathan,
 
---oY2uhKuCtxC5QYl0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+As suggested by you, v5 only has the regulator stuff. I'll send another
+series for the new dev_errp_helper().
 
-> Il 03/04/24 18:20, Lorenzo Bianconi ha scritto:
-> > Introduce the Airoha EN7581 clock node in Airoha EN7581 dtsi
-> >=20
-> > Tested-by: Zhengping Zhang <zhengping.zhang@airoha.com>
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > ---
-> >   arch/arm64/boot/dts/airoha/en7581.dtsi | 9 +++++++++
-> >   1 file changed, 9 insertions(+)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/airoha/en7581.dtsi b/arch/arm64/boot/d=
-ts/airoha/en7581.dtsi
-> > index 55eb1762fb11..a1daaaef0de0 100644
-> > --- a/arch/arm64/boot/dts/airoha/en7581.dtsi
-> > +++ b/arch/arm64/boot/dts/airoha/en7581.dtsi
-> > @@ -2,6 +2,7 @@
-> >   #include <dt-bindings/interrupt-controller/irq.h>
-> >   #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +#include <dt-bindings/clock/en7523-clk.h>
-> >   / {
-> >   	interrupt-parent =3D <&gic>;
-> > @@ -150,5 +151,13 @@ uart1: serial@1fbf0000 {
-> >   			interrupts =3D <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
-> >   			clock-frequency =3D <1843200>;
-> >   		};
-> > +
-> > +		scu: system-controller@1fa20000 {
->=20
-> Uhm, why is this not a clock-controller but a system-controller?
+---
+Changes in v5:
+- Dropped patches 1,2,5 and 6.
+- Link to v4: https://lore.kernel.org/all/20240328-ltc2983-misc-improv-v4-0-0cc428c07cd5@analog.com/
 
-I used the same approach used for en7523.dtsi. I guess it is done
-that way because the registers come from scu (system control unit)
-regmap, but I guess we can use clock-controller instead.
+---
+Nuno Sa (2):
+      dt-bindings: iio: temperature: ltc2983: document power supply
+      iio: temperature: ltc2983: support vdd regulator
 
-Regards,
-Lorenzo
+ Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml | 4 ++++
+ drivers/iio/temperature/ltc2983.c                                  | 5 +++++
+ 2 files changed, 9 insertions(+)
+---
+base-commit: 6020ca4de8e5404b20f15a6d9873cd6eb5f6d8d6
+change-id: 20240222-ltc2983-misc-improv-1c7a78ece93f
+--
 
->=20
-> Cheers,
-> Angelo
->=20
-> > +			compatible =3D "airoha,en7581-scu";
-> > +			reg =3D <0x0 0x1fa20000 0x0 0x400>,
-> > +			      <0x0 0x1fb00000 0x0 0x1000>,
-> > +			      <0x0 0x1fbe3400 0x0 0xfc>;
-> > +			#clock-cells =3D <1>;
-> > +		};
-> >   	};
-> >   };
->=20
->=20
->=20
+Thanks!
+- Nuno Sá
 
---oY2uhKuCtxC5QYl0
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZg5rcwAKCRA6cBh0uS2t
-rFDOAQCeK5rxO++40bOf8JtWRi4HTU3UB4MBOHkl4dxTc5ZIfgD+LLWOVZKidKCV
-njrOALciciq4vePFmNgL0YLRMfxxyQs=
-=k1+U
------END PGP SIGNATURE-----
-
---oY2uhKuCtxC5QYl0--
 
