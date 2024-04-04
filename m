@@ -1,130 +1,115 @@
-Return-Path: <devicetree+bounces-56193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56192-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2094A898122
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 07:59:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43C74898118
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 07:51:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B46D01F22599
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 05:59:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED3881F236E3
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 05:51:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9C2540BE6;
-	Thu,  4 Apr 2024 05:59:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE6743F8D4;
+	Thu,  4 Apr 2024 05:51:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="LgfwWiA0"
+	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="sy+/1H0n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5AB745942
-	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 05:59:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9C1222EE4;
+	Thu,  4 Apr 2024 05:51:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.87.146.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712210391; cv=none; b=MhoI96+LWv4lXYJw6/r60jUy88n8ytOgV4i4K3pIkSx+8cd2FLVConRPAeXw8JYPSl3g7WvyDXpkcCq0Gy0y/P0g0HIfpQx2W1fDY7C0K4vdJFRzOhZvh9shccNfo4GEWZaAK6slowY4OX1LTVpfNWdcnzXZaa8XiKpjYE4dmIM=
+	t=1712209883; cv=none; b=DRv1H71WAh+fi2uC7L+mKI7H7EO08Q+6F8gmi/fUN0y2fv4TPOKiD/doW/9LRJBrvzbat8t5Edt4xiEs1aL2jQ1cmFaUQgv8eFvPwTaR70SROX9KloSnlWMmpv8f87A8IlCkHrzGWVPHH0PPGBKQiFxFBXn18ChqlPzeMhUFG3A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712210391; c=relaxed/simple;
-	bh=aIZ71xpdNE319zeVgp11x3qaqeydbVVrYQzt/n5Sdts=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=p8PdEfnah16FxzgnUQrjkCLIUjx/OBjbgOeN6sF6rEkYGr9UIjfTUKidtZWy2mCdBL9JMcqkx8GDDLnNzyxWBPE9uHPicIrgEtUPcvybIaIaFvzeeTqajymZgR4TOCyiS1iK6AIAwewmIka7V30DWuU06qeRqWooNQGEywmkdPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=LgfwWiA0; arc=none smtp.client-ip=91.26.50.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1712209479; x=1714801479;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=aIZ71xpdNE319zeVgp11x3qaqeydbVVrYQzt/n5Sdts=;
-	b=LgfwWiA0KuCL5AgPtvRoD0H1hzXnLqPjE3VI4uP4wnW8n5gX63LXcbRnnsXia2Ho
-	hIKCEB3Act5XzYrj9x9ymQaVEpK/9osfslPoa21JxzXXI4XZV7Eo4tSaWPhYtPMz
-	JJxAHQdE/hzE2ehNmtdCx4xf+7+JLgLYzowPdflPfkw=;
-X-AuditID: ac14000a-fbefe7000000290d-4f-660e3e476d60
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 52.87.10509.74E3E066; Thu,  4 Apr 2024 07:44:39 +0200 (CEST)
-Received: from [172.25.39.28] (172.25.0.11) by Berlix.phytec.de (172.25.0.12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Thu, 4 Apr 2024
- 07:44:37 +0200
-Message-ID: <962bd104-b30f-4fad-a41e-d0db349d8bd2@phytec.de>
-Date: Thu, 4 Apr 2024 07:44:37 +0200
+	s=arc-20240116; t=1712209883; c=relaxed/simple;
+	bh=Sif9OYlf7o5rH6HJtXnuHMHBMudAuoAS3AZeNXTSQtw=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=NaQ1vxoa7ofSgVbSuSOJrXY+ytIrbjFYGr+HK8rOWAgC8XX+/gHv7PxpmkIzan0T8IPg32D9/hYjjSzVS5xnAmClrieiTwtF2gcIE2fJ/PK3YaILfdS7K7DsKIQVGhpwDSNoyw+EZy5mzjWnvFZZ3DAQbAFROQtZo6dRm01fjU8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru; spf=pass smtp.mailfrom=trvn.ru; dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b=sy+/1H0n; arc=none smtp.client-ip=194.87.146.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=trvn.ru
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	by box.trvn.ru (Postfix) with ESMTPSA id 85509401B5;
+	Thu,  4 Apr 2024 10:51:11 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+	t=1712209872; bh=Sif9OYlf7o5rH6HJtXnuHMHBMudAuoAS3AZeNXTSQtw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=sy+/1H0n879DQFwK5S1aRcnxXOy2DLSnh/tFK9jJBtWM24ThNfJ6PCWtPW1mkNfrX
+	 QXbDwL5A8nEbYD3zcH9daJozYZDxXHRuBWk5JTP32U5604DEQuIT/jzO60dYsSwNbl
+	 pzMu6zV1kaQxhV//UGl7+NbaZJ+URfAlFk8Ta+kxrdEOQMshI7qu7+qC/yqOCW0i1V
+	 s1MnD4gLsoCqROamEan3VLRXQiOAOMaexaQnqhqS+YFlToU9eiYzqqSpO7fD2uXtYU
+	 8PAFV7maE3tP/vCswjxE3NTQtLmCtgdDXANhCQsQydVPqfWD1qw68hQSs2bmub8s8D
+	 bBgnGS8Mk+LFw==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-am642-phyboard-electra-rdk:
- Increase CAN max bitrate
-To: Nathan Morrisson <nmorrisson@phytec.com>, <nm@ti.com>, <vigneshr@ti.com>,
-	<kristo@kernel.org>, <robh@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <upstream@lists.phytec.de>
-References: <20240402160825.1516036-1-nmorrisson@phytec.com>
- <20240402160825.1516036-3-nmorrisson@phytec.com>
-Content-Language: en-US
-From: Wadim Egorov <w.egorov@phytec.de>
-In-Reply-To: <20240402160825.1516036-3-nmorrisson@phytec.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
- (172.25.0.12)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprGIsWRmVeSWpSXmKPExsWyRpKBR9fdji/NoO+UmMWaveeYLOYfOcdq
-	sfzzbHaLvhcPmS02Pb7GanF51xw2izc/zjJZfGjczGbxf88Odovud+oW/89+YHfg9ti0qpPN
-	4861PWwem5fUe/R3t7B6/Ln4jtXj+I3tTB6fN8kFsEdx2aSk5mSWpRbp2yVwZVx/n1iwgavi
-	3aX5zA2MWzi6GDk4JARMJE5eDOhi5OIQEljCJPHs4wZ2COcOo8S95olsXYycHLwCNhI9B2+z
-	g9gsAioS7yb/YYGIC0qcnPkEzBYVkJe4f2sGWI2wQJLE4V2rwGwRgS2MEu3fVECGMgu0MUo8
-	eXiAGSQhJJAv8av9CROIzSwgLnHryXwwm01AXeLOhm+sIDangK3Eo5u9UDUWEovfHGSHsOUl
-	tr+dAzVHXuLFpeVgR0gA2dPOvWaGsEMltn7ZzjSBUXgWkltnIVk3C8nYWUjGLmBkWcUolJuZ
-	nJ1alJmtV5BRWZKarJeSuokRFHciDFw7GPvmeBxiZOJgPMQowcGsJMLb7cCbJsSbklhZlVqU
-	H19UmpNafIhRmoNFSZx3dUdwqpBAemJJanZqakFqEUyWiYNTqoGxqDpZe+4hq0Ns+SlTCoqf
-	KZTY5F75N7V1Rq9yXVvHujM3rL8e/qNvfmnbfr86H5VYq2OMkfce/fyolfDm2TYOz4yNh2V8
-	7qw4w1PCdyrb8/amMvGN+UsNLm7l+h1t72yk1r8/gV2j8H3zr9udXQzGi3xtTl4MV/tR3eI1
-	5873h44OBlzMJsuUWIozEg21mIuKEwENjWfcqQIAAA==
+Date: Thu, 04 Apr 2024 10:51:10 +0500
+From: Nikita Travkin <nikita@trvn.ru>
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Raymond Hackley <raymondhackley@protonmail.com>,
+ linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Stephan Gerhold <stephan@gerhold.net>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, Joe Mason
+ <buddyjojo06@outlook.com>
+Subject: Re: [PATCH v2] arm64: dts: qcom: msm8916-samsung-fortuna: Add
+ touchscreen
+In-Reply-To: <dyeqnhgvlzw44baihb257lhacei723iqoskthh2bjsfsgvxfrq@6hnk4f3ncsfl>
+References: <20240312074536.62964-1-raymondhackley@protonmail.com>
+ <dyeqnhgvlzw44baihb257lhacei723iqoskthh2bjsfsgvxfrq@6hnk4f3ncsfl>
+Message-ID: <13170c97e7b84001da966ec06b62b002@trvn.ru>
+X-Sender: nikita@trvn.ru
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Am 02.04.24 um 18:08 schrieb Nathan Morrisson:
-> The phyBOARD-Electra has two TCAN1044VDD CAN transceivers which
-> support CAN FD at 8 Mbps.
+Bjorn Andersson писал(а) 03.04.2024 23:49:
+> On Tue, Mar 12, 2024 at 07:45:42AM +0000, Raymond Hackley wrote:
+>> diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-fortuna-common.dtsi b/arch/arm64/boot/dts/qcom/msm8916-samsung-fortuna-common.dtsi
+> [..]
+>> +&blsp_i2c5 {
+>> +	status = "okay";
+>> +
+>> +	touchscreen: touchscreen@20 {
+>> +		compatible = "zinitix,bt541";
+>> +		reg = <0x20>;
+>> +
+>> +		interrupts-extended = <&tlmm 13 IRQ_TYPE_EDGE_FALLING>;
+>> +
+>> +		touchscreen-size-x = <540>;
+>> +		touchscreen-size-y = <960>;
+>> +
+>> +		vcca-supply = <&reg_vdd_tsp_a>;
+>> +		vdd-supply = <&pm8916_l6>;
+>> +
+>> +		pinctrl-0 = <&tsp_int_default>;
+>> +		pinctrl-names = "default";
+>> +
+>> +		linux,keycodes = <KEY_APPSELECT KEY_BACK>;
 > 
-> Increase the maximum bitrate to 8 Mbps.
+> linux,keycodes is not a valid property of zinitix,bt541 according to the
+> DeviceTree binding. Is there a binding update for this somewhere?
 > 
-> Signed-off-by: Nathan Morrisson <nmorrisson@phytec.com>
 
-For both patches
+There is a series for this [1] that Dmitry seems to have no time to pick
+up for a long while now, which we carry downstream. Without correct
+touchkey definition the touch controller reassigns the tkey lanes to the
+screen surface and display calibration breaks a bit, but since we don't
+have the changes upstream for now, probably want to drop this line from
+the submission so we don't introduce more dtbs_check warnings.
 
-Reviewed-by: Wadim Egorov <w.egorov@phytec.de>
+Nikita
 
+[1] https://lore.kernel.org/r/20230801-zinitix-tkey-v4-0-b85526c5a474@trvn.ru/
 
-> ---
->   arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts b/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts
-> index 8237b8c815b8..522699ec65e8 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts
-> @@ -42,7 +42,7 @@ can_tc1: can-phy0 {
->   		pinctrl-names = "default";
->   		pinctrl-0 = <&can_tc1_pins_default>;
->   		#phy-cells = <0>;
-> -		max-bitrate = <5000000>;
-> +		max-bitrate = <8000000>;
->   		standby-gpios = <&main_gpio0 32 GPIO_ACTIVE_HIGH>;
->   	};
->   
-> @@ -51,7 +51,7 @@ can_tc2: can-phy1 {
->   		pinctrl-names = "default";
->   		pinctrl-0 = <&can_tc2_pins_default>;
->   		#phy-cells = <0>;
-> -		max-bitrate = <5000000>;
-> +		max-bitrate = <8000000>;
->   		standby-gpios = <&main_gpio0 35 GPIO_ACTIVE_HIGH>;
->   	};
->   
+> Regards,
+> Bjorn
 
