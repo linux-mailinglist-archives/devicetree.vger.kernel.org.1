@@ -1,206 +1,401 @@
-Return-Path: <devicetree+bounces-56363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DAFA898BD1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 18:07:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81ED4898BFA
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 18:19:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57894283961
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 16:07:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4005E2837C5
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 16:19:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D38612D1FA;
-	Thu,  4 Apr 2024 16:07:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C8A4129A99;
+	Thu,  4 Apr 2024 16:19:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R7vzq0mt"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="qsLmga+j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2104.outbound.protection.outlook.com [40.107.22.104])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A632712D201;
-	Thu,  4 Apr 2024 16:07:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712246826; cv=none; b=g1qoWpuUZ4dW6lUF4M1Rh1fztV8TDDZMok0okrwsLF/UGCq99lTyJ2femBkSAHGCf3XrgnWDo9n/LtPjRg1fDoIIsBIORd6PNu9ZjKiJxVaWoa351N7E/R207r8nP2xjxFEUQ+P9dBQH4Qb19gerV2SqEBS4VN4K046RHLb4pNk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712246826; c=relaxed/simple;
-	bh=YsR66LWGItmKjfFG/4thl5QkI/T85/VwbY4I36tSedw=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=gTyHtd7W+WHxDCcVSrXWsjf099xWWxKM7eESh/ywHLw2FHYJcdQs7eXk8kp2lbZn6EWADRPLCxtnMlApyC/eV7YM3M3uSpyWZ4h05EOwsAD5Gn4GjJtUZlQGwYnush4yqV2L623uopBZxgiK9lv52cnvAFwVmhfDlP2agdDVghk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R7vzq0mt; arc=none smtp.client-ip=209.85.215.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-5ce2aada130so874971a12.1;
-        Thu, 04 Apr 2024 09:07:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712246824; x=1712851624; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=LwkMEGu4bH84VlMdGnCK4KPRxbhmbdEM0Bw2IunWXXM=;
-        b=R7vzq0mtho5WmQX+rPI4dBoqeSFZsHzivsGCvSz4BVVms805y5ed9oD2nxvkZI0snm
-         jAtuccmu70AIWQpBNusRa3OS4IN+bvOfmmivw2YFziNjA8nkVske76qvn+gpAad/Rftf
-         VMRiyD+Y32qDdaA7CQuAmYI4cXfzeZ29cJnXuYgZS2KFZeDQgkPIq3i0n0MSpmA9BWeY
-         yOCi0CMe6uCaJ2IHrWMRVFGyArXFx7W5GIr92fomuKbL4vN+LY4M7QYuZVg7Ol0AXJWM
-         EWvitP6dgJKniJhTFae52QDlqJSo7LmpTGt3sz7yXD86QlrCO4qHdzKPU+ZwMspEpxGW
-         X9qA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712246824; x=1712851624;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LwkMEGu4bH84VlMdGnCK4KPRxbhmbdEM0Bw2IunWXXM=;
-        b=MxmTrQJct7K5arIRXxH296zY4Y91T2DnlANc7snOPp/etWh6KUEXFj7sCs287ZLYAU
-         rbvDK7gKf7RG3RbdwX0jjg+n96dHXe4rtMWtO+pIa85lu8S7yz5mmEryIh7wwHt82p76
-         LyPSkXmAxoqDyWDPKYMyo1DhPtBGUBHjXkgRWI71GQgorhlTPYJLYhU92BStfCEHIHlK
-         MCUJUVfW6CHzSlc6tXKHuKbhq0qEeGU7e0sCnk4RjThGEPO+ZpG7rqc1LSqp2vOvosEs
-         A7Mx7tOq/OoucaENMMXa7UgeIaRmQBv+8U0/liCwCN8lfOnOFij+ZXJo1KMbnn7QWPse
-         MS3w==
-X-Forwarded-Encrypted: i=1; AJvYcCX1izD8X7i8F5NrSHGmupuFmq6Wu1B93E4xxajm5Uea/92RDZj0m3iI2cjVj9c5X3NasZM/L9cC16CEBi5BMOZ+6mC1kXOwCSn8YAZepRbZLEFd4xMXMJEcO3k4jPYZjFjDwTXEQDMNNA==
-X-Gm-Message-State: AOJu0YwlfGfdjOk7Epq6WltngSIyqnDPHv1ixM32RCtriscd/RM/Vj57
-	zwr8tu73NH4wEXXQq9GNEIvvwWCzjBOWhYaLTVuaGRI7lQA5xyG1
-X-Google-Smtp-Source: AGHT+IHibPG0W6H55vie7dFKnWlXEFmJq9c7f5VRpXhqgGA+gL558fvkCHxdOte330lCDtfdPWWS2w==
-X-Received: by 2002:a17:90a:b10f:b0:29b:b3fa:b7a5 with SMTP id z15-20020a17090ab10f00b0029bb3fab7a5mr2556863pjq.7.1712246822352;
-        Thu, 04 Apr 2024 09:07:02 -0700 (PDT)
-Received: from localhost.localdomain ([203.188.229.101])
-        by smtp.gmail.com with ESMTPSA id g14-20020a17090ace8e00b002a2979a8651sm1685928pju.54.2024.04.04.09.06.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Apr 2024 09:07:01 -0700 (PDT)
-From: Mighty <bavishimithil@gmail.com>
-To: 
-Cc: Mithil Bavishi <bavishimithil@gmail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B1B517BA8;
+	Thu,  4 Apr 2024 16:19:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.104
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712247577; cv=fail; b=tlrl158uOE5vwOJNPOsxV4mglvF5hzULAIstC7wdHHcVtMvWr/3kW9lqHjDiuxga45kEKRkpEczFVqB+iXPk/PWr2vxacRul4uWYb2z5okM834pu/gi8QgZlWuHLvMX2WhEDfD1TXdUOm7QWg88k84fab6FnKaBxsg5VCc9gLNE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712247577; c=relaxed/simple;
+	bh=srYiov+bI4PV8aC3Ad5CrZJXP3DgFkpmt+xoy0yS6yc=;
+	h=From:To:Subject:Date:Message-Id:Content-Type:MIME-Version; b=UxeLvkZlvSV6lK0oRq10OGIKPbkoalJOlKsj3ETee3coij7g932H44ofZmoWRUj3fXcxzHkEFJqijSJ244sM9zE5zSkHy4Oiy2QhCNt00TGOCNgFW+jCuVeYW+mhe3a8IIxaS6Mwo7CesDeieGtfthATGBAkgTGrCVhVuKga0q0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=qsLmga+j; arc=fail smtp.client-ip=40.107.22.104
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lUM1MYi/e1UirZU/qvfJ5jyJzBRv+KlugIbmoKychEr/Tbj/5PWNgNs0CuOvtQoi7b5TkBJmbyJmy0IIZjpdM/+291vdTZXzhlMMZVFTu/yYp7Dx8LtyUQq+Zfo+iYDhLw4ah+WVGce5UcOfyWhrWQXypwTiuHXPZzF/nP/NOomi9IuBXuDtOJdnO9uGqP/NmTl6XJcaU6RnpFnpj0+4B4H/M2ONnkvnp5gPPCQq9He2aEzVGxAKuhl8t2CyQpzfCxc1tqS/6xubACWBTyQ5Q8ESdKvMNmo2S6RRnOdrDgwhzDh3oQIHH8B70bcH+YhCv+iEkuf0WizYWCLu4LoVpg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iAQc60o0VgCHDyvwhk5AxFCYBn0J5WYZlBB9ZBlFbug=;
+ b=iNLrDp+Br+p22Z3vkn1V2YeurYxSeqFvTuot5/K/IIz0ef8qGO55umeZuz3rCSr0oFlOJ2utp/+ikHHyUAmULNdwB5W3jE60fnUzIXLsvK7H3pGx+1mY5kanYYb3vqDoQwHLMYpKyMNef7dT3+Fh8llGHpVUrHoHsGMBeLDwFYC0hVM4d19F1Hq3lGAV7ZRtQZ2+2bhphameKAlsYfyTS9qAI50a6ThTU7hWxdSsIf83HFkeo8Y8raOLTtS+3T/eEGPwWo/w19Oqy2utNhSYej9g1CNTNI0bQ4tNGJxN++4zYqz8V1RPQFga6yRcH+9e54MskI2QQWq8lDndfAn2og==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iAQc60o0VgCHDyvwhk5AxFCYBn0J5WYZlBB9ZBlFbug=;
+ b=qsLmga+jgNppxppeIzTItblJCxE7jwFqjrFa4Q7rQTCFld8qR1gbKpXGDXkoW23RGt36ZakiUYHBwqBbUoLIwq48XyR+ItSdGy92kNcRq7Cn0eTIxpvS4s5o75f/AETlMFkMDiJjehkMHeF45YZlFOw0AXD7B5yUN+3j/N/Odnw=
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DU2PR04MB8663.eurprd04.prod.outlook.com (2603:10a6:10:2de::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Thu, 4 Apr
+ 2024 16:19:31 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::3168:91:27c6:edf6]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::3168:91:27c6:edf6%3]) with mapi id 15.20.7409.042; Thu, 4 Apr 2024
+ 16:19:31 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	alsa-devel@alsa-project.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: omap-mcpdm: Convert to DT schema
-Date: Thu,  4 Apr 2024 21:36:49 +0530
-Message-Id: <20240404160649.967-1-bavishimithil@gmail.com>
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	imx@lists.linux.dev (open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
+	linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH 1/1] arm64: dts: imx8qxp-mek: add cm40_i2c, wm8960/wm8962 and sai[0,1,4,5]
+Date: Thu,  4 Apr 2024 12:19:13 -0400
+Message-Id: <20240404161914.1655305-1-Frank.Li@nxp.com>
 X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR05CA0125.namprd05.prod.outlook.com
+ (2603:10b6:a03:33d::10) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DU2PR04MB8663:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	uCBTQRkGNMcs0ERtt0WEboUaBqoUQ9CSMO+//L+6oQub0BRsB1oAVvHc5rPUaDc5oYLZRkp7gI85UwjuDxDc3hu9+sGCX7GRMdOvanrFAnfJof8TC3/jfI5IkRurtLqAH733xACPI/i141yBlzwMzZvxiD297MuF+HW80vnHFXPHACzSWE4wsEMaCWAYOPjuNKk/2jy4+01ERWmrv95RLrTxib2vZb4mLkdr+fYo3vz9VqF9FIcsyQC4mVs41cab8Be/o4Q1iFkstNU5zgckK13OGyzgkY5GUZuz/kdInjCwMlC/mfgEugz/2F0RP1e5B9G9yG4mIwpClo6xjjS3mcPb2ZmCblZaVBmSlkHrUZf5xL8IUj5ogjPnDWNlRY0pHCtg3jyrrHvOUwrJ2Na674py3TbRfxcLhHlc4GDVxPWoLui6HLheSD3DZVWrGbDasKzlcAL3RTWa5FNqZFwnb602bkhjefWm/4TULbr1vGaOua4SNuVs/TDLZX2nj+cPfJNk03dFI8nJeLKcp6i7KD7q3utYxaLxfPODeIAIoxmNpyeVLo43X+51G8kQ/Rxjc+NJJ1gKUeSTYihERchdrxdjaatW19f2YhpLHMbpjcVzY7gO9U+FYWBJtpFH3ifw8tpB6mCteHQlNHNpMGB1DICdrKk1/+Iu8xx4Lqvi6VmQqAxHK6kobgQUjC9G/ZynKjc9QDvgOT1CaFmRVlWY8jT1KJuW9cUBZqzbO5jjn9c=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(366007)(52116005)(1800799015)(7416005)(921011)(38350700005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?J+E5neu+Arl7h57r+sJQHqBgNZ5ytZzjpjlsVJn5vq5HDTI1tK6xHja7J9QR?=
+ =?us-ascii?Q?cdElml4K574cZsf4edUx+DkKQ0Os8c6DARMLpPITccd9tkN7O3wqpMS18bYb?=
+ =?us-ascii?Q?PHJkPaEjmmsZu9LdcL35BUNkSWd2HJV5mDh7QF9zS0pFp/cS1JCT8hdsyEde?=
+ =?us-ascii?Q?8PLyxm491OlvhdZ7YLdbGQwsXXX/MGT16zMrIFeXMTvsom5Wwva/BU6mKKy6?=
+ =?us-ascii?Q?M5uVF++Smy34qfwpw2VnN/PGkV3CtYJKiEpI7V9+DlOkqcA769NnCNNwO8Dg?=
+ =?us-ascii?Q?NsfgieEmDASajdjEXJjNP5cgV4Ki0RovznySQnyPtwZHSzs2FNmEf56MCZ6h?=
+ =?us-ascii?Q?qEi07n18cw55j36ftBYgm5OIGxn7xNGB8pXpZoIpnroc9SYK6PdCA4DMymHG?=
+ =?us-ascii?Q?cd9komm5TDWVPpu9EURgKaKV4m1lGGoUT4Ly6xmk8NNuU6C7vDL4brkdeAOY?=
+ =?us-ascii?Q?GeXoUWvD+e/W/qKHdK/G9LVfamiWsTSZIhuO65ffQkzfZsvwR29cRxlJdNiH?=
+ =?us-ascii?Q?V477V0E7S+06YMafU/EqGi+bdpy5LkPFDDN1c3UYHSSkzN4sUEZYnJM3ar9b?=
+ =?us-ascii?Q?C5JiOt0yzjT4pjEOs2GnXeYtj6rmjx/dVkQnLwQDyVPIjdq/uqTuANSrOhqY?=
+ =?us-ascii?Q?rbNH6wawrjbnAeIj+YuVnUnl2E40X0Tfm/7n3mkHWjCJkOwLOofZMmOR291j?=
+ =?us-ascii?Q?IBwNyV4gHNA2z8sz1E+Sk6fiXLDiak6s0MHljm/2BqLXAnqh9brKz0ttYEBL?=
+ =?us-ascii?Q?u8MLBH7y5pQl62EB+aktd/ZFnfnFLlVElzA0fPwk52mpWoEOEVP2K4/gDxSf?=
+ =?us-ascii?Q?EI9DLCa84RhX4kIPdl9nioI5WsGujlmfSVWHwyIxJAOSg6a8Vps4+/rwDOc6?=
+ =?us-ascii?Q?DdcfFg5Cy6WRS3BCz8NuT2C+6Ne7ZQr/sFmelh74Dn8Oct4KJQ2Nrabk1Npt?=
+ =?us-ascii?Q?hhRPzg2HVyncM+4IXE4SA3AsOakDLku6QdpHUsGvyzqipQRJS7akuhHA1CNU?=
+ =?us-ascii?Q?4rl7blH5i3Xjr6mYbWGhgElFppc3H96AO5jAjo78EzdE2pWhuxIIqLRIBVo7?=
+ =?us-ascii?Q?i2YZ62Dz8en7CKB71IOTxZT+xYH2IZ+ADS4ZPU+qpN8vwRvSkTieagy3SPCN?=
+ =?us-ascii?Q?TKzSClVrBKhnXkRMTulz/kz1YfgzHXbzfrqhtE/s0t91Z18niE2l5IOuSH8a?=
+ =?us-ascii?Q?46w8qJqrxUzD+hvmMMX2EmF9j0zkWX3uO+XOgcDlQu3ATxzoKjNjTqySq1iz?=
+ =?us-ascii?Q?4u+ytqK3JCPCyjdDzkTVmyH81YjUT3yQRc706MiHmEROT/9JMzewTF+QQqiJ?=
+ =?us-ascii?Q?GP7cS/FnuqTkD2/VzeKjHATW0LQCkkedDc/xIyBn+GgRXLDFuCKuz/+YToxX?=
+ =?us-ascii?Q?QzPO7e8EnqAZUlhMlrCUpxOiAzbPxXyy5vWSejJGVDirrtDWsy5DY5YG2ass?=
+ =?us-ascii?Q?39uVUrxvGDzewnEsRZ2WFzv6ScdQw7kiFDAc5VJNsfGRMOB2KdEa6mPlx/sl?=
+ =?us-ascii?Q?WCOI+7cp5fTujuamx+EekIOXMrrYw/7gcDtd6jgz65Xe89O03Mtx1pMyVXE7?=
+ =?us-ascii?Q?RDKElXkkgFwr5BsRy9nl96gvIuX184Xf25/4qf0G?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7ca91fc9-5564-4cf0-b584-08dc54c3020e
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Apr 2024 16:19:31.1343
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: gqHsnpOEChPa0v32lL5mhvN1ojYJi7IjF6Fq814LTFGbTAKJb6JEVPc9G4qww66FZlI5/CD0BWQcM66hMuHwrg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8663
 
-From: Mithil Bavishi <bavishimithil@gmail.com>
+imx8qxp-mek use two kind audio codec, wm8960 and wm8962. Using dummy gpio
+i2c bus mux to connect both i2c devices. One will probe failure and other
+will probe success when devices driver check whoami. So one dtb can cover
+both board configuration.
 
-Convert the OMAP4+ McPDM bindings to DT schema.
-
-Signed-off-by: Mighty <bavishimithil@gmail.com>
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
 ---
- .../devicetree/bindings/sound/omap-mcpdm.txt  | 30 ----------
- .../bindings/sound/ti,omap-mcpdm.yaml         | 59 +++++++++++++++++++
- 2 files changed, 59 insertions(+), 30 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/omap-mcpdm.txt
- create mode 100644 Documentation/devicetree/bindings/sound/ti,omap-mcpdm.yaml
+ arch/arm64/boot/dts/freescale/imx8qxp-mek.dts | 210 ++++++++++++++++++
+ 1 file changed, 210 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/sound/omap-mcpdm.txt b/Documentation/devicetree/bindings/sound/omap-mcpdm.txt
-deleted file mode 100644
-index ff98a0cb5..000000000
---- a/Documentation/devicetree/bindings/sound/omap-mcpdm.txt
-+++ /dev/null
-@@ -1,30 +0,0 @@
--* Texas Instruments OMAP4+ McPDM
--
--Required properties:
--- compatible: "ti,omap4-mcpdm"
--- reg: Register location and size as an array:
--       <MPU access base address, size>,
--       <L3 interconnect address, size>;
--- interrupts: Interrupt number for McPDM
--- ti,hwmods: Name of the hwmod associated to the McPDM
--- clocks:  phandle for the pdmclk provider, likely <&twl6040>
--- clock-names: Must be "pdmclk"
--
--Example:
--
--mcpdm: mcpdm@40132000 {
--	compatible = "ti,omap4-mcpdm";
--	reg = <0x40132000 0x7f>, /* MPU private access */
--	      <0x49032000 0x7f>; /* L3 Interconnect */
--	interrupts = <0 112 0x4>;
--	interrupt-parent = <&gic>;
--	ti,hwmods = "mcpdm";
--};
--
--In board DTS file the pdmclk needs to be added:
--
--&mcpdm {
--	clocks = <&twl6040>;
--	clock-names = "pdmclk";
--	status = "okay";
--};
-diff --git a/Documentation/devicetree/bindings/sound/ti,omap-mcpdm.yaml b/Documentation/devicetree/bindings/sound/ti,omap-mcpdm.yaml
-new file mode 100644
-index 000000000..4d5d37e98
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/ti,omap-mcpdm.yaml
-@@ -0,0 +1,59 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/ti,omap-mcpdm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+index 8360bb851ac03..adff87c7cf305 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+@@ -30,6 +30,13 @@ reg_usdhc2_vmmc: usdhc2-vmmc {
+ 		enable-active-high;
+ 	};
+ 
++	reg_audio: regulator-wm8962 {
++		compatible = "regulator-fixed";
++		regulator-name = "3v3_aud";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
 +
-+title: OMAP McPDM
+ 	gpio-sbu-mux {
+ 		compatible = "nxp,cbdtu02043", "gpio-sbu-mux";
+ 		pinctrl-names = "default";
+@@ -44,6 +51,105 @@ usb3_data_ss: endpoint {
+ 			};
+ 		};
+ 	};
 +
-+maintainers:
-+  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
++	sound-wm8960 {
++		compatible = "fsl,imx-audio-wm8960";
++		model = "wm8960-audio";
++		audio-cpu = <&sai1>;
++		audio-codec = <&wm8960>;
++		hp-det-gpio = <&lsio_gpio1 0 GPIO_ACTIVE_HIGH>;
++		audio-routing =
++			"Headphone Jack", "HP_L",
++			"Headphone Jack", "HP_R",
++			"Ext Spk", "SPK_LP",
++			"Ext Spk", "SPK_LN",
++			"Ext Spk", "SPK_RP",
++			"Ext Spk", "SPK_RN",
++			"LINPUT1", "Mic Jack",
++			"Mic Jack", "MICB";
++	};
 +
-+description:
-+  OMAP ALSA SoC DAI driver using McPDM port used by TWL6040
++	sound-wm8962 {
++		compatible = "fsl,imx-audio-wm8962";
++		model = "wm8962-audio";
++		audio-cpu = <&sai1>;
++		audio-codec = <&wm8962>;
++		hp-det-gpio = <&lsio_gpio1 0 GPIO_ACTIVE_HIGH>;
++		audio-routing =
++			"Headphone Jack", "HPOUTL",
++			"Headphone Jack", "HPOUTR",
++			"Ext Spk", "SPKOUTL",
++			"Ext Spk", "SPKOUTR",
++			"AMIC", "MICBIAS",
++			"IN3R", "AMIC",
++			"IN1R", "AMIC";
++	};
 +
-+properties:
-+  compatible:
-+    const: ti,omap4-mcpdm
++	/*
++	 * This dummy i2c mux. GPIO actually will not impact selection. At actual boards, only 1
++	 * device connectted. I2C client driver will check ID when probe. Only matched ID's driver
++	 * probe successfully.
++	 */
++	i2cvmux: i2cmux {
++		compatible = "i2c-mux-gpio";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		mux-gpios = <&lsio_gpio5 0 GPIO_ACTIVE_HIGH>; /* use an unused gpio */
++		i2c-parent = <&cm40_i2c>;
 +
-+  reg:
-+    description:
-+      Register location and size as an array
-+      <MPU access base address, size>,
-+      <L3 interconnect address, size>;
++		i2c@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
 +
-+  interrupts:
-+    maxItems: 1
++			/* WCPU boards SCH-54536 */
++			wm8962: wm8962@1a {
++				compatible = "wlf,wm8962";
++				reg = <0x1a>;
++				clocks = <&mclkout0_lpcg IMX_LPCG_CLK_0>;
++				assigned-clocks = <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_PLL>,
++						  <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_SLV_BUS>,
++						  <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_MST_BUS>,
++						  <&mclkout0_lpcg IMX_LPCG_CLK_0>;
++				assigned-clock-rates = <786432000>,
++						       <49152000>,
++						       <12288000>,
++						       <12288000>;
++				DCVDD-supply = <&reg_audio>;
++				DBVDD-supply = <&reg_audio>;
++				AVDD-supply = <&reg_audio>;
++				CPVDD-supply = <&reg_audio>;
++				MICVDD-supply = <&reg_audio>;
++				PLLVDD-supply = <&reg_audio>;
++				SPKVDD1-supply = <&reg_audio>;
++				SPKVDD2-supply = <&reg_audio>;
++			};
++		};
 +
-+  ti,hwmods:
-+    maxItems: 1
++		i2c@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
 +
-+  clocks:
-+    description: phandle for the pdmclk provider, likely <&twl6040>
++			wm8960: wm8960@1a {
++				compatible = "wlf,wm8960";
++				reg = <0x1a>;
++				clocks = <&mclkout0_lpcg IMX_LPCG_CLK_0>;
++				clock-names = "mclk";
++				wlf,shared-lrclk;
++				wlf,hp-cfg = <2 2 3>;
++				wlf,gpio-cfg = <1 3>;
++				assigned-clocks = <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_PLL>,
++						  <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_SLV_BUS>,
++						  <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_MST_BUS>,
++						  <&mclkout0_lpcg IMX_LPCG_CLK_0>;
++				assigned-clock-rates = <786432000>,
++						       <49152000>,
++						       <12288000>,
++						       <12288000>;
++			};
++		};
++	};
+ };
+ 
+ &dsp {
+@@ -188,6 +294,29 @@ typec_con_ss: endpoint {
+ 
+ };
+ 
++&cm40_i2c {
++	#address-cells = <1>;
++	#size-cells = <0>;
++	clock-frequency = <100000>;
++	pinctrl-names = "default", "gpio";
++	pinctrl-0 = <&pinctrl_cm40_i2c>;
++	pinctrl-1 = <&pinctrl_cm40_i2c_gpio>;
++	scl-gpios = <&lsio_gpio1 10 GPIO_ACTIVE_HIGH>;
++	sda-gpios = <&lsio_gpio1 9 GPIO_ACTIVE_HIGH>;
++	status = "okay";
 +
-+  clock-names:
-+    description: Must be "pdmclk"
++	pca6416: gpio@20 {
++		compatible = "ti,tca6416";
++		reg = <0x20>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++};
 +
++&cm40_intmux {
++	status = "okay";
++};
 +
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - ti,hwmods
-+  - clocks
-+  - clock-names
+ &lpuart0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_lpuart0>;
+@@ -218,6 +347,53 @@ &scu_key {
+ 	status = "okay";
+ };
+ 
++&sai0 {
++	#sound-dai-cells = <0>;
++	assigned-clocks = <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_PLL>,
++			  <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_SLV_BUS>,
++			  <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_MST_BUS>,
++			  <&sai0_lpcg IMX_LPCG_CLK_0>;
++	assigned-clock-rates = <786432000>, <49152000>, <12288000>, <49152000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_sai0>;
++	status = "okay";
++};
 +
-+additionalProperties: false
++&sai1 {
++	assigned-clocks = <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_PLL>,
++			  <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_SLV_BUS>,
++			  <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_MST_BUS>,
++			  <&sai1_lpcg IMX_LPCG_CLK_0>;
++	assigned-clock-rates = <786432000>, <49152000>, <12288000>, <49152000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_sai1>;
++	status = "okay";
++};
 +
-+examples:
-+  - |
-+    mcpdm@0 {
-+      compatible = "ti,omap4-mcpdm";
-+      reg = <0x40132000 0x7f>, /* MPU private access */
-+            <0x49032000 0x7f>; /* L3 Interconnect */
-+      interrupts = <0 112 0x4>;
-+      interrupt-parent = <&gic>;
-+      ti,hwmods = "mcpdm";
-+      clocks = <&twl6040>;
-+      clock-names = "pdmclk";
-+    };
++&sai4 {
++	assigned-clocks = <&acm IMX_ADMA_ACM_SAI4_MCLK_SEL>,
++			  <&clk IMX_SC_R_AUDIO_PLL_1 IMX_SC_PM_CLK_PLL>,
++			  <&clk IMX_SC_R_AUDIO_PLL_1 IMX_SC_PM_CLK_SLV_BUS>,
++			  <&clk IMX_SC_R_AUDIO_PLL_1 IMX_SC_PM_CLK_MST_BUS>,
++			  <&sai4_lpcg IMX_LPCG_CLK_0>;
++	assigned-clock-parents = <&aud_pll_div1_lpcg IMX_LPCG_CLK_0>;
++	assigned-clock-rates = <0>, <786432000>, <98304000>, <12288000>, <98304000>;
++	fsl,sai-asynchronous;
++	status = "okay";
++};
++
++&sai5 {
++	assigned-clocks = <&acm IMX_ADMA_ACM_SAI5_MCLK_SEL>,
++			  <&clk IMX_SC_R_AUDIO_PLL_1 IMX_SC_PM_CLK_PLL>,
++			  <&clk IMX_SC_R_AUDIO_PLL_1 IMX_SC_PM_CLK_SLV_BUS>,
++			  <&clk IMX_SC_R_AUDIO_PLL_1 IMX_SC_PM_CLK_MST_BUS>,
++			  <&sai5_lpcg IMX_LPCG_CLK_0>;
++	assigned-clock-parents = <&aud_pll_div1_lpcg IMX_LPCG_CLK_0>;
++	assigned-clock-rates = <0>, <786432000>, <98304000>, <12288000>, <98304000>;
++	fsl,sai-asynchronous;
++	status = "okay";
++};
++
+ &thermal_zones {
+ 	pmic-thermal {
+ 		polling-delay-passive = <250>;
+@@ -314,6 +490,21 @@ &vpu_core1 {
+ };
+ 
+ &iomuxc {
++
++	pinctrl_cm40_i2c: cm40i2cgrp {
++		fsl,pins = <
++			IMX8QXP_ADC_IN1_M40_I2C0_SDA                            0x0600004c
++			IMX8QXP_ADC_IN0_M40_I2C0_SCL                            0x0600004c
++		>;
++	};
++
++	pinctrl_cm40_i2c_gpio: cm40i2cgpio-grp {
++		fsl,pins = <
++			IMX8QXP_ADC_IN1_LSIO_GPIO1_IO09				0xc600004c
++			IMX8QXP_ADC_IN0_LSIO_GPIO1_IO10				0xc600004c
++		>;
++	};
++
+ 	pinctrl_fec1: fec1grp {
+ 		fsl,pins = <
+ 			IMX8QXP_ENET0_MDC_CONN_ENET0_MDC			0x06000020
+@@ -385,6 +576,25 @@ IMX8QXP_ENET0_REFCLK_125M_25M_LSIO_GPIO5_IO09           0x60
+ 		>;
+ 	};
+ 
++	pinctrl_sai0: sai0grp {
++		fsl,pins = <
++			IMX8QXP_SAI0_TXD_ADMA_SAI0_TXD		0x06000060
++			IMX8QXP_SAI0_RXD_ADMA_SAI0_RXD		0x06000040
++			IMX8QXP_SAI0_TXC_ADMA_SAI0_TXC		0x06000040
++			IMX8QXP_SAI0_TXFS_ADMA_SAI0_TXFS	0x06000040
++		>;
++	};
++
++	pinctrl_sai1: sai1grp {
++		fsl,pins = <
++			IMX8QXP_SAI1_RXD_ADMA_SAI1_RXD     0x06000040
++			IMX8QXP_SAI1_RXC_ADMA_SAI1_TXC     0x06000040
++			IMX8QXP_SAI1_RXFS_ADMA_SAI1_TXFS   0x06000040
++			IMX8QXP_SPI0_CS1_ADMA_SAI1_TXD     0x06000060
++			IMX8QXP_SPI2_CS0_LSIO_GPIO1_IO00   0x06000040
++		>;
++	};
++
+ 	pinctrl_usdhc1: usdhc1grp {
+ 		fsl,pins = <
+ 			IMX8QXP_EMMC0_CLK_CONN_EMMC0_CLK			0x06000041
 -- 
 2.34.1
 
