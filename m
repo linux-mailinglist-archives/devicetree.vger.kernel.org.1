@@ -1,243 +1,419 @@
-Return-Path: <devicetree+bounces-56424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F655899204
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 01:18:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F386389920F
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 01:22:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8C712B24A4B
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 23:18:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 81DF61F22578
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 23:22:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23DEA13C3FC;
-	Thu,  4 Apr 2024 23:18:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A95F4134418;
+	Thu,  4 Apr 2024 23:22:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b="OmhWcmTc"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="rwEV9ply"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-108-mta27.mxroute.com (mail-108-mta27.mxroute.com [136.175.108.27])
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53B08137C24
-	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 23:18:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=136.175.108.27
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1E1913C666
+	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 23:22:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712272707; cv=none; b=Ez1NFN794Y1LEo0s/fabHXzEmIfuKV4GGHUKUa6M/NmHnQQ/cmQK1FKQcnJjbM7RGuvIBSQpjXYpG4HC/7btYheLP/7spqE6GqSZ1KhfY79V3Qv9uFsUzrK4jh8v/TOavWW0Cgw005ATuwsrScCPN2sCJV1P7mdusVcDUrF2qw4=
+	t=1712272947; cv=none; b=QDmQUmrhXwEn9Crow6eIE0ToWBIXIWOOF1PgM1j+Dh7RG/UA2E9PRzR9EXxDGOgR4447cnqzZ/xgmcFsuMgnv5BBsCjOpg1IBbYek+nasiItecdtULSL8Desq1kJyTEzb/uV+nU+CO+VfBJ5NqENY11gh34rVusMTzNTpV2dlsg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712272707; c=relaxed/simple;
-	bh=Mrk+i3rtrrQiqKcF5jKGWs2vl61KOuvTlYIW8k8/MPg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZLL95AzEfVWmaL/OZP3xaMbuHvJeo27nrvXL+1HdVOkfe8OFeFx+RaDLwPKpNsMIIx1Bb0JpLzH6R6LiRmIgDy/ttMNj7Vx6vthMUjBEJMEKZZ50dAHKxxBoBs6omqlt1Zzw4NNLV+28ZgKobu9mGsxIGeL3KpTCQYqzIgI+D14=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com; spf=pass smtp.mailfrom=luigi311.com; dkim=pass (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b=OmhWcmTc; arc=none smtp.client-ip=136.175.108.27
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=luigi311.com
-Received: from filter006.mxroute.com ([136.175.111.2] filter006.mxroute.com)
- (Authenticated sender: mN4UYu2MZsgR)
- by mail-108-mta27.mxroute.com (ZoneMTA) with ESMTPSA id 18eab67d9c60003bea.010
- for <devicetree@vger.kernel.org>
- (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
- Thu, 04 Apr 2024 23:18:13 +0000
-X-Zone-Loop: 981fe25ee843edd4332467a1b71bfb0a4ff5d40376af
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=luigi311.com; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
-	From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=bwJMNX6ZJRpOtWTanY4h6tkZAqYIG8MU3/GQ1Ir4QUU=; b=OmhWcmTc+ZWR/7jOr0eC8Did2s
-	XaOoTRQprjnw/jOSBzBf8qWj4VGuJQeZpp4OgU0Hw2+W1MiG9Wk/SxJNk1reSX2pGyLm/gEQCX52F
-	4b1FZmdNB3tD+nQKSDI1X+febDGcaztfxp8JtdCKzM3rCz3UKdlaTsOc7oVzH0FNPcz8hglFypx5G
-	bRC0hI/GUwYgZZTKujRC4dBuxtGTl5q7BJRfYoaDpgQKYeUo5Kz5na9OiIpUYk7nhgV4wQZ0OFI1h
-	qxbHga8hBpyvNgXQgtEvyIjpn0AYllXKbBB9Z/4n0OIaRiacb22SxckwpIxE4zU0zulY4T46I9GGn
-	PTn0YqIA==;
-Message-ID: <a1db5dc8-5370-4fb8-ad22-2a5c1e45ad58@luigi311.com>
-Date: Thu, 4 Apr 2024 17:18:09 -0600
+	s=arc-20240116; t=1712272947; c=relaxed/simple;
+	bh=81ilPwRHHK1IaiPmLVjOOLAFqykOjd5u5odwMh7gDRc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VJ6tB/7mtUVl9SvRLrpp5h7rRRH08GXyJy7+QM6m8itIm2CsGNUbkP9+wTHWD+kd28ZQah5DoKREl/h7ZsQ6sDLzWLyf3PWZ1BGf1cRYTIz1coc6Zej92hRUEMvYd8FWH3R+fPc1MOJKMiYXX2dELUJ7bSor50FG4LsQL73OR9w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=rwEV9ply; arc=none smtp.client-ip=209.85.160.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-432d55b0fa9so80681cf.1
+        for <devicetree@vger.kernel.org>; Thu, 04 Apr 2024 16:22:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1712272944; x=1712877744; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CtS12Qj1Fa9azv5kdA0F+Ff3Z/GmFUw8QGuiTRSom+g=;
+        b=rwEV9plydU+9exw3yhHWUGotCRpaHAgguJuxhzHK5JfXjF461k3S96hjbOs0eCihfL
+         8Eh3GvNzCSs+jMmSgBXvm7qC4IDXpHaQ2VfvoICV0GgY5zF36SYuZKol0n/ZXsbsok4a
+         +Ou7XxR72T8rFcpUGbyPIo9IWruMyfbM41vHHdTrDFRRJvBDN5x4KdNLDZjSU3m3RWLY
+         bKW9tcjebsfypS7I8pfy2jql/65fbbz3oigYyBdrA1wUYrfoEWFVgbUTV0dqpV+KdhzL
+         LdXauWkrvJwZWOh9wcLPyzv++N4T78P38LRB9dTSwkq9GsbPpbttdH8/BmL1aJPVIW13
+         jacw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712272944; x=1712877744;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CtS12Qj1Fa9azv5kdA0F+Ff3Z/GmFUw8QGuiTRSom+g=;
+        b=BuCSoS1YdPm++i1KYiLT84bLnYAfrNoA488TXh1gH5ACGMGRv+aXBZCluCYIwWBRmQ
+         aDB16PT2KdnVLHk/AMMf3GHHxKF4sqzK3IkI9hDATCYyR9fc6IMw+r+E+ynKxfrOAO/I
+         4JpAkrjUOVAdHi2ciIZSbohjvIP6UYRvxUr00tvDTi1TA921bP0M/GZICbwzFIqGRfVR
+         9g7Xe1PLQoOX+gqOGOvFUKoGVASXUc+pxfKOmMXMHh9uJ1WNorQPX+A0sUicxTmGPKb7
+         ukqFTPQxvafoHpSHv/OU0pbVR31i4nkawGBy+92j8PksClTpB9cMqreXwKJPsIWGufid
+         pQyA==
+X-Forwarded-Encrypted: i=1; AJvYcCUxz+8eTys9nVqbI+L341e2d7PIjoBKZZl2YfUOE6dAs10vV5xrhnYB8Kk0HJ/BFY5TNRlbeIjNk7CQC0cNFEjai+z0sP8v/yww4Q==
+X-Gm-Message-State: AOJu0YxR/NNbpSmUnKgvca/taf089fnqQzuOlWO+3vf80nPr8b1cdILB
+	42bhkqYENyGcjF22eJFFZUUrC60JSZ2/2RcculBQpBWPslaoRXgQbM6Fs3cV+xh3BqAaBSrIgAp
+	XF7Y1GtXm4umDlY9WR2vvVW5lAhzopdUls25T
+X-Google-Smtp-Source: AGHT+IG0sgGZIj2htPldvG95/uB+tjM3KKT4R4j2B00eDqc01S9L6qPaprvf/br39MAJwLD3v8LpQI3D59XvAjrvpDI=
+X-Received: by 2002:a05:622a:1dc8:b0:434:47a9:95dd with SMTP id
+ bn8-20020a05622a1dc800b0043447a995ddmr326963qtb.1.1712272944319; Thu, 04 Apr
+ 2024 16:22:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 23/25] drivers: media: i2c: imx258: Add support for
- powerdown gpio
-To: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc: =?UTF-8?Q?Ond=C5=99ej_Jirman?= <megous@megous.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org,
- jacopo.mondi@ideasonboard.com, mchehab@kernel.org, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org,
- s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- pavel@ucw.cz, phone-devel@vger.kernel.org
-References: <20240403150355.189229-1-git@luigi311.com>
- <20240403150355.189229-24-git@luigi311.com>
- <Zg2DBasC501hMQSS@kekkonen.localdomain>
- <wjlcde7yoooygj4hhdmiwrdloh6l4p6i2qbmjek5uwsifyzwgu@xjhutvmsdfou>
- <dd0e64c8-5eef-421a-9d9f-8a5865743369@luigi311.com>
- <CAPY8ntAcB3wyLj1wNE5YBx0_UGRiXEv6057XfEBfjk8NOLC9yQ@mail.gmail.com>
-Content-Language: en-US
-From: Luis Garcia <git@luigi311.com>
-In-Reply-To: <CAPY8ntAcB3wyLj1wNE5YBx0_UGRiXEv6057XfEBfjk8NOLC9yQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Authenticated-Id: git@luigi311.com
+References: <20240404-dt-cleanup-free-v1-0-c60e6cba8da9@kernel.org> <20240404-dt-cleanup-free-v1-3-c60e6cba8da9@kernel.org>
+In-Reply-To: <20240404-dt-cleanup-free-v1-3-c60e6cba8da9@kernel.org>
+From: Saravana Kannan <saravanak@google.com>
+Date: Thu, 4 Apr 2024 16:21:47 -0700
+Message-ID: <CAGETcx8Wd5OsHWiGSASWkQQtof0D-ScwYsvq9hWizV3DFC27gA@mail.gmail.com>
+Subject: Re: [PATCH 3/3] of: Use scope based of_node_put() cleanups
+To: Rob Herring <robh@kernel.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 4/4/24 08:12, Dave Stevenson wrote:
-> Hi Luigi
-> 
-> On Wed, 3 Apr 2024 at 20:34, Luigi311 <git@luigi311.com> wrote:
->>
->> On 4/3/24 10:57, Ondřej Jirman wrote:
->>> Hi Sakari and Luis,
->>>
->>> On Wed, Apr 03, 2024 at 04:25:41PM GMT, Sakari Ailus wrote:
->>>> Hi Luis, Ondrej,
->>>>
->>>> On Wed, Apr 03, 2024 at 09:03:52AM -0600, git@luigi311.com wrote:
->>>>> From: Luis Garcia <git@luigi311.com>
->>>>>
->>>>> On some boards powerdown signal needs to be deasserted for this
->>>>> sensor to be enabled.
->>>>>
->>>>> Signed-off-by: Ondrej Jirman <megi@xff.cz>
->>>>> Signed-off-by: Luis Garcia <git@luigi311.com>
->>>>> ---
->>>>>  drivers/media/i2c/imx258.c | 13 +++++++++++++
->>>>>  1 file changed, 13 insertions(+)
->>>>>
->>>>> diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
->>>>> index 30352c33f63c..163f04f6f954 100644
->>>>> --- a/drivers/media/i2c/imx258.c
->>>>> +++ b/drivers/media/i2c/imx258.c
->>>>> @@ -679,6 +679,8 @@ struct imx258 {
->>>>>     unsigned int lane_mode_idx;
->>>>>     unsigned int csi2_flags;
->>>>>
->>>>> +   struct gpio_desc *powerdown_gpio;
->>>>> +
->>>>>     /*
->>>>>      * Mutex for serialized access:
->>>>>      * Protect sensor module set pad format and start/stop streaming safely.
->>>>> @@ -1213,6 +1215,8 @@ static int imx258_power_on(struct device *dev)
->>>>>     struct imx258 *imx258 = to_imx258(sd);
->>>>>     int ret;
->>>>>
->>>>> +   gpiod_set_value_cansleep(imx258->powerdown_gpio, 0);
->>>>
->>>> What does the spec say? Should this really happen before switching on the
->>>> supplies below?
->>>
->>> There's no powerdown input in the IMX258 manual. The manual only mentions
->>> that XCLR (reset) should be held low during power on.
->>>
->>> https://megous.com/dl/tmp/15b0992a720ab82d.png
->>>
->>> https://megous.com/dl/tmp/f2cc991046d97641.png
->>>
->>>    This sensor doesn’t have a built-in “Power ON Reset” function. The XCLR pin
->>>    is set to “LOW” and the power supplies are brought up. Then the XCLR pin
->>>    should be set to “High” after INCK supplied.
->>>
->>> So this input is some feature on camera module itself outside of the
->>> IMX258 chip, which I think is used to gate power to the module. Eg. on Pinephone
->>> Pro, there are two modules with shared power rails, so enabling supply to
->>> one module enables it to the other one, too. So this input becomes the only way
->>> to really enable/disable power to the chip when both are used at once at some
->>> point, because regulator_bulk_enable/disable becomes ineffective at that point.
->>>
->>> Luis, maybe you saw some other datasheet that mentions this input? IMO,
->>> it just gates the power rails via some mosfets on the module itself, since
->>> there's not power down input to the chip itself.
->>>
->>> kind regards,
->>>       o.
->>>
->>
->> Ondrej, I did not see anything else in the datasheet since I'm pretty sure
->> I'm looking at the same datasheet as it was supplied to me by Pine64. I'm
->> not sure what datasheet Dave has access to since he got his for a
->> completely different module than what we are testing with though.
-> 
-> I only have a leaked datasheet (isn't the internet wonderful!)  [1]
-> XCLR is documented in that, as Ondrej has said.
-> 
-> If this powerdown GPIO is meant to be driving XCLR, then it is in the
-> wrong order against the supplies.
-> 
-> This does make me confused over the difference between this powerdown
-> GPIO and the reset GPIO that you implement in 24/25.
-> 
-> Following the PinePhone Pro DT [3] and schematics [4]
-> reset-gpios = <&gpio1 RK_PA0 GPIO_ACTIVE_LOW>;
-> powerdown-gpios = <&gpio2 RK_PD4 GPIO_ACTIVE_HIGH>;
-> 
-> Schematic page 11 upper right block
-> GPIO1_A0/ISP0_SHUTTER_EN/ISP1_SHUTTER_EN/TCPD_VBUS_SINK_EN_d becomes
-> Camera_RST_L. Page 18 feeds that through to the RESET on the camera
-> connector.
-> Page 11 left middle block GPIO2_D4/SDIO0_BKPWR_d becomes DVP_PDN1_H.
-> Page 18 feeds that through to the PWDN on the camera connector.
-> 
-> Seeing as we apparently have a lens driver kicking around as well,
-> potentially one is reset to the VCM, and one to the sensor? DW9714
-> does have an XSD shutdown pin.
-> Only the module integrator is going to really know the answer,
-> although potentially a little poking with gpioset and i2cdetect may
-> tell you more.
-> 
->   Dave
-> 
-> [1] https://web.archive.org/web/20201027131326/www.hi.app/IMX258-datasheet.pdf
-> [2] https://files.pine64.org/doc/PinePhonePro/PinephonePro-Schematic-V1.0-20211127.pdf
-> [3] https://xff.cz/git/linux/tree/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts?h=orange-pi-5.18#n868
-> [4] https://files.pine64.org/doc/PinePhonePro/PinephonePro-Schematic-V1.0-20211127.pdf
-> 
-> 
+On Thu, Apr 4, 2024 at 7:15=E2=80=AFAM Rob Herring <robh@kernel.org> wrote:
+>
+> Use the relatively new scope based of_node_put() cleanup to simplify
+> function exit handling. Doing so reduces the chances of forgetting an
+> of_node_put() and simplifies error paths by avoiding the need for goto
+> statements.
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  drivers/of/address.c  | 60 ++++++++++++++++-----------------------------=
+------
+>  drivers/of/property.c | 22 ++++++-------------
+>  2 files changed, 26 insertions(+), 56 deletions(-)
+>
+> diff --git a/drivers/of/address.c b/drivers/of/address.c
+> index ae46a3605904..f7b2d535a6d1 100644
+> --- a/drivers/of/address.c
+> +++ b/drivers/of/address.c
+> @@ -491,7 +491,6 @@ static u64 __of_translate_address(struct device_node =
+*dev,
+>                                   const __be32 *in_addr, const char *rpro=
+p,
+>                                   struct device_node **host)
+>  {
+> -       struct device_node *parent =3D NULL;
+>         struct of_bus *bus, *pbus;
+>         __be32 addr[OF_MAX_ADDR_CELLS];
+>         int na, ns, pna, pns;
+> @@ -504,7 +503,7 @@ static u64 __of_translate_address(struct device_node =
+*dev,
+>
+>         *host =3D NULL;
+>         /* Get parent & match bus type */
+> -       parent =3D get_parent(dev);
+> +       struct device_node *parent __free(device_node) =3D get_parent(dev=
+);
 
-Out of curiosity I dropped this and tested it on my PPP and it still loads
-up the camera correctly so I am fine with dropping this and patch 22 that
-adds in the dt binding
+Can we leave the variable definition where it was? We generally define
+all the variables up top. So, defining the one variable in the middle
+feels weird. I at least get when we do this inside for/if blocks. But
+randomly in the middle feels weird.
 
->>>>> +
->>>>>     ret = regulator_bulk_enable(IMX258_NUM_SUPPLIES,
->>>>>                                 imx258->supplies);
->>>>>     if (ret) {
->>>>> @@ -1224,6 +1228,7 @@ static int imx258_power_on(struct device *dev)
->>>>>     ret = clk_prepare_enable(imx258->clk);
->>>>>     if (ret) {
->>>>>             dev_err(dev, "failed to enable clock\n");
->>>>> +           gpiod_set_value_cansleep(imx258->powerdown_gpio, 1);
->>>>>             regulator_bulk_disable(IMX258_NUM_SUPPLIES, imx258->supplies);
->>>>>     }
->>>>>
->>>>> @@ -1238,6 +1243,8 @@ static int imx258_power_off(struct device *dev)
->>>>>     clk_disable_unprepare(imx258->clk);
->>>>>     regulator_bulk_disable(IMX258_NUM_SUPPLIES, imx258->supplies);
->>>>>
->>>>> +   gpiod_set_value_cansleep(imx258->powerdown_gpio, 1);
->>>>> +
->>>>>     return 0;
->>>>>  }
->>>>>
->>>>> @@ -1541,6 +1548,12 @@ static int imx258_probe(struct i2c_client *client)
->>>>>     if (!imx258->variant_cfg)
->>>>>             imx258->variant_cfg = &imx258_cfg;
->>>>>
->>>>> +   /* request optional power down pin */
->>>>> +   imx258->powerdown_gpio = devm_gpiod_get_optional(&client->dev, "powerdown",
->>>>> +                                               GPIOD_OUT_HIGH);
->>>>> +   if (IS_ERR(imx258->powerdown_gpio))
->>>>> +           return PTR_ERR(imx258->powerdown_gpio);
->>>>> +
->>>>>     /* Initialize subdev */
->>>>>     v4l2_i2c_subdev_init(&imx258->sd, client, &imx258_subdev_ops);
->>>>>
->>>>
->>>> --
->>>> Regards,
->>>>
->>>> Sakari Ailus
->>
+Similar comments in other places. Since both kfree() and of_put() can
+both handle NULL pointers, I'd be surprised if we HAVE to combine
+these lines.
 
+Not a very strong position, but I'd rather we didn't. So,
+
+Reviewed-by: Saravana Kannan <saravanak@google.com>
+
+-Saravana
+
+>         if (parent =3D=3D NULL)
+>                 goto bail;
+>         bus =3D of_match_bus(parent);
+> @@ -573,7 +572,6 @@ static u64 __of_translate_address(struct device_node =
+*dev,
+>                 of_dump_addr("one level translation:", addr, na);
+>         }
+>   bail:
+> -       of_node_put(parent);
+>         of_node_put(dev);
+>
+>         return result;
+> @@ -654,19 +652,16 @@ EXPORT_SYMBOL(of_translate_dma_address);
+>  const __be32 *of_translate_dma_region(struct device_node *dev, const __b=
+e32 *prop,
+>                                       phys_addr_t *start, size_t *length)
+>  {
+> -       struct device_node *parent;
+> +       struct device_node *parent __free(device_node) =3D __of_get_dma_p=
+arent(dev);
+>         u64 address, size;
+>         int na, ns;
+>
+> -       parent =3D __of_get_dma_parent(dev);
+>         if (!parent)
+>                 return NULL;
+>
+>         na =3D of_bus_n_addr_cells(parent);
+>         ns =3D of_bus_n_size_cells(parent);
+>
+> -       of_node_put(parent);
+> -
+>         address =3D of_translate_dma_address(dev, prop);
+>         if (address =3D=3D OF_BAD_ADDR)
+>                 return NULL;
+> @@ -688,21 +683,19 @@ const __be32 *__of_get_address(struct device_node *=
+dev, int index, int bar_no,
+>  {
+>         const __be32 *prop;
+>         unsigned int psize;
+> -       struct device_node *parent;
+> +       struct device_node *parent __free(device_node) =3D of_get_parent(=
+dev);
+>         struct of_bus *bus;
+>         int onesize, i, na, ns;
+>
+> -       /* Get parent & match bus type */
+> -       parent =3D of_get_parent(dev);
+>         if (parent =3D=3D NULL)
+>                 return NULL;
+> +
+> +       /* match the parent's bus type */
+>         bus =3D of_match_bus(parent);
+> -       if (strcmp(bus->name, "pci") && (bar_no >=3D 0)) {
+> -               of_node_put(parent);
+> +       if (strcmp(bus->name, "pci") && (bar_no >=3D 0))
+>                 return NULL;
+> -       }
+> +
+>         bus->count_cells(dev, &na, &ns);
+> -       of_node_put(parent);
+>         if (!OF_CHECK_ADDR_COUNT(na))
+>                 return NULL;
+>
+> @@ -888,14 +881,13 @@ static u64 of_translate_ioport(struct device_node *=
+dev, const __be32 *in_addr,
+>   */
+>  int of_dma_get_range(struct device_node *np, const struct bus_dma_region=
+ **map)
+>  {
+> -       struct device_node *node =3D of_node_get(np);
+> +       struct device_node *node __free(device_node) =3D of_node_get(np);
+>         const __be32 *ranges =3D NULL;
+>         bool found_dma_ranges =3D false;
+>         struct of_range_parser parser;
+>         struct of_range range;
+>         struct bus_dma_region *r;
+>         int len, num_ranges =3D 0;
+> -       int ret =3D 0;
+>
+>         while (node) {
+>                 ranges =3D of_get_property(node, "dma-ranges", &len);
+> @@ -905,10 +897,9 @@ int of_dma_get_range(struct device_node *np, const s=
+truct bus_dma_region **map)
+>                         break;
+>
+>                 /* Once we find 'dma-ranges', then a missing one is an er=
+ror */
+> -               if (found_dma_ranges && !ranges) {
+> -                       ret =3D -ENODEV;
+> -                       goto out;
+> -               }
+> +               if (found_dma_ranges && !ranges)
+> +                       return -ENODEV;
+> +
+>                 found_dma_ranges =3D true;
+>
+>                 node =3D of_get_next_dma_parent(node);
+> @@ -916,10 +907,8 @@ int of_dma_get_range(struct device_node *np, const s=
+truct bus_dma_region **map)
+>
+>         if (!node || !ranges) {
+>                 pr_debug("no dma-ranges found for node(%pOF)\n", np);
+> -               ret =3D -ENODEV;
+> -               goto out;
+> +               return -ENODEV;
+>         }
+> -
+>         of_dma_range_parser_init(&parser, node);
+>         for_each_of_range(&parser, &range) {
+>                 if (range.cpu_addr =3D=3D OF_BAD_ADDR) {
+> @@ -930,16 +919,12 @@ int of_dma_get_range(struct device_node *np, const =
+struct bus_dma_region **map)
+>                 num_ranges++;
+>         }
+>
+> -       if (!num_ranges) {
+> -               ret =3D -EINVAL;
+> -               goto out;
+> -       }
+> +       if (!num_ranges)
+> +               return -EINVAL;
+>
+>         r =3D kcalloc(num_ranges + 1, sizeof(*r), GFP_KERNEL);
+> -       if (!r) {
+> -               ret =3D -ENOMEM;
+> -               goto out;
+> -       }
+> +       if (!r)
+> +               return -ENOMEM;
+>
+>         /*
+>          * Record all info in the generic DMA ranges array for struct dev=
+ice,
+> @@ -957,9 +942,7 @@ int of_dma_get_range(struct device_node *np, const st=
+ruct bus_dma_region **map)
+>                 r->size =3D range.size;
+>                 r++;
+>         }
+> -out:
+> -       of_node_put(node);
+> -       return ret;
+> +       return 0;
+>  }
+>  #endif /* CONFIG_HAS_DMA */
+>
+> @@ -1016,11 +999,9 @@ phys_addr_t __init of_dma_get_max_cpu_address(struc=
+t device_node *np)
+>   */
+>  bool of_dma_is_coherent(struct device_node *np)
+>  {
+> -       struct device_node *node;
+> +       struct device_node *node __free(device_node) =3D of_node_get(np);
+>         bool is_coherent =3D dma_default_coherent;
+>
+> -       node =3D of_node_get(np);
+> -
+>         while (node) {
+>                 if (of_property_read_bool(node, "dma-coherent")) {
+>                         is_coherent =3D true;
+> @@ -1032,7 +1013,6 @@ bool of_dma_is_coherent(struct device_node *np)
+>                 }
+>                 node =3D of_get_next_dma_parent(node);
+>         }
+> -       of_node_put(node);
+>         return is_coherent;
+>  }
+>  EXPORT_SYMBOL_GPL(of_dma_is_coherent);
+> @@ -1049,19 +1029,17 @@ EXPORT_SYMBOL_GPL(of_dma_is_coherent);
+>   */
+>  static bool of_mmio_is_nonposted(struct device_node *np)
+>  {
+> -       struct device_node *parent;
+>         bool nonposted;
+>
+>         if (!IS_ENABLED(CONFIG_ARCH_APPLE))
+>                 return false;
+>
+> -       parent =3D of_get_parent(np);
+> +       struct device_node *parent __free(device_node) =3D of_get_parent(=
+np);
+>         if (!parent)
+>                 return false;
+>
+>         nonposted =3D of_property_read_bool(parent, "nonposted-mmio");
+>
+> -       of_node_put(parent);
+>         return nonposted;
+>  }
+>
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index a6358ee99b74..b73daf81c99d 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -40,15 +40,12 @@
+>   */
+>  bool of_graph_is_present(const struct device_node *node)
+>  {
+> -       struct device_node *ports, *port;
+> +       struct device_node *ports __free(device_node) =3D of_get_child_by=
+_name(node, "ports");
+>
+> -       ports =3D of_get_child_by_name(node, "ports");
+>         if (ports)
+>                 node =3D ports;
+>
+> -       port =3D of_get_child_by_name(node, "port");
+> -       of_node_put(ports);
+> -       of_node_put(port);
+> +       struct device_node *port __free(device_node) =3D of_get_child_by_=
+name(node, "port");
+>
+>         return !!port;
+>  }
+> @@ -610,9 +607,9 @@ EXPORT_SYMBOL(of_graph_parse_endpoint);
+>   */
+>  struct device_node *of_graph_get_port_by_id(struct device_node *parent, =
+u32 id)
+>  {
+> -       struct device_node *node, *port;
+> +       struct device_node *port;
+> +       struct device_node *node __free(device_node) =3D of_get_child_by_=
+name(parent, "ports");
+>
+> -       node =3D of_get_child_by_name(parent, "ports");
+>         if (node)
+>                 parent =3D node;
+>
+> @@ -626,8 +623,6 @@ struct device_node *of_graph_get_port_by_id(struct de=
+vice_node *parent, u32 id)
+>                         break;
+>         }
+>
+> -       of_node_put(node);
+> -
+>         return port;
+>  }
+>  EXPORT_SYMBOL(of_graph_get_port_by_id);
+> @@ -655,14 +650,13 @@ struct device_node *of_graph_get_next_endpoint(cons=
+t struct device_node *parent,
+>          * parent port node.
+>          */
+>         if (!prev) {
+> -               struct device_node *node;
+> +               struct device_node *node __free(device_node) =3D
+> +                       of_get_child_by_name(parent, "ports");
+>
+> -               node =3D of_get_child_by_name(parent, "ports");
+>                 if (node)
+>                         parent =3D node;
+>
+>                 port =3D of_get_child_by_name(parent, "port");
+> -               of_node_put(node);
+>
+>                 if (!port) {
+>                         pr_debug("graph: no port node found in %pOF\n", p=
+arent);
+> @@ -1052,15 +1046,13 @@ static int of_fwnode_graph_parse_endpoint(const s=
+truct fwnode_handle *fwnode,
+>                                           struct fwnode_endpoint *endpoin=
+t)
+>  {
+>         const struct device_node *node =3D to_of_node(fwnode);
+> -       struct device_node *port_node =3D of_get_parent(node);
+> +       struct device_node *port_node __free(device_node) =3D of_get_pare=
+nt(node);
+>
+>         endpoint->local_fwnode =3D fwnode;
+>
+>         of_property_read_u32(port_node, "reg", &endpoint->port);
+>         of_property_read_u32(node, "reg", &endpoint->id);
+>
+> -       of_node_put(port_node);
+> -
+>         return 0;
+>  }
+>
+>
+> --
+> 2.43.0
+>
 
