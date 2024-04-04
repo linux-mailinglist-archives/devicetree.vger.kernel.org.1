@@ -1,179 +1,150 @@
-Return-Path: <devicetree+bounces-56115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EF85897E24
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 06:06:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17BCF897E33
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 06:27:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96E031C218B8
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 04:06:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8F515B22CC7
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 04:27:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13D931CF9B;
-	Thu,  4 Apr 2024 04:06:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A4CF21106;
+	Thu,  4 Apr 2024 04:27:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="QaHT63Ic"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iroVsgtK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2099.outbound.protection.outlook.com [40.107.247.99])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0E712F37
-	for <devicetree@vger.kernel.org>; Thu,  4 Apr 2024 04:06:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.247.99
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712203609; cv=fail; b=rZJAQo+hfD4Bmn8ZwE3KF9IWkOG6+TvxUscMkyoUgbDqB+6hdcRXcwwSgnt2yvae3meE/gVVDFZIOAW+zou7BrQEP34IdM+f8y/BibB/tqep9Cu8MrBflTLPe2tCrhklZxVQBQPgKrRFoUPo/yPCWJE3mzcSQVbFMXFMR+43lgw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712203609; c=relaxed/simple;
-	bh=nlJur4cfFmlOfu3ltNjuK9nFXhx0DsgOVnspW1ulKGA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=NdrSwB+82vSaL+dop3r0K+fzXWxOps5jKe5rE5+fJpn5phOQ/KgEoW4J861jp/3tuGNj5Nuw2gXqSYt6Tkh08OEM3tmI2raE0vz96eXJnh7VlgKehNCdXT5EBhZROUNN1dE8MKsyizUFrsKoJYQ9yaoPin3gfX1AobIviGkhyCc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=QaHT63Ic; arc=fail smtp.client-ip=40.107.247.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=C3RIUglrKLBi4a7Y/EGjBtuj2+U553zNaWJ97gw5+PLPjSJ20qMQKdN6T6s5Q4ySPH6zAR+WTmit3q9RF/apFqMIoUTSLNWyd5dhoqJ10keqgQ93rtDWmKosVXm/U++uBgLYjciu3l6ifywDSZbtxrGuv1hNxNnnhydUIjgV+ILso+7Moi8l7v3E1CxBhmO/tAK2mJqiiqjOPJer0OZLT1d5Lht+P+DCNVoGnpnnNPvJP40aaxvyesaCj5xzZuOTaXu5oJ5MxRTT1uw+mqTeLcMaUsCsAT81/vlIVBrVQ8+J+9fLVWZG2ILBVIImVaQ/QHMYD0ibqfPzQh7t0AO9/Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5iafJiwt0u/ZSB+xN75hL7bQLpW7SK24lej3A0fS7F8=;
- b=YCJanzITCnpDKpzmt0zcZbugPOdOzm7M1ShkFtzCgt3jiAtJfBVMTGFY19j3SjIS62erDVH8yUlQUOI4f3ZTIlXM42tFt40BZhRROTQ7+mJSuql/Y059q4ziJTONuBadhE7FZmoHwGD3JrxsnYupn1ccgLmlg3JMP+3Bq/fUho8eDnxmLY/42EidKJavPx74Uj5sxYuEZOmp6Lg0wFNQRua8EuKoaIF6GEZndxXJjcHZ0/Dius4ce6ju1QKfegyaR6lccz9oYcNjNHf+tTGCdYYLuz9WdSxrGs46Ob0hHLkqjILXIWaog5osV4I9LOetQTQPs4csW0wnns7wLAuY5g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5iafJiwt0u/ZSB+xN75hL7bQLpW7SK24lej3A0fS7F8=;
- b=QaHT63IcobiQnXRsMUChZ8B2jiIMUPCS/XppVHzsHssyoKd2pzf326XvsF+SWqKvMB0a0LJjdHrIGYM+9mm5euzqplTz0Akbd0oYPjb05YMq5To/VILQzJRRpTaLDSULsAkW3HgnK+lKJY5BbABusetPySQJfY6RJz4mlBjIki4=
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PA4PR04MB9389.eurprd04.prod.outlook.com (2603:10a6:102:2a8::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.31; Thu, 4 Apr
- 2024 04:06:44 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::3168:91:27c6:edf6]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::3168:91:27c6:edf6%3]) with mapi id 15.20.7409.042; Thu, 4 Apr 2024
- 04:06:44 +0000
-Date: Thu, 4 Apr 2024 00:06:35 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: cw00.choi@samsung.com, krzk@kernel.org, myungjoo.ham@samsung.com,
-	robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	marex@denx.de, Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH] dt-bindings: extcon: ptn5150: Document the 'port' node
-Message-ID: <Zg4nS+3ZMj3smyjT@lizhi-Precision-Tower-5810>
-References: <20240404022943.528293-1-festevam@gmail.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240404022943.528293-1-festevam@gmail.com>
-X-ClientProxiedBy: SJ0PR05CA0003.namprd05.prod.outlook.com
- (2603:10b6:a03:33b::8) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74B66101E6;
+	Thu,  4 Apr 2024 04:27:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.53
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712204856; cv=none; b=VhdIvtHfOs5YXOJHKPbAr3zOHd7i+VLfaAiUxMRhczLgGpRg0WGECp7b+EqYK96BXO0pkuEPTgB6sowKh9q4nYPDUtGI44M65dYKVOsSyI9oc2seDVsajExbPdPZiGc7URikRz6nZpcM0cCius5CYDdAbmNCQrmjvEtY6tIPhW8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712204856; c=relaxed/simple;
+	bh=9GCKDit7IM2ObL3AQTrHgktI46ZunWxbzR9/oDBunyQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WTJXRhkwCEhS7ftw6hzXnB7jLPG6E0+EwBy0JgVzg8cb76imc5xd/9AXsWVcWPAdbCaVXdUVZcCWSbzgZVLpUobiScSCKE6Jn0vXDUw+RfQpLv8/TVch/DV+/1S9yKBz1jbwNl3OKHh/XxOCS5jYRwTxKPqz8OtIXPVYJanqn0c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iroVsgtK; arc=none smtp.client-ip=209.85.161.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f53.google.com with SMTP id 006d021491bc7-5a56a5f597dso342643eaf.2;
+        Wed, 03 Apr 2024 21:27:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712204854; x=1712809654; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=WWP5RAoFT0kiTo+qfZyglyrEgEHCHG1QIQ9F/lt7B8E=;
+        b=iroVsgtKGv79j4hU/NrvS6bv3fkZDcSu2d2ClY5M57dfC9YxJuasHiqQtJFFnD1vmT
+         /2BPFkeQhS+1At/r8eu/SBJP/gRXoCu45r26b7heopHm66zqGo1/vwFLz3FS+7BviytJ
+         va+7jRtfiHRsmPtaWeEpmgiwQax5muaoJGfRtQDhJ4CZ84Lp5kP7kKhuk/ALkpzmcj0d
+         j3mz/iThC0LL8nSgMZNAf7yG+FaD/DgFg8FV389Dww8E0C2z/Wp089VLlYmpOgniKmJC
+         EAzheaFaA9xD4cJsM8qTcCZg8okw1SCR+QVMqWYEprPQAk0YgMQ8Tfeq39uXBFMBO60J
+         qBqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712204854; x=1712809654;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WWP5RAoFT0kiTo+qfZyglyrEgEHCHG1QIQ9F/lt7B8E=;
+        b=C53bfcovyFNacgN3TNmP7F1lHsNGxS3Bp56xzPxiWm61X/1wWGWh0dTa/d6Us4V8Pq
+         /KmedVVsojBXpd4BF4kBk9RKOtJmezqbA/LNy7PoqbMw/lsYMjnRFgEtEKiL8bbu6AYN
+         P9zFNXdp1oxrLmLuuzTHR78cgtlhZMKqjEH2chKVw4N9p3sVwStYOn6y6tfJEx1T7rq2
+         6SY6p9Ik8t+eOU8PaEPoe35ipjM4rgipc4rOeLGPQH7j4cmi2ah0JAyD6wCgesiD/w9n
+         xnKH5rzK1TpgVTGHS8/aizTtShRiupNSqy5lSxPgJLgzqu1H35/0ET3mb77nvWT3bpJr
+         dqrA==
+X-Forwarded-Encrypted: i=1; AJvYcCWGMuJxDy6ZMSSHhZyRpEG02B6pE+gWEfw41GtSjozgNMIFn3vg/GPKeT4X4g3d18Z/Q3sBTDC/hKhZcn/Bq1mYbGVlnTxDe57T5XaVL5SNq4z6FLRr8QRWMfwWwavQGPKzPeSGqV1Dhd7pvPXUF5H13JfglKWSL/k5yURcprNl9X0aZA==
+X-Gm-Message-State: AOJu0Yz2OvnVoqGP1X1BmUAYSN0sB34yiXvKw7N2QPgWhC3KZmuTknMp
+	6Ap83Rqz9FycThCSq5K+DLzxWIjPPlrtREPQ2t326lG3RLpt/oF05Qj75buDgvhVEZL91Fs/MtK
+	7UDJN8KPMqNazAhWZc2d93134USA=
+X-Google-Smtp-Source: AGHT+IFwojGdn5TFA69NQKI8EHFePsm+grycDmM/kwemTgKo/lxJRDpk6nDdoeK1+VDGtXqMUJ0Dsn4FbyEFO4nF0nc=
+X-Received: by 2002:a05:6820:2012:b0:5a5:639a:2faa with SMTP id
+ by18-20020a056820201200b005a5639a2faamr1825200oob.2.1712204854408; Wed, 03
+ Apr 2024 21:27:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PA4PR04MB9389:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	T3nBl0gUpSHBPWlxrgDI6qcfd5zCOa1KzKDWPOZ5TmAJRHbMCqwwyTj7VuMw5dUw9ln3KlPQJd0T/ifhUDke0PC337cUIIDlUDrkVtt2wCoCR84Lh+xXXFZKiOoNR0+DLRhrAYvauGTvdCYnc8LoEAI+cW5EGNlU0PEHoSegFh8Y50TKlgTzrFre2SoO8/htNWPfF0LtqYlBBaOuzHk9DNhurq8llXPce4vExCmGDCc6oztT1kxGsDiW3R0uFIrw8IQfdHO6aYY9li72thVrFSsAA2uJ71kxBQIv604dE3kRmymX+wkEmaTE1tmj2xxLSkD3uDFgxaShDQfAFgzVISdecIjQHesfvsJ0qpXYHD2Sbc8SXMeyDPdNEzurM3dI6TF64RBm/bySqQ2NnOCut6tVioSEeMnX9gx07bdEvWCgu9M0FKFiaP3KRzH1XMd5eAuMiKZOfA5CBvrIoox0sDda3sVI0hJ8DWbMsTjJZ82oF522qVMcdzc4y5txHmSUar7jEhdgvURanech7DSKQRg8RbSxBK5ja1Q/TxlkkiMsIZGD1fIlGcgh7JDtDm63OJNog2NMgAloFcl9ObhquWG8ty1SkQCop3kWjgHMo+1jKuyai6jrxwogoQIkpETECvhhL8i2YViDCH5RNEhtv8w6AFMdHKSRmD9cOCxTVx4=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(366007)(52116005)(376005)(38350700005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?pZ0viEI4dcJgcSLOtQBf6K+B2QxewkRxnwnrQz4fje62OgyA297eMpL6CkvS?=
- =?us-ascii?Q?f+QDHr9imHd5ApoiMU5eSyc1m6rnVzk9KVZNEDaUIAH1rA5cOUzAAHJay5xT?=
- =?us-ascii?Q?YZKuzLxOn2zYtc4QTOk2uc+ZnOJsxxbVPWowu0ygcVCq6KF3D989BXyMVALM?=
- =?us-ascii?Q?YoiS8xnr/5Kx/tDNTPLj3Ygw89rAkyu860kmGrYMNqu0xd7h5LNCT6ZCLdna?=
- =?us-ascii?Q?YIZV7lejHKe1VPlnwZa5OxTtS0EV1dLXN4U6Wc+KHPfDzL7JoF9iBQ98lMoI?=
- =?us-ascii?Q?UTuq7SdTKNRloUDmH8i4HNEFcLLUKMlZ/mRKs6J/iyLyn3Zp/4y0YM+JP9KD?=
- =?us-ascii?Q?Ln/2UaZXe3zrFxbcwTF12zgoLf87uqwJK69XM8eD/GjklAyi53raUI4tSWSy?=
- =?us-ascii?Q?Yy5RSlc0+YsN/dFlUlMhA9I7/0HHNHk9CsTf2tdWL2ZtBz+ZauAvKZojenJZ?=
- =?us-ascii?Q?2ZQRr9DfmRfEv6P1hVhy0TLvF6mF8wFIje0UCgbh4fDyNTcvLsXszjX7Ky7O?=
- =?us-ascii?Q?9wauJNCS+4JI0zbxTjurZDqDvOwMLfa5wzHUXn5Zzbgq5qraesCFRpcnzUa8?=
- =?us-ascii?Q?EI4JJkCO7UAGcFJtdinXNfe7d9ez3YxPblPcDe/kIWKq8Vq0pnGT1PFIUHXi?=
- =?us-ascii?Q?aL8f1LE2xRF1C+L/Ch8UcXLYYHhg8sGd0YjxJXhfeQgNis0/Kndv4kKOBFa3?=
- =?us-ascii?Q?7KlQ0EyEY/KNeCS9sgjZl0TschYZxiMkx3am+zMsR/F79Qa/qFzFDkf8Dr7P?=
- =?us-ascii?Q?FGAhf1JHW/QQakN1YKygtBQ3h0fNdzWoduZnV4nwLpCtP3/MqlWgomzvU64B?=
- =?us-ascii?Q?2cd6vE+SGxQSt+tIoNg3xBugrtbGt/fsF7mgb8UNO0iOiSAAifNY/DkxnaRK?=
- =?us-ascii?Q?HCIqzEKykci/eLl1EzyFF13Ulr1mHRDLML7lkjUIh9tkzOKSNvrI5VsMXdpK?=
- =?us-ascii?Q?itOaJl41IBClyi8NdZX0CXsglxvSCpfkarIKB0kMedR4PJsB0fKjzavr0uJo?=
- =?us-ascii?Q?aK4nlJbSPTLp1RfDNmJgh8ZxB93GSyaP9gA5mLaXEid0ALTIDelCzrk5zfUz?=
- =?us-ascii?Q?uIhPuN+Z9doCrIIABRnPKhxNJ0+VVq9IOhImJ7AF1Jz8XbdRyDvgyXcJyD0W?=
- =?us-ascii?Q?E9mfySdG/xaPDn84O/Wtv3a1HhhZn7JhAHlJlRnjtbxx4Y9huWbZ+k+5H7cK?=
- =?us-ascii?Q?OB8BE7B7RWBg/AxTnu2++qjXghQePdNCPT0d5KpHagui9rE1siEG6o1zVpFm?=
- =?us-ascii?Q?8iXyjVSxs1ZygX8rtvir5LSyrGPgezXcJI5S5I/+eFkcW6ZVBJVQ8lgeFpg/?=
- =?us-ascii?Q?8z/EUvhFeBFbnWJ2Jr5fN7y3bacZ2P9jI+9ygd3/W897aGopvqq6+/wHI8sO?=
- =?us-ascii?Q?wwDRJScbICfCuW1UKy9Vql0e67yG5tseQYETzROgZNiW3NuiulkVPf/tkNgM?=
- =?us-ascii?Q?GY2gcVpvrHrn8cWxQoeMwCxpGlHZsrK9NOA8rlWIJu804Ei13EIDsKly6SuZ?=
- =?us-ascii?Q?Ia1/7yMcU5lHodFZvgs7B7y8ReqNiRIj47w9s+zQxiWmN/601vZj0BeNb/Cm?=
- =?us-ascii?Q?77GEHzpxfKURmrIoV8OsWjH/mHz3pudAcZH6RYam?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ab1f307f-63af-49af-60f7-08dc545ca3b8
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Apr 2024 04:06:44.2601
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: njuHhSvdXe50sAhAwfW9sptSa8pomfEZQzfC124M81QkpaOjbfEy3vkGDMOqABgdnP3ATfoWIUj20XIp4FsGRw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB9389
+References: <20231204144429.45197-1-linux.amoon@gmail.com> <20231204144429.45197-2-linux.amoon@gmail.com>
+ <20231206135311.GA2043711-robh@kernel.org> <CANAwSgTS0ZSFPv4x803pCLEpjH5imh8vEoWpbiJRH14Sy3GZww@mail.gmail.com>
+ <21673bfd-bb87-4c7d-a53f-337c263f3a00@linaro.org> <CANAwSgSo37B0zg-xjrmqndSZ5SbyB3m27_wRsqqN9WTONooeiw@mail.gmail.com>
+ <604e653d-c1e2-45c7-b121-8a6b4be5c6bb@linaro.org> <CANAwSgRB=XWo2-40rDru=Zy277-kgGNjozJ8Lxnxgv_4ABB-kg@mail.gmail.com>
+ <1a78d453-62a2-410a-a40f-1ff0c2b62e86@linaro.org> <CANAwSgTy4N7Q8e0OQLsFRkRDWksTSbkOetKQGygaqsQ8++U1_g@mail.gmail.com>
+ <2e688f4e-11d7-4f8e-b8ec-58f4a97304a8@linaro.org> <CANAwSgQstkS-SDaV2hj0fimt7vgfEgOT_x4efshZ6sZQ0gWSEA@mail.gmail.com>
+ <8f28ea77-b3d0-445e-8d8e-80f980775f89@linaro.org> <CANAwSgRLORHb6qiHWRBR0tMbYB=O=gwatuGhk72SwZyhYMopCw@mail.gmail.com>
+ <d2962ffb-badd-44a6-bdcc-53e15d4a4379@linaro.org> <CANAwSgSpuh-+HFYg2UTgX27SHFyCBddV46MgKakiSCOtFX4+aw@mail.gmail.com>
+ <436ed6a4-2ed9-47bc-bcc9-18a52b1a791b@linaro.org> <CANAwSgS8ip+FvuvgusjNwnVL5Z68PRmEdwfQxhst_ZoVZFoFNw@mail.gmail.com>
+In-Reply-To: <CANAwSgS8ip+FvuvgusjNwnVL5Z68PRmEdwfQxhst_ZoVZFoFNw@mail.gmail.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Thu, 4 Apr 2024 09:57:18 +0530
+Message-ID: <CANAwSgSftb3KkXvzNyGGixVtK8SWcOYjxO9WWpLt-B3mf_B6tg@mail.gmail.com>
+Subject: Re: [PATCH v6 1/2] dt-bindings: usb: Add the binding example for the
+ Genesys Logic GL3523 hub
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Icenowy Zheng <uwu@icenowy.me>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	linux-amlogic@lists.infradead.org, Conor Dooley <conor.dooley@microchip.com>, 
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Apr 03, 2024 at 11:29:43PM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
-> 
-> Doument the port node to link the PTN5150 to a TypeC controller.
-> 
-> This fixes the following dt-schema warnings:
-> 
-> imx8mp-dhcom-pdk3.dtb: typec@3d: 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/extcon/extcon-ptn5150.yaml#
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+Hi Krzysztof,
 
-Thanks, I met the same issue.
+On Tue, 12 Dec 2023 at 18:47, Anand Moon <linux.amoon@gmail.com> wrote:
+>
+> Hi Krzysztof,
+>
+> On Tue, 12 Dec 2023 at 18:39, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> >
+> > On 12/12/2023 13:51, Anand Moon wrote:
+> > > Hi Krzysztof,
+> > >
+> > > On Tue, 12 Dec 2023 at 17:22, Krzysztof Kozlowski
+> > > <krzysztof.kozlowski@linaro.org> wrote:
+> > >>
+> > >> On 12/12/2023 12:37, Anand Moon wrote:
+> > >>>
+> > >>> Here is the list of warnings I observed with this patch
+> > >>>
+> > >>>   DTC_CHK Documentation/devicetree/bindings/usb/nvidia,tegra186-xusb.example.dtb
+> > >>> /home/amoon/mainline/linux-amlogic-6.y-devel/Documentation/devicetree/bindings/usb/usb-device.example.dtb:
+> > >>> hub@1: 'vdd-supply' is a required property
+> > >>
+> > >> You always require the property, but it is not valid for some devices.
+> > >> Just require it only where it is applicable (in if:then: clause).
+> > >>
+> > > I had already done this check many times before.
+> >
+> > I don't ask you to check. I ask you to change the code.
+> >
+> I have tried this and it's not working for me.
+>
+> > > my v6 original patch was doing the same and it passed all the tests
+> > > but since I updated the required field it not parsing correctly.
+> >
+> > Your original v6 patch was different. I don't understand what you are
+> > trying to achieve. Or rather: how is it different, that my simple advice
+> > above does not work for you  (as in the past you reply with some really
+> > unrelated sentence).
+> >
+> Ok, It's my poor English grammar, thanks for your review comments.
+>
+> > Best regards,
+> > Krzysztof
+> >
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+Any reason this device tree binding got removed,I cannot find this file
+Can not find the commit which removed this file.
 
-> ---
->  .../devicetree/bindings/extcon/extcon-ptn5150.yaml    | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml b/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
-> index d5cfa32ea52d..3472c69056ac 100644
-> --- a/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
-> +++ b/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
-> @@ -36,6 +36,11 @@ properties:
->      description:
->        GPIO pin (output) used to control VBUS. If skipped, no such control
->        takes place.
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    description:
-> +      A port node to link the PTN5150 to a TypeC controller.
-> +    unevaluatedProperties: false
->  
->  required:
->    - compatible
-> @@ -58,5 +63,11 @@ examples:
->              interrupt-parent = <&msmgpio>;
->              interrupts = <78 IRQ_TYPE_LEVEL_HIGH>;
->              vbus-gpios = <&msmgpio 148 GPIO_ACTIVE_HIGH>;
-> +
-> +            port {
-> +              ptn5150_out_ep: endpoint {
-> +                 remote-endpoint = <&dwc3_0_ep>;
-> +              };
-> +           };
->          };
->      };
-> -- 
-> 2.34.1
-> 
+[0] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/usb?h=v6.9-rc2
+
+Thanks
+-Anand
 
