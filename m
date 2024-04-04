@@ -1,154 +1,120 @@
-Return-Path: <devicetree+bounces-56254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56256-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA238898350
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 10:43:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCC6E898366
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 10:47:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2DC81C269EA
-	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 08:43:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 517BBB247BF
+	for <lists+devicetree@lfdr.de>; Thu,  4 Apr 2024 08:47:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF9D16027D;
-	Thu,  4 Apr 2024 08:43:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52A7471B5C;
+	Thu,  4 Apr 2024 08:47:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rOmr+Kj/"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Y4kT5zBv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F98E67A15;
-	Thu,  4 Apr 2024 08:43:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90EFE71B40;
+	Thu,  4 Apr 2024 08:47:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712220198; cv=none; b=g+oI1IZsgMobtw+S5pUGGrc8qoQAkJlwwODMomQQvYs35fscNyl6YeCdp1lXQcSmkvZqD6aJYRhtOxb2GhM4jJAEHlW5rV36XB2CoEfHyXn8QSs6CAMwg20/Lru9amMo67UluzgUZtCNWwEVShrkZ0L+n6dkdfCPAXWRCYvEgZU=
+	t=1712220463; cv=none; b=YbqAGKzQP+tVdbR3hhnn+cwuy+NCkoJk38vCmfF0EkAj4UQsVeop3P9sjBADLsfdrpTiSfe53F3wFM7lOrMj2xqHENSWnhiSqYV7gTRnaG7Kk3aruK8xY+XNk4cGqSO1VABrtqOFlWOkt2W4Pjhcmm8rK9SPP7htHSoHMkUINtU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712220198; c=relaxed/simple;
-	bh=K/2kqRefdjaSq6RSFSje8rLRMQvvvg2h/VDyWIAvNtM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XVh7BjPQY01ZYiD08D1V4lun966AB1lksWl9yx47yFDx4oXf2aTSTNmCPeCdj/FO7tKVslohM6l1y0evU2AcoPiNRxRQ/NZPbHr1C91M85YAP5V74BRLcwfDMspUhjArObrpqNQ3oU/vxYzp2hFnCXvSin6muDnQ/vHw3Rz2mV8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rOmr+Kj/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB383C433C7;
-	Thu,  4 Apr 2024 08:43:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712220198;
-	bh=K/2kqRefdjaSq6RSFSje8rLRMQvvvg2h/VDyWIAvNtM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rOmr+Kj/+Y5R96IOjw3hCuE+g6j0GF90jlc0BdbF1n7+Oc5UAcGbTjAd+g9j0HKAZ
-	 6eqDz/KTWUTTXSHIOhjWqjxfQTs/unIJLfsf7wKWB4bXt9zoPoIADmnJ7mw3vKrCAt
-	 aYveqtVQ6wb9WyB8XKPxlQK6zNzY0arNXNE64k36iGk4Os3ML9LSI/tea5gv9s0jNg
-	 GRk+48LbFfqjfRbxrDmBap/f3dNNWi4qQdN92KmajCTG8SEZP4exj/T+hDsLbnKJZJ
-	 N1FznPbTSKe/EGE0Ssy5cvP4mXNpd/alB3QIYtoxQd9TR4C0/bl+lyX8pQZUU2NucQ
-	 RDECPr6NbnxVg==
-Date: Thu, 4 Apr 2024 10:43:14 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-clk@vger.kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-	linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	nbd@nbd.name, john@phrozen.org, devicetree@vger.kernel.org,
-	dd@embedd.com, catalin.marinas@arm.com, will@kernel.org,
-	upstream@airoha.com, lorenzo.bianconi83@gmail.com,
-	angelogioacchino.delregno@collabora.com
-Subject: Re: [PATCH 1/4] dt-bindings: clock: airoha: add EN7581 binding
-Message-ID: <Zg5oIhcW4pFQNTwm@lore-desk>
-References: <cover.1712160869.git.lorenzo@kernel.org>
- <1988a4460ed327bea7841f6a0f3a756dd7cec4bb.1712160869.git.lorenzo@kernel.org>
- <65e7617a-9e7b-4dea-a98c-31502222543a@linaro.org>
+	s=arc-20240116; t=1712220463; c=relaxed/simple;
+	bh=C0B534tETcSiSi2d2a5k3Mlzf8TIAyJoW2nw7gAaT4k=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=nhzEGmJLOz08v+DYMfOmsRaiQz48Zba6JsZk6JQfFyzpfteKJbP43rKkSopLUTBnpXdGkgJG4EwI5V9tf+qEUVrEix17UkkWldJTkiRpBh6pE9UwvYjGsvLuCm7oaV9/Im1F4ocfqd/m8p9kX3l4Ze5BaBXPA/RzWeQkmTuWmn4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Y4kT5zBv; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4348T9K3031265;
+	Thu, 4 Apr 2024 08:47:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=ySSQu01
+	uxqxgU7lEYH4fWRZQEzBl+iPrmYmI64On0hY=; b=Y4kT5zBv661yKGkgyEKI4UD
+	sZ3f3OJIkqRA3x5NMigGS3kcfmFRU+SA2mzEI88R7ut91CxvOwY+v1Vvp6Zo2JJK
+	jd9Jjv/jn/e9IZYUpDVIDjo41zECnY4cVuSDe8MpbbfAAJBagyPLvux02DgDVIgD
+	/V+by6UYgIvgN3UAClS+srT905dAMZIAfDEtPXdtxhcmmgfaA70ehqHC/AL7Kmb2
+	CLbfZg4/ScC3LEeu0vDQBw+xYIVg+GOFi7NOGh0bVn8epRgcY+hvXbo80MEC46y2
+	s353P0HJKg6UYqV1TH5F47+7SCXSu26zdUykObZ2IVVIaBJiTQxAQi8T0F5VdmQ=
+	=
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x9ep3rymj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 04 Apr 2024 08:47:25 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4348lOU5003300
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 4 Apr 2024 08:47:24 GMT
+Received: from hu-mohs-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.4; Thu, 4 Apr 2024 01:47:19 -0700
+From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami
+	<bgoswami@quicinc.com>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+	<broonie@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela
+	<perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>
+CC: <linux-arm-msm@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_rohkumar@quicinc.com>,
+        "Mohammad Rafi
+ Shaik" <quic_mohs@quicinc.com>
+Subject: [PATCH v2 0/2] Add support for QCM6490 and QCS6490
+Date: Thu, 4 Apr 2024 14:16:29 +0530
+Message-ID: <20240404084631.417779-1-quic_mohs@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="2+PFIIQN5kSAMM2T"
-Content-Disposition: inline
-In-Reply-To: <65e7617a-9e7b-4dea-a98c-31502222543a@linaro.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: qEExjceD8F6__3ATV3Ifli7EUgQDJGFS
+X-Proofpoint-GUID: qEExjceD8F6__3ATV3Ifli7EUgQDJGFS
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-04_04,2024-04-04_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 bulkscore=0
+ mlxlogscore=662 spamscore=0 suspectscore=0 priorityscore=1501
+ lowpriorityscore=0 mlxscore=0 phishscore=0 impostorscore=0 adultscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404040058
 
+This patchset adds support for sound card on Qualcomm QCM6490 IDP and
+QCS6490 RB3Gen2 boards.
 
---2+PFIIQN5kSAMM2T
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes since v1:
+	- Use existing sc8280xp machine driver instead of separate driver.
+	- Modify qcs6490 compatible name as qcs6490-rb3gen2.
 
-> On 03/04/2024 18:20, Lorenzo Bianconi wrote:
-> > Introduce Airoha EN7581 entry in Airoha EN7523 clock binding
-> >=20
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > ---
-> >  .../bindings/clock/airoha,en7523-scu.yaml     | 26 +++++++++++++++++--
-> >  1 file changed, 24 insertions(+), 2 deletions(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.=
-yaml b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
-> > index 79b0752faa91..cf893d4c74cd 100644
-> > --- a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
-> > +++ b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
-> > @@ -29,10 +29,13 @@ description: |
-> >  properties:
-> >    compatible:
-> >      items:
-> > -      - const: airoha,en7523-scu
-> > +      - enum:
-> > +          - airoha,en7523-scu
-> > +          - airoha,en7581-scu
-> > =20
-> >    reg:
-> > -    maxItems: 2
-> > +    minItems: 2
-> > +    maxItems: 3
-> > =20
-> >    "#clock-cells":
-> >      description:
-> > @@ -45,6 +48,25 @@ required:
-> >    - reg
-> >    - '#clock-cells'
-> > =20
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          const: airoha,en7523-scu
-> > +    then:
-> > +      properties:
-> > +        reg:
-> > +          maxItems: 2
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          const: airoha,en7581-scu
-> > +    then:
-> > +      properties:
-> > +        reg:
-> > +          maxItems: 3
->=20
-> Original code had here issue - lack of description of the items. You are
-> now growing it. Please instead list the items (items: - description: foo
-> bar .....).
+Mohammad Rafi Shaik (2):
+  ASoC: dt-bindings: qcom,sm8250: Add QCM6490 snd QCS6490 sound card
+  ASoC: qcom: sc8280xp: Add support for QCM6490 and QCS6490
 
-ack, I will fix it.
+ Documentation/devicetree/bindings/sound/qcom,sm8250.yaml | 2 ++
+ sound/soc/qcom/sc8280xp.c                                | 2 ++
+ 2 files changed, 4 insertions(+)
 
-Regards,
-Lorenzo
+-- 
+2.25.1
 
->=20
-> Best regards,
-> Krzysztof
->=20
-
---2+PFIIQN5kSAMM2T
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZg5oIgAKCRA6cBh0uS2t
-rFCWAP0Z57M4LuN3Jsam2ES7Vvxp09GbLGM2x46HobQSrrze2gD/SHhAeW8vXIrH
-YV9OrMHbfXZjgqO1d3jnTBZkUpqMBw4=
-=DYYB
------END PGP SIGNATURE-----
-
---2+PFIIQN5kSAMM2T--
 
