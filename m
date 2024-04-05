@@ -1,41 +1,41 @@
-Return-Path: <devicetree+bounces-56666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B34889A127
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 17:30:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FBCE89A12D
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 17:31:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DACACB25E64
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 15:30:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E9B12B25F52
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 15:31:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ABC316FF32;
-	Fri,  5 Apr 2024 15:29:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EC23171E6B;
+	Fri,  5 Apr 2024 15:29:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=smtpcorp.com header.i=@smtpcorp.com header.b="DIJHub1N";
-	dkim=pass (2048-bit key) header.d=asem.it header.i=@asem.it header.b="Orq6cwdG"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=smtpcorp.com header.i=@smtpcorp.com header.b="jW+lIs7K";
+	dkim=pass (2048-bit key) header.d=asem.it header.i=@asem.it header.b="Xs19+5Dm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from e3i57.smtp2go.com (e3i57.smtp2go.com [158.120.84.57])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C554217107F
-	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 15:29:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A637B171E5C
+	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 15:29:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=158.120.84.57
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712330967; cv=none; b=X065MyDGFjLLjUELRZLu0z93gxUzBH0WJvNZ34VD2ADrX967xI7BpX16xCK9TiC39Y7EDSksZYPTsqZXgvXGG3xk7Ysg+h+h7CrsQg+PXACqwVrm03UxaNRo8/WJ4e0eRGxVyiGT12lBJvwYryoJDK6YL2N1bFWVwY5SZn/d5ZI=
+	t=1712330973; cv=none; b=MeQD1OwDNijvo5vESlv9eFozXKCi7kZQnzGnoyuMWk/YJd2HmxPdZ47mPOGvrBhMTwrWN31KCMUfsDSJUwnxUyhheOt/vLKWumQHBMg/LZPsDNxKHDDtj9oHqR6nPLLMG5KQZYREaImkkhHbsYtpZnMOA1EmkYg0oxNrmaZohOQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712330967; c=relaxed/simple;
-	bh=/85FrgtiGyeXI3NXKIEzWRrmclnbRTUZJ58KJVorq4k=;
+	s=arc-20240116; t=1712330973; c=relaxed/simple;
+	bh=fat/r3HbU9fmQ9BZUSIoNdkoDjoqNHVWvYNMh5bZGac=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=BgfvnhFWuyQQ2N98aie+qnerk+0vtU6/yms2lgzd1yYGISlxp4J+hCerbFH+qtxwPNKqv9kTcSg77htCXOmvSa9y9sXWhrR5TRMf60sHDymnbGPJW0cYRsdbKkYiNj6BUNPjPDfIy+eEWFCw7Uct5KZYIDqRfag2ozQnJ+j9/YE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=asem.it; spf=pass smtp.mailfrom=em1174574.asem.it; dkim=pass (2048-bit key) header.d=smtpcorp.com header.i=@smtpcorp.com header.b=DIJHub1N; dkim=pass (2048-bit key) header.d=asem.it header.i=@asem.it header.b=Orq6cwdG; arc=none smtp.client-ip=158.120.84.57
+	 MIME-Version; b=sfo65JJ2LjGtDM8U6zuJkjl5MYhBKowJZtcHVG3BWfAX4MhdEzmDHp60DkLMJZuEI8TReRQSK8x8E+3CG6VHvaTvD6C3Rj678Y4kQWaFkXciU/mDgxpfahS+Orz+WhMTBCs84ETS4bhv6wF/VzvyZhp5VHIyJBqX9d/xe+mgF/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=asem.it; spf=pass smtp.mailfrom=em1174574.asem.it; dkim=pass (2048-bit key) header.d=smtpcorp.com header.i=@smtpcorp.com header.b=jW+lIs7K; dkim=pass (2048-bit key) header.d=asem.it header.i=@asem.it header.b=Xs19+5Dm; arc=none smtp.client-ip=158.120.84.57
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=asem.it
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=em1174574.asem.it
 Received: from [10.86.249.198] (helo=asas054.asem.intra)
 	by smtpcorp.com with esmtpa (Exim 4.96.1-S2G)
 	(envelope-from <f.suligoi@asem.it>)
-	id 1rslV2-04gIYl-0v;
+	id 1rslV2-04gIYl-2n;
 	Fri, 05 Apr 2024 15:29:04 +0000
 Received: from flavio-x.asem.intra ([172.16.18.47]) by asas054.asem.intra with Microsoft SMTPSVC(10.0.14393.4169);
 	 Fri, 5 Apr 2024 17:29:01 +0200
@@ -65,9 +65,9 @@ Cc: netdev@vger.kernel.org,
 	linux-arm-msm@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Flavio Suligoi <f.suligoi@asem.it>
-Subject: [PATCH 3/6] arm64: dts: imx8mp-evk: remove tx-sched-sp property
-Date: Fri,  5 Apr 2024 17:27:57 +0200
-Message-Id: <20240405152800.638461-4-f.suligoi@asem.it>
+Subject: [PATCH 4/6] arm64: dts: imx8mp-verdin: remove tx-sched-sp property
+Date: Fri,  5 Apr 2024 17:27:58 +0200
+Message-Id: <20240405152800.638461-5-f.suligoi@asem.it>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240405152800.638461-1-f.suligoi@asem.it>
 References: <20240405152800.638461-1-f.suligoi@asem.it>
@@ -78,26 +78,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-OriginalArrivalTime: 05 Apr 2024 15:29:01.0558 (UTC) FILETIME=[FC56C160:01DA876D]
-X-smtpcorp-track: 1rs_V204gmY_0v.EuMCjfTIRaIVE
+X-OriginalArrivalTime: 05 Apr 2024 15:29:01.0641 (UTC) FILETIME=[FC636B90:01DA876D]
+X-smtpcorp-track: 1rs_V204gmY_2n.EuMCjfTIozR_p
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=smtpcorp.com;
- i=@smtpcorp.com; q=dns/txt; s=a1-4; t=1712330945; h=feedback-id :
+ i=@smtpcorp.com; q=dns/txt; s=a1-4; t=1712330947; h=feedback-id :
  x-smtpcorp-track : date : message-id : to : subject : from : reply-to
  : sender : list-unsubscribe;
- bh=oi48LbG1I/VP5W3WKG7O4Eeo5cePw11MKZR9VfWSCRk=;
- b=DIJHub1N6pzgEZxL1bYtGy13jwb+d2XbBqriHeeFpa4fsd/P6qGbK9/P8PwkHyPzEBY1S
- BTjkKzbh5Cm+VfczqymEWxC1lAlfwtqwJPn6zyk/9VKGbgvKhoIOWl2HGF1OzsIdpcAXTyW
- XS9UjNtlNfKDAmIKhpTYqO5GBjr6YFZ/t2jLU9RHimAKbtAvaAE3cMGWbRLd8/go/nV/eFG
- B340IotLJYG11g2tvM7/oOLomoy1czcWMtBBbClA+3YNH7s0w/o7mTBKNIy+IHtjxHb4k1Q
- 7C75/HjW7cxTw3LWxMvXDv2XKfEdX1LNm0dCw+gJJym31x6N3gcwsokjfmXQ==
+ bh=z6/lBWhbzIHfLCrRTM1SzzPe1OKp0Fc/uUJ7RPvyKV8=;
+ b=jW+lIs7KSxIWn5IEAkGVme5Q2CRgUgRs1iHuauLeGONfYY4PrnWfu/+H6eba0yC3siMY1
+ NFE4foNX3QvOm5n3NyMtU7FnxiL6BWJrr9YFGbIy9e8J0AhjmCJN+M9cU37futqKfiaMIGg
+ dC4PW+Gz4X2VkLDLErPyTKMmmON7AVsyRy79pUFSJodYIS0jjM2OhjocAcQNU4I40qU8y8z
+ ERfR/LmKx4e9ekXpST0yWGC90dsM3lzgVYIop4yrap1GcR9hLFnznUzHZ2vEHaEHrQ6+bfu
+ 5bnGfguvDW6Ejzd5KxepxRL8/0LAREGauLhtSKq7vpZYM5QhvQClKBomNmOg==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=asem.it;
- i=@asem.it; q=dns/txt; s=s1174574; t=1712330945; h=from : subject : to
- : message-id : date; bh=oi48LbG1I/VP5W3WKG7O4Eeo5cePw11MKZR9VfWSCRk=;
- b=Orq6cwdGEcL3tsaomIIB6os9r5JC399o/9/SBbA9qpy4lS+aDWF/oRBIeiZ7uetNCzOLI
- 0OEgIvtwTNz1OBXdeq2iZRyD9KDoCiw8RzcJnJhslKLbNiqz7Tp2x27p9FMiftgxXfIt+1S
- RXLjtCZJCmV4OFWH5Ybg313J1LF06gTm49R8Iv7DZ/GCjobDSQO6y7mJIN1VWZT8ftd3mcz
- tTsc9C+5YCnL1QS/Gx7v2a8pVtZ2PGVuvLEUu4TlE/eKQ8VLr3mXIjN4onDfetrCu+AiZvN
- 8812Hho5z+9WXsPIK8IhrDnFEqXGhMkgpzFGo/3Fh4vVUA2tDMMCSwsidO8A==
+ i=@asem.it; q=dns/txt; s=s1174574; t=1712330947; h=from : subject : to
+ : message-id : date; bh=z6/lBWhbzIHfLCrRTM1SzzPe1OKp0Fc/uUJ7RPvyKV8=;
+ b=Xs19+5Dmf4Qwzcrghb9tf8KilcwcFqUup582Ecl0dIDSOXGOPk+PWYaQ/CUlw0mRo3gis
+ rZnnN9rYWYGil9Bpe7ScXGiYousnEnzwRRfsp+695HeOHKj5g0k0qhYmAAzQ7e0OCy+MAmS
+ XFdRSgX62NPAytMyDw2OjOuJUWopfzaev34TUdCfrqrjUVLnWWV6a1BfAjBQEcbNqA/y+60
+ JWJkUlfmQTYFSC3pYsqBkVXzsxvD2pN2kWRm4GN1F6MWRWwUBdYoz7ES0NppU6XjmLzunVE
+ u5nSOhRsbO1CTcPYVVIGvAF7yDw61kXS4IdPitgcP4RVIZ4IHIvgx0uXUn3A==
 
 The property "tx-sched-sp" no longer exists, as it was removed from the
 file:
@@ -111,14 +111,14 @@ branch")
 
 Signed-off-by: Flavio Suligoi <f.suligoi@asem.it>
 ---
- arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 1 -
+ arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi | 1 -
  1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-index 8be5b2a57f27..bb1003363e3e 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-@@ -251,7 +251,6 @@ ethphy0: ethernet-phy@1 {
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
+index f033d4310305..5b1b36a7ad38 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
+@@ -260,7 +260,6 @@ queue4 {
  
  	mtl_tx_setup: tx-queues-config {
  		snps,tx-queues-to-use = <5>;
