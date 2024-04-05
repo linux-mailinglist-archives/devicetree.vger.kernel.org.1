@@ -1,137 +1,144 @@
-Return-Path: <devicetree+bounces-56440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D257A89942D
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 06:37:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75BCC89948D
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 06:45:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 880A21F29E25
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 04:37:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EE8ACB25EEE
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 04:45:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6E8221350;
-	Fri,  5 Apr 2024 04:37:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4644219F3;
+	Fri,  5 Apr 2024 04:44:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="F9QtCehI"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="Kl3pFkAp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38ED41D53C;
-	Fri,  5 Apr 2024 04:37:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94A2DC138;
+	Fri,  5 Apr 2024 04:44:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712291845; cv=none; b=lQ8yD786Yimqo1/YggzLfZ4Si5C2zEAqD6sFh5au24TuS3u25Ntmk4trtVzM/Qe9xpca0jTGlk06aupYXTIffxhFW0vP5TUwmF0cSyWrH4U/MTKca6NYFCILQqffa6Jp6+zN9PNK0dz09NzX3ESdRLN11ULKhztvXmPvms8GKPg=
+	t=1712292245; cv=none; b=Wc2dqQHT1Hg39cy0GRCRKAXJFcRtzfVZhQjNV64vRuTzVmWfSbHFabvzvysPfp21kqPGb5pnbTnH6phzgP1C5EcJUoHekMDEicjb+uOeWxbtxGtkyKEvLBSqjsaf2WndfnvNjvrNky6vOOEnFcHlAffmuM0+w0175P0rkShs5KI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712291845; c=relaxed/simple;
-	bh=po9zb6Qn/5fT2i3jnTl0DLe9EyYWr9PtZv3ZiG+LgXk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=INhIg+PMiR3OU9U/cxgv9Fx1c94ABC9f0BkYCSM6nVQU9KQowh7hV+8uldKfOIsV0K4O92bJ+XHkbLUxVBq7R5pypLBYGgqiYFGtA7RNQnp3lyJ2hRHR0PBw0DpHZmTbyVxl9yFheDQZ4o07EGAryG8btYq02ECaR5buEXG2c7Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=F9QtCehI; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1712291844; x=1743827844;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=po9zb6Qn/5fT2i3jnTl0DLe9EyYWr9PtZv3ZiG+LgXk=;
-  b=F9QtCehID2MvR/v6ZvDnr9d0ubzS//owYfjYfSnqFkLofgY0MxzrYpPv
-   quR7J9EEhD4KmLxmIdcAUXWPazqGv/5Wll36SKYjBbXfyq1a4KLoHbLVg
-   fMprcQ8fovkdL3pL2yGPbf5TaZ1S6OAQOXznLO7ICUSeNOvdhlleqabPg
-   ComZK+m1a1hUGwz8/cacFQljUweS4RJH6tkFJqaaT8iIHxIO1bumu4nKb
-   3Un9eEmYcOVgh3aCXYR/hGZecgDOnMlIhIfxwNu/qlV5NNIv1Y9maEiGh
-   zbqB9tGWZv8/yinZ+6oXuRAWviQwuqn7DOAWwMMFYGZ+JRxiPWlSl42Sh
-   A==;
-X-CSE-ConnectionGUID: pa7nRkquTYe1ezaz9E3PHg==
-X-CSE-MsgGUID: 7CFef4+2SuuC2PUB3XjO2g==
-X-IronPort-AV: E=Sophos;i="6.07,180,1708412400"; 
-   d="scan'208";a="186866936"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 04 Apr 2024 21:37:21 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 4 Apr 2024 21:37:14 -0700
-Received: from che-lt-i70843lx.microchip.com (10.10.85.11) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Thu, 4 Apr 2024 21:37:02 -0700
-From: Dharma Balasubiramani <dharma.b@microchip.com>
-To: "andrzej . hajda @ intel . com" <andrzej.hajda@intel.com>, "neil .
- armstrong @ linaro . org" <neil.armstrong@linaro.org>, "rfoss @ kernel . org"
-	<rfoss@kernel.org>, "Laurent . pinchart @ ideasonboard . com"
-	<Laurent.pinchart@ideasonboard.com>, "jonas @ kwiboo . se" <jonas@kwiboo.se>,
-	"jernej . skrabec @ gmail . com" <jernej.skrabec@gmail.com>, "maarten .
- lankhorst @ linux . intel . com" <maarten.lankhorst@linux.intel.com>,
-	"mripard @ kernel . org" <mripard@kernel.org>, "tzimmermann @ suse . de"
-	<tzimmermann@suse.de>, "airlied @ gmail . com" <airlied@gmail.com>, "daniel @
- ffwll . ch" <daniel@ffwll.ch>, "robh+dt @ kernel . org" <robh+dt@kernel.org>,
-	"krzysztof . kozlowski+dt @ linaro . org"
-	<krzysztof.kozlowski+dt@linaro.org>, "conor+dt @ kernel . org"
-	<conor+dt@kernel.org>, "linux @ armlinux . org . uk" <linux@armlinux.org.uk>,
-	"Nicolas . Ferre @ microchip . com" <Nicolas.Ferre@microchip.com>, "alexandre
- . belloni @ bootlin . com" <alexandre.belloni@bootlin.com>, "claudiu . beznea
- @ tuxon . dev" <claudiu.beznea@tuxon.dev>, "Manikandan . M @ microchip . com"
-	<Manikandan.M@microchip.com>, "Dharma . B @ microchip . com"
-	<Dharma.B@microchip.com>, "arnd @ arndb . de" <arnd@arndb.de>, "geert+renesas
- @ glider . be" <geert+renesas@glider.be>, "Jason @ zx2c4 . com"
-	<Jason@zx2c4.com>, "mpe @ ellerman . id . au" <mpe@ellerman.id.au>, "gerg @
- linux-m68k . org" <gerg@linux-m68k.org>, "rdunlap @ infradead . org"
-	<rdunlap@infradead.org>, "vbabka @ suse . cz" <vbabka@suse.cz>, "dri-devel @
- lists . freedesktop . org" <dri-devel@lists.freedesktop.org>, "devicetree @
- vger . kernel . org" <devicetree@vger.kernel.org>, "linux-kernel @ vger .
- kernel . org" <linux-kernel@vger.kernel.org>, "linux-arm-kernel @ lists .
- infradead . org" <linux-arm-kernel@lists.infradead.org>, "Hari . PrasathGE @
- microchip . com" <Hari.PrasathGE@microchip.com>, "akpm @ linux-foundation .
- org" <akpm@linux-foundation.org>, "deller @ gmx . de" <deller@gmx.de>
-CC: Dharma Balasubiramani <dharma.b@microchip.com>, "Hari Prasath Gujulan
- Elango" <hari.prasathge@microchip.com>, Nicolas Ferre
-	<nicolas.ferre@microchip.com>
-Subject: [PATCH v5 4/4] ARM: configs: at91: Enable LVDS serializer support
-Date: Fri, 5 Apr 2024 10:05:36 +0530
-Message-ID: <20240405043536.274220-5-dharma.b@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240405043536.274220-1-dharma.b@microchip.com>
-References: <20240405043536.274220-1-dharma.b@microchip.com>
+	s=arc-20240116; t=1712292245; c=relaxed/simple;
+	bh=nP5LSoPmz6tMExekbFggHQmASZ3xuQAUPcPQ6315p7c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XwG8jG8IPX2Ly9u4vL0/TKrq1aEgisam1CDtXprbgkuiqb07AYMuwBAwmn/jkmfj9Q5muuJi0TaQpg5bdkRDOePE4RSxQaaQUKrGji/x1IDJutzjnvWUvAa7019pTdKMPQX1Ayn7BlwWBgR+KnHbMRajrVmPVgl+QJ99SVeeDJg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=Kl3pFkAp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B1DFC433F1;
+	Fri,  5 Apr 2024 04:44:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1712292245;
+	bh=nP5LSoPmz6tMExekbFggHQmASZ3xuQAUPcPQ6315p7c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Kl3pFkAptITw2b7BMS4ccJYJ2GNDXaJVO9O2I+YNvsiM4STCe/AskFJrIQiE8WtpP
+	 xcSI6CknCzHADaD8kDSEBWy3SgeAMTngU2YKd79J8ItyAAgzk6tqee3uDuv79S5pGO
+	 LlRwKqADyKQhOzkI6QSxHbDPYcBRKhwCn9LulNRg=
+Date: Fri, 5 Apr 2024 06:43:56 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Johan Hovold <johan@kernel.org>,
+	Krishna Kurapati <quic_kriskura@quicinc.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+	linux-kernel@vger.kernel.org, quic_ppratap@quicinc.com,
+	quic_jackp@quicinc.com, Johan Hovold <johan+linaro@kernel.org>
+Subject: Re: [PATCH v19 2/9] usb: dwc3: core: Access XHCI address space
+ temporarily to read port info
+Message-ID: <2024040558-undercut-sandbar-7ffc@gregkh>
+References: <20240404051229.3082902-1-quic_kriskura@quicinc.com>
+ <20240404051229.3082902-3-quic_kriskura@quicinc.com>
+ <Zg5VDnbaaBXJyRjV@hovoldconsulting.com>
+ <f16e1280-8f7e-40a7-ab45-9acaeb3e90cb@linaro.org>
+ <2024040455-sitting-dictator-170c@gregkh>
+ <Zg9THGBRuppfw4y+@hu-bjorande-lv.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Zg9THGBRuppfw4y+@hu-bjorande-lv.qualcomm.com>
 
-Enable LVDS serializer support for display pipeline.
+On Thu, Apr 04, 2024 at 06:25:48PM -0700, Bjorn Andersson wrote:
+> On Thu, Apr 04, 2024 at 02:58:29PM +0200, Greg Kroah-Hartman wrote:
+> > On Thu, Apr 04, 2024 at 10:07:27AM +0200, Krzysztof Kozlowski wrote:
+> > > On 04/04/2024 09:21, Johan Hovold wrote:
+> > > > On Thu, Apr 04, 2024 at 10:42:22AM +0530, Krishna Kurapati wrote:
+> > > >  
+> > > >> +static int dwc3_get_num_ports(struct dwc3 *dwc)
+> > > >> +{
+> > > >> +	void __iomem *base;
+> > > >> +	u8 major_revision;
+> > > >> +	u32 offset;
+> > > >> +	u32 val;
+> > > >> +
+> > > >> +	/*
+> > > >> +	 * Remap xHCI address space to access XHCI ext cap regs since it is
+> > > >> +	 * needed to get information on number of ports present.
+> > > >> +	 */
+> > > >> +	base = ioremap(dwc->xhci_resources[0].start,
+> > > >> +		       resource_size(&dwc->xhci_resources[0]));
+> > > >> +	if (!base)
+> > > >> +		return PTR_ERR(base);
+> > > > 
+> > > > This is obviously still broken. You need to update the return value as
+> > > > well.
+> > > > 
+> > > > Fix in v20.
+> > > 
+> > > If one patchset reaches 20 versions, I think it is time to stop and
+> > > really think from the beginning, why issues keep appearing and reviewers
+> > > are still not happy.
+> > > 
+> > > Maybe you did not perform extensive internal review, which you are
+> > > encouraged to by your own internal policies, AFAIR. Before posting next
+> > > version, please really get some internal review first.
+> > 
+> > Also get those internal reviewers to sign-off on the commits and have
+> > that show up when you post them next.  That way they are also
+> > responsible for this patchset, it's not fair that they are making you do
+> > all the work here :)
+> > 
+> 
+> I like this idea and I'm open to us changing our way of handling this.
+> 
+> But unless such internal review brings significant input to the
+> development I'd say a s-o-b would take the credit from the actual
+> author.
 
-Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
-Acked-by: Hari Prasath Gujulan Elango <hari.prasathge@microchip.com>
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
----
-Changelog
-v4 -> v5
-v3 -> v4
-v2 -> v3
-- No Changes.
----
- arch/arm/configs/at91_dt_defconfig | 1 +
- 1 file changed, 1 insertion(+)
+It does not do that at all.  It provides proof that someone else has
+reviewed it and agrees with it.  Think of it as a "path of blame" for
+when things go bad (i.e. there is a bug in the submission.)  Putting
+your name on it makes you take responsibility if that happens.
 
-diff --git a/arch/arm/configs/at91_dt_defconfig b/arch/arm/configs/at91_dt_defconfig
-index 1d53aec4c836..6eabe2313c9a 100644
---- a/arch/arm/configs/at91_dt_defconfig
-+++ b/arch/arm/configs/at91_dt_defconfig
-@@ -143,6 +143,7 @@ CONFIG_VIDEO_OV2640=m
- CONFIG_VIDEO_OV7740=m
- CONFIG_DRM=y
- CONFIG_DRM_ATMEL_HLCDC=y
-+CONFIG_DRM_MICROCHIP_LVDS_SERIALIZER=y
- CONFIG_DRM_PANEL_SIMPLE=y
- CONFIG_DRM_PANEL_EDP=y
- CONFIG_FB_ATMEL=y
--- 
-2.25.1
+> We've discussed a few times about carrying Reviewed-by et al from the
+> internal reviews, but as maintainer I dislike this because I'd have no
+> way to know if a r-b on vN means the patch was reviewed, or if it was
+> just "accidentally" carried from v(N-1).
+> But it might be worth this risk, is this something you think would be
+> appropriate?
 
+For some companies we REQUIRE this to happen due to low-quality
+submissions and waste of reviewer's time.  Based on the track record
+here for some of these patchsets, hopefully it doesn't become a
+requirement for this company as well :)
+
+thanks,
+
+greg k-h
 
