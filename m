@@ -1,212 +1,134 @@
-Return-Path: <devicetree+bounces-56661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 078AF89A0D9
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 17:19:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 108F489A102
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 17:26:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B85A1C227A2
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 15:19:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 96948B2187C
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 15:26:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7DEB16F851;
-	Fri,  5 Apr 2024 15:18:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B23C016F848;
+	Fri,  5 Apr 2024 15:26:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mGBrHVle"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="Wm/RTCN1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03F3A16D9B3;
-	Fri,  5 Apr 2024 15:18:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BDBE16F8F4
+	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 15:26:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712330336; cv=none; b=LyoGhpa9IJI9597tNwFRCJFyGgaexATbXDjwnoAnU/k0eFUl+2JNwAc9oJqGuDRYBHS+O+5ZOw8BnZht8qoHV8zC1cxfcO2J3Z4hpM24zpGFlZyAtVns9+xwjxI96or6MTgXy/nj7TPpxsyyD8H1rEc4HqoJX8QINA345XNI8as=
+	t=1712330769; cv=none; b=K5Ml7TwFuec4f/nn6nZVqgumuEUgdU2pSUrd8g3UZZDx7/Q/gPooagVB/a5bRSdgBZCsVKFHelLs/SzEIYMxTI1laS2LdjbpFRYE5acDxUzU61cqHU/Lax2trtSOIYg8ZWdErv6WBEq6ldannYI3EEP2kHqYb/JY4rLq3+9ARhc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712330336; c=relaxed/simple;
-	bh=UYOdpa/8pHqVym6VpaSkDbZAqFnWlJYd8BjyiDqqpn4=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Mv5qSAieo5OnC8zsL3YtKs0DqVho8XED9EQ0UIwEOEhoEeDXQxWtPot3r9CiT4/B84a51Lu69QBB6BOHfT6kUbRS8M7kTs51DQ73oImoiUrhDd5f8M8lxfeVfvSB+SXQ9VVMZq88kD2lxqdkv5ahaJZXcQ1gfK/oV4xzHra/Fag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mGBrHVle; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 435Ahedp005076;
-	Fri, 5 Apr 2024 15:18:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=qcppdkim1; bh=ncxB/ucen8xf9GK05q5WG
-	n6xgxfyQW7w7MNwVaEY0yE=; b=mGBrHVleu+oRXvjsJqfkGxbHF6mYf1L1VcNGw
-	WrsqFsAgGvblTGLGxDzR0eTUecPf47Kt9Q1oYsiYyIYnbO9+jqFeDAIMZ9RjHXXI
-	e38H1x1ahk2N1f0jZAXzJ4egTxNj27rqqRutoec/a9gqViUYMu2VnyczjpS6MtKr
-	E1HWbk6nWHBMWN7s+X/ZCZficNd17JEzA2+wFI+ccKh8pTVurRLwrpyuWkceHuiD
-	R9aANR87MC0K8oCF6mmtBYf6qM6vI4RKIT7s7x5YGft5qlpkbxujVTHT+6EDczNM
-	gKOgx5/VDUGeiA+OOA8BC+JmQ4RT1FySQEzYsL9PvBadTZnsA==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xa8fc1hk0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 05 Apr 2024 15:18:32 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 435FIVbG026932
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 5 Apr 2024 15:18:31 GMT
-Received: from hu-eberman-lv.qualcomm.com (10.49.16.6) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.4; Fri, 5 Apr 2024 08:18:30 -0700
-Date: Fri, 5 Apr 2024 08:18:30 -0700
-From: Elliot Berman <quic_eberman@quicinc.com>
-To: Pavan Kondeti <quic_pkondeti@quicinc.com>
-CC: Alex Elder <elder@linaro.org>,
-        Srinivas Kandagatla
-	<srinivas.kandagatla@linaro.org>,
-        Murali Nalajal <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri
-	<quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Philip Derrin <quic_pderrin@quicinc.com>,
-        Prakruthi Deepak Heragu
-	<quic_pheragu@quicinc.com>,
-        Jonathan Corbet <corbet@lwn.net>, Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        "Fuad
- Tabba" <tabba@google.com>,
-        Sean Christopherson <seanjc@google.com>,
-        "Andrew
- Morton" <akpm@linux-foundation.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-mm@kvack.org>
-Subject: Re: [PATCH v17 11/35] virt: gunyah: Translate gh_rm_hyp_resource
- into gunyah_resource
-Message-ID: <20240405081735319-0700.eberman@hu-eberman-lv.qualcomm.com>
-References: <20240222-gunyah-v17-0-1e9da6763d38@quicinc.com>
- <20240222-gunyah-v17-11-1e9da6763d38@quicinc.com>
- <ff6a3fb2-5f1a-4baa-b42a-a7767e92885a@quicinc.com>
+	s=arc-20240116; t=1712330769; c=relaxed/simple;
+	bh=FpZsHScShuiC5TLeSY6xcW0Dmrsa7iCr6rnrwxcP7HE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Kq9mR6fKEpeFVWsQd90yZ9W1H951tYBtwtgptg1/BgpoFZpEArDaKY66pnrAx8UttvPrgNdBGxSP2fD/WNnLl5Na8ybegP2wLth6CPkBe7AZOHyuTITzPeB54MIPjbtl/QrOLYLBmT3JE2HrxdJZ5zN4Kri0Jy3sdHpLj8XtiYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=Wm/RTCN1; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-56e3e03b989so179701a12.0
+        for <devicetree@vger.kernel.org>; Fri, 05 Apr 2024 08:26:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1712330766; x=1712935566; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ed5x3XFfsBgZRAt34RC2mOQsGKeyKPo4QsC0c+Fqv3c=;
+        b=Wm/RTCN1H4zqI6tvTsI2Y1Wugd3J7bAQpDuRnLw/ck9uBGNWE/VM6C1KxhdQCJuWG7
+         rKgt9xO8xILvQgnUy5PsfJ/YeEV3Pjsx0Y09VDcOFlG5Atf8KRg6B/nmOO8s2v3xBnh1
+         ysR+iPvrpO6LzGBdrGMlgXzAwGxWuNPGLNd7xgaOmS83MjcSAqYh+M9hjZTt40oq7B2H
+         PI5F6th+qQIwqdl4Uwp3OPT0z2HH0NINm8PwFP3XltsulFvCu81hyUsUziw7wtiL8hYT
+         Tj/pXavMeoSa883CsU79YKMIqGQ9fln4AjUYl6GnPzi1R8lshp2PuiHtScOK06csT7ig
+         LWwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712330766; x=1712935566;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ed5x3XFfsBgZRAt34RC2mOQsGKeyKPo4QsC0c+Fqv3c=;
+        b=R66iPk6pwWvGY7OVIzLMOIR0XDuy0VTK7VEPBr0E0r9YiHYi/B5uMXUcSxPtBlKTNC
+         ai+yHUxobhb4fzfl+WVkTu1jAEXtEVX6vOSpV0Pjph15ws87sRrTfkqUEN8scKuieKku
+         Bb9tvBBdhP2zYyauY8Qo/Zp9ahGDY5ZDxA4ixesgNKHatHzKCErTA9YkRWOJ2tiXa9XG
+         w4uszZYxg9GJ90cwfoiSJJXM09CgeDzD/wzsaYIN+bF8+c9GZ716+Ub/9uUl2rRVx4SC
+         NmBmcVg6NUZRNzTX/SijZ3faSLc/DmjSfBoePTSb3rLRVJWjb6AYCI65PqHQuYPumETj
+         PLAA==
+X-Forwarded-Encrypted: i=1; AJvYcCWqaHRsuyIT7UzRWDI6Zy+5lON6vRVThMPJe2ziVtU8YUvpE13sU6wLOsNx6zVokYCWaTkQP7NlCofWeXhGeHJsneE9m/wxTOvQyA==
+X-Gm-Message-State: AOJu0YzpFnUMVM/44SbsW5ueK0sAHmb8pgNdYtzdbhBtZEOIoLJCRHs3
+	wBKv/kuAch/v+pPm1JQyi1wfGa62Zqu+++tOyH8KUe1Ldsfix17oeSvNCrUpnXw=
+X-Google-Smtp-Source: AGHT+IE6KiAsWau+yt3agpehbLfQdmB5U5LrPm1st7ROHU8ZRsWd/qG+KSVTOZ1UuqjphPekzLBQLg==
+X-Received: by 2002:a17:906:684f:b0:a4e:2dbf:2eb0 with SMTP id a15-20020a170906684f00b00a4e2dbf2eb0mr2301320ejs.38.1712330765762;
+        Fri, 05 Apr 2024 08:26:05 -0700 (PDT)
+Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
+        by smtp.gmail.com with ESMTPSA id gx5-20020a1709068a4500b00a4e579ce949sm950515ejc.51.2024.04.05.08.26.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Apr 2024 08:26:05 -0700 (PDT)
+Date: Fri, 5 Apr 2024 17:26:04 +0200
+From: Andrew Jones <ajones@ventanamicro.com>
+To: =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
+Cc: Jonathan Corbet <corbet@lwn.net>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Anup Patel <anup@brainfault.org>, Shuah Khan <shuah@kernel.org>, 
+	Atish Patra <atishp@atishpatra.org>, linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, kvm@vger.kernel.org, 
+	kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH 0/5] Add parsing for Zimop ISA extension
+Message-ID: <20240405-091c6c174f023d74b434059d@orel>
+References: <20240404103254.1752834-1-cleger@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <ff6a3fb2-5f1a-4baa-b42a-a7767e92885a@quicinc.com>
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: CjpQNiJgepbUe_PWBObBh6vdhvVm1JNM
-X-Proofpoint-ORIG-GUID: CjpQNiJgepbUe_PWBObBh6vdhvVm1JNM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-05_16,2024-04-05_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
- malwarescore=0 mlxlogscore=901 bulkscore=0 suspectscore=0 clxscore=1011
- priorityscore=1501 adultscore=0 phishscore=0 impostorscore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2404010003
- definitions=main-2404050110
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240404103254.1752834-1-cleger@rivosinc.com>
 
-On Fri, Apr 05, 2024 at 08:40:40AM +0530, Pavan Kondeti wrote:
-> On Thu, Feb 22, 2024 at 03:16:34PM -0800, Elliot Berman wrote:
-> > When booting a Gunyah virtual machine, the host VM may gain capabilities
-> > to interact with resources for the guest virtual machine. Examples of
-> > such resources are vCPUs or message queues. To use those resources, we
-> > need to translate the RM response into a gunyah_resource structure which
-> > are useful to Linux drivers. Presently, Linux drivers need only to know
-> > the type of resource, the capability ID, and an interrupt.
-> > 
-> > On ARM64 systems, the interrupt reported by Gunyah is the GIC interrupt
-> > ID number and always a SPI or extended SPI.
-> > 
-> > Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
-> > ---
-> >  arch/arm64/include/asm/gunyah.h | 36 ++++++++++++++++++++++
-> >  drivers/virt/gunyah/rsc_mgr.c   | 67 +++++++++++++++++++++++++++++++++++++++++
-> >  drivers/virt/gunyah/rsc_mgr.h   |  5 +++
-> >  include/linux/gunyah.h          |  2 ++
-> >  4 files changed, 110 insertions(+)
-> > 
-> > diff --git a/arch/arm64/include/asm/gunyah.h b/arch/arm64/include/asm/gunyah.h
-> > new file mode 100644
-> > index 0000000000000..0cd3debe22b64
-> > --- /dev/null
-> > +++ b/arch/arm64/include/asm/gunyah.h
-> > @@ -0,0 +1,36 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only */
-> > +/*
-> > + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> > + */
-> > +#ifndef _ASM_GUNYAH_H
-> > +#define _ASM_GUNYAH_H
-> > +
-> > +#include <linux/irq.h>
-> > +#include <linux/irqdomain.h>
-> > +
-> > +static inline int arch_gunyah_fill_irq_fwspec_params(u32 virq,
-> > +						 struct irq_fwspec *fwspec)
-> > +{
-> > +	/* Assume that Gunyah gave us an SPI or ESPI; defensively check it */
-> > +	if (WARN(virq < 32, "Unexpected virq: %d\n", virq)) {
-> > +		return -EINVAL;
-> > +	} else if (virq <= 1019) {
-> > +		fwspec->param_count = 3;
-> > +		fwspec->param[0] = 0; /* GIC_SPI */
-> > +		fwspec->param[1] = virq - 32; /* virq 32 -> SPI 0 */
-> > +		fwspec->param[2] = IRQ_TYPE_EDGE_RISING;
-> > +	} else if (WARN(virq < 4096, "Unexpected virq: %d\n", virq)) {
-> > +		return -EINVAL;
-> > +	} else if (virq < 5120) {
-> > +		fwspec->param_count = 3;
-> > +		fwspec->param[0] = 2; /* GIC_ESPI */
-> > +		fwspec->param[1] = virq - 4096; /* virq 4096 -> ESPI 0 */
-> > +		fwspec->param[2] = IRQ_TYPE_EDGE_RISING;
-> > +	} else {
-> > +		WARN(1, "Unexpected virq: %d\n", virq);
-> > +		return -EINVAL;
-> > +	}
-> > +	return 0;
-> > +}
-> > +
+On Thu, Apr 04, 2024 at 12:32:46PM +0200, Clément Léger wrote:
+> The Zimop ISA extension was ratified recently. This series adds support
+> for parsing it from riscv,isa, hwprobe export and kvm support for
+> Guest/VM.
+
+I'm not sure we need this. Zimop by itself isn't useful, so I don't know
+if we need to advertise it at all. When an extension comes along that
+redefines some MOPs, then we'll advertise that extension, but the fact
+Zimop is used for that extension is really just an implementation detail.
+
+Thanks,
+drew
+
 > 
-> __get_intid_range() in gic-v3 driver looks more pleasing. Other than
-> that the logic for the translation looks good to me.
-
-Agreed, updated for v18.
-
-static inline int arch_gunyah_fill_irq_fwspec_params(u32 virq,
-						 struct irq_fwspec *fwspec)
-{
-	/* Assume that Gunyah gave us an SPI or ESPI; defensively check it */
-	switch (virq) {
-	case 32 ... 1019:
-		fwspec->param_count = 3;
-		fwspec->param[0] = 0; /* GIC_SPI */
-		fwspec->param[1] = virq - 32; /* virq 32 -> SPI 0 */
-		fwspec->param[2] = IRQ_TYPE_EDGE_RISING;
-		break;
-	case 4096 ... 5119:
-		fwspec->param_count = 3;
-		fwspec->param[0] = 2; /* GIC_ESPI */
-		fwspec->param[1] = virq - 4096; /* virq 4096 -> ESPI 0 */
-		fwspec->param[2] = IRQ_TYPE_EDGE_RISING;
-		break;
-	default:
-		WARN(1, "Unexpected virq: %d\n", virq)
-		return -EINVAL;
-	}
-	return 0;
-}
-
+> Clément Léger (5):
+>   dt-bindings: riscv: add Zimop ISA extension description
+>   riscv: add ISA extension parsing for Zimop
+>   riscv: hwprobe: export Zimop ISA extension
+>   RISC-V: KVM: Allow Zimop extension for Guest/VM
+>   KVM: riscv: selftests: Add Zimop extension to get-reg-list test
+> 
+>  Documentation/arch/riscv/hwprobe.rst                    | 4 ++++
+>  Documentation/devicetree/bindings/riscv/extensions.yaml | 5 +++++
+>  arch/riscv/include/asm/hwcap.h                          | 1 +
+>  arch/riscv/include/uapi/asm/hwprobe.h                   | 1 +
+>  arch/riscv/include/uapi/asm/kvm.h                       | 1 +
+>  arch/riscv/kernel/cpufeature.c                          | 1 +
+>  arch/riscv/kernel/sys_hwprobe.c                         | 1 +
+>  arch/riscv/kvm/vcpu_onereg.c                            | 2 ++
+>  tools/testing/selftests/kvm/riscv/get-reg-list.c        | 4 ++++
+>  9 files changed, 20 insertions(+)
+> 
+> -- 
+> 2.43.0
+> 
+> 
+> -- 
+> kvm-riscv mailing list
+> kvm-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/kvm-riscv
 
