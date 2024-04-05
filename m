@@ -1,156 +1,138 @@
-Return-Path: <devicetree+bounces-56619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59AB5899F13
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 16:10:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F4D5899F02
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 16:07:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B5001C20C5F
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 14:10:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0A641C2231E
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 14:07:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB40116EBE3;
-	Fri,  5 Apr 2024 14:10:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EF0B16EBFD;
+	Fri,  5 Apr 2024 14:06:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="B+hOcwM2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDEBF16E895;
-	Fri,  5 Apr 2024 14:10:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F05C416D9CB;
+	Fri,  5 Apr 2024 14:06:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.87.146.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712326215; cv=none; b=YxPX8FTaUr7aEum4zmolp1NXgjHlkYkZKUonLPcF4CAZmIY1Wr0tQWvAh6qDUpCuc3aqdBM4trutLlPMTDecEj71R6fFOVv2lAsvlGazwNUr66huZ8diTeoCmxAO25wjuorRm5xU2MFUhpVfgXu9zYdxYpdL1oYHB1iCywv+FlA=
+	t=1712326019; cv=none; b=Y/mb0vvlD8MiiUqMk3TpF+unnbrRvR9Gc4dS8pNBrDoLH/EP/HuzZVizhUAL/l4DzIfHvNWrBgOLwD1mb5NKhNniiYwgbRiHOTc/ulP0asOA1+w+79++3tV8a4KY8njc62OD2KPVhkOV2v64SI0zfQkQUem7Sd8pMS8GvD2blB4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712326215; c=relaxed/simple;
-	bh=UhWkJrz23rKLc2rFOHT1xk+suq4P0R7Fe6anIWJ5btE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BG8kONHYPMshE2RImnJSk5JlghRwTpzRXRc1GYrmKyNaayno9prR/pQXvG7oNT6SC05XJLF2CF3fz20dl3Pmx7+CnqR7mPMLRd7SGwzolkW7RrSwBbe4owdN0Xe/ajhy17Fi+V/9IIF/XlPeAOUSKL9WLlMh1g1HS3WsBvL4IRY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-6151d2489b4so24101067b3.0;
-        Fri, 05 Apr 2024 07:10:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712326212; x=1712931012;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zo5dazFCTOKvFVcPPNzGvqZjg5emzEStKUearWVqE/4=;
-        b=smdZ4x4tSobCG7/AJB5NXCw4gj5Km1mPaySy2IcZA1wu9jYPko//VYA2ThdRPwanvA
-         MC1Z4Y3VGv4hECxKJs5DjkR9zFKaiZ9agYgKaDxmXlG8YTWDklPv1cyo9TyNpY5HMQ4X
-         elPVHuE4gcC0iqoatpXNO3Cgcx6rcpryFpdjOkRWgmsvI8+f72itOeKWid9q/mszdiDL
-         KbGb2lUXSxvndo2LiNJ0Tjev1lJ2U0AfLVPnbkWKWCgmu/WAV9g5wW8NVPlhzFTBtnLb
-         EaMj5oqSBRQ80ahEs9js7XJCbkMEk4kXQP8IPKM8TRDitOsHpyeANnXCIIYR4MIxXFae
-         BD5g==
-X-Forwarded-Encrypted: i=1; AJvYcCUnEuPbaOhRQLIvz56UXaXLOxm4jTwf7T6UngwMHp0zVfhpgPMHyle0bQilYUihq0RISIyz9Gzetfvw1/KrYIPptj6GLpDJspNfZOZeZVtlTJB//1UhLOt+diBGLCyWnzVMJ/lBYs3i59xFa+fnQDih1wiF+HuaKXFDM51zAs9yC53TfQchHWh5EbdwCtMHY8yLxk058HsQle5SsBRPUDAVK73+YJuIUgfeot4Qmxb5E/Np43Mg/PwCGMqhvGQCWuj0r65axXoptjutoJL39T4UY9CK3qUCHfvn/gGmZE50miEu5vNNFY2T1XvQwYlQtmwDuYaLNM1++keLG8Fd3DytCzu18/wrzrREdDaZzl/HWLwHZ8CyrpU=
-X-Gm-Message-State: AOJu0YwvxaRCIEVT/zVCfalDAmhBHItiMr88lLhGODcta3p0TFh2+iQj
-	CEkjDd7PpAQVHy1jAsq/Dc4UX2ZBZ2yztd0CcKFzfUYRlC3DRRzKgQffP5ZBkno=
-X-Google-Smtp-Source: AGHT+IEP7v2FRtp6YWsKqFOWKu6GX9ebD3Ahe7HH5QN4FxWDZZBjjTw+UOh4HM5EFGxMk02CQuTa9g==
-X-Received: by 2002:a81:6086:0:b0:615:31a9:83c4 with SMTP id u128-20020a816086000000b0061531a983c4mr1461190ywb.6.1712326212430;
-        Fri, 05 Apr 2024 07:10:12 -0700 (PDT)
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com. [209.85.219.178])
-        by smtp.gmail.com with ESMTPSA id g68-20020a81a947000000b00617cf273030sm278771ywh.82.2024.04.05.07.10.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Apr 2024 07:10:12 -0700 (PDT)
-Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-dbed0710c74so2090306276.1;
-        Fri, 05 Apr 2024 07:10:12 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU3fJz6nL6cfIkiiG2ayy4RzOL2AldXVQJNoWYlsKDVgAtte9df/fQnzkurcNyjffaQcLcVhA4S1/tqOhyVS2GRh9SMU3sq26i9hekbCg8LNZa2J2H19KcNi+QjtS4guCcvsC6EmAOhRTNph3MwMjcW4zIDz07Z/QtLxLEM44PNeYAzb46Rxb4ly9UgBSzbCmTCXncx3LF1b2/hUCFUppVW/F1GSw94xx9lz9e5W4oDlinEzLdQtblFs+70X5XVeg++4X/Cn2saVSIvQHiLNc3YZm/B0juNwDEmxP/9DnGyNbTLbnNw292Jz7ufjJaDT19U4QMqhLE/udNFZ3IudIG2sCDaTB/GMUU5Fgghru5p6JAvKVqw6i0=
-X-Received: by 2002:a5b:b8f:0:b0:dc6:dd80:430e with SMTP id
- l15-20020a5b0b8f000000b00dc6dd80430emr1385717ybq.27.1712325790915; Fri, 05
- Apr 2024 07:03:10 -0700 (PDT)
+	s=arc-20240116; t=1712326019; c=relaxed/simple;
+	bh=ljFXSCtasOGq1//X99BIfPejSn+STQIt0CQ4uzp4o/I=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=SMKplPMsdiDGLblHHsryCEViKKTJllGeF2CLeg06g9OJPPoXkcu2qGsX5vwRBUXA855aE2evU3FcQG7QYEEjZFzRNNzWfp0xNQ06DnBWdSLPst8bHXIyH3DMt9qjJwla7YXe4DVvOOVv7oE00J7mGSeTexL0pfnl4WyNCMe3bkQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru; spf=pass smtp.mailfrom=trvn.ru; dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b=B+hOcwM2; arc=none smtp.client-ip=194.87.146.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=trvn.ru
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	by box.trvn.ru (Postfix) with ESMTPSA id D8D0F4192D;
+	Fri,  5 Apr 2024 19:06:44 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+	t=1712326005; bh=ljFXSCtasOGq1//X99BIfPejSn+STQIt0CQ4uzp4o/I=;
+	h=From:Subject:Date:To:Cc:From;
+	b=B+hOcwM2xz2aWwm/SyUJSgg1eonDjodoAaLih63ypRhrfLsT9paRLv5jo7+T7RDXU
+	 +glOKYN0UB/ACwZI6JW0cCXoqbejeROvkJtn6T4mhgo6d1RR6DSPPSshTnVc1NGmj5
+	 ftNnbhdIDAJVP37GktE5W2tJKOzJ74YNV4UZ6r+ylWERfTg606VpYJcCBf6ncxrUqw
+	 /1uhgmUFFaw2QF81B8CFGWHmCkeV2Y/tMi1XyWpR0weqkJT+gCveorkSLeNj5+axnE
+	 3CFQmNuenyjX3IlTGY1SbJn6mQrPIQH2AfUCKYiL9aJvf7lYOS5XWh74HmBXjZkU1I
+	 H6TACM4bWpPBg==
+From: Nikita Travkin <nikita@trvn.ru>
+Subject: [PATCH 0/4] Introduce msm8916 based Motorola devices
+Date: Fri, 05 Apr 2024 19:06:09 +0500
+Message-Id: <20240405-msm8916-moto-init-v1-0-502b58176d34@trvn.ru>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1712207606.git.ysato@users.sourceforge.jp> <f3af315d575fbec431bad9bfaf9790450ab31ad9.1712207606.git.ysato@users.sourceforge.jp>
-In-Reply-To: <f3af315d575fbec431bad9bfaf9790450ab31ad9.1712207606.git.ysato@users.sourceforge.jp>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 5 Apr 2024 16:02:59 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdU1vhCZ+mCKB27N57N7atLdxSmEUV8RWJf7uiZkfUvG0A@mail.gmail.com>
-Message-ID: <CAMuHMdU1vhCZ+mCKB27N57N7atLdxSmEUV8RWJf7uiZkfUvG0A@mail.gmail.com>
-Subject: Re: [RESEND v7 21/37] dt-bindings: serial: renesas,scif: Add scif-sh7751.
-To: Yoshinori Sato <ysato@users.sourceforge.jp>
-Cc: linux-sh@vger.kernel.org, Damien Le Moal <dlemoal@kernel.org>, 
-	Niklas Cassel <cassel@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Thomas Gleixner <tglx@linutronix.de>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Rich Felker <dalias@libc.org>, John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, 
-	Lee Jones <lee@kernel.org>, Helge Deller <deller@gmx.de>, 
-	Heiko Stuebner <heiko.stuebner@cherry.de>, Shawn Guo <shawnguo@kernel.org>, 
-	Sebastian Reichel <sre@kernel.org>, Chris Morgan <macromorgan@hotmail.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Arnd Bergmann <arnd@arndb.de>, 
-	David Rientjes <rientjes@google.com>, Hyeonggon Yoo <42.hyeyoo@gmail.com>, 
-	Vlastimil Babka <vbabka@suse.cz>, Baoquan He <bhe@redhat.com>, 
-	Andrew Morton <akpm@linux-foundation.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Kefeng Wang <wangkefeng.wang@huawei.com>, Stephen Rothwell <sfr@canb.auug.org.au>, 
-	Javier Martinez Canillas <javierm@redhat.com>, Guo Ren <guoren@kernel.org>, 
-	Azeem Shaikh <azeemshaikh38@gmail.com>, Max Filippov <jcmvbkbc@gmail.com>, 
-	Jonathan Corbet <corbet@lwn.net>, Jacky Huang <ychuang3@nuvoton.com>, 
-	Herve Codina <herve.codina@bootlin.com>, 
-	Manikanta Guntupalli <manikanta.guntupalli@amd.com>, Anup Patel <apatel@ventanamicro.com>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Sam Ravnborg <sam@ravnborg.org>, Sergey Shtylyov <s.shtylyov@omp.ru>, 
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, linux-ide@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-pci@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-fbdev@vger.kernel.org, 
-	"Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAFIFEGYC/x3MTQqAIBBA4avErBswMbOuEi36GWsWamhEIN09a
+ fkt3suQKDIlGKoMkW5OHHxBU1ewHrPfCXkrBimkEkq06JIzfaPRhSsge75QK2G0XIxtuxVKd0a
+ y/PzPcXrfD89dwTNjAAAA
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Nikita Travkin <nikita@trvn.ru>, 
+ Ruby Iris Juric <ruby@srxl.me>, Stephan Gerhold <stephan@gerhold.net>, 
+ =?utf-8?q?Wiktor_Strz=C4=99ba=C5=82a?= <wiktorek140@gmail.com>, 
+ =?utf-8?q?Val=C3=A9rie_Roux?= <undev@unixgirl.xyz>, 
+ Martijn Braam <martijn@brixit.nl>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1506; i=nikita@trvn.ru;
+ h=from:subject:message-id; bh=ljFXSCtasOGq1//X99BIfPejSn+STQIt0CQ4uzp4o/I=;
+ b=owEBbQKS/ZANAwAIAUMc7O4oGb91AcsmYgBmEAVwvrr8qJnHXp6ir6v+TDAidrYgzN0N8goOq
+ Sjq2BHHIICJAjMEAAEIAB0WIQTAhK9UUj+qg34uxUdDHOzuKBm/dQUCZhAFcAAKCRBDHOzuKBm/
+ dfq0D/9z7P0ftGQmrHuMXtIhXOAf0Gu0GFeMYfmXFREKXY5aMv6bM7lzFGpD3EXJ8Szg9LPIwyX
+ rgzlfgMDi3Tl9CXtgGiqk17h4tH8wljsEsQBPmf2itAML3zyzODuUScfDdfFQGMLHje+sjFe1Kc
+ /xhQuRFcA2h8dGrQ5+/RWFtPpm7lRVfiaYH/7lsChXv19GADUtSe53LGuBvqaYAc6rJRqsvE4qe
+ V2MGcWowLvB0NMGNYvZNBDvQL9wA0O/GUJNWAsI56tcNWukPjcSL+9SIhu8/wE8CHxh7lWsWbad
+ 478fNVWSGdgXEI86BsmDRzH3eRtt21xJIFxehNprobqitiXFAqcLC+vCboms1ARC4ehVO53Fs6B
+ Tcem8Aja9NUiIzEgRJuM8ov41+dbjpjOVtqK9TgdiFiejZKfLqBkeFwnTbToOGuVSF2PxIur3RR
+ i4nVG8Rk6ltJmy6NHGuP3pKYCq3BRf/H5topTpz9PH0DhzsECVJrleauoPxsNk74qdgC01ylSNx
+ pbdsdLhE6QR/ELZQNyyvLD5L2K2LBpG7q/4orc9Cb6i0/iQfh/m2C1cKJzP38bVCp0p5V95im81
+ zbmy56JPEVkKIwKv64dxtwF4LxwfStc3bmhfUfNKFXe629L4fEHvYcXJ/BMt92j0F5SrEsSPyjh
+ xfX4g2u44A3BAWg==
+X-Developer-Key: i=nikita@trvn.ru; a=openpgp;
+ fpr=C084AF54523FAA837E2EC547431CECEE2819BF75
 
-Hi Sato-san,
+This series introduces a set of msm8916 bsed Motorola devices:
 
-On Thu, Apr 4, 2024 at 7:15=E2=80=AFAM Yoshinori Sato
-<ysato@users.sourceforge.jp> wrote:
-> Add Renesas SH7751 SCIF.
->
-> Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+- Moto G4 Play (harpia)
+- Moto G 2015 (osprey)
+- Moto E 2015 LTE (surnia)
 
-> --- a/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-> +++ b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-> @@ -18,6 +18,7 @@ properties:
->        - items:
->            - enum:
->                - renesas,scif-r7s72100     # RZ/A1H
-> +              - renesas,scif-sh7751       # SH7751
->            - const: renesas,scif           # generic SCIF compatible UART
->
->        - items:
+The submission brings up the following features:
 
+- eMMC and SD;
+- Buttons;
+- Touchscreen;
+- USB;
+- Fuel Gauge;
+- Sound;
+- Accelerometer (harpia only).
 
-If this is applied after "[PATCH v2 2/2] dt-bindings: serial:
-renesas,scif: Validate 'interrupts' and 'interrupt-names'"[1], an extra
-"- renesas,scif-sh7751" line should be added to the 4-interrupt section
-(below "- renesas,scif-r7s72100").
+Since the devices share a lot of similarities, the common parts of the
+DT are separated out into a dedicated dtsi, introduced with the first
+device.
 
-[1] https://lore.kernel.org/all/20240307114217.34784-3-prabhakar.mahadev-la=
-d.rj@bp.renesas.com/
+Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+---
+Martijn Braam (1):
+      arm64: dts: qcom: Add Motorola Moto G 2015 (osprey)
 
-Gr{oetje,eeting}s,
+Nikita Travkin (1):
+      dt-bindings: arm: qcom: Add msm8916 based Motorola devices
 
-                        Geert
+Ruby Iris Juric (1):
+      arm64: dts: qcom: Add device tree for Motorola Moto G4 Play (harpia)
 
+Wiktor Strzębała (1):
+      arm64: dts: qcom: Add Motorola Moto E 2015 LTE (surnia)
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+ Documentation/devicetree/bindings/arm/qcom.yaml    |   3 +
+ arch/arm64/boot/dts/qcom/Makefile                  |   3 +
+ .../boot/dts/qcom/msm8916-motorola-common.dtsi     | 161 +++++++++++++++++++++
+ .../boot/dts/qcom/msm8916-motorola-harpia.dts      | 147 +++++++++++++++++++
+ .../boot/dts/qcom/msm8916-motorola-osprey.dts      | 105 ++++++++++++++
+ .../boot/dts/qcom/msm8916-motorola-surnia.dts      |  83 +++++++++++
+ 6 files changed, 502 insertions(+)
+---
+base-commit: 29493ca7d6b1d3fdc224467c422ac9bdf6d7a252
+change-id: 20240405-msm8916-moto-init-640862b8f57c
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Best regards,
+-- 
+Nikita Travkin <nikita@trvn.ru>
+
 
