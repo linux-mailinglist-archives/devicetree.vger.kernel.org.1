@@ -1,96 +1,77 @@
-Return-Path: <devicetree+bounces-56483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 624488996C2
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 09:42:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1D698996CA
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 09:45:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 915B51C21813
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 07:42:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D32E71C20BFF
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 07:45:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D6E612F5A0;
-	Fri,  5 Apr 2024 07:40:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RHrlE0Ny"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A98313D62D;
+	Fri,  5 Apr 2024 07:44:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C521712EBE4
-	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 07:40:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9025B13D284
+	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 07:44:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712302858; cv=none; b=httwk0iMIamrlDTfYaRIckCw+eQUCP48+lhFdtdYBe4BF0W5tsv8ABpEeqtQbzlsCq/zbj2zcWFxBuVAUZzZlA8hXPPqdUZITX2Lf8Gz9Ani0r7ZggtDd2UXgsDV6bkcSrCRk0OegBHibPmx+IMMFgDcNhN/8ei2QYOm97FMM08=
+	t=1712303076; cv=none; b=mIQKmImM60H94sEZcCHAUsVuFYx9ycZ90ixXV0rREH3fCmXGSj0uvI5nR2KEJP7VtMZuwfRJXj5Ym1d0tKjuV3CIB0hmTvGObHx0ULLUIHIWrZJ/FTvcoowda7Fwe484bXeAPQoVC4Es8aEEChbOju0DKAVe1i+HmntieN2V7jI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712302858; c=relaxed/simple;
-	bh=TlV2tfNsy0zEXW78TY+Y9hKkNagEtGiiitnOqeo8Nr0=;
+	s=arc-20240116; t=1712303076; c=relaxed/simple;
+	bh=R03D674QYB5Ga54S94jEHsV8UofXlPVpjBUr5x+5e/k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nXQTqgryQ/PLeMrRKUCNxvu2KcU5VCv4kN/zsyRNDGUMiu9HKscyoUU89jx2eD769MEPoK0CzMMkKwX2+FdcTwpZBFwLd+J6TlJ53SDTcFaCIKAWaHpzN2odBOqeIDtpwzMoXJf1UMMGwWQ99byUVcq4KJxaeMwnKrcmKTN6icM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RHrlE0Ny; arc=none smtp.client-ip=209.85.210.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-6ecee1f325bso1404131b3a.2
-        for <devicetree@vger.kernel.org>; Fri, 05 Apr 2024 00:40:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712302855; x=1712907655; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=i1a6gAQh2PhrhPbXculVO9O3NtZn8zLGPDuyjie7Sr0=;
-        b=RHrlE0NyBj9DZq6tajOxAjVnUDk3t2Kjq/T3h7fg6hknd8mVeNu//PpgZrEdiGR7LW
-         /1NdqJmH1sZtfqKdOVSPtDSDsc1nHYnS04SXAFpKW50x3G4npFMfSYxary7bRX6aWROP
-         RIEy93zhapai3yWdwkfIWFc4ur/qUQp2VxhIcw9EonqjosCu0a7cPG/pAqc/FkaEOINF
-         TlrILtZEGaGvoAUPIfze3BtRapD6GX27RE0SGe63KEZrg3u78GyNSZlrPe7NRQIIEDxu
-         IBAQ7hlv+R6hpYqvG/4EqucG/KctvaMZIz9VwKNCsj9piInQcExEFjH+4g1bY0qZSBEn
-         /8ww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712302855; x=1712907655;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=i1a6gAQh2PhrhPbXculVO9O3NtZn8zLGPDuyjie7Sr0=;
-        b=tMDNHjZVCucX8zYdumZa+b4YzrwPdrHqATiRpoFfNdDL7bjjKktUAEufuTwt/8P0hn
-         KsAzoUJ649tBzpXBwZkvkK4Mh8HLZRPv7ag4minaQwaYmpjiZaCF0J+HrDmlnhyIO3ju
-         eV4vWkUcuNF2RBLlaI+cIIJAcUcNFXgBPHLwcreYFahRu494KnK/mddNwhNfOjIeMus1
-         p+mMLx66LH6XyZKQmGRHuMKfhcHaRIdLosMXVYZNswomx7P2HK0qZqLjxbgLSsOI0Sdq
-         fAxQ84wUZ7g7wVhCC4UNBa6Cs66JTZM3S9A1ZmLvJMN3JXj/NWKewNiodr50eAxWRVKF
-         vSTA==
-X-Forwarded-Encrypted: i=1; AJvYcCUooRLFLf57rRiyfklVNYUxDvl8rGFNZ0Y9ePfHy6G+QaMdMWh62nJxX3HmAQNL9TB+4UW9YFoHNXOwuv0Ry4akXk1XHCbJW7dpvw==
-X-Gm-Message-State: AOJu0YyebInj2NYMefZxoBYQti1HcTfQ2xUOAy8hg2EizGNk+RTZSZkz
-	szF9zjf4RsArYg3bXVMUHOGhw8y9kCsLme8tIsq+yxavs86tUGKjr9ViVjfYEg==
-X-Google-Smtp-Source: AGHT+IGQzPSdv4xCm9KGESdaqlLSMA46b1EcN3+jKD7raTmoSF2Zx46In/rvazfGN0hikiiMIMSQ5g==
-X-Received: by 2002:a05:6a00:3c8c:b0:6ea:b48a:f971 with SMTP id lm12-20020a056a003c8c00b006eab48af971mr941273pfb.2.1712302854931;
-        Fri, 05 Apr 2024 00:40:54 -0700 (PDT)
-Received: from thinkpad ([120.60.67.119])
-        by smtp.gmail.com with ESMTPSA id q26-20020a63505a000000b005df41b00ee9sm820523pgl.68.2024.04.05.00.40.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Apr 2024 00:40:54 -0700 (PDT)
-Date: Fri, 5 Apr 2024 13:10:44 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Krishna chaitanya chundru <quic_krichai@quicinc.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=ARqAojpHQg9NfMwdU53JoJzGTHNun6M5pMK5wF72TAKLf6yj4EZTDjjV72CCADYt3EVrT/sSAzdoT5Iq/9FQA3nzNsnvdURl2blGBbMbMtmdXISvRa4bICe17hofrmwmGcwiKt6onIVsUvcWKIu/eXk1oX8Gs/HNeM6BbV1rLFo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rseEx-0000sw-KA; Fri, 05 Apr 2024 09:43:59 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rseEr-00AWqn-SL; Fri, 05 Apr 2024 09:43:53 +0200
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rseEr-00FbmS-2U;
+	Fri, 05 Apr 2024 09:43:53 +0200
+Date: Fri, 5 Apr 2024 09:43:53 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Russ Weight <russ.weight@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Brian Masney <bmasney@redhat.com>,
-	Georgi Djakov <djakov@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, vireshk@kernel.org,
-	quic_vbadigan@quicinc.com, quic_skananth@quicinc.com,
-	quic_nitegupt@quicinc.com, quic_parass@quicinc.com
-Subject: Re: [PATCH v8 2/7] arm64: dts: qcom: sm8450: Add interconnect path
- to PCIe node
-Message-ID: <20240405074044.GC2953@thinkpad>
-References: <20240302-opp_support-v8-0-158285b86b10@quicinc.com>
- <20240302-opp_support-v8-2-158285b86b10@quicinc.com>
- <4bd2e661-8e1e-41ff-9b7f-917bb92a196d@linaro.org>
+	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+	Dent Project <dentproject@linuxfoundation.org>
+Subject: Re: [PATCH net-next v6 11/17] dt-bindings: net: pse-pd: Add another
+ way of describing several PSE PIs
+Message-ID: <Zg-ruY_ufPJOyHad@pengutronix.de>
+References: <20240326-feature_poe-v6-0-c1011b6ea1cb@bootlin.com>
+ <20240326-feature_poe-v6-11-c1011b6ea1cb@bootlin.com>
+ <20240402132637.GA3744978-robh@kernel.org>
+ <20240403111548.30e780b5@kmaincent-XPS-13-7390>
+ <20240403143142.GA3508225-robh@kernel.org>
+ <20240404112506.2e155bad@kmaincent-XPS-13-7390>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,46 +80,76 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4bd2e661-8e1e-41ff-9b7f-917bb92a196d@linaro.org>
+In-Reply-To: <20240404112506.2e155bad@kmaincent-XPS-13-7390>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Wed, Mar 06, 2024 at 05:04:54PM +0100, Konrad Dybcio wrote:
+On Thu, Apr 04, 2024 at 11:25:06AM +0200, Kory Maincent wrote:
+> On Wed, 3 Apr 2024 09:31:42 -0500
+> Rob Herring <robh@kernel.org> wrote:
 > 
-> 
-> On 3/2/24 04:59, Krishna chaitanya chundru wrote:
-> > Add pcie-mem & cpu-pcie interconnect path to the PCIe nodes.
+> > >   
+> > > > > +
+> > > > > +          polarity-supported:
+> > > > > +            $ref: /schemas/types.yaml#/definitions/string-array
+> > > > > +            description:
+> > > > > +              Polarity configuration supported by the PSE PI pairsets.
+> > > > > +            minItems: 1
+> > > > > +            maxItems: 4
+> > > > > +            items:
+> > > > > +              enum:
+> > > > > +                - MDI-X
+> > > > > +                - MDI
+> > > > > +                - X
+> > > > > +                - S
+> > > > > +
+> > > > > +          vpwr-supply:
+> > > > > +            description: Regulator power supply for the PSE PI.    
+> > > > 
+> > > > I don't see this being used anywhere.  
+> > > 
+> > > Right, I forgot to add it to the PD692x0 and TPS23881 binding example!  
 > > 
-> > Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> > ---
-> >   arch/arm64/boot/dts/qcom/sm8450.dtsi | 8 ++++++++
-> >   1 file changed, 8 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> > index 01e4dfc4babd..6b1d2e0d9d14 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> > @@ -1781,6 +1781,10 @@ pcie0: pcie@1c00000 {
-> >   					<0 0 0 3 &intc 0 0 0 151 IRQ_TYPE_LEVEL_HIGH>, /* int_c */
-> >   					<0 0 0 4 &intc 0 0 0 152 IRQ_TYPE_LEVEL_HIGH>; /* int_d */
-> > +			interconnects = <&pcie_noc MASTER_PCIE_0 0 &mc_virt SLAVE_EBI1 0>,
+> > But is this really common/generic? I would think input power rails would 
+> > be chip specific.
 > 
-> Please use QCOM_ICC_TAG_ALWAYS.
+> I think as each PSE PI are seen as a regulator we may want it generic to track
+> each PI parent. Having the parent regulator described like that would force the
+> devicetree to describe where the power come from.
+> In contrary, for example, on the pd692x0 controller the regulators are connected
+> to the managers (PD69208) and not directly to the PIs. So the devicetree would
+> not really fit the hardware. It is indeed chip specific but having described
+> like that would be more simple.
 > 
-> > +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_PCIE_0 0>;
+> If we decided to make it chip specific the core would have a callback to ask
+> the driver to fill the regulator_init_data structure for each PI before
+> registering the regulators. It is feasible.
 > 
-> And this path could presumably be demoted to QCOM_ICC_TAG_ACTIVE_ONLY?
+> Mmh in fact I am still unsure about the solution.
 > 
+> Oleksij as you were the first to push the idea. Have you more argument in mind
+> to make it generic?
+> https://lore.kernel.org/netdev/ZeObuKHkPN3tiWz_@pengutronix.de/
 
-I think it should be fine since there would be no register access done while the
-RPMh is put into sleep state. Krishna, can you confirm that by executing the CX
-shutdown with QCOM_ICC_TAG_ACTIVE_ONLY vote for cpu-pcie path on any supported
-platform?
+There can be different, chip specific power consumer, for example the
+one which is feeding the PSE controller it self, but also there are common
+providers/consumers  those which are used to feed PSE PIs. In case of
+pd692x0 based setup, the managers are actual regulator responsible to
+control power rails connected to PSE PIs, so managers should use this
+common provider. Not sure how TI is designed, but it will have same type
+of consumer to feed PSE PIs as well.
 
-But if we do such change, then it should also be applied to other SoCs.
-
-- Mani
-
+Regards,
+Oleksij
 -- 
-மணிவண்ணன் சதாசிவம்
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
