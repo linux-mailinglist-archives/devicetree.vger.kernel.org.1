@@ -1,374 +1,216 @@
-Return-Path: <devicetree+bounces-56708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6705D89A3BF
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 19:53:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6254089A412
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 20:20:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 73C78B238E3
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 17:53:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17B3C28C39D
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 18:20:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BB91171E53;
-	Fri,  5 Apr 2024 17:53:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38FC617277C;
+	Fri,  5 Apr 2024 18:19:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="MKZPmf51"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gkdKURFo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01olkn2039.outbound.protection.outlook.com [40.92.52.39])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F7AC16F281;
-	Fri,  5 Apr 2024 17:53:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.52.39
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712339615; cv=fail; b=FW+tye7SUkf2Bmg8cCu/NX4vaFad+oqoLiPDw/xpe66KJWcyBe1vODeXCzAF4OA9Clg1z9cvD/sTGnnrjObt7yGI6fkxhX6rgsi97uXDnT8ffasvshdQ93CVvO+Lrigx7IRBWiCLH593dSnfwqQulOtMRuDDD7w5kQL604OtV7k=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712339615; c=relaxed/simple;
-	bh=x6+i8rkc+sG8Bc7pWTNUBirgIKpFC4xYrUqXp8vXcak=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=bIYETNk8nXrgI/61Fi2voH9M2F5HrYbSSjsm0EJTgDE3RfvLlZwY/4lSwtj3rsS/VLw/lY1a5crj4eyeVybC3gbjZEmqeXKlQTpBmWGKw1AaHM+EKbeE5Gvymc8qfpoyaWCkkGgrr771pEw/1IIAmNsGUSbPsaTylciUetBiWYs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=MKZPmf51; arc=fail smtp.client-ip=40.92.52.39
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=G1jcEbmo9lHROJspvz+uYdoUq3J6CDqkuDnVUIPJ5nIWhcj7jaPWnGRQQHhLv2t8CJIf3ArP/3+DYJ/aPlJBC5Hjc3gSBrNo/KCZq4dRjBhtFAZT54zkQnYPip1NB/V0E/PUGdIHkzSKkbdii5uPb2yJitk9XGWDKDcwwzzf3iyCTq8YyvGgeC2iwaN4fxd3R2WWXjBxpqbhZ0DG3M0DKKC5lgrwFL0OKDaHjMIFgt2W/sqecA+GQn6D1qZcyt7yL1hpnHWmrKXxTLo+lLxmRAlwVp7pPVbSFP7Iw6fWqiiqCtPJ/BtbyEOf+hKbn08ZN/jzt87X6hdgNb37mPzT0Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nvQBDev7zAW7lkoxq9UTxb2zCi+rn2GpRQ217nZWq28=;
- b=DaoXtZpkePVkhQ5QKFRPNb05F9h5YdSyde2JiY1jF7CHoV+o3Wt2WXZSvocf7W4bi8cfu4E8+TwYjpIdAj3ntBhiBhUdIdeH9ttYBgGU1nhkG8bowqdfIu0Z0X4yxrecIMC6ciZrVDdm/gEkYxYa1cdlR940YYlDRihOQs0k6g5jaDJlL4Fp9VIkArolAhPtqIOC7aNsLdxC3rrGsMvp0oQiQnRow6q9XohouzU5BJNRKam7o9pD0/ZnhjdmgyOEbXUrYfEweOruFonqZwpAsQ4cOkwjV2LVcLtAy/TSXKeZLL1DAArQiiSxmTnbEyOkTOmKDIsUSWP46M+I2g61Cg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nvQBDev7zAW7lkoxq9UTxb2zCi+rn2GpRQ217nZWq28=;
- b=MKZPmf51nw21wCx0P+UqBpy6ifLhBgHfUGxCB92qDTctpfBEW6IDC/B+kOmroSeasvjysfKOJ4vDwlBDmjhyV8Yz2F74q6wdjuff73kfrmVv41KcNkZ8hj6/BhqyNYQFy8LCtNCAMirswhkpT86TSQLcJEeD3/7GGW/JaILvJK0Fw8xXGHZfunhzCrl0fxBKYSJf761ajl4OZcJkBXsfeHDPVyFbry/MRXnhsyjKr6X5fX5k2yjMzuVaz3vO3aWXg3CtPZ5y+zwXJablTYrcj/7hSct6DpIYsGMiW9m5EabCRiEhnbgLJFj7NTZt+zbcZkvj9mE6Qe4sMNQo7ETTIA==
-Received: from SEZPR06MB6959.apcprd06.prod.outlook.com (2603:1096:101:1ed::14)
- by TYSPR06MB6542.apcprd06.prod.outlook.com (2603:1096:400:481::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Fri, 5 Apr
- 2024 17:53:28 +0000
-Received: from SEZPR06MB6959.apcprd06.prod.outlook.com
- ([fe80::aced:cbb9:4616:96d8]) by SEZPR06MB6959.apcprd06.prod.outlook.com
- ([fe80::aced:cbb9:4616:96d8%2]) with mapi id 15.20.7409.042; Fri, 5 Apr 2024
- 17:53:28 +0000
-Message-ID:
- <SEZPR06MB695903034B7404FBEA750A9196032@SEZPR06MB6959.apcprd06.prod.outlook.com>
-Date: Sat, 6 Apr 2024 01:53:23 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 5/5] phy: hisilicon: hisi-inno-phy: add support for
- Hi3798MV200 INNO PHY
-To: Vinod Koul <vkoul@kernel.org>
-Cc: Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Jiancheng Xue <xuejiancheng@hisilicon.com>, Shawn Guo
- <shawn.guo@linaro.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Kishon Vijay Abraham I <kishon@ti.com>,
- David Yang <mmyangfl@gmail.com>
-References: <20240305-inno-phy-v5-0-dc1cb130ea08@outlook.com>
- <20240305-inno-phy-v5-5-dc1cb130ea08@outlook.com> <ZhAsXUjifTD6HeKx@matsya>
-Content-Language: en-US
-From: Yang Xiwen <forbidden405@outlook.com>
-In-Reply-To: <ZhAsXUjifTD6HeKx@matsya>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN: [OlBPrGJeA5NKEgnMfgb89FRx7k+iTlcOvOFtmD2v92WyTFvwWKMSL0gtc0raSFq/]
-X-ClientProxiedBy: TYCP286CA0129.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:2b6::17) To SEZPR06MB6959.apcprd06.prod.outlook.com
- (2603:1096:101:1ed::14)
-X-Microsoft-Original-Message-ID:
- <b775e26d-18ad-4c0d-a012-03b98004cc8d@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DBEA172776
+	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 18:19:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712341181; cv=none; b=a8GzVpAClvn6T1cSm0FT/+TMcrC0Xeu70paGFDW03Xo3CZ/P/jyqHgegNmhVKk+4lJ19SAuNG7VjR5YXCnX6tInrY/001LnlUXFaOs3naRjg5GXpOgsElYteuQfQin1eRT6YTv9dZx6xkeQYFMUfk7QxGH2qjPfoLp4/JSIZ6lk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712341181; c=relaxed/simple;
+	bh=cCLDIsYFejxah3kcUtD/78RZA+bRyvoysZUBeT3z5Mg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fmaLZmtdUDSRBtDBIJzS1hGV77USL+yJM3Wa7gV53b60NfwRk1yUHDIVxQbIEMb7X8uhfIQaauaSeqUmNcnwdKYfmvx2F9jYbmg3qwwTgeooxFs7mFzAa+vDpPiX4ZVNCjSU2U6ULbEbUW5up1CWIp485pqM9KQkf5J6T5mM1g8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gkdKURFo; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-56e3e581a94so122101a12.3
+        for <devicetree@vger.kernel.org>; Fri, 05 Apr 2024 11:19:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712341178; x=1712945978; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=+1RwFx5Y5CQOS1dH67ttsjIpb2yYeYbzx39qz2nB/54=;
+        b=gkdKURFo1z2kORHxqHXUDzQQQLbTZ0Pxbe/W+0q/11lRtKT0v5BD8QQIzFM+8KIO8P
+         RnBUYLWnzqCshsh8rY51QbHVfVJWgp8FXYhLtru6JbkTDO3iyVtseybmVlU+ynkBrjhn
+         huME40eQv9OvJXN9vetOTh3PtgJvlDrRKrlxgL8KrXvkiDPZ5pHNjCuNNqUnmJsQIpFd
+         jRfffDLbwLuOHaanapLsKLR+21IM+m6wWToWc/TxRdqDyDL0k44O0ddD0dXFihlYK7lG
+         Hda47jpdIUnDpANGKja3SBaJbwY2Q7m7eNi/T+F1em0bApANVXQ0eMaO4q9iV36IdqmO
+         RKSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712341178; x=1712945978;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+1RwFx5Y5CQOS1dH67ttsjIpb2yYeYbzx39qz2nB/54=;
+        b=BnpmoEqcrzMehSPmB2zOPQJBiAjvpjHXplLy/iN/tOGZSCA2W/xv5iuZ4TPVK2fq/a
+         vnaBvqJYRwNC5Cie4QAgdTAvaWh7SYee3agMX/FBp3Z7RGKlmVYAwipcW392AoA1C7X+
+         HkHYIxlljE1H5PEEhW3IlVdbLhtrjYBLHxZzqk8Vz4P6pp4z3TBNfGHo8QMtddO1o8e8
+         U58AbpI7ISG9YxMwPZma+CJ/I4hmB7vZDb5nZB9O1OTUvAncatK2/4Z0bzxS4pp4le9t
+         g0WkBcG5P5Zkp6jGas32v2c119/PJRlvVUz+5dIA292R3BRQ1BG1n260wWRbl5MjpB4c
+         tvFA==
+X-Forwarded-Encrypted: i=1; AJvYcCUnlwKiDsP4GrS9dIrVknj//ezCZ16KKIg+0ILYdabFWlP7Y7Q4f0X2gblBrOe6V9tOBZRlcdA+r1kE9FSjlAUHVfU/wU47cv4/Mw==
+X-Gm-Message-State: AOJu0YwEiJ0gw82NvnkB6phmKS83rEBRI05qo79zK2GJOgbq9sDJt9Tm
+	NYX5qZuxUtRKgAj5bQ62muk+R2IqfHankJkclI+UBk/3NkxQUp86t36oJSWROfM=
+X-Google-Smtp-Source: AGHT+IFJE27+I1fV34zf0q3INt5gP7v3XA/hxhqaP7lbIgf2utXVlcEuEzbd1685nzCblz2Pxk/4lA==
+X-Received: by 2002:a50:a40f:0:b0:56e:3571:189c with SMTP id u15-20020a50a40f000000b0056e3571189cmr1469625edb.18.1712341177745;
+        Fri, 05 Apr 2024 11:19:37 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id ij6-20020a056402158600b0056ddd9427d2sm1038022edb.58.2024.04.05.11.19.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Apr 2024 11:19:37 -0700 (PDT)
+Message-ID: <352672fc-b6e1-458e-b4f9-840a8ba07c7e@linaro.org>
+Date: Fri, 5 Apr 2024 20:19:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SEZPR06MB6959:EE_|TYSPR06MB6542:EE_
-X-MS-Office365-Filtering-Correlation-Id: 800702c8-88d0-46fc-ec71-08dc55994c75
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	KMjXYn202Aywyo2iu++yBVb5b4sZAiFUIWm07R6AASOvYvM/E2sipZYSDQAQhEp8v1wPPAvdYi+oGCIAQGJEkzM/lZf/Bh7iAw1uZFc6dftkfosurFz2HoHjhxKPFDtbvNbkZgLAaFqtKoJYrwQlX67e+k5NirtFXwygZNfJCJrcwQZnnxRrWAq9uM4bb8LGMcPKI/trctEY+gUp+UasnhVObFiiwSm7cbj65khRuB+VO6FqJI6Jd5wPhXwpowWrOQoVUwukNvVfSApWPYB1NeofKG3gV9KpQyX9wJX0E49OylHTwa/PmVt6+Llfot+WcV7EMxi+GuO5d+tI3IGtmaOI0f6yvIFBVjVxGsE3mGZYNRk6hH2o6mqTDdJ/aMbfuAD7hU4GncZPM+2ZmmrCpnn94V3qY5T5viSUAMEQC29vxeF+zolWEuFKrre84/69qhhDwzifR+suTCl0Re/DTHpmdWQn2yKJckJXjS85on4SGDZLvjGAXsBMMZFglpmkwctexXg64+pLB5H1e8S9rKfJ9kbWonmkC1S2eQ+RDcTs77wJFSOFBnDMU5yBEajZ
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?dG5iamQrYW1INmhQY3FZVDBvbXVrQ1pjRlk4Z25yckxxc0syRDMxdVB2TUhl?=
- =?utf-8?B?cDd4Wm9OaUUzZ1BMdWRQTU01cnNhQ2F6c1U3eFpaVlBJb2RnRDZYdXNnaUpn?=
- =?utf-8?B?c2k2RXZqZjRnUjdiaDMybHJaOHFKYzJSMWh0NzR1SWNGMVV1TlY1VW5TK3dX?=
- =?utf-8?B?Slp5RzVBVHJ2OE9GZVlEVmVsS01TN2dqWnhIR050MXQrcVFEYi9rUTR1NXJX?=
- =?utf-8?B?OEkxQ3dqTmdoRG0xbXJKMGpIRXVDRkFsekJac1ZEV1hrOHlFb2l2WFZJeW8z?=
- =?utf-8?B?TlhyZkVxelViYVNHOHRTR1U0UlY2dERZeDZJTnk2MS9zMllGYTR1bGt1NUZH?=
- =?utf-8?B?QTZoZUc1bnBQWkExUlpJbDE3TGxpV2RCMnpFaTl1eXQ5bVpSdVVQQmFMVDc4?=
- =?utf-8?B?eDE0TDRadzJaQUlmbE9aeWtoalNlTlZ2TlBwYUt5STd1aEErL2szQm9YUkxu?=
- =?utf-8?B?eW8vbWR6TW42RGJRbXpmdVhlUEFTVDM4REV6QURsZXBFbGwrblphSUZDbnZS?=
- =?utf-8?B?ODQvMUtZRWtVTnc0bW9GSzRHb1dFZVlQcVhCNGJwUGR6VllpWlE5cmdlOUg5?=
- =?utf-8?B?MDZmbGZWdnBYVHpXQjNWMkRwMS9mc3BOUVc2cjZVSjEzSlp2d0o3bE5WWXBT?=
- =?utf-8?B?UW9rZ1BUTXpIVUoxT28rS2lRL3F3L1owSDVqM1ExdG9DZ1hBbTlWZFU5MjNL?=
- =?utf-8?B?TGlBTThnWkdPRXlKc3Z2Q2tUT0lFWVRFZXpEV2dwMEx6eWQ3R2wwSzlrNW9t?=
- =?utf-8?B?SmJpeXR6VlJoUC9tSG9PZ2pNZ0Q4eGpucU4rSUFkenhySi9LbE1EQmgvZ3Bm?=
- =?utf-8?B?TDdON3VsZU1CU3lnSzRjTmlrNEJrMmVDdHI4ZjhFNkpTcnoyMU9yK1BFOThl?=
- =?utf-8?B?TVVtR0VWWGhTaytTMmNrd0ZaUVI3a2pvZEtyQ0xtaXZiQVBJZmlEQUJKTWFy?=
- =?utf-8?B?WnRlL3hMc1kxK2Z3UVpIZkJFdDkyRmo3RHZrelBTY0p5QytNcG41cEhNdnh3?=
- =?utf-8?B?eVpRMWZ3SjA0UUlwYXNaaWdoME90akE3dyt4a2xtbU80ZEE3dTVqdDByaE9O?=
- =?utf-8?B?ajBkZk9uaFpEd2lKZWFuMGprTVpubnhMbitoV1Z2cExNU3lIVnV3MWcxOFp0?=
- =?utf-8?B?YUh4NGd1OHVQdk10WjBDWEQ3NHNjcmxrWTNRTkFzUDZPYmh4RTIwMzdHaHdn?=
- =?utf-8?B?bVQvbnNKYkc2NklqT0Z4dzkrdm1YQ0pDMlFhNWQ2dlNBS2owV0c4NkVSVmJ4?=
- =?utf-8?B?Y2RTalB1LzVPRzVwTzR4Z3c5ZWYvb1VCVjh2U05qK3l6THFXU0s5Rk9yTXFY?=
- =?utf-8?B?NDJOeGdXamR4YVB4Nk4vcEZYb2pZSU96c0RLaHU0QytYVjRjY0p5QlNVRE5w?=
- =?utf-8?B?VElobmdEWk4xVGorVCtCZ2VJczVYTEFCWW5SVWlVTHlFcGJ1cFBzYnBCZzhR?=
- =?utf-8?B?d1VHM2VWdkZNMEpmclBmV3NOdzNrVHRuOUU0SVFEUnNMQVI5eTFQMHkwOWJG?=
- =?utf-8?B?OWNYUHhIKzVzVUxIU1E5M0VqUjBMU1VvdEt0SE9UNmppYzNlU0pidGIrL0xk?=
- =?utf-8?B?anB6RkwvOGN1OG9Lemw0dWd2M0VkRGtOcnJXM254QithQWp6V3NLZm9ZdW5l?=
- =?utf-8?B?SHhOTW1DaUE4a3BibENDY1I2NVFtSGNKbStmQmRXR0ljUUxwbHlINkJSMEFX?=
- =?utf-8?B?VGtTelQ0NitCRkdhOGs2SjhObi9XVDVFdTdkQmpPMFN0VXpvZzJuWHJvZDUy?=
- =?utf-8?Q?gQZcHFCsml5+RsyQPqZ47O34EZizzzi/pM90mlb?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 800702c8-88d0-46fc-ec71-08dc55994c75
-X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB6959.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2024 17:53:28.3792
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR06MB6542
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] dt-bindings: omap-mcpdm: Convert to DT schema
+To: Mithil <bavishimithil@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, alsa-devel@alsa-project.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240404160649.967-1-bavishimithil@gmail.com>
+ <78091796-fd0a-42dd-a4da-f7bed3025bf9@linaro.org>
+ <CAGzNGRnuG_gLUrH1N57WvpKbpiNtFrcsG6nJcacQNJB_yMYNrA@mail.gmail.com>
+ <ec7f77a7-2cf1-4ea6-b9c4-d4fe8a1673ab@linaro.org>
+ <CAGzNGRktm5gMj=bhtX2RAzcn1v5ref+nV-HV3Fct56FzAzxjWA@mail.gmail.com>
+ <c9084453-65f1-43b0-88df-5b73052ccb72@linaro.org>
+ <CAGzNGR=2-us8GRB3RNi4_24QZ9rNBC7Lx0PFsWwbvxuRKk5ngw@mail.gmail.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <CAGzNGR=2-us8GRB3RNi4_24QZ9rNBC7Lx0PFsWwbvxuRKk5ngw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 4/6/2024 12:52 AM, Vinod Koul wrote:
-> On 05-03-24, 21:32, Yang Xiwen via B4 Relay wrote:
->> From: Yang Xiwen <forbidden405@outlook.com>
-> That is quite an email id!
->
->> Direct MMIO resgiter access is used by Hi3798MV200. For other models,
->> of_iomap() returns NULL due to insufficient length. So they are
-> so how is that fixed... Pls describe the change...
-
-
-The commit log will be rewritten in next revision. I'll try to emphasize 
-the PHY and its configuration interface briefly. Though i don't have 
-access to the datasheets and TRM so most things can not be verified.
-
-
-For CV200 and MV100 INNO PHY, the configuration interface is attached to 
-PERICTRL(Peripheral Control Block). So we just use a register called 
-PERI_USB3 to configure the PHY. The bus reset, clock are all controlled 
-in PERI_USB3 register. To read/write to a register of the PHY, a special 
-sequence of register writes and reads are needed, which was implemented 
-in this driver.
-
-
-But for MV200 INNO PHY, the configuration interface is attached directly 
-to system bus(MMIO). The bus clocks and resets are controlled via Clock 
-Reset Generator(CRG). Now we have to control them with the help of linux 
-clk and reset framework because they are provided by other modules.
-
-
->> unaffected.
+On 05/04/2024 19:21, Mithil wrote:
+> On Fri, Apr 5, 2024 at 10:38 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
 >>
->> Also Hi3798MV200 INNO PHY has an extra reset required to be deasserted,
->> switch to reset_control_array_*() APIs for that.
-
-
-The commit msg is misleading here. There is no extra reset actually. The 
-reset also exist for existing users. The initial author just decided to 
-manage it in the hisi_inno_phy_write_reg() routine(without using 
-reset_control_* APIs) and omit it in the binding.
-
-
-> That probably should be a different patch
-
-
-I guess so. From my point of view, the whole patch is to introduce the 
-support for Hi3798MV200 variant of the INNO PHY. So i've decided to 
-squash the two changes into one single commit.
-
-
->
->> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
->> ---
->>   drivers/phy/hisilicon/phy-hisi-inno-usb2.c | 66 ++++++++++++++++++------------
->>   1 file changed, 40 insertions(+), 26 deletions(-)
+>> On 05/04/2024 18:29, Mithil wrote:
+>>> On Fri, Apr 5, 2024 at 9:27 PM Krzysztof Kozlowski
+>>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>>
+>>>> On 05/04/2024 16:48, Mithil wrote:
+>>>>> So sorry about the 2nd patch being sent as a new mail, here is a new
+>>>>> patch with the changes as suggested
+>>>>>
+>>>>>> Please use subject prefixes matching the subsystem
+>>>>> Changed the patch name to match the folder history.
+>>>>
+>>>> Nothing improved. What the history tells you?
+>>>>
+>>>
+>>> Referred to "ASoC: dt-bindings: rt1015: Convert to dtschema"
+>>> Not really sure what else I should change.
 >>
->> diff --git a/drivers/phy/hisilicon/phy-hisi-inno-usb2.c b/drivers/phy/hisilicon/phy-hisi-inno-usb2.c
->> index b7e740eb4752..df154cd99ed8 100644
->> --- a/drivers/phy/hisilicon/phy-hisi-inno-usb2.c
->> +++ b/drivers/phy/hisilicon/phy-hisi-inno-usb2.c
->> @@ -10,6 +10,7 @@
->>   #include <linux/io.h>
->>   #include <linux/module.h>
->>   #include <linux/of.h>
->> +#include <linux/of_address.h>
->>   #include <linux/phy/phy.h>
->>   #include <linux/platform_device.h>
->>   #include <linux/reset.h>
->> @@ -24,6 +25,7 @@
->>   
->>   #define PHY_TYPE_0	0
->>   #define PHY_TYPE_1	1
->> +#define PHY_TYPE_MMIO	2
->>   
->>   #define PHY_TEST_DATA		GENMASK(7, 0)
->>   #define PHY_TEST_ADDR_OFFSET	8
->> @@ -43,6 +45,7 @@
->>   #define PHY_CLK_ENABLE		BIT(2)
->>   
->>   struct hisi_inno_phy_port {
->> +	void __iomem *base;
->>   	struct reset_control *utmi_rst;
->>   	struct hisi_inno_phy_priv *priv;
->>   };
->> @@ -50,7 +53,7 @@ struct hisi_inno_phy_port {
->>   struct hisi_inno_phy_priv {
->>   	void __iomem *mmio;
->>   	struct clk *ref_clk;
->> -	struct reset_control *por_rst;
->> +	struct reset_control *rsts;
->>   	unsigned int type;
->>   	struct hisi_inno_phy_port ports[INNO_PHY_PORT_NUM];
->>   };
->> @@ -62,26 +65,31 @@ static void hisi_inno_phy_write_reg(struct hisi_inno_phy_priv *priv,
->>   	u32 val;
->>   	u32 value;
->>   
->> -	if (priv->type == PHY_TYPE_0)
->> -		val = (data & PHY_TEST_DATA) |
->> -		      ((addr << PHY_TEST_ADDR_OFFSET) & PHY0_TEST_ADDR) |
->> -		      ((port << PHY0_TEST_PORT_OFFSET) & PHY0_TEST_PORT) |
->> -		      PHY0_TEST_WREN | PHY0_TEST_RST;
->> -	else
->> -		val = (data & PHY_TEST_DATA) |
->> -		      ((addr << PHY_TEST_ADDR_OFFSET) & PHY1_TEST_ADDR) |
->> -		      ((port << PHY1_TEST_PORT_OFFSET) & PHY1_TEST_PORT) |
->> -		      PHY1_TEST_WREN | PHY1_TEST_RST;
->> -	writel(val, reg);
->> -
->> -	value = val;
->> -	if (priv->type == PHY_TYPE_0)
->> -		value |= PHY0_TEST_CLK;
->> -	else
->> -		value |= PHY1_TEST_CLK;
->> -	writel(value, reg);
->> -
->> -	writel(val, reg);
->> +	if (priv->ports[port].base)
->> +		/* FIXME: fill stride in priv */
-> when?
-
-
-I'm not sure. Maybe until some other users with stride other than 3? I 
-don't have much knowledge about other SoCs.
-
-
-Maybe replace the FIXME here with some additional information.
-
-
->
->> +		writel(data, (u32 *)priv->ports[port].base + addr);
->> +	else {
->> +		if (priv->type == PHY_TYPE_0)
->> +			val = (data & PHY_TEST_DATA) |
->> +			      ((addr << PHY_TEST_ADDR_OFFSET) & PHY0_TEST_ADDR) |
->> +			      ((port << PHY0_TEST_PORT_OFFSET) & PHY0_TEST_PORT) |
->> +			      PHY0_TEST_WREN | PHY0_TEST_RST;
->> +		else
->> +			val = (data & PHY_TEST_DATA) |
->> +			      ((addr << PHY_TEST_ADDR_OFFSET) & PHY1_TEST_ADDR) |
->> +			      ((port << PHY1_TEST_PORT_OFFSET) & PHY1_TEST_PORT) |
->> +			      PHY1_TEST_WREN | PHY1_TEST_RST;
->> +		writel(val, reg);
->> +
->> +		value = val;
->> +		if (priv->type == PHY_TYPE_0)
->> +			value |= PHY0_TEST_CLK;
->> +		else
->> +			value |= PHY1_TEST_CLK;
->> +		writel(value, reg);
->> +
->> +		writel(val, reg);
-> val and value are very helpful variables, do consider naming them
-> better!
-
-
-I'll consider renaming them in the next revision. Maybe val and val2? 
-They are just some temp vars to store register values.
-
-
->
->> +	}
->>   }
->>   
->>   static void hisi_inno_phy_setup(struct hisi_inno_phy_priv *priv)
->> @@ -104,7 +112,7 @@ static int hisi_inno_phy_init(struct phy *phy)
->>   		return ret;
->>   	udelay(REF_CLK_STABLE_TIME);
->>   
->> -	reset_control_deassert(priv->por_rst);
->> +	reset_control_deassert(priv->rsts);
->>   	udelay(POR_RST_COMPLETE_TIME);
->>   
->>   	/* Set up phy registers */
->> @@ -122,7 +130,7 @@ static int hisi_inno_phy_exit(struct phy *phy)
->>   	struct hisi_inno_phy_priv *priv = port->priv;
->>   
->>   	reset_control_assert(port->utmi_rst);
->> -	reset_control_assert(priv->por_rst);
->> +	reset_control_assert(priv->rsts);
->>   	clk_disable_unprepare(priv->ref_clk);
->>   
->>   	return 0;
->> @@ -158,15 +166,16 @@ static int hisi_inno_phy_probe(struct platform_device *pdev)
->>   	if (IS_ERR(priv->ref_clk))
->>   		return PTR_ERR(priv->ref_clk);
->>   
->> -	priv->por_rst = devm_reset_control_get_exclusive(dev, NULL);
->> -	if (IS_ERR(priv->por_rst))
->> -		return PTR_ERR(priv->por_rst);
->> +	priv->rsts = devm_reset_control_array_get_exclusive(dev);
->> +	if (IS_ERR(priv->rsts))
->> +		return PTR_ERR(priv->rsts);
->>   
->>   	priv->type = (uintptr_t) of_device_get_match_data(dev);
->>   
->>   	for_each_child_of_node(np, child) {
->>   		struct reset_control *rst;
->>   		struct phy *phy;
->> +		void __iomem *base;
->>   
->>   		rst = of_reset_control_get_exclusive(child, NULL);
->>   		if (IS_ERR(rst)) {
->> @@ -174,7 +183,10 @@ static int hisi_inno_phy_probe(struct platform_device *pdev)
->>   			return PTR_ERR(rst);
->>   		}
->>   
->> +		base = of_iomap(child, 0);
->> +
->>   		priv->ports[i].utmi_rst = rst;
->> +		priv->ports[i].base = base;
->>   		priv->ports[i].priv = priv;
->>   
->>   		phy = devm_phy_create(dev, child, &hisi_inno_phy_ops);
->> @@ -205,6 +217,8 @@ static const struct of_device_id hisi_inno_phy_of_match[] = {
->>   	  .data = (void *) PHY_TYPE_0 },
->>   	{ .compatible = "hisilicon,hi3798mv100-usb2-phy",
->>   	  .data = (void *) PHY_TYPE_1 },
->> +	{ .compatible = "hisilicon,hi3798mv200-usb2-phy",
->> +	  .data = (void *) PHY_TYPE_MMIO },
->>   	{ },
->>   };
->>   MODULE_DEVICE_TABLE(of, hisi_inno_phy_of_match);
+>> But the subject you wrote here is "dt-bindings: omap-mcpdm: Convert to
+>> DT schema"?
 >>
->> -- 
->> 2.43.0
+>> Where is the ASoC?
+>>
+> I did change it, will send the patch again.
+> 
+>>
+>> reg is not correct. Please point me to files doing that way, so I can
+>> fix them.
+>>
+>> You need items with description.
+>>
+> Documentation/devicetree/bindings/sound/fsl,imx-asrc.yaml
+> I referred here for the description, but will add items for the 2 regs
 
+I don't see at all the code you are using. It's entirely different!
+Where in this file is that type of "reg" property?
 
--- 
-Regards,
-Yang Xiwen
+> 
+>>> Interrupts and hwmods use maxItems now.
+>>
+>> hwmods lost description, why?
+> Seems self explanatory.
+
+Really? Not to me. I have no clue what this is. Also, you need
+description for (almost) every non-standard, vendor property.
+
+> 
+>>> Changed nodename to be generic in example as well.
+>>
+>> "mcpdm" does not feel generic. What is mcpdm? Google finds nothing.
+>> Maybe just "pdm"?
+>>
+> Multichannel PDM Controller. Kept it like that since the node is also
+
+You said you "changed nodename". So from what did you change to what?
+
+> called as mcpdm in the devicetree. Calling it pdm might cause
+
+Poor DTS is not the example...
+
+> confusion.
+
+So far I am confused. Often name of SoC block is specific, not generic.
+Anyway, that's not important part, so if you claim mcpdm is generic name
+of a class of devices, I am fine.
+
+Best regards,
+Krzysztof
 
 
