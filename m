@@ -1,142 +1,106 @@
-Return-Path: <devicetree+bounces-56505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56506-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8498E89975D
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 10:00:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26FA189976C
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 10:02:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A87B71C22897
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 08:00:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4242283EBA
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 08:02:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5721142E61;
-	Fri,  5 Apr 2024 08:00:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 202F314430E;
+	Fri,  5 Apr 2024 08:02:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u96lNQ9g"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="0xc75gkM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B42AC171CC;
-	Fri,  5 Apr 2024 08:00:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 842C0143C63;
+	Fri,  5 Apr 2024 08:02:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712304019; cv=none; b=kWknw4tbB6RbwsdHN0gwXnw21nmhD6qeMQVpKQJ13zJPrYptrH288kw7hsJiF86A+rd41jFIuWQkz+pBFNuawmeZvX8aqcv2zizDDi9B6jEa7x0L4XyHNEleNAPuij9MNtbvbjuYIqc899zt32sucgWA4aj8fIsNJ9Z8GluVwYQ=
+	t=1712304140; cv=none; b=QieViMekJj8tXXgEf8GwoUDt7dWkenQesEgksBDWZfGJKR2EEPqYr50z0cgmZ6RyYL8DWHgqWgHt4X1Qaw8bibAZ9UcOzzPttaUaXrZC4IfMraOZqeH+MpAu1xqJSCo7vp8PiGVxqf05fAp2oOB3o0xfjrYR2f8QH6HeqBqr0Aw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712304019; c=relaxed/simple;
-	bh=IZRrX7XpE+4FP7wBYx2ZuBhTerHvqKeOEt7zeIB6fbk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bYFnBHdZfKcwHnAyEA9IEJbVsRdUmdNESrZ7ooQvWvWsaKiOZBDIOJdmBoGfXD8bVQU6Og0EzZp63GGPlAitS+CJIFYi1m3ngNDQpwVppdW8fYfV6+TY6W83nEnzRA2UlZoYhaod+uhrz8oM7AlN6av4uXkugOFqfNCWq7I6+oo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u96lNQ9g; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E4FCC433C7;
-	Fri,  5 Apr 2024 08:00:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712304019;
-	bh=IZRrX7XpE+4FP7wBYx2ZuBhTerHvqKeOEt7zeIB6fbk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=u96lNQ9g7rzhJVO5YSuaTSLcO8l5TZxj9nriXwg/NHXCi2gc5Zqor0K2wLhWMgS+0
-	 KDodbIO9tf8r1jtwW0vhcC4qg5CcEgHNcmOP617kX2to7ha62nzjLUH5GMYf/AFxPz
-	 D9vNsUpCbelB/vauSI6/zcY0t4kCC3TbBM9KmWBrav0TdaC20aP+j8BczWSp6/LmCg
-	 J9OViP8NYXY0VnygybjrslNd6CV9QYVo5WXmTLZxbBOOFsohSSCOUDXtUPU/nawV+b
-	 zZE3gWV7gE/i7P8B3GIUyKp7QiV1rybvULLtaK2sfiGSajTa+lJhncklkQf7IpmEla
-	 6l0uSJRLKP/nw==
-Message-ID: <9f202f3a-fec8-4570-8c37-64927bdbb276@kernel.org>
-Date: Fri, 5 Apr 2024 10:00:07 +0200
+	s=arc-20240116; t=1712304140; c=relaxed/simple;
+	bh=CjtjJtjRiqvhZdhjYHsoFltjRD2g3Zr+JWz9NxI7jIA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=XihfvMZh9udJr99irZXU23pxVLronhY4SQa7TyEHr3mx54CTINIwKjls3hFtv7tDA5IXLzp/qXKWvGeYwGuuuTips7KUhmiuNoZpnt0QumGr+b6nFyJlz4VJEX1lXnKDwo7WTqw2DVLAVKzK1C7co3HCqIx/gYrIefPquntB6fM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=0xc75gkM; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1712304136;
+	bh=CjtjJtjRiqvhZdhjYHsoFltjRD2g3Zr+JWz9NxI7jIA=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=0xc75gkMn8sFUlL7654mLLQOxyLz463AurAjag5uB+6FtKBMRaEG0QW5uK4C1xOWK
+	 RkWBz4KmFkxujxbID+gs3Kf1M59ayEVw5cMkmJeDPyFmQpdUTlp3hEBjDQrozfan27
+	 KHa/3eXacdMCzoa+sMgt36gaOrmBP/QNdDkqaC3hidmNmclhlj5INVsKs4gRZ/BEEh
+	 U4lGDjTV1Rc3gEGi8w1w7FcMXwjRjT3QYlUPWpISnbCDuSxeuSVAymdesMEeqeS2s3
+	 Fc+98rEXIQgJHvFsTBriO7mKmZ4ayV3oMOBWrnmXYmXGZWRvvgNTuSV74zatwb1ggE
+	 71CLxQubw4o+A==
+Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id A1E17378212E;
+	Fri,  5 Apr 2024 08:02:15 +0000 (UTC)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Matthias Brugger <matthias.bgg@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Sam Shih <sam.shih@mediatek.com>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	"David S . Miller" <davem@davemloft.net>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Frank Wunderlich <frank-w@public-files.de>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: Re: [PATCH 1/3] arm64: dts: mediatek: mt7986: drop invalid properties from ethsys
+Date: Fri,  5 Apr 2024 10:02:09 +0200
+Message-ID: <171230386964.52006.14938631024589400868.b4-ty@collabora.com>
+X-Mailer: git-send-email 2.44.0
+In-Reply-To: <20240213053739.14387-1-zajec5@gmail.com>
+References: <20240213053739.14387-1-zajec5@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 17/17] MAINTAINERS: Add phy-gs101-ufs file to Tensor
- GS101.
-To: Peter Griffin <peter.griffin@linaro.org>, mturquette@baylibre.com,
- sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- vkoul@kernel.org, kishon@kernel.org, alim.akhtar@samsung.com,
- avri.altman@wdc.com, bvanassche@acm.org, s.nawrocki@samsung.com,
- cw00.choi@samsung.com, jejb@linux.ibm.com, martin.petersen@oracle.com,
- chanho61.park@samsung.com, ebiggers@kernel.org
-Cc: linux-scsi@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, tudor.ambarus@linaro.org,
- andre.draszik@linaro.org, saravanak@google.com, willmcvicker@google.com
-References: <20240404122559.898930-1-peter.griffin@linaro.org>
- <20240404122559.898930-18-peter.griffin@linaro.org>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240404122559.898930-18-peter.griffin@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On 04/04/2024 14:25, Peter Griffin wrote:
-> Add the newly created ufs phy for GS101 to MAINTAINERS.
+On Tue, 13 Feb 2024 06:37:37 +0100, Rafał Miłecki wrote:
+> Mediatek ethsys controller / syscon binding doesn't allow any subnodes
+> so "#address-cells" and "#size-cells" are redundant (actually:
+> disallowed).
 > 
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> ---
->  MAINTAINERS | 1 +
->  1 file changed, 1 insertion(+)
+> This fixes:
+> arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: syscon@15000000: '#address-cells', '#size-cells' do not match any of the regexes: 'pinctrl-[0-9]+'
+>         from schema $id: http://devicetree.org/schemas/clock/mediatek,ethsys.yaml#
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 491d48f7c2fa..48ac9bd64f22 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -9256,6 +9256,7 @@ S:	Maintained
->  F:	Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
->  F:	arch/arm64/boot/dts/exynos/google/
->  F:	drivers/clk/samsung/clk-gs101.c
-> +F:	drivers/phy/samsung/phy-gs101-ufs.c
+> [...]
 
-This could go also via phy-tree:
+Applied to v6.9-fixes/dts64, thanks!
 
-Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+[1/3] arm64: dts: mediatek: mt7986: drop invalid properties from ethsys
+      commit: 3b449bfd2ff6c5d3ceecfcb18528ff8e1b4ac2fd
+[2/3] arm64: dts: mediatek: mt7986: drop "#reset-cells" from Ethernet controller
+      commit: 9bd88afc94c3570289a0f1c696578b3e1f4e3169
+[3/3] arm64: dts: mediatek: mt7986: drop invalid thermal block clock
+      commit: 970f8b01bd7719a22e577ba6c78e27f9ccf22783
 
-Best regards,
-Krzysztof
+Cheers,
+Angelo
 
 
