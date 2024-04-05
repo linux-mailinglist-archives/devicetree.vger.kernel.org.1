@@ -1,128 +1,180 @@
-Return-Path: <devicetree+bounces-56535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 742EE8998CB
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 11:02:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C7D089994F
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 11:19:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 121C21F24FD4
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 09:02:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10AE0283D94
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 09:19:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 358041607A6;
-	Fri,  5 Apr 2024 09:01:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6736A15FCEA;
+	Fri,  5 Apr 2024 09:19:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="G5Jb0svV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 755B315FCFD;
-	Fri,  5 Apr 2024 09:01:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8413913D265;
+	Fri,  5 Apr 2024 09:19:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712307705; cv=none; b=k7WPPptJZHllodVSnXpZ7H7tQNO+hlQDuSnFZ3gbe9nOZAJMzMqDP5xHgbO865zZRxYKu1I9Qb66hH9TeZIqo3+iwpzKuRnbemPTnz4APpA/IfIFO5/PFqbucqYhY3BSnH4gbWgMc7JNGVJ0bWpvNLC1rd8ZXziD+DqbrFpXBVo=
+	t=1712308785; cv=none; b=oVwWRDf9lZEiHGEIMrxI97wsHL5cJx2udirtQjMPrmRq19ucStyhRrRXct7II6tVCvI/MShSqywGXvBVhfGKt+pR9UfG+JPKWim9U4Uz525w1+Pv8P7IIehM1uxT6nAPTGtXt+XHq+jDC5ZeMb/39RZbL0vkRbxntgAtkdLTues=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712307705; c=relaxed/simple;
-	bh=ur2axIziRbxJ6gwxj4bwjmuqpUC0P7kxy2AtM8ZM3+c=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=rGMORz8zIJ4+6FF1bbTBfoT6Apzl5UCSZ92IghIlXdUlkPPM8dAOodV0Q9V+G9MMcEAk8R+mXSIjUANHb8CPRYfPW45Kk0UIhJ1h1oPEMo/BiZuDVbqaH1oKQ7Y09b7EwjA8yiNejZQjFNxmo8RMY/kIZmearVSR/CcUC5VVhmw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 355382018FE;
-	Fri,  5 Apr 2024 11:01:36 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id DB174201498;
-	Fri,  5 Apr 2024 11:01:35 +0200 (CEST)
-Received: from pe-lt8779.in-pnq01.nxp.com (pe-lt8779.in-pnq01.nxp.com [10.17.104.141])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id C8725181D0E4;
-	Fri,  5 Apr 2024 17:01:33 +0800 (+08)
-From: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
-To: marcel@holtmann.org,
-	luiz.dentz@gmail.com,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org
-Cc: linux-bluetooth@vger.kernel.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	amitkumar.karwar@nxp.com,
-	rohit.fule@nxp.com,
-	neeraj.sanjaykale@nxp.com,
-	sherry.sun@nxp.com,
-	ziniu.wang_1@nxp.com,
-	haibo.chen@nxp.com,
-	LnxRevLi@nxp.com
-Subject: [PATCH v1 2/2] Bluetooth: btnxpuart: Update firmware names
-Date: Fri,  5 Apr 2024 14:31:18 +0530
-Message-Id: <20240405090118.582310-3-neeraj.sanjaykale@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240405090118.582310-1-neeraj.sanjaykale@nxp.com>
-References: <20240405090118.582310-1-neeraj.sanjaykale@nxp.com>
+	s=arc-20240116; t=1712308785; c=relaxed/simple;
+	bh=a5NXg44BFMiguNC2tDuNWXwZ4iS92c+ZUzIznAf1Qf0=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=oIWw166U8qVdjK8n0h+qbO78Uijpg+hZXB5zUJOSFWDREnEEGnxW4aseKL+1/Vxg8mpywksNwUaCXNBDzAbN4aGPbtK869OofFZskHsFQXSFpLTGDd9K3cYXA/zyHAZjM/HHkeHWi8g7Kf09VOIxCv9tAYU9CDs1Z12vSi1Bl/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=G5Jb0svV; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-516d536f6f2so383696e87.2;
+        Fri, 05 Apr 2024 02:19:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712308782; x=1712913582; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3GMoznVWR9nEnA6pyqwAybCVYGsx+tACDaMjpLe/PK4=;
+        b=G5Jb0svVDVBU9BS5xJmBshitddTLtUEaLl87PbTVhplVIS1j11LvuJpOdB6obp1fGu
+         SNS5RS/CZjcY5d4/5VktbUaa3gUHfupyfXL5G9M2KgOmDbuAxLd45Muqn6JmImJ4sZnP
+         MEUUpMbJVIOTAJ89xrEworeDyMIXtwEsNWEv3xULrZdOQPuLO7y+xfTUkd+olIa0eOra
+         B+B6uszPpZCC0vMk0pSiHXzr3OfEQFsiaRhEqgU7Px3CAE2IUSk/LJmM9eIj47/zvdlV
+         mUBXTL7qAFUMDlgKCyyYjDUhVIcd4BkVsEitWvZzbplx4u6cSHRDxVFqpHGXFddfDp9K
+         J8ng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712308782; x=1712913582;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3GMoznVWR9nEnA6pyqwAybCVYGsx+tACDaMjpLe/PK4=;
+        b=TqFXntpK0wX8csIYLEFyaKJqObKj225AebtCORNvjN/cM/Rwk06cdBVd7O14900FJh
+         km7CGEn5cJIIo5SW/frqZTZHmpKythzoLIaRtTKHJiAHFLO4Y3Kdm0IUg+WQtd5Qm7bL
+         h4sOEaMZshQUIDbHmX/AYffISq7EDyJGKe3SujiFFPAWAAEyxxsAPfd8Wo8QymfWBDiL
+         Q2qovfxPDT2c2EMckcPIXCMBptLj/HisPuW0I/R3s5F9lqGzdnipif7Axd+/NHhI+0Sq
+         08RrMSm3GD2lGyDK+WxbB3h7KndcX8dRSDDQYktoum98X/PYOSOEnjVyoofFQOo8NJbz
+         +Otw==
+X-Forwarded-Encrypted: i=1; AJvYcCWykpQHjR2HNXklaN0LMRZiP76nK/7vkS0OkHOvwaKW7yjZCq4YVKPL9Oxk+c9qKn1I6FrdaX5ZgCvnQqTucxX6jY2dG/2E+UUqav+0s77QEJtivJf3nrmfVZdHAmTBiV66dbClrZKD1UhnF5NMmEDna3/t9/OKvjYUBqILw//H5ylwoBKeH5+W
+X-Gm-Message-State: AOJu0Yxzd+XBF9foexuQtxIz0FmM0KduQLiLfl5Nd96/52nVpVyWWjtp
+	7idE1bSd0s6EfxiOC3XsHK1fMNaSkpbY5wryICTTkzErVH2VEAcd7wRCxDgD
+X-Google-Smtp-Source: AGHT+IEquSfinz1Ed9BFfdbScz0luX5oc2a4k7Opcpql+MuJP/6bMAdj9F9EyRATWvqJobWtzq6IoA==
+X-Received: by 2002:ac2:5ec1:0:b0:513:d640:ff16 with SMTP id d1-20020ac25ec1000000b00513d640ff16mr736418lfq.29.1712308781372;
+        Fri, 05 Apr 2024 02:19:41 -0700 (PDT)
+Received: from [172.16.183.82] ([213.255.186.46])
+        by smtp.gmail.com with ESMTPSA id w24-20020a05651234d800b00513cb309c8asm139649lfr.52.2024.04.05.02.19.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Apr 2024 02:19:41 -0700 (PDT)
+Message-ID: <f1e3d31d-8c24-4cdc-ae26-747f383a937b@gmail.com>
+Date: Fri, 5 Apr 2024 12:19:40 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: ClamAV using ClamSMTP
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 0/6] Support ROHM BD96801 scalable PMIC
+Content-Language: en-US, en-GB
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Mark Brown <broonie@kernel.org>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+ <linux@roeck-us.net>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
+References: <cover.1712058690.git.mazziesaccount@gmail.com>
+ <f7d454ac-6ecb-4431-a1de-c9b5d1240969@gmail.com>
+ <eb03ec33-0627-4986-be04-8e35da390d6b@sirena.org.uk>
+ <b6279be8-cf7d-4608-b556-3c01587f0d43@gmail.com>
+In-Reply-To: <b6279be8-cf7d-4608-b556-3c01587f0d43@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-This updates the firmware names of 3 chipsets: w8987, w8997, w9098.
-These changes are been done to standardize chip specific firmware
-file names.
-To allow user to use older firmware file names, a new device tree
-property has been introduced called firmware-name, which will override
-the hardcoded firmware names in the driver.
+On 4/4/24 16:15, Matti Vaittinen wrote:
+> Hi Mark,
+> 
+> On 4/4/24 15:09, Mark Brown wrote:
+>> On Thu, Apr 04, 2024 at 10:26:34AM +0300, Matti Vaittinen wrote:
+>>
+>>> 1. Should we be able to have more than 1 IRQ domain / device?
+>>> 2. Should regmap_irq support having more than 1 HWIRQ
+>>
+>> I would expect each parent interrupt to show up as a separate remap_irq.
+>>
+>>> then it seems that reading the IRQ information from the /proc/interrupts
+>>> works as expected. Here I am making a wild guess that the name of the 
+>>> domain
+>>> is used as a key for some data-lookups, and having two domains with a 
+>>> same
+>>> name will either overwrite something or cause wrong domain data to be
+>>> fetched. (This is just guessing for now).
 
-Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
----
- drivers/bluetooth/btnxpuart.c | 12 +++++++++---
- 1 file changed, 9 insertions(+), 3 deletions(-)
+This was wrong guessing.
 
-diff --git a/drivers/bluetooth/btnxpuart.c b/drivers/bluetooth/btnxpuart.c
-index 0b93c2ff29e4..45f2ae2b542b 100644
---- a/drivers/bluetooth/btnxpuart.c
-+++ b/drivers/bluetooth/btnxpuart.c
-@@ -33,9 +33,9 @@
- /* NXP HW err codes */
- #define BTNXPUART_IR_HW_ERR		0xb0
- 
--#define FIRMWARE_W8987		"nxp/uartuart8987_bt.bin"
--#define FIRMWARE_W8997		"nxp/uartuart8997_bt_v4.bin"
--#define FIRMWARE_W9098		"nxp/uartuart9098_bt_v1.bin"
-+#define FIRMWARE_W8987		"nxp/uart8987_bt_v0.bin"
-+#define FIRMWARE_W8997		"nxp/uart8997_bt_v4.bin"
-+#define FIRMWARE_W9098		"nxp/uart9098_bt_v1.bin"
- #define FIRMWARE_IW416		"nxp/uartiw416_bt_v0.bin"
- #define FIRMWARE_IW612		"nxp/uartspi_n61x_v1.bin.se"
- #define FIRMWARE_IW624		"nxp/uartiw624_bt.bin"
-@@ -685,12 +685,18 @@ static bool process_boot_signature(struct btnxpuart_dev *nxpdev)
- static int nxp_request_firmware(struct hci_dev *hdev, const char *fw_name)
- {
- 	struct btnxpuart_dev *nxpdev = hci_get_drvdata(hdev);
-+	const char *fw_name_dt;
- 	int err = 0;
- 
- 	if (!fw_name)
- 		return -ENOENT;
- 
- 	if (!strlen(nxpdev->fw_name)) {
-+		if (strcmp(fw_name, FIRMWARE_HELPER) &&
-+		    !device_property_read_string(&nxpdev->serdev->dev,
-+						 "firmware-name",
-+						 &fw_name_dt))
-+			fw_name = fw_name_dt;
- 		snprintf(nxpdev->fw_name, MAX_FW_FILE_NAME_LEN, "%s", fw_name);
- 
- 		bt_dev_dbg(hdev, "Request Firmware: %s", nxpdev->fw_name);
+>> So if we arrange to supply a name when we register multiple domains
+>> things should work fine?
+
+After my latest findings, yes, I think so. How to do this correctly is 
+beyond me though. The __irq_domain_create() seems to me that the name is 
+meant to be the dt-node name when the controller is backed by a real 
+dt-node. Naming of the irq_domain_alloc_named_fwnode() sounds to me like 
+it is only intended to be used when there is no real fwnode. All 
+suggestions appreciated. Using the:
+irq_domain_update_bus_token(intb_domain, DOMAIN_BUS_WIRED);
+feels like a dirty hack, and won't scale if there is more HWIRQs.
+
+> Thanks for taking the time to look at my questions :)
+> I have been debugging this thing whole day today, without getting too 
+> far :) It seems there is something beyond the name collision though.
+> 
+> After I tried adding '-1' to the end of the other domain name to avoid 
+> the debugfs name collision I managed to do couple of successful runs - 
+> after which I reported here that problem seems to be just the naming. 
+> Soon after sending that mail I hit the oops again even though the naming 
+> was fixed.
+> 
+> Further debugging shows that the desc->action->name for the last 28 
+> 'errb' IRQs get corrupted. This might point more to the IRQ requester 
+> side - so I need to further study the BD96801 driver side as well as the 
+> regulator_irq_helper. I'm having the creeping feeling that at the end of 
+> the day I need to find the guilty one from the mirror :)
+
+I was not wrong on this one. The regulator_irq_helper() duplicates 
+memory for the data given in  const struct regulator_irq_desc *d - but 
+it does not duplicate the irq name pointed from the given 
+regulator_irq_desc. Nor does the request_threaded_irq(). I passed some 
+of the IRQ names from the stack in the BD96801 driver ... a bug I 
+should've caught earlier.
+
+Well, good thing is that now I can fix the regulator_irq_helper() to do:
+
+--- a/drivers/regulator/irq_helpers.c
++++ b/drivers/regulator/irq_helpers.c
+@@ -352,6 +352,9 @@ void *regulator_irq_helper(struct device *dev,
+
+         h->irq = irq;
+         h->desc = *d;
++       h->desc.name = devm_kstrdup(dev, d->name, GFP_KERNEL);
++       if (!h->desc.name)
++               return ERR_PTR(-ENOMEM);
+
+         ret = init_rdev_state(dev, h, rdev, common_errs, per_rdev_errs,
+                               rdev_amount);
+
+I'll send a patch if this sounds like a correct thing to do.
+
+
+
 -- 
-2.34.1
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
 
 
