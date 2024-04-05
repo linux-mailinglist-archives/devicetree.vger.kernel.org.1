@@ -1,329 +1,314 @@
-Return-Path: <devicetree+bounces-56597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B61E899DAA
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 14:56:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79052899DBA
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 14:57:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E9F71C22B63
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 12:56:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0351C1F242E5
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 12:57:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1F9C16C874;
-	Fri,  5 Apr 2024 12:56:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="nahZn9pQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A973116D4F1;
+	Fri,  5 Apr 2024 12:57:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1035716ABFA;
-	Fri,  5 Apr 2024 12:56:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8B2B16D4D3;
+	Fri,  5 Apr 2024 12:57:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712321804; cv=none; b=JanqzgDWPCYEfWykdmiXq8k5iD2mXgfl/cuIoEDimVwPoL0B0LNIks7FQaz5BiNo97N4Cr6wFTrRsUQ6Q+iKtYK2+BsrGO0dDHM//aGmAHAY80L1NWGjBr5DxWspVJ97QBRRZEpKzCd30CxSN9O46EBrQFoZbgRtMlep/F3BNjU=
+	t=1712321835; cv=none; b=XfO0x/mLj3a3ADgFas4CsP4LXnC3XaWQi3C8qe6me27HLJRzchAd8C7M0qT82xhAUQf+KrjOWk5FhlCaFUbO3DAy+TIz8fD3mZ4c1JRC6wnNNFoYanUmKNGxh4XFvjbU2VhkpBz1JCvOYga5jU0hcjw/hanAozOppkyjwU/XNSo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712321804; c=relaxed/simple;
-	bh=E94Vm2YqIHWCP3Ytx38QK62FpLjk4a891f9RaR8YcQY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jkY0MbfuTxD9RUSB9Gv9zOIBItM40bPtafkHqLdSWxNNZvlpoQt/6x6cBFxTzAmuSX+CSnDxs/xYO6gDDSRKnpyQ9jN/aFZ+zIu8fOhX2bWRn6mEffsFRsEtXr8FzkZN/UOhz5WOOZRScdTSlBGC6oDc42OV5psRU1eMKMYsddY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=nahZn9pQ; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-154-34-181.elisa-laajakaista.fi [91.154.34.181])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id E35C98E1;
-	Fri,  5 Apr 2024 14:56:00 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1712321762;
-	bh=E94Vm2YqIHWCP3Ytx38QK62FpLjk4a891f9RaR8YcQY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nahZn9pQcSG2rMxbKmzi8excYLWCq9MQ0YVNbGg2kiuPENPJ2ASvkfvcQTVlCzeH5
-	 ZIpCY/U9uDZ53+opAPQ+2RVznnNzqhfULY6huwoJxL+RyZeLeJj6BAqNpXkdokebDW
-	 LMWubw4NfMuRmE9JLufVDcQ0CYFBzA2vxhkTbzFM=
-Message-ID: <47947c68-8f1d-46a2-acb4-4ac008e5cb74@ideasonboard.com>
-Date: Fri, 5 Apr 2024 15:56:36 +0300
+	s=arc-20240116; t=1712321835; c=relaxed/simple;
+	bh=2YtxCtIfHL+1+HO+ks+D6RthwuzyQBykWodO082NqcQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nKQJdYZBXtvqv0oh9JI3aMAScbTV5sJuHV3OgU40LrfcjpIZUPG6bXSRUiDOmSLb5cmcyBHx2iV4uNl4HBE1RNKxfKBDp9zQh2Lx/lBC3nNLFGXQQOaTP7unp3Am/9NaQCcgL8bJURazOcPy0ChQnRTND8SCSkD8TdkLH3HB2fM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-dcc6fc978ddso1759262276.0;
+        Fri, 05 Apr 2024 05:57:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712321829; x=1712926629;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IrYQalnHLpNlFPtXNRcvWmXwt3g+egtwV8d+Fjl7XAg=;
+        b=lWaScKyTMPjDLZlXlZXd8hC5e/C0F8CMRpvEE7Wndpe9XyY1AGivuOd4soOCAJ3Sca
+         zv7jTm80IOPceLWvrhds8RJ5cDIBXyda74r3qiJK4U4MVRBaXOWyfDnNWg3RIiJbGp1d
+         Iva2FO+zJsBPgicaD6u9fYhk/Ju7BpaZsmRTvYTOEyV3uf+7l59lQzn+NhyW0XJnGRlz
+         ZvB5OV7AjSpgdZK/vPaFwQA5TcnrJgW8zEa40ER6GiHCNcKICjIchHpBkPCfIB4PON6x
+         PNqPApUrovXQ6J1mY7deja4OHKnugaIPkUlicvX6a6WXDfJuuMIJEJfCJqMhh0u9rytl
+         3ELA==
+X-Forwarded-Encrypted: i=1; AJvYcCU/WkinzxD1N7Oe8jTXZnse5TLsLglAFNt5gEFe3j01EJJ0Zh/cghOBJkXuNqI8yE1HR7rts4+w9kONd0GSyyK5MC9LCZu6cKjk/wpbN1p+A0/0En5TvD1XkusEYD919vDa5ZDIzRiUV4RP3oN87giRLCmJKSJGNUafTwQs/C6ltLuALkITGOcHgFuYjgd55lyNWzxS+ybIa9fmNMH07Jh7jhwXfEPO9MdCaAS69tSzmeHiWW5K9pC/X3Czj45DoNEoHii2eL/+65rjdwZFvLYPb2YrfE5hnCu439qjFwm1lye1cm0pl1b3QvEd3tppXOJB4YcFj3PxHEGYngdmHgsygjVgBzWl+RWEoVFBHanJcClugS59HIU=
+X-Gm-Message-State: AOJu0Yy48WtO/yikFldb1xSDBkxcvJp4wgFAk4+NYc7wH/Y4HWmJUxd/
+	kyBsHcOQJNuqpBzH5kX//grO1cRqZ7uvTLXP4eoXK7bzf5b4D9TdQCaSfDohKq4=
+X-Google-Smtp-Source: AGHT+IEr1cWRfbRnWqwooGaruYL1olqIXbBlkHEnD+nK0QdasKLy/60NBLixdP9lFuE8mI19MpfUAw==
+X-Received: by 2002:a5b:ed0:0:b0:dc6:f0ac:6b53 with SMTP id a16-20020a5b0ed0000000b00dc6f0ac6b53mr866097ybs.15.1712321829314;
+        Fri, 05 Apr 2024 05:57:09 -0700 (PDT)
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
+        by smtp.gmail.com with ESMTPSA id 133-20020a25198b000000b00dc2328c28ebsm296209ybz.51.2024.04.05.05.57.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Apr 2024 05:57:08 -0700 (PDT)
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-dc6cbe1ac75so1595520276.1;
+        Fri, 05 Apr 2024 05:57:08 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCW7omlBOIn7yssfNTnAvTG1djrkeJ4J6Yq/4eSM44Jd5SMBECoXwPcXZdsItin1OGLxarVqxwoEn7Oqa/d4jCkwtorvWZtc1IsPX3Y4LG9xyFT2C8PRVYyLaarZwQxDkm1wYQTNZVzYj9/xGhbAWewoRuAurPNDWfirVUsQnA7LFRHDMl+PeFecj6dglK2pNjb4mqMmeDNyUg4wCuf99+aT9/uSKqib3sXVO50zAs7Vs4zXVm5m/+n/R+A0Dno6cpqpbxnO64W/ngKt4SLRsbme1SX8mt4viWZ6FqfXALgPbGuyOs2AoJOPj1kbumDdVIzsfKfKIHGF+k1oV+qp99f0lSxiyTB3E76n2NPhHB08H0O8v2IGBOU=
+X-Received: by 2002:a05:6902:2b10:b0:dcd:b806:7446 with SMTP id
+ fi16-20020a0569022b1000b00dcdb8067446mr1084419ybb.1.1712321827974; Fri, 05
+ Apr 2024 05:57:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 6/9] drm: xlnx: zynqmp_dpsub: Set input live format
-To: Anatoliy Klymenko <anatoliy.klymenko@amd.com>
-Cc: dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-media@vger.kernel.org,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Michal Simek <michal.simek@amd.com>, Andrzej Hajda
- <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>
-References: <20240321-dp-live-fmt-v3-0-d5090d796b7e@amd.com>
- <20240321-dp-live-fmt-v3-6-d5090d796b7e@amd.com>
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Content-Language: en-US
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <20240321-dp-live-fmt-v3-6-d5090d796b7e@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <cover.1712207606.git.ysato@users.sourceforge.jp> <9c1d56d37f5d3780d3c506ae680133b6bdaa5fdc.1712207606.git.ysato@users.sourceforge.jp>
+In-Reply-To: <9c1d56d37f5d3780d3c506ae680133b6bdaa5fdc.1712207606.git.ysato@users.sourceforge.jp>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 5 Apr 2024 14:56:55 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVXvPW+3-sY2XPQ2aMcTZkK9zoMnxWeZ+PRB+VRgGszdQ@mail.gmail.com>
+Message-ID: <CAMuHMdVXvPW+3-sY2XPQ2aMcTZkK9zoMnxWeZ+PRB+VRgGszdQ@mail.gmail.com>
+Subject: Re: [RESEND v7 14/37] clk: Compatible with narrow registers
+To: Yoshinori Sato <ysato@users.sourceforge.jp>
+Cc: linux-sh@vger.kernel.org, Damien Le Moal <dlemoal@kernel.org>, 
+	Niklas Cassel <cassel@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Thomas Gleixner <tglx@linutronix.de>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	Rich Felker <dalias@libc.org>, John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, 
+	Lee Jones <lee@kernel.org>, Helge Deller <deller@gmx.de>, 
+	Heiko Stuebner <heiko.stuebner@cherry.de>, Shawn Guo <shawnguo@kernel.org>, 
+	Sebastian Reichel <sre@kernel.org>, Chris Morgan <macromorgan@hotmail.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Arnd Bergmann <arnd@arndb.de>, 
+	David Rientjes <rientjes@google.com>, Hyeonggon Yoo <42.hyeyoo@gmail.com>, 
+	Vlastimil Babka <vbabka@suse.cz>, Baoquan He <bhe@redhat.com>, 
+	Andrew Morton <akpm@linux-foundation.org>, Guenter Roeck <linux@roeck-us.net>, 
+	Kefeng Wang <wangkefeng.wang@huawei.com>, Stephen Rothwell <sfr@canb.auug.org.au>, 
+	Javier Martinez Canillas <javierm@redhat.com>, Guo Ren <guoren@kernel.org>, 
+	Azeem Shaikh <azeemshaikh38@gmail.com>, Max Filippov <jcmvbkbc@gmail.com>, 
+	Jonathan Corbet <corbet@lwn.net>, Jacky Huang <ychuang3@nuvoton.com>, 
+	Herve Codina <herve.codina@bootlin.com>, 
+	Manikanta Guntupalli <manikanta.guntupalli@amd.com>, Anup Patel <apatel@ventanamicro.com>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+	Sam Ravnborg <sam@ravnborg.org>, Sergey Shtylyov <s.shtylyov@omp.ru>, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, linux-ide@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-pci@vger.kernel.org, 
+	linux-serial@vger.kernel.org, linux-fbdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 21/03/2024 22:43, Anatoliy Klymenko wrote:
-> Program live video input format according to selected media bus format.
-> 
-> In the bridge mode of operation, DPSUB is connected to FPGA CRTC which
-> almost certainly supports a single media bus format as its output. Expect
-> this to be delivered via the new bridge atomic state. Program DPSUB
-> registers accordingly. Update zynqmp_disp_layer_set_format() API to fit
-> both live and non-live layer types.
-> 
-> Signed-off-by: Anatoliy Klymenko <anatoliy.klymenko@amd.com>
-> ---
->   drivers/gpu/drm/xlnx/zynqmp_disp.c | 66 +++++++++++++++++++++++++-------------
->   drivers/gpu/drm/xlnx/zynqmp_disp.h |  2 +-
->   drivers/gpu/drm/xlnx/zynqmp_dp.c   | 13 +++++---
->   drivers/gpu/drm/xlnx/zynqmp_kms.c  |  2 +-
->   4 files changed, 55 insertions(+), 28 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xlnx/zynqmp_disp.c b/drivers/gpu/drm/xlnx/zynqmp_disp.c
-> index 0c2b3f4bffa6..a385d22d428e 100644
-> --- a/drivers/gpu/drm/xlnx/zynqmp_disp.c
-> +++ b/drivers/gpu/drm/xlnx/zynqmp_disp.c
-> @@ -436,19 +436,28 @@ static void zynqmp_disp_avbuf_set_format(struct zynqmp_disp *disp,
->   					 const struct zynqmp_disp_format *fmt)
->   {
->   	unsigned int i;
-> -	u32 val;
-> +	u32 val, reg;
->   
-> -	val = zynqmp_disp_avbuf_read(disp, ZYNQMP_DISP_AV_BUF_FMT);
-> -	val &= zynqmp_disp_layer_is_video(layer)
-> -	    ? ~ZYNQMP_DISP_AV_BUF_FMT_NL_VID_MASK
-> -	    : ~ZYNQMP_DISP_AV_BUF_FMT_NL_GFX_MASK;
-> -	val |= fmt->buf_fmt;
-> -	zynqmp_disp_avbuf_write(disp, ZYNQMP_DISP_AV_BUF_FMT, val);
-> +	layer->disp_fmt = fmt;
-> +	if (layer->mode == ZYNQMP_DPSUB_LAYER_NONLIVE) {
-> +		reg = ZYNQMP_DISP_AV_BUF_FMT;
-> +		val = zynqmp_disp_avbuf_read(disp, ZYNQMP_DISP_AV_BUF_FMT);
-> +		val &= zynqmp_disp_layer_is_video(layer)
-> +		    ? ~ZYNQMP_DISP_AV_BUF_FMT_NL_VID_MASK
-> +		    : ~ZYNQMP_DISP_AV_BUF_FMT_NL_GFX_MASK;
-> +		val |= fmt->buf_fmt;
-> +	} else {
-> +		reg = zynqmp_disp_layer_is_video(layer)
-> +		    ? ZYNQMP_DISP_AV_BUF_LIVE_VID_CONFIG
-> +		    : ZYNQMP_DISP_AV_BUF_LIVE_GFX_CONFIG;
-> +		val = fmt->buf_fmt;
-> +	}
-> +	zynqmp_disp_avbuf_write(disp, reg, val);
+Hi Sato-san,
 
-Just write the registers inside the above if-else blocks.
+On Thu, Apr 4, 2024 at 7:15=E2=80=AFAM Yoshinori Sato
+<ysato@users.sourceforge.jp> wrote:
+> divider and gate only support 32-bit registers.
+> Older hardware uses narrower registers, so I want to be able to handle
+> 8-bit and 16-bit wide registers.
+>
+> Seven clk_divider flags are used, and if I add flags for 8bit access and
+> 16bit access, 8bit will not be enough, so I expanded it to u16.
+>
+> Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
 
->   
->   	for (i = 0; i < ZYNQMP_DISP_AV_BUF_NUM_SF; i++) {
-> -		unsigned int reg = zynqmp_disp_layer_is_video(layer)
-> -				 ? ZYNQMP_DISP_AV_BUF_VID_COMP_SF(i)
-> -				 : ZYNQMP_DISP_AV_BUF_GFX_COMP_SF(i);
-> +		reg = zynqmp_disp_layer_is_video(layer)
-> +		    ? ZYNQMP_DISP_AV_BUF_VID_COMP_SF(i)
-> +		    : ZYNQMP_DISP_AV_BUF_GFX_COMP_SF(i);
->   
->   		zynqmp_disp_avbuf_write(disp, reg, fmt->sf[i]);
->   	}
-> @@ -902,25 +911,33 @@ static void zynqmp_disp_audio_disable(struct zynqmp_disp *disp)
->    */
->   
->   /**
-> - * zynqmp_disp_layer_find_format - Find format information for a DRM format
-> + * zynqmp_disp_layer_find_format - Find format information for a DRM or media
-> + * bus format
->    * @layer: The layer
-> - * @drm_fmt: DRM format to search
-> + * @drm_or_bus_format: DRM or media bus format
->    *
->    * Search display subsystem format information corresponding to the given DRM
-> - * format @drm_fmt for the @layer, and return a pointer to the format
-> - * descriptor.
-> + * or media bus format @drm_or_bus_format for the @layer, and return a pointer
-> + * to the format descriptor. Search key choice depends on @layer mode, for live
-> + * layers search is done by zynqmp_disp_format.bus_fmt, and for non-live layers
-> + * zynqmp_disp_format.drm_fmt is used.
+Thanks for the update!
 
-Here also I recommend creating separate funcs for the fourcc and mbus 
-versions. They are different types, even if they happen to fit into u32.
+> --- a/drivers/clk/clk-divider.c
+> +++ b/drivers/clk/clk-divider.c
+> @@ -26,20 +26,38 @@
+>   * parent - fixed parent.  No clk_set_parent support
+>   */
+>
+> -static inline u32 clk_div_readl(struct clk_divider *divider)
+> -{
+> -       if (divider->flags & CLK_DIVIDER_BIG_ENDIAN)
+> -               return ioread32be(divider->reg);
+> -
+> -       return readl(divider->reg);
+> +static inline u32 clk_div_read(struct clk_divider *divider)
+> +{
+> +       if (divider->flags & CLK_DIVIDER_REG_8BIT)
 
->    *
->    * Return: A pointer to the format descriptor if found, NULL otherwise
->    */
->   static const struct zynqmp_disp_format *
->   zynqmp_disp_layer_find_format(struct zynqmp_disp_layer *layer,
-> -			      u32 drm_fmt)
-> +			      u32 drm_or_bus_format)
->   {
->   	unsigned int i;
-> +	const struct zynqmp_disp_format *disp_format;
->   
->   	for (i = 0; i < layer->info->num_formats; i++) {
-> -		if (layer->info->formats[i].drm_fmt == drm_fmt)
-> -			return &layer->info->formats[i];
-> +		disp_format = &layer->info->formats[i];
-> +		if ((layer->mode == ZYNQMP_DPSUB_LAYER_LIVE &&
-> +		     disp_format->bus_fmt == drm_or_bus_format) ||
-> +		    (layer->mode == ZYNQMP_DPSUB_LAYER_NONLIVE &&
-> +		     disp_format->drm_fmt == drm_or_bus_format))
-> +			return disp_format;
->   	}
->   
->   	return NULL;
-> @@ -992,20 +1009,25 @@ void zynqmp_disp_layer_disable(struct zynqmp_disp_layer *layer)
->   /**
->    * zynqmp_disp_layer_set_format - Set the layer format
->    * @layer: The layer
-> - * @info: The format info
-> + * @drm_or_bus_format: DRM or media bus format
->    *
->    * Set the format for @layer to @info. The layer must be disabled.
->    */
->   void zynqmp_disp_layer_set_format(struct zynqmp_disp_layer *layer,
-> -				  const struct drm_format_info *info)
-> +				  u32 drm_or_bus_format)
+When you need curly braces in one branch of an if/else statement,
+please use curly braces in all branches (everywhere).
 
-And here, with a quick look, a separate function would be fine.
+> +               return readb(divider->reg);
+> +       else if (divider->flags & CLK_DIVIDER_REG_16BIT) {
+> +               if (divider->flags & CLK_DIVIDER_BIG_ENDIAN)
+> +                       return ioread16be(divider->reg);
+> +               else
+> +                       return readw(divider->reg);
+> +       } else {
+> +               if (divider->flags & CLK_DIVIDER_BIG_ENDIAN)
+> +                       return ioread32be(divider->reg);
+> +               else
+> +                       return readl(divider->reg);
+> +       }
+>  }
 
-  Tomi
+> --- a/drivers/clk/clk-gate.c
+> +++ b/drivers/clk/clk-gate.c
 
->   {
->   	unsigned int i;
->   
-> -	layer->disp_fmt = zynqmp_disp_layer_find_format(layer, info->format);
-> -	layer->drm_fmt = info;
-> +	layer->disp_fmt = zynqmp_disp_layer_find_format(layer, drm_or_bus_format);
-> +	if (WARN_ON(!layer->disp_fmt))
-> +		return;
->   
->   	zynqmp_disp_avbuf_set_format(layer->disp, layer, layer->disp_fmt);
->   
-> +	layer->drm_fmt = drm_format_info(layer->disp_fmt->drm_fmt);
-> +	if (!layer->drm_fmt)
-> +		return;
-> +
->   	if (layer->mode == ZYNQMP_DPSUB_LAYER_LIVE)
->   		return;
->   
-> @@ -1013,7 +1035,7 @@ void zynqmp_disp_layer_set_format(struct zynqmp_disp_layer *layer,
->   	 * Set pconfig for each DMA channel to indicate they're part of a
->   	 * video group.
->   	 */
-> -	for (i = 0; i < info->num_planes; i++) {
-> +	for (i = 0; i < layer->drm_fmt->num_planes; i++) {
->   		struct zynqmp_disp_layer_dma *dma = &layer->dmas[i];
->   		struct xilinx_dpdma_peripheral_config pconfig = {
->   			.video_group = true,
-> diff --git a/drivers/gpu/drm/xlnx/zynqmp_disp.h b/drivers/gpu/drm/xlnx/zynqmp_disp.h
-> index 88c285a12e23..9f9a5f50ffbc 100644
-> --- a/drivers/gpu/drm/xlnx/zynqmp_disp.h
-> +++ b/drivers/gpu/drm/xlnx/zynqmp_disp.h
-> @@ -55,7 +55,7 @@ u32 *zynqmp_disp_layer_formats(struct zynqmp_disp_layer *layer,
->   void zynqmp_disp_layer_enable(struct zynqmp_disp_layer *layer);
->   void zynqmp_disp_layer_disable(struct zynqmp_disp_layer *layer);
->   void zynqmp_disp_layer_set_format(struct zynqmp_disp_layer *layer,
-> -				  const struct drm_format_info *info);
-> +				  u32 drm_or_bus_format);
->   int zynqmp_disp_layer_update(struct zynqmp_disp_layer *layer,
->   			     struct drm_plane_state *state);
->   
-> diff --git a/drivers/gpu/drm/xlnx/zynqmp_dp.c b/drivers/gpu/drm/xlnx/zynqmp_dp.c
-> index e3b9eb3d9273..200e63636006 100644
-> --- a/drivers/gpu/drm/xlnx/zynqmp_dp.c
-> +++ b/drivers/gpu/drm/xlnx/zynqmp_dp.c
-> @@ -1299,15 +1299,20 @@ static void zynqmp_dp_disp_enable(struct zynqmp_dp *dp,
->   				  struct drm_bridge_state *old_bridge_state)
->   {
->   	struct zynqmp_disp_layer *layer;
-> -	const struct drm_format_info *info;
-> +	struct drm_bridge_state *bridge_state;
-> +	u32 bus_fmt;
->   
->   	layer = zynqmp_dp_disp_connected_live_layer(dp);
->   	if (!layer)
->   		return;
->   
-> -	/* TODO: Make the format configurable. */
-> -	info = drm_format_info(DRM_FORMAT_YUV422);
-> -	zynqmp_disp_layer_set_format(layer, info);
-> +	bridge_state = drm_atomic_get_new_bridge_state(old_bridge_state->base.state,
-> +						       old_bridge_state->bridge);
-> +	if (WARN_ON(!bridge_state))
-> +		return;
-> +
-> +	bus_fmt = bridge_state->input_bus_cfg.format;
-> +	zynqmp_disp_layer_set_format(layer, bus_fmt);
->   	zynqmp_disp_layer_enable(layer);
->   
->   	if (layer == dp->dpsub->layers[ZYNQMP_DPSUB_LAYER_GFX])
-> diff --git a/drivers/gpu/drm/xlnx/zynqmp_kms.c b/drivers/gpu/drm/xlnx/zynqmp_kms.c
-> index bf9fba01df0e..d96b3f3f2e3a 100644
-> --- a/drivers/gpu/drm/xlnx/zynqmp_kms.c
-> +++ b/drivers/gpu/drm/xlnx/zynqmp_kms.c
-> @@ -111,7 +111,7 @@ static void zynqmp_dpsub_plane_atomic_update(struct drm_plane *plane,
->   		if (old_state->fb)
->   			zynqmp_disp_layer_disable(layer);
->   
-> -		zynqmp_disp_layer_set_format(layer, new_state->fb->format);
-> +		zynqmp_disp_layer_set_format(layer, new_state->fb->format->format);
->   	}
->   
->   	zynqmp_disp_layer_update(layer, new_state);
-> 
+> @@ -137,12 +155,30 @@ struct clk_hw *__clk_hw_register_gate(struct device=
+ *dev,
+>         struct clk_init_data init =3D {};
+>         int ret =3D -EINVAL;
+>
+> +       /* validate register size option and bit_idx */
+>         if (clk_gate_flags & CLK_GATE_HIWORD_MASK) {
+>                 if (bit_idx > 15) {
+>                         pr_err("gate bit exceeds LOWORD field\n");
+>                         return ERR_PTR(-EINVAL);
+>                 }
+>         }
+> +       if (clk_gate_flags & CLK_GATE_REG_16BIT) {
+> +               if (bit_idx > 15) {
+> +                       pr_err("gate bit exceeds 16 bits\n");
+> +                       return ERR_PTR(-EINVAL);
+> +               }
+> +       }
+> +       if (clk_gate_flags & CLK_GATE_REG_8BIT) {
+> +               if (bit_idx > 7) {
+> +                       pr_err("gate bit exceeds 8 bits\n");
+> +                       return ERR_PTR(-EINVAL);
+> +               }
+> +       }
+> +       if ((clk_gate_flags & CLK_GATE_HIWORD_MASK) &&
 
+If you use parentheses around "a & b" here...
+
+> +           clk_gate_flags & (CLK_GATE_REG_8BIT | CLK_GATE_REG_16BIT)) {
+
+please add parentheses here, too.
+
+> +               pr_err("HIWORD_MASK required 32-bit register\n");
+> +               return ERR_PTR(-EINVAL);
+> +       }
+>
+>         /* allocate the gate */
+>         gate =3D kzalloc(sizeof(*gate), GFP_KERNEL);
+> diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
+> index 4a537260f655..eaa6ff1d0b2e 100644
+> --- a/include/linux/clk-provider.h
+> +++ b/include/linux/clk-provider.h
+> @@ -508,12 +508,16 @@ void of_fixed_clk_setup(struct device_node *np);
+>   * CLK_GATE_BIG_ENDIAN - by default little endian register accesses are =
+used for
+>   *     the gate register.  Setting this flag makes the register accesses=
+ big
+>   *     endian.
+> + * CLK_GATE_REG_8BIT - by default 32bit register accesses are used for
+> + *     the gate register.  Setting this flag makes the register accesses=
+ 8bit.
+> + * CLK_GATE_REG_16BIT - by default 32bit register accesses are used for
+> + *     the gate register.  Setting this flag makes the register accesses=
+ 16bit.
+>   */
+>  struct clk_gate {
+>         struct clk_hw hw;
+>         void __iomem    *reg;
+>         u8              bit_idx;
+> -       u8              flags;
+> +       u32             flags;
+
+(from my comments on v6)
+There is no need to increase the size of the flags field for the gate clock=
+.
+
+
+>         spinlock_t      *lock;
+>  };
+>
+
+> @@ -675,13 +681,17 @@ struct clk_div_table {
+>   * CLK_DIVIDER_BIG_ENDIAN - By default little endian register accesses a=
+re used
+>   *     for the divider register.  Setting this flag makes the register a=
+ccesses
+>   *     big endian.
+> + * CLK_DIVIDER_REG_8BIT - by default 32bit register accesses are used fo=
+r
+> + *     the gate register.  Setting this flag makes the register accesses=
+ 8bit.
+> + * CLK_DIVIDER_REG_16BIT - by default 32bit register accesses are used f=
+or
+> + *     the gate register.  Setting this flag makes the register accesses=
+ 16bit.
+>   */
+>  struct clk_divider {
+>         struct clk_hw   hw;
+>         void __iomem    *reg;
+>         u8              shift;
+>         u8              width;
+> -       u8              flags;
+> +       u16             flags;
+>         const struct clk_div_table      *table;
+>         spinlock_t      *lock;
+>  };
+
+> @@ -726,18 +738,18 @@ struct clk_hw *__clk_hw_register_divider(struct dev=
+ice *dev,
+>                 struct device_node *np, const char *name,
+>                 const char *parent_name, const struct clk_hw *parent_hw,
+>                 const struct clk_parent_data *parent_data, unsigned long =
+flags,
+> -               void __iomem *reg, u8 shift, u8 width, u8 clk_divider_fla=
+gs,
+> +               void __iomem *reg, u8 shift, u8 width, u32 clk_divider_fl=
+ags,
+
+"u16 clk_divider_flags", to match clk_divider.flags.
+
+>                 const struct clk_div_table *table, spinlock_t *lock);
+>  struct clk_hw *__devm_clk_hw_register_divider(struct device *dev,
+>                 struct device_node *np, const char *name,
+>                 const char *parent_name, const struct clk_hw *parent_hw,
+>                 const struct clk_parent_data *parent_data, unsigned long =
+flags,
+> -               void __iomem *reg, u8 shift, u8 width, u8 clk_divider_fla=
+gs,
+> +               void __iomem *reg, u8 shift, u8 width, u32 clk_divider_fl=
+ags,
+
+Likewise.
+
+>                 const struct clk_div_table *table, spinlock_t *lock);
+>  struct clk *clk_register_divider_table(struct device *dev, const char *n=
+ame,
+>                 const char *parent_name, unsigned long flags,
+>                 void __iomem *reg, u8 shift, u8 width,
+> -               u8 clk_divider_flags, const struct clk_div_table *table,
+> +               u32 clk_divider_flags, const struct clk_div_table *table,
+
+Likewise.
+
+>                 spinlock_t *lock);
+>  /**
+>   * clk_register_divider - register a divider clock with the clock framew=
+ork
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
