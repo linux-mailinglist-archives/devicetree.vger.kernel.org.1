@@ -1,120 +1,83 @@
-Return-Path: <devicetree+bounces-56786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56794-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8D5889A679
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 23:48:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07A1989A6B0
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 23:57:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 585271F217DE
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 21:48:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B9751F2128D
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 21:57:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10222179952;
-	Fri,  5 Apr 2024 21:47:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A6E7177985;
+	Fri,  5 Apr 2024 21:47:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RX3fk6+q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58EE517964C
-	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 21:47:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07B99175577;
+	Fri,  5 Apr 2024 21:47:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712353635; cv=none; b=l2cqRMg6P6mmV9TK+KlhJa8gxOzzZBLmK7va10rWfPxgRWzKiKMQGivcWGANw799EsbfdgCMwg7aLK0hDjTkL8BKbhJNnnULJsdRUZg6TH4tGjjE/TcPpXl89YltZd8rYbdF7JGmPqQDk6/wFSmSOOWPpdCc8TGuW4La39fhPac=
+	t=1712353657; cv=none; b=N2zM8sGty3AI66BhqjX8gv00yg+gn2e/gdDOlQZP92w5plsLzZrJq3kvskNXg24rgBKBGBhrhKdTjl7oqOVljIZHeU0ZjTOyK/9brK8nocFjiLMvHFIlJT7IKY/m6dcIJt/+6mLD3tJ2yVbBLYYhbNAJCcExT3osUomdBm3amVY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712353635; c=relaxed/simple;
-	bh=31qBn+qLO55NKAOMjh+QXFNcifWq0+ObSPULX5Vwyf0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=V9AzsGZAhhQNMazSdjA0meP3jg1+bsTJ7Jfp9Xy1iOeCPtD+RE8k1qt6ZJFrSXber3ZuZ/zFkk9NrJb+JZ6Ef107TfgiUwapKjZBE3476scMj+bk6B5EK3P9OJiQWbmbLEIOyIifVfCIqjtcqKUrILPdZO8D6KdbMCFeSomVnbI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rsrOi-00043T-2D; Fri, 05 Apr 2024 23:46:56 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rsrOg-00Ad6O-I1; Fri, 05 Apr 2024 23:46:54 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rsrOg-00FZra-1U;
-	Fri, 05 Apr 2024 23:46:54 +0200
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Alexander Stein <alexander.stein@ew.tq-group.com>
-Subject: [PATCH v1 49/49] ARM: dts: imx6ul-pico: Use #pwm-cells = <3> for imx27-pwm device
-Date: Fri,  5 Apr 2024 23:42:36 +0200
-Message-ID:  <9896105717abb793151c65d54001293a02b2abb4.1712352665.git.u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1712352665.git.u.kleine-koenig@pengutronix.de>
-References: <cover.1712352665.git.u.kleine-koenig@pengutronix.de>
+	s=arc-20240116; t=1712353657; c=relaxed/simple;
+	bh=7AnKOjpqHD/dkn52EQIuZvJZctpRFuWFmYBrrBbGDkY=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=fGBECAiNEMHeUKEvRznIN5LmEqoaG3vuVcarNLDHZKuiVIOovzLp1DmgvjNjk3liJ0ZuqCJQ8DmjoOW5VLU5HG/nM/sVYY5uiEzQQT5CJAvXTlrtRVWEfT4aZ756ZKlZIo/NvP5JCI5VYCkmBSQ8+EHtnF/vj0wlissHrn9HGN0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RX3fk6+q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B0CFC433C7;
+	Fri,  5 Apr 2024 21:47:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712353656;
+	bh=7AnKOjpqHD/dkn52EQIuZvJZctpRFuWFmYBrrBbGDkY=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=RX3fk6+qOgJP/okKDKZ7F8WWRB7QwxIBQy7ZBnhgT6LifaWqwHN5firDGzQhKrqAQ
+	 wh4OCm5GA7IMkrKOdJB9GwB3p87xMKAf6L6YSSqs17u925hXhudylZLH5mbbg+2dBs
+	 Nhi00J6C4XEvix+7Pt2+TCdFF6oM5a4LzOH4v7Kv7HMJnVoOjB45uwqOXL8l1F9oTn
+	 KGcj5RAEtYCVVIf0XahJoObTVRYPubR2Ggs4UTOi+kb4gaTQlCx/yc/oZqIDSNMV81
+	 ybNap5miE/pr7lBSs4ykEbbcLf3Ls5BF4utEkKbisIdxLvFGzR3N3s2gr/oHkT/cuC
+	 PoMWyqfROmXPw==
+Message-ID: <0e0a3e9cb0a7f2cd1b0bde1e8ffaf7ca.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1446; i=u.kleine-koenig@pengutronix.de; h=from:subject:message-id; bh=31qBn+qLO55NKAOMjh+QXFNcifWq0+ObSPULX5Vwyf0=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBmEHC+EAPVGwrwkpBMCcKZ+d7Wpos+noF6umeVY qVQYU+5DNKJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZhBwvgAKCRCPgPtYfRL+ TufWCACNJkHyl5R3Kjz34dga+KJBQZHsJ7RNO/jIN8X7ltSjIEtb/CJvHy9DF6yQwhaJ3UzEsYM 8vm7nHW6+uPfCAIq+hvJGmzQaDB4vB+jecAdRBfsZAlnqPWc2KDzCXKo43YLfY2/K5sHIyR62MA dsDbgQ5vN1DbA/6Jk0ydu5nqZqSUWNF/NY+4lkaPd+YRNiuWSAIiYp3XLChudVi9aVOZsXm3ljN ELf1hiFWuSeeW+9UJaDFvOaGLyW8m276JNk0GBSTrZtDlMUlBijBXHy3j9rVxiV9PRUl/zFNqwB v+ulnxRYLDE3YxlEhWl5kGrLKEEG5zgpFvuSFkg0GEX5txvR
-X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <tencent_F06FC1196D1D47235C8898CF10ED4632BE07@qq.com>
+References: <tencent_F76EB8D731C521C18D5D7C4F8229DAA58E08@qq.com> <tencent_F06FC1196D1D47235C8898CF10ED4632BE07@qq.com>
+Subject: Re: [PATCH v6 07/11] clk: k210: Deprecate SOC_CANAAN and use SOC_CANAAN_K210
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Conor Dooley <conor@kernel.org>, Damien Le Moal <dlemoal@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Linus Walleij <linus.walleij@linaro.org>, Philipp Zabel <p.zabel@pengutronix.de>, linux-gpio@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Yangyu Chen <cyy@cyyself.name>
+To: Yangyu Chen <cyy@cyyself.name>, linux-riscv@lists.infradead.org
+Date: Fri, 05 Apr 2024 14:47:34 -0700
+User-Agent: alot/0.10
 
-The binding dictates using 3 pwm-cells. Adhere to that.
+Quoting Yangyu Chen (2024-03-23 05:12:19)
+> Since SOC_FOO should be deprecated from patch [1], and cleanup for other
+> SoCs is already on the mailing list [2,3,4], we remove the use of
+> SOC_CANAAN and introduced SOC_CANAAN_K210 for K210-specific drivers,
+>=20
+> Thus, we replace its drivers depends on SOC_CANAAN_K210 and default select
+> when it has the symbol SOC_CANAAN_K210.
+>=20
+> [1] https://lore.kernel.org/linux-riscv/20221121221414.109965-1-conor@ker=
+nel.org/
+> [2] https://lore.kernel.org/linux-riscv/20240305-praying-clad-c4fbcaa7ed0=
+a@spud/
+> [3] https://lore.kernel.org/linux-riscv/20240305-fled-undrilled-41dc0c46b=
+b29@spud/
+> [4] https://lore.kernel.org/linux-riscv/20240305-stress-earflap-d7ddb8655=
+a4d@spud/
+>=20
+> Signed-off-by: Yangyu Chen <cyy@cyyself.name>
+> ---
 
-This fixes the following dtbs_check warnings:
-
-	arch/arm/boot/dts/nxp/imx/imx6ul-pico-dwarf.dtb: pwm@2088000: #pwm-cells:0:0: 3 was expected
-		from schema : http://devicetree.org/schemas/pwm/imx-pwm.yaml#
-	arch/arm/boot/dts/nxp/imx/imx6ul-pico-hobbit.dtb: pwm@2088000: #pwm-cells:0:0: 3 was expected
-		from schema : http://devicetree.org/schemas/pwm/imx-pwm.yaml#
-	arch/arm/boot/dts/nxp/imx/imx6ul-pico-pi.dtb: pwm@2088000: #pwm-cells:0:0: 3 was expected
-		from schema : http://devicetree.org/schemas/pwm/imx-pwm.yaml#
-
-Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
----
- arch/arm/boot/dts/nxp/imx/imx6ul-pico.dtsi | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
-
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-pico.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ul-pico.dtsi
-index 07dcecbe485d..fe307f49b9e5 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ul-pico.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ul-pico.dtsi
-@@ -22,7 +22,7 @@ chosen {
- 
- 	backlight: backlight {
- 		compatible = "pwm-backlight";
--		pwms = <&pwm3 0 5000000>;
-+		pwms = <&pwm3 0 5000000 0>;
- 		brightness-levels = <0 4 8 16 32 64 128 255>;
- 		default-brightness-level = <6>;
- 		status = "okay";
-@@ -177,7 +177,6 @@ display_out: endpoint {
- };
- 
- &pwm3 {
--	#pwm-cells = <2>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_pwm3>;
- 	status = "okay";
--- 
-2.43.0
-
+Acked-by: Stephen Boyd <sboyd@kernel.org>
 
