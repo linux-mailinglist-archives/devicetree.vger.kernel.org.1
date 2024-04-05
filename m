@@ -1,138 +1,165 @@
-Return-Path: <devicetree+bounces-56622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD52C899F28
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 16:13:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6335F899FC6
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 16:31:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7DB681F23DCD
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 14:13:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 95D7B1C23036
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 14:31:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E40216E897;
-	Fri,  5 Apr 2024 14:13:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1543C16F8E7;
+	Fri,  5 Apr 2024 14:30:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+Received: from luna.linkmauve.fr (luna.linkmauve.fr [82.65.109.163])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A831F3EA90;
-	Fri,  5 Apr 2024 14:13:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BFB016F859;
+	Fri,  5 Apr 2024 14:30:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=82.65.109.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712326406; cv=none; b=KIlvmBLhA+QSth9TiG/3R9Mr0WRiA0Worzmb334qI1ux/rVfiRrDMGrM3raULwr/MpsWX0qUIEwe9LL7XOXVqoiwHglb3fUHyII+zA4W16O7yET4GeaXi/+dq991yI6CRt30lR4oMbuOp2uzt5zJF4uYdufYHiU9oZb1rxX0RZ4=
+	t=1712327453; cv=none; b=S+F/FzL3xoEeErcZzhvkKPPuBUKvj6SkrtY4w2S4pmflLvq2vllVj5gw0IfWPlNuBk/L2IRqJjjT9DrkwtuaZEyAJzKLKz+/QqDXRCBHNYbNIrZ30qvCoh7RfQlOWKeToC4Ti/aGHwXx+dnq0VsTDbzx6hzMwDkMglUJpxljyDs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712326406; c=relaxed/simple;
-	bh=Y8dxBvV5oWr30NzhU15JG0u1QH7YZz4SXe9i03Iw6I8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qx/QyPxjGKOPVWSIjMQpAxd1caD60TeTWbVqimj0Y6SPHSGaMuJiDBtaUs59ydGP8wB1n9AXsYhSHkaqKZK7POFYMxSqbAJOWdpiaWhuoVIci7rlbazCrI7szm+ludr8ZN782rtBzxuCO2ZsTKQUuzGNfbW/Q7zwIzuGLe/rRuk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-6150670d372so23055037b3.1;
-        Fri, 05 Apr 2024 07:13:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712326402; x=1712931202;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=G+9sCeCmLvKolNpPlc4emNIQVjHRAHNF8JHTV4vGUWk=;
-        b=ozXFQozjNjpf/ik9R4KuxTdQNvyQ3LMMLIIzxOIZkjXZwMcbK+YwxB8lw1gd+S1WEo
-         ry0Xgh4kiCjXrgPHioTNW2CA/SLt26/yUkbsV1bC4NXYAaGWIchOTLBqddPpbBOPbgVf
-         6CbX2XulCH5TpCQx4WI1SDKCPHrd7lW16KxnyYcKtpkWlz7Abb6/cO6152HAm69ej/k6
-         BafDzQ5G7LCJD1ov0nemLvzY7Sp80f3Se80AIC4NB6Jd7ih9SP5rB1Q4sSSEBDD6Kz4I
-         IFxuKMCU9uclISwQgN0DA2lwlyUf5oA2ErndKaWaxoXCybpb7asDRjMTF5mx4GiBjvYr
-         xLKw==
-X-Forwarded-Encrypted: i=1; AJvYcCWG/qnlh+KWzRASJVzeSEOdLT/x6XGqAxPhJcK/wDbz08I1awsJsCiMTNvsmqUsvDCAvvdnikrWoRpkB/nm9EKl1m+xSmi4vu7i96ZKTTza0c79gxeoY+p8hE53wQJqh1YIVhAKD4cJle2zU7VFu9gL/SlFm6LP8aakZr6BaCMrL+WxN9C57b+V
-X-Gm-Message-State: AOJu0YxmaCThMN9o0x/tJtZQct5BZuKSakGKiy6Rz7zZjBNeagxXCtzI
-	weavqH1hqaHlA4Tdgmn22/ZoyAOvWSn+cwOF6RKJ6yMB55uK4UPbCqNJTI/kIg8=
-X-Google-Smtp-Source: AGHT+IGV2RCX9iyI1mxhlxDPhBlprUGBKDRHdXwZqVlXIRs6i/L63E0unbYciggUDDD4UFEHtGwmwQ==
-X-Received: by 2002:a81:4f04:0:b0:611:242e:4116 with SMTP id d4-20020a814f04000000b00611242e4116mr1289142ywb.34.1712326402102;
-        Fri, 05 Apr 2024 07:13:22 -0700 (PDT)
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com. [209.85.128.171])
-        by smtp.gmail.com with ESMTPSA id jx4-20020a05690c380400b00615bd0701c7sm364652ywb.118.2024.04.05.07.13.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Apr 2024 07:13:22 -0700 (PDT)
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-6152be7c58bso23595827b3.0;
-        Fri, 05 Apr 2024 07:13:21 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVQ3YVm/CooF0GXdnVfEQ3tRQ0LyOJ8Yd2KlLZLB9PWAEn6DbZiMACt5zepFV8grLJ3c+8RgH1Y2tXdLJb6aBm7dMijCGI8lMVfTYfzPlEKVgDwQHRZSttvWn5tjxVZVc+h+ELqdaHQI2e6rIU4/K0hSsxLmSdRZ0/4NnQa8bQOyOQ+1hc+FeKg
-X-Received: by 2002:a25:14c6:0:b0:dc7:48d7:9ed8 with SMTP id
- 189-20020a2514c6000000b00dc748d79ed8mr1138711ybu.20.1712326400634; Fri, 05
- Apr 2024 07:13:20 -0700 (PDT)
+	s=arc-20240116; t=1712327453; c=relaxed/simple;
+	bh=OAIDc5kctipri1hRyW8oc3G7ind5HlKJOPmKLgo/ZtE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=L7YDRKzmZn0eaGWoqRomB68i8KwWjYUQ1g54whtA3rs1FVsNkmbeRf03SCEgG56gdzKPSbKt7LBiplDv0b/Hw2gR9Y9ys1pMRHo3NP7gTKNOsi8yXKlK7C32OinRKaShC8W9kYM7A17j7oq/H0U0jiuCmvRjmsH0s3tQSshwjjE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linkmauve.fr; spf=pass smtp.mailfrom=linkmauve.fr; arc=none smtp.client-ip=82.65.109.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linkmauve.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linkmauve.fr
+Received: by luna.linkmauve.fr (Postfix, from userid 1000)
+	id BA81A106966F; Fri,  5 Apr 2024 16:21:30 +0200 (CEST)
+Date: Fri, 5 Apr 2024 16:21:30 +0200
+From: Link Mauve <linkmauve@linkmauve.fr>
+To: Nicolas Dufresne <nicolas@ndufresne.ca>
+Cc: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
+	linux-kernel@vger.kernel.org,
+	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, Joerg Roedel <joro@8bytes.org>,
+	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Shreeya Patel <shreeya.patel@collabora.com>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+	linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	iommu@lists.linux.dev
+Subject: Re: [PATCH v2 0/2] Enable JPEG encoding on rk3588
+Message-ID: <ZhAI6tQZTD7BTosI@desktop>
+References: <20240327134115.424846-1-linkmauve@linkmauve.fr>
+ <bbcb66e9499120a86b367e7abdac2d8e2e704bfb.camel@ndufresne.ca>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240403053304.3695096-1-yoshihiro.shimoda.uh@renesas.com> <20240403053304.3695096-6-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <20240403053304.3695096-6-yoshihiro.shimoda.uh@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 5 Apr 2024 16:13:09 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUbKgqFr93x+0PCzGrRyW2bL69oTp+zsZ2SZ8mh0Fk36g@mail.gmail.com>
-Message-ID: <CAMuHMdUbKgqFr93x+0PCzGrRyW2bL69oTp+zsZ2SZ8mh0Fk36g@mail.gmail.com>
-Subject: Re: [PATCH v4 5/7] PCI: dwc: rcar-gen4: Add .ltssm_enable() for other
- SoC support
-To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, bhelgaas@google.com, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jingoohan1@gmail.com, 
-	mani@kernel.org, marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <bbcb66e9499120a86b367e7abdac2d8e2e704bfb.camel@ndufresne.ca>
+Jabber-ID: linkmauve@linkmauve.fr
 
-Hi Shimoda-san,
+On Thu, Apr 04, 2024 at 01:41:15PM -0400, Nicolas Dufresne wrote:
+> Hi,
 
-On Wed, Apr 3, 2024 at 7:33=E2=80=AFAM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> This driver can reuse other R-Car Gen4 SoCs support like r8a779g0 and
-> r8a779h0. However, r8a779g0 and r8a779h0 require other initializing
-> settings that differ than r8a779f0. So, add a new function pointer
-> .ltssm_enable() for it. No behavior changes.
->
-> After applied this patch, probing SoCs by rcar_gen4_pcie_of_match[]
-> will be changed like below:
->
-> - r8a779f0 as "renesas,r8a779f0-pcie" and "renesas,r8a779f0-pcie-ep"
->
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Hi,
 
-Thanks for your patch!
+> 
+> Le mercredi 27 mars 2024 à 14:41 +0100, Emmanuel Gil Peyrot a écrit :
+> > Only the JPEG encoder is available for now, although there are patches
+> > for the undocumented VP8 encoder floating around[0].
+> 
+> [0] seems like a broken link. The VP8 encoder RFC is for RK3399 (and Hantro H1
+> posted by ST more recently). The TRM says "VEPU121(JPEG encoder only)", which
+> suggest that the H.264 and VP8 encoders usually found on the VEPU121 are
+> removed. As Rockchip have remove the synthesize register while modifying the H1
+> IP, it is difficult to verify. Confusingly the H.264 specific registers are
+> documented in the TRM around VEPU121.
 
-> --- a/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> +++ b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
+Ah, the link became, and was indeed ST’s series:
+https://patchwork.kernel.org/project/linux-rockchip/list/?series=789885&archive=both
 
-> @@ -513,6 +536,14 @@ static struct rcar_gen4_pcie_platdata platdata_rcar_=
-gen4_pcie_ep =3D {
->  };
->
->  static const struct of_device_id rcar_gen4_pcie_of_match[] =3D {
-> +       {
-> +               .compatible =3D "renesas,r8a779f0-pcie",
-> +               .data =3D &platdata_r8a779f0_pcie,
-> +       },
-> +       {
-> +               .compatible =3D "renesas,r8a779f04-pcie-ep",
+But the TRM part 1 says the VEPU121 supports H.264 encoding (page 367),
+and it’s likely they didn’t remove just VP8 support since the codec
+features are pretty close to H.264’s.
 
-renesas,r8a779f0-pcie-ep
+> 
+> > 
+> > This has been tested on a rock-5b, resulting in four /dev/video*
+> > encoders.  The userspace program I’ve been using to test them is
+> > Onix[1], using the jpeg-encoder example, it will pick one of these four
+> > at random (but displays the one it picked):
+> > % ffmpeg -i <input image> -pix_fmt yuvj420p temp.yuv
+> > % jpeg-encoder temp.yuv <width> <height> NV12 <quality> output.jpeg
+> 
+> I don't like that we exposing each identical cores a separate video nodes. I
+> think we should aim for 1 device, and then multi-plex and schedule de cores from
+> inside the Linux kernel.
 
-> +               .data =3D &platdata_r8a779f0_pcie_ep,
-> +       },
->         {
->                 .compatible =3D "renesas,rcar-gen4-pcie",
->                 .data =3D &platdata_rcar_gen4_pcie,
+I agree, but this should be handled in the driver not in the device
+tree, and it can be done later.
 
-Gr{oetje,eeting}s,
+> 
+> Not doing this now means we'll never have an optimal hardware usage
+> distribution. Just consider two userspace software wanting to do jpeg encoding.
+> If they both take a guess, they may endup using a single core. Where with proper
+> scheduling in V4L2, the kernel will be able to properly distribute the load. I
+> insist on this, since if we merge you changes it becomes an ABI and we can't
+> change it anymore.
 
-                        Geert
+Will it really become ABI just like that?  Userspace should always
+discover the video nodes and their capabilities and not hardcode e.g. a
+specific /dev/videoN file for a specific codec.  I would argue that this
+series would let userspace do JPEG encoding right away, even if in a
+less optimal way than if the driver would round-robin them through a
+single video node, but that can always be added in a future version.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+> 
+> I understand that this impose a rework of the mem2mem framework so that we can
+> run multiple jobs, but this will be needed anyway on RK3588, since the rkvdec2,
+> which we don't have a driver yet is also multi-core, but you need to use 2 cores
+> when the resolution is close to 8K.
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+I think the mediatek JPEG driver already supports that, would it be ok
+to do it the same way?
+
+> 
+> Nicolas
+> 
+> > 
+> > [0] https://patchwork.kernel.org/project/linux-rockchip/list/?series=789885
+> > [1] https://crates.io/crates/onix
+> > 
+> > Changes since v1:
+> > - Dropped patches 1 and 4.
+> > - Use the proper compatible form, since this device should be fully
+> >   compatible with the VEPU of rk356x.
+> > - Describe where the VEPU121 name comes from, and list other encoders
+> >   and decoders present in this SoC.
+> > - Properly test the device tree changes, I previously couldn’t since I
+> >   was using a too recent version of python-jsonschema…
+> > 
+> > Emmanuel Gil Peyrot (2):
+> >   media: dt-binding: media: Document rk3588’s VEPU121
+> >   arm64: dts: rockchip: Add VEPU121 to rk3588
+> > 
+> >  .../bindings/media/rockchip,rk3568-vepu.yaml  |  8 +-
+> >  arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 80 +++++++++++++++++++
+> >  2 files changed, 86 insertions(+), 2 deletions(-)
+> > 
+> 
+
+-- 
+Link Mauve
 
