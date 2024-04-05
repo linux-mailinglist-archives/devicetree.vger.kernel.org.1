@@ -1,186 +1,230 @@
-Return-Path: <devicetree+bounces-56633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BF8B89A04B
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 16:56:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB8CF89A053
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 16:57:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 198AB2870A1
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 14:56:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59FD91F21E2E
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 14:57:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE91816F29D;
-	Fri,  5 Apr 2024 14:56:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A02F16F849;
+	Fri,  5 Apr 2024 14:57:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="W5ybl//v"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="UxbOQAA6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2106.outbound.protection.outlook.com [40.107.6.106])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0185016DEAB;
-	Fri,  5 Apr 2024 14:56:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.6.106
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712329003; cv=fail; b=P3ROlR+wLpVVyp/xdcinyAkcCTpZCAAT648uQgDV8m1IThfdxQY9WPJgp7LvSgNljsiWT96x+5VXuMwbmBgOkji5SPrxEkM5VuQb5E0nDbaj8nkKqz/jyMNKR+sX5Eh7Vi4dwZqZxNYx3nPdm26BysLQtQSDy5rtY7i0V5nZiwk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712329003; c=relaxed/simple;
-	bh=epw2LxZpFzc9yQ9shyNLLX9rbxbNSLPXLbzCuqIMFDI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=C5tHrTm0GdAitjdZrQyN1TN0Ka6odK22Yz3RBZ8Zcbc9+JwqAx5m+YImHkkVk//KjplJwA4hzAIfXbK+k/nZTz4bdym46qkH0LN9puENKEZ34jxJFvv7Bwew5imMFkhxZKQg+HjiTakyUd9oVsV9bH1d4TPZ3hhRodcppoDcFOU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=W5ybl//v; arc=fail smtp.client-ip=40.107.6.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BaZykAPi091rwj2jtBq7lhshqzxqMmBRtDRmu0vw0LiVmC6BzP7LN1WC46p5VLtRnXzIz2R1lideyT3+Z+vQVQiis5q+GJ87iVuVNTryS3kCE9FNPKp8+G4uPukmES/4Qp8ncrRkThWyPyH3yslT9wzW0+NxNQhAlH29VOOu9al7nH/FuJWHAaZT2ZlvHXsn5busZKEgwYDlI0YKhA5XgGhXYKSJIhDKHDuquDqmycHwAF15q3BHVmV13XchyiKOoy9UM+Tuy9P/hWqTQ+4lO0SEduOAKtLUJ8YNuG5RfRW0BdZc1m4KKl3K+BCvHPwCyCSuPvECoAKNKFyZWx/IbQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lKB1I9rieadX3n8EfWXFokd7S0ShQBko+iJ2euZo0lE=;
- b=F58B0UroHH7KYp0j7gt5+oGPzrmYUNrMh69+0xW/aAm1Je8/Yu+P0OKEr5hxj9TILF3YAeriKF6O5Gva1lXekft9ogZ91UjxB5Ou0BUHbxbwDyNXvrRFlsFRVgsgjR+BKgIDr7aYaiBLomJkIxIqW67muN9cxzwJbrdhfpxGYDOI6EjXqyq+75OpGNYnAXt7TZa6vbl6KfkmAcrEt9VYEbEU7QRArEbNVycld5UhzynHmrd7DOCBfWnf/ZucwegjuMmt0/mCQLoaJ2RiUs/h8DVu1h3/FzQF+oUAhqLDOUXm8vDRA6WLG4WwdDUN8bm9QZvDxnTEAJ8qxeVf512HNw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lKB1I9rieadX3n8EfWXFokd7S0ShQBko+iJ2euZo0lE=;
- b=W5ybl//vHiKWLIalqYuyH9xl8RDJD7BQ6Kgm8RJfnILBJiILkhoBjhn4FzJqE3WuhGr3mZk5cpNNE6NoaDzGAiJI1nD9zd8KS9FG5FjveDS7HC0mPNB14VcMUNJ2H0qFfpdwDDqB+TSe5Kk70Iqamvym1/Nxxv3jamw0x/Xio4I=
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AM0PR04MB6802.eurprd04.prod.outlook.com (2603:10a6:208:184::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Fri, 5 Apr
- 2024 14:56:38 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::3168:91:27c6:edf6]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::3168:91:27c6:edf6%3]) with mapi id 15.20.7409.042; Fri, 5 Apr 2024
- 14:56:38 +0000
-Date: Fri, 5 Apr 2024 10:56:30 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
-	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/1] arm64: dts: imx8qxp-mek: add cm40_i2c, wm8960/wm8962
- and sai[0,1,4,5]
-Message-ID: <ZhARHhzZ0mUmMyVw@lizhi-Precision-Tower-5810>
-References: <20240404161914.1655305-1-Frank.Li@nxp.com>
- <20240405063648.GA4562@francesco-nb>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240405063648.GA4562@francesco-nb>
-X-ClientProxiedBy: BYAPR03CA0011.namprd03.prod.outlook.com
- (2603:10b6:a02:a8::24) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FBB816F27C;
+	Fri,  5 Apr 2024 14:57:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712329038; cv=none; b=f/uXxyFzCM/p5dJsdk2ARJ/+Usq2QawQK3bPywYvjtNIGRTO31PbD4XTZv3q/lWEaak+uIrjMvvFoyipX5Fkg/4oITtuPvFdhsg9fLV7jRMvJ/mseuHRQOHFnAjwCLHPtM2491IuO0Wt97cUH4gpCKQmscZDK8D3Z2uPKxt+/ik=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712329038; c=relaxed/simple;
+	bh=9zYHg1Yh55ibCjfnImR8SDnU9VMfC9QIwwDyxbIAeug=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=MGk4z7j2isPMgGclF2HkIZ46MRVyWqqOV+3Saf8JVQuw44RhFIyF7KoDDbqdXBKlMTaH07ulpPy1hSRQ5hszmc58ABBaUrEAcZsc2NqaEYnIAqPZB31M7bw/dFw3Z8AVupqmVKGppscQxzl52o+fXWcrfY5jm+ZAtUtYiRYgyZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=UxbOQAA6; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 435EYRP4000715;
+	Fri, 5 Apr 2024 10:56:48 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
+	from:subject:date:message-id:mime-version:content-type
+	:content-transfer-encoding:to:cc; s=DKIM; bh=9SmIKpFsSzzC/dx981Z
+	v8Ah56nCYVv7KaIxbw9hDDgc=; b=UxbOQAA6D8RfG5VZBwa4mw81ZKEAVS4mY5x
+	+5mkLRo+jZSahbYAEnYYccRj7E/8EdaG3GVKn7EFUDKaLnANJZ4xkAPC82q0bGVH
+	jbqOCI9reYxD0aGrQrIOr0oGyBIzagtlt1HHzAg9Fcoyp8PTiGtLNR9VavcMrVpa
+	Hg4gqDW4Cfvt8uyYSuHQ5/yOnyxftGqslDw09jMhvir7yFbhPrZTe9nZrn2++Tdl
+	v8+gS0nwX/OaND+yxamGp1BgC/32ln/D7Zd+akDeA2LaB9tb//Q+pvuHzsq3kuu3
+	KyuNiiQSVMjB/EOYZ2rt4oQZFYIgA09gzdFlP5RWWTf0tNhcLtw==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3x9y8vvnna-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 05 Apr 2024 10:56:48 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 435Eul1C064528
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 5 Apr 2024 10:56:47 -0400
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 5 Apr 2024 10:56:46 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 5 Apr 2024 10:56:45 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Fri, 5 Apr 2024 10:56:45 -0400
+Received: from [127.0.0.1] ([10.44.3.56])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 435EuSHw019011;
+	Fri, 5 Apr 2024 10:56:30 -0400
+From: Nuno Sa <nuno.sa@analog.com>
+Subject: [PATCH v2 00/11] iio: dac: support IIO backends on the output
+ direction
+Date: Fri, 5 Apr 2024 16:59:58 +0200
+Message-ID: <20240405-iio-backend-axi-dac-v2-0-293bab7d5552@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM0PR04MB6802:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	oMo+2rCDKa9hTCEZO4bpExyaFcuhYuRKtBNdm0tOucPDSyqj0fmZgY50Zw0h1WU0ImFasBjNhr3FvnLMeCVk13T65j0p8R/CE7zgpnANbkypSbmx+e7dKTsUAUkb163+t+2TsFmcN7MT0YZwrfJ3fCJ5cLRgHGI3O0WOYnfNiE1q/pMjEzLLGjVbU7UCD9j8ax6b5TDAWRWydF/AvH2vqzmoRZN+cRUCmoxM31gxoxBE/JqrxjUhvr032V936y+zM5sKUlVd3Wo2fCNe9dRwNXhqqm0EUhVs6G36791bgp0yZs7XSG2ybx9f1tyR+esaUgjblKsAYVJgOxIl51NpFs4AQ4atr32/yM7m8iG9dgN79KH7B0jwRbNvLUgAyv4Jox8tYsE1iaizj6ynKIaQGDsqfekUyROVxbU9Qpj31XPtW+m9TTIwO3LlM/4Ha+56BSTeZk5JfzvG17PT9nAb1Z/m37DT+wywptdhFT0s9ahnuHQP6K0FjOZJPT7DqdbwSDEwCWJbv6xQIUxohMLgkOMMfy4pQBTnLBGf6mBUvDNv8tMhbtHiI/6tcT0KznGDqwrBcCaA0KYowwohV5B+ciVDoDQQSFrjru2FZtNcGrQ0xGygVF0UpWMx0e03E5iiw1Dr/kgLN6SXqp23lcD55ejcDGIF/GdZcCmQ+/qPi/I5cMfFaoZG0xvtmvQqKHu0ieR0pOy9kaCk91kB5jGA9g==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(376005)(52116005)(7416005)(366007)(38350700005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?+qJMScozOQF2IzoGNmvDlB5qsAhqjTx7p5QeNspgoPspK8nA9LNHxR3Nk8ns?=
- =?us-ascii?Q?jHqsFNNCVNOCCpm5rfiRVT0g9FVvtdPCWc/ZQXJ3gwMsKffhNGEqNtZk4BIR?=
- =?us-ascii?Q?ORKB2EwC0lTMq86yefL8AjvEHjE2lTFrm7XH35XE+VpuvnG0lwBlRoJ2PuYo?=
- =?us-ascii?Q?1P3bQRygwNOqQuFUgbWhesSSHu5a3fRMXtRhGoJ7XeI4w1PxmiXMZf1T+Le8?=
- =?us-ascii?Q?5TIyDLmnwhSGJDbS3KMUaWSgpEsAeWPAksv/5TEU78kEyHYozR8JckAvc/5A?=
- =?us-ascii?Q?aYtgWeqrZAOGPvvcNIpj3o47/EjBveSra0xsgG0ngKij/ivj5HlgwVRBvNoo?=
- =?us-ascii?Q?qxNjlBZX2ydMfCTfoT+VFK2voK3v4+PmMK2fXzxNx/YGUsDAxIm5WF7TWtyD?=
- =?us-ascii?Q?BJ9r0SyjE/ikcSUmJpBcZ8BmwTH/Ftiu+5LeNRwkJsPfurfGgvbLfaY21Kmz?=
- =?us-ascii?Q?z3DhIsHH15XF+7hXw610aDaJqw1nVGoLsJeM51yeRH3qK4XsXkgoZPcGgmEb?=
- =?us-ascii?Q?zpaC2dfoFtGhl1E6HxGJl54h+USS4DDlUwYU8Qvj1OGda/QgqLbB8xfMrJNL?=
- =?us-ascii?Q?CasYv1C6fNLpPE6zD2FK2QKIb5hTk3zaKvi/QHbtwmr2oz4ankjoPCyDfYix?=
- =?us-ascii?Q?2jQAWR/9RHeoMV52xrp9BxQ0uLdC8HeGfMpqCD1kkVEOnhws0af2/NweF3Vc?=
- =?us-ascii?Q?BwtmJMt15Iho3+j9SkdLXsVRsaCictN66wt6OuMx4HFbs23rnhIBNvdNHdBD?=
- =?us-ascii?Q?XiEqDpGgFxh7HPHbwdC4Trm6JoqpxGOmdRl5hK+xtXmixK3puPF8F8fsByje?=
- =?us-ascii?Q?rZQUY9sNa5YNqtNXUG2MGZbf94oTA4LhpeLN2ofUcluLriACNAShVonciXAG?=
- =?us-ascii?Q?B1wo7E9vl793Z41fjcB76Ij4jlZcBZK4p0+KYsZvXvQy3iLrYUiS5tO4KFti?=
- =?us-ascii?Q?ctRtYRiGLmi0AC4sRh2GKrvMbt6HceSPgjwEEZUy4SBgkWJR259xjYffe1C7?=
- =?us-ascii?Q?qwcC1b7twSf6TnnbWrdZ24+8LVO0Vqf9BGskmZIlUYNTi/aCWx6dpQcNI7Q9?=
- =?us-ascii?Q?1VgOW/nBitVHC7Xe6HfRx5i/mXjIEOSqRZL11VxjREptiquRiaOxjDcRzZA5?=
- =?us-ascii?Q?xhIqVNw7qythcQC/RQh85DAngoYalpKilJFIUlcd/6+++vuxPRA/NXWM/5PP?=
- =?us-ascii?Q?m9Olhv0YDl06piuUpa6twIY4K+Ee5ySzwJpPvL//WEYFLS0D618L3w+DwS0+?=
- =?us-ascii?Q?jwS5SxOcSYDq36yoYhClUjAkp41m7b06KVEXsjMJrQjgMKmZAexDfVSwEHTA?=
- =?us-ascii?Q?6R+iuwuYlVNpmDf5MbmMSLL1meiQ+eGIrxlSTeWutIpQBqwzHTDZORaGd1XW?=
- =?us-ascii?Q?goRxul3FHFU2MdrnqIdchM/xB4nZgtVDjopLA/TcqvdjLHyCFSLfg9kNCfxL?=
- =?us-ascii?Q?/WkLpc20cv6fVOios78ifTosZyaQEpDU8etn1P+SW1BdnWNZx5C9Z6jTPke0?=
- =?us-ascii?Q?v8jjWSjTUvYJ0y8uR3Q9tY0pgVRaLvA4D+fbzJRGD7uyvVXDguq0WWb9weZ9?=
- =?us-ascii?Q?qCCRfoas9iX6//vd+5yQK2a/W5nh5AeUA8ycd+y0?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 24d8fbde-bbaa-4b32-2d74-08dc55809846
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2024 14:56:38.0027
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pbxlnnoDFewhuBe/AjP6thnosqIRG8Nal+hUL32iwJEx5uYo1JI7j+Lbal40IILD5nxb8NtDvQGK8ePxAmOpdw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6802
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAO4REGYC/x3MQQqAIBBA0avErBsQtaKuEi1GnWoILBQikO6et
+ HyL/wtkTsIZpqZA4luynLFCtw34neLGKKEatNJWWdWhyImO/MExID2CgTw6HkczGKdM76CWV+J
+ Vnv86L+/7Af79BcplAAAA
+To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC: Dragos Bogdan <dragos.bogdan@analog.com>,
+        Lars-Peter Clausen
+	<lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        "Jonathan Cameron" <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Olivier Moysan <olivier.moysan@foss.st.com>,
+        "Paul
+ Cercueil" <paul@crapouillou.net>,
+        Alexandru Ardelean <ardeleanalex@gmail.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1712329201; l=4644;
+ i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
+ bh=9zYHg1Yh55ibCjfnImR8SDnU9VMfC9QIwwDyxbIAeug=;
+ b=bZyZSkExRpMcIt1nSzulZpAjRPU4waXjnWczAa/lMJfsbzlQhafW1aZzsm8T5iEu1HcdzU0Yx
+ r70+cZXmThSAxnBE/GJYtibK2ZNyGbx8uo35kkvUpuQCGQ5rcKs6pyP
+X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
+ pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: vtXmL4Q1VmCPSI0P59Yn1zJk2TKhc5rw
+X-Proofpoint-GUID: vtXmL4Q1VmCPSI0P59Yn1zJk2TKhc5rw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-05_16,2024-04-05_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ impostorscore=0 malwarescore=0 mlxscore=0 lowpriorityscore=0 adultscore=0
+ bulkscore=0 priorityscore=1501 suspectscore=0 clxscore=1011 phishscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404050106
 
-On Fri, Apr 05, 2024 at 08:36:48AM +0200, Francesco Dolcini wrote:
-> Hello Frank,
-> 
-> On Thu, Apr 04, 2024 at 12:19:13PM -0400, Frank Li wrote:
-> > imx8qxp-mek use two kind audio codec, wm8960 and wm8962. Using dummy gpio
-> > i2c bus mux to connect both i2c devices. One will probe failure and other
-> > will probe success when devices driver check whoami. So one dtb can cover
-> > both board configuration.
-> > 
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > ---
-> >  arch/arm64/boot/dts/freescale/imx8qxp-mek.dts | 210 ++++++++++++++++++
-> >  1 file changed, 210 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-> > index 8360bb851ac03..adff87c7cf305 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-> > +++ b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-> > @@ -44,6 +51,105 @@ usb3_data_ss: endpoint {
-> 
-> [...]
-> 
-> > +	/*
-> > +	 * This dummy i2c mux. GPIO actually will not impact selection. At actual boards, only 1
-> > +	 * device connectted. I2C client driver will check ID when probe. Only matched ID's driver
-> > +	 * probe successfully.
-> > +	 */
-> > +	i2cvmux: i2cmux {
-> > +		compatible = "i2c-mux-gpio";
-> > +		#address-cells = <1>;
-> > +		#size-cells = <0>;
-> > +		mux-gpios = <&lsio_gpio5 0 GPIO_ACTIVE_HIGH>; /* use an unused gpio */
-> 
-> There is for sure people that have more experience and competency that
-> me and it would be interesting to hear their feedback, but this
-> looks like a bad hack, and you are just playing with the driver
-> behavior to ensure that you get what you need.
+Hi Jonathan,
 
-We want to use one dtb to handle differecne bench boards because some chips
-are out of life-cycle. I don't think it is 'hack' although not
-straightforward.
+Here it goes version 2 of the output backend series. The main points in
+here:
+ - The refactoring the DMA BUF api for setup. I pretty much like how it
+   turned out. Note that Paul's patch ("iio: buffer-dmaengine: Support
+   specifying buffer direction") had to be updated accordingly.
+ - Introduction of the struct iio_info callback for getting the backend.
+   I'm not sure about this one as we have no user for it and we may not
+   have one for sometime. I like how the "default" implementation for
+   getting the backend turned out and it should cover 99% of the cases. It
+   will only fail if the iio parent device is not the same device where we
+   bound the backend.
+ - As mentioned above, we now get the backend from the iio device
+   matching the IIO parent device with the device used when getting the
+   backend. This should cover almost all the cases I think. Should be very
+   unlikely to use a different device in devm_iio_backend_get() and
+   devm_iio_device_alloc().
 
-check woiam is quite common at i2c drivers. All used method is quite
-common, I just change it from difference point.
+For the bindings, I still did not addressed Rob's point about dma-names.
+I did reply [1] but still no feedback.
 
-> 
-> Francesco
-> 
-> 
+Anyways, full log:
+
+v1:
+ * https://lore.kernel.org/all/20240328-iio-backend-axi-dac-v1-0-afc808b3fde3@analog.com/
+
+v2:
+ * Patch 1:
+  - New patch.
+
+ * Patch 4:
+  - Make things consistent with the triggered buffer case.
+
+ * Patch 6:
+  - Fixed description as it's an output device;
+  - Avoid duplicating the "bindings" word in the commit title.
+ 
+ * Patch 7:
+  - Renamed vdd_3_3-supply -> vdd-3p3-supply;
+  - Added IRQ and vref properties;
+  - Avoid duplicating the "bindings" word in the commit title.
+
+ * Patch 8:
+  - New patch.
+
+ * Patch 9:
+  - Fixed some typos in kerneldocs;
+  - Add iio_backend_from_indio_dev_parent(). Default way of getting backends
+    from IIO devices;
+  - Explicitly differentiate frontends and backends ext_info in
+    iio_backend_extend_chan_spec().
+  - Spell out CW as CONTINUOUS_WAVE;
+  - Add _hz suffix in set_sample_rate().
+
+ * Patch 10:
+  - Rephrase comment in axi_dac_set_sample_rate() when DDS is disabled;
+  - Use the new iio_dmaengine_buffer_setup_ext() API;
+  - Passed tone as 0,1 value being 1 second tone.
+
+ * Patch 11:
+  - Fixed mixed spaces with tabs in ABI file and dac -> DAC;
+  - Add COMPILE_TEST to kconfig;
+  - Dropped operating mode enum. Use defines;
+  - Add comments for IIO enum operating mode and the value we need to
+    set on the device;
+  - Add spaces around {} in the reg_sequence;
+  - Always use Mu instead of mixture of Mu and MU;
+  - Don't error out if we do not recognize the part id;
+  - Make sure to deal with other errors than TIMEOUT in ad9739a_init().
+
+[1]: https://lore.kernel.org/linux-iio/04e2a0569953792673319f7fcab3fe03e6670c03.camel@gmail.com/
+
+---
+Nuno Sa (7):
+      iio: buffer-dma: add iio_dmaengine_buffer_setup()
+      dt-bindings: iio: dac: add docs for AXI DAC IP
+      dt-bindings: iio: dac: add docs for AD9739A
+      iio: core: add get_iio_backend() callback
+      iio: backend: add new functionality
+      iio: dac: add support for AXI DAC IP core
+      iio: dac: support the ad9739a RF DAC
+
+Paul Cercueil (4):
+      iio: buffer-dma: Rename iio_dma_buffer_data_available()
+      iio: buffer-dma: Enable buffer write support
+      iio: buffer-dmaengine: Support specifying buffer direction
+      iio: buffer-dmaengine: Enable write support
+
+ Documentation/ABI/testing/sysfs-bus-iio-ad9739a    |  19 +
+ .../devicetree/bindings/iio/dac/adi,ad9739a.yaml   |  94 +++
+ .../devicetree/bindings/iio/dac/adi,axi-dac.yaml   |  62 ++
+ MAINTAINERS                                        |  17 +
+ drivers/iio/adc/adi-axi-adc.c                      |  16 +-
+ drivers/iio/buffer/industrialio-buffer-dma.c       | 100 +++-
+ drivers/iio/buffer/industrialio-buffer-dmaengine.c |  83 +--
+ drivers/iio/dac/Kconfig                            |  37 ++
+ drivers/iio/dac/Makefile                           |   2 +
+ drivers/iio/dac/ad9739a.c                          | 454 +++++++++++++++
+ drivers/iio/dac/adi-axi-dac.c                      | 635 +++++++++++++++++++++
+ drivers/iio/industrialio-backend.c                 | 179 ++++++
+ include/linux/iio/backend.h                        |  49 ++
+ include/linux/iio/buffer-dma.h                     |   4 +-
+ include/linux/iio/buffer-dmaengine.h               |  24 +-
+ include/linux/iio/iio.h                            |   2 +
+ 16 files changed, 1698 insertions(+), 79 deletions(-)
+---
+base-commit: 6020ca4de8e5404b20f15a6d9873cd6eb5f6d8d6
+change-id: 20240405-iio-backend-axi-dac-be99373b036b
+--
+
+Thanks!
+- Nuno Sá
+
 
