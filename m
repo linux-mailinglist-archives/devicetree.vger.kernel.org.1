@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-56468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F7AD899624
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 09:03:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A44F2899626
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 09:04:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B822B1F23379
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 07:03:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63017283844
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 07:04:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DC0F286BF;
-	Fri,  5 Apr 2024 07:03:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3CF1286A6;
+	Fri,  5 Apr 2024 07:04:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vs0igS57"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZLXbZ9UV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B57325765
-	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 07:03:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01B662C1A2
+	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 07:04:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712300635; cv=none; b=qqpp0HDJyX91VnUPG1mmO5ThlZnWNoCh0NE9IEH7oIkluu+Yh8BxU3kErouy+SNlGp8EC6u28yiHOxzip3YQjteKW2ftzw11kThZWlV05m0dlstYnT2aLv+nI4KQaOsE5eQ2phz5hdmbr5wB2ZWa9ZuuNAcnVUwvAO0z123zP7w=
+	t=1712300651; cv=none; b=T9ES/kQMp56UZJ6Trd21Uos+J5xxKipQz6E0SekWYXy3XTRioGYWoOXcgI/z78KZgnCTZbGpQVcnv5Id+vK1ExKPBJH0UrEWJbXQAPe78baxv6eRzu4lsGpUs/cZ4WWmvLy8PtJryE3T3aAzGabzBJv1aPpnESbtslLrvu7Q0kg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712300635; c=relaxed/simple;
-	bh=iwey1lQRQXFlgsb+OZB7hJAqpJiroNXj3GyjfUrkqz8=;
+	s=arc-20240116; t=1712300651; c=relaxed/simple;
+	bh=UoQ8/8d6dgRcP/ATCdNH9N7OeskJuzmiPB1os/DAA18=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RFRXwqSxRzBAsJ4Q83ddcnV7cAoM66IFWCAr7HFqzNKMrl2KHeFLK0E8AoluHpdYkGpNdJieixCwN+sIuIYWNr7IdZEc6GauriUb+KbDZruzJjgosrhzE/IOwfxjCuGeo6sZP1Ya5rPKhKU99kY7vyNgOO51j86n5AfoVmauoyA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vs0igS57; arc=none smtp.client-ip=209.85.208.41
+	 In-Reply-To:Content-Type; b=LTnOD+EOtc5xuuS10aIyprgzW6yB7dCueD327ECHnH7qPNkPC9nRDRnEbKERihiX2cCMJCl7X0cAZJi1694X0j0Iw/ddZS1mcZsoRLhFLF2IQWyrzDv3nCmtf12oFEyc8aPjXnr70srPotozmHgaG/yjpmgG1wz4f9VBE0jRrN0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZLXbZ9UV; arc=none smtp.client-ip=209.85.218.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-56e0acaf69aso2194122a12.1
-        for <devicetree@vger.kernel.org>; Fri, 05 Apr 2024 00:03:53 -0700 (PDT)
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a4a393b699fso304752166b.0
+        for <devicetree@vger.kernel.org>; Fri, 05 Apr 2024 00:04:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712300632; x=1712905432; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712300648; x=1712905448; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=oCYdD0nzUyzU3S8Cbt1H8N7sCuBBdWzT5zTjXFriRfw=;
-        b=vs0igS57J6LCAW08FUR8+OehFq8MYlccOMo/oWiX8IA6SE8KIMNIe2wgFduCxDA8/o
-         B0pjV5bf4cRsDA6FCFzsrIsx1P8Lm1lVmjVv2b2wj9wS9A7ZGGvjsJT9SqqqgYPpkZhk
-         6+6BYbWj5jnD+pjh4VrJOfTiTgOcaL0csl/ekOTRl5P05JjEEOOK6q3aD9o2qEO8WwqC
-         iEs1ddEHcZT1B+dheCTE9yny5dTi4L7rBSCE0+7D9kvv5LBEdcJk/dxFPjlc6gh20r9L
-         adKZRZKzsPy/k7CQPe/7hTroe8jMUboBrNDjbK0q3wKda2YDj3tj4j7Le2fIYaDieBku
-         NewQ==
+        bh=rmVxezqa7tLOQaEgYWSVmiItn/kMEqme4DrqZOFQgUU=;
+        b=ZLXbZ9UVKjDDH2hFS8di0Uj+J43vZgZ3Kf9KmFpPwSNon5dd9YZ4TmO6eaVm14mWNx
+         gRZOrLA2TrhtsNi1TtQgfw7ZR8Y1XMRI3wMis5Eo+E1qb02hDFkmp5rqKal9pd0/R03I
+         Cu5YVpaaskhQMpzm54Fbw5WogwsjZcOy4tWPYNASSC3UPPAdbTO38PIqLAQ0nn36/8j8
+         FCuGAJgRK653OKRMaRemImpKckOvgQ/HZLPXJHj3gBw0aZBa5WMqQZ8EtqddkqYq7pF0
+         E7WqqQUJNGDliwKZI0cSnpMDPVQAC50hhItUK/trYsqdkZRvfhNAo0xDfRAe+9nhkt8T
+         /e4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712300632; x=1712905432;
+        d=1e100.net; s=20230601; t=1712300648; x=1712905448;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=oCYdD0nzUyzU3S8Cbt1H8N7sCuBBdWzT5zTjXFriRfw=;
-        b=TfxXGuXpL5r1/s3j3L8iRBJM4OXUjtgSy7mNvSnA5suZ0zDaBAjnhVobztZiaRqKvu
-         QmHqYabgtFjgUPgWYZEg/nQYuAKHAvhgKBqRCWr5WWeBN90xm1Pb0zF7auVwotT87Leh
-         KHqbHTVn8TM6lGq6v/rYkRlP1kQYjvsOyszKvC8YJvEEBnRy9gFOY8ZHziXfp9hGd87E
-         3Jtfo2tTv+ssGWTrQktXtegu5ukS1WL8kqDoUSEgTW/+OrkMFQkGSZB/bMDD8Hhzau7N
-         sW6e9c97ihjIC5XvUzFl5g6RcO2Na74cTHQPXgJR31LcgmyL4q2qM52JczgH4cXxRGHj
-         mDtQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUo9IVglJG42uQvlfKXCBvDw2nb0SrOnHaS5X+LT4lU47aYa9xMXUAw1H+pWHq8660aUI9jZTHv7qa6rQrToKRzjcp5UIPkjzv2LQ==
-X-Gm-Message-State: AOJu0YwGmBqRK1xKrod4YeTgt/f6Nr1VnpUjtBa6LBzYeNIZ3VQ0C3Zw
-	nrxU4X7Ae/9BEtCFhv2yIUGgctfCw5iT5LMfO9982NQHxOjcx/wY7WL5bC6iPoU=
-X-Google-Smtp-Source: AGHT+IGxeGL6XjKqM0fpJK4YsJNXNd0u3JjOlZY1KDhjbuNKtPeUoCq6nLipiW5zzrZ3/8UQSP7tSA==
-X-Received: by 2002:a50:d588:0:b0:56e:2493:e3c2 with SMTP id v8-20020a50d588000000b0056e2493e3c2mr364108edi.37.1712300631852;
-        Fri, 05 Apr 2024 00:03:51 -0700 (PDT)
+        bh=rmVxezqa7tLOQaEgYWSVmiItn/kMEqme4DrqZOFQgUU=;
+        b=bCaKzu7Op0m/MZyrJg/UsryVt0n+lQD+Kp/8FKE3kxOjSIrVQBn/uQXEp3q9nzozJb
+         W6RN/fGobfLGfAwJuqElSSirHePfo5co9qr+QoqE7s424wz89PZ0gXOBALQeYtpJl7vt
+         F4M7IPSHgivh0G8sip79RSNiN8MQ1y2KgWmsRs0JvqFRU5tV5+8dLZ888lHqFXvhX00f
+         jJWwbCtHKAcTH4dt7vyFujdTLvHISqpFmB1byfR7VExqrEbss9EghTOex+SSx4wZfBnG
+         z4FOeYXjin4mRSpfI2GbGcrQ+XVKFTQx16kYwQ/KXPGjUDCuLAOmI+28NF9XCqejbhJB
+         CscA==
+X-Forwarded-Encrypted: i=1; AJvYcCU/J9WrZ4zQr/jBJL8vXDv+LxR2MzIag7uqIIw947KRrnq4zXbfmRgT1/NKmuRktnQdhOBqBLhhk9xDwVjU6itioL8GquEEBYjI0w==
+X-Gm-Message-State: AOJu0Yy2UnzBW/5PvRfw5BH1xODbm2T0zTpsPOh14osgfWPuCBDzjzKX
+	5nVsgdjFxeaX1SwLtf/oRC6YOulSq/yAy8pVx8XAFxX/15Iphb3Urmn0cHSSnoSJBNTPeFOxilq
+	H
+X-Google-Smtp-Source: AGHT+IEsDfLmznUUiUCPGxNhA55hhyfwqVRod+NRe8/PBYlLHvISOCSaoKDqIGK9v8MkBMIwWgZiTQ==
+X-Received: by 2002:a17:906:2556:b0:a47:1f61:4d02 with SMTP id j22-20020a170906255600b00a471f614d02mr1355648ejb.36.1712300648466;
+        Fri, 05 Apr 2024 00:04:08 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id q3-20020a056402248300b0056bfca6f1c0sm484633eda.15.2024.04.05.00.03.50
+        by smtp.gmail.com with ESMTPSA id og42-20020a1709071dea00b00a4e657a5f1asm496216ejc.112.2024.04.05.00.04.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Apr 2024 00:03:51 -0700 (PDT)
-Message-ID: <e4b18e23-7103-41a2-be32-18ab6cabd1ff@linaro.org>
-Date: Fri, 5 Apr 2024 09:03:49 +0200
+        Fri, 05 Apr 2024 00:04:07 -0700 (PDT)
+Message-ID: <a0cc74f4-2ab1-4763-841e-5552413e92a9@linaro.org>
+Date: Fri, 5 Apr 2024 09:04:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,8 +78,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: arm64: marvell: add solidrun cn9130
- som based boards
+Subject: Re: [PATCH v2 2/3] dt-bindings: arm64: marvell: add solidrun cn9132
+ CEX-7 evaluation board
 To: Josua Mayer <josua@solid-run.com>, Andrew Lunn <andrew@lunn.ch>,
  Gregory Clement <gregory.clement@bootlin.com>,
  Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
@@ -89,7 +90,7 @@ Cc: Yazan Shhady <yazan.shhady@solid-run.com>,
  linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 References: <20240404-cn9130-som-v2-0-3af2229c7d2d@solid-run.com>
- <20240404-cn9130-som-v2-1-3af2229c7d2d@solid-run.com>
+ <20240404-cn9130-som-v2-2-3af2229c7d2d@solid-run.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -136,48 +137,21 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240404-cn9130-som-v2-1-3af2229c7d2d@solid-run.com>
+In-Reply-To: <20240404-cn9130-som-v2-2-3af2229c7d2d@solid-run.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 04/04/2024 17:35, Josua Mayer wrote:
-> Add bindings for SolidRun boards based on CN9130 SoM.
+> Add bindings for the SolidRun CN9132 COM-Express Type 7 evaluation board.
+> The CEX is based on CN9130 SoC and includes two southbridges.
 > 
-> Three boards are added in total:
-> - Clearfog Base
-> - Clearfog Pro
-> - SolidWAN
-> The Clearfog boards are identical to the older Armada 388 based boards,
-> upgraded with a new SoM and SoC.
-> However the feature set and performance characteristics are different,
-> therefore compatible strings from armada 388 versions are not included.
-> 
-> SolidWAN uses the same SoM adding a southbridge on the carrier.
-> 
-> Since 2019 there are bindings in-tree for two boards based on cn9130 and
-> 9131. These are extremely verbose by listing cn9132, cn9131, cn9130,
-> ap807-quad, ap807 for the SoC alone.
-> CN9130 SoC combines an application processor (ap807) and a
-> communication processor (cp115) in a single package.
-> 
-> The communication processor (short CP) is also available separately as a
-> southbridge. It only functions in combination with the CN9130 SoC.
-> Complete systems adding one or two southbridges are by convention called
-> CN9131 and CN9132 respectively.
-> Despite different naming all systems are built around the same SoC.
-> Therefore marvell,cn9131 and marvell,cn9132 can be omitted. The number
-> of CPs is part of a board's BoM and can be reflected in the board
-> compatible string instead.
-> 
-> Existing bindings also describe cn9130 as a specialisation of
-> ap807-quad. Usually board-level compatibles stop at the SoC without
-> going into silicon versions or individual dies.
-> There is no programming model at this layer, and in particular not for
-> parts of an SoC. Therefore the ap compatibles can also be omitted.
+> Because CN9132 and 9131 are just names for different designs around the
+> same SoC, there no soc compatibles beside marvell,cn9130 are needed.
 > 
 > Signed-off-by: Josua Mayer <josua@solid-run.com>
+> ---
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
