@@ -1,234 +1,134 @@
-Return-Path: <devicetree+bounces-56712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AA6989A42C
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 20:30:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9909089A46D
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 20:57:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C75E61F23A03
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 18:30:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D71D283D4F
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 18:57:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44E2017278B;
-	Fri,  5 Apr 2024 18:30:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 259F017279B;
+	Fri,  5 Apr 2024 18:57:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NDAwfHhB"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="AVyLVVCb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail2.andi.de1.cc (vmd64148.contaboserver.net [161.97.139.27])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18782172774;
-	Fri,  5 Apr 2024 18:30:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7B98172797;
+	Fri,  5 Apr 2024 18:57:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=161.97.139.27
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712341817; cv=none; b=nm7yTzV2jD5AfvAU2g8XIXebl7yFN98bupSeGuw33TJC0WJO0zxYb78dyBBhP21Nmj7a8qOLb0NhYbzvNBr/vhd9pGFz9Xcaer226w6B0eEKQNK8TgSFKIeN/kMm28p1kE1LrFjNxe0j9ReGTOvzM4mhi/XTtr/EQ4DaNa8dV1g=
+	t=1712343428; cv=none; b=gzErBedUxiLO8avz5QgiZslNvqTUIFAQb0HbwJfrTuCmgRcMa0qA09/ObAI0Hpc1BbXYVJdDRN6jg85Uhl0Diu15VZUHWEwsHD31CleeZQTrWIc9s5XYeO4BiktnREjk9lYrwiNYz7ofYzbHQnCdnWaZY3Iz2FBuQTAZCC3gboE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712341817; c=relaxed/simple;
-	bh=xYv+yllgKOiYRv+Zx3YHHjGs4q6Fq8ZmslsdPglZjmg=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=XOVZHIg39Or1tPGS5KawmibEFliTM8vDt5o8T55DcwctkJJl02uHIbaWeAyvjZTjlc3ymVlM0xC7G7iut5eCIQmwZBPtzq/SI8F2++kuFr11myYYhmKm/8PsfEHhsBHVIPsz8VOUQblkRqsXEYFrCcA0jrc7ksWnnBuESaEVujo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NDAwfHhB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 604A5C433F1;
-	Fri,  5 Apr 2024 18:30:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712341816;
-	bh=xYv+yllgKOiYRv+Zx3YHHjGs4q6Fq8ZmslsdPglZjmg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=NDAwfHhBYsdNKv0flGcmjCQQAMb+1Ld3s4sAMkviYc10v9xLsCA/pvvw/N+4XplIJ
-	 NkW4MbuxkAP7ltt8zrDw6ABdW9ZnomYJEIIlqNe43NNqgiwIKBjSZrFEHDvNRWZ8Wm
-	 3RJNJeJz/ZZ+jzFRC+WAUac7/t0mx2jvXcrUmDXlE7KZ42ACG532qGU6++iIlMfFeD
-	 Pg4OP3i996vOyn2Ml4dwm5xWGhj3lUPqeen5uKWp3dCO2+eSiQ/eUq9zWkpI2tzESr
-	 6NYxE6tCjPIG5nUS8vjsLu1AJnYv096N8URg/lUoNB75GSSa73c0ws8eXeSOLT+te/
-	 koR/dhnRf/w9g==
-Date: Fri, 5 Apr 2024 13:30:14 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Mayank Rana <quic_mrana@quicinc.com>
-Cc: linux-pci@vger.kernel.org, lpieralisi@kernel.org, kw@linux.com,
-	robh@kernel.org, bhelgaas@google.com, andersson@kernel.org,
-	manivannan.sadhasivam@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, quic_ramkri@quicinc.com,
-	quic_nkela@quicinc.com, quic_shazhuss@quicinc.com,
-	quic_msarkar@quicinc.com, quic_nitegupt@quicinc.com
-Subject: Re: [RFC PATCH 2/2] PCI: Add Qualcomm PCIe ECAM root complex driver
-Message-ID: <20240405183014.GA1964459@bhelgaas>
+	s=arc-20240116; t=1712343428; c=relaxed/simple;
+	bh=vnYEQ17KysvX7LO1gsXCZ7bQP+q4ViwuQl1/8sCVlOk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=RaEVbS1dAGy0qGY2EDIT4rnFOWLUpyAOvSvQZ2IV/2UxtYLlykC7WpzzoZofKOJRzxdm0ANu51Zk6+hR7mir81pc0fjm2zBwSugn9KNssiR6aaLWMlDTU0PPpOt2NGT+1CF0T3ON8RuDDztuGLyltcRGgqeR481B2LPvCxrNpdk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=AVyLVVCb; arc=none smtp.client-ip=161.97.139.27
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
+	by mail2.andi.de1.cc with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <andreas@kemnade.info>)
+	id 1rsokE-003tJv-0p;
+	Fri, 05 Apr 2024 20:56:58 +0200
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:Content-Type:
+	MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=ogE4OYrDq5iNX0qpphDnVQy5Okj2XC66c4JZZyH1L24=; b=AVyLVVCbDK7rv9n92vw1sNlfhL
+	HP85XOMdLA6kVEjQKAz4eq66qdjYEJRVaexEHVTjt9k/JSzRmwxLa2vK1tvYdXiGSfeyNCMlfJBmn
+	DzOIyIkJ8Q0RhBdujYKspXHhznntU3crbTg84qfAYw2kMRgPWBppeOgJkXkO4GgYcM+y65fxYgMsa
+	UUEzR3U1IAcf3ca8DG/Vr01tkvz5c2NJvJoMm1SANA6jaIDcl4CdoupHje36LBYSBbzzneTl0osCi
+	x5H2WN3OVt0a4mhqzvlulKQcYd+Tft8AFOwTjwtvjk3SfKpHx7NSLhQbgQr/3HYCqTp2zrJJFnf00
+	OOKU3vAg==;
+Received: from p2003010777026a001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:107:7702:6a00:1a3d:a2ff:febf:d33a] helo=aktux)
+	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <andreas@kemnade.info>)
+	id 1rsokB-000Pe2-1H;
+	Fri, 05 Apr 2024 20:56:55 +0200
+Date: Fri, 5 Apr 2024 20:56:53 +0200
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: dmitry.torokhov@gmail.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ o.rempel@pengutronix.de, u.kleine-koenig@pengutronix.de,
+ hdegoede@redhat.com, ye.xingchen@zte.com.cn, p.puschmann@pironex.com,
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, caleb.connolly@linaro.org
+Subject: Re: [PATCH v2 2/2] Input: edt-ft5x06 - add ft5426
+Message-ID: <20240405205653.32bdcb75@aktux>
+In-Reply-To: <CAHp75VckoDheCN-KQ0KcSk9rE_-cXFUujurtA4sK6KAixDttQQ@mail.gmail.com>
+References: <20240404222009.670685-1-andreas@kemnade.info>
+	<20240404222009.670685-3-andreas@kemnade.info>
+	<CAHp75VeZ9U_+1rJQjr4KvvzjYQGzfKtk+BK00vqvKcVn2-yP3g@mail.gmail.com>
+	<20240405182832.4e457695@aktux>
+	<CAHp75VckoDheCN-KQ0KcSk9rE_-cXFUujurtA4sK6KAixDttQQ@mail.gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1712257884-23841-3-git-send-email-quic_mrana@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Apr 04, 2024 at 12:11:24PM -0700, Mayank Rana wrote:
-> On some of Qualcomm platform, firmware configures PCIe controller into
-> ECAM mode allowing static memory allocation for configuration space of
-> supported bus range. Firmware also takes care of bringing up PCIe PHY
-> and performing required operation to bring PCIe link into D0. Firmware
+On Fri, 5 Apr 2024 20:21:19 +0300
+Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
 
-I think link state would be L0, not D0.
+> On Fri, Apr 5, 2024 at 7:28=E2=80=AFPM Andreas Kemnade <andreas@kemnade.i=
+nfo> wrote:
+> > On Fri, 5 Apr 2024 18:13:45 +0300
+> > Andy Shevchenko <andy.shevchenko@gmail.com> wrote: =20
+> > > On Fri, Apr 5, 2024 at 1:20=E2=80=AFAM Andreas Kemnade <andreas@kemna=
+de.info> wrote: =20
+>=20
+> ...
+>=20
+> > > > @@ -1484,6 +1484,7 @@ static const struct of_device_id edt_ft5x06_o=
+f_match[] =3D {
+> > > >         { .compatible =3D "edt,edt-ft5206", .data =3D &edt_ft5x06_d=
+ata },
+> > > >         { .compatible =3D "edt,edt-ft5306", .data =3D &edt_ft5x06_d=
+ata },
+> > > >         { .compatible =3D "edt,edt-ft5406", .data =3D &edt_ft5x06_d=
+ata },
+> > > > +       { .compatible =3D "focaltech,ft5426", .data =3D &edt_ft5506=
+_data }, =20
+> > >
+> > > Why a different vendor prefix?
+> > > In case you need to use this one, keep the list sorted, currently this
+> > > splits the edt,* ones.
+> > > =20
+> > How do I know whether to use evervision or edt instead? =20
+>=20
+> Ask DT people, the vendor-prefixes lists both...
+>=20
+> > I sorted by the numbers. Looking at datasheets for other controllers I =
+see
+> > https://www.displayfuture.com/Display/datasheet/controller/FT5x06.pdf
+> > it only mentions FocalTech Systems Co., Ltd. =20
+>=20
+> But does the driver use that? AFAICS it uses edt. Perhaps it's due to
+> a business split, not to my knowledge anyway.
+>=20
+well, the fact is that there were several tried to add duplicates to this
+driver to the kernel using focaltech prefixes e.g.
+https://lore.kernel.org/linux-input/47209259-9e57-f263-bf48-10f233c63b69@re=
+dhat.com/
 
-> also manages system resources (e.g. clocks/regulators/resets/ bus voting).
-> Hence add Qualcomm PCIe ECAM root complex driver which enumerates PCIe
-> root complex and connected PCIe devices. Firmware won't be enumerating
-> or powering up PCIe root complex until this driver invokes power domain
-> based notification to bring PCIe link into D0/D3cold mode.
+My guess it is somehow about owner of the firmware in the chip vs the chip =
+itself.
 
-Again.
-
-> +config PCIE_QCOM_ECAM
-> +	tristate "QCOM PCIe ECAM host controller"
-> +	depends on ARCH_QCOM && PCI
-> +	depends on OF
-> +	select PCI_MSI
-> +	select PCI_HOST_COMMON
-> +	select IRQ_DOMAIN
-> +	help
-> +	 Say 'Y' here if you want to use ECAM shift mode compatible Qualcomm
-> +	 PCIe root host controller. The controller is programmed using firmware
-> +	 to support ECAM compatible memory address space.
-
-Instead of adding this at the end, place this entry so the entire list
-remains sorted by vendor name.
-
-Other related entries are "Qualcomm PCIe controller ..." (not "QCOM").
-
-Use "ECAM PCIe controller (host mode)" (not "PCIe ECAM host
-controller") so it matches similar entries.
-
-> +#define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
-
-Does this actually work?  I expected "#define dev_fmt" since you're
-using dev_err(), etc below.
-
-> +#include <linux/irqchip/chained_irq.h>
-
-Can this be reworked so it doesn't use chained IRQs?  I admit to not
-being an IRQ expert, but I have the impression that it's better to
-avoid the chained IRQ model when possible.  See
-https://lore.kernel.org/all/20231108153133.GA393726@bhelgaas/
-
-> +#define	MSI_DB_ADDR	0xa0000000
-
-Where does this come from and why is it hard-coded here?  Looks like a
-magic address that maybe should come from DT?
-
-> + * struct qcom_msi_irq - MSI IRQ information
-> + * @client:	pointer to MSI client struct
-> + * @grp:	group the irq belongs to
-
-s/irq/IRQ/ in comments for consistency (other occurrences below).
-Same for s/pcie/PCIe/ and s/msi/MSI/.
-
-> +static void qcom_msi_mask_irq(struct irq_data *data)
-> +{
-> +	struct irq_data *parent_data;
-> +	struct qcom_msi_irq *msi_irq;
-> +	struct qcom_msi_grp *msi_grp;
-> +	struct qcom_msi *msi;
-> +	unsigned long flags;
-> +
-> +	parent_data = data->parent_data;
-> +	if (!parent_data)
-> +		return;
-
-Drop this test; I think it only detects logic errors in the driver or
-memory corruptions, and we want to find out about those.
-
-> +static void qcom_msi_unmask_irq(struct irq_data *data)
-> +{
-> +	struct irq_data *parent_data;
-> +	struct qcom_msi_irq *msi_irq;
-> +	struct qcom_msi_grp *msi_grp;
-> +	struct qcom_msi *msi;
-> +	unsigned long flags;
-> +
-> +	parent_data = data->parent_data;
-> +	if (!parent_data)
-> +		return;
-
-Drop.
-
-> +static struct irq_chip qcom_msi_irq_chip = {
-> +	.name		= "qcom_pci_msi",
-> +	.irq_enable	= qcom_msi_unmask_irq,
-> +	.irq_disable	= qcom_msi_mask_irq,
-> +	.irq_mask	= qcom_msi_mask_irq,
-> +	.irq_unmask	= qcom_msi_unmask_irq,
-
-Name these so they match the struct member, e.g., the name should
-contain "irq_mask", not "mask_irq") so grep finds them easily.
-
-> +static struct msi_domain_ops qcom_msi_domain_ops = {
-> +	.msi_prepare	= qcom_msi_domain_prepare,
-
-Rename so function name includes the struct member name.
-
-> +static int qcom_msi_irq_set_affinity(struct irq_data *data,
-> +				const struct cpumask *mask, bool force)
-> +{
-> +	struct irq_data *parent_data = irq_get_irq_data(irqd_to_hwirq(data));
-> +	int ret = 0;
-> +
-> +	if (!parent_data)
-> +		return -ENODEV;
-> +
-> +	/* set affinity for MSI HW IRQ */
-
-Unnecessary comment.
-
-> +	if (parent_data->chip->irq_set_affinity)
-> +		ret = parent_data->chip->irq_set_affinity(parent_data, mask, force);
-> +
-> +	return ret;
-
-Drop "ret" and return directly, e.g.,
-
-  if (parent_data->chip->irq_set_affinity)
-    return parent_data->chip->irq_set_affinity(...);
-
-  return 0;
-
-> +static void qcom_msi_irq_compose_msi_msg(struct irq_data *data, struct msi_msg *msg)
-> +{
-> +	struct irq_data *parent_data = irq_get_irq_data(irqd_to_hwirq(data));
-> +	struct qcom_msi_irq *msi_irq = irq_data_get_irq_chip_data(data);
-> +	struct qcom_msi_client *client = msi_irq->client;
-> +
-> +	if (!parent_data)
-> +		return;
-
-Drop.
-
-> +static void qcom_msi_irq_domain_free(struct irq_domain *domain, unsigned int virq,
-> +				unsigned int nr_irqs)
-> +{
-> +	struct irq_data *data = irq_domain_get_irq_data(domain, virq);
-> +	struct qcom_msi_client *client;
-> +	struct qcom_msi_irq *msi_irq;
-> +	struct qcom_msi *msi;
-> +
-> +	if (!data)
-> +		return;
-
-Drop.
-
-> +static int qcom_msi_irq_setup(struct qcom_msi *msi)
-> +{
-> +	struct qcom_msi_grp *msi_grp;
-> +	struct qcom_msi_irq *msi_irq;
-> +	int i, index, ret;
-> +	unsigned int irq;
-> +
-> +	/* setup each MSI group. nr_hwirqs == nr_grps */
-> +	for (i = 0; i < msi->nr_hwirqs; i++) {
-> +		irq = irq_of_parse_and_map(msi->dev->of_node, i);
-> +		if (!irq) {
-> +			dev_err(msi->dev,
-> +				"MSI: failed to parse/map interrupt\n");
-
-Possibly include "i" to identify the offending entry.
+Regards,
+Andreas
 
