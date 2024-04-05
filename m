@@ -1,62 +1,65 @@
-Return-Path: <devicetree+bounces-56699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56700-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4AC889A2E0
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 18:48:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B757889A2E8
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 18:52:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7029A28886C
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 16:48:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E8351F21BF6
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 16:52:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8912617166E;
-	Fri,  5 Apr 2024 16:48:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49346171096;
+	Fri,  5 Apr 2024 16:52:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="defkolX2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QaRNhIgM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3E8E17166A;
-	Fri,  5 Apr 2024 16:48:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 219EE79E3;
+	Fri,  5 Apr 2024 16:52:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712335712; cv=none; b=TjGM85PEIBxdvNHy4neZ9rH/fiNEaCKXXAhGd70lzdigvOJdECrtbmPeaCFIggOt7WcLkvxIxta0tjGAhvWmZluvjH4i0eLI9zOF4i4zRgKUP4ZhgX6Cqz7vlDQFKgOYKED7mQzjXPB78M2EdhLrEUJBu53mLJI49akMaEsS0Z4=
+	t=1712335970; cv=none; b=CGAxFyNtujWVVhH+gICjMixTILZU0K7OGDIaq6d76TGjRiv0IV3TgOmIGzPQZzYZnozQyq9ebE1frAnFXvuKnmraXV8UvtWkPFHE3EY1sBtC95Lo46uR8XXfsI0IgeW5SeUQ8+eGrruf7LgNlPRsKKGQElecrdOdAD4r1jYtmSI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712335712; c=relaxed/simple;
-	bh=Xv13cyEjvsg2QGk7Fwb3W82vEV7OTPf7ypIZZmWM9YA=;
+	s=arc-20240116; t=1712335970; c=relaxed/simple;
+	bh=mt/7m6gE+/mQeYNIuTIpesLMoVgYypS7PcDtGHkbqws=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BpJxw0p3WakIrr1LYcuSw7pASx3gBzN5szQmC8EOnfmnkhLObHBFAbEzgnZhbu62Y3fTDs/bsrtr3isxz4wySKywdUatnkIlie+ylzUjlgJ6WGiD6DkPJnhyzTY8tPG08H4jm0OQZTmHc8u+4atu/Ndph9bJcyY29YXRB+1lLkk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=defkolX2; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id B1C881F8F7;
-	Fri,  5 Apr 2024 18:48:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1712335709;
-	bh=il2qU58UHLxy6P7NB6cyRdQntf0V6syrYQfTTjcncvM=; h=From:To:Subject;
-	b=defkolX2cYoGUSNbL402FLL8MAq6f0gyqjQoL8xtSWq12xb+U33fq+ye+MqZBrc8w
-	 jyVjxSGwtUA3oZAVhKe5k8iO+G6c+iQlAFC4iIcjV16PHiXNYJ0L6iZRzedewHMhZd
-	 OKW8TnethTpEqNDOYqNgUCx34SA8xHkGZXOjerypmFoGCUYkX7xxyEQ0ITuxlMLnhQ
-	 CHvim4ftTfE+3V1rKHXOkneQyRgyeywQqh3IlRrSTXkznKxEZPTLcXEUrDwndD9Rp0
-	 VFEGuajX4H8xuUqPVisP+Msh2WfBcN5zYX9C/hf1DEShREbul4EnKi+Ai3FJXeuhyL
-	 euaDJNzNKcxrw==
-Date: Fri, 5 Apr 2024 18:48:27 +0200
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Stefan Eichenberger <eichest@gmail.com>
-Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, francesco.dolcini@toradex.com,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Stefan Eichenberger <stefan.eichenberger@toradex.com>
-Subject: Re: [PATCH v1 4/4] arm64: dts: freescale: imx8mm-verdin-dahlia:
- support sleep-moci
-Message-ID: <20240405164827.GD5994@francesco-nb>
-References: <20240405160720.5977-1-eichest@gmail.com>
- <20240405160720.5977-5-eichest@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=rUHTSgVMQLc/ujuOXGMVDYXFJs3nkjWOS+rA/iN5+fGYQ6DofsouQs0RPVzkSRcr8EuJQQdA+qw30xSIMWGp99xg1sH0w1KDIzMD8rb/Q0peMgYeTgGcGJp7P6257Tekrdqei2tvK7T7svyucEu4B+qkt6YStd4gCEnPHrLvXC8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QaRNhIgM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3367AC433F1;
+	Fri,  5 Apr 2024 16:52:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712335969;
+	bh=mt/7m6gE+/mQeYNIuTIpesLMoVgYypS7PcDtGHkbqws=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QaRNhIgMnDYWgjPVKq0IlAjsC3Yq2QY7DGainZ5KQiecDDQtNx5qr1eZMbSCf2AW5
+	 oHlWIljCKRo6uCUN/Sn3mTjZbi+JqlZzs5QIbAVshQ/+bI9obXK6dIAybh3d3Yl7Yk
+	 mFqfGcaZjr1AIUnFw2q+1Yt/mbrw9+NWx7csLU/Q7QIoDpjd0Kh2yRqSCjJwgM+Itf
+	 e2mA9jcY5cw/wYgitaH/t7+3wKljzuXDPPDgzPA61i6VA5KHy4FfXQ0+tKpAHNpqc3
+	 lcRVcr7P/kNK5dVr3Z0pmZMvFRLHbUmowypCXZyq6mSAXJixspO0ayR93tha/UFb05
+	 gNyRa8cYrP2Zw==
+Date: Fri, 5 Apr 2024 22:22:45 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: forbidden405@outlook.com
+Cc: Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jiancheng Xue <xuejiancheng@hisilicon.com>,
+	Shawn Guo <shawn.guo@linaro.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Kishon Vijay Abraham I <kishon@ti.com>,
+	David Yang <mmyangfl@gmail.com>
+Subject: Re: [PATCH v5 5/5] phy: hisilicon: hisi-inno-phy: add support for
+ Hi3798MV200 INNO PHY
+Message-ID: <ZhAsXUjifTD6HeKx@matsya>
+References: <20240305-inno-phy-v5-0-dc1cb130ea08@outlook.com>
+ <20240305-inno-phy-v5-5-dc1cb130ea08@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,21 +68,189 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240405160720.5977-5-eichest@gmail.com>
+In-Reply-To: <20240305-inno-phy-v5-5-dc1cb130ea08@outlook.com>
 
-On Fri, Apr 05, 2024 at 06:07:20PM +0200, Stefan Eichenberger wrote:
-> From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+On 05-03-24, 21:32, Yang Xiwen via B4 Relay wrote:
+> From: Yang Xiwen <forbidden405@outlook.com>
+
+That is quite an email id!
+
 > 
-> Previously, we had the sleep-moci pin set to always on. However, the
-> Dahlia carrier board supports disabling the sleep-moci when the system
-> is suspended to power down peripherals that support it. This reduces
-> overall power consumption. This commit adds support for this feature by
-> disabling the reg_force_sleep_moci regulator and adding two new
-> regulators for the USB hub and PCIe that can be turned off when the
-> system is suspended.
+> Direct MMIO resgiter access is used by Hi3798MV200. For other models,
+> of_iomap() returns NULL due to insufficient length. So they are
+
+so how is that fixed... Pls describe the change...
+> unaffected.
 > 
-> Signed-off-by: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+> Also Hi3798MV200 INNO PHY has an extra reset required to be deasserted,
+> switch to reset_control_array_*() APIs for that.
 
-Reviewed-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+That probably should be a different patch
 
+> 
+> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+> ---
+>  drivers/phy/hisilicon/phy-hisi-inno-usb2.c | 66 ++++++++++++++++++------------
+>  1 file changed, 40 insertions(+), 26 deletions(-)
+> 
+> diff --git a/drivers/phy/hisilicon/phy-hisi-inno-usb2.c b/drivers/phy/hisilicon/phy-hisi-inno-usb2.c
+> index b7e740eb4752..df154cd99ed8 100644
+> --- a/drivers/phy/hisilicon/phy-hisi-inno-usb2.c
+> +++ b/drivers/phy/hisilicon/phy-hisi-inno-usb2.c
+> @@ -10,6 +10,7 @@
+>  #include <linux/io.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+> +#include <linux/of_address.h>
+>  #include <linux/phy/phy.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/reset.h>
+> @@ -24,6 +25,7 @@
+>  
+>  #define PHY_TYPE_0	0
+>  #define PHY_TYPE_1	1
+> +#define PHY_TYPE_MMIO	2
+>  
+>  #define PHY_TEST_DATA		GENMASK(7, 0)
+>  #define PHY_TEST_ADDR_OFFSET	8
+> @@ -43,6 +45,7 @@
+>  #define PHY_CLK_ENABLE		BIT(2)
+>  
+>  struct hisi_inno_phy_port {
+> +	void __iomem *base;
+>  	struct reset_control *utmi_rst;
+>  	struct hisi_inno_phy_priv *priv;
+>  };
+> @@ -50,7 +53,7 @@ struct hisi_inno_phy_port {
+>  struct hisi_inno_phy_priv {
+>  	void __iomem *mmio;
+>  	struct clk *ref_clk;
+> -	struct reset_control *por_rst;
+> +	struct reset_control *rsts;
+>  	unsigned int type;
+>  	struct hisi_inno_phy_port ports[INNO_PHY_PORT_NUM];
+>  };
+> @@ -62,26 +65,31 @@ static void hisi_inno_phy_write_reg(struct hisi_inno_phy_priv *priv,
+>  	u32 val;
+>  	u32 value;
+>  
+> -	if (priv->type == PHY_TYPE_0)
+> -		val = (data & PHY_TEST_DATA) |
+> -		      ((addr << PHY_TEST_ADDR_OFFSET) & PHY0_TEST_ADDR) |
+> -		      ((port << PHY0_TEST_PORT_OFFSET) & PHY0_TEST_PORT) |
+> -		      PHY0_TEST_WREN | PHY0_TEST_RST;
+> -	else
+> -		val = (data & PHY_TEST_DATA) |
+> -		      ((addr << PHY_TEST_ADDR_OFFSET) & PHY1_TEST_ADDR) |
+> -		      ((port << PHY1_TEST_PORT_OFFSET) & PHY1_TEST_PORT) |
+> -		      PHY1_TEST_WREN | PHY1_TEST_RST;
+> -	writel(val, reg);
+> -
+> -	value = val;
+> -	if (priv->type == PHY_TYPE_0)
+> -		value |= PHY0_TEST_CLK;
+> -	else
+> -		value |= PHY1_TEST_CLK;
+> -	writel(value, reg);
+> -
+> -	writel(val, reg);
+> +	if (priv->ports[port].base)
+> +		/* FIXME: fill stride in priv */
+
+when?
+
+> +		writel(data, (u32 *)priv->ports[port].base + addr);
+> +	else {
+> +		if (priv->type == PHY_TYPE_0)
+> +			val = (data & PHY_TEST_DATA) |
+> +			      ((addr << PHY_TEST_ADDR_OFFSET) & PHY0_TEST_ADDR) |
+> +			      ((port << PHY0_TEST_PORT_OFFSET) & PHY0_TEST_PORT) |
+> +			      PHY0_TEST_WREN | PHY0_TEST_RST;
+> +		else
+> +			val = (data & PHY_TEST_DATA) |
+> +			      ((addr << PHY_TEST_ADDR_OFFSET) & PHY1_TEST_ADDR) |
+> +			      ((port << PHY1_TEST_PORT_OFFSET) & PHY1_TEST_PORT) |
+> +			      PHY1_TEST_WREN | PHY1_TEST_RST;
+> +		writel(val, reg);
+> +
+> +		value = val;
+> +		if (priv->type == PHY_TYPE_0)
+> +			value |= PHY0_TEST_CLK;
+> +		else
+> +			value |= PHY1_TEST_CLK;
+> +		writel(value, reg);
+> +
+> +		writel(val, reg);
+
+val and value are very helpful variables, do consider naming them
+better!
+
+> +	}
+>  }
+>  
+>  static void hisi_inno_phy_setup(struct hisi_inno_phy_priv *priv)
+> @@ -104,7 +112,7 @@ static int hisi_inno_phy_init(struct phy *phy)
+>  		return ret;
+>  	udelay(REF_CLK_STABLE_TIME);
+>  
+> -	reset_control_deassert(priv->por_rst);
+> +	reset_control_deassert(priv->rsts);
+>  	udelay(POR_RST_COMPLETE_TIME);
+>  
+>  	/* Set up phy registers */
+> @@ -122,7 +130,7 @@ static int hisi_inno_phy_exit(struct phy *phy)
+>  	struct hisi_inno_phy_priv *priv = port->priv;
+>  
+>  	reset_control_assert(port->utmi_rst);
+> -	reset_control_assert(priv->por_rst);
+> +	reset_control_assert(priv->rsts);
+>  	clk_disable_unprepare(priv->ref_clk);
+>  
+>  	return 0;
+> @@ -158,15 +166,16 @@ static int hisi_inno_phy_probe(struct platform_device *pdev)
+>  	if (IS_ERR(priv->ref_clk))
+>  		return PTR_ERR(priv->ref_clk);
+>  
+> -	priv->por_rst = devm_reset_control_get_exclusive(dev, NULL);
+> -	if (IS_ERR(priv->por_rst))
+> -		return PTR_ERR(priv->por_rst);
+> +	priv->rsts = devm_reset_control_array_get_exclusive(dev);
+> +	if (IS_ERR(priv->rsts))
+> +		return PTR_ERR(priv->rsts);
+>  
+>  	priv->type = (uintptr_t) of_device_get_match_data(dev);
+>  
+>  	for_each_child_of_node(np, child) {
+>  		struct reset_control *rst;
+>  		struct phy *phy;
+> +		void __iomem *base;
+>  
+>  		rst = of_reset_control_get_exclusive(child, NULL);
+>  		if (IS_ERR(rst)) {
+> @@ -174,7 +183,10 @@ static int hisi_inno_phy_probe(struct platform_device *pdev)
+>  			return PTR_ERR(rst);
+>  		}
+>  
+> +		base = of_iomap(child, 0);
+> +
+>  		priv->ports[i].utmi_rst = rst;
+> +		priv->ports[i].base = base;
+>  		priv->ports[i].priv = priv;
+>  
+>  		phy = devm_phy_create(dev, child, &hisi_inno_phy_ops);
+> @@ -205,6 +217,8 @@ static const struct of_device_id hisi_inno_phy_of_match[] = {
+>  	  .data = (void *) PHY_TYPE_0 },
+>  	{ .compatible = "hisilicon,hi3798mv100-usb2-phy",
+>  	  .data = (void *) PHY_TYPE_1 },
+> +	{ .compatible = "hisilicon,hi3798mv200-usb2-phy",
+> +	  .data = (void *) PHY_TYPE_MMIO },
+>  	{ },
+>  };
+>  MODULE_DEVICE_TABLE(of, hisi_inno_phy_of_match);
+> 
+> -- 
+> 2.43.0
+
+-- 
+~Vinod
 
