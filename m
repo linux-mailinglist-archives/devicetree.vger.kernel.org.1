@@ -1,134 +1,109 @@
-Return-Path: <devicetree+bounces-56713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9909089A46D
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 20:57:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 328B889A491
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 21:04:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D71D283D4F
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 18:57:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 63E511C21313
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 19:04:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 259F017279B;
-	Fri,  5 Apr 2024 18:57:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A04A2172794;
+	Fri,  5 Apr 2024 19:04:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="AVyLVVCb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FFSKwGAH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail2.andi.de1.cc (vmd64148.contaboserver.net [161.97.139.27])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7B98172797;
-	Fri,  5 Apr 2024 18:57:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=161.97.139.27
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76CF716D328;
+	Fri,  5 Apr 2024 19:04:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712343428; cv=none; b=gzErBedUxiLO8avz5QgiZslNvqTUIFAQb0HbwJfrTuCmgRcMa0qA09/ObAI0Hpc1BbXYVJdDRN6jg85Uhl0Diu15VZUHWEwsHD31CleeZQTrWIc9s5XYeO4BiktnREjk9lYrwiNYz7ofYzbHQnCdnWaZY3Iz2FBuQTAZCC3gboE=
+	t=1712343872; cv=none; b=oHP3AEqSfXouEX43/FT6OF5bBQKgV2QMcP+3Zom5Szww5eo56n7OR2FPLnvoAH+qF8WLDD7dhLkDWch79tYzvyt8XEM/8D7wifmdC5gXME8q3Hk87grYZ+1BvTnaSB+fk2f/cF/p2vlqiaGG1WW2zds1bjAYTYPDx4He9QmV25s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712343428; c=relaxed/simple;
-	bh=vnYEQ17KysvX7LO1gsXCZ7bQP+q4ViwuQl1/8sCVlOk=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RaEVbS1dAGy0qGY2EDIT4rnFOWLUpyAOvSvQZ2IV/2UxtYLlykC7WpzzoZofKOJRzxdm0ANu51Zk6+hR7mir81pc0fjm2zBwSugn9KNssiR6aaLWMlDTU0PPpOt2NGT+1CF0T3ON8RuDDztuGLyltcRGgqeR481B2LPvCxrNpdk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=AVyLVVCb; arc=none smtp.client-ip=161.97.139.27
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
-	by mail2.andi.de1.cc with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <andreas@kemnade.info>)
-	id 1rsokE-003tJv-0p;
-	Fri, 05 Apr 2024 20:56:58 +0200
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:Content-Type:
-	MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=ogE4OYrDq5iNX0qpphDnVQy5Okj2XC66c4JZZyH1L24=; b=AVyLVVCbDK7rv9n92vw1sNlfhL
-	HP85XOMdLA6kVEjQKAz4eq66qdjYEJRVaexEHVTjt9k/JSzRmwxLa2vK1tvYdXiGSfeyNCMlfJBmn
-	DzOIyIkJ8Q0RhBdujYKspXHhznntU3crbTg84qfAYw2kMRgPWBppeOgJkXkO4GgYcM+y65fxYgMsa
-	UUEzR3U1IAcf3ca8DG/Vr01tkvz5c2NJvJoMm1SANA6jaIDcl4CdoupHje36LBYSBbzzneTl0osCi
-	x5H2WN3OVt0a4mhqzvlulKQcYd+Tft8AFOwTjwtvjk3SfKpHx7NSLhQbgQr/3HYCqTp2zrJJFnf00
-	OOKU3vAg==;
-Received: from p2003010777026a001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:107:7702:6a00:1a3d:a2ff:febf:d33a] helo=aktux)
-	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <andreas@kemnade.info>)
-	id 1rsokB-000Pe2-1H;
-	Fri, 05 Apr 2024 20:56:55 +0200
-Date: Fri, 5 Apr 2024 20:56:53 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: dmitry.torokhov@gmail.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- o.rempel@pengutronix.de, u.kleine-koenig@pengutronix.de,
- hdegoede@redhat.com, ye.xingchen@zte.com.cn, p.puschmann@pironex.com,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, caleb.connolly@linaro.org
-Subject: Re: [PATCH v2 2/2] Input: edt-ft5x06 - add ft5426
-Message-ID: <20240405205653.32bdcb75@aktux>
-In-Reply-To: <CAHp75VckoDheCN-KQ0KcSk9rE_-cXFUujurtA4sK6KAixDttQQ@mail.gmail.com>
-References: <20240404222009.670685-1-andreas@kemnade.info>
-	<20240404222009.670685-3-andreas@kemnade.info>
-	<CAHp75VeZ9U_+1rJQjr4KvvzjYQGzfKtk+BK00vqvKcVn2-yP3g@mail.gmail.com>
-	<20240405182832.4e457695@aktux>
-	<CAHp75VckoDheCN-KQ0KcSk9rE_-cXFUujurtA4sK6KAixDttQQ@mail.gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1712343872; c=relaxed/simple;
+	bh=g7uPO9ttLyZhSAK7lXz1159bKTI5S7lMGIJMDuOXNng=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=DClMq/A0hijPeS0YQDF8Uk8BPvX94lscyoMMvCZmkfQJ7voEcDm1w1z8bCIJU+FL4BcbM+hs+GR4/ZfSIVe7sREceZP7JOpYyI1xujDaljwKRskS5tECUsl2Lt1KKBQdepus/gtrwp1bDliCoWQ7Z3Pkl60+v1avrRYXUlKjF6Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FFSKwGAH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6884C43390;
+	Fri,  5 Apr 2024 19:04:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712343872;
+	bh=g7uPO9ttLyZhSAK7lXz1159bKTI5S7lMGIJMDuOXNng=;
+	h=From:To:Cc:Subject:Date:From;
+	b=FFSKwGAHZRG+BHzUpWfK7y0nHzMpdm+sZUcfJW4QUY2MRY09Nlx7Wt1b/qZi2G8aV
+	 iRkvOOT4NmK52JlRYBo6VCKbKs2/d/1lwIOx7N+H8QnuFnJM9icIRQsoA1heXtTj0d
+	 SWl5/W6rGC3p5mmZNrU2wDvlqhe2aEQHWprSXyp0rRJJU2HNQ+nMOlYnsPaMeMstSa
+	 5h3jXmNbmoRlCaK08OPfGCpDKTeHayTw/hnzhCSA4RWXknrSb153Hv7X9HYIqexIN0
+	 0+GL3vPrx/x6nvSfSJAv+pnivzjSEL2A7kmA820FxHV/7TbMKfMny9wnqtsTGDq71u
+	 +1VVBXaxr1QJw==
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Conor Dooley <conor@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Lars Povlsen <lars.povlsen@microchip.com>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	UNGLinuxDriver@microchip.com,
+	Bjarni Jonasson <bjarni.jonasson@microchip.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: horatiu.vultur@microchip.com,
+	steen.hegelund@microchip.com,
+	Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH v2 01/10] arm64: dts: microchip: sparx5: fix mdio reg
+Date: Fri,  5 Apr 2024 21:04:10 +0200
+Message-Id: <20240405190419.74162-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Fri, 5 Apr 2024 20:21:19 +0300
-Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+Correct the reg address of mdio node to match unit address.  Assume the
+reg is not correct and unit address was correct, because there is
+already node using the existing reg 0x110102d4.
 
-> On Fri, Apr 5, 2024 at 7:28=E2=80=AFPM Andreas Kemnade <andreas@kemnade.i=
-nfo> wrote:
-> > On Fri, 5 Apr 2024 18:13:45 +0300
-> > Andy Shevchenko <andy.shevchenko@gmail.com> wrote: =20
-> > > On Fri, Apr 5, 2024 at 1:20=E2=80=AFAM Andreas Kemnade <andreas@kemna=
-de.info> wrote: =20
->=20
-> ...
->=20
-> > > > @@ -1484,6 +1484,7 @@ static const struct of_device_id edt_ft5x06_o=
-f_match[] =3D {
-> > > >         { .compatible =3D "edt,edt-ft5206", .data =3D &edt_ft5x06_d=
-ata },
-> > > >         { .compatible =3D "edt,edt-ft5306", .data =3D &edt_ft5x06_d=
-ata },
-> > > >         { .compatible =3D "edt,edt-ft5406", .data =3D &edt_ft5x06_d=
-ata },
-> > > > +       { .compatible =3D "focaltech,ft5426", .data =3D &edt_ft5506=
-_data }, =20
-> > >
-> > > Why a different vendor prefix?
-> > > In case you need to use this one, keep the list sorted, currently this
-> > > splits the edt,* ones.
-> > > =20
-> > How do I know whether to use evervision or edt instead? =20
->=20
-> Ask DT people, the vendor-prefixes lists both...
->=20
-> > I sorted by the numbers. Looking at datasheets for other controllers I =
-see
-> > https://www.displayfuture.com/Display/datasheet/controller/FT5x06.pdf
-> > it only mentions FocalTech Systems Co., Ltd. =20
->=20
-> But does the driver use that? AFAICS it uses edt. Perhaps it's due to
-> a business split, not to my knowledge anyway.
->=20
-well, the fact is that there were several tried to add duplicates to this
-driver to the kernel using focaltech prefixes e.g.
-https://lore.kernel.org/linux-input/47209259-9e57-f263-bf48-10f233c63b69@re=
-dhat.com/
+  sparx5.dtsi:443.25-451.5: Warning (simple_bus_reg): /axi@600000000/mdio@6110102f8: simple-bus unit address format error, expected "6110102d4"
 
-My guess it is somehow about owner of the firmware in the chip vs the chip =
-itself.
+Fixes: d0f482bb06f9 ("arm64: dts: sparx5: Add the Sparx5 switch node")
+Reviewed-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+---
 
-Regards,
-Andreas
+Not tested on hardware
+
+Changes in v2:
+1. Add tags.
+---
+ arch/arm64/boot/dts/microchip/sparx5.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi b/arch/arm64/boot/dts/microchip/sparx5.dtsi
+index 24075cd91420..5d820da8c69d 100644
+--- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
++++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
+@@ -447,7 +447,7 @@ mdio2: mdio@6110102f8 {
+ 			pinctrl-names = "default";
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+-			reg = <0x6 0x110102d4 0x24>;
++			reg = <0x6 0x110102f8 0x24>;
+ 		};
+ 
+ 		mdio3: mdio@61101031c {
+-- 
+2.34.1
+
 
