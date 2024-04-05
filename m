@@ -1,256 +1,213 @@
-Return-Path: <devicetree+bounces-56700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B757889A2E8
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 18:52:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB31F89A339
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 19:09:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E8351F21BF6
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 16:52:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70847285A27
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 17:09:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49346171096;
-	Fri,  5 Apr 2024 16:52:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB18717276F;
+	Fri,  5 Apr 2024 17:08:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QaRNhIgM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GegqWwyW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 219EE79E3;
-	Fri,  5 Apr 2024 16:52:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAB7C172770
+	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 17:08:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712335970; cv=none; b=CGAxFyNtujWVVhH+gICjMixTILZU0K7OGDIaq6d76TGjRiv0IV3TgOmIGzPQZzYZnozQyq9ebE1frAnFXvuKnmraXV8UvtWkPFHE3EY1sBtC95Lo46uR8XXfsI0IgeW5SeUQ8+eGrruf7LgNlPRsKKGQElecrdOdAD4r1jYtmSI=
+	t=1712336923; cv=none; b=qSIrbv2FMEL5CfnX0w26wlLXIzuQolt0dsUWlODMBLg+0hxvwt8oLgJA/WOOnV5evE1DmIXMxhJ3cl1bVD7TFEzukIC234NQzv+Z1SsctpCEQY2Dv8DcmKWrSUP+uiKGBAhA7BASrf/CEGNdSRz+NEDkctq2uBjPNviKx3+bjro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712335970; c=relaxed/simple;
-	bh=mt/7m6gE+/mQeYNIuTIpesLMoVgYypS7PcDtGHkbqws=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rUHTSgVMQLc/ujuOXGMVDYXFJs3nkjWOS+rA/iN5+fGYQ6DofsouQs0RPVzkSRcr8EuJQQdA+qw30xSIMWGp99xg1sH0w1KDIzMD8rb/Q0peMgYeTgGcGJp7P6257Tekrdqei2tvK7T7svyucEu4B+qkt6YStd4gCEnPHrLvXC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QaRNhIgM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3367AC433F1;
-	Fri,  5 Apr 2024 16:52:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712335969;
-	bh=mt/7m6gE+/mQeYNIuTIpesLMoVgYypS7PcDtGHkbqws=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QaRNhIgMnDYWgjPVKq0IlAjsC3Yq2QY7DGainZ5KQiecDDQtNx5qr1eZMbSCf2AW5
-	 oHlWIljCKRo6uCUN/Sn3mTjZbi+JqlZzs5QIbAVshQ/+bI9obXK6dIAybh3d3Yl7Yk
-	 mFqfGcaZjr1AIUnFw2q+1Yt/mbrw9+NWx7csLU/Q7QIoDpjd0Kh2yRqSCjJwgM+Itf
-	 e2mA9jcY5cw/wYgitaH/t7+3wKljzuXDPPDgzPA61i6VA5KHy4FfXQ0+tKpAHNpqc3
-	 lcRVcr7P/kNK5dVr3Z0pmZMvFRLHbUmowypCXZyq6mSAXJixspO0ayR93tha/UFb05
-	 gNyRa8cYrP2Zw==
-Date: Fri, 5 Apr 2024 22:22:45 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: forbidden405@outlook.com
-Cc: Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jiancheng Xue <xuejiancheng@hisilicon.com>,
-	Shawn Guo <shawn.guo@linaro.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Kishon Vijay Abraham I <kishon@ti.com>,
-	David Yang <mmyangfl@gmail.com>
-Subject: Re: [PATCH v5 5/5] phy: hisilicon: hisi-inno-phy: add support for
- Hi3798MV200 INNO PHY
-Message-ID: <ZhAsXUjifTD6HeKx@matsya>
-References: <20240305-inno-phy-v5-0-dc1cb130ea08@outlook.com>
- <20240305-inno-phy-v5-5-dc1cb130ea08@outlook.com>
+	s=arc-20240116; t=1712336923; c=relaxed/simple;
+	bh=CobwK63RZ9ptNhPDMbt5FlrIbX/MuaZA+FSUD0WxozM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IgytCE4PlyhMwfmN8/IT4JlkKyVfUynpJqN6Z+jQjX4Frk2JfV9sl8FY9lkz8EOzBNNewa59LxD2pYFFIJt8RQQxDVkRoH6F97CVIbId1SjhrD2Vn+0CjPYj3Qzlg0Fr+OAhNeBcgUJP2/BpDifmZG7OUatnFEkjlUhzvLqyaWw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GegqWwyW; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-516c403cc46so4654741e87.3
+        for <devicetree@vger.kernel.org>; Fri, 05 Apr 2024 10:08:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712336920; x=1712941720; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=O1239gaDaNPAZ78s52My0FQ3D4e5jyDecSmiKN1Mr34=;
+        b=GegqWwyWq6kp4EA0pItfJFliDyzmMC9f3SOn5WPzkhz3BJZWsp8lb3b0Tu49hV2fM/
+         JdpGmJbmf3P/oLvBlEVG4Qd4Td5+kjnGSBevBlo4Cmeb+YpUaTipREgv8j8x3BybtkpA
+         NFE4rSLnejJZ3mjOKGosZ4bWdkJjZm1pmEbaaRStlGbwxUvdQz1JtbTWzu+r6TBF6eIx
+         F2R+vacnTjJO7mzLl6a8bMMdP4x64hAZrlyeHVHVAfxk8VGYteEhVS5ucQzHByNeSF+h
+         223Z5KRCSC8YnSMSKq4OoF4vZ2pQj5UL0EIvh0ukMpri79kGt+PHD8I4j3cs2IGF+lp3
+         qJKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712336920; x=1712941720;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=O1239gaDaNPAZ78s52My0FQ3D4e5jyDecSmiKN1Mr34=;
+        b=j0xycXkLzEOv3hJB0eZ8jnsJaZf5TKFHbmXlPCSeEcJFZCiQ9SP1B9vXyLz7MgMdTA
+         gDRvtNwi+ONhCW7B49Hv75Qq3DayDxZaHl1b4Z0zNqRG1bwX5fYX9UV+CTDpKAJePfEM
+         HdtFdfF/KEPcyNfg6UfkPZSirZjEgPbXQcQ0L5lIEh6Zc8dpJiE+uQDVpb9heWWr0sn2
+         vRzjVTQropLLm31C142F/NODmhJnK6AowgSFU+5g98XrJWMUhxElLDIW+gDfKZiC6D4m
+         c80NYq0fj0EbuGSBQM+qTOTLKG8TdQrl5tEQ4ILrDROXX6n6BJhlbAuzBWNUf4WxwIkk
+         4YCA==
+X-Forwarded-Encrypted: i=1; AJvYcCWbieS3my5SDI5dJbS8pMpe19LtsGV1fI8fb4S+6ib8FLEgp/QThS8DtQ3AYu5O3JM/7xQQUacfCiN9kYl5q2TPrc/kdyIWIiZLsw==
+X-Gm-Message-State: AOJu0YyN9MzOK+mjwCBjNySyT6+G0D42uw8uNLQ+a5f1m//qkopbeCWf
+	FvxwhBfOVKEx1weKhF2rwWE2F39eHCJee/zrPVVs7KloL6H16mCbERDUyElbOzQ=
+X-Google-Smtp-Source: AGHT+IGY4kKeeAa9smwjpXKXta8xbo85lY3pQgqZGZ6IZybGQysWmXT9jzeGlz0WT8xxVIthnKpzMA==
+X-Received: by 2002:ac2:554e:0:b0:516:d09b:cbe4 with SMTP id l14-20020ac2554e000000b00516d09bcbe4mr1756971lfk.53.1712336919717;
+        Fri, 05 Apr 2024 10:08:39 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id ne6-20020a1709077b8600b00a4e5a6b57a2sm1030254ejc.163.2024.04.05.10.08.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Apr 2024 10:08:38 -0700 (PDT)
+Message-ID: <c9084453-65f1-43b0-88df-5b73052ccb72@linaro.org>
+Date: Fri, 5 Apr 2024 19:08:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240305-inno-phy-v5-5-dc1cb130ea08@outlook.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] dt-bindings: omap-mcpdm: Convert to DT schema
+To: Mithil <bavishimithil@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, alsa-devel@alsa-project.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240404160649.967-1-bavishimithil@gmail.com>
+ <78091796-fd0a-42dd-a4da-f7bed3025bf9@linaro.org>
+ <CAGzNGRnuG_gLUrH1N57WvpKbpiNtFrcsG6nJcacQNJB_yMYNrA@mail.gmail.com>
+ <ec7f77a7-2cf1-4ea6-b9c4-d4fe8a1673ab@linaro.org>
+ <CAGzNGRktm5gMj=bhtX2RAzcn1v5ref+nV-HV3Fct56FzAzxjWA@mail.gmail.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <CAGzNGRktm5gMj=bhtX2RAzcn1v5ref+nV-HV3Fct56FzAzxjWA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 05-03-24, 21:32, Yang Xiwen via B4 Relay wrote:
-> From: Yang Xiwen <forbidden405@outlook.com>
+On 05/04/2024 18:29, Mithil wrote:
+> On Fri, Apr 5, 2024 at 9:27 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 05/04/2024 16:48, Mithil wrote:
+>>> So sorry about the 2nd patch being sent as a new mail, here is a new
+>>> patch with the changes as suggested
+>>>
+>>>> Please use subject prefixes matching the subsystem
+>>> Changed the patch name to match the folder history.
+>>
+>> Nothing improved. What the history tells you?
+>>
+> 
+> Referred to "ASoC: dt-bindings: rt1015: Convert to dtschema"
+> Not really sure what else I should change.
 
-That is quite an email id!
+But the subject you wrote here is "dt-bindings: omap-mcpdm: Convert to
+DT schema"?
+
+Where is the ASoC?
 
 > 
-> Direct MMIO resgiter access is used by Hi3798MV200. For other models,
-> of_iomap() returns NULL due to insufficient length. So they are
-
-so how is that fixed... Pls describe the change...
-> unaffected.
+>>>
+>>>> Is it your full name?
+>>> Fixed it, my apologies.
+>>>
+>>>> Filename like compatible.
+>>> Fixed.
+>>
+>> Still not, compatible is omap4.
+>>
 > 
-> Also Hi3798MV200 INNO PHY has an extra reset required to be deasserted,
-> switch to reset_control_array_*() APIs for that.
-
-That probably should be a different patch
-
+> Sorry, seems like I was sending the old file again.
+> Will fix this.
 > 
-> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
-> ---
->  drivers/phy/hisilicon/phy-hisi-inno-usb2.c | 66 ++++++++++++++++++------------
->  1 file changed, 40 insertions(+), 26 deletions(-)
+>>>
+>>>> Please open existing bindings and look how it is done there.
+>>> Changed it, is it fine now?
+>>
+>> You mean v2? I have no clue to what you are responding here, but no, v2
+>> did not improve much.
+>>
 > 
-> diff --git a/drivers/phy/hisilicon/phy-hisi-inno-usb2.c b/drivers/phy/hisilicon/phy-hisi-inno-usb2.c
-> index b7e740eb4752..df154cd99ed8 100644
-> --- a/drivers/phy/hisilicon/phy-hisi-inno-usb2.c
-> +++ b/drivers/phy/hisilicon/phy-hisi-inno-usb2.c
-> @@ -10,6 +10,7 @@
->  #include <linux/io.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
-> +#include <linux/of_address.h>
->  #include <linux/phy/phy.h>
->  #include <linux/platform_device.h>
->  #include <linux/reset.h>
-> @@ -24,6 +25,7 @@
->  
->  #define PHY_TYPE_0	0
->  #define PHY_TYPE_1	1
-> +#define PHY_TYPE_MMIO	2
->  
->  #define PHY_TEST_DATA		GENMASK(7, 0)
->  #define PHY_TEST_ADDR_OFFSET	8
-> @@ -43,6 +45,7 @@
->  #define PHY_CLK_ENABLE		BIT(2)
->  
->  struct hisi_inno_phy_port {
-> +	void __iomem *base;
->  	struct reset_control *utmi_rst;
->  	struct hisi_inno_phy_priv *priv;
->  };
-> @@ -50,7 +53,7 @@ struct hisi_inno_phy_port {
->  struct hisi_inno_phy_priv {
->  	void __iomem *mmio;
->  	struct clk *ref_clk;
-> -	struct reset_control *por_rst;
-> +	struct reset_control *rsts;
->  	unsigned int type;
->  	struct hisi_inno_phy_port ports[INNO_PHY_PORT_NUM];
->  };
-> @@ -62,26 +65,31 @@ static void hisi_inno_phy_write_reg(struct hisi_inno_phy_priv *priv,
->  	u32 val;
->  	u32 value;
->  
-> -	if (priv->type == PHY_TYPE_0)
-> -		val = (data & PHY_TEST_DATA) |
-> -		      ((addr << PHY_TEST_ADDR_OFFSET) & PHY0_TEST_ADDR) |
-> -		      ((port << PHY0_TEST_PORT_OFFSET) & PHY0_TEST_PORT) |
-> -		      PHY0_TEST_WREN | PHY0_TEST_RST;
-> -	else
-> -		val = (data & PHY_TEST_DATA) |
-> -		      ((addr << PHY_TEST_ADDR_OFFSET) & PHY1_TEST_ADDR) |
-> -		      ((port << PHY1_TEST_PORT_OFFSET) & PHY1_TEST_PORT) |
-> -		      PHY1_TEST_WREN | PHY1_TEST_RST;
-> -	writel(val, reg);
-> -
-> -	value = val;
-> -	if (priv->type == PHY_TYPE_0)
-> -		value |= PHY0_TEST_CLK;
-> -	else
-> -		value |= PHY1_TEST_CLK;
-> -	writel(value, reg);
-> -
-> -	writel(val, reg);
-> +	if (priv->ports[port].base)
-> +		/* FIXME: fill stride in priv */
+> Again, could you guide me to what needs to be done?
+> Description for reg should be fine as this is how it is done in other
+> files as well.
 
-when?
+reg is not correct. Please point me to files doing that way, so I can
+fix them.
 
-> +		writel(data, (u32 *)priv->ports[port].base + addr);
-> +	else {
-> +		if (priv->type == PHY_TYPE_0)
-> +			val = (data & PHY_TEST_DATA) |
-> +			      ((addr << PHY_TEST_ADDR_OFFSET) & PHY0_TEST_ADDR) |
-> +			      ((port << PHY0_TEST_PORT_OFFSET) & PHY0_TEST_PORT) |
-> +			      PHY0_TEST_WREN | PHY0_TEST_RST;
-> +		else
-> +			val = (data & PHY_TEST_DATA) |
-> +			      ((addr << PHY_TEST_ADDR_OFFSET) & PHY1_TEST_ADDR) |
-> +			      ((port << PHY1_TEST_PORT_OFFSET) & PHY1_TEST_PORT) |
-> +			      PHY1_TEST_WREN | PHY1_TEST_RST;
-> +		writel(val, reg);
-> +
-> +		value = val;
-> +		if (priv->type == PHY_TYPE_0)
-> +			value |= PHY0_TEST_CLK;
-> +		else
-> +			value |= PHY1_TEST_CLK;
-> +		writel(value, reg);
-> +
-> +		writel(val, reg);
+You need items with description.
 
-val and value are very helpful variables, do consider naming them
-better!
+> Interrupts and hwmods use maxItems now.
 
-> +	}
->  }
->  
->  static void hisi_inno_phy_setup(struct hisi_inno_phy_priv *priv)
-> @@ -104,7 +112,7 @@ static int hisi_inno_phy_init(struct phy *phy)
->  		return ret;
->  	udelay(REF_CLK_STABLE_TIME);
->  
-> -	reset_control_deassert(priv->por_rst);
-> +	reset_control_deassert(priv->rsts);
->  	udelay(POR_RST_COMPLETE_TIME);
->  
->  	/* Set up phy registers */
-> @@ -122,7 +130,7 @@ static int hisi_inno_phy_exit(struct phy *phy)
->  	struct hisi_inno_phy_priv *priv = port->priv;
->  
->  	reset_control_assert(port->utmi_rst);
-> -	reset_control_assert(priv->por_rst);
-> +	reset_control_assert(priv->rsts);
->  	clk_disable_unprepare(priv->ref_clk);
->  
->  	return 0;
-> @@ -158,15 +166,16 @@ static int hisi_inno_phy_probe(struct platform_device *pdev)
->  	if (IS_ERR(priv->ref_clk))
->  		return PTR_ERR(priv->ref_clk);
->  
-> -	priv->por_rst = devm_reset_control_get_exclusive(dev, NULL);
-> -	if (IS_ERR(priv->por_rst))
-> -		return PTR_ERR(priv->por_rst);
-> +	priv->rsts = devm_reset_control_array_get_exclusive(dev);
-> +	if (IS_ERR(priv->rsts))
-> +		return PTR_ERR(priv->rsts);
->  
->  	priv->type = (uintptr_t) of_device_get_match_data(dev);
->  
->  	for_each_child_of_node(np, child) {
->  		struct reset_control *rst;
->  		struct phy *phy;
-> +		void __iomem *base;
->  
->  		rst = of_reset_control_get_exclusive(child, NULL);
->  		if (IS_ERR(rst)) {
-> @@ -174,7 +183,10 @@ static int hisi_inno_phy_probe(struct platform_device *pdev)
->  			return PTR_ERR(rst);
->  		}
->  
-> +		base = of_iomap(child, 0);
-> +
->  		priv->ports[i].utmi_rst = rst;
-> +		priv->ports[i].base = base;
->  		priv->ports[i].priv = priv;
->  
->  		phy = devm_phy_create(dev, child, &hisi_inno_phy_ops);
-> @@ -205,6 +217,8 @@ static const struct of_device_id hisi_inno_phy_of_match[] = {
->  	  .data = (void *) PHY_TYPE_0 },
->  	{ .compatible = "hisilicon,hi3798mv100-usb2-phy",
->  	  .data = (void *) PHY_TYPE_1 },
-> +	{ .compatible = "hisilicon,hi3798mv200-usb2-phy",
-> +	  .data = (void *) PHY_TYPE_MMIO },
->  	{ },
->  };
->  MODULE_DEVICE_TABLE(of, hisi_inno_phy_of_match);
-> 
-> -- 
-> 2.43.0
+hwmods lost description, why?
 
--- 
-~Vinod
+> Changed nodename to be generic in example as well.
+
+"mcpdm" does not feel generic. What is mcpdm? Google finds nothing.
+Maybe just "pdm"?
+
+Anyway, this patch has exactly the same name as v1, so what did you
+improve? Your v2 is almost the same as v1.
+
+
+> Those were the suggested changes previously.
+
+Best regards,
+Krzysztof
+
 
