@@ -1,116 +1,204 @@
-Return-Path: <devicetree+bounces-56743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC62689A61E
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 23:37:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 046B189A694
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 23:50:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5E1C41F227D8
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 21:37:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 878971F23515
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 21:50:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ABE3175542;
-	Fri,  5 Apr 2024 21:37:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fVcbNjTn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E545C17BB04;
+	Fri,  5 Apr 2024 21:47:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AD791E87C;
-	Fri,  5 Apr 2024 21:37:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3861B17995A
+	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 21:47:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712353045; cv=none; b=Ge5iyQEAYXNAu/dsXRDSdg42eVeKZrhEnVJjJfvqfXgwm25FkvD0qlXmrKPdaCT6uTKnd9mt3uIx2XL0xHPtmCBNnDbZaMwvTlN4u/gl1y3Q5wwgt7cJ9f0SrhiQKifONtCKVAywxZWIAocwz8Ni20MGapHphe0YK25fFXh9/+c=
+	t=1712353639; cv=none; b=LNf6xNhk1rMCanWIKjCDPpvGiDGi6MV8m7A66ovVIEduNRDfbX/vmXvpzUKLKpNJZNkNUS9QDDjnupWOm+/qiO+G5X4MYltXK453/NXTH2hLKDtQXDwvPHwhaSR7X/BpzEc2Q2vlUKXnbC8vxhmmHxDuf3htQ4NLV2XphLJ4ckU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712353045; c=relaxed/simple;
-	bh=HRY5hhaW64V8NU8mf6JssyKiFddMjgw/28ouTE9i8oQ=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=BO4TZ4LD6FHqEu4pGJDtMw/LF5KS+z4IEXblz4M+Qk1ys9WoN6ylD70fsuyn/fNDNEFl3+ynYRC4BeL4MhKAfaNM7Ta8cPbH2wEt80vTOusn8l4xbLSFkl5Y7Thb3MSr9RWQV82VSC8SRZAfEmAcJlRRshD/zedmm841PtYpXAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fVcbNjTn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6C0BC433F1;
-	Fri,  5 Apr 2024 21:37:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712353044;
-	bh=HRY5hhaW64V8NU8mf6JssyKiFddMjgw/28ouTE9i8oQ=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=fVcbNjTngZrTTYeW0UvQ09QyyH1QIXo+3JsshjvnlSpw4x5qjkHXS1E9mFu2jal5p
-	 3lsWFfAOeSqT8cQiqrD1Ko3zg5zXoioz/UfFHaiXZgxkIEVgD6RKL5Xh/U8BCJ7DfE
-	 pTyVDK3QHEVFsjTyyzswPnPpndZzgQGGXJp9GorLmrzy/u3i5NHsjE5Qdpb1t/Y0gM
-	 OYyCroRQZN0Wp2Jtb4rtog2FVULbOrWLu/3mQUJyxDTrl6H2UBRgBqDLUisEVjZjFM
-	 wfPWR0jvWnJcraIqYAcYK2VjYEPPvR6VNUO8ZNEYf54YtKUUazCP4PPMPNuxNNKPBb
-	 ERD1XjKS4h9Mg==
-Message-ID: <b39e9d5ecfddef7b0564c2224685d9d0.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1712353639; c=relaxed/simple;
+	bh=1WGcyZoSiINM1IuI5/LvaH/2stxLwoA9me9eJn6xxyo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=omsbG4scFbnNDKHJ8TNoYkAK96OS69ZMEHpqMnAIGGp2YLA0xpxOpx5UTR0K8sWlzKrQKyG56bUdI7rXrEpDH2pRQs0KjwTHhVvnwh4ngqhhn7oEFr3u0KG/5EE+OG18hYNm9UpvE9YXieNc/N2P9tL07qplhZ6TN7/3t5dCWKA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rsrOW-0002yq-D8; Fri, 05 Apr 2024 23:46:44 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rsrOV-00Ad3K-9r; Fri, 05 Apr 2024 23:46:43 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rsrOV-00FZoQ-0h;
+	Fri, 05 Apr 2024 23:46:43 +0200
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Russell King <linux@armlinux.org.uk>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Alexander Stein <alexander.stein@ew.tq-group.com>
+Subject: [PATCH v1 00/49] ARM: dts: imx: Use #pwm-cells = <3> for imx27-pwm device
+Date: Fri,  5 Apr 2024 23:41:47 +0200
+Message-ID: <cover.1712352665.git.u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240219-topic-rb1_gpu-v3-2-86f67786539a@linaro.org>
-References: <20240219-topic-rb1_gpu-v3-0-86f67786539a@linaro.org> <20240219-topic-rb1_gpu-v3-2-86f67786539a@linaro.org>
-Subject: Re: [PATCH v3 2/5] clk: qcom: clk-alpha-pll: Add HUAYRA_2290 support
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>, Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>
-Date: Fri, 05 Apr 2024 14:37:22 -0700
-User-Agent: alot/0.10
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=7546; i=u.kleine-koenig@pengutronix.de; h=from:subject:message-id; bh=1WGcyZoSiINM1IuI5/LvaH/2stxLwoA9me9eJn6xxyo=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBmEHAh3dGYosiZSAMHJ1Z9MlCZ5Ea4yNVunFiVY Ky0Tebq1X+JATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZhBwIQAKCRCPgPtYfRL+ TuzUB/90mdnnlAO+JFumLK2RhLfw4uukm+8bXN3SpmijDUA1cS50TGf6vd8zzGi4Yr2UUf9pR3k QOr97qNiHurHxTxJqjcYzRGqmy9a99hDzcaV0lZOQryTnMRMA3PDl0b+Jkv+PU26h22e6a10Y93 8C9KjpMfm1iV9F3C9R1uB6cBZJdhpo1M2g319oDyDl2ah6QnkDCyHIzncDbdjDkqBTpC+M8ctpt FtfAq1lmKErUYmyP+F/YZJcY9OfAM1hEJbdvyvY2uT5T0Q7T/GUz/vhVlEBkBrB/v1eBsG/rBeq JUd2WpZXLgDKXG38JPCZ0XDdxAEZgwL3biLN7f+Vd1AJA3Dt
+X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Quoting Konrad Dybcio (2024-03-26 14:08:24)
-> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alph=
-a-pll.c
-> index 8a412ef47e16..27ba8aa3e577 100644
-> --- a/drivers/clk/qcom/clk-alpha-pll.c
-> +++ b/drivers/clk/qcom/clk-alpha-pll.c
-> @@ -779,6 +792,40 @@ static long clk_alpha_pll_round_rate(struct clk_hw *=
-hw, unsigned long rate,
->         return clamp(rate, min_freq, max_freq);
->  }
-> =20
-> +void clk_huayra_2290_pll_configure(struct clk_alpha_pll *pll, struct reg=
-map *regmap,
-> +                                  const struct alpha_pll_config *config)
-> +{
-> +       u32 val;
-> +
-> +       clk_alpha_pll_write_config(regmap, PLL_CONFIG_CTL(pll), config->c=
-onfig_ctl_val);
-> +       clk_alpha_pll_write_config(regmap, PLL_CONFIG_CTL_U(pll), config-=
->config_ctl_hi_val);
-> +       clk_alpha_pll_write_config(regmap, PLL_CONFIG_CTL_U1(pll), config=
-->config_ctl_hi1_val);
-> +       clk_alpha_pll_write_config(regmap, PLL_TEST_CTL(pll), config->tes=
-t_ctl_val);
-> +       clk_alpha_pll_write_config(regmap, PLL_TEST_CTL_U(pll), config->t=
-est_ctl_hi_val);
-> +       clk_alpha_pll_write_config(regmap, PLL_TEST_CTL_U1(pll), config->=
-test_ctl_hi1_val);
-> +       clk_alpha_pll_write_config(regmap, PLL_L_VAL(pll), config->l);
-> +       clk_alpha_pll_write_config(regmap, PLL_ALPHA_VAL(pll), config->al=
-pha);
-> +       clk_alpha_pll_write_config(regmap, PLL_USER_CTL(pll), config->use=
-r_ctl_val);
-> +
-> +       /* Set PLL_BYPASSNL */
-> +       regmap_update_bits(regmap, PLL_MODE(pll), PLL_BYPASSNL, PLL_BYPAS=
-SNL);
-> +       regmap_read(regmap, PLL_MODE(pll), &val);
-> +
-> +       /* Wait 5 us between setting BYPASS and deasserting reset */
-> +       udelay(5);
-> +
-> +       /* Take PLL out from reset state */
-> +       regmap_update_bits(regmap, PLL_MODE(pll), PLL_RESET_N, PLL_RESET_=
-N);
-> +       regmap_read(regmap, PLL_MODE(pll), &val);
-> +
-> +       /* Wait 50us for PLL_LOCK_DET bit to go high */
+Hello,
 
-Is the bit not reliable or something? I'd expect to see a polling loop
-here but it's a sleep.
+this series addresses many warnings of the type:
 
-> +       usleep_range(50, 55);
+	arch/arm/boot/dts/nxp/imx/imx6ul-pico-dwarf.dtb: pwm@2088000: #pwm-cells:0:0: 3 was expected
+	        from schema : http://devicetree.org/schemas/pwm/imx-pwm.yaml#
+
+that is emitted when building with CHECK_DTBS=1.
+
+This completes the conversion started with
+
+	fa28d8212ede ("ARM: dts: imx: default to #pwm-cells = <3> in the SoC dtsi files")
+	4c6f19ab2aed ("dt-bindings: pwm: imx-pwm: Unify #pwm-cells for all compatibles")
+
+Best regards
+Uwe
+
+Uwe Kleine-König (49):
+  ARM: dts: imx51-ts4800: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx53-m53evk: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx53-ppd: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx53-kp: Drop redundant settings in pwm nodes
+  ARM: dts: imx53-tqma: Use #pwm-cells = <3> for imx27-pwm devices
+  ARM: dts: imx6dl-aristainetos_4: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6dl-aristainetos_7: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6dl-mamoj: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6q-ba16: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6q-bosch-acc: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6qdl-apf6dev: Use #pwm-cells = <3> for imx27-pwm devices
+  ARM: dts: imx6qdl-aristainetos2: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6qdl-cubox-i: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6qdl-emcon: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6qdl-gw52xx: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6qdl-gw53xx: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6qdl-gw54xx: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6qdl-gw560x: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6qdl-gw5903: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6qdl-gw5904: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6qdl-icore: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6qdl-nit6xlite: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6qdl-nitrogen6_max: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6qdl-nitrogen6_som2: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6qdl-nitrogen6x: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6qdl-phytec-mira: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6qdl-sabreauto: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6qdl-sabrelite: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6qdl-sabresd: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6qdl-savageboard: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6qdl-skov-cpu: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6q-kp: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6q-novena: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6q-pistachio: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6q-prti6q: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6q-var-dt6customboard: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6sl-evk: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6sll-evk: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6sx-nitrogen6sx: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6sx-sdb: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6sx-softing-vining-2000: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6ul-14x14-evk: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6ul-ccimx6ulsbcpro: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6ul-geam: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6ul-imx6ull-opos6uldev: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6ul-isiot: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6ul-kontron-bl-43: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6ul-kontron-bl-common: Use #pwm-cells = <3> for imx27-pwm device
+  ARM: dts: imx6ul-pico: Use #pwm-cells = <3> for imx27-pwm device
+
+ arch/arm/boot/dts/nxp/imx/imx51-ts4800.dts           |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx53-kp-ddc.dts           |  2 +-
+ arch/arm/boot/dts/nxp/imx/imx53-kp.dtsi              | 10 +---------
+ arch/arm/boot/dts/nxp/imx/imx53-m53evk.dts           |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx53-mba53.dts            |  2 +-
+ arch/arm/boot/dts/nxp/imx/imx53-ppd.dts              |  6 ++----
+ arch/arm/boot/dts/nxp/imx/imx53-tqma53.dtsi          |  8 --------
+ arch/arm/boot/dts/nxp/imx/imx6dl-aristainetos_4.dts  |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx6dl-aristainetos_7.dts  |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx6dl-mamoj.dts           |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx6q-ba16.dtsi            |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx6q-bosch-acc.dts        | 10 +++-------
+ arch/arm/boot/dts/nxp/imx/imx6q-kp.dtsi              |  6 ++----
+ arch/arm/boot/dts/nxp/imx/imx6q-novena.dts           |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx6q-pistachio.dts        |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx6q-prti6q.dts           |  3 +--
+ .../boot/dts/nxp/imx/imx6q-var-dt6customboard.dts    |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-apf6dev.dtsi       |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-aristainetos2.dtsi |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-cubox-i.dtsi       |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-emcon.dtsi         |  9 +++------
+ arch/arm/boot/dts/nxp/imx/imx6qdl-gw52xx.dtsi        |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-gw53xx.dtsi        |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-gw54xx.dtsi        |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-gw560x.dtsi        |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-gw5903.dtsi        |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-gw5904.dtsi        |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-icore.dtsi         |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-nit6xlite.dtsi     |  6 ++----
+ arch/arm/boot/dts/nxp/imx/imx6qdl-nitrogen6_max.dtsi |  9 +++------
+ .../arm/boot/dts/nxp/imx/imx6qdl-nitrogen6_som2.dtsi |  6 ++----
+ arch/arm/boot/dts/nxp/imx/imx6qdl-nitrogen6x.dtsi    |  6 ++----
+ arch/arm/boot/dts/nxp/imx/imx6qdl-phytec-mira.dtsi   |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-sabreauto.dtsi     |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-sabrelite.dtsi     |  9 +++------
+ arch/arm/boot/dts/nxp/imx/imx6qdl-sabresd.dtsi       |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-savageboard.dtsi   |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-skov-cpu.dtsi      |  1 -
+ arch/arm/boot/dts/nxp/imx/imx6sl-evk.dts             |  4 +---
+ arch/arm/boot/dts/nxp/imx/imx6sll-evk.dts            |  4 +---
+ arch/arm/boot/dts/nxp/imx/imx6sx-nitrogen6sx.dts     |  4 +---
+ arch/arm/boot/dts/nxp/imx/imx6sx-sdb.dtsi            |  4 +---
+ .../boot/dts/nxp/imx/imx6sx-softing-vining-2000.dts  | 12 +++---------
+ arch/arm/boot/dts/nxp/imx/imx6ul-14x14-evk.dtsi      |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx6ul-ccimx6ulsbcpro.dts  |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx6ul-geam.dts            |  3 +--
+ .../boot/dts/nxp/imx/imx6ul-imx6ull-opos6uldev.dtsi  |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx6ul-isiot.dtsi          |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx6ul-kontron-bl-43.dts   |  3 +--
+ .../boot/dts/nxp/imx/imx6ul-kontron-bl-common.dtsi   |  3 +--
+ arch/arm/boot/dts/nxp/imx/imx6ul-pico.dtsi           |  3 +--
+ 51 files changed, 64 insertions(+), 150 deletions(-)
+
+
+base-commit: 4cece764965020c22cff7665b18a012006359095
+-- 
+2.43.0
+
 
