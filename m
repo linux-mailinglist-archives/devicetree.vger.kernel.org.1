@@ -1,186 +1,131 @@
-Return-Path: <devicetree+bounces-56435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56436-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F03D8993A6
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 05:11:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDCF6899420
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 06:37:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D98C0282404
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 03:11:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A9831F28CFB
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 04:37:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83D73182B5;
-	Fri,  5 Apr 2024 03:11:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A7001C68F;
+	Fri,  5 Apr 2024 04:36:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IZzO4Ehu"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="II5sgwYQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E134E20313;
-	Fri,  5 Apr 2024 03:11:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A23BA21;
+	Fri,  5 Apr 2024 04:36:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712286671; cv=none; b=eunkccl9NBJAzHSiu/hjWh5f/I2YOM3CbL98Zpu5/wIMKhZercItlyY85MDtKs+rRoMF6PUgJlnPhNMb6wiOjetNZ7Lf4fd84oVuSreLNtAdaP+4zzVHctJNwmrHh1u4+6e1ktJJLfAgHdjbOURFlXmFnBdKFsPM2yBvqFZzqaw=
+	t=1712291818; cv=none; b=CrF/1SiTcSdKlVmnVu+1DPvbr2UQ55y2wUBMlK/WJrK7O5Tc7TKcNVTZZxzggti7YzuRg0HfvcSSLePopR3weKhWETFY/tscVAE2s7tST7Lc/fZo3mSiYvCjet9aSs+4ecuBZ8HTirFHeolpWDT2hLfLiEomYB9O5/1skg7qDbI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712286671; c=relaxed/simple;
-	bh=c/nS0D1RD43be7oZ49NydcU4l66Mke80I2ljTSJyyrs=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lr6JEyj9whuiWseHoT38D6UVYO962rpvQ8+vyx7ww+sDqFAiqk5rPmi+zYpmzKLBWIznzJK0YR756qcigUfTuWF1BRyvJm19DMpAoxL+4cy8XXyVBpJf5zDaGv8tYNb2X2DGju6yRjn5P5mS+3DTTyMH3mECiSHrqTZ29Le0tSM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IZzO4Ehu; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43527dFH015699;
-	Fri, 5 Apr 2024 03:10:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=qcppdkim1; bh=FwLCTYvyG2BzUyu75wDdV
-	Y/7/PCyyGgukkUMUtOcK3k=; b=IZzO4EhuASwXIFpHvWAC//BtUgN5aVUembQHM
-	HtqVK6KAsGAILT5EiKpFiZr1/y1pG/itxOo7OJFRY3cEI8jghfsPbDf6FxFAjJ7T
-	Wlu3wixX2pg+BBmu+0Rz+KisxtBdN1t62bT4ZjnzdTGuOQvk6alsvdIxzHc5ySd7
-	TqPadYKtcefw5BjNSGrBCsPFdUfEPZ62NL+4Rwu9JZHABZxqc9Zt5IrlZPhXRCgD
-	J3DGegdHJlJunQ8Vbew+AstCUVsJUlOfs/2AvE4eHJNSkFT91/Ih2SgZq7HQ65Oz
-	NN+EB4aYXbXiy77ynOXwG4/w8jl3HaC5GXiHfYjj3ki9JAR0g==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xa7m5g46f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 05 Apr 2024 03:10:52 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4353AoLx021530
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 5 Apr 2024 03:10:50 GMT
-Received: from hu-pkondeti-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.4; Thu, 4 Apr 2024 20:10:43 -0700
-Date: Fri, 5 Apr 2024 08:40:40 +0530
-From: Pavan Kondeti <quic_pkondeti@quicinc.com>
-To: Elliot Berman <quic_eberman@quicinc.com>
-CC: Alex Elder <elder@linaro.org>,
-        Srinivas Kandagatla
-	<srinivas.kandagatla@linaro.org>,
-        Murali Nalajal <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri
-	<quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Philip Derrin <quic_pderrin@quicinc.com>,
-        Prakruthi Deepak Heragu
-	<quic_pheragu@quicinc.com>,
-        Jonathan Corbet <corbet@lwn.net>, Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        "Fuad
- Tabba" <tabba@google.com>,
-        Sean Christopherson <seanjc@google.com>,
-        "Andrew
- Morton" <akpm@linux-foundation.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-mm@kvack.org>
-Subject: Re: [PATCH v17 11/35] virt: gunyah: Translate gh_rm_hyp_resource
- into gunyah_resource
-Message-ID: <ff6a3fb2-5f1a-4baa-b42a-a7767e92885a@quicinc.com>
-References: <20240222-gunyah-v17-0-1e9da6763d38@quicinc.com>
- <20240222-gunyah-v17-11-1e9da6763d38@quicinc.com>
+	s=arc-20240116; t=1712291818; c=relaxed/simple;
+	bh=goGGs6Qp9Tc+FkcaAXqOOsCkNMDrE5spBraGeJFsMKc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Uy7rSnTbp/4mNoeetRG1HowVpNJ94oy8y6BoUsbzYbykrvKppMmaTix8rs7kjpVs1GI34PRCKUCGvB6u3QPzD81ld8e6BAjVCtHsgNinVR07Bu56WbUiK5RdPDoi8WobVkruw9ya+DSY63EC55K6P+BY7/zGLXFoo8kuTgMc9A0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=II5sgwYQ; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1712291815; x=1743827815;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=goGGs6Qp9Tc+FkcaAXqOOsCkNMDrE5spBraGeJFsMKc=;
+  b=II5sgwYQDc5HbSbTtqKIn0eNSYtS5oUKbD6BDeYgMgrDBTFMlknzExJ0
+   klWWHFlt7eOG0LangLcNtS30lP+68qqC4A2JLxOUPfPlnTBef9uLKuyu7
+   0X0xg2kORFUSuPEnXJLKK60gbmH7mIDRQ9h0d2fpksG/8dVyRz8PUlx0i
+   5hkz/Q5PhfLrGka6+cPskp0+LHFTqB5iXgxYU65mEzPZVf3fpHv+3pN8P
+   W7ACGorEM88Ta/C7i04EsmSZF78J+TgOVK/66tnoh8BvCeiYpNZpji9lN
+   ttPhyhW2gffLZySBiDYb2cl6UJ6lK1Oq2qCNfwAjFMMwCKIbz6f9uJCev
+   g==;
+X-CSE-ConnectionGUID: I3x9LaISQ1uPgH0YvRkiJw==
+X-CSE-MsgGUID: kwBJdMmISH+6c6LoaLiAAg==
+X-IronPort-AV: E=Sophos;i="6.07,180,1708412400"; 
+   d="scan'208";a="19541022"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 04 Apr 2024 21:36:53 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 4 Apr 2024 21:36:23 -0700
+Received: from che-lt-i70843lx.microchip.com (10.10.85.11) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Thu, 4 Apr 2024 21:36:10 -0700
+From: Dharma Balasubiramani <dharma.b@microchip.com>
+To: "andrzej . hajda @ intel . com" <andrzej.hajda@intel.com>, "neil .
+ armstrong @ linaro . org" <neil.armstrong@linaro.org>, "rfoss @ kernel . org"
+	<rfoss@kernel.org>, "Laurent . pinchart @ ideasonboard . com"
+	<Laurent.pinchart@ideasonboard.com>, "jonas @ kwiboo . se" <jonas@kwiboo.se>,
+	"jernej . skrabec @ gmail . com" <jernej.skrabec@gmail.com>, "maarten .
+ lankhorst @ linux . intel . com" <maarten.lankhorst@linux.intel.com>,
+	"mripard @ kernel . org" <mripard@kernel.org>, "tzimmermann @ suse . de"
+	<tzimmermann@suse.de>, "airlied @ gmail . com" <airlied@gmail.com>, "daniel @
+ ffwll . ch" <daniel@ffwll.ch>, "robh+dt @ kernel . org" <robh+dt@kernel.org>,
+	"krzysztof . kozlowski+dt @ linaro . org"
+	<krzysztof.kozlowski+dt@linaro.org>, "conor+dt @ kernel . org"
+	<conor+dt@kernel.org>, "linux @ armlinux . org . uk" <linux@armlinux.org.uk>,
+	"Nicolas . Ferre @ microchip . com" <Nicolas.Ferre@microchip.com>, "alexandre
+ . belloni @ bootlin . com" <alexandre.belloni@bootlin.com>, "claudiu . beznea
+ @ tuxon . dev" <claudiu.beznea@tuxon.dev>, "Manikandan . M @ microchip . com"
+	<Manikandan.M@microchip.com>, "Dharma . B @ microchip . com"
+	<Dharma.B@microchip.com>, "arnd @ arndb . de" <arnd@arndb.de>, "geert+renesas
+ @ glider . be" <geert+renesas@glider.be>, "Jason @ zx2c4 . com"
+	<Jason@zx2c4.com>, "mpe @ ellerman . id . au" <mpe@ellerman.id.au>, "gerg @
+ linux-m68k . org" <gerg@linux-m68k.org>, "rdunlap @ infradead . org"
+	<rdunlap@infradead.org>, "vbabka @ suse . cz" <vbabka@suse.cz>, "dri-devel @
+ lists . freedesktop . org" <dri-devel@lists.freedesktop.org>, "devicetree @
+ vger . kernel . org" <devicetree@vger.kernel.org>, "linux-kernel @ vger .
+ kernel . org" <linux-kernel@vger.kernel.org>, "linux-arm-kernel @ lists .
+ infradead . org" <linux-arm-kernel@lists.infradead.org>, "Hari . PrasathGE @
+ microchip . com" <Hari.PrasathGE@microchip.com>, "akpm @ linux-foundation .
+ org" <akpm@linux-foundation.org>, "deller @ gmx . de" <deller@gmx.de>
+CC: Dharma Balasubiramani <dharma.b@microchip.com>
+Subject: [PATCH v5 0/4] LVDS Controller Support for SAM9X75 SoC
+Date: Fri, 5 Apr 2024 10:05:32 +0530
+Message-ID: <20240405043536.274220-1-dharma.b@microchip.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240222-gunyah-v17-11-1e9da6763d38@quicinc.com>
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 8XJxnYRnZpwG_GTOUSD6n18PMOkK3sY8
-X-Proofpoint-GUID: 8XJxnYRnZpwG_GTOUSD6n18PMOkK3sY8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-05_02,2024-04-04_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- spamscore=0 mlxscore=0 bulkscore=0 phishscore=0 adultscore=0
- suspectscore=0 malwarescore=0 impostorscore=0 clxscore=1011
- mlxlogscore=825 priorityscore=1501 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2404010003 definitions=main-2404050022
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Thu, Feb 22, 2024 at 03:16:34PM -0800, Elliot Berman wrote:
-> When booting a Gunyah virtual machine, the host VM may gain capabilities
-> to interact with resources for the guest virtual machine. Examples of
-> such resources are vCPUs or message queues. To use those resources, we
-> need to translate the RM response into a gunyah_resource structure which
-> are useful to Linux drivers. Presently, Linux drivers need only to know
-> the type of resource, the capability ID, and an interrupt.
-> 
-> On ARM64 systems, the interrupt reported by Gunyah is the GIC interrupt
-> ID number and always a SPI or extended SPI.
-> 
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
-> ---
->  arch/arm64/include/asm/gunyah.h | 36 ++++++++++++++++++++++
->  drivers/virt/gunyah/rsc_mgr.c   | 67 +++++++++++++++++++++++++++++++++++++++++
->  drivers/virt/gunyah/rsc_mgr.h   |  5 +++
->  include/linux/gunyah.h          |  2 ++
->  4 files changed, 110 insertions(+)
-> 
-> diff --git a/arch/arm64/include/asm/gunyah.h b/arch/arm64/include/asm/gunyah.h
-> new file mode 100644
-> index 0000000000000..0cd3debe22b64
-> --- /dev/null
-> +++ b/arch/arm64/include/asm/gunyah.h
-> @@ -0,0 +1,36 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +#ifndef _ASM_GUNYAH_H
-> +#define _ASM_GUNYAH_H
-> +
-> +#include <linux/irq.h>
-> +#include <linux/irqdomain.h>
-> +
-> +static inline int arch_gunyah_fill_irq_fwspec_params(u32 virq,
-> +						 struct irq_fwspec *fwspec)
-> +{
-> +	/* Assume that Gunyah gave us an SPI or ESPI; defensively check it */
-> +	if (WARN(virq < 32, "Unexpected virq: %d\n", virq)) {
-> +		return -EINVAL;
-> +	} else if (virq <= 1019) {
-> +		fwspec->param_count = 3;
-> +		fwspec->param[0] = 0; /* GIC_SPI */
-> +		fwspec->param[1] = virq - 32; /* virq 32 -> SPI 0 */
-> +		fwspec->param[2] = IRQ_TYPE_EDGE_RISING;
-> +	} else if (WARN(virq < 4096, "Unexpected virq: %d\n", virq)) {
-> +		return -EINVAL;
-> +	} else if (virq < 5120) {
-> +		fwspec->param_count = 3;
-> +		fwspec->param[0] = 2; /* GIC_ESPI */
-> +		fwspec->param[1] = virq - 4096; /* virq 4096 -> ESPI 0 */
-> +		fwspec->param[2] = IRQ_TYPE_EDGE_RISING;
-> +	} else {
-> +		WARN(1, "Unexpected virq: %d\n", virq);
-> +		return -EINVAL;
-> +	}
-> +	return 0;
-> +}
-> +
+This patch series introduces LVDS controller support for the SAM9X75 SoC. The
+LVDS controller is designed to work with Microchip's sam9x7 series
+System-on-Chip (SoC) devices, providing Low Voltage Differential Signaling
+capabilities.
 
-__get_intid_range() in gic-v3 driver looks more pleasing. Other than
-that the logic for the translation looks good to me.
+Patch series Changelog:
+- Include configs: at91: Enable LVDS serializer
+- include all necessary To/Cc entries.
+The Individual Changelogs are available on the respective patches.
 
-Thanks,
-Pavan
+Dharma Balasubiramani (4):
+  dt-bindings: display: bridge: add sam9x75-lvds binding
+  drm/bridge: add lvds controller support for sam9x7
+  MAINTAINERS: add SAM9X7 SoC's LVDS controller
+  ARM: configs: at91: Enable LVDS serializer support
+
+ .../bridge/microchip,sam9x75-lvds.yaml        |  55 +++++
+ MAINTAINERS                                   |   8 +
+ arch/arm/configs/at91_dt_defconfig            |   1 +
+ drivers/gpu/drm/bridge/Kconfig                |   7 +
+ drivers/gpu/drm/bridge/Makefile               |   1 +
+ drivers/gpu/drm/bridge/microchip-lvds.c       | 228 ++++++++++++++++++
+ 6 files changed, 300 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/microchip,sam9x75-lvds.yaml
+ create mode 100644 drivers/gpu/drm/bridge/microchip-lvds.c
+
+-- 
+2.25.1
+
 
