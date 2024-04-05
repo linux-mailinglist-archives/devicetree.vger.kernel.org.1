@@ -1,144 +1,186 @@
-Return-Path: <devicetree+bounces-56441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75BCC89948D
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 06:45:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9DED8994B0
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 07:21:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EE8ACB25EEE
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 04:45:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 24341B21844
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 05:21:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4644219F3;
-	Fri,  5 Apr 2024 04:44:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BCA121379;
+	Fri,  5 Apr 2024 05:21:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="Kl3pFkAp"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="AhJi/sZG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94A2DC138;
-	Fri,  5 Apr 2024 04:44:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C3B8EAC5;
+	Fri,  5 Apr 2024 05:21:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712292245; cv=none; b=Wc2dqQHT1Hg39cy0GRCRKAXJFcRtzfVZhQjNV64vRuTzVmWfSbHFabvzvysPfp21kqPGb5pnbTnH6phzgP1C5EcJUoHekMDEicjb+uOeWxbtxGtkyKEvLBSqjsaf2WndfnvNjvrNky6vOOEnFcHlAffmuM0+w0175P0rkShs5KI=
+	t=1712294502; cv=none; b=lAWiquoqOXqvlA+FtwzwmmBkMAiMdtG9siQd67llpZMoIzN9EyF4EbxouN4HoRUtHqIrWCJcA1zqgDtVSqO+ZKP8FpDQPdcSJLEb1FGToyC9HsUMRj0SLTnkFkHadryWHY6vUo0P9xyeV3qQb1l7DWTUlOT5qqngXsES7PkPb4Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712292245; c=relaxed/simple;
-	bh=nP5LSoPmz6tMExekbFggHQmASZ3xuQAUPcPQ6315p7c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XwG8jG8IPX2Ly9u4vL0/TKrq1aEgisam1CDtXprbgkuiqb07AYMuwBAwmn/jkmfj9Q5muuJi0TaQpg5bdkRDOePE4RSxQaaQUKrGji/x1IDJutzjnvWUvAa7019pTdKMPQX1Ayn7BlwWBgR+KnHbMRajrVmPVgl+QJ99SVeeDJg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=Kl3pFkAp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B1DFC433F1;
-	Fri,  5 Apr 2024 04:44:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1712292245;
-	bh=nP5LSoPmz6tMExekbFggHQmASZ3xuQAUPcPQ6315p7c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Kl3pFkAptITw2b7BMS4ccJYJ2GNDXaJVO9O2I+YNvsiM4STCe/AskFJrIQiE8WtpP
-	 xcSI6CknCzHADaD8kDSEBWy3SgeAMTngU2YKd79J8ItyAAgzk6tqee3uDuv79S5pGO
-	 LlRwKqADyKQhOzkI6QSxHbDPYcBRKhwCn9LulNRg=
-Date: Fri, 5 Apr 2024 06:43:56 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Johan Hovold <johan@kernel.org>,
-	Krishna Kurapati <quic_kriskura@quicinc.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org, quic_ppratap@quicinc.com,
-	quic_jackp@quicinc.com, Johan Hovold <johan+linaro@kernel.org>
-Subject: Re: [PATCH v19 2/9] usb: dwc3: core: Access XHCI address space
- temporarily to read port info
-Message-ID: <2024040558-undercut-sandbar-7ffc@gregkh>
-References: <20240404051229.3082902-1-quic_kriskura@quicinc.com>
- <20240404051229.3082902-3-quic_kriskura@quicinc.com>
- <Zg5VDnbaaBXJyRjV@hovoldconsulting.com>
- <f16e1280-8f7e-40a7-ab45-9acaeb3e90cb@linaro.org>
- <2024040455-sitting-dictator-170c@gregkh>
- <Zg9THGBRuppfw4y+@hu-bjorande-lv.qualcomm.com>
+	s=arc-20240116; t=1712294502; c=relaxed/simple;
+	bh=sbp/BvXn/ocXeWLlUWHaTIcY8lwqdZrtwrfGm7hEV1Q=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WPkv3CBgUIR/2DDIVfw1dCQDY1gUp4HQmOLI1aABRqJSQRAyMHlIH40Rhh90uPxcEnFuTY/9MqL7u0igBOJjvnRkdUqrBk8eAWKwiURk8GSv5Q/57I3dvrbaTK1biti6GqmSd4zLl+ckMLzSqnKbUMILtdxPUlvrn5FuSkxUV/U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=AhJi/sZG; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4355LMkL032194;
+	Fri, 5 Apr 2024 00:21:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1712294482;
+	bh=rUC31u9nczDP7owyqjPSB+1Eq1oH+xM4RGziXzYW0k8=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=AhJi/sZG9+dE6kumgP/Ws/t/dcNQDpfOEIaHs1NQTS6VM0q1V+FDjTLzjzjbCnE/1
+	 sbq/iHzZhOXXv1LgOggYzY9ZVYE0QJX8aRfoDTZZp8VGll+cQvoo09wr77Y8seZjqu
+	 6/5dJbKYdKLTOkt506O69Wq4aZw6vK3CCG28nDLk=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4355LLAR047800
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 5 Apr 2024 00:21:22 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 5
+ Apr 2024 00:21:21 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 5 Apr 2024 00:21:21 -0500
+Received: from localhost (uda0492258.dhcp.ti.com [172.24.227.9])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4355LK0C089520;
+	Fri, 5 Apr 2024 00:21:21 -0500
+Date: Fri, 5 Apr 2024 10:51:20 +0530
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Siddharth Vadapalli <s-vadapalli@ti.com>, <lee@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>
+Subject: Re: [PATCH] dt-bindings: mfd: syscon: Add ti,am62p-cpsw-mac-efuse
+ compatible
+Message-ID: <94bae793-ba4f-467f-917d-213fa3cd6faa@ti.com>
+References: <20240402105708.4114146-1-s-vadapalli@ti.com>
+ <2e9b6a91-43d3-4b23-830d-40e607505d8c@kernel.org>
+ <30065bdc-ccef-4610-b1c1-7661f801b8e9@ti.com>
+ <4b1380a8-0136-4395-ba42-9bcff2e1bdb0@kernel.org>
+ <aabea385-16e0-4116-a12b-3ce1e06574e3@ti.com>
+ <eb7a0d5c-c197-44b9-baea-e9b54792b447@kernel.org>
+ <af61424e-7006-49f5-b614-3caa3674685a@ti.com>
+ <083e50de-1c99-4a58-8b55-4dec26d97c1b@kernel.org>
+ <9bca7d94-142e-4717-aea7-437805717a00@ti.com>
+ <a895ddc8-5c18-49d7-86c4-b995bb946914@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <Zg9THGBRuppfw4y+@hu-bjorande-lv.qualcomm.com>
+In-Reply-To: <a895ddc8-5c18-49d7-86c4-b995bb946914@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Thu, Apr 04, 2024 at 06:25:48PM -0700, Bjorn Andersson wrote:
-> On Thu, Apr 04, 2024 at 02:58:29PM +0200, Greg Kroah-Hartman wrote:
-> > On Thu, Apr 04, 2024 at 10:07:27AM +0200, Krzysztof Kozlowski wrote:
-> > > On 04/04/2024 09:21, Johan Hovold wrote:
-> > > > On Thu, Apr 04, 2024 at 10:42:22AM +0530, Krishna Kurapati wrote:
-> > > >  
-> > > >> +static int dwc3_get_num_ports(struct dwc3 *dwc)
-> > > >> +{
-> > > >> +	void __iomem *base;
-> > > >> +	u8 major_revision;
-> > > >> +	u32 offset;
-> > > >> +	u32 val;
-> > > >> +
-> > > >> +	/*
-> > > >> +	 * Remap xHCI address space to access XHCI ext cap regs since it is
-> > > >> +	 * needed to get information on number of ports present.
-> > > >> +	 */
-> > > >> +	base = ioremap(dwc->xhci_resources[0].start,
-> > > >> +		       resource_size(&dwc->xhci_resources[0]));
-> > > >> +	if (!base)
-> > > >> +		return PTR_ERR(base);
+On Thu, Apr 04, 2024 at 02:02:21PM +0530, Siddharth Vadapalli wrote:
+> On Wed, Apr 03, 2024 at 12:18:10PM +0530, Siddharth Vadapalli wrote:
+> > On Wed, Apr 03, 2024 at 08:40:19AM +0200, Krzysztof Kozlowski wrote:
+> > > On 03/04/2024 08:32, Siddharth Vadapalli wrote:
+> > > > On Wed, Apr 03, 2024 at 08:27:06AM +0200, Krzysztof Kozlowski wrote:
+> > > >> On 03/04/2024 07:35, Siddharth Vadapalli wrote:
+> > > >>> On Tue, Apr 02, 2024 at 08:06:27PM +0200, Krzysztof Kozlowski wrote:
+> > > >>>> On 02/04/2024 14:30, Siddharth Vadapalli wrote:
+> > > >>>>> On Tue, Apr 02, 2024 at 02:08:32PM +0200, Krzysztof Kozlowski wrote:
+> > > >>>>>> On 02/04/2024 12:57, Siddharth Vadapalli wrote:
+> > > >>>>>>> The CTRLMMR_MAC_IDx registers within the CTRL_MMR space of TI's AM62p SoC
+> > > >>>>>>> contain the MAC Address programmed in the eFuse. Add compatible for
+> > > >>>>>>> allowing the CPSW driver to obtain a regmap for the CTRLMMR_MAC_IDx
+> > > >>>>>>> registers within the System Controller device-tree node. The default MAC
+> > > >>>>>>> Address for the interface corresponding to the first MAC port will be set
+> > > >>>>>>> to the value programmed in the eFuse.
+> > > >>>>>>>
+> > > >>>>>>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> > > >>>>>>> ---
+> > > >>>>>>>
+> > > >>>>>>> This patch is based on linux-next tagged next-20240402.
+> > > >>>>>>
+> > > >>>>>> Where is the DTS using it?
+> > > >>>>>
+> > > >>>>> The current implementation in the device-tree for older TI K3 SoCs is as
+> > > >>>>> follows:
+> > > >>>>>
+> > > >>>>> 	cpsw_port1: port@1 {
+> > > >>>>> 		reg = <1>;
+> > > >>>>> 		ti,mac-only;
+> > > >>>>> 		label = "port1";
+> > > >>>>> 		phys = <&phy_gmii_sel 1>;
+> > > >>>>> 		mac-address = [00 00 00 00 00 00];
+> > > >>>>> 		ti,syscon-efuse = <&wkup_conf 0x200>;
+> > > >>>>> 	};
+> > > >>>>>
+> > > >>>>> The "ti,syscon-efuse" property passes the reference to the System
+> > > >>>>> Controller node as well as the offset to the CTRLMMR_MAC_IDx registers
+> > > >>>>> within the CTRL_MMR space.
+> > > >>>>
+> > > >>>> Please reference upstream DTS or lore link to patch under review.
+> > > >>>
+> > > >>> An example of the existing implementation in the device-tree for AM64x
+> > > >>> is:
+> > > >>> https://github.com/torvalds/linux/blob/d4e8c8ad5d14ad51ed8813442d81c43019fd669d/arch/arm64/boot/dts/ti/k3-am64-main.dtsi#L697
+> > > >>> It uses:
+> > > >>> 	ti,syscon-efuse = <&main_conf 0x200>;
+> > > >>>
+> > > >>> and "main_conf" node is defined at:
+> > > >>> https://github.com/torvalds/linux/blob/d4e8c8ad5d14ad51ed8813442d81c43019fd669d/arch/arm64/boot/dts/ti/k3-am64-main.dtsi#L40
+> > > >>
+> > > >> It is quite different than your bindings, so your bindings are incorrect.
 > > > > 
-> > > > This is obviously still broken. You need to update the return value as
-> > > > well.
+> > > > Sorry I didn't understand what you mean. The references I have provided
+> > > > are for existing DTS where "main_conf"/"wkup_conf" (System Controller
+> > > > nodes) have the compatible "syscon", unlike in AM62p at:
+> > > > https://github.com/torvalds/linux/blob/20f8173afaac90dd9dca11be4aa602a47776077f/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi#L8
+> > > > which has the "simple-bus" compatible for the "wkup_conf" node.
 > > > > 
-> > > > Fix in v20.
+> > > > Also, shouldn't the device-tree bindings patches be posted first and get
+> > > > merged before I post the device-tree patches that utilize the
+> > > > compatible/properties that have been added in the bindings? That is the
+> > > > reason why I had shared the "DIFF" for the DTS changes that I will be
+> > > > posting once this patch for the new compatible is accepted.
+> > > > 
 > > > 
-> > > If one patchset reaches 20 versions, I think it is time to stop and
-> > > really think from the beginning, why issues keep appearing and reviewers
-> > > are still not happy.
+> > > That's not the process. I will be NAKing bindings which do not have any
+> > > users, because I do not trust you test them.
 > > > 
-> > > Maybe you did not perform extensive internal review, which you are
-> > > encouraged to by your own internal policies, AFAIR. Before posting next
-> > > version, please really get some internal review first.
+> > > The process is almost always:
+> > > 1. Send bindings,
+> > > 2. Send driver changes (if applicable) in the same patchset.
+> > > 3. Send DTS, usually in separate patches and provide lore link to the
+> > > bindings in the changelog or cover letter.
 > > 
-> > Also get those internal reviewers to sign-off on the commits and have
-> > that show up when you post them next.  That way they are also
-> > responsible for this patchset, it's not fair that they are making you do
-> > all the work here :)
-> > 
+> > Thank you for clarifying. I will post the DTS patches corresponding to
+> > this patch and reference this patch in the DTS patch series.
 > 
-> I like this idea and I'm open to us changing our way of handling this.
-> 
-> But unless such internal review brings significant input to the
-> development I'd say a s-o-b would take the credit from the actual
-> author.
+> I have posted the DTS patch at:
+> https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240404081845.622707-1-s-vadapalli@ti.com/
+> indicating the dependency on this bindings patch.
 
-It does not do that at all.  It provides proof that someone else has
-reviewed it and agrees with it.  Think of it as a "path of blame" for
-when things go bad (i.e. there is a bug in the submission.)  Putting
-your name on it makes you take responsibility if that happens.
+Hello Krzysztof,
 
-> We've discussed a few times about carrying Reviewed-by et al from the
-> internal reviews, but as maintainer I dislike this because I'd have no
-> way to know if a r-b on vN means the patch was reviewed, or if it was
-> just "accidentally" carried from v(N-1).
-> But it might be worth this risk, is this something you think would be
-> appropriate?
+Do I have to post a v2 for this patch? You had Acked it initially but I
+am not sure if the discussion so far will make it unclear to readers
+regarding the acceptance of this patch. Thank you for Acking the v3 DTS
+patch at:
+https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240404124614.891416-1-s-vadapalli@ti.com/
 
-For some companies we REQUIRE this to happen due to low-quality
-submissions and waste of reviewer's time.  Based on the track record
-here for some of these patchsets, hopefully it doesn't become a
-requirement for this company as well :)
+Since the v3 DTS patch mentions this bindings patch as a dependency, I
+wanted to be sure whether I have to post a v2 for this or that won't be
+required.
 
-thanks,
-
-greg k-h
+Regards,
+Siddharth.
 
