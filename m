@@ -1,150 +1,219 @@
-Return-Path: <devicetree+bounces-56618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDDF7899F11
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 16:09:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CCF6899F1D
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 16:10:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8429281673
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 14:09:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B4221C21977
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 14:10:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D873B16E890;
-	Fri,  5 Apr 2024 14:09:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A6E516E891;
+	Fri,  5 Apr 2024 14:10:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nh0miAyy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dYdJQTbt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB0E016D9D1;
-	Fri,  5 Apr 2024 14:09:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33E3D16D9CB;
+	Fri,  5 Apr 2024 14:10:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712326193; cv=none; b=oDwmrRuw+scAn5SEinXbibRSvkkMeLrP4PN3forCw6W/Y8GolIUrTnCWtgrV8hqN6ghY0c3AzPlUXzEMF+h4Q9jo33LKBQp9FChEWZdkkCCPycd9BRqK7OvGr9jS7ztzEPqmeDFyGYLNHNx7bPq5yrT/BUdIAXNCxzntryYsNQo=
+	t=1712326239; cv=none; b=gfN3ocnI9+HaNB6mEvDJ/CdsW+6Oa9kOQPhZyrvmKQxsZT0ZQNl4DBZ2/v8/DcPdzgu0YSadaWfhohEfhkaheVDBK6B+Df2nJnCC3aBX4UFZ+tBFgWoaObxnRmCcczAq6vslbWYcCLd5VSK25gfLq3q/ouzVXtUz0PVvL5LsRnY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712326193; c=relaxed/simple;
-	bh=cnrxDzXd1/Zz7OjSfw40jDJ0E7JSzUp/GezENfo8XHY=;
+	s=arc-20240116; t=1712326239; c=relaxed/simple;
+	bh=6sWHundRt9py16+WBy2EBbLSt7kiYgIblwW8lz5k9UQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mP+u3ZPahpUkd9JG7l/rqzqr3EYjMhYYbuwyO/YpznvQ8SHI7ZNVXjCsp2aWoRSjjEzwrZ5Sr3QumvN8Y9LlUhC1v1W7HMp4ckA5oSJiLKsDwcK93AIkILhyIOueV8bViDiK9mzePhq4ynr3G1rimkUVm0F3rcNJnrWyBsGM1u8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nh0miAyy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B27AC433F1;
-	Fri,  5 Apr 2024 14:09:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Sl3vN0RAWG/ck3lGWM6k4F6hfBjiwDUJHXzt2ESrXXX+z43CTQ4m3aG4EyAKk0mewUtv6i5Yk99SfEqUO01KPvtAeFsff5nLtCHiS4ekCHeTlD4mjr/50j8ckcgFOoAROuwqmFkyqboTwvczGH4BprGRVp0U5TPItpykUbVLdvc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dYdJQTbt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AA58C433F1;
+	Fri,  5 Apr 2024 14:10:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712326193;
-	bh=cnrxDzXd1/Zz7OjSfw40jDJ0E7JSzUp/GezENfo8XHY=;
+	s=k20201202; t=1712326238;
+	bh=6sWHundRt9py16+WBy2EBbLSt7kiYgIblwW8lz5k9UQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Nh0miAyy9/qk0l633k/apXAeuCAu0WCqUlCM5Dl+p/Lu3KpcT2Ozmm0u0DngGulRt
-	 fHWQhPOSUTNxHvH7L/ssLzPYMqbsnSZKOc673X1EMymNb8bM715PCfZH5K4FNrOqin
-	 uPefYhwuuZrs8Ps1Xx7IjK3bIRbucl53oIlgs47BSkWo94RWUSrKb0qU5iHq+ga40+
-	 Jq8va0mUr5Ead9a/N3lXvDmryg8hUKAlMnPQlHRAa6Y5FnkyPLneXUOIaN+COlZYQG
-	 gvX3cfMxtKfIBfTNhAqNdbo7PKYrCUZGG6+j6dSTbnWJ9UcqP/ISksVJ86Mlrh0DpQ
-	 403WyqEA359yQ==
-Date: Fri, 5 Apr 2024 15:09:46 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Shenghao Ding <shenghao-ding@ti.com>
-Cc: linux-kernel@vger.kernel.org, lgirdwood@gmail.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	perex@perex.cz, tiwai@suse.com, 13916275206@139.com,
-	mohit.chawla@ti.com, soyer@irl.hu, jkhuang3@ti.com, tiwai@suse.de,
-	pdjuandi@ti.com, manisha.agrawal@ti.com, aviel@ti.com,
-	hnagalla@ti.com, praneeth@ti.com, Baojun.Xu@fpt.com
-Subject: Re: [PATCH v8 1/4] ASoc: PCM6240: Create PCM6240 Family driver code
-Message-ID: <dc5dad72-09cc-4001-afdc-1cd92cac312e@sirena.org.uk>
-References: <20240403003159.389-1-shenghao-ding@ti.com>
- <20240403003159.389-2-shenghao-ding@ti.com>
+	b=dYdJQTbtmhmWreOZBZxN5qpqdpgmCopUqgcBuklqrBbo5uG0iFj7oZ6yuSIu4poaP
+	 zpLnsBxPrV2yt/Cy8HvriOLxu2BwiIYeo5v9ydu+f0mHpU3NOIfat83RzJfGVlDACg
+	 KYn8lzCRW8DiUDkxhPU5Qi7chMeocdoo2ZCOpEUauLLCSGB1EaLI0SXQId+jvZAop8
+	 8F1IqCN/EeunEHMy3tgkz0C0j0SZbbF2XeHPaCfohtieEKQcUMfqdYJEsReseBiP3z
+	 CYZp4mBuJbGV8jd6O1LEQmoKqam3aymIGiiKYdcj97Clhe9uESVQ53lNzUxxFiqRcs
+	 UG7GkaAKDpw6Q==
+Date: Fri, 5 Apr 2024 16:10:30 +0200
+From: Niklas Cassel <cassel@kernel.org>
+To: Damien Le Moal <dlemoal@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+	Wilfred Mallawa <wilfred.mallawa@wdc.com>
+Subject: Re: [PATCH v2 03/18] PCI: endpoint: Introduce
+ pci_epc_mem_map()/unmap()
+Message-ID: <ZhAGVuDDainhsxpO@x1-carbon>
+References: <20240330041928.1555578-1-dlemoal@kernel.org>
+ <20240330041928.1555578-4-dlemoal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="zE+8122Hjp+Flwjb"
-Content-Disposition: inline
-In-Reply-To: <20240403003159.389-2-shenghao-ding@ti.com>
-X-Cookie: Honk if you love peace and quiet.
-
-
---zE+8122Hjp+Flwjb
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20240330041928.1555578-4-dlemoal@kernel.org>
 
-On Wed, Apr 03, 2024 at 08:31:55AM +0800, Shenghao Ding wrote:
-
-> +static const char *const pcmdev_ctrl_name[] = {
-> +	"%s-i2c-%d-dev%d-ch%d-ana-gain",
-> +	"%s-i2c-%d-dev%d-ch%d-digi-gain",
-> +	"%s-i2c-%d-dev%d-ch%d-fine-gain",
-> +};
-> +
-> +static const char *const pcmdev_ctrl_name_with_prefix[] = {
-> +	"%s-dev%d-ch%d-ana-gain",
-> +	"%s-dev%d-ch%d-digi-gain",
-> +	"%s-dev%d-ch%d-fine-gain",
-> +};
-
-These still don't look like idiomatic ALSA control names, if nothing
-else volume controls should end with Volume but the whole all lower case
-with -s thing really isn't idiomatic.
-
-> +static int pcmdev_put_volsw(struct snd_kcontrol *kcontrol,
-> +	struct snd_ctl_elem_value *ucontrol, int vol_ctrl_type)
+On Sat, Mar 30, 2024 at 01:19:13PM +0900, Damien Le Moal wrote:
+> Introduce the function pci_epc_mem_map() to facilitate controller memory
+> address allocation and mapping to a RC PCI address region in endpoint
+> function drivers.
+> 
+> This function first uses pci_epc_map_align() to determine the controller
+> memory address alignment (offset and size) constraints. The result of
+> this function is used to allocate a controller physical memory region
+> using pci_epc_mem_alloc_addr() and map it to the RC PCI address
+> space with pci_epc_map_addr(). Since pci_epc_map_align() may indicate
+> that a mapping can be smaller than the requested size, pci_epc_mem_map()
+> may only partially map the RC PCI address region specified and return
+> a smaller size for the effective mapping.
+> 
+> The counterpart of pci_epc_mem_map() to unmap and free the controller
+> memory address region is pci_epc_mem_unmap().
+> 
+> Both functions operate using struct pci_epc_map data structure which is
+> extended to contain the physical and virtual addresses of the allocated
+> controller memory. Endpoint function drivers can use struct pci_epc_map
+> to implement read/write accesses within the mapped RC PCI address region
+> using the ->virt_addr and ->size fields.
+> 
+> This commit contains contributions from Rick Wertenbroek
+> <rick.wertenbroek@gmail.com>.
+> 
+> Signed-off-by: Damien Le Moal <dlemoal@kernel.org>
+> ---
+>  drivers/pci/endpoint/pci-epc-core.c | 68 +++++++++++++++++++++++++++++
+>  include/linux/pci-epc.h             |  6 +++
+>  2 files changed, 74 insertions(+)
+> 
+> diff --git a/drivers/pci/endpoint/pci-epc-core.c b/drivers/pci/endpoint/pci-epc-core.c
+> index 37758ca91d7f..0095b54bdf9e 100644
+> --- a/drivers/pci/endpoint/pci-epc-core.c
+> +++ b/drivers/pci/endpoint/pci-epc-core.c
+> @@ -530,6 +530,74 @@ int pci_epc_map_addr(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
+>  }
+>  EXPORT_SYMBOL_GPL(pci_epc_map_addr);
+>  
+> +/**
+> + * pci_epc_mem_map() - allocate and map CPU address to PCI address
+> + * @epc: the EPC device on which the CPU address is to be allocated and mapped
+> + * @func_no: the physical endpoint function number in the EPC device
+> + * @vfunc_no: the virtual endpoint function number in the physical function
+> + * @pci_addr: PCI address to which the CPU address should be mapped
+> + * @size: the number of bytes to map starting from @pci_addr
+> + * @map: where to return the mapping information
+> + *
+> + * Allocate a controller physical address region and map it to a RC PCI address
+> + * region, taking into account the controller physical address mapping
+> + * constraints (if any). Returns the effective size of the mapping, which may
+> + * be less than @size, or a negative error code in case of error.
+> + */
+> +ssize_t pci_epc_mem_map(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
+> +			u64 pci_addr, size_t size, struct pci_epc_map *map)
 > +{
-
-> +	err = pcmdev_dev_update_bits(pcm_dev, dev_no, reg, val_mask, val);
-> +	if (err) {
-> +		dev_err(pcm_dev->dev, "%s: update_bits err = %d\n",
-> +			__func__, err);
-> +		err = 0;
-> +	}
-
-Why don't we report errors to users?
-
-> +		case PCMDEVICE_CMD_DELAY: {
-> +			unsigned int delay_time = 0;
+> +	int ret;
 > +
-> +			if (subblk_offset + 2 > sublocksize) {
-> +				dev_err(pcm_dev->dev,
-> +					"%s: deley out of boundary\n",
-> +					__func__);
-> +				break;
-> +			}
-> +			delay_time = get_unaligned_be16(&data[2]) * 1000;
-> +			usleep_range(delay_time, delay_time + 50);
-> +			subblk_offset += 2;
-> +		}
-> +			break;
-> +		case PCMDEVICE_CMD_FIELD_W:
-> +		if (subblk_offset + 6 > sublocksize) {
-> +			dev_err(pcm_dev->dev,
-> +				"%s: bit write out of memory\n", __func__);
-> +			break;
-> +		}
-> +		ret = pcmdev_dev_update_bits(pcm_dev, chn,
-> +			PCMDEVICE_REG(data[subblk_offset + 3],
-> +			data[subblk_offset + 4]), data[subblk_offset + 1],
-> +			data[subblk_offset + 5]);
+> +	ret = pci_epc_map_align(epc, func_no, vfunc_no, pci_addr, size, map);
+> +	if (ret)
+> +		return ret;
+> +
+> +	map->virt_base = pci_epc_mem_alloc_addr(epc, &map->phys_base,
+> +						map->map_size);
+> +	if (!map->virt_base)
+> +		return -ENOMEM;
+> +
+> +	map->phys_addr = map->phys_base + map->map_ofst;
+> +	map->virt_addr = map->virt_base + map->map_ofst;
+> +
+> +	ret = pci_epc_map_addr(epc, func_no, vfunc_no, map->phys_base,
+> +			       map->map_pci_addr, map->map_size);
+> +	if (ret) {
+> +		pci_epc_mem_free_addr(epc, map->phys_base, map->virt_base,
+> +				      map->map_size);
+> +		return ret;
+> +	}
+> +
+> +	return map->pci_size;
 
-The indentation here is all messed up, things not indented for the case
-blocks and so on.
+map->pci_size is of type size_t.
+pci_epc_mem_map returns a type of ssize_t.
 
---zE+8122Hjp+Flwjb
-Content-Type: application/pgp-signature; name="signature.asc"
+This means that on ILP32 you will truncate the result, and will only be
+able to map a region of max size 2GB.
 
------BEGIN PGP SIGNATURE-----
+Could we perhaps change this function to return an int instead?
+(0 on success). The mapped size can still be accessed in map->pci_size.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmYQBikACgkQJNaLcl1U
-h9Bstgf/fZgVu4w8dXZljCEZ/q4J2JEc9LqY60UgCz5OG6rDlq7Vngmm398tJIiX
-L+9sNepPJRkNh1QGaujU/yK/aB9WBkiQqEKAPmspBYbqDf1ypAPjOtP8pJeKiHc3
-MyLJ/NiblAMt3+rdt23gLWhy2LV6tLAj+b/sM09vwSCVy0eqnkt+R7awszCsxb7k
-ZmZ2I4JCC41iqzZlWg+8qgJTiVD8JfOHhINxj0wuYwqwtdQOqGj/sVsv3e0spq6L
-aZJs4WRnnFKJy8jkrCs4TIGe2qyqnBHECYd+68hdjwuoWIjoVPqpceAIjD/HhIPG
-XXfAKY4FRSJONbDd4A5685V5ctPODg==
-=prZg
------END PGP SIGNATURE-----
 
---zE+8122Hjp+Flwjb--
+Kind regards,
+Niklas
+
+> +}
+> +EXPORT_SYMBOL_GPL(pci_epc_mem_map);
+> +
+> +/**
+> + * pci_epc_mem_unmap() - unmap from PCI address and free a CPU address region
+> + * @epc: the EPC device on which the CPU address is allocated and mapped
+> + * @func_no: the physical endpoint function number in the EPC device
+> + * @vfunc_no: the virtual endpoint function number in the physical function
+> + * @map: the mapping information
+> + *
+> + * Allocate and map local CPU address to a PCI address, accounting for the
+> + * controller local CPU address alignment constraints.
+> + */
+> +void pci_epc_mem_unmap(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
+> +		       struct pci_epc_map *map)
+> +{
+> +	if (!pci_epc_function_is_valid(epc, func_no, vfunc_no))
+> +		return;
+> +
+> +	if (!map || !map->pci_size)
+> +		return;
+> +
+> +	pci_epc_unmap_addr(epc, func_no, vfunc_no, map->phys_base);
+> +	pci_epc_mem_free_addr(epc, map->phys_base, map->virt_base,
+> +			      map->map_size);
+> +}
+> +EXPORT_SYMBOL_GPL(pci_epc_mem_unmap);
+> +
+>  /**
+>   * pci_epc_clear_bar() - reset the BAR
+>   * @epc: the EPC device for which the BAR has to be cleared
+> diff --git a/include/linux/pci-epc.h b/include/linux/pci-epc.h
+> index 8cfb4aaf2628..86397a500b54 100644
+> --- a/include/linux/pci-epc.h
+> +++ b/include/linux/pci-epc.h
+> @@ -304,4 +304,10 @@ void __iomem *pci_epc_mem_alloc_addr(struct pci_epc *epc,
+>  				     phys_addr_t *phys_addr, size_t size);
+>  void pci_epc_mem_free_addr(struct pci_epc *epc, phys_addr_t phys_addr,
+>  			   void __iomem *virt_addr, size_t size);
+> +
+> +ssize_t pci_epc_mem_map(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
+> +			u64 pci_addr, size_t size, struct pci_epc_map *map);
+> +void pci_epc_mem_unmap(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
+> +		       struct pci_epc_map *map);
+> +
+>  #endif /* __LINUX_PCI_EPC_H */
+> -- 
+> 2.44.0
+> 
 
