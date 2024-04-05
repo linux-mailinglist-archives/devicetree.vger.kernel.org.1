@@ -1,144 +1,128 @@
-Return-Path: <devicetree+bounces-56704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56705-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18FA789A372
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 19:22:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EBAD89A384
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 19:34:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8E81CB24020
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 17:22:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C13791F23BE3
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 17:34:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 735DF17166E;
-	Fri,  5 Apr 2024 17:22:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FFC8171664;
+	Fri,  5 Apr 2024 17:33:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KiYYbD3b"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="vAEYWKwU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B032516C854;
-	Fri,  5 Apr 2024 17:22:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEA1E1CFBC
+	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 17:33:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712337734; cv=none; b=ei3SWCbhZdaPQ6UiXImlTTF8vDkscXE5T15FgMqz6ll6u++4AwpKZLdibV6qKIkIQ6qd0TBdrBm/5RCI+yqkIG6MbRdpLzBXwy35bVdzbaDwSfMZzjLMsrpB9core5Is8eg8NvmNfE8I7hS4Y4Kqeq8cwCApJ6yHO4q4aZ6ELwk=
+	t=1712338438; cv=none; b=oW+6cJRNzR44fHhPCjuJiof0dy4o+RFIhoCu6XE9QBtCQ6S3lcLuFCcFAi3EyKXasG0XE9lOAsuYz6/xcjg5Rw5nW2dTmyo84T/Cyt5YG2qkCZeubGLomUS+LinF0h5P2VYXZSyi3zl57RC2PgvU3zuovBhdPtCFPTXd+rQjVbs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712337734; c=relaxed/simple;
-	bh=n3a9v5YOTVzzqn8EGQ+AL8Oqj4tc98RubfBVQuMg7Lw=;
+	s=arc-20240116; t=1712338438; c=relaxed/simple;
+	bh=K3vmfqpd94g8+suqMPyLrxBzyLzdFpbPlGZ8DqHjkxQ=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uHVo9QG0DQCqE9FfrNLuOf762G20eP2PD9KAOvqzF2iR2SFZmilsUcz0ZK+OYGPLy47eIOUW9RwqClxZ2+SOgWdjCEwV0KmQIgPVVI43bVmueOXmmFfQZNMzdG2cCP89M1V5jVHn3f5HdlCDwrSM8llGuM1hrvO3gCQYQoMYSuY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KiYYbD3b; arc=none smtp.client-ip=209.85.208.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2d858501412so26533381fa.0;
-        Fri, 05 Apr 2024 10:22:12 -0700 (PDT)
+	 To:Cc:Content-Type; b=gnp+5zXIfzRlnpFwU2LviDcFvieFa3vs+BhYYcmiON9/SLS9nd7EZN5tQ72xnHDIhD/BLHnuHu0Gor9bMA7B0gcHAKnvv5oC8+bW8fWW0hoI7+p3PU565zaO2J2CRdn4ATROU/sH9gLWcC01vMDwVBVECTVAPrFXIzxk+315l1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=vAEYWKwU; arc=none smtp.client-ip=209.85.128.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-615826815c2so26730037b3.1
+        for <devicetree@vger.kernel.org>; Fri, 05 Apr 2024 10:33:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712337731; x=1712942531; darn=vger.kernel.org;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1712338436; x=1712943236; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=n3a9v5YOTVzzqn8EGQ+AL8Oqj4tc98RubfBVQuMg7Lw=;
-        b=KiYYbD3bi5UdtZUCB6BmzisYUHm0VeXTSPi9jFT8rD6FMyW4iC5sqCyS4W4Q9brp1Q
-         3IAB3cUwbFa3ltOkQPo5ucXu8DGCgtvSaHR1bCxsROnCe8960NFfj1PlDJlkuhleVAL8
-         UNV++ZNaaKPT2cTLSgwaSccLW4WpiZXt62if2AEmhCw9AU8jZ6xDwoqdfk2ZVut1pdgm
-         MqZaMOMHUkpL/+NsIRjFA+Oz78nEM1CEZ85pEXzpugdS0ApW8n6HXy/CN5lVOoQHY3FS
-         M8nzf1ajw822Gtmda1cVw4+KTdSHSZVA6sCCgyH/xgTrzHc8kKXfFH0cSeYW9luJJFlX
-         +nAw==
+        bh=K3vmfqpd94g8+suqMPyLrxBzyLzdFpbPlGZ8DqHjkxQ=;
+        b=vAEYWKwUqG7okVe/Y2WxNAE6BtAubziz2DaI+6cg0ypRpQFh0sUq+A8pLxpcE3q6Iv
+         zp/+vYVCDCGk7RPvcV9WbNxZOE2sf/I4XEIQEmlqoUwdZJv6E4xigynEcg65YSIlC6Uc
+         YsoOap7uogahgAnFiaqMGJzZ6ClIXWbEV2Wvs2yXo+5z+WDtCSN6953gW8m+ZWEoQrGG
+         QvfXaav98xkcE55RpG9ZN0wj9snPMFeu7ZwlETp1upIeBsuB9yJjUuiW0A6Ei8Yu14aQ
+         QjFZH9OLFvk4tkxh4bdJcpfmkYeW8LNxnMFHO3EtTzqs9jzr7KCxZYm5qmHgmbODEY0O
+         RYEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712337731; x=1712942531;
+        d=1e100.net; s=20230601; t=1712338436; x=1712943236;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=n3a9v5YOTVzzqn8EGQ+AL8Oqj4tc98RubfBVQuMg7Lw=;
-        b=oq7uZWd97NGFFDB/5R8zo2omxubKHPfhxmcfFbieTNHKbK1A9nrXksHIbM0IpGjtEx
-         bpns8p1hcXSMabwvSV5g4i7kDFWGnQoFImrjpZxjfVimbhwL3oYhJiRIoxoh8P0JMGcI
-         uHysTZvWXiVoQmeEg7KJgfbt14+bwfxAePeLzSizTQYb2YaSAyLi1mtS0b3MlzF0WL5a
-         4cLwRiQmA/1F4k41dR+ckKn7nCGnSl6qOnlI+oHVETGz404E89MH2oKN23fY11lesl5w
-         f7FZDWchoVpKsCGF8XVVjAuEIH7m/PS31I6K2kGL/s0LUU3WfEn+jZjhMSOxdkX2ok6e
-         8JKw==
-X-Forwarded-Encrypted: i=1; AJvYcCUAoe+jbB+o3IBASYux+T3RkdgG+5+duYvEH/Z0f3K0L+dbdZQqILoEnrrEwPLEu1Xr3F3xlJ51m89WwIJJgRIqvDMU+iyloD/ODWogMeGwY1KQk+KHrFCk6ojZBPNHL0as7u+trER7ag==
-X-Gm-Message-State: AOJu0YwEPNhaHtADheu6ZxV6zWUtUTToHkb+wPcVhOLSZpZKbl0y869y
-	NL+STkb2JWrVxnRXImE95knVHL+D2mATHg1KyyTmF0Jz7s8BaDw7is19fLKi3+IO+UpeT+gGDt8
-	fgptGXkmb+IZudPs8XkOZibCeXdcTEvBem+UgvqDD
-X-Google-Smtp-Source: AGHT+IHVWxEB5bg1gMnUoidt4kAlY2qbh0psf71zqBG4OKlkeQSXjPgyyWN5UHVvE2xlj9uZ+5X7c+JgDpEubkWNmOk=
-X-Received: by 2002:a2e:a717:0:b0:2d8:71d4:4c62 with SMTP id
- s23-20020a2ea717000000b002d871d44c62mr605492lje.49.1712337730626; Fri, 05 Apr
- 2024 10:22:10 -0700 (PDT)
+        bh=K3vmfqpd94g8+suqMPyLrxBzyLzdFpbPlGZ8DqHjkxQ=;
+        b=N/5nJ8GokNf0t8eEZcjivvykQbACFljjGlAf/8eEBIHK31WPlkYN0S1nPRBagnPd4a
+         1vYG8hSMX0/rBV952bOJ1z3ptETZgvoFCSxQ9KRjHdlLfJXQz7en2eJgc8lPiGwN9/2X
+         7TWzdXj6xAffWvsI8ZIeOZ26+BiOMYFY11l7/4oTbEOFHSToOyJA8HsEXk8gwU9zUjGy
+         84vX7IfuD+LU3q3me5bPFSI7a5AbIqOy7nDLM8ynz7iz2NSYFQ1SAvoBaodBkY5O9kqj
+         9M5Hrqcrl7IQzsRRzM3xPXIWi6BkGGIBEzN37VRRNqSawmLlPcmii/Hr6UGc4liiWfez
+         hmww==
+X-Forwarded-Encrypted: i=1; AJvYcCXtztiBX4oR4vAOBX87StRb68k5IS1x2pRmoln009RXlfZOMSDXK3MT4Olq1dU4VXvz4X6QNsty/13svLN2JotXR5ymyqpBYaDy5A==
+X-Gm-Message-State: AOJu0Yxm8gbzjFjvV9bto2g9xvNri30eC5thjwm5GCoTz8BrfZQ1vpnh
+	mVrfUd6DBtJarW3HDWcW3Fs+UtgPwWFk0lhsEqreljrwDFPUfzO2ex0qSGiDKyeyb0y0rUejN2l
+	myY/SHpLLZv6L+62qKTjKthUZ3l3aIXOvfAr1Zw==
+X-Google-Smtp-Source: AGHT+IHnKrc4PwDyhWJPdfeFqqNSHEu/4FbT6H+bcXEG7hzOD320BvkD3M+wSU/pjaJrd/w5bdcvFXKhZ2+tWNjNqrs=
+X-Received: by 2002:a25:f50b:0:b0:dda:a608:54bf with SMTP id
+ a11-20020a25f50b000000b00ddaa60854bfmr1849823ybe.56.1712338435998; Fri, 05
+ Apr 2024 10:33:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240404160649.967-1-bavishimithil@gmail.com> <78091796-fd0a-42dd-a4da-f7bed3025bf9@linaro.org>
- <CAGzNGRnuG_gLUrH1N57WvpKbpiNtFrcsG6nJcacQNJB_yMYNrA@mail.gmail.com>
- <ec7f77a7-2cf1-4ea6-b9c4-d4fe8a1673ab@linaro.org> <CAGzNGRktm5gMj=bhtX2RAzcn1v5ref+nV-HV3Fct56FzAzxjWA@mail.gmail.com>
- <c9084453-65f1-43b0-88df-5b73052ccb72@linaro.org>
-In-Reply-To: <c9084453-65f1-43b0-88df-5b73052ccb72@linaro.org>
-From: Mithil <bavishimithil@gmail.com>
-Date: Fri, 5 Apr 2024 22:51:58 +0530
-Message-ID: <CAGzNGR=2-us8GRB3RNi4_24QZ9rNBC7Lx0PFsWwbvxuRKk5ngw@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: omap-mcpdm: Convert to DT schema
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	alsa-devel@alsa-project.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+References: <20240404103254.1752834-1-cleger@rivosinc.com> <20240405-091c6c174f023d74b434059d@orel>
+In-Reply-To: <20240405-091c6c174f023d74b434059d@orel>
+From: Deepak Gupta <debug@rivosinc.com>
+Date: Fri, 5 Apr 2024 10:33:48 -0700
+Message-ID: <CAKC1njQ3qQ8mTMoYkhhoGQfRSVtp2Tfd2LjDhAmut7UcW9-bGw@mail.gmail.com>
+Subject: Re: [PATCH 0/5] Add parsing for Zimop ISA extension
+To: Andrew Jones <ajones@ventanamicro.com>
+Cc: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>, 
+	Jonathan Corbet <corbet@lwn.net>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Anup Patel <anup@brainfault.org>, 
+	Shuah Khan <shuah@kernel.org>, Atish Patra <atishp@atishpatra.org>, linux-doc@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, kvm@vger.kernel.org, 
+	kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Apr 5, 2024 at 10:38=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Fri, Apr 5, 2024 at 8:26=E2=80=AFAM Andrew Jones <ajones@ventanamicro.co=
+m> wrote:
 >
-> On 05/04/2024 18:29, Mithil wrote:
-> > On Fri, Apr 5, 2024 at 9:27=E2=80=AFPM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 05/04/2024 16:48, Mithil wrote:
-> >>> So sorry about the 2nd patch being sent as a new mail, here is a new
-> >>> patch with the changes as suggested
-> >>>
-> >>>> Please use subject prefixes matching the subsystem
-> >>> Changed the patch name to match the folder history.
-> >>
-> >> Nothing improved. What the history tells you?
-> >>
-> >
-> > Referred to "ASoC: dt-bindings: rt1015: Convert to dtschema"
-> > Not really sure what else I should change.
+> On Thu, Apr 04, 2024 at 12:32:46PM +0200, Cl=C3=A9ment L=C3=A9ger wrote:
+> > The Zimop ISA extension was ratified recently. This series adds support
+> > for parsing it from riscv,isa, hwprobe export and kvm support for
+> > Guest/VM.
 >
-> But the subject you wrote here is "dt-bindings: omap-mcpdm: Convert to
-> DT schema"?
->
-> Where is the ASoC?
->
-I did change it, will send the patch again.
+> I'm not sure we need this. Zimop by itself isn't useful, so I don't know
+> if we need to advertise it at all. When an extension comes along that
+> redefines some MOPs, then we'll advertise that extension, but the fact
+> Zimop is used for that extension is really just an implementation detail.
 
->
-> reg is not correct. Please point me to files doing that way, so I can
-> fix them.
->
-> You need items with description.
->
-Documentation/devicetree/bindings/sound/fsl,imx-asrc.yaml
-I referred here for the description, but will add items for the 2 regs
+Only situation I see this can be useful is this:--
 
-> > Interrupts and hwmods use maxItems now.
->
-> hwmods lost description, why?
-Seems self explanatory.
+An implementer, implemented Zimops in CPU solely for the purpose that they =
+can
+run mainline distro & packages on their hardware and don't want to leverage=
+ any
+feature which are built on top of Zimop.
 
-> > Changed nodename to be generic in example as well.
->
-> "mcpdm" does not feel generic. What is mcpdm? Google finds nothing.
-> Maybe just "pdm"?
->
-Multichannel PDM Controller. Kept it like that since the node is also
-called as mcpdm in the devicetree. Calling it pdm might cause
-confusion.
+As an example zicfilp and zicfiss are dependent on zimops. glibc can
+do following
 
-Best Regards,
-Mithil
+1) check elf header if binary was compiled with zicfiss and zicfilp,
+if yes goto step 2, else goto step 6.
+2) check if zicfiss/zicfilp is available in hw via hwprobe, if yes
+goto step 5. else goto step 3
+3) check if zimop is available via hwprobe, if yes goto step 6, else goto s=
+tep 4
+4) This binary won't be able to run successfully on this platform,
+issue exit syscall. <-- termination
+5) issue prctl to enable shadow stack and landing pad for current task
+<-- enable feature
+6) let the binary run <-- let the binary run because no harm can be done
 
