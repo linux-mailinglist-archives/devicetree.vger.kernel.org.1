@@ -1,135 +1,110 @@
-Return-Path: <devicetree+bounces-56608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 057FC899E94
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 15:42:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 615AC899E95
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 15:42:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 377DF1C220A4
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 13:42:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 933361C20AAE
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 13:42:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3425D16DEAE;
-	Fri,  5 Apr 2024 13:40:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDCA116DEA8;
+	Fri,  5 Apr 2024 13:40:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PGDRvRl0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rz1rhltk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CB5116DEAC;
-	Fri,  5 Apr 2024 13:40:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C271B16D4F5;
+	Fri,  5 Apr 2024 13:40:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712324406; cv=none; b=MiI1oesAjwbAf19Lt1YSt25t9jh+UAhCDOo4FA452v+8DdCF6qlMVaU2aHUIt2uPScp2zKYVLnrTDzNQA197QbfF2wo/K03uLfiC8RmNjjTSKLoLZzmx/WHQDIHCSCkNWeIRRUarQnXql/qrzuMFRDT6u/0CxNgF4hoQBxm3DrE=
+	t=1712324423; cv=none; b=UoR5fSYqOgUiw5MGQmXMJRuo+9QpqCeFFi71wBuWz6y21EtWYgDLxOKLiK9lEddJvpcvdaMEh5HXOCZ8ghbkr61bJBqodmAh6K+J8bMsTQtolo9CRSQfX3UqiECp0SKT0lKsQpemtl9t6F+3pc+kVeLEnMDIXCq4YpzZ/YL4JgA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712324406; c=relaxed/simple;
-	bh=3at59mEmgC+L0KoA8pMOqcydnzZkiW0Wf9PDxwZlAb8=;
+	s=arc-20240116; t=1712324423; c=relaxed/simple;
+	bh=KxZQ7ehx1DNyePhFG2kzZH/j/invOxWdsA6YprcZ8Aw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gql3dMKztBmTXvrCqe4PkEyZEH8GnBpTdckDwI6zMMYQQ46OVeNHq1OSehRHsGgT9+6h6KxwG0jh48LIh678GOhRMqWJgOxP8FyNAu7z+1EIKagp4mPly3M/5SMsUoAYJDXfkpem+In3yb/sgwr/wJm41pgPb3DmXDgDWkoEtsc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PGDRvRl0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F528C43390;
-	Fri,  5 Apr 2024 13:40:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZQcECgC+iKTdmX11Ig0Vt0YhOQ8+pBUzckDGxj0oGkZ/3j9LuOvqMFBuhPGz609AZg4j1lBIagohxYJSZ3O2lKFd1xffPZyrQ/m1ldzdqDtZU2hIh1qFdRjv16Yl/XcXYfqyaRC/KxfQ5NJxRjtKajxzmA3wLRK/twOELr7mYT0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rz1rhltk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E22BC433F1;
+	Fri,  5 Apr 2024 13:40:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712324405;
-	bh=3at59mEmgC+L0KoA8pMOqcydnzZkiW0Wf9PDxwZlAb8=;
+	s=k20201202; t=1712324423;
+	bh=KxZQ7ehx1DNyePhFG2kzZH/j/invOxWdsA6YprcZ8Aw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PGDRvRl0Ip++MuCGskt5HMFYe9MozdxozZ/cROLlrICeVbR3g7aivBcsEW7CHAxYB
-	 YqCiKc2PnSDxylDO2z8Bb/ctA9OqSNBotw5PcLgXEj7Dgo5rZnGlzQfI5hWghzbEVR
-	 ulz0dEMODvuGx51/CuKJ8FO2kOz/+gTTgFhHthWEe/cfU45jmcaqPb04+zY5yaH7Y3
-	 mBYGtjp4aLn0SjC9++qDkcJoqkosFnhcoHzxTb7T7HMssuNHyU/bVbib6ZqqTccw+d
-	 /vlQBy+zi826O80lNPJ+2Pxb7CQIWQPX8dwx1DKU64mNVja3RhmfZHouIILLJ/iHux
-	 wGUgTN4iKtdtg==
-Date: Fri, 5 Apr 2024 15:39:58 +0200
-From: Niklas Cassel <cassel@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Damien Le Moal <dlemoal@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	Rick Wertenbroek <rick.wertenbroek@gmail.com>,
-	Wilfred Mallawa <wilfred.mallawa@wdc.com>
-Subject: Re: [PATCH v2 06/18] PCI: endpoint: test: Implement link_down event
- operation
-Message-ID: <Zg//LiMg0Wh7LfT8@x1-carbon>
-References: <20240330041928.1555578-1-dlemoal@kernel.org>
- <20240330041928.1555578-7-dlemoal@kernel.org>
- <20240403074823.GE25309@thinkpad>
+	b=rz1rhltkWxcNCP4HFVtDkm2b4YMwphSXw5Rse8DhpBG0tJ7kLZ7luQHF1oZVXU/Tu
+	 7Q5yFnAxuDpTeuEpSj3wYDqKiYqCauDgfU99AGiVxUWlMZ+ZSjZ2FP8UfoGnWsJELy
+	 wRwqibuER42W/3Qzw7luOSqilXNqOmuYDQZ8Huc54zuSpBY3wAyXUw+fSK4/QU/g63
+	 rQGk8VAE+zfiRp2lkt7yperviQPraW5at7cnCion4D8jxIrSxFk2p7eoUTRTk0wUTX
+	 J5Pofz7cuJvPVYtvt1hxuZrAHzvBk28/tz4rr30RbgZpb7+bFe8lYdrtdhe1WWWhqc
+	 LYsfzFGaqKlNQ==
+Date: Fri, 5 Apr 2024 14:40:16 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Shenghao Ding <shenghao-ding@ti.com>
+Cc: linux-kernel@vger.kernel.org, lgirdwood@gmail.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	perex@perex.cz, tiwai@suse.com, 13916275206@139.com,
+	mohit.chawla@ti.com, soyer@irl.hu, jkhuang3@ti.com, tiwai@suse.de,
+	pdjuandi@ti.com, manisha.agrawal@ti.com, aviel@ti.com,
+	hnagalla@ti.com, praneeth@ti.com, Baojun.Xu@fpt.com
+Subject: Re: [PATCH v8 0/4] ASoc: PCM6240: mixer-test report
+Message-ID: <11c55770-a306-45f6-91fd-2dd9918bb39a@sirena.org.uk>
+References: <20240403003159.389-1-shenghao-ding@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="mnAkXzmNKO4zU4Z0"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240403074823.GE25309@thinkpad>
-
-On Wed, Apr 03, 2024 at 01:18:23PM +0530, Manivannan Sadhasivam wrote:
-> On Sat, Mar 30, 2024 at 01:19:16PM +0900, Damien Le Moal wrote:
-> > Implement the link_down event operation to stop the command execution
-> > delayed work when the endpoint controller notifies a link down event.
-> > 
-> > Signed-off-by: Damien Le Moal <dlemoal@kernel.org>
-> 
-> This patch is already part of another series I posted [1] and under review. So
-> this can be dropped.
-> 
-> - Mani
-> 
-> [1] https://lore.kernel.org/linux-pci/20240401-pci-epf-rework-v2-9-970dbe90b99d@linaro.org/
-
-Mani, your patch does not use _sync(),
-so I don't think that we can simply drop this patch.
+In-Reply-To: <20240403003159.389-1-shenghao-ding@ti.com>
+X-Cookie: Honk if you love peace and quiet.
 
 
-Kind regards,
-Niklas
+--mnAkXzmNKO4zU4Z0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> 
-> > Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> > ---
-> >  drivers/pci/endpoint/functions/pci-epf-test.c | 10 ++++++++++
-> >  1 file changed, 10 insertions(+)
-> > 
-> > diff --git a/drivers/pci/endpoint/functions/pci-epf-test.c b/drivers/pci/endpoint/functions/pci-epf-test.c
-> > index ab40c3182677..e6d4e1747c9f 100644
-> > --- a/drivers/pci/endpoint/functions/pci-epf-test.c
-> > +++ b/drivers/pci/endpoint/functions/pci-epf-test.c
-> > @@ -824,9 +824,19 @@ static int pci_epf_test_link_up(struct pci_epf *epf)
-> >  	return 0;
-> >  }
-> >  
-> > +static int pci_epf_test_link_down(struct pci_epf *epf)
-> > +{
-> > +	struct pci_epf_test *epf_test = epf_get_drvdata(epf);
-> > +
-> > +	cancel_delayed_work_sync(&epf_test->cmd_handler);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  static const struct pci_epc_event_ops pci_epf_test_event_ops = {
-> >  	.core_init = pci_epf_test_core_init,
-> >  	.link_up = pci_epf_test_link_up,
-> > +	.link_down = pci_epf_test_link_down,
-> >  };
-> >  
-> >  static int pci_epf_test_alloc_space(struct pci_epf *epf)
-> > -- 
-> > 2.44.0
-> > 
-> 
-> -- 
-> மணிவண்ணன் சதாசிவம்
+On Wed, Apr 03, 2024 at 08:31:54AM +0800, Shenghao Ding wrote:
+> mixer-test report:
+>  root@am335x-evm:/bin# mixer-test
+>  TAP version 13
+>  # Card 0 - TI BeagleBone Black (TI BeagleBone Black)
+>  1..7
+>  ok 1 get_value.0.0
+>  # 0.0 pcmd3180-i2c-2 Profile id
+>  ok 2 name.0.0
+>  ok 3 write_default.0.0
+>  ok 4 write_valid.0.0
+>  ok 5 write_invalid.0.0
+>  ok 6 event_missing.0.0
+>  ok 7 event_spurious.0.0
+>  # Totals: pass:7 fail:0 xfail:0 xpass:0 skip:0 error:0
+>  root@am335x-evm:/bin#
+
+None of the additional %s-i2c-%d-dev%d-ch%d-ana-gain type controls
+appear to have shown up here - what's the story there?
+
+--mnAkXzmNKO4zU4Z0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmYP/z8ACgkQJNaLcl1U
+h9DR8wf+IM1zIAXw8sdz9hd6YBuO8aMFJqEjXokQWNsOQKBM2ZmkvI4cqaAubt/L
+v5HlYUHmXTV90zSlk7A0e/CFT3AGyiDwNXHmn4Y+2VIpTMIWfqLcqBc3tauCuK2M
+fKFuWcXeFygJ4XHQspODnVO2WubCALtnHEUjnnJFI60e649rxLyz8oYbVz+26MW8
+9zfM9Fmwk0Rl5PTN22TOQoDQ74WpEJq/ZjlrUqdsDDb1MOrw88KuWBIrbqqVA2cq
+tlomERUxQRkPJayASezXVk4FBEtmcdvwhNgBDD+HgBHgpebIr6EtS81IzfBLjqE+
+D9nqWsITMs8s9KguCxWmoHAUfF3ZPQ==
+=7dyz
+-----END PGP SIGNATURE-----
+
+--mnAkXzmNKO4zU4Z0--
 
