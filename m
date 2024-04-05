@@ -1,185 +1,109 @@
-Return-Path: <devicetree+bounces-56527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47E36899841
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 10:42:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD46B899887
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 10:52:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B6601C227FC
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 08:42:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EECFA1C20DA6
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 08:52:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D95F7161306;
-	Fri,  5 Apr 2024 08:41:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA2D315FCFE;
+	Fri,  5 Apr 2024 08:52:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KuhftbVR"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="A0qnh8y2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA4F51607AE
-	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 08:41:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B955015FCE7;
+	Fri,  5 Apr 2024 08:52:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712306505; cv=none; b=gVyCCo/TFZLIiPW6QeCySnMqd5JeqTpATucz37zEM8+pnK2mVrGS3ggVZt46QhkgLM8E1SfevtTriMCtS74Tq4F2iL+R1CCLqqEy8E9SDUq/a0sguHpYX3REIwZ2TUfadPQbPWJhcn6G/X4lk6BSfaWjjNfn/3vnWBSupAx3NMs=
+	t=1712307149; cv=none; b=E6dftYaQMetqAv1BFcuhayl0CYPZCBH5vHDntvJ5e3Y9OHWgN2lz9FIo60qF9OVox6UUWzV+JxsncP8woHlVpJwajTRc5b7ymdKiL5z3TH9Tsp3cuG397lqlYisOphitFJNV+2JhhaLuVHmA5FeRBTLapZpBZzMutsApLPb4Il8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712306505; c=relaxed/simple;
-	bh=PVrRjCh0+m8251gZ7iZZ6NbUkAGAD83HtonfciqKPAs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=QPAVDzhu3BaulL6JsjhgKQBnkGPEJ6Vg7QB5mVaBjSthZkcc/QPsoHeoKrRlOALjts9ZMpbHHeDxqea3+vs4u4Yuvor7rRsf4/3BqFE5Lw/eQPreOjUhs93sn4WWklZl1+gY5lWZGKtx/oZ0uffRdrsUOwKwtHY6ramM+RZvfBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KuhftbVR; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2d700beb60bso31051831fa.1
-        for <devicetree@vger.kernel.org>; Fri, 05 Apr 2024 01:41:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712306502; x=1712911302; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=X04cOGIXIpn74O231A72oQJ+8vGZIsJ7iLKhJyEMwh4=;
-        b=KuhftbVRV8fo2Od+ewwdK06hc205ol+IrtoxLvx4I95W/ZoAKD1oti7ZKlny0ix9Ca
-         44VaZFbUw1L+cpNPOW8vJjh/KTk+ya570qxTdXtfoLRy6XL9rylUHvVCmn+rOlM8Ah4F
-         R0FQHCTCraazWNE/dQp0Vacw3+5Aos2COKQVrm77jM/1tGPM7jenVZ4StrKX4zbefxFo
-         SRoRZiZJmA+K7mL+daOqWvrVhoRdDwFfmEcpGcDQR2udgH6fQSDXKcPaJmOOGXTKVPjJ
-         YFJYYs/xhovOzlCMV2XYI5U9eIwVypCdfdzVPSVYJlbjCiNZiZXQICWubDWkaIM86KD0
-         nq/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712306502; x=1712911302;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=X04cOGIXIpn74O231A72oQJ+8vGZIsJ7iLKhJyEMwh4=;
-        b=utpOBvELe/iNDJiFmTytpZSb1urGH6MURqnZJPHkNrG3X2DKQO7T2rJnJVWGe6PX/q
-         Lm7o2VaBTwo4YS3jnh4wV6ffXnYstIG3c3j/UtGZ0WDe5NEdTCy2B4+cNBy/UsETLgP2
-         g0mHG+Ow3rdx/e5ztAMLNGF6bd099YgDfVdEfUB8/dqVU3a/dd1Z1ZS6OCsUb8YQRLzw
-         vTk4U0C1Dn2I0sNmAv6K8Necfhiyodusaow9SxXjCbpA7YXhmfUwCuFk+BzDLeEgN38c
-         PzR2kl1etW+HJijd5Chli+56cpAUDwaXIJZivm16jWx4gyuyOjJmG+0PLe1DSOED7Y2I
-         rgkw==
-X-Forwarded-Encrypted: i=1; AJvYcCVJT+kZJKruQTnYa4JUGlRuGfYFQYURTeQRE5UB/8DHWzsLfeDMU4ld1vIiJw7A3x84GFucD16QfKkMkUeTrVUp++DZC0KbHJloNw==
-X-Gm-Message-State: AOJu0Yypjlb7bJY+9a0spq+1CwS3sr8j7AFxksPhqLz1iTIVUToUIQTb
-	U1tN4Q48vXM7ghKcaq2emsLJEBlUzy6hsgLKGiN5QksWrW3ZV8mcr6PghUlV8tE=
-X-Google-Smtp-Source: AGHT+IEaoyjVPXNaHJVLqh2HFfjOBPe62rwY6OgCDrYa4WIoKPR3hqGj3KeEFkwYiLQdakO91Cypiw==
-X-Received: by 2002:a2e:980a:0:b0:2d6:c749:17bc with SMTP id a10-20020a2e980a000000b002d6c74917bcmr897025ljj.31.1712306502374;
-        Fri, 05 Apr 2024 01:41:42 -0700 (PDT)
-Received: from [127.0.1.1] (netpanel-87-246-222-101.pol.akademiki.lublin.pl. [87.246.222.101])
-        by smtp.gmail.com with ESMTPSA id y3-20020a05651c020300b002d429304a20sm116880ljn.8.2024.04.05.01.41.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Apr 2024 01:41:42 -0700 (PDT)
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Date: Fri, 05 Apr 2024 10:41:34 +0200
-Subject: [PATCH 6/6] arm64: dts: qcom: sm8550: Wire up GPU speed bin & more
- OPPs
+	s=arc-20240116; t=1712307149; c=relaxed/simple;
+	bh=KH4tIB8MEJtaXqNCZ8ucp+IiBLHorX22cq3KG9pe6g8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gTjLUgiUwCcyNILrcETltpedymAJnuYUeu+lVFiCvoJANAWodXTHYzPcDbn8JuS9gbG61m9ejF2uZjjXHHmQreRBv7mJGwZyt7JvxCm9wP8rKqfOYmIk9mU7ScHKPUok5Kia2WMRiRM6Qs+Dit/xB79EdsGdObS4U5ors3pn5ck=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=A0qnh8y2; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4358qA97040700;
+	Fri, 5 Apr 2024 03:52:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1712307130;
+	bh=bkjx/8ToHSwIO3I+N2Gh680PfuvhGZ0zihLB3JROhD0=;
+	h=From:To:CC:Subject:Date;
+	b=A0qnh8y2GO66xQcFFJN5oO+4caF0C9rsSUIwqhb3Tu/bZfkjjic6UAaQRs/Xq3Tyc
+	 +8AxSrAWAQuCb4/jEo9iFoEXpgbfgHPM/tlS9gCM/kifTV6spwbqJ9kRIUhgnyp8zL
+	 5XTPew6k61JM2dtbbDpU81T8Nd5fMo1EsTz+ryYY=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4358qASo012714
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 5 Apr 2024 03:52:10 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 5
+ Apr 2024 03:52:10 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 5 Apr 2024 03:52:10 -0500
+Received: from localhost (jayesh-hp-probook-440-g8-notebook-pc.dhcp.ti.com [172.24.227.252])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4358q9rQ052143;
+	Fri, 5 Apr 2024 03:52:09 -0500
+From: Jayesh Choudhary <j-choudhary@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <bb@ti.com>, <devicetree@vger.kernel.org>,
+        <j-choudhary@ti.com>
+CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH 0/3] Fix reg ranges for dma-controller node
+Date: Fri, 5 Apr 2024 14:22:05 +0530
+Message-ID: <20240405085208.32227-1-j-choudhary@ti.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240405-topic-smem_speedbin-v1-6-ce2b864251b1@linaro.org>
-References: <20240405-topic-smem_speedbin-v1-0-ce2b864251b1@linaro.org>
-In-Reply-To: <20240405-topic-smem_speedbin-v1-0-ce2b864251b1@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, Rob Clark <robdclark@gmail.com>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
- devicetree@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.13-dev-0438c
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Add the speedbin masks to ensure only the desired OPPs are available on
-chips of a given bin.
+The dma-controller node 'main_pktdma' has few memory regions with
+wrong sizes.
 
-Using this, add the binned 719 MHz OPP and the non-binned 124.8 MHz.
+DMASS0_PKTDMA_RINGRT is marked as 4MB region when it is actually a 2MB
+region. Similarly, DMASS0_PKTDMA_TCHANRT is marked as 256KB region but
+the actual size is 128KB as shown in TRM in the section for Main Memory
+Map (Table 2-1)
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8550.dtsi | 21 ++++++++++++++++++++-
- 1 file changed, 20 insertions(+), 1 deletion(-)
+Fix these region across AM62, AM62A and AM62P (which is also used in
+J722S)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-index 5cae8d773cec..2f6842f6a5b7 100644
---- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-@@ -2087,48 +2087,67 @@ zap-shader {
- 				memory-region = <&gpu_micro_code_mem>;
- 			};
- 
--			/* Speedbin needs more work on A740+, keep only lower freqs */
- 			gpu_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
-+				opp-719000000 {
-+					opp-hz = /bits/ 64 <719000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L2>;
-+					opp-supported-hw = <0x1>;
-+				};
-+
- 				opp-680000000 {
- 					opp-hz = /bits/ 64 <680000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
-+					opp-supported-hw = <0x3>;
- 				};
- 
- 				opp-615000000 {
- 					opp-hz = /bits/ 64 <615000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L0>;
-+					opp-supported-hw = <0x3>;
- 				};
- 
- 				opp-550000000 {
- 					opp-hz = /bits/ 64 <550000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
-+					opp-supported-hw = <0x3>;
- 				};
- 
- 				opp-475000000 {
- 					opp-hz = /bits/ 64 <475000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_L1>;
-+					opp-supported-hw = <0x3>;
- 				};
- 
- 				opp-401000000 {
- 					opp-hz = /bits/ 64 <401000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
-+					opp-supported-hw = <0x3>;
- 				};
- 
- 				opp-348000000 {
- 					opp-hz = /bits/ 64 <348000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D0>;
-+					opp-supported-hw = <0x3>;
- 				};
- 
- 				opp-295000000 {
- 					opp-hz = /bits/ 64 <295000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D1>;
-+					opp-supported-hw = <0x3>;
- 				};
- 
- 				opp-220000000 {
- 					opp-hz = /bits/ 64 <220000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D2>;
-+					opp-supported-hw = <0x3>;
-+				};
-+
-+				opp-124800000 {
-+					opp-hz = /bits/ 64 <124800000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D2>;
-+					opp-supported-hw = <0x3>;
- 				};
- 			};
- 		};
+TRM:
+
+AM625: <https://www.ti.com/lit/pdf/spruiv7>
+AM62A7: <https://www.ti.com/lit/pdf/spruj16>
+AM62P: <https://www.ti.com/lit/pdf/spruj83>
+J722S: <https://www.ti.com/lit/zip/sprujb3>
+
+Jayesh Choudhary (3):
+  arm64: dts: ti: k3-am62-main: Fix the reg-range for dma-controller
+  arm64: dts: ti: k3-am62a-main: Fix the reg-range for dma-controller
+  arm64: dts: ti: k3-am62p-main: Fix the reg-range for dma-controller
+
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi  | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am62p-main.dtsi | 4 ++--
+ 3 files changed, 6 insertions(+), 6 deletions(-)
 
 -- 
-2.40.1
+2.25.1
 
 
