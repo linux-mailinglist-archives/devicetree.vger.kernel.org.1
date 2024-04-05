@@ -1,132 +1,293 @@
-Return-Path: <devicetree+bounces-56601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56602-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CE0B899DDC
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 15:01:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 040A8899DFB
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 15:07:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 630C51C20B63
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 13:01:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 55ECAB23DA6
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 13:07:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A70C16D4D7;
-	Fri,  5 Apr 2024 13:01:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3AE216D4D4;
+	Fri,  5 Apr 2024 13:07:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ithwz9jI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BC4pqoIf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D78E216D4D2;
-	Fri,  5 Apr 2024 13:01:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DA0615FD16;
+	Fri,  5 Apr 2024 13:07:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712322071; cv=none; b=bKwsJhdUpn8dF6oFp6l4lPnt3svMnMNFK+4/+WSqE0UYwJP65YQhyBta0hYBVvwjrirgOIbyiTh6Y+b+gu8quYhu5xJyVV5skM7DkxP/WJcVwrd1dmXRRZiVKn6myq+xTismxmoW0d4PHQlcblDbynSuIC3y6v3SWH+b4r/2lFA=
+	t=1712322436; cv=none; b=EtsigSoXaB28Fx4hdrWFruCprocKVRJtrJurqXgLrBHC1lpo1IV4hG8UNP1XlgsQdA9xwVR17S+15a+aK1m2pD/Fa8qu7HF4R8+msbO9ZAEHlC+wCuBouDgakTrlem0MsB4BMFRa5eZiim6mgZng4q+qYvFrUCZac+khuvn+xA0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712322071; c=relaxed/simple;
-	bh=KjLmN2j+z29ejJKgU02Fut0SfGnHPqtDrINp5ViYVus=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=idFkNDwf+ErN8bvZNLt2WqyW7PfNL/knWotBIyam48ZAIM/tF02FGwT0AAn+Xo5yl8P3S8SbjMmNQXGq6/d9DcHLEbazptLKOROvO1TBEWnjRplZhxpTUzLyA0seQVeYRU24MvFHX7IpHjFbYb+LQ/k0YXOxt38Hp0qgA979LRE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ithwz9jI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70F06C433C7;
-	Fri,  5 Apr 2024 13:01:11 +0000 (UTC)
+	s=arc-20240116; t=1712322436; c=relaxed/simple;
+	bh=S6rcliy68N/x8sdVc9sO6lbozNQnQoSf0/uWIMJWqog=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UlCHUPIqGqwsTmJIn7N/4qOeGK8QCAthBOuS/Xo0QSwJYr21i7zqH5mvS0ItOD+9V99V/ycH1bg6Ci/TJO0M4jr+AGlvvCgnr4jM6QWSx8Xat3w8GGAwJW9uUQjONl0x78uRUEEuEBzF9RIk+8yjPY/wekWLi6kd/6RdjahNd/Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BC4pqoIf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6237FC433C7;
+	Fri,  5 Apr 2024 13:07:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712322071;
-	bh=KjLmN2j+z29ejJKgU02Fut0SfGnHPqtDrINp5ViYVus=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=Ithwz9jIEQF+ZcmXiqmm1y9rQ0NIFn3Do6d0TmS8+NhoM4FP3B4qyai2ruAlf7+c7
-	 CtxwyuGOYKub7W/6Q9gK6MFl+GhbcOUKoJYsw7uk0yzFKLUfeucGzv0TvEjs7g+PYC
-	 lQYHUb55kR08R+M1yPn7J1URZ6M8K1io5pMseCxLTRxInXHg4uRq6xnxnWR1A9ABDD
-	 Cl7Kab53vL6qaav4hC3GTbEY+c/15dP2TeQYloIeLYaZxNF20B5GWw9NCdK57j8sW3
-	 Sg/cgjrY3r0FilrmIKu16/E0I8RpdjVlMaFuzQgipe76UD8plp/extISaBcepNv7TC
-	 FCebpyobqfdmQ==
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-516cdb21b34so2377711e87.1;
-        Fri, 05 Apr 2024 06:01:11 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXdvWjWdWmpxWEXItI7SXVK/wlGCUd0d7nCxhHBCz+OIwuslB4RRLQVM9t+Op1VYj8wR+X5eFiOL40EX+ddg1V2mP6kVXhHgsYAO4CluXNYJmL8M0RzEu4n8zxU0WtTJR6IbTMp2IS84Q==
-X-Gm-Message-State: AOJu0YwIbNCGtSNDk9bxE7peXe29kB1dIq+TSKCdmDW4hnAaY84wOL6c
-	ziAvFLZcSNzcxewOt9V38yic5tHXE6peYEGOjnr5IKlYTYix7tNNp/ergBNpC2GWBmHt2zc8jSP
-	p7xb3n7M+NrO5bvfHLDHviWbOeQ==
-X-Google-Smtp-Source: AGHT+IFMWxlQyZ+UCKKvfwWNLRZ8mFFq7fxifr5nlPAIN5MvkVybvEDrjpfPIyo3YxDSk/yxCnJebvbTUQGhMCeZD3k=
-X-Received: by 2002:a19:750b:0:b0:516:d471:18a0 with SMTP id
- y11-20020a19750b000000b00516d47118a0mr874385lfe.67.1712322064676; Fri, 05 Apr
- 2024 06:01:04 -0700 (PDT)
+	s=k20201202; t=1712322436;
+	bh=S6rcliy68N/x8sdVc9sO6lbozNQnQoSf0/uWIMJWqog=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BC4pqoIf464XB7an62drpauJbcijrXYMkYjFWwX51iURRmC241Deexc0gQdPwvouO
+	 EoH2txrdcRkwsADMWlS0S2uNqjHewQkysdHbU/8nhCLTrqZS4iayT9TvcatD6HAyuZ
+	 HP7p0gQ3MqJJ5Za0GMQ8ufYOQ8KLAg0JDY6bgI/CVY/s178embEisJy7Nowyugfyjm
+	 QuM3R6eeClplWVtPXQOU4Xo729XrDw20cKNfLC2Yr+8PnPyABCKcYKABq5zoaEfiJG
+	 6CtjQutLExDir153v1XmpsncFgTBdretxBMJBQbKfg4RP7ATbL74WXNRXKu3ey7aUd
+	 VupGPCn0jixiw==
+Message-ID: <8ce4c1d8-e379-4fe0-ae31-ba5bdf4c1e06@kernel.org>
+Date: Fri, 5 Apr 2024 22:07:04 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240404-dt-cleanup-free-v1-0-c60e6cba8da9@kernel.org>
- <20240404-dt-cleanup-free-v1-3-c60e6cba8da9@kernel.org> <CAGETcx8Wd5OsHWiGSASWkQQtof0D-ScwYsvq9hWizV3DFC27gA@mail.gmail.com>
-In-Reply-To: <CAGETcx8Wd5OsHWiGSASWkQQtof0D-ScwYsvq9hWizV3DFC27gA@mail.gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 5 Apr 2024 08:00:51 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqK4QpFmLi0WVG0Vpxv82Y1eWxbGS7ESWBhPoKg+WFV5Tw@mail.gmail.com>
-Message-ID: <CAL_JsqK4QpFmLi0WVG0Vpxv82Y1eWxbGS7ESWBhPoKg+WFV5Tw@mail.gmail.com>
-Subject: Re: [PATCH 3/3] of: Use scope based of_node_put() cleanups
-To: Saravana Kannan <saravanak@google.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RESEND v7 14/37] clk: Compatible with narrow registers
+To: Geert Uytterhoeven <geert@linux-m68k.org>,
+ Yoshinori Sato <ysato@users.sourceforge.jp>
+Cc: linux-sh@vger.kernel.org, Niklas Cassel <cassel@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Thomas Gleixner <tglx@linutronix.de>, Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Rich Felker <dalias@libc.org>,
+ John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+ Lee Jones <lee@kernel.org>, Helge Deller <deller@gmx.de>,
+ Heiko Stuebner <heiko.stuebner@cherry.de>, Shawn Guo <shawnguo@kernel.org>,
+ Sebastian Reichel <sre@kernel.org>, Chris Morgan <macromorgan@hotmail.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Arnd Bergmann <arnd@arndb.de>,
+ David Rientjes <rientjes@google.com>, Hyeonggon Yoo <42.hyeyoo@gmail.com>,
+ Vlastimil Babka <vbabka@suse.cz>, Baoquan He <bhe@redhat.com>,
+ Andrew Morton <akpm@linux-foundation.org>, Guenter Roeck
+ <linux@roeck-us.net>, Kefeng Wang <wangkefeng.wang@huawei.com>,
+ Stephen Rothwell <sfr@canb.auug.org.au>,
+ Javier Martinez Canillas <javierm@redhat.com>, Guo Ren <guoren@kernel.org>,
+ Azeem Shaikh <azeemshaikh38@gmail.com>, Max Filippov <jcmvbkbc@gmail.com>,
+ Jonathan Corbet <corbet@lwn.net>, Jacky Huang <ychuang3@nuvoton.com>,
+ Herve Codina <herve.codina@bootlin.com>,
+ Manikanta Guntupalli <manikanta.guntupalli@amd.com>,
+ Anup Patel <apatel@ventanamicro.com>, Biju Das <biju.das.jz@bp.renesas.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ Sam Ravnborg <sam@ravnborg.org>, Sergey Shtylyov <s.shtylyov@omp.ru>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-pci@vger.kernel.org, linux-serial@vger.kernel.org,
+ linux-fbdev@vger.kernel.org
+References: <cover.1712207606.git.ysato@users.sourceforge.jp>
+ <9c1d56d37f5d3780d3c506ae680133b6bdaa5fdc.1712207606.git.ysato@users.sourceforge.jp>
+ <CAMuHMdVXvPW+3-sY2XPQ2aMcTZkK9zoMnxWeZ+PRB+VRgGszdQ@mail.gmail.com>
+From: Damien Le Moal <dlemoal@kernel.org>
+Content-Language: en-US
+Organization: Western Digital Research
+In-Reply-To: <CAMuHMdVXvPW+3-sY2XPQ2aMcTZkK9zoMnxWeZ+PRB+VRgGszdQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Thu, Apr 4, 2024 at 6:22=E2=80=AFPM Saravana Kannan <saravanak@google.co=
-m> wrote:
->
-> On Thu, Apr 4, 2024 at 7:15=E2=80=AFAM Rob Herring <robh@kernel.org> wrot=
-e:
-> >
-> > Use the relatively new scope based of_node_put() cleanup to simplify
-> > function exit handling. Doing so reduces the chances of forgetting an
-> > of_node_put() and simplifies error paths by avoiding the need for goto
-> > statements.
-> >
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> >  drivers/of/address.c  | 60 ++++++++++++++++---------------------------=
---------
-> >  drivers/of/property.c | 22 ++++++-------------
-> >  2 files changed, 26 insertions(+), 56 deletions(-)
-> >
-> > diff --git a/drivers/of/address.c b/drivers/of/address.c
-> > index ae46a3605904..f7b2d535a6d1 100644
-> > --- a/drivers/of/address.c
-> > +++ b/drivers/of/address.c
-> > @@ -491,7 +491,6 @@ static u64 __of_translate_address(struct device_nod=
-e *dev,
-> >                                   const __be32 *in_addr, const char *rp=
-rop,
-> >                                   struct device_node **host)
-> >  {
-> > -       struct device_node *parent =3D NULL;
-> >         struct of_bus *bus, *pbus;
-> >         __be32 addr[OF_MAX_ADDR_CELLS];
-> >         int na, ns, pna, pns;
-> > @@ -504,7 +503,7 @@ static u64 __of_translate_address(struct device_nod=
-e *dev,
-> >
-> >         *host =3D NULL;
-> >         /* Get parent & match bus type */
-> > -       parent =3D get_parent(dev);
-> > +       struct device_node *parent __free(device_node) =3D get_parent(d=
-ev);
->
-> Can we leave the variable definition where it was? We generally define
-> all the variables up top. So, defining the one variable in the middle
-> feels weird. I at least get when we do this inside for/if blocks. But
-> randomly in the middle feels weird.
+On 4/5/24 21:56, Geert Uytterhoeven wrote:
+> Hi Sato-san,
+> 
+> On Thu, Apr 4, 2024 at 7:15 AM Yoshinori Sato
+> <ysato@users.sourceforge.jp> wrote:
+>> divider and gate only support 32-bit registers.
+>> Older hardware uses narrower registers, so I want to be able to handle
+>> 8-bit and 16-bit wide registers.
+>>
+>> Seven clk_divider flags are used, and if I add flags for 8bit access and
+>> 16bit access, 8bit will not be enough, so I expanded it to u16.
+>>
+>> Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
+> 
+> Thanks for the update!
+> 
+>> --- a/drivers/clk/clk-divider.c
+>> +++ b/drivers/clk/clk-divider.c
+>> @@ -26,20 +26,38 @@
+>>   * parent - fixed parent.  No clk_set_parent support
+>>   */
+>>
+>> -static inline u32 clk_div_readl(struct clk_divider *divider)
+>> -{
+>> -       if (divider->flags & CLK_DIVIDER_BIG_ENDIAN)
+>> -               return ioread32be(divider->reg);
+>> -
+>> -       return readl(divider->reg);
+>> +static inline u32 clk_div_read(struct clk_divider *divider)
+>> +{
+>> +       if (divider->flags & CLK_DIVIDER_REG_8BIT)
+> 
+> When you need curly braces in one branch of an if/else statement,
+> please use curly braces in all branches (everywhere).
+> 
+>> +               return readb(divider->reg);
+>> +       else if (divider->flags & CLK_DIVIDER_REG_16BIT) {
 
-There's an 'of_node_get(dev);' before this. Ordering wise, we need to
-hold the ref on the child before we get its parent. I suppose I can
-also convert that to use the cleanups. I'll have to add another local
-ptr to do that though.
+And no need for an else after a return...
 
->
-> Similar comments in other places. Since both kfree() and of_put() can
-> both handle NULL pointers, I'd be surprised if we HAVE to combine
-> these lines.
 
-https://lore.kernel.org/all/CAHk-=3DwgRHiV5VSxtfXA4S6aLUmcQYEuB67u3BJPJPtuE=
-Ss1JyA@mail.gmail.com/
+>> +               if (divider->flags & CLK_DIVIDER_BIG_ENDIAN)
+>> +                       return ioread16be(divider->reg);
+>> +               else
+
+and here.
+
+>> +                       return readw(divider->reg);
+>> +       } else {
+>> +               if (divider->flags & CLK_DIVIDER_BIG_ENDIAN)
+>> +                       return ioread32be(divider->reg);
+>> +               else
+
+here too.
+
+>> +                       return readl(divider->reg);
+>> +       }
+>>  }
+> 
+>> --- a/drivers/clk/clk-gate.c
+>> +++ b/drivers/clk/clk-gate.c
+> 
+>> @@ -137,12 +155,30 @@ struct clk_hw *__clk_hw_register_gate(struct device *dev,
+>>         struct clk_init_data init = {};
+>>         int ret = -EINVAL;
+>>
+>> +       /* validate register size option and bit_idx */
+>>         if (clk_gate_flags & CLK_GATE_HIWORD_MASK) {
+>>                 if (bit_idx > 15) {
+>>                         pr_err("gate bit exceeds LOWORD field\n");
+>>                         return ERR_PTR(-EINVAL);
+>>                 }
+>>         }
+>> +       if (clk_gate_flags & CLK_GATE_REG_16BIT) {
+>> +               if (bit_idx > 15) {
+>> +                       pr_err("gate bit exceeds 16 bits\n");
+>> +                       return ERR_PTR(-EINVAL);
+>> +               }
+>> +       }
+>> +       if (clk_gate_flags & CLK_GATE_REG_8BIT) {
+>> +               if (bit_idx > 7) {
+>> +                       pr_err("gate bit exceeds 8 bits\n");
+>> +                       return ERR_PTR(-EINVAL);
+>> +               }
+>> +       }
+>> +       if ((clk_gate_flags & CLK_GATE_HIWORD_MASK) &&
+> 
+> If you use parentheses around "a & b" here...
+> 
+>> +           clk_gate_flags & (CLK_GATE_REG_8BIT | CLK_GATE_REG_16BIT)) {
+> 
+> please add parentheses here, too.
+> 
+>> +               pr_err("HIWORD_MASK required 32-bit register\n");
+>> +               return ERR_PTR(-EINVAL);
+>> +       }
+>>
+>>         /* allocate the gate */
+>>         gate = kzalloc(sizeof(*gate), GFP_KERNEL);
+>> diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
+>> index 4a537260f655..eaa6ff1d0b2e 100644
+>> --- a/include/linux/clk-provider.h
+>> +++ b/include/linux/clk-provider.h
+>> @@ -508,12 +508,16 @@ void of_fixed_clk_setup(struct device_node *np);
+>>   * CLK_GATE_BIG_ENDIAN - by default little endian register accesses are used for
+>>   *     the gate register.  Setting this flag makes the register accesses big
+>>   *     endian.
+>> + * CLK_GATE_REG_8BIT - by default 32bit register accesses are used for
+>> + *     the gate register.  Setting this flag makes the register accesses 8bit.
+>> + * CLK_GATE_REG_16BIT - by default 32bit register accesses are used for
+>> + *     the gate register.  Setting this flag makes the register accesses 16bit.
+>>   */
+>>  struct clk_gate {
+>>         struct clk_hw hw;
+>>         void __iomem    *reg;
+>>         u8              bit_idx;
+>> -       u8              flags;
+>> +       u32             flags;
+> 
+> (from my comments on v6)
+> There is no need to increase the size of the flags field for the gate clock.
+> 
+> 
+>>         spinlock_t      *lock;
+>>  };
+>>
+> 
+>> @@ -675,13 +681,17 @@ struct clk_div_table {
+>>   * CLK_DIVIDER_BIG_ENDIAN - By default little endian register accesses are used
+>>   *     for the divider register.  Setting this flag makes the register accesses
+>>   *     big endian.
+>> + * CLK_DIVIDER_REG_8BIT - by default 32bit register accesses are used for
+>> + *     the gate register.  Setting this flag makes the register accesses 8bit.
+>> + * CLK_DIVIDER_REG_16BIT - by default 32bit register accesses are used for
+>> + *     the gate register.  Setting this flag makes the register accesses 16bit.
+>>   */
+>>  struct clk_divider {
+>>         struct clk_hw   hw;
+>>         void __iomem    *reg;
+>>         u8              shift;
+>>         u8              width;
+>> -       u8              flags;
+>> +       u16             flags;
+>>         const struct clk_div_table      *table;
+>>         spinlock_t      *lock;
+>>  };
+> 
+>> @@ -726,18 +738,18 @@ struct clk_hw *__clk_hw_register_divider(struct device *dev,
+>>                 struct device_node *np, const char *name,
+>>                 const char *parent_name, const struct clk_hw *parent_hw,
+>>                 const struct clk_parent_data *parent_data, unsigned long flags,
+>> -               void __iomem *reg, u8 shift, u8 width, u8 clk_divider_flags,
+>> +               void __iomem *reg, u8 shift, u8 width, u32 clk_divider_flags,
+> 
+> "u16 clk_divider_flags", to match clk_divider.flags.
+> 
+>>                 const struct clk_div_table *table, spinlock_t *lock);
+>>  struct clk_hw *__devm_clk_hw_register_divider(struct device *dev,
+>>                 struct device_node *np, const char *name,
+>>                 const char *parent_name, const struct clk_hw *parent_hw,
+>>                 const struct clk_parent_data *parent_data, unsigned long flags,
+>> -               void __iomem *reg, u8 shift, u8 width, u8 clk_divider_flags,
+>> +               void __iomem *reg, u8 shift, u8 width, u32 clk_divider_flags,
+> 
+> Likewise.
+> 
+>>                 const struct clk_div_table *table, spinlock_t *lock);
+>>  struct clk *clk_register_divider_table(struct device *dev, const char *name,
+>>                 const char *parent_name, unsigned long flags,
+>>                 void __iomem *reg, u8 shift, u8 width,
+>> -               u8 clk_divider_flags, const struct clk_div_table *table,
+>> +               u32 clk_divider_flags, const struct clk_div_table *table,
+> 
+> Likewise.
+> 
+>>                 spinlock_t *lock);
+>>  /**
+>>   * clk_register_divider - register a divider clock with the clock framework
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
+
+-- 
+Damien Le Moal
+Western Digital Research
+
 
