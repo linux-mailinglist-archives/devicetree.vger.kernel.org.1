@@ -1,186 +1,746 @@
-Return-Path: <devicetree+bounces-56442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9DED8994B0
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 07:21:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E2AB8994BD
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 07:30:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 24341B21844
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 05:21:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 564FB1C2270F
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 05:30:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BCA121379;
-	Fri,  5 Apr 2024 05:21:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F66421A06;
+	Fri,  5 Apr 2024 05:30:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="AhJi/sZG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PmvuoU6b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C3B8EAC5;
-	Fri,  5 Apr 2024 05:21:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B4DC2137E
+	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 05:30:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712294502; cv=none; b=lAWiquoqOXqvlA+FtwzwmmBkMAiMdtG9siQd67llpZMoIzN9EyF4EbxouN4HoRUtHqIrWCJcA1zqgDtVSqO+ZKP8FpDQPdcSJLEb1FGToyC9HsUMRj0SLTnkFkHadryWHY6vUo0P9xyeV3qQb1l7DWTUlOT5qqngXsES7PkPb4Y=
+	t=1712295025; cv=none; b=Iov4AgVbVmmsk2eg5p0qZz3fiylqdQiAU/ijaa5H+NYC+DPu6I4js/1tWZs0POP3wN/6cJTbdEWfTHoek37hzJd/q/t4L7l6OFg0V9ZIYfvnoujkld6DF2f9YBqPFDEfRc9UtXySghGgGCOY9bT1RU4OeOKsviNrYztx26BV92c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712294502; c=relaxed/simple;
-	bh=sbp/BvXn/ocXeWLlUWHaTIcY8lwqdZrtwrfGm7hEV1Q=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WPkv3CBgUIR/2DDIVfw1dCQDY1gUp4HQmOLI1aABRqJSQRAyMHlIH40Rhh90uPxcEnFuTY/9MqL7u0igBOJjvnRkdUqrBk8eAWKwiURk8GSv5Q/57I3dvrbaTK1biti6GqmSd4zLl+ckMLzSqnKbUMILtdxPUlvrn5FuSkxUV/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=AhJi/sZG; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4355LMkL032194;
-	Fri, 5 Apr 2024 00:21:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1712294482;
-	bh=rUC31u9nczDP7owyqjPSB+1Eq1oH+xM4RGziXzYW0k8=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=AhJi/sZG9+dE6kumgP/Ws/t/dcNQDpfOEIaHs1NQTS6VM0q1V+FDjTLzjzjbCnE/1
-	 sbq/iHzZhOXXv1LgOggYzY9ZVYE0QJX8aRfoDTZZp8VGll+cQvoo09wr77Y8seZjqu
-	 6/5dJbKYdKLTOkt506O69Wq4aZw6vK3CCG28nDLk=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4355LLAR047800
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 5 Apr 2024 00:21:22 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 5
- Apr 2024 00:21:21 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 5 Apr 2024 00:21:21 -0500
-Received: from localhost (uda0492258.dhcp.ti.com [172.24.227.9])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4355LK0C089520;
-	Fri, 5 Apr 2024 00:21:21 -0500
-Date: Fri, 5 Apr 2024 10:51:20 +0530
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Siddharth Vadapalli <s-vadapalli@ti.com>, <lee@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>
-Subject: Re: [PATCH] dt-bindings: mfd: syscon: Add ti,am62p-cpsw-mac-efuse
- compatible
-Message-ID: <94bae793-ba4f-467f-917d-213fa3cd6faa@ti.com>
-References: <20240402105708.4114146-1-s-vadapalli@ti.com>
- <2e9b6a91-43d3-4b23-830d-40e607505d8c@kernel.org>
- <30065bdc-ccef-4610-b1c1-7661f801b8e9@ti.com>
- <4b1380a8-0136-4395-ba42-9bcff2e1bdb0@kernel.org>
- <aabea385-16e0-4116-a12b-3ce1e06574e3@ti.com>
- <eb7a0d5c-c197-44b9-baea-e9b54792b447@kernel.org>
- <af61424e-7006-49f5-b614-3caa3674685a@ti.com>
- <083e50de-1c99-4a58-8b55-4dec26d97c1b@kernel.org>
- <9bca7d94-142e-4717-aea7-437805717a00@ti.com>
- <a895ddc8-5c18-49d7-86c4-b995bb946914@ti.com>
+	s=arc-20240116; t=1712295025; c=relaxed/simple;
+	bh=TjQ4t46WPI/Jam9Sp1xXfRBRxR4GwbYHiH9Y2aYmCZc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QJVsxXKoKwBHu94G1HrJob3zDp/WOgH7/KrGU66XOvuoFbpmEAjS2lrYjelsfobRhiv1/V6nv06yQXXOcHl/CiWnwtlyu8Gh7KxxHmi6Xh00ccPh+qEOFf8HKr0AiqB8mdA6HVshjo0Yr4tF0A2lbvcHsGFnTQsTyK54/Esh/PE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PmvuoU6b; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-6ed01c63657so88713b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 04 Apr 2024 22:30:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712295023; x=1712899823; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=zaS9U1Y97P4I/ntCK8d9bopQK1Ufaag8WN2XOGQ2QBU=;
+        b=PmvuoU6bUQjEb5adoRM4a3VgsaoA+ycl2mTTWsZ66Ej+5H6dJQhe5FFMcICtKaMvDH
+         GnbnjO3Z3H+RCZVFMBh1RteQDz2/CZbGKoUlaIFtlOaYT6YRkkI7Fm0TCstPFaoSva52
+         1rT/QXD0ql/p0S2y/L6hVoqkH8Xk1hMIT0TcJjc2qo1zYZeZdLPEfGCmmwtkZN3fKEfb
+         GYVQbJxtyyNYcVUBUuA9FnuS4Ou0xCjKAh5lYw5H+Sf0DOiWb6JERtRwaWYkw9QdFw7p
+         +tH9jNN+2jISTu7gswJ9doi5qRvvMCZlkqkW2TXQphfwvJZdogYWD/SVYsliXMUB6Toj
+         sv9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712295023; x=1712899823;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zaS9U1Y97P4I/ntCK8d9bopQK1Ufaag8WN2XOGQ2QBU=;
+        b=VlMqOeJbapugNMFKmxx15IDp7u1LtcSsOUWeoCvVOMG03lqMnALZScP7+VgrjyuJPB
+         UkrjviDqFzEZfqN5JaucU8ib5+XbsP9G8FiKzQ5Nt+C/3zQy+x3vlO/vNVg8R0768pfG
+         OFK/ILOvIYKyAGezEvUDjIdQ+pipx3BHdT1qvzmj87pEVN2Bsl5BUHW4vcppe7y35rIp
+         t33fQ1KIsUTrIOE5O0SLssq3LzvSUcxP7bt1iPSmqtfZP0zvWATFVHEKeA1lODP5mWJy
+         AUJjDv1ljPloxcB1h/Uh0HBB4yjk0yB/LlMnxTNgqyaxySPYdZ00PkHe0oKG/EgKTbKA
+         qElQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWf2gMopY1OQsK7MFZvB3VLXGLpCItmP8Ywl8S4a9cQ0vbeNtkF1JvWHLZ3uUSlL9UZ8X0KM9fRq5kOqZD6LOky0EsU60NihJpTOw==
+X-Gm-Message-State: AOJu0Yx1ZtIjY0y5gQUwnmExOBeRxlt6kTxsDXDmlpDorU5scpWwdKP5
+	13Yxiah3XFiPT4/dZi2fvh0Mfty8rN0ZHJjLx2nEjaIu1/OZLCrS54Kh/IoZjQ==
+X-Google-Smtp-Source: AGHT+IH10ruFuEGLAgzP5n7QlMlat4vZbzs90V4WEaYP6jWj4lUxos4vm/r5Rpb1aTyCi2PED1QAmw==
+X-Received: by 2002:a05:6a00:1489:b0:6ec:ceaa:3371 with SMTP id v9-20020a056a00148900b006ecceaa3371mr510613pfu.19.1712295022440;
+        Thu, 04 Apr 2024 22:30:22 -0700 (PDT)
+Received: from thinkpad ([120.60.67.119])
+        by smtp.gmail.com with ESMTPSA id p51-20020a056a0026f300b006e6bcda8480sm614721pfw.121.2024.04.04.22.30.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Apr 2024 22:30:22 -0700 (PDT)
+Date: Fri, 5 Apr 2024 11:00:11 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Mayank Rana <quic_mrana@quicinc.com>
+Cc: linux-pci@vger.kernel.org, lpieralisi@kernel.org, kw@linux.com,
+	robh@kernel.org, bhelgaas@google.com, andersson@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	quic_ramkri@quicinc.com, quic_nkela@quicinc.com,
+	quic_shazhuss@quicinc.com, quic_msarkar@quicinc.com,
+	quic_nitegupt@quicinc.com
+Subject: Re: [RFC PATCH 2/2] PCI: Add Qualcomm PCIe ECAM root complex driver
+Message-ID: <20240405052918.GA2953@thinkpad>
+References: <1712257884-23841-1-git-send-email-quic_mrana@quicinc.com>
+ <1712257884-23841-3-git-send-email-quic_mrana@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <a895ddc8-5c18-49d7-86c4-b995bb946914@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1712257884-23841-3-git-send-email-quic_mrana@quicinc.com>
 
-On Thu, Apr 04, 2024 at 02:02:21PM +0530, Siddharth Vadapalli wrote:
-> On Wed, Apr 03, 2024 at 12:18:10PM +0530, Siddharth Vadapalli wrote:
-> > On Wed, Apr 03, 2024 at 08:40:19AM +0200, Krzysztof Kozlowski wrote:
-> > > On 03/04/2024 08:32, Siddharth Vadapalli wrote:
-> > > > On Wed, Apr 03, 2024 at 08:27:06AM +0200, Krzysztof Kozlowski wrote:
-> > > >> On 03/04/2024 07:35, Siddharth Vadapalli wrote:
-> > > >>> On Tue, Apr 02, 2024 at 08:06:27PM +0200, Krzysztof Kozlowski wrote:
-> > > >>>> On 02/04/2024 14:30, Siddharth Vadapalli wrote:
-> > > >>>>> On Tue, Apr 02, 2024 at 02:08:32PM +0200, Krzysztof Kozlowski wrote:
-> > > >>>>>> On 02/04/2024 12:57, Siddharth Vadapalli wrote:
-> > > >>>>>>> The CTRLMMR_MAC_IDx registers within the CTRL_MMR space of TI's AM62p SoC
-> > > >>>>>>> contain the MAC Address programmed in the eFuse. Add compatible for
-> > > >>>>>>> allowing the CPSW driver to obtain a regmap for the CTRLMMR_MAC_IDx
-> > > >>>>>>> registers within the System Controller device-tree node. The default MAC
-> > > >>>>>>> Address for the interface corresponding to the first MAC port will be set
-> > > >>>>>>> to the value programmed in the eFuse.
-> > > >>>>>>>
-> > > >>>>>>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> > > >>>>>>> ---
-> > > >>>>>>>
-> > > >>>>>>> This patch is based on linux-next tagged next-20240402.
-> > > >>>>>>
-> > > >>>>>> Where is the DTS using it?
-> > > >>>>>
-> > > >>>>> The current implementation in the device-tree for older TI K3 SoCs is as
-> > > >>>>> follows:
-> > > >>>>>
-> > > >>>>> 	cpsw_port1: port@1 {
-> > > >>>>> 		reg = <1>;
-> > > >>>>> 		ti,mac-only;
-> > > >>>>> 		label = "port1";
-> > > >>>>> 		phys = <&phy_gmii_sel 1>;
-> > > >>>>> 		mac-address = [00 00 00 00 00 00];
-> > > >>>>> 		ti,syscon-efuse = <&wkup_conf 0x200>;
-> > > >>>>> 	};
-> > > >>>>>
-> > > >>>>> The "ti,syscon-efuse" property passes the reference to the System
-> > > >>>>> Controller node as well as the offset to the CTRLMMR_MAC_IDx registers
-> > > >>>>> within the CTRL_MMR space.
-> > > >>>>
-> > > >>>> Please reference upstream DTS or lore link to patch under review.
-> > > >>>
-> > > >>> An example of the existing implementation in the device-tree for AM64x
-> > > >>> is:
-> > > >>> https://github.com/torvalds/linux/blob/d4e8c8ad5d14ad51ed8813442d81c43019fd669d/arch/arm64/boot/dts/ti/k3-am64-main.dtsi#L697
-> > > >>> It uses:
-> > > >>> 	ti,syscon-efuse = <&main_conf 0x200>;
-> > > >>>
-> > > >>> and "main_conf" node is defined at:
-> > > >>> https://github.com/torvalds/linux/blob/d4e8c8ad5d14ad51ed8813442d81c43019fd669d/arch/arm64/boot/dts/ti/k3-am64-main.dtsi#L40
-> > > >>
-> > > >> It is quite different than your bindings, so your bindings are incorrect.
-> > > > 
-> > > > Sorry I didn't understand what you mean. The references I have provided
-> > > > are for existing DTS where "main_conf"/"wkup_conf" (System Controller
-> > > > nodes) have the compatible "syscon", unlike in AM62p at:
-> > > > https://github.com/torvalds/linux/blob/20f8173afaac90dd9dca11be4aa602a47776077f/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi#L8
-> > > > which has the "simple-bus" compatible for the "wkup_conf" node.
-> > > > 
-> > > > Also, shouldn't the device-tree bindings patches be posted first and get
-> > > > merged before I post the device-tree patches that utilize the
-> > > > compatible/properties that have been added in the bindings? That is the
-> > > > reason why I had shared the "DIFF" for the DTS changes that I will be
-> > > > posting once this patch for the new compatible is accepted.
-> > > > 
-> > > 
-> > > That's not the process. I will be NAKing bindings which do not have any
-> > > users, because I do not trust you test them.
-> > > 
-> > > The process is almost always:
-> > > 1. Send bindings,
-> > > 2. Send driver changes (if applicable) in the same patchset.
-> > > 3. Send DTS, usually in separate patches and provide lore link to the
-> > > bindings in the changelog or cover letter.
-> > 
-> > Thank you for clarifying. I will post the DTS patches corresponding to
-> > this patch and reference this patch in the DTS patch series.
+On Thu, Apr 04, 2024 at 12:11:24PM -0700, Mayank Rana wrote:
+> On some of Qualcomm platform, firmware configures PCIe controller into
+> ECAM mode allowing static memory allocation for configuration space of
+> supported bus range. Firmware also takes care of bringing up PCIe PHY
+> and performing required operation to bring PCIe link into D0. Firmware
+> also manages system resources (e.g. clocks/regulators/resets/ bus voting).
+> Hence add Qualcomm PCIe ECAM root complex driver which enumerates PCIe
+> root complex and connected PCIe devices. Firmware won't be enumerating
+> or powering up PCIe root complex until this driver invokes power domain
+> based notification to bring PCIe link into D0/D3cold mode.
 > 
-> I have posted the DTS patch at:
-> https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240404081845.622707-1-s-vadapalli@ti.com/
-> indicating the dependency on this bindings patch.
 
-Hello Krzysztof,
+Is this an in-house PCIe IP of Qualcomm or the same DWC IP that is used in other
+SoCs?
 
-Do I have to post a v2 for this patch? You had Acked it initially but I
-am not sure if the discussion so far will make it unclear to readers
-regarding the acceptance of this patch. Thank you for Acking the v3 DTS
-patch at:
-https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240404124614.891416-1-s-vadapalli@ti.com/
+- Mani
 
-Since the v3 DTS patch mentions this bindings patch as a dependency, I
-wanted to be sure whether I have to post a v2 for this or that won't be
-required.
+> This driver also support MSI functionality using PCIe controller based
+> MSI controller as GIC ITS based MSI functionality is not available on
+> some of platform.
+> 
+> Signed-off-by: Mayank Rana <quic_mrana@quicinc.com>
+> ---
+>  drivers/pci/controller/Kconfig          |  12 +
+>  drivers/pci/controller/Makefile         |   1 +
+>  drivers/pci/controller/pcie-qcom-ecam.c | 575 ++++++++++++++++++++++++++++++++
+>  3 files changed, 588 insertions(+)
+>  create mode 100644 drivers/pci/controller/pcie-qcom-ecam.c
+> 
+> diff --git a/drivers/pci/controller/Kconfig b/drivers/pci/controller/Kconfig
+> index e534c02..abbd9f2 100644
+> --- a/drivers/pci/controller/Kconfig
+> +++ b/drivers/pci/controller/Kconfig
+> @@ -353,6 +353,18 @@ config PCIE_XILINX_CPM
+>  	  Say 'Y' here if you want kernel support for the
+>  	  Xilinx Versal CPM host bridge.
+>  
+> +config PCIE_QCOM_ECAM
+> +	tristate "QCOM PCIe ECAM host controller"
+> +	depends on ARCH_QCOM && PCI
+> +	depends on OF
+> +	select PCI_MSI
+> +	select PCI_HOST_COMMON
+> +	select IRQ_DOMAIN
+> +	help
+> +	 Say 'Y' here if you want to use ECAM shift mode compatible Qualcomm
+> +	 PCIe root host controller. The controller is programmed using firmware
+> +	 to support ECAM compatible memory address space.
+> +
+>  source "drivers/pci/controller/cadence/Kconfig"
+>  source "drivers/pci/controller/dwc/Kconfig"
+>  source "drivers/pci/controller/mobiveil/Kconfig"
+> diff --git a/drivers/pci/controller/Makefile b/drivers/pci/controller/Makefile
+> index f2b19e6..2f1ee1e 100644
+> --- a/drivers/pci/controller/Makefile
+> +++ b/drivers/pci/controller/Makefile
+> @@ -40,6 +40,7 @@ obj-$(CONFIG_PCI_LOONGSON) += pci-loongson.o
+>  obj-$(CONFIG_PCIE_HISI_ERR) += pcie-hisi-error.o
+>  obj-$(CONFIG_PCIE_APPLE) += pcie-apple.o
+>  obj-$(CONFIG_PCIE_MT7621) += pcie-mt7621.o
+> +obj-$(CONFIG_PCIE_QCOM_ECAM) += pcie-qcom-ecam.o
+>  
+>  # pcie-hisi.o quirks are needed even without CONFIG_PCIE_DW
+>  obj-y				+= dwc/
+> diff --git a/drivers/pci/controller/pcie-qcom-ecam.c b/drivers/pci/controller/pcie-qcom-ecam.c
+> new file mode 100644
+> index 00000000..5b4c68b
+> --- /dev/null
+> +++ b/drivers/pci/controller/pcie-qcom-ecam.c
+> @@ -0,0 +1,575 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Qualcomm PCIe ECAM root host controller driver
+> + * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +#define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
+> +
+> +#include <linux/irq.h>
+> +#include <linux/irqchip/chained_irq.h>
+> +#include <linux/irqdomain.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/msi.h>
+> +#include <linux/of_address.h>
+> +#include <linux/of_irq.h>
+> +#include <linux/of_pci.h>
+> +#include <linux/pci.h>
+> +#include <linux/pci-ecam.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_domain.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/slab.h>
+> +#include <linux/types.h>
+> +
+> +#define PCIE_MSI_CTRL_BASE			(0x820)
+> +#define PCIE_MSI_CTRL_SIZE			(0x68)
+> +#define PCIE_MSI_CTRL_ADDR_OFFS			(0x0)
+> +#define PCIE_MSI_CTRL_UPPER_ADDR_OFFS		(0x4)
+> +#define PCIE_MSI_CTRL_INT_N_EN_OFFS(n)		(0x8 + 0xc * (n))
+> +#define PCIE_MSI_CTRL_INT_N_MASK_OFFS(n)	(0xc + 0xc * (n))
+> +#define PCIE_MSI_CTRL_INT_N_STATUS_OFFS(n)	(0x10 + 0xc * (n))
+> +
+> +#define	MSI_DB_ADDR	0xa0000000
+> +#define MSI_IRQ_PER_GRP (32)
+> +
+> +/**
+> + * struct qcom_msi_irq - MSI IRQ information
+> + * @client:	pointer to MSI client struct
+> + * @grp:	group the irq belongs to
+> + * @grp_index:	index in group
+> + * @hwirq:	hwirq number
+> + * @virq:	virq number
+> + * @pos:	position in MSI bitmap
+> + */
+> +struct qcom_msi_irq {
+> +	struct qcom_msi_client *client;
+> +	struct qcom_msi_grp *grp;
+> +	unsigned int grp_index;
+> +	unsigned int hwirq;
+> +	unsigned int virq;
+> +	u32 pos;
+> +};
+> +
+> +/**
+> + * struct qcom_msi_grp - MSI group information
+> + * @int_en_reg:		memory-mapped interrupt enable register address
+> + * @int_mask_reg:	memory-mapped interrupt mask register address
+> + * @int_status_reg:	memory-mapped interrupt status register address
+> + * @mask:		tracks masked/unmasked MSI
+> + * @irqs:		structure to MSI IRQ information
+> + */
+> +struct qcom_msi_grp {
+> +	void __iomem *int_en_reg;
+> +	void __iomem *int_mask_reg;
+> +	void __iomem *int_status_reg;
+> +	u32 mask;
+> +	struct qcom_msi_irq irqs[MSI_IRQ_PER_GRP];
+> +};
+> +
+> +/**
+> + * struct qcom_msi - PCIe controller based MSI controller information
+> + * @clients:		list for tracking clients
+> + * @dev:		platform device node
+> + * @nr_hwirqs:		total number of hardware IRQs
+> + * @nr_virqs:		total number of virqs
+> + * @nr_grps:		total number of groups
+> + * @grps:		pointer to all groups information
+> + * @bitmap:		tracks used/unused MSI
+> + * @mutex:		for modifying MSI client list and bitmap
+> + * @inner_domain:	parent domain; gen irq related
+> + * @msi_domain:		child domain; pcie related
+> + * @msi_db_addr:	MSI doorbell address
+> + * @cfg_lock:		lock for configuring MSI controller registers
+> + * @pcie_msi_cfg:	memory-mapped MSI controller register space
+> + */
+> +struct qcom_msi {
+> +	struct list_head clients;
+> +	struct device *dev;
+> +	int nr_hwirqs;
+> +	int nr_virqs;
+> +	int nr_grps;
+> +	struct qcom_msi_grp *grps;
+> +	unsigned long *bitmap;
+> +	struct mutex mutex;
+> +	struct irq_domain *inner_domain;
+> +	struct irq_domain *msi_domain;
+> +	phys_addr_t msi_db_addr;
+> +	spinlock_t cfg_lock;
+> +	void __iomem *pcie_msi_cfg;
+> +};
+> +
+> +/**
+> + * struct qcom_msi_client - structure for each client of MSI controller
+> + * @node:		list to track number of MSI clients
+> + * @msi:		client specific MSI controller based resource pointer
+> + * @dev:		client's dev of pci_dev
+> + * @nr_irqs:		number of irqs allocated for client
+> + * @msi_addr:		MSI doorbell address
+> + */
+> +struct qcom_msi_client {
+> +	struct list_head node;
+> +	struct qcom_msi *msi;
+> +	struct device *dev;
+> +	unsigned int nr_irqs;
+> +	phys_addr_t msi_addr;
+> +};
+> +
+> +static void qcom_msi_handler(struct irq_desc *desc)
+> +{
+> +	struct irq_chip *chip = irq_desc_get_chip(desc);
+> +	struct qcom_msi_grp *msi_grp;
+> +	u32 status;
+> +	int i;
+> +
+> +	chained_irq_enter(chip, desc);
+> +
+> +	msi_grp = irq_desc_get_handler_data(desc);
+> +	status = readl_relaxed(msi_grp->int_status_reg);
+> +	status ^= (msi_grp->mask & status);
+> +	writel(status, msi_grp->int_status_reg);
+> +
+> +	for (i = 0; status; i++, status >>= 1)
+> +		if (status & 0x1)
+> +			generic_handle_irq(msi_grp->irqs[i].virq);
+> +
+> +	chained_irq_exit(chip, desc);
+> +}
+> +
+> +static void qcom_msi_mask_irq(struct irq_data *data)
+> +{
+> +	struct irq_data *parent_data;
+> +	struct qcom_msi_irq *msi_irq;
+> +	struct qcom_msi_grp *msi_grp;
+> +	struct qcom_msi *msi;
+> +	unsigned long flags;
+> +
+> +	parent_data = data->parent_data;
+> +	if (!parent_data)
+> +		return;
+> +
+> +	msi_irq = irq_data_get_irq_chip_data(parent_data);
+> +	msi = msi_irq->client->msi;
+> +	msi_grp = msi_irq->grp;
+> +
+> +	spin_lock_irqsave(&msi->cfg_lock, flags);
+> +	pci_msi_mask_irq(data);
+> +	msi_grp->mask |= BIT(msi_irq->grp_index);
+> +	writel(msi_grp->mask, msi_grp->int_mask_reg);
+> +	spin_unlock_irqrestore(&msi->cfg_lock, flags);
+> +}
+> +
+> +static void qcom_msi_unmask_irq(struct irq_data *data)
+> +{
+> +	struct irq_data *parent_data;
+> +	struct qcom_msi_irq *msi_irq;
+> +	struct qcom_msi_grp *msi_grp;
+> +	struct qcom_msi *msi;
+> +	unsigned long flags;
+> +
+> +	parent_data = data->parent_data;
+> +	if (!parent_data)
+> +		return;
+> +
+> +	msi_irq = irq_data_get_irq_chip_data(parent_data);
+> +	msi = msi_irq->client->msi;
+> +	msi_grp = msi_irq->grp;
+> +
+> +	spin_lock_irqsave(&msi->cfg_lock, flags);
+> +	msi_grp->mask &= ~BIT(msi_irq->grp_index);
+> +	writel(msi_grp->mask, msi_grp->int_mask_reg);
+> +	pci_msi_unmask_irq(data);
+> +	spin_unlock_irqrestore(&msi->cfg_lock, flags);
+> +}
+> +
+> +static struct irq_chip qcom_msi_irq_chip = {
+> +	.name		= "qcom_pci_msi",
+> +	.irq_enable	= qcom_msi_unmask_irq,
+> +	.irq_disable	= qcom_msi_mask_irq,
+> +	.irq_mask	= qcom_msi_mask_irq,
+> +	.irq_unmask	= qcom_msi_unmask_irq,
+> +};
+> +
+> +static int qcom_msi_domain_prepare(struct irq_domain *domain, struct device *dev,
+> +				int nvec, msi_alloc_info_t *arg)
+> +{
+> +	struct qcom_msi *msi = domain->parent->host_data;
+> +	struct qcom_msi_client *client;
+> +
+> +	client = kzalloc(sizeof(*client), GFP_KERNEL);
+> +	if (!client)
+> +		return -ENOMEM;
+> +
+> +	client->msi = msi;
+> +	client->dev = dev;
+> +	client->msi_addr = msi->msi_db_addr;
+> +	mutex_lock(&msi->mutex);
+> +	list_add_tail(&client->node, &msi->clients);
+> +	mutex_unlock(&msi->mutex);
+> +
+> +	/* zero out struct for pcie msi framework */
+> +	memset(arg, 0, sizeof(*arg));
+> +	return 0;
+> +}
+> +
+> +static struct msi_domain_ops qcom_msi_domain_ops = {
+> +	.msi_prepare	= qcom_msi_domain_prepare,
+> +};
+> +
+> +static struct msi_domain_info qcom_msi_domain_info = {
+> +	.flags	= (MSI_FLAG_USE_DEF_DOM_OPS | MSI_FLAG_USE_DEF_CHIP_OPS |
+> +			MSI_FLAG_MULTI_PCI_MSI | MSI_FLAG_PCI_MSIX),
+> +	.ops	= &qcom_msi_domain_ops,
+> +	.chip	= &qcom_msi_irq_chip,
+> +};
+> +
+> +static int qcom_msi_irq_set_affinity(struct irq_data *data,
+> +				const struct cpumask *mask, bool force)
+> +{
+> +	struct irq_data *parent_data = irq_get_irq_data(irqd_to_hwirq(data));
+> +	int ret = 0;
+> +
+> +	if (!parent_data)
+> +		return -ENODEV;
+> +
+> +	/* set affinity for MSI HW IRQ */
+> +	if (parent_data->chip->irq_set_affinity)
+> +		ret = parent_data->chip->irq_set_affinity(parent_data, mask, force);
+> +
+> +	return ret;
+> +}
+> +
+> +static void qcom_msi_irq_compose_msi_msg(struct irq_data *data, struct msi_msg *msg)
+> +{
+> +	struct irq_data *parent_data = irq_get_irq_data(irqd_to_hwirq(data));
+> +	struct qcom_msi_irq *msi_irq = irq_data_get_irq_chip_data(data);
+> +	struct qcom_msi_client *client = msi_irq->client;
+> +
+> +	if (!parent_data)
+> +		return;
+> +
+> +	msg->address_lo = lower_32_bits(client->msi_addr);
+> +	msg->address_hi = upper_32_bits(client->msi_addr);
+> +	msg->data = msi_irq->pos;
+> +}
+> +
+> +static struct irq_chip qcom_msi_bottom_irq_chip = {
+> +	.name			= "qcom_msi",
+> +	.irq_set_affinity	= qcom_msi_irq_set_affinity,
+> +	.irq_compose_msi_msg	= qcom_msi_irq_compose_msi_msg,
+> +};
+> +
+> +static int qcom_msi_irq_domain_alloc(struct irq_domain *domain, unsigned int virq,
+> +				unsigned int nr_irqs, void *args)
+> +{
+> +	struct device *dev = ((msi_alloc_info_t *)args)->desc->dev;
+> +	struct qcom_msi_client *tmp, *client = NULL;
+> +	struct qcom_msi *msi = domain->host_data;
+> +	int i, ret = 0;
+> +	int pos;
+> +
+> +	mutex_lock(&msi->mutex);
+> +	list_for_each_entry(tmp, &msi->clients, node) {
+> +		if (tmp->dev == dev) {
+> +			client = tmp;
+> +			break;
+> +		}
+> +	}
+> +
+> +	if (!client) {
+> +		dev_err(msi->dev, "failed to find MSI client dev\n");
+> +		ret = -ENODEV;
+> +		goto out;
+> +	}
+> +
+> +	pos = bitmap_find_next_zero_area(msi->bitmap, msi->nr_virqs, 0,
+> +					nr_irqs, nr_irqs - 1);
+> +	if (pos > msi->nr_virqs) {
+> +		ret = -ENOSPC;
+> +		goto out;
+> +	}
+> +
+> +	bitmap_set(msi->bitmap, pos, nr_irqs);
+> +	for (i = 0; i < nr_irqs; i++) {
+> +		u32 grp = pos / MSI_IRQ_PER_GRP;
+> +		u32 index = pos % MSI_IRQ_PER_GRP;
+> +		struct qcom_msi_irq *msi_irq = &msi->grps[grp].irqs[index];
+> +
+> +		msi_irq->virq = virq + i;
+> +		msi_irq->client = client;
+> +		irq_domain_set_info(domain, msi_irq->virq,
+> +				msi_irq->hwirq,
+> +				&qcom_msi_bottom_irq_chip, msi_irq,
+> +				handle_simple_irq, NULL, NULL);
+> +		client->nr_irqs++;
+> +		pos++;
+> +	}
+> +out:
+> +	mutex_unlock(&msi->mutex);
+> +	return ret;
+> +}
+> +
+> +static void qcom_msi_irq_domain_free(struct irq_domain *domain, unsigned int virq,
+> +				unsigned int nr_irqs)
+> +{
+> +	struct irq_data *data = irq_domain_get_irq_data(domain, virq);
+> +	struct qcom_msi_client *client;
+> +	struct qcom_msi_irq *msi_irq;
+> +	struct qcom_msi *msi;
+> +
+> +	if (!data)
+> +		return;
+> +
+> +	msi_irq = irq_data_get_irq_chip_data(data);
+> +	client  = msi_irq->client;
+> +	msi = client->msi;
+> +
+> +	mutex_lock(&msi->mutex);
+> +	bitmap_clear(msi->bitmap, msi_irq->pos, nr_irqs);
+> +
+> +	client->nr_irqs -= nr_irqs;
+> +	if (!client->nr_irqs) {
+> +		list_del(&client->node);
+> +		kfree(client);
+> +	}
+> +	mutex_unlock(&msi->mutex);
+> +
+> +	irq_domain_free_irqs_parent(domain, virq, nr_irqs);
+> +}
+> +
+> +static const struct irq_domain_ops msi_domain_ops = {
+> +	.alloc	= qcom_msi_irq_domain_alloc,
+> +	.free	= qcom_msi_irq_domain_free,
+> +};
+> +
+> +static int qcom_msi_alloc_domains(struct qcom_msi *msi)
+> +{
+> +	msi->inner_domain = irq_domain_add_linear(NULL, msi->nr_virqs,
+> +						&msi_domain_ops, msi);
+> +	if (!msi->inner_domain) {
+> +		dev_err(msi->dev, "failed to create IRQ inner domain\n");
+> +		return -ENOMEM;
+> +	}
+> +
+> +	msi->msi_domain = pci_msi_create_irq_domain(of_node_to_fwnode(msi->dev->of_node),
+> +					&qcom_msi_domain_info, msi->inner_domain);
+> +	if (!msi->msi_domain) {
+> +		dev_err(msi->dev, "failed to create MSI domain\n");
+> +		irq_domain_remove(msi->inner_domain);
+> +		return -ENOMEM;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int qcom_msi_irq_setup(struct qcom_msi *msi)
+> +{
+> +	struct qcom_msi_grp *msi_grp;
+> +	struct qcom_msi_irq *msi_irq;
+> +	int i, index, ret;
+> +	unsigned int irq;
+> +
+> +	/* setup each MSI group. nr_hwirqs == nr_grps */
+> +	for (i = 0; i < msi->nr_hwirqs; i++) {
+> +		irq = irq_of_parse_and_map(msi->dev->of_node, i);
+> +		if (!irq) {
+> +			dev_err(msi->dev,
+> +				"MSI: failed to parse/map interrupt\n");
+> +			ret = -ENODEV;
+> +			goto free_irqs;
+> +		}
+> +
+> +		msi_grp = &msi->grps[i];
+> +		msi_grp->int_en_reg = msi->pcie_msi_cfg +
+> +				PCIE_MSI_CTRL_INT_N_EN_OFFS(i);
+> +		msi_grp->int_mask_reg = msi->pcie_msi_cfg +
+> +				PCIE_MSI_CTRL_INT_N_MASK_OFFS(i);
+> +		msi_grp->int_status_reg = msi->pcie_msi_cfg +
+> +				PCIE_MSI_CTRL_INT_N_STATUS_OFFS(i);
+> +
+> +		for (index = 0; index < MSI_IRQ_PER_GRP; index++) {
+> +			msi_irq = &msi_grp->irqs[index];
+> +
+> +			msi_irq->grp = msi_grp;
+> +			msi_irq->grp_index = index;
+> +			msi_irq->pos = (i * MSI_IRQ_PER_GRP) + index;
+> +			msi_irq->hwirq = irq;
+> +		}
+> +
+> +		irq_set_chained_handler_and_data(irq, qcom_msi_handler, msi_grp);
+> +	}
+> +
+> +	return 0;
+> +
+> +free_irqs:
+> +	for (--i; i >= 0; i--) {
+> +		irq = msi->grps[i].irqs[0].hwirq;
+> +
+> +		irq_set_chained_handler_and_data(irq, NULL, NULL);
+> +		irq_dispose_mapping(irq);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static void qcom_msi_config(struct irq_domain *domain)
+> +{
+> +	struct qcom_msi *msi;
+> +	int i;
+> +
+> +	msi = domain->parent->host_data;
+> +
+> +	/* program termination address */
+> +	writel(msi->msi_db_addr, msi->pcie_msi_cfg + PCIE_MSI_CTRL_ADDR_OFFS);
+> +	writel(0, msi->pcie_msi_cfg + PCIE_MSI_CTRL_UPPER_ADDR_OFFS);
+> +
+> +	/* restore mask and enable all interrupts for each group */
+> +	for (i = 0; i < msi->nr_grps; i++) {
+> +		struct qcom_msi_grp *msi_grp = &msi->grps[i];
+> +
+> +		writel(msi_grp->mask, msi_grp->int_mask_reg);
+> +		writel(~0, msi_grp->int_en_reg);
+> +	}
+> +}
+> +
+> +static void qcom_msi_deinit(struct qcom_msi *msi)
+> +{
+> +	irq_domain_remove(msi->msi_domain);
+> +	irq_domain_remove(msi->inner_domain);
+> +}
+> +
+> +static struct qcom_msi *qcom_msi_init(struct device *dev)
+> +{
+> +	struct qcom_msi *msi;
+> +	u64 addr;
+> +	int ret;
+> +
+> +	msi = devm_kzalloc(dev, sizeof(*msi), GFP_KERNEL);
+> +	if (!msi)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	msi->dev = dev;
+> +	mutex_init(&msi->mutex);
+> +	spin_lock_init(&msi->cfg_lock);
+> +	INIT_LIST_HEAD(&msi->clients);
+> +
+> +	msi->msi_db_addr = MSI_DB_ADDR;
+> +	msi->nr_hwirqs = of_irq_count(dev->of_node);
+> +	if (!msi->nr_hwirqs) {
+> +		dev_err(msi->dev, "no hwirqs found\n");
+> +		return ERR_PTR(-ENODEV);
+> +	}
+> +
+> +	if (of_property_read_reg(dev->of_node, 0, &addr, NULL) < 0) {
+> +		dev_err(msi->dev, "failed to get reg address\n");
+> +		return ERR_PTR(-ENODEV);
+> +	}
+> +
+> +	dev_dbg(msi->dev, "hwirq:%d pcie_msi_cfg:%llx\n", msi->nr_hwirqs, addr);
+> +	msi->pcie_msi_cfg = devm_ioremap(dev, addr + PCIE_MSI_CTRL_BASE, PCIE_MSI_CTRL_SIZE);
+> +	if (!msi->pcie_msi_cfg)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	msi->nr_virqs = msi->nr_hwirqs * MSI_IRQ_PER_GRP;
+> +	msi->nr_grps = msi->nr_hwirqs;
+> +	msi->grps = devm_kcalloc(dev, msi->nr_grps, sizeof(*msi->grps), GFP_KERNEL);
+> +	if (!msi->grps)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	msi->bitmap = devm_kcalloc(dev, BITS_TO_LONGS(msi->nr_virqs),
+> +				sizeof(*msi->bitmap), GFP_KERNEL);
+> +	if (!msi->bitmap)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	ret = qcom_msi_alloc_domains(msi);
+> +	if (ret)
+> +		return ERR_PTR(ret);
+> +
+> +	ret = qcom_msi_irq_setup(msi);
+> +	if (ret) {
+> +		qcom_msi_deinit(msi);
+> +		return ERR_PTR(ret);
+> +	}
+> +
+> +	qcom_msi_config(msi->msi_domain);
+> +	return msi;
+> +}
+> +
+> +static int qcom_pcie_ecam_suspend_noirq(struct device *dev)
+> +{
+> +	return pm_runtime_put_sync(dev);
+> +}
+> +
+> +static int qcom_pcie_ecam_resume_noirq(struct device *dev)
+> +{
+> +	return pm_runtime_get_sync(dev);
+> +}
+> +
+> +static int qcom_pcie_ecam_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct qcom_msi *msi;
+> +	int ret;
+> +
+> +	ret = devm_pm_runtime_enable(dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = pm_runtime_resume_and_get(dev);
+> +	if (ret < 0) {
+> +		dev_err(dev, "fail to enable pcie controller: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	msi = qcom_msi_init(dev);
+> +	if (IS_ERR(msi)) {
+> +		pm_runtime_put_sync(dev);
+> +		return PTR_ERR(msi);
+> +	}
+> +
+> +	ret = pci_host_common_probe(pdev);
+> +	if (ret) {
+> +		dev_err(dev, "pci_host_common_probe() failed:%d\n", ret);
+> +		qcom_msi_deinit(msi);
+> +		pm_runtime_put_sync(dev);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct dev_pm_ops qcom_pcie_ecam_pm_ops = {
+> +	NOIRQ_SYSTEM_SLEEP_PM_OPS(qcom_pcie_ecam_suspend_noirq,
+> +				qcom_pcie_ecam_resume_noirq)
+> +};
+> +
+> +static const struct pci_ecam_ops qcom_pcie_ecam_ops = {
+> +	.pci_ops	= {
+> +		.map_bus	= pci_ecam_map_bus,
+> +		.read		= pci_generic_config_read,
+> +		.write		= pci_generic_config_write,
+> +	}
+> +};
+> +
+> +static const struct of_device_id qcom_pcie_ecam_of_match[] = {
+> +	{
+> +		.compatible	= "qcom,pcie-ecam-rc",
+> +		.data		= &qcom_pcie_ecam_ops,
+> +	},
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, qcom_pcie_ecam_of_match);
+> +
+> +static struct platform_driver qcom_pcie_ecam_driver = {
+> +	.probe	= qcom_pcie_ecam_probe,
+> +	.driver	= {
+> +		.name			= "qcom-pcie-ecam-rc",
+> +		.suppress_bind_attrs	= true,
+> +		.of_match_table		= qcom_pcie_ecam_of_match,
+> +		.probe_type		= PROBE_PREFER_ASYNCHRONOUS,
+> +		.pm			= &qcom_pcie_ecam_pm_ops,
+> +	},
+> +};
+> +module_platform_driver(qcom_pcie_ecam_driver);
+> +
+> +MODULE_DESCRIPTION("Qualcomm PCIe ECAM root complex driver");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.7.4
+> 
 
-Regards,
-Siddharth.
+-- 
+மணிவண்ணன் சதாசிவம்
 
