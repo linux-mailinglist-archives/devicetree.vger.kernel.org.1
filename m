@@ -1,187 +1,149 @@
-Return-Path: <devicetree+bounces-56736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AAF689A5B3
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 22:37:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D94BA89A5C0
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 22:40:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C1741C21CAB
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 20:37:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 15B8E1C21257
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 20:40:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A75F174ECD;
-	Fri,  5 Apr 2024 20:36:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F8CA17333A;
+	Fri,  5 Apr 2024 20:40:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tNM9bvvX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BR84H4YO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79ECB17276A
-	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 20:36:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9D921327FD;
+	Fri,  5 Apr 2024 20:40:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712349415; cv=none; b=py8UDoX/uvr2yrbCqhMo2tCFBxl7X3ix5YOBBdt0ieO3jgjcIpbmrI0AHCgFEHSm4hCMugbuieuvYMoJ9IbhomRMNSD28s+HS/K24rhHl/tNseBgDr0/n05baXUMa6qTG1Ub7uVTPn2Q0FLWWZfW2lzTKOV+VxBM8dS+ehFZJJs=
+	t=1712349620; cv=none; b=jBH0cIBCTcKCPU7f6I4bGgyjn4FZEn78LL0U0/nPrvJ6toAPBI21YtLcxp7dzATbxeYXGZcwMM0/G7Kyf7UtIfrEquKa7bq9cE4qZqTmJQxuosvGKCU+yLHfJbCRLgFA5RcJm/2g2ca1TtePf3nLMD9AVnj3RXkyErKoo6j8oXE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712349415; c=relaxed/simple;
-	bh=LU/xQB6V/25bLcvayMCENtNqmkx93CwiDahm1ICVE0U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WMpR2+NdNaBOIyHnKxiJ52SdeJi03iq8IO6Af6McTStS7fmr8JV7afymGNqW0vio8UM8SwIzNK73McLlDDKvRuunW2F9OvfXct2MHo1OEnsB0CTHZyFNs1FZWeVQqecxVULNl/TK9vJ/66MajNHT9NjIQyrXNYW78eemwBchfYU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tNM9bvvX; arc=none smtp.client-ip=209.85.219.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-dcd7c526cc0so2683912276.1
-        for <devicetree@vger.kernel.org>; Fri, 05 Apr 2024 13:36:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712349412; x=1712954212; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=/86pn6vkv7rN4o5AcWzNGDdSkHGVI9X5IaswAWqNOJE=;
-        b=tNM9bvvXfdTuhYlt4/Fg14FY0fgOIobs2m0IsRCnESfybhR1ysguuBGP7b9IjTppSz
-         EUL15xpSU8frl7hS5vYiqUmGh8uNnFCw7GSkoUsvjbmBFfpn4XRnzKdGr1gKDANVu/Op
-         gXcHwfCo5I5SiNsPZgWGC3isGf8YoUKRhrmj821aPEXuSk1gv6nl4PxNPZLG0ApK7cjA
-         i3hqAGDhEfcYiVwoKfa5xuppBP+A485DkDxREu86lO/t+mV1BFx5MgtkFwMYqklwQXC2
-         Nh3h23ZOr4j/MNPVjtJXriUW1/f94cSl75YTnkfdbOyymr4+d0BU65XHl3AJtux4dqI5
-         IKqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712349412; x=1712954212;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/86pn6vkv7rN4o5AcWzNGDdSkHGVI9X5IaswAWqNOJE=;
-        b=lCcSO9OspSKAEzLVY6+evDkbwPYUJgFqyXijYBG43omZB7vbXNO751+1KzYswwubz6
-         qyUa2YNhaaddBxU7HLDNwXyZnnkWEEwaceuiaF1HvyOk16tZSntaNS4vfQdu5bqt3EN0
-         PbAQs8lVQPh+ZLFdIEUD/SXNx7XfIOU1JXbXBpEQptp+RLLKmqCHh1leyA1rQeD6NKhc
-         fugu1c/xvuKnyQ2F3GrvxF4FFzSqK9Ak/eU6O7cd2TxtQFgMtOVzCsLCrbCzliifOjhy
-         v0svg3SGRToGyikiHoUNvQ8i1yqK60adjeSggehPFAS2wWSL+JmZBQIIcSDA2g3pbz/K
-         gD8w==
-X-Forwarded-Encrypted: i=1; AJvYcCVj1T2RDw17SI3PoDJGmINsFRmIoVNWTWK5bO83l6LHu13IFiajjc+JBvqj7WICFFmBD8cRLmP2TJpMFbLrtGWagWMwhVrT9dWX3w==
-X-Gm-Message-State: AOJu0YyB3AoUIybC6JVISuINEDzxHoUy8h/0GY/Wa5AKjdhIPKrThBpW
-	PkK0I9tMD6rvmItxO8oxbRec6SoC3EjIljrHAmLYf+aHbYFxFQQHgrMS2HZmfpxi3qoWrsdKYaH
-	iyUZRxABKSuNgdg1kT7POqoo13uioITW5k1iJCA==
-X-Google-Smtp-Source: AGHT+IFRO8tWoCg2SGSzILZMs3Drm7SVEupIjTSLzOvFEDr2eDMtDFbdSU80xT/alKoBfHZaROUifya2GOHP8yCKs4U=
-X-Received: by 2002:a25:af10:0:b0:dda:aa3e:73fc with SMTP id
- a16-20020a25af10000000b00ddaaa3e73fcmr2428953ybh.41.1712349412380; Fri, 05
- Apr 2024 13:36:52 -0700 (PDT)
+	s=arc-20240116; t=1712349620; c=relaxed/simple;
+	bh=KKHqecoYIY5uSH4kmMdMPzfpUjYXfpRio0vfTLXUmtg=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=cJ/39f37sQaZdoOqKrwfL/KKEPTBaYgH7pG/FpvacXanmulYHGefFcVzIm2rxHlWOlaQRYg1o8O3rnDAghsQgliVk6xrJ83jZQY+DpkVhEhBncrbCW+zrD/ScosUxRPn8sLyUwMotO5jvoAAbAIvXVAAoGUgg653UQqRGBJZMcE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BR84H4YO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F9F7C433F1;
+	Fri,  5 Apr 2024 20:40:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712349619;
+	bh=KKHqecoYIY5uSH4kmMdMPzfpUjYXfpRio0vfTLXUmtg=;
+	h=Date:From:To:Cc:Subject:From;
+	b=BR84H4YOtVFf1NIe9wK/VVUVfr1EaWQuUUzWfT5ETRH6Uogo1EcxLUgVni9yVfbdI
+	 +1ZsS8I2Uy0YLuz1zEwSb79cltAHUnqBLReuB3oxIOP+OECDN8eMc1jwwed5+ISO+l
+	 eLUnV/Q+YDqUeizEKc+nfRJhQ5i7Js7Gy+NQOOMiAiw9EG4cwLj0OswGFd71v88axT
+	 WXhyh7+LkVUQcnaqWugY0uAOA9htF74tLTm0gujJTPP8h6v3244bQGSmczpz1cMTAh
+	 6+uuNv5uLS30Iq18Y13YzHr7r23sYnmrTVcaZmRxw3oWSpLBlPuImibLNxYs5TGj5i
+	 9xV0cbTOVijPQ==
+Date: Fri, 5 Apr 2024 15:40:17 -0500
+From: Rob Herring <robh@kernel.org>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Saravana Kannan <saravanak@google.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [GIT PULL] Devicetree fixes for v6.9, part 1
+Message-ID: <20240405204017.GA1394619-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240404051229.3082902-1-quic_kriskura@quicinc.com>
- <20240404051229.3082902-3-quic_kriskura@quicinc.com> <Zg5VDnbaaBXJyRjV@hovoldconsulting.com>
- <f16e1280-8f7e-40a7-ab45-9acaeb3e90cb@linaro.org> <2024040455-sitting-dictator-170c@gregkh>
- <Zg9THGBRuppfw4y+@hu-bjorande-lv.qualcomm.com> <2024040558-undercut-sandbar-7ffc@gregkh>
- <ZhBQhvieHGtMOSEz@hu-bjorande-lv.qualcomm.com>
-In-Reply-To: <ZhBQhvieHGtMOSEz@hu-bjorande-lv.qualcomm.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 5 Apr 2024 23:36:41 +0300
-Message-ID: <CAA8EJpr94_uCHoJyQd2uQyZ35xXixPPMHPVGXciZn+GftUUjnA@mail.gmail.com>
-Subject: Re: [PATCH v19 2/9] usb: dwc3: core: Access XHCI address space
- temporarily to read port info
-To: Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Johan Hovold <johan@kernel.org>, 
-	Krishna Kurapati <quic_kriskura@quicinc.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, quic_ppratap@quicinc.com, 
-	quic_jackp@quicinc.com, Johan Hovold <johan+linaro@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Fri, 5 Apr 2024 at 22:27, Bjorn Andersson <quic_bjorande@quicinc.com> wrote:
->
-> On Fri, Apr 05, 2024 at 06:43:56AM +0200, Greg Kroah-Hartman wrote:
-> > On Thu, Apr 04, 2024 at 06:25:48PM -0700, Bjorn Andersson wrote:
-> > > On Thu, Apr 04, 2024 at 02:58:29PM +0200, Greg Kroah-Hartman wrote:
-> > > > On Thu, Apr 04, 2024 at 10:07:27AM +0200, Krzysztof Kozlowski wrote:
-> > > > > On 04/04/2024 09:21, Johan Hovold wrote:
-> > > > > > On Thu, Apr 04, 2024 at 10:42:22AM +0530, Krishna Kurapati wrote:
-> > > > > >
-> > > > > >> +static int dwc3_get_num_ports(struct dwc3 *dwc)
-> > > > > >> +{
-> > > > > >> +    void __iomem *base;
-> > > > > >> +    u8 major_revision;
-> > > > > >> +    u32 offset;
-> > > > > >> +    u32 val;
-> > > > > >> +
-> > > > > >> +    /*
-> > > > > >> +     * Remap xHCI address space to access XHCI ext cap regs since it is
-> > > > > >> +     * needed to get information on number of ports present.
-> > > > > >> +     */
-> > > > > >> +    base = ioremap(dwc->xhci_resources[0].start,
-> > > > > >> +                   resource_size(&dwc->xhci_resources[0]));
-> > > > > >> +    if (!base)
-> > > > > >> +            return PTR_ERR(base);
-> > > > > >
-> > > > > > This is obviously still broken. You need to update the return value as
-> > > > > > well.
-> > > > > >
-> > > > > > Fix in v20.
-> > > > >
-> > > > > If one patchset reaches 20 versions, I think it is time to stop and
-> > > > > really think from the beginning, why issues keep appearing and reviewers
-> > > > > are still not happy.
-> > > > >
-> > > > > Maybe you did not perform extensive internal review, which you are
-> > > > > encouraged to by your own internal policies, AFAIR. Before posting next
-> > > > > version, please really get some internal review first.
-> > > >
-> > > > Also get those internal reviewers to sign-off on the commits and have
-> > > > that show up when you post them next.  That way they are also
-> > > > responsible for this patchset, it's not fair that they are making you do
-> > > > all the work here :)
-> > > >
-> > >
-> > > I like this idea and I'm open to us changing our way of handling this.
-> > >
-> > > But unless such internal review brings significant input to the
-> > > development I'd say a s-o-b would take the credit from the actual
-> > > author.
-> >
-> > It does not do that at all.  It provides proof that someone else has
-> > reviewed it and agrees with it.  Think of it as a "path of blame" for
-> > when things go bad (i.e. there is a bug in the submission.)  Putting
-> > your name on it makes you take responsibility if that happens.
-> >
->
-> Right, this is why I like your idea.
->
-> But as s-o-b either builds a trail of who handled the patch, or reflects
-> that it was co-authored by multiple people, I don't think either one
-> properly reflects reality.
->
-> > > We've discussed a few times about carrying Reviewed-by et al from the
-> > > internal reviews, but as maintainer I dislike this because I'd have no
-> > > way to know if a r-b on vN means the patch was reviewed, or if it was
-> > > just "accidentally" carried from v(N-1).
-> > > But it might be worth this risk, is this something you think would be
-> > > appropriate?
-> >
-> > For some companies we REQUIRE this to happen due to low-quality
-> > submissions and waste of reviewer's time.  Based on the track record
-> > here for some of these patchsets, hopefully it doesn't become a
-> > requirement for this company as well :)
-> >
->
-> Interesting, I was under the impression that we (maintainers) didn't
-> want such internally originating tags.
+Linus,
 
-But why? It just means that the patch has been reviewed. In some rare
-cases we explicitly ask a developer to have all the patches reviewed
-before sending them upstream. In such a case having an R-B tag
-fulfills the expectation of the maintainer: it shows that another
-engineer has reviewed the patch.
+Please pull DT fixes for v6.9.
 
-> If that's not the case, then I'd be happy to adjust our internal
-> guidelines.
+Rob
 
--- 
-With best wishes
-Dmitry
+
+The following changes since commit 4cece764965020c22cff7665b18a012006359095:
+
+  Linux 6.9-rc1 (2024-03-24 14:10:05 -0700)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.9-1
+
+for you to fetch changes up to de164a7f19248fb03229a4af9b0db333d9591e55:
+
+  nios2: Only use built-in devicetree blob if configured to do so (2024-04-03 14:35:53 -0500)
+
+----------------------------------------------------------------
+Devicetree fixes for v6.9, part 1:
+
+- Fix NIOS2 boot with external DTB
+
+- Add missing synchronization needed between fw_devlink and DT overlay
+  removals
+
+- Fix some unit-address regex's to be hex only
+
+- Drop some 10+ year old "unstable binding" statements
+
+- Add new SoCs to QCom UFS binding
+
+- Add TPM bindings to TPM maintainers
+
+----------------------------------------------------------------
+Guenter Roeck (1):
+      nios2: Only use built-in devicetree blob if configured to do so
+
+Herve Codina (2):
+      driver core: Introduce device_link_wait_removal()
+      of: dynamic: Synchronize of_changeset_destroy() with the devlink removals
+
+Krzysztof Kozlowski (9):
+      docs: dt-bindings: add missing address/size-cells to example
+      dt-bindings: ufs: qcom: document SC8180X UFS
+      dt-bindings: ufs: qcom: document SC7180 UFS
+      dt-bindings: ufs: qcom: document SM6125 UFS
+      dt-bindings: clock: keystone: remove unstable remark
+      dt-bindings: clock: ti: remove unstable remark
+      dt-bindings: remoteproc: ti,davinci: remove unstable remark
+      dt-bindings: soc: fsl: narrow regex for unit address to hex numbers
+      dt-bindings: timer: narrow regex for unit address to hex numbers
+
+Rob Herring (1):
+      MAINTAINERS: Add TPM DT bindings to TPM maintainers
+
+Sergey Shtylyov (1):
+      of: module: prevent NULL pointer dereference in vsnprintf()
+
+ .../devicetree/bindings/clock/keystone-gate.txt    |  2 --
+ .../devicetree/bindings/clock/keystone-pll.txt     |  2 --
+ .../devicetree/bindings/clock/ti/adpll.txt         |  2 --
+ .../devicetree/bindings/clock/ti/apll.txt          |  2 --
+ .../devicetree/bindings/clock/ti/autoidle.txt      |  2 --
+ .../devicetree/bindings/clock/ti/clockdomain.txt   |  2 --
+ .../devicetree/bindings/clock/ti/composite.txt     |  2 --
+ .../devicetree/bindings/clock/ti/divider.txt       |  2 --
+ .../devicetree/bindings/clock/ti/dpll.txt          |  2 --
+ .../devicetree/bindings/clock/ti/fapll.txt         |  2 --
+ .../bindings/clock/ti/fixed-factor-clock.txt       |  2 --
+ .../devicetree/bindings/clock/ti/gate.txt          |  2 --
+ .../devicetree/bindings/clock/ti/interface.txt     |  2 --
+ Documentation/devicetree/bindings/clock/ti/mux.txt |  2 --
+ .../devicetree/bindings/dts-coding-style.rst       |  2 ++
+ .../bindings/remoteproc/ti,davinci-rproc.txt       |  3 --
+ .../bindings/soc/fsl/fsl,layerscape-dcfg.yaml      |  2 +-
+ .../bindings/soc/fsl/fsl,layerscape-scfg.yaml      |  2 +-
+ .../bindings/timer/arm,arch_timer_mmio.yaml        |  2 +-
+ .../devicetree/bindings/ufs/qcom,ufs.yaml          | 38 +++++++++++++++++++---
+ MAINTAINERS                                        |  1 +
+ arch/nios2/kernel/prom.c                           |  6 +++-
+ drivers/base/core.c                                | 26 +++++++++++++--
+ drivers/of/dynamic.c                               | 12 +++++++
+ drivers/of/module.c                                |  8 +++++
+ include/linux/device.h                             |  1 +
+ 26 files changed, 89 insertions(+), 42 deletions(-)
 
