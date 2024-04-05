@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-56709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56710-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6254089A412
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 20:20:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1E0889A41E
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 20:21:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17B3C28C39D
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 18:20:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E40FB1C221FD
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 18:21:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38FC617277C;
-	Fri,  5 Apr 2024 18:19:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D780171E6C;
+	Fri,  5 Apr 2024 18:21:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gkdKURFo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zZxinCEg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DBEA172776
-	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 18:19:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 654971EB36
+	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 18:21:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712341181; cv=none; b=a8GzVpAClvn6T1cSm0FT/+TMcrC0Xeu70paGFDW03Xo3CZ/P/jyqHgegNmhVKk+4lJ19SAuNG7VjR5YXCnX6tInrY/001LnlUXFaOs3naRjg5GXpOgsElYteuQfQin1eRT6YTv9dZx6xkeQYFMUfk7QxGH2qjPfoLp4/JSIZ6lk=
+	t=1712341284; cv=none; b=Cw4UYbiuMxv4jsfpsGCWjCuDHfkCcvr3us7Q8H/5xprzsm5VS4/HNIHmHoGyPdJba8IX12TB040OyZl9Pq5G3+NWkBu9gw7EXAYyMovTsrXAZiMKB8T1525YkLK1XiceXGGePUdougZX9ai3z3Volv+WTpHc6S7jvMDiUgwT3uQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712341181; c=relaxed/simple;
-	bh=cCLDIsYFejxah3kcUtD/78RZA+bRyvoysZUBeT3z5Mg=;
+	s=arc-20240116; t=1712341284; c=relaxed/simple;
+	bh=U1bhPfgZUUHhnsTYnxvS3Dlkc1fZX0KD2x/ZnQur3Fw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fmaLZmtdUDSRBtDBIJzS1hGV77USL+yJM3Wa7gV53b60NfwRk1yUHDIVxQbIEMb7X8uhfIQaauaSeqUmNcnwdKYfmvx2F9jYbmg3qwwTgeooxFs7mFzAa+vDpPiX4ZVNCjSU2U6ULbEbUW5up1CWIp485pqM9KQkf5J6T5mM1g8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gkdKURFo; arc=none smtp.client-ip=209.85.208.43
+	 In-Reply-To:Content-Type; b=fehse2qp8Pxc6CZSY8ecrLvWxzEFTyogVywEqXC0K74BtmM9rrWJF0znwKKJvKpdTMox6Qcqc9m3PhEb6ij0BG60lfLcsYCR7MIJ3kxSv1iqtlGmCxay/txxC9I1KE8E/630YozM8PnM9W4fXicEysAg1wn3aETUg+0u6i+8NrM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zZxinCEg; arc=none smtp.client-ip=209.85.167.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-56e3e581a94so122101a12.3
-        for <devicetree@vger.kernel.org>; Fri, 05 Apr 2024 11:19:39 -0700 (PDT)
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-516c97ddcd1so3055308e87.2
+        for <devicetree@vger.kernel.org>; Fri, 05 Apr 2024 11:21:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712341178; x=1712945978; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712341280; x=1712946080; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=+1RwFx5Y5CQOS1dH67ttsjIpb2yYeYbzx39qz2nB/54=;
-        b=gkdKURFo1z2kORHxqHXUDzQQQLbTZ0Pxbe/W+0q/11lRtKT0v5BD8QQIzFM+8KIO8P
-         RnBUYLWnzqCshsh8rY51QbHVfVJWgp8FXYhLtru6JbkTDO3iyVtseybmVlU+ynkBrjhn
-         huME40eQv9OvJXN9vetOTh3PtgJvlDrRKrlxgL8KrXvkiDPZ5pHNjCuNNqUnmJsQIpFd
-         jRfffDLbwLuOHaanapLsKLR+21IM+m6wWToWc/TxRdqDyDL0k44O0ddD0dXFihlYK7lG
-         Hda47jpdIUnDpANGKja3SBaJbwY2Q7m7eNi/T+F1em0bApANVXQ0eMaO4q9iV36IdqmO
-         RKSw==
+        bh=Aoqb0ZvgJjDrARAuD79kB80qdeeEZC580nOfAjj2138=;
+        b=zZxinCEgkGh1Qe6zaAQWgtii794JMqCE6OMiFeUUJFInrhOzymqa4HeOwZPBvg+yPt
+         NFeEpj2wQKFvfgxUkBRn3XbQAmbrmsFiaBlqPwjKRCIaFQGA0bhk74Bf0XiDD0BOlIB8
+         zvCj00eTlwJPnUHMTMbfXQyojua1/sMrQTdKoTywLzRcIVVgvX948m9wQCEXbxxC6ZW1
+         70V42Ms3P9h7sXxYDwI9J5/oWGiDM6iy151JmOEQ7qBrC1bg/ffSCFaV6BPe2Tn0lq1a
+         VUnhSVQ2hOQAdrIoV9bg2kxfAK8SDOmwbF+LtYlS4zMUwU8L/di02UI4HrfC39zBiYQY
+         mRtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712341178; x=1712945978;
+        d=1e100.net; s=20230601; t=1712341280; x=1712946080;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+1RwFx5Y5CQOS1dH67ttsjIpb2yYeYbzx39qz2nB/54=;
-        b=BnpmoEqcrzMehSPmB2zOPQJBiAjvpjHXplLy/iN/tOGZSCA2W/xv5iuZ4TPVK2fq/a
-         vnaBvqJYRwNC5Cie4QAgdTAvaWh7SYee3agMX/FBp3Z7RGKlmVYAwipcW392AoA1C7X+
-         HkHYIxlljE1H5PEEhW3IlVdbLhtrjYBLHxZzqk8Vz4P6pp4z3TBNfGHo8QMtddO1o8e8
-         U58AbpI7ISG9YxMwPZma+CJ/I4hmB7vZDb5nZB9O1OTUvAncatK2/4Z0bzxS4pp4le9t
-         g0WkBcG5P5Zkp6jGas32v2c119/PJRlvVUz+5dIA292R3BRQ1BG1n260wWRbl5MjpB4c
-         tvFA==
-X-Forwarded-Encrypted: i=1; AJvYcCUnlwKiDsP4GrS9dIrVknj//ezCZ16KKIg+0ILYdabFWlP7Y7Q4f0X2gblBrOe6V9tOBZRlcdA+r1kE9FSjlAUHVfU/wU47cv4/Mw==
-X-Gm-Message-State: AOJu0YwEiJ0gw82NvnkB6phmKS83rEBRI05qo79zK2GJOgbq9sDJt9Tm
-	NYX5qZuxUtRKgAj5bQ62muk+R2IqfHankJkclI+UBk/3NkxQUp86t36oJSWROfM=
-X-Google-Smtp-Source: AGHT+IFJE27+I1fV34zf0q3INt5gP7v3XA/hxhqaP7lbIgf2utXVlcEuEzbd1685nzCblz2Pxk/4lA==
-X-Received: by 2002:a50:a40f:0:b0:56e:3571:189c with SMTP id u15-20020a50a40f000000b0056e3571189cmr1469625edb.18.1712341177745;
-        Fri, 05 Apr 2024 11:19:37 -0700 (PDT)
+        bh=Aoqb0ZvgJjDrARAuD79kB80qdeeEZC580nOfAjj2138=;
+        b=gTCaVIuu6HVtZ7SbE3b/AX7nbLY//86i00IC5aCKZpm3JExTFMdZrt+Hg9PXNudVIV
+         vz8+IfAk3eGg+SFr0KKqVa5LuslI9EXKZCWvzoFhiZsEBBGO3wU8084nkf+G99QDpWRE
+         14/rORXnRupInaVqeIcg0ePCL30Xyn9iGeNpxYJJHNzhCPdioehFeFkZE3OFgOjxVnJ0
+         uv8lL/DQdpCgOtjKmjmpP3AVKe3zmPgb6OxklaGOVDH1476r7AcGvJWt3YqcAWSSMsTI
+         AF2WlbZgoGwV/gswY+XSgIxf2UAqumRbjL747Y3hPha6nYwZngt+/i6XPv/hqyJmqTB4
+         u3fQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXg4gYzG1R68NBn+XOADsO0ijIwCIhsXiJM9ZB4NZGYdJtsYeHguOqcHtCWi5EL2Ch8dKVPhA5puhMEeXFnw2VTUjE+CUXTYjrnCQ==
+X-Gm-Message-State: AOJu0Yxu9DMqLnxOGUPCdS/EFvQVw77AvSqnDJ0+uZ0EjMsvucxKJK9r
+	iBYpbMWNX3FkrRnGaczw15Uzc3J7mZra0NuNg2bhw30ya5okNKvDyEaKgXP/CvU=
+X-Google-Smtp-Source: AGHT+IE6UiMSad29esrjwaWubKN7rdr6QVJiWDc4K33rovL4UBL/Z/eUnCeh8MAuY2oVX98VJEPZSw==
+X-Received: by 2002:ac2:5f94:0:b0:515:a733:2e0e with SMTP id r20-20020ac25f94000000b00515a7332e0emr1625285lfe.25.1712341280466;
+        Fri, 05 Apr 2024 11:21:20 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id ij6-20020a056402158600b0056ddd9427d2sm1038022edb.58.2024.04.05.11.19.36
+        by smtp.gmail.com with ESMTPSA id ne6-20020a1709077b8600b00a4e5a6b57a2sm1094189ejc.163.2024.04.05.11.21.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Apr 2024 11:19:37 -0700 (PDT)
-Message-ID: <352672fc-b6e1-458e-b4f9-840a8ba07c7e@linaro.org>
-Date: Fri, 5 Apr 2024 20:19:35 +0200
+        Fri, 05 Apr 2024 11:21:19 -0700 (PDT)
+Message-ID: <938489b1-eb94-4f8a-8881-230951299f6a@linaro.org>
+Date: Fri, 5 Apr 2024 20:21:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,20 +77,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: omap-mcpdm: Convert to DT schema
-To: Mithil <bavishimithil@gmail.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH 1/1] arm64: dts: imx8qxp-mek: add cm40_i2c, wm8960/wm8962
+ and sai[0,1,4,5]
+To: Frank Li <Frank.li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, alsa-devel@alsa-project.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240404160649.967-1-bavishimithil@gmail.com>
- <78091796-fd0a-42dd-a4da-f7bed3025bf9@linaro.org>
- <CAGzNGRnuG_gLUrH1N57WvpKbpiNtFrcsG6nJcacQNJB_yMYNrA@mail.gmail.com>
- <ec7f77a7-2cf1-4ea6-b9c4-d4fe8a1673ab@linaro.org>
- <CAGzNGRktm5gMj=bhtX2RAzcn1v5ref+nV-HV3Fct56FzAzxjWA@mail.gmail.com>
- <c9084453-65f1-43b0-88df-5b73052ccb72@linaro.org>
- <CAGzNGR=2-us8GRB3RNi4_24QZ9rNBC7Lx0PFsWwbvxuRKk5ngw@mail.gmail.com>
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>,
+ "open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
+ "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
+ <linux-arm-kernel@lists.infradead.org>,
+ open list <linux-kernel@vger.kernel.org>
+References: <20240404161914.1655305-1-Frank.Li@nxp.com>
+ <efc9c624-6a31-4299-a604-8aad1d0cd878@linaro.org>
+ <ZhAO4YWuB8r8k+m8@lizhi-Precision-Tower-5810>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -137,78 +141,54 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAGzNGR=2-us8GRB3RNi4_24QZ9rNBC7Lx0PFsWwbvxuRKk5ngw@mail.gmail.com>
+In-Reply-To: <ZhAO4YWuB8r8k+m8@lizhi-Precision-Tower-5810>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 05/04/2024 19:21, Mithil wrote:
-> On Fri, Apr 5, 2024 at 10:38 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
+On 05/04/2024 16:46, Frank Li wrote:
+> On Fri, Apr 05, 2024 at 08:41:59AM +0200, Krzysztof Kozlowski wrote:
+>> On 04/04/2024 18:19, Frank Li wrote:
+>>> imx8qxp-mek use two kind audio codec, wm8960 and wm8962. Using dummy gpio
+>>> i2c bus mux to connect both i2c devices. One will probe failure and other
+>>> will probe success when devices driver check whoami. So one dtb can cover
+>>> both board configuration.
 >>
->> On 05/04/2024 18:29, Mithil wrote:
->>> On Fri, Apr 5, 2024 at 9:27 PM Krzysztof Kozlowski
->>> <krzysztof.kozlowski@linaro.org> wrote:
->>>>
->>>> On 05/04/2024 16:48, Mithil wrote:
->>>>> So sorry about the 2nd patch being sent as a new mail, here is a new
->>>>> patch with the changes as suggested
->>>>>
->>>>>> Please use subject prefixes matching the subsystem
->>>>> Changed the patch name to match the folder history.
->>>>
->>>> Nothing improved. What the history tells you?
->>>>
->>>
->>> Referred to "ASoC: dt-bindings: rt1015: Convert to dtschema"
->>> Not really sure what else I should change.
+>> I don't understand it. Either you add real device or not. If one board
+>> has two devices, then why do you need to check for failures?
 >>
->> But the subject you wrote here is "dt-bindings: omap-mcpdm: Convert to
->> DT schema"?
->>
->> Where is the ASoC?
->>
-> I did change it, will send the patch again.
+>> Anyway, don't add fake stuff to DTS.
 > 
->>
->> reg is not correct. Please point me to files doing that way, so I can
->> fix them.
->>
->> You need items with description.
->>
-> Documentation/devicetree/bindings/sound/fsl,imx-asrc.yaml
-> I referred here for the description, but will add items for the 2 regs
-
-I don't see at all the code you are using. It's entirely different!
-Where in this file is that type of "reg" property?
-
+> NAK can't resolve the problem. It should be common problem for long time
+> cycle boards. Some chipes will be out life cycle. such as some sensor. So
+> chips on boards have been replace by some pin to pin compatible sensor. For
+> example: 
+> 	old boards: use sensor A with address 0x1a
+> 	new bench: use sensor B with address 0x1b.
 > 
->>> Interrupts and hwmods use maxItems now.
->>
->> hwmods lost description, why?
-> Seems self explanatory.
-
-Really? Not to me. I have no clue what this is. Also, you need
-description for (almost) every non-standard, vendor property.
-
+> You can treat it as two kind boards, RevA or RevB. But most user want to
+> use one dtb to handle such small differences. For this case, it should be
+> simple. Just add a super set.
+> 	i2c
+> 	{
+> 		sensorA@1a
+> 		{
+> 		}
+> 		sensorB@1b
+> 		{
+> 		}	
+> 	}
 > 
->>> Changed nodename to be generic in example as well.
->>
->> "mcpdm" does not feel generic. What is mcpdm? Google finds nothing.
->> Maybe just "pdm"?
->>
-> Multichannel PDM Controller. Kept it like that since the node is also
+> It also depend on whoami check by i2c devices. Only A or B will probe.
+> 
+> wm8960 and wm8962 are more complex example.  wm8960 is out of life. But
+> wm8962 and wm8960 have the same i2c address. The current i2c frame can't
+> allow the same i2c address in one i2c bus.
+> 
+> You are feel to NAK my method, but I hope you also provide constructive
+> solution to help resolve the problem.
 
-You said you "changed nodename". So from what did you change to what?
-
-> called as mcpdm in the devicetree. Calling it pdm might cause
-
-Poor DTS is not the example...
-
-> confusion.
-
-So far I am confused. Often name of SoC block is specific, not generic.
-Anyway, that's not important part, so if you claim mcpdm is generic name
-of a class of devices, I am fine.
+Yes, we resolved it long time ago. Your bootloader can (usually easily)
+detect revision of the board and load appropriate DTS or DTS+DTSO.
 
 Best regards,
 Krzysztof
