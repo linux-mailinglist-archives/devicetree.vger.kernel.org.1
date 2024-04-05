@@ -1,62 +1,64 @@
-Return-Path: <devicetree+bounces-56689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EC3C89A237
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 18:14:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B35D89A26E
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 18:24:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 29AC01F23C3F
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 16:14:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 674461C21B5E
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 16:24:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB32D17107A;
-	Fri,  5 Apr 2024 16:14:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CBA8171087;
+	Fri,  5 Apr 2024 16:24:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c0ldclR+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LgzQSD8g"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CBCE16FF30;
-	Fri,  5 Apr 2024 16:14:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EEED171078;
+	Fri,  5 Apr 2024 16:24:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712333687; cv=none; b=JbPbHY0DM82SgoO4M4WBLzDdSv6On8W4Snk4aysLHmplrYu69/0/sE8DrLZPSyhcw1eLP7LQH721bVVT35ELK/3bw/jXE3uMZiGG8VnEtyOTboRJIdhemQey2Dl8EW+B8ttjv3bzsVwS0YzOgm/IOJEJ3SQ9qOOrUcwbFqdCcGQ=
+	t=1712334257; cv=none; b=r7pHueQ1J9r57f2JuGOP2PYlHXgmQ0GHTdAv1HkaPq4GVn6gTven+48YYigKncxY2RucyZpJCw/QTLnNKzlgi4XtolyfzjxXor/xgcXsM9ynrsDm0fO/+2Z/G3hQ2jR6CFEjCJyzzuEuTnKMnJf8DRgW87MeNcbsU1XLMAaCmpQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712333687; c=relaxed/simple;
-	bh=fg6kttbbMyChyDhAlKD1eJunLa6vLfVh9tocuUau+NY=;
+	s=arc-20240116; t=1712334257; c=relaxed/simple;
+	bh=6JpRDvCOuHegc46R7erCygMAd1uj2iB5Om6sD8dxs6w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AM9RRTjaEVPRB81x7ueaicHzVozT7mBsh7ISyQCKawcRjNFXe1XOASuTjvonCZexSLHoWhDQT4czpmyEvbUFnFhwd2pRp3ld4LZFBSTUagd1g2uWUJuhTs2n89r+LTZmNZyWNGJd9GsBr4fgazSi9Xa74ZJDknZgFzdvSZRrw+o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c0ldclR+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76DCBC433C7;
-	Fri,  5 Apr 2024 16:14:44 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=EHGOg5u2cgT/vylOfvzn15jLVeY0Rgduyd/+YmuArbD3KlDUEN025yglZOY0BpPClSpokRCGV7YsCe6tgcL7AxmSo0iWZJKFIL3Av/MsoUpGhM+1h0kFb5KeHk/swjR4Le7EBlFPJAsCYwLA2b7WPJOvaLODDb1S/dMCi97FBQc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LgzQSD8g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2935FC433C7;
+	Fri,  5 Apr 2024 16:24:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712333687;
-	bh=fg6kttbbMyChyDhAlKD1eJunLa6vLfVh9tocuUau+NY=;
+	s=k20201202; t=1712334256;
+	bh=6JpRDvCOuHegc46R7erCygMAd1uj2iB5Om6sD8dxs6w=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c0ldclR+s26yoy0wmPyV/OmMSJo0CGtKIEG698qoqfKUyEbB4MxapxXtwmbA+dIhN
-	 5Xr2NjAsGjbp2nEJx7nd05ygCmOIssu8uw+B6AQvDI7JikQOCdbo+I/UjAk1uJxZP6
-	 5EbipyM606ugAHXtVbGe1VzTwLSYyy0YH/vHbICpw44MnkGH0cf5CYMSWecE1saBB9
-	 iV7bdiUjsgNxt8hJ68UG7j3qi5Jatwo+oO82CTh2KEXaoGACkHKlppVWrsV7DAqZv8
-	 iSHEQoiDFTR72+18L+P+rG55C5YvdFLDvdQjtw0LagoaYluaMsIvpSyobXvmz0hyuq
-	 dZo2W8zXvZrgg==
-Date: Fri, 5 Apr 2024 17:14:42 +0100
+	b=LgzQSD8g6+0ukVg19qWTPxYqtTPJlfP4azdnG0YKeUGXpgUogSoC/jh7iZDyaEwyI
+	 n7KZd65j8+X0DFnKSfEAUp1s2gyyNpQQZcuE857C6bIUQ1GsWHsrTviIT3EsYMUt+l
+	 SozHICPe1KDgb1Ul7AV1682paZ9MJY961AF+fqJ+eRsnF+ooW5MrRg6yXOhNfZzSMa
+	 UGogYM6cWamzWapOQIOTUEwZ/VPu9jJTzw2MpdOhTw3oPI5ETQPHDYrekSGqFMnVHw
+	 0XXiqX0jBf31eR/uoOCIvqc62m6vvhFn8J1yQPU8DjX0ffZPUuWe4R/hit26yKBPCt
+	 wx0YrMOhSQWvA==
+Date: Fri, 5 Apr 2024 17:24:11 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Marius.Cristea@microchip.com
-Cc: jic23@kernel.org, Conor.Dooley@microchip.com, linux@roeck-us.net,
-	jdelvare@suse.com, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, lars@metafoo.de,
-	linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-	conor+dt@kernel.org
-Subject: Re: [PATCH v5 2/2] iio: adc: adding support for PAC193x
-Message-ID: <20240405-dreamboat-posh-d8c7c2c8c35a@spud>
-References: <20240222164206.65700-1-marius.cristea@microchip.com>
- <20240222164206.65700-3-marius.cristea@microchip.com>
- <20240224191559.40d233db@jic23-huawei>
- <20240405-embellish-bonnet-ab5f10560d93@wendy>
- <e432bddc16952d9144ccf6da5a54b88e3171b947.camel@microchip.com>
+To: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc: git@luigi311.com, linux-media@vger.kernel.org,
+	jacopo.mondi@ideasonboard.com, mchehab@kernel.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, sakari.ailus@linux.intel.com,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	pavel@ucw.cz, phone-devel@vger.kernel.org
+Subject: Re: [PATCH v3 18/25] dt-bindings: media: imx258: Add alternate
+ compatible strings
+Message-ID: <20240405-affair-cruelly-a7e9d23b597c@spud>
+References: <20240403150355.189229-1-git@luigi311.com>
+ <20240403150355.189229-19-git@luigi311.com>
+ <20240403-vista-defendant-ebadbaa52059@spud>
+ <CAPY8ntC9SHJ6Ma17s0Vf2coB-0NUk-xgCLK9KCkxFMuXKHXNwg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,35 +66,88 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="kMmp7rBo0l2l8BHj"
+	protocol="application/pgp-signature"; boundary="4VSlIssbWGjCqHBw"
 Content-Disposition: inline
-In-Reply-To: <e432bddc16952d9144ccf6da5a54b88e3171b947.camel@microchip.com>
+In-Reply-To: <CAPY8ntC9SHJ6Ma17s0Vf2coB-0NUk-xgCLK9KCkxFMuXKHXNwg@mail.gmail.com>
 
 
---kMmp7rBo0l2l8BHj
+--4VSlIssbWGjCqHBw
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Apr 05, 2024 at 12:53:38PM +0000, Marius.Cristea@microchip.com wrot=
-e:
-> Hi Conor,
+On Fri, Apr 05, 2024 at 11:25:50AM +0100, Dave Stevenson wrote:
+> Hi Conor
 >=20
->     Thanks for reporting the bug. I have detect it and I'm already
-> working on a patch for it.
+> On Wed, 3 Apr 2024 at 17:14, Conor Dooley <conor@kernel.org> wrote:
+> >
+> > On Wed, Apr 03, 2024 at 09:03:47AM -0600, git@luigi311.com wrote:
+> > > From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> > >
+> > > There are a number of variants of the imx258 modules that can not
+> > > be differentiated at runtime, so add compatible strings for the
+> > > PDAF variant.
+> > >
+> > > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> > > Signed-off-by: Luis Garcia <git@luigi311.com>
+> > > ---
+> > >  .../devicetree/bindings/media/i2c/sony,imx258.yaml       | 9 +++++++=
+--
+> > >  1 file changed, 7 insertions(+), 2 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx258.=
+yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
+> > > index bee61a443b23..c978abc0cdb3 100644
+> > > --- a/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
+> > > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
+> > > @@ -13,11 +13,16 @@ description: |-
+> > >    IMX258 is a diagonal 5.867mm (Type 1/3.06) 13 Mega-pixel CMOS acti=
+ve pixel
+> > >    type stacked image sensor with a square pixel array of size 4208 x=
+ 3120. It
+> > >    is programmable through I2C interface.  Image data is sent through=
+ MIPI
+> > > -  CSI-2.
+> > > +  CSI-2. The sensor exists in two different models, a standard varia=
+nt
+> > > +  (IMX258) and a variant with phase detection autofocus (IMX258-PDAF=
+).
+> > > +  The camera module does not expose the model through registers, so =
+the
+> > > +  exact model needs to be specified.
+> > >
+> > >  properties:
+> > >    compatible:
+> > > -    const: sony,imx258
+> > > +    enum:
+> > > +      - sony,imx258
+> > > +      - sony,imx258-pdaf
+> >
+> > Does the pdaf variant support all of the features/is it register
+> > compatible with the regular variant? If it is, the regular variant
+> > should be a fallback compatible.
+>=20
+> It has the same register set, but certain registers have to be
+> programmed differently so that the image is corrected for the
+> partially shielded pixels used for phase detect auto focus (PDAF).
+> Either compatible will "work" on either variant of the module, but
+> you'll get weird image artifacts when using the wrong one.
 
-Oh cool, keep me posted :)
+To paraphase, a fallback compatible is not suitable.
 
---kMmp7rBo0l2l8BHj
+Thanks Dave,
+Conor.
+
+--4VSlIssbWGjCqHBw
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZhAjcgAKCRB4tDGHoIJi
-0qfAAP0bCFojvFUV/W5HjACrgzvBBdX0YzYJgshqEHZSLzFg+QD/QR1G+P2ep8ux
-HubIkUCrZGFyKzZD6toPesago84FywU=
-=DuRu
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZhAlqgAKCRB4tDGHoIJi
+0kW8AP9KV3LJt1DLGYbcIRYYQzVjf5OtXnW7AC81UNn0epIypwEAwwW/zJA3Q3J0
+t6MuHgfu+Sabt0Z5TRNsffWfpDbtfwI=
+=6umV
 -----END PGP SIGNATURE-----
 
---kMmp7rBo0l2l8BHj--
+--4VSlIssbWGjCqHBw--
 
