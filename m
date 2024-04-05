@@ -1,293 +1,168 @@
-Return-Path: <devicetree+bounces-56603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C441899E1F
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 15:16:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCDE5899E40
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 15:25:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DEDBA282ADB
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 13:16:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DEA0C1C2301A
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 13:25:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8321E16D303;
-	Fri,  5 Apr 2024 13:16:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="L/K4Mspr"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B52616D4D3;
+	Fri,  5 Apr 2024 13:25:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 882F116D313
-	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 13:16:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0913416D4C7;
+	Fri,  5 Apr 2024 13:25:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712323010; cv=none; b=HOI6kiIpsW/v05W0LbaAxKyAe0h9dgJyYGUyDafskn634vNCqGijJpgMKgEoQWAA+QM7KCV5zsvht8sY5YuLK5b2ObAqFGL2vjHMDddDk+skkxljMp8/XeALrJvOAVMmMp+cZOXG8/guh+M0e765xMxBanlRqNe/0TmNC53TBXA=
+	t=1712323550; cv=none; b=ENeMzW+oDPoUcrD58f/RxCmTmWH1A0lXCTyNPTLMJGDgIxBblrFYn9Ah9nIskdojbsKawD/lTZiK/zufOCashZqsErTjWEdp7MLE78aAS5bN7miPEhxM6xxvSWdh79uFQjNjtVenmlLYYvU8LkH0HP+4hiaSOtd6UfIFFlJ6eZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712323010; c=relaxed/simple;
-	bh=v+58sPjlJWwPhy9bXXhoEqmcsCKhB+tXkTf2JPX+wLo=;
+	s=arc-20240116; t=1712323550; c=relaxed/simple;
+	bh=293GVfFo/UrwVaxem8QbPurukB9UNXuXn3FEZwFnetc=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CI5esjHIMNBZqlQrqJvQflt3FS2mDMz7JHEjhrJ2FzhIkYPn9MYGZslk664FE9n1JP+6pDh3KIl0qhGHgVs/glWw2eapEiKORLAdKgAqMKH2fxoj2Y84kD+a9E0QdfMlHEBwswWABkkdyH1PCg+u4fjTIKXLR/ympjrnaWYzEgU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=L/K4Mspr; arc=none smtp.client-ip=209.85.128.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raspberrypi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-615053a5252so18896377b3.1
-        for <devicetree@vger.kernel.org>; Fri, 05 Apr 2024 06:16:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1712323007; x=1712927807; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=nm6GyRvyXdEHSXH68cKBfVuLP4/sYuxdrZ1b0Ijwf88=;
-        b=L/K4MsprLywCST6/QDC0+8/2caOWRU5p3XMYBe2D4p2du8GgGqZXWjBdObxjXyh7XR
-         ONZ95LGBHzww90hMcodvsq6OkAhDIlGZZLr9qEMhiDBh68sO/vOReJY2XFqvH4wsYT/3
-         ANTGR8j7O/8P+00aHxfjr5v8bcsqSvHxh5UFm0u/F4ritTn5k/BGq99293OCbb9TQ7Ru
-         TYWZn39JzzoaTFZBuv97w7cv/t1duayrJ7QodKYSlJyEBEvsMeXgfxfx4oeHhKKl794K
-         kSvJ4Ne+Ji9EczkzJ2sLnogvEc47OaDkW6jq9/nVvCgWtI2j4Da3OhjBMFRr9EpKlOKv
-         zz4Q==
+	 To:Cc:Content-Type; b=TzSeFEmdukYHgvBZDeVqwiSorWUh6PbVJh4QOBW3xkgs7FeFki/ApODMuzcTAN0PUDkM+euqYdFo9QO0gyM7tISdZdHukNZJWMhJvIj+/qeYGS7jySx44IOo0J5kJeLBZ8fQ0aBRIWB3Y1iukBN09Hn1+znoAV4OAoRGOjd6bdM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6152be7c58bso22956547b3.0;
+        Fri, 05 Apr 2024 06:25:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712323007; x=1712927807;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nm6GyRvyXdEHSXH68cKBfVuLP4/sYuxdrZ1b0Ijwf88=;
-        b=reF5i8YOcPxZeyuEEnFmDJ2PnHG2EKwyCOffjt80AI/kh/rrQudBDQtb/nc7jBwsC9
-         eRt0Ltqthv0czF+cMkJWhIMJ4eRHPPypcNAla7u2JnYXtFGWqy71XiIoLiG8cLNl5+U+
-         OMIEmUnfo8at6C/sGHO6O4FtDVvpXRlfIjACAOxQMoam6ks5jC4ybre1S70CqxoCj0zk
-         LI6zC8DnnPRjKICe4tRz6OdcleCG309MDeRA+IySGP1/bpT6nK+kUfm43FANUPU0Txgt
-         kiwdSvf0XZEQJmrjWTbryz+J+cvumL5JL0aiIMnd1Lfj8l2JI4SBIjTUAOTbXJAuNXJK
-         ZeeA==
-X-Forwarded-Encrypted: i=1; AJvYcCXkJL/COLqhyrehbJ+2jSB8edEmj6zi482KJIoa05391Oivps1vDCTXDTwhAk+Eb2gBJ9ZabXxqj2BtkB9KU+CA2W+QNKzz39/feA==
-X-Gm-Message-State: AOJu0YztkzuTQeKrbWzk2Myi9ueTcvvuIoHr+hgaUCyav8hB/AClP6pK
-	B66O+mLNviwBr6zCMmPUqb26B5D2pCoOmglLm+y5PiPwmxrc0fUwluKt8ionlDWJKz83lwQKRDZ
-	gyeTQfPTXkhis3QLLjMhf7XLqi5F/SZubyV070w==
-X-Google-Smtp-Source: AGHT+IGGzv5DKk7hAo4Ucod67oLXhZeqqbHJigGfmjUCeFcvZrRc6n7AxJVltV6Ks5AqvtIUIJpZwg7AecCIBUIZIpA=
-X-Received: by 2002:a81:4304:0:b0:615:fd7:f4dc with SMTP id
- q4-20020a814304000000b006150fd7f4dcmr1711846ywa.21.1712323007377; Fri, 05 Apr
- 2024 06:16:47 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1712323545; x=1712928345;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cwsDRonjbPICxZMNgS8aH3ZFFLUCLJm1C0DAdV/AdRA=;
+        b=dEdzG/HbTj5MIZ0OthXT/2hJdX7v6TS18qvJ7wKhzZ8aTF0PR27/IvqOGCUE2s2SbZ
+         OpTAlXHFu6KuAR5tXowyI/qvLq80lN2Sf79E3aeMUWWNfC5l4vlzcJK+5fzrSkgACIvA
+         1Ij+28z01oNVFKY2goBIGaradLVbvvYt7wm343OuiMWB/GJziyD2U7irar59v/vsAev8
+         amfE5Giu2gjZKKuIxFKC/Z6chGCtpDxv+FbMHENCpgrFs6eJrtiuAmrHnilgNlGATNx/
+         wEQdl8PvNbnsoe+8gBA7Sm/O0YkHf8GJIYy8PySOIckG2vDeVaai4lDxCugZS4wdeyAg
+         oPpA==
+X-Forwarded-Encrypted: i=1; AJvYcCUUS0anNQXYKpuheIkDjpcD42EzNldJiCDiVTSV0X4DWryHoNDpKORxMynl2d3+Ffb9b3OsL0H2vRR6V2qNFFlIX4hFrsN7xE9c6NcJrShJy9eFRsWDh7kkr/t0CJjry/JJdUAN1YonFOI0cAn1P60GOsI1Saf8z/dG5vcaeklGYoVa8HSjOFW4P4pAFDCIFh04dJfpVFjS1kJk/wXv691Hs6Qenz8gFPe7Un12R33i07w7XCnN4J+Mc4hBgJ+hs4jxGl3yUnyj3IzyNvkaOxqaWLGMNLDfmdVRcEsWPl9e24YfaPRPmLUqYlvL+6Bcg36azbtdfU3tniL+DYweWrLtiA0/kycm9iaFtIIAc6TjlwV4fPY718A=
+X-Gm-Message-State: AOJu0YzczAnkoOQ2VptjHKldB9ft43u0Vf9/JCdqR9YNABFOS1c6qdO2
+	Bdex3fhK64jGdOe3Xnf2fMMGn7Es/k9bTJGOhgMAkY9oukzk6+J8gH11mXCZi2Y=
+X-Google-Smtp-Source: AGHT+IEJxZb/rvHnivt2/Jn9TqdtHD/x5Ql7tE5dwjxcPx/0mDN6PRNnVkmhOeixXnU+C0BePO+7eA==
+X-Received: by 2002:a0d:e287:0:b0:615:9a1:602b with SMTP id l129-20020a0de287000000b0061509a1602bmr1190969ywe.44.1712323544943;
+        Fri, 05 Apr 2024 06:25:44 -0700 (PDT)
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com. [209.85.219.170])
+        by smtp.gmail.com with ESMTPSA id by14-20020a05690c082e00b006152dd9f93esm344482ywb.132.2024.04.05.06.25.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Apr 2024 06:25:44 -0700 (PDT)
+Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-dd161eb03afso2056354276.0;
+        Fri, 05 Apr 2024 06:25:43 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWQYAaMx2yKHFoAQQ6nMerI6WyIx7BilOj0Cl58TpLjIFcpvZAboe+vcRpjKsgKv3Jd3NseFwy6nu55nG+u5RjMpAvT4NBbuAk5wQr2VwLkJD6ad1l1/fHL09i4GMd9D6ieAH9MhEseMDC3DhsUddKOoehu8UyUjcAAqEIh2FQMvLP8+CWh1j9JtvG8eWlakd4kPKAiLlz/pKJDPW16IvUhvsEuCgt4HApJYxMyR8ds3/0bQPbev58vtnspMmUvXPpZtLL4s0/tBSBJAdmfBfUO+6uAsC44caCc3MSrHZ6MIpsLfsEFJjJQUBddri/xlp5IgODcDL6KdIV3eR6lHfcQy0mu8948zKqc29WamvGdPo4eLMTpWWg=
+X-Received: by 2002:a05:6902:220b:b0:dd1:37ff:696 with SMTP id
+ dm11-20020a056902220b00b00dd137ff0696mr1555021ybb.59.1712323543740; Fri, 05
+ Apr 2024 06:25:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240403150355.189229-1-git@luigi311.com> <20240403150355.189229-20-git@luigi311.com>
- <Zg2BZXQpzsm7jMnc@kekkonen.localdomain> <998efafa-699b-4226-91d4-2ebba85d63ec@luigi311.com>
- <Zg_Zl0Q2kEDJoQoe@kekkonen.localdomain>
-In-Reply-To: <Zg_Zl0Q2kEDJoQoe@kekkonen.localdomain>
-From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Fri, 5 Apr 2024 14:16:31 +0100
-Message-ID: <CAPY8ntDP-EPQK_d=5NeVM-ZTjfhtpYRq_y6PVSn9dRzxD5b1_A@mail.gmail.com>
-Subject: Re: [PATCH v3 19/25] media: i2c: imx258: Change register settings for
- variants of the sensor
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Luigi311 <git@luigi311.com>, linux-media@vger.kernel.org, 
-	jacopo.mondi@ideasonboard.com, mchehab@kernel.org, robh@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org, 
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	pavel@ucw.cz, phone-devel@vger.kernel.org
+References: <cover.1712207606.git.ysato@users.sourceforge.jp> <dac98a697c8e850054f984964af62a209f241c83.1712207606.git.ysato@users.sourceforge.jp>
+In-Reply-To: <dac98a697c8e850054f984964af62a209f241c83.1712207606.git.ysato@users.sourceforge.jp>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 5 Apr 2024 15:25:31 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVRLwv1c+L0DP_jRJh6_=-oTQJWOcYCzYqowW8tyOJK2A@mail.gmail.com>
+Message-ID: <CAMuHMdVRLwv1c+L0DP_jRJh6_=-oTQJWOcYCzYqowW8tyOJK2A@mail.gmail.com>
+Subject: Re: [RESEND v7 23/37] dt-bindings: display: sm501 register definition helper
+To: Yoshinori Sato <ysato@users.sourceforge.jp>
+Cc: linux-sh@vger.kernel.org, Damien Le Moal <dlemoal@kernel.org>, 
+	Niklas Cassel <cassel@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Thomas Gleixner <tglx@linutronix.de>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	Rich Felker <dalias@libc.org>, John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, 
+	Lee Jones <lee@kernel.org>, Helge Deller <deller@gmx.de>, 
+	Heiko Stuebner <heiko.stuebner@cherry.de>, Shawn Guo <shawnguo@kernel.org>, 
+	Sebastian Reichel <sre@kernel.org>, Chris Morgan <macromorgan@hotmail.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Arnd Bergmann <arnd@arndb.de>, 
+	David Rientjes <rientjes@google.com>, Hyeonggon Yoo <42.hyeyoo@gmail.com>, 
+	Vlastimil Babka <vbabka@suse.cz>, Baoquan He <bhe@redhat.com>, 
+	Andrew Morton <akpm@linux-foundation.org>, Guenter Roeck <linux@roeck-us.net>, 
+	Kefeng Wang <wangkefeng.wang@huawei.com>, Stephen Rothwell <sfr@canb.auug.org.au>, 
+	Javier Martinez Canillas <javierm@redhat.com>, Guo Ren <guoren@kernel.org>, 
+	Azeem Shaikh <azeemshaikh38@gmail.com>, Max Filippov <jcmvbkbc@gmail.com>, 
+	Jonathan Corbet <corbet@lwn.net>, Jacky Huang <ychuang3@nuvoton.com>, 
+	Herve Codina <herve.codina@bootlin.com>, 
+	Manikanta Guntupalli <manikanta.guntupalli@amd.com>, Anup Patel <apatel@ventanamicro.com>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+	Sam Ravnborg <sam@ravnborg.org>, Sergey Shtylyov <s.shtylyov@omp.ru>, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, linux-ide@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-pci@vger.kernel.org, 
+	linux-serial@vger.kernel.org, linux-fbdev@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Sakari
+Hi Sato-san,
 
-On Fri, 5 Apr 2024 at 11:59, Sakari Ailus <sakari.ailus@linux.intel.com> wrote:
->
-> Hi Luis, Dave,
->
-> On Thu, Apr 04, 2024 at 04:44:05PM -0600, Luigi311 wrote:
-> > On 4/3/24 10:18, Sakari Ailus wrote:
-> > > Hi Luis, Dave,
-> > >
-> > > On Wed, Apr 03, 2024 at 09:03:48AM -0600, git@luigi311.com wrote:
-> > >> From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> > >>
-> > >> Sony have advised that there are variants of the IMX258 sensor which
-> > >> require slightly different register configuration to the mainline
-> > >> imx258 driver defaults.
-> > >>
-> > >> There is no available run-time detection for the variant, so add
-> > >> configuration via the DT compatible string.
-> > >>
-> > >> The Vision Components imx258 module supports PDAF, so add the
-> > >> register differences for that variant
-> > >>
-> > >> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> > >> Signed-off-by: Luis Garcia <git@luigi311.com>
-> > >> ---
-> > >>  drivers/media/i2c/imx258.c | 48 ++++++++++++++++++++++++++++++++++----
-> > >>  1 file changed, 44 insertions(+), 4 deletions(-)
-> > >>
-> > >> diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
-> > >> index 775d957c9b87..fa48da212037 100644
-> > >> --- a/drivers/media/i2c/imx258.c
-> > >> +++ b/drivers/media/i2c/imx258.c
-> > >> @@ -6,6 +6,7 @@
-> > >>  #include <linux/delay.h>
-> > >>  #include <linux/i2c.h>
-> > >>  #include <linux/module.h>
-> > >> +#include <linux/of_device.h>
-> > >>  #include <linux/pm_runtime.h>
-> > >>  #include <linux/regulator/consumer.h>
-> > >>  #include <media/v4l2-ctrls.h>
-> > >> @@ -321,8 +322,6 @@ static const struct imx258_reg mipi_642mbps_24mhz_4l[] = {
-> > >>
-> > >>  static const struct imx258_reg mode_common_regs[] = {
-> > >>    { 0x3051, 0x00 },
-> > >> -  { 0x3052, 0x00 },
-> > >> -  { 0x4E21, 0x14 },
-> > >>    { 0x6B11, 0xCF },
-> > >>    { 0x7FF0, 0x08 },
-> > >>    { 0x7FF1, 0x0F },
-> > >> @@ -345,7 +344,6 @@ static const struct imx258_reg mode_common_regs[] = {
-> > >>    { 0x7FA8, 0x03 },
-> > >>    { 0x7FA9, 0xFE },
-> > >>    { 0x7B24, 0x81 },
-> > >> -  { 0x7B25, 0x00 },
-> > >>    { 0x6564, 0x07 },
-> > >>    { 0x6B0D, 0x41 },
-> > >>    { 0x653D, 0x04 },
-> > >> @@ -460,6 +458,33 @@ static const struct imx258_reg mode_1048_780_regs[] = {
-> > >>    { 0x034F, 0x0C },
-> > >>  };
-> > >>
-> > >> +struct imx258_variant_cfg {
-> > >> +  const struct imx258_reg *regs;
-> > >> +  unsigned int num_regs;
-> > >> +};
-> > >> +
-> > >> +static const struct imx258_reg imx258_cfg_regs[] = {
-> > >> +  { 0x3052, 0x00 },
-> > >> +  { 0x4E21, 0x14 },
-> > >> +  { 0x7B25, 0x00 },
-> > >> +};
-> > >> +
-> > >> +static const struct imx258_variant_cfg imx258_cfg = {
-> > >> +  .regs = imx258_cfg_regs,
-> > >> +  .num_regs = ARRAY_SIZE(imx258_cfg_regs),
-> > >> +};
-> > >> +
-> > >> +static const struct imx258_reg imx258_pdaf_cfg_regs[] = {
-> > >> +  { 0x3052, 0x01 },
-> > >> +  { 0x4E21, 0x10 },
-> > >> +  { 0x7B25, 0x01 },
-> > >> +};
-> > >> +
-> > >> +static const struct imx258_variant_cfg imx258_pdaf_cfg = {
-> > >> +  .regs = imx258_pdaf_cfg_regs,
-> > >> +  .num_regs = ARRAY_SIZE(imx258_pdaf_cfg_regs),
-> > >> +};
-> > >> +
-> > >>  static const char * const imx258_test_pattern_menu[] = {
-> > >>    "Disabled",
-> > >>    "Solid Colour",
-> > >> @@ -637,6 +662,8 @@ struct imx258 {
-> > >>    struct v4l2_subdev sd;
-> > >>    struct media_pad pad;
-> > >>
-> > >> +  const struct imx258_variant_cfg *variant_cfg;
-> > >> +
-> > >>    struct v4l2_ctrl_handler ctrl_handler;
-> > >>    /* V4L2 Controls */
-> > >>    struct v4l2_ctrl *link_freq;
-> > >> @@ -1104,6 +1131,14 @@ static int imx258_start_streaming(struct imx258 *imx258)
-> > >>            return ret;
-> > >>    }
-> > >>
-> > >> +  ret = imx258_write_regs(imx258, imx258->variant_cfg->regs,
-> > >> +                          imx258->variant_cfg->num_regs);
-> > >> +  if (ret) {
-> > >> +          dev_err(&client->dev, "%s failed to set variant config\n",
-> > >> +                  __func__);
-> > >> +          return ret;
-> > >> +  }
-> > >> +
-> > >>    ret = imx258_write_reg(imx258, IMX258_CLK_BLANK_STOP,
-> > >>                           IMX258_REG_VALUE_08BIT,
-> > >>                           imx258->csi2_flags & V4L2_MBUS_CSI2_NONCONTINUOUS_CLOCK ?
-> > >> @@ -1492,6 +1527,10 @@ static int imx258_probe(struct i2c_client *client)
-> > >>
-> > >>    imx258->csi2_flags = ep.bus.mipi_csi2.flags;
-> > >>
-> > >> +  imx258->variant_cfg = of_device_get_match_data(&client->dev);
-> > >
-> > > You'll also need to keep this working for ACPI based systems. I.e. in
-> > > practice remove "of_" prefix here and add the non-PDAF variant data to the
-> > > relevant ACPI ID list.
-> > >
-> >
-> > Removing of_ is easy enough and looking at all the other commits that make
-> > this change in other drivers I dont see anything else being done besides
-> > adding in the .data section that is down below for both imx258 and pdaf
-> > versions. Is that what you are referencing or is there some other place
-> > to add variant data to ACPI ID list?
->
-> Speaking of which---are you absolutely certain there are two variants of
-> this sensor? Many sensors that have a different pixel pattern (PDAF pixels
-> or a non-Bayer pattern) can produce Bayer data when condigured so. The fact
-> that you have differing register configuration for the PDAF and non-PDAF
-> cases suggests this may well be the case.
+Thanks for your patch!
 
-I had a discussion with our contact at Sony over the configuration,
-and Soho Enterprises who made the module I have also consulted with
-Sony (their main person is ex Sony himself).
+On Thu, Apr 4, 2024 at 7:15=E2=80=AFAM Yoshinori Sato
+<ysato@users.sourceforge.jp> wrote:
+> Miscellaneous Timing and Miscellaneous Control registers definition.
 
-There is a spec version field in the OTP which reflects the pixel
-pattern. It has defined options of:
-- HDR pattern
-- Binning pattern
-- mono
-- non-PDAF
-- HDR HDD
+Please do not put raw register value definitions into DT bindings.
 
-Sony can't release information on how to read that information from
-the sensor OTP as it is contractually locked by contracts with Intel.
-Whilst information obtained via other routes means I have checked it
-on my module as HDR pattern whilst the Nautilus platform has the
-non-PDAF variant, I'm not going to spoil our relationship with Sony by
-releasing that.
+> Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
 
-It's possible that the Nautilus sensor will work happily with the
-settings required for the PDAF variant, but I have no way of testing
-that, and the registers in question are undocumented. Changing them
-blindly isn't going to make any friends, and I doubt existing platform
-users wish to rerun all their image quality tests on the sensor to
-validate the change.
+> --- /dev/null
+> +++ b/include/dt-bindings/display/sm501.h
 
-Unless Intel wish to release the information on reading the OTP, we
-have no way of telling the variants apart but need different register
-configurations. If there is a better way of handling that situation
-than compatible strings, then I'm open to suggestions.
+> +/* Miscellaneous timing */
+> +#define SM501_MISC_TIMING_EX_HOLD_0    0
+> +#define SM501_MISC_TIMING_EX_HOLD_16   1
+> +#define SM501_MISC_TIMING_EX_HOLD_32   2
+> +#define SM501_MISC_TIMING_EX_HOLD_48   3
+> +#define SM501_MISC_TIMING_EX_HOLD_64   4
+> +#define SM501_MISC_TIMING_EX_HOLD_80   5
+> +#define SM501_MISC_TIMING_EX_HOLD_96   6
+> +#define SM501_MISC_TIMING_EX_HOLD_112  7
+> +#define SM501_MISC_TIMING_EX_HOLD_128  8
+> +#define SM501_MISC_TIMING_EX_HOLD_144  9
+> +#define SM501_MISC_TIMING_EX_HOLD_160  10
+> +#define SM501_MISC_TIMING_EX_HOLD_176  11
+> +#define SM501_MISC_TIMING_EX_HOLD_192  12
+> +#define SM501_MISC_TIMING_EX_HOLD_208  13
+> +#define SM501_MISC_TIMING_EX_HOLD_224  14
+> +#define SM501_MISC_TIMING_EX_HOLD_240  15
 
-There's a short thread on libcamera-devel from back in 2022 where I
-was looking into this [1]
+E.g. these are used by the (not very descriptive) "ex" property:
 
-  Dave
+     ex:
+       $ref: /schemas/types.yaml#/definitions/uint32
+       description: Extend bus holding time.
 
-[1] https://lists.libcamera.org/pipermail/libcamera-devel/2022-June/031449.html
+Please instead use an enum for the actual holding time ([ 0, 16, 32,
+...]) in the DT bindings, and convert from actual holding time to
+register value in the driver.
 
-> >
-> > >> +  if (!imx258->variant_cfg)
-> > >> +          imx258->variant_cfg = &imx258_cfg;
-> > >> +
-> > >>    /* Initialize subdev */
-> > >>    v4l2_i2c_subdev_init(&imx258->sd, client, &imx258_subdev_ops);
-> > >>
-> > >> @@ -1579,7 +1618,8 @@ MODULE_DEVICE_TABLE(acpi, imx258_acpi_ids);
-> > >>  #endif
-> > >>
-> > >>  static const struct of_device_id imx258_dt_ids[] = {
-> > >> -  { .compatible = "sony,imx258" },
-> > >> +  { .compatible = "sony,imx258", .data = &imx258_cfg },
-> > >> +  { .compatible = "sony,imx258-pdaf", .data = &imx258_pdaf_cfg },
-> > >>    { /* sentinel */ }
-> > >>  };
-> > >>  MODULE_DEVICE_TABLE(of, imx258_dt_ids);
-> > >
-> >
->
-> --
-> Regards,
->
-> Sakari Ailus
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
