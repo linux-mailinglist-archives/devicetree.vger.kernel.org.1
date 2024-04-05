@@ -1,175 +1,342 @@
-Return-Path: <devicetree+bounces-56446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 568FC8994E3
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 08:01:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D5CC899538
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 08:24:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B57461F2343E
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 06:01:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 40BE01C2155A
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 06:24:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C037A224F6;
-	Fri,  5 Apr 2024 06:01:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 415F722EEF;
+	Fri,  5 Apr 2024 06:24:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QtnvZWkT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="e0D5fKGO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E22AD224EF;
-	Fri,  5 Apr 2024 06:01:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E3EA225D6
+	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 06:24:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712296890; cv=none; b=gv5z2yGQr0qxb6LyN6yjWYO/iffb5kkwOZ0cx2P0Fku8SJ8z1krTLVn+1OgIWJ/cLZ1cjsgETC1qTexL30bfX4C5j6nKofCRMXFHNODYECK4lkaE7AH8Mco2mAFKt/LERVAfOe3615fkK7lm94D9LZ5bTviDp4GPAiguYStVrME=
+	t=1712298281; cv=none; b=ANFCcqetbRA03CxAIoEF3fwEePtpYpqeoouApeRpf2+8IszDPKsMoPR4Cg4gcAVZEQ9Yt3k+m0hoN6xwB2VToM68Uz6ry6F8JYGQAa0MtMJOBVttNgWHGKV6247zaYZLe8IfTf3hJUVY4Hqc2LQMPWtUwuJpofWHFUyUoWei3vQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712296890; c=relaxed/simple;
-	bh=AEz91L3w4/BpWSBDQDJsIDJt7JVxo4Ob0QsD7kPva/w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jNolyCzkqbLeF6XVyE9lRe87Ktvzyyt3U1sv1FE9t0zYitnlaIZEbPY+J8YZ7YVJd4aak5QHRvm/0H0HktBL7J+uEcIJtwVHK8d65jIkgiaREiSOQ6jHCEOJsDvF2sGpR0UTX+wgyRR34o+gBts0itBcNMXKe34i/n+0fDla8/0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QtnvZWkT; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-51381021af1so2822445e87.0;
-        Thu, 04 Apr 2024 23:01:28 -0700 (PDT)
+	s=arc-20240116; t=1712298281; c=relaxed/simple;
+	bh=Aq5f+aYK1/s+xcoN/qqpESMo30shR6C9ncONP3v7+4E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hnDEM7ACFJ4A0mQtKkE5HV+R68bCTYy872j1UWHHkUdHw5we6DwDL2T6lWR1w1LZduQCx+omy9J8W83t7FhDcDK0DW2HaalbuEY7eOqBqJ6jGaV33KqBjUAnca27cHL0aMXFs9apQREYU9FkeA0h4qVAIjfEcUc6z6HRhI4lXeY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=e0D5fKGO; arc=none smtp.client-ip=209.85.160.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-2228c4c5ac3so1037479fac.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Apr 2024 23:24:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712296887; x=1712901687; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uUbJzYH8/GjAOeHJC0H+nvPY2BdnYIwFHY5/SfgrKT8=;
-        b=QtnvZWkT6szqnvXIvCNPttGikK+lmsfM/VNDu6Svbvwn8b2jTDZghhZ04kp1//L79e
-         r+iw8v5daWvGE7KKNnhrGw/AhBjVEzY26UZsTRubtpb2KD+WWlzo1ozBvDMLXE32UUMZ
-         3v+A044Ca/cFk7/OyLO2VB7CxfyW3UPci5Qb+mxgpymnjleJfm1D/Y4y559LI8gLIHnk
-         weTXr9ugsAxNSTAZ++wjKpaaG4k0JMP9t0focPGCtd7/SHoUsTknHQ4bIor7IGDIo8HC
-         LRxezdNF9ahwz7vnlecM3Rp4spH501qpDF9FL1NhR6xCVG0Ywt80Y+Gdgs6PrNz63rqI
-         YytA==
+        d=linaro.org; s=google; t=1712298278; x=1712903078; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=PXnFYj37RdMeiT5FI44eDGaNEFusqkVt94gwHECIUb0=;
+        b=e0D5fKGOyYodY6/NIuvTgZbS/hQ9bToyqq+MDhGPlJG5aF0kWE3dhxmd3cB09uZnEq
+         q3TqmIKZv/PI/i9EoZkoAxo4sEXCxDKDIUZQzLRmvgO+5Jhj0cOD1zL8G4AB7DX5h3i+
+         agYGEOrWFw0ETNXZjvQZ4wqlkINL9wzo/F9uidrb8eTeu3NpCjwTMAWR3uBX4Fu7wgxk
+         SvHbpT2Ztum/LHnC6ESN4YGHAKUYwno6B4Fx+ryMBQj0PhDywKIAqn4mW7g6huhbVoZK
+         Y49ydUuiwd1ADooDEssszjpvmEBOtPA9fLBhL4mwPE3fE5iFuna4fDxrpBMd4cKAhHlM
+         UBag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712296887; x=1712901687;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1712298278; x=1712903078;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uUbJzYH8/GjAOeHJC0H+nvPY2BdnYIwFHY5/SfgrKT8=;
-        b=rVRpPvys2jR3Cl+eaGZ1BS/NotwTGxPZ0S6o1IkKRLEbisVEoI8fkpRnMlrBfd8otr
-         Rh4FgY6tdz7oNFbjyj+2j+YsO6DDyWcsvS5jK9uZH7Zpw5eYHiEHOEiAaKjZTrfayz+R
-         xKHEMTKIZ/w9XyGKU+PE74vCQiqJdMrbkla22EIJRaxobUB4rquUi3xgXol/aqOXIrYj
-         T7doJDV5yswva0ThpLJ81N4OYuFXeIqFNq+HjNXWa6Fk0APQsO9vQgWxgBnFXvnczIoZ
-         RU7r8KcqTWbTDmV8LR4gSaj63WCHVjBy4dgNk1Xq3hU/WHlPRt6wdaWeZcGjJam88VvO
-         vT1g==
-X-Forwarded-Encrypted: i=1; AJvYcCVOBadzZwMevCyXfRDROAIRzBcDkFBtS1Z1wePvdp1GvP52AsQRlBuNRLEhYfXv5MWaIgAgIF9qyL5bOrVafvzBFQSShUKMYcCWDM7NSPJQwYYQ1dzgxmCXDbaHKlBLWPgHvxEyutmPUg==
-X-Gm-Message-State: AOJu0YwhoNafNcfyfvXOu6wDj3vmSlkH+1mJGHuNwaetgHBqNYf4JDq4
-	poQM+9i51uCAGDJyHdIm/mXoD1izGiqizI/XEQmchDIdadp/rl1+
-X-Google-Smtp-Source: AGHT+IHKLgYZfyGzkcUB0B7vve2jsQjKlZ7oe4oYMeYQQGuhr4OytF9qE9DF5KJ5fuPHpjPeoa9l5g==
-X-Received: by 2002:a19:641c:0:b0:516:c44a:657d with SMTP id y28-20020a19641c000000b00516c44a657dmr370940lfb.64.1712296886429;
-        Thu, 04 Apr 2024 23:01:26 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:7426:df00::6? (drtxq0yyyyyyyyyyyyydy-3.rev.dnainternet.fi. [2001:14ba:7426:df00::6])
-        by smtp.gmail.com with ESMTPSA id f23-20020ac251b7000000b00513e24c304fsm99344lfk.193.2024.04.04.23.01.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Apr 2024 23:01:26 -0700 (PDT)
-Message-ID: <0295c8db-b01e-45e7-b44e-79d36d81cd48@gmail.com>
-Date: Fri, 5 Apr 2024 09:01:25 +0300
+        bh=PXnFYj37RdMeiT5FI44eDGaNEFusqkVt94gwHECIUb0=;
+        b=YVfvd/MNAd767VvYM8Z6sIzJx6L3X2gdfTI87cZaQQjjU2fWz3f2nHzgR5JFanf5V0
+         aQfhjWkugDKrGcZYSjM5mdXVsu0BRW6qwzZuOcy5NzeahLa3GEOXAyM0G2raLSkk557g
+         gqsXqbTKEmp86FNtrjhU4kwq7C9P8IvQnl4xYlI9G8VqEwLB8Eo6wEonBtz6xooD/7ym
+         GL4XH/W/p6KNsHgPPSILc6M6PhL73D09XojYXE0RIML7RDZQiow1aFhTPn/V65CFg0mC
+         iKnht7qDgPP/zk6c/TREodg59q9ckQ83oZsqS2MNp4bW/VEmLvHch+NlSBWToMnUNeRP
+         +mlQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWhK62+plnTE4JFZJhlGdZagems5Xz6ZNdbosVMYW4V28geEwZdAT1x7aUSX5FgFIIORUxqS3h4iUn17QeKPzEDdAFXxVxmz5i5lw==
+X-Gm-Message-State: AOJu0YxKXz61MEGwtMVXfc7BssB7Jy5qy/+L7MUVUmC2/Gu2EjQxpeTB
+	xuamGUEBCMremAK7njhxb2ELaQOM491IgQx5EWTRo3ld7geXAQiV7CZLga5PZA==
+X-Google-Smtp-Source: AGHT+IFk7n+g4rGKZeemR9hbQWDpWanR3vqQNkhNGIq+1un3I3qWXvV7N6omwtvQ7r5dF6NGy/vcDw==
+X-Received: by 2002:a05:6870:8188:b0:220:941d:18b7 with SMTP id k8-20020a056870818800b00220941d18b7mr539768oae.59.1712298278072;
+        Thu, 04 Apr 2024 23:24:38 -0700 (PDT)
+Received: from thinkpad ([120.60.67.119])
+        by smtp.gmail.com with ESMTPSA id r24-20020aa78b98000000b006ecfb733248sm750249pfd.13.2024.04.04.23.24.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Apr 2024 23:24:37 -0700 (PDT)
+Date: Fri, 5 Apr 2024 11:54:26 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
+	Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev,
+	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 5/5] PCI: dwc: Add common send PME_Turn_Off message
+ method
+Message-ID: <20240405062426.GB2953@thinkpad>
+References: <20240319-pme_msg-v5-0-af9ffe57f432@nxp.com>
+ <20240319-pme_msg-v5-5-af9ffe57f432@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: mfd: Add ROHM BD71879
-Content-Language: en-US, en-GB
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Andreas Kemnade <andreas@kemnade.info>
-Cc: lee@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240402193515.513713-1-andreas@kemnade.info>
- <20240402193515.513713-2-andreas@kemnade.info>
- <6420ac43-f200-459c-8c38-7cd55c64a155@linaro.org>
- <20240404123010.69454fda@aktux>
- <8f37211a-57ed-48ab-8de8-cd5a0d4c6609@linaro.org>
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <8f37211a-57ed-48ab-8de8-cd5a0d4c6609@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240319-pme_msg-v5-5-af9ffe57f432@nxp.com>
 
-On 4/4/24 15:04, Krzysztof Kozlowski wrote:
-> On 04/04/2024 12:30, Andreas Kemnade wrote:
->> On Thu, 4 Apr 2024 08:59:54 +0200
->> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
->>
->>> On 02/04/2024 21:35, Andreas Kemnade wrote:
->>>> As this chip was seen in several devices in the wild, add it.
->>>>
->>>> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
->>>> Suggested-by: Matti Vaittinen <mazziesaccount@gmail.com>
->>>> ---
->>>>   Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml | 4 +++-
->>>>   1 file changed, 3 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
->>>> index 0b62f854bf6b..e4df09e8961c 100644
->>>> --- a/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
->>>> +++ b/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
->>>> @@ -17,7 +17,9 @@ description: |
->>>>   
->>>>   properties:
->>>>     compatible:
->>>> -    const: rohm,bd71828
->>>> +    enum:
->>>> +      - rohm,bd71828
->>>> +      - rohm,bd71879
->>>
->>> In your second commit you claim they are compatible, so why they are not
->>> marked as such?
->>>
->> so you mean allowing
->>
->> compatible = "rohm,bd71828"
->> and
->> compatible = "rohm,bd71879", "rohm,bd71828"
+On Tue, Mar 19, 2024 at 12:07:15PM -0400, Frank Li wrote:
 
+PCI: dwc: Add generic MSG TLP support for sending PME_Turn_Off during system suspend
 
-This makes me slightly nervous. It wouldn't be the first time when I've 
-been told "they are similar", and later the reality has turned out to be 
-"they are similar, except...". Furthermore, even if these devices seem 
-similar to software (which is what the comment in the MFD driver is 
-referring to), it does not mean these devices are 100% electrically 
-compatible so that they could be used as a "drop-in" replacement to each 
-others. I wouldn't guarantee that.
+> Reserve space at end of first IORESOURCE_MEM window as message TLP MMIO
+> window. This space's size is 'region_align'.
+> 
+> Set outbound ATU map memory write to send PCI message. So one MMIO write
+> can trigger a PCI message, such as PME_Turn_Off.
+> 
+> Add common dwc_pme_turn_off() function.
+> 
+> Call dwc_pme_turn_off() to send out PME_Turn_Off message in general
+> dw_pcie_suspend_noirq() if there are not platform callback pme_turn_off()
+> exist.
+> 
 
-Furthermore, my current understanding is that the BD71828 was a model 
-that was used for a limited purposes. So, maybe creating an dt-entry like:
-compatible = "rohm,bd71879", "rohm,bd71828"
+How about:
 
-might not prove to be too useful. (But I'm not 100% certain on this).
+"Instead of relying on the vendor specific implementations to send the
+PME_Turn_Off message, let's introduce a generic way of sending the message using
+the MSG TLP.
 
-> Yes. If there are reasons against, please briefly mention them in commit
-> msg.
+This is achieved by reserving a region for MSG TLP of size 'pci->region_align',
+at the end of the first IORESOURCE_MEM window of the host bridge. And then
+sending the PME_Turn_Off message during system suspend with the help of iATU.
 
-I would like to understand the rationale for allowing:
-compatible = "rohm,bd71879", "rohm,bd71828".
+It should be noted that this generic implementation is optional for the glue
+drivers and can be overridden by a custom 'pme_turn_off' callback."
 
-Is the intention to:
-1) allow boards which tell the software that "the hardware may be 
-bd71828 or bd71879", or
-2) to tell a binding reader that these ICs are likely to be usable as 
-replacements to each others?
-(Or, is there some other rationale beyond these?)
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  drivers/pci/controller/dwc/pcie-designware-host.c | 94 ++++++++++++++++++++++-
+>  drivers/pci/controller/dwc/pcie-designware.h      |  3 +
+>  2 files changed, 93 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+> index 267687ab33cbc..d5723fce7a894 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> @@ -393,6 +393,31 @@ static int dw_pcie_msi_host_init(struct dw_pcie_rp *pp)
+>  	return 0;
+>  }
+>  
+> +static void dw_pcie_host_request_msg_tlp_res(struct dw_pcie_rp *pp)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	struct resource_entry *win;
+> +	struct resource *res;
+> +
+> +	win = resource_list_first_type(&pp->bridge->windows, IORESOURCE_MEM);
+> +	if (win) {
+> +		res = devm_kzalloc(pci->dev, sizeof(*res), GFP_KERNEL);
+> +		if (!res)
+> +			return;
+> +
+> +		/* Reserve last region_align block as message TLP space */
+> +		res->start = win->res->end - pci->region_align + 1;
+> +		res->end = win->res->end;
 
-If it's 1), then I see limited sense in doing so, while I expect that 
-not so many bd71828 variants will be seen out there - and at least not 
-in that many different products. If it's the 2), then I wouldn't say we 
-have the facts to do this.
-And, as always, if there is 3), 4), ... - I am keen to learn :)
+Don't you need to adjust the host bridge window size and end address?
 
-Yours,
-	-- Matti
+> +		res->name = "msg";
+> +		res->flags = win->res->flags | IORESOURCE_BUSY;
+> +
+
+Shouldn't this resource be added back to the host bridge?
+
+> +		if (!request_resource(win->res, res))
+
+Why can't you use devm_ helper to manage the resource, since the lifetime of the
+resource is till dw_pcie_host_deinit()?
+
+> +			pp->msg_res = res;
+> +		else
+> +			devm_kfree(pci->dev, res);
+> +	}
+> +}
+> +
+>  int dw_pcie_host_init(struct dw_pcie_rp *pp)
+>  {
+>  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> @@ -479,6 +504,10 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
+>  
+>  	dw_pcie_iatu_detect(pci);
+>  
+> +	/* Need call after dw_pcie_iatu_detect() before dw_pcie_setup_rc() */
+
+It'd be better to add the reason also i.,e
+
+	/*
+	 * Allocate the resource for MSG TLP before programming the iATU
+	 * outbound window in dw_pcie_setup_rc(). Since the allocation depends
+	 * on the value of 'region_align', this has to be done after
+	 * dw_pcie_iatu_detect().
+	 */
+
+> +	if (pp->use_atu_msg)
+
+Who is setting this flag?
+
+> +		dw_pcie_host_request_msg_tlp_res(pp);
+> +
+>  	ret = dw_pcie_edma_detect(pci);
+>  	if (ret)
+>  		goto err_free_msi;
+> @@ -536,6 +565,11 @@ void dw_pcie_host_deinit(struct dw_pcie_rp *pp)
+>  
+>  	dw_pcie_edma_remove(pci);
+>  
+> +	if (pp->msg_res) {
+> +		release_resource(pp->msg_res);
+> +		devm_kfree(pci->dev, pp->msg_res);
+> +	}
+> +
+>  	if (pp->has_msi_ctrl)
+>  		dw_pcie_free_msi(pp);
+>  
+> @@ -697,6 +731,10 @@ static int dw_pcie_iatu_setup(struct dw_pcie_rp *pp)
+>  		atu.pci_addr = entry->res->start - entry->offset;
+>  		atu.size = resource_size(entry->res);
+>  
+> +		/* MSG TLB window resource reserve at one of end of IORESOURCE_MEM resource */
+> +		if (pp->msg_res && pp->msg_res->parent == entry->res)
+> +			atu.size -= resource_size(pp->msg_res);
+
+If you adjust the bridge window above, then this won't be needed.
+
+> +
+>  		ret = dw_pcie_prog_outbound_atu(pci, &atu);
+>  		if (ret) {
+>  			dev_err(pci->dev, "Failed to set MEM range %pr\n",
+> @@ -728,6 +766,8 @@ static int dw_pcie_iatu_setup(struct dw_pcie_rp *pp)
+>  		dev_warn(pci->dev, "Ranges exceed outbound iATU size (%d)\n",
+>  			 pci->num_ob_windows);
+>  
+> +	pp->msg_atu_index = i;
+> +
+>  	i = 0;
+>  	resource_list_for_each_entry(entry, &pp->bridge->dma_ranges) {
+>  		if (resource_type(entry->res) != IORESOURCE_MEM)
+> @@ -833,11 +873,54 @@ int dw_pcie_setup_rc(struct dw_pcie_rp *pp)
+>  }
+>  EXPORT_SYMBOL_GPL(dw_pcie_setup_rc);
+>  
+> +/* Using message outbound ATU to send out PME_Turn_Off message for dwc PCIe controller */
+> +static int dw_pcie_pme_turn_off(struct dw_pcie *pci)
+> +{
+> +	struct dw_pcie_ob_atu_cfg atu = { 0 };
+> +	void __iomem *m;
+
+*mem
+
+> +	int ret;
+> +
+> +	if (pci->num_ob_windows <= pci->pp.msg_atu_index)
+> +		return -EINVAL;
+> +
+> +	if (!pci->pp.msg_res)
+> +		return -EINVAL;
+> +
+> +	atu.code = PCIE_MSG_CODE_PME_TURN_OFF;
+> +	atu.routing = PCIE_MSG_TYPE_R_BC;
+> +	atu.type = PCIE_ATU_TYPE_MSG;
+> +	atu.size = resource_size(pci->pp.msg_res);
+> +	atu.index = pci->pp.msg_atu_index;
+> +
+> +	if (!atu.size) {
+> +		dev_dbg(pci->dev,
+> +			"atu memory map windows is zero, please check 'msg' reg in dts\n");
+
+You are already checking the existence of the 'pci->pp.msg_res' region above. So
+shouldn't that be sufficient enough? Can the size be 0, if the region exist?
+
+- Mani
+
+> +		return -ENOMEM;
+> +	}
+> +
+> +	atu.cpu_addr = pci->pp.msg_res->start;
+> +
+> +	ret = dw_pcie_prog_outbound_atu(pci, &atu);
+> +	if (ret)
+> +		return ret;
+> +
+> +	m = ioremap(atu.cpu_addr, pci->region_align);
+> +	if (!m)
+> +		return -ENOMEM;
+> +
+> +	/* A dummy write is converted to a Msg TLP */
+> +	writel(0, m);
+> +
+> +	iounmap(m);
+> +
+> +	return 0;
+> +}
+> +
+>  int dw_pcie_suspend_noirq(struct dw_pcie *pci)
+>  {
+>  	u8 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
+>  	u32 val;
+> -	int ret;
+> +	int ret = 0;
+>  
+>  	/*
+>  	 * If L1SS is supported, then do not put the link into L2 as some
+> @@ -849,10 +932,13 @@ int dw_pcie_suspend_noirq(struct dw_pcie *pci)
+>  	if (dw_pcie_get_ltssm(pci) <= DW_PCIE_LTSSM_DETECT_ACT)
+>  		return 0;
+>  
+> -	if (!pci->pp.ops->pme_turn_off)
+> -		return 0;
+> +	if (pci->pp.ops->pme_turn_off)
+> +		pci->pp.ops->pme_turn_off(&pci->pp);
+> +	else
+> +		ret = dw_pcie_pme_turn_off(pci);
+>  
+> -	pci->pp.ops->pme_turn_off(&pci->pp);
+> +	if (ret)
+> +		return ret;
+>  
+>  	ret = read_poll_timeout(dw_pcie_get_ltssm, val, val == DW_PCIE_LTSSM_L2_IDLE,
+>  				PCIE_PME_TO_L2_TIMEOUT_US/10,
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+> index 703b50bc5e0f1..dca5de4c6e877 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.h
+> +++ b/drivers/pci/controller/dwc/pcie-designware.h
+> @@ -341,6 +341,9 @@ struct dw_pcie_rp {
+>  	struct pci_host_bridge  *bridge;
+>  	raw_spinlock_t		lock;
+>  	DECLARE_BITMAP(msi_irq_in_use, MAX_MSI_IRQS);
+> +	bool			use_atu_msg;
+> +	int			msg_atu_index;
+> +	struct resource		*msg_res;
+>  };
+>  
+>  struct dw_pcie_ep_ops {
+> 
+> -- 
+> 2.34.1
+> 
 
 -- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
-
+மணிவண்ணன் சதாசிவம்
 
