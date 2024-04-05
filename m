@@ -1,169 +1,181 @@
-Return-Path: <devicetree+bounces-56680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B95D89A1FB
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 17:57:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7565389A204
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 17:59:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9BB7A1C21C2F
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 15:57:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D4962B2421E
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 15:59:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AE4916FF58;
-	Fri,  5 Apr 2024 15:57:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5327171064;
+	Fri,  5 Apr 2024 15:59:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uO9pKL5Q"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="CdTjE8AR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C74DE16F82C
-	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 15:57:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE0AF16FF30
+	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 15:59:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712332645; cv=none; b=tHJUq1JGkXa5ASWpuBhniLYNPNfeK+OlcsribTD6YrwpUpfo+7hnIOBFWrhqBtk15vQCCXEPCv3mxAr7XiQZh8jBrgsY+g6zBnN7HlzY9/fl8vk9O+Hx31dw+z+dlaGgTEZUS73V4w4cmi6JCizADcTAGjgM/a4QH3po7mVDP8Q=
+	t=1712332786; cv=none; b=C2uoqJO6aRgSd1gP2HTBxzthh5TP2yOMEbFk1AtePIMRq4DAcwXhvYFOOEGg4k3h4DiY242Lf2/iSvEC2kvCcDhunmiEATa/TIN8Yl470zr+9U3a7vdTWm3CgYwR3DzaDNKvV0nq81LbxPwaowsZFVuIXVSA6V6SZOKR/B91vRE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712332645; c=relaxed/simple;
-	bh=z3Rimi7jzpMWlTiHBYwSHESyJvpSlZW503BwqamNhdA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dQ5X5Z4wZQu0SuUpOFysQGmArp81jtpNhIWI93qCAm1VZAxS+zvQ7BDWGPGvr/Dbln9SpPON1fVB8hhwPFv7f3HZXn840ENw5IKuLmn7f+6KiB7t9EY0eTVZC2zHpNTTTvY0C3NTFLiGlYYKGIbV5eZ0cJVpMdWBqEBDrj01lhs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uO9pKL5Q; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a5193f56986so205336366b.0
-        for <devicetree@vger.kernel.org>; Fri, 05 Apr 2024 08:57:23 -0700 (PDT)
+	s=arc-20240116; t=1712332786; c=relaxed/simple;
+	bh=6WysufP42FX2Az3Xx8MgB1cNuc1CYX+XUTX4q5FvCN4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pUQplWplZKIMI6Kxs+PxrCm/jc+5lTJeCcZDkExT9JM+TzykWg1GZD9OOC5Y71tRL7oXEe8S1zPKEbOhyEJ6p8dnXNgpxJJOXrYwNXajnrUhNDCZ6SWlKKtkhwP+hF7w4bIoth/kDe+8xU/utfyjRGcii/LKdsbv/TQJ37w4gdQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=CdTjE8AR; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4163181a7ceso4961505e9.0
+        for <devicetree@vger.kernel.org>; Fri, 05 Apr 2024 08:59:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712332642; x=1712937442; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=mKkipGSap3V6ea4UiOGlmbzb7FNgkBvFxP98TV7aYLU=;
-        b=uO9pKL5Q+Fn9cOsbh/EZdO4NfTVqE2qOzaL0NpiOZaqNuWZAQ8W9KKROS4rGSkWIWk
-         jzgZti9XFoxW0Ij88KvSSQjWc7CwIvCySeCaxtYzUe6dDK1EuoFwMQ2Lo/qKUmX2eLZT
-         DYN8SkLSqy8RZGS+3auBr6e+kra7omVquk4OD1U6DsB+41SDxcOxUZIC6Y+5wQRnDlcf
-         XyXYdgr7qH3JLW9SWtvP58SsGDXQMakagPyBeD1xNYhQTshOzDS714BEMjdR8iJC/DQK
-         851F/qzgCGAk+6R4jiX4Kc1tiJ9/sZZWo3Jp/vMgqvn5gpL3u9s5xGh2XWWaxwIoF6X8
-         mW2g==
+        d=ventanamicro.com; s=google; t=1712332783; x=1712937583; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Z/+tn7yaOy1bWCod1Hwz4ffQkyy0MXOXzF4xEGdBkSM=;
+        b=CdTjE8ARyIrDoCIL7WSqdKga/mX+JFEK79Pi4jCyaf58yf9SvW7NkQNcfHqbHp4W5r
+         QPbw7HCfvDOKgZ5bR1EmCP3Nfn1Tn40R+eOWRXyXyahTFxDWNNlptlLkTJ9rLzKeQCA7
+         HnZW0wWacuyTjqy85ar0AkWeZCOIasnLZlW3/AftFoGtEa6MUUPVHpms2GrWdvXOAkx1
+         nFLnZ2IonAAOcX4LlKDVyfCWj/tVwHuULEz4NbH3X6bYscW3VUaUzsysVqgcSqUreJGs
+         sWXp9dkTrCwWkSLVGBjjLlEbNfT7exPe5e2MDN3Ll4xaFqU4eMITnytPqpuqQRbTpky0
+         Qw6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712332642; x=1712937442;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1712332783; x=1712937583;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=mKkipGSap3V6ea4UiOGlmbzb7FNgkBvFxP98TV7aYLU=;
-        b=Kz2tEVfkdSms3a8T7OZhpR4nN2sIkQVXULS0bod/MZnM6i+QcYexmW9hOr8ZhsVWHJ
-         7pwG4kdbRWSISTk6V/FaN+p35LUteikYAmDrhy7syzjDg5+wXErmgj30MRItpegC/rAj
-         qHv3X6s5Awtsew7O3VxKhnToxhHLaKaHbvBZIfjW+Eto2pDQYpOF0kimoPoxF6Iel2zr
-         XPKuXkv34TH65KGYdTN/qdwDlWbsDNtkpwI22N8+SWXGfzZi7/6o2qau/H9GdRIWrWGG
-         n37XPi6XoV98gSTCzvxoSz84RzsqCbyKJITL4FeoiaKJAEfYgD0bbavCP4a1AUS6q8Ql
-         FKRQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXGNydh+YIWIkKelqHg7R1ICioHqHJropd6ilkvViFbwaQMKo36M8/0CPzIT7C+dSSPdxFABv4nHfPykd7YVMq1KUwM57hFTyyvbA==
-X-Gm-Message-State: AOJu0YzXkAmNRAxseAvW6pzlNOpTxZxeYJ2TdZZBgGMq2HjiXdVSPKSh
-	s8yqSIAjoayjff8cQRrea+vNE5rvQcd1fkxSvEUpO9Qa2fxOW+seBbN+UPVHWAK46KEmnnfrmLQ
-	z
-X-Google-Smtp-Source: AGHT+IGjhvATYUztCqWkZMJcrdWOwv2T7iTd21lfPbduEPI9w0ewiLk5LX8czXsHTruTvausR3ZKyg==
-X-Received: by 2002:a17:906:3791:b0:a51:a329:cd76 with SMTP id n17-20020a170906379100b00a51a329cd76mr1279322ejc.13.1712332642140;
-        Fri, 05 Apr 2024 08:57:22 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id qx25-20020a170907b59900b00a46caa13e67sm968388ejc.105.2024.04.05.08.57.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Apr 2024 08:57:21 -0700 (PDT)
-Message-ID: <ec7f77a7-2cf1-4ea6-b9c4-d4fe8a1673ab@linaro.org>
-Date: Fri, 5 Apr 2024 17:57:20 +0200
+        bh=Z/+tn7yaOy1bWCod1Hwz4ffQkyy0MXOXzF4xEGdBkSM=;
+        b=M4fAKUMY3FfxRbCREg++cAE79cHyuHn6WG+oiRfjt299HncIE9ifm3wNPEpaQSt8A0
+         gRG61c/1yGuPX6L6gMv540ofk9Mq7inCdi+yj//HDrO2J7O4BdEOjjEjgDZ3/CIafZc0
+         Y2XCsvuFxhwaMI2lKZWTQO2dYfC9E8tguxf1sCWQFx64FQkeGb7OUgELbkwWctXaFH2F
+         UbietSDc0ehSWcOl9fRP+oY5JcpsJNIFYqsvgMYQUIDw1IE5AV+4S1iVVXqgUswC8tK7
+         LkrUxXMRlfB4uOHqdoxgvtvTUTUq2YEfl0uYKf8b4k6dgBvZ7wDew2HUSo+o7L0euvO8
+         S67Q==
+X-Forwarded-Encrypted: i=1; AJvYcCU+1gkeTLhlCLESRZS3pyFRCXUzdX4jNRvsI1DxML2vzQIaWfuZuEpboSFrmHoSwl+86/iJM0YlPPGzhvaZgxZrLq+/hVBY8jS2aQ==
+X-Gm-Message-State: AOJu0YxBMcPSueNXJG8n88sbKTPSUqRii1vBovzbqlCJFTy+qnUgW1X8
+	N7Q71e5pzMtdoF4GTj2rCYP/H9DxEfDvWDriWIo8Hv4RPYmtX76WdzCI9uQTd7E=
+X-Google-Smtp-Source: AGHT+IHm5FdCsOG2D2FwTVsRXO+4kOPqszWyczb81zB17ksFNLVDMEKpcib6RWK3ysnM3lM9cg2ZBw==
+X-Received: by 2002:a05:600c:3107:b0:414:7909:6680 with SMTP id g7-20020a05600c310700b0041479096680mr1487874wmo.16.1712332783307;
+        Fri, 05 Apr 2024 08:59:43 -0700 (PDT)
+Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
+        by smtp.gmail.com with ESMTPSA id m20-20020a05600c4f5400b0041632171f51sm1770044wmq.13.2024.04.05.08.59.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Apr 2024 08:59:42 -0700 (PDT)
+Date: Fri, 5 Apr 2024 17:59:41 +0200
+From: Andrew Jones <ajones@ventanamicro.com>
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: Max Hsu <max.hsu@sifive.com>, Conor Dooley <conor@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Pavel Machek <pavel@ucw.cz>, Anup Patel <anup@brainfault.org>, 
+	Atish Patra <atishp@atishpatra.org>, Paolo Bonzini <pbonzini@redhat.com>, 
+	Shuah Khan <shuah@kernel.org>, Palmer Dabbelt <palmer@sifive.com>, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, kvm@vger.kernel.org, kvm-riscv@lists.infradead.org, 
+	linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH RFC 02/11] dt-bindings: riscv: Add Sdtrig optional CSRs
+ existence on DT
+Message-ID: <20240405-ebdb2943657ab08d2d563c03@orel>
+References: <20240329-dev-maxh-lin-452-6-9-v1-0-1534f93b94a7@sifive.com>
+ <20240329-dev-maxh-lin-452-6-9-v1-2-1534f93b94a7@sifive.com>
+ <20240329-affidavit-anatomist-1118a12c3e60@wendy>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: omap-mcpdm: Convert to DT schema
-To: Mithil <bavishimithil@gmail.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, alsa-devel@alsa-project.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240404160649.967-1-bavishimithil@gmail.com>
- <78091796-fd0a-42dd-a4da-f7bed3025bf9@linaro.org>
- <CAGzNGRnuG_gLUrH1N57WvpKbpiNtFrcsG6nJcacQNJB_yMYNrA@mail.gmail.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAGzNGRnuG_gLUrH1N57WvpKbpiNtFrcsG6nJcacQNJB_yMYNrA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240329-affidavit-anatomist-1118a12c3e60@wendy>
 
-On 05/04/2024 16:48, Mithil wrote:
-> So sorry about the 2nd patch being sent as a new mail, here is a new
-> patch with the changes as suggested
+On Fri, Mar 29, 2024 at 10:31:10AM +0000, Conor Dooley wrote:
+> On Fri, Mar 29, 2024 at 05:26:18PM +0800, Max Hsu wrote:
+> > The mcontext/hcontext/scontext CSRs are optional in the Sdtrig extension,
+> > to prevent RW operations to the missing CSRs, which will cause
+> > illegal instructions.
+> > 
+> > As a solution, we have proposed the dt format for these CSRs.
 > 
->> Please use subject prefixes matching the subsystem
-> Changed the patch name to match the folder history.
+> As I mentioned in your other patch, I amn't sure what the actual value
+> is in being told about "sdtrig" itself if so many of the CSRs are
+> optional. I think we should define pseudo extensions that represent
+> usable subsets that are allowed by riscv,isa-extensions, such as
+> those you describe here: sdtrig + mcontext, sdtrig + scontext and
+> sdtrig + hcontext. Probably also for strig + mscontext. What
+> additional value does having a debug child node give us that makes
+> it worth having over something like the above?
 
-Nothing improved. What the history tells you?
+Yeah, Sdtrig, which doesn't tell you what you get, isn't nice at all.
+I wonder if we can start with requiring Sdtrig to be accompanied by
+Ssstrict in order to enable the context CSRs, i.e.
+
+ Sdtrig          - support without optional CSRs
+ Sdtrig+Ssstrict - probe for optional CSRs, support what's found
+
+If there are platforms with Sdtrig and optional CSRs, but not Ssstrict,
+then maybe the optional CSRs can be detected in some vendor-specific way,
+where the decision as to whether or not that vendor-specific way is
+acceptable is handled case-by-case.
+
+Thanks,
+drew
 
 > 
->> Is it your full name?
-> Fixed it, my apologies.
+> Thanks,
+> Conor.
 > 
->> Filename like compatible.
-> Fixed.
+> > 
+> > Signed-off-by: Max Hsu <max.hsu@sifive.com>
+> > ---
+> >  Documentation/devicetree/bindings/riscv/cpus.yaml | 18 ++++++++++++++++++
+> >  1 file changed, 18 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > index d87dd50f1a4b..c713a48c5025 100644
+> > --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > @@ -137,6 +137,24 @@ properties:
+> >        DMIPS/MHz, relative to highest capacity-dmips-mhz
+> >        in the system.
+> >  
+> > +  debug:
+> > +    type: object
+> > +    properties:
+> > +      compatible:
+> > +        const: riscv,debug-v1.0.0
+> > +      trigger-module:
+> > +        type: object
+> > +        description: |
+> > +          An indication set of optional CSR existence from
+> > +          riscv-debug-spec Sdtrig extension
+> > +        properties:
+> > +          mcontext-present:
+> > +            type: boolean
+> > +          hcontext-present:
+> > +            type: boolean
+> > +          scontext-present:
+> > +            type: boolean
+> > +
+> >  anyOf:
+> >    - required:
+> >        - riscv,isa
+> > 
+> > -- 
+> > 2.43.2
+> > 
 
-Still not, compatible is omap4.
 
-> 
->> Please open existing bindings and look how it is done there.
-> Changed it, is it fine now?
 
-You mean v2? I have no clue to what you are responding here, but no, v2
-did not improve much.
-
-Best regards,
-Krzysztof
+> -- 
+> kvm-riscv mailing list
+> kvm-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/kvm-riscv
 
 
