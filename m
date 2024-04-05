@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-56674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75E2389A1AF
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 17:46:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8194C89A1C9
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 17:50:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A6FCC1C2312A
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 15:46:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 21407B259C3
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 15:50:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC49816F909;
-	Fri,  5 Apr 2024 15:46:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD22F16FF4C;
+	Fri,  5 Apr 2024 15:50:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rjPbYZ/z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZZZT7v7+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B456617BA0;
-	Fri,  5 Apr 2024 15:46:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D26916FF41;
+	Fri,  5 Apr 2024 15:50:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712331988; cv=none; b=XHaH4oDOAinvtXiA1YZAxp8w1n/kSyCvxJyAl4dQE8jjbnX0ORBkGvfIF3Cr2AkCc1wiKy+w0mgNYYUzHoLzsR4DFUPAOCwy44Gv0mazZEq31eVBfXE5jFLfXq2yp3dn3zXJj4em2qubqUkBAx481xsmGzJ1wU1ShEIfvatMHIU=
+	t=1712332208; cv=none; b=ba3efn/4gACebkKY4RKUulXNQvBNjSVzHFdUkwQtxGMPqLTAbH5zuLQg4uQvJkmP3rgH2cTswfPnVRD+cbrh8o3mC6fNnOjKcB5CvE+mUpjIPqUjNWToB+6jmQnSOEJ91jRc8NG2hOd6+V850rWaZqYB9+/SEVGxbvQyzPWAPCY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712331988; c=relaxed/simple;
-	bh=hT8uZ4lRpHguoRPfZWNHk8uXOomTbY0ib/N4Q/yp5oY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=TvQza06s3M/4BEs40inQqj1+9C+TS2Q+77Ycu+HYReUCJ2RY7hM4sZLNxGG7edkRCQusuHbvOfkTNucXoJsXVHehNFeE1QjZwn3vWajsoAn4vRDywpwZ7SACGijR97xizMHfGl3gzO7zq1LbwgCaSssj2u1sWstHkaulefPRlGo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rjPbYZ/z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55769C433C7;
-	Fri,  5 Apr 2024 15:46:22 +0000 (UTC)
+	s=arc-20240116; t=1712332208; c=relaxed/simple;
+	bh=gLrhTgtMj9INqFnBVX/qAmHy7PjKq5tZfRw+4IEfGnQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AY2wgBl8XsF8HBUo55FQQd5E4xkFJOaTDIRzLJNGorW6KVTUNmQX4iyW9bZVN6yetLza4nxU0zqd+wlKGAhcN3ny8lQQSuwmFhzKVedLVemTC/Q0uc4CNWYCzFsD1q5V+9d96s5J98vefVIb3/VpvPHWLL8Gp4+sQxF1tQRbdcw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZZZT7v7+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF668C433C7;
+	Fri,  5 Apr 2024 15:49:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712331988;
-	bh=hT8uZ4lRpHguoRPfZWNHk8uXOomTbY0ib/N4Q/yp5oY=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=rjPbYZ/z2cKmSkaG8PdrI1EqZOguqGOjHCPWg3eMcQnvSnoz5GDTUvyqIwMOYSHLO
-	 jM0reVV2DiknBdG49dmIsb8o25iYbh6e2o4kBN7gJNOwqZLNdhJ+tsRAVKdTl40FdX
-	 Y4SaiVqSPFVjahAiYHGLTu48C7qbPzhaUiZ2+4TN+2GOfOZy3GhG6I2v1Tl5GozZNA
-	 +u0zffrUKV+441iALYCX/bFewKelPZDOyvbgBRMEL5gjygi22YWTwlWhGJWXdcGRdi
-	 iON5Ziaf6Rei57qqH5vk48ifSnEZ4LRupEPy1hRNrxFfhmn2LlNdJu8w5zEvnyyDt9
-	 snU1dE6Ug8CRw==
-Message-ID: <ad9e438d-192f-4ea3-ae09-090abdc973b9@kernel.org>
-Date: Fri, 5 Apr 2024 17:46:20 +0200
+	s=k20201202; t=1712332208;
+	bh=gLrhTgtMj9INqFnBVX/qAmHy7PjKq5tZfRw+4IEfGnQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ZZZT7v7+p8D4N9WPiOJQnq3XRDdGXEzy4mgghSHheQ9UU299F/WFfh5PkX0cb/b9b
+	 +8J+aC7VUO1DHQ+BTXmbSgtRq3qYk6W1cMhCGV6vQ9/9UoXzHd8KMk0Ud7j22xFx4J
+	 4+sIO7kcrDSigxgqhQINbd4EhzBtAKr4gL2TYU8eakhbLppu9okbaztV0iN+TlWizY
+	 G1qDcH553j6R3EuGett/LscIurjDIokE/rM8Wp37Ktxckcpx1r/hnc/Ha/opJfcVYb
+	 1NXez5J93aKPT1v9WGo580LcDaCO8QqOEtJIUPM5kMdI4n5b1S5v1UAcNlJhipGLMC
+	 gZatkbLMPZEZQ==
+Message-ID: <b66d23fa-ac69-4e93-bc1d-93d8dd90bc6b@kernel.org>
+Date: Fri, 5 Apr 2024 17:49:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFT 10/10] arm64: dts: microchip: sparx5_pcb135: drop
- duplicated NOR flash
-To: Steen Hegelund <steen.hegelund@microchip.com>,
- Conor Dooley <conor@kernel.org>, Nicolas Ferre
- <nicolas.ferre@microchip.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Lars Povlsen <lars.povlsen@microchip.com>,
- Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com,
- "David S. Miller" <davem@davemloft.net>,
- Bjarni Jonasson <bjarni.jonasson@microchip.com>,
+Subject: Re: [PATCH 1/6] dt-bindings: net: snps,dwmac: remove tx-sched-sp
+ property
+To: Flavio Suligoi <f.suligoi@asem.it>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Jose Abreu <joabreu@synopsys.com>, "David S . Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>
+Cc: netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
  linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-msm@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20240401153740.123978-1-krzk@kernel.org>
- <20240401153740.123978-10-krzk@kernel.org>
- <66872c085710223d5bf43cd601cfbc3e54425bbc.camel@microchip.com>
+References: <20240405152800.638461-1-f.suligoi@asem.it>
+ <20240405152800.638461-2-f.suligoi@asem.it>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,32 +116,34 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <66872c085710223d5bf43cd601cfbc3e54425bbc.camel@microchip.com>
+In-Reply-To: <20240405152800.638461-2-f.suligoi@asem.it>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 05/04/2024 14:11, Steen Hegelund wrote:
->>
->> -&spi0 {
->> -       status = "okay";
->> -       spi@0 {
->> -               compatible = "spi-mux";
->> -               mux-controls = <&mux>;
->> -               #address-cells = <1>;
->> -               #size-cells = <0>;
->> -               reg = <0>; /* CS0 */
->> -               flash@9 {
->> -                       compatible = "jedec,spi-nor";
->> -                       spi-max-frequency = <8000000>;
->> -                       reg = <0x9>; /* SPI */
->> -               };
->> -       };
->> -};
->> -
+On 05/04/2024 17:27, Flavio Suligoi wrote:
+> The property "tx-sched-sp" no longer exists, as it was removed from the
+> file:
 > 
-> I also tested this, and no surprise: same comment as for the pcb134 patch...
+> drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> 
+> by the commit:
 
-Thanks, I will send v2.
+Keep syntax as asked by submitting patches, so "by the commit sha ("foo
+bar").
+
+> 
+> commit aed6864035b1 ("net: stmmac: platform: Delete a redundant condition
+> branch")
+> 
+> Signed-off-by: Flavio Suligoi <f.suligoi@asem.it>
+> ---
+>  .../devicetree/bindings/net/snps,dwmac.yaml        | 14 --------------
+>  1 file changed, 14 deletions(-)
+
+This means by default we have tx-sched-sp... I guess it is fine,
+assuming there are no other users (projects) of this binding property.
+
+Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 
 Best regards,
 Krzysztof
