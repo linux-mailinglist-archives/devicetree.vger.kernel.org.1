@@ -1,135 +1,124 @@
-Return-Path: <devicetree+bounces-56555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D288E899B25
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 12:46:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BBDC899B36
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 12:51:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2F891C21144
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 10:46:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C500B1F227D1
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 10:51:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA7B71649C6;
-	Fri,  5 Apr 2024 10:46:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6F5B161902;
+	Fri,  5 Apr 2024 10:51:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GGWwebyO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lgOkKTWp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DD9916087B
-	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 10:46:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6A6B1474DC;
+	Fri,  5 Apr 2024 10:51:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712313980; cv=none; b=LrrG/x2Wx6lFPC8TQseC4mtGJ5Jn+ZN68cuOSuJk5RWY+CNLtpDIQ4lAFPAywYWHQhIkwSoe8bS64kqR9DrGeJMcLn4CWM/czytLMx5qZslm6vZn6jsUlEm/7BVRNp+Sswcm/IF4E8SjOxiFWEh/qDah9KlVycVsMFJ1+ROos54=
+	t=1712314262; cv=none; b=a+kAfxibl/Fq/2Vj/u8Dmuvv+QUDq8P5duHWkYH80eYmZ9IR0cTNyrkaQIpLmNFpf3SqxO7ufVfbRqcbIl4GV+D1/lg3KNcKqGBM6wOUU33it0a4I5zuckAdUtbCRhT/sxrfcY012Ub4Zx97Wn23ee450TyRRefxwjhSCuygfOs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712313980; c=relaxed/simple;
-	bh=L4E8p/GV0Ds3nAyTGC7XhelVlzhjjV+Qy3Ty0PI9xhc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Z6P2/4RLCwZijuWdMjuaFRRyS4wQCLJ0y0A876QSdduuVI0fkkJDp+XblAxF+dZy3q6oofrgEdkevTTTm388Q7WSeFasVJn/h44XZlt9TDyW9gKLhtP5zJr7jdaSSTCnV/pJkrEXJGFQ6MDYug7+jeGCDsDy6fHrPBG1YHmZNAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GGWwebyO; arc=none smtp.client-ip=209.85.128.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-615038fc5baso21449957b3.3
-        for <devicetree@vger.kernel.org>; Fri, 05 Apr 2024 03:46:18 -0700 (PDT)
+	s=arc-20240116; t=1712314262; c=relaxed/simple;
+	bh=5CmXyK3a1M7p1JQOO8iIHqCDHf58ftJ/qeYqUoA0OkM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=AgDaHqHqAwPovpL6Stzr3jmkDP4ByiTaOVlEduzX3JNZH6mOuCSatU+WiAOGg3c551ZMPjmuUsa9LPGu70Dn3i+HIqeaDyob83xI7vw1TDgtBr104D/M3LLbtG2iT/Ra/OfFRKFMEha/xrmRT5G7FXFn8t9zIzhr0xQXRXl6v50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lgOkKTWp; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-516d16db927so1606945e87.0;
+        Fri, 05 Apr 2024 03:51:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712313978; x=1712918778; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=q464s0pydIE+zRv4fDUf6M5jc7NXRIaMdUPXgVeAtAQ=;
-        b=GGWwebyODwX1q83KcA6XibR/TAUUryUs9RAXB6qHCP44ebWZzZS5aIXNPQWAxE1AO7
-         gYKsazdPwfBfDJvbTpgXc68DiPMoCz+dqMq9Q0M1hIaJnwpCyA9SrtkIubiAXlCAMcsS
-         78goY38sLNRvBNY95rZKbN0OHqZytgDZd+TFDwzZvnl6+F9Nvu3hDdFSvn/ovsPPgNkm
-         OI6GYMzBW4EXmaee6BavjZ9WetJnuyyzm1Hm4oXdkWhqAlr93wPkIbuAb8bvH9ofV9qt
-         gpwBNontvPPV6cDagbQqe7sMvoItWqAjbq/YWvIHiu5HYF6PabV77Yavag1P+VUnamnX
-         Hadw==
+        d=gmail.com; s=20230601; t=1712314259; x=1712919059; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=orLmA0U6SWD24u4F3d7lalRjfUDqxy5pYRcNZDhWsg0=;
+        b=lgOkKTWp7hKDndJUe2i82Utgv8OoDnQrmRsZskKTroyvG5/hDi7Ie5oRbY9wseUsiW
+         5NjGNVUJDFBH6kN2nyZC7X4JAAuzF+P0UGSTMWTdSgdRiyDwGWqvf6+QeAzdEv4zh1ff
+         VbzwXqn2fu9K2eMTLygFSsVB5a78WwQpij/KAzPm6iQ6wlEaYmitjjWrqAO3yjaoDEW6
+         yRmp+ABIkF0ulAJdajLEAIY1kLTcCdt4JThE3UuzM9ZrJ4jtLeKjDlbT3ikfhoEooHXo
+         M2XNllldnZ4mxgixvZv2SO10RPMCQANf4THJ/vxFFKt62ZQAzlwdwjpp6KaOI3jlStgX
+         L69A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712313978; x=1712918778;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1712314259; x=1712919059;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=q464s0pydIE+zRv4fDUf6M5jc7NXRIaMdUPXgVeAtAQ=;
-        b=gXNCIg51ogqf7sBcJQHHte9NoFWRfQElVSV22j9PhG10afN2H8SZPeQWpXb8gE6JLP
-         lxSTelPDw38snP9jlXFZYqUmonac4/ezGqLsYufLyLommXID/VMWTVA4rFEgV0LHbA2l
-         QCtIveRRns12FvLAa0Lvtgek84v2vGcoThD44mSua3WqJ0vi2Dv7bKewH39iyVTwZm1L
-         RLV9bXY6mmccAv1G94Ypvbmot4cBMBDT6hPY8nI2Z8zvT/TCeUqUu5SVoTALnEpk1vr4
-         CTh6EpI+qSdw89wVaYUjQwFBeuPwkiA+JG07x3uY0cyaGgnsyM7qkfuOvi2pkM2WL4ML
-         erRg==
-X-Forwarded-Encrypted: i=1; AJvYcCWBlmlDSVY6WsrA9UfouVVTYKCtbI9h2Da1UgRAskgx2PSmSRbXyR8NM1StDUDc3gvILp4XisApQ/r13j5yZAamhImZ9l2pQmfp2Q==
-X-Gm-Message-State: AOJu0YyUte9X/NGjEblu6oGMi2maVouyQcRMimcGF3WxwRQ6E0aHd3ei
-	GG96KQhgnNQhHOzA625dMv2wkDd4eKhkSeg1kAz5ITKu6r9k5xdkXHgL/BMCtJZ+4RxUxV4gG4l
-	c/tRFW9idVUZjZkUL88k2cwFhohCM5bPFBG+Z1g==
-X-Google-Smtp-Source: AGHT+IFD4lOAA6OE545MWaALDTv8kewFB0UhOTHwNBgdOdA/c4Xh5GLbUDrWS+o4QO2az8mbVpwytUQzz3UDkLFdfw8=
-X-Received: by 2002:a25:bc85:0:b0:dcc:44d7:5c7f with SMTP id
- e5-20020a25bc85000000b00dcc44d75c7fmr782319ybk.62.1712313978067; Fri, 05 Apr
- 2024 03:46:18 -0700 (PDT)
+        bh=orLmA0U6SWD24u4F3d7lalRjfUDqxy5pYRcNZDhWsg0=;
+        b=n39h4+us0b+vz3Hual21jRYMbYE0pkJErdr5nQkrLTU6jggIUxBWc0+a4kRs8Eju5T
+         iXmqt/oB5Nj8efZfkPOjHw3nbJC9cea4Po0u4T5GPcETC3Pxw7IAfLD4rD1nWBJ5YXHZ
+         3hJFgEAG9yKj3PTIbc9QOfEYlVbNLvlspebuWcM17Gg2XcLORQGBoTwM+FQp/oIhLu7i
+         PV/SMplEjZIoPDZXcCp2YJGuW+Jx1kBCNx2x+zaDVDMChSnYEFzJoPHiMiWhoSSjzLGR
+         4Y9yW1kN2CugKPuTRptUTLlTqoBDOU92HDwI5IhCv1GZ+bum3k6dPkueOtR6jSRZfSW/
+         R2hw==
+X-Forwarded-Encrypted: i=1; AJvYcCUqOUl2b8mWi0Qcrh4J0ET8cJyqkioc5Xx7poxf5+eXr+jGHWSmX9csHpcOkbYJgxR1iPgWLh7CdFzbJRPKgsy/DE7Q4Jy9RvfGI2KJ
+X-Gm-Message-State: AOJu0YzlWJA6W/jH5tY3DalDxHNvqCzPhEL8PkXik35L4pcr1wrh/GgV
+	/qhANV63JibhUvkOrwFSf1ApuK9z9im6wFVNgGjfhtT5gUdIiJqL
+X-Google-Smtp-Source: AGHT+IEX9qU7KVnW4TWbq3+NQWhG74pUo1ZDPBlJGnMZj77sXTLBLTRbcrw+V72NthRK3niJb3wyiQ==
+X-Received: by 2002:a19:6915:0:b0:516:cc2c:6330 with SMTP id e21-20020a196915000000b00516cc2c6330mr729212lfc.6.1712314258526;
+        Fri, 05 Apr 2024 03:50:58 -0700 (PDT)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id bj1-20020a170906b04100b00a449026672esm697163ejb.81.2024.04.05.03.50.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Apr 2024 03:50:58 -0700 (PDT)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] arm64: dts: mediatek: mt7981: fix code alignment for PWM clocks
+Date: Fri,  5 Apr 2024 12:50:30 +0200
+Message-Id: <20240405105030.24559-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240404084631.417779-1-quic_mohs@quicinc.com>
- <20240404084631.417779-2-quic_mohs@quicinc.com> <CAA8EJpqWaYhzPKgTREtJnfdNZ4oSFZaRFM7Jhg+qd3AqadGOkA@mail.gmail.com>
- <797d67b9-9e09-8b84-9abc-dd4a4a2a40f5@quicinc.com>
-In-Reply-To: <797d67b9-9e09-8b84-9abc-dd4a4a2a40f5@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 5 Apr 2024 13:46:07 +0300
-Message-ID: <CAA8EJpo2__vcpqq1zofyyZ6UwPPn7Ed0R=TPcMZ25+JHwRExwg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: qcom,sm8250: Add QCM6490 snd
- QCS6490 sound card
-To: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Banajit Goswami <bgoswami@quicinc.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, linux-arm-msm@vger.kernel.org, 
-	alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	quic_rohkumar@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Fri, 5 Apr 2024 at 08:56, Mohammad Rafi Shaik <quic_mohs@quicinc.com> wrote:
->
-> On 4/4/2024 2:23 PM, Dmitry Baryshkov wrote:
-> > On Thu, 4 Apr 2024 at 11:48, Mohammad Rafi Shaik <quic_mohs@quicinc.com> wrote:
-> >>
-> >> Document the bindings for the Qualcomm QCM6490 IDP and QCS6490 RB3Gen2
-> >> soc platforms sound card.
-> >>
-> >> The bindings are the same as for other newer Qualcomm ADSP sound cards,
-> >> thus keep them in existing qcom,sm8250.yaml file, even though Linux driver
-> >> is separate.
-> >>
-> >> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-> >> ---
-> >>   Documentation/devicetree/bindings/sound/qcom,sm8250.yaml | 2 ++
-> >>   1 file changed, 2 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-> >> index 2ab6871e89e5..ff1a27f26bc2 100644
-> >> --- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-> >> +++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-> >> @@ -29,6 +29,8 @@ properties:
-> >>         - enum:
-> >>             - qcom,apq8016-sbc-sndcard
-> >>             - qcom,msm8916-qdsp6-sndcard
-> >> +          - qcom,qcm6490-sndcard
-> >> +          - qcom,qcs6490-rb3gen2-sndcard
-> >
-> > My 2c: you are adding one soundcard for the SoC family (qcm6490) and
-> > another one for the particular board kind (qcs6490-rb3gen2). That
-> > doesn't seem logical.
->
-> The qcm6490-sndcard compatible for enabling soundcard on
-> qcm6490 IDP boards.
->
-> Will change compatible name as qcom,qcm6490-idp-sndcard.
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Any consistent way is fine with me.
+Align "clocks" array entries to start at the same column.
 
+Fixes: cf29427573cc ("arm64: dts: mediatek: Add initial MT7981B and Xiaomi AX3000T")
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ arch/arm64/boot/dts/mediatek/mt7981b.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/mediatek/mt7981b.dtsi b/arch/arm64/boot/dts/mediatek/mt7981b.dtsi
+index 5674ac81d1f8..8a6263cc569c 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7981b.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt7981b.dtsi
+@@ -86,10 +86,10 @@ pwm@10048000 {
+ 			compatible = "mediatek,mt7981-pwm";
+ 			reg = <0 0x10048000 0 0x1000>;
+ 			clocks = <&infracfg CLK_INFRA_PWM_STA>,
+-				<&infracfg CLK_INFRA_PWM_HCK>,
+-				<&infracfg CLK_INFRA_PWM1_CK>,
+-				<&infracfg CLK_INFRA_PWM2_CK>,
+-				<&infracfg CLK_INFRA_PWM3_CK>;
++				 <&infracfg CLK_INFRA_PWM_HCK>,
++				 <&infracfg CLK_INFRA_PWM1_CK>,
++				 <&infracfg CLK_INFRA_PWM2_CK>,
++				 <&infracfg CLK_INFRA_PWM3_CK>;
+ 			clock-names = "top", "main", "pwm1", "pwm2", "pwm3";
+ 			#pwm-cells = <2>;
+ 		};
 -- 
-With best wishes
-Dmitry
+2.35.3
+
 
