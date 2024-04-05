@@ -1,255 +1,270 @@
-Return-Path: <devicetree+bounces-56629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56630-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F25A789A014
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 16:47:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE07089A025
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 16:48:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0C17286DCA
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 14:47:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 235931F216E7
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 14:48:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBBF316F295;
-	Fri,  5 Apr 2024 14:47:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB43616F83F;
+	Fri,  5 Apr 2024 14:48:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="TdGrQ53w"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rp1M/0Gy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-ve1eur01on2130.outbound.protection.outlook.com [40.107.14.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 060DD16F292;
-	Fri,  5 Apr 2024 14:47:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.14.130
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712328428; cv=fail; b=I+GlF2T6I+TzgSlYQqQSWxUPuIgUZB6deF4HjsOgPtKq9HW3VlWi4TqkZytMXiwavSEf/5sjE2URcLSgD+tqK9GBVNYdhOZW5ehRSP4AAVyV54Nu1bKp5FEGuDr7TACCH3DmvA3F+sxZT1oCRW7ce+Rppn/OQHftIVV8lYOs0dA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712328428; c=relaxed/simple;
-	bh=QOWpdv4glV59l0twkisvZUqkr9ajt78houcSMv6NAP0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=UtSL7TyGRuXeJqawAkZBvVROwsImdpRWz5nKRGWT5tvbUPX5W6oYc57E3X1nPCULNg3F+YxRqwP1xdJFH7CFAXzEJqMcv8xPOT7j+31mYt3kDNNEXZ5sCLELJY1UYFMNZrwJxaIymNMiCaCui6OpHUgUCaFu37N1UKX9scWhpcY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=TdGrQ53w; arc=fail smtp.client-ip=40.107.14.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Jfj+X3cioHtAxm3d8qpsYt0wTpcy9LpYJonmMZoaCV5SPoIgtICIDYgp/+KduvTXELzn0HWMnjfyrw5SBPRl3XChJY3wYW5hBChij5YI1VRb8i0zCWcEVPylj30Rw9+ckTHh+DWuV6RDzZoLPEh9n+8KCTlzky5UHkUMsRXzAJursAn2X4s3vD1kj4zVUML0RNdb1/0itpBk3E9tjfL7YT6FhZCqhRTWgiHtwuDhNMIO8/mkMBvZjexvz+CRw0mR7AzA/FkocvDM+ItD7pWfpLoIt9M48ZddAnq33fM/WQ2bSVOlN2e+w5S8m99NaAIwRJwQNauFbJ+S8jE6eET+uw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FZAZsbhwLpQBEfOedzNQ/szrY2rUpj75SWzkunFYAqE=;
- b=FGjddNWFDX7RmEMjsPzAeurAZT6yDaU7JB5L63Y59ei/Xw7m0C1fo60l19EX3R9D6DUje8jy4vh2ok+UgCzzDU7Ts8sQzYrFLALfXJCXxDODjAvGQGiBNiXYnmdZeFgMQp699t+SK9K5X5BTab3IzEQZqVbtEaJheKpj5z9pN6qSMMyjlh6p9m5tKUFhSWvO2bkzf1X0p4gFZdjMiomngO30ci3ZRzmIaodcQ7U33Ch7StBIsIQsQg27XGJHv+SILkUHzK//bkHwz/nLZQ9HvXZYge45wLzBp+b+LGvmB4saEUNRRHKdr2YshQj77ODDKL08xZSGcumA5ejXHGgpFA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FZAZsbhwLpQBEfOedzNQ/szrY2rUpj75SWzkunFYAqE=;
- b=TdGrQ53w0KzLDYzTy2b0D09h5C2aU4zk6jI5yOB6RHH4I6EFFf/oUVkxqHj2xq5PdOwR5BAyOGPyp1Vt6aBxQOeMNB+tcuT631AOYLCtVF2KejvwCbYJx1OO78eMVs2eRc2lHkeshsaMHXEkf+ep27CFVPpcQ0Glm0MZgs4yMBQ=
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AM0PR04MB7187.eurprd04.prod.outlook.com (2603:10a6:208:196::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Fri, 5 Apr
- 2024 14:47:04 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::3168:91:27c6:edf6]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::3168:91:27c6:edf6%3]) with mapi id 15.20.7409.042; Fri, 5 Apr 2024
- 14:47:04 +0000
-Date: Fri, 5 Apr 2024 10:46:57 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
-	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/1] arm64: dts: imx8qxp-mek: add cm40_i2c, wm8960/wm8962
- and sai[0,1,4,5]
-Message-ID: <ZhAO4YWuB8r8k+m8@lizhi-Precision-Tower-5810>
-References: <20240404161914.1655305-1-Frank.Li@nxp.com>
- <efc9c624-6a31-4299-a604-8aad1d0cd878@linaro.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <efc9c624-6a31-4299-a604-8aad1d0cd878@linaro.org>
-X-ClientProxiedBy: BYAPR04CA0024.namprd04.prod.outlook.com
- (2603:10b6:a03:40::37) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA27916F829;
+	Fri,  5 Apr 2024 14:48:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712328513; cv=none; b=YrQwbDC7Sfte2PbVzA5A/SRNKqlOvTzh8MC5Vh8LmRnkYheobdizBxgen9213uIqlkDU4LZuVelZ5H258v8KpfIkkStQ1WWGbAafmq6n5ISvJumWLhpLCcNnFmFJsYfd0F0MSFcu2cM6eSb5Cs1S8c+myMezCh2GYyAUxW02ztE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712328513; c=relaxed/simple;
+	bh=CDrhixP9RtkKB6cb9jrr6trJZJQjmdYcESp6DiI4FUo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WWrBSw+l3aAQQ3A/8hI9Gq3OEFBfNTySZL5UTSjdSIh3oMatElYfzSkMJ5JFI3wq4X/4D39wzjVs3Q47IJ/xPAfPxUH6o6WVX8G1uPq2Ea6clZMZ33xtZA2/5y6kd/KuzNsGQOsVeyhhxm5hkrBpfr4pvgHP57lt3vkrQESLPa4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Rp1M/0Gy; arc=none smtp.client-ip=209.85.208.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2d80baf621eso24168631fa.1;
+        Fri, 05 Apr 2024 07:48:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712328510; x=1712933310; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cFpu1whkh1nSy8kvvx+5UzrJKjw0DqYLany6m12D6u0=;
+        b=Rp1M/0Gy+e35iEdcsJpov+7Q1sM7JpFK2bhZbzi/7AJgqLa1iRYjBmtTUUQpuvvamj
+         Lno8Y7QOhS0cNqAke6+oggbbiUbLILwgozYC9d0mw00dUuWh0X5P2UdGY1cZbbFLvLSc
+         BHyJtMRGVjG/5siJfDmKWFu9CplLWvt4S99kcgFSSZj3UuEq2ibCCnN5sQmZ8hc/UO92
+         c7ahFDgwjXRwCxpiZFjyuqhzNBpZ0VG7b2FjfIHEVzLLl++blYpw1Z7meMu3NKhsjyD6
+         500ce8adeJBeL/IjwKQFc5hBvtt/c10vGJazo5vHilhpRhB9x6w8uJS7WCUdpsBT81OV
+         T0Lw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712328510; x=1712933310;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cFpu1whkh1nSy8kvvx+5UzrJKjw0DqYLany6m12D6u0=;
+        b=Wx9BVlW2n3Ms7UYILwLnMIco7iiMZ6LlJcUF175LIdnTTY5pj00PMcgeqDKF+yZIjc
+         biaqI2jq3RYxm2G0FA22PjFGQ0M5SsQXQi9uIGUpde6+i6uGnkCcBAOh5PO15iReyOaP
+         4zv61MYdWpB/hwir32giNIr165gkSeZberGFpjRi/B4OMHXPzDmRVWFrCq1+Wk0RcT+z
+         Vf1dIyxw6dfMUX+MZCqMiHMD37JQ3TKHAzPBJ3KOtRS6xDvCDrxjAxBuOoMqM7oiDEbN
+         etpr2CQuBCo+OYQ0zVUBGVQ926l5T2jLMVJuIvLwmanXDKL2jzC8fvoTZIkbLytWFyl/
+         J97w==
+X-Forwarded-Encrypted: i=1; AJvYcCWoJuX6DhnGe5RbH/1eSm0JY/+86uVSWvTuMNwWNWFCsRzz4qW4eUQH9ckGXOX/a4lPwatvXt2xmdmfSCBoHCKXFyWM/6v7Pl7LooxS6X/pOcrjIycs1AOsbqbnSKGpG96stpbU+Aohxg==
+X-Gm-Message-State: AOJu0Yy9APpDD7RHyEgv/DnjzTpFC2deQDMM3P4pfOYSlJmpgr0l/opd
+	FUqakOC+YY6UyrKdcy5a58WN/MHJRv6fJhOlugJ0UKC4RGDAYWg88aC76mexO/JnCo+E5VQvpu/
+	GOfesPffl9obH9Af97Bd+BNOTY9Y=
+X-Google-Smtp-Source: AGHT+IGrg/lFBS2AMqv3GmFvVcFL6woTGN8IKlxDkSWiTeKdq9HfiE5kNbCsRxC8SlKmB2gQiyBs2NPA5UHos4n1BAQ=
+X-Received: by 2002:a2e:a3d2:0:b0:2d6:c4ec:782 with SMTP id
+ w18-20020a2ea3d2000000b002d6c4ec0782mr1273383lje.49.1712328509495; Fri, 05
+ Apr 2024 07:48:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM0PR04MB7187:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	1IoVZKjVrflE3wm/41ljlp3rgDTp6+9lgwyUwEnNdVk+KilnzngkoEOAVVdXhzKS1wt167kl93CfAfBX9VHGLcZbTGS+lXu2goVCUDDznNIf6gQdEeCWnoeTsXIt/KFUSBxpeH5qdRt7qVRLehtKgUqeSavsOa3GgJNQB0pI6NcXf3JkgrRA3iXfonH3HTon9yNQb7uvXsXXekv086OOoa6Ua8aM0pwuxAOhXHYApkwfoDA21rl3QmH6/olU1rRSKAEGQ1V/RHkf2vRcC1PfmGSa5X8AmzpxhwEY9EtwelOSWRqrGkQ307nWlpRaoSbDQo+PIOxaOW0gBIHTpvsVHDSm5RHS0VD44XUZSfHJ4yc+ArGdVcyiAFnC/+gvUfkV049eySFkfL1SiR3Pt6mwbRWWtq+E/pz2aLPWxUdm7oItdT0N76RwzP0HR93JpVV8xH+sRKERjmbKp2IG0HA+NzPouZRXQlaEIZWpQ16mAFOYPxb1g+LPZFeu4nCe0+ygKk5KoEG5PMD0QO4PNwteMR/GJqBAgXwKcOa8sOmkhhIg56A3i0T8Vr76fJdzn2tePKjLvMBhmkjZ/iOYDjAaE7xboLrDvODlZiaf51WlD3rdUv9s6JH4IS2V+u4cLbbYkFHdfPDTSCBItoZTpReoU6PgMrWffryBBeCx5zjBrvxEDr0Rf6gLJZNUlEO87ykTfjiK/7C0mZLqrkPUxBmdlQ==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(7416005)(52116005)(1800799015)(366007)(38350700005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?8ta9K4F7TP0vflHC1ujZqjAtTeymW2wtYBBOS34WrMPI9k6wpm3dlBAs69Lo?=
- =?us-ascii?Q?AzOjPAz8yoq9jopYOgV5r4Ozu5XI25AzGQhi8ZxWJUm5snpS1FMasmApvee/?=
- =?us-ascii?Q?av59HQt1nwIB20PLXcKswLBAwJ3NzuSelzGdZ7Gr0exmh7QNUz0m0d+yvTmg?=
- =?us-ascii?Q?03wktVWqk3E08+NLb8gSiLW94AVofDyxYTwDIWH6741aUX/Dp9ssrr5GALQ1?=
- =?us-ascii?Q?YzhcfIi6vdJTc6U4HdfHExOXuEf0Y93sHx6KgDBB3e+/8j9mVi4BeoeeFIXx?=
- =?us-ascii?Q?AuovNh+GsHfQTnZGgAbFPsNnHKd5cOSA3IEfKnWBGg+wkCMlJlN19eUVHF7t?=
- =?us-ascii?Q?Bq7LCbsic2Ynren6dKAjDp6poAxy10WyV4swHLLwVloLK3zYoa5hRknNhfSZ?=
- =?us-ascii?Q?Jlq/cCqlawN61bXBcWZYQIWpr/BbJqFcbNSJ7yRVSLLhH2bEgo0crwDsJbj0?=
- =?us-ascii?Q?pceciQTqHm8whuw9eyijIw7bV4OndonKpx2Vvb4GM4X8Kw08uXZ4OrXvGCqa?=
- =?us-ascii?Q?zxndt/tjaho7iZnnXgFI+HbdfBIZjWEhHH+2TEfYJZz/D5k8+JjAB3SgYKjU?=
- =?us-ascii?Q?NIX7fhb3r2godszwHDAtfQXk9m8F9LsjiyYFga/oH61Ep9yL3SfjfN+556xj?=
- =?us-ascii?Q?A1MlSGFKURP3bZSeWjG6s7VHAQvAIO0zPGNtV6OBnKwk6qBw4tBLWArClxuh?=
- =?us-ascii?Q?kTtB3Topj33Sw/ER5g9HwaP6vL/1yUHFbHZwBHTyHcON/JvUn30jOQo38dny?=
- =?us-ascii?Q?xS0CeyjR2ojIXQAvrwKPlPhEYX6mTwPg159QK0mM33BhbNgZAzgqmgzH5rsv?=
- =?us-ascii?Q?CDzVQBi8UOkkuNwOFdPMn71fTIpEZzlRFRUGgglW09kHf2cZ4GC+20HkGgJa?=
- =?us-ascii?Q?Mt9jX/NYe7xpdgT/rlHop4ul58XJMxDFNwaKRLOB5oy9U+xH5qrt5VfXWTyl?=
- =?us-ascii?Q?fi7wZ2xG7qmnAVb7vS+mIFmyuXg8Hmu722+QCCII9YCAOeSv0JcTqSaBOevk?=
- =?us-ascii?Q?ceFiDZREsdhCjk9/Mgavt//SODCH5KaytBfMNpukPl5WHcKo3RvbfomnjgOM?=
- =?us-ascii?Q?1Km995b6fFhmpf6bI5ov4tTlvBSo/3RTbn5CcaHmuRv3Hkg/By3TJz8l4KQc?=
- =?us-ascii?Q?GvOzrh1ECwFCRVej5socmD4ImFR2RCooh+wNOvxDehw9KjrVCG99IP3h7DcR?=
- =?us-ascii?Q?TcteMDw+3S8DDw+oF26x0dClaSNWbJMlHOlQDj64GurvnOloN1S3GTgAVmfT?=
- =?us-ascii?Q?Gagp7z5BthElNawYzjA5oYjsi82cbvKRrMXqqwbg8SnB9sNy2fBlyS7smiqm?=
- =?us-ascii?Q?7t9I4udMKB7Z+WZ3dcoubnIK3mbpxBmRK4VumMWJ1SKvj42vUYf2TgHEyQrK?=
- =?us-ascii?Q?noIV7aaXSOoebO42VFy9EY1cXMIO4hIs2dwYcsSd5xOM6Y93luOvkvbr5swV?=
- =?us-ascii?Q?TuMbePbEPg+vKAnDg8XdwNAasMDy85nEeB4KjbzGOPKfeXZn77x1+u9q9r03?=
- =?us-ascii?Q?Cw6qSEA/Amka/IsQvRBb9Q6WAmFjEkFMlD8jdZ6nuAAT0zuSoKcCcRLrxnxt?=
- =?us-ascii?Q?lnmt5Cbf0npv6yNuAyvz+jXUS/67ckVn5JGc8OVd?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d7c4e60d-9ba8-4ca0-6e67-08dc557f4245
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2024 14:47:04.1883
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QWUFUi1xx7mh/FkNf+6NR/rlXjsQJW3nImN5USymTi7okeZsFWShpjfsaHdEdedLg2FbDpWmSprb9LialgSOIw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB7187
+References: <20240404160649.967-1-bavishimithil@gmail.com> <78091796-fd0a-42dd-a4da-f7bed3025bf9@linaro.org>
+In-Reply-To: <78091796-fd0a-42dd-a4da-f7bed3025bf9@linaro.org>
+From: Mithil <bavishimithil@gmail.com>
+Date: Fri, 5 Apr 2024 20:18:17 +0530
+Message-ID: <CAGzNGRnuG_gLUrH1N57WvpKbpiNtFrcsG6nJcacQNJB_yMYNrA@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: omap-mcpdm: Convert to DT schema
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	alsa-devel@alsa-project.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Apr 05, 2024 at 08:41:59AM +0200, Krzysztof Kozlowski wrote:
-> On 04/04/2024 18:19, Frank Li wrote:
-> > imx8qxp-mek use two kind audio codec, wm8960 and wm8962. Using dummy gpio
-> > i2c bus mux to connect both i2c devices. One will probe failure and other
-> > will probe success when devices driver check whoami. So one dtb can cover
-> > both board configuration.
-> 
-> I don't understand it. Either you add real device or not. If one board
-> has two devices, then why do you need to check for failures?
-> 
-> Anyway, don't add fake stuff to DTS.
+So sorry about the 2nd patch being sent as a new mail, here is a new
+patch with the changes as suggested
 
-NAK can't resolve the problem. It should be common problem for long time
-cycle boards. Some chipes will be out life cycle. such as some sensor. So
-chips on boards have been replace by some pin to pin compatible sensor. For
-example: 
-	old boards: use sensor A with address 0x1a
-	new bench: use sensor B with address 0x1b.
+> Please use subject prefixes matching the subsystem
+Changed the patch name to match the folder history.
 
-You can treat it as two kind boards, RevA or RevB. But most user want to
-use one dtb to handle such small differences. For this case, it should be
-simple. Just add a super set.
-	i2c
-	{
-		sensorA@1a
-		{
-		}
-		sensorB@1b
-		{
-		}	
-	}
+> Is it your full name?
+Fixed it, my apologies.
 
-It also depend on whoami check by i2c devices. Only A or B will probe.
+> Filename like compatible.
+Fixed.
 
-wm8960 and wm8962 are more complex example.  wm8960 is out of life. But
-wm8962 and wm8960 have the same i2c address. The current i2c frame can't
-allow the same i2c address in one i2c bus.
+> Please open existing bindings and look how it is done there.
+Changed it, is it fine now?
 
-You are feel to NAK my method, but I hope you also provide constructive
-solution to help resolve the problem.
+> Same problem. Drop useless description but provide maxItems.
+Removed descriptions for interrupts and hwmods.
 
-Frank
+> It does not look like you tested the bindings, at least after quick
+> look. Please run `make dt_binding_check`
+I did run it and it didnt produce any errors henceforth i submitted
+the patch.
 
-> 
-> NAK.
-> > 
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > ---
-> >  arch/arm64/boot/dts/freescale/imx8qxp-mek.dts | 210 ++++++++++++++++++
-> >  1 file changed, 210 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-> > index 8360bb851ac03..adff87c7cf305 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-> > +++ b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-> > @@ -30,6 +30,13 @@ reg_usdhc2_vmmc: usdhc2-vmmc {
-> >  		enable-active-high;
-> >  	};
-> >  
-> > +	reg_audio: regulator-wm8962 {
-> > +		compatible = "regulator-fixed";
-> > +		regulator-name = "3v3_aud";
-> > +		regulator-min-microvolt = <3300000>;
-> > +		regulator-max-microvolt = <3300000>;
-> > +	};
-> > +
-> >  	gpio-sbu-mux {
-> >  		compatible = "nxp,cbdtu02043", "gpio-sbu-mux";
-> >  		pinctrl-names = "default";
-> > @@ -44,6 +51,105 @@ usb3_data_ss: endpoint {
-> >  			};
-> >  		};
-> >  	};
-> > +
-> > +	sound-wm8960 {
-> > +		compatible = "fsl,imx-audio-wm8960";
-> > +		model = "wm8960-audio";
-> > +		audio-cpu = <&sai1>;
-> > +		audio-codec = <&wm8960>;
-> > +		hp-det-gpio = <&lsio_gpio1 0 GPIO_ACTIVE_HIGH>;
-> > +		audio-routing =
-> > +			"Headphone Jack", "HP_L",
-> > +			"Headphone Jack", "HP_R",
-> > +			"Ext Spk", "SPK_LP",
-> > +			"Ext Spk", "SPK_LN",
-> > +			"Ext Spk", "SPK_RP",
-> > +			"Ext Spk", "SPK_RN",
-> > +			"LINPUT1", "Mic Jack",
-> > +			"Mic Jack", "MICB";
-> > +	};
-> > +
-> > +	sound-wm8962 {
-> > +		compatible = "fsl,imx-audio-wm8962";
-> > +		model = "wm8962-audio";
-> > +		audio-cpu = <&sai1>;
-> > +		audio-codec = <&wm8962>;
-> > +		hp-det-gpio = <&lsio_gpio1 0 GPIO_ACTIVE_HIGH>;
-> > +		audio-routing =
-> > +			"Headphone Jack", "HPOUTL",
-> > +			"Headphone Jack", "HPOUTR",
-> > +			"Ext Spk", "SPKOUTL",
-> > +			"Ext Spk", "SPKOUTR",
-> > +			"AMIC", "MICBIAS",
-> > +			"IN3R", "AMIC",
-> > +			"IN1R", "AMIC";
-> > +	};
-> > +
-> > +	/*
-> > +	 * This dummy i2c mux. GPIO actually will not impact selection. At actual boards, only 1
-> > +	 * device connectted. I2C client driver will check ID when probe. Only matched ID's driver
-> > +	 * probe successfully.
-> 
-> NAK
-> 
-> 
+> Node names should be generic
+Changed as said.
+
+From c24a42724e870822d50ac6857ba9f32d0dce02ae Mon Sep 17 00:00:00 2001
+From: Mithil Bavishi <bavishimithil@gmail.com>
+Date: Mon, 1 Apr 2024 21:10:15 +0530
+Subject: [PATCH v2] dt-bindings: omap-mcpdm: Convert to DT schema
+
+Convert the OMAP4+ McPDM bindings to DT schema.
+
+Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
+---
+ .../devicetree/bindings/sound/omap-mcpdm.txt  | 30 ----------
+ .../bindings/sound/ti,omap-mcpdm.yaml         | 59 +++++++++++++++++++
+ 2 files changed, 59 insertions(+), 30 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/omap-mcpdm.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/ti,omap-mcpdm.y=
+aml
+
+diff --git a/Documentation/devicetree/bindings/sound/omap-mcpdm.txt
+b/Documentation/devicetree/bindings/sound/omap-mcpdm.txt
+deleted file mode 100644
+index ff98a0cb5..000000000
+--- a/Documentation/devicetree/bindings/sound/omap-mcpdm.txt
++++ /dev/null
+@@ -1,30 +0,0 @@
+-* Texas Instruments OMAP4+ McPDM
+-
+-Required properties:
+-- compatible: "ti,omap4-mcpdm"
+-- reg: Register location and size as an array:
+-       <MPU access base address, size>,
+-       <L3 interconnect address, size>;
+-- interrupts: Interrupt number for McPDM
+-- ti,hwmods: Name of the hwmod associated to the McPDM
+-- clocks:  phandle for the pdmclk provider, likely <&twl6040>
+-- clock-names: Must be "pdmclk"
+-
+-Example:
+-
+-mcpdm: mcpdm@40132000 {
+-       compatible =3D "ti,omap4-mcpdm";
+-       reg =3D <0x40132000 0x7f>, /* MPU private access */
+-             <0x49032000 0x7f>; /* L3 Interconnect */
+-       interrupts =3D <0 112 0x4>;
+-       interrupt-parent =3D <&gic>;
+-       ti,hwmods =3D "mcpdm";
+-};
+-
+-In board DTS file the pdmclk needs to be added:
+-
+-&mcpdm {
+-       clocks =3D <&twl6040>;
+-       clock-names =3D "pdmclk";
+-       status =3D "okay";
+-};
+diff --git a/Documentation/devicetree/bindings/sound/ti,omap-mcpdm.yaml
+b/Documentation/devicetree/bindings/sound/ti,omap-mcpdm.yaml
+new file mode 100644
+index 000000000..4d5d37e98
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/ti,omap-mcpdm.yaml
+@@ -0,0 +1,59 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/ti,omap-mcpdm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: OMAP McPDM
++
++maintainers:
++  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
++
++description:
++  OMAP ALSA SoC DAI driver using McPDM port used by TWL6040
++
++properties:
++  compatible:
++    const: ti,omap4-mcpdm
++
++  reg:
++    description:
++      Register location and size as an array
++      <MPU access base address, size>,
++      <L3 interconnect address, size>;
++
++  interrupts:
++    maxItems: 1
++
++  ti,hwmods:
++    maxItems: 1
++
++  clocks:
++    description: phandle for the pdmclk provider, likely <&twl6040>
++
++  clock-names:
++    description: Must be "pdmclk"
++
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - ti,hwmods
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  - |
++    mcpdm@0 {
++      compatible =3D "ti,omap4-mcpdm";
++      reg =3D <0x40132000 0x7f>, /* MPU private access */
++            <0x49032000 0x7f>; /* L3 Interconnect */
++      interrupts =3D <0 112 0x4>;
++      interrupt-parent =3D <&gic>;
++      ti,hwmods =3D "mcpdm";
++      clocks =3D <&twl6040>;
++      clock-names =3D "pdmclk";
++    };
+--
+2.34.1
+
+Best regards,
+Mithil
+
+
+
+On Fri, Apr 5, 2024 at 12:28=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 04/04/2024 18:06, Mighty wrote:
+> > From: Mithil Bavishi <bavishimithil@gmail.com>
+> >
+> > Convert the OMAP4+ McPDM bindings to DT schema.
+> >
+> > Signed-off-by: Mighty <bavishimithil@gmail.com>
+>
+> This does not match SoB. Can you respond to comments you receive?
+>
+> Subject: nothing improved.
+>
+> Rest... also did not improve. so you ignored entire feedback?
+>
+> This is a friendly reminder during the review process.
+>
+> It seems my or other reviewer's previous comments were not fully
+> addressed. Maybe the feedback got lost between the quotes, maybe you
+> just forgot to apply it. Please go back to the previous discussion and
+> either implement all requested changes or keep discussing them.
+>
+> Thank you.
+>
 > Best regards,
 > Krzysztof
-> 
+>
 
