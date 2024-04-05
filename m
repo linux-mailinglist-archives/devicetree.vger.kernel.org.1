@@ -1,174 +1,127 @@
-Return-Path: <devicetree+bounces-56729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F2C989A502
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 21:34:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 361D289A50B
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 21:35:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C2F3D1F2184E
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 19:34:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E3F402824ED
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 19:35:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4AFF172BDB;
-	Fri,  5 Apr 2024 19:34:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D27B173320;
+	Fri,  5 Apr 2024 19:35:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="K1XUTqig"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="flqz2GVi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DCD8172BC4;
-	Fri,  5 Apr 2024 19:34:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A08B172BD4;
+	Fri,  5 Apr 2024 19:35:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712345648; cv=none; b=ZR84Woao0GPF+e7xaiNB+Vzjf0qzGlRRya1sm1Z+l0X8RInHg5SqVEVyZgJoo+0za8LYOCSPKaAEleW3puukUQobvvmfWqZ0LvhwOaGvAHiH7uZmXNb65uHIwSS8lxAKE0UIlhIGMZyF0is/JTU8p3YS6ZiaVrphs6tE/7XmmBg=
+	t=1712345731; cv=none; b=oQXTBv+C0F+3/OIymdcnCv+Z1VJMxBk25S07l1nd7xsJNpWlbNJeCzqWs5A5Y7LBzGsYqquHO/3kouXi1Ed0i3T79sGs6L8fyZCZCGkU3XtxbXP0MWse0QCE8+CgVqc2q2jn4D+i6GnO769F7/w7rWsmB7DxPUUFTRKkVEYryqQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712345648; c=relaxed/simple;
-	bh=Xy6PMb0DzidrhaAriE7z1I98IIIOfbHE55qePyomcZg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=EsUqR74fZcEPhqxzjAxeG/1M6hw71DVx6yKsOwC9irD/EZ7DdIs6yUzvmJs0DCS/T+k+LZJHK2C+tblpbSZiMkOyyRauRaOydd2oNMcM2ox5SBmzANeCUsPaLZrcFuJ27Z1CfreYoFw6DDYgcC7mOiZzL279xHTeSKhqoT0Yf14=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=K1XUTqig; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id AB680FD6;
-	Fri,  5 Apr 2024 21:33:23 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1712345603;
-	bh=Xy6PMb0DzidrhaAriE7z1I98IIIOfbHE55qePyomcZg=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=K1XUTqigSidH5U1SuY/JZAS5U3H6kemflBAY8UpOtoBwCqzfYdvvDiR/pY2s/ocYF
-	 1EaG5WPoPUZo7WhAhaKlFZqIfPLOVDz5oWHczDhJrhSN28d3qBLYFZSEJ9yzzVuJEi
-	 pKYir38jm4K42UTe5WrhqNSD0AWYd6SxaWViG73M=
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: linux-media@vger.kernel.org
-Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	David Plowman <david.plowman@raspberrypi.com>,
-	Jean-Michel Hautbois <jeanmichel.hautbois@yoseli.org>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Naushir Patuck <naush@raspberrypi.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	kernel-list@raspberrypi.com,
-	linux-rpi-kernel@lists.infradead.org,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	bcm-kernel-feedback-list@broadcom.com,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH v10 5/5] ARM: dts: bcm2835: Add Unicam CSI nodes
-Date: Fri,  5 Apr 2024 22:33:43 +0300
-Message-ID: <20240405193344.15297-6-laurent.pinchart@ideasonboard.com>
+	s=arc-20240116; t=1712345731; c=relaxed/simple;
+	bh=09f9nYlH0dTmL1tMfmWEj0RJmKEFFwRbwjXyDgeVw5I=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=d78z/VHN59/MQef2zaswgWgtiIaKeydciFoMFLOo6idaL48722eBbQVtJGBtNik60jJjwdpObBa9f4C6R5H6NUkPFnQ5GRMHiCB5hehH3SGFhlqSlvv5Ss7/GNFD4J9Yb7ElppwlpUsYAn/j501ha52hzPbPA5KI4DjbWxKlFXE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=flqz2GVi; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 435HQgZF022592;
+	Fri, 5 Apr 2024 19:35:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:in-reply-to:references
+	:mime-version:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=juHicWnJa6/Y/wprtpJVNqXwWzmN16LcZBHj+anPebI=; b=fl
+	qz2GVi/bNWw0rcqfaEG0QANPoBtSsObSQIQEPOFhVUy3ueK7uhr5fWsWNv/H8r+V
+	uKBwQhPk2uRrLsghdVXs/hhOA9GxhmBom1xi+WaJjz7dsBSR+YTzvt854NDiOcgY
+	eWCa1jszZGITfZpt22JWKDHy8OSk2dZf/ho7YGDbYaDQEqOaO1ZUf8Vsy3I5cCQu
+	k3HTO9AloGWFbmOt9BSAjIeUIXyiJBtsjA98t9rv1V66bNHS9ApfYWmC/LOflgDf
+	PG6IF3hp1Hh7uD46rJ6tOPu36+R5EVgw3DIf2HLB8r82Q9Mr+O+b1wXkHJi2H8CO
+	PuM7v0pUdbDcQU1rl04w==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xa1xaarbe-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 05 Apr 2024 19:35:10 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 435JYgXt012674
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 5 Apr 2024 19:34:42 GMT
+Received: from jesszhan-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.4; Fri, 5 Apr 2024 12:34:41 -0700
+From: Abhinav Kumar <quic_abhinavk@quicinc.com>
+To: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        "Marijn
+ Suijten" <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@linaro.org>
+CC: Abhinav Kumar <quic_abhinavk@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski@linaro.org>
+Subject: Re: (subset) [PATCH v3 0/4] arm64: dts: fix several display-related schema warnings
+Date: Fri, 5 Apr 2024 12:34:31 -0700
+Message-ID: <171234558728.7839.3436209985692525038.b4-ty@quicinc.com>
 X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240405193344.15297-1-laurent.pinchart@ideasonboard.com>
-References: <20240405193344.15297-1-laurent.pinchart@ideasonboard.com>
+In-Reply-To: <20240402-fd-fix-schema-v3-0-817ea6ddf775@linaro.org>
+References: <20240402-fd-fix-schema-v3-0-817ea6ddf775@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: k3aFdrWNFz4A9VRgRjcI8qgjXtKz68Uk
+X-Proofpoint-ORIG-GUID: k3aFdrWNFz4A9VRgRjcI8qgjXtKz68Uk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-05_23,2024-04-05_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 malwarescore=0
+ spamscore=0 lowpriorityscore=0 adultscore=0 bulkscore=0 mlxlogscore=989
+ mlxscore=0 suspectscore=0 priorityscore=1501 phishscore=0 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2404010003
+ definitions=main-2404050139
 
-From: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
 
-Add both MIPI CSI-2 nodes in the bcm283x tree and take care of the
-Raspberry Pi / BCM2711 specific in the related files.
+On Tue, 02 Apr 2024 05:57:14 +0300, Dmitry Baryshkov wrote:
+> Fix several warnings produced by the display nodes.
+> 
+> Please excuse me for the spam for sending v3 soon after v2.
+> 
+> 
 
-Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
----
- arch/arm/boot/dts/broadcom/bcm2711.dtsi     |  8 +++++++
- arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi | 14 ++++++++++++
- arch/arm/boot/dts/broadcom/bcm283x.dtsi     | 24 +++++++++++++++++++++
- 3 files changed, 46 insertions(+)
+Applied, thanks!
 
-diff --git a/arch/arm/boot/dts/broadcom/bcm2711.dtsi b/arch/arm/boot/dts/broadcom/bcm2711.dtsi
-index 22c7f1561344..1d8f9f80f935 100644
---- a/arch/arm/boot/dts/broadcom/bcm2711.dtsi
-+++ b/arch/arm/boot/dts/broadcom/bcm2711.dtsi
-@@ -1114,6 +1114,14 @@ &rmem {
- 	#address-cells = <2>;
- };
- 
-+&csi0 {
-+	interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
-+};
-+
-+&csi1 {
-+	interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-+};
-+
- &cma {
- 	/*
- 	 * arm64 reserves the CMA by default somewhere in ZONE_DMA32,
-diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi b/arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi
-index f0acc9390f31..9972782429b1 100644
---- a/arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi
-+++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi
-@@ -25,6 +25,20 @@ vchiq: mailbox@7e00b840 {
- 	};
- };
- 
-+&csi0 {
-+	clocks = <&clocks BCM2835_CLOCK_CAM0>,
-+		 <&firmware_clocks 4>;
-+	clock-names = "lp", "vpu";
-+	power-domains = <&power RPI_POWER_DOMAIN_UNICAM0>;
-+};
-+
-+&csi1 {
-+	clocks = <&clocks BCM2835_CLOCK_CAM1>,
-+		 <&firmware_clocks 4>;
-+	clock-names = "lp", "vpu";
-+	power-domains = <&power RPI_POWER_DOMAIN_UNICAM1>;
-+};
-+
- &gpio {
- 	gpioout: gpioout {
- 		brcm,pins = <6>;
-diff --git a/arch/arm/boot/dts/broadcom/bcm283x.dtsi b/arch/arm/boot/dts/broadcom/bcm283x.dtsi
-index 2ca8a2505a4d..69b0919f1324 100644
---- a/arch/arm/boot/dts/broadcom/bcm283x.dtsi
-+++ b/arch/arm/boot/dts/broadcom/bcm283x.dtsi
-@@ -454,6 +454,30 @@ dsi1: dsi@7e700000 {
- 			status = "disabled";
- 		};
- 
-+		csi0: csi@7e800000 {
-+			compatible = "brcm,bcm2835-unicam";
-+			reg = <0x7e800000 0x800>,
-+			      <0x7e802000 0x4>;
-+			reg-names = "unicam", "cmi";
-+			interrupts = <2 6>;
-+			brcm,num-data-lanes = <2>;
-+			status = "disabled";
-+			port {
-+			};
-+		};
-+
-+		csi1: csi@7e801000 {
-+			compatible = "brcm,bcm2835-unicam";
-+			reg = <0x7e801000 0x800>,
-+			      <0x7e802004 0x4>;
-+			reg-names = "unicam", "cmi";
-+			interrupts = <2 7>;
-+			brcm,num-data-lanes = <4>;
-+			status = "disabled";
-+			port {
-+			};
-+		};
-+
- 		i2c1: i2c@7e804000 {
- 			compatible = "brcm,bcm2835-i2c";
- 			reg = <0x7e804000 0x1000>;
+[1/4] dt-bindings: display/msm: sm8150-mdss: add DP node
+      https://gitlab.freedesktop.org/drm/msm/-/commit/be1b7acb9291
+
+Best regards,
 -- 
-Regards,
-
-Laurent Pinchart
-
+Abhinav Kumar <quic_abhinavk@quicinc.com>
 
