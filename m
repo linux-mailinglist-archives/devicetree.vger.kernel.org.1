@@ -1,167 +1,136 @@
-Return-Path: <devicetree+bounces-56559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01487899BD1
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 13:23:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 160F8899C49
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 14:02:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7DEE9B24535
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 11:23:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3FFD91C22BE7
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 12:02:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D4BD16C6B6;
-	Fri,  5 Apr 2024 11:23:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F26DD16D4C2;
+	Fri,  5 Apr 2024 12:01:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PxcJsTtc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iyyFBcSD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B465016C6A5;
-	Fri,  5 Apr 2024 11:23:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEABF16D339;
+	Fri,  5 Apr 2024 12:01:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712316193; cv=none; b=qRmVd4vZXaXGRbxC+8+0F2y1j6o2TVQnHp3T7oAoxwgQdgveNJ8S0vhrMSZ8FS9IQ+Hnhr2U+wpXGThQh4GBbYjCg8stRWSto/cAs2qUnR1Qw6PH/KzA1UsSX7ccz2W9aJ51HilZxs3aneacOKH5cBe6kAqz8a3sHZFZKtUxKWk=
+	t=1712318494; cv=none; b=Ji1vbbMFVbMJuGYr56xLaxuIWGEWXLjdDeYKZ/E1toowTIfCTT28UPvsTih85w9ceryGTHm0kB40F6GCmcI5FgAi/fNJzitB1E3+XkoYxJHPdU4TIVZVzA92GU/Aggt/My+dgek9dAbjDXElLKfGIwnCQGPl0Jf8P2ea0/bbWGQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712316193; c=relaxed/simple;
-	bh=RFBYteiUsDRtmHhvt8RCDv8kgTDEiNMm0DqviBfGnx4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=aUGgQ3pRZcfj1SY8XcLRM0EHTfavgVpa/XxhPOlJ2qCaCk4kiJSgI9D7eQ0MYlX5CBnNGZjhjeRr5FzDlPwkDa1KWGf9mEf168jS0UnZsp3fQIinWFXGWVh/jqNAIJ1LA51dNgWQVea3UH4fRpBMPQg6ItItXAMVCgXzWraZNEo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=PxcJsTtc; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 435AmO2I006512;
-	Fri, 5 Apr 2024 11:22:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=SDAabO8gn5di0giN8zcTGrQbYAhA5+USYJnh7uYKzLw=; b=Px
-	cJsTtcQIp5fTVa7qqXJjItqRTOlY7R4rYTBAFbFOT6hSYwmrGoq3Fyrcx87cC4EX
-	vTKkc3vW1jk3S2WaU3vftlptSuZ0ydNqBDnL0aDByaqGJwsf7bFaAmhll4HOVBKn
-	fMSWDLTBm5KCIe/aK5jFV6+StrGG73ZvW52fJ1vCKujtznHMmdgZ17olcfU7BItO
-	DIjAkxN8EvG4IThaYhj8J1F8C6ypPkhDduR0b7p+UbKMFrguK59LxklOOVGwK0/W
-	J2d6y34ruqygzruL+DHaaOuIi8JCgEktvsWqLYUFG3vs3iz7zGwJSLC/u6bxiyWn
-	GW5++xoV2euWN+NGdZzQ==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x9v8jjhsf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 05 Apr 2024 11:22:49 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 435BMmp1000993
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 5 Apr 2024 11:22:48 GMT
-Received: from [10.214.67.128] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Fri, 5 Apr 2024
- 04:22:44 -0700
-Message-ID: <7c616ed5-fd80-7afc-a881-9f21e85ea6b6@quicinc.com>
-Date: Fri, 5 Apr 2024 16:52:40 +0530
+	s=arc-20240116; t=1712318494; c=relaxed/simple;
+	bh=QfTxdUZ4pDgKliLEER39neqecZfbyAbJ7BTYOdpacGc=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
+	 MIME-Version:Content-Type; b=XNX6yxuS77qkW3uYgiVEb7RyhpRUZHXgSxQid6av6TRk7rYTErOTD0a0HgDII22uLqn110Ye6UQOg8z7JwuYTd66qTJxGVKNYEYfzkVewtTJdRp48/8nlqqT14sDD6Wq6xBbSHIgqHgbFS93xUTkn9o0IZHThvgqh+6TiwAd26I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iyyFBcSD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDA8EC433F1;
+	Fri,  5 Apr 2024 12:01:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712318494;
+	bh=QfTxdUZ4pDgKliLEER39neqecZfbyAbJ7BTYOdpacGc=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=iyyFBcSD6m7ogc+YN8nQm4I7X3V3LJ3Z8Cj1jZfPA5pcFRZ0S7cHwyHl5oHubDP2y
+	 gj8TOTmSmxmEx9q9ssDnP0jeX09zetYRhWKXCU+do2APq3xH0ixAXuLRLikKdiU+LN
+	 39dPXYDdmNIPp5obkXwG1FQoxasd+NDdzRI2gV51KhnaOU/vB8DPlvIpGy68k8BTss
+	 cnYS+SOZs1p9pMvexdOeFsKjyBBygHNTv1fwnTov7lmQDSHoZOAA+1Z2HIoUyNrtUN
+	 FJZJWplHpSGGy8loofeW64+QAkKfqGue72ECVf7Z/128+ViA2LHUTI/QkH9FAx3ZkR
+	 15ndyIAvKOj5A==
+From: Kalle Valo <kvalo@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,  "David S. Miller"
+ <davem@davemloft.net>,  Eric Dumazet <edumazet@google.com>,  Jakub
+ Kicinski <kuba@kernel.org>,  Paolo Abeni <pabeni@redhat.com>,  Rob Herring
+ <robh+dt@kernel.org>,  Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
+  Bjorn Andersson <andersson@kernel.org>,  Konrad Dybcio
+ <konrad.dybcio@linaro.org>,  ath10k@lists.infradead.org,
+  linux-wireless@vger.kernel.org,  netdev@vger.kernel.org,
+  devicetree@vger.kernel.org,  linux-arm-msm@vger.kernel.org,  Krzysztof
+ Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH RFC v2 0/4] wifi: ath10k: support board-specific
+ firmware overrides
+References: <20240306-wcn3990-firmware-path-v2-0-f89e98e71a57@linaro.org>
+	<87plw7hgt4.fsf@kernel.org>
+	<CAA8EJpr6fRfY5pNz6cXVTaNashqffy5_qLv9c35nkgjaDuSgyQ@mail.gmail.com>
+	<87cys7hard.fsf@kernel.org>
+	<CAA8EJpowyEEbXQ4YK-GQ63wZSkJDy04qJsC2uuYCXt+aJ1HSOQ@mail.gmail.com>
+	<87v85wg39y.fsf@kernel.org>
+	<CAA8EJpq_XLUEMC67ck2tZRjqS0PazCkQWWMGmwydeWxTETHwcg@mail.gmail.com>
+Date: Fri, 05 Apr 2024 15:01:29 +0300
+In-Reply-To: <CAA8EJpq_XLUEMC67ck2tZRjqS0PazCkQWWMGmwydeWxTETHwcg@mail.gmail.com>
+	(Dmitry Baryshkov's message of "Sat, 9 Mar 2024 17:07:46 +0200")
+Message-ID: <871q7k3tnq.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: qcs6490-rb3gen2: Enable various
- remoteprocs
-Content-Language: en-US
-To: Bjorn Andersson <quic_bjorande@quicinc.com>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_tsoni@quicinc.com>
-References: <20240402090349.30172-1-quic_kbajaj@quicinc.com>
- <20240402090349.30172-3-quic_kbajaj@quicinc.com>
- <Zg9nmVl9eqTbkkDe@hu-bjorande-lv.qualcomm.com>
-From: Komal Bajaj <quic_kbajaj@quicinc.com>
-In-Reply-To: <Zg9nmVl9eqTbkkDe@hu-bjorande-lv.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: oukBI9rZ0PY-4A628WA1Qm1_KbBesS-X
-X-Proofpoint-ORIG-GUID: oukBI9rZ0PY-4A628WA1Qm1_KbBesS-X
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-05_10,2024-04-04_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- spamscore=0 malwarescore=0 phishscore=0 priorityscore=1501 adultscore=0
- mlxscore=0 clxscore=1015 mlxlogscore=941 impostorscore=0 bulkscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404050081
+Content-Type: text/plain
 
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org> writes:
 
-
-On 4/5/2024 8:23 AM, Bjorn Andersson wrote:
-> On Tue, Apr 02, 2024 at 02:33:49PM +0530, Komal Bajaj wrote:
->> Enable the ADSP, CDSP and WPSS that are found on qcs6490-rb3gen2.
+> On Fri, 8 Mar 2024 at 17:19, Kalle Valo <kvalo@kernel.org> wrote:
 >>
->> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 15 +++++++++++++++
->>   1 file changed, 15 insertions(+)
+>> Dmitry Baryshkov <dmitry.baryshkov@linaro.org> writes:
 >>
->> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->> index 97824c769ba3..a25431ddf922 100644
->> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->> @@ -434,6 +434,21 @@ &qupv3_id_0 {
->>   	status = "okay";
->>   };
+>> >> To be on the safe side using 'qcom-rb1' makes sense but on the other
+>> >> hand that means we need to update linux-firmware (basically add a new
+>> >> symlink) everytime a new product is added. But are there going to be
+>> >> that many new ath10k based products?
+>> >>
+>> >> Using 'qcm2290' is easier because for a new product then there only
+>> >> needs to be a change in DTS and no need to change anything
+>> >> linux-firmware. But here the risk is that if there's actually two
+>> >> different ath10k firmware branches for 'qcm2290'. If that ever happens
+>> >> (I hope not) I guess we could solve that by adding new 'qcm2290-foo'
+>> >> directory?
+>> >>
+>> >> But I don't really know, thoughts?
+>> >
+>> > After some thought, I'd suggest to follow approach taken by the rest
+>> > of qcom firmware:
 >>
->> +&remoteproc_adsp {
->> +	firmware-name = "qcom/qcm6490/adsp.mbn";
-> 
-> Should this be qcm6490?
->  >
-> I already proposed a patch to add adsp and cdsp, using qcs6490, and this
-> was merged earlier this week. Please pay attention and review patches
-> posted on the public list.
-
-Apologies, I missed that.
-Will drop adsp and cdsp firmware path update in the next series.
-
-Rebase this change on top of your change, also will add the firmware 
-path update for modem for GPS usecase.
-
-Thanks
-Komal
-
-> 
-> Either way, this will now have to be rebased on linux-next.
-> 
-> Thanks,
-> Bjorn
-> 
->> +	status = "okay";
->> +};
->> +
->> +&remoteproc_cdsp {
->> +	firmware-name = "qcom/qcm6490/cdsp.mbn";
->> +	status = "okay";
->> +};
->> +
->> +&remoteproc_wpss {
->> +	firmware-name = "qcom/qcm6490/wpss.mbn";
->> +	status = "okay";
->> +};
->> +
->>   &tlmm {
->>   	gpio-reserved-ranges = <32 2>, /* ADSP */
->>   			       <48 4>; /* NFC */
->> --
->> 2.42.0
+>> Can you provide pointers to those cases?
+>
+> https://gitlab.com/kernel-firmware/linux-firmware/-/tree/main/qcom/sc8280xp/LENOVO/21BX
+>
 >>
+>> > put a default (accepted by non-secured hardware) firmware to SoC dir
+>> > and then put a vendor-specific firmware into subdir. If any of such
+>> > vendors appear, we might even implement structural fallback: first
+>> > look into sdm845/Google/blueline, then in sdm845/Google, sdm845/ and
+>> > finally just under hw1.0.
+>>
+>> Honestly that looks quite compilicated compared to having just one
+>> sub-directory. How will ath10k find the directory names (or I vendor and
+>> model names) like 'Google' or 'blueline' in this example?
+>
+> I was thinking about the firmware-name = "sdm845/Google/blueline". But
+> this can be really simpler, firmware-name = "blueline" or
+> "sdm845/blueline" with no need for fallbacks.
+
+I have been also thinking about this and I would prefer not to have the
+fallbacks. But good if you agree with that.
+
+IMHO just "sdm845-blueline" would be the most simple. I don't see the
+point of having a directory structure when there are not that many
+directories really. But this is just cosmetics.
+
+> My point is that the firmware-name provides the possibility to handle
+> that in different ways.
+
+Very good, thanks.
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
