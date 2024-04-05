@@ -1,186 +1,135 @@
-Return-Path: <devicetree+bounces-56554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D041899AFF
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 12:39:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D288E899B25
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 12:46:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 04ED1B2111A
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 10:39:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2F891C21144
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 10:46:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17E97155380;
-	Fri,  5 Apr 2024 10:38:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA7B71649C6;
+	Fri,  5 Apr 2024 10:46:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b="pATTLDVL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GGWwebyO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-108-mta150.mxroute.com (mail-108-mta150.mxroute.com [136.175.108.150])
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF58112CD8F
-	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 10:38:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=136.175.108.150
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DD9916087B
+	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 10:46:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712313538; cv=none; b=kjY91ggR5A42e2/N/nJatODlkHUKmZXHWhMNkohRaHWAcgh7wZJPtn1JGJNSRVmTT8HmTeBu0DGVjH3h71x9URST6n/50IXLt4Sbeu/ZiyIzhzuapIzyJB/vRrs0fe08yTrLTXfomLGw8MXkL50GwdwDnWkZnsAuiYofim8n89A=
+	t=1712313980; cv=none; b=LrrG/x2Wx6lFPC8TQseC4mtGJ5Jn+ZN68cuOSuJk5RWY+CNLtpDIQ4lAFPAywYWHQhIkwSoe8bS64kqR9DrGeJMcLn4CWM/czytLMx5qZslm6vZn6jsUlEm/7BVRNp+Sswcm/IF4E8SjOxiFWEh/qDah9KlVycVsMFJ1+ROos54=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712313538; c=relaxed/simple;
-	bh=xLI22zriJDENRfnsRmIjvn6POO6xOPVHd6HwhyKlUrk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Jn/Ob/kYsAwTX3VIVWNS/DA5J9Jss19s2btYsT/KZfU0FuXXz9u0yMeGXURpKdQ1hxBJJXFz7m1a97I0lxVrAng0hTWUziFxbf2jw1N0kpx+x4is9Co8HQzlZ4C25PMEvRM919aqhXjGCpc1L2JBrYkP7q8kE0W5DoPUnp/fWZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com; spf=pass smtp.mailfrom=luigi311.com; dkim=pass (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b=pATTLDVL; arc=none smtp.client-ip=136.175.108.150
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=luigi311.com
-Received: from filter006.mxroute.com ([136.175.111.2] filter006.mxroute.com)
- (Authenticated sender: mN4UYu2MZsgR)
- by mail-108-mta150.mxroute.com (ZoneMTA) with ESMTPSA id 18eadd248db0003bea.00f
- for <devicetree@vger.kernel.org>
- (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
- Fri, 05 Apr 2024 10:33:43 +0000
-X-Zone-Loop: 70bb12fb0d7daac08202e6fbc7dd5cf4c24265afcc5a
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=luigi311.com; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
-	From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=vfGoyAWCyKZOHSAUcGDkEoz4paY7t5qH+0okM64n3Do=; b=pATTLDVLYKydxuA4/oMU+IXM8X
-	evupdRWiPyqRs4QJYB3u83H2KriInjeFUXtv7UFyjn6jkcDdJywE8kQQFpc+NqypqFdtPp/GqgeSd
-	/JArjSTKWOw4SHSRhZtEcsmwMEB27salHAMo/GhT7wMAzmOnETj//CUNv+jnhskVyBq40F4+UH5UH
-	7OJ7pX+RVUagog04vV55RXxUCrj1Yzra14eOEvWyRmA7JrKFBfxmFmQE8Ra7esLdGtQ/ZyM94ymdX
-	Ztl/Ad9Q6l8RKhYyN45hZ/K36FNA5jhYIhMrhkxuoUbDzmOduRhdl/cAIENpmkLIPPR9hNlD+gaZK
-	UpvwQaAw==;
-Message-ID: <082190a8-7ac5-4240-9a16-6b9168c67d57@luigi311.com>
-Date: Fri, 5 Apr 2024 04:33:38 -0600
+	s=arc-20240116; t=1712313980; c=relaxed/simple;
+	bh=L4E8p/GV0Ds3nAyTGC7XhelVlzhjjV+Qy3Ty0PI9xhc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Z6P2/4RLCwZijuWdMjuaFRRyS4wQCLJ0y0A876QSdduuVI0fkkJDp+XblAxF+dZy3q6oofrgEdkevTTTm388Q7WSeFasVJn/h44XZlt9TDyW9gKLhtP5zJr7jdaSSTCnV/pJkrEXJGFQ6MDYug7+jeGCDsDy6fHrPBG1YHmZNAI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GGWwebyO; arc=none smtp.client-ip=209.85.128.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-615038fc5baso21449957b3.3
+        for <devicetree@vger.kernel.org>; Fri, 05 Apr 2024 03:46:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712313978; x=1712918778; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=q464s0pydIE+zRv4fDUf6M5jc7NXRIaMdUPXgVeAtAQ=;
+        b=GGWwebyODwX1q83KcA6XibR/TAUUryUs9RAXB6qHCP44ebWZzZS5aIXNPQWAxE1AO7
+         gYKsazdPwfBfDJvbTpgXc68DiPMoCz+dqMq9Q0M1hIaJnwpCyA9SrtkIubiAXlCAMcsS
+         78goY38sLNRvBNY95rZKbN0OHqZytgDZd+TFDwzZvnl6+F9Nvu3hDdFSvn/ovsPPgNkm
+         OI6GYMzBW4EXmaee6BavjZ9WetJnuyyzm1Hm4oXdkWhqAlr93wPkIbuAb8bvH9ofV9qt
+         gpwBNontvPPV6cDagbQqe7sMvoItWqAjbq/YWvIHiu5HYF6PabV77Yavag1P+VUnamnX
+         Hadw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712313978; x=1712918778;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=q464s0pydIE+zRv4fDUf6M5jc7NXRIaMdUPXgVeAtAQ=;
+        b=gXNCIg51ogqf7sBcJQHHte9NoFWRfQElVSV22j9PhG10afN2H8SZPeQWpXb8gE6JLP
+         lxSTelPDw38snP9jlXFZYqUmonac4/ezGqLsYufLyLommXID/VMWTVA4rFEgV0LHbA2l
+         QCtIveRRns12FvLAa0Lvtgek84v2vGcoThD44mSua3WqJ0vi2Dv7bKewH39iyVTwZm1L
+         RLV9bXY6mmccAv1G94Ypvbmot4cBMBDT6hPY8nI2Z8zvT/TCeUqUu5SVoTALnEpk1vr4
+         CTh6EpI+qSdw89wVaYUjQwFBeuPwkiA+JG07x3uY0cyaGgnsyM7qkfuOvi2pkM2WL4ML
+         erRg==
+X-Forwarded-Encrypted: i=1; AJvYcCWBlmlDSVY6WsrA9UfouVVTYKCtbI9h2Da1UgRAskgx2PSmSRbXyR8NM1StDUDc3gvILp4XisApQ/r13j5yZAamhImZ9l2pQmfp2Q==
+X-Gm-Message-State: AOJu0YyUte9X/NGjEblu6oGMi2maVouyQcRMimcGF3WxwRQ6E0aHd3ei
+	GG96KQhgnNQhHOzA625dMv2wkDd4eKhkSeg1kAz5ITKu6r9k5xdkXHgL/BMCtJZ+4RxUxV4gG4l
+	c/tRFW9idVUZjZkUL88k2cwFhohCM5bPFBG+Z1g==
+X-Google-Smtp-Source: AGHT+IFD4lOAA6OE545MWaALDTv8kewFB0UhOTHwNBgdOdA/c4Xh5GLbUDrWS+o4QO2az8mbVpwytUQzz3UDkLFdfw8=
+X-Received: by 2002:a25:bc85:0:b0:dcc:44d7:5c7f with SMTP id
+ e5-20020a25bc85000000b00dcc44d75c7fmr782319ybk.62.1712313978067; Fri, 05 Apr
+ 2024 03:46:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 21/25] drivers: media: i2c: imx258: Use macros
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: linux-media@vger.kernel.org, dave.stevenson@raspberrypi.com,
- jacopo.mondi@ideasonboard.com, mchehab@kernel.org, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org,
- s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- pavel@ucw.cz, phone-devel@vger.kernel.org, Ondrej Jirman <megi@xff.cz>
-References: <20240403150355.189229-1-git@luigi311.com>
- <20240403150355.189229-22-git@luigi311.com>
- <Zg2CirmwL3JfjA8s@kekkonen.localdomain>
- <df8c245a-40e9-4bf5-b870-7efe321d820a@luigi311.com>
- <Zg5Mz0QSqNDXzY4o@kekkonen.localdomain>
-Content-Language: en-US
-From: Luis Garcia <git@luigi311.com>
-In-Reply-To: <Zg5Mz0QSqNDXzY4o@kekkonen.localdomain>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authenticated-Id: git@luigi311.com
+References: <20240404084631.417779-1-quic_mohs@quicinc.com>
+ <20240404084631.417779-2-quic_mohs@quicinc.com> <CAA8EJpqWaYhzPKgTREtJnfdNZ4oSFZaRFM7Jhg+qd3AqadGOkA@mail.gmail.com>
+ <797d67b9-9e09-8b84-9abc-dd4a4a2a40f5@quicinc.com>
+In-Reply-To: <797d67b9-9e09-8b84-9abc-dd4a4a2a40f5@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Fri, 5 Apr 2024 13:46:07 +0300
+Message-ID: <CAA8EJpo2__vcpqq1zofyyZ6UwPPn7Ed0R=TPcMZ25+JHwRExwg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: qcom,sm8250: Add QCM6490 snd
+ QCS6490 sound card
+To: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Banajit Goswami <bgoswami@quicinc.com>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, linux-arm-msm@vger.kernel.org, 
+	alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	quic_rohkumar@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
 
-On 4/4/24 00:46, Sakari Ailus wrote:
-> On Wed, Apr 03, 2024 at 01:17:26PM -0600, Luigi311 wrote:
->> On 4/3/24 10:23, Sakari Ailus wrote:
->>> Hi Luis,
->>>
->>> On Wed, Apr 03, 2024 at 09:03:50AM -0600, git@luigi311.com wrote:
->>>> From: Luis Garcia <git@luigi311.com>
->>>>
->>>> Use understandable macros instead of raw values.
->>>>
->>>> Signed-off-by: Ondrej Jirman <megi@xff.cz>
->>>> Signed-off-by: Luis Garcia <git@luigi311.com>
->>>> ---
->>>>  drivers/media/i2c/imx258.c | 434 ++++++++++++++++++-------------------
->>>>  1 file changed, 207 insertions(+), 227 deletions(-)
->>>>
->>>> diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
->>>> index e2ecf6109516..30352c33f63c 100644
->>>> --- a/drivers/media/i2c/imx258.c
->>>> +++ b/drivers/media/i2c/imx258.c
->>>> @@ -33,8 +33,6 @@
->>>>  #define IMX258_VTS_30FPS_VGA		0x034c
->>>>  #define IMX258_VTS_MAX			65525
->>>>  
->>>> -#define IMX258_REG_VTS			0x0340
->>>> -
->>>>  /* HBLANK control - read only */
->>>>  #define IMX258_PPL_DEFAULT		5352
->>>>  
->>>> @@ -90,6 +88,53 @@
->>>>  #define IMX258_PIXEL_ARRAY_WIDTH	4208U
->>>>  #define IMX258_PIXEL_ARRAY_HEIGHT	3120U
->>>>  
->>>> +/* regs */
->>>> +#define IMX258_REG_PLL_MULT_DRIV                  0x0310
->>>> +#define IMX258_REG_IVTPXCK_DIV                    0x0301
->>>> +#define IMX258_REG_IVTSYCK_DIV                    0x0303
->>>> +#define IMX258_REG_PREPLLCK_VT_DIV                0x0305
->>>> +#define IMX258_REG_IOPPXCK_DIV                    0x0309
->>>> +#define IMX258_REG_IOPSYCK_DIV                    0x030b
->>>> +#define IMX258_REG_PREPLLCK_OP_DIV                0x030d
->>>> +#define IMX258_REG_PHASE_PIX_OUTEN                0x3030
->>>> +#define IMX258_REG_PDPIX_DATA_RATE                0x3032
->>>> +#define IMX258_REG_SCALE_MODE                     0x0401
->>>> +#define IMX258_REG_SCALE_MODE_EXT                 0x3038
->>>> +#define IMX258_REG_AF_WINDOW_MODE                 0x7bcd
->>>> +#define IMX258_REG_FRM_LENGTH_CTL                 0x0350
->>>> +#define IMX258_REG_CSI_LANE_MODE                  0x0114
->>>> +#define IMX258_REG_X_EVN_INC                      0x0381
->>>> +#define IMX258_REG_X_ODD_INC                      0x0383
->>>> +#define IMX258_REG_Y_EVN_INC                      0x0385
->>>> +#define IMX258_REG_Y_ODD_INC                      0x0387
->>>> +#define IMX258_REG_BINNING_MODE                   0x0900
->>>> +#define IMX258_REG_BINNING_TYPE_V                 0x0901
->>>> +#define IMX258_REG_FORCE_FD_SUM                   0x300d
->>>> +#define IMX258_REG_DIG_CROP_X_OFFSET              0x0408
->>>> +#define IMX258_REG_DIG_CROP_Y_OFFSET              0x040a
->>>> +#define IMX258_REG_DIG_CROP_IMAGE_WIDTH           0x040c
->>>> +#define IMX258_REG_DIG_CROP_IMAGE_HEIGHT          0x040e
->>>> +#define IMX258_REG_SCALE_M                        0x0404
->>>> +#define IMX258_REG_X_OUT_SIZE                     0x034c
->>>> +#define IMX258_REG_Y_OUT_SIZE                     0x034e
->>>> +#define IMX258_REG_X_ADD_STA                      0x0344
->>>> +#define IMX258_REG_Y_ADD_STA                      0x0346
->>>> +#define IMX258_REG_X_ADD_END                      0x0348
->>>> +#define IMX258_REG_Y_ADD_END                      0x034a
->>>> +#define IMX258_REG_EXCK_FREQ                      0x0136
->>>> +#define IMX258_REG_CSI_DT_FMT                     0x0112
->>>> +#define IMX258_REG_LINE_LENGTH_PCK                0x0342
->>>> +#define IMX258_REG_SCALE_M_EXT                    0x303a
->>>> +#define IMX258_REG_FRM_LENGTH_LINES               0x0340
->>>> +#define IMX258_REG_FINE_INTEG_TIME                0x0200
->>>> +#define IMX258_REG_PLL_IVT_MPY                    0x0306
->>>> +#define IMX258_REG_PLL_IOP_MPY                    0x030e
->>>> +#define IMX258_REG_REQ_LINK_BIT_RATE_MBPS_H       0x0820
->>>> +#define IMX258_REG_REQ_LINK_BIT_RATE_MBPS_L       0x0822
->>>> +
->>>> +#define REG8(a, v) { a, v }
->>>> +#define REG16(a, v) { a, ((v) >> 8) & 0xff }, { (a) + 1, (v) & 0xff }
->>>
->>> The patch is nice but these macros are better replaced by the V4L2 CCI
->>> helper that also offers register access functions. Could you add a patch to
->>> convert the driver to use it (maybe after this one)?
->>>
->>
->> Ohh perfect, using something else would be great. Ill go ahead and see
->> if I can get that working.
-> 
-> Thanks. It may be easier to just do it in this one actually. Up to you.
-> 
+On Fri, 5 Apr 2024 at 08:56, Mohammad Rafi Shaik <quic_mohs@quicinc.com> wrote:
+>
+> On 4/4/2024 2:23 PM, Dmitry Baryshkov wrote:
+> > On Thu, 4 Apr 2024 at 11:48, Mohammad Rafi Shaik <quic_mohs@quicinc.com> wrote:
+> >>
+> >> Document the bindings for the Qualcomm QCM6490 IDP and QCS6490 RB3Gen2
+> >> soc platforms sound card.
+> >>
+> >> The bindings are the same as for other newer Qualcomm ADSP sound cards,
+> >> thus keep them in existing qcom,sm8250.yaml file, even though Linux driver
+> >> is separate.
+> >>
+> >> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+> >> ---
+> >>   Documentation/devicetree/bindings/sound/qcom,sm8250.yaml | 2 ++
+> >>   1 file changed, 2 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+> >> index 2ab6871e89e5..ff1a27f26bc2 100644
+> >> --- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+> >> +++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+> >> @@ -29,6 +29,8 @@ properties:
+> >>         - enum:
+> >>             - qcom,apq8016-sbc-sndcard
+> >>             - qcom,msm8916-qdsp6-sndcard
+> >> +          - qcom,qcm6490-sndcard
+> >> +          - qcom,qcs6490-rb3gen2-sndcard
+> >
+> > My 2c: you are adding one soundcard for the SoC family (qcm6490) and
+> > another one for the particular board kind (qcs6490-rb3gen2). That
+> > doesn't seem logical.
+>
+> The qcm6490-sndcard compatible for enabling soundcard on
+> qcm6490 IDP boards.
+>
+> Will change compatible name as qcom,qcm6490-idp-sndcard.
 
-I've made the swap but looks like its not playing nice with my ppp,
-its causing a crash and showing a call trace as soon as it does its
-first read to check the identity. I went in and dropped the cci_read
-and left it with the original implementation and I'm getting a very
-similar crash with cci_write too so it looks like its not liking
-how I'm implementing it. Looking at the few other drivers that were
-swapped over to use that, I don't seem to be missing anything. It's
-a big change so its not really something I can describe what I've
-changed but I do have the change on my github here
-https://github.com/luigi311/linux/commit/840593acb20eee87ce361e6929edf51eefbbe737
-if you can provide some guidance, if not I can skip this change
-all together and we can do a separate attempt at swapping over to it.
+Any consistent way is fine with me.
+
+
+-- 
+With best wishes
+Dmitry
 
