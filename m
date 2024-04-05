@@ -1,117 +1,91 @@
-Return-Path: <devicetree+bounces-56741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5653289A610
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 23:28:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17B4589A618
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 23:32:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA1A61F228F2
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 21:28:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD9301F228E2
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 21:32:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF51E174EF5;
-	Fri,  5 Apr 2024 21:27:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A89C5175547;
+	Fri,  5 Apr 2024 21:32:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R9M1TERB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nXY60WCp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0A861C36;
-	Fri,  5 Apr 2024 21:27:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7566C1C36;
+	Fri,  5 Apr 2024 21:32:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712352477; cv=none; b=VbHNtgtIYirQqArYTIm8/rdssBSHi5o0+RuCBIywxb6Fs2E2dF4qhzcsEr6hBRVLk87WEW/HNEHvQ0G0QVJR6Pya49O6R0mwgB+dKdOBp030SaHGY9yquarT7QWTf9wIJViYIH2BmgLKzGMQATX5p76zNb6p9XSsC7TQUKFDnC8=
+	t=1712352733; cv=none; b=Yr5Ti2m5mGLO6bNzr1tUaMk/18R+2uXCDpcAG5UX9z8om3CDqJdnznLr+dmaCOaxZw2wGLJYN66a4MYOkpx3Ml2YdlgGA5ouQPZ/uLIxTVHEFyj61tVlbmLUdYQZG0FEkiMvg0ei7Ew/yM6s+3h4fk8w0mIxhJeP83TQU4PLy3w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712352477; c=relaxed/simple;
-	bh=r2AHaawq9cdbJnZDM+X6rRc0imhgSLAPwqlxMUSDGOE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jB6Ppjkiq20med6RFN7SMPlBU33jS5wiBliBnmMpcmqbdgGwrYYuTqPmd3YI02Gp6vICVokprIoN/7GGk/lxsQ/lzb9HeCL29LlVuecLSc8UMB2MyKMeVk8W1NAj2ChH1SDp6i/AGJKYoNGhtS7wQf0nfux3qKTOvw2bh8KpV5Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R9M1TERB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A9E6C433F1;
-	Fri,  5 Apr 2024 21:27:54 +0000 (UTC)
+	s=arc-20240116; t=1712352733; c=relaxed/simple;
+	bh=hsZu3xdis3+8ixCZGH/UiCiP/10YCp3O3EdgM07+RyA=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=PVeAE156L+lhQzVjjITR/x2JBJJtVV0zQowt8suUuabdGn3qWNWaWeYYh/Y3q4Ijx4dXkICXdGUCvVbqfbzGzHD86UDSKYNNf+Uf4GuuD/MYTj0c+9drNBSz7UyHd6RcdSDOM196h6Ka4KNwyNUWa0l23/e44KD/Z5I+6Pfi34s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nXY60WCp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF77BC433C7;
+	Fri,  5 Apr 2024 21:32:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712352477;
-	bh=r2AHaawq9cdbJnZDM+X6rRc0imhgSLAPwqlxMUSDGOE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=R9M1TERBNdUBUxjGWLDBBHVDTiGhHCxiwRRpDaU4V7f1bEXwX07toqqFlHTNJlzpJ
-	 2OZmOFPmUxvw1L/3ceMv7Q2zsw/PZhC+6Vjpo2h2wRCA5b8DX1VWU3rp3Ms/Ocvmqm
-	 2VXhZklSsIN6cDfBgd83zcnGGHGNoz2K8Ke15tUvQ072nDN+0S/N37BqZauKcODUdg
-	 BC3nxxV99mv2moMKsUfOJErisDj4BoKQZlfJpFT/zkaB1XrlKpS9xMO5aU1hZwCDEX
-	 aQpFJDvkXL0P8d+6LoQMUmWYSHPm3MjxP4NPdZydfMQ2SrNXkwTiy8JYrt5ZjIJG1o
-	 tpHqWoHrG/OTg==
-Date: Fri, 5 Apr 2024 22:27:51 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
-Subject: Re: [RFC PATCH 0/6] Support ROHM BD96801 scalable PMIC
-Message-ID: <8740ff6f-5dcc-40b0-b2d5-9a6d137efc4f@sirena.org.uk>
-References: <cover.1712058690.git.mazziesaccount@gmail.com>
- <f7d454ac-6ecb-4431-a1de-c9b5d1240969@gmail.com>
- <eb03ec33-0627-4986-be04-8e35da390d6b@sirena.org.uk>
- <b6279be8-cf7d-4608-b556-3c01587f0d43@gmail.com>
- <f1e3d31d-8c24-4cdc-ae26-747f383a937b@gmail.com>
+	s=k20201202; t=1712352733;
+	bh=hsZu3xdis3+8ixCZGH/UiCiP/10YCp3O3EdgM07+RyA=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=nXY60WCpCpc/RzvaYPjvrFvMvHQbDTZNnhzFb453mtmnytCtmJqKr7OMPuFx2RkaY
+	 YZPm3PQS3c+iv/LjzhXwmjJkvD6FwuvllQ5cFRB6yw5ntpjzalKCk1UHLBGS9y5IAz
+	 fJwaO0PFjeSzseJ6zwpLwpejCO4p+NzKGX2b7ajGPbY00nB+hZGfr+XYQtKAuKbbMs
+	 8gRiozxMEbfBiEn3iyoQt+MD75Slj9fRdl9H6EXH8NpfigZpRrGFbEmmED2GkYdUB6
+	 69wXbIRtDXKlpeVsC4POG+V6xSJvQ6E44cvfihZoF+xQKVacdY9orwss1C4FIPcKDs
+	 CrXMRI8X+/vrg==
+Message-ID: <5a6c424fafd7ca1281f4bd771b8c8219.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="XOy5ZYZQYVihvc4r"
-Content-Disposition: inline
-In-Reply-To: <f1e3d31d-8c24-4cdc-ae26-747f383a937b@gmail.com>
-X-Cookie: Honk if you love peace and quiet.
-
-
---XOy5ZYZQYVihvc4r
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <66968793-d0c9-9f31-6616-f67fdadcd6e5@quicinc.com>
+References: <20240229-camcc-support-sm8150-v1-0-8c28c6c87990@quicinc.com> <20240229-camcc-support-sm8150-v1-4-8c28c6c87990@quicinc.com> <18567989-fb60-49ae-92e6-94e1bc2fa1c7@linaro.org> <66968793-d0c9-9f31-6616-f67fdadcd6e5@quicinc.com>
+Subject: Re: [PATCH 4/5] clk: qcom: Add camera clock controller driver for SM8150
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Stephen Boyd <sboyd@codeaurora.org>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Ajit Pandey <quic_ajipan@quicinc.com>, Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>, Jagadeesh Kona <quic_jkona@quicinc.com>
+To: Abhishek Sahu <absahu@codeaurora.org>, Bjorn Andersson <andersson@kernel.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Satya Priya Kakitapalli (Temp) <quic_skakitap@quicinc.com>
+Date: Fri, 05 Apr 2024 14:32:10 -0700
+User-Agent: alot/0.10
 
-On Fri, Apr 05, 2024 at 12:19:40PM +0300, Matti Vaittinen wrote:
-
-> Well, good thing is that now I can fix the regulator_irq_helper() to do:
-
-> --- a/drivers/regulator/irq_helpers.c
-> +++ b/drivers/regulator/irq_helpers.c
-> @@ -352,6 +352,9 @@ void *regulator_irq_helper(struct device *dev,
+Quoting Satya Priya Kakitapalli (Temp) (2024-04-04 23:27:29)
 >=20
->         h->irq =3D irq;
->         h->desc =3D *d;
-> +       h->desc.name =3D devm_kstrdup(dev, d->name, GFP_KERNEL);
-> +       if (!h->desc.name)
-> +               return ERR_PTR(-ENOMEM);
+> On 3/2/2024 9:43 PM, Bryan O'Donoghue wrote:
+> >
+> > Alternatively switch on the always-on clocks before the really_probe() =
+
+> > but then roll back in a probe_err: goto
+> >
+> > probe_err:
+> > =C2=A0=C2=A0=C2=A0=C2=A0remap_bits_update(regmap, 0xc1e4, BIT(0), 0);
+> > =C2=A0=C2=A0=C2=A0=C2=A0pm_runtime_put_sync(&pdev->dev);
+> >
+> > There may be corner cases where always-on has to happen before=20
+> > really_probe() I suppose but as a general pattern the above should be=20
+> > how we go.
+> >
 >=20
->         ret =3D init_rdev_state(dev, h, rdev, common_errs, per_rdev_errs,
->                               rdev_amount);
+> I have rechecked this and see that this clock is PoR ON (i.e BIT(0) is=20
+> set upon power ON) and it should be kept always ON as per HW=20
+> recommendation. So even if the probe fails we shouldn't be clearing it=20
+> against the hw recommendation. We are setting the bit here again to make =
+
+> sure it is set when the driver probes.
 >=20
-> I'll send a patch if this sounds like a correct thing to do.
 
-Sure.
-
---XOy5ZYZQYVihvc4r
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmYQbNcACgkQJNaLcl1U
-h9C61wf+JKtHnrbZ1UFskt7o8mY9LHft9p7xpD4Qp/PPBVdJuv9nX1J+VGtXilBY
-HSuudVOlwueiKL5JGO/ykEunaoPBWaQ/D8Lslk16WwTc3x2meESJxvSw7s0vpp++
-mMRvNvUfLFRhJv3DPNwksFqvB8ALjcIRkU9AAz9M1A4U5JmjlO1mCTyctNxzC8Bz
-kM0EdjEyqnmGebL8LHbwKL1vbD5bS1LwM9cfEu6DdvjGAjgMGX4grWLQKwi/cNzX
-tS0G1B/YD5Uad2sRQ1nBos+SdGmT2Ey6PrN5clGGqdDilW6i8Asrs+Nxlo+Eml0v
-El3iLVDL96gjdtmpuf/VdYGEplkeLQ==
-=t/Do
------END PGP SIGNATURE-----
-
---XOy5ZYZQYVihvc4r--
+Yes, always on clks should always be on. We don't turn them off if the
+driver fails to probe. We should probably print a warning or something
+if the register write fails, but since this is mmio it won't fail, so
+just make sure they're on and move on.
 
