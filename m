@@ -1,115 +1,187 @@
-Return-Path: <devicetree+bounces-56735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCD1C89A59D
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 22:23:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AAF689A5B3
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 22:37:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 730111F2195B
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 20:23:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C1741C21CAB
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 20:37:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FFB5174EC5;
-	Fri,  5 Apr 2024 20:22:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A75F174ECD;
+	Fri,  5 Apr 2024 20:36:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="ONQn9iPQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tNM9bvvX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CCCE15EFDA
-	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 20:22:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79ECB17276A
+	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 20:36:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712348577; cv=none; b=ITHrpKPnBQFU8XBDiWpClq6zZXYFuhRI4A6U1vCzte1GF8JdAL29nPLZqNUa7390nhW5jz53gybSuyzCTLw9jJmyuhYw/wxSfjQ+hdAdLYhF6GEpr3wirrMJ4JMwojBAzkCigx0GjuA+98yuz6zI8LscRCb2D1aCp+Irv25vudU=
+	t=1712349415; cv=none; b=py8UDoX/uvr2yrbCqhMo2tCFBxl7X3ix5YOBBdt0ieO3jgjcIpbmrI0AHCgFEHSm4hCMugbuieuvYMoJ9IbhomRMNSD28s+HS/K24rhHl/tNseBgDr0/n05baXUMa6qTG1Ub7uVTPn2Q0FLWWZfW2lzTKOV+VxBM8dS+ehFZJJs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712348577; c=relaxed/simple;
-	bh=McaYIRb/EJ860lq+xc5qCEfV7ezc9mbT3y5s9EtLhBU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jsEOs7ct2fYxokudGkuAHFst8NBkGCqiEV6VW7zHElk5qkB8kthGoDxciG6A9CeDPwiRnNdjKriSt9+WDoOyb9YlNS+a6xmGjSZrzFqkb7WryKXdYSzDRBvRKW6jx0pPkXg9G0EJr+DoGF6zghqOl+py4LBqQhkwuUIKlYfof4k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=ONQn9iPQ; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 40CF6883C7;
-	Fri,  5 Apr 2024 22:22:53 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1712348573;
-	bh=jJa+9AtaXtwCXlKZ2GyFX/5yFcB672RfIfKX+K1+UY8=;
-	h=From:To:Cc:Subject:Date:From;
-	b=ONQn9iPQrlRChgvmyfL+gfItHqYwn59nYSFgCoTNjIeLD6IHkYRanvJHrNABRgCbb
-	 mOAiTqTczqYhVCb4kGZmTYl4THLU4nqA4mkoVF0QZbwm980KPr33HIiDlzgGREDdLv
-	 cpMSUktnciYtCxOxQ5357DAbnaTVL+t7ZCUvc3yWaVU/3LoPV5Ew7bmCGq6kjE319j
-	 s0MTuJ9F0vxgxsoqHLz5aDACUzxnBw18rJp2JEHn25ll39qxuzD8iDmnci7A6zSH9p
-	 qGqlt1VNPuE/OAWWurXuSQfOua7ok0YJFfpWieOdugPqB4ROOGAhr/ayaf3oetFy3M
-	 eIWiwQWnuXH7w==
-From: Marek Vasut <marex@denx.de>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marex@denx.de>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Paul Elder <paul.elder@ideasonboard.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev
-Subject: [PATCH] arm64: dts: imx8mp: Align both CSI2 pixel clock
-Date: Fri,  5 Apr 2024 22:22:26 +0200
-Message-ID: <20240405202243.46278-1-marex@denx.de>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1712349415; c=relaxed/simple;
+	bh=LU/xQB6V/25bLcvayMCENtNqmkx93CwiDahm1ICVE0U=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WMpR2+NdNaBOIyHnKxiJ52SdeJi03iq8IO6Af6McTStS7fmr8JV7afymGNqW0vio8UM8SwIzNK73McLlDDKvRuunW2F9OvfXct2MHo1OEnsB0CTHZyFNs1FZWeVQqecxVULNl/TK9vJ/66MajNHT9NjIQyrXNYW78eemwBchfYU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tNM9bvvX; arc=none smtp.client-ip=209.85.219.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-dcd7c526cc0so2683912276.1
+        for <devicetree@vger.kernel.org>; Fri, 05 Apr 2024 13:36:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712349412; x=1712954212; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=/86pn6vkv7rN4o5AcWzNGDdSkHGVI9X5IaswAWqNOJE=;
+        b=tNM9bvvXfdTuhYlt4/Fg14FY0fgOIobs2m0IsRCnESfybhR1ysguuBGP7b9IjTppSz
+         EUL15xpSU8frl7hS5vYiqUmGh8uNnFCw7GSkoUsvjbmBFfpn4XRnzKdGr1gKDANVu/Op
+         gXcHwfCo5I5SiNsPZgWGC3isGf8YoUKRhrmj821aPEXuSk1gv6nl4PxNPZLG0ApK7cjA
+         i3hqAGDhEfcYiVwoKfa5xuppBP+A485DkDxREu86lO/t+mV1BFx5MgtkFwMYqklwQXC2
+         Nh3h23ZOr4j/MNPVjtJXriUW1/f94cSl75YTnkfdbOyymr4+d0BU65XHl3AJtux4dqI5
+         IKqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712349412; x=1712954212;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/86pn6vkv7rN4o5AcWzNGDdSkHGVI9X5IaswAWqNOJE=;
+        b=lCcSO9OspSKAEzLVY6+evDkbwPYUJgFqyXijYBG43omZB7vbXNO751+1KzYswwubz6
+         qyUa2YNhaaddBxU7HLDNwXyZnnkWEEwaceuiaF1HvyOk16tZSntaNS4vfQdu5bqt3EN0
+         PbAQs8lVQPh+ZLFdIEUD/SXNx7XfIOU1JXbXBpEQptp+RLLKmqCHh1leyA1rQeD6NKhc
+         fugu1c/xvuKnyQ2F3GrvxF4FFzSqK9Ak/eU6O7cd2TxtQFgMtOVzCsLCrbCzliifOjhy
+         v0svg3SGRToGyikiHoUNvQ8i1yqK60adjeSggehPFAS2wWSL+JmZBQIIcSDA2g3pbz/K
+         gD8w==
+X-Forwarded-Encrypted: i=1; AJvYcCVj1T2RDw17SI3PoDJGmINsFRmIoVNWTWK5bO83l6LHu13IFiajjc+JBvqj7WICFFmBD8cRLmP2TJpMFbLrtGWagWMwhVrT9dWX3w==
+X-Gm-Message-State: AOJu0YyB3AoUIybC6JVISuINEDzxHoUy8h/0GY/Wa5AKjdhIPKrThBpW
+	PkK0I9tMD6rvmItxO8oxbRec6SoC3EjIljrHAmLYf+aHbYFxFQQHgrMS2HZmfpxi3qoWrsdKYaH
+	iyUZRxABKSuNgdg1kT7POqoo13uioITW5k1iJCA==
+X-Google-Smtp-Source: AGHT+IFRO8tWoCg2SGSzILZMs3Drm7SVEupIjTSLzOvFEDr2eDMtDFbdSU80xT/alKoBfHZaROUifya2GOHP8yCKs4U=
+X-Received: by 2002:a25:af10:0:b0:dda:aa3e:73fc with SMTP id
+ a16-20020a25af10000000b00ddaaa3e73fcmr2428953ybh.41.1712349412380; Fri, 05
+ Apr 2024 13:36:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+References: <20240404051229.3082902-1-quic_kriskura@quicinc.com>
+ <20240404051229.3082902-3-quic_kriskura@quicinc.com> <Zg5VDnbaaBXJyRjV@hovoldconsulting.com>
+ <f16e1280-8f7e-40a7-ab45-9acaeb3e90cb@linaro.org> <2024040455-sitting-dictator-170c@gregkh>
+ <Zg9THGBRuppfw4y+@hu-bjorande-lv.qualcomm.com> <2024040558-undercut-sandbar-7ffc@gregkh>
+ <ZhBQhvieHGtMOSEz@hu-bjorande-lv.qualcomm.com>
+In-Reply-To: <ZhBQhvieHGtMOSEz@hu-bjorande-lv.qualcomm.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Fri, 5 Apr 2024 23:36:41 +0300
+Message-ID: <CAA8EJpr94_uCHoJyQd2uQyZ35xXixPPMHPVGXciZn+GftUUjnA@mail.gmail.com>
+Subject: Re: [PATCH v19 2/9] usb: dwc3: core: Access XHCI address space
+ temporarily to read port info
+To: Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Johan Hovold <johan@kernel.org>, 
+	Krishna Kurapati <quic_kriskura@quicinc.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, quic_ppratap@quicinc.com, 
+	quic_jackp@quicinc.com, Johan Hovold <johan+linaro@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Configure both CSI2 assigned-clock-rates the same way.
-There does not seem to be any reason for keeping the
-two CSI2 pixel clock set to different frequencies.
+On Fri, 5 Apr 2024 at 22:27, Bjorn Andersson <quic_bjorande@quicinc.com> wrote:
+>
+> On Fri, Apr 05, 2024 at 06:43:56AM +0200, Greg Kroah-Hartman wrote:
+> > On Thu, Apr 04, 2024 at 06:25:48PM -0700, Bjorn Andersson wrote:
+> > > On Thu, Apr 04, 2024 at 02:58:29PM +0200, Greg Kroah-Hartman wrote:
+> > > > On Thu, Apr 04, 2024 at 10:07:27AM +0200, Krzysztof Kozlowski wrote:
+> > > > > On 04/04/2024 09:21, Johan Hovold wrote:
+> > > > > > On Thu, Apr 04, 2024 at 10:42:22AM +0530, Krishna Kurapati wrote:
+> > > > > >
+> > > > > >> +static int dwc3_get_num_ports(struct dwc3 *dwc)
+> > > > > >> +{
+> > > > > >> +    void __iomem *base;
+> > > > > >> +    u8 major_revision;
+> > > > > >> +    u32 offset;
+> > > > > >> +    u32 val;
+> > > > > >> +
+> > > > > >> +    /*
+> > > > > >> +     * Remap xHCI address space to access XHCI ext cap regs since it is
+> > > > > >> +     * needed to get information on number of ports present.
+> > > > > >> +     */
+> > > > > >> +    base = ioremap(dwc->xhci_resources[0].start,
+> > > > > >> +                   resource_size(&dwc->xhci_resources[0]));
+> > > > > >> +    if (!base)
+> > > > > >> +            return PTR_ERR(base);
+> > > > > >
+> > > > > > This is obviously still broken. You need to update the return value as
+> > > > > > well.
+> > > > > >
+> > > > > > Fix in v20.
+> > > > >
+> > > > > If one patchset reaches 20 versions, I think it is time to stop and
+> > > > > really think from the beginning, why issues keep appearing and reviewers
+> > > > > are still not happy.
+> > > > >
+> > > > > Maybe you did not perform extensive internal review, which you are
+> > > > > encouraged to by your own internal policies, AFAIR. Before posting next
+> > > > > version, please really get some internal review first.
+> > > >
+> > > > Also get those internal reviewers to sign-off on the commits and have
+> > > > that show up when you post them next.  That way they are also
+> > > > responsible for this patchset, it's not fair that they are making you do
+> > > > all the work here :)
+> > > >
+> > >
+> > > I like this idea and I'm open to us changing our way of handling this.
+> > >
+> > > But unless such internal review brings significant input to the
+> > > development I'd say a s-o-b would take the credit from the actual
+> > > author.
+> >
+> > It does not do that at all.  It provides proof that someone else has
+> > reviewed it and agrees with it.  Think of it as a "path of blame" for
+> > when things go bad (i.e. there is a bug in the submission.)  Putting
+> > your name on it makes you take responsibility if that happens.
+> >
+>
+> Right, this is why I like your idea.
+>
+> But as s-o-b either builds a trail of who handled the patch, or reflects
+> that it was co-authored by multiple people, I don't think either one
+> properly reflects reality.
+>
+> > > We've discussed a few times about carrying Reviewed-by et al from the
+> > > internal reviews, but as maintainer I dislike this because I'd have no
+> > > way to know if a r-b on vN means the patch was reviewed, or if it was
+> > > just "accidentally" carried from v(N-1).
+> > > But it might be worth this risk, is this something you think would be
+> > > appropriate?
+> >
+> > For some companies we REQUIRE this to happen due to low-quality
+> > submissions and waste of reviewer's time.  Based on the track record
+> > here for some of these patchsets, hopefully it doesn't become a
+> > requirement for this company as well :)
+> >
+>
+> Interesting, I was under the impression that we (maintainers) didn't
+> want such internally originating tags.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Paul Elder <paul.elder@ideasonboard.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: imx@lists.linux.dev
-Cc: linux-arm-kernel@lists.infradead.org
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+But why? It just means that the patch has been reviewed. In some rare
+cases we explicitly ask a developer to have all the patches reviewed
+before sending them upstream. In such a case having an R-B tag
+fulfills the expectation of the maintainer: it shows that another
+engineer has reviewed the patch.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 1bb96e96639f2..2e9ce0c3a9815 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -1703,7 +1703,7 @@ mipi_csi_1: csi@32e50000 {
- 						  <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF>;
- 				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>,
- 							 <&clk IMX8MP_CLK_24M>;
--				assigned-clock-rates = <266000000>;
-+				assigned-clock-rates = <500000000>;
- 				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_MIPI_CSI2_2>;
- 				status = "disabled";
- 
+> If that's not the case, then I'd be happy to adjust our internal
+> guidelines.
+
 -- 
-2.43.0
-
+With best wishes
+Dmitry
 
