@@ -1,237 +1,373 @@
-Return-Path: <devicetree+bounces-56515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7B34899797
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 10:16:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C3078997A1
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 10:17:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31A1E1F22588
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 08:16:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AFA1C1C20BB9
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 08:17:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 450FB145B15;
-	Fri,  5 Apr 2024 08:16:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C65E1146A61;
+	Fri,  5 Apr 2024 08:17:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QpsKcGwN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ub7y1Y+p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65B9312E75;
-	Fri,  5 Apr 2024 08:15:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B164146594;
+	Fri,  5 Apr 2024 08:17:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712304961; cv=none; b=Dt08WR8IZVxGEk5YWdoxUzi1jqEYUqN52ITYEmmbFAnSSRMfR3RSIpxXs67Uq91lQyfTaJlZkrleTM1s59qzp1OMHDlAyfAvK0vY9X3ISJ2r6tEWYDBV/dWJyjbvrIOxB/a6vBpBZjJeWJ7VRuqGOzRMursZaXWAIerWOmUqHTc=
+	t=1712305026; cv=none; b=bSoObrM8XwFnPVv6K+rN4b4u4Ez1I0tSqXovhI3ioJzBpXtI7iQUox1K+J4ZQa/6RmUb/Arc75Uu0IduLUhbffWhT/cppqQYwXUiuStZLoFFAsCX9kYr+FYUPk8JDwsjpDTDx2ZXt2Vn6ftP5+6hR2+HVyLCiLtLxAY0J59XxLs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712304961; c=relaxed/simple;
-	bh=FeJ4F3KjI2QKT6igtyOnb7vRqUsgJRaxxf6bqUdDm7Q=;
+	s=arc-20240116; t=1712305026; c=relaxed/simple;
+	bh=kQskCbsP/oHyzSY7rJKANCSHc9bKHugr17JluR87UFk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j19lsfhiP7C2s5a/CihFF/cWD98hH7kYU3S/9l67NCW++6IDBEFi1P+72ll8nGOEo53kgm145xhO+prIhbZRFC/bpuuMnALmxl/hX3nMguvRJFOqxKEXR3ipWw4rtljW403+THOS/ihtRb0wT+ShA4a/WEm1CS3+IE9V8zYSKXo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QpsKcGwN; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4162fe73594so2542835e9.2;
-        Fri, 05 Apr 2024 01:15:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712304958; x=1712909758; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=l0EQOfaQpw4diSaNUla+Yt9ZI58t4pKoAeHS1ES6kHY=;
-        b=QpsKcGwNrnVYfVvpb/yOwC1OiRWqk2wq9DVQ2Ds147KG6l32wlT5oDlodQBtjwpyHG
-         VgLvfULaFu+/Nsskflvt93cKCHWNj2HzzDS39pfWPYFXxHi03LNmjoktCT9cXAtDqdTr
-         bjWz2UmOMv8fam3m6V4UTo9OkWOAjEhzWTyP8DxofZzc9BPMxMWIU1ryciMJnAO53DDm
-         X6MWJa0F4Cs+YsJIjDHRHWES8MwldifP5RxHt/nwkLZMDJGydNJ4fsJD+O7oKg9w+Ml8
-         Vfoy9em1/kOlmh8Qre6y3KyWfzVaeHyenGVMhORWRjPsjqnz1UoxMKwZBdLaeZi4mxNC
-         8X1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712304958; x=1712909758;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=l0EQOfaQpw4diSaNUla+Yt9ZI58t4pKoAeHS1ES6kHY=;
-        b=ONPSVZpVn9xiyUe1h3ZH2arcNuZGBJrxzUGA4sqiA/nvaCYA+Y/euaSrYxN1jUU9+Z
-         mBZJiaSiPuXm9DxfI+WOUzGPUxk4DXkklCPUBGPqICr/gDxSmjYQBcnHvvBhuc4/PEh2
-         3t7VmfLZx4emjaMc8WTSHc3v5PtUc6nfnZex40E5C6rwNFvjdGt4YonBpvJoLoVZNhZx
-         Ey0MDRNfGGVfedoYwsca4ACObQvguvnv1hnsTB/YBSAHjE5QfM2sT+NGiuTCRVIf86ul
-         rRv27rDnIPGeuSVaya06wiHzxivX8HIYy/X39mo4/bkz2fbF4eQYmapPORRQBXYrr7eE
-         pLDA==
-X-Forwarded-Encrypted: i=1; AJvYcCXqwFSYU2zj1wJ/+Qx0W85wjBFDzUeqt63gwAqXC7EWEkjzP2wZSHkGmJsP8Mlu1X6hOXSlGIUAgKvA/nEfPg+YZosFdER0n+3avoEOTQ7KSpSyy6+rSsKPTCmQZBPMfj2YcyHfF4LCJKFP3vI+nc4ZbBZjeDw4+yRkNH/Uo74mcVflPYaw
-X-Gm-Message-State: AOJu0Yxaf4Ow8HzhCOQ6gYbvpqUtUNupHZd85Wwf9jldWQ1rFoNTss/d
-	mvGeO2Z70kkOGUu4RRP6NI62On0xOgXSD74RmBYI1esQkPuQGzAnYzpcvXFQr6w=
-X-Google-Smtp-Source: AGHT+IFJF07eybUNJc74Q+2ul5zRE6d3CbQ2mzRAhDZAWzlZk3TA66G2QcsHDG0GgoZ4BiX6wiGX1Q==
-X-Received: by 2002:a05:600c:5112:b0:413:28ba:1b17 with SMTP id o18-20020a05600c511200b0041328ba1b17mr619272wms.6.1712304957561;
-        Fri, 05 Apr 2024 01:15:57 -0700 (PDT)
-Received: from eichest-laptop ([2a02:168:af72:0:727e:ef62:9d19:ed24])
-        by smtp.gmail.com with ESMTPSA id y10-20020a1c4b0a000000b004162061c704sm5377133wma.29.2024.04.05.01.15.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Apr 2024 01:15:56 -0700 (PDT)
-Date: Fri, 5 Apr 2024 10:15:55 +0200
-From: Stefan Eichenberger <eichest@gmail.com>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: nick@shmanahar.org, robh+dt@kernel.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=OmNYd++i6UTgrdih1P8EQdGqVJN9mDLetgWFu3rHriVitdj/Kg+JPgjtrDa+q9zlsOqxO8EGpoc/agB6aBpych3NK6wD+OnSFGAdmZ9oTWh+HEJF6LgTDrtmB9AEhCDTet8AZQDgdqEPZvUf/FNz+LSpCZ6ZGyXBO8nz/T0KW3o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ub7y1Y+p; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 969E6C433C7;
+	Fri,  5 Apr 2024 08:17:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712305026;
+	bh=kQskCbsP/oHyzSY7rJKANCSHc9bKHugr17JluR87UFk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ub7y1Y+pKR34NbpbDK0iWxgLxKbpoEJZ99OJQUGG2uZcj4IlZ8qorHVAsmnIsIs2S
+	 /1KwB89JC5q38tBlzq014CwLylluTFvowAjoRZdxFjzd+SE/eqo2kiF9lmDVKOPtOD
+	 2tDNXJ7oBvZ6vn4Mh5k79LVdQo8ERwpTeTLVqUFf7A/dhUb+rF14M5wThwSv5sNe4B
+	 t1wTs1wzckuSdvwt/5rRJcvjCfGU4hYBHEmz8DZVBrHWVFEBt5WZQAbaHTg/QmJU+Q
+	 rO1mlgn7h/fBT5QoEnqweQNbq+AE/XR/8qN7isUA3FPvSTljqC6fke3i/sL2aPV7EW
+	 JlVMD3lc/eI3w==
+Date: Fri, 5 Apr 2024 10:17:02 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-clk@vger.kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+	linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-	claudiu.beznea@tuxon.dev, linus.walleij@linaro.org,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	francesco.dolcini@toradex.com,
-	Stefan Eichenberger <stefan.eichenberger@toradex.com>
-Subject: Re: [PATCH RESEND v3 2/2] Input: atmel_mxt_ts - support poweroff in
- suspend
-Message-ID: <Zg+zO+5MIMYNo3AH@eichest-laptop>
-References: <20240209105012.22470-1-eichest@gmail.com>
- <20240209105012.22470-3-eichest@gmail.com>
- <ZfSYp6aV6bRhlPUJ@google.com>
+	nbd@nbd.name, john@phrozen.org, devicetree@vger.kernel.org,
+	dd@embedd.com, catalin.marinas@arm.com, will@kernel.org,
+	upstream@airoha.com, lorenzo.bianconi83@gmail.com
+Subject: Re: [PATCH 4/4] clk: en7523: add EN7581 support
+Message-ID: <Zg-zfiCTIS5zij2w@lore-desk>
+References: <cover.1712160869.git.lorenzo@kernel.org>
+ <3aaf638b846ecfdbfc1c903206b7d519d56c9130.1712160869.git.lorenzo@kernel.org>
+ <0297a8ab-2f62-4f03-b2ed-87180a47c57c@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="1WYQnZ6cJ3WK870d"
+Content-Disposition: inline
+In-Reply-To: <0297a8ab-2f62-4f03-b2ed-87180a47c57c@collabora.com>
+
+
+--1WYQnZ6cJ3WK870d
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZfSYp6aV6bRhlPUJ@google.com>
+Content-Transfer-Encoding: quoted-printable
 
-Hi Dmitry,
+> Il 03/04/24 18:20, Lorenzo Bianconi ha scritto:
+> > Introduce EN7581 clock support to clk-en7523 driver.
+> >=20
+> > Tested-by: Zhengping Zhang <zhengping.zhang@airoha.com>
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >   drivers/clk/clk-en7523.c | 130 +++++++++++++++++++++++++++++++++++++--
+> >   1 file changed, 125 insertions(+), 5 deletions(-)
+> >=20
+> > diff --git a/drivers/clk/clk-en7523.c b/drivers/clk/clk-en7523.c
+> > index c7def87b74c6..51a6c0cc7f58 100644
+> > --- a/drivers/clk/clk-en7523.c
+> > +++ b/drivers/clk/clk-en7523.c
+> > @@ -4,13 +4,16 @@
+> >   #include <linux/clk-provider.h>
+> >   #include <linux/io.h>
+> >   #include <linux/of.h>
+> > +#include <linux/of_device.h>
+> >   #include <linux/platform_device.h>
+> >   #include <dt-bindings/clock/en7523-clk.h>
+> >   #define REG_PCI_CONTROL			0x88
+> >   #define   REG_PCI_CONTROL_PERSTOUT	BIT(29)
+> >   #define   REG_PCI_CONTROL_PERSTOUT1	BIT(26)
+> > +#define   REG_PCI_CONTROL_REFCLK_EN0	BIT(23)
+> >   #define   REG_PCI_CONTROL_REFCLK_EN1	BIT(22)
+> > +#define   REG_PCI_CONTROL_PERSTOUT2	BIT(16)
+> >   #define REG_GSW_CLK_DIV_SEL		0x1b4
+> >   #define REG_EMI_CLK_DIV_SEL		0x1b8
+> >   #define REG_BUS_CLK_DIV_SEL		0x1bc
+> > @@ -18,10 +21,25 @@
+> >   #define REG_SPI_CLK_FREQ_SEL		0x1c8
+> >   #define REG_NPU_CLK_DIV_SEL		0x1fc
+> >   #define REG_CRYPTO_CLKSRC		0x200
+> > -#define REG_RESET_CONTROL		0x834
+> > +#define REG_RESET_CONTROL2		0x830
+>=20
+> Wait what? The RESET2 register comes before RESET1 ?!?!
+>=20
+> Is this a typo? :-)
 
-Thanks for the feedback, I had a first look at the changes and I'm not
-sure if we would break some use cases. Therfore, here some questions.
+actually not :)
 
-On Fri, Mar 15, 2024 at 11:51:19AM -0700, Dmitry Torokhov wrote:
-> > diff --git a/drivers/input/touchscreen/atmel_mxt_ts.c b/drivers/input/touchscreen/atmel_mxt_ts.c
-> > index 542a31448c8f..2d5655385702 100644
-> > --- a/drivers/input/touchscreen/atmel_mxt_ts.c
-> > +++ b/drivers/input/touchscreen/atmel_mxt_ts.c
-> > @@ -317,6 +317,7 @@ struct mxt_data {
-> >  	struct gpio_desc *reset_gpio;
-> >  	struct gpio_desc *wake_gpio;
-> >  	bool use_retrigen_workaround;
-> > +	bool poweroff_sleep;
-> >  
-> >  	/* Cached parameters from object table */
-> >  	u16 T5_address;
-> > @@ -2799,15 +2800,18 @@ static int mxt_configure_objects(struct mxt_data *data,
-> >  			dev_warn(dev, "Error %d updating config\n", error);
-> >  	}
-> >  
-> > -	if (data->multitouch) {
-> > -		error = mxt_initialize_input_device(data);
-> > -		if (error)
-> > -			return error;
-> > -	} else {
-> > -		dev_warn(dev, "No touch object detected\n");
-> > -	}
-> > +	/* If input device is not already registered */
-> > +	if (!data->input_dev) {
-> > +		if (data->multitouch) {
-> > +			error = mxt_initialize_input_device(data);
-> > +			if (error)
-> > +				return error;
-> > +		} else {
-> > +			dev_warn(dev, "No touch object detected\n");
-> > +		}
-> >  
-> > -	mxt_debug_init(data);
-> > +		mxt_debug_init(data);
-> > +	}
-> >  
-> >  	return 0;
-> >  }
-> > @@ -3325,6 +3329,8 @@ static int mxt_probe(struct i2c_client *client)
-> >  		msleep(MXT_RESET_INVALID_CHG);
-> >  	}
-> >  
-> > +	data->poweroff_sleep = device_property_read_bool(&client->dev,
-> > +							 "atmel,poweroff-sleep");
-> >  	/*
-> >  	 * Controllers like mXT1386 have a dedicated WAKE line that could be
-> >  	 * connected to a GPIO or to I2C SCL pin, or permanently asserted low.
-> > @@ -3387,12 +3393,21 @@ static int mxt_suspend(struct device *dev)
-> >  	if (!input_dev)
-> >  		return 0;
-> >  
-> > -	mutex_lock(&input_dev->mutex);
-> > +	if (!device_may_wakeup(dev) && data->poweroff_sleep) {
-> > +		if (data->reset_gpio)
-> > +			gpiod_set_value(data->reset_gpio, 1);
-> >  
-> > -	if (input_device_enabled(input_dev))
-> > -		mxt_stop(data);
-> > +		regulator_bulk_disable(ARRAY_SIZE(data->regulators),
-> > +				data->regulators);
-> > +		data->T44_address = 0;
-> > +	} else {
-> > +		mutex_lock(&input_dev->mutex);
+>=20
+> > +#define   REG_RESET2_CONTROL_PCIE2	BIT(27)
+> > +#define REG_RESET_CONTROL1		0x834
+> >   #define   REG_RESET_CONTROL_PCIEHB	BIT(29)
+> >   #define   REG_RESET_CONTROL_PCIE1	BIT(27)
+> >   #define   REG_RESET_CONTROL_PCIE2	BIT(26)
+> > +/* EN7581 */
+> > +#define REG_PCIE0_MEM			0x00
+> > +#define REG_PCIE0_MEM_MASK		0x04
+> > +#define REG_PCIE1_MEM			0x08
+> > +#define REG_PCIE1_MEM_MASK		0x0c
+> > +#define REG_PCIE2_MEM			0x10
+> > +#define REG_PCIE2_MEM_MASK		0x14
+> > +#define REG_PCIE_RESET_OPEN_DRAIN	0x018c
+> > +#define REG_PCIE_RESET_OPEN_DRAIN_MASK	GENMASK(2, 0)
+> > +#define REG_NP_SCU_PCIC			0x88
+> > +#define REG_NP_SCU_SSTR			0x9c
+> > +#define REG_PCIE_XSI0_SEL_MASK		GENMASK(14, 13)
+> > +#define REG_PCIE_XSI1_SEL_MASK		GENMASK(12, 11)
+> >   struct en_clk_desc {
+> >   	int id;
+> > @@ -207,14 +225,14 @@ static int en7523_pci_prepare(struct clk_hw *hw)
+> >   	usleep_range(1000, 2000);
+> >   	/* Reset to default */
+> > -	val =3D readl(np_base + REG_RESET_CONTROL);
+> > +	val =3D readl(np_base + REG_RESET_CONTROL1);
+> >   	mask =3D REG_RESET_CONTROL_PCIE1 | REG_RESET_CONTROL_PCIE2 |
+> >   	       REG_RESET_CONTROL_PCIEHB;
+> > -	writel(val & ~mask, np_base + REG_RESET_CONTROL);
+> > +	writel(val & ~mask, np_base + REG_RESET_CONTROL1);
+> >   	usleep_range(1000, 2000);
+> > -	writel(val | mask, np_base + REG_RESET_CONTROL);
+> > +	writel(val | mask, np_base + REG_RESET_CONTROL1);
+> >   	msleep(100);
+> > -	writel(val & ~mask, np_base + REG_RESET_CONTROL);
+> > +	writel(val & ~mask, np_base + REG_RESET_CONTROL1);
+> >   	usleep_range(5000, 10000);
+> >   	/* Release device */
+> > @@ -262,6 +280,64 @@ static struct clk_hw *en7523_register_pcie_clk(str=
+uct device *dev,
+> >   	return &cg->hw;
+> >   }
+> > +static int en7581_pci_is_enabled(struct clk_hw *hw)
+> > +{
+> > +	struct en_clk_gate *cg =3D container_of(hw, struct en_clk_gate, hw);
+> > +	u32 val, mask;
 > > +
-> > +		if (input_device_enabled(input_dev))
-> > +			mxt_stop(data);
-> >  
-> > -	mutex_unlock(&input_dev->mutex);
-> > +		mutex_unlock(&input_dev->mutex);
+> > +	mask =3D REG_PCI_CONTROL_REFCLK_EN0 | REG_PCI_CONTROL_REFCLK_EN1;
+> > +	val =3D readl(cg->base + REG_PCI_CONTROL);
+> > +	return (val & mask) =3D=3D mask;
+> > +}
+> > +
+> > +static int en7581_pci_prepare(struct clk_hw *hw)
+> > +{
+> > +	struct en_clk_gate *cg =3D container_of(hw, struct en_clk_gate, hw);
+> > +	void __iomem *np_base =3D cg->base;
+> > +	u32 val, mask;
+> > +
+> > +	mask =3D REG_RESET_CONTROL_PCIE1 | REG_RESET_CONTROL_PCIE2 |
+> > +	       REG_RESET_CONTROL_PCIEHB;
+> > +	val =3D readl(np_base + REG_RESET_CONTROL1);
+> > +	writel(val & ~mask, np_base + REG_RESET_CONTROL1);
+> > +	val =3D readl(np_base + REG_RESET_CONTROL2);
+> > +	writel(val & ~REG_RESET2_CONTROL_PCIE2, np_base + REG_RESET_CONTROL2);
+> > +	usleep_range(5000, 10000);
+> > +
+> > +	mask =3D REG_PCI_CONTROL_REFCLK_EN0 | REG_PCI_CONTROL_REFCLK_EN1 |
+> > +	       REG_PCI_CONTROL_PERSTOUT1 | REG_PCI_CONTROL_PERSTOUT2 |
+> > +	       REG_PCI_CONTROL_PERSTOUT;
+>=20
+> I'm not sure that this is actually something to control in a clock driver=
+=2E..
+>=20
+> the right thing to do would be to add a reset controller to this clock dr=
+iver
+> and then assert/deassert reset in the PCIe PHY/MAC driver.
+>=20
+> Perhaps REFCLK_EN0/EN1 can be manipulated in a .enable() callback, treati=
+ng
+> this really just as what it appears to really be: a gate clock! (hint: ch=
+eck
+> clk-gate.c)
+
+ack, I will look into it.
+
+>=20
+> > +	val =3D readl(np_base + REG_PCI_CONTROL);
+> > +	writel(val | mask, np_base + REG_PCI_CONTROL);
+> > +	msleep(250);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static void en7581_pci_unprepare(struct clk_hw *hw)
+> > +{
+> > +	struct en_clk_gate *cg =3D container_of(hw, struct en_clk_gate, hw);
+> > +	void __iomem *np_base =3D cg->base;
+> > +	u32 val, mask;
+> > +
+> > +	mask =3D REG_PCI_CONTROL_REFCLK_EN0 | REG_PCI_CONTROL_REFCLK_EN1 |
+>=20
+> ...and this should be a clk-gate .disable() callback, I guess :-)
+
+ack, I will look into it.
+
+>=20
+> > +	       REG_PCI_CONTROL_PERSTOUT1 | REG_PCI_CONTROL_PERSTOUT2 |
+> > +	       REG_PCI_CONTROL_PERSTOUT;
+> > +	val =3D readl(np_base + REG_PCI_CONTROL);
+> > +	writel(val & ~mask, np_base + REG_PCI_CONTROL);
+> > +	usleep_range(1000, 2000);
+> > +
+> > +	mask =3D REG_RESET_CONTROL_PCIE1 | REG_RESET_CONTROL_PCIE2 |
+> > +	       REG_RESET_CONTROL_PCIEHB;
+> > +	val =3D readl(np_base + REG_RESET_CONTROL1);
+> > +	writel(val | mask, np_base + REG_RESET_CONTROL1);
+> > +	mask =3D REG_RESET_CONTROL_PCIE1 | REG_RESET_CONTROL_PCIE2;
+> > +	writel(val | mask, np_base + REG_RESET_CONTROL1);
+> > +	val =3D readl(np_base + REG_RESET_CONTROL2);
+> > +	writel(val | REG_RESET_CONTROL_PCIE2, np_base + REG_RESET_CONTROL2);
+> > +	msleep(100);
+> > +}
+> > +
+> >   static void en7523_register_clocks(struct device *dev, struct clk_hw_=
+onecell_data *clk_data,
+> >   				   void __iomem *base, void __iomem *np_base)
+> >   {
+> > @@ -291,6 +367,37 @@ static void en7523_register_clocks(struct device *=
+dev, struct clk_hw_onecell_dat
+> >   	clk_data->num =3D EN7523_NUM_CLOCKS;
+> >   }
+> > +static int en7581_clk_hw_init(struct platform_device *pdev,
+> > +			      void __iomem *base,
+> > +			      void __iomem *np_base)
+> > +{
+> > +	void __iomem *pb_base;
+> > +	u32 val;
+> > +
+> > +	pb_base =3D devm_platform_ioremap_resource(pdev, 2);
+> > +	if (IS_ERR(pb_base))
+> > +		return PTR_ERR(pb_base);
+> > +
+> > +	val =3D readl(np_base + REG_NP_SCU_SSTR);
+> > +	val &=3D ~(REG_PCIE_XSI0_SEL_MASK | REG_PCIE_XSI1_SEL_MASK);
+> > +	writel(val, np_base + REG_NP_SCU_SSTR);
+> > +	val =3D readl(np_base + REG_NP_SCU_PCIC);
+> > +	writel(val | 3, np_base + REG_NP_SCU_PCIC);
+>=20
+> What is 3?
+>=20
+> #define SOMETHING 3 ??
+
+actullay I do not know what it means since write in the pcie_ctrl subfield =
+of
+REG_NP_SCU_PCIC but it is a GENMASK(7, 0) and I do not have any more info
+about it.
+
+>=20
+> > +
+> > +	writel(0x20000000, pb_base + REG_PCIE0_MEM);
+> > +	writel(0xfc000000, pb_base + REG_PCIE0_MEM_MASK);
+> > +	writel(0x24000000, pb_base + REG_PCIE1_MEM);
+> > +	writel(0xfc000000, pb_base + REG_PCIE1_MEM_MASK);
+> > +	writel(0x28000000, pb_base + REG_PCIE2_MEM);
+> > +	writel(0xfc000000, pb_base + REG_PCIE2_MEM_MASK);
+>=20
+> And... this is .. some BIT() and some GENMASK() as far as I understand...
+> do we have any clue about what you're setting to those registers?
+
+same as above, they seems undocumented.
+@airoha folks: any input about them?
+
+>=20
+> Can MediaTek/Airoha help with this, please?
+>=20
+> #define SOMETHING BIT(29) /* this is 0x20000000 */
+> #define SOME_MASK GENMASK(31, 26) /* this is 0xfc00000 */
+>=20
+> > +
+> > +	val =3D readl(base + REG_PCIE_RESET_OPEN_DRAIN);
+> > +	writel(val | REG_PCIE_RESET_OPEN_DRAIN_MASK,
+> > +	       base + REG_PCIE_RESET_OPEN_DRAIN);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> >   static int en7523_clk_probe(struct platform_device *pdev)
+> >   {
+> >   	struct device_node *node =3D pdev->dev.of_node;
+> > @@ -306,6 +413,12 @@ static int en7523_clk_probe(struct platform_device=
+ *pdev)
+> >   	if (IS_ERR(np_base))
+> >   		return PTR_ERR(np_base);
+> > +	if (of_device_is_compatible(node, "airoha,en7581-scu")) {
+> > +		r =3D en7581_clk_hw_init(pdev, base, np_base);
+> > +		if (r)
+> > +			return r;
 > > +	}
-> 
-> This all should go into mxt_stop(), so that if device is closed, or
-> inhibited, you power it down as well (if you can).
+> > +
+> >   	clk_data =3D devm_kzalloc(&pdev->dev,
+> >   				struct_size(clk_data, hws, EN7523_NUM_CLOCKS),
+> >   				GFP_KERNEL);
+> > @@ -329,8 +442,15 @@ static const struct clk_ops en7523_pcie_ops =3D {
+> >   	.unprepare =3D en7523_pci_unprepare,
+> >   };
+>=20
+> static const struct clk_en7523_pdata en7581_pdata =3D {
+> 	.init =3D en7581_clk_hw_init, /* if (pdata->init) pdata->init(x, y, z) */
+> 	.ops =3D en7581_pcie_ops,
+> };
+>=20
+> or, alternatively:
+>=20
+> static const struct .... =3D {
+> 	.init =3D ...,
+> 	.ops =3D (const struct clk_ops) {
+> 		.is_enabled =3D en7581_pci_is_enabled,
+> 		.... etc
+> 	}
 
-We would then have to power it up during probe to see if the device is
-threre, read the configuration and power it down again afterwards until
-the device is opened. If the device is in bootloader mode we would most
-likely have to keep the power on all the time and never turn it off,
-right?
-
-> 
-> >  
-> >  	disable_irq(data->irq);
-> >  
-> > @@ -3408,14 +3423,37 @@ static int mxt_resume(struct device *dev)
-> >  	if (!input_dev)
-> >  		return 0;
-> >  
-> > -	enable_irq(data->irq);
-> > +	if (!device_may_wakeup(dev) && data->poweroff_sleep) {
-> > +		int ret;
-> >  
-> > -	mutex_lock(&input_dev->mutex);
-> > +		ret = regulator_bulk_enable(ARRAY_SIZE(data->regulators),
-> > +				data->regulators);
-> > +		if (ret) {
-> > +			dev_err(dev, "failed to enable regulators: %d\n",
-> > +					ret);
-> > +			return ret;
-> > +		}
-> > +		msleep(MXT_BACKUP_TIME);
-> >  
-> > -	if (input_device_enabled(input_dev))
-> > -		mxt_start(data);
-> > +		if (data->reset_gpio) {
-> > +			/* Wait a while and then de-assert the RESET GPIO line */
-> > +			msleep(MXT_RESET_GPIO_TIME);
-> > +			gpiod_set_value(data->reset_gpio, 0);
-> > +			msleep(MXT_RESET_INVALID_CHG);
-> > +		}
-> >  
-> > -	mutex_unlock(&input_dev->mutex);
-> > +		/* This also enables the irq again */
-> > +		mxt_initialize(data);
-> 
-> And this needs to go into mxt_start(). Also, we should make sure that
-> once resume operation completes the device is fully operational. That
-> means you should not request the firmware asynchronously in
-> mxt_initialize() in case you are in the resume path. I think you should
-> also unwind mxt_initialize() and mxt_configure_objects() to make it
-> clear what is the part of initial initialization and what is part of
-> re-initializing during resume. The configuration that is exposed to
-> userspace (resolution, number of objects, other properties) should stay
-> the same, the configuration of the chip itself (power mode, etc) should
-> be restored.
-
-Here we would most likely have to load the firmware (configuration)
-synchronously all the time if the poweroff_sleep flag is set. Ths makes
-sure that the device is ready when we open the device. Would this delay
-be acceptable when opening the input device? Normally the configuration
-is not that big and should load quite fast. 
+ack, I will fix it.
 
 Regards,
-Stefan
+Lorenzo
+
+> };
+>=20
+> Cheers,
+> Angelo
+>=20
+> > +static const struct clk_ops en7581_pcie_ops =3D {
+> > +	.is_enabled =3D en7581_pci_is_enabled,
+> > +	.prepare =3D en7581_pci_prepare,
+> > +	.unprepare =3D en7581_pci_unprepare,
+> > +};
+> > +
+> >   static const struct of_device_id of_match_clk_en7523[] =3D {
+> >   	{ .compatible =3D "airoha,en7523-scu", .data =3D &en7523_pcie_ops },
+> > +	{ .compatible =3D "airoha,en7581-scu", .data =3D &en7581_pcie_ops },
+> >   	{ /* sentinel */ }
+> >   };
+>=20
+> -
+
+--1WYQnZ6cJ3WK870d
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZg+zfgAKCRA6cBh0uS2t
+rEeeAQCU1mJguiAAnl9h/mLdiepwXe+MApNVgH7ZMSH0lyr7lAEAnOZc1GK3p5Zs
+sdp+Zn+7Su6SW2P4NaCCwwro4/yGTQQ=
+=4hwU
+-----END PGP SIGNATURE-----
+
+--1WYQnZ6cJ3WK870d--
 
