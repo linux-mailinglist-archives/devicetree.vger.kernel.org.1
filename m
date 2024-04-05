@@ -1,48 +1,76 @@
-Return-Path: <devicetree+bounces-56512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56513-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C84889977F
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 10:04:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C42A7899786
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 10:08:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C37721F217DF
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 08:04:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E6D421C216B1
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 08:08:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60B0E144D37;
-	Fri,  5 Apr 2024 08:04:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28368145B30;
+	Fri,  5 Apr 2024 08:08:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A4U22bbT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TYuLAWGP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 365E0144D24;
-	Fri,  5 Apr 2024 08:04:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24EC31465B9
+	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 08:08:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712304291; cv=none; b=J06fxz85HqcnGLN0uTM6KA2IRR/VXq+ENEy30oAonl8k9tbWWA9ipSfAOsykMPFrrcDXii1rBbo0GKkGVnVNjGa6I9ShRO5DIYdd6e3TTf2vX9rGdJdP2gMGXBwyHhVO1j2/4sFJ/F0fkE4s9VsorfA40SaNi0Lhj7LyJTSYVUQ=
+	t=1712304520; cv=none; b=RRu2Z9YnS+7v/DgX2VV0+KfZWyDuqs/qmYFROQC6SwPeA+RT5Yj7T3oPhDqKyopvXsr7AYwqBN1Bo7yRGiGnT8EQhOM/Vy26WUtZDcNwQl91VXXu/iVd/loyssnMEpx5BHq8mdVinZYYwY+NkuGUmuigeBCtMvte7aum9pggmrk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712304291; c=relaxed/simple;
-	bh=c0LkwmvSHMlRpLdHO0hREWTP589I0lIinpLEAKQxt0E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SPrqyZvpooaKrt4WqRZSAXDheYc24Dgd2H/HkxyEGHMFeLbLz9NpsahGu5p9tyk11aV0m7wQ2EFi5bkChZM7kU7jJG4GmOK3hi1uzfFWKkI9GooZvAXZb0oeF/WJnfMVBGL6RXYL9XpCDZFsguexJMGhl8v9YEbGP0WI8bYxsB0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A4U22bbT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08F37C433C7;
-	Fri,  5 Apr 2024 08:04:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712304290;
-	bh=c0LkwmvSHMlRpLdHO0hREWTP589I0lIinpLEAKQxt0E=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=A4U22bbTg3WVNLU/BRer47MTlfnCmpFviRskEIvVSrwNgP28WvtRyj+r8DuHydbf/
-	 NoxKqChaUOEIxON2Z1UTrTIZyPyFWx+CptFNa0VVHYI24cBD4/qlxx6hQcsoD5Ma+M
-	 bl73oUAFGKyWiFVtgTiuqT14ebCsw1aHw2qWIQCNXUlawpVW0OfyKGlQx2rhGWu5ce
-	 V5w5iWs383eobmbidmdYvr4l0I7vQBlDXkP3XkkDuZ5xZ6+omww9zXWS4TW1d5WVQZ
-	 1JVXu9G1sVH5kNxUAlqtcJq5VlLYIdXmpRWOvy1kgy0mO+MMU3sXW2jd4i4jAtWh0t
-	 YSaKSslQoO1Ng==
-Message-ID: <5741de00-11a0-4163-bfc2-a22c1995c96d@kernel.org>
-Date: Fri, 5 Apr 2024 10:04:44 +0200
+	s=arc-20240116; t=1712304520; c=relaxed/simple;
+	bh=v6ReN99EPdn52A1Mu2sFb0paXotsi9hGQlYQmsTFwOQ=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=uor6hPsRtLfF1IBYIB4YsqSh1qEAQowf0jaSaVswOkhLayUQfqKzh8LR21tq8WUG0OjYqnmSfo9DheoHL/X7pSlsjWIzG4NR+eEMYXARIGKuI0GLeVBXy2JHHzjDAtFi4hF+M1QOns/M+5WgSZJnaGqev3IJQ3J0gqtxmcxRej8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TYuLAWGP; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-343bccc0b2cso1182658f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 05 Apr 2024 01:08:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712304516; x=1712909316; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XKD8BaAHAssKw+PUHd2Z4z8cWKgnf5llahvQD+6ai2Q=;
+        b=TYuLAWGPaFmt5w955qWHFFsbPaXHneBl69JC+wdoASyopNvJHVyMXhxTCsBvrPXNbY
+         j5BuWsaKvIzFKdKhZsukY5ezYLWC6kaFgZ1e1dtJNVfAH3+6Zy/LG6wH/AgS1flmg2rd
+         LBgiKiHbbK/kRD9y79hjm2/+TO9yR9tsQ5aXfj7uIEtcMwgaMdbB2Eha+233SPwAgSPp
+         2LS8lISspFFTWU5YzPI2CurATmVHm9orckVfiK6IuLl/Lg2mNXuNyNttNBYkRmLUFlbc
+         rVA2JTn/zVSUJghT9CPUOmeaU4Ysgz5vhudESe4al8dq9Ip2b1ExO4x3FYmnme5BGnUr
+         ZNQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712304516; x=1712909316;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=XKD8BaAHAssKw+PUHd2Z4z8cWKgnf5llahvQD+6ai2Q=;
+        b=lm5mWOstha5kyrtApiwDmR2qTHU4tMVnCa4k+1z8HQjv1xin43e36rpTeh5cmdmLpO
+         Op0BR/tPaesaZL2MwbzTQHDWNVpZxxVwpMxCmgD0NDJ8zT0LKjwX3KjtlwOOJCj14LmL
+         L0blW+CX6ovN5x1Lvg++gQ9PUG4bSBmwHslwXp4z5jU9Xg+kVNdDCUZWGPIaETKFJvsw
+         aAzlUWXwCIOqoSXfbpvolOXF63hAL+E6/o1PdDqmGNAZHbU4w9fZGysXE0hZCT1jH83L
+         RSleiHe9sHvZLJb8MG+1U0b6GmxM+O6lY2EUSjLwcFGr5mBSoldd+C75qwPL6UUooYCG
+         TfYA==
+X-Forwarded-Encrypted: i=1; AJvYcCXQOTwcN7C7VrXLNCjLLBCUMMuG35XVmuT+kLzpnatyGo7EN71ISvf5ZbzNR5xRofc9qClEhFaHBY4EKdPskaRZ6Ln/MBLXL700eg==
+X-Gm-Message-State: AOJu0YzrXC8fi5ThpbInuX35r6Bd44cVIhO41i9QbtToRJ0HPeMquv2o
+	DfFWR7hZ565RIFyQ9MQxdEAMrZ6h4VHeHigxA0DDckU8NBxBSFDm+45EMC4KVzk=
+X-Google-Smtp-Source: AGHT+IGCYonXWNW2QXF58efe0CE6cj35ba33hqMvkUS9lVwhwinq1Kc3dShOEWhRIfp6VDSZZFGrLA==
+X-Received: by 2002:a5d:4f0e:0:b0:343:b9e4:9b78 with SMTP id c14-20020a5d4f0e000000b00343b9e49b78mr510527wru.22.1712304516265;
+        Fri, 05 Apr 2024 01:08:36 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:8e64:fc77:aa3a:87a? ([2a01:e0a:982:cbb0:8e64:fc77:aa3a:87a])
+        by smtp.gmail.com with ESMTPSA id p13-20020a5d638d000000b00343ad4bca7dsm1380364wru.85.2024.04.05.01.08.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Apr 2024 01:08:35 -0700 (PDT)
+Message-ID: <963b60e5-6ab7-4d9f-885a-ba744c2b7991@linaro.org>
+Date: Fri, 5 Apr 2024 10:08:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,161 +78,151 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: usb: Document the Microchip USB2514 hub
-To: Fabio Estevam <festevam@gmail.com>, gregkh@linuxfoundation.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- Fabio Estevam <festevam@denx.de>
-References: <20240404164140.662361-1-festevam@gmail.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240404164140.662361-1-festevam@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH RFT 0/7] arm64: qcom: allow up to 4 lanes for the Type-C
+ DisplayPort Altmode
+To: Luca Weiss <luca.weiss@fairphone.com>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Abhinav Kumar
+ <quic_abhinavk@quicinc.com>, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240229-topic-sm8x50-upstream-phy-combo-typec-mux-v1-0-07e24a231840@linaro.org>
+ <CZUHV429NTF7.1GW9TN9NXB4J1@fairphone.com>
+ <7a7aa05f-9ae6-4ca0-a423-224fc78fbd0c@linaro.org>
+ <liah4xvkfattlen7s2zi3vt2bl5pbbxqgig3k5ljqpveoao656@iacnommxkjkt>
+ <236a104c-fc16-4b3d-9a00-e16517c00e3a@linaro.org>
+ <D064242SMIVM.1GUC1I9GE9IGC@fairphone.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <D064242SMIVM.1GUC1I9GE9IGC@fairphone.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 04/04/2024 18:41, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+Hi Luca,
+
+On 29/03/2024 10:02, Luca Weiss wrote:
+> On Tue Mar 26, 2024 at 10:02 PM CET, Konrad Dybcio wrote:
+>> On 16.03.2024 5:01 PM, Bjorn Andersson wrote:
+>>> On Fri, Mar 15, 2024 at 06:35:15PM +0100, Neil Armstrong wrote:
+>>>> On 15/03/2024 18:19, Luca Weiss wrote:
+>>>>> On Thu Feb 29, 2024 at 2:07 PM CET, Neil Armstrong wrote:
+>>>>>> Register a typec mux in order to change the PHY mode on the Type-C
+>>>>>> mux events depending on the mode and the svid when in Altmode setup.
+>>>>>>
+>>>>>> The DisplayPort phy should be left enabled if is still powered on
+>>>>>> by the DRM DisplayPort controller, so bail out until the DisplayPort
+>>>>>> PHY is not powered off.
+>>>>>>
+>>>>>> The Type-C Mode/SVID only changes on plug/unplug, and USB SAFE states
+>>>>>> will be set in between of USB-Only, Combo and DisplayPort Only so
+>>>>>> this will leave enough time to the DRM DisplayPort controller to
+>>>>>> turn of the DisplayPort PHY.
+>>>>>>
+>>>>>> The patchset also includes bindings changes and DT changes.
+>>>>>>
+>>>>>> This has been successfully tested on an SM8550 board, but the
+>>>>>> Thinkpad X13s deserved testing between non-PD USB, non-PD DisplayPort,
+>>>>>> PD USB Hubs and PD Altmode Dongles to make sure the switch works
+>>>>>> as expected.
+>>>>>>
+>>>>>> The DisplayPort 4 lanes setup can be check with:
+>>>>>> $ cat /sys/kernel/debug/dri/ae01000.display-controller/DP-1/dp_debug
+>>>>>> 	name = msm_dp
+>>>>>> 	drm_dp_link
+>>>>>> 		rate = 540000
+>>>>>> 		num_lanes = 4
+>>>>>
+>>>>> Hi Neil,
+>>>>>
+>>>>> I tried this on QCM6490/SC7280 which should also support 4-lane DP but I
+>>>>> haven't had any success so far.
+>>>>>
+>>> [..]
+>>>>> [ 1775.563969] [drm:dp_ctrl_link_train] *ERROR* max v_level reached
+>>>>> [ 1775.564031] [drm:dp_ctrl_link_train] *ERROR* link training #1 failed. ret=-11
+>>>>
+>>>> Interesting #1 means the 4 lanes are not physically connected to the other side,
+>>>> perhaps QCM6490/SC7280 requires a specific way to enable the 4 lanes in the PHY,
+>>>> or some fixups in the init tables.
+>>>>
+>>>
+>>> I tested the same on rb3gen2 (qcs6490) a couple of weeks ago, with the
+>>> same outcome. Looking at the AUX reads, after switching to 4-lane the
+>>> link training is failing on all 4 lanes, in contrast to succeeding only
+>>> on the first 2 if you e.g. forget to mux the other two.
+>>>
+>>> As such, my expectation is that there's something wrong in the QMP PHY
+>>> (or possibly redriver) for this platform.
+>>
+>> Do we have any downstream tag where 4lane dp works? I'm willing to believe
+>> the PHY story..
 > 
-> Document the Microchip USB2514, USB2412, and USB2417 USB hubs.
+> Just tested on Fairphone 5 downstream and 4 lane appears to work there.
+> This is with an USB-C to HDMI adapter that only does HDMI.
+> 
+> FP5:/ # cat /sys/kernel/debug/drm_dp/dp_debug
+>          state=0x20a5
+>          link_rate=270000
+>          num_lanes=4
+>          resolution=2560x1440@60Hz
+>          pclock=241500KHz
+>          bpp=24
+>          test_req=DP_LINK_STATUS_UPDATED
+>          lane_count=4
+>          bw_code=10
+>          v_level=0
+>          p_level=0
+> 
+> Sources are here:
+> https://gerrit-public.fairphone.software/plugins/gitiles/kernel/msm-5.4/+/refs/heads/odm/rc/target/13/fp5
+> And probably more importantly techpack/display:
+> https://gerrit-public.fairphone.software/plugins/gitiles/platform/vendor/opensource/display-drivers/+/refs/heads/odm/rc/target/13/fp5
+> Dts if useful:
+> https://gerrit-public.fairphone.software/plugins/gitiles/kernel/msm-extra/devicetree/+/refs/heads/kernel/13/fp5
 
-There is 2514b already. Why it cannot be there? Is the existing file
-only for I2C interface and here you add on-board-hub approach interface?
+Could you retry with this applied ?
 
-If so, mention it briefly in commit msg (one sentence is enough).
+https://lore.kernel.org/all/20240405000111.1450598-1-swboyd@chromium.org/
 
+Thanks,
+Neil
 
 > 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> ---
->  .../bindings/usb/microchip,usb2514.yaml       | 53 +++++++++++++++++++
->  1 file changed, 53 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/microchip,usb2514.yaml
+> Regards
+> Luca
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml b/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml
-> new file mode 100644
-> index 000000000000..8df7a5adfbe8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/microchip,usb2514.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip USB2514 Hub Controller
-> +
-> +maintainers:
-> +  - Fabio Estevam <festevam@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - usb424,2412
-> +      - usb424,2514
-> +      - usb424,2417
-
-Please keep the list ordered.
-
-> +
-> +  reg: true
-> +
-> +  reset-gpios:
-> +    description: GPIO connected to the RESET_N pin.
-> +
-> +  vdd-supply:
-> +    description: 3.3V power supply.
-> +
-> +  clocks:
-> +    description: External 24MHz clock connected to the CLKIN pin.
-
-maxItems.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: true
-
-No, this must be false.
-
-This does not make really sense. You miss $ref... and when you do not
-have $ref you should use additionalProperties: false. Open existing
-bindings for device of the same class.
-
-
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/imx6qdl-clock.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    usb {
-> +        dr_mode = "host";
-
-Drop property, it's kind of expected/obvious and we want to limit
-chances schema will complain about something unrelated to your device.
-
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        hub@1 {
-> +          compatible = "usb424,2514";
-
-Inconsistent indentation. Use 4 spaces for example indentation.
-
-> +          reg = <1>;
-> +          clocks = <&clks IMX6QDL_CLK_CKO>;
-> +          reset-gpios = <&gpio7 12 GPIO_ACTIVE_LOW>;
-> +          vdd-supply = <&reg_3v3_hub>;
-> +        };
-> +    };
-
-Best regards,
-Krzysztof
+>>
+>> Konrad
+> 
 
 
