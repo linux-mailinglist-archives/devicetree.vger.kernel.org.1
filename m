@@ -1,31 +1,31 @@
-Return-Path: <devicetree+bounces-56775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8926089A66E
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 23:48:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CCE189A653
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 23:47:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA2FB1C20777
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 21:48:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A8DCC1C21950
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 21:47:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2147F1791E7;
-	Fri,  5 Apr 2024 21:47:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 836A8176FBC;
+	Fri,  5 Apr 2024 21:47:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DAB5175579
-	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 21:47:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C0CA175552
+	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 21:47:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712353631; cv=none; b=FVSNV2o/1ERqKbuVJZMTBbCcxyDtE6Rgk9rkWcoEGiRCs6Cnk0s3sGV690lrVZs/biZ9ualXRNNXwzh8u7cGeI/BN94pMHdR1k3GJYAzrYJuyQywAMRHm1nWdPv8EmQELgKjyxrvpweMLhvLjUMBJCj1YQDQ4em70IXDemvL0vE=
+	t=1712353624; cv=none; b=kqX9OBV3x823v0j86wxZAFVBEPY9sAQOZc1Oj/uRwpWvhrOpkTTTCea9ODaRzc8K1WMSrToa64KJ8t2O8VKoDWyQJqNaB2F6cBs10a7rLd8ifm6rw8rkZEaCl8ZTHoAl+BRcmx8dI3wbxEZDCeXWBvtt6GTKVfpR18Fhfu/BkWw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712353631; c=relaxed/simple;
-	bh=sML4yTkaHvLtKgoITIAUmIwRs5N5w/UFVDgdAATlPnQ=;
+	s=arc-20240116; t=1712353624; c=relaxed/simple;
+	bh=tNVm2qnMqxZ5N2xcWEJgM0z3c/Fs9KxblzBupPfgF+c=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MwIo43EU8NBna7DPBL27Izes+B4Q1e9eHzi1ZY3L9xi/jHPHWmEFlhWc81DpNi7SDNa3rdVr83h9yCTzsRptu6ghEeT3Eo5lz7ttUNYSNfAk134JTwzY+GkTnyIdAZ8LjHLZ5MGBPbgsjyP2swiOaqSxnC3duAuQ6grkZAKbUDY=
+	 MIME-Version:Content-Type; b=E1jVHsPcNlAxmVO3x0t6jgUTzSM7hn4exX3dOAKj6wU5Zaxd4Fhrm6K3h5eMPmJ4Omfv/RPOKEngHrZn0q4Un7FfcAMtcivZYT9bJT12HH+HM8fCVyZs3Xy6QuzA4ES1shn5xFuCbRBzPmxvvr4/WzYnjTfsJ+XeNqDS1NnnhpE=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -33,16 +33,16 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <ukl@pengutronix.de>)
-	id 1rsrOY-00035H-BO; Fri, 05 Apr 2024 23:46:46 +0200
+	id 1rsrOY-00037l-MO; Fri, 05 Apr 2024 23:46:46 +0200
 Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <ukl@pengutronix.de>)
-	id 1rsrOX-00Ad40-Tp; Fri, 05 Apr 2024 23:46:45 +0200
+	id 1rsrOY-00Ad44-4P; Fri, 05 Apr 2024 23:46:46 +0200
 Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
 	(envelope-from <ukl@pengutronix.de>)
-	id 1rsrOX-00FZp8-2i;
-	Fri, 05 Apr 2024 23:46:45 +0200
+	id 1rsrOY-00FZpC-0A;
+	Fri, 05 Apr 2024 23:46:46 +0200
 From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -56,9 +56,9 @@ Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Alexander Stein <alexander.stein@ew.tq-group.com>
-Subject: [PATCH v1 11/49] ARM: dts: imx6qdl-apf6dev: Use #pwm-cells = <3> for imx27-pwm devices
-Date: Fri,  5 Apr 2024 23:41:58 +0200
-Message-ID:  <dba52fb96d46b38a4b17d7096275a1ae6f2a3706.1712352665.git.u.kleine-koenig@pengutronix.de>
+Subject: [PATCH v1 12/49] ARM: dts: imx6qdl-aristainetos2: Use #pwm-cells = <3> for imx27-pwm device
+Date: Fri,  5 Apr 2024 23:41:59 +0200
+Message-ID:  <e8b1e259241a7b8b74b4390d96459be6a0cd5b54.1712352665.git.u.kleine-koenig@pengutronix.de>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <cover.1712352665.git.u.kleine-koenig@pengutronix.de>
 References: <cover.1712352665.git.u.kleine-koenig@pengutronix.de>
@@ -69,7 +69,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1292; i=u.kleine-koenig@pengutronix.de; h=from:subject:message-id; bh=sML4yTkaHvLtKgoITIAUmIwRs5N5w/UFVDgdAATlPnQ=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBmEHA4MFvgDjOzeByaZUbQ4OfSClS6FWkvup0ms tdqViPtd5eJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZhBwOAAKCRCPgPtYfRL+ Tm5eB/9V4g4Z1XPufI1V4xPBL0wDLOgq6+8dIQWHRq+jJWqgyPMq7Y2z1LzwDntTGcZREoOHXlS AR16L6f0qH3tLni86zGrhABxkJuHIt7Kb3yhgFFvxIafTGlGFtOa5hG02HE9gi4c2iID0WpqPk/ KWSQLK5hf/fWtWTxXA3KVhMBYWakmUJQ5BIKGF9kwmVFq3QNXQBKKS4b479WThwsKg67FNY/y37 FOrg8RH6x3Ns+vDf3WTGSuYb1YsJ6mB1Mo30RI1N9PSE+in3uxEnVi2uUO97dirLvKLBZBCbFPz uouwTj+1WfAETpVHrJ1QZohnbzP1chkoGEy5pJDweLzHggt4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1354; i=u.kleine-koenig@pengutronix.de; h=from:subject:message-id; bh=tNVm2qnMqxZ5N2xcWEJgM0z3c/Fs9KxblzBupPfgF+c=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBmEHA5GpeP3lgF1CvcNlwwOVW17Q49pkOfUYLGs Xgk2gUOlHSJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZhBwOQAKCRCPgPtYfRL+ Tkq8B/94Id9YXOv5mJR6LDwB5wOMzOjF/gmuRswq/SXQ8onWokH9Tie3ZldxUTpQLNPEF0b5EZC Le55bykFJuSrMg/Bp1iTuYJ04xzkqqofgXZ1ZXvFxdHkbRT1yvgCRV8bjQLS4aMsjKQuzpSqw6e dfhTpYI+QpncZILsAI+6L2fi33WNZB/Vy6Bm01/1cTQPr38D4wUvQzlOt/Dq/orq8G2SGFEUW1T kj7ZQZmVXhBumB+QVTI6BY8Frrj3dHM+SWWo+m3mtZSZkA3Qsn+xX5ZMPxQwXU1O6HAUaHKMJj3 FIFAwY+5kUW/ONK/XrX7kqO87gk2q9iEZGaxZGmPJN+D9tYq
 X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
 Content-Transfer-Encoding: 8bit
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
@@ -81,36 +81,36 @@ The binding dictates using 3 pwm-cells. Adhere to that.
 
 This fixes the following dtbs_check warnings:
 
-	arch/arm/boot/dts/nxp/imx/imx6dl-apf6dev.dtb: pwm@2088000: #pwm-cells:0:0: 3 was expected
+	arch/arm/boot/dts/nxp/imx/imx6dl-aristainetos2_4.dtb: pwm@2080000: #pwm-cells:0:0: 3 was expected
 		from schema : http://devicetree.org/schemas/pwm/imx-pwm.yaml#
-	arch/arm/boot/dts/nxp/imx/imx6q-apf6dev.dtb: pwm@2088000: #pwm-cells:0:0: 3 was expected
+	arch/arm/boot/dts/nxp/imx/imx6dl-aristainetos2_7.dtb: pwm@2080000: #pwm-cells:0:0: 3 was expected
 		from schema : http://devicetree.org/schemas/pwm/imx-pwm.yaml#
 
 Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
 ---
- arch/arm/boot/dts/nxp/imx/imx6qdl-apf6dev.dtsi | 3 +--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-aristainetos2.dtsi | 3 +--
  1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-apf6dev.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-apf6dev.dtsi
-index 338d292553ad..3a46ade3b6bd 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-apf6dev.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-apf6dev.dtsi
-@@ -13,7 +13,7 @@ chosen {
- 
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-aristainetos2.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-aristainetos2.dtsi
+index db1bc511e71f..758eaf9d93d2 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qdl-aristainetos2.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-aristainetos2.dtsi
+@@ -46,7 +46,7 @@
+ / {
  	backlight: backlight {
  		compatible = "pwm-backlight";
--		pwms = <&pwm3 0 191000>;
-+		pwms = <&pwm3 0 191000 0>;
+-		pwms = <&pwm1 0 5000000>;
++		pwms = <&pwm1 0 5000000 0>;
  		brightness-levels = <0 4 8 16 32 64 128 255>;
- 		default-brightness-level = <0>;
- 		power-supply = <&reg_5v>;
-@@ -212,7 +212,6 @@ &pcie {
+ 		default-brightness-level = <7>;
+ 		enable-gpios = <&gpio6 31 GPIO_ACTIVE_HIGH>;
+@@ -346,7 +346,6 @@ &pcie {
  };
  
- &pwm3 {
+ &pwm1 {
 -	#pwm-cells = <2>;
  	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_pwm3>;
+ 	pinctrl-0 = <&pinctrl_pwm1>;
  	status = "okay";
 -- 
 2.43.0
