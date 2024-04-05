@@ -1,165 +1,143 @@
-Return-Path: <devicetree+bounces-56625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6335F899FC6
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 16:31:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D941B899F7A
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 16:24:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 95D7B1C23036
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 14:31:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92FD2283FA8
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 14:24:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1543C16F8E7;
-	Fri,  5 Apr 2024 14:30:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4518016EBEE;
+	Fri,  5 Apr 2024 14:24:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eltXqxIs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from luna.linkmauve.fr (luna.linkmauve.fr [82.65.109.163])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BFB016F859;
-	Fri,  5 Apr 2024 14:30:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=82.65.109.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15CB816EBE4;
+	Fri,  5 Apr 2024 14:24:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712327453; cv=none; b=S+F/FzL3xoEeErcZzhvkKPPuBUKvj6SkrtY4w2S4pmflLvq2vllVj5gw0IfWPlNuBk/L2IRqJjjT9DrkwtuaZEyAJzKLKz+/QqDXRCBHNYbNIrZ30qvCoh7RfQlOWKeToC4Ti/aGHwXx+dnq0VsTDbzx6hzMwDkMglUJpxljyDs=
+	t=1712327091; cv=none; b=B+epClVHGtr6/YZmeDjbkKpbpJU878mw9gg+t3J5KBG2XMVCIOqo/WeKHTnpGFIjHZ71baWrJ9qZD0GZZ9cHeQ4GTfCjLEf8fpUvQg10fITelUzt9Y0XVRWZTi3ffdA2mJuPUonczVVji3jfdx3q3/DUBWAiGMi6mwFC6iIdfG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712327453; c=relaxed/simple;
-	bh=OAIDc5kctipri1hRyW8oc3G7ind5HlKJOPmKLgo/ZtE=;
+	s=arc-20240116; t=1712327091; c=relaxed/simple;
+	bh=9u276kZaHIRoTA4fadL2lfzY0PJaTWAhflWuDXQc7KI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L7YDRKzmZn0eaGWoqRomB68i8KwWjYUQ1g54whtA3rs1FVsNkmbeRf03SCEgG56gdzKPSbKt7LBiplDv0b/Hw2gR9Y9ys1pMRHo3NP7gTKNOsi8yXKlK7C32OinRKaShC8W9kYM7A17j7oq/H0U0jiuCmvRjmsH0s3tQSshwjjE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linkmauve.fr; spf=pass smtp.mailfrom=linkmauve.fr; arc=none smtp.client-ip=82.65.109.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linkmauve.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linkmauve.fr
-Received: by luna.linkmauve.fr (Postfix, from userid 1000)
-	id BA81A106966F; Fri,  5 Apr 2024 16:21:30 +0200 (CEST)
-Date: Fri, 5 Apr 2024 16:21:30 +0200
-From: Link Mauve <linkmauve@linkmauve.fr>
-To: Nicolas Dufresne <nicolas@ndufresne.ca>
-Cc: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
-	linux-kernel@vger.kernel.org,
-	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=mUJxMN+3j3/BbAWaUfeCMTpD/3/nc1qOvz4JrvkYYKiYQU4Bs5Wo2pgh1JBJrWsXo2vzWmQ7zg2uXCrltxOJzgXEtvlB/BsKTjqJA1d3GdNXY2Vdmgr/yCI13BsfV18rmnKMHoYd4rKnZ6JjhBGmzcLSYhtfTxcythVsgxp9eOA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eltXqxIs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A85AAC433C7;
+	Fri,  5 Apr 2024 14:24:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712327090;
+	bh=9u276kZaHIRoTA4fadL2lfzY0PJaTWAhflWuDXQc7KI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eltXqxIseJTpiuRAJ13spAdHEBB1EkmRpmBqdjP6Uehu/d9KdmHKmpaLerp6rcb1b
+	 ytDBJQ9mj8iYPDlAFMU+rbHbI7B2A8Dr21YQV5p+SLT9bq/BLo1HPCnJfXavCO/sUD
+	 6OTWC0kWWTQefiM8pVw61K31PavRnvXPa4a70nAJN7WnIQKT+hl3ylfcO4+L5O9/FT
+	 01vmrmu0p3OPsUPjB0zEVjw7EglL8QZBLzv97TXIquUwe29e9IJw8PdTBlDh7jqG0B
+	 YEj5U8jtyTF0LwOlnHvMtkjYZnV0BpVaMaTgGCz7MrGdazCCg4SuYfSnMLyrUHnzed
+	 boUmhxbFl0yxg==
+Date: Fri, 5 Apr 2024 19:54:46 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Joerg Roedel <joro@8bytes.org>,
-	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Shreeya Patel <shreeya.patel@collabora.com>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-	linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	iommu@lists.linux.dev
-Subject: Re: [PATCH v2 0/2] Enable JPEG encoding on rk3588
-Message-ID: <ZhAI6tQZTD7BTosI@desktop>
-References: <20240327134115.424846-1-linkmauve@linkmauve.fr>
- <bbcb66e9499120a86b367e7abdac2d8e2e704bfb.camel@ndufresne.ca>
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Sandor Yu <Sandor.yu@nxp.com>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux@ew.tq-group.com,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v15 2/8] phy: Add HDMI configuration options
+Message-ID: <ZhAJridEyhUeFVr0@matsya>
+References: <20240306101625.795732-1-alexander.stein@ew.tq-group.com>
+ <20240306101625.795732-3-alexander.stein@ew.tq-group.com>
+ <20240306-inquisitive-funny-bull-017550@houat>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <bbcb66e9499120a86b367e7abdac2d8e2e704bfb.camel@ndufresne.ca>
-Jabber-ID: linkmauve@linkmauve.fr
+In-Reply-To: <20240306-inquisitive-funny-bull-017550@houat>
 
-On Thu, Apr 04, 2024 at 01:41:15PM -0400, Nicolas Dufresne wrote:
-> Hi,
-
-Hi,
-
+On 06-03-24, 15:48, Maxime Ripard wrote:
+> Hi Alexander,
 > 
-> Le mercredi 27 mars 2024 à 14:41 +0100, Emmanuel Gil Peyrot a écrit :
-> > Only the JPEG encoder is available for now, although there are patches
-> > for the undocumented VP8 encoder floating around[0].
-> 
-> [0] seems like a broken link. The VP8 encoder RFC is for RK3399 (and Hantro H1
-> posted by ST more recently). The TRM says "VEPU121(JPEG encoder only)", which
-> suggest that the H.264 and VP8 encoders usually found on the VEPU121 are
-> removed. As Rockchip have remove the synthesize register while modifying the H1
-> IP, it is difficult to verify. Confusingly the H.264 specific registers are
-> documented in the TRM around VEPU121.
-
-Ah, the link became, and was indeed ST’s series:
-https://patchwork.kernel.org/project/linux-rockchip/list/?series=789885&archive=both
-
-But the TRM part 1 says the VEPU121 supports H.264 encoding (page 367),
-and it’s likely they didn’t remove just VP8 support since the codec
-features are pretty close to H.264’s.
-
-> 
+> On Wed, Mar 06, 2024 at 11:16:19AM +0100, Alexander Stein wrote:
+> > From: Sandor Yu <Sandor.yu@nxp.com>
 > > 
-> > This has been tested on a rock-5b, resulting in four /dev/video*
-> > encoders.  The userspace program I’ve been using to test them is
-> > Onix[1], using the jpeg-encoder example, it will pick one of these four
-> > at random (but displays the one it picked):
-> > % ffmpeg -i <input image> -pix_fmt yuvj420p temp.yuv
-> > % jpeg-encoder temp.yuv <width> <height> NV12 <quality> output.jpeg
-> 
-> I don't like that we exposing each identical cores a separate video nodes. I
-> think we should aim for 1 device, and then multi-plex and schedule de cores from
-> inside the Linux kernel.
-
-I agree, but this should be handled in the driver not in the device
-tree, and it can be done later.
-
-> 
-> Not doing this now means we'll never have an optimal hardware usage
-> distribution. Just consider two userspace software wanting to do jpeg encoding.
-> If they both take a guess, they may endup using a single core. Where with proper
-> scheduling in V4L2, the kernel will be able to properly distribute the load. I
-> insist on this, since if we merge you changes it becomes an ABI and we can't
-> change it anymore.
-
-Will it really become ABI just like that?  Userspace should always
-discover the video nodes and their capabilities and not hardcode e.g. a
-specific /dev/videoN file for a specific codec.  I would argue that this
-series would let userspace do JPEG encoding right away, even if in a
-less optimal way than if the driver would round-robin them through a
-single video node, but that can always be added in a future version.
-
-> 
-> I understand that this impose a rework of the mem2mem framework so that we can
-> run multiple jobs, but this will be needed anyway on RK3588, since the rkvdec2,
-> which we don't have a driver yet is also multi-core, but you need to use 2 cores
-> when the resolution is close to 8K.
-
-I think the mediatek JPEG driver already supports that, would it be ok
-to do it the same way?
-
-> 
-> Nicolas
-> 
+> > Allow HDMI PHYs to be configured through the generic
+> > functions through a custom structure added to the generic union.
 > > 
-> > [0] https://patchwork.kernel.org/project/linux-rockchip/list/?series=789885
-> > [1] https://crates.io/crates/onix
+> > The parameters added here are based on HDMI PHY
+> > implementation practices.  The current set of parameters
+> > should cover the potential users.
 > > 
-> > Changes since v1:
-> > - Dropped patches 1 and 4.
-> > - Use the proper compatible form, since this device should be fully
-> >   compatible with the VEPU of rk356x.
-> > - Describe where the VEPU121 name comes from, and list other encoders
-> >   and decoders present in this SoC.
-> > - Properly test the device tree changes, I previously couldn’t since I
-> >   was using a too recent version of python-jsonschema…
+> > Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
+> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > Acked-by: Vinod Koul <vkoul@kernel.org>
+> > ---
+> >  include/linux/phy/phy-hdmi.h | 24 ++++++++++++++++++++++++
+> >  include/linux/phy/phy.h      |  7 ++++++-
+> >  2 files changed, 30 insertions(+), 1 deletion(-)
+> >  create mode 100644 include/linux/phy/phy-hdmi.h
 > > 
-> > Emmanuel Gil Peyrot (2):
-> >   media: dt-binding: media: Document rk3588’s VEPU121
-> >   arm64: dts: rockchip: Add VEPU121 to rk3588
-> > 
-> >  .../bindings/media/rockchip,rk3568-vepu.yaml  |  8 +-
-> >  arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 80 +++++++++++++++++++
-> >  2 files changed, 86 insertions(+), 2 deletions(-)
-> > 
+> > diff --git a/include/linux/phy/phy-hdmi.h b/include/linux/phy/phy-hdmi.h
+> > new file mode 100644
+> > index 0000000000000..b7de88e9090f0
+> > --- /dev/null
+> > +++ b/include/linux/phy/phy-hdmi.h
+> > @@ -0,0 +1,24 @@
+> > +/* SPDX-License-Identifier: GPL-2.0 */
+> > +/*
+> > + * Copyright 2022 NXP
+> > + */
+> > +
+> > +#ifndef __PHY_HDMI_H_
+> > +#define __PHY_HDMI_H_
+> > +
+> > +#include <linux/hdmi.h>
+> > +/**
+> > + * struct phy_configure_opts_hdmi - HDMI configuration set
+> > + * @pixel_clk_rate: Pixel clock of video modes in KHz.
+> > + * @bpc: Maximum bits per color channel.
+> > + * @color_space: Colorspace in enum hdmi_colorspace.
+> > + *
+> > + * This structure is used to represent the configuration state of a HDMI phy.
+> > + */
+> > +struct phy_configure_opts_hdmi {
+> > +	unsigned int pixel_clk_rate;
+> > +	unsigned int bpc;
+> > +	enum hdmi_colorspace color_space;
+> > +};
 > 
+> Does the PHY actually care about the pixel clock rate, color space and
+> formats, or does it only care about the character rate?
+
+Nope it should not
 
 -- 
-Link Mauve
+~Vinod
 
