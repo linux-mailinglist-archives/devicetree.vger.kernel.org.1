@@ -1,115 +1,102 @@
-Return-Path: <devicetree+bounces-56732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3065289A536
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 21:51:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C01989A550
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 21:59:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6CC5283CBE
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 19:51:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C11F1F22DBD
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 19:59:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10083173347;
-	Fri,  5 Apr 2024 19:51:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47AF7171E5C;
+	Fri,  5 Apr 2024 19:59:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g/kq2vIh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YwNIO2CL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A49FA17167F;
-	Fri,  5 Apr 2024 19:50:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0CD85D734
+	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 19:58:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712346661; cv=none; b=EDJyCOgfdDaKMZwwJrVio96OB7Bn0EsKDahqQN2fCrQj/6+pZht0KRcxV8i1u/S0pfZg1L2eZr1xpJYvxDjm63C0/mGCcrYq5LWCyCsOmucNX4vE6wMqcH2RKQesGDARSxipFSElmGmOjRQrex4nDYjKJIAnU9XsRBMm+wnc0DI=
+	t=1712347140; cv=none; b=ufrggT9BjRYY/+oZT5kaIXMVsyUq1U3CzSjRVhYEpxLOd8tESC3riYqIBP4sUsr5GYmvii6/oUd2IO1tK9iSpZY6eoQh6vGsrgt8Bva+zF12DCXqEe6vWSXa7AnIoMm3YZe57/QhxPNEQk4JHdljRSHXB/CR0a3rFKmDFFwbyWg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712346661; c=relaxed/simple;
-	bh=sXc+Xujowt+5AorOt5TyuNImN9/Mwwb2LKUzeqHkFiA=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=WYnYzbS5JQuEEy0a71tQ9bgFrl7Wmq7kpWBBt4JzEbS46nGVzSnesgulNwNRAPad9YxYxz4Nnjsf7QLghfoQw1BtF+tMMUuSSPsnvt2QiZAZRCSQU1VWD+8qwKrtQcetC4RW0n+77xqOVe/P8RzmE1IDhfoEXeI+v9WnE629dlQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g/kq2vIh; arc=none smtp.client-ip=209.85.216.46
+	s=arc-20240116; t=1712347140; c=relaxed/simple;
+	bh=eMavUBPoGgMzEidbHeVGuEntRJnjD/1VXHuLoI4Quis=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=duiioLg8CPCVnC+WCjkclJCo3aR4RnaXK7RLqlteigoPxUJxnBZM5tmg9bYQry35uLxyhAj1I1Y6edjCoHYeXOW1jUxOMcXniTGABLzmgRlDKUjQ0OU+mM2T9C+gp18FcynZHNi3bNT2PwJ9IKDD7KA2XIvVQk9X8LPwv5qfmMY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YwNIO2CL; arc=none smtp.client-ip=209.85.216.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2a2d37b8c4fso510431a91.1;
-        Fri, 05 Apr 2024 12:50:59 -0700 (PDT)
+Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2a2fbbd6cd6so372414a91.1
+        for <devicetree@vger.kernel.org>; Fri, 05 Apr 2024 12:58:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712346659; x=1712951459; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=wu7FXkYKhNByOhKVW18rWhEudbVzX2aW/UZiggMJp20=;
-        b=g/kq2vIhe+wJlA+lj73eecEvHSLnTCpxtEYAQwLxtXSCXGG172R9n0y9+7Ns/+ZNEn
-         YGDq0/T9buspZ7/dOotuZ1xG+Plzm/QbHn8ie4LxKHXHeJ/A6uqeZimOzrBJmbSjSOc/
-         gUTjaK1eL1bim3ylnnjQfLo42sdK+Vxcxci70TxESg8IX7MFZqG0UxXJLP4YxYpx4nn7
-         WuJYwSYKkYXUEoC4LwW8gz2KuM7hmC9vr7Tcr8AeqDzytNCJcCSvvuqWaXEQXQrAUdxA
-         87nCD0PutiENBMIjMwHYuPtFTZU9BECa9MXwPMJ4509EOQH7YcpWXNrVvjA6SO2BkleQ
-         NV6A==
+        d=gmail.com; s=20230601; t=1712347138; x=1712951938; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eMavUBPoGgMzEidbHeVGuEntRJnjD/1VXHuLoI4Quis=;
+        b=YwNIO2CLAz7Qy28zNLpazJsUX5VdjDMVQdV8Z7HofYY0nXQtao6urQRaHAmovBbesY
+         I5zFhkf7bKIx6C2fyHV9CA3isgB2LZ7J5phO3HYEnNI8ksDGvk5AWQYKfb+Rn5MWk2B7
+         6exy+kodH9RkUY3/V/ilrETsI2Y5AQAnKkSONobjwyoGY8t0b5/bc+H2/aVpZF5deiOi
+         UlQV7mqvb0fQ02Y1TLTe0/kKVruRTU7hhdYqDFXgz97BWyziuNEHnVj59T3KQqeVVN6C
+         FUNVKc4bkqFqUMoRIvTuTIgY8MGI0X30rxPiatglpGnCHHDHkt6AZceFB1Z+xmLPsS4L
+         ancw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712346659; x=1712951459;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wu7FXkYKhNByOhKVW18rWhEudbVzX2aW/UZiggMJp20=;
-        b=swVacEPy05mkIFiVH+s8yuxjt5u0cCkw0755NPG+d20yevxX8YouB5ci6IHRybg5Ta
-         h40+0bOK3wGBfSEreL8TO1jidSXBJdJRvSMs8sOAX5+GEK+/ogSnDYsbxmXunT365eA+
-         A6tIIgKSqMoYtnYGIkv48GUwn00WW9qh02M1+rCeEDmm9ON0k9u0c3LgSZb8/2gMIBZO
-         wvMjUs7btq+Hu88vxnCUrMEQRDyU5LSwM6o9LipLvo6UWmp7JQfoa8J4JJVL0oNU8/j+
-         amZq2hS4EBzwQilT+SWdR/8xrek2/wD/25eBAz1Zr8UiGav870ZEaXNwT4RAq3I9igpz
-         KyeA==
-X-Forwarded-Encrypted: i=1; AJvYcCWNCIK8zF1hvP+Al7F5QiKcjAckfqHBdpB7nwZMWUhp7ci4vg6IwGlWpnIeKvFZDIaAOmUMdYcEPXWuiTzA+ydPGczm1LxPwheUsqzAlyqQndhZJLmKh/1rHGWrxw6g1++dQKq4yA==
-X-Gm-Message-State: AOJu0Yy5yc7Gubh/QTwzVjVGddENn/fqUoOEQ5+4IjkdYOaYa0yjJ6mX
-	Hf33ONePKjFSRxO1VYdmTdUePxY+OEzbeMMuqcFYDX2RmFziHtFnD1gvOTlK
-X-Google-Smtp-Source: AGHT+IGhe0VhnqoPmmUpkCRmghPZb1LfBjehS57Yu5iOq+PFfd4hdswGKjprReGmmWLkukGk9HmXbQ==
-X-Received: by 2002:a17:90a:7448:b0:2a2:6757:1de0 with SMTP id o8-20020a17090a744800b002a267571de0mr2327182pjk.4.1712346658840;
-        Fri, 05 Apr 2024 12:50:58 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:1a99:dd72:cf95:e04])
-        by smtp.gmail.com with ESMTPSA id a21-20020a17090abe1500b002a09b929f88sm1879012pjs.9.2024.04.05.12.50.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Apr 2024 12:50:58 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: gregkh@linuxfoundation.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] dt-bindings: usb: hx3: Remove unneeded dr_mode
-Date: Fri,  5 Apr 2024 16:50:51 -0300
-Message-Id: <20240405195051.945474-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20230601; t=1712347138; x=1712951938;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=eMavUBPoGgMzEidbHeVGuEntRJnjD/1VXHuLoI4Quis=;
+        b=PtqAOlT4JEZsVysP7npL5p37vjWrRru47qZUuJAfp5RHfi1Mbc9zIMVfqKA8f3DKnn
+         PQRg2rw65fz3n5dBsRbyUUGJa+/5gbtcYP5M0pxXyRvW55eVKflLhXBaQJGmBrxXMmnk
+         sfs9SGSs62lKsr5jWXqxKDelTpXugXKCFCdWFRdrbMFBHrx9aTGXcOyFmfoGEkJJ+JFM
+         DLhDOsPZlPwsqSR1hL1bVnwcytrans97Kf0um4lxfrRhbEDLLVY279Cmgt1zWnpI5/VQ
+         WzY1gy5j2fJE3B+wTu1rPFmf7MlBYy50Iu1NoVii33deccChBl8LfLXkP/8zUfGH7nf3
+         mCuQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUCJt+t2i9rhbJNIMkcJcxPUTN+0d+7pmUaLP73iHRi9ieddmxvgyVcKhAK9RCa4I0VyeM5Qgb35CsIDXzepV1ZLxdy9YCFhmpPpw==
+X-Gm-Message-State: AOJu0Ywjuekp/APjR3TdqWFzRYtDrBajllwC7jFRbaHXmMgs0i/q+sF+
+	BWA8DbrMgzwq99HEXwkbtUylQTjyxkCaV+ryCJJLptzWSaxdqbXOshOeV4Tru64BcJhO3eOpq1R
+	tMREJ15uuueFrUsDWZRGE1yuRe/0=
+X-Google-Smtp-Source: AGHT+IExRCcCUvvAVLdjIgH27a81zZ2CE6fxq8FE6erCxEzz1qofHN7wHuSD+sNyn9O5YMoamtXU+8Aa/Q3z1zr+ONo=
+X-Received: by 2002:a17:90a:d70e:b0:2a2:ac46:8842 with SMTP id
+ y14-20020a17090ad70e00b002a2ac468842mr2339428pju.3.1712347138325; Fri, 05 Apr
+ 2024 12:58:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240404022943.528293-1-festevam@gmail.com> <714fa88b-2abd-4485-bacf-b8dada683d08@kernel.org>
+In-Reply-To: <714fa88b-2abd-4485-bacf-b8dada683d08@kernel.org>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Fri, 5 Apr 2024 16:58:45 -0300
+Message-ID: <CAOMZO5A7yiYdeOjv6BabDSNKk4Gp=n1qwJP0seFvmjYYgjvhOA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: extcon: ptn5150: Document the 'port' node
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: cw00.choi@samsung.com, myungjoo.ham@samsung.com, robh@kernel.org, 
+	conor+dt@kernel.org, devicetree@vger.kernel.org, marex@denx.de, 
+	Fabio Estevam <festevam@denx.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Fabio Estevam <festevam@denx.de>
+On Fri, Apr 5, 2024 at 6:24=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.org=
+> wrote:
 
-It is expected that the USB controller works in host mode
-to have the USB hub operational.
+> But more important, what about USB C connector?
 
-Remove such unneeded property from the devicetree example.
+In a previous attempt, I tried describing the USB connector:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?=
+h=3Dv6.9-rc2&id=3Da4dca89fe8a1585af73e362f5f4e3189a00abf8e
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- Documentation/devicetree/bindings/usb/cypress,hx3.yaml | 1 -
- 1 file changed, 1 deletion(-)
+This broke the USB support as reported by Marek, so I had to revert it:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?=
+h=3Dv6.9-rc2&id=3Df954785a124e77d4e6bb52cab689a8de447999aa
 
-diff --git a/Documentation/devicetree/bindings/usb/cypress,hx3.yaml b/Documentation/devicetree/bindings/usb/cypress,hx3.yaml
-index 28096619a882..e44e88d993d0 100644
---- a/Documentation/devicetree/bindings/usb/cypress,hx3.yaml
-+++ b/Documentation/devicetree/bindings/usb/cypress,hx3.yaml
-@@ -51,7 +51,6 @@ examples:
-     #include <dt-bindings/gpio/gpio.h>
- 
-     usb {
--        dr_mode = "host";
-         #address-cells = <1>;
-         #size-cells = <0>;
- 
--- 
-2.34.1
-
+Would it be OK if I send a v2 without the USB C connector description
+and address your other comments?
 
