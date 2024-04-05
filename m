@@ -1,216 +1,143 @@
-Return-Path: <devicetree+bounces-56551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56552-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BA55899A93
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 12:19:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D72E899AAE
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 12:26:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 506112824E9
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 10:19:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3730E283808
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 10:26:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5BF7161920;
-	Fri,  5 Apr 2024 10:19:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63D811649D7;
+	Fri,  5 Apr 2024 10:26:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="kMZ3ZPK+"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="p9BH6h0S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8B38161928
-	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 10:19:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80BFA161B53
+	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 10:26:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712312390; cv=none; b=SJSUl67r7H0II+tBm7++z0ZPs0WTeQwrzVLLt7tDDjmWkoUBJolY9XHOHZhdR5vGvkymSXBNygmJMRij3gsWWx2NPl5x4GipHzXTQotGXFQ+g6SNqPF4NhHIghrhSqBH5ZJD91nG/e3XGPy0BalfxlO+CbRj1HC6/a3hj9RgWsI=
+	t=1712312769; cv=none; b=FuKjBoqSVcf8MlZpGeeScrvxMUqRjG6vYi5/v/9k776hrWFFqdcWGEcObcrkv0+vX47VsbqQ31chJ5VxE/78KKoSEkgveuC+Vm3fw3S6Muw9U2RuIEhGPlm/JznwXdOXRHCJ5IHKJZOHUJ3QzVgG53FyIO1tkjQ9BCDXoIIoiFE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712312390; c=relaxed/simple;
-	bh=0OI2ryIMCXvO8K9vutx7EIqbESyjJfJ3MkE47w6lRgQ=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
-	 References:In-Reply-To; b=aJ1eG8tnQ/7MyRIrmkqVev/0vdurANJTQW3MUCGJbvDogOfOpzGauUv7sze5ZXGzgbqYyD/fQV1fhyObtiW89uzWKSAvEgIq51tBb2Wh99NzEQK7uj5lJPNCZiH8ewgROnz7LHCUptx2Zo+Z+f591krVCelQ6U2BUzynnnVnicQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=kMZ3ZPK+; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a51abd0d7c2so27961766b.2
-        for <devicetree@vger.kernel.org>; Fri, 05 Apr 2024 03:19:48 -0700 (PDT)
+	s=arc-20240116; t=1712312769; c=relaxed/simple;
+	bh=BmBFgykMPvqdnMoOyGWVJk45cd5kDC9vL/wpVpRu1Xs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Kle4pCPxLdE7DfO8V4w2DFx14FgcwWKC02ZU5W7CoxOWV1QGjugAqoAeN9mSU2CEvH5uTNEL7Besosgkwp56ZcL3F0RiBlYOUJn4Qr3uECWztEdcYROkipcef73Pcn/MVF3QBfCd8vNotPuIsV8sLVvBoepTLHseu/Fh43eS5a4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=p9BH6h0S; arc=none smtp.client-ip=209.85.219.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raspberrypi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-dcc80d6006aso2075179276.0
+        for <devicetree@vger.kernel.org>; Fri, 05 Apr 2024 03:26:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1712312387; x=1712917187; darn=vger.kernel.org;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/7wBknhXnwsdUBBqfoshvbTdHyCPt+Ehzl1Q7shB3pk=;
-        b=kMZ3ZPK+sPR9UEoin6D/sgvVaZO85XByUatjMvsQDWCSkUAWA4cpOFHMkefjnj/nq3
-         NvMWxhLYvfcrBia5ixw8ndE4s/KMhJ3jjSFDtkRwSYg0P1bsmv5Y/4P46pXoFUY0PUxe
-         ginzIYX1dXxUYAE/kXXNGH8lTOlJXK1XMwNnadzKxOGfopIVDpgybs/+i+ufD5hb7jol
-         AYVl3dk+Wqk6BO505JF6+8maVQwHpe+PyMhEcbHIcXVAl+HquiAaIh8QlNzSPiKDk1Fi
-         X3TuijLwCmbkdXmwETzNt8RCIaFWTtfUdTG1aqbMVLj0EtD/fn+i8H9xH1lz2twZB7tA
-         MbZw==
+        d=raspberrypi.com; s=google; t=1712312766; x=1712917566; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=iARPaYJhsEjl43QzURc5h56Y/6xNJ33w7/reZZghG84=;
+        b=p9BH6h0S5gK+WTCDV66QyrPRpG2IELHqzgoT2ckfqC/SmyxB9mCQAvRgO7mhWuz2NT
+         ojbvmKt9Y3swtLE50ZnkTHJUeFolks7+bZFbY3nfcFiA0dde6npQGzebgjiklP+4um8M
+         TQNN8MlDFAv8WRSV5ncwy2h5gqjiB4t9NFesBOIVTkd0BJIBIkiPQDsGQMWdyPLZ4PrR
+         QhUdRQ1njlk/d1KALeSEHnWmJ2lVvbLPbZo0KXkwGSR9tRF9HRYyXUnKLOhdA0QS2EaV
+         FD3BuTtyERfjzadLeYOfFxYHdPAD/c8K5x+1ox2dDwjzFctROywebUMgZcVH4hsADJOq
+         MwEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712312387; x=1712917187;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=/7wBknhXnwsdUBBqfoshvbTdHyCPt+Ehzl1Q7shB3pk=;
-        b=c4un/KRU8YGaZR4eOcacrLzI7T4MV6O79E9ZrYkaronL6SrroE5xSen5mb9v1OcxcV
-         YDTy5Sl2ExveEGueCfEraQZDhy5Sl39/q51e9kQGuZv2hSqGuvpG0HCNrIciXI0Mrzj4
-         J4tKO+87lRgu4QIiHkuFnv7GYe5VcYlKRA52W4XbYQ7jMCDyBUW3EMmaBoW561MlpVmC
-         stBZZvTlbw4LgKixXKHfHHRIkxJHRtyFg/jIyanlDWjr+D50YyMR2qSQ/Pn3fWXN58KG
-         XzVDTkR1dF2/t3pDpbJSSo+VCEDAXFuU3UnOASvWs5fqdgzTNQZjVeXkYMrcrQgbtUID
-         uL2A==
-X-Forwarded-Encrypted: i=1; AJvYcCVvaWb1BwInGvZMLjHehwXVyk3pZA49DWwTSzx/SICSEG0Ob0im3pqlOV7QYandfsasWedeScnbjllR4V+kRkX7AdOY/v45r2eSCA==
-X-Gm-Message-State: AOJu0YxlkYXxt75Tv5nSmExBVuHm9VIq3Hg90CcHjAnUtqb18m69NEb+
-	sHGGV4PdE85Rf4BJJPi8UckYxSx7SEga2eWgPwrNiy3+B+zOGattPhvOMdRiOUs=
-X-Google-Smtp-Source: AGHT+IEb6UquOirryxNCdTbMBwQSxXMSkSkdEgWggO43HlcRkq+10Oy8opxJEoC4UC+X+wGb7hJvGQ==
-X-Received: by 2002:a17:906:38f:b0:a47:2036:dbc4 with SMTP id b15-20020a170906038f00b00a472036dbc4mr541798eja.25.1712312387218;
-        Fri, 05 Apr 2024 03:19:47 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id gx26-20020a1709068a5a00b00a46b4c09670sm670330ejc.131.2024.04.05.03.19.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Apr 2024 03:19:46 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1712312766; x=1712917566;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iARPaYJhsEjl43QzURc5h56Y/6xNJ33w7/reZZghG84=;
+        b=YqTr/2t8gynT5eBoRlFlmDgKCs1tlKdvgfSJoG+QLkW4sCJR7Wlols2s2x4k29XeDP
+         1RZaPt7FLEeRUP3+Skr85pU1uq8vXs2nib5e4k/MizSM93OeCopysm3gKt9jxTzsLEjr
+         Uve9BXB+f6IEsRkBfb1IIwuDegVHU7JNDu4kjaVCeHd5HW/9yA2rm1pqTnHRMohogH8W
+         JR9N+SHjjfYg2qHAUSCBwTOA5X1x4HjF6+V/CQqkrJ057d+NelgIh1dRV/3kpFGbkO5I
+         BiTJprVZqaQkqZWDwocMxEPCYbREvpNO8SRZOEYt5QttI9lftfFcgGd1Lrox90o5IWEg
+         HxIA==
+X-Forwarded-Encrypted: i=1; AJvYcCU1U1Juoz3ydY4XCuEvP+u3eGBwiR9sFTUM8dj0VdG6GW6aNRc1M/gg1nz5nqJI/5fZzHI4cGaJUpyUB7o23vdVbVWl++XTNkRmEA==
+X-Gm-Message-State: AOJu0Yx/EBkM9KZfSNki8vKDHCz1iUb1sT0KBakmsdbzLmSvD7ZS2nsM
+	VkcXSW16sV4FGRJCi30KPOFF6BeqU8jamQ5lARY0CM4ZPR4ecvWbB1809LWD5GJU6EWG/fsEpxE
+	4kJtpXzL22mC6DGAwK9XtZz7c2pWCy4KU5zq3qg==
+X-Google-Smtp-Source: AGHT+IGiNf41UOijFcS+nvm5XPR4W+ctyL+gK32z/KhUeqbVvoF5ElMWQNkmalXvInXcffwLsTBQ8Hmu10M3phXGLpo=
+X-Received: by 2002:a5b:f04:0:b0:dc6:d22e:ef4c with SMTP id
+ x4-20020a5b0f04000000b00dc6d22eef4cmr765600ybr.17.1712312766450; Fri, 05 Apr
+ 2024 03:26:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 05 Apr 2024 12:19:46 +0200
-Message-Id: <D0C42YR1270X.23P9WCWWNB8XF@fairphone.com>
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: <neil.armstrong@linaro.org>, "Konrad Dybcio" <konrad.dybcio@linaro.org>,
- "Bjorn Andersson" <andersson@kernel.org>
-Cc: "Vinod Koul" <vkoul@kernel.org>, "Kishon Vijay Abraham I"
- <kishon@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Abhinav Kumar" <quic_abhinavk@quicinc.com>,
- <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH RFT 0/7] arm64: qcom: allow up to 4 lanes for the Type-C
- DisplayPort Altmode
-X-Mailer: aerc 0.15.2
-References: <20240229-topic-sm8x50-upstream-phy-combo-typec-mux-v1-0-07e24a231840@linaro.org> <CZUHV429NTF7.1GW9TN9NXB4J1@fairphone.com> <7a7aa05f-9ae6-4ca0-a423-224fc78fbd0c@linaro.org> <liah4xvkfattlen7s2zi3vt2bl5pbbxqgig3k5ljqpveoao656@iacnommxkjkt> <236a104c-fc16-4b3d-9a00-e16517c00e3a@linaro.org> <D064242SMIVM.1GUC1I9GE9IGC@fairphone.com> <963b60e5-6ab7-4d9f-885a-ba744c2b7991@linaro.org>
-In-Reply-To: <963b60e5-6ab7-4d9f-885a-ba744c2b7991@linaro.org>
+MIME-Version: 1.0
+References: <20240403150355.189229-1-git@luigi311.com> <20240403150355.189229-19-git@luigi311.com>
+ <20240403-vista-defendant-ebadbaa52059@spud>
+In-Reply-To: <20240403-vista-defendant-ebadbaa52059@spud>
+From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date: Fri, 5 Apr 2024 11:25:50 +0100
+Message-ID: <CAPY8ntC9SHJ6Ma17s0Vf2coB-0NUk-xgCLK9KCkxFMuXKHXNwg@mail.gmail.com>
+Subject: Re: [PATCH v3 18/25] dt-bindings: media: imx258: Add alternate
+ compatible strings
+To: Conor Dooley <conor@kernel.org>
+Cc: git@luigi311.com, linux-media@vger.kernel.org, 
+	jacopo.mondi@ideasonboard.com, mchehab@kernel.org, robh@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org, 
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
+	sakari.ailus@linux.intel.com, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	pavel@ucw.cz, phone-devel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Fri Apr 5, 2024 at 10:08 AM CEST, Neil Armstrong wrote:
-> Hi Luca,
->
-> On 29/03/2024 10:02, Luca Weiss wrote:
-> > On Tue Mar 26, 2024 at 10:02 PM CET, Konrad Dybcio wrote:
-> >> On 16.03.2024 5:01 PM, Bjorn Andersson wrote:
-> >>> On Fri, Mar 15, 2024 at 06:35:15PM +0100, Neil Armstrong wrote:
-> >>>> On 15/03/2024 18:19, Luca Weiss wrote:
-> >>>>> On Thu Feb 29, 2024 at 2:07 PM CET, Neil Armstrong wrote:
-> >>>>>> Register a typec mux in order to change the PHY mode on the Type-C
-> >>>>>> mux events depending on the mode and the svid when in Altmode setu=
-p.
-> >>>>>>
-> >>>>>> The DisplayPort phy should be left enabled if is still powered on
-> >>>>>> by the DRM DisplayPort controller, so bail out until the DisplayPo=
-rt
-> >>>>>> PHY is not powered off.
-> >>>>>>
-> >>>>>> The Type-C Mode/SVID only changes on plug/unplug, and USB SAFE sta=
-tes
-> >>>>>> will be set in between of USB-Only, Combo and DisplayPort Only so
-> >>>>>> this will leave enough time to the DRM DisplayPort controller to
-> >>>>>> turn of the DisplayPort PHY.
-> >>>>>>
-> >>>>>> The patchset also includes bindings changes and DT changes.
-> >>>>>>
-> >>>>>> This has been successfully tested on an SM8550 board, but the
-> >>>>>> Thinkpad X13s deserved testing between non-PD USB, non-PD DisplayP=
-ort,
-> >>>>>> PD USB Hubs and PD Altmode Dongles to make sure the switch works
-> >>>>>> as expected.
-> >>>>>>
-> >>>>>> The DisplayPort 4 lanes setup can be check with:
-> >>>>>> $ cat /sys/kernel/debug/dri/ae01000.display-controller/DP-1/dp_deb=
-ug
-> >>>>>> 	name =3D msm_dp
-> >>>>>> 	drm_dp_link
-> >>>>>> 		rate =3D 540000
-> >>>>>> 		num_lanes =3D 4
-> >>>>>
-> >>>>> Hi Neil,
-> >>>>>
-> >>>>> I tried this on QCM6490/SC7280 which should also support 4-lane DP =
-but I
-> >>>>> haven't had any success so far.
-> >>>>>
-> >>> [..]
-> >>>>> [ 1775.563969] [drm:dp_ctrl_link_train] *ERROR* max v_level reached
-> >>>>> [ 1775.564031] [drm:dp_ctrl_link_train] *ERROR* link training #1 fa=
-iled. ret=3D-11
-> >>>>
-> >>>> Interesting #1 means the 4 lanes are not physically connected to the=
- other side,
-> >>>> perhaps QCM6490/SC7280 requires a specific way to enable the 4 lanes=
- in the PHY,
-> >>>> or some fixups in the init tables.
-> >>>>
-> >>>
-> >>> I tested the same on rb3gen2 (qcs6490) a couple of weeks ago, with th=
-e
-> >>> same outcome. Looking at the AUX reads, after switching to 4-lane the
-> >>> link training is failing on all 4 lanes, in contrast to succeeding on=
-ly
-> >>> on the first 2 if you e.g. forget to mux the other two.
-> >>>
-> >>> As such, my expectation is that there's something wrong in the QMP PH=
-Y
-> >>> (or possibly redriver) for this platform.
-> >>
-> >> Do we have any downstream tag where 4lane dp works? I'm willing to bel=
-ieve
-> >> the PHY story..
-> >=20
-> > Just tested on Fairphone 5 downstream and 4 lane appears to work there.
-> > This is with an USB-C to HDMI adapter that only does HDMI.
-> >=20
-> > FP5:/ # cat /sys/kernel/debug/drm_dp/dp_debug
-> >          state=3D0x20a5
-> >          link_rate=3D270000
-> >          num_lanes=3D4
-> >          resolution=3D2560x1440@60Hz
-> >          pclock=3D241500KHz
-> >          bpp=3D24
-> >          test_req=3DDP_LINK_STATUS_UPDATED
-> >          lane_count=3D4
-> >          bw_code=3D10
-> >          v_level=3D0
-> >          p_level=3D0
-> >=20
-> > Sources are here:
-> > https://gerrit-public.fairphone.software/plugins/gitiles/kernel/msm-5.4=
-/+/refs/heads/odm/rc/target/13/fp5
-> > And probably more importantly techpack/display:
-> > https://gerrit-public.fairphone.software/plugins/gitiles/platform/vendo=
-r/opensource/display-drivers/+/refs/heads/odm/rc/target/13/fp5
-> > Dts if useful:
-> > https://gerrit-public.fairphone.software/plugins/gitiles/kernel/msm-ext=
-ra/devicetree/+/refs/heads/kernel/13/fp5
->
-> Could you retry with this applied ?
->
-> https://lore.kernel.org/all/20240405000111.1450598-1-swboyd@chromium.org/
+Hi Conor
 
-Unfortunately I do not see any change with this on QCM6490 Fairphone 5
-and 4-lane DP.
-
-Regards
-Luca
-
+On Wed, 3 Apr 2024 at 17:14, Conor Dooley <conor@kernel.org> wrote:
 >
-> Thanks,
-> Neil
+> On Wed, Apr 03, 2024 at 09:03:47AM -0600, git@luigi311.com wrote:
+> > From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> >
+> > There are a number of variants of the imx258 modules that can not
+> > be differentiated at runtime, so add compatible strings for the
+> > PDAF variant.
+> >
+> > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> > Signed-off-by: Luis Garcia <git@luigi311.com>
+> > ---
+> >  .../devicetree/bindings/media/i2c/sony,imx258.yaml       | 9 +++++++--
+> >  1 file changed, 7 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
+> > index bee61a443b23..c978abc0cdb3 100644
+> > --- a/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
+> > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
+> > @@ -13,11 +13,16 @@ description: |-
+> >    IMX258 is a diagonal 5.867mm (Type 1/3.06) 13 Mega-pixel CMOS active pixel
+> >    type stacked image sensor with a square pixel array of size 4208 x 3120. It
+> >    is programmable through I2C interface.  Image data is sent through MIPI
+> > -  CSI-2.
+> > +  CSI-2. The sensor exists in two different models, a standard variant
+> > +  (IMX258) and a variant with phase detection autofocus (IMX258-PDAF).
+> > +  The camera module does not expose the model through registers, so the
+> > +  exact model needs to be specified.
+> >
+> >  properties:
+> >    compatible:
+> > -    const: sony,imx258
+> > +    enum:
+> > +      - sony,imx258
+> > +      - sony,imx258-pdaf
 >
-> >=20
-> > Regards
-> > Luca
-> >=20
-> >>
-> >> Konrad
-> >=20
+> Does the pdaf variant support all of the features/is it register
+> compatible with the regular variant? If it is, the regular variant
+> should be a fallback compatible.
 
+It has the same register set, but certain registers have to be
+programmed differently so that the image is corrected for the
+partially shielded pixels used for phase detect auto focus (PDAF).
+Either compatible will "work" on either variant of the module, but
+you'll get weird image artifacts when using the wrong one.
+
+  Dave
+
+> Cheers,
+> Conor.
 
