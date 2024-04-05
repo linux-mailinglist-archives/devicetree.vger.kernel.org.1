@@ -1,131 +1,140 @@
-Return-Path: <devicetree+bounces-56589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C0F1899D4D
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 14:44:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB054899D60
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 14:45:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BEB8C1F2202F
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 12:44:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 52E7C1F23EE7
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 12:45:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACABA16D31D;
-	Fri,  5 Apr 2024 12:44:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MeG3YoD7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 563C116C876;
+	Fri,  5 Apr 2024 12:44:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8426316D315;
-	Fri,  5 Apr 2024 12:44:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E5E816C86D;
+	Fri,  5 Apr 2024 12:44:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712321051; cv=none; b=gjli4zcgUVlN0R9rDwHG/sWRetfd97moeivuFcFYzmtAdp0pXTYDI5a6iDU5dijeyI0xOf+RKoKRjmQuJrZTijyXlqg7fDX/B+sQWOpiYiKNgQyBz8zGxT08Lr5Qhd8Da7t72iJyo9S819sg01Zb86QdUsqnLYM8DAXPUJ3Hehw=
+	t=1712321087; cv=none; b=vDagIAu3+Vn+j3Ih6XKo+lRuheMhvGCFWJb+7o2CTxl/TSzGXQR8t7MyrHm0MPCIFOjh1HtveHOzPEH4uJw4765tctwO03tnSqHeot3tL6tvk8s2RXBnLuw/08CqTu7v3jmnsZKmn5xEvOn8j+L6D82v6AuhgdKTAnntIaKzd80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712321051; c=relaxed/simple;
-	bh=edcCoszjUKd1ECTp0gcxr9Z0qBWJGarmIR7fLPUnxyw=;
+	s=arc-20240116; t=1712321087; c=relaxed/simple;
+	bh=gkqjyS2Ov6lQQ+C8YB9XKcwnXXOKnIIdxCTPOpe9BR0=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZFsTrlUvYacmbQb+M08P6Ro0kefJIjCsAPa0IGQ+PK151KHKOxrqEOsJNV9tW4z3HS8Oejt0gVmgG+tRTQoKgkUheMYDzUn3scbMSKN4IeATRFhLX1JSlmhEzVIA/lS9mPfOzUqc3JmgjvLQ8BPxYaAihQHBmXCI/9i14qFIh5I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MeG3YoD7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28731C433C7;
-	Fri,  5 Apr 2024 12:44:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712321051;
-	bh=edcCoszjUKd1ECTp0gcxr9Z0qBWJGarmIR7fLPUnxyw=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=MeG3YoD79b6FhpaPuptWdVAahekfXkOLNgdnN0RFS0Os+ZFjaRfYZuo5EBibwz84U
-	 HKqEXFulS7WGCeyTCovIP1jvSo8Tyix8hKWnOysIMwy4BRzRzI6jzRxRwkRcHs+TJJ
-	 btbjM+2SHqTEfh//9Kd1K207bJfjEVLEsxKD2UBxflKWLeFmhjH/kQ6ZsFHnaFMFDW
-	 GsQkvOkJvOssyxrX+umH3hy4OQa+fVDnO7/Ctq9ftD0VBm7/HTe6Ar84bqw3sVBJn9
-	 gUbPyHRQULfoNWhe+CtNhoGKlRZuBjhBTcaK6N/5RRcFyNqPEB6lZY2Fz7sA+Rl5eG
-	 Oxcyyv9/9GcWw==
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-516d0161e13so1966045e87.3;
-        Fri, 05 Apr 2024 05:44:11 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCW3UTQIghuZR1kMVBruVMa3b9Pw03l+L6YDJaDzVWJX8kobrxYvrz68kkIwjOko6Icziv24JJvAm3a0u23kVWKCYvtsDIZnfA+hBKB0Fh0g2zv9nRDnfIUGmxXSWsGFW1Zlk/kUKC96tA==
-X-Gm-Message-State: AOJu0YzqW7TblJV9gEY07xTClyYYu0LcD3mblRokLFLO7BhbCiJvigf8
-	mjCNKj87/PHlD2Ei5PKyH8AZjiopNPiiGsrPtjqsyNyHV1z0w5DvkEpEPNETNu9a+CfHkP2K6Vi
-	dkwsaAgGN5HujOEECqmDm+FVHRA==
-X-Google-Smtp-Source: AGHT+IHskARlN+LkglmZHFmblBjXR67rflSWElcFeL0oj7C4JsN0apkULoKUi9TlCF82MTXawa6KD25EuAuY8YYa54U=
-X-Received: by 2002:a05:6512:ac5:b0:515:d3dc:43e with SMTP id
- n5-20020a0565120ac500b00515d3dc043emr1449133lfu.51.1712321049475; Fri, 05 Apr
- 2024 05:44:09 -0700 (PDT)
+	 To:Cc:Content-Type; b=JNElmu26lQuWWrEMBwASMLXp+1rwQXkYeOK+3VfIXtmVDBmwYapuQW5HLICFkOmLcVOck3O71BgPQm5/+U0Uo4yEIolMQGTejU4Sh+azU/RtP6V6whg1t/u1uds3XaREInxi7p9nwGxd9f/BlIZ9B6hq7YQYFEeYroev3HygkiA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-61461580403so22861547b3.2;
+        Fri, 05 Apr 2024 05:44:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712321082; x=1712925882;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=73KC80zFmtS9rJCbcCR2ges0599ShCvdMicVyQb7erI=;
+        b=FXLqGkvlbO2d40hhj38qTjj2lDX4dYVV2VKkL+E/qJgnkbACNEserRNV2ZWPlerb2a
+         PqZ1TzANfPyErJnqfDDx/w+bDFtUzKP44FQBwP34v1v1CWehdKy/6raprz9j4Pz1n1RI
+         bDoHrdHdXWRnUuucm5WSoqQ33ZPV0ApI1AS3xZmnWlTm0H99v4MrQb4zRngQ3PHaErtx
+         beHfSWt0lhvhthgR3rulk8XQirWdUDPPSZ/TINapgVPTaFYS3QiUtT5eFKc4P9KnOevS
+         0+7cRYT4auOCwm5gUNOUZ+TKiA3pXn35VlDd+afGack+edwpLswRsn7DuPPvKpUXhAVA
+         P+rw==
+X-Forwarded-Encrypted: i=1; AJvYcCXwhNgk0wJlFz1NKPkqlssbR6+zIL11jrBWs4N7/xQpAp+d9ixK5wX3DfO6m6eUU8J3oq8qP4u1SqloGKOLzUva4iGMQj7tTqe2tYE698SctMrWCyFuCA/iEeeihGzLLQ0lobiej7j5kzB+uRw9gw5Iz0KHEiSVgIzn0tPwV2imDj8vZ+556WB//aDk0AUUlQ3+9b4Muy/KdLwj9yZCwNarTC8f+oHAE1r1CQdLSP1uerLbK0ULhkR36TAsoaXgTpchKgpzc2fefWhMueAyxSe4AlWfEiw5lgIE1f7Rzh+Es7qsfRffrddiBu8olGJDbY7D8tITh3kvwnMYFmm0cVHYlzNE4lSZ/zqchsj8GzyPBvEw2mcqNbs=
+X-Gm-Message-State: AOJu0YxiA4e3nsRu0DKvTE+FjcjoN27Evee4wM4r9pzxuVoXYCHEJsAw
+	Rtux7gIMslfNjMdcMYpr95RYJpi3qnJGX7hQ/iviv0evAN4tMaqgyqDKaj2wMao=
+X-Google-Smtp-Source: AGHT+IFsxDA3em/YH1W9W/xcK3IKpNlOjLDrQXLWwtheoFreB+RdWe1toqtanc+ORkJtBMI14D1bQw==
+X-Received: by 2002:a81:c209:0:b0:615:18f8:d32a with SMTP id z9-20020a81c209000000b0061518f8d32amr1115589ywc.36.1712321082662;
+        Fri, 05 Apr 2024 05:44:42 -0700 (PDT)
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
+        by smtp.gmail.com with ESMTPSA id y135-20020a81a18d000000b00609f4170662sm337706ywg.54.2024.04.05.05.44.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Apr 2024 05:44:42 -0700 (PDT)
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-dcd7c526cc0so2176084276.1;
+        Fri, 05 Apr 2024 05:44:42 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXp4GBqvQvngN9PeqozCuqskOG8yyCJw9bOPcjJ0U/UK5CDPuxv/mp/Qcasm5YnVcBeWsfpWfq/QWMg1bVIM9KSPjLkFndEEum8/N720+9D2lYnDYV6Whr8D2LANIG6HkgcZO43OaQwuggrW9hW5LEeLnMLxau9wFZhTJ4B/T3V1UWq94UJaFb+kcQWgaFuniRtlmiUQHiO89vYunmD5bMRtT5HbhIODiurObY+TFVOBlzkCNfwrlZPRL3/tyCSm+AHfQqn9T1Lh4LydO1lXxyEEUchIKYc5TK1kIMV036dLAqylB1nONqiMr1JTV9VW71dLKg5VOv1G3MIQ3u0xBTYDujLjuU1fzI1+PzFbVTxljm3iX8zlgQ=
+X-Received: by 2002:a25:b049:0:b0:dda:aace:9665 with SMTP id
+ e9-20020a25b049000000b00ddaaace9665mr1048383ybj.60.1712321081791; Fri, 05 Apr
+ 2024 05:44:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240404-dt-cleanup-free-v1-0-c60e6cba8da9@kernel.org>
- <20240404-dt-cleanup-free-v1-2-c60e6cba8da9@kernel.org> <CAGETcx_H_vvK9y-51JTcz8F7GDThBwC+t=k2i6r4Nst3H6-TUg@mail.gmail.com>
-In-Reply-To: <CAGETcx_H_vvK9y-51JTcz8F7GDThBwC+t=k2i6r4Nst3H6-TUg@mail.gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 5 Apr 2024 07:43:56 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+eS3uS1rEPSErMnfJhPBoQjh7UyRLa9NZ59WBVcD+JWw@mail.gmail.com>
-Message-ID: <CAL_Jsq+eS3uS1rEPSErMnfJhPBoQjh7UyRLa9NZ59WBVcD+JWw@mail.gmail.com>
-Subject: Re: [PATCH 2/3] of: Use scope based kfree() cleanups
-To: Saravana Kannan <saravanak@google.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+References: <cover.1712207606.git.ysato@users.sourceforge.jp> <7cffb0c041744b3c2e324f9908635a912dbb2436.1712207606.git.ysato@users.sourceforge.jp>
+In-Reply-To: <7cffb0c041744b3c2e324f9908635a912dbb2436.1712207606.git.ysato@users.sourceforge.jp>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 5 Apr 2024 14:44:30 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVBNXJ6ATHYUftB4FFVw_JJ3p-sifZYAb7jUmok10tkbA@mail.gmail.com>
+Message-ID: <CAMuHMdVBNXJ6ATHYUftB4FFVw_JJ3p-sifZYAb7jUmok10tkbA@mail.gmail.com>
+Subject: Re: [RESEND v7 33/37] sh: j2_mimas_v2.dts update
+To: Yoshinori Sato <ysato@users.sourceforge.jp>
+Cc: linux-sh@vger.kernel.org, Damien Le Moal <dlemoal@kernel.org>, 
+	Niklas Cassel <cassel@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Thomas Gleixner <tglx@linutronix.de>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	Rich Felker <dalias@libc.org>, John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, 
+	Lee Jones <lee@kernel.org>, Helge Deller <deller@gmx.de>, 
+	Heiko Stuebner <heiko.stuebner@cherry.de>, Shawn Guo <shawnguo@kernel.org>, 
+	Sebastian Reichel <sre@kernel.org>, Chris Morgan <macromorgan@hotmail.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Arnd Bergmann <arnd@arndb.de>, 
+	David Rientjes <rientjes@google.com>, Hyeonggon Yoo <42.hyeyoo@gmail.com>, 
+	Vlastimil Babka <vbabka@suse.cz>, Baoquan He <bhe@redhat.com>, 
+	Andrew Morton <akpm@linux-foundation.org>, Guenter Roeck <linux@roeck-us.net>, 
+	Kefeng Wang <wangkefeng.wang@huawei.com>, Stephen Rothwell <sfr@canb.auug.org.au>, 
+	Javier Martinez Canillas <javierm@redhat.com>, Guo Ren <guoren@kernel.org>, 
+	Azeem Shaikh <azeemshaikh38@gmail.com>, Max Filippov <jcmvbkbc@gmail.com>, 
+	Jonathan Corbet <corbet@lwn.net>, Jacky Huang <ychuang3@nuvoton.com>, 
+	Herve Codina <herve.codina@bootlin.com>, 
+	Manikanta Guntupalli <manikanta.guntupalli@amd.com>, Anup Patel <apatel@ventanamicro.com>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+	Sam Ravnborg <sam@ravnborg.org>, Sergey Shtylyov <s.shtylyov@omp.ru>, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, linux-ide@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-pci@vger.kernel.org, 
+	linux-serial@vger.kernel.org, linux-fbdev@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Apr 4, 2024 at 6:16=E2=80=AFPM Saravana Kannan <saravanak@google.co=
-m> wrote:
->
-> On Thu, Apr 4, 2024 at 7:15=E2=80=AFAM Rob Herring <robh@kernel.org> wrot=
-e:
-> >
-> > Use the relatively new scope based kfree() cleanup to simplify error
-> > handling. Doing so reduces the chances of memory leaks and simplifies
-> > error paths by avoiding the need for goto statements.
-> >
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> >  drivers/of/base.c     | 34 ++++++++--------------------------
-> >  drivers/of/dynamic.c  | 11 ++++-------
-> >  drivers/of/resolver.c | 35 +++++++++++++----------------------
-> >  3 files changed, 25 insertions(+), 55 deletions(-)
-> >
-> > diff --git a/drivers/of/base.c b/drivers/of/base.c
-> > index 8856c67c466a..20603d3c9931 100644
-> > --- a/drivers/of/base.c
-> > +++ b/drivers/of/base.c
-> > @@ -16,6 +16,7 @@
-> >
-> >  #define pr_fmt(fmt)    "OF: " fmt
-> >
-> > +#include <linux/cleanup.h>
-> >  #include <linux/console.h>
-> >  #include <linux/ctype.h>
-> >  #include <linux/cpu.h>
-> > @@ -1393,8 +1394,10 @@ int of_parse_phandle_with_args_map(const struct =
-device_node *np,
-> >                                    const char *stem_name,
-> >                                    int index, struct of_phandle_args *o=
-ut_args)
-> >  {
-> > -       char *cells_name, *map_name =3D NULL, *mask_name =3D NULL;
-> > -       char *pass_name =3D NULL;
-> > +       char *cells_name __free(kfree) =3D kasprintf(GFP_KERNEL, "#%s-c=
-ells", stem_name);
-> > +       char *map_name __free(kfree) =3D kasprintf(GFP_KERNEL, "%s-map"=
-, stem_name);
-> > +       char *mask_name __free(kfree) =3D kasprintf(GFP_KERNEL, "%s-map=
--mask", stem_name);
-> > +       char *pass_name __free(kfree) =3D kasprintf(GFP_KERNEL, "%s-map=
--pass-thru", stem_name);
->
-> With the scoped stuff, do these function calls need to be in the same
-> line we are defining these variables? If not, I'd rather that the
-> calls remain where they were. It feels like a lote to visually parse
-> and take in from a readability perspective.
+Hi Sato-san,
 
-They don't have to be, but if you don't want to get yelled at by the
-chief penguin, then yes, they should be together. See the discussions
-on adding the scoped iterators. But with the C99 adoption, we can move
-the declaration to where the assignment was original.
+On Thu, Apr 4, 2024 at 7:16=E2=80=AFAM Yoshinori Sato
+<ysato@users.sourceforge.jp> wrote:
+> Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
 
-Rob
+From my comments for v6:
+
+Please enhance the one-line summary, e.g.
+
+    sh: j2_mimas_v2: Update CPU compatible value
+
+For the actual changes:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
