@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-56541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46C68899997
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 11:37:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 110178999B7
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 11:39:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A7891C20FBF
-	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 09:37:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7706282F2D
+	for <lists+devicetree@lfdr.de>; Fri,  5 Apr 2024 09:39:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97099160794;
-	Fri,  5 Apr 2024 09:37:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5391616089C;
+	Fri,  5 Apr 2024 09:39:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qnhjw9UC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dzcibRbS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5D0F1DFED
-	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 09:37:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 594A6160862
+	for <devicetree@vger.kernel.org>; Fri,  5 Apr 2024 09:39:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712309850; cv=none; b=MLWJpi1igMxlpjL77qxr8qkcbyRDlx5eMhvu9jOAAWyrYoH/6kuq1k7gnXXwJU3FgKHJlnGLxSDFgt6zOAOAMZSZla0vfIO08YQlqIxfXCA4+aB51L4zSpxm4gI8eN7vO2R9Vv3ae8eHJ0HtJRi3CeFAGM0ohLUtIUAoL32f3QU=
+	t=1712309960; cv=none; b=f+mMnO3p/ihSLg7Q0TTDQFtT2+m4BLRMfzstvWX58OYNZXX0CrxDzNCO4/lFKZVuiOqLOsrFt5HgoCz1FZPUpFek2elv6uA3CvkHj66uH/iVRDwxwGdrgmS2KsLrZUFMsZbJUV1YXa397RRZkKFj3DaceqGMWQm+UOxfTe0AFfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712309850; c=relaxed/simple;
-	bh=KUNs+rel022u45kMG7rmghp5HlZz04g6K2Ph8/0mXcY=;
+	s=arc-20240116; t=1712309960; c=relaxed/simple;
+	bh=zmndCcYKR9wkId2+6XojaBfbuykMPOBN0hPpSrc94lk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JuMvpjf/iR/prcazAkfsNIdFSgEX2C7OQXTsMK+qGPPReSqDMg8a5vCPyoUD6tdDQEg3AxlxZNmv56zKbZmLS6Teruq2/2AFnHSvJDpbHyGXbrGMp8ALpbuoBpWviM/x5DR5jIhA83JLruWo06uDpLrAA0aLLbqp30hf1KZX1+0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qnhjw9UC; arc=none smtp.client-ip=209.85.218.45
+	 In-Reply-To:Content-Type; b=iW3QBdnlZ7rDRsraUpWWXgowuqKkwILcwYpKYwYgpcsYHjEk+2e7I/u980WdIqq+MZvdBQ28Fke0JUgvzEe0zPQAgOKB5hjVSpYlin4x3/MOeuIhtJWGwaujwEK4CkINykvDt5fbctoH4fY4ek6NERBQMrEzQ+ReudTzyyFV30I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dzcibRbS; arc=none smtp.client-ip=209.85.218.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a47385a4379so557172166b.0
-        for <devicetree@vger.kernel.org>; Fri, 05 Apr 2024 02:37:28 -0700 (PDT)
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a51addddbd4so876466b.0
+        for <devicetree@vger.kernel.org>; Fri, 05 Apr 2024 02:39:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712309847; x=1712914647; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712309957; x=1712914757; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=7iPTG8xgQOObJLs+r2gxxOJcQg6bmDCPKtHB9KQ7ZyM=;
-        b=qnhjw9UC3T5/RbWZJXhNn6Jw+7BxV4uIGTHDOWXl7gn5QRiaiiBSDc6S3dkATh2d03
-         PwdbRUzITi/Yor46EK1qgONTiCHkcKH+53Ux853iSj6mGSSv22D0zHP8DwlJ3t3a2V9j
-         Cmtshapxm5nP+ppXj0HMyCmgXwX9Q4yzTpUwyDd8EilSdDyGvytt7mwhGK67eTxTjf2+
-         pOcxsV7JHQicV/b1CHAq3LD4KSdP0SMRQYvN386GOPCxFIvh6glQi65gsRE480y+9dHu
-         2LsQPlAVe0JE4GK7QD+yWanQvyqUoMJUuPbtsvvDPZVX54z1TNVYajfe+Wgq+rC75Z6s
-         +goA==
+        bh=vOtuMlTk2m3YNZ5+uB4sYTifNH5+qhYv4NhFn5r3qQg=;
+        b=dzcibRbSpDrmeoco+H/zL83NFWNfBfsgZlITs+Wuf2NcM2vqsKaMWABaXMk2MZxoA0
+         Z+KsAWm/hQx0b8OXJsUALxTsi3AlA9RDbdgZZdc34HuOZPejH4Xen16CqsMQm3TBdDl9
+         Ix6D6KyuE1L2CRVh+flY3ITWhF4rspwmaqSqVP9Ve25om3bk/CC2XuFDU/EOPDgXerKD
+         pOMX44axJpKh6S6B5WZnyab5ULM7mY3CyS3cNBmJIF5ugrAtzY3djL5eIB1tiXBrUMaD
+         n2NtRY037yTTlA05yAkAp6xPsflf2vtBoSB+PBh/YO39C/Rd9j6YgisJ3C9qm4dSpKFP
+         PrVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712309847; x=1712914647;
+        d=1e100.net; s=20230601; t=1712309957; x=1712914757;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=7iPTG8xgQOObJLs+r2gxxOJcQg6bmDCPKtHB9KQ7ZyM=;
-        b=d5P0oSsD3fr7UmyTpcy5UFVrPOjcJh7sy9TP2lZO2j3yCmA4kTuihaHP16+NUYo9sY
-         9sl2SITuWltzIIX0rI+ZmAByXp6OGQTg6Vid1uHyoOWptvX9WMp6V7KrpWtIft2krE0n
-         DmCHd4qrBKxCHuxSn/xSaYq/azsPNmViWZTrngZ/z5A8puZzY6Fo/kQC1rgjJ1WCQ+8/
-         KNyGKe/LvSEf0NZRd2jUbWjkfOMuB40F1cFx1izn8fsWm5HvbE8Dq1e3MPT7+ggIz+Zc
-         Du/ZddGz+VRGzAFvfGkh6lCUnij50SuKyp95ETdOKGyzsGuz2WyoHmyRBxxA/jD352hh
-         BxSA==
-X-Forwarded-Encrypted: i=1; AJvYcCWZS4FdFGEdbxCBGIugD5pkwhNUcjqe9PAS5RCOj0Rz5b4tpeuJHzg6qyCf/Jx459ATV9FfxTxoNZpWCiKqYwMBK3jWqmAgSMJ8hg==
-X-Gm-Message-State: AOJu0YyEcmvap7PyO8DnCQxfs3utxRHxRjshO/DsD/WSkxzf+ZV8Buiq
-	OrEeSd6E0N7+D/ZZ+MPhWXeGXJFFwzDKdfFKVPpXSSSIE7LkRCJj6cJ08mUCWM0=
-X-Google-Smtp-Source: AGHT+IHS3ACjVk/HxIQbZ9ESwJpkH6sFIMlevxvcTFeFPe/SjcgBgyAlqM6H/Q01jjxlxvxo2OM8Ug==
-X-Received: by 2002:a17:906:5a8b:b0:a51:a9d5:dca8 with SMTP id l11-20020a1709065a8b00b00a51a9d5dca8mr561653ejq.27.1712309847145;
-        Fri, 05 Apr 2024 02:37:27 -0700 (PDT)
+        bh=vOtuMlTk2m3YNZ5+uB4sYTifNH5+qhYv4NhFn5r3qQg=;
+        b=VU11qVwJnx45AoeCmOHtYLdGm/gO2YlYQsnosXLGcz4aIxRkPvh1Kl/o2govqxM2EB
+         Y+UINItkXj2a7bTIyQ4HgW02rXtuCCfURwqpVduHu8H4sczqdr6OvptHurg+PZ1QdEkM
+         sEa1/8lPj751yIPuAp8xalKEcyUVNUpWzpYTQdRqYbupoT801ksoUYRe2PBzJS89Sb1c
+         oX/ieqlHj2k8guytSOwXITcsSgfXqvgn+Z5HKpuxSip8zL5ZmkiUL5es4pV2wvyvB8qI
+         Apid/As+XxrjJXlQ8VxY0T4cud7wh+ycViFkvMrIPMLaHPX1RAERXmY2mPCqcGi9wRou
+         btWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWft5X/z7ZZAC+aJnwU8Zu1uyAPbMtYgnqRFiuxiuQUuSzjdFm9ugoDYqfWHce/wQcaXWVvXwQUjhCeyHfb/eyHsRscIuPPCHSywQ==
+X-Gm-Message-State: AOJu0Yy9xtKDsCKHpIanNXneGfUOHAWwXNyFGgpezt0W9jd+Qsv1x1jz
+	RNS+aHV2AGxEqKaKbfVL9yWiJX/Kwjazcx69dlL0a1A39rYpZneId/m/77zKbzY=
+X-Google-Smtp-Source: AGHT+IGQ2XybYMZzpX18d1hysEX9de282AhfXEgp81k7S5Zoi3kly1NvF5Qmy1EVfeHG3MBTngIxDQ==
+X-Received: by 2002:a17:906:f909:b0:a47:3651:a302 with SMTP id lc9-20020a170906f90900b00a473651a302mr565941ejb.42.1712309956654;
+        Fri, 05 Apr 2024 02:39:16 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id t1-20020a1709067c0100b00a46aac377e8sm633043ejo.54.2024.04.05.02.37.24
+        by smtp.gmail.com with ESMTPSA id dp13-20020a170906c14d00b00a4a3580b215sm630272ejc.80.2024.04.05.02.39.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Apr 2024 02:37:26 -0700 (PDT)
-Message-ID: <83dccd7e-e690-4803-adb9-aaedcee7dc94@linaro.org>
-Date: Fri, 5 Apr 2024 11:37:23 +0200
+        Fri, 05 Apr 2024 02:39:16 -0700 (PDT)
+Message-ID: <610f5770-b34a-4c93-b9a7-ca224aa91089@linaro.org>
+Date: Fri, 5 Apr 2024 11:39:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,38 +77,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 05/16] dt-bindings: net: wireless: describe the ath12k
- PCI module
-To: Kalle Valo <kvalo@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Marcel Holtmann <marcel@holtmann.org>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Saravana Kannan <saravanak@google.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>, Arnd Bergmann <arnd@arndb.de>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>, Alex Elder <elder@linaro.org>,
- Srini Kandagatla <srinivas.kandagatla@linaro.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Abel Vesa <abel.vesa@linaro.org>, Manivannan Sadhasivam <mani@kernel.org>,
- Lukas Wunner <lukas@wunner.de>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
+Subject: Re: [PATCH v1 1/2] dt-bindings: net: bluetooth: btnxpuart: Add
+ firmware-name property
+To: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>, marcel@holtmann.org,
+ luiz.dentz@gmail.com, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
- linux-pm@vger.kernel.org,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20240325131624.26023-1-brgl@bgdev.pl>
- <20240325131624.26023-6-brgl@bgdev.pl> <87msqm8l6q.fsf@kernel.org>
- <CAMRc=MeCjNn7QdDrcQMuj32JFYoemQ6A8WOYcwKJo1YhDTfY+Q@mail.gmail.com>
- <87cyr440hr.fsf@kernel.org>
+ amitkumar.karwar@nxp.com, rohit.fule@nxp.com, sherry.sun@nxp.com,
+ ziniu.wang_1@nxp.com, haibo.chen@nxp.com, LnxRevLi@nxp.com
+References: <20240405090118.582310-1-neeraj.sanjaykale@nxp.com>
+ <20240405090118.582310-2-neeraj.sanjaykale@nxp.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -155,46 +135,44 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <87cyr440hr.fsf@kernel.org>
+In-Reply-To: <20240405090118.582310-2-neeraj.sanjaykale@nxp.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 05/04/2024 11:33, Kalle Valo wrote:
-> Bartosz Golaszewski <brgl@bgdev.pl> writes:
+On 05/04/2024 11:01, Neeraj Sanjay Kale wrote:
+> This adds a new optional device tree property called firware-name.
+> If this property is specified, the driver overrides the firmware
+> name hardcoded in the driver source code.
 > 
->> On Mon, Mar 25, 2024 at 3:01 PM Kalle Valo <kvalo@kernel.org> wrote:
->>>
->>> Bartosz Golaszewski <brgl@bgdev.pl> writes:
->>>
->>>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>>>
->>>> +
->>>> +maintainers:
->>>> +  - Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>>
->>> IMHO it would be better to have just driver maintainers listed here.
->>>
->>
->> Why? What's wrong with having the author of the bindings in the Cc list?
+> Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+> ---
+>  .../devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
-> If you want follow the ath12k development and review patches then you
-> can join the ath12k list. I'm not fond of having too many maintainers,
-> it's not really helping anything and just extra work to periodically
-> cleanup the silent maintainers.
-> 
-> I would ask the opposite question: why add you as the maintainer?
-> There's not even a single ath12k patch from you, nor I haven't seen you
-> doing any patch review or otherwise helping others related to ath12k.
-> Don't get me wrong, I value the work you do with this important powerseq
-> feature and hopefully we get it into the tree soon. But I don't see
-> adding you as a maintainer at this point.
+> diff --git a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+> index f01a3988538c..25c258212bcd 100644
+> --- a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+> +++ b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+> @@ -31,6 +31,13 @@ properties:
+>        This property depends on the module vendor's
+>        configuration.
+>  
+> +  firmware-name:
+> +    $ref: /schemas/types.yaml#/definitions/string
 
-This is not a maintainer of driver. This is maintainer of bindings, so
-someone who has hardware, datasheets, knowledge and/or interest in
-keeping the bindings accurate.
+drop, missing maxItems. Look at recent code.
 
-All your arguments above suggest you talk about the driver. This is not
-the point here.
+> +    description:
+> +      Specify firmware file name, prepended with nxp/.
+
+Why with nxp? What if firmware is stored somewhere else?
+
+
+> +      This property overrides the firmware names hardcoded
+> +      in the driver source code.
+
+Drop, you now describe current OS policy. What if U-boot treats it
+differently?
 
 Best regards,
 Krzysztof
