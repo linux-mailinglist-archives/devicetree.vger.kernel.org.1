@@ -1,144 +1,184 @@
-Return-Path: <devicetree+bounces-56844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68EBC89AAA8
-	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 13:50:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 324E289AB49
+	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 16:15:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C808A282876
-	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 11:50:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B43DB2824C7
+	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 14:15:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50D162C6A8;
-	Sat,  6 Apr 2024 11:50:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABAAA376E4;
+	Sat,  6 Apr 2024 14:15:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dtkPQR4i"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IZd2ahzA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26F7C171C4;
-	Sat,  6 Apr 2024 11:50:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E024374EB;
+	Sat,  6 Apr 2024 14:15:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712404249; cv=none; b=eSGAayacyNR98YR/lPc/Z4qLR6GP3XqM1e0B8pBS3uMddrxeqBZ2qcew03KKwQ8YE4+cJuqmwn042cJQjEJgZfivq0WPFKKROKTaLDLBEKVZq1Dtkof7LRCW90sMI88c//7ENPS/D8nmGgndeZ4sj/DvZL4RT+5uhWk85Neg+MY=
+	t=1712412914; cv=none; b=a5/xBkOn0qPHXheEagMxZeyiYHP766K9a7JSopFHNIzFAA4c0XTszETE0EWaYtxf/XonyTYes5KxghjV2HgBUo+z/QI7n4ryCeuVrk/ymre0dwxLGY6J/g0SjdzoS6u2jUxNXPRLRa6HZWoum8rCOjDc0M/Qc1xFyX2PB6nDCRo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712404249; c=relaxed/simple;
-	bh=NdLfFaJhRMn7nucfOaF2utlS/Ejj9WS8aCmvYV8yIBY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=p+qckgTPL8dLbqKiySwQckTwWN6SW+CZyxXBVYdBf0FwIuyRP2cG6GQ01WY+vdDs1FmEAavAl9AdZK5TcpVEZRzX85sO0xbp5KVIAaILofL8lQJsG5PqEwM99Y+NYQsNgK3TUmRKmuNPpbSWfB75MFa+umweuejk7YXGmtews2M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dtkPQR4i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BC29C433F1;
-	Sat,  6 Apr 2024 11:50:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712404248;
-	bh=NdLfFaJhRMn7nucfOaF2utlS/Ejj9WS8aCmvYV8yIBY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dtkPQR4iQ1uPGxrQvDw46u1PH1HvdgaGJ76tg0oJfVDm61gVUNkIX1sTxcXr7GAtT
-	 p2fENorv35olDMcevIMVsQPXK2GlOiI/IzfzNQVhA9Qf1Q/9mt0jAkW5FPt9i0wbG2
-	 DcpND7gpgq0iYB9jYCizg/Ibj7G0dWEIpPEeQPcB9EnY/e6O1adjlzlDJ8ftCu/AKr
-	 /Ye4Cwtn3LTpbD59Zusqu87y6gSZLN36FE/8uHVVUqN+8X/wTQX7GiS7PHWpvhojOw
-	 J8Ke2bpDxe1Lwy8nwvlsCgpRjMuGA1HirE62xFPVoQytCFMX1Lea8ENs+xGFUFpvCg
-	 LsY65aF/pdTGw==
-Message-ID: <0471b4ad-0978-4d52-ad9b-0a39eb5d4fdd@kernel.org>
-Date: Sat, 6 Apr 2024 13:50:41 +0200
+	s=arc-20240116; t=1712412914; c=relaxed/simple;
+	bh=CxGFv9jvNTqeIa8ZarV7ZY4hs+L+mjnOC11K92E+Z7M=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ivaSqiLXQ4Mh0SL5uWtT3LR01FW0zL7xqa4DVpeMuzrUiMPLQ7pqgOx/djfLLfvjItMDqej1ahxrkw7QGBAcRcIqaUAN1TCh1MLSlHkmNoJT5+BsB1sGjaRj35w3qvQN8RV8nkUaTZ5SG27lQPqmcFddP9RqnjhX5mKhO4iV5i0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IZd2ahzA; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-1e3e56c9d2cso1704705ad.1;
+        Sat, 06 Apr 2024 07:15:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712412912; x=1713017712; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5t85f7blTuWv3UGrktfZJ6b2Gu2J4GPIU/N0JQkbL0k=;
+        b=IZd2ahzAt6+0X7ZgY3pClLjsqjHBM9yg8x7oRbBVyL2UVmcaADIlHpb9P2EzZOUbzN
+         C2nwA8OxopPuEUdOlVazDQpxi2n4GcspWNA2/qsNVvEMu16nrcAtw68jXTy8N++aja0K
+         Ch08EuVPTeyfc/VYFHL/gCI/DbFjP9f0L15/DjwaxKwHAXXvdX1N6qcBjdFEBEDI+ekF
+         Ss6CI7i/YEq5YghX6fDioA+749+pkvlwK28vgIijQ0GFIb1wqHZJv3IenSvNTYwNHcWH
+         kddpov2VUMt2BLtbTVPX8I9iIHKFXBPDDMmWTkwNGBJbC9UudAa1wFYzgGiLNob9rGLX
+         W11Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712412912; x=1713017712;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5t85f7blTuWv3UGrktfZJ6b2Gu2J4GPIU/N0JQkbL0k=;
+        b=vnALppuhHeENZHVL4petenvAHfz+Blyb4J7fsyKEqWxPi4bdngGBlrrssLIpfXyw2x
+         c2Lbh74sVArIY3100AZu+8PF/1ZRyxFnvk/tYHUnP3gf8cnORDGM1AMMOsn77exOaa/j
+         nWu/Fu56uwFRK1VEFx0kFg9Wy5G/idSbWl6cUsAjTQUQteLh383EtIc4IeCRL7vptSOl
+         L9H48ePibsViXwQTm5oBJzm7LxCMgNLjhavaVBUR8fiQRoDANo9IJ88sJ0lqg65eC7fZ
+         gkg47arLCL6/hLlWhW7UGOVpEeqLoW2ZjHX83gQZhfV37A1+m5skCt7s2NwvKtJUdxCh
+         A3eg==
+X-Forwarded-Encrypted: i=1; AJvYcCVezF4r89lRaFviywdEnRFpIc+v+lro5XeFo3TwwGgJlsWnH++eZzQwPYV8ZKvHP3Hzj2IIGgWPIQmeWNH+vnei07C+2sXZ5Gjy4BVxyMithzUPCnYL9+eHvJVZ/7ihU0BzYTjYnCAp3g==
+X-Gm-Message-State: AOJu0YwQh+G+L2nh6Ju1VSLY5vEN7dwwN+n9epVn8vi3NT8rcLP9mzyk
+	/cKsDi6yLBexxmRydeVqC0whW2vA6A/w0r4D7B2vPiEssv3ptGNP
+X-Google-Smtp-Source: AGHT+IFgs4/FEoib8hU/ok1TVSzmB1fbWFiM+uZk4kceufpUhC2Ch79+Ar8YHPBhpWONVDqSnLf5Ew==
+X-Received: by 2002:a17:902:e9c6:b0:1e2:b137:4f88 with SMTP id 6-20020a170902e9c600b001e2b1374f88mr4603566plk.30.1712412912298;
+        Sat, 06 Apr 2024 07:15:12 -0700 (PDT)
+Received: from fedora.. ([2409:40f4:3d:d63:253:b5f6:7724:8cee])
+        by smtp.gmail.com with ESMTPSA id jc2-20020a17090325c200b001e28d18bd52sm3437400plb.232.2024.04.06.07.15.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 06 Apr 2024 07:15:12 -0700 (PDT)
+From: Animesh Agarwal <animeshagarwal28@gmail.com>
+To: 
+Cc: animeshagarwal28@gmail.com,
+	Shenghao Ding <shenghao-ding@ti.com>,
+	Kevin Lu <kevin-lu@ti.com>,
+	Baojun Xu <baojun.xu@ti.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	alsa-devel@alsa-project.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: ti,pcm1681: Convert to dtschema
+Date: Sat,  6 Apr 2024 19:44:49 +0530
+Message-ID: <20240406141454.45529-1-animeshagarwal28@gmail.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-bindings: clock: airoha: add EN7581 binding
-To: Lorenzo Bianconi <lorenzo@kernel.org>, linux-clk@vger.kernel.org
-Cc: mturquette@baylibre.com, sboyd@kernel.org,
- linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, nbd@nbd.name,
- john@phrozen.org, devicetree@vger.kernel.org, dd@embedd.com,
- catalin.marinas@arm.com, will@kernel.org, upstream@airoha.com,
- lorenzo.bianconi83@gmail.com, angelogioacchino.delregno@collabora.com
-References: <cover.1712399980.git.lorenzo@kernel.org>
- <99734deb28889e685a764da94418f68b55ee3bdc.1712399981.git.lorenzo@kernel.org>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <99734deb28889e685a764da94418f68b55ee3bdc.1712399981.git.lorenzo@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 06/04/2024 12:43, Lorenzo Bianconi wrote:
-> Introduce Airoha EN7581 entry in Airoha EN7523 clock binding
-> 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> ---
->  .../bindings/clock/airoha,en7523-scu.yaml     | 31 +++++++++++++++++--
->  1 file changed, 29 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
-> index 79b0752faa91..3f4266637733 100644
-> --- a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
-> +++ b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
-> @@ -29,10 +29,13 @@ description: |
->  properties:
->    compatible:
->      items:
-> -      - const: airoha,en7523-scu
-> +      - enum:
-> +          - airoha,en7523-scu
-> +          - airoha,en7581-scu
->  
->    reg:
-> -    maxItems: 2
-> +    minItems: 2
-> +    maxItems: 3
+Convert the Texas Instruments PCM1681 bindings to DT schema.
+Make bindings complete by adding #sound-dai-cells.
 
+Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+---
+Changes in v2:
+- Added existing maintainers to the list of maintainers.
+- Added  #sound-dai-cells, $ref to dai-common and unevaluatedProperties: false.
+- Added "audio-codec" in example.
+---
+ .../devicetree/bindings/sound/ti,pcm1681.txt  | 15 -------
+ .../devicetree/bindings/sound/ti,pcm1681.yaml | 43 +++++++++++++++++++
+ 2 files changed, 43 insertions(+), 15 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/ti,pcm1681.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/ti,pcm1681.yaml
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/sound/ti,pcm1681.txt b/Documentation/devicetree/bindings/sound/ti,pcm1681.txt
+deleted file mode 100644
+index 4df17185ab80..000000000000
+--- a/Documentation/devicetree/bindings/sound/ti,pcm1681.txt
++++ /dev/null
+@@ -1,15 +0,0 @@
+-Texas Instruments PCM1681 8-channel PWM Processor
+-
+-Required properties:
+-
+- - compatible:		Should contain "ti,pcm1681".
+- - reg:			The i2c address. Should contain <0x4c>.
+-
+-Examples:
+-
+-	i2c_bus {
+-		pcm1681@4c {
+-			compatible = "ti,pcm1681";
+-			reg = <0x4c>;
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/sound/ti,pcm1681.yaml b/Documentation/devicetree/bindings/sound/ti,pcm1681.yaml
+new file mode 100644
+index 000000000000..5aa00617291c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/ti,pcm1681.yaml
+@@ -0,0 +1,43 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/ti,pcm1681.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments PCM1681 8-channel PWM Processor
++
++maintainers:
++  - Shenghao Ding <shenghao-ding@ti.com>
++  - Kevin Lu <kevin-lu@ti.com>
++  - Baojun Xu <baojun.xu@ti.com>
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    const: ti,pcm1681
++
++  reg:
++    maxItems: 1
++
++  "#sound-dai-cells":
++    const: 0
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        pcm1681: audio-codec@4c {
++            compatible = "ti,pcm1681";
++            reg = <0x4c>;
++        };
++    };
+-- 
+2.44.0
 
 
