@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-56861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56862-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A328689AC20
-	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 18:48:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDD8489AC5A
+	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 18:53:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 44A31B21735
-	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 16:47:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DE936B222A5
+	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 16:53:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C8183FB01;
-	Sat,  6 Apr 2024 16:47:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E517C3BBDC;
+	Sat,  6 Apr 2024 16:52:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QEGiyEUU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iDSyDmJd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E793940BE6;
-	Sat,  6 Apr 2024 16:47:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBDB6405FF;
+	Sat,  6 Apr 2024 16:52:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712422067; cv=none; b=Iz/KlIVtNM4Z/MitmtLxaSoS4Whc0wByhdU3/sPmn2KpZJITPgeGycb7EVRTeZj0km29EKYbuMf0Q0ZcDkwrrGJGHPJPf6pqmFWC/U+pHn5PKoidQVs7boiXbZBKGbCJR97WKPxhsbYfCVpKehttNqS4FkTTPwd41XcZzEUm4Ko=
+	t=1712422324; cv=none; b=b5hho00ZX+bOnG2HM1z8B72M1skyN4yK8F9O3BwaZhya1HOXdNbPGkCC1P/gQSjSNo5o8ToVoOId75SumKdfFE+maxIYTIIBRht6rjeG95SBOu/UtuGrL+9VtGoTve8VDQu6TlLYR8EEbt+l49zKssGFsrJahuTXafg9fPPKUs8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712422067; c=relaxed/simple;
-	bh=MKSYUuL5EWHfVs1stO0tc254Y3E6+JVTDm0nqhyRRPU=;
+	s=arc-20240116; t=1712422324; c=relaxed/simple;
+	bh=I54NXFbkQcPOBxp/oFLSaWT2pCoL0Ch2SA3oANFNikQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iYjcFXAgl1rpunlexpbznNdw9VV/UUVq62uQiCmbINepDPFJHHooaK5BNCVXDkpX4AYb5lu4e8evUaHmZ7BVr+ih4KHAmHofMZbhRTBs55/5auk4+ofSPZKZ2Nn5/ku67LG2zTRdW3Keb2PkdX1HxF6P4C3VjTNt4YnOVMofBEk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QEGiyEUU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 734DEC433C7;
-	Sat,  6 Apr 2024 16:47:45 +0000 (UTC)
+	 MIME-Version:Content-Type; b=eHsOqj5Bzh+V2Qll9P0OjIcuE0bSv1U1bbKFuXMRSA8mFhd3gmysdrv45xsjCxEZHmJZg2cuQ7pVcWcm5EQ3BCriPr6O2sW8RKFRPEjHUvHG9hKwXEM8W06yotugjWxTiEVe7z4aqvuxJRTWhRE+e0FwMkooZKEQ7rveGVENmlA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iDSyDmJd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8207BC433F1;
+	Sat,  6 Apr 2024 16:52:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712422066;
-	bh=MKSYUuL5EWHfVs1stO0tc254Y3E6+JVTDm0nqhyRRPU=;
+	s=k20201202; t=1712422324;
+	bh=I54NXFbkQcPOBxp/oFLSaWT2pCoL0Ch2SA3oANFNikQ=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=QEGiyEUUW70Z2/xp3+x1TmOHjA3r5hPqfcF2XI8c8S+gi96XEKBPSwMVTM046lnff
-	 MQvUUvDaz4Fzi/uX94dUMi0T5TsyMPJAyuyMeMDe7H1B+v0210PgO/FnqUGhC8Gcu9
-	 im6X+MQcV5jUQwBcMeGl8ZeYONfV22wgOScpUaJCgaxGeQJb8V2j4pnQon70bDMPPb
-	 OnInBFki8EPdwbfQLjEvf2U0WKLQl/Gt4XcDuwJvxRt9yA/mRdGjzF8sDYOam7ofO8
-	 QZyTZvpfEaiA4sHgTpx2errhIL47fGp0OD63mvZRTR75QpB6/8YguKuOqI7DE0HaZ4
-	 0Az1XV5xIGxzQ==
-Date: Sat, 6 Apr 2024 17:47:34 +0100
+	b=iDSyDmJdaYfvS00zLTR6FC4DwoR5ia7875ndItH4MKQhCFiSUcV+Dvm5XC1GJff1C
+	 AyPyYuCE5mtGcp1dmIeOMS6qfJP+E59IEJMpJceFdQtU6lfSL8WJWh4jUUZYIF8BJZ
+	 PSClN27EkGTX0hgJCT1R9IiuDB1medx2QIPeS8JX/GR5K3BfkOFBV3vtfpIGN8stmN
+	 CDhEwkMsI+Uek5gHxygbDtqbP3NqIciFKas1l64y0CeOeTsmoeRqeJwCIZlD8dm312
+	 Y1uc0VRAlVKDBMcSBjy0ttS0GaTqwEwtr5RorJTyI8ijWjqJ7RQ8+ndaSBJL1FJY60
+	 Pxsm844oRp1Bg==
+Date: Sat, 6 Apr 2024 17:51:51 +0100
 From: Jonathan Cameron <jic23@kernel.org>
 To: Rob Herring <robh@kernel.org>
 Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] of: Add a helper to free property struct
-Message-ID: <20240406174734.0a994e52@jic23-huawei>
-In-Reply-To: <20240404-dt-cleanup-free-v1-1-c60e6cba8da9@kernel.org>
+Subject: Re: [PATCH 2/3] of: Use scope based kfree() cleanups
+Message-ID: <20240406175151.2067c01e@jic23-huawei>
+In-Reply-To: <20240404-dt-cleanup-free-v1-2-c60e6cba8da9@kernel.org>
 References: <20240404-dt-cleanup-free-v1-0-c60e6cba8da9@kernel.org>
-	<20240404-dt-cleanup-free-v1-1-c60e6cba8da9@kernel.org>
+	<20240404-dt-cleanup-free-v1-2-c60e6cba8da9@kernel.org>
 X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -61,14 +61,15 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Thu, 04 Apr 2024 09:15:10 -0500
+On Thu, 04 Apr 2024 09:15:11 -0500
 Rob Herring <robh@kernel.org> wrote:
 
-> Freeing a property struct is 3 kfree()'s which is duplicated in multiple
-> spots. Add a helper, __of_prop_free(), and replace all the open coded
-> cases in the DT code.
+> Use the relatively new scope based kfree() cleanup to simplify error
+> handling. Doing so reduces the chances of memory leaks and simplifies
+> error paths by avoiding the need for goto statements.
 > 
 > Signed-off-by: Rob Herring <robh@kernel.org>
 Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+
 
 
