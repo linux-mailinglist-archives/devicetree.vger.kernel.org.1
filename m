@@ -1,328 +1,133 @@
-Return-Path: <devicetree+bounces-56834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D08CB89AA6C
-	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 12:44:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00CCA89AA71
+	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 12:58:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0042D1C20F76
-	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 10:44:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3174A1C20EB1
+	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 10:58:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C48C2B9AA;
-	Sat,  6 Apr 2024 10:44:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64AFF2B9D7;
+	Sat,  6 Apr 2024 10:57:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BzHwa6XF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EjrUvcke"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5462E1BC5C;
-	Sat,  6 Apr 2024 10:44:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3718A2B9A3;
+	Sat,  6 Apr 2024 10:57:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712400253; cv=none; b=X9j20Ok3jG0HCb18WZ52pYF8en3kQSl3Ld1mU4juh2+KerlmpXbP6RHSv4dfVRLbJc0gAD3xSfQlKNN/k4Bxoy9TBabWbP/RhPBWzV2WuiepPH1OTW26Y7tH06kUFVsa5YXXS7GA2nK9R0fNE3xV9NWhZAKpW9WH3VwCVNo3ge0=
+	t=1712401078; cv=none; b=eb70Qb4xWIPcXKCtOjrXgj/67QCSRR+YTlqu7r1vjTHY7pjBs47mx52nzVD+kuJbswkbyAxlUf+uucpY1+eIIgpX1Nt+hz02+d6tKOP3WpmCeSku/AoB2z314CJbS2KdlM04S27Q6dxGOthsdqF/xBub9PVW245BJvbfi/0zl4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712400253; c=relaxed/simple;
-	bh=IYd7JOa745hTjfMeihJfVCVBddb9XQSx17VJwDwVj5k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=MZsA6KpOW0D7TwW+YsaotgavnvVfq6TgYhhOOqGrE1axymOKfqZJbVFyeNrFcbcI3FAb2EHWWZuqw2BRUslDBT4Q31Dq88qNh04EacRgKWJKDjHNAaXYJ+Y8h0BHeueGSJF/flzqHkMbwXENyIxB/ZsuwBeMzm/leZskpBjEqeU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BzHwa6XF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9AC6C43390;
-	Sat,  6 Apr 2024 10:44:12 +0000 (UTC)
+	s=arc-20240116; t=1712401078; c=relaxed/simple;
+	bh=rqw8Wh5G0Ki5AKvdh2k+6Tf5c9k4JZYkGx3BRm4HyNc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Owi2mZ3d0+cZzqua1tsue5/WPwxwJBXdcAdK1hLowpm7LqpASWstYWFdVsJwprK0xPT7H85OJiSvfopvVroHH6WIuj71QGPm62lSvfWylHxykjRADGO34FuBSdNNQdy7fkyhqYsjO4vcclZIKXDv53Trb0jJvwi4SOPzDj+yTsM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EjrUvcke; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44053C433C7;
+	Sat,  6 Apr 2024 10:57:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712400253;
-	bh=IYd7JOa745hTjfMeihJfVCVBddb9XQSx17VJwDwVj5k=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=BzHwa6XFEltnTgWjU+vm24yOFtxE18mCJH2Nzhr+vuSygnWFQCE0U9d+GtYJYDEj6
-	 GvpiNx0TBUR4ry/nXTg3R3JAIiIiYbD7dOxVj4k/U9vBNHXx7hefRfAb2WhEGE0Rlb
-	 q52dfuXbODdkh0kr1DzXrcnFlODlk/U1MRvvVz7ndVSa9nwhY9KnIKPj9MNLnuMyJF
-	 mJdZ6+tT1Te+Pm7bHy02F7wVMLTan5u9+vUgkWOV6VNsiyJazf17ijZozpFfdgV8z9
-	 aCQS/SzN+3fLqpxmuw2LY3lGxqKJOEYwwC7qS+Mw6Qtoz+O18oActZmj/SKtwvon8m
-	 KZbAD2gp7N+iw==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: linux-clk@vger.kernel.org
-Cc: mturquette@baylibre.com,
-	sboyd@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	nbd@nbd.name,
-	john@phrozen.org,
-	devicetree@vger.kernel.org,
-	dd@embedd.com,
-	catalin.marinas@arm.com,
-	will@kernel.org,
-	upstream@airoha.com,
-	lorenzo.bianconi83@gmail.com,
-	angelogioacchino.delregno@collabora.com
-Subject: [PATCH v2 4/4] clk: en7523: Add EN7581 support
-Date: Sat,  6 Apr 2024 12:43:44 +0200
-Message-ID: <57b6e53ed4d2b2e38abff6a3ea56841bad6be8a9.1712399981.git.lorenzo@kernel.org>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <cover.1712399980.git.lorenzo@kernel.org>
-References: <cover.1712399980.git.lorenzo@kernel.org>
+	s=k20201202; t=1712401077;
+	bh=rqw8Wh5G0Ki5AKvdh2k+6Tf5c9k4JZYkGx3BRm4HyNc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=EjrUvckelHV1HjAa/3P8x/lQcVrIlHfbAv6Qnce/PStMK8Vs1DQeJugKu1eT17j55
+	 eojJLifZ5J1Pf03XWdbGJHKOlWBNsQJoyYjbOJbuzKgnqetuy0IykzvAwcJ+Bji22V
+	 KZt7EsoXmTs8VWeY/U1WjR8GZd/yjhbo7WbCX0CCFWqhUK81h3J8Y5dwECWW6mr+5f
+	 G4i1nSkdbV1LhsNQE35t/et5PbLDj6/RNEbIHjdXi2xai1/JZdWmU2W2z9xcvcbzt8
+	 ZnmjJQi2Wa/l9IzYMHlgAr6vb5OsLsOexXLgU2FPdzPqdbw5saCjTf/7SNJN3yD+sI
+	 foM5/4FHXxoDw==
+Message-ID: <614b5107-656d-4d41-99c1-77941c48342c@kernel.org>
+Date: Sat, 6 Apr 2024 12:57:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/6] dt-bindings: firmware: arm,scmi: set
+ additionalProperties to true
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Sudeep Holla <sudeep.holla@arm.com>,
+ Cristian Marussi <cristian.marussi@arm.com>
+Cc: Peng Fan <peng.fan@nxp.com>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240405-imx95-bbm-misc-v2-v2-0-9fc9186856c2@nxp.com>
+ <20240405-imx95-bbm-misc-v2-v2-1-9fc9186856c2@nxp.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240405-imx95-bbm-misc-v2-v2-1-9fc9186856c2@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Introduce EN7581 clock support to clk-en7523 driver.
-Add hw_init callback to en_clk_soc_data data structure.
+On 05/04/2024 14:39, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> When adding vendor extension protocols, there is dt-schema warning:
+> "
+> imx,scmi.example.dtb: scmi: 'protocol@81', 'protocol@84' do not match any
+> of the regexes: 'pinctrl-[0-9]+'
+> "
+> 
+> Set additionalProperties to true to address the issue.
 
-Tested-by: Zhengping Zhang <zhengping.zhang@airoha.com>
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- drivers/clk/clk-en7523.c | 158 +++++++++++++++++++++++++++++++++++++--
- 1 file changed, 153 insertions(+), 5 deletions(-)
+I do not see anything addressed here, except making the binding
+accepting anything anywhere...
 
-diff --git a/drivers/clk/clk-en7523.c b/drivers/clk/clk-en7523.c
-index 7eee921ab575..381605be333f 100644
---- a/drivers/clk/clk-en7523.c
-+++ b/drivers/clk/clk-en7523.c
-@@ -4,13 +4,16 @@
- #include <linux/clk-provider.h>
- #include <linux/io.h>
- #include <linux/of.h>
-+#include <linux/of_device.h>
- #include <linux/platform_device.h>
- #include <dt-bindings/clock/en7523-clk.h>
- 
- #define REG_PCI_CONTROL			0x88
- #define   REG_PCI_CONTROL_PERSTOUT	BIT(29)
- #define   REG_PCI_CONTROL_PERSTOUT1	BIT(26)
-+#define   REG_PCI_CONTROL_REFCLK_EN0	BIT(23)
- #define   REG_PCI_CONTROL_REFCLK_EN1	BIT(22)
-+#define   REG_PCI_CONTROL_PERSTOUT2	BIT(16)
- #define REG_GSW_CLK_DIV_SEL		0x1b4
- #define REG_EMI_CLK_DIV_SEL		0x1b8
- #define REG_BUS_CLK_DIV_SEL		0x1bc
-@@ -18,10 +21,25 @@
- #define REG_SPI_CLK_FREQ_SEL		0x1c8
- #define REG_NPU_CLK_DIV_SEL		0x1fc
- #define REG_CRYPTO_CLKSRC		0x200
--#define REG_RESET_CONTROL		0x834
-+#define REG_RESET_CONTROL2		0x830
-+#define   REG_RESET2_CONTROL_PCIE2	BIT(27)
-+#define REG_RESET_CONTROL1		0x834
- #define   REG_RESET_CONTROL_PCIEHB	BIT(29)
- #define   REG_RESET_CONTROL_PCIE1	BIT(27)
- #define   REG_RESET_CONTROL_PCIE2	BIT(26)
-+/* EN7581 */
-+#define REG_PCIE0_MEM			0x00
-+#define REG_PCIE0_MEM_MASK		0x04
-+#define REG_PCIE1_MEM			0x08
-+#define REG_PCIE1_MEM_MASK		0x0c
-+#define REG_PCIE2_MEM			0x10
-+#define REG_PCIE2_MEM_MASK		0x14
-+#define REG_PCIE_RESET_OPEN_DRAIN	0x018c
-+#define REG_PCIE_RESET_OPEN_DRAIN_MASK	GENMASK(2, 0)
-+#define REG_NP_SCU_PCIC			0x88
-+#define REG_NP_SCU_SSTR			0x9c
-+#define REG_PCIE_XSI0_SEL_MASK		GENMASK(14, 13)
-+#define REG_PCIE_XSI1_SEL_MASK		GENMASK(12, 11)
- 
- struct en_clk_desc {
- 	int id;
-@@ -49,6 +67,8 @@ struct en_clk_gate {
- 
- struct en_clk_soc_data {
- 	const struct clk_ops pcie_ops;
-+	int (*hw_init)(struct platform_device *pdev, void __iomem *base,
-+		       void __iomem *np_base);
- };
- 
- static const u32 gsw_base[] = { 400000000, 500000000 };
-@@ -211,14 +231,14 @@ static int en7523_pci_prepare(struct clk_hw *hw)
- 	usleep_range(1000, 2000);
- 
- 	/* Reset to default */
--	val = readl(np_base + REG_RESET_CONTROL);
-+	val = readl(np_base + REG_RESET_CONTROL1);
- 	mask = REG_RESET_CONTROL_PCIE1 | REG_RESET_CONTROL_PCIE2 |
- 	       REG_RESET_CONTROL_PCIEHB;
--	writel(val & ~mask, np_base + REG_RESET_CONTROL);
-+	writel(val & ~mask, np_base + REG_RESET_CONTROL1);
- 	usleep_range(1000, 2000);
--	writel(val | mask, np_base + REG_RESET_CONTROL);
-+	writel(val | mask, np_base + REG_RESET_CONTROL1);
- 	msleep(100);
--	writel(val & ~mask, np_base + REG_RESET_CONTROL);
-+	writel(val & ~mask, np_base + REG_RESET_CONTROL1);
- 	usleep_range(5000, 10000);
- 
- 	/* Release device */
-@@ -259,6 +279,9 @@ static struct clk_hw *en7523_register_pcie_clk(struct device *dev,
- 
- 	cg->base = np_base;
- 	cg->hw.init = &init;
-+
-+	if (init.ops->disable)
-+		init.ops->disable(&cg->hw);
- 	init.ops->unprepare(&cg->hw);
- 
- 	if (clk_hw_register(dev, &cg->hw))
-@@ -267,6 +290,111 @@ static struct clk_hw *en7523_register_pcie_clk(struct device *dev,
- 	return &cg->hw;
- }
- 
-+static int en7581_pci_is_enabled(struct clk_hw *hw)
-+{
-+	struct en_clk_gate *cg = container_of(hw, struct en_clk_gate, hw);
-+	u32 val, mask;
-+
-+	mask = REG_PCI_CONTROL_REFCLK_EN0 | REG_PCI_CONTROL_REFCLK_EN1;
-+	val = readl(cg->base + REG_PCI_CONTROL);
-+	return (val & mask) == mask;
-+}
-+
-+static int en7581_pci_prepare(struct clk_hw *hw)
-+{
-+	struct en_clk_gate *cg = container_of(hw, struct en_clk_gate, hw);
-+	void __iomem *np_base = cg->base;
-+	u32 val, mask;
-+
-+	mask = REG_RESET_CONTROL_PCIE1 | REG_RESET_CONTROL_PCIE2 |
-+	       REG_RESET_CONTROL_PCIEHB;
-+	val = readl(np_base + REG_RESET_CONTROL1);
-+	writel(val & ~mask, np_base + REG_RESET_CONTROL1);
-+	val = readl(np_base + REG_RESET_CONTROL2);
-+	writel(val & ~REG_RESET2_CONTROL_PCIE2, np_base + REG_RESET_CONTROL2);
-+	usleep_range(5000, 10000);
-+
-+	return 0;
-+}
-+
-+static int en7581_pci_enable(struct clk_hw *hw)
-+{
-+	struct en_clk_gate *cg = container_of(hw, struct en_clk_gate, hw);
-+	void __iomem *np_base = cg->base;
-+	u32 val, mask;
-+
-+	mask = REG_PCI_CONTROL_REFCLK_EN0 | REG_PCI_CONTROL_REFCLK_EN1 |
-+	       REG_PCI_CONTROL_PERSTOUT1 | REG_PCI_CONTROL_PERSTOUT2 |
-+	       REG_PCI_CONTROL_PERSTOUT;
-+	val = readl(np_base + REG_PCI_CONTROL);
-+	writel(val | mask, np_base + REG_PCI_CONTROL);
-+	msleep(250);
-+
-+	return 0;
-+}
-+
-+static void en7581_pci_unprepare(struct clk_hw *hw)
-+{
-+	struct en_clk_gate *cg = container_of(hw, struct en_clk_gate, hw);
-+	void __iomem *np_base = cg->base;
-+	u32 val, mask;
-+
-+	mask = REG_RESET_CONTROL_PCIE1 | REG_RESET_CONTROL_PCIE2 |
-+	       REG_RESET_CONTROL_PCIEHB;
-+	val = readl(np_base + REG_RESET_CONTROL1);
-+	writel(val | mask, np_base + REG_RESET_CONTROL1);
-+	mask = REG_RESET_CONTROL_PCIE1 | REG_RESET_CONTROL_PCIE2;
-+	writel(val | mask, np_base + REG_RESET_CONTROL1);
-+	val = readl(np_base + REG_RESET_CONTROL2);
-+	writel(val | REG_RESET_CONTROL_PCIE2, np_base + REG_RESET_CONTROL2);
-+	msleep(100);
-+}
-+
-+static void en7581_pci_disable(struct clk_hw *hw)
-+{
-+	struct en_clk_gate *cg = container_of(hw, struct en_clk_gate, hw);
-+	void __iomem *np_base = cg->base;
-+	u32 val, mask;
-+
-+	mask = REG_PCI_CONTROL_REFCLK_EN0 | REG_PCI_CONTROL_REFCLK_EN1 |
-+	       REG_PCI_CONTROL_PERSTOUT1 | REG_PCI_CONTROL_PERSTOUT2 |
-+	       REG_PCI_CONTROL_PERSTOUT;
-+	val = readl(np_base + REG_PCI_CONTROL);
-+	writel(val & ~mask, np_base + REG_PCI_CONTROL);
-+	usleep_range(1000, 2000);
-+}
-+
-+static int en7581_clk_hw_init(struct platform_device *pdev,
-+			      void __iomem *base,
-+			      void __iomem *np_base)
-+{
-+	void __iomem *pb_base;
-+	u32 val;
-+
-+	pb_base = devm_platform_ioremap_resource(pdev, 2);
-+	if (IS_ERR(pb_base))
-+		return PTR_ERR(pb_base);
-+
-+	val = readl(np_base + REG_NP_SCU_SSTR);
-+	val &= ~(REG_PCIE_XSI0_SEL_MASK | REG_PCIE_XSI1_SEL_MASK);
-+	writel(val, np_base + REG_NP_SCU_SSTR);
-+	val = readl(np_base + REG_NP_SCU_PCIC);
-+	writel(val | 3, np_base + REG_NP_SCU_PCIC);
-+
-+	writel(0x20000000, pb_base + REG_PCIE0_MEM);
-+	writel(0xfc000000, pb_base + REG_PCIE0_MEM_MASK);
-+	writel(0x24000000, pb_base + REG_PCIE1_MEM);
-+	writel(0xfc000000, pb_base + REG_PCIE1_MEM_MASK);
-+	writel(0x28000000, pb_base + REG_PCIE2_MEM);
-+	writel(0xfc000000, pb_base + REG_PCIE2_MEM_MASK);
-+
-+	val = readl(base + REG_PCIE_RESET_OPEN_DRAIN);
-+	writel(val | REG_PCIE_RESET_OPEN_DRAIN_MASK,
-+	       base + REG_PCIE_RESET_OPEN_DRAIN);
-+
-+	return 0;
-+}
-+
- static void en7523_register_clocks(struct device *dev, struct clk_hw_onecell_data *clk_data,
- 				   void __iomem *base, void __iomem *np_base)
- {
-@@ -299,6 +427,7 @@ static void en7523_register_clocks(struct device *dev, struct clk_hw_onecell_dat
- static int en7523_clk_probe(struct platform_device *pdev)
- {
- 	struct device_node *node = pdev->dev.of_node;
-+	const struct en_clk_soc_data *soc_data;
- 	struct clk_hw_onecell_data *clk_data;
- 	void __iomem *base, *np_base;
- 	int r;
-@@ -311,6 +440,13 @@ static int en7523_clk_probe(struct platform_device *pdev)
- 	if (IS_ERR(np_base))
- 		return PTR_ERR(np_base);
- 
-+	soc_data = of_device_get_match_data(&pdev->dev);
-+	if (soc_data->hw_init) {
-+		r = soc_data->hw_init(pdev, base, np_base);
-+		if (r)
-+			return r;
-+	}
-+
- 	clk_data = devm_kzalloc(&pdev->dev,
- 				struct_size(clk_data, hws, EN7523_NUM_CLOCKS),
- 				GFP_KERNEL);
-@@ -336,8 +472,20 @@ static const struct en_clk_soc_data en7523_data = {
- 	},
- };
- 
-+static const struct en_clk_soc_data en7581_data = {
-+	.pcie_ops = {
-+		.is_enabled = en7581_pci_is_enabled,
-+		.prepare = en7581_pci_prepare,
-+		.enable = en7581_pci_enable,
-+		.unprepare = en7581_pci_unprepare,
-+		.disable = en7581_pci_disable,
-+	},
-+	.hw_init = en7581_clk_hw_init,
-+};
-+
- static const struct of_device_id of_match_clk_en7523[] = {
- 	{ .compatible = "airoha,en7523-scu", .data = &en7523_data },
-+	{ .compatible = "airoha,en7581-scu", .data = &en7581_data },
- 	{ /* sentinel */ }
- };
- 
--- 
-2.44.0
+Best regards,
+Krzysztof
 
 
