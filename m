@@ -1,126 +1,307 @@
-Return-Path: <devicetree+bounces-56818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 991A389A92B
-	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 07:31:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 821EE89A951
+	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 08:19:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50BE4282D69
-	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 05:31:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0DA1A283814
+	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 06:19:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02117200B7;
-	Sat,  6 Apr 2024 05:31:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CD8B208C1;
+	Sat,  6 Apr 2024 06:19:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b="yRxZ3zyb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vKwRaDhv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-108-mta90.mxroute.com (mail-108-mta90.mxroute.com [136.175.108.90])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B1A61DA53
-	for <devicetree@vger.kernel.org>; Sat,  6 Apr 2024 05:31:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=136.175.108.90
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3428010A1A;
+	Sat,  6 Apr 2024 06:19:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712381461; cv=none; b=d2U0rUQP3/huPxcyF+klcw/cGKQuSG8ZgEhelL7Rm4KBR8O/1gfuxxCSIQ34CNT+aip91sYI6hx4tb86ADLqxdeFux2XSrs5hf8EF9KNLQex6KUIlxf0PrzF46IS4Bl+iDmyi0QgY+Uw4E74JHSwVCvLj2wVg2I9GDXY8eHisS4=
+	t=1712384370; cv=none; b=JXoSYYmise67zanr0dh4hxZQD6vAQj0rrT0MUzBgESr5rfkE1OuTqDkQYD7Czn9zynoNyphSPWmTz8pB31IA42yisGuA9kDlCECYmtuyRbuJk2pDxrnhoVSeAH4IBabaqGszXXrrhGlpgGvAjAS8j/ay1B1hcHJ7LuCD8dlzouw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712381461; c=relaxed/simple;
-	bh=PcVc0enR4j7Fu4qIcJTJAGfb9eIbRBk+MbR+x31n5Z4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ezJdg1dSDOMcL3e7YPFXbg3woAmd7KXIU5VHGoMNCE6BKhYsVjCbX2cEtQZnYfdV3CNj/vbLNlWxi+j9fsN5GCj7cC7P5zfFTZGXubV6FCmCWdpb3gnqsrLv5XcOuRzh8huR3iJflxe6oGnNSWdixsFfXJVX+9TI2E6xnFOFN7U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com; spf=pass smtp.mailfrom=luigi311.com; dkim=pass (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b=yRxZ3zyb; arc=none smtp.client-ip=136.175.108.90
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=luigi311.com
-Received: from filter006.mxroute.com ([136.175.111.2] filter006.mxroute.com)
- (Authenticated sender: mN4UYu2MZsgR)
- by mail-108-mta90.mxroute.com (ZoneMTA) with ESMTPSA id 18eb1deb1d70003bea.00f
- for <devicetree@vger.kernel.org>
- (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
- Sat, 06 Apr 2024 05:25:45 +0000
-X-Zone-Loop: 8da37d7e098a170a32a2adbc082534a539b7779ec357
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=luigi311.com; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
-	From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=sz1o3+H/QzcFhJgMgxzNEIq38+fbX0fuDgjyR3Z3QQc=; b=yRxZ3zybwPCDOXYc6dTeGjFcrD
-	oJ/ez3YSCH/U3R+W7HZ+fcllfTNo6nDrKK/J6LtIS+6pGlvAFrg1BKy+05tElSeHU+XVi9lLN7Jjq
-	N9wWf/YR2FfU3yz4kxdskDLVFCSxd7zRrbZErNyZKiZ8MEh3oScdzDZhatOoB/q3+riVjlqTrkRy7
-	Hqeh+nMcad2X60AuJoWOblCKmKuwLSR4xq2i1LF1f++LiJf/cQxwpQUlP0h1QbgLNhKUUez/MFVEI
-	p5YxnOGH1HDkg3IQGhGvjSPxDKypqt8FcRQbW50njJ2QApLlk+PAT2yoMCtocDpSVBdl4iJWE7/by
-	Vyq36ttA==;
-Message-ID: <803b0bd3-e615-41c1-888e-69b6ecca0b8a@luigi311.com>
-Date: Fri, 5 Apr 2024 23:25:41 -0600
+	s=arc-20240116; t=1712384370; c=relaxed/simple;
+	bh=BKVdiYErZ9XrHA0EsA8j2gej/sXqFkeM9j1uQgMrlqw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OKpISTBJ+hqIbFu3EwIHi7aJLYY7hlrza5yD7ZYMTctM9LL8k4Oz0+ZvHGy/7NTTprw+Ef/zHk7NqSUyEf87U2mOUdjQJijChGeS9WHsQZCafA4ql3QwfkclxIf2AtXTViF1ee8DPqsrV4FwsZqV9r6mReV5n9mNuY/UcU61CtQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vKwRaDhv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00D77C433F1;
+	Sat,  6 Apr 2024 06:19:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712384369;
+	bh=BKVdiYErZ9XrHA0EsA8j2gej/sXqFkeM9j1uQgMrlqw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=vKwRaDhvqH+xk/9UPnskgcwDdWb66U8cd6zZLQB0t06d/NyNKcawE7zW5mPe3BI20
+	 pNuSXcHAnOsEtkxqYAWu7Vm8jMBD/Oqwn9HH6MhKPlkgSIAoRhRbN4DoXLo3lTx2zv
+	 1DSVoJbe0JH9i4G2j5zKBBBZrigjXYwskKf9Uz/c1ry9optvrb9nKlZz1dTtiAAr6/
+	 8INpRBRNgrTUDcpkB814HBkdFFRVL7yVeZcomZPolkNigo0nPiDnxLIlwU9CXDAkAQ
+	 9gX5gdNR91+70VslG5HgHzUkh+HzAHJv3rBHcFXezJmMARlfXvkifxg/byC7ux7lyA
+	 sMtZOClIvHdgw==
+Date: Sat, 6 Apr 2024 11:49:25 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Yang Xiwen <forbidden405@outlook.com>
+Cc: Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jiancheng Xue <xuejiancheng@hisilicon.com>,
+	Shawn Guo <shawn.guo@linaro.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Kishon Vijay Abraham I <kishon@ti.com>,
+	David Yang <mmyangfl@gmail.com>
+Subject: Re: [PATCH v5 5/5] phy: hisilicon: hisi-inno-phy: add support for
+ Hi3798MV200 INNO PHY
+Message-ID: <ZhDpbaPOaqs0uln4@matsya>
+References: <20240305-inno-phy-v5-0-dc1cb130ea08@outlook.com>
+ <20240305-inno-phy-v5-5-dc1cb130ea08@outlook.com>
+ <ZhAsXUjifTD6HeKx@matsya>
+ <SEZPR06MB695903034B7404FBEA750A9196032@SEZPR06MB6959.apcprd06.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 09/25] media: i2c: imx258: Add support for running on 2
- CSI data lanes
-To: Pavel Machek <pavel@ucw.cz>
-Cc: linux-media@vger.kernel.org, dave.stevenson@raspberrypi.com,
- jacopo.mondi@ideasonboard.com, mchehab@kernel.org, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org,
- s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
- sakari.ailus@linux.intel.com, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org
-References: <20240403150355.189229-1-git@luigi311.com>
- <20240403150355.189229-10-git@luigi311.com> <Zg2jvUDFnY83drlg@duo.ucw.cz>
-Content-Language: en-US
-From: Luis Garcia <git@luigi311.com>
-In-Reply-To: <Zg2jvUDFnY83drlg@duo.ucw.cz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authenticated-Id: git@luigi311.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <SEZPR06MB695903034B7404FBEA750A9196032@SEZPR06MB6959.apcprd06.prod.outlook.com>
 
-On 4/3/24 12:45, Pavel Machek wrote:
-> Hi!
+On 06-04-24, 01:53, Yang Xiwen wrote:
+> On 4/6/2024 12:52 AM, Vinod Koul wrote:
+> > On 05-03-24, 21:32, Yang Xiwen via B4 Relay wrote:
+> > > From: Yang Xiwen <forbidden405@outlook.com>
+> > That is quite an email id!
+> > 
+> > > Direct MMIO resgiter access is used by Hi3798MV200. For other models,
+> > > of_iomap() returns NULL due to insufficient length. So they are
+> > so how is that fixed... Pls describe the change...
 > 
->> +/*
->> + * 4208x3120 @ 30 fps needs 1267Mbps/lane, 4 lanes.
->> + * To avoid further computation of clock settings, adopt the same per
->> + * lane data rate when using 2 lanes, thus allowing a maximum of 15fps.
->> + */
->> +static const struct imx258_reg mipi_1267mbps_19_2mhz_2l[] = {
->> +	{ 0x0136, 0x13 },
->> +	{ 0x0137, 0x33 },
->> +	{ 0x0301, 0x0A },
->> +	{ 0x0303, 0x02 },
->> +	{ 0x0305, 0x03 },
->> +	{ 0x0306, 0x00 },
->> +	{ 0x0307, 0xC6 },
->> +	{ 0x0309, 0x0A },
->> +	{ 0x030B, 0x01 },
->> +	{ 0x030D, 0x02 },
->> +	{ 0x030E, 0x00 },
->> +	{ 0x030F, 0xD8 },
->> +	{ 0x0310, 0x00 },
->> +
->> +	{ 0x0114, 0x01 },
->> +	{ 0x0820, 0x09 },
->> +	{ 0x0821, 0xa6 },
->> +	{ 0x0822, 0x66 },
->> +	{ 0x0823, 0x66 },
->> +};
->> +
->> +static const struct imx258_reg mipi_1267mbps_19_2mhz_4l[] = {
->>  	{ 0x0136, 0x13 },
->>  	{ 0x0137, 0x33 },
->>  	{ 0x0301, 0x05 },
 > 
-> I wish we did not have to copy all the magic values like this.
+> The commit log will be rewritten in next revision. I'll try to emphasize the
+> PHY and its configuration interface briefly. Though i don't have access to
+> the datasheets and TRM so most things can not be verified.
 > 
-> Best regards,
-> 								Pavel
-> 								
+> 
+> For CV200 and MV100 INNO PHY, the configuration interface is attached to
+> PERICTRL(Peripheral Control Block). So we just use a register called
+> PERI_USB3 to configure the PHY. The bus reset, clock are all controlled in
+> PERI_USB3 register. To read/write to a register of the PHY, a special
+> sequence of register writes and reads are needed, which was implemented in
+> this driver.
+> 
+> 
+> But for MV200 INNO PHY, the configuration interface is attached directly to
+> system bus(MMIO). The bus clocks and resets are controlled via Clock Reset
+> Generator(CRG). Now we have to control them with the help of linux clk and
+> reset framework because they are provided by other modules.
 
-no kidding, magic values everywhere.... it makes it annoying
-for me to move things around because they all start to look
-similar. Down the line we added in more defined names so its
-not as bad but still its bad lol.
+Okay better log is welcome
+
+> 
+> 
+> > > unaffected.
+> > > 
+> > > Also Hi3798MV200 INNO PHY has an extra reset required to be deasserted,
+> > > switch to reset_control_array_*() APIs for that.
+> 
+> 
+> The commit msg is misleading here. There is no extra reset actually. The
+> reset also exist for existing users. The initial author just decided to
+> manage it in the hisi_inno_phy_write_reg() routine(without using
+> reset_control_* APIs) and omit it in the binding.
+> 
+> 
+> > That probably should be a different patch
+> 
+> 
+> I guess so. From my point of view, the whole patch is to introduce the
+> support for Hi3798MV200 variant of the INNO PHY. So i've decided to squash
+> the two changes into one single commit.
+
+Not really you can build smaller reviewable changes leading up to adding
+the Hi3798MV200 support
+
+> 
+> 
+> > 
+> > > Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+> > > ---
+> > >   drivers/phy/hisilicon/phy-hisi-inno-usb2.c | 66 ++++++++++++++++++------------
+> > >   1 file changed, 40 insertions(+), 26 deletions(-)
+> > > 
+> > > diff --git a/drivers/phy/hisilicon/phy-hisi-inno-usb2.c b/drivers/phy/hisilicon/phy-hisi-inno-usb2.c
+> > > index b7e740eb4752..df154cd99ed8 100644
+> > > --- a/drivers/phy/hisilicon/phy-hisi-inno-usb2.c
+> > > +++ b/drivers/phy/hisilicon/phy-hisi-inno-usb2.c
+> > > @@ -10,6 +10,7 @@
+> > >   #include <linux/io.h>
+> > >   #include <linux/module.h>
+> > >   #include <linux/of.h>
+> > > +#include <linux/of_address.h>
+> > >   #include <linux/phy/phy.h>
+> > >   #include <linux/platform_device.h>
+> > >   #include <linux/reset.h>
+> > > @@ -24,6 +25,7 @@
+> > >   #define PHY_TYPE_0	0
+> > >   #define PHY_TYPE_1	1
+> > > +#define PHY_TYPE_MMIO	2
+> > >   #define PHY_TEST_DATA		GENMASK(7, 0)
+> > >   #define PHY_TEST_ADDR_OFFSET	8
+> > > @@ -43,6 +45,7 @@
+> > >   #define PHY_CLK_ENABLE		BIT(2)
+> > >   struct hisi_inno_phy_port {
+> > > +	void __iomem *base;
+> > >   	struct reset_control *utmi_rst;
+> > >   	struct hisi_inno_phy_priv *priv;
+> > >   };
+> > > @@ -50,7 +53,7 @@ struct hisi_inno_phy_port {
+> > >   struct hisi_inno_phy_priv {
+> > >   	void __iomem *mmio;
+> > >   	struct clk *ref_clk;
+> > > -	struct reset_control *por_rst;
+> > > +	struct reset_control *rsts;
+> > >   	unsigned int type;
+> > >   	struct hisi_inno_phy_port ports[INNO_PHY_PORT_NUM];
+> > >   };
+> > > @@ -62,26 +65,31 @@ static void hisi_inno_phy_write_reg(struct hisi_inno_phy_priv *priv,
+> > >   	u32 val;
+> > >   	u32 value;
+> > > -	if (priv->type == PHY_TYPE_0)
+> > > -		val = (data & PHY_TEST_DATA) |
+> > > -		      ((addr << PHY_TEST_ADDR_OFFSET) & PHY0_TEST_ADDR) |
+> > > -		      ((port << PHY0_TEST_PORT_OFFSET) & PHY0_TEST_PORT) |
+> > > -		      PHY0_TEST_WREN | PHY0_TEST_RST;
+> > > -	else
+> > > -		val = (data & PHY_TEST_DATA) |
+> > > -		      ((addr << PHY_TEST_ADDR_OFFSET) & PHY1_TEST_ADDR) |
+> > > -		      ((port << PHY1_TEST_PORT_OFFSET) & PHY1_TEST_PORT) |
+> > > -		      PHY1_TEST_WREN | PHY1_TEST_RST;
+> > > -	writel(val, reg);
+> > > -
+> > > -	value = val;
+> > > -	if (priv->type == PHY_TYPE_0)
+> > > -		value |= PHY0_TEST_CLK;
+> > > -	else
+> > > -		value |= PHY1_TEST_CLK;
+> > > -	writel(value, reg);
+> > > -
+> > > -	writel(val, reg);
+> > > +	if (priv->ports[port].base)
+> > > +		/* FIXME: fill stride in priv */
+> > when?
+> 
+> 
+> I'm not sure. Maybe until some other users with stride other than 3? I don't
+> have much knowledge about other SoCs.
+> 
+> 
+> Maybe replace the FIXME here with some additional information.
+
+Better
+
+> 
+> 
+> > 
+> > > +		writel(data, (u32 *)priv->ports[port].base + addr);
+> > > +	else {
+> > > +		if (priv->type == PHY_TYPE_0)
+> > > +			val = (data & PHY_TEST_DATA) |
+> > > +			      ((addr << PHY_TEST_ADDR_OFFSET) & PHY0_TEST_ADDR) |
+> > > +			      ((port << PHY0_TEST_PORT_OFFSET) & PHY0_TEST_PORT) |
+> > > +			      PHY0_TEST_WREN | PHY0_TEST_RST;
+> > > +		else
+> > > +			val = (data & PHY_TEST_DATA) |
+> > > +			      ((addr << PHY_TEST_ADDR_OFFSET) & PHY1_TEST_ADDR) |
+> > > +			      ((port << PHY1_TEST_PORT_OFFSET) & PHY1_TEST_PORT) |
+> > > +			      PHY1_TEST_WREN | PHY1_TEST_RST;
+> > > +		writel(val, reg);
+> > > +
+> > > +		value = val;
+> > > +		if (priv->type == PHY_TYPE_0)
+> > > +			value |= PHY0_TEST_CLK;
+> > > +		else
+> > > +			value |= PHY1_TEST_CLK;
+> > > +		writel(value, reg);
+> > > +
+> > > +		writel(val, reg);
+> > val and value are very helpful variables, do consider naming them
+> > better!
+> 
+> 
+> I'll consider renaming them in the next revision. Maybe val and val2? They
+> are just some temp vars to store register values.
+
+Yeah, that might be better
+
+> 
+> 
+> > 
+> > > +	}
+> > >   }
+> > >   static void hisi_inno_phy_setup(struct hisi_inno_phy_priv *priv)
+> > > @@ -104,7 +112,7 @@ static int hisi_inno_phy_init(struct phy *phy)
+> > >   		return ret;
+> > >   	udelay(REF_CLK_STABLE_TIME);
+> > > -	reset_control_deassert(priv->por_rst);
+> > > +	reset_control_deassert(priv->rsts);
+> > >   	udelay(POR_RST_COMPLETE_TIME);
+> > >   	/* Set up phy registers */
+> > > @@ -122,7 +130,7 @@ static int hisi_inno_phy_exit(struct phy *phy)
+> > >   	struct hisi_inno_phy_priv *priv = port->priv;
+> > >   	reset_control_assert(port->utmi_rst);
+> > > -	reset_control_assert(priv->por_rst);
+> > > +	reset_control_assert(priv->rsts);
+> > >   	clk_disable_unprepare(priv->ref_clk);
+> > >   	return 0;
+> > > @@ -158,15 +166,16 @@ static int hisi_inno_phy_probe(struct platform_device *pdev)
+> > >   	if (IS_ERR(priv->ref_clk))
+> > >   		return PTR_ERR(priv->ref_clk);
+> > > -	priv->por_rst = devm_reset_control_get_exclusive(dev, NULL);
+> > > -	if (IS_ERR(priv->por_rst))
+> > > -		return PTR_ERR(priv->por_rst);
+> > > +	priv->rsts = devm_reset_control_array_get_exclusive(dev);
+> > > +	if (IS_ERR(priv->rsts))
+> > > +		return PTR_ERR(priv->rsts);
+> > >   	priv->type = (uintptr_t) of_device_get_match_data(dev);
+> > >   	for_each_child_of_node(np, child) {
+> > >   		struct reset_control *rst;
+> > >   		struct phy *phy;
+> > > +		void __iomem *base;
+> > >   		rst = of_reset_control_get_exclusive(child, NULL);
+> > >   		if (IS_ERR(rst)) {
+> > > @@ -174,7 +183,10 @@ static int hisi_inno_phy_probe(struct platform_device *pdev)
+> > >   			return PTR_ERR(rst);
+> > >   		}
+> > > +		base = of_iomap(child, 0);
+> > > +
+> > >   		priv->ports[i].utmi_rst = rst;
+> > > +		priv->ports[i].base = base;
+> > >   		priv->ports[i].priv = priv;
+> > >   		phy = devm_phy_create(dev, child, &hisi_inno_phy_ops);
+> > > @@ -205,6 +217,8 @@ static const struct of_device_id hisi_inno_phy_of_match[] = {
+> > >   	  .data = (void *) PHY_TYPE_0 },
+> > >   	{ .compatible = "hisilicon,hi3798mv100-usb2-phy",
+> > >   	  .data = (void *) PHY_TYPE_1 },
+> > > +	{ .compatible = "hisilicon,hi3798mv200-usb2-phy",
+> > > +	  .data = (void *) PHY_TYPE_MMIO },
+> > >   	{ },
+> > >   };
+> > >   MODULE_DEVICE_TABLE(of, hisi_inno_phy_of_match);
+> > > 
+> > > -- 
+> > > 2.43.0
+> 
+> 
+> -- 
+> Regards,
+> Yang Xiwen
+
+-- 
+~Vinod
 
