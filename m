@@ -1,122 +1,111 @@
-Return-Path: <devicetree+bounces-56852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9439689AB9A
-	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 17:19:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7866E89ABA9
+	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 17:36:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A7A51F21917
-	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 15:19:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C7271C20BB9
+	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 15:36:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76DBC3987B;
-	Sat,  6 Apr 2024 15:19:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C83DC39FCF;
+	Sat,  6 Apr 2024 15:36:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mEQ5BuWm"
+	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="Cbk3VbJJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FE19381A4;
-	Sat,  6 Apr 2024 15:19:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08DC4E546;
+	Sat,  6 Apr 2024 15:36:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712416789; cv=none; b=EW9HXyT2FFKhhJQA2yY6vh/pyvMTvOPt0RmYBCPn0lRWXB7E3hwxilY+s3j/dZVRqGHJeUaXinlYLmdMA78PuE63I3I/cmVEiexOU+MHrUH29SHPwqbwFLs/MAj7E/6GA8/ckSriof5OXBHjrvRI9GSTBvRl0ZRTOMw09lMcaP0=
+	t=1712417782; cv=none; b=At671IaoY6ieu5AyWegTfK/79RPpDfzLDT6xpTTlWuNEcWoNKLTxotkmegoDAqSdEKxbDG+mhGMV7T2Esca0DQBZuHrc9cj8X4tUeNiiu5/L8muDRXrN/bnm3/XRCL1ZWofq0qdKMGUTI3id3z8RGDUbehZzFkYHfTXmyFjI9cY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712416789; c=relaxed/simple;
-	bh=F0yD2te0Q85dmAD07i6O7OobeJIw3035Mh6eXZKnERY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KPZOdXkiS9mpeVl8geYkDrNUJG+9KzJtUUOOVZ0CQ2/vAlpYjuK6UkkvSf+1FfEgCcSnZluGdu1YGC3TrmK8GW/vFiymXd7KMWRaYFo9QbVBe6b/xYErKD1oPxjA+2zFIUUEe+JDJnayZI6Uh5C9bdFSh6gIwTA//R6mhx/ujAE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mEQ5BuWm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9E45C433C7;
-	Sat,  6 Apr 2024 15:19:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712416788;
-	bh=F0yD2te0Q85dmAD07i6O7OobeJIw3035Mh6eXZKnERY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=mEQ5BuWmG8QsLe9rfJTRZ8DTfgoFzmPBoWN905oUQ+1V6iOLJbX9u+jG0Nw9PAK4x
-	 De7bd6r8v/z8XFHt6e+5+mYLOq4RKQNNEH9aZ56rvoKTViutm5rXUmVjCB7N4gwHKb
-	 JyGoPYl5Rg4BMNOhux4bliCmxeJLBbPNMvdLfVvri4ujp9uQepgSoD/CJKsQRTGV/e
-	 YBCn9XqIXgBF9/qwfdb0Y3x9nIwacbMpFlNos3YBYtDEj9hMD+0/SeUsVFRQncv/Cy
-	 CrJktO5MDDaBf3zzD5DjmuCqL0W9OiK/8Rfx9S26SX2/b1rksFLh9ufdSK0cPOfjUZ
-	 RXdPVCz1Aaxlg==
-Date: Sat, 6 Apr 2024 16:19:33 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Lothar Rubusch <l.rubusch@gmail.com>
-Cc: lars@metafoo.de, Michael.Hennerich@analog.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, eraretuya@gmail.com
-Subject: Re: [PATCH v7 0/8]  iio: accel: adxl345: Add spi-3wire feature
-Message-ID: <20240406161933.56da10a0@jic23-huawei>
-In-Reply-To: <20240401194906.56810-1-l.rubusch@gmail.com>
-References: <20240401194906.56810-1-l.rubusch@gmail.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1712417782; c=relaxed/simple;
+	bh=FiIAzc8smXeDB0uMdDOcov99hXTLdRr90r37SjHtqig=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Of5l2ZMICgfpK/FY8NG4D5nevAkzKKf2vryZKjH3/8dEaeBfCJ1Ad2wR1Yao7g91mEpxokxQVUHG9LhjtTcXhpXSQdeFUPMesPKehgbETyCJSs59T9BeTKGmubywfzjxBVe3p5SMftxre9Bty5NHLPrft3zaKPTU5UYMNR/yqAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz; spf=pass smtp.mailfrom=z3ntu.xyz; dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b=Cbk3VbJJ; arc=none smtp.client-ip=128.199.32.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=z3ntu.xyz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=s1;
+	t=1712417248; bh=FiIAzc8smXeDB0uMdDOcov99hXTLdRr90r37SjHtqig=;
+	h=From:Date:Subject:To:Cc;
+	b=Cbk3VbJJb9c1v9GY9J6bL9kWRnlMKC/68N5PwjGszKVOAKwaAiLAO28mHo+mONfSt
+	 08PIRBwpp/faY7FsHEgnH0BESlxo8aOlqJu/YhAlZx4qXdHIC5V7RYO4p64ba+kZ1Q
+	 sRYai9VKSO6tVUtTbXZj8hgZ5mlzjh2BgQLcrwmg=
+From: Luca Weiss <luca@z3ntu.xyz>
+Date: Sat, 06 Apr 2024 17:27:20 +0200
+Subject: [PATCH] ARM: dts: qcom: msm8974-sony-shinano: Enable vibrator
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20240406-shinano-vib-v1-1-fdd02af39d56@z3ntu.xyz>
+X-B4-Tracking: v=1; b=H4sIANdpEWYC/x3MTQqAIBBA4avIrBswkf6uEi3UppyNhoIE4t2Tl
+ t/ivQqZElOGTVRIVDhzDB3jIMB5E25CPrtBSaWllhNmz8GEiIUtLpLUTKs1VjnoxZPo4ve/7Ud
+ rH3OqLf5dAAAA
+To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Luca Weiss <luca@z3ntu.xyz>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=918; i=luca@z3ntu.xyz;
+ h=from:subject:message-id; bh=FiIAzc8smXeDB0uMdDOcov99hXTLdRr90r37SjHtqig=;
+ b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBmEWncUxbgDQW6FpzEsC0Wmm6DPek0lWq9RIyML
+ p+PMUVtaeqJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZhFp3AAKCRBy2EO4nU3X
+ VjHGEACBBilB9K3nFDtiKW50oKDhrFQ962KPQJwaLlT8/cWcuKF/80FlD0LbzBxerZEuG97XFMX
+ 9PxMRQYpofEEYsNXtG/1KwXYx9U8faogyHVpuI3W3xeKUtby5YjW8fOYew480ON6aqtoeYlL84k
+ +XZu2EaC5mhemCh+JKl/kGQGvknJ6toyy+zSU3WUAunhV/oQ6Ph2Pe3MDCygJVQSQBY8U0oNjyL
+ cS29rfpIk000i6vD5yxeonDLrm5sVXYv5qlbjJwbzX8MydPkbS+53B4ls/UhUCqgzysiO19ZM2H
+ Vr943Wkn6Al2V6mmQuXlwd/h8sE6lLUVpdpOTFLzIyjqU1/umvVd7jSLB3+P+Rjik95mO36/HvB
+ sNHuvDXk+RGJln44gpq362/FWeK1dqQqDQ5NLxB14x0tM8rWHVO1Ju4Bpnjz7WJKIa5Y0WXtPGI
+ +God+6f2IMgV39zfwPJcQaLW9JQsRFYlM+HJ5ABokky2Qp6NuccDj0DTYPcXBU4s/ZNi6qmmalL
+ xqPMJ7kEVRfE15LKRBgSXAyiJ/Za2zYquhzDWiBd2Jt2xaNDiiPpvJDhgA1j8AOW5Hr/r10Y1++
+ e3jOarTcKf7ciRQnOxGlnDq0s4q9fi6gIpR93D4gFaO8UPgTRemrPXQiC01lmORXJdI9AoeQYM+
+ 1VwtWICIApt1SjA==
+X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
+ fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
 
-On Mon,  1 Apr 2024 19:48:58 +0000
-Lothar Rubusch <l.rubusch@gmail.com> wrote:
+Enable the vibrator connected to PM8941 found on the Sony shinano
+platform.
 
-> Pass a function setup() as pointer from SPI/I2C specific modules to the
-> core module. Implement setup() to pass the spi-3wire bus option, if
-> declared in the device-tree.
-> 
-> In the core module then update data_format register configuration bits
-> instead of overwriting it. The changes allow to remove a data_range field.
-> 
-> Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
-Series applied to the togreg branch of iio.git and pushed out initially
-as testing to let 0-day work it's magic (find build issues for us!)
+Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+---
+ .../arm/boot/dts/qcom/qcom-msm8974pro-sony-xperia-shinano-common.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-I'll push it out for linux-next to pick up sometime in next week (ish)
+diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974pro-sony-xperia-shinano-common.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8974pro-sony-xperia-shinano-common.dtsi
+index 3a0c0035de09..e129bb1bd6ec 100644
+--- a/arch/arm/boot/dts/qcom/qcom-msm8974pro-sony-xperia-shinano-common.dtsi
++++ b/arch/arm/boot/dts/qcom/qcom-msm8974pro-sony-xperia-shinano-common.dtsi
+@@ -202,6 +202,10 @@ led@7 {
+ 	};
+ };
+ 
++&pm8941_vib {
++	status = "okay";
++};
++
+ &remoteproc_adsp {
+ 	cx-supply = <&pm8841_s2>;
+ 	status = "okay";
 
-Jonathan
+---
+base-commit: 956abeb75f90eac3d5ba1f4cff7c048f7c079502
+change-id: 20240406-shinano-vib-80e27e9bab2c
 
-> ---
-> V1 -> V2: Split into spi-3wire and refactoring
-> V2 -> V3: Split further, focus on needed changesets
-> V3 -> V4: Drop "Remove single info instances";
->           split "Group bus configuration" into separat
->           comment patch; reorder patch set
-> V4 -> V5: Refrase comments; Align comments to 75; rebuild FORMAT_MASK by
->           available flags; fix indention
-> V5 -> V6: Remove FORMAT_MASK by a local variable on call site;
->           Refrase comments;
->           Remove unneeded include
-> V6 -> V7: Restructure optional passing the setup() to core's probe()
->           Guarantee that initially a regmap_write() was called to init
->           all bits to a defined state
->           - When a setup() e.g. for 3wire is passed, then call
->             regmap_write() inside the setup(). In the following
->             core's probe() has to call regmap_update()
->           - When NULL is passed, then call regmap_write() in core's
->             probe()
->           - Refactoring: remove obvious comments and simplify code
-> 
-> Lothar Rubusch (8):
->   iio: accel: adxl345: Make data_range obsolete
->   iio: accel: adxl345: Group bus configuration
->   iio: accel: adxl345: Move defines to header
->   dt-bindings: iio: accel: adxl345: Add spi-3wire
->   iio: accel: adxl345: Pass function pointer to core
->   iio: accel: adxl345: Reorder probe initialization
->   iio: accel: adxl345: Add comment to probe
->   iio: accel: adxl345: Add spi-3wire option
-> 
->  .../bindings/iio/accel/adi,adxl345.yaml       |  2 +
->  drivers/iio/accel/adxl345.h                   | 36 +++++++-
->  drivers/iio/accel/adxl345_core.c              | 92 ++++++++++---------
->  drivers/iio/accel/adxl345_i2c.c               |  2 +-
->  drivers/iio/accel/adxl345_spi.c               | 10 +-
->  5 files changed, 94 insertions(+), 48 deletions(-)
-> 
+Best regards,
+-- 
+Luca Weiss <luca@z3ntu.xyz>
 
 
