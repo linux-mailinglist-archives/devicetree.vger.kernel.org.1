@@ -1,163 +1,450 @@
-Return-Path: <devicetree+bounces-56864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B26D689AC6A
-	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 19:19:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE11F89AC6E
+	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 19:29:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B00521C20A96
-	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 17:19:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4DA141F214F1
+	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 17:29:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B0C93FE22;
-	Sat,  6 Apr 2024 17:19:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB4893F9F6;
+	Sat,  6 Apr 2024 17:28:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hZV0VKF/"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="osqaEnqk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from out-177.mta0.migadu.com (out-177.mta0.migadu.com [91.218.175.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C45B0381C2;
-	Sat,  6 Apr 2024 17:18:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA8421CFB9
+	for <devicetree@vger.kernel.org>; Sat,  6 Apr 2024 17:28:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712423941; cv=none; b=UZwEA9wS5xo392hGgnx3GWmVEOIJqUV9xeJ8IWfukH5V3sY0PHxzuO0WgRd8Q0bBjibvrLgjVebGrOCTZOzBom/vnz/ygUvXxOtpBUV+pM3l0RF0y6ygxBFUrfimQOy4Rtyt91Z8W/9YNMM4DakjjhWExCFdw19ypTpSPUVOdbE=
+	t=1712424538; cv=none; b=MOtMo33xq16Q2rFsgJg1Lc64NyTCZ4iNgGiRLC6R9KbEtRYL/jxSNPrgdOw0YQ2XXPej2R3zlCWk4qrIXXBfyAXw9YqOZ/f3eVxWh6J49cu+D1AFbsTnbNuNtQfo9dHY1bcScMjTSFqEHxkiD1hlsN+959nBbimm0dBX37yk8Ss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712423941; c=relaxed/simple;
-	bh=FTrOH0OlOjWrK3A0l8wznAoEtxiq1cIfTifGsp+jt+8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ewa0ZSNRaXn6Beaes6FlCvup3C/145oEoNLnIyCV1A7/O+Idmh7WPac53uSwxroyvgQ3+bd3dPljwP/cLlqs92xrroRImfo5RRg7aBC2SRe4Etw/1fcmS8IMTh34LuUBPPWOIAOeayFT/0eprJBiGiq7xpk4dH5tNiMorB3vwrk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hZV0VKF/; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 436HACiE017060;
-	Sat, 6 Apr 2024 17:18:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=nAEQxXw+XRp9uZGd5HCvDnmTyd3ZDuxqbC75fH5/7VA=; b=hZ
-	V0VKF/XyDc2l6bqY8V4L8Hds+OAqM21wtlU4JMPzzkr3xWmaTP9//vSbhvVB3YF7
-	yN0XQ7jALOZ4vkoVzeXq/YzfRCuowRnkhaARto6YTz2ZPty0YJ4CNaeYuwK9uZHN
-	JzyBzxUcL/iqeN0KhMXjOy+m30OkgNLRjms6HB48iuQJNehBdB3QYHFsIzxHnhNq
-	vugnJ5PcpZol8WnSsHjelG2p4q7bEm3B8SokiJDnED6xW2rtszEhFo7QW3TgZ9pT
-	H5gmoueXYJLU8rcuAmNUk9DkSxWluLTVGCKkk6G2Yh1UsN9hxc21KlGKZsPFNZp+
-	gZxfzEoeHtB/Jv3otrNg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xax04gsrn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 06 Apr 2024 17:18:43 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 436HIg73016124
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 6 Apr 2024 17:18:42 GMT
-Received: from [10.216.54.180] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Sat, 6 Apr 2024
- 10:18:34 -0700
-Message-ID: <b9b3c698-fbf3-a2d0-3420-4b33016a5560@quicinc.com>
-Date: Sat, 6 Apr 2024 22:48:29 +0530
+	s=arc-20240116; t=1712424538; c=relaxed/simple;
+	bh=ZhutpuIhXSb79sQj6LJ2vpyG4PaJE4KLJo7k8fYwcs8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=m8L+sPNyru/M8wCLbXJEHuLtSCTCnxkcCjT8GS/HUsMNB5yaLSTHBoEjnLAyyHEj11oLBvgeVbb8UNcxMfe2/HzwglwZcFHd5+q9fIRNlDY02PtfIdLjmEgHHVXUPnHT8WH+aTW8Ac3EyQyph+wVudVcr733SI5sZ4iGuZlUV+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=osqaEnqk; arc=none smtp.client-ip=91.218.175.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1712424533;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=wmteI53yHflokmy3bcAqjXJSf6/ioCpsjf02iKZumUg=;
+	b=osqaEnqku9jhzCWOX1IrDw4/5d/+bjrjlWC3dj7QOO5bcFbm8b5dEJVfHAUXVRHH7J05Sp
+	LP20Bq9/nyE/bglxbxnI2d54LEQ/Mkx0QAEVj2PIbO+zbpzp+52Kpwhc5anilrOLoWyMNH
+	HNb6sxqcz4Ja1yktZSEEMaiIJbRjmuVKHYZnyWNTAgdvvXf0jiKrgfTo+HWlLBrtqXvSPB
+	CiZxj6T08diI1faxWrN48x0a2thBj/mpYNpTdn2rehB/81c58TapAk+lUPMleSg9y30j4x
+	lDVqpSg9ke7Ym0NChpflhNxSA/aS24oEraB2nlReMMGJHgtRP7AqUUM40Emmeg==
+From: Diederik de Haas <didi.debian@cknow.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	Diederik de Haas <didi.debian@cknow.org>
+Subject: [PATCH] arm64: dts: rockchip: rk3588s: Fix ordering of nodes
+Date: Sat,  6 Apr 2024 19:28:04 +0200
+Message-ID: <20240406172821.34173-1-didi.debian@cknow.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH v8 2/7] arm64: dts: qcom: sm8450: Add interconnect path to
- PCIe node
-Content-Language: en-US
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Lorenzo Pieralisi
-	<lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?=
-	<kw@linux.com>,
-        Rob Herring <robh@kernel.org>, Bjorn Helgaas
-	<bhelgaas@google.com>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Rob
- Herring" <robh+dt@kernel.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        "Brian
- Masney" <bmasney@redhat.com>,
-        Georgi Djakov <djakov@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <vireshk@kernel.org>,
-        <quic_vbadigan@quicinc.com>, <quic_skananth@quicinc.com>,
-        <quic_nitegupt@quicinc.com>, <quic_parass@quicinc.com>
-References: <20240302-opp_support-v8-0-158285b86b10@quicinc.com>
- <20240302-opp_support-v8-2-158285b86b10@quicinc.com>
- <4bd2e661-8e1e-41ff-9b7f-917bb92a196d@linaro.org>
- <20240405074044.GC2953@thinkpad>
-From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-In-Reply-To: <20240405074044.GC2953@thinkpad>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: szxG_ZrRKvw6_b92RnkY6ajW2_sFXmSw
-X-Proofpoint-ORIG-GUID: szxG_ZrRKvw6_b92RnkY6ajW2_sFXmSw
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-06_13,2024-04-05_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- spamscore=0 phishscore=0 suspectscore=0 malwarescore=0 mlxlogscore=999
- mlxscore=0 bulkscore=0 impostorscore=0 lowpriorityscore=0 adultscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404060136
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
+Fix the ordering of the main nodes by sorting them alphabetically and
+then the ones with a memory address sequentially by that address.
 
+Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
+---
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 304 +++++++++++-----------
+ 1 file changed, 152 insertions(+), 152 deletions(-)
 
-On 4/5/2024 1:10 PM, Manivannan Sadhasivam wrote:
-> On Wed, Mar 06, 2024 at 05:04:54PM +0100, Konrad Dybcio wrote:
->>
->>
->> On 3/2/24 04:59, Krishna chaitanya chundru wrote:
->>> Add pcie-mem & cpu-pcie interconnect path to the PCIe nodes.
->>>
->>> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->>> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
->>> ---
->>>    arch/arm64/boot/dts/qcom/sm8450.dtsi | 8 ++++++++
->>>    1 file changed, 8 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
->>> index 01e4dfc4babd..6b1d2e0d9d14 100644
->>> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
->>> @@ -1781,6 +1781,10 @@ pcie0: pcie@1c00000 {
->>>    					<0 0 0 3 &intc 0 0 0 151 IRQ_TYPE_LEVEL_HIGH>, /* int_c */
->>>    					<0 0 0 4 &intc 0 0 0 152 IRQ_TYPE_LEVEL_HIGH>; /* int_d */
->>> +			interconnects = <&pcie_noc MASTER_PCIE_0 0 &mc_virt SLAVE_EBI1 0>,
->>
->> Please use QCOM_ICC_TAG_ALWAYS.
->>
->>> +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_PCIE_0 0>;
->>
->> And this path could presumably be demoted to QCOM_ICC_TAG_ACTIVE_ONLY?
->>
-> 
-> I think it should be fine since there would be no register access done while the
-> RPMh is put into sleep state. Krishna, can you confirm that by executing the CX
-> shutdown with QCOM_ICC_TAG_ACTIVE_ONLY vote for cpu-pcie path on any supported
-> platform?
-> 
-> But if we do such change, then it should also be applied to other SoCs.
-> 
-> - Mani
->
-we don't a have platform to test this now, we will keep
-QCOM_ICC_TAG_ALWAYS for now.
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+index 89d40cff635f..ac5bd630f155 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+@@ -347,6 +347,11 @@ l3_cache: l3-cache {
+ 		};
+ 	};
+ 
++	display_subsystem: display-subsystem {
++		compatible = "rockchip,display-subsystem";
++		ports = <&vop_out>;
++	};
++
+ 	firmware {
+ 		optee: optee {
+ 			compatible = "linaro,optee-tz";
+@@ -394,11 +399,6 @@ spll: clock-0 {
+ 		#clock-cells = <0>;
+ 	};
+ 
+-	display_subsystem: display-subsystem {
+-		compatible = "rockchip,display-subsystem";
+-		ports = <&vop_out>;
+-	};
+-
+ 	timer {
+ 		compatible = "arm,armv8-timer";
+ 		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_HIGH 0>,
+@@ -436,6 +436,62 @@ scmi_shmem: sram@0 {
+ 		};
+ 	};
+ 
++	gpu: gpu@fb000000 {
++		compatible = "rockchip,rk3588-mali", "arm,mali-valhall-csf";
++		reg = <0x0 0xfb000000 0x0 0x200000>;
++		#cooling-cells = <2>;
++		assigned-clocks = <&scmi_clk SCMI_CLK_GPU>;
++		assigned-clock-rates = <200000000>;
++		clocks = <&cru CLK_GPU>, <&cru CLK_GPU_COREGROUP>,
++			 <&cru CLK_GPU_STACKS>;
++		clock-names = "core", "coregroup", "stacks";
++		dynamic-power-coefficient = <2982>;
++		interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH 0>,
++			     <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH 0>,
++			     <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH 0>;
++		interrupt-names = "job", "mmu", "gpu";
++		operating-points-v2 = <&gpu_opp_table>;
++		power-domains = <&power RK3588_PD_GPU>;
++		status = "disabled";
++
++		gpu_opp_table: opp-table {
++			compatible = "operating-points-v2";
++
++			opp-300000000 {
++				opp-hz = /bits/ 64 <300000000>;
++				opp-microvolt = <675000 675000 850000>;
++			};
++			opp-400000000 {
++				opp-hz = /bits/ 64 <400000000>;
++				opp-microvolt = <675000 675000 850000>;
++			};
++			opp-500000000 {
++				opp-hz = /bits/ 64 <500000000>;
++				opp-microvolt = <675000 675000 850000>;
++			};
++			opp-600000000 {
++				opp-hz = /bits/ 64 <600000000>;
++				opp-microvolt = <675000 675000 850000>;
++			};
++			opp-700000000 {
++				opp-hz = /bits/ 64 <700000000>;
++				opp-microvolt = <700000 700000 850000>;
++			};
++			opp-800000000 {
++				opp-hz = /bits/ 64 <800000000>;
++				opp-microvolt = <750000 750000 850000>;
++			};
++			opp-900000000 {
++				opp-hz = /bits/ 64 <900000000>;
++				opp-microvolt = <800000 800000 850000>;
++			};
++			opp-1000000000 {
++				opp-hz = /bits/ 64 <1000000000>;
++				opp-microvolt = <850000 850000 850000>;
++			};
++		};
++	};
++
+ 	usb_host0_ehci: usb@fc800000 {
+ 		compatible = "rockchip,rk3588-ehci", "generic-ehci";
+ 		reg = <0x0 0xfc800000 0x0 0x40000>;
+@@ -501,62 +557,6 @@ usb_host2_xhci: usb@fcd00000 {
+ 		status = "disabled";
+ 	};
+ 
+-	gpu: gpu@fb000000 {
+-		compatible = "rockchip,rk3588-mali", "arm,mali-valhall-csf";
+-		reg = <0x0 0xfb000000 0x0 0x200000>;
+-		#cooling-cells = <2>;
+-		assigned-clocks = <&scmi_clk SCMI_CLK_GPU>;
+-		assigned-clock-rates = <200000000>;
+-		clocks = <&cru CLK_GPU>, <&cru CLK_GPU_COREGROUP>,
+-			 <&cru CLK_GPU_STACKS>;
+-		clock-names = "core", "coregroup", "stacks";
+-		dynamic-power-coefficient = <2982>;
+-		interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH 0>,
+-			     <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH 0>,
+-			     <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH 0>;
+-		interrupt-names = "job", "mmu", "gpu";
+-		operating-points-v2 = <&gpu_opp_table>;
+-		power-domains = <&power RK3588_PD_GPU>;
+-		status = "disabled";
+-
+-		gpu_opp_table: opp-table {
+-			compatible = "operating-points-v2";
+-
+-			opp-300000000 {
+-				opp-hz = /bits/ 64 <300000000>;
+-				opp-microvolt = <675000 675000 850000>;
+-			};
+-			opp-400000000 {
+-				opp-hz = /bits/ 64 <400000000>;
+-				opp-microvolt = <675000 675000 850000>;
+-			};
+-			opp-500000000 {
+-				opp-hz = /bits/ 64 <500000000>;
+-				opp-microvolt = <675000 675000 850000>;
+-			};
+-			opp-600000000 {
+-				opp-hz = /bits/ 64 <600000000>;
+-				opp-microvolt = <675000 675000 850000>;
+-			};
+-			opp-700000000 {
+-				opp-hz = /bits/ 64 <700000000>;
+-				opp-microvolt = <700000 700000 850000>;
+-			};
+-			opp-800000000 {
+-				opp-hz = /bits/ 64 <800000000>;
+-				opp-microvolt = <750000 750000 850000>;
+-			};
+-			opp-900000000 {
+-				opp-hz = /bits/ 64 <900000000>;
+-				opp-microvolt = <800000 800000 850000>;
+-			};
+-			opp-1000000000 {
+-				opp-hz = /bits/ 64 <1000000000>;
+-				opp-microvolt = <850000 850000 850000>;
+-			};
+-		};
+-	};
+-
+ 	pmu1grf: syscon@fd58a000 {
+ 		compatible = "rockchip,rk3588-pmugrf", "syscon", "simple-mfd";
+ 		reg = <0x0 0xfd58a000 0x0 0x10000>;
+@@ -702,74 +702,6 @@ i2c0: i2c@fd880000 {
+ 		status = "disabled";
+ 	};
+ 
+-	vop: vop@fdd90000 {
+-		compatible = "rockchip,rk3588-vop";
+-		reg = <0x0 0xfdd90000 0x0 0x4200>, <0x0 0xfdd95000 0x0 0x1000>;
+-		reg-names = "vop", "gamma-lut";
+-		interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH 0>;
+-		clocks = <&cru ACLK_VOP>,
+-			 <&cru HCLK_VOP>,
+-			 <&cru DCLK_VOP0>,
+-			 <&cru DCLK_VOP1>,
+-			 <&cru DCLK_VOP2>,
+-			 <&cru DCLK_VOP3>,
+-			 <&cru PCLK_VOP_ROOT>;
+-		clock-names = "aclk",
+-			      "hclk",
+-			      "dclk_vp0",
+-			      "dclk_vp1",
+-			      "dclk_vp2",
+-			      "dclk_vp3",
+-			      "pclk_vop";
+-		iommus = <&vop_mmu>;
+-		power-domains = <&power RK3588_PD_VOP>;
+-		rockchip,grf = <&sys_grf>;
+-		rockchip,vop-grf = <&vop_grf>;
+-		rockchip,vo1-grf = <&vo1_grf>;
+-		rockchip,pmu = <&pmu>;
+-		status = "disabled";
+-
+-		vop_out: ports {
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-
+-			vp0: port@0 {
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+-				reg = <0>;
+-			};
+-
+-			vp1: port@1 {
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+-				reg = <1>;
+-			};
+-
+-			vp2: port@2 {
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+-				reg = <2>;
+-			};
+-
+-			vp3: port@3 {
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+-				reg = <3>;
+-			};
+-		};
+-	};
+-
+-	vop_mmu: iommu@fdd97e00 {
+-		compatible = "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
+-		reg = <0x0 0xfdd97e00 0x0 0x100>, <0x0 0xfdd97f00 0x0 0x100>;
+-		interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH 0>;
+-		clocks = <&cru ACLK_VOP>, <&cru HCLK_VOP>;
+-		clock-names = "aclk", "iface";
+-		#iommu-cells = <0>;
+-		power-domains = <&power RK3588_PD_VOP>;
+-		status = "disabled";
+-	};
+-
+ 	uart0: serial@fd890000 {
+ 		compatible = "rockchip,rk3588-uart", "snps,dw-apb-uart";
+ 		reg = <0x0 0xfd890000 0x0 0x100>;
+@@ -1140,6 +1072,87 @@ power-domain@RK3588_PD_SDMMC {
+ 		};
+ 	};
+ 
++	av1d: video-codec@fdc70000 {
++		compatible = "rockchip,rk3588-av1-vpu";
++		reg = <0x0 0xfdc70000 0x0 0x800>;
++		interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH 0>;
++		interrupt-names = "vdpu";
++		assigned-clocks = <&cru ACLK_AV1>, <&cru PCLK_AV1>;
++		assigned-clock-rates = <400000000>, <400000000>;
++		clocks = <&cru ACLK_AV1>, <&cru PCLK_AV1>;
++		clock-names = "aclk", "hclk";
++		power-domains = <&power RK3588_PD_AV1>;
++		resets = <&cru SRST_A_AV1>, <&cru SRST_P_AV1>, <&cru SRST_A_AV1_BIU>, <&cru SRST_P_AV1_BIU>;
++	};
++
++	vop: vop@fdd90000 {
++		compatible = "rockchip,rk3588-vop";
++		reg = <0x0 0xfdd90000 0x0 0x4200>, <0x0 0xfdd95000 0x0 0x1000>;
++		reg-names = "vop", "gamma-lut";
++		interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH 0>;
++		clocks = <&cru ACLK_VOP>,
++			 <&cru HCLK_VOP>,
++			 <&cru DCLK_VOP0>,
++			 <&cru DCLK_VOP1>,
++			 <&cru DCLK_VOP2>,
++			 <&cru DCLK_VOP3>,
++			 <&cru PCLK_VOP_ROOT>;
++		clock-names = "aclk",
++			      "hclk",
++			      "dclk_vp0",
++			      "dclk_vp1",
++			      "dclk_vp2",
++			      "dclk_vp3",
++			      "pclk_vop";
++		iommus = <&vop_mmu>;
++		power-domains = <&power RK3588_PD_VOP>;
++		rockchip,grf = <&sys_grf>;
++		rockchip,vop-grf = <&vop_grf>;
++		rockchip,vo1-grf = <&vo1_grf>;
++		rockchip,pmu = <&pmu>;
++		status = "disabled";
++
++		vop_out: ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			vp0: port@0 {
++				#address-cells = <1>;
++				#size-cells = <0>;
++				reg = <0>;
++			};
++
++			vp1: port@1 {
++				#address-cells = <1>;
++				#size-cells = <0>;
++				reg = <1>;
++			};
++
++			vp2: port@2 {
++				#address-cells = <1>;
++				#size-cells = <0>;
++				reg = <2>;
++			};
++
++			vp3: port@3 {
++				#address-cells = <1>;
++				#size-cells = <0>;
++				reg = <3>;
++			};
++		};
++	};
++
++	vop_mmu: iommu@fdd97e00 {
++		compatible = "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
++		reg = <0x0 0xfdd97e00 0x0 0x100>, <0x0 0xfdd97f00 0x0 0x100>;
++		interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH 0>;
++		clocks = <&cru ACLK_VOP>, <&cru HCLK_VOP>;
++		clock-names = "aclk", "iface";
++		#iommu-cells = <0>;
++		power-domains = <&power RK3588_PD_VOP>;
++		status = "disabled";
++	};
++
+ 	i2s4_8ch: i2s@fddc0000 {
+ 		compatible = "rockchip,rk3588-i2s-tdm";
+ 		reg = <0x0 0xfddc0000 0x0 0x1000>;
+@@ -1431,6 +1444,16 @@ qos_vop_m1: qos@fdf82200 {
+ 		reg = <0x0 0xfdf82200 0x0 0x20>;
+ 	};
+ 
++	dfi: dfi@fe060000 {
++		reg = <0x00 0xfe060000 0x00 0x10000>;
++		compatible = "rockchip,rk3588-dfi";
++		interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH 0>,
++			     <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH 0>,
++			     <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH 0>,
++			     <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH 0>;
++		rockchip,pmu = <&pmu1grf>;
++	};
++
+ 	pcie2x1l1: pcie@fe180000 {
+ 		compatible = "rockchip,rk3588-pcie", "rockchip,rk3568-pcie";
+ 		bus-range = <0x30 0x3f>;
+@@ -1533,16 +1556,6 @@ pcie2x1l2_intc: legacy-interrupt-controller {
+ 		};
+ 	};
+ 
+-	dfi: dfi@fe060000 {
+-		reg = <0x00 0xfe060000 0x00 0x10000>;
+-		compatible = "rockchip,rk3588-dfi";
+-		interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH 0>,
+-			     <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH 0>,
+-			     <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH 0>,
+-			     <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH 0>;
+-		rockchip,pmu = <&pmu1grf>;
+-	};
+-
+ 	gmac1: ethernet@fe1c0000 {
+ 		compatible = "rockchip,rk3588-gmac", "snps,dwmac-4.20a";
+ 		reg = <0x0 0xfe1c0000 0x0 0x10000>;
+@@ -2543,19 +2556,6 @@ gpio4: gpio@fec50000 {
+ 			#interrupt-cells = <2>;
+ 		};
+ 	};
+-
+-	av1d: video-codec@fdc70000 {
+-		compatible = "rockchip,rk3588-av1-vpu";
+-		reg = <0x0 0xfdc70000 0x0 0x800>;
+-		interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH 0>;
+-		interrupt-names = "vdpu";
+-		assigned-clocks = <&cru ACLK_AV1>, <&cru PCLK_AV1>;
+-		assigned-clock-rates = <400000000>, <400000000>;
+-		clocks = <&cru ACLK_AV1>, <&cru PCLK_AV1>;
+-		clock-names = "aclk", "hclk";
+-		power-domains = <&power RK3588_PD_AV1>;
+-		resets = <&cru SRST_A_AV1>, <&cru SRST_P_AV1>, <&cru SRST_A_AV1_BIU>, <&cru SRST_P_AV1_BIU>;
+-	};
+ };
+ 
+ #include "rk3588s-pinctrl.dtsi"
 
-- Krishna Chaitanya.
+base-commit: c1b1f340dd7db11f273e426e110697551c9f501f
+-- 
+2.43.0
 
 
