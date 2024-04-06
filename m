@@ -1,184 +1,158 @@
-Return-Path: <devicetree+bounces-56845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 324E289AB49
-	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 16:15:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F25489AB54
+	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 16:26:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B43DB2824C7
-	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 14:15:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB30A1F216E7
+	for <lists+devicetree@lfdr.de>; Sat,  6 Apr 2024 14:26:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABAAA376E4;
-	Sat,  6 Apr 2024 14:15:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83CF8381BA;
+	Sat,  6 Apr 2024 14:26:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IZd2ahzA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DanSoNxj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E024374EB;
-	Sat,  6 Apr 2024 14:15:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53DB32914;
+	Sat,  6 Apr 2024 14:26:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712412914; cv=none; b=a5/xBkOn0qPHXheEagMxZeyiYHP766K9a7JSopFHNIzFAA4c0XTszETE0EWaYtxf/XonyTYes5KxghjV2HgBUo+z/QI7n4ryCeuVrk/ymre0dwxLGY6J/g0SjdzoS6u2jUxNXPRLRa6HZWoum8rCOjDc0M/Qc1xFyX2PB6nDCRo=
+	t=1712413612; cv=none; b=CLFUUNh9cSmCocuBw2DEVFOY2s9BS8WTN3cgnZwQIYiFRxSngmtxYB9Xl9qQ6+UU1BhWDXnomI0JrZ51hG7HJ/nw8R5lrhWZa3DdAymhF23C0U1uAo8Fghwc/fWoi7Ckt6zCpHIIQlVLbjMV6pzctRjaTz3gw6P2uRw7T+qbjrA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712412914; c=relaxed/simple;
-	bh=CxGFv9jvNTqeIa8ZarV7ZY4hs+L+mjnOC11K92E+Z7M=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ivaSqiLXQ4Mh0SL5uWtT3LR01FW0zL7xqa4DVpeMuzrUiMPLQ7pqgOx/djfLLfvjItMDqej1ahxrkw7QGBAcRcIqaUAN1TCh1MLSlHkmNoJT5+BsB1sGjaRj35w3qvQN8RV8nkUaTZ5SG27lQPqmcFddP9RqnjhX5mKhO4iV5i0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IZd2ahzA; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-1e3e56c9d2cso1704705ad.1;
-        Sat, 06 Apr 2024 07:15:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712412912; x=1713017712; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5t85f7blTuWv3UGrktfZJ6b2Gu2J4GPIU/N0JQkbL0k=;
-        b=IZd2ahzAt6+0X7ZgY3pClLjsqjHBM9yg8x7oRbBVyL2UVmcaADIlHpb9P2EzZOUbzN
-         C2nwA8OxopPuEUdOlVazDQpxi2n4GcspWNA2/qsNVvEMu16nrcAtw68jXTy8N++aja0K
-         Ch08EuVPTeyfc/VYFHL/gCI/DbFjP9f0L15/DjwaxKwHAXXvdX1N6qcBjdFEBEDI+ekF
-         Ss6CI7i/YEq5YghX6fDioA+749+pkvlwK28vgIijQ0GFIb1wqHZJv3IenSvNTYwNHcWH
-         kddpov2VUMt2BLtbTVPX8I9iIHKFXBPDDMmWTkwNGBJbC9UudAa1wFYzgGiLNob9rGLX
-         W11Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712412912; x=1713017712;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5t85f7blTuWv3UGrktfZJ6b2Gu2J4GPIU/N0JQkbL0k=;
-        b=vnALppuhHeENZHVL4petenvAHfz+Blyb4J7fsyKEqWxPi4bdngGBlrrssLIpfXyw2x
-         c2Lbh74sVArIY3100AZu+8PF/1ZRyxFnvk/tYHUnP3gf8cnORDGM1AMMOsn77exOaa/j
-         nWu/Fu56uwFRK1VEFx0kFg9Wy5G/idSbWl6cUsAjTQUQteLh383EtIc4IeCRL7vptSOl
-         L9H48ePibsViXwQTm5oBJzm7LxCMgNLjhavaVBUR8fiQRoDANo9IJ88sJ0lqg65eC7fZ
-         gkg47arLCL6/hLlWhW7UGOVpEeqLoW2ZjHX83gQZhfV37A1+m5skCt7s2NwvKtJUdxCh
-         A3eg==
-X-Forwarded-Encrypted: i=1; AJvYcCVezF4r89lRaFviywdEnRFpIc+v+lro5XeFo3TwwGgJlsWnH++eZzQwPYV8ZKvHP3Hzj2IIGgWPIQmeWNH+vnei07C+2sXZ5Gjy4BVxyMithzUPCnYL9+eHvJVZ/7ihU0BzYTjYnCAp3g==
-X-Gm-Message-State: AOJu0YwQh+G+L2nh6Ju1VSLY5vEN7dwwN+n9epVn8vi3NT8rcLP9mzyk
-	/cKsDi6yLBexxmRydeVqC0whW2vA6A/w0r4D7B2vPiEssv3ptGNP
-X-Google-Smtp-Source: AGHT+IFgs4/FEoib8hU/ok1TVSzmB1fbWFiM+uZk4kceufpUhC2Ch79+Ar8YHPBhpWONVDqSnLf5Ew==
-X-Received: by 2002:a17:902:e9c6:b0:1e2:b137:4f88 with SMTP id 6-20020a170902e9c600b001e2b1374f88mr4603566plk.30.1712412912298;
-        Sat, 06 Apr 2024 07:15:12 -0700 (PDT)
-Received: from fedora.. ([2409:40f4:3d:d63:253:b5f6:7724:8cee])
-        by smtp.gmail.com with ESMTPSA id jc2-20020a17090325c200b001e28d18bd52sm3437400plb.232.2024.04.06.07.15.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 Apr 2024 07:15:12 -0700 (PDT)
-From: Animesh Agarwal <animeshagarwal28@gmail.com>
-To: 
-Cc: animeshagarwal28@gmail.com,
-	Shenghao Ding <shenghao-ding@ti.com>,
-	Kevin Lu <kevin-lu@ti.com>,
-	Baojun Xu <baojun.xu@ti.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	alsa-devel@alsa-project.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: ti,pcm1681: Convert to dtschema
-Date: Sat,  6 Apr 2024 19:44:49 +0530
-Message-ID: <20240406141454.45529-1-animeshagarwal28@gmail.com>
-X-Mailer: git-send-email 2.44.0
+	s=arc-20240116; t=1712413612; c=relaxed/simple;
+	bh=vB8L9DX/5J7woTCTJf8HqVrEfFR0fvotCf/wHpMo2G8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=RY2GyjZcvtPHMCraz8WRdPNbv9vL+fT1czxNC0Xi0rayCNZbo6bPo1P6GXHnjFJtm6wrwmJIxpgwWbl+OLvJb7k/FzOxa3LRKjQsF1VCJpvxhT7GrmNuj+jBZ2zwV0Ts7vlcW+wR85nrgqRCZjhlWID8sDwIhOb2ShdgZa8ATAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DanSoNxj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1088DC433C7;
+	Sat,  6 Apr 2024 14:26:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712413611;
+	bh=vB8L9DX/5J7woTCTJf8HqVrEfFR0fvotCf/wHpMo2G8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=DanSoNxjaPzyiNCwope2FSm+ymb0DOVSj+HTeJVxpjRAvlMsJW+a8TxwUnhupPNoA
+	 qdxqcU6piuKGHxaxWt68bOw50RRF3nHCbyt1NpPrgXvGE+4XHTn9XS82uQeoBarDwv
+	 sX++3EwvCJD7GvhqSdfk6/86qBKNhjMsDcQuy1rfnOn2LJ48/WLn2Qpdj6VO701KCb
+	 O8iITUNY++qLhuU3nABV7IxgDR83//3Xxp5GFWi1uRNc2HN8q7QXRcK0VRxoBkQpEk
+	 yZiVO3L2vNNTxyJqaDnu1BfBq0Lfmh8nekHebUFls8EHRncLI7DN8y7vhx9IHTB5w1
+	 Te1txfWR2fhgQ==
+Date: Sat, 6 Apr 2024 15:26:37 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
+Cc: David Lechner <dlechner@baylibre.com>, dumitru.ceclan@analog.com,
+ Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/6] dt-bindings: adc: ad7173: add support for ad411x
+Message-ID: <20240406152637.5d53c34f@jic23-huawei>
+In-Reply-To: <aa84a3c5-a3e6-4c76-9b67-624ed8d8c704@gmail.com>
+References: <20240401-ad4111-v1-0-34618a9cc502@analog.com>
+	<20240401-ad4111-v1-1-34618a9cc502@analog.com>
+	<CAMknhBHeKAQ45=5-dL1T1tv-mZcPN+bNo3vxWJYgWpEPE+8p3Q@mail.gmail.com>
+	<CAMknhBGVuMSg+OpS5QTLWi9vA=Xa33AJ+cVS8ZCDyKsAVEe-ww@mail.gmail.com>
+	<0a72de29-6d25-4d2d-9824-ca407af69153@gmail.com>
+	<CAMknhBHhxi7mN88+peU7BGkzSP2vtipCuvM-XfQzgusqKvARsg@mail.gmail.com>
+	<aa84a3c5-a3e6-4c76-9b67-624ed8d8c704@gmail.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Convert the Texas Instruments PCM1681 bindings to DT schema.
-Make bindings complete by adding #sound-dai-cells.
+On Thu, 4 Apr 2024 16:08:56 +0300
+"Ceclan, Dumitru" <mitrutzceclan@gmail.com> wrote:
 
-Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+> On 03/04/2024 18:22, David Lechner wrote:
+> > On Wed, Apr 3, 2024 at 2:50=E2=80=AFAM Ceclan, Dumitru <mitrutzceclan@g=
+mail.com> wrote: =20
+> >> On 02/04/2024 00:16, David Lechner wrote: =20
+> >>> On Mon, Apr 1, 2024 at 2:37=E2=80=AFPM David Lechner <dlechner@baylib=
+re.com> wrote: =20
+> >>>> On Mon, Apr 1, 2024 at 10:10=E2=80=AFAM Dumitru Ceclan via B4 Relay
+> >>>> <devnull+dumitru.ceclan.analog.com@kernel.org> wrote: =20
+> >>>>> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
+> >>>>> =20
+> >> ...
+> >> =20
+> >>>>>      properties:
+> >>>>>        reg:
+> >>>>> +        description:
+> >>>>> +          Reg values 16-19 are only permitted for ad4111/ad4112 cu=
+rrent channels.
+> >>>>>          minimum: 0
+> >>>>> -        maximum: 15
+> >>>>> +        maximum: 19 =20
+> >>>> This looks wrong. Isn't reg describing the number of logical channels
+> >>>> (# of channel config registers)?
+> >>>>
+> >>>> After reviewing the driver, I see that > 16 is used as a way of
+> >>>> flagging current inputs, but still seems like the wrong way to do it.
+> >>>> See suggestion below.
+> >>>> =20
+> >>>>>        diff-channels:
+> >>>>> +        description:
+> >>>>> +          For using current channels specify only the positive cha=
+nnel.
+> >>>>> +            (IIN2+, IIN2=E2=88=92) -> diff-channels =3D <2 0> =20
+> >>>> I find this a bit confusing since 2 is already VIN2 and 0 is already
+> >>>> VIN0. I think it would make more sense to assign unique channel
+> >>>> numbers individually to the negative and positive current inputs.
+> >>>> Also, I think it makes sense to use the same numbers that the
+> >>>> registers in the datasheet use (8 - 11 for negative and 12 to 15 for
+> >>>> positive).
+> >>>>
+> >>>> So: (IIN2+, IIN2=E2=88=92) -> diff-channels =3D <13 10> =20
+> >>> Thinking about this a bit more...
+> >>>
+> >>> Since the current inputs have dedicated pins and aren't mix-and-match
+> >>> with multiple valid wiring configurations like the voltage inputs, do
+> >>> we even need to describe them in the devicetree?
+> >>>
+> >>> In the driver, the current channels would just be hard-coded like the
+> >>> temperature channel since there isn't any application-specific
+> >>> variation. =20
+> >>  Sure, but we still need to offer the user a way to configure which
+> >> current inputs he wants and if they should use bipolar or unipolar cod=
+ing. =20
+> > From the datasheet, it looks like only positive current input is
+> > allowed so I'm not sure bipolar applies here. But, yes, if there is
+> > some other variation in wiring or electrical signal that needs to be
+> > describe here, then it makes sense to allow a channel configuration
+> > node for it. =20
+>=20
+> AD4111 datasheet pg.29:
+> When the ADC is configured for bipolar operation, the output
+> code is offset binary with a negative full-scale voltage resulting
+> in a code of 000 =E2=80=A6 000, a zero differential input voltage resulti=
+ng in
+> a code of 100 =E2=80=A6 000, and a positive full-scale input voltage
+> resulting in a code of 111 =E2=80=A6 111. The output code for any
+> analog input voltage can be represented as
+> Code =3D 2^(N =E2=80=93 1) =C3=97 ((V_IN =C3=97 0.1/V REF) + 1)
+> The output code for any input current is represented as
+> Code =3D 2^(N =E2=88=92 1) =C3=97 ((I_IN =C3=97 50 =CE=A9/V REF) + 1)
+>=20
+> I would say bipolar applies here, not a great idea because of the limitat=
+ion on
+>  the negative side (Input Current Range min:=E2=88=920.5 max:+24 mA) so s=
+till, the option
+>  is available.
+Just to check I am correct in thinking you 'might' use bipolar if you want
+to be able to measure small negative currents, but the range is much larger
+in the positive direction?
 
----
-Changes in v2:
-- Added existing maintainers to the list of maintainers.
-- Added  #sound-dai-cells, $ref to dai-common and unevaluatedProperties: false.
-- Added "audio-codec" in example.
----
- .../devicetree/bindings/sound/ti,pcm1681.txt  | 15 -------
- .../devicetree/bindings/sound/ti,pcm1681.yaml | 43 +++++++++++++++++++
- 2 files changed, 43 insertions(+), 15 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/ti,pcm1681.txt
- create mode 100644 Documentation/devicetree/bindings/sound/ti,pcm1681.yaml
-
-diff --git a/Documentation/devicetree/bindings/sound/ti,pcm1681.txt b/Documentation/devicetree/bindings/sound/ti,pcm1681.txt
-deleted file mode 100644
-index 4df17185ab80..000000000000
---- a/Documentation/devicetree/bindings/sound/ti,pcm1681.txt
-+++ /dev/null
-@@ -1,15 +0,0 @@
--Texas Instruments PCM1681 8-channel PWM Processor
--
--Required properties:
--
-- - compatible:		Should contain "ti,pcm1681".
-- - reg:			The i2c address. Should contain <0x4c>.
--
--Examples:
--
--	i2c_bus {
--		pcm1681@4c {
--			compatible = "ti,pcm1681";
--			reg = <0x4c>;
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/sound/ti,pcm1681.yaml b/Documentation/devicetree/bindings/sound/ti,pcm1681.yaml
-new file mode 100644
-index 000000000000..5aa00617291c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/ti,pcm1681.yaml
-@@ -0,0 +1,43 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/ti,pcm1681.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments PCM1681 8-channel PWM Processor
-+
-+maintainers:
-+  - Shenghao Ding <shenghao-ding@ti.com>
-+  - Kevin Lu <kevin-lu@ti.com>
-+  - Baojun Xu <baojun.xu@ti.com>
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: ti,pcm1681
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#sound-dai-cells":
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        pcm1681: audio-codec@4c {
-+            compatible = "ti,pcm1681";
-+            reg = <0x4c>;
-+        };
-+    };
--- 
-2.44.0
+J
+>=20
 
 
