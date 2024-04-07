@@ -1,191 +1,113 @@
-Return-Path: <devicetree+bounces-56881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3CCF89AEA3
-	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 07:11:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7080489AEAE
+	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 07:38:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41A33282725
-	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 05:11:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2BC982830BE
+	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 05:38:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4782717C9;
-	Sun,  7 Apr 2024 05:11:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 779FC184F;
+	Sun,  7 Apr 2024 05:38:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="NpSqf5K4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JoTqsrAS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2114.outbound.protection.outlook.com [40.107.105.114])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CCC07489;
-	Sun,  7 Apr 2024 05:11:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.105.114
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712466707; cv=fail; b=LAkWl0RCPw9woTVcM0AbtVIz6bSYmiop4CtJEeEH0e+rFnUCFMo2klE9Ce9U5SUJYMABYlv05NOLtCn+xqgSxb0Op1lCohX2/xGLSYY7OUYD4XqoEwbR+KFIWaWvLjUjeQ/79fWCOgV6DMC978lotbGGzOhMI6KUNGeYkDJ8sYY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712466707; c=relaxed/simple;
-	bh=EQsrKfYjyA397qAlN9ygawbg/+qksePu/2Ah64GCV2c=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=mzn6n/0Kf2HFAmK9jFPoKyhfalOWsr+jQKsvPX8kQp1UUlMXWt/r4me5TTlQSZzaX4OcKq4H5Bf658d2k++soKd+oG+yIwm3hqJHncVlQhtnArP67Alz+W0yrqlpsvL7xnGQYM0r52Egnq3isexnArkqAAPoIdf2GTv91OO8gBU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=NpSqf5K4; arc=fail smtp.client-ip=40.107.105.114
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Yk8Pto/mL/6IuuxHj6luOMMjwS0vW1C+IqqkduadO98iMZJGeIlPR/P7XChbeUoQGMQ6blz3nZJokVOVl+dMZmGOvrMUoT0jK3Q9aGyoGV1fye09qVNFU4+tUAMXGDMLl986AVsMAVMWeOnzFFPVkPq251PxrrUryxkG2589S7rKPVYxzfpYXJjFjBrDAYegPQD2teyHNnaPjOlUMe4dm7s+056v3qjrUOUtEm+Z+939Xqh9LAdi6jnvvv6ndLzZnmNgs2kMyM7NZaxEKnAGk+7D75KM8rdnHxg+u4mkHDfTUqozPMPOvi3XsBUewIqv6LMkqROBk7Jdq2KwFYllbg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vSGPbRK3Hg4LsgDh0uEry2TcisjDNcukYsD9mMH23Q8=;
- b=bcdDhl9QS4eT0VM9ghW8PxjSEDJbUJswo2sX1M7DDznwjfjBQA12a7W+MTLCbRNwv5dQVCDr1DMsaqCCD5CDMZfZ77U3/Qqaj1qVDg4wRX8Po1VkEMT1oZLJBNVoRndzr7Kyrrk28siENzoJAUzjl+d2vnBXXSmT/p8CvWVSNVyagHVWhCEdK8eOpN3+YGGdXF09hcFKehsCyCcFaErtoe/m+YYH4iOv9Sj7YtAZEByf1EqS8+nKvywUlOj1UuvCdYlkGjwVIy8NjQz01gzCe+bINfx27M4olQAs5QnRXcrSpE15GVCMWpPu+29kKaAQd2aLSu4sj0RINCqYub110A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vSGPbRK3Hg4LsgDh0uEry2TcisjDNcukYsD9mMH23Q8=;
- b=NpSqf5K4S/6bsc8f5UCDmNBddQpAq8e0yZG6RVPdxIixxlWn6+rorvv6HJp6lWth96sJRT1bFlFhQs+faM8+MrC2n65u5fLVXTOvYBcCeFpP2n8RmQbvv8gG3xKxrb122X4mbs2Mb/xuFLIxqaScDk61AeQA8mh0jjBOOr7ohnI=
-Received: from AS4PR04MB9386.eurprd04.prod.outlook.com (2603:10a6:20b:4e9::8)
- by VI1PR04MB7008.eurprd04.prod.outlook.com (2603:10a6:803:13b::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Sun, 7 Apr
- 2024 05:11:42 +0000
-Received: from AS4PR04MB9386.eurprd04.prod.outlook.com
- ([fe80::4f24:3f44:d5b1:70ba]) by AS4PR04MB9386.eurprd04.prod.outlook.com
- ([fe80::4f24:3f44:d5b1:70ba%7]) with mapi id 15.20.7409.042; Sun, 7 Apr 2024
- 05:11:42 +0000
-From: Joy Zou <joy.zou@nxp.com>
-To: ping.bai@nxp.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de
-Cc: kernel@pengutronix.de,
-	festevam@gmail.com,
-	linux-imx@nxp.com,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 1/1] arm64: dts: imx93-11x11-evk: add rtc PCF2131 support
-Date: Sun,  7 Apr 2024 13:19:13 +0800
-Message-Id: <20240407051913.1989364-2-joy.zou@nxp.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20240407051913.1989364-1-joy.zou@nxp.com>
-References: <20240407051913.1989364-1-joy.zou@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2PR02CA0023.apcprd02.prod.outlook.com
- (2603:1096:4:195::11) To AS4PR04MB9386.eurprd04.prod.outlook.com
- (2603:10a6:20b:4e9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B509816;
+	Sun,  7 Apr 2024 05:38:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712468295; cv=none; b=K8apAiKbKjSUgI4sA3n0WrGQ6vn4NQc3x6tuLEKRxyBjxC5L1+1FVjbcElN4x8toIzqXXk2sr/iIT+qkbfH/t5tEW01yHeEUJWckuAT1LRpedivH73nSEjTAY3NsbYNevG0EfuuhZc+1vIw5AkiVsGYcynVjPahKSEgy61OFKp8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712468295; c=relaxed/simple;
+	bh=gNaMHU635ETfkv5s8GiZH8o0VGPbI5LP8wCGPGKhkTs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=cRTBAgbFMEGAMEADitCk72+8pWHyHq0xNQzA9WmzDx3P7EmNUGN19k3SmBAn+OCbgPUEFvFqrhlScr3UXjv8MNQ9/Nc2oT1ciazeBW2kPlDV4HaKG3VgwP5RgVqCyL84HRXExmeLMSr8Idrr7tXPCaSa5K0JzwVPzpGHITxByuI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JoTqsrAS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id E3339C433C7;
+	Sun,  7 Apr 2024 05:38:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712468294;
+	bh=gNaMHU635ETfkv5s8GiZH8o0VGPbI5LP8wCGPGKhkTs=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=JoTqsrAS+oIsfn06HYIfeWZoopaD83kTYuAZnjyWV4EPBtVA1G2UhHCB7Y5kuGm7F
+	 nBWcFLPi8Kugq2gA741v190ewYl1ABpi/GlKKxDYyRWxpbSZzGB0GzMXAUyq5z6Y8f
+	 n2/h+09EqWHK4xQcg1ttvx7+XnhtrlUQ3QVkv3t8gtI5mqSnjjiXO5VZVz8o3wyG4r
+	 qRdlnxiD3Lp50sjdwSBudrJkooeC3qRGCWhbHj8FNxwKArRW3r6/iUOQlNH0kDhMu+
+	 M1X5J5T3fLbSNtCl9Md5k38SYIkAkt7rm4+Rh1q8n4FNxOLOl00oQFdKTASNxcWEAE
+	 p4eq+00WyQ8xQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C7AB4CD128A;
+	Sun,  7 Apr 2024 05:38:14 +0000 (UTC)
+From: Alexandru Marc Serdeliuc via B4 Relay <devnull+serdeliuk.yahoo.com@kernel.org>
+Subject: [PATCH v4 0/2] Samsung Galaxy Z Fold5 initial support
+Date: Sun, 07 Apr 2024 07:38:12 +0200
+Message-Id: <20240407-samsung-galaxy-zfold5-q5q-v4-0-8b67b1813653@yahoo.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS4PR04MB9386:EE_|VI1PR04MB7008:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	I5w2jZDX/xbNSOPDT17j9UOjXNjVpvaZUfwxCcXoYUkxPkHc+4WI/qXbt1wKd1IsAhugQil6xWBt7OzOarfKKY2oXXKDXeoJbQSqvk6dU3N5mIDqr1q00J2tBwF6jMzW0aJ8BKv9BtiHrg9voE6c6CIoeaWXAY1ZCanRlykAOlOLNxQkA1fusS1YWDav1STxldQ8jYKlbp/nWAIPsqC7CCs+oD8kNeJwNafYqCrgSf01/yPoutyCS1fgfMju+6czEgEMqVexa97ddKERrK57FA9fwwJwtr4T4FSjuI3597N3BVORfDa8W0Sm7jTL55reI7HHPjOrf9yxO0iOPEFOCWtOd/Y34jCn2bYYj5cm5rnlon9Xb6SMCZsLcq7fTsDXiFXBLhICusor9Xy2ylylY93bpEM1xieACfUMDD3uGE/RBqNyQKTLS8RDGai8gJLt+hj3lshC0SF59WMTzqRsrwmwhX9R1ACB7lL13mmlKnhxRXT9kg90vvBNvK/hhQVu4W2zwzjbc38mTuvewyVBF4ZCCNCrpCMeDoAyt42ZyI2VehoY5xTMd47fiC/Ec3iaxj+OItqsgJTTVCLQGOJz9CuUso6tAbeTDWE7gRCBmXaC+0NN1aI5WnSh92R9FgG0z6VD0Z13VQnRtLNjTiqtWWKozFn0AuUfetZQau4uGntBee5t+9oB0pX/bJMv8Pj+ZwCqN5k2qhpTf4twtD8E/A==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9386.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(52116005)(7416005)(1800799015)(366007)(38350700005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?baABYpcsKxNZJUAAZMA5yUbK5idNOJh/S+TTP5PaCFpIHtXvCzErs6qAmRKP?=
- =?us-ascii?Q?2S3RVLTG1e+naYi3dHOaiKo3cmdDyvvIYpRwErKg+kCVoDaFiI2W+2cJ3H6B?=
- =?us-ascii?Q?63O8UlvQ8Vd3PO8aBgOmy16NagAhsxWReJHMwcHpxlXqPYkqxuGJbVZQo2m+?=
- =?us-ascii?Q?Fnt6N7H6JyaxHjRh6tuXa67M1f9GrnGCYOl0/qqEQY/AzfDSU7pwKoGrK8JP?=
- =?us-ascii?Q?pVwYLZJ4ufOnCmmeWvX9ap8GHHYpNZzG3dl1ZZtp/ZLFLqhn1AXTRjIueP5f?=
- =?us-ascii?Q?YyXJiAFgwsCBqDuKYlTHCH6icUrDSkG4wUY4EgNNCAxk/FbIqfCEemAkoGvy?=
- =?us-ascii?Q?f7/lFEC3mGEPU18sz1RDHpfc3xrx88JagirDGtc/E+7jVnSl1uGqrVGaLgWl?=
- =?us-ascii?Q?OfQeVjug92VlqGcHcwUY16J2jlylWDUMuz/z28F2y1wyXyNmmHbj/HHdVPDt?=
- =?us-ascii?Q?M2oKp5psJ2q40J+/XYF+Vn9iG+LDq83o1SHQjikxixI4MI0KbCm3qdqEPDN6?=
- =?us-ascii?Q?ZDXOCAz6YnkdtE/3d8OU34qw8jKhyW/EQHSoy4fHM43IZsxmOMv8mE/RbF9n?=
- =?us-ascii?Q?hZzvSYDD/0yQSgHEulVPD1aZKloJ9GLuhaPc+k1dWHgVc8bfOw6SFE5J3h4f?=
- =?us-ascii?Q?gezQytqBgGo0heQsSVv/qpBYIxrFc1I/RawFGxYBWW8PmXtwGIfUeEtjLLw3?=
- =?us-ascii?Q?Bl1xAUVSfR469L3TaF2Tlu8LdbZtT/l8uupp7BIHZ1Hb4zNFFtolagyKr/kG?=
- =?us-ascii?Q?0N+txt+aBBRmlWFhMhq/asj/OcOYTovOb/UMeaV1Wk1uDnzsGZxRE8zijSOA?=
- =?us-ascii?Q?/ct1wNqDttY6+ZVSurpCRUPKtDLYUvANoKtNnYuKYssZYgNa0U2MVAjLud2n?=
- =?us-ascii?Q?tl7e+uBXUu3QtlUCUjrDsnfHqiV/tMJSGKUCJ/pw+6BA4tkz2MrLCE0UiBwo?=
- =?us-ascii?Q?ykYWeQGGcULyqtRKlLht3XXcH8xLuSDDUBPYUnaxlTJcZnmTqZ5u+0/eiSkM?=
- =?us-ascii?Q?bB6ZaTqMTdfuSnYPQwSV0vWBCOUye66vaEW4I/pbNwuV7br+aNRAwEBJndoF?=
- =?us-ascii?Q?vCFxGGNapyvoLZTYLpkGKwCCDTBGDWr4MgvmVgCojBFvGR791hfrtA4ODMuu?=
- =?us-ascii?Q?ggNsI6tH3PPMGdAYH2jK5Lhg67au90VcJVSjCfYonmI23QpmD+cbdfig/5tl?=
- =?us-ascii?Q?kdeGlEKs7s7NSKp1R3D8LMde/tf8EDsqXIBGT4XJszTxdIOE8ChjPVtwaQdn?=
- =?us-ascii?Q?SrsuvTGkJGmOEtNrtuTuarNFLyvZ7Pj6Jlb2lU61rcGcr2aRos6J5rhY/avv?=
- =?us-ascii?Q?CfsIJQzyqo3AWuAR2cUWu1Cx15+U/CLD1gZjvNnPr8dqdjRhNroWdOdu0qn1?=
- =?us-ascii?Q?GKKauZP5xB+OennG77AX2sigpiPV8PTTW17Geet5KAcbZu0DSy//c7kEhEJt?=
- =?us-ascii?Q?lJP/zUUXzvEwNFuH3f/MK89f+XuAr996260ixCsvcdaH6YpFl/yZOaxeVJov?=
- =?us-ascii?Q?4sVcl0QfSvdeR2UPR8N7zR2Wn2j6V4Y/rBkfn+v6kkWNfPrAhIa2BZVTtnVt?=
- =?us-ascii?Q?hM73Gzg61eaMVcnW/yPGtaxjelp94vUMQC/yNaGl?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d7f6f192-e3f2-4246-3531-08dc56c13683
-X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9386.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Apr 2024 05:11:42.5961
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1sm5U6UnWaJKoD+LO03ziphgxI4m7viherJ4MXRqC/L00PpAsZ2iQFith1zbG67c
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7008
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEQxEmYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyTHQUlJIzE
+ vPSU3UzU4B8JSMDIxMDEwNz3eLE3OLSvHTd9MScxIpK3aq0/JwUU91C00LdxCTDtJQk45Q0SzM
+ zJaD+gqLUtMwKsNnRsbW1AK52YrxrAAAA
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Alexandru Marc Serdeliuc <serdeliuk@yahoo.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1712468293; l=974;
+ i=serdeliuk@yahoo.com; s=20240326; h=from:subject:message-id;
+ bh=gNaMHU635ETfkv5s8GiZH8o0VGPbI5LP8wCGPGKhkTs=;
+ b=dmeCCXklsmwJ+mRqpko33fvgv3kX/Kr0q8edP8OQAo+0QYmb/eemYtJ38X0TvyQ/AbMJBPnw+
+ 6lIAktN0khUDbyI0gXurXGWsuYyt6wkuONkSMt6+RHXCroYmJZ72qCE
+X-Developer-Key: i=serdeliuk@yahoo.com; a=ed25519;
+ pk=aWyveUE11qfDOOlRIFayXukrNn39BvZ9k9uq94dAsgY=
+X-Endpoint-Received: by B4 Relay for serdeliuk@yahoo.com/20240326 with
+ auth_id=147
+X-Original-From: Alexandru Marc Serdeliuc <serdeliuk@yahoo.com>
+Reply-To: serdeliuk@yahoo.com
 
-Support rtc PCF2131 on imx93-11x11-evk.
+- removed extraneous new line
+- removed pcie_1_phy_aux_clk
+- removed extranous pcie1
 
-Signed-off-by: Joy Zou <joy.zou@nxp.com>
+This documents and add intial dts support for Samsung Galaxy Z Fold5 (samsung,q5q)
+which is a foldable phone by Samsung based on the sm8550 SoC.
+
+Currently working features:
+- Framebuffer
+- UFS
+- i2c
+- Buttons
+
+Signed-off-by: Alexandru Marc Serdeliuc <serdeliuk@yahoo.com>
 ---
- .../boot/dts/freescale/imx93-11x11-evk.dts    | 25 +++++++++++++++++++
- 1 file changed, 25 insertions(+)
+Alexandru Marc Serdeliuc (2):
+      dt-bindings: arm: qcom: Document the Samsung Galaxy Z Fold5
+      arm64: dts: qcom: sm8550: Add support for Samsung Galaxy Z Fold5
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-index 07e85a30a25f..065fa3390791 100644
---- a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-@@ -281,6 +281,24 @@ ldo5: LDO5 {
- 	};
- };
- 
-+&lpi2c3 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&pinctrl_lpi2c3>;
-+	pinctrl-1 = <&pinctrl_lpi2c3>;
-+	status = "okay";
-+
-+	pcf2131: rtc@53 {
-+			compatible = "nxp,pcf2131";
-+			reg = <0x53>;
-+			interrupt-parent = <&pcal6524>;
-+			interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
-+			status = "okay";
-+	};
-+};
-+
- &iomuxc {
- 	pinctrl_eqos: eqosgrp {
- 		fsl,pins = <
-@@ -343,6 +361,13 @@ MX93_PAD_I2C2_SDA__LPI2C2_SDA			0x40000b9e
- 		>;
- 	};
- 
-+	pinctrl_lpi2c3: lpi2c3grp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO28__LPI2C3_SDA			0x40000b9e
-+			MX93_PAD_GPIO_IO29__LPI2C3_SCL			0x40000b9e
-+		>;
-+	};
-+
- 	pinctrl_pcal6524: pcal6524grp {
- 		fsl,pins = <
- 			MX93_PAD_CCM_CLKO2__GPIO3_IO27			0x31e
+ Documentation/devicetree/bindings/arm/qcom.yaml |   1 +
+ arch/arm64/boot/dts/qcom/Makefile               |   1 +
+ arch/arm64/boot/dts/qcom/sm8550-samsung-q5q.dts | 593 ++++++++++++++++++++++++
+ 3 files changed, 595 insertions(+)
+---
+base-commit: 39cd87c4eb2b893354f3b850f916353f2658ae6f
+change-id: 20240407-samsung-galaxy-zfold5-q5q-ab1fdb3df966
+
+Best regards,
 -- 
-2.37.1
+Alexandru Marc Serdeliuc <serdeliuk@yahoo.com>
+
 
 
