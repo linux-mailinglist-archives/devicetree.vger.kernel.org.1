@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-56949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44B9589B2DA
-	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 18:24:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E864E89B2DF
+	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 18:24:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF492280C17
-	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 16:24:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 07FE7B2142A
+	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 16:24:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63F5F3B7A0;
-	Sun,  7 Apr 2024 16:23:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EB7F3CF4F;
+	Sun,  7 Apr 2024 16:23:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VotZmg7p"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="l8WEBy6M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91A983A1BB
-	for <devicetree@vger.kernel.org>; Sun,  7 Apr 2024 16:23:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52E5D3B78D
+	for <devicetree@vger.kernel.org>; Sun,  7 Apr 2024 16:23:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712507027; cv=none; b=TLCwfN07JvWnTTGoYTnSG8RJcHHoQegmJwKAK+WDSePZaE5C9mOVmGQ01IFujneXyvUJIhXqG/YCLV6ZuPKaMAMrJs+FwqYRJ8tCfN7YvSucFLg/5mg5ouVqZA3RSSDpiXqLMsyW+N+vD/ecKFIkfa8Tf5/ny8i3inbxAPu8C3o=
+	t=1712507030; cv=none; b=rSzJawDuN61bi6lz3HATiYEvqjVAtIF/itt6SZypvx0nxB8ldqBpyPQMDYxVrzzTyF0olvQEfzFvhdfb+Bm6Deh07SUrD3kGV6kQJdpJGznPRt6A49365aqiYPTJHxmySLXQiv4aolyPUsaVBlET0gmJ57jfooA8Clifuk7lY2o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712507027; c=relaxed/simple;
-	bh=f1k2/XtnKKT0QabjDTtzy+0Tu+D0+1BkiYHMuQzuNWI=;
+	s=arc-20240116; t=1712507030; c=relaxed/simple;
+	bh=FYDSYbmfadGmbe6XpAJqrRrZBX6gmScLt/RVQz821d8=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=i89GcKA9UPXqGlsqL+mbKd3VRFIglcNqz6WtLNJJ3r5T4WdvsZu9XQppCT0MqyniXD72UFOrQxD/O1vzV5b2gAaC1geJSS0WlNtysa0Cx83993qkcDwyJGx5WbdMYtKpIOqSBRFgX29kgRkzBjmi5oKgb8UeckAgWh/CCX009lk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VotZmg7p; arc=none smtp.client-ip=209.85.218.47
+	 In-Reply-To:To:Cc; b=QXoO78kHyv7vHOEktrdN7G4m2lcn6Tchn9Mxw59WqKBKEc1FsSIFreH3Yd5OxXDGhaDf10pBG+AhUw+CRmPAKIbKMcErqRm3lMAV1zoIvemEvpPUIy/hHuzanlbU5IFz2Jhe46Sr7fJzVL5cB6aKuHPWgjAKiCih+bFR/EWIHoI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=l8WEBy6M; arc=none smtp.client-ip=209.85.167.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a47385a4379so864870766b.0
-        for <devicetree@vger.kernel.org>; Sun, 07 Apr 2024 09:23:45 -0700 (PDT)
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-516cdb21b34so4569095e87.1
+        for <devicetree@vger.kernel.org>; Sun, 07 Apr 2024 09:23:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712507024; x=1713111824; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712507025; x=1713111825; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=8lYudh1XGipLZp45Ed9irT2kjTBzp7nX6WUMRhG9/PM=;
-        b=VotZmg7p6gA2qZ6KULVYyC8KxTcWKhhFBZIVFUD9JdF7OtyLDzTqJ3NKMv9WqQvJDP
-         wdRDOCodtQlvje4PdNKt/8pV+DRrU7D0Z5QXsjNaMomxZJC4MGBd7I+/mASaSYgUcIL3
-         kdZjX/dLiWj7yz7lS3AUaTcw1vXyfuDSZWWxMJVR6WcicSE/jPM0FFAI37Uoo9NxPdLx
-         REXixIAN1f8y+NHtTh1UUieU24ghvHNdgVtvab7m5VasnWUEI3Kj670jsd7K1H7qJ8tS
-         qihV1YrOySdNIpIhxKgKvcPN2UrLrQEZEcTOd1YUfxa70tcVvs90rul3necjyr4Souey
-         L3tQ==
+        bh=vscs/vp4w/DCCZB4T9EYacJgn/oMnEE7t/RUrWC0J30=;
+        b=l8WEBy6MlK7G7HnTu2rg5PyVJ+4T7N8yzFhFI0CZXWsI1FNkOnUosgN0Qb2dmmB6xq
+         qo8JvGu6yC2WbEhbmJ/kXxdOB4n6RA/H6aa19k3wEHgQJ2UotGPr0ePNukN/YT4/CDum
+         SJWer84/06hrwZmD0wco4MqQffQS4FgQVjQL40bEGETCKx9HRDEQakne1m9I66QwAMx0
+         2/bMLHoFom7SNEOftnGFamOYDMcKePEBSwa7stGb/RN2QB9/FhsSV2XngxeT/pbcZQO5
+         B6Ge/X91YqvnNTVBLyZLbcBZ87StZ9NqaGqRkna5nQDkbl04EtZ+D6MBVDYS/D9OTNKf
+         crrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712507024; x=1713111824;
+        d=1e100.net; s=20230601; t=1712507025; x=1713111825;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=8lYudh1XGipLZp45Ed9irT2kjTBzp7nX6WUMRhG9/PM=;
-        b=lB70Mn7eriH9waV0vL6Jjxx3lGQT0q9kjeoET0lvHVu88aSposxQHV2lKuiFuABTjV
-         Zb+yF6LKJEdu5JcW6IIEU4I0GIQbpBxQ3ESri5wjg9DiSFQPDOR5udFcjGbuZxo78vDq
-         VvvtCDNosWmqrieSlbmTNS+IBMT2WHHsbZWppgOiN+povfZbpsQGZEhjZIIOeUTXfiy8
-         0HGkK+eaHwtxrMopTgUqQ8X3b3T7Cxwe9dH6U9QjPIvCT31q+8Cr5akBF/7pjk6v7qhv
-         A0854AM1dY6NU2CcmkzGgHRgoe++divCZbjFpwPIt5O3pvNyYprTHMegoCIRM1O25QfP
-         Qp5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXsgqcBpoJXN/ZgG22oTci0RvqgsfVbJ56WTla9x0WesL1RROkQssKG66u6NFkjISPI9yHbnl+I6dvAWCcMmU5cupZD/RJeSTN59g==
-X-Gm-Message-State: AOJu0YzcvKsE/f34pd/pwjYBEI8kvUytqQuizAiiR7P0m2cg0hhz0H3S
-	D38NSSW7q0wmS7obu77ndvGT7Af89qb6xl1+6InxIloXcwDVCzWkWe9dLCXMv5U=
-X-Google-Smtp-Source: AGHT+IG0AkCZSMmS2Shl9d8nSs/2eGpGUav3paUeGvD+v9WFbHkTskXsEsX11+oPqTjTyn4PFFndIw==
-X-Received: by 2002:a17:907:72cc:b0:a51:c311:8199 with SMTP id du12-20020a17090772cc00b00a51c3118199mr3500827ejc.31.1712507023717;
-        Sun, 07 Apr 2024 09:23:43 -0700 (PDT)
+        bh=vscs/vp4w/DCCZB4T9EYacJgn/oMnEE7t/RUrWC0J30=;
+        b=htbztQyH+SmzWr6gSehx0Li7oer5pZvKrxDSEbafV8IWUGSWnxxkyz+ws6g2AabdRd
+         zGmHwJCfky13H6V6H0nN4xhEeiFxdChDX/px/eJifFsmkllxSraXOTth33pwWoF5A/lU
+         8nvWNX8OhzZNMocMDFipMoonIS+CYiQhw6z6yasWb/Vw0DvMW7ajGvCbmvpwX38H5UVf
+         LVOFTqg+AIelYQqjXl1ChD4Qtqhm+bLkRHUj1L73lUh9jT3Ke5ZPwnzXw97a6dOSewLU
+         e+7y45079tOALUzuPPUSwPAAreRLS+LGY42Y5UEnnlBUp+KuvilcId80tmlKLHTfCP+W
+         CcIg==
+X-Forwarded-Encrypted: i=1; AJvYcCVWCgTJq9FsMt48IZOgp8gaZaBAhNJrRX6vpqCxgvt2zycJAWBHEcmNhPik88FDaYhD7L7GY69PjYU1KF5HQsjyhIrtanIW/0fHwA==
+X-Gm-Message-State: AOJu0YzF4Ly87cWZ3CzMeGSgpIn0bPcJvqlKjh3UHiefSYtaAIivhuKZ
+	9WW7L+EzWxMFR07nT5WIvehXc5DDegKc5IbUQnrtRE/Yg2uud8gOIf/qV2/5R1s=
+X-Google-Smtp-Source: AGHT+IFTroclcEILQ+ze+mBcd9b3SxEaZM09rIp/V8POCBbv5tIoL3icq37ZZdxfWFkBbAy1JYVerw==
+X-Received: by 2002:a05:6512:475:b0:516:c1b9:22e9 with SMTP id x21-20020a056512047500b00516c1b922e9mr4454812lfd.17.1712507025226;
+        Sun, 07 Apr 2024 09:23:45 -0700 (PDT)
 Received: from [127.0.1.1] ([79.114.172.194])
-        by smtp.gmail.com with ESMTPSA id qs28-20020a170906459c00b00a51bed388a4sm1811626ejc.139.2024.04.07.09.23.42
+        by smtp.gmail.com with ESMTPSA id qs28-20020a170906459c00b00a51bed388a4sm1811626ejc.139.2024.04.07.09.23.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 07 Apr 2024 09:23:43 -0700 (PDT)
+        Sun, 07 Apr 2024 09:23:44 -0700 (PDT)
 From: Abel Vesa <abel.vesa@linaro.org>
-Date: Sun, 07 Apr 2024 19:23:22 +0300
-Subject: [PATCH v9 2/7] dt-bindings: spmi: Deprecate qcom,bus-id
+Date: Sun, 07 Apr 2024 19:23:23 +0300
+Subject: [PATCH v9 3/7] spmi: pmic-arb: Fix some compile warnings about
+ members not being described
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,7 +79,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240407-spmi-multi-master-support-v9-2-fa151c1391f3@linaro.org>
+Message-Id: <20240407-spmi-multi-master-support-v9-3-fa151c1391f3@linaro.org>
 References: <20240407-spmi-multi-master-support-v9-0-fa151c1391f3@linaro.org>
 In-Reply-To: <20240407-spmi-multi-master-support-v9-0-fa151c1391f3@linaro.org>
 To: Stephen Boyd <sboyd@kernel.org>, 
@@ -95,48 +96,76 @@ Cc: Srini Kandagatla <srinivas.kandagatla@linaro.org>,
  Johan Hovold <johan@kernel.org>, David Collins <quic_collinsd@quicinc.com>, 
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-arm-msm@vger.kernel.org, linux-mediatek@lists.infradead.org, 
- devicetree@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ devicetree@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1023; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=f1k2/XtnKKT0QabjDTtzy+0Tu+D0+1BkiYHMuQzuNWI=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBmEsiDgoBJu10bDGjkOQlKiFUR111JqKL1uRRLf
- +Orxj0NzwSJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZhLIgwAKCRAbX0TJAJUV
- VpuFD/9xdy5gdxKjuK6+FBvj7w9TUiK3bvGSdZfyhJYT4IETt5y9sQWDAPeewM/RVFWmv0a+3gs
- 5e67bCsLjPLbGIoqsEvwDhvPazDDlY10RZ4vGjiY3W5TRNA5eETaj44FeY+HlLOpX/Bvqia63UU
- w9oJsDq+eFDj1HVl3lekceaddpU0OewBWyXlzubTBQQpYk/xd4N4jdy1GDclQeRhN6Nfa/VeTMR
- vyhra4UDl6mXlPa5BHT9qvTXP7pVF0zB5dyobZizK9YjRsPigYS+LX3OmOjV2m7ti5gC8iwq8wn
- KIZi86jwYArLO0U5wjbHn6zaxddpd1lveGBk2IPRt2E0o5P+5jnYJuSjoICp7AGISqiBAG7AxLR
- p7Jdz4hNRH340QueE3OD/1VrnG4vYNBy83kcFkTdBipe3j3nUsBSZoTaOgs9gDhAlf/qn7K1PrF
- ccNgxTWKq5byQofdhdkCQH2QIFXLQ6/Fl18fQndw3cSjCmkoPcZkqKdinfJIPLIeaB4+LDPIiuW
- ewtzleOdG1yjZ9m3OlJkdHE1nTSeyMENyZSr0ZuhenAVfLebsoOakxnENYyAUxLscr8UVAo6aQF
- BXemxECrdwsZOoWJJlq+yUz/oO3s0bSt1tLivZ2mOImaxLHVatvOR6djmJENISR0BGLQiIdmx1o
- 7ZtdFW9QbkbTqiA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2479; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=FYDSYbmfadGmbe6XpAJqrRrZBX6gmScLt/RVQz821d8=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBmEsiE01RcIzvn1/GAP/pGKGg17V5zKKsmiEOUp
+ BIJQ/dwspmJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZhLIhAAKCRAbX0TJAJUV
+ VietD/0YfHXAxrcZlJBMPjukOj1ghQjxodW3aC8xQgQLao5CTb7h1UPdxdMgsa5J1leJN/ag0L8
+ 4/65veby6zyHkMUCo7J/AP3VM3s0CJj9QjSH4c8/rh2rIfrl8qO9lFidlG8SBVBEhWQQSgHZd4N
+ +be1VE0ntdVuBO3KqD2NEgk7vxERBfFai1XeLkNOyP7uSIT+arBNUmjYCsHxdWgj4/odjfF5Wtm
+ oBEpPl7+o8eYvBIGiRNRW/Y7WYZmMwjUzK42OwbedJiRtjbJ+CFcfmfA6nwZGL3buwnSs+ON6S+
+ yvXi/JmJVcmhpr6aoAF+VbtkWv+FZoFO95Sf7litHpDOxefMCZ/gDGj11UhfKxItIe+//FvtE4Y
+ 3cZ0kRadZgqv2HrVB7a4Ob8DnJ70aYyysKJyUjWg44eNOklLri+NAELM1c2X8d5gl/vwhCSl/8f
+ dkVADc0iagQwCBgyNSFR7I1Ls6OYb36lK7IDy1bsszlLwgWmgybCa+56Hskgot8PS8IOfxmFue/
+ GnXgwV9Fon6AHXclEdY1wACkUqPfl/Z70Qq1DCbSomiI6Cd6y7AFZ4dk8bVwm5S1sEzBeB2Zjvi
+ o3O1tKwABdyXM3UV9pWDh3GRDyHIrrw7oYfe9n+2XpAfJLauzrBUgWh6Lvgz6U/bTYCJTM3imW4
+ erkidpCuwZu41Bg==
 X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
  fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-As it is optional and no platform is actually using the secondary bus,
-deprecate the qcom,bus-id property. For newer platforms that implement
-SPMI PMIC ARB v7 in HW, the X1E80100 approach should be used.
+Fix the following compile warnings:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ warning: Function parameter or struct member 'core' not described in 'spmi_pmic_arb'
+ warning: Function parameter or struct member 'core_size' not described in 'spmi_pmic_arb'
+ warning: Function parameter or struct member 'mapping_table_valid' not described in 'spmi_pmic_arb'
+ warning: Function parameter or struct member 'pmic_arb' not described in 'pmic_arb_read_data'
+ warning: Function parameter or struct member 'pmic_arb' not described in 'pmic_arb_write_data'
+
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 ---
- Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/spmi/spmi-pmic-arb.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml b/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
-index f983b4af6db9..51daf1b847a9 100644
---- a/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
-+++ b/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
-@@ -92,6 +92,7 @@ properties:
-     description: >
-       SPMI bus instance. only applicable to PMIC arbiter version 7 and beyond.
-       Supported values, 0 = primary bus, 1 = secondary bus
-+    deprecated: true
+diff --git a/drivers/spmi/spmi-pmic-arb.c b/drivers/spmi/spmi-pmic-arb.c
+index 9ed1180fe31f..704fd4506971 100644
+--- a/drivers/spmi/spmi-pmic-arb.c
++++ b/drivers/spmi/spmi-pmic-arb.c
+@@ -132,6 +132,8 @@ struct apid_data {
+  * @wr_base:		on v1 "core", on v2 "chnls"    register base off DT.
+  * @intr:		address of the SPMI interrupt control registers.
+  * @cnfg:		address of the PMIC Arbiter configuration registers.
++ * @core:		core register base for v2 and above only (see above)
++ * @core_size:		core register base size
+  * @lock:		lock to synchronize accesses.
+  * @channel:		execution environment channel to use for accesses.
+  * @irq:		PMIC ARB interrupt.
+@@ -144,6 +146,7 @@ struct apid_data {
+  * @apid_count:		on v5 and v7: number of APIDs associated with the
+  *			particular SPMI bus instance
+  * @mapping_table:	in-memory copy of PPID -> APID mapping table.
++ * @mapping_table_valid:bitmap containing valid-only periphs
+  * @domain:		irq domain object for PMIC IRQ domain
+  * @spmic:		SPMI controller object
+  * @ver_ops:		version dependent operations.
+@@ -232,6 +235,7 @@ static inline void pmic_arb_set_rd_cmd(struct spmi_pmic_arb *pmic_arb,
  
- required:
-   - compatible
+ /**
+  * pmic_arb_read_data: reads pmic-arb's register and copy 1..4 bytes to buf
++ * @pmic_arb:	the SPMI PMIC arbiter
+  * @bc:		byte count -1. range: 0..3
+  * @reg:	register's address
+  * @buf:	output parameter, length must be bc + 1
+@@ -246,6 +250,7 @@ pmic_arb_read_data(struct spmi_pmic_arb *pmic_arb, u8 *buf, u32 reg, u8 bc)
+ 
+ /**
+  * pmic_arb_write_data: write 1..4 bytes from buf to pmic-arb's register
++ * @pmic_arb:	the SPMI PMIC arbiter
+  * @bc:		byte-count -1. range: 0..3.
+  * @reg:	register's address.
+  * @buf:	buffer to write. length must be bc + 1.
 
 -- 
 2.34.1
