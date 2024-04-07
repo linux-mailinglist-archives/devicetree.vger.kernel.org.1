@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-56973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56974-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 754BA89B3A0
-	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 20:55:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73E5089B3A2
+	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 20:55:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2BA1A281324
-	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 18:55:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 267052811AA
+	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 18:55:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66FCF3D0A3;
-	Sun,  7 Apr 2024 18:54:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B37843C48E;
+	Sun,  7 Apr 2024 18:55:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DnDs4/an"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uFxIWeQH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 207EF2BAE1
-	for <devicetree@vger.kernel.org>; Sun,  7 Apr 2024 18:54:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F379C29D02
+	for <devicetree@vger.kernel.org>; Sun,  7 Apr 2024 18:55:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712516095; cv=none; b=PSsv7G7A3LXNtvJrs4CdqZu3Cnq4uOhwWMsJ0XNwsN+ptO087Yu/gV1Zqpj1aleIdsCr2Cqd8IJDGugZNLzH5KK618RqGTVNTMyg9vfV7avi+F+goam0UZyDogfn4xU4uZ60fSDfPXqDxM3ra2Pqly1lQu9DT2IaHf9HU1A0qdQ=
+	t=1712516135; cv=none; b=GyG8lIxAsLzx1/QoRT0rlcyaDxvc3MYYrIO7C2SZiZOEtWD2gHy6q/R+5v6JeZWi5nhvYDabmQKLp+0H/ML+kfeqETYBS20hxc50YlONBium6kqEkE3y1Zs9JZQ8dAjtGFtELp/Z+s25hh8CclWI9lNXLmFliO9Nb/CUu4z6LnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712516095; c=relaxed/simple;
-	bh=958VAYYwBKwitLQ3/lk/PZYigEen4ofjsWiSZJUEHxU=;
+	s=arc-20240116; t=1712516135; c=relaxed/simple;
+	bh=1jmoupeNeE1z1sOJ4olLhK9xvLFQA/pZjigBUutkg3o=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lMeYO7ku3sl0gpjRCPZrFcXUu7thR6KLdqEXixjx2oEE/cZV37CvHewcI5mnkOrbKDxpEh9DZy2DxPpuWtiiMkCEa0gHhZeZwpaRQY7rL1McYRV3wdac1t7PjeMIVwyNZ1mJAP+FM83fBOueaNebk7CX5WBebXCnMXYSgByu5x8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DnDs4/an; arc=none smtp.client-ip=209.85.167.44
+	 In-Reply-To:Content-Type; b=MI8fKZnY0fo/kbEjv0l+EtliV6kzzoL35T7jQgJxAv3PmQOD588vSJCRbzHVJRXqgculfZETD2emqOLpuZDWeDqI06oNstILLNk42gBp1N9+dxqUtfmVpFQBu2DvAhKIDwIvisfOhvJVFcn17SqZzyJsLd8Q/eC/w+cfyb66KQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uFxIWeQH; arc=none smtp.client-ip=209.85.167.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-516c97ddcd1so4213898e87.2
-        for <devicetree@vger.kernel.org>; Sun, 07 Apr 2024 11:54:51 -0700 (PDT)
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-516d47ce662so3671974e87.1
+        for <devicetree@vger.kernel.org>; Sun, 07 Apr 2024 11:55:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712516090; x=1713120890; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712516132; x=1713120932; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=SRHNe6DXwYeiXKNaWOEzea5rcgNzeKm7MchGtxqe2UU=;
-        b=DnDs4/anrYM68VycpL4sY0EdMiwrs2RuCRUFONFXk21UTsqqUD7bKcxdppEjh6LYHK
-         0xTSzIqT2WU0qh1AFGhCx7l+Ud8eSa/6c678CYRnmhq7oKjzgjulee3RAZvdnfM1XYPz
-         5K0rScNk/mbqdqFJpeki0Tqex2LNMO07lvkSv7m2gJIYZoPfdUDqlZcrhnyozAt0HnbL
-         FhduW2KvWUjY3FUuM2cw0g+rsotzNK7aiJzxuQ6/TzrSi/iK1dDEF1Fzhlnf455UfmMR
-         agU2xEyPOwSSW48mcvnn9oTJs755EHgFEBKrkxQ0Iumdcm10GqDG+IH1664KnCmLjfir
-         bmtA==
+        bh=OU07XWrH7QrRx8z6lpwbyNFVehByy6iiEfzZuuvlVDc=;
+        b=uFxIWeQHuu1DnRmZCx4FShfk3LMX0EPN9ETDrz6mhAqyk+LxAHxwPcKCqnRyhneNYJ
+         18e1IVgRyCBJ+XnWFCzYG9RQJYYLCqc2EH3y1O6099ixKju2xsPilJiglPIHWm9LYjEC
+         L4/ezrJFMcOlkaib9McgXJEvx8oc8kAI6+qg1bZ5HU6uw9oZtqOU/DuQpUNykkhRTeuw
+         5WNh2w8xsn6KIhAom1X8PzwGiNXD4wjaTMOejQGycqHRKKTs85tLjzZ7l5R3Hv6GWVfn
+         4K1OnmNqPpLBE5SSKEA/XLrmAe9SXLTGcrXyMQ4kMZVek8A6NdWhdrdYdDC+Q1r33mYL
+         X/ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712516090; x=1713120890;
+        d=1e100.net; s=20230601; t=1712516132; x=1713120932;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=SRHNe6DXwYeiXKNaWOEzea5rcgNzeKm7MchGtxqe2UU=;
-        b=Bs3Pm+QjrwKFVtwICp3sV1W7ll5WiOyCZdXrd6BoAtPcoJzZ80Q2I1tcVcWPKdcEeP
-         ijBJFbtKjxa56tWxGBk3/bCuxDWdUSb9YCeOoKDXiabdEwYYFDob1ldtohQF+j1TH/S5
-         3PpgNTPOB5JN0X6e/Ll0Te4lw5i5v5DHwV+cz4NgUsKhTG1q+7wbPFRhoEHe4auD4FVW
-         nuEe5zwTuyxUrUMKOX3VwVaSXXVE7ZXw7kn/Lg3UPqMWwmu5XuJaIPje4Pjf0GTmyleQ
-         vALVoQqLolo5L/uotXqC46+kpP42cFxaBHVwm06kvThgjbH5GDvfquLBbQhTLzFiCuCH
-         Uujw==
-X-Forwarded-Encrypted: i=1; AJvYcCVdw2SlzDh4UoHG8VcDw8CJrEoy5mvyfp/uE4xCo/5E9NEk1sdT8UzbmB6xdq85r1TYrEh1tzYDKZd9ndprBPy9IE3obWoFlpJp9A==
-X-Gm-Message-State: AOJu0YzRjvCxkjx/wWbSJ0xBZD877dlzTjLDEdGUNlfT8EubQPDsADhf
-	kO3br7TP3/MTVbmkoL2OfXY2+DBmArT/ekVfvKy9kQ1kwVu4fNilWszQVqHnYUs=
-X-Google-Smtp-Source: AGHT+IEmKcP0onwipRC3csletl2FBdeGskT7hj2FjZDw8XOdg3PxvMTcQ4g0TuxnzJAZ39wimZLiyA==
-X-Received: by 2002:ac2:5302:0:b0:516:7739:354c with SMTP id c2-20020ac25302000000b005167739354cmr4475280lfh.58.1712516090055;
-        Sun, 07 Apr 2024 11:54:50 -0700 (PDT)
+        bh=OU07XWrH7QrRx8z6lpwbyNFVehByy6iiEfzZuuvlVDc=;
+        b=cKWkQRzlkh2/VLsSg/LsY1BrTdNhdd2uTMk4CL56IBkuq2TJCYWr+dqbOybapy+nkF
+         WceCjCeGmZPYmKjYz2HbuMxs1ZcVHQpys0Zy7peb4NcrC6HTEy8yOW43a2mvRrk6dQhH
+         AbLo//qb+FK3ZTd/X9aGFsb8Cs1Ca4Ms4JNJ4Zt8Nf7N5dfCUrvdRP7vAK2EXP5StoMj
+         BA5Ya20fAaW2bQoItDUPCupK5bX96aberaihZMwWS4PSBuNAT0I9jSABE9FJjzQmPyO/
+         3ey6VgKtiDuifVqS2i2eCif6P3ApFv19Tmjchiq7xwRXG+VuFAeND76e8IHR6IZYn8zI
+         ZxOA==
+X-Forwarded-Encrypted: i=1; AJvYcCXDDX5CI9+A0+KWdoyR2CSd+CucjoCz07JdBAE5yUfIAHTIRK+k5VS5sTweA/6KdF6m0ykNu/MKnNHqeUT81E5rJnx1lvsk6GRRMQ==
+X-Gm-Message-State: AOJu0YwG0EawMxBG3yleZLq0aeREqa/QibxqvNGhlJwdwkLdlP2IckSC
+	wBK5sEljdXKcELeyyGkQA20hyEkflTLR4CyXiUYECvxmcM0CXjPTRqblmTSOHMo=
+X-Google-Smtp-Source: AGHT+IE1bcgFsTWpWkUF7p2n+cWGRC6JhLC677ZsCW3QO9jXpGb+GKMv8gNPyxkV1COnJrWbN+ubFg==
+X-Received: by 2002:ac2:4c01:0:b0:516:d0c2:3ff9 with SMTP id t1-20020ac24c01000000b00516d0c23ff9mr5845387lfq.67.1712516132325;
+        Sun, 07 Apr 2024 11:55:32 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id q23-20020a170906b29700b00a4a3807929esm3435350ejz.119.2024.04.07.11.54.48
+        by smtp.gmail.com with ESMTPSA id jz13-20020a17090775ed00b00a51a1d1a3d4sm3457158ejc.47.2024.04.07.11.55.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 07 Apr 2024 11:54:49 -0700 (PDT)
-Message-ID: <5fe5396e-c628-49e1-bec3-770847f061e5@linaro.org>
-Date: Sun, 7 Apr 2024 20:54:47 +0200
+        Sun, 07 Apr 2024 11:55:31 -0700 (PDT)
+Message-ID: <46ee8ac3-b868-431e-b3cc-78fd33e9dfb1@linaro.org>
+Date: Sun, 7 Apr 2024 20:55:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,6 +92,8 @@ Cc: quic_srichara@quicinc.com, quic_varada@quicinc.com
 References: <20240308091752.16136-1-quic_mdalam@quicinc.com>
  <20240308091752.16136-4-quic_mdalam@quicinc.com>
  <1c803d8c-80b2-47a9-bc8c-8b13cbfc6841@gmail.com>
+ <4f72048a-a764-43de-846c-3b4edc1232e3@gmail.com>
+ <0c0487cb-c73d-42dd-94f8-499c29009730@gmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -138,55 +140,60 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <1c803d8c-80b2-47a9-bc8c-8b13cbfc6841@gmail.com>
+In-Reply-To: <0c0487cb-c73d-42dd-94f8-499c29009730@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 07/04/2024 19:48, Alex G. wrote:
-> On 3/8/24 03:17, Md Sadre Alam wrote:
->> Add qpic spi nand driver support. The spi nand
->> driver currently supported the below commands.
+On 07/04/2024 20:45, Alex G. wrote:
+> 
+> 
+> On 4/7/24 13:40, Alex G. wrote:
 >>
->> -- RESET
->> -- READ ID
->> -- SET FEATURE
->> -- GET FEATURE
->> -- READ PAGE
->> -- WRITE PAGE
->> -- ERASE PAGE
 >>
->> Co-developed-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->> Co-developed-by: Varadarajan Narayanan <quic_varada@quicinc.com>
->> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
->> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
->> ---
+>> On 4/7/24 12:48, Alex G. wrote:
+>>> On 3/8/24 03:17, Md Sadre Alam wrote:
+>>>> Add qpic spi nand driver support. The spi nand
+>>>> driver currently supported the below commands.
+>>>>
+>>>> -- RESET
+>>>> -- READ ID
+>>>> -- SET FEATURE
+>>>> -- GET FEATURE
+>>>> -- READ PAGE
+>>>> -- WRITE PAGE
+>>>> -- ERASE PAGE
+>>>>
+>>>> Co-developed-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>>>> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>>>> Co-developed-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+>>>> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+>>>> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
+>>>> ---
+>>>
+>>> For the entire series:
+>>>
+>>> Tested-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
+>>>
+>>>> diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
+>>>> index bc7021da2fe9..63764e943d82 100644
+>>>> --- a/drivers/spi/Kconfig
+>>>> +++ b/drivers/spi/Kconfig
+>>>> @@ -882,6 +882,14 @@ config SPI_QCOM_QSPI
+>>>>       help
+>>>>         QSPI(Quad SPI) driver for Qualcomm QSPI controller.
+>>>> +config SPI_QPIC_SNAND
+>>>> +    tristate "QPIC SNAND controller"
+>>
+>> Also, don't tristate this. It can be set as CONFIG_QPIC_COMMON=m, which 
+>> will cause the build to fail because you don't have a MODULE_LICENSE().
 > 
-> For the entire series:
+> Please disregard my idiotic suggestion here. I meant to make this 
+> comment on the previous patch.
 > 
-> Tested-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
-> 
->> diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
->> index bc7021da2fe9..63764e943d82 100644
->> --- a/drivers/spi/Kconfig
->> +++ b/drivers/spi/Kconfig
->> @@ -882,6 +882,14 @@ config SPI_QCOM_QSPI
->>   	help
->>   	  QSPI(Quad SPI) driver for Qualcomm QSPI controller.
->>   
->> +config SPI_QPIC_SNAND
->> +	tristate "QPIC SNAND controller"
->> +	depends on ARCH_QCOM || COMPILE_TEST
-> 
-> Here, it needs to 'select QPIC_COMMON`. Otherwise it can run into 
-> unresolved symbols:
-> 
-> : drivers/spi/spi-qpic-snand.o: in function `snandc_set_reg':
->   drivers/spi/spi-qpic-snand.c:56:(.text+0x484): undefined reference to 
-> `qcom_offset_to_nandc_reg'
 
-No, do not select user-visible symbols. If you observe such issues then
-either stubs are missing or depends on.
+Also not. All of these must be allowed to be a module. If you need
+dependency between modules, then use documented syntax in the kernel
+(foo || !foo).
 
 Best regards,
 Krzysztof
