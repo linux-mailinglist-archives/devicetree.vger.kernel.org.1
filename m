@@ -1,315 +1,169 @@
-Return-Path: <devicetree+bounces-56945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70AC189B299
-	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 17:01:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFF0A89B2CF
+	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 18:15:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F3D528204C
-	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 15:01:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B68FE1C21132
+	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 16:15:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9539F39AEC;
-	Sun,  7 Apr 2024 15:00:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 411723A267;
+	Sun,  7 Apr 2024 16:15:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="e1aIMOHD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qBwCdcRR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFC868485
-	for <devicetree@vger.kernel.org>; Sun,  7 Apr 2024 15:00:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BAC33A1C7;
+	Sun,  7 Apr 2024 16:15:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712502058; cv=none; b=Awq4BvJjlWRjgo9wkQHak7Cz7WxEeoi8dKDR3K17y+sEBBvRpGq2E4vF4Iou/zDYRLVj3a5kjFHJlHo68OsShGyypz1EiiTq72MGy59eT32f56eqO85kACg/HfXOM1JZbdZVqd0R0Izc9izaCh0j6AJ2cm9v5HGNRLj0q9Sxoew=
+	t=1712506550; cv=none; b=MxF4u5KvJ3MtAmU7iDgmOJ8UOsReqbLmHS8iUjoZ5KOoXh8D4BxKFhAPVWA5AsnmXmCFgPZAeWgfiBik0mYQzYdnGNOFIYWt4MrYZY2shbNw4YuQt2QL93bsfh+sWONGTfW99a3eGCOqGQtoC5vEYAanqVK5FdqC+M/Wz2wxhQ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712502058; c=relaxed/simple;
-	bh=bURv5oTWANCH9z9cXPSJn5dd7BobQTawT2S3pufseLM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ex/WcHu4L6KwHtPtOhjGQNdvqVS7iR2v9HJcusUsCdVpMgA1Z/gbNKJ9u+u+Nh6OW8aonZkqCOZDigwlps5eOASdT0a82uFT5SyBN9fTbYOHGKg+18tg8Ak5C5LWnFJTUONI3l8Z7tzk/sdrxpLqf92f5OoXcvaN2phXSLiLzz4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=e1aIMOHD; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-1dff837d674so32498405ad.3
-        for <devicetree@vger.kernel.org>; Sun, 07 Apr 2024 08:00:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712502056; x=1713106856; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=rg5p2LyDzLnfC2w8OQRGZeAgjaf7e8DN0+jmDo2guKc=;
-        b=e1aIMOHD9maELAKbu7zj0oPJLTPbZwOcnITBSv86Zdt//FwqG8sfny75OLAhlPOg62
-         8BDGuy3oLaxgw0dqERGbXGg3Et2D0JDTpOAob7Xbi+A0b1OGANlBC1kTE0E4jUaTOzVG
-         QjzqcpkVYVl/wF6F4gZW4H40wjT8KVZaS+bJ0gcUnY5AXb+uH7XtXKDCo9kdaH5O4aZW
-         Nj9wRvsTLT+thTG++RF69s80OBFAPNS6yuZWklTMPLeeAjinZ3eQK++ilj8Vsd49BjhK
-         ZniQGyZukTVidN/rU6yUlcM1BX3WsO4q8jyOe+aIG2CfIbfSHtghkbc/40eQa3sRjPxo
-         8qcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712502056; x=1713106856;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rg5p2LyDzLnfC2w8OQRGZeAgjaf7e8DN0+jmDo2guKc=;
-        b=nq6nNO4ndCSVcnivb0LV0KRK3HH/iqbKgR532uzMCObI4EMBBU1qyyfcgWafyCsayC
-         Ve1QW02HhpPei97QIJUpGOhWl/rh6sf7fGfiDFLzBrGNqwiS4y5X9gPASWBw++e2B0C0
-         3QR5+abFbsid37ScEYejxiMmZjeszUg43JT234yKmFsP+kFYWGz5iQL5M8R9D6inU1aA
-         XMTx/6ropBJ7ljPu1ze3nDpDgX/MSioaegoAeQzEGiE7GOZdoBp+ZRHcsQM4kPnNPHXj
-         YG3iFe65n7WJ7hWLnt3d9mILxxxDvySgG6oNTbqM4RhlyhX/EL2OMs9j2DLtbUCrgiJG
-         l/2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVbn+aYQP+WX/ussrXx7tm5oVuzWMXyW4iy0Mo3rvsR/Sw+4+jsZzaaja8PnkAofAA8Evz/IWtReEMbHZ7S/Lf+Q+ITtqsyIlc0VA==
-X-Gm-Message-State: AOJu0YwPZFtV5ozyuZbIb0CtQnTJ2l6g1KMSwBK394Yn3+jf2WeVzwD9
-	eP71XUJb/nRKz3LF0FdswZnefP8lGVfB10oWIlg6kYMR9r1e53lupIfKZuF53g==
-X-Google-Smtp-Source: AGHT+IG5a4Q0fNCaOXflnu0RC6Kp/xKoadxVcTH6j2sWeqtXMM88WShKb8CSsaKhrj1rMZ9BcVhqzQ==
-X-Received: by 2002:a17:903:192:b0:1e3:f012:5681 with SMTP id z18-20020a170903019200b001e3f0125681mr2004707plg.23.1712502055935;
-        Sun, 07 Apr 2024 08:00:55 -0700 (PDT)
-Received: from thinkpad ([120.56.192.184])
-        by smtp.gmail.com with ESMTPSA id l5-20020a170902f68500b001e2881c8de5sm5020429plg.82.2024.04.07.08.00.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 07 Apr 2024 08:00:55 -0700 (PDT)
-Date: Sun, 7 Apr 2024 20:30:48 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, johan+linaro@kernel.org,
-	bmasney@redhat.com, djakov@kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	vireshk@kernel.org, quic_vbadigan@quicinc.com,
-	quic_skananth@quicinc.com, quic_nitegupt@quicinc.com,
-	quic_parass@quicinc.com, krzysztof.kozlowski@linaro.org
-Subject: Re: [PATCH v9 6/6] PCI: qcom: Add OPP support to scale performance
- state of power domain
-Message-ID: <20240407150048.GE2679@thinkpad>
-References: <20240407-opp_support-v9-0-496184dc45d7@quicinc.com>
- <20240407-opp_support-v9-6-496184dc45d7@quicinc.com>
+	s=arc-20240116; t=1712506550; c=relaxed/simple;
+	bh=Wx29/u2HmesnOY5HNS11s3zqFGiGxLSe5oJTWtN3DA8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OYdgUix4v1ZMEXJjyejqsbbTBSiv6Wjx3eivs05ZyUUJTN13bXOp3d0kJozlcms1eCcIkL8eYIn2Lk1CNdJkI2FMbGO4FuuVE05PH5UznBD03QDE2Ajmi8IOWIuN/de8VCSb4dZUF67GLR72zRl+Z++VJB5LTLbsyR2Lhs3lhw0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qBwCdcRR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA570C433F1;
+	Sun,  7 Apr 2024 16:15:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712506549;
+	bh=Wx29/u2HmesnOY5HNS11s3zqFGiGxLSe5oJTWtN3DA8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=qBwCdcRR0gpom7F6u9JKMVjSi02D/nwR5BKVWr4PATUuJjKwYNM0W4TI6B8F5cn5m
+	 l/jBOv5gQGmGME8mwyn9piKDle03zot1UFM3rToorJMOwga+e7kdwURDoWaGP/8u7+
+	 QrFzHBWy26f2muW0BIIB5pTV4TJERd6da82sHH5vpkUcYkMJ9dDx7TgRD5OkoJyIjg
+	 W9zr59UBl1h6Z1wGONuKxxwKBfR5aXtS+C0PaaN6urUD4dNnmbBKa3msFlOOGXFz7R
+	 thgjyn5LoB14uAVVnDW81KbmeXKEi6UnJ1arGoo/Aaswe7R1/h7DnEjMxTbt41UaMf
+	 WW1+7OtsAJTsg==
+Message-ID: <5b9e0e44-0b9c-44fc-9d18-21c47b46dc63@kernel.org>
+Date: Sun, 7 Apr 2024 18:15:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240407-opp_support-v9-6-496184dc45d7@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/6] dt-bindings: firmware: arm,scmi: set
+ additionalProperties to true
+To: Peng Fan <peng.fan@nxp.com>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Sudeep Holla <sudeep.holla@arm.com>,
+ Cristian Marussi <cristian.marussi@arm.com>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20240405-imx95-bbm-misc-v2-v2-0-9fc9186856c2@nxp.com>
+ <20240405-imx95-bbm-misc-v2-v2-1-9fc9186856c2@nxp.com>
+ <614b5107-656d-4d41-99c1-77941c48342c@kernel.org>
+ <DU0PR04MB9417932A6208128FBBB22C4188012@DU0PR04MB9417.eurprd04.prod.outlook.com>
+ <09f6b752-6b72-49d7-b248-6faba2fd13a7@kernel.org>
+ <DU0PR04MB9417C5B9BDD9E0B47E7494C088012@DU0PR04MB9417.eurprd04.prod.outlook.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <DU0PR04MB9417C5B9BDD9E0B47E7494C088012@DU0PR04MB9417.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sun, Apr 07, 2024 at 10:07:39AM +0530, Krishna chaitanya chundru wrote:
-> QCOM Resource Power Manager-hardened (RPMh) is a hardware block which
-> maintains hardware state of a regulator by performing max aggregation of
-> the requests made by all of the clients.
+On 07/04/2024 12:04, Peng Fan wrote:
+>> Subject: Re: [PATCH v2 1/6] dt-bindings: firmware: arm,scmi: set
+>> additionalProperties to true
+>>
+>> On 07/04/2024 02:37, Peng Fan wrote:
+>>>> Subject: Re: [PATCH v2 1/6] dt-bindings: firmware: arm,scmi: set
+>>>> additionalProperties to true
+>>>>
+>>>> On 05/04/2024 14:39, Peng Fan (OSS) wrote:
+>>>>> From: Peng Fan <peng.fan@nxp.com>
+>>>>>
+>>>>> When adding vendor extension protocols, there is dt-schema warning:
+>>>>> "
+>>>>> imx,scmi.example.dtb: scmi: 'protocol@81', 'protocol@84' do not
+>>>>> match any of the regexes: 'pinctrl-[0-9]+'
+>>>>> "
+>>>>>
+>>>>> Set additionalProperties to true to address the issue.
+>>>>
+>>>> I do not see anything addressed here, except making the binding
+>>>> accepting anything anywhere...
+>>>
+>>> I not wanna add vendor protocols in arm,scmi.yaml, so will introduce a
+>>> new yaml imx.scmi.yaml which add i.MX SCMI protocol extension.
+>>>
+>>> With additionalProperties set to false, I not know how, please suggest.
+>>
+>> First of all, you cannot affect negatively existing devices (their
+>> bindings) and your patch does exactly that. This should make you thing what
+>> is the correct approach...
+>>
+>> Rob gave you the comment about missing compatible - you still did not
+>> address that.
 > 
-> PCIe controller can operate on different RPMh performance state of power
-> domain based on the speed of the link. And this performance state varies
-> from target to target, like some controllers support GEN3 in NOM (Nominal)
-> voltage corner, while some other supports GEN3 in low SVS (static voltage
-> scaling).
-> 
-> The SoC can be more power efficient if we scale the performance state
-> based on the aggregate PCIe link bandwidth.
-> 
-> Add Operating Performance Points (OPP) support to vote for RPMh state based
-> on the aggregate link bandwidth.
-> 
-> OPP can handle ICC bw voting also, so move ICC bw voting through OPP
-> framework if OPP entries are present.
-> 
-> Different link configurations may share the same aggregate bandwidth,
-> e.g., a 2.5 GT/s x2 link and a 5.0 GT/s x1 link have the same bandwidth
-> and share the same OPP entry.
-> 
+> I added the compatible in patch 2/6 in the examples "compatible = "arm,scmi";"
 
-This info should be part of the dts change.
+So you claim that your vendor extensions are the same or fully
+compatible with arm,scmi and you add nothing... Are your
+extensions/protocol valid for arm,scmi? If yes, why is this in separate
+binding. If no, why you use someone else's compatible?
 
-> As we are moving ICC voting as part of OPP, don't initialize ICC if OPP
-> is supported.
-> 
-> Before PCIe link is initialized vote for highest OPP in the OPP table,
-> so that we are voting for maximum voltage corner for the link to come up
-> in maximum supported speed.
-> 
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> ---
->  drivers/pci/controller/dwc/pcie-qcom.c | 72 +++++++++++++++++++++++++++-------
->  1 file changed, 58 insertions(+), 14 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index b4893214b2d3..4ad5ef3bf8fc 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -22,6 +22,7 @@
->  #include <linux/of.h>
->  #include <linux/of_gpio.h>
->  #include <linux/pci.h>
-> +#include <linux/pm_opp.h>
->  #include <linux/pm_runtime.h>
->  #include <linux/platform_device.h>
->  #include <linux/phy/pcie.h>
-> @@ -1442,15 +1443,13 @@ static int qcom_pcie_icc_init(struct qcom_pcie *pcie)
->  	return 0;
->  }
->  
-> -static void qcom_pcie_icc_update(struct qcom_pcie *pcie)
-> +static void qcom_pcie_icc_opp_update(struct qcom_pcie *pcie)
->  {
->  	struct dw_pcie *pci = pcie->pci;
-> -	u32 offset, status;
-> +	u32 offset, status, freq;
-> +	struct dev_pm_opp *opp;
->  	int speed, width;
-> -	int ret;
-> -
-> -	if (!pcie->icc_mem)
-> -		return;
-> +	int ret, mbps;
->  
->  	offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
->  	status = readw(pci->dbi_base + offset + PCI_EXP_LNKSTA);
-> @@ -1462,10 +1461,26 @@ static void qcom_pcie_icc_update(struct qcom_pcie *pcie)
->  	speed = FIELD_GET(PCI_EXP_LNKSTA_CLS, status);
->  	width = FIELD_GET(PCI_EXP_LNKSTA_NLW, status);
->  
-> -	ret = icc_set_bw(pcie->icc_mem, 0, width * QCOM_PCIE_LINK_SPEED_TO_BW(speed));
-> -	if (ret) {
-> -		dev_err(pci->dev, "failed to set interconnect bandwidth for PCIe-MEM: %d\n",
-> -			ret);
-> +	if (pcie->icc_mem) {
-> +		ret = icc_set_bw(pcie->icc_mem, 0, width * QCOM_PCIE_LINK_SPEED_TO_BW(speed));
-> +		if (ret) {
-> +			dev_err(pci->dev, "failed to set interconnect bandwidth for PCIe-MEM: %d\n",
+Maybe your binding is correct, feel free to convince me (and read first
+writing bindings).
 
-s/failed/Failed
+Best regards,
+Krzysztof
 
-> +				ret);
-> +		}
-> +	} else {
-> +		mbps = pcie_link_speed_to_mbps(pcie_link_speed[speed]);
-> +		if (mbps < 0)
-> +			return;
-> +
-> +		freq = mbps * 1000;
-> +		opp = dev_pm_opp_find_freq_exact(pci->dev, freq * width, true);
-
-As per the API documentation, dev_pm_opp_put() should be called for both success
-and failure case.
-
-> +		if (!IS_ERR(opp)) {
-
-So what is the action if OPP is not found for the freq?
-
-> +			ret = dev_pm_opp_set_opp(pci->dev, opp);
-> +			if (ret)
-> +				dev_err(pci->dev, "Failed to set opp: freq %ld ret %d\n",
-
-'Failed to set OPP for freq (%ld): %d'
-
-> +					dev_pm_opp_get_freq(opp), ret);
-> +			dev_pm_opp_put(opp);
-> +		}
->  	}
->  }
->  
-> @@ -1509,8 +1524,10 @@ static void qcom_pcie_init_debugfs(struct qcom_pcie *pcie)
->  static int qcom_pcie_probe(struct platform_device *pdev)
->  {
->  	const struct qcom_pcie_cfg *pcie_cfg;
-> +	unsigned long max_freq = INT_MAX;
->  	struct device *dev = &pdev->dev;
->  	struct qcom_pcie *pcie;
-> +	struct dev_pm_opp *opp;
->  	struct dw_pcie_rp *pp;
->  	struct resource *res;
->  	struct dw_pcie *pci;
-> @@ -1577,9 +1594,33 @@ static int qcom_pcie_probe(struct platform_device *pdev)
->  		goto err_pm_runtime_put;
->  	}
->  
-> -	ret = qcom_pcie_icc_init(pcie);
-> -	if (ret)
-> +	/* OPP table is optional */
-> +	ret = devm_pm_opp_of_add_table(dev);
-> +	if (ret && ret != -ENODEV) {
-> +		dev_err_probe(dev, ret, "Failed to add OPP table\n");
->  		goto err_pm_runtime_put;
-> +	}
-> +
-> +	/*
-> +	 * Use highest OPP here if the OPP table is present. At the end of
-
-I believe I asked you to add the information justifying why the highest OPP
-should be used.
-
-> +	 * the probe(), OPP will be updated using qcom_pcie_icc_opp_update().
-> +	 */
-> +	if (!ret) {
-> +		opp = dev_pm_opp_find_freq_floor(dev, &max_freq);
-
-Same comment as dev_pm_opp_find_freq_exact(). 
-
-> +		if (!IS_ERR(opp)) {
-> +			ret = dev_pm_opp_set_opp(dev, opp);
-> +			if (ret)
-> +				dev_err_probe(pci->dev, ret,
-> +					      "Failed to set OPP: freq %ld\n",
-
-Same comment as above.
-
-> +					      dev_pm_opp_get_freq(opp));
-> +			dev_pm_opp_put(opp);
-
-So you want to continue even in the case of failure?
-
-- Mani
-
-> +		}
-> +	} else {
-> +		/* Skip ICC init if OPP is supported as it is handled by OPP */
-> +		ret = qcom_pcie_icc_init(pcie);
-> +		if (ret)
-> +			goto err_pm_runtime_put;
-> +	}
->  
->  	ret = pcie->cfg->ops->get_resources(pcie);
->  	if (ret)
-> @@ -1599,7 +1640,7 @@ static int qcom_pcie_probe(struct platform_device *pdev)
->  		goto err_phy_exit;
->  	}
->  
-> -	qcom_pcie_icc_update(pcie);
-> +	qcom_pcie_icc_opp_update(pcie);
->  
->  	if (pcie->mhi)
->  		qcom_pcie_init_debugfs(pcie);
-> @@ -1658,6 +1699,9 @@ static int qcom_pcie_suspend_noirq(struct device *dev)
->  	if (ret)
->  		dev_err(dev, "failed to disable icc path of CPU-PCIe: %d\n", ret);
->  
-> +	if (!pcie->icc_mem)
-> +		dev_pm_opp_set_opp(pcie->pci->dev, NULL);
-> +
->  	return ret;
->  }
->  
-> @@ -1680,7 +1724,7 @@ static int qcom_pcie_resume_noirq(struct device *dev)
->  		pcie->suspended = false;
->  	}
->  
-> -	qcom_pcie_icc_update(pcie);
-> +	qcom_pcie_icc_opp_update(pcie);
->  
->  	return 0;
->  }
-> 
-> -- 
-> 2.42.0
-> 
-
--- 
-மணிவண்ணன் சதாசிவம்
 
