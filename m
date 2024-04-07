@@ -1,474 +1,334 @@
-Return-Path: <devicetree+bounces-56935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BB3C89B0AB
-	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 13:57:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E468889B0C2
+	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 14:35:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F7F1281CD7
-	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 11:57:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 53A8CB21290
+	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 12:35:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4A76210EC;
-	Sun,  7 Apr 2024 11:57:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1E1522EFD;
+	Sun,  7 Apr 2024 12:35:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="oIx+jguy"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="XuVZPthd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10olkn2022.outbound.protection.outlook.com [40.92.41.22])
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-db5eur01on2097.outbound.protection.outlook.com [40.107.15.97])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E0801CAA4;
-	Sun,  7 Apr 2024 11:57:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.41.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FC3122F02;
+	Sun,  7 Apr 2024 12:35:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.15.97
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712491036; cv=fail; b=MPUfyccKVCXWQgUNS6TY0xJV5y3oLVp56mJJWLGoJhrA1REApnURkk7QKgH9xOMMSbVG4dAVrRkQv9SlmVE3S4f5+0eFAM1mgeLQQk4oRUvSeYqU+Nipit3cbnn2M6wYXBLxKLNJX/AeIlA8XlnhklU2Fq+upKAf+i3E9YL9+P4=
+	t=1712493335; cv=fail; b=IFysmalZJUfO/rDNfmWpOPkmhGd3uDYzJhfOtXSDrYjjVHRPBxIZo/GIOEj+5RQ8r0ytpFgAv18TYWKVy3sb5g4SiqxO9izsnJCbnA/GOCYZuELp8sIy2bhQ1wI0pKG9W9xBsucoLRHmfH/xNQk8dc7riJnP9Us5K+CmEMpKuhQ=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712491036; c=relaxed/simple;
-	bh=O/ngNPJ54PiVEcFo7OrH4cp459xY5vX37DSTPVnOof8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=rJ0QXSFFDczuiotl+wqn5ej3t42R9nRLBm2J201xNtEUTDjHrekjGAZp9mAiPjI7jYlMcGSIMenpoO9C6dEF3HhdOU7RRVjZShjW45hJhJwzxYq+3OUuGdTLFvDaNdsAkFGcZ3EEAPuLj/RYSQKxLRpdCGHr4ydOv7j1gMrj9Fg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=oIx+jguy; arc=fail smtp.client-ip=40.92.41.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+	s=arc-20240116; t=1712493335; c=relaxed/simple;
+	bh=hopfhlqY4DfSLltGK/VLhWCDAt0Ez/2jgb8OiXJ5uFM=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=o6MuySk7S8zhHby7VXs771UOtCIgW8wfjzZT0r56nt1cKEWQKicMZm/yQGJV4etG+FSGq0rnXAqklzLfxNfpq2Qj4G0f2rLdybILuqjpwpAuytqYqsgW7xIAWmk0EQ9254Nqz+BXkgD9jsARlteHBkA1J1RYZhyYTpfT8aEqGlc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=XuVZPthd; arc=fail smtp.client-ip=40.107.15.97
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=T421hfO0osofMwi8MWNUnCLtA3jKV/LjqjJxgzGbZHPKznF/QQDCdfRJE3EHGy3HXzkZY2j4cx+BZMGX4pORyBSQkcEl49ivuAdLTqPWmrIYpRNYdwJTzxce83F5a+tBvO+HPg//COqk1lbkwosGzLWHW7Ld5mn7u24SBeRpwmfbe0B9w/IPQ4mkVO9lts4usOwvAUIRqxCoq73tyifw63cZ5/bDpxvPQ+r8zGn/SXqokfItV5PE1PZicINP6l0mJXgejY0NaPunEKggx8y8F/svnlJS/LQAb3NmEdJrxmkONizfzK0hSM2/G+jkFm3Mh6o3c0po5YqAxkTE8nKZkw==
+ b=dv9kVBjqSQNthaKPE5K4nYmUdzRWJs6wxavEYHfAMAa+cb0+Svb8Q9bxqld9GWXFSCexKQtDV1n67JJ247WYcV7A0vb1k+h2Iz9pQW7yIti/RtlN+IpCaMERPfP3gj3C2HpWnG0PtE4T8mSpfxAIsl4OlnkuX9zleOMbFqzuxBZv6L2ehVrFiceCmDqp/inWP/EG9yIa0fQxUlyiaZ8sK2YkT8wFmyU3RQLk5sSMWew41elIN4xyqcKH3sPqbeflgRANBdJcYdIDSHIMYbXODOc1g3edEWr29F1XzLnEBozM4penYCK3dyyYTkUFv6gR6/1H+BVGWjNAFYURbQBoMg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BrcdxBdwnqS49+6YTZzCy01GVDvlboMJQi94sHuyvF8=;
- b=InjTiUAkro8bS7YSvv19wpkiR3hAJQ3qFYqUj89jthpUN8vpq6zG/GIaqoXPX+ya+DRstywQBAbZ6BY8dM/hLj5EZI8/D67YnG4NrjOjAdGBVTmYpeO9YHFsy7o2aJDCNp3MlAtWQsNME7/NEGoAFQj2DZFD75KaNQ4fDSFRMZuTygF5uwau1xuR5f74VvVYscBzoYm95vsQqVh+9JmtQuh+yyWNukiQEOPA7J3UPBIM44bw6HizYLR+DhNyDLdWz1txzf/Ut2mSoZQcyFLr2vbnfTpXvnW5D/jVVGJykuyQhRGku2YNz0oNRh4uyyMvKx9AZ/5A7oLArslGQIL7Dg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
+ bh=UlwQ2128zhseH61X1HFKXWM5fKJl1k4RbJ9OvKO8DVA=;
+ b=AOb8JuIhKtRQ4vm5BO9PRkl0MVqxGwATRVkOdWf8Qs+uPaLfzbEMhgLClFQioCRgmqQMWnjcqUhot0Sd5Lx+tP6QOtD3eyz9glW9SF9f09+T17wFhNjJq0VGGbIVHKnYdjtp1NO47GONbMjFYZbceVLkhucKf/XGJDB0NIF3z3gS25Jmin0IcYl0mON/riU96LXZisJiieRLji6wvWiYWoLDeKvZiruFPoKWg4PoXCap+XBVq5SdOqsgvODRKuqcnGlYjQbL23MUMQJ0I0oYNKosdY8cSvxoH2OurQaXSaMOKZ3E0UWUK9fbjmEJCTZPuxQhbb0cPlC21K5XctawZw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BrcdxBdwnqS49+6YTZzCy01GVDvlboMJQi94sHuyvF8=;
- b=oIx+jguy/kfxO4YlI4dQqReGVzzn21x8WxWjjcGc7/IoK/2B8Vm2o9qoUDYn7ic4yI36RPnngglq+M58U8cfX79ipZbW4uNN8jPUB41EGX57scdrpemp/bs1Yx1AROoafUOccLcGK3UM6Ys7jagEEOLTqGdHLttXvmjIaVHWLwNuHa7nVGl3yxsCD02JEy6h9C5jBTIqn5Ufg4Hp+9bCayEqz15o1WDpCnNbuG/eOABJohDcsnrZmG9KeDurFVwNGyO12i3db3OxnLkC3RO+ryEUPDE8KNVM8oVHD9+uiocS++73dvpNjJMRXI1xBtiAkBhYMO96cNWNXBA2fQCEWw==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by PH7PR20MB6353.namprd20.prod.outlook.com (2603:10b6:510:2b1::8) with
+ bh=UlwQ2128zhseH61X1HFKXWM5fKJl1k4RbJ9OvKO8DVA=;
+ b=XuVZPthdAH6jj3Wohupz9E46FBvQQTETYZcsdrLrJP5fBotjR3H4RmQu0r5cqXyWS9MVj0FEY8Pd1vYAHO6Q2qU/MsqljGWZzoQLCdRyDmDkc5M2Ke5rS240/kjY6z/g98mA8vuicj34xtKhg+SnQPybcoqFGyILpPAnuDfQlg8=
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by DBBPR04MB8026.eurprd04.prod.outlook.com (2603:10a6:10:1ed::6) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Sun, 7 Apr
- 2024 11:57:11 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::182f:841b:6e76:b819]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::182f:841b:6e76:b819%2]) with mapi id 15.20.7409.042; Sun, 7 Apr 2024
- 11:57:11 +0000
-Date: Sun, 7 Apr 2024 19:57:25 +0800
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Vinod Koul <vkoul@kernel.org>, Inochi Amaoto <inochiama@outlook.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen Wang <unicorn_wang@outlook.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Jisheng Zhang <jszhang@kernel.org>, Liu Gui <kenneth.liu@sophgo.com>, 
-	Jingbao Qiu <qiujingbao.dlmu@gmail.com>, dlan@gentoo.org, dmaengine@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v6 3/3] dmaengine: add driver for Sophgo CV18XX/SG200X
- dmamux
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.54; Sun, 7 Apr
+ 2024 12:35:30 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::d30b:44e7:e78e:662d]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::d30b:44e7:e78e:662d%4]) with mapi id 15.20.7386.037; Sun, 7 Apr 2024
+ 12:35:30 +0000
+From: Peng Fan <peng.fan@nxp.com>
+To: Rob Herring <robh@kernel.org>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>, Cristian Marussi
+	<cristian.marussi@arm.com>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+	<s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, dl-linux-imx <linux-imx@nxp.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH 1/5] dt-bindings: firmware: add i.MX SCMI Extension
+ protocol
+Thread-Topic: [PATCH 1/5] dt-bindings: firmware: add i.MX SCMI Extension
+ protocol
+Thread-Index: AQHaVaFQyMElkM8qJ0+1AsXohnLry7EG36SAgFZD6hA=
+Date: Sun, 7 Apr 2024 12:35:30 +0000
 Message-ID:
- <IA1PR20MB4953677A917684B2E4085E45BB012@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <IA1PR20MB4953F0FAED4373660C7873A2BB3A2@IA1PR20MB4953.namprd20.prod.outlook.com>
- <IA1PR20MB4953AE1184DD09F9203C665CBB3A2@IA1PR20MB4953.namprd20.prod.outlook.com>
- <ZhKDo0GCpvffUcd8@matsya>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZhKDo0GCpvffUcd8@matsya>
-X-TMN: [gMWzprJcCTwSf2gJ7Sl0jQUuTgfHxOabo1JSyp+jKfE=]
-X-ClientProxiedBy: TYCPR01CA0202.jpnprd01.prod.outlook.com
- (2603:1096:405:7a::15) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <k4hpgx3ou5krjtn2nf5nrzx5abhvws4ey5a775laeutpfgz7yr@e6pssxjrqoyp>
+ <DU0PR04MB9417EFBFBFD374B8A5E7039D88012@DU0PR04MB9417.eurprd04.prod.outlook.com>
+References: <20240202-imx95-bbm-misc-v1-0-3cb743020933@nxp.com>
+ <20240202-imx95-bbm-misc-v1-1-3cb743020933@nxp.com>
+ <20240212150919.GA322668-robh@kernel.org>
+In-Reply-To: <20240212150919.GA322668-robh@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|DBBPR04MB8026:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ SxV0+9ePnNmJ4Zg4B8wSY7ZF1MjtJ8zGtMtJ37HAO0XIjR9g9sx0QMpDaGUh7qAa5dVaSXu6E6zQPs5+IJUpcGOzLa+5SX6oREi/0De4HEKjWtmDfgJTwuj3C1BUnnMLkS0w7dzWSAg+2nUfzvxcde4kH2t2rMpK4yNkA2gInF6e43qL3nLO1STKlf8fOpv39rW+mU2DXmtjHQyJTxvQ4vrlcTZwX1qn5nEcKOhTLxu9RXbUvb2C5xvxVs+j9PA6lAsUZ679gHMrzK0UpT9KQR0zG4ytXCq2pVk1pfD2kMLHACJhOFIeDvmpCpebTDwfWeo2tho34MOtxU4UuQDpmWkkNbuOCG6UPprsaz+miE0LD+lPjjijQe2F6nr66jwWfRnvlxC5tRgRVcXFxZGBCDNPeCKnrGLt4rEz3kxtYic5ekRWw8VWFZoLc68TL+7zzSGFwetz8FzWwkrbey3yxFbelkzmaNYGSIsl32wOD9aFydO43D1ZjOdLfn//8ktv9Ma6Nf9vGPa/2JMrhEA4c1/qK6kp0sZJUW9BfHAMwFp6NuqBJl7Aja/QAv8jl2GPaCpWLxvayG4rxVsc+itU5yyqj5aoz5poTfIqd4Dw9BySM0yxy8Da/gg0TF7Rd++ZB9i3uVvFg8AuQS3GXpMgIj2bWtN+qg95KW0pyEL7FG8=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(1800799015)(7416005)(376005);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?FWsMYI6dtM3XRUU53CcYK2+kE7gzY0TupkRqYReL4TU5MWhFP/ItiJy08AYk?=
+ =?us-ascii?Q?4CkjbKsPa9zsgDxA8MltFTZJkjxk906W1DiAi3+Q40zy2gaWMoAISCEwLiI+?=
+ =?us-ascii?Q?W1q4LV9MKcyoFeX8Sgv6skmLFY6ETnvpoYzh6on3nZqehgxnxVw7Z7GXtk/I?=
+ =?us-ascii?Q?gqINEvvnwGRqQsanpjPo901LR3riN5Ya2v2wcauQZtyPBZMSV6PkHqnHriKz?=
+ =?us-ascii?Q?gfh2YTVVikbE/4nv44dOXFVY7Ag2BZN7UPkZ0smL3o3RtgO9++/YfaH3htNv?=
+ =?us-ascii?Q?CuH3zESm5fZ1SrHIZh/AwQvDNK+Ln7wDQmw4flS6q6hIvAHd6Sx7vsV2r77G?=
+ =?us-ascii?Q?SKPBcEeuAoPZkWQNLOlerRay2uQIlb164abK3H+CwmriaFJBjY7dHpk9Wzs7?=
+ =?us-ascii?Q?3ZspwVlpThGpxtmd7VxbVdVBHtm4uODQmGJq9WUEbL40b7nBDwjHDJ82b8oq?=
+ =?us-ascii?Q?5YOEJN6NGOQeT8Du91Sp9HpJlhmw2oZZ8xDu5t3w2eEkSInoGKMmUoCA3e46?=
+ =?us-ascii?Q?s+3AnvYEnbOh1uPrissGclxu2I3onoSHwzs2Pg8xyp0+9NzVIGLXBJiFIojp?=
+ =?us-ascii?Q?Ykdzxjx4I5wgDSCLVVrkbqZu2fE+uDf3jkdVOb0F92xk8VoflIJ3ZMfUGFMH?=
+ =?us-ascii?Q?N5sVDKo4Ts3BTuGTQxNUxuqnd9zpjA1SD2NqTJOKnGRRq+nwgU7DjEwb8E7o?=
+ =?us-ascii?Q?U1xtLxZxIKc9Z4ameqZ6cDHI70Dtvj9yrr5M00rUhuIQWjrfug4fSn0cSNwi?=
+ =?us-ascii?Q?Cd6GqRaLIQaElvu2oKFrGQXUkAjGKr2RnwYPRnny60Nyj2pp9Icy/ck7N3Il?=
+ =?us-ascii?Q?hvocQX99lYHapzeCvlnlM8uAVLqeUKp2qFIjJfdKqEM1L0k445nMLRe4t4T0?=
+ =?us-ascii?Q?nHj7IT5u0nJquf6bI9gAWpmEBczgOEEbWwbfI/9CDAlYup779fU8Rnip20fH?=
+ =?us-ascii?Q?LU62rlTZVfIGcWjpvzBfyQx30TLmtq29Lg++tnKeAg9/lvuuwcaNSaxAk2bG?=
+ =?us-ascii?Q?S1u5gVcKiCwgwn61m3MbnIhULbw+ykRKX2TXmnbEaLTyzlFRaAON0NEXwRR+?=
+ =?us-ascii?Q?+kEL+pw32quIPOqgS5m2zs3/UiiPA04EKSpTi+4mU0+eGnC37jLW70o/WSLi?=
+ =?us-ascii?Q?riteY92X0cvE/rqS1GhXKuyMDfBUn0Vg9B/waEMKPkLwz4ZkBDLAqhJ70uJF?=
+ =?us-ascii?Q?7aRIsWhK8FgcNbKNtnrrc2Os4rRQD+aGxrXB/Tbkh1fb2hmNWE39SgF2Fa2T?=
+ =?us-ascii?Q?PVoiRm49wc5yIoAfFNBu/oYWMTli5ttjNo9QNlVEEj9Cr8q4hhO+gmbszKJL?=
+ =?us-ascii?Q?8VOGoOn5lrV1bM8iewMMmUZYqSkuusWUs3npXJgN7xmeQkAa1fXR2VNkJS88?=
+ =?us-ascii?Q?67RLbP7DpJQmYmZZvSuUjNyZMNjnSFwdGEAg5b6dvI3MBrXyRoBolU98Fj04?=
+ =?us-ascii?Q?q4R4Vs9h0prm67HKouHm3G2G4X/Wzf5QRXpAKxpcly5yd3ndH/KhifhE5G4x?=
+ =?us-ascii?Q?wBiOX64dX4QeA5z17PhIvNzQd60i2aYIa6DYtUO151ylr/pz4UoupXGhjsk/?=
+ =?us-ascii?Q?oKTo6zZ40CW8D08dfVM=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|PH7PR20MB6353:EE_
-X-MS-Office365-Filtering-Correlation-Id: 787e49b1-24d7-4f13-10be-08dc56f9db75
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	a3gqkv9dyppda60k+NA85XOOCmegGrZs2NWd6DN5rwltVjDz5GL3ps8e+8pPAHLZALGS6qJUF2hspT4ThD8faoU4rE8rwjGQoftqAZ46NFtwBJvXQxR926iZpGVyWBLmjGWio1X55toUsbclaci7YnkKrH2Q8JBKmzeYWj/wW+zGnrNbFAmALfWIBR4Adc/kMR3vpTK+waNxDyHEkiBFDYWStV3vyqgltm/H8hFrnX/wjmgHu8VnEfEnp7nyGi9C/wayptvFuEJq1LBMHvvVUzrO7YP8oT+ou/6Nz59o1LfVuK/pLQv+EZ3fwjd5i6IraLKEmeOX30IRCOg3pjUbqWUeWdPvUWib8i+LYVqat07uuQ9Xe0kaA/ub7Q4WGGIgmuRmHneJ2dNWvunqJ0QdaRMSCSMMzdzHdparDxkouHIXlHUJ2AxWay6yJ4BwWKCI/HfkTaHbLVNBVJUbEJO03AhrM8vfjE0ap+yix2H/yotafWKTtQsarEckntmpeUI25rqoy4MUZutgY3ygqG/IMsfzz7iUktJFA355VM/NX+Q14GPVudW9/gkscfB5hHImK20bYmUmvvL54mmzctfNy6tuK68fMk3HIPK+TIL6fx90xJBuxnVRzOjqBzxLGBrE
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?U7PSqkEm34JpoM7kaDTaqRs28y+OpKu7I2WwzV7W3OOAOPxvAXO8KKnTnUDl?=
- =?us-ascii?Q?3iGoVMAsaopu1VwZZvwWwNzm2uQYO6SMZU1DNcuOTtvJ5aMrUUnSSNSLps9h?=
- =?us-ascii?Q?Grzr/75XuabsqpWR8AdOZf4opT8NjitWJmgO6lhNwyNotsbyCFfHZXgGO/cp?=
- =?us-ascii?Q?kgBi0qgtamZzFJtuVt6QlFcnn3hfD3kFO3rv9QLdXVotjRSzcEu3qvwQapI3?=
- =?us-ascii?Q?02kmcMidjZJ3OJKp5wQFsBNITVp1VijHS/d6u5QV9NaF0rwY1erpoeOYzlVf?=
- =?us-ascii?Q?vElCNEQ3ymOokB5lMEFonOqN3/IRg7wtvCbYBh7PLgtkwghOIfWCETkpnBEb?=
- =?us-ascii?Q?AyaNo0iPuH5PHVgZtdeZFdp/Qmmojz1lfSM8Ki11lMcfa+XeFz4/nFkWPQQE?=
- =?us-ascii?Q?l5ovplHXr3ymutbig1kjERd/4aY3BlXm0hvVdY4eF4kQGB4rhLHDkDnr10Op?=
- =?us-ascii?Q?U8oYJWrmZ9vaBPFzBMM0XVH+qS9wkLlkARTjR8fwyQcUAOlK7QnkLpuiePFL?=
- =?us-ascii?Q?iKAwZFUBFsuoMlDMJDDaX+LpzKSivGlLQxrZQuI3SFxhN3/Ue/1SkiMiohsJ?=
- =?us-ascii?Q?MitEsR9/6/a7EdSt5dUlib9o+E0mG4e8EfEOqFst7h4/8Fuqw09iX6rPkdeL?=
- =?us-ascii?Q?dAERjxtUpaSs+6FAi9CLnHXjXYW0QHjJy4ncbY1FUaqHbXmXL6KZW4tEHFiW?=
- =?us-ascii?Q?MRS6Bv5S0KR5XkrSnWXy1CZzL3wcJIh+F+dVb3g9r6YB3ZDT60joKpcCaqk8?=
- =?us-ascii?Q?V1xTdukM26C7/Et5/T/lBvKGBC/MMzsJmNxPKoLc6hu70nFHLo4pXNUkVrvr?=
- =?us-ascii?Q?MJNS+fZaNcO6TyIZE9lv4Vys/Z5VqGJGIfcEDidH3cyuRU2jYsZk6Y0/BHqI?=
- =?us-ascii?Q?UhOQe0sVghV6e8ije85UcCteWyRitSW0/jHVoWhdltlw8Tozz8QeiVKydhPD?=
- =?us-ascii?Q?UqnA3ZBaoPAWtQP30Fn12ZlBpxwhvQBs+TQHcQUAlTNcVES7mjIFRnrqoFnR?=
- =?us-ascii?Q?KyOz6Lk9GmPSaEa8vrOOR2zGU8oq3j0ETe6MNsUH/0eO2ujrmihDOzIp04h6?=
- =?us-ascii?Q?r9lLtK+JgOVakeqnuZZF0fsiteAfhRw53rk+5Ap7YPwO5cRwrQhwxEzFg0UP?=
- =?us-ascii?Q?hIpY1sWENn3kwckq2suPnK4Pq5eIyDEpGYqO4RybaFe4pV0FBz3QxujuYHNi?=
- =?us-ascii?Q?71nHXgKtDJOGKh6pPZvnuDtfNiH9eKZXPZZc8ex6ymIVWcwZB6JfCK8OBIqe?=
- =?us-ascii?Q?z03qSXHg1VTFgUXQV0Ji?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 787e49b1-24d7-4f13-10be-08dc56f9db75
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-OriginatorOrg: nxp.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Apr 2024 11:57:11.1033
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a24ee763-ec38-4744-866a-08dc56ff362a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Apr 2024 12:35:30.4547
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR20MB6353
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 2kyqCZSW+W8TQBVruhic9OKhmgrgCqRmvOtUEgcuIC+tQ/8Ee19q5bhHQHGjYFcYmwV08kLJKR9pWN3IAyOphQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB8026
 
-On Sun, Apr 07, 2024 at 04:59:39PM +0530, Vinod Koul wrote:
-> On 29-03-24, 10:04, Inochi Amaoto wrote:
-> > Sophgo CV18XX/SG200X use DW AXI CORE with a multiplexer for remapping
-> > its request lines. The multiplexer supports at most 8 request lines.
-> > 
-> > Add driver for Sophgo CV18XX/SG200X DMA multiplexer.
-> > 
-> > Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+Hi Rob,
+
+Sorry for late reply.
+
+> Subject: Re: [PATCH 1/5] dt-bindings: firmware: add i.MX SCMI Extension
+> protocol
+>=20
+> On Fri, Feb 02, 2024 at 02:34:39PM +0800, Peng Fan (OSS) wrote:
+> > From: Peng Fan <peng.fan@nxp.com>
+> >
+> > Add i.MX SCMI Extension protocol BBM and MISC binding.
+>=20
+> No idea what BBM and MISC are.
+The Battery Backup (BB) Domain contains the Battery Backed
+Security Module (BBSM) and the Battery Backed Non-Secure Module
+(BBNSM).
+BBNSM:
+The BBNSM is the interface to a non-interruptable power supply
+(backup battery) and serves as the non-volatile logic and storage
+for the chip. When the chip is powered off, the BBNSM will maintain
+PMIC logic while connected to a backup supply.
+Main features: RTC, PMIC Control, ONOFF Control BBSM serves as
+nonvolatile security logic and storage for ELE Main features:
+Monotonic counter, Secure RTC, Zeroizable Master Key, Security
+Violation and Tamper Detection
+
+
+MISC: it is i.MX SCMI extension protocol, including BLK CTRL
+settings, board level GPIO expander settings.=20
+>=20
+> >
+> > Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > > ---
-> >  drivers/dma/Kconfig         |   9 ++
-> >  drivers/dma/Makefile        |   1 +
-> >  drivers/dma/cv1800-dmamux.c | 267 ++++++++++++++++++++++++++++++++++++
-> >  3 files changed, 277 insertions(+)
-> >  create mode 100644 drivers/dma/cv1800-dmamux.c
-> > 
-> > diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
-> > index 002a5ec80620..cb31520b9f86 100644
-> > --- a/drivers/dma/Kconfig
-> > +++ b/drivers/dma/Kconfig
-> > @@ -546,6 +546,15 @@ config PLX_DMA
-> >  	  These are exposed via extra functions on the switch's
-> >  	  upstream port. Each function exposes one DMA channel.
-> > 
-> > +config SOPHGO_CV1800_DMAMUX
-> > +	tristate "Sophgo CV1800/SG2000 series SoC DMA multiplexer support"
-> > +	depends on MFD_SYSCON
-> > +	depends on ARCH_SOPHGO
-> > +	help
-> > +	  Support for the DMA multiplexer on Sophgo CV1800/SG2000
-> > +	  series SoCs.
-> > +	  Say Y here if your board have this soc.
-> > +
-> >  config STE_DMA40
-> >  	bool "ST-Ericsson DMA40 support"
-> >  	depends on ARCH_U8500
-> > diff --git a/drivers/dma/Makefile b/drivers/dma/Makefile
-> > index dfd40d14e408..7465f249ee47 100644
-> > --- a/drivers/dma/Makefile
-> > +++ b/drivers/dma/Makefile
-> > @@ -67,6 +67,7 @@ obj-$(CONFIG_PPC_BESTCOMM) += bestcomm/
-> >  obj-$(CONFIG_PXA_DMA) += pxa_dma.o
-> >  obj-$(CONFIG_RENESAS_DMA) += sh/
-> >  obj-$(CONFIG_SF_PDMA) += sf-pdma/
-> > +obj-$(CONFIG_SOPHGO_CV1800_DMAMUX) += cv1800-dmamux.o
-> >  obj-$(CONFIG_STE_DMA40) += ste_dma40.o ste_dma40_ll.o
-> >  obj-$(CONFIG_STM32_DMA) += stm32-dma.o
-> >  obj-$(CONFIG_STM32_DMAMUX) += stm32-dmamux.o
-> > diff --git a/drivers/dma/cv1800-dmamux.c b/drivers/dma/cv1800-dmamux.c
+> >  .../devicetree/bindings/firmware/nxp,scmi.yaml     | 64
+> ++++++++++++++++++++++
+> >  1 file changed, 64 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/firmware/nxp,scmi.yaml
+> > b/Documentation/devicetree/bindings/firmware/nxp,scmi.yaml
 > > new file mode 100644
-> > index 000000000000..709414898b67
+> > index 000000000000..00d6361bbbea
 > > --- /dev/null
-> > +++ b/drivers/dma/cv1800-dmamux.c
-> > @@ -0,0 +1,267 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Copyright (C) 2023 Inochi Amaoto <inochiama@outlook.com>
-> 
-> 2024
-> 
-> > + */
+> > +++ b/Documentation/devicetree/bindings/firmware/nxp,scmi.yaml
+> > @@ -0,0 +1,64 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause) # Copyright 2024
+> > +NXP %YAML 1.2
+> > +---
+> > +$id:
+> > +https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdev=
+i
+> >
+> +cetree.org%2Fschemas%2Ffirmware%2Fnxp%2Cscmi.yaml%23&data=3D05%7
+> C02%7Cp
+> >
+> +eng.fan%40nxp.com%7C625d14c7c4f14d16289908dc2bdc9967%7C686ea1
+> d3bc2b4c
+> >
+> +6fa92cd99c5c301635%7C0%7C0%7C638433473675932860%7CUnknown%
+> 7CTWFpbGZsb
+> >
+> +3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn
+> 0%3D
+> >
+> +%7C0%7C%7C%7C&sdata=3DdP0%2FgyCwmWtSW9BNYWZQtunpgayjCl2AkSkj
+> ZIZjn9o%3D&
+> > +reserved=3D0
+> > +$schema:
+> > +https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdev=
+i
+> > +cetree.org%2Fmeta-
+> schemas%2Fcore.yaml%23&data=3D05%7C02%7Cpeng.fan%40nx
+> >
+> +p.com%7C625d14c7c4f14d16289908dc2bdc9967%7C686ea1d3bc2b4c6fa9
+> 2cd99c5c
+> >
+> +301635%7C0%7C0%7C638433473675946764%7CUnknown%7CTWFpbGZs
+> b3d8eyJWIjoiM
+> >
+> +C4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7
+> C%7C%7
+> >
+> +C&sdata=3DefmqKP8%2FyS4YoDLCb%2Fmxx72D7ZW2KxiEDhgnWdEUT1s%3D
+> &reserved=3D0
 > > +
-> > +#include <linux/bitops.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of_dma.h>
-> > +#include <linux/of_address.h>
-> > +#include <linux/of_platform.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/llist.h>
-> > +#include <linux/regmap.h>
-> > +#include <linux/spinlock.h>
-> > +#include <linux/mfd/syscon.h>
+> > +title: i.MX System Control and Management Interface (SCMI) Protocol
+> > +Extension
 > > +
-> > +#include <soc/sophgo/cv1800-sysctl.h>
+> > +maintainers:
+> > +  - Peng Fan <peng.fan@nxp.com>
 > > +
-> > +#define DMAMUX_NCELLS			2
-> > +#define MAX_DMA_MAPPING_ID		42
-> > +#define MAX_DMA_CPU_ID			2
-> > +#define MAX_DMA_CH_ID			7
+> > +allOf:
+> > +  - $ref: arm,scmi.yaml#
 > > +
-> > +#define DMAMUX_INTMUX_REGISTER_LEN	4
-> > +#define DMAMUX_NR_CH_PER_REGISTER	4
-> > +#define DMAMUX_BIT_PER_CH		8
-> > +#define DMAMUX_CH_MASk			GENMASK(5, 0)
-> > +#define DMAMUX_INT_BIT_PER_CPU		10
-> > +#define DMAMUX_CH_UPDATE_BIT		BIT(31)
-> > +
-> > +#define DMAMUX_CH_REGPOS(chid) \
-> > +	((chid) / DMAMUX_NR_CH_PER_REGISTER)
-> > +#define DMAMUX_CH_REGOFF(chid) \
-> > +	((chid) % DMAMUX_NR_CH_PER_REGISTER)
-> > +#define DMAMUX_CH_REG(chid) \
-> > +	((DMAMUX_CH_REGPOS(chid) * sizeof(u32)) + \
-> > +	 CV1800_SDMA_DMA_CHANNEL_REMAP0)
-> > +#define DMAMUX_CH_SET(chid, val) \
-> > +	(((val) << (DMAMUX_CH_REGOFF(chid) * DMAMUX_BIT_PER_CH)) | \
-> > +	 DMAMUX_CH_UPDATE_BIT)
-> > +#define DMAMUX_CH_MASK(chid) \
-> > +	DMAMUX_CH_SET(chid, DMAMUX_CH_MASk)
-> > +
-> > +#define DMAMUX_INT_BIT(chid, cpuid) \
-> > +	BIT((cpuid) * DMAMUX_INT_BIT_PER_CPU + (chid))
-> > +#define DMAMUX_INTEN_BIT(cpuid) \
-> > +	DMAMUX_INT_BIT(8, cpuid)
-> > +#define DMAMUX_INT_CH_BIT(chid, cpuid) \
-> > +	(DMAMUX_INT_BIT(chid, cpuid) | DMAMUX_INTEN_BIT(cpuid))
-> > +#define DMAMUX_INT_MASK(chid) \
-> > +	(DMAMUX_INT_BIT(chid, 0) | \
-> > +	 DMAMUX_INT_BIT(chid, 1) | \
-> > +	 DMAMUX_INT_BIT(chid, 2))
-> > +#define DMAMUX_INT_CH_MASK(chid, cpuid) \
-> > +	(DMAMUX_INT_MASK(chid) | DMAMUX_INTEN_BIT(cpuid))
-> > +
-> > +struct cv1800_dmamux_data {
-> > +	struct dma_router	dmarouter;
-> > +	struct regmap		*regmap;
-> > +	spinlock_t		lock;
-> > +	struct llist_head	free_maps;
-> > +	struct llist_head	reserve_maps;
-> > +	DECLARE_BITMAP(mapped_peripherals, MAX_DMA_MAPPING_ID);
-> > +};
-> > +
-> > +struct cv1800_dmamux_map {
-> > +	struct llist_node node;
-> > +	unsigned int channel;
-> > +	unsigned int peripheral;
-> > +	unsigned int cpu;
-> > +};
-> > +
-> > +static void cv1800_dmamux_free(struct device *dev, void *route_data)
-> > +{
-> > +	struct cv1800_dmamux_data *dmamux = dev_get_drvdata(dev);
-> > +	struct cv1800_dmamux_map *map = route_data;
-> > +	unsigned long flags;
-> > +
-> > +	spin_lock_irqsave(&dmamux->lock, flags);
-> > +
-> > +	regmap_update_bits(dmamux->regmap,
-> > +			   DMAMUX_CH_REG(map->channel),
-> > +			   DMAMUX_CH_MASK(map->channel),
-> > +			   DMAMUX_CH_UPDATE_BIT);
-> > +
-> > +	regmap_update_bits(dmamux->regmap, CV1800_SDMA_DMA_INT_MUX,
-> > +			   DMAMUX_INT_CH_MASK(map->channel, map->cpu),
-> > +			   DMAMUX_INTEN_BIT(map->cpu));
-> > +
-> > +	spin_unlock_irqrestore(&dmamux->lock, flags);
-> > +
-> > +	dev_info(dev, "free channel %u for req %u (cpu %u)\n",
-> > +		 map->channel, map->peripheral, map->cpu);
-> 
-> debug at most please
-> 
-> > +}
-> > +
-> > +static void *cv1800_dmamux_route_allocate(struct of_phandle_args *dma_spec,
-> > +					  struct of_dma *ofdma)
-> > +{
-> > +	struct platform_device *pdev = of_find_device_by_node(ofdma->of_node);
-> > +	struct cv1800_dmamux_data *dmamux = platform_get_drvdata(pdev);
-> > +	struct cv1800_dmamux_map *map;
-> > +	struct llist_node *node;
-> > +	unsigned long flags;
-> > +	unsigned int chid, devid, cpuid;
-> > +	int ret;
-> > +
-> > +	if (dma_spec->args_count != DMAMUX_NCELLS) {
-> > +		dev_err(&pdev->dev, "invalid number of dma mux args\n");
-> > +		return ERR_PTR(-EINVAL);
-> > +	}
-> > +
-> > +	devid = dma_spec->args[0];
-> > +	cpuid = dma_spec->args[1];
-> > +	dma_spec->args_count = 1;
-> > +
-> > +	if (devid > MAX_DMA_MAPPING_ID) {
-> > +		dev_err(&pdev->dev, "invalid device id: %u\n", devid);
-> > +		return ERR_PTR(-EINVAL);
-> > +	}
-> > +
-> > +	if (cpuid > MAX_DMA_CPU_ID) {
-> > +		dev_err(&pdev->dev, "invalid cpu id: %u\n", cpuid);
-> > +		return ERR_PTR(-EINVAL);
-> > +	}
-> > +
-> > +	dma_spec->np = of_parse_phandle(ofdma->of_node, "dma-masters", 0);
-> > +	if (!dma_spec->np) {
-> > +		dev_err(&pdev->dev, "can't get dma master\n");
-> > +		return ERR_PTR(-EINVAL);
-> > +	}
-> > +
-> > +	spin_lock_irqsave(&dmamux->lock, flags);
-> > +
-> > +	if (test_bit(devid, dmamux->mapped_peripherals)) {
-> > +		llist_for_each_entry(map, dmamux->reserve_maps.first, node) {
-> > +			if (map->peripheral == devid && map->cpu == cpuid)
-> > +				goto found;
-> > +		}
-> > +
-> > +		ret = -EINVAL;
-> > +		goto failed;
-> > +	} else {
-> > +		node = llist_del_first(&dmamux->free_maps);
-> > +		if (!node) {
-> > +			ret = -ENODEV;
-> > +			goto failed;
-> > +		}
-> > +
-> > +		map = llist_entry(node, struct cv1800_dmamux_map, node);
-> > +		llist_add(&map->node, &dmamux->reserve_maps);
-> > +		set_bit(devid, dmamux->mapped_peripherals);
-> > +	}
-> > +
-> > +found:
-> > +	chid = map->channel;
-> > +	map->peripheral = devid;
-> > +	map->cpu = cpuid;
-> > +
-> > +	regmap_set_bits(dmamux->regmap,
-> > +			DMAMUX_CH_REG(chid),
-> > +			DMAMUX_CH_SET(chid, devid));
-> > +
-> > +	regmap_update_bits(dmamux->regmap, CV1800_SDMA_DMA_INT_MUX,
-> > +			   DMAMUX_INT_CH_MASK(chid, cpuid),
-> > +			   DMAMUX_INT_CH_BIT(chid, cpuid));
-> > +
-> > +	spin_unlock_irqrestore(&dmamux->lock, flags);
-> > +
-> > +	dma_spec->args[0] = chid;
-> > +
-> > +	dev_info(&pdev->dev, "register channel %u for req %u (cpu %u)\n",
-> > +		 chid, devid, cpuid);
-> 
-> Here as well
-> 
-> > +
-> > +	return map;
-> > +
-> > +failed:
-> > +	spin_unlock_irqrestore(&dmamux->lock, flags);
-> > +	of_node_put(dma_spec->np);
-> > +	dev_err(&pdev->dev, "errno %d\n", ret);
-> > +	return ERR_PTR(ret);
-> > +
-> > +}
-> > +
-> > +static int cv1800_dmamux_probe(struct platform_device *pdev)
-> > +{
-> > +	struct device *dev = &pdev->dev;
-> > +	struct device_node *mux_node = dev->of_node;
-> > +	struct cv1800_dmamux_data *data;
-> > +	struct cv1800_dmamux_map *tmp;
-> > +	struct device *parent = dev->parent;
-> > +	struct device_node *dma_master;
-> > +	struct regmap *regmap = NULL;
-> > +	unsigned int i;
-> > +
-> > +	if (!parent)
-> > +		return -ENODEV;
-> > +
-> > +	regmap = device_node_to_regmap(parent->of_node);
-> > +	if (IS_ERR(regmap))
-> > +		return PTR_ERR(regmap);
-> > +
-> > +	dma_master = of_parse_phandle(mux_node, "dma-masters", 0);
-> > +	if (!dma_master) {
-> > +		dev_err(dev, "invalid dma-requests property\n");
-> > +		return -ENODEV;
-> > +	}
-> > +	of_node_put(dma_master);
-> 
-> why do this if you dont need it??
-> 
+> > +properties:
+> > +  protocol@11:
+>=20
+> Wrong unit-address?
 
-This is a pre check. It will issue an error if no valid dma-master.
-The dma-master is used in the route callback. Is it better to just
-leave this check in the callback?
+Yeah. Fixed.
 
+>=20
+> > +    $ref: 'arm,scmi.yaml#/$defs/protocol-node'
+> > +    unevaluatedProperties: false
+>=20
+> Description of what this protocol is needed.
+
+Added.
+
+>=20
 > > +
-> > +	data = devm_kmalloc(dev, sizeof(*data), GFP_KERNEL);
-> > +	if (!data)
-> > +		return -ENOMEM;
+> > +    properties:
+> > +      reg:
+> > +        const: 0x81
 > > +
-> > +	spin_lock_init(&data->lock);
-> > +	init_llist_head(&data->free_maps);
+> > +  protocol@13:
+> > +    $ref: 'arm,scmi.yaml#/$defs/protocol-node'
+> > +    unevaluatedProperties: false
 > > +
-> > +	for (i = 0; i <= MAX_DMA_CH_ID; i++) {
-> > +		tmp = devm_kmalloc(dev, sizeof(*tmp), GFP_KERNEL);
-> > +		if (!tmp) {
-> > +			/* It is OK for not allocating all channel */
-> > +			dev_warn(dev, "can not allocate channel %u\n", i);
-> > +			continue;
-> > +		}
+> > +    properties:
+> > +      reg:
+> > +        const: 0x84
 > > +
-> > +		init_llist_node(&tmp->node);
-> > +		tmp->channel = i;
-> > +		llist_add(&tmp->node, &data->free_maps);
-> > +	}
+> > +      wakeup-sources:
+>=20
+> Is this somehow generic?
+
+I think it yes, but if you disagree, please suggest.
+
+>=20
+> > +        description: each entry consists of 2 integers and represents
+> > + the source and edge
+>=20
+> What does 'edge' mean in this context?
+
+Electric signal edge.
+
+>=20
+> > +        items:
+> > +          items:
+> > +            - description: the wakeup source
+> > +            - description: the wakeup edge
+>=20
+> Constraints?
+
+Will add in V3.
+minItems: 1
+maxItems: 32
+>=20
+> > +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
 > > +
-> > +	/* if no channel is allocated, the probe must fail */
-> > +	if (llist_empty(&data->free_maps))
-> > +		return -ENOMEM;
+> > +additionalProperties: false
 > > +
-> > +	data->regmap = regmap;
-> > +	data->dmarouter.dev = dev;
-> > +	data->dmarouter.route_free = cv1800_dmamux_free;
+> > +examples:
+> > +  - |
+> > +    firmware {
+> > +        scmi {
+>=20
+>=20
+> Need a compatible here so this actually gets tested.
+
+Fixed.
+
+>=20
+> > +            #address-cells =3D <1>;
+> > +            #size-cells =3D <0>;
 > > +
-> > +	platform_set_drvdata(pdev, data);
+> > +            protocol@81 {
+> > +              reg =3D <0x81>;
+> > +            };
 > > +
-> > +	return of_dma_router_register(mux_node,
-> > +				      cv1800_dmamux_route_allocate,
-> > +				      &data->dmarouter);
-> > +}
-> > +
-> > +static void cv1800_dmamux_remove(struct platform_device *pdev)
-> > +{
-> > +	of_dma_controller_free(pdev->dev.of_node);
-> > +}
-> > +
-> > +static const struct of_device_id cv1800_dmamux_ids[] = {
-> > +	{ .compatible = "sophgo,cv1800-dmamux", },
-> > +	{ }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, cv1800_dmamux_ids);
-> > +
-> > +static struct platform_driver cv1800_dmamux_driver = {
-> > +	.driver = {
-> > +		.name = "cv1800-dmamux",
-> > +		.of_match_table = cv1800_dmamux_ids,
-> > +	},
-> > +	.probe = cv1800_dmamux_probe,
-> > +	.remove_new = cv1800_dmamux_remove,
-> > +};
-> > +module_platform_driver(cv1800_dmamux_driver);
-> > +
-> > +MODULE_AUTHOR("Inochi Amaoto <inochiama@outlook.com>");
-> > +MODULE_DESCRIPTION("Sophgo CV1800/SG2000 Series Soc DMAMUX driver");
-> > +MODULE_LICENSE("GPL");
+> > +            protocol@84 {
+> > +              reg =3D <0x84>;
+> > +              wakeup-sources =3D <6 1
+> > +                                7 1
+> > +                                8 1
+> > +                                9 1
+> > +                                10 1>;
+>=20
+> <> around each entry. e.g. "<6 1>"
+
+Fix in V3.
+
+Thanks,
+Peng.
+>=20
+> > +            };
+> > +         };
+> > +    };
+> > +...
+> >
 > > --
-> > 2.44.0
-> 
-> -- 
-> ~Vinod
+> > 2.37.1
+> >
 
