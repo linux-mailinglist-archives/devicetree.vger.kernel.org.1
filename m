@@ -1,153 +1,134 @@
-Return-Path: <devicetree+bounces-56975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE70B89B3B8
-	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 20:58:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 305ED89B402
+	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 22:32:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 659C2281297
-	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 18:58:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F1B81F214B8
+	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 20:32:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F38723CF4F;
-	Sun,  7 Apr 2024 18:58:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAC283D576;
+	Sun,  7 Apr 2024 20:32:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MV1SNUyp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="swrue9iD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 731E3DDBD;
-	Sun,  7 Apr 2024 18:58:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BBD01E498
+	for <devicetree@vger.kernel.org>; Sun,  7 Apr 2024 20:31:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712516323; cv=none; b=BA5fTzsiEimGM00o8hZUbcMj17sd1tTh+q9u2DYgOVPAfmdVZRVke+bbLyPAEd60M/+hJsFo1GnK5gai/vbmAQb/eowD1FKn1BPSrrndytbCfA2O6ouQHGm9vmZcBLo4Nvxu77Q+07KEB9u3qGFGLvdz3CNFFiKAF0mkoJq4UU8=
+	t=1712521921; cv=none; b=RJU/MhwpBDfMtFgRCfh9o2Md6UlHwWrScOHx1t5mydezXj0UK+V8486cjExUdtkZnlGVgYGh7rOiMs6pu+bURhOblg2UY/bcViD1IkFECCgC3U6lGqMzTc/FyXkiTK0gO1utYMjN+pw8y50Wuiz3anqv9jaeKzVGIvFeYjxeekg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712516323; c=relaxed/simple;
-	bh=Je+sdwn5hkeZEB38EPAxz0m1Ux0pBgOrJDpYMxeLrnM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lmAldlIRNnU1tFsw5sTbmm9jaKI7XL69wGoK8JOzdmzoZ2EdvSTkPPKv/LTfOUp/4FtEEguOOrkQfI+SxjatlckeyUq0RuE4v7++DJb4FyKa+CPdUHmWMfNF1YvccnkJg2QC0EUdt+11VUOzu9KlMW4ZmliHsnq56aLK30UE/SY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MV1SNUyp; arc=none smtp.client-ip=209.85.210.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f52.google.com with SMTP id 46e09a7af769-6e68a30e6a1so1504472a34.1;
-        Sun, 07 Apr 2024 11:58:42 -0700 (PDT)
+	s=arc-20240116; t=1712521921; c=relaxed/simple;
+	bh=BuhRDogVus1zI9H0XqB1SzKqz+CmrY8+s3e5ZCTcX1Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DhXbhQVhnxT7sttoa68LR9itdJyOPeWip05qzx8UNg7wglijVJo3VrRvgkyTG1V+ELUUo1t8eKOa9x2x0rk+SXwV8hyYAjwA97E9/JrqRtOV/OitUAKTylNxqHi2+HbriSzh/MvFoOoD2mJJArKKsIbmY4pBXSYyqEQdgHjjskg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=swrue9iD; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-516ef30b16eso854657e87.3
+        for <devicetree@vger.kernel.org>; Sun, 07 Apr 2024 13:31:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712516321; x=1713121121; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=scTTNj2woy/vxyldPj6pFMZnJWGeLMiGwUL3lFw6SWg=;
-        b=MV1SNUyprIYZ5Qu8Hy2q0b76WHln4OliEJ2JYqPY5cCwBcXKgzy/g210RHMGLfeGXY
-         0WW04W88ygvKpMMIRRxVLjxnY/P72wSvehb2HiINO1x7UXRY/oa3MBq++S4J0THSY0vQ
-         TXgwcSZm2QpH8D7tQJc9GMkZcYhV6xBctTi7/Hj0SAlpDn1pEHmMSbya9v7Smi3FWOcZ
-         wIA72Z00IhFwlRl5+D5c6ET8oeosWYQaYDAlO8RNHr71d8T+0Kg+3zhDb4JCc7JXrY9P
-         ZMVjWUECx+sEPtRCLEvJM1nTWjAyJk7iY6FixRCHyAekl92KF9pnFBuHfGQ7MXz6GxGI
-         1VAA==
+        d=linaro.org; s=google; t=1712521917; x=1713126717; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=BC/Vp9aTo7ncwzcGpzKoHrU+RFhFC5D/RE+BHxHMCVQ=;
+        b=swrue9iDWmOREHB+bMw8mQ/3SElk9YzKXNf3GPTCJ++ZtJKZ36LwIOJHkjLwrkMdYj
+         /ii/syRvRKigaGX0obQaB1EVj7DP1zJsMGo27V/XrWgvSTi7b4mDx28Hfa/uQqJYC/G+
+         DOO6BBwK5SS4J/wkY/eZnhIzbdoy8KKYmNxFelX55fq51WMBLKPiEpkaONWumSU1K6ix
+         FuNGHJDJUlAw4OVs8u0vAepNxJhYasPNQ7JKmr5YUcfnWcfFL2yRi4eYwIfbp4P7OI7C
+         XU1HxuqqTmPxvQAFupw9zX/6Lh18EZ59HCZINgZvSvg/darWYjxyAZXN3g4RKzR/1uzE
+         Uyqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712516321; x=1713121121;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=scTTNj2woy/vxyldPj6pFMZnJWGeLMiGwUL3lFw6SWg=;
-        b=F/GKZEDXtGg/pKK0RQMApPxzTUv3i0D7WH1iY/ssqZ0H9PcSjmeQQ2WhrpIg22X25V
-         aiqRL0BuBYdX8iLmjvuUmKMxO7CV06XP4MprncYfIZcTao/ui7l1FPXlay+ZpgOkGgyD
-         8MSG8AxPgciVbh3mFIFh5IGOJX7tByfHXk4ppe/VtvxX5LI6CRtK6CGU5qb474JOsLr8
-         i4OpQjYqdnCFwMbnDhq4YgKNAYnK/y8Jrsh1nPGTTDX8DJ9dBAeBGGBfKXjZ177I/Vdu
-         b9XOUsSht8slQt7T5+nP45RAB1spKnAGbFDmxP8zl+IlQ40G9sd01qw+VEtGhX5Wox1e
-         Mu2w==
-X-Forwarded-Encrypted: i=1; AJvYcCV2MhHkytFy75COA9pKY5s4IpvC3DvXbOlVOfPeg69VfD6nFw0rhRBxvfIo9z+4UM++JH8nVOrI/clkQZTfvqmAYDv6T/ud3S9csSU8MZy59yrtp4pcQm9cp52vA9ceR64xPdqz3cy/cpM6e4OwhJmk4p6F34YVxY3psxRJPD3HH/BZxMaa/bE/BlOb32Nkiz+zozpbXwmiDhovu6py+8GEMiw=
-X-Gm-Message-State: AOJu0Yw8NGqZekyNQsKLAuNai1pzJfDOJ4SAFft0vn+/mggfmvWVTv+u
-	ItQDPHEwXQKVRuhK9x5JPWSkp6IbyJl55/BDcF5FJaRa9aEZgEjn
-X-Google-Smtp-Source: AGHT+IFG8tDCVi2Hal8zENXLD8XK/N4pT4qILbW/+jIbZ5ynGBiQjUlYTNwzup3agDIiljYWM/Wa6w==
-X-Received: by 2002:a9d:6b19:0:b0:6e6:8d2f:4013 with SMTP id g25-20020a9d6b19000000b006e68d2f4013mr3146432otp.8.1712516321474;
-        Sun, 07 Apr 2024 11:58:41 -0700 (PDT)
-Received: from [192.168.7.110] (c-98-197-58-203.hsd1.tx.comcast.net. [98.197.58.203])
-        by smtp.gmail.com with ESMTPSA id e3-20020a0568301e4300b006e66e9ac835sm1156906otj.2.2024.04.07.11.58.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 07 Apr 2024 11:58:40 -0700 (PDT)
-Message-ID: <a0c7ab26-4eb7-42e8-a151-671a9222660f@gmail.com>
-Date: Sun, 7 Apr 2024 13:58:38 -0500
+        d=1e100.net; s=20230601; t=1712521917; x=1713126717;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BC/Vp9aTo7ncwzcGpzKoHrU+RFhFC5D/RE+BHxHMCVQ=;
+        b=US4uwF3hfUsXG2aKwIxPCeEhMZLkz7qtsLHTWToYmD6eJj9ww2gd3E05c2hLynpZlo
+         RjNH1A3qyByjIUKrRpmtl8Rg/22N65K800GNl3Kb7ftv2dLapCc7RX23y0w2OvtC8VsC
+         LfKDyBioX7RhI0UQL54eyPsN/Sx1yRtTEGq3CkldOB9cpcaGAup8NI49UpqEZbpyR8fE
+         gs0MRe3JGl51a7EEEuZjzAWY346OKufeJF/VbvB4HuvxqnEsyw12bCK6bUqTo6S+weT+
+         rYlvvu6ne3WYjDq7CeyK1JI/g5MqAWOwU9i4+hWkWIhZds0SevBTEWCcFYkWl8+00zwt
+         5kvw==
+X-Forwarded-Encrypted: i=1; AJvYcCWjKqtja//hEqqoCkL23knnj0k/oXC+X5j4rusMpQAuqNWMwAdecgOgULxhpWvhq5wFaYC3nMRXTtXXQwfk1dBKwegUkdrBqrWZGA==
+X-Gm-Message-State: AOJu0Yx5kD2Td656CQIFWo9Fjiup5OQQAsgCVoDunp4Tc9KnSxOm0ttm
+	TwDsjvR37Q4Xlhr7DNy18KuYBBRQ7vgs1NMkxBK5t6R1DHwuRTDFTaT8Vfpxl9w=
+X-Google-Smtp-Source: AGHT+IF4DMVCMB62tkqkfik57o48lX1JfihPhY8NVWkCpw1jpdJU/hGDdnCKUtnIerJssNTIq9AzTA==
+X-Received: by 2002:ac2:53bb:0:b0:513:39a0:1fec with SMTP id j27-20020ac253bb000000b0051339a01fecmr3969120lfh.66.1712521916570;
+        Sun, 07 Apr 2024 13:31:56 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzyjmhyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a00e:a300::227])
+        by smtp.gmail.com with ESMTPSA id j29-20020ac2551d000000b00513a1fe7767sm919668lfk.209.2024.04.07.13.31.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 07 Apr 2024 13:31:56 -0700 (PDT)
+Date: Sun, 7 Apr 2024 23:31:54 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Alexandru Ardelean <alex@shruggie.ro>
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, adrien.grassein@gmail.com, andrzej.hajda@intel.com, 
+	neil.armstrong@linaro.org, rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, 
+	jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com, daniel@ffwll.ch, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, stefan.eichenberger@toradex.com, 
+	francesco.dolcini@toradex.com, marius.muresan@mxt.ro, irina.muresan@mxt.ro
+Subject: Re: [PATCH 2/2] dt-bindings: display: bridge: lt8912b: document
+ 'lontium, pn-swap' property
+Message-ID: <dxm3js6qpcw3n4duid4vmhnkxacmzgq4rnvpbdx62pcn34ybzc@q57pst7lyumf>
+References: <20240402105925.905144-1-alex@shruggie.ro>
+ <20240402105925.905144-2-alex@shruggie.ro>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/5] spi: spi-qpic: Add qpic spi nand driver support
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Md Sadre Alam <quic_mdalam@quicinc.com>, andersson@kernel.org,
- konrad.dybcio@linaro.org, broonie@kernel.org, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
- manivannan.sadhasivam@linaro.org, neil.armstrong@linaro.org,
- daniel@makrotopia.org, arnd@arndb.de, chris.packham@alliedtelesis.co.nz,
- christophe.kerello@foss.st.com, linux-arm-msm@vger.kernel.org,
- linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org
-Cc: quic_srichara@quicinc.com, quic_varada@quicinc.com
-References: <20240308091752.16136-1-quic_mdalam@quicinc.com>
- <20240308091752.16136-4-quic_mdalam@quicinc.com>
- <1c803d8c-80b2-47a9-bc8c-8b13cbfc6841@gmail.com>
- <5fe5396e-c628-49e1-bec3-770847f061e5@linaro.org>
-From: "Alex G." <mr.nuke.me@gmail.com>
-In-Reply-To: <5fe5396e-c628-49e1-bec3-770847f061e5@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240402105925.905144-2-alex@shruggie.ro>
 
-
-
-On 4/7/24 13:54, Krzysztof Kozlowski wrote:
-> On 07/04/2024 19:48, Alex G. wrote:
->> On 3/8/24 03:17, Md Sadre Alam wrote:
->>> Add qpic spi nand driver support. The spi nand
->>> driver currently supported the below commands.
->>>
->>> -- RESET
->>> -- READ ID
->>> -- SET FEATURE
->>> -- GET FEATURE
->>> -- READ PAGE
->>> -- WRITE PAGE
->>> -- ERASE PAGE
->>>
->>> Co-developed-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->>> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->>> Co-developed-by: Varadarajan Narayanan <quic_varada@quicinc.com>
->>> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
->>> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
->>> ---
->>
->> For the entire series:
->>
->> Tested-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
->>
->>> diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
->>> index bc7021da2fe9..63764e943d82 100644
->>> --- a/drivers/spi/Kconfig
->>> +++ b/drivers/spi/Kconfig
->>> @@ -882,6 +882,14 @@ config SPI_QCOM_QSPI
->>>    	help
->>>    	  QSPI(Quad SPI) driver for Qualcomm QSPI controller.
->>>    
->>> +config SPI_QPIC_SNAND
->>> +	tristate "QPIC SNAND controller"
->>> +	depends on ARCH_QCOM || COMPILE_TEST
->>
->> Here, it needs to 'select QPIC_COMMON`. Otherwise it can run into
->> unresolved symbols:
->>
->> : drivers/spi/spi-qpic-snand.o: in function `snandc_set_reg':
->>    drivers/spi/spi-qpic-snand.c:56:(.text+0x484): undefined reference to
->> `qcom_offset_to_nandc_reg'
+On Tue, Apr 02, 2024 at 01:59:25PM +0300, Alexandru Ardelean wrote:
+> On some HW designs, it's easier for the layout if the P/N pins are swapped.
+> The driver currently has a DT property to do that.
 > 
-> No, do not select user-visible symbols. If you observe such issues then
-> either stubs are missing or depends on.
+> This change documents the 'lontium,pn-swap' property.
+> 
+> Signed-off-by: Alexandru Ardelean <alex@shruggie.ro>
+> ---
+>  .../devicetree/bindings/display/bridge/lontium,lt8912b.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/lontium,lt8912b.yaml b/Documentation/devicetree/bindings/display/bridge/lontium,lt8912b.yaml
+> index 2cef252157985..3a804926b288a 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/lontium,lt8912b.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/lontium,lt8912b.yaml
+> @@ -24,6 +24,12 @@ properties:
+>      maxItems: 1
+>      description: GPIO connected to active high RESET pin.
+>  
+> +  lontium,pn-swap:
+> +    description: Swap the polarities of the P/N pins in software.
+> +      On some HW designs, the layout is simplified if the P/N pins
+> +      are inverted.
+> +    type: boolean
+> +
 
-I apologize for making a bad suggestion. Thank you for pointing it out.
+I'd like to point out the standard `lane-polarities` property defined at
+Documentation/devicetree/bindings/media/video-interfaces.yaml. You can
+define and use it for the corresponding endpoint in the lt8912b schema.
 
-Alex
+>    ports:
+>      $ref: /schemas/graph.yaml#/properties/ports
+>  
+> -- 
+> 2.44.0
+> 
+
+-- 
+With best wishes
+Dmitry
 
