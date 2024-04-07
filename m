@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-56894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A81989AFEE
-	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 11:06:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B6E589AFF1
+	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 11:07:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E6C6DB22316
-	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 09:06:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 649C31C20936
+	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 09:07:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8720A17577;
-	Sun,  7 Apr 2024 09:04:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E83091B5A4;
+	Sun,  7 Apr 2024 09:04:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ok1h2Mkv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Grbakf5Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A181538FAD
-	for <devicetree@vger.kernel.org>; Sun,  7 Apr 2024 09:04:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2397E3987C
+	for <devicetree@vger.kernel.org>; Sun,  7 Apr 2024 09:04:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712480665; cv=none; b=d6Z3L9pGElfmNBk45au6Hq3OjeTkg2W3GeGYB1BcKO52zaHBIM5Hj+ZVOva/143wiqOKC041DMlmPZnwJXml8ca4lvA72XoEvTpi0cU/EM5End6YuNcFIRkbPcRC8gSjHHUxwbGBK0z2/xVkmoNfoEmKfB0yx1bzLUM67Z1UMSU=
+	t=1712480686; cv=none; b=Mp0sgaJ12cG1azx7YaplOPm3qilz2suj7pxbcvE7EEY/bH8K9eoKx4xlMR1FG1TmlsjrLaNs2TVc60WaU1mBZGBx3oQw+xuhlU4U5IbDxlYkMTtBshDctMpK4m+JqZGNpcmVhnZGnwytSY6if24Vx9uyKmPzyAi9hfr/UlNN1AI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712480665; c=relaxed/simple;
-	bh=9Rxz9uLQQm/s+66PiRuMCLIxRzAvPCh4g/bvkxN5R0s=;
+	s=arc-20240116; t=1712480686; c=relaxed/simple;
+	bh=NWmV/zVwYeDIUGVXbweL9v1eUvuMUKlVVU4WOstYh/M=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=crCAFavGnuhf6rgQCs8Ka+JvsMtut0maFy3pEnJaEymPFGTa4yy92qbgHVMPSLiRuCfTz0a2AmRSK4EHE/9iadRvWM3n/reRpP01v7kKxppsP8F9RMjo4YH1/QT/fu2uSrNXvHyUrH3fCOFoRVLBSBKpWpyE+dkNI1A+1jv6AV0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ok1h2Mkv; arc=none smtp.client-ip=209.85.221.45
+	 In-Reply-To:Content-Type; b=D0FGT8y7+I11opwnEXWKtry/zp4kqkV62+m1Zke+Qa4O6BGm/9n9O2O11Y/t3LXAEvbk/PoMqdzCdMUSObh8VZA4dpjrDRCJWX/+6a0WtRCuXgzFRCIYL9kgni11SnfvSu2TNrS4MhTz7cVy2YfWjPgTpyzpjmIcQUWNznQVS/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Grbakf5Z; arc=none smtp.client-ip=209.85.128.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-343e70dd405so1742385f8f.3
-        for <devicetree@vger.kernel.org>; Sun, 07 Apr 2024 02:04:23 -0700 (PDT)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-41650ee55faso3149965e9.1
+        for <devicetree@vger.kernel.org>; Sun, 07 Apr 2024 02:04:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712480662; x=1713085462; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712480683; x=1713085483; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=uRNhwyw9FS3sbWuSwutVho3jP99EmZFo+hdFmKQFtUc=;
-        b=Ok1h2MkvuEcSZbw8uHk3AVZ4i59Hb1ikHgfz3OZeY7+UE3Fs7uCJTfVi7hI58mTZsm
-         10Mg8/VE5ZeFQLTRAKkp59R99gNeb+i1yqdmYqe9Cm9viKcugP7aanicMX6klq+3v866
-         hWnbOU/g9v3Cl05G6V2I68MNi3biJt5Rr2/L8bhskjGXuESH4lxUMBqhWn7kOxaSikbL
-         yDvDPKHAmk9DQhdcCrV1gOkQadxaRuvAL6XeknsrVu+3N7G5sdcUNJhcg1YX8apRTnkb
-         4F82pnpbra6DIeX+M/ZWdw/cafSs3Sz0Pue/p6U6DsrRiK2Wtdp7kgD5UGm9xZY9gAcn
-         N5rw==
+        bh=SuU76zJ7LNrNz2801XBBYqK3yKOkIBoi96/o4wIa/WM=;
+        b=Grbakf5ZmUk4KmxBRUnOuL4cImUC0M410ar2l6xAeG/rbC0D8FeaB8Q6lBRfUGiVqt
+         f7s5Kk6Urqw86nf8K35G4sYH/WsldTE6XpXfXdKN/9oyMZfYAiauvgU2eWO8ARTZba6L
+         xjhVjTlAKiVJlXSACtVn+WOvlJiOG0CUjmWCre20dIVNKrXFyI+rDQ643rSh7/gJgMUB
+         L6UDdsEm5Ud1gbJK7PKgY0mpBKvIDlgDZLQoUmiDn1WRKwCI+jzTXBBtZ8jy5AaiqX8F
+         x/0fXIzMPRdAMSG715/6K8UAAJpEkGMpfW+qMw0n5Aiwji/FNdTvRCZIpgheToVPwzSS
+         uNqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712480662; x=1713085462;
+        d=1e100.net; s=20230601; t=1712480683; x=1713085483;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=uRNhwyw9FS3sbWuSwutVho3jP99EmZFo+hdFmKQFtUc=;
-        b=UVOcCNwc09NHr66QL+W6sIT6/bA42NfW+3R20Uc3HBK+TsQlOOvaXTC80YAXY9/RsN
-         6jnQmTAFilaZ7eZe8ri4AaKFZnaMn+nKV+xd2VhyaQFj4cudoBxR/92j6/D6IUc8+zGI
-         6CFbSLIxA2eSAJDZDFEMGpXZiJ3U2QxzD6tNc0oSohgzM8shliE1BOnz9CpWBXQYO428
-         6t61GxwDnaGVsdKkuXbBxLqaRyPQL+l4+0+iiGE+CI9tfFpDU2zx20FKykRPBz5qmZlZ
-         qWeML079OMtEqgusxxMgESli6fE75vyvOYC2fqfhFHNa9PR/T9Re0uXRRSXQ1PutnGxP
-         mGWw==
-X-Forwarded-Encrypted: i=1; AJvYcCXgKbZKxPF+2SCf5iB0Di9YZZB0UKIkPOrgt1dLEAIRXOMv0oruk5p3GxzcNo/BkcABYIs6/EJ3PBF4fk45c5meZDgk3tMMBoM3nA==
-X-Gm-Message-State: AOJu0YzSVOV2M3q040UpJq1rsFgFIATstljj+EqPB/Nr2q5iMpINHyMy
-	iKU7qZ8THdYzgiV34G0cZBFcX7YbvAVJq8tYMzaEdpm4SpGYiFA46IMd8TiTULU=
-X-Google-Smtp-Source: AGHT+IEKpCxN3SthrzEr0aFlPZAGWF/+OIRaM7T0GqXAbZgLjeRmQdk+0GcFJEMmF66rUre334UlZw==
-X-Received: by 2002:a5d:58f3:0:b0:33f:6ec1:56dd with SMTP id f19-20020a5d58f3000000b0033f6ec156ddmr4654585wrd.45.1712480662001;
-        Sun, 07 Apr 2024 02:04:22 -0700 (PDT)
+        bh=SuU76zJ7LNrNz2801XBBYqK3yKOkIBoi96/o4wIa/WM=;
+        b=DzhTkFtFXoQFCJ2yCnt5XlPWF0GEAgJm8oqx80r6hDx6XUp6YjnT3xsAhZ//hn0nOM
+         vXURghGJm6qBig1lT9n7k1RgqXaMoRNJFAJe0xEsN9LtHqBEnAHv19H11OdreChELu1V
+         R6d6M5tiFfKHAUcU78txGhOPGI4KZxgE0ZW6YS9tH/eFvSFg9oZYXOwVnsmr0AiPnZz6
+         K/nR4z8jbXD8OwkNRavQsERjb7Oo/12QaKY0s/O5xYgjuuHiWCMpAfqWbqnE4eqKjMvR
+         sXQnHHxOuN6SgdLKct52SbuEefTqL7INpUODSR7rO7m3B+5y6uJnx4a5ZbEPcETfMwjD
+         LFNA==
+X-Forwarded-Encrypted: i=1; AJvYcCWddyQl0KxPpA80GQZXDNPUoGivGQghc0CbECLpSJvsC3QqDTRsLQlsDZ0CL8J6+fUcOj+mevY3o7A/rMRVWDncvgRcuT+pKHK2Zw==
+X-Gm-Message-State: AOJu0Yz7PrbxvLvpyoctv4omp/BCPIsf1nJy7+2t5BsKGgiTInRWBHJe
+	msurtjdyzBiuOzUqNRn6xuCtifyzvKCaVH8QgvFZVzY+xHc6OAH2yoLiRVRQ60g=
+X-Google-Smtp-Source: AGHT+IH8LYv7KiDMFFMHVpdxcqk8gpP/AVlZ3rPu6c90GWsMzWUwZ6VJPlRolafwrSDLl9wlXMIHXQ==
+X-Received: by 2002:a05:600c:1f0f:b0:416:536b:b6bb with SMTP id bd15-20020a05600c1f0f00b00416536bb6bbmr920402wmb.23.1712480683633;
+        Sun, 07 Apr 2024 02:04:43 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id q1-20020adfb181000000b00341c3071c93sm6318807wra.73.2024.04.07.02.04.20
+        by smtp.gmail.com with ESMTPSA id l10-20020a1c790a000000b0041622c5c5d6sm7831694wme.1.2024.04.07.02.04.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 07 Apr 2024 02:04:21 -0700 (PDT)
-Message-ID: <f019690a-2397-4bf8-9472-ec38f4b94c1d@linaro.org>
-Date: Sun, 7 Apr 2024 11:04:19 +0200
+        Sun, 07 Apr 2024 02:04:43 -0700 (PDT)
+Message-ID: <b3f9d98f-e9cd-492c-ac7a-5b6628fdf4cb@linaro.org>
+Date: Sun, 7 Apr 2024 11:04:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,16 +77,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/1] arm64: dts: imx93-11x11-evk: add rtc PCF2131
- support
-To: Joy Zou <joy.zou@nxp.com>, ping.bai@nxp.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org,
- s.hauer@pengutronix.de
-Cc: kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240407051913.1989364-1-joy.zou@nxp.com>
- <20240407051913.1989364-2-joy.zou@nxp.com>
+Subject: Re: [PATCH v4 4/5] dt-bindings: fsl-imx-sdma: Add I2C peripheral
+ types ID
+To: Frank Li <Frank.Li@nxp.com>, Vinod Koul <vkoul@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Joy Zou <joy.zou@nxp.com>
+Cc: dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev
+References: <20240329-sdma_upstream-v4-0-daeb3067dea7@nxp.com>
+ <20240329-sdma_upstream-v4-4-daeb3067dea7@nxp.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -133,44 +136,31 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240407051913.1989364-2-joy.zou@nxp.com>
+In-Reply-To: <20240329-sdma_upstream-v4-4-daeb3067dea7@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/04/2024 07:19, Joy Zou wrote:
-> Support rtc PCF2131 on imx93-11x11-evk.
+On 29/03/2024 15:34, Frank Li wrote:
+> Add peripheral types ID 26 for I2C because sdma firmware (sdma-6q: v3.6,
+> sdma-7d: v4.6) support I2C DMA transfer.
 > 
-> Signed-off-by: Joy Zou <joy.zou@nxp.com>
-> ---
->  .../boot/dts/freescale/imx93-11x11-evk.dts    | 25 +++++++++++++++++++
->  1 file changed, 25 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-> index 07e85a30a25f..065fa3390791 100644
-> --- a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-> @@ -281,6 +281,24 @@ ldo5: LDO5 {
->  	};
->  };
->  
-> +&lpi2c3 {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	clock-frequency = <400000>;
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&pinctrl_lpi2c3>;
-> +	pinctrl-1 = <&pinctrl_lpi2c3>;
-> +	status = "okay";
-> +
-> +	pcf2131: rtc@53 {
-> +			compatible = "nxp,pcf2131";
-> +			reg = <0x53>;
-> +			interrupt-parent = <&pcal6524>;
-> +			interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
-> +			status = "okay";
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-Really, just drop...
+This is a friendly reminder during the review process.
 
+It looks like you received a tag and forgot to add it.
+
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+
+If a tag was not added on purpose, please state why and what changed.
 
 Best regards,
 Krzysztof
