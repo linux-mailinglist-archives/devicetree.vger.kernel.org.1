@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-56943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56944-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FAB089B288
-	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 16:42:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6FE089B28E
+	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 16:45:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 025B4B211F1
-	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 14:42:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2BE211F220D3
+	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 14:45:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D97439FD6;
-	Sun,  7 Apr 2024 14:42:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69A5F39FDA;
+	Sun,  7 Apr 2024 14:45:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NttMJzzQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="I0nHgsty"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23B0838385
-	for <devicetree@vger.kernel.org>; Sun,  7 Apr 2024 14:42:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DE5D39AE7
+	for <devicetree@vger.kernel.org>; Sun,  7 Apr 2024 14:45:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712500958; cv=none; b=T/YukQzx4p/BQItHcEfKcyNqKS81QyYySxZprVsNHFkqzI35FRSAjXZSZUbqmpFCRkslkjCIoiT24k84Pl/YUyUqxt7Rea+5nnOgWdbiOKleqqfNGLWze2pGXLJJOFvWcyi00tvqeKTVvt9E7QsAbQxKjIMyauCqT0TZjVo0dB8=
+	t=1712501122; cv=none; b=pZG7RISx2yi+gBEtskK6jC0bJtFvO2TF1ybTYFiEV1f7aB8VHh5eQqBponkvChZF0nUVPkZvXgpUgqyc8mg+WGmkobgg99YImlc2zmHCIOU+CqAV1MREIW8dhrWjCT2/wGV1Am6IJUz9gE5subdT316ZYp/qVG4f/8JeChxdLgg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712500958; c=relaxed/simple;
-	bh=RYI0Q/PC18L0A2DgMpRvDcCdhn+9FzK9o8KOqINLVdI=;
+	s=arc-20240116; t=1712501122; c=relaxed/simple;
+	bh=zAVEBXOS1UCmuWPFa3NvXWxQVJDx8fG5WOkx1TFLm5s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Lhb7hECvQv2epQX2lTIXfarbLF5CdIbGQcn+Hhz9lcHIGwGoxbPrcJsN/Smk2gx5zEbI3n2xUaKDRiTiAxoGcvv3SpVi9ZT6KzMXjbWzs1hRL90smJkJgKc90N/Z+iGUPmdwkkWF0ioAp0va4O7cryUuyr2/eCdUrt9PiHVp7+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NttMJzzQ; arc=none smtp.client-ip=209.85.210.176
+	 Content-Type:Content-Disposition:In-Reply-To; b=c9QRpb6U+niYnPNv7MNE4MvUKlQxM6K7OPpB608Wt8wpo7gqQw6xKorWP/uq6WpGeo1SilDPe3aeATRvMwoTy6nrWGY+sJ/vz6BYGyY1OpwnJdFdqUsV+SzN+2kP3yf3KmTm29sGDuBNG7zQoO8QiayrWsHwGSQVMG/Wzlw67D4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=I0nHgsty; arc=none smtp.client-ip=209.85.210.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-6ed2170d89fso281382b3a.1
-        for <devicetree@vger.kernel.org>; Sun, 07 Apr 2024 07:42:35 -0700 (PDT)
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-6ecf3f001c5so2950785b3a.1
+        for <devicetree@vger.kernel.org>; Sun, 07 Apr 2024 07:45:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712500955; x=1713105755; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712501119; x=1713105919; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=5AGXoqXfAlX5nC8yKXkv2xcky5j0caWjCJ7czfp/ZnY=;
-        b=NttMJzzQAt1bE+6N0PHbCkbhzqg/6c+zQNqpuJJM6Ff5VpixgVnv8mVXav/VlvnKQ2
-         e6cl1OZsqqpvuE8RuO3H+g93AFo8HP8/8CJy3RFGx+F5jT4aMGh4L3/FCFXWd/IA0i9L
-         IVljT8fqHua/IZyxDOJu0rlvHLHqHHaJ0oCCoRV7E+at34GGWn8ANC/we0ONlrFm0g+l
-         kfERNMzx8JkHEezeg2P9dg5G8HK/VgdiYqu+Pywxa+lzT0gIkUK4y9vFZ1Qtwc4qAEF6
-         /rG/9GNEXAiSOu0NZEWoen/ZM1DEOcqgVDHElNuXPvGnTKqbGzz+kmJQKKsLC4mfiup/
-         UJLQ==
+        bh=qhyVRxqK5AqjHscgxtd5ktasU/myfa3FBDWSuBFIWmI=;
+        b=I0nHgsty8zrw/z6vkcr6HRsHysvYIiMRaA8HOGS5mnKgy5+CZEtyknzpCiUaNHMv0Q
+         O1+BeAiMDhgRPz81M2TzxgmktpWTXlo7bSLCu/du8C+FuvfQ5puaiQ5vj7TqCJWTi+vg
+         mbjEHSEWXyrXRPdsQ+ocDkSC4nGEl2XoNehfGvdUzhV4BC6BOSlmHh37wsj2/OSi1Mr3
+         CCaVbI57Kjs7sAO6k0nidmcShU/5VxfXQm/pJlw6JcfF2VNthpisIhSHmfn2b8EyoRiV
+         qOoFutGoApto5Br5Q43m1PYg5ptl4/QHRCvbhxCZpZXvfWUE9fPSn+MfGbrdn19IA0Ts
+         DyrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712500955; x=1713105755;
+        d=1e100.net; s=20230601; t=1712501119; x=1713105919;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5AGXoqXfAlX5nC8yKXkv2xcky5j0caWjCJ7czfp/ZnY=;
-        b=ZBooE+e9cyczetjfWfyXBjMch3p0A6kkjS9Q4PXc1txohstJBMxgs9r37aupAQwK/Y
-         l6Na2CGaLGVA/WscOLwKA+wi35KkA2vW4wuMSdH34PqFTVLAkLgSfSEqiISF8ZMy0WVr
-         Tj3FJZiKXZk7bHmhvw6sx5tS/NoIP0GNEEO77wPI/UoRBe2hyvoO7O6Ck1xgqnVrl5Ua
-         /pFY3WcQH+jRwMvqLEw38vJLeHp1jGpISoyF4XM2ghfVfF8Mb4dB6p51vnVCIO/2Nqrz
-         /J1o4mKLUbpOMHHH9sC+M8mRfbP4ApDt5c3mbTTW/Z2bJfeyH0vbRdxtkJ83fCuywd7/
-         yDUw==
-X-Forwarded-Encrypted: i=1; AJvYcCVKDtn7Q/pYGCCZ5ZXSql04GZQuWyHUraBdbc1eeVLEL416N7kv0Fbiq/TO0nZrwz25Cvs/nctY05OctmbisZcLfQoIppVhv4WxtQ==
-X-Gm-Message-State: AOJu0Yw5sbxAo9UrIEr+cLLfVt3ngTgx6/zpW8h7SFiTbD7MpS96DS98
-	jW/5acGYEf4Qkd2TOlgG0Ct7micBaA8ABrGxBoAZmwcE2YaM1YVo8hkZ4qxsYQ==
-X-Google-Smtp-Source: AGHT+IH91S1Z/KeP8j1qCyAsCVGA3WNwVPBN6gvhYhKdgqEwwdwQYimMDHu7d2YE/xvhwIILfPFCUA==
-X-Received: by 2002:a05:6a21:33a7:b0:1a7:23d1:c30d with SMTP id yy39-20020a056a2133a700b001a723d1c30dmr7748366pzb.8.1712500955282;
-        Sun, 07 Apr 2024 07:42:35 -0700 (PDT)
+        bh=qhyVRxqK5AqjHscgxtd5ktasU/myfa3FBDWSuBFIWmI=;
+        b=q8dBMAj0cgkRFIt3/RjzfT3lyd5MRv2oOXYdey7LNyGs6kRMjCz9s4QrMPChoqbrbW
+         N+pArw01/plKCMcYQzxULFuN+XSUaJIk3vw0B9x90dPFLxLq0KVCHgSFP6bIfurCVfeW
+         zq5p1GPLsKWQ+ZdYXHivqFSerYhYSzaeEo2M9NiqItR4EY4/1qPVGdCdFJDy9y2m+YwF
+         fQbO/JxGCTsW2orO06/K6+VjY6361V7jOMLHC5NZ2lvFckfFZwJc7ZXgqiElUDhmjwtj
+         8kEm+1qvq88SLOH+W/Akj5WZiHXpzNOduhNsxcf8pom+tLYJDXxh0f+XdF3arbp3ew0V
+         yXxQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWOVKbGIjUmSZnm1OvvzIq3Ftmg1duba7RR1xKZdLrKxxncBg2jlt2KL6Juf5o25q9E6F7b80G9MYr39yZH2UjpWZrOaZTX7jqSeg==
+X-Gm-Message-State: AOJu0YzutWZvZ+36wX/FXWOoSk6dAzu5h44U+n5J3rbISFfwHdFdT1j8
+	S9+c9ImBqjnS0WdhSdSQqzGyBOZOEg+e7CeBCsxqHw5axLQo4COfhpUzZkPGeA==
+X-Google-Smtp-Source: AGHT+IGtrEwjMPAr4IjRSduTFx845THlBva6yxJTug3j99tv2qZB7XyKDyBNddpCjrxb+6DN4zwn4w==
+X-Received: by 2002:a05:6a00:1884:b0:6ec:fdcd:18eb with SMTP id x4-20020a056a00188400b006ecfdcd18ebmr8270455pfh.21.1712501118786;
+        Sun, 07 Apr 2024 07:45:18 -0700 (PDT)
 Received: from thinkpad ([120.56.192.184])
-        by smtp.gmail.com with ESMTPSA id p23-20020aa78617000000b006eab7ca005esm4877624pfn.18.2024.04.07.07.42.29
+        by smtp.gmail.com with ESMTPSA id g14-20020aa7874e000000b006e69a142458sm4684046pfo.213.2024.04.07.07.45.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 07 Apr 2024 07:42:34 -0700 (PDT)
-Date: Sun, 7 Apr 2024 20:12:27 +0530
+        Sun, 07 Apr 2024 07:45:18 -0700 (PDT)
+Date: Sun, 7 Apr 2024 20:15:10 +0530
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
 Cc: Bjorn Andersson <andersson@kernel.org>,
@@ -84,10 +84,11 @@ Cc: Bjorn Andersson <andersson@kernel.org>,
 	vireshk@kernel.org, quic_vbadigan@quicinc.com,
 	quic_skananth@quicinc.com, quic_nitegupt@quicinc.com,
 	quic_parass@quicinc.com, krzysztof.kozlowski@linaro.org
-Subject: Re: [PATCH v9 3/6] dt-bindings: pci: qcom: Add opp table
-Message-ID: <20240407144227.GC2679@thinkpad>
+Subject: Re: [PATCH v9 4/6] arm64: dts: qcom: sm8450: Add opp table support
+ to PCIe
+Message-ID: <20240407144510.GD2679@thinkpad>
 References: <20240407-opp_support-v9-0-496184dc45d7@quicinc.com>
- <20240407-opp_support-v9-3-496184dc45d7@quicinc.com>
+ <20240407-opp_support-v9-4-496184dc45d7@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,60 +98,127 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240407-opp_support-v9-3-496184dc45d7@quicinc.com>
+In-Reply-To: <20240407-opp_support-v9-4-496184dc45d7@quicinc.com>
 
-On Sun, Apr 07, 2024 at 10:07:36AM +0530, Krishna chaitanya chundru wrote:
-
-s/opp/OPP
-
+On Sun, Apr 07, 2024 at 10:07:37AM +0530, Krishna chaitanya chundru wrote:
 > PCIe needs to choose the appropriate performance state of RPMH power
-
-s/RPMH/RPMh
-
-> domain based upon the PCIe gen speed.
+> domain and interconnect bandwidth based up on the PCIe gen speed.
+> 
+> Add the OPP table support to specify RPMH performance states and
+> interconnect peak bandwidth.
 > 
 
-s/upon/on
-
-> Adding the Operating Performance Points table allows to adjust power
-> domain performance state and icc peak bw, depending on the PCIe gen
-
-s/icc/ICC
-
-s/PCIe gen speed/PCIe data rate
-
-> speed and width.
-> 
-
-s/width/link width
+Same comment as the bindings patch.
 
 > Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8450.dtsi | 77 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 77 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> index 615296e13c43..881e5339cfff 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> @@ -1855,7 +1855,35 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+>  			pinctrl-names = "default";
+>  			pinctrl-0 = <&pcie0_default_state>;
+>  
+> +			operating-points-v2 = <&pcie0_opp_table>;
+> +
+>  			status = "disabled";
+> +
+> +			pcie0_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				/* GEN 1x1 */
 
-With above changes,
+s/GEN 1x1/Gen 1 x1
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Same for all comments
 
 - Mani
 
-> ---
->  Documentation/devicetree/bindings/pci/qcom,pcie-sm8450.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-sm8450.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-sm8450.yaml
-> index 1496d6993ab4..d8c0afaa4b19 100644
-> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-sm8450.yaml
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-sm8450.yaml
-> @@ -69,6 +69,10 @@ properties:
->        - const: msi6
->        - const: msi7
->  
-> +  operating-points-v2: true
-> +  opp-table:
-> +    type: object
+> +				opp-2500000 {
+> +					opp-hz = /bits/ 64 <2500000>;
+> +					required-opps = <&rpmhpd_opp_low_svs>;
+> +					opp-peak-kBps = <250000 1>;
+> +				};
 > +
->    resets:
->      maxItems: 1
+> +				/* GEN 2x1 */
+> +				opp-5000000 {
+> +					opp-hz = /bits/ 64 <5000000>;
+> +					required-opps = <&rpmhpd_opp_low_svs>;
+> +					opp-peak-kBps = <500000 1>;
+> +				};
+> +
+> +				/* GEN 3x1 */
+> +				opp-8000000 {
+> +					opp-hz = /bits/ 64 <8000000>;
+> +					required-opps = <&rpmhpd_opp_nom>;
+> +					opp-peak-kBps = <984500 1>;
+> +				};
+> +			};
+> +
+>  		};
 >  
+>  		pcie0_phy: phy@1c06000 {
+> @@ -1982,7 +2010,56 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+>  			pinctrl-names = "default";
+>  			pinctrl-0 = <&pcie1_default_state>;
+>  
+> +			operating-points-v2 = <&pcie1_opp_table>;
+> +
+>  			status = "disabled";
+> +
+> +			pcie1_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				/* GEN 1x1 */
+> +				opp-2500000 {
+> +					opp-hz = /bits/ 64 <2500000>;
+> +					required-opps = <&rpmhpd_opp_low_svs>;
+> +					opp-peak-kBps = <250000 1>;
+> +				};
+> +
+> +				/* GEN 1x2 GEN 2x1 */
+> +				opp-5000000 {
+> +					opp-hz = /bits/ 64 <5000000>;
+> +					required-opps = <&rpmhpd_opp_low_svs>;
+> +					opp-peak-kBps = <500000 1>;
+> +				};
+> +
+> +				/* GEN 2x2 */
+> +				opp-10000000 {
+> +					opp-hz = /bits/ 64 <10000000>;
+> +					required-opps = <&rpmhpd_opp_low_svs>;
+> +					opp-peak-kBps = <1000000 1>;
+> +				};
+> +
+> +				/* GEN 3x1 */
+> +				opp-8000000 {
+> +					opp-hz = /bits/ 64 <8000000>;
+> +					required-opps = <&rpmhpd_opp_nom>;
+> +					opp-peak-kBps = <984500 1>;
+> +				};
+> +
+> +				/* GEN 3x2 GEN 4x1 */
+> +				opp-16000000 {
+> +					opp-hz = /bits/ 64 <16000000>;
+> +					required-opps = <&rpmhpd_opp_nom>;
+> +					opp-peak-kBps = <1969000 1>;
+> +				};
+> +
+> +				/* GEN 4x2 */
+> +				opp-32000000 {
+> +					opp-hz = /bits/ 64 <32000000>;
+> +					required-opps = <&rpmhpd_opp_nom>;
+> +					opp-peak-kBps = <3938000 1>;
+> +				};
+> +			};
+> +
+>  		};
+>  
+>  		pcie1_phy: phy@1c0e000 {
 > 
 > -- 
 > 2.42.0
