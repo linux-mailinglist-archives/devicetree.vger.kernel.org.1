@@ -1,187 +1,639 @@
-Return-Path: <devicetree+bounces-56901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 437F489B006
-	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 11:12:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D8C689B00C
+	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 11:20:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8CDD8B21D43
-	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 09:12:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53A9C2822AC
+	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 09:20:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8996312B7D;
-	Sun,  7 Apr 2024 09:12:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E57812E61;
+	Sun,  7 Apr 2024 09:20:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MM9v9V49"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ZXScU5+W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1A4012E4A
-	for <devicetree@vger.kernel.org>; Sun,  7 Apr 2024 09:12:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E87C0185E;
+	Sun,  7 Apr 2024 09:20:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712481141; cv=none; b=mEd6kqvl6jgonzLgr9HV2Zs4CkcwOddzume5R8EZpLeXIC5zizjgQuLCj8KA4ktlBivKVQjHIkThXzR8Jk4zz0HUAfQy9xzMJFbP+yayeTT4ZvYcFuJPMHigput9j7ovIqJcAE+tArhNHLIUuEHdRkIHHivzOXbAK+2mNYmYODs=
+	t=1712481616; cv=none; b=UkIuQ6ejlaHjRfri4ja4Viu0T6gUAn80SE8TwYNe++PzBGtLwSjyhkZxsgpgPRWpT03h4QMm3/g6WZ/cRSFSC9jXy9VYP9JW1gajjIrfHH+abP25P6Hq8b7X6dRfdlwzO5jYq/+AGfJXElxS8XAbuxxaMKzCuwfyuegWKhRKHgE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712481141; c=relaxed/simple;
-	bh=wbGFCd+1NL8jSI8XQljfuiz4rLxtkQO5tIEN+JFfxzo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PI+msmUih5Rja0ebapZaznho+S+d4MCdtN8lt7JQiOMjsr+mAgYlPZ3x1VU2UKzW/9LB+F3t5jPsSWHRspCjklc4KoArslnhMzYf4+TPZyddq0UoEQud5mUQB2l87PHvfli35DpRpXu6DucS/FEtif4ON1abMrOSnH1LXRNlVc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MM9v9V49; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-56e449187fcso943824a12.3
-        for <devicetree@vger.kernel.org>; Sun, 07 Apr 2024 02:12:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712481138; x=1713085938; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=6R3Wqrt/ealjoGpiOfZX8t+gCtVhlHBhoftWHGajc1M=;
-        b=MM9v9V49cpQG2aezxaweLs5SLzcmcUVFgITtVvRJ7T9QlSi6uuZMAMbkr9bRbSaifx
-         PyHVmW9ZMoXXfzemRAjkbujkqlZsmZBMrzQnOkx07FmHQHvlrFikEWuEE+ONq30LQWQM
-         RoT0NcYMxnjZBzGTcqicCicKdISUV2yXedd0wtBn8aBNKstZOhtneiUPmCeALp36LPar
-         DOM76CmXBSIIseLKg3PJ5oYCQyGr1gAUgsls1zrm3ZLtOfnAKr+QMBG27nGqAgWNQI4k
-         wga9VXbtuJKjxlhaDaDlGRC0l/kQzzceOvYaVxDMG9+rVCF98NTh4hXqPurvryVKMt3E
-         vtmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712481138; x=1713085938;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6R3Wqrt/ealjoGpiOfZX8t+gCtVhlHBhoftWHGajc1M=;
-        b=Y1t9pL7MpV43XulvPo7DppsKk1DQN5ufNXqCTwcxMDcrVQcVvvFrq6EMJ+raTpNgyc
-         iEzjJxPrZL7dxIXmkXntE65NSTNDjtEbqh3vDr/QxCj57b6VEnns+KlbMYRGf+KIpivH
-         y/PN2WRK/Py/j3CLuo25qnB9RmRgtD8PQWd8YpkMg+L5NsGcmzKCqLBBJIVokzPsDaM+
-         UC86lA0ZbywB9PGagcnLd4rBRi0OH35gYnuir0YbBo4vT6lWLpD0It43JUsmEV64D8R9
-         la6Lv7FDKRLidPp3ydmJCJ/3aWI0aWOvHOdSZ7ZB/2L1imFv7r3DB1E53Drj+qnd85xT
-         chYA==
-X-Forwarded-Encrypted: i=1; AJvYcCVIMEeMyQqsmA2+G1SRE8eg5cF5CyadrpIAETkfpTPRoDsf4bGajONzCPUifnLRmJxP9PKFIlqe4X77fgC2liODy3yajHfy0u2pMA==
-X-Gm-Message-State: AOJu0Yx+lk7cCwamU13sNwvoJE+fr9LtEk2HOH/5i7p6USm5BtTNIOR2
-	RBoHYSqb7wPgSDPQkMIHBTuMJy3MdflpB8lgnK1bthKl+xNcvLET9yYOjwWphjg=
-X-Google-Smtp-Source: AGHT+IGIMMcEL0XvQXhMMOCEAYIZClZcAaOQz3zLK6Rx5gU0qERXP6hT4VnMrpI6UJPMMHwBNjw6XA==
-X-Received: by 2002:a50:d754:0:b0:56c:19d2:85be with SMTP id i20-20020a50d754000000b0056c19d285bemr4419744edj.11.1712481138119;
-        Sun, 07 Apr 2024 02:12:18 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id d23-20020a056402401700b0056e2170b9e2sm2704138eda.67.2024.04.07.02.12.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 07 Apr 2024 02:12:17 -0700 (PDT)
-Message-ID: <d18b05d9-266b-4a1b-a2cd-3b6f8173a39b@linaro.org>
-Date: Sun, 7 Apr 2024 11:12:16 +0200
+	s=arc-20240116; t=1712481616; c=relaxed/simple;
+	bh=qwyLL2lkopXXldUtbaJEpS8/YGSSO7mnIlpQcvDLSNU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Qta8eukHoZCr1wLCVeHdEvw6jxDTMgYm/ZmKBybRSYVJvVIZ1+VazStI6Q6iVCaJRV+EgQ3PBTBP2it8dSguwnLPGsJzR6QtZjvLfzhAQ5oIju54dx9WxnR+Yrr9ApSPs67ZEXccbRdb65SzSouUS4e8n0RPcdCf4VbKBPZXuBI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ZXScU5+W; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4379Ixdt040509;
+	Sun, 7 Apr 2024 04:18:59 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1712481539;
+	bh=BXUirUDRwUKvqSotOrO17BUK1Jhx8Pa4Xbxk/9g3eXg=;
+	h=From:To:CC:Subject:Date;
+	b=ZXScU5+WMqpUWsSVOX/TLL2Cx7yhc6jEsZyRxUBAVPd/dRLf8O7y8HMZxz2j3UsqR
+	 MjAAA4ichIIZfCSF2u3EuIfAEBlZcLTplvOxqkTv6IXhSeC00yk/o2WOffJTs/jAv9
+	 nXzaVAyex0sdFAzXXwV7kdLaa8dJCvYc6+MSmQCU=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4379Ix7Q115892
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sun, 7 Apr 2024 04:18:59 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 7
+ Apr 2024 04:18:58 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Sun, 7 Apr 2024 04:18:58 -0500
+Received: from LT5CG31242FY.dhcp.ti.com (lt5cg31242fy.dhcp.ti.com [10.85.14.144])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4379IpWl079280;
+	Sun, 7 Apr 2024 04:18:52 -0500
+From: Shenghao Ding <shenghao-ding@ti.com>
+To: <linux-kernel@vger.kernel.org>
+CC: <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <perex@perex.cz>, <tiwai@suse.com>, <13916275206@139.com>,
+        <mohit.chawla@ti.com>, <soyer@irl.hu>, <jkhuang3@ti.com>,
+        <tiwai@suse.de>, <pdjuandi@ti.com>, <manisha.agrawal@ti.com>,
+        <aviel@ti.com>, <hnagalla@ti.com>, <praneeth@ti.com>,
+        <Baojun.Xu@fpt.com>, Shenghao Ding
+	<shenghao-ding@ti.com>
+Subject: [PATCH v9 0/4] ASoc: PCM6240: mixer-test report
+Date: Sun, 7 Apr 2024 17:18:41 +0800
+Message-ID: <20240407091846.1299-1-shenghao-ding@ti.com>
+X-Mailer: git-send-email 2.33.0.windows.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [EXT] Re: [PATCH v1 1/1] arm64: dts: imx93-11x11-evk: add rtc
- PCF2131 support
-To: Joy Zou <joy.zou@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "shawnguo@kernel.org" <shawnguo@kernel.org>,
- "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-Cc: "kernel@pengutronix.de" <kernel@pengutronix.de>,
- "festevam@gmail.com" <festevam@gmail.com>, dl-linux-imx <linux-imx@nxp.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20240407051913.1989364-1-joy.zou@nxp.com>
- <20240407051913.1989364-2-joy.zou@nxp.com>
- <f019690a-2397-4bf8-9472-ec38f4b94c1d@linaro.org>
- <AS4PR04MB9386C629F898A8417AE57506E1012@AS4PR04MB9386.eurprd04.prod.outlook.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <AS4PR04MB9386C629F898A8417AE57506E1012@AS4PR04MB9386.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 07/04/2024 11:09, Joy Zou wrote:
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: 2024年4月7日 17:04
->> To: Joy Zou <joy.zou@nxp.com>; Jacky Bai <ping.bai@nxp.com>;
->> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
->> conor+dt@kernel.org; shawnguo@kernel.org; s.hauer@pengutronix.de
->> Cc: kernel@pengutronix.de; festevam@gmail.com; dl-linux-imx
->> <linux-imx@nxp.com>; devicetree@vger.kernel.org; imx@lists.linux.dev;
->> linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org
->> Subject: [EXT] Re: [PATCH v1 1/1] arm64: dts: imx93-11x11-evk: add rtc
->> PCF2131 support
->>> +&lpi2c3 {
->>> +     #address-cells = <1>;
->>> +     #size-cells = <0>;
->>> +     clock-frequency = <400000>;
->>> +     pinctrl-names = "default", "sleep";
->>> +     pinctrl-0 = <&pinctrl_lpi2c3>;
->>> +     pinctrl-1 = <&pinctrl_lpi2c3>;
->>> +     status = "okay";
->>> +
->>> +     pcf2131: rtc@53 {
->>> +                     compatible = "nxp,pcf2131";
->>> +                     reg = <0x53>;
->>> +                     interrupt-parent = <&pcal6524>;
->>> +                     interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
->>> +                     status = "okay";
->>
->> Really, just drop...
-> Ok, will drop the status in next version.
-> Thanks for your comment!
+v9:
+ - Retest with the code with Volume kcontrol
+v8:
+ - use some reasonable format of changelog.
+ - fixed the format of subject
+ - remove *** BLURB HERE ***
 
-Please read DTS coding style.
+mixer-test report:
+ root@am335x-evm:/bin# mixer-test
+ TAP version 13
+ # Card 0 - TI BeagleBone Black (TI BeagleBone Black)
+ 1..455
+ ok 1 get_value.0.64
+ # 0.64 PCMD3180 i2c2 Profile id
+ ok 2 name.0.64
+ ok 3 write_default.0.64
+ ok 4 write_valid.0.64
+ ok 5 write_invalid.0.64
+ ok 6 event_missing.0.64
+ ok 7 event_spurious.0.64
+ ok 8 get_value.0.63
+ # 0.63 PCMD3180 i2c2 Dev3 Ch8 Digi Volume
+ ok 9 name.0.63
+ ok 10 write_default.0.63
+ ok 11 write_valid.0.63
+ ok 12 write_invalid.0.63
+ ok 13 event_missing.0.63
+ ok 14 event_spurious.0.63
+ ok 15 get_value.0.62
+ # 0.62 PCMD3180 i2c2 Dev3 Ch7 Digi Volume
+ ok 16 name.0.62
+ ok 17 write_default.0.62
+ ok 18 write_valid.0.62
+ ok 19 write_invalid.0.62
+ ok 20 event_missing.0.62
+ ok 21 event_spurious.0.62
+ ok 22 get_value.0.61
+ # 0.61 PCMD3180 i2c2 Dev3 Ch6 Digi Volume
+ ok 23 name.0.61
+ ok 24 write_default.0.61
+ ok 25 write_valid.0.61
+ ok 26 write_invalid.0.61
+ ok 27 event_missing.0.61
+ ok 28 event_spurious.0.61
+ ok 29 get_value.0.60
+ # 0.60 PCMD3180 i2c2 Dev3 Ch5 Digi Volume
+ ok 30 name.0.60
+ ok 31 write_default.0.60
+ ok 32 write_valid.0.60
+ ok 33 write_invalid.0.60
+ ok 34 event_missing.0.60
+ ok 35 event_spurious.0.60
+ ok 36 get_value.0.59
+ # 0.59 PCMD3180 i2c2 Dev3 Ch4 Digi Volume
+ ok 37 name.0.59
+ ok 38 write_default.0.59
+ ok 39 write_valid.0.59
+ ok 40 write_invalid.0.59
+ ok 41 event_missing.0.59
+ ok 42 event_spurious.0.59
+ ok 43 get_value.0.58
+ # 0.58 PCMD3180 i2c2 Dev3 Ch3 Digi Volume
+ ok 44 name.0.58
+ ok 45 write_default.0.58
+ ok 46 write_valid.0.58
+ ok 47 write_invalid.0.58
+ ok 48 event_missing.0.58
+ ok 49 event_spurious.0.58
+ ok 50 get_value.0.57
+ # 0.57 PCMD3180 i2c2 Dev3 Ch2 Digi Volume
+ ok 51 name.0.57
+ ok 52 write_default.0.57
+ ok 53 write_valid.0.57
+ ok 54 write_invalid.0.57
+ ok 55 event_missing.0.57
+ ok 56 event_spurious.0.57
+ ok 57 get_value.0.56
+ # 0.56 PCMD3180 i2c2 Dev3 Ch1 Digi Volume
+ ok 58 name.0.56
+ ok 59 write_default.0.56
+ ok 60 write_valid.0.56
+ ok 61 write_invalid.0.56
+ ok 62 event_missing.0.56
+ ok 63 event_spurious.0.56
+ ok 64 get_value.0.55
+ # 0.55 PCMD3180 i2c2 Dev3 Ch8 Fine Volume
+ ok 65 name.0.55
+ ok 66 write_default.0.55
+ ok 67 write_valid.0.55
+ ok 68 write_invalid.0.55
+ ok 69 event_missing.0.55
+ ok 70 event_spurious.0.55
+ ok 71 get_value.0.54
+ # 0.54 PCMD3180 i2c2 Dev3 Ch7 Fine Volume
+ ok 72 name.0.54
+ ok 73 write_default.0.54
+ ok 74 write_valid.0.54
+ ok 75 write_invalid.0.54
+ ok 76 event_missing.0.54
+ ok 77 event_spurious.0.54
+ ok 78 get_value.0.53
+ # 0.53 PCMD3180 i2c2 Dev3 Ch6 Fine Volume
+ ok 79 name.0.53
+ ok 80 write_default.0.53
+ ok 81 write_valid.0.53
+ ok 82 write_invalid.0.53
+ ok 83 event_missing.0.53
+ ok 84 event_spurious.0.53
+ ok 85 get_value.0.52
+ # 0.52 PCMD3180 i2c2 Dev3 Ch5 Fine Volume
+ ok 86 name.0.52
+ ok 87 write_default.0.52
+ ok 88 write_valid.0.52
+ ok 89 write_invalid.0.52
+ ok 90 event_missing.0.52
+ ok 91 event_spurious.0.52
+ ok 92 get_value.0.51
+ # 0.51 PCMD3180 i2c2 Dev3 Ch4 Fine Volume
+ ok 93 name.0.51
+ ok 94 write_default.0.51
+ ok 95 write_valid.0.51
+ ok 96 write_invalid.0.51
+ ok 97 event_missing.0.51
+ ok 98 event_spurious.0.51
+ ok 99 get_value.0.50
+ # 0.50 PCMD3180 i2c2 Dev3 Ch3 Fine Volume
+ ok 100 name.0.50
+ ok 101 write_default.0.50
+ ok 102 write_valid.0.50
+ ok 103 write_invalid.0.50
+ ok 104 event_missing.0.50
+ ok 105 event_spurious.0.50
+ ok 106 get_value.0.49
+ # 0.49 PCMD3180 i2c2 Dev3 Ch2 Fine Volume
+ ok 107 name.0.49
+ ok 108 write_default.0.49
+ ok 109 write_valid.0.49
+ ok 110 write_invalid.0.49
+ ok 111 event_missing.0.49
+ ok 112 event_spurious.0.49
+ ok 113 get_value.0.48
+ # 0.48 PCMD3180 i2c2 Dev3 Ch1 Fine Volume
+ ok 114 name.0.48
+ ok 115 write_default.0.48
+ ok 116 write_valid.0.48
+ ok 117 write_invalid.0.48
+ ok 118 event_missing.0.48
+ ok 119 event_spurious.0.48
+ ok 120 get_value.0.47
+ # 0.47 PCMD3180 i2c2 Dev2 Ch8 Digi Volume
+ ok 121 name.0.47
+ ok 122 write_default.0.47
+ ok 123 write_valid.0.47
+ ok 124 write_invalid.0.47
+ ok 125 event_missing.0.47
+ ok 126 event_spurious.0.47
+ ok 127 get_value.0.46
+ # 0.46 PCMD3180 i2c2 Dev2 Ch7 Digi Volume
+ ok 128 name.0.46
+ ok 129 write_default.0.46
+ ok 130 write_valid.0.46
+ ok 131 write_invalid.0.46
+ ok 132 event_missing.0.46
+ ok 133 event_spurious.0.46
+ ok 134 get_value.0.45
+ # 0.45 PCMD3180 i2c2 Dev2 Ch6 Digi Volume
+ ok 135 name.0.45
+ ok 136 write_default.0.45
+ ok 137 write_valid.0.45
+ ok 138 write_invalid.0.45
+ ok 139 event_missing.0.45
+ ok 140 event_spurious.0.45
+ ok 141 get_value.0.44
+ # 0.44 PCMD3180 i2c2 Dev2 Ch5 Digi Volume
+ ok 142 name.0.44
+ ok 143 write_default.0.44
+ ok 144 write_valid.0.44
+ ok 145 write_invalid.0.44
+ ok 146 event_missing.0.44
+ ok 147 event_spurious.0.44
+ ok 148 get_value.0.43
+ # 0.43 PCMD3180 i2c2 Dev2 Ch4 Digi Volume
+ ok 149 name.0.43
+ ok 150 write_default.0.43
+ ok 151 write_valid.0.43
+ ok 152 write_invalid.0.43
+ ok 153 event_missing.0.43
+ ok 154 event_spurious.0.43
+ ok 155 get_value.0.42
+ # 0.42 PCMD3180 i2c2 Dev2 Ch3 Digi Volume
+ ok 156 name.0.42
+ ok 157 write_default.0.42
+ ok 158 write_valid.0.42
+ ok 159 write_invalid.0.42
+ ok 160 event_missing.0.42
+ ok 161 event_spurious.0.42
+ ok 162 get_value.0.41
+ # 0.41 PCMD3180 i2c2 Dev2 Ch2 Digi Volume
+ ok 163 name.0.41
+ ok 164 write_default.0.41
+ ok 165 write_valid.0.41
+ ok 166 write_invalid.0.41
+ ok 167 event_missing.0.41
+ ok 168 event_spurious.0.41
+ ok 169 get_value.0.40
+ # 0.40 PCMD3180 i2c2 Dev2 Ch1 Digi Volume
+ ok 170 name.0.40
+ ok 171 write_default.0.40
+ ok 172 write_valid.0.40
+ ok 173 write_invalid.0.40
+ ok 174 event_missing.0.40
+ ok 175 event_spurious.0.40
+ ok 176 get_value.0.39
+ # 0.39 PCMD3180 i2c2 Dev2 Ch8 Fine Volume
+ ok 177 name.0.39
+ ok 178 write_default.0.39
+ ok 179 write_valid.0.39
+ ok 180 write_invalid.0.39
+ ok 181 event_missing.0.39
+ ok 182 event_spurious.0.39
+ ok 183 get_value.0.38
+ # 0.38 PCMD3180 i2c2 Dev2 Ch7 Fine Volume
+ ok 184 name.0.38
+ ok 185 write_default.0.38
+ ok 186 write_valid.0.38
+ ok 187 write_invalid.0.38
+ ok 188 event_missing.0.38
+ ok 189 event_spurious.0.38
+ ok 190 get_value.0.37
+ # 0.37 PCMD3180 i2c2 Dev2 Ch6 Fine Volume
+ ok 191 name.0.37
+ ok 192 write_default.0.37
+ ok 193 write_valid.0.37
+ ok 194 write_invalid.0.37
+ ok 195 event_missing.0.37
+ ok 196 event_spurious.0.37
+ ok 197 get_value.0.36
+ # 0.36 PCMD3180 i2c2 Dev2 Ch5 Fine Volume
+ ok 198 name.0.36
+ ok 199 write_default.0.36
+ ok 200 write_valid.0.36
+ ok 201 write_invalid.0.36
+ ok 202 event_missing.0.36
+ ok 203 event_spurious.0.36
+ ok 204 get_value.0.35
+ # 0.35 PCMD3180 i2c2 Dev2 Ch4 Fine Volume
+ ok 205 name.0.35
+ ok 206 write_default.0.35
+ ok 207 write_valid.0.35
+ ok 208 write_invalid.0.35
+ ok 209 event_missing.0.35
+ ok 210 event_spurious.0.35
+ ok 211 get_value.0.34
+ # 0.34 PCMD3180 i2c2 Dev2 Ch3 Fine Volume
+ ok 212 name.0.34
+ ok 213 write_default.0.34
+ ok 214 write_valid.0.34
+ ok 215 write_invalid.0.34
+ ok 216 event_missing.0.34
+ ok 217 event_spurious.0.34
+ ok 218 get_value.0.33
+ # 0.33 PCMD3180 i2c2 Dev2 Ch2 Fine Volume
+ ok 219 name.0.33
+ ok 220 write_default.0.33
+ ok 221 write_valid.0.33
+ ok 222 write_invalid.0.33
+ ok 223 event_missing.0.33
+ ok 224 event_spurious.0.33
+ ok 225 get_value.0.32
+ # 0.32 PCMD3180 i2c2 Dev2 Ch1 Fine Volume
+ ok 226 name.0.32
+ ok 227 write_default.0.32
+ ok 228 write_valid.0.32
+ ok 229 write_invalid.0.32
+ ok 230 event_missing.0.32
+ ok 231 event_spurious.0.32
+ ok 232 get_value.0.31
+ # 0.31 PCMD3180 i2c2 Dev1 Ch8 Digi Volume
+ ok 233 name.0.31
+ ok 234 write_default.0.31
+ ok 235 write_valid.0.31
+ ok 236 write_invalid.0.31
+ ok 237 event_missing.0.31
+ ok 238 event_spurious.0.31
+ ok 239 get_value.0.30
+ # 0.30 PCMD3180 i2c2 Dev1 Ch7 Digi Volume
+ ok 240 name.0.30
+ ok 241 write_default.0.30
+ ok 242 write_valid.0.30
+ ok 243 write_invalid.0.30
+ ok 244 event_missing.0.30
+ ok 245 event_spurious.0.30
+ ok 246 get_value.0.29
+ # 0.29 PCMD3180 i2c2 Dev1 Ch6 Digi Volume
+ ok 247 name.0.29
+ ok 248 write_default.0.29
+ ok 249 write_valid.0.29
+ ok 250 write_invalid.0.29
+ ok 251 event_missing.0.29
+ ok 252 event_spurious.0.29
+ ok 253 get_value.0.28
+ # 0.28 PCMD3180 i2c2 Dev1 Ch5 Digi Volume
+ ok 254 name.0.28
+ ok 255 write_default.0.28
+ ok 256 write_valid.0.28
+ ok 257 write_invalid.0.28
+ ok 258 event_missing.0.28
+ ok 259 event_spurious.0.28
+ ok 260 get_value.0.27
+ # 0.27 PCMD3180 i2c2 Dev1 Ch4 Digi Volume
+ ok 261 name.0.27
+ ok 262 write_default.0.27
+ ok 263 write_valid.0.27
+ ok 264 write_invalid.0.27
+ ok 265 event_missing.0.27
+ ok 266 event_spurious.0.27
+ ok 267 get_value.0.26
+ # 0.26 PCMD3180 i2c2 Dev1 Ch3 Digi Volume
+ ok 268 name.0.26
+ ok 269 write_default.0.26
+ ok 270 write_valid.0.26
+ ok 271 write_invalid.0.26
+ ok 272 event_missing.0.26
+ ok 273 event_spurious.0.26
+ ok 274 get_value.0.25
+ # 0.25 PCMD3180 i2c2 Dev1 Ch2 Digi Volume
+ ok 275 name.0.25
+ ok 276 write_default.0.25
+ ok 277 write_valid.0.25
+ ok 278 write_invalid.0.25
+ ok 279 event_missing.0.25
+ ok 280 event_spurious.0.25
+ ok 281 get_value.0.24
+ # 0.24 PCMD3180 i2c2 Dev1 Ch1 Digi Volume
+ ok 282 name.0.24
+ ok 283 write_default.0.24
+ ok 284 write_valid.0.24
+ ok 285 write_invalid.0.24
+ ok 286 event_missing.0.24
+ ok 287 event_spurious.0.24
+ ok 288 get_value.0.23
+ # 0.23 PCMD3180 i2c2 Dev1 Ch8 Fine Volume
+ ok 289 name.0.23
+ ok 290 write_default.0.23
+ ok 291 write_valid.0.23
+ ok 292 write_invalid.0.23
+ ok 293 event_missing.0.23
+ ok 294 event_spurious.0.23
+ ok 295 get_value.0.22
+ # 0.22 PCMD3180 i2c2 Dev1 Ch7 Fine Volume
+ ok 296 name.0.22
+ ok 297 write_default.0.22
+ ok 298 write_valid.0.22
+ ok 299 write_invalid.0.22
+ ok 300 event_missing.0.22
+ ok 301 event_spurious.0.22
+ ok 302 get_value.0.21
+ # 0.21 PCMD3180 i2c2 Dev1 Ch6 Fine Volume
+ ok 303 name.0.21
+ ok 304 write_default.0.21
+ ok 305 write_valid.0.21
+ ok 306 write_invalid.0.21
+ ok 307 event_missing.0.21
+ ok 308 event_spurious.0.21
+ ok 309 get_value.0.20
+ # 0.20 PCMD3180 i2c2 Dev1 Ch5 Fine Volume
+ ok 310 name.0.20
+ ok 311 write_default.0.20
+ ok 312 write_valid.0.20
+ ok 313 write_invalid.0.20
+ ok 314 event_missing.0.20
+ ok 315 event_spurious.0.20
+ ok 316 get_value.0.19
+ # 0.19 PCMD3180 i2c2 Dev1 Ch4 Fine Volume
+ ok 317 name.0.19
+ ok 318 write_default.0.19
+ ok 319 write_valid.0.19
+ ok 320 write_invalid.0.19
+ ok 321 event_missing.0.19
+ ok 322 event_spurious.0.19
+ ok 323 get_value.0.18
+ # 0.18 PCMD3180 i2c2 Dev1 Ch3 Fine Volume
+ ok 324 name.0.18
+ ok 325 write_default.0.18
+ ok 326 write_valid.0.18
+ ok 327 write_invalid.0.18
+ ok 328 event_missing.0.18
+ ok 329 event_spurious.0.18
+ ok 330 get_value.0.17
+ # 0.17 PCMD3180 i2c2 Dev1 Ch2 Fine Volume
+ ok 331 name.0.17
+ ok 332 write_default.0.17
+ ok 333 write_valid.0.17
+ ok 334 write_invalid.0.17
+ ok 335 event_missing.0.17
+ ok 336 event_spurious.0.17
+ ok 337 get_value.0.16
+ # 0.16 PCMD3180 i2c2 Dev1 Ch1 Fine Volume
+ ok 338 name.0.16
+ ok 339 write_default.0.16
+ ok 340 write_valid.0.16
+ ok 341 write_invalid.0.16
+ ok 342 event_missing.0.16
+ ok 343 event_spurious.0.16
+ ok 344 get_value.0.15
+ # 0.15 PCMD3180 i2c2 Dev0 Ch8 Digi Volume
+ ok 345 name.0.15
+ ok 346 write_default.0.15
+ ok 347 write_valid.0.15
+ ok 348 write_invalid.0.15
+ ok 349 event_missing.0.15
+ ok 350 event_spurious.0.15
+ ok 351 get_value.0.14
+ # 0.14 PCMD3180 i2c2 Dev0 Ch7 Digi Volume
+ ok 352 name.0.14
+ ok 353 write_default.0.14
+ ok 354 write_valid.0.14
+ ok 355 write_invalid.0.14
+ ok 356 event_missing.0.14
+ ok 357 event_spurious.0.14
+ ok 358 get_value.0.13
+ # 0.13 PCMD3180 i2c2 Dev0 Ch6 Digi Volume
+ ok 359 name.0.13
+ ok 360 write_default.0.13
+ ok 361 write_valid.0.13
+ ok 362 write_invalid.0.13
+ ok 363 event_missing.0.13
+ ok 364 event_spurious.0.13
+ ok 365 get_value.0.12
+ # 0.12 PCMD3180 i2c2 Dev0 Ch5 Digi Volume
+ ok 366 name.0.12
+ ok 367 write_default.0.12
+ ok 368 write_valid.0.12
+ ok 369 write_invalid.0.12
+ ok 370 event_missing.0.12
+ ok 371 event_spurious.0.12
+ ok 372 get_value.0.11
+ # 0.11 PCMD3180 i2c2 Dev0 Ch4 Digi Volume
+ ok 373 name.0.11
+ ok 374 write_default.0.11
+ ok 375 write_valid.0.11
+ ok 376 write_invalid.0.11
+ ok 377 event_missing.0.11
+ ok 378 event_spurious.0.11
+ ok 379 get_value.0.10
+ # 0.10 PCMD3180 i2c2 Dev0 Ch3 Digi Volume
+ ok 380 name.0.10
+ ok 381 write_default.0.10
+ ok 382 write_valid.0.10
+ ok 383 write_invalid.0.10
+ ok 384 event_missing.0.10
+ ok 385 event_spurious.0.10
+ ok 386 get_value.0.9
+ # 0.9 PCMD3180 i2c2 Dev0 Ch2 Digi Volume
+ ok 387 name.0.9
+ ok 388 write_default.0.9
+ ok 389 write_valid.0.9
+ ok 390 write_invalid.0.9
+ ok 391 event_missing.0.9
+ ok 392 event_spurious.0.9
+ ok 393 get_value.0.8
+ # 0.8 PCMD3180 i2c2 Dev0 Ch1 Digi Volume
+ ok 394 name.0.8
+ ok 395 write_default.0.8
+ ok 396 write_valid.0.8
+ ok 397 write_invalid.0.8
+ ok 398 event_missing.0.8
+ ok 399 event_spurious.0.8
+ ok 400 get_value.0.7
+ # 0.7 PCMD3180 i2c2 Dev0 Ch8 Fine Volume
+ ok 401 name.0.7
+ ok 402 write_default.0.7
+ ok 403 write_valid.0.7
+ ok 404 write_invalid.0.7
+ ok 405 event_missing.0.7
+ ok 406 event_spurious.0.7
+ ok 407 get_value.0.6
+ # 0.6 PCMD3180 i2c2 Dev0 Ch7 Fine Volume
+ ok 408 name.0.6
+ ok 409 write_default.0.6
+ ok 410 write_valid.0.6
+ ok 411 write_invalid.0.6
+ ok 412 event_missing.0.6
+ ok 413 event_spurious.0.6
+ ok 414 get_value.0.5
+ # 0.5 PCMD3180 i2c2 Dev0 Ch6 Fine Volume
+ ok 415 name.0.5
+ ok 416 write_default.0.5
+ ok 417 write_valid.0.5
+ ok 418 write_invalid.0.5
+ ok 419 event_missing.0.5
+ ok 420 event_spurious.0.5
+ ok 421 get_value.0.4
+ # 0.4 PCMD3180 i2c2 Dev0 Ch5 Fine Volume
+ ok 422 name.0.4
+ ok 423 write_default.0.4
+ ok 424 write_valid.0.4
+ ok 425 write_invalid.0.4
+ ok 426 event_missing.0.4
+ ok 427 event_spurious.0.4
+ ok 428 get_value.0.3
+ # 0.3 PCMD3180 i2c2 Dev0 Ch4 Fine Volume
+ ok 429 name.0.3
+ ok 430 write_default.0.3
+ ok 431 write_valid.0.3
+ ok 432 write_invalid.0.3
+ ok 433 event_missing.0.3
+ ok 434 event_spurious.0.3
+ ok 435 get_value.0.2
+ # 0.2 PCMD3180 i2c2 Dev0 Ch3 Fine Volume
+ ok 436 name.0.2
+ ok 437 write_default.0.2
+ ok 438 write_valid.0.2
+ ok 439 write_invalid.0.2
+ ok 440 event_missing.0.2
+ ok 441 event_spurious.0.2
+ ok 442 get_value.0.1
+ # 0.1 PCMD3180 i2c2 Dev0 Ch2 Fine Volume
+ ok 443 name.0.1
+ ok 444 write_default.0.1
+ ok 445 write_valid.0.1
+ ok 446 write_invalid.0.1
+ ok 447 event_missing.0.1
+ ok 448 event_spurious.0.1
+ ok 449 get_value.0.0
+ # 0.0 PCMD3180 i2c2 Dev0 Ch1 Fine Volume
+ ok 450 name.0.0
+ ok 451 write_default.0.0
+ ok 452 write_valid.0.0
+ ok 453 write_invalid.0.0
+ ok 454 event_missing.0.0
+ ok 455 event_spurious.0.0
+ # Totals: pass:455 fail:0 xfail:0 xpass:0 skip:0 error:0
+ root@am335x-evm:/bin#
 
-Best regards,
-Krzysztof
+Signed-off-by: Shenghao Ding <shenghao-ding@ti.com>
+
+Shenghao Ding (4):
+  ASoc: PCM6240: Create PCM6240 Family driver code
+  ASoc: PCM6240: Create header file for PCM6240 Family driver code
+  ASoc: PCM6240: Add compile item for PCM6240 Family driver
+  ASoc: dt-bindings: PCM6240: Add initial DT binding
+
+ .../devicetree/bindings/sound/ti,pcm6240.yaml |  177 ++
+ sound/soc/codecs/Kconfig                      |   10 +
+ sound/soc/codecs/Makefile                     |    2 +
+ sound/soc/codecs/pcm6240.c                    | 2217 +++++++++++++++++
+ sound/soc/codecs/pcm6240.h                    |  252 ++
+ 5 files changed, 2658 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/ti,pcm6240.yaml
+ create mode 100644 sound/soc/codecs/pcm6240.c
+ create mode 100644 sound/soc/codecs/pcm6240.h
+
+-- 
+2.35.7
 
 
