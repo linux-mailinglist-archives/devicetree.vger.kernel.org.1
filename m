@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-56893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC2AE89AFE6
-	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 11:05:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A81989AFEE
+	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 11:06:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DEC9A1C2169D
-	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 09:05:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E6C6DB22316
+	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 09:06:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CED711CA1;
-	Sun,  7 Apr 2024 09:03:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8720A17577;
+	Sun,  7 Apr 2024 09:04:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="de+uYFVq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ok1h2Mkv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C76542BB1A
-	for <devicetree@vger.kernel.org>; Sun,  7 Apr 2024 09:03:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A181538FAD
+	for <devicetree@vger.kernel.org>; Sun,  7 Apr 2024 09:04:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712480632; cv=none; b=dz4CuKT2Ku+ZyE0hNbogzbgodnNwvOkcwfRRInb7jQZBB5dIojc1/JbDsxtgTTms3EBaTyBBNPK+RML7NIK8voa9pzHDZHu08U3xOcIuPY+6skC4cB1Tn5mH2obNpSkLbGRjMW3PqDw08IfEhBX6jRkC3CdS3WeqgLKvivof06U=
+	t=1712480665; cv=none; b=d6Z3L9pGElfmNBk45au6Hq3OjeTkg2W3GeGYB1BcKO52zaHBIM5Hj+ZVOva/143wiqOKC041DMlmPZnwJXml8ca4lvA72XoEvTpi0cU/EM5End6YuNcFIRkbPcRC8gSjHHUxwbGBK0z2/xVkmoNfoEmKfB0yx1bzLUM67Z1UMSU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712480632; c=relaxed/simple;
-	bh=Zraf+IF8jjkme58EOXXWX37lUIAIsTXRXwE0Yo0XLt0=;
+	s=arc-20240116; t=1712480665; c=relaxed/simple;
+	bh=9Rxz9uLQQm/s+66PiRuMCLIxRzAvPCh4g/bvkxN5R0s=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XZ+vcu8B24hY3L+cP/s4beOGJXIGX2yDW7xYkdhRezii7qdgkBIYm5tj4nez/hdGBn8WDnirYrdJeUAhxvPx/Rxt2TiZwZtZhZGzDL+ztnBe7O3P7IpotfzK5e0KZaW/WnPCOVmt27TkyrrQ1cR6k1LAvo58u0MH85ALMtpDL6U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=de+uYFVq; arc=none smtp.client-ip=209.85.221.42
+	 In-Reply-To:Content-Type; b=crCAFavGnuhf6rgQCs8Ka+JvsMtut0maFy3pEnJaEymPFGTa4yy92qbgHVMPSLiRuCfTz0a2AmRSK4EHE/9iadRvWM3n/reRpP01v7kKxppsP8F9RMjo4YH1/QT/fu2uSrNXvHyUrH3fCOFoRVLBSBKpWpyE+dkNI1A+1jv6AV0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ok1h2Mkv; arc=none smtp.client-ip=209.85.221.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-343e7c20686so1554894f8f.1
-        for <devicetree@vger.kernel.org>; Sun, 07 Apr 2024 02:03:50 -0700 (PDT)
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-343e70dd405so1742385f8f.3
+        for <devicetree@vger.kernel.org>; Sun, 07 Apr 2024 02:04:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712480629; x=1713085429; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712480662; x=1713085462; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=lhJcyPhgX3F0B/BWk2i159pv3qTElO9d0HVqBUfqNmg=;
-        b=de+uYFVqjaYt9/aQ0+G0lfgECLBV3i/dX4o7RGqP1hvBA2TaIQY+s59Riab7nHIxjV
-         DqTtgD17XtI20GG6n+8O7/vKhE4qAQPaxbDxNtqVo7Ok0nc3bFqTG69su8/q2S/OcEbv
-         +FbkFYvBpvu/j9bMnCpHF6st6nB8tzslLOc+rnBuBoyPYy+aXLykfCIRe8EvpvxSAhcN
-         NIromxR0gGYJLAW2pr3+ff0r/2C97Yr/4OUxUt8RAQXKVMVAj/VltQ0SEXwEftG9uY1L
-         rdqWSKxhHAwSLdoIF0vYRnPSpEfQus6qobIQVtgsTda5dk36PjNuKsndC38jvvXqJTIU
-         7u2Q==
+        bh=uRNhwyw9FS3sbWuSwutVho3jP99EmZFo+hdFmKQFtUc=;
+        b=Ok1h2MkvuEcSZbw8uHk3AVZ4i59Hb1ikHgfz3OZeY7+UE3Fs7uCJTfVi7hI58mTZsm
+         10Mg8/VE5ZeFQLTRAKkp59R99gNeb+i1yqdmYqe9Cm9viKcugP7aanicMX6klq+3v866
+         hWnbOU/g9v3Cl05G6V2I68MNi3biJt5Rr2/L8bhskjGXuESH4lxUMBqhWn7kOxaSikbL
+         yDvDPKHAmk9DQhdcCrV1gOkQadxaRuvAL6XeknsrVu+3N7G5sdcUNJhcg1YX8apRTnkb
+         4F82pnpbra6DIeX+M/ZWdw/cafSs3Sz0Pue/p6U6DsrRiK2Wtdp7kgD5UGm9xZY9gAcn
+         N5rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712480629; x=1713085429;
+        d=1e100.net; s=20230601; t=1712480662; x=1713085462;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=lhJcyPhgX3F0B/BWk2i159pv3qTElO9d0HVqBUfqNmg=;
-        b=aNow/xdOxnjAdGKqBcLBOOg+OHi0a5SmJt7FZ6EkrhH+FX287SwYczHB6gmJw7wnAQ
-         izI48zAYs8fSJ1OWulaC0mlqfSHPOm+5YaHDTlr0A5Vjokm6a+nRV+lKlfhKiVKhx/Sw
-         5mXD9ImBHWGRbHXY3d4Ar7ifWcLM2fvskGLg/jmbmtvQZByY03mMXO8vb0IwbhipthjD
-         8WLaiLeIBnebe2SRIq8KlCwky2o/cLIfSQ/9996gHHR0HNH3QOKnZv/of+WpNsWe0R7+
-         Q2YdguaPoPnuzsKJmJl2D3s/J7FBM5Eux0DBQiQqnI1MwO2RbxVvaC/XRISFHMeQ2mS5
-         8/ig==
-X-Forwarded-Encrypted: i=1; AJvYcCWb3HAQWLejPLvUdsuNEw/LbhBZt0Q98sjoC4ytjw6f0IJhhb+pttDYlCJik+T4Kwt+o1IaKyUNXX0Szsk+ZRVBnSGalmPVbAG0KA==
-X-Gm-Message-State: AOJu0YyvFB9xHcNsQw5HxbpnTf/JoL8UzQ8H1hbfrOuEV5Pd07sDnk4N
-	+1FYFcxTEgCU6PojXwaKWw2bYo1CdoP9EzhxuOyiE6Hg/0gfnAvLufrs6RZW+ww=
-X-Google-Smtp-Source: AGHT+IHy9eHKYMxaf9vkWbmen7WIUbOBEXV1kBr5+IVFEdpHNIy8u+qMnpLBM1geid95shOzQ7Z9MA==
-X-Received: by 2002:adf:f74e:0:b0:343:9189:e698 with SMTP id z14-20020adff74e000000b003439189e698mr4119708wrp.43.1712480629179;
-        Sun, 07 Apr 2024 02:03:49 -0700 (PDT)
+        bh=uRNhwyw9FS3sbWuSwutVho3jP99EmZFo+hdFmKQFtUc=;
+        b=UVOcCNwc09NHr66QL+W6sIT6/bA42NfW+3R20Uc3HBK+TsQlOOvaXTC80YAXY9/RsN
+         6jnQmTAFilaZ7eZe8ri4AaKFZnaMn+nKV+xd2VhyaQFj4cudoBxR/92j6/D6IUc8+zGI
+         6CFbSLIxA2eSAJDZDFEMGpXZiJ3U2QxzD6tNc0oSohgzM8shliE1BOnz9CpWBXQYO428
+         6t61GxwDnaGVsdKkuXbBxLqaRyPQL+l4+0+iiGE+CI9tfFpDU2zx20FKykRPBz5qmZlZ
+         qWeML079OMtEqgusxxMgESli6fE75vyvOYC2fqfhFHNa9PR/T9Re0uXRRSXQ1PutnGxP
+         mGWw==
+X-Forwarded-Encrypted: i=1; AJvYcCXgKbZKxPF+2SCf5iB0Di9YZZB0UKIkPOrgt1dLEAIRXOMv0oruk5p3GxzcNo/BkcABYIs6/EJ3PBF4fk45c5meZDgk3tMMBoM3nA==
+X-Gm-Message-State: AOJu0YzSVOV2M3q040UpJq1rsFgFIATstljj+EqPB/Nr2q5iMpINHyMy
+	iKU7qZ8THdYzgiV34G0cZBFcX7YbvAVJq8tYMzaEdpm4SpGYiFA46IMd8TiTULU=
+X-Google-Smtp-Source: AGHT+IEKpCxN3SthrzEr0aFlPZAGWF/+OIRaM7T0GqXAbZgLjeRmQdk+0GcFJEMmF66rUre334UlZw==
+X-Received: by 2002:a5d:58f3:0:b0:33f:6ec1:56dd with SMTP id f19-20020a5d58f3000000b0033f6ec156ddmr4654585wrd.45.1712480662001;
+        Sun, 07 Apr 2024 02:04:22 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id i11-20020adfe48b000000b0034330c9eccasm6269503wrm.79.2024.04.07.02.03.47
+        by smtp.gmail.com with ESMTPSA id q1-20020adfb181000000b00341c3071c93sm6318807wra.73.2024.04.07.02.04.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 07 Apr 2024 02:03:48 -0700 (PDT)
-Message-ID: <d24628cf-a628-4eb1-ae2f-bf414b62534a@linaro.org>
-Date: Sun, 7 Apr 2024 11:03:47 +0200
+        Sun, 07 Apr 2024 02:04:21 -0700 (PDT)
+Message-ID: <f019690a-2397-4bf8-9472-ec38f4b94c1d@linaro.org>
+Date: Sun, 7 Apr 2024 11:04:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,16 +77,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] arm64: dts: qcom: sm8550: Add support for Samsung
- Galaxy Z Fold5
-To: serdeliuk@yahoo.com, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240407-samsung-galaxy-zfold5-q5q-v4-0-8b67b1813653@yahoo.com>
- <20240407-samsung-galaxy-zfold5-q5q-v4-2-8b67b1813653@yahoo.com>
+Subject: Re: [PATCH v1 1/1] arm64: dts: imx93-11x11-evk: add rtc PCF2131
+ support
+To: Joy Zou <joy.zou@nxp.com>, ping.bai@nxp.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org,
+ s.hauer@pengutronix.de
+Cc: kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240407051913.1989364-1-joy.zou@nxp.com>
+ <20240407051913.1989364-2-joy.zou@nxp.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -133,31 +133,44 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240407-samsung-galaxy-zfold5-q5q-v4-2-8b67b1813653@yahoo.com>
+In-Reply-To: <20240407051913.1989364-2-joy.zou@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/04/2024 07:38, Alexandru Marc Serdeliuc via B4 Relay wrote:
-> From: Alexandru Marc Serdeliuc <serdeliuk@yahoo.com>
+On 07/04/2024 07:19, Joy Zou wrote:
+> Support rtc PCF2131 on imx93-11x11-evk.
 > 
-> Add support for Samsung Galaxy Z Fold5 (q5q) foldable phone based on sm8550
-> 
-> Currently working features:
-> - Framebuffer
-> - UFS
-> - i2c
-> - Buttons
-> 
-> Signed-off-by: Alexandru Marc Serdeliuc <serdeliuk@yahoo.com>
+> Signed-off-by: Joy Zou <joy.zou@nxp.com>
 > ---
->  arch/arm64/boot/dts/qcom/Makefile               |   1 +
+>  .../boot/dts/freescale/imx93-11x11-evk.dts    | 25 +++++++++++++++++++
+>  1 file changed, 25 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
+> index 07e85a30a25f..065fa3390791 100644
+> --- a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
+> @@ -281,6 +281,24 @@ ldo5: LDO5 {
+>  	};
+>  };
+>  
+> +&lpi2c3 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	clock-frequency = <400000>;
+> +	pinctrl-names = "default", "sleep";
+> +	pinctrl-0 = <&pinctrl_lpi2c3>;
+> +	pinctrl-1 = <&pinctrl_lpi2c3>;
+> +	status = "okay";
+> +
+> +	pcf2131: rtc@53 {
+> +			compatible = "nxp,pcf2131";
+> +			reg = <0x53>;
+> +			interrupt-parent = <&pcal6524>;
+> +			interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
+> +			status = "okay";
 
-Where is the changelog? This is v4 and nothing (neither here nor in
-cover letter) explained what was happening with this patchset.
+Really, just drop...
 
-Tags were ignored, so maybe comments as well?
-
-Please provide *full* and detailed changelog.
 
 Best regards,
 Krzysztof
