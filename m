@@ -1,110 +1,182 @@
-Return-Path: <devicetree+bounces-56911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B3E689B03B
-	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 11:59:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFB9589B076
+	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 12:33:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DFE891F2184A
-	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 09:59:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D9067B21267
+	for <lists+devicetree@lfdr.de>; Sun,  7 Apr 2024 10:33:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D7DF1CAAC;
-	Sun,  7 Apr 2024 09:59:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72B93101EC;
+	Sun,  7 Apr 2024 10:33:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="BEU7aTqj"
+	dkim=pass (2048-bit key) header.d=yahoo.com header.i=@yahoo.com header.b="qDYujLgm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+Received: from sonic308-56.consmr.mail.ne1.yahoo.com (sonic308-56.consmr.mail.ne1.yahoo.com [66.163.187.31])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92DEC182C5;
-	Sun,  7 Apr 2024 09:59:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B49E224D1
+	for <devicetree@vger.kernel.org>; Sun,  7 Apr 2024 10:33:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=66.163.187.31
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712483946; cv=none; b=MJdj60qZ1TXvhyBWnXIjzkXMZQWSzk6nUwHAF10aT2AqbjYsqTNauOSq8cPPaU5c1LPt+ILUFX1R6bBlVt46VTT3bqWpyBEh8Y9dmFiyZtgDN/alhIF9SirMhXZA67QPvA/9Rm3QqaWAtr3VhLYPnwJQMD/zs2xA6P4KpUOkk80=
+	t=1712486029; cv=none; b=ehwwKs11VwJ56LIjQOMdwDhCOTCrEK0i9ZBctMmRYpSZaRTVGUHpkQO8/bc8R+UUK2h1tdZSVdZtixYDIj5Ar5hvxMgDJ3MPDvx/ynTJrxqEL01eiGqc6xhO28o6uOa7H5xZKgfxIqe8rd1grmrgqsurqXn2QSc4vbJc4fwsQGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712483946; c=relaxed/simple;
-	bh=hEn5KuCngulRuFJMxWsYDUEkMcFBFdCbgV7etqkL83Y=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=YcXv/ckj2UPIcJ3puiyvpcqx/NbwP3hLmlUYaWewIzM11NWDrxwTqFvtFibPXFjK5rxqQgDjlC39iwjwRyJ04KuSvJNAvuqOg2CmH/e0hftjwAISpE3/JMa2tq3f+wtT8s3lzAY7UDswIt9l92CmOLZY+wgG1r7VErA8bvS7d/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz; spf=pass smtp.mailfrom=z3ntu.xyz; dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b=BEU7aTqj; arc=none smtp.client-ip=128.199.32.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=z3ntu.xyz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=s1;
-	t=1712483942; bh=hEn5KuCngulRuFJMxWsYDUEkMcFBFdCbgV7etqkL83Y=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=BEU7aTqjc3rtebte69IGb3+z6Uz1k5whz+mwyQRtZpHrPcchCEvqmFUyJobCQ17fz
-	 YBkkS3PJ70PuWNKwrYr793zD/NTGq1BFAdaiqANKBoqEDO3YmrFd9HilA3QtPfJQAb
-	 TE+w1VmQZcw1zgsjfx1zSXk1a9rna6k2lJDG09zE=
-From: Luca Weiss <luca@z3ntu.xyz>
-Date: Sun, 07 Apr 2024 11:58:32 +0200
-Subject: [PATCH 3/3] dt-bindings: remoteproc: qcom,sdm845-adsp-pil: Fix
- qcom,halt-regs definition
+	s=arc-20240116; t=1712486029; c=relaxed/simple;
+	bh=yGgCFWmUblU7TeY652VRyEhoNAP7wR/NJDvGHApKSok=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mSEPrEqDlmBjr+cJy8BBqwlfhAB6AXlTcVXKmbx1pg0WYtg18wun1hxaXZiP4ObHE5XWhEmvTcbUCQWQ8RnMoIGlMBxiuHVl82KpWKpoxVWS7kZidR9n7KcD/BQwNc+UANeEA71qBz79YIQgQpBZ4AGiPWL4jTaoGMuhoRjO3I8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=yahoo.com; spf=pass smtp.mailfrom=yahoo.com; dkim=pass (2048-bit key) header.d=yahoo.com header.i=@yahoo.com header.b=qDYujLgm; arc=none smtp.client-ip=66.163.187.31
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=yahoo.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1712486026; bh=C+AJS1T/rb/tqDj2Rt/RDlXJGUr5YMNuZdSvL1OS3yk=; h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To; b=qDYujLgmRYt1DA2vKIttV6u5K280YxM0tnadHg3SBL3zM0A+bzlkjxRer5ZSZjPuan4+uxdDL8EiutwN5m1H2F4JwsZJnk19vw6MEma5CvQNhlFo5ukoGyzqLOpC6m+hL3A8bsNdIv5yqtAq6LO2mcRcpMxK1gPX7HS+BUZHXhc7t1bkLZDfF04eoKwPDBhdaXXS0QH1126nABSCROGGG173H0aJHwNYDbYDL3u7CVQgqnTqku37qSMOfgGsidvElWjM/lvJqg2FB8UE13t36v90AwZIfWsjK4yNLyev78Hr8Au9EXU7iGmrueI4Ml+Ij63hNOY25kDrhgl9DbM0mA==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1712486026; bh=lTrTtNVLmpzi3PQaiyjKl+YZaPvuTmKH7jDVtvHMHUU=; h=X-Sonic-MF:Date:Subject:To:From:From:Subject; b=kIjpiZim+5Gm+r4a6IMPbb8y0AyFmO3//ss7E9c3xaYMVVc8CCL7WYWIN4Qg6aLft0bWrpAfvR6cryiKtvADU5bRYuD6mE2ze9trrn0Eg6ej/aqMCyWy8SlrvQ4ehp4n8bHPOLTR9tfmESKsEahwRLxOoZPHaYdOGTS8Ki7cLijKkaGWqrxfCugDlnSQK3XN5JcBOkyBlwZwUZNVF0DeOJWQD4tWIuEuQwgcl36ZRuhkoiK8JMeyeJW2MJ7UuxP9iKq7yCxFZ503Z/3tkBFQSpdiuYHl9+MLVUlHZsO5DBTpW7gUO600xon9e4Zxvz3lz+L+CKTwUSH46uV4v50gWg==
+X-YMail-OSG: 0DA6kfsVM1nwR23I0UbehfkcWLvCI_ajbttLepwVuLyyajAG4p9bTHgiapfStB9
+ IvRrrTMO0ZUQ8WX9KyzZjlhxOXZbtyMcjRLlRWSLSEP7cHutpmr.YDXtaZjl677RXAw..XN2W8J6
+ MiPCMNUZ7xywyS_wl5fB1lPhu9cEBwyQZoZl_UAbt8tQHp8OMo5Wa.moRu.xXVRgMbfngJzUoo3i
+ G0MiWcmJgbFYM.E1ptk02y1nW20GDlaUVoa5HzGAitLMgdxikYGUdTz5oYi0G1e8t5aUgoUVuJfc
+ eoyNz.2y4pkZKNnwwTLLXp.i.uHRMgkvt1Ms3Xna7uLEv4b5j7bXidy2wvOdJp4zgbNP9s44sZp1
+ sg9fbIiROnK505TjOFeqYAfKG2PUAlPnfYzbKU7EhRfrrjescbZarGUewX3J7jNH4jnsy96PG2AF
+ 8A6imHB95cBf9jWFUnnrrUIOEFbgMpZjcIlBO4qGjp3Nwmv9cb47J5XEQLJzSWOX5vdp.KHGxvaA
+ ZDL990Q3fHUuYGRU8.HBgQfQTvyjoqOcvY0f7FTCnmKictSfJSXAO0WREdUP2eDIyl_yB7V3BF3w
+ FnvK3jroOQEYLEG3ToJSR36HSCADLEGhCAgBjHF2xfmb_L0wLPvZmfUJvHdoYdWb0wmmjRk5Kan5
+ Uog.NP7b2nYWd9HZAfcmgm8xCyULuSOCPnvfqbrO0wDN9IyMaNGX2.7RxJtltug6G3lNoOmhGH..
+ NX0f.c3AiT91EYCU2gkWiqrgaPCJThoN0kiMckFZ47aQURsL6KSv0WTkgZIe3NevS.6yFA0khz2n
+ ttU7eeEy0lpz.UmNq2OP7wwFCdjWIMtby6cr.Uyc9NV1exG0dJKQ7mNALmwSGzkZbf3nrOe4E5UP
+ Gk.RUVLG00c.sxUFUR5ZcFhH2p4.mJ2Pw3whYb8bRo3.N6P3ZLtJ6csw13.ZIeuO2mpOhpTKMdrI
+ YmNt37sCP_Y5dj5lrFI_l6EK9_dw3YQQV_JHD1vfEdMRa4pF_jTlSCrv7g3iZEYDouEkmGxU_aS8
+ 4lSsg4eZSYF0HqxXASGtdZKYHeXO16Yg116st_Xr4VB.56FdofCo9.pN437X.5EvtnptFz5HNps.
+ xvCdzVf77ZXzW0ML6qfnuTv2MwtKccIbRoTme5OC2hbXrIZ3zvSmaksUfp45lFoyljIh.353Hy9l
+ PtewfdKrCueu4XrfYWGkdTKyopLo0DOi9qPWYjPR4uXdMPorjUYvmiNztUKxS_M8G64k2s39Na77
+ LOsqs0bQPTX1jazpDaQcBZmo3mmBK9oMv3NW7xeS18oY_dviI8fJMeiBqEv2of2796ocihuWRdKR
+ p3_wkgW1oLMChoVKCeFS3f68QDlTgy3IO_0pioAoII87hIC.46wAbxWlxIKQyOdxiyeUogKN9x6H
+ ww3iEauENVLC_b_cOx6R5hVMQ.OpckdEhJ3qcSiLaqvlYEwLP3M12wBAyv5qwy2GtKdlgAK7A4iw
+ QhZ5Od9fNa5x559mELepia5_omql.ssuKdwqwkcyaH5gYWg37Hvnv1KkK_62bMmJTva6G_aoJ7bU
+ UiuawvOplMiYi_ObIMmpwDzwy.1iX_IZUiwRC1sbwoa0Yp5QmcSGsNIaimAtqJbcH5oaN.YSMH0p
+ xXInBnEtfhgboXIBfXKi8BYh2LFeAxyfYauzfBNcaJascyqVSaeCRjMdc446UbVhTcO71OcQ3.CM
+ O5_syph2Uj2f1CVa6u70ZQX7TJJ0ZFhvzpPBeMRodjvUNyWMyMQn8EW3qVSeK45PU2WnZyMpBAVM
+ FMN73avtlos3RazTwnHpWTwccWdFb76bdQddcjt6co9lSw2J5Q7pb0JCFUvbnAvTiNwje3Z9CXVE
+ 4DC2GL.ydDNn6UqopQPzla5cX4MbjBHZqkyuTh4GnInalhavdqZCl8JLV_Y0e64d6H_Io.iMPaYF
+ wB6oSRCwcRNywIWY8v_.Txnj9e_IDO4_sEo3gigA7STBjiLbPBnOAmpDsEGq1AHrcliKCGeZred.
+ YmEMlKqbC1RLKszyxH0G3.9eElFV0pDv53WHGO9.hixwjAFEerzYvjSPDbeC4Pkw_6xf_sDPQurh
+ MSrKmrVCipOZkmby.IM7u2VOf3meiUZihL8eHXchH4bmOGZRD4Q1nALFltPQ8oTPMTCgf9Tg7aZb
+ 1BdD.1MFHkKCSKzeCMm4VQtQVNSOiKWlrzrCyojXhYAjSq5uhsVn_7WTAxixZZp8RAjpFBA8e90f
+ 0nI9tPtLFTVWwpguhmtZkN0yFaWAw0WSaesgo4W9dyrDt7gUkI8HQYwvgGAngx8Zo
+X-Sonic-MF: <serdeliuk@yahoo.com>
+X-Sonic-ID: c4a14069-9116-423e-a1c7-ab8455b6c999
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic308.consmr.mail.ne1.yahoo.com with HTTP; Sun, 7 Apr 2024 10:33:46 +0000
+Received: by hermes--production-ir2-7bc88bfc75-pxs6z (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 7f655095cc1d4bc604c8852f53d289b4;
+          Sun, 07 Apr 2024 10:03:20 +0000 (UTC)
+Message-ID: <84c8ad35-e695-4d5a-9c22-518b84e5dc6a@yahoo.com>
+Date: Sun, 7 Apr 2024 12:03:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240407-qcom-halt-regs-fixup-v1-3-a0ea4e2c178e@z3ntu.xyz>
-References: <20240407-qcom-halt-regs-fixup-v1-0-a0ea4e2c178e@z3ntu.xyz>
-In-Reply-To: <20240407-qcom-halt-regs-fixup-v1-0-a0ea4e2c178e@z3ntu.xyz>
-To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- Bjorn Andersson <andersson@kernel.org>, 
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] arm64: dts: qcom: sm8550: Add support for Samsung
+ Galaxy Z Fold5
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Luca Weiss <luca@z3ntu.xyz>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1203; i=luca@z3ntu.xyz;
- h=from:subject:message-id; bh=hEn5KuCngulRuFJMxWsYDUEkMcFBFdCbgV7etqkL83Y=;
- b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBmEm5ke2yuYjMeIg+qdRpSzS5xbundtHacGOgRK
- qMRv1LUtD6JAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZhJuZAAKCRBy2EO4nU3X
- VjXHD/9GYXBgKvBVXEb7vQxl/PdN1gu7j104J148R24dTrJvlTa0iVLB41oIO/x/kMtwdmhz8PX
- YTKA3MI77zTItBtF4CPDiPYtxpOXz8Q4gvjlTZoLqnExasP1aaTW4yQA6Mjrnu2WDFponfFLhyH
- 76cKI0LzLZd06co4+aB2oR6lo0h8bTofWHrYvD4yf+ILqTtJFqYUq5i7FyVejIgeIRzFYUEc9Bz
- vZ8ulKuEi/bzdMG6xGHIJhDbG3ib1B91Npw9qga1UvQNkVEGt9e8pqi2e70b04WFmKjoixOK0Nb
- XlJlg1+FCx7yiGKKKsugYWD5QBOzS6pzJtAdCr1N70mICKYptsj9X/cjXsTGNZvj67yCwDS2aWu
- kwfW7dTtqLI/Zs1iTX5xeU0y69b7Okg8ajFXrkBv+qNB2B0WPKWVvXb0rDynQS+RIOy2FqdkIbQ
- n8WMDsRE6jm5P/mJQRfOaxKPDBQ2tYOxErMvTNXa0bcXGEXpkDhh4VPyqsuPS4934/wSB1Qx/LG
- 3lAqbwg8VtB4aBExm4or8HroKHDB4U0FhE3kPb5rXAxbIyJAFVxm1alP1JNev1UWhaFxwhacphy
- GZUdVfut110mKzML3xI20lqARNfAP1SbHdeNgqzQkTOnw7DPiZxspDvkGKE+wlWG0kRksin6Mm2
- e9VQuoBtYKYvFmQ==
-X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
- fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240407-samsung-galaxy-zfold5-q5q-v4-0-8b67b1813653@yahoo.com>
+ <20240407-samsung-galaxy-zfold5-q5q-v4-2-8b67b1813653@yahoo.com>
+ <d24628cf-a628-4eb1-ae2f-bf414b62534a@linaro.org>
+Content-Language: en-US
+From: Alexandru Serdeliuc <serdeliuk@yahoo.com>
+In-Reply-To: <d24628cf-a628-4eb1-ae2f-bf414b62534a@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Mailer: WebService/1.1.22205 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
 
-Set the 'items' correctly for the qcom,halt-regs property and update the
-description to match what it should be.
+Hi, please excuse my lack of knowledge, I am still trying to figure out 
+how to properly send a patch. Hopefully not wasting your time too much.
 
-Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
----
- .../devicetree/bindings/remoteproc/qcom,sdm845-adsp-pil.yaml        | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sdm845-adsp-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sdm845-adsp-pil.yaml
-index 20df83a96ef3..a3c74871457f 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,sdm845-adsp-pil.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,sdm845-adsp-pil.yaml
-@@ -81,7 +81,11 @@ properties:
-     $ref: /schemas/types.yaml#/definitions/phandle-array
-     description:
-       Phandle reference to a syscon representing TCSR followed by the
--      three offsets within syscon for q6, modem and nc halt registers.
-+      offset within syscon for q6 halt register.
-+    items:
-+      - items:
-+          - description: phandle to TCSR syscon region
-+          - description: offset to the Q6 halt register
- 
-   qcom,smem-states:
-     $ref: /schemas/types.yaml#/definitions/phandle-array
+Here is what was changed, or I should send a v5 and add the 
+modifications to cover letter?
 
--- 
-2.44.0
+- v4
 
+   . removed a spurious new line
+
+   . removed pcie_1_phy_aux_clk as requested
+
+   . removed secondary pcie1 which does not exists on the device
+
+   . changed firmware extension from .mbn to .mdt
+
+   . added missing reserved memory regions required  by firmware to 
+properly load
+
+
+- v3
+
+   . added b4 version 3
+
+   . removed address and size cells in device description
+
+
+- v2 added both but added an extra v2 in the subject line instead to b4 
+subject header, was requested to send the patch again, along with 
+following mods:
+
+   . removed whole bootargs line
+
+   . fixed underscores in reserved memory by removing all reserved 
+memory regions
+
+   . added missing idetation to  spash_screen remark
+
+   . validated the dts with "dtbs_check"
+
+   . removed all comments at the end of nodes
+
+   . moved status of the node at the end of the node
+
+   . reversed pin control name with control numbers
+
+   . ordered the  nodes alphabetically
+
+
+- The initial request was split in two patches sent due to the following 
+checkpatch warning, was requested to re send them together:
+
+WARNING: DT binding docs and includes should be a separate patch. See: 
+Documentation/devicetree/bindings/submitting-patches.rst
+
+
+On 7/4/24 11:03, Krzysztof Kozlowski wrote:
+> On 07/04/2024 07:38, Alexandru Marc Serdeliuc via B4 Relay wrote:
+>> From: Alexandru Marc Serdeliuc <serdeliuk@yahoo.com>
+>>
+>> Add support for Samsung Galaxy Z Fold5 (q5q) foldable phone based on sm8550
+>>
+>> Currently working features:
+>> - Framebuffer
+>> - UFS
+>> - i2c
+>> - Buttons
+>>
+>> Signed-off-by: Alexandru Marc Serdeliuc <serdeliuk@yahoo.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/Makefile               |   1 +
+> Where is the changelog? This is v4 and nothing (neither here nor in
+> cover letter) explained what was happening with this patchset.
+>
+> Tags were ignored, so maybe comments as well?
+>
+> Please provide *full* and detailed changelog.
+>
+> Best regards,
+> Krzysztof
+>
 
