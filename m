@@ -1,143 +1,269 @@
-Return-Path: <devicetree+bounces-57285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E55A89CEDB
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 01:18:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEAB089CEFC
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 01:35:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C12481C23A30
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 23:18:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 312B41F24D0D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 23:35:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92DFD14D28E;
-	Mon,  8 Apr 2024 23:17:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02118148832;
+	Mon,  8 Apr 2024 23:35:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="Z3Oz7TZg"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="EU1vSKqt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2138.outbound.protection.outlook.com [40.107.249.138])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEC3814C5B3
-	for <devicetree@vger.kernel.org>; Mon,  8 Apr 2024 23:17:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712618278; cv=none; b=ZdBGsOaJgNvmMChErpldFUHotIAitbNyg2NLshrVq8P38ZMTcRm2cGloIySAG3bgAu/yu13oC8PxtTvp+TzoLpxkeYZWLIxNNoRRkHo0Z52b9Po1QsXsSxv1kuxj1/AGA/qp8lp5Xrb/GgjpAEgcf71FXG6wRwv8Ktan/UrLRUQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712618278; c=relaxed/simple;
-	bh=mtWNzTX8JC05NtIfESIPbCi1nt0AgwSam4TBmjq+4EU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mZkRTRLqWDt1eMplOT8HIMo3lEcQmKECgJkofqBWkRuSM/haa+lQuB36GNJlO9dz0zaMMN4QDgYiypbcImCVeWdScVDFZ3+BfIpzZOvzNI2i+fLcRxURoNxksD1yhtm1ZCppv9mykBl6AlZslKh616edF10z2IMqObpQJI8nn50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=Z3Oz7TZg; arc=none smtp.client-ip=209.85.160.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-43477091797so53161cf.1
-        for <devicetree@vger.kernel.org>; Mon, 08 Apr 2024 16:17:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1712618276; x=1713223076; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mtWNzTX8JC05NtIfESIPbCi1nt0AgwSam4TBmjq+4EU=;
-        b=Z3Oz7TZgxpYC8iELsZdhYl/NjuApKV06wqQQqzCJ1gF6yZcVBx4lpzPrmHRmlA9HWf
-         UScU0Y+iwJGhEE7ksBg5w1B1f3brLUuyGN/0xin08wL9hbaRR1WzDQHqGcO+mn5dTL1z
-         UtUq7De16C/N6vNh+xxCEZiateQTiE6RtHfc9TywFIEIs8aRfIFC0BbpPRAG+fZmP9PA
-         weWmdR3HEj74WWInWHHvxPrgA2QYs5HL/83D63NIlB3jVuYIrJNwOWA2bBCzCNVhiIMb
-         Lm7CnepHN0TRlwQXvYPqtYvPZPaDs8PsJdUBFdlfcPYAF0WLD4jPH3YKx9AGbBE9VvpP
-         EATw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712618276; x=1713223076;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mtWNzTX8JC05NtIfESIPbCi1nt0AgwSam4TBmjq+4EU=;
-        b=j5JlHpvMVIlVWRSZepqimifMpeHDpPKO/HQwEhTLpp4Jr+zQQWyR+TYF9BK/fH7QOZ
-         SoNU0Jwo0Cwvo1VwaAl86fBIldGqjd37g1NTna1dRh93kCm+2e51+rKTGWmvtwsXlCI6
-         pmUzl56jf+zw4CkJE/VsZuHGo4WCv3ElXiMfZhdjLGXLKvf0MIsb5FGUZRAs1lh+rrr2
-         HV9h+VKJaBMDdg9r4Llh7lz2GG9HIEMd983XE8Z36EdnMPQZmX6fWcAueLWgbunNAijz
-         M4s6MUdqgQU2L//mVOJu3O9L9CvMUvLx2Bbf43YZ0GaEqYvL5w9y9G0pB2SF6bXPDRyd
-         uKvw==
-X-Forwarded-Encrypted: i=1; AJvYcCV8NCU7K87TRACWuaNg4evE4JweXXzI1jO4mN5jhdEXNTZHmiUF30LC6VvmC97IgqQz4Ix9aW2NkM4frusDIapNKvOIVCCzmaWMcQ==
-X-Gm-Message-State: AOJu0Yx+0NaWSHfUKDwueLzyfgO3TfFwzM4asPEJOnI7wLq3c9d+zFNK
-	5bjUq54ZWBRSgMQPqbId2gVQQmGvwPXRdOxERNZGq/BLtE0FCotuLiOH71GK2x94xrN6VZ7m+8q
-	Fa03MzBJL0tuu2T+uzbA1GjHwppymNRpuTKHE
-X-Google-Smtp-Source: AGHT+IHeKvaMXc+mckFW4oy6yakcfNZsNKxWqCqjei+Bv6D20mcyMc+btA/+lz9WX79mr7qsbWUULg5iyVQ2vvvzm38=
-X-Received: by 2002:a05:622a:428d:b0:434:bab1:3df8 with SMTP id
- cr13-20020a05622a428d00b00434bab13df8mr74017qtb.20.1712618275692; Mon, 08 Apr
- 2024 16:17:55 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E98AD762CD;
+	Mon,  8 Apr 2024 23:35:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.249.138
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712619321; cv=fail; b=BUkyDdQaYTpExu+SO3/7bSMKSLwPFtnMFosA0q5oqz2mKuGQcXTxJK+nOvVazqdGNWZmPCVfmo+DP9GlMYRtT0wtnmwfjSmZDDYiSsU/y5327x5gHxVFFS8SimwkSGzvt50vUW1QDn6xlQQLXyvn4D5TpSQbPf+8dKlMzkW+iJI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712619321; c=relaxed/simple;
+	bh=sEJqhQqPGwvI+8COye5VT8Kl4Rzr8nSpX2RCQSGMOEM=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=XD2DH/AYiA0GYcO/G9Tz4y/Uoc/KafhzvMOXYNNSGQBZA5e6TTTUqwjbKUNr9XdWP6pPcDf3cKk/zD+cpS3qVrptMTVdv57V9mDWp80vWu24x6/S42fcmJibbomxLnxpJCyvk5hzYzrOS0ujIOy0/ySqnwOenKqwS2bCoWdsP+k=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=EU1vSKqt; arc=fail smtp.client-ip=40.107.249.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cDqexZ8pWJiBkbRtl+yjN6xR0e7T24tDRveImjGzd42pEkbynkSm7zkSmVPKEzwvqaFo5mIWQKrTz8dDjN36k+/PLLCsSiHq9yz+FKUo93TtO5pfx8gdC+LfkhMUjKAc3YafgEzB5AoySx/HjyaSX/f1GZzoppoe+ddeCPBboknCknJ1AohzSS5B8CbrrkxIXldgBgy9x8uc2Dy6DJuvTZ6qW4lwbBY/nLUVfXadgNyAOrr7Ovz9QI7DDBe/GQPl96xwG3bRPUS6fQZ5PwgOiBq3i5O6iJj3T0Qxz2RvEySaLEY1Nc4AnGd3W6iarZnCchOmFPytZQMnH28nz+NBJA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=mUif7FUUYB93BItDAZY+SbxxIbRClPw4BAHSRWyLzno=;
+ b=dcJI1aopM/TkDxv2PPpbhpFtI8/pIwwrZRWGp9I74t73RM9V8aNSPizUzO6ahM5XbF7qHa5D+/gAePvFozPu4WJUEPAOPpkImFsfu+7vhXv4ut09JR1aWe5y3deEzD4h5v9JXabsjriUT7t4DX4aNGRuxslYdaErH9hOCHhEKS6duQjifgDvstpayOk+6vD6DCJo8FaFEw7bakg0Gm3tzt9RypK5Z1zRfzr8LmiBX6Z4j9EOAtGblB95l6ff5JsTXV8GZ0ETpfi0nYaWto0Jk+6C6J8s1n16YyMNrkXmqu/h3A2NbmPiksAsH6VsuTgX/lOgdYDqgu9AW1WKVOK2+Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mUif7FUUYB93BItDAZY+SbxxIbRClPw4BAHSRWyLzno=;
+ b=EU1vSKqtihXV4SEs8lhP6/j505ICdkZYltgJDCr/oC8cAmVUj+4sPTOyYwXtZULa37YrWnCa5XVXHAOUNH0eMG3LmEB6f1GqxYzgiWbRGcJbasqa/Zrd+wYWeTjYyqHfBpM7X2IGudyNWSSBJeJqaqUkNV5dK7UfVmSoiLZYWzI=
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by PAXPR04MB8989.eurprd04.prod.outlook.com (2603:10a6:102:20c::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Mon, 8 Apr
+ 2024 23:35:17 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::d30b:44e7:e78e:662d]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::d30b:44e7:e78e:662d%4]) with mapi id 15.20.7386.037; Mon, 8 Apr 2024
+ 23:35:17 +0000
+From: Peng Fan <peng.fan@nxp.com>
+To: Cristian Marussi <cristian.marussi@arm.com>, "Peng Fan (OSS)"
+	<peng.fan@oss.nxp.com>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
+ Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
+	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Sudeep Holla
+	<sudeep.holla@arm.com>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v2 3/6] firmware: arm_scmi: add initial support for i.MX
+ BBM protocol
+Thread-Topic: [PATCH v2 3/6] firmware: arm_scmi: add initial support for i.MX
+ BBM protocol
+Thread-Index: AQHah1U7U7PbHuwUVkuCiXWcSbaKerFer8yAgABblqA=
+Date: Mon, 8 Apr 2024 23:35:16 +0000
+Message-ID:
+ <DU0PR04MB9417DCC510F2A08F3C6B1D8B88002@DU0PR04MB9417.eurprd04.prod.outlook.com>
+References: <20240405-imx95-bbm-misc-v2-v2-0-9fc9186856c2@nxp.com>
+ <20240405-imx95-bbm-misc-v2-v2-3-9fc9186856c2@nxp.com>
+ <ZhQxu8LVNKf5QDLm@pluto>
+In-Reply-To: <ZhQxu8LVNKf5QDLm@pluto>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|PAXPR04MB8989:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ oL+kmvzgLhT/mB64mS3c4diCGyeSeHT8qTQTurPAtr0h1tIlNFz5rVuLh7kNGgu07Q1ZvIRXXkojhQpULRwardOhzomj524C8TuxnFDYGgYWr5eF6bZxTOp43er1Hjkm+oVVsnZsGBqaNxaYKd6Mk0EPjGMcFwnEYfBXFlVuwCKd9htjz9A/9pDL185rJ+Avd104Bk4iIpsKlDwQ4qd1DjKr4yjnRnE6hHI189s9mFzUJoFWR3Y7UYv6zimEu21bvPDzetVFiyfyH8FwoAzGBmaq9YY/nqvHs8eAPH2K6ekLbgy0hrs6A4n+yiao3X6Z1q2epGDyV63HqRzqZt24frhZTCt6jKxsyjKlHKq74I7R9AVGFG00Bs7/7gOfV2XjS/ZRLljb6s3tKDzsUNEOwHTfTSnr3bBnJ/OjgprwN2lDMW/Vf88ir46jy3K80AnJtXH6SwgPpUzhi2Vc5AAuxmDIlEP38tJ0GIVnXWP+sCEv9HsIHSJPJXE7bU9OZNn1Rm/GhiqiMfogccCcoIHJ1oMFePIeniAwU9Vz4U2ztFonc1vMIIjgNKKqK12ncBduJf5T/ngm1vKT2cM2bMY0CuVXRcP/o18CaQuSe1TkuPY=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(7416005)(376005)(1800799015);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?Af+T0DwUBldTKxXidHZOfHUCo/7MC2UCd2VaeiJHIKVf5QAfxex1Inar6ba7?=
+ =?us-ascii?Q?YgZl0uTazNE2sHELFnSIsAS/KrHo6oktU+mtkSiBPp5wfy9kYOpixO33ShUy?=
+ =?us-ascii?Q?+UqqQ6UbD1FQ6YCl+FMFMBJCHyQwPScL6AR2hRz6lN+95ld5RHPwHqXZAvFl?=
+ =?us-ascii?Q?W7IgaOPwW6tOXhSDwi76fE4jdm726wCQdZVRfZ1uHVFIoa1SMiTE5kfu5La3?=
+ =?us-ascii?Q?m5FVoJJoVfa9U74YKJGAPjyuAU6tAXAf4wVOCfdIa9QALW++eoZ4/IE6fpNT?=
+ =?us-ascii?Q?iUV8pl6Ycqqlo5LOXGt2YCH/Sw9iBB7/tOvAjzyQHgYS3llLzb1/OXxjqHmQ?=
+ =?us-ascii?Q?r7el6rTDwy9DVWiuBBEX1HtFU6wy3KyfW5p4IyIqXEkOnzuwHWTNkuHf4+gW?=
+ =?us-ascii?Q?Veul3Kwc9+ELsbjwtJJM5LtLtpBY0zB0lDygbq8XQdSeFpp+o/cniaxVxbym?=
+ =?us-ascii?Q?s9B5p8PnzEqMrqCe/yaML88t439Eoh9L73JjV6l4PsoSo6eKVnJjI9l6LRiw?=
+ =?us-ascii?Q?mNyX+EhDg9LKtfiKmmXQTxji8m2vvEwT54f+38PprFX+uvqqxTCSkxEJi+Zh?=
+ =?us-ascii?Q?Uu1vKARaWapK1gRScyvIv5KmmEfrGorjzcIZH8Ou+7dXK+YyTmchhvHNNjIe?=
+ =?us-ascii?Q?bM1XPUtD3Gtq3ynEagwNwAdFNrSL6iXyrCgKoX0FvXyEMuoKi+yePBy2govl?=
+ =?us-ascii?Q?EPdkGggIJsMUMXTpv4Zpty19Qtovh33n0L9sUcYETmjJUvz7Q7r1x+flq4kU?=
+ =?us-ascii?Q?jvhxuDMBWnOCKnPONUbaNcisR8C6zqv1wbE1L4QLvwpnXOHs76mIZcPJ+Ux/?=
+ =?us-ascii?Q?xtrDvwb1XdO6eBzhMjr0N5P6ai+0e2isv7+ghOYz4iTZ0DKOWn8NgbIX+wrA?=
+ =?us-ascii?Q?wzwQ3tzMU+V61T6PQZqVyS6tWkzKcDK19/94QERL9wCsrgVmH0aHnzK9cphJ?=
+ =?us-ascii?Q?wbYifhZdpN+9Y1S8YAVE6we97HSwzP24zEkqO8TaEPjGDAl10s1EhIAFyrrz?=
+ =?us-ascii?Q?nswYaPX0GrhtthNlOlZIDfHwNvRi9Gip28smez8dNiq1aKlh6IYo8iTv0szJ?=
+ =?us-ascii?Q?1sFJqN8ZoEyI/O57H2BkkmSolyYFh5ahVeg/83RgLmzqCJreLiN7s2rvtN3A?=
+ =?us-ascii?Q?hRFw6TGCi8MYPOsvQc3TXP3UUS4JPYm20GdDN8iKwDDxMzmjzwHXYD2TmR0I?=
+ =?us-ascii?Q?700qQYq8H551aM8IKmcUyII16sb/bHXk+do4FPxj0Y912sTGilgHAfnu31jn?=
+ =?us-ascii?Q?KXK0Ddqo1z8LZqXIYxd82BPB3RHqeXzMvnETbA4wh+t3Mvnn7Wk5sOpyDm5f?=
+ =?us-ascii?Q?xj+xEsT32pilcXxL68SF4clI4YAUhtEt5YNQL1v72wG5h6fGMQ8uZ330eKOF?=
+ =?us-ascii?Q?mMo6Vc5ZO3SGhRlDjBTh44SaY23dk0pDUM9A3tJWP9E7e0udXpAqv6BWKHPZ?=
+ =?us-ascii?Q?/OuBQLnnBF4/c1eOfRqVihnxtqNsg7UAeejtnPAH7ebW2FxTmxxHuN35ohWZ?=
+ =?us-ascii?Q?y0kO6ASbFbZfJe0WaDQfo+P59NN8vh0eKPDCKJjtJMxPbipjiLt2E7k4irnX?=
+ =?us-ascii?Q?QcJWzTmQCVYMxZDHbAo=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240220111044.133776-1-herve.codina@bootlin.com>
- <20240220111044.133776-3-herve.codina@bootlin.com> <CAGETcx_xkVJn1NvCmztAv13N-7ZGqZ+KfkFg-Xn__skEBiYtHw@mail.gmail.com>
- <20240221095137.616d2aaa@bootlin.com> <CAGETcx9eFuqwJTSrGz9Or8nfHCN3=kNO5KpXwdUxQ4Z7FxHZug@mail.gmail.com>
- <20240321125904.3ed99eb5@bootlin.com> <CAGETcx-oMbjtgW-sqzP6GPuM9BwgQrYJawpui3QMf1A-ETHpvg@mail.gmail.com>
- <20240408164021.6f13bf66@bootlin.com>
-In-Reply-To: <20240408164021.6f13bf66@bootlin.com>
-From: Saravana Kannan <saravanak@google.com>
-Date: Mon, 8 Apr 2024 16:17:16 -0700
-Message-ID: <CAGETcx_YjRzA0joyESsgk=XJKBqqFD7YZeSwKu1a1deo-EyeKw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] of: property: fw_devlink: Fix links to supplier when
- created from phandles
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Shawn Guo <shawnguo@kernel.org>, Wolfram Sang <wsa@kernel.org>, Mark Brown <broonie@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, stable@vger.kernel.org, 
-	Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c6b9aaa4-19cb-4d43-cf10-08dc58248bf2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Apr 2024 23:35:16.9567
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: doVA2fuGimEaQe7A1T3FbrzAPH6+xYnAio1CgJqK0Cl2Q597tpx6UzbqXwnsSEgKhwisWTpXGNjFs7F4BPrM5Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8989
 
-On Mon, Apr 8, 2024 at 7:40=E2=80=AFAM Herve Codina <herve.codina@bootlin.c=
-om> wrote:
->
-> Hi Sarava,
->
-> On Fri, 22 Mar 2024 19:00:03 -0700
-> Saravana Kannan <saravanak@google.com> wrote:
->
-> > On Thu, Mar 21, 2024 at 4:59=E2=80=AFAM Herve Codina <herve.codina@boot=
-lin.com> wrote:
-> > >
-> > > Hi Saravana,
-> > >
-> > > On Mon, 4 Mar 2024 23:14:13 -0800
-> > > Saravana Kannan <saravanak@google.com> wrote:
-> > >
-> > > ...
-> > > >
-> > > > Thanks for the example. Let me think about this a bit on how we cou=
-ld
-> > > > fix this and get back to you.
-> > > >
-> > > > Please do ping me if I don't get back in a week or two.
-> > > >
-> > >
-> > > This is my ping.
-> > > Do you move forward ?
+> Subject: Re: [PATCH v2 3/6] firmware: arm_scmi: add initial support for i=
+.MX
+> BBM protocol
+>=20
+> On Fri, Apr 05, 2024 at 08:39:25PM +0800, Peng Fan (OSS) wrote:
+> > From: Peng Fan <peng.fan@nxp.com>
 > >
-> > Thanks for the ping. I thought about it a bit. I think the right fix
-> > it to undo the overlay fix I had suggested to Geert and then make the
-> > overlay code call __fw_devlink_pickup_dangling_consumers() on the
-> > parent device of the top level overlay nodes that get added that don't
-> > have a device created for them.
+> > The i.MX BBM protocol is for managing i.MX BBM module which provides
+> > RTC and BUTTON feature.
 > >
-> > I'll try to wrap up a patch for this on Monday. But if you want to
-> > take a shot at this, that's ok too.
-> >
->
-> I didn't see anything on this topic. Maybe I missed the related modificat=
-ions.
-> Did you move forward on that patch ?
 
-Give this a shot and let me know please.
-https://lore.kernel.org/lkml/20240408231310.325451-1-saravanak@google.com/T=
-/#m40e641cb2b1c0cf5ad1af1021f2daca63faeb427
+.....
+> > +#include "notify.h"
+> > +
+> > +#define SCMI_PROTOCOL_SUPPORTED_VERSION		0x10000
+> > +
+>=20
+> I appreciate that you added versioning but I think a bit of documentation
+> about what the protocol and its comamnds purpose is still lacking, as ask=
+ed
+> by Sudeep previously
 
--Saravana
+Sorry for missing the previous comment. Will add some comments in the file.
+
+>=20
+> 	https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%
+> 2Flore.kernel.org%2Flinux-arm-
+> kernel%2FZeGtoJ7ztSe8Kg8R%40bogus%2F%23t&data=3D05%7C02%7Cpeng.fa
+> n%40nxp.com%7C37b12c01b51f4329e9e308dc57f66153%7C686ea1d3bc2b
+> 4c6fa92cd99c5c301635%7C0%7C0%7C638481962901820964%7CUnknown
+> %7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1ha
+> WwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&sdata=3Dd2XRugSYyiFuUnE5R2Oz6p
+> xmXBaPC9lZ%2Bb%2FcMBuXeKo%3D&reserved=3D0
+>=20
+> > +enum scmi_imx_bbm_protocol_cmd {
+> > +	IMX_BBM_GPR_SET =3D 0x3,
+
+....
+> > +	cfg->flags =3D 0;
+> > +	cfg->value_low =3D lower_32_bits(sec);
+> > +	cfg->value_high =3D upper_32_bits(sec);
+>=20
+> Sorry I may have not been clear on this, but when I mentioned lower/upper
+> helpers I did not mean that they solved ALSO the endianity problem, so I
+> suppose that after having chunked your 64bits value in 2, you still want =
+to
+> transmit it as 2 LE quantity....this is generally the expectation for SCM=
+I
+> payloads...in this case any available documentation about the expected
+> command layout would have helped...
+
+Got it , will fix in v3.
+
+>=20
+> > +
+> > +	ret =3D ph->xops->do_xfer(ph, t);
+> > +
+> > +	ph->xops->xfer_put(ph, t);
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +static int scmi_imx_bbm_rtc_time_get(const struct scmi_protocol_handle
+> *ph,
+> > +				     u32 rtc_id, u64 *value)
+> > +{
+> > +	struct scmi_imx_bbm_info *pi =3D ph->get_priv(ph);
+> > +	struct scmi_imx_bbm_get_time *cfg;
+> > +	struct scmi_xfer *t;
+> > +	int ret;
+> > +
+> > +	if (rtc_id >=3D pi->nr_rtc)
+> > +		return -EINVAL;
+> > +
+> > +	ret =3D ph->xops->xfer_get_init(ph, IMX_BBM_RTC_TIME_GET,
+> sizeof(*cfg),
+> > +				      sizeof(u64), &t);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	cfg =3D t->tx.buf;
+> > +	cfg->id =3D cpu_to_le32(rtc_id);
+> > +	cfg->flags =3D 0;
+> > +
+> > +	ret =3D ph->xops->do_xfer(ph, t);
+> > +	if (!ret)
+> > +		*value =3D get_unaligned_le64(t->rx.buf);
+> > +
+> > +	ph->xops->xfer_put(ph, t);
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +static int scmi_imx_bbm_rtc_alarm_set(const struct scmi_protocol_handl=
+e
+> *ph,
+> > +				      u32 rtc_id, u64 sec)
+> > +{
+> > +	struct scmi_imx_bbm_info *pi =3D ph->get_priv(ph);
+> > +	struct scmi_imx_bbm_alarm_time *cfg;
+> > +	struct scmi_xfer *t;
+> > +	int ret;
+> > +
+> > +	if (rtc_id >=3D pi->nr_rtc)
+> > +		return -EINVAL;
+> > +
+> > +	ret =3D ph->xops->xfer_get_init(ph, IMX_BBM_RTC_ALARM_SET,
+> sizeof(*cfg), 0, &t);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	cfg =3D t->tx.buf;
+> > +	cfg->id =3D cpu_to_le32(rtc_id);
+> > +	cfg->flags =3D SCMI_IMX_BBM_RTC_ALARM_ENABLE_FLAG;
+> > +	cfg->value_low =3D lower_32_bits(sec);
+> > +	cfg->value_high =3D upper_32_bits(sec);
+>=20
+> Same.
+
+Fix in V3.
+
+Thanks,
+Peng
+>=20
+> Thanks,
+> Cristian
 
