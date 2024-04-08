@@ -1,122 +1,104 @@
-Return-Path: <devicetree+bounces-57130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D5B289BE77
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 13:53:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63F2689BE83
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 13:58:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0F101F20944
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 11:53:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E21F1C2165B
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 11:58:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 807CE6A359;
-	Mon,  8 Apr 2024 11:52:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9619B6A029;
+	Mon,  8 Apr 2024 11:58:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b="CBmEiw7h"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZStLXAEW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95BFC6A328;
-	Mon,  8 Apr 2024 11:52:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.181.215.36
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43F5F69D3C
+	for <devicetree@vger.kernel.org>; Mon,  8 Apr 2024 11:58:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712577171; cv=none; b=J8y9BFtTLjCI6iRC3LAvs8qKs8xHP4nTFfMGdQ4wt8qiMJ+7DQkBfcw3vEqtz7wPssMHtW3PeFcxVCvuAu6M9AqyZYE8UwDnMwnF9Il8x3pj+PuJWmC0EE712wpVmqTG1uPHD7whquTbtbAwWuGonnhP+rgWBxktlRym8tfHqMQ=
+	t=1712577528; cv=none; b=RwMRMcPLvDBao+CsHtyxFQqzj53vVB9mcstc6aulzv0dZ95t/kmB7dVNWc1Q4bQ2kGbOKVxhj2USxKH/TPvyP+d3voZSE9WQDquF7vVJlOo+ewxZgxSRHUygXDiJ42f5jF+XGBXhdrW7PjC4RkmPm2iudTFkrCYU1KpNYu5qYYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712577171; c=relaxed/simple;
-	bh=XnOP/Yo4Ki+3xP7wAvLN+cYpAm2XEbcV9ngJZcqHHvI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ibdCNobrC7Mal6m3yEc3oA18w5+DYoSQ04ut631+PellM9xa6GZd8KCjVBL70oHz9aW36YImLa8P9+RVnK2dJKZvoFXiaxaly4flHzdsDQHOnlj3bPNH39ghQG7F/i9Dy+z/ktQWcBcuH2oIqxO/ii8DnVXmzF6sTe1pLd3g3ZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz; spf=pass smtp.mailfrom=xff.cz; dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b=CBmEiw7h; arc=none smtp.client-ip=195.181.215.36
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xff.cz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-	t=1712577166; bh=XnOP/Yo4Ki+3xP7wAvLN+cYpAm2XEbcV9ngJZcqHHvI=;
-	h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
-	b=CBmEiw7het+I/nBCvFK1K120++eabgAV16YDUplp8qcAiOsrMvqf0YorPW5pTS/4i
-	 uNUY+cAbyDvjkfxkP/lXsLxXnUpOSTNa3il3AHG77S3w+TCIGF4JXJ0Ihu8A69d6y9
-	 sSAUJ9UA0WMj+kUn3Lydae0Ecl+Ng3Yee15nF7Kg=
-Date: Mon, 8 Apr 2024 13:52:46 +0200
-From: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Pavel Machek <pavel@ucw.cz>, phone-devel@vger.kernel.org, 
-	kernel list <linux-kernel@vger.kernel.org>, fiona.klute@gmx.de, martijn@brixit.nl, samuel@sholland.org, 
-	heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org, linux-usb@vger.kernel.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
-Subject: Re: [PATCHv3 1/2] dt-bindings: usb: typec: anx7688: start a binding
- document
-Message-ID: <e6vvuttix5k5fioy7q44ick5wj6u5gleh7mht36s4zjjcym7vy@bziejyohtc4b>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Pavel Machek <pavel@ucw.cz>, phone-devel@vger.kernel.org, 
-	kernel list <linux-kernel@vger.kernel.org>, fiona.klute@gmx.de, martijn@brixit.nl, samuel@sholland.org, 
-	heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org, linux-usb@vger.kernel.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <ZhPMHdt6r/4D99Zg@duo.ucw.cz>
- <ab9affc8-de68-4ec9-bdfc-02131191bc3a@linaro.org>
- <ZhPTTxI4oTF3pgrk@duo.ucw.cz>
- <e7841ad2-fa3d-442d-804d-51f12e05c234@linaro.org>
+	s=arc-20240116; t=1712577528; c=relaxed/simple;
+	bh=xzHQGTd32FoflvRM34VbpEwFIBLa4xul4cb+b8q/RCQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eMyvVAVqAsJXpR7DiRK52eGfj5K8BjTrM2Pzm/HwJX9WSYtCtuK/N2aPvQsYUti3QVrKT7hOBHyZ8Lu0PcKt6E7fd4augxdaFXEwmJtYYUBdTCAniRLRl8Hz9hJdyF7JN0a24XCNxPJnpnmm3qa8bLt8eGaRRPwvDjO+ra+yGm8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZStLXAEW; arc=none smtp.client-ip=209.85.215.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-58962bf3f89so846467a12.0
+        for <devicetree@vger.kernel.org>; Mon, 08 Apr 2024 04:58:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712577526; x=1713182326; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xzHQGTd32FoflvRM34VbpEwFIBLa4xul4cb+b8q/RCQ=;
+        b=ZStLXAEWnC8N08+3ryB78L9v2bzE6xlOUK8E9NRCoC2AoulSAEIjy3YFW3l9qV+XNI
+         LiGmsyJziwU52hpHQPfuLl60SrDxXYdff+SNqnS/32IPw1I72Nf91S8MCr/2Dtc+vHQo
+         apGphB9X9M9MYBfjQj6JTeGUJW+sXUzzECNr+T324W2uOH5klXCKd/8dJKqLXhNK10Hj
+         316D+e0GP5W8GLo/RG1LgEXdBxablB9jqiFTvAuU+OQsmf7m0487mo6iz+/kHMtm42tL
+         qzRWyG9g8UFz7BaSO6u2CgKUNl09dt/CK1gzm3XIPY1o0jrEMqYzTLlwJ5c0J+mqdhIQ
+         gItA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712577526; x=1713182326;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xzHQGTd32FoflvRM34VbpEwFIBLa4xul4cb+b8q/RCQ=;
+        b=jGoGW04wJazTVKEj21RcppeVG0YmFmvaYKha9ajE6TKkhxu+ELFyj+zyqeJtxWrX1y
+         /ieIVrRUf9DnMG0r3NQEcyrNF+jheKXMp+T6Pc2gfgWfi39UKapfJbDVw+P/DWv3J/UG
+         3dUEYFIX+psoWeKPwe09wMhZC38r28c6seorDdGztfI554bQ98kbvKpjqikc+iHEAcPd
+         rQ5l19SnEIJ2HNUD9A4eSzSNbCS35sJcLZwNKovrwd90KF/H1FVh7cDVmTIiiRMVVAXh
+         UPYAuit8oNb9E1Eo9IyB1GO4uCmnm0WRutBnqaGSbmBvRV1nXYeL7TzPjE1Yz6Xj7uED
+         OoCw==
+X-Forwarded-Encrypted: i=1; AJvYcCUR0mj61xw/o2L3475upL9A74mJi7hlOpmXqWHUzp0CKfarAwgw8ND7J/4ESeH9rn9HeTiPLYehhrSRnqn9QDe+Ccuqu3sCp2UxwQ==
+X-Gm-Message-State: AOJu0YzSqSZx4TS9ZeJO3r+YQCbKqY88WQEuzab7TDf8+9TJncWoIKxm
+	SmNaqwd7XyihxgPAAHpMtPcYb6LcNq3G2WC/aOwyBEs4UMtY/UWTxgOR3BuLbBg0vpvkIQ7vlJ3
+	tyBuPN6lx0Bzp+MaLJGlAz9ife04=
+X-Google-Smtp-Source: AGHT+IFLiwBkC5PCufW5wtR9LpBxDKh9hoEGuEMhlrNQ6Ixb2FgiAjG9LGFBz4A6OH4QxCDrQJtXCIt8//A6m6J4A8g=
+X-Received: by 2002:a05:6a21:3393:b0:1a7:9245:71f2 with SMTP id
+ yy19-20020a056a21339300b001a7924571f2mr582308pzb.0.1712577526525; Mon, 08 Apr
+ 2024 04:58:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e7841ad2-fa3d-442d-804d-51f12e05c234@linaro.org>
+References: <20240404022943.528293-1-festevam@gmail.com> <714fa88b-2abd-4485-bacf-b8dada683d08@kernel.org>
+ <CAOMZO5A7yiYdeOjv6BabDSNKk4Gp=n1qwJP0seFvmjYYgjvhOA@mail.gmail.com> <c6edf937-dd58-44f7-b620-09dd452f6921@kernel.org>
+In-Reply-To: <c6edf937-dd58-44f7-b620-09dd452f6921@kernel.org>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Mon, 8 Apr 2024 08:58:34 -0300
+Message-ID: <CAOMZO5BxdE=Ry9v__inP8+WsKU1g5c2pjqQc3EDW1FUy+3ff+w@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: extcon: ptn5150: Document the 'port' node
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: cw00.choi@samsung.com, myungjoo.ham@samsung.com, robh@kernel.org, 
+	conor+dt@kernel.org, devicetree@vger.kernel.org, marex@denx.de, 
+	Fabio Estevam <festevam@denx.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Apr 08, 2024 at 01:24:03PM GMT, Krzysztof Kozlowski wrote:
-> On 08/04/2024 13:21, Pavel Machek wrote:
-> > Hi!
-> > 
-> >>> Add binding for anx7688 usb type-c bridge. I don't have a datasheet,
-> >>> but I did best I could.
-> >>>
-> >>> Signed-off-by: Pavel Machek <pavel@ucw.cz>
-> >>
-> >> ...
-> >>
-> >>> +  cabledet-gpios:
-> >>> +    maxItems: 1
-> >>> +    description: GPIO controlling CABLE_DET (C3) pin.
-> >>> +
-> >>> +  avdd10-supply:
-> >>> +    description: 1.0V power supply going to AVDD10 (A4, ...) pins
-> >>> +
-> >>> +  dvdd10-supply:
-> >>> +    description: 1.0V power supply going to DVDD10 (D6, ...) pins
-> >>> +
-> >>> +  avdd18-supply:
-> >>> +    description: 1.8V power supply going to AVDD18 (E3, ...) pins
-> >>> +
-> >>> +  dvdd18-supply:
-> >>> +    description: 1.8V power supply going to DVDD18 (G4, ...) pins
-> >>> +
-> >>> +  avdd33-supply:
-> >>> +    description: 3.3V power supply going to AVDD33 (C4, ...) pins
-> >>> +
-> >>> +  i2c-supply: true
-> >>> +  vconn-supply: true
-> >>
-> >> There are no such supplies like i2c and vconn on the schematics.
-> >>
-> >> I think this represents some other part of component which was added
-> >> here only for convenience.
-> > 
-> > Can you give me pointer to documentation you are looking at?
-> 
-> The schematics you linked in the document at the beginning. Page 13. Do
-> you see these pins there? I saw only VCONN1_EN, but that's not a supply.
+On Sat, Apr 6, 2024 at 8:26=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.org=
+> wrote:
 
-The supply is U1308.
+> > Would it be OK if I send a v2 without the USB C connector description
+> > and address your other comments?
+>
+> No, because I think this should be the connector. Look at datasheet of
+> ptn5150 and ptn5110. Aren't both describing similar hardware?
+>
+> Instead adding some sort of hacked-hardware-representation, please
+> investigate why your previous commit broke things.
 
-regards,
-	o.
+Yes, you are right.
 
-> Best regards,
-> Krzysztof
-> 
+I don't have access to any board with a PTN5150, so I can't debug it myself=
+.
 
