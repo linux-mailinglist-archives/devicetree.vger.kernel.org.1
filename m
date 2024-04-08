@@ -1,86 +1,152 @@
-Return-Path: <devicetree+bounces-57177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BA8B89C606
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 16:03:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C58F89C66C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 16:10:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADE5A1C21C4C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 14:03:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 63F751C226E1
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 14:10:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B8B57F7C6;
-	Mon,  8 Apr 2024 14:03:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43119839EB;
+	Mon,  8 Apr 2024 14:10:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="KK72Uy1H"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UE7EPjCl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 877547F7C3;
-	Mon,  8 Apr 2024 14:03:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10EFF82D62;
+	Mon,  8 Apr 2024 14:10:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712585001; cv=none; b=HyepULObTj13uvIoiz718H+BMLAzhxpQsH0X/6qfZmLqg9yyxeJcTq3tYNCS+OKHpalliVlolsfp2yWkg6f/oUDnb3TDkUrGdrKaLHojt2wM+2leiO36EYTB+TTWqlJBB0E20H6z6vPUHphmJOAcbQsujq9HSUEZx1EOQFXF6/A=
+	t=1712585435; cv=none; b=KauFk3My9C7NbaarVEyKTUsorsLs8S23V5pn/0+5y4DXHfMxmjbYnvvqrEl/zAHfZiZgPuAp33yY5CZgRdsHtIvOrEFohtI4zqLk/vWkFken5drB6vWWH4sBd+80PvV/J2kU4kaXVpYu/WIe7+ql5E7N/s7LwhD75XZ+Xo3Blc0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712585001; c=relaxed/simple;
-	bh=lXPStgF7sxoBDX5U9n8SoXSGZmv5ZCTt7SqfowZSqp0=;
+	s=arc-20240116; t=1712585435; c=relaxed/simple;
+	bh=i/IeI3uOGzEG5noySiGDDBuECVA5WT3ZW1ulNIYuqyw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tjw+iuOIwkoToOvqPi/WoZvy8syF1oE16owCh3NISXTnGKio2TheuYPDLy/i9xrXVsdleZmsyBDdJPhBQwsNKwX99km4uTDPE+QwLEyEXkuMQc6hMVlLEo/zJo7zScExrwBIvJ73H264rcSwu8umaVQRtJNFhLVUBsA1DZdulo8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=KK72Uy1H; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=1qOq8XoQxyzzDTfs8K+aQZKQnMgZY9GLpqbLu4JmADs=; b=KK72Uy1HmQJkO5LLJcSkB9FfF5
-	aJ5Vj48TarjfqiVcw0bFbV01ebaIksfSldas+x19/+tViz6tQzGGQIgrSZ4JrgMPr3E/OU8jlN+39
-	ZzhdrG1xfRFJNEsaPT/GdP1GcS6JUM+ljNH33QPm7SMJD6mc08MKsnZMFXkCBF8xtcwY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rtpaL-00CUtB-4d; Mon, 08 Apr 2024 16:02:57 +0200
-Date: Mon, 8 Apr 2024 16:02:57 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=UUg5kmc8Oq6fS9EQiarGFIxgFKEYBINACv+i4mD3eSoOA7Y5IWzzu561DVoakWLRYDnnTJa+ynKeACfF8xdW1kNE6SVNbrCTJ2vg+iRPxeWgwbMxMhhqwpsWhzrMxRDxgZTJ16w82To6a63es7/mKFcESwIh7MxNCtODDEe0Dk4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UE7EPjCl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 748F1C433C7;
+	Mon,  8 Apr 2024 14:10:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712585434;
+	bh=i/IeI3uOGzEG5noySiGDDBuECVA5WT3ZW1ulNIYuqyw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UE7EPjClC2bkA0lXIlpi8pb8hs0uR5e4DiMzoppFcNv3/+dd+Vj1dPFKKuAuQ8IlM
+	 hWzrlBJ5TWVobqIHaX+NUgDSCDYy5rv6BBrbHNu/pswbLWnR+daM5eKukG6KRQOWoe
+	 oTmrD3tj9Tb6vstX+XxLoCB1qFYARjNwUnBDlnJ9yOzW/Fu7355E6wNck+Rv4E+VZg
+	 73TNZoVg7cFwSBzkVD38q2FC5cuG48A8maa7ap1MbKgGKQneG+eyE8t6/9/1AzjTI6
+	 eCKLNIwJTF48B5R7944m5lbK0vYSH4Y7CaejhZZDOlfEQXUTRpbP5Rc8fAcnfjjYiR
+	 UU2BqWdruPVWw==
+Date: Mon, 8 Apr 2024 15:10:28 +0100
+From: Mark Brown <broonie@kernel.org>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	David Wu <david.wu@rock-chips.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: net: rockchip-dwmac: use rgmii-id in example
-Message-ID: <74c77199-a885-406f-8af0-477956beae59@lunn.ch>
-References: <20240408-rockchip-dwmac-rgmii-id-binding-v1-1-3886d1a8bd54@pengutronix.de>
+	Vaishnav Achath <vaishnav.a@ti.com>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Rob Herring <robh@kernel.org>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mips@vger.kernel.org,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+Subject: Re: [PATCH v2 05/11] spi: cadence-qspi: add FIFO depth detection
+ quirk
+Message-ID: <551bea0a-1c9e-4e04-87db-c643fdaee85e@sirena.org.uk>
+References: <20240405-cdns-qspi-mbly-v2-0-956679866d6d@bootlin.com>
+ <20240405-cdns-qspi-mbly-v2-5-956679866d6d@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="97Qcf0iyghKpwfU3"
 Content-Disposition: inline
-In-Reply-To: <20240408-rockchip-dwmac-rgmii-id-binding-v1-1-3886d1a8bd54@pengutronix.de>
+In-Reply-To: <20240405-cdns-qspi-mbly-v2-5-956679866d6d@bootlin.com>
+X-Cookie: Drive defensively.  Buy a tank.
 
-On Mon, Apr 08, 2024 at 08:44:10AM +0200, Sascha Hauer wrote:
-> The dwmac supports specifying the RGMII clock delays, but it is
-> recommended to use rgmii-id and to specify the delays in the phy node
-> instead [1].
-> 
-> Change the example accordingly to no longer promote this undesired
-> setting.
-> 
-> [1] https://lore.kernel.org/all/1a0de7b4-f0f7-4080-ae48-f5ffa9e76be3@lunn.ch/
-> 
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+--97Qcf0iyghKpwfU3
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-    Andrew
+On Fri, Apr 05, 2024 at 05:02:15PM +0200, Th=E9o Lebrun wrote:
+
+> Use hardware ability to read the FIFO depth thanks to
+> CQSPI_REG_SRAMPARTITION that is partially read-only. Keep current
+> behavior identical for existing compatibles.
+
+The behaviour is not identical here - we now unconditionally probe the
+FIFO depth on all hardware, the difference with the quirk is that we
+will ignore any DT property specifying the depth.
+
+> -	if (of_property_read_u32(np, "cdns,fifo-depth", &cqspi->fifo_depth)) {
+> +	if (!(ddata && ddata->quirks & CQSPI_DETECT_FIFO_DEPTH) &&
+> +	    of_property_read_u32(np, "cdns,fifo-depth", &cqspi->fifo_depth)) {
+>  		dev_err(dev, "couldn't determine fifo-depth\n");
+
+It's not obvious from just the code that we do handle having a FIFO
+depth property and detection in the detection code, at least a comment
+would be good.
+
+> +static void cqspi_controller_detect_fifo_depth(struct cqspi_st *cqspi)
+> +{
+> +	const struct cqspi_driver_platdata *ddata =3D cqspi->ddata;
+> +	struct device *dev =3D &cqspi->pdev->dev;
+> +	u32 reg, fifo_depth;
+> +
+> +	/*
+> +	 * Bits N-1:0 are writable while bits 31:N are read as zero, with 2^N
+> +	 * the FIFO depth.
+> +	 */
+> +	writel(U32_MAX, cqspi->iobase + CQSPI_REG_SRAMPARTITION);
+> +	reg =3D readl(cqspi->iobase + CQSPI_REG_SRAMPARTITION);
+> +	fifo_depth =3D reg + 1;
+> +
+> +	if (ddata && ddata->quirks & CQSPI_DETECT_FIFO_DEPTH) {
+> +		cqspi->fifo_depth =3D fifo_depth;
+> +		dev_dbg(dev, "using FIFO depth of %u\n", fifo_depth);
+> +	} else if (fifo_depth !=3D cqspi->fifo_depth) {
+> +		dev_warn(dev, "detected FIFO depth (%u) different from config (%u)\n",
+> +			 fifo_depth, cqspi->fifo_depth);
+> +	}
+
+It's not obvious to me that we should ignore an explicitly specified
+property if the quirk is present - if anything I'd more expect to see
+the new warning in that case, possibly with a higher severity if we're
+saying that the quirk means we're more confident that the data reported
+by the hardware is reliable.  I think what I'd expect is that we always
+use an explicitly specified depth (hopefully the user was specifying it
+for a reason?).
+
+Pulling all the above together can we just drop the quirk and always do
+the detection, or leave the quirk as just controlling the severity with
+which we log any difference between detected and explicitly configured
+depths?
+
+--97Qcf0iyghKpwfU3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmYT+tMACgkQJNaLcl1U
+h9BRWwf+Nn0TIUbAm2J8N2ADxHV5QvboVoCubMNpoS/qRWdNjo5kgnkbDgAqrTZU
+Ms8Fp3rg41VV9aJw+eP1lypgpPLunatteZi6o4FzmEn5XL1s0K6+fkZ5MKkgBfhW
+H03cNHSc9lhh4CJsYZy9naA+M/yaJC1c6Cjr7pW+h3EQfN2voDa2JG1cbEA1JB7q
+PBKJTq7l7s5gpG/y49WdI4A7c+O4U0Zab36uOffPEypTE1drcZNPWZhJn8Yngv5b
+lzcQzrF6vTaAqFwYG05pCLM8Fmh59SWLoNPseI7RmN+y0VGyHUdrfxVGVreApgYn
+mZo0Eifdsts/a/IPS7iZHNlxo49wtg==
+=xaan
+-----END PGP SIGNATURE-----
+
+--97Qcf0iyghKpwfU3--
 
