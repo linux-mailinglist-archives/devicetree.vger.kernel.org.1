@@ -1,211 +1,96 @@
-Return-Path: <devicetree+bounces-57157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57158-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 586C889C0F4
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 15:16:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D24889C21D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 15:26:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C20F1C21B6C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 13:16:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C0FBE1F22ED3
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 13:26:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 888D67BB0F;
-	Mon,  8 Apr 2024 13:11:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="TYiyMgXw"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 054AA2E405;
+	Mon,  8 Apr 2024 13:23:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A5E074BE8;
-	Mon,  8 Apr 2024 13:11:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5502C7E0E4;
+	Mon,  8 Apr 2024 13:23:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712581867; cv=none; b=tJc7k/sscsZmQCmB9pJ3x+tUVwlowV6d/STuoua71wkTyM4U7r2KUYucnzX7TViVEyrz+kZ+3ZmTHo+QAd9XDVUn3/rPCu+riddPtqL93tBA4Z7+tNOOHLlx3uUz7U5jLbgCfl1KZ7y2NKeVxzPNDlu04Ne7U9Y9KsbIjB6VRpg=
+	t=1712582589; cv=none; b=JkHBmx2/etx6B3xz6zKKiRSPC0bgWY4HTOy4zlMYf+8WwEToi0Z1ffiP96pACS142g00JvbwGbGLz1hILGw4PMDY5eORMjKHXtrRimiWLw3yKWzG4C+Ziku1bnfHUc37N28L7S8sniiuvbtDYQVLv8SFKkjo1Lwskl9t7pgTo5Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712581867; c=relaxed/simple;
-	bh=zV6jZJfotqWfBpmLY5Cg4KAuWzuvUJvpwq8D8Ks3bGo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=haYmxfCRulCTYbXdai9qX4mi/mDTaL8f60He5h15mpbQjU7SFSi5NVQ7tnxy8ygsBOoe9ZbjM2g+JUkvyTT0f1VRFMUo49RfDBE4A/J0xKquKrv97tvGy1+UwZ5GTl1pcrHaccNuOmV12oMfzveLoJSzzlJ+8vjJX6dl9INv3fo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=TYiyMgXw; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 6A7F71BF209;
-	Mon,  8 Apr 2024 13:11:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1712581862;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=irIHF5I8mXyLCKw8dni+/EZgNZOMISZkd0b9zPdDuaU=;
-	b=TYiyMgXw+kQUQbK4L36ZVzZLv2VElfGQi5RM0DQOm15l7UTgnBnIa2WeyMU64WSAuJk3Hg
-	CNMMw3B0XKX+E9glwfXqm0qIbnWAoc95Ny5x9NI8vCCv8xmSmGkyu9RgpHJWDTIeNIUYGR
-	vCx6aUkoYFE/V4erY7lNKihCMVCNJcx88NGbr7t0aif/OiDlpaRqjJ6fjbrAZZJs4PXK/N
-	El0IMjmjarmPGeFprPCSVP9ppKT+1ikNUOiLQ+5FkfQf2enZx+VhvkG9Vxju0XkMvKz5xJ
-	a8ZJlglJfwPz3UzatjI5SXuHUCy8OF1MlrvbLMTZlW//jpCc2Dxo6QuRFQH0zw==
-Date: Mon, 8 Apr 2024 15:10:57 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Simon Glass <sjg@chromium.org>
-Cc: devicetree@vger.kernel.org, Michael Walle <mwalle@kernel.org>, U-Boot
- Mailing List <u-boot@lists.denx.de>, Tom Rini <trini@konsulko.com>, Rob
- Herring <robh@kernel.org>, linux-mtd@lists.infradead.org, Conor Dooley
- <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>, Richard Weinberger <richard@nod.at>, Vignesh
- Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v10 1/2] dt-bindings: mtd: fixed-partitions: Add
- alignment properties
-Message-ID: <20240408151057.1d1fcfb3@xps-13>
-In-Reply-To: <20240326200645.1182803-1-sjg@chromium.org>
-References: <20240326200645.1182803-1-sjg@chromium.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1712582589; c=relaxed/simple;
+	bh=z6kMTjY5qXKBn2JvGsBepTnGV0+FurDhLE8/eSDMU9Y=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=hpn7gQ/JZ1QFVhUWlGvGhToXhPTj8bY0mCm8SEG2rElRblP2djnT/ROQe13XQhk/eub+P8ycEnE4sakSzi/xoEXqaw/vG/UEUdR4QmO4S2Edw4cj3Xh4OJi3+8UTndfxUIdjwknywRnucZBNHebtDfzmyDLd+pFH3z58VWlSxfc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 996C41A1315;
+	Mon,  8 Apr 2024 15:23:06 +0200 (CEST)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 593931A14D9;
+	Mon,  8 Apr 2024 15:23:06 +0200 (CEST)
+Received: from pe-lt8779.in-pnq01.nxp.com (pe-lt8779.in-pnq01.nxp.com [10.17.104.141])
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 6346E1802200;
+	Mon,  8 Apr 2024 21:23:04 +0800 (+08)
+From: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+To: marcel@holtmann.org,
+	luiz.dentz@gmail.com,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: linux-bluetooth@vger.kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	amitkumar.karwar@nxp.com,
+	rohit.fule@nxp.com,
+	neeraj.sanjaykale@nxp.com,
+	sherry.sun@nxp.com,
+	ziniu.wang_1@nxp.com,
+	haibo.chen@nxp.com,
+	LnxRevLi@nxp.com
+Subject: [PATCH v2 0/2] Bluetooth: btnxpuart: Update firmware names
+Date: Mon,  8 Apr 2024 18:52:39 +0530
+Message-Id: <20240408132241.750792-1-neeraj.sanjaykale@nxp.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: ClamAV using ClamSMTP
 
-Hi Simon,
+This patch series updates the BT firmware file names in BTNXPUART
+driver, and adds a new optional firmware-name device tree property to
+override the firmware file names hardcoded in the driver. This will
+allow user to continue using the older firmware files.
 
-sjg@chromium.org wrote on Tue, 26 Mar 2024 14:06:44 -0600:
+This change is necessary as newer firmware releases will have
+standardized naming convention aligned across all newer and legacy
+chipsets.
 
-> Add three properties for controlling alignment of partitions, aka
-> 'entries' in fixed-partition.
->=20
-> For now there is no explicit mention of hierarchy, so a 'section' is
-> just the 'fixed-partitions' node.
->=20
-> These new properties are inputs to the Binman packaging process, but are
-> also needed if the firmware is repacked, to ensure that alignment
-> constraints are not violated. Therefore they are provided as part of
-> the schema.
->=20
-> Signed-off-by: Simon Glass <sjg@chromium.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->=20
-> Changes in v10:
-> - Update the minimum to 2
->=20
-> Changes in v9:
-> - Move binding example to next batch to avoid build error
->=20
-> Changes in v7:
-> - Drop patch 'Add binman compatible'
-> - Put the alignment properties into the fixed-partition binding
->=20
-> Changes in v6:
-> - Correct schema-validation errors missed due to older dt-schema
->   (enum fix and reg addition)
->=20
-> Changes in v5:
-> - Add value ranges
-> - Consistently mention alignment must be power-of-2
-> - Mention that alignment refers to bytes
->=20
-> Changes in v2:
-> - Fix 'a' typo in commit message
->=20
->  .../bindings/mtd/partitions/partition.yaml    | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/mtd/partitions/partition.y=
-aml b/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
-> index 1ebe9e2347ea..656ca3db1762 100644
-> --- a/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
-> @@ -57,6 +57,57 @@ properties:
->        user space from
->      type: boolean
-> =20
-> +  align:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 2
-> +    maximum: 0x80000000
-> +    multipleOf: 2
-> +    description:
-> +      This sets the alignment of the entry in bytes.
-> +
-> +      The entry offset is adjusted so that the entry starts on an aligned
-> +      boundary within the containing section or image. For example =E2=
-=80=98align =3D
-> +      <16>=E2=80=99 means that the entry will start on a 16-byte boundar=
-y. This may
-> +      mean that padding is added before the entry. The padding is part of
-> +      the containing section but is not included in the entry, meaning t=
-hat
-> +      an empty space may be created before the entry starts. Alignment
-> +      must be a power of 2. If =E2=80=98align=E2=80=99 is not provided, =
-no alignment is
-> +      performed.
-> +
-> +  align-size:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 2
-> +    maximum: 0x80000000
-> +    multipleOf: 2
-> +    description:
-> +      This sets the alignment of the entry size in bytes. It must be a p=
-ower
-> +      of 2.
-> +
-> +      For example, to ensure that the size of an entry is a multiple of =
-64
-> +      bytes, set this to 64. While this does not affect the contents of =
-the
-> +      entry within binman itself (the padding is performed only when its
-> +      parent section is assembled), the end result is that the entry ends
-> +      with the padding bytes, so may grow. If =E2=80=98align-size=E2=80=
-=99 is not provided,
-> +      no alignment is performed.
+Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
 
-I don't think we should mention binman here. Can we have a software
-agnostic description? This should be understandable from anyone playing
-with mtd partitions I guess.
+Neeraj Sanjay Kale (2):
+  dt-bindings: net: bluetooth: btnxpuart: Add firmware-name property
+  Bluetooth: btnxpuart: Update firmware names
 
-> +
-> +  align-end:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 2
-> +    maximum: 0x80000000
-> +    multipleOf: 2
+ .../net/bluetooth/nxp,88w8987-bt.yaml         |  6 ++++
+ drivers/bluetooth/btnxpuart.c                 | 28 +++++++++++--------
+ 2 files changed, 23 insertions(+), 11 deletions(-)
 
-seems not to perfectly match the constraint, but I don't know if there
-is a powerOf keyword? (same above)
+-- 
+2.34.1
 
-> +    description:
-> +      This sets the alignment (in bytes) of the end of an entry with res=
-pect
-> +      to the containing section. It must be a power of 2.
-> +
-> +      Some entries require that they end on an alignment boundary,
-> +      regardless of where they start. This does not move the start of the
-> +      entry, so the contents of the entry will still start at the beginn=
-ing.
-> +      But there may be padding at the end. While this does not affect the
-> +      contents of the entry within binman itself (the padding is perform=
-ed
-
-content?				same comment about binman?
-
-> +      only when its parent section is assembled), the end result is that=
- the
-> +      entry ends with the padding bytes, so may grow. If =E2=80=98align-=
-end=E2=80=99 is not
-> +      provided, no alignment is performed.
-> +
->  if:
->    not:
->      required: [ reg ]
-
-
-Thanks,
-Miqu=C3=A8l
 
