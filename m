@@ -1,65 +1,62 @@
-Return-Path: <devicetree+bounces-57233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA69089CA2E
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 19:00:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34DC289CA36
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 19:03:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 446B81F26EF3
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 17:00:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5BCF285DC4
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 17:03:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1265142E79;
-	Mon,  8 Apr 2024 17:00:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67AEF142E7D;
+	Mon,  8 Apr 2024 17:03:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M1/J2Rkt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r7+jORCd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7D6663CB;
-	Mon,  8 Apr 2024 17:00:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 390F41428F0;
+	Mon,  8 Apr 2024 17:03:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712595602; cv=none; b=fUhqlAYvSJPZ33NViK3uvyDvE56UiWQf8z6QPGBQdECwXL93jrKe22fXTveERwZW/kCCnqGKXoLkcCG5ag5muupwGD0HFbgN3KcGA7maWzCixal1V8zBceH1lxKFicLH5SMcacGb67KX+4HMDcyVy8fG78/1j7PV6IK9eRwVUXc=
+	t=1712595792; cv=none; b=HHEqDXdxIO6xdguIiQqk75EP2ZaDVjJFmTXcn8qD19QUhKvm79EWH9lDKM+mHxD+agsadP/EAuxkTpHNTO0PAUWo1lNlDpcK7B0K3P4g7ipJM2YATA6eRf+ijEs6jQcfHGHx8CRkrdl0pCbHRo0eJ81H5LaHgmxCVmxdfXmERPM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712595602; c=relaxed/simple;
-	bh=F/uYNaxS40sMgeapgyTFuu5ZgXbsKvLU68sRwUvp5DQ=;
+	s=arc-20240116; t=1712595792; c=relaxed/simple;
+	bh=ANT4FZdfZseVFVw6Nz7AxKNIfXcpdibg2ihifdlXaMk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nH4B0Ewl4tHip9JToNARGgDQnM+Rrk/fFN+3bVtwODc+Gg4wYoS9MRvBmN4vuAF6Q0gMLXpvkYpQPLJp1drd5tCKwuWgJQ3AbpflHgF0Nfd+bigjVXPatCODDtD1pQ99tsFnKsG1ZMYM8WwMX0WzFDq8WFWpAGX5KopN4tYb9Lg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M1/J2Rkt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87AF4C433F1;
-	Mon,  8 Apr 2024 16:59:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=j5HQOerPV0aGSde9tvdH+5CeXhT004LZ/YXwyqKyVQxnHCWeCdI1y16mOzGl9XnVhBlwEwbsIMjVlJ3oWqQBNOqRZ/mn+1kWDdCTdB+7F+gIQQg0yCjRvBLWbfTG4mkEb2cKGx/SRfQvcKg8LShN2ZLTQ2GCwDmDAub6DB8SWY8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r7+jORCd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E4F8C433F1;
+	Mon,  8 Apr 2024 17:03:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712595602;
-	bh=F/uYNaxS40sMgeapgyTFuu5ZgXbsKvLU68sRwUvp5DQ=;
+	s=k20201202; t=1712595791;
+	bh=ANT4FZdfZseVFVw6Nz7AxKNIfXcpdibg2ihifdlXaMk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=M1/J2RktfG5kHxBNWr8/izq5bs5OMINTvwhNG8SR5nDCs6pbMIJKo3fIvqCC3ggMw
-	 5BvVkO/6IyybsrO/st3QjoJLiQQiTd7dp0vxTYcdtFIhOsmOLv2gsYYYaz9U/7XHCO
-	 IxCi9KUrGuORgjA5uGJfy4iz+PqQ36eQNIL+stkeQwWm+WFTehkjroHdlBiWAoteEz
-	 8Ewu5cBMSV6Z8ba8ijgth1JyByG439fozXVB5usK2SNJ/5z2kgCxa9Q+m12jlRQDtB
-	 oSelpKIi9UW9IS7IFMMJBzUF5XofUMWl2T899zlDBOtM0l/yG7dnMKhTSBJjD/7UWi
-	 ZXfhxoqjOZXbg==
-Date: Mon, 8 Apr 2024 17:59:57 +0100
+	b=r7+jORCduU22JxlfHMQ0+Emv+dDKJPXhS5V6GO0eOEJMqsFZbm51aSmHXKL+EhQKt
+	 /5VYVOH5eUgzB+QSlcDXxABTcYWqiRyGhnzhtHX4954+o6vsHO5vfZkSQsUELdURPD
+	 PfzCWk5hcEPo7avQ5v+Uoq1XzRTx/tgNsFJsLfBRcN/Nx8h9OfvBOfW5XMAhAxRDNP
+	 TYvdpV+x/NdhjO47/FFyrmWG2YPOLXKKABzduej5kr6yGayn4vZtEmFisz3TMfFoXl
+	 G1h5u1ZIpy2NBpHa+hBrdXm3SN3ag8JnSaqQHqCBnAykj3+OW7to48dRGONPxMwD/R
+	 oOOJHoCC2EJVw==
+Date: Mon, 8 Apr 2024 18:03:06 +0100
 From: Conor Dooley <conor@kernel.org>
-To: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc: Sean Wang <sean.wang@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: nikita.shubin@maquefel.me
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Hsin-Yi Wang <hsinyi@chromium.org>,
-	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH 3/3] dt-bindings: pinctrl: mediatek: mt7622: add "base"
- reg
-Message-ID: <20240408-hydrated-swimmable-26cec8823926@spud>
-References: <20240408090506.21596-1-zajec5@gmail.com>
- <20240408090506.21596-3-zajec5@gmail.com>
+	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 0/4] DONOTMERGE: ep93xx-clk from ep93xx device tree
+ conversion
+Message-ID: <20240408-friction-mosaic-ba48bc27788d@spud>
+References: <20240408-ep93xx-clk-v1-0-1d0f4c324647@maquefel.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,63 +64,76 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="woQ3kIQkUiTpoflU"
+	protocol="application/pgp-signature"; boundary="pc67qC+tpVYwcPxp"
 Content-Disposition: inline
-In-Reply-To: <20240408090506.21596-3-zajec5@gmail.com>
+In-Reply-To: <20240408-ep93xx-clk-v1-0-1d0f4c324647@maquefel.me>
 
 
---woQ3kIQkUiTpoflU
-Content-Type: text/plain; charset=utf-8
+--pc67qC+tpVYwcPxp
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Apr 08, 2024 at 11:05:06AM +0200, Rafa=C5=82 Mi=C5=82ecki wrote:
-> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+On Mon, Apr 08, 2024 at 11:09:52AM +0300, Nikita Shubin via B4 Relay wrote:
+> The goal is to recieve ACKs.
+
+I dont see a maintainers entry in -rc1 for the drivers/soc/cirrus
+portion. Who is gonna give you an Ack for that portion? If you intended
+maintaining that driver, should you not add a MAINTAINERS entry for it?
+
+Thanks,
+Conor.
+
 >=20
-> Both: MT7622 and MT7629 use two reg spaces: "base" and "eint". It wasn't
-> covered by the binding and also example didn't match incomplete binding.
-> Fix it.
+> This is a fraction of v9 "ep93xx device tree conversion" series:
 >=20
-> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> https://lore.kernel.org/all/20240326-ep93xx-v9-0-156e2ae5dfc8@maquefel.me/
+>=20
+> The clk driver for ep93xx was converted to AUX device, as suggested
+> originally by Stephen Boyd.
+>=20
+> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
 > ---
->  .../bindings/pinctrl/mediatek,mt7622-pinctrl.yaml         | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
+> Nikita Shubin (4):
+>       ARM: ep93xx: add regmap aux_dev
+>       clk: ep93xx: add DT support for Cirrus EP93xx
+>       dt-bindings: soc: Add Cirrus EP93xx
+>       soc: Add SoC driver for Cirrus ep93xx
 >=20
-> diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pi=
-nctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinc=
-trl.yaml
-> index a9ab623b2697..eaa65512161a 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinctrl.y=
-aml
-> +++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinctrl.y=
-aml
-> @@ -19,10 +19,12 @@ properties:
->        - mediatek,mt7629-pinctrl
-> =20
->    reg:
-> -    maxItems: 1
-> +    minItems: 2
-> +    maxItems: 2
+>  .../bindings/arm/cirrus/cirrus,ep9301.yaml         |  38 +
+>  .../bindings/soc/cirrus/cirrus,ep9301-syscon.yaml  |  94 +++
+>  drivers/clk/Kconfig                                |   8 +
+>  drivers/clk/Makefile                               |   1 +
+>  drivers/clk/clk-ep93xx.c                           | 840 +++++++++++++++=
+++++++
+>  drivers/soc/Kconfig                                |   1 +
+>  drivers/soc/Makefile                               |   1 +
+>  drivers/soc/cirrus/Kconfig                         |  13 +
+>  drivers/soc/cirrus/Makefile                        |   2 +
+>  drivers/soc/cirrus/soc-ep93xx.c                    | 240 ++++++
+>  include/dt-bindings/clock/cirrus,ep9301-syscon.h   |  46 ++
+>  include/linux/soc/cirrus/ep93xx.h                  |  26 +
+>  12 files changed, 1310 insertions(+)
+> ---
+> base-commit: fec50db7033ea478773b159e0e2efb135270e3b7
+> change-id: 20240408-ep93xx-clk-657a1357de67
+>=20
+> Best regards,
+> --=20
+> Nikita Shubin <nikita.shubin@maquefel.me>
+>=20
+>=20
 
-This should become an items list with descriptions IMO.
-
->    reg-names:
->      items:
-> +      - const: base
->        - const: eint
-
-Why isnt the new region appended to the list?
-
---woQ3kIQkUiTpoflU
+--pc67qC+tpVYwcPxp
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZhQijQAKCRB4tDGHoIJi
-0qVCAQDStiQ0FQ3sVsUTP7LLvXFpzx5JiKs1w+Zlv2KOUeKJ7QEA8gTc2psWCnPr
-SUjNx1TwH3zr3xRMwWjtIkIsF2gMGgs=
-=xevL
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZhQjSgAKCRB4tDGHoIJi
+0twqAP9cedccziELIxDEm3H8XNGNoWKNb0cqmUBpB+KT5b1E3gD/eS70Lg7vFl4f
+y42aBtqmffeu3MDOoyR6cGSJX6ua6gM=
+=0o+E
 -----END PGP SIGNATURE-----
 
---woQ3kIQkUiTpoflU--
+--pc67qC+tpVYwcPxp--
 
