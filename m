@@ -1,125 +1,123 @@
-Return-Path: <devicetree+bounces-57020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6988889B662
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 05:26:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDDCA89B6B6
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 06:11:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22DF4281E92
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 03:26:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7EE2B1F214A9
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 04:11:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CFF21851;
-	Mon,  8 Apr 2024 03:26:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7D764A3F;
+	Mon,  8 Apr 2024 04:11:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E/9DD+rN"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Jxw/I1PI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 540A05228;
-	Mon,  8 Apr 2024 03:26:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34F5B5228;
+	Mon,  8 Apr 2024 04:11:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712546789; cv=none; b=GF+CMiAXWiRj9LsXLtQhDBXzbP3QUPGXsRU9NrksROIfiNYa6SFMap7eTCjO/n5mLfe6jlVEyn1gh3Au8ZKIy+TOBqn/sxGU4ni2cUiMDJ3xLl21NdFFJcBASQSqLHLNu1wC51BgfFbGX3ryv4jwNCpHuIsl9E+T79Ho8LZsNM4=
+	t=1712549496; cv=none; b=pPHpS6G7cGfPiqwTBJR4aCx9GghQL2tayfrtpokmRlAAtYXJSLPP5QMQqZRKsq7ZLP7QwiqbRaucnovLZm1scEfzKh3eSEMk29V7egJRzVLi5Pi0OgHbWWUsagmJl2xuVd2EyFBLpl5FjbM5Rf6u/ageSdsNzq31GlWGlIdCsAY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712546789; c=relaxed/simple;
-	bh=y93CELgU798zozilMe740Pyai90Z6Y623ic13iToKHw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=aYtw6iFmUuEwjyGylNIOwZJ60bC9N73N/VLxIdirm6jZDHWcBWTgdNfBA0FY1lxtMZMbVFzLJL2UvCk2nK+g9rLfmWJoSyultZzz03fqqBprHe6ee7VWwJZkK885G8iPTlwoXTYyGQn9b/OcuP9Mxg7btyI5mg1jwK0Oyd9EVEQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E/9DD+rN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id B8DC3C433F1;
-	Mon,  8 Apr 2024 03:26:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712546788;
-	bh=y93CELgU798zozilMe740Pyai90Z6Y623ic13iToKHw=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=E/9DD+rNt/YgweHp6RiEO1cKky7kz5Kimv/ixIryQhNM8f3eB5cJn8nrMiv65jWPv
-	 5nwbni9yOdgsadbpryIA2Y/MfxF//SgUD3yfxHcjC7/FT1JKhVMsTxMpdu5Zgx4DBx
-	 iV8XCHdB8PkSqBDJBneI35jPDEDlrj3W8X1UQYS4NwMiWKwOPOAu+GLkApJOf8bu7C
-	 2pRIJfSXf9qpy8xkPB52QkUOporfvBDOZBjOQTzmsE32hsen6NQjufIAZ1iRWHZ04d
-	 mAtZmNgesL6BYAbGiY+GwuuE4wIL0slwt8kPjc1Yn91i4d024u4sYK4svlEZgKXlsi
-	 CSLmbe6Sl6J9w==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9F2C6CD11C2;
-	Mon,  8 Apr 2024 03:26:28 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Mon, 08 Apr 2024 11:26:25 +0800
-Subject: [PATCH] arm64: dts: meson: fix S4 power-controller node
+	s=arc-20240116; t=1712549496; c=relaxed/simple;
+	bh=J3XzPhZVH6MrRAYV70dM99TytNB1m6/pVjMYUCMhSlo=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=SnURfG/hfP/qgGWrDrZAK6WymlHmbK23wD1YH0PWd54Orw//HI+4MO8rP1dhpy0kR0avtb3AJqneD+I0b7AFwxpk67GFtW0ljUD7k4u9sqRvJtznyx1tY8U0NRFGWEEj1HTT0NnjfAePIMEAtkK3/wt9QCBc0R9tdvtWWVAF7V0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Jxw/I1PI; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4383RDKX013996;
+	Mon, 8 Apr 2024 04:11:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=WEL4weu
+	EpaptYqO+5qcKnIVOHsGXT/7jWN+nqPeWEu8=; b=Jxw/I1PIToAGfJ0hP/EGZzA
+	7y7pdQpVkqNFgfkMjLZn9LDjPYeOkr5C3+P1DBiDQebSv3tEDLOuufI1HBVeFjNu
+	WCQ9q5me8oGuT4e99/hvFeJRNd9T9Ynatgr5Dt4HzvZLfzdbxHCUfMAHp2JqF3zA
+	1zX0t8WrQCne6Sn0DJNhKjwK5Se/1ZIKj1b6BxVTul9PpklNwXyfBUrjo4K+1ALY
+	H6BWkwt9nMxgZ95DjH3cmJD7RU6CCVLmPoZEqBd0WiyH05oInmcBSufjO25I462w
+	/N+0ybyJCJpGlonnTeeJEOQusQ/KlzC+Y1Huh3fOaFM+Rc4nKb4TumOp+zLo8nQ=
+	=
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xawbv2ppc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 08 Apr 2024 04:11:14 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4384BDrJ001878
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 8 Apr 2024 04:11:13 GMT
+Received: from hu-mohs-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.4; Sun, 7 Apr 2024 21:11:08 -0700
+From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami
+	<bgoswami@quicinc.com>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+	<broonie@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela
+	<perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>
+CC: <linux-arm-msm@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_rohkumar@quicinc.com>,
+        "Mohammad Rafi
+ Shaik" <quic_mohs@quicinc.com>
+Subject: [PATCH v3 0/2] Add support for QCM6490 and QCS6490
+Date: Mon, 8 Apr 2024 09:38:14 +0530
+Message-ID: <20240408040816.400530-1-quic_mohs@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240408-fix-secpwr-s4-v1-1-01aa7ee72c52@amlogic.com>
-X-B4-Tracking: v=1; b=H4sIAOBjE2YC/x2MQQqAIBAAvyJ7bmELiewr0UFyrb2UuFCB+Pek4
- 8DMFFDOwgqzKZD5FpXrbNB3BrbDnzujhMYw0GDJ0oRRXlTe0pNRLXrnYnQjBfIMrUmZm/D/lrX
- WDxnMTcFfAAAA
-To: Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1712546787; l=1062;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=aYGam5atTvFCi6MANFq1gTnEWCmMJGBzGpQ68DNxd4s=;
- b=QOZasB9XfpjbYCM2NkQXMlQePi2brRVq25BtW9pZQ/O/LAgdf/E30jblrbUc47W0QCYLKqMCn
- Sd+AOKQpyePAuPOG9BkArADHL7TsnkikXqRDb0KtLIx1RUfQSqwjBEd
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Reply-To: xianwei.zhao@amlogic.com
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: j7qBciHlRW4vtN3vUMIzBUfWlV0CjCuy
+X-Proofpoint-GUID: j7qBciHlRW4vtN3vUMIzBUfWlV0CjCuy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-08_02,2024-04-05_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1015
+ suspectscore=0 priorityscore=1501 mlxscore=0 malwarescore=0 spamscore=0
+ bulkscore=0 adultscore=0 mlxlogscore=673 phishscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2404010003
+ definitions=main-2404080030
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+This patchset adds support for sound card on Qualcomm QCM6490 IDP and
+QCS6490 RB3Gen2 boards.
 
-The power-controller module works well by adding its parent
-node secure-monitor.
+Changes since v2:
+	- Modify qcm6490 compatible name as qcs6490-idp. Suggested by Dmitry
 
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
+Changes since v1:
+	- Use existing sc8280xp machine driver instead of separate driver.
+	- Modify qcs6490 compatible name as qcs6490-rb3gen2.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-index ce90b35686a2..24d00dce4969 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-@@ -65,10 +65,13 @@ xtal: xtal-clk {
- 		#clock-cells = <0>;
- 	};
- 
--	pwrc: power-controller {
--		compatible = "amlogic,meson-s4-pwrc";
--		#power-domain-cells = <1>;
--		status = "okay";
-+	sm: secure-monitor {
-+		compatible = "amlogic,meson-gxbb-sm";
-+
-+		pwrc: power-controller {
-+			compatible = "amlogic,meson-s4-pwrc";
-+			#power-domain-cells = <1>;
-+		};
- 	};
- 
- 	soc {
+Mohammad Rafi Shaik (2):
+  ASoC: dt-bindings: qcom,sm8250: Add QCM6490 snd QCS6490 sound card
+  ASoC: qcom: sc8280xp: Add support for QCM6490 and QCS6490
 
----
-base-commit: 4cece764965020c22cff7665b18a012006359095
-change-id: 20240408-fix-secpwr-s4-a99ff960d0ae
+ Documentation/devicetree/bindings/sound/qcom,sm8250.yaml | 2 ++
+ sound/soc/qcom/sc8280xp.c                                | 2 ++
+ 2 files changed, 4 insertions(+)
 
-Best regards,
 -- 
-Xianwei Zhao <xianwei.zhao@amlogic.com>
-
+2.25.1
 
 
