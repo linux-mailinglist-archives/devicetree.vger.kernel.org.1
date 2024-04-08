@@ -1,483 +1,211 @@
-Return-Path: <devicetree+bounces-57207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7D0D89C85F
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 17:32:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E8EC89C87D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 17:36:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3031F1F2300C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 15:32:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0424D28720F
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 15:36:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC7C4140396;
-	Mon,  8 Apr 2024 15:32:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E3571411F3;
+	Mon,  8 Apr 2024 15:36:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="THATeTCj"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="DtmRETFl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+Received: from EUR01-HE1-obe.outbound.protection.outlook.com (mail-he1eur01on2121.outbound.protection.outlook.com [40.107.13.121])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE802140E37;
-	Mon,  8 Apr 2024 15:32:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712590365; cv=none; b=GCRZJPTRXp9j0DhuMCwXhk3DGRatkeeLr50Js3sYJhY5aUbujEhPG6wdLGQ28fTX7PfH8hjMbTP2K/xNTBFn+AHw+tSpw7Koz9c/PDjX6+CMHOJ5KjELJQzKqxBcKvpyxck7XHrV8sLIjbn/+3XtTjKdMdjKXBWKHGkz71+M6/4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712590365; c=relaxed/simple;
-	bh=YQn/rjKhkI0uDIiB18tM2w1evy2QdnLQBB7fo28NMaI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hI99wNtpEdrxSt4ehSRvz85QDl4cb1Ft507RQ7YD+MEJQHRgtYgH6GOBLg3U5ltHwXL1IukFPp6S1+nhhOT68GlqxNVV2UIX5iTJ7dcAnjRUeysXehULE22Jinjj541vvlyjnfa+U/ym6l0OAOm5g5HD53i25GUGTB4WYgSNNFU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=THATeTCj; arc=none smtp.client-ip=67.231.149.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43850rkX005178;
-	Mon, 8 Apr 2024 10:32:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	PODMain02222019; bh=nXB41wahTCr3G/qKcnmf2UYfIcqm0+I7Jsunrsym9/4=; b=
-	THATeTCjcESSp8ie18Qx+GA9f+/tW6ztkFUwvjBnHohTfQkKk3U768clRp0LumoP
-	DA+E9BhPOj3EqyJJIj9hv2Q+HSct6yIUtuBZI0TCAax2YZky8Qb3kzMTcBDdINqi
-	0YTlO7SB/sFMpd9f2P3T3GsumKh+nzVwfiTQwjkGlKfjKZhNT4QHj14sh1IMP3vF
-	H6evCeiVZ4LaJgBCC2jjBgPuEbsDryW6H/Ec8VCEkgJyNlNBV2V1e2APyL/MUb7P
-	2O7qrZSrh9jLHolB7NYTiqYshfS8UF5XU74iWpFExsEYPElwEZizw20v37t/DQDE
-	RskGKGz6AD0w5nQO+mU3IQ==
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3xb3sxhm7q-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 08 Apr 2024 10:32:36 -0500 (CDT)
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 8 Apr 2024
- 16:32:34 +0100
-Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1544.9 via Frontend Transport; Mon, 8 Apr 2024 16:32:34 +0100
-Received: from aus-sw-rshr002.ad.cirrus.com (aus-sw-rshr002.ad.cirrus.com [141.131.145.53])
-	by ediswmail9.ad.cirrus.com (Postfix) with ESMTP id 8A473820243;
-	Mon,  8 Apr 2024 15:32:32 +0000 (UTC)
-From: James Ogletree <jogletre@opensource.cirrus.com>
-To: <dmitry.torokhov@gmail.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <lee@kernel.org>, <broonie@kernel.org>, <jeff@labundy.com>
-CC: <patches@opensource.cirrus.com>, <linux-sound@vger.kernel.org>,
-        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        James Ogletree
-	<jogletre@opensource.cirrus.com>,
-        David Rhodes
-	<drhodes@opensource.cirrus.com>
-Subject: [PATCH RESEND v10 5/5] ASoC: cs40l50: Support I2S streaming to CS40L50
-Date: Mon, 8 Apr 2024 15:32:14 +0000
-Message-ID: <20240408153214.42368-6-jogletre@opensource.cirrus.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240408153214.42368-1-jogletre@opensource.cirrus.com>
-References: <20240408153214.42368-1-jogletre@opensource.cirrus.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22A5D140E5F;
+	Mon,  8 Apr 2024 15:36:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.13.121
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712590596; cv=fail; b=j2N+P37l4AuLFMVam/CLTWiTgq/JP2uVyUEZvNZCsqxnDrGR/UovZ91AfSVrwVK5mIbs08u4Ws2mLoThogw0no82Cw5XkK0WC/VqFbFMI1pknEXuJIGhqCj71Ae4FBGrXJyfQP1eP5JtfWlO1tztai5pik6MbMrss4DZ6cuL+i0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712590596; c=relaxed/simple;
+	bh=+pvJNsEVv5dic8dbhPGsASjgERDdYBSKSQ0c+W4I6aI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=Idwn9l3MfZYXOm7pZt7sOQqhM46bfDa6p3ihfYDfX8OA9Th8GsQhorsek8m7IcmlzmDABTYtfAHBIEiZ+HmNOq0+WDs1+IiqriAswt77lgfvHWrFVYXubCFAGNiM/tNlYEKutfQw2vuDPzuREghty6XOpoPJQ0K5/pAfABmFFQw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=DtmRETFl; arc=fail smtp.client-ip=40.107.13.121
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CWTbQWnLqeWOwxZk838KpUp5dsJnMBa4sxlc7mHevpV7a8p9aO5axI0OvTfinHIiDghvEMftfHa93D7xk1BzhZIUwo9R1T/YreGkVE7KBy43FVzIsNpaBns8tLDRblO7B6FaqqFM9BPmCDeC8FcVUQ8FFGmnqgpy4ycfAhyKCPIQnwg9Acs8ppRKOdm71gOIlHTajJjIOorU9lBLM0WFAUXzBTsaLv/s9kriQsnH4wwM7uE1Qi1TBHXVeyAM2O9ThYn4oxug0mj6m+ZifkI7izNy9mDcpAPSWtAiQAhE1yALrXcEiv9vZdFYmbXBt33w1RBKYJ5Xf9IQ5UBb4WBSdg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VvofKPs+Nzzec8iqztWGgzOCdld9BpN35btzzHDnIso=;
+ b=bd6UevkYwRvyq+fCXI1BBzEApEBus45DFFuEaO7Tm1ZRtCeD66iHiFU1Rg7C49yw3xu+KgDvrYh2ct0lbuoeF1pR0umxBDrgDtR65sRvyp+UDHvaKoPop6G/1ZTHF4VJoxfeKBJCF60U5oEN2HUXwty7Sd/tooFBEvspM92Vp9sy/4OEigOIIJHfYUEHvIfSTKMnjCt9g7kWuo9P6nf3lGtgIJz/hXzOYDWwfBh4i1vlRh7CMu8y+eQJNaO+p/z8xEcc90Ix4tfZLm1GiuTAXPg3VwV4vRTChYx+gmK+vrCntVLPgSq/ZrRqTquWC6BKlMEHk7Rynw/T1GoSSdBMSQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VvofKPs+Nzzec8iqztWGgzOCdld9BpN35btzzHDnIso=;
+ b=DtmRETFlX3KqJ4H5GBPAWMwtYYFyGoTJpX8+MLqrdzCGsGO/zwI63n124OsQpmznQo46PTcS2NSzkhFXbi9pz1as9iFQDSX0fu4Kqc+zMDjXKJxyJBTDTFwsPWb5VKMMdSYtixHrF6fAl6LFZ7+6hpxPNRRW/UVVLmpyfIlkuws=
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by PA2PR04MB10309.eurprd04.prod.outlook.com (2603:10a6:102:41f::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.45; Mon, 8 Apr
+ 2024 15:36:31 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::3168:91:27c6:edf6]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::3168:91:27c6:edf6%3]) with mapi id 15.20.7409.042; Mon, 8 Apr 2024
+ 15:36:31 +0000
+Date: Mon, 8 Apr 2024 11:36:23 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
+	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/1] arm64: dts: imx8qxp-mek: add cm40_i2c, wm8960/wm8962
+ and sai[0,1,4,5]
+Message-ID: <ZhQO979YpKA24pML@lizhi-Precision-Tower-5810>
+References: <20240404161914.1655305-1-Frank.Li@nxp.com>
+ <efc9c624-6a31-4299-a604-8aad1d0cd878@linaro.org>
+ <ZhAO4YWuB8r8k+m8@lizhi-Precision-Tower-5810>
+ <938489b1-eb94-4f8a-8881-230951299f6a@linaro.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <938489b1-eb94-4f8a-8881-230951299f6a@linaro.org>
+X-ClientProxiedBy: BYAPR11CA0076.namprd11.prod.outlook.com
+ (2603:10b6:a03:f4::17) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Proofpoint-ORIG-GUID: N9xjY6H4v_aXBUolhCnNk3G3maYljS2W
-X-Proofpoint-GUID: N9xjY6H4v_aXBUolhCnNk3G3maYljS2W
-X-Proofpoint-Spam-Reason: safe
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PA2PR04MB10309:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	/4a5p6UQSY2kdeCqUy0yJTHNg9xtOxQ/f79TMe0TJ3jFGOxiKfnKVxPzwXUwpAIgUuIOTXLxE+YFVZZKV5cflJOzawDWySvqJ/SB+OOW+24CyDSwEUb8jRsVCI31R18xl+armwDGAYScfPICYdl7Hb4VYJ1CWx5tlNuy0dB/8Gj14xRi2580AV4i1kNzBvYRXeqdZR4G8fFYu2SgA662WmCtQ8AlMusojNsQ9tkGu+7BSdCzVrJvm1c0x1iUyFgQX2Qtj/yvqhoWK9MiOSkjN0E/imrMLOOM+ATRGcRzMt1ZsVX67ZokyFJXpOq5V4oTSRw0fHON/Vm2agKbmj14x+SI7ZQ+bQ+qFqvhOuYq+qBqoWupipn0gHige3SVqVcbEeUAjDTVaypRyHae9UPgGjbzD6F3uAvMrm5IyqtNitXV1VYWbPI8jblAU2bwLgIfxRmQDgu5LJy1gkxVwTWwRSPLa87ygilXjN4k2WJqLAvVHvzN5gwy6o5OwtrLrUwTZQEG/7PQ8E3NQ7t92VviKMKFM7CY5ySMKq1i5AHjFAlnFhKrhQZA3plNn2g/Hbe3G94OKxX83Cpbo+O52ZfuN3rCHWaTAzjBCIzwqmAw9eR7zKC8m2wMyduIUygIJ2/jAEftPqy1mkQ5pBs96uEF9QGDOo/qVy1bS9GxPwQEaYQgsmDG5iBUvVOTZCNW7xr5VcKE42u6f4T2APSLfcavqA==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(52116005)(376005)(366007)(7416005)(38350700005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?6+PfjW63+XexsMoRZA2802C3Gi2mHvRSoCIIlSPQUEpTzO9QJbjKHeI5rrfu?=
+ =?us-ascii?Q?BDWv8HVRlP2ePL+EP5LlCoA/fQYx215DNbPkt8Q4yvHaLcP+3GGoYoozgWl+?=
+ =?us-ascii?Q?j85uVRcbLNysdKeh2bR3Yht27FSx7bOtjcKIdN3hDkd/CtxK4+rcOHAChicY?=
+ =?us-ascii?Q?7vyyK9Gw8UplM64K1zvi3ftoWkPV8F7V0lrzIetGeem+jV92/h8wkMJd/poD?=
+ =?us-ascii?Q?xXOsL64TJORDRY/y3bl3NbfGvX2ogEI758IFaahIuQbHWyd+V5Nsy7eLNrIe?=
+ =?us-ascii?Q?xceqE+II6gBdiLBAXQSFIO1IK3iItEoAhtR2GVSqJ8dYoiSrLeGywFeJGKYC?=
+ =?us-ascii?Q?BBDzJwTDXhRNe0p19CKZnVxKC9rmTTWKwP4K5Q6z0QZJBQ48mxFhFWGaqTs6?=
+ =?us-ascii?Q?5beYjpS+nMOI5xIR1+Fq+XSUc8knBE1MAArguUJejSraN4hBKu7xRUxoAR7A?=
+ =?us-ascii?Q?wnDwUL8CPZU9m4vAQrJDuPhihD/75VD2QDe2/l4ceUIcIyF/U2n5aRIQID3V?=
+ =?us-ascii?Q?V8oUyhKD8sUNs98rur4uyunA0YZzpXcWYJC6ZxxTe60pQyRCncvYRDoqD0dc?=
+ =?us-ascii?Q?mtwZJWNKk78Kl1pJWexh2/eFMcnVpKeM/UbgtqIiJbqJTwvW9p9VznjiVZhG?=
+ =?us-ascii?Q?CiXJ8Vh8DmiVwg4ZPd7eMMFVcwLsZNNAtvDu+9vX0YUmzaR0aFQYTDnfT+6g?=
+ =?us-ascii?Q?6HkNF7YpopAKNW/5h/sZC3CZgzW1nt6D5U3N5P5vpkIRrEVSudWwh1OK8l6Q?=
+ =?us-ascii?Q?VvurWRaDJ2SBOLWHplp+35zYh8SmuEmXKOsyeCSaHr3zEQV8wX5ltJ3o/pxW?=
+ =?us-ascii?Q?/AIwWO5HFjBvyTDfpLIAnwSMqslqCsPymss57juSBnWgZKT+p4KVG/OqJWaE?=
+ =?us-ascii?Q?6kAEwYKXBWIWYasr1sgInv90URuC1WGqCd7lxRr4PxDTAPybuztt1cygc34o?=
+ =?us-ascii?Q?x6lcuqQIWWHJWvbCiXA179dqyeHEM4gd8IIRhf3BNBLrXtQfYnO9y//K3XjD?=
+ =?us-ascii?Q?AvZ4x9D/lG3+08bFUHJmZ+9fUMoqH5JwZSxwVmj0iEXXFOLAClcrPMSVGzHV?=
+ =?us-ascii?Q?EkV8DJQ+bq2sCwV9U/blf/OIq0hfcosl5ZYzzKVOzbP+24iOwG10ENJkr2Cu?=
+ =?us-ascii?Q?pf+oY7fwwYSUGZUNBYzVFYWGQeLDKwq92gpU1HWhMxIvIZuwnqkAB1fkMxj/?=
+ =?us-ascii?Q?SXLZCWedc7p49TZjK9rT0oq6kIZb5vIm5KPor5+BfXzkmD3NPs4Z441aa7+e?=
+ =?us-ascii?Q?SRGdMnIl6P65cddbkTwFcHPbv2mSX23m3/IqW8wZbRtk0O3aw/q4lNBKekM8?=
+ =?us-ascii?Q?vQ/bpdGNWjayAz+RjmqLY53RR80UDd5c1ndDoy+hy4hFr6hbn/bejw43oeym?=
+ =?us-ascii?Q?9KGdqboWzQbKs5mGvz+pG0RiS3/xQiPuiPMeIfrX8ogILOpR6bvpWLcZ2TaP?=
+ =?us-ascii?Q?iFj5PfHCZIKzz74HpsBFizSvSosTralpkolxO6nlSLEP/poRQKfnkHYoQ517?=
+ =?us-ascii?Q?0GkBvTiOk+P6gPVcMviG4pSZw7xDvjipQ1Ym0y+iT3fPhGsg7YHhFvOma9+Q?=
+ =?us-ascii?Q?1Lce14a5jfZEi/9dpRg=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 85139a6a-fd0e-43ed-187d-08dc57e1a9fe
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2024 15:36:31.2046
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6AwwfKRqFTHtDDW0ZCbRJiIWgq7/ZYmh+QC2Ql6KFTOc84x3i2RhXvXJtz1NqTmB2ElqnwEhL7yKX5q0DOjiTA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA2PR04MB10309
 
-Introduce support for Cirrus Logic Device CS40L50: a
-haptic driver with waveform memory, integrated DSP,
-and closed-loop algorithms.
+On Fri, Apr 05, 2024 at 08:21:18PM +0200, Krzysztof Kozlowski wrote:
+> On 05/04/2024 16:46, Frank Li wrote:
+> > On Fri, Apr 05, 2024 at 08:41:59AM +0200, Krzysztof Kozlowski wrote:
+> >> On 04/04/2024 18:19, Frank Li wrote:
+> >>> imx8qxp-mek use two kind audio codec, wm8960 and wm8962. Using dummy gpio
+> >>> i2c bus mux to connect both i2c devices. One will probe failure and other
+> >>> will probe success when devices driver check whoami. So one dtb can cover
+> >>> both board configuration.
+> >>
+> >> I don't understand it. Either you add real device or not. If one board
+> >> has two devices, then why do you need to check for failures?
+> >>
+> >> Anyway, don't add fake stuff to DTS.
+> > 
+> > NAK can't resolve the problem. It should be common problem for long time
+> > cycle boards. Some chipes will be out life cycle. such as some sensor. So
+> > chips on boards have been replace by some pin to pin compatible sensor. For
+> > example: 
+> > 	old boards: use sensor A with address 0x1a
+> > 	new bench: use sensor B with address 0x1b.
+> > 
+> > You can treat it as two kind boards, RevA or RevB. But most user want to
+> > use one dtb to handle such small differences. For this case, it should be
+> > simple. Just add a super set.
+> > 	i2c
+> > 	{
+> > 		sensorA@1a
+> > 		{
+> > 		}
+> > 		sensorB@1b
+> > 		{
+> > 		}	
+> > 	}
+> > 
+> > It also depend on whoami check by i2c devices. Only A or B will probe.
+> > 
+> > wm8960 and wm8962 are more complex example.  wm8960 is out of life. But
+> > wm8962 and wm8960 have the same i2c address. The current i2c frame can't
+> > allow the same i2c address in one i2c bus.
+> > 
+> > You are feel to NAK my method, but I hope you also provide constructive
+> > solution to help resolve the problem.
+> 
+> Yes, we resolved it long time ago. Your bootloader can (usually easily)
+> detect revision of the board and load appropriate DTS or DTS+DTSO.
 
-The ASoC driver enables I2S streaming to the device.
+I knewn it. But the problem is one development boards A have many options,
+so create many child dts for files, A1, A2, ... An which base on A
 
-Reviewed-by: David Rhodes <drhodes@opensource.cirrus.com>
-Signed-off-by: James Ogletree <jogletre@opensource.cirrus.com>
----
- MAINTAINERS                      |   1 +
- sound/soc/codecs/Kconfig         |  11 ++
- sound/soc/codecs/Makefile        |   2 +
- sound/soc/codecs/cs40l50-codec.c | 308 +++++++++++++++++++++++++++++++
- 4 files changed, 322 insertions(+)
- create mode 100644 sound/soc/codecs/cs40l50-codec.c
+If there are difference happen at A, create new B. then create all child
+dtb, B1, B2, ... Bn.  DTB number will increase exponent.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 49c2e6e57b09..62701b13f741 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4943,6 +4943,7 @@ F:	Documentation/devicetree/bindings/input/cirrus,cs40l50.yaml
- F:	drivers/input/misc/cs40l*
- F:	drivers/mfd/cs40l*
- F:	include/linux/mfd/cs40l*
-+F:	sound/soc/codecs/cs40l*
- 
- CIRRUS LOGIC DSP FIRMWARE DRIVER
- M:	Simon Trimmer <simont@opensource.cirrus.com>
-diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-index f1e1dbc509f6..1a81bedfdbe3 100644
---- a/sound/soc/codecs/Kconfig
-+++ b/sound/soc/codecs/Kconfig
-@@ -73,6 +73,7 @@ config SND_SOC_ALL_CODECS
- 	imply SND_SOC_CS35L56_I2C
- 	imply SND_SOC_CS35L56_SPI
- 	imply SND_SOC_CS35L56_SDW
-+	imply SND_SOC_CS40L50
- 	imply SND_SOC_CS42L42
- 	imply SND_SOC_CS42L42_SDW
- 	imply SND_SOC_CS42L43
-@@ -800,6 +801,16 @@ config SND_SOC_CS35L56_SDW
- 	help
- 	  Enable support for Cirrus Logic CS35L56 boosted amplifier with SoundWire control
- 
-+config SND_SOC_CS40L50
-+	tristate "Cirrus Logic CS40L50 CODEC"
-+	depends on MFD_CS40L50_CORE
-+	help
-+	  This option enables support for I2S streaming to Cirrus Logic CS40L50.
-+
-+	  CS40L50 is a haptic driver with waveform memory, an integrated
-+	  DSP, and closed-loop algorithms. If built as a module, it will be
-+	  called snd-soc-cs40l50.
-+
- config SND_SOC_CS42L42_CORE
- 	tristate
- 
-diff --git a/sound/soc/codecs/Makefile b/sound/soc/codecs/Makefile
-index a87e56938ce5..7e31f000774a 100644
---- a/sound/soc/codecs/Makefile
-+++ b/sound/soc/codecs/Makefile
-@@ -74,6 +74,7 @@ snd-soc-cs35l56-shared-objs := cs35l56-shared.o
- snd-soc-cs35l56-i2c-objs := cs35l56-i2c.o
- snd-soc-cs35l56-spi-objs := cs35l56-spi.o
- snd-soc-cs35l56-sdw-objs := cs35l56-sdw.o
-+snd-soc-cs40l50-objs := cs40l50-codec.o
- snd-soc-cs42l42-objs := cs42l42.o
- snd-soc-cs42l42-i2c-objs := cs42l42-i2c.o
- snd-soc-cs42l42-sdw-objs := cs42l42-sdw.o
-@@ -460,6 +461,7 @@ obj-$(CONFIG_SND_SOC_CS35L56_SHARED)	+= snd-soc-cs35l56-shared.o
- obj-$(CONFIG_SND_SOC_CS35L56_I2C)	+= snd-soc-cs35l56-i2c.o
- obj-$(CONFIG_SND_SOC_CS35L56_SPI)	+= snd-soc-cs35l56-spi.o
- obj-$(CONFIG_SND_SOC_CS35L56_SDW)	+= snd-soc-cs35l56-sdw.o
-+obj-$(CONFIG_SND_SOC_CS40L50)		+= snd-soc-cs40l50.o
- obj-$(CONFIG_SND_SOC_CS42L42_CORE)	+= snd-soc-cs42l42.o
- obj-$(CONFIG_SND_SOC_CS42L42)	+= snd-soc-cs42l42-i2c.o
- obj-$(CONFIG_SND_SOC_CS42L42_SDW)	+= snd-soc-cs42l42-sdw.o
-diff --git a/sound/soc/codecs/cs40l50-codec.c b/sound/soc/codecs/cs40l50-codec.c
-new file mode 100644
-index 000000000000..6d4a0970b219
---- /dev/null
-+++ b/sound/soc/codecs/cs40l50-codec.c
-@@ -0,0 +1,308 @@
-+// SPDX-License-Identifier: GPL-2.0
-+//
-+// CS40L50 Advanced Haptic Driver with waveform memory,
-+// integrated DSP, and closed-loop algorithms
-+//
-+// Copyright 2024 Cirrus Logic, Inc.
-+//
-+// Author: James Ogletree <james.ogletree@cirrus.com>
-+
-+#include <linux/bitfield.h>
-+#include <linux/mfd/cs40l50.h>
-+#include <linux/pm_runtime.h>
-+#include <sound/pcm_params.h>
-+#include <sound/soc.h>
-+
-+#define CS40L50_REFCLK_INPUT		0x2C04
-+#define CS40L50_ASP_CONTROL2		0x4808
-+#define CS40L50_ASP_DATA_CONTROL5	0x4840
-+
-+/* PLL Config */
-+#define CS40L50_PLL_REFCLK_BCLK		0x0
-+#define CS40L50_PLL_REFCLK_MCLK		0x5
-+#define CS40L50_PLL_REEFCLK_MCLK_CFG	0x00
-+#define CS40L50_PLL_REFCLK_LOOP_MASK	BIT(11)
-+#define CS40L50_PLL_REFCLK_OPEN_LOOP	1
-+#define CS40L50_PLL_REFCLK_CLOSED_LOOP	0
-+#define CS40L50_PLL_REFCLK_LOOP_SHIFT	11
-+#define CS40L50_PLL_REFCLK_FREQ_MASK	GENMASK(10, 5)
-+#define CS40L50_PLL_REFCLK_FREQ_SHIFT	5
-+#define CS40L50_PLL_REFCLK_SEL_MASK	GENMASK(2, 0)
-+#define CS40L50_BCLK_RATIO_DEFAULT	32
-+
-+/* ASP Config */
-+#define CS40L50_ASP_RX_WIDTH_SHIFT	24
-+#define CS40L50_ASP_RX_WIDTH_MASK	GENMASK(31, 24)
-+#define CS40L50_ASP_RX_WL_MASK		GENMASK(5, 0)
-+#define CS40L50_ASP_FSYNC_INV_MASK	BIT(2)
-+#define CS40L50_ASP_BCLK_INV_MASK	BIT(6)
-+#define CS40L50_ASP_FMT_MASK		GENMASK(10, 8)
-+#define CS40L50_ASP_FMT_I2S		0x2
-+
-+struct cs40l50_pll_config {
-+	unsigned int freq;
-+	unsigned int cfg;
-+};
-+
-+struct cs40l50_codec {
-+	struct device *dev;
-+	struct regmap *regmap;
-+	unsigned int daifmt;
-+	unsigned int bclk_ratio;
-+	unsigned int rate;
-+};
-+
-+static const struct cs40l50_pll_config cs40l50_pll_cfg[] = {
-+	{ 32768, 0x00 },
-+	{ 1536000, 0x1B },
-+	{ 3072000, 0x21 },
-+	{ 6144000, 0x28 },
-+	{ 9600000, 0x30 },
-+	{ 12288000, 0x33 },
-+};
-+
-+static int cs40l50_get_clk_config(unsigned int freq, unsigned int *cfg)
-+{
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(cs40l50_pll_cfg); i++) {
-+		if (cs40l50_pll_cfg[i].freq == freq) {
-+			*cfg = cs40l50_pll_cfg[i].cfg;
-+			return 0;
-+		}
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static int cs40l50_swap_ext_clk(struct cs40l50_codec *codec, unsigned int clk_src)
-+{
-+	unsigned int cfg;
-+	int ret;
-+
-+	switch (clk_src) {
-+	case CS40L50_PLL_REFCLK_BCLK:
-+		ret = cs40l50_get_clk_config(codec->bclk_ratio * codec->rate, &cfg);
-+		if (ret)
-+			return ret;
-+		break;
-+	case CS40L50_PLL_REFCLK_MCLK:
-+		cfg = CS40L50_PLL_REEFCLK_MCLK_CFG;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	ret = regmap_update_bits(codec->regmap, CS40L50_REFCLK_INPUT,
-+				 CS40L50_PLL_REFCLK_LOOP_MASK,
-+				 CS40L50_PLL_REFCLK_OPEN_LOOP <<
-+				 CS40L50_PLL_REFCLK_LOOP_SHIFT);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_update_bits(codec->regmap, CS40L50_REFCLK_INPUT,
-+				 CS40L50_PLL_REFCLK_FREQ_MASK |
-+				 CS40L50_PLL_REFCLK_SEL_MASK,
-+				 (cfg << CS40L50_PLL_REFCLK_FREQ_SHIFT) | clk_src);
-+	if (ret)
-+		return ret;
-+
-+	return regmap_update_bits(codec->regmap, CS40L50_REFCLK_INPUT,
-+				  CS40L50_PLL_REFCLK_LOOP_MASK,
-+				  CS40L50_PLL_REFCLK_CLOSED_LOOP <<
-+				  CS40L50_PLL_REFCLK_LOOP_SHIFT);
-+}
-+
-+static int cs40l50_clk_en(struct snd_soc_dapm_widget *w,
-+			  struct snd_kcontrol *kcontrol,
-+			  int event)
-+{
-+	struct snd_soc_component *comp = snd_soc_dapm_to_component(w->dapm);
-+	struct cs40l50_codec *codec = snd_soc_component_get_drvdata(comp);
-+	int ret;
-+
-+	switch (event) {
-+	case SND_SOC_DAPM_POST_PMU:
-+		ret = cs40l50_dsp_write(codec->dev, codec->regmap, CS40L50_STOP_PLAYBACK);
-+		if (ret)
-+			return ret;
-+
-+		ret = cs40l50_dsp_write(codec->dev, codec->regmap, CS40L50_START_I2S);
-+		if (ret)
-+			return ret;
-+
-+		ret = cs40l50_swap_ext_clk(codec, CS40L50_PLL_REFCLK_BCLK);
-+		if (ret)
-+			return ret;
-+		break;
-+	case SND_SOC_DAPM_PRE_PMD:
-+		ret = cs40l50_swap_ext_clk(codec, CS40L50_PLL_REFCLK_MCLK);
-+		if (ret)
-+			return ret;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct snd_soc_dapm_widget cs40l50_dapm_widgets[] = {
-+	SND_SOC_DAPM_SUPPLY_S("ASP PLL", 0, SND_SOC_NOPM, 0, 0, cs40l50_clk_en,
-+			      SND_SOC_DAPM_POST_PMU | SND_SOC_DAPM_PRE_PMD),
-+	SND_SOC_DAPM_AIF_IN("ASPRX1", NULL, 0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_IN("ASPRX2", NULL, 0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_OUTPUT("OUT"),
-+};
-+
-+static const struct snd_soc_dapm_route cs40l50_dapm_routes[] = {
-+	{ "ASP Playback", NULL, "ASP PLL" },
-+	{ "ASPRX1", NULL, "ASP Playback" },
-+	{ "ASPRX2", NULL, "ASP Playback" },
-+
-+	{ "OUT", NULL, "ASPRX1" },
-+	{ "OUT", NULL, "ASPRX2" },
-+};
-+
-+static int cs40l50_set_dai_fmt(struct snd_soc_dai *codec_dai, unsigned int fmt)
-+{
-+	struct cs40l50_codec *codec = snd_soc_component_get_drvdata(codec_dai->component);
-+
-+	if ((fmt & SND_SOC_DAIFMT_MASTER_MASK) != SND_SOC_DAIFMT_CBC_CFC)
-+		return -EINVAL;
-+
-+	switch (fmt & SND_SOC_DAIFMT_INV_MASK) {
-+	case SND_SOC_DAIFMT_NB_NF:
-+		codec->daifmt = 0;
-+		break;
-+	case SND_SOC_DAIFMT_NB_IF:
-+		codec->daifmt = CS40L50_ASP_FSYNC_INV_MASK;
-+		break;
-+	case SND_SOC_DAIFMT_IB_NF:
-+		codec->daifmt = CS40L50_ASP_BCLK_INV_MASK;
-+		break;
-+	case SND_SOC_DAIFMT_IB_IF:
-+		codec->daifmt = CS40L50_ASP_FSYNC_INV_MASK | CS40L50_ASP_BCLK_INV_MASK;
-+		break;
-+	default:
-+		dev_err(codec->dev, "Invalid clock invert\n");
-+		return -EINVAL;
-+	}
-+
-+	switch (fmt & SND_SOC_DAIFMT_FORMAT_MASK) {
-+	case SND_SOC_DAIFMT_I2S:
-+		codec->daifmt |= FIELD_PREP(CS40L50_ASP_FMT_MASK, CS40L50_ASP_FMT_I2S);
-+		break;
-+	default:
-+		dev_err(codec->dev, "Unsupported DAI format\n");
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static int cs40l50_hw_params(struct snd_pcm_substream *substream,
-+			     struct snd_pcm_hw_params *params,
-+			     struct snd_soc_dai *dai)
-+{
-+	struct cs40l50_codec *codec = snd_soc_component_get_drvdata(dai->component);
-+	unsigned int asp_rx_wl = params_width(params);
-+	int ret;
-+
-+	codec->rate = params_rate(params);
-+
-+	ret = regmap_update_bits(codec->regmap, CS40L50_ASP_DATA_CONTROL5,
-+				 CS40L50_ASP_RX_WL_MASK, asp_rx_wl);
-+	if (ret)
-+		return ret;
-+
-+	codec->daifmt |= (asp_rx_wl << CS40L50_ASP_RX_WIDTH_SHIFT);
-+
-+	return regmap_update_bits(codec->regmap, CS40L50_ASP_CONTROL2,
-+				  CS40L50_ASP_FSYNC_INV_MASK |
-+				  CS40L50_ASP_BCLK_INV_MASK |
-+				  CS40L50_ASP_FMT_MASK |
-+				  CS40L50_ASP_RX_WIDTH_MASK, codec->daifmt);
-+}
-+
-+static int cs40l50_set_dai_bclk_ratio(struct snd_soc_dai *dai, unsigned int ratio)
-+{
-+	struct cs40l50_codec *codec = snd_soc_component_get_drvdata(dai->component);
-+
-+	codec->bclk_ratio = ratio;
-+
-+	return 0;
-+}
-+
-+static const struct snd_soc_dai_ops cs40l50_dai_ops = {
-+	.set_fmt = cs40l50_set_dai_fmt,
-+	.set_bclk_ratio = cs40l50_set_dai_bclk_ratio,
-+	.hw_params = cs40l50_hw_params,
-+};
-+
-+static struct snd_soc_dai_driver cs40l50_dai[] = {
-+	{
-+		.name = "cs40l50-pcm",
-+		.id = 0,
-+		.playback = {
-+			.stream_name = "ASP Playback",
-+			.channels_min = 1,
-+			.channels_max = 2,
-+			.rates = SNDRV_PCM_RATE_48000,
-+			.formats = SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S24_LE,
-+		},
-+		.ops = &cs40l50_dai_ops,
-+	},
-+};
-+
-+static int cs40l50_codec_probe(struct snd_soc_component *component)
-+{
-+	struct cs40l50_codec *codec = snd_soc_component_get_drvdata(component);
-+
-+	codec->bclk_ratio = CS40L50_BCLK_RATIO_DEFAULT;
-+
-+	return 0;
-+}
-+
-+static const struct snd_soc_component_driver soc_codec_dev_cs40l50 = {
-+	.probe = cs40l50_codec_probe,
-+	.dapm_widgets = cs40l50_dapm_widgets,
-+	.num_dapm_widgets = ARRAY_SIZE(cs40l50_dapm_widgets),
-+	.dapm_routes = cs40l50_dapm_routes,
-+	.num_dapm_routes = ARRAY_SIZE(cs40l50_dapm_routes),
-+};
-+
-+static int cs40l50_codec_driver_probe(struct platform_device *pdev)
-+{
-+	struct cs40l50 *cs40l50 = dev_get_drvdata(pdev->dev.parent);
-+	struct cs40l50_codec *codec;
-+
-+	codec = devm_kzalloc(&pdev->dev, sizeof(*codec), GFP_KERNEL);
-+	if (!codec)
-+		return -ENOMEM;
-+
-+	codec->regmap = cs40l50->regmap;
-+	codec->dev = &pdev->dev;
-+
-+	return devm_snd_soc_register_component(&pdev->dev, &soc_codec_dev_cs40l50,
-+					       cs40l50_dai, ARRAY_SIZE(cs40l50_dai));
-+}
-+
-+static const struct platform_device_id cs40l50_id[] = {
-+	{ "cs40l50-codec", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(platform, cs40l50_id);
-+
-+static struct platform_driver cs40l50_codec_driver = {
-+	.probe = cs40l50_codec_driver_probe,
-+	.id_table = cs40l50_id,
-+	.driver = {
-+		.name = "cs40l50-codec",
-+	},
-+};
-+module_platform_driver(cs40l50_codec_driver);
-+
-+MODULE_DESCRIPTION("ASoC CS40L50 driver");
-+MODULE_AUTHOR("James Ogletree <james.ogletree@cirrus.com>");
-+MODULE_LICENSE("GPL");
--- 
-2.25.1
+If change is quite bit, we have to do that. But if change is quite small,
+One dtb can cover it by driver auto detect, which will work like some
+adaptor card have not plug into boards, or some sensor or NOR-flash have
+not installed because reduce cost.
+  
+Although boot loader can update dts or choose difference dts, It also cause
+many confusition, such as layerscape, uboot update many kernel dtb's
+information, which actually increase dependence between uboot and kernel.
+Also it confuse people, for example,  when try to debug kernel dtb, why
+change have not token affect when change dts because not realized uboot
+over write it.
 
+What's I dide is that trying to reduce unnecessary dts.
+
+Frank
+
+> 
+> Best regards,
+> Krzysztof
+> 
 
