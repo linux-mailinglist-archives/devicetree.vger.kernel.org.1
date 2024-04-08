@@ -1,139 +1,110 @@
-Return-Path: <devicetree+bounces-57195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 086C689C7A3
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 16:57:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E367489C7C0
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 17:05:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D63D91C21BCC
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 14:57:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21EF81C21EBA
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 15:05:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1511613F42F;
-	Mon,  8 Apr 2024 14:57:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="cHwhBQaa"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 326C313F443;
+	Mon,  8 Apr 2024 15:05:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB8FB13EFF3
-	for <devicetree@vger.kernel.org>; Mon,  8 Apr 2024 14:57:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36B2E13F425;
+	Mon,  8 Apr 2024 15:05:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712588235; cv=none; b=j/mYdMfWmM/iUxfwGSFQPr14ROLjAvl/EBbMHH3WksXjMnVDTuMz/vbC5/l0CEyj5++DWUrJ0XQL4q6noKwFiq+sDcKnlvQjNS2dXdObhDL5eFKDsO9jN9cA2K92O/+GGUBJxyGVKq7uBI0WPVHmviE1wz2/mCaaeOOwre5wgMQ=
+	t=1712588725; cv=none; b=p52/rjkAHWmJT/4Qf/0IXmfLARAYG86rjnPq/e54q8f4leyTjyx4Spku4BR/FFHpCWacLvJXMT6Rp6aNKI82xY98oOkawhSUXEetbIsnxqjs5UtBujHDht0u0x18iUP0/RsBpK4EKc6r83tTTN/vq4suX0ZCVjDY5IW3VLENsi8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712588235; c=relaxed/simple;
-	bh=ZL5WxRd6xX5YwWDXJ0UNj1PKwdcUln7meecPcR7SOyc=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Xn8muNYUfQnNp/AxjP7JSClrIPYmujRJO7D56QcmNYevgyR93BR1PWDKy31g3dzuu9dbtHNjz5VXlswKxNoWhm7CHx04caXMU6n7l7FZZZQS1iv+CV2HTHIjlbZMqVVDNKpj8nAugLL8gY2GJAPoJaPUPOlTpaSOVjdkGHKlPkA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=cHwhBQaa; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: References: Cc:
- To: From: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1712588227;
- bh=Vrqed05exdnqCvLdsEGiIF00ILNQUOlq51lQmfBBM8s=;
- b=cHwhBQaa94tEYSoDZUSED06sXUlf1O7V2Iq3tWYOej0f4c6whydMrhWFlEg+8aZxvuo3WVDpW
- sNsV+B3plUjuWUjaK6FuHb5XU8D4bwjCONjLsLBy6dekfVnUQJesjygtAdqOVVvQgcmsMmUe9f+
- KstEVBP5JkieE9k/bWIOHG8yFva52i8tVtLbfeTPsVf+zORvR9ViFfVewiZZt6kGRGrLU+nlj9C
- 2AlA/eG3cRrqi+d3L3/7mqmHgqSFdgbH/nwAl3OmpImuJRNUR8XwtpnPiNGlOx0iaHY76dRdCY+
- z1SWM5h1X+Hm0bNu+qbdlbVVgdg6fme0/OMmJRM5RClA==
-Message-ID: <b32c284e-f3ec-44b0-abbd-7fa403bc9870@kwiboo.se>
-Date: Mon, 8 Apr 2024 16:56:59 +0200
+	s=arc-20240116; t=1712588725; c=relaxed/simple;
+	bh=JQQaCwBNLuDCVNbN4RvS+OFwumZuXU9MQIz0FYSG1zk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=RWw7aE1No/P56GxbsarKgAPp6n8lduR/M+VdsHKr/2BLiYLSr+CunU483irALweFWAhE8VrkoQOdUu7OqdALEKid2TYYqmgfLHlmhmoh6VR79Cw+OxlhEVvTv0X7YAp649ki31SsnN5IFZ3Oli6z4ZE8ciei36beyT204qXs6ws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i5e8616c3.versanet.de ([94.134.22.195] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1rtqYK-0007Xz-Fd; Mon, 08 Apr 2024 17:04:56 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Chukun Pan <amadeus@jmu.edu.cn>, Jonas Karlman <jonas@kwiboo.se>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject:
+ Re: [PATCH 1/1] arm64: dts: rockchip: enable onboard spi flash for rock-3a
+Date: Mon, 08 Apr 2024 17:04:55 +0200
+Message-ID: <3066222.xgJ6IN8ObU@diego>
+In-Reply-To: <b32c284e-f3ec-44b0-abbd-7fa403bc9870@kwiboo.se>
+References:
+ <20240408124005.182565-1-amadeus@jmu.edu.cn>
+ <421ab43b-ff92-41c6-9904-3c7681c926be@kwiboo.se>
+ <b32c284e-f3ec-44b0-abbd-7fa403bc9870@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] arm64: dts: rockchip: enable onboard spi flash for
- rock-3a
-From: Jonas Karlman <jonas@kwiboo.se>
-To: Chukun Pan <amadeus@jmu.edu.cn>, Heiko Stuebner <heiko@sntech.de>
-Cc: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240408124005.182565-1-amadeus@jmu.edu.cn>
- <421ab43b-ff92-41c6-9904-3c7681c926be@kwiboo.se>
-Content-Language: en-US
-In-Reply-To: <421ab43b-ff92-41c6-9904-3c7681c926be@kwiboo.se>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-ForwardEmail-ID: 661405c13464f70b49a230b8
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi again,
+Am Montag, 8. April 2024, 16:56:59 CEST schrieb Jonas Karlman:
+> On 2024-04-08 16:44, Jonas Karlman wrote:
+> > On 2024-04-08 14:40, Chukun Pan wrote:
+> >> There is a mx25u12835f spi flash on this board, enable it.
+> >>
+> >> [    2.525805] spi-nor spi4.0: mx25u12835f (16384 Kbytes)
+> >>
+> >> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+> >> ---
+> >>  arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts | 12 ++++++++++++
+> >>  1 file changed, 12 insertions(+)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+> >> index a5e974ea659e..d8738cc47c73 100644
+> >> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+> >> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+> >> @@ -757,6 +757,18 @@ &sdmmc2 {
+> >>  	status = "okay";
+> >>  };
+> >>  
+> >> +&sfc {
+> > 
+> > This is missing:
+> > 
+> > 	#address-cells = <1>;
+> > 	#size-cells = <0>;
+> > 
+> >> +	status = "okay";
+> >> +
+> >> +	flash@0 {
+> >> +		compatible = "jedec,spi-nor";
+> >> +		reg = <0x0>;
+> >> +		spi-max-frequency = <50000000>;
+> > 
+> > At least in U-Boot the spi clock only support 24, 100 or 200 mhz and I
+> > am pretty sure the spi flash support 100mhz, so I would suggest you test
+> > with 100mhz, same as used on other rk356x boards.
+> 
+> Sorry, looked at spi clock instead of sfc clock.
+> sfc clock support 24, 50, 75, 100, 125 and 150 mhz.
 
-On 2024-04-08 16:44, Jonas Karlman wrote:
-> Hi Chukun,
-> 
-> On 2024-04-08 14:40, Chukun Pan wrote:
->> There is a mx25u12835f spi flash on this board, enable it.
->>
->> [    2.525805] spi-nor spi4.0: mx25u12835f (16384 Kbytes)
->>
->> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
->> ---
->>  arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts | 12 ++++++++++++
->>  1 file changed, 12 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
->> index a5e974ea659e..d8738cc47c73 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
->> @@ -757,6 +757,18 @@ &sdmmc2 {
->>  	status = "okay";
->>  };
->>  
->> +&sfc {
-> 
-> This is missing:
-> 
-> 	#address-cells = <1>;
-> 	#size-cells = <0>;
-> 
->> +	status = "okay";
->> +
->> +	flash@0 {
->> +		compatible = "jedec,spi-nor";
->> +		reg = <0x0>;
->> +		spi-max-frequency = <50000000>;
-> 
-> At least in U-Boot the spi clock only support 24, 100 or 200 mhz and I
-> am pretty sure the spi flash support 100mhz, so I would suggest you test
-> with 100mhz, same as used on other rk356x boards.
+I think in some previous discussion the agreement was that the node
+should specify the max frequency the flash supports and have the
+controller worry about its own clock ranges.
 
-Sorry, looked at spi clock instead of sfc clock.
-sfc clock support 24, 50, 75, 100, 125 and 150 mhz.
+Though in this case the 50MHz for the flash even matches the clock
+frequency supported by the sfc
 
-Regards,
-Jonas
-
-> 
-> For U-Boot I have used 24 mhz for rk356x boards not defining a flash@0
-> node in linux device tree, such as the rock-3a board.
-> 
-> Regards,
-> Jonas
-> 
->> +		spi-rx-bus-width = <4>;
->> +		spi-tx-bus-width = <1>;
->> +	};
->> +};
->> +
->>  &tsadc {
->>  	rockchip,hw-tshut-mode = <1>;
->>  	rockchip,hw-tshut-polarity = <0>;
-> 
 
 
