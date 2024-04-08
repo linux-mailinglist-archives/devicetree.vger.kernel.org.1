@@ -1,209 +1,105 @@
-Return-Path: <devicetree+bounces-57142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A33FD89BF25
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 14:42:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4A4189BF53
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 14:46:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5EDD4282625
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 12:42:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EF941F21227
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 12:46:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B16C874BE8;
-	Mon,  8 Apr 2024 12:41:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 614E17BAE3;
+	Mon,  8 Apr 2024 12:45:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aQM+9khF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa2.ltts.com (unknown [14.140.155.42])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D268171B47;
-	Mon,  8 Apr 2024 12:41:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=14.140.155.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23D306F065;
+	Mon,  8 Apr 2024 12:45:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712580092; cv=none; b=lDLLbhELpJvVM5lEdonRNeAsAGfqtjsA+oyJ9MwW6LCLR2K5/744hU5+M4sy2mGPLutTJRTEZhOcxktY4gGiN8SOwjZb0crmuzsnF6Ka4IU++idHQmdLMNDgB96tBuEQovE3VdJ85gMjiablw4PYrnNoiSLaADDtLtUnLIORDTE=
+	t=1712580304; cv=none; b=hQvjJFP0Ne8MI9hIzzDDXS7qOlC3Fn0pS428BLIfP4LhYvxUYmgcJxwwfiZatWfMN0FSyN33aVv5JNBelakrS6j6BxcZbm2VI5dKym3rpYD9AijPxu3aedABLb90u6dwRdk08TqaQPVz2sZwxJRai5+puddyatNOsjHqeZd5QgE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712580092; c=relaxed/simple;
-	bh=/z6DZH45bLOkfq/gVueWFPb4M8m52qtDKhLklz3wx38=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=rM2RMrlmcxt2RsHGe5PMAzfJdDgiNM8XNoDP+HSXaouZVEttcklCs3myya6Ce4DZzD+ipzjcOOXC/vuVQOzTUlMeqw9INRsj6ZeNguVwnLQnD3a6rdH69KOVK20L6K7yTR21nxNppNz+jiwUtRJlKSw4RwvRotr20yZyePdzMhc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ltts.com; spf=pass smtp.mailfrom=ltts.com; arc=none smtp.client-ip=14.140.155.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ltts.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ltts.com
-IronPort-SDR: w6Kdt8ZmnvpgPA1o2uIndLjVLlbWA2/ozduYRp+PAd+sqOcxk9ZcyrPhWka0gv+mSlnbnS0YwG
- Ek5HbuyrWlNg==
-Received: from unknown (HELO localhost.localdomain) ([192.168.34.55])
-  by esa2.ltts.com with ESMTP; 08 Apr 2024 18:11:25 +0530
-From: Bhargav Raviprakash <bhargav.r@ltts.com>
-To: linux-kernel@vger.kernel.org
-Cc: m.nirmaladevi@ltts.com,
-	lee@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	jpanis@baylibre.com,
-	devicetree@vger.kernel.org,
-	arnd@arndb.de,
-	gregkh@linuxfoundation.org,
-	lgirdwood@gmail.com,
-	broonie@kernel.org,
-	linus.walleij@linaro.org,
-	linux-gpio@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	nm@ti.com,
-	vigneshr@ti.com,
-	kristo@kernel.org,
-	eblanc@baylibre.com,
-	Bhargav Raviprakash <bhargav.r@ltts.com>
-Subject: [PATCH v6 11/11] arch: arm64: dts: ti: k3-am62p5-sk: Add TPS65224 PMIC support in AM62P dts
-Date: Mon,  8 Apr 2024 18:10:47 +0530
-Message-Id: <20240408124047.191895-12-bhargav.r@ltts.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240408124047.191895-1-bhargav.r@ltts.com>
-References: <20240408124047.191895-1-bhargav.r@ltts.com>
+	s=arc-20240116; t=1712580304; c=relaxed/simple;
+	bh=tfA9OCUUYmRBc/HfduGlcOEWNno6qBswTFUJs11/8Xo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JwVkRI22gHFjReRx5TI/C9z1XZ9d6jhW4jnYRRk0DjWQ1ogCvYyabdvtcGclDwmn8TMN/1XJDuK/K0AUS+X+ecMZhukaYyFd98a+7B3K/2PZc6p61JbZOwW6YhGeL6mWmkUYqjEbKO0kk6Krr/I3XFviN3NQv4FBM0nvcOBwzQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aQM+9khF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F782C433C7;
+	Mon,  8 Apr 2024 12:45:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712580303;
+	bh=tfA9OCUUYmRBc/HfduGlcOEWNno6qBswTFUJs11/8Xo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aQM+9khFVzUOxlN8kWH6/Ua0hK+6TWyjo1t158gVxNaLnzWSbD+CfOLvDMaSVOk1S
+	 p4yrEToGN4+sy2F9Js4CY63FE/qYbPlpEPkAAqKFDc6lVmM8VbDLurDOH/FQhKA27X
+	 9EomU7+rrKF3MTc242A3SPlvFSFz1+ryQ8IEVea1MGYnWzCYaerP80Pt+JRbZrsct0
+	 A9eNlJvr4IdSrjXtEafomf6NH64Du3w9oWDfTt6NlaN8sfVaS7WdgSC4LImuFaMc6r
+	 wbsLGNYtw2H3Zhg6UYCqI2cd4Tyq1JxhN1IR6rU8a6hQCFpcacnY+KYHRoZ9T4qoQF
+	 JMOE4QShg0amA==
+Date: Mon, 8 Apr 2024 07:45:00 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+	Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, linux-arm-msm@vger.kernel.org, 
+	alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com
+Subject: Re: [RESEND v3 2/2] ASoC: qcom: sc8280xp: Add support for QCM6490
+ and QCS6490
+Message-ID: <45yy3cvepk4uwi2jdmh4w6l5ac3dffqhbot6xzv2bwjvo637ss@pryzth2hghyu>
+References: <20240408042331.403103-1-quic_mohs@quicinc.com>
+ <20240408042331.403103-3-quic_mohs@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240408042331.403103-3-quic_mohs@quicinc.com>
 
-Add support for TPS65224 PMIC in device tree of AM62P EVM. Adds regulator
-configuration, pinmux configurations and pmic device nodes.
+On Mon, Apr 08, 2024 at 09:53:31AM +0530, Mohammad Rafi Shaik wrote:
+> Add compatibles for sound card on Qualcomm QCM6490 IDP and
+> QCS6490 RB3Gen2 boards.
+> 
+> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+> ---
+>  sound/soc/qcom/sc8280xp.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/sound/soc/qcom/sc8280xp.c b/sound/soc/qcom/sc8280xp.c
+> index b7fd503a1666..878bd50ad4a7 100644
+> --- a/sound/soc/qcom/sc8280xp.c
+> +++ b/sound/soc/qcom/sc8280xp.c
+> @@ -169,6 +169,8 @@ static int sc8280xp_platform_probe(struct platform_device *pdev)
+>  }
+>  
+>  static const struct of_device_id snd_sc8280xp_dt_match[] = {
+> +	{.compatible = "qcom,qcm6490-idp-sndcard", "qcm6490"},
+> +	{.compatible = "qcom,qcs6490-rb3gen2-sndcard", "qcs6490"},
 
-Signed-off-by: Bhargav Raviprakash <bhargav.r@ltts.com>
----
- arch/arm64/boot/dts/ti/k3-am62p5-sk.dts | 95 +++++++++++++++++++++++++
- 1 file changed, 95 insertions(+)
+We now have 4 <platform>-sndcard and two <board>-sndcard compatibles
+here.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-index 1773c05f7..5d8e4321b 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-@@ -112,6 +112,16 @@ vddshv_sdio: regulator-3 {
- 		bootph-all;
- 	};
- 
-+	vcc_3v3_main: regulator-4 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_3v3_main";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vmain_pd>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
- 		pinctrl-names = "default";
-@@ -580,6 +590,12 @@ &main_uart1 {
- &mcu_pmx0 {
- 	bootph-all;
- 
-+	pmic_irq_pins_default: pmic-irq-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_MCU_IOPAD(0x000, PIN_INPUT, 7) /* (B10) MCU_GPIO0_0 */
-+		>;
-+	};
-+
- 	wkup_uart0_pins_default: wkup-uart0-default-pins {
- 		pinctrl-single,pins = <
- 			AM62PX_MCU_IOPAD(0x02c, PIN_INPUT, 0)	/* (C7) WKUP_UART0_CTSn */
-@@ -589,6 +605,13 @@ AM62PX_MCU_IOPAD(0x028, PIN_OUTPUT, 0)	/* (D7) WKUP_UART0_TXD */
- 		>;
- 		bootph-all;
- 	};
-+
-+	wkup_i2c0_pins_default: wkup-i2c0-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_MCU_IOPAD(0x04c, PIN_INPUT, 0) /* (A13) WKUP_I2C0_SCL */
-+			AM62PX_MCU_IOPAD(0x050, PIN_INPUT, 0) /* (C11) WKUP_I2C0_SDA */
-+		>;
-+	};
- };
- 
- &wkup_uart0 {
-@@ -599,6 +622,78 @@ &wkup_uart0 {
- 	bootph-all;
- };
- 
-+&wkup_i2c0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&wkup_i2c0_pins_default>;
-+	clock-frequency = <400000>;
-+
-+	tps65224: pmic@48 {
-+		compatible = "ti,tps65224-q1";
-+		reg = <0x48>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pmic_irq_pins_default>;
-+		interrupt-parent = <&mcu_gpio0>;
-+		interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
-+		ti,primary-pmic;
-+
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		buck12-supply = <&vcc_3v3_main>;
-+		buck3-supply = <&vcc_3v3_main>;
-+		buck4-supply = <&vcc_3v3_main>;
-+
-+		ldo1-supply = <&vcc_3v3_main>;
-+		ldo2-supply = <&vcc_3v3_main>;
-+		ldo3-supply = <&vcc1v8_sys>;
-+
-+		regulators {
-+			vcc_core: buck12 {
-+				regulator-name = "vcc_core_buck12";
-+				regulator-min-microvolt = <715000>;
-+				regulator-max-microvolt = <895000>;
-+				regulator-always-on;
-+			};
-+
-+			vcc1v8_sys: buck3 {
-+				regulator-name = "vcc1v8_sys_buck3";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-always-on;
-+			};
-+
-+			vcc1v1: buck4 {
-+				regulator-name = "vcc1v1_buck4";
-+				regulator-min-microvolt = <1100000>;
-+				regulator-max-microvolt = <1100000>;
-+				regulator-always-on;
-+			};
-+
-+			vdda1v8: ldo1 {
-+				regulator-name = "vdda1v8_ldo1";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-always-on;
-+			};
-+
-+			dvdd3v3: ldo2 {
-+				regulator-name = "dvdd3v3_ldo2";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+			};
-+
-+			vcc_0v85: ldo3 {
-+				regulator-name = "vcc_0v85_ldo3";
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <850000>;
-+				regulator-always-on;
-+			};
-+		};
-+	};
-+};
-+
- /* mcu_gpio0 and mcu_gpio_intr are reserved for mcu firmware usage */
- &mcu_gpio0 {
- 	status = "reserved";
--- 
-2.25.1
+Not saying that your patch is wrong, but is this driver board-specific
+or soc-specific? Srinivas, Krzysztof?
 
+Regards,
+Bjorn
+
+>  	{.compatible = "qcom,sc8280xp-sndcard", "sc8280xp"},
+>  	{.compatible = "qcom,sm8450-sndcard", "sm8450"},
+>  	{.compatible = "qcom,sm8550-sndcard", "sm8550"},
+> -- 
+> 2.25.1
+> 
+> 
 
