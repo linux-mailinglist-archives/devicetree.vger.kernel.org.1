@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-57039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B67D89B7A0
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 08:31:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D670E89B7BB
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 08:38:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B191FB2220E
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 06:31:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05C701C215CE
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 06:38:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4472E10976;
-	Mon,  8 Apr 2024 06:31:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CD772134B;
+	Mon,  8 Apr 2024 06:38:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nk/1BbJL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hcyQqu84"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A0992F50
-	for <devicetree@vger.kernel.org>; Mon,  8 Apr 2024 06:31:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97AE01CD38
+	for <devicetree@vger.kernel.org>; Mon,  8 Apr 2024 06:38:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712557863; cv=none; b=GVGjK/qivM6an9DF+DMG98yQgjjMeD0dUAlxJAQphFoarhsMarxFpl8RrvyePMTBPSfw/j6Ratnzt5+35PdhCkAqCBndppJvgyiLZCw0NrrM3B5O/WOd1uHoFcqWHIRMJupk/5+GIKK21Ubcj7dCee6MeQQLetzctCMoBoasyFc=
+	t=1712558294; cv=none; b=aKPx8KHKiQHrAppZgkce621gg+noyHShGz/8shH0qYf0VobXi4Rja6GbjNxU1qr2WtMCT7gSqLphDJSagoAN/p38tP/0lf5U8NAQj0fp7WawMAAvL3X0ZbO+MV06pqtSlD6R8/xNDwDxp4AApea/EufTab0HKx4AsnQWIAOHlBc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712557863; c=relaxed/simple;
-	bh=2aF5IdS63H7ZpPhgVLEYroerFgje0Uc6d/1bs98I8sM=;
+	s=arc-20240116; t=1712558294; c=relaxed/simple;
+	bh=23vkNTB9fsdX2nB3MrPEHmDEwG6zGXbgyPXrkLcycTY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mKOAzGF69j1JHy6H/zQjApAwNqeNldrYlq+FzmC6wjdAAEsXKDH/rbDcpUu7ChkYXXlcqPRP6YYcsOUdzuq7x+OgVutgYPQFhtFbPprGYeztFvoa982ryt0vJGXXKkagmv6ew4M/KFFFFbRUArts4nebmzcS3JVUlJfQVlI03l0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nk/1BbJL; arc=none smtp.client-ip=209.85.218.50
+	 In-Reply-To:Content-Type; b=HbUU2XcxJgUBp5JCfU1LKSnxoWXANOP4Tvph6jVI6xkPTQ63W4nX4NSgKJI1w9i9MrNcFr3C1fWmY6UymTTdd87SUo6HkFQDlWvLOQiYlezvyjDeZgA7kHQYQidak/MxmYtMLMKVADCzsnqnskY1cl1k7bXQk6EHgBJVOI2+RL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hcyQqu84; arc=none smtp.client-ip=209.85.218.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a51d7213a42so48945766b.1
-        for <devicetree@vger.kernel.org>; Sun, 07 Apr 2024 23:31:01 -0700 (PDT)
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a51c6e91793so171763266b.0
+        for <devicetree@vger.kernel.org>; Sun, 07 Apr 2024 23:38:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712557860; x=1713162660; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712558290; x=1713163090; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=0KYmvUDf80m88YMXP3fMqo8ScPsGcmUezr7P8QyyQFU=;
-        b=nk/1BbJLINul7wgXm3nCzgoZljQCM1Knrb8JS65Xwh9A5KQuSBTpdn95gPbUZXnfdF
-         12kynTOx2lSsSoZ3BLVVEjUAeZX2W1uVTp/v7vZrBrrZwlgDcy+S41NfC1kdcB/d9dPb
-         LxcA4mAFVl8emlhyRb3FdwPSoKlOvGyxNpXyagDxzSB9qiHJyDDL8KlJ5nl8bEZGthFz
-         iwoh4AiiDIDtDuzf74fiaV7RoDacNzHkePcjK2Vu4bZ+wWQeQzqQ2bFVm5uhKo4pTxUI
-         R8LjlwXMtkd8SMzXTzZekgKiz9NY/im7HsCFuKCYzdCIF1MaWHzYgKm1Ca15O88FOHf3
-         bdaA==
+        bh=2w/InBAZl4oWhjZ0Ps1WovnvdcDfPtJEQD8Wh/hdLVE=;
+        b=hcyQqu84CLB/LOWgFHF+a3nSfSBg8W88+GUmxDBILQV7cNH/W1mAyWyiwYX7PqRVdK
+         fEeCnUN6kNjYGHOtthYnbBobdbGzDJ/npYV+bt4vNMqQjcTVhotwW6N4oWT6P21seIHR
+         zeCH9RSJidCHljwvrFljeOCIQowij/hdZrQS6nmpn1JEfAnkDTfpyDU4lemuze9AoAN3
+         s4mTY7CP9QFjSA3fq+CjIRnU5AON5QEM4CpJZ0g1XR30KHWVXfumqBwmSdE+4tGZ+rMj
+         /KbB5XcJpivv1GCKAs1uUYzO+cdO8A0VXjM97naAe+UzGnTfYLgjQkPFHIOuONs8gA5u
+         va8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712557860; x=1713162660;
+        d=1e100.net; s=20230601; t=1712558290; x=1713163090;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=0KYmvUDf80m88YMXP3fMqo8ScPsGcmUezr7P8QyyQFU=;
-        b=wg8KBZc64swSkTrsMhGMQWc5ZBg4PkGGZh6aIiqzK+oRE6Z0lX3Iff9+jonkhLtB9R
-         cjT6TGItj7Wdcir08McsKBHyIyhvEGsjqzPxzTYE7k7xhaWhH96yb51UcSSjFOU0FTYm
-         ZfgszMUXSor1Q2/zNZb2hMcQxFCMGH7fK6Kla/1JHLN077GM43AVVRwVtcEjEOsv9DrH
-         vCmTBjMoUuWbkg3xUWjNO1AJFSJBfVO77Cg8huruzAiF2ryfiZiTNvL6+u1u+T0F4Kaw
-         +9IjeYmFVV5dbqFVfjiYnIeRzSnIKdWrrcWNfOlYxHuTFvhoxAIdtSf7xZJ96G1UJj1X
-         1XgQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXVo+7x58goFKN3lPIXJMLoDQSkMu1bN7iphX6A9eM/1VbQqh+9l+m2BKFsG8vXyQcj52MceCynfOeWWOsKLz+2Zvs6pFxsaN6dNQ==
-X-Gm-Message-State: AOJu0YwNVYWDFZ3WmK6YAzRuM4W368gbbZCc8eQ4SY5Gfa77ZpcnBqto
-	WrlM3xyh7ZJaGtNcu7QvwEUkXeDwrdGdBwVNucPZEaK56AIu5gEEV3W0m7ymKRw=
-X-Google-Smtp-Source: AGHT+IHKpgS/7N+qNqT2rqk8qoAtIrascdVmfZ5A2k2DuidpJbl62vpUAnd5gY7MKQ+nqa8RxL9miw==
-X-Received: by 2002:a17:906:a292:b0:a51:adf3:ac63 with SMTP id i18-20020a170906a29200b00a51adf3ac63mr4606050ejz.23.1712557859622;
-        Sun, 07 Apr 2024 23:30:59 -0700 (PDT)
+        bh=2w/InBAZl4oWhjZ0Ps1WovnvdcDfPtJEQD8Wh/hdLVE=;
+        b=vuYj9t/uw/rnsaVAH0PhQTgnEUGFMlAAg4NtF2is54ItgUZ2TyPuk9Ybs0mKafIg/A
+         jI0pI5DSCTmbbWWmubaXQJIjHDAkGTG8k5g8p4C+ND5KpWzvmLydV8JnfXBMDZZh8Ldj
+         UvpdMWQG2284OYx9CiX9o97AdKjJL88rLXfycVw2i61pTDWRAV3GB8mZg0Z/IQVVRimB
+         c6xSY8qQxnYJkfKScV+WmWYqlR2UYiV38FkGg3WMlXuB7HzPyTwy3nzXjJ1Zye/6P+0J
+         lIyfIkGjIb6FUhPqHAAnLbJcXBWYG/Z7WxyZmCwL4DoHoenfPsgjuAeNnNsHtdlIUmsS
+         snUg==
+X-Forwarded-Encrypted: i=1; AJvYcCUs8RjMIBZaYZJJPhkA1/zaiydcWgKUqSn3wu4pD4WDNbKXQ1Ui5pqcyTYQdwbpMB/4lS7zOvDk2ZzQSeTPADoygXjKCXyj0um5NQ==
+X-Gm-Message-State: AOJu0YxFxtZm5iXNV+cVixVodyt6+Sfz+sKSeqNSU+7ejVjJBdAVeCmg
+	xAH578rwvH6vSFfe1XXFxr6uIdTTrG+6YUqZbgSv6nqWpeQ22f8YsCksKA1ofTB1WmXEhfynlOh
+	y
+X-Google-Smtp-Source: AGHT+IFGFoGB9wEcbDwB5hRjnY45bxmlcOVce7oiWq0/ZW53C83YQi+of41gg2gmA7rSpvxjCVYHqw==
+X-Received: by 2002:a17:907:1b03:b0:a51:dc1f:b2fb with SMTP id mp3-20020a1709071b0300b00a51dc1fb2fbmr935999ejc.12.1712558289781;
+        Sun, 07 Apr 2024 23:38:09 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id cw23-20020a170906c79700b00a51bf5932aesm2483896ejb.28.2024.04.07.23.30.57
+        by smtp.gmail.com with ESMTPSA id ld11-20020a170906f94b00b00a51d8a3a632sm666159ejb.168.2024.04.07.23.38.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 07 Apr 2024 23:30:59 -0700 (PDT)
-Message-ID: <920d797f-0e1a-458a-9924-1f299a8752d3@linaro.org>
-Date: Mon, 8 Apr 2024 08:30:56 +0200
+        Sun, 07 Apr 2024 23:38:09 -0700 (PDT)
+Message-ID: <fd1d99fe-943f-4fcc-a736-9d97dba5a80e@linaro.org>
+Date: Mon, 8 Apr 2024 08:38:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,25 +78,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 1/7] dt-bindings: spmi: Add X1E80100 SPMI PMIC ARB
- schema
-To: Abel Vesa <abel.vesa@linaro.org>, Bjorn Andersson <andersson@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Stephen Boyd <sboyd@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Srini Kandagatla <srinivas.kandagatla@linaro.org>,
- Johan Hovold <johan@kernel.org>, David Collins <quic_collinsd@quicinc.com>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org
-References: <20240407-spmi-multi-master-support-v9-0-fa151c1391f3@linaro.org>
- <20240407-spmi-multi-master-support-v9-1-fa151c1391f3@linaro.org>
- <fkwugrnak3fhkg5ig47kmy3edm45ut4dprkabntnwemjt3w2mb@7cak5zxwzw4p>
- <ZhOJB8o9cRr7oQU8@linaro.org>
+Subject: Re: [PATCH v4 1/2] dt-bindings: media: imx8-jpeg: Add clocks entries
+To: Mirela Rabulea <mirela.rabulea@nxp.com>, shawnguo@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, festevam@denx.de,
+ festevam@gmail.com, alexander.stein@ew.tq-group.com, Frank.li@nxp.com,
+ ming.qian@nxp.com
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, s.hauer@pengutronix.de,
+ kernel@pengutronix.de, mchehab@kernel.org, hverkuil@xs4all.nl,
+ linux-media@vger.kernel.org, imx@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+References: <20240408030734.1191069-1-mirela.rabulea@nxp.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -142,67 +135,75 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZhOJB8o9cRr7oQU8@linaro.org>
+In-Reply-To: <20240408030734.1191069-1-mirela.rabulea@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/04/2024 08:04, Abel Vesa wrote:
-> On 24-04-07 19:07:03, Bjorn Andersson wrote:
->> On Sun, Apr 07, 2024 at 07:23:21PM +0300, Abel Vesa wrote:
->>> Add dedicated schema for X1E80100 PMIC ARB (v7) as it allows multiple
->>> buses by declaring them as child nodes.
->>>
->>
->> But is this really a "dedicated schema for X1E80100"? Isn't it "the
->> schema for all multi-bus controllers"?
->>
->> I.e. isn't this a "dedicated schema for all platforms starting with
->> SM8450"?
+On 08/04/2024 05:07, Mirela Rabulea wrote:
+> From: Fabio Estevam <festevam@gmail.com>
 > 
-> Suggestion was from Krzysztof to add platform specific comaptible (and
-> therefore schema). Since the first platform that will support in
-> upstream proper multi bus is the x1e80100, the schema needs to bear the
-> same name as the compatible. When support for multi bus will be added to
-> the other platforms (including the SM8450), they will use the fallback
-> compatible of the x1e80100 and will be documented in this newly added
-> schema. We did the same thing with some PHYs drivers, IIRC.
+> The JPEG decoder/encoder present in iMX8QXP and iMX8QM SoCs need
+> the PER and IPG clocks to be functional, so add the clock entries.
 > 
->>
->> Can you please use the commit message to document the actual reason why
->> you choose to create a dedicated schema for this? Is it simply to avoid
->> having to schema with either pmics or multiple buses as children?
+> This also fixes the following schema warning:
 > 
-> I can re-send the patchset with such a phrase in commit message.
+> imx8qm-apalis-eval.dtb: jpegdec@58400000: 'assigned-clock-rates', 'assigned-clocks', 'clock-names', 'clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
+>         from schema $id: http://devicetree.org/schemas/media/nxp,imx8-jpeg.yaml#
 > 
-> One of the early versions of this patchset was actually submitting a
-> generic compatible for multi bus, but I remember that there was a
-> request for following the platform dedicated approach.
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> Signed-off-by: Mirela Rabulea <mirela.rabulea@nxp.com>
+> ---
 > 
-> Krzysztof, can you please provide here the argument for why that is
-> preferred?
 
-I could not find such suggestions from my side in the archives, except:
-https://lore.kernel.org/all/dd86117e-0196-499b-b8b3-efe4013cbc07@linaro.org/
+Please correct subject. You already got comments on this.
+https://lore.kernel.org/linux-devicetree/2fb8c43c-c079-e04e-f727-3bc1dc29996e@linaro.org/
 
-where I want SoC specific compatibles to be used, not versions.
+> Changes since v3:
+> - Add items for clocks (per Krzysztof's feddback)
+> - Add description for clocks (per Conor's feddback to the other similar patch from Alexander)
+> - Add "media:" to the subject
 
-Now about this binding, it is not a schema for all platforms starting
-with sm8450, but only for x1e. I do not understand why this would be a
-problem?
+Where? It was there before, so what did you change?
 
-If you ask why this is not a schema for all platforms, then because:
-1. maybe no one tested other SoCs?
-2. maybe no one cares?
-3. maybe other boards need some quirks, so this would be applicable but
-not fully?
 
-I don't know... since when do we add "generic schemas"?
+> - Add Mirela's signed-off
+> - For the similar patches that were sent for this issue, should Co-developed-by/Signed-off-by be added? Alexander Stein? Frank Li?
+> 
+> Changes since v2:
+> - Remove clock-names. (Mirela)
+> 
+>  .../devicetree/bindings/media/nxp,imx8-jpeg.yaml   | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
+> index 3d9d1db37040..cc040feb77d7 100644
+> --- a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
+> +++ b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
+> @@ -31,6 +31,14 @@ properties:
+>    reg:
+>      maxItems: 1
+>  
+> +  clocks:
+> +    description:
+> +      The JPEG decoder/encoder requires two clocks for it's wrapper (AXI and APB),
+> +      and one clock for it's core engine (AXI, same source as for the wrapper)
 
-However maybe the question is different: why other devices are not
-described here, while they should? Then probably Abel can answer what he
-wants and what he does not want to describe. There is no requirement to
-model all possible hardware in a binding, but instead describe one
-hardware, so x1e, fully.
+Description is now redundant, drop it.
+
+> +    items:
+> +      - description: AXI DMA engine clock for fetching JPEG bitstream from memory (per)
+> +      - description: IP bus clock for register access (ipg)
+> +
+>    interrupts:
+>      description: |
+>        There are 4 slots available in the IP, which the driver may use
+> @@ -49,6 +57,7 @@ properties:
+>  required:
+>    - compatible
+>    - reg
+> +  - clocks
+>    - interrupts
+>    - power-domains
 
 Best regards,
 Krzysztof
