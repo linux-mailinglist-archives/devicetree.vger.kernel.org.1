@@ -1,142 +1,165 @@
-Return-Path: <devicetree+bounces-57088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ACC489BB2F
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 11:05:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 289A389BC2D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 11:45:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A6C201C21343
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 09:05:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4CEBB1C2191A
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 09:45:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F9013C08E;
-	Mon,  8 Apr 2024 09:05:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52A454878F;
+	Mon,  8 Apr 2024 09:45:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="G36gI50C"
+	dkim=pass (2048-bit key) header.d=tdk.com header.i=@tdk.com header.b="caMJy6TA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-00549402.pphosted.com (mx0a-00549402.pphosted.com [205.220.166.134])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 724883B7A0;
-	Mon,  8 Apr 2024 09:05:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712567123; cv=none; b=Py1mkxEydT5OkquJM4S/9BZP2W11mRI2XGKNeXmdWruUncdaQT2bHSXcrq9WUUMFvil5dr4KfOAFK5rzL+Lgvnyc5b/rVhgHdozYc5fYc56kJjlKkFnMtfcQrkBGQMTjJ0gKh9roiL9Y61L5pk90WhmeDguEC9ium5AyRmdCGHk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712567123; c=relaxed/simple;
-	bh=o4HxjF8YLfbkt08SM/H+IglYCO159ltjmDCZdY5PfRo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SFIRE8xcGnZula9/UclwdY352jlefT2uvTidNqDmGWbEetPce19YM5XEpZhxM6pQRkNctrycEbVqFxXfug1oDNZkRutz74bswzORD7xmUJcuORI8Vz/Xut+blHC+85uIMVuupT6F2tmuG+vt1B4f6kSIJUGdIslf94uKV/tdQ9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=G36gI50C; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a51a7dc45easo331949066b.2;
-        Mon, 08 Apr 2024 02:05:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712567120; x=1713171920; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WziNI0dy9ontwBLhhuwGeSxizPXdz8ruFPYdBGBNZvg=;
-        b=G36gI50C2OzaqgX5lbYTAoEF8e+v5GIOMLt/MvlYqbgh9k6CsDGEte99bTppXNurBx
-         iHZPq4Tn9VuWY+ODzomU6vQLcPmcfj8500T+8u6J9diJHgHhl7bM1jqSne8sEsQtPsc/
-         SEgsU1P50kBJ8NokTVtv71aCu5sO4X+JNxFiuQAQ7FVRCuzrwOKfzbVn2w4a3XB463Hx
-         QLkeGyko/wdNkiRhrqtcxBEATSYl6dS81xaDxonY47MGCpR7+qo0exGUuL8xw+RvX0Yc
-         aazQCupeYNgBnKhKoE7BVTBvzSkAgEeIOwVRzD2l5aluXtso/3K4iOEHoMrplBhoeMsD
-         wmUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712567120; x=1713171920;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WziNI0dy9ontwBLhhuwGeSxizPXdz8ruFPYdBGBNZvg=;
-        b=JiMV5GCJLA6Chf7YREtrNVnGgJtmhQccEE7IGphalnv5r5JcHtnXJIfY+AqyQPK6/N
-         uuRU7OqUsn18gSCUtmk45p5dTvy9PcTblTqJBFJeIvbYlaHPLskyiT/H4U53gpm2f+lo
-         xurQZbYfZYTrYt3t6XjQb4170PddVTJmK+ABUXXJkgKN//KHPMlsgHZfjnw9RdDTLC6U
-         2q8qZSMql2vywwHSCo4ZWGiXqImww0yPq56ZaMPZv1vmiGMNxqNdNIsPblQKUkt+dSuZ
-         0VVaDN2lTPTlj4jbJ7pKQ4qJscKsHOB7pUz2YRjCL8QXhVcP7bG8Y1fX4LfUCTDupekN
-         X9vg==
-X-Forwarded-Encrypted: i=1; AJvYcCWJxeBpH+H7tnvVllpMTEpjqNpy328XQiJTQFH1p7iUO0A3dRGEs4mUglOBplOJPyPhkMlQ3ffoPFxcBkduO3lbz1CFgpEo+1FGHZG0Mri+dCjlvfL+FU7imOwoFi5JbL6ZlFQqtxQ=
-X-Gm-Message-State: AOJu0YyJWEOKtJ6rlDErmYqIFHBu6fN1gShLwEpZpCF5ae9Ao9CV0ji2
-	GfEPTCz4aWzCmO8j6qG9lHsdbYsv3kJZeAVyjQwc5X7yToP/PNcY
-X-Google-Smtp-Source: AGHT+IFJuDSPZV6Dt59lpjhwCnHica/ftb5KxSrdAGBGyr3hReB6zu7+J40yCPnZLpMbPyfGBIDvvA==
-X-Received: by 2002:a17:906:ecee:b0:a51:99e1:1f1a with SMTP id qt14-20020a170906ecee00b00a5199e11f1amr5386527ejb.64.1712567119701;
-        Mon, 08 Apr 2024 02:05:19 -0700 (PDT)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id h1-20020a170906718100b00a51bd3bfec3sm2773969ejk.121.2024.04.08.02.05.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Apr 2024 02:05:19 -0700 (PDT)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Sean Wang <sean.wang@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Hsin-Yi Wang <hsinyi@chromium.org>,
-	linux-mediatek@lists.infradead.org,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 3/3] dt-bindings: pinctrl: mediatek: mt7622: add "base" reg
-Date: Mon,  8 Apr 2024 11:05:06 +0200
-Message-Id: <20240408090506.21596-3-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
-In-Reply-To: <20240408090506.21596-1-zajec5@gmail.com>
-References: <20240408090506.21596-1-zajec5@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43501481DF;
+	Mon,  8 Apr 2024 09:45:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=205.220.166.134
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712569531; cv=fail; b=uClv+xZijQCEAENJ+yb6xkyvVhx/2XzZp8JmmleuEz1aTPHmtlszKS/kPdurhZ9ZECVWPQuqeDGNLanXw4M5g3iHltshP888/epahI3cunsNQgQVk/84UPtYFHjHh1gMHOlgT+YNfh9iG+1YqDQmTD9lasqhoRHFYr4bOEwUECw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712569531; c=relaxed/simple;
+	bh=ZLgv/W7BSsouSMBByUHwXUrrZvWIeaQuSAAX4jzSBe8=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=tHJPglZ1tKfTWty7t1BQfYr1PisFwMOa6xXhtoEmupSjK/pigfW4HIi9rbW+y5BgnzFsZlLnTYdNtbXbbVCFQ5CgFiIkXbvBI+e2yH2Ek6ZLnm9emDI/4gp5/mSAIkvVl0ZU0atdR+y2xo+R4+H0sXtZoxcvnwggzQkXi5sxKdk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tdk.com; spf=pass smtp.mailfrom=tdk.com; dkim=pass (2048-bit key) header.d=tdk.com header.i=@tdk.com header.b=caMJy6TA; arc=fail smtp.client-ip=205.220.166.134
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tdk.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tdk.com
+Received: from pps.filterd (m0233778.ppops.net [127.0.0.1])
+	by mx0b-00549402.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 437Ml45j024444;
+	Mon, 8 Apr 2024 09:07:39 GMT
+Received: from tyvp286cu001.outbound.protection.outlook.com (mail-japaneastazlp17010000.outbound.protection.outlook.com [40.93.73.0])
+	by mx0b-00549402.pphosted.com (PPS) with ESMTPS id 3xavryh6a5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 08 Apr 2024 09:07:38 +0000 (GMT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BAaV3V6Q2HwwM6z4OFq1FBdjrJFVAw7GJG1osfPGzqPJXekIHHEymjaCcjDpmIN8xMnww9VgAf3HpO4T5Yh/s/diujxyz14Sw0PpZKdfcTSxC9oiU7nE+W+dRzr9Bgx4uEnfhp5WHUrMCkOHJ6GwndumOJLogvXIbtu55u2/xlwP3iHJqGBSvaldSW4fvDgSByMhE1W1y8i74aeNWF13WmH7tD2xxqBLcpEW1pjq2e0s2IX+DcwRU7/ZMqdTqb+LwQlV6dC83oJtifn+JP+H1oYr3v+wH253QRo0W8mJbi+yJdG2luhuM7WdiTQTwrca22og5zJBep0+7h6EzoPPPA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TKAYCmCcfNkipyco3MYqBl0Fl3ziFWl5z2pumOgM3kQ=;
+ b=oB8IQIMT5N5hhGbCgATbNi0H1obYR4ChyPSN145NcPXQfPKJ4/2TncZm/gtqwBrIk+nUVAM6F908XobgekdZtnmW7+TdBsZyIia/vslT5U022iIpK6wuP8x0Hk6CPZmUhuEuZuP2cmBe1V6z2fEsLhJEv2uuwPti0Eu+opewsukXisnk5qLLRNHgxWJtV1FWA+YsB/nDoL2YT/o82VSv3g5EU5p9rQWO9rI/kUMA/j0UWhkg4Y1xOWCNvGfiRZw2YuhJ4mSTXrdbqL4SM85kwJ6tGVcm72gX4xzQ+gWcl8Sra0F9qOGqTd0G9Dpc7iEGfGTYl8qQdU4FF9TIpIbHHA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=tdk.com; dmarc=pass action=none header.from=tdk.com; dkim=pass
+ header.d=tdk.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tdk.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TKAYCmCcfNkipyco3MYqBl0Fl3ziFWl5z2pumOgM3kQ=;
+ b=caMJy6TAiwk6f9dIIz58yCE+eUBFTG8t6PrGX/YGM5mJ88TG/oWtY/pWcVxZR9bqnshW7wZzsc8wOY8eJA46rJ7CHO7MxoOHwYv0JkAAzClGbRvEbN6nSSf8oOIm5mdKlqXKk+ZOr8hKTb7NLKYpu77d4bCBVZyaEFZY8c8BHjLoSe86q1+1lIc0KnEfVnjBzKVsq3E2C9G7qCZyZaeJLUap84obVokctQNllwAGjHvBOLU2MQxa4Qse2bb3avsaL8u89lxEphi6LtriMEzGklmKaQYQobk7TVRVc+xHanT2dY0NGhV7q7rWQ6D4FRLMjnDZqObvJN2VlSGMVLZ0gg==
+Received: from OSZP286MB1942.JPNP286.PROD.OUTLOOK.COM (2603:1096:604:1a7::13)
+ by TYCP286MB3342.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:2c5::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.55; Mon, 8 Apr
+ 2024 09:07:36 +0000
+Received: from OSZP286MB1942.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::9119:3ad4:c68d:9da2]) by OSZP286MB1942.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::9119:3ad4:c68d:9da2%6]) with mapi id 15.20.7409.053; Mon, 8 Apr 2024
+ 09:07:36 +0000
+From: inv.git-commit@tdk.com
+To: jic23@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org
+Cc: lars@metafoo.de, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+Subject: [PATCH v3 0/2] iio: imu: inv_icm42600: add support of ICM-42688-P
+Date: Mon,  8 Apr 2024 09:07:18 +0000
+Message-Id: <20240408090720.847107-1-inv.git-commit@tdk.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: ZR2P278CA0043.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:47::17) To OSZP286MB1942.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:604:1a7::13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OSZP286MB1942:EE_|TYCP286MB3342:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	q46csIrbSGAJsz5duOHlIgjWQPfCfafJ527AmvfOVd1jlDZFt3tmdmRJ0BzxGHtjjfx2QjDC+hi1ZF2urwE4BpyKBDa+5u0gxp3YaKswZ7Gex4LVln7dxIOyXkr7lqgrBkOZdswOjZTCeA6szWApZhH10TRiMdnNtZipHq6p4kzNPG1EdiHrTkp/yb835m6U/KvR37t4IfSo7Si4U8U6zRSi7JPcOIP+ynaKl+FTvGsPPVzjnXno8WrKLMzoSBvOptbqlb8A1RuhRaRhDl3L2oFgRpN5UR66mIMXxqKIBNGq2X/zvLpmLlQqXr2jfFaBVgn7Q5Ph6EAQuB1zdO+TB2mcua4+nOiC2QOOXa1iXUW9b/IxKGHWZHztujGkEyWfFNBvzXdtYKCYZ6aVJbYMBjBcFfD6GFk8F67TsXEJKDx+1AP6WbVWLzP78rWjY+Eu9CoFvsET5rz4r2yQVWg/CIYibS6aO60mswdbx6DLc68lsjdoIcwcRQOrPgRs2svDWb/IBbo/efMojBSICrvyMrPofY3CnXCQExmCYJ81dQcERjOBQxyiptAYChEXFObAhQctmcONTfX6qSdJUPar9Zox6HSi/4MNfj+lRkCEFr8kvhu2Mw+ZFn5aEWFSBJfFN+ebRUbniMH9X7anhMnLHYznFY5KmBdHx+u65wBmOofiEOAEDHmFeE2/pLpQ3NxC3hP/6Ug1EEUWG6WrH5bHbl7iIMMCqYLQBLR4bCcssKZu6CLVoilb4SMNoFeYrC+m
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSZP286MB1942.JPNP286.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(366007)(376005)(52116005)(1800799015)(3613699003)(38350700005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?us-ascii?Q?uopaPnCY97z1xWFQn9t/vz3meNjOm8KxcwOROeyyAMgjDVr1mjbJ8JLv5bWD?=
+ =?us-ascii?Q?ZKg9sfuwBIPZ3vTbfvXZ7nx7sMQ1W0DV/8+/s4viuThfEoyc549M1jeR7mba?=
+ =?us-ascii?Q?yYaldIrnHqmNAoj/CcBLPIl90LnG+K228nbRnh3eWEU1YeAewmm/+SIWfD54?=
+ =?us-ascii?Q?WMVJyyL8z+26G7Rg6HAdlO9nnjlINWN1rtij1RzKQrRyHpEeH1c+og6CeYjK?=
+ =?us-ascii?Q?/0K3tOTe0AU2oNtvBUSK5h5TCYAwbsLM/2w+3dLmJoPueNrEXMNrpNFlAVdf?=
+ =?us-ascii?Q?vtTqj+9PhuYSxNFJA8gua8CwLBW1BmE00TRfhtqPLd+2HjiiVMotZohsjpvq?=
+ =?us-ascii?Q?Xjv/kVmgbswxK+3sSvch0YFJV3h4j/a9K+SM2wBMsjigFShDmSqjzWb9i1Ld?=
+ =?us-ascii?Q?pzTupkHI/BSnx+WouA6vIFRgmi1FZbRC/sUiX4LX76+4HU4coldOXVQuu7KF?=
+ =?us-ascii?Q?YVbFWOT07ul+ORj+KMQqk35FEg3QuL2BR/9fT09iIMZ4khGVEDL4F0uFEVH/?=
+ =?us-ascii?Q?FTK6FbH3P3FuOycxwM2RMWx8QbsjXu8sTgECC5zAOQGHQPneGgC6+5dlTMam?=
+ =?us-ascii?Q?Lxu5vmMUhipv+XwSDHzGNkDlZ4VqGZRzXcVS7l6+/t9nt43iS4t3lWDUPt8f?=
+ =?us-ascii?Q?110zoeALeWPKJBoWOCWp1kSqEI9fTTjmmfS95PXw508Bh+PZOJUjYRC2mUTO?=
+ =?us-ascii?Q?wlVLhliBb1URv0ploYtIsuucM8wCyuFmytg2n2hKBn9Vw1QBHi+zWBUmlRDu?=
+ =?us-ascii?Q?QIm0U6SKbwtO3e6kCo+l7L4WrqBhK/zy3A8ybAnbevkNzr4MJZ6uUlun1OX2?=
+ =?us-ascii?Q?4nJTUStn0BKiwuFmKTWzbBaST2jym4JhNN/mzAZNe+OZRt5KYlMo/PImKjzd?=
+ =?us-ascii?Q?tuHI1yqAtcGU9KWlSXsZdmgf9xUYo0z+zvgmhxBovBgRm2m0XW9Ka/FI5jcB?=
+ =?us-ascii?Q?raz2/h86ePWTtrYgoDT37TLYnT0vEGAd+ZIQDZlO/GQsqDsNCK7EvQEmyRTv?=
+ =?us-ascii?Q?hSiQjQ1WEFM8GaaWuYWTQYreKe7VvYxYe22wP6JR+pywXNRPKrV6emzCBDsm?=
+ =?us-ascii?Q?TwDFKmCGf2tXpkpC4Lh1WQ3XuhREexAnlSbEg1CXOkVXVDoEX+1SP3fui2Rs?=
+ =?us-ascii?Q?WRnrC8GAgCD0Kk98DCY+yW6xSFLWS4GrM30wq1jwrHT8VtZSqYAHcM5kfdMC?=
+ =?us-ascii?Q?r9njPJXMdtYxc7uruS3CRQVdwcAhPjvyozjN0RSMHtDeoCwJu0W92sFbcg0F?=
+ =?us-ascii?Q?gPWei15/VebgyhdB/WzXmXBYazC9T+JUHUHWV3LForjLJ+pCnfapjOSHipnt?=
+ =?us-ascii?Q?B7F2Sa6J0fH1iCZsSHLdjDvcEoxwv61F8YYE7byXgcGYt7fwmCWB2xRYxHRH?=
+ =?us-ascii?Q?rPxsQJHjwkIcO126/q9+FdZ/ot9tiN8vXKDNQ+eHxdoMxgRPUf47Ns75FBQ1?=
+ =?us-ascii?Q?2cnxi+kqqdB56yUk6mzI4Zph01TekS+B1pC2sfmD/mpNaDq5q9nE9vUTdfeD?=
+ =?us-ascii?Q?hJdb/VdRaFGdJZ5mggJJKim9LTNxgRAP764y3bcej8bWeqv+ZVto29Dp7W4L?=
+ =?us-ascii?Q?zQ6t9Ah7yh4NMRY0qONibGcRt1Y0GrVDqhURtNc1?=
+X-OriginatorOrg: tdk.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: deae64a7-1288-4765-437e-08dc57ab54dc
+X-MS-Exchange-CrossTenant-AuthSource: OSZP286MB1942.JPNP286.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2024 09:07:35.8894
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 7e452255-946f-4f17-800a-a0fb6835dc6c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: iki/LjhTyO93KkD9mw+elplBE1GgkmPf1aJzjqa3IF4z4cSo3qLGkaFCdq2ytFyLWQJ8dGUvYCs8JjNuX19+Pg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCP286MB3342
+X-Proofpoint-GUID: dt9ItZBScrvWKnsF1ZqYyIKzIjkGQEMg
+X-Proofpoint-ORIG-GUID: dt9ItZBScrvWKnsF1ZqYyIKzIjkGQEMg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-08_07,2024-04-05_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 adultscore=0 malwarescore=0
+ clxscore=1015 mlxscore=0 priorityscore=1501 phishscore=0 mlxlogscore=999
+ impostorscore=0 lowpriorityscore=0 bulkscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2404010003
+ definitions=main-2404080070
 
-From: Rafał Miłecki <rafal@milecki.pl>
+From: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
 
-Both: MT7622 and MT7629 use two reg spaces: "base" and "eint". It wasn't
-covered by the binding and also example didn't match incomplete binding.
-Fix it.
+This series is for adding support of high-end specs ICM-42688-P chip.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- .../bindings/pinctrl/mediatek,mt7622-pinctrl.yaml         | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+Changelog:
+* v2: change order of chip definitions and order of patches
+* v3: add patch description and resend without email IP header issue
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinctrl.yaml
-index a9ab623b2697..eaa65512161a 100644
---- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinctrl.yaml
-@@ -19,10 +19,12 @@ properties:
-       - mediatek,mt7629-pinctrl
- 
-   reg:
--    maxItems: 1
-+    minItems: 2
-+    maxItems: 2
- 
-   reg-names:
-     items:
-+      - const: base
-       - const: eint
- 
-   gpio-controller: true
-@@ -364,7 +366,9 @@ examples:
- 
-         pio: pinctrl@10211000 {
-           compatible = "mediatek,mt7622-pinctrl";
--          reg = <0 0x10211000 0 0x1000>;
-+          reg = <0 0x10211000 0 0x1000>,
-+                <0 0x10005000 0 0x1000>;
-+          reg-names = "base", "eint";
-           gpio-controller;
-           #gpio-cells = <2>;
- 
--- 
-2.35.3
+Jean-Baptiste Maneyrol (2):
+  dt-bindings: iio: imu: add icm42688 inside inv_icm42600
+  iio: imu: inv_icm42600: add support of ICM-42688-P
+
+ .../devicetree/bindings/iio/imu/invensense,icm42600.yaml     | 1 +
+ drivers/iio/imu/inv_icm42600/inv_icm42600.h                  | 2 ++
+ drivers/iio/imu/inv_icm42600/inv_icm42600_core.c             | 5 +++++
+ drivers/iio/imu/inv_icm42600/inv_icm42600_i2c.c              | 3 +++
+ drivers/iio/imu/inv_icm42600/inv_icm42600_spi.c              | 3 +++
+ 5 files changed, 14 insertions(+)
+
+--
+2.34.1
 
 
