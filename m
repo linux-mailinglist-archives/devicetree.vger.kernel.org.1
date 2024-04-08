@@ -1,165 +1,155 @@
-Return-Path: <devicetree+bounces-57212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02B2A89C8D3
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 17:53:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FADA89C8DA
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 17:53:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 987631F21C0C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 15:53:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0A7128677B
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 15:53:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B3C51420A9;
-	Mon,  8 Apr 2024 15:53:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2CEA1422B6;
+	Mon,  8 Apr 2024 15:53:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="Xu4WFH6E"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FB5uEatS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 119E21411EA
-	for <devicetree@vger.kernel.org>; Mon,  8 Apr 2024 15:53:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB2821420DA;
+	Mon,  8 Apr 2024 15:53:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712591586; cv=none; b=fZcctYwjO50DxCb0YmKpYCcsIfdXmYmfRcs3pzNNjHmT7d1XQAlib5So+UIeF2btF1Ckur9mi5AablssWq3gs/HUOUMQzEMvFqVs3GmmMYASOHXVbZzgGmGsDAt3Y8mDeQCNTT5wgCn7SDQOIigZorJ1B95d/1zd/lkIMhlYmJc=
+	t=1712591594; cv=none; b=OWaQmCCqcSb2/wk/tZw/yG3T9+KW+WAzHIhiX46tRstpJyak2ih17e9+N1vhPnEBh7y5FOH/oQIKIJZgvgRnqYe4cSTcgw12tN2WCFcxa+RP77d+NF44MnJR/W24eASWfF9cGPoF5jjbS6OPdV4tJ7WmlmDVCLKP6iaLjtX0+SU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712591586; c=relaxed/simple;
-	bh=o4sMfO3P+yHIzU4znX3Ln+B4/lunBLP/NFn03V3qShA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bZB1SayzRx+YSHH6isII9fy1HpfT8lXCn/ktBd574zu4TMJ4EkABGz+dVZZ4E2iidHJq2FlF+K9V13c6ofOCF01ce2nD38d7xOwSsDC1+AdDxfqeITHE3e5KvZ+PhAQ9mVuEN8BCqBR+6eVybgNZrU9CHzB44T2rHEmQPe1UFv8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=Xu4WFH6E; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-343f8fc5c69so1724934f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 08 Apr 2024 08:53:03 -0700 (PDT)
+	s=arc-20240116; t=1712591594; c=relaxed/simple;
+	bh=hBd9i56nvCzyVs8yanPT9S2Cyv5djpJ1RLlYTOAQDRk=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=bBI3LThJylbt97vLAy6lzfIV/GpvHxiuUrJW8WYQy8SNQQV5n8t6TVgSqsvOZ+IXzXh+p4o9U1fZD2u+BRhQS8LdY695t/G794QTufqUfQ3yAi849m8O1XZALCjK5Q7yxZ1CA8jK0SscV2Rbp0agtpyU5bZ/6SUFM/H9YkB4hpQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FB5uEatS; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a51a7d4466bso356549766b.2;
+        Mon, 08 Apr 2024 08:53:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1712591582; x=1713196382; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=PV2QGCABE36oWSsPi/l6CQE6DAlPBHE1k65KDD12Caw=;
-        b=Xu4WFH6ExaEjmRxntUEBVoALd+sLinkF1Wx8YEZ8i5fMlVMTD6U5UhCcv01vn04+mA
-         E+rZRi2E0w3t/IGTfrS++QcDFuul4omM6CaD+Y28dWyvV9xLkz+/x+DtDRVcixnCxwR8
-         nCC/lEDU7rL2ocNpJvSIrir7WDoocAQ/fFRGn56MsHG0TUky1yog7wzuy/lSlJZgaihE
-         UO4iPzbcAhOugF9XkhIZ3MPF9YX2h1f7lT1g9Fm/nytCh1etDTRQZIoTSDygoXWAof6h
-         Ud8rtcpc+chEu+trXufRAabxLuvLm/Y6lCDTISjjO0/bSJRZM/2FwqcqDtjXw+LExMMV
-         GfGw==
+        d=gmail.com; s=20230601; t=1712591591; x=1713196391; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qMMzpPgaja57dJ/QOl1X3xfBEKxBkGZzp3htau/BjRY=;
+        b=FB5uEatSgqhZKE1HTzn8QNtp/zwGZ711pWsSfHTTaH7KRNUETIBgg/AF4v3XqbW5N6
+         fKjJJlmA7nEP5vujbe/W1nEfetJe86Lp+EBYSX3CagUwElz803TqTiZXuxHNZ8aAT/bb
+         9AGp4pWnbUW+QwzYuJA3MVMwghUpo2P/q9E5i2ZD6KkEwMKX47YgEOWcntTTDdIxd6lC
+         obAiSGqrM5D+tteTTDWyzS/W5MZkYn1j4oBDUZke5fjBJjNIZaIpXq259hXF/Y4H9/Y3
+         2uFP6UL8RVse45YOlG9ZBlHvpsKsCk0bmAQrqSpTSbQu3WhfZtxqCopTueQmtpDLj3eO
+         B1bA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712591582; x=1713196382;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PV2QGCABE36oWSsPi/l6CQE6DAlPBHE1k65KDD12Caw=;
-        b=WHD72qMvYcYIs87T3sGV0dSKwuw6IwKV1yH4yVXW/HC2OAiI6sKlkw1NUeiSdUp+6m
-         +/wrrUKTA+5AD+VxIxWOjp4IY+1aZXZSuV96olZi+rEPfdDG4UuNJ02TMTsfsYiawEv0
-         /KpqCt/1Wr1vwFEu4veHvivMzr/SRd3ZHLVTEeS+lzn7Uxhfb9H9cqYa+l4EmzZQfNjP
-         wIm7dk9VwQC2tT3DPU9jNDR+xm+GHwMjiMlzmJ1QxJkNINtnQUIicHe7JohwZnQq9T25
-         mcXyBfPG3fvLV/zcBT80HCn6gVio3K6jq91gH6w0bV5dKKapdORFI7KJxUmKRDXFu9Hu
-         /aNg==
-X-Forwarded-Encrypted: i=1; AJvYcCW0yQVqroR2oULUSjIezri055uBBjFmMv6kXaZ73wYtXxGsy+EpAt6PnjZkshnXIIGRF3AR1em8jBw3lbG+se8aqyt3FgtGg9zFfQ==
-X-Gm-Message-State: AOJu0Ywew3qcMmt8Qq+puGRU4BthP9KFgWOMT7LL/4yCjI5+E3hWVdwY
-	DOc7nXa+jxVrqHRTW790hGjT4cKrEDIy/cwysDc7gTNS1RMWhBkImlSWUOrXaVc=
-X-Google-Smtp-Source: AGHT+IF87J4Q/rgFnwCIm8WBGlFyl1vMp8m6s/lxg+SxFZ0lmZ8/wXNjMI8XEjSdYdJzrpjZ6SXNIA==
-X-Received: by 2002:adf:e647:0:b0:345:5ff1:245d with SMTP id b7-20020adfe647000000b003455ff1245dmr4115241wrn.32.1712591582423;
-        Mon, 08 Apr 2024 08:53:02 -0700 (PDT)
-Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id z15-20020a5d4c8f000000b00343daeddcb2sm9341328wrs.45.2024.04.08.08.53.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Apr 2024 08:53:02 -0700 (PDT)
-Message-ID: <ad5e178b-cd64-4a87-8994-f917993f3bbb@freebox.fr>
-Date: Mon, 8 Apr 2024 17:53:01 +0200
+        d=1e100.net; s=20230601; t=1712591591; x=1713196391;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qMMzpPgaja57dJ/QOl1X3xfBEKxBkGZzp3htau/BjRY=;
+        b=U9M/2Na7lS4lFcnj0G2pogUSeBT98vXtbW9eOyOZ8vlXjRDSg+MubpnSYyz7VQ2TM2
+         YLX4v8D8F3GQQG4tjj/DiXtDrLHCp00vNwYShMaRND3SC9TIUDIC+G3ksGshuoYwdRF9
+         9Eqbhk9x8OgqaWl/DkCwDig11Gjj8WNU3gvZinRULZ37dz8sgouAiRY/gnr0XrZTouYr
+         MaVQOCUU/yT12BHb3gsCZRZTsVEaafmAWb5ERGBE/JHBn91E+bF7urf8JCsEiJtNkX3C
+         SEwycDn9OMwadLp96kqT30uYST2qDdKVgEj4bVWS6SHVMmNMExAaqQDYgQpq+0JyogOI
+         801A==
+X-Forwarded-Encrypted: i=1; AJvYcCXNAY5DqylBLF15LJMNQTZQ1rCYYUN/++hGdX6nn52hN4/oUhHuObfOZ8Rr5/udKBgxaOoTXJN/R2SPm8UU454SkCoO58dZToP6TCyp6oo5KetRpnLKMj1mWP5T+389hQS3J/uo4DL1QA==
+X-Gm-Message-State: AOJu0YyhsDJd/+xP1yF3K+VUOedt2Tb70kqTu4UaP+bKjIEMCDTO15OE
+	DI7/CnJ5/1issmMImEU5A42L7uO8YErZsg5RJjTvD7ERnBL8OrU3
+X-Google-Smtp-Source: AGHT+IFLOo9Lg9B3qIOklTKOZd0LvNU1njK/wu05Sxkr5yVm3kefeiWUgywKL7V+AzBxsRaFEqHPcg==
+X-Received: by 2002:a17:906:b19:b0:a51:d19c:aba8 with SMTP id u25-20020a1709060b1900b00a51d19caba8mr2466641ejg.20.1712591591195;
+        Mon, 08 Apr 2024 08:53:11 -0700 (PDT)
+Received: from [127.0.1.1] ([213.208.157.67])
+        by smtp.gmail.com with ESMTPSA id l13-20020a170906794d00b00a46a2779475sm4547849ejo.101.2024.04.08.08.53.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Apr 2024 08:53:10 -0700 (PDT)
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Date: Mon, 08 Apr 2024 17:53:01 +0200
+Subject: [PATCH 1/9] dt-bindings: rtc: orion-rtc: move to trivial-rtc
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: msm8998: set
- qcom,no-msa-ready-indicator for wifi
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Jeff Johnson <quic_jjohnson@quicinc.com>, ath10k
- <ath10k@lists.infradead.org>, wireless <linux-wireless@vger.kernel.org>,
- DT <devicetree@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>,
- Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
- Bjorn Andersson <andersson@kernel.org>,
- Jami Kettunen <jamipkettunen@gmail.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-References: <fd26ce4a-a9f3-4ada-8d46-ed36fb2456ca@freebox.fr>
- <5cdad89c-282a-4df5-a286-b8404bc4dd81@freebox.fr>
- <252618e8-9e80-4774-a96c-caa7f838ef01@linaro.org>
- <502322f1-4f66-4922-bc4e-46bacac23410@linaro.org>
- <0ca1221b-b707-450f-877d-ca07a601624d@freebox.fr>
- <CAA8EJppeREj-0g9oGCzzKx5ywhg1mgmJR1q8yvXKN7N45do1Xg@mail.gmail.com>
- <87ttkh49xi.fsf@kernel.org> <e804b257-4dc0-45f1-a5c5-66bda51cf296@freebox.fr>
- <87h6gh406w.fsf@kernel.org>
-Content-Language: en-US
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-In-Reply-To: <87h6gh406w.fsf@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20240408-rtc_dtschema-v1-1-c447542fc362@gmail.com>
+References: <20240408-rtc_dtschema-v1-0-c447542fc362@gmail.com>
+In-Reply-To: <20240408-rtc_dtschema-v1-0-c447542fc362@gmail.com>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jiaxun Yang <jiaxun.yang@flygoat.com>, 
+ Vladimir Zapolskiy <vz@mleia.com>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-stm32@st-md-mailman.stormreply.com, 
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>
+X-Mailer: b4 0.14-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1712591586; l=1761;
+ i=javier.carrasco.cruz@gmail.com; s=20240312; h=from:subject:message-id;
+ bh=hBd9i56nvCzyVs8yanPT9S2Cyv5djpJ1RLlYTOAQDRk=;
+ b=7fLnaSy2d1QTC1X9rDdRmPK4NxyIq/8k0OfRmCyhOdL4+L4l6InroboEy3X1aqCBh1Yh2+xlS
+ q5z7AlDDx3nB+S8LjphJkGb7U1aUoHLT6vOelE+aTDV7mVFf8o3lo5A
+X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
+ pk=lzSIvIzMz0JhJrzLXI0HAdPwsNPSSmEn6RbS+PTS9aQ=
 
-On 04/04/2024 17:28, Kalle Valo wrote:
+This RTC requires a compatible, a reg and a single interrupt,
+which makes it suitable for a direct conversion into trivial-rtc.
 
-> Marc Gonzalez wrote:
-> 
->> On 04/04/2024 13:57, Kalle Valo wrote:
->>
->>> Dmitry Baryshkov wrote:
->>>
->>>> I'd say, we should take a step back and actually verify how this was
->>>> handled in the vendor kernel.
->>>
->>> One comment related to this: usually vendor driver and firmware branches
->>> go "hand in hand", meaning that a version of driver supports only one
->>> specific firmware branch. And there can be a lot of branches. So even if
->>> one branch might have a check for something specific, there are no
->>> guarantees what the other N+1 branches do :/
->>
->> The consequences and ramifications of the above comment are not clear to me.
->>
->> Does this mean:
->> "It is pointless to analyze a given version (or even several versions)
->> of the vendor driver downstream, because there are exist a large number
->> of variations of the code." ?
-> 
-> I was trying to say that because the design philosophy between vendor
-> drivers and upstream drivers is very different, we can't 100% trust
-> vendor drivers. It's a very good idea to check what vendor drivers do
-> but we just need to be careful before making any conclusions. Testing
-> real hardware (and corresponding firmware) is the most reliable way to
-> know how different products/firmware work, unfortunately.
-> 
->> And thus, "it is nonsensical to try to "align" the mainline driver to
->> "the" vendor driver, as there is no single "vendor driver"" ?
-> 
-> No no, I'm not saying that. I have suffered this "N+1 different firmware
-> branches behaving slighly differently" problem since ath6kl days so for
-> me this is business as usual, sadly. I'm sure we can find a solution for
-> ath10k.
+Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+---
+ Documentation/devicetree/bindings/rtc/orion-rtc.txt    | 18 ------------------
+ Documentation/devicetree/bindings/rtc/trivial-rtc.yaml |  2 ++
+ 2 files changed, 2 insertions(+), 18 deletions(-)
 
-Hello Kalle,
+diff --git a/Documentation/devicetree/bindings/rtc/orion-rtc.txt b/Documentation/devicetree/bindings/rtc/orion-rtc.txt
+deleted file mode 100644
+index 3bf63ffa5160..000000000000
+--- a/Documentation/devicetree/bindings/rtc/orion-rtc.txt
++++ /dev/null
+@@ -1,18 +0,0 @@
+-* Mvebu Real Time Clock
+-
+-RTC controller for the Kirkwood, the Dove, the Armada 370 and the
+-Armada XP SoCs
+-
+-Required properties:
+-- compatible : Should be "marvell,orion-rtc"
+-- reg: physical base address of the controller and length of memory mapped
+-  region.
+-- interrupts: IRQ line for the RTC.
+-
+-Example:
+-
+-rtc@10300 {
+-        compatible = "marvell,orion-rtc";
+-        reg = <0xd0010300 0x20>;
+-        interrupts = <50>;
+-};
+diff --git a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
+index c9e3c5262c21..5e63c8f7f618 100644
+--- a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
++++ b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
+@@ -45,6 +45,8 @@ properties:
+       - isil,isl1208
+       # Intersil ISL1218 Low Power RTC with Battery Backed SRAM
+       - isil,isl1218
++      # Mvebu Real-time Clock
++      - marvell,orion-rtc
+       # SPI-BUS INTERFACE REAL TIME CLOCK MODULE
+       - maxim,mcp795
+       # Real Time Clock Module with I2C-Bus
 
-I can spin a v3, no problem.
-
-Do you prefer:
-
-Option A = never waiting for the MSA_READY indicator for ANYONE
-Option B = not waiting for the MSA_READY indicator when qcom,no-msa-ready-indicator is defined
-Option C = not waiting for the MSA_READY indicator for certain platforms (based on root compatible)
-Option D = some other solution not yet discussed
-
-Dmitry has tested Option A on 5 platforms, where it does not induce regressions.
-I worked on msm8998, where Option A (or any equivalent) unbreaks WiFi.
-
-Please provide guidance :)
-
-Regards
+-- 
+2.40.1
 
 
