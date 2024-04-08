@@ -1,157 +1,169 @@
-Return-Path: <devicetree+bounces-57201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57202-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B63DE89C7FE
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 17:17:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E76289C856
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 17:32:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B2EC28636C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 15:17:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B427A1F24D75
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 15:32:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58B3413F452;
-	Mon,  8 Apr 2024 15:17:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB264140E5F;
+	Mon,  8 Apr 2024 15:32:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b="CRh4jbsE"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="FALI/ZoK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A46EC13F44B;
-	Mon,  8 Apr 2024 15:17:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.181.215.36
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BEEE1CD21;
+	Mon,  8 Apr 2024 15:32:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.152.168
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712589469; cv=none; b=EHNe68mN/miWFr0EXBgEnhbsiq6u2XZlj2kyy8oEiVnjo3NdIkLHf7XCWG4VRNdnCDPPc4T8T0LDAwIflgtVNKasoGavgRGaxHIrDagi8tXtb5q9WcqspwHfK62cGl1Kb+ir4PgY8nugNb+dcCw7AXW0utBqYfCRKBbIhM3Stq0=
+	t=1712590358; cv=none; b=P3LtdnW+HiKLwyy9EK3kss82un5c/+kvfDoQXu+MNJTeE/eHT8rkb+hXpDE4Skld0x+jfpn9JS0cTudg5xYRZvFRXqY+7w8kuuJZrOSY85WY7FUAzVH/xzF4SAMmSgV8wPy0oxm94nT7sX0cENpBO83u/jiYFgr5pKqTkoyGA/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712589469; c=relaxed/simple;
-	bh=AYeVrQdvosASyC+HQOVAheJr5WOqO6RSDW3nYM7LFCE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hSY3ld3ZBMDkHWcsEF1Fp3tcdYoJ3+DOzEyX72qV3XrKwM7IUfH1I3jG+zasQNySQT7gKDD6G4+dp+Psk0U7Qpdl5qoqaGpJqQcE/q6hAgucyjUMvctwHyyy4Zg5KsJIxP5Ab9RkLUjxmfasOKXhpQIV/34VSx3uZgt/M5m9HGg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz; spf=pass smtp.mailfrom=xff.cz; dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b=CRh4jbsE; arc=none smtp.client-ip=195.181.215.36
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xff.cz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-	t=1712589461; bh=AYeVrQdvosASyC+HQOVAheJr5WOqO6RSDW3nYM7LFCE=;
-	h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
-	b=CRh4jbsEXcrgqQwEusZ/7VrROvaujjQWLV+K0GrAG2YCVAUi2atlgp+xU9FW0szyN
-	 GLZeUxyRCXIpjE9By0ZS0jffpIuTmdVlRP6lb4aBaMLosJXInjVvUA9z60RyxoJswh
-	 8VBmcbLNQP5sd8/yVlTxNlYkJcZUZlatizw47KUY=
-Date: Mon, 8 Apr 2024 17:17:41 +0200
-From: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Pavel Machek <pavel@ucw.cz>, phone-devel@vger.kernel.org, 
-	kernel list <linux-kernel@vger.kernel.org>, fiona.klute@gmx.de, martijn@brixit.nl, samuel@sholland.org, 
-	heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org, linux-usb@vger.kernel.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
-Subject: Re: [PATCHv3 1/2] dt-bindings: usb: typec: anx7688: start a binding
- document
-Message-ID: <vbo7bacecuagu4qzrr6tsdh4qlejrv7ia67yylf6ay4u7qnwge@kqj27bun2m7d>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Pavel Machek <pavel@ucw.cz>, phone-devel@vger.kernel.org, 
-	kernel list <linux-kernel@vger.kernel.org>, fiona.klute@gmx.de, martijn@brixit.nl, samuel@sholland.org, 
-	heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org, linux-usb@vger.kernel.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <ZhPMHdt6r/4D99Zg@duo.ucw.cz>
- <ab9affc8-de68-4ec9-bdfc-02131191bc3a@linaro.org>
- <ZhPTTxI4oTF3pgrk@duo.ucw.cz>
- <e7841ad2-fa3d-442d-804d-51f12e05c234@linaro.org>
- <e6vvuttix5k5fioy7q44ick5wj6u5gleh7mht36s4zjjcym7vy@bziejyohtc4b>
- <7976e254-ed1e-406d-870b-1ecdc4b1e23c@linaro.org>
- <uoo7xltbfx7u6iai7urj3wez7cwotokxt6lwjhff57xbljusqn@fr2xejnrlak7>
- <1502383c-9caf-4362-8bd6-ed719a304f08@linaro.org>
+	s=arc-20240116; t=1712590358; c=relaxed/simple;
+	bh=9Onb7SpSSXz/DSaTRYqETVrjUvaMxyS6VNi7FdiIpt0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=sZ/4a5l3i2C+Ow2sPvhju/3Y2O12x6C5ZJBOyaKC+WsgvotWqMxtLmJo7osb61LIfVyh1s9z/GOIFzc5FNp56gYvMN0suVbgx0n3F5WEo7bEGMo6K81Lg0DixcxFCMEGIO63cKfgKiQMd24SKiaToOVoSzVgXEp6lDvFux6AjBE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=FALI/ZoK; arc=none smtp.client-ip=67.231.152.168
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+	by mx0b-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4385j8Od014221;
+	Mon, 8 Apr 2024 10:32:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=PODMain02222019; bh=w
+	uhU3jyk69q+EFOCh/CvUNEU93sJaqDrjk2nglUf9VA=; b=FALI/ZoKNYyaQ7C5F
+	QCBfoZ1T2ZuCdDPE04rqr5FtrdXha/zeeIMaN6xg05GQDzfBtuvOuXdC6j4ooRHb
+	LYemED8krtZd9nctApFie4vU5Di+ltaqmA+kqovpG4wv+rV1wpIPu5xlyVIpzBPP
+	GGDrrTO3OIBSDot424k2XYjdtaKx+1x+xcUS5oBj3UaXyvudeMNXu1WzApL1Omfu
+	4zVWu05wF64QEa8HOHkEai3dBpMvmz9BsYHVZI8VgJLtM9+0VC/a4/egKhOXWBjW
+	JgzuLeqLqJFKG1MBek7pcoq+STpFOAtyAsAIgCNFaY9paK1S+lV6FS4BciaMm/n0
+	htZBg==
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3xb2tjhy7v-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 08 Apr 2024 10:32:25 -0500 (CDT)
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 8 Apr 2024
+ 16:32:24 +0100
+Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
+ ediex01.ad.cirrus.com (198.61.84.80) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9
+ via Frontend Transport; Mon, 8 Apr 2024 16:32:24 +0100
+Received: from aus-sw-rshr002.ad.cirrus.com (aus-sw-rshr002.ad.cirrus.com [141.131.145.53])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTP id 8ADDC820242;
+	Mon,  8 Apr 2024 15:32:22 +0000 (UTC)
+From: James Ogletree <jogletre@opensource.cirrus.com>
+To: <dmitry.torokhov@gmail.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <lee@kernel.org>, <broonie@kernel.org>, <jeff@labundy.com>
+CC: <patches@opensource.cirrus.com>, <linux-sound@vger.kernel.org>,
+        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        James Ogletree
+	<jogletre@opensource.cirrus.com>
+Subject: [PATCH RESEND v10 0/5] Add support for CS40L50
+Date: Mon, 8 Apr 2024 15:32:09 +0000
+Message-ID: <20240408153214.42368-1-jogletre@opensource.cirrus.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <1502383c-9caf-4362-8bd6-ed719a304f08@linaro.org>
+Content-Type: text/plain
+X-Proofpoint-ORIG-GUID: QqyhRVdhxbCeod9IKiRoqgbwSGVkZ-hY
+X-Proofpoint-GUID: QqyhRVdhxbCeod9IKiRoqgbwSGVkZ-hY
+X-Proofpoint-Spam-Reason: safe
 
-On Mon, Apr 08, 2024 at 03:27:00PM GMT, Krzysztof Kozlowski wrote:
-> On 08/04/2024 14:48, Ondřej Jirman wrote:
-> > Yeah, I understand where the confusion is. The driver is not for anx7688 chip
-> > really. The driver is named anx7688, but that's mostly a historical accident at
-> > this point.
-> > 
-> > I guess there can be a driver for anx7688 chip that can directly use the chip's
-> > resources from the host by directly manipulating its registers and implementing
-> > type-c functionality via eg. Linux's TCPM or TCPCI stack, etc. (eg. like
-> > fusb302 driver, or various tcpci subdrivers).
-> > 
-> > But in this case the chip is driven by an optional on-chip microcontroller's
-> > firmware and *this driver* is specifically for *the Type-C port on Pinephone*
-> 
-> We do not talk here about the driver, but bindings, so hardware.
+Changes in v10:
+- Minor refactoring and logical improvements all around
+- Renamed and added supplies
 
-Got it. Bindings should be the same regardless of what driver would be used,
-whether this OCM based one, or some future one based on the above mentioned
-TCPCI in-kernel implementation. Hardware is the same in both cases.
+Changes in v9:
+- Fixed empty struct by utilizing cs_dsp's post_run callback
+- Style fixes in MFD driver
 
-Just trying to imagine how to actually solve the issues...
+Changes in v8:
+- set_sysclk() -> set_bclk_ratio()
+- Added ID table to codec driver
+- Style improvements
+- Fixed ordering of new write sequence operations
 
-Basic thing with the I2C regulator thing is that needs to be enabled as long
-as anx7688 needs to communicate over I2C. Other user of this power rail is
-touchscreen controller for its normal power supply, and it needs to be able
-to disable it during system suspend.
+Changes in v7:
+- Fixed sparse warning
+- Moved write sequences to private data structure
+- Logical and style improvements in write sequence interface
 
-Now for things to not fail during suspend/resume based on PM callbacks
-invocation order, anx7688 driver needs to enable this regulator too, as long
-as it needs it.
+Changes in v6:
+- Updated write sequencer interface to be control-name based
+- Fixed a race condition and non-handling of repeats in playback callback
+- Stylistic and logical improvements all around
 
-I can put bus-supply to I2C controller node, and read it from the ANX7688 driver
-I guess, by going up a DT node. Whether that's going to be acceptable, I don't
-know. 
+Changes in v5:
+- Added a codec sub-device to support I2S streaming
+- Moved write sequencer code from cirrus_haptics to cs_dsp
+- Reverted cirrus_haptics library; future Cirrus input
+  drivers will export and utilize cs40l50_vibra functions
+- Added more comments
+- Many small stylistic and logical improvements
 
+Changes in v4:
+- Moved from Input to MFD
+- Moved common Cirrus haptic functions to a library
+- Incorporated runtime PM framework
+- Many style improvements
 
-VCONN regulator I don't know where else to put either. It doesn't seem to belong
-anywhere. It's not something directly connected to Type-C connector, so
-not part of connector bindings, and there's nothing else I can see, other
-than anx7688 device which needs it for core functionality.
+Changes in v3:
+- YAML formatting corrections
+- Fixed typo in MAINTAINERS
+- Used generic node name "haptic-driver"
+- Fixed probe error code paths
+- Switched to "sizeof(*)"
+- Removed tree reference in MAINTAINERS
 
-ANX7688 chip desing doesn't have integrated VCONN mosfet switches so it always
-needs external supply + switches that are controlled by the chip itself. There's
-no sensible design where someone would not want this and the driver needs
-to get this regulator reference from somewhere. The switches are sort of an
-extension of the chip.
+Changes in v2:
+- Fixed checkpatch warnings
 
-kind regards,
-	o.
+James Ogletree (5):
+  firmware: cs_dsp: Add write sequence interface
+  dt-bindings: input: cirrus,cs40l50: Add initial DT binding
+  mfd: cs40l50: Add support for CS40L50 core driver
+  Input: cs40l50 - Add support for the CS40L50 haptic driver
+  ASoC: cs40l50: Support I2S streaming to CS40L50
 
+ .../bindings/input/cirrus,cs40l50.yaml        |  68 +++
+ MAINTAINERS                                   |  12 +
+ drivers/firmware/cirrus/cs_dsp.c              | 278 +++++++++
+ drivers/input/misc/Kconfig                    |  10 +
+ drivers/input/misc/Makefile                   |   1 +
+ drivers/input/misc/cs40l50-vibra.c            | 577 ++++++++++++++++++
+ drivers/mfd/Kconfig                           |  30 +
+ drivers/mfd/Makefile                          |   4 +
+ drivers/mfd/cs40l50-core.c                    | 570 +++++++++++++++++
+ drivers/mfd/cs40l50-i2c.c                     |  68 +++
+ drivers/mfd/cs40l50-spi.c                     |  68 +++
+ include/linux/firmware/cirrus/cs_dsp.h        |  27 +
+ include/linux/mfd/cs40l50.h                   | 137 +++++
+ sound/soc/codecs/Kconfig                      |  11 +
+ sound/soc/codecs/Makefile                     |   2 +
+ sound/soc/codecs/cs40l50-codec.c              | 308 ++++++++++
+ 16 files changed, 2171 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/cirrus,cs40l50.yaml
+ create mode 100644 drivers/input/misc/cs40l50-vibra.c
+ create mode 100644 drivers/mfd/cs40l50-core.c
+ create mode 100644 drivers/mfd/cs40l50-i2c.c
+ create mode 100644 drivers/mfd/cs40l50-spi.c
+ create mode 100644 include/linux/mfd/cs40l50.h
+ create mode 100644 sound/soc/codecs/cs40l50-codec.c
 
-> > and serves as an integration driver for quite a bunch of things that need to
-> > work together on Pinephone for all of the Type-C port's features to operate
-> > reasonably well (and one of those is some communication with anx7688 firmware
-> > that we use, and enabling power to this chip and other things as appropriate,
-> > based on the communication from the firmware).
-> 
-> That's still looking like putting board design into particular device
-> binding.
-> 
-> > 
-> > It handles the specific needs of the Pinephone's Type-C implementation, all of
-> > its quirks (of which there are many over several HW revisions) that can't be
-> > handled by the particular implementation of on-chip microcontroller firmware
-> > directly and need host side interaction.
-> > 
-> > In an ideal world, many of the things this driver handles would be handled by
-> > embedded microcontroller on the board (like it is with some RK3399 based Google
-> > devices), but Pinephone has no such thing and this glue needs to be implemented
-> > somewhere in the kernel.
-> 
-> You might need multiple schemas, because this is for anx7688, not for
-> Pinephone type-c implementation.
-> 
-> However I still do not see yet a limitation of DTS requiring stuffing
-> some other properties into anx7688 or creating some other, virtual entity.
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+-- 
+2.25.1
+
 
