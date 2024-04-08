@@ -1,157 +1,254 @@
-Return-Path: <devicetree+bounces-57081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85DBA89BAD6
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 10:50:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93BC589BAE5
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 10:53:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5C06B23BC5
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 08:50:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 070821F2204E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 08:53:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 615623B7A0;
-	Mon,  8 Apr 2024 08:48:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B531839AC7;
+	Mon,  8 Apr 2024 08:53:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RVMxL+Ye"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OZ4NGTNt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96EEE481A7;
-	Mon,  8 Apr 2024 08:48:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C9F3182C5;
+	Mon,  8 Apr 2024 08:53:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712566094; cv=none; b=tIlmv6RNp1q5KyHByW3msZqi3ErFNbbNkayUShChfYMfJRHnEqQhqdviMh8uP8OMRKo+XeL9hapn6MGwVC5AdvEOmtjGvQ4yUYOUuhCU03CCcIBvueJmQFuvM2unY2U7CL8caBAdsYu7OWKnDLGglAFu7+EEuN2K3T1uil6OFhc=
+	t=1712566411; cv=none; b=giXQndhyptJHGd/81Cna3dXKY99JqzHLQRiV2YBR6zT3X0osH4L0e+XsiAilyz1Zxuvh+vD2WEZ6J/2etTexwK1Ze3pSCRVLxIPY40E1w9U45TYZ/jeffTKssbCC0+pPaLET6/sOnRCuVELvIXXDepIQFV8t4RZ5QyBVCoPvQSs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712566094; c=relaxed/simple;
-	bh=X0HDNO7AeGlMTox0YwbYf+RZ/kvp2RnxUzxcdGNoImI=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=QDqFSyjPI5KdNBZlvGoRobqI1d184hUXGkOcceUVpYKWwvLM+cKloV6bKyIq7/RUdrXvenaM3SPT1J3slerXrcX1OTyBNVzYx8MK56GXbgzzcf3bTAowUBPBefmNazj6VYPISI0xorTLIwcPVni5tvgsHCn1wsoMoo9OovOYpv0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RVMxL+Ye; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a4702457ccbso543087966b.3;
-        Mon, 08 Apr 2024 01:48:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712566091; x=1713170891; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=wpo8vrs9eO0Txlhpk0PzKhHZasRAvjQ2hvMb1Hj5UVE=;
-        b=RVMxL+YefrClPiLT2+Lh/ErWjV7ZSmTvmKmX9cGj2F2WDFq70YnhRHImu2tP8pfvf7
-         5JQTd+LyvXqUZytsqIvcy0JyfvF7xQfx8QQSLkTBs3aoW6UHvIm0gZi2xYCABAj2FFtp
-         IaO2YimNn19ZtRnIkqIaWEbqc6i+ZpcpnyauaH0U3gho8mYjjkwVnQLYMaOa57i7RQd0
-         gz/gc7s6FT3F3ua+MuHWealBMdzuanRmpLdkWZsuJd07hMimp7IyvbOv2cCO6aPSvHLC
-         LniYLNyFuKCzUuEacCs2x1pRIiJzgNNiRXas8wt0WO3+RRZl6BDaNOd4mCDIWBVYtQnM
-         tagA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712566091; x=1713170891;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wpo8vrs9eO0Txlhpk0PzKhHZasRAvjQ2hvMb1Hj5UVE=;
-        b=AD/5i4IAjIfRODwvY26D7BD9Z+Hq7n6qSat/FMj6otzW4gaxhzzkw9rKXNYIh61Zro
-         gJrdDinn3Dh34JLMyhzjffhAehLCoHteUYrEFHLCCD7zkk/rX36qQSzXLNDCoAEIRsb4
-         X3cCG0jNt0kH6VgPs00ShMD0EzAoG4rU4s3DqtBGC5GxWgeF+m3NwlD2mNW0eYSb//xS
-         x4kecZiWUDvl6GttK4Ap1/NohgG3QIdCn7ia3IGpaqxWXEGe5mg0NoG/njbEV/XoDvj8
-         Aidos5RCniBPHf9Y4zXxBOstKfnwt4EJMdPzWy8K6ZJMX7v9JMmC7uNBewnS2cHEoG4f
-         DmDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXriUb28WuH7O+3iqE/ApxYELGtpFd3Eit8m6zWcWGOUlamLkH5Wxa8Ah0xPBaWhLwzldd12b45KS+3cR3Pq7bGFrpRPrjDYo1ZZQ==
-X-Gm-Message-State: AOJu0YwDgiFxzxVnCBIrZIyeAylyc0ZVI9hZYR2UnffGP5b6nFQb1gIU
-	CJ1sMAxbpXvDbLM2nMGiBTtAX/sShbPL1TYG1jZ/oTtFptCGLiHBytzP2QOrpH+d+w==
-X-Google-Smtp-Source: AGHT+IF7QtL3Wea9RVeYfqOxn5Yt1G1Xm3dw/GUgliBFwnsRoEWWzK/lm9TQKjLSMB6Wg1xBOW8JKQ==
-X-Received: by 2002:a17:906:6a17:b0:a51:c52e:3ed4 with SMTP id qw23-20020a1709066a1700b00a51c52e3ed4mr3546042ejc.69.1712566090752;
-        Mon, 08 Apr 2024 01:48:10 -0700 (PDT)
-Received: from ?IPv6:2003:f6:ef1c:c500:ee59:d953:f148:40ba? (p200300f6ef1cc500ee59d953f14840ba.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:ee59:d953:f148:40ba])
-        by smtp.gmail.com with ESMTPSA id qy47-20020a17090768af00b00a517995c070sm4143172ejc.33.2024.04.08.01.48.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Apr 2024 01:48:10 -0700 (PDT)
-Message-ID: <d99653ec9a40a16b088c425d5552de85892564fe.camel@gmail.com>
-Subject: Re: [PATCH v2 11/11] iio: dac: support the ad9739a RF DAC
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, Nuno Sa <nuno.sa@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Dragos Bogdan
- <dragos.bogdan@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>,  Olivier Moysan <olivier.moysan@foss.st.com>
-Date: Mon, 08 Apr 2024 10:51:43 +0200
-In-Reply-To: <20240406174119.38b821ff@jic23-huawei>
-References: <20240405-iio-backend-axi-dac-v2-0-293bab7d5552@analog.com>
-	 <20240405-iio-backend-axi-dac-v2-11-293bab7d5552@analog.com>
-	 <20240406174119.38b821ff@jic23-huawei>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.0 
+	s=arc-20240116; t=1712566411; c=relaxed/simple;
+	bh=Zm3C8Itqr02oqSTrLD1Iv8KQvlmAaIOYfUbODHNva0Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=tI7efYdOTA5DkNgsPqfPhlWMK9cADIWvbUcDFapWRVkHFqnF5sFOStv8D/jS5g/A5LCHZD3UprmEJIOqYuR88DmWgaH0xw8CuUWAxHVdQYQl2cqDuGOAiy9Pt8z6nFJsgntaHj4g61DHFX3h2tI5FhIf5uCvJAuHMgI1tAVTtn0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=OZ4NGTNt; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4386bxOi013039;
+	Mon, 8 Apr 2024 08:53:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=kRN8Nj/uvppEFI2sdEgCwCdpQRdOJ/akCEAzT9NJIm4=; b=OZ
+	4NGTNtz+YRyJuA3b2WFpZAWSyoY5jj/y3CI9cYAvIu3quicAbzZ1dE3uy+FNyYYG
+	4DUoLRoswC2Gt5RlOBz6wAWS9hRZZHzxhsW0ihYL/n0OlJROdP/+1C/toGg+ALd+
+	u2qQHLRD+lLZ2mJB3AhkZp+jwwmwDcNdwYftzvCvqnuNn3ZJHzExhvRMiZ39hQmn
+	9jsLZ1miyINruGCuhZ0MY4C1jy5dJuNaHIa0dd6pXn0bQRa2Sd3yPOQplKE27RCT
+	UB5lAqbohAfJCoerRm8Gv5FsH7XhYy/OcSJ3a6oMT+flZQziYtzGHrJIdcuXjBYf
+	HnPZrJHC79zt1ogutPqw==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xcbfyg898-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 08 Apr 2024 08:53:21 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4388rJBD003787
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 8 Apr 2024 08:53:19 GMT
+Received: from [10.216.26.18] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Mon, 8 Apr 2024
+ 01:53:11 -0700
+Message-ID: <66320cc1-614e-ef50-2c0b-12b027c7fa18@quicinc.com>
+Date: Mon, 8 Apr 2024 14:23:06 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+Subject: Re: [PATCH v9 2/6] PCI: qcom: Add ICC bandwidth vote for CPU to PCIe
+ path
+Content-Language: en-US
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas
+	<bhelgaas@google.com>, <johan+linaro@kernel.org>,
+        <bmasney@redhat.com>, <djakov@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <vireshk@kernel.org>, <quic_vbadigan@quicinc.com>,
+        <quic_skananth@quicinc.com>, <quic_nitegupt@quicinc.com>,
+        <quic_parass@quicinc.com>, <krzysztof.kozlowski@linaro.org>,
+        Bryan O'Donoghue
+	<bryan.odonoghue@linaro.org>
+References: <20240407-opp_support-v9-0-496184dc45d7@quicinc.com>
+ <20240407-opp_support-v9-2-496184dc45d7@quicinc.com>
+ <20240407143902.GB2679@thinkpad>
+From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
+In-Reply-To: <20240407143902.GB2679@thinkpad>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: WGv1IFRQHFHFpj3VM7yaBv4pdlrOYyLr
+X-Proofpoint-GUID: WGv1IFRQHFHFpj3VM7yaBv4pdlrOYyLr
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-08_07,2024-04-05_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxscore=0
+ lowpriorityscore=0 impostorscore=0 spamscore=0 phishscore=0 clxscore=1015
+ mlxlogscore=999 malwarescore=0 priorityscore=1501 suspectscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404080067
 
-On Sat, 2024-04-06 at 17:41 +0100, Jonathan Cameron wrote:
-> On Fri, 5 Apr 2024 17:00:09 +0200
-> Nuno Sa <nuno.sa@analog.com> wrote:
->=20
-> > The AD9739A is a 14-bit, 2.5 GSPS high performance RF DACs that are cap=
-able
-> > of synthesizing wideband signals from DC up to 3 GHz.
-> >=20
-> > A dual-port, source synchronous, LVDS interface simplifies the digital
-> > interface with existing FGPA/ASIC technology. On-chip controllers are u=
-sed
-> > to manage external and internal clock domain variations over temperatur=
-e to
-> > ensure reliable data transfer from the host to the DAC core.
-> >=20
-> > Co-developed-by: Dragos Bogdan <dragos.bogdan@analog.com>
-> > Signed-off-by: Dragos Bogdan <dragos.bogdan@analog.com>
-> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
->=20
-> The only thing I really have remaining questions on is the choice
-> of chan_spec with altvoltage and voltage channels.=C2=A0 Why does that
-> split make sense?=C2=A0 It's odd enough that some comments in the code wo=
-uld
-> be a good thing to add.
->=20
-> Jonathan
->=20
-> > new file mode 100644
-> > index 000000000000..9b91d66f826c
-> > --- /dev/null
-> > +++ b/drivers/iio/dac/ad9739a.c
-> > @@ -0,0 +1,454 @@
->=20
-> > +
-> > +static struct iio_chan_spec ad9739a_channels[] =3D {
-> > +	{
-> > +		.type =3D IIO_ALTVOLTAGE,
->=20
-> So this looks a little unusual. Perhaps some comments on why it
-> is appropriate to have this channel.
->=20
-> In reality there is only one channel I think?
 
-Yeah, I had this same discussion internally and was also thinking in having=
- one
-channel (just ALTVOLTAGE). I ended up doing it as we have done it internall=
-y so
-far. The reasoning is that we have two sources of data:
 
-ALTVOLTAGE: It's the internally continuous wave the backend can generate. T=
-hat
-is in fact alternate voltage.
+On 4/7/2024 8:09 PM, Manivannan Sadhasivam wrote:
+> On Sun, Apr 07, 2024 at 10:07:35AM +0530, Krishna chaitanya chundru wrote:
+>> To access PCIe registers, PCIe BAR space, config space the CPU-PCIe
+> 
+> Please specify whether you are referencing PCIe host controller or endpoint
+> device or both.
+> 
+>> ICC (interconnect consumers) path should be voted otherwise it may
+> 
+> ICC is just 'Interconnect' unless I misunderstood.
+> 
+>> lead to NoC (Network on chip) timeout. We are surviving because of
+>> other driver vote for this path.
+>>
+> 
+> s/vote/voting
+> 
+>> As there is less access on this path compared to PCIe to mem path
+>> add minimum vote i.e 1KBps bandwidth always which is recommended
+>> by HW team.
+>>
+> 
+> 'which is sufficient enough to keep the path active.'
+> 
+>> When suspending, disable this path after register space access
+>> is done.
+>>
+>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+>> ---
+>>   drivers/pci/controller/dwc/pcie-qcom.c | 38 ++++++++++++++++++++++++++++++----
+>>   1 file changed, 34 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+>> index 14772edcf0d3..b4893214b2d3 100644
+>> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+>> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+>> @@ -245,6 +245,7 @@ struct qcom_pcie {
+>>   	struct phy *phy;
+>>   	struct gpio_desc *reset;
+>>   	struct icc_path *icc_mem;
+>> +	struct icc_path *icc_cpu;
+>>   	const struct qcom_pcie_cfg *cfg;
+>>   	struct dentry *debugfs;
+>>   	bool suspended;
+>> @@ -1409,6 +1410,9 @@ static int qcom_pcie_icc_init(struct qcom_pcie *pcie)
+>>   	if (IS_ERR(pcie->icc_mem))
+>>   		return PTR_ERR(pcie->icc_mem);
+>>   
+>> +	pcie->icc_cpu = devm_of_icc_get(pci->dev, "cpu-pcie");
+>> +	if (IS_ERR(pcie->icc_cpu))
+>> +		return PTR_ERR(pcie->icc_cpu);
+>>   	/*
+>>   	 * Some Qualcomm platforms require interconnect bandwidth constraints
+>>   	 * to be set before enabling interconnect clocks.
+>> @@ -1418,7 +1422,19 @@ static int qcom_pcie_icc_init(struct qcom_pcie *pcie)
+>>   	 */
+>>   	ret = icc_set_bw(pcie->icc_mem, 0, QCOM_PCIE_LINK_SPEED_TO_BW(1));
+>>   	if (ret) {
+>> -		dev_err(pci->dev, "failed to set interconnect bandwidth: %d\n",
+>> +		dev_err(pci->dev, "failed to set interconnect bandwidth for PCIe-MEM: %d\n",
+>> +			ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	/*
+>> +	 * Since the CPU-PCIe path is only used for activities like register
+> 
+> Again, differentiate PCIe controller and endpoint device access.
+> 
+Ack to all comments. I will modify in next patch.
+>> +	 * access, Config/BAR space access, HW team has recommended to use a
+>> +	 * minimal bandwidth of 1KBps just to keep the link active.
+>> +	 */
+>> +	ret = icc_set_bw(pcie->icc_cpu, 0, kBps_to_icc(1));
+>> +	if (ret) {
+>> +		dev_err(pci->dev, "failed to set interconnect bandwidth for CPU-PCIe: %d\n",
+>>   			ret);
+>>   		return ret;
+>>   	}
+>> @@ -1448,7 +1464,7 @@ static void qcom_pcie_icc_update(struct qcom_pcie *pcie)
+>>   
+>>   	ret = icc_set_bw(pcie->icc_mem, 0, width * QCOM_PCIE_LINK_SPEED_TO_BW(speed));
+>>   	if (ret) {
+>> -		dev_err(pci->dev, "failed to set interconnect bandwidth: %d\n",
+>> +		dev_err(pci->dev, "failed to set interconnect bandwidth for PCIe-MEM: %d\n",
+>>   			ret);
+>>   	}
+>>   }
+>> @@ -1610,7 +1626,7 @@ static int qcom_pcie_suspend_noirq(struct device *dev)
+>>   	 */
+>>   	ret = icc_set_bw(pcie->icc_mem, 0, kBps_to_icc(1));
+>>   	if (ret) {
+>> -		dev_err(dev, "Failed to set interconnect bandwidth: %d\n", ret);
+>> +		dev_err(dev, "Failed to set interconnect bandwidth for PCIe-MEM: %d\n", ret);
+>>   		return ret;
+>>   	}
+>>   
+>> @@ -1634,7 +1650,15 @@ static int qcom_pcie_suspend_noirq(struct device *dev)
+>>   		pcie->suspended = true;
+>>   	}
+>>   
+>> -	return 0;
+>> +	/*
+>> +	 * Remove the vote for CPU-PCIe path now, since at this point onwards,
+>> +	 * no register access will be done.
+>> +	 */
+> 
+> Are you sure? Didn't we see late access to DBI registers on sc7280?
+>
+yeah you are correct I will add a check to disable icc only in suspend
+to idle case. only in suspend to ram case we see the DBI access in sc7280
 
-VOLTAGE: Is kind of what I call external source where we assume is just typ=
-ical
-DAC data and that typically is VOLTAGE (but for a dac like this, I think it=
- may
-very well be, if not most of the time, also alternate - the thing is, we ca=
-n't
-know for sure as we should be able to have both)
-
-- Nuno S=C3=A1=20
-
+-Krishna Chaitanya
+>> +	ret = icc_disable(pcie->icc_cpu);
+>> +	if (ret)
+>> +		dev_err(dev, "failed to disable icc path of CPU-PCIe: %d\n", ret);
+> 
+> s/failed to disable icc path/Failed to disable Interconnect path between CPU-PCIe
+> 
+>> +
+>> +	return ret;
+>>   }
+>>   
+>>   static int qcom_pcie_resume_noirq(struct device *dev)
+>> @@ -1642,6 +1666,12 @@ static int qcom_pcie_resume_noirq(struct device *dev)
+>>   	struct qcom_pcie *pcie = dev_get_drvdata(dev);
+>>   	int ret;
+>>   
+>> +	ret = icc_enable(pcie->icc_cpu);
+>> +	if (ret) {
+>> +		dev_err(dev, "failed to enable icc path of CPU-PCIe: %d\n", ret);
+> 
+> Same as above.
+> 
+> - Mani
+> 
 
