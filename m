@@ -1,144 +1,198 @@
-Return-Path: <devicetree+bounces-57072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B7E189BA34
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 10:27:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56B3289BA4B
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 10:31:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 51153286427
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 08:27:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 96F12B20B7F
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 08:30:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AAA92D796;
-	Mon,  8 Apr 2024 08:27:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4FEB3BBFD;
+	Mon,  8 Apr 2024 08:30:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Z7kJ1jj9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BFC03BBDB;
-	Mon,  8 Apr 2024 08:27:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B864A39846
+	for <devicetree@vger.kernel.org>; Mon,  8 Apr 2024 08:30:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712564861; cv=none; b=ADbKMm3qJgmSxS+QWmffU5aVDd0rXUslpToVsiqCVYqp9aEJ5/86/QcrXN9D0MjNZUtRmuqBEbHRAM0vJM4IksoYNHCARmuKzILWy/o1hi+R/vk6eFBP9ZXK6LRSCdw0qdaRynOIulbqEaqJK4K3E00eOQk8telcbmJzgpYIVf8=
+	t=1712565031; cv=none; b=P0lH1TkgIkWlkM6KHV4u8ziNdtQ/ErtfT02buXGu+HxvVOkbakd4wXnl+ro3BC9S2B0HEPDu6hYoGhvG+PfWkbGvYdof1J2NVW3dUHZengfoRJCKyLtfPkEQscEDG9JXhQRLrjPrGTYX30hurthOuTFiGpC6XLs6slC7TeEQb2w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712564861; c=relaxed/simple;
-	bh=u9L7qVa0ZjLHzku/GRWHHqefATdqWRrHJlXyyocla8c=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=eOoV4iXCFAbJlOwaS2Tjdpg1OjsKRnKmOVzzuVz6AwKUWzYmUJmLoY7QKbiaXfOMLHReLSBpNIlUp88rNpVYDouB39Qm0euw8QR7phXLcM865RMmZqlgG6xAjH7RJb0srkR5UZ4xzzMJRPtHOHtH0tRB2RzTW03MZb5infotxRY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.215.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-5dbd519bde6so3110882a12.1;
-        Mon, 08 Apr 2024 01:27:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712564859; x=1713169659;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mduMjCqjA7drDw2lEIoqwW5oGXEwTzrsNz9VmuPIKQw=;
-        b=G4oD/tN7k00pbY/aLU1vmj7HekENQo8QrzOHUVfqTTkSm+GK5ldTIInhkv7+5Kg/h+
-         JFsgxPPQ0JNSwvq8hEaXAMrEWNCJZKeVYbe7g00FUnAQ9ZN4nQt5cIqb2zpVX8ESh3Zx
-         7gPvQhS2aE2s+FEVyqfYYUjR4aWSN+r/PTY1fhp+HKQyPlylKXA8k5JmgH8KponFxdjY
-         29vg3OptFkNk9g9txkR+1JUNNqvaHHr3GxILXOZgGiBxOdL+lnzlQ0kiCNN1CoAjpm3x
-         sNswmTlKPfHTc2fWPDucGdA1sJX3kM69oQrmPrLv9lbE6YttJD/GkY/R4XCO+kkomBpn
-         WjdQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW6NJYwtnB03uxgJuzEOS4pgknqwRKaCHlEqsgJTx4qSvIM6e4Yao2e1Y0L3PQ4HWLwfb6opGTQbb1w9wDUoZ/GSZxaC55l9GTd2uNDklgI1qNq7aWR4Z2iwRxHixVq89F77Hl2SXXSxfMxemXyhCCLk4vDhhPIkr7i+jUrqO+0QMUXa/HZI6qZ+jlhL589auBdPJkxZ/RiI5fA200uutolqCK17sh+JLRQL7v0ZBVuDVGEUkbWFDJlyy9JrexBdXrBF/wKdQ==
-X-Gm-Message-State: AOJu0YzqrVUtIuNCbvcvGbGcT+qrBrHW/Rx72RJv0nBWREg+d1sTFCWA
-	JqQQcjgykj0NILhb2GnbMdofTrSoJdr2Yv3dPKwmyPlEhZyPVht3Di/ZrEpc7es=
-X-Google-Smtp-Source: AGHT+IGJ7rgElWb5tKJ3j015626NGsXJVnXE5arFslRsaZzIOOWwKBgE3ge5TOwfbMt/xI4zlwZA+w==
-X-Received: by 2002:a17:90b:4b4b:b0:2a2:cd61:c3f5 with SMTP id mi11-20020a17090b4b4b00b002a2cd61c3f5mr6874061pjb.37.1712564858823;
-        Mon, 08 Apr 2024 01:27:38 -0700 (PDT)
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com. [209.85.210.182])
-        by smtp.gmail.com with ESMTPSA id ft4-20020a17090b0f8400b002a54c4dd0f2sm226774pjb.43.2024.04.08.01.27.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Apr 2024 01:27:38 -0700 (PDT)
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-6ecf3943040so2596615b3a.0;
-        Mon, 08 Apr 2024 01:27:38 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCX+dQMpX+7YAU7PBBS5ccV34mj6qNRn0ffOJOpVXs6NW7aBqj9UYYwmhkEJEUJ7M4vpY0eMoIDMP0/AGpGnrU+rda3VFGUtFU2zeTkNkMUKl6taW42f5aXOEYTZkXrDyk7v1aSgWjGlcJvK0glDBvgWWSky+/pr1IYeSqp97IgNi0rKhs1TBuEPcvgj6hxn8D8GEPNtH6XJlpSU+3OwXCTOl/PvhVl8MYd4DWktiPihO2dXMOrk/CUBGpelyiSP8IAxTKrEgA==
-X-Received: by 2002:a25:7406:0:b0:de0:e7f2:a03d with SMTP id
- p6-20020a257406000000b00de0e7f2a03dmr2539436ybc.3.1712564836998; Mon, 08 Apr
- 2024 01:27:16 -0700 (PDT)
+	s=arc-20240116; t=1712565031; c=relaxed/simple;
+	bh=SjoKRikooQ4rEt9uMbPK7q5uiAWzzXZcdF0Tuaxrr7U=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=PyxMGvajk5+oINX7a8RwfXhXw+sogaoT7ozgCAb20NE9/cC1tOdJ2Y6V4V8/6S6gIf8FK0jH/+qTx1bfegNz+lAK2WdBbUzMy8imQ9B+Ls8fDdW9UVwc+1XXPMWsKVJhIlamf27ZOIS20qJYdNZUoExy99TX1ibyiMOrOAYLcVk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Z7kJ1jj9; arc=none smtp.client-ip=203.254.224.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20240408083021epoutp0406f9bde9f289f405845bc1307ca727f0~EQNBPalxD2573625736epoutp04E
+	for <devicetree@vger.kernel.org>; Mon,  8 Apr 2024 08:30:21 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20240408083021epoutp0406f9bde9f289f405845bc1307ca727f0~EQNBPalxD2573625736epoutp04E
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1712565021;
+	bh=9xA2wuGcrIdnD6QeGCy6pEWH3ESJOZu31jlHG5iQwik=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=Z7kJ1jj9MYf5CiYovRq/Ur5n5kClTRjQmZkb0MozYiehYWGMcoqzWCYNe9w/rTZbV
+	 zP75BK8Q2LzWKLbw5EswMttKCEPI/m3PLqpLHIYBv/Gti4IpkaTaI1acON2gdwjolf
+	 wXyH40CIJPezyvYNXXsp2ff8wbNrUL3L5zN/ZbO8=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTP id
+	20240408083021epcas5p491258648313d8da9b58c4a4934efc60a~EQNAsQgpS0206302063epcas5p4y;
+	Mon,  8 Apr 2024 08:30:21 +0000 (GMT)
+Received: from epsmgec5p1-new.samsung.com (unknown [182.195.38.178]) by
+	epsnrtp1.localdomain (Postfix) with ESMTP id 4VCj2g6XtLz4x9Pr; Mon,  8 Apr
+	2024 08:30:19 +0000 (GMT)
+Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
+	epsmgec5p1-new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	5E.EC.19431.B1BA3166; Mon,  8 Apr 2024 17:30:19 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+	20240408083019epcas5p429571d61b25b95490b913fcabc7f59d5~EQM-CUC7b1593915939epcas5p4J;
+	Mon,  8 Apr 2024 08:30:19 +0000 (GMT)
+Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20240408083019epsmtrp1fa891c230381087b44984bc443f55da4~EQM-AK4XT0109201092epsmtrp1a;
+	Mon,  8 Apr 2024 08:30:19 +0000 (GMT)
+X-AuditID: b6c32a50-f57ff70000004be7-f2-6613ab1bfa7a
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	20.74.07541.B1BA3166; Mon,  8 Apr 2024 17:30:19 +0900 (KST)
+Received: from INBRO000447 (unknown [107.122.12.5]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20240408083014epsmtip26c7beec99df2675222e2fb04202b7b6e~EQM60mQBJ1598715987epsmtip29;
+	Mon,  8 Apr 2024 08:30:14 +0000 (GMT)
+From: "Alim Akhtar" <alim.akhtar@samsung.com>
+To: "'Peter Griffin'" <peter.griffin@linaro.org>, <mturquette@baylibre.com>,
+	<sboyd@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <vkoul@kernel.org>, <kishon@kernel.org>,
+	<avri.altman@wdc.com>, <bvanassche@acm.org>, <s.nawrocki@samsung.com>,
+	<cw00.choi@samsung.com>, <jejb@linux.ibm.com>, <martin.petersen@oracle.com>,
+	<chanho61.park@samsung.com>, <ebiggers@kernel.org>
+Cc: <linux-scsi@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+	<linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <tudor.ambarus@linaro.org>,
+	<andre.draszik@linaro.org>, <saravanak@google.com>,
+	<willmcvicker@google.com>
+In-Reply-To: <20240404122559.898930-1-peter.griffin@linaro.org>
+Subject: RE: [PATCH 00/17] HSI2, UFS & UFS phy support for Tensor GS101
+Date: Mon, 8 Apr 2024 14:00:13 +0530
+Message-ID: <04d401da898e$fd57ec10$f807c430$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240407102000.37213-1-krzysztof.kozlowski@linaro.org> <20240407102000.37213-3-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20240407102000.37213-3-krzysztof.kozlowski@linaro.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 8 Apr 2024 10:27:05 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWjWLdu9c7=OhFLsY+jSZXspb6jPHxVai2GcbJoS7MDLg@mail.gmail.com>
-Message-ID: <CAMuHMdWjWLdu9c7=OhFLsY+jSZXspb6jPHxVai2GcbJoS7MDLg@mail.gmail.com>
-Subject: Re: [PATCH 3/3] dt-bindings: PCI: host-bridges: switch from
- deprecated pci-bus.yaml
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Ray Jui <rjui@broadcom.com>, 
-	Scott Branden <sbranden@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Jim Quinlan <jim2101024@gmail.com>, 
-	Nicolas Saenz Julienne <nsaenz@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Will Deacon <will@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	Srikanth Thokala <srikanth.thokala@intel.com>, Ryder Lee <ryder.lee@mediatek.com>, 
-	Jianjun Wang <jianjun.wang@mediatek.com>, 
-	Sergio Paracuellos <sergio.paracuellos@gmail.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Daire McNamara <daire.mcnamara@microchip.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Marek Vasut <marek.vasut+renesas@gmail.com>, 
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, Shawn Lin <shawn.lin@rock-chips.com>, 
-	Heiko Stuebner <heiko@sntech.de>, Jingoo Han <jingoohan1@gmail.com>, 
-	Gustavo Pimentel <gustavo.pimentel@synopsys.com>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>, Michal Simek <michal.simek@amd.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Mark Kettenis <kettenis@openbsd.org>, 
-	Tom Joseph <tjoseph@cadence.com>, Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>, 
-	Jiaxun Yang <jiaxun.yang@flygoat.com>, Kishon Vijay Abraham I <kishon@kernel.org>, 
-	Thippeswamy Havalige <thippeswamy.havalige@amd.com>, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-rpi-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQG67MGYnqOHzIYqhKHsGv8jtpiocwJaURTOsYpwP3A=
+Content-Language: en-us
+X-Brightmail-Tracker: H4sIAAAAAAAAA01Ta1BUZRiec9mziwkdFsJvgEncLJEEdpXFbxkuMoCcwgkaHUlnCo/s4TLA
+	7s5e0popTVkkQC6TmeKahIW0psBCuHGTuEjcJAOW60ARRGBAIAOSsMRysPj3vO88z/e8z/vN
+	y8P4l7iOvHiZmlHK6EQBsQUvr9/t6u502y5G2FIggmWTpTicWOom4OW/lzDYef91+F31QxT2
+	zI9z4I2Ghxx4p2oZg/m95Shs1K5icCJ3iICG300cOJsxxIGdFToCZusXcHilowaF6T1GAt5q
+	MqPwUUsILL5ixuFqlZEL6/+6wIFpdSsENJtKcDjX/x78YfAnDOrnVpEDTlRnVxg106vlUnkG
+	DWXQf0pQg6YqgsrOr0Wo0q/PULNj/TiVWaZHqCeGl6kLteloxAvHE3zjGFrKKF0YWbRcGi+L
+	9ROEHY4KihJ7C0XuIgncL3CR0UmMnyD4UIT7wfjEtRUIXN6nEzVrrQhapRJ4+vsq5Ro14xIn
+	V6n9BIxCmqjwUnio6CSVRhbrIWPUPiKhcK94jXgiIc6Q/gRTzNicXikIP4vc25qGWPEA6QXu
+	nruJpiFbeHyyCgGZqfe5bDGHgCXjCMYWCwhoe1zHeS651v4ZbsF8shoBxZmBaQhvDf+JgGd7
+	LG2CdAfGmymERWtP5mKgprh7/SGMHELBgPY8YWFZkQHgk5FMxILtyFCQXV2yboCTO4HpZ/16
+	35qUgKKxPILFtqD56ui6MUZuB/emdBg7kAtYGivgWIawJ32A9qtolrINTDQ2rKcB5C9WoG+y
+	E2H5weDX5BKcxXZgsqmMy2JHMJGVwrW8A0gK5C87su04MHWraEMaAGq7dLiFgpG7QVGFJ2tl
+	Ay4+G0VZpTVITeGz7FfB+enuDSMnkJOevrFBCvReHcCzkR25m3LlbsqVuylA7v9meQiuRxwZ
+	hSoplokWK0TuMubUf78dLU8yIOvn4RZhRG4Xr3jUISgPqUMADxPYWx8W28bwraX0Bx8ySnmU
+	UpPIqOoQ8dq2czDHl6Lla/clU0eJvCRCL29vby/JPm+RYJv1Y+11KZ+MpdVMAsMoGOVzHcqz
+	cjyLRh0xDS+brad29XVUbm8pnBWDmsIHMVXOYb49T6sDM2o+8jff8Ms42le5WPiFwTm09VSw
+	acehhPIY2j0v5wT1bdNMe2SQ8I2db/441aHI0updP56r35WyaMVpGvOdfFEQGtk17vB2zNFy
+	dX/qK9PSEIf9+XitP/qujjjZtpggdLMVHzlZt6dZ13y9a6htZLbHrNFWu3158FJrOBZwRnV6
+	9MHYYLhzc1nweIjIteLzZPu3Gusr+UGtW+8EFmf/Zpy/GxNyXKKz+WM+o2Dv8DtPL+/L6i/l
+	Tz+a95GbGr5PzhtwC45sCUIkyweGjzmsXENfm/Rs7z8WWIafWxaX098sLNYP/SPAVXG0yA1T
+	quh/AXnKHTOnBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrLIsWRmVeSWpSXmKPExsWy7bCSvK70auE0gwv9vBZbXm1msXj58yqb
+	xbQPP5ktLu/Xtliz9xyTxfUvz1kt5h85x2qxds8fZotFN7YxWRxt/c9s8XLWPTaLTY+vsVp8
+	7LnHanF51xw2iwmrvrFYzDi/j8mi+/oONovlx/8xWVw85WqxYcY/Fov/e3awWxx+085q0XXo
+	L5vFv2sbWSw+3Yqz2HnnBLPFqk//GR2kPS5f8fZ4f6OV3WPBplKPTas62TzuXNvD5jFh0QFG
+	j81L6j0+Pr3F4tG3ZRWjx+dNch7tB7qZArijuGxSUnMyy1KL9O0SuDI2dX9mLnjPV/F3mX8D
+	43aeLkZODgkBE4nZZyezdDFycQgJ7GaU6Jn9hxUiIS1xfeMEdghbWGLlv+fsEEXPGCWajpxg
+	A0mwCehK7FjcxgaSEBFYxyzx/d4zJpAEs8ALJomzl+IgOiYwSsyZ3AI2ilPAXqLxUR8jiC0s
+	4C4xYe9GsHUsAioS1y6sAovzClhKrH+6gA3CFpQ4OfMJ0H0cQEP1JNo2MkLMl5fY/nYOM8R1
+	ChI/ny5jBSkREbCSaF2YDFEiLvHy6BH2CYzCs5AMmoUwaBaSQbOQdCxgZFnFKJlaUJybnpts
+	WGCYl1quV5yYW1yal66XnJ+7iRGcQrQ0djDem/9P7xAjEwfjIUYJDmYlEd5gU8E0Id6UxMqq
+	1KL8+KLSnNTiQ4zSHCxK4ryGM2anCAmkJ5akZqemFqQWwWSZODilGpguyf3eHm1yub7kf0Pw
+	Sdv6NZ+fzwzZcynF7rxG3tuSu0/nlk8wSTTJlF7wsn1amX4fl87LKY/Z5r1InrJz40v+1y7/
+	FiQ3cV5vrbK7laVopBmzPePXa7OT31Za6T4tNLD5GS/iUqebyqr79WGarlVKcVisUdiTCzHX
+	hZUS9cLvfvqxJijr8M9np561TJ9dnbu9df72w4nzjLTXMi9bVqO7bUHHjSovTcmDkpPm7BfM
+	uW5eaLygSuX4ezmZ+Xv2bbxdNlU3dtuZX03Sqt5sdawSH2JmNhR3bG9yD/zIlTlv4Tab56vz
+	94hFXVEvK1B0yd8vXXzQInPO/+qYsyXRaZcFfeKkRDKSEhhNFqbbHldiKc5INNRiLipOBADk
+	2iCOkAMAAA==
+X-CMS-MailID: 20240408083019epcas5p429571d61b25b95490b913fcabc7f59d5
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20240404122615epcas5p3812bd7c825bf604fc474bbcdf40d11f6
+References: <CGME20240404122615epcas5p3812bd7c825bf604fc474bbcdf40d11f6@epcas5p3.samsung.com>
+	<20240404122559.898930-1-peter.griffin@linaro.org>
 
-On Sun, Apr 7, 2024 at 12:20=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> dtschema package with core schemas deprecated pci-bus.yaml schema in
-> favor of pci-host-bridge.yaml.  Update all bindings to use the latter
-> one.
->
-> The difference between pci-bus.yaml and pci-host-bridge.yaml is only in
-> lack of "reg" property defined by the latter, which should not have any
-> effect here, because all these bindings define the "reg".
->
-> The change is therefore quite trivial, except mediatek,mt7621-pcie.yaml
-> binding which have children nodes being also host bridges, apparently.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hi Peter
 
->  Documentation/devicetree/bindings/pci/rcar-pci-host.yaml      | 2 +-
->  .../devicetree/bindings/pci/renesas,pci-rcar-gen2.yaml        | 2 +-
+> -----Original Message-----
+> From: Peter Griffin <peter.griffin@linaro.org>
+> Sent: Thursday, April 4, 2024 5:56 PM
+> To: mturquette@baylibre.com; sboyd@kernel.org; robh@kernel.org;
+> krzk+dt@kernel.org; conor+dt@kernel.org; vkoul@kernel.org;
+> kishon@kernel.org; alim.akhtar@samsung.com; avri.altman@wdc.com;
+> bvanassche@acm.org; s.nawrocki@samsung.com; cw00.choi@samsung.com;
+> jejb@linux.ibm.com; martin.petersen@oracle.com;
+> chanho61.park@samsung.com; ebiggers@kernel.org
+> Cc: linux-scsi@vger.kernel.org; linux-phy@lists.infradead.org;
+> devicetree@vger.kernel.org; linux-clk@vger.kernel.org; linux-samsung-
+> soc@vger.kernel.org; linux-kernel@vger.kernel.org; linux-arm-
+> kernel@lists.infradead.org; tudor.ambarus@linaro.org;
+> andre.draszik@linaro.org; saravanak@google.com;
+> willmcvicker@google.com; Peter Griffin <peter.griffin@linaro.org>
+> Subject: [PATCH 00/17] HSI2, UFS & UFS phy support for Tensor GS101
+> 
+> Hi folks,
+> 
+> 
+> Question
+> ========
+> 
+> Currently the link comes up in Gear 3 due to ufshcd_init_host_params()
+> host_params initialisation. If I update that to use UFS_HS_G4 for
+negotiation
+> then the link come up in Gear 4. I propose (in a future patch) to use VER
+> register offset 0x8 to determine whether to set G4 capability or not (if
+major
+> version is >= 3).
+> 
+> The bitfield of VER register in gs101 docs is
+> 
+> RSVD [31:16] Reserved
+> MJR [15:8] Major version number
+> MNR [7:4] Minor version number
+> VS [3:0] Version Suffix
+> 
+> Can anyone confirm if other Exynos platforms supported by this driver have
+> the same register, and if it conforms to the bitfield described above?
+> 
 
-LGTM, so
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+VER (offset 0x8) is standard UFS HCI spec, so all vendor need to have this
+(unless something really wrong with the HW)
+Yes, Exynos and FSD SoC has these bitfield implemented.
+ 
+> 
+> 2.44.0.478.gd926399ef9-goog
 
-Gr{oetje,eeting}s,
 
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
