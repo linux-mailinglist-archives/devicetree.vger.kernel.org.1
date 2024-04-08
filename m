@@ -1,192 +1,285 @@
-Return-Path: <devicetree+bounces-57191-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57192-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67ACF89C751
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 16:46:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB9F789C77B
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 16:49:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94EB11C21854
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 14:45:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF7A51C21DD6
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 14:49:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB8E913EFE3;
-	Mon,  8 Apr 2024 14:45:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F6E613F00A;
+	Mon,  8 Apr 2024 14:49:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="BJP8w4xI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CajWZAZ9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4F4213E414;
-	Mon,  8 Apr 2024 14:45:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CA1713CFAF
+	for <devicetree@vger.kernel.org>; Mon,  8 Apr 2024 14:49:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712587555; cv=none; b=jne1wYjCANgkCU5FNrqi3ksTD3pyV/mVls09PEy8DNjMItLr7N2hlc0nJSwiKqiEhgSsOizNza/eTWvZn+x17nb24dX0qk1SKOGya33P9X3KO/lWXZv3rlvsqToPDEwHeG+NkPtAVzMuQFYHzTJWLkdi4CbfNRsm0S1LoUaLbKU=
+	t=1712587765; cv=none; b=O/YAYnsyGCTKUoWJf8ayJi3Qhzv4B9MgVGloEki9MKX56wwvSxwAZisMN0cqClTpyJs7skFn7rOKjVi6nrNSTOGVblvmZJnLy9drw0bcYujXbx1nO1g91DrD9H42cJX0V3TgPDKffdwW8fphnnFiizYAT37gV4Q2AFvdWZhn1Go=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712587555; c=relaxed/simple;
-	bh=9C1TNebONxEXBySMPqrFGmIAlKynlEDRwdL3TzuTeNk=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
-	 References:In-Reply-To; b=TXmlIvgrPMcR+LlfOBLz1ErQ79NgEBAf/FHDfOtHfsDRa3WifmapLxUPum5AoCqY1WXUWKQW3UbqaNjWDQcSi32i6kbYdxptQBzUZwjzQMYifJ33p9wgnTxVyss7Cd4+uC4iibfLd26QyOTeKt8/xVy325bjfXL0TlfOg7q/zOU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=BJP8w4xI; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 3C7901C0004;
-	Mon,  8 Apr 2024 14:45:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1712587551;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ue2At595VL4JeUK3+FO9u12ipWZv63UEieMaXUt9HSs=;
-	b=BJP8w4xIvO8wRy995wiX21yZ7dhyzJfrGgzd90XRzhzw2qyRCYVTnQ15rZZ3W0taEVwp+k
-	yIWZhso2UEZJMRlD+05KSPy8y2vagC84NtNSfhIdF9mDXSAFrpXuHWPuZ7QvkNcCHo2m52
-	QbW8LNdkm3MOgmMCYlOHLSK0/HMQcCmrEC+uxZqyPy8f6eVZUBM68q+291EL8tNzPzm3vP
-	uA1ddaXVz7rPAmYwnjKqPuAPt1nWaPq3jpbxxsxfJXG2Vf0RCagdR8NZ4spdxs70wvqaOV
-	MXJi0oROyn3GQJtSIu5h3qQVWkvAGGwnVde/iywq8dyuD/Kjy+WaBvKWOYAk4A==
+	s=arc-20240116; t=1712587765; c=relaxed/simple;
+	bh=kqABwm4SeRyyWpDPZiCA1IIfX5kotHTU4sIUNm44rds=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=fn1DfotJn47DEOwv7yw/jBOfyt7mLathTZb+GRJCl2aNte8MXFXBbhjLFLL7OVAasJumoMvj8gJq2KVadXwFZQdUIGxUX9n4lcI5AYeUd880tAZjd3S0/JR6EJ/GfTABul7zLXcsWqDFuHbqfuTltai6RWMM6WUsYccVYuq2WOY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CajWZAZ9; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4166d58a71eso7136155e9.1
+        for <devicetree@vger.kernel.org>; Mon, 08 Apr 2024 07:49:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712587761; x=1713192561; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=0EE/MOgIxft1vfD//KGXquYTb4qzSH0XjrabPn5Q8lo=;
+        b=CajWZAZ9A4VNb96o21snoUhAZo9hBeNkQ6dtDuj8xCdU2nKuw4K5hTsPYNmdRXVFH+
+         pEG1aVh5mRCdgZW43o0r3f1RaoqFtSmFxkkPjO/TgxgrR/b65L5aOTEoVOiTMonqFKny
+         tOfc5xfWhkTRo0qVsmC0PFDvcvHwH9czTuKWJJ9d/GS5kzsCzI7xEYl2C4u/mEiir/CD
+         eDSiBH4G7xG8bFt7ebCwKtLKMuZT2NnmwvO0BMt4PkxKgD6bPPv2d0IJDTCtQ9WZBtm3
+         erwF3dtoi5+ttRz4xQ3boax104TkbLM4Vn26KGPw6K2JRCAt2feGjpsy0j4freT0jfDO
+         +YpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712587761; x=1713192561;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0EE/MOgIxft1vfD//KGXquYTb4qzSH0XjrabPn5Q8lo=;
+        b=Roe+X29T/ZlN0Om8LGR8UPDt8ct9Nzi6Fd8JHYAC/AH0bQL+xe+46diTqv4GQSuLus
+         XQ5Vosv5uC1D/IfGam+jOdOPvxAm3BRfbQDRSYCSyO3Qnskvjw3k2FkG3+6XKjacLP0D
+         flAwxqSu+A2BJwWhtvMLTlORddcRQ+/RdtMckuRt1awcbJM3H6L0T3T94P34ZZoRNxuP
+         it/4vIN18CUv/EoAUTEgl3AiYtxt7CUjqHuHPa+UuGifWKn9AG7Pc+g7AADR9IqcnjHl
+         Htbuyobw/5goIt5RaXJLaYz54pjD9bkoIyBVTrxUq3dHNKZAmc/nvfj3HPthgF9JoQIH
+         hXkQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXxxdMLJv20D0cTGU952KSxIK038NGnjnH2JGrvFjW2dSlaAPVzTZUid7Dsb3mbWhvNhZwoLkeGw6CB9Vrj7na1z5hS4O3tPd8ezg==
+X-Gm-Message-State: AOJu0Yyt1DUhHlcXM/iPydw11oXNSDyNk5ANQ8nJ6rax77KCS6e3uZbJ
+	bWnBTejjjxn4oYLSGmyb/WKARN/cEtG6uAm4PP5acGJ1WK0TyD4dItsseHO0PjA=
+X-Google-Smtp-Source: AGHT+IGG9i5K+adcR32eYKb2R1dhdhIu35XUgoAG2pjKiBFFLAOeBkyufatVzBbZUYaV4XpDPUBWWg==
+X-Received: by 2002:a05:600c:3acb:b0:416:7222:8a78 with SMTP id d11-20020a05600c3acb00b0041672228a78mr2201360wms.37.1712587760913;
+        Mon, 08 Apr 2024 07:49:20 -0700 (PDT)
+Received: from draszik.lan ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id dr20-20020a5d5f94000000b0033ea499c645sm9303171wrb.4.2024.04.08.07.49.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Apr 2024 07:49:20 -0700 (PDT)
+Message-ID: <6c2b060b3b32b2da46bafbdc33236c319b6cec62.camel@linaro.org>
+Subject: Re: [PATCH 08/17] clk: samsung: gs101: add support for cmu_hsi2
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Peter Griffin <peter.griffin@linaro.org>, mturquette@baylibre.com, 
+ sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+  vkoul@kernel.org, kishon@kernel.org, alim.akhtar@samsung.com,
+ avri.altman@wdc.com,  bvanassche@acm.org, s.nawrocki@samsung.com,
+ cw00.choi@samsung.com,  jejb@linux.ibm.com, martin.petersen@oracle.com,
+ chanho61.park@samsung.com,  ebiggers@kernel.org
+Cc: linux-scsi@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, tudor.ambarus@linaro.org, 
+	saravanak@google.com, willmcvicker@google.com
+Date: Mon, 08 Apr 2024 15:49:18 +0100
+In-Reply-To: <20240404122559.898930-9-peter.griffin@linaro.org>
+References: <20240404122559.898930-1-peter.griffin@linaro.org>
+	 <20240404122559.898930-9-peter.griffin@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.3-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 08 Apr 2024 16:45:49 +0200
-Message-Id: <D0ETMB6GDD6X.WBO5EX3UIK3L@bootlin.com>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH v2 05/11] spi: cadence-qspi: add FIFO depth detection
- quirk
-Cc: "Rob Herring" <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Vaishnav Achath" <vaishnav.a@ti.com>, "Thomas Bogendoerfer"
- <tsbogend@alpha.franken.de>, "Rob Herring" <robh@kernel.org>,
- <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-mips@vger.kernel.org>, "Vladimir
- Kondratiev" <vladimir.kondratiev@mobileye.com>, "Gregory CLEMENT"
- <gregory.clement@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-To: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, "Mark Brown"
- <broonie@kernel.org>
-X-Mailer: aerc 0.15.2
-References: <20240405-cdns-qspi-mbly-v2-0-956679866d6d@bootlin.com>
- <20240405-cdns-qspi-mbly-v2-5-956679866d6d@bootlin.com>
- <551bea0a-1c9e-4e04-87db-c643fdaee85e@sirena.org.uk>
- <D0ETH1AG1ONG.1M1FPSZM69H0Z@bootlin.com>
-In-Reply-To: <D0ETH1AG1ONG.1M1FPSZM69H0Z@bootlin.com>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
 
-Hello,
+Hi Pete,
 
-On Mon Apr 8, 2024 at 4:38 PM CEST, Th=C3=A9o Lebrun wrote:
-> Hello,
->
-> On Mon Apr 8, 2024 at 4:10 PM CEST, Mark Brown wrote:
-> > On Fri, Apr 05, 2024 at 05:02:15PM +0200, Th=C3=A9o Lebrun wrote:
-> >
-> > > Use hardware ability to read the FIFO depth thanks to
-> > > CQSPI_REG_SRAMPARTITION that is partially read-only. Keep current
-> > > behavior identical for existing compatibles.
-> >
-> > The behaviour is not identical here - we now unconditionally probe the
-> > FIFO depth on all hardware, the difference with the quirk is that we
-> > will ignore any DT property specifying the depth.
->
-> You are correct of course. Wording is incorrect. I wanted to highlight
-> that FIFO depth does not change for existing HW and still relies as
-> before on devicetree value.
->
-> > > -	if (of_property_read_u32(np, "cdns,fifo-depth", &cqspi->fifo_depth)=
-) {
-> > > +	if (!(ddata && ddata->quirks & CQSPI_DETECT_FIFO_DEPTH) &&
-> > > +	    of_property_read_u32(np, "cdns,fifo-depth", &cqspi->fifo_depth)=
-) {
-> > >  		dev_err(dev, "couldn't determine fifo-depth\n");
-> >
-> > It's not obvious from just the code that we do handle having a FIFO
-> > depth property and detection in the detection code, at least a comment
-> > would be good.
->
-> I see. Will add comment or rework code to make more straight forward, or
-> both.
->
-> > > +static void cqspi_controller_detect_fifo_depth(struct cqspi_st *cqsp=
-i)
-> > > +{
-> > > +	const struct cqspi_driver_platdata *ddata =3D cqspi->ddata;
-> > > +	struct device *dev =3D &cqspi->pdev->dev;
-> > > +	u32 reg, fifo_depth;
-> > > +
-> > > +	/*
-> > > +	 * Bits N-1:0 are writable while bits 31:N are read as zero, with 2=
-^N
-> > > +	 * the FIFO depth.
-> > > +	 */
-> > > +	writel(U32_MAX, cqspi->iobase + CQSPI_REG_SRAMPARTITION);
-> > > +	reg =3D readl(cqspi->iobase + CQSPI_REG_SRAMPARTITION);
-> > > +	fifo_depth =3D reg + 1;
-> > > +
-> > > +	if (ddata && ddata->quirks & CQSPI_DETECT_FIFO_DEPTH) {
-> > > +		cqspi->fifo_depth =3D fifo_depth;
-> > > +		dev_dbg(dev, "using FIFO depth of %u\n", fifo_depth);
-> > > +	} else if (fifo_depth !=3D cqspi->fifo_depth) {
-> > > +		dev_warn(dev, "detected FIFO depth (%u) different from config (%u)=
-\n",
-> > > +			 fifo_depth, cqspi->fifo_depth);
-> > > +	}
-> >
-> > It's not obvious to me that we should ignore an explicitly specified
-> > property if the quirk is present
->
-> DT value isn't expected for compatibles with CQSPI_DETECT_FIFO_DEPTH
-> quirk, therefore we do not ignore a specified property. Bindings agree:
-> prop is false with EyeQ5 compatible.
->
-> > - if anything I'd more expect to see
-> > the new warning in that case, possibly with a higher severity if we're
-> > saying that the quirk means we're more confident that the data reported
-> > by the hardware is reliable.  I think what I'd expect is that we always
-> > use an explicitly specified depth (hopefully the user was specifying it
-> > for a reason?).
->
-> The goal was a simpler devicetree on Mobileye platform. This is why we
-> add this behavior flag. You prefer the property to be always present?
-> This is a only a nice-to-have, you tell me what you prefer.
->
-> I wasn't sure all HW behaved in the same way wrt read-only bits in
-> SRAMPARTITION, and I do not have access to other platforms exploiting
-> this driver. This is why I kept behavior reserved for EyeQ5-integrated
-> IP block.
->
-> > Pulling all the above together can we just drop the quirk and always do
-> > the detection, or leave the quirk as just controlling the severity with
-> > which we log any difference between detected and explicitly configured
-> > depths?
->
-> If we do not simplify devicetree, then I'd vote for dropping this patch
-> entirely. Adding code for detecting such an edge-case doesn't sound
-> useful. Especially since this kind of error should only occur to people
-> adding new hardware support; those probably do not need a nice
-> user-facing error message. What do you think?
+On Thu, 2024-04-04 at 13:25 +0100, Peter Griffin wrote:
+> CMU_HSI2 is the clock management unit used for the hsi2 block.
+> HSI stands for High Speed Interface and as such it generates
+> clocks for PCIe, UFS and MMC card.
+>=20
+> This patch adds support for the muxes, dividers, and gates in
+> cmu_hsi2.
+>=20
+> CLK_GOUT_HSI2_HSI2_CMU_HSI2_PCLK is marked as CLK_IS_CRITICAL
+> as disabling it leads to an immediate system hang.
+>=20
+> CLK_GOUT_HSI2_SYSREG_HSI2_PCLK is also marked CLK_IS_CRITICAL.
+> A hang is not observed with fine grained clock control, but
+> UFS IP does not function with syscon controlling this clock
+> just around hsi2_sysreg register accesses.
 
-Option you hinted at on dt-bindings patch sounds nice to my ears:
+Would it make sense to add this clock to the &ufs_0 node in the DTS
+instead? Seems more natural than a clock that's constantly enabled?
 
- - Optional devicetree property;
- - If present, check HW value and warn if different;
- - If absent, use HW value.
+> [...]
+>=20
+> Updated regex for clock name mangling
+> =C2=A0=C2=A0=C2=A0 sed \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -e 's|^PLL_LOCKTIME_PLL_\([^_]=
+\+\)|fout_\L\1_pll|' \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -e 's|^PLL_CON0_MUX_CLKCMU_\([=
+^_]\+\)_\(.*\)|mout_\L\1_\2|' \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -e 's|^PLL_CON0_PLL_\(.*\)|mou=
+t_pll_\L\1|' \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -e 's|^CLK_CON_MUX_MUX_CLK_\(.=
+*\)|mout_\L\1|' \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -e '/^PLL_CON[1-4]_[^_]\+_/d' =
+\
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -e '/^[^_]\+_CMU_[^_]\+_CONTRO=
+LLER_OPTION/d' \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -e '/^CLKOUT_CON_BLK_[^_]\+_CM=
+U_[^_]\+_CLKOUT0/d' \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -e 's|_IPCLKPORT||' \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -e 's|_RSTNSYNC||' \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -e 's|_G4X2_DWC_PCIE_CTL||' \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -e 's|_G4X1_DWC_PCIE_CTL||' \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -e 's|_PCIE_SUB_CTRL||' \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -e 's|_INST_0||g' \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -e 's|_LN05LPE||' \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -e 's|_TM_WRAPPER||' \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -e 's|_SF||' \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -e 's|^CLK_CON_DIV_DIV_CLK_\([=
+^_]\+\)_\(.*\)|dout_\L\1_\2|' \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -e 's|^CLK_CON_BUF_CLKBUF_\([^=
+_]\+\)_\(.*\)|gout_\L\1_\2|' \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -e 's|^CLK_CON_GAT_CLK_BLK_\([=
+^_]\+\)_UID_\(.*\)|gout_\L\1_\2|' \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -e 's|^gout_[^_]\+_[^_]\+_cmu_=
+\([^_]\+\)_pclk$|gout_\1_\1_pclk|' \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -e 's|^CLK_CON_GAT_GOUT_BLK_\(=
+[^_]\+\)_UID_\(.*\)|gout_\L\1_\2|' \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -e 's|^CLK_CON_GAT_CLK_\([^_]\=
++\)_\(.*\)|gout_\L\1_clk_\L\1_\2|' \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -e '/^\(DMYQCH\|PCH\|QCH\|QUEU=
+E\)_/d'
 
-This makes for a nice devicetree and simplifies driver code by removing
-one quirk.
+Thank you for the updated regex.
 
-Sorry for delayed second thought.
+> ---
+> =C2=A0drivers/clk/samsung/clk-gs101.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 | 558 +++++++++++++++++++++++
+> =C2=A0include/dt-bindings/clock/google,gs101.h |=C2=A0 63 +++
+> =C2=A02 files changed, 621 insertions(+)
+>=20
+> diff --git a/drivers/clk/samsung/clk-gs101.c b/drivers/clk/samsung/clk-gs=
+101.c
+> index d065e343a85d..b9f84c7d5c22 100644
+> --- a/drivers/clk/samsung/clk-gs101.c
+> +++ b/drivers/clk/samsung/clk-gs101.c
+> @@ -22,6 +22,7 @@
+> =C2=A0#define CLKS_NR_MISC	(CLK_GOUT_MISC_XIU_D_MISC_ACLK + 1)
+> =C2=A0#define CLKS_NR_PERIC0	(CLK_GOUT_PERIC0_SYSREG_PERIC0_PCLK + 1)
+> =C2=A0#define CLKS_NR_PERIC1	(CLK_GOUT_PERIC1_SYSREG_PERIC1_PCLK + 1)
+> +#define CLKS_NR_HSI2	(CLK_GOUT_HSI2_XIU_P_HSI2_ACLK + 1)
+> =C2=A0
+> =C2=A0/* ---- CMU_TOP ---------------------------------------------------=
+---------- */
+> =C2=A0
+> @@ -3409,6 +3410,560 @@ static const struct samsung_cmu_info peric1_cmu_i=
+nfo __initconst =3D {
+> =C2=A0	.clk_name		=3D "bus",
+> =C2=A0};
+> =C2=A0
+> +/* ---- CMU_HSI2 -------------------------------------------------------=
+--- */
 
-Thanks,
+This comment is shorter that all the other similar comments in this file.
 
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> [...]
+> +
+> +PNAME(mout_hsi2_bus_user_p)	=3D { "oscclk", "dout_cmu_hsi2_bus" };
+> +PNAME(mout_hsi2_pcie_user_p)	=3D { "oscclk", "dout_cmu_hsi2_pcie" };
+> +PNAME(mout_hsi2_ufs_embd_user_p) =3D { "oscclk", "dout_cmu_hsi2_ufs_embd=
+" };
+> +PNAME(mout_hsi2_mmc_card_user_p) =3D { "oscclk", "dout_cmu_hsi2_mmc_card=
+" };
+
+Can you make these alphabetical, too, please, which would also match their =
+usage
+below:
+
+> +
+> +static const struct samsung_mux_clock hsi2_mux_clks[] __initconst =3D {
+> +	MUX(CLK_MOUT_HSI2_BUS_USER, "mout_hsi2_bus_user", mout_hsi2_bus_user_p,
+> +	=C2=A0=C2=A0=C2=A0 PLL_CON0_MUX_CLKCMU_HSI2_BUS_USER, 4, 1),
+> +	MUX(CLK_MOUT_HSI2_MMC_CARD_USER, "mout_hsi2_mmc_card_user",
+> +	=C2=A0=C2=A0=C2=A0 mout_hsi2_mmc_card_user_p, PLL_CON0_MUX_CLKCMU_HSI2_=
+MMC_CARD_USER,
+> +	=C2=A0=C2=A0=C2=A0 4, 1),
+> +	MUX(CLK_MOUT_HSI2_PCIE_USER, "mout_hsi2_pcie_user",
+> +	=C2=A0=C2=A0=C2=A0 mout_hsi2_pcie_user_p, PLL_CON0_MUX_CLKCMU_HSI2_PCIE=
+_USER,
+> +	=C2=A0=C2=A0=C2=A0 4, 1),
+> +	MUX(CLK_MOUT_HSI2_UFS_EMBD_USER, "mout_hsi2_ufs_embd_user",
+> +	=C2=A0=C2=A0=C2=A0 mout_hsi2_ufs_embd_user_p, PLL_CON0_MUX_CLKCMU_HSI2_=
+UFS_EMBD_USER,
+> +	=C2=A0=C2=A0=C2=A0 4, 1),
+> +};
+> +
+> +static const struct samsung_gate_clock hsi2_gate_clks[] __initconst =3D =
+{
+> +
+
+Here and below: all these extra empty lines are not needed.
+
+> +	GATE(CLK_GOUT_HSI2_PCIE_GEN4_1_PCIE_003_PHY_REFCLK_IN,
+> +	=C2=A0=C2=A0=C2=A0=C2=A0 "gout_hsi2_pcie_gen4_1_pcie_003_phy_refclk_in"=
+,
+> +	=C2=A0=C2=A0=C2=A0=C2=A0 "mout_hsi2_pcie_user",
+> +	=C2=A0=C2=A0=C2=A0=C2=A0 CLK_CON_GAT_CLK_BLK_HSI2_UID_PCIE_GEN4_1_IPCLK=
+PORT_PCIE_003_PCIE_SUB_CTRL_INST_0_PHY_REFCLK_IN,
+> +	=C2=A0=C2=A0=C2=A0=C2=A0 21, 0, 0),
+> +
+> +	GATE(CLK_GOUT_HSI2_PCIE_GEN4_1_PCIE_004_PHY_REFCLK_IN,
+> +	=C2=A0=C2=A0=C2=A0=C2=A0 "gout_hsi2_pcie_gen4_1_pcie_004_phy_refclk_in"=
+,
+> +	=C2=A0=C2=A0=C2=A0=C2=A0 "mout_hsi2_pcie_user",
+> +	=C2=A0=C2=A0=C2=A0=C2=A0 CLK_CON_GAT_CLK_BLK_HSI2_UID_PCIE_GEN4_1_IPCLK=
+PORT_PCIE_004_PCIE_SUB_CTRL_INST_0_PHY_REFCLK_IN,
+> +	=C2=A0=C2=A0=C2=A0=C2=A0 21, 0, 0),
+> +
+> +	GATE(CLK_GOUT_HSI2_SSMT_PCIE_IA_GEN4A_1_ACLK,
+> +	=C2=A0=C2=A0=C2=A0=C2=A0 "gout_hsi2_ssmt_pcie_ia_gen4a_1_aclk",
+> +	=C2=A0=C2=A0=C2=A0=C2=A0 "mout_hsi2_bus_user",
+
+The two strings fit on the same line.
+
+> +	=C2=A0=C2=A0=C2=A0=C2=A0 CLK_CON_GAT_CLK_BLK_HSI2_UID_SSMT_PCIE_IA_GEN4=
+A_1_IPCLKPORT_ACLK,
+> +	=C2=A0=C2=A0=C2=A0=C2=A0 21, 0, 0),
+> +
+> +	GATE(CLK_GOUT_HSI2_SSMT_PCIE_IA_GEN4A_1_PCLK,
+> +	=C2=A0=C2=A0=C2=A0=C2=A0 "gout_hsi2_ssmt_pcie_ia_gen4a_1_pclk",
+> +	=C2=A0=C2=A0=C2=A0=C2=A0 "mout_hsi2_bus_user",
+
+dito.
+
+> [...]
+> +	/* Disabling this clock makes the system hang. Mark the clock as critic=
+al. */
+> +	GATE(CLK_GOUT_HSI2_HSI2_CMU_HSI2_PCLK,
+> +	=C2=A0=C2=A0=C2=A0=C2=A0 "gout_hsi2_hsi2_cmu_hsi2_pclk", "mout_hsi2_bus=
+_user",
+> +	=C2=A0=C2=A0=C2=A0=C2=A0 CLK_CON_GAT_GOUT_BLK_HSI2_UID_HSI2_CMU_HSI2_IP=
+CLKPORT_PCLK,
+> +	=C2=A0=C2=A0=C2=A0=C2=A0 21, CLK_IS_CRITICAL, 0),
+
+I have a similar clock in USB, which also causes a hang if off, I wonder wh=
+at we
+could do better here.
+
+
+Cheers,
+Andre'
 
 
