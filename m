@@ -1,359 +1,265 @@
-Return-Path: <devicetree+bounces-57263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FFE689CCF5
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 22:34:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A73889CD15
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 22:54:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 396EB2837A9
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 20:34:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11E561F22EC0
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 20:54:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DA9914601D;
-	Mon,  8 Apr 2024 20:34:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E850D147C89;
+	Mon,  8 Apr 2024 20:54:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="M52aGI7T"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="QJfA/wJW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2078.outbound.protection.outlook.com [40.107.93.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55AB27482;
-	Mon,  8 Apr 2024 20:34:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712608477; cv=none; b=L5nMgek0el1sX64Q142iubPYca6q8vv7er7Paiu2+tO1MubMPBgScAdCt/stvzCV2RmtndZzZJiNroOw+XumT3O5L5IipceifJbawEqBfYMg1u2E/ce2a+JVOhzGb+Ak/YWn9nHB1QEYvLznzdcWrpjsZLeq7Q1HpZfmhMIXfzE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712608477; c=relaxed/simple;
-	bh=PWIA8V18WJY7Lf1DeBwmmMK2HKVS/EQgzN2tHA3xTLY=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=qHdSzP6DgPufQCeY7Zr98W0N/aYF+xxV38lTRDQwm+B3W55gP0ENM4pA5SPpVYnwAulTIkKy1Az1ExpJu/9ISVaqOwZxs6rJhruvt2pC95L30GzpCupQDuJx/oTrOBtEh5Awli4qPEab+0x5Tr8hshhgscB+Q8qqBBS6Fj5XwUU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=M52aGI7T; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1712608476; x=1744144476;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=PWIA8V18WJY7Lf1DeBwmmMK2HKVS/EQgzN2tHA3xTLY=;
-  b=M52aGI7TMenruHGW/jxiEnVJ+KQ1m4eKM5ecIRuN3hxtxzt8YVfhcVZO
-   prp9Te2iYhpbOCdHvL3+50wTiAQKfDtCHGxcf4V3UP/ZNMyigyZ6rjSCN
-   TOCq4PBTesEAyGIMUWaYCHYRj7lh4MXP3Fd4NMBgV6MmsiSjFisMSoYGP
-   xei7U0oxHkSQhVLPvOFeOxAdXLNFBNYi8qL7och2j3jR8g6SPz28+KyD6
-   obAuao5VV7gMAEb5S+pT0qrtKlFTU7DnIQO1LES3hZZ9NAt8yhLR48POu
-   K2xaXoSbxxN7TNneTtOUr6Hv79QCJTBiJgQ+Gh4AIdJbWrvopgoboTQli
-   w==;
-X-CSE-ConnectionGUID: DmLl1g8xTJG7xG9pXOOgtg==
-X-CSE-MsgGUID: x7I2YA0gSSKjBWsTrR25SQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="19285619"
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; 
-   d="scan'208";a="19285619"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2024 13:34:35 -0700
-X-CSE-ConnectionGUID: j47fw3sGTuCeJaeCJgxwUg==
-X-CSE-MsgGUID: e/mxbEINTRCpqmcD3UwM+g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; 
-   d="scan'208";a="20121978"
-Received: from sj-4150-psse-sw-opae-dev2.sj.intel.com ([10.233.115.162])
-  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2024 13:34:34 -0700
-Date: Mon, 8 Apr 2024 13:34:24 -0700 (PDT)
-From: matthew.gerlach@linux.intel.com
-X-X-Sender: mgerlach@sj-4150-psse-sw-opae-dev2
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, 
-    krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-    linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-    linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: PCI: altera: Convert to YAML
-In-Reply-To: <2ece9ac2-899c-4185-b0f3-8ab939afc1e5@linaro.org>
-Message-ID: <alpine.DEB.2.22.394.2404081309050.381257@sj-4150-psse-sw-opae-dev2>
-References: <20240405145322.3805828-1-matthew.gerlach@linux.intel.com> <2ece9ac2-899c-4185-b0f3-8ab939afc1e5@linaro.org>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0F8C146D6C;
+	Mon,  8 Apr 2024 20:54:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.93.78
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712609644; cv=fail; b=Ij4BlviMZUBVKsRws+0gtOEO2ahCwhzzGc3ZruzJHLIdhmg8V8DsSmirvKWcKq+vvOZFTDkGegwJ+NeErjVTbbjwU1SUATKHTo4s5qfHloAGoTQDvke4rX1QI1hsLkx04d495287pM53+W/1DKxbI1Z0SYesec7X+h3D1hEbcX8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712609644; c=relaxed/simple;
+	bh=OLC+2z/Z+vvtCv4Sf8s4ACd79FQrzTfc1qOS59Hhx0w=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=X9MSsXrO94MLD2r1KPtpXLWS9GiJVMBVgLGr+5TC0vXMPDztaB+klyoukwDe8woooRcmd+8KCCl+NudJg8+ikjhCCQudwyQLaUFFykLH/WxDxMKwhaIM6LMkb++8Dc7lhwavnKEGEhbuZS5HT230n4Xn2hsQO/7mp15sbIWBzwM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=QJfA/wJW; arc=fail smtp.client-ip=40.107.93.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AtYqfFrCdGdC3Mutq2OUeY4+LV7zG7QDbYxqHHdBCWalTMm0L6rZJpMJijXP8BI5ukZsV+GxasuhJf5dhs28kcCKuO6ORChTCHph18Btr7Y43OW03HCbsEMzcqoCitSUCW/UqmWQr9LmCqHW8joflkR+plKHkWPhKbImNT3Lyvj6HKnZ9R9x8ioPxyU50bEXYEIFSgS1MXGHLbRC+4NUE/5+LFZpXLsO9HUzAXnUNVioWDxI8QxWeeMohANrtFsekMg+WDhS+J8h0XNJ0PBXAsLVHrenIv0BfCjy3TX+y9byFsWka85c8NxLNXnPsf6EnoiOL7QhWi7W1+17kGcCCA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=d7TCEu6unqaYt8qGuL7AqumxH8GrgpZGHYbLfA1JYzE=;
+ b=YF6hOKzNvnEpwf2w4TdzbmcCwXwcTW3JjqWSTYxvm3wGjycTEM7yhyDx+KrEL9PVZPZggWd8GVfQ7iLT0+A8xI0NUBrXi2GGOXeEphABj4mN8w6eF5cgxnpCZhPbGXsRBZ1XUwu+9t1/YGKzGUCPesJZuD32Zw5HdnTDJncwDbyT1CCV3BpKShGY5zG1tegzNIPtt6qlvZKzWnFRzTog9JHMsUupAU7L+EPLor1OrCiGCcqRITKrD0M3TsLZvV1WNCUN9xD8bI3sGiasKikpIg3Wu7FhoJC4uUG61sO2zBUqoGrjLUZDRLxVmcKiqRmpIvXeJifgehlPCyuajziSpQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=d7TCEu6unqaYt8qGuL7AqumxH8GrgpZGHYbLfA1JYzE=;
+ b=QJfA/wJWwpsCbhio24CJ1Z1E76bG+HP+JpNd1dniQCyZJL/9yDrGppHqMoJyuvJEwOTVe5D7AJK97JIG/Qz6VoCD5lgtAdvyAxi272aIBwHiduEUKXvbBHaf4e9gMrai2Uf7mNfWtP8jeE9gaFQpYnC/NJ/i/xmPiVzgIaOQLp4=
+Received: from MN2PR20CA0051.namprd20.prod.outlook.com (2603:10b6:208:235::20)
+ by CH3PR12MB7667.namprd12.prod.outlook.com (2603:10b6:610:14f::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Mon, 8 Apr
+ 2024 20:53:59 +0000
+Received: from BN2PEPF000044AA.namprd04.prod.outlook.com
+ (2603:10b6:208:235:cafe::26) by MN2PR20CA0051.outlook.office365.com
+ (2603:10b6:208:235::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.35 via Frontend
+ Transport; Mon, 8 Apr 2024 20:53:59 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN2PEPF000044AA.mail.protection.outlook.com (10.167.243.105) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7452.22 via Frontend Transport; Mon, 8 Apr 2024 20:53:59 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 8 Apr
+ 2024 15:53:58 -0500
+Received: from xsjtanmays50.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Mon, 8 Apr 2024 15:53:57 -0500
+From: Tanmay Shah <tanmay.shah@amd.com>
+To: <andersson@kernel.org>, <mathieu.poirier@linaro.org>, <robh@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<michal.simek@amd.com>, <ben.levinsky@amd.com>, <tanmay.shah@amd.com>
+CC: <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v14 0/4] add zynqmp TCM bindings
+Date: Mon, 8 Apr 2024 13:53:10 -0700
+Message-ID: <20240408205313.3552165-1-tanmay.shah@amd.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB04.amd.com: tanmay.shah@amd.com does not designate
+ permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN2PEPF000044AA:EE_|CH3PR12MB7667:EE_
+X-MS-Office365-Filtering-Correlation-Id: 939d7948-f3dc-45fc-0702-08dc580e03a5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	Lw8khwuE3m24TA0nHXwJnH3lpDPRaEgrf/VTJcZTGDcFeSxYsFp7sM4OREM3k5CbMqXY/l2IjI016cLbhQS8Z71vHGPaUc81/DAAKh4ep6FsOGR1XkMn4n/AQ2K+eNybc1Tjpb7JU0r0HmwjR6Ety5+dmRR6tY0T9R/TMa2uNlI9EA4ZsuRmH0bJGzjuY7UhmpP35ZVgKdhY3MnEbWYhTSbs9fgo+u5zBO25fRTRFaIRHZ9o16FISWMXUwm2qs3HGwaDKR+5PgPsFK2rgLR/rZNW2iC9/EQlpnQ7tCSozSoscf3VqIa7HVdXrBT22QCXAZTN52v1lbqDtRK0YDRUTj8UXd1kS6l9JOTMCraxiXe55QfTKaK++SwLs3bGZE3ukA9kV+mWj6gOQEWIkoPmeMTLonQnJSLjzG65+a58v5y6G6hO1fcYmrbU1uUd+aDuHbCx9jjyPPIDJcNWwcDPY5Dg1+7+0d9GHyHFGyeOa+Vl+u1pHIkSmNeRHRHp22eiI/Y6HxQj1ViQtCFnqqRfUnYrXNLgkcJhYXrZkT+BMPkKA1zs15QxKsbxabR0JJvPdafVs/d8cTJLgVlmUA7wy9jS5U/Bq6UtzVDn/lc2sJ4wKqXBWjGaeODixUwHaE7YpAS8pMbevVSBYRV/tKOcS81N3mYlPRznxLKtiuay8JCytim6R7t2TqNzOe5fnpLKQfjNirK/Y6k8DjVLYoE/1g==
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(1800799015)(36860700004)(82310400014)(376005);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2024 20:53:59.2607
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 939d7948-f3dc-45fc-0702-08dc580e03a5
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BN2PEPF000044AA.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7667
+
+Tightly-Coupled Memories(TCMs) are low-latency memory that provides
+predictable instruction execution and predictable data load/store
+timing. Each Cortex-R5F processor contains exclusive two 64 KB memory
+banks on the ATCM and BTCM ports, for a total of 128 KB of memory.
+In lockstep mode, both 128KB memory is accessible to the cluster.
+
+As per ZynqMP Ultrascale+ Technical Reference Manual UG1085, following
+is address space of TCM memory. The bindings in this patch series
+introduces properties to accommodate following address space with
+address translation between Linux and Cortex-R5 views.
+
+|     |     |     |
+| --- | --- | --- |
+|      *Mode*        |   *R5 View* | *Linux view* |  Notes               |
+| *Split Mode*       | *start addr*| *start addr* |                      |
+| R5_0 ATCM (64 KB)  | 0x0000_0000 | 0xFFE0_0000  |                      |
+| R5_0 BTCM (64 KB)  | 0x0002_0000 | 0xFFE2_0000  |                      |
+| R5_1 ATCM (64 KB)  | 0x0000_0000 | 0xFFE9_0000  | alias of 0xFFE1_0000 |
+| R5_1 BTCM (64 KB)  | 0x0002_0000 | 0xFFEB_0000  | alias of 0xFFE3_0000 |
+|  ___               |     ___     |    ___       |                      |
+| *Lockstep Mode*    |             |              |                      |
+| R5_0 ATCM (128 KB) | 0x0000_0000 | 0xFFE0_0000  |                      |
+| R5_0 BTCM (128 KB) | 0x0002_0000 | 0xFFE2_0000  |                      |
+
+References:
+UG1085 TCM address space:
+https://docs.xilinx.com/r/en-US/ug1085-zynq-ultrascale-trm/Tightly-Coupled-Memory-Address-Map
+
+---
+
+prerequisite-patch-link: https://lore.kernel.org/all/d4556268-8274-4089-949f-3b97d67793c7@gmail.com/
+Base Branch: 6.9.rc2
+
+Changes in v14:
+  - Add xlnx,tcm-mode property and use it for TCM configuration
+  - Add Versal and Versal-NET platform support
+  - Maintain backward compatibility for ZynqMP platform and use hardcode
+    TCM addresses
+
+Changes in v13:
+  - Have power-domains property for lockstep case instead of
+    keeping it flexible.
+  - Add "items:" list in power-domains property
+
+Changes in v12:
+  - add "reg", "reg-names" and "power-domains" in pattern properties
+  - add "reg" and "reg-names" in required list
+  - keep "power-domains" in required list as it was before the change
+
+Changes in v11:
+  - Fix yamllint warning and reduce indentation as needed
+  - Remove redundant initialization of the variable
+  - Return correct error code if memory allocation failed
+
+Changs in v10:
+  - Add new patch (1/4) to series that changes hardcode TCM addresses in
+    lockstep mode and removes separate handling of TCM in lockstep and
+    split mode
+  - modify number of "reg", "reg-names" and "power-domains" entries
+    based on cluster mode
+  - Add extra optional atcm and btcm in "reg" property for lockstep mode
+  - Add "reg-names" for extra optional atcm and btcm for lockstep mode
+  - Drop previous Ack as bindings has new change
+  - Add individual tcm regions via "reg" and "reg-names" for lockstep mode
+  - Add each tcm's power-domains in lockstep mode
+  - Drop previous Ack as new change in dts patchset
+  - Remove redundant changes in driver to handle TCM in lockstep mode
+
+Changes in v9:
+  - Fix rproc lockstep dts
+  - Introduce new API to request and release core1 TCM power-domains in
+    lockstep mode. This will be used during prepare -> add_tcm_banks
+    callback to enable TCM in lockstep mode.
+  - Parse TCM from device-tree in lockstep mode and split mode in
+    uniform way.
+  - Fix TCM representation in device-tree in lockstep mode.
+  - Fix comments as suggested
+
+Changes in v8:
+  - Remove use of pm_domains framework
+  - Remove checking of pm_domain_id validation to power on/off tcm
+  - Remove spurious change
+  - parse power-domains property from device-tree and use EEMI calls
+    to power on/off TCM instead of using pm domains framework
+
+Changes in v7:
+  - %s/pm_dev1/pm_dev_core0/r
+  - %s/pm_dev_link1/pm_dev_core0_link/r
+  - %s/pm_dev2/pm_dev_core1/r
+  - %s/pm_dev_link2/pm_dev_core1_link/r
+  - remove pm_domain_id check to move next patch
+  - add comment about how 1st entry in pm domain list is used
+  - fix loop when jump to fail_add_pm_domains loop
+  - move checking of pm_domain_id from previous patch
+  - fix mem_bank_data memory allocation
+
+Changes in v6:
+  - Introduce new node entry for r5f cluster split mode dts and
+    keep it disabled by default.
+  - Keep remoteproc lockstep mode enabled by default to maintian
+    back compatibility.
+  - Enable split mode only for zcu102 board to demo split mode use
+  - Remove spurious change
+  - Handle errors in add_pm_domains function
+  - Remove redundant code to handle errors from remove_pm_domains
+  - Missing . at the end of the commit message
+  - remove redundant initialization of variables
+  - remove fail_tcm label and relevant code to free memory
+    acquired using devm_* API. As this will be freed when device free it
+  - add extra check to see if "reg" property is supported or not
+
+Changes in v5:
+  - maintain Rob's Ack on bindings patch as no changes in bindings
+  - split previous patch into multiple patches
+  - Use pm domain framework to turn on/off TCM
+  - Add support of parsing TCM information from device-tree
+  - maintain backward compatibility with previous bindings without
+    TCM information available in device-tree
+
+This patch series continues previous effort to upstream ZynqMP
+TCM bindings:
+Previous v4 version link:
+https://lore.kernel.org/all/20230829181900.2561194-1-tanmay.shah@amd.com/
+
+Previous v3 version link:
+https://lore.kernel.org/all/1689964908-22371-1-git-send-email-radhey.shyam.pandey@amd.com/
+
+Radhey Shyam Pandey (1):
+  dt-bindings: remoteproc: add Tightly Coupled Memory (TCM) bindings
+
+Tanmay Shah (3):
+  remoteproc: zynqmp: fix lockstep mode memory region
+  dts: zynqmp: add properties for TCM in remoteproc
+  remoteproc: zynqmp: parse TCM from device tree
+
+ .../remoteproc/xlnx,zynqmp-r5fss.yaml         | 279 +++++++++++++--
+ .../boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts  |   8 +
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |  67 +++-
+ drivers/remoteproc/xlnx_r5_remoteproc.c       | 319 ++++++++----------
+ 4 files changed, 471 insertions(+), 202 deletions(-)
 
 
+base-commit: 39cd87c4eb2b893354f3b850f916353f2658ae6f
+prerequisite-patch-id: f6c4bf78d30a332948d38e5c937f031496cd3b5a
+-- 
+2.25.1
 
-On Sun, 7 Apr 2024, Krzysztof Kozlowski wrote:
-
-> On 05/04/2024 16:53, matthew.gerlach@linux.intel.com wrote:
->> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
->>
->> Convert the device tree bindings for the Altera Root Port PCIe controller
->> from text to YAML.
->>
->> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
->> ---
->> v2:
->>  - Move allOf: to bottom of file, just like example-schema is showing
->
-> No, just open it and you will see it is placed differently...
-
-I see what you mean. I will match the ordering of example-schema.
-
->
->>  - add constraint for reg and reg-names
->
-> Not complete...
-
-I will complete.
-
->
->>  - remove unneeded device_type
->>  - drop #address-cells and #size-cells
->>  - change minItems to maxItems for interrupts:
->>  - change msi-parent to just "msi-parent: true"
->>  - cleaned up required:
->>  - make subject consistent with other commits coverting to YAML
->>  - s/overt/onvert/g
->> ---
->>  .../devicetree/bindings/pci/altera-pcie.txt   |  50 ---------
->>  .../bindings/pci/altr,pcie-root-port.yaml     | 106 ++++++++++++++++++
->>  2 files changed, 106 insertions(+), 50 deletions(-)
->>  delete mode 100644 Documentation/devicetree/bindings/pci/altera-pcie.txt
->>  create mode 100644 Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/pci/altera-pcie.txt b/Documentation/devicetree/bindings/pci/altera-pcie.txt
->> deleted file mode 100644
->> index 816b244a221e..000000000000
->> --- a/Documentation/devicetree/bindings/pci/altera-pcie.txt
->> +++ /dev/null
->> @@ -1,50 +0,0 @@
->> -* Altera PCIe controller
->> -
->> -Required properties:
->> -- compatible :	should contain "altr,pcie-root-port-1.0" or "altr,pcie-root-port-2.0"
->> -- reg:		a list of physical base address and length for TXS and CRA.
->> -		For "altr,pcie-root-port-2.0", additional HIP base address and length.
->> -- reg-names:	must include the following entries:
->> -		"Txs": TX slave port region
->> -		"Cra": Control register access region
->> -		"Hip": Hard IP region (if "altr,pcie-root-port-2.0")
->> -- interrupts:	specifies the interrupt source of the parent interrupt
->> -		controller.  The format of the interrupt specifier depends
->> -		on the parent interrupt controller.
->> -- device_type:	must be "pci"
->> -- #address-cells:	set to <3>
->> -- #size-cells:		set to <2>
->> -- #interrupt-cells:	set to <1>
->> -- ranges:	describes the translation of addresses for root ports and
->> -		standard PCI regions.
->> -- interrupt-map-mask and interrupt-map: standard PCI properties to define the
->> -		mapping of the PCIe interface to interrupt numbers.
->> -
->> -Optional properties:
->> -- msi-parent:	Link to the hardware entity that serves as the MSI controller
->> -		for this PCIe controller.
->> -- bus-range:	PCI bus numbers covered
->> -
->> -Example
->> -	pcie_0: pcie@c00000000 {
->> -		compatible = "altr,pcie-root-port-1.0";
->> -		reg = <0xc0000000 0x20000000>,
->> -			<0xff220000 0x00004000>;
->> -		reg-names = "Txs", "Cra";
->> -		interrupt-parent = <&hps_0_arm_gic_0>;
->> -		interrupts = <0 40 4>;
->> -		interrupt-controller;
->> -		#interrupt-cells = <1>;
->> -		bus-range = <0x0 0xFF>;
->> -		device_type = "pci";
->> -		msi-parent = <&msi_to_gic_gen_0>;
->> -		#address-cells = <3>;
->> -		#size-cells = <2>;
->> -		interrupt-map-mask = <0 0 0 7>;
->> -		interrupt-map = <0 0 0 1 &pcie_0 1>,
->> -			            <0 0 0 2 &pcie_0 2>,
->> -			            <0 0 0 3 &pcie_0 3>,
->> -			            <0 0 0 4 &pcie_0 4>;
->> -		ranges = <0x82000000 0x00000000 0x00000000 0xc0000000 0x00000000 0x10000000
->> -			  0x82000000 0x00000000 0x10000000 0xd0000000 0x00000000 0x10000000>;
->> -	};
->> diff --git a/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
->> new file mode 100644
->> index 000000000000..999dcda05f55
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
->> @@ -0,0 +1,106 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +# Copyright (C) 2024, Intel Corporation
->
-> This is derivative of previous work, which is easily visible by doing
-> the same mistakes in DTS as they were before.
-
-This is definitely derivative of previous work, and I want to fix the 
-DTS mistakes too.
-
->
-> You now added fresh copyrights ignoring all previous work, even though
-> you copied it. I don't agree.
->
-> If you want to ignore previous copyrights, then at least don't copy
-> existing code... although even that would not be sufficient.
-
-Ignoring previous copyrights was not my intent. There is no copyright 
-statement in the original text version of the device tree bindings. Should 
-that lack of copyright statement carry forward?
-
->
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/altr,pcie-root-port.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Altera PCIe Root Port
->> +
->> +maintainers:
->> +  - Matthew Gerlach <matthew.gerlach@linux.intel.com>
->> +
->> +properties:
->> +  compatible:
->> +    items:
->
-> Drop items.
-
-I will drop the items.
-
->
->> +      - enum:
->> +          - altr,pcie-root-port-1.0
->> +          - altr,pcie-root-port-2.0
->> +
->
-> Missing reg with constraints.
-
-I will add the following here:
-
-   reg:
-     minItems: 2
-     maxItems: 3
-
-   reg-names:
-     minItems: 2
-     maxItems: 3
-
->
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  interrupt-map-mask:
->> +    items:
->> +      - const: 0
->> +      - const: 0
->> +      - const: 0
->> +      - const: 7
->> +
->> +  interrupt-map:
->> +    maxItems: 4
->> +
->> +  "#interrupt-cells":
->> +    const: 1
->> +
->> +  msi-parent: true
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - reg-names
->> +  - device_type
->> +  - interrupts
->> +  - interrupt-map
->> +  - interrupt-map-mask
->> +
->> +unevaluatedProperties: false
->> +
->> +allOf:
->> +  - $ref: /schemas/pci/pci-bus.yaml#
->
-> That's deprecated, as explained in its description.  You should use
-> pci-host-bridge.yaml.
-
-I will switch to pci-host-bridge.yaml.
-
->
->
->
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          enum:
->> +            - altr,pcie-root-port-1.0
->> +    then:
->> +      properties:
->> +        reg:
->> +          items:
->> +            - description: TX slave port region
->> +            - description: Control register access region
->> +
->> +        reg-names:
->> +          items:
->> +            - const: Txs
->> +            - const: Cra
->> +
->> +    else:
->> +      properties:
->> +        reg:
->> +          items:
->> +            - description: Hard IP region
->> +            - description: TX slave port region
->> +            - description: Control register access region
->> +
->> +        reg-names:
->> +          items:
->> +            - const: Hip
->> +            - const: Txs
->> +            - const: Cra
->> +
->
-> unevaluated goes here, just like example-schema.
-
-Yes, just like the example-schema
-
->
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    #include <dt-bindings/interrupt-controller/irq.h>
->> +    pcie_0: pcie@c00000000 {
->> +        compatible = "altr,pcie-root-port-1.0";
->> +        reg = <0xc0000000 0x20000000>,
->> +              <0xff220000 0x00004000>;
->> +        reg-names = "Txs", "Cra";
->> +        interrupt-parent = <&hps_0_arm_gic_0>;
->> +        interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
->> +        #interrupt-cells = <1>;
->> +        bus-range = <0x0 0xff>;
->> +        device_type = "pci";
->> +        msi-parent = <&msi_to_gic_gen_0>;
->> +        #address-cells = <3>;
->> +        #size-cells = <2>;
->> +        interrupt-map-mask = <0 0 0 7>;
->> +        interrupt-map = <0 0 0 1 &pcie_intc 1>,
->> +                        <0 0 0 2 &pcie_intc 2>,
->> +                        <0 0 0 3 &pcie_intc 3>,
->> +                        <0 0 0 4 &pcie_intc 4>;
->> +        ranges = <0x82000000 0x00000000 0x00000000 0xc0000000 0x00000000 0x10000000
->> +                  0x82000000 0x00000000 0x10000000 0xd0000000 0x00000000 0x10000000>;
->
-> That's two entries.
-
-I will fix the broken DTS as follows:
-
-        ranges = <0x82000000 0x00000000 0x00000000 0xc0000000 0x00000000 0x10000000>,
-                 <0x82000000 0x00000000 0x10000000 0xd0000000 0x00000000 0x10000000>;
->
-> Best regards,
-> Krzysztof
->
->
-
-Thank you for the review,
-Matthew Gerlach
 
