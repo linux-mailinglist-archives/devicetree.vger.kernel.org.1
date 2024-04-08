@@ -1,221 +1,149 @@
-Return-Path: <devicetree+bounces-57059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 949DA89B98D
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 09:59:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FC9789B998
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 10:01:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A513282284
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 07:59:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43AA51C20E01
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 08:01:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1033374D2;
-	Mon,  8 Apr 2024 07:58:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 777B42BB16;
+	Mon,  8 Apr 2024 08:01:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="SkF4/67E"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="Bip6JL3E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2121.outbound.protection.outlook.com [40.107.20.121])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFDB32BAF6;
-	Mon,  8 Apr 2024 07:58:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.121
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712563102; cv=fail; b=JDAtmMkkW0xUDGY1lCvulzzqFQDiYI/qlCpmdyhqKEyekTiWrYzt0upfgd6STc27MIXAWYJajfH2eaZ47oW62MfXwJEM7w/1JDteF+FdSvvLZgfll1gXLo+dB1kud7jT9ZSydDcE0hWpk6mrUdzMVjdSMYRCcuaE7i3KFRDLCiw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712563102; c=relaxed/simple;
-	bh=+G6ekYNYShQMw4dlXmhlZtDr3usQTnHRTgxSXL7K/zs=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=D2CO/sUSrUSQVVuvUb1+3pr21dBjtoJZwLnFhbQ6V1RYjxk5qE7NwqKByiPhclVs8lbEN/YZ8RkcnQY5rLWoqU5bO/3Fr4XTg0rcz/KXT3sSWrFKTPqEH8FAxY3OjBlfR5EW6aSqRbMk9SR6ZCOKUevWhQv2sJWUMNNW7aJIm0w=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=SkF4/67E; arc=fail smtp.client-ip=40.107.20.121
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=A8Lp0A7EA4Y8rdA4GWg54kiVMika26MijZaLs9As6WtZJvyD2qnK66wjKtspV5G+AMp9cHCq82b4xN+dAMKeA8hW3l37abMtlMWFB+1MTQ0kVinhlwQE8+cDgg9UbHbIpk8EkLJnIXRoB3xEwFX0gqkDQbTxaKcpT0KdgzI9XrbtQ246hkoqgQGSZdAz/Os8+YD09ahR2t42TrjSeeZgP0lvgLEb3FgkDgIPm9EZP8w3K0JDXefH+tywONUoL0uo0O9ML+GSkY+N20vOyCHU2x0pPmSE1QfyAFqFFfIv0qyNd/bv1nqjhasrDgmWtJJShCkxI4W8dvHKNj6AWGpPMg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Yw+zR2FYL4uZyJWN7bTdu5W2MNsOZCTJW+JQOSh69gA=;
- b=JFb7M+GOs0ehLqZDk+QLcxceTr/rrkj8+5O94gNynoGASsW8Pz7yUpBGZUzoKeLBjqzI/QnY9yQANUXR6iqjXqlWk4aKomG0yh4ThsQ2TszVrmyly2J4vm02pc87EsI1s/gQpQpzhuMjJgD6xFAJaPS1Yg0NDsDtUA8oefWsV1Jd248pA1nT99Rj/6l9r2tMttuVYHopvjqO0yERcr1P0EpSx0KkRhna+OMusuY8cgU1tjWfrM0H0vblMyRM77CQR625FeFa+RvZvn/OliOJJMwjkUqDdGjciJ5nclwPbTkCoIFklazTV1ppbgnSgb73q0peNQlowQGP/pY8odYWYg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Yw+zR2FYL4uZyJWN7bTdu5W2MNsOZCTJW+JQOSh69gA=;
- b=SkF4/67EyYmuoM3yXdObs6Uo9x0znxrj75KJCULp0rkTouqMRgRtqf5Lawod2hy/rXF9fdxlvOeSHrNtMwvqQMNdB0p19pZ1X8412uZrcl7F76EayvDIddygYZjfIQ2wuEb7YwK42oC+QRi+VQf/WDK6WL3lXA1gLr1SduLP4h4=
-Received: from PAXPR04MB9231.eurprd04.prod.outlook.com (2603:10a6:102:2bb::10)
- by AS1PR04MB9359.eurprd04.prod.outlook.com (2603:10a6:20b:4db::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.55; Mon, 8 Apr
- 2024 07:58:17 +0000
-Received: from PAXPR04MB9231.eurprd04.prod.outlook.com
- ([fe80::c2ee:dfc0:577:cc57]) by PAXPR04MB9231.eurprd04.prod.outlook.com
- ([fe80::c2ee:dfc0:577:cc57%3]) with mapi id 15.20.7409.042; Mon, 8 Apr 2024
- 07:58:17 +0000
-From: Mirela Rabulea <mirela.rabulea@nxp.com>
-To: shawnguo@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	festevam@denx.de,
-	festevam@gmail.com,
-	alexander.stein@ew.tq-group.com,
-	Frank.li@nxp.com,
-	ming.qian@nxp.com
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	mchehab@kernel.org,
-	hverkuil@xs4all.nl,
-	linux-media@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v5 1/2] media: dt-bindings: nxp,imx8-jpeg:: Add clocks entries
-Date: Mon,  8 Apr 2024 10:58:06 +0300
-Message-Id: <20240408075806.1194297-1-mirela.rabulea@nxp.com>
-X-Mailer: git-send-email 2.25.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: VI1PR03CA0057.eurprd03.prod.outlook.com
- (2603:10a6:803:50::28) To PAXPR04MB9231.eurprd04.prod.outlook.com
- (2603:10a6:102:2bb::10)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FE7A2C861
+	for <devicetree@vger.kernel.org>; Mon,  8 Apr 2024 08:01:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712563278; cv=none; b=n/bT79OCGzLQs1YNWO//854oWsw33GkfJ+1HbRrD87lLFwXfEt75SEUoQehGlYVUMWUkSXc/qpl1MeB3HvnXsIm5IBU9LVLCHB2SO0kTl/GrXgJ5qi8IhekA3PtyFCET8I0eb2s4gnQB68eE7ZvVQrgeKcNOptoQgjV6bZOuqOw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712563278; c=relaxed/simple;
+	bh=oFtZMMMzF5IIyBLE1OofkhOkb8Z20H1FcMxpZ0BjJv8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Pb9EJQISVq2HJu7p+MPWjkXiY+F9pWBeAQNllNsVAVZDlcKlWhQ0s7SRd6pzCWyuH04mnATMv84SrJ2v+b03+aiPYo+aKQR0vDVwPJNNd6qFUPBZKtg8fMmDWgYcdSmraEU5Ppu0SL5RSiOTHHYzyPXISvx9Aok3cf5eKOj8lY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=Bip6JL3E; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-416463e82fbso1612585e9.1
+        for <devicetree@vger.kernel.org>; Mon, 08 Apr 2024 01:01:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1712563275; x=1713168075; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nEXus2Ynno1AeuPQLNpTk8iPF9Mbvy8RxA45xKLQHC0=;
+        b=Bip6JL3E5DmYfcHSQhhsjkUrX2FhlhScGfa3gp3f7UXkyJ6GwmgIrMmBAkeJwGHzZT
+         4bYXkqgmjaKO2CxXaUgbKsBJpBzduYctad1Y7wq9sNGEzKrHH3oA9s/RMJMiwo+0XeaJ
+         UOB2hjcxyvBBe98dnlClXCpESUeIFaKrnEgSKcASp/7AbGNKuA7oHeGvsgQFFPC4y/M0
+         iZdDt9refM7EPnt1/ks0Gl+5WTG0+y86cYwKTKVE+RzDUgCG4HeQfoh+3fSdg5niiuhX
+         qyb7qhc0Z/R5gaOIRI96amQkpLa3wponaInlsOcdTbNzd4lq92F4WQ8CUEkTcJEkhXwK
+         0nGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712563275; x=1713168075;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nEXus2Ynno1AeuPQLNpTk8iPF9Mbvy8RxA45xKLQHC0=;
+        b=PUr4dWVEnZ37cfH00pGUmfAo5FNlX5Fw/1AYbyYhBXT9htB2n7XvWpERZD7HLFQ8yb
+         8sMnO9AKNJQl0Pr9YyTVm/KedaqW3lQA3iIE4P2LwwKbgEpKqdw6PHfDiG/cTbdOrwFA
+         50aCu09HI37elMeWJUvaryECVXvGJbZZnXeFORKkXqIHSI6MQu2GtL0P2kcXj02RSknQ
+         88XZEl/u8a6UyHo0wHkB5YZDrFgvGsSQ8K2nV6lmM/C0mYX7NX6l5WKmX8o4ZcCE9agu
+         IL1+oUvk6PnESiNof5WcafF2up01aBXbU1DFDmAIGk+twn/oSuSUkSgdTa2Z0OgEMwHm
+         /s8w==
+X-Forwarded-Encrypted: i=1; AJvYcCVPkc9fnHIpZPOQfsoxpg2Rd/jqhdUIur0WDVcBFeFhJJRhmYPDG6PqJmVGiDzz0A1bOrDDKYyaz2YMBM8j1FkxseiENX8EyDaaug==
+X-Gm-Message-State: AOJu0YyLS4ordBTYmypRahUwkpN2CnbELfIzu9Gnn6ZqtwBZlPme88yu
+	fs47iiL2UJUciZcqZp77b1DUYOkhqLzUdXyHtN0GybkYnyBJiWils+7UecZscvU=
+X-Google-Smtp-Source: AGHT+IEQUCd5IWDe0mYq0rDe9VUQhrgm0s8IGNzOcuAIRUoN4LcKFabia6A+gxLsv3jGCmScuNsjTA==
+X-Received: by 2002:a05:600c:3b96:b0:416:7b2c:df09 with SMTP id n22-20020a05600c3b9600b004167b2cdf09mr834824wms.1.1712563274884;
+        Mon, 08 Apr 2024 01:01:14 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:999:a3a0:6327:edd6:6580:3ead? ([2a01:e0a:999:a3a0:6327:edd6:6580:3ead])
+        by smtp.gmail.com with ESMTPSA id n32-20020a05600c3ba000b00415612e29a1sm12515475wms.30.2024.04.08.01.01.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Apr 2024 01:01:13 -0700 (PDT)
+Message-ID: <ddc5555a-3ae8-42e5-a08a-ca5ceaf0bf28@rivosinc.com>
+Date: Mon, 8 Apr 2024 10:01:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9231:EE_|AS1PR04MB9359:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	oISNo1D+XLChmSNObMgH/iupJAKakIPE+xr9D1dFjndmJvKI1e3TITOe7MT+6EUpfpHs6QflmQk3Na5hHKWHjKML/a0Qml9hEfu/MWRNfYC3GykiaLyRPBER3VLM0ztxeg8M+nBmzH+uny3cgThH4m+gW47w4QjIH9aiINAauJ1wYOZAuZwzamGzFHXfNaqD42n/DPbxiRIT5GwIvSRxxRyLfQzOSdU9zjw374cneuCbTC2xkkkNnBvKemksSNKsuPgOcC9bC8Bk3At8XSC+sP+HHj4xPSKkTswwp9mDKg8fEQG45xY2l9F6YIDGOl/hmmdnoDRFJNs4TUF75MXml8q8v2LF0+UakJivuovikZpbgzhICMhBD7E9Vlr4uXbOu6h8pNEBrINCl5mLek+nQ/VqNC1dRQy9E/kDIVCTMZGQQghbYm644ofYIt68ZV/rtpO6khgnRdQyDg3OC5IrpCJXOIesyd6qY/s/DgzwpzwhOSlj6i2DrhQnfSbHq3M58JBrzmroR7tIMCaX3nem1ZxMIjZjz93Nwcdn73QGeJ+D7SgjktiRTBXnA/WlsLu5kA4efX1JMEnYeWrymXSNs+5meQpEwEVRviOvr4DKllKN0o4sYl7eerTUvDj9i5m2sM67WHwFC3cVEQJSKiZwBLjtH+F4DMHx/yP2s0+JYq8=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9231.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(52116005)(376005)(7416005)(1800799015)(366007)(38350700005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?CoKYB4qhhX38uxTzR4rSX6bKr7uWNSne1ALleAOimnom1nP4odoPse4VqXyk?=
- =?us-ascii?Q?b3I/zFRC4P1E4ujF193AtYkWTOJUjmXRgatOUmlcYEfrO6MYU25tqu1CdRMT?=
- =?us-ascii?Q?TQf9nR9AVVwMxz75JelfSkIwy/luKQrobng1PaX72uc7CL/IP49q5djU+/B1?=
- =?us-ascii?Q?kfaupaM/ytrYeFX/a35kTACgF5K1Oj/FrlyIPlkKCbiSZANVEHmW8lePiBQ2?=
- =?us-ascii?Q?Kx42BVI1IGvPpWZt/FY7qBsb043b84x8klkiWZrbX+eMHQE9D5FhJhlZiB8V?=
- =?us-ascii?Q?Zr+CE+IjBykMGTB4522YyhT5Wmor2yJ4MHQfIQI3wwhMOg4EigWupvYwS0uZ?=
- =?us-ascii?Q?Rumz3xEHp7Oy+o+0/0Nv3pluaQ7Ngu2dLHL7q67BycUtrTQCybQCLQVal2vn?=
- =?us-ascii?Q?QA3QdBGR5M+jLqf3OWF1x0emYRLLrOmodjw2EAfWj4z83I6RhcHeunYzkbcM?=
- =?us-ascii?Q?EuOuienNDMGNdSVaR5LSH8qef05q1O2j7qR3WAHWWFS9G6dYes4Cdk3iDb5W?=
- =?us-ascii?Q?N4LRiTSLVOlmiaC8vegMkoF3Y7+DTgYxHt7sNpRX8Xz8bM8zCmS+oIB0WMk2?=
- =?us-ascii?Q?+PyIs+I/K6q9rFVssxBzw5HIITwCYC1C/XZLDbMM6ra9mlSEDOHofzMZAC+U?=
- =?us-ascii?Q?3TkOHiuhgYmjJa/oyfJmW8YdDtb7VZMN7i0eA8fMHXBUnle32XmGsJFvWHNm?=
- =?us-ascii?Q?SfH+yG0EJiwE7bOQ8RXxnGI4RDZFvHa0A0ourkhuFTNQALITv3541BBv3RZc?=
- =?us-ascii?Q?/UyPOTn2Nh4jZGxTpUc+StcwznOClbsp5Cbi5XCU/fwULqqcYmOHJpDquewA?=
- =?us-ascii?Q?ajaMSd8GTcLv+Pn8lGe4I0Icvu8tbqasbZcmZUFoPS9rdbO/iAFcZ87IXBdy?=
- =?us-ascii?Q?jm9X0ttMseGQM/OdfIeC46vH2twm43/mDBg9rYFwBiul0vsQRF+zgLuor+7P?=
- =?us-ascii?Q?1LW8X9iPY90fo7Y9BkuPa1DyGDeLwPYRamFUTxkbD0+DojRJHgq68TuU48++?=
- =?us-ascii?Q?DF7O5BwD63rsads++JhlKBkfNyMnuicpqmPIUm1wUUujyrHriEAm7H4S2q+/?=
- =?us-ascii?Q?LGIGI0AK5LozVNBTBhZXa+MtBQpgD6OK515hiqyr6TUUZyLPmhQanIwbylHa?=
- =?us-ascii?Q?QYzWmat6vx61eQuhOMKWk6pWaekZdlX5yr36cEZMQjkcLeEjwkj01XvLcTf6?=
- =?us-ascii?Q?jgsnvBzZFA7HlVYVX9g974Cuhnynh7uUQA1MgkGZgvUwUnhQEnjDdU9/6C21?=
- =?us-ascii?Q?CPmHUwH0xb14bAhxp66+oIFDEIUO9GIBp6WzTQupqjoiwjHkw7uyjD4w2zIe?=
- =?us-ascii?Q?BNCyzUqSK4514q2ezL35UdPXDoQrsMvcSVnTaBZlYqY/hoFMa5D+oBTZgxhe?=
- =?us-ascii?Q?VIfrjSpp3Oeup8OQQKt/6lvXawVQofym5xzQCms3rM/b0T2lnOZXvNPLxTzZ?=
- =?us-ascii?Q?nLhceKII4lqZ2yS8YmPXpef+pxQjH2oEwqz5JECBsILrE5pYuzPy7p/2U3ol?=
- =?us-ascii?Q?BFBSXjy2Dpjm+n5vAXSu0FO0Wevxo26reEeq9FZNFjBnEkq07z0ihb2jSrJL?=
- =?us-ascii?Q?472k8XzieLcTwSa0VYyrk7DicD36W9SqddYX6q2o?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5846a223-265a-43c0-bc09-08dc57a1a671
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9231.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2024 07:58:17.5594
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: oTojo9ETMa7kcDjPQVEoUB/di7zfaHsFvaMnuA72VvQhkUKRJmtwRyXkB+kdAYZ2K66qzgsOFOTDW/gUajm40w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9359
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/5] Add parsing for Zimop ISA extension
+To: Deepak Gupta <debug@rivosinc.com>, Andrew Jones <ajones@ventanamicro.com>
+Cc: Jonathan Corbet <corbet@lwn.net>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Anup Patel <anup@brainfault.org>, Shuah Khan <shuah@kernel.org>,
+ Atish Patra <atishp@atishpatra.org>, linux-doc@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, kvm@vger.kernel.org,
+ kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org
+References: <20240404103254.1752834-1-cleger@rivosinc.com>
+ <20240405-091c6c174f023d74b434059d@orel>
+ <CAKC1njQ3qQ8mTMoYkhhoGQfRSVtp2Tfd2LjDhAmut7UcW9-bGw@mail.gmail.com>
+Content-Language: en-US
+From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
+In-Reply-To: <CAKC1njQ3qQ8mTMoYkhhoGQfRSVtp2Tfd2LjDhAmut7UcW9-bGw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-From: Fabio Estevam <festevam@gmail.com>
 
-The JPEG decoder/encoder present in iMX8QXP and iMX8QM SoCs need
-the PER and IPG clocks to be functional, so add the clock entries.
 
-This also fixes the following schema warning:
+On 05/04/2024 19:33, Deepak Gupta wrote:
+> On Fri, Apr 5, 2024 at 8:26 AM Andrew Jones <ajones@ventanamicro.com> wrote:
+>>
+>> On Thu, Apr 04, 2024 at 12:32:46PM +0200, Clément Léger wrote:
+>>> The Zimop ISA extension was ratified recently. This series adds support
+>>> for parsing it from riscv,isa, hwprobe export and kvm support for
+>>> Guest/VM.
+>>
+>> I'm not sure we need this. Zimop by itself isn't useful, so I don't know
+>> if we need to advertise it at all. When an extension comes along that
+>> redefines some MOPs, then we'll advertise that extension, but the fact
+>> Zimop is used for that extension is really just an implementation detail.
+> 
+> Only situation I see this can be useful is this:--
+> 
+> An implementer, implemented Zimops in CPU solely for the purpose that they can
+> run mainline distro & packages on their hardware and don't want to leverage any
+> feature which are built on top of Zimop.
 
-imx8qm-apalis-eval.dtb: jpegdec@58400000: 'assigned-clock-rates', 'assigned-clocks', 'clock-names', 'clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
-        from schema $id: http://devicetree.org/schemas/media/nxp,imx8-jpeg.yaml#
+Yes, the rationale was that some binaries using extensions that overload
+MOPs could still be run. With Zimop exposed, the loader could determine
+if the binary can be executed without potentially crashing. We could
+also let the program run anyway but the execution could potentially
+crash unexpectedly, which IMHO is not really good for the user
+experience nor for debugging. I already think that the segfaults which
+happens when executing binaries that need some missing extension are not
+so easy to debug, so better add more guards.
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
-Signed-off-by: Mirela Rabulea <mirela.rabulea@nxp.com>
----
-Changes since v4:
-- Remove redundant description and update subject prefix (per Krzysztof's feddback)
+> 
+> As an example zicfilp and zicfiss are dependent on zimops. glibc can
+> do following
+> 
+> 1) check elf header if binary was compiled with zicfiss and zicfilp,
+> if yes goto step 2, else goto step 6.
+> 2) check if zicfiss/zicfilp is available in hw via hwprobe, if yes
+> goto step 5. else goto step 3
+> 3) check if zimop is available via hwprobe, if yes goto step 6, else goto step 4
 
-Changes since v3:
-- Add items for clocks (per Krzysztof's feddback)
-- Add description for clocks (per Conor's feddback to the other similar patch from Alexander)
-- Add "media:" to the subject
-- Add Mirela's signed-off
-- For the similar patches that were sent for this issue, should Co-developed-by/Signed-off-by be added? Alexander Stein? Frank Li?
+I think you meant step 5 rather than step 6.
 
-Changes since v2:
-- Remove clock-names. (Mirela)
+Clément
 
- .../devicetree/bindings/media/nxp,imx8-jpeg.yaml      | 11 +++++++++++
- 1 file changed, 11 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
-index 3d9d1db37040..2be30c5fdc83 100644
---- a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
-+++ b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
-@@ -31,6 +31,11 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  clocks:
-+    items:
-+      - description: AXI DMA engine clock for fetching JPEG bitstream from memory (per)
-+      - description: IP bus clock for register access (ipg)
-+
-   interrupts:
-     description: |
-       There are 4 slots available in the IP, which the driver may use
-@@ -49,6 +54,7 @@ properties:
- required:
-   - compatible
-   - reg
-+  - clocks
-   - interrupts
-   - power-domains
- 
-@@ -56,12 +62,15 @@ additionalProperties: false
- 
- examples:
-   - |
-+    #include <dt-bindings/clock/imx8-lpcg.h>
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
-     #include <dt-bindings/firmware/imx/rsrc.h>
- 
-     jpegdec: jpegdec@58400000 {
-         compatible = "nxp,imx8qxp-jpgdec";
-         reg = <0x58400000 0x00050000 >;
-+        clocks = <&img_jpeg_dec_lpcg IMX_LPCG_CLK_0>,
-+                 <&img_jpeg_dec_lpcg IMX_LPCG_CLK_4>;
-         interrupts = <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
-                      <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>,
-                      <GIC_SPI 311 IRQ_TYPE_LEVEL_HIGH>,
-@@ -76,6 +85,8 @@ examples:
-     jpegenc: jpegenc@58450000 {
-         compatible = "nxp,imx8qm-jpgenc", "nxp,imx8qxp-jpgenc";
-         reg = <0x58450000 0x00050000 >;
-+        clocks = <&img_jpeg_enc_lpcg IMX_LPCG_CLK_0>,
-+                 <&img_jpeg__lpcg IMX_LPCG_CLK_4>;
-         interrupts = <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>,
-                      <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>,
-                      <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
--- 
-2.25.1
-
+> 4) This binary won't be able to run successfully on this platform,
+> issue exit syscall. <-- termination
+> 5) issue prctl to enable shadow stack and landing pad for current task
+> <-- enable feature
+> 6) let the binary run <-- let the binary run because no harm can be done
 
