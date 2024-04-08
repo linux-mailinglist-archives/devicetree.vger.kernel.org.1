@@ -1,119 +1,115 @@
-Return-Path: <devicetree+bounces-57229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B550389C9E7
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 18:40:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E869E89CA0D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 18:50:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0DF2CB26D59
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 16:40:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5C03284987
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 16:50:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9C46142E8C;
-	Mon,  8 Apr 2024 16:40:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D36D142E6A;
+	Mon,  8 Apr 2024 16:50:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JP6xPkUw"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="GKl0rt1J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77255142E89;
-	Mon,  8 Apr 2024 16:40:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 880431E532;
+	Mon,  8 Apr 2024 16:49:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712594438; cv=none; b=iDa/CCykDQkHlcG38KSImDcajC1gELrGnEVNM5FWCk1EZOJVYx2q9C0AEukIvEqTCtL5W565K3bEdatIvWWsz2ZtmoetOyv4S0e8Z7FVojSgUyJS5VpqCnpr0croUed1vSVbVSmrg5eCq/hEOYvlk/RHr+7jM4H7iaN2E991DHM=
+	t=1712595001; cv=none; b=K7/6qn89LW6RVtwLeQU0aeTbFHQKvNLRVcEl1l6V5eQxZMt0oZdgVO1D4F5zrmJ/wZgEMFOrRK8DrkLTs/fmaxVegjt+H1LNp2lpIi9EHU+GjIoJv177UZ9a+eFJcpbA1yKyX0atzhdTaGQ2Xec9sGNt/IC0FSt0eHpwlP0RDJ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712594438; c=relaxed/simple;
-	bh=zVJ8/8JF/gNZWXlENelkKttfECw64CDIpT9zFq/bhs0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j5a0fL73kwxsDJ980HTP5pHjtqBrcoXxahbopa6bIYZwgVj9dyKJqvNty8MQEumG26hYV7ipZJnX3j0Idf9Y0OB/ApHyWLl2LawEo6e15cFbOOQ3udaHh8vCcdxLuuqnMngfC27fvUEQWrwiJOt0LoTwy7B/nDHa/r6EduMz7bI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JP6xPkUw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA102C43394;
-	Mon,  8 Apr 2024 16:40:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712594438;
-	bh=zVJ8/8JF/gNZWXlENelkKttfECw64CDIpT9zFq/bhs0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JP6xPkUwBtjv6T+eAipVp5ljfUCrfuPItz9Wptzf1fFqDwjwiWvAZ8SC0e6jir7uz
-	 XpmTI8mSro0C73h2Z9F5kk9ZG+FJkqWQEfsdxPi5epkx7dng6wzlrRplAHVB9BqZ21
-	 FERX6QitVmn3Q4uY4zxf1WSZeikKnNXZ504UHd9jDrjt2DE8U0xB5EwHVnS2Hv99e7
-	 raYoHX9X65Ga/A5OZqsUw0ZbI9+5Cl57MnN01+qoaj8bhoZ2MJg+XbUs1KjjMGDm64
-	 GkShWhq0tsaQK0w+J2mc/Vca12LyhqVOLWejtEYkkBiKrhl0HBr8kyBoH+Yle1GV8k
-	 Ttz2D+r36fkgQ==
-Date: Mon, 8 Apr 2024 17:40:32 +0100
-From: Mark Brown <broonie@kernel.org>
-To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Vaishnav Achath <vaishnav.a@ti.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Rob Herring <robh@kernel.org>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	Gregory CLEMENT <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>
-Subject: Re: [PATCH v2 08/11] spi: cadence-qspi: add early busywait to
- cqspi_wait_for_bit()
-Message-ID: <9cb48440-c71e-4a73-8104-4780f0e98e72@sirena.org.uk>
-References: <20240405-cdns-qspi-mbly-v2-0-956679866d6d@bootlin.com>
- <20240405-cdns-qspi-mbly-v2-8-956679866d6d@bootlin.com>
- <1f7087ad-824e-47fe-9953-ed5152c8f18f@sirena.org.uk>
- <D0ETJXNHOUKQ.C368FEZVM9DD@bootlin.com>
+	s=arc-20240116; t=1712595001; c=relaxed/simple;
+	bh=1TwjqB1I0raub8VPyrmdRKHURhBFHprQC67n8Xq0EhY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=GblEDg2ALATgdgmIA2JfzLYLb14Wq8kC1e/67iPQZOZ7YAinicEDk0C3lnkSRFFqalFyt6WgFAqtk1otbdol13PTvIDTIutitgfGlbPwf/woqvf4QViMy3mG8b8f/7I72XGFUAh8VFbCg228e6oAt/RvIqSzkzBw9QBLa+kJWl0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=GKl0rt1J; arc=none smtp.client-ip=45.89.224.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 9103F120023;
+	Mon,  8 Apr 2024 19:49:54 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 9103F120023
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1712594994;
+	bh=GVKo6znhMy5c2DD7Af70VLwRzPogSN+CP1wNv/Gt+K0=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=GKl0rt1Jj2HYmfyKyUjhNSb/kz4hyLxsaa/jopgRVQ/gw0Paprmnt287VkE/rRfoH
+	 REmEizIKeseLRD60c482kp0flYdlWsjOk441rFXVXHkOhpfdX/CSjpDAg0/uy3iLzx
+	 BEtgao8PC1EKsXa/qgVn+530uet9waOyOQtZKm8HqptZuC4L1T6wbF4AEsyR/kXWDI
+	 DhqeviGKT0GgzB8Lh/EeKUwgO6EskWAqX3ZHpTmrMIXeMsyGH4QTOK4NYNAfjYA+bD
+	 PRKiICVaXkblhNOhVq9Rfeq3PbLYlSByxmvVAID5KzL+j/6jAL4zXyVd64qIK4IE6i
+	 Go2JZZdr+sw8A==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Mon,  8 Apr 2024 19:49:54 +0300 (MSK)
+Received: from CAB-WSD-L081021.sberdevices.ru (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 8 Apr 2024 19:49:53 +0300
+From: Dmitry Rokosov <ddrokosov@salutedevices.com>
+To: <neil.armstrong@linaro.org>, <lgirdwood@gmail.com>,
+	<jbrunet@baylibre.com>, <broonie@kernel.org>, <conor+dt@kernel.org>,
+	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>, <perex@perex.cz>,
+	<tiwai@suse.com>, <khilman@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>
+CC: <kernel@salutedevices.com>, <rockosov@gmail.com>,
+	<linux-amlogic@lists.infradead.org>, <alsa-devel@alsa-project.org>,
+	<linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	Dmitry Rokosov <ddrokosov@salutedevices.com>
+Subject: [PATCH v1 0/2] ASoC: meson: implement link-name optional property in meson audio card
+Date: Mon, 8 Apr 2024 19:49:38 +0300
+Message-ID: <20240408164947.30717-1-ddrokosov@salutedevices.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="XV9SnMR4fo1ciYdI"
-Content-Disposition: inline
-In-Reply-To: <D0ETJXNHOUKQ.C368FEZVM9DD@bootlin.com>
-X-Cookie: Drive defensively.  Buy a tank.
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 184624 [Apr 08 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 15 0.3.15 adb41f89e2951eb37b279104a7abb8e79494a5e7, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;100.64.160.123:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/08 12:02:00 #24709100
+X-KSMG-AntiVirus-Status: Clean, skipped
 
+The 'link-name' is optional feature in the Device Tree that allows users
+to customize the name associated with the DAI link and PCM stream.  This
+feature provides enhanced flexibility in DAI naming conventions, leading
+to improved system integration and a better user experience.
 
---XV9SnMR4fo1ciYdI
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Dmitry Rokosov (2):
+  ASoC: dt-bindings: meson: introduce link-name optional property
+  ASoC: meson: implement link-name optional property in meson card utils
 
-On Mon, Apr 08, 2024 at 04:42:43PM +0200, Th=E9o Lebrun wrote:
-> On Mon Apr 8, 2024 at 4:16 PM CEST, Mark Brown wrote:
-> > On Fri, Apr 05, 2024 at 05:02:18PM +0200, Th=E9o Lebrun wrote:
+ .../bindings/sound/amlogic,axg-sound-card.yaml       |  6 ++++++
+ .../bindings/sound/amlogic,gx-sound-card.yaml        |  6 ++++++
+ sound/soc/meson/meson-card-utils.c                   | 12 ++++++++----
+ 3 files changed, 20 insertions(+), 4 deletions(-)
 
-> > > The reason is to avoid hrtimer interrupts on the system. All read
-> > > operations take less than 100=B5s.
+-- 
+2.43.0
 
-> > Why would this be platform specific, this seems like a very standard
-> > optimisation technique?
-
-> It does not make sense if you know that all read operations take more
-> than 100=B5s. I preferred being conservative. If you confirm it makes
-> sense I'll remove the quirk.
-
-It does seem plausible at least, and the time could be made a tuneable
-with quirks or otherwise if that's needed.  I think I'd expect the MIPS
-platform you're working with to be towards the lower end of performance
-for systems that are new enough to have this hardware.
-
---XV9SnMR4fo1ciYdI
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmYUHf8ACgkQJNaLcl1U
-h9D8hQf/dyR3L/vGJrr9ULKPcOdslJpST3OzjYPpEwGbLVohTyQDYK+D5/rh9TYt
-pOS8YnUr8YjkaanYNAmYO7wqHO5GPDJPm+tzIJYdn0fHYO0R4maXcSA2DytEbt5W
-re5OHsqLX8xH1T7qqgXEwlCONUQhncFIRkxaMYpcXasAqWOP4tOKsO57TH2xh3kx
-KRqpRTVMS9qSkGt5a0YtULVEbERcxOLn2XVthGc5OnKnwvOUU77xHJ5ucCQ86+1z
-z0qEm9RSSUIgSlPEq5BXd7wkDlBzkojoywBBltNCSg9R2NlLkHRmYtaSrL6MLE24
-q8by3s66tiuvwmZSNttQEwdrovLgOA==
-=rNjJ
------END PGP SIGNATURE-----
-
---XV9SnMR4fo1ciYdI--
 
