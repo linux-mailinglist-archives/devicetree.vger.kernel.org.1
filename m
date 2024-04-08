@@ -1,153 +1,211 @@
-Return-Path: <devicetree+bounces-57156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F356E89BF80
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 14:54:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 586C889C0F4
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 15:16:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 32AB0B27F07
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 12:54:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C20F1C21B6C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 13:16:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC6887173E;
-	Mon,  8 Apr 2024 12:53:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 888D67BB0F;
+	Mon,  8 Apr 2024 13:11:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EwY4Wpa1"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="TYiyMgXw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D83664CF2
-	for <devicetree@vger.kernel.org>; Mon,  8 Apr 2024 12:53:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A5E074BE8;
+	Mon,  8 Apr 2024 13:11:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712580837; cv=none; b=nt+kJlph2PioaJFoQN2rESwRCz1kc26RXaymoJ7HdkyFBmwYw4p7fxWpfrLIA0lNFH0BNgcIRodjXwYVoMLbSCNx+oPPLcXXFPjdxythGJ0hoaE5IWbE82Xz0OwionyfzYZw8IDJhc6GLkM2TjgoMbjX0ZZ9PML5dTgkVW0otBI=
+	t=1712581867; cv=none; b=tJc7k/sscsZmQCmB9pJ3x+tUVwlowV6d/STuoua71wkTyM4U7r2KUYucnzX7TViVEyrz+kZ+3ZmTHo+QAd9XDVUn3/rPCu+riddPtqL93tBA4Z7+tNOOHLlx3uUz7U5jLbgCfl1KZ7y2NKeVxzPNDlu04Ne7U9Y9KsbIjB6VRpg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712580837; c=relaxed/simple;
-	bh=WEyYkpof9FQ9wxzmt9yxgXdvUZ5yezofqlz1rRRr7SE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dyJMPt1V/DKAL+0F6j8uno9ZiTwiJ6gbNHIuIbDVi683MSWdcxtHPLuwUnCtKFA848WtIHpzZXaslzn6Kl0t2SL2OkHWSSD+IYgkaaTeFCwlYPuRhgNYhbajy6M9PnyemxHs1gK/ihWrox5i/KbT+P5c5bvYVx+gvrCwrkUYbKI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EwY4Wpa1; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4165caf9b2dso11046785e9.1
-        for <devicetree@vger.kernel.org>; Mon, 08 Apr 2024 05:53:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712580833; x=1713185633; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EIfWhO56deLbZSEvQDXUk02FMIpJsCPYMFdPM9Dpyf8=;
-        b=EwY4Wpa1t0VMyrdmXjS0phBWLnbhDaR/BkShQyeHNk+FEk3kY/MEoPBk4St5YWxaeP
-         jG2/e/MFbAlC+CJ/QoTrtRjwMje6cvVfAOOV/TonalhDd4TmuaZx1xiBKCnD6jBD2l1E
-         tghjbh3+ZMTr5GXHYrJR867K+98LIyWiVH/hL8meqx2zuBs9C3AfFRXHJDqXsOl7kUVn
-         9biBwdgzmobqAdCTwQc4gBSURyilQIC/6uwuE/uxq6lySwClyykUuuREEaz3noQRCDoH
-         tEtKVo/O2Xn/OIhYRAEThW+1pLbJEHSo6QCg9GoZ82otsr+f6znTAobqZBwdSM7hIGVA
-         ibAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712580833; x=1713185633;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EIfWhO56deLbZSEvQDXUk02FMIpJsCPYMFdPM9Dpyf8=;
-        b=alxZ17OjKc/vR179K86XzRupmkxVs1YV8AShsdJ8s0NMe2ZsXdX/4m3EvBeAVCkfOz
-         ey4pzItuODUpaYiPOVRHB3PlbEtZ3TVdmK0Aqwm7TKiYNDjl9sqhkuIMnv1U0T8PA1t2
-         bDcf0WB5oBNVufk1G3CJPBi+opw1ea7PdR4mN3AyEj0nMhGRd7v/29Qihff2P4BeDYcZ
-         6aJS0n6F1+KG6CKcyHdms3qdaVqGMxad6R7b/hHwf+h7mIim0tr9FdHR5poALOXARKYT
-         xSwzH+Y9a/LxqQBUx+JPpXJZro7xLk5r1F+MShAM+NBcDPI5MFg8TTgBT+IDl77FnkdS
-         viRA==
-X-Forwarded-Encrypted: i=1; AJvYcCUGMjjBVW2eV2uNzKgsRbA+UxdNtZ74wjxnPJRcwC6hyGnaDqjcceEK/C7ePaqPWLRNCB6gaMcya6sDkcaT1z7JZiqgPU7/d60q2A==
-X-Gm-Message-State: AOJu0YyAr42s2xXZV8GBNW1GkM1rQD2nDADIcZBA1BrzdLnoE1rPSh2B
-	0kZ9B2jjvCKEL2kInYBafaXgEhDEGsTv4arWqMf4AjrCucy1agi1AfZGVwOy2q8=
-X-Google-Smtp-Source: AGHT+IHyE5Dd+kfClSIf5iATYVOm+3kL+yD0XMIPSdxm4HEG5u0fs2phS7pNvDc9p8PpDMGtMsfFfg==
-X-Received: by 2002:a05:600c:3b8b:b0:414:8889:5a2e with SMTP id n11-20020a05600c3b8b00b0041488895a2emr8878647wms.30.1712580833297;
-        Mon, 08 Apr 2024 05:53:53 -0700 (PDT)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id bg8-20020a05600c3c8800b00414807ef8dfsm13342654wmb.5.2024.04.08.05.53.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Apr 2024 05:53:52 -0700 (PDT)
-Message-ID: <baa6543c-5e2e-4f28-a95b-a086b32d1f2d@linaro.org>
-Date: Mon, 8 Apr 2024 13:53:51 +0100
+	s=arc-20240116; t=1712581867; c=relaxed/simple;
+	bh=zV6jZJfotqWfBpmLY5Cg4KAuWzuvUJvpwq8D8Ks3bGo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=haYmxfCRulCTYbXdai9qX4mi/mDTaL8f60He5h15mpbQjU7SFSi5NVQ7tnxy8ygsBOoe9ZbjM2g+JUkvyTT0f1VRFMUo49RfDBE4A/J0xKquKrv97tvGy1+UwZ5GTl1pcrHaccNuOmV12oMfzveLoJSzzlJ+8vjJX6dl9INv3fo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=TYiyMgXw; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 6A7F71BF209;
+	Mon,  8 Apr 2024 13:11:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1712581862;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=irIHF5I8mXyLCKw8dni+/EZgNZOMISZkd0b9zPdDuaU=;
+	b=TYiyMgXw+kQUQbK4L36ZVzZLv2VElfGQi5RM0DQOm15l7UTgnBnIa2WeyMU64WSAuJk3Hg
+	CNMMw3B0XKX+E9glwfXqm0qIbnWAoc95Ny5x9NI8vCCv8xmSmGkyu9RgpHJWDTIeNIUYGR
+	vCx6aUkoYFE/V4erY7lNKihCMVCNJcx88NGbr7t0aif/OiDlpaRqjJ6fjbrAZZJs4PXK/N
+	El0IMjmjarmPGeFprPCSVP9ppKT+1ikNUOiLQ+5FkfQf2enZx+VhvkG9Vxju0XkMvKz5xJ
+	a8ZJlglJfwPz3UzatjI5SXuHUCy8OF1MlrvbLMTZlW//jpCc2Dxo6QuRFQH0zw==
+Date: Mon, 8 Apr 2024 15:10:57 +0200
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Simon Glass <sjg@chromium.org>
+Cc: devicetree@vger.kernel.org, Michael Walle <mwalle@kernel.org>, U-Boot
+ Mailing List <u-boot@lists.denx.de>, Tom Rini <trini@konsulko.com>, Rob
+ Herring <robh@kernel.org>, linux-mtd@lists.infradead.org, Conor Dooley
+ <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>, Richard Weinberger <richard@nod.at>, Vignesh
+ Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v10 1/2] dt-bindings: mtd: fixed-partitions: Add
+ alignment properties
+Message-ID: <20240408151057.1d1fcfb3@xps-13>
+In-Reply-To: <20240326200645.1182803-1-sjg@chromium.org>
+References: <20240326200645.1182803-1-sjg@chromium.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND v3 2/2] ASoC: qcom: sc8280xp: Add support for QCM6490 and
- QCS6490
-To: Bjorn Andersson <andersson@kernel.org>,
- Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-Cc: Banajit Goswami <bgoswami@quicinc.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, linux-arm-msm@vger.kernel.org,
- alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_rohkumar@quicinc.com
-References: <20240408042331.403103-1-quic_mohs@quicinc.com>
- <20240408042331.403103-3-quic_mohs@quicinc.com>
- <45yy3cvepk4uwi2jdmh4w6l5ac3dffqhbot6xzv2bwjvo637ss@pryzth2hghyu>
-Content-Language: en-US
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <45yy3cvepk4uwi2jdmh4w6l5ac3dffqhbot6xzv2bwjvo637ss@pryzth2hghyu>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
+
+Hi Simon,
+
+sjg@chromium.org wrote on Tue, 26 Mar 2024 14:06:44 -0600:
+
+> Add three properties for controlling alignment of partitions, aka
+> 'entries' in fixed-partition.
+>=20
+> For now there is no explicit mention of hierarchy, so a 'section' is
+> just the 'fixed-partitions' node.
+>=20
+> These new properties are inputs to the Binman packaging process, but are
+> also needed if the firmware is repacked, to ensure that alignment
+> constraints are not violated. Therefore they are provided as part of
+> the schema.
+>=20
+> Signed-off-by: Simon Glass <sjg@chromium.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+>=20
+> Changes in v10:
+> - Update the minimum to 2
+>=20
+> Changes in v9:
+> - Move binding example to next batch to avoid build error
+>=20
+> Changes in v7:
+> - Drop patch 'Add binman compatible'
+> - Put the alignment properties into the fixed-partition binding
+>=20
+> Changes in v6:
+> - Correct schema-validation errors missed due to older dt-schema
+>   (enum fix and reg addition)
+>=20
+> Changes in v5:
+> - Add value ranges
+> - Consistently mention alignment must be power-of-2
+> - Mention that alignment refers to bytes
+>=20
+> Changes in v2:
+> - Fix 'a' typo in commit message
+>=20
+>  .../bindings/mtd/partitions/partition.yaml    | 51 +++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mtd/partitions/partition.y=
+aml b/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
+> index 1ebe9e2347ea..656ca3db1762 100644
+> --- a/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
+> @@ -57,6 +57,57 @@ properties:
+>        user space from
+>      type: boolean
+> =20
+> +  align:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 2
+> +    maximum: 0x80000000
+> +    multipleOf: 2
+> +    description:
+> +      This sets the alignment of the entry in bytes.
+> +
+> +      The entry offset is adjusted so that the entry starts on an aligned
+> +      boundary within the containing section or image. For example =E2=
+=80=98align =3D
+> +      <16>=E2=80=99 means that the entry will start on a 16-byte boundar=
+y. This may
+> +      mean that padding is added before the entry. The padding is part of
+> +      the containing section but is not included in the entry, meaning t=
+hat
+> +      an empty space may be created before the entry starts. Alignment
+> +      must be a power of 2. If =E2=80=98align=E2=80=99 is not provided, =
+no alignment is
+> +      performed.
+> +
+> +  align-size:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 2
+> +    maximum: 0x80000000
+> +    multipleOf: 2
+> +    description:
+> +      This sets the alignment of the entry size in bytes. It must be a p=
+ower
+> +      of 2.
+> +
+> +      For example, to ensure that the size of an entry is a multiple of =
+64
+> +      bytes, set this to 64. While this does not affect the contents of =
+the
+> +      entry within binman itself (the padding is performed only when its
+> +      parent section is assembled), the end result is that the entry ends
+> +      with the padding bytes, so may grow. If =E2=80=98align-size=E2=80=
+=99 is not provided,
+> +      no alignment is performed.
+
+I don't think we should mention binman here. Can we have a software
+agnostic description? This should be understandable from anyone playing
+with mtd partitions I guess.
+
+> +
+> +  align-end:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 2
+> +    maximum: 0x80000000
+> +    multipleOf: 2
+
+seems not to perfectly match the constraint, but I don't know if there
+is a powerOf keyword? (same above)
+
+> +    description:
+> +      This sets the alignment (in bytes) of the end of an entry with res=
+pect
+> +      to the containing section. It must be a power of 2.
+> +
+> +      Some entries require that they end on an alignment boundary,
+> +      regardless of where they start. This does not move the start of the
+> +      entry, so the contents of the entry will still start at the beginn=
+ing.
+> +      But there may be padding at the end. While this does not affect the
+> +      contents of the entry within binman itself (the padding is perform=
+ed
+
+content?				same comment about binman?
+
+> +      only when its parent section is assembled), the end result is that=
+ the
+> +      entry ends with the padding bytes, so may grow. If =E2=80=98align-=
+end=E2=80=99 is not
+> +      provided, no alignment is performed.
+> +
+>  if:
+>    not:
+>      required: [ reg ]
 
 
-
-On 08/04/2024 13:45, Bjorn Andersson wrote:
-> On Mon, Apr 08, 2024 at 09:53:31AM +0530, Mohammad Rafi Shaik wrote:
->> Add compatibles for sound card on Qualcomm QCM6490 IDP and
->> QCS6490 RB3Gen2 boards.
->>
->> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
->> ---
->>   sound/soc/qcom/sc8280xp.c | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/sound/soc/qcom/sc8280xp.c b/sound/soc/qcom/sc8280xp.c
->> index b7fd503a1666..878bd50ad4a7 100644
->> --- a/sound/soc/qcom/sc8280xp.c
->> +++ b/sound/soc/qcom/sc8280xp.c
->> @@ -169,6 +169,8 @@ static int sc8280xp_platform_probe(struct platform_device *pdev)
->>   }
->>   
->>   static const struct of_device_id snd_sc8280xp_dt_match[] = {
->> +	{.compatible = "qcom,qcm6490-idp-sndcard", "qcm6490"},
->> +	{.compatible = "qcom,qcs6490-rb3gen2-sndcard", "qcs6490"},
-> 
-> We now have 4 <platform>-sndcard and two <board>-sndcard compatibles
-> here.
-> 
-> Not saying that your patch is wrong, but is this driver board-specific
-> or soc-specific? Srinivas, Krzysztof?
-
-Normally this should be board specific.
-
-In the past we made them SoC specific and provided a way to do board 
-specific changes based on compatible. Recently we stopped adding new 
-drivers as most of these drivers turned out to be identical and lots of 
-code duplication.
-
-Having these compatibles will help both the userspace UCM and provide 
-hooks to do any board/soc specific configurations.
-
-thanks,
-Srini
-
-> 
-> Regards,
-> Bjorn
-> 
->>   	{.compatible = "qcom,sc8280xp-sndcard", "sc8280xp"},
->>   	{.compatible = "qcom,sm8450-sndcard", "sm8450"},
->>   	{.compatible = "qcom,sm8550-sndcard", "sm8550"},
->> -- 
->> 2.25.1
->>
->>
+Thanks,
+Miqu=C3=A8l
 
