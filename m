@@ -1,151 +1,165 @@
-Return-Path: <devicetree+bounces-57213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A0FC89C8D7
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 17:53:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02B2A89C8D3
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 17:53:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E57D12865DE
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 15:53:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 987631F21C0C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 15:53:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEC2B1420D0;
-	Mon,  8 Apr 2024 15:53:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B3C51420A9;
+	Mon,  8 Apr 2024 15:53:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J2eiPAPK"
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="Xu4WFH6E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED1051420A9;
-	Mon,  8 Apr 2024 15:53:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 119E21411EA
+	for <devicetree@vger.kernel.org>; Mon,  8 Apr 2024 15:53:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712591592; cv=none; b=KPDASXCBHX3FcTJNn5sqktQtS6r3ULjaccife3Ll9JlGrSCUSRfKCkP+sJC/ZtunsBNZ4geUAydTimCuUZ/YgzlBCUEWI7pHTyfkhqcOlzghy/Tvw1CYUVqzHfVrj6C6bikXFFAN2PLSbeD0Z+imWw7N29S4Z7ly9KiMsSjlm8w=
+	t=1712591586; cv=none; b=fZcctYwjO50DxCb0YmKpYCcsIfdXmYmfRcs3pzNNjHmT7d1XQAlib5So+UIeF2btF1Ckur9mi5AablssWq3gs/HUOUMQzEMvFqVs3GmmMYASOHXVbZzgGmGsDAt3Y8mDeQCNTT5wgCn7SDQOIigZorJ1B95d/1zd/lkIMhlYmJc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712591592; c=relaxed/simple;
-	bh=paSRMDlNckWuA66r0WKViWnghhZr2E5Sml0Yhn2MVmA=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=FJ+Sgf0Qdd85zDoCCnBdCN373oCXsmT2b7eYloeaqGH2XIYSLWK9IvIFjG/nZrGgghnoWKIshjSrw0bnRKbydMk7ly7bAaA2rT6cfdMeqd9EucJ9FqzUTGGtv/P/4QYBs1Yu10WWe1l0nvvLSrSHiRVxuaeNmvV6qT55yZQLnkA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J2eiPAPK; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-516d6e23253so3175169e87.1;
-        Mon, 08 Apr 2024 08:53:10 -0700 (PDT)
+	s=arc-20240116; t=1712591586; c=relaxed/simple;
+	bh=o4sMfO3P+yHIzU4znX3Ln+B4/lunBLP/NFn03V3qShA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bZB1SayzRx+YSHH6isII9fy1HpfT8lXCn/ktBd574zu4TMJ4EkABGz+dVZZ4E2iidHJq2FlF+K9V13c6ofOCF01ce2nD38d7xOwSsDC1+AdDxfqeITHE3e5KvZ+PhAQ9mVuEN8BCqBR+6eVybgNZrU9CHzB44T2rHEmQPe1UFv8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=Xu4WFH6E; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-343f8fc5c69so1724934f8f.3
+        for <devicetree@vger.kernel.org>; Mon, 08 Apr 2024 08:53:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712591589; x=1713196389; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=xVLdz4RCZPpmOoRrLeAZgIbqKfFqmRWvMYiTDdq2jAw=;
-        b=J2eiPAPK+hgXMUWxjJn2lh60J7bxKloBuB2Y6XLKm+9HAM+DW3iagAqz/nHbUPdA11
-         bvehRGtq06yoQQwAlCizv04fuvzBXhhwkK7fflHMCQXMb/mPVXj0lVrN3sTmSdC0I4Um
-         gfud9VfyHYv3WLdU+jk4W9wW5fB/RHwSol91Byxk30x2hFNbAIAJbC/fij+rNNgajz47
-         cqFnQR14D9vqz/fFkI2iRgQyq+CP3TN7Jk1U+s4TtYiJTV9r2/E9aPTiM/oRrVJvgQAu
-         3Z2j8Y4uwdGf2d50GrVHEAJoC9+tbmnkBhveO186hH06SkMAczfhkfVz/WDhDGDM94uh
-         kkRw==
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1712591582; x=1713196382; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PV2QGCABE36oWSsPi/l6CQE6DAlPBHE1k65KDD12Caw=;
+        b=Xu4WFH6ExaEjmRxntUEBVoALd+sLinkF1Wx8YEZ8i5fMlVMTD6U5UhCcv01vn04+mA
+         E+rZRi2E0w3t/IGTfrS++QcDFuul4omM6CaD+Y28dWyvV9xLkz+/x+DtDRVcixnCxwR8
+         nCC/lEDU7rL2ocNpJvSIrir7WDoocAQ/fFRGn56MsHG0TUky1yog7wzuy/lSlJZgaihE
+         UO4iPzbcAhOugF9XkhIZ3MPF9YX2h1f7lT1g9Fm/nytCh1etDTRQZIoTSDygoXWAof6h
+         Ud8rtcpc+chEu+trXufRAabxLuvLm/Y6lCDTISjjO0/bSJRZM/2FwqcqDtjXw+LExMMV
+         GfGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712591589; x=1713196389;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xVLdz4RCZPpmOoRrLeAZgIbqKfFqmRWvMYiTDdq2jAw=;
-        b=ASBgrK9NVSG2tmFEDFy7eceW/aRmhaFh0jARiUR58pfhjSqWDwjyZMEBF7xL8/OC50
-         puCsjIXvGXg1C49WDdcF4ZCZirVBWWULnwf6AyMhM6tKEX3jjAWe5xZRGPI6sMPC2xsk
-         Qup+ecH8x+rNQ/nTGeFgmYcl/0YSFOTcK9S9lLlcYdxRGQ/vvDd4sCtPRBxCGgVG4DEh
-         y2mByIqGNiSQKC1Ygg7NxZPelhog02Y485YIxl94qMXdhUrCkAKIEpPK1k+L0N0GTXDT
-         C6ZX9LKNCV3Os40N8uAxUN/exML8d70ELXFzOop2heFnpnemKMWvMlrmtln7Xqa1ulCM
-         GWfQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX9+2f1h56yW+i1D4xtOxegpxazdNz8DIlBitISSc9Z+4Wwa50ORerdmZGo69WezzHxFLKHGuJSl+tc+yJVQAc3Fs19esx0XSYSGxj27rpzvL9HalMwYCx8Jsecn93cTotNVBFWXfUf0A==
-X-Gm-Message-State: AOJu0YziImzfKyT4BRiC9qYyHt+d46K7Yinxof0CUktI/1ZVFaqijkCd
-	XkEMFJnGq/U7EGlH2p8zzMkFqEPHfgPJfYa2ZF2PKuhZZbRr+fbT+hkLI7RtaQ44tA==
-X-Google-Smtp-Source: AGHT+IGzkzf5ZrBVW/uel17iRj5iBd72o+sCS+boDhbrVpfv/k6Y+8z0gJzljcMw4rpZZlrNTvlNDw==
-X-Received: by 2002:a05:6512:48d3:b0:516:d4c2:5410 with SMTP id er19-20020a05651248d300b00516d4c25410mr6728199lfb.64.1712591589101;
-        Mon, 08 Apr 2024 08:53:09 -0700 (PDT)
-Received: from [127.0.1.1] ([213.208.157.67])
-        by smtp.gmail.com with ESMTPSA id l13-20020a170906794d00b00a46a2779475sm4547849ejo.101.2024.04.08.08.53.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Apr 2024 08:53:08 -0700 (PDT)
-From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Subject: [PATCH 0/9] rtc: convert multiple bindings into dtschema
-Date: Mon, 08 Apr 2024 17:53:00 +0200
-Message-Id: <20240408-rtc_dtschema-v1-0-c447542fc362@gmail.com>
+        d=1e100.net; s=20230601; t=1712591582; x=1713196382;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PV2QGCABE36oWSsPi/l6CQE6DAlPBHE1k65KDD12Caw=;
+        b=WHD72qMvYcYIs87T3sGV0dSKwuw6IwKV1yH4yVXW/HC2OAiI6sKlkw1NUeiSdUp+6m
+         +/wrrUKTA+5AD+VxIxWOjp4IY+1aZXZSuV96olZi+rEPfdDG4UuNJ02TMTsfsYiawEv0
+         /KpqCt/1Wr1vwFEu4veHvivMzr/SRd3ZHLVTEeS+lzn7Uxhfb9H9cqYa+l4EmzZQfNjP
+         wIm7dk9VwQC2tT3DPU9jNDR+xm+GHwMjiMlzmJ1QxJkNINtnQUIicHe7JohwZnQq9T25
+         mcXyBfPG3fvLV/zcBT80HCn6gVio3K6jq91gH6w0bV5dKKapdORFI7KJxUmKRDXFu9Hu
+         /aNg==
+X-Forwarded-Encrypted: i=1; AJvYcCW0yQVqroR2oULUSjIezri055uBBjFmMv6kXaZ73wYtXxGsy+EpAt6PnjZkshnXIIGRF3AR1em8jBw3lbG+se8aqyt3FgtGg9zFfQ==
+X-Gm-Message-State: AOJu0Ywew3qcMmt8Qq+puGRU4BthP9KFgWOMT7LL/4yCjI5+E3hWVdwY
+	DOc7nXa+jxVrqHRTW790hGjT4cKrEDIy/cwysDc7gTNS1RMWhBkImlSWUOrXaVc=
+X-Google-Smtp-Source: AGHT+IF87J4Q/rgFnwCIm8WBGlFyl1vMp8m6s/lxg+SxFZ0lmZ8/wXNjMI8XEjSdYdJzrpjZ6SXNIA==
+X-Received: by 2002:adf:e647:0:b0:345:5ff1:245d with SMTP id b7-20020adfe647000000b003455ff1245dmr4115241wrn.32.1712591582423;
+        Mon, 08 Apr 2024 08:53:02 -0700 (PDT)
+Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id z15-20020a5d4c8f000000b00343daeddcb2sm9341328wrs.45.2024.04.08.08.53.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Apr 2024 08:53:02 -0700 (PDT)
+Message-ID: <ad5e178b-cd64-4a87-8994-f917993f3bbb@freebox.fr>
+Date: Mon, 8 Apr 2024 17:53:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: msm8998: set
+ qcom,no-msa-ready-indicator for wifi
+To: Kalle Valo <kvalo@kernel.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Jeff Johnson <quic_jjohnson@quicinc.com>, ath10k
+ <ath10k@lists.infradead.org>, wireless <linux-wireless@vger.kernel.org>,
+ DT <devicetree@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>,
+ Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Jami Kettunen <jamipkettunen@gmail.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+References: <fd26ce4a-a9f3-4ada-8d46-ed36fb2456ca@freebox.fr>
+ <5cdad89c-282a-4df5-a286-b8404bc4dd81@freebox.fr>
+ <252618e8-9e80-4774-a96c-caa7f838ef01@linaro.org>
+ <502322f1-4f66-4922-bc4e-46bacac23410@linaro.org>
+ <0ca1221b-b707-450f-877d-ca07a601624d@freebox.fr>
+ <CAA8EJppeREj-0g9oGCzzKx5ywhg1mgmJR1q8yvXKN7N45do1Xg@mail.gmail.com>
+ <87ttkh49xi.fsf@kernel.org> <e804b257-4dc0-45f1-a5c5-66bda51cf296@freebox.fr>
+ <87h6gh406w.fsf@kernel.org>
+Content-Language: en-US
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+In-Reply-To: <87h6gh406w.fsf@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIANwSFGYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIxMDEwMz3aKS5PiUkuLkjNTcRF1jAyMLI5MUw9RkIwMloJaCotS0zAqwcdG
- xtbUADZmsIV4AAAA=
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jiaxun Yang <jiaxun.yang@flygoat.com>, 
- Vladimir Zapolskiy <vz@mleia.com>, Joel Stanley <joel@jms.id.au>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-stm32@st-md-mailman.stormreply.com, 
- Javier Carrasco <javier.carrasco.cruz@gmail.com>
-X-Mailer: b4 0.14-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1712591586; l=2339;
- i=javier.carrasco.cruz@gmail.com; s=20240312; h=from:subject:message-id;
- bh=paSRMDlNckWuA66r0WKViWnghhZr2E5Sml0Yhn2MVmA=;
- b=GAJVhgkJAZP0MyB/TYi4TIjAYjqRazVZe7IXvjdW4YgRzeNyvEn4Ew/bDpudVVhHq2CSqzfUY
- +sNcF1axU/XCPPo3HkltSviKDTQIXOLzo27aEU2RSX7PEaEuMfS/VOD
-X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
- pk=lzSIvIzMz0JhJrzLXI0HAdPwsNPSSmEn6RbS+PTS9aQ=
 
-This series converts the following bindings into dtschema, moving them
-to trivial-rtc whenever possible:
+On 04/04/2024 17:28, Kalle Valo wrote:
 
-- orion-rtc: trival-rtc, referenced in arm arch.
-- google,goldfish-rtc: trivial-rtc, referenced in mips arch.
-- lpc32xx-rtc: trival-rtc, referenced in arm arch.
-- maxim,ds1742: trivial-rtc, not referenced in arch, cheap conversion.
-- rtc-aspeed: 3 devices to trivial-rtc, all referenced in arm arch.
-- pxa-rtc: add missing properties and convert. Referenced in arm arch.
-- st,spear600-rtc: trivial-rtc, referenced in arm arch.
-- stmp3xxx-rtc: convert, referenced in arm arch.
-- via,vt8500-rtc: trivial-rtc, referenced in arm arch.
+> Marc Gonzalez wrote:
+> 
+>> On 04/04/2024 13:57, Kalle Valo wrote:
+>>
+>>> Dmitry Baryshkov wrote:
+>>>
+>>>> I'd say, we should take a step back and actually verify how this was
+>>>> handled in the vendor kernel.
+>>>
+>>> One comment related to this: usually vendor driver and firmware branches
+>>> go "hand in hand", meaning that a version of driver supports only one
+>>> specific firmware branch. And there can be a lot of branches. So even if
+>>> one branch might have a check for something specific, there are no
+>>> guarantees what the other N+1 branches do :/
+>>
+>> The consequences and ramifications of the above comment are not clear to me.
+>>
+>> Does this mean:
+>> "It is pointless to analyze a given version (or even several versions)
+>> of the vendor driver downstream, because there are exist a large number
+>> of variations of the code." ?
+> 
+> I was trying to say that because the design philosophy between vendor
+> drivers and upstream drivers is very different, we can't 100% trust
+> vendor drivers. It's a very good idea to check what vendor drivers do
+> but we just need to be careful before making any conclusions. Testing
+> real hardware (and corresponding firmware) is the most reliable way to
+> know how different products/firmware work, unfortunately.
+> 
+>> And thus, "it is nonsensical to try to "align" the mainline driver to
+>> "the" vendor driver, as there is no single "vendor driver"" ?
+> 
+> No no, I'm not saying that. I have suffered this "N+1 different firmware
+> branches behaving slighly differently" problem since ath6kl days so for
+> me this is business as usual, sadly. I'm sure we can find a solution for
+> ath10k.
 
-Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
----
-Javier Carrasco (9):
-      dt-bindings: rtc: orion-rtc: move to trivial-rtc
-      dt-bindings: rtc: google,goldfish-rtc: move to trivial-rtc
-      dt-bindings: rtc: lpc32xx-rtc: move to trivial-rtc
-      dt-bindings: rtc: maxim,ds1742: move to trivial-rtc
-      dt-bindings: rtc: rtc-aspeed: move to trivial-rtc
-      dt-bindings: rtc: pxa-rtc: convert to dtschema
-      dt-bindings: rtc: spear-rtc: move to trivial-rtc
-      dt-bindings: rtc: stmp3xxx-rtc: convert to dtschema
-      dt-bindings: rtc: via,vt8500-rtc: move to trivial-rtc
+Hello Kalle,
 
- .../devicetree/bindings/rtc/fsl,stmp3xxx-rtc.yaml  | 45 ++++++++++++++++++++++
- .../bindings/rtc/google,goldfish-rtc.txt           | 17 --------
- .../devicetree/bindings/rtc/lpc32xx-rtc.txt        | 15 --------
- .../devicetree/bindings/rtc/marvell,pxa-rtc.yaml   | 40 +++++++++++++++++++
- .../devicetree/bindings/rtc/maxim,ds1742.txt       | 12 ------
- .../devicetree/bindings/rtc/orion-rtc.txt          | 18 ---------
- Documentation/devicetree/bindings/rtc/pxa-rtc.txt  | 14 -------
- .../devicetree/bindings/rtc/rtc-aspeed.txt         | 22 -----------
- .../devicetree/bindings/rtc/spear-rtc.txt          | 15 --------
- .../devicetree/bindings/rtc/stmp3xxx-rtc.txt       | 21 ----------
- .../devicetree/bindings/rtc/trivial-rtc.yaml       | 18 +++++++++
- .../devicetree/bindings/rtc/via,vt8500-rtc.txt     | 15 --------
- 12 files changed, 103 insertions(+), 149 deletions(-)
----
-base-commit: fec50db7033ea478773b159e0e2efb135270e3b7
-change-id: 20240406-rtc_dtschema-302824d1ec20
+I can spin a v3, no problem.
 
-Best regards,
--- 
-Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Do you prefer:
+
+Option A = never waiting for the MSA_READY indicator for ANYONE
+Option B = not waiting for the MSA_READY indicator when qcom,no-msa-ready-indicator is defined
+Option C = not waiting for the MSA_READY indicator for certain platforms (based on root compatible)
+Option D = some other solution not yet discussed
+
+Dmitry has tested Option A on 5 platforms, where it does not induce regressions.
+I worked on msm8998, where Option A (or any equivalent) unbreaks WiFi.
+
+Please provide guidance :)
+
+Regards
 
 
