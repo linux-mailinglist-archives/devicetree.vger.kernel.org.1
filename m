@@ -1,121 +1,187 @@
-Return-Path: <devicetree+bounces-57183-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57184-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A3AE89C70B
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 16:27:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A655889C71E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 16:31:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CCDAE1F2164D
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 14:27:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E10C1F21B5E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 14:31:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2932E1292DC;
-	Mon,  8 Apr 2024 14:27:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F8FC13D27D;
+	Mon,  8 Apr 2024 14:31:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ulyj00fY"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="d0g6MJwQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42EA9127B66
-	for <devicetree@vger.kernel.org>; Mon,  8 Apr 2024 14:27:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AC0413D264;
+	Mon,  8 Apr 2024 14:31:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712586425; cv=none; b=lGoDkaUk0090rxqXESUcMxh4eqmyO6DJaplhkt+3cKEtj2evI4H8qYFMuA+tbLB2gXo8x7XpEI6vMo/n1QM1lbqKk964LxomG56v5uwGcJo9qw+SffsbtW2VLVqUp9T3ZiT5o1auXM0hieUs1Vq+OSv3sslh6aLfuxoyKVD9sFs=
+	t=1712586705; cv=none; b=Fjjjc/dNp2kvkZ3rxxo5ejvzE+msCGdpvCUIr05aHOegw6WpPpePo+wUhRLE0dJXJSuuBrjnxrmTVHPRt73YFULTBnoqnq96mr3Jy0wnQ12fQhieMae17I5GJMU3Jz2xnZ2oJLt+mtaXDzoiZUwpocTymPUThnZ+NYr+4ayDheY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712586425; c=relaxed/simple;
-	bh=0938tF4StQFvIWTG9bPkLp2MbQCbcJ2/Krhj02r7yT8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gVqThrBlQmNiACZFS9WaWF9xux+jkRn9JoU/jobYTcNqLHAzUgegYQfh9XIdVPn9kpUQTuVTWKmS6Z0HcOe2UwBipf6bK6hLlCOZ1CZcEsQY9Lw3YNJEI0wjik7JvU7b5NqeJYyIc12sG6HHMl1xlhx5We61oW6GCJHjxYDURYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ulyj00fY; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2d6a1af9c07so51343501fa.3
-        for <devicetree@vger.kernel.org>; Mon, 08 Apr 2024 07:27:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712586421; x=1713191221; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CWAslIQYTs63TSHbt7hms1FMD6CETwGUDcTfK9QElEo=;
-        b=ulyj00fY1eu0ZktkUK10FzXPWRcYfuuSc0MLAePOokTZueP/mGXbU7qg7Ee0UnpO8O
-         ud3/0nl7T4SJtSw+OfnUAFf/jDEPBYs1SyZqscgy4ZKhwnliHkOVzieF/kNIy18wE08+
-         oUrkc1rnWOoygjqyUAiFZbd9PAbjDkGu+14b8tFBYlqemHg6VQDsBKBN15rX7zQHSqY6
-         wxOkakoJUJw0cWYmzWw+QUf/6qwIOkZDoQJdrsvsFv61fJGtIHt68LkNOsmOEI730MrU
-         Lxcp413Cr8nx0q2H/nf6rFPsRG3c5f3bulMK+zJlaUbGE7t//nUI185GRtZFUDueo4qu
-         FNnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712586421; x=1713191221;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CWAslIQYTs63TSHbt7hms1FMD6CETwGUDcTfK9QElEo=;
-        b=M7ruycOcs5gFOBCh5bvnSGYGN8tqOhHubM/tYefuY1orJfBdEWAoaVDZ+gxAjFWrDs
-         YyBmifDTxdF7LqsmldcyAEn/VwwnBsXq/HjEB0xyoRNbB6cOAbekKUYw2dUKNS1UgB2A
-         rq6iT+AMfe0W2LEndmaM+qgQzGj2J86bb3N/7LjSJk7MueOCHE94aRryqmo8p+RN/nK2
-         qpvloASzAcTUPM5nKrqG/cEJCSNZgRXpBiLCJCjqcdjgDt2X7LeCj/bFcwyo2bIiX7VU
-         gPYYAyzpIdd654fHTwZ22oazhlL6DTU8xf4dY21SOv7mkvPzekvXLURzpLHWCj+pnX/m
-         ei7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUPgoXKt/D4yNu5sQ/0VsXNKevdFA7suUFRGre0v9zBCorBJauWiDTcv8wO+ccUikk+T/1gwUEw/OGyM2Ht4s+X0/oFpmmC5OJrlg==
-X-Gm-Message-State: AOJu0YzxxdU+II8zuRdxzcoEthIxjdzmouNizwK3RVvCykuqyWmf5Waq
-	jPraCfdEh0NYRA8/VGgc/qbtHtGNqyxf503bRBQcXsGH6nKxDfA00Ya6NVV0CRk=
-X-Google-Smtp-Source: AGHT+IFc2yX/IP6+1XOFt+KHVDB0UCCeJ1o6Xnr903HurFmDv9cs43zL09wmpKrhusn6mnXC64CP/Q==
-X-Received: by 2002:a2e:b811:0:b0:2d8:620b:9838 with SMTP id u17-20020a2eb811000000b002d8620b9838mr5092379ljo.46.1712586421229;
-        Mon, 08 Apr 2024 07:27:01 -0700 (PDT)
-Received: from [172.30.204.201] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id q5-20020a2ea685000000b002d85e57fa3dsm1162957lje.104.2024.04.08.07.26.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Apr 2024 07:27:00 -0700 (PDT)
-Message-ID: <606c5121-48c8-4640-9e19-692af4281fa4@linaro.org>
-Date: Mon, 8 Apr 2024 16:26:58 +0200
+	s=arc-20240116; t=1712586705; c=relaxed/simple;
+	bh=EvtVPmC2a8GrbYiUa8nf5b5/yGVqGSuBquGmjhHCG2A=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=A0w5DL942+0vUrgNbFbTRJZTuNiQAuHmJi9STgte+NKujwOQHQ974zzJPOEt8/e4F+Yy03M66EY8Nkz3u08fVvryY8OTDc2E9+Np7NZ6hmEEEZwreCnhmzgZF+mNjQZTSQ5Oq4HYFXSFvPqcGnR8RRV48SCshKbKOxJyisfhyq4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=d0g6MJwQ; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 438BnEZ7027951;
+	Mon, 8 Apr 2024 10:31:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=DKIM; bh=J3KVBpz+p8Bb
+	sjloP3ipPohes/eBdHpznTwlRE3dPvo=; b=d0g6MJwQB5mLa6mCosEhjwhqEgYG
+	Ea/+SjLmEZ1hDc7cLYrHdtwkMj3rh8Z9sL3VxgCSmodItHDq/L7S4LJxoVEJqzBj
+	sCVA71bLOB6QqnGGQvqeae2vdBIWOoKOKk1y2JlAQJfUeMJKtk3kbh+gwvusajvQ
+	2aTwzf9JVbY2KYH1I81enLnohEdBcL323tRd9iK3ZnQLeTiZ7Yssy/EKL3Hq/Adq
+	mSsIWyqZT++B7/5MNTiEgniJ5ESFyesV77kIRNoOTA2PIwB+adnulAWNdM/qIXvB
+	A6aWXIgY7sOnWK1vqvaLIRpIqAORfCn0ieS53m25u1mqpmIG/bt3yzERwg==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 3xcbbn1qf1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 08 Apr 2024 10:31:14 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 438EVDkF039117
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 8 Apr 2024 10:31:13 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Mon, 8 Apr 2024
+ 10:31:12 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Mon, 8 Apr 2024 10:31:12 -0400
+Received: from work.ad.analog.com (HYB-hERzalRezfV.ad.analog.com [10.65.205.129])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 438EUsew017936;
+	Mon, 8 Apr 2024 10:30:57 -0400
+From: Marcelo Schmitt <marcelo.schmitt@analog.com>
+To: <lars@metafoo.de>, <Michael.Hennerich@analog.com>, <jic23@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <marcelo.schmitt1@gmail.com>
+CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/2] Add support for AD4000 series
+Date: Mon, 8 Apr 2024 11:30:50 -0300
+Message-ID: <cover.1712585500.git.marcelo.schmitt@analog.com>
+X-Mailer: git-send-email 2.30.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: sc8280xp-lenovo-thinkpad-x13s: add
- USB-C orientation GPIOs
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240408-hdk-orientation-gpios-v1-0-8064ba43e52a@linaro.org>
- <20240408-hdk-orientation-gpios-v1-3-8064ba43e52a@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240408-hdk-orientation-gpios-v1-3-8064ba43e52a@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: QoTcOSGl1jWg0r1YwsM7F9Amu-qwkuT3
+X-Proofpoint-ORIG-GUID: QoTcOSGl1jWg0r1YwsM7F9Amu-qwkuT3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-08_12,2024-04-05_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 clxscore=1015
+ suspectscore=0 spamscore=0 bulkscore=0 malwarescore=0 mlxlogscore=999
+ impostorscore=0 priorityscore=1501 adultscore=0 mlxscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404080111
+
+This is more like an RFC patch set since configuration read/write is currently
+buggy.
+
+Change log v1 -> v2:
+- Took device tree provided by David.
+- Dropped ABI additions in favor of device tree properties.
+- Set differential IIO channel subtype for differential ADCs.
+- Set scan_type shift bits to mask out correct real bits from buffer.
+- Added __aligned(8) to buffer timestamp.
+- Used union to reduce buffer memory usage for 16-bit devices.
+- Used SPI transfer functions rather than SPI message.
+- Used c99 style structure initialization.
+- Used iio_device_claim_direct_scoped().
+- Removed unneeded pointer casts.
+- Added other power supplies (VDD and VIO).
+
+Link to v1: https://lore.kernel.org/linux-iio/cover.1711131830.git.marcelo.schmitt@analog.com/
+
+Additional topics:
+
+- Why there is no different handling for the different SPI wiring modes?
+It looks like there is no need for different handling of "4-wire" and "3-wire"
+modes.
+If in "4-wire" (dt default mode), SDI is connected to SPI controller CS and
+CNV is active high. We can activate the CNV GPIO then let the SPI controller
+bring CS (connected to SDI) down when starting the transfer.
+If in "3-wire" (dt single mode), if we have a CNV (active low) GPIO we activate
+it and then proceed with with the transfer. If controller CS is connected to
+CNV it works the same way.
+I'm thinking it's better if we can support these devices in similar way
+other SPI ADCs are supported. Does that make sense?
+To me, the "3-wire" mode with controller CS to ADC CNV is what most resembles
+conventional SPI. The only important distinction is that the
+controller must be able to keep ADC SDI line high during conversions.
+Although, while the spi-engine implementation provided to me can keep SDI up
+during conversions, I'm not sure its a thing all SPI controllers can do.
+I tried a raspberry pi 4 some time ago and it was leaving the SDI line low if
+no tx buffer was provided. Even with a tx full of 1s the controller would 
+bring SDI down between each 8 bits of transfer.
+Anyway, single-shot and buffered reads work with the spi-engine controller
+with ADC in "3-wire"/single mode with controller CS line connected to ADC CNV
+pin which is how I've been testing it.
+
+- Why did not make vref regulator optional?
+Other SAR ADCs I've seen needed a voltage reference otherwise they simply
+could not provide any reasonable readings. Isn't it preferable to fail rather
+than having a device that can't provide reliable data?
+
+- Why did not split into AD and ADAQ patches?
+The main difference between AD and ADAQ is the amplifier in front of the ADC.
+If only supporting AD, we could probably avoid the scale table since it would
+only have two possible values per ADC. But then the handling of span compression
+scale would need refactoring to be in the scale table when adding ADAQ.
+I'm not excited to implement something knowing it will need rework in the
+following patch. Will do if required.
+
+- Span compression and offset.
+For non-differential ADCs, enabling the span compression requires an input offset.
+Link: https://www.analog.com/media/en/technical-documentation/data-sheets/AD4000-4004-4008.pdf
+page 18
+and
+Link: https://www.analog.com/media/en/technical-documentation/data-sheets/ad4002-4006-4010.pdf
+page 19
+I updated the _offset attribute for those ADCs according to span compression
+being enabled or not. Is it okay to have an attribute update cause an update to
+another one?
+Maybe also make the span compression a dt property and have it fixed after probe?
+
+- Configuration register
+Despite it doing single-shot and buffered captures, read and writes to the
+configuration register are currently buggy. It is as if the register was
+"floating". I tried setting up buffers like ad7768-1, adxl355_core, bma220_spi,
+bma400_core, and mcp3911.
 
 
+Thanks,
+Marcelo
 
-On 4/8/24 04:34, Dmitry Baryshkov wrote:
-> Define the USB-C orientation GPIOs so that the USB-C ports orientation
-> is known without having to resort to the altmode notifications.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 2 ++
->   1 file changed, 2 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> index 15ae94c1602d..2806aa8ec497 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> @@ -100,6 +100,8 @@ pmic-glink {
->   
->   		#address-cells = <1>;
->   		#size-cells = <0>;
-> +		orientation-gpios = <&tlmm 166 GPIO_ACTIVE_HIGH>,
-> +				    <&tlmm 49 GPIO_ACTIVE_HIGH>;
+Marcelo Schmitt (2):
+  dt-bindings: iio: adc: Add AD4000
+  iio: adc: Add support for AD4000
 
-These numbers do check out
+ .../bindings/iio/adc/adi,ad4000.yaml          | 201 ++++++
+ MAINTAINERS                                   |   8 +
+ drivers/iio/adc/Kconfig                       |  12 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/ad4000.c                      | 649 ++++++++++++++++++
+ 5 files changed, 871 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad4000.yaml
+ create mode 100644 drivers/iio/adc/ad4000.c
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+-- 
+2.43.0
 
-Konrad
 
