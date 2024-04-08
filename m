@@ -1,225 +1,182 @@
-Return-Path: <devicetree+bounces-57109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E52F89BCD5
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 12:17:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB9F489BB3C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 11:10:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BCC801F22678
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 10:17:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 80D9D28297B
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 09:10:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03D1852F83;
-	Mon,  8 Apr 2024 10:17:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A40B43BB3D;
+	Mon,  8 Apr 2024 09:10:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tdk.com header.i=@tdk.com header.b="fn7qHl3Y"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="dZZer8AZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00549402.pphosted.com (mx0a-00549402.pphosted.com [205.220.166.134])
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01olkn2055.outbound.protection.outlook.com [40.92.53.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE155524AD;
-	Mon,  8 Apr 2024 10:17:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=205.220.166.134
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B75962E84F;
+	Mon,  8 Apr 2024 09:09:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.53.55
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712571459; cv=fail; b=YLbbVXpqYS1fvm02GVt+brvwEIi/w0E9TKrY2HcoNidFCrotGd0iI7nTpa0yxpSlKC0ncIIZG3QNCOyDW76ocHCJIq9D8sYxatAmkOeAcdwhBsP/uXkWHsfUSzsBPN5Q7BIumBMklTZBGZDjpr4F5OrlCudnEpb70dwAbEuMjHo=
+	t=1712567400; cv=fail; b=M6lg5ExS1OklrGQcFJbz2sItOlkzCUTFP80DN2USdNmveX0lLPHVoL26K8aicFwdu6Nq/LwNI3u2SMBzTth6MWnn/LFpb5OPzkSWwrctpOaILObz49D4FxcMXOz1Bh7AVyi3zg2x9VCeZQGC3edTBryshEnzqVv4JBYhYNkATdE=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712571459; c=relaxed/simple;
-	bh=Pyza6lewOnQeokaHuWn8lycBhcceDnipIpc+j9ttMgc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=jTDrTyigNklJfsoCpGjaYlPAGlxGNR9+EMGcLFSOsfpaoviQudVKO9FX6839vl1V0TDcgCc/VRVQrR5V+9BbVqBAmCC/7+GLnbRhwT/Nsq7lBggZ47gdqPqZjWcjSXNK7wQjO8r7Oujq7XN/VSFaPqzgA6KGdkxAq/Fvr87wwsA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tdk.com; spf=pass smtp.mailfrom=tdk.com; dkim=pass (2048-bit key) header.d=tdk.com header.i=@tdk.com header.b=fn7qHl3Y; arc=fail smtp.client-ip=205.220.166.134
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tdk.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tdk.com
-Received: from pps.filterd (m0233778.ppops.net [127.0.0.1])
-	by mx0b-00549402.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 437Mo3QV030593;
-	Mon, 8 Apr 2024 09:07:45 GMT
-Received: from tyvp286cu001.outbound.protection.outlook.com (mail-japaneastazlp17010000.outbound.protection.outlook.com [40.93.73.0])
-	by mx0b-00549402.pphosted.com (PPS) with ESMTPS id 3xavryh6a9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 08 Apr 2024 09:07:44 +0000 (GMT)
+	s=arc-20240116; t=1712567400; c=relaxed/simple;
+	bh=xFBmjdM1oV3rkJLfiM+NyJ4Du4Ns/aVCjTyngWTIoi0=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=geof+gCs0yTRwxkvg9+V26EX4zYLz1zijruv3f69IY9Ms6Zf2mQQLdFPC3cQT6n+L0MSoGAzuFowbiLmzJvRr23YyY0IMu+gBgNYuCEma5X05SFHhb09EJMY1w0521aLiJrufShY45inLxYNWFxqrQv5AU6kVhd3W0huzcz7xew=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=dZZer8AZ; arc=fail smtp.client-ip=40.92.53.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Nbuv4ZXrkA5EcbwBdl3k0rkek/X7F55c2cO7IHSza92dNpzHSnkKBF+PfeJxQQ2qQ6TqqbK6Zj4UpE/8FWf/nOFLjEs+TDnV0GTa9MgpmVE+8T7D3Me2Whaouqo5mZCn+6UV8cOLUGbQKw+6ddNmJ5O2u9uvp0uJeHhw/Gzrr4v9hhbKwdKr7GwQldfHWfm8Ht8VS4keyDWzvYOoKFGYhHZva8qrVlntmdHZ601m4wHjYEE1vLy4C9NdBW+ZAWuWr7hs/DJMeOhrAuBdbDg3BBAnyalEPJQ0YHAT3/F+EucyXR4nIEwuDJBUemX9YJjTxDuQtkUYCQvoEGoGlov2dA==
+ b=gQ3IbbyTkxP1cJ8lxe1lXMUwiEvXjAKzzm6ePKFyr8nHqiKE8DO7qSup29w2gnL6w3UEiiT0Fo2TgnjzSHpnU5O9RUeDTQan3LBFMkmPm+uKdK0ovTzb9KUlpkfxCosEBLyaHn4oMMobUceQlMiDFM8/1EalB9A7hkrKBz7U91xK/+yLv7VwlszIiYJF67JYFOVHtjA3MN4HJVyYfh8O2nBlhn4NZ/V5976lnP+63QYVOHbelOGPpH0wA9NMSBZaLAq1LwiK+qxSlh09UGIWlDUhb+vsT+WkL8CBjtY2lSMF+6AxmmYQBV3rAvGyLPf1Q27r2gfjZXd4tk+915pJTA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=A0aoivwitiHhfLfo5XHVZPedKsHvdSTRbKEdhH6rjQE=;
- b=fqL2qKuzey/bOkN5Y+PA5Xq2GWH9VPtp9XSUaob0RrbiE51egCVpBRH/lO3ivESonxuXSYW8XIogumydelX+skJWxfZwlGSV2ieCHxJoBqTBYRR25jlRwViEJhRKxE0en2T6owUS3zPxr04iz4sG+klu0uuHD9AEyR1QHCx/7J/ZrDEI6FweTOZ1XRaZnUW3FBeYCNmzHeTiRo6zCplXSc3xcUAcqt3Qojnou7aYgLBIMFrPFjU3g81qMikRpjp4K7tLrHwhyq5htt6LTjunxuawfS8pvZLDbGsGSASeW6Pdjhky+SyjuRtfj+Bc8dJo2kNKCqbpFT/VLoIPc7E0xA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=tdk.com; dmarc=pass action=none header.from=tdk.com; dkim=pass
- header.d=tdk.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tdk.com; s=selector1;
+ bh=SmZmlapQUrKRkLGlkMOyMugECznBqSCO2e4AA+yC6so=;
+ b=l4MeDLP/O6qBKARvT0avcRWJgC1ZRo9oKWrJbhfTQtBFKf/bDQ8lrHR1RnYAqCYjoPp8E4LSzS3DrXRITOGkkVdvZcQSF949fla4oNAV8hNxrxs50niqEMuB9pCbNpwDwMkNMzF+aLWiSzdsxcfqZlnRSK/zrs60zlrcLlrqe7Msi+NSaHwi1UzfKj3Nnsi27+W0HZ2S/QXgzRLrd+c2X5pF2WehPXUnkLiOaWpdziUfUzAioWSgyN4FsPA7a60gvI9c1MmPd86tJ1Mv7BDtXf+Ml9L2fyFU8pDEutfGpUolSKg0qlfhjjSvD7LvWXIa+1jXD/rzI2uls2rW5lLWJw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=A0aoivwitiHhfLfo5XHVZPedKsHvdSTRbKEdhH6rjQE=;
- b=fn7qHl3YjnUq2aYx8ST+n9ufxS4n02cF/HO0QRCqWn6APHM1aWxXlj6ug3hysLHhEBQpDk1ouV1INKYaFFHf4kMC6wRU10d8DPGVX8o7/DcviuvaqbKXUOA6a6YV2EAC/OTo/MU/1QXAeIcTdN9yxLoLDev+1qW5AENCAC0mysDMeNHdwpL3S191xUxpZQxmC4jGHp34SagMsBrTsSW9H6YfYYiaqWeJJDZSXiEh8kxlIPyundh+6ysRLnxOsQ+HqWW0VJm2bLpghgbtumXQ2U+gP+PWDYGZ1IujoyQNshZa7h83hOPR++hOL2iMMOnlgaxttNbLlp+LMpX8lRaoMw==
-Received: from OSZP286MB1942.JPNP286.PROD.OUTLOOK.COM (2603:1096:604:1a7::13)
- by TYCP286MB3342.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:2c5::14) with
+ bh=SmZmlapQUrKRkLGlkMOyMugECznBqSCO2e4AA+yC6so=;
+ b=dZZer8AZueiXeGIl1GBY0c/HtB3gD20EIb+RPRl1Jaq6gVhiZBdLJXm1zTScg4P0vwbH1FeCKoAyaljjnMvbNGUo7lecT/ZBxdOWYtLPVV/WX6ncsTvDskH/8I11t0ESprchCe6g06OpSdmOpMwvp0DpEpit+iQFVFKLWca6TsbiOgoko3zNc0KqJtKOzhigPKFnN+OHR6HB4rvgUI+NhDBP7JwyKz0jarBihHFAUR0FYOaDD91nhGdetQz51lX3VchmewObFlBL8VPPAFgd89oWTOm8VoQMpoxvAKCWlntW2Lx0o+NBT8xRWKu1og4djr5qb2MHL3THvLCbiC1Ycg==
+Received: from SEZPR06MB6959.apcprd06.prod.outlook.com (2603:1096:101:1ed::14)
+ by TYSPR06MB7164.apcprd06.prod.outlook.com (2603:1096:405:91::12) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.55; Mon, 8 Apr
- 2024 09:07:41 +0000
-Received: from OSZP286MB1942.JPNP286.PROD.OUTLOOK.COM
- ([fe80::9119:3ad4:c68d:9da2]) by OSZP286MB1942.JPNP286.PROD.OUTLOOK.COM
- ([fe80::9119:3ad4:c68d:9da2%6]) with mapi id 15.20.7409.053; Mon, 8 Apr 2024
- 09:07:41 +0000
-From: inv.git-commit@tdk.com
-To: jic23@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org
-Cc: lars@metafoo.de, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
-Subject: [PATCH v3 2/2] iio: imu: inv_icm42600: add support of ICM-42688-P
-Date: Mon,  8 Apr 2024 09:07:20 +0000
-Message-Id: <20240408090720.847107-3-inv.git-commit@tdk.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240408090720.847107-1-inv.git-commit@tdk.com>
-References: <20240408090720.847107-1-inv.git-commit@tdk.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: ZR2P278CA0043.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:47::17) To OSZP286MB1942.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:604:1a7::13)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Mon, 8 Apr
+ 2024 09:09:53 +0000
+Received: from SEZPR06MB6959.apcprd06.prod.outlook.com
+ ([fe80::aced:cbb9:4616:96d8]) by SEZPR06MB6959.apcprd06.prod.outlook.com
+ ([fe80::aced:cbb9:4616:96d8%2]) with mapi id 15.20.7409.042; Mon, 8 Apr 2024
+ 09:09:52 +0000
+Message-ID:
+ <SEZPR06MB69594D51286B7A4C00749E1C96002@SEZPR06MB6959.apcprd06.prod.outlook.com>
+Date: Mon, 8 Apr 2024 17:09:47 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/3] arm64: dts: hi3798cv200: fix GICR size, add cache
+ info, maintenance irq and GICH, GICV spaces
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Jiancheng Xue <xuejiancheng@hisilicon.com>, Alex Elder <elder@linaro.org>,
+ Peter Griffin <peter.griffin@linaro.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org
+References: <20240219-cache-v3-0-a33c57534ae9@outlook.com>
+ <171256140981.12523.5652563259173425537.b4-ty@linaro.org>
+Content-Language: en-US
+From: Yang Xiwen <forbidden405@outlook.com>
+In-Reply-To: <171256140981.12523.5652563259173425537.b4-ty@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TMN: [3TKD/MkYj01KceV+HGDQa9KttFW4A0GUsLQxG152tOzeUy9voRFk6IdMoAqVDC33]
+X-ClientProxiedBy: PU1PR06CA0018.apcprd06.prod.outlook.com
+ (2603:1096:803:2a::30) To SEZPR06MB6959.apcprd06.prod.outlook.com
+ (2603:1096:101:1ed::14)
+X-Microsoft-Original-Message-ID:
+ <ea79b8c9-aff1-4b3e-998c-48b24f6be45b@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OSZP286MB1942:EE_|TYCP286MB3342:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
+X-MS-TrafficTypeDiagnostic: SEZPR06MB6959:EE_|TYSPR06MB7164:EE_
+X-MS-Office365-Filtering-Correlation-Id: 541f44a5-ae35-465c-ca21-08dc57aba528
+X-MS-Exchange-SLBlob-MailProps:
+	iS5pQZgsAQBdpaPwSVsSQj2v0MDiDiZlB79YOvSyZINnufS5zhffJRGtTFnj5kTYiigrd6SEe3F2be6j9VAphv8JYwS8ysDoPGkea9fv4D6t7XO7jZQITb+I80D+u1EegFTovRfEIcJoqTb98LfwyDRXOvNZbJxuUZi+bqAYiRxUcgePn7AuIC1CuQamBbUrugVrAkbG28PQpT8wZtZT1CYSqp07IAcPHVE6bsmRIuLSjYNu3zCDTW5oAormJ4Ssc5xjx9d1BUUaJbozk0pHNkQGHuClp/00fYTeVsg73u1I0ZwBJvk3GJMTwn3kJ0d0CdMrWmDmtGkq/n3/bc7JnKCAqm+iCY3oUpX7GVNCp74CFdcYcT8RCr0Yn3bd2RovuSEjBza0CNjTGg9A9iGrs8tyCpKpfiRVXa70EYLgv19oFkxE49QrP7aRFCpKCRr1jtxJPnDYylz7wk0K0VGAHUAQwnCipqv5xer+CMTV0AjaupbN8/wm2fzUE8bmDarqGvqem4h0FYEMLv9Uoi8DRWBBpNbOW0G2+/wVolwscTePwgWuvmirkS0VZeDFr2VlLdqx/6ovJ2iWvwQwIGjNo4xIbWo5vNQ5f3/QcmLz2EvxxzQT9hR1pJFw7Kt7wrkKy+kB3CQV6lz0qTZJVS9O3r2u46OkRjvxRqSWG/3yOIrdg18ZKkpDgD0g3hIYxH2BbDRG03833biSsNjJHmHb1mieZWHegNJ2zFExq+NnDvd5G9axYu/7+Q16rVZaDPCTeFekCP4atoWnhkQplMqE/aiVodhxXLxiCo/Mh68rhOuN/nGBPFTujWmean0yttC2
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	rgP6i5Lpv7B+seuGLPCGiI6/ka02O3JIaJc2KyTT7uuOs2lTWa86toLJVfvo4xZXbhkn8L3DmLJYV3TqyPQKJFDzR+UHgJj6PUNJqUEHwMj6QOM3Ks1k0YVUSDEvxdzbMO+GRyffmkry6dKbVQeKBJPyAzvO8SS5u++BN+ZNLhZOfafAlXyCj5ZGO80+rMLYIh+t65B6Ccnva3DeeU8o80/aRJ77NIyBWsgTsfZlUEiMoiub47HFmp233wmZWAho2nnuRcQHMbtX97m/QC+5kkxoKGdNAWp3tMzacmq/LYVxHC2z6PB+kQYJvWb9ZM4GDDmjnVf5n5bEuqCpdVKDVoAEVVfhUuJQO3izgvbsUoXc2kmsFrVikTs6RrlNzVC61xpUgDa2zKaZksuqI4G21nIBdbaMCiH3OXAvNVJq4kWIED0ijNj/D2ttUpz0V8npakqSNYqZnu9XyORcsPISt0vTKgGvQApVo2wrmQ9j54FsjNw6fIOqsUQGCkp5YrpFgUughzkrwCMr/eZC6xtRaOiVWAosjrGJTsrUXQDQXdvyGzpc9aI5auTQJNJdNJ5bfea6PSgcIrsXYIiMBlL7Cchh6wZObNI5RbyHoNoji6i56+TlfvrxHSfsotY9hkSI4CFbTA1qPd2DWCaKfP0000uCrqw0UrkXqjdw9r3elmfteuepLtl8q/nDIJKBHmti3a9wzNA+Y5H7GGpGqtMkOninTRd+miOC1s7Ud3M6RTVXNT4DWUCncGyvgL7nPpas
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSZP286MB1942.JPNP286.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(366007)(376005)(52116005)(1800799015)(3613699003)(38350700005);DIR:OUT;SFP:1102;
+X-Microsoft-Antispam-Message-Info:
+	rkX6B7z8HKgViX5dfMzXnMmbJ2+wsXsB5jt4lTMrmq0KGeSiw9077EeUKSpbibNlGBuPwcf2qAP4nkNgVNKV/W7sizM0bhUHRHy0YaBmJTkukJR3RGg3Xt/842r1eF8Au07XwM7EZQTqOD7ISACMlxqEtEymB9gFryWpD0qGmdpi0vlenQHHc6NdfWvq0KuNlhrsCn2Gg6s7XmjwzwPA3mKkxIyWx1yXFcXPyk7wsvLmoTLF0MseSVwY/FLUQIS4/hN0xVr1S3H9JjtJiojw43Tlu7q2o+qHdSiGnbOCmTngYFrwzk3pH3alWUDhz3A6/tq+EztUvZNorv6QpQBZYQ1C2qxOeFjZrMjegCMw4hg/t2hnil6GF/wKqfXmjQ1GfkXOBGVNC5fSPEzG0XtVLkZv/sy580zuxZSG2kqTJuQzaRr4d6jv0I1SJ3ZeDbgDoPBjUA1DY3IYOjjnAU9d+U6oGm6gS0d3yiH2hE1/y8m+RVfdLfWVP3PQGbOMtlIGgC1HBmcaRrSIG91rApWB4MdjVZ5ppkQVRmHHjBsHEpQmKnfWgZguLPhzSLMdlU8HLNG5AyoSgK8pGGdwOUWmXFGot95S+fLOv59wGyslQn2IzZfLooqj7xGsYBbsEszergbQS2mL8oWYfbcyCuNrhNEgrlaKnCqQpTHowAXXckg=
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?us-ascii?Q?nMk8FnRnnJgzi1swVQW4uicNXZdgYFPioLo2Gnt+SB+sHr0B2Mg4+q+i1Weo?=
- =?us-ascii?Q?z2LjgU03Nf/jVkmL/g8/gS2bAKG0LjwwFtJOOAZnBMtRIUHXz9Wd+c6++2wZ?=
- =?us-ascii?Q?254SA79apEHZNf5jThBuPpT1eF/rSHPwVFjG8uSQzWa2ikoFFE3WEraAXAsW?=
- =?us-ascii?Q?mJJl9+XqiYfJyICz0hUcwbM9KIEVpv6RJ8GXoGM7Glejn6uQUBxmcqzttHZQ?=
- =?us-ascii?Q?bjszJuGxIgRLPgu4tZGpqa6niw9xVqrDkRxzGyaMqxiAhjIiABf2OqCvcovr?=
- =?us-ascii?Q?8DOaywfFy7aPxHygxYZJ4uOKWIzKlg4mehf9up+20/vPFigtV2Xyb4OcFdDc?=
- =?us-ascii?Q?8P17+hnh5OoLj6MH1CXfw75s5hu6O1CR8RWdBloozNzmdvkbUIZGEWrJcj83?=
- =?us-ascii?Q?mFMV7Y9cgmzOKKH3MgBV2cTdeM59jqDAPl+1Hyo7PNYyI42Uer5CCXxrW6os?=
- =?us-ascii?Q?tjobP9hE/qg+z8EZslH7NE6U3NYAmqraz0jJwtcHYhunuVU05FgcAw99wqQE?=
- =?us-ascii?Q?pprjpXf2nCfkxUqzgzQhk25790vJjfBhVVe6VDebmrkgFI47CnYB5F2v7uiA?=
- =?us-ascii?Q?vP9SqB232htKDeuG1zWNTrBhOvDmLXQxUj26/SdzCmtSH1sH02yapo+Y46cS?=
- =?us-ascii?Q?nPjwx/B50OXoeKfzYwHD87QT1DD3xaO5RqsmUPIsV1ELvKC3D6a2o9Yu6C1T?=
- =?us-ascii?Q?sSAoQaKAykTPtJ8x3LZPQ43eVgeebQTym0uZqsAd/mRzqlAnoO8ricsQtwGH?=
- =?us-ascii?Q?v1E4PWdul5LQE45POfl+U9Fvhk0Vr7/FkkFhhcIsh4lR7q36KIJdNq8Aeskg?=
- =?us-ascii?Q?cOwbc3rfsZJXZNmplKD+9p0JkIqJVPW5kMVO5YUVfqfn2vGRdyRNoxwl0/B6?=
- =?us-ascii?Q?BIcRXrvRJ+5u8Rmg/EWRo6Dpc7uo3g3YuKxSLIg9xXdWnNZZOoqnizsL7I7G?=
- =?us-ascii?Q?DRKVbbxYTD/HW8bMGcmIsraj79erEuQlN8+3RzmJPgl/cqxL61GEiem6BxME?=
- =?us-ascii?Q?HHVhguu1NtHjpBqlvysd4Uhgwv6Hikeh9VkwePWdJjNMnZMabNaTKHhtXCNJ?=
- =?us-ascii?Q?J7A+7Cuv2Gs6rdXYn3kPKTRtN4yqrlomDq1L++9rUTKubhvqv2nYii035dwp?=
- =?us-ascii?Q?DP05CWqE0myVIFNvPS4RQEfd4Ah96dhlSmNrtIBHCXd+ccYjDE9tvxic3bJR?=
- =?us-ascii?Q?2kF7xh24D6UUjoJ7xg9TtFT0V+GI727qhnzqADKYkYKC+e4H2/JRBZ5SXBKr?=
- =?us-ascii?Q?5IYq1epHwfrmayzO34VV6F0ZynlHJrjTJ76FFxQJy8/G9JQBLeikRIDmfGeH?=
- =?us-ascii?Q?FstYt5qamPNUUnCOvfXYuhiBwrtqNgXCkTHRephGLvcIv3hdF/9xPmCQ8U41?=
- =?us-ascii?Q?ReNYOPyOYS7EzqeGHab6fCdULuE/9Hz/5uojueJyqgUzQDRhM4Iqo/lSmMsO?=
- =?us-ascii?Q?e4yX9BIMRyxAHRu5I9R+0roj9hFwkDRbP2YmNy/+N5nS4lzBVK/dVdnjDPLA?=
- =?us-ascii?Q?W2NwQM86f93qhIqQyAiHlDJiteOLuWg/aoqsRjAvL8aUaeqsxCuWL7SsQX/6?=
- =?us-ascii?Q?0FB5hPCN+TPM5Vwx9CLeYFGQhUIYu1q1vAYel6TM?=
-X-OriginatorOrg: tdk.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1576513b-0fc8-47b0-c477-08dc57ab58aa
-X-MS-Exchange-CrossTenant-AuthSource: OSZP286MB1942.JPNP286.PROD.OUTLOOK.COM
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?ZlpFV0c5R3JweDRmOWl2Nk5CT2s1VVk3cjNvMGZiYW5JcXlYYTl3NDM3RVBz?=
+ =?utf-8?B?bnk2S1g1K1dlUWZSWTFlT1pkMEVyNTlkOVFReE1uL1d3YVZNeEdEdm9relF3?=
+ =?utf-8?B?alVuM3FjMTlncDYrb0FEYmZYMDVKa3ZhUWROWlc2c1NKdjY2WSt4Tm5RN0xP?=
+ =?utf-8?B?L0dqendtakNvUEkxZ1lITmVWaU5HV3oyVmZkSnZPdkl2djBpZisxSjA2QVNE?=
+ =?utf-8?B?TGFiSjltbnBjTEh1djlRT3lqNE96Q3AxRkJnRzZMM2kva3Mxa0duRzJmMnJS?=
+ =?utf-8?B?MitTMEVIbkNvOU52OGZBd2grQkRsOTI2SVVuMjVMbGkzRHY4eU9NckVkNlN6?=
+ =?utf-8?B?M1pqQ0VIOEtxSHRsV0pXbndyaXc1dG5LZWhCcWtCS1NWSmxrdng3ZEhleTVC?=
+ =?utf-8?B?Y2syTVBWVjcxQU9iT3lnMUNFMXB3R01MeU9uSGtBd3NVZmR4UnlvSzBLUm01?=
+ =?utf-8?B?c2x3L21hdXR4eS85eDNpKytjbE5aZWpTR3VsTWJMaitFVnNhZFI0ZXNQa2dW?=
+ =?utf-8?B?cXRZQVV5eFpVRFdBR1dOdTlFbW9NUUhLM1dQOTFnNWI1MWcrRVB3bnBsUGFy?=
+ =?utf-8?B?OVdTaDFEeHFMR1JDZVNWSFBBbkNkdVErL2xuY2RUSDJPMWh3SjJIL0ZrRFNa?=
+ =?utf-8?B?Slo0YnJINjh3WjB1a2ZaZGdhTDdEY1Q0dXhSejJ2aVR5TUxoRDFpNHlJd1da?=
+ =?utf-8?B?OFllVGhzRURFVFdQNjQ1S2FDVjJlZDRYdlBXY2tLV04ySGJkQjl2R05xOU0y?=
+ =?utf-8?B?c3JPd2lTWXc4VXRpSHVsa3g4VXFBNnRYNHRadHN6RjgyV2x1WGRJRWRxYW04?=
+ =?utf-8?B?WUdOWjRka0NNTWZlOS90WndYTDFmeUZFaFFNUjdodmVXUlk4N0gwcDR5UHhT?=
+ =?utf-8?B?TGtsSmp5VHA1TU9LSE9Td0d0MWQ4a3YrSjd2T0MyNytEMHR0bUdUdHNjVDJE?=
+ =?utf-8?B?dkx0VVQ1NEE2VEZwMGtLN1hDNEV3eXIrSW1rVkNVbFpCRWc1WFpIR2t5UzI0?=
+ =?utf-8?B?SWIxMisyOGg3T2I4aHdTbTRkVjgzWGpiNmFkOW1mYlBSNU9VOG5NS25uRGdw?=
+ =?utf-8?B?UnhZdmNVczdkZVVnVGF1R3Z1ZVJFbU5wU1BwVllBVUtzeERXaWJlQlFwcEZa?=
+ =?utf-8?B?dUMxRWVyWkkvOTlMeXovYi9XVlVHczdtbUVLZ1hlcWpzblNiTEtUSnlLeDBn?=
+ =?utf-8?B?U1RlY1BTQjE3TUVnU0lyUFZSa2NpVFh2dWZpT1dzSFBNTWV0SzU4ZWlGaTZD?=
+ =?utf-8?B?TDNGN2ZTYlBuUmFzelZTSnErT3N1eE11ZTdhOHlqdi9VSTdYcjdSSkp0Tlcx?=
+ =?utf-8?B?dnFibkRodGxiOFRvR0V6UnhDTGhDb3Y0N3ZSUWxBM1hqTVdOeWVmWXQ3VWNK?=
+ =?utf-8?B?TWJOeVlKMDVjVERTQzgyL25IMnlQQkk4NVNIVFZubUNnd0tGNHprS3phREpQ?=
+ =?utf-8?B?NmtaaUgzUnk4bVZaN3o1SHFzSGJiNlVKdFk0WTZRV2xMNWFBblNUVnhpRFRO?=
+ =?utf-8?B?Yis1cTNuNkRxZk56aTJpL0tnZjBJelpITHJ0MC9rU2NlVXM0VjVDaWhKeU02?=
+ =?utf-8?B?bnlQdks2dDVjbloxZkJaclpMSWZVYUZIL2xvQWFzT1IzWi9veFpWcFZOa1ow?=
+ =?utf-8?B?clNCckFkbmk4d2d5R2J0SzZOdTZBZjZYOHB3NlJzWHFVQ1EwUTdhT2d6N0NY?=
+ =?utf-8?B?Y3M5T1dNRGlFTGEvNE9qaW5qd0tWZC91VjFTS1BYR3YxTTRCLzFEVkl6WHhs?=
+ =?utf-8?Q?lz1iNUxE1ECMuiFMR6/BZ6UDwVT3fDH/mthBINY?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 541f44a5-ae35-465c-ca21-08dc57aba528
+X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB6959.apcprd06.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2024 09:07:41.9349
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2024 09:09:50.4070
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 7e452255-946f-4f17-800a-a0fb6835dc6c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DjVPTykhQYU76p0S1Ng3s7fHo3jzwHITSorYov5CGzqY4NXhB1WYyOCwE8zSbrNPm5T0qmeVS+h1FyqGw18lnw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCP286MB3342
-X-Proofpoint-GUID: x-RptvjZAnUQikveOk7v_1uVWBoVnPPo
-X-Proofpoint-ORIG-GUID: x-RptvjZAnUQikveOk7v_1uVWBoVnPPo
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-08_07,2024-04-05_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 adultscore=0 malwarescore=0
- clxscore=1015 mlxscore=0 priorityscore=1501 phishscore=0 mlxlogscore=999
- impostorscore=0 lowpriorityscore=0 bulkscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2404010003
- definitions=main-2404080070
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR06MB7164
 
-From: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+On 4/8/2024 3:31 PM, Krzysztof Kozlowski wrote:
+> On Mon, 19 Feb 2024 23:05:25 +0800, Yang Xiwen wrote:
+>> The patchset fixes some warnings reported by the kernel during boot.
+>>
+>> The cache size info is from Processor_Datasheet_v2XX.pdf [1], Section
+>> 2.2.1 Master Processor.
+>>
+>> The cache line size and the set-associative info are from Cortex-A53
+>> Documentation [2].
+>>
+>> [...]
+> It's rc3 and almost one month after last ping/talk, so apparently these got
+> lost. I'll take them, but let me know if this should go via different tree.
 
-Add ICM-42688-P support inside driver.
 
-Signed-off-by: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
----
- drivers/iio/imu/inv_icm42600/inv_icm42600.h      | 2 ++
- drivers/iio/imu/inv_icm42600/inv_icm42600_core.c | 5 +++++
- drivers/iio/imu/inv_icm42600/inv_icm42600_i2c.c  | 3 +++
- drivers/iio/imu/inv_icm42600/inv_icm42600_spi.c  | 3 +++
- 4 files changed, 13 insertions(+)
+Thanks a lot. From my experience, i think this should go via HiSilicon's 
+tree first(which stalls now), then go to SOC tree 
+(git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git), finally in 
+torvald's tree. This was the case for some qcom dts changes about 1yr ago.
 
-diff --git a/drivers/iio/imu/inv_icm42600/inv_icm42600.h b/drivers/iio/imu/inv_icm42600/inv_icm42600.h
-index 0e290c807b0f..0566340b2660 100644
---- a/drivers/iio/imu/inv_icm42600/inv_icm42600.h
-+++ b/drivers/iio/imu/inv_icm42600/inv_icm42600.h
-@@ -22,6 +22,7 @@ enum inv_icm42600_chip {
- 	INV_CHIP_ICM42602,
- 	INV_CHIP_ICM42605,
- 	INV_CHIP_ICM42622,
-+	INV_CHIP_ICM42688,
- 	INV_CHIP_ICM42631,
- 	INV_CHIP_NB,
- };
-@@ -304,6 +305,7 @@ struct inv_icm42600_state {
- #define INV_ICM42600_WHOAMI_ICM42602			0x41
- #define INV_ICM42600_WHOAMI_ICM42605			0x42
- #define INV_ICM42600_WHOAMI_ICM42622			0x46
-+#define INV_ICM42600_WHOAMI_ICM42688			0x47
- #define INV_ICM42600_WHOAMI_ICM42631			0x5C
 
- /* User bank 1 (MSB 0x10) */
-diff --git a/drivers/iio/imu/inv_icm42600/inv_icm42600_core.c b/drivers/iio/imu/inv_icm42600/inv_icm42600_core.c
-index a5e81906e37e..82e0a2e2ad70 100644
---- a/drivers/iio/imu/inv_icm42600/inv_icm42600_core.c
-+++ b/drivers/iio/imu/inv_icm42600/inv_icm42600_core.c
-@@ -87,6 +87,11 @@ static const struct inv_icm42600_hw inv_icm42600_hw[INV_CHIP_NB] = {
- 		.name = "icm42622",
- 		.conf = &inv_icm42600_default_conf,
- 	},
-+	[INV_CHIP_ICM42688] = {
-+		.whoami = INV_ICM42600_WHOAMI_ICM42688,
-+		.name = "icm42688",
-+		.conf = &inv_icm42600_default_conf,
-+	},
- 	[INV_CHIP_ICM42631] = {
- 		.whoami = INV_ICM42600_WHOAMI_ICM42631,
- 		.name = "icm42631",
-diff --git a/drivers/iio/imu/inv_icm42600/inv_icm42600_i2c.c b/drivers/iio/imu/inv_icm42600/inv_icm42600_i2c.c
-index 1af559403ba6..ebb28f84ba98 100644
---- a/drivers/iio/imu/inv_icm42600/inv_icm42600_i2c.c
-+++ b/drivers/iio/imu/inv_icm42600/inv_icm42600_i2c.c
-@@ -84,6 +84,9 @@ static const struct of_device_id inv_icm42600_of_matches[] = {
- 	}, {
- 		.compatible = "invensense,icm42622",
- 		.data = (void *)INV_CHIP_ICM42622,
-+	}, {
-+		.compatible = "invensense,icm42688",
-+		.data = (void *)INV_CHIP_ICM42688,
- 	}, {
- 		.compatible = "invensense,icm42631",
- 		.data = (void *)INV_CHIP_ICM42631,
-diff --git a/drivers/iio/imu/inv_icm42600/inv_icm42600_spi.c b/drivers/iio/imu/inv_icm42600/inv_icm42600_spi.c
-index 6be4ac794937..50217a10e0bb 100644
---- a/drivers/iio/imu/inv_icm42600/inv_icm42600_spi.c
-+++ b/drivers/iio/imu/inv_icm42600/inv_icm42600_spi.c
-@@ -80,6 +80,9 @@ static const struct of_device_id inv_icm42600_of_matches[] = {
- 	}, {
- 		.compatible = "invensense,icm42622",
- 		.data = (void *)INV_CHIP_ICM42622,
-+	}, {
-+		.compatible = "invensense,icm42688",
-+		.data = (void *)INV_CHIP_ICM42688,
- 	}, {
- 		.compatible = "invensense,icm42631",
- 		.data = (void *)INV_CHIP_ICM42631,
---
-2.34.1
+>
+>
+> Applied, thanks!
+>
+> [1/3] arm64: dts: hi3798cv200: fix the size of GICR
+>        https://git.kernel.org/krzk/linux-dt/c/428a575dc9038846ad259466d5ba109858c0a023
+> [2/3] arm64: dts: hi3798cv200: add GICH, GICV register space and irq
+>        https://git.kernel.org/krzk/linux-dt/c/f00a6b9644a5668e25ad9ca5aff53b6de4b0aaf6
+> [3/3] arm64: dts: hi3798cv200: add cache info
+>        https://git.kernel.org/krzk/linux-dt/c/c7a3ad884d1dc1302dcc3295baa18917180b8bec
+>
+> Best regards,
+
+
+-- 
+Regards,
+Yang Xiwen
 
 
