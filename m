@@ -1,198 +1,160 @@
-Return-Path: <devicetree+bounces-57073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57074-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56B3289BA4B
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 10:31:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B3AA89BA75
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 10:38:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 96F12B20B7F
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 08:30:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B36E1B20994
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 08:38:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4FEB3BBFD;
-	Mon,  8 Apr 2024 08:30:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4049738F96;
+	Mon,  8 Apr 2024 08:38:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Z7kJ1jj9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BpyG0kzu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B864A39846
-	for <devicetree@vger.kernel.org>; Mon,  8 Apr 2024 08:30:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77CB610E9;
+	Mon,  8 Apr 2024 08:38:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712565031; cv=none; b=P0lH1TkgIkWlkM6KHV4u8ziNdtQ/ErtfT02buXGu+HxvVOkbakd4wXnl+ro3BC9S2B0HEPDu6hYoGhvG+PfWkbGvYdof1J2NVW3dUHZengfoRJCKyLtfPkEQscEDG9JXhQRLrjPrGTYX30hurthOuTFiGpC6XLs6slC7TeEQb2w=
+	t=1712565487; cv=none; b=Yzt/lVyEzRr0YdcH+j6wxdP7/7MSgqoJsvUXx3yI7WXUXwShky44pWGBzlV/VhNdd5g0Pg/sI+TzxyYG7qTLUSqQmdkTgBLcMcCcLTjeIdzVKKZ6rBPNSTLwRu/4VmMRNrp/rkn9f3QpLr/5nyXG+7oiMLs83GcEwWejiUGoun0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712565031; c=relaxed/simple;
-	bh=SjoKRikooQ4rEt9uMbPK7q5uiAWzzXZcdF0Tuaxrr7U=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=PyxMGvajk5+oINX7a8RwfXhXw+sogaoT7ozgCAb20NE9/cC1tOdJ2Y6V4V8/6S6gIf8FK0jH/+qTx1bfegNz+lAK2WdBbUzMy8imQ9B+Ls8fDdW9UVwc+1XXPMWsKVJhIlamf27ZOIS20qJYdNZUoExy99TX1ibyiMOrOAYLcVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Z7kJ1jj9; arc=none smtp.client-ip=203.254.224.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20240408083021epoutp0406f9bde9f289f405845bc1307ca727f0~EQNBPalxD2573625736epoutp04E
-	for <devicetree@vger.kernel.org>; Mon,  8 Apr 2024 08:30:21 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20240408083021epoutp0406f9bde9f289f405845bc1307ca727f0~EQNBPalxD2573625736epoutp04E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1712565021;
-	bh=9xA2wuGcrIdnD6QeGCy6pEWH3ESJOZu31jlHG5iQwik=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=Z7kJ1jj9MYf5CiYovRq/Ur5n5kClTRjQmZkb0MozYiehYWGMcoqzWCYNe9w/rTZbV
-	 zP75BK8Q2LzWKLbw5EswMttKCEPI/m3PLqpLHIYBv/Gti4IpkaTaI1acON2gdwjolf
-	 wXyH40CIJPezyvYNXXsp2ff8wbNrUL3L5zN/ZbO8=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTP id
-	20240408083021epcas5p491258648313d8da9b58c4a4934efc60a~EQNAsQgpS0206302063epcas5p4y;
-	Mon,  8 Apr 2024 08:30:21 +0000 (GMT)
-Received: from epsmgec5p1-new.samsung.com (unknown [182.195.38.178]) by
-	epsnrtp1.localdomain (Postfix) with ESMTP id 4VCj2g6XtLz4x9Pr; Mon,  8 Apr
-	2024 08:30:19 +0000 (GMT)
-Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
-	epsmgec5p1-new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	5E.EC.19431.B1BA3166; Mon,  8 Apr 2024 17:30:19 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
-	20240408083019epcas5p429571d61b25b95490b913fcabc7f59d5~EQM-CUC7b1593915939epcas5p4J;
-	Mon,  8 Apr 2024 08:30:19 +0000 (GMT)
-Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20240408083019epsmtrp1fa891c230381087b44984bc443f55da4~EQM-AK4XT0109201092epsmtrp1a;
-	Mon,  8 Apr 2024 08:30:19 +0000 (GMT)
-X-AuditID: b6c32a50-f57ff70000004be7-f2-6613ab1bfa7a
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	20.74.07541.B1BA3166; Mon,  8 Apr 2024 17:30:19 +0900 (KST)
-Received: from INBRO000447 (unknown [107.122.12.5]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20240408083014epsmtip26c7beec99df2675222e2fb04202b7b6e~EQM60mQBJ1598715987epsmtip29;
-	Mon,  8 Apr 2024 08:30:14 +0000 (GMT)
-From: "Alim Akhtar" <alim.akhtar@samsung.com>
-To: "'Peter Griffin'" <peter.griffin@linaro.org>, <mturquette@baylibre.com>,
-	<sboyd@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <vkoul@kernel.org>, <kishon@kernel.org>,
-	<avri.altman@wdc.com>, <bvanassche@acm.org>, <s.nawrocki@samsung.com>,
-	<cw00.choi@samsung.com>, <jejb@linux.ibm.com>, <martin.petersen@oracle.com>,
-	<chanho61.park@samsung.com>, <ebiggers@kernel.org>
-Cc: <linux-scsi@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-	<linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <tudor.ambarus@linaro.org>,
-	<andre.draszik@linaro.org>, <saravanak@google.com>,
-	<willmcvicker@google.com>
-In-Reply-To: <20240404122559.898930-1-peter.griffin@linaro.org>
-Subject: RE: [PATCH 00/17] HSI2, UFS & UFS phy support for Tensor GS101
-Date: Mon, 8 Apr 2024 14:00:13 +0530
-Message-ID: <04d401da898e$fd57ec10$f807c430$@samsung.com>
+	s=arc-20240116; t=1712565487; c=relaxed/simple;
+	bh=rrM4TxubxqPeEYOH+wck6tg3nhRCRKAf7aYuz1HQhoE=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=kJx9P/8a4XC5CzRpqWkZefKGUCtu0qiLkV7A2GnNEUbM9WWjoF8KXDxWeXMRpHM/g2/5va5AxsPt/Wi+7EldvYOssyX9z37o3s258YIpwRorpwOjvejNkWGRKzuzbDsYdtxKegj5eAkJOA7rmCNtGKvXz3Ap2a/YdRoYhdqQ/M0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BpyG0kzu; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a51a1c8d931so331559066b.0;
+        Mon, 08 Apr 2024 01:38:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712565484; x=1713170284; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=rrM4TxubxqPeEYOH+wck6tg3nhRCRKAf7aYuz1HQhoE=;
+        b=BpyG0kzuGqyxC08raoFpvDqedHM7NSMH42mYd7wXN+QhiuY8dX58vsiuqeLyOKY0b8
+         vo725qLccRf8Mdt2qFHT+Oe9c+tlqN5Qcka0A04nJLtk8AERdrJJvXeP7FIOJl3/5/xM
+         aZ5gbq0Y3nF4/l2tgDFZjAOvddZVMVTFKZ3EoPURSP2L4pqRqey+wmjq8zyka58MikdH
+         1RMa2SfRF/KilqlNCAsF/D78CMVkEjDlid2BnZZzTfGKXpomSb3YH8ys5/U3j1pfZz0P
+         ekRikUePvraMK/gttSuFgnZPHQkoI6/nru+10kKQml5sRXVC+epoR8cy0Fx5wLx50h41
+         En+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712565484; x=1713170284;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rrM4TxubxqPeEYOH+wck6tg3nhRCRKAf7aYuz1HQhoE=;
+        b=XEXBVhHzKoHDK5pkrgOTZa0UrI/BgQ/IStidpxGbQpw1SZwglwxqVNdmVQ7mpQegnB
+         xtNGx4YnSR5IpEJ63lIxJ3OFcyZVQhM9Ko1aQ4uwv+lec3+imBAqiayf6JmCAbMwDWMp
+         N0E4/NviiZybhuECc8rMZySFWzOXUU3QmX+/L1MC3QHXbFQC4EcIkhStWALJ/IdZUsw2
+         sfTspqGHiyEVpB2zdAtmAO22vHyb1zskFDnAa7MM+89iYfOT8J8mnVd7XyRHY85a+BCi
+         VP3ON2hIBFRAPC/RY/TDJP/a07m+/IEQ54+tpRTjjzwFuPrvnbDn9/iofsIu0QIY59Bn
+         vyFw==
+X-Forwarded-Encrypted: i=1; AJvYcCViEmWo8wLsN9WJxBoHLaw2PNkP6TybPBAU+lEPVI/NSsJPn4pLed0uPOydesQ2ZXhGCAEkL0G94BOq0XOpd+hrYw7cxgbsMTe4zA==
+X-Gm-Message-State: AOJu0YzM+l6NrV2vIkTqLsoT7++QnfuvqJatcl0aMFT5K1UP2HsQ/GKm
+	PkM0c9T2vNdSz8MRAwg9vkXcQqF6ZgESMukhXHpixbSwqsXkw17EwZqqcTPaKLyYBw==
+X-Google-Smtp-Source: AGHT+IGZITCwEhqKnga08lueR88bZHZNvfA+2v34n+8j0x6NZXchZuKLHpZl8KpUG0XsMiHxkhBSFA==
+X-Received: by 2002:a17:907:175d:b0:a51:99b8:9dc1 with SMTP id lf29-20020a170907175d00b00a5199b89dc1mr4851255ejc.51.1712565483514;
+        Mon, 08 Apr 2024 01:38:03 -0700 (PDT)
+Received: from ?IPv6:2003:f6:ef1c:c500:ee59:d953:f148:40ba? (p200300f6ef1cc500ee59d953f14840ba.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:ee59:d953:f148:40ba])
+        by smtp.gmail.com with ESMTPSA id en1-20020a17090728c100b00a51adace6ebsm3552256ejc.79.2024.04.08.01.38.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Apr 2024 01:38:03 -0700 (PDT)
+Message-ID: <b79b30bcaab03d2bcfc096829cdb443712376da9.camel@gmail.com>
+Subject: Re: [PATCH v2 09/11] iio: backend: add new functionality
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>, Nuno Sa <nuno.sa@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Dragos Bogdan
+ <dragos.bogdan@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>,  Olivier Moysan <olivier.moysan@foss.st.com>
+Date: Mon, 08 Apr 2024 10:41:35 +0200
+In-Reply-To: <20240406173248.2a574251@jic23-huawei>
+References: <20240405-iio-backend-axi-dac-v2-0-293bab7d5552@analog.com>
+	 <20240405-iio-backend-axi-dac-v2-9-293bab7d5552@analog.com>
+	 <20240406173248.2a574251@jic23-huawei>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.0 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQG67MGYnqOHzIYqhKHsGv8jtpiocwJaURTOsYpwP3A=
-Content-Language: en-us
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Ta1BUZRiec9mziwkdFsJvgEncLJEEdpXFbxkuMoCcwgkaHUlnCo/s4TLA
-	7s5e0popTVkkQC6TmeKahIW0psBCuHGTuEjcJAOW60ARRGBAIAOSsMRysPj3vO88z/e8z/vN
-	y8P4l7iOvHiZmlHK6EQBsQUvr9/t6u502y5G2FIggmWTpTicWOom4OW/lzDYef91+F31QxT2
-	zI9z4I2Ghxx4p2oZg/m95Shs1K5icCJ3iICG300cOJsxxIGdFToCZusXcHilowaF6T1GAt5q
-	MqPwUUsILL5ixuFqlZEL6/+6wIFpdSsENJtKcDjX/x78YfAnDOrnVpEDTlRnVxg106vlUnkG
-	DWXQf0pQg6YqgsrOr0Wo0q/PULNj/TiVWaZHqCeGl6kLteloxAvHE3zjGFrKKF0YWbRcGi+L
-	9ROEHY4KihJ7C0XuIgncL3CR0UmMnyD4UIT7wfjEtRUIXN6nEzVrrQhapRJ4+vsq5Ro14xIn
-	V6n9BIxCmqjwUnio6CSVRhbrIWPUPiKhcK94jXgiIc6Q/gRTzNicXikIP4vc25qGWPEA6QXu
-	nruJpiFbeHyyCgGZqfe5bDGHgCXjCMYWCwhoe1zHeS651v4ZbsF8shoBxZmBaQhvDf+JgGd7
-	LG2CdAfGmymERWtP5mKgprh7/SGMHELBgPY8YWFZkQHgk5FMxILtyFCQXV2yboCTO4HpZ/16
-	35qUgKKxPILFtqD56ui6MUZuB/emdBg7kAtYGivgWIawJ32A9qtolrINTDQ2rKcB5C9WoG+y
-	E2H5weDX5BKcxXZgsqmMy2JHMJGVwrW8A0gK5C87su04MHWraEMaAGq7dLiFgpG7QVGFJ2tl
-	Ay4+G0VZpTVITeGz7FfB+enuDSMnkJOevrFBCvReHcCzkR25m3LlbsqVuylA7v9meQiuRxwZ
-	hSoplokWK0TuMubUf78dLU8yIOvn4RZhRG4Xr3jUISgPqUMADxPYWx8W28bwraX0Bx8ySnmU
-	UpPIqOoQ8dq2czDHl6Lla/clU0eJvCRCL29vby/JPm+RYJv1Y+11KZ+MpdVMAsMoGOVzHcqz
-	cjyLRh0xDS+brad29XVUbm8pnBWDmsIHMVXOYb49T6sDM2o+8jff8Ms42le5WPiFwTm09VSw
-	acehhPIY2j0v5wT1bdNMe2SQ8I2db/441aHI0updP56r35WyaMVpGvOdfFEQGtk17vB2zNFy
-	dX/qK9PSEIf9+XitP/qujjjZtpggdLMVHzlZt6dZ13y9a6htZLbHrNFWu3158FJrOBZwRnV6
-	9MHYYLhzc1nweIjIteLzZPu3Gusr+UGtW+8EFmf/Zpy/GxNyXKKz+WM+o2Dv8DtPL+/L6i/l
-	Tz+a95GbGr5PzhtwC45sCUIkyweGjzmsXENfm/Rs7z8WWIafWxaX098sLNYP/SPAVXG0yA1T
-	quh/AXnKHTOnBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrLIsWRmVeSWpSXmKPExsWy7bCSvK70auE0gwv9vBZbXm1msXj58yqb
-	xbQPP5ktLu/Xtliz9xyTxfUvz1kt5h85x2qxds8fZotFN7YxWRxt/c9s8XLWPTaLTY+vsVp8
-	7LnHanF51xw2iwmrvrFYzDi/j8mi+/oONovlx/8xWVw85WqxYcY/Fov/e3awWxx+085q0XXo
-	L5vFv2sbWSw+3Yqz2HnnBLPFqk//GR2kPS5f8fZ4f6OV3WPBplKPTas62TzuXNvD5jFh0QFG
-	j81L6j0+Pr3F4tG3ZRWjx+dNch7tB7qZArijuGxSUnMyy1KL9O0SuDI2dX9mLnjPV/F3mX8D
-	43aeLkZODgkBE4nZZyezdDFycQgJ7GaU6Jn9hxUiIS1xfeMEdghbWGLlv+fsEEXPGCWajpxg
-	A0mwCehK7FjcxgaSEBFYxyzx/d4zJpAEs8ALJomzl+IgOiYwSsyZ3AI2ilPAXqLxUR8jiC0s
-	4C4xYe9GsHUsAioS1y6sAovzClhKrH+6gA3CFpQ4OfMJ0H0cQEP1JNo2MkLMl5fY/nYOM8R1
-	ChI/ny5jBSkREbCSaF2YDFEiLvHy6BH2CYzCs5AMmoUwaBaSQbOQdCxgZFnFKJlaUJybnpts
-	WGCYl1quV5yYW1yal66XnJ+7iRGcQrQ0djDem/9P7xAjEwfjIUYJDmYlEd5gU8E0Id6UxMqq
-	1KL8+KLSnNTiQ4zSHCxK4ryGM2anCAmkJ5akZqemFqQWwWSZODilGpguyf3eHm1yub7kf0Pw
-	Sdv6NZ+fzwzZcynF7rxG3tuSu0/nlk8wSTTJlF7wsn1amX4fl87LKY/Z5r1InrJz40v+1y7/
-	FiQ3cV5vrbK7laVopBmzPePXa7OT31Za6T4tNLD5GS/iUqebyqr79WGarlVKcVisUdiTCzHX
-	hZUS9cLvfvqxJijr8M9np561TJ9dnbu9df72w4nzjLTXMi9bVqO7bUHHjSovTcmDkpPm7BfM
-	uW5eaLygSuX4ezmZ+Xv2bbxdNlU3dtuZX03Sqt5sdawSH2JmNhR3bG9yD/zIlTlv4Tab56vz
-	94hFXVEvK1B0yd8vXXzQInPO/+qYsyXRaZcFfeKkRDKSEhhNFqbbHldiKc5INNRiLipOBADk
-	2iCOkAMAAA==
-X-CMS-MailID: 20240408083019epcas5p429571d61b25b95490b913fcabc7f59d5
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20240404122615epcas5p3812bd7c825bf604fc474bbcdf40d11f6
-References: <CGME20240404122615epcas5p3812bd7c825bf604fc474bbcdf40d11f6@epcas5p3.samsung.com>
-	<20240404122559.898930-1-peter.griffin@linaro.org>
 
-Hi Peter
+On Sat, 2024-04-06 at 17:32 +0100, Jonathan Cameron wrote:
+> On Fri, 5 Apr 2024 17:00:07 +0200
+> Nuno Sa <nuno.sa@analog.com> wrote:
+>=20
+> > This adds the needed backend ops for supporting a backend inerfacing
+> > with an high speed dac. The new ops are:
+> >=20
+> > * data_source_set();
+> > * set_sampling_freq();
+> > * extend_chan_spec();
+> > * ext_info_set();
+> > * ext_info_get().
+> >=20
+> > Also to note the new helpers that are meant to be used by the backends
+> > when extending an IIO channel (adding extended info):
+> >=20
+> > * iio_backend_ext_info_set();
+> > * iio_backend_ext_info_get().
+> >=20
+> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+>=20
+> Whilst the code for the backend retrieval callback is simple
+> I wonder if we are better off just not having it for now.
+>=20
+> Keep the infrastructure that checks for the default approach not working
+> but don't actually provide the alternative until we need it.
+>=20
 
-> -----Original Message-----
-> From: Peter Griffin <peter.griffin@linaro.org>
-> Sent: Thursday, April 4, 2024 5:56 PM
-> To: mturquette@baylibre.com; sboyd@kernel.org; robh@kernel.org;
-> krzk+dt@kernel.org; conor+dt@kernel.org; vkoul@kernel.org;
-> kishon@kernel.org; alim.akhtar@samsung.com; avri.altman@wdc.com;
-> bvanassche@acm.org; s.nawrocki@samsung.com; cw00.choi@samsung.com;
-> jejb@linux.ibm.com; martin.petersen@oracle.com;
-> chanho61.park@samsung.com; ebiggers@kernel.org
-> Cc: linux-scsi@vger.kernel.org; linux-phy@lists.infradead.org;
-> devicetree@vger.kernel.org; linux-clk@vger.kernel.org; linux-samsung-
-> soc@vger.kernel.org; linux-kernel@vger.kernel.org; linux-arm-
-> kernel@lists.infradead.org; tudor.ambarus@linaro.org;
-> andre.draszik@linaro.org; saravanak@google.com;
-> willmcvicker@google.com; Peter Griffin <peter.griffin@linaro.org>
-> Subject: [PATCH 00/17] HSI2, UFS & UFS phy support for Tensor GS101
-> 
-> Hi folks,
-> 
-> 
-> Question
-> ========
-> 
-> Currently the link comes up in Gear 3 due to ufshcd_init_host_params()
-> host_params initialisation. If I update that to use UFS_HS_G4 for
-negotiation
-> then the link come up in Gear 4. I propose (in a future patch) to use VER
-> register offset 0x8 to determine whether to set G4 capability or not (if
-major
-> version is >= 3).
-> 
-> The bitfield of VER register in gs101 docs is
-> 
-> RSVD [31:16] Reserved
-> MJR [15:8] Major version number
-> MNR [7:4] Minor version number
-> VS [3:0] Version Suffix
-> 
-> Can anyone confirm if other Exynos platforms supported by this driver have
-> the same register, and if it conforms to the bitfield described above?
-> 
+Yeps, agreed. That's why I brought it up in the cover. I'll place a comment
+stating we're aware and what may be the proper solution and have it when ne=
+eded.
 
-VER (offset 0x8) is standard UFS HCI spec, so all vendor need to have this
-(unless something really wrong with the HW)
-Yes, Exynos and FSD SoC has these bitfield implemented.
- 
-> 
-> 2.44.0.478.gd926399ef9-goog
+> Advantage is pretty minor though so maybe just keep it.
+> Unless others have strong opinions, up to you to decide whether to keep i=
+t.
 
+> One trivial thing noticed inline.
+>=20
+> > ---
+> > =C2=A0drivers/iio/industrialio-backend.c | 179
+> > +++++++++++++++++++++++++++++++++++++
+> > =C2=A0include/linux/iio/backend.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0 49 ++++++++++
+> > =C2=A02 files changed, 228 insertions(+)
+> >=20
+> > diff --git a/drivers/iio/industrialio-backend.c b/drivers/iio/industria=
+lio-
+> > backend.c
+> > index 2fea2bbbe47f..ac554798897f 100644
+> > --- a/drivers/iio/industrialio-backend.c
+> > +++ b/drivers/iio/industrialio-backend.c
+> > @@ -29,6 +29,7 @@
+> > =C2=A0 *
+> > =C2=A0 * Copyright (C) 2023-2024 Analog Devices Inc.
+> > =C2=A0 */
+> > +#include "asm-generic/errno-base.h"
+>=20
+> You'll need a strong reason if you want to do that include rather than
+> a normal one like linux/errno.h
+>=20
 
+Hmm crap, Fairly sure this was clangd automatically adding the header file.
+Sometimes it's actually useful. Not in this case :)
+
+- Nuno S=C3=A1
+>=20
 
