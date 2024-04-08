@@ -1,156 +1,153 @@
-Return-Path: <devicetree+bounces-57155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D1E789BF65
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 14:48:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F356E89BF80
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 14:54:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F19251F244D6
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 12:48:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 32AB0B27F07
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 12:54:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC0436EB72;
-	Mon,  8 Apr 2024 12:48:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC6887173E;
+	Mon,  8 Apr 2024 12:53:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b="LJCAULDv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EwY4Wpa1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA9666CDDC;
-	Mon,  8 Apr 2024 12:48:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.181.215.36
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D83664CF2
+	for <devicetree@vger.kernel.org>; Mon,  8 Apr 2024 12:53:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712580525; cv=none; b=hUfOW4HlxtFmD5vn/XxWE30Tr/cBoVcgPBGZ8ztv9bOe1onJp0cSZ2QN8rp33HgeuelYuDCGgMtKcZjh4q9nTe0ugzQn0bisZ99K8aihNyjGThHQ0Ph20AQThkX6GK7Qmc2ZYfvNcfKilxderPci5q2FUd3qQmbO00rDthow6DA=
+	t=1712580837; cv=none; b=nt+kJlph2PioaJFoQN2rESwRCz1kc26RXaymoJ7HdkyFBmwYw4p7fxWpfrLIA0lNFH0BNgcIRodjXwYVoMLbSCNx+oPPLcXXFPjdxythGJ0hoaE5IWbE82Xz0OwionyfzYZw8IDJhc6GLkM2TjgoMbjX0ZZ9PML5dTgkVW0otBI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712580525; c=relaxed/simple;
-	bh=mpZN8yjoALuYbnUIvl1Jzyjr8C6Q7zr6LsHovN0NC9o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pg/1sNDCftqUSG4xz2HvJYG8T6kem8NsZznnfoGyfS6DMxcNohJLRE0z3TsO984j+37MdYsxXtPBhNZQRMOZjlKNFv/mbekEQjcgPi4PiKqzvZhb0+PLWX8/hBrOGG1sUP/e34a+p07MWNhlIXymo37X9ErjNByi068xEQmzwvY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz; spf=pass smtp.mailfrom=xff.cz; dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b=LJCAULDv; arc=none smtp.client-ip=195.181.215.36
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xff.cz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-	t=1712580519; bh=mpZN8yjoALuYbnUIvl1Jzyjr8C6Q7zr6LsHovN0NC9o=;
-	h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
-	b=LJCAULDvuMRsyIafPbaNQo3zkuo+WIc3xesyh+5O/DMXTH821QOZoCFUWMhY56ryb
-	 bdQrZ4Gd/lD/OfSRlQI4uE3EQ+4UKfom3efaJSgRAX7bq7X7M3aFOVBPxgCUAcc6Dd
-	 evsI4KdJmuuktBmlLXiO7nv/NLo+xIJ2MS8MHbMg=
-Date: Mon, 8 Apr 2024 14:48:38 +0200
-From: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Pavel Machek <pavel@ucw.cz>, phone-devel@vger.kernel.org, 
-	kernel list <linux-kernel@vger.kernel.org>, fiona.klute@gmx.de, martijn@brixit.nl, samuel@sholland.org, 
-	heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org, linux-usb@vger.kernel.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
-Subject: Re: [PATCHv3 1/2] dt-bindings: usb: typec: anx7688: start a binding
- document
-Message-ID: <uoo7xltbfx7u6iai7urj3wez7cwotokxt6lwjhff57xbljusqn@fr2xejnrlak7>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Pavel Machek <pavel@ucw.cz>, phone-devel@vger.kernel.org, 
-	kernel list <linux-kernel@vger.kernel.org>, fiona.klute@gmx.de, martijn@brixit.nl, samuel@sholland.org, 
-	heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org, linux-usb@vger.kernel.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <ZhPMHdt6r/4D99Zg@duo.ucw.cz>
- <ab9affc8-de68-4ec9-bdfc-02131191bc3a@linaro.org>
- <ZhPTTxI4oTF3pgrk@duo.ucw.cz>
- <e7841ad2-fa3d-442d-804d-51f12e05c234@linaro.org>
- <e6vvuttix5k5fioy7q44ick5wj6u5gleh7mht36s4zjjcym7vy@bziejyohtc4b>
- <7976e254-ed1e-406d-870b-1ecdc4b1e23c@linaro.org>
+	s=arc-20240116; t=1712580837; c=relaxed/simple;
+	bh=WEyYkpof9FQ9wxzmt9yxgXdvUZ5yezofqlz1rRRr7SE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dyJMPt1V/DKAL+0F6j8uno9ZiTwiJ6gbNHIuIbDVi683MSWdcxtHPLuwUnCtKFA848WtIHpzZXaslzn6Kl0t2SL2OkHWSSD+IYgkaaTeFCwlYPuRhgNYhbajy6M9PnyemxHs1gK/ihWrox5i/KbT+P5c5bvYVx+gvrCwrkUYbKI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EwY4Wpa1; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4165caf9b2dso11046785e9.1
+        for <devicetree@vger.kernel.org>; Mon, 08 Apr 2024 05:53:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712580833; x=1713185633; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EIfWhO56deLbZSEvQDXUk02FMIpJsCPYMFdPM9Dpyf8=;
+        b=EwY4Wpa1t0VMyrdmXjS0phBWLnbhDaR/BkShQyeHNk+FEk3kY/MEoPBk4St5YWxaeP
+         jG2/e/MFbAlC+CJ/QoTrtRjwMje6cvVfAOOV/TonalhDd4TmuaZx1xiBKCnD6jBD2l1E
+         tghjbh3+ZMTr5GXHYrJR867K+98LIyWiVH/hL8meqx2zuBs9C3AfFRXHJDqXsOl7kUVn
+         9biBwdgzmobqAdCTwQc4gBSURyilQIC/6uwuE/uxq6lySwClyykUuuREEaz3noQRCDoH
+         tEtKVo/O2Xn/OIhYRAEThW+1pLbJEHSo6QCg9GoZ82otsr+f6znTAobqZBwdSM7hIGVA
+         ibAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712580833; x=1713185633;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EIfWhO56deLbZSEvQDXUk02FMIpJsCPYMFdPM9Dpyf8=;
+        b=alxZ17OjKc/vR179K86XzRupmkxVs1YV8AShsdJ8s0NMe2ZsXdX/4m3EvBeAVCkfOz
+         ey4pzItuODUpaYiPOVRHB3PlbEtZ3TVdmK0Aqwm7TKiYNDjl9sqhkuIMnv1U0T8PA1t2
+         bDcf0WB5oBNVufk1G3CJPBi+opw1ea7PdR4mN3AyEj0nMhGRd7v/29Qihff2P4BeDYcZ
+         6aJS0n6F1+KG6CKcyHdms3qdaVqGMxad6R7b/hHwf+h7mIim0tr9FdHR5poALOXARKYT
+         xSwzH+Y9a/LxqQBUx+JPpXJZro7xLk5r1F+MShAM+NBcDPI5MFg8TTgBT+IDl77FnkdS
+         viRA==
+X-Forwarded-Encrypted: i=1; AJvYcCUGMjjBVW2eV2uNzKgsRbA+UxdNtZ74wjxnPJRcwC6hyGnaDqjcceEK/C7ePaqPWLRNCB6gaMcya6sDkcaT1z7JZiqgPU7/d60q2A==
+X-Gm-Message-State: AOJu0YyAr42s2xXZV8GBNW1GkM1rQD2nDADIcZBA1BrzdLnoE1rPSh2B
+	0kZ9B2jjvCKEL2kInYBafaXgEhDEGsTv4arWqMf4AjrCucy1agi1AfZGVwOy2q8=
+X-Google-Smtp-Source: AGHT+IHyE5Dd+kfClSIf5iATYVOm+3kL+yD0XMIPSdxm4HEG5u0fs2phS7pNvDc9p8PpDMGtMsfFfg==
+X-Received: by 2002:a05:600c:3b8b:b0:414:8889:5a2e with SMTP id n11-20020a05600c3b8b00b0041488895a2emr8878647wms.30.1712580833297;
+        Mon, 08 Apr 2024 05:53:53 -0700 (PDT)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id bg8-20020a05600c3c8800b00414807ef8dfsm13342654wmb.5.2024.04.08.05.53.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Apr 2024 05:53:52 -0700 (PDT)
+Message-ID: <baa6543c-5e2e-4f28-a95b-a086b32d1f2d@linaro.org>
+Date: Mon, 8 Apr 2024 13:53:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7976e254-ed1e-406d-870b-1ecdc4b1e23c@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RESEND v3 2/2] ASoC: qcom: sc8280xp: Add support for QCM6490 and
+ QCS6490
+To: Bjorn Andersson <andersson@kernel.org>,
+ Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+Cc: Banajit Goswami <bgoswami@quicinc.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, linux-arm-msm@vger.kernel.org,
+ alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ quic_rohkumar@quicinc.com
+References: <20240408042331.403103-1-quic_mohs@quicinc.com>
+ <20240408042331.403103-3-quic_mohs@quicinc.com>
+ <45yy3cvepk4uwi2jdmh4w6l5ac3dffqhbot6xzv2bwjvo637ss@pryzth2hghyu>
+Content-Language: en-US
+From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <45yy3cvepk4uwi2jdmh4w6l5ac3dffqhbot6xzv2bwjvo637ss@pryzth2hghyu>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Apr 08, 2024 at 01:59:12PM GMT, Krzysztof Kozlowski wrote:
-> On 08/04/2024 13:52, Ondřej Jirman wrote:
-> > On Mon, Apr 08, 2024 at 01:24:03PM GMT, Krzysztof Kozlowski wrote:
-> >> On 08/04/2024 13:21, Pavel Machek wrote:
-> >>> Hi!
-> >>>
-> >>>>> Add binding for anx7688 usb type-c bridge. I don't have a datasheet,
-> >>>>> but I did best I could.
-> >>>>>
-> >>>>> Signed-off-by: Pavel Machek <pavel@ucw.cz>
-> >>>>
-> >>>> ...
-> >>>>
-> >>>>> +  cabledet-gpios:
-> >>>>> +    maxItems: 1
-> >>>>> +    description: GPIO controlling CABLE_DET (C3) pin.
-> >>>>> +
-> >>>>> +  avdd10-supply:
-> >>>>> +    description: 1.0V power supply going to AVDD10 (A4, ...) pins
-> >>>>> +
-> >>>>> +  dvdd10-supply:
-> >>>>> +    description: 1.0V power supply going to DVDD10 (D6, ...) pins
-> >>>>> +
-> >>>>> +  avdd18-supply:
-> >>>>> +    description: 1.8V power supply going to AVDD18 (E3, ...) pins
-> >>>>> +
-> >>>>> +  dvdd18-supply:
-> >>>>> +    description: 1.8V power supply going to DVDD18 (G4, ...) pins
-> >>>>> +
-> >>>>> +  avdd33-supply:
-> >>>>> +    description: 3.3V power supply going to AVDD33 (C4, ...) pins
-> >>>>> +
-> >>>>> +  i2c-supply: true
-> >>>>> +  vconn-supply: true
-> >>>>
-> >>>> There are no such supplies like i2c and vconn on the schematics.
-> >>>>
-> >>>> I think this represents some other part of component which was added
-> >>>> here only for convenience.
-> >>>
-> >>> Can you give me pointer to documentation you are looking at?
-> >>
-> >> The schematics you linked in the document at the beginning. Page 13. Do
-> >> you see these pins there? I saw only VCONN1_EN, but that's not a supply.
-> > 
-> > The supply is U1308.
+
+
+On 08/04/2024 13:45, Bjorn Andersson wrote:
+> On Mon, Apr 08, 2024 at 09:53:31AM +0530, Mohammad Rafi Shaik wrote:
+>> Add compatibles for sound card on Qualcomm QCM6490 IDP and
+>> QCS6490 RB3Gen2 boards.
+>>
+>> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+>> ---
+>>   sound/soc/qcom/sc8280xp.c | 2 ++
+>>   1 file changed, 2 insertions(+)
+>>
+>> diff --git a/sound/soc/qcom/sc8280xp.c b/sound/soc/qcom/sc8280xp.c
+>> index b7fd503a1666..878bd50ad4a7 100644
+>> --- a/sound/soc/qcom/sc8280xp.c
+>> +++ b/sound/soc/qcom/sc8280xp.c
+>> @@ -169,6 +169,8 @@ static int sc8280xp_platform_probe(struct platform_device *pdev)
+>>   }
+>>   
+>>   static const struct of_device_id snd_sc8280xp_dt_match[] = {
+>> +	{.compatible = "qcom,qcm6490-idp-sndcard", "qcm6490"},
+>> +	{.compatible = "qcom,qcs6490-rb3gen2-sndcard", "qcs6490"},
 > 
-> That's not a supply to anx7688.
-
-Yeah, I understand where the confusion is. The driver is not for anx7688 chip
-really. The driver is named anx7688, but that's mostly a historical accident at
-this point.
-
-I guess there can be a driver for anx7688 chip that can directly use the chip's
-resources from the host by directly manipulating its registers and implementing
-type-c functionality via eg. Linux's TCPM or TCPCI stack, etc. (eg. like
-fusb302 driver, or various tcpci subdrivers).
-
-But in this case the chip is driven by an optional on-chip microcontroller's
-firmware and *this driver* is specifically for *the Type-C port on Pinephone*
-and serves as an integration driver for quite a bunch of things that need to
-work together on Pinephone for all of the Type-C port's features to operate
-reasonably well (and one of those is some communication with anx7688 firmware
-that we use, and enabling power to this chip and other things as appropriate,
-based on the communication from the firmware).
-
-It handles the specific needs of the Pinephone's Type-C implementation, all of
-its quirks (of which there are many over several HW revisions) that can't be
-handled by the particular implementation of on-chip microcontroller firmware
-directly and need host side interaction.
-
-In an ideal world, many of the things this driver handles would be handled by
-embedded microcontroller on the board (like it is with some RK3399 based Google
-devices), but Pinephone has no such thing and this glue needs to be implemented
-somewhere in the kernel.
-
-Kind regards,
-	o.
-
-> Best regards,
-> Krzysztof
+> We now have 4 <platform>-sndcard and two <board>-sndcard compatibles
+> here.
 > 
+> Not saying that your patch is wrong, but is this driver board-specific
+> or soc-specific? Srinivas, Krzysztof?
+
+Normally this should be board specific.
+
+In the past we made them SoC specific and provided a way to do board 
+specific changes based on compatible. Recently we stopped adding new 
+drivers as most of these drivers turned out to be identical and lots of 
+code duplication.
+
+Having these compatibles will help both the userspace UCM and provide 
+hooks to do any board/soc specific configurations.
+
+thanks,
+Srini
+
+> 
+> Regards,
+> Bjorn
+> 
+>>   	{.compatible = "qcom,sc8280xp-sndcard", "sc8280xp"},
+>>   	{.compatible = "qcom,sm8450-sndcard", "sm8450"},
+>>   	{.compatible = "qcom,sm8550-sndcard", "sm8550"},
+>> -- 
+>> 2.25.1
+>>
+>>
 
