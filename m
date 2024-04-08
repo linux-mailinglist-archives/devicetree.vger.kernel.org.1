@@ -1,336 +1,249 @@
-Return-Path: <devicetree+bounces-57085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AFE689BB1E
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 11:02:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96AD089BB2C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 11:05:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C51821F21B31
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 09:02:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BADA283BEA
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 09:05:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A68D33AC10;
-	Mon,  8 Apr 2024 09:02:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D76D53B1AE;
+	Mon,  8 Apr 2024 09:05:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NHK5iYx6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MsTyM6EU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2ED83FB2C;
-	Mon,  8 Apr 2024 09:02:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E76774EB23;
+	Mon,  8 Apr 2024 09:05:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712566964; cv=none; b=vAIq/LUMZOb0BOLLVgy5W3cgURNYlLUzMAyFoxZ+ibSUMuhMna8eFJCm/QaPjhAu0GkwRdydX6Mw6K5ZjHXch3q8jS2uSRTTVYEw8oHWswAgagAfqr8+46cd3QNE7bHBO0ZvEP5hLT8r5MPCjwOaOy6f+AvDogQhVN/lkysRxF4=
+	t=1712567117; cv=none; b=jV3nMG8+hl0L+pjtneyTi6dS1ketXKSNQMQnBxJW4NZLUuLXe+TiCc5oJ6gLf1o+JVXJzK3xN+820iP/QGqLcu4moDfJgT+NIpvel2dSR7MFjutAQhRTqGlWpWzLM+n8lCdnXDay00awQKkNkXHNsN4wHcHj7Xg+1caSpryd4mc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712566964; c=relaxed/simple;
-	bh=0aNBd9zisQqXxBIaoFkcYdj26S5EKA61Nkf5X3bcjf4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=NpX8MHjXvvVINo6mtOhpqv66DKf6AJx0U1FmeDKZB8ljRA4i7dHTdSP3ul/3ga5U0XSyutRs8odh0C5PcEWN/KYEUCybjHFfdrvw2hRDyBsZfMMoOGByrg1IY+hxhCTxASrNSOObZ+9UOUqQVz8gEMe69gTH9DuePwLq7LB4QYk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NHK5iYx6; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4386cf12031108;
-	Mon, 8 Apr 2024 09:02:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=F/OW5DE1hnqTJO6f0QTP3IDZETZqVELNL792BdSC0Hs=; b=NH
-	K5iYx6C1tOeTMhHGLS8Uk3yRG0d/qAeRWPiGChLKqKZMOZ1xT1WEuNu+inuHyFJj
-	t2T/VQHUc1pOs61pQiG1o5TuKHnYMfeke8UmfEKHugm6KbABFbY/I+oozHeYAnQ1
-	H6ftKGa4942I+s178fBdl5uCdnU58TfNag4MOZXhLWC/7GLN0oDSgmQNOkd/dKtz
-	3PBobNW45kwX8Bx8OSXQ3fqOfb8+K9XwulEN5GtTIkK5bchE4cLJhrtPm+RvXGjv
-	yyHdrjpULyYrI9Zf9fHgUmx/VlS10wC0EcnlgNkVg6t2ZXCqV0NeyBOiuZTgoqyV
-	ciX+oaONbpZbKlZCnBJA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xcbg008xa-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 08 Apr 2024 09:02:34 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43892WCA030199
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 8 Apr 2024 09:02:32 GMT
-Received: from [10.216.26.18] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Mon, 8 Apr 2024
- 02:02:24 -0700
-Message-ID: <6e9b4379-5849-73cd-4d89-5e809b4c71a4@quicinc.com>
-Date: Mon, 8 Apr 2024 14:32:18 +0530
+	s=arc-20240116; t=1712567117; c=relaxed/simple;
+	bh=lFU7QE1+qNDLLzoZDrRR9JuIvf3twwy9PY9BpKcLv6Y=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=lsN6iUsTJAQ9Y2D7dVNdXCWbuHsJw5Yw+E2rxJLiPk3o0oqITnWzOu1tbCm1kqGdJotRI2kI7pHisbxnyzjxMhZEuAfnl2BAPNTsCkzrpdjD3JSD5xCcBxlavzvoK5DoZqfxKhExUIQE9L/d3TCH5jPquWzI8I2YLfuKWwa4Cxw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MsTyM6EU; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-56e2ac1c16aso3696250a12.0;
+        Mon, 08 Apr 2024 02:05:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712567114; x=1713171914; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0VdWl81xUkhQ/9Yp0vD3aydPnMUvCiiOMIXPQn+0VSc=;
+        b=MsTyM6EUGzHyme+ubvMU4m8XvVlQsmV7/EIOxSzkspF73l/Q5pDkQ4TXdrPhoG6JK0
+         oDm6o1G36+f22Wd235Lo0x3tgvaUVzOK2KrhVelSMsL36gPuyCv3XOXHc9hODkvXf8kA
+         bE1oV0phOUyO1v3aTeIw1gjWX4JRdQWAPApVJvz/kED0TMrCy2xJCqR+2IGttl+IAk+/
+         PN5qAd2hLMRvI6BvvxSAQvXP7vnKzgRjaJ9MD5UTyofUqX1V48T4i78SvU/Te2SgzN3t
+         1UKsBE8xKH5ugPZ6KzGcpGiZGPJWb0aW7uvS+y5as9YeaNBvGpX+FpEYba10Cq6bf3DY
+         kPlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712567114; x=1713171914;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0VdWl81xUkhQ/9Yp0vD3aydPnMUvCiiOMIXPQn+0VSc=;
+        b=bY71Ts1zFuzzDob7HDE1W/06BCYpMIfvHql4cHtwNOD0f8zxT8sY4KDUaCsuAuyifO
+         2YVV6gy1zAMiV1bgyB9fohR4G18IsbxhBk6gBS7iGbyaFK42w0OTFvGb4mmNbOR4UwuR
+         aQvl6FJP2lOoCCOqJNsenK6oQ3olw+maQl2ONJ6viaouiyI+CqnyLGLP7fCobLVm97kv
+         EHXvH7tlkZzLmh2SdwiJkYGb35dzJJNEJO9PAVpvjYJhbWP33AI8c79YkAGkormVkLH7
+         xODq/1b59zpPQEthSOubn8xeOz5Hz4bkQBK10n2EgUEqstGf+gGpUnLtARtKnjT7hrYP
+         WcGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVzkvV85Tvyg/5W3bGJI57oRc+DQ8E+NvyQF9+r4mbSINpLk0Dw6BttVPGyBrFX613ojWH36gAQ09YgDIx/fDRlCXk9WVimT4xmxa4MFmKt8IbzFWfRJHwghBepp/C1Ff7Rv2MaQ2M=
+X-Gm-Message-State: AOJu0YwmYGZmR97UzZ0bMNfZTRHKsT0SlzDLGR53Iii/R4/qafozwto/
+	1oCSNTaGogvfQVRRor+cBiAglKSvbR61gTHycr4K+B5JiS2ZG35j
+X-Google-Smtp-Source: AGHT+IHoDPHjMBvKWWxI6l+a/pOx5BO9ETXLbsUsMeGrQvdnDpuv/Gs2Dn58wW/rDjO9l2t+4A7cUg==
+X-Received: by 2002:a17:907:84b:b0:a51:df52:5a65 with SMTP id ww11-20020a170907084b00b00a51df525a65mr608198ejb.2.1712567113914;
+        Mon, 08 Apr 2024 02:05:13 -0700 (PDT)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id h1-20020a170906718100b00a51bd3bfec3sm2773969ejk.121.2024.04.08.02.05.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Apr 2024 02:05:13 -0700 (PDT)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: Sean Wang <sean.wang@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Hsin-Yi Wang <hsinyi@chromium.org>,
+	linux-mediatek@lists.infradead.org,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH 1/3] dt-bindings: pinctrl: mediatek: mt7622: fix array properties
+Date: Mon,  8 Apr 2024 11:05:04 +0200
+Message-Id: <20240408090506.21596-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH v9 6/6] PCI: qcom: Add OPP support to scale performance
- state of power domain
-Content-Language: en-US
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas
-	<bhelgaas@google.com>, <johan+linaro@kernel.org>,
-        <bmasney@redhat.com>, <djakov@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <vireshk@kernel.org>, <quic_vbadigan@quicinc.com>,
-        <quic_skananth@quicinc.com>, <quic_nitegupt@quicinc.com>,
-        <quic_parass@quicinc.com>, <krzysztof.kozlowski@linaro.org>
-References: <20240407-opp_support-v9-0-496184dc45d7@quicinc.com>
- <20240407-opp_support-v9-6-496184dc45d7@quicinc.com>
- <20240407150048.GE2679@thinkpad>
-From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-In-Reply-To: <20240407150048.GE2679@thinkpad>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: i-PlhEQAnee6g3UntA013vT1Hl92-9Yz
-X-Proofpoint-ORIG-GUID: i-PlhEQAnee6g3UntA013vT1Hl92-9Yz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-08_07,2024-04-05_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
- mlxscore=0 impostorscore=0 phishscore=0 clxscore=1015 bulkscore=0
- priorityscore=1501 lowpriorityscore=0 spamscore=0 adultscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404080069
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+From: Rafał Miłecki <rafal@milecki.pl>
 
+Some properties (function groups & pins) are meant to be arrays and
+should allow multiple entries out of enum sets. Use "items" for those.
 
-On 4/7/2024 8:30 PM, Manivannan Sadhasivam wrote:
-> On Sun, Apr 07, 2024 at 10:07:39AM +0530, Krishna chaitanya chundru wrote:
->> QCOM Resource Power Manager-hardened (RPMh) is a hardware block which
->> maintains hardware state of a regulator by performing max aggregation of
->> the requests made by all of the clients.
->>
->> PCIe controller can operate on different RPMh performance state of power
->> domain based on the speed of the link. And this performance state varies
->> from target to target, like some controllers support GEN3 in NOM (Nominal)
->> voltage corner, while some other supports GEN3 in low SVS (static voltage
->> scaling).
->>
->> The SoC can be more power efficient if we scale the performance state
->> based on the aggregate PCIe link bandwidth.
->>
->> Add Operating Performance Points (OPP) support to vote for RPMh state based
->> on the aggregate link bandwidth.
->>
->> OPP can handle ICC bw voting also, so move ICC bw voting through OPP
->> framework if OPP entries are present.
->>
->> Different link configurations may share the same aggregate bandwidth,
->> e.g., a 2.5 GT/s x2 link and a 5.0 GT/s x1 link have the same bandwidth
->> and share the same OPP entry.
->>
-> 
-> This info should be part of the dts change.
-> 
-ok I will move this to dts patch in next patch series.
->> As we are moving ICC voting as part of OPP, don't initialize ICC if OPP
->> is supported.
->>
->> Before PCIe link is initialized vote for highest OPP in the OPP table,
->> so that we are voting for maximum voltage corner for the link to come up
->> in maximum supported speed.
->>
->> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
->> ---
->>   drivers/pci/controller/dwc/pcie-qcom.c | 72 +++++++++++++++++++++++++++-------
->>   1 file changed, 58 insertions(+), 14 deletions(-)
->>
->> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
->> index b4893214b2d3..4ad5ef3bf8fc 100644
->> --- a/drivers/pci/controller/dwc/pcie-qcom.c
->> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
->> @@ -22,6 +22,7 @@
->>   #include <linux/of.h>
->>   #include <linux/of_gpio.h>
->>   #include <linux/pci.h>
->> +#include <linux/pm_opp.h>
->>   #include <linux/pm_runtime.h>
->>   #include <linux/platform_device.h>
->>   #include <linux/phy/pcie.h>
->> @@ -1442,15 +1443,13 @@ static int qcom_pcie_icc_init(struct qcom_pcie *pcie)
->>   	return 0;
->>   }
->>   
->> -static void qcom_pcie_icc_update(struct qcom_pcie *pcie)
->> +static void qcom_pcie_icc_opp_update(struct qcom_pcie *pcie)
->>   {
->>   	struct dw_pcie *pci = pcie->pci;
->> -	u32 offset, status;
->> +	u32 offset, status, freq;
->> +	struct dev_pm_opp *opp;
->>   	int speed, width;
->> -	int ret;
->> -
->> -	if (!pcie->icc_mem)
->> -		return;
->> +	int ret, mbps;
->>   
->>   	offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
->>   	status = readw(pci->dbi_base + offset + PCI_EXP_LNKSTA);
->> @@ -1462,10 +1461,26 @@ static void qcom_pcie_icc_update(struct qcom_pcie *pcie)
->>   	speed = FIELD_GET(PCI_EXP_LNKSTA_CLS, status);
->>   	width = FIELD_GET(PCI_EXP_LNKSTA_NLW, status);
->>   
->> -	ret = icc_set_bw(pcie->icc_mem, 0, width * QCOM_PCIE_LINK_SPEED_TO_BW(speed));
->> -	if (ret) {
->> -		dev_err(pci->dev, "failed to set interconnect bandwidth for PCIe-MEM: %d\n",
->> -			ret);
->> +	if (pcie->icc_mem) {
->> +		ret = icc_set_bw(pcie->icc_mem, 0, width * QCOM_PCIE_LINK_SPEED_TO_BW(speed));
->> +		if (ret) {
->> +			dev_err(pci->dev, "failed to set interconnect bandwidth for PCIe-MEM: %d\n",
-> 
-> s/failed/Failed
-> 
->> +				ret);
->> +		}
->> +	} else {
->> +		mbps = pcie_link_speed_to_mbps(pcie_link_speed[speed]);
->> +		if (mbps < 0)
->> +			return;
->> +
->> +		freq = mbps * 1000;
->> +		opp = dev_pm_opp_find_freq_exact(pci->dev, freq * width, true);
-> 
-> As per the API documentation, dev_pm_opp_put() should be called for both success
-> and failure case.
-> 
-ACK.
->> +		if (!IS_ERR(opp)) {
-> 
-> So what is the action if OPP is not found for the freq?
-> 
-There is already a vote for maximum freq in the probe, so if it fails
-here we can continue here.
-If you feel otherwise let me know I Can make changes as suggested.
->> +			ret = dev_pm_opp_set_opp(pci->dev, opp);
->> +			if (ret)
->> +				dev_err(pci->dev, "Failed to set opp: freq %ld ret %d\n",
-> 
-> 'Failed to set OPP for freq (%ld): %d'
-> 
->> +					dev_pm_opp_get_freq(opp), ret);
->> +			dev_pm_opp_put(opp);
->> +		}
->>   	}
->>   }
->>   
->> @@ -1509,8 +1524,10 @@ static void qcom_pcie_init_debugfs(struct qcom_pcie *pcie)
->>   static int qcom_pcie_probe(struct platform_device *pdev)
->>   {
->>   	const struct qcom_pcie_cfg *pcie_cfg;
->> +	unsigned long max_freq = INT_MAX;
->>   	struct device *dev = &pdev->dev;
->>   	struct qcom_pcie *pcie;
->> +	struct dev_pm_opp *opp;
->>   	struct dw_pcie_rp *pp;
->>   	struct resource *res;
->>   	struct dw_pcie *pci;
->> @@ -1577,9 +1594,33 @@ static int qcom_pcie_probe(struct platform_device *pdev)
->>   		goto err_pm_runtime_put;
->>   	}
->>   
->> -	ret = qcom_pcie_icc_init(pcie);
->> -	if (ret)
->> +	/* OPP table is optional */
->> +	ret = devm_pm_opp_of_add_table(dev);
->> +	if (ret && ret != -ENODEV) {
->> +		dev_err_probe(dev, ret, "Failed to add OPP table\n");
->>   		goto err_pm_runtime_put;
->> +	}
->> +
->> +	/*
->> +	 * Use highest OPP here if the OPP table is present. At the end of
-> 
-> I believe I asked you to add the information justifying why the highest OPP
-> should be used.
->
-I added the info in the commit message, I will add as the comment in the
-next patch.
+Mistake was noticed during validation of in-kernel DTS files.
 
->> +	 * the probe(), OPP will be updated using qcom_pcie_icc_opp_update().
->> +	 */
->> +	if (!ret) {
->> +		opp = dev_pm_opp_find_freq_floor(dev, &max_freq);
-> 
-> Same comment as dev_pm_opp_find_freq_exact().
-> 
->> +		if (!IS_ERR(opp)) {
->> +			ret = dev_pm_opp_set_opp(dev, opp);
->> +			if (ret)
->> +				dev_err_probe(pci->dev, ret,
->> +					      "Failed to set OPP: freq %ld\n",
-> 
-> Same comment as above.
-> 
->> +					      dev_pm_opp_get_freq(opp));
->> +			dev_pm_opp_put(opp);
-> 
-> So you want to continue even in the case of failure?
-> 
-I wil make changes to fallback to driver voting for icc bw if it fails here.
-- Krishna chaitanya,
-> - Mani
-> 
->> +		}
->> +	} else {
->> +		/* Skip ICC init if OPP is supported as it is handled by OPP */
->> +		ret = qcom_pcie_icc_init(pcie);
->> +		if (ret)
->> +			goto err_pm_runtime_put;
->> +	}
->>   
->>   	ret = pcie->cfg->ops->get_resources(pcie);
->>   	if (ret)
->> @@ -1599,7 +1640,7 @@ static int qcom_pcie_probe(struct platform_device *pdev)
->>   		goto err_phy_exit;
->>   	}
->>   
->> -	qcom_pcie_icc_update(pcie);
->> +	qcom_pcie_icc_opp_update(pcie);
->>   
->>   	if (pcie->mhi)
->>   		qcom_pcie_init_debugfs(pcie);
->> @@ -1658,6 +1699,9 @@ static int qcom_pcie_suspend_noirq(struct device *dev)
->>   	if (ret)
->>   		dev_err(dev, "failed to disable icc path of CPU-PCIe: %d\n", ret);
->>   
->> +	if (!pcie->icc_mem)
->> +		dev_pm_opp_set_opp(pcie->pci->dev, NULL);
->> +
->>   	return ret;
->>   }
->>   
->> @@ -1680,7 +1724,7 @@ static int qcom_pcie_resume_noirq(struct device *dev)
->>   		pcie->suspended = false;
->>   	}
->>   
->> -	qcom_pcie_icc_update(pcie);
->> +	qcom_pcie_icc_opp_update(pcie);
->>   
->>   	return 0;
->>   }
->>
->> -- 
->> 2.42.0
->>
-> 
+Fixes: b9ffc18c6388 ("dt-bindings: mediatek: convert pinctrl to yaml")
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ .../pinctrl/mediatek,mt7622-pinctrl.yaml      | 92 ++++++++++---------
+ 1 file changed, 49 insertions(+), 43 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinctrl.yaml
+index bd72a326e6e0..60f30a59f385 100644
+--- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinctrl.yaml
+@@ -97,7 +97,8 @@ patternProperties:
+             then:
+               properties:
+                 groups:
+-                  enum: [emmc, emmc_rst]
++                  items:
++                    enum: [emmc, emmc_rst]
+           - if:
+               properties:
+                 function:
+@@ -105,8 +106,9 @@ patternProperties:
+             then:
+               properties:
+                 groups:
+-                  enum: [esw, esw_p0_p1, esw_p2_p3_p4, rgmii_via_esw,
+-                         rgmii_via_gmac1, rgmii_via_gmac2, mdc_mdio]
++                  items:
++                    enum: [esw, esw_p0_p1, esw_p2_p3_p4, rgmii_via_esw,
++                           rgmii_via_gmac1, rgmii_via_gmac2, mdc_mdio]
+           - if:
+               properties:
+                 function:
+@@ -123,10 +125,11 @@ patternProperties:
+             then:
+               properties:
+                 groups:
+-                  enum: [i2s_in_mclk_bclk_ws, i2s1_in_data, i2s2_in_data,
+-                         i2s3_in_data, i2s4_in_data, i2s_out_mclk_bclk_ws,
+-                         i2s1_out_data, i2s2_out_data, i2s3_out_data,
+-                         i2s4_out_data]
++                  items:
++                    enum: [i2s_in_mclk_bclk_ws, i2s1_in_data, i2s2_in_data,
++                           i2s3_in_data, i2s4_in_data, i2s_out_mclk_bclk_ws,
++                           i2s1_out_data, i2s2_out_data, i2s3_out_data,
++                           i2s4_out_data]
+           - if:
+               properties:
+                 function:
+@@ -159,10 +162,11 @@ patternProperties:
+             then:
+               properties:
+                 groups:
+-                  enum: [pcie0_0_waken, pcie0_1_waken, pcie1_0_waken,
+-                         pcie0_0_clkreq, pcie0_1_clkreq, pcie1_0_clkreq,
+-                         pcie0_pad_perst, pcie1_pad_perst, pcie_pereset,
+-                         pcie_wake, pcie_clkreq]
++                  items:
++                    enum: [pcie0_0_waken, pcie0_1_waken, pcie1_0_waken,
++                           pcie0_0_clkreq, pcie0_1_clkreq, pcie1_0_clkreq,
++                           pcie0_pad_perst, pcie1_pad_perst, pcie_pereset,
++                           pcie_wake, pcie_clkreq]
+           - if:
+               properties:
+                 function:
+@@ -178,11 +182,12 @@ patternProperties:
+             then:
+               properties:
+                 groups:
+-                  enum: [pwm_ch1_0, pwm_ch1_1, pwm_ch1_2, pwm_ch2_0, pwm_ch2_1,
+-                         pwm_ch2_2, pwm_ch3_0, pwm_ch3_1, pwm_ch3_2, pwm_ch4_0,
+-                         pwm_ch4_1, pwm_ch4_2, pwm_ch4_3, pwm_ch5_0, pwm_ch5_1,
+-                         pwm_ch5_2, pwm_ch6_0, pwm_ch6_1, pwm_ch6_2, pwm_ch6_3,
+-                         pwm_ch7_0, pwm_0, pwm_1]
++                  items:
++                    enum: [pwm_ch1_0, pwm_ch1_1, pwm_ch1_2, pwm_ch2_0, pwm_ch2_1,
++                           pwm_ch2_2, pwm_ch3_0, pwm_ch3_1, pwm_ch3_2, pwm_ch4_0,
++                           pwm_ch4_1, pwm_ch4_2, pwm_ch4_3, pwm_ch5_0, pwm_ch5_1,
++                           pwm_ch5_2, pwm_ch6_0, pwm_ch6_1, pwm_ch6_2, pwm_ch6_3,
++                           pwm_ch7_0, pwm_0, pwm_1]
+           - if:
+               properties:
+                 function:
+@@ -260,33 +265,34 @@ patternProperties:
+           pins:
+             description:
+               An array of strings. Each string contains the name of a pin.
+-            enum: [GPIO_A, I2S1_IN, I2S1_OUT, I2S_BCLK, I2S_WS, I2S_MCLK, TXD0,
+-                   RXD0, SPI_WP, SPI_HOLD, SPI_CLK, SPI_MOSI, SPI_MISO, SPI_CS,
+-                   I2C_SDA, I2C_SCL, I2S2_IN, I2S3_IN, I2S4_IN, I2S2_OUT,
+-                   I2S3_OUT, I2S4_OUT, GPIO_B, MDC, MDIO, G2_TXD0, G2_TXD1,
+-                   G2_TXD2, G2_TXD3, G2_TXEN, G2_TXC, G2_RXD0, G2_RXD1, G2_RXD2,
+-                   G2_RXD3, G2_RXDV, G2_RXC, NCEB, NWEB, NREB, NDL4, NDL5, NDL6,
+-                   NDL7, NRB, NCLE, NALE, NDL0, NDL1, NDL2, NDL3, MDI_TP_P0,
+-                   MDI_TN_P0, MDI_RP_P0, MDI_RN_P0, MDI_TP_P1, MDI_TN_P1,
+-                   MDI_RP_P1, MDI_RN_P1, MDI_RP_P2, MDI_RN_P2, MDI_TP_P2,
+-                   MDI_TN_P2, MDI_TP_P3, MDI_TN_P3, MDI_RP_P3, MDI_RN_P3,
+-                   MDI_RP_P4, MDI_RN_P4, MDI_TP_P4, MDI_TN_P4, PMIC_SCL,
+-                   PMIC_SDA, SPIC1_CLK, SPIC1_MOSI, SPIC1_MISO, SPIC1_CS,
+-                   GPIO_D, WATCHDOG, RTS3_N, CTS3_N, TXD3, RXD3, PERST0_N,
+-                   PERST1_N, WLED_N, EPHY_LED0_N, AUXIN0, AUXIN1, AUXIN2,
+-                   AUXIN3, TXD4, RXD4, RTS4_N, CST4_N, PWM1, PWM2, PWM3, PWM4,
+-                   PWM5, PWM6, PWM7, GPIO_E, TOP_5G_CLK, TOP_5G_DATA,
+-                   WF0_5G_HB0, WF0_5G_HB1, WF0_5G_HB2, WF0_5G_HB3, WF0_5G_HB4,
+-                   WF0_5G_HB5, WF0_5G_HB6, XO_REQ, TOP_RST_N, SYS_WATCHDOG,
+-                   EPHY_LED0_N_JTDO, EPHY_LED1_N_JTDI, EPHY_LED2_N_JTMS,
+-                   EPHY_LED3_N_JTCLK, EPHY_LED4_N_JTRST_N, WF2G_LED_N,
+-                   WF5G_LED_N, GPIO_9, GPIO_10, GPIO_11, GPIO_12, UART1_TXD,
+-                   UART1_RXD, UART1_CTS, UART1_RTS, UART2_TXD, UART2_RXD,
+-                   UART2_CTS, UART2_RTS, SMI_MDC, SMI_MDIO, PCIE_PERESET_N,
+-                   PWM_0, GPIO_0, GPIO_1, GPIO_2, GPIO_3, GPIO_4, GPIO_5,
+-                   GPIO_6, GPIO_7, GPIO_8, UART0_TXD, UART0_RXD, TOP_2G_CLK,
+-                   TOP_2G_DATA, WF0_2G_HB0, WF0_2G_HB1, WF0_2G_HB2, WF0_2G_HB3,
+-                   WF0_2G_HB4, WF0_2G_HB5, WF0_2G_HB6]
++            items:
++              enum: [GPIO_A, I2S1_IN, I2S1_OUT, I2S_BCLK, I2S_WS, I2S_MCLK, TXD0,
++                     RXD0, SPI_WP, SPI_HOLD, SPI_CLK, SPI_MOSI, SPI_MISO, SPI_CS,
++                     I2C_SDA, I2C_SCL, I2S2_IN, I2S3_IN, I2S4_IN, I2S2_OUT,
++                     I2S3_OUT, I2S4_OUT, GPIO_B, MDC, MDIO, G2_TXD0, G2_TXD1,
++                     G2_TXD2, G2_TXD3, G2_TXEN, G2_TXC, G2_RXD0, G2_RXD1, G2_RXD2,
++                     G2_RXD3, G2_RXDV, G2_RXC, NCEB, NWEB, NREB, NDL4, NDL5, NDL6,
++                     NDL7, NRB, NCLE, NALE, NDL0, NDL1, NDL2, NDL3, MDI_TP_P0,
++                     MDI_TN_P0, MDI_RP_P0, MDI_RN_P0, MDI_TP_P1, MDI_TN_P1,
++                     MDI_RP_P1, MDI_RN_P1, MDI_RP_P2, MDI_RN_P2, MDI_TP_P2,
++                     MDI_TN_P2, MDI_TP_P3, MDI_TN_P3, MDI_RP_P3, MDI_RN_P3,
++                     MDI_RP_P4, MDI_RN_P4, MDI_TP_P4, MDI_TN_P4, PMIC_SCL,
++                     PMIC_SDA, SPIC1_CLK, SPIC1_MOSI, SPIC1_MISO, SPIC1_CS,
++                     GPIO_D, WATCHDOG, RTS3_N, CTS3_N, TXD3, RXD3, PERST0_N,
++                     PERST1_N, WLED_N, EPHY_LED0_N, AUXIN0, AUXIN1, AUXIN2,
++                     AUXIN3, TXD4, RXD4, RTS4_N, CST4_N, PWM1, PWM2, PWM3, PWM4,
++                     PWM5, PWM6, PWM7, GPIO_E, TOP_5G_CLK, TOP_5G_DATA,
++                     WF0_5G_HB0, WF0_5G_HB1, WF0_5G_HB2, WF0_5G_HB3, WF0_5G_HB4,
++                     WF0_5G_HB5, WF0_5G_HB6, XO_REQ, TOP_RST_N, SYS_WATCHDOG,
++                     EPHY_LED0_N_JTDO, EPHY_LED1_N_JTDI, EPHY_LED2_N_JTMS,
++                     EPHY_LED3_N_JTCLK, EPHY_LED4_N_JTRST_N, WF2G_LED_N,
++                     WF5G_LED_N, GPIO_9, GPIO_10, GPIO_11, GPIO_12, UART1_TXD,
++                     UART1_RXD, UART1_CTS, UART1_RTS, UART2_TXD, UART2_RXD,
++                     UART2_CTS, UART2_RTS, SMI_MDC, SMI_MDIO, PCIE_PERESET_N,
++                     PWM_0, GPIO_0, GPIO_1, GPIO_2, GPIO_3, GPIO_4, GPIO_5,
++                     GPIO_6, GPIO_7, GPIO_8, UART0_TXD, UART0_RXD, TOP_2G_CLK,
++                     TOP_2G_DATA, WF0_2G_HB0, WF0_2G_HB1, WF0_2G_HB2, WF0_2G_HB3,
++                     WF0_2G_HB4, WF0_2G_HB5, WF0_2G_HB6]
+ 
+           bias-disable: true
+ 
+-- 
+2.35.3
+
 
