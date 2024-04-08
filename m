@@ -1,147 +1,129 @@
-Return-Path: <devicetree+bounces-57231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 164A789CA0E
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 18:50:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA69089CA2E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 19:00:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 458481C23D20
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 16:50:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 446B81F26EF3
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 17:00:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22B2C142E72;
-	Mon,  8 Apr 2024 16:50:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1265142E79;
+	Mon,  8 Apr 2024 17:00:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="Mbjhu4jU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M1/J2Rkt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B4BE1428F7;
-	Mon,  8 Apr 2024 16:49:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7D6663CB;
+	Mon,  8 Apr 2024 17:00:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712595001; cv=none; b=amN41hCq9QE1549vGhjMYUjrZFam/j7nD+YN/0T8/9ck9t+ouIvAkfMZscsEkpFeFTKcA02PvYjZDL83EiX50//6/dR3VMNiNJzTirNluBheEE0oyNvu5aBdC6CHrWYRb7SxwP2bCSPncU4vmoRXwEICDKSA+QLaZZC5AD6pCY4=
+	t=1712595602; cv=none; b=fUhqlAYvSJPZ33NViK3uvyDvE56UiWQf8z6QPGBQdECwXL93jrKe22fXTveERwZW/kCCnqGKXoLkcCG5ag5muupwGD0HFbgN3KcGA7maWzCixal1V8zBceH1lxKFicLH5SMcacGb67KX+4HMDcyVy8fG78/1j7PV6IK9eRwVUXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712595001; c=relaxed/simple;
-	bh=33ya6iAIdhOO+qGkv/GeYEfF192TQ7WZCShCQ0XLBNo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=k7Q96WkUhICVga2E3pigWA1j63+RUvLkjoglR+f4VyxOA0C7/Lk83QHy3YDwv5aBQPWYXPkbrh0YzcW7DPhOSJND0kwEdNPJJ9sBNyWR2k2tDVivna8g0IYqgJM4vS04RAZgHlalFN9rO6Tl2Rn+SH9eKVwd+lmr2qx0q0XQbcI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=Mbjhu4jU; arc=none smtp.client-ip=45.89.224.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id AD415120027;
-	Mon,  8 Apr 2024 19:49:56 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru AD415120027
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1712594996;
-	bh=HZCeDqOWZRFrRmmJb31Zwudz+k5V9qwLfzuWrQFrCr0=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=Mbjhu4jURZzp+med9MOYEhZqXIgEyuvptRXXUaggCCEGe0qvFQqtxIECPMCb09o4e
-	 9U+RLqL4qYCNn5WhVgap/l44esWXeH78j+mYbOz68RQ/ty1a9IVMOSnflfPJhuiMUH
-	 USz3kmZn5u++K7n//jZRMP27/O+bEQHRQI56/FB86sk6gOmkichtCluqUd89Xsy59p
-	 OwQJIP/K5BoU4biD4gdHOxLYzSvewd+E5QbMu+3M+cxoHVZg1q3AR3FCh5izEt4dss
-	 mplv84t39KGU4/ZQIK1PKZFy9sA2b0iRa2Wp9eHlMcJfD3VsesvN70pEe5X3O5yQyt
-	 odkf53me/OI+A==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Mon,  8 Apr 2024 19:49:56 +0300 (MSK)
-Received: from CAB-WSD-L081021.sberdevices.ru (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Mon, 8 Apr 2024 19:49:56 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: <neil.armstrong@linaro.org>, <lgirdwood@gmail.com>,
-	<jbrunet@baylibre.com>, <broonie@kernel.org>, <conor+dt@kernel.org>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>, <perex@perex.cz>,
-	<tiwai@suse.com>, <khilman@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>
-CC: <kernel@salutedevices.com>, <rockosov@gmail.com>,
-	<linux-amlogic@lists.infradead.org>, <alsa-devel@alsa-project.org>,
-	<linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	Dmitry Rokosov <ddrokosov@salutedevices.com>
-Subject: [PATCH v1 2/2] ASoC: meson: implement link-name optional property in meson card utils
-Date: Mon, 8 Apr 2024 19:49:40 +0300
-Message-ID: <20240408164947.30717-3-ddrokosov@salutedevices.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240408164947.30717-1-ddrokosov@salutedevices.com>
-References: <20240408164947.30717-1-ddrokosov@salutedevices.com>
+	s=arc-20240116; t=1712595602; c=relaxed/simple;
+	bh=F/uYNaxS40sMgeapgyTFuu5ZgXbsKvLU68sRwUvp5DQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nH4B0Ewl4tHip9JToNARGgDQnM+Rrk/fFN+3bVtwODc+Gg4wYoS9MRvBmN4vuAF6Q0gMLXpvkYpQPLJp1drd5tCKwuWgJQ3AbpflHgF0Nfd+bigjVXPatCODDtD1pQ99tsFnKsG1ZMYM8WwMX0WzFDq8WFWpAGX5KopN4tYb9Lg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M1/J2Rkt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87AF4C433F1;
+	Mon,  8 Apr 2024 16:59:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712595602;
+	bh=F/uYNaxS40sMgeapgyTFuu5ZgXbsKvLU68sRwUvp5DQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=M1/J2RktfG5kHxBNWr8/izq5bs5OMINTvwhNG8SR5nDCs6pbMIJKo3fIvqCC3ggMw
+	 5BvVkO/6IyybsrO/st3QjoJLiQQiTd7dp0vxTYcdtFIhOsmOLv2gsYYYaz9U/7XHCO
+	 IxCi9KUrGuORgjA5uGJfy4iz+PqQ36eQNIL+stkeQwWm+WFTehkjroHdlBiWAoteEz
+	 8Ewu5cBMSV6Z8ba8ijgth1JyByG439fozXVB5usK2SNJ/5z2kgCxa9Q+m12jlRQDtB
+	 oSelpKIi9UW9IS7IFMMJBzUF5XofUMWl2T899zlDBOtM0l/yG7dnMKhTSBJjD/7UWi
+	 ZXfhxoqjOZXbg==
+Date: Mon, 8 Apr 2024 17:59:57 +0100
+From: Conor Dooley <conor@kernel.org>
+To: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc: Sean Wang <sean.wang@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Hsin-Yi Wang <hsinyi@chromium.org>,
+	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH 3/3] dt-bindings: pinctrl: mediatek: mt7622: add "base"
+ reg
+Message-ID: <20240408-hydrated-swimmable-26cec8823926@spud>
+References: <20240408090506.21596-1-zajec5@gmail.com>
+ <20240408090506.21596-3-zajec5@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 184624 [Apr 08 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 15 0.3.15 adb41f89e2951eb37b279104a7abb8e79494a5e7, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;100.64.160.123:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/08 12:02:00 #24709100
-X-KSMG-AntiVirus-Status: Clean, skipped
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="woQ3kIQkUiTpoflU"
+Content-Disposition: inline
+In-Reply-To: <20240408090506.21596-3-zajec5@gmail.com>
 
-The 'link-name' property presents an optional DT feature that empowers
-users to customize the name associated with the DAI link and PCM stream.
-This functionality reflects the approach often employed in Qualcomm
-audio cards, providing enhanced flexibility in DAI naming conventions
-for improved system integration and userspace experience.
 
-It allows userspace program to easy determine PCM stream purpose, e.g.:
-    ~ # cat /proc/asound/pcm
-    00-00: speaker (*) :  : playback 1
-    00-01: mics (*) :  : capture 1
-    00-02: loopback (*) :  : capture 1
+--woQ3kIQkUiTpoflU
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The previous naming approach using auto-generated fe or be strings
-continues to be utilized as a fallback.
+On Mon, Apr 08, 2024 at 11:05:06AM +0200, Rafa=C5=82 Mi=C5=82ecki wrote:
+> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+>=20
+> Both: MT7622 and MT7629 use two reg spaces: "base" and "eint". It wasn't
+> covered by the binding and also example didn't match incomplete binding.
+> Fix it.
+>=20
+> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> ---
+>  .../bindings/pinctrl/mediatek,mt7622-pinctrl.yaml         | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pi=
+nctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinc=
+trl.yaml
+> index a9ab623b2697..eaa65512161a 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinctrl.y=
+aml
+> +++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinctrl.y=
+aml
+> @@ -19,10 +19,12 @@ properties:
+>        - mediatek,mt7629-pinctrl
+> =20
+>    reg:
+> -    maxItems: 1
+> +    minItems: 2
+> +    maxItems: 2
 
-Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
----
- sound/soc/meson/meson-card-utils.c | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+This should become an items list with descriptions IMO.
 
-diff --git a/sound/soc/meson/meson-card-utils.c b/sound/soc/meson/meson-card-utils.c
-index ed6c7e2f609c..7bae72905a9b 100644
---- a/sound/soc/meson/meson-card-utils.c
-+++ b/sound/soc/meson/meson-card-utils.c
-@@ -94,10 +94,14 @@ static int meson_card_set_link_name(struct snd_soc_card *card,
- 				    struct device_node *node,
- 				    const char *prefix)
- {
--	char *name = devm_kasprintf(card->dev, GFP_KERNEL, "%s.%s",
--				    prefix, node->full_name);
--	if (!name)
--		return -ENOMEM;
-+	const char *name;
-+
-+	if (of_property_read_string(node, "link-name", &name)) {
-+		name = devm_kasprintf(card->dev, GFP_KERNEL, "%s.%s",
-+				      prefix, node->full_name);
-+		if (!name)
-+			return -ENOMEM;
-+	}
- 
- 	link->name = name;
- 	link->stream_name = name;
--- 
-2.43.0
+>    reg-names:
+>      items:
+> +      - const: base
+>        - const: eint
 
+Why isnt the new region appended to the list?
+
+--woQ3kIQkUiTpoflU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZhQijQAKCRB4tDGHoIJi
+0qVCAQDStiQ0FQ3sVsUTP7LLvXFpzx5JiKs1w+Zlv2KOUeKJ7QEA8gTc2psWCnPr
+SUjNx1TwH3zr3xRMwWjtIkIsF2gMGgs=
+=xevL
+-----END PGP SIGNATURE-----
+
+--woQ3kIQkUiTpoflU--
 
