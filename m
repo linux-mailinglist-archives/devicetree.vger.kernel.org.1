@@ -1,158 +1,139 @@
-Return-Path: <devicetree+bounces-57193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 931D089C781
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 16:51:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 086C689C7A3
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 16:57:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4808128584B
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 14:51:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D63D91C21BCC
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 14:57:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3591C13F00A;
-	Mon,  8 Apr 2024 14:51:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1511613F42F;
+	Mon,  8 Apr 2024 14:57:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QP+n2FXG"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="cHwhBQaa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2B381CD21;
-	Mon,  8 Apr 2024 14:51:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB8FB13EFF3
+	for <devicetree@vger.kernel.org>; Mon,  8 Apr 2024 14:57:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712587893; cv=none; b=iWLOEHyjBW5whBckIpG2tf2x3CToaSl80EoFOCE+zug9zJSdOzJz3CoE1gkGb52EAIUojRZ5tdqd1jYWuU/UpT7h5M5/uCv6F431+7bJUhc266eyNQLtFZ8JnFqWlMO3Ij15kNApQmfsmoh6pqMCrEey74+gjO//jxlRyRxuAWg=
+	t=1712588235; cv=none; b=j/mYdMfWmM/iUxfwGSFQPr14ROLjAvl/EBbMHH3WksXjMnVDTuMz/vbC5/l0CEyj5++DWUrJ0XQL4q6noKwFiq+sDcKnlvQjNS2dXdObhDL5eFKDsO9jN9cA2K92O/+GGUBJxyGVKq7uBI0WPVHmviE1wz2/mCaaeOOwre5wgMQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712587893; c=relaxed/simple;
-	bh=Q72eGkMQIkbUraoQjSqOSGcDf1l8YhSQtcDUSUpsuyo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mkoTnIR3DmMIRgMhonrc7oqmDuoVl3S+kRB/x00sBW8vjIVdoVNZEAoRosjRgsMqL7qHI2Y7QL8LCQ32ZrGnp85+2v4ob6kfpR/POlcWkWcDQb1AEOhgSXhJWpL1z8yfHRWq51CrKTdzYtVRDEvWls6uUHd1Fvq5GDsNLBFDLcc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QP+n2FXG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 818A7C433F1;
-	Mon,  8 Apr 2024 14:51:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712587892;
-	bh=Q72eGkMQIkbUraoQjSqOSGcDf1l8YhSQtcDUSUpsuyo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QP+n2FXG8CIeuo6RXVpKpHkZfGE+1aDoiNTNwH+a1ISHlWe2VGLtqnc8FJUHN/5tj
-	 22ni8Jhd0P7gioR8Ojv9m4wUqvV3wLxVtv5Hd6lDo9tnkzhuUYpejfbnamTk8MUji1
-	 GV2zYsfxceR8NjliZ++hnXAQnU4WUAAXOwM8mm06QVDnan+RluzQjJ18F9kS3FzBxQ
-	 vEsm9XoO+1trbI36nvYhnjbKzEJacE5MNTqFeFy+u4zH/gymoE3juoAF5qR8wkrVfJ
-	 2zTc9uqC5tWxu1nd9vDR8KX9tso1DvjstI40v4/ojGXSpzkxG3/y0m4fvTgriDVyGw
-	 4FDd6OCZTILZA==
-Date: Mon, 8 Apr 2024 15:51:26 +0100
-From: Mark Brown <broonie@kernel.org>
-To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Vaishnav Achath <vaishnav.a@ti.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Rob Herring <robh@kernel.org>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	Gregory CLEMENT <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>
-Subject: Re: [PATCH v2 05/11] spi: cadence-qspi: add FIFO depth detection
- quirk
-Message-ID: <66bf7d58-a726-49ba-9765-f769f6189310@sirena.org.uk>
-References: <20240405-cdns-qspi-mbly-v2-0-956679866d6d@bootlin.com>
- <20240405-cdns-qspi-mbly-v2-5-956679866d6d@bootlin.com>
- <551bea0a-1c9e-4e04-87db-c643fdaee85e@sirena.org.uk>
- <D0ETH1AG1ONG.1M1FPSZM69H0Z@bootlin.com>
+	s=arc-20240116; t=1712588235; c=relaxed/simple;
+	bh=ZL5WxRd6xX5YwWDXJ0UNj1PKwdcUln7meecPcR7SOyc=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Xn8muNYUfQnNp/AxjP7JSClrIPYmujRJO7D56QcmNYevgyR93BR1PWDKy31g3dzuu9dbtHNjz5VXlswKxNoWhm7CHx04caXMU6n7l7FZZZQS1iv+CV2HTHIjlbZMqVVDNKpj8nAugLL8gY2GJAPoJaPUPOlTpaSOVjdkGHKlPkA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=cHwhBQaa; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: References: Cc:
+ To: From: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1712588227;
+ bh=Vrqed05exdnqCvLdsEGiIF00ILNQUOlq51lQmfBBM8s=;
+ b=cHwhBQaa94tEYSoDZUSED06sXUlf1O7V2Iq3tWYOej0f4c6whydMrhWFlEg+8aZxvuo3WVDpW
+ sNsV+B3plUjuWUjaK6FuHb5XU8D4bwjCONjLsLBy6dekfVnUQJesjygtAdqOVVvQgcmsMmUe9f+
+ KstEVBP5JkieE9k/bWIOHG8yFva52i8tVtLbfeTPsVf+zORvR9ViFfVewiZZt6kGRGrLU+nlj9C
+ 2AlA/eG3cRrqi+d3L3/7mqmHgqSFdgbH/nwAl3OmpImuJRNUR8XwtpnPiNGlOx0iaHY76dRdCY+
+ z1SWM5h1X+Hm0bNu+qbdlbVVgdg6fme0/OMmJRM5RClA==
+Message-ID: <b32c284e-f3ec-44b0-abbd-7fa403bc9870@kwiboo.se>
+Date: Mon, 8 Apr 2024 16:56:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Md8nckiub8eKqQle"
-Content-Disposition: inline
-In-Reply-To: <D0ETH1AG1ONG.1M1FPSZM69H0Z@bootlin.com>
-X-Cookie: Drive defensively.  Buy a tank.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/1] arm64: dts: rockchip: enable onboard spi flash for
+ rock-3a
+From: Jonas Karlman <jonas@kwiboo.se>
+To: Chukun Pan <amadeus@jmu.edu.cn>, Heiko Stuebner <heiko@sntech.de>
+Cc: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240408124005.182565-1-amadeus@jmu.edu.cn>
+ <421ab43b-ff92-41c6-9904-3c7681c926be@kwiboo.se>
+Content-Language: en-US
+In-Reply-To: <421ab43b-ff92-41c6-9904-3c7681c926be@kwiboo.se>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-ForwardEmail-ID: 661405c13464f70b49a230b8
 
+Hi again,
 
---Md8nckiub8eKqQle
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 2024-04-08 16:44, Jonas Karlman wrote:
+> Hi Chukun,
+> 
+> On 2024-04-08 14:40, Chukun Pan wrote:
+>> There is a mx25u12835f spi flash on this board, enable it.
+>>
+>> [    2.525805] spi-nor spi4.0: mx25u12835f (16384 Kbytes)
+>>
+>> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+>> ---
+>>  arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts | 12 ++++++++++++
+>>  1 file changed, 12 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+>> index a5e974ea659e..d8738cc47c73 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+>> @@ -757,6 +757,18 @@ &sdmmc2 {
+>>  	status = "okay";
+>>  };
+>>  
+>> +&sfc {
+> 
+> This is missing:
+> 
+> 	#address-cells = <1>;
+> 	#size-cells = <0>;
+> 
+>> +	status = "okay";
+>> +
+>> +	flash@0 {
+>> +		compatible = "jedec,spi-nor";
+>> +		reg = <0x0>;
+>> +		spi-max-frequency = <50000000>;
+> 
+> At least in U-Boot the spi clock only support 24, 100 or 200 mhz and I
+> am pretty sure the spi flash support 100mhz, so I would suggest you test
+> with 100mhz, same as used on other rk356x boards.
 
-On Mon, Apr 08, 2024 at 04:38:56PM +0200, Th=E9o Lebrun wrote:
-> On Mon Apr 8, 2024 at 4:10 PM CEST, Mark Brown wrote:
-> > On Fri, Apr 05, 2024 at 05:02:15PM +0200, Th=E9o Lebrun wrote:
+Sorry, looked at spi clock instead of sfc clock.
+sfc clock support 24, 50, 75, 100, 125 and 150 mhz.
 
-> > > +	if (ddata && ddata->quirks & CQSPI_DETECT_FIFO_DEPTH) {
-> > > +		cqspi->fifo_depth =3D fifo_depth;
-> > > +		dev_dbg(dev, "using FIFO depth of %u\n", fifo_depth);
-> > > +	} else if (fifo_depth !=3D cqspi->fifo_depth) {
-> > > +		dev_warn(dev, "detected FIFO depth (%u) different from config (%u)=
-\n",
-> > > +			 fifo_depth, cqspi->fifo_depth);
-> > > +	}
+Regards,
+Jonas
 
-> > It's not obvious to me that we should ignore an explicitly specified
-> > property if the quirk is present
+> 
+> For U-Boot I have used 24 mhz for rk356x boards not defining a flash@0
+> node in linux device tree, such as the rock-3a board.
+> 
+> Regards,
+> Jonas
+> 
+>> +		spi-rx-bus-width = <4>;
+>> +		spi-tx-bus-width = <1>;
+>> +	};
+>> +};
+>> +
+>>  &tsadc {
+>>  	rockchip,hw-tshut-mode = <1>;
+>>  	rockchip,hw-tshut-polarity = <0>;
+> 
 
-> DT value isn't expected for compatibles with CQSPI_DETECT_FIFO_DEPTH
-> quirk, therefore we do not ignore a specified property. Bindings agree:
-> prop is false with EyeQ5 compatible.
-
-Sure, but it's not obvious that that is the most helpful or constructive
-way to handle things.
-
-> > - if anything I'd more expect to see
-> > the new warning in that case, possibly with a higher severity if we're
-> > saying that the quirk means we're more confident that the data reported
-> > by the hardware is reliable.  I think what I'd expect is that we always
-> > use an explicitly specified depth (hopefully the user was specifying it
-> > for a reason?).
-
-> The goal was a simpler devicetree on Mobileye platform. This is why we
-> add this behavior flag. You prefer the property to be always present?
-> This is a only a nice-to-have, you tell me what you prefer.
-
-I would prefer that the property is always optional, or only required on
-platforms where we know that the depth isn't probeable.
-
-> I wasn't sure all HW behaved in the same way wrt read-only bits in
-> SRAMPARTITION, and I do not have access to other platforms exploiting
-> this driver. This is why I kept behavior reserved for EyeQ5-integrated
-> IP block.
-
-Well, if there's such little confidence that the depth is reported then
-we shouldn't be logging an error.
-
-> > Pulling all the above together can we just drop the quirk and always do
-> > the detection, or leave the quirk as just controlling the severity with
-> > which we log any difference between detected and explicitly configured
-> > depths?
-
-> If we do not simplify devicetree, then I'd vote for dropping this patch
-> entirely. Adding code for detecting such an edge-case doesn't sound
-> useful. Especially since this kind of error should only occur to people
-> adding new hardware support; those probably do not need a nice
-> user-facing error message. What do you think?
-
-I'm confused why you think dropping the patch is a good idea?
-
---Md8nckiub8eKqQle
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmYUBG4ACgkQJNaLcl1U
-h9AL0Af/U7DCdZKJHDJmT8nlFD+XSvXWPLfX3HQFd2vtIKE3B0P62gaA4Y0k2PYv
-AenR0tZ8/6pQ+1Vgc3jfiS7rteofgsrHjw9OK/h4thSLtXP3GdVCssNFxuS2ue5n
-khD+CU8XXcUDzcSdwIF6O08/td5vVhTZIwk6VH3K4RgbVew3CzNOGZfxa8Tl5iRP
-hTvjIBi8jURysKSBVkhTi8S7v1tvEmW3F841jIUESMaZ9rD/mOaQPnFc6f9f4eHW
-rgvXHkoII7vrdVCtKTgCpXMB0xPu6J0wTWdS1z+7gFrR+elfQLJqU9QW/OspLpLT
-ztkc6DBUNfEJW4GV+qjZ+lBaOmflpg==
-=jfLC
------END PGP SIGNATURE-----
-
---Md8nckiub8eKqQle--
 
