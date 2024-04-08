@@ -1,103 +1,118 @@
-Return-Path: <devicetree+bounces-57240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 066A789CACC
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 19:28:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 278F389CB50
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 19:57:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E98BC1C24C02
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 17:28:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B27D1C21906
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 17:57:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AFF3143C56;
-	Mon,  8 Apr 2024 17:28:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBF2C143C7D;
+	Mon,  8 Apr 2024 17:57:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="EF2fNNRo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kvbLmrdO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA79C7460;
-	Mon,  8 Apr 2024 17:28:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A8DF1E489;
+	Mon,  8 Apr 2024 17:57:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712597305; cv=none; b=UNI3cyNxTqiAHJaPByWlMIJju2dSv8xVUENYgbC9x0X/V4trGuc/KsEFQnevpHTRfQAReSkjlv6IWNQjavkbrTiKX2ENrffB3m3C2kaBEwNL/039oBhz554uImz/RKf1Kgg54u4TZLkPLSc4BbjCEw97AhOolDVmbsGN2Zc03/I=
+	t=1712599064; cv=none; b=CcW2EOSVPa9Xw8KYIyeRVMNq7Bli5tt5sXITVzx329Jb/KRKwvZuaHHB8ejU3IJUYccEjwXaztwkr4iMyJza9GKY2IgKlzbCT22BvJUwF2hRMrOCoXp9Bj7e1WQw/ywsWWdXe3GuIpCoaLTqw+6V8oqEWkgsJS+VtW18yegS7lw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712597305; c=relaxed/simple;
-	bh=KK8GiSvFSo2V8qUPnqrwK3403k5I7vbDgJq4v/eqDhE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SbUF8ZdlJd1D637izanEpzICs+7G40YlRfuCEGq3yTgnQA81xzHn9JkPDTpuqi0+e/+WJQ5NAW9BYxALdWhGtAQhkrUtmIh2G8SBHa1L8EPHOaO9kY3AhhLn2MmktLwAE7mPLbfyQ3IcTegeDQ+F5Bm/2yYjr0F4fBmjGWLdToI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=EF2fNNRo; arc=none smtp.client-ip=209.85.215.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-5d8b519e438so3596605a12.1;
-        Mon, 08 Apr 2024 10:28:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1712597303; x=1713202103; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KK8GiSvFSo2V8qUPnqrwK3403k5I7vbDgJq4v/eqDhE=;
-        b=EF2fNNRoXZnr9j1nOoBTEXaBjHpdFiVUMb49JXbx0MW12waqoyw3ZCCwiy34TKpqQB
-         onbomXKvo4DSh2/3fS39oa99exR0nxl8zc08vtm185fiCrC7LtR9fwg06vKDJt90U7xs
-         fqKllRjCX07yDr3nJUDnTW42ZlcbA54BBv/gN/jY4hB2zj3xalhdmGkF0YPcKs4NQy/k
-         E3jQgV38mX8vpkazifYsmSWeUz2HZlLBkMMOWIgSv6y9h4ie9BYQabtGTV56jzrNjuzi
-         ol7IHs4P25rcW2jpckey90bk2pcaTY7AOnNA6pRiP0blgpRBWjL4ipvL47VFXwagUUgO
-         pzhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712597303; x=1713202103;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KK8GiSvFSo2V8qUPnqrwK3403k5I7vbDgJq4v/eqDhE=;
-        b=eDREM0ngLVxbq2xd2d7MDzKVI4BpHTPQYsSwmmT+le5QQznD/zYA3n8sAlUX7grzL+
-         x8knKtSAVZLZzbe7x2n/qC71dVzcHW1Sv9K+TCtNXp5F2gk72buMXwiqEWnzzzOajsU7
-         GRx4SfCFdRcJizYZXyXKjwk+X5DuBRtIIRd4bfYirsGMGpLYdEAY9mGsYwWcQod/ES+N
-         eEDGOO7TUsMBYCj/ixhpGI7WBI5IHgrEtNfELE08wMiZshsh1QjiRhSIbFc7A4Qc5aa7
-         KVpey+knZcZHoepvU6pCEi0+Nhjvq3jAGU1spcQoYPF8NngE2i0mRsdel5IX38CmAwA4
-         8wSQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXA+YSSxSggcvPwgyZkac/qaL8WYqdfgvKYMFuI/lP6BiEbZ4RK1ZQEE7aT/45K6KlHoIoXKFg4YXRRhnpnQT47iRzD1Lh6XkHh0kBxK2FHCzGN41it+ri61a/Xhe1riEtreDZbGO9x06a456FEGtFR37J+uY3nGw0Huvs6Qv9+Shgv/LUDIQ==
-X-Gm-Message-State: AOJu0YzPfQNuAcnl+L2kvPY8COjsc9We1VJrDMbBpXauLOw1qMO2ayfG
-	r37vGvdiB/40iYtKJ51pd9VUCn4YxG2XGZazGITRmh1gqk+vmorFoLnu5rsokGx5MmcyKbfrIrD
-	/F6eGF7JVtOXZXxezmYCA/ERygVA=
-X-Google-Smtp-Source: AGHT+IFP6Z5pdRwrSLwARLzJ699fJGpW0H4+2+OpwDmZEkfRQGnMSXvUFgpa3p6th/TN1PAwzKX59Po/azxvXbfA8xg=
-X-Received: by 2002:a05:6a20:9155:b0:1a7:49c1:d326 with SMTP id
- x21-20020a056a20915500b001a749c1d326mr7381136pzc.1.1712597303058; Mon, 08 Apr
- 2024 10:28:23 -0700 (PDT)
+	s=arc-20240116; t=1712599064; c=relaxed/simple;
+	bh=38xl/39xHyX9p6uux9sbNynsxqvNDIzxrbqqGV2Ia7A=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=ikV9XBCqbW4QGB1QIY6Zg9NPNw80F6GPzyYz/6asXg4u/0tO4yE3RXE8GQ+DAG0KvY8kXiUYUdTwqiEx1UcU5CthTCBLBnksCkwLWaammQYlFfzxc5Xlparzb7bsDb4Us2KlrjrkXFD/P9GL5t3Gdwh0ktYVjjDkLvyg0Y6D57Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kvbLmrdO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1128BC433F1;
+	Mon,  8 Apr 2024 17:57:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712599064;
+	bh=38xl/39xHyX9p6uux9sbNynsxqvNDIzxrbqqGV2Ia7A=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=kvbLmrdOdq759DeSzwgWiRlTkPEBE3SIzbWhMl/z6apsp8s3PT2iihcbqDfyM1iJd
+	 oNXSiPSmi+to4x/YMcTVwf29lgEGpQQaiuDvePQtYTvmn+cFPzpQALu+aG4Dau97mX
+	 iWTGt1+xlP57k3ojlinjdgD5sHjpudV+RdVNgaSvzTuRoK2MU04ZzYJus8oxzENMjd
+	 Jy73Fh7acaurjtqJh6up+A44I63smoGe23UGXu0RT627biSIMzcz/mdL9lodcUkxJT
+	 sBVLMOMC7Hk01inV77cHw3burUcAoHxYr0t9xtUgfx/xBXLrzRPq9TNJmLxiqRf4He
+	 1N+WveIha/vRA==
+From: Mark Brown <broonie@kernel.org>
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Vaishnav Achath <vaishnav.a@ti.com>, 
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+ Rob Herring <robh@kernel.org>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org, 
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+ Gregory CLEMENT <gregory.clement@bootlin.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240405-cdns-qspi-mbly-v2-0-956679866d6d@bootlin.com>
+References: <20240405-cdns-qspi-mbly-v2-0-956679866d6d@bootlin.com>
+Subject: Re: (subset) [PATCH v2 00/11] spi: cadence-qspi: add Mobileye
+ EyeQ5 support
+Message-Id: <171259906078.120310.15397790336440498713.b4-ty@kernel.org>
+Date: Mon, 08 Apr 2024 18:57:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240401-basic_dt-v3-0-cb29ae1c16da@amlogic.com> <20240401-basic_dt-v3-3-cb29ae1c16da@amlogic.com>
-In-Reply-To: <20240401-basic_dt-v3-3-cb29ae1c16da@amlogic.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 8 Apr 2024 19:28:10 +0200
-Message-ID: <CAFBinCA1XchHvRuFNGeKOrpjzggM_LSNtA5ixn071=MkQvdc5A@mail.gmail.com>
-Subject: Re: [PATCH v3 3/5] dt-bindings: serial: amlogic,meson-uart: Add
- compatible string for A4
-To: xianwei.zhao@amlogic.com
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.14-dev
 
-On Mon, Apr 1, 2024 at 12:10=E2=80=AFPM Xianwei Zhao via B4 Relay
-<devnull+xianwei.zhao.amlogic.com@kernel.org> wrote:
->
-> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
->
-> Amlogic A4 SoCs uses the same UART controller as S4 SoCs and G12A.
-> There is no need for an extra compatible line in the driver, but
-> add A4 compatible line for documentation.
->
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+On Fri, 05 Apr 2024 17:02:10 +0200, Théo Lebrun wrote:
+> V2 of this series adding octal SPI-NOR support to Mobileye EyeQ5
+> platform. It has been tested on EyeQ5 hardware successfully.
+> V1 cover letter [5] contains a brief summary of what gets added.
+> 
+> There is no dependency except if you want zero errors in devicetree:
+> system-controller series [3] for <&clocks> phandle.
+> 
+> [...]
+
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+
+Thanks!
+
+[03/11] spi: cadence-qspi: allow building for MIPS
+        commit: 708eafeba9eec51c5bde8efef2a7c22d7113b771
+[04/11] spi: cadence-qspi: store device data pointer in private struct
+        commit: dcc594aef1bf3a6a49b77ad2c0348d894b7cd956
+[06/11] spi: cadence-qspi: minimise register accesses on each op if !DTR
+        commit: 563f8598cbc246a81d256e0e888dc085504caa90
+[07/11] spi: cadence-qspi: add no-IRQ mode to indirect reads
+        (no commit info)
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
