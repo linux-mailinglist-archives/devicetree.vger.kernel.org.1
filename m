@@ -1,152 +1,124 @@
-Return-Path: <devicetree+bounces-57178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57179-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C58F89C66C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 16:10:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5962189C690
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 16:13:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 63F751C226E1
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 14:10:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1426928512E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 14:13:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43119839EB;
-	Mon,  8 Apr 2024 14:10:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB86485640;
+	Mon,  8 Apr 2024 14:13:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UE7EPjCl"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="DNK1tnJ0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10EFF82D62;
-	Mon,  8 Apr 2024 14:10:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2CA785631;
+	Mon,  8 Apr 2024 14:13:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712585435; cv=none; b=KauFk3My9C7NbaarVEyKTUsorsLs8S23V5pn/0+5y4DXHfMxmjbYnvvqrEl/zAHfZiZgPuAp33yY5CZgRdsHtIvOrEFohtI4zqLk/vWkFken5drB6vWWH4sBd+80PvV/J2kU4kaXVpYu/WIe7+ql5E7N/s7LwhD75XZ+Xo3Blc0=
+	t=1712585622; cv=none; b=EiP5dCPoqxDVXRKiRrcPxTFJFMySxNhNCZXdRQ0rVMnyHU3l0VxrplYmQwhAKbfLQvmpDW8y9F6KotRstMR0Qjj1up02AYmQzDkJOgSzeKpVUpzFSthmFVL2dZ1YNjTdJhH/3YxW5nGdG4ngOemyHhKoaCPjBg1gpJ7QjeS+E2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712585435; c=relaxed/simple;
-	bh=i/IeI3uOGzEG5noySiGDDBuECVA5WT3ZW1ulNIYuqyw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UUg5kmc8Oq6fS9EQiarGFIxgFKEYBINACv+i4mD3eSoOA7Y5IWzzu561DVoakWLRYDnnTJa+ynKeACfF8xdW1kNE6SVNbrCTJ2vg+iRPxeWgwbMxMhhqwpsWhzrMxRDxgZTJ16w82To6a63es7/mKFcESwIh7MxNCtODDEe0Dk4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UE7EPjCl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 748F1C433C7;
-	Mon,  8 Apr 2024 14:10:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712585434;
-	bh=i/IeI3uOGzEG5noySiGDDBuECVA5WT3ZW1ulNIYuqyw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UE7EPjClC2bkA0lXIlpi8pb8hs0uR5e4DiMzoppFcNv3/+dd+Vj1dPFKKuAuQ8IlM
-	 hWzrlBJ5TWVobqIHaX+NUgDSCDYy5rv6BBrbHNu/pswbLWnR+daM5eKukG6KRQOWoe
-	 oTmrD3tj9Tb6vstX+XxLoCB1qFYARjNwUnBDlnJ9yOzW/Fu7355E6wNck+Rv4E+VZg
-	 73TNZoVg7cFwSBzkVD38q2FC5cuG48A8maa7ap1MbKgGKQneG+eyE8t6/9/1AzjTI6
-	 eCKLNIwJTF48B5R7944m5lbK0vYSH4Y7CaejhZZDOlfEQXUTRpbP5Rc8fAcnfjjYiR
-	 UU2BqWdruPVWw==
-Date: Mon, 8 Apr 2024 15:10:28 +0100
-From: Mark Brown <broonie@kernel.org>
-To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Vaishnav Achath <vaishnav.a@ti.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Rob Herring <robh@kernel.org>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	Gregory CLEMENT <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>
-Subject: Re: [PATCH v2 05/11] spi: cadence-qspi: add FIFO depth detection
- quirk
-Message-ID: <551bea0a-1c9e-4e04-87db-c643fdaee85e@sirena.org.uk>
-References: <20240405-cdns-qspi-mbly-v2-0-956679866d6d@bootlin.com>
- <20240405-cdns-qspi-mbly-v2-5-956679866d6d@bootlin.com>
+	s=arc-20240116; t=1712585622; c=relaxed/simple;
+	bh=I5zsylDEGkWc/qvFoHytXDSVWzal++WyZbd86A1gdyY=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=ot4SlQ318hc1I/01ZDLaUJsVM2chzWA6TPFuLH8pgofZ3OBUJe6BlABxZDWUnyQzgf/zmdvvvQh6oBknDIOajAiOI5bpRe7FtyfxmmiPenk65uYXFQcFc6kMP78bZ+zBHe4si6zuqJ3zp0YmAdUq64qzA28UWk5pGCZ+4C+KVls=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=DNK1tnJ0; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="97Qcf0iyghKpwfU3"
-Content-Disposition: inline
-In-Reply-To: <20240405-cdns-qspi-mbly-v2-5-956679866d6d@bootlin.com>
-X-Cookie: Drive defensively.  Buy a tank.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1712585611;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=SHS6uqBrOTBI5KsbzQzo9xNfjnvV1fyVq/BSuRh+mhA=;
+	b=DNK1tnJ0vcDT/7vE5fbelUYIRr4NcVehjQRk/vhVFQEQ4nKScZVebfGcGI2xLWf9NyV8JE
+	2g+j1dFx7ldSSQNViXIxjoLKQ/INonNVN47sl16mrZ6khJx33KOrFhGCWR9p1cIci6b14N
+	hy2tX6ZSF1qisr7kgPFfsUzh/Ajpyp1mW4z6qi0mnEkPFo/AiULzrP6pKGN9a1bWn9DfH3
+	bvr/hgHZQHnNROuFRQoziq1XGVCRWCibMMICzsz5GzMWEygsFf7XSOp9/4pdmsNs+kBPW3
+	1Cffz6DUFmyQ8CjdTS/AXHQY4YN0jv2LDpJV78V5LRhDHFX6OadH2Pp1GgDVfQ==
+Date: Mon, 08 Apr 2024 16:13:29 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>, David Wu <david.wu@rock-chips.com>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH] dt-bindings: net: rockchip-dwmac: use rgmii-id in example
+In-Reply-To: <20240408-rockchip-dwmac-rgmii-id-binding-v1-1-3886d1a8bd54@pengutronix.de>
+References: <20240408-rockchip-dwmac-rgmii-id-binding-v1-1-3886d1a8bd54@pengutronix.de>
+Message-ID: <6d06c3e3f59f26e16fe1f02dc3225d9e@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
+Hello Sascha,
 
---97Qcf0iyghKpwfU3
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 2024-04-08 08:44, Sascha Hauer wrote:
+> The dwmac supports specifying the RGMII clock delays, but it is
+> recommended to use rgmii-id and to specify the delays in the phy node
+> instead [1].
+> 
+> Change the example accordingly to no longer promote this undesired
+> setting.
+> 
+> [1] 
+> https://lore.kernel.org/all/1a0de7b4-f0f7-4080-ae48-f5ffa9e76be3@lunn.ch/
+> 
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 
-On Fri, Apr 05, 2024 at 05:02:15PM +0200, Th=E9o Lebrun wrote:
+I'd suggest that the following link is also added to the patch
+description as a reference, because it contains rather useful
+information:
 
-> Use hardware ability to read the FIFO depth thanks to
-> CQSPI_REG_SRAMPARTITION that is partially read-only. Keep current
-> behavior identical for existing compatibles.
+https://lore.kernel.org/linux-rockchip/2973a2cb1f478031ae6d478c853c33ae@manjaro.org/
 
-The behaviour is not identical here - we now unconditionally probe the
-FIFO depth on all hardware, the difference with the quirk is that we
-will ignore any DT property specifying the depth.
+Otherwise,
 
-> -	if (of_property_read_u32(np, "cdns,fifo-depth", &cqspi->fifo_depth)) {
-> +	if (!(ddata && ddata->quirks & CQSPI_DETECT_FIFO_DEPTH) &&
-> +	    of_property_read_u32(np, "cdns,fifo-depth", &cqspi->fifo_depth)) {
->  		dev_err(dev, "couldn't determine fifo-depth\n");
+Reviewed-by: Dragan Simic <dsimic@manjaro.org>
 
-It's not obvious from just the code that we do handle having a FIFO
-depth property and detection in the detection code, at least a comment
-would be good.
-
-> +static void cqspi_controller_detect_fifo_depth(struct cqspi_st *cqspi)
-> +{
-> +	const struct cqspi_driver_platdata *ddata =3D cqspi->ddata;
-> +	struct device *dev =3D &cqspi->pdev->dev;
-> +	u32 reg, fifo_depth;
-> +
-> +	/*
-> +	 * Bits N-1:0 are writable while bits 31:N are read as zero, with 2^N
-> +	 * the FIFO depth.
-> +	 */
-> +	writel(U32_MAX, cqspi->iobase + CQSPI_REG_SRAMPARTITION);
-> +	reg =3D readl(cqspi->iobase + CQSPI_REG_SRAMPARTITION);
-> +	fifo_depth =3D reg + 1;
-> +
-> +	if (ddata && ddata->quirks & CQSPI_DETECT_FIFO_DEPTH) {
-> +		cqspi->fifo_depth =3D fifo_depth;
-> +		dev_dbg(dev, "using FIFO depth of %u\n", fifo_depth);
-> +	} else if (fifo_depth !=3D cqspi->fifo_depth) {
-> +		dev_warn(dev, "detected FIFO depth (%u) different from config (%u)\n",
-> +			 fifo_depth, cqspi->fifo_depth);
-> +	}
-
-It's not obvious to me that we should ignore an explicitly specified
-property if the quirk is present - if anything I'd more expect to see
-the new warning in that case, possibly with a higher severity if we're
-saying that the quirk means we're more confident that the data reported
-by the hardware is reliable.  I think what I'd expect is that we always
-use an explicitly specified depth (hopefully the user was specifying it
-for a reason?).
-
-Pulling all the above together can we just drop the quirk and always do
-the detection, or leave the quirk as just controlling the severity with
-which we log any difference between detected and explicitly configured
-depths?
-
---97Qcf0iyghKpwfU3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmYT+tMACgkQJNaLcl1U
-h9BRWwf+Nn0TIUbAm2J8N2ADxHV5QvboVoCubMNpoS/qRWdNjo5kgnkbDgAqrTZU
-Ms8Fp3rg41VV9aJw+eP1lypgpPLunatteZi6o4FzmEn5XL1s0K6+fkZ5MKkgBfhW
-H03cNHSc9lhh4CJsYZy9naA+M/yaJC1c6Cjr7pW+h3EQfN2voDa2JG1cbEA1JB7q
-PBKJTq7l7s5gpG/y49WdI4A7c+O4U0Zab36uOffPEypTE1drcZNPWZhJn8Yngv5b
-lzcQzrF6vTaAqFwYG05pCLM8Fmh59SWLoNPseI7RmN+y0VGyHUdrfxVGVreApgYn
-mZo0Eifdsts/a/IPS7iZHNlxo49wtg==
-=xaan
------END PGP SIGNATURE-----
-
---97Qcf0iyghKpwfU3--
+> ---
+>  Documentation/devicetree/bindings/net/rockchip-dwmac.yaml | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+> b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+> index 70bbc4220e2ac..6bbe96e352509 100644
+> --- a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+> @@ -137,8 +137,6 @@ examples:
+>          assigned-clock-parents = <&ext_gmac>;
+> 
+>          rockchip,grf = <&grf>;
+> -        phy-mode = "rgmii";
+> +        phy-mode = "rgmii-id";
+>          clock_in_out = "input";
+> -        tx_delay = <0x30>;
+> -        rx_delay = <0x10>;
+>      };
+> 
+> ---
+> base-commit: 39cd87c4eb2b893354f3b850f916353f2658ae6f
+> change-id: 20240408-rockchip-dwmac-rgmii-id-binding-6166af659845
+> 
+> Best regards,
 
