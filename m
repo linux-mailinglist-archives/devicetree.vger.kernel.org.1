@@ -1,167 +1,132 @@
-Return-Path: <devicetree+bounces-57076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58CDB89BA8F
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 10:44:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A94189BAC8
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 10:49:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7CFD61C219B3
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 08:44:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB9B71C21ACE
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 08:49:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD3CD3A8D0;
-	Mon,  8 Apr 2024 08:44:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 745AA537E8;
+	Mon,  8 Apr 2024 08:45:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="QVUI2r6z"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UAVjRcBe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85DC239AC7;
-	Mon,  8 Apr 2024 08:44:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2B44535B4;
+	Mon,  8 Apr 2024 08:45:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712565875; cv=none; b=B1Fl4C7F284TQoHiK7oxpxgMw/GMpRMrzpojbeVyjAwBxFgxtKMm2EO+F3tdQqA1v37TuahXg4u3+6o/IpKAYWfefI3PPxusAPajAox7HjD7qvhWhdhQWPxTWJ5llpA3iSsCStjQBhht+MJi1smpwZLVFZu34DQXfMr3mPkKX8Q=
+	t=1712565923; cv=none; b=X+c3srxOT0idB5EQpJZMCWrSU9s2MIjIMnQXRtGrvsLkB3KNCUSWjq1L/CNLtNCT6fDn63x/MAsKTKe9BGiO2z2BggeYqjnyxjMKZvcl2W0smAHSf8zB3Ch2hbAL4thZ7QhhuZZrFKfloBVWmuyS9RpaeJC+PoFmnC+uweH4Dnc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712565875; c=relaxed/simple;
-	bh=w/7Cfru1jeu34Q9Vl8j4bBuUInw+tAUevmF63QKFySs=;
-	h=Message-ID:Subject:From:To:CC:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=IRb+TBt/xb5LDxTSJuvZy79fEno6EClpee5X6n9Q9+d6/Dg1fNAB4T9RUnzNVurHfAdzPHyKRb0rsZJpUnfK+rH9DYIWt7hcr+Bx2ChR4K5L1IFbtt41vgVNFneKJ3C9diEaMh2HGi5+CQOM8is21BSqALNplC3zd1H0YbNgdnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=QVUI2r6z; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1712565873; x=1744101873;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:content-transfer-encoding:mime-version;
-  bh=w/7Cfru1jeu34Q9Vl8j4bBuUInw+tAUevmF63QKFySs=;
-  b=QVUI2r6zxjp8yEdQxJ2+LlKe0qCm6/93DKoFvRPHc0kr8JIIYkpMBPkD
-   SuUol+6FUYaHUk/aO/TaXATroPmAifxE8KQ+ZlFF0V5kGSYUgApOhHC/H
-   yhu79hAkO4sglLjALNUrQd6jDqjZJQZTiZIu6aXLQmjZX3t5q1mvpIIh9
-   gwAHJpR+nFMXgoWZguydE7rhI3Kp0QjikOpjTNxRHZV+WgFTGW+N4YbMC
-   vIT3X0XardU0mLmM/1358ADhmiuMNR32vx41OfpzYLqqOwewWwUDkZC5J
-   K8xdBhRRIEv3umm/+qSV0m2UJHnRdfQYwMKPNgqXZDVai7B4YVrIqgaz0
-   A==;
-X-CSE-ConnectionGUID: 8pobTt9vTly9Ld1KhjYNIw==
-X-CSE-MsgGUID: WATcLxsPS9ybzdgc+0gB7Q==
-X-IronPort-AV: E=Sophos;i="6.07,186,1708412400"; 
-   d="scan'208";a="19929239"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 08 Apr 2024 01:44:26 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 8 Apr 2024 01:44:04 -0700
-Received: from DEN-DL-M31857.microsemi.net (10.10.85.11) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Mon, 8 Apr 2024 01:44:02 -0700
-Message-ID: <86852effcded43fa054f5abbde40ba0d56212f67.camel@microchip.com>
-Subject: Re: [RFT PATCH v2 09/10] arm64: dts: microchip: sparx5_pcb134: drop
- duplicated NOR flash
-From: Steen Hegelund <steen.hegelund@microchip.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>, Claudiu Beznea
-	<claudiu.beznea@tuxon.dev>, Rob Herring <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, Lars Povlsen
-	<lars.povlsen@microchip.com>, Daniel Machon <daniel.machon@microchip.com>,
-	<UNGLinuxDriver@microchip.com>, Bjarni Jonasson
-	<bjarni.jonasson@microchip.com>, "David S. Miller" <davem@davemloft.net>,
-	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-CC: <horatiu.vultur@microchip.com>
-Date: Mon, 8 Apr 2024 10:44:01 +0200
-In-Reply-To: <20240405190419.74162-9-krzk@kernel.org>
-References: <20240405190419.74162-1-krzk@kernel.org>
-	 <20240405190419.74162-9-krzk@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4-0ubuntu2 
+	s=arc-20240116; t=1712565923; c=relaxed/simple;
+	bh=nIn/zPewsG9q+wrG7O743ZFUtC6bgOwv5+buBPM+YFQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=EspLQ1jwGVI0ehFb9IIKIvBYZRhUUb44/D9S9cbwBURx4B85YzSVjzH2afYrfmfpOY3CRrrBEW28X5iMW5dxIXhPu5tY0SUDvw53Q8IaoC97mut0qtg5rhu5rsFGSIDPZCVtGVFwBRgtu/gRKqJ3C5AAfGD8u/NlL74oz9p/9IU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UAVjRcBe; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4386dMxB009177;
+	Mon, 8 Apr 2024 08:45:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=wkPa/yuRBAbkzPtrxt9b+AV06OSilI8lIKaafg+mXV0=; b=UA
+	VjRcBeGe437/rmaw+JYZDjRpTQO7nPJVgLvp+NP1YzoZ5OVLk1UiFl25iTbAOKsc
+	fSY+kCxaBQ0iaNug+r+R2xrbzHTGfmBun4B6TKYnWk6SvFohYiSf/3TS8grLQDgo
+	941tT7rgXjCGFPtpe9dgtkfskgEZSlY0eKmsWnjsTisxGsgLKusNkznxdzRzTpry
+	J7LH4UF54xRxlpKGnx7h5mhuEfahR+xtF0QacxU+I2BUVjKOB7m16mnbITPbeOw8
+	pU/8uqyD2LXj8Z3/dQ7ShwY///bJ1UimqIF0xwWI/Yvb93o6CFZR+2a/OhiZDRHM
+	SO3VQofAdYgP54lEey1w==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xcbg307e0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 08 Apr 2024 08:45:06 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4388j4fo010728
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 8 Apr 2024 08:45:04 GMT
+Received: from [10.216.2.95] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Mon, 8 Apr 2024
+ 01:44:58 -0700
+Message-ID: <c2708201-64ae-0e5a-edcc-08b8ad0e999d@quicinc.com>
+Date: Mon, 8 Apr 2024 14:14:52 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [RESEND v3 0/2] Add support for QCM6490 and QCS6490
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Srinivas Kandagatla
+	<srinivas.kandagatla@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
+	<tiwai@suse.com>
+CC: <linux-arm-msm@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_rohkumar@quicinc.com>
+References: <20240408042331.403103-1-quic_mohs@quicinc.com>
+ <67ca18b4-0904-41e4-8218-ecb2016d532d@kernel.org>
+From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+In-Reply-To: <67ca18b4-0904-41e4-8218-ecb2016d532d@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 4T7kCvwu9m1rGFpH5T2dTAgYnEKoJnZb
+X-Proofpoint-GUID: 4T7kCvwu9m1rGFpH5T2dTAgYnEKoJnZb
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-08_07,2024-04-05_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
+ priorityscore=1501 malwarescore=0 phishscore=0 spamscore=0 adultscore=0
+ mlxlogscore=772 impostorscore=0 lowpriorityscore=0 suspectscore=0
+ bulkscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404080067
 
-Hi Krzysztof,
+On 4/8/2024 11:26 AM, Krzysztof Kozlowski wrote:
+> On 08/04/2024 06:23, Mohammad Rafi Shaik wrote:
+>> This patchset adds support for sound card on Qualcomm QCM6490 IDP and
+>> QCS6490 RB3Gen2 boards.
+>>
+>> Changes since v2:
+>> 	- Modify qcm6490 compatible name as qcm6490-idp. Suggested by Dmitry
+>>
+>> Changes since v1:
+>> 	- Use existing sc8280xp machine driver instead of separate driver.
+>> 	- Modify qcs6490 compatible name as qcs6490-rb3gen2.
+>>
+> 
+> Why are you resending 15 minutes after previous round?
+> 
+> Best regards,
+> Krzysztof
+> 
+Found one mistake in cover-letter.
+Instead of qcm6490-idp given qcs6490-idp.
 
+Modified the cover-letter and reposted.
 
-On Fri, 2024-04-05 at 21:04 +0200, Krzysztof Kozlowski wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you
-> know the content is safe
->=20
-> Since beginning the DTS extended the SPI0 in two places adding two
-> SPI
-> muxes, each with same SPI NOR flash.=C2=A0 Both used exactly the same
-> chip-selects, so this was clearly buggy code.=C2=A0 Then in commit
-> d0f482bb06f9 ("arm64: dts: sparx5: Add the Sparx5 switch node") one
-> SPI
-> mux was removed, while keeping the SPI NOR flash node.
->=20
-> This still leaves duplicated SPI nodes under same chip select 0,
-> reported by dtc W=3D1 warnings:
->=20
-> =C2=A0 sparx5_pcb134_board.dtsi:277.10-281.4: Warning
-> (unique_unit_address_if_enabled):
-> /axi@600000000/spi@600104000/flash@0: duplicate unit-address (also
-> used in node /axi@600000000/spi@600104000/spi@0)
->=20
-> Steen Hegelund confirmed that in fact there is a SPI mux, thus remove
-> the duplicated node without the mux.
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
->=20
-> ---
->=20
-> Not tested on hardware
->=20
-> Changes in v2:
-> 1. Remove SPI node without mux.
-> ---
-> =C2=A0arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi | 9 --------=
--
-> =C2=A01 file changed, 9 deletions(-)
->=20
-> diff --git a/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi
-> b/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi
-> index f165a409bc1d..2c5574734c9e 100644
-> --- a/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi
-> +++ b/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi
-> @@ -272,15 +272,6 @@ gpio@1 {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
-> =C2=A0};
->=20
-> -&spi0 {
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 status =3D "okay";
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 flash@0 {
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 compatible =3D "jedec,spi-nor";
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 spi-max-frequency =3D <8000000>;
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 reg =3D <0>;
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
-> -};
-> -
-> =C2=A0&spi0 {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 status =3D "okay";
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 spi@0 {
-> --
-> 2.34.1
->=20
-
-This works fine on my setup now.
-Thanks for the patch series.
-
-For this patch:
-Tested-by: Steen Hegelund <Steen.Hegelund@microchip.com>
-
-For whole series:
-Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
-
-
-
+Thanks & Regards,
+Rafi.
 
