@@ -1,96 +1,101 @@
-Return-Path: <devicetree+bounces-57126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DA3F89BE43
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 13:44:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ABCC89BE5E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 13:49:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 584C62825EE
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 11:44:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F3D1FB22114
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 11:49:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D585B69DFB;
-	Mon,  8 Apr 2024 11:44:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6FB46A010;
+	Mon,  8 Apr 2024 11:49:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b="jvXJB3H0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GHPnomQl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00176a03.pphosted.com (mx0b-00176a03.pphosted.com [67.231.157.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4524269DF4;
-	Mon,  8 Apr 2024 11:44:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.157.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A10869E07;
+	Mon,  8 Apr 2024 11:49:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712576678; cv=none; b=IOn6xhrexg8YNqiBpVLSDLay3bFC9LM0Lg9NUBJhOIJGji/vN34eTsyHv2M7te10LxOfukL+6nicwsfxeChtOGOySScM9trytS4NVJlvltyWhPNvn7EJrMnM2i7HG0/6DrivfzFaXOLEUqXy6eqTCNaG4hVyddlve3ixT+CL2LA=
+	t=1712576945; cv=none; b=EiDXexgZQ8CHXzn7BFfYv8h5MYwW0nMkrMtfVQRGzcl6+zmaCiJSMpQYPuf2dO1crZLaEiPvf4bQpALBk8kK8o7UkCIoj1aehz3QYYbqQCxwvGt1V9910M58vIhQyvErnIZNWbuueM8Aq9CIqtvNiHP08eH69GV8jSDKBDcpUJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712576678; c=relaxed/simple;
-	bh=gfhvyNWSMWsFDpAHxQSNSe8Ks7o5V+5CUEMbz1tB7jg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jeiQ9PdeltJOIPMGsyNb63LCf97qY18Otnjr1FX8NbyTLtJg8zJn6uHgEWbnUTcp10yHWQhhq57Jc4N/KvhbfmPJrzdkiU0m4xotwdCJukM1+fAGXQkR/rbOm9uFXTli6zBq9PwrH8aMhMyL4CpXUiEbTqq4BKFjxi/GDNIlTAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gehealthcare.com; spf=pass smtp.mailfrom=gehealthcare.com; dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b=jvXJB3H0; arc=none smtp.client-ip=67.231.157.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gehealthcare.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gehealthcare.com
-Received: from pps.filterd (m0048300.ppops.net [127.0.0.1])
-	by m0048300.ppops.net-00176a03. (8.17.1.24/8.17.1.24) with ESMTP id 438AxMGo027115;
-	Mon, 8 Apr 2024 07:44:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	gehealthcare.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=outbound;
-	 bh=0zih8xpmKEGXnHl6kNe1okyw+V1Wkzcjhoafj6sdOQ8=; b=jvXJB3H0F3rO
-	C+GYCNCtZWPEuamYLMa4B/+KbiW8eoS3qoCwgT7J9Px0umtcw2S8zHd1rgDRkB2v
-	qk0AAsBSGlm+EQb/z4edS+1e0/JocJ5IfXL4nMffXtMwqByL+wXSxV5yXRKfVUS2
-	/l6JpSkBXRUoMPEjPrhqSHzcpAQZXr7v1lscHexFa3wVOMO619gWvuUet+Qqns7V
-	WFXpNwddj1cBoPndthFBQaED3+BIESml+rw3YzFIMQxpCDcAv04ZKkVag48EOn8j
-	j3i9U3qG3YZ6aX0tZDkU1g4zKcH5FqD+afWmFbOsqpoej6HT8Jsz7oxFjDoUa0y6
-	i2A7R04JUg==
-Date: Mon, 8 Apr 2024 14:44:16 +0300
-From: Ian Ray <ian.ray@gehealthcare.com>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        devicetree@vger.kernel.org, imx@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: imx8mp-msc-sm2s: Add i2c{1,6} sda-/scl-gpios
-Message-ID: <ZhPYkGLM_b5IEKs2@de2cfed78370>
-References: <20240408092449.6-1-ian.ray@gehealthcare.com>
- <CAOMZO5B-vTRSfi=tNc_iZxnxYstL8JJOd_1rMf4ps9WHyfx0GQ@mail.gmail.com>
+	s=arc-20240116; t=1712576945; c=relaxed/simple;
+	bh=5+GW2zqSXOcVY6HLiP1isJnrQthfe56oJBTjTreix4o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ALRsAHRFvju92YjWG3wsIowQjW4WzPU6rfG/6Gtfh2BfQGGViXf7isZf0UHiPgB1796RPq8AY2F1VMypGAPPtgwaMavaPkNYY3T2BJVEwVQZRoiI4R0XpN+ZZyvssEWazENl3S7ycMSHFq0cuSL63vBXzUQJtYgDEVx9rC7OoZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GHPnomQl; arc=none smtp.client-ip=209.85.215.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-5cfcf509fbdso853681a12.1;
+        Mon, 08 Apr 2024 04:49:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712576943; x=1713181743; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GIQh6B6U2unyStwftymRPGVI14zoMCWts9Hg0rctxvI=;
+        b=GHPnomQlBem8id70iVdi7aEg1Gm9/EdrpB+cqs4nnowQlq3yiIbaoCjCNSvjvQvMFH
+         IV1jbxB97S/niZzUeaeksJ28FcdPK8Im2zbBJvdrg+lnn/xPUKepQQ159YWkiYM1jQ/C
+         gyPdD7S6INMhHDLO/JP+yYg9bfpHJVR8KlRehTjPetwma2thmpNpjiOdbjUjPnqhhwW9
+         QOgrNCfW30RVCYrcDOAARPzzKWXhax9QsyyBS5wnvVw/ErmeyzwEwdbNFNdUCUtYWl4b
+         fhH/B0hUSGunSOC1d57e4oeLRXqa4XpQgVh/N5t5KGGqRJAh6yFO4oyb0EpiHZAXRybr
+         2ryw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712576943; x=1713181743;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GIQh6B6U2unyStwftymRPGVI14zoMCWts9Hg0rctxvI=;
+        b=xG17UAi8aLaiGhiojSqBquIN3AnHhOaHetcqzcKKNJpQhmoYpkc3CD6WhF9in2nPuw
+         G21cP9iHioDpQ26i/ub37kfDFKjqpC+0hXrvc/S/znXCFx8cQ2QZ9vngXbFsAv2czxMy
+         fuLcmOrxV7BxrsTkFx/yoKVJN3FqRYo4lGnnigokds3ITYhxo7Ww7BmZA+6v+VHlLeey
+         IL8IHT1V1RKvkGVe0G9lVMubmibLvu9SnLX1wN79A+6bsP55Tz4+rElfspS7MOhRdCIE
+         ahZc1rObeTT72slhgEmJ+Wjzw9V+oJ5c9d3F22/FqXLW8SHqTGEhOZ65b6/TwXVsdAc9
+         zUlg==
+X-Forwarded-Encrypted: i=1; AJvYcCVg9xDD4svGrFjMthhLps8gzDR0L6fxZdJL4m+u2bGhxOrmUjTcQqChzqNOy+XoKXSEXbIFjk4FGV20A3WUiuBO+SF8FneWbmplAqDMX/U6L3GeXJbcfQ3itnkmAL2y5p5XvbPWwvFI3Q==
+X-Gm-Message-State: AOJu0Yxx2t0k+yV2cNhlh/CzZ+2vhwaUm/C5hl7U8ch9DvSllcRF/sX8
+	KUaX9uRqwuUt9KzhwAHZeOIpKr6K0p0XjLy2OPiAU4CEzpVC0ri46CaG2lnMdmpAm7M4eDrQ9NJ
+	Zmt9VnChFql9sHD8LSQvpQqxOAwk=
+X-Google-Smtp-Source: AGHT+IHth8BZ/ZebZFfLxBn0WT6zE10ZV962hJtv6q7226AlZXO+232Jcw6YYySMzlV1ysO95yXj8UyPZtQEfm3p3vs=
+X-Received: by 2002:a05:6a20:6a14:b0:1a7:c66:121d with SMTP id
+ p20-20020a056a206a1400b001a70c66121dmr11270850pzk.3.1712576943546; Mon, 08
+ Apr 2024 04:49:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAOMZO5B-vTRSfi=tNc_iZxnxYstL8JJOd_1rMf4ps9WHyfx0GQ@mail.gmail.com>
-X-Proofpoint-GUID: brSlaN5MVC5iMwCbTOYnKpnHovP73Aic
-X-Proofpoint-ORIG-GUID: brSlaN5MVC5iMwCbTOYnKpnHovP73Aic
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-08_09,2024-04-05_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=677 adultscore=0
- malwarescore=0 clxscore=1015 phishscore=0 priorityscore=1501 mlxscore=0
- impostorscore=0 lowpriorityscore=0 spamscore=0 bulkscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2404010003
- definitions=main-2404080089
+References: <20240408092449.6-1-ian.ray@gehealthcare.com> <CAOMZO5B-vTRSfi=tNc_iZxnxYstL8JJOd_1rMf4ps9WHyfx0GQ@mail.gmail.com>
+ <ZhPYkGLM_b5IEKs2@de2cfed78370>
+In-Reply-To: <ZhPYkGLM_b5IEKs2@de2cfed78370>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Mon, 8 Apr 2024 08:48:51 -0300
+Message-ID: <CAOMZO5CaOYt72pZJ7fsdQgz3Vz=G+WXNE==ZO7nC32M3oBCKxQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8mp-msc-sm2s: Add i2c{1,6} sda-/scl-gpios
+To: Ian Ray <ian.ray@gehealthcare.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Apr 08, 2024 at 08:31:53AM -0300, Fabio Estevam wrote:
-> 
-> Hi Ian,
-> 
-> > +       pinctrl_i2c1_gpio: i2c1gpiogrp {
-> > +               fsl,pins =
-> > +                       <MX8MP_IOMUXC_I2C1_SCL__GPIO5_IO14              0x400001c3>,
-> 
-> The Sion bit is unnecessary in the GPIO mode so you could pass 0x1c3 instead.
+On Mon, Apr 8, 2024 at 8:44=E2=80=AFAM Ian Ray <ian.ray@gehealthcare.com> w=
+rote:
 
-Thank you -- I will submit a V2.
+> Thank you -- I will submit a V2.
+>
+> Would 0x1c2 be more correct?  From the IMX8MPRM.pdf, it seems that the
+> lowest bit is reserved.  Example: 8.2.4.158 SW_PAD_CTL_PAD_GPIO1_IO05
+> SW PAD Control Register (IOMUXC_SW_PAD_CTL_PAD_GPIO1_IO05).
 
-Would 0x1c2 be more correct?  From the IMX8MPRM.pdf, it seems that the
-lowest bit is reserved.  Example: 8.2.4.158 SW_PAD_CTL_PAD_GPIO1_IO05
-SW PAD Control Register (IOMUXC_SW_PAD_CTL_PAD_GPIO1_IO05).
+Yes, good catch. It is better not to write to the reserved bit 0, so
+0x1c2 is preferred.
 
