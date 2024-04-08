@@ -1,122 +1,155 @@
-Return-Path: <devicetree+bounces-57115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71CB489BD8E
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 12:51:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ABDE89BDB0
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 13:04:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D2D5FB22CE8
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 10:51:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 64EB71F225BE
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 11:04:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32C7F5FBBE;
-	Mon,  8 Apr 2024 10:51:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 095E4627F8;
+	Mon,  8 Apr 2024 11:04:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BJWCO4Fb"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="QUnnJn8p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83A245FB8F;
-	Mon,  8 Apr 2024 10:51:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28AB75F861
+	for <devicetree@vger.kernel.org>; Mon,  8 Apr 2024 11:03:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712573510; cv=none; b=sGqvGrOMU4ygNFm8INWqJ8LeTQIExiyFA0SI2Z4QpxakfmXrMl4c3twZpbuTZgWTNJrDdQftxUydbQJuEcV2+V4qSmHAbJraenvuQPJFa9QCEkWvRY/cEf4ZCV1cyikVZBRrPigTZ5ahiz4xm08aZ0m1zwBsDYq9+Ma3tuU/4hk=
+	t=1712574239; cv=none; b=NMVAXuPY5wlqasJpCrPjs5oJnn6MIyBqGUHCKYl72z6hqHdFMBY75SIwDWbsBuHAu11o+PpzGCPGEAxjBfUk5XzvUIzWTDJvFcitWPyxbqhwOl/+TGJVKtDtpo8M0mhpI5kuUG3EOxyLDgA+y7vB0A3MT1s9jTRiFgMK9eL5xHU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712573510; c=relaxed/simple;
-	bh=9X/0Xkb2EobpjkKVIk+F7u1iUf/T7Y4THZ6no1pu/Kk=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=k6CNkCfTlqe/Iy8qSUabYYmF4NgkaYujp/OY+8TPBpIPBJOPHB6Rg5G//nZTx5FTaKgQwmV+lxD8Y22nseYHwcGZ4dp+Qw9OoHkXU7DR+8WcmScWxGQ3i3VpjQR4gonX5lSDkRzjMNJ5wJF9UrPni9VW52jl9kbjA2lj7q9lBuY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BJWCO4Fb; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5684db9147dso5690778a12.2;
-        Mon, 08 Apr 2024 03:51:48 -0700 (PDT)
+	s=arc-20240116; t=1712574239; c=relaxed/simple;
+	bh=wkKRyt/Vw/5zc5dlJy0JHXCMpR/2OfytD1MG2A8RMO8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WAIBQ2viy8Hh97QeTUdNdKV2+wVeUle9BRAseiLL7arM6WbwL+4UeQTX1ZecxWBmtX9xzQzijXkP0X3lK7WjV8M4DEOCAn0q3w38Ga45nwvSvaQpHw44M0OvR/gDVmthO0qX5pWRyg+ensQMzKaDQU9xJ9oTINGKOb3vfVlsWIE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=QUnnJn8p; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-56e1bbdb362so5218693a12.1
+        for <devicetree@vger.kernel.org>; Mon, 08 Apr 2024 04:03:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712573507; x=1713178307; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=BgMBOXWSUTk2V625cFtn0BP+aJZnfiCckssn4N/MuIc=;
-        b=BJWCO4Fbb9XODGGIpgZVNxQ7kKxIT+cIA+cUk7I5GxMxo/J2xHX+QOiwtvlwW8Ovx8
-         TRGrejCeyRvBm9v0+kFz4o8+9aoKc2TX0EAfCnJAx/N0Mj91+5zWBx7DZ7umIm5rN8kP
-         WtO1JtA05gkmMY7viFYr92c7wYC+krGzI0/uKCGo7GyA/gRfP3gG57Sy1psEPS+kv3V+
-         NGJhxMCaRuugrojRze/twLO/l43YoDQgy67Mmcwcn3Vj8IDEOmN30ysMfvKBa8co6DL3
-         N2yDsiPqFePyxQV86Rp2l5JH11Gsb4v+PdEDxz+0mRQ4dNPiU6UjsD9s8JAztUWdg8NW
-         SfbA==
+        d=ventanamicro.com; s=google; t=1712574236; x=1713179036; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=4g1Fe38jasdHywEL2euSnsmLnhOpgJ82XZytSUr/W9Q=;
+        b=QUnnJn8pEBYu+zh4J/NCAw2trUTPY4j7dqg1dvLrnb7kRyq47WMMmXmsPGkDqeCqam
+         5qSVvM/tQNajw1Tbw2wJ3UXlD30gyrnfkchtL3WmvUS9z1oAWL48DGwoIW0GG284ZFzF
+         2nn6O9pXtb2isRu1dwwWA7md9vFurJiOfbQHT87T/K4yFdO/WSPp/Ma7LFomKR0piXNa
+         YMKyTmZhMaD7vxSqW3eBqJzaYu6AeglocNS+UxJ+NxfsNJzcPdGTCDBkN8/JlFbZtkif
+         Err7zcMtdQTnJCj8fmn1PT+otC5l8H2OoxV5lto8v3CQLmNvp/0KbpCw0eil8FHz6w/N
+         m1xQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712573507; x=1713178307;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BgMBOXWSUTk2V625cFtn0BP+aJZnfiCckssn4N/MuIc=;
-        b=FD3anUU9vDbZVzsTkuugr5MdleIbTEERp3RbZVO1V9G4++OhRv5OA3kAovNgTAvDw8
-         CuAic/EqzJ/uHX/SQlogU3i5y+RcVoKyc+RRBDOMF4wSRCQI2fEAcqmV/HwnusFnPonj
-         PfLuOvpFa0l/gKlggC91TdOGnWTVdur31ZjFAwC+TODRS14ozMHvFp1/w8nVde9DOyFG
-         55hwJY0JdjITO8afSLnvXbdQlZWrYPL4lZAADx97BeR/EGyX7bBuVpkoeqJIdX5b4QlR
-         L4eDgFJEkljnqWZxNON6sz8vVIiMt2G+mqsFlCp1v5P+wBevYhgY79GEIhRJKqH2/7jC
-         8heA==
-X-Forwarded-Encrypted: i=1; AJvYcCX4KoqVH3CLD4ZGhHbQT+Qd6SV2cb9cgieEauKRQ2ltydHaIAaWhlOE286kN4aykS2ix3JUUVQxNDwMlMPaicQ/Wc6Yj3r3hO+YBPMoaxuA8WKSwAtB8w+ge+IrmJo44eCiCF7x36U=
-X-Gm-Message-State: AOJu0Yz2q2dQb1RGeWsEj0M2DxBfcfy/2hZof2fwsxaSL5gWGxfuxXpX
-	rRUEJ7hhJsaqRsGS3xstZg6S4X9pWVsqgW19BLQAFJFeFNzMw9mj
-X-Google-Smtp-Source: AGHT+IF1/ugf/K7uAP7APr+QbAPjgDSfGk4792+1LeuVHIJk9kuAxqHXAOJRMldWYia02ufJj3Ks0w==
-X-Received: by 2002:a50:c003:0:b0:566:fbf5:a279 with SMTP id r3-20020a50c003000000b00566fbf5a279mr5312382edb.20.1712573506521;
-        Mon, 08 Apr 2024 03:51:46 -0700 (PDT)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id c9-20020a0564021f8900b00568c613570dsm3983900edc.79.2024.04.08.03.51.44
+        d=1e100.net; s=20230601; t=1712574236; x=1713179036;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4g1Fe38jasdHywEL2euSnsmLnhOpgJ82XZytSUr/W9Q=;
+        b=aOxja1JHHlJXBTFKGwb9x3+rYZXmu6q7s3MqlaNF4/xhfMn899Esn8wT9qWT9VRljc
+         xBGeZP7gEpZBQ1BntpVpYqbC3HdkDchF56k+w4960VIR8VvUR9+glyE2VDfgv94qGSXc
+         p9s8qhfT/BDQpw2cal+FdQbd28dKYpaizAz1S1PGrYSb+Bm79I7XkzuUIS6BVoiG3R8v
+         0p40pY+Q7/WiWohXE5FF3mP8PegZHP1uWkttXsH5rILmPzfSI5WWVA7IqcFfQC8jpZBr
+         hrZ5dU+uiwbKFon9vM/lTi4eZtpwAZnIVj6mMSOQMDq4cwSguqWuQmH2j+9LCwdPp/Ah
+         qipg==
+X-Forwarded-Encrypted: i=1; AJvYcCUr7FBi3jitX5w5zH5j4b96sBjb2x/24nqA4AjrXhN1MsjQX9mJv568H1oYidg0ptgkiEAzwm39qkwgD8XDqiKB8tsMnHFoykHJKQ==
+X-Gm-Message-State: AOJu0YxsenbL/EogpE6bQ4zrNYFQ8NSNm0/SrLI6C4CvMxfRDmb+zYHi
+	MJqjaQe48e8y6NHl98tW2fOB8ZLj7pXFxWdwerCfvkGn06+peWJZxkaSqTyH648=
+X-Google-Smtp-Source: AGHT+IGnIHRj0+4dG4NgzsNXCqgJTww4f9iaHdQi6M7w7Zma3E/8aHUoufLLnKT3jNOOK2m1ikAHoA==
+X-Received: by 2002:a17:906:31d4:b0:a46:da28:992e with SMTP id f20-20020a17090631d400b00a46da28992emr5801257ejf.71.1712574236283;
+        Mon, 08 Apr 2024 04:03:56 -0700 (PDT)
+Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
+        by smtp.gmail.com with ESMTPSA id b15-20020a170906d10f00b00a4df4243473sm4279042ejz.4.2024.04.08.04.03.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Apr 2024 03:51:46 -0700 (PDT)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Sean Wang <sean.wang@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Hsin-Yi Wang <hsinyi@chromium.org>,
-	linux-mediatek@lists.infradead.org,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] dt-bindings: pinctrl: mediatek: mt7622: add "gpio-ranges" property
-Date: Mon,  8 Apr 2024 12:51:28 +0200
-Message-Id: <20240408105128.30586-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
+        Mon, 08 Apr 2024 04:03:55 -0700 (PDT)
+Date: Mon, 8 Apr 2024 13:03:54 +0200
+From: Andrew Jones <ajones@ventanamicro.com>
+To: =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
+Cc: Deepak Gupta <debug@rivosinc.com>, Jonathan Corbet <corbet@lwn.net>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Anup Patel <anup@brainfault.org>, Shuah Khan <shuah@kernel.org>, 
+	Atish Patra <atishp@atishpatra.org>, linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, kvm@vger.kernel.org, 
+	kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH 0/5] Add parsing for Zimop ISA extension
+Message-ID: <20240408-6c93f3f50b55234f3825ca33@orel>
+References: <20240404103254.1752834-1-cleger@rivosinc.com>
+ <20240405-091c6c174f023d74b434059d@orel>
+ <CAKC1njQ3qQ8mTMoYkhhoGQfRSVtp2Tfd2LjDhAmut7UcW9-bGw@mail.gmail.com>
+ <ddc5555a-3ae8-42e5-a08a-ca5ceaf0bf28@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <ddc5555a-3ae8-42e5-a08a-ca5ceaf0bf28@rivosinc.com>
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On Mon, Apr 08, 2024 at 10:01:12AM +0200, Clément Léger wrote:
+> 
+> 
+> On 05/04/2024 19:33, Deepak Gupta wrote:
+> > On Fri, Apr 5, 2024 at 8:26 AM Andrew Jones <ajones@ventanamicro.com> wrote:
+> >>
+> >> On Thu, Apr 04, 2024 at 12:32:46PM +0200, Clément Léger wrote:
+> >>> The Zimop ISA extension was ratified recently. This series adds support
+> >>> for parsing it from riscv,isa, hwprobe export and kvm support for
+> >>> Guest/VM.
+> >>
+> >> I'm not sure we need this. Zimop by itself isn't useful, so I don't know
+> >> if we need to advertise it at all. When an extension comes along that
+> >> redefines some MOPs, then we'll advertise that extension, but the fact
+> >> Zimop is used for that extension is really just an implementation detail.
+> > 
+> > Only situation I see this can be useful is this:--
+> > 
+> > An implementer, implemented Zimops in CPU solely for the purpose that they can
+> > run mainline distro & packages on their hardware and don't want to leverage any
+> > feature which are built on top of Zimop.
+> 
+> Yes, the rationale was that some binaries using extensions that overload
+> MOPs could still be run. With Zimop exposed, the loader could determine
+> if the binary can be executed without potentially crashing. We could
+> also let the program run anyway but the execution could potentially
+> crash unexpectedly, which IMHO is not really good for the user
+> experience nor for debugging. I already think that the segfaults which
+> happens when executing binaries that need some missing extension are not
+> so easy to debug, so better add more guards.
 
-Allow specifying pin to GPIO mapping. It can be find in in-Linux DTS
-file for MT7622.
+OK. It's only one more extension out of dozens, so I won't complain more,
+but I was thinking that binaries that use particular extensions would
+check for those particular extensions (step 2), rather than Zimop.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- .../devicetree/bindings/pinctrl/mediatek,mt7622-pinctrl.yaml   | 3 +++
- 1 file changed, 3 insertions(+)
+Thanks,
+drew
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinctrl.yaml
-index eaa65512161a..d211f2e403f2 100644
---- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinctrl.yaml
-@@ -36,6 +36,9 @@ properties:
-       the amount of cells must be specified as 2. See the below mentioned gpio
-       binding representation for description of particular cells.
- 
-+  gpio-ranges:
-+    maxItems: 1
-+
-   interrupt-controller: true
- 
-   interrupts:
--- 
-2.35.3
-
+> 
+> > 
+> > As an example zicfilp and zicfiss are dependent on zimops. glibc can
+> > do following
+> > 
+> > 1) check elf header if binary was compiled with zicfiss and zicfilp,
+> > if yes goto step 2, else goto step 6.
+> > 2) check if zicfiss/zicfilp is available in hw via hwprobe, if yes
+> > goto step 5. else goto step 3
+> > 3) check if zimop is available via hwprobe, if yes goto step 6, else goto step 4
+> 
+> I think you meant step 5 rather than step 6.
+> 
+> Clément
+> 
+> > 4) This binary won't be able to run successfully on this platform,
+> > issue exit syscall. <-- termination
+> > 5) issue prctl to enable shadow stack and landing pad for current task
+> > <-- enable feature
+> > 6) let the binary run <-- let the binary run because no harm can be done
 
