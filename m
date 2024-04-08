@@ -1,75 +1,71 @@
-Return-Path: <devicetree+bounces-57222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C5C189C900
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 17:55:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D372C89C942
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 18:02:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A64291F22206
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 15:55:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8EF49285AA8
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 16:02:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D6DC1422CE;
-	Mon,  8 Apr 2024 15:53:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EDA51422C5;
+	Mon,  8 Apr 2024 16:02:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dWuMHZHd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ffNbVrFN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D15C81448E0;
-	Mon,  8 Apr 2024 15:53:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 773871422BA;
+	Mon,  8 Apr 2024 16:02:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712591614; cv=none; b=g/cIUEP7tj2x0EF9VZv65K9CXiDOllX+ItiEsAInkwI0GW+pX0AJ/Jamh3uOn0judbJPeV120j36fSEqs35N0kSkFIFCDK3LlVJ6G6XzO7lduPxvpm6GmtDi5O6VwX00ebytoWHSUuDWhO4Zu2QrDVsd4wn5w54hBfJbC+WCScc=
+	t=1712592139; cv=none; b=fD0scmo/D16/9XhLHEDharW4faIcwgpIEncDihcBaaFeib55WQ/U2/f6IDDbJ44Wpos+0nXI1FETJV130s889xEg156Q4M1fR3s5D6TVf+uvZeomFTtMXzFcsc7v+WByCxJ0sv3txX1t3FaEAqXdgvDmJr/u28zR9RG95KtEUzc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712591614; c=relaxed/simple;
-	bh=vM6749OZUGmuUGhDa/POZy+5vZeS+6APRIR0QdxNkUs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=SBWyDbbuGrfa0znfKw9W+fJ4evAR9XfhMrjEOtZjzY0AiwWfmWGNDzlkGBogFWo+UTbyaeP48Oe6F0vEV0NvOyB13iC/qgT1OF6WD4C2VdfP3PTyARdCIIARZpatHAeJlRG4YFcMcGF+ahJM3pkUgkLJHw/iYpZdP5Vs0hBAaLE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dWuMHZHd; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-56e136cbcecso6298739a12.3;
-        Mon, 08 Apr 2024 08:53:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712591611; x=1713196411; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=j3jReaO8bBGw6JBZ1RkUcA4thqN9iUeRzORfBO64Zek=;
-        b=dWuMHZHdhTXL0FtBZkVIm79kudogcTEPnnl18Hcw4bDDZbnSKmTzSCNQWUyE6dTFJo
-         tH/7Y7AKKyN3t6x/VQA334k8A7HKzcKTWe+LMgWrHeoO4yXh3MdcTsDwYYxZhqEqh1fw
-         /h/iFIDlk9uTwBPlvzZFCuRnsMzi316rIy8XJhldE+c6LGq8VTr5mHIfpCKT9ajZMFUB
-         GYNJmIq31IhzDZvc9P3XDFPqKtuCc1jvHv3JksTNzpbYh9CGALP3O9CQvg72lfIECAQV
-         +GlKWzE+fW/oBJtoIYJwGkkt518XCAWc2MZlQVWqQuZmRe44DlBDcoWZwnODKjaN0/bc
-         XVBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712591611; x=1713196411;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=j3jReaO8bBGw6JBZ1RkUcA4thqN9iUeRzORfBO64Zek=;
-        b=tk7Y3gFC8JLfNwdDz562RpSN/Xdt25Opzu7HOlLASJtCl5ikkfF5DEeQ+bb6GcgmIt
-         4jLlUs3S+zzxa/faoTKDktBdHqyIhKqlPGrEgr4v19xZrAknySVnd01kFOGPJ5OQ7Lo9
-         u938Q+hHBpdjsWnOVDrolwPC+N/6OOmhMfIcEdNHnVfh9u8XEO/uM64kynmAfU5wstP4
-         3QHmfnPwKx/hY56mGQk/oK2OLeWFOzGaNKAhZPQyOdidQ68ExdUYSPpZlgODn47YoX9j
-         QD05RsRhorKXpHnUsvX/qtEUi+sGxMGCUh8WLIRXTTu8MXYVc6Vbq3fCS6HEoQ59tzJt
-         5feQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXMyl0bvQd8rFt4ViT6m+fp0DNTkCooQb4oCeatu6a0tAS1ppXwbajoLvBN0OqJYhfKP6mHtXY2V9VtDiVT0QEucf8nPa4GQqHKeT8i45OLDYW5fStI8ffJokz8ibm/2N0NglypEyL1+Q==
-X-Gm-Message-State: AOJu0Yw5hYJxbiB4SCa8UDVWCF7943MpgzSMK16KYaa9Lwm2Jpp0rKdN
-	4Hy7hkaEB5cG8gM9s3KpQX3ZWcQ+UVQEQ3i17iHQwYEaSetBfTm7
-X-Google-Smtp-Source: AGHT+IHDUn7lM+m3JJro1I7sX1HqWbE56mUHHewyuVneCeBjUwlfT2HuBoGiCiRi+8XMgC8ngOpekg==
-X-Received: by 2002:a17:907:9485:b0:a4e:375d:2573 with SMTP id dm5-20020a170907948500b00a4e375d2573mr9215871ejc.37.1712591611213;
-        Mon, 08 Apr 2024 08:53:31 -0700 (PDT)
-Received: from [127.0.1.1] ([213.208.157.67])
-        by smtp.gmail.com with ESMTPSA id l13-20020a170906794d00b00a46a2779475sm4547849ejo.101.2024.04.08.08.53.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Apr 2024 08:53:30 -0700 (PDT)
-From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Date: Mon, 08 Apr 2024 17:53:09 +0200
-Subject: [PATCH 9/9] dt-bindings: rtc: via,vt8500-rtc: move to trivial-rtc
+	s=arc-20240116; t=1712592139; c=relaxed/simple;
+	bh=ipJuww1ndidw63caquJ6tDL3B0VB+7HW4TINvZ2UjVM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=dmYsepsOcVn75T/Tpt2LGLgDfUCIn9syTd7NHIQ8cM4LaVSf1OO5oIG7ZVyOwNk4azM0Ars9DLfdQfXKrdsQF4e1DM6b8935NKhGLXs1ztRG/7pT8O6n0AKehhvFvzqJtuv9dJsFBckW5UxwcnmkhagP0/QrSo2ewDXpUIp/KJ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ffNbVrFN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 929A6C433C7;
+	Mon,  8 Apr 2024 16:02:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712592139;
+	bh=ipJuww1ndidw63caquJ6tDL3B0VB+7HW4TINvZ2UjVM=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=ffNbVrFN+q2m8pyqLML6+DLMCxPr7L/hs4qh5BmeJGCpaFELcB7r0g1qe9knYyjpv
+	 yEcceoV4lLaZV3KBJPvbc2KLHEJcrwXrIgXZAl/K+lK6Jt6ErT8G5V2r5wOQ2sdmDv
+	 HuL4Wu+e+AUa2N5nfbDayTspRel9n0EtMBptWwDO5F7dfWCVg4aQ2+6kNI5WMHG5Pz
+	 Q+zUB3GR6uVgkpn+LNRUsfNoaFxz/5yQV+8RbHrsRh39Pd28EYCCE4TciW1w2t9Obb
+	 NTGLfcPyTfkGyye0Ms+WT0ij8l0GSAOnDCxVCJ6RndIQEX1/eL8QNubkZm/IenF0Lx
+	 AXpQ2R74I0TIQ==
+From: Conor Dooley <conor@kernel.org>
+To: Conor Dooley <conor@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Lars Povlsen <lars.povlsen@microchip.com>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	UNGLinuxDriver@microchip.com,
+	Bjarni Jonasson <bjarni.jonasson@microchip.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	horatiu.vultur@microchip.com,
+	steen.hegelund@microchip.com
+Subject: Re: [PATCH v2 01/10] arm64: dts: microchip: sparx5: fix mdio reg
+Date: Mon,  8 Apr 2024 17:00:40 +0100
+Message-ID: <20240408-okay-deserving-8d06e76c2183@spud>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240405190419.74162-1-krzk@kernel.org>
+References: <20240405190419.74162-1-krzk@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,77 +73,46 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240408-rtc_dtschema-v1-9-c447542fc362@gmail.com>
-References: <20240408-rtc_dtschema-v1-0-c447542fc362@gmail.com>
-In-Reply-To: <20240408-rtc_dtschema-v1-0-c447542fc362@gmail.com>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jiaxun Yang <jiaxun.yang@flygoat.com>, 
- Vladimir Zapolskiy <vz@mleia.com>, Joel Stanley <joel@jms.id.au>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-stm32@st-md-mailman.stormreply.com, 
- Javier Carrasco <javier.carrasco.cruz@gmail.com>
-X-Mailer: b4 0.14-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1712591586; l=1714;
- i=javier.carrasco.cruz@gmail.com; s=20240312; h=from:subject:message-id;
- bh=vM6749OZUGmuUGhDa/POZy+5vZeS+6APRIR0QdxNkUs=;
- b=g1Gbrdrf/K3DdsRveFmOObYxG1SgqzZ8jrKc7OFyd6Mhf+VVcEjwfoBwytdkuegPork4KUfuS
- X+/UsMcNJb0DUbXRodaJxuNiEAk9sWd0n6FZbuyavNg+PpigpZoRRlR
-X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
- pk=lzSIvIzMz0JhJrzLXI0HAdPwsNPSSmEn6RbS+PTS9aQ=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1759; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=KA9ih6u3mBi75U8iJUf9RHVwjiBPZpzGXCIcfRNCroo=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDGkiIissMo//8H4vX5VzuOMm7+z5Qptmr5/+MMIzZ6bwv 0mnnfhvdpSyMIhxMMiKKbIk3u5rkVr/x2WHc89bmDmsTCBDGLg4BWAiG5gZGTbeU3jFtmLqwvB7 uxkyjrH1WBu+3PHj6l6bgO8Wbin15/cy/BX4+6rPaUUEe0TRze3vYte7b+neY7Jj0qxdG5/5BL3 2SeMFAA==
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
-The RTC documented in this binding requires a compatible, a reg
-and a single interrupt, which makes it suitable for a direct
-conversion into trivial-rtc.
+From: Conor Dooley <conor.dooley@microchip.com>
 
-Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
----
- Documentation/devicetree/bindings/rtc/trivial-rtc.yaml   |  2 ++
- Documentation/devicetree/bindings/rtc/via,vt8500-rtc.txt | 15 ---------------
- 2 files changed, 2 insertions(+), 15 deletions(-)
+On Fri, 05 Apr 2024 21:04:10 +0200, Krzysztof Kozlowski wrote:
+> Correct the reg address of mdio node to match unit address.  Assume the
+> reg is not correct and unit address was correct, because there is
+> already node using the existing reg 0x110102d4.
+> 
+>   sparx5.dtsi:443.25-451.5: Warning (simple_bus_reg): /axi@600000000/mdio@6110102f8: simple-bus unit address format error, expected "6110102d4"
+> 
+> 
+> [...]
 
-diff --git a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-index d75c93ad2e92..c48d0dfa28b2 100644
---- a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-+++ b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-@@ -83,6 +83,8 @@ properties:
-       - sii,s35390a
-       # ST SPEAr Real-time Clock
-       - st,spear600-rtc
-+      # VIA/Wondermedia VT8500 Real-time Clock
-+      - via,vt8500-rtc
-       # I2C bus SERIAL INTERFACE REAL-TIME CLOCK IC
-       - whwave,sd3078
-       # Xircom X1205 I2C RTC
-diff --git a/Documentation/devicetree/bindings/rtc/via,vt8500-rtc.txt b/Documentation/devicetree/bindings/rtc/via,vt8500-rtc.txt
-deleted file mode 100644
-index 3c0484c49582..000000000000
---- a/Documentation/devicetree/bindings/rtc/via,vt8500-rtc.txt
-+++ /dev/null
-@@ -1,15 +0,0 @@
--VIA/Wondermedia VT8500 Realtime Clock Controller
-------------------------------------------------------
--
--Required properties:
--- compatible : "via,vt8500-rtc"
--- reg : Should contain 1 register ranges(address and length)
--- interrupts : alarm interrupt
--
--Example:
--
--	rtc@d8100000 {
--		compatible = "via,vt8500-rtc";
--		reg = <0xd8100000 0x10000>;
--		interrupts = <48>;
--	};
+Applied to microchip-dt64, thanks! I'll re-direct it to fixes either if
+some wider cleanup needs some of these warnings gone before v6.10-rc1.
 
--- 
-2.40.1
+[01/10] arm64: dts: microchip: sparx5: fix mdio reg
+        https://git.kernel.org/at91/c/5d83b9cbe7cf
+[02/10] arm64: dts: microchip: sparx5: correct serdes unit address
+        https://git.kernel.org/at91/c/013627825bbe
+[03/10] arm64: dts: microchip: sparx5_pcb134: add missing I2C mux unit addresses
+        https://git.kernel.org/at91/c/9dcf4ec57700
+[04/10] arm64: dts: microchip: sparx5_pcb135: add missing I2C mux unit addresses
+        https://git.kernel.org/at91/c/5150c3df4c2e
+[05/10] arm64: dts: microchip: sparx5_pcb134: align I2C mux node name with bindings
+        https://git.kernel.org/at91/c/d3dd7bed4210
+[06/10] arm64: dts: microchip: sparx5_pcb135: align I2C mux node name with bindings
+        https://git.kernel.org/at91/c/b0d5a3ce782a
+[07/10] arm64: dts: microchip: sparx5_pcb134: drop LED unit addresses
+        https://git.kernel.org/at91/c/55fb5a97ebe0
+[08/10] arm64: dts: microchip: sparx5_pcb135: drop LED unit addresses
+        https://git.kernel.org/at91/c/5945df4de0e2
+[09/10] arm64: dts: microchip: sparx5_pcb134: drop duplicated NOR flash
+        https://git.kernel.org/at91/c/f1595d501ea4
+[10/10] arm64: dts: microchip: sparx5_pcb135: drop duplicated NOR flash
+        https://git.kernel.org/at91/c/6c7c4b91aa43
 
+Thanks,
+Conor.
 
