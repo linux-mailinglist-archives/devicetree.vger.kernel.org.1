@@ -1,139 +1,157 @@
-Return-Path: <devicetree+bounces-57200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E060889C7EC
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 17:14:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B63DE89C7FE
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 17:17:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1DFD61C214CE
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 15:14:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B2EC28636C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 15:17:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD55B13F44A;
-	Mon,  8 Apr 2024 15:14:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58B3413F452;
+	Mon,  8 Apr 2024 15:17:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="As/SAD4H"
+	dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b="CRh4jbsE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18C2113F439
-	for <devicetree@vger.kernel.org>; Mon,  8 Apr 2024 15:14:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A46EC13F44B;
+	Mon,  8 Apr 2024 15:17:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.181.215.36
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712589294; cv=none; b=uvBChoCQCTCcr4NbRGo55eytgP86cKH4YrdNl5jda4QW9WAAiow4OGJm+qLmPHrswWJX/lmiDK6TTFXM4NbkxYvt6II0Zglr/89Bs0NP6fQRyNufPBvYUsCi7wbl0Lzqub2K1NlwiLl6u05nAc9BimnrC+4WNaKBeqvSMKzG4SE=
+	t=1712589469; cv=none; b=EHNe68mN/miWFr0EXBgEnhbsiq6u2XZlj2kyy8oEiVnjo3NdIkLHf7XCWG4VRNdnCDPPc4T8T0LDAwIflgtVNKasoGavgRGaxHIrDagi8tXtb5q9WcqspwHfK62cGl1Kb+ir4PgY8nugNb+dcCw7AXW0utBqYfCRKBbIhM3Stq0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712589294; c=relaxed/simple;
-	bh=+kNnKO0fDHO+c634OAXCZq6G+lN8r31DQX28xKeAm2M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aF23meTUO5tL4fkKd0mwBDuilVcct3GOHb3gYqndoIgXhB7qqQXasmfuEmOg9W0WGspAiHO+iBcsLNNJO5r9lgl7qSrp3hA+rq64X1FxNvPLo796Y5mi/gTROi3aRu11AiC9okcNChy3myxUscJIaIDc32lwf4PhupW1egdMWWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=As/SAD4H; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1712589287;
- bh=4Z0LBlRO9DzPCsRdqe9rsbK3UJ8PBblYy0Cmk5n/lz0=;
- b=As/SAD4HXF91//0fKggr1TGq+grPgujAJk7MYEagQNIoLbcfcp9Hedu8VfM12QmaKk4vH1mfX
- yFNC8l32zugzKq/QTO7Pcq0XMlTRzNsqjexMFwNm+0lLW7RCh7SsW4PLoLkQc7Q0Qw07nnJ0h5R
- Xi/b82kks3ZXaMsnxjYUoiitkNkLKNGDQ0NsvAs8UedNnXS4zSdY01qU8jdJjJs/IIWckImuKN7
- Z+/PJ3kJK3Yk3dxrXDejogFvk/vx4hBuebytqAF4xP7Ob+H8Y0sx2QA9QProjyMggza6rlxWToO
- oPGT0Qu5Sd3Y8nD8yVaRa73U8eFmpEYwpbejH4hO03zw==
-Message-ID: <fb57172e-2517-498c-9412-76f62929d24a@kwiboo.se>
-Date: Mon, 8 Apr 2024 17:14:40 +0200
+	s=arc-20240116; t=1712589469; c=relaxed/simple;
+	bh=AYeVrQdvosASyC+HQOVAheJr5WOqO6RSDW3nYM7LFCE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hSY3ld3ZBMDkHWcsEF1Fp3tcdYoJ3+DOzEyX72qV3XrKwM7IUfH1I3jG+zasQNySQT7gKDD6G4+dp+Psk0U7Qpdl5qoqaGpJqQcE/q6hAgucyjUMvctwHyyy4Zg5KsJIxP5Ab9RkLUjxmfasOKXhpQIV/34VSx3uZgt/M5m9HGg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz; spf=pass smtp.mailfrom=xff.cz; dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b=CRh4jbsE; arc=none smtp.client-ip=195.181.215.36
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xff.cz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
+	t=1712589461; bh=AYeVrQdvosASyC+HQOVAheJr5WOqO6RSDW3nYM7LFCE=;
+	h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
+	b=CRh4jbsEXcrgqQwEusZ/7VrROvaujjQWLV+K0GrAG2YCVAUi2atlgp+xU9FW0szyN
+	 GLZeUxyRCXIpjE9By0ZS0jffpIuTmdVlRP6lb4aBaMLosJXInjVvUA9z60RyxoJswh
+	 8VBmcbLNQP5sd8/yVlTxNlYkJcZUZlatizw47KUY=
+Date: Mon, 8 Apr 2024 17:17:41 +0200
+From: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Pavel Machek <pavel@ucw.cz>, phone-devel@vger.kernel.org, 
+	kernel list <linux-kernel@vger.kernel.org>, fiona.klute@gmx.de, martijn@brixit.nl, samuel@sholland.org, 
+	heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org, linux-usb@vger.kernel.org, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
+Subject: Re: [PATCHv3 1/2] dt-bindings: usb: typec: anx7688: start a binding
+ document
+Message-ID: <vbo7bacecuagu4qzrr6tsdh4qlejrv7ia67yylf6ay4u7qnwge@kqj27bun2m7d>
+Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Pavel Machek <pavel@ucw.cz>, phone-devel@vger.kernel.org, 
+	kernel list <linux-kernel@vger.kernel.org>, fiona.klute@gmx.de, martijn@brixit.nl, samuel@sholland.org, 
+	heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org, linux-usb@vger.kernel.org, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
+References: <ZhPMHdt6r/4D99Zg@duo.ucw.cz>
+ <ab9affc8-de68-4ec9-bdfc-02131191bc3a@linaro.org>
+ <ZhPTTxI4oTF3pgrk@duo.ucw.cz>
+ <e7841ad2-fa3d-442d-804d-51f12e05c234@linaro.org>
+ <e6vvuttix5k5fioy7q44ick5wj6u5gleh7mht36s4zjjcym7vy@bziejyohtc4b>
+ <7976e254-ed1e-406d-870b-1ecdc4b1e23c@linaro.org>
+ <uoo7xltbfx7u6iai7urj3wez7cwotokxt6lwjhff57xbljusqn@fr2xejnrlak7>
+ <1502383c-9caf-4362-8bd6-ed719a304f08@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] arm64: dts: rockchip: enable onboard spi flash for
- rock-3a
-To: "=?UTF-8?Q?Heiko_St=C3=BCbner?=" <heiko@sntech.de>, Chukun Pan
- <amadeus@jmu.edu.cn>
-Cc: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240408124005.182565-1-amadeus@jmu.edu.cn>
- <421ab43b-ff92-41c6-9904-3c7681c926be@kwiboo.se>
- <b32c284e-f3ec-44b0-abbd-7fa403bc9870@kwiboo.se> <3066222.xgJ6IN8ObU@diego>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <3066222.xgJ6IN8ObU@diego>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-ForwardEmail-ID: 661409e594faae8761be3e7a
+In-Reply-To: <1502383c-9caf-4362-8bd6-ed719a304f08@linaro.org>
 
-On 2024-04-08 17:04, Heiko Stübner wrote:
-> Am Montag, 8. April 2024, 16:56:59 CEST schrieb Jonas Karlman:
->> On 2024-04-08 16:44, Jonas Karlman wrote:
->>> On 2024-04-08 14:40, Chukun Pan wrote:
->>>> There is a mx25u12835f spi flash on this board, enable it.
->>>>
->>>> [    2.525805] spi-nor spi4.0: mx25u12835f (16384 Kbytes)
->>>>
->>>> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
->>>> ---
->>>>  arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts | 12 ++++++++++++
->>>>  1 file changed, 12 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
->>>> index a5e974ea659e..d8738cc47c73 100644
->>>> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
->>>> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
->>>> @@ -757,6 +757,18 @@ &sdmmc2 {
->>>>  	status = "okay";
->>>>  };
->>>>  
->>>> +&sfc {
->>>
->>> This is missing:
->>>
->>> 	#address-cells = <1>;
->>> 	#size-cells = <0>;
->>>
->>>> +	status = "okay";
->>>> +
->>>> +	flash@0 {
->>>> +		compatible = "jedec,spi-nor";
->>>> +		reg = <0x0>;
->>>> +		spi-max-frequency = <50000000>;
->>>
->>> At least in U-Boot the spi clock only support 24, 100 or 200 mhz and I
->>> am pretty sure the spi flash support 100mhz, so I would suggest you test
->>> with 100mhz, same as used on other rk356x boards.
->>
->> Sorry, looked at spi clock instead of sfc clock.
->> sfc clock support 24, 50, 75, 100, 125 and 150 mhz.
+On Mon, Apr 08, 2024 at 03:27:00PM GMT, Krzysztof Kozlowski wrote:
+> On 08/04/2024 14:48, Ondřej Jirman wrote:
+> > Yeah, I understand where the confusion is. The driver is not for anx7688 chip
+> > really. The driver is named anx7688, but that's mostly a historical accident at
+> > this point.
+> > 
+> > I guess there can be a driver for anx7688 chip that can directly use the chip's
+> > resources from the host by directly manipulating its registers and implementing
+> > type-c functionality via eg. Linux's TCPM or TCPCI stack, etc. (eg. like
+> > fusb302 driver, or various tcpci subdrivers).
+> > 
+> > But in this case the chip is driven by an optional on-chip microcontroller's
+> > firmware and *this driver* is specifically for *the Type-C port on Pinephone*
 > 
-> I think in some previous discussion the agreement was that the node
-> should specify the max frequency the flash supports and have the
-> controller worry about its own clock ranges.
+> We do not talk here about the driver, but bindings, so hardware.
 
-Interesting, sounds like there is a need to do some modification to spi
-and clk drivers in U-Boot to support that.
+Got it. Bindings should be the same regardless of what driver would be used,
+whether this OCM based one, or some future one based on the above mentioned
+TCPCI in-kernel implementation. Hardware is the same in both cases.
 
+Just trying to imagine how to actually solve the issues...
+
+Basic thing with the I2C regulator thing is that needs to be enabled as long
+as anx7688 needs to communicate over I2C. Other user of this power rail is
+touchscreen controller for its normal power supply, and it needs to be able
+to disable it during system suspend.
+
+Now for things to not fail during suspend/resume based on PM callbacks
+invocation order, anx7688 driver needs to enable this regulator too, as long
+as it needs it.
+
+I can put bus-supply to I2C controller node, and read it from the ANX7688 driver
+I guess, by going up a DT node. Whether that's going to be acceptable, I don't
+know. 
+
+
+VCONN regulator I don't know where else to put either. It doesn't seem to belong
+anywhere. It's not something directly connected to Type-C connector, so
+not part of connector bindings, and there's nothing else I can see, other
+than anx7688 device which needs it for core functionality.
+
+ANX7688 chip desing doesn't have integrated VCONN mosfet switches so it always
+needs external supply + switches that are controlled by the chip itself. There's
+no sensible design where someone would not want this and the driver needs
+to get this regulator reference from somewhere. The switches are sort of an
+extension of the chip.
+
+kind regards,
+	o.
+
+
+> > and serves as an integration driver for quite a bunch of things that need to
+> > work together on Pinephone for all of the Type-C port's features to operate
+> > reasonably well (and one of those is some communication with anx7688 firmware
+> > that we use, and enabling power to this chip and other things as appropriate,
+> > based on the communication from the firmware).
 > 
-> Though in this case the 50MHz for the flash even matches the clock
-> frequency supported by the sfc
-
-I think the on-board spi nor flash support 104/108/133 mhz so 50 mhz is
-wrong in any case.
-
-Regards,
-Jonas
-
+> That's still looking like putting board design into particular device
+> binding.
+> 
+> > 
+> > It handles the specific needs of the Pinephone's Type-C implementation, all of
+> > its quirks (of which there are many over several HW revisions) that can't be
+> > handled by the particular implementation of on-chip microcontroller firmware
+> > directly and need host side interaction.
+> > 
+> > In an ideal world, many of the things this driver handles would be handled by
+> > embedded microcontroller on the board (like it is with some RK3399 based Google
+> > devices), but Pinephone has no such thing and this glue needs to be implemented
+> > somewhere in the kernel.
+> 
+> You might need multiple schemas, because this is for anx7688, not for
+> Pinephone type-c implementation.
+> 
+> However I still do not see yet a limitation of DTS requiring stuffing
+> some other properties into anx7688 or creating some other, virtual entity.
 > 
 > 
-
+> Best regards,
+> Krzysztof
+> 
 
