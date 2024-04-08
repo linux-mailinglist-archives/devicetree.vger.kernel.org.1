@@ -1,470 +1,165 @@
-Return-Path: <devicetree+bounces-57243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B026289CB6A
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 20:04:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A45589CBB3
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 20:29:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 133EA28A9D7
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 18:04:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 556D6B21080
+	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 18:29:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F4731442F6;
-	Mon,  8 Apr 2024 18:04:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63EEA1448E0;
+	Mon,  8 Apr 2024 18:29:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="svxuIUFm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E5C1433A9;
-	Mon,  8 Apr 2024 18:04:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C126D1448DD
+	for <devicetree@vger.kernel.org>; Mon,  8 Apr 2024 18:29:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712599491; cv=none; b=Mwddmp7Mo3LVXd1SfdX2kHDNobZf1QOwKQW/89ZDgeCGOoKRvtFm/j3Iuc0m1PfTKE0Xpo09dPoB5EV8P9rXypIwu+FEXFkko0hxcrBeFBiwINwKWE1z5nc8WDRQyBmReFPtfU+pLyamDUE+sc6sDp1GGMWjvmKb2Forti538XQ=
+	t=1712600986; cv=none; b=pmgjYZRJI5MJbfwNnm0hWTFSASs5jPU6fGvWUOrNvg+t99vDXl2+WLU3jE5GDcyI4UttFt15fUgkzZC00OlV2ss9xqKCgByIg7i5bbuuCn7A9W7B6dW/fo42rvv8Eoe5263k9sWkuYQspJ//ll9o5MPPaX/rY5zjgLJcO6YB+sU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712599491; c=relaxed/simple;
-	bh=6uHGx2M8BxAChT3hSfv+NWMZqGpz02N7CpM88H7uXlw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p5f8gYMYMLf4EE+RU8ikoAoYBeN7yTOKRKaqy74zOzMCYtQ6H9+zbz+WaZDrhvgQEIYo3IKkbktMJ0cItlJn0cEUFRLcby0Rw7AeC0WztNZaVeLcHkMXQgKoBWV2W1enRl1Ss2AiuvGtJZl38tgScpCvYe9jNfmPgO4DdUncNa8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2AEA2DA7;
-	Mon,  8 Apr 2024 11:05:18 -0700 (PDT)
-Received: from pluto (unknown [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B26113F766;
-	Mon,  8 Apr 2024 11:04:45 -0700 (PDT)
-Date: Mon, 8 Apr 2024 19:04:43 +0100
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Sudeep Holla <sudeep.holla@arm.com>, Peng Fan <peng.fan@nxp.com>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/6] firmware: arm_scmi: add initial support for i.MX
- BBM protocol
-Message-ID: <ZhQxu8LVNKf5QDLm@pluto>
-References: <20240405-imx95-bbm-misc-v2-v2-0-9fc9186856c2@nxp.com>
- <20240405-imx95-bbm-misc-v2-v2-3-9fc9186856c2@nxp.com>
+	s=arc-20240116; t=1712600986; c=relaxed/simple;
+	bh=nzM23wh9zowee65GrxL/O51+DWEPGKQ69scyyxUr8JM=;
+	h=References:From:To:Cc:Subject:Date:In-reply-to:Message-ID:
+	 MIME-Version:Content-Type; b=Q5qy+q8hCrRdQzejP/bSAMuGV1me0r/fJEPmYSG38UaZgxyOUEQfKoUidW99vt5WBB9Vyet/gA0qZUuwJ0BPDlIjAHDXp9RNhsTHW8k6fXQFHgbSORIx99J1SzAZT1UmEjkSbnh+eQ3lLusSJdoLA5XH4myC+e9esIiQKliFL7g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=svxuIUFm; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4165805e158so12305315e9.1
+        for <devicetree@vger.kernel.org>; Mon, 08 Apr 2024 11:29:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712600982; x=1713205782; darn=vger.kernel.org;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=3y8+lTNdEv9p3qVZZSAL5TYeLEpaLOV40uPPZs1+/rA=;
+        b=svxuIUFmxQUD7Y8no4O0aXQR3adHWCMS/2P8PAiWSkJQXlibjSKXtLUr7xrG+VnP9J
+         Ky9aitI2dI15g9B1ANsqK+pz5nbvEoZdfAMHklHA2RiLt5tVZJezdUnQSTcDsnCO0dVT
+         8APpMQPbeMzPeWAerDLobM4R29IejAjnZoH/mT/NEV2JolgnPn4qS4eumJGlZ0NucWcP
+         JT59WFaKQq8hFJi1Pmwl0EpzUwahO3h43wbVRafWHyYt5mlj8PFUEjnN57KFU4AepIE8
+         BwmddGBA+8Cc1NwPwwKYKGqXoqLQevudAOt4i3kp2fMXIO0x/g8jzL+J2d5Fu+Wu6N/t
+         /Z2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712600982; x=1713205782;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3y8+lTNdEv9p3qVZZSAL5TYeLEpaLOV40uPPZs1+/rA=;
+        b=O7v6uT8z0uBm0oC2o5cgDg7eCpaZk7cPqCLALsSyVslvDBrImUTxjZopnG8E01jJf1
+         Et0YegUBwnPl5dRgzmSbPnsU81bwo0dpffxNDsCZemHLFAUWgQbaLACDqXJ5pPEB0OM7
+         3i0aMv5etiCrBA+dXRQ36T0r5rpbfcu6TnGvHscRiBQfsTt7F1xLYHHQXP30NTBdLWWz
+         HF+oVMMK3hYJYvLiRlhHxPwFo7L6MyHa9z0JAISTyGFem0Dm++/Iur+VZo132IdnrKej
+         mDNtMgotuHucE4ecAq2GVgRdQk66faHMNo/fnv9csAfo9e3h3nddzbkF3afnJeO7IXZ6
+         68Sg==
+X-Forwarded-Encrypted: i=1; AJvYcCXVYE/mYc9I7AKzsRO7C3tQwjeEkI2A5PNBX5TwEfg5R5bpalCXQvZdwHeE7npcr611F40OVZSBHVKNCScGpTdLJADtWZ8SbQ/a0g==
+X-Gm-Message-State: AOJu0Yz2rRp9clV/D2NnRqIwrn9Ks7umG51ahZDFB23GlmoXS41JDrt2
+	22dX1rA0hbxoaOP66QcCmA0z3SBaj9Sbzp0lEEFmEL3LvS9XkAX/GJ0helEep3A=
+X-Google-Smtp-Source: AGHT+IFh8WHFAL+5KwNrKiDCA+QmN0hRuRdo0rWFUNNknNOcm/Yw6c64MqzQj6hHHotqbMcZSl4VIw==
+X-Received: by 2002:a05:600c:4683:b0:415:8651:9b8e with SMTP id p3-20020a05600c468300b0041586519b8emr8571532wmo.39.1712600981964;
+        Mon, 08 Apr 2024 11:29:41 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:90bc:1f0d:aae2:3c66])
+        by smtp.gmail.com with ESMTPSA id bg8-20020a05600c3c8800b00414807ef8dfsm14255016wmb.5.2024.04.08.11.29.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Apr 2024 11:29:41 -0700 (PDT)
+References: <20240408164947.30717-1-ddrokosov@salutedevices.com>
+ <20240408164947.30717-3-ddrokosov@salutedevices.com>
+User-agent: mu4e 1.10.8; emacs 29.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Dmitry Rokosov <ddrokosov@salutedevices.com>
+Cc: neil.armstrong@linaro.org, lgirdwood@gmail.com, jbrunet@baylibre.com,
+ broonie@kernel.org, conor+dt@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, perex@perex.cz, tiwai@suse.com,
+ khilman@baylibre.com, martin.blumenstingl@googlemail.com,
+ kernel@salutedevices.com, rockosov@gmail.com,
+ linux-amlogic@lists.infradead.org, alsa-devel@alsa-project.org,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 2/2] ASoC: meson: implement link-name optional
+ property in meson card utils
+Date: Mon, 08 Apr 2024 20:15:54 +0200
+In-reply-to: <20240408164947.30717-3-ddrokosov@salutedevices.com>
+Message-ID: <1j1q7fpv1n.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240405-imx95-bbm-misc-v2-v2-3-9fc9186856c2@nxp.com>
+Content-Type: text/plain
 
-On Fri, Apr 05, 2024 at 08:39:25PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> The i.MX BBM protocol is for managing i.MX BBM module which provides
-> RTC and BUTTON feature.
-> 
 
-Hi,
+On Mon 08 Apr 2024 at 19:49, Dmitry Rokosov <ddrokosov@salutedevices.com> wrote:
 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> The 'link-name' property presents an optional DT feature that empowers
+> users to customize the name associated with the DAI link and PCM stream.
+> This functionality reflects the approach often employed in Qualcomm
+> audio cards, providing enhanced flexibility in DAI naming conventions
+> for improved system integration and userspace experience.
+>
+> It allows userspace program to easy determine PCM stream purpose, e.g.:
+>     ~ # cat /proc/asound/pcm
+>     00-00: speaker (*) :  : playback 1
+>     00-01: mics (*) :  : capture 1
+>     00-02: loopback (*) :  : capture 1
+
+The example above is exactly what you should not do with link names, at
+least with the amlogic audio system.
+
+Userspace pcm, otherwise known as DPCM frontend, are merely that:
+frontends. What they do is entirely defined by the routing defined by
+the userspace (amixer and friends)
+
+So naming the interface in DT (the FW describing the HW) after what the
+the userspace SW could possibly set later on is wrong.
+
+Bottom line: I have mixed feeling about this change. It could allow all
+sort of bad names to be set.
+
+The only way it could make sense HW wise is if the only allowed names
+where (fr|to)ddr_[abcd], which could help maps the interface and the
+kcontrol.
+
+Such restriction should be documented in the binding doc.
+
+>
+> The previous naming approach using auto-generated fe or be strings
+> continues to be utilized as a fallback.
+>
+> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
 > ---
->  drivers/firmware/arm_scmi/Kconfig      |  10 +
->  drivers/firmware/arm_scmi/Makefile     |   1 +
->  drivers/firmware/arm_scmi/imx-sm-bbm.c | 378 +++++++++++++++++++++++++++++++++
->  include/linux/scmi_imx_protocol.h      |  45 ++++
->  4 files changed, 434 insertions(+)
-> 
-> diff --git a/drivers/firmware/arm_scmi/Kconfig b/drivers/firmware/arm_scmi/Kconfig
-> index aa5842be19b2..56d11c9d9f47 100644
-> --- a/drivers/firmware/arm_scmi/Kconfig
-> +++ b/drivers/firmware/arm_scmi/Kconfig
-> @@ -181,3 +181,13 @@ config ARM_SCMI_POWER_CONTROL
->  	  early shutdown/reboot SCMI requests.
+>  sound/soc/meson/meson-card-utils.c | 12 ++++++++----
+>  1 file changed, 8 insertions(+), 4 deletions(-)
+>
+> diff --git a/sound/soc/meson/meson-card-utils.c b/sound/soc/meson/meson-card-utils.c
+> index ed6c7e2f609c..7bae72905a9b 100644
+> --- a/sound/soc/meson/meson-card-utils.c
+> +++ b/sound/soc/meson/meson-card-utils.c
+> @@ -94,10 +94,14 @@ static int meson_card_set_link_name(struct snd_soc_card *card,
+>  				    struct device_node *node,
+>  				    const char *prefix)
+>  {
+> -	char *name = devm_kasprintf(card->dev, GFP_KERNEL, "%s.%s",
+> -				    prefix, node->full_name);
+> -	if (!name)
+> -		return -ENOMEM;
+> +	const char *name;
+> +
+> +	if (of_property_read_string(node, "link-name", &name)) {
+> +		name = devm_kasprintf(card->dev, GFP_KERNEL, "%s.%s",
+> +				      prefix, node->full_name);
+> +		if (!name)
+> +			return -ENOMEM;
+> +	}
 >  
->  endmenu
-> +
-> +config IMX_SCMI_BBM_EXT
-> +	tristate "i.MX SCMI BBM EXTENSION"
-> +	depends on ARM_SCMI_PROTOCOL || (COMPILE_TEST && OF)
-> +	default y if ARCH_MXC
-> +	help
-> +	  This enables i.MX System BBM control logic which supports RTC
-> +	  and BUTTON.
-> +
-> +	  This driver can also be built as a module.
-> diff --git a/drivers/firmware/arm_scmi/Makefile b/drivers/firmware/arm_scmi/Makefile
-> index a7bc4796519c..327687acf857 100644
-> --- a/drivers/firmware/arm_scmi/Makefile
-> +++ b/drivers/firmware/arm_scmi/Makefile
-> @@ -11,6 +11,7 @@ scmi-transport-$(CONFIG_ARM_SCMI_HAVE_MSG) += msg.o
->  scmi-transport-$(CONFIG_ARM_SCMI_TRANSPORT_VIRTIO) += virtio.o
->  scmi-transport-$(CONFIG_ARM_SCMI_TRANSPORT_OPTEE) += optee.o
->  scmi-protocols-y = base.o clock.o perf.o power.o reset.o sensors.o system.o voltage.o powercap.o
-> +scmi-protocols-$(CONFIG_IMX_SCMI_BBM_EXT) += imx-sm-bbm.o
->  scmi-module-objs := $(scmi-driver-y) $(scmi-protocols-y) $(scmi-transport-y)
->  
->  obj-$(CONFIG_ARM_SCMI_PROTOCOL) += scmi-core.o
-> diff --git a/drivers/firmware/arm_scmi/imx-sm-bbm.c b/drivers/firmware/arm_scmi/imx-sm-bbm.c
-> new file mode 100644
-> index 000000000000..92c0aedf65cc
-> --- /dev/null
-> +++ b/drivers/firmware/arm_scmi/imx-sm-bbm.c
-> @@ -0,0 +1,378 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * System Control and Management Interface (SCMI) NXP BBM Protocol
-> + *
-> + * Copyright 2024 NXP
-> + */
-> +
-> +#define pr_fmt(fmt) "SCMI Notifications BBM - " fmt
-> +
-> +#include <linux/bits.h>
-> +#include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/scmi_protocol.h>
-> +#include <linux/scmi_imx_protocol.h>
-> +
-> +#include "protocols.h"
-> +#include "notify.h"
-> +
-> +#define SCMI_PROTOCOL_SUPPORTED_VERSION		0x10000
-> +
+>  	link->name = name;
+>  	link->stream_name = name;
 
-I appreciate that you added versioning but I think a bit of documentation
-about what the protocol and its comamnds purpose is still lacking, as asked
-by Sudeep previously
 
-	https://lore.kernel.org/linux-arm-kernel/ZeGtoJ7ztSe8Kg8R@bogus/#t
-
-> +enum scmi_imx_bbm_protocol_cmd {
-> +	IMX_BBM_GPR_SET = 0x3,
-> +	IMX_BBM_GPR_GET = 0x4,
-> +	IMX_BBM_RTC_ATTRIBUTES = 0x5,
-> +	IMX_BBM_RTC_TIME_SET = 0x6,
-> +	IMX_BBM_RTC_TIME_GET = 0x7,
-> +	IMX_BBM_RTC_ALARM_SET = 0x8,
-> +	IMX_BBM_BUTTON_GET = 0x9,
-> +	IMX_BBM_RTC_NOTIFY = 0xA,
-> +	IMX_BBM_BUTTON_NOTIFY = 0xB,
-> +};
-> +
-> +#define GET_RTCS_NR(x)	le32_get_bits((x), GENMASK(23, 16))
-> +#define GET_GPRS_NR(x)	le32_get_bits((x), GENMASK(15, 0))
-> +
-> +#define SCMI_IMX_BBM_NOTIFY_RTC_UPDATED		BIT(2)
-> +#define SCMI_IMX_BBM_NOTIFY_RTC_ROLLOVER	BIT(1)
-> +#define SCMI_IMX_BBM_NOTIFY_RTC_ALARM		BIT(0)
-> +
-> +#define SCMI_IMX_BBM_RTC_ALARM_ENABLE_FLAG	BIT(0)
-> +
-> +#define SCMI_IMX_BBM_NOTIFY_RTC_FLAG	\
-> +	(SCMI_IMX_BBM_NOTIFY_RTC_UPDATED | SCMI_IMX_BBM_NOTIFY_RTC_ROLLOVER | \
-> +	 SCMI_IMX_BBM_NOTIFY_RTC_ALARM)
-> +
-> +#define SCMI_IMX_BBM_EVENT_RTC_MASK		GENMASK(31, 24)
-> +
-> +struct scmi_imx_bbm_info {
-> +	u32 version;
-> +	int nr_rtc;
-> +	int nr_gpr;
-> +};
-> +
-> +struct scmi_msg_imx_bbm_protocol_attributes {
-> +	__le32 attributes;
-> +};
-> +
-> +struct scmi_imx_bbm_set_time {
-> +	__le32 id;
-> +	__le32 flags;
-> +	__le32 value_low;
-> +	__le32 value_high;
-> +};
-> +
-> +struct scmi_imx_bbm_get_time {
-> +	__le32 id;
-> +	__le32 flags;
-> +};
-> +
-> +struct scmi_imx_bbm_alarm_time {
-> +	__le32 id;
-> +	__le32 flags;
-> +	__le32 value_low;
-> +	__le32 value_high;
-> +};
-> +
-> +struct scmi_msg_imx_bbm_rtc_notify {
-> +	__le32 rtc_id;
-> +	__le32 flags;
-> +};
-> +
-> +struct scmi_msg_imx_bbm_button_notify {
-> +	__le32 flags;
-> +};
-> +
-> +struct scmi_imx_bbm_notify_payld {
-> +	__le32 flags;
-> +};
-> +
-> +static int scmi_imx_bbm_attributes_get(const struct scmi_protocol_handle *ph,
-> +				       struct scmi_imx_bbm_info *pi)
-> +{
-> +	int ret;
-> +	struct scmi_xfer *t;
-> +	struct scmi_msg_imx_bbm_protocol_attributes *attr;
-> +
-> +	ret = ph->xops->xfer_get_init(ph, PROTOCOL_ATTRIBUTES, 0, sizeof(*attr), &t);
-> +	if (ret)
-> +		return ret;
-> +
-> +	attr = t->rx.buf;
-> +
-> +	ret = ph->xops->do_xfer(ph, t);
-> +	if (!ret) {
-> +		pi->nr_rtc = GET_RTCS_NR(attr->attributes);
-> +		pi->nr_gpr = GET_GPRS_NR(attr->attributes);
-> +	}
-> +
-> +	ph->xops->xfer_put(ph, t);
-> +
-> +	return ret;
-> +}
-> +
-> +static int scmi_imx_bbm_notify(const struct scmi_protocol_handle *ph,
-> +			       u32 src_id, int message_id, bool enable)
-> +{
-> +	int ret;
-> +	struct scmi_xfer *t;
-> +
-> +	if (message_id == IMX_BBM_RTC_NOTIFY) {
-> +		struct scmi_msg_imx_bbm_rtc_notify *rtc_notify;
-> +
-> +		ret = ph->xops->xfer_get_init(ph, message_id,
-> +					      sizeof(*rtc_notify), 0, &t);
-> +		if (ret)
-> +			return ret;
-> +
-> +		rtc_notify = t->tx.buf;
-> +		rtc_notify->rtc_id = cpu_to_le32(0);
-> +		rtc_notify->flags =
-> +			cpu_to_le32(enable ? SCMI_IMX_BBM_NOTIFY_RTC_FLAG : 0);
-> +	} else if (message_id == IMX_BBM_BUTTON_NOTIFY) {
-> +		struct scmi_msg_imx_bbm_button_notify *button_notify;
-> +
-> +		ret = ph->xops->xfer_get_init(ph, message_id,
-> +					      sizeof(*button_notify), 0, &t);
-> +		if (ret)
-> +			return ret;
-> +
-> +		button_notify = t->tx.buf;
-> +		button_notify->flags = cpu_to_le32(enable ? 1 : 0);
-> +	} else {
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret = ph->xops->do_xfer(ph, t);
-> +
-> +	ph->xops->xfer_put(ph, t);
-> +	return ret;
-> +}
-> +
-> +static enum scmi_imx_bbm_protocol_cmd evt_2_cmd[] = {
-> +	IMX_BBM_RTC_NOTIFY,
-> +	IMX_BBM_BUTTON_NOTIFY
-> +};
-> +
-> +static int scmi_imx_bbm_set_notify_enabled(const struct scmi_protocol_handle *ph,
-> +					   u8 evt_id, u32 src_id, bool enable)
-> +{
-> +	int ret, cmd_id;
-> +
-> +	if (evt_id >= ARRAY_SIZE(evt_2_cmd))
-> +		return -EINVAL;
-> +
-> +	cmd_id = evt_2_cmd[evt_id];
-> +	ret = scmi_imx_bbm_notify(ph, src_id, cmd_id, enable);
-> +	if (ret)
-> +		pr_debug("FAIL_ENABLED - evt[%X] dom[%d] - ret:%d\n",
-> +			 evt_id, src_id, ret);
-> +
-> +	return ret;
-> +}
-> +
-> +static void *scmi_imx_bbm_fill_custom_report(const struct scmi_protocol_handle *ph,
-> +					     u8 evt_id, ktime_t timestamp,
-> +					     const void *payld, size_t payld_sz,
-> +					     void *report, u32 *src_id)
-> +{
-> +	const struct scmi_imx_bbm_notify_payld *p = payld;
-> +	struct scmi_imx_bbm_notif_report *r = report;
-> +
-> +	if (sizeof(*p) != payld_sz)
-> +		return NULL;
-> +
-> +	if (evt_id == SCMI_EVENT_IMX_BBM_RTC) {
-> +		r->is_rtc = true;
-> +		r->is_button = false;
-> +		r->timestamp = timestamp;
-> +		r->rtc_id = le32_get_bits(p->flags, SCMI_IMX_BBM_EVENT_RTC_MASK);
-> +		r->rtc_evt = le32_get_bits(p->flags, SCMI_IMX_BBM_NOTIFY_RTC_FLAG);
-> +		dev_dbg(ph->dev, "RTC: %d evt: %x\n", r->rtc_id, r->rtc_evt);
-> +		*src_id = r->rtc_evt;
-> +	} else if (evt_id == SCMI_EVENT_IMX_BBM_BUTTON) {
-> +		r->is_rtc = false;
-> +		r->is_button = true;
-> +		r->timestamp = timestamp;
-> +		dev_dbg(ph->dev, "BBM Button\n");
-> +		*src_id = 0;
-> +	} else {
-> +		WARN_ON_ONCE(1);
-> +		return NULL;
-> +	}
-> +
-> +	return r;
-> +}
-> +
-> +static const struct scmi_event scmi_imx_bbm_events[] = {
-> +	{
-> +		.id = SCMI_EVENT_IMX_BBM_RTC,
-> +		.max_payld_sz = sizeof(struct scmi_imx_bbm_notify_payld),
-> +		.max_report_sz = sizeof(struct scmi_imx_bbm_notif_report),
-> +	},
-> +	{
-> +		.id = SCMI_EVENT_IMX_BBM_BUTTON,
-> +		.max_payld_sz = sizeof(struct scmi_imx_bbm_notify_payld),
-> +		.max_report_sz = sizeof(struct scmi_imx_bbm_notif_report),
-> +	},
-> +};
-> +
-> +static const struct scmi_event_ops scmi_imx_bbm_event_ops = {
-> +	.set_notify_enabled = scmi_imx_bbm_set_notify_enabled,
-> +	.fill_custom_report = scmi_imx_bbm_fill_custom_report,
-> +};
-> +
-> +static const struct scmi_protocol_events scmi_imx_bbm_protocol_events = {
-> +	.queue_sz = SCMI_PROTO_QUEUE_SZ,
-> +	.ops = &scmi_imx_bbm_event_ops,
-> +	.evts = scmi_imx_bbm_events,
-> +	.num_events = ARRAY_SIZE(scmi_imx_bbm_events),
-> +	.num_sources = 1,
-> +};
-> +
-> +static int scmi_imx_bbm_protocol_init(const struct scmi_protocol_handle *ph)
-> +{
-> +	u32 version;
-> +	int ret;
-> +	struct scmi_imx_bbm_info *binfo;
-> +
-> +	ret = ph->xops->version_get(ph, &version);
-> +	if (ret)
-> +		return ret;
-> +
-> +	dev_info(ph->dev, "NXP SM BBM Version %d.%d\n",
-> +		 PROTOCOL_REV_MAJOR(version), PROTOCOL_REV_MINOR(version));
-> +
-> +	binfo = devm_kzalloc(ph->dev, sizeof(*binfo), GFP_KERNEL);
-> +	if (!binfo)
-> +		return -ENOMEM;
-> +
-> +	ret = scmi_imx_bbm_attributes_get(ph, binfo);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return ph->set_priv(ph, binfo, version);
-> +}
-> +
-> +static int scmi_imx_bbm_rtc_time_set(const struct scmi_protocol_handle *ph,
-> +				     u32 rtc_id, u64 sec)
-> +{
-> +	struct scmi_imx_bbm_info *pi = ph->get_priv(ph);
-> +	struct scmi_imx_bbm_set_time *cfg;
-> +	struct scmi_xfer *t;
-> +	int ret;
-> +
-> +	if (rtc_id >= pi->nr_rtc)
-> +		return -EINVAL;
-> +
-> +	ret = ph->xops->xfer_get_init(ph, IMX_BBM_RTC_TIME_SET, sizeof(*cfg), 0, &t);
-> +	if (ret)
-> +		return ret;
-> +
-> +	cfg = t->tx.buf;
-> +	cfg->id = cpu_to_le32(rtc_id);
-> +	cfg->flags = 0;
-> +	cfg->value_low = lower_32_bits(sec);
-> +	cfg->value_high = upper_32_bits(sec);
-
-Sorry I may have not been clear on this, but when I mentioned lower/upper
-helpers I did not mean that they solved ALSO the endianity problem, so I
-suppose that after having chunked your 64bits value in 2, you still want
-to transmit it as 2 LE quantity....this is generally the expectation for
-SCMI payloads...in this case any available documentation about the
-expected command layout would have helped...
-
-> +
-> +	ret = ph->xops->do_xfer(ph, t);
-> +
-> +	ph->xops->xfer_put(ph, t);
-> +
-> +	return ret;
-> +}
-> +
-> +static int scmi_imx_bbm_rtc_time_get(const struct scmi_protocol_handle *ph,
-> +				     u32 rtc_id, u64 *value)
-> +{
-> +	struct scmi_imx_bbm_info *pi = ph->get_priv(ph);
-> +	struct scmi_imx_bbm_get_time *cfg;
-> +	struct scmi_xfer *t;
-> +	int ret;
-> +
-> +	if (rtc_id >= pi->nr_rtc)
-> +		return -EINVAL;
-> +
-> +	ret = ph->xops->xfer_get_init(ph, IMX_BBM_RTC_TIME_GET, sizeof(*cfg),
-> +				      sizeof(u64), &t);
-> +	if (ret)
-> +		return ret;
-> +
-> +	cfg = t->tx.buf;
-> +	cfg->id = cpu_to_le32(rtc_id);
-> +	cfg->flags = 0;
-> +
-> +	ret = ph->xops->do_xfer(ph, t);
-> +	if (!ret)
-> +		*value = get_unaligned_le64(t->rx.buf);
-> +
-> +	ph->xops->xfer_put(ph, t);
-> +
-> +	return ret;
-> +}
-> +
-> +static int scmi_imx_bbm_rtc_alarm_set(const struct scmi_protocol_handle *ph,
-> +				      u32 rtc_id, u64 sec)
-> +{
-> +	struct scmi_imx_bbm_info *pi = ph->get_priv(ph);
-> +	struct scmi_imx_bbm_alarm_time *cfg;
-> +	struct scmi_xfer *t;
-> +	int ret;
-> +
-> +	if (rtc_id >= pi->nr_rtc)
-> +		return -EINVAL;
-> +
-> +	ret = ph->xops->xfer_get_init(ph, IMX_BBM_RTC_ALARM_SET, sizeof(*cfg), 0, &t);
-> +	if (ret)
-> +		return ret;
-> +
-> +	cfg = t->tx.buf;
-> +	cfg->id = cpu_to_le32(rtc_id);
-> +	cfg->flags = SCMI_IMX_BBM_RTC_ALARM_ENABLE_FLAG;
-> +	cfg->value_low = lower_32_bits(sec);
-> +	cfg->value_high = upper_32_bits(sec);
-
-Same.
-
-Thanks,
-Cristian
+-- 
+Jerome
 
