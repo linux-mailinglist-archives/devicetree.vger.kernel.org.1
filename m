@@ -1,145 +1,120 @@
-Return-Path: <devicetree+bounces-57453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94A7389D84F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 13:43:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A5B789D880
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 13:49:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 35AFF1F22C02
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 11:43:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8AEB4B29A4C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 11:49:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AE8312DD90;
-	Tue,  9 Apr 2024 11:42:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15E41128806;
+	Tue,  9 Apr 2024 11:49:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="r+nxKpPe"
+	dkim=pass (1024-bit key) header.d=maquefel.me header.i=@maquefel.me header.b="VfSfNf7+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from forward502a.mail.yandex.net (forward502a.mail.yandex.net [178.154.239.82])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8735912BF2D;
-	Tue,  9 Apr 2024 11:42:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECCFE1EB46;
+	Tue,  9 Apr 2024 11:49:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.82
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712662953; cv=none; b=QZ39bTz+Bpr4AYv708RYW6LQzVG9AzHvWaOotnr78ASS8opN+OYhaXULgjU27N1pwphodqH+7Qy0d+QO7WsSAGZtJ45/5UCzEZxboCghouOTkkdUBmjWr7wl0uy/UyS/WYLtB5BL0ghKgeiZR8bgxwzsRYaT/xzoT3bqQ1pUX2E=
+	t=1712663355; cv=none; b=KsWq+pKu0Ofm/PArDyAgsVMhjVHOKuqSqSNHMRMSmzm7o7OKdwotUZi5vvvLvKHW6a+RmOwIax65dOYXxTVPQfCWeDRK8xS6PTpLyq3xx/jUamGzVDzIxuWLxJQNR+p8K86rHuLgbdQJO/lEfdJebczPwpNZJhBXVI5ir6F1sII=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712662953; c=relaxed/simple;
-	bh=1IKHkg+bFOK+XIFwPPhCXS2tjDgeASO3rycSgHf2rZg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=GlqsDbvYuBLwGfS/DOTTgXqaLNqMQiolQ6iCyjkJSivryVFFA+t0cO58qNgfjM2dHfbArr83sdWtf6+Dwguv9aRw9i6BX8fDyFPCM4GT5gVkqBREleM9ODOpgGzj7BAZGgq88hMLp6uWJUwu6f3/4v9uBSUb8Q9bbOxaTTW1NQU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=r+nxKpPe; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1712662950;
-	bh=1IKHkg+bFOK+XIFwPPhCXS2tjDgeASO3rycSgHf2rZg=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=r+nxKpPevPYF5KeaMrPZbMUBWhwIroSMLfrTCJAyZ2z7biBlV7Itac+bNYWXqg9AX
-	 x9wnbrJnbg1v/wRm9okRoXB/1y97SMuMIOJk/BzdVYBTIMDJACi2M91C3+Db5aN46G
-	 w82qJMCOha7zlg+40XhKJIEJ/P/nYP9AeR4jWR7qkPYMxOSupgAQlx28Y4P19FbU5p
-	 5c9e7DVeJsBlD05j1N39auPKoot74PRZjF5/qGT5m4cANizhQH+lkaYXaJ3keqv8pn
-	 wJXxnr/dggeGXAdfslqaJxkLvB51wpJdFO1p0r28+YVn3m1Lo5WWZyMnq9E+ox/J8y
-	 cmG4JeFVEh+5Q==
-Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5D3133782127;
-	Tue,  9 Apr 2024 11:42:29 +0000 (UTC)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: linux-mediatek@lists.infradead.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	kernel@collabora.com
-Subject: [PATCH 5/5] arm64: dts: mediatek: mt8395-nio-12l: Add power supplies for CPU/GPU scaling
-Date: Tue,  9 Apr 2024 13:42:11 +0200
-Message-ID: <20240409114211.310462-6-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240409114211.310462-1-angelogioacchino.delregno@collabora.com>
-References: <20240409114211.310462-1-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1712663355; c=relaxed/simple;
+	bh=52WWkfu86gx/lo2vjZGO8fMdXa5Yi4Sl7Fgw/vzyE6Q=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=KSYk0aoRWzuwwkcuhVF3pbFVH/90JZCbsHsmqG7/oDqGjhv6cwp0EOlvjeFbOLvjKMIikVloWs5OiwLmqz/T9QaXTOhpVOvpOL4Yk3Y12J83O0zHVHKAGoE8NyedG48D8dOv/vmPBOx9x4ehUf5CLG9S9QPwXXHbgW3qOqedB60=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=maquefel.me; spf=pass smtp.mailfrom=maquefel.me; dkim=pass (1024-bit key) header.d=maquefel.me header.i=@maquefel.me header.b=VfSfNf7+; arc=none smtp.client-ip=178.154.239.82
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=maquefel.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=maquefel.me
+Received: from mail-nwsmtp-smtp-production-main-49.vla.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-49.vla.yp-c.yandex.net [IPv6:2a02:6b8:c18:1423:0:640:9497:0])
+	by forward502a.mail.yandex.net (Yandex) with ESMTPS id D0E9961134;
+	Tue,  9 Apr 2024 14:49:00 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-49.vla.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id xmXmkMrkE4Y0-j6ONsW4b;
+	Tue, 09 Apr 2024 14:49:00 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maquefel.me; s=mail;
+	t=1712663340; bh=52WWkfu86gx/lo2vjZGO8fMdXa5Yi4Sl7Fgw/vzyE6Q=;
+	h=References:Date:In-Reply-To:Cc:To:From:Subject:Message-ID;
+	b=VfSfNf7+PRsyy9vPYLE8SV3uDU3QNbUDNfaQCuD9W12qq29836yZS3bVUoH/dXf6U
+	 s6hRvReWV9XkVk7wjIFpYQjGgtpGzwi+A68eho3l/ofBv8t/Tz142aIJksy6bCux9t
+	 GM3DNkCNuwkgy8KmejeTKynArydt4kI1o/4hebSY=
+Authentication-Results: mail-nwsmtp-smtp-production-main-49.vla.yp-c.yandex.net; dkim=pass header.i=@maquefel.me
+Message-ID: <42f9da044fdc11e2495f6845c061afefa796f7cf.camel@maquefel.me>
+Subject: Re: [PATCH 0/4] DONOTMERGE: ep93xx-clk from ep93xx device tree
+ conversion
+From: Nikita Shubin <nikita.shubin@maquefel.me>
+To: Conor Dooley <conor@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Alexander Sverdlin <alexander.sverdlin@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>,  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>, Linus Walleij
+ <linus.walleij@linaro.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>
+Date: Tue, 09 Apr 2024 14:48:59 +0300
+In-Reply-To: <20240408-friction-mosaic-ba48bc27788d@spud>
+References: <20240408-ep93xx-clk-v1-0-1d0f4c324647@maquefel.me>
+	 <20240408-friction-mosaic-ba48bc27788d@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.48.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-Add the necessary power supplies to safely enable CPU and GPU frequency
-scaling.
-
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- .../dts/mediatek/mt8395-radxa-nio-12l.dts     | 40 +++++++++++++++++++
- 1 file changed, 40 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts b/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
-index 5cbe969da425..bf6b539e6c06 100644
---- a/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
-@@ -140,6 +140,38 @@ apu_mem: memory@62000000 {
- 	};
- };
- 
-+&cpu0 {
-+	cpu-supply = <&mt6359_vcore_buck_reg>;
-+};
-+
-+&cpu1 {
-+	cpu-supply = <&mt6359_vcore_buck_reg>;
-+};
-+
-+&cpu2 {
-+	cpu-supply = <&mt6359_vcore_buck_reg>;
-+};
-+
-+&cpu3 {
-+	cpu-supply = <&mt6359_vcore_buck_reg>;
-+};
-+
-+&cpu4 {
-+	cpu-supply = <&mt6315_6_vbuck1>;
-+};
-+
-+&cpu5 {
-+	cpu-supply = <&mt6315_6_vbuck1>;
-+};
-+
-+&cpu6 {
-+	cpu-supply = <&mt6315_6_vbuck1>;
-+};
-+
-+&cpu7 {
-+	cpu-supply = <&mt6315_6_vbuck1>;
-+};
-+
- &eth {
- 	phy-mode = "rgmii-rxid";
- 	phy-handle = <&rgmii_phy>;
-@@ -343,6 +375,14 @@ typec_con_mux: endpoint {
- 	};
- };
- 
-+&mfg0 {
-+	domain-supply = <&mt6315_7_vbuck1>;
-+};
-+
-+&mfg1 {
-+	domain-supply = <&mt6359_vsram_others_ldo_reg>;
-+};
-+
- /* MMC0 Controller: eMMC (HS400). Power lines are shared with UFS! */
- &mmc0 {
- 	pinctrl-names = "default", "state_uhs";
--- 
-2.44.0
+SGVsbG8gQ29ub3IhCgpPbiBNb24sIDIwMjQtMDQtMDggYXQgMTg6MDMgKzAxMDAsIENvbm9yIERv
+b2xleSB3cm90ZToKPiBPbiBNb24sIEFwciAwOCwgMjAyNCBhdCAxMTowOTo1MkFNICswMzAwLCBO
+aWtpdGEgU2h1YmluIHZpYSBCNCBSZWxheQo+IHdyb3RlOgo+ID4gVGhlIGdvYWwgaXMgdG8gcmVj
+aWV2ZSBBQ0tzLgo+IAo+IEkgZG9udCBzZWUgYSBtYWludGFpbmVycyBlbnRyeSBpbiAtcmMxIGZv
+ciB0aGUgZHJpdmVycy9zb2MvY2lycnVzCj4gcG9ydGlvbi4gV2hvIGlzIGdvbm5hIGdpdmUgeW91
+IGFuIEFjayBmb3IgdGhhdCBwb3J0aW9uPyBJZiB5b3UKPiBpbnRlbmRlZAo+IG1haW50YWluaW5n
+IHRoYXQgZHJpdmVyLCBzaG91bGQgeW91IG5vdCBhZGQgYSBNQUlOVEFJTkVSUyBlbnRyeSBmb3IK
+PiBpdD8KCmRyaXZlcnMvc29jL2NpcnJ1cyBnb3QgaXQncyBBQ0sgZnJvbSBlcDkzeHggTUFJTlRB
+SU5FUiAtIEFsZXhhbmRlcgpTdmVyZGxpbi4KCkFybmQsIEFsZXhhbmRlciAtIHNob3VsZCB3ZSBh
+ZGQgaXQgbm93ID8KCkJ1dCBpIHN0aWxsIHJlcXVpcmUgQUNLIGZvciAiY2xrOiBlcDkzeHg6IGFk
+ZCBEVCBzdXBwb3J0IGZvciBDaXJydXMKRVA5M3h4IiB3aGljaCBpcyBjbGsgc3Vic3lzdGVtcy4K
+Cgo+IAo+IFRoYW5rcywKPiBDb25vci4KPiAKPiA+IAo+ID4gVGhpcyBpcyBhIGZyYWN0aW9uIG9m
+IHY5ICJlcDkzeHggZGV2aWNlIHRyZWUgY29udmVyc2lvbiIgc2VyaWVzOgo+ID4gCj4gPiBodHRw
+czovL2xvcmUua2VybmVsLm9yZy9hbGwvMjAyNDAzMjYtZXA5M3h4LXY5LTAtMTU2ZTJhZTVkZmM4
+QG1hcXVlZmVsLm1lLwo+ID4gCj4gPiBUaGUgY2xrIGRyaXZlciBmb3IgZXA5M3h4IHdhcyBjb252
+ZXJ0ZWQgdG8gQVVYIGRldmljZSwgYXMgc3VnZ2VzdGVkCj4gPiBvcmlnaW5hbGx5IGJ5IFN0ZXBo
+ZW4gQm95ZC4KPiA+IAo+ID4gU2lnbmVkLW9mZi1ieTogTmlraXRhIFNodWJpbiA8bmlraXRhLnNo
+dWJpbkBtYXF1ZWZlbC5tZT4KPiA+IC0tLQo+ID4gTmlraXRhIFNodWJpbiAoNCk6Cj4gPiDCoMKg
+wqDCoMKgIEFSTTogZXA5M3h4OiBhZGQgcmVnbWFwIGF1eF9kZXYKPiA+IMKgwqDCoMKgwqAgY2xr
+OiBlcDkzeHg6IGFkZCBEVCBzdXBwb3J0IGZvciBDaXJydXMgRVA5M3h4Cj4gPiDCoMKgwqDCoMKg
+IGR0LWJpbmRpbmdzOiBzb2M6IEFkZCBDaXJydXMgRVA5M3h4Cj4gPiDCoMKgwqDCoMKgIHNvYzog
+QWRkIFNvQyBkcml2ZXIgZm9yIENpcnJ1cyBlcDkzeHgKPiA+IAo+ID4gwqAuLi4vYmluZGluZ3Mv
+YXJtL2NpcnJ1cy9jaXJydXMsZXA5MzAxLnlhbWzCoMKgwqDCoMKgwqDCoMKgIHzCoCAzOCArCj4g
+PiDCoC4uLi9iaW5kaW5ncy9zb2MvY2lycnVzL2NpcnJ1cyxlcDkzMDEtc3lzY29uLnlhbWzCoCB8
+wqAgOTQgKysrCj4gPiDCoGRyaXZlcnMvY2xrL0tjb25maWfCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8wqDCoCA4ICsKPiA+IMKg
+ZHJpdmVycy9jbGsvTWFrZWZpbGXCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgwqAgMSArCj4gPiDCoGRyaXZlcnMvY2xrL2Nsay1l
+cDkzeHguY8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgfCA4NDAKPiA+ICsrKysrKysrKysrKysrKysrKysrKwo+ID4gwqBkcml2ZXJzL3NvYy9LY29u
+ZmlnwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqAgfMKgwqAgMSArCj4gPiDCoGRyaXZlcnMvc29jL01ha2VmaWxlwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoMKgIDEg
+Kwo+ID4gwqBkcml2ZXJzL3NvYy9jaXJydXMvS2NvbmZpZ8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8wqAgMTMgKwo+ID4gwqBkcml2ZXJzL3NvYy9jaXJy
+dXMvTWFrZWZpbGXCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+IHzCoMKgIDIgKwo+ID4gwqBkcml2ZXJzL3NvYy9jaXJydXMvc29jLWVwOTN4eC5jwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfCAyNDAgKysrKysrCj4gPiDCoGluY2x1ZGUv
+ZHQtYmluZGluZ3MvY2xvY2svY2lycnVzLGVwOTMwMS1zeXNjb24uaMKgwqAgfMKgIDQ2ICsrCj4g
+PiDCoGluY2x1ZGUvbGludXgvc29jL2NpcnJ1cy9lcDkzeHguaMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAgfMKgIDI2ICsKPiA+IMKgMTIgZmlsZXMgY2hhbmdlZCwgMTMxMCBpbnNl
+cnRpb25zKCspCj4gPiAtLS0KPiA+IGJhc2UtY29tbWl0OiBmZWM1MGRiNzAzM2VhNDc4NzczYjE1
+OWUwZTJlZmIxMzUyNzBlM2I3Cj4gPiBjaGFuZ2UtaWQ6IDIwMjQwNDA4LWVwOTN4eC1jbGstNjU3
+YTEzNTdkZTY3Cj4gPiAKPiA+IEJlc3QgcmVnYXJkcywKPiA+IC0tIAo+ID4gTmlraXRhIFNodWJp
+biA8bmlraXRhLnNodWJpbkBtYXF1ZWZlbC5tZT4KPiA+IAo+ID4gCgo=
 
 
