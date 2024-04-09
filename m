@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-57356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACA2789D479
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 10:35:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A0FC89D480
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 10:35:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF1FC1C228C1
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 08:35:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33C59283927
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 08:35:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D8FF13049E;
-	Tue,  9 Apr 2024 08:27:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EDD77F476;
+	Tue,  9 Apr 2024 08:29:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="srs9Hpyk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="suNdwIwb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97B4D7E765
-	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 08:27:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47D497EF1E
+	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 08:29:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712651271; cv=none; b=dIL+tEi9vXRd13Bbg0DhUhTZMCZY9W1z0+D2h42EIftzyEaMXxMNfUesVCKuXXMggokCH0zhl4Yz+APlRPZW3V49ZMgPIkoqD5lNO2WiAKzzS909ngDAvymHhlGK8X/g6848uBezXpj/HRoMt4EPra6BArh6zbhc5fTDQGcQ0BI=
+	t=1712651378; cv=none; b=VQPSu+dE/BatkJznLTWeYiXMvwkXCQtO621XtLhtgFvAefOkUowywdGPAcO4s5rym7q+zT7FwnEdqynl+kAoehKKpxVipLK4gen0Ja5PSdqIISHDxpOhAh2uXWWwZRMkJu7PtdTIvW1jKlbgQwo7ETSsNxB7V9OVuNrP/pxgBc4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712651271; c=relaxed/simple;
-	bh=ThxYTuWnIjROrsvIfsqbP8USRVfszGLqnVNSOTkj9Hk=;
+	s=arc-20240116; t=1712651378; c=relaxed/simple;
+	bh=WdE4htusb2kjVqtqBJvkG2JePWdQwUS69Z09DvFNw6Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Sfhy9G5baT/Y6T5oJJ+1MpycBvBzJYQtYzO0ZFmXTQe7sZXDGPdEgzhqUcEi+eDVobNVczAn0sQBxMc5S5JedWdIh7J2geSfReJ8mNEu0LLM8Pw+nZHQ8PFNTws+R9wDW7HNxJL7DDn3ObxFtEDi/Do0ehilVSGQM0e6LObgNIc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=srs9Hpyk; arc=none smtp.client-ip=209.85.218.47
+	 In-Reply-To:Content-Type; b=KevhRAqhjSyU0pNITjXa0z+GQTs6NpvsJXJuVdGzYYcyLlVF3ag4zcqI7G8dYU2zWaVGeIYuSXvZYhh1cmE2iWC68uWs821PVk7Sb/bECSoTVy6MkNXqHycWXqtIFY68KgC0YRefSFHaN3OjVWbdJeHPzFelwW8pVM9FPIxCbuc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=suNdwIwb; arc=none smtp.client-ip=209.85.208.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a46ea03c2a5so888075866b.1
-        for <devicetree@vger.kernel.org>; Tue, 09 Apr 2024 01:27:48 -0700 (PDT)
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2d88a869ce6so26371561fa.3
+        for <devicetree@vger.kernel.org>; Tue, 09 Apr 2024 01:29:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712651267; x=1713256067; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712651374; x=1713256174; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=1hY3mD/N+ezYOSt5b+q4lZKBMQJtYzKundCKG+ygE0A=;
-        b=srs9HpykNafbAjPnA+SJcihhimUW8mBOxQ2ScSbZB1+1okxw7NJvBts9g8umo2vTKL
-         YROt57dBBioTGQtdpezG6r4EUtmRyemXjfLL3+dgIhXebs5CFWobQIJIBPiizy/N8d/W
-         P0gqzX0+AZIKmnfLwp0ViKLzv48wbEDMuxMxfiqPX4PO4GWgi6CR8OtpMW+5LvDWqNK0
-         9PAPyYY/R0HdUSSt0ZcV4FoFywLckB7cu5VJoseQkBgZ5oqLTlYBY4jwx91JdfkPg3xZ
-         u73TcTTOD337BuJ8dQLsyFDNC8P2cC4hNwPqP0a1uZfmMcI6VxNsTdyAmBY/yyVe1EmG
-         7lhg==
+        bh=7fB87XF2B9TdrBNlR1IMBrDbVs3qLikGFi6NhqVMud4=;
+        b=suNdwIwb3CBBBleGnqfphvjHU0dWmXv3H+UYe8bXCPRhpxw0TfOUl9Jg/OqW4ZW0xp
+         jjeIaWwzCEqwmMPBGggJXssb4arNtoXbcr/EY97vjANRJRHdfWwHDeyu70i0epqQJmpC
+         U/Ma23y/pyfOO3lQRuf7ghQ++rACgtcw5kwYh3W79Z1zVK1nA10EGWDOjJppgP/DjNhw
+         4xcS1nvtFSMln1QW900LlJfBKEYeJebkFj7HaRM6GW5QQmO5/BCnQsJCRtVLxv5EZrHL
+         ylFz7jX4fA+6re7W45R1IdmlN21IM88gXbPg/QxQKF3lEm/KD2XdopGeBBPIuEBDE0n/
+         D1IA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712651267; x=1713256067;
+        d=1e100.net; s=20230601; t=1712651374; x=1713256174;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=1hY3mD/N+ezYOSt5b+q4lZKBMQJtYzKundCKG+ygE0A=;
-        b=xAieV6UUrXVv80K4C/h9sTVFoJ8Hn434j0MPIgvIM25s4nUY+HLb68m3DS56RYLN1z
-         HpMlV35CYxJoo4uxRa16jK19ccA0nc8esIGBVu+3uIC8jEQRMsXhoxRwsRJU3zLTXiiV
-         PgJtnICXIs2P2OOH3yQamJHc8boJQqlKWZJfbhCwkmhtrM6EedCK6GiQqJho/Do4nBRB
-         9k2YZx1ax8w7OEqgIVZS2MpE+EZgBte9iNXBzB3vXDx5ijyqgijpDrxaU8yepR5X2tSR
-         nwTYP/eZPyfcMuyPyXMPaztOl3HwA7Ct5gT+9672Po0W+rtCUPjkb+uyNFfc9Cz8Aci6
-         4zDg==
-X-Forwarded-Encrypted: i=1; AJvYcCWRrXlOOQeGPesFL4q2V9GN4C+mqeIkM51BU2FGlPwZUOrOtYzhSg3HvUW7r3z7K949KsOuGSxUS8XsYKiDQRFj9nbs2ocYMFxk7A==
-X-Gm-Message-State: AOJu0YyUvPw0TgcE2CgyZbJmYttB7wc0mcafbT1fwsdeUI7vWOK2K502
-	tJkB5BerOKxhDG57BffIdVECefM5ACz3jeQ8ONqnFDoqDD6l5eW0q3hj2N5GgS0=
-X-Google-Smtp-Source: AGHT+IHB3JBHXp6mRDWOLskJLzBW7WW2Fz5xasNv8dUHchBogLoItvLbEMWQ+zcmtAvh6JmNLgq4Kg==
-X-Received: by 2002:a17:906:37d2:b0:a51:e157:4dca with SMTP id o18-20020a17090637d200b00a51e1574dcamr1867427ejc.0.1712651266796;
-        Tue, 09 Apr 2024 01:27:46 -0700 (PDT)
+        bh=7fB87XF2B9TdrBNlR1IMBrDbVs3qLikGFi6NhqVMud4=;
+        b=goXdtcU+fkzHAFigpZSmbHL5B+hHQeQ/Anvo/rH5Eagn3YuULxk4qhzTNjlVmgYk9y
+         F4hMk18Ei0j0/H3Cdvj4zyy9pXOpwJtF8HYowpI/z/6zQP4QJ6sUWr0P7FSUc26ghUq/
+         THOChbG0uqPfLhslfjFeLJNUR/GL4/eu2gOotuyvRQ4EkN40mnrNYN9NqmAB/WF7m8YR
+         HVZOqfv8brdHav1NX6Hw1J2n0Q2EcljDqzBSdlwYed1AGKBz+Ycwe8/Fsm/hretZzmvi
+         ydnw/OHwEcdqip3AL/GQM2Zrr23dq4odAjHyPoL8pzSHYtil0LzW7PV5BRHH6TcamoSd
+         /meg==
+X-Forwarded-Encrypted: i=1; AJvYcCWOJA1izVlJEQrtZBmndpNuTxvQB92KxcVRSiHVqGGYLEIBJSEHXu2DA+ciDIIH1Vk5+RnxCi0ECm4Dhvy/pOBynag+uV2pi/JimQ==
+X-Gm-Message-State: AOJu0YxURuYkaxF7Th9uGr2gc9hWw8XnUkbzpS2jcRHh6bSC0BVtsT20
+	/BP3VezqAvZIGmmcCnfJqMCVZIT67+FpD8tfCWkRNW9UeVV33/x9vFLJ73Tb8WU=
+X-Google-Smtp-Source: AGHT+IEI4kbjdNjQrcIi/RmJtlVdTGgHwL4kOYyOVJ5aD6Tr2oU1a6McazG8dikmgvHHt91P27lAMQ==
+X-Received: by 2002:a05:6512:224d:b0:516:d16e:9059 with SMTP id i13-20020a056512224d00b00516d16e9059mr8763385lfu.42.1712651374319;
+        Tue, 09 Apr 2024 01:29:34 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id jg29-20020a170907971d00b00a518bcb41c1sm5356152ejc.126.2024.04.09.01.27.45
+        by smtp.gmail.com with ESMTPSA id cs9-20020a0564020c4900b0056e45c05ec0sm3716131edb.77.2024.04.09.01.29.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Apr 2024 01:27:46 -0700 (PDT)
-Message-ID: <a4a9f949-ecc7-4603-8c8b-90a1e309570a@linaro.org>
-Date: Tue, 9 Apr 2024 10:27:44 +0200
+        Tue, 09 Apr 2024 01:29:33 -0700 (PDT)
+Message-ID: <5eb85c15-10af-4c5a-96a4-e928543e370e@linaro.org>
+Date: Tue, 9 Apr 2024 10:29:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,15 +77,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: power: supply: ltc3350-charger: Add
- bindings
-To: Mike Looijmans <mike.looijmans@topic.nl>, linux-pm@vger.kernel.org
-Cc: Conor Dooley <conor+dt@kernel.org>,
+Subject: Re: [PATCH 1/4] dt-bindings: arm: qcom: Add msm8916 based Motorola
+ devices
+To: Nikita Travkin <nikita@trvn.ru>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh@kernel.org>, Sebastian Reichel <sre@kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.3bc97c8f-843d-4e46-84f9-469b7ba2489d@emailsignatures365.codetwo.com>
- <20240408064905.20298-1-mike.looijmans@topic.nl>
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240405-msm8916-moto-init-v1-0-502b58176d34@trvn.ru>
+ <20240405-msm8916-moto-init-v1-1-502b58176d34@trvn.ru>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -132,93 +133,20 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240408064905.20298-1-mike.looijmans@topic.nl>
+In-Reply-To: <20240405-msm8916-moto-init-v1-1-502b58176d34@trvn.ru>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/04/2024 08:49, Mike Looijmans wrote:
-> The LTC3350 is a backup power controller that can charge and monitor
-> a series stack of one to four supercapacitors.
+On 05/04/2024 16:06, Nikita Travkin wrote:
+> Add compatible values for the msm8916 based Motorola smartphones.
 > 
-> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
+> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
 > ---
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
->  .../bindings/power/supply/ltc3350.yaml        | 55 +++++++++++++++++++
 
-
-Missing vendor prefix, use compatible as filename.
-
->  1 file changed, 55 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/supply/ltc3350.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/power/supply/ltc3350.yaml b/Documentation/devicetree/bindings/power/supply/ltc3350.yaml
-> new file mode 100644
-> index 000000000000..607a62fd25ba
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/supply/ltc3350.yaml
-> @@ -0,0 +1,55 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright (C) 2024 Topic Embedded Products
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/supply/ltc3350.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Linear Technology (Analog Devices) LTC3350 Supercap Charger
-> +
-> +maintainers:
-> +  - Mike Looijmans <mike.looijmans@topic.nl>
-> +
-> +description: |
-> +  The LTC3350 is a  High Current Supercapacitor Backup Controller and System
-
-Just one space after 'a'.
-
-> +  Monitor.
-> +  Specifications about the charger can be found at:
-> +    https://www.analog.com/en/products/ltc3350.html
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - lltc,ltc3350
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: I2C address of the charger.
-
-Drop description, it is obvious.
-
-> +
-> +  lltc,rsnsc-micro-ohms:
-> +    description: Capacitor charger sense resistor in microohm.
-> +    minimum: 1000
-> +
-> +  lltc,rsnsi-micro-ohms:
-> +    description: Input current sense resistor in microohm.
-> +    minimum: 1000
-
-Looks like it is shunt-resistor-micro-ohms. Unless it is something
-different?
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - lltc,rsnsc-micro-ohms
-> +  - lltc,rsnsi-micro-ohms
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +      charger: battery-charger@9 {
-> +              compatible = "lltc,ltc3350";
-
-Messed indentation. Keep it consistent.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
