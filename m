@@ -1,91 +1,111 @@
-Return-Path: <devicetree+bounces-57486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DFC589DA53
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 15:35:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 756B689DA5B
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 15:36:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E0071C22736
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 13:35:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3089A28C2D7
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 13:36:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53670137743;
-	Tue,  9 Apr 2024 13:28:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B314C12F389;
+	Tue,  9 Apr 2024 13:31:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VcYfZ8Gt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MON71pSk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 259ED136E3D;
-	Tue,  9 Apr 2024 13:28:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85D2512A144;
+	Tue,  9 Apr 2024 13:31:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712669291; cv=none; b=YsGPipPMGWJYV3SfgWkoMPVgwZKR4O2rZJIJ+vYfYJD+zGyHznXvcM/Vn+J2Gb5ZdcIvr/TXV4NEJ77HqdYskksHEQxxcLoEu/udvSJ2JhwvDriYiTFZjYYzjCYY8PxsX3xLTcADQE6nmEf1pGR71dClzQwJfebk2epV4lnw8jQ=
+	t=1712669464; cv=none; b=WlGae4+cb633tQvwnAxLf3Sy31VdHwTUN4j7S4XCqL9l1u7SSwImGUO48deSYBD/ogmaiVk0dkM5YfO82hRfrm7kVz/dRnBJmb+RxWIBIA2ERzZMB3QmqVRvU04lak9kNv0ACjESB/eNSKsfgzhJFAqVchcy1w/hz5cik6eoxac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712669291; c=relaxed/simple;
-	bh=HOJtXBcppUU+aQAwrlJyYEWKDyMaLDEV80FbFejpZKg=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=W0E5CVOnA3SaN+lW/UHStBUL7IDaX2B4zOQYFRaeGdnKaCatQAeTEzUTaYieBVUrVL2ZFVmhimRcOPLlOrj6HywKI4o6gGKbgvj8hUlFYa9y868yKTohqycgO9FKsvw98l28BcDsxlWXcqWXa/sodzcj1KkqeMRX1TF84PcHsUs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VcYfZ8Gt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63163C433F1;
-	Tue,  9 Apr 2024 13:28:10 +0000 (UTC)
+	s=arc-20240116; t=1712669464; c=relaxed/simple;
+	bh=C5Pgvgm3baCPKcrkdPQDnpWS7wMXweORPfyVxBxJtII=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=dwCL5MAaZrw6AJ1fBWvDGITeg2wQxyPrOdlKgUEPfdvwuK6KpYDENDOSpZUtKKe5bMQpUtEHpKKDaj8ShKtCSED4IZGlef82ufv76q92pKbCfag1f5n+3GnnJNq2EmudwoTIeXgR6rCzv5vBkm0cSGCjhWr4UBU4Y40Ofkq8c54=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MON71pSk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEFBBC433C7;
+	Tue,  9 Apr 2024 13:31:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712669290;
-	bh=HOJtXBcppUU+aQAwrlJyYEWKDyMaLDEV80FbFejpZKg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=VcYfZ8GtK+3jrdb//TKysWx8cjqyUKp2ggTvTeFCgJwHdWOvDUCHEd4Fax/cXaWkC
-	 5f+djQfIsSg5X+RI2UkYVaYNJ9tx0XyzDYYBoT9T9xVws2G8A1RNG2Vgt9KwgjeQas
-	 qRUtYXhRypQXHETc7YTZTCth4xCzta0IgAWX1De+tIb3rkEWGQuK+5xtYyZ2hMHFaK
-	 SuykwdtX7iY0xXLcZeyQnY62PsyEaLx/+kobCIGxivW9PojQjHaj/EopJhwDSK1jFW
-	 sIifIEW2Wva6sURqrjo1zKyskCLxH224kIyH0BR3WjnTIW4wy4T8I3YzlAQTM5J2rC
-	 3TsYtA2B1jmeg==
-Date: Tue, 9 Apr 2024 08:28:08 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, jingoohan1@gmail.com, mani@kernel.org,
-	marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v5 0/7] PCI: dwc: rcar-gen4: Add R-Car V4H support
-Message-ID: <20240409132808.GA2071934@bhelgaas>
+	s=k20201202; t=1712669464;
+	bh=C5Pgvgm3baCPKcrkdPQDnpWS7wMXweORPfyVxBxJtII=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=MON71pSkaCjpYpANsLx7RFQYqc1znbqTBrx/5arKf7zzStcEH+auE9EvWac6sKC/2
+	 8aZD1t4FcuU4M+tDK1y0+SpCRqxxM4UWTl5i/mqFIMv8F7jFFNWX3Z2wmQruIZrLW/
+	 Ayz1WZmw6ozS3v7o/Wa7aWdwUzHgZydnHU3GYfNRssq+1Lv1RdNxyzEdBmNWtYeyAd
+	 qdPRR+NltcJhLj4uClPmIVa6n+MvWH8CRe963O5ZQE7WBHG/qKmz+MZvFhfPZhv6iu
+	 OJi/O++htw1gam3CC0Zg0OUt9Mroi+whS6/3Vp0naNCYvs9XPkb+JzxXxskx2PH8qJ
+	 54fncFaIjWtyQ==
+Date: Tue, 09 Apr 2024 08:31:02 -0500
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240408012458.3717977-1-yoshihiro.shimoda.uh@renesas.com>
+From: Rob Herring <robh@kernel.org>
+To: Mike Looijmans <mike.looijmans@topic.nl>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Sebastian Reichel <sre@kernel.org>, linux-pm@vger.kernel.org, 
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20240409123556.34299-1-mike.looijmans@topic.nl>
+References: <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.67250ca5-6a79-4048-b845-3d240ff83a75@emailsignatures365.codetwo.com>
+ <20240409123556.34299-1-mike.looijmans@topic.nl>
+Message-Id: <171266946179.1029796.4237832991239731761.robh@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: power: supply: ltc3350-charger:
+ Add bindings
 
-On Mon, Apr 08, 2024 at 10:24:51AM +0900, Yoshihiro Shimoda wrote:
 
-> Yoshihiro Shimoda (7):
->   dt-bindings: PCI: rcar-gen4-pci-host: Add R-Car V4H compatible
->   dt-bindings: PCI: rcar-gen4-pci-ep: Add R-Car V4H compatible
->   PCI: dwc: Add PCIE_PORT_{FORCE,LANE_SKEW} macros
->   PCI: dwc: rcar-gen4: Add rcar_gen4_pcie_platdata
->   PCI: dwc: rcar-gen4: Add .ltssm_enable() for other SoC support
->   PCI: dwc: rcar-gen4: Add support for r8a779g0
-
-Previous history for this file uses a "PCI: rcar-gen4: " prefix
-(without "dwc:").  I don't think we need to replicate the whole file
-path here in the precious subject line space, so "PCI: rcar-gen4: "
-should be enough.
-
->   misc: pci_endpoint_test: Document a policy about adding pci_device_id
+On Tue, 09 Apr 2024 14:35:54 +0200, Mike Looijmans wrote:
+> The LTC3350 is a backup power controller that can charge and monitor
+> a series stack of one to four supercapacitors.
 > 
->  .../bindings/pci/rcar-gen4-pci-ep.yaml        |   4 +-
->  .../bindings/pci/rcar-gen4-pci-host.yaml      |   4 +-
->  drivers/misc/pci_endpoint_test.c              |   1 +
->  drivers/pci/controller/dwc/pcie-designware.h  |   6 +
->  drivers/pci/controller/dwc/pcie-rcar-gen4.c   | 272 +++++++++++++++++-
->  5 files changed, 270 insertions(+), 17 deletions(-)
+> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
 > 
-> -- 
-> 2.25.1
+> ---
 > 
+> Changes in v2:
+> Rename to lltc,ltc3350.yaml
+> Fix spaces and indentation
+> 
+>  .../bindings/power/supply/lltc,ltc3350.yaml   | 54 +++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/supply/lltc,ltc3350.yaml
+> 
+
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/supply/lltc,ltc3350.yaml: $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
+ 	 $id: http://devicetree.org/schemas/power/supply/ltc3350.yaml
+ 	file: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/supply/lltc,ltc3350.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240409123556.34299-1-mike.looijmans@topic.nl
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
