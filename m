@@ -1,59 +1,63 @@
-Return-Path: <devicetree+bounces-57529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AD0189DBD4
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 16:11:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3F0689DBDB
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 16:12:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B3901C21F71
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 14:11:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87BE328387E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 14:12:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D962312F5A3;
-	Tue,  9 Apr 2024 14:11:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA9D912F5AE;
+	Tue,  9 Apr 2024 14:12:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JuzBib3P"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XLgNLTwO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD3FD75809;
-	Tue,  9 Apr 2024 14:11:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA59F75809;
+	Tue,  9 Apr 2024 14:12:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712671893; cv=none; b=Bron64fjMzCgMxY0sjVGKpXe4Yt6SydVyNJnyaosRkSmevZLE87dsrKOnVQUaAGDdqWFG4OAu649Otsm6ea82vwTVFtPOsHZusF3Bhg/CDD9fWRsG2gw3tbusVjT+rBC5GYTumy/7tVkYdTuXv/1ovk6Vd5+VjS+V3gtULOZWDs=
+	t=1712671966; cv=none; b=k8kBrYNkVUohi4ZzxIWrSDP25KwEL5/gvCLsOx49LV3oyKXPU1NG40oLe33oSzk4Zc5YnAtn6+JGedeZlVHw/QNGV/F8+dUdYaJxBXy5iplqI70dkszvQ7wJW8sQwrSMcJ3nZIVHUHRNnJ4sjrGUAYy1M8JwQTGQ9vvgRbMMHxg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712671893; c=relaxed/simple;
-	bh=YaXWoVymImPtlRnaXvB+mRohV2Ldkp3X0gl23abX7y0=;
+	s=arc-20240116; t=1712671966; c=relaxed/simple;
+	bh=xBaTzncPkClWKcZ+0gQSXyy6lR2MO8ejKBgQTVMKrdc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U5kr551MvHkRCvJSzzzZLDr0sdlsg2MQDq7cFxuev+qnx/44Hib2zJgNcZZX0o7doIgRrh56Rf5VjYjTtnOq3tgkJGUWPIhXA0PSMXfG3zbgF6CyNdh1+7OS1nxHckXZmsjZspUe7vqZIUZuegp452NnrpC1AmoQDUB3F/jx++o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JuzBib3P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18092C433C7;
-	Tue,  9 Apr 2024 14:11:33 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=tgoExPM3NH99V/Mh9qIbWoG2KqjAuvCt/xgbyevctMpnSZ1FhwdWgk2GqsRJH21Khsgy7YSnbRtJRI6L6x8aBUqkrDyurO4LiIYi0pfRoBoSPjxTnvZ1C+REaerGwjMLXeauwBUTpYLYu8qA/dJRI2O9n8KG77GYGCay0Ipuo84=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XLgNLTwO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61AE1C433F1;
+	Tue,  9 Apr 2024 14:12:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712671893;
-	bh=YaXWoVymImPtlRnaXvB+mRohV2Ldkp3X0gl23abX7y0=;
+	s=k20201202; t=1712671965;
+	bh=xBaTzncPkClWKcZ+0gQSXyy6lR2MO8ejKBgQTVMKrdc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JuzBib3P9kTwrHPfG27Cnd5t6YLM7UNrhEPA8gSixs2TtZ8PQfyigu35dgS867ssG
-	 eI8AAJH1+SKaz56fhufBUSFe0PtoCf927I9DQRoS7ThX0I0Kb1KDcYWKy1rFm+9ihD
-	 JJQraBZynIO2SBCn5ORSnZlPsng5i2GryY2lmJW9JoDXAwOW89J4GNYKMyc2nkD15J
-	 EBfm97nfvmUgGJvwyKD+fJCd/6wfBwTE1RcFqdor4KU5bjeRyF+ZjNronLxkR9rgox
-	 OtSe/JyLZSf5O26DxxRcSQ7CJWMsCG1aYhbwRT9MFGYyI8p89lA+yEr/2soVtwn5y2
-	 mBhMUDOSV2dLw==
-Date: Tue, 9 Apr 2024 09:11:31 -0500
+	b=XLgNLTwOIsjL7F9gQSD2PD33d5tjOWWzin3psRbAe8fyNJ1v0N6zrkEtWx1TUTB2T
+	 TLlsFwJY2mAAD1z0AQ/2sIudZjbeNsSV6wLVUUyps3YuIsU0T2SH3Mtd5k9pfgGsd2
+	 hvJHqsjqL/RXnrytvDItq6INGePuqTDYVcGeL9bqFH9rphZCDxQ0h5Ic2n4GENhitH
+	 LMZmN0dV1QoBNHv65HgiONuhDqg+x4+UmpmlPZDmHgZ3SK5PKkMd4xxd5XEhD3ZHdB
+	 X9PqZhMVd3kGgR5rcSB6N89JJRegDdV3gefwEV4aJ4kA7Faxyy9zNarYpmydrQmewe
+	 hxs8v0Xp5Bf0g==
+Date: Tue, 9 Apr 2024 09:12:43 -0500
 From: Rob Herring <robh@kernel.org>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: timer: renesas,cmt: Add R-Car V4M support
-Message-ID: <20240409141131.GA1102070-robh@kernel.org>
-References: <3e8a7a93261d8ad264dec2fa2784fe1bbfc4a23c.1712068536.git.geert+renesas@glider.be>
+To: git@luigi311.com
+Cc: mchehab@kernel.org, devicetree@vger.kernel.org,
+	linux-media@vger.kernel.org, shawnguo@kernel.org,
+	jacopo.mondi@ideasonboard.com, phone-devel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	krzysztof.kozlowski+dt@linaro.org, festevam@gmail.com,
+	sakari.ailus@linux.intel.com, conor+dt@kernel.org,
+	imx@lists.linux.dev, pavel@ucw.cz, dave.stevenson@raspberrypi.com,
+	s.hauer@pengutronix.de, linux-kernel@vger.kernel.org,
+	kernel@pengutronix.de
+Subject: Re: [PATCH v3 18/25] dt-bindings: media: imx258: Add alternate
+ compatible strings
+Message-ID: <171267196134.1104703.16459951254766815081.robh@kernel.org>
+References: <20240403150355.189229-1-git@luigi311.com>
+ <20240403150355.189229-19-git@luigi311.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,42 +66,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <3e8a7a93261d8ad264dec2fa2784fe1bbfc4a23c.1712068536.git.geert+renesas@glider.be>
+In-Reply-To: <20240403150355.189229-19-git@luigi311.com>
 
-On Tue, Apr 02, 2024 at 04:36:05PM +0200, Geert Uytterhoeven wrote:
-> Document support for the Compare Match Timer Type0 (CMT0) and Type1
-> (CMT1) in the Renesas R-Car V4M (R8A779H0) SoC.
+
+On Wed, 03 Apr 2024 09:03:47 -0600, git@luigi311.com wrote:
+> From: Dave Stevenson <dave.stevenson@raspberrypi.com>
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> There are a number of variants of the imx258 modules that can not
+> be differentiated at runtime, so add compatible strings for the
+> PDAF variant.
+> 
+> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> Signed-off-by: Luis Garcia <git@luigi311.com>
 > ---
->  Documentation/devicetree/bindings/timer/renesas,cmt.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-
-Daniel, please apply this. The timer bindings seem to keep getting 
-missed.
-
+>  .../devicetree/bindings/media/i2c/sony,imx258.yaml       | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/timer/renesas,cmt.yaml b/Documentation/devicetree/bindings/timer/renesas,cmt.yaml
-> index a0be1755ea28b996..5e09c04da30e47d5 100644
-> --- a/Documentation/devicetree/bindings/timer/renesas,cmt.yaml
-> +++ b/Documentation/devicetree/bindings/timer/renesas,cmt.yaml
-> @@ -103,6 +103,7 @@ properties:
->                - renesas,r8a779a0-cmt0     # 32-bit CMT0 on R-Car V3U
->                - renesas,r8a779f0-cmt0     # 32-bit CMT0 on R-Car S4-8
->                - renesas,r8a779g0-cmt0     # 32-bit CMT0 on R-Car V4H
-> +              - renesas,r8a779h0-cmt0     # 32-bit CMT0 on R-Car V4M
->            - const: renesas,rcar-gen4-cmt0 # 32-bit CMT0 on R-Car Gen4
->  
->        - items:
-> @@ -110,6 +111,7 @@ properties:
->                - renesas,r8a779a0-cmt1     # 48-bit CMT on R-Car V3U
->                - renesas,r8a779f0-cmt1     # 48-bit CMT on R-Car S4-8
->                - renesas,r8a779g0-cmt1     # 48-bit CMT on R-Car V4H
-> +              - renesas,r8a779h0-cmt1     # 48-bit CMT on R-Car V4M
->            - const: renesas,rcar-gen4-cmt1 # 48-bit CMT on R-Car Gen4
->  
->    reg:
-> -- 
-> 2.34.1
-> 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
 
