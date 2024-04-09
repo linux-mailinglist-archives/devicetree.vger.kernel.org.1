@@ -1,138 +1,188 @@
-Return-Path: <devicetree+bounces-57591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57592-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F88589DFA2
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 17:49:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2763289DFB1
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 17:51:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3EFCC1F260AC
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 15:49:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BBC881F21034
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 15:51:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A705C13BC28;
-	Tue,  9 Apr 2024 15:49:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF04813AD3F;
+	Tue,  9 Apr 2024 15:51:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RcO6XzOb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WBi/K0Uy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AF0813BC15;
-	Tue,  9 Apr 2024 15:49:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9676131BCF
+	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 15:51:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712677750; cv=none; b=goO/yAekyvvzxosmxyDYWj+DT9o57vVHFklVvec5kvr+T73zZXCirJLEJQw+LhGMXWIibJVlJrKsffcHAjo5IAGTVD/XnIcU2g2Te7+GMnJbtwzMTRnvfeYGW62OaV9nh23tnW88esH5Jy/oYOxv6Jx1r7t31dNh4buJub+XVF8=
+	t=1712677870; cv=none; b=iiQgQjfowyk1sxcaNNnc5bZcAmeFDZOVwGVdT+lfkrONrkE6t6BRfnhJ8/ooVReucwJ5lQF52XwR4MJNY31am6ZLaiFa9RzCUn0pSi35f7XpTaAhl8hmy1a3y9QwV2P/tcgVY5AxHVGpGJG1JRcodp47W2jXAWJPQsoM0P5dmiE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712677750; c=relaxed/simple;
-	bh=ggaHHuc2VG2fdrOMhbw4XnILVWpXV0g7RGQkl6nlwv8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fg8KCiQOHu6XOC9CzZ/EOHhYBKwxVIChmoGUCC6nwagQ47Zt9KaMVf8dClCYFvZaYM3ombE2I9elTKFdOSiHAVDvpu5JaJ4txgZcNhnTV3r85ocofFmcfPmtx1JMh8CmsL29tyLLAIDH7FfxPcg7opYDHJQ4f9rM3+Opjtuu/+Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RcO6XzOb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05969C43390;
-	Tue,  9 Apr 2024 15:49:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712677749;
-	bh=ggaHHuc2VG2fdrOMhbw4XnILVWpXV0g7RGQkl6nlwv8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RcO6XzObc7wlgdxiDjy0f1wHeJ/xg90oJK1uvGdSoHGMh1uDr+/iRiQu11+OQMo4Q
-	 sJVbfuMNUvyKdBlNhz0pFzDcPRsQRWgwCjoiC/5WC7ktrR5xGmTyH39axjMlKIWkBD
-	 RoLLn6NtCxA4/EgdcW6ce1XZyV64uZgdpUFUW5KT4yIDRy/h0SnWdTjZN1/YZFglOO
-	 ooFFV5hsQsFBynSxN5lYVTvFdQ1mYVB83rs42o/PTOwBdmwgjqH2N5lULzJiY8kv4y
-	 PxoUnyv4L2D20qsLEHGbCn7fuFr44N1ZRwCjJc7e8WTO9o2xRMPJtm8/y77fjEyP7o
-	 W4c1mQgm9bWnA==
-Date: Tue, 9 Apr 2024 16:49:02 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Andrew Jones <ajones@ventanamicro.com>
-Cc: Conor Dooley <conor.dooley@microchip.com>, Max Hsu <max.hsu@sifive.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Pavel Machek <pavel@ucw.cz>, Anup Patel <anup@brainfault.org>,
-	Atish Patra <atishp@atishpatra.org>,
-	Paolo Bonzini <pbonzini@redhat.com>, Shuah Khan <shuah@kernel.org>,
-	Palmer Dabbelt <palmer@sifive.com>, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, kvm@vger.kernel.org,
-	kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH RFC 02/11] dt-bindings: riscv: Add Sdtrig optional CSRs
- existence on DT
-Message-ID: <20240409-princess-hypnotic-7fd89aafa31d@spud>
-References: <20240329-dev-maxh-lin-452-6-9-v1-0-1534f93b94a7@sifive.com>
- <20240329-dev-maxh-lin-452-6-9-v1-2-1534f93b94a7@sifive.com>
- <20240329-affidavit-anatomist-1118a12c3e60@wendy>
- <20240405-ebdb2943657ab08d2d563c03@orel>
+	s=arc-20240116; t=1712677870; c=relaxed/simple;
+	bh=a3RqMX0lMRNv9/PRuIekvVESwhEjPNu02+UXwN9ChGI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UvgOwMA+8rBmFdu/PwrMzpI4LHWzuZ7InURdr7BSd1Xc6lGYXJIRkqIjl4KRYGyCbBwlVYkwHCK/cphYU+PfS+NZXmXNTud+Agm7sb/48eVLoB7HIeivDq83F86i6eRVw6dLoXesoRxTrpbMGqnalM++DAcKeGfl6L/YWxBsIdI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WBi/K0Uy; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a51fea60c0bso81449366b.3
+        for <devicetree@vger.kernel.org>; Tue, 09 Apr 2024 08:51:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712677866; x=1713282666; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=WAcVj2leURwW7GHrvYtyBl+mwjZPdduiH8yugxEIqH8=;
+        b=WBi/K0UymR/R/PnuPKlbqQPiO6gyiDqupqG2eb1aSN+5gUjWKA6QIP5HRDmxVhWScx
+         pdYL3VBdyqjlEbYtyVTRLUOflS0NzafX+/AbmRl1EAKQqiAI2NJSN2c1WbnP9YzfCrBT
+         RfI5owuKYGAQQAEubI2hbfPjRUHBeSzryEB2lfHi/zzpnVplW18bwaaNrMoYR/M3lMQR
+         9X50XVaq7Tr6umV4ULFInkn3cbqTfnBXIh3YIxxkHhq/sHJ0oM5Znx/ghhllMt2y+wQ5
+         HNheDmCnDdNibeD5ydDQu2xkShoLQi8LnUS2JnoC2DYpCtiwRIUpqlProed/18pgt3hV
+         UZtw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712677866; x=1713282666;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WAcVj2leURwW7GHrvYtyBl+mwjZPdduiH8yugxEIqH8=;
+        b=Kop/tUGFo1JOPFZMDVpmzYGYZcZf9uL0YTOlcAWKKWXhbjSIkgkHKXAyPSq4J+GHog
+         nAUWBegVO/CEpg19nhnld+8TdmsiK2d7ybwmB1WkrT48a2OOQfHbkzHIqeFdi1HIuxi6
+         hqUGLp45Er+5KkcijtGcH+4D4aqX9kaQyAfcT09R7MmjxqTfQWK1yzUFvyroFWH6WPnv
+         HjcUV7L8B/VNuZmQ8qY4chSqvC9XQmLkpsQgHoNEtUCe3+e47CAjauQRzFdAVM0dKA3o
+         clujXjSxpdlVhD083G8tO3XVnjbkA8W9VxUXlmtdtgsoG4NcPP06EwkaBJrJEoegjvDu
+         /wAQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWvdxLuQQVB3OkfOX8rthRtvWpeHl5Gmjf3FLXtVeb3HtWdx23AxekqsPRbM/Qb0NqNlRov73dgtjAF4C9w1g3vN4bTMILrCgwMXQ==
+X-Gm-Message-State: AOJu0Yw/CVHKUsoVteGguF7aqFW99Xi7eveWr4+sQNdc9nlBcgOmnmwo
+	pon0CyMGvge8pZRVFSMxcVL54p3njf5Oem/A21EcRfWiVKQ7hKOvtdtVOU75ZwY=
+X-Google-Smtp-Source: AGHT+IH7zOuDOE8g3kAQ3c1Owo8pZbxi7R/DXadZH5wD0HvZ1cy01CVCWbe7vJXfSSifnlO4bAfWoA==
+X-Received: by 2002:a17:907:1c26:b0:a51:d605:49ea with SMTP id nc38-20020a1709071c2600b00a51d60549eamr5041474ejc.8.1712677865970;
+        Tue, 09 Apr 2024 08:51:05 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id qx3-20020a170906fcc300b00a4e26377bf1sm5908338ejb.175.2024.04.09.08.51.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Apr 2024 08:51:05 -0700 (PDT)
+Message-ID: <cd49aa86-49b8-4a06-ba0c-8cacfa34eb3f@linaro.org>
+Date: Tue, 9 Apr 2024 17:51:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="S3RasL52JpCL7Ifu"
-Content-Disposition: inline
-In-Reply-To: <20240405-ebdb2943657ab08d2d563c03@orel>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 02/18] ASoC: dt-bindings: mediatek,mt8365-mt6357: Add
+ audio sound card document
+To: Alexandre Mergnat <amergnat@baylibre.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Rob Herring <robh@kernel.org>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
+References: <20240226-audio-i350-v3-0-16bb2c974c55@baylibre.com>
+ <20240226-audio-i350-v3-2-16bb2c974c55@baylibre.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240226-audio-i350-v3-2-16bb2c974c55@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+On 09/04/2024 15:42, Alexandre Mergnat wrote:
+> Add soundcard bindings for the MT8365 SoC with the MT6357 audio codec.
+> 
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 
 
---S3RasL52JpCL7Ifu
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> +patternProperties:
+> +  "^dai-link-[0-9]+$":
+> +    type: object
+> +    description:
+> +      Container for dai-link level properties and CODEC sub-nodes.
+> +
+> +    properties:
+> +      codec:
+> +        type: object
+> +        description: Holds subnode which indicates codec dai.
+> +
+> +        properties:
+> +          sound-dai:
+> +            maxItems: 1
+> +            description: phandle of the codec DAI
+> +
+> +        additionalProperties: false
+> +
+> +      link-name:
+> +        description:
+> +          This property corresponds to the name of the BE dai-link to which
+> +          we are going to update parameters in this node.
+> +        items:
+> +          const: 2ND_I2S_BE
 
-On Fri, Apr 05, 2024 at 05:59:41PM +0200, Andrew Jones wrote:
-> On Fri, Mar 29, 2024 at 10:31:10AM +0000, Conor Dooley wrote:
-> > On Fri, Mar 29, 2024 at 05:26:18PM +0800, Max Hsu wrote:
-> > > The mcontext/hcontext/scontext CSRs are optional in the Sdtrig extens=
-ion,
-> > > to prevent RW operations to the missing CSRs, which will cause
-> > > illegal instructions.
-> > >=20
-> > > As a solution, we have proposed the dt format for these CSRs.
-> >=20
-> > As I mentioned in your other patch, I amn't sure what the actual value
-> > is in being told about "sdtrig" itself if so many of the CSRs are
-> > optional. I think we should define pseudo extensions that represent
-> > usable subsets that are allowed by riscv,isa-extensions, such as
-> > those you describe here: sdtrig + mcontext, sdtrig + scontext and
-> > sdtrig + hcontext. Probably also for strig + mscontext. What
-> > additional value does having a debug child node give us that makes
-> > it worth having over something like the above?
->=20
-> Yeah, Sdtrig, which doesn't tell you what you get, isn't nice at all.
-> I wonder if we can start with requiring Sdtrig to be accompanied by
-> Ssstrict in order to enable the context CSRs, i.e.
->=20
->  Sdtrig          - support without optional CSRs
->  Sdtrig+Ssstrict - probe for optional CSRs, support what's found
->=20
-> If there are platforms with Sdtrig and optional CSRs, but not Ssstrict,
-> then maybe the optional CSRs can be detected in some vendor-specific way,
-> where the decision as to whether or not that vendor-specific way is
-> acceptable is handled case-by-case.
+What is the type of link-name? Why is it fixed? How can you have here
+multiple dai links if all of them must have the same name?
 
-I think it's pretty reasonable to make sstrict a requirement for the
-kernel's use of sdtrig. If we have some non-sstrict systems that do
-implement these particular CSRs, then I guess we can add some psuedo
-instructions then (and nothing would stop the sstrict systems also
-specifying directly). If they're using some non-standard CSRs then
-case-by-case I guess.
+Best regards,
+Krzysztof
 
-I'm just specifically not keen on adding extra dt properties that do
-things we can already do with the ones we have!
-
---S3RasL52JpCL7Ifu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZhVjbgAKCRB4tDGHoIJi
-0uhaAQDa5o/BPeXShwDCWbzLtGoQJW9RQEEKp0v/Px0VcnBn/wEAtxi0+ePlahyg
-iuqh+k0zlBfw0fgjAmUxXyvYlSonvAc=
-=bIMw
------END PGP SIGNATURE-----
-
---S3RasL52JpCL7Ifu--
 
