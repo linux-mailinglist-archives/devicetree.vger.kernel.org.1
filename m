@@ -1,122 +1,425 @@
-Return-Path: <devicetree+bounces-57464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43EF289D8C0
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 14:03:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F6D389D8D3
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 14:05:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74E281C20E25
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 12:03:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C63B1F2282F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 12:05:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86DA412B175;
-	Tue,  9 Apr 2024 12:02:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EA6212AAC8;
+	Tue,  9 Apr 2024 12:05:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UF7CxQlp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KC3YdvxP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD74F129E93;
-	Tue,  9 Apr 2024 12:02:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D724A129E81;
+	Tue,  9 Apr 2024 12:05:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712664154; cv=none; b=izAqqE8zR72pBR8GcoV+ozADZgio+Gz3TZuQD7nZTYmlnzetrS0Alc/qJYKauN6aK5bizP9I2sozLdIMLwzoKHahM8pOD7pWxwqjP4j1fdtm9h8Uc9j/hhNZrkkDuwegvtE1J/nhDaCPn4FX8ztmI7JsTbZYAZBhzMa0mgrm7VI=
+	t=1712664343; cv=none; b=USL7TaT8LJfEwokkY0J3BJnaEKWJBE+h3fz06wJqSaxvtwCN9eKJgUqsaKtLCr7XVbHPy6bMb/D9ZKVonNp5XTazSlGlB2EQMtNKLNFin5jYxXVwqDlulDZdw4yLvktQgrrfr9SHRp4z/PdBOpnPqo+juXFsPgTsoRKZWPbixHg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712664154; c=relaxed/simple;
-	bh=vSvmTJBZXXJEgR7mOloXSqA3+8JPuGp6x3/LLxCsGBA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OtDAX1dFUpAk8klrOpfH+h9e6VKOPXxooU4ctRqUtPHcueQ664jcB7yk2OCVSdHtQEljTxn4WOyLrFT982ZXP85bKEEkHqODfkVIYd5435l6yw7WpQT1ZEXDlh05ZDc/LdsKq+BGeLErR/TAkAxRH1zqSi4OMO9SrhxyW5JNL6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UF7CxQlp; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-56c404da0ebso8215170a12.0;
-        Tue, 09 Apr 2024 05:02:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712664151; x=1713268951; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AkRKDf5GLr5pj942wy9NJKid+umpjbRA7GynacZfPEQ=;
-        b=UF7CxQlpen+fzohtmyluYOFznEXC0udM8O1ZGdLYhMK+so/LuvMSo6ix5a4ZZRrVZw
-         8VzFbKfYQH/SbYQc2l3GZBWOdkW7W35TA/T7FPE8ZIdCQASV12HZ4pqG6BygoKKNW3gC
-         8aQmKQg6rsC0oUuxBloP5bMBga3jcNZkv7sxlEI5uuCpk7p+wUmt6cJZCsIyD+bJvZI0
-         w/fQA7I/tq3OZfebOSOSGxTr7VyBAltEgxFFG+3/4bVDyelprbcmku5Z5MweWbeWmNF0
-         +XV1j1KAVvA53Cz5iZ7xTmgMgFvZRPiioItXao9UIryBvpdBZ6+OPQOue8rtJYXN49al
-         ZJJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712664151; x=1713268951;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AkRKDf5GLr5pj942wy9NJKid+umpjbRA7GynacZfPEQ=;
-        b=dRMD/fEVWx2c+5ODsX9n2OV0xOcTVmOl59YjA3dJ7cOhOg2lqpOOz2aQhLIP9czVvo
-         8F+Hj/VeHXdbEed37EFDbIWtQxwq5k0okrDEE9Qz0nNgtqsuLt+61wyE0na0NgdkjaaY
-         pWkl3xRQAKjXRiofKs637UDWH4YJ2x2CHfBhnmM+0mAdiFFPmeaw84YFR72I1u2GRdJV
-         5SSpKTP4tBvPfbrIyFCDYCp4BHQPo06Q4dV7iniqt63aMoHoWIs2lOCjgq4AucBd91uc
-         UwdmYTUwQz+RyF0UQf+kmb5CO8g3v20ZVrBIImuc7trCNcyO35kP+67IZgaIgI7T1Asd
-         7UIg==
-X-Forwarded-Encrypted: i=1; AJvYcCWK7dy9sFepMwBTmE7OVGRkQytwNB/pZQMOqs5BcJRx6LQp9yKbGeOFpZa7suopZHSMIgyMQY0uzP2ryy348k8Xo+ysPbH9PT2sU5REmpWcsOKscsHAdr8mgA1TGMAug8bGrKGcGijRAJ/MYREIv48TjgoGHknSal6cfo2D+e48OuG5QQ==
-X-Gm-Message-State: AOJu0YwCSVeqEEROS+YsrdUEJy8ubDJjUIQvn7CorJBR+iGcd/Y+RSDq
-	pxhmEsO6u6z0gnbXSre3hHsjNGa7//8Of6xIQUtuaRyaYex0Eyp9
-X-Google-Smtp-Source: AGHT+IH3wXGsiaRiem9EQMmXVabh3sBI1WiYbDC3AT/ATTb2okPbMfexW2j0doktw3Yi0bClXEyv6Q==
-X-Received: by 2002:a17:907:31c9:b0:a51:ddc6:edc1 with SMTP id xf9-20020a17090731c900b00a51ddc6edc1mr3751319ejb.28.1712664150849;
-        Tue, 09 Apr 2024 05:02:30 -0700 (PDT)
-Received: from [192.168.0.31] (84-115-213-64.cable.dynamic.surfer.at. [84.115.213.64])
-        by smtp.gmail.com with ESMTPSA id jg18-20020a170907971200b00a51a60bf400sm5466509ejc.76.2024.04.09.05.02.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Apr 2024 05:02:30 -0700 (PDT)
-Message-ID: <a4283479-2c4a-4f8f-b224-999dd12ba009@gmail.com>
-Date: Tue, 9 Apr 2024 14:02:28 +0200
+	s=arc-20240116; t=1712664343; c=relaxed/simple;
+	bh=7qi1cMK5dRJQInNs3AL4K9gdeAr6SfvTbPPIekOHUbk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=asCKKToaWH/ufHhyLU0n1dmxGWojgBBF/CCOkVsLOHB4pG/eTR0sIAQNqJSf0KO5AAXcm3+Qwxt5JZfCCGSB3IWODvgRVq4AoqPhvWCTangLsjpkFPAgzhLI31oAxxjFdsU4gj7Z0toL2CiYW1DcD0Agapkp+cQwZQzxQGXnrhI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KC3YdvxP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53BA3C433C7;
+	Tue,  9 Apr 2024 12:05:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712664342;
+	bh=7qi1cMK5dRJQInNs3AL4K9gdeAr6SfvTbPPIekOHUbk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KC3YdvxPDVSFDHy5RJY8puUCc/6DjpRCWphFw6K6Mr5VVYApXYI+zwZcJEaSgXen8
+	 2r/pJ+nEyjCMa1yR3Zg4CZbrKlbcw7ZLRRk8iRw4J2rbES75Jot0WosLPTJKW2RE7r
+	 EDJ0Z8Mt9HlnOkI5t8gDqcBR9wzxKfz7c4VHKPCL59poFiO0zai33UsNP7fseyEgNs
+	 V8ExNqEs6o1GeU8VmmQMpwP3GBKD9Y7bSLZCvFRC+3k0HmfWMcXnDXMfGXpQwwbUR2
+	 7A3IIVWXwOfaTZOPD3QnbnlkeebX8XutbG1WVXmuI7NIxSaQYaQ03qYRQC1MXurFSw
+	 McQp38C+/p0/g==
+Date: Tue, 9 Apr 2024 13:05:37 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Jan Dakinevich <jan.dakinevich@salutedevices.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [RFC PATCH v2 1/5] clk: meson: axg: move reset controller's code
+ to separate module
+Message-ID: <20240409-shallow-voice-c84ed791bc7d@spud>
+References: <20240328010831.884487-1-jan.dakinevich@salutedevices.com>
+ <20240328010831.884487-2-jan.dakinevich@salutedevices.com>
+ <1j7chfiz8e.fsf@starbuckisacylon.baylibre.com>
+ <e3a85852b911fdf16dd9ae158f42b3ef.sboyd@kernel.org>
+ <f01cdd910ab35316b8012795f73fd2b34c8e6f8e.camel@pengutronix.de>
+ <13617b7a892424d2b024c725505a6f4f.sboyd@kernel.org>
+ <20240408-numerator-escargot-a642507a598e@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/9] rtc: convert multiple bindings into dtschema
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jiaxun Yang <jiaxun.yang@flygoat.com>,
- Vladimir Zapolskiy <vz@mleia.com>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>, linux-rtc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-stm32@st-md-mailman.stormreply.com
-References: <20240408-rtc_dtschema-v1-0-c447542fc362@gmail.com>
- <20240409102658d86fb2bd@mail.local>
-Content-Language: en-US, de-AT
-From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-In-Reply-To: <20240409102658d86fb2bd@mail.local>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="cKlzmloSN+OqzGax"
+Content-Disposition: inline
+In-Reply-To: <20240408-numerator-escargot-a642507a598e@spud>
 
-On 4/9/24 12:26, Alexandre Belloni wrote:
-> On 08/04/2024 17:53:00+0200, Javier Carrasco wrote:
->> This series converts the following bindings into dtschema, moving them
->> to trivial-rtc whenever possible:
->>
->> - orion-rtc: trival-rtc, referenced in arm arch.
->> - google,goldfish-rtc: trivial-rtc, referenced in mips arch.
->> - lpc32xx-rtc: trival-rtc, referenced in arm arch.
->> - maxim,ds1742: trivial-rtc, not referenced in arch, cheap conversion.
->> - rtc-aspeed: 3 devices to trivial-rtc, all referenced in arm arch.
->> - pxa-rtc: add missing properties and convert. Referenced in arm arch.
->> - st,spear600-rtc: trivial-rtc, referenced in arm arch.
->> - stmp3xxx-rtc: convert, referenced in arm arch.
->> - via,vt8500-rtc: trivial-rtc, referenced in arm arch.
-> 
-> Probably all the moves to trivial-rtc can be squashed.
-> 
 
-Sure, I will squash them for v2.
+--cKlzmloSN+OqzGax
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Javier Carrasco
+On Mon, Apr 08, 2024 at 06:05:51PM +0100, Conor Dooley wrote:
 
+> > > Seconded, the clk-mpfs/reset-mpfs and clk-starfive-jh7110-sys/reset-
+> > > starfive-jh7110 drivers are examples of this.
+> > >=20
+> > > > The auxiliary device creation function can also be in the
+> > > > drivers/reset/ directory so that the clk driver calls some function
+> > > > to create and register the device.
+> > >=20
+> > > I'm undecided about this, do you think mpfs_reset_controller_register=
+()
+> > > and jh7110_reset_controller_register() should rather live with the
+> > > reset aux drivers in drivers/reset/ ?
+> >=20
+> > Yes, and also mpfs_reset_read() and friends. We should pass the base
+> > iomem pointer and parent device to mpfs_reset_adev_alloc() instead and
+> > then move all that code into drivers/reset with some header file
+> > exported function to call. That way the clk driver hands over the data
+> > without having to implement half the implementation.
+>=20
+> I'll todo list that :)
+
+Something like the below?
+
+-- >8 --
+=46rom a12f281d2cb869bcd9a6ffc45d0c6a0d3aa2e9e2 Mon Sep 17 00:00:00 2001
+=46rom: Conor Dooley <conor.dooley@microchip.com>
+Date: Tue, 9 Apr 2024 11:54:34 +0100
+Subject: [PATCH] clock, reset: microchip: move all mpfs reset code to the
+ reset subsystem
+
+<insert something here>
+
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
+ drivers/clk/microchip/clk-mpfs.c | 90 +-------------------------------
+ drivers/reset/reset-mpfs.c       | 74 +++++++++++++++++++++++---
+ include/soc/microchip/mpfs.h     | 10 ++--
+ 3 files changed, 73 insertions(+), 101 deletions(-)
+
+diff --git a/drivers/clk/microchip/clk-mpfs.c b/drivers/clk/microchip/clk-m=
+pfs.c
+index 22eab91a6712..432080c35cec 100644
+--- a/drivers/clk/microchip/clk-mpfs.c
++++ b/drivers/clk/microchip/clk-mpfs.c
+@@ -4,7 +4,6 @@
+  *
+  * Copyright (C) 2020-2022 Microchip Technology Inc. All rights reserved.
+  */
+-#include <linux/auxiliary_bus.h>
+ #include <linux/clk-provider.h>
+ #include <linux/io.h>
+ #include <linux/module.h>
+@@ -361,93 +360,6 @@ static int mpfs_clk_register_periphs(struct device *de=
+v, struct mpfs_periph_hw_c
+ 	return 0;
+ }
+=20
+-/*
+- * Peripheral clock resets
+- */
+-
+-#if IS_ENABLED(CONFIG_RESET_CONTROLLER)
+-
+-u32 mpfs_reset_read(struct device *dev)
+-{
+-	struct mpfs_clock_data *clock_data =3D dev_get_drvdata(dev->parent);
+-
+-	return readl_relaxed(clock_data->base + REG_SUBBLK_RESET_CR);
+-}
+-EXPORT_SYMBOL_NS_GPL(mpfs_reset_read, MCHP_CLK_MPFS);
+-
+-void mpfs_reset_write(struct device *dev, u32 val)
+-{
+-	struct mpfs_clock_data *clock_data =3D dev_get_drvdata(dev->parent);
+-
+-	writel_relaxed(val, clock_data->base + REG_SUBBLK_RESET_CR);
+-}
+-EXPORT_SYMBOL_NS_GPL(mpfs_reset_write, MCHP_CLK_MPFS);
+-
+-static void mpfs_reset_unregister_adev(void *_adev)
+-{
+-	struct auxiliary_device *adev =3D _adev;
+-
+-	auxiliary_device_delete(adev);
+-	auxiliary_device_uninit(adev);
+-}
+-
+-static void mpfs_reset_adev_release(struct device *dev)
+-{
+-	struct auxiliary_device *adev =3D to_auxiliary_dev(dev);
+-
+-	kfree(adev);
+-}
+-
+-static struct auxiliary_device *mpfs_reset_adev_alloc(struct mpfs_clock_da=
+ta *clk_data)
+-{
+-	struct auxiliary_device *adev;
+-	int ret;
+-
+-	adev =3D kzalloc(sizeof(*adev), GFP_KERNEL);
+-	if (!adev)
+-		return ERR_PTR(-ENOMEM);
+-
+-	adev->name =3D "reset-mpfs";
+-	adev->dev.parent =3D clk_data->dev;
+-	adev->dev.release =3D mpfs_reset_adev_release;
+-	adev->id =3D 666u;
+-
+-	ret =3D auxiliary_device_init(adev);
+-	if (ret) {
+-		kfree(adev);
+-		return ERR_PTR(ret);
+-	}
+-
+-	return adev;
+-}
+-
+-static int mpfs_reset_controller_register(struct mpfs_clock_data *clk_data)
+-{
+-	struct auxiliary_device *adev;
+-	int ret;
+-
+-	adev =3D mpfs_reset_adev_alloc(clk_data);
+-	if (IS_ERR(adev))
+-		return PTR_ERR(adev);
+-
+-	ret =3D auxiliary_device_add(adev);
+-	if (ret) {
+-		auxiliary_device_uninit(adev);
+-		return ret;
+-	}
+-
+-	return devm_add_action_or_reset(clk_data->dev, mpfs_reset_unregister_adev=
+, adev);
+-}
+-
+-#else /* !CONFIG_RESET_CONTROLLER */
+-
+-static int mpfs_reset_controller_register(struct mpfs_clock_data *clk_data)
+-{
+-	return 0;
+-}
+-
+-#endif /* !CONFIG_RESET_CONTROLLER */
+-
+ static int mpfs_clk_probe(struct platform_device *pdev)
+ {
+ 	struct device *dev =3D &pdev->dev;
+@@ -499,7 +411,7 @@ static int mpfs_clk_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		return ret;
+=20
+-	return mpfs_reset_controller_register(clk_data);
++	return mpfs_reset_controller_register(dev, clk_data->base + REG_SUBBLK_RE=
+SET_CR);
+ }
+=20
+ static const struct of_device_id mpfs_clk_of_match_table[] =3D {
+diff --git a/drivers/reset/reset-mpfs.c b/drivers/reset/reset-mpfs.c
+index 7f3fb2d472f4..27cd68b4ee81 100644
+--- a/drivers/reset/reset-mpfs.c
++++ b/drivers/reset/reset-mpfs.c
+@@ -8,6 +8,7 @@
+  */
+ #include <linux/auxiliary_bus.h>
+ #include <linux/delay.h>
++#include <linux/io.h>
+ #include <linux/module.h>
+ #include <linux/of.h>
+ #include <linux/platform_device.h>
+@@ -28,10 +29,11 @@
+ /* block concurrent access to the soft reset register */
+ static DEFINE_SPINLOCK(mpfs_reset_lock);
+=20
++static void __iomem *mpfs_reset_addr;
++
+ /*
+  * Peripheral clock resets
+  */
+-
+ static int mpfs_assert(struct reset_controller_dev *rcdev, unsigned long i=
+d)
+ {
+ 	unsigned long flags;
+@@ -39,9 +41,9 @@ static int mpfs_assert(struct reset_controller_dev *rcdev=
+, unsigned long id)
+=20
+ 	spin_lock_irqsave(&mpfs_reset_lock, flags);
+=20
+-	reg =3D mpfs_reset_read(rcdev->dev);
++	reg =3D readl(mpfs_reset_addr);
+ 	reg |=3D BIT(id);
+-	mpfs_reset_write(rcdev->dev, reg);
++	writel(reg, mpfs_reset_addr);
+=20
+ 	spin_unlock_irqrestore(&mpfs_reset_lock, flags);
+=20
+@@ -55,9 +57,9 @@ static int mpfs_deassert(struct reset_controller_dev *rcd=
+ev, unsigned long id)
+=20
+ 	spin_lock_irqsave(&mpfs_reset_lock, flags);
+=20
+-	reg =3D mpfs_reset_read(rcdev->dev);
++	reg =3D readl(mpfs_reset_addr);
+ 	reg &=3D ~BIT(id);
+-	mpfs_reset_write(rcdev->dev, reg);
++	writel(reg, mpfs_reset_addr);
+=20
+ 	spin_unlock_irqrestore(&mpfs_reset_lock, flags);
+=20
+@@ -66,7 +68,7 @@ static int mpfs_deassert(struct reset_controller_dev *rcd=
+ev, unsigned long id)
+=20
+ static int mpfs_status(struct reset_controller_dev *rcdev, unsigned long i=
+d)
+ {
+-	u32 reg =3D mpfs_reset_read(rcdev->dev);
++	u32 reg =3D readl(mpfs_reset_addr);
+=20
+ 	/*
+ 	 * It is safe to return here as MPFS_NUM_RESETS makes sure the sign bit
+@@ -137,9 +139,67 @@ static int mpfs_reset_probe(struct auxiliary_device *a=
+dev,
+ 	return devm_reset_controller_register(dev, rcdev);
+ }
+=20
++static void mpfs_reset_unregister_adev(void *_adev)
++{
++	struct auxiliary_device *adev =3D _adev;
++
++	auxiliary_device_delete(adev);
++	auxiliary_device_uninit(adev);
++}
++
++static void mpfs_reset_adev_release(struct device *dev)
++{
++	struct auxiliary_device *adev =3D to_auxiliary_dev(dev);
++
++	kfree(adev);
++}
++
++static struct auxiliary_device *mpfs_reset_adev_alloc(struct device *clk_d=
+ev)
++{
++	struct auxiliary_device *adev;
++	int ret;
++
++	adev =3D kzalloc(sizeof(*adev), GFP_KERNEL);
++	if (!adev)
++		return ERR_PTR(-ENOMEM);
++
++	adev->name =3D "reset-mpfs";
++	adev->dev.parent =3D clk_dev;
++	adev->dev.release =3D mpfs_reset_adev_release;
++	adev->id =3D 666u;
++
++	ret =3D auxiliary_device_init(adev);
++	if (ret) {
++		kfree(adev);
++		return ERR_PTR(ret);
++	}
++
++	return adev;
++}
++
++int mpfs_reset_controller_register(struct device *clk_dev, void __iomem *b=
+ase)
++{
++	struct auxiliary_device *adev;
++	int ret;
++
++	mpfs_reset_addr =3D base;
++
++	adev =3D mpfs_reset_adev_alloc(clk_dev);
++	if (IS_ERR(adev))
++		return PTR_ERR(adev);
++
++	ret =3D auxiliary_device_add(adev);
++	if (ret) {
++		auxiliary_device_uninit(adev);
++		return ret;
++	}
++
++	return devm_add_action_or_reset(clk_dev, mpfs_reset_unregister_adev, adev=
+);
++}
++
+ static const struct auxiliary_device_id mpfs_reset_ids[] =3D {
+ 	{
+-		.name =3D "clk_mpfs.reset-mpfs",
++		.name =3D "reset_mpfs.reset-mpfs",
+ 	},
+ 	{ }
+ };
+diff --git a/include/soc/microchip/mpfs.h b/include/soc/microchip/mpfs.h
+index 09722f83b0ca..0b756bf5e9bd 100644
+--- a/include/soc/microchip/mpfs.h
++++ b/include/soc/microchip/mpfs.h
+@@ -43,11 +43,11 @@ struct mtd_info *mpfs_sys_controller_get_flash(struct m=
+pfs_sys_controller *mpfs_
+ #endif /* if IS_ENABLED(CONFIG_POLARFIRE_SOC_SYS_CTRL) */
+=20
+ #if IS_ENABLED(CONFIG_MCHP_CLK_MPFS)
+-
+-u32 mpfs_reset_read(struct device *dev);
+-
+-void mpfs_reset_write(struct device *dev, u32 val);
+-
++#if IS_ENABLED(CONFIG_RESET_CONTROLLER)
++int mpfs_reset_controller_register(struct device *clk_dev, void __iomem *b=
+ase);
++#else
++int mpfs_reset_controller_register(struct device *clk_dev, void* __iomem b=
+ase) { return 0;}
++#endif /* if IS_ENABLED(CONFIG_RESET_CONTROLLER) */
+ #endif /* if IS_ENABLED(CONFIG_MCHP_CLK_MPFS) */
+=20
+ #endif /* __SOC_MPFS_H__ */
+--=20
+2.43.0
+
+
+
+
+--cKlzmloSN+OqzGax
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZhUu+gAKCRB4tDGHoIJi
+0kCjAP4iVo/eQdDHCbVvm1zsQfnAp2Jr2afB3emmQxtfeSGFbgD+LIn2QDPNJN83
+EYfK4Gs9BeyhtmmkFkPfWCUodD6yDQM=
+=g28U
+-----END PGP SIGNATURE-----
+
+--cKlzmloSN+OqzGax--
 
