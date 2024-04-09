@@ -1,58 +1,64 @@
-Return-Path: <devicetree+bounces-57582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC68189DF09
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 17:29:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 942C189DF14
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 17:30:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 86A7E28F0F5
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 15:29:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C527E1C21FAD
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 15:30:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D0BF13C9BD;
-	Tue,  9 Apr 2024 15:25:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFC2613D898;
+	Tue,  9 Apr 2024 15:26:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C3zSK5SJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pnGODQoN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C30212F367;
-	Tue,  9 Apr 2024 15:25:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6007013D891;
+	Tue,  9 Apr 2024 15:26:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712676333; cv=none; b=d7hL8WmL0GXijOURg83+819LSX3cskog43ZtaYIBCgs/rOCyYEUJ9lGxwCy7+It5biqZjmYD0tWsIsTnddsKh3YhU0lKCBlbTzluHruZ6jiVWHotZ8wh2ivJ3LSWatIjPuI6XJLmFb/djepz8MEX49KFlENhSumXLSDZaFc/vnE=
+	t=1712676396; cv=none; b=BKD7McxvEnjEvYjqpNBGbFboag0x6b4A1HWNe/Z23klNOK9zFdxRzq9bHWH5fNooxC3La5RhEtQUeZAdEz4ECG8CQpHa1ErRQR38nVgjwz09PHaOuIw9dbYwcvmWenEmIo115zE3npxAvCCCp8uoKJyhlyKJZgtI9shnZCPnlzY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712676333; c=relaxed/simple;
-	bh=xkMdXfA590zFnkmRFUF8fT4qO4Xa0lPHjZzwaSSA/5E=;
+	s=arc-20240116; t=1712676396; c=relaxed/simple;
+	bh=OymyiDNf4YW49xGrZ+gXBk6psnOk8MiiogrmhOiNcXg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uv+BZcrNZgodxEwaT4KmNGZGr7ggmutffvxJKVqzeEF79dYkvN3DNpxFUXTQSv5bTH8XfQF2aq9/er3CFnqdmRXa+69MrfklYWpl12jjJIcsBKxwvnkwXJwC3tfuy5MJ3AdomvRIP8v5dS9FOFysUlwkED3vvF6iMJzVB+9jIz8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C3zSK5SJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA7DEC43390;
-	Tue,  9 Apr 2024 15:25:30 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=K4hKoWXG1QNuKF9Rym8cntA8fiIYJgSMVKIf1/yDesfEMoq4WP1zSJGIQICU7iT2JuVmpJ17CO6WZ0YiEaDv5SxPPR8Y2HEzkeg7q9X1OjbLbnh/c4j5Gq/ueKOcoZ2LY/qwaydszvUCiCkqo2gLttPILkDIqE1JKNxH6FpPMYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pnGODQoN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81708C43390;
+	Tue,  9 Apr 2024 15:26:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712676331;
-	bh=xkMdXfA590zFnkmRFUF8fT4qO4Xa0lPHjZzwaSSA/5E=;
+	s=k20201202; t=1712676395;
+	bh=OymyiDNf4YW49xGrZ+gXBk6psnOk8MiiogrmhOiNcXg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=C3zSK5SJ9QuA33VEbDf0yFbofMeWSknh2WwFY2Od09HNW3Ilc0DhxDom1RJC1qHz/
-	 MSWmigvbX/WDH1VNm4Fa3Kh4ATqzRQfA8vl9fNRpX3+ZSdABHCRekd2xovLeQyI3e7
-	 0UIs6NNVUakdEUrK7AxiOLyIOI6R1mIFIwBbQzLfWZ+eJWy4LFsdmt8lHd0NN/isw+
-	 jWRWxoYDA60mvHjDj/lf0q1rahoVkZI+cUKMKtmi3h60Z82/MdIzsPl7rh6U0GQXJN
-	 SX2SdN71UQE1MXrenzYuw8pv7YvYub0c8bREYjoKWTfZ0Ae4q///EeyFVzo5kPjOZy
-	 rKqtGXrXlsPog==
-Date: Tue, 9 Apr 2024 10:25:28 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Adam Skladowski <a39.skl@gmail.com>
-Cc: phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
-	Andy Gross <agross@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] arm64: dts: qcom: msm8976: Add Adreno GPU
-Message-ID: <b3tshs3ya6nqhf3ykaxnx56rnigbvqfzftpkolvqrxa2rhuzes@wtdu6yrat4qi>
-References: <20240401172153.9231-1-a39.skl@gmail.com>
- <20240401172153.9231-4-a39.skl@gmail.com>
+	b=pnGODQoNm1sF/Hwhx/x6or1eK83G+5sisNDHVxdxJib16K/EkjwscrCNNcJbXBP9K
+	 35TjBkFXzRRF1C6IVMk3h24ux8P4mWOm1oSxWPCfECO+KsVry/8YDIvdUKP+NK9RuS
+	 tQzBy6VAN5YnfIR7dkvXtSA0eAJGGC8gHkLdcHVde3aFcp1yoX8NQNg/hGQVrZG5Lq
+	 SF/ETWwUnfmiE35TDlMU8pvp1GK7jK+yREt6ial+dqfOIAq1kfjWg3VN6MwdaFLBrw
+	 snfonA8cFCTX5ItW8G+zR+Bi8CWGhlVoJg5njGzbjhOWLfmklvncL1/i1W1WnpPB8G
+	 hDTKD5GwIbFYg==
+Date: Tue, 9 Apr 2024 16:26:28 +0100
+From: Will Deacon <will@kernel.org>
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: frank.li@nxp.com, mark.rutland@arm.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, john.g.garry@oracle.com, jolsa@kernel.org,
+	namhyung@kernel.org, irogers@google.com, mike.leach@linaro.org,
+	peterz@infradead.org, mingo@redhat.com, acme@kernel.org,
+	alexander.shishkin@linux.intel.com, adrian.hunter@intel.com,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-perf-users@vger.kernel.org,
+	imx@lists.linux.dev
+Subject: Re: [PATCH v8 3/8] perf: imx_perf: let the driver manage the counter
+ usage rather the user
+Message-ID: <20240409152627.GA23621@willie-the-truck>
+References: <20240322063930.749126-1-xu.yang_2@nxp.com>
+ <20240322063930.749126-3-xu.yang_2@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,61 +67,55 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240401172153.9231-4-a39.skl@gmail.com>
+In-Reply-To: <20240322063930.749126-3-xu.yang_2@nxp.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 
-On Mon, Apr 01, 2024 at 07:21:52PM +0200, Adam Skladowski wrote:
-> Add Adreno GPU node.
+On Fri, Mar 22, 2024 at 02:39:25PM +0800, Xu Yang wrote:
+> In current design, the user of perf app needs to input counter ID to count
+> events. However, this is not user-friendly since the user needs to lookup
+> the map table to find the counter. Instead of letting the user to input
+> the counter, let this driver to manage the counters in this patch.
+
+I think we still have to support the old interface so that we don't break
+those existing users (even if the driver just ignores whatever counter ID
+is provided in a backwards-compatible way).
+
+> This will be implemented by:
+>  1. allocate counter 0 for cycle event.
+>  2. find unused counter from 1-10 for reference events.
+>  3. allocate specific counter for counter-specific events.
 > 
-> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
+> In this patch, counter attribute is removed too. To mark counter-specific
+> events, counter ID will be encoded into perf_pmu_events_attr.id.
+> 
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> 
 > ---
->  arch/arm64/boot/dts/qcom/msm8976.dtsi | 65 +++++++++++++++++++++++++++
->  1 file changed, 65 insertions(+)
+> Changes in v6:
+>  - new patch
+> Changes in v7:
+>  - no changes
+> Changes in v8:
+>  - add Rb tag
+> ---
+>  drivers/perf/fsl_imx9_ddr_perf.c | 168 ++++++++++++++++++-------------
+>  1 file changed, 99 insertions(+), 69 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8976.dtsi b/arch/arm64/boot/dts/qcom/msm8976.dtsi
-> index 6be310079f5b..77670fce9b8f 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8976.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8976.dtsi
-> @@ -1074,6 +1074,71 @@ mdss_dsi1_phy: phy@1a96a00 {
->  			};
->  		};
+> diff --git a/drivers/perf/fsl_imx9_ddr_perf.c b/drivers/perf/fsl_imx9_ddr_perf.c
+> index 0017f2c9ef91..b728719b494c 100644
+> --- a/drivers/perf/fsl_imx9_ddr_perf.c
+> +++ b/drivers/perf/fsl_imx9_ddr_perf.c
+> @@ -245,14 +249,12 @@ static const struct attribute_group ddr_perf_events_attr_group = {
+>  	.attrs = ddr_perf_events_attrs,
+>  };
 >  
-> +		adreno_gpu: gpu@1c00000 {
-> +			compatible = "qcom,adreno-510.0", "qcom,adreno";
-> +
-> +			reg = <0x01c00000 0x40000>;
-> +			reg-names = "kgsl_3d0_reg_memory";
-> +
-> +			interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "kgsl_3d0_irq";
-> +
-> +			clocks = <&gcc GCC_GFX3D_OXILI_CLK>,
-> +				 <&gcc GCC_GFX3D_OXILI_AHB_CLK>,
-> +				 <&gcc GCC_GFX3D_OXILI_GMEM_CLK>,
-> +				 <&gcc GCC_GFX3D_BIMC_CLK>,
-> +				 <&gcc GCC_GFX3D_OXILI_TIMER_CLK>,
-> +				 <&gcc GCC_GFX3D_OXILI_AON_CLK>;
-> +			clock-names = "core",
-> +				      "iface",
-> +				      "mem",
-> +				      "mem_iface",
-> +				      "rbbmtimer",
-> +				      "alwayson";
-> +
-> +			power-domains = <&gcc OXILI_GX_GDSC>;
-> +
-> +			iommus = <&gpu_iommu 0>;
-> +
-> +			status = "disabled";
+> -PMU_FORMAT_ATTR(event, "config:0-7");
+> -PMU_FORMAT_ATTR(counter, "config:8-15");
+> +PMU_FORMAT_ATTR(event, "config:0-15");
 
-Make status the last property of the node, please.
+Sadly, this is a user-visible change so I think it will break old tools,
+won't it?
 
-Regards,
-Bjorn
-
-> +
-> +			operating-points-v2 = <&gpu_opp_table>;
-> +
-> +			gpu_opp_table: opp-table {
-> +				compatible = "operating-points-v2";
-> +
+Will
 
