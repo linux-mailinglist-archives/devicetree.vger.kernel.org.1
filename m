@@ -1,204 +1,143 @@
-Return-Path: <devicetree+bounces-57374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 682B589D56F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 11:23:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51A9C89D552
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 11:21:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AF481C22B66
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 09:23:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82B011C2193F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 09:21:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A30117FBBC;
-	Tue,  9 Apr 2024 09:22:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F6867F7EE;
+	Tue,  9 Apr 2024 09:21:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="oKEp2fOb"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="CJaUxvWu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR01-HE1-obe.outbound.protection.outlook.com (mail-he1eur01on2105.outbound.protection.outlook.com [40.107.13.105])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 856C08061D;
-	Tue,  9 Apr 2024 09:22:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.13.105
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712654577; cv=fail; b=o5rOEwunDrpgl7+ligsP6JUHOpsQVFLlhJQSvKS1aRLr0OABasxw/HDM+kOxMD7WQu3qNtQAlVUEhQTNy99A7ZDF9nf3oeE29412aDWeVZsLzc0OL3Y4FsVyjU/Nkyzqs86dAxWMzb4Z3D2aJyXRyp38le6TXdcQ3/Isx1SL2dM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712654577; c=relaxed/simple;
-	bh=Gzc+z0v/RIB1UUQ4IGJiK+C6fBFgEW68d4jBUvf9Zfg=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=lt7xnrodWZ5NDnztQejdduXC/rkDV+iQN72Nr0FDPsqwNNunXP9rCX+SDIZmQdm+4/MNhucpBjO93JOzpwmk2PzY6eXxnLqE5EIGun0Yt1kRc3kkTGNLdeqqoyPx11qb8iqPq03Uwfn25H9Q1fQn3JvDl09NhlVqkLyjM5Fprk4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=oKEp2fOb; arc=fail smtp.client-ip=40.107.13.105
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FdWmn7i8VjpFA08ZLGrE5q7VT489ju/77Bj1ylrNnv9SFc5LyjA9F1GKyLolxXMsqB4PBy2OndufVRL2vRY1sejVpguOd7XHz98sefEK85YGzO7GBJTrE244929X/oLQH8zCq6zIYbtw1NR5yDSlNtAecgcAWTpDbbEcH+er+vBiBXJkAhIniKTRNE4+MzgKOwJg4V6bD08XnKeXm+LbEd64YQ9Ou8651VLy/pNz9T34YdZfvL9WjVf9aqQ+YJr8/kGlThlzNxrldu02J+FX6aSGHtonibijvkr0RhP518hKz3Px5EQd1JVhUTOpUjgfvY0GOomWqgTwdcf6k5GJfg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=01y7rUwcotKi72Z7yEbm1QIRBlYvdU5gNvyG0k/qEA0=;
- b=GXagRJ14X85o7Az9P3USn+TjPzQ07y0n+597zMDXcp6YDSl8XC38mxiVfI3WiGPUNBf2WyLLXaY+gbqqku5RVUfC52TSItNNuCnjTiFsVlQyqVuA7nAVmeffHwMTrObnxJbbuGYKdVWPUMH+eYaFyDHc0MqwiVtFVMtbD05WqM75pA+PTCiG9/LfuyAKJpBYYX84HzbpK/+XiAd7fqaQ8UgjGZzAs/qpj4XBKXIX1JCSn5N+xFSvOlbkUKwTW8CZl7k0mbX+552fua1RUN/YD97h+QqBfMrQysLsKsZ9F2T5iVF4SkUlELryZhmaXOfXia3Xuaau+KTLBSpTyb6dhg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=01y7rUwcotKi72Z7yEbm1QIRBlYvdU5gNvyG0k/qEA0=;
- b=oKEp2fObv77RzJnEvSPXKeazSWM9U6pFdzpn3l2zBCuts0Ct1GhOxVaHgNR0QA5s19O5PIGdcjcxy/zrw2BopjESfzJawusn8fnmvQ4hyfwYN5dP91Zu+ZF6rLsM21YgaLjAOaZzuTKHoTI33du60jzrpsDymYrHTWTtMvWJunI=
-Received: from AM9PR04MB8604.eurprd04.prod.outlook.com (2603:10a6:20b:43b::21)
- by PA4PR04MB7679.eurprd04.prod.outlook.com (2603:10a6:102:e0::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Tue, 9 Apr
- 2024 09:22:52 +0000
-Received: from AM9PR04MB8604.eurprd04.prod.outlook.com
- ([fe80::33cc:db75:c850:63a4]) by AM9PR04MB8604.eurprd04.prod.outlook.com
- ([fe80::33cc:db75:c850:63a4%2]) with mapi id 15.20.7409.042; Tue, 9 Apr 2024
- 09:22:52 +0000
-From: Pankaj Gupta <pankaj.gupta@nxp.com>
-To: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	linux-imx@nxp.com,
-	peng.fan@nxp.com,
-	ping.bai@nxp.com,
-	haibo.chen@nxp.com,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Pankaj Gupta <pankaj.gupta@nxp.com>,
-	Varun Sethi <v.sethi@nxp.com>
-Subject: [PATCH v4] arm64: dts: imx8ulp: add caam jr
-Date: Tue,  9 Apr 2024 14:50:40 +0530
-Message-Id: <20240409092040.3870497-1-pankaj.gupta@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2P153CA0023.APCP153.PROD.OUTLOOK.COM (2603:1096:4:190::6)
- To AM9PR04MB8604.eurprd04.prod.outlook.com (2603:10a6:20b:43b::21)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A41E17E798;
+	Tue,  9 Apr 2024 09:21:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712654481; cv=none; b=qir1HSKB2vDlXf7gdvZBuAr9zbL4g42pzb7HBwMckQ1haU9XTOeVkvm3uktKayKm7L/CvzPIM+VxxmHFBRupPdbP2OZS/xToS22nJ+9GTaq8s4+RLnLpIrauMIwyAFU0ECKhemKdiuUHbv8DlWBjW57JT31sTy+bOdpO733y/HY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712654481; c=relaxed/simple;
+	bh=L55iLpsbIZ+5RYaT9LyDbQhxY6Gq3oW3OyLMYDl+CcE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=WcrNxabkEYiEmPjNp4NwVTMGne7VsJkL8u66UZ12l4KKDO3FIrqr5ZGtKzMZN8UY9gW46Y9X3ADMtlNg9U8tw0NRnF5qGNiDanbWzJ36mNO4WpgLnAq6JaQHwJtk/0EggwFVlaBuW/4jDq6J++sNA75KU1Fg5KOhsXqZ5H0pc8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=CJaUxvWu; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 806581BF208;
+	Tue,  9 Apr 2024 09:21:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1712654471;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=WpIo0b1UVsh1fxNr1ZZUxhvbWy3Yo7lP2Ma4USOQd64=;
+	b=CJaUxvWuQ9VDKqKT3pQ+nyvMW7jY+Uu5yxmuLr+CmqaAdjPnS1vynele/n4HfYG2L1nUq0
+	SNMzzr1sFIrEBUXddWM9bvDZrURAMxb7lSVEiUdvE8JsUS/gNyW1Ds5HRccPvITxREPBXv
+	0QHdUCsgFVLUSIAc5IPKjkDezC2+0mqNprgvUZXaCz8VMudfSnrcVjZ4OVEMbvYHnfYq5E
+	nl2UklAtQNLQbtY3TZvn1/4v0PMO8Mz6abSN/F1OULIJsibGLzeI/lBx1oVsgQ/StaUlUG
+	iYhTlB2I4XhBhX7X3FmNV17L0nsHm/VOl+jm0LxDVQgpqW1/SjZGsGd7MpJF2g==
+From: Romain Gantois <romain.gantois@bootlin.com>
+Subject: [PATCH net-next v2 0/5] net: stmmac: Add support for RZN1 GMAC
+ devices
+Date: Tue, 09 Apr 2024 11:21:43 +0200
+Message-Id: <20240409-rzn1-gmac1-v2-0-79ca45f2fc79@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM9PR04MB8604:EE_|PA4PR04MB7679:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	hfcD7w1IIoib/9VMBCZWdl6v0BogzXVGboUteuEUQ2T+KkdDQka5L0uIrfdSHV4wy3LI0PaAss1JCUtQIowLtemcwCimOGQn5Pg2X4MCm4PcPZHZaErewBVYRaeRVGm6oTcELDsOEHUVEZokRGtR4Q0VlpxmFcRS6aUCUHHFTe8kPdsb8c/P9kdM3xEHnUNpeN4A54hJ8nvB/N5uODYgjBq/piq8jIDg/u220mqxrQ88Qety2FK/C3Y3KP74mdvJnDsr/PUqGVG5f7cuOe6Ox9lZP2OMcQluMkktm/2MAmeNg2CnVpd8twEen/DPdIY83RbKdlilbbJdtpuBdzP6hXc3dk+GbyVbSH9fuuZs8fViX8MQ4mDDeVP2hgL0vpLcvBpcBqUjtOTqUuuFfNIPQM19X2sy0eUtgyXqMe9YRDH9EQU8FfQI8liYpAgh931vAwblJlOg1tcsc5vYwEZV9mdMistJlB/SHjuX6F3vLFsK3tes4UuupYXZTA0vqYZF/iPiVtZ+OYoxAr+6qqSgALM+7eoL38Z5B+rxGnry0yhelPHNpSYuLIPMVjk0ttHJu8stuhpDo9T9rnTZHlL1ZfCnHr+MJ/dUbZc3PsvNSpzkbcdleksAUIWk+UoPUNkw2NwiAoOGhUVeN9jzs0r6xKnUAOM7kjmAXKCPAC++XLt4VaIC0HtRNAK3tuhxgPmt5CfqUqghcSc4cyIIOrUbL9yiyy158LL8xIDmI6qDrVg=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8604.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(376005)(52116005)(1800799015)(366007)(921011)(38350700005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?na4qfg7w8Zt8UZL6snvLimGTbjqyUxWgXvdJCVf2Ew0iYse6I8CcSC8h+NfA?=
- =?us-ascii?Q?lpJ00hjBvuC0arq0xh1s3ocJonPOfQT38Y+UI8DuKpP/bVIC1r//KlI20zJz?=
- =?us-ascii?Q?Mf98oCnhZxxqGuu3UrgtzPAKh+fWkX0A3PJCYcU2/x2tu018hKT5KEdtwPKe?=
- =?us-ascii?Q?HuyXKd7GGvUG+9OVkkibKGXcZhF5TDzAucLDFgrAQq23u6T4voiI9sQ0VTaD?=
- =?us-ascii?Q?uKrie+WJG75DmL57iAdSmD+AufNvtpjYa1xPg8PyYHkn06RHC1tgC/ti1RaI?=
- =?us-ascii?Q?xRoCCFG4m/c+xkvrM9tYtSDDM7dkYNLzOzDMBaXLf7RxRHqZw1rfe5epuWvH?=
- =?us-ascii?Q?6FRTahmb9Bh6DeJm033Nnff2UOfLBBkIAJESUhgjqPMI3Xa2bOXamjE1J6zt?=
- =?us-ascii?Q?pKQr10uzZrtEkVfxuAT/3qEVPPpUMw9J5Kk2zriwUZTgG7eq6uEK9dhMdCWi?=
- =?us-ascii?Q?8egVPEtJGgtC06oxjYhoDF51PKc+zAlcSIvagT157tyqEYDOL98BrEgC4fVr?=
- =?us-ascii?Q?le/KznDnzVHW/uuf0aR4R1Ujgs6EPDwFCcctGado+LU+OGpYOeFjK8Y6TJfj?=
- =?us-ascii?Q?z0x4+0VgwD+3JAzNi1bgTUiyyLRWb6rpSPvHvPSn8nK0oHmuABAS/PlOgRp/?=
- =?us-ascii?Q?oBcwiPSOq5LtGDckwwzu7BsXl83Mrxk08Ny6AskDfqiB2GMVYF6Yo309jYcG?=
- =?us-ascii?Q?3sUuvW3i8EToyx+XM8ri4SBA1avImU5c/TaXF2lZiehSBkuYJpIndpBJ+EPu?=
- =?us-ascii?Q?hF6NomLm5rr9usxcTIaqj8FKwy+XBe0wUXkliS7X8aZtYdRv+KMbPVgpKg8l?=
- =?us-ascii?Q?jTQ0/f1ptY84RHqUOubBPhQLrCoj/0+tv1SAnDV6jQa9JuhHa4Fai6FZDfni?=
- =?us-ascii?Q?T3nADwcQZ9lDHVktrXZeXV2jeB2mx+moxwNc60qsJ2ARHCA6gepQhkdBq1v0?=
- =?us-ascii?Q?yQIYH3UHBeyMbuIG47mz7Z3m9OMX2OPUsGQKlODyIZoi1UAqMLOKtcVLvDp4?=
- =?us-ascii?Q?9bNAOVSuOC8soitlHGcgAstK8IbVtc/XaHqH2tb3mJA9m4nU7Q35LpE7UB/L?=
- =?us-ascii?Q?JadiXWISvi+UrThw4ZoUDBMXpURn3l5NYMQXYHi1wg9vyzg7beeb+QHqKC8Y?=
- =?us-ascii?Q?5tGWMI8JD5/h0y4fWJlZS4IjX0c+VAEsFGSXPKkrWecbWg9vq6XkOdXqGxmF?=
- =?us-ascii?Q?TfsztMYb0Vy/9Rv2G6QypjRaksFGqasxALHbJ8evXC87fuimWn1Nd5ZpM/Ah?=
- =?us-ascii?Q?pjslx/H+7OjYWk4v338+xzafMhaol3gW01qSVeKEbBzHr4cqneaYzeBw1s3i?=
- =?us-ascii?Q?yI8fJedOBClLHaTu3cxKQiNeK81LlvJxnsg1aJZlcJ2utpswWy3qU1D5aZdq?=
- =?us-ascii?Q?WG9pBJfN9FCRPYNlSq6U0hdjBnYRT88fKQQtIJkgUQWE5HqsUkCOpQ0AEmmC?=
- =?us-ascii?Q?HgW0hFiu98AXGFKyxOfiWBKebYURl7iln1NpGSTmtKFi/DPzj89isFT0IQPm?=
- =?us-ascii?Q?htDZCUKhBYw6FkDh/X4h0PnzwS+3IWpSmIGTGERZtO5ezfpTrkW9lSd3GRcL?=
- =?us-ascii?Q?EUmPQmD0CRThsd2nIn85+zABQkOxWr9wYXWUBWwz?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1ac2f58f-e217-4e73-8122-08dc5876a181
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8604.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2024 09:22:52.0820
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 64B7H5AfIzx6yMSsWLs83cy527zEWibLj+ULuRZ3YlSe0YB5Qovp2tzYjHSz2jxdWkmG0wY4HI0jd4v0GLD8jw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7679
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAKgIFWYC/22NQQ6CMBBFr0Jm7Zi2ghZX3sOwgHaASaQ1bUNQw
+ t1tunb58vLf3yFSYIpwr3YItHJk7zKoUwVm7t1EyDYzKKFqUQuF4eskTktvJF51Y0Z9ay9WEOT
+ BO9DIW4k9wVFCR1uCLpuZY/LhU15WWfy/4CpRYDOQGpRua6vNY/A+vdidjV+gO47jB8GCFH+wA
+ AAA
+To: "David S. Miller" <davem@davemloft.net>, 
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Magnus Damm <magnus.damm@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Jose Abreu <joabreu@synopsys.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>, 
+ =?utf-8?q?Cl=C3=A9ment_L=C3=A9ger?= <clement.leger@bootlin.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-renesas-soc@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+ linux-arm-kernel@lists.infradead.org, 
+ Romain Gantois <romain.gantois@bootlin.com>, 
+ "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>, 
+ Maxime Chevallier <maxime.chevallier@bootlin.com>
+X-Mailer: b4 0.13.0
+X-GND-Sasl: romain.gantois@bootlin.com
 
-Add crypto node in device tree for:
-- CAAM job-ring
+Hello everyone,
 
-Signed-off-by: Varun Sethi <v.sethi@nxp.com>
-Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
+This is version two of my series that adds support for a Gigabit Ethernet
+controller featured in the Renesas r9a06g032 SoC, of the RZ/N1 family. This
+GMAC device is based on a Synopsys IP and is compatible with the stmmac driver.
+
+My former colleague Clément Léger originally sent a series for this driver,
+but an issue in bringing up the PCS clock had blocked the upstreaming
+process. This issue has since been resolved by the following series:
+
+https://lore.kernel.org/all/20240326-rxc_bugfix-v6-0-24a74e5c761f@bootlin.com/
+
+This series consists of a devicetree binding describing the RZN1 GMAC
+controller IP, a node for the GMAC1 device in the r9a06g032 SoC device
+tree, and the GMAC driver itself which is a glue layer in stmmac.
+
+There are also two patches by Russell that improve pcs initialization handling
+in stmmac.
+
+Best Regards,
+
+Romain Gantois
+
 ---
+Changes in v2:
+- Add pcs_init/exit callbacks in stmmac to solve race condition
+- Use pcs_init/exit callbacks in dwmac_socfpga glue layer
+- Miscellaneous device tree binding corrections
+- Link to v1: https://lore.kernel.org/r/20240402-rzn1-gmac1-v1-0-5be2b2894d8c@bootlin.com
 
-v4:
- - Order of node properties changed.
+---
+Clément Léger (3):
+      dt-bindings: net: renesas,rzn1-gmac: Document RZ/N1 GMAC support
+      net: stmmac: add support for RZ/N1 GMAC
+      ARM: dts: r9a06g032: describe GMAC1
 
-v3: 
- - Commit message title is changed from "imx8ulp-evk" to "imx8ulp".
+Russell King (Oracle) (2):
+      net: stmmac: introduce pcs_init/pcs_exit stmmac operations
+      net: stmmac: dwmac-socfpga: use pcs_init/pcs_exit
 
-v2:
- - As requested, this patch is separated from the larger patch-set of 9
-   patches. 
+ .../devicetree/bindings/net/renesas,rzn1-gmac.yaml |  66 +++++++++++++
+ MAINTAINERS                                        |   6 ++
+ arch/arm/boot/dts/renesas/r9a06g032.dtsi           |  19 ++++
+ drivers/net/ethernet/stmicro/stmmac/Kconfig        |  12 +++
+ drivers/net/ethernet/stmicro/stmmac/Makefile       |   1 +
+ drivers/net/ethernet/stmicro/stmmac/dwmac-rzn1.c   |  88 +++++++++++++++++
+ .../net/ethernet/stmicro/stmmac/dwmac-socfpga.c    | 109 +++++++++++----------
+ drivers/net/ethernet/stmicro/stmmac/stmmac_main.c  |  14 +++
+ include/linux/stmmac.h                             |   2 +
+ 9 files changed, 263 insertions(+), 54 deletions(-)
+---
+base-commit: 87c33315af380ca12a2e59ac94edad4fe0481b4c
+change-id: 20240402-rzn1-gmac1-685cf8793d0e
 
-Commit 
- arch/arm64/boot/dts/freescale/imx8ulp.dtsi | 32 ++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-index 8a6596d5a581..ed86854a59c3 100644
---- a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-@@ -252,6 +252,38 @@ pcc3: clock-controller@292d0000 {
- 				#reset-cells = <1>;
- 			};
- 
-+			crypto: crypto@292e0000 {
-+				compatible = "fsl,sec-v4.0";
-+				reg = <0x292e0000 0x10000>;
-+				ranges = <0 0x292e0000 0x10000>;
-+				#address-cells = <1>;
-+				#size-cells = <1>;
-+
-+				sec_jr0: jr@1000 {
-+					compatible = "fsl,sec-v4.0-job-ring";
-+					reg = <0x1000 0x1000>;
-+					interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
-+				};
-+
-+				sec_jr1: jr@2000 {
-+					compatible = "fsl,sec-v4.0-job-ring";
-+					reg = <0x2000 0x1000>;
-+					interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
-+				};
-+
-+				sec_jr2: jr@3000 {
-+					compatible = "fsl,sec-v4.0-job-ring";
-+					reg = <0x3000 0x1000>;
-+					interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
-+				};
-+
-+				sec_jr3: jr@4000 {
-+					compatible = "fsl,sec-v4.0-job-ring";
-+					reg = <0x4000 0x1000>;
-+					interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
-+				};
-+			};
-+
- 			tpm5: tpm@29340000 {
- 				compatible = "fsl,imx8ulp-tpm", "fsl,imx7ulp-tpm";
- 				reg = <0x29340000 0x1000>;
+Best regards,
 -- 
-2.34.1
+Romain Gantois <romain.gantois@bootlin.com>
 
 
