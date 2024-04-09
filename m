@@ -1,283 +1,204 @@
-Return-Path: <devicetree+bounces-57366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7382789D52F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 11:13:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 682B589D56F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 11:23:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E96921F210B6
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 09:13:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AF481C22B66
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 09:23:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4115A7F46E;
-	Tue,  9 Apr 2024 09:13:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A30117FBBC;
+	Tue,  9 Apr 2024 09:22:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="Kn9uwk51"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="oKEp2fOb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2111.outbound.protection.outlook.com [40.107.8.111])
+Received: from EUR01-HE1-obe.outbound.protection.outlook.com (mail-he1eur01on2105.outbound.protection.outlook.com [40.107.13.105])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BA087EF14;
-	Tue,  9 Apr 2024 09:13:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.8.111
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 856C08061D;
+	Tue,  9 Apr 2024 09:22:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.13.105
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712654019; cv=fail; b=jhZjIxU+aY+bA0/qkCjk1bT/gh1p7D+V05Y1B/I8LeI7A7OfOf6701L+n1JLjcXmYZtzcMaogWOBddzA+lbi+QNltG3RGyiTrqtAf1Dr1NEJVcnNY3XpX31lBassD6rVW0Ge0HxiJR2lG3H+aTPlUIGF69nFXiRNIaqE0p9fpb4=
+	t=1712654577; cv=fail; b=o5rOEwunDrpgl7+ligsP6JUHOpsQVFLlhJQSvKS1aRLr0OABasxw/HDM+kOxMD7WQu3qNtQAlVUEhQTNy99A7ZDF9nf3oeE29412aDWeVZsLzc0OL3Y4FsVyjU/Nkyzqs86dAxWMzb4Z3D2aJyXRyp38le6TXdcQ3/Isx1SL2dM=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712654019; c=relaxed/simple;
-	bh=XydFIg9UgVdJgyoH8Aqi9rXucdSFciPI1K+9cM6SIQ0=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=ABT42vbYoRfVeJZLeJUwuEpfLjnqBnSjM/WBlXLQJC6LzkzZYNDhJ/5BYyGJQ67Y99WxpBNdkSPK5RO2KoENOqVxqELOdvzTe/Ml+0Tjn35Auew1BRHv2b2cjjTOpummKKT2RqjAAkZiM+CWSGAcZDtlD5E1RolcggJvECkIk74=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=Kn9uwk51; arc=fail smtp.client-ip=40.107.8.111
+	s=arc-20240116; t=1712654577; c=relaxed/simple;
+	bh=Gzc+z0v/RIB1UUQ4IGJiK+C6fBFgEW68d4jBUvf9Zfg=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=lt7xnrodWZ5NDnztQejdduXC/rkDV+iQN72Nr0FDPsqwNNunXP9rCX+SDIZmQdm+4/MNhucpBjO93JOzpwmk2PzY6eXxnLqE5EIGun0Yt1kRc3kkTGNLdeqqoyPx11qb8iqPq03Uwfn25H9Q1fQn3JvDl09NhlVqkLyjM5Fprk4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=oKEp2fOb; arc=fail smtp.client-ip=40.107.13.105
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bDaBzywy8C/G8M6+HTV6YzYHmmSSDpj+XlRgU2I49Uq0AHtvOQdsjULXcvnpwwVmVN2yerh4zrG8E+kpA962K/HMOEPRuw/acAMjm2JkbYKa4AoCWFWyEwzqfQni3ZvfXBZNlSBcVK813U0wojtEKfBpEDGvqjyaTCGOePz/TILuFwFu9kuOMIzRNJIBWeh8U8J6bP5p8GzA7X149Hi+siC0kKimnTtGUart2Y9mNlgLNWZ6aEXr2vHn8RKFsHp3SsWmXekk1JHH89zO9gooXkaBK/M3WHdlB7M18CnRrA37i1GZSb8t9HNOY5cctbe0wK6paNLsfeIUQnDpdEevPQ==
+ b=FdWmn7i8VjpFA08ZLGrE5q7VT489ju/77Bj1ylrNnv9SFc5LyjA9F1GKyLolxXMsqB4PBy2OndufVRL2vRY1sejVpguOd7XHz98sefEK85YGzO7GBJTrE244929X/oLQH8zCq6zIYbtw1NR5yDSlNtAecgcAWTpDbbEcH+er+vBiBXJkAhIniKTRNE4+MzgKOwJg4V6bD08XnKeXm+LbEd64YQ9Ou8651VLy/pNz9T34YdZfvL9WjVf9aqQ+YJr8/kGlThlzNxrldu02J+FX6aSGHtonibijvkr0RhP518hKz3Px5EQd1JVhUTOpUjgfvY0GOomWqgTwdcf6k5GJfg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2ErfF23zCDug/88cj8gIyeGw/iMN/QADeTMsibn+LMY=;
- b=eHjtGA5uBKhpqWoAZWqnnH+ju3dZjln4K/iyTjvFG9lKmtg3GhvLGg0z7dw/8zxZ/v/LW7loAz2VJRx+oyziDdhdxOBSUkM2c/a5VAH/8ioT1W43bGImbOJMwhbWowyr1aDnxezvcknwogm+5KKnWT/wJYdy6FzXHuWNQHaF5KgbfitGX4uiRjYyDBMUdL06Qc6pyyGdrQ+tC+XX16Z6y33yTtH6aJeyvE8Wj/kjkb84pRvKZnDHjhklVjkff+GeGS0CdEuPPPiNQsO9XIMmNaohPiyTJBwRc/0x09Drbh981F/MvjaFz5X0bEg5SiUVpR/7CdBQL/mDmX2GRTwJDQ==
+ bh=01y7rUwcotKi72Z7yEbm1QIRBlYvdU5gNvyG0k/qEA0=;
+ b=GXagRJ14X85o7Az9P3USn+TjPzQ07y0n+597zMDXcp6YDSl8XC38mxiVfI3WiGPUNBf2WyLLXaY+gbqqku5RVUfC52TSItNNuCnjTiFsVlQyqVuA7nAVmeffHwMTrObnxJbbuGYKdVWPUMH+eYaFyDHc0MqwiVtFVMtbD05WqM75pA+PTCiG9/LfuyAKJpBYYX84HzbpK/+XiAd7fqaQ8UgjGZzAs/qpj4XBKXIX1JCSn5N+xFSvOlbkUKwTW8CZl7k0mbX+552fua1RUN/YD97h+QqBfMrQysLsKsZ9F2T5iVF4SkUlELryZhmaXOfXia3Xuaau+KTLBSpTyb6dhg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2ErfF23zCDug/88cj8gIyeGw/iMN/QADeTMsibn+LMY=;
- b=Kn9uwk51Uaw/UN5sMgjcFcATpqkd7tjbbVZHoRs05ShynlcByaccNEA0rYBBINrFR6i91SuHbQTvZCJd849PSEbuWCvW8DllCGeuewVDx11wFA8fz0aLWq8WnSvgGQwcZMCEcv+Dllb8S+kvwB9gMDqZ7fhfzTvd5jx1iU4cw74=
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by AS8PR04MB8721.eurprd04.prod.outlook.com (2603:10a6:20b:428::10) with
+ bh=01y7rUwcotKi72Z7yEbm1QIRBlYvdU5gNvyG0k/qEA0=;
+ b=oKEp2fObv77RzJnEvSPXKeazSWM9U6pFdzpn3l2zBCuts0Ct1GhOxVaHgNR0QA5s19O5PIGdcjcxy/zrw2BopjESfzJawusn8fnmvQ4hyfwYN5dP91Zu+ZF6rLsM21YgaLjAOaZzuTKHoTI33du60jzrpsDymYrHTWTtMvWJunI=
+Received: from AM9PR04MB8604.eurprd04.prod.outlook.com (2603:10a6:20b:43b::21)
+ by PA4PR04MB7679.eurprd04.prod.outlook.com (2603:10a6:102:e0::20) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.55; Tue, 9 Apr
- 2024 09:13:33 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::d30b:44e7:e78e:662d]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::d30b:44e7:e78e:662d%4]) with mapi id 15.20.7386.037; Tue, 9 Apr 2024
- 09:13:33 +0000
-From: Peng Fan <peng.fan@nxp.com>
-To: Sudeep Holla <sudeep.holla@arm.com>, "Peng Fan (OSS)"
-	<peng.fan@oss.nxp.com>
-CC: Cristian Marussi <cristian.marussi@arm.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
-	<s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v2 3/6] firmware: arm_scmi: add initial support for i.MX
- BBM protocol
-Thread-Topic: [PATCH v2 3/6] firmware: arm_scmi: add initial support for i.MX
- BBM protocol
-Thread-Index: AQHah1U7U7PbHuwUVkuCiXWcSbaKerFer8yAgAD57wCAAACBQA==
-Date: Tue, 9 Apr 2024 09:13:33 +0000
-Message-ID:
- <DU0PR04MB94175384AD9113AC6F60546588072@DU0PR04MB9417.eurprd04.prod.outlook.com>
-References: <20240405-imx95-bbm-misc-v2-v2-0-9fc9186856c2@nxp.com>
- <20240405-imx95-bbm-misc-v2-v2-3-9fc9186856c2@nxp.com>
- <ZhQxu8LVNKf5QDLm@pluto> <ZhUDZGJilhczKlDD@bogus>
-In-Reply-To: <ZhUDZGJilhczKlDD@bogus>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|AS8PR04MB8721:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- wTHlc55uUtQVzYDy0oKvrRNw9kCZizBjW5KeJA2bqXjTTW3ei3PPk7gvHuGR+gEc6RgjlARzDG6NKqxLADuICxJx0BfY7Fwp4w9mVyYd41AULD8ouT+UhOhgAumoByBvspldngRDZcQSk1pIQFMgYAEeCkjh+yuJ7f0eROqPXGJzyJYMo4J/yYLcBJoEvLYJBLxk8cc5nFRGeaCTE5q2RNpJvrxlKjUwVD0K1obOHia3ngk6dNB9xJBhKxQGF3fGjNxRAyAwCd1K4z3EcxnYG/1aBqeC/yGAoK+HPyVy/mCo8wY8kVMfWv4dBBPrsnIT61eVK5sAvU3BtC1P0oQPZnq7k0RJ9SSob1HLO/imdgOtltOCQskTWrVgJULw1QXtVsiIDZi94NTLQeaQlkzpIzWampSHo9m8dfdVTcE7D4GL0xivLVfEWxQm3QOR9eWH98ATEKOG4KUspO41e9VJNTjpSWVyRLDap3zH3Tld082Mbf7/5daNfPWR7OgnSBYl17jkA1nHiBWtCqHgr97+WQfIVfcJBOfopwBIHzHH+0a+fzTXkPj3uv6Vl3Geb8sJvyOoji6ov6eHSkti/ntBBrpTXCpJTIVud5iYX2HbUoPwhCcP97QxlmwqClSNvABq/U5c3WwrJhFymJiUZPzERxZfOW27x0BZGwOKE/et21s=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(1800799015)(7416005)(366007);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?w5yWex9aDsSVsc23kZDRYLRJBnMWNELV8NBxnoxa7uKVoBRIpDQRIxjQQxMM?=
- =?us-ascii?Q?HRWhIiv+0csoaJh5WcQXorcVdqK35MlsrCHPHwG7W61E8iMU9O1+i1O+PXg1?=
- =?us-ascii?Q?rzlYbpgBPp/m7OXAI3FMp21qx6zGKTsPKpeVku81x1k23Hz/LGxqCl1wy3Wx?=
- =?us-ascii?Q?awwDZxUjhIuDc+GUnIyajvMUoJpovZ0j0rog5ive6ufp3ilt/fm7eH75l9wb?=
- =?us-ascii?Q?a6HWx0VXmEXEfCdqNvYdWq5tuhIB2tFj/Jz6Tg1oFG+0uDSsE4v3xNInJnah?=
- =?us-ascii?Q?fNMq7kuyFBpm+MhInpXOnkHei4HSb4nSu782x1sZSpKYhTqre6H75WrYfEdf?=
- =?us-ascii?Q?+ag8Lsir6ea9ielh1M3X8ehVwuCqdljBTr0Z8owUZ0p6S65UIix0nIgW9Tpf?=
- =?us-ascii?Q?dOrynAl75RHMPeqCe6pci29YeuSTaVgjckBCnFhiuzpD+TqbMIbhD2v2I8c1?=
- =?us-ascii?Q?fvZB8jMGUW77CPyGMC0Cc+pKeSIVGs6RU1yh1EsqYtk2EMsm+xpb2gcreNVU?=
- =?us-ascii?Q?n7TrIH8w5oBITqtO3NjhlDlT56x2om+hHd347KlKZ5Kz1clCRRxnnoE78pq8?=
- =?us-ascii?Q?Nzz0RvlNpEsxyC2IvIp0fqKK3C188Y33wFrZIFAiYjyVoi22JRCof/age9aE?=
- =?us-ascii?Q?nsNuWig1e/Ty9Kjw2sf532XKDb6nbkLclMoYHzJw70gKFDwKZiVrKiJPRc1E?=
- =?us-ascii?Q?q6/+Xx6PtylwWL89XL8y8/qyIF7TA5g5VQ3nVlB5yfhQrbXBRX7mDO52C2TD?=
- =?us-ascii?Q?T4hZ7wrUqz4JTHqqrrLtdUnIfY22L8h9ShxF+JPnsbRIEBDuGGr3XsWZZdTX?=
- =?us-ascii?Q?A/u1t04RFyKBnIP2qGrEYg3zaDyjizDyU9KTrIck9CVUWxuQQXRJZt0gMABs?=
- =?us-ascii?Q?XaCYWIllvz3UftHCsIZmg4NiMx5QaAeYcPHcIOUWCtT0iXeRCDdm71Ik5V3p?=
- =?us-ascii?Q?FLu91JztArvgG4DpHv6h7r2+74ARn5bmSZQtHZu6SWREcdlrnpDCuAyaAmWI?=
- =?us-ascii?Q?yLlh2QGkHRLmURhyMoh8Q8hqrElMkjuhrVGMWk5dTEC/0HUGc9O1lf2C65oV?=
- =?us-ascii?Q?Chv2PcJnyQDuune4rUu7WRD3mmc9lDGJSAUCpq82ZbI8it/gMWKy8ZKEWalN?=
- =?us-ascii?Q?jDLSR95LuH2GG59xMBgddSu/bi//evs/3RSsIXDecugDR+F30K6r+A3J8Y1o?=
- =?us-ascii?Q?e3EABQ1u7jrl17RdUfg4mS+Kd2FBktMxkDhguBaYDGXFiQiUBnjRL/zzwkRd?=
- =?us-ascii?Q?95BEtaNCVTOH+LNvfcCLmogn3S6H8LEW/V97JSS+2mPYHpo78N5GAhikNPoF?=
- =?us-ascii?Q?Bklesybr9lRNhPSslb1MhtwcAmSp53pNXfdwIr0lSPtR6lbYTEHuHJVZWXFr?=
- =?us-ascii?Q?Gfj+zaL+6z4Nnq7Pg7rM3DzuPGk9MbDDVG+rBk6Pgn17fJQrKkVmuuEjqj0L?=
- =?us-ascii?Q?M6HmvLt29Ml1YbKhp0uuLHxwxvSnGbRVDJbPSd6VTa9f0D72olgDVHMWiX+s?=
- =?us-ascii?Q?oIIxOIov37dWDC6AVGzo1YIk3F/uztrF9PK/Hov8/Sdj3hbNZ47xtd/mV6fW?=
- =?us-ascii?Q?Bgd4xyCuf6gsY3S+r2Q=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Tue, 9 Apr
+ 2024 09:22:52 +0000
+Received: from AM9PR04MB8604.eurprd04.prod.outlook.com
+ ([fe80::33cc:db75:c850:63a4]) by AM9PR04MB8604.eurprd04.prod.outlook.com
+ ([fe80::33cc:db75:c850:63a4%2]) with mapi id 15.20.7409.042; Tue, 9 Apr 2024
+ 09:22:52 +0000
+From: Pankaj Gupta <pankaj.gupta@nxp.com>
+To: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	linux-imx@nxp.com,
+	peng.fan@nxp.com,
+	ping.bai@nxp.com,
+	haibo.chen@nxp.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: Pankaj Gupta <pankaj.gupta@nxp.com>,
+	Varun Sethi <v.sethi@nxp.com>
+Subject: [PATCH v4] arm64: dts: imx8ulp: add caam jr
+Date: Tue,  9 Apr 2024 14:50:40 +0530
+Message-Id: <20240409092040.3870497-1-pankaj.gupta@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2P153CA0023.APCP153.PROD.OUTLOOK.COM (2603:1096:4:190::6)
+ To AM9PR04MB8604.eurprd04.prod.outlook.com (2603:10a6:20b:43b::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM9PR04MB8604:EE_|PA4PR04MB7679:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	hfcD7w1IIoib/9VMBCZWdl6v0BogzXVGboUteuEUQ2T+KkdDQka5L0uIrfdSHV4wy3LI0PaAss1JCUtQIowLtemcwCimOGQn5Pg2X4MCm4PcPZHZaErewBVYRaeRVGm6oTcELDsOEHUVEZokRGtR4Q0VlpxmFcRS6aUCUHHFTe8kPdsb8c/P9kdM3xEHnUNpeN4A54hJ8nvB/N5uODYgjBq/piq8jIDg/u220mqxrQ88Qety2FK/C3Y3KP74mdvJnDsr/PUqGVG5f7cuOe6Ox9lZP2OMcQluMkktm/2MAmeNg2CnVpd8twEen/DPdIY83RbKdlilbbJdtpuBdzP6hXc3dk+GbyVbSH9fuuZs8fViX8MQ4mDDeVP2hgL0vpLcvBpcBqUjtOTqUuuFfNIPQM19X2sy0eUtgyXqMe9YRDH9EQU8FfQI8liYpAgh931vAwblJlOg1tcsc5vYwEZV9mdMistJlB/SHjuX6F3vLFsK3tes4UuupYXZTA0vqYZF/iPiVtZ+OYoxAr+6qqSgALM+7eoL38Z5B+rxGnry0yhelPHNpSYuLIPMVjk0ttHJu8stuhpDo9T9rnTZHlL1ZfCnHr+MJ/dUbZc3PsvNSpzkbcdleksAUIWk+UoPUNkw2NwiAoOGhUVeN9jzs0r6xKnUAOM7kjmAXKCPAC++XLt4VaIC0HtRNAK3tuhxgPmt5CfqUqghcSc4cyIIOrUbL9yiyy158LL8xIDmI6qDrVg=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8604.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(376005)(52116005)(1800799015)(366007)(921011)(38350700005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?na4qfg7w8Zt8UZL6snvLimGTbjqyUxWgXvdJCVf2Ew0iYse6I8CcSC8h+NfA?=
+ =?us-ascii?Q?lpJ00hjBvuC0arq0xh1s3ocJonPOfQT38Y+UI8DuKpP/bVIC1r//KlI20zJz?=
+ =?us-ascii?Q?Mf98oCnhZxxqGuu3UrgtzPAKh+fWkX0A3PJCYcU2/x2tu018hKT5KEdtwPKe?=
+ =?us-ascii?Q?HuyXKd7GGvUG+9OVkkibKGXcZhF5TDzAucLDFgrAQq23u6T4voiI9sQ0VTaD?=
+ =?us-ascii?Q?uKrie+WJG75DmL57iAdSmD+AufNvtpjYa1xPg8PyYHkn06RHC1tgC/ti1RaI?=
+ =?us-ascii?Q?xRoCCFG4m/c+xkvrM9tYtSDDM7dkYNLzOzDMBaXLf7RxRHqZw1rfe5epuWvH?=
+ =?us-ascii?Q?6FRTahmb9Bh6DeJm033Nnff2UOfLBBkIAJESUhgjqPMI3Xa2bOXamjE1J6zt?=
+ =?us-ascii?Q?pKQr10uzZrtEkVfxuAT/3qEVPPpUMw9J5Kk2zriwUZTgG7eq6uEK9dhMdCWi?=
+ =?us-ascii?Q?8egVPEtJGgtC06oxjYhoDF51PKc+zAlcSIvagT157tyqEYDOL98BrEgC4fVr?=
+ =?us-ascii?Q?le/KznDnzVHW/uuf0aR4R1Ujgs6EPDwFCcctGado+LU+OGpYOeFjK8Y6TJfj?=
+ =?us-ascii?Q?z0x4+0VgwD+3JAzNi1bgTUiyyLRWb6rpSPvHvPSn8nK0oHmuABAS/PlOgRp/?=
+ =?us-ascii?Q?oBcwiPSOq5LtGDckwwzu7BsXl83Mrxk08Ny6AskDfqiB2GMVYF6Yo309jYcG?=
+ =?us-ascii?Q?3sUuvW3i8EToyx+XM8ri4SBA1avImU5c/TaXF2lZiehSBkuYJpIndpBJ+EPu?=
+ =?us-ascii?Q?hF6NomLm5rr9usxcTIaqj8FKwy+XBe0wUXkliS7X8aZtYdRv+KMbPVgpKg8l?=
+ =?us-ascii?Q?jTQ0/f1ptY84RHqUOubBPhQLrCoj/0+tv1SAnDV6jQa9JuhHa4Fai6FZDfni?=
+ =?us-ascii?Q?T3nADwcQZ9lDHVktrXZeXV2jeB2mx+moxwNc60qsJ2ARHCA6gepQhkdBq1v0?=
+ =?us-ascii?Q?yQIYH3UHBeyMbuIG47mz7Z3m9OMX2OPUsGQKlODyIZoi1UAqMLOKtcVLvDp4?=
+ =?us-ascii?Q?9bNAOVSuOC8soitlHGcgAstK8IbVtc/XaHqH2tb3mJA9m4nU7Q35LpE7UB/L?=
+ =?us-ascii?Q?JadiXWISvi+UrThw4ZoUDBMXpURn3l5NYMQXYHi1wg9vyzg7beeb+QHqKC8Y?=
+ =?us-ascii?Q?5tGWMI8JD5/h0y4fWJlZS4IjX0c+VAEsFGSXPKkrWecbWg9vq6XkOdXqGxmF?=
+ =?us-ascii?Q?TfsztMYb0Vy/9Rv2G6QypjRaksFGqasxALHbJ8evXC87fuimWn1Nd5ZpM/Ah?=
+ =?us-ascii?Q?pjslx/H+7OjYWk4v338+xzafMhaol3gW01qSVeKEbBzHr4cqneaYzeBw1s3i?=
+ =?us-ascii?Q?yI8fJedOBClLHaTu3cxKQiNeK81LlvJxnsg1aJZlcJ2utpswWy3qU1D5aZdq?=
+ =?us-ascii?Q?WG9pBJfN9FCRPYNlSq6U0hdjBnYRT88fKQQtIJkgUQWE5HqsUkCOpQ0AEmmC?=
+ =?us-ascii?Q?HgW0hFiu98AXGFKyxOfiWBKebYURl7iln1NpGSTmtKFi/DPzj89isFT0IQPm?=
+ =?us-ascii?Q?htDZCUKhBYw6FkDh/X4h0PnzwS+3IWpSmIGTGERZtO5ezfpTrkW9lSd3GRcL?=
+ =?us-ascii?Q?EUmPQmD0CRThsd2nIn85+zABQkOxWr9wYXWUBWwz?=
 X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1ac2f58f-e217-4e73-8122-08dc5876a181
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8604.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7d8ca76e-9c4d-4f74-7b45-08dc587554a1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Apr 2024 09:13:33.3588
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2024 09:22:52.0820
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Aj2mM2JNB+sOTnTMZ0+D+JLj4uhWn+VeG7v/iCR2Z0DcDzYz+/GvX503GfOYnqPj2vVQeVaADpH9WhCs4687gw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8721
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 64B7H5AfIzx6yMSsWLs83cy527zEWibLj+ULuRZ3YlSe0YB5Qovp2tzYjHSz2jxdWkmG0wY4HI0jd4v0GLD8jw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7679
 
-Hi Sudeep,
+Add crypto node in device tree for:
+- CAAM job-ring
 
-> Subject: Re: [PATCH v2 3/6] firmware: arm_scmi: add initial support for i=
-.MX
-> BBM protocol
->=20
-> On Mon, Apr 08, 2024 at 07:04:43PM +0100, Cristian Marussi wrote:
-> > On Fri, Apr 05, 2024 at 08:39:25PM +0800, Peng Fan (OSS) wrote:
-> > > From: Peng Fan <peng.fan@nxp.com>
-> > >
-> > > The i.MX BBM protocol is for managing i.MX BBM module which provides
-> > > RTC and BUTTON feature.
-> > >
-> >
-> > I appreciate that you added versioning but I think a bit of
-> > documentation about what the protocol and its comamnds purpose is
-> > still lacking, as asked by Sudeep previously
-> >
-> >
-> > https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flor=
-e
-> > .kernel.org%2Flinux-arm-
-> kernel%2FZeGtoJ7ztSe8Kg8R%40bogus%2F%23t&data=3D
-> >
-> 05%7C02%7Cpeng.fan%40nxp.com%7Ce92ff78b9126447afe9708dc587358d
-> 4%7C686e
-> >
-> a1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C638482499632395762%7C
-> Unknown%7C
-> >
-> TWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiL
-> CJXVC
-> >
-> I6Mn0%3D%7C0%7C%7C%7C&sdata=3D7QP%2BkkjHA3Sa0CdcbbObGG4kgYYK
-> XAGA2r%2F%2F
-> > x0MogqU%3D&reserved=3D0
-> >
->=20
-> I have decided to ignore all these vendor protocol patches until they hav=
-e
-> some documentation to understand what these protocol are for, what are th=
-e
-> commands, their input/output parameter details, any conditions are the
-> caller and callee,..etc very similar to SCMI spec.
+Signed-off-by: Varun Sethi <v.sethi@nxp.com>
+Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
+---
 
-Where do you expect the documentation to be put?
+v4:
+ - Order of node properties changed.
 
-similar as scmi_protocol.h, put in scmi_imx_protcol.h?=20
->=20
-> To start with can you please expand what is BBM or MISC protocol is ?
+v3: 
+ - Commit message title is changed from "imx8ulp-evk" to "imx8ulp".
 
-ok. Sorry for missing your previous comment in v1. Let me write here briefl=
-y
-first.
+v2:
+ - As requested, this patch is separated from the larger patch-set of 9
+   patches. 
 
-The Battery Backup (BB) Domain contains the Battery Backed Security
-Module (BBSM) and the Battery Backed Non-Secure Module (BBNSM).
-BBM protocol is to manage i.MX BBSM and BBNSM. This protocol supports
-#define COMMAND_PROTOCOL_VERSION             0x0U                          =
-                        =20
-#define COMMAND_PROTOCOL_ATTRIBUTES          0x1U                          =
-                        =20
-#define COMMAND_PROTOCOL_MESSAGE_ATTRIBUTES  0x2U                          =
-                        =20
-#define COMMAND_BBM_GPR_SET                  0x3U                          =
-                        =20
-#define COMMAND_BBM_GPR_GET                  0x4U                          =
-                        =20
-#define COMMAND_BBM_RTC_ATTRIBUTES           0x5U                          =
-                        =20
-#define COMMAND_BBM_RTC_TIME_SET             0x6U                          =
-                        =20
-#define COMMAND_BBM_RTC_TIME_GET             0x7U                          =
-                        =20
-#define COMMAND_BBM_RTC_ALARM_SET            0x8U                          =
-                        =20
-#define COMMAND_BBM_BUTTON_GET               0x9U                          =
-                        =20
-#define COMMAND_BBM_RTC_NOTIFY               0xAU                          =
-                        =20
-#define COMMAND_BBM_BUTTON_NOTIFY            0xBU                          =
-                        =20
-#define COMMAND_NEGOTIATE_PROTOCOL_VERSION   0x10U
+Commit 
+ arch/arm64/boot/dts/freescale/imx8ulp.dtsi | 32 ++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
 
-For now in this patchset for linux, we only use RTC, and BUTTON
-for system wakeup
+diff --git a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
+index 8a6596d5a581..ed86854a59c3 100644
+--- a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
+@@ -252,6 +252,38 @@ pcc3: clock-controller@292d0000 {
+ 				#reset-cells = <1>;
+ 			};
+ 
++			crypto: crypto@292e0000 {
++				compatible = "fsl,sec-v4.0";
++				reg = <0x292e0000 0x10000>;
++				ranges = <0 0x292e0000 0x10000>;
++				#address-cells = <1>;
++				#size-cells = <1>;
++
++				sec_jr0: jr@1000 {
++					compatible = "fsl,sec-v4.0-job-ring";
++					reg = <0x1000 0x1000>;
++					interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
++				};
++
++				sec_jr1: jr@2000 {
++					compatible = "fsl,sec-v4.0-job-ring";
++					reg = <0x2000 0x1000>;
++					interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
++				};
++
++				sec_jr2: jr@3000 {
++					compatible = "fsl,sec-v4.0-job-ring";
++					reg = <0x3000 0x1000>;
++					interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
++				};
++
++				sec_jr3: jr@4000 {
++					compatible = "fsl,sec-v4.0-job-ring";
++					reg = <0x4000 0x1000>;
++					interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
++				};
++			};
++
+ 			tpm5: tpm@29340000 {
+ 				compatible = "fsl,imx8ulp-tpm", "fsl,imx7ulp-tpm";
+ 				reg = <0x29340000 0x1000>;
+-- 
+2.34.1
 
-For MISC protocol, it is for various misc things, such as discover
-build info, get rom passed data, get reset reason, get i.mx
-cfg name, control set(for gpio expander under m33 control and
-etc). The command as below:
-51 #define COMMAND_PROTOCOL_VERSION             0x0U                       =
-                           =20
-  52 #define COMMAND_PROTOCOL_ATTRIBUTES          0x1U                     =
-                             =20
-  53 #define COMMAND_PROTOCOL_MESSAGE_ATTRIBUTES  0x2U                     =
-                             =20
-  54 #define COMMAND_MISC_CONTROL_SET             0x3U                     =
-                             =20
-  55 #define COMMAND_MISC_CONTROL_GET             0x4U                     =
-                             =20
-  56 #define COMMAND_MISC_CONTROL_ACTION          0x5U                     =
-                             =20
-  57 #define COMMAND_MISC_DISCOVER_BUILD_INFO     0x6U                     =
-                             =20
-  58 #define COMMAND_MISC_ROM_PASSOVER_GET        0x7U                     =
-                             =20
-  59 #define COMMAND_MISC_CONTROL_NOTIFY          0x8U                     =
-                             =20
-  60 #define COMMAND_MISC_REASON_ATTRIBUTES       0x9U                     =
-                             =20
-  61 #define COMMAND_MISC_RESET_REASON            0xAU                     =
-                             =20
-  62 #define COMMAND_MISC_SI_INFO                 0xBU                     =
-                             =20
-  63 #define COMMAND_MISC_CFG_INFO                0xCU                     =
-                             =20
-  64 #define COMMAND_MISC_SYSLOG                  0xDU                     =
-                             =20
-  65 #define COMMAND_NEGOTIATE_PROTOCOL_VERSION   0x10U
-
-I will add the information in v3.
-
-But as of now I am not sure
-how to proceed with dt-binding, add in vendor stuff
-in arm,scmi.yaml or add imx,scmi.yaml
-
-Thanks,
-Peng.
-
-> Don't expect me to respond if the requested details are still missing in =
-the
-> future versions, I am going to ignore it silently.
->=20
-> I have asked for these in atleast 2 different threads may be not just NXP
-> patches but in one instance Qcom patches, but they apply equally here.
->=20
-> --
-> Regards,
-> Sudeep
 
