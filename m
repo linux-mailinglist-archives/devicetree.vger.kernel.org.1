@@ -1,131 +1,152 @@
-Return-Path: <devicetree+bounces-57539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4159A89DC43
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 16:29:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B83A89DC67
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 16:36:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA514B27ED4
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 14:29:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F7CA1C20D77
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 14:36:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8E321311A7;
-	Tue,  9 Apr 2024 14:28:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="N8+vHTSr"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B11E2C695;
+	Tue,  9 Apr 2024 14:36:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20CED130A60
-	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 14:28:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBB598C1F
+	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 14:36:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712672900; cv=none; b=SGoSDZUSuRL0oImnMKvN5V3CAcsk0fhxAwu/uu9eR/2rDPczdd+3lMkww2SYdNTqBHSfUkg2F04Uo2x5Svjf6RA5kCmQcwJxVBMVrkPATrvwlG4PoC6K8+ySZkb8X9+wyMFi7ciZrr6yHVOsuRp3ujbrAAwjOz0Yqu4nb/y7o/I=
+	t=1712673375; cv=none; b=EyVPsIB+A61jmwlmrd3HX/wwkjWWqhfoHnIiVJ5jLqWiQbiUHrsD6QMxND2wd7VBp0UnvfOnVZ98j5utDPe/AHj0d5sX9+5L/kapCBYcH9mTlSLRt6FU0A1oeKQR1TO2dI02obYUhuLgXTX9+q/cdV4WmXeH7hTQMHYytRPiykI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712672900; c=relaxed/simple;
-	bh=Ert28OT3aAf58lII8YJfBxuxx9CsXW8kB9StD1Pp5Qs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=jPwwKM/szUWuC4sZX1pcv9WhKZ1wihm0ef6PoY/qxf8tbcKALznVoG+RcCvfLGJLlY1/mSGXA8V/V1hirz4EHErFlL207W9PI/riOArEUpJ1Pn6LO7wV0n+AbsGCXBTSfCzERyUWIBk+bGmmb8QS6nFcCxTy+lj/T18OsdnGlGw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=N8+vHTSr; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-516dd07d373so2276113e87.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Apr 2024 07:28:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712672897; x=1713277697; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XwnaaipznVoDEcKs4Me335T76hxHxjEZxfF+WyLdSeU=;
-        b=N8+vHTSr63yDYo+jvBDaX6RVzetgd+Pzdwnwf6vo5GSHUbMBAjcZaxyAYOkKbzUt7k
-         g5sc2PpTE65/Wtkx2Vh9VHs81SY3XqAEafteC6C7aRr63IfIyZCWm+s0u2lUjS9mC/ZD
-         0p+G4kJ4E5yhSsslwMABB7RsaxxsPyDBIyxWuFRUVyUp+NiGvnZ89hAjbKtxLCnTTMS4
-         Uw6tZzFqJlL2JlHNeTSXpj5qmcvplQ45GEHTVAu7kr6WtaF1DC9n60B5ZOdfnTk72Qnm
-         6UHbm49HlG26I5cZTrRLSYpgGjFZ7rh3/Nl+mF2b7KtgFfxC6J+8jqU9h/UPsDKvFm6J
-         KSLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712672897; x=1713277697;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XwnaaipznVoDEcKs4Me335T76hxHxjEZxfF+WyLdSeU=;
-        b=F+PWuhZ4zuJSPFDJzXV8rUerJtCby5/tL6nsPAeeSKYa82prcBt/9l4sn5sVDJuDMN
-         3mex0PKJDqbWh/zME64b/nhLUQPXp5uxH1nsV8KzPcQPGYtNROQ6LDhl8SbxbKJaRJtr
-         hC4H4pxvptoeb6tVegQSSpHzIvcWR1bIuSd/9iVr6J6EqpK5JCsXGl3yJ3w62eXTH065
-         nfHMFhQhFslZz716+AeLfjLvbsrUQe759ZaRC6552LvJ6fr3sTzv8Da/OfEUvhJXQxhJ
-         4Pfej8bImupdKSu/3V7l2uYhx71biBP1+VY6skgOyRvjYBPnBvVekwEA/XAGZh3Mql00
-         /KoA==
-X-Forwarded-Encrypted: i=1; AJvYcCUUmuhUS6WtKrmY9yua8BJfnBK2F7yvYIF1GnXqaDtc1BYw36On4FvoO409RRfv4InhJrEZMUBPezrkrW6Fz6s8Vtw84TLRmXxlaA==
-X-Gm-Message-State: AOJu0YyeKYBL/DeezjM6xLcGLm3czBAu5cVAqikrzBGJA905Yksvjn/V
-	MrpmdUB7Rt5Hus7Yus0cFE5W51UVq9HB/9O2XQRQGrOmhHtfmQBUoDpa/bBJPQI=
-X-Google-Smtp-Source: AGHT+IGa7M3AfjQb5yabZc3MePcuVx+j8sF0rJqQuNPmrT/zl4jukqtLzKF2SK1xHwgXaDBWO2dHuA==
-X-Received: by 2002:a19:750b:0:b0:516:d471:18a0 with SMTP id y11-20020a19750b000000b00516d47118a0mr7132030lfe.67.1712672897123;
-        Tue, 09 Apr 2024 07:28:17 -0700 (PDT)
-Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id d9-20020ac25ec9000000b00515d2ee5b38sm1556445lfq.48.2024.04.09.07.28.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Apr 2024 07:28:16 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 09 Apr 2024 17:28:15 +0300
-Subject: [PATCH v2 5/5] arm64: dts: qcom: sc8180x-lenovo-flex-5g: add USB-C
- orientation GPIOs
+	s=arc-20240116; t=1712673375; c=relaxed/simple;
+	bh=qTJ7Npe3rxJEDPC2nptV7Bl4EgMVk2rZmo8ah4g96es=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=HXFxKaHohmO6N6+uBBzgOuIjvcU1E9mpEvcUAH/o1dYqQ4As6VqSPaxE7g3WhVf8r7HsRKjNCMrHv6ASU74WpoEThsIx8fgK8faWLq3rTeVaq02J7T1tGOyleMscUosbRZ6I/b1hyv3nT5jp7CneepTRfGsvcJjdgfgwQPGBN3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[IPv6:::1])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <l.stach@pengutronix.de>)
+	id 1ruCZv-0000tX-2w; Tue, 09 Apr 2024 16:36:03 +0200
+Message-ID: <fcd6acc268b8642371cf289149b2b1c3e90c7f45.camel@pengutronix.de>
+Subject: Re: [PATCH v1] arm64: dts: imx8mm: fix missing pgc_vpu_* power
+ domain parent
+From: Lucas Stach <l.stach@pengutronix.de>
+To: Vitor Soares <ivitro@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,  Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>
+Cc: Vitor Soares <vitor.soares@toradex.com>, devicetree@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Date: Tue, 09 Apr 2024 16:36:01 +0200
+In-Reply-To: <e1552a3008a30ef7ed9097b4b80cda23ccb9e840.camel@gmail.com>
+References: <20240409085802.290439-1-ivitro@gmail.com>
+	 <9ce35b9bb5a15891f6bd01bd54b7dc84b3ba4021.camel@pengutronix.de>
+	 <e1552a3008a30ef7ed9097b4b80cda23ccb9e840.camel@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240409-hdk-orientation-gpios-v2-5-658efd993987@linaro.org>
-References: <20240409-hdk-orientation-gpios-v2-0-658efd993987@linaro.org>
-In-Reply-To: <20240409-hdk-orientation-gpios-v2-0-658efd993987@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=832;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=Ert28OT3aAf58lII8YJfBxuxx9CsXW8kB9StD1Pp5Qs=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmFVB8HxL0CEq+ZBrZZ9yNuRSbPD/diMWSYCHdF
- DMI5Bz1LxSJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZhVQfAAKCRCLPIo+Aiko
- 1egBB/9cfBf+sbB5WA1+SEGcnfUuRfGkbcCVokMfMMvS4FgW5yXoqja8JxOgNTn+9xUhTMxD/wj
- 8b+YY386hhh0tN8JQRvqbOH2KqcTCiW9QMrZjEeDXsrLJlQ0H6ueitAI+xZe0HziTQBpjS8VxfQ
- kXXJKrg6FEYJS4YiaqDEUAFXKihzYbMAuf3Y2s443l2mM0vXQwA2NnilYLG76Hf88wCLzV7O1UB
- jEK6zJtC/teY53b15cNQcbHRtqiESLEiImKjOtPV5jDEK8zYNQaLiTdoQSVuyPM+jVjru0TZytJ
- ZxAgAWBfHT0M70vfWKJC7FSIbOo6T1Jk0orrd+4qV5W7x3E3
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Define the USB-C orientation GPIOs so that the USB-C ports orientation
-is known without having to resort to the altmode notifications.
-
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts b/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
-index 6f2e1c732ed3..6af99116c715 100644
---- a/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
-@@ -51,6 +51,8 @@ pmic-glink {
- 
- 		#address-cells = <1>;
- 		#size-cells = <0>;
-+		orientation-gpios = <&tlmm 38 GPIO_ACTIVE_HIGH>,
-+				    <&tlmm 58 GPIO_ACTIVE_HIGH>;
- 
- 		connector@0 {
- 			compatible = "usb-c-connector";
-
--- 
-2.39.2
+QW0gRGllbnN0YWcsIGRlbSAwOS4wNC4yMDI0IHVtIDE0OjIyICswMTAwIHNjaHJpZWIgVml0b3Ig
+U29hcmVzOgo+IEhpIEx1Y2FzLAo+IAo+IFRoYW5rcyBmb3IgeW91ciBmZWVkYmFjay4KPiAKPiBP
+biBUdWUsIDIwMjQtMDQtMDkgYXQgMTE6MTMgKzAyMDAsIEx1Y2FzIFN0YWNoIHdyb3RlOgo+ID4g
+SGkgVml0b3IsCj4gPiAKPiA+IEFtIERpZW5zdGFnLCBkZW0gMDkuMDQuMjAyNCB1bSAwOTo1OCAr
+MDEwMCBzY2hyaWViIFZpdG9yIFNvYXJlczoKPiA+ID4gRnJvbTogVml0b3IgU29hcmVzIDx2aXRv
+ci5zb2FyZXNAdG9yYWRleC5jb20+Cj4gPiA+IAo+ID4gPiBUaGUgcGdjX3ZwdV8qIG5vZGVzIG1p
+c3MgdGhlIHJlZmVyZW5jZSB0byB0aGUgcG93ZXIgZG9tYWluIHBhcmVudCwKPiA+ID4gbGVhZGlu
+ZyB0aGUgc3lzdGVtIHRvIGhhbmcgZHVyaW5nIHRoZSByZXN1bWUuCj4gPiA+IAo+ID4gVGhpcyBj
+aGFuZ2UgaXMgbm90IGNvcnJlY3QuIFRoZSB2cHVtaXggZG9tYWluIGlzIGNvbnRyb2xsZWQgdGhy
+b3VnaAo+ID4gdGhlCj4gPiBpbXg4bW0tdnB1LWJsay1jdHJsIGFuZCBtdXN0IG5vdCBiZSBkaXJl
+Y3RseSB0cmlnZ2VyZWQgYnkgdGhlIGNoaWxkCj4gPiBkb21haW5zIGluIG9yZGVyIHRvIGd1YXJh
+bnRlZSBwcm9wZXIgcG93ZXIgc2VxdWVuY2luZy4KPiA+IAo+ID4gSWYgdGhlIHNlcXVlbmNpbmcg
+aXMgaW5jb3JyZWN0IGZvciByZXN1bWUsIGl0IG5lZWRzIHRvIGJlIGZpeGVkIGluCj4gPiB0aGUK
+PiA+IGJsay1jdHJsIGRyaXZlci4gSSdsbCBoYXBwaWx5IGFzc2lzdCBpZiB5b3UgaGF2ZSBhbnkg
+cXVlc3Rpb25zIGFib3V0Cj4gPiB0aGlzIGludHJpY2F0ZSBtaXggYmV0d2VlbiBHUEMgYW5kIGJs
+ay1jdHJsIGhhcmR3YXJlL2RyaXZlcnMuCj4gIAo+IEknbSBuZXcgaW50byB0aGUgdG9waWMsIHNv
+IEkgdHJpZWQgdG8gZm9sbG93IHNhbWUgYXBwcm9hY2ggYXMgaW4gaW14OG1wCj4gRFQuCj4gClRo
+YXQncyBhIGdvb2QgaGludCwgdGhlIDhNUCBWUFUgR1BDIG5vZGUgYWRkaXRpb25zIG1pc3NlZCBt
+eSByYWRhci4gVGhlCmRpcmVjdCBkZXBlbmRlbmN5IHRoZXJlIGJldHdlZW4gdGhlIEdQQyBkb21h
+aW5zIGlzIGVxdWFsbHkgd3JvbmcuCgo+IEkgYWxzbyBjaGVja2VkIHRoZSBpbXg4bXEgRFQgYW5k
+IGl0IG9ubHkgaGF2ZSBvbmUgZG9tYWluIGZvciB0aGUKPiBWUFUgaW4gdGhlIEdQQy4gSXQgc2Vl
+bSBibGstY3RybCBhbHNvIGRlcGVuZGVzIG9uIHBnY192cHVfKiB0byB3b3JrCj4gcHJvcGVybHku
+Cj4gCj4gVGhlIGJsay1jdHJsIGRyaXZlciBoYW5ncyBvbiBpbXg4bV9ibGtfY3RybF9wb3dlcl9v
+bigpIHdoZW4gYWNjZXNzIHRoZQo+IGlwIHJlZ2lzdGVycyBmb3IgdGhlIHNvZnQgcmVzZXQuIEkg
+dHJpZWQgdG8gcG93ZXItdXAgdGhlIGJlZm9yZSB0aGUKPiBzb2Z0IHJlc2V0LCBidXQgaXQgZGlk
+bid0IHdvcmsuCj4gClRoZSBydW50aW1lX3BtX2dldF9zeW5jKCkgYXQgdGhlIHN0YXJ0IG9mIHRo
+YXQgZnVuY3Rpb24gc2hvdWxkIGVuc3VyZQp0aGF0IGJ1cyBHUEMgZG9tYWluIGFrYSB2cHVtaXgg
+aXMgcG93ZXJlZCB1cC4gQ2FuIHlvdSBjaGVjayBpZiB0aGF0IGlzCmhhcHBlbmluZz8KClJlZ2Fy
+ZHMsCkx1Y2FzCgo+IERvIHlvdSBoYXZlIGFuIGlkZWEgaG93IHdlIGNhbiBhZGRyZXNzIHRoaXMg
+d2l0aGluIGJsay1jdHJsPwo+IAo+IEJlc3QgcmVnYXJkcywKPiBWaXRvcgo+IAo+ID4gCj4gPiBS
+ZWdhcmRzLAo+ID4gTHVjYXMKPiA+IAo+ID4gPiBBcyB0aGVzZSBQVSBkb21haW5zIGFyZSBuZXN0
+ZWQgaW5zaWRlIHRoZSB2cHVtaXggZG9tYWluLCBsZXQncwo+ID4gPiByZWZlcmVuY2UKPiA+ID4g
+aXQgYWNjb3JkaW5nbHkuIEFmdGVyIHRoaXMgY2hhbmdlLCB0aGUgc3VzcGVuZC9yZXN1bWUgaXMg
+d29ya2luZy4KPiA+ID4gCj4gPiA+IENjOiBMdWNhcyBTdGFjaCA8bC5zdGFjaEBwZW5ndXRyb25p
+eC5kZT4KPiA+ID4gQ2M6IDxzdGFibGVAdmdlci5rZXJuZWwub3JnPgo+ID4gPiBDbG9zZXM6Cj4g
+PiA+IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2FsbC9mY2NiYjA0MDMzMGE3MDZhNGY3YjM0ODc1
+ZGIxZDg5NmEwYmY4MWM4LmNhbWVsQGdtYWlsLmNvbS8KPiA+ID4gRml4ZXM6IGQzOWQ0YmIxNTMx
+MCAoImFybTY0OiBkdHM6IGlteDhtbTogYWRkIEdQQyBub2RlIikKPiA+ID4gU2lnbmVkLW9mZi1i
+eTogVml0b3IgU29hcmVzIDx2aXRvci5zb2FyZXNAdG9yYWRleC5jb20+Cj4gPiA+IC0tLQo+ID4g
+PiDCoGFyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtbS5kdHNpIHwgMyArKysKPiA+
+ID4gwqAxIGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspCj4gPiA+IAo+ID4gPiBkaWZmIC0t
+Z2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1tLmR0c2kKPiA+ID4gYi9h
+cmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bW0uZHRzaQo+ID4gPiBpbmRleCA4YTFi
+NDJiOTRkY2UuLjk3ZDBjNmQyM2FkOCAxMDA2NDQKPiA+ID4gLS0tIGEvYXJjaC9hcm02NC9ib290
+L2R0cy9mcmVlc2NhbGUvaW14OG1tLmR0c2kKPiA+ID4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0
+cy9mcmVlc2NhbGUvaW14OG1tLmR0c2kKPiA+ID4gQEAgLTczOSwxNiArNzM5LDE5IEBAIHBnY192
+cHVtaXg6IHBvd2VyLWRvbWFpbkA2IHsKPiA+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBwZ2Nf
+dnB1X2cxOiBwb3dlci1kb21haW5ANwo+ID4gPiB7Cj4gPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCNwb3dlci1kb21haW4tY2VsbHMKPiA+ID4gPSA8MD47Cj4gPiA+
+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZyA9Cj4gPiA+IDxJTVg4
+TU1fUE9XRVJfRE9NQUlOX1ZQVUcxPjsKPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqBwb3dlci1kb21haW5zID0KPiA+ID4gPCZwZ2NfdnB1bWl4PjsKPiA+ID4gwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqB9Owo+ID4gPiDCoAo+ID4gPiDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoHBnY192cHVfZzI6IHBvd2VyLWRvbWFpbkA4Cj4gPiA+IHsKPiA+ID4gwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgI3Bvd2VyLWRvbWFpbi1jZWxscwo+ID4gPiA9IDww
+PjsKPiA+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmVnID0KPiA+
+ID4gPElNWDhNTV9QT1dFUl9ET01BSU5fVlBVRzI+Owo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoHBvd2VyLWRvbWFpbnMgPQo+ID4gPiA8JnBnY192cHVtaXg+Owo+
+ID4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoH07Cj4gPiA+IMKgCj4gPiA+IMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgcGdjX3ZwdV9oMTogcG93ZXItZG9tYWluQDkKPiA+ID4gewo+ID4gPiDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAjcG93ZXItZG9tYWluLWNlbGxzCj4g
+PiA+ID0gPDA+Owo+ID4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBy
+ZWcgPQo+ID4gPiA8SU1YOE1NX1BPV0VSX0RPTUFJTl9WUFVIMT47Cj4gPiA+ICvCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcG93ZXItZG9tYWlucyA9Cj4gPiA+IDwmcGdjX3Zw
+dW1peD47Cj4gPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfTsKPiA+ID4gwqAKPiA+ID4gwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqBwZ2NfZGlzcG1peDoKPiA+ID4gcG93ZXItZG9tYWluQDEwIHsK
+PiA+IAo+IAoK
 
 
