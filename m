@@ -1,202 +1,185 @@
-Return-Path: <devicetree+bounces-57306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C92589D137
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 05:39:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84DBD89D1D7
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 07:13:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 130F71F216DC
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 03:39:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90CF72845CA
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 05:13:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB32554BE2;
-	Tue,  9 Apr 2024 03:39:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D27F54902;
+	Tue,  9 Apr 2024 05:13:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="aWvnMbHK"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="LMY5owiJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5F8A54743
-	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 03:39:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8417D53E32
+	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 05:13:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712633987; cv=none; b=c+JcunS8vm8VtWQcJ/63YmFWURlUQ31Bn/5fSSGaS7zBouoE3JtQ1kglfrzNkRqczCdQ3aN1Thal0UiymK9221KxGaPGFdQEokzf0WAe6diABjpj5v8d8pb9jD08mVSM8i7NPMo0qNFEt7RIXB9Tpr6/XjUiCbNV6jVUxrqNWVQ=
+	t=1712639624; cv=none; b=lx308P1IwnlgpwptBVSZIcq8BsIy3uiVZjfE7MLRlNyRRxI/J1XV0VcVosD5gk0LSqcXgECIV2/Y65jod/ZCnQHnY8traw6aPwm4wDNtq9ASe7RlWSX5eIfKKvVGjrekUfYfHgFfPMXyNbgDdrVbKSMuMdRV8J79uZ0zrKFyDjA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712633987; c=relaxed/simple;
-	bh=EZ2T9kzzpeOrUuGVLRbShAImR8PnmT1WmVOGSUHPYL4=;
+	s=arc-20240116; t=1712639624; c=relaxed/simple;
+	bh=KKjF/zFeP2l4ureM8YQ44jPQw1jLe60wvSyJYXpz6XM=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MGP+WRuvu9iEaYi0T/TaTgIVXdyDDBL5oXd7ZbKpHXyvKmKA4ghAZ7xPZPQkcgSOr2VHic5uR9ASLQMyzpqkvEb+qnQRVtGdPclJsTqtlPjQ1P9Ozr0UuZcIRA8GrJqcDseNmkiTdCkTOjwZUKtQl7/rMMDErwYNzrk9IORByLo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=aWvnMbHK; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-516dbc36918so3316840e87.0
-        for <devicetree@vger.kernel.org>; Mon, 08 Apr 2024 20:39:45 -0700 (PDT)
+	 To:Cc:Content-Type; b=lys61r118eTQu46e3laqOa36z6wEDZZIvdSY8hfcQEvuf5mUqIW3Cs9dWPuYJH0Z8rgQjVHtN4YgnsLwKJn/4+ZSQZ7axfiFhS1QPjR2bzD43wsTkaRlxzD7mLdaS3YT2JYRA9UKfBAsHN9mq1zoIL5R9EioaRMWfN+xrfg/7uE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=LMY5owiJ; arc=none smtp.client-ip=209.85.160.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qt1-f175.google.com with SMTP id d75a77b69052e-434b5abbb0dso184031cf.0
+        for <devicetree@vger.kernel.org>; Mon, 08 Apr 2024 22:13:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1712633984; x=1713238784; darn=vger.kernel.org;
+        d=google.com; s=20230601; t=1712639621; x=1713244421; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=RKPZzs2J4lIrxwzL7Z1BludJY/XdSD/M6/ANxlIo6/0=;
-        b=aWvnMbHKE0MGGIeoM1pwulgW1s0Muup4TuzdwLMJVccdlTbOSkxAcXwmfFupLApytw
-         jQ4yMp+KqwekOEpBgwiNVCzjha/0MztfpSIUVqptFeBWoZh8A5IbhywdB9ZD3lROYcUL
-         q6vDkpzw91gq0Q33n/O3XYtncm34njSP7H+7w=
+        bh=b6G7fQwZrU8Ut2ONWgYwB5iUHvGBDAPNe+jjAW2C4Mg=;
+        b=LMY5owiJ6d9Q1+QuH1YFu5x2LaD9Xn3ti4Co230Nr4lYHpug/9VfXK5Qf8ZDZ3vC6b
+         8QfihJ4GQ+3F2YhI96evxjnqqlAeyqdbzRnaORale5loyceoqlk/koG0UqPQMaZwRkgm
+         EhjLw26k1QwwBywkgIk7ZyQDOncs/gECAdnck2xs63NQNF+VdE/Z7+2aSkMChp9S54KU
+         pL/yG+j0V7oo5ikfBjNZ5RZErJo7VDbwvOya90y6SpoyaxYWXvo44C12sKnZmNpMlUNh
+         5Kd2U/nTpf/2c9oEPXcWIlJsdSOW7uQR5SWjU3IJLbYt95XLJ7Dyjm4FTT2/zo4w1PWQ
+         SRHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712633984; x=1713238784;
+        d=1e100.net; s=20230601; t=1712639621; x=1713244421;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=RKPZzs2J4lIrxwzL7Z1BludJY/XdSD/M6/ANxlIo6/0=;
-        b=dhROu4KwJM4f1MLfoV8LIvIwOjkdjfPPJ8O/LpowCQo21eyZ2e+wcx4/tXLd9TB/Wv
-         qCtVYHy9CQqm2aV3DhhSmek+xfVmlRBOVlc5Q7Uun2x8p6qoma6hYLtTdxCCjiDKPz9L
-         bylxj/B8IQ7mxYR+vJHcNgErMt02Ldst0DsR1VfZyvJ5NY5uHLigMDkDgj0/d9K5742l
-         mmkruu0FgxsIldvDuPMEDxG/EBXu2g+Tz9Yg9JxGkUsAl14aFFsIKhfuCYCPATWaXXoJ
-         I5k6F9UcJRAMr7ykWruvK/xZZemWPPRabCaGhz1v9QWLY04qYHUv1JFoC9BCq0AtGqf8
-         lRew==
-X-Forwarded-Encrypted: i=1; AJvYcCXJe9VWTlBgSmZhTx4pKcP/H7ymA62pHZ1RpANOnv3K88DI6fLrauu8AgY0fEfGWBOleSeoT+wiTy4i4SF6N5kTfLVIdgYmfQ9KZQ==
-X-Gm-Message-State: AOJu0Yw1TxcK2dfzsRjjAOaSXi9h4e8nZYVFdT+wZGppaCcj4Nmmh9ay
-	lV2bpSTEu/oaDvXACEtTkHQcdpEKDiZr3eIKOHj7ASrCj5q1QRCa1LApbx3V4LL4lQ6Qx8htOoH
-	hFz7pDzNW23VDNpWjM3AiJUEod4ao+GPQ4OGY
-X-Google-Smtp-Source: AGHT+IFba+BrwCMiOouL0a7dqzF+zOfyVTmCHkiqgDT24USb8iVyp548tZZRYidWDUI6/w60evjxT4xx96AaXSCW7qY=
-X-Received: by 2002:ac2:43b6:0:b0:516:c099:e785 with SMTP id
- t22-20020ac243b6000000b00516c099e785mr6549819lfl.20.1712633983546; Mon, 08
- Apr 2024 20:39:43 -0700 (PDT)
+        bh=b6G7fQwZrU8Ut2ONWgYwB5iUHvGBDAPNe+jjAW2C4Mg=;
+        b=BnVSeTYhUS70/V2A4zJnAUdBpa+2wkJg0hbJi+q5fgALJvQ/txf+Y0fmDukOKx8j6J
+         9xKpGsTUm8MB9ipbjT3UGwL1rLZO/eIp3VGYT2M4qY7eTjvUVTVrfaV7PY/2uypBb6QF
+         SkqvznMKd6PlFv1MD+jI3pVRgSPUVfNblKw+asPjHvFl2KlFlO6K03RY6aFNXrfz9lF+
+         u/iJy8XXx3T+5xzCikNjp0r80AIv4cYlTdFYGgNW8czqSFs0gqdz6y9uHa1Qika4vSc8
+         NklJlpAqvv0iL60GHDvS3WZR/EEYSfq+nAP6K3Kn6XTPi3mNbkeHTKZjrWRcHc6sxCXH
+         NA7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWVwUCSSB7G8ZhFR9xxdWJ4utTXERGbnOSRgmuctkSLWMKMY9hqApVsH7Cb+ESXPGeAx+I0iM5ILDjxyMMT0HonyT58WpwTZHjk9Q==
+X-Gm-Message-State: AOJu0Yxx2sunBOrf2u57Zmyz5pdL1ivFgXxAtt4DaA9e73I5Jq11wGxl
+	jCYrKgLgqJu7jr10bn292sp/Gb8OMrCb0m9SEzD/AdR98G8ggRxy25JWZjE3sUWOVd+xp7Bkt3k
+	lhMCRzGivtYdVPJtLlM3tElxSavo6vRAR9XoC
+X-Google-Smtp-Source: AGHT+IGtzSNJgjDc/nC7nFe1GhF37b1NuM2JGv6SOuE597isSLhoxrccb1PNcX9sCRP+cNte/jpd8sOR+EPxlmcj0Y8=
+X-Received: by 2002:a05:622a:1f9b:b0:431:6155:c602 with SMTP id
+ cb27-20020a05622a1f9b00b004316155c602mr124400qtb.3.1712639621316; Mon, 08 Apr
+ 2024 22:13:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240404081635.91412-1-angelogioacchino.delregno@collabora.com>
- <20240404081635.91412-3-angelogioacchino.delregno@collabora.com>
- <CAGXv+5F9rfTVDExKSCF7fBKwR+HijNzFYE6+4aHKw3ZP81DG9w@mail.gmail.com> <5e385c2e-6509-4347-96a5-4606b32d20ff@collabora.com>
-In-Reply-To: <5e385c2e-6509-4347-96a5-4606b32d20ff@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Tue, 9 Apr 2024 11:39:32 +0800
-Message-ID: <CAGXv+5HkKZr0tDPhS9qVs=Uw7YYpfFYaC2Qf4Suv7RznUNWVsQ@mail.gmail.com>
-Subject: Re: [PATCH v1 2/3] dt-bindings: arm: mediatek: mmsys: Add OF graph
- support for board path
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: chunkuang.hu@kernel.org, robh@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
-	matthias.bgg@gmail.com, shawn.sung@mediatek.com, yu-chang.lee@mediatek.com, 
-	ck.hu@mediatek.com, jitao.shi@mediatek.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	kernel@collabora.com
+References: <20240408231310.325451-1-saravanak@google.com> <20240408231310.325451-3-saravanak@google.com>
+ <CAGETcx8gGcq01CwTZyn=Q0fSQkzMf6tshSmPr5YWYZuhhJVdXg@mail.gmail.com>
+In-Reply-To: <CAGETcx8gGcq01CwTZyn=Q0fSQkzMf6tshSmPr5YWYZuhhJVdXg@mail.gmail.com>
+From: Saravana Kannan <saravanak@google.com>
+Date: Mon, 8 Apr 2024 22:13:01 -0700
+Message-ID: <CAGETcx8j50dpovO-Mj0MjpYcw+n6T9ei6mo8tm7BVkcjfy_VVQ@mail.gmail.com>
+Subject: Re: [RFC PATCH v1 2/2] of: dynamic: Fix probing of overlay devices
+To: Herve Codina <herve.codina@bootlin.com>, Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Rob Herring <robh@kernel.org>, kernel-team@android.com, linux-kernel@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-spi@vger.kernel.org, linux-acpi@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Apr 8, 2024 at 6:16=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
+On Mon, Apr 8, 2024 at 6:40=E2=80=AFPM Saravana Kannan <saravanak@google.co=
+m> wrote:
 >
-> Il 08/04/24 05:20, Chen-Yu Tsai ha scritto:
-> > On Thu, Apr 4, 2024 at 4:16=E2=80=AFPM AngeloGioacchino Del Regno
-> > <angelogioacchino.delregno@collabora.com> wrote:
-> >>
-> >> Document OF graph on MMSYS/VDOSYS: this supports up to three DDP paths
-> >> per HW instance (so potentially up to six displays for multi-vdo SoCs)=
-.
-> >>
-> >> The MMSYS or VDOSYS is always the first component in the DDP pipeline,
-> >> so it only supports an output port with multiple endpoints - where eac=
-h
-> >> endpoint defines the starting point for one of the (currently three)
-> >> possible hardware paths.
-> >>
-> >> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@c=
-ollabora.com>
-> >> ---
-> >>   .../bindings/arm/mediatek/mediatek,mmsys.yaml | 23 +++++++++++++++++=
-++
-> >>   1 file changed, 23 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,m=
-msys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.y=
-aml
-> >> index b3c6888c1457..90758bb5bcb1 100644
-> >> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.ya=
-ml
-> >> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.ya=
-ml
-> >> @@ -93,6 +93,29 @@ properties:
-> >>     '#reset-cells':
-> >>       const: 1
-> >>
-> >> +  port:
-> >> +    $ref: /schemas/graph.yaml#/properties/port
-> >> +    description:
-> >> +      Output port node. This port connects the MMSYS/VDOSYS output to
-> >> +      the first component of one display pipeline, for example one of
-> >> +      the available OVL or RDMA blocks.
-> >> +      Some MediaTek SoCs support up to three display outputs per MMSY=
-S.
-> >> +    properties:
-> >> +      endpoint@0:
-> >> +        $ref: /schemas/graph.yaml#/properties/endpoint
-> >> +        description: Output to the primary display pipeline
-> >> +
-> >> +      endpoint@1:
-> >> +        $ref: /schemas/graph.yaml#/properties/endpoint
-> >> +        description: Output to the secondary display pipeline
-> >> +
-> >> +      endpoint@2:
-> >> +        $ref: /schemas/graph.yaml#/properties/endpoint
-> >> +        description: Output to the tertiary display pipeline
-> >> +
-> >> +      required:
-> >> +        - endpoint@0
-> >> +
+> On Mon, Apr 8, 2024 at 4:13=E2=80=AFPM Saravana Kannan <saravanak@google.=
+com> wrote:
 > >
-> > Technically the mmsys device serves as an glue layer for the display
-> > pipeline, providing things like clock control and signal routing; the
-> > device itself is not part of the pipeline, and probably shouldn't be
-> > part of the graph?
+> > Get fw_devlink to work well with overlay devices.
 > >
->
-> That is (only) partially true: in the case of older SoCs, the MMSYS can o=
-nly
-> connect to a single first IP of the pipeline, but in the case of newer on=
-es,
-> and especially (but not limited to) MT8195 onwards having multiple instan=
-ces
-> of VDOSYS, that really becomes part of the pipeline.
->
-> This is not because of the possible different first IP in the pipeline, b=
-ut
-> because of support for dual-interface (DSI and DP) that, in even newer So=
-Cs,
-> can be done with cross-mmsys (cross-vdosys, actually...) as some of those=
- do
-> have the two in different VDOs.
->
-> So yes, this can be done without the graph in MMSYS *in this precise mome=
-nt in
-> time*, but we'll anyway end up adding it sooner than later - and I'm doin=
-g this
-> right now, instead of later, because it's also simplifying the implementa=
-tion
-> so like that I'm "catching two birds with one stone" :-)
-
-I see. Thanks for sorting it out. We had something similar on Allwinner
-platforms but it was never as complex or flexible as this.
-
-ChenYu
-
-> Cheers,
-> Angelo
->
-> > ChenYu
+> > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > ---
+> >  drivers/base/core.c    | 10 ++++++++++
+> >  drivers/of/dynamic.c   |  8 ++++++++
+> >  include/linux/fwnode.h |  2 ++
+> >  3 files changed, 20 insertions(+)
 > >
-> >>   required:
-> >>     - compatible
-> >>     - reg
-> >> --
-> >> 2.44.0
-> >>
+> > diff --git a/drivers/base/core.c b/drivers/base/core.c
+> > index 5f4e03336e68..d856f9c5d601 100644
+> > --- a/drivers/base/core.c
+> > +++ b/drivers/base/core.c
+> > @@ -237,6 +237,16 @@ static void __fw_devlink_pickup_dangling_consumers=
+(struct fwnode_handle *fwnode,
+> >                 __fw_devlink_pickup_dangling_consumers(child, new_sup);
+> >  }
+> >
+> > +
+> > +void fw_devlink_pickup_dangling_consumers(struct fwnode_handle *child,
+> > +                                                struct fwnode_handle *=
+parent)
+> > +{
+> > +       mutex_lock(&fwnode_link_lock);
+> > +       __fw_devlink_pickup_dangling_consumers(child, parent);
+> > +       __fw_devlink_link_to_consumers(parent->dev);
+> > +       mutex_unlock(&fwnode_link_lock);
+> > +}
+> > +
+> >  static DEFINE_MUTEX(device_links_lock);
+> >  DEFINE_STATIC_SRCU(device_links_srcu);
+> >
+> > diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
+> > index 19a1a38554f2..0a936f46820e 100644
+> > --- a/drivers/of/dynamic.c
+> > +++ b/drivers/of/dynamic.c
+> > @@ -237,6 +237,7 @@ static void __of_attach_node(struct device_node *np=
+)
+> >  int of_attach_node(struct device_node *np)
+> >  {
+> >         struct of_reconfig_data rd;
+> > +       struct fwnode_handle *fwnode, *parent;
+> >
+> >         memset(&rd, 0, sizeof(rd));
+> >         rd.dn =3D np;
+> > @@ -246,6 +247,13 @@ int of_attach_node(struct device_node *np)
+> >         mutex_unlock(&of_mutex);
+> >
+> >         of_reconfig_notify(OF_RECONFIG_ATTACH_NODE, &rd);
+> > +       fwnode =3D of_fwnode_handle(np);
+> > +       fwnode_for_each_parent_node(fwnode, parent)
+> > +               if (parent->dev) {
+> > +                       fw_devlink_pickup_dangling_consumers(fwnode, pa=
+rent);
+> > +                       fwnode_handle_put(parent);
+> > +                       break;
+> > +               }
 >
+> I'm clearly calling this in the wrong location. Please move this logic
+> to __of_changeset_entry_notify() and for the case
+> OF_RECONFIG_ATTACH_NODE. Haven't fully thought through the DETACH
+> case, but it should work correctly for that case too. If not, I'll
+> take care of that next.
 >
+
+I'll send out a RFC v2 with the code fixed up in a few minutes.
+
+> -Saravana
+>
+> >
+> >         return 0;
+> >  }
+> > diff --git a/include/linux/fwnode.h b/include/linux/fwnode.h
+> > index 0d79070c5a70..4b3f697a90e8 100644
+> > --- a/include/linux/fwnode.h
+> > +++ b/include/linux/fwnode.h
+> > @@ -220,6 +220,8 @@ int fwnode_link_add(struct fwnode_handle *con, stru=
+ct fwnode_handle *sup,
+> >                     u8 flags);
+> >  void fwnode_links_purge(struct fwnode_handle *fwnode);
+> >  void fw_devlink_purge_absent_suppliers(struct fwnode_handle *fwnode);
+> > +void fw_devlink_pickup_dangling_consumers(struct fwnode_handle *child,
+> > +                                         struct fwnode_handle *parent)=
+;
+> >  bool fw_devlink_is_strict(void);
+> >
+> >  #endif
+> > --
+> > 2.44.0.478.gd926399ef9-goog
+> >
 
