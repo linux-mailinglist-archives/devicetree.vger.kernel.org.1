@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-57596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57597-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68BB989DFDE
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 17:59:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50C7B89DFEA
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 18:00:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D66011F24D47
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 15:59:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07D0F2851E0
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 16:00:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AE1E13D2B6;
-	Tue,  9 Apr 2024 15:59:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B5EB13D889;
+	Tue,  9 Apr 2024 16:00:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="o+CMn3rL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="L5dHXokQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5756613B5A0
-	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 15:59:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 945D313D63D
+	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 16:00:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712678347; cv=none; b=HvYCV6MNqWxtsZzTS0EJQjF8rs8FOsUKAA7mLyrfhqFVafhzBNMM+57Xhg3rr6j3IHZtNXRXo9g6qFz0H49mUYn/0de5teFo3Edl13k/RWdraX1moh7QDAteoCXjyxccVelN4N+x3sLolC22Myx+gw0NdlWvtbqUYHCrvte4S80=
+	t=1712678422; cv=none; b=XRZ57r9JrrexVehDyW0m5CcUqq6aNywnbZTjM9UAWuMfZJDDH27mGJF+nkH41JyJr/HsMW4I6Vni+ZdbRlC2hcQphOFLElFcOO9AYmPzLvHBZDWr59d2oOC7Zh2PbZx1kw/C1Zh5vpgT+acEODh1efzs/Vq6APMt+vmO3QvhpD0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712678347; c=relaxed/simple;
-	bh=Vv25AKERhFsHr4YrXD0B25x8zatblSoZXGU3IP7qq/A=;
+	s=arc-20240116; t=1712678422; c=relaxed/simple;
+	bh=E3LQw7BIH6NFeKqXEwye3PeW+RQje2qB7r+WxoyVbG8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Vaq12WPi+jlhATZ4p6tFHStAlcIaZPvo8rHnECYo+cRle5rPbQ4QusH2SmTfhWQrGBb0Q4HS8XZFqhpbbgKeSoUlMUipig3FlfykOWF4GkuxCQ91/dpq2AV/L0Mj5gLq1JHIKEqG77dlpQz1GYN7xzyS0vTufT4MVl3/NzgAf1M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=o+CMn3rL; arc=none smtp.client-ip=209.85.208.174
+	 In-Reply-To:Content-Type; b=rVFfjmlGZiAOutCps0OGHr8305HvV8+xlwRI2yCgKWyC+79T0+t6ac5LLpkQLrEe/OXG5RssH+0Q8yye1sP9cDe4K1+eSc/DAWM56jONXSnMNYVosk2KJYfzuxfTry1Bc31ZjGuiVIqMcEVI6F7B9kNFC7O18D1fQtKFZ7k2rXM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=L5dHXokQ; arc=none smtp.client-ip=209.85.221.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2d82713f473so99347581fa.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Apr 2024 08:59:05 -0700 (PDT)
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-33edbc5932bso4300068f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 09 Apr 2024 09:00:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712678343; x=1713283143; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712678419; x=1713283219; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y+/spKUkA9slzNHp8vKtqr5Sqc4bQ9ZR/k/vJJvywmg=;
-        b=o+CMn3rLwqH12ci+ZGUruJ37oP/wPzmeuSMCTAObsfRbC6/cg5nUlH0tLc/F0OQyDW
-         D/y4FBjOtdS5SXxN7NfRs82OGXryoL51KlmgwYj2dDdtDDgGgdguBYUdw6bALBC12YN8
-         OFfOFStLWoAglis9EZn9xJTD3cz+fG2BRRdNWp1+B5NQOH5Mvk8szIfFL+KCMPwkJqe5
-         anTHkgUPITPNRDNWD/j1s3fZQOUCiv28L96rDCJ0QAuHmMItFdbSbfQX2j/zBFueMrNo
-         MkWggvJOoM8F2yiYnpcDzI978qWYP3KThhkDQ5SzLXE28TkKss8JUFL+HptVGV8VrgyG
-         +QaA==
+        bh=Vl2WAWZiRqw9Ns4ylVujkmqdUMbnF+5lRwOPnf5XU7k=;
+        b=L5dHXokQ1nzXeoXdFV8LRViHdrbl5rmy8sgDV0c16Eax6paVFXhsc1mr/2T26UcyxR
+         mRbE2XXgMcdJTHg1cTxO4ro3O7sEmZucjtQJ5WI5koV3Nhdcc92Y7B6z8IB3uSblF7S3
+         GEx1mNo7crrsHocbjgXKkJWVxmAtlFl0onE+CYrLuJofhTXh7sWH0B4f84e6tfgc0ukD
+         hvzvN3sD/reOL5Jk0rUHzDSFWii65Sb/C/RuRvC+/+DjKEk5X/596aGDuqR16IsNTrWp
+         LQrI8CubTguLqUgUDQrvfec1pHEkbN9RIfUwlpTBzUYSsnWDc48VO6/OkyVhRZfGOFwa
+         rkbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712678343; x=1713283143;
+        d=1e100.net; s=20230601; t=1712678419; x=1713283219;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Y+/spKUkA9slzNHp8vKtqr5Sqc4bQ9ZR/k/vJJvywmg=;
-        b=J0idWbEyVNLeAue+mi/hilu8IbOg8iI3J2YBHTQIT14hMk3xx3afxlldQ7PzQJWO2y
-         dlqn6uAkaCLF++BN3K9lDI1J2dy2/AmVWwzqyDFFYzDd1LzE1dhOsBCGB+O78xuMgUZN
-         QGzF1uLVS9wjtiJGpSYZjMy4XoKzKl0ikMTbv9FeVbRsz/QWtU8Lzpe2IyhCuPbtY/+Z
-         juL7O7gecMigHEq41535hedB9H0+vP6mNnQL7z+YkUXKvf6C4D0UbUg2PsA6Vsr2tjM1
-         zHlETOB1HVD8ZrVSx4kt6TVzKviHjI9qWCgARn90d5SWGQGSn+8Dzdqlouiae2JAEMtM
-         jfig==
-X-Forwarded-Encrypted: i=1; AJvYcCXguubQGseOUHFhH4V+pgzLLzq7ug4rCQ/BTzvwDZ+eLfPC68Rw2iQp0qA+p9tRwEob2FwE0chiEnp9p0CGqK5rFvo09J40AXMHwA==
-X-Gm-Message-State: AOJu0YwJyTh8oylh3pq5BnNGqRJHUHfByDxt9cJbO8HqpqRnzZmib35A
-	VZFmtjVOdVBh6WRxlIRESLQnp5uqY68lW7ToGZenGbgxz6fakNptH15CwnEMdPk=
-X-Google-Smtp-Source: AGHT+IEwmvmvRUWELqbbts3tqSXfa50z4eY5lQY39SDTovI1YrizSuwrb6EVAJvqAhL1f+F/VWmctA==
-X-Received: by 2002:a2e:8303:0:b0:2d8:6a04:3bcd with SMTP id a3-20020a2e8303000000b002d86a043bcdmr222197ljh.3.1712678343286;
-        Tue, 09 Apr 2024 08:59:03 -0700 (PDT)
+        bh=Vl2WAWZiRqw9Ns4ylVujkmqdUMbnF+5lRwOPnf5XU7k=;
+        b=bCQcPYcZEJTFTP5sFhaBB87PkOplzT5ZLexLxGK7djd8m217pU29iL2sgnv6/e70FM
+         poBfRV75UAVVIfc5in+c21zVzuDRyKJhDS11wBuGMHcbKEeJG7rEprLNgCEIOA6F8vtA
+         HbdkBhExBEi+TWg1H1XdqzY+2T0ygPr/OGS3QknoRSEDSoJIfmkIShN/5LFduo7pWZGy
+         GJnDBY6AqVOfkwGLze0b8KsuVfiLTKMLlX8P8xcv0xI0R5dT0uepaxanZFjD/VTutSEy
+         MgCWmUQ7tLYgGVsj0rP+opjhcpaINLEPRpa5TWTKmsblTTy1jozGzH+1anKhBFrYDhic
+         Mb3g==
+X-Forwarded-Encrypted: i=1; AJvYcCU2HyNkrs0CJd4V4hRvgufvfk3T9i0FiJIfaOvIXHt6bTAES7oG0W5tbV/NPj4xpwrT+383Qopp6Kfoo9qpLzve2T8Oz7EsZuqkbQ==
+X-Gm-Message-State: AOJu0YwrGR2LW8csefc88vEphi58po7yXqwEhT0d6xeHqqI5P9PO6Nk8
+	flpc5Vs2unHtRlIRx46+0PGIsj6o/v+o7GHs5l/7p1OVBCleHXciYUDzI8a59GQ=
+X-Google-Smtp-Source: AGHT+IHXyvG8mKfTY4naLXWGXb6e7X0FvCeImKpBuVDysC36RkLPoOdejDcQfesyOgvubSVgZ97dCw==
+X-Received: by 2002:adf:f1c4:0:b0:341:e4f4:4399 with SMTP id z4-20020adff1c4000000b00341e4f44399mr83235wro.68.1712678418814;
+        Tue, 09 Apr 2024 09:00:18 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id dm14-20020a170907948e00b00a4e24d259edsm5749071ejc.167.2024.04.09.08.59.00
+        by smtp.gmail.com with ESMTPSA id k2-20020adff282000000b0033e9d9f891csm11740838wro.58.2024.04.09.09.00.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Apr 2024 08:59:02 -0700 (PDT)
-Message-ID: <60fd9942-1621-452d-b7ae-40dd11ee1ae0@linaro.org>
-Date: Tue, 9 Apr 2024 17:58:34 +0200
+        Tue, 09 Apr 2024 09:00:18 -0700 (PDT)
+Message-ID: <62b1f2fe-7892-405c-bbb9-4bc77173a801@linaro.org>
+Date: Tue, 9 Apr 2024 18:00:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,8 +77,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 16/18] arm64: dts: mediatek: add mt6357 audio codec
- support
+Subject: Re: [PATCH v3 18/18] arm64: dts: mediatek: add audio support for
+ mt8365-evk
 To: Alexandre Mergnat <amergnat@baylibre.com>,
  Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
  Rob Herring <robh+dt@kernel.org>,
@@ -97,7 +97,7 @@ Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
  linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
  dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
 References: <20240226-audio-i350-v3-0-16bb2c974c55@baylibre.com>
- <20240226-audio-i350-v3-16-16bb2c974c55@baylibre.com>
+ <20240226-audio-i350-v3-18-16bb2c974c55@baylibre.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -144,52 +144,101 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240226-audio-i350-v3-16-16bb2c974c55@baylibre.com>
+In-Reply-To: <20240226-audio-i350-v3-18-16bb2c974c55@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
 On 09/04/2024 15:42, Alexandre Mergnat wrote:
-> Add audio codec support of MT6357 PMIC.
+> Add the sound node which is linked to the MT8365 SoC AFE and
+> the MT6357 audio codec.
+> 
 > Update the file header.
-
-Why?
-
 > 
 > Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 > ---
->  arch/arm64/boot/dts/mediatek/mt6357.dtsi | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+>  arch/arm64/boot/dts/mediatek/mt8365-evk.dts | 98 +++++++++++++++++++++++++++--
+>  1 file changed, 94 insertions(+), 4 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt6357.dtsi b/arch/arm64/boot/dts/mediatek/mt6357.dtsi
-> index 3330a03c2f74..ade410851524 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt6357.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt6357.dtsi
-> @@ -1,7 +1,7 @@
->  // SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
+> index 50cbaefa1a99..eb0c5f076dd4 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
+> @@ -1,9 +1,9 @@
+>  // SPDX-License-Identifier: GPL-2.0
 >  /*
->   * Copyright (c) 2020 MediaTek Inc.
-> - * Copyright (c) 2023 BayLibre Inc.
-> + * Copyright (c) 2024 BayLibre Inc.
+> - * Copyright (c) 2021-2022 BayLibre, SAS.
+> - * Authors:
+> - * Fabien Parent <fparent@baylibre.com>
+> - * Bernhard Rosenkränzer <bero@baylibre.com>
+> + * Copyright (c) 2024 BayLibre, SAS.
 
-That's not a reasonable change. The file was published on 2023, wasn't
-it? If this is not correct, please explain why/how and make it separate
-patch.
 
+What is happening with your copyrights? Why do you change existing ones?
+
+> + * Authors: Fabien Parent <fparent@baylibre.com>
+> + *	    Bernhard Rosenkränzer <bero@baylibre.com>
+> + *	    Alexandre Mergnat <amergnat@baylibre.com>
 >   */
 >  
->  #include <dt-bindings/input/input.h>
-> @@ -10,6 +10,9 @@ &pwrap {
->  	mt6357_pmic: pmic {
->  		compatible = "mediatek,mt6357";
+>  /dts-v1/;
+> @@ -86,6 +86,29 @@ optee_reserved: optee@43200000 {
+>  			reg = <0 0x43200000 0 0x00c00000>;
+>  		};
+>  	};
+> +
+> +	sound: sound {
+> +		compatible = "mediatek,mt8365-mt6357";
+> +		pinctrl-names = "default",
+> +				"dmic",
+> +				"miso_off",
+> +				"miso_on",
+> +				"mosi_off",
+> +				"mosi_on";
+> +		pinctrl-0 = <&aud_default_pins>;
+> +		pinctrl-1 = <&aud_dmic_pins>;
+> +		pinctrl-2 = <&aud_miso_off_pins>;
+> +		pinctrl-3 = <&aud_miso_on_pins>;
+> +		pinctrl-4 = <&aud_mosi_off_pins>;
+> +		pinctrl-5 = <&aud_mosi_on_pins>;
+> +		mediatek,platform = <&afe>;
+> +		status = "okay";
+
+Where did you disable the node?
+
+> +	};
+> +};
+> +
+> +&afe {
+> +	mediatek,dmic-mode = <1>;
+> +	status = "okay";
+>  };
 >  
-> +		mt6357_codec: codec {
-> +		};
+>  &cpu0 {
+> @@ -174,6 +197,12 @@ &mmc1 {
+>  	status = "okay";
+>  };
+>  
+> +&mt6357_codec {
+> +	mediatek,micbias0-microvolt = <1900000>;
+> +	mediatek,micbias1-microvolt = <1700000>;
+> +	mediatek,vaud28-supply = <&mt6357_vaud28_reg>;
+> +};
+> +
+>  &mt6357_pmic {
+>  	interrupts-extended = <&pio 145 IRQ_TYPE_LEVEL_HIGH>;
+>  	interrupt-controller;
+> @@ -181,6 +210,67 @@ &mt6357_pmic {
+>  };
+>  
+>  &pio {
+> +	aud_default_pins: audiodefault-pins {
+> +		pins {
+> +		pinmux = <MT8365_PIN_72_CMDAT4__FUNC_I2S3_BCK>,
+> +			 <MT8365_PIN_73_CMDAT5__FUNC_I2S3_LRCK>,
+> +			 <MT8365_PIN_74_CMDAT6__FUNC_I2S3_MCK>,
+> +			 <MT8365_PIN_75_CMDAT7__FUNC_I2S3_DO>;
 
-There is no single point of having empty nodes.
-
-NAK.
-
-
+You have broken indentation everywhere.
 
 Best regards,
 Krzysztof
