@@ -1,220 +1,139 @@
-Return-Path: <devicetree+bounces-57663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DF8F89E300
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 21:10:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6264189E35C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 21:26:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B03D9285025
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 19:10:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E4AEAB21A9E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 19:26:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30D0A158204;
-	Tue,  9 Apr 2024 19:08:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AD1F157A47;
+	Tue,  9 Apr 2024 19:25:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AsTsAHrC"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="PBHdKyia"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73AFF1581E9;
-	Tue,  9 Apr 2024 19:08:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8FF9156C51;
+	Tue,  9 Apr 2024 19:25:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712689732; cv=none; b=H0snSKh8iVMGctE4/UCpEmywHjmgD9Ntyggba3+llDrY/ayqrwjtccgT7EjEi1T66E+wS9Ms08y3K1JPcQ1usZzZMzsMX5BHMEgcGIgx4vNe9ohUDrzXc7x7lEpEwRQfd8iTbl5lFdoJVKws5rO9h8JrW0HJdjCle4nnQRNoNEo=
+	t=1712690712; cv=none; b=F7fghw91ygddSqOBu+07OecogNlNmmm7M15t5aasnmF8t4ygZqPOLcwnSOoWaLWTM1rJRDu4HW/NAWAwfZat93yUIxhrEbR1aw1tjATKu9SUwEBMK04dYJNX5slU9tnn3wMjgrRZ5T1PeuExFfT+alNPYCFVz8/QGguDM5ky8IA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712689732; c=relaxed/simple;
-	bh=/HQoYouMyd4m4GJGvNYVAIPjvnrP+JB97VJJEEcC1X8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=moJH5vOZh0yBT0xM5mh2e9tnqt2Q2bilZZ5Imsuhk+EMY6j8CinVfK5fbDy5xwaQOncGfhb9LZdkTl7de29k4H/PNz2FciNFk2+lrnOyN61+9TgdkkdymEtvWxrmn25HLI7GXaMd/F26VPFVnIEIZeENDWSjeafkW3xoHLfLDK0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AsTsAHrC; arc=none smtp.client-ip=209.85.210.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f43.google.com with SMTP id 46e09a7af769-6ea26393116so715836a34.0;
-        Tue, 09 Apr 2024 12:08:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712689729; x=1713294529; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VG4gX0gqtcPyBLH5Dknw/zIzUHmrrHhMR9dznIhdZtg=;
-        b=AsTsAHrC/bVVKk4GAQEH1JM5Rr02urh9xDLFgSAMD9ORc2OxZRlem1IdMcNcBM1wDM
-         dKc84aJNYCAU1JE0/i0e1cZQ2w64fz0oh3Hcquz4FIttnJTEfp7hiMciXYcHdDvztHIx
-         3shYMhb9VujGyrC2wm+TdAKbWglasLNW2QSq4/0Ey+uSZUPMtn1MOUg8mNqqtbcVvM1Q
-         YxPVFkPARSDrcmE7iXqDmhh+xLJiRrGJkYxXs7YnqKIDDKeEtekIWhCT0oPvYbMLy3wG
-         Si7YnYa3WwdY0Mwc4CHvIzeXVlJcy/OcbjeBrbyS+TEdhPUNCPwDtwcMOeO+1B7jlN1i
-         Mxmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712689729; x=1713294529;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VG4gX0gqtcPyBLH5Dknw/zIzUHmrrHhMR9dznIhdZtg=;
-        b=UxcpS8826jp+BLtFzvLhP2E4rSejdkjF7mjtp83g4Giz7aLLLG3Z8BcnqYW7Lmgkeg
-         IsfnAjQveep7z8sj3JDilKmnfMlJmQhp0ucfIrcBe9Yg5AYn9jJ5nS/dTCLU8tRt6A6S
-         R3vXEWn+ZOlDK/RnqnOkMMJRv0pxwifu3JRh/J9gonA9ISnrpKNUuMqBCprBnUAaCytC
-         ScQ5woxOPjZBv+WPxAWSix4Y2v4128+QfHgBLpUpIdg+cxqgJpa5F37brUZ5LDu/k684
-         xtStPZg0UDILfRlfjsMHQiNONr1vdtD1bdr8LqskGHTXrvVKyqkDgUIS66KOnWgrW/VX
-         +5Xw==
-X-Forwarded-Encrypted: i=1; AJvYcCVr8O8YCDsXjP5CxCBtAlNtIp8SERsGjJ9HCom216FhXHnpycvlCiE6X84y8iA2MaYQonpPw7/HDu2ifSspGi4KX2KmsPh+QJYqR6420/j83q+gQqKfZu6EPbrNiR23PDAO6PbqvPs+0d0xnBZBC7JjkgXVMR1fpJ7utLv1cMFh3i0TfSQpmlY=
-X-Gm-Message-State: AOJu0YwpSEd345fB8655+zDbv5w+eqtULwP5aKtOKz6xO1qsDH9chHbF
-	WZ8qCFUJKizYzkvYB/faGXwb6xZLjbOzVoWlyb2pFheeRC9vp5c7
-X-Google-Smtp-Source: AGHT+IHpg3s9XTt/dwVQJebWvhrYPSQJAoRkPk1Px8mFr+MPXCTkPub7ix8hf34bwA0iRcmErWDMPQ==
-X-Received: by 2002:a9d:7e92:0:b0:6ea:23af:2bcb with SMTP id m18-20020a9d7e92000000b006ea23af2bcbmr740934otp.32.1712689729588;
-        Tue, 09 Apr 2024 12:08:49 -0700 (PDT)
-Received: from nukework.lan (c-98-197-58-203.hsd1.tx.comcast.net. [98.197.58.203])
-        by smtp.gmail.com with ESMTPSA id f11-20020a9d7b4b000000b006ea1cf91a8dsm674920oto.40.2024.04.09.12.08.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Apr 2024 12:08:48 -0700 (PDT)
-From: Alexandru Gagniuc <mr.nuke.me@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Alexandru Gagniuc <mr.nuke.me@gmail.com>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 7/7] arm64: dts: qcom: ipq9574: add PCIe2 nodes
-Date: Tue,  9 Apr 2024 14:08:33 -0500
-Message-Id: <20240409190833.3485824-8-mr.nuke.me@gmail.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20240409190833.3485824-1-mr.nuke.me@gmail.com>
-References: <20240409190833.3485824-1-mr.nuke.me@gmail.com>
+	s=arc-20240116; t=1712690712; c=relaxed/simple;
+	bh=aWx7CevydRrDXasefacZWPb71JXpq5DVLlOrVLb3d/8=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=XF1+cEeX4Zb2M5FcQNyBoJ/saxaQdlZo69bPuvZnchlnNyK19k48KTOSgZHezKl6TDWyNjb2zWfos2/872zu07oSGRNbq8nJHvq2S2PgrjQfM67pNsCFbnfR9pBsET2Ka1DyCfBPdkWU2gErZACL7s50cILgZ7DBEFwWyX46dOo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=PBHdKyia; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 439JOvm9060924;
+	Tue, 9 Apr 2024 14:24:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1712690697;
+	bh=f/2ZZLv/YXP88a8yKxEUi5GZ92gmoDf4RDx042otFLg=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=PBHdKyiaGJ1OgD/UUvSZm7UTmi5/B4fAFOVe6ytVkd67jSaJCFiqkdHm2GNXHU/Ug
+	 x9d83d4KAt44Myog//G7n/u4Mk4KIHXeXLh6BRpeSvhlGq3X3UfElxrxvbficjip2W
+	 PuvrjAAgJYPLpVtsPXbv2PY7m7I8A8dgnVMrskLk=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 439JOv7K001369
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 9 Apr 2024 14:24:57 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 9
+ Apr 2024 14:24:57 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 9 Apr 2024 14:24:57 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 439JOv1K079041;
+	Tue, 9 Apr 2024 14:24:57 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Jai Luthra <j-luthra@ti.com>,
+        Francesco Dolcini
+	<francesco.dolcini@toradex.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Andrejs
+ Cainikovs <andrejs.cainikovs@gmail.com>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
+Subject: Re: [PATCH v1] arm64: dts: ti: verdin-am62: dahlia: fix audio clock
+Date: Tue, 9 Apr 2024 14:24:54 -0500
+Message-ID: <171269065936.640145.6245831948587866462.b4-ty@ti.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240315102500.18492-1-andrejs.cainikovs@gmail.com>
+References: <20240315102500.18492-1-andrejs.cainikovs@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On ipq9574, there are 4 PCIe controllers. Describe the pcie2 node, and
-its PHY in devicetree.
+Hi Andrejs Cainikovs,
 
-Only pcie2 is described, because only hardware using that controller
-was available for testing.
+On Fri, 15 Mar 2024 11:25:00 +0100, Andrejs Cainikovs wrote:
+> In current configuration, wm8904 codec on Dahlia carrier board provides
+> distorted audio output. This happens due to reference clock is fixed to
+> 25MHz and no FLL is enabled. During playback following parameters are set:
+> 
+> 44100Hz:
+> 
+> [  310.276924] wm8904 1-001a: Target BCLK is 1411200Hz
+> [  310.276990] wm8904 1-001a: Using 25000000Hz MCLK
+> [  310.277001] wm8904 1-001a: CLK_SYS is 12500000Hz
+> [  310.277018] wm8904 1-001a: Selected CLK_SYS_RATIO of 256
+> [  310.277026] wm8904 1-001a: Selected SAMPLE_RATE of 44100Hz
+> [  310.277034] wm8904 1-001a: Selected BCLK_DIV of 80 for 1562500Hz BCLK
+> [  310.277044] wm8904 1-001a: LRCLK_RATE is 35
+> 
+> [...]
 
-Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
----
- arch/arm64/boot/dts/qcom/ipq9574.dtsi | 94 ++++++++++++++++++++++++++-
- 1 file changed, 93 insertions(+), 1 deletion(-)
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-index 7f2e5cbf3bbb..61c518f2a05a 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-@@ -300,7 +300,7 @@ gcc: clock-controller@1800000 {
- 				 <0>,
- 				 <0>,
- 				 <0>,
--				 <0>,
-+				 <&pcie2_phy>,
- 				 <0>,
- 				 <0>;
- 			#clock-cells = <1>;
-@@ -745,6 +745,98 @@ frame@b128000 {
- 				status = "disabled";
- 			};
- 		};
-+
-+		pcie2_phy: phy@8c000 {
-+			compatible = "qcom,ipq9574-qmp-gen3x2-pcie-phy";
-+			reg = <0x0008c000 0x14f4>;
-+
-+			clocks = <&gcc GCC_PCIE2_AUX_CLK>,
-+				 <&gcc GCC_PCIE2_AHB_CLK>,
-+				 <&gcc GCC_PCIE2_PIPE_CLK>,
-+				 <&gcc GCC_ANOC_PCIE2_2LANE_M_CLK>,
-+				 <&gcc GCC_SNOC_PCIE2_2LANE_S_CLK>;
-+			clock-names = "aux",
-+				      "cfg_ahb",
-+				      "pipe",
-+				      "anoc",
-+				      "snoc";
-+
-+			clock-output-names = "pcie_phy2_pipe_clk";
-+			#clock-cells = <0>;
-+			#phy-cells = <0>;
-+
-+			resets = <&gcc GCC_PCIE2_PHY_BCR>,
-+				 <&gcc GCC_PCIE2PHY_PHY_BCR>;
-+			reset-names = "phy",
-+				      "common";
-+			status = "disabled";
-+		};
-+
-+		pcie2: pcie@20000000 {
-+			compatible = "qcom,pcie-ipq9574";
-+			reg = <0x20000000 0xf1d>,
-+			      <0x20000f20 0xa8>,
-+			      <0x20001000 0x1000>,
-+			      <0x00088000 0x4000>,
-+			      <0x20100000 0x1000>;
-+			reg-names = "dbi", "elbi", "atu", "parf", "config";
-+
-+			ranges = <0x81000000 0x0 0x20200000 0x20200000 0x0 0x00100000>,	/* I/O */
-+				 <0x82000000 0x0 0x20300000 0x20300000 0x0 0x07d00000>;	/* MEM */
-+
-+			device_type = "pci";
-+			linux,pci-domain = <3>;
-+			bus-range = <0x00 0xff>;
-+			num-lanes = <2>;
-+			max-link-speed = <3>;
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+
-+			phys = <&pcie2_phy>;
-+			phy-names = "pciephy";
-+
-+			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "msi";
-+			msi-parent = <&v2m0>;
-+
-+			#interrupt-cells = <1>;
-+			interrupt-map-mask = <0 0 0 0x7>;
-+			interrupt-map = <0 0 0 1 &intc 0 0 164
-+					 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
-+					<0 0 0 2 &intc 0 0 165
-+					 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
-+					<0 0 0 3 &intc 0 0 186
-+					 IRQ_TYPE_LEVEL_HIGH>, /* int_c */
-+					<0 0 0 4 &intc 0 0 187
-+					 IRQ_TYPE_LEVEL_HIGH>; /* int_d */
-+
-+			clocks = <&gcc GCC_PCIE2_AXI_M_CLK>,
-+				 <&gcc GCC_PCIE2_AXI_S_CLK>,
-+				 <&gcc GCC_PCIE2_AXI_S_BRIDGE_CLK>,
-+				 <&gcc GCC_PCIE2_RCHNG_CLK>;
-+			clock-names = "axi_m",
-+				      "axi_s",
-+				      "axi_bridge",
-+				      "rchng";
-+
-+			resets = <&gcc GCC_PCIE2_PIPE_ARES>,
-+				 <&gcc GCC_PCIE2_CORE_STICKY_ARES>,
-+				 <&gcc GCC_PCIE2_AXI_S_STICKY_ARES>,
-+				 <&gcc GCC_PCIE2_AXI_S_ARES>,
-+				 <&gcc GCC_PCIE2_AXI_M_STICKY_ARES>,
-+				 <&gcc GCC_PCIE2_AXI_M_ARES>,
-+				 <&gcc GCC_PCIE2_AUX_ARES>,
-+				 <&gcc GCC_PCIE2_AHB_ARES>;
-+			reset-names = "pipe",
-+				      "sticky",
-+				      "axi_s_sticky",
-+				      "axi_s",
-+				      "axi_m_sticky",
-+				      "axi_m",
-+				      "aux",
-+				      "ahb";
-+			status = "disabled";
-+		};
- 	};
- 
- 	thermal-zones {
+[1/1] arm64: dts: ti: verdin-am62: dahlia: fix audio clock
+      commit: a15e5320d91abe68ff1123bb72583d629c49100c
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
 -- 
-2.40.1
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
 
