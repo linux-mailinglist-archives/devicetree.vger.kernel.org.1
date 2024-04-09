@@ -1,155 +1,215 @@
-Return-Path: <devicetree+bounces-57625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1161A89E214
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 20:04:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1048489E222
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 20:07:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B60D1F2327C
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 18:04:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 30D651C21FDF
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 18:07:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C289F156883;
-	Tue,  9 Apr 2024 18:04:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79E12156892;
+	Tue,  9 Apr 2024 18:07:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lIK/QBsk"
+	dkim=pass (1024-bit key) header.d=amazon.co.uk header.i=@amazon.co.uk header.b="vIvdrfsn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp-fw-52003.amazon.com (smtp-fw-52003.amazon.com [52.119.213.152])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC06915574A
-	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 18:04:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5998B156883;
+	Tue,  9 Apr 2024 18:07:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.119.213.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712685889; cv=none; b=AuyUinDy+IG2fSx7mSHJkVxcSf0XDTI0/m37cZ0Xo1pxnGoteZCOsajQMnjcUjrw1SlVBupI+sHiZckyZOQ9k4ZAVgCF+bezSwXSsrqzdTr/rxV/cJQ5zNnEyAA65B0+aoF/qwFlxGBiAD+Ky9yopVYoSpYZYrAFunK/iWLKUOs=
+	t=1712686057; cv=none; b=s19h2XwKNTjyq2UTBYaCGV7L5ztRpSp8dCytiIKsIDbgZ9osBOdoS70CqGpRIWqPstsAGXschaOHYcemsP+LWrJEsaSHtkiuJc9nId/ZQW5EuDTAKpDu6AaLupj9DnfTK5lnhj9Id+LhGVqhS44bZ4NFJ/64QBIxB0Q1VdknQnE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712685889; c=relaxed/simple;
-	bh=sEg91M0chOfJoTJVgoQ99WIic1YAWUXIb7Gv6htphyQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O4wb+ahJElHyshjQf9ApSi1NCQT29oDDOmjEECYZtNB4w57dAAwGB17J+ZfqwMpiDsLzKSXCbUSqB9dfazC5qxEqMcy/0unT1j/7gDJg/Ip0V0ecwsSlt62cBi0TVz2Od5uDjAcmEFmir/VODQms3o/iiffm7BM4Q9xn6X2uIC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lIK/QBsk; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-516dbc36918so4297700e87.0
-        for <devicetree@vger.kernel.org>; Tue, 09 Apr 2024 11:04:47 -0700 (PDT)
+	s=arc-20240116; t=1712686057; c=relaxed/simple;
+	bh=wDHMOgkIcX9zNBekPyozvORWu7pLCVlon2Jq1iysZkM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=hVEkvrwNCHM2hNnd2/TzXsqMDglkTXW1Ubem8aS2zjd2PVocwnrkap1MPoGe+FR0LK+4StBYXNaVHQxoLxa0pqm4OSF9bT1S9GDpfdzTfRfDClWzOyjq4OiKHMgXcu2JNLTcA7oEgIPc/Z9kE9Y4GDQBT2eprmRC0voJK5HcWAU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.co.uk; spf=pass smtp.mailfrom=amazon.co.uk; dkim=pass (1024-bit key) header.d=amazon.co.uk header.i=@amazon.co.uk header.b=vIvdrfsn; arc=none smtp.client-ip=52.119.213.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.co.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.co.uk
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712685886; x=1713290686; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=mt7HVPjAilY3mwr17H22AEx0sDoVw4kMEURX0lXTtic=;
-        b=lIK/QBskQ0U/mssZE5sPferBAoVJ3IRRGedK4xqm65E6gbNWfftcnJoemQaLzM+zLe
-         ETULRTFFVkB6NLfjgm9HABqZWFnX2Nv5j3BslK16hQUyid7nC4NmHwHP46tpLdis/N9n
-         t8HSKziYIMtafIivmWSrUSHypzgr+I0Fc9FtAYeaxPgYSRaiTBkMLqaCy64R9sDuCjja
-         ak/xtmukTDFKGalOe++dHlRrkw1NYRwiNS2c9mDAkspVj1idUvc7jLGwg5+MlRttt+Mg
-         a8VsQ/fkI56CAy2MrKLjqIqpFLiSHPJmrkHGL7f4AcbHU82Aq4tdPzcxhxKR3gt8E99u
-         OZTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712685886; x=1713290686;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mt7HVPjAilY3mwr17H22AEx0sDoVw4kMEURX0lXTtic=;
-        b=BSNL3haMU6UnuXZ4lgCzquFihCvoC21g3b5m/uXFJafJHgCyCn+TXk9XYbcgwIMvmg
-         HF2JWSpootyeJk+1045Bvk2yTtjU22twiqWTD0A3SAhyYbvnwV9GQcRzUQ3HZP53llIY
-         WCfaSPUBjdoMqdX21JyxEns+Djpuf4zuUZcSgChzDGOveD0LhE2Kb430FtS6OssPWFVG
-         0mtsvd+h/T/V940YXpP7EnPEwjQiHYFzJlOqnz5xfcPo0hi9s3lwa4NtGiu4D1OKc9Pa
-         IXN1y9mUg8Z33wvdJ3ZLPz97dIHWCfQnTBJMvkmuC7m6RkK1ntS0jx07AQsbhbvT2y96
-         wHyw==
-X-Forwarded-Encrypted: i=1; AJvYcCUYBXRzufZxN+MaN4vCisgm1NqiMDhmROW50Y0SgfkVeovIt/CKTJW/GxLoHVdYn98pLdUW+a5oBhwPov4RwgVefIWN17eZEX9wvA==
-X-Gm-Message-State: AOJu0Yz+cMxJRek7CWuUBy2AEfoiWPtRw3BQyBD0rOlfEYqpK/tO1mSb
-	Cs7u1Fh534XCyPYaN9hHFlmOJp38DAMlWiZn5k34rgXbQYFGy6P/xfpRTrQr0ro=
-X-Google-Smtp-Source: AGHT+IGdK7leJ3QXhD6uZ/35F5XaLJqlEevFkNwPNitSZjtNpi/nk0armGKfZL2bzGGgnmj2Q9OGzg==
-X-Received: by 2002:a05:6512:455:b0:517:5f99:5a9f with SMTP id y21-20020a056512045500b005175f995a9fmr106766lfk.29.1712685885930;
-        Tue, 09 Apr 2024 11:04:45 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzyjmhyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a00e:a300::227])
-        by smtp.gmail.com with ESMTPSA id w20-20020a05651234d400b00516cdd2183asm1619918lfr.15.2024.04.09.11.04.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Apr 2024 11:04:45 -0700 (PDT)
-Date: Tue, 9 Apr 2024 21:04:43 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Rob Clark <robdclark@gmail.com>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 3/6] drm/msm/adreno: Allow specifying default speedbin
- value
-Message-ID: <quil2y6tbilihgont2xekay4joxgnsanu3khgo77omtwkolslp@ozuaajpv5uon>
-References: <20240405-topic-smem_speedbin-v1-0-ce2b864251b1@linaro.org>
- <20240405-topic-smem_speedbin-v1-3-ce2b864251b1@linaro.org>
- <pncr7ecf4eir36skul3iwt2nf5bpuwd5zjfzzfwwnxjwe4hoes@6z2xe54crijp>
- <d8a2ef87-f29e-4bdb-a9b8-591b8bd5d2b2@linaro.org>
- <tkcbl2iwcy3feoggbk737gx32qsxe5p4ad6lfrujy2pazccrhm@kif3guuzay6h>
- <CAF6AEGsg2xCCC27t_Gqu=MMQ6tckVw=Zj90p4x7EuOm+VKA=ig@mail.gmail.com>
+  d=amazon.co.uk; i=@amazon.co.uk; q=dns/txt;
+  s=amazon201209; t=1712686056; x=1744222056;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=LUnxFMCJbP/TXFkTWkhYoNXpbsm6oQaeQbjA1rI+i1E=;
+  b=vIvdrfsnSroOU3ZodmZB+hR2FYNr+pfm0C2/faWruG0HNxyDJgjR6eyu
+   YxRngf3g48/RDHWg7yfKRhESbZ9A7Xxj30tFkWGtS+irY/r8sLVPv6w+g
+   ocwxHIlwO4Bqwaybo4fCq+sieMzxBz5ZpnpMTFGYvllhI4bOHkyuJ747x
+   I=;
+X-IronPort-AV: E=Sophos;i="6.07,190,1708387200"; 
+   d="scan'208";a="650816447"
+Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO smtpout.prod.us-east-1.prod.farcaster.email.amazon.dev) ([10.43.8.6])
+  by smtp-border-fw-52003.iad7.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Apr 2024 18:07:32 +0000
+Received: from EX19MTAEUC001.ant.amazon.com [10.0.17.79:41501]
+ by smtpin.naws.eu-west-1.prod.farcaster.email.amazon.dev [10.0.25.48:2525] with esmtp (Farcaster)
+ id 04d050b4-5579-4172-8b50-2a9616ef79f9; Tue, 9 Apr 2024 18:07:30 +0000 (UTC)
+X-Farcaster-Flow-ID: 04d050b4-5579-4172-8b50-2a9616ef79f9
+Received: from EX19D036EUC002.ant.amazon.com (10.252.61.191) by
+ EX19MTAEUC001.ant.amazon.com (10.252.51.155) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.28; Tue, 9 Apr 2024 18:07:30 +0000
+Received: from [10.95.97.144] (10.95.97.144) by EX19D036EUC002.ant.amazon.com
+ (10.252.61.191) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.28; Tue, 9 Apr
+ 2024 18:07:25 +0000
+Message-ID: <8eb80918-f3e8-4c02-837d-8950ac14b654@amazon.co.uk>
+Date: Tue, 9 Apr 2024 19:07:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAF6AEGsg2xCCC27t_Gqu=MMQ6tckVw=Zj90p4x7EuOm+VKA=ig@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 5/5] virt: vmgenid: add support for devicetree bindings
+Content-Language: en-US
+To: Sudan Landge <sudanl@amazon.com>, <tytso@mit.edu>, <Jason@zx2c4.com>,
+	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <sathyanarayanan.kuppuswamy@linux.intel.com>,
+	<thomas.lendacky@amd.com>, <dan.j.williams@intel.com>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <graf@amazon.de>, <dwmw@amazon.co.uk>, <bchalios@amazon.es>,
+	<xmarcalx@amazon.co.uk>
+References: <20240409170722.81738-1-sudanl@amazon.com>
+From: "Landge, Sudan" <sudanl@amazon.co.uk>
+In-Reply-To: <20240409170722.81738-1-sudanl@amazon.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EX19D032UWB001.ant.amazon.com (10.13.139.152) To
+ EX19D036EUC002.ant.amazon.com (10.252.61.191)
 
-On Tue, Apr 09, 2024 at 10:12:00AM -0700, Rob Clark wrote:
-> On Tue, Apr 9, 2024 at 8:23 AM Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
-> >
-> > On Tue, Apr 09, 2024 at 05:12:46PM +0200, Konrad Dybcio wrote:
-> > >
-> > >
-> > > On 4/6/24 04:56, Dmitry Baryshkov wrote:
-> > > > On Fri, Apr 05, 2024 at 10:41:31AM +0200, Konrad Dybcio wrote:
-> > > > > From: Neil Armstrong <neil.armstrong@linaro.org>
-> > > > >
-> > > > > Usually, speedbin 0 is the "super SKU", a.k.a the one which can clock
-> > > > > the highest. Falling back to it when things go wrong is largely
-> > > > > suboptimal, as more often than not, the top frequencies are not
-> > > > > supposed to work on other bins.
-> > > >
-> > > > Isn't it better to just return an error here instead of trying to guess
-> > > > which speedbin to use?
-> > >
-> > > Not sure. I'd rather better compatibility for e.g. booting up a new
-> > > laptop with just dt.
-> >
-> > New speedbin can have lower max speed, so by attempting to run it at
-> > higher freq you might be breaking it.
+
+
+On 09/04/2024 18:07, Sudan Landge wrote:
+> Extend the vmgenid platform driver to support devicetree bindings.
+> With this support, hypervisors can send vmgenid notifications to
+> the virtual machine without the need to enable ACPI.
+> The bindings are located at:
+> Documentation/devicetree/bindings/rng/microsoft,vmgenid.yaml
 > 
-> Usually there are some OPPs in common to all speedbins, so picking a
-> freq from that set would seem like the safe thing to do
-
-Well, the issue is about an uknown speed bin. So in theory we know
-nothing about the set of speeds itsupports. My point is that we should
-simplfy fail in such case.
-
+> Signed-off-by: Sudan Landge <sudanl@amazon.com>
+> ---
+>   drivers/virt/vmgenid.c | 53 ++++++++++++++++++++++++++++++++++++++++--
+>   1 file changed, 51 insertions(+), 2 deletions(-)
 > 
-> BR,
-> -R
-> 
-> >
-> > >
-> > > >
-> > > > If that's not the case, I think the commit should be expanded with
-> > > > actually setting default_speedbin for the existing GPUs.
-> > >
-> > > I think that should be addressed, although separately.
-> >
-> > I'd prefer to have it as a part of this patch, but I'd not NAK it just
-> > for this reason.
-> >
-> > --
-> > With best wishes
-> > Dmitry
-
--- 
-With best wishes
-Dmitry
+> diff --git a/drivers/virt/vmgenid.c b/drivers/virt/vmgenid.c
+> index 3d93e3fb94c4..e1ad74116c0c 100644
+> --- a/drivers/virt/vmgenid.c
+> +++ b/drivers/virt/vmgenid.c
+> @@ -2,12 +2,13 @@
+>   /*
+>    * Copyright (C) 2022 Jason A. Donenfeld <Jason@zx2c4.com>. All Rights Reserved.
+>    *
+> - * The "Virtual Machine Generation ID" is exposed via ACPI and changes when a
+> + * The "Virtual Machine Generation ID" is exposed via ACPI or DT and changes when a
+>    * virtual machine forks or is cloned. This driver exists for shepherding that
+>    * information to random.c.
+>    */
+>   
+>   #include <linux/acpi.h>
+> +#include <linux/interrupt.h>
+>   #include <linux/kernel.h>
+>   #include <linux/module.h>
+>   #include <linux/platform_device.h>
+> @@ -20,6 +21,7 @@ enum { VMGENID_SIZE = 16 };
+>   struct vmgenid_state {
+>   	u8 *next_id;
+>   	u8 this_id[VMGENID_SIZE];
+> +	int irq;
+>   };
+>   
+>   static void vmgenid_notify(struct device *device)
+> @@ -43,6 +45,14 @@ vmgenid_acpi_handler(acpi_handle __always_unused handle,
+>   	vmgenid_notify(dev);
+>   }
+>   
+> +static __maybe_unused irqreturn_t
+> +vmgenid_of_irq_handler(int __always_unused irq, void *dev)
+> +{
+> +	vmgenid_notify(dev);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+>   static int __maybe_unused
+>   setup_vmgenid_state(struct vmgenid_state *state, u8 *next_id)
+>   {
+> @@ -106,6 +116,35 @@ static int vmgenid_add_acpi(struct device __maybe_unused *dev,
+>   #endif
+>   }
+>   
+> +static int vmgenid_add_of(struct platform_device *pdev,
+> +			  struct vmgenid_state *state)
+> +{
+> +	u8 *virt_addr;
+> +	int ret = 0;
+> +
+> +	virt_addr = (u8 *)devm_platform_get_and_ioremap_resource(pdev, 0, NULL);
+> +	if (IS_ERR(virt_addr))
+> +		return PTR_ERR(virt_addr);
+> +
+> +	ret = setup_vmgenid_state(state, virt_addr);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = platform_get_irq(pdev, 0);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	state->irq = ret;
+> +	pdev->dev.driver_data = state;
+> +
+> +	ret = devm_request_irq(&pdev->dev, state->irq, vmgenid_of_irq_handler,
+> +			       IRQF_SHARED, "vmgenid", &pdev->dev);
+> +	if (ret)
+> +		pdev->dev.driver_data = NULL;
+> +
+> +	return ret;
+> +}
+> +
+>   static int vmgenid_add(struct platform_device *pdev)
+>   {
+>   	struct vmgenid_state *state;
+> @@ -116,7 +155,10 @@ static int vmgenid_add(struct platform_device *pdev)
+>   	if (!state)
+>   		return -ENOMEM;
+>   
+> -	ret = vmgenid_add_acpi(dev, state);
+> +	if (dev->of_node)
+> +		ret = vmgenid_add_of(pdev, state);
+> +	else
+> +		ret = vmgenid_add_acpi(dev, state);
+>   
+>   	if (ret)
+>   		devm_kfree(dev, state);
+> @@ -124,6 +166,12 @@ static int vmgenid_add(struct platform_device *pdev)
+>   	return ret;
+>   }
+>   
+> +static const struct of_device_id vmgenid_of_ids[] = {
+> +	{ .compatible = "microsoft,vmgenid", },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, vmgenid_of_ids);
+> +
+>   static const struct acpi_device_id vmgenid_acpi_ids[] = {
+>   	{ "VMGENCTR", 0 },
+>   	{ "VM_GEN_COUNTER", 0 },
+> @@ -136,6 +184,7 @@ static struct platform_driver vmgenid_plaform_driver = {
+>   	.driver     = {
+>   		.name   = "vmgenid",
+>   		.acpi_match_table = vmgenid_acpi_ids,
+> +		.of_match_table = vmgenid_of_ids,
+>   	},
+>   };
+>   
+Due to a mail server error this last patch of the vmgenid series, 
+"[PATCH v4 0/5] virt: vmgenid: Add devicetree bindings support", got 
+sent separately. Apologies for this. I will resend the patches to 
+correct this issue so, I request reviewers to please ignore this patch.
 
