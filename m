@@ -1,152 +1,176 @@
-Return-Path: <devicetree+bounces-57297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC12A89CFE4
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 03:37:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E981E89CFED
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 03:41:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1AAD91F2390A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 01:37:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F0DC1F23DE8
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 01:41:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03FC465F;
-	Tue,  9 Apr 2024 01:37:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A40D4DA03;
+	Tue,  9 Apr 2024 01:40:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l9d0zUae"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="MTZuSg5D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f173.google.com (mail-il1-f173.google.com [209.85.166.173])
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D7978F59;
-	Tue,  9 Apr 2024 01:37:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C31D4F5EA
+	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 01:40:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712626638; cv=none; b=RiZIoZ5a8HjZbJ+mIgDFfz1gjUY5ub+qoyad/b/gWbj2GeYe84yiY69WS0sQIgyLQjjOFntKdY+j0jeOaLnxUYe63FZ8ZBwdqUMevs+Ce7mneDAjVeVkdGsiL5T1rBU5naAXky6u5UNkV37lWbn9EahBnU9fToUy6EmHkCnCRvU=
+	t=1712626852; cv=none; b=OWDuSxachb7CVrqr8PfP6XjlanqD5JJUgfdP0kuU4ns9y/ZRxGy3VBM1O3QPChaNlxrSemJzIdLzk0TdRH03ASZ13WfKyM8e/2Gcj/Zbpy1QUPWFoQLUXO0k4HjTi9Uz/xjqGClSvGykdhLrD0oSNwtipQH/mYLpxFE2Z/WCCfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712626638; c=relaxed/simple;
-	bh=REUfQMGxi6wZBiAigJvmtnxlwEZNsiAI6JDcOF9qSOs=;
+	s=arc-20240116; t=1712626852; c=relaxed/simple;
+	bh=r2zmZTpMnwocl++95x/nU/XIUjtwCpHeymDjMVB47PM=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SBCIHpfeJtTROvTCPMcnscLCuf/NqdZsHwk1VyrdkXF19xcSU2PUR577GSwTTpELajRG9TmmUiiw60rz134fCERMmKW4MkWkU7UdV8UNCy/QP6+Uuk7x76lvCloOu5d5WudRO3tw5Jz+97hT1zTRPyh7mGk3c1Q3Cdwir+e0PUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l9d0zUae; arc=none smtp.client-ip=209.85.166.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f173.google.com with SMTP id e9e14a558f8ab-36a2ab5a05dso4081395ab.2;
-        Mon, 08 Apr 2024 18:37:17 -0700 (PDT)
+	 To:Cc:Content-Type; b=GzwiuagqefLD0NuGJrd+VtKxG5tzuJpA0RClXda74PB88I88dh5uOHYP4CDzDYVx3IT09/PIX33Z0xy7Dd8+M5mq7jKRteMU9v6dfgjpYq9c+VK6yD2wRDEO0vi6Hn3XNdravtTwexqKfbSu6AIIMgor+CtQyL3VWKG0fwxbiPI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=MTZuSg5D; arc=none smtp.client-ip=209.85.160.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qt1-f179.google.com with SMTP id d75a77b69052e-434b5abbb0dso146211cf.0
+        for <devicetree@vger.kernel.org>; Mon, 08 Apr 2024 18:40:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712626636; x=1713231436; darn=vger.kernel.org;
+        d=google.com; s=20230601; t=1712626849; x=1713231649; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9lrU41zZbg4rdCONBXZqOnSqD9/BbJGHGI3UVtCYp1A=;
-        b=l9d0zUaeoONxcuX2LbObNdcK0dYSs3NetXU1RFkrWEcifa9dLQfxI4F6U7NpfmSQhu
-         6smdNTlJHC1zbyZMfqQZx1AhMcgd4ZDlhSfq6Mt84F6nZ/AEomwWYdsqV7FiYq3wtztR
-         qPhsBVRPaOeSUtyyBZhUOT3f6pfb2I9ffHRBeUWHFSHhes0hXogufXkBU4KHhVeDGRWt
-         HFyOn7jcoPC6HK0tf3xwVb3PpunDOMa7hdrQBbKQmkQbcfP/tj1Ybj6NnSMN11xGrB8P
-         ziaWNI5QgSwgRo8Lzraf+QMDGzSQdGo3Fgg3SH+F8oG/8lurfzZ7gZ/hvmiIsHVMOwXy
-         VCXw==
+        bh=KMxjAHL/FWsCSnB+XuEJfb4SXECUjGEArxNQA5omnzs=;
+        b=MTZuSg5D3Ffw24dW4kfZpfbgBdoXQkXsNLoHLgy4AVNYdvXB2BvNdcSGg2N7IpdNJw
+         6D7I/jLlk4weXyU/6QPAdDflzWihjDwz1V4jOMLnlsPe1aWRRcbyoq92eJ/PiFoaG7Yk
+         ceneISmtt5gNgb/04ccWXwdrMi9p0jquChHBEA1irziZABTFloiUwXQh9aI0rHa0y75S
+         Ok1mdQAptXAldVjs2/CJrYd9cKbXeAdSjDwro7QDoVRG9T4yh8NjFHydjAuMvsBaj6yc
+         ikdDm/VUQ2BQlgp7QaOFmlC3i6WSGmXF4mXE7tBRcf/hDoAUiVxZW8Dg9LoJ++hLY6ji
+         scrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712626636; x=1713231436;
+        d=1e100.net; s=20230601; t=1712626849; x=1713231649;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9lrU41zZbg4rdCONBXZqOnSqD9/BbJGHGI3UVtCYp1A=;
-        b=YwQaw3zEKuab/u28VUMbXP4VMtdljCLljenFQu8TvtsUE9/rMBh5dIN1hWv1JY/ZsV
-         uIyi2ZkdXKQOwvsS1spy0GHdvMgeF/USXcnbWam2LS22gwqOBszXp7HvOvaq8yBn3+up
-         RaT/OC5jCr/T/68orNm0Zb9SlzynErwmtb0X0murso+gwmXoeI9LkEQ7cCn5G2K624QO
-         lJ4sERzy9iVevjkXERMz3vNSn38kU6VmGjmWf0wMH67tX7YD1VMtoj1OzcnVVSeclic6
-         Roig0g0jzNRm1HOxj/d/rxOvwWtWKvSJD7I6Roce+BcG+fiwmqI+FaDxQcuVLTOT5f/r
-         abEA==
-X-Forwarded-Encrypted: i=1; AJvYcCWQ5UNMGsx99emP1x/8NGtlSrhZyX/WG29NjQpTvEzWKDSSg+4NNKmCDahmqs7vuDt+wbtzK8JDN3PqVqJnmInKy0PkbaAyCmF0ePJpTuhYsJwl3d+qxCwrGR4Adb7Z1kwD+vcrVggqQOfLoCjMtusd4iY3B2lHH14zhBNi+qHRt+6c3V0i
-X-Gm-Message-State: AOJu0YxvbyjPUW6kT7zmN4qUIK+xk9evyrFQ05faQSxrmEKA0/BSq0aC
-	a+4s4RrzMaWvpSo7rZpNbOPXwsjNXtc+mhKv1DwXVZFgAQtZOzZ5OyPhV+FMrKLNNCSSbOZCxSE
-	dh9dd5QBNDSfKAIwfrypnbOWzLVQ=
-X-Google-Smtp-Source: AGHT+IGHBYdqw5WuioZTYaZ1SjiEaQQ73sRjZsGoduAA1jBDzDuGbUyCGX9a6fp37uYrTgH2e7VJ2m+I4JB2tYmbQ2Q=
-X-Received: by 2002:a05:6e02:b48:b0:368:aa7a:e25c with SMTP id
- f8-20020a056e020b4800b00368aa7ae25cmr12442798ilu.30.1712626636379; Mon, 08
- Apr 2024 18:37:16 -0700 (PDT)
+        bh=KMxjAHL/FWsCSnB+XuEJfb4SXECUjGEArxNQA5omnzs=;
+        b=pbOmS5PmGsJLoZPWF8lsIoUNp0KMwoWTCYeugxgAT/UQ7Y7pPbJZElSdUfWE4a6txd
+         os9KXv3zYRnt/8235Q/p+tam6Q0VloYVm3EXwSQCZZh3Oe1Xm5mv/qGGG+HtiaPePNw0
+         cmksPuRauhuH2ONKAVeWisIX4t5arIJ4cugPpdfCv5TN1gWsUp08xGFjVYvRuCnE2U9B
+         H+EHeKh7YB6bi8L+lSTJagxJXoY8AYxOQ5SOE+nNKRN4Fwpakxxt60HLoCEOj25i4T+0
+         pOvnJoESHZ67fDrmTg7GgyGq0BlSlro7HkKtnvpmUnGjDrtZONf7+oFC3I1wtyGWls+j
+         OViQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVjZg092tUpbb7FkLQLkZ46VtLb1KrRakox7kwXOAkhyGziuynVfgzwt39pGgCWR7l965TkHSZY7rPkt0YOqGBbud9jx+9MSu7Bag==
+X-Gm-Message-State: AOJu0YxvR87eDRDFUmMOsuTs6jrLOYsW1pptKyh5onZ32BhO2qAbDsGv
+	YqjBCfQpiRrq4pEhnjQ7wD4dygkjGadfIgsqStDqQ55kGLJQiIZIrLNLmGza6FTxKhkVPko/UEH
+	wL/bNl1YWy0goitcIH1r8Yr196hemw/HLV5tl
+X-Google-Smtp-Source: AGHT+IEfHMMkArtxOzJrm3HH4hiDp/NoiyU+a1zFBYZHw0wqk3suYz8SBSxh/O4d272loLH12QwJvlO1jB0eckScQqE=
+X-Received: by 2002:a05:622a:4249:b0:432:b544:c38c with SMTP id
+ cq9-20020a05622a424900b00432b544c38cmr74945qtb.21.1712626849300; Mon, 08 Apr
+ 2024 18:40:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <1712561233-27250-1-git-send-email-shengjiu.wang@nxp.com>
- <01734d96-bed2-4f7e-bbba-7068f14c822b@linaro.org> <CAA+D8ANiKH7Oc+KAjD_BMp9P2EVeM8Q6dLGFCC8a83bJXUpPEA@mail.gmail.com>
- <69ab2bd9-401a-42ff-90fa-6600dd071722@linaro.org>
-In-Reply-To: <69ab2bd9-401a-42ff-90fa-6600dd071722@linaro.org>
-From: Shengjiu Wang <shengjiu.wang@gmail.com>
-Date: Tue, 9 Apr 2024 09:37:05 +0800
-Message-ID: <CAA+D8AOP6D+xUNF_XJXt-8dMi2qFyVh-Sbe8k67CzvUbnzrwoQ@mail.gmail.com>
-Subject: Re: [PATCH v2] ASoC: dt-bindings: imx-audio-spdif: convert to YAML
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, lgirdwood@gmail.com, broonie@kernel.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, 
-	kernel@pengutronix.de, festevam@gmail.com, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org
+References: <20240408231310.325451-1-saravanak@google.com> <20240408231310.325451-3-saravanak@google.com>
+In-Reply-To: <20240408231310.325451-3-saravanak@google.com>
+From: Saravana Kannan <saravanak@google.com>
+Date: Mon, 8 Apr 2024 18:40:11 -0700
+Message-ID: <CAGETcx8gGcq01CwTZyn=Q0fSQkzMf6tshSmPr5YWYZuhhJVdXg@mail.gmail.com>
+Subject: Re: [RFC PATCH v1 2/2] of: dynamic: Fix probing of overlay devices
+To: Herve Codina <herve.codina@bootlin.com>, Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Rob Herring <robh@kernel.org>, kernel-team@android.com, linux-kernel@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-spi@vger.kernel.org, linux-acpi@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Apr 8, 2024 at 11:06=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Mon, Apr 8, 2024 at 4:13=E2=80=AFPM Saravana Kannan <saravanak@google.co=
+m> wrote:
 >
-> On 08/04/2024 10:01, Shengjiu Wang wrote:
-> >>> +
-> >>> +anyOf:
-> >>> +  - required:
-> >>> +      - spdif-in
-> >>> +  - required:
-> >>> +      - spdif-out
-> >>> +  - required:
-> >>> +      - spdif-out
-> >>> +      - spdif-in
-> >>
-> >> Do you need the last required block?
-> >
-> > Yes,  one of them or both are required.
+> Get fw_devlink to work well with overlay devices.
 >
-> And? It's already there: that's the meaning of any. It is not oneOf...
-> Before answering please test your changes and ideas. I pointed issue
-> here and you responded just to close my comment. That does not make me
-> happy, just wastes my time.
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> ---
+>  drivers/base/core.c    | 10 ++++++++++
+>  drivers/of/dynamic.c   |  8 ++++++++
+>  include/linux/fwnode.h |  2 ++
+>  3 files changed, 20 insertions(+)
+>
+> diff --git a/drivers/base/core.c b/drivers/base/core.c
+> index 5f4e03336e68..d856f9c5d601 100644
+> --- a/drivers/base/core.c
+> +++ b/drivers/base/core.c
+> @@ -237,6 +237,16 @@ static void __fw_devlink_pickup_dangling_consumers(s=
+truct fwnode_handle *fwnode,
+>                 __fw_devlink_pickup_dangling_consumers(child, new_sup);
+>  }
+>
+> +
+> +void fw_devlink_pickup_dangling_consumers(struct fwnode_handle *child,
+> +                                                struct fwnode_handle *pa=
+rent)
+> +{
+> +       mutex_lock(&fwnode_link_lock);
+> +       __fw_devlink_pickup_dangling_consumers(child, parent);
+> +       __fw_devlink_link_to_consumers(parent->dev);
+> +       mutex_unlock(&fwnode_link_lock);
+> +}
+> +
+>  static DEFINE_MUTEX(device_links_lock);
+>  DEFINE_STATIC_SRCU(device_links_srcu);
+>
+> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
+> index 19a1a38554f2..0a936f46820e 100644
+> --- a/drivers/of/dynamic.c
+> +++ b/drivers/of/dynamic.c
+> @@ -237,6 +237,7 @@ static void __of_attach_node(struct device_node *np)
+>  int of_attach_node(struct device_node *np)
+>  {
+>         struct of_reconfig_data rd;
+> +       struct fwnode_handle *fwnode, *parent;
+>
+>         memset(&rd, 0, sizeof(rd));
+>         rd.dn =3D np;
+> @@ -246,6 +247,13 @@ int of_attach_node(struct device_node *np)
+>         mutex_unlock(&of_mutex);
+>
+>         of_reconfig_notify(OF_RECONFIG_ATTACH_NODE, &rd);
+> +       fwnode =3D of_fwnode_handle(np);
+> +       fwnode_for_each_parent_node(fwnode, parent)
+> +               if (parent->dev) {
+> +                       fw_devlink_pickup_dangling_consumers(fwnode, pare=
+nt);
+> +                       fwnode_handle_put(parent);
+> +                       break;
+> +               }
 
-Maybe I didn't express clearly.
+I'm clearly calling this in the wrong location. Please move this logic
+to __of_changeset_entry_notify() and for the case
+OF_RECONFIG_ATTACH_NODE. Haven't fully thought through the DETACH
+case, but it should work correctly for that case too. If not, I'll
+take care of that next.
 
-we need at least one of them (spdif-in, spdif-out) in the node.  which mean=
-s
-that we need to select  "spdif-in",  or "spdif-out",  or "spdif-in and
-spdif-out".
-
-So my understanding is that need to use "anyOf", if it is wrong, please let
-me know.
+-Saravana
 
 >
-> >
-> >>
-> >>> +
-> >>> +additionalProperties: false
-> >>> +
-> >>> +examples:
-> >>> +  - |
-> >>> +    sound {
-> >>
-> >> That's a random change...
-
-So  I can use "sound-spdif", right?
-
-best regards
-wang shengjiu
-
-> >>
-> >> Instead of sending two patches per day, please carefully address the
-> >> feedback.
-> >
-> > In v1 you suggest to change it to spdif?  but spdif may conflict
-> > with the fsl,spdif.yaml.   so which name I should use?
+>         return 0;
+>  }
+> diff --git a/include/linux/fwnode.h b/include/linux/fwnode.h
+> index 0d79070c5a70..4b3f697a90e8 100644
+> --- a/include/linux/fwnode.h
+> +++ b/include/linux/fwnode.h
+> @@ -220,6 +220,8 @@ int fwnode_link_add(struct fwnode_handle *con, struct=
+ fwnode_handle *sup,
+>                     u8 flags);
+>  void fwnode_links_purge(struct fwnode_handle *fwnode);
+>  void fw_devlink_purge_absent_suppliers(struct fwnode_handle *fwnode);
+> +void fw_devlink_pickup_dangling_consumers(struct fwnode_handle *child,
+> +                                         struct fwnode_handle *parent);
+>  bool fw_devlink_is_strict(void);
 >
-> I don't understand where is the conflict. That's a different binding.
->
+>  #endif
+> --
+> 2.44.0.478.gd926399ef9-goog
 >
 
