@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-57313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CE8489D23E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 08:21:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E95889D270
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 08:29:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEF8E2824BB
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 06:21:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9FC56B23C0A
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 06:29:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 494FF6FE06;
-	Tue,  9 Apr 2024 06:21:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9128E79955;
+	Tue,  9 Apr 2024 06:29:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rSXbEWYr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LvzqqNCY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 643EB524AF
-	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 06:21:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 734C0762DA
+	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 06:29:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712643694; cv=none; b=N7gmTwVP4wh/D8iQPPocOaQ7LWyWgySNNjwYpPlIeqLwr/5PH0SEtMymSfNKwz42WqdiZ9LkoGrhxw7WW6v4KBpJGHOZbPNc1lTVAX1sGb6m354u9qGgBuLEnlFofWWV0spfX19VsF1pZCTfteanILW7DPXvolDtddsIk2TK2Zo=
+	t=1712644154; cv=none; b=k+JctRgtaqhwp6AE+SWBSGs6X8/wwWQ55jwQ+j840N3IfTSzT6GElvkoOU2kfoLDe+07ZQRnX1o22mgXgUaOPH/9iJoxT60dEQYK1I/mRV2BKcKH/7uR0ljb+ePfBNi3TMweHiNCVsxTp4ArUUhQ8iIHG+BbjWQihR05W3Rn3RE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712643694; c=relaxed/simple;
-	bh=v9h+JP1Ozokz8XPYOl0mt/0NsHPHIP7jqB4A5A1C9zY=;
+	s=arc-20240116; t=1712644154; c=relaxed/simple;
+	bh=i3FcI1QNRGmW5G6SpjBrFdWnI+UtRD64JnOiVUgDtK8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nmZxGZpV8OXxDNeEW/wYBCazTsSWUORsJpfWwocZhbULrbfLAoy4GmCFkIgp40RAtGaTKlF4+pMiTlcFDNISFQpJtmMKlf1JkXVBgtSIGrztX2Xi0LhfNBJy96a6OOAjctMUeHQkkJ0tyEUk1q/B2/G8eNZ+9ag/28g+KAf54O0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rSXbEWYr; arc=none smtp.client-ip=209.85.218.44
+	 In-Reply-To:Content-Type; b=VAIODM6tuaaajJx9M+trtRc+UOVfs8F3Zw8okIErHFpQtlHiBX+ctoKz8V9cfbjRDN1SmWEvrquPcOq0GY/Qj/2QLwHNEfaHzb4e2WrXeDsoDp50suUFX5SLbt/i2IfOQRKYdIse4m1mLNplvwFlDs6BBXqBPfjGmfda53MLG48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LvzqqNCY; arc=none smtp.client-ip=209.85.208.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a51d05c50b2so246337166b.0
-        for <devicetree@vger.kernel.org>; Mon, 08 Apr 2024 23:21:32 -0700 (PDT)
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-56e2b41187aso6007919a12.1
+        for <devicetree@vger.kernel.org>; Mon, 08 Apr 2024 23:29:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712643691; x=1713248491; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712644150; x=1713248950; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=lWIkOPg5L5xz5mlCTwXEDmQlLjcIkDaN5r93XlgAMzg=;
-        b=rSXbEWYr2OUT+tYefJvPPiHWVkL+6/XAJ6w//81YpPJbev/rpwlh7qeqlsc2297FDC
-         SusKtBtV+R/rRWy7078bKvgvn5FRCON1MsQ85u9+MU/tqF4Iom8C+3T51QY0Nxg3UivQ
-         HPzzBgiGm0+GN3hI6psM7CvO+UTq7rbRkjfEtbNTyzwUMwNoWUj4VLmxNMoR4FQmp9iA
-         8c4ySO3Znnq7pd60/gQO8bDf7+vK1KsVK8whFMWuE4CW8WWvjuaJEsdeGL+W1AYeF78I
-         bbI/5FrKWjHl4VROUkyZKbm1QJYGTwkMIAsVxDc9goImcgMzdzOjO11JjCxGHOrRcph/
-         FoJg==
+        bh=Vm3HK/X08kxYiAwQYO9sS7JnDrKVnOf7k/OqbbqlN0I=;
+        b=LvzqqNCYtNEhZfqCdgo1gqAVjTOkg9t5n0hFYZJj+JD85QpluQ26Ngf47KLq6geNsw
+         KtAm1foF5MzhB4NSeSMmQ1niYUdgjOc4prMuugAz5Mgp7iqp6hA7qFpe60UZJxRV3tar
+         ex/FRcimSFcLehpZsPUk0BJrrRFF6vIjMz4UtayUhA7hRg+hHa4HC9T/eYh7S+h6vgTV
+         BXC81qW/Ndi64kpIsOClk4VVylL2SCWfU3yI9EShyiMMN808Wm/9ysCoOQEAcCckbfMZ
+         WMl6zsyZngGRnyQuz68aGqswhM2VcSWSFvvCMSKI65YRFt3zmnn+kpD53CEMH1jVww2/
+         wYLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712643691; x=1713248491;
+        d=1e100.net; s=20230601; t=1712644150; x=1713248950;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=lWIkOPg5L5xz5mlCTwXEDmQlLjcIkDaN5r93XlgAMzg=;
-        b=Y25Wh6ZCCVE65q0SMEZUxefPgirn/Hz28Kr23+dxsyfpsqbIsr9mgyV9rgB8CUn5Xg
-         NN8ZATwyMJlDSM5/qoKoqIBCmYmeIhJAojBwnoppKlZ+OjGizHdpagoDLROZ+D948o6e
-         LoYMVRFRA3HwswTe2SHJ8SnheGc0ZEX+qDAamHiqBbbu0oTa5fsg3FhoqbJTU7TuBKdO
-         wk2Y0WTXDo1bRFtw5yRU4ITcBQ78OnssCjpv5DbtOSnZiLzSRUUBlngm3s34umVco5d6
-         geiZFFABYLGYZbn2MZhFNxPrSOKzg1XDsKCL08PkX6zmjgVlzpRSe7zkuDltSg56yJLr
-         2mTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVMlBXTjXybqTSBEuOp5Y6sbeTS9KcpHgiAyEfTpe2sHjtujnr+5vDRFCuSnxm2eY3rmjP07zpzyEeiTCkrp/hdyWuiu5f+iNFb0g==
-X-Gm-Message-State: AOJu0YzdWNdBrN2s1JZ5x1xM6dRgxY1y3ifqXiSA95lHBUaYyzEaQUUA
-	enD2Ba7O/8PdsJz0IMmbQ6VmnjHO9nl9HGWF4Moa0R5YsM6LwxOY/JTAi3cMeoA=
-X-Google-Smtp-Source: AGHT+IGpUblUe93xBBOxtCJ75jLMiz7UMH7MBTTDilSV4N7xThGFaUK51PfxCOlL++NMt09sjfHW3g==
-X-Received: by 2002:a17:906:528c:b0:a4d:fcc9:905c with SMTP id c12-20020a170906528c00b00a4dfcc9905cmr8096858ejm.20.1712643690564;
-        Mon, 08 Apr 2024 23:21:30 -0700 (PDT)
+        bh=Vm3HK/X08kxYiAwQYO9sS7JnDrKVnOf7k/OqbbqlN0I=;
+        b=XG6MMZlmFJzWNuUAiO+0eGn6PNX3aTXJDYKHijEqVoTxu0n8inTyrkWGtS1kVkhVnr
+         39Kw2bxICVUMwVgVQkHjxJ5/cmxwc9Zq5lsQ5+JTnzM7PBMtQ65MH+nl+sthqLH1s7xO
+         ya5nQskZIyC57yZQNl1vtoWa7CexxAPvMCF1icKw0CYG72qcGcy2wYSm9GPyB66MgUuo
+         UmvUxRrtqb6cZes5WjkjnLwXR97GfRPTRNcmyYCm26Sh0olXFyLB8aNbd2A3u4SMTqsB
+         9VTWqyrQAmeCIUlTiekqKcKzJKNWqvAvCNCB8yJAlD3RXSrlpn5kCcXhJcXFSj12fykB
+         OmlA==
+X-Forwarded-Encrypted: i=1; AJvYcCXTX79785u3GEArXpqKXsX8AeccwsW0X9MBLd7g7YaayP/3Qp0Hhc7zpaLeQSvZRhTDuYjtja+bm1+LdXpl6X6nyY9KCNcXpsTzag==
+X-Gm-Message-State: AOJu0YzH+zxhIlYYbtJDcOmD9W6yjP7oCg6Qpp5gc67moJuAt4qAb8q4
+	zqUFKxsseRnapUfOkNh1QeI4fECXE+Mx0S0iAGc7v2iMTsO8VlqdUjDjEmhvuQk=
+X-Google-Smtp-Source: AGHT+IFli9u6w7f/7vYfMDcdFofMUw+adbL6RmpKnTrxVmDROJ6g1gA588TL2Kz5DHuHHLPZHUNo4g==
+X-Received: by 2002:a50:cc96:0:b0:56b:ddcb:bb67 with SMTP id q22-20020a50cc96000000b0056bddcbbb67mr1702808edi.2.1712644149713;
+        Mon, 08 Apr 2024 23:29:09 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id h12-20020a17090634cc00b00a46f95f5849sm5229179ejb.106.2024.04.08.23.21.28
+        by smtp.gmail.com with ESMTPSA id di19-20020a056402319300b0056b7ed75a46sm4985957edb.27.2024.04.08.23.29.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Apr 2024 23:21:29 -0700 (PDT)
-Message-ID: <ce17f2dc-decf-4509-969e-e23bdef42eb9@linaro.org>
-Date: Tue, 9 Apr 2024 08:21:28 +0200
+        Mon, 08 Apr 2024 23:29:09 -0700 (PDT)
+Message-ID: <d079bf4d-ebfe-4d98-b718-0c545aabbd30@linaro.org>
+Date: Tue, 9 Apr 2024 08:29:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,20 +77,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 1/2] dt-bindings: pcie: Document QCOM PCIE ECAM
- compatible root complex
-To: Mayank Rana <quic_mrana@quicinc.com>, linux-pci@vger.kernel.org,
- lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, bhelgaas@google.com,
- andersson@kernel.org, manivannan.sadhasivam@linaro.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org
-Cc: linux-arm-msm@vger.kernel.org, quic_ramkri@quicinc.com,
- quic_nkela@quicinc.com, quic_shazhuss@quicinc.com, quic_msarkar@quicinc.com,
- quic_nitegupt@quicinc.com
-References: <1712257884-23841-1-git-send-email-quic_mrana@quicinc.com>
- <1712257884-23841-2-git-send-email-quic_mrana@quicinc.com>
- <51b02d02-0e20-49df-ad13-e3dbe3c3214f@linaro.org>
- <1d6911e2-d0ec-4cb0-b417-af5001a4f8a3@quicinc.com>
+Subject: Re: [PATCH v2] dt-bindings: PCI: altera: Convert to YAML
+To: matthew.gerlach@linux.intel.com
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+ robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240405145322.3805828-1-matthew.gerlach@linux.intel.com>
+ <2ece9ac2-899c-4185-b0f3-8ab939afc1e5@linaro.org>
+ <alpine.DEB.2.22.394.2404081309050.381257@sj-4150-psse-sw-opae-dev2>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -137,64 +132,44 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <1d6911e2-d0ec-4cb0-b417-af5001a4f8a3@quicinc.com>
+In-Reply-To: <alpine.DEB.2.22.394.2404081309050.381257@sj-4150-psse-sw-opae-dev2>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/04/2024 21:09, Mayank Rana wrote:
->>> +  Firmware configures PCIe controller in RC mode with static iATU window mappings
->>> +  of configuration space for entire supported bus range in ECAM compatible mode.
->>> +
->>> +maintainers:
->>> +  - Mayank Rana <quic_mrana@quicinc.com>
->>> +
->>> +allOf:
->>> +  - $ref: /schemas/pci/pci-bus.yaml#
->>> +  - $ref: /schemas/power-domain/power-domain-consumer.yaml
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: qcom,pcie-ecam-rc
+On 08/04/2024 22:34, matthew.gerlach@linux.intel.com wrote:
+>>> diff --git a/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
+>>> new file mode 100644
+>>> index 000000000000..999dcda05f55
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
+>>> @@ -0,0 +1,106 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +# Copyright (C) 2024, Intel Corporation
 >>
->> No, this must have SoC specific compatibles.
-> This driver is proposed to work with any PCIe controller supported ECAM 
-> functionality on Qualcomm platform
-> where firmware running on other VM/processor is controlling PCIe PHY and 
-> controller for PCIe link up functionality.
-> Do you still suggest to have SoC specific compatibles here ?
+>> This is derivative of previous work, which is easily visible by doing
+>> the same mistakes in DTS as they were before.
+> 
+> This is definitely derivative of previous work, and I want to fix the 
+> DTS mistakes too.
+> 
+>>
+>> You now added fresh copyrights ignoring all previous work, even though
+>> you copied it. I don't agree.
+>>
+>> If you want to ignore previous copyrights, then at least don't copy
+>> existing code... although even that would not be sufficient.
+> 
+> Ignoring previous copyrights was not my intent. There is no copyright 
+> statement in the original text version of the device tree bindings. Should 
+> that lack of copyright statement carry forward?
 
-What does the writing-bindings document say? Why this is different than
-all other bindings?
+All the authors are copyright holders automatically, at least in some or
+maybe most jurisdictions. You do not need to add copyright label for
+material to be copyrighted. That's why you are not allowed to relicense
+the work for example, without other authors' agreement.
 
->>> +
->>> +  reg:
->>> +    minItems: 1
->>
->> maxItems instead
->>
->>> +    description: ECAM address space starting from root port till supported bus range
->>> +
->>> +  interrupts:
->>> +    minItems: 1
->>> +    maxItems: 8
->>
->> This is way too unspecific.
-> will review and update.
->>> +
->>> +  ranges:
->>> +    minItems: 2
->>> +    maxItems: 3
->>
->> Why variable?
-> It depends on how ECAM configured to support 32-bit and 64-bit based 
-> prefetch address space.
-> So there are different combination of prefetch (32-bit or 64-bit or 
-> both) and non-prefetch (32-bit), and IO address space available. hence 
-> kept it as variable with based on required use case and address space 
-> availability.
-
-Really? So same device has it configured once for 32 once for 64-bit
-address space? Randomly?
+The problem is that GPL requires to keep original copyright notices, but
+such notices were not present.
 
 Best regards,
 Krzysztof
