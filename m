@@ -1,168 +1,226 @@
-Return-Path: <devicetree+bounces-57355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C71389D434
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 10:28:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ACA2789D479
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 10:35:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F2AC1C20C85
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 08:28:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF1FC1C228C1
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 08:35:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E151F7EF00;
-	Tue,  9 Apr 2024 08:27:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D8FF13049E;
+	Tue,  9 Apr 2024 08:27:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="srs9Hpyk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2117.outbound.protection.outlook.com [40.107.215.117])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0220B7FBD7;
-	Tue,  9 Apr 2024 08:27:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.215.117
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712651223; cv=fail; b=XdNgO9b4QLqym1cNBNsN0qbL3xm69L9tMwShx56EdyYcCZ2Pj4a1xga3sa6Z7URB6K2rQMMK7plina2PkIhzMtmyamSsOGpkhHqYz8VkjAXEaPqPSv3qE693XcwICBXhCcteDmU5n5pNEESnrtbNd/i2UzySEm8f7bDq7+kOjHw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712651223; c=relaxed/simple;
-	bh=TmZWYyicXG37+LTfCZZrtm3PGbmycE3JYAMCwFeACT8=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=S7iUT0+ChEYUpV6AjZpDqnuXOhNRVsjZ8mPlx/AFDZAtifewPejsSnohIMVs2D9u4POFY3m7/4sWeDPJruHXK6NpPOKh9GAzgbY8s+les1EAjEsTvFvkY0kvqMGp+eYInvgYdNQ+iTpFXLZdiVST1BPhx17UdIrBlkx6B5y6BwI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com; spf=pass smtp.mailfrom=wesion.com; arc=fail smtp.client-ip=40.107.215.117
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wesion.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=T/9i/GfcCCJvvZUgX988smsZ+qDBj0DjqOcov7eNu5j6yZanN74JNkTWspA6+sMMWPDFmjoghuklIizCto4pCGr3AdfFrIRdgqetEsMVBRR9PiPiIUjXrGHLojmLWyzdQ3porbTC8nGsMNF44x2VG6kjCAK6rvlxrFzcHbIIa97dwIEEgOlf8/Vpb6K6J2VFkWNEktIGQcBB7PsouGex0zVTrLLfSSgjNf2kASu0snxSHnOuu00YvJ407SvnBaWSM59rCDlwalZhuvXHeC9R5X0KAKVsPskyBePqsI4fbeozauoU5pCs8gxxCshMVO37R41Yu4gO9wevuUmmmriuog==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bH0GRc/H/DLf7+uJGT/IyjQljXh2DM8YRGEjSfdu8JE=;
- b=kUKmt79BRMtIECebP/5L4r+pfSxwMFDWIZ6fFBdN1HGvxHVuNaFSr4g1Eh/fjeKfqkMIRHpcJ0B2anmgWQrSO6kodi/bPGZCnLY6vAW2ZHWzOtnQgMFnAPugAvsVk3DXjWtPxnlMowxmfxsV24a4QbvI+JtDVeF83nN/zv2iTAWMTiwJmbO79ORd1bY5+A/ZJiOlqAlIkwUK4T2RqXG93V87/Jl0l3Sxfw9EwzOlpdXAyDy2t+Ov5CaiJP5LQcKOrkkV26unV8QMuIUszhnnzw+By7C4MGiJIxLGCoCwCeSFFz8tN6wR3QVZmNZuezYOH5d5+159/tM55cTli26Qcw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wesion.com; dmarc=pass action=none header.from=wesion.com;
- dkim=pass header.d=wesion.com; arc=none
-Received: from TYZPR03MB7001.apcprd03.prod.outlook.com (2603:1096:400:26a::14)
- by SEYPR03MB6880.apcprd03.prod.outlook.com (2603:1096:101:b5::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Tue, 9 Apr
- 2024 08:26:55 +0000
-Received: from TYZPR03MB7001.apcprd03.prod.outlook.com
- ([fe80::c4f9:d4f1:c115:f1ca]) by TYZPR03MB7001.apcprd03.prod.outlook.com
- ([fe80::c4f9:d4f1:c115:f1ca%6]) with mapi id 15.20.7409.042; Tue, 9 Apr 2024
- 08:26:55 +0000
-From: Jacobe Zang <jacobe.zang@wesion.com>
-To: neil.armstrong@linaro.org,
-	narmstrong@baylibre.com,
-	airlied@gmail.com,
-	daniel@ffwll.ch,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org
-Cc: quic_jesszhan@quicinc.com,
-	sam@ravnborg.org,
-	nick@khadas.com,
-	thierry.reding@gmail.com,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	Jacobe Zang <jacobe.zang@wesion.com>
-Subject: [PATCH 1/2] dt-bindings: panel-simple-dsi: add New Khadas TS050 panel bindings
-Date: Tue,  9 Apr 2024 16:26:41 +0800
-Message-Id: <20240409082641.359627-1-jacobe.zang@wesion.com>
-X-Mailer: git-send-email 2.34.1
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: TYCPR01CA0070.jpnprd01.prod.outlook.com
- (2603:1096:405:2::34) To TYZPR03MB7001.apcprd03.prod.outlook.com
- (2603:1096:400:26a::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97B4D7E765
+	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 08:27:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712651271; cv=none; b=dIL+tEi9vXRd13Bbg0DhUhTZMCZY9W1z0+D2h42EIftzyEaMXxMNfUesVCKuXXMggokCH0zhl4Yz+APlRPZW3V49ZMgPIkoqD5lNO2WiAKzzS909ngDAvymHhlGK8X/g6848uBezXpj/HRoMt4EPra6BArh6zbhc5fTDQGcQ0BI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712651271; c=relaxed/simple;
+	bh=ThxYTuWnIjROrsvIfsqbP8USRVfszGLqnVNSOTkj9Hk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Sfhy9G5baT/Y6T5oJJ+1MpycBvBzJYQtYzO0ZFmXTQe7sZXDGPdEgzhqUcEi+eDVobNVczAn0sQBxMc5S5JedWdIh7J2geSfReJ8mNEu0LLM8Pw+nZHQ8PFNTws+R9wDW7HNxJL7DDn3ObxFtEDi/Do0ehilVSGQM0e6LObgNIc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=srs9Hpyk; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a46ea03c2a5so888075866b.1
+        for <devicetree@vger.kernel.org>; Tue, 09 Apr 2024 01:27:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712651267; x=1713256067; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=1hY3mD/N+ezYOSt5b+q4lZKBMQJtYzKundCKG+ygE0A=;
+        b=srs9HpykNafbAjPnA+SJcihhimUW8mBOxQ2ScSbZB1+1okxw7NJvBts9g8umo2vTKL
+         YROt57dBBioTGQtdpezG6r4EUtmRyemXjfLL3+dgIhXebs5CFWobQIJIBPiizy/N8d/W
+         P0gqzX0+AZIKmnfLwp0ViKLzv48wbEDMuxMxfiqPX4PO4GWgi6CR8OtpMW+5LvDWqNK0
+         9PAPyYY/R0HdUSSt0ZcV4FoFywLckB7cu5VJoseQkBgZ5oqLTlYBY4jwx91JdfkPg3xZ
+         u73TcTTOD337BuJ8dQLsyFDNC8P2cC4hNwPqP0a1uZfmMcI6VxNsTdyAmBY/yyVe1EmG
+         7lhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712651267; x=1713256067;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1hY3mD/N+ezYOSt5b+q4lZKBMQJtYzKundCKG+ygE0A=;
+        b=xAieV6UUrXVv80K4C/h9sTVFoJ8Hn434j0MPIgvIM25s4nUY+HLb68m3DS56RYLN1z
+         HpMlV35CYxJoo4uxRa16jK19ccA0nc8esIGBVu+3uIC8jEQRMsXhoxRwsRJU3zLTXiiV
+         PgJtnICXIs2P2OOH3yQamJHc8boJQqlKWZJfbhCwkmhtrM6EedCK6GiQqJho/Do4nBRB
+         9k2YZx1ax8w7OEqgIVZS2MpE+EZgBte9iNXBzB3vXDx5ijyqgijpDrxaU8yepR5X2tSR
+         nwTYP/eZPyfcMuyPyXMPaztOl3HwA7Ct5gT+9672Po0W+rtCUPjkb+uyNFfc9Cz8Aci6
+         4zDg==
+X-Forwarded-Encrypted: i=1; AJvYcCWRrXlOOQeGPesFL4q2V9GN4C+mqeIkM51BU2FGlPwZUOrOtYzhSg3HvUW7r3z7K949KsOuGSxUS8XsYKiDQRFj9nbs2ocYMFxk7A==
+X-Gm-Message-State: AOJu0YyUvPw0TgcE2CgyZbJmYttB7wc0mcafbT1fwsdeUI7vWOK2K502
+	tJkB5BerOKxhDG57BffIdVECefM5ACz3jeQ8ONqnFDoqDD6l5eW0q3hj2N5GgS0=
+X-Google-Smtp-Source: AGHT+IHB3JBHXp6mRDWOLskJLzBW7WW2Fz5xasNv8dUHchBogLoItvLbEMWQ+zcmtAvh6JmNLgq4Kg==
+X-Received: by 2002:a17:906:37d2:b0:a51:e157:4dca with SMTP id o18-20020a17090637d200b00a51e1574dcamr1867427ejc.0.1712651266796;
+        Tue, 09 Apr 2024 01:27:46 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id jg29-20020a170907971d00b00a518bcb41c1sm5356152ejc.126.2024.04.09.01.27.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Apr 2024 01:27:46 -0700 (PDT)
+Message-ID: <a4a9f949-ecc7-4603-8c8b-90a1e309570a@linaro.org>
+Date: Tue, 9 Apr 2024 10:27:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB7001:EE_|SEYPR03MB6880:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	mcQi3yi8vMqi+7nEg17bEc4eS5kWeUBbMD6syID1CteEiBVKh/guq9EI5oUVQbP9gLkC0kYdV+N8wlgUkz/93RFhs6zOyBGer+f87lLniMl3Y4vXYDePTC3AgrJU7q2JJF0pbGlcuX46P62T0vJxS9iqze8UOEmB+RTGjfvohF8HF1nZBB5SrOQEc70WdeczLSBeWmvEGVfD+p6SXDPEvUVaM2iInQWDfQc9IgeCINovkTosWup8QShiCyF3UEXfzvFcVQBhky5eojk96eA/D4EA8/4OGYojgckaHMI802XHpN8OKM0QIpf0/7Zby4dqxu39aLO8IaNdLGoXsmGii2vxsgVKdFiGEda+LGAtcYNgC1b2RBlRqg9YsnEnEr2d9O2lM3IAmnsgtFh9qglHApJFTrxA97mrSlr/zetj725MiJWlrrnqhITo6KSjxEJ2KzZtutifke6YiB22A+ZrdgKSVqrBfAq4NxH0u7837CYRCqDVcrqq1ZN45aaGpWcs7G8a5VE0XMQMk0oteWqbSL6hXyoKamAWyBYFLUT9dCUa2ZdvIk7gXcGZXMb9Kq3sb/mGZ7YAVq3dIboMHA7v2LiFa/o+fbO4MxO1/dv4VD0+rn+oNaVbINrtYKTDI4ut9fmFY5hbPuxP5Ro+cDWb0XHFaCrLyiKXptbwnCz3dhjXUUX1hnx3NDC/Qx1bnyEroBSnlUFwP6dXjfjnxZPAGOHD67VX3+YXh8VqFSNRV7w=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB7001.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(52116005)(376005)(366007)(1800799015)(7416005)(921011)(38350700005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?cTdRTXdCbm1BaUJ2SmZrbHFpN3E3VFpnMmFscE9mQ0doeGN2NTF0d1NQSHJI?=
- =?utf-8?B?eW81b1hVQmJNYW9KSHVCSUpNUWlPdXZVa0lUSlVMS0ordmU5TU1MZEk2T21l?=
- =?utf-8?B?b2UrSjFkSTBRZ0FZM1AwSDZyNFBWY3gxWXRDQVU0ejdGVnFrSlZMMndxVEFs?=
- =?utf-8?B?MXhVOVFqSmxjRmRZekw3K2RuMStLMkk2SGovd093NWppWEVyRS80SklnSWFn?=
- =?utf-8?B?ZWphb0dXc1JRZC9MUGFIYjRPRUFvMnhjdW55RVVsOTJiOEsveXVFb3pDVmw5?=
- =?utf-8?B?SjJVM2JObkpaeDNWeHIzRVloRUJvbFJYR0ZhSFpIWTg2dXRob04rYlY4M1Q1?=
- =?utf-8?B?eitiNFBuaWpKQ285YWpFRUZpUndnSmlCMTgxZ2MyZmdCNTlrT1hIN3N4UjZW?=
- =?utf-8?B?bU8rV2JXa2FMRzRsTDllRDNpM0MvbjFCWUdJVTIxNWlzeE5TSTdic2NnVzhx?=
- =?utf-8?B?QnJDQUxGdTl3c0liY0xZQzMwNlJxMFU2dk5IZGRjWUpsQkpjbVliTnRZZmRJ?=
- =?utf-8?B?V1FxL1BjeTJQTzgxS1JMSGovbjJjVFZxdnJFT0dDK0NsYlA4K3lmSkFUalpE?=
- =?utf-8?B?bWdOdHNOMTI0VGwvaWhDTGpDMlFGaHJuTGE0Z3BTeTlIR1M2SDRvaktJRFV6?=
- =?utf-8?B?MGFDcklyQ1J0UDdVbmVzMnk2MmI5eXZFYjZMOTFmYmY4MnRTWmYvYUl1ZjAr?=
- =?utf-8?B?THhaOTRtaVdDTWt0UEliRmQxazEyek1BbnVqY2JNaWlVK0VKS01RbjdRVWpo?=
- =?utf-8?B?OEtIM25vd3orRGd1TDNGS0paLzlGb0JyT2xEQzg5aEwrVmFrNWFDUlBDNXBN?=
- =?utf-8?B?ZnZVV1V1U0Q1ZERtM0FtVUpBMDM1b1FrT0I4dnVpVDBVM29pcU01eXlSaTkr?=
- =?utf-8?B?Ukttc0ZZMGozdkh0RUZtOHhqNU5MT1p5T2hiNTRHcjJsZ2FaMUI0M3BuNXhp?=
- =?utf-8?B?NGlxOXdOUHVGQ01LRy9PQ2g5SmlpUEhzWU9FaExLVHZ3cThDQUEvYnZVOWY5?=
- =?utf-8?B?K1RNZmgzaHluSzJ0bVROTjA5YVV6TjFSQ2RrR3Y0THpGZGFtM1p0RE5SNUt3?=
- =?utf-8?B?ZFhIdHFObG1aKzBJc0ovVmoxRVlxT0diZmY3NnRKN0V3cUFVcVh0N2I0aDc4?=
- =?utf-8?B?djNXcmpwRUQ0MXJObmZxcVZydHJ0K295dHp2eWI3dEZYOEthSm5MMmtSSWFN?=
- =?utf-8?B?ZUFjRTVQTDlJeHlTTmhxVVZpS0hGblBJRUliUUtWOU1IOWlSRHp5K2xFa2t1?=
- =?utf-8?B?SWNTZ2xpNlpvSG9TVGVGYlFZVEJXM04zYVA5azgzc0NkS1FwbDc2WmJoalh1?=
- =?utf-8?B?RXcvZW5YWjROSXFramdyTkJvQUF3L0gyTldMZjVoZGJXK1hqeFlsd2tkVENq?=
- =?utf-8?B?TVgwTWZUeFZXejlqZEVoWWNFVU9DUDdieUpwTGcxSUo3eVpraUdrTW1HZ1Ju?=
- =?utf-8?B?cjkwY2xMQ3E1UWhmNmpQNnJXWDYvaTlGTlgra2Y1Nkh4cWFoOExISDM5Z3pQ?=
- =?utf-8?B?NGY0cHJTazZzS3VrVkVuZVo3S0o0OWt3RGlkR29UNTlpQUhFakx2SFpyb3Ew?=
- =?utf-8?B?U25YTDZqbm9XYlFTSEZ0S0ZGbDNEekxQQnhOckdtT1hlaEQ2QjNtS3ZsNXk0?=
- =?utf-8?B?TElnWXRhV001MWNFaks4VTFTUmV2RnN3SFpUZXh5Q2dJWDdNSGEvYm5ocUR4?=
- =?utf-8?B?SkV1S2gzSG0yYTA1MUs5ZWxIdnB2ekVNRTRoemRTTDhjR0tmQXBYNldwSXk2?=
- =?utf-8?B?MEU2aG10U2NtNmVUZXBtSzlReEZIdEVMMjFHT0hhN1RzcGg1L1Bsckd0Kzhv?=
- =?utf-8?B?UVpzc1hrYktWS1luZllqbllYUFc4NmRVeWN4ZTNSWXhlcVFhWXFmTDZsc2dD?=
- =?utf-8?B?aTAvL1VwT3V6UnZzS0tETG9XUHBSY1RYZUh5TXNtVyt6WStxRSttUGdaQzB1?=
- =?utf-8?B?THV0M0UvdStTS0UrZnk2OGV5NForcDdQalNWaWJEb0RiVGlpOEQxV0ZiNWhF?=
- =?utf-8?B?VkIraUhBVlpFd1dBMEJqKzZZSFRuTmIva0dldWpwc01sTVV6dGh5c1dyZTZo?=
- =?utf-8?B?TWg1YjE1Q1RBakxnVVF6eGNlYmFOZ0pETkhYNGgwRnNKMUwwTHg4VDVDRkNx?=
- =?utf-8?Q?BhNErla7Wlvf1o+V2CP5tB717?=
-X-OriginatorOrg: wesion.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 209dcff2-5c3e-4c6f-90f2-08dc586ed0c7
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB7001.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2024 08:26:55.4281
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 2dc3bd76-7ac2-4780-a5b7-6c6cc6b5af9b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wcdiWu3UIL9+jzFpAp8bgnRNXmMimvMEEwVM7ATNNCoxN5/9WqEB1E0GIxpSeZwD6+BU78tOUwAPf2vgsOfTOg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB6880
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: power: supply: ltc3350-charger: Add
+ bindings
+To: Mike Looijmans <mike.looijmans@topic.nl>, linux-pm@vger.kernel.org
+Cc: Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh@kernel.org>, Sebastian Reichel <sre@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.3bc97c8f-843d-4e46-84f9-469b7ba2489d@emailsignatures365.codetwo.com>
+ <20240408064905.20298-1-mike.looijmans@topic.nl>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240408064905.20298-1-mike.looijmans@topic.nl>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-This add the bindings for the New Khadas TS050 1080x1920 5" LCD DSI panel
-designed to work with the Khadas VIM3 and VIM3L Single Board Computers.
+On 08/04/2024 08:49, Mike Looijmans wrote:
+> The LTC3350 is a backup power controller that can charge and monitor
+> a series stack of one to four supercapacitors.
+> 
+> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
+> ---
+> 
+>  .../bindings/power/supply/ltc3350.yaml        | 55 +++++++++++++++++++
 
-Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
----
- .../devicetree/bindings/display/panel/panel-simple-dsi.yaml     | 2 ++
- 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
-index f9160d7bac3ca..e194309f31b72 100644
---- a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
-@@ -36,6 +36,8 @@ properties:
-       - jdi,fhd-r63452
-         # Khadas TS050 5" 1080x1920 LCD panel
-       - khadas,ts050
-+        # Khadas NEW TS050 5" 1080x1920 LCD panel
-+      - khadas,newts050
-         # Kingdisplay KD097D04 9.7" 1536x2048 TFT LCD panel
-       - kingdisplay,kd097d04
-         # LG ACX467AKM-7 4.95" 1080×1920 LCD Panel
--- 
-2.34.1
+Missing vendor prefix, use compatible as filename.
+
+>  1 file changed, 55 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/supply/ltc3350.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/power/supply/ltc3350.yaml b/Documentation/devicetree/bindings/power/supply/ltc3350.yaml
+> new file mode 100644
+> index 000000000000..607a62fd25ba
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/supply/ltc3350.yaml
+> @@ -0,0 +1,55 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright (C) 2024 Topic Embedded Products
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/supply/ltc3350.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Linear Technology (Analog Devices) LTC3350 Supercap Charger
+> +
+> +maintainers:
+> +  - Mike Looijmans <mike.looijmans@topic.nl>
+> +
+> +description: |
+> +  The LTC3350 is a  High Current Supercapacitor Backup Controller and System
+
+Just one space after 'a'.
+
+> +  Monitor.
+> +  Specifications about the charger can be found at:
+> +    https://www.analog.com/en/products/ltc3350.html
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - lltc,ltc3350
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: I2C address of the charger.
+
+Drop description, it is obvious.
+
+> +
+> +  lltc,rsnsc-micro-ohms:
+> +    description: Capacitor charger sense resistor in microohm.
+> +    minimum: 1000
+> +
+> +  lltc,rsnsi-micro-ohms:
+> +    description: Input current sense resistor in microohm.
+> +    minimum: 1000
+
+Looks like it is shunt-resistor-micro-ohms. Unless it is something
+different?
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - lltc,rsnsc-micro-ohms
+> +  - lltc,rsnsi-micro-ohms
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      charger: battery-charger@9 {
+> +              compatible = "lltc,ltc3350";
+
+Messed indentation. Keep it consistent.
+
+Best regards,
+Krzysztof
 
 
