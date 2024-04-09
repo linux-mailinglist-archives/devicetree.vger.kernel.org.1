@@ -1,121 +1,162 @@
-Return-Path: <devicetree+bounces-57550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5991D89DDB6
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 17:04:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E65889DE3C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 17:13:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AFC01C21464
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 15:04:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF08C1C237E0
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 15:13:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 060911304B4;
-	Tue,  9 Apr 2024 15:04:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B85013C809;
+	Tue,  9 Apr 2024 15:07:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ibExW2lO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KgWguIoP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1905C12FB38
-	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 15:04:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D8EE13C800;
+	Tue,  9 Apr 2024 15:07:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712675061; cv=none; b=Lx2l00zu8SpdhAWQXde6nc/PEMDuP7lLfrvSJCj+x4KT9OfkQchWFseBZY0rc2hDgyBGpbpBTkO+KDZt00+G2QK4u3MF+YmD1fgx0lqh1zgOQfLGF2l3IetrQjKfQynth4KvfwuL60Xm7bWZhrnKXfdKTMVwdJldAgLYYlZDgJ8=
+	t=1712675232; cv=none; b=o56TlAcubow9b0cWHWvpf6O2f540awmFz5v3Oy3wsKuzNcMm6RGdOnl3W5Vwro0QE1iVjR1+2xljGLrTws7bJRNeM8A92uttGCkxBwDC9dm/99hiUQFVa1HylyYZ9j+ox6Kd4XyPYzJuMyQCF8xoeooohEUAQ9g4piFaWtNXYB4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712675061; c=relaxed/simple;
-	bh=ssen+WDRW3hqF3y3gAI7KjfM6Zb3SAVS5pRaVtu5ya8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=I/kYYCRznaEpQWvsKMBe3VPyY9r5myE421lyrfhAG2nEEmOmhkxGa+8q/cMEOOGjnujj5UQSCCG1NEZu4SwXOYnn8/x7UX6+ONgN0Q2lqFm+FXWNZcR8Z4993VWNr8A/9sEELBC5JR0cphRDzrHdPZHOF2L+8ZF0AdGKbj+2fvY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ibExW2lO; arc=none smtp.client-ip=209.85.208.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2d858501412so73080361fa.0
-        for <devicetree@vger.kernel.org>; Tue, 09 Apr 2024 08:04:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712675058; x=1713279858; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3YM+s20cdEdse7t7bN3iKiAdYaiSxxuKdZKKsCgmaYw=;
-        b=ibExW2lOTRLTYJMF5CjRfqUXmoTJKkGQ10QXFP6JYNALJP5NdP8ZnajpNpEZXMj7HN
-         fhVrEAe5Jyr02ARfUIKLeqmBM03/wWCAt3b41O4SK5owlMmOdyDoOP+zovzC0VelOFsR
-         GL66zVe+G5NbXn3qVY1F8Hdq6JQD7pOBxtw5/k/U91ULHutRbEiltMBQDvP7Xp5nOnod
-         CH+XWbCR32sJS6xUgBD6o1tSHdhTBcT9sUMZJnTNavp2wCurVRsFCLTU1+q08qeDVVT1
-         a996YyzSCjcFsRKu7d2SJM6DhXFTETCztVDQpVqQfbh+sooUK3/8meEJOF9QN8tdx49z
-         BotA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712675058; x=1713279858;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3YM+s20cdEdse7t7bN3iKiAdYaiSxxuKdZKKsCgmaYw=;
-        b=HytzvRGEvqTQq6M4jaufQaSdvtArKr51wCY1+ELLzNn9SnDRf5RYgBBM/Wo7OGhU1x
-         LoTIT5M5Omm1NWkuxTnnlZS7kU+W7eC1WSS+jLhp2hQS38IrjP9OWCFqu23X2IjZni1+
-         qlzqE7u0rhd7f1q3bgTvfE+uW8lH/kaCzYP+IPBCJPfkltVkO5k4PIMVKl+uMYY/LPf9
-         9fKWKT0mpyygw5gC1eLPXZSR1lHO1o+Kk6x//gcS3l9kE4vVmFbbzbX/4mY6MQVWhjKy
-         HU55CE/BqeNtK8IUmFSUaQkiDGmOLuVKPHvc1gwqnw1RrdAU7H9sS75eNh5mcxMQbSPt
-         jpKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXTL+3sM7ZBQB2YAIyUFzpEqYLU5fOVqq7q5YerxOSQZB0xEiTjB2iw315h44cajOHrKZ7HIf+1wwVGSq0Mab7E3cOsBg+gR0kOEg==
-X-Gm-Message-State: AOJu0YzjduVhpoBIbSOeILh5Uwp6cECQuWeORWEYFB7d2RMvxhYjPKJS
-	HxGAhElBq3As4w9gJ6J/H8c+c52xUkHlSpG7rkFq1XDmXbxcccB5JVIHhCtlLJ0=
-X-Google-Smtp-Source: AGHT+IGoHv754pdfAq6TjWUEj3Tebb540y8BjG8KDvn0k1jGyKTq4jOdTq4eg0QQygBFoeLLrn8fzA==
-X-Received: by 2002:a2e:7d12:0:b0:2d8:7200:38ff with SMTP id y18-20020a2e7d12000000b002d8720038ffmr64570ljc.24.1712675058205;
-        Tue, 09 Apr 2024 08:04:18 -0700 (PDT)
-Received: from [172.30.205.99] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id j14-20020a2e850e000000b002d88d978484sm841131lji.132.2024.04.09.08.04.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Apr 2024 08:04:17 -0700 (PDT)
-Message-ID: <a8ea0f53-40c0-4fc5-94fc-a88f8e0319ac@linaro.org>
-Date: Tue, 9 Apr 2024 17:04:14 +0200
+	s=arc-20240116; t=1712675232; c=relaxed/simple;
+	bh=UI4DdX3zkv0IR14xJ19mTtofNIARX96E6JHAMnPik3k=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=gbRH+TZuF4lThttqGqReHgVb3ybVs14qf38Mew8Fp7u0GCyWfzHK1xi8ks+itKasCVi65jx0rDBn9Ru1RPEaZLKMwYLj/sWyLRK3LCBMoHNfzVBdHqSl8QRkPjtZTfIW1IuXdh1Rvn+3YADolPy3CZZBFkyC8LcS4TAGm0zmXRM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KgWguIoP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4E27C433C7;
+	Tue,  9 Apr 2024 15:07:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712675232;
+	bh=UI4DdX3zkv0IR14xJ19mTtofNIARX96E6JHAMnPik3k=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=KgWguIoPQ/tksjX/+qv2DmE54YmB689iMFlJROavHIpDMgNQU/MpjnTI1ftpfCIZW
+	 bRC4lN6q6nZEQVyeNWFqtRUZ18kZPPOKdTchIFEBgVq+cyHHzWPNPXpxBvlbSEpE/S
+	 qTpK5EF/f9l4l+mRShmJCCFahgIFPfENT8me09wfqDu9ayw8A2iQg7zqVlAN6/3HVj
+	 HHhKjBJk/EhZj5LPVwecQBjRfgzzMjC3XMaCT9cw+omBLxVfSH4G8KzZuFoi/EVSlb
+	 mrpFuFj+lTqUKvp+7l+Hte00bBuYv1oUvWHWFNknvqCYIeFHITXEYpxMVnkyYYOtPn
+	 OXNr54vx9UX0Q==
+Date: Tue, 9 Apr 2024 10:07:09 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, johan+linaro@kernel.org,
+	bmasney@redhat.com, djakov@kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	vireshk@kernel.org, quic_vbadigan@quicinc.com,
+	quic_skananth@quicinc.com, quic_nitegupt@quicinc.com,
+	quic_parass@quicinc.com, krzysztof.kozlowski@linaro.org
+Subject: Re: [PATCH v10 5/6] PCI: Bring the PCIe speed to MBps logic to new
+ pcie_link_speed_to_mbps()
+Message-ID: <20240409150709.GA2076210@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] soc: qcom: smem: Add pcode/fcode getters
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
- Neil Armstrong <neil.armstrong@linaro.org>
-References: <20240405-topic-smem_speedbin-v1-0-ce2b864251b1@linaro.org>
- <20240405-topic-smem_speedbin-v1-2-ce2b864251b1@linaro.org>
- <zc5u7ixaser6ekl3sltzxccstu63tpydxybquxz5hcasj4cmfo@csjwfifugeod>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <zc5u7ixaser6ekl3sltzxccstu63tpydxybquxz5hcasj4cmfo@csjwfifugeod>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240409-opp_support-v10-5-1956e6be343f@quicinc.com>
 
-
-
-On 4/6/24 04:21, Dmitry Baryshkov wrote:
-> On Fri, Apr 05, 2024 at 10:41:30AM +0200, Konrad Dybcio wrote:
->> Introduce getters for SoC product and feature codes and export them.
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
-
-[...]
-
-
->> +	/* Ensure the value makes sense */
->> +	if (raw_code >= SOCINFO_FC_INT_RESERVE)
->> +		raw_code = SOCINFO_FC_UNKNOWN;
+On Tue, Apr 09, 2024 at 03:43:23PM +0530, Krishna chaitanya chundru wrote:
+> Bring the switch case in pcie_link_speed_mbps() to new function to
+> the header file so that it can be used in other places like
+> in controller driver.
 > 
-> This looks like a c&p from the previous function. Should we be comparing
-> the raw_code with a SOCINFO_PC_ constant?
+> Suggested-by: Bjorn Helgaas <bhelgaas@google.com>
 
-Looks like!
+Unnecessary.  Not every code review comment needs to be acknowledged
+in the commit log :)
 
-Konrad
+> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
+Acked-by: Bjorn Helgaas <bhelgaas@google.com>
+
+> ---
+>  drivers/pci/pci.c | 19 +------------------
+>  drivers/pci/pci.h | 22 ++++++++++++++++++++++
+>  2 files changed, 23 insertions(+), 18 deletions(-)
+> 
+> diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
+> index e5f243dd4288..40487b86a75e 100644
+> --- a/drivers/pci/pci.c
+> +++ b/drivers/pci/pci.c
+> @@ -5922,24 +5922,7 @@ int pcie_link_speed_mbps(struct pci_dev *pdev)
+>  	if (err)
+>  		return err;
+>  
+> -	switch (to_pcie_link_speed(lnksta)) {
+> -	case PCIE_SPEED_2_5GT:
+> -		return 2500;
+> -	case PCIE_SPEED_5_0GT:
+> -		return 5000;
+> -	case PCIE_SPEED_8_0GT:
+> -		return 8000;
+> -	case PCIE_SPEED_16_0GT:
+> -		return 16000;
+> -	case PCIE_SPEED_32_0GT:
+> -		return 32000;
+> -	case PCIE_SPEED_64_0GT:
+> -		return 64000;
+> -	default:
+> -		break;
+> -	}
+> -
+> -	return -EINVAL;
+> +	return pcie_link_speed_to_mbps(to_pcie_link_speed(lnksta));
+>  }
+>  EXPORT_SYMBOL(pcie_link_speed_mbps);
+>  
+> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
+> index 17fed1846847..4de10087523e 100644
+> --- a/drivers/pci/pci.h
+> +++ b/drivers/pci/pci.h
+> @@ -290,6 +290,28 @@ void pci_bus_put(struct pci_bus *bus);
+>  	 (speed) == PCIE_SPEED_2_5GT  ?  2500*8/10 : \
+>  	 0)
+>  
+> +static inline int pcie_link_speed_to_mbps(enum pci_bus_speed speed)
+> +{
+> +	switch (speed) {
+> +	case PCIE_SPEED_2_5GT:
+> +		return 2500;
+> +	case PCIE_SPEED_5_0GT:
+> +		return 5000;
+> +	case PCIE_SPEED_8_0GT:
+> +		return 8000;
+> +	case PCIE_SPEED_16_0GT:
+> +		return 16000;
+> +	case PCIE_SPEED_32_0GT:
+> +		return 32000;
+> +	case PCIE_SPEED_64_0GT:
+> +		return 64000;
+> +	default:
+> +		break;
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+> +
+>  const char *pci_speed_string(enum pci_bus_speed speed);
+>  enum pci_bus_speed pcie_get_speed_cap(struct pci_dev *dev);
+>  enum pcie_link_width pcie_get_width_cap(struct pci_dev *dev);
+> 
+> -- 
+> 2.42.0
+> 
 
