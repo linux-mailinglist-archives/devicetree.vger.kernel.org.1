@@ -1,122 +1,199 @@
-Return-Path: <devicetree+bounces-57605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCB7D89E0D6
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 18:53:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DD9389E0B6
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 18:45:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 092F71C227A8
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 16:53:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 34E41B23F35
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 16:44:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0CF9153809;
-	Tue,  9 Apr 2024 16:53:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 139D3153594;
+	Tue,  9 Apr 2024 16:44:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b="DpYmHGPr"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="aWV4nS4q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mta-64-225.siemens.flowmailer.net (mta-64-225.siemens.flowmailer.net [185.136.64.225])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11DB013A267
-	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 16:53:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.64.225
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E467612FB38
+	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 16:44:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712681624; cv=none; b=B7E9DsregRRaeH33M1DCHLc5jgdNQ4orhO9TiO9p0UOSPNSDAweR0Pp12r1MFJBfEVD2ekqvn+dR94KGS/7W7E8YvoxrNAyt2sszrd12BRtYhKeZRc3o16YrmGUVRsKvFEwwLoDoKFL3wnmmtMAeaWsVpCYUml7WjKT/3p4sCps=
+	t=1712681082; cv=none; b=BSSRWLTow6cqmNG6VxZaGhLafEnZP6TfnEfj0ojJ1FobHx+FH8bt/0NCa4vKxXuBgqD9kusqZ37UyFxrlM7aah0MsAykrI4cKvY91rbNk7XLto6mxUdY0jCpex7LV7c0WqnKl3C/GbzBXOGa2aJNLwgU/wrpI1754BHddwWXiX8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712681624; c=relaxed/simple;
-	bh=jjqoTvxbB3CmcDxdxeGRXL5YHdukuMwZ9jPJ9dBCqas=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GyxuMjLFVubesnglMLueyL6wU56tYgM5oCWBYxpuVj2c1yF7utBcaZrJGhusFe4NmTuWQBZR50boFf8vHkxLk6lJlqlFZ/uMk902ahP2EFDOMseWoa4BSLx1q9bPI8XXAcgIannzp2ySv4ml5f+i5tt+pqrIHWhG1ggh8PjCxHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b=DpYmHGPr; arc=none smtp.client-ip=185.136.64.225
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
-Received: by mta-64-225.siemens.flowmailer.net with ESMTPSA id 20240409164329d6a96d92e886871ff4
-        for <devicetree@vger.kernel.org>;
-        Tue, 09 Apr 2024 18:43:29 +0200
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
- d=siemens.com; i=diogo.ivo@siemens.com;
- h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc;
- bh=xw+poDxsql1XeHyN2qonEufALyjEJo1ofchmylGmT0M=;
- b=DpYmHGPrVi7cijL645BA9nR6ZxvkNkLkoBNxynJFRCxskkl9nFEakgyOZrt/sODqf+6837
- a73TmY8xe5wQak4/hTSs/g2z067MkvC9B+h9TGqVrw8UzYJeh1p5vNZ2O/u8gEkW4J/NHabm
- PeiQ7jk4f8jvC9u0CzLLeEu+d2H04=;
-From: Diogo Ivo <diogo.ivo@siemens.com>
-To: nm@ti.com,
-	vigneshr@ti.com,
-	kristo@kernel.org,
-	robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org
-Cc: Jan Kiszka <jan.kiszka@siemens.com>,
-	diogo.ivo@siemens.com
-Subject: [PATCH] arm64: dts: ti: iot2050: Add icssg-prueth nodes for PG1 devices
-Date: Tue,  9 Apr 2024 17:43:14 +0100
-Message-ID: <20240409164314.157602-1-diogo.ivo@siemens.com>
+	s=arc-20240116; t=1712681082; c=relaxed/simple;
+	bh=JWUdqyVAIsWLcoctxkkYi4e62PvFbfqGshP17Q8rHNM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kbJ3oMd4xAiW+qIwGwPrQ4ZKLUMhFxTlykgUDT3tuRLaLVhXWbVaRuAH1/ynL4XX2ZlQfRVZa392ZSbwbCxcyzzVH0GPzZuxj4hY2oNBKsZqmrjG8RAbJQLqMAxtN3Zr7XuOChq8muLuBLbbE2o2Dra0xspgJP0ajAYwswQ8Q0M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=aWV4nS4q; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2d715638540so69702631fa.3
+        for <devicetree@vger.kernel.org>; Tue, 09 Apr 2024 09:44:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712681078; x=1713285878; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CjfeLLs5/QHmTieADjEMzvSqZ5segVSHp4sf0PYGlic=;
+        b=aWV4nS4qSOFuCVuTvjSVOwhuSp/m7PypqRI31ulbfjk/qaEw4c0WmW9HopD94/tdlN
+         PGD8dWeKBKyI4OEUdAvmM+7p31/y5AaGTr/Ey1oRsK9k25IVgSq8ZlLx7jBIOlx7uWMw
+         wg+qv/UWHuC90g50TliFgrXzIKJ10gjhgZMpO+9qcLhdWZe6ozSa2jx3EF9jEhJMbOks
+         cOa7YABRnyCQ/3LTXr5phAQiVeiWWVmSsyt9tNMjCdLY5KuQqghY32NFPtfarl9qK04C
+         gcSERegQxzhzvNnUl5gjtRKbfdcC84stBU+L158eI0Ieycxaa2CnKL+glbEmnOQShO74
+         eJcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712681078; x=1713285878;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CjfeLLs5/QHmTieADjEMzvSqZ5segVSHp4sf0PYGlic=;
+        b=NddqWvvGKEmNofOmzzQmPnUHS+qq8gjpSsziuNDJEpXsthgs7HUE9cFwDauL8ug57D
+         Qy/4Zq1jZg5u1f7H3ZiMXVhCH3VwaZpezHCzOGbic3kVnhm1mtwPY6OcVCoATaz0dKNG
+         lRtjozCQkf5tvir8NBSjWuMls+0er6K9VvXnfQrRjWHPTxx9l3qwmWBkSXhAHHvFNk8Z
+         /c59ZEMEByuJ/4j2pQ4Ym3ZOmZaRBWjhjLgh/4IwCn6+ygSvUg8r5rtQdWn/p1znIjdw
+         p1ruK8HWbCSPZk6OXBEcUO37gsWqw44H8QcTCW4EY7S79qnhQG8GgxseoQm/4qtCqVov
+         eIvw==
+X-Forwarded-Encrypted: i=1; AJvYcCXko8OQB80CiK43EoHoHnHRkV1hcjZnLZRmOM4KWKmceBLJNKcvbe+Q6ri64AF4H8AXxQHQXKwgybTw6z9oc+I8u5tcftN73s/2cg==
+X-Gm-Message-State: AOJu0YzsvENZkeHaeQJgRsCxKdaQpiRtQmVVZdGTNIvlGPteD1XO+ICX
+	O/rLtfpLwx3RczWQqadnQZxvU/NprwoN0qrJNynuZZseAGB0axiOo1c7I2E8QsxL2ngMk3Kau0R
+	tvuNT7Hbe9b2tMenv5t4upCHHlMYQ+kZUS0jViA==
+X-Google-Smtp-Source: AGHT+IHDfyAKHWwlD9X/VzdBRfEeR4pd71e1VTx+ltpPqyBKd04yyyXe9X8P7a68xl0iT/2ZbRzolEtgQkxwaWEId6I=
+X-Received: by 2002:a2e:8013:0:b0:2d8:3e60:b9c9 with SMTP id
+ j19-20020a2e8013000000b002d83e60b9c9mr209693ljg.33.1712681078050; Tue, 09 Apr
+ 2024 09:44:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Flowmailer-Platform: Siemens
-Feedback-ID: 519:519-1320519:519-21489:flowmailer
+References: <cover.1712585500.git.marcelo.schmitt@analog.com>
+ <1d95d7d023dad69b894a2d0e7b0bad9d569ae382.1712585500.git.marcelo.schmitt@analog.com>
+ <CAMknhBEMDg3YF5pvoKJ-6y0Y5OJpmBthWfogCjy90B=F84SvzA@mail.gmail.com> <ZhVoTi2amNTOJ4eS@debian-BULLSEYE-live-builder-AMD64>
+In-Reply-To: <ZhVoTi2amNTOJ4eS@debian-BULLSEYE-live-builder-AMD64>
+From: David Lechner <dlechner@baylibre.com>
+Date: Tue, 9 Apr 2024 11:44:26 -0500
+Message-ID: <CAMknhBGVkv9sP0pjmmdFngKmGVu+G4Y3MUDG199az1wOUtwasw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] iio: adc: Add support for AD4000
+To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, lars@metafoo.de, 
+	Michael.Hennerich@analog.com, jic23@kernel.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Jan Kiszka <jan.kiszka@siemens.com>
+On Tue, Apr 9, 2024 at 11:09=E2=80=AFAM Marcelo Schmitt
+<marcelo.schmitt1@gmail.com> wrote:
+>
+> On 04/08, David Lechner wrote:
+> > On Mon, Apr 8, 2024 at 9:32=E2=80=AFAM Marcelo Schmitt
+> > <marcelo.schmitt@analog.com> wrote:
+> > >
 
-Add the required nodes to enable ICSSG SR1.0 based prueth networking.
+...
 
-Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-Signed-off-by: Diogo Ivo <diogo.ivo@siemens.com>
----
- .../dts/ti/k3-am65-iot2050-common-pg1.dtsi    | 32 ++++++++++++++++---
- 1 file changed, 28 insertions(+), 4 deletions(-)
+> >
+> > I also still have doubts about using IIO_BE and 8-bit xfers when it
+> > comes to adding support later to achieve max sample rate with a SPI
+> > offload. For example to get 2MSPS with an 18-bit chip, it will require
+> > an approx 33% faster SPI clock than the actual slowest clock possible
+> > because it will have to read 6 extra bits per sample. I didn't check
+> > the specs, but this may not even be physically possible without
+> > exceeding the datasheet max SPI clock rate. Also errors could be
+> > reduced if we could actually use the slowest allowable SPI clock rate.
+> > Furthermore, the offload hardware would have to be capable of adding
+> > an extra byte per sample for 18 and 20-bit chips when piping the data
+> > to DMA in order to get the 32-bit alignment in the buffer required by
+> > IIO scan_type and the natural alignment requirements of IIO buffers in
+> > general.
+>
+> Maybe I should already implement support for reading with SPI offload
+> rather than doing it after this set is merged?
+> So we can test what happens at faster sample rates before we commit to a =
+solution.
+>
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi
-index c50a585dd638..ef7897763ef8 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi
-@@ -43,9 +43,33 @@ &tx_pru2_1 {
- };
- 
- &icssg0_eth {
--	status = "disabled";
--};
-+	compatible = "ti,am654-sr1-icssg-prueth";
- 
--&icssg0_mdio {
--	status = "disabled";
-+	ti,prus = <&pru0_0>, <&rtu0_0>, <&pru0_1>, <&rtu0_1>;
-+	firmware-name = "ti-pruss/am65x-pru0-prueth-fw.elf",
-+			"ti-pruss/am65x-rtu0-prueth-fw.elf",
-+			"ti-pruss/am65x-pru1-prueth-fw.elf",
-+			"ti-pruss/am65x-rtu1-prueth-fw.elf";
-+
-+	ti,pruss-gp-mux-sel = <2>,      /* MII mode */
-+			      <2>,
-+			      <2>,      /* MII mode */
-+			      <2>;
-+
-+	dmas = <&main_udmap 0xc100>, /* egress slice 0 */
-+	       <&main_udmap 0xc101>, /* egress slice 0 */
-+	       <&main_udmap 0xc102>, /* egress slice 0 */
-+	       <&main_udmap 0xc103>, /* egress slice 0 */
-+	       <&main_udmap 0xc104>, /* egress slice 1 */
-+	       <&main_udmap 0xc105>, /* egress slice 1 */
-+	       <&main_udmap 0xc106>, /* egress slice 1 */
-+	       <&main_udmap 0xc107>, /* egress slice 1 */
-+	       <&main_udmap 0x4100>, /* ingress slice 0 */
-+	       <&main_udmap 0x4101>, /* ingress slice 1 */
-+	       <&main_udmap 0x4102>, /* mgmnt rsp slice 0 */
-+	       <&main_udmap 0x4103>; /* mgmnt rsp slice 1 */
-+	dma-names = "tx0-0", "tx0-1", "tx0-2", "tx0-3",
-+		    "tx1-0", "tx1-1", "tx1-2", "tx1-3",
-+		    "rx0", "rx1",
-+		    "rxmgm0", "rxmgm1";
- };
--- 
-2.44.0
+Yes, that sounds like a wise thing to do.
 
+>
+> >
+> > > +               } data;
+> > > +               s64 timestamp __aligned(8);
+> > > +       } scan;
+> > > +       __be16 tx_buf __aligned(IIO_DMA_MINALIGN);
+> > > +       __be16 rx_buf;
+> > > +};
+> >
+> > scan.data is used as SPI rx_buf so __aligned(IIO_DMA_MINALIGN); needs
+> > to be moved to the scan field.
+>
+> I have already tried it. Maybe I did something wrong besides buffer align=
+ment
+> at that time. Will give it another try.
+
+This is the alignment for DMA cache coherency. So it should not have
+any affect on the actual data read, only performance.
+
+
+> > > +static void ad4000_config(struct ad4000_state *st)
+> > > +{
+> > > +       unsigned int reg_val;
+> > > +       int ret;
+> > > +
+> > > +       reg_val =3D FIELD_PREP(AD4000_TURBO, 1);
+> >
+> > Since the driver in it's current state can get anywhere near the max
+> > sample rate of ~1MSPS, I don't think it makes sense to enable turbo at
+> > this point.
+> >
+>
+> This is just enabling turbo at start up. If not enabling turbo during pro=
+be,
+> we would want(need?) to provide some interface for that, which might not =
+be
+> much desired.
+>
+
+TURBO is only needed to achieve the max sample rate of 500k/1M/2MSPS
+on the various chips by skipping powering down some circuitry between
+samples. We can't get anywhere close to that in Linux without some
+sort of SPI offloading. So, for now, we might as well leave it
+disabled and save some power.
+
+
+> > > +
+> > > +       st->pin_gain =3D AD4000_1_GAIN;
+> > > +       if (device_property_present(&spi->dev, "adi,gain-milli")) {
+> > > +               u32 val;
+> >
+> > Should it be an error if adi,gain-milli is set on non-adaq chips?
+>
+> Maybe. We should not change the scale if it's a chip that don't have the
+> amplifier in front of the ADC. I think the best handling would be to just
+> ignore adi,gain-milli if it's not an ADAQ device. Maybe better add a DT
+> constraint,
+>   - if:
+>       properties:
+>         compatible:
+>           contains:
+>             enum:
+>               - adi,adaq4001
+>               - adi,adaq4003
+>     then:
+>       properties:
+>         adi,gain-milli: false
+> ?
+
+I think this is missing a not:, but otherwise yes this should be in
+the DT bindings.
+
+Even with that though, I would still be helpful to readers of the
+driver to at least have a comment here pointing out that this property
+and related gain scaling only applies to ADAQ chips.
 
