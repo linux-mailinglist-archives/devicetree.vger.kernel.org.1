@@ -1,183 +1,204 @@
-Return-Path: <devicetree+bounces-57352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16D6689D3D6
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 10:11:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9D4D89D3FC
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 10:17:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BACAD28456D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 08:11:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED4981C226CA
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 08:17:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F22207E0FF;
-	Tue,  9 Apr 2024 08:11:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 144DC7E573;
+	Tue,  9 Apr 2024 08:16:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hM2HZjsO"
+	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="Bn8KX+z7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from HK2PR02CU002.outbound.protection.outlook.com (mail-eastasiaazon11020002.outbound.protection.outlook.com [52.101.128.2])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17D1869DF4;
-	Tue,  9 Apr 2024 08:11:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712650274; cv=none; b=BXWnyPBAYKg8reZjWlTXX6XXpnh4xlIPHepnWbYAuwaki8BENSRV/QOBm2y0zx+iPhjBqwD/CxCLfF0v5PPcVyycktGssMl1KFyzxbRIAAR24KCEkRzZ1iv10kF4i3D8M/BoL7bri8zASS5nNryiftkqrHy4PINEILRDYDjQQ1Q=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712650274; c=relaxed/simple;
-	bh=mpZ9WvBxBftWU2nvlxYc6ybVCBhBaZGYOJfzFuCKWdM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=itYWn23ozpv4feBEQFjTfAoDsXI8cQvD9JP6GaXfvM6Yiul2v2+j8Ff3wCbg9x8TffVi/8+g6+b2z8FGKTtgqefX692lXs7sEbY8Oo2B03V+LORtNkZkblfe4/AZ/7Oh8lX4BtWHsREOaQDEBI5VF2KLM9yvtBy/vXxHR+IinVw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hM2HZjsO; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-516d2b9cd69so4630753e87.2;
-        Tue, 09 Apr 2024 01:11:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712650271; x=1713255071; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=297Emwb2i0jClNV8FtJNZax66Kj4bzhkdODvVgQa0x0=;
-        b=hM2HZjsOySFvE34mJlCU8eyspqiQzqd+PNxuwOI7zCscAPwBNE91/OAYIrKcELPnRY
-         2UCiWEEJve5QEnKJqhfGv4/CGU0DzQ2ex6dlvYgfawJpd3RbRLATz9SidNSSHAFDeF+V
-         dGYS2W9cVR2i3tdfHaoaTHqcCTbvZaBBuwEk2f20ww5MJXoEH838EdZwSwFc/dzxKBDb
-         Jov8G4bqRO5bQrHhKbmAsY419Txa+r7chk7qCgmgJX4RROU6TRJDo8brQZE7WLv7sPLr
-         5CaCwIv4LLcWZIyPw5I1VZMLmVhKiRkrCY90lMYcqJtW0Ms0UJQp1YW/gmVuqDowTzKq
-         m8Jw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712650271; x=1713255071;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=297Emwb2i0jClNV8FtJNZax66Kj4bzhkdODvVgQa0x0=;
-        b=Gn28kW61KXBicmNKas8f5jeQZblOnt7gDrmVfQCgAkjxT+s9mFDV/lHau3T6wQHEid
-         zWzYA+t7/sB9Ze1wH9ma7nAfTjkAk+9GHHXwfDftNtD4dmzZRTWSi3ejmGdUWhoZ6Qnb
-         xJbeyKVC/jP56gHS6OSwne6f2lL/nYlGlrExrfcB8yuOmid1eOOrGYvzA7QB8bIOM04w
-         fDm99W4RkShaMBSwhY2q1+8vKpxKcIMOTzKwik7wXm6cJJM6rSXT3hdcIUx68ToUeixi
-         LLPyB57yE7Q1N6dEwIhsl4OXvW/64Ny9dADHUF7IeKZ69a8b6feuQYt5VTG/LaAaTOi5
-         OlNw==
-X-Forwarded-Encrypted: i=1; AJvYcCUrw1l1IK9lhg5TOPSNG9113bBTtx4cPv+Sq+xZA/GTx9w28JdGXjCmqKL4LizjyIDLeTd3XnMymVTDWP013tz1ryXYSEKD/J84xTN1UrVcZWJ4gf+VtsT/ERiGUuMrXwEKfS7SYL63K10RPKd/HJjmyrpT3W49mS+NmQlBOcS3hbQ2NA==
-X-Gm-Message-State: AOJu0Yw7bD9wIGrjipYMftZXo6WcU/uAghTYeIed1EZcn9cLN1ZDLI/W
-	Xw1wfCDASRlA4qxaZVoxUsP/zRTzW3y5QFrOn60I+Jk+M0xB1DndxDMSwQ9NDShgkg==
-X-Google-Smtp-Source: AGHT+IHQocxne5E8JOSSq+Hfi93thAi+YTnQQjQ+sc9yYHH5ggWVu3E+hrTwyp3gx8SwetYpZNSARw==
-X-Received: by 2002:ac2:42c9:0:b0:516:d538:35a4 with SMTP id n9-20020ac242c9000000b00516d53835a4mr7448893lfl.7.1712650270754;
-        Tue, 09 Apr 2024 01:11:10 -0700 (PDT)
-Received: from [10.76.84.174] ([5.2.194.157])
-        by smtp.gmail.com with ESMTPSA id s17-20020a195e11000000b00515d55b66acsm1469486lfb.64.2024.04.09.01.11.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Apr 2024 01:11:10 -0700 (PDT)
-Message-ID: <47175ff9-8b05-4b6a-8689-a3d0722d7571@gmail.com>
-Date: Tue, 9 Apr 2024 11:10:57 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EB387CF17;
+	Tue,  9 Apr 2024 08:15:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.128.2
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712650562; cv=fail; b=bxBukVA0YIzop7UR9sBHn1lJDju99pjwI3sSlosLo4nw+fOHhlod69id8woA8ll9d84Hy3jGSFge8SbuMDvh35y7jYChNIwLe0VAJjp5+dgISG9SkfzuFZghbLR3DNDH3sPEmmmb5jgtMhA8ANeaxfxtisr2IMol9v8QHYmp1j4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712650562; c=relaxed/simple;
+	bh=hMkDl+UvqZuSqUYNjC8sq9hSeCgCSG+Nx/QWvXx6RDY=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=eTVyp4W8OJ21ikeE9ki8Epxjgt+BTs27h3ZMGJF6qb3z+TyOMUGN2vJrtozNW8r1Mc4FVtnhLsxrcVHHOf9GnHLsXMZdV4U+txQ1zKt+RzosfX8WvS1nXLhOAXl1Vsk+OqeME1EpCHutItqO/0WjhZ2b/QBMxFS21nF9RDzXvvA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=Bn8KX+z7; arc=fail smtp.client-ip=52.101.128.2
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bBXT2nMTK4Mw4qxsWOtPkL+wydpKyPb29w9udHqiWn5LHWO1LfZsYFl0bT3tGg282ab1aAgc+Cg5rDxB9hx0vMd5WnH+89O3HGhqG9/E0WGGckVcZE+mBwBY2Rs92f0W/hFJ/z/jilgtNWR3IkM+QE8MKBSJrTCfEwhPjB/RCYxzivK96oPB4rVX6+mbjGpFQsB2rt5tHGkex690oerkSwylfjmkylYajhPrZmSO6gwHDzeLD+kZPWq71fgkheIDHeOZHh3ic3XrxXZV3DtYdE5AAoonmbUQf2bMzLLVgldRi0vDC9sL6Rh+nC9eGqwqqWKrT2HNMt+CS7N56pHdww==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ukNaMHR15lWIyUJBrhy5LsSuB4h5zjuaeaY3gONE7t4=;
+ b=KIhXX6HijlaQjzUrwGF/6IBjE4cq3eaFNHp0WmW2pZYJbRKfc4S2WfGlz4Ce7FXFIKBM8LbjWdKN/t19Oivl/Zhz06V7Q8MeUIQppwe08Dfw1jmI92W+19lKSDgTaZRiX8o4VBJjp1mIr/koazL5JMyO5cCpnLzWntJGiL1GI2NCD/VZ/9pJhEo457O/fjsnBp6x1GXjNMYp7mQDPmc8N7+BOqARum3PHjSwqIpJjOmEp1hdiNhNemBhtNgEXnqEZPcVRED+bmub3MVuH687XD/lzfpSQe/U4sOdZD50zrdXfB75/v5f5kEpChgjUSJGukQUGRruwBdBaFZYhQ3OQQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ukNaMHR15lWIyUJBrhy5LsSuB4h5zjuaeaY3gONE7t4=;
+ b=Bn8KX+z7Ir9dx06e56IjjvmBefYJnb0ngPpQCqkA+PMrMlsJTQvCq4wWesvXx9WRlHGYo4wug0iVXmjs8Mc1cZ2+G7RM1qeO/Wzst1Ewn4vie1ad4SYawm8sbOxRVUIKG23k+oIkw1cx2DqjN1bcQqknkInb+tLf9/NO+//ObkpkRPl4CsjuAApKcpO/3t8Cc+CS7bmnXoRfLXj++shLZSNBJSWJdzz4+uu4mB8aA1d3I6cyv7QYuONQg1h5NCSJb9jSKL1eDbT+eNTjVPFaW12a2U+ZGKGKAzIFO4HDQ5793v2EsqlJXOD9XkW0jj2+GhJLdwzywH5jYBhNWx7OyA==
+Received: from PUZPR03MB6888.apcprd03.prod.outlook.com (2603:1096:301:100::7)
+ by SEZPR03MB8966.apcprd03.prod.outlook.com (2603:1096:101:248::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Tue, 9 Apr
+ 2024 08:15:56 +0000
+Received: from PUZPR03MB6888.apcprd03.prod.outlook.com
+ ([fe80::ecbf:40a0:335e:cceb]) by PUZPR03MB6888.apcprd03.prod.outlook.com
+ ([fe80::ecbf:40a0:335e:cceb%6]) with mapi id 15.20.7409.053; Tue, 9 Apr 2024
+ 08:15:54 +0000
+Message-ID: <f6de7d87-ee23-4b65-b0e5-cb5217ecc692@amlogic.com>
+Date: Tue, 9 Apr 2024 16:15:44 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: meson: fix S4 power-controller node
+Content-Language: en-US
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240408-fix-secpwr-s4-v1-1-01aa7ee72c52@amlogic.com>
+ <CAFBinCD=xWuhoX9cWcKU3bSGcsDShKbxnMVTdyfD84AFZQn8aw@mail.gmail.com>
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+In-Reply-To: <CAFBinCD=xWuhoX9cWcKU3bSGcsDShKbxnMVTdyfD84AFZQn8aw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SI1PR02CA0019.apcprd02.prod.outlook.com
+ (2603:1096:4:1f4::15) To PUZPR03MB6888.apcprd03.prod.outlook.com
+ (2603:1096:301:100::7)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] dt-bindings: adc: ad7173: add support for ad411x
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>, dumitru.ceclan@analog.com,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240401-ad4111-v1-0-34618a9cc502@analog.com>
- <20240401-ad4111-v1-1-34618a9cc502@analog.com>
- <CAMknhBHeKAQ45=5-dL1T1tv-mZcPN+bNo3vxWJYgWpEPE+8p3Q@mail.gmail.com>
- <CAMknhBGVuMSg+OpS5QTLWi9vA=Xa33AJ+cVS8ZCDyKsAVEe-ww@mail.gmail.com>
- <0a72de29-6d25-4d2d-9824-ca407af69153@gmail.com>
- <CAMknhBHhxi7mN88+peU7BGkzSP2vtipCuvM-XfQzgusqKvARsg@mail.gmail.com>
- <aa84a3c5-a3e6-4c76-9b67-624ed8d8c704@gmail.com>
- <20240406152637.5d53c34f@jic23-huawei>
-Content-Language: en-US
-From: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
-In-Reply-To: <20240406152637.5d53c34f@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PUZPR03MB6888:EE_|SEZPR03MB8966:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	9iqHaLeJ03ZbkLZJD+fCZNAW/6aymQogerPRdbqJisEI64ycEDsODZFsWzNtX8qN0PvuBHQG4bPvnuBVaK18BBwkIwEndMbq1LE3ctIITeeqfTYhlvIIy8xAgo2oR2b/8DxptGKf76hBYMh848mvWvDooSSSYD1M1ALQZpBQE2lgjS6UN3Dz2VRsw3WcplUfLwE0dR/TrZaIYdqk0WHyc5HZm7U4AxiQzn5ysaNhS+zjXEwklsUdnMdH/1+wLyO1LrjK3clSEeSyvm8skAOn4oXpqAx8Mvxw3W+YqcnrJ342hzcQ3X4KR00aE7coYEydAlUq0FQAGxoP16KpOQV7sLfgG8Png+fcF9CcRsUMWGUQjTWtgcmZn7FtIfbO3fOGKw5JCtneUgMdXDJnA29iVu+oXwXW6MpGFCU0W0F8VVfN7mI5gBh/vGLYf9Ilf2w1cmk8QUXTqA5ZqrYMOlq3L815bKEjhW5zcAkbWmmcQjbITERL6L6yChVflZeMq2u+z8XYOWLF5gUZiEoo1Fi/dl2l3MVz7sGC2YbV4U13bHz7AQDFa61UTRtGF0Wur9hoSW6PEv/i6iYWQuGlOd2Gf1S2eY8XS/KC5Cwg+DKgMEPEEaRgpnaCN98KOMgeuPxXeN/9dmtabyeKYqgvX9Octg==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PUZPR03MB6888.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(376005)(7416005)(366007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?RVpTYm9FMDlGeG8rQ3MwOFE0Y2hYckxlY2F6VlZ2U0xYZnhqL3ViczlpVkZo?=
+ =?utf-8?B?S3hGbEtZQkM5QkYrcHJ2MWVjNE8zWDhoMHNnM0tmTFVvcGRSUytWdG9PSEZG?=
+ =?utf-8?B?Uk5RVkRRUmthb3N1MWgxbFVCcFZta1diSGQ3cDB4RkthYXlZTDNySHhVYS92?=
+ =?utf-8?B?V3MxY3RxMzdzWkltc1pZei9zUW1aUnZRN0k3MlIwOCtFZzQvNlpvMXcrRWxV?=
+ =?utf-8?B?Ymd2T3lwZWdXeFFuQjdPSCtWVUxobUxVQ2pOQ05EQ3pRK3pBd3VRWDlmRWp2?=
+ =?utf-8?B?Y2VaOVlaNk0reVY3c3RadjRxTkIvazJxejZZUTNOb05VenBXQmxRbXdhaW1G?=
+ =?utf-8?B?YzRYM3ArYVorajI3d2txalJqbkkrSmdKa3M5cWJjUU11RVB3ZXVzaXdJSGcz?=
+ =?utf-8?B?N3kzNDd0Vkp6bjdaS2U4bzVoaWN5WGEwaDR0aVM0Z1A2NXBCV3BlV0ZlQmVx?=
+ =?utf-8?B?eVNGMWFzSG9xYlNFNzlZQ09kVlI1NnJ1YllMYjlZTURmWjRXU1VoMHptNldt?=
+ =?utf-8?B?azZlaWtkZmRqZlZhR1c0dlZ4bmFEYUE4RklzN0lCamM1UzV2ckFHVzkvR2pQ?=
+ =?utf-8?B?WmxZaWVxa2J6VVIxdmJPL3ltYzRacVhYNmlYTjhDeDlXRDlMQXJmTURXNU0r?=
+ =?utf-8?B?N2J5YTloMkxzVUNpZXlsRVp2OTNQak9LM3N5QTJOU0dJdUM3aUoycjRUcmJW?=
+ =?utf-8?B?QUlwelJOZVJZVXNFQU1CWlIwVitXc0hKZzArZEgydUVTTnNnRDBZcW93andq?=
+ =?utf-8?B?UDYvRGkzVnBXMjJuU0lhcE4ybnViN2lBTWtIQUxVUEpaNWFNM2VsZlJNaHl2?=
+ =?utf-8?B?R0p4MjVSS0dka3pEODZ0MElBU1pXUDk3dTNhdFNtVmZTcUNKa0NSbFp6bm5h?=
+ =?utf-8?B?Wkt4enkvYlE3dlVWaFY3ZW9tSHY0Q0IrejRNVlAxa2NGcTBoaUxvWitRd2Zk?=
+ =?utf-8?B?QytvVlBuVHpnMndUVDJkWSs2R05SUXBsbXA5NDNYUlI4VzY2a0Z5dlVFYW1t?=
+ =?utf-8?B?SzhxZzliajNaaHBVUHhBeEZ5U2wvQUJkbDE5eVFubHc2VTF5d1h4bzA3MEtV?=
+ =?utf-8?B?SmpXTllVOWVuK05KOVY5c2IyOTY4Si9QaHI5bC93ZEJUbldybTE2N2RXMDI0?=
+ =?utf-8?B?clp2dkl1V2pFS1VxWUEvVS91SU8zaklYYjBpbUI1U09GMFFTR0JMeDFJOWIz?=
+ =?utf-8?B?dlVzVmlqTkpsamlFZ2RBYnpOV2FnUGc1SytGU2JXbzFVMGxleDNDQUN4TUdY?=
+ =?utf-8?B?TXQvSXhRR1oxYy9YTmlvbXVXc2twYlpoTzFMT0hqK0loTE5VemlQR0lrZ2JP?=
+ =?utf-8?B?Mlh6dWpZb2lFbWMvOXpiQVdsdnMvYjhvWTZxUWlNeEd6Kzd3eHgrQmdKMkxR?=
+ =?utf-8?B?dVBoVXVkQ242WEZkZmRQSFdFclNmbTRGYkdiRlpkK2RZZmtDbjl4dG5kNVlB?=
+ =?utf-8?B?RnFBM3M5MTlSM2phK0ROTVFJRFpGMU1mTmxqK3ZxaUdsb2ZNMHRvRlR3NEd2?=
+ =?utf-8?B?Yk00S3B2SjR4ZzIxaDZJSkVaUFQrUmVma3FmS1p2MGJleEdFaU0zc1dCSWRo?=
+ =?utf-8?B?U3dpYk8xN0piaU5ZbjF4aWl2NjhqK1YydnIxalM5cW8zVlMySkNOdG9UVGZE?=
+ =?utf-8?B?RG5uWEVvZ3lVWnJGTWxvK3kwY09yYmhzRXgzTGp5ZGNOYkl5OWRpaUMwQUI3?=
+ =?utf-8?B?L01tTWQrVkl4VDBKQlpzK2JsYVAwcXFZQlVWZDJhc3RFMGZKQ1hoVk1KQjR3?=
+ =?utf-8?B?Q0RmWmdVcVM5bTVpVGE5NFR3ZzRSMFlTR0JGY0hlczJyTWMrak50NldiV1lv?=
+ =?utf-8?B?S3REbldJMGk5d3BrVnpGNlFHWTFCK1VNOVF2a05EY0F0czFYUE9pTUZXeFAz?=
+ =?utf-8?B?OW8waGxOYTNCSmdPOFVGczdsUDJVMFBkVG8xcDloZ0x4SVp6SXZiUlV4VjNI?=
+ =?utf-8?B?OGdvSTQxejh5dkJHbm45KzVxYVZUMlVWa2pLUkxrV0ZQOU5ZWXo0WHJxeC9w?=
+ =?utf-8?B?aldkZEhqY21HS1VsM3BCTHdkWERDYVk4NlhFekUzUi9pbEVXSFg0aUhBV1Fo?=
+ =?utf-8?B?a05hNlN6SlpRUFBUU3JPcXRDRVpSanhRaTQ2Wkk3Vis4SGF1SFZrVEx1U1NU?=
+ =?utf-8?B?K0J6ZkgyOW9tVmxWa3VaL25ZeE8rNmpqcmlURFhZa3NEcktUNEw4QnN4aGxG?=
+ =?utf-8?B?T0E9PQ==?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f7976467-2651-400d-a69f-08dc586d46d6
+X-MS-Exchange-CrossTenant-AuthSource: PUZPR03MB6888.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2024 08:15:54.4466
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: IJZblcbBkWSzQ+YOmXF+FlLensK2fG8Bcc02XVrakjylWi9D5s5mvRi3ubO6y8zb8GJi4Kw/WgNP9fPKRpC3sza3h1KRaO5tK95pCU2Xsgo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB8966
 
-On 06/04/2024 17:26, Jonathan Cameron wrote:
-> On Thu, 4 Apr 2024 16:08:56 +0300
-> "Ceclan, Dumitru" <mitrutzceclan@gmail.com> wrote:
+Hi Martin,
+     Thanks for your review.
+
+On 2024/4/9 01:27, Martin Blumenstingl wrote:
+> [ EXTERNAL EMAIL ]
 > 
->> On 03/04/2024 18:22, David Lechner wrote:
->>> On Wed, Apr 3, 2024 at 2:50 AM Ceclan, Dumitru <mitrutzceclan@gmail.com> wrote:  
->>>> On 02/04/2024 00:16, David Lechner wrote:  
->>>>> On Mon, Apr 1, 2024 at 2:37 PM David Lechner <dlechner@baylibre.com> wrote:  
->>>>>> On Mon, Apr 1, 2024 at 10:10 AM Dumitru Ceclan via B4 Relay
->>>>>> <devnull+dumitru.ceclan.analog.com@kernel.org> wrote:  
->>>>>>> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
->>>>>>>  
->>>> ...
->>>>  
->>>>>>>      properties:
->>>>>>>        reg:
->>>>>>> +        description:
->>>>>>> +          Reg values 16-19 are only permitted for ad4111/ad4112 current channels.
->>>>>>>          minimum: 0
->>>>>>> -        maximum: 15
->>>>>>> +        maximum: 19  
->>>>>> This looks wrong. Isn't reg describing the number of logical channels
->>>>>> (# of channel config registers)?
->>>>>>
->>>>>> After reviewing the driver, I see that > 16 is used as a way of
->>>>>> flagging current inputs, but still seems like the wrong way to do it.
->>>>>> See suggestion below.
->>>>>>  
->>>>>>>        diff-channels:
->>>>>>> +        description:
->>>>>>> +          For using current channels specify only the positive channel.
->>>>>>> +            (IIN2+, IIN2−) -> diff-channels = <2 0>  
->>>>>> I find this a bit confusing since 2 is already VIN2 and 0 is already
->>>>>> VIN0. I think it would make more sense to assign unique channel
->>>>>> numbers individually to the negative and positive current inputs.
->>>>>> Also, I think it makes sense to use the same numbers that the
->>>>>> registers in the datasheet use (8 - 11 for negative and 12 to 15 for
->>>>>> positive).
->>>>>>
->>>>>> So: (IIN2+, IIN2−) -> diff-channels = <13 10>  
->>>>> Thinking about this a bit more...
->>>>>
->>>>> Since the current inputs have dedicated pins and aren't mix-and-match
->>>>> with multiple valid wiring configurations like the voltage inputs, do
->>>>> we even need to describe them in the devicetree?
->>>>>
->>>>> In the driver, the current channels would just be hard-coded like the
->>>>> temperature channel since there isn't any application-specific
->>>>> variation.  
->>>>  Sure, but we still need to offer the user a way to configure which
->>>> current inputs he wants and if they should use bipolar or unipolar coding.  
->>> From the datasheet, it looks like only positive current input is
->>> allowed so I'm not sure bipolar applies here. But, yes, if there is
->>> some other variation in wiring or electrical signal that needs to be
->>> describe here, then it makes sense to allow a channel configuration
->>> node for it.  
+> On Mon, Apr 8, 2024 at 5:26 AM Xianwei Zhao via B4 Relay
+> <devnull+xianwei.zhao.amlogic.com@kernel.org> wrote:
 >>
->> AD4111 datasheet pg.29:
->> When the ADC is configured for bipolar operation, the output
->> code is offset binary with a negative full-scale voltage resulting
->> in a code of 000 … 000, a zero differential input voltage resulting in
->> a code of 100 … 000, and a positive full-scale input voltage
->> resulting in a code of 111 … 111. The output code for any
->> analog input voltage can be represented as
->> Code = 2^(N – 1) × ((V_IN × 0.1/V REF) + 1)
->> The output code for any input current is represented as
->> Code = 2^(N − 1) × ((I_IN × 50 Ω/V REF) + 1)
+>> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 >>
->> I would say bipolar applies here, not a great idea because of the limitation on
->>  the negative side (Input Current Range min:−0.5 max:+24 mA) so still, the option
->>  is available.
-> Just to check I am correct in thinking you 'might' use bipolar if you want
-> to be able to measure small negative currents, but the range is much larger
-> in the positive direction?
+>> The power-controller module works well by adding its parent
+>> node secure-monitor.
+>>
 > 
-> J
+> Please add a Fixes tag here with the original commit where the
+> incorrectly placed node was added.
 
-Yes, exactly
+Will add Fixes tag.
 
+>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>> ---
+>>   arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 11 +++++++----
+>>   1 file changed, 7 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+>> index ce90b35686a2..24d00dce4969 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+>> @@ -65,10 +65,13 @@ xtal: xtal-clk {
+>>                  #clock-cells = <0>;
+>>          };
+>>
+>> -       pwrc: power-controller {
+>> -               compatible = "amlogic,meson-s4-pwrc";
+>> -               #power-domain-cells = <1>;
+>> -               status = "okay";
+>> +       sm: secure-monitor {
+>> +               compatible = "amlogic,meson-gxbb-sm";
+>> +
+>> +               pwrc: power-controller {
+>> +                       compatible = "amlogic,meson-s4-pwrc";
+>> +                       #power-domain-cells = <1>;
+>> +               };
+> In Documentation/devicetree/bindings/firmware/amlogic,meson-gxbb-sm.yaml
+> the hierarchy is:
+> firmware {
+>    secure-monitor {
+>       power-controller {
+>         ...
+>       }
+>    }
+> }
+> 
+> Is this patch correct (and the documentation needs to be adapted) or
+> is the documentation correct (and this patch has to be adapted)?
 
-
+Will add firmware node to adapt documentation.
 
