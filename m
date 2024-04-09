@@ -1,98 +1,50 @@
-Return-Path: <devicetree+bounces-57447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57448-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92E5C89D827
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 13:39:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7DEA89D842
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 13:41:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3383F1F2094E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 11:39:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 259D21C238BF
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 11:41:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B2A21369AC;
-	Tue,  9 Apr 2024 11:34:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33139128370;
+	Tue,  9 Apr 2024 11:40:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="4IYpUbTT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pzL+6kJa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A48B713667A;
-	Tue,  9 Apr 2024 11:34:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05EE28004E;
+	Tue,  9 Apr 2024 11:40:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712662456; cv=none; b=jcBsydrfeC2kDPvd9E4rYwpwiHf3JMETmx4En9lBnpVYitJkpYZ1mFZ0cGpLsNhtbKO/SrfF1zAuTjlzyt/nsSNKbaXOhOHvPlm67NEsirEBLaLmK6RYvmmN3IMdV9trWTvldVXsVpS21FlNUxJ1OdGnwNcqT4p/wgib18j9EcM=
+	t=1712662828; cv=none; b=lAonO4iXSemaQN6m2TPg+rwXNtNSGwPKfkHpHfUBgRsGFg2HmkEAaz7KlCAE/AQX2X2MZgqm9nWj6dpU1Yh1cvSjvBNljA+keTRnqUMirMKOg2IR9ZJX/pGtYGYdqY3OJBLzOUB07E/gmquh9+p4mbJpaH54mOjqs8UACtF8Iao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712662456; c=relaxed/simple;
-	bh=SRSwRgJbTBz/3750pVOWh9FKrFSoG2LU80QaUy5HTjg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=l+nOUVwHTtoklawQOat5aVNC8fmCVpHL8XBNVxEdQbyqB0eroizVQAdkN32kDPJZA8rVDYGSVfn1Jc03V2CnDQRNLPCqsWY7XJ+9rRFsP4a7mqlcBOX78rQhBkZduNeAyTo2G/nSG+VtpMekKMLgw0AQTW50SIK/9bSMCnQJx68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=4IYpUbTT; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1712662452;
-	bh=SRSwRgJbTBz/3750pVOWh9FKrFSoG2LU80QaUy5HTjg=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=4IYpUbTTh7MAruw1btaUKUdqHfQRm5G74zFUVOftI+T9TCdsW5jy+aLe+ovvx3Z5I
-	 11UI3jSgbp9qKxd+LzBCt00w7WOAWyUP/p6OB6fymARuqX2oCBDDdepX2IMoVISL+l
-	 yu8bpU2L/u64hzPPpzZ0vIgXl62UkoB32ZOLbxYDRjgTb+eRUNCL50wab1sbQos2xG
-	 HJfl3ws6cRLa3pNEkCI0Pa2XtGASP4yD8EFCw4cm+utr45JPLDdRVZNKAKynh0A/hx
-	 ZmyW8i1MGMnAKvoLH4yDcvS0p2W6YZQ6e0aE3wR4ig2B/fdqYyzv7v8Kj0v2b8Ocb5
-	 0WNMlXDLwfDJQ==
-Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id C7F1E378212C;
-	Tue,  9 Apr 2024 11:34:10 +0000 (UTC)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: broonie@kernel.org
-Cc: wenst@chromium.org,
-	lgirdwood@gmail.com,
-	robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	perex@perex.cz,
-	tiwai@suse.com,
-	trevor.wu@mediatek.com,
-	maso.huang@mediatek.com,
-	xiazhengqiao@huaqin.corp-partner.google.com,
-	arnd@arndb.de,
-	kuninori.morimoto.gx@renesas.com,
-	shraash@google.com,
-	amergnat@baylibre.com,
-	nicolas.ferre@microchip.com,
-	u.kleine-koenig@pengutronix.de,
-	dianders@chromium.org,
-	frank.li@vivo.com,
-	allen-kh.cheng@mediatek.com,
-	eugen.hristev@collabora.com,
-	claudiu.beznea@tuxon.dev,
-	jarkko.nikula@bitmer.com,
-	jiaxin.yu@mediatek.com,
-	alpernebiyasak@gmail.com,
-	ckeepax@opensource.cirrus.com,
-	zhourui@huaqin.corp-partner.google.com,
-	nfraprado@collabora.com,
-	alsa-devel@alsa-project.org,
-	shane.chien@mediatek.com,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	kernel@collabora.com,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH v4 18/18] arm64: dts: mediatek: mt8186-corsola: Specify sound DAI links and routing
-Date: Tue,  9 Apr 2024 13:33:10 +0200
-Message-ID: <20240409113310.303261-19-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240409113310.303261-1-angelogioacchino.delregno@collabora.com>
-References: <20240409113310.303261-1-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1712662828; c=relaxed/simple;
+	bh=MDm0KRglBzo5PbbZbHHd+NCNNsHxXViVQ+IbGUpzics=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=b36M2QwJ3sk8R15F2whzObFWhJ3awy3nN7xDvz8xT4fLVTEWRStmMnMTzMFhu3t412bN5fbU+x5afJjBN9RqiBPQc+ROG2NizWoZVs+FnuZMIlspLW2RhdRSrYI232Q6pyQuaFduSfjVIc7SwLVwBBiEkhlRAVbytNlHJmYYnbU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pzL+6kJa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 859F1C433C7;
+	Tue,  9 Apr 2024 11:40:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712662827;
+	bh=MDm0KRglBzo5PbbZbHHd+NCNNsHxXViVQ+IbGUpzics=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=pzL+6kJaDdYmTmRlcOvJ2z5VrVEFabYiYR/bxbdw6mPCztSRaxTjlVXSELOVjzSuF
+	 h3Ui2P3fLh2PL3460wQDcaEKnZNHS64gKULMQ/ywho9MwUqniWuDm/s4VIdiNDudi5
+	 RK47zeRtn45sYzkLQxJzUvFCsehKRdkBf0m4b4hk/0tlSqhnMXWRt++b8nypQwXGvv
+	 e/ecFRCO606xd8j/7j2rxNpoWpyHVOx1wLQ2rHH5Gdd7f+E/lJmt26F5VAgEYOPggM
+	 s5y3MOuf9E+8Wm5Cm8zwvqIEtTr2MDOqKxuQv12El8ExSf+A8tcExN6leXFEefb53h
+	 X02ogHi+iqlJg==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 73C10C395F6;
+	Tue,  9 Apr 2024 11:40:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,79 +52,44 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH] dt-bindings: net: rockchip-dwmac: use rgmii-id in example
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <171266282747.30909.11983889718535172879.git-patchwork-notify@kernel.org>
+Date: Tue, 09 Apr 2024 11:40:27 +0000
+References: <20240408-rockchip-dwmac-rgmii-id-binding-v1-1-3886d1a8bd54@pengutronix.de>
+In-Reply-To: <20240408-rockchip-dwmac-rgmii-id-binding-v1-1-3886d1a8bd54@pengutronix.de>
+To: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, heiko@sntech.de, david.wu@rock-chips.com,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, andrew@lunn.ch
 
-The drivers and bindings acquired support for specifying audio hardware
-and links in device tree: describe and link the sound related HW of this
-machine.
+Hello:
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- .../boot/dts/mediatek/mt8186-corsola.dtsi     | 42 ++++++++++++++++---
- 1 file changed, 37 insertions(+), 5 deletions(-)
+This patch was applied to netdev/net-next.git (main)
+by Paolo Abeni <pabeni@redhat.com>:
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-index 1807e9d6cb0e..afdab5724eaa 100644
---- a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-@@ -42,7 +42,7 @@ backlight_lcd0: backlight-lcd0 {
- 		default-brightness-level = <576>;
- 	};
- 
--	bt-sco-codec {
-+	bt-sco {
- 		compatible = "linux,bt-sco";
- 		#sound-dai-cells = <0>;
- 	};
-@@ -223,12 +223,44 @@ sound: sound {
- 		mediatek,adsp = <&adsp>;
- 		mediatek,platform = <&afe>;
- 
--		playback-codecs {
--			sound-dai = <&it6505dptx>, <&rt1019p>;
-+		audio-routing =
-+			"Headphone", "HPOL",
-+			"Headphone", "HPOR",
-+			"IN1P", "Headset Mic",
-+			"Speakers", "Speaker",
-+			"HDMI1", "TX";
-+
-+		hs-playback-dai-link {
-+			link-name = "I2S0";
-+			dai-format = "i2s";
-+			mediatek,clk-provider = "cpu";
-+			codec {
-+				sound-dai = <&rt5682s 0>;
-+			};
-+		};
-+
-+		hs-capture-dai-link {
-+			link-name = "I2S1";
-+			dai-format = "i2s";
-+			mediatek,clk-provider = "cpu";
-+			codec {
-+				sound-dai = <&rt5682s 0>;
-+			};
- 		};
- 
--		headset-codec {
--			sound-dai = <&rt5682s 0>;
-+		spk-share-dai-link {
-+			link-name = "I2S2";
-+			mediatek,clk-provider = "cpu";
-+		};
-+
-+		spk-hdmi-playback-dai-link {
-+			link-name = "I2S3";
-+			dai-format = "i2s";
-+			mediatek,clk-provider = "cpu";
-+			/* RT1019P and IT6505 connected to the same I2S line */
-+			codec {
-+				sound-dai = <&it6505dptx>, <&rt1019p>;
-+			};
- 		};
- 	};
- 
+On Mon, 08 Apr 2024 08:44:10 +0200 you wrote:
+> The dwmac supports specifying the RGMII clock delays, but it is
+> recommended to use rgmii-id and to specify the delays in the phy node
+> instead [1].
+> 
+> Change the example accordingly to no longer promote this undesired
+> setting.
+> 
+> [...]
+
+Here is the summary with links:
+  - dt-bindings: net: rockchip-dwmac: use rgmii-id in example
+    https://git.kernel.org/netdev/net-next/c/220d63f249ec
+
+You are awesome, thank you!
 -- 
-2.44.0
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
