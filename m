@@ -1,106 +1,107 @@
-Return-Path: <devicetree+bounces-57547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57548-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BF7C89DD84
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 17:01:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C32CF89DD8B
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 17:02:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB23728C30E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 15:01:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F7A028CE83
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 15:02:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AAA1130E26;
-	Tue,  9 Apr 2024 15:00:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48D59130AF5;
+	Tue,  9 Apr 2024 15:01:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="N1aP/tsr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K7FrzKg+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACAF0130AF0
-	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 15:00:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1623912FF93;
+	Tue,  9 Apr 2024 15:01:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712674854; cv=none; b=lnZsRTXkx6GSXrK2ATqTm28j8nU61cQHh5axzbp72EUdIAy5eSXvW+9gvfiYSdY1YxgY6vrs/D/uPRLaakkxpVYUv0e3jifIKWNyE3fbgZ5j+IojqKClvbU3/aRUUIVt9TvNresv6ckUhrlDUMuMttgZewS//4MvB4u5h5HittM=
+	t=1712674880; cv=none; b=fqRxqfB2fIeIbCgr8Q5Uvi81qPLJOSpw+P4/CG6JR2EKtww1phJRfmqj7EazCjF8Wxo0cWE/2eR69Qm2jAJQZwmlSX1jQT3NqE2N2hflIa2jnEHW15aRLbsea7eNpfdDF9lPt+nnof6qX7OGVHuYr3RZ8OCqxNFSVtOEbUr4D+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712674854; c=relaxed/simple;
-	bh=vDiJeOU8oPrybmyV4Svv3/9T3kTe6c6c++lJ8EMYnHc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f1xMsa1AAz+vBUXrN5PyrSDRSHXH9JBoFW5SWlIZGE3OubU0mK+DCyERjfy3tforMTkZIOosFH8l2wBydSFPBXh+aBbW7FrekHB/IvmEk7aDcA/UErv48PhwWpYUs6+pFiSCBrikMCF1lR6pUwgV3V1sh77WU6vE8QPCbMseu5I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=N1aP/tsr; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-516d2b9cd69so5158839e87.2
-        for <devicetree@vger.kernel.org>; Tue, 09 Apr 2024 08:00:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712674850; x=1713279650; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0OrLZIf4Y0ZsYq3tuArNOXJoRjnrpN5lmgiiz9JN9Mw=;
-        b=N1aP/tsrQQ8Y909ZZG/BrG8+1IPBoYVa0159BAb34+ZrSLLeWwZpIiVL9dzAt5nWlU
-         /aH3g2TMGZxMf9GclzRfC+OaiQyB0jJzXDEikKKA/Zi8OJFH3UtltxSkJvWSXM5xYHyF
-         +7JkqD7vrLVlMTTqBgvpAx9TdO+4g8/H6X8OBuVRUvdj034aobovshHXAbaM2kJRPrCX
-         v3ZbjLQzJHTiJljmThhy8AW9/y0JZbFbXcL+A7Izi/s9jYUt8oOQmjMpvbeaTEIzx24D
-         ooEoSn65TdxGLUCR44MecfFeGC6R/AkDTLJiOi/7rI+wvA1MT+VHhhkab+KXbtjWPhB3
-         ny+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712674850; x=1713279650;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0OrLZIf4Y0ZsYq3tuArNOXJoRjnrpN5lmgiiz9JN9Mw=;
-        b=VUAz6DO4AXeyEr0Dr1wcHRKIUivsNaklAHab0uccmlFgHeb478pSh6iQEph39pgzXE
-         /5q9iYDUBlahnPrKTk534nYosAHFj5YVczLHd2M8VFVGEtmWJw2lZuaUCdmN5R2VJzex
-         X9JtTphnj6fUVU6amnDURmhLJE17FWhDacQaejQO5flvcr5CWIdREGRk1GEpFXnsJnjj
-         QtuTCDDPNCbm/s5iMGPONL+avmhJKn9ZFgcashCJBIxQ6KMcu/0ZBsY140YRe6ZO2nq9
-         P+DxZwfPeXG5OHUQEV3Bu5dDeX96aaDFAN++yn4ymVik3iDxP19oeoi/nJKDIwDQh0Xk
-         zD7w==
-X-Forwarded-Encrypted: i=1; AJvYcCUljsfm8z/6+Jq2DJgXUYhg3Ub+WAuJSHC+PiSZxJTMIoTe1TyRrfM1iDb6cKfKsqhkzLcxDGwxX/8/iqvFhU4O8IIoCJpXX5WvQA==
-X-Gm-Message-State: AOJu0Yw/MIrI+jitsOlb5k4+bR4ahbkOHoNtUFM0Ry/4pqR/aZD7e4jw
-	iHNlMQyNJDJ0NIB5/Lv+RkG+9PblPDWZwNNBy7sHx4FocPdDlJ7Y9I/QZd4v97A=
-X-Google-Smtp-Source: AGHT+IGWt8epolvuE8fa7PcVD3HsDmvrOm9/XTIGHL3kwTAbtz3wt+C0aEwcUcEvCI/9lOFp3wVq1Q==
-X-Received: by 2002:a05:6512:4884:b0:516:d707:72a7 with SMTP id eq4-20020a056512488400b00516d70772a7mr7820856lfb.10.1712674849698;
-        Tue, 09 Apr 2024 08:00:49 -0700 (PDT)
-Received: from [172.30.205.99] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id f9-20020a193809000000b00516aff23fc1sm1607617lfa.138.2024.04.09.08.00.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Apr 2024 08:00:49 -0700 (PDT)
-Message-ID: <91de106e-5758-4f0d-a3fa-e7ae34c395fd@linaro.org>
-Date: Tue, 9 Apr 2024 17:00:48 +0200
+	s=arc-20240116; t=1712674880; c=relaxed/simple;
+	bh=b1I7UNfssCV2gFy/ibu4NFSYAMUmL75Q0HBWqKqGBj8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tJ8HSnCSha6vwnsA2rksO3AZEYhi3G/3660m2K3QiNmvO6jK7ibCj7i9DW/XdSp6jQjokYvvBr+E8X++ROJFwHnSDCanYk5LhjhOUaz5rC26NJsqEuyOwO1Us2QqdyVnV6tvqLeUPMNrea73oJwK0MwM4ybsWNelLLs5IvfKsYY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K7FrzKg+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57233C433F1;
+	Tue,  9 Apr 2024 15:01:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712674879;
+	bh=b1I7UNfssCV2gFy/ibu4NFSYAMUmL75Q0HBWqKqGBj8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=K7FrzKg+6fobNHG/EEzWpZXVTUG9QTgkpqPWOW8uPmuWAp4su5stPl4oNr8fliSAn
+	 IfR7PQ5+PMPt0EhaMarEbBRsUjNvBh2mquygB2EpUeYaX7MSvSbiPYScGWBMSyy2eU
+	 fY6W67IddvSCbyBbjXynPG7UF4e/mXqORUGgVNhxRTo3Zs4vD4GrivL6pMlWH9ly+I
+	 K2kjHSaQTipwgC5WTRfNJlig2VwVL+swEwXxIaLgZgzaBwAQAJXGcCX19+WGE6nuJR
+	 Lre9pTqcRSeB4lcpNfxEPF1Z0vblR7jV7Ll/y6IdFf0aAO9WDAf6kDlHAGk8vFBiCh
+	 pmFGtmi7aqUTA==
+Date: Tue, 9 Apr 2024 16:01:15 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: Samuel Holland <samuel.holland@sifive.com>,
+	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+	Eric Lin <eric.lin@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 0/6] SiFive cache controller PMU drivers
+Message-ID: <20240409-corral-untruth-591b29f6565d@spud>
+References: <20240216000837.1868917-1-samuel.holland@sifive.com>
+ <20240216-shopping-unnoticed-e73e72a0e849@wendy>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/5] arm64: dts: qcom: sc8180x-lenovo-flex-5g: add
- USB-C orientation GPIOs
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240409-hdk-orientation-gpios-v2-0-658efd993987@linaro.org>
- <20240409-hdk-orientation-gpios-v2-5-658efd993987@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240409-hdk-orientation-gpios-v2-5-658efd993987@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="zsV7n7T3orhUeCCb"
+Content-Disposition: inline
+In-Reply-To: <20240216-shopping-unnoticed-e73e72a0e849@wendy>
 
 
+--zsV7n7T3orhUeCCb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 4/9/24 16:28, Dmitry Baryshkov wrote:
-> Define the USB-C orientation GPIOs so that the USB-C ports orientation
-> is known without having to resort to the altmode notifications.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
+On Fri, Feb 16, 2024 at 10:05:04AM +0000, Conor Dooley wrote:
+> On Thu, Feb 15, 2024 at 04:08:12PM -0800, Samuel Holland wrote:
+>=20
+> > All three of these cache controllers (with PMUs) have been integrated in
+> > SoCs by our customers. However, as none of those SoCs have been publicly
+> > announced yet, I cannot include SoC-specific compatible strings in this
+> > version of the devicetree bindings.
+>=20
+> And I don't want to apply any of those dt-binding patches until then.
+> Stuff like "sifive,perfmon-counters" seems like a property that would
+> go away with a device-specific compatible, at least for the ccache.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Reading the P550 stuff today reminded me that I had not got around to
+looking at this series again. You should be able to use that to satisfy
+my wish for some soc-specific compatibles, right?
 
-Konrad
+And w.r.r. the perfmon-counters property, looked to me like Rob was
+proposing it not even having to be vendor specific.
+
+--zsV7n7T3orhUeCCb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZhVYOwAKCRB4tDGHoIJi
+0jzBAP0bzyW1aj1y1ig0+xzeagwXGMmN9QO8TaiyNHylHG6STAD+Lz2fHDrW9lKK
+auwxSW/MgO1tt4GAH7rwtfp8pUBIMAA=
+=JS2J
+-----END PGP SIGNATURE-----
+
+--zsV7n7T3orhUeCCb--
 
