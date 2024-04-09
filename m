@@ -1,262 +1,115 @@
-Return-Path: <devicetree+bounces-57415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA7A789D6BD
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 12:19:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9B3089D6E3
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 12:23:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56E28287FF7
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 10:19:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 072EE1C21E9D
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 10:23:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9451130AE0;
-	Tue,  9 Apr 2024 10:14:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADC9A12C7E8;
+	Tue,  9 Apr 2024 10:20:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="C+Il1Jf6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mBWiiQ6H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFB76130E47
-	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 10:14:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D7BB84A56;
+	Tue,  9 Apr 2024 10:20:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712657652; cv=none; b=VGiEvLO42tSM2X0/I2gXvAfmwdIQ+UT9bAJP0hWOjsbum2dHV9pT+E47Jsz4fLZOh5mtZTJFi+S847DZRIsuOIncRS60CuOP+gKIq/hde2QtYAG2K8oq9Er4tgce7+Rs9EBZ8a41+0LyHKQdWtNAWtx+HqbKckDKoApdxnfSWU8=
+	t=1712658040; cv=none; b=lR4EEOLtRs9h7HHrqYCdjWXkdRynKcOq3BIWwcDqgqbPiF2gx6vbAcJzOF9gP/rkb4VxJ5IV1slalQlu6/ze/QYUYkAw4EsMU5TQ7JuVddIO7LI0OuC0Tlw7tNQssvftUtw8MjdFewVFAdDok11MTJQNfqBHzEx7InyOIgVAMVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712657652; c=relaxed/simple;
-	bh=uSzLvOfclK6XqDtrVAYhNkEKbGoFUCZ/BcUUGGGjtWY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=RrW8zjPw3fDJJg7Dw0bGnHezwtEiLisAiKrD5FuS5Rjg1uvrCMGlr2hBEzEeNJbk9mpb2wU1fMhQ2ilmNHRG0uYBkf9+T++wqyOq3IUFIvZYRUYAeHArv2KkI+7fA/cRcfDR6NhQ0xZwwD6ah1pMBbxCvWjmF+4a58s83E1Fr14=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=C+Il1Jf6; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-415523d9824so55355675e9.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Apr 2024 03:14:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712657648; x=1713262448; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PlNVVt0wcqoKbTlcpTD2Av1BFgB4YmPyV+Qn5GBtCCs=;
-        b=C+Il1Jf62ISvX1o03J/QSt1hKq1AV0Z0UKYzp0n+lPKga6ZsCbnwbVfUJIpj8nICdA
-         /V2LVppBjpl5/C8I+wDtY/vGKMeUmWtmPIjRArf/eKx8sXXAoyirf7R8bO/oiJVInZFp
-         giM8YoPVpcAuiNht4EpKXoZ81WF3PCUyz44dyDf4wUTLQ6yoVIj4aV65gu0BiGbV2TX2
-         OIAbpD2e32iqvQygvStKEgqo+uE7ZkRtF2yoQ0y1x2LfiHggIn68i90wAIcZfkWIHDC7
-         trfnFuz7wzV/B1faFFMTMAiOI8FFIEd6h48SrCkDwaANweJ9HHxfWjqbJsCClY1BSdM9
-         f3XA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712657648; x=1713262448;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PlNVVt0wcqoKbTlcpTD2Av1BFgB4YmPyV+Qn5GBtCCs=;
-        b=Drd0QzOdW890yl6u1WGHbSqGavlkGv+zr2X3bKzkCbgKNUz9dq+sv4StTdxc5HFbWc
-         AEfFNpZqCz6kkRSrLG458dtAjMLFYrLA3iuxuPvcu+VBOcoChgVIPXYjg1fxpoOLBKIx
-         7wwc6TWhAI9W2KYI1cY/99l2+F2Bql1tN+kW0BaI2U7e9lS+6ZXAiJjKHw3rw7uPjwjV
-         2KQ1EFzRQllLkRQONvN4xxXcQGf/NXn+i/8MAiboxFboufT5ID07AlpOFkMOKIDfBopo
-         xdXPtKh/KCaTWmQiC6bSdLNFQ617TsJ5IrV7Rzhh/x8wEqgYstst/971y6ZGWIQSQHdU
-         msOA==
-X-Forwarded-Encrypted: i=1; AJvYcCXLr68YVS0EHKsnI4jyZV9P/8doOiVLLgFIJl463dPUGURC9yGeuo4sDCt16+Fvdz0uvu7+qarsWVvEZOQ6XXGJEjwSMB8xEE3DGw==
-X-Gm-Message-State: AOJu0YzF9+Tm9QgHoKmpp/Xv+u5WRO5IgZWcKYriW4YHAkO27LyaudnU
-	cKX1GvUOoDFwE0r17NbrbDoulsDpdT+Wmd5xMuw9+7jCdAyuzYKzblWT1oHUZas=
-X-Google-Smtp-Source: AGHT+IH93tvacaOiFnd4nqmc7gPsI2OQnyM0ybPS1MyBc1NNs/vnBJCMth9sI4K2Y7Z5nTAcW1vKuQ==
-X-Received: by 2002:a05:600c:1986:b0:416:4973:4d87 with SMTP id t6-20020a05600c198600b0041649734d87mr7777580wmq.3.1712657648192;
-        Tue, 09 Apr 2024 03:14:08 -0700 (PDT)
-Received: from [127.0.1.1] ([93.5.22.158])
-        by smtp.googlemail.com with ESMTPSA id r7-20020a05600c458700b00416b035c2d8sm1124149wmo.3.2024.04.09.03.14.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Apr 2024 03:14:07 -0700 (PDT)
-From: Alexandre Mergnat <amergnat@baylibre.com>
-Date: Tue, 09 Apr 2024 12:13:39 +0200
-Subject: [PATCH v2 18/18] arm64: dts: mediatek: add audio support for
- mt8365-evk
+	s=arc-20240116; t=1712658040; c=relaxed/simple;
+	bh=pzdCSbr5SHBon91syIJCTeDKf1rySdQBVpzt6jNEgQk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dpmPYm+ZPOuz2Xr1e3hi7DhEbFARFCdjz2Vg6FZiBIqKvG38hYjQeBqxnRkHVEWC1dPMPVEMi0bqocay/3Jzlp/e7YOeRWNw6pJJb2bXZNTPSy7It+5PfUfpagCTNlxWFHaccUyjxGUmaokmSdPPyo9oAl4LrtUH1ulVZvOYNi4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mBWiiQ6H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B258EC433B1;
+	Tue,  9 Apr 2024 10:20:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712658040;
+	bh=pzdCSbr5SHBon91syIJCTeDKf1rySdQBVpzt6jNEgQk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=mBWiiQ6HYjrUnXh8pi5Y+nI2VufkIDxZO/XmS5JqHzIzKKCTFyV7b+JdB1J8eljk3
+	 uY8uLDeRFlIO9Mf7//GhUc8688Q2OwdPcgwwYYl28hlq8nQ41g08WfBnB6QBbxdmkH
+	 3Z570Zzg4S9m8kgE+sKCOw9kk6Hp+LC3g5QVd1AfXrgITn04uJvxjMPSWhcfr2as2X
+	 rYCNFvJgG3PWZrt2crQLnTvwakDXiQQT1Glsur+x5qO899l1UwfNjZiXmXq1hO6K0k
+	 H/FEtUgK+F7Hh3ALnjh3eW2REylKT0rje563SEAVGjrCEA2sFNwt7ygTwY9xdN/rOq
+	 +Dqbxn3Gq6Thg==
+Date: Tue, 9 Apr 2024 11:20:33 +0100
+From: Will Deacon <will@kernel.org>
+To: Georgi Djakov <quic_c_gdjako@quicinc.com>
+Cc: robin.murphy@arm.com, joro@8bytes.org, iommu@lists.linux.dev,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	andersson@kernel.org, konrad.dybcio@linaro.org, robdclark@gmail.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, quic_cgoldswo@quicinc.com,
+	quic_sukadev@quicinc.com, quic_pdaly@quicinc.com,
+	quic_sudaraja@quicinc.com, djakov@kernel.org
+Subject: Re: [PATCH v7 2/7] iommu/arm-smmu-qcom-tbu: Add Qualcomm TBU driver
+Message-ID: <20240409102033.GA22381@willie-the-truck>
+References: <20240329210638.3647523-1-quic_c_gdjako@quicinc.com>
+ <20240329210638.3647523-3-quic_c_gdjako@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240226-audio-i350-v2-18-3043d483de0d@baylibre.com>
-References: <20240226-audio-i350-v2-0-3043d483de0d@baylibre.com>
-In-Reply-To: <20240226-audio-i350-v2-0-3043d483de0d@baylibre.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Sumit Semwal <sumit.semwal@linaro.org>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
- Rob Herring <robh@kernel.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
- Alexandre Mergnat <amergnat@baylibre.com>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3962; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=uSzLvOfclK6XqDtrVAYhNkEKbGoFUCZ/BcUUGGGjtWY=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBmFRTTPFBV6yfp7E/gtZ8jajBrd4nrGJXU7zuvHqAn
- MYzj5GiJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZhUU0wAKCRArRkmdfjHURd7sD/
- 0d7oIOsEwKg1zZ6wKlZHYUcZVM3MBOkC/s+el2n0OhNu8d0vnDZUAx+2NSBnPNMYQIop5CXn599unK
- zTB9ZeemTVqcMLVooBi6G4H5zf1lXsZ0agCq1THO622I/7O/KyLM9HjgyytiVUS3YuIV7DmWnJyGDu
- JWxyOmTQoU5uvqQUYIowraVjoLhkxK3w+BoqD4+vcVUZnTPHDQkKsy2Yee+HqURFMKbREfaB68KkhC
- wacoL0XJvC2lG6ZkP5zkaO7QqqigeYrlE0QMlqnVxtrOb3STiREQptLDQy5W9iomslHnnwrirzTNXt
- wkvQnflZmuetIt96UlaJ7EfwpUfpcSnSyvIECFNKmEtBMlzzQcbBWvoRAR4crLjNi5Ni7VJMEive9T
- ZcNWB9rmdABfIoaj1hgs2V4kiA/cdx4C7/N2csgJGJfbfKN7KCDYtETjmaTZvrmfPtgWOd+KcQEu0F
- Scb6Cwuj55Hc7Yvvv6xQ9X9O82nSU8gyZ12H14H4jFh787GExA6h33K1MJwN0WAuok1upuW7MFqYkZ
- iitq8obavvUIfmBnqn9zRN++w1YJ3yvkdGcWPiJGV3vy4Mfi9isOq1jgOiSHCL+fhBPxBqImEsENqO
- LBlB7ibM5IOmfrPDyZ4N8yx3kZJR4+icLeV0DNeOR6m5LqtiDNRvLaxwtt9A==
-X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
- fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240329210638.3647523-3-quic_c_gdjako@quicinc.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 
-Add the sound node which is linked to the MT8365 SoC AFE and
-the MT6357 audio codec.
+On Fri, Mar 29, 2024 at 02:06:33PM -0700, Georgi Djakov wrote:
+> Operating the TBUs (Translation Buffer Units) from Linux on Qualcomm
+> platforms can help with debugging context faults. To help with that,
+> the TBUs can run ATOS (Address Translation Operations) to manually
+> trigger address translation of IOVA to physical address in hardware
+> and provide more details when a context fault happens.
+> 
+> The driver will control the resources needed by the TBU to allow
+> running the debug operations such as ATOS, check for outstanding
+> transactions, do snapshot capture etc.
+> 
+> Signed-off-by: Georgi Djakov <quic_c_gdjako@quicinc.com>
+> ---
+>  drivers/iommu/Kconfig                         |   9 +
+>  drivers/iommu/arm/arm-smmu/Makefile           |   1 +
+>  .../iommu/arm/arm-smmu/arm-smmu-qcom-tbu.c    | 372 ++++++++++++++++++
+>  drivers/iommu/arm/arm-smmu/arm-smmu-qcom.h    |   2 +
+>  drivers/iommu/arm/arm-smmu/arm-smmu.h         |   2 +
+>  5 files changed, 386 insertions(+)
+>  create mode 100644 drivers/iommu/arm/arm-smmu/arm-smmu-qcom-tbu.c
+> 
+> diff --git a/drivers/iommu/Kconfig b/drivers/iommu/Kconfig
+> index 0af39bbbe3a3..b699e88f42c5 100644
+> --- a/drivers/iommu/Kconfig
+> +++ b/drivers/iommu/Kconfig
+> @@ -374,6 +374,15 @@ config ARM_SMMU_QCOM
+>  	  When running on a Qualcomm platform that has the custom variant
+>  	  of the ARM SMMU, this needs to be built into the SMMU driver.
+>  
+> +config ARM_SMMU_QCOM_TBU
+> +	bool "Qualcomm TBU driver"
+> +	depends on ARM_SMMU_QCOM
+> +	help
+> +	  The SMMUs on Qualcomm platforms may include Translation Buffer
+> +	  Units (TBUs) for each master. Enabling support for these units
+> +	  allows to operate the TBUs and obtain additional information
+> +	  when debugging memory management issues like context faults.
+> +
+>  config ARM_SMMU_QCOM_DEBUG
 
-Update the file header.
+Can we just use ARM_SMMU_QCOM_DEBUG for all of this? Having both
+ARM_SMMU_QCOM_DEBUG and ARM_SMMU_QCOM_TBU for the same hardware is
+pretty confusing, I think.
 
-Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
----
- arch/arm64/boot/dts/mediatek/mt8365-evk.dts | 98 +++++++++++++++++++++++++++--
- 1 file changed, 94 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-index 50cbaefa1a99..bf15d3c7a965 100644
---- a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-@@ -1,9 +1,9 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-- * Copyright (c) 2021-2022 BayLibre, SAS.
-- * Authors:
-- * Fabien Parent <fparent@baylibre.com>
-- * Bernhard Rosenkränzer <bero@baylibre.com>
-+ * Copyright (c) 2024 BayLibre, SAS.
-+ * Authors: Fabien Parent <fparent@baylibre.com>
-+ *	    Bernhard Rosenkränzer <bero@baylibre.com>
-+ *	    Alexandre Mergnat <amergnat@baylibre.com>
-  */
- 
- /dts-v1/;
-@@ -86,6 +86,29 @@ optee_reserved: optee@43200000 {
- 			reg = <0 0x43200000 0 0x00c00000>;
- 		};
- 	};
-+
-+	sound: sound {
-+		compatible = "mediatek,mt8365-mt6357";
-+		pinctrl-names = "default",
-+				"dmic",
-+				"miso_off",
-+				"miso_on",
-+				"mosi_off",
-+				"mosi_on";
-+		pinctrl-0 = <&aud_default_pins>;
-+		pinctrl-1 = <&aud_dmic_pins>;
-+		pinctrl-2 = <&aud_miso_off_pins>;
-+		pinctrl-3 = <&aud_miso_on_pins>;
-+		pinctrl-4 = <&aud_mosi_off_pins>;
-+		pinctrl-5 = <&aud_mosi_on_pins>;
-+		mediatek,platform = <&afe>;
-+		status = "okay";
-+	};
-+};
-+
-+&afe {
-+	mediatek,dmic-mode = <1>;
-+	status = "okay";
- };
- 
- &cpu0 {
-@@ -174,6 +197,12 @@ &mmc1 {
- 	status = "okay";
- };
- 
-+&mt6357_codec {
-+	vaud28-supply = <&mt6357_vaud28_reg>;
-+	mediatek,micbias0-microvolt = <1900000>;
-+	mediatek,micbias1-microvolt = <1700000>;
-+};
-+
- &mt6357_pmic {
- 	interrupts-extended = <&pio 145 IRQ_TYPE_LEVEL_HIGH>;
- 	interrupt-controller;
-@@ -181,6 +210,67 @@ &mt6357_pmic {
- };
- 
- &pio {
-+	aud_default_pins: audiodefault-pins {
-+		pins {
-+		pinmux = <MT8365_PIN_72_CMDAT4__FUNC_I2S3_BCK>,
-+			 <MT8365_PIN_73_CMDAT5__FUNC_I2S3_LRCK>,
-+			 <MT8365_PIN_74_CMDAT6__FUNC_I2S3_MCK>,
-+			 <MT8365_PIN_75_CMDAT7__FUNC_I2S3_DO>;
-+		};
-+	};
-+
-+	aud_dmic_pins: audiodmic-pins {
-+		pins {
-+		pinmux = <MT8365_PIN_117_DMIC0_CLK__FUNC_DMIC0_CLK>,
-+			 <MT8365_PIN_118_DMIC0_DAT0__FUNC_DMIC0_DAT0>,
-+			 <MT8365_PIN_119_DMIC0_DAT1__FUNC_DMIC0_DAT1>;
-+		};
-+	};
-+
-+	aud_miso_off_pins: misooff-pins {
-+		pins {
-+		pinmux = <MT8365_PIN_53_AUD_CLK_MISO__FUNC_GPIO53>,
-+			 <MT8365_PIN_54_AUD_SYNC_MISO__FUNC_GPIO54>,
-+			 <MT8365_PIN_55_AUD_DAT_MISO0__FUNC_GPIO55>,
-+			 <MT8365_PIN_56_AUD_DAT_MISO1__FUNC_GPIO56>;
-+		input-enable;
-+		bias-pull-down;
-+		drive-strength = <MTK_DRIVE_2mA>;
-+		};
-+	};
-+
-+	aud_miso_on_pins: misoon-pins {
-+		pins {
-+		pinmux = <MT8365_PIN_53_AUD_CLK_MISO__FUNC_AUD_CLK_MISO>,
-+			 <MT8365_PIN_54_AUD_SYNC_MISO__FUNC_AUD_SYNC_MISO>,
-+			 <MT8365_PIN_55_AUD_DAT_MISO0__FUNC_AUD_DAT_MISO0>,
-+			 <MT8365_PIN_56_AUD_DAT_MISO1__FUNC_AUD_DAT_MISO1>;
-+		drive-strength = <MTK_DRIVE_6mA>;
-+		};
-+	};
-+
-+	aud_mosi_off_pins: mosioff-pins {
-+		pins {
-+		pinmux = <MT8365_PIN_49_AUD_CLK_MOSI__FUNC_GPIO49>,
-+			 <MT8365_PIN_50_AUD_SYNC_MOSI__FUNC_GPIO50>,
-+			 <MT8365_PIN_51_AUD_DAT_MOSI0__FUNC_GPIO51>,
-+			 <MT8365_PIN_52_AUD_DAT_MOSI1__FUNC_GPIO52>;
-+		input-enable;
-+		bias-pull-down;
-+		drive-strength = <MTK_DRIVE_2mA>;
-+		};
-+	};
-+
-+	aud_mosi_on_pins: mosion-pins {
-+		pins {
-+		pinmux = <MT8365_PIN_49_AUD_CLK_MOSI__FUNC_AUD_CLK_MOSI>,
-+			 <MT8365_PIN_50_AUD_SYNC_MOSI__FUNC_AUD_SYNC_MOSI>,
-+			 <MT8365_PIN_51_AUD_DAT_MOSI0__FUNC_AUD_DAT_MOSI0>,
-+			 <MT8365_PIN_52_AUD_DAT_MOSI1__FUNC_AUD_DAT_MOSI1>;
-+		drive-strength = <MTK_DRIVE_6mA>;
-+		};
-+	};
-+
- 	ethernet_pins: ethernet-pins {
- 		phy_reset_pins {
- 			pinmux = <MT8365_PIN_133_TDM_TX_DATA1__FUNC_GPIO133>;
-
--- 
-2.25.1
-
+Will
 
