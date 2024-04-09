@@ -1,205 +1,277 @@
-Return-Path: <devicetree+bounces-57601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A150C89E065
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 18:31:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1467789E05E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 18:30:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54C0E28E08C
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 16:31:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BEF8F28DAD3
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 16:30:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C809D145B13;
-	Tue,  9 Apr 2024 16:31:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A90B513E3FD;
+	Tue,  9 Apr 2024 16:30:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ebw30zeo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WI8L30wi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37EB1145357;
-	Tue,  9 Apr 2024 16:31:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BF7213E3F2;
+	Tue,  9 Apr 2024 16:30:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712680262; cv=none; b=s7qpKEzg6/+kww7+4wL+PwRk/CPS/QS3qc9CTUIgWUuGLhXEegu6n7eoi0j6NpP8hPxlB2OR++gHIk+8E67XPUiiwV1qPBdAfw2qhfrS7ovqb1+4JPCio0taI6aipf+upF6axH2CyR/D6yUuv+y5Pymz9hAp3KPyyJE+m0V3TB4=
+	t=1712680202; cv=none; b=IgTp4TKyo6HDEp6QkZ02ivVvyL1X/DKeE5yOulLiYtXdXZZJY2VJ33nRxfim+4TLvChJ6CGOGLvkNM9BP+ACE5C7FVnktF+bIybcf+eQ820KBrErOGF2UpLlnsMJKCpRR1R0huMOStmsgkKGfGzMeb6+v/C5IALWC3U75UhvNhg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712680262; c=relaxed/simple;
-	bh=9IGqlV3LbL0DRJUQIwWW6vNmvOiqvD650CTLJEMb5JM=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:References:
-	 In-Reply-To:Content-Type; b=mwsS8UcXcBVN61TMJW36YKbgA0GLMkB/Wi3sWrBh/PQ2FbSdgtxRPIqoEPnPoH5BFHMInHX607zgtqsiYTsO9PqtHoEZnNj7pwLxrlRIAkSjCkdDvOeBKHIGaI3ZvfHKPsodzEheQbpUQejhJfWnbCttTEK4TYZWhSQ1F+izeqA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ebw30zeo; arc=none smtp.client-ip=209.85.210.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-6ed054f282aso3380238b3a.0;
-        Tue, 09 Apr 2024 09:31:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712680260; x=1713285060; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :to:from:subject:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=D5jDn3MTaqDeILwbAuiKYkg/Duk3E3U9ahMYMgz3dp4=;
-        b=ebw30zeopz6kuBTum2D5EZURNESQfqgQZqoDFy4bN02KNTA62lpDKm5z9jgiVlj5Um
-         eFqI3xce+eQRND6xbzq/mJBc69gxdnFlzGjucfBuYU41j7AFz1vj4uHUTk19tNjnNhZX
-         j0BD7RaBlcSUNq5ZFvNm1EkvA6rAvyQTE7xEF+AvLEnBBZMQNjmX9JxcAMoyslA7iIXZ
-         VrnCkRf12Mqp1IisONOjBGROIyxm3jfrXgs8b6BIXsz/Fy5NLC4mMM2cFg3+g/HAQ6V7
-         hG39+u/Vx22CjQeDMZNvzVu51ErckhWnPiUxbYibr/uwoXm0u6CGeNknoLbNi6gExcI1
-         /mSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712680260; x=1713285060;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=D5jDn3MTaqDeILwbAuiKYkg/Duk3E3U9ahMYMgz3dp4=;
-        b=Et165VF7wgAchmQU3v/TazE/kwRIBDn87HdFLo5xSwxdDZfkHBy/CknPIpp4iluKP+
-         tdttY0WUWHvTzNZ3BTgMKV8wddUeJBXOm+A0OcEnwZZ297xmfQb4iXYDIFrpShhdjlBy
-         TvoY8jAcsxHlAey9fqAOhWpyScF9Nm25vq6IGgECofrYYdH2pcxpuMojGrp/U7SmnuWC
-         OmI9GI2dryspGh5HoRkYEwGyLGEw1YsxBVgD7jT/6yC8U+oPgrUIPI7aWACDyfNWflmt
-         BU2z0NWA41Hni5SYAJRpeN+krvAYb51qIjsYNY49OQPuR58srUGrulMCtVxaQUalGuBh
-         s8VA==
-X-Forwarded-Encrypted: i=1; AJvYcCWgdfeJC8SnL+qBHHtdRm5QDBQBp+M4raoszy90lOEp475rwqqgfZ28l7YfqY8Jm+K2dwgLWFlCFmFj6YKqsVdpoIg3W5DPajuVr+rsSEaXnRKrL9DiNdaHP7wKTf1cXjz0jgGWCJts5GsUGTqCoJGP427g6CypK/13fMF+SNLBGJh4iVp61L5/
-X-Gm-Message-State: AOJu0YzvegeChGQLYMNdRhJaTMcJUObItXzh+X2Cx0SopKMh198Cd/eC
-	NcKmIFDlrY5W4/pAmXvfuYaqdo3W4SV402t76ABvV04G3atgh2Og
-X-Google-Smtp-Source: AGHT+IHLfR8agCuvFel6ntEWfiy+fZrIfE1ihB/JnlmAX263CXs8KVa/MgkQI7sLDI8UzplSZX1hvg==
-X-Received: by 2002:a05:6a00:985:b0:6ec:f5cf:2bb1 with SMTP id u5-20020a056a00098500b006ecf5cf2bb1mr73165pfg.6.1712680260278;
-        Tue, 09 Apr 2024 09:31:00 -0700 (PDT)
-Received: from [10.10.14.80] (1-34-21-66.hinet-ip.hinet.net. [1.34.21.66])
-        by smtp.gmail.com with ESMTPSA id r14-20020aa79ece000000b006ecf72cf8easm8486979pfq.22.2024.04.09.09.30.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Apr 2024 09:30:59 -0700 (PDT)
-Message-ID: <47835475-36de-4682-84ae-0163d45d0bac@gmail.com>
-Date: Wed, 10 Apr 2024 00:28:44 +0800
+	s=arc-20240116; t=1712680202; c=relaxed/simple;
+	bh=sqluHhiDFTvPVAtAz82cjsGRqtZJ0+0bxToUl7j52aw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BUqurf3Nz+7BMMaxajnICijj85Z+1vn65uK7IpOSpXhb0vC71mOk6q0yVfmIAQDb/S3QbdttaYlJFpqgMSgD3w7o4x/gPUVwNAqnkK/4IY9xF4qOL+GN3Alhw1P/nZVzv8KruiW+FqjUxH0eR5QGRZklRbjmCzdidutaoYdlOPg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WI8L30wi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C948FC433C7;
+	Tue,  9 Apr 2024 16:30:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712680202;
+	bh=sqluHhiDFTvPVAtAz82cjsGRqtZJ0+0bxToUl7j52aw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WI8L30wi8+cPsQ6t6sJvESP3xYGy3z94xyR0hDTjzF51FDi+hyftf0KHT1sdnz/E/
+	 Al/MCkZqa3cUfRwvHPauc0pM8XyTmcB8mSBRcKyAMvF0qwUngqU93+RiiC+GjBnZDU
+	 /+/DVYHh91an/ZtxGP+zyRObpJQP+vDgXvEcqLZc4BfyodxH+2KTtlGZd5k3ajgd59
+	 drm0WCZ8NkEDBzYC1dYz3BmzNwpAgNGapY4faSK+LIkeB7IazpJcJ1plTH2+WAoW7A
+	 jiLORtsazrRCL9eC8WeTBbHTMZw5h7Wak8bKbuMpClwqbPpN09D6kgsEvGkaEEQ0HE
+	 gDz6pq0QXmoRg==
+Date: Tue, 9 Apr 2024 11:29:59 -0500
+From: Rob Herring <robh@kernel.org>
+To: Jacky Huang <ychuang570808@gmail.com>
+Cc: linus.walleij@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, p.zabel@pengutronix.de, j.neuschaefer@gmx.net,
+	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	ychuang3@nuvoton.com, schung@nuvoton.com,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v7 2/3] dt-bindings: pinctrl: Document nuvoton ma35d1 pin
+ control
+Message-ID: <20240409162959.GA1370985-robh@kernel.org>
+References: <20240409095637.2135-1-ychuang570808@gmail.com>
+ <20240409095637.2135-3-ychuang570808@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 4/4] drivers: watchdog: ast2500 and ast2600 support
- bootstatus
-From: PeterYin <peteryin.openbmc@gmail.com>
-To: patrick@stwcx.xyz, Wim Van Sebroeck <wim@linux-watchdog.org>,
- Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>,
- linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org
-References: <20240328022231.3649741-1-peteryin.openbmc@gmail.com>
- <20240328022231.3649741-5-peteryin.openbmc@gmail.com>
-Content-Language: en-US
-In-Reply-To: <20240328022231.3649741-5-peteryin.openbmc@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240409095637.2135-3-ychuang570808@gmail.com>
 
-
-
-Peter Yin 於 3/28/24 10:22 寫道:
-> Add WDIOF_EXTERN1 and WDIOF_CARDRESET bootstatus in ast2600
+On Tue, Apr 09, 2024 at 09:56:36AM +0000, Jacky Huang wrote:
+> From: Jacky Huang <ychuang3@nuvoton.com>
 > 
-> Regarding the AST2600 specification, the WDTn Timeout Status Register
-> (WDT10) has bit 1 reserved. Bit 1 of the status register indicates
-> on ast2500 if the boot was from the second boot source.
-> It does not indicate that the most recent reset was triggered by
-> the watchdog. The code should just be changed to set WDIOF_CARDRESET
-> if bit 0 of the status register is set.
+> Add documentation to describe nuvoton ma35d1 pin control and GPIO.
 > 
-> Include SCU register to veriy WDIOF_EXTERN1 in ast2600 SCU74 or
-> ast2500 SCU3C when bit1 is set.
-> 
-> Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
+> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->   drivers/watchdog/aspeed_wdt.c | 35 +++++++++++++++++++++++++++++++----
->   1 file changed, 31 insertions(+), 4 deletions(-)
+>  .../pinctrl/nuvoton,ma35d1-pinctrl.yaml       | 163 ++++++++++++++++++
+>  1 file changed, 163 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/nuvoton,ma35d1-pinctrl.yaml
 > 
-> diff --git a/drivers/watchdog/aspeed_wdt.c b/drivers/watchdog/aspeed_wdt.c
-> index b4773a6aaf8c..0e7ef860cbdc 100644
-> --- a/drivers/watchdog/aspeed_wdt.c
-> +++ b/drivers/watchdog/aspeed_wdt.c
-> @@ -11,10 +11,12 @@
->   #include <linux/io.h>
->   #include <linux/kernel.h>
->   #include <linux/kstrtox.h>
-> +#include <linux/mfd/syscon.h>
->   #include <linux/module.h>
->   #include <linux/of.h>
->   #include <linux/of_irq.h>
->   #include <linux/platform_device.h>
-> +#include <linux/regmap.h>
->   #include <linux/watchdog.h>
->   
->   static bool nowayout = WATCHDOG_NOWAYOUT;
-> @@ -77,11 +79,19 @@ MODULE_DEVICE_TABLE(of, aspeed_wdt_of_table);
->   #define WDT_TIMEOUT_STATUS	0x10
->   #define   WDT_TIMEOUT_STATUS_IRQ		BIT(2)
->   #define   WDT_TIMEOUT_STATUS_BOOT_SECONDARY	BIT(1)
-> +#define   WDT_TIMEOUT_STATUS_EVENT		BIT(0)
->   #define WDT_CLEAR_TIMEOUT_STATUS	0x14
->   #define   WDT_CLEAR_TIMEOUT_AND_BOOT_CODE_SELECTION	BIT(0)
->   #define WDT_RESET_MASK1		0x1c
->   #define WDT_RESET_MASK2		0x20
->   
-> +/*
-> + * Ast2600 SCU74 bit1 is External reset flag
-> + * Ast2500 SCU3C bit1 is External reset flag
-> + */
-> +#define AST2500_SYSTEM_RESET_EVENT	0x3C
-> +#define AST2600_SYSTEM_RESET_EVENT	0x74
-> +#define   EXTERN_RESET_FLAG		BIT(1)
->   /*
->    * WDT_RESET_WIDTH controls the characteristics of the external pulse (if
->    * enabled), specifically:
-> @@ -330,6 +340,11 @@ static int aspeed_wdt_probe(struct platform_device *pdev)
->   	if (IS_ERR(wdt->base))
->   		return PTR_ERR(wdt->base);
->   
-> +	struct regmap *scu_base = syscon_regmap_lookup_by_phandle(dev->of_node,
-> +							     "aspeed,scu");
-> +	if (IS_ERR(scu_base))
-> +		return PTR_ERR(scu_base);
+> diff --git a/Documentation/devicetree/bindings/pinctrl/nuvoton,ma35d1-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/nuvoton,ma35d1-pinctrl.yaml
+> new file mode 100644
+> index 000000000000..8b9ec263213f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/nuvoton,ma35d1-pinctrl.yaml
+> @@ -0,0 +1,163 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/nuvoton,ma35d1-pinctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->   	wdt->wdd.info = &aspeed_wdt_info;
->   
->   	if (wdt->cfg->irq_mask) {
-> @@ -459,14 +474,26 @@ static int aspeed_wdt_probe(struct platform_device *pdev)
->   	}
->   
->   	status = readl(wdt->base + WDT_TIMEOUT_STATUS);
-> -	if (status & WDT_TIMEOUT_STATUS_BOOT_SECONDARY) {
-> +	if (status & WDT_TIMEOUT_STATUS_EVENT)
->   		wdt->wdd.bootstatus = WDIOF_CARDRESET;
->   
-> -		if (of_device_is_compatible(np, "aspeed,ast2400-wdt") ||
-> -		    of_device_is_compatible(np, "aspeed,ast2500-wdt"))
-> -			wdt->wdd.groups = bswitch_groups;
-> +	if (of_device_is_compatible(np, "aspeed,ast2600-wdt")) {
-> +		ret = regmap_read(scu_base,
-> +				  AST2600_SYSTEM_RESET_EVENT,
-> +				  &status);
-> +	} else {
-> +		ret = regmap_read(scu_base,
-> +				  AST2500_SYSTEM_RESET_EVENT,
-> +				  &status);
-> +		wdt->wdd.groups = bswitch_groups;
->   	}
->   
-> +	/*
-> +	 * Reset cause by Extern Reset
-> +	 */
-> +	if (status & EXTERN_RESET_FLAG && !ret)
-> +		wdt->wdd.bootstatus |= WDIOF_EXTERN1;
+> +title: Nuvoton MA35D1 pin control and GPIO
 > +
->   	dev_set_drvdata(dev, wdt);
->   
->   	return devm_watchdog_register_device(dev, &wdt->wdd);
+> +maintainers:
+> +  - Shan-Chun Hung <schung@nuvoton.com>
+> +  - Jacky Huang <ychuang3@nuvoton.com>
+> +
+> +allOf:
+> +  - $ref: pinctrl.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nuvoton,ma35d1-pinctrl
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 1
+> +
+> +  nuvoton,sys:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      phandle of the system-management node.
 
-Hi Guenter,
-    Could you help me understand the definition of WDIOF_CARDRESET in 
-the kernel? If it resets the CPU, should all values be reset to default? 
-Should we check the POR (RstPwr Power on reset SRST# flag) flag in SCU 
-0x74 register bit 0 in ast2600?
+If these are the *only* registers to access the pinctrl functions, then 
+this binding should be a child node of the system-management node and 
+then you don't need this property.
+
+And if the registers for pinctrl are a defined range, you should add a 
+'reg' property (even though Linux and regmap don't use it).
+
+> +
+> +  ranges: true
+
+This property makes no sense with the binding as-is. You don't have 
+any address to translate. Maybe with the above changes it will.
+
+> +
+> +patternProperties:
+> +  "^gpio@[0-9a-f]+$":
+> +    type: object
+> +    additionalProperties: false
+> +    properties:
+> +      gpio-controller: true
+> +
+> +      '#gpio-cells':
+> +        const: 2
+> +
+> +      reg:
+> +        maxItems: 1
+> +
+> +      clocks:
+> +        maxItems: 1
+> +
+> +      interrupt-controller: true
+> +
+> +      '#interrupt-cells':
+> +        const: 2
+> +
+> +      interrupts:
+> +        description:
+> +          The interrupt outputs to sysirq.
+> +        maxItems: 1
+> +
+> +    required:
+> +      - gpio-controller
+> +      - '#gpio-cells'
+> +      - reg
+> +      - clocks
+> +      - interrupt-controller
+> +      - '#interrupt-cells'
+> +      - interrupts
+> +
+> +  "^pin-[a-z0-9]+$":
+> +    type: object
+> +    description:
+> +      A pinctrl node should contain at least one subnodes representing the
+> +      pinctrl groups available on the machine. Each subnode will list the
+> +      pins it needs, and how they should be configured, with regard to muxer
+> +      configuration, pullups, drive strength, input enable/disable and input
+> +      schmitt.
+> +
+> +    $ref: pincfg-node.yaml#
+> +
+> +    properties:
+> +      power-source:
+> +        description: |
+> +          Valid arguments are described as below:
+> +          0: power supply of 1.8V
+> +          1: power supply of 3.3V
+> +        enum: [0, 1]
+> +
+> +      drive-strength-microamp:
+> +        oneOf:
+> +          - enum: [ 2900, 4400, 5800, 7300, 8600, 10100, 11500, 13000 ]
+> +            description: 1.8V I/O driving strength
+> +          - enum: [ 17100, 25600, 34100, 42800, 48000, 56000, 77000, 82000 ]
+> +            description: 3.3V I/O driving strength
+> +
+> +    unevaluatedProperties: false
+
+In the indented cases, it's preferred to put this before 'properties'.
 
 
+> +
+> +  "-grp$":
+> +    type: object
+> +    description:
+> +      Pinctrl node's client devices use subnodes for desired pin configuration.
+> +      Client device subnodes use below standard properties.
+
+Missing $ref to common properties and 'unevaluatedProperties'.
+
+> +    properties:
+> +      nuvoton,pins:
+> +        description:
+> +          Each entry consists of 4 parameters and represents the mux and config
+> +          setting for one pin.
+> +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> +        minItems: 1
+> +        items:
+> +          items:
+> +            - minimum: 0
+> +              maximum: 13
+> +              description:
+> +                Pin bank.
+> +            - minimum: 0
+> +              maximum: 15
+> +              description:
+> +                Pin bank index.
+> +            - minimum: 0
+> +              maximum: 15
+> +              description:
+> +                Mux 0 means GPIO and mux 1 to 15 means the specific device function.
+> +
+> +required:
+> +  - compatible
+> +  - nuvoton,sys
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/clock/nuvoton,ma35d1-clk.h>
+> +
+> +    pinctrl@40040000 {
+> +        compatible = "nuvoton,ma35d1-pinctrl";
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +        nuvoton,sys = <&sys>;
+> +        ranges = <0 0x40040000 0xc00>;
+> +
+> +        gpio@0 {
+> +            reg = <0x0 0x40>;
+> +            interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
+> +            clocks = <&clk GPA_GATE>;
+> +            gpio-controller;
+> +            #gpio-cells = <2>;
+> +            interrupt-controller;
+> +            #interrupt-cells = <2>;
+> +        };
+> +
+> +        uart-grp {
+> +            uart11-pins {
+
+This is not what the schema says.
+
+> +                nuvoton,pins = <11 0 2>,
+> +                               <11 1 2>,
+> +                               <11 2 2>,
+> +                               <11 3 2>;
+> +                bias-disable;
+> +                power-source = <1>;
+> +            };
+> +        };
+
+Include a pin-* node in the example.
+
+> +    };
+> -- 
+> 2.34.1
+> 
 
