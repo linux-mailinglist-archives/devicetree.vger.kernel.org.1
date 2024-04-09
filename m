@@ -1,184 +1,278 @@
-Return-Path: <devicetree+bounces-57425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EC8089D73E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 12:49:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 842B389D78E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 13:03:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C7E8DB21497
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 10:49:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED8881F23FD4
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 11:03:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5D848175F;
-	Tue,  9 Apr 2024 10:49:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 507B78563F;
+	Tue,  9 Apr 2024 11:03:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RGD6dQSK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB96E80603;
-	Tue,  9 Apr 2024 10:49:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EF207C0B0;
+	Tue,  9 Apr 2024 11:03:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712659786; cv=none; b=F1VbmZ755IkcPjtwyLz3LI5l7iaPkDNdYR7RsvNveGZ4LRg6hFS0v2V7yZ64qVdfWlGkYOKT8cPDu/glp2RdSUlVapMciHigM0RN/Y/RR619NFgE0iP9YXHvfOsdSE6FfgLCzS91u5ww7SbjvtRiSIot4EXN/oDDb6h6Z2MQp6M=
+	t=1712660629; cv=none; b=IZHszvTz8gIjRJOCrWDoRkurJf41h32MVBe5CqxMSTasT4BoQ+YzgHcEUjfnU6KkgkSdSfHypvV6Tx2aMcaEaTe1Vu2x+JP0vLez2RmawHvk707Eikl0IMT7yOZCVA7Eb597TYBnJPjHwhLtWgLv60MnovgnkLq8PZoHwg1hLCQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712659786; c=relaxed/simple;
-	bh=XXednxn3A2ELXwpsSYuPnlymvAJgKHfR1r+rrAGVfBI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NxxFQ/kPxwEBUnXr3lzvjiTRSxGsuJDVUZoW1vzKJ0jvxnVDfwYnX+e3uXir5ndvy9jlFBnbSTN3JQG/CLxcEkLGISOMJZpWPkoRByWd0tlviSwYrs9RP8Tf8wSsQAzmZh+Epzvvf6wLlGK1VM0/Ppwv4dE8Q9rps6yzbDC/hyM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A07B01007;
-	Tue,  9 Apr 2024 03:50:14 -0700 (PDT)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 486E73F766;
-	Tue,  9 Apr 2024 03:49:42 -0700 (PDT)
-Date: Tue, 9 Apr 2024 11:49:39 +0100
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Peng Fan <peng.fan@nxp.com>
-Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/6] firmware: arm_scmi: add initial support for i.MX
- BBM protocol
-Message-ID: <ZhUdQ6M0GkL0do_l@bogus>
-References: <20240405-imx95-bbm-misc-v2-v2-0-9fc9186856c2@nxp.com>
- <20240405-imx95-bbm-misc-v2-v2-3-9fc9186856c2@nxp.com>
- <ZhQxu8LVNKf5QDLm@pluto>
- <ZhUDZGJilhczKlDD@bogus>
- <DU0PR04MB94175384AD9113AC6F60546588072@DU0PR04MB9417.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1712660629; c=relaxed/simple;
+	bh=BKL2aI470n0H/gucOxUDsX3tYrfnCJ+YtT/c8wWVhec=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QrIiLoIKPKJn5ot+vUMiXqUyspcysguBlDl7VXqMCW5CykJ19kVEpaC9pMwls4pUET3tkuMRVWTMwTZx6oXq+rKxNfZcThsfi99pYY4bvb8kBLioHVKtck7jXyjGZYXqM9Ym218W4faNf0X8OKxdZAHfbCKoq9FS03MR3njHedw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=RGD6dQSK; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4397m36D020972;
+	Tue, 9 Apr 2024 11:03:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=qcppdkim1; bh=6BRVh/GiB7fDH1Ya2R3Cq
+	R2SPX5lMgLeOW15Ssmy+TM=; b=RGD6dQSKR1dwEVoE8wtqsPzE5sxIWSyxA85KR
+	QH8aku8W9OEdjcUTruzaWq3hD/T+dyeH8qAv530RiqUg+uydVQ4eaDSukNjrSxWu
+	HU0MNXGj25GVQxAXqMl9ZIRmDLfSZztVREFeTczeYl5VPBBkmsBJM/859mLiFP4H
+	Vjbdxk9NOTBM0mkn9NndU6l+fj+XJyxWb10HCuVS5oPA/pLOsIk8eIWbtjvMa9Bt
+	lk6AJw6kHv9pwb7ss+Sq8wz2yiZt2Jl0pmkEEGto/YLV24WD4fJgkwAAL2sAr9hs
+	/C+RlU1bwTExdRZIesqGmLeHBnIyhuwlJ++1nA3PO9G+6548A==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xcvtk0tur-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 09 Apr 2024 11:03:42 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 439B3glf008175
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 9 Apr 2024 11:03:42 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.4; Tue, 9 Apr 2024 04:03:37 -0700
+Date: Tue, 9 Apr 2024 16:33:34 +0530
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <djakov@kernel.org>,
+        <dmitry.baryshkov@linaro.org>, <quic_anusha@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>
+Subject: Re: [PATCH v7 1/5] dt-bindings: interconnect: Add Qualcomm IPQ9574
+ support
+Message-ID: <ZhUghsa5Do5m7wrX@hu-varada-blr.qualcomm.com>
+References: <20240403104220.1092431-1-quic_varada@quicinc.com>
+ <20240403104220.1092431-2-quic_varada@quicinc.com>
+ <58c9b754-b9a7-444d-9545-9e6648010630@kernel.org>
+ <Zg5q6mnWtK6hmPBT@hu-varada-blr.qualcomm.com>
+ <ZhTxFVDH0xTSkw7r@hu-varada-blr.qualcomm.com>
+ <1ec401be-11cb-416a-9eae-d72ea8acf06f@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <DU0PR04MB94175384AD9113AC6F60546588072@DU0PR04MB9417.eurprd04.prod.outlook.com>
+In-Reply-To: <1ec401be-11cb-416a-9eae-d72ea8acf06f@kernel.org>
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: dwonnYnHQ4i9LRfht3nMrlyW9rUsxKkC
+X-Proofpoint-ORIG-GUID: dwonnYnHQ4i9LRfht3nMrlyW9rUsxKkC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-09_08,2024-04-05_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 adultscore=0
+ lowpriorityscore=0 priorityscore=1501 phishscore=0 suspectscore=0
+ mlxscore=0 malwarescore=0 mlxlogscore=999 bulkscore=0 clxscore=1015
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404090070
 
-On Tue, Apr 09, 2024 at 09:13:33AM +0000, Peng Fan wrote:
-> Hi Sudeep,
->
-> > Subject: Re: [PATCH v2 3/6] firmware: arm_scmi: add initial support for i.MX
-> > BBM protocol
+On Tue, Apr 09, 2024 at 11:45:51AM +0200, Krzysztof Kozlowski wrote:
+> On 09/04/2024 09:41, Varadarajan Narayanan wrote:
+> > On Thu, Apr 04, 2024 at 02:25:06PM +0530, Varadarajan Narayanan wrote:
+> >> On Wed, Apr 03, 2024 at 04:59:40PM +0200, Krzysztof Kozlowski wrote:
+> >>> On 03/04/2024 12:42, Varadarajan Narayanan wrote:
+> >>>> Add interconnect-cells to clock provider so that it can be
+> >>>> used as icc provider.
+> >>>>
+> >>>> Add master/slave ids for Qualcomm IPQ9574 Network-On-Chip
+> >>>> interfaces. This will be used by the gcc-ipq9574 driver
+> >>>> that will for providing interconnect services using the
+> >>>> icc-clk framework.
+> >>>>
+> >>>> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> >>>> ---
+> >>>> v7:
+> >>>> Fix macro names to be consistent with other bindings
+> >>>> v6:
+> >>>> Removed Reviewed-by: Krzysztof Kozlowski
+> >>>> Redefine the bindings such that driver and DT can share them
+> >>>>
+> >>>> v3:
+> >>>> Squash Documentation/ and include/ changes into same patch
+> >>>>
+> >>>> qcom,ipq9574.h
+> >>>> 	Move 'first id' to clock driver
+> >>>>
+> >>>> ---
+> >>>>  .../bindings/clock/qcom,ipq9574-gcc.yaml      |  3 +
+> >>>>  .../dt-bindings/interconnect/qcom,ipq9574.h   | 87 +++++++++++++++++++
+> >>>>  2 files changed, 90 insertions(+)
+> >>>>  create mode 100644 include/dt-bindings/interconnect/qcom,ipq9574.h
+> >>>>
+> >>>> diff --git a/Documentation/devicetree/bindings/clock/qcom,ipq9574-gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,ipq9574-gcc.yaml
+> >>>> index 944a0ea79cd6..824781cbdf34 100644
+> >>>> --- a/Documentation/devicetree/bindings/clock/qcom,ipq9574-gcc.yaml
+> >>>> +++ b/Documentation/devicetree/bindings/clock/qcom,ipq9574-gcc.yaml
+> >>>> @@ -33,6 +33,9 @@ properties:
+> >>>>        - description: PCIE30 PHY3 pipe clock source
+> >>>>        - description: USB3 PHY pipe clock source
+> >>>>
+> >>>> +  '#interconnect-cells':
+> >>>> +    const: 1
+> >>>> +
+> >>>>  required:
+> >>>>    - compatible
+> >>>>    - clocks
+> >>>> diff --git a/include/dt-bindings/interconnect/qcom,ipq9574.h b/include/dt-bindings/interconnect/qcom,ipq9574.h
+> >>>> new file mode 100644
+> >>>> index 000000000000..0b076b0cf880
+> >>>> --- /dev/null
+> >>>> +++ b/include/dt-bindings/interconnect/qcom,ipq9574.h
+> >>>> @@ -0,0 +1,87 @@
+> >>>> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> >>>> +#ifndef INTERCONNECT_QCOM_IPQ9574_H
+> >>>> +#define INTERCONNECT_QCOM_IPQ9574_H
+> >>>> +
+> >>>> +#define ICC_ANOC_PCIE0		0
+> >>>> +#define ICC_SNOC_PCIE0		1
+> >>>> +#define ICC_ANOC_PCIE1		2
+> >>>> +#define ICC_SNOC_PCIE1		3
+> >>>> +#define ICC_ANOC_PCIE2		4
+> >>>> +#define ICC_SNOC_PCIE2		5
+> >>>> +#define ICC_ANOC_PCIE3		6
+> >>>> +#define ICC_SNOC_PCIE3		7
+> >>>> +#define ICC_SNOC_USB		8
+> >>>> +#define ICC_ANOC_USB_AXI	9
+> >>>> +#define ICC_NSSNOC_NSSCC	10
+> >>>> +#define ICC_NSSNOC_SNOC_0	11
+> >>>> +#define ICC_NSSNOC_SNOC_1	12
+> >>>> +#define ICC_NSSNOC_PCNOC_1	13
+> >>>> +#define ICC_NSSNOC_QOSGEN_REF	14
+> >>>> +#define ICC_NSSNOC_TIMEOUT_REF	15
+> >>>> +#define ICC_NSSNOC_XO_DCD	16
+> >>>> +#define ICC_NSSNOC_ATB		17
+> >>>> +#define ICC_MEM_NOC_NSSNOC	18
+> >>>> +#define ICC_NSSNOC_MEMNOC	19
+> >>>> +#define ICC_NSSNOC_MEM_NOC_1	20
+> >>>> +
+> >>>> +#define ICC_NSSNOC_PPE		0
+> >>>> +#define ICC_NSSNOC_PPE_CFG	1
+> >>>> +#define ICC_NSSNOC_NSS_CSR	2
+> >>>> +#define ICC_NSSNOC_IMEM_QSB	3
+> >>>> +#define ICC_NSSNOC_IMEM_AHB	4
+> >>>> +
+> >>>> +#define MASTER_ANOC_PCIE0		(ICC_ANOC_PCIE0 * 2)
+> >>>> +#define SLAVE_ANOC_PCIE0		((ICC_ANOC_PCIE0 * 2) + 1)
+> >>>
+> >>> Which existing Qualcomm platform has such code?
+> >>
+> >> Existing Qualcomm platforms don't use icc-clk. They use icc-rpm
+> >> or icc-rpmh. clk-cbf-msm8996.c is the only driver that uses icc-clk.
+> >>
+> >> The icc_clk_register automatically creates master & slave nodes
+> >> for each clk entry provided as input with the node-ids 'n' and
+> >> 'n+1'. Since clk-cbf-msm8996.c has only one entry, it could just
+> >> define MASTER_CBF_M4M and SLAVE_CBF_M4M with 0 and 1 and avoid these
+> >> calculations.
+> >>
+> >> However, ipq9574 gives an array of clock entries as input to
+> >> icc_clk_register. To tie the order/sequence of these clock
+> >> entries correctly with the node-ids, this calculation is needed.
+> >>
+> >>> This is the third time I am asking for consistent headers. Open
+> >>> existing, recently added headers and look how it is done there. Why?
+> >>> Because I am against such calculations and see no reason for them.
+> >>
+> >> Apologies. Regret that I have to trouble you.
+> >>
+> >> In this ipq9574 case, have to reconcile between the following
+> >> feedbacks.
+> >>
+> >> 1. https://lore.kernel.org/linux-arm-msm/fe40b307-26d0-4b2a-869b-5d093415b9d1@linaro.org/
+> >>    We could probably use indexed identifiers here to avoid confusion:
+> >>    [ICC_BINDING_NAME] = CLK_BINDING_NAME
+> >>
+> >> 2. https://lore.kernel.org/linux-arm-msm/95f4e99a60cc97770fc3cee850b62faf.sboyd@kernel.org/
+> >>    Are these supposed to be in a dt-binding header?
+> >>
+> >> 3. https://lore.kernel.org/linux-arm-msm/031d0a35-b192-4161-beef-97b89d5d1da6@linaro.org/
+> >>    Do you use them as well in the DTS?
+> >>
+> >> Having the defines (with the calculations) seemed to to comply
+> >> with the above three feedbacks.
+> >>
+> >> Please let me know if this can be handled in a different way that
+> >> would be consistent with other Qualcomm platforms.
 > >
-> > On Mon, Apr 08, 2024 at 07:04:43PM +0100, Cristian Marussi wrote:
-> > > On Fri, Apr 05, 2024 at 08:39:25PM +0800, Peng Fan (OSS) wrote:
-> > > > From: Peng Fan <peng.fan@nxp.com>
-> > > >
-> > > > The i.MX BBM protocol is for managing i.MX BBM module which provides
-> > > > RTC and BUTTON feature.
-> > > >
-> > >
-> > > I appreciate that you added versioning but I think a bit of
-> > > documentation about what the protocol and its comamnds purpose is
-> > > still lacking, as asked by Sudeep previously
-> > >
-> > >
-> > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore
-> > > .kernel.org%2Flinux-arm-
-> > kernel%2FZeGtoJ7ztSe8Kg8R%40bogus%2F%23t&data=
-> > >
-> > 05%7C02%7Cpeng.fan%40nxp.com%7Ce92ff78b9126447afe9708dc587358d
-> > 4%7C686e
-> > >
-> > a1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C638482499632395762%7C
-> > Unknown%7C
-> > >
-> > TWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiL
-> > CJXVC
-> > >
-> > I6Mn0%3D%7C0%7C%7C%7C&sdata=7QP%2BkkjHA3Sa0CdcbbObGG4kgYYK
-> > XAGA2r%2F%2F
-> > > x0MogqU%3D&reserved=0
-> > >
+> > Krzysztof,
 > >
-> > I have decided to ignore all these vendor protocol patches until they have
-> > some documentation to understand what these protocol are for, what are the
-> > commands, their input/output parameter details, any conditions are the
-> > caller and callee,..etc very similar to SCMI spec.
+> > Is this ok? Can I post a new version addressing other review comments?
 >
-> Where do you expect the documentation to be put?
->
+> I don't understand and you did not answered before, why you have to do
+> it differently than all other Qualcomm interconnect providers. Maybe the
+> code here needs it, maybe not, but I don't see any argument proving this.
 
-To begin with, we need all these vendor protocols in a directory say
-vendors/nxp under drivers/firmware/arm_scmi. It can be a simple text file
-under that. We can see later if we need any more formal version elsewhere
-but that shouldn't be a blocker for these changes.
+Other Qualcomm interconnect providers use the icc-rpm.
 
-> similar as scmi_protocol.h, put in scmi_imx_protcol.h?
-> >
-> > To start with can you please expand what is BBM or MISC protocol is ?
->
-> ok. Sorry for missing your previous comment in v1. Let me write here briefly
-> first.
->
+	1. The SoC specific interconnect providers have control
+	   over the master/slave id-numbers and is hard coded.
+
+	2. These id-numbers are used by the RPM firmware.
+
+IPQ9574 uses icc-clk.
+
+	1. The ipq9574 specific interconnect provider doesn't
+	   have control over the master/slave id-numbers. The
+	   icc-clk framework auto generates it in the order of
+	   the clock entries given as input.
+
+	2. These auto-generated id-numbers have to be correctly
+	   tied to the DT nodes. Else, the relevant clocks may
+	   not get enabled.
+
+Since ICC-CLK creates two ids per clock entry (one MASTER_xxx and
+one SLAVE_xxx), using those MASTER/SLAVE_xxx macros as indices in
+the below array would create holes.
+
+	static int icc_ipq9574_hws[] = {
+		[MASTER_ANOC_PCIE0] = GCC_ANOC_PCIE0_1LANE_M_CLK,
+		[MASTER_SNOC_PCIE0] = GCC_SNOC_PCIE0_1LANE_S_CLK,
+		[MASTER_ANOC_PCIE1] = GCC_ANOC_PCIE1_1LANE_M_CLK,
+		[MASTER_SNOC_PCIE1] = GCC_SNOC_PCIE1_1LANE_S_CLK,
+		. . .
+	};
+
+Other Qualcomm drivers don't have this issue and they can
+directly use the MASTER/SLAVE_xxx macros.
+
+As the MASTER_xxx macros cannot be used, have to define a new set
+of macros that can be used for indices in the above array. This
+is the reason for the ICC_BINDING_NAME macros.
+
+Does this answer your concern? Please let me know.
 
 Thanks
-
-> The Battery Backup (BB) Domain contains the Battery Backed Security
-> Module (BBSM) and the Battery Backed Non-Secure Module (BBNSM).
-> BBM protocol is to manage i.MX BBSM and BBNSM. This protocol supports
-> #define COMMAND_PROTOCOL_VERSION             0x0U
-> #define COMMAND_PROTOCOL_ATTRIBUTES          0x1U
-> #define COMMAND_PROTOCOL_MESSAGE_ATTRIBUTES  0x2U
-> #define COMMAND_BBM_GPR_SET                  0x3U
-> #define COMMAND_BBM_GPR_GET                  0x4U
-> #define COMMAND_BBM_RTC_ATTRIBUTES           0x5U
-> #define COMMAND_BBM_RTC_TIME_SET             0x6U
-> #define COMMAND_BBM_RTC_TIME_GET             0x7U
-> #define COMMAND_BBM_RTC_ALARM_SET            0x8U
-> #define COMMAND_BBM_BUTTON_GET               0x9U
-> #define COMMAND_BBM_RTC_NOTIFY               0xAU
-> #define COMMAND_BBM_BUTTON_NOTIFY            0xBU
-> #define COMMAND_NEGOTIATE_PROTOCOL_VERSION   0x10U
->
-
-Hopefully description of each of these commands cover what GPR above means
-really.
-
-> For now in this patchset for linux, we only use RTC, and BUTTON
-> for system wakeup
->
-> For MISC protocol, it is for various misc things, such as discover
-> build info, get rom passed data, get reset reason, get i.mx
-> cfg name, control set(for gpio expander under m33 control and
-> etc). The command as below:
-> #define COMMAND_PROTOCOL_VERSION             0x0U
-> #define COMMAND_PROTOCOL_ATTRIBUTES          0x1U
-> #define COMMAND_PROTOCOL_MESSAGE_ATTRIBUTES  0x2U
-> #define COMMAND_MISC_CONTROL_SET             0x3U
-> #define COMMAND_MISC_CONTROL_GET             0x4U
-> #define COMMAND_MISC_CONTROL_ACTION          0x5U
-> #define COMMAND_MISC_DISCOVER_BUILD_INFO     0x6U
-> #define COMMAND_MISC_ROM_PASSOVER_GET        0x7U
-> #define COMMAND_MISC_CONTROL_NOTIFY          0x8U
-> #define COMMAND_MISC_REASON_ATTRIBUTES       0x9U
-> #define COMMAND_MISC_RESET_REASON            0xAU
-> #define COMMAND_MISC_SI_INFO                 0xBU
-> #define COMMAND_MISC_CFG_INFO                0xCU
-> #define COMMAND_MISC_SYSLOG                  0xDU
-> #define COMMAND_NEGOTIATE_PROTOCOL_VERSION   0x10U
->
-
-And same here. Just as an example what BUILD_INFO ? There will be 10s if not
-100s of different image in the system. What does this BUILD_INFO provide ?
-And why is this important over version or release info ?
-
-These are simple pointers, expect more questions like this if the document
-is not self sufficient in explaining such details.
-
---
-Regards,
-Sudeep
+Varada
 
