@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-57378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D91889D5B5
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 11:40:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA15589D5C4
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 11:43:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 023A72837BB
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 09:40:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D47BD285461
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 09:43:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F57980022;
-	Tue,  9 Apr 2024 09:40:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0860680622;
+	Tue,  9 Apr 2024 09:42:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jyKNNbR6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XbvmNkrK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A373833CE
-	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 09:40:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 319178003D
+	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 09:42:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712655645; cv=none; b=PRj8VhDRJnDkLwewASqsjVZLkHItfLVn6XTcGrJ5ItiRhIywDi2m58kJ1Y04Am0KpxDi4tKHOl/dJn03tYdB5tiH23P7QUA3NL+YSGtTmFLv0PcQXI9RyZp8K30KZZ1MyxKff3t9E7GLbhRFdxcwoJUJ32wsgOpp65jJ6V7iI0o=
+	t=1712655774; cv=none; b=cc1TMJH4dIZSJyxeC8g+sVSvpAMl8Cjbkxi1sIk6F+7FapCT8VYkzC9GuKg7vpPBrftQL3HcC1Ahft5SBE3iJkM6jki+pgYWtaVFQHJP8pVpvSKkbHowZR3MBAfV517mG2tP1p8f7ENGZQzOR9oGn53GYgYcXGUUDmSG6TywOp8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712655645; c=relaxed/simple;
-	bh=TxSYGiRfu7aaveeB0Y8MegY4U0m6GbTReYvO72k/SrQ=;
+	s=arc-20240116; t=1712655774; c=relaxed/simple;
+	bh=8vvOLQD5ZsaS2XUNwp5Pg+n59sKcIvNp2xo0fkfekN0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YnuCs74Ky8LvOL3oIQ/4LDs/jSO/u69mw5kZV6BgcVa4zskdhIf++oN/d1+oagZr0r8i9W/nraYVCJJciP0P+GVthmeCNYYC5FhfEwHoSY3D5yfpriYaNU2GweZt3Nx7jqMs6ZM4aNp09jReW6f15q5RvFtT6iWTAo5BiUQzMpc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jyKNNbR6; arc=none smtp.client-ip=209.85.221.46
+	 In-Reply-To:Content-Type; b=cseWL2hPHoSe9jtveWOLKMTU1t1RBWS2TAhH8ftRyxJOQcK3AQ3iZrPASNiCsiPfO7D7y9iy1Zy2TCnxUhcMjeazFnFtfii975gNQ6gWyAZ9m35lk24UOBC8o/jbrQQUS+IBALigyXUzAKcr1nQ/u8aT6cyvGtTYAf8A61/U0GI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XbvmNkrK; arc=none smtp.client-ip=209.85.128.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-343f8fc5c69so2181126f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Apr 2024 02:40:42 -0700 (PDT)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-416b7f3736dso462405e9.3
+        for <devicetree@vger.kernel.org>; Tue, 09 Apr 2024 02:42:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712655641; x=1713260441; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712655771; x=1713260571; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=cMVhtAm6vqVRRg54kID72AW24B0pe3D18jLWSvsKVQU=;
-        b=jyKNNbR6gQlOYjbod5xfRgUg+3YFGNjDTAfbe/ftCt0TpaniMYUP6kBAhAA7s0ynAH
-         gf7ydGnaiLh1lR+BPE9w4mViTNX3bcPTTptiJpwis3MqgJaSimpIJ+peKDvq/Vsioo92
-         83hlzWJP79+Jrj9ooURFicB9/yTRZ83znkbgWzw2HaSdUb/r1JMipz6DxmjpGU8gCq1+
-         Sc+Txjlidr/qa9C/qrNyoKjAAemWAqBoJhfYPKMRXvh/asQvm8K3cW0Imtec/O/MJOwL
-         Kxr+jpH+8nvRlqNX8Sefws42I3U65eHWTrdXg0EaIITRWuqf735Kb8dqPUQS7bcw+zzY
-         XIKg==
+        bh=A6uDAqyEhHRvdZlwpXxXFcdgG+rDJbSomin1pngZPKM=;
+        b=XbvmNkrKmYnieSSnT/TaDwTmJUqD/62QHOQqFWBRLgOCYFIpliKAYUzkA2p4Zr/FgB
+         FX8AxPslqJrbCcTsHxXU69eQBLdSKfXxXMsEoBBo1J4ia3HDgzFYQd5oFxw6synv76xv
+         6ZO3ShtCMiJz1jZszHmztI/pK59xaL7YuCjmD4zUSZiyWgs2S3/ZX9Xz/L/Hopufzkjb
+         d912O5QMH/3CaugSxEKMzXNn8e16878wo1KIxc64WDvhsmbSaj75oHro48EBsVBawrsA
+         5CRdzB1BZErYYU8b5VvvS1NR3ljg/aSE9hHgHDs+fWPta8jvL3zknbvpkMIsm+b++s22
+         ru5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712655641; x=1713260441;
+        d=1e100.net; s=20230601; t=1712655771; x=1713260571;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=cMVhtAm6vqVRRg54kID72AW24B0pe3D18jLWSvsKVQU=;
-        b=cFna4H2LZBbajmUrrip8DwxuYP/4hyt5WgP1spKsA5hjn0zK91KEjcbNqZTW/0TPvD
-         K2kriHcF3u9EPnSLtYwUSsHdwRqjzkA72syaWdUkqQBAEKOdAXjUVnVowK5ddM7O7B3M
-         9shprUTWYIpnuV0Cz+WhAiLP56AgvxuvHVRkEq5nD+OHNI+/iea7WWRr/YgsrqvKqXN7
-         6+OSGypDEuTms4KlevhPldVJcgjlum0gIUnLwTi6/hsrNuR05rPs87H9tXpB7o1NuTDt
-         8FnD/Eg7PWE1OA5mUb7S8zDmA3YoezeazWCHLmAwUfAhMgJu+B5hZwmDRmUT2o/2foEk
-         9S9g==
-X-Forwarded-Encrypted: i=1; AJvYcCVpPHoXmiyuoQA7MVKS71ESObOpYPrHOhfHGWj3KJA0V5psow3z2UejQCOFw6YDX5BKlPlQ7JiX3UMFhNEKslhaPla8wOid7eEOqA==
-X-Gm-Message-State: AOJu0Ywa+ERh1XezlpvenfROFz3/mK8St9kiVc7YqZCf6Js2TKCDwqqS
-	wqa4KdupVwyLoh3Ata8tI+RAWaHtN8RkD+rWrqEzPYS6TrQZl4Y85be7W+lokdg=
-X-Google-Smtp-Source: AGHT+IHNYKec5AgdsW2xf6hs+LFjsV1tO1d8+PGn+8kx3O+NNk0UjzkCxex+tQAWqyYfp3Dx7iskRw==
-X-Received: by 2002:adf:ef52:0:b0:343:9a57:7d1f with SMTP id c18-20020adfef52000000b003439a577d1fmr7060414wrp.69.1712655640901;
-        Tue, 09 Apr 2024 02:40:40 -0700 (PDT)
+        bh=A6uDAqyEhHRvdZlwpXxXFcdgG+rDJbSomin1pngZPKM=;
+        b=qusAd+7VPIpTnzAFROlo414yJLhC9oTYphxWhkZObTNm8mkiNF5w5SRjp171Xf8Wmw
+         GgkAZ8YverfK1MfQRp+YruZ/3QocjKWyazGEf2eXRBFOrs3Q4KgHa1fCyFcZ2zCTqIzM
+         dlG3Yuv0kOeSPvmze41yrW2MRYT3JL2hXGgcjZtM56a9oroBipW4rmz+f6SyBNejvHmQ
+         otuO23xzIpsd71qEpP5liPU6bflTVQLigR3rVJHWn3GHbR5DwSueiSOZKxJxtoK/yqrI
+         Oc4ApoRbiqTH8R4jnUYjatQco4yDCRRTAQ5VCAEdiT9t/jUPIzjow4p9dlA7LnSdC65T
+         T2Qw==
+X-Forwarded-Encrypted: i=1; AJvYcCWIxFkM8rKXd4HURbQ9/uYC88f80OTlBtqtTvZB4djokKvP+9UBEfQkwU1A6/SfUz+ntMXCXhFifOWRjHluNwk1cuTt9fDPcqjW/Q==
+X-Gm-Message-State: AOJu0YzZDcwK8BKuuAokrSreVw6FQV38IhZtoy3jWyu+LW/MDD/PlrGm
+	pNQ5hkiMNO5aGnRKxXuOpIBMMBBi/5iVgAF0lcVaA4wTjI3byWEQwtJygM03n6M=
+X-Google-Smtp-Source: AGHT+IGpPPbz11kQsh+3NVfgfOFdIrZTnyJtzHQKO40Gmlg8uys/Ra3Ti+Bs76LJNPYnQOQ+yDtn+A==
+X-Received: by 2002:a05:600c:4505:b0:413:ef8e:4cc with SMTP id t5-20020a05600c450500b00413ef8e04ccmr9259111wmo.40.1712655771528;
+        Tue, 09 Apr 2024 02:42:51 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id m28-20020adfa3dc000000b003435e1c0b78sm11106758wrb.28.2024.04.09.02.40.38
+        by smtp.gmail.com with ESMTPSA id n11-20020a05600c3b8b00b00416aca5ff66sm1329775wms.19.2024.04.09.02.42.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Apr 2024 02:40:40 -0700 (PDT)
-Message-ID: <ea5a9c80-c43f-49e9-b9ac-da27c74a32bb@linaro.org>
-Date: Tue, 9 Apr 2024 11:40:38 +0200
+        Tue, 09 Apr 2024 02:42:51 -0700 (PDT)
+Message-ID: <89492719-f8ce-4cda-a5b2-ca09d57203bb@linaro.org>
+Date: Tue, 9 Apr 2024 11:42:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,7 +77,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/9] dt-bindings: rtc: lpc32xx-rtc: move to trivial-rtc
+Subject: Re: [PATCH 8/9] dt-bindings: rtc: stmp3xxx-rtc: convert to dtschema
 To: Javier Carrasco <javier.carrasco.cruz@gmail.com>,
  Alexandre Belloni <alexandre.belloni@bootlin.com>,
  Rob Herring <robh@kernel.org>,
@@ -88,12 +88,11 @@ To: Javier Carrasco <javier.carrasco.cruz@gmail.com>,
  Maxime Coquelin <mcoquelin.stm32@gmail.com>,
  Alexandre Torgue <alexandre.torgue@foss.st.com>
 Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-stm32@st-md-mailman.stormreply.com
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <20240408-rtc_dtschema-v1-0-c447542fc362@gmail.com>
- <20240408-rtc_dtschema-v1-3-c447542fc362@gmail.com>
- <dd5e9837-0dcf-4b0e-8d11-f8bed868cdf2@linaro.org>
- <6dc808bf-682f-4e91-aac7-7ce6f05a0ab4@gmail.com>
+ <20240408-rtc_dtschema-v1-8-c447542fc362@gmail.com>
+ <f0467c4f-45e2-4cae-b1b5-3867e5b9bf08@linaro.org>
+ <89e7db2d-1de0-4e2e-a2d2-f00d45399b11@gmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -140,62 +139,70 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <6dc808bf-682f-4e91-aac7-7ce6f05a0ab4@gmail.com>
+In-Reply-To: <89e7db2d-1de0-4e2e-a2d2-f00d45399b11@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/04/2024 10:52, Javier Carrasco wrote:
-> On 4/9/24 09:34, Krzysztof Kozlowski wrote:
+On 09/04/2024 11:22, Javier Carrasco wrote:
+> On 4/9/24 09:40, Krzysztof Kozlowski wrote:
 >> On 08/04/2024 17:53, Javier Carrasco wrote:
->>> This RTC requires a compatible, a reg and a single interrupt,
->>> which makes it suitable for a direct conversion into trivial-rtc.
+>>> Convert existing binding to dtschema to support validation.
 >>>
->>> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
->>> ---
->>>  Documentation/devicetree/bindings/rtc/lpc32xx-rtc.txt  | 15 ---------------
->>>  Documentation/devicetree/bindings/rtc/trivial-rtc.yaml |  2 ++
->>>  2 files changed, 2 insertions(+), 15 deletions(-)
+>>> The 'fsl,imx28-rtc' compatible is currently not supported, and it is
+>>> only referenced in this binding and in nxp/mxs/imx28.dtsi. Therefore,
+>>> that compatible has been dropped, which triggers a warning when testing
+>>> the DT against the new binding.
 >>
->> This one no... and if you tested DTS you would see errors, although you
->> need to test specific lpc config, not multi_v7.
+>> Instead document missing compatibles and mention this in commit msg.
 >>
->> It does not look like you tested the DTS against bindings. Please run
->> `make dtbs_check W=1` (see
->> Documentation/devicetree/bindings/writing-schema.rst or
->> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
->> for instructions).
->>
->> Anyway, you *must* check all DTS before moving anything to trivial.
->>
->> Does it mean all other bindings were not checked against DTS at all?
->>
->> Best regards,
->> Krzysztof
->>
-> Hi,
 > 
-> I did check the conversion against nxp/lpc/lpc3250-phy3250.dts, which
-> throws a message about the 'clocks' property.
 > 
-> That property is not documented in the original binding, and even though
-> it could be missing, I could not find any function to get a clock (i.e.
+> There is no driver that will match 'fsl,imx28-rtc', only
+> 'fsl,stmp3xxx-rtc', so I am not sure how to document the missing
+> compatible in a sensible way. My first suggestion to account for
 
-Old bindings are not really accurate.
+I don't understand what driver matching to it has anything to do with
+the problem discussed here.
 
-> any form of clk_get()) in rtc-lpc32xx.c, which is the only file where
-> the compatible can be found.
+You have DTS, so you can see how it should be written.
+
+> undocumented strings would be:
 > 
-> Is therefore the property not useless in the dts? My apologies if I am
-> missing something here.
+>   compatible:
+>     oneOf:
+>       - items:
+>           - enum:
+>               - fsl,imx23-rtc
+>               - fsl,imx28-rtc
+>           - const: fsl,stmp3xxx-rtc
+>       - const: fsl,stmp3xxx-rtc
+> 
+> Any suggestions or improvements?
+> 
+>>>
+>>> There is another reference to fsl,stmp3xxx-rtc in nxp/mxs/imx23.dtsi,
+>>> where another unsupported compatible 'fsl,imx23-rtc' is used, and the
+>>> same problem would arise when testing the file against the new binding.
+>>
+>> Please write concise messages... you have to paragraphs about the same?
+>> What is the difference here?
+>>
+> The difference is that 'fsl,imx23-rtc' was not even mentioned in any
+> binding, and it can only be found in imx23.dtsi. 'fsl,imx28-rtc' was
+> indeed mentioned in the txt binding.
 
-Useless for whom? For Linux yes. For U-Boot or out-of-tree users of DTS,
-I don't know. Anyway the true question is if there is a clock or there
-is no. If there is a clock, then it should be in the binding even if
-Linux driver does not use it.
+Bindings are not correct. Many times.
 
-I propose to add it and be done with it.
+> 
+> My understanding after your comment is that we should gather
+> undocumented compatibles and add them to the bindings they would belong
+> to,no matter if they are used anywhere or not. I added this one to the
+> suggestion above as well.
 
-
+What do you mean "unused"? If these you call unused, then shall we
+remove 90% of such "unused" compatibles from the binding? No. See
+writing bindings or hundreds of other bindings as examples. You need
+specific part.
 
 
 Best regards,
