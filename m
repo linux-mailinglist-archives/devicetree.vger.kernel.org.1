@@ -1,282 +1,155 @@
-Return-Path: <devicetree+bounces-57624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3061989E1E0
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 19:52:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1161A89E214
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 20:04:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC8211F23348
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 17:52:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B60D1F2327C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 18:04:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC2E7156861;
-	Tue,  9 Apr 2024 17:52:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C289F156883;
+	Tue,  9 Apr 2024 18:04:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M2QIEf/L"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lIK/QBsk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A48697F499;
-	Tue,  9 Apr 2024 17:52:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC06915574A
+	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 18:04:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712685153; cv=none; b=iL4S6qnIhlAEpAYvhaiZX7K1pNEnZQy8fWFl/CeVNIjOfZ1QrNPXI51p+S2C22R/P7JxkcO7Tg9ML/gh0x0fiirNAqkYE6SwWMa126gcJij357gLi0wh+TkWSTzlMNcrYoqTlokoyuhzVve5ZUvCMMNXK26exXPlD0JeFZiyeao=
+	t=1712685889; cv=none; b=AuyUinDy+IG2fSx7mSHJkVxcSf0XDTI0/m37cZ0Xo1pxnGoteZCOsajQMnjcUjrw1SlVBupI+sHiZckyZOQ9k4ZAVgCF+bezSwXSsrqzdTr/rxV/cJQ5zNnEyAA65B0+aoF/qwFlxGBiAD+Ky9yopVYoSpYZYrAFunK/iWLKUOs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712685153; c=relaxed/simple;
-	bh=xnkwmAjY3BJsaOzhvXl8086aBz/Ibaph3nfxo9G40vU=;
+	s=arc-20240116; t=1712685889; c=relaxed/simple;
+	bh=sEg91M0chOfJoTJVgoQ99WIic1YAWUXIb7Gv6htphyQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HpMU24vb1Z2EFU5MQNHu9sQtfOmqawbI1fY0MHEZ2HK+eRx9UpEKeYu88YpsoQDeHuZZc1pzZ8mYLsRtaMTrvMRlpEO3+3oCw85PSRkXomTk11WNvUgWBvaK+2C+XX7yTJvDSLt4JPaVbJn8OtRkl4KNnCKISVmEDMqdOh3jaMA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M2QIEf/L; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBDB2C433C7;
-	Tue,  9 Apr 2024 17:52:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712685153;
-	bh=xnkwmAjY3BJsaOzhvXl8086aBz/Ibaph3nfxo9G40vU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=M2QIEf/Lw46CGLmUECQznNMcDHbCnzXlTi6haF8sa5xA94PDutlnHWyWyUbTLwx9t
-	 jgEYQwQ1w1QIvLTSmBuOgaUEJZDHAsLDpQkH1gB1tnwUzKl8V1cDDfEqsCTG8Kusce
-	 QX6/GfMbchvUTC9Bdf5pgHP2+/vmjBVnFNKouM9KHewLinQ+r2uvRrtebyN472BOfY
-	 Re9p3fmJGKaOXw97snsL2lDk371zC+NQ4WYDv0+kqvPtodMmqJ8gBLTn+iNrYyy4tI
-	 p1uRhy1XywLmbZapGHFdwIQxDcIBOhxd5dTvINZCA9RmWVHMW319OZfKkgEV+oH262
-	 addSIMujGgRyg==
-Date: Tue, 9 Apr 2024 18:52:28 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Jason-JH Lin =?utf-8?B?KOael+edv+elpSk=?= <Jason-JH.Lin@mediatek.com>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	Houlong Wei =?utf-8?B?KOmtj+WOmum+mSk=?= <houlong.wei@mediatek.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	Shawn Sung =?utf-8?B?KOWui+WtneismSk=?= <Shawn.Sung@mediatek.com>,
-	CK Hu =?utf-8?B?KOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-	"jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
-	"angelogioacchino.delregno@collabora.com" <angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH v5 02/10] dt-bindings: mailbox: Add mboxes property for
- CMDQ secure driver
-Message-ID: <20240409-scratch-rift-41f0967c2dc4@spud>
-References: <20240403102602.32155-1-shawn.sung@mediatek.com>
- <20240403102602.32155-3-shawn.sung@mediatek.com>
- <20240403-conflict-detest-717b4175a00c@spud>
- <9b9707a4a0e285a12741fe4140680ad2578d8d2b.camel@mediatek.com>
- <20240404-lankiness-devouring-d4d012b22cb9@spud>
- <e6a30feb1e4bb41c90df5e0272385d0f47a7dcab.camel@mediatek.com>
- <20240405-remindful-galley-2dee9eec4f34@spud>
- <f2476233528e18f78cdfa4eb7bc4c5ae91f70db8.camel@mediatek.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=O4wb+ahJElHyshjQf9ApSi1NCQT29oDDOmjEECYZtNB4w57dAAwGB17J+ZfqwMpiDsLzKSXCbUSqB9dfazC5qxEqMcy/0unT1j/7gDJg/Ip0V0ecwsSlt62cBi0TVz2Od5uDjAcmEFmir/VODQms3o/iiffm7BM4Q9xn6X2uIC0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lIK/QBsk; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-516dbc36918so4297700e87.0
+        for <devicetree@vger.kernel.org>; Tue, 09 Apr 2024 11:04:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712685886; x=1713290686; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=mt7HVPjAilY3mwr17H22AEx0sDoVw4kMEURX0lXTtic=;
+        b=lIK/QBskQ0U/mssZE5sPferBAoVJ3IRRGedK4xqm65E6gbNWfftcnJoemQaLzM+zLe
+         ETULRTFFVkB6NLfjgm9HABqZWFnX2Nv5j3BslK16hQUyid7nC4NmHwHP46tpLdis/N9n
+         t8HSKziYIMtafIivmWSrUSHypzgr+I0Fc9FtAYeaxPgYSRaiTBkMLqaCy64R9sDuCjja
+         ak/xtmukTDFKGalOe++dHlRrkw1NYRwiNS2c9mDAkspVj1idUvc7jLGwg5+MlRttt+Mg
+         a8VsQ/fkI56CAy2MrKLjqIqpFLiSHPJmrkHGL7f4AcbHU82Aq4tdPzcxhxKR3gt8E99u
+         OZTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712685886; x=1713290686;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mt7HVPjAilY3mwr17H22AEx0sDoVw4kMEURX0lXTtic=;
+        b=BSNL3haMU6UnuXZ4lgCzquFihCvoC21g3b5m/uXFJafJHgCyCn+TXk9XYbcgwIMvmg
+         HF2JWSpootyeJk+1045Bvk2yTtjU22twiqWTD0A3SAhyYbvnwV9GQcRzUQ3HZP53llIY
+         WCfaSPUBjdoMqdX21JyxEns+Djpuf4zuUZcSgChzDGOveD0LhE2Kb430FtS6OssPWFVG
+         0mtsvd+h/T/V940YXpP7EnPEwjQiHYFzJlOqnz5xfcPo0hi9s3lwa4NtGiu4D1OKc9Pa
+         IXN1y9mUg8Z33wvdJ3ZLPz97dIHWCfQnTBJMvkmuC7m6RkK1ntS0jx07AQsbhbvT2y96
+         wHyw==
+X-Forwarded-Encrypted: i=1; AJvYcCUYBXRzufZxN+MaN4vCisgm1NqiMDhmROW50Y0SgfkVeovIt/CKTJW/GxLoHVdYn98pLdUW+a5oBhwPov4RwgVefIWN17eZEX9wvA==
+X-Gm-Message-State: AOJu0Yz+cMxJRek7CWuUBy2AEfoiWPtRw3BQyBD0rOlfEYqpK/tO1mSb
+	Cs7u1Fh534XCyPYaN9hHFlmOJp38DAMlWiZn5k34rgXbQYFGy6P/xfpRTrQr0ro=
+X-Google-Smtp-Source: AGHT+IGdK7leJ3QXhD6uZ/35F5XaLJqlEevFkNwPNitSZjtNpi/nk0armGKfZL2bzGGgnmj2Q9OGzg==
+X-Received: by 2002:a05:6512:455:b0:517:5f99:5a9f with SMTP id y21-20020a056512045500b005175f995a9fmr106766lfk.29.1712685885930;
+        Tue, 09 Apr 2024 11:04:45 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzyjmhyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a00e:a300::227])
+        by smtp.gmail.com with ESMTPSA id w20-20020a05651234d400b00516cdd2183asm1619918lfr.15.2024.04.09.11.04.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Apr 2024 11:04:45 -0700 (PDT)
+Date: Tue, 9 Apr 2024 21:04:43 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Rob Clark <robdclark@gmail.com>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 3/6] drm/msm/adreno: Allow specifying default speedbin
+ value
+Message-ID: <quil2y6tbilihgont2xekay4joxgnsanu3khgo77omtwkolslp@ozuaajpv5uon>
+References: <20240405-topic-smem_speedbin-v1-0-ce2b864251b1@linaro.org>
+ <20240405-topic-smem_speedbin-v1-3-ce2b864251b1@linaro.org>
+ <pncr7ecf4eir36skul3iwt2nf5bpuwd5zjfzzfwwnxjwe4hoes@6z2xe54crijp>
+ <d8a2ef87-f29e-4bdb-a9b8-591b8bd5d2b2@linaro.org>
+ <tkcbl2iwcy3feoggbk737gx32qsxe5p4ad6lfrujy2pazccrhm@kif3guuzay6h>
+ <CAF6AEGsg2xCCC27t_Gqu=MMQ6tckVw=Zj90p4x7EuOm+VKA=ig@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="vZkNg9zy1YA11/rh"
-Content-Disposition: inline
-In-Reply-To: <f2476233528e18f78cdfa4eb7bc4c5ae91f70db8.camel@mediatek.com>
-
-
---vZkNg9zy1YA11/rh
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAF6AEGsg2xCCC27t_Gqu=MMQ6tckVw=Zj90p4x7EuOm+VKA=ig@mail.gmail.com>
 
-On Sat, Apr 06, 2024 at 04:15:51PM +0000, Jason-JH Lin (=E6=9E=97=E7=9D=BF=
-=E7=A5=A5) wrote:
-> On Fri, 2024-04-05 at 17:13 +0100, Conor Dooley wrote:
-> > On Fri, Apr 05, 2024 at 02:33:14PM +0000, Jason-JH Lin (=E6=9E=97=E7=9D=
-=BF=E7=A5=A5) wrote:
-> > > On Thu, 2024-04-04 at 15:52 +0100, Conor Dooley wrote:
-> > > > On Thu, Apr 04, 2024 at 04:31:06AM +0000, Jason-JH Lin (=E6=9E=97=
-=E7=9D=BF=E7=A5=A5)
-> > > > wrote:
-> > > > > Hi Conor,
-> > > > >=20
-> > > > > Thanks for the reviews.
-> > > > >=20
-> > > > > On Wed, 2024-04-03 at 16:46 +0100, Conor Dooley wrote:
-> > > > > > On Wed, Apr 03, 2024 at 06:25:54PM +0800, Shawn Sung wrote:
-> > > > > > > From: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>
-> > > > > > >=20
-> > > > > > > Add mboxes to define a GCE loopping thread as a secure irq
-> > > > > > > handler.
-> > > > > > > This property is only required if CMDQ secure driver is
-> > > > > > > supported.
-> > > > > > >=20
-> > > > > > > Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
-> > > > > > > Signed-off-by: Hsiao Chien Sung <shawn.sung@mediatek.com>
-> > > > > > > ---
-> > > > > > >  .../bindings/mailbox/mediatek,gce-mailbox.yaml         |
-> > > > > > > 10
-> > > > > > > ++++++++++
-> > > > > > >  1 file changed, 10 insertions(+)
-> > > > > > >=20
-> > > > > > > diff --git
-> > > > > > > a/Documentation/devicetree/bindings/mailbox/mediatek,gce-
-> > > > > > > mailbox.yaml
-> > > > > > > b/Documentation/devicetree/bindings/mailbox/mediatek,gce-
-> > > > > > > mailbox.yaml
-> > > > > > > index cef9d76013985..c0d80cc770899 100644
-> > > > > > > ---
-> > > > > > > a/Documentation/devicetree/bindings/mailbox/mediatek,gce-
-> > > > > > > mailbox.yaml
-> > > > > > > +++
-> > > > > > > b/Documentation/devicetree/bindings/mailbox/mediatek,gce-
-> > > > > > > mailbox.yaml
-> > > > > > > @@ -49,6 +49,16 @@ properties:
-> > > > > > >      items:
-> > > > > > >        - const: gce
-> > > > > > > =20
-> > > > > > > +  mediatek,gce-events:
-> > > > > > > +    description:
-> > > > > > > +      The event id which is mapping to the specific
-> > > > > > > hardware
-> > > > > > > event
-> > > > > > > signal
-> > > > > > > +      to gce. The event id is defined in the gce header
-> > > > > > > +      include/dt-bindings/gce/<chip>-gce.h of each chips.
-> > > > > >=20
-> > > > > > Missing any info here about when this should be used, hint -
-> > > > > > you
-> > > > > > have
-> > > > > > it
-> > > > > > in the commit message.
-> > > > > >=20
-> > > > > > > +    $ref: /schemas/types.yaml#/definitions/uint32-arrayi
-> > > > > >=20
-> > > > > > Why is the ID used by the CMDQ service not fixed for each
-> > > > > > SoC?
-> > > > > >=20
-> > > > >=20
-> > > > > I forgot to sync with Shawn about this:
-> > > > > https://lore.kernel.org/all/20240124011459.12204-1-jason-
-> > > > > jh.lin@mediatek.com
-> > > > >=20
-> > > > > I'll fix it at the next version.
-> > > >=20
-> > > > When I say "fixed" I don't mean "this is wrong, please fix it", I
-> > > > mean
-> > > > "why is the value not static for a particular SoC". This needs to
-> > > > be
-> > > > explained in the patch (and the description for the event here
-> > > > needs
-> > > > to
-> > > > explain what the gce-mailbox is reserving an event for).
-> > > >=20
-> > >=20
-> > > Oh, I see. Thanks for noticing me.
-> > >=20
-> > > We do want to reserve a static event ID for gce-mailbox to
-> > > different
-> > > SoCs. There are 2 mainly reasons to why we set it in DTS:
-> > > 1. There are 1024 events IDs for GCE to use to execute instructions
-> > > in
-> > > the specific event happened. These events could be signaled by HW
-> > > or SW
-> > > and their value would be different in different SoC because of HW
-> > > event
-> > > IDs distribution range from 0 to 1023.
-> > > If we set a static event ID: 855 for mt8188, it might be conflict
-> > > the
-> > > event ID original set in mt8195.
-> >=20
-> > That's not a problem, we have compatibles for this purpose.
->=20
-> I agree that compatibles can do the same things.
->=20
-> >=20
-> > > 2. If we defined the event ID in DTS, we might know how many SW or
-> > > HW
-> > > event IDs are used.
-> > > If someone wants to use a new event ID for a new feature, they
-> > > could
-> > > find out the used event IDs in DTS easily and avoid the event ID
-> > > conflicting.
-> >=20
-> > Are the event IDs not documented in the reference manual for the SoC
-> > in
-> > question? Or in documentation for the secure world for these devices?
-> > A
-> > DTS should not be the authoritive source for this information for
-> > developers.
-> >=20
-> The event IDs were defined in:
-> inculde/dt-bindings/mailbox/mediatek,mt8188-gce.h.
->=20
-> > Additionally, the driver could very easily detect if someone does
-> > happen
-> > to put in the reserved ID. That could be generically useful (IOW,
-> > check
-> > all of them for re-use) if the ID are to not allowed to be shared.
-> >=20
-> > > The reason why we define a event ID is we want to get a SW signal
-> > > from
-> > > secure world. We design a GCE looping thread in gce-mailbox driver
-> > > to
-> > > wait for the GCE execute done event for each cmdq secure packets
-> > > from
-> > > secure world.
-> >=20
-> > This sort of information needs to be in the commit message, but I
-> > don't
-> > think this property is needed at all since it seems to be something
-> > detectable from the compatible.
->=20
-> I think put this event ID in driver data and distinguish them by
-> different compatibles can achieve the same thing.
->=20
-> However, I originally thought that align to the existing way like
-> MUTEX, CCORR, WDMA in=20
-> https://lore.kernel.org/all/20240124011459.12204-4-jason-jh.lin@mediatek.=
-com
->  would be better choice.
-> I think their usage of gce-events are the same.=20
->=20
-> What do you think?
+On Tue, Apr 09, 2024 at 10:12:00AM -0700, Rob Clark wrote:
+> On Tue, Apr 9, 2024 at 8:23 AM Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
+> >
+> > On Tue, Apr 09, 2024 at 05:12:46PM +0200, Konrad Dybcio wrote:
+> > >
+> > >
+> > > On 4/6/24 04:56, Dmitry Baryshkov wrote:
+> > > > On Fri, Apr 05, 2024 at 10:41:31AM +0200, Konrad Dybcio wrote:
+> > > > > From: Neil Armstrong <neil.armstrong@linaro.org>
+> > > > >
+> > > > > Usually, speedbin 0 is the "super SKU", a.k.a the one which can clock
+> > > > > the highest. Falling back to it when things go wrong is largely
+> > > > > suboptimal, as more often than not, the top frequencies are not
+> > > > > supposed to work on other bins.
+> > > >
+> > > > Isn't it better to just return an error here instead of trying to guess
+> > > > which speedbin to use?
+> > >
+> > > Not sure. I'd rather better compatibility for e.g. booting up a new
+> > > laptop with just dt.
+> >
+> > New speedbin can have lower max speed, so by attempting to run it at
+> > higher freq you might be breaking it.
+> 
+> Usually there are some OPPs in common to all speedbins, so picking a
+> freq from that set would seem like the safe thing to do
 
-To me it comes down to whether the IDs are fixed on a particular SoC (in
-which case they can be deduced by the compatible) or not. I don't really
-see how this is actually a fixed property of the SoC though, if you came
-along tomorrow with a "gce-2.0" you could totally end up with different
-numbering because (as far as I can tell) this numbering is actually a
-property of the os-firmware interface, not actually a property of the
-SoC itself. I was expecting you to say "no" when I asked if the IDs were
-fixed for a given SoC because changing the firmware /could/ change the IDs.
-Although, I think you'd likely not ever want to change them, because
-that'd just be an annoying ABI break to deal with.
+Well, the issue is about an uknown speed bin. So in theory we know
+nothing about the set of speeds itsupports. My point is that we should
+simplfy fail in such case.
 
-What I think is that you need to write a property description that
-explains what the mailbox is using the gce channel for so that someone
-can populate the property correctly. The commit message also needs to
-explain why this is not a fixed value for a given SoC.
+> 
+> BR,
+> -R
+> 
+> >
+> > >
+> > > >
+> > > > If that's not the case, I think the commit should be expanded with
+> > > > actually setting default_speedbin for the existing GPUs.
+> > >
+> > > I think that should be addressed, although separately.
+> >
+> > I'd prefer to have it as a part of this patch, but I'd not NAK it just
+> > for this reason.
+> >
+> > --
+> > With best wishes
+> > Dmitry
 
-And yes, as you pointed out earlier in this thread, Shawn needs to
-update this to have a reference to the gce-events binding which has a
-great description in it of what a gce event is.
-
-> I think their usage of gce-events are the same.=20
-
-Also, just because a property got introduced doesn't mean that it is
-correct and adding new instances can definitely by required to provide
-justification, not just saying "it's used by xyz too".
-
-Cheers,
-Conor.
-
---vZkNg9zy1YA11/rh
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZhWAXAAKCRB4tDGHoIJi
-0peJAQDRpouQcRKXRTWVtItkP6RZ/zBoHCZSrUD4MXBRoiwnEwEAksJS0Bw7sRQN
-OfP/eLUv+cpcNIn3e3s1OpvUjnH9pwM=
-=4L7L
------END PGP SIGNATURE-----
-
---vZkNg9zy1YA11/rh--
+-- 
+With best wishes
+Dmitry
 
