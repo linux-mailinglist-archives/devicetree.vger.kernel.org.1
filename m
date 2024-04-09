@@ -1,76 +1,65 @@
-Return-Path: <devicetree+bounces-57396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E006989D66F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 12:14:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CFE189D6D0
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 12:22:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 100BB1C217D4
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 10:14:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D809C28996E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 10:22:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58CE584A34;
-	Tue,  9 Apr 2024 10:13:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D649136650;
+	Tue,  9 Apr 2024 10:14:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="RXV8pm2x"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BS00rx1q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49DF981ABE
-	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 10:13:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE72C1350F9;
+	Tue,  9 Apr 2024 10:14:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712657627; cv=none; b=TK7UoGGkD1oaVzRNGY2xtVTFRdUD8MMIHDqU8lJJKhY6BnrVkU32KGC+ARRx7KsCTvg8UtvKRwq8bMyYWpQf2ui/p0+zvXY7y/tBT+U19+8uYkQGpe9Vzvx3fYLbqrIQLIfg5gw+/jOYxVDuojYYvK5YtYUZPdmA+ufH9D85pUo=
+	t=1712657680; cv=none; b=csh9JaD8cEAhIYeyjd4nIHKaBv5rGUFc6tK5J+X5Kd2Z3FYrDVKmfPO8wo+j2UAzW/WFmVryKvvO4N7F+bbk+Gq4a+joqjeJVWBghlFgznx6aUplKYfESQJZYTXj9uu/6Eypv8VYaEDj0nZYcciLkqTvB2NCBRjBkSexJSQjTUk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712657627; c=relaxed/simple;
-	bh=bcex9J3pUiKsSDmYMrLdaDcykBaj5YDYBra4ZvFBZJo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=DVJjbNTWycQVtjgX+2xP/BVvWe1n3lnhI5jicr9oPWTAiVQIUjOm1u21Vz1MXg+TRHTwSafofyJYXTQXuy4wrPv2FyOhfAsfNX9bPhlnobdEQJ8ycpYFIbT6vw0x0JcbWbPg23/UydW0qt+snqdRYNuapIyOXhx0qxp8bSKBtdc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=RXV8pm2x; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-416511f13aaso16858505e9.1
-        for <devicetree@vger.kernel.org>; Tue, 09 Apr 2024 03:13:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712657623; x=1713262423; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LGt34+sJLdk3MLx6big+T+CAqaWtPyYycofqseF0Aok=;
-        b=RXV8pm2xAjzDDbh9nK4Ffult29Eq2mWZ31U+LOfUyDdfrqIoMQyy6pTxV79GFdiG/P
-         /CQq9NjA5bbXPIFFu5bnyC1WtgbGsffSQnOtro51ZkmqshgXmTF8v/dpezR2Y0ShAjS4
-         ZbMHffWovQzrQY38V4qxY4RdsPoQxs+SlnoZAH4b+NEZQBm14D4NehH7R3wJ3zr4KyKU
-         9+PUjV4VZh9kI6yl0ikPMgM+nz9b10XKetW5J5Rvg0E63WLHeh+/9r+7p0ofFY7WXSV6
-         RSOU36szfvYAn5sNOFMfMwWz2s6xSWOWVp39xveh8nHpYpVF/qD/IeqatfD24gbXV64R
-         E3fw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712657623; x=1713262423;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LGt34+sJLdk3MLx6big+T+CAqaWtPyYycofqseF0Aok=;
-        b=IsdR+5ftSWQWXFoliIVIxqW4O1ifh4LQRG++n1CjNKlRtGC87naIrgrcpEWKNWeHhW
-         unnvupoHO/iIVfdu732nMDb63V3QZDuQfOnO7Pl+LWRJSBV+pu5cfAoa2atC0NkJeK/p
-         kvLIALTTU6KWOzTkXdLh4a68QVOJqtbKCVSBslwtQwIz6ObVZxyOa5y8qReTJztgOE0A
-         pllbdM3/1NIMEpOPBV03sECGF8tnXF/oLbINZi1lc3uKni8IZ/leGs7yE9PWGr5i8eJD
-         wcFo7vkQnVZ9TVONzUUIc40vBMdxzQ3/IaXp+drl73rWouYvNDgx9MygTdkB+1aufvgi
-         CJ+g==
-X-Forwarded-Encrypted: i=1; AJvYcCWN3pAD3tWu+6JW8ac7CjSxe63DfTEobRiOf3jH6iaGzyYpN/x54fPfvIDYsGtg7DiNY1WC3zso+3hXsTOLovvmRA3YeYAN1VZdmg==
-X-Gm-Message-State: AOJu0YwISsL0XQOx5FhB0TfyDsnGg/MCALtW5DaOdR7Aa38NUl3rYOhU
-	X+3PicHEjHVL7z8dAnI46MboQjanh4MQ2R+wXtWPc7XAeOWUgZYHgypZMzfd8RA=
-X-Google-Smtp-Source: AGHT+IGzfaK4n2/g8axda9rEW09xuGb8tQgLRNvycpCGtQ33o2AX8GkVbCTGFTgBOJIHcyo7EAPzsg==
-X-Received: by 2002:a05:600c:3592:b0:416:8152:8a70 with SMTP id p18-20020a05600c359200b0041681528a70mr2710612wmq.33.1712657623706;
-        Tue, 09 Apr 2024 03:13:43 -0700 (PDT)
-Received: from [127.0.1.1] ([93.5.22.158])
-        by smtp.googlemail.com with ESMTPSA id r7-20020a05600c458700b00416b035c2d8sm1124149wmo.3.2024.04.09.03.13.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Apr 2024 03:13:43 -0700 (PDT)
-From: Alexandre Mergnat <amergnat@baylibre.com>
-Date: Tue, 09 Apr 2024 12:13:23 +0200
-Subject: [PATCH v2 02/18] ASoC: dt-bindings: mediatek,mt8365-mt6357: Add
- audio sound card document
+	s=arc-20240116; t=1712657680; c=relaxed/simple;
+	bh=SmVnyARR6C18XdO/vcxKGtSxiJ9PFeJ9X+aWz4yvoAY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
+	 In-Reply-To:To:CC; b=kEronwxHFzmthmkfs8LRb2Ozn7q+x/j7R1kaGwMp5XtIa4xqFV3Aw7Mr0n7ISm6MwblFBVSbZ2bNatR8zzZUGUUmYCrizwA9FuX0Owop9EzU5L6B4GCCnIkg1wCv3ROvOZRGKsDL++12REpAvm2pWZ/yvzJSHYZDAKcLh0Z2ZgA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BS00rx1q; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4399lUg9009720;
+	Tue, 9 Apr 2024 10:14:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:date:subject:mime-version:content-type
+	:content-transfer-encoding:message-id:references:in-reply-to:to
+	:cc; s=qcppdkim1; bh=xQ0HFgUWDH51RxyrDF73utrK4LcxDPGMiAFc2j/LWT8
+	=; b=BS00rx1qgHznakJ43yHBp/Ox8m/+Guuc5UI8qzBndKtqpZmtOk02HxNvcLD
+	NeccZ0TyZzQqDqB5ZFeojPMK4oGG4Ix0ohcJi5dB7WuTTJwvSbSyFRQaLH3tSd72
+	WEKvbrgUyOukN3y1D+wcV30yZFVPOK3WitbOgIQqjnzjhFW547T1OUPdzzzKFSr8
+	GrS1/F3/6xBLVdASMjbHDLKGUbom6RG8FRq2p0O7xwpIC1WeH7Tfe2ndZh1lQ7zp
+	BTj+th4fPQJ6jhMiAwJqbmyoKFD4T4Y+HVERdODGgxG/vdIi1smCJMJqkjHbNkRr
+	bZ++1HDQ5+lHeekdZVLlUuyLTSQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xd3bsg1bh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 09 Apr 2024 10:14:10 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 439AE9FI027144
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 9 Apr 2024 10:14:09 GMT
+Received: from hu-krichai-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.4; Tue, 9 Apr 2024 03:14:02 -0700
+From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Date: Tue, 9 Apr 2024 15:43:23 +0530
+Subject: [PATCH v10 5/6] PCI: Bring the PCIe speed to MBps logic to new
+ pcie_link_speed_to_mbps()
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,157 +68,131 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240226-audio-i350-v2-2-3043d483de0d@baylibre.com>
-References: <20240226-audio-i350-v2-0-3043d483de0d@baylibre.com>
-In-Reply-To: <20240226-audio-i350-v2-0-3043d483de0d@baylibre.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Sumit Semwal <sumit.semwal@linaro.org>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
- Rob Herring <robh@kernel.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
- Alexandre Mergnat <amergnat@baylibre.com>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3125; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=bcex9J3pUiKsSDmYMrLdaDcykBaj5YDYBra4ZvFBZJo=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBmFRTTZEodaz6gWD8MRUgu0ITSSraVYxIjQYi8MKb6
- nkjJEj+JAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZhUU0wAKCRArRkmdfjHURXk0D/
- 4/ZJ3u2KfDNF648wt0JHA6iCjSPOuj6vLD588gTo+Re1qpqu68/joP8w3rhRELxW6/iHZ4xt/QFj8C
- oO+X6o8CASS6dbwjDvRmkR4BJ2/Ku0pnYzNrm2kshLM4OEV/b7fix7ed8oFLJUjubS6BiwPy3GJs60
- vu6anJhjf4YaUnISMBRimlkMamBn2UsSVJtwEuvVHaiovp553a9iKTHBIDeBXNkHDffAJzI1aL4tRn
- iUDVy96b4ShE8+MENftXo3FISeURWuizKpXkQ1bmd9yv3v+51HHQWpxHFchIeONrJrZ7k9Zep2WTG4
- UkS2JXJ55Ywr5w8Iltjkqq31cuicllUklzPCrDNBdlsoPdW3vykmolaDVPYK6sYc9/4eGkPGrPh3BU
- vaWjrfhqvUgiDDYI77J9ugPtdzZXrF38VpIAW9GgDqYEFh4P9gwVnoAq17S5JCEUaNGPRgdAPi32hw
- tqpTZfZ4GsC1trFbNq8ObvZg0RD0l2LrM2w25Xf+Vs+46aDVTOS7cL2fE9O1YQo4Sgrb3KxV+OBtCE
- HOZNSh3te3PjB3b2DSruFSi503sxBNQse4BHacJIli3TwHCCtcAcd0gz5kFogwXoOyqd2H1WffjR4S
- j0+fk+qLCPqeqeFydlpoWD+tYzmV2IaYX3dmPQ4E85uI8m9PSKEiJ/+9oENQ==
-X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
- fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
+Message-ID: <20240409-opp_support-v10-5-1956e6be343f@quicinc.com>
+References: <20240409-opp_support-v10-0-1956e6be343f@quicinc.com>
+In-Reply-To: <20240409-opp_support-v10-0-1956e6be343f@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Manivannan Sadhasivam
+	<manivannan.sadhasivam@linaro.org>,
+        Lorenzo Pieralisi
+	<lpieralisi@kernel.org>,
+        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?=
+	<kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>, <johan+linaro@kernel.org>,
+        <bmasney@redhat.com>, <djakov@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <vireshk@kernel.org>, <quic_vbadigan@quicinc.com>,
+        <quic_skananth@quicinc.com>, <quic_nitegupt@quicinc.com>,
+        <quic_parass@quicinc.com>, <quic_krichai@quicinc.com>,
+        <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.13-dev-83828
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1712657608; l=2085;
+ i=quic_krichai@quicinc.com; s=20230907; h=from:subject:message-id;
+ bh=SmVnyARR6C18XdO/vcxKGtSxiJ9PFeJ9X+aWz4yvoAY=;
+ b=zM/2kFmg9djWEH4I5XwEQg0apSjOzWU/lYw5uOGgUDqLU7NXunsSVXKf7NL/HcW3l04M8+e4V
+ xf+eHXRjAzEBKqlXnDltaKUXZOJh8V6zJOSijX5scUlhGO/0NhLq5d4
+X-Developer-Key: i=quic_krichai@quicinc.com; a=ed25519;
+ pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 6Qonr2asSX1JsxRn1mMfKKMndjxlwF35
+X-Proofpoint-ORIG-GUID: 6Qonr2asSX1JsxRn1mMfKKMndjxlwF35
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-09_06,2024-04-05_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
+ impostorscore=0 suspectscore=0 phishscore=0 priorityscore=1501
+ lowpriorityscore=0 mlxlogscore=999 clxscore=1015 adultscore=0 spamscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404090065
 
-Add soundcard bindings for the MT8365 SoC with the MT6357 audio codec.
+Bring the switch case in pcie_link_speed_mbps() to new function to
+the header file so that it can be used in other places like
+in controller driver.
 
-Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+Suggested-by: Bjorn Helgaas <bhelgaas@google.com>
+Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 ---
- .../bindings/sound/mediatek,mt8365-mt6357.yaml     | 99 ++++++++++++++++++++++
- 1 file changed, 99 insertions(+)
+ drivers/pci/pci.c | 19 +------------------
+ drivers/pci/pci.h | 22 ++++++++++++++++++++++
+ 2 files changed, 23 insertions(+), 18 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt8365-mt6357.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt8365-mt6357.yaml
-new file mode 100644
-index 000000000000..831c5b4665b8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/mediatek,mt8365-mt6357.yaml
-@@ -0,0 +1,99 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/mediatek,mt8365-mt6357.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
+index e5f243dd4288..40487b86a75e 100644
+--- a/drivers/pci/pci.c
++++ b/drivers/pci/pci.c
+@@ -5922,24 +5922,7 @@ int pcie_link_speed_mbps(struct pci_dev *pdev)
+ 	if (err)
+ 		return err;
+ 
+-	switch (to_pcie_link_speed(lnksta)) {
+-	case PCIE_SPEED_2_5GT:
+-		return 2500;
+-	case PCIE_SPEED_5_0GT:
+-		return 5000;
+-	case PCIE_SPEED_8_0GT:
+-		return 8000;
+-	case PCIE_SPEED_16_0GT:
+-		return 16000;
+-	case PCIE_SPEED_32_0GT:
+-		return 32000;
+-	case PCIE_SPEED_64_0GT:
+-		return 64000;
+-	default:
+-		break;
+-	}
+-
+-	return -EINVAL;
++	return pcie_link_speed_to_mbps(to_pcie_link_speed(lnksta));
+ }
+ EXPORT_SYMBOL(pcie_link_speed_mbps);
+ 
+diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
+index 17fed1846847..4de10087523e 100644
+--- a/drivers/pci/pci.h
++++ b/drivers/pci/pci.h
+@@ -290,6 +290,28 @@ void pci_bus_put(struct pci_bus *bus);
+ 	 (speed) == PCIE_SPEED_2_5GT  ?  2500*8/10 : \
+ 	 0)
+ 
++static inline int pcie_link_speed_to_mbps(enum pci_bus_speed speed)
++{
++	switch (speed) {
++	case PCIE_SPEED_2_5GT:
++		return 2500;
++	case PCIE_SPEED_5_0GT:
++		return 5000;
++	case PCIE_SPEED_8_0GT:
++		return 8000;
++	case PCIE_SPEED_16_0GT:
++		return 16000;
++	case PCIE_SPEED_32_0GT:
++		return 32000;
++	case PCIE_SPEED_64_0GT:
++		return 64000;
++	default:
++		break;
++	}
 +
-+title: Mediatek MT8365 ASoC sound card
++	return -EINVAL;
++}
 +
-+maintainers:
-+  - Alexandre Mergnat <amergnat@baylibre.com>
-+
-+properties:
-+  compatible:
-+    const: mediatek,mt8365-mt6357
-+
-+  pinctrl-names:
-+    minItems: 1
-+    items:
-+      - const: default
-+      - const: dmic
-+      - const: miso_off
-+      - const: miso_on
-+      - const: mosi_off
-+      - const: mosi_on
-+
-+  mediatek,platform:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: The phandle of MT8365 ASoC platform.
-+
-+patternProperties:
-+  "^dai-link-[0-9]+$":
-+    type: object
-+    description:
-+      Container for dai-link level properties and CODEC sub-nodes.
-+
-+    properties:
-+      codec:
-+        type: object
-+        description: Holds subnode which indicates codec dai.
-+
-+        properties:
-+          sound-dai:
-+            maxItems: 1
-+            description: phandle of the codec DAI
-+
-+        additionalProperties: false
-+
-+      link-name:
-+        description:
-+          This property corresponds to the name of the BE dai-link to which
-+          we are going to update parameters in this node.
-+        items:
-+          const: 2ND_I2S_BE
-+
-+      sound-dai:
-+        maxItems: 1
-+        description: phandle of the CPU DAI
-+
-+    required:
-+      - link-name
-+      - sound-dai
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - pinctrl-names
-+  - mediatek,platform
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    sound {
-+        compatible = "mediatek,mt8365-mt6357";
-+        pinctrl-names = "default",
-+                        "dmic",
-+                        "miso_off",
-+                        "miso_on",
-+                        "mosi_off",
-+                        "mosi_on";
-+        pinctrl-0 = <&aud_default_pins>;
-+        pinctrl-1 = <&aud_dmic_pins>;
-+        pinctrl-2 = <&aud_miso_off_pins>;
-+        pinctrl-3 = <&aud_miso_on_pins>;
-+        pinctrl-4 = <&aud_mosi_off_pins>;
-+        pinctrl-5 = <&aud_mosi_on_pins>;
-+        mediatek,platform = <&afe>;
-+
-+        /* hdmi interface */
-+        dai-link-0 {
-+            link-name = "2ND_I2S_BE";
-+            sound-dai = <&afe>;
-+
-+            codec {
-+                sound-dai = <&it66121hdmitx>;
-+            };
-+        };
-+    };
+ const char *pci_speed_string(enum pci_bus_speed speed);
+ enum pci_bus_speed pcie_get_speed_cap(struct pci_dev *dev);
+ enum pcie_link_width pcie_get_width_cap(struct pci_dev *dev);
 
 -- 
-2.25.1
+2.42.0
 
 
