@@ -1,125 +1,138 @@
-Return-Path: <devicetree+bounces-57286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEAB089CEFC
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 01:35:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88CCB89CF33
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 02:11:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 312B41F24D0D
-	for <lists+devicetree@lfdr.de>; Mon,  8 Apr 2024 23:35:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 410AE282194
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 00:10:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02118148832;
-	Mon,  8 Apr 2024 23:35:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3FEE370;
+	Tue,  9 Apr 2024 00:10:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="EU1vSKqt"
+	dkim=pass (1024-bit key) header.d=marvell.com header.i=@marvell.com header.b="lL4DzGQ9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2138.outbound.protection.outlook.com [40.107.249.138])
+Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E98AD762CD;
-	Mon,  8 Apr 2024 23:35:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.249.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E609418E;
+	Tue,  9 Apr 2024 00:10:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=67.231.156.173
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712619321; cv=fail; b=BUkyDdQaYTpExu+SO3/7bSMKSLwPFtnMFosA0q5oqz2mKuGQcXTxJK+nOvVazqdGNWZmPCVfmo+DP9GlMYRtT0wtnmwfjSmZDDYiSsU/y5327x5gHxVFFS8SimwkSGzvt50vUW1QDn6xlQQLXyvn4D5TpSQbPf+8dKlMzkW+iJI=
+	t=1712621453; cv=fail; b=fA8JKh86FrlrMtDC5LL3qX/0xR0btng6ABVc7LN02EWPoYvbapWiS2uY0uMOoHpYYMnOwOyU05acKSGQ1004lvKkV37RYxsTegYcOrBSFNvphsxdCjOGCoFnwPj0+Nvp/MJ3zSkqUEaHVeLcKzR+sVoZ+vSQUhm7Av05Y4U6NnQ=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712619321; c=relaxed/simple;
-	bh=sEJqhQqPGwvI+8COye5VT8Kl4Rzr8nSpX2RCQSGMOEM=;
+	s=arc-20240116; t=1712621453; c=relaxed/simple;
+	bh=+TNpdr6daXnTDM86vsWepPwKPSnG/ww7LgJMagz4Vl0=;
 	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=XD2DH/AYiA0GYcO/G9Tz4y/Uoc/KafhzvMOXYNNSGQBZA5e6TTTUqwjbKUNr9XdWP6pPcDf3cKk/zD+cpS3qVrptMTVdv57V9mDWp80vWu24x6/S42fcmJibbomxLnxpJCyvk5hzYzrOS0ujIOy0/ySqnwOenKqwS2bCoWdsP+k=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=EU1vSKqt; arc=fail smtp.client-ip=40.107.249.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+	 Content-Type:MIME-Version; b=UTfq5YyKjWospd+P2oFQeYkthbVraRrK/OcwL9lXCkRqURwt/hTKpKo5P5HFWxt8JO01+kmnNBbYEE12x7J1NEelqkQjA6BznK8SW9TwPvntchdmHS8CyP9dE3Ny6HNddKmoOwNSA9nmtvFYb1F5oLETW3JCs1tQuxnSx/EFW98=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=pass (1024-bit key) header.d=marvell.com header.i=@marvell.com header.b=lL4DzGQ9; arc=fail smtp.client-ip=67.231.156.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marvell.com
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+	by mx0b-0016f401.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 438GoLUx023474;
+	Mon, 8 Apr 2024 17:10:34 -0700
+Received: from nam12-mw2-obe.outbound.protection.outlook.com (mail-mw2nam12lp2041.outbound.protection.outlook.com [104.47.66.41])
+	by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 3xb5wgebj0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 08 Apr 2024 17:10:34 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cDqexZ8pWJiBkbRtl+yjN6xR0e7T24tDRveImjGzd42pEkbynkSm7zkSmVPKEzwvqaFo5mIWQKrTz8dDjN36k+/PLLCsSiHq9yz+FKUo93TtO5pfx8gdC+LfkhMUjKAc3YafgEzB5AoySx/HjyaSX/f1GZzoppoe+ddeCPBboknCknJ1AohzSS5B8CbrrkxIXldgBgy9x8uc2Dy6DJuvTZ6qW4lwbBY/nLUVfXadgNyAOrr7Ovz9QI7DDBe/GQPl96xwG3bRPUS6fQZ5PwgOiBq3i5O6iJj3T0Qxz2RvEySaLEY1Nc4AnGd3W6iarZnCchOmFPytZQMnH28nz+NBJA==
+ b=dArTwPlqV2a8I+WIuwGK+1fQ261cbDCb0mlmv7vkOxkPDON1jyWHCagC3BbUOZjQzY4q8eArlJ8TX7ScN/EEX1ok3kR123W4HbvNQ2ERd7DT/rg0308tysNziyV8dJkY0oTDLmnHdxwrfsh8zvegCgXSlBJOQ5X5tvs4HwkiR7FSO2bBMvIGJeue6DUA5qAdoIDN4hQ4V+oKatKIT5xN4N2dCdkyqZbsCQkMAdRZDK4PXtAFWElRMSOsuNEZEtp5gnJF0y5FSwPZ5vu+JZFF3BWdzE1Ogu6zxGm7aWa48zOIMy1sLlzPh1GHb1XXG2au+luhpIuhNLngR8F8EBsWHw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mUif7FUUYB93BItDAZY+SbxxIbRClPw4BAHSRWyLzno=;
- b=dcJI1aopM/TkDxv2PPpbhpFtI8/pIwwrZRWGp9I74t73RM9V8aNSPizUzO6ahM5XbF7qHa5D+/gAePvFozPu4WJUEPAOPpkImFsfu+7vhXv4ut09JR1aWe5y3deEzD4h5v9JXabsjriUT7t4DX4aNGRuxslYdaErH9hOCHhEKS6duQjifgDvstpayOk+6vD6DCJo8FaFEw7bakg0Gm3tzt9RypK5Z1zRfzr8LmiBX6Z4j9EOAtGblB95l6ff5JsTXV8GZ0ETpfi0nYaWto0Jk+6C6J8s1n16YyMNrkXmqu/h3A2NbmPiksAsH6VsuTgX/lOgdYDqgu9AW1WKVOK2+Q==
+ bh=+TNpdr6daXnTDM86vsWepPwKPSnG/ww7LgJMagz4Vl0=;
+ b=GxD9Xkw9eHo1JVegmerUxncuTrWW/J+hD9nylHAay7iiE25qzrO+7j24RcZvQ+vUCAqCTdFWlBznEHbxLkixptE0Dm+waOYj+KWrxzlcYMl/Wp89BC0RcWSW8oiEb7K/LLnKEA58NwbvgNScRAzxz+3OSLGNzEfsHRoawQ1ZFHSBhbMJ2tuVYKMwdCxCRwwY0MfdRzRViC8O0Lewx8fwuvSG5AQBLBbzikgyN3XL+v/EV6iMENk58BZyfxtG2CaIA5OIOtuyU9xlgTf1dTG0fuj5A0DcCIvUYv6N4fcT8ydY0qicadEeP09B6VKbQLQn1easolh+D1V92TK7SRxxIA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ smtp.mailfrom=marvell.com; dmarc=pass action=none header.from=marvell.com;
+ dkim=pass header.d=marvell.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mUif7FUUYB93BItDAZY+SbxxIbRClPw4BAHSRWyLzno=;
- b=EU1vSKqtihXV4SEs8lhP6/j505ICdkZYltgJDCr/oC8cAmVUj+4sPTOyYwXtZULa37YrWnCa5XVXHAOUNH0eMG3LmEB6f1GqxYzgiWbRGcJbasqa/Zrd+wYWeTjYyqHfBpM7X2IGudyNWSSBJeJqaqUkNV5dK7UfVmSoiLZYWzI=
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by PAXPR04MB8989.eurprd04.prod.outlook.com (2603:10a6:102:20c::11) with
+ bh=+TNpdr6daXnTDM86vsWepPwKPSnG/ww7LgJMagz4Vl0=;
+ b=lL4DzGQ9rjNsWqrTNLq158+zvWrEU0gYfLnyfIJJGPiGHjmKtFLGNn8R/2exzJg2HVEx5S0iQO/Cbt8CT/swd02AZNdqJTDiOyRrJ/KWPdZ2txxnXYSXBCKBUfvmsD6eVNkPWDESzBZGb/hKFihXZTKvxkOA9v24CLI0sjgSK2g=
+Received: from PH0PR18MB5002.namprd18.prod.outlook.com (2603:10b6:510:11d::12)
+ by PH0PR18MB3813.namprd18.prod.outlook.com (2603:10b6:510:23::23) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Mon, 8 Apr
- 2024 23:35:17 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::d30b:44e7:e78e:662d]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::d30b:44e7:e78e:662d%4]) with mapi id 15.20.7386.037; Mon, 8 Apr 2024
- 23:35:17 +0000
-From: Peng Fan <peng.fan@nxp.com>
-To: Cristian Marussi <cristian.marussi@arm.com>, "Peng Fan (OSS)"
-	<peng.fan@oss.nxp.com>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Sudeep Holla
-	<sudeep.holla@arm.com>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v2 3/6] firmware: arm_scmi: add initial support for i.MX
- BBM protocol
-Thread-Topic: [PATCH v2 3/6] firmware: arm_scmi: add initial support for i.MX
- BBM protocol
-Thread-Index: AQHah1U7U7PbHuwUVkuCiXWcSbaKerFer8yAgABblqA=
-Date: Mon, 8 Apr 2024 23:35:16 +0000
-Message-ID:
- <DU0PR04MB9417DCC510F2A08F3C6B1D8B88002@DU0PR04MB9417.eurprd04.prod.outlook.com>
-References: <20240405-imx95-bbm-misc-v2-v2-0-9fc9186856c2@nxp.com>
- <20240405-imx95-bbm-misc-v2-v2-3-9fc9186856c2@nxp.com>
- <ZhQxu8LVNKf5QDLm@pluto>
-In-Reply-To: <ZhQxu8LVNKf5QDLm@pluto>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Tue, 9 Apr
+ 2024 00:10:32 +0000
+Received: from PH0PR18MB5002.namprd18.prod.outlook.com
+ ([fe80::8bf7:91cd:866c:68b0]) by PH0PR18MB5002.namprd18.prod.outlook.com
+ ([fe80::8bf7:91cd:866c:68b0%7]) with mapi id 15.20.7409.042; Tue, 9 Apr 2024
+ 00:10:31 +0000
+From: Linu Cherian <lcherian@marvell.com>
+To: Linu Cherian <lcherian@marvell.com>,
+        "suzuki.poulose@arm.com"
+	<suzuki.poulose@arm.com>,
+        "mike.leach@linaro.org" <mike.leach@linaro.org>,
+        "james.clark@arm.com" <james.clark@arm.com>,
+        "leo.yan@linaro.org"
+	<leo.yan@linaro.org>
+CC: "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>,
+        "coresight@lists.linaro.org"
+	<coresight@lists.linaro.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        Sunil Kovvuri Goutham <sgoutham@marvell.com>,
+        George Cherian <gcherian@marvell.com>
+Subject: RE: [PATCH v7 0/7] Coresight for Kernel panic and watchdog reset
+Thread-Topic: [PATCH v7 0/7] Coresight for Kernel panic and watchdog reset
+Thread-Index: AQHacECr+wmc6MJsCEeCTVfctSb+8bFfQ22g
+Date: Tue, 9 Apr 2024 00:10:31 +0000
+Message-ID: 
+ <PH0PR18MB5002D016166F97E665BB0F39CE072@PH0PR18MB5002.namprd18.prod.outlook.com>
+References: <20240307033625.325058-1-lcherian@marvell.com>
+In-Reply-To: <20240307033625.325058-1-lcherian@marvell.com>
 Accept-Language: en-US
 Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|PAXPR04MB8989:EE_
+x-ms-traffictypediagnostic: PH0PR18MB5002:EE_|PH0PR18MB3813:EE_
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- oL+kmvzgLhT/mB64mS3c4diCGyeSeHT8qTQTurPAtr0h1tIlNFz5rVuLh7kNGgu07Q1ZvIRXXkojhQpULRwardOhzomj524C8TuxnFDYGgYWr5eF6bZxTOp43er1Hjkm+oVVsnZsGBqaNxaYKd6Mk0EPjGMcFwnEYfBXFlVuwCKd9htjz9A/9pDL185rJ+Avd104Bk4iIpsKlDwQ4qd1DjKr4yjnRnE6hHI189s9mFzUJoFWR3Y7UYv6zimEu21bvPDzetVFiyfyH8FwoAzGBmaq9YY/nqvHs8eAPH2K6ekLbgy0hrs6A4n+yiao3X6Z1q2epGDyV63HqRzqZt24frhZTCt6jKxsyjKlHKq74I7R9AVGFG00Bs7/7gOfV2XjS/ZRLljb6s3tKDzsUNEOwHTfTSnr3bBnJ/OjgprwN2lDMW/Vf88ir46jy3K80AnJtXH6SwgPpUzhi2Vc5AAuxmDIlEP38tJ0GIVnXWP+sCEv9HsIHSJPJXE7bU9OZNn1Rm/GhiqiMfogccCcoIHJ1oMFePIeniAwU9Vz4U2ztFonc1vMIIjgNKKqK12ncBduJf5T/ngm1vKT2cM2bMY0CuVXRcP/o18CaQuSe1TkuPY=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(7416005)(376005)(1800799015);DIR:OUT;SFP:1102;
+x-microsoft-antispam-message-info: 
+ ZHEdH9WGV6uqVgyZ00aPR+nlFyCql9fAcpfNX0ywflqT3z4cy5Oppr7RRys0G2WB7O/V37RfnHGkviANQaIArFnXcsROv0QM01W0lOFuNIzC7xlzL+uaUVZ35nzTocz2ANZWLpX2CGxgZdPi5B4uOlygwI/cgKa6Z/JQVKH8u3PRgi9DoKIqzg+X11hwb6fBm4l5Gdc7jWatgtuLCwAp5HHIYZvHhs2ILdM7d8DWoEulmSJYv4fNsE8CxjpIXjlQQyWJEN1OzD0d/fgELkUA16kLqu6/HTo9R955Bx5PW4VyBdt/r2nR+Ua6weB4csmt5DloR538h+XRPTuDfMKPrgcHrWloZhAn2xPxkI6bxa+0XCiapfpey6emA8r4gYrpTWRFv3rj39nhw1Jh440fEXh0Wd97/aVnpiauUwO5s/KU8d4IazQXaXa3w1kmxYUWTMGNCvG0lL/mKpvHyfifcCqmzSvl3hH8JhQeEXyaZhE0Ewk0q9C1x7W6sVGaeSHTxxwaHkBXxW9Mo8vF/WkO3HcrXtkZS/3Fm+49J07/opW8XtdSiVJyTRsZ5tqWVfr4wxDJlzv/FfOYhItJXPs2elwo+4mfmizihQnMjrNY0YVaxAvaazkxnjmh6dVYJlEcPPWyAy3xvyLEjpa/Mr7nm1ygfetqXV7eeuvTM+EJ5Lc=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR18MB5002.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(7416005)(1800799015)(376005);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?Af+T0DwUBldTKxXidHZOfHUCo/7MC2UCd2VaeiJHIKVf5QAfxex1Inar6ba7?=
- =?us-ascii?Q?YgZl0uTazNE2sHELFnSIsAS/KrHo6oktU+mtkSiBPp5wfy9kYOpixO33ShUy?=
- =?us-ascii?Q?+UqqQ6UbD1FQ6YCl+FMFMBJCHyQwPScL6AR2hRz6lN+95ld5RHPwHqXZAvFl?=
- =?us-ascii?Q?W7IgaOPwW6tOXhSDwi76fE4jdm726wCQdZVRfZ1uHVFIoa1SMiTE5kfu5La3?=
- =?us-ascii?Q?m5FVoJJoVfa9U74YKJGAPjyuAU6tAXAf4wVOCfdIa9QALW++eoZ4/IE6fpNT?=
- =?us-ascii?Q?iUV8pl6Ycqqlo5LOXGt2YCH/Sw9iBB7/tOvAjzyQHgYS3llLzb1/OXxjqHmQ?=
- =?us-ascii?Q?r7el6rTDwy9DVWiuBBEX1HtFU6wy3KyfW5p4IyIqXEkOnzuwHWTNkuHf4+gW?=
- =?us-ascii?Q?Veul3Kwc9+ELsbjwtJJM5LtLtpBY0zB0lDygbq8XQdSeFpp+o/cniaxVxbym?=
- =?us-ascii?Q?s9B5p8PnzEqMrqCe/yaML88t439Eoh9L73JjV6l4PsoSo6eKVnJjI9l6LRiw?=
- =?us-ascii?Q?mNyX+EhDg9LKtfiKmmXQTxji8m2vvEwT54f+38PprFX+uvqqxTCSkxEJi+Zh?=
- =?us-ascii?Q?Uu1vKARaWapK1gRScyvIv5KmmEfrGorjzcIZH8Ou+7dXK+YyTmchhvHNNjIe?=
- =?us-ascii?Q?bM1XPUtD3Gtq3ynEagwNwAdFNrSL6iXyrCgKoX0FvXyEMuoKi+yePBy2govl?=
- =?us-ascii?Q?EPdkGggIJsMUMXTpv4Zpty19Qtovh33n0L9sUcYETmjJUvz7Q7r1x+flq4kU?=
- =?us-ascii?Q?jvhxuDMBWnOCKnPONUbaNcisR8C6zqv1wbE1L4QLvwpnXOHs76mIZcPJ+Ux/?=
- =?us-ascii?Q?xtrDvwb1XdO6eBzhMjr0N5P6ai+0e2isv7+ghOYz4iTZ0DKOWn8NgbIX+wrA?=
- =?us-ascii?Q?wzwQ3tzMU+V61T6PQZqVyS6tWkzKcDK19/94QERL9wCsrgVmH0aHnzK9cphJ?=
- =?us-ascii?Q?wbYifhZdpN+9Y1S8YAVE6we97HSwzP24zEkqO8TaEPjGDAl10s1EhIAFyrrz?=
- =?us-ascii?Q?nswYaPX0GrhtthNlOlZIDfHwNvRi9Gip28smez8dNiq1aKlh6IYo8iTv0szJ?=
- =?us-ascii?Q?1sFJqN8ZoEyI/O57H2BkkmSolyYFh5ahVeg/83RgLmzqCJreLiN7s2rvtN3A?=
- =?us-ascii?Q?hRFw6TGCi8MYPOsvQc3TXP3UUS4JPYm20GdDN8iKwDDxMzmjzwHXYD2TmR0I?=
- =?us-ascii?Q?700qQYq8H551aM8IKmcUyII16sb/bHXk+do4FPxj0Y912sTGilgHAfnu31jn?=
- =?us-ascii?Q?KXK0Ddqo1z8LZqXIYxd82BPB3RHqeXzMvnETbA4wh+t3Mvnn7Wk5sOpyDm5f?=
- =?us-ascii?Q?xj+xEsT32pilcXxL68SF4clI4YAUhtEt5YNQL1v72wG5h6fGMQ8uZ330eKOF?=
- =?us-ascii?Q?mMo6Vc5ZO3SGhRlDjBTh44SaY23dk0pDUM9A3tJWP9E7e0udXpAqv6BWKHPZ?=
- =?us-ascii?Q?/OuBQLnnBF4/c1eOfRqVihnxtqNsg7UAeejtnPAH7ebW2FxTmxxHuN35ohWZ?=
- =?us-ascii?Q?y0kO6ASbFbZfJe0WaDQfo+P59NN8vh0eKPDCKJjtJMxPbipjiLt2E7k4irnX?=
- =?us-ascii?Q?QcJWzTmQCVYMxZDHbAo=3D?=
+x-ms-exchange-antispam-messagedata-0: 
+ =?us-ascii?Q?lVjyiSXxfqeNQsAOz9QL0GD5kOXUq9dz3C7OIv1TDDaeUFjsijz6Z4cS6cB1?=
+ =?us-ascii?Q?gaPfyD2a9J8oJ/Q4hqytRBPydOkvYuEoCtjDX0kYAckoZJU7ooWkaVPUNTZj?=
+ =?us-ascii?Q?1X0wL/zYVopKBlA3Z4dhLr36mJ4dja2yZR8qbZl8twKSyLH484VhxplKnYnD?=
+ =?us-ascii?Q?Wl59NZUc5gH3b9kCuuMFlVLmEzjCbDClJN0Wc+c9hX4CC8Wgdio/O2Vyk90T?=
+ =?us-ascii?Q?K3N/1HVS9HIP7M8ynCQVyg3r5OEjDX+adQt5AFoXpAueUEGUr21HmVoJ0fFX?=
+ =?us-ascii?Q?jKWQWqXT6tVIbd5pylR0+bT/1LcL72dg/X3esc/sRXlB0cL6mkp6/b7NFlKk?=
+ =?us-ascii?Q?85GfAw7YCQp+ezVI3fEkFXP9rbQX1XBKsJCw3gKViW6b15+r0q9FuXD7aHJQ?=
+ =?us-ascii?Q?chbhCI42AjZm9ES+TpUx1vdHywXIO/HoVcOvAbFgXQOHNPqkE8KVp+Cqhp7A?=
+ =?us-ascii?Q?Hqs6994zCrfU823CVsONGlrZBo48o8tIm8g7j9xiIhKu9tSp+cNEJbAi66lP?=
+ =?us-ascii?Q?6LZTRFu1MlYgqfN4PoztwHBXJzN1AZj0mVvRzB1Whn64eGjsfnw28X5XVUOD?=
+ =?us-ascii?Q?r4ksz2AP/zZzPHt1NI3IaFkD9h2bKcWrZzzm4WxMmcG0X7g0gU+lsifqbYgQ?=
+ =?us-ascii?Q?rQ5Tx3Y7qIFnvHN4XbxjP+dHLjZIyEKrImNwXd1VRjYv2BgF/VGpbnJC9+9U?=
+ =?us-ascii?Q?ILIg4Q5/rKPRHdlo3XCkhDVmWV1DS759UDhoXPEOgNGTewGRMObw3+WRIX7L?=
+ =?us-ascii?Q?WxyCVHAaqZE17DZ0EhCddvv8tEYF2HET5q77T0pHlGZd/owCU1FA9FNcHuYL?=
+ =?us-ascii?Q?GIqOHctJ9BVUdF6Li1ywFVI8pcpjNqgYYMrvTGnTBgKcDs7VagM0eAaVHpHd?=
+ =?us-ascii?Q?TFiBwkmUqSRZE26hd5FxNVPEZwgvWvgPqhQr0VVygNfXljp7O8zRFl5qi8td?=
+ =?us-ascii?Q?zHDAGGpiQS4HV5Cc2G6TEvZkXNSQx4flFw6JFgdwWSp8YkuB7JfHIAaJiAj+?=
+ =?us-ascii?Q?O6P44onIXcxi7VMRe3XYnAkLCDz2lgfR5WMgz4ABZXQxIUiGgg+ggmUSQoJG?=
+ =?us-ascii?Q?G6OIAaAlqxoilfSNiDSWDrcMrvOZ9egkaHbFaHPMfHvuI1tLvQkj/f5ZSyCa?=
+ =?us-ascii?Q?AJ2GoBBH1GJ1MMgOI8z0dN8SMZd8A6pUkTVNVfJ7WjDQuz1nQ6PXdC/pNGUW?=
+ =?us-ascii?Q?vwz8Qgux6dVLaT/i+65nCWxigYsfNPYL7bZN+bOt60HEGO/M4nZRK+GP2oVA?=
+ =?us-ascii?Q?IP4JzlCPlLn9A/gltlDWvWkDk76NAsi9THhRgAgUrzmr0lgcljHn0SJgWtBm?=
+ =?us-ascii?Q?xakCB1crIYgcCp3rp0bw4PqkzCocYxmrC21HLPxI/fukfHlVlXZlCx1ac4Wo?=
+ =?us-ascii?Q?Fsfjg8NCN7ZCHNQHmFpdqISp/r55KKwNlBwOX6ZvX9gqbKMf1LI/xO64fnmk?=
+ =?us-ascii?Q?yEo4eX94K4thVhQwhCrK/gAswe6eVYU3/Ww9/f7kgsF76ecStDrZpJdXrW87?=
+ =?us-ascii?Q?l2wYaMmg/B1Br56edII+QHmqYNYhgnCX7+UYZ0xnqjSoKgIHA2LxLdRRnCj9?=
+ =?us-ascii?Q?dgs2dYvQLVC0XYCF8NS4pCR+gWoz22A9+Xbf+OV6?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
@@ -128,142 +141,47 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
+X-OriginatorOrg: marvell.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c6b9aaa4-19cb-4d43-cf10-08dc58248bf2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Apr 2024 23:35:16.9567
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR18MB5002.namprd18.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 22a2a7a0-708a-456d-2588-08dc5829784c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Apr 2024 00:10:31.4335
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-id: 70e1fb47-1155-421d-87fc-2e58f638b6e0
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: doVA2fuGimEaQe7A1T3FbrzAPH6+xYnAio1CgJqK0Cl2Q597tpx6UzbqXwnsSEgKhwisWTpXGNjFs7F4BPrM5Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8989
+X-MS-Exchange-CrossTenant-userprincipalname: b3J6pXkwIPnacQQMZgrCqL8kQRpVooG8XBIQGluDIqtw8JG4HY9z/H3GoSVjnFI/y+A0V5F1r84Ay5xzXAZ9HQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR18MB3813
+X-Proofpoint-ORIG-GUID: 4joVFZq6L9Ge3-7-IpKQr3uQRpTlBszy
+X-Proofpoint-GUID: 4joVFZq6L9Ge3-7-IpKQr3uQRpTlBszy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-08_18,2024-04-05_02,2023-05-22_02
 
-> Subject: Re: [PATCH v2 3/6] firmware: arm_scmi: add initial support for i=
-.MX
-> BBM protocol
+Hi Suzuki/James,
+
+> -----Original Message-----
+> From: Linu Cherian <lcherian@marvell.com>
+> Sent: Thursday, March 7, 2024 9:06 AM
+> To: suzuki.poulose@arm.com; mike.leach@linaro.org; james.clark@arm.com;
+> leo.yan@linaro.org
+> Cc: linux-arm-kernel@lists.infradead.org; coresight@lists.linaro.org; lin=
+ux-
+> kernel@vger.kernel.org; robh+dt@kernel.org;
+> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
+> devicetree@vger.kernel.org; Sunil Kovvuri Goutham
+> <sgoutham@marvell.com>; George Cherian <gcherian@marvell.com>; Linu
+> Cherian <lcherian@marvell.com>
+> Subject: [PATCH v7 0/7] Coresight for Kernel panic and watchdog reset
 >=20
-> On Fri, Apr 05, 2024 at 08:39:25PM +0800, Peng Fan (OSS) wrote:
-> > From: Peng Fan <peng.fan@nxp.com>
-> >
-> > The i.MX BBM protocol is for managing i.MX BBM module which provides
-> > RTC and BUTTON feature.
-> >
-
-.....
-> > +#include "notify.h"
-> > +
-> > +#define SCMI_PROTOCOL_SUPPORTED_VERSION		0x10000
-> > +
+> This patch series is rebased on v6.8-rc4 from coresisght tree,[1], since =
+latest
+> changes are dependent on coresight_get/set_mode APIs.
 >=20
-> I appreciate that you added versioning but I think a bit of documentation
-> about what the protocol and its comamnds purpose is still lacking, as ask=
-ed
-> by Sudeep previously
 
-Sorry for missing the previous comment. Will add some comments in the file.
 
->=20
-> 	https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%
-> 2Flore.kernel.org%2Flinux-arm-
-> kernel%2FZeGtoJ7ztSe8Kg8R%40bogus%2F%23t&data=3D05%7C02%7Cpeng.fa
-> n%40nxp.com%7C37b12c01b51f4329e9e308dc57f66153%7C686ea1d3bc2b
-> 4c6fa92cd99c5c301635%7C0%7C0%7C638481962901820964%7CUnknown
-> %7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1ha
-> WwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&sdata=3Dd2XRugSYyiFuUnE5R2Oz6p
-> xmXBaPC9lZ%2Bb%2FcMBuXeKo%3D&reserved=3D0
->=20
-> > +enum scmi_imx_bbm_protocol_cmd {
-> > +	IMX_BBM_GPR_SET =3D 0x3,
+Do you have any feedback on this version ?
 
-....
-> > +	cfg->flags =3D 0;
-> > +	cfg->value_low =3D lower_32_bits(sec);
-> > +	cfg->value_high =3D upper_32_bits(sec);
->=20
-> Sorry I may have not been clear on this, but when I mentioned lower/upper
-> helpers I did not mean that they solved ALSO the endianity problem, so I
-> suppose that after having chunked your 64bits value in 2, you still want =
-to
-> transmit it as 2 LE quantity....this is generally the expectation for SCM=
-I
-> payloads...in this case any available documentation about the expected
-> command layout would have helped...
+Thanks.
 
-Got it , will fix in v3.
-
->=20
-> > +
-> > +	ret =3D ph->xops->do_xfer(ph, t);
-> > +
-> > +	ph->xops->xfer_put(ph, t);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static int scmi_imx_bbm_rtc_time_get(const struct scmi_protocol_handle
-> *ph,
-> > +				     u32 rtc_id, u64 *value)
-> > +{
-> > +	struct scmi_imx_bbm_info *pi =3D ph->get_priv(ph);
-> > +	struct scmi_imx_bbm_get_time *cfg;
-> > +	struct scmi_xfer *t;
-> > +	int ret;
-> > +
-> > +	if (rtc_id >=3D pi->nr_rtc)
-> > +		return -EINVAL;
-> > +
-> > +	ret =3D ph->xops->xfer_get_init(ph, IMX_BBM_RTC_TIME_GET,
-> sizeof(*cfg),
-> > +				      sizeof(u64), &t);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	cfg =3D t->tx.buf;
-> > +	cfg->id =3D cpu_to_le32(rtc_id);
-> > +	cfg->flags =3D 0;
-> > +
-> > +	ret =3D ph->xops->do_xfer(ph, t);
-> > +	if (!ret)
-> > +		*value =3D get_unaligned_le64(t->rx.buf);
-> > +
-> > +	ph->xops->xfer_put(ph, t);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static int scmi_imx_bbm_rtc_alarm_set(const struct scmi_protocol_handl=
-e
-> *ph,
-> > +				      u32 rtc_id, u64 sec)
-> > +{
-> > +	struct scmi_imx_bbm_info *pi =3D ph->get_priv(ph);
-> > +	struct scmi_imx_bbm_alarm_time *cfg;
-> > +	struct scmi_xfer *t;
-> > +	int ret;
-> > +
-> > +	if (rtc_id >=3D pi->nr_rtc)
-> > +		return -EINVAL;
-> > +
-> > +	ret =3D ph->xops->xfer_get_init(ph, IMX_BBM_RTC_ALARM_SET,
-> sizeof(*cfg), 0, &t);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	cfg =3D t->tx.buf;
-> > +	cfg->id =3D cpu_to_le32(rtc_id);
-> > +	cfg->flags =3D SCMI_IMX_BBM_RTC_ALARM_ENABLE_FLAG;
-> > +	cfg->value_low =3D lower_32_bits(sec);
-> > +	cfg->value_high =3D upper_32_bits(sec);
->=20
-> Same.
-
-Fix in V3.
-
-Thanks,
-Peng
->=20
-> Thanks,
-> Cristian
 
