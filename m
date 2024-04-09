@@ -1,113 +1,99 @@
-Return-Path: <devicetree+bounces-57531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19D8B89DBEC
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 16:14:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1682A89DBF2
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 16:15:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 69809B25E91
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 14:14:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C54DF284BFC
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 14:15:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65D6A12FB2A;
-	Tue,  9 Apr 2024 14:14:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7992512FF76;
+	Tue,  9 Apr 2024 14:15:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="lfWTI8h6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GPcB3SmW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A28CA12F5BD;
-	Tue,  9 Apr 2024 14:14:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B5C412FB03;
+	Tue,  9 Apr 2024 14:15:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712672065; cv=none; b=J5srMC4jQmAmWkAug+jeuhwTpXqx18YA5Mzpf9+RKq5g32m27GSPxaXIwNu208sOO+WUVqVQEJ9YxIMfgZ1DuErDghO0M2RMT4oVns6X5QLPGu7GFSCpsIu+2lO27ZvK5fDhJ7ZsMcft631nG1z5KChG7bc/Ldm537YkHrI++dk=
+	t=1712672129; cv=none; b=diblR4aPClJjpElXYSH5k7IvPuHkmKtAuCjkrhUvbfVQXeCc99C+NMqyiFYp2ITwoY+vVLRqExPd6OUil6e5S/fMyLkt20sDkE7GvzzeBGxtBC5tLcv2phm6ELppe9kTCmL9AjLn5gM02Vq9mNMtsxebZocv7owv1ObjjBuKgso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712672065; c=relaxed/simple;
-	bh=bbFHu+W7pWwQce2qu4sFi0y/kXqqRKu/Ciran2Y9Ivo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mqZtNZYTKxrD3t+EFK6b79bb96XQlULoXWDc97GYb9HO/pnrTCz1RJtaqMCFsBCTFN9f9GuJcuQTbpcPbOG7uqc0q+ZscU+X4HlFtxNPvTpdpACq5eIA2sDEJQwNZVDQY0Qw/v7GYpw/MvoRS2Pm/ucLa38Av6XySRIrkNg6TvY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=lfWTI8h6; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1712672061;
-	bh=bbFHu+W7pWwQce2qu4sFi0y/kXqqRKu/Ciran2Y9Ivo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lfWTI8h6fwpFNiuvvllOEkLLZIusfm7UhW1Iw9+IB8wvuS6tQMHGWOUySLCjwnWOw
-	 cpGsOTXoghKjMZOTPM2fAKRRAqMU8Zh5Z0jwH6aZdDfHBwk6jAiOKD+Y1Ts/rcww0R
-	 1FVwx6tc1SwWh4UcfTTgFy/kg0TxTebdAd7rR53S86pdrO58S+Egu+cEAIA2wod/xl
-	 IRuydABjy3CNE+CL3Sh01a+S05gWfyNB5wiiT+BRzTbxpBkiOdx2tw+knuoWbW72Oc
-	 BDusFRXDfrohrpdwamfLcgIhD2zzvQu9cU+8ULxOYq4nBEH3cCs6qRxrNcRhdOFEQb
-	 zkL60p9zYxlDQ==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 293333780480;
-	Tue,  9 Apr 2024 14:14:21 +0000 (UTC)
-Message-ID: <cf58846c-687c-46c4-b041-c944cab78dce@collabora.com>
-Date: Tue, 9 Apr 2024 16:14:20 +0200
+	s=arc-20240116; t=1712672129; c=relaxed/simple;
+	bh=k430QK7uR0afWm5iLxyZ0H+bkw6eRZQHyWK7YRup3qk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qW2f2H0uyw8pXYyct5ohUDVexYC2/r/F5jC2mOmVgZo1AzREV5z1QeCy7xmVhxwpG/LQDAGbXz2u30o0YwpX1fDe04EU0HjJgIoh4MV2m0kIMd809mhUU6w0b52TsOJqNpuksruH0BjtxXTiosjThi+5qbkV0tuCZVWnOHiSdX0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GPcB3SmW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75E60C433C7;
+	Tue,  9 Apr 2024 14:15:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712672128;
+	bh=k430QK7uR0afWm5iLxyZ0H+bkw6eRZQHyWK7YRup3qk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GPcB3SmWXdeEnUbHOsA/wrs2nSX3lSS69f6IVk9/NSkY25s3cnMNpw0fkW2aQZdMn
+	 k6eOHyMTFwCXWqH+SOFvuJq1qfDMKu0tIPfOygAOGeOOKYGwq7TnyifWDLdN3Drr+K
+	 rYztZW2ot2BRQq2pzr520CrnGiLYfIBOowwWzk4+BSTtmb+m0ucPk1ZOspX8500nvg
+	 DdpRoVxNzdz3G1fVTDBSRhGTrkpslqZwquPr2uSmGdmznUKePxWBEKEDC3qAeaCCOq
+	 aoiK5hrEmw6pHNtoXgJUBj5tYbTOjO+GfYD6g3Z+iXjsAWXggI0FogzFcmeeSE0koZ
+	 nQwLTKhHv8qYg==
+Date: Tue, 9 Apr 2024 15:15:23 +0100
+From: Conor Dooley <conor@kernel.org>
+To: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>
+Cc: Jonathan Corbet <corbet@lwn.net>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Anup Patel <anup@brainfault.org>, Shuah Khan <shuah@kernel.org>,
+	Atish Patra <atishp@atishpatra.org>, linux-doc@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, kvm@vger.kernel.org,
+	kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: riscv: add Zimop ISA extension
+ description
+Message-ID: <20240409-dorsal-bullwhip-d4c59bc4975c@spud>
+References: <20240404103254.1752834-1-cleger@rivosinc.com>
+ <20240404103254.1752834-2-cleger@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] arm64: dts: mediatek: mt8395-nio-12l: Fix MT6360
- regulator nodes names
-To: linux-mediatek@lists.infradead.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- matthias.bgg@gmail.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- kernel@collabora.com
-References: <20240409114211.310462-1-angelogioacchino.delregno@collabora.com>
- <20240409114211.310462-2-angelogioacchino.delregno@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240409114211.310462-2-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="+LHcW8rxlKd0RZZo"
+Content-Disposition: inline
+In-Reply-To: <20240404103254.1752834-2-cleger@rivosinc.com>
 
-Il 09/04/24 13:42, AngeloGioacchino Del Regno ha scritto:
-> The regulators' node names for mt6360-regulator are supposed to be
-> uppercase. Also, drop "-regulator" from the usb-otg-vbus node name
-> to make all vregs to probe correctly.
-> 
-> The alternative would've been to use regulator-compatible, but that's
-> a deprecated property.
-> Now all regulators are probing fine.
-> 
-> Fixes: 96564b1e2ea4 ("arm64: dts: mediatek: Introduce the MT8395 Radxa NIO 12L board")
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->   .../boot/dts/mediatek/mt8395-radxa-nio-12l.dts | 18 +++++++++---------
->   1 file changed, 9 insertions(+), 9 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts b/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
-> index e5d9b671a405..18182cf073fb 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
-> @@ -216,7 +216,7 @@ charger {
->   			compatible = "mediatek,mt6360-chg";
->   			richtek,vinovp-microvolt = <14500000>;
->   
-> -			otg_vbus_regulator: usb-otg-vbus-regulator {
-> +			otg_vbus_regulator: usb-otg-vbus {
 
-Reviewing and NACK'ing my own patch, I just noticed that everything apart the
-usb-otg-vbus renaming is wrong.
+--+LHcW8rxlKd0RZZo
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The MT6360 regulator node names should not be capitalized as the bindings are
-correct in this regard, and there already is one user (genio-1200-evk) apart
-from NIO-12L declaring the wrong ones - so, the driver must be fixed, not the
-other way around.
+On Thu, Apr 04, 2024 at 12:32:47PM +0200, Cl=E9ment L=E9ger wrote:
+> Add description for the Zimop (May-Be-Operations) ISA extension which
+> was ratified in commit 58220614a5f of the riscv-isa-manual.
+>=20
+> Signed-off-by: Cl=E9ment L=E9ger <cleger@rivosinc.com>
 
-This patch will be cleaned up in v2.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Cheers
+--+LHcW8rxlKd0RZZo
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZhVNewAKCRB4tDGHoIJi
+0n8eAP9G5NnKVLgQMb1lC5BZ3jPuQhdNqtENnurmzVKeuoB++wEAq+L+bZ9N0ZB3
++NWu0wLgJxehhQ4lxyYWfVXAcV19WQg=
+=pnap
+-----END PGP SIGNATURE-----
+
+--+LHcW8rxlKd0RZZo--
 
