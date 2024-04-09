@@ -1,167 +1,184 @@
-Return-Path: <devicetree+bounces-57615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0545689E13A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 19:14:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C7E489E16E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 19:20:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EBD31F21726
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 17:14:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 52444283640
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 17:20:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F3011553B3;
-	Tue,  9 Apr 2024 17:14:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8198015664D;
+	Tue,  9 Apr 2024 17:20:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pcmC9XFN"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Hw+oHEGK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E04CD155397;
-	Tue,  9 Apr 2024 17:14:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DBA115624E;
+	Tue,  9 Apr 2024 17:19:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712682844; cv=none; b=bo6UstUyqhpeezNaWIQm0Wp77Wq9eakklgQYj06zY5E61MfitHMmLqjFq7dNXXNwiWxxtYKYjvGFGXDuC2GkpQtPxgvlcZK0u6HzB9VSr7sseX4xxNUORd8Wenn6GehwfR9gMDzrJZs9c5DgBDyXYD0MT/KfA1IZggfi84s5Siw=
+	t=1712683200; cv=none; b=OnfLfnC8vYllmS2xNQSOACIO28wDy1GkA0HZzIjgd6GviSrgoxRSu9SmaerhSZ+G9coOwCahxJpyaLOTdUw1r3/Y/1uLMXPb1WlN6NSeBhhFT+t7Gx6DojorbigC+vQaMCFwF3cuy/fbhcKB7R1zQ/Ll8jBnTXmb8q+sBMUlfFI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712682844; c=relaxed/simple;
-	bh=LPEx6tsL7wgLYi+kk5vkpbbYiQkRmiIS+PLtSy0YjfY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Yqy98l8tOnyWAvP89YAN5nbNU6/RPN/PRInvhCJxj9fiqfg0dUX22fS2eQa3KjF1LamfNFyyDlkXp0C4WpnRwtyc2nSyqwub5kmA2n8vhSSR5wJjPyiD1lBaxH5FXti1to1ze4xSLHRdGKHuXLhEwUdobGGVyahXA6mVvJUukfQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pcmC9XFN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC579C43330;
-	Tue,  9 Apr 2024 17:14:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712682843;
-	bh=LPEx6tsL7wgLYi+kk5vkpbbYiQkRmiIS+PLtSy0YjfY=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=pcmC9XFN912RMvFMTBsOxs05rus3ioP7iQqJNazGrzDoiP7Ljc4Y9u/OFo2drMYc5
-	 Y47oEgBi7UKRS5do5zUKwbtZ6obphKVWoEavPZT728bSAwtVk7J8TSsQZX4ZSa7DKv
-	 hpFtmGvI8QwKr8MN2FMRQIJIRKkYD8x6LP5+Ja/yJW27JqneVDqXo/cNBtG96EGr+G
-	 T2mQsRtFnusKVDFoDxcoM5aumg8aLfbIe3M865YcFvvVFW1WBeBZOTRWODvbam1aBD
-	 yAl1wwAPpS2WSDZ6sYFOjTipL19UOEuq8sVy1JM2KysQHpLosxbKubCxvsHDf3sSbL
-	 +uaHRk85y/R4A==
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-516cbf3fd3dso6787566e87.2;
-        Tue, 09 Apr 2024 10:14:03 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUGzY1zWuLSYCs+1xo743OhxbMPN5RQOSzwNAiHvmkzlBpweYvcLDGd7ZXIQtJPvHFEhFP/wLa3mooqYmzGx3nE+ptY0OsFsH1FJ/MJuNdcd5XejtSqwoKHWXnU98b8y3wQowID6aegWdRYTHgchWUfTIhlqMrWyRaNQtqTTail5WV9epIDIZt83p3mtGjmOOsn42PzBIMNF/g9G+sS80G73EsV/YYxq8yDfpgwQQa9tJrHRESHOJzOrluDBxZyv1Es3yA5AfmS+O+vWatjzU/Y7S74yh5G5LzFRDCRp4tEypYV9LpR+adw16gs/Lc6DKPFOzPcgYxsqDNG8cMrva4X2y1VvlxdhD+P7Tiga41vOmLoKV9ZkJPYd4usdaSYNvZyzMzIgMSmI+kPauXSbgaPOrjS7GN+nsCrI1aCzaPgcNfFtCBfkz1gScl5f7ppd6qkZeqTF+VMk824UK+UXMUPmTIFY0TVuV9+ZRPM6taVbBmRg4WhfW7AQy5u
-X-Gm-Message-State: AOJu0Yxe+jgjSgCNwm0uGuMhypskIFiKPv0wdyU9heYr3dxsGcXSkU45
-	9uvrPveJfSRhTZaNVROUChiPBJc86eu/GrdJi1/VYsBmUobzNcL1nEbM9dIuM2KjtaKViXucikM
-	GT3jdSbhdc4xkTnTjE/FHnQvxgw==
-X-Google-Smtp-Source: AGHT+IHdmA/YWkORigJ39s8mUHP/Uw9g5JVSthQiryNaRNFp29Jw8Pu75u88BQ1j6apcee4IbBJ9bbXspK3Ch4S3xfA=
-X-Received: by 2002:ac2:4acb:0:b0:515:99f6:2ca4 with SMTP id
- m11-20020ac24acb000000b0051599f62ca4mr50062lfp.36.1712682841868; Tue, 09 Apr
- 2024 10:14:01 -0700 (PDT)
+	s=arc-20240116; t=1712683200; c=relaxed/simple;
+	bh=MX/jaT995o39SVb4w3KWka52pzriagvfVrr3JcFpSs8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=dsGR/SNtly86ryZnIrnrTIFdrZ0I9/OrGDTnzcykxckt24YwyHXKfFgqDr68t+FRpvK2wFRlWzutDVQxgH6adjdYlNW/sa6TIQdZ68hN4rsdyooouyXmRk+JDuzX/gp/2Nqk5/nBGq0Dc8MNT4HmscpRlyRsMhZc2nFvgvt9CeQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Hw+oHEGK; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 439AmgRi015186;
+	Tue, 9 Apr 2024 17:19:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=QpJxkETK9XY7FK/LiJttaU6PuwaB78Eu6bRDXhDiPMM=; b=Hw
+	+oHEGK5YUlXztdarDsrgD0ajdN2AhZZGZstZxuJLScw76F4CzSL+EtXp66vCmUxS
+	KbNeQ3aND0H6H0Lx+LSw1xwTmSq50Vj6Bzgc3SyzehT6ihQ8Hb/F8g8yv2Y11mfH
+	vwhzkd5Xq4ZYmshltqx9H/9ZyWXVsvR1rq5XNzuywL9cACVPRp7Ad+GmIFhEwbq9
+	LB1TL3eJs4tHqymGAVPM4Nc3ZfrQB+n/6o4usCKWL+0JJDLCjQ4vdW905l8omjm8
+	ooQBmybUaSx5WL6UNPj8tXca9MJ9FJLkaZcuEZrwR2xV4xUAZm5WOWnqRIcQ6vKQ
+	Shn5wgR031FRhIEqeTdQ==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xd0hjsbq3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 09 Apr 2024 17:19:40 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 439HJdo5015383
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 9 Apr 2024 17:19:39 GMT
+Received: from [10.71.108.229] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Tue, 9 Apr 2024
+ 10:19:38 -0700
+Message-ID: <bad7f3e8-38ce-4901-8f00-de32a659f0ba@quicinc.com>
+Date: Tue, 9 Apr 2024 10:19:37 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240105130404.301172-1-gatien.chevallier@foss.st.com> <61608010-fbce-46c6-a83d-94c04d0f000d@foss.st.com>
-In-Reply-To: <61608010-fbce-46c6-a83d-94c04d0f000d@foss.st.com>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Tue, 9 Apr 2024 12:13:48 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJTiBK3qzdMzL-ZuARosKGqnf_PjyCj13_H=V415y9sHQ@mail.gmail.com>
-Message-ID: <CAL_JsqJTiBK3qzdMzL-ZuARosKGqnf_PjyCj13_H=V415y9sHQ@mail.gmail.com>
-Subject: Re: [PATCH v9 00/13] Introduce STM32 Firewall framework
-To: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Cc: Gatien Chevallier <gatien.chevallier@foss.st.com>, Oleksii_Moisieiev@epam.com, 
-	gregkh@linuxfoundation.org, herbert@gondor.apana.org.au, davem@davemloft.net, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, vkoul@kernel.org, 
-	jic23@kernel.org, olivier.moysan@foss.st.com, arnaud.pouliquen@foss.st.com, 
-	mchehab@kernel.org, fabrice.gasnier@foss.st.com, andi.shyti@kernel.org, 
-	ulf.hansson@linaro.org, edumazet@google.com, kuba@kernel.org, 
-	pabeni@redhat.com, hugues.fruchet@foss.st.com, lee@kernel.org, 
-	will@kernel.org, catalin.marinas@arm.com, arnd@kernel.org, 
-	richardcochran@gmail.com, Frank Rowand <frowand.list@gmail.com>, peng.fan@oss.nxp.com, 
-	lars@metafoo.de, rcsekar@samsung.com, wg@grandegger.com, mkl@pengutronix.de, 
-	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	dmaengine@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	linux-iio@vger.kernel.org, alsa-devel@alsa-project.org, 
-	linux-media@vger.kernel.org, linux-mmc@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-phy@lists.infradead.org, 
-	linux-serial@vger.kernel.org, linux-spi@vger.kernel.org, 
-	linux-usb@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/4] drm/mipi-dsi: use correct return type for the DSC
+ functions
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sumit Semwal
+	<sumit.semwal@linaro.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Neil
+ Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>, David
+ Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard
+	<mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        Marijn
+ Suijten <marijn.suijten@somainline.org>
+References: <20240408-lg-sw43408-panel-v5-0-4e092da22991@linaro.org>
+ <20240408-lg-sw43408-panel-v5-2-4e092da22991@linaro.org>
+From: Jessica Zhang <quic_jesszhan@quicinc.com>
+In-Reply-To: <20240408-lg-sw43408-panel-v5-2-4e092da22991@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: dWVaDgAEYxUcywapg5fLLapUEMvR2SY1
+X-Proofpoint-GUID: dWVaDgAEYxUcywapg5fLLapUEMvR2SY1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-09_12,2024-04-09_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ lowpriorityscore=0 adultscore=0 clxscore=1011 spamscore=0 mlxscore=0
+ phishscore=0 suspectscore=0 malwarescore=0 bulkscore=0 impostorscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404090113
 
-On Mon, Apr 8, 2024 at 3:44=E2=80=AFAM Alexandre TORGUE
-<alexandre.torgue@foss.st.com> wrote:
->
-> Hi Gatien,
->
-> On 1/5/24 14:03, Gatien Chevallier wrote:
-> > Introduce STM32 Firewall framework for STM32MP1x and STM32MP2x
-> > platforms. STM32MP1x(ETZPC) and STM32MP2x(RIFSC) Firewall controllers
-> > register to the framework to offer firewall services such as access
-> > granting.
-> >
-> > This series of patches is a new approach on the previous STM32 system
-> > bus, history is available here:
-> > https://lore.kernel.org/lkml/20230127164040.1047583/
-> >
-> > The need for such framework arises from the fact that there are now
-> > multiple hardware firewalls implemented across multiple products.
-> > Drivers are shared between different products, using the same code.
-> > When it comes to firewalls, the purpose mostly stays the same: Protect
-> > hardware resources. But the implementation differs, and there are
-> > multiple types of firewalls: peripheral, memory, ...
-> >
-> > Some hardware firewall controllers such as the RIFSC implemented on
-> > STM32MP2x platforms may require to take ownership of a resource before
-> > being able to use it, hence the requirement for firewall services to
-> > take/release the ownership of such resources.
-> >
-> > On the other hand, hardware firewall configurations are becoming
-> > more and more complex. These mecanisms prevent platform crashes
-> > or other firewall-related incoveniences by denying access to some
-> > resources.
-> >
-> > The stm32 firewall framework offers an API that is defined in
-> > firewall controllers drivers to best fit the specificity of each
-> > firewall.
-> >
-> > For every peripherals protected by either the ETZPC or the RIFSC, the
-> > firewall framework checks the firewall controlelr registers to see if
-> > the peripheral's access is granted to the Linux kernel. If not, the
-> > peripheral is configured as secure, the node is marked populated,
-> > so that the driver is not probed for that device.
-> >
-> > The firewall framework relies on the access-controller device tree
-> > binding. It is used by peripherals to reference a domain access
-> > controller. In this case a firewall controller. The bus uses the ID
-> > referenced by the access-controller property to know where to look
-> > in the firewall to get the security configuration for the peripheral.
-> > This allows a device tree description rather than a hardcoded periphera=
-l
-> > table in the bus driver.
-> >
-> > The STM32 ETZPC device is responsible for filtering accesses based on
-> > security level, or co-processor isolation for any resource connected
-> > to it.
-> >
-> > The RIFSC is responsible for filtering accesses based on Compartment
-> > ID / security level / privilege level for any resource connected to
-> > it.
-> >
-> > STM32MP13/15/25 SoC device tree files are updated in this series to
-> > implement this mecanism.
-> >
->
-> ...
->
-> After minor cosmetic fixes, series applied on stm32-next.
-> Seen with Arnd: it will be part on my next PR and will come through
-> arm-soc tree.
 
-And there's some new warnings in next with it:
 
-      1  venc@480e0000: 'access-controllers' does not match any of the
-regexes: 'pinctrl-[0-9]+'
-      1  vdec@480d0000: 'access-controllers' does not match any of the
-regexes: 'pinctrl-[0-9]+'
+On 4/7/2024 4:53 PM, Dmitry Baryshkov wrote:
+> The functions mipi_dsi_compression_mode() and
+> mipi_dsi_picture_parameter_set() return 0-or-error rather than a buffer
+> size. Follow example of other similar MIPI DSI functions and use int
+> return type instead of size_t.
 
-Rob
+Hi Dmitry,
+
+Reviewed-by: Jessica Zhang <quic_jesszhan@quicinc.com>
+
+Thanks,
+
+Jessica Zhang
+
+> 
+> Fixes: f4dea1aaa9a1 ("drm/dsi: add helpers for DSI compression mode and PPS packets")
+> Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>   drivers/gpu/drm/drm_mipi_dsi.c | 6 +++---
+>   include/drm/drm_mipi_dsi.h     | 6 +++---
+>   2 files changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_mipi_dsi.c b/drivers/gpu/drm/drm_mipi_dsi.c
+> index ef6e416522f8..9874ff6d4718 100644
+> --- a/drivers/gpu/drm/drm_mipi_dsi.c
+> +++ b/drivers/gpu/drm/drm_mipi_dsi.c
+> @@ -654,7 +654,7 @@ EXPORT_SYMBOL(mipi_dsi_set_maximum_return_packet_size);
+>    *
+>    * Return: 0 on success or a negative error code on failure.
+>    */
+> -ssize_t mipi_dsi_compression_mode(struct mipi_dsi_device *dsi, bool enable)
+> +int mipi_dsi_compression_mode(struct mipi_dsi_device *dsi, bool enable)
+>   {
+>   	/* Note: Needs updating for non-default PPS or algorithm */
+>   	u8 tx[2] = { enable << 0, 0 };
+> @@ -679,8 +679,8 @@ EXPORT_SYMBOL(mipi_dsi_compression_mode);
+>    *
+>    * Return: 0 on success or a negative error code on failure.
+>    */
+> -ssize_t mipi_dsi_picture_parameter_set(struct mipi_dsi_device *dsi,
+> -				       const struct drm_dsc_picture_parameter_set *pps)
+> +int mipi_dsi_picture_parameter_set(struct mipi_dsi_device *dsi,
+> +				   const struct drm_dsc_picture_parameter_set *pps)
+>   {
+>   	struct mipi_dsi_msg msg = {
+>   		.channel = dsi->channel,
+> diff --git a/include/drm/drm_mipi_dsi.h b/include/drm/drm_mipi_dsi.h
+> index c0aec0d4d664..3011d33eccbd 100644
+> --- a/include/drm/drm_mipi_dsi.h
+> +++ b/include/drm/drm_mipi_dsi.h
+> @@ -241,9 +241,9 @@ int mipi_dsi_shutdown_peripheral(struct mipi_dsi_device *dsi);
+>   int mipi_dsi_turn_on_peripheral(struct mipi_dsi_device *dsi);
+>   int mipi_dsi_set_maximum_return_packet_size(struct mipi_dsi_device *dsi,
+>   					    u16 value);
+> -ssize_t mipi_dsi_compression_mode(struct mipi_dsi_device *dsi, bool enable);
+> -ssize_t mipi_dsi_picture_parameter_set(struct mipi_dsi_device *dsi,
+> -				       const struct drm_dsc_picture_parameter_set *pps);
+> +int mipi_dsi_compression_mode(struct mipi_dsi_device *dsi, bool enable);
+> +int mipi_dsi_picture_parameter_set(struct mipi_dsi_device *dsi,
+> +				   const struct drm_dsc_picture_parameter_set *pps);
+>   
+>   ssize_t mipi_dsi_generic_write(struct mipi_dsi_device *dsi, const void *payload,
+>   			       size_t size);
+> 
+> -- 
+> 2.39.2
+> 
 
