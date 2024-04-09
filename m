@@ -1,85 +1,68 @@
-Return-Path: <devicetree+bounces-57456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22F0D89D88E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 13:53:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A6BD89D8A7
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 14:00:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 92A18B260CC
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 11:53:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C0CD1C20842
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 12:00:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A80112B14F;
-	Tue,  9 Apr 2024 11:53:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="NTPcbofB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3E4112B141;
+	Tue,  9 Apr 2024 12:00:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DED4012AAD0;
-	Tue,  9 Apr 2024 11:53:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28E2212AADF;
+	Tue,  9 Apr 2024 12:00:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712663587; cv=none; b=YArsq3dkCjA4L8fvLis6ZXr+Zdr6jrLquvweGJmDNzDamvIJCYzIUkKp/pgDwG19sfHbD+orwmYKyRL9cVSQndjZwvoZuGku0XLFiDyf1uM0r6TQbLCC0oWl1eA7PCHjYaR8/RXOq+Ln0JaVwlhs1rllIA5hE3dlWX0BcxRqVT4=
+	t=1712664033; cv=none; b=C0qbKNmdbIa6o7710Qq26k0Mohk+guHPZZqKcYUFysCts5NGJOGwlNGbuuXxciN9YVkWmuEUVsSDXASGKiMmnaSExjQ3SWZnwCNTe3HAHt/RLP5oosMTASRONDKAzv5tUe6jOqiD06Bvhe9UhcYATXXHhKSBRaw1WnZXfS9Oh6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712663587; c=relaxed/simple;
-	bh=uFtB/lSFtsJF9yk9iDLSRuCwagX/ZJnnVfsrEr8ZsXU=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=tHtsgA7Lc7lJB5MdkTaKP5BpLfGXhDjcIiefnrtHn8/A91Zr2oNu44Ij3tYrAPqWdmlLKFiZ4PyR+BQdWtPY3qVGnxcEKVcj3ok/xbOVhGPeez7s//SOLobcOSlBYOA137mqnHsPx79gdxIL1/vkWIVXDrAB7VXwgED5DBha/sE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=NTPcbofB; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-Received: from [192.168.68.112] (ppp118-210-182-70.adl-adc-lon-bras34.tpg.internode.on.net [118.210.182.70])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 6D6E72012B;
-	Tue,  9 Apr 2024 19:53:01 +0800 (AWST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1712663583;
-	bh=uFtB/lSFtsJF9yk9iDLSRuCwagX/ZJnnVfsrEr8ZsXU=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=NTPcbofBd9m/9hOn+Z9Bbo9pjqBPAKGNnyTT2yNWOmCgmIADn5G3XCAFCJPIRF0EZ
-	 wn3wJbQ2YDXaggC3yhum2A2+giKMYEreMFZ3IQ+EVaw38aecyEs4RVQU77UWpU0433
-	 kP+VfZQ6pmC7XW6Li7H4vFIM0uUQo4mfNRi+M5e6wkdqFInWncdaMCwDAE4350u379
-	 J29QgMlWXGnOgaNgRot38jEKMSleP8E7quRZUxvMe8W0yvq0jNmkAioSicj5FHWzo5
-	 FQ9Qh9QojP2CJJKGlV0YDTMzuIBb/t7BTpQ2LwTs6Sc1ZHS5ShlxlFAzPltO94hZpX
-	 lCVopsqSOhjJg==
-Message-ID: <4adaae76f71c0f1f84ae10de68ce9837f1057463.camel@codeconstruct.com.au>
-Subject: Re: [PATCH 5/9] dt-bindings: rtc: rtc-aspeed: move to trivial-rtc
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Javier Carrasco <javier.carrasco.cruz@gmail.com>, Alexandre Belloni
- <alexandre.belloni@bootlin.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Jiaxun Yang <jiaxun.yang@flygoat.com>, Vladimir
- Zapolskiy <vz@mleia.com>, Joel Stanley <joel@jms.id.au>, Maxime Coquelin
- <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-stm32@st-md-mailman.stormreply.com
-Date: Tue, 09 Apr 2024 21:23:00 +0930
-In-Reply-To: <20240408-rtc_dtschema-v1-5-c447542fc362@gmail.com>
-References: <20240408-rtc_dtschema-v1-0-c447542fc362@gmail.com>
-	 <20240408-rtc_dtschema-v1-5-c447542fc362@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1712664033; c=relaxed/simple;
+	bh=u6xesq7i29A5sx5UWXkwxPRhMjfvLiXda27tkq37/ds=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=lDFy/SoqyqeMjUEvzKcHZDapcJcIGDqj5J6FxS7IBCmBfiVIUsvY/RmSuayuMO9NQ2YwmOoJH1TKkQHC56bSSWpTrdV5C4xNNY0I5XeZB74OsnjtfllUPdAbVXiktgEDlVRyxPtf91gZG+PZnFX7GIG+3MjjPUZU2cMADl74fp8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from amadeus-Vostro-3710.lan (unknown [IPV6:240e:3b3:2c01:8f70:2795:b738:b1bf:b2bc])
+	by smtp.qiye.163.com (Hmail) with ESMTPA id 0ED4D7E014B;
+	Tue,  9 Apr 2024 20:00:09 +0800 (CST)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Chukun Pan <amadeus@jmu.edu.cn>
+Subject: [v2 0/1] arm64: dts: rockchip: enable onboard spi flash for rock-3a
+Date: Tue,  9 Apr 2024 20:00:02 +0800
+Message-Id: <20240409120003.309358-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCS0JNVk9MSk9IGR5LTExJQlUTARMWGhIXJBQOD1
+	lXWRgSC1lBWUlPSx5BSBlIQUkYS0pBQx1MS0FJTEJOQRlMSENBGUoZHUEZSRkYWVdZFhoPEhUdFF
+	lBWU9LSFVKSENMSEpVSktLVUtZBg++
+X-HM-Tid: 0a8ec2bada4303a2kunm0ed4d7e014b
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OBg6Dgw4CjMSCRkILhoRTB4w
+	VgFPCh1VSlVKTEpJTU1PS0tCTEJKVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlP
+	Sx5BSBlIQUkYS0pBQx1MS0FJTEJOQRlMSENBGUoZHUEZSRkYWVdZCAFZQUpJSUo3Bg++
 
-On Mon, 2024-04-08 at 17:53 +0200, Javier Carrasco wrote:
-> The RTCs documented in this binding require a compatible, a reg
-> and a single interrupt, which make them suitable for a direct
-> conversion into trivial-rtc.
->=20
-> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-
-Reviewed-by: Andrew Jeffery <andrew@codeconstruct.com.au>
-
-Thanks,
-
-Andrew
+Changes in v2:
+  Add missing cells count.
+  Increase spi max frequency to 104MHz.
 
