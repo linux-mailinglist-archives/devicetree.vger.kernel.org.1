@@ -1,132 +1,212 @@
-Return-Path: <devicetree+bounces-57421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5159589D6F1
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 12:27:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FD0F89D6F8
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 12:29:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 823CE1C215B8
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 10:27:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7BEDA1F22354
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 10:29:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFBF780BF0;
-	Tue,  9 Apr 2024 10:27:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42DE6823C8;
+	Tue,  9 Apr 2024 10:29:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="B4iPBcOV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HlygIwUu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85E836FE35;
-	Tue,  9 Apr 2024 10:27:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50FDE81ABF
+	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 10:29:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712658431; cv=none; b=VLDYfALFonhQKfd98aqvQ+O9iJAN0yNqWxiD/AmRpwxPLMkqvuJoqK/hBbFH1eLebfdU9PUvWVExjvr9U9RsgXJwnBkpby4CGuWxO7mvFPvHR0vH4bVFUiyZhZzmxRDGZ9zL697MskkJiGd1ZtmsCqdB/MTAU7cnsCLUOl3vhdg=
+	t=1712658572; cv=none; b=qwfKvND9J+9Ww+yx1J6t08uPDQZV0nAGUKg9gaQkWXfa1WHZVOYoWFn4m1fJb4Mo2TCXJcO8tTT62DJqUTJOz+xaetVaig6uj15pB6Qz2bfZW2/PV5roCNyJ9wmmwu/Gj5kiktc5iqMtW2G+aNwwQ8i6JQ4D4k+BUl8LWznEhV8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712658431; c=relaxed/simple;
-	bh=WmagiJuSAVjdMNloWBpK+TLWohCiwSPpkN8213t8NFo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OSgvFmgvSQr7K6wuJNqG4SmhRWJkbhdR2uQ6HrNWtyc7ri0lV5mY8yVXdEFwXFHmKXUj9CloRSBKKU9haZ7gIE+XzRCb/qPFOyMeVTsSRb12MDTWw/g0mtLkxPS2eD3ynhVNAvToBWfdV6Qh1hEtwU5p53VtFArm+AoMuUWqzJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=B4iPBcOV; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 12DC6240008;
-	Tue,  9 Apr 2024 10:26:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1712658421;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=IgLT556EQ1sZdDx/D7AZFOXHnmen1aI83W1NiohbSlY=;
-	b=B4iPBcOVkx3mfxd+rg95RkbF9UEK4k+DdgW7xqj7tT7F/2vpHwnjQmDQ01ZtZ2oPa6qb4o
-	09hXRQXlI1bqDHQc7MN0KzWmcS8dC3mmiBR3PcE1J4p1rg96l1Z2iHM1zoIv581lXIUG8K
-	NfCKCTjkTH2u2kWQgbzhk5E9pvoWfSAHVii0/ZMTyKKOcRkJR7qjWrv6ImsjDKaWJStKgs
-	ZSueTSYdbsYsNielAvIp9rUoLonaww1JS5vne6O47pRkr+IIEkMbjlzieJrNosCxKvivb1
-	YyKnTxhiVH2u+bOnBIuKc3KzzumhN9k6vojpT6uYw0Vz5TWnPch2JjL1wVrwzg==
-Date: Tue, 9 Apr 2024 12:26:58 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jiaxun Yang <jiaxun.yang@flygoat.com>,
-	Vladimir Zapolskiy <vz@mleia.com>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH 0/9] rtc: convert multiple bindings into dtschema
-Message-ID: <20240409102658d86fb2bd@mail.local>
-References: <20240408-rtc_dtschema-v1-0-c447542fc362@gmail.com>
+	s=arc-20240116; t=1712658572; c=relaxed/simple;
+	bh=dYhAReZ1vmDiZdobsjqXxIQmDiSdY/KMsiiQ8xms4CI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=YkkF6fRD5cfbxTJnMyggFYIi9y5Q13Z1du0edjdm/8/6SKgjYV4A+6smgknL9XuTTS3gv5a89YambjQJfNkEVooiWp4IuILyZW1K+ZhaK7DcRkfmxkprv85v9ywcfAYvQj0PfdYnc8FQh+RV372m8dEJ3UBj6mCF8ETgh+i9k70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HlygIwUu; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-343c891bca5so3477228f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 09 Apr 2024 03:29:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712658569; x=1713263369; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=ykat5P5LfbO5un7nzciIKTkPn6WaTsCCKh0bvskUEKE=;
+        b=HlygIwUuxg8AsqWE8aR998va7qcfw2UU4WcrocBefN+UUj3Y6rlSwoS/6ztu1hKEYF
+         dY0vsuePXZGOUZlVQxFLeRDNUL0b6g2WnpDbO/wONGxMC4d3q27S4QadgwWGrmKH8lsO
+         kGXsF40qvs/4mHD6SMOWHFEyljYbrwXEmvYebLD61wSKe5BoPGkYPnB0LbNCtgjD5TkS
+         N6jLdtC2f13jO13uAzxZm8+a3FrN3cWi0mUfw5HZ3nUCWVdfmxlU0QWf1HrILqr8GIDJ
+         u7KY2Y1R3Utwz9raLtPFPGOhtsSARwqecJ6kfbGL63amfdDqrXNwmcX8lBF/ViENt1bP
+         Hs2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712658569; x=1713263369;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ykat5P5LfbO5un7nzciIKTkPn6WaTsCCKh0bvskUEKE=;
+        b=PiVBskW9rVGryKAwBOevU+Q87IBeJfxB2076HbB1jB4vq8TjaHdoemCKdTk8x4DfqN
+         ARjMKQd3fz+WYtfftJ+oUpaLcsIv5IhBskTNnhw3na50xgPcFl0xiVNJspIprer+R9Cy
+         uII8ODPXGnDRJxag8XJk5wa3UcFJEcuWQTRGm9prw7Vl0S3ENxEjhwLFs+XNonmSHXES
+         XVA20Rn4n++ykKxh5fwZAfuyZunSn5++HobHQBbWBrYfmMKLM/4PtPJnfM67lsMZDrhG
+         IfP5K4TB9sa4mNlbXhFzxfdLjK312scSmizL2XpbxPU6RZ/zWi5K0Z4F3hyVoc1xJm1x
+         SRbA==
+X-Forwarded-Encrypted: i=1; AJvYcCVjMOGQdWNdXkKMs8pxu66HkbtE8mv5UxW4jPAuHd5aT0p8DM2vFbi7EywRgaCAeBEiD54xzIwfT47JmfP2vd+e8L+mHjUkktC0vQ==
+X-Gm-Message-State: AOJu0YydxfHWTmhZ3OiiwTZfPxEYQqW1je7cJS8gbd0ANqguabgzCHlm
+	2ceubBAQ8RJdBP5Lfg0gsNgiV2rFX01clPtTv9QtpKMeb1yHroy85aIK+f28isi1uSSpC0Hd7Yu
+	X
+X-Google-Smtp-Source: AGHT+IHg/SYP1OwSQx1phS0Gr4gHr1mGzi2LrzlNYbGgaKVxscSxC6soUmqvYC9x1+rD989bWNX8kw==
+X-Received: by 2002:adf:e849:0:b0:343:e031:69b8 with SMTP id d9-20020adfe849000000b00343e03169b8mr9659991wrn.41.1712658568536;
+        Tue, 09 Apr 2024 03:29:28 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id r18-20020adfce92000000b00343d1d09550sm11145900wrn.60.2024.04.09.03.29.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Apr 2024 03:29:27 -0700 (PDT)
+Message-ID: <bad43869-b6d3-43ba-9509-8b1606c12969@linaro.org>
+Date: Tue, 9 Apr 2024 12:29:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240408-rtc_dtschema-v1-0-c447542fc362@gmail.com>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] ASoC: dt-bindings: imx-audio-spdif: convert to
+ YAML
+To: Shengjiu Wang <shengjiu.wang@nxp.com>, lgirdwood@gmail.com,
+ broonie@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, shengjiu.wang@gmail.com, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+ festevam@gmail.com, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+References: <1712652644-28887-1-git-send-email-shengjiu.wang@nxp.com>
+ <1712652644-28887-2-git-send-email-shengjiu.wang@nxp.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <1712652644-28887-2-git-send-email-shengjiu.wang@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 08/04/2024 17:53:00+0200, Javier Carrasco wrote:
-> This series converts the following bindings into dtschema, moving them
-> to trivial-rtc whenever possible:
+On 09/04/2024 10:50, Shengjiu Wang wrote:
+> Convert the imx-audio-spdif binding to YAML.
 > 
-> - orion-rtc: trival-rtc, referenced in arm arch.
-> - google,goldfish-rtc: trivial-rtc, referenced in mips arch.
-> - lpc32xx-rtc: trival-rtc, referenced in arm arch.
-> - maxim,ds1742: trivial-rtc, not referenced in arch, cheap conversion.
-> - rtc-aspeed: 3 devices to trivial-rtc, all referenced in arm arch.
-> - pxa-rtc: add missing properties and convert. Referenced in arm arch.
-> - st,spear600-rtc: trivial-rtc, referenced in arm arch.
-> - stmp3xxx-rtc: convert, referenced in arm arch.
-> - via,vt8500-rtc: trivial-rtc, referenced in arm arch.
-
-Probably all the moves to trivial-rtc can be squashed.
-
+> When testing dtbs_check, found below compatible strings
+> are not listed in document:
 > 
-> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+> fsl,imx-sabreauto-spdif
+> fsl,imx6sx-sdb-spdif
+> 
+> So add them in yaml file to pass the test.
+> 
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
 > ---
-> Javier Carrasco (9):
->       dt-bindings: rtc: orion-rtc: move to trivial-rtc
->       dt-bindings: rtc: google,goldfish-rtc: move to trivial-rtc
->       dt-bindings: rtc: lpc32xx-rtc: move to trivial-rtc
->       dt-bindings: rtc: maxim,ds1742: move to trivial-rtc
->       dt-bindings: rtc: rtc-aspeed: move to trivial-rtc
->       dt-bindings: rtc: pxa-rtc: convert to dtschema
->       dt-bindings: rtc: spear-rtc: move to trivial-rtc
->       dt-bindings: rtc: stmp3xxx-rtc: convert to dtschema
->       dt-bindings: rtc: via,vt8500-rtc: move to trivial-rtc
+>  .../bindings/sound/fsl,imx-audio-spdif.yaml   | 67 +++++++++++++++++++
+>  .../bindings/sound/imx-audio-spdif.txt        | 36 ----------
+>  2 files changed, 67 insertions(+), 36 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/sound/fsl,imx-audio-spdif.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/imx-audio-spdif.txt
 > 
->  .../devicetree/bindings/rtc/fsl,stmp3xxx-rtc.yaml  | 45 ++++++++++++++++++++++
->  .../bindings/rtc/google,goldfish-rtc.txt           | 17 --------
->  .../devicetree/bindings/rtc/lpc32xx-rtc.txt        | 15 --------
->  .../devicetree/bindings/rtc/marvell,pxa-rtc.yaml   | 40 +++++++++++++++++++
->  .../devicetree/bindings/rtc/maxim,ds1742.txt       | 12 ------
->  .../devicetree/bindings/rtc/orion-rtc.txt          | 18 ---------
->  Documentation/devicetree/bindings/rtc/pxa-rtc.txt  | 14 -------
->  .../devicetree/bindings/rtc/rtc-aspeed.txt         | 22 -----------
->  .../devicetree/bindings/rtc/spear-rtc.txt          | 15 --------
->  .../devicetree/bindings/rtc/stmp3xxx-rtc.txt       | 21 ----------
->  .../devicetree/bindings/rtc/trivial-rtc.yaml       | 18 +++++++++
->  .../devicetree/bindings/rtc/via,vt8500-rtc.txt     | 15 --------
->  12 files changed, 103 insertions(+), 149 deletions(-)
-> ---
-> base-commit: fec50db7033ea478773b159e0e2efb135270e3b7
-> change-id: 20240406-rtc_dtschema-302824d1ec20
-> 
-> Best regards,
-> -- 
-> Javier Carrasco <javier.carrasco.cruz@gmail.com>
-> 
+> diff --git a/Documentation/devicetree/bindings/sound/fsl,imx-audio-spdif.yaml b/Documentation/devicetree/bindings/sound/fsl,imx-audio-spdif.yaml
+> new file mode 100644
+> index 000000000000..fec008ffae43
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/fsl,imx-audio-spdif.yaml
+> @@ -0,0 +1,67 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/fsl,imx-audio-spdif.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale i.MX audio complex with S/PDIF transceiver
+> +
+> +maintainers:
+> +  - Shengjiu Wang <shengjiu.wang@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - fsl,imx-sabreauto-spdif
+> +              - fsl,imx6sx-sdb-spdif
+> +          - enum:
+> +              - fsl,imx-audio-spdif
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+If there is going to be any new version/resend:
+This one should be const, not enum.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+---
+
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+
+Best regards,
+Krzysztof
+
 
