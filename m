@@ -1,100 +1,184 @@
-Return-Path: <devicetree+bounces-57424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9815389D70B
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 12:33:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EC8089D73E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 12:49:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5119F281E5E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 10:33:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C7E8DB21497
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 10:49:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61A9B7F47E;
-	Tue,  9 Apr 2024 10:32:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mpt0WKHD"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5D848175F;
+	Tue,  9 Apr 2024 10:49:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 041336FE35;
-	Tue,  9 Apr 2024 10:32:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB96E80603;
+	Tue,  9 Apr 2024 10:49:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712658774; cv=none; b=MOOocn6Xy3tiryWusXLcb98g3VfHkzd11eUFRNK2FxG2OHEV9T9/kjCHqroVEjD0lBCkMcmODDXXPcYIX7DQoGs8+rnyhNDvrAQh7Vj+xF69FnLmftXSI4ZAvLESDXUAO2RdOQAU18hr7/DmkjMdBgcytTXei9Js/1oSKQ5skYs=
+	t=1712659786; cv=none; b=F1VbmZ755IkcPjtwyLz3LI5l7iaPkDNdYR7RsvNveGZ4LRg6hFS0v2V7yZ64qVdfWlGkYOKT8cPDu/glp2RdSUlVapMciHigM0RN/Y/RR619NFgE0iP9YXHvfOsdSE6FfgLCzS91u5ww7SbjvtRiSIot4EXN/oDDb6h6Z2MQp6M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712658774; c=relaxed/simple;
-	bh=IfKFDBLlzi9VPnikm5bTXrOl3CHU8r8CdsogC4TOvLA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=UjzCyKG/EsAVQjyai3UL3jIiyKBZ7X/ENEZvmsYOgJ8Em50guXj32TnYF/reVG+kBK/lacpeebABhaWqkoFUCHVg88j8a/VJNsEhfdNv72BU5/ZhncxtMYZK28JE+cpv1Ei4SFruDAjK/0L2k5Hma6V9yHHO6AnyNU9n4fsxn7E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mpt0WKHD; arc=none smtp.client-ip=209.85.216.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-29e0229d6b5so4435084a91.3;
-        Tue, 09 Apr 2024 03:32:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712658772; x=1713263572; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IfKFDBLlzi9VPnikm5bTXrOl3CHU8r8CdsogC4TOvLA=;
-        b=mpt0WKHDdttT7jKpR2q+RtpQVlbhvGpY1FwAp/+ostq9aOexfHzg5mmthCmYEOgjgu
-         CZQ6cHQOvLKVIXaCGPThCeE+i2rpGqj8th+aawesxxs7VdX3+WOArzhXqTbDoa9Xdhjl
-         KbT19AaPyUw2rJAWOLIs/i3FxGTmFZ1O5RnxfFyZE7ptHa2XFlgR1XnDXbvnTBYAu4OJ
-         Nu3CtCRUIcQ707fjFqHwLD39chmOsPpOwaLnC1DDnQnIt6KItK6XjvGOmqs8xJsC4vTy
-         k5IjHG8aNalRLWkYQNUtaC/vu+6G6me1qMYsXeVDTFXw2GFRJx6Gi+G8uZTMtN+q/ICm
-         wpjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712658772; x=1713263572;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IfKFDBLlzi9VPnikm5bTXrOl3CHU8r8CdsogC4TOvLA=;
-        b=pKJ4XXEgm/sZU/ED/NG1T7lYui8KhLFpaE0p44IxdqbmDKcxn1o1DpV2Umy2gRkdHl
-         MITU2BrDGdR99AaV8BIp9p5EykQzlbDADecUreOZhKkIumZQFl+OjWNhKKaEv91Q9n+C
-         ii59EzkOCghhjmURJ80qEN666VPJH908RIHc2iO7uzW6Ok4r5E0O53oxG/7+U6p6Toxw
-         zdHMmd0vl9k+t29vmMefNYonpuza1sbFreHNi1WyQEknrH2Sx0FdHmd+oEegJzLBym1Y
-         9i9Jgkj8676fDJxxOf3BdgUtJa/2tEkBeLQylkmGjnueEavehSLdGw6MvAiTdOqa2m8h
-         F/oQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUxXdnEYHWtitT9Pfa6vqugZOdNgk9IJJ9vT5QervbChYQVMNPOBNprsUAS8Nw6UfzTCUt2Mg5BddtbmUJN0SiInaOudAVQOAP2MZC3lhxUE8Mp0TLGzJYSzWwd/WjkVBEBUL20mUAsUw==
-X-Gm-Message-State: AOJu0YxGR+G4D3KrPWiQcsrT3Hh5mP2IxC73qZXxo5PJEDVHIYbhwb2Z
-	UIG6Fd5ONkh0/UZKCcYolldjefUOWbqnq8FBFNASZM1Wg+uuuhp9
-X-Google-Smtp-Source: AGHT+IFquuwc8TpE2J4AXzmuDJ/293GQ1bZRzsZtYME1+K8tbEzMq456Hq3Ygvoa4KWXJJ7e96ErWA==
-X-Received: by 2002:a17:90a:ac0e:b0:2a4:d43d:1617 with SMTP id o14-20020a17090aac0e00b002a4d43d1617mr6609927pjq.37.1712658772217;
-        Tue, 09 Apr 2024 03:32:52 -0700 (PDT)
-Received: from localhost.localdomain ([221.220.133.103])
-        by smtp.gmail.com with ESMTPSA id ge22-20020a17090b0e1600b002a574ab7f5esm956337pjb.53.2024.04.09.03.32.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Apr 2024 03:32:51 -0700 (PDT)
-From: Jianfeng Liu <liujianfeng1994@gmail.com>
-To: liujianfeng1994@gmail.com
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	krzysztof.kozlowski+dt@linaro.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	robh@kernel.org,
-	sfr@canb.auug.org.au
-Subject: Re: [PATCH] arm64: dts: rockchip: remove startup-delay-us from vcc3v3_pcie2x1l0 on rock-5b
-Date: Tue,  9 Apr 2024 18:32:44 +0800
-Message-Id: <20240409103244.47813-1-liujianfeng1994@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240401081302.942742-1-liujianfeng1994@gmail.com>
-References: <20240401081302.942742-1-liujianfeng1994@gmail.com>
+	s=arc-20240116; t=1712659786; c=relaxed/simple;
+	bh=XXednxn3A2ELXwpsSYuPnlymvAJgKHfR1r+rrAGVfBI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NxxFQ/kPxwEBUnXr3lzvjiTRSxGsuJDVUZoW1vzKJ0jvxnVDfwYnX+e3uXir5ndvy9jlFBnbSTN3JQG/CLxcEkLGISOMJZpWPkoRByWd0tlviSwYrs9RP8Tf8wSsQAzmZh+Epzvvf6wLlGK1VM0/Ppwv4dE8Q9rps6yzbDC/hyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A07B01007;
+	Tue,  9 Apr 2024 03:50:14 -0700 (PDT)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 486E73F766;
+	Tue,  9 Apr 2024 03:49:42 -0700 (PDT)
+Date: Tue, 9 Apr 2024 11:49:39 +0100
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Peng Fan <peng.fan@nxp.com>
+Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 3/6] firmware: arm_scmi: add initial support for i.MX
+ BBM protocol
+Message-ID: <ZhUdQ6M0GkL0do_l@bogus>
+References: <20240405-imx95-bbm-misc-v2-v2-0-9fc9186856c2@nxp.com>
+ <20240405-imx95-bbm-misc-v2-v2-3-9fc9186856c2@nxp.com>
+ <ZhQxu8LVNKf5QDLm@pluto>
+ <ZhUDZGJilhczKlDD@bogus>
+ <DU0PR04MB94175384AD9113AC6F60546588072@DU0PR04MB9417.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DU0PR04MB94175384AD9113AC6F60546588072@DU0PR04MB9417.eurprd04.prod.outlook.com>
 
-After removing this property I still meet the wifi card missing issue
-today. So this fix doesn't hit the root cause. But this property from
-rockchip's sdk kernel will definitely make the situation worse.
+On Tue, Apr 09, 2024 at 09:13:33AM +0000, Peng Fan wrote:
+> Hi Sudeep,
+>
+> > Subject: Re: [PATCH v2 3/6] firmware: arm_scmi: add initial support for i.MX
+> > BBM protocol
+> >
+> > On Mon, Apr 08, 2024 at 07:04:43PM +0100, Cristian Marussi wrote:
+> > > On Fri, Apr 05, 2024 at 08:39:25PM +0800, Peng Fan (OSS) wrote:
+> > > > From: Peng Fan <peng.fan@nxp.com>
+> > > >
+> > > > The i.MX BBM protocol is for managing i.MX BBM module which provides
+> > > > RTC and BUTTON feature.
+> > > >
+> > >
+> > > I appreciate that you added versioning but I think a bit of
+> > > documentation about what the protocol and its comamnds purpose is
+> > > still lacking, as asked by Sudeep previously
+> > >
+> > >
+> > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore
+> > > .kernel.org%2Flinux-arm-
+> > kernel%2FZeGtoJ7ztSe8Kg8R%40bogus%2F%23t&data=
+> > >
+> > 05%7C02%7Cpeng.fan%40nxp.com%7Ce92ff78b9126447afe9708dc587358d
+> > 4%7C686e
+> > >
+> > a1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C638482499632395762%7C
+> > Unknown%7C
+> > >
+> > TWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiL
+> > CJXVC
+> > >
+> > I6Mn0%3D%7C0%7C%7C%7C&sdata=7QP%2BkkjHA3Sa0CdcbbObGG4kgYYK
+> > XAGA2r%2F%2F
+> > > x0MogqU%3D&reserved=0
+> > >
+> >
+> > I have decided to ignore all these vendor protocol patches until they have
+> > some documentation to understand what these protocol are for, what are the
+> > commands, their input/output parameter details, any conditions are the
+> > caller and callee,..etc very similar to SCMI spec.
+>
+> Where do you expect the documentation to be put?
+>
 
-Jianfeng
+To begin with, we need all these vendor protocols in a directory say
+vendors/nxp under drivers/firmware/arm_scmi. It can be a simple text file
+under that. We can see later if we need any more formal version elsewhere
+but that shouldn't be a blocker for these changes.
+
+> similar as scmi_protocol.h, put in scmi_imx_protcol.h?
+> >
+> > To start with can you please expand what is BBM or MISC protocol is ?
+>
+> ok. Sorry for missing your previous comment in v1. Let me write here briefly
+> first.
+>
+
+Thanks
+
+> The Battery Backup (BB) Domain contains the Battery Backed Security
+> Module (BBSM) and the Battery Backed Non-Secure Module (BBNSM).
+> BBM protocol is to manage i.MX BBSM and BBNSM. This protocol supports
+> #define COMMAND_PROTOCOL_VERSION             0x0U
+> #define COMMAND_PROTOCOL_ATTRIBUTES          0x1U
+> #define COMMAND_PROTOCOL_MESSAGE_ATTRIBUTES  0x2U
+> #define COMMAND_BBM_GPR_SET                  0x3U
+> #define COMMAND_BBM_GPR_GET                  0x4U
+> #define COMMAND_BBM_RTC_ATTRIBUTES           0x5U
+> #define COMMAND_BBM_RTC_TIME_SET             0x6U
+> #define COMMAND_BBM_RTC_TIME_GET             0x7U
+> #define COMMAND_BBM_RTC_ALARM_SET            0x8U
+> #define COMMAND_BBM_BUTTON_GET               0x9U
+> #define COMMAND_BBM_RTC_NOTIFY               0xAU
+> #define COMMAND_BBM_BUTTON_NOTIFY            0xBU
+> #define COMMAND_NEGOTIATE_PROTOCOL_VERSION   0x10U
+>
+
+Hopefully description of each of these commands cover what GPR above means
+really.
+
+> For now in this patchset for linux, we only use RTC, and BUTTON
+> for system wakeup
+>
+> For MISC protocol, it is for various misc things, such as discover
+> build info, get rom passed data, get reset reason, get i.mx
+> cfg name, control set(for gpio expander under m33 control and
+> etc). The command as below:
+> #define COMMAND_PROTOCOL_VERSION             0x0U
+> #define COMMAND_PROTOCOL_ATTRIBUTES          0x1U
+> #define COMMAND_PROTOCOL_MESSAGE_ATTRIBUTES  0x2U
+> #define COMMAND_MISC_CONTROL_SET             0x3U
+> #define COMMAND_MISC_CONTROL_GET             0x4U
+> #define COMMAND_MISC_CONTROL_ACTION          0x5U
+> #define COMMAND_MISC_DISCOVER_BUILD_INFO     0x6U
+> #define COMMAND_MISC_ROM_PASSOVER_GET        0x7U
+> #define COMMAND_MISC_CONTROL_NOTIFY          0x8U
+> #define COMMAND_MISC_REASON_ATTRIBUTES       0x9U
+> #define COMMAND_MISC_RESET_REASON            0xAU
+> #define COMMAND_MISC_SI_INFO                 0xBU
+> #define COMMAND_MISC_CFG_INFO                0xCU
+> #define COMMAND_MISC_SYSLOG                  0xDU
+> #define COMMAND_NEGOTIATE_PROTOCOL_VERSION   0x10U
+>
+
+And same here. Just as an example what BUILD_INFO ? There will be 10s if not
+100s of different image in the system. What does this BUILD_INFO provide ?
+And why is this important over version or release info ?
+
+These are simple pointers, expect more questions like this if the document
+is not self sufficient in explaining such details.
+
+--
+Regards,
+Sudeep
 
