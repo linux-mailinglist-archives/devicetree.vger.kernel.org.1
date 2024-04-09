@@ -1,74 +1,77 @@
-Return-Path: <devicetree+bounces-57675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D030189E3DA
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 21:43:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEF4089E3F0
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 21:53:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BCDE284B72
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 19:43:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA98C1C22810
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 19:53:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E0C7157A4B;
-	Tue,  9 Apr 2024 19:43:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3698157E97;
+	Tue,  9 Apr 2024 19:53:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UQLO3aF0"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Ocv+byEu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C6F7157A42;
-	Tue,  9 Apr 2024 19:43:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1A68157A44;
+	Tue,  9 Apr 2024 19:53:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712691835; cv=none; b=dq2E0auOFyaE0HkpHfHxbYUFxTvRb4m9ugs3/Md9fNeUcXq17yTkxnPAoUP5mH0kRuKBAAncCu8oNoOHFIsQTvR9dBRtpNhC1yI4cruPy4Kayhd7mWldHNFhDpnzbpsZUIs79QNj/S7B4TFcqiGyRA7NTQRzunq3IMZ+dP37rrA=
+	t=1712692429; cv=none; b=fzbIZ4PTnC9BGE2VaLK4TnHW4fm3EXeOcHmvp0VWL2e51RLuqDK3BEdKgSPOphH7RdiMdfiWhRoiwRGc1dncv60vPPadd6KkQu6zB5zSphQ99rxoihn3fqyKjrOzKfmcGRulmoE+cZg4Wkq1qiP9A5J+d67ng6siUm+18CqiXpQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712691835; c=relaxed/simple;
-	bh=S3daUGLfKVV4Ti5klsHRtQg8yvQ88JxRkBJee6j3xvg=;
+	s=arc-20240116; t=1712692429; c=relaxed/simple;
+	bh=TZ3aootWxltD3EKWy6U3UWGchEIxAQfp7i9I1yvoI4I=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=daHdOTNsMHT3DbPGW6dT6KKo+W+7gROTwoPEb6t/X5rbkuU028ZTY73PPu/ZtV11FVXcGeGtcZK7GYbtoHlnPQKw9arBI9NC7m9FyftU1VETloZGyREjcnSryl8qCKcHJeLIOmvl/VqoNP899so9qHIG19Cz6n13gNCoc4F+SQQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=UQLO3aF0; arc=none smtp.client-ip=198.47.19.141
+	 MIME-Version:Content-Type; b=qgFvf+1DqWWuPAKKgrlskozuFLbwhhDizI1tOICwcHaqH5uNR3lfkkHSCHSjmzDERVoSEBLTksxYIl29CZKCt7OqOcHFtxBlbBQ74ik7hWnfwZ4gWtVFVFXP2RwPcsGhgQ8rOLgfOTjFjjg0ugwwAIEciwtzSX0T+vx8sqogS4o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Ocv+byEu; arc=none smtp.client-ip=198.47.23.248
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 439JhlGd016830;
-	Tue, 9 Apr 2024 14:43:47 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 439Jrefk067023;
+	Tue, 9 Apr 2024 14:53:40 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1712691827;
-	bh=ixvpjeiOJMJ4T+FLd4hArdC7rt68RwapbgBLj8mR0Bk=;
+	s=ti-com-17Q1; t=1712692420;
+	bh=n9yKZ/FE80uwMs/umpNdmhBbpU3Q2Qd45yxqG/HmVo4=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=UQLO3aF0N00iFnLy0NJkWDSeMOzzqgz53UkNV58B7l2bYD/XpOYYqTwibZ8NpWDAS
-	 6MdCpL1ybXCSZTRzRg8PzRCN0qiNT+HdaS8qmrYGwrkRo3Lyxe2MbRsqo15csES4ts
-	 UDi15cD9jBefgz4NFAzMVRccPWQJGyFHvipm8hrI=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 439JhlOq017809
+	b=Ocv+byEuQOD6a9XxUso5SL1ViwFt2yP3x0jGUm3/5X6pgl5Kl638W6wKt+eCJkIw1
+	 bQ6bnQD9YoaYQJS6a1V1CU66I5gQPLKzJVCM4F76DvSMZf2c4zRZNHcBkC6x3r0bv9
+	 uLb042yQ3sKjGbIm3uHKB6ZoXeAn0SYAMZwdS0gg=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 439JreNE012933
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 9 Apr 2024 14:43:47 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 9 Apr 2024 14:53:40 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 9
- Apr 2024 14:43:47 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ Apr 2024 14:53:39 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 9 Apr 2024 14:43:47 -0500
+ Frontend Transport; Tue, 9 Apr 2024 14:53:39 -0500
 Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 439Jhlvl101119;
-	Tue, 9 Apr 2024 14:43:47 -0500
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 439JrdFC117545;
+	Tue, 9 Apr 2024 14:53:39 -0500
 From: Nishanth Menon <nm@ti.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Michael Walle <mwalle@kernel.org>
-CC: Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-j722s-evm: Enable eMMC support
-Date: Tue, 9 Apr 2024 14:43:46 -0500
-Message-ID: <171269175423.645063.3175617595805368025.b4-ty@ti.com>
+To: Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>, Andrew Davis <afd@ti.com>
+CC: Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 0/4] Unconditionally register TI-SCI reset handler
+Date: Tue, 9 Apr 2024 14:53:37 -0500
+Message-ID: <171269235826.647454.8602732844398119999.b4-ty@ti.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240403102302.3934932-1-mwalle@kernel.org>
-References: <20240403102302.3934932-1-mwalle@kernel.org>
+In-Reply-To: <20240326223730.54639-1-afd@ti.com>
+References: <20240326223730.54639-1-afd@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,19 +82,33 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Michael Walle,
+Hi Andrew Davis,
 
-On Wed, 03 Apr 2024 12:23:02 +0200, Michael Walle wrote:
-> The J722S EVM has an on-board eMMC. Enable the SDHC interface for it.
-> There is no pinmuxing required because the interface has dedicated pins.
+On Tue, 26 Mar 2024 17:37:26 -0500, Andrew Davis wrote:
+> This series is the replacement for this series[0] and is based on a
+> comment in that series by Rob here[1].
 > 
+> First patch is just a fixup, second patch is the core of the series.
 > 
+> Thanks,
+> Andrew
+> 
+> [...]
 
-I have applied the following to branch ti-k3-dts-next on [1].
+I have applied the following to branch ti-drivers-soc-next on [1].
 Thank you!
 
-[1/1] arm64: dts: ti: k3-j722s-evm: Enable eMMC support
-      commit: ab833a6478e5376f8076be41109d74387ab8460e
+[1/4] firmware: ti_sci: Use devm_register_restart_handler()
+      commit: c0e5a431442d7bbfbd3704212680e49faa8ee46c
+[2/4] firmware: ti_sci: Unconditionally register reset handler
+      commit: 8c8ff39838e02b6df91b80e086426dcb9ac86908
+
+and the following to branch ti-keystone-dts-next on [1].
+
+[3/4] ARM: dts: ti: keystone: k2g: Remove ti,system-reboot-controller property
+      commit: 345d22f4f45369a33b416a96c92bc273e41d695b
+[4/4] dt-bindings: arm: keystone: Remove ti,system-reboot-controller property
+      commit: 60242b20fe784ef9142050be8b68bd85e94be557
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
