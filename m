@@ -1,262 +1,139 @@
-Return-Path: <devicetree+bounces-57520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45B8989DB1F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 15:51:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F30A689DB2B
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 15:52:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B16F01F220B0
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 13:51:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 300341C21AC4
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 13:52:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A5C313B7A9;
-	Tue,  9 Apr 2024 13:42:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17D1112F589;
+	Tue,  9 Apr 2024 13:43:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="fDiU7tqW"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Iy4NTzVF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 211A313B2AF
-	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 13:42:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AED6112F39A;
+	Tue,  9 Apr 2024 13:43:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712670165; cv=none; b=esNYA8JPK5iIrmj67FFjSNcHEy6VoYKIseorf1nrP3jiFVWFV8pLsGa7AjaFb2WPdzJTyvQ3zweebWEC4ctGYGYx47RQiFnMp+1Iqe3uPwspP7FSDrClOAsgL4us+HInotS9iy6bvR7Eggmke/X9lxPDQepOVpt10V66ht1fI64=
+	t=1712670232; cv=none; b=GiiNmgGvcrhGEFua5Impk+4NViFnxkD9JkqKaHHsxmf+9uWT41CXdg9yOr9vC27oyQFjLGc8CxqGgAnX0578A+SadefZdLj9KUAiu4AnB1+yq2ArrPOiag9MRp4E5sw51cM5pz1dJ/bgQz+zGPQ27TT1Yh38ID4zSGNxlVITlp0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712670165; c=relaxed/simple;
-	bh=rmUU5KQQDjsuNrCnoS100FfCSVwtHEsMKsd4Yeoncng=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=VpM7Jtz+19mqzhcSBEZMUAMR/dyXe8nPpL9vVTE15kSddwUuxHdwVK56okt9Fr1rtSlCDVrYtdECkl/PTlbsfVpsqaE8AgsObpN9T3kmLWs0k/fb9VooRe+udEajaUWEpTy3rtCnJ+0QNqw+hHVxOJz093rKgiyIqzNgopDfXkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=fDiU7tqW; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-415515178ceso36541035e9.0
-        for <devicetree@vger.kernel.org>; Tue, 09 Apr 2024 06:42:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712670160; x=1713274960; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IGsqJQWF1Ucte73TGgl0P2Cl+B2DHbp3lE/2oPwQwY0=;
-        b=fDiU7tqW9yACIDyus/0TmlQx71PfJm/NpMwjDI62SGyZ+6KAfpgcpP/WWM4vLYqX+p
-         51wrmgo1J4Hx7ZYZUP0MBvBtxmeJEXw/FR9wM1kfvt8rIl04W01veNv/Oz6ZIB2Fzo5R
-         u6ke+/bCsW2SQH7XD8LG6QDXr5Tb4qKDCrvWxPVLwKfVMccqNhmPWusC7/CB3U9GzgSM
-         y1UnY9N8QHAyuunVt7LKFc09Oo3wuKxp2f0MDj2r9s9EsUz01m9vvP8Abkbi+Bu+d+2b
-         N9gAk+dNRMVlVOygCBI44bPdGJp31sMMnC1zKPT2gFhTtK0bclgjLqtlBipVfz1DDoWi
-         zieg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712670160; x=1713274960;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IGsqJQWF1Ucte73TGgl0P2Cl+B2DHbp3lE/2oPwQwY0=;
-        b=OWW3doneXQmOZyOhCCYv2yd5NJWVoVK+WvjMIaeTT8G+CHSE83w591KV97vZzSpR5v
-         CiBfuSMvLwQO9xqlNRCoTfLFcTR23WC/2oQVi8+P3Oi2W8QxCUli5AWOnAVqn0a5IWlL
-         ZUnEMjaxv5dt6MSkTCF0QkBpD96oCd8yB7gSBqFWtdn3mb8SOiwqWaAiqVi4GiBVn2io
-         Xn2ofj6ARDwdDJCo5Gihvxt8EavbfuU/P5lA7dMZyTwgXxppNsrSQZifgf5tl69mpKkp
-         rzN04k+qDDZvCuFE1IL8PfmJCSigjuCXy6djOxmmnbGeeU10vI1grYX53TrJx9LoHEwJ
-         GNRg==
-X-Forwarded-Encrypted: i=1; AJvYcCXZSt9B6lEndKfOtf2JlHZ/BcVX1PSGDdHIXxfGwf3nPfzkEpiYd8hE/oPEO/w6M9FmCXb+8C1hDhTbN83kMAQ9snTaLXpYco4fvA==
-X-Gm-Message-State: AOJu0YyfAm8WlKWf8iFZ7JGnpG9faFLm5lO7tiPPHK1tVPjOOPYcohX7
-	EuC2ZEEQ1GW66TlyFmOaf69cz+Aov2pYplCAJidnEraZg06LNA77xw017Na4CZw=
-X-Google-Smtp-Source: AGHT+IG/iRx5ir5/ovsIbMfS8mk5u5aphffFDwTLsfaRoOPMCr5c7spDQQ+GP6mftM7G0850xXAw/w==
-X-Received: by 2002:a05:600c:4e0f:b0:416:7b2c:def5 with SMTP id b15-20020a05600c4e0f00b004167b2cdef5mr3740530wmq.2.1712670160253;
-        Tue, 09 Apr 2024 06:42:40 -0700 (PDT)
-Received: from [127.0.1.1] ([93.5.22.158])
-        by smtp.googlemail.com with ESMTPSA id j11-20020adff54b000000b003433bf6651dsm10753579wrp.75.2024.04.09.06.42.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Apr 2024 06:42:39 -0700 (PDT)
-From: Alexandre Mergnat <amergnat@baylibre.com>
-Date: Tue, 09 Apr 2024 15:42:16 +0200
-Subject: [PATCH v3 18/18] arm64: dts: mediatek: add audio support for
- mt8365-evk
+	s=arc-20240116; t=1712670232; c=relaxed/simple;
+	bh=y/xaSl/jhXl08yoalUQ5vH76MCEpZVtsR/1x4w43g8k=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=d6C78SBbRtpG7KbDxKkgD8DzeyqBFfgqlTVvCwWmRACM+WabTR6+024ZCVtvceOVSEOxGbURpvl8p4XaYmtpaXIcPTAumig3dXcUMi3RtMjjw6KwGhxur/CXLSstNNjZG5Chw5p52SqvzcVj3ebpNrXukEMgWyqk2Qve76nByUE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Iy4NTzVF; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 3041F240008;
+	Tue,  9 Apr 2024 13:43:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1712670228;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=m5UDulmenCwJXHuGMpELuxhDA4GFyujVsdxEaX2Dr8g=;
+	b=Iy4NTzVFWYIISKvZb3P1zAUEKQXE6VFTgx/iZnMms4cEObuZ97PE1okjL+Zx6GUOhH358F
+	2TUZr25TtQN/aJaJVeGL0chkGZ/cllV0WOROlZwrnz63KbJg+ZWwW1XRb/T5jK5+dLIdsD
+	O6x426KxtkdX3k+CnUx7Fzlrl714fiPVBxr5l5EutPwJJSKtFdwl3I+E/IUjaelg4j9R9B
+	v4tvJls4ZOgiyxBiOvO7UHwoBygwhpUxWCetIkKY0XowlW2uLs5g0zh17FV5u96wtMk1nh
+	hPIClv4uh+Ulc8a1PD8GzVB7Svcg0wZuAFHM0GL3R6rVBVu0As4CvUsd53TT4Q==
+Date: Tue, 9 Apr 2024 15:43:45 +0200
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: Rob Herring <robh@kernel.org>
+Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Luis Chamberlain
+ <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Oleksij Rempel <o.rempel@pengutronix.de>, Mark Brown <broonie@kernel.org>,
+ Frank Rowand <frowand.list@gmail.com>, Andrew Lunn <andrew@lunn.ch>, Heiner
+ Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ devicetree@vger.kernel.org, Dent Project <dentproject@linuxfoundation.org>
+Subject: Re: [PATCH net-next v6 14/17] dt-bindings: net: pse-pd: Add
+ bindings for PD692x0 PSE controller
+Message-ID: <20240409154345.7a2a73a5@kmaincent-XPS-13-7390>
+In-Reply-To: <20240402132834.GB3744978-robh@kernel.org>
+References: <20240326-feature_poe-v6-0-c1011b6ea1cb@bootlin.com>
+	<20240326-feature_poe-v6-14-c1011b6ea1cb@bootlin.com>
+	<20240402132834.GB3744978-robh@kernel.org>
+Organization: bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240226-audio-i350-v3-18-16bb2c974c55@baylibre.com>
-References: <20240226-audio-i350-v3-0-16bb2c974c55@baylibre.com>
-In-Reply-To: <20240226-audio-i350-v3-0-16bb2c974c55@baylibre.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Sumit Semwal <sumit.semwal@linaro.org>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
- Rob Herring <robh@kernel.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
- Alexandre Mergnat <amergnat@baylibre.com>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3971; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=rmUU5KQQDjsuNrCnoS100FfCSVwtHEsMKsd4Yeoncng=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBmFUWs/X4+9lZbZVVrgUXvJF36fOR5nf9HCXtFKmub
- Eojk7WmJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZhVFrAAKCRArRkmdfjHURc0wD/
- 45bfDP54YfMymdYp1DrRTulxgf6GxTPMlbsmaYC/6cJOUqee8t+L9WtVMsNrp7t8LfGDU3lDY7DoRr
- 6vNEioghcUnEv+Mc+SYl7wFoedQoAppu/BpfM70howwkJ2UVm+SUAzqgTjvtOwwEC4VY2h8X56zN2a
- LfJm6Zfjo5fE8H7XpUOf7F5E7EUR+eDKbDRrgA96OEuRy99jQrKasVCr+2ZDGx06J2yHrMAItWA7lb
- sR4Hy+3BRmHw710Xr0eta3e+SAHhqmDqcg9GQz8edgyqoFrmfhDzrsKuaRgVJksRLvo0/fyJhh8BWm
- ggJ6j0JO/EvFhhPG8VtKzyOpEtPw87GXwpdiBAHKbfVAGFgbK5oX6uA0oP78kar8WPv1YAloDpEsx+
- oT+0QUuFzIu5TZjr2P00CZGUA+c1VVw7I5E1v7M1a0OwqRmjxd2H52CWPX0pxnkYQ+ZWfJOWqaZEfP
- JXM3aiqQLbew/R2iwVrMQlh0VkmWg0D5y+oSaN/yZFTY6Z12MNzp+ylKx34w6s4Nuw8dpsS1At7YxO
- Y3NzNjq61mtNk2oI6AIFWkeDyXsCWAYYySPd52T6MeQ79lwvWkBgUBURjyZQ0LiXHZomCM5OOEkckg
- 92hqaIi3kf8aFt6cxW2WzEKL1eAKxDEaYjMgHhcYn6CjpygtttRwko/+RTGw==
-X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
- fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: kory.maincent@bootlin.com
 
-Add the sound node which is linked to the MT8365 SoC AFE and
-the MT6357 audio codec.
+On Tue, 2 Apr 2024 08:28:34 -0500
+Rob Herring <robh@kernel.org> wrote:
 
-Update the file header.
+> > +    patternProperties:
+> > +      "^manager@0[0-9]|1[0-2]$": =20
+>=20
+> Unit-addresses are typically in hex.
+>=20
+> Is 'manager' something specific to this device or should be common?
 
-Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
----
- arch/arm64/boot/dts/mediatek/mt8365-evk.dts | 98 +++++++++++++++++++++++++++--
- 1 file changed, 94 insertions(+), 4 deletions(-)
+Specific to this device.
+=20
+> > +        $ref: /schemas/graph.yaml#/properties/ports =20
+>=20
+> This is not using the graph binding. Furthermore, I don't want to see=20
+> new cases of 'port' node names which are not graph nodes. We have it=20
+> already with ethernet switches, but 'ethernet-port' is preferred over=20
+> 'port'.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-index 50cbaefa1a99..eb0c5f076dd4 100644
---- a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-@@ -1,9 +1,9 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-- * Copyright (c) 2021-2022 BayLibre, SAS.
-- * Authors:
-- * Fabien Parent <fparent@baylibre.com>
-- * Bernhard Rosenkränzer <bero@baylibre.com>
-+ * Copyright (c) 2024 BayLibre, SAS.
-+ * Authors: Fabien Parent <fparent@baylibre.com>
-+ *	    Bernhard Rosenkränzer <bero@baylibre.com>
-+ *	    Alexandre Mergnat <amergnat@baylibre.com>
-  */
- 
- /dts-v1/;
-@@ -86,6 +86,29 @@ optee_reserved: optee@43200000 {
- 			reg = <0 0x43200000 0 0x00c00000>;
- 		};
- 	};
-+
-+	sound: sound {
-+		compatible = "mediatek,mt8365-mt6357";
-+		pinctrl-names = "default",
-+				"dmic",
-+				"miso_off",
-+				"miso_on",
-+				"mosi_off",
-+				"mosi_on";
-+		pinctrl-0 = <&aud_default_pins>;
-+		pinctrl-1 = <&aud_dmic_pins>;
-+		pinctrl-2 = <&aud_miso_off_pins>;
-+		pinctrl-3 = <&aud_miso_on_pins>;
-+		pinctrl-4 = <&aud_mosi_off_pins>;
-+		pinctrl-5 = <&aud_mosi_on_pins>;
-+		mediatek,platform = <&afe>;
-+		status = "okay";
-+	};
-+};
-+
-+&afe {
-+	mediatek,dmic-mode = <1>;
-+	status = "okay";
- };
- 
- &cpu0 {
-@@ -174,6 +197,12 @@ &mmc1 {
- 	status = "okay";
- };
- 
-+&mt6357_codec {
-+	mediatek,micbias0-microvolt = <1900000>;
-+	mediatek,micbias1-microvolt = <1700000>;
-+	mediatek,vaud28-supply = <&mt6357_vaud28_reg>;
-+};
-+
- &mt6357_pmic {
- 	interrupts-extended = <&pio 145 IRQ_TYPE_LEVEL_HIGH>;
- 	interrupt-controller;
-@@ -181,6 +210,67 @@ &mt6357_pmic {
- };
- 
- &pio {
-+	aud_default_pins: audiodefault-pins {
-+		pins {
-+		pinmux = <MT8365_PIN_72_CMDAT4__FUNC_I2S3_BCK>,
-+			 <MT8365_PIN_73_CMDAT5__FUNC_I2S3_LRCK>,
-+			 <MT8365_PIN_74_CMDAT6__FUNC_I2S3_MCK>,
-+			 <MT8365_PIN_75_CMDAT7__FUNC_I2S3_DO>;
-+		};
-+	};
-+
-+	aud_dmic_pins: audiodmic-pins {
-+		pins {
-+		pinmux = <MT8365_PIN_117_DMIC0_CLK__FUNC_DMIC0_CLK>,
-+			 <MT8365_PIN_118_DMIC0_DAT0__FUNC_DMIC0_DAT0>,
-+			 <MT8365_PIN_119_DMIC0_DAT1__FUNC_DMIC0_DAT1>;
-+		};
-+	};
-+
-+	aud_miso_off_pins: misooff-pins {
-+		pins {
-+		pinmux = <MT8365_PIN_53_AUD_CLK_MISO__FUNC_GPIO53>,
-+			 <MT8365_PIN_54_AUD_SYNC_MISO__FUNC_GPIO54>,
-+			 <MT8365_PIN_55_AUD_DAT_MISO0__FUNC_GPIO55>,
-+			 <MT8365_PIN_56_AUD_DAT_MISO1__FUNC_GPIO56>;
-+		input-enable;
-+		bias-pull-down;
-+		drive-strength = <MTK_DRIVE_2mA>;
-+		};
-+	};
-+
-+	aud_miso_on_pins: misoon-pins {
-+		pins {
-+		pinmux = <MT8365_PIN_53_AUD_CLK_MISO__FUNC_AUD_CLK_MISO>,
-+			 <MT8365_PIN_54_AUD_SYNC_MISO__FUNC_AUD_SYNC_MISO>,
-+			 <MT8365_PIN_55_AUD_DAT_MISO0__FUNC_AUD_DAT_MISO0>,
-+			 <MT8365_PIN_56_AUD_DAT_MISO1__FUNC_AUD_DAT_MISO1>;
-+		drive-strength = <MTK_DRIVE_6mA>;
-+		};
-+	};
-+
-+	aud_mosi_off_pins: mosioff-pins {
-+		pins {
-+		pinmux = <MT8365_PIN_49_AUD_CLK_MOSI__FUNC_GPIO49>,
-+			 <MT8365_PIN_50_AUD_SYNC_MOSI__FUNC_GPIO50>,
-+			 <MT8365_PIN_51_AUD_DAT_MOSI0__FUNC_GPIO51>,
-+			 <MT8365_PIN_52_AUD_DAT_MOSI1__FUNC_GPIO52>;
-+		input-enable;
-+		bias-pull-down;
-+		drive-strength = <MTK_DRIVE_2mA>;
-+		};
-+	};
-+
-+	aud_mosi_on_pins: mosion-pins {
-+		pins {
-+		pinmux = <MT8365_PIN_49_AUD_CLK_MOSI__FUNC_AUD_CLK_MOSI>,
-+			 <MT8365_PIN_50_AUD_SYNC_MOSI__FUNC_AUD_SYNC_MOSI>,
-+			 <MT8365_PIN_51_AUD_DAT_MOSI0__FUNC_AUD_DAT_MOSI0>,
-+			 <MT8365_PIN_52_AUD_DAT_MOSI1__FUNC_AUD_DAT_MOSI1>;
-+		drive-strength = <MTK_DRIVE_6mA>;
-+		};
-+	};
-+
- 	ethernet_pins: ethernet-pins {
- 		phy_reset_pins {
- 			pinmux = <MT8365_PIN_133_TDM_TX_DATA1__FUNC_GPIO133>;
+Ok I will remove the ref then.
+=20
+> Why is this one 'managers' and the other device binding 'channels'?
 
--- 
-2.25.1
+Here each manager can have up to 8 ports.
+The ports in tps23881 are called channels in the datasheet but I can use the
+port naming for both if you prefer.
 
+> > +        description:
+> > +          PD69208T4/PD69204T4/PD69208M PSE manager exposing 4 or 8 phy=
+sical
+> > +          ports.
+> > +
+> > +        properties:
+> > +          reg:
+> > +            description:
+> > +              Incremental index of the PSE manager starting from 0, ra=
+nging
+> > +              from lowest to highest chip select, up to 12.
+> > +            maxItems: 1
+> > +
+> > +        patternProperties:
+> > +          '^port@[0-7]$':
+> > +            type: object
+> > +            required:
+> > +              - reg =20
+>=20
+> Any property you want is allowed in this node. You are missing=20
+> 'additionalProperties'.
+
+Indeed.
+
+Regards,
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
