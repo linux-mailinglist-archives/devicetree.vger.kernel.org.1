@@ -1,65 +1,75 @@
-Return-Path: <devicetree+bounces-57408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49ABD89D6A7
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 12:17:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8136289D668
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 12:13:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CCA4C1F2227A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 10:17:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 212391F224FC
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 10:13:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6556312FF63;
-	Tue,  9 Apr 2024 10:14:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C328D823BC;
+	Tue,  9 Apr 2024 10:13:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WWrELiyJ"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="OGY49bbn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 010E512F582;
-	Tue,  9 Apr 2024 10:14:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81AB07E101
+	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 10:13:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712657643; cv=none; b=cp9eovMedcIpSB8LgInEvJ7W7vdhvg8NRqn7Sbekaov9IiNy4yfSM6L6GDMhUO7/gbDaPJwZyKSWZRlm7WpkAhEM2uf+BujGPsVWuha/WAhDYhKd3S+5RUTdKALtLSEFylskksTPe6M5z82npW8UPOSBiZMzbudtrtJDUDSKLXg=
+	t=1712657625; cv=none; b=gn5Oh79XDR/fWHUkCA4mC1vjsPRwtwQESU0CC2YKxfXNbEABgAMSCxlI4bOpuvAy6WeNESbDkN5yyzy6mlvLSBPdOH6Ei9k4+J6Oca76XfBqN8i568hRtINd7FsL/g7ndWKyQnJAZPbuIMrNvGycZqujZxBFwEXRTgssiWhu2EA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712657643; c=relaxed/simple;
-	bh=doTlu9hJMteNLLn17emxRLL3Aqbs4pHtWminEV2S2ag=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=TNXWphNy/59gn9oDH0Gb0D1QbflhCbHaFWS1yHxtDmYtB+6W9uvn5SHdSBGRJE85LZDVxywmSbalZ0u7kwoy5UbS0ZI2hII69K73h9DJGGS/GGKmroW1HR/p/bWRGmnFnz/WkIZQ+Yk802MVuCKPtfcDmAG3ub9aO6H2p0jRZYM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=WWrELiyJ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4399gwqb008002;
-	Tue, 9 Apr 2024 10:13:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:date:subject:mime-version:content-type
-	:content-transfer-encoding:message-id:references:in-reply-to:to
-	:cc; s=qcppdkim1; bh=pIXUiWeNABMgCXpXoHnncdRYT8+KmyyXAwxmQPprqWg
-	=; b=WWrELiyJJrcqT6zHZpgtlldZtYHAwUwmHnM29VMHQ9n5gz1UxwdW4psin5T
-	xsD8VHjE8X0BwW+2UbbqiklmkZs4xORzcVGH7EEOMjtkQEIjw/4v++bu7kXv9p32
-	BfrHWaLyRXJdrCf5c/WzP6MD0bEJR2T9S/7VLf8TBs0f3c8fBkNlYs6zRAHtKTm4
-	EVCVyfFprG2ZKH4Cx2O2Wtsvb4Z7INnQo5eIIuFOeWsQzQ9cZW3KZIr6tG45Jt/E
-	ABf4Ni72iKDrqInItIMfJAHeU5qI155u9YWRZqcPDgPXRgtpnAyvHPDuSf8PKwdn
-	3skytk37hTRhzmtG+qSOClX23Nw==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xd39q01vj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 09 Apr 2024 10:13:49 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 439ADmw0007891
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 9 Apr 2024 10:13:48 GMT
-Received: from hu-krichai-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.4; Tue, 9 Apr 2024 03:13:42 -0700
-From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Date: Tue, 9 Apr 2024 15:43:20 +0530
-Subject: [PATCH v10 2/6] PCI: qcom: Add ICC bandwidth vote for CPU to PCIe
- path
+	s=arc-20240116; t=1712657625; c=relaxed/simple;
+	bh=kvrkpkSbwnxP+OsANZxrkaQO2wy0hxgPbU/o5M3cUTc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=GPiAsqbeG90xd6zt9cRn5+0s8tPm5w3+w43hZ++F/sZ/0QXGIVmz8WK08vmyvsc/CNkLei9gl7aExGJkxJoKYwMpP/cIeSsupseo4sIXXRMBSx+i4IV8dNthSdjyK+WiTS0b4tqBZwCxmtXtZTJ46aKm3gTsUaB9yYNNvbBgELY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=OGY49bbn; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4167fce0a41so9378305e9.0
+        for <devicetree@vger.kernel.org>; Tue, 09 Apr 2024 03:13:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712657621; x=1713262421; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NmzNUGGq4OZxYDQpggue6Jal58rApphculiJ5bPS4hY=;
+        b=OGY49bbnGeUpeAZYPmVIQMfiEHyHbU0jlQM72ndvqmy/icv+TgDzzo66o0RQLQHq5z
+         52YGSQlPa9LnIjxwXn26x3FQC/zqxDpT+QUBaWMkn7iO+MctpdURC2XnfR+90iRELeQg
+         FZoA6Hmjm++QLnpJCpXagR3d8BpV3osXIWMhnA93VtiX77VdMpZMliwT+f6F0/jUs2r3
+         it5JtMVuXVVrSbFVQGA0Oyo/LtVFfnoOZ6syDQhgeAadBpPV71IVSveYzkAsTnxjjHqG
+         zli15rDnECXVSBhpoYsgvQ6ss0LmLfG6D3lgT3+PwlhTvlG2SCCM1p52JW3hly72wBws
+         pTDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712657621; x=1713262421;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NmzNUGGq4OZxYDQpggue6Jal58rApphculiJ5bPS4hY=;
+        b=EWckQ/rwBQXuLbhLZ10RQd9sHKJVH+1PdIymQxNd1JE9771n13wAyaPgzXCuZI5TCc
+         +fTaWfriIy87FILx9ggBLhYFhR1HmywVPUx9KY+l5ehIqAXLqSe8kxGNYZ3gUOP4CVDZ
+         JEucoE8gY9MXr9KsVNXPpXQVOkXOVRmKJ2L9n9PjJHZ+z9Wgi6V8RQGyWHcdGaPhUMYM
+         ink+s0N6KvjsRTQ1vA28ik2Kro2InnVwKW9hNIev1s/aFxbTaGXSnQFo5JQU7pI88NZ5
+         FLXBMsqLELmgjwpaOSeCjDfvv5ZvoBJewdAaGZWxmka/GqVY1+tsEVwg1isjUhy51DhV
+         /GoA==
+X-Forwarded-Encrypted: i=1; AJvYcCUKkUZ/v8iYMEHbw/UBvpKXNNKaODsYD1SyZyKOi1ZRtxhs0wYQ/iC4YEnRIFdmuh2ia2R0lggImHuTqexbyCiFj7rsPC5j6WB9ug==
+X-Gm-Message-State: AOJu0YzFm6SNPUFEctEWOa6g3bLHDRLC/Cj1CvkqOIjffSM7xBcDncxS
+	036SiKlzQ5dhkwwDaRf5v7bU+uXWLggF9FuCt5j9amkshu3kVAC6xXSnlkBhAR0=
+X-Google-Smtp-Source: AGHT+IEfyUckUTv9y+h7aU1sPKbwv2MnnR3RjfX8QU2JXOf1FG/6NWi+qlxipn3wRvVnx4htRvoj8w==
+X-Received: by 2002:adf:e5c9:0:b0:343:e4c7:91ca with SMTP id a9-20020adfe5c9000000b00343e4c791camr1840661wrn.34.1712657620864;
+        Tue, 09 Apr 2024 03:13:40 -0700 (PDT)
+Received: from [127.0.1.1] ([93.5.22.158])
+        by smtp.googlemail.com with ESMTPSA id r7-20020a05600c458700b00416b035c2d8sm1124149wmo.3.2024.04.09.03.13.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Apr 2024 03:13:40 -0700 (PDT)
+From: Alexandre Mergnat <amergnat@baylibre.com>
+Subject: [PATCH v2 00/18] Add audio support for the MediaTek Genio 350-evk
+ board
+Date: Tue, 09 Apr 2024 12:13:21 +0200
+Message-Id: <20240226-audio-i350-v2-0-3043d483de0d@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,173 +78,151 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-ID: <20240409-opp_support-v10-2-1956e6be343f@quicinc.com>
-References: <20240409-opp_support-v10-0-1956e6be343f@quicinc.com>
-In-Reply-To: <20240409-opp_support-v10-0-1956e6be343f@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Manivannan Sadhasivam
-	<manivannan.sadhasivam@linaro.org>,
-        Lorenzo Pieralisi
-	<lpieralisi@kernel.org>,
-        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?=
-	<kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>, <johan+linaro@kernel.org>,
-        <bmasney@redhat.com>, <djakov@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <vireshk@kernel.org>, <quic_vbadigan@quicinc.com>,
-        <quic_skananth@quicinc.com>, <quic_nitegupt@quicinc.com>,
-        <quic_parass@quicinc.com>, <quic_krichai@quicinc.com>,
-        <krzysztof.kozlowski@linaro.org>,
-        Bryan O'Donoghue
-	<bryan.odonoghue@linaro.org>
-X-Mailer: b4 0.13-dev-83828
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1712657607; l=4274;
- i=quic_krichai@quicinc.com; s=20230907; h=from:subject:message-id;
- bh=doTlu9hJMteNLLn17emxRLL3Aqbs4pHtWminEV2S2ag=;
- b=SmcBuYldTtRAJDZKGewM+TS45NYrvTlAVdCZCEYOOiMs8Zjxw3law3lbq2zK9fx+rP81VQPFM
- BKFHUGLIuR8AWzwBG0wG6hcLcT9jcb2hlulBGnJPPvqPEVGT7LFSv2M
-X-Developer-Key: i=quic_krichai@quicinc.com; a=ed25519;
- pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: p3eq3Doj3zHHHrpN6RhXx-P8wVgSiEck
-X-Proofpoint-ORIG-GUID: p3eq3Doj3zHHHrpN6RhXx-P8wVgSiEck
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-09_06,2024-04-05_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- spamscore=0 priorityscore=1501 mlxscore=0 mlxlogscore=999 clxscore=1015
- impostorscore=0 suspectscore=0 adultscore=0 bulkscore=0 phishscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404090065
+X-B4-Tracking: v=1; b=H4sIAMEUFWYC/22OwQqDMBAFf0VybjRJNZWe+h9FyhpXXdBEEpWK+
+ O+NnnucB8O8nQX0hIE9k515XCmQsxHULWGmB9shpyYyU0LlQinNYWnIcboXgucoZQOiLLEoWBR
+ qCMhrD9b0pwIj+s7CnK06Lbk3MrvcjxkQ7DKdxuSxpe+Vf1eRewqz89v1ZpXn+je8Sh7rLUiDI
+ LV+tK8atoFqj6lxI6uO4/gBW4L4ZtkAAAA=
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Sumit Semwal <sumit.semwal@linaro.org>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+ Rob Herring <robh@kernel.org>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
+ Alexandre Mergnat <amergnat@baylibre.com>, 
+ Nicolas Belin <nbelin@baylibre.com>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5019; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=kvrkpkSbwnxP+OsANZxrkaQO2wy0hxgPbU/o5M3cUTc=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBmFRTS/ESKMk/bMbTCvsa18ZOHK7gykTDFGXyOiufN
+ 4k1HZauJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZhUU0gAKCRArRkmdfjHURXdFEA
+ C4PwmmiadLcE9+Npluv5XLQ3noHUP72O6on3QLhDWeBidAaW4MuWNsXNDmBw78Ibuxhti6ePuV9u0u
+ J4559KjhY63k4iLFUIILtSQxIgOSMbfPH0w3A1shNPu2u3BRKfZTlbSboJwnk6ghsRPP20M/HCcc3b
+ JAVuTaY3B/AEOUxonMKONTywbEfZ/Y2zFgBvI/5UkoDLLLrHqm3W5jzRV9GTpE3+wTT9U5MRGJZIKN
+ dH3TNU9QHAlHnEym5M6Ok+Yuq0gV/2LtM6X6OFJsmSR2dZ+k1mTjrHHRCqSWvXCqJoqC6whffyzK9P
+ jfr49GaFqunX0GNdXDrFbekBMgvVt+fX8JGA/8wpxPucsC0eKasAqzz92VO3ZLzQqGT5o9OMt8yMyy
+ 7jOlK9cG7XWMuawc7PjDduFgIzdM3/lfKz0CaLm8OX2cB71HHrNTzvb4jFwzAI62QBIocVlwtH0HdW
+ M2qLIWx4hhKJWC2HmOUYQV35SzblKdDHzOE+cFg4JwV7STKlvrmVK/7c8Rl+iKEmanwEeEbVTgNQsN
+ TYeMidHTn7N3gWwlr5lFHENpkyv7nNV2g2YxNqChOEkdDVgk3hpZsdjSwmgm578gLstnyp5U2q/VHj
+ VsT/K3AY4Hv82/t14rCh9zndJBJlkiu/hTFdm2Af6OdvYW7s04EznzDqUGVA==
+X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
+ fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
 
-To access PCIe registers of the host controller and endpoint PCIe
-BAR space, config space the CPU-PCIe ICC (interconnect) path should
-be voted otherwise it may lead to NoC (Network on chip) timeout.
-We are surviving because of other driver voting for this path.
+This serie aim to add the following audio support for the Genio 350-evk:
+- Playback
+  - 2ch Headset Jack (Earphone)
+  - 1ch Line-out Jack (Speaker)
+  - 8ch HDMI Tx
+- Capture
+  - 1ch DMIC (On-board Digital Microphone)
+  - 1ch AMIC (On-board Analogic Microphone)
+  - 1ch Headset Jack (External Analogic Microphone)
 
-As there is less access on this path compared to PCIe to mem path
-add minimum vote i.e 1KBps bandwidth always which is sufficient enough
-to keep the path active and is recommended by HW team.
+Of course, HDMI playback need the MT8365 display patches [1] and a DTS
+change documented in "mediatek,mt8365-mt6357.yaml".
 
-In suspend to ram case there can be some DBI access. Except in suspend
-to ram case disable CPU-PCIe ICC path after register space access
-is done.
+Rebase on top of sound/for-next branch and the
+Angelo's serie "SoC: Cleanup MediaTek soundcard machine drivers" [2]
+Work branch with all patches [5]
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Applied patch:
+- mfd: mt6397-core: register mt6357 sound codec
+
+Test passed:
+- mixer-test log: [3]
+- pcm-test log: [4]
+
+[1]: https://lore.kernel.org/all/20231023-display-support-v1-0-5c860ed5c33b@baylibre.com/
+[2]: https://lore.kernel.org/all/20240313110147.1267793-1-angelogioacchino.delregno@collabora.com/
+[3]: https://pastebin.com/pc43AVrT
+[4]: https://pastebin.com/cCtGhDpg
+[5]: https://gitlab.baylibre.com/baylibre/mediatek/bsp/linux/-/commits/sound/for-next/add-i350-audio-support
+
+Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 ---
- drivers/pci/controller/dwc/pcie-qcom.c | 43 ++++++++++++++++++++++++++++++----
- 1 file changed, 39 insertions(+), 4 deletions(-)
+Changes in v2:
+- Documentation fixed:
+  - Remove spurious description.
+  - Change property order to fit with dts coding style rules.
+  - micbias property: use microvolt value instead of index.
+  - mediatek,i2s-shared-clock property removed.
+  - mediatek,dmic-iir-on property removed.
+  - mediatek,dmic-irr-mode property removed.
+  - Change dmic-two-wire-mode => dmic-mode to be aligned with another SoC
+  - Remove the spurious 2nd reg of the afe.
+- Manage IIR filter feature using audio controls.
+- Fix audio controls to pass mixer-test and pcm-test.
+- Refactor some const name according to feedbacks.
+- Rework the codec to remove spurious driver data.
+- Use the new common MTK probe functions for AFE PCM and sound card.
+- Rework pinctrl probe in the soundcard driver.
+- Remove spurious "const" variables in all files.
+- Link to v1: https://lore.kernel.org/r/20240226-audio-i350-v1-0-4fa1cea1667f@baylibre.com
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index 14772edcf0d3..e53422171c01 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -245,6 +245,7 @@ struct qcom_pcie {
- 	struct phy *phy;
- 	struct gpio_desc *reset;
- 	struct icc_path *icc_mem;
-+	struct icc_path *icc_cpu;
- 	const struct qcom_pcie_cfg *cfg;
- 	struct dentry *debugfs;
- 	bool suspended;
-@@ -1409,6 +1410,9 @@ static int qcom_pcie_icc_init(struct qcom_pcie *pcie)
- 	if (IS_ERR(pcie->icc_mem))
- 		return PTR_ERR(pcie->icc_mem);
- 
-+	pcie->icc_cpu = devm_of_icc_get(pci->dev, "cpu-pcie");
-+	if (IS_ERR(pcie->icc_cpu))
-+		return PTR_ERR(pcie->icc_cpu);
- 	/*
- 	 * Some Qualcomm platforms require interconnect bandwidth constraints
- 	 * to be set before enabling interconnect clocks.
-@@ -1418,7 +1422,20 @@ static int qcom_pcie_icc_init(struct qcom_pcie *pcie)
- 	 */
- 	ret = icc_set_bw(pcie->icc_mem, 0, QCOM_PCIE_LINK_SPEED_TO_BW(1));
- 	if (ret) {
--		dev_err(pci->dev, "failed to set interconnect bandwidth: %d\n",
-+		dev_err(pci->dev, "Failed to set interconnect bandwidth for PCIe-MEM: %d\n",
-+			ret);
-+		return ret;
-+	}
-+
-+	/*
-+	 * Since the CPU-PCIe path is only used for activities like register
-+	 * access of the host controller and endpoint Config/BAR space access,
-+	 * HW team has recommended to use a  minimal bandwidth of 1KBps just to
-+	 * keep the path active.
-+	 */
-+	ret = icc_set_bw(pcie->icc_cpu, 0, kBps_to_icc(1));
-+	if (ret) {
-+		dev_err(pci->dev, "Failed to set interconnect bandwidth for CPU-PCIe: %d\n",
- 			ret);
- 		return ret;
- 	}
-@@ -1448,7 +1465,7 @@ static void qcom_pcie_icc_update(struct qcom_pcie *pcie)
- 
- 	ret = icc_set_bw(pcie->icc_mem, 0, width * QCOM_PCIE_LINK_SPEED_TO_BW(speed));
- 	if (ret) {
--		dev_err(pci->dev, "failed to set interconnect bandwidth: %d\n",
-+		dev_err(pci->dev, "Failed to set interconnect bandwidth for PCIe-MEM: %d\n",
- 			ret);
- 	}
- }
-@@ -1610,7 +1627,7 @@ static int qcom_pcie_suspend_noirq(struct device *dev)
- 	 */
- 	ret = icc_set_bw(pcie->icc_mem, 0, kBps_to_icc(1));
- 	if (ret) {
--		dev_err(dev, "Failed to set interconnect bandwidth: %d\n", ret);
-+		dev_err(dev, "Failed to set interconnect bandwidth for PCIe-MEM: %d\n", ret);
- 		return ret;
- 	}
- 
-@@ -1634,7 +1651,17 @@ static int qcom_pcie_suspend_noirq(struct device *dev)
- 		pcie->suspended = true;
- 	}
- 
--	return 0;
-+	/*
-+	 * In suspend to ram case there are DBI access, except in suspend to ram case
-+	 * remove the vote for CPU-PCIe path now, since at this point onwards,
-+	 * no register access will be done.
-+	 */
-+	if (pm_suspend_target_state != PM_SUSPEND_MEM) {
-+		ret = icc_disable(pcie->icc_cpu);
-+		if (ret)
-+			dev_err(dev, "Failed to disable Interconnect path of CPU-PCIe: %d\n", ret);
-+	}
-+	return ret;
- }
- 
- static int qcom_pcie_resume_noirq(struct device *dev)
-@@ -1642,6 +1669,14 @@ static int qcom_pcie_resume_noirq(struct device *dev)
- 	struct qcom_pcie *pcie = dev_get_drvdata(dev);
- 	int ret;
- 
-+	if (pm_suspend_target_state != PM_SUSPEND_MEM) {
-+		ret = icc_enable(pcie->icc_cpu);
-+		if (ret) {
-+			dev_err(dev, "Failed to enable Interconnect path of CPU-PCIe: %d\n", ret);
-+			return ret;
-+		}
-+	}
-+
- 	if (pcie->suspended) {
- 		ret = qcom_pcie_host_init(&pcie->pci->pp);
- 		if (ret)
+---
+Alexandre Mergnat (16):
+      ASoC: dt-bindings: mediatek,mt8365-afe: Add audio afe document
+      ASoC: dt-bindings: mediatek,mt8365-mt6357: Add audio sound card document
+      dt-bindings: mfd: mediatek: Add codec property for MT6357 PMIC
+      ASoC: dt-bindings: mt6357: Add audio codec document
+      ASoC: mediatek: mt8365: Add common header
+      SoC: mediatek: mt8365: support audio clock control
+      ASoC: mediatek: mt8365: Add I2S DAI support
+      ASoC: mediatek: mt8365: Add ADDA DAI support
+      ASoC: mediatek: mt8365: Add DMIC DAI support
+      ASoC: mediatek: mt8365: Add PCM DAI support
+      ASoC: mediatek: mt8365: Add platform driver
+      ASoC: mediatek: Add MT8365 support
+      arm64: defconfig: enable mt8365 sound
+      arm64: dts: mediatek: add mt6357 audio codec support
+      arm64: dts: mediatek: add afe support for mt8365 SoC
+      arm64: dts: mediatek: add audio support for mt8365-evk
 
+Nicolas Belin (2):
+      ASoc: mediatek: mt8365: Add a specific soundcard for EVK
+      ASoC: codecs: add MT6357 support
+
+ .../devicetree/bindings/mfd/mediatek,mt6357.yaml   |    5 +
+ .../bindings/sound/mediatek,mt8365-afe.yaml        |  136 ++
+ .../bindings/sound/mediatek,mt8365-mt6357.yaml     |   99 +
+ .../devicetree/bindings/sound/mt6357.yaml          |   54 +
+ arch/arm64/boot/dts/mediatek/mt6357.dtsi           |    5 +-
+ arch/arm64/boot/dts/mediatek/mt8365-evk.dts        |   98 +-
+ arch/arm64/boot/dts/mediatek/mt8365.dtsi           |   46 +-
+ arch/arm64/configs/defconfig                       |    2 +
+ sound/soc/codecs/Kconfig                           |    7 +
+ sound/soc/codecs/Makefile                          |    2 +
+ sound/soc/codecs/mt6357.c                          | 1898 ++++++++++++++++
+ sound/soc/codecs/mt6357.h                          |  662 ++++++
+ sound/soc/mediatek/Kconfig                         |   20 +
+ sound/soc/mediatek/Makefile                        |    1 +
+ sound/soc/mediatek/mt8365/Makefile                 |   15 +
+ sound/soc/mediatek/mt8365/mt8365-afe-clk.c         |  451 ++++
+ sound/soc/mediatek/mt8365/mt8365-afe-clk.h         |   49 +
+ sound/soc/mediatek/mt8365/mt8365-afe-common.h      |  491 +++++
+ sound/soc/mediatek/mt8365/mt8365-afe-pcm.c         | 2275 ++++++++++++++++++++
+ sound/soc/mediatek/mt8365/mt8365-dai-adda.c        |  315 +++
+ sound/soc/mediatek/mt8365/mt8365-dai-dmic.c        |  347 +++
+ sound/soc/mediatek/mt8365/mt8365-dai-i2s.c         |  854 ++++++++
+ sound/soc/mediatek/mt8365/mt8365-dai-pcm.c         |  293 +++
+ sound/soc/mediatek/mt8365/mt8365-mt6357.c          |  348 +++
+ sound/soc/mediatek/mt8365/mt8365-reg.h             |  991 +++++++++
+ 25 files changed, 9456 insertions(+), 8 deletions(-)
+---
+base-commit: 6a3d4a830e4e9de8e8aefc233d790bef4a5c0037
+change-id: 20240226-audio-i350-4e11da088e55
+
+Best regards,
 -- 
-2.42.0
+Alexandre Mergnat <amergnat@baylibre.com>
 
 
