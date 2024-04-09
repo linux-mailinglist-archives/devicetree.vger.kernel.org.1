@@ -1,111 +1,234 @@
-Return-Path: <devicetree+bounces-57501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C296A89DABD
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 15:42:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A588189DAEC
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 15:46:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6395C1F23D2E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 13:42:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA7E2B26164
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 13:46:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FDE6136999;
-	Tue,  9 Apr 2024 13:39:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4474130AED;
+	Tue,  9 Apr 2024 13:42:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="st9BVkrg"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ACHFPOgM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D826136990;
-	Tue,  9 Apr 2024 13:39:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25123130A73
+	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 13:42:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712669948; cv=none; b=bSFeqA8sSNU/odBO10PjsuROGA1MIbnnLCqg81rs9499umAboZerkg22XsjfWr9UhSQpUJWYz9pyXxMCths5TdzkwuAF4+JfNy3ApKujT97lIu2IVuxVPk17+I7+K6SqRg9S9SGKuEKk7ioIVKaAtDSYFDwnUA6B305o04ZdJPo=
+	t=1712670130; cv=none; b=ljgWrkFtNySKgPPov37384cKk4QoLrM1ZBTMPSTSzuAMl9T8ElM6PZKVmyMJK9Yb19QwWkWVaT6U2ThoXcpRT6+kPfezbx/9gGb06jSrtnLE8wP1Nze0sl/1Ehkkkw1WXMoQg34ndgFCm3b88TWNfzWSLU/6/sCij2D9OfGT0qw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712669948; c=relaxed/simple;
-	bh=ufZjj/dqW11/Dx5bguBYdYOpNmt61BYctGvVnxZcsHw=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=MSj2Dn/bQo5NXlT0ZXDXooitcXYpj+G1ItIsgIcasJAASgC1JKIL7T+NFzro5knNV4M65OISWimAhdZpwkXvFESVKcvP4UGs4+TdP9DAKFtc+zbhH0dFJxcOIWnkusqGEPI11lnkNkKjATV9ICjCcFh4rFlPN2og5HMhHuqu7fY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=st9BVkrg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A745EC43394;
-	Tue,  9 Apr 2024 13:39:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712669947;
-	bh=ufZjj/dqW11/Dx5bguBYdYOpNmt61BYctGvVnxZcsHw=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=st9BVkrgDrkpcnic8fOcBW+Vg9I3hqLNdirHD9+YhwHbm0T++ftajcdwnair3fnpY
-	 Upo6at1S+pU0SOIPDI/FZJZXdmr8bZSpStTpMaL955GzhdNilcKZIvH4cJO0WJDGhd
-	 gNthcdjh3hq1Kk8Tmqugr/S9J2/FlbhxGKmMHJj3dgyVKV1qtl59JMByzxmWVwOdib
-	 COGO7eoUJ064h843DKb22WjLmdmIBLshUXyzKccQuRXoRzaeBYSvp5fbdtDP7dPJ6d
-	 SMU0oPESBVyDP0dY6OeDtzZ2L/tWqEOPNJWO7ip4o5yVLTdf2Qisc2dS9J3QHlxvCG
-	 TpPIxINNTvNJQ==
-Date: Tue, 09 Apr 2024 08:39:06 -0500
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1712670130; c=relaxed/simple;
+	bh=35Y/hWwz12Ve63DuUSoS7RbzfGqLgB7dwKktzFb/Izc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ORyJh0EiQRYNuJ/RkpAsCRJto8hnOKB/oI4veZiJcwvMnY05eamqSRWF/aACtQ8dvPAm5R/XmA8gGsTtyi1EFL0ok5eViGdh2YE9dhSvbAdPhyjkLW4+iQ0FomAsdSu2e+gvw5hAgJAPXNZp9l9NQpH9hibJLWWd+HreE1lljYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ACHFPOgM; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3455ff1339dso1959680f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 09 Apr 2024 06:42:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712670126; x=1713274926; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cWI7S1lElWn3U1R+aucOq0dCW+BF+dyNtQxwUN5pMOY=;
+        b=ACHFPOgMHkUeLT3KKHV+kOLjJAnKXKdk9eVTGCgmJzBK3+ZYnoGYs8AwSbdROeC7Go
+         OZXiE2/nB/CB9gtNBV5d24wTNcZEjK1LHwVZwnpZrwYol+QSJZiWrCQVH+Wq945aqB++
+         FAA7xzaFsMLYFTyEF8jE0BWGooj1gAJlwDE3RUeOQ5HaqgeIyb2GozIsiKUBng2TsAY0
+         g1cSAzS/qwI1gygW0fuvycr3Qh0tlYngBInnCroqBFV2V/JZufwJAEpPBKzSoHDoT57w
+         wGe03zN1KUpk9PfRDWU6tUodcsVMCJkoRuwE05DrRS2caQLpkH+j1xAnn6K2p1mIoAuf
+         f+sA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712670126; x=1713274926;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cWI7S1lElWn3U1R+aucOq0dCW+BF+dyNtQxwUN5pMOY=;
+        b=D9mr9P+JqbmumAqP/KdWIb3EtCQZ1vQrxDD2k1I8cQ1W8IRCPRkHKoQFgNZvBqhRFh
+         1qt1AFeQvTLzPVWy6OWrsC2S8VkyVSQWTsSTltzCaJ5oIMc+aa8v46N7vIPBiuYI1UzQ
+         VvTh3XZD8s7ZIoCeXG1X79Tsmkr35htI46o8Du1mc1IBuwTE/2bxLqrB2jh0fkp9ETFw
+         h5ed8ot/IVEyLESu0VcGi67W+jzUtlLQb+7KJlklb8eMPYs4rlfriIQBAzNi9DM6aaX7
+         tvCa9EDDz0d5v7MQafBQ1fD31h853YX28nSUAZvCq0yNM8zcP5hVywEfWeMqI2lNhsdF
+         z1QQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXH4pV7n7VPGpoAx1F4tzJjPj8jjhvFY14RZwhG7MSVC7A9yPXlmmohUJOItsPE5YQLWGHi88Bhp9c+VJ2ccS3HHMrEfr6RsQBPTQ==
+X-Gm-Message-State: AOJu0YwRMcmIbQ+2hZmhysAon0BvKRa+0IPSUsJ3icxXiwudOCqRJYCk
+	dUQGMLwvIBC3oFpD8IhVDIgATjUNEW9ap+fehIWjtMuR8hFs4J2Y+9oaESHHj3dASNm6G2Dmita
+	c3HU=
+X-Google-Smtp-Source: AGHT+IHYVcm4uy8e+4m+zihLKjtGWB1nmUnYJwk2/Yz/lUHp3i/vJBMnbO5QWc6xpkTcOVvA+nN3FA==
+X-Received: by 2002:a05:6000:1202:b0:343:e152:4c43 with SMTP id e2-20020a056000120200b00343e1524c43mr9109327wrx.2.1712670126364;
+        Tue, 09 Apr 2024 06:42:06 -0700 (PDT)
+Received: from [127.0.1.1] ([93.5.22.158])
+        by smtp.googlemail.com with ESMTPSA id j11-20020adff54b000000b003433bf6651dsm10753579wrp.75.2024.04.09.06.42.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Apr 2024 06:42:05 -0700 (PDT)
+From: Alexandre Mergnat <amergnat@baylibre.com>
+Subject: [PATCH v3 00/18] Add audio support for the MediaTek Genio 350-evk
+ board
+Date: Tue, 09 Apr 2024 15:41:58 +0200
+Message-Id: <20240226-audio-i350-v3-0-16bb2c974c55@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Stanislav Jakubek <stano.jakubek@gmail.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, phone-devel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKdFFWYC/3XOTQ6CMBAF4KuYri30B5C48h7GmKEdZBItpIVGQ
+ ri7haXR5Zvke28WFtATBnY+LMxjpEC9S0EfD8x04B7IyabMlFCFUKriMFnqOelS8AKltCDqGsu
+ SJdBAQN54cKbbCLzQPxyMeayymnsj893ezRPBTcMmBo8tvff56y3ljsLY+3n/Jsrt+nM4Sp7WW
+ 5AGQVbVqb00MD+p8ZiZ/sW2pqj+a5W0FoW2Ra0tCvul13X9APBs2hMXAQAA
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- linux-arm-msm@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>, 
- devicetree@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>
-In-Reply-To: <32c507337ab80c550fb1df08f7014d1e31eb4c32.1712480582.git.stano.jakubek@gmail.com>
-References: <32c507337ab80c550fb1df08f7014d1e31eb4c32.1712480582.git.stano.jakubek@gmail.com>
-Message-Id: <171266958581.1032688.14946054886230163874.robh@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: qcom: Add Motorola Moto G
- (2013)
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Sumit Semwal <sumit.semwal@linaro.org>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+ Rob Herring <robh@kernel.org>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
+ Alexandre Mergnat <amergnat@baylibre.com>, 
+ Nicolas Belin <nbelin@baylibre.com>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5262; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=35Y/hWwz12Ve63DuUSoS7RbzfGqLgB7dwKktzFb/Izc=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBmFUWs2/gi0dORmN+sYnWD5lQDLvls9amOl8w+6j55
+ 0W3z/yeJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZhVFrAAKCRArRkmdfjHURVzjD/
+ 9GNDSHdXURnV0TjG9IhD2P+jLCMn5WYhOdsUWG/duDY/npD7ypoJLjGS8RRw2SQsKh4fLTBeQWdO7m
+ GNnJBaeC5OTYhZlu7zGgksypJ56wQlQDnXcB437f9xDjGFVVDeTAUXvzvauG5L9INx0Y5NNehXFFX+
+ GYOp1UC5Rj1EgIWltNeVQmIpu0JDU4cBMjq8HfvjD6iTtaHkrSpvhUqr1FSXUjvam6l4nm8RIMqiU/
+ DqU14gd6TzaGrMUSyKl7dYE86lp9cIKsQICQZbU7Uoz3+SXdaoAlVjX6W6ZjaC8gUn84i9T4JMDgsP
+ ykSn05+s79iGwBkFnzGhI6oGKKt8H3ibqwkq6lZAAFIe8AsALv6nUpHghEnVOIuWRxHm+oCaRlInDI
+ WO/r8TM20Gmn3jE+178G8BOk7d1DZyJ/gPeaqEMFXqn05WNA8STRgAcZmaeu7E6rUw0r/M5cMsWWQk
+ jLtQde3t0fYJO+S54vjaZ6O06ILQ4LjFZfrz+NvQgBYNcwTVL93qDbZFWpbhFe0Eisl+3+sPVEHx9u
+ KHa3OZEAlmuhWsxockSlsoLYfHnENXHOcasSJaioDO7Vab/5PccF+saEN/jnqhy5eGtVt2B9Cp/cYo
+ IQc6VLDICZo8Otr2I0+CDqJOG2kTjskq4EmjCtcWEdFfZoDNQLwnwM2JJFFg==
+X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
+ fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
 
+This serie aim to add the following audio support for the Genio 350-evk:
+- Playback
+  - 2ch Headset Jack (Earphone)
+  - 1ch Line-out Jack (Speaker)
+  - 8ch HDMI Tx
+- Capture
+  - 1ch DMIC (On-board Digital Microphone)
+  - 1ch AMIC (On-board Analogic Microphone)
+  - 1ch Headset Jack (External Analogic Microphone)
 
-On Sun, 07 Apr 2024 11:05:10 +0200, Stanislav Jakubek wrote:
-> Document the Motorola Moto G (2013), which is a smartphone based
-> on the Qualcomm MSM8226 SoC.
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
-> ---
-> Changes in V3:
->   - no changes
-> 
-> Changes in V2:
->   - collect Krzysztof's A-b
-> 
->  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+Of course, HDMI playback need the MT8365 display patches [1] and a DTS
+change documented in "mediatek,mt8365-mt6357.yaml".
 
+Rebase on top of sound/for-next branch and the
+Angelo's serie "SoC: Cleanup MediaTek soundcard machine drivers" [2]
+Work branch with all patches [5]
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+Applied patch:
+- mfd: mt6397-core: register mt6357 sound codec
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+Test passed:
+- mixer-test log: [3]
+- pcm-test log: [4]
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+[1]: https://lore.kernel.org/all/20231023-display-support-v1-0-5c860ed5c33b@baylibre.com/
+[2]: https://lore.kernel.org/all/20240313110147.1267793-1-angelogioacchino.delregno@collabora.com/
+[3]: https://pastebin.com/pc43AVrT
+[4]: https://pastebin.com/cCtGhDpg
+[5]: https://gitlab.baylibre.com/baylibre/mediatek/bsp/linux/-/commits/sound/for-next/add-i350-audio-support
 
-  pip3 install dtschema --upgrade
+Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+---
+Changes in v3:
+- Re-order documentation commit to fix dt_binding_check error.
+- Remove $ref and add "mediatek," prefix to vaud28-supply property.
+- Link to v2: https://lore.kernel.org/r/20240226-audio-i350-v2-0-3043d483de0d@baylibre.com
 
+Changes in v2:
+- Documentation fixed:
+  - Remove spurious description.
+  - Change property order to fit with dts coding style rules.
+  - micbias property: use microvolt value instead of index.
+  - mediatek,i2s-shared-clock property removed.
+  - mediatek,dmic-iir-on property removed.
+  - mediatek,dmic-irr-mode property removed.
+  - Change dmic-two-wire-mode => dmic-mode to be aligned with another SoC
+  - Remove the spurious 2nd reg of the afe.
+- Manage IIR filter feature using audio controls.
+- Fix audio controls to pass mixer-test and pcm-test.
+- Refactor some const name according to feedbacks.
+- Rework the codec to remove spurious driver data.
+- Use the new common MTK probe functions for AFE PCM and sound card.
+- Rework pinctrl probe in the soundcard driver.
+- Remove spurious "const" variables in all files.
+- Link to v1: https://lore.kernel.org/r/20240226-audio-i350-v1-0-4fa1cea1667f@baylibre.com
 
-New warnings running 'make CHECK_DTBS=y qcom/msm8226-motorola-falcon.dtb' for 32c507337ab80c550fb1df08f7014d1e31eb4c32.1712480582.git.stano.jakubek@gmail.com:
+---
+Alexandre Mergnat (16):
+      ASoC: dt-bindings: mediatek,mt8365-afe: Add audio afe document
+      ASoC: dt-bindings: mediatek,mt8365-mt6357: Add audio sound card document
+      ASoC: dt-bindings: mt6357: Add audio codec document
+      dt-bindings: mfd: mediatek: Add codec property for MT6357 PMIC
+      ASoC: mediatek: mt8365: Add common header
+      SoC: mediatek: mt8365: support audio clock control
+      ASoC: mediatek: mt8365: Add I2S DAI support
+      ASoC: mediatek: mt8365: Add ADDA DAI support
+      ASoC: mediatek: mt8365: Add DMIC DAI support
+      ASoC: mediatek: mt8365: Add PCM DAI support
+      ASoC: mediatek: mt8365: Add platform driver
+      ASoC: mediatek: Add MT8365 support
+      arm64: defconfig: enable mt8365 sound
+      arm64: dts: mediatek: add mt6357 audio codec support
+      arm64: dts: mediatek: add afe support for mt8365 SoC
+      arm64: dts: mediatek: add audio support for mt8365-evk
 
-arch/arm/boot/dts/qcom/msm8226-motorola-falcon.dtb: syscon@f9011000: compatible: 'anyOf' conditional failed, one must be fixed:
-	['syscon'] is too short
-	'syscon' is not one of ['allwinner,sun8i-a83t-system-controller', 'allwinner,sun8i-h3-system-controller', 'allwinner,sun8i-v3s-system-controller', 'allwinner,sun50i-a64-system-controller', 'amd,pensando-elba-syscon', 'brcm,cru-clkset', 'freecom,fsg-cs2-system-controller', 'fsl,imx93-aonmix-ns-syscfg', 'fsl,imx93-wakeupmix-syscfg', 'hisilicon,dsa-subctrl', 'hisilicon,hi6220-sramctrl', 'hisilicon,pcie-sas-subctrl', 'hisilicon,peri-subctrl', 'hpe,gxp-sysreg', 'intel,lgm-syscon', 'loongson,ls1b-syscon', 'loongson,ls1c-syscon', 'marvell,armada-3700-usb2-host-misc', 'mediatek,mt8135-pctl-a-syscfg', 'mediatek,mt8135-pctl-b-syscfg', 'mediatek,mt8365-syscfg', 'microchip,lan966x-cpu-syscon', 'microchip,sparx5-cpu-syscon', 'mstar,msc313-pmsleep', 'nuvoton,ma35d1-sys', 'nuvoton,wpcm450-shm', 'rockchip,px30-qos', 'rockchip,rk3036-qos', 'rockchip,rk3066-qos', 'rockchip,rk3128-qos', 'rockchip,rk3228-qos', 'rockchip,rk3288-qos', 'rockchip,rk3368-qos', 'rockchip,rk3399-qos', 'rockchip,rk3568-qos', '
- rockchip,rk3588-qos', 'rockchip,rv1126-qos', 'starfive,jh7100-sysmain', 'ti,am62-usb-phy-ctrl', 'ti,am654-dss-oldi-io-ctrl', 'ti,am654-serdes-ctrl', 'ti,j784s4-pcie-ctrl']
-	from schema $id: http://devicetree.org/schemas/mfd/syscon.yaml#
+Nicolas Belin (2):
+      ASoc: mediatek: mt8365: Add a specific soundcard for EVK
+      ASoC: codecs: add MT6357 support
 
+ .../devicetree/bindings/mfd/mediatek,mt6357.yaml   |    5 +
+ .../bindings/sound/mediatek,mt8365-afe.yaml        |  136 ++
+ .../bindings/sound/mediatek,mt8365-mt6357.yaml     |   99 +
+ .../devicetree/bindings/sound/mt6357.yaml          |   54 +
+ arch/arm64/boot/dts/mediatek/mt6357.dtsi           |    5 +-
+ arch/arm64/boot/dts/mediatek/mt8365-evk.dts        |   98 +-
+ arch/arm64/boot/dts/mediatek/mt8365.dtsi           |   46 +-
+ arch/arm64/configs/defconfig                       |    2 +
+ sound/soc/codecs/Kconfig                           |    7 +
+ sound/soc/codecs/Makefile                          |    2 +
+ sound/soc/codecs/mt6357.c                          | 1898 ++++++++++++++++
+ sound/soc/codecs/mt6357.h                          |  662 ++++++
+ sound/soc/mediatek/Kconfig                         |   20 +
+ sound/soc/mediatek/Makefile                        |    1 +
+ sound/soc/mediatek/mt8365/Makefile                 |   15 +
+ sound/soc/mediatek/mt8365/mt8365-afe-clk.c         |  451 ++++
+ sound/soc/mediatek/mt8365/mt8365-afe-clk.h         |   49 +
+ sound/soc/mediatek/mt8365/mt8365-afe-common.h      |  491 +++++
+ sound/soc/mediatek/mt8365/mt8365-afe-pcm.c         | 2275 ++++++++++++++++++++
+ sound/soc/mediatek/mt8365/mt8365-dai-adda.c        |  315 +++
+ sound/soc/mediatek/mt8365/mt8365-dai-dmic.c        |  347 +++
+ sound/soc/mediatek/mt8365/mt8365-dai-i2s.c         |  854 ++++++++
+ sound/soc/mediatek/mt8365/mt8365-dai-pcm.c         |  293 +++
+ sound/soc/mediatek/mt8365/mt8365-mt6357.c          |  348 +++
+ sound/soc/mediatek/mt8365/mt8365-reg.h             |  991 +++++++++
+ 25 files changed, 9456 insertions(+), 8 deletions(-)
+---
+base-commit: 6a3d4a830e4e9de8e8aefc233d790bef4a5c0037
+change-id: 20240226-audio-i350-4e11da088e55
 
-
-
+Best regards,
+-- 
+Alexandre Mergnat <amergnat@baylibre.com>
 
 
