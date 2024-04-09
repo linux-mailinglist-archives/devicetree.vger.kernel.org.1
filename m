@@ -1,171 +1,139 @@
-Return-Path: <devicetree+bounces-57631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3A1089E241
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 20:11:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A03FC89E24F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 20:13:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 035771C21E1D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 18:11:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2C82EB26CFC
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 18:13:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F63B156976;
-	Tue,  9 Apr 2024 18:11:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2DA1156994;
+	Tue,  9 Apr 2024 18:13:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YNHeecP4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pQpVK86p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B15C015697F;
-	Tue,  9 Apr 2024 18:11:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C05315697E
+	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 18:13:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712686297; cv=none; b=ap6EUlBi1V6FnprRf3vv8Sc5JEtUeA3LMFUQE1G+N+4qiTwjIX+8duA1H+QP7HP5jvyBTTAlsTDU4FG7b/BlUqgWnyO8m/jLUORjpzS/pqr0Krsv4FI+s6h/qQkFsI4cAISUfABFyFHrK/p1thEILVc9ELAvYH8/LnX+++c68Io=
+	t=1712686399; cv=none; b=i75A15QCTahdvKJlJcobv+WU4sbCdQPJo0bIFSy3XtwySA5hY5RXKKEgI7TY2sk5dp7J/kZMC1z3/uQi4XDhdV+isKkOySZhl/jA6M5+QS/MkH2tqn8C5RANa2IwLwYoXsUqSycMQDETESDhLwyYTsT3hXbZktMm9qwch6P4NEU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712686297; c=relaxed/simple;
-	bh=9KWTLb2GFpqdF3ql6I6u+kNUpw+pjCe7VUcpjHsi9KM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UUiML1MnwCL1ECA+5hXtomq7s0D966LDjYfq8SOL1Rrb3M9N/1p9p9SSwv1Nn+CU5mSXPevrqeK4FplJv7CDw7A8r2Jn10aK7GAUfC/UOmKafopddBY08rn6Dvm5pl1Rs6nQpexTwDbc974W1EzqsMErFHVume5AkwndcXabuYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YNHeecP4; arc=none smtp.client-ip=209.85.210.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-6ed0938cd1dso3780568b3a.2;
-        Tue, 09 Apr 2024 11:11:35 -0700 (PDT)
+	s=arc-20240116; t=1712686399; c=relaxed/simple;
+	bh=uLNeg1qHDIQyx4DVMEosgXpludE+lVP3yhaBpeYJCHY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=b1AQjBaXWk+L8x6OvU6n0H67cVJ8yYbjaV4x2AtPmDuLDYydkpA5FXayxLYFIlZosl4QxxhbEF/Qp/OB4XW5ooxil7Y01WI7pjaCYegyTROinU7xTyLoC/QLgt/o57TRMHrBpYhM9cRRq8dqSpYH2rPLTPveFY2yCUr07DhO+Oo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pQpVK86p; arc=none smtp.client-ip=209.85.208.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2d700beb6beso64900821fa.2
+        for <devicetree@vger.kernel.org>; Tue, 09 Apr 2024 11:13:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712686295; x=1713291095; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=GkJ97XaOIzqTQv4Ch+TrALRjE0+uTTo/4gkFSTSGB0U=;
-        b=YNHeecP4ibHlpniBMLqp6u7Dc3GcN2sTcof/EPBGXpXwbu+qGEYAtwe4R1J2+heUkC
-         ERjGtb6sobwYQZOW3FmH92L3hWjR+X+5SaDEPLOkkyRpZcgin9DgNMiyHl/gaWrw1EDg
-         FqnZ1WTDVZD6Z78nHmrsZPWj/UhDNGScOJq8yqPYSaQvO/D5NDOnwCZk2PrzROMqlp5c
-         tb0J542zvrYm0TFUO/fBSTvgP7EZAMNjKccS4Js5UytEDZFC5YBvNUbS4j6ufl56PYEx
-         xyTW84Ou4VF3M8v7BU0kE38RzML5SvbsSy4WRUSxk8uXgEGDE85Q+XHz6PjT0o0SH3nV
-         rIiw==
+        d=linaro.org; s=google; t=1712686396; x=1713291196; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SVvL2F1G6X1zePnKsaGHFi1ccfudklq9eqO3sqLfMAg=;
+        b=pQpVK86pEd72nTJgHeERw/U99JtL+PyvlMEZOly41ki8pL1ntemFwcuP1glvkaIGK0
+         zsDEE3OgMNf7DtPDXAnkg9va+umiKFjOKRDK8qkSCuFLhg31sxBQ+aIQoR4hRTzrIke7
+         6uEf9/dyfrWjamM+DXDAXDp6jm3M3hIh5aUjCJcFbxLK23688Vwza2arS7P22d262GnR
+         SlB81KrQhHXU/uK2HdjzgWDviAXvai3/WdbXcnTW4deQlS957sN6+LbRYJ56WkrQNjqN
+         KzAm03a1vSYtoZ23Va+vtUEADUWUncC2t0e0V/LTGn6ijyIaAy6qTPObMtchxrvY4Nox
+         4iIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712686295; x=1713291095;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1712686396; x=1713291196;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GkJ97XaOIzqTQv4Ch+TrALRjE0+uTTo/4gkFSTSGB0U=;
-        b=p7DKVwuWqP8dUxkRaupJGo5NgM1F/TLJ+n/5xbenZBIctFKB8ru/9vl4mEjNwLAU5Q
-         Ltu7KLV48pMX7mWgYZik6ii2oaks0lmvxL7WeZoOZZ2qUI3ap3JeiKogc9MEOfcqeZhQ
-         0n+X8Tu22/ArrxgjqlFywCvqNpeY8WgNJE/BmqgnPigjeyehetCh+UW63KxBSwhKkA+X
-         hGQmGelmD2XRhKfHdCyUGAjdrX8Ms8AttNasAwFGYZkj2zrgLJhyoShGzim279kFX+el
-         +d3/4EprVkiblNYYmx8zb+M7+5mE8HtnzeNFML1xstet9ijuXwby2yTBeuEjS/JUvvpY
-         Lomw==
-X-Forwarded-Encrypted: i=1; AJvYcCXzkRed17XKtnLqc4Rwfj66ErIIzkWU8FR6Legh35nArVARR0r1X8otBvcEthGFXFZpKCYZg3TiAG4QwONXtXk5pmXQMr0Q2Yhd6E59Nq8y7GE47jSoCdHIxQPYk79NkSg5e4L9jKoFHCPzUFngWfLrQgBE/OzUT00C9dRZbmVgGJe5mA==
-X-Gm-Message-State: AOJu0YxmEwy33VN1z9JY4iO0wGdJlqUVo/CxOruqkqrp6S/poG5dc8cp
-	LeAaxGfeQb4SKX4Fw0eLYd9S4iow1ewBEyDPgI+4z5z1Ou8Giu/j
-X-Google-Smtp-Source: AGHT+IHtZyM5SIPVSZgn5CW1FvoL+u4dKsDjWNZ0XK+eO/w4fX3IwbRyEhCXI7kRkyf+BeGb5JTfPg==
-X-Received: by 2002:a05:6a21:8804:b0:1a7:4b33:7c6f with SMTP id ta4-20020a056a21880400b001a74b337c6fmr756154pzc.43.1712686294809;
-        Tue, 09 Apr 2024 11:11:34 -0700 (PDT)
-Received: from localhost ([2804:30c:1618:ed00:d152:440c:102b:144e])
-        by smtp.gmail.com with ESMTPSA id l17-20020a170902e2d100b001dddcfca329sm9188461plc.148.2024.04.09.11.11.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Apr 2024 11:11:34 -0700 (PDT)
-Date: Tue, 9 Apr 2024 15:12:10 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, lars@metafoo.de,
-	Michael.Hennerich@analog.com, jic23@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] iio: adc: Add support for AD4000
-Message-ID: <ZhWE-hQkRZ4JcJA6@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1712585500.git.marcelo.schmitt@analog.com>
- <1d95d7d023dad69b894a2d0e7b0bad9d569ae382.1712585500.git.marcelo.schmitt@analog.com>
- <CAMknhBEMDg3YF5pvoKJ-6y0Y5OJpmBthWfogCjy90B=F84SvzA@mail.gmail.com>
- <ZhVoTi2amNTOJ4eS@debian-BULLSEYE-live-builder-AMD64>
- <CAMknhBGVkv9sP0pjmmdFngKmGVu+G4Y3MUDG199az1wOUtwasw@mail.gmail.com>
+        bh=SVvL2F1G6X1zePnKsaGHFi1ccfudklq9eqO3sqLfMAg=;
+        b=GtDJpuZbStUgcP0HZ0N2b3wHJvZAMVXtJbuqrs1KCusx7km8YAaKHfpxyojRp1FE79
+         Wb7oVaN9bsqAk1nzjpqWvifKvGGiggoabHQFxCjbqu+hexSStru54k/wiOJXcC02gBZG
+         //NhvO7/Nwsw2le+WJC1Arv7R9GGrzcZ4LjUWD4b59lzxji0caTKtsyX+c5ru8ryMm2g
+         mIbODkaC1RTNQmIZFLGhOQsK816PhKqGhn89QU+wum/XrHYS7usAzMf/81iI69b1lWO0
+         PmF+XznPujP0yMGtrBBRFR2REDHFnz0KKhqE+D6CnH3oafBzB/kRRliKa2Y65+0rbUGS
+         191g==
+X-Forwarded-Encrypted: i=1; AJvYcCWojl0FdOjESR4jjaVt7tYiSCFvPQItajXYeKhdfhNGrnKVGZ8thALZl8pzIwnGjpRSFQdWx80bngoLyCKGPWpbUDo7M5lz99MHqw==
+X-Gm-Message-State: AOJu0YzcoPg4iavPhia1lM6FsXkMSAgmOQBIjvFBZ6o+S++whCJib/2E
+	OhhgvG2qlAdqepkufA3AiF1x0XrU1AgGsalJ1RVG33SeKVmkkaVFSx4OXo2OxtM=
+X-Google-Smtp-Source: AGHT+IE9IkoN4MIEa62W5SDOs6R2IZNM/Lb7/qVpQfgom65bemgoHxP7/c5kJNTK3D/ZbevsozDIkg==
+X-Received: by 2002:a2e:6e06:0:b0:2d8:63a2:50dc with SMTP id j6-20020a2e6e06000000b002d863a250dcmr374922ljc.48.1712686396194;
+        Tue, 09 Apr 2024 11:13:16 -0700 (PDT)
+Received: from [172.30.205.99] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id z25-20020a2e9b99000000b002d869fec5ebsm1535892lji.79.2024.04.09.11.13.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Apr 2024 11:13:15 -0700 (PDT)
+Message-ID: <fbfc2d7e-2120-428f-bb1f-60aa606b261b@linaro.org>
+Date: Tue, 9 Apr 2024 20:13:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMknhBGVkv9sP0pjmmdFngKmGVu+G4Y3MUDG199az1wOUtwasw@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/6] drm/msm/adreno: Add speedbin data for SM8550 / A740
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Clark <robdclark@gmail.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+ Neil Armstrong <neil.armstrong@linaro.org>
+References: <20240405-topic-smem_speedbin-v1-0-ce2b864251b1@linaro.org>
+ <20240405-topic-smem_speedbin-v1-5-ce2b864251b1@linaro.org>
+ <nek4paofg3hturvjwpa2bnsvmicwmvwixzr6e6iuqstemgrqyo@cagcrnzjsne2>
+ <0955cabc-fc4e-4790-a82c-7f6f807fe36b@linaro.org>
+ <4ghhtxjtkfjzxeyrajn26get4d6xiq57swwsjmyialcyfivui6@se3ukxxukspt>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <4ghhtxjtkfjzxeyrajn26get4d6xiq57swwsjmyialcyfivui6@se3ukxxukspt>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 04/09, David Lechner wrote:
-> On Tue, Apr 9, 2024 at 11:09 AM Marcelo Schmitt
-> <marcelo.schmitt1@gmail.com> wrote:
-> >
-> > On 04/08, David Lechner wrote:
-> > > On Mon, Apr 8, 2024 at 9:32 AM Marcelo Schmitt
-> > > <marcelo.schmitt@analog.com> wrote:
-> > > >
-> 
-...
-> 
-> 
-> > > > +static void ad4000_config(struct ad4000_state *st)
-> > > > +{
-> > > > +       unsigned int reg_val;
-> > > > +       int ret;
-> > > > +
-> > > > +       reg_val = FIELD_PREP(AD4000_TURBO, 1);
-> > >
-> > > Since the driver in it's current state can get anywhere near the max
-> > > sample rate of ~1MSPS, I don't think it makes sense to enable turbo at
-> > > this point.
-> > >
-> >
-> > This is just enabling turbo at start up. If not enabling turbo during probe,
-> > we would want(need?) to provide some interface for that, which might not be
-> > much desired.
-> >
-> 
-> TURBO is only needed to achieve the max sample rate of 500k/1M/2MSPS
-> on the various chips by skipping powering down some circuitry between
-> samples. We can't get anywhere close to that in Linux without some
-> sort of SPI offloading. So, for now, we might as well leave it
-> disabled and save some power.
-> 
 
-Humm, ad4000 datasheets don't really mention power usage differences for turbo
-mode like ad7944 datasheet do. Though, they should be similar.
-Yeah, will leave turbo disabled until providing offload support.
 
+On 4/9/24 17:24, Dmitry Baryshkov wrote:
+> On Tue, Apr 09, 2024 at 05:13:15PM +0200, Konrad Dybcio wrote:
+>>
+>>
+>> On 4/6/24 05:25, Dmitry Baryshkov wrote:
+>>> On Fri, Apr 05, 2024 at 10:41:33AM +0200, Konrad Dybcio wrote:
+>>>> Add speebin data for A740, as found on SM8550 and derivative SoCs.
+>>>>
+>>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>>> ---
+>>>>    drivers/gpu/drm/msm/adreno/adreno_device.c | 14 ++++++++++++++
+>>>>    1 file changed, 14 insertions(+)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/msm/adreno/adreno_device.c b/drivers/gpu/drm/msm/adreno/adreno_device.c
+>>>> index 901ef767e491..c976a485aef2 100644
+>>>> --- a/drivers/gpu/drm/msm/adreno/adreno_device.c
+>>>> +++ b/drivers/gpu/drm/msm/adreno/adreno_device.c
+>>>> @@ -570,6 +570,20 @@ static const struct adreno_info gpulist[] = {
+>>>>    		.zapfw = "a740_zap.mdt",
+>>>>    		.hwcg = a740_hwcg,
+>>>>    		.address_space_size = SZ_16G,
+>>>> +		.speedbins = ADRENO_SPEEDBINS(
+>>>
+>>> I think this deserves either a comment or some info in the commit
+>>> message.
+>>
+>> "this" = ?
 > 
-> > > > +
-> > > > +       st->pin_gain = AD4000_1_GAIN;
-> > > > +       if (device_property_present(&spi->dev, "adi,gain-milli")) {
-> > > > +               u32 val;
-> > >
-> > > Should it be an error if adi,gain-milli is set on non-adaq chips?
-> >
-> > Maybe. We should not change the scale if it's a chip that don't have the
-> > amplifier in front of the ADC. I think the best handling would be to just
-> > ignore adi,gain-milli if it's not an ADAQ device. Maybe better add a DT
-> > constraint,
-> >   - if:
-> >       properties:
-> >         compatible:
-> >           contains:
-> >             enum:
-> >               - adi,adaq4001
-> >               - adi,adaq4003
-> >     then:
-> >       properties:
-> >         adi,gain-milli: false
-> > ?
-> 
-> I think this is missing a not:, but otherwise yes this should be in
-> the DT bindings.
+> I see two types of speedbins here, it would be nice to understand at
+> least some reason or some defailts for that (if you know them).
 
-Oops, yeap, was missing the not:.
+"one is slightly faster"
 
-> 
-> Even with that though, I would still be helpful to readers of the
-> driver to at least have a comment here pointing out that this property
-> and related gain scaling only applies to ADAQ chips.
+sorry, qcom downstream has been getting increasingly cryptic lately..
 
-ok, will add a comment.
+Konrad
 
