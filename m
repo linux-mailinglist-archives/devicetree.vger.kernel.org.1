@@ -1,88 +1,113 @@
-Return-Path: <devicetree+bounces-57530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3F0689DBDB
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 16:12:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19D8B89DBEC
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 16:14:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87BE328387E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 14:12:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 69809B25E91
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 14:14:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA9D912F5AE;
-	Tue,  9 Apr 2024 14:12:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65D6A12FB2A;
+	Tue,  9 Apr 2024 14:14:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XLgNLTwO"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="lfWTI8h6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA59F75809;
-	Tue,  9 Apr 2024 14:12:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A28CA12F5BD;
+	Tue,  9 Apr 2024 14:14:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712671966; cv=none; b=k8kBrYNkVUohi4ZzxIWrSDP25KwEL5/gvCLsOx49LV3oyKXPU1NG40oLe33oSzk4Zc5YnAtn6+JGedeZlVHw/QNGV/F8+dUdYaJxBXy5iplqI70dkszvQ7wJW8sQwrSMcJ3nZIVHUHRNnJ4sjrGUAYy1M8JwQTGQ9vvgRbMMHxg=
+	t=1712672065; cv=none; b=J5srMC4jQmAmWkAug+jeuhwTpXqx18YA5Mzpf9+RKq5g32m27GSPxaXIwNu208sOO+WUVqVQEJ9YxIMfgZ1DuErDghO0M2RMT4oVns6X5QLPGu7GFSCpsIu+2lO27ZvK5fDhJ7ZsMcft631nG1z5KChG7bc/Ldm537YkHrI++dk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712671966; c=relaxed/simple;
-	bh=xBaTzncPkClWKcZ+0gQSXyy6lR2MO8ejKBgQTVMKrdc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tgoExPM3NH99V/Mh9qIbWoG2KqjAuvCt/xgbyevctMpnSZ1FhwdWgk2GqsRJH21Khsgy7YSnbRtJRI6L6x8aBUqkrDyurO4LiIYi0pfRoBoSPjxTnvZ1C+REaerGwjMLXeauwBUTpYLYu8qA/dJRI2O9n8KG77GYGCay0Ipuo84=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XLgNLTwO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61AE1C433F1;
-	Tue,  9 Apr 2024 14:12:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712671965;
-	bh=xBaTzncPkClWKcZ+0gQSXyy6lR2MO8ejKBgQTVMKrdc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XLgNLTwOIsjL7F9gQSD2PD33d5tjOWWzin3psRbAe8fyNJ1v0N6zrkEtWx1TUTB2T
-	 TLlsFwJY2mAAD1z0AQ/2sIudZjbeNsSV6wLVUUyps3YuIsU0T2SH3Mtd5k9pfgGsd2
-	 hvJHqsjqL/RXnrytvDItq6INGePuqTDYVcGeL9bqFH9rphZCDxQ0h5Ic2n4GENhitH
-	 LMZmN0dV1QoBNHv65HgiONuhDqg+x4+UmpmlPZDmHgZ3SK5PKkMd4xxd5XEhD3ZHdB
-	 X9PqZhMVd3kGgR5rcSB6N89JJRegDdV3gefwEV4aJ4kA7Faxyy9zNarYpmydrQmewe
-	 hxs8v0Xp5Bf0g==
-Date: Tue, 9 Apr 2024 09:12:43 -0500
-From: Rob Herring <robh@kernel.org>
-To: git@luigi311.com
-Cc: mchehab@kernel.org, devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org, shawnguo@kernel.org,
-	jacopo.mondi@ideasonboard.com, phone-devel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	krzysztof.kozlowski+dt@linaro.org, festevam@gmail.com,
-	sakari.ailus@linux.intel.com, conor+dt@kernel.org,
-	imx@lists.linux.dev, pavel@ucw.cz, dave.stevenson@raspberrypi.com,
-	s.hauer@pengutronix.de, linux-kernel@vger.kernel.org,
-	kernel@pengutronix.de
-Subject: Re: [PATCH v3 18/25] dt-bindings: media: imx258: Add alternate
- compatible strings
-Message-ID: <171267196134.1104703.16459951254766815081.robh@kernel.org>
-References: <20240403150355.189229-1-git@luigi311.com>
- <20240403150355.189229-19-git@luigi311.com>
+	s=arc-20240116; t=1712672065; c=relaxed/simple;
+	bh=bbFHu+W7pWwQce2qu4sFi0y/kXqqRKu/Ciran2Y9Ivo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mqZtNZYTKxrD3t+EFK6b79bb96XQlULoXWDc97GYb9HO/pnrTCz1RJtaqMCFsBCTFN9f9GuJcuQTbpcPbOG7uqc0q+ZscU+X4HlFtxNPvTpdpACq5eIA2sDEJQwNZVDQY0Qw/v7GYpw/MvoRS2Pm/ucLa38Av6XySRIrkNg6TvY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=lfWTI8h6; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1712672061;
+	bh=bbFHu+W7pWwQce2qu4sFi0y/kXqqRKu/Ciran2Y9Ivo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=lfWTI8h6fwpFNiuvvllOEkLLZIusfm7UhW1Iw9+IB8wvuS6tQMHGWOUySLCjwnWOw
+	 cpGsOTXoghKjMZOTPM2fAKRRAqMU8Zh5Z0jwH6aZdDfHBwk6jAiOKD+Y1Ts/rcww0R
+	 1FVwx6tc1SwWh4UcfTTgFy/kg0TxTebdAd7rR53S86pdrO58S+Egu+cEAIA2wod/xl
+	 IRuydABjy3CNE+CL3Sh01a+S05gWfyNB5wiiT+BRzTbxpBkiOdx2tw+knuoWbW72Oc
+	 BDusFRXDfrohrpdwamfLcgIhD2zzvQu9cU+8ULxOYq4nBEH3cCs6qRxrNcRhdOFEQb
+	 zkL60p9zYxlDQ==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 293333780480;
+	Tue,  9 Apr 2024 14:14:21 +0000 (UTC)
+Message-ID: <cf58846c-687c-46c4-b041-c944cab78dce@collabora.com>
+Date: Tue, 9 Apr 2024 16:14:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240403150355.189229-19-git@luigi311.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] arm64: dts: mediatek: mt8395-nio-12l: Fix MT6360
+ regulator nodes names
+To: linux-mediatek@lists.infradead.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ kernel@collabora.com
+References: <20240409114211.310462-1-angelogioacchino.delregno@collabora.com>
+ <20240409114211.310462-2-angelogioacchino.delregno@collabora.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20240409114211.310462-2-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
-On Wed, 03 Apr 2024 09:03:47 -0600, git@luigi311.com wrote:
-> From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Il 09/04/24 13:42, AngeloGioacchino Del Regno ha scritto:
+> The regulators' node names for mt6360-regulator are supposed to be
+> uppercase. Also, drop "-regulator" from the usb-otg-vbus node name
+> to make all vregs to probe correctly.
 > 
-> There are a number of variants of the imx258 modules that can not
-> be differentiated at runtime, so add compatible strings for the
-> PDAF variant.
+> The alternative would've been to use regulator-compatible, but that's
+> a deprecated property.
+> Now all regulators are probing fine.
 > 
-> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> Signed-off-by: Luis Garcia <git@luigi311.com>
+> Fixes: 96564b1e2ea4 ("arm64: dts: mediatek: Introduce the MT8395 Radxa NIO 12L board")
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
->  .../devicetree/bindings/media/i2c/sony,imx258.yaml       | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
+>   .../boot/dts/mediatek/mt8395-radxa-nio-12l.dts | 18 +++++++++---------
+>   1 file changed, 9 insertions(+), 9 deletions(-)
 > 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts b/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
+> index e5d9b671a405..18182cf073fb 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
+> @@ -216,7 +216,7 @@ charger {
+>   			compatible = "mediatek,mt6360-chg";
+>   			richtek,vinovp-microvolt = <14500000>;
+>   
+> -			otg_vbus_regulator: usb-otg-vbus-regulator {
+> +			otg_vbus_regulator: usb-otg-vbus {
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewing and NACK'ing my own patch, I just noticed that everything apart the
+usb-otg-vbus renaming is wrong.
+
+The MT6360 regulator node names should not be capitalized as the bindings are
+correct in this regard, and there already is one user (genio-1200-evk) apart
+from NIO-12L declaring the wrong ones - so, the driver must be fixed, not the
+other way around.
+
+This patch will be cleaned up in v2.
+
+Cheers
 
 
