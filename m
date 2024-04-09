@@ -1,184 +1,123 @@
-Return-Path: <devicetree+bounces-57621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C7E489E16E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 19:20:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AE1089E182
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 19:27:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 52444283640
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 17:20:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FA011F23DE9
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 17:27:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8198015664D;
-	Tue,  9 Apr 2024 17:20:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 628A2156222;
+	Tue,  9 Apr 2024 17:27:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Hw+oHEGK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MOXtDKhU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DBA115624E;
-	Tue,  9 Apr 2024 17:19:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 373E7155A45;
+	Tue,  9 Apr 2024 17:27:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712683200; cv=none; b=OnfLfnC8vYllmS2xNQSOACIO28wDy1GkA0HZzIjgd6GviSrgoxRSu9SmaerhSZ+G9coOwCahxJpyaLOTdUw1r3/Y/1uLMXPb1WlN6NSeBhhFT+t7Gx6DojorbigC+vQaMCFwF3cuy/fbhcKB7R1zQ/Ll8jBnTXmb8q+sBMUlfFI=
+	t=1712683626; cv=none; b=BXdNrSoUbRnOmPJxagfxuKpjvzQnFKep793aUs+9AfoIFFM8dpSeryDONK1aAMZ6MHpcG8WKzX+8drg7IYqhRbRbczflXws8po7Ux3gdNHSWrWySC+qa4Lx/0xaUk6WmD9BggOnwh+pD8xkphHPfLPA8nbLpx5K77THb04CONJ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712683200; c=relaxed/simple;
-	bh=MX/jaT995o39SVb4w3KWka52pzriagvfVrr3JcFpSs8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=dsGR/SNtly86ryZnIrnrTIFdrZ0I9/OrGDTnzcykxckt24YwyHXKfFgqDr68t+FRpvK2wFRlWzutDVQxgH6adjdYlNW/sa6TIQdZ68hN4rsdyooouyXmRk+JDuzX/gp/2Nqk5/nBGq0Dc8MNT4HmscpRlyRsMhZc2nFvgvt9CeQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Hw+oHEGK; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 439AmgRi015186;
-	Tue, 9 Apr 2024 17:19:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=QpJxkETK9XY7FK/LiJttaU6PuwaB78Eu6bRDXhDiPMM=; b=Hw
-	+oHEGK5YUlXztdarDsrgD0ajdN2AhZZGZstZxuJLScw76F4CzSL+EtXp66vCmUxS
-	KbNeQ3aND0H6H0Lx+LSw1xwTmSq50Vj6Bzgc3SyzehT6ihQ8Hb/F8g8yv2Y11mfH
-	vwhzkd5Xq4ZYmshltqx9H/9ZyWXVsvR1rq5XNzuywL9cACVPRp7Ad+GmIFhEwbq9
-	LB1TL3eJs4tHqymGAVPM4Nc3ZfrQB+n/6o4usCKWL+0JJDLCjQ4vdW905l8omjm8
-	ooQBmybUaSx5WL6UNPj8tXca9MJ9FJLkaZcuEZrwR2xV4xUAZm5WOWnqRIcQ6vKQ
-	Shn5wgR031FRhIEqeTdQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xd0hjsbq3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 09 Apr 2024 17:19:40 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 439HJdo5015383
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 9 Apr 2024 17:19:39 GMT
-Received: from [10.71.108.229] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Tue, 9 Apr 2024
- 10:19:38 -0700
-Message-ID: <bad7f3e8-38ce-4901-8f00-de32a659f0ba@quicinc.com>
-Date: Tue, 9 Apr 2024 10:19:37 -0700
+	s=arc-20240116; t=1712683626; c=relaxed/simple;
+	bh=Kbut6EHysiAuN2pqwbI1Q3ysmlqsWX1b/pEAFMnt+eg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HiPP0NX/K2RcK3B2AqNgeyz21DFPFYq0jI8MlFWrtEf/HfsuB+9gW81Gb59iPU20uZKLYJMdDt4A2maugis6zjEU3n6dVarXvyIrG+O5nmY+KJH6q/Z3u6D6+T8rj4LqqioABwqOnb5+HPFRMGS1oKlCP5VYNP73cAuJoNipuII=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MOXtDKhU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6636C433C7;
+	Tue,  9 Apr 2024 17:27:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712683625;
+	bh=Kbut6EHysiAuN2pqwbI1Q3ysmlqsWX1b/pEAFMnt+eg=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=MOXtDKhUSuGy06O0wOHEzMRUsMEx1PIpgQJfGYxuWXcCM0Hi03dVimVFkMGIujRJ3
+	 nnf9k4pl9WHvRGO24qbpJYe5cQPMAlNzXQnqaC5yB23mArWmjYIwoTLkAe3pHeAij7
+	 bVG/W9agnm3h+ORu1i468Ml2zhUUaDQ23Yr1D4nJprQjvE1GV6xLqsfRHLIKOfK+3q
+	 5WbVRukqkcBpuL0jIA799KCPPHH3S8qo1NW+hOFq4D1e/TJ7DFYKieiv1xGAljJsFj
+	 KNdM3guD0TBs5LxYi9iL3llXOJVY7wDUyizpGSx2sSGYlAGQpTxPcJT7ZnjWoES55A
+	 YlEg8mZ22GnFQ==
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-51381021af1so9546528e87.0;
+        Tue, 09 Apr 2024 10:27:05 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV4YrIlbxcpcD0Cqj4P1qr3fD3Zr96Bw1tsxsn9qcj1xdfx30Ri6i44HHNkXM9XETGq9owZIpSd705nmBhpPNc1WVfmIa47msYn4HNvpvmYNfrkxGHJKXNaSDyAflgbEHoYX8nTaY8T5Vr7+b6JZEe7h3tj5HEyHZeWipO55NsGb7Uqq1Cr
+X-Gm-Message-State: AOJu0YwLZFUlp0T+ZO/p4mawkGTHJdfdz/g3UsYFgFBNG0LdENfRz0/b
+	9RNrYaCPx5RvAch1Kq4ELIDFb+062mDsnDg4SShMLvSLoHNTSs1OtJzfC6CUvqaRWelyqKX5mRW
+	PjAIbL3fRFzv7onp4eakz3+VqUw==
+X-Google-Smtp-Source: AGHT+IEHcM0JD7ZqWipo4LWrXKbnA82iD02tShlGX9cvVnQUGGgSKaw7D46ABppnjB6v8ynWM6ZkjO5amGWWIwt6rYg=
+X-Received: by 2002:ac2:4c35:0:b0:516:9fab:75de with SMTP id
+ u21-20020ac24c35000000b005169fab75demr55819lfq.5.1712683624187; Tue, 09 Apr
+ 2024 10:27:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/4] drm/mipi-dsi: use correct return type for the DSC
- functions
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sumit Semwal
-	<sumit.semwal@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Neil
- Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>, David
- Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard
-	<mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        Marijn
- Suijten <marijn.suijten@somainline.org>
-References: <20240408-lg-sw43408-panel-v5-0-4e092da22991@linaro.org>
- <20240408-lg-sw43408-panel-v5-2-4e092da22991@linaro.org>
-From: Jessica Zhang <quic_jesszhan@quicinc.com>
-In-Reply-To: <20240408-lg-sw43408-panel-v5-2-4e092da22991@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: dWVaDgAEYxUcywapg5fLLapUEMvR2SY1
-X-Proofpoint-GUID: dWVaDgAEYxUcywapg5fLLapUEMvR2SY1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-09_12,2024-04-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- lowpriorityscore=0 adultscore=0 clxscore=1011 spamscore=0 mlxscore=0
- phishscore=0 suspectscore=0 malwarescore=0 bulkscore=0 impostorscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404090113
+References: <20240322145406.2613256-1-Frank.Li@nxp.com>
+In-Reply-To: <20240322145406.2613256-1-Frank.Li@nxp.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 9 Apr 2024 12:26:52 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLJDhJd_uoL05Z=s3Mc7PRkcJWsQGGjdG0Q0GFp0zA8xw@mail.gmail.com>
+Message-ID: <CAL_JsqLJDhJd_uoL05Z=s3Mc7PRkcJWsQGGjdG0Q0GFp0zA8xw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/1] ASoC: dt-bindings: fsl-esai: Convert fsl,esai.txt
+ to yaml
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shengjiu Wang <shengjiu.wang@nxp.com>, 
+	"open list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." <linux-sound@vger.kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
+	imx@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-
-On 4/7/2024 4:53 PM, Dmitry Baryshkov wrote:
-> The functions mipi_dsi_compression_mode() and
-> mipi_dsi_picture_parameter_set() return 0-or-error rather than a buffer
-> size. Follow example of other similar MIPI DSI functions and use int
-> return type instead of size_t.
-
-Hi Dmitry,
-
-Reviewed-by: Jessica Zhang <quic_jesszhan@quicinc.com>
-
-Thanks,
-
-Jessica Zhang
-
-> 
-> Fixes: f4dea1aaa9a1 ("drm/dsi: add helpers for DSI compression mode and PPS packets")
-> Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On Fri, Mar 22, 2024 at 9:54=E2=80=AFAM Frank Li <Frank.Li@nxp.com> wrote:
+>
+> Convert fsl,esai.txt to yaml. So DTB_CHECK tools can verify dts file abou=
+t
+> esai part.
+>
+> clock-names 'spba' is optional according to description. So minItems of
+> clocks and clock-names is 3.
+>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->   drivers/gpu/drm/drm_mipi_dsi.c | 6 +++---
->   include/drm/drm_mipi_dsi.h     | 6 +++---
->   2 files changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_mipi_dsi.c b/drivers/gpu/drm/drm_mipi_dsi.c
-> index ef6e416522f8..9874ff6d4718 100644
-> --- a/drivers/gpu/drm/drm_mipi_dsi.c
-> +++ b/drivers/gpu/drm/drm_mipi_dsi.c
-> @@ -654,7 +654,7 @@ EXPORT_SYMBOL(mipi_dsi_set_maximum_return_packet_size);
->    *
->    * Return: 0 on success or a negative error code on failure.
->    */
-> -ssize_t mipi_dsi_compression_mode(struct mipi_dsi_device *dsi, bool enable)
-> +int mipi_dsi_compression_mode(struct mipi_dsi_device *dsi, bool enable)
->   {
->   	/* Note: Needs updating for non-default PPS or algorithm */
->   	u8 tx[2] = { enable << 0, 0 };
-> @@ -679,8 +679,8 @@ EXPORT_SYMBOL(mipi_dsi_compression_mode);
->    *
->    * Return: 0 on success or a negative error code on failure.
->    */
-> -ssize_t mipi_dsi_picture_parameter_set(struct mipi_dsi_device *dsi,
-> -				       const struct drm_dsc_picture_parameter_set *pps)
-> +int mipi_dsi_picture_parameter_set(struct mipi_dsi_device *dsi,
-> +				   const struct drm_dsc_picture_parameter_set *pps)
->   {
->   	struct mipi_dsi_msg msg = {
->   		.channel = dsi->channel,
-> diff --git a/include/drm/drm_mipi_dsi.h b/include/drm/drm_mipi_dsi.h
-> index c0aec0d4d664..3011d33eccbd 100644
-> --- a/include/drm/drm_mipi_dsi.h
-> +++ b/include/drm/drm_mipi_dsi.h
-> @@ -241,9 +241,9 @@ int mipi_dsi_shutdown_peripheral(struct mipi_dsi_device *dsi);
->   int mipi_dsi_turn_on_peripheral(struct mipi_dsi_device *dsi);
->   int mipi_dsi_set_maximum_return_packet_size(struct mipi_dsi_device *dsi,
->   					    u16 value);
-> -ssize_t mipi_dsi_compression_mode(struct mipi_dsi_device *dsi, bool enable);
-> -ssize_t mipi_dsi_picture_parameter_set(struct mipi_dsi_device *dsi,
-> -				       const struct drm_dsc_picture_parameter_set *pps);
-> +int mipi_dsi_compression_mode(struct mipi_dsi_device *dsi, bool enable);
-> +int mipi_dsi_picture_parameter_set(struct mipi_dsi_device *dsi,
-> +				   const struct drm_dsc_picture_parameter_set *pps);
->   
->   ssize_t mipi_dsi_generic_write(struct mipi_dsi_device *dsi, const void *payload,
->   			       size_t size);
-> 
-> -- 
-> 2.39.2
-> 
+>
+> Notes:
+>     Change from v1 to v2
+>     - alphabetical order compatible string according to rob's suggestion
+>     - clock description move under 'clock' according to kryszof's suggest=
+ion
+>     - fix descritpion indent according to rob's suggestion
+>
+>     Pass dt_binding check
+>      make ARCH=3Darm64 CROSS_COMPILE=3Daarch64-linux-gnu- -j8  dt_binding=
+_check DT_SCHEMA_FILES=3Dfsl,esai.yaml
+>       DTEX    Documentation/devicetree/bindings/sound/fsl,esai.example.dt=
+s
+>       LINT    Documentation/devicetree/bindings
+>       CHKDT   Documentation/devicetree/bindings/processed-schema.json
+>       SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+>       DTC_CHK Documentation/devicetree/bindings/sound/fsl,esai.example.dt=
+b
+
+Did you run dtbs_check too? Probably not arm32 at least (first number
+is number of warnings):
+
+    218  esai@2024000: clocks: [[2, 208], [2, 209], [2, 118], [2,
+208], [2, 156]] is too long
+    218  esai@2024000: clock-names:3: 'spba' was expected
+    218  esai@2024000: clock-names:2: 'fsys' was expected
+    218  esai@2024000: clock-names:1: 'extal' was expected
+    218  esai@2024000: clock-names: ['core', 'mem', 'extal', 'fsys',
+'spba'] is too long
+
+Conversions can leave warnings, but any you think should be fixed in
+the binding should be fixed in the conversion.
+
+Rob
 
