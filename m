@@ -1,139 +1,119 @@
-Return-Path: <devicetree+bounces-57521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57522-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F30A689DB2B
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 15:52:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4521E89DB35
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 15:54:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 300341C21AC4
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 13:52:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 762FC1C218A7
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 13:54:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17D1112F589;
-	Tue,  9 Apr 2024 13:43:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F344130A4E;
+	Tue,  9 Apr 2024 13:47:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Iy4NTzVF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OiFpcHrJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AED6112F39A;
-	Tue,  9 Apr 2024 13:43:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBA2412C531;
+	Tue,  9 Apr 2024 13:47:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712670232; cv=none; b=GiiNmgGvcrhGEFua5Impk+4NViFnxkD9JkqKaHHsxmf+9uWT41CXdg9yOr9vC27oyQFjLGc8CxqGgAnX0578A+SadefZdLj9KUAiu4AnB1+yq2ArrPOiag9MRp4E5sw51cM5pz1dJ/bgQz+zGPQ27TT1Yh38ID4zSGNxlVITlp0=
+	t=1712670441; cv=none; b=iqlaIeDr207XDc5GlFyZx5O67cYOBWMOh4tG73vT4huTHztNU6TRcK89Xx+KvDprGIpDen5r0EjTNfY7fcPmF+Bnnj3ikZ/u+rVK/lujefQMGLY4l6dlEYfQchcWSdg7jta2YFA6PzeR5CMgLYPEWizCplEWVUhH/nYW1AV5FDU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712670232; c=relaxed/simple;
-	bh=y/xaSl/jhXl08yoalUQ5vH76MCEpZVtsR/1x4w43g8k=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=d6C78SBbRtpG7KbDxKkgD8DzeyqBFfgqlTVvCwWmRACM+WabTR6+024ZCVtvceOVSEOxGbURpvl8p4XaYmtpaXIcPTAumig3dXcUMi3RtMjjw6KwGhxur/CXLSstNNjZG5Chw5p52SqvzcVj3ebpNrXukEMgWyqk2Qve76nByUE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Iy4NTzVF; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 3041F240008;
-	Tue,  9 Apr 2024 13:43:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1712670228;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=m5UDulmenCwJXHuGMpELuxhDA4GFyujVsdxEaX2Dr8g=;
-	b=Iy4NTzVFWYIISKvZb3P1zAUEKQXE6VFTgx/iZnMms4cEObuZ97PE1okjL+Zx6GUOhH358F
-	2TUZr25TtQN/aJaJVeGL0chkGZ/cllV0WOROlZwrnz63KbJg+ZWwW1XRb/T5jK5+dLIdsD
-	O6x426KxtkdX3k+CnUx7Fzlrl714fiPVBxr5l5EutPwJJSKtFdwl3I+E/IUjaelg4j9R9B
-	v4tvJls4ZOgiyxBiOvO7UHwoBygwhpUxWCetIkKY0XowlW2uLs5g0zh17FV5u96wtMk1nh
-	hPIClv4uh+Ulc8a1PD8GzVB7Svcg0wZuAFHM0GL3R6rVBVu0As4CvUsd53TT4Q==
-Date: Tue, 9 Apr 2024 15:43:45 +0200
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Luis Chamberlain
- <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Oleksij Rempel <o.rempel@pengutronix.de>, Mark Brown <broonie@kernel.org>,
- Frank Rowand <frowand.list@gmail.com>, Andrew Lunn <andrew@lunn.ch>, Heiner
- Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- devicetree@vger.kernel.org, Dent Project <dentproject@linuxfoundation.org>
-Subject: Re: [PATCH net-next v6 14/17] dt-bindings: net: pse-pd: Add
- bindings for PD692x0 PSE controller
-Message-ID: <20240409154345.7a2a73a5@kmaincent-XPS-13-7390>
-In-Reply-To: <20240402132834.GB3744978-robh@kernel.org>
-References: <20240326-feature_poe-v6-0-c1011b6ea1cb@bootlin.com>
-	<20240326-feature_poe-v6-14-c1011b6ea1cb@bootlin.com>
-	<20240402132834.GB3744978-robh@kernel.org>
-Organization: bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1712670441; c=relaxed/simple;
+	bh=eMgGDvBhSwomIduc3Ww9nHxOHT2zRidPoz1kaAAG6Xc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qBmCxUUiBerS9LgFse8HdC/SY5Y9AeWDWryGucfPoPhfTKE6j07pMol4oecv88IooNGk7VdMdW+x96ZEKN2k1LWM8CUkcOAbqRlSKmmIjvYh/LihBbDR+oKbCk4IY9v/rodYskIJiU9lRqUBQQe+26ShwmQ4AkMaGFwr3c7RoTA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OiFpcHrJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E767C433F1;
+	Tue,  9 Apr 2024 13:47:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712670440;
+	bh=eMgGDvBhSwomIduc3Ww9nHxOHT2zRidPoz1kaAAG6Xc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OiFpcHrJrELfQ0w4lX0cktdooBbdqsoHCXatp67xvr4gT/dXvE4wa6RVsIydrq0Ce
+	 RsIqw93EknR0C4SLFv+idmJKR6ZutAE7ABCpYqG1WtfW4qdFdm07px4Sr6CvEb3wMV
+	 eNuBvEm0/6pqZY0bkHFkqKXe4mkepAUsvP3GB57ALkyiv35+N/B033wi1xMe+1mlHP
+	 7PsPMY8c5DfwgLZ6Mgr7lrH6+ynkoJLzZOD+pdMYFQ9EwYi5qFUONZJozCwdX13aom
+	 6VTB6jC2frvRFZAXY4S0Vf0k20CuzXzKcqgADfZDdMgG5afEEF2SIDBvU97l9C4S9M
+	 RWYC1iDthhkiA==
+Date: Tue, 9 Apr 2024 08:47:18 -0500
+From: Rob Herring <robh@kernel.org>
+To: Arseniy Krasnov <avkrasnov@salutedevices.com>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+	oxffffaa@gmail.com, kernel@sberdevices.ru
+Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: amlogic,meson-nand: support
+ fields for boot ROM code
+Message-ID: <20240409134718.GA1050037-robh@kernel.org>
+References: <20240408085931.456337-1-avkrasnov@salutedevices.com>
+ <20240408085931.456337-2-avkrasnov@salutedevices.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: kory.maincent@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240408085931.456337-2-avkrasnov@salutedevices.com>
 
-On Tue, 2 Apr 2024 08:28:34 -0500
-Rob Herring <robh@kernel.org> wrote:
+On Mon, Apr 08, 2024 at 11:59:30AM +0300, Arseniy Krasnov wrote:
+> Boot ROM code on Meson requires that some pages on NAND must be written
+> in special mode: "short" ECC mode where each block is 384 bytes and
+> scrambling mode is on. Such pages located with the specified interval
+> within specified offset. Both interval and offset are located in the
+> device tree and used by driver if 'nand-is-boot-medium' is set for
+> NAND chip.
+> 
+> Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
+> ---
+>  .../bindings/mtd/amlogic,meson-nand.yaml           | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+> index 57b6957c8415..80ba5003ca70 100644
+> --- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+> @@ -64,11 +64,25 @@ patternProperties:
+>          items:
+>            maximum: 0
+>  
+> +      amlogic,boot-page-last:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description:
+> +          The NFC driver needs this information to select ECC
+> +          algorithms supported by the boot ROM.
+> +
+> +      amlogic,boot-page-step:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description:
+> +          The NFC driver needs this information to select ECC
+> +          algorithms supported by the boot ROM (in pages).
+> +
+>      unevaluatedProperties: false
+>  
+>      dependencies:
+>        nand-ecc-strength: [nand-ecc-step-size]
+>        nand-ecc-step-size: [nand-ecc-strength]
+> +      amlogic,boot-page-last: [nand-is-boot-medium, amlogic,boot-page-step]
+> +      amlogic,boot-page-step: [nand-is-boot-medium, amlogic,boot-page-last]
 
-> > +    patternProperties:
-> > +      "^manager@0[0-9]|1[0-2]$": =20
->=20
-> Unit-addresses are typically in hex.
->=20
-> Is 'manager' something specific to this device or should be common?
+You need quotes if using the inline syntax.
 
-Specific to this device.
-=20
-> > +        $ref: /schemas/graph.yaml#/properties/ports =20
->=20
-> This is not using the graph binding. Furthermore, I don't want to see=20
-> new cases of 'port' node names which are not graph nodes. We have it=20
-> already with ethernet switches, but 'ethernet-port' is preferred over=20
-> 'port'.
-
-Ok I will remove the ref then.
-=20
-> Why is this one 'managers' and the other device binding 'channels'?
-
-Here each manager can have up to 8 ports.
-The ports in tps23881 are called channels in the datasheet but I can use the
-port naming for both if you prefer.
-
-> > +        description:
-> > +          PD69208T4/PD69204T4/PD69208M PSE manager exposing 4 or 8 phy=
-sical
-> > +          ports.
-> > +
-> > +        properties:
-> > +          reg:
-> > +            description:
-> > +              Incremental index of the PSE manager starting from 0, ra=
-nging
-> > +              from lowest to highest chip select, up to 12.
-> > +            maxItems: 1
-> > +
-> > +        patternProperties:
-> > +          '^port@[0-7]$':
-> > +            type: object
-> > +            required:
-> > +              - reg =20
->=20
-> Any property you want is allowed in this node. You are missing=20
-> 'additionalProperties'.
-
-Indeed.
-
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+Rob
 
