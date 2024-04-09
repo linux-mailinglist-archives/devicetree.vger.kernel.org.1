@@ -1,140 +1,202 @@
-Return-Path: <devicetree+bounces-57312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 181D189D236
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 08:18:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CE8489D23E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 08:21:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 490C11C212D3
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 06:18:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEF8E2824BB
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 06:21:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 614D86EB72;
-	Tue,  9 Apr 2024 06:18:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 494FF6FE06;
+	Tue,  9 Apr 2024 06:21:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tkos.co.il header.i=@tkos.co.il header.b="SUexIQz8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rSXbEWYr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.tkos.co.il (guitar.tkos.co.il [84.110.109.230])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72E7D524AF;
-	Tue,  9 Apr 2024 06:18:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.110.109.230
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 643EB524AF
+	for <devicetree@vger.kernel.org>; Tue,  9 Apr 2024 06:21:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712643504; cv=none; b=EeKCDzvCq08XfAVcQjySJm86ldQg2hS+U2RerxpmDoTPPwSD1G9lX8vf+sXg7iCqOdFA/WFJFomMcJoLKBvNwdIzuxLD9CuO79um/Efdf/9ShJsNcNtMd3GXBTyv9PKelgwuw9d1BhLr2bB0Czbl3gn8esokmvPUZy00mrDwNIk=
+	t=1712643694; cv=none; b=N7gmTwVP4wh/D8iQPPocOaQ7LWyWgySNNjwYpPlIeqLwr/5PH0SEtMymSfNKwz42WqdiZ9LkoGrhxw7WW6v4KBpJGHOZbPNc1lTVAX1sGb6m354u9qGgBuLEnlFofWWV0spfX19VsF1pZCTfteanILW7DPXvolDtddsIk2TK2Zo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712643504; c=relaxed/simple;
-	bh=R7K6bnEO9GvrFuZ5cBFijMFOruRQKScFkxZi8ojrTRc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=UXxhH/KOyLIjo0v7B+ttvaOzE24upXLbyKk6jN5lgihovaLs8lCX1EyZrFeG9z15pkO3LDfxAK8uwLS5vcMm7V4zXxDsLuOyvle/AhiUZFZKQ7/oGJyFJ9Hsvykz3ksTXxiS3uFYMb8MiTNw3LOL2GLYKRq5teE7y0NoinpfPPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tkos.co.il; spf=pass smtp.mailfrom=tkos.co.il; dkim=pass (2048-bit key) header.d=tkos.co.il header.i=@tkos.co.il header.b=SUexIQz8; arc=none smtp.client-ip=84.110.109.230
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tkos.co.il
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tkos.co.il
-Received: from tarshish.tkos.co.il (unknown [10.0.8.2])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mail.tkos.co.il (Postfix) with ESMTPS id 48858440459;
-	Tue,  9 Apr 2024 09:17:45 +0300 (IDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tkos.co.il;
-	s=default; t=1712643465;
-	bh=R7K6bnEO9GvrFuZ5cBFijMFOruRQKScFkxZi8ojrTRc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=SUexIQz8PPD4zBDvys8qW4vICsMoWwrv/Gnfl1XbfryJUgAXmhmvGF4hBnq0rrs9u
-	 dJkOWwvsTTJp49f/96CsJAOe7SVxyJYmn5IBK2tBlDDM4FQfyhOmfOsb7RCYJ7mGFQ
-	 Z4pxD5uzbWSNMoTrZSEaMPdDEDESwEICV6BGapb1jO3WPznEXPBWQu8Uyy1eK7bhgh
-	 VJ2vFMvDL4Ab8KkyRmwnBkXCZkJWEUa948eREug5DCra0Vd7D1+U+jx3rFF10m0DVj
-	 SXe8/7ivvfBvgkUsoa+sOWN7M+3AT9z4tW1kFS6QMaNP60x6miJmpnTgoukgFTIE6O
-	 pV1sS2D6zWaJw==
-From: Baruch Siach <baruch@tkos.co.il>
-To: Christoph Hellwig <hch@lst.de>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>
-Cc: Baruch Siach <baruch@tkos.co.il>,
-	Robin Murphy <robin.murphy@arm.com>,
-	iommu@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org,
-	linux-s390@vger.kernel.org,
-	=?UTF-8?q?Petr=20Tesa=C5=99=C3=ADk?= <petr@tesarici.cz>,
-	Ramon Fried <ramon@neureality.ai>,
-	Elad Nachman <enachman@marvell.com>
-Subject: [PATCH RFC v2 5/5] arm64: mm: take DMA zone offset into account
-Date: Tue,  9 Apr 2024 09:17:58 +0300
-Message-ID: <2fa9d7954a99b018a32314b9baab25ba18504f15.1712642324.git.baruch@tkos.co.il>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1712642324.git.baruch@tkos.co.il>
-References: <cover.1712642324.git.baruch@tkos.co.il>
+	s=arc-20240116; t=1712643694; c=relaxed/simple;
+	bh=v9h+JP1Ozokz8XPYOl0mt/0NsHPHIP7jqB4A5A1C9zY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nmZxGZpV8OXxDNeEW/wYBCazTsSWUORsJpfWwocZhbULrbfLAoy4GmCFkIgp40RAtGaTKlF4+pMiTlcFDNISFQpJtmMKlf1JkXVBgtSIGrztX2Xi0LhfNBJy96a6OOAjctMUeHQkkJ0tyEUk1q/B2/G8eNZ+9ag/28g+KAf54O0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rSXbEWYr; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a51d05c50b2so246337166b.0
+        for <devicetree@vger.kernel.org>; Mon, 08 Apr 2024 23:21:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712643691; x=1713248491; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=lWIkOPg5L5xz5mlCTwXEDmQlLjcIkDaN5r93XlgAMzg=;
+        b=rSXbEWYr2OUT+tYefJvPPiHWVkL+6/XAJ6w//81YpPJbev/rpwlh7qeqlsc2297FDC
+         SusKtBtV+R/rRWy7078bKvgvn5FRCON1MsQ85u9+MU/tqF4Iom8C+3T51QY0Nxg3UivQ
+         HPzzBgiGm0+GN3hI6psM7CvO+UTq7rbRkjfEtbNTyzwUMwNoWUj4VLmxNMoR4FQmp9iA
+         8c4ySO3Znnq7pd60/gQO8bDf7+vK1KsVK8whFMWuE4CW8WWvjuaJEsdeGL+W1AYeF78I
+         bbI/5FrKWjHl4VROUkyZKbm1QJYGTwkMIAsVxDc9goImcgMzdzOjO11JjCxGHOrRcph/
+         FoJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712643691; x=1713248491;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lWIkOPg5L5xz5mlCTwXEDmQlLjcIkDaN5r93XlgAMzg=;
+        b=Y25Wh6ZCCVE65q0SMEZUxefPgirn/Hz28Kr23+dxsyfpsqbIsr9mgyV9rgB8CUn5Xg
+         NN8ZATwyMJlDSM5/qoKoqIBCmYmeIhJAojBwnoppKlZ+OjGizHdpagoDLROZ+D948o6e
+         LoYMVRFRA3HwswTe2SHJ8SnheGc0ZEX+qDAamHiqBbbu0oTa5fsg3FhoqbJTU7TuBKdO
+         wk2Y0WTXDo1bRFtw5yRU4ITcBQ78OnssCjpv5DbtOSnZiLzSRUUBlngm3s34umVco5d6
+         geiZFFABYLGYZbn2MZhFNxPrSOKzg1XDsKCL08PkX6zmjgVlzpRSe7zkuDltSg56yJLr
+         2mTQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVMlBXTjXybqTSBEuOp5Y6sbeTS9KcpHgiAyEfTpe2sHjtujnr+5vDRFCuSnxm2eY3rmjP07zpzyEeiTCkrp/hdyWuiu5f+iNFb0g==
+X-Gm-Message-State: AOJu0YzdWNdBrN2s1JZ5x1xM6dRgxY1y3ifqXiSA95lHBUaYyzEaQUUA
+	enD2Ba7O/8PdsJz0IMmbQ6VmnjHO9nl9HGWF4Moa0R5YsM6LwxOY/JTAi3cMeoA=
+X-Google-Smtp-Source: AGHT+IGpUblUe93xBBOxtCJ75jLMiz7UMH7MBTTDilSV4N7xThGFaUK51PfxCOlL++NMt09sjfHW3g==
+X-Received: by 2002:a17:906:528c:b0:a4d:fcc9:905c with SMTP id c12-20020a170906528c00b00a4dfcc9905cmr8096858ejm.20.1712643690564;
+        Mon, 08 Apr 2024 23:21:30 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id h12-20020a17090634cc00b00a46f95f5849sm5229179ejb.106.2024.04.08.23.21.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Apr 2024 23:21:29 -0700 (PDT)
+Message-ID: <ce17f2dc-decf-4509-969e-e23bdef42eb9@linaro.org>
+Date: Tue, 9 Apr 2024 08:21:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 1/2] dt-bindings: pcie: Document QCOM PCIE ECAM
+ compatible root complex
+To: Mayank Rana <quic_mrana@quicinc.com>, linux-pci@vger.kernel.org,
+ lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, bhelgaas@google.com,
+ andersson@kernel.org, manivannan.sadhasivam@linaro.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org
+Cc: linux-arm-msm@vger.kernel.org, quic_ramkri@quicinc.com,
+ quic_nkela@quicinc.com, quic_shazhuss@quicinc.com, quic_msarkar@quicinc.com,
+ quic_nitegupt@quicinc.com
+References: <1712257884-23841-1-git-send-email-quic_mrana@quicinc.com>
+ <1712257884-23841-2-git-send-email-quic_mrana@quicinc.com>
+ <51b02d02-0e20-49df-ad13-e3dbe3c3214f@linaro.org>
+ <1d6911e2-d0ec-4cb0-b417-af5001a4f8a3@quicinc.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <1d6911e2-d0ec-4cb0-b417-af5001a4f8a3@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Commit 791ab8b2e3db ("arm64: Ignore any DMA offsets in the
-max_zone_phys() calculation") made DMA/DMA32 zones span the entire RAM
-when RAM starts above 32-bits. This breaks hardware with DMA area that
-start above 32-bits. But the commit log says that "we haven't noticed
-any such hardware". It turns out that such hardware does exist.
+On 08/04/2024 21:09, Mayank Rana wrote:
+>>> +  Firmware configures PCIe controller in RC mode with static iATU window mappings
+>>> +  of configuration space for entire supported bus range in ECAM compatible mode.
+>>> +
+>>> +maintainers:
+>>> +  - Mayank Rana <quic_mrana@quicinc.com>
+>>> +
+>>> +allOf:
+>>> +  - $ref: /schemas/pci/pci-bus.yaml#
+>>> +  - $ref: /schemas/power-domain/power-domain-consumer.yaml
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: qcom,pcie-ecam-rc
+>>
+>> No, this must have SoC specific compatibles.
+> This driver is proposed to work with any PCIe controller supported ECAM 
+> functionality on Qualcomm platform
+> where firmware running on other VM/processor is controlling PCIe PHY and 
+> controller for PCIe link up functionality.
+> Do you still suggest to have SoC specific compatibles here ?
 
-One such platform has RAM starting at 32GB with an internal bus that has
-the following DMA limits:
+What does the writing-bindings document say? Why this is different than
+all other bindings?
 
-  #address-cells = <2>;
-  #size-cells = <2>;
-  dma-ranges = <0x00 0xc0000000 0x08 0x00000000 0x00 0x40000000>;
+>>> +
+>>> +  reg:
+>>> +    minItems: 1
+>>
+>> maxItems instead
+>>
+>>> +    description: ECAM address space starting from root port till supported bus range
+>>> +
+>>> +  interrupts:
+>>> +    minItems: 1
+>>> +    maxItems: 8
+>>
+>> This is way too unspecific.
+> will review and update.
+>>> +
+>>> +  ranges:
+>>> +    minItems: 2
+>>> +    maxItems: 3
+>>
+>> Why variable?
+> It depends on how ECAM configured to support 32-bit and 64-bit based 
+> prefetch address space.
+> So there are different combination of prefetch (32-bit or 64-bit or 
+> both) and non-prefetch (32-bit), and IO address space available. hence 
+> kept it as variable with based on required use case and address space 
+> availability.
 
-Devices under this bus can see 1GB of DMA range between 3GB-4GB in each
-device address space. This range is mapped to CPU memory at 32GB-33GB.
-With current code DMA allocations for devices under this bus are not
-limited to DMA area, leading to run-time allocation failure.
+Really? So same device has it configured once for 32 once for 64-bit
+address space? Randomly?
 
-Modify 'zone_dma_bits' calculation (via dt_zone_dma_bits) to only cover
-the actual DMA area starting at 'zone_dma_off'. Use the newly introduced
-'min' parameter of of_dma_get_cpu_limits() to set 'zone_dma_off'.
-
-DMA32 zone is useless in this configuration, so make its limit the same
-as the DMA zone when the lower DMA limit is higher than 32-bits.
-
-The result is DMA zone that properly reflects the hardware constraints
-as follows:
-
-[    0.000000] Zone ranges:
-[    0.000000]   DMA      [mem 0x0000000800000000-0x000000083fffffff]
-[    0.000000]   DMA32    empty
-[    0.000000]   Normal   [mem 0x0000000840000000-0x0000000bffffffff]
-
-Suggested-by: Catalin Marinas <catalin.marinas@arm.com>
-Signed-off-by: Baruch Siach <baruch@tkos.co.il>
----
- arch/arm64/mm/init.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
-index 77e942ca578b..cd283ae0178d 100644
---- a/arch/arm64/mm/init.c
-+++ b/arch/arm64/mm/init.c
-@@ -128,9 +128,11 @@ static void __init zone_sizes_init(void)
- 
- #ifdef CONFIG_ZONE_DMA
- 	acpi_zone_dma_limit = acpi_iort_dma_get_max_cpu_address();
--	of_dma_get_cpu_limits(NULL, &dt_zone_dma_limit, NULL);
-+	of_dma_get_cpu_limits(NULL, &dt_zone_dma_limit, &zone_dma_base);
- 	zone_dma_limit = min(dt_zone_dma_limit, acpi_zone_dma_limit);
- 	arm64_dma_phys_limit = max_zone_phys(zone_dma_limit);
-+	if (zone_dma_base > U32_MAX)
-+		dma32_phys_limit = arm64_dma_phys_limit;
- 	max_zone_pfns[ZONE_DMA] = PFN_DOWN(arm64_dma_phys_limit);
- #endif
- #ifdef CONFIG_ZONE_DMA32
--- 
-2.43.0
+Best regards,
+Krzysztof
 
 
