@@ -1,123 +1,136 @@
-Return-Path: <devicetree+bounces-57622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AE1089E182
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 19:27:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8319289E19F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 19:32:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FA011F23DE9
-	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 17:27:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 38EB01F24ACA
+	for <lists+devicetree@lfdr.de>; Tue,  9 Apr 2024 17:32:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 628A2156222;
-	Tue,  9 Apr 2024 17:27:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C856A156660;
+	Tue,  9 Apr 2024 17:32:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MOXtDKhU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DASQG1HX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 373E7155A45;
-	Tue,  9 Apr 2024 17:27:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97E4F13C66C;
+	Tue,  9 Apr 2024 17:32:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712683626; cv=none; b=BXdNrSoUbRnOmPJxagfxuKpjvzQnFKep793aUs+9AfoIFFM8dpSeryDONK1aAMZ6MHpcG8WKzX+8drg7IYqhRbRbczflXws8po7Ux3gdNHSWrWySC+qa4Lx/0xaUk6WmD9BggOnwh+pD8xkphHPfLPA8nbLpx5K77THb04CONJ8=
+	t=1712683928; cv=none; b=dOFkZp1RrBUGZ759O/YrgkShZugMYDHydBwCFziOZqPlB6OArzo3d77rDRKFSp/TNv2mCzjyTHWtu++6oKfp3pVsVgHRQR0hUFcR+8Qsi4vzglrtDx5916ianW2wvZ7KxBxD025OwteMqIzx8MSfqBgyRn4OqotT/RP+eH27Fsg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712683626; c=relaxed/simple;
-	bh=Kbut6EHysiAuN2pqwbI1Q3ysmlqsWX1b/pEAFMnt+eg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HiPP0NX/K2RcK3B2AqNgeyz21DFPFYq0jI8MlFWrtEf/HfsuB+9gW81Gb59iPU20uZKLYJMdDt4A2maugis6zjEU3n6dVarXvyIrG+O5nmY+KJH6q/Z3u6D6+T8rj4LqqioABwqOnb5+HPFRMGS1oKlCP5VYNP73cAuJoNipuII=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MOXtDKhU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6636C433C7;
-	Tue,  9 Apr 2024 17:27:05 +0000 (UTC)
+	s=arc-20240116; t=1712683928; c=relaxed/simple;
+	bh=zbXpp6bn5v5mcNZu3t/YEPHaxpHKSpvxYnywNRsqWZM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sXm1pHwtdz1zDaedcc5J4nibR+6Dzuy4iZHPkSBf6fQWQBjQTqX1mjykelU74yY0OnJb196ARVxdT/UnhGejNHuKyfB9HMGsTbw2GZeoeeBkwttCxkpTVIRlFp7NZFEsxL7hBe+okipXQ3et8/QfesF7mgjQuUvM3af0Xj88yfY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DASQG1HX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87116C433F1;
+	Tue,  9 Apr 2024 17:32:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712683625;
-	bh=Kbut6EHysiAuN2pqwbI1Q3ysmlqsWX1b/pEAFMnt+eg=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=MOXtDKhUSuGy06O0wOHEzMRUsMEx1PIpgQJfGYxuWXcCM0Hi03dVimVFkMGIujRJ3
-	 nnf9k4pl9WHvRGO24qbpJYe5cQPMAlNzXQnqaC5yB23mArWmjYIwoTLkAe3pHeAij7
-	 bVG/W9agnm3h+ORu1i468Ml2zhUUaDQ23Yr1D4nJprQjvE1GV6xLqsfRHLIKOfK+3q
-	 5WbVRukqkcBpuL0jIA799KCPPHH3S8qo1NW+hOFq4D1e/TJ7DFYKieiv1xGAljJsFj
-	 KNdM3guD0TBs5LxYi9iL3llXOJVY7wDUyizpGSx2sSGYlAGQpTxPcJT7ZnjWoES55A
-	 YlEg8mZ22GnFQ==
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-51381021af1so9546528e87.0;
-        Tue, 09 Apr 2024 10:27:05 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV4YrIlbxcpcD0Cqj4P1qr3fD3Zr96Bw1tsxsn9qcj1xdfx30Ri6i44HHNkXM9XETGq9owZIpSd705nmBhpPNc1WVfmIa47msYn4HNvpvmYNfrkxGHJKXNaSDyAflgbEHoYX8nTaY8T5Vr7+b6JZEe7h3tj5HEyHZeWipO55NsGb7Uqq1Cr
-X-Gm-Message-State: AOJu0YwLZFUlp0T+ZO/p4mawkGTHJdfdz/g3UsYFgFBNG0LdENfRz0/b
-	9RNrYaCPx5RvAch1Kq4ELIDFb+062mDsnDg4SShMLvSLoHNTSs1OtJzfC6CUvqaRWelyqKX5mRW
-	PjAIbL3fRFzv7onp4eakz3+VqUw==
-X-Google-Smtp-Source: AGHT+IEHcM0JD7ZqWipo4LWrXKbnA82iD02tShlGX9cvVnQUGGgSKaw7D46ABppnjB6v8ynWM6ZkjO5amGWWIwt6rYg=
-X-Received: by 2002:ac2:4c35:0:b0:516:9fab:75de with SMTP id
- u21-20020ac24c35000000b005169fab75demr55819lfq.5.1712683624187; Tue, 09 Apr
- 2024 10:27:04 -0700 (PDT)
+	s=k20201202; t=1712683928;
+	bh=zbXpp6bn5v5mcNZu3t/YEPHaxpHKSpvxYnywNRsqWZM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DASQG1HXpYfghCLFflKgrm2W/ERgMoKMROXeIyJI8cqz/LXS9Pf0QW2Uk6OfYSO+j
+	 a+b8s6CXW75opqaN5bC2vCK4J6/zuXckexmD96fYduhxvcDEfwGTVfKTr3O995cwIZ
+	 Ow6//QuPTL1GyepbdGPFBRF59v5Twa0UD1S2qEDeKUBhh0A0zSrrWxSwop4K7eFWKa
+	 xQbaR6TV0ypTjovR/qkVF3IwDy0tTywLQne0DhTX7Hck1YIT8X4/g7Rzan+UcQ50FD
+	 wdK9HVIjppLmJdUVplLUFPIMvjcRDIfggByEMDGkkwW9dWbp3oen9oGmgZdOHFG1Dg
+	 8G50LBIOxEnhQ==
+Date: Tue, 9 Apr 2024 18:32:03 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+Cc: Nikita Shubin <nikita.shubin@maquefel.me>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 0/4] DONOTMERGE: ep93xx-clk from ep93xx device tree
+ conversion
+Message-ID: <20240409-unselect-denatured-6af8a07dbd9a@spud>
+References: <20240408-ep93xx-clk-v1-0-1d0f4c324647@maquefel.me>
+ <20240408-friction-mosaic-ba48bc27788d@spud>
+ <42f9da044fdc11e2495f6845c061afefa796f7cf.camel@maquefel.me>
+ <73fd3f42c2d63467bb1b04888659e829f9e54f52.camel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240322145406.2613256-1-Frank.Li@nxp.com>
-In-Reply-To: <20240322145406.2613256-1-Frank.Li@nxp.com>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 9 Apr 2024 12:26:52 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLJDhJd_uoL05Z=s3Mc7PRkcJWsQGGjdG0Q0GFp0zA8xw@mail.gmail.com>
-Message-ID: <CAL_JsqLJDhJd_uoL05Z=s3Mc7PRkcJWsQGGjdG0Q0GFp0zA8xw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/1] ASoC: dt-bindings: fsl-esai: Convert fsl,esai.txt
- to yaml
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shengjiu Wang <shengjiu.wang@nxp.com>, 
-	"open list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." <linux-sound@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
-	imx@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="hfWycvtu4zQBs5eK"
+Content-Disposition: inline
+In-Reply-To: <73fd3f42c2d63467bb1b04888659e829f9e54f52.camel@gmail.com>
+
+
+--hfWycvtu4zQBs5eK
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Mar 22, 2024 at 9:54=E2=80=AFAM Frank Li <Frank.Li@nxp.com> wrote:
->
-> Convert fsl,esai.txt to yaml. So DTB_CHECK tools can verify dts file abou=
-t
-> esai part.
->
-> clock-names 'spba' is optional according to description. So minItems of
-> clocks and clock-names is 3.
->
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->
-> Notes:
->     Change from v1 to v2
->     - alphabetical order compatible string according to rob's suggestion
->     - clock description move under 'clock' according to kryszof's suggest=
-ion
->     - fix descritpion indent according to rob's suggestion
->
->     Pass dt_binding check
->      make ARCH=3Darm64 CROSS_COMPILE=3Daarch64-linux-gnu- -j8  dt_binding=
-_check DT_SCHEMA_FILES=3Dfsl,esai.yaml
->       DTEX    Documentation/devicetree/bindings/sound/fsl,esai.example.dt=
-s
->       LINT    Documentation/devicetree/bindings
->       CHKDT   Documentation/devicetree/bindings/processed-schema.json
->       SCHEMA  Documentation/devicetree/bindings/processed-schema.json
->       DTC_CHK Documentation/devicetree/bindings/sound/fsl,esai.example.dt=
-b
+On Tue, Apr 09, 2024 at 05:09:35PM +0200, Alexander Sverdlin wrote:
+> Hi Nikita,
+>=20
+> On Tue, 2024-04-09 at 14:48 +0300, Nikita Shubin wrote:
+> > On Mon, 2024-04-08 at 18:03 +0100, Conor Dooley wrote:
+> > > On Mon, Apr 08, 2024 at 11:09:52AM +0300, Nikita Shubin via B4 Relay
+> > > wrote:
+> > > > The goal is to recieve ACKs.
+> > >=20
+> > > I dont see a maintainers entry in -rc1 for the drivers/soc/cirrus
+> > > portion. Who is gonna give you an Ack for that portion? If you
+> > > intended
+> > > maintaining that driver, should you not add a MAINTAINERS entry for
+> > > it?
+> >=20
+> > drivers/soc/cirrus got it's ACK from ep93xx MAINTAINER - Alexander
+> > Sverdlin.
+> >=20
+> > Arnd, Alexander - should we add it now ?
+>=20
+> seems that we have couple of things to fix:
+>=20
+> WARNING: added, moved or deleted file(s), does MAINTAINERS need updating?
+> #51:=20
+> new file mode 100644
+>=20
+> WARNING: please write a help paragraph that fully describes the config sy=
+mbol
+> #60: FILE: drivers/soc/cirrus/Kconfig:5:
+> +config EP93XX_SOC
+> +	bool "Cirrus EP93xx chips SoC"
+> +	select SOC_BUS
+> +	select AUXILIARY_BUS
+> +	default y if !EP93XX_SOC_COMMON
+> +	help
+> +	  Support SoC for Cirrus EP93xx chips.
+> +
+>=20
+> total: 0 errors, 2 warnings, 269 lines checked
 
-Did you run dtbs_check too? Probably not arm32 at least (first number
-is number of warnings):
+FWIW, I wouldn't be too worried about meeting the minimum line check for
+the Kconfig option that checkpatch requires - but the description here
+is not clear what the driver does.=20
 
-    218  esai@2024000: clocks: [[2, 208], [2, 209], [2, 118], [2,
-208], [2, 156]] is too long
-    218  esai@2024000: clock-names:3: 'spba' was expected
-    218  esai@2024000: clock-names:2: 'fsys' was expected
-    218  esai@2024000: clock-names:1: 'extal' was expected
-    218  esai@2024000: clock-names: ['core', 'mem', 'extal', 'fsys',
-'spba'] is too long
+--hfWycvtu4zQBs5eK
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Conversions can leave warnings, but any you think should be fixed in
-the binding should be fixed in the conversion.
+-----BEGIN PGP SIGNATURE-----
 
-Rob
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZhV7kwAKCRB4tDGHoIJi
+0sK2AQC8a1isyFTn6fekLdOTJ4w8j4r0IrldzsHLvayDPHqQRwD+IxgI3A8hZ5Iz
+7lJYuGUc1y73HVsn2n9d/ZbXPDzCGA8=
+=jf+f
+-----END PGP SIGNATURE-----
+
+--hfWycvtu4zQBs5eK--
 
