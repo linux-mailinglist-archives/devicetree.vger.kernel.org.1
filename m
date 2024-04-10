@@ -1,188 +1,135 @@
-Return-Path: <devicetree+bounces-58011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72E7C89FE6D
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 19:25:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D0DA89FE6E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 19:25:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 204A91F24288
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 17:25:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 614A71C22643
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 17:25:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B810F17F365;
-	Wed, 10 Apr 2024 17:23:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D741217F36E;
+	Wed, 10 Apr 2024 17:24:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MuGinN19"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fB2/9ZSE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C68117BB1B;
-	Wed, 10 Apr 2024 17:23:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38CB917B4F8
+	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 17:24:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712769832; cv=none; b=BupeQEW9qRQurXlY49XDucRRAmOaLhPVG+LeMTRSksGZh7UmgBKBxCGf7xEWpBd24pPsPEDlPxRzPr3XEmliPuQ2e49q5Cpjxl5mWhbgZHQJx2RJcb3LvVNaexBX4bSkfKe6G4aG4nyBDIouGMYAhe4fu9hwk4szhrxYLzxK9EY=
+	t=1712769852; cv=none; b=S9+xUpwlkHH2cqwcE/Mv7/UEsTZ0YP0kwSERSV326g2Vx8rxbHLwaqm4LX/CR0lPpCJNBwajFu2hqUCcMyznRDnUKYG2b4l+J9JMV7NgGZc8u03XyqT0joq2wRyPmhf1oVPa/DOHh/Nawnmv0zQhELtMUOh64TIgYRctpKmRY4U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712769832; c=relaxed/simple;
-	bh=QVnKMzmS7cPaepB9Ny7sWzQZ4B0yeU+Pt0X7fTlrewc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Y3DVjhYrFrvTWc/AC14aWMZhfuppnT3x3GXdY5Jr+/EkDPMQ+wg+NYtawD8G728WJcM5rvIm/4o+7brgYBFssmd7aFQ2VtoiKPkwrrXo4u4Dz/q9LNqYcqAyifOZM5NyNzodxiu+uGYjJotsoLzM46UBpYw/YdfmuKMgDBWAiFc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MuGinN19; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0047C433F1;
-	Wed, 10 Apr 2024 17:23:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712769832;
-	bh=QVnKMzmS7cPaepB9Ny7sWzQZ4B0yeU+Pt0X7fTlrewc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MuGinN19EDHb+Cl/62f2PkQGqNeAjVO6r5pN7jY8urVpQWmigVGpJ4DJAorjdUmcY
-	 ZHZGoqXoLn9Z6DdsYWugYT9DDvI41dlzMcBP+QeqrAoafWxi+7CrqY+0V8jZbXI1Uo
-	 +AyvHr5vfLzm/woGdm3K2bhQFbAQO+AL5PcxhoZqQ1trRxvpUlHpBHvLwR163Wl+zh
-	 FSnnElPLLThM8xfStfL3VtKXcAZVCPako40QB8P8GHwmCa2YJJ7jXuwDiMmr5SfTQf
-	 L/ibkNwk8qIZq8fpiumdLenSRJuNFE2bTiWJIMz7+uYJICE2MwHSUa9+olaABxrz1v
-	 +1IF2eOtHHI1Q==
-Date: Wed, 10 Apr 2024 22:53:39 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, jingoohan1@gmail.com,
-	marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v6 5/7] PCI: rcar-gen4: Add .ltssm_enable() for other SoC
- support
-Message-ID: <20240410172339.GC16629@thinkpad>
-References: <20240410004832.3726922-1-yoshihiro.shimoda.uh@renesas.com>
- <20240410004832.3726922-6-yoshihiro.shimoda.uh@renesas.com>
+	s=arc-20240116; t=1712769852; c=relaxed/simple;
+	bh=T58qNytxxfzTycOisnq+VRw8hxedCluwkFTrhnjXoOE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=BInmv0j6vh9cXjQF48s+H+Nroz2FZlLh1VqNGPbHwqPJwNlY2VeOBAb4n2Qf7Tw+9NwKQhIFox6VO2BSwmud9BS4sG/jq4+fL4f6K3SZ5cCweJNbRxj8DJzKfEJqR4hFotYAS/viu5Au1/wskKDqmOiBCyAInwVlmYxcYXmLVHA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fB2/9ZSE; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43A97l1U016153;
+	Wed, 10 Apr 2024 17:24:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=9gJQgFd+qcYRXpMqMooXX1Nm7TdMKnQKjdYT54V39z8=; b=fB
+	2/9ZSECsZOTT+U6mbks9MUTL8ux3njYJsrbEfvk2asTQhqcSrctbEJXk1tVHdP6x
+	5EgOGqX6HDFjmPMYGaQr+cqKAG2pmY6oSlEK8jd3NDXAufPBXw3Nr5QGTPGz5K7L
+	w9eZJA5JVu+OShLX7Qqdr7PEvxwiBswIVGgyrmgveNBTJf70gTwGI1c/3ub13ayF
+	b1pQvcGSBKV73q7zI2G23CI0ZfO9Vod77PjIzpNOIzXG20FTykXKBhC1Xql4Ir+U
+	LPrgHqOq4kl4di5yJHcdZWV8I4M6zVdXJ/oI2JBBa90VULh3O+7TCDBfJwFYf/Kg
+	6OxZ3Zva6tB1RAYkNoYw==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xdquht9mc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 Apr 2024 17:24:05 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43AHO3jR010022
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 Apr 2024 17:24:03 GMT
+Received: from [10.71.80.179] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Wed, 10 Apr
+ 2024 10:24:02 -0700
+Message-ID: <ae74fd28-9658-4461-9b4d-e31443e7d377@quicinc.com>
+Date: Wed, 10 Apr 2024 10:24:02 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240410004832.3726922-6-yoshihiro.shimoda.uh@renesas.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: DT Query on "New Compatible vs New Property"
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sudeep Holla
+	<sudeep.holla@arm.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+CC: Trilok Soni <quic_tsoni@quicinc.com>,
+        Ulf Hansson
+	<ulf.hansson@linaro.org>,
+        Manivannan Sadhasivam
+	<manivannan.sadhasivam@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>, <robh+dt@kernel.org>,
+        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        "Prasad Sodagudi (QUIC)"
+	<quic_psodagud@quicinc.com>
+References: <3e8e7c8c-c14a-452c-a861-e2a07994119a@linaro.org>
+ <ZfLXsCaeycRlQg3I@bogus> <487f91af-722f-44eb-a1a2-61dec586d686@quicinc.com>
+ <ZfMZ9ATxuvONcGpz@bogus> <0411f99d-231a-af4b-d681-7f7748361aa3@quicinc.com>
+ <904978d8-eab4-4936-86dc-b0b1e7c40256@linaro.org> <Zfl-Z3vm-3sQ5TN5@bogus>
+ <d51ef79a-012e-4701-ac8c-4d1da1827dd8@linaro.org> <Zfmsjg2rb_ZMc4tA@bogus>
+ <33783999-227b-4837-9924-2fd99b210cbb@linaro.org> <Zfm5m2zp4A06ZunW@bogus>
+ <c66f280b-aa29-4b18-98f1-701f60cbc63d@quicinc.com>
+ <afc07c5d-640b-4eaf-94a2-086a6d43d712@linaro.org>
+Content-Language: en-US
+From: Nikunj Kela <quic_nkela@quicinc.com>
+In-Reply-To: <afc07c5d-640b-4eaf-94a2-086a6d43d712@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Ne7ZnHdYmkdAxUUATh2NaX5ivzx7ryCE
+X-Proofpoint-GUID: Ne7ZnHdYmkdAxUUATh2NaX5ivzx7ryCE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-10_04,2024-04-09_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
+ adultscore=0 clxscore=1015 mlxscore=0 malwarescore=0 mlxlogscore=791
+ phishscore=0 lowpriorityscore=0 suspectscore=0 impostorscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404100127
 
-On Wed, Apr 10, 2024 at 09:48:30AM +0900, Yoshihiro Shimoda wrote:
-> This driver can reuse other R-Car Gen4 SoCs support like r8a779g0 and
-> r8a779h0. However, r8a779g0 and r8a779h0 require other initializing
-> settings that differ than r8a779f0. So, add a new function pointer
-> .ltssm_enable() for it. No behavior changes.
-> 
-> After applied this patch, probing SoCs by rcar_gen4_pcie_of_match[]
-> will be changed like below:
-> 
-> - r8a779f0 as "renesas,r8a779f0-pcie" and "renesas,r8a779f0-pcie-ep"
-> 
 
-If r8a779f0 SoC can work with the existing 'renesas,rcar-gen4-pcie' and
-'renesas,rcar-gen4-pcie-ep' compatibles, then you should just leave it as it is
-and add a new compatible with dedicated callbacks for only r8a779g0 and
-r8a779h0.
-
-- Mani
-
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> ---
->  drivers/pci/controller/dwc/pcie-rcar-gen4.c | 41 ++++++++++++++++++---
->  1 file changed, 36 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-rcar-gen4.c b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> index da2821d6efce..47ec394885f5 100644
-> --- a/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> +++ b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> @@ -48,7 +48,9 @@
->  #define RCAR_GEN4_PCIE_EP_FUNC_DBI_OFFSET	0x1000
->  #define RCAR_GEN4_PCIE_EP_FUNC_DBI2_OFFSET	0x800
->  
-> +struct rcar_gen4_pcie;
->  struct rcar_gen4_pcie_platdata {
-> +	int (*ltssm_enable)(struct rcar_gen4_pcie *rcar);
->  	enum dw_pcie_device_mode mode;
->  };
->  
-> @@ -61,8 +63,8 @@ struct rcar_gen4_pcie {
->  #define to_rcar_gen4_pcie(_dw)	container_of(_dw, struct rcar_gen4_pcie, dw)
->  
->  /* Common */
-> -static void rcar_gen4_pcie_ltssm_enable(struct rcar_gen4_pcie *rcar,
-> -					bool enable)
-> +static void rcar_gen4_pcie_ltssm_control(struct rcar_gen4_pcie *rcar,
-> +					 bool enable)
->  {
->  	u32 val;
->  
-> @@ -127,9 +129,13 @@ static int rcar_gen4_pcie_speed_change(struct dw_pcie *dw)
->  static int rcar_gen4_pcie_start_link(struct dw_pcie *dw)
->  {
->  	struct rcar_gen4_pcie *rcar = to_rcar_gen4_pcie(dw);
-> -	int i, changes;
-> +	int i, changes, ret;
->  
-> -	rcar_gen4_pcie_ltssm_enable(rcar, true);
-> +	if (rcar->platdata->ltssm_enable) {
-> +		ret = rcar->platdata->ltssm_enable(rcar);
-> +		if (ret)
-> +			return ret;
-> +	}
->  
->  	/*
->  	 * Require direct speed change with retrying here if the link_gen is
-> @@ -157,7 +163,7 @@ static void rcar_gen4_pcie_stop_link(struct dw_pcie *dw)
->  {
->  	struct rcar_gen4_pcie *rcar = to_rcar_gen4_pcie(dw);
->  
-> -	rcar_gen4_pcie_ltssm_enable(rcar, false);
-> +	rcar_gen4_pcie_ltssm_control(rcar, false);
->  }
->  
->  static int rcar_gen4_pcie_common_init(struct rcar_gen4_pcie *rcar)
-> @@ -504,6 +510,23 @@ static void rcar_gen4_pcie_remove(struct platform_device *pdev)
->  	rcar_gen4_pcie_unprepare(rcar);
->  }
->  
-> +static int r8a779f0_pcie_ltssm_enable(struct rcar_gen4_pcie *rcar)
-> +{
-> +	rcar_gen4_pcie_ltssm_control(rcar, true);
-> +
-> +	return 0;
-> +}
-> +
-> +static struct rcar_gen4_pcie_platdata platdata_r8a779f0_pcie = {
-> +	.ltssm_enable = r8a779f0_pcie_ltssm_enable,
-> +	.mode = DW_PCIE_RC_TYPE,
-> +};
-> +
-> +static struct rcar_gen4_pcie_platdata platdata_r8a779f0_pcie_ep = {
-> +	.ltssm_enable = r8a779f0_pcie_ltssm_enable,
-> +	.mode = DW_PCIE_EP_TYPE,
-> +};
-> +
->  static struct rcar_gen4_pcie_platdata platdata_rcar_gen4_pcie = {
->  	.mode = DW_PCIE_RC_TYPE,
->  };
-> @@ -513,6 +536,14 @@ static struct rcar_gen4_pcie_platdata platdata_rcar_gen4_pcie_ep = {
->  };
->  
->  static const struct of_device_id rcar_gen4_pcie_of_match[] = {
-> +	{
-> +		.compatible = "renesas,r8a779f0-pcie",
-> +		.data = &platdata_r8a779f0_pcie,
-> +	},
-> +	{
-> +		.compatible = "renesas,r8a779f0-pcie-ep",
-> +		.data = &platdata_r8a779f0_pcie_ep,
-> +	},
->  	{
->  		.compatible = "renesas,rcar-gen4-pcie",
->  		.data = &platdata_rcar_gen4_pcie,
-> -- 
-> 2.25.1
-> 
-> 
-
--- 
-மணிவண்ணன் சதாசிவம்
+On 4/10/2024 10:13 AM, Krzysztof Kozlowski wrote:
+> On 10/04/2024 18:55, Nikunj Kela wrote:
+>> If there are no more questions on this and everyone is on the same page,
+>> I would like to conclude this thread in favor of using a new DT property
+>> 'qcom,firmware-managed-resources'.
+> Just to recap my earlier statement, because I am not sure if I got the
+> answer (if answer was provided, then I don't forgot... sorry):
+>
+> This is a new hardware, so you have a new compatible, therefore any
+> additional property is not needed.
+This is not a new HW, this is the same HW with different FW and 
+interface to FW is different too. As you can see earlier discussion on 
+this thread, new compatible was ruled out since it is the same HW IP.
+>
+> In other cases, just use existing properties, don't bring a third one. :/
+Not sure which existing property you are referring to. There is no 
+property to the best of my knowledge to deal with our scenario. Are you 
+suggesting we reuse "qcom,controlled-remotely" property that is used in 
+Qualcomm BAM DMA Controller for our case too?
+>
+> Best regards,
+> Krzysztof
+>
 
