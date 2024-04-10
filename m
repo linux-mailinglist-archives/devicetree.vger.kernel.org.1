@@ -1,123 +1,75 @@
-Return-Path: <devicetree+bounces-57724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7F1E89E980
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 07:13:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EC5F89E991
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 07:16:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 932F31F23657
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 05:13:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDE89287892
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 05:16:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20E8510A3F;
-	Wed, 10 Apr 2024 05:13:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="NMCuIVCl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B7763EA69;
+	Wed, 10 Apr 2024 05:15:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D7D210A03;
-	Wed, 10 Apr 2024 05:13:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3F1136B08
+	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 05:15:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712725995; cv=none; b=ZLqKkDi38Y+MIbN5QK2WY/50QHzuc+RuKPvDHkLeufjbRNvENKDNXq9Qlwf+yp+pQ8Og/R10phO8R5DiCYeJsgykJlqWAv/MS5IdeWJTefoQqwKa5iE0Sm7FO+dJWHF1iS2R1hpb1dC3jUEUqoiWZO5eTYkfsPaSaKuFAbWwtJs=
+	t=1712726123; cv=none; b=l6gH+UFf0B3MJM6oYBndzDHhsI34Yb+yD4XuPkLvOAlgTUus4inZgh0Hl1du27qAcBMdMgIdcC9v3sKKaUVOZ4cGwasvL2qsTnKH0zmcch+sf/WpPB8PT8+8cReLS/04M2ccmaKnTnmK0xhKBThbWXI4x5BqzkhUv/n6FsGu8YI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712725995; c=relaxed/simple;
-	bh=a5TRDKWuDCYt5gI+XHKyT5nAS3FAmyoyKjRLdhRqDDM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=rSP0sg5ny/BO8fHcROeSLO2S38/RUlMhpF45hlCC2wyr20icYAXDIQHdJ4AyJ6HF1Np0+nl0NfV3CeRM91qEQkonj3J/lagPYnmoh61CXIUGELBls6uPzgpH8iXj6gpsYwgALhYFKc1Cf2aXjX1yYzioiyeOxZr+SNplZRMstSM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=NMCuIVCl; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43A5CgFq014205;
-	Wed, 10 Apr 2024 00:12:42 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1712725962;
-	bh=SI8+icJ/jHUxDmt0fviSH4T6t10zh8dpUwxz6qPx75o=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=NMCuIVClO7FFMWTgN4PfQgrMSg0jSeFXEf+V3M5wp9pLyKBYoZwZX7AjNFOoSyiHU
-	 SS4atkiVywaWqKwHu+CDphSnOuFHFVdExXyntafDgd2VPh3DWuocwibCWOtigV2VEt
-	 HrF4ZDhEWyYR8p2qQm9RE8hwrWETY3StbqlX5qWU=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43A5Cg4J023221
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 10 Apr 2024 00:12:42 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 10
- Apr 2024 00:12:41 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 10 Apr 2024 00:12:41 -0500
-Received: from [172.24.20.156] (lt5cd2489kgj.dhcp.ti.com [172.24.20.156])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43A5CcXu093874;
-	Wed, 10 Apr 2024 00:12:39 -0500
-Message-ID: <b76578ca-9e94-43a6-93cf-690e23545529@ti.com>
-Date: Wed, 10 Apr 2024 10:42:37 +0530
+	s=arc-20240116; t=1712726123; c=relaxed/simple;
+	bh=M0YiND2HKIQuhLDy8IgiKiLUmMGVlmv6hn9b6HFsP6c=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=HnSvmi3npLajGZStkhpL5/BBKa1QkjZ8N/94s7LVxcnBay2FEwy/v17Lgef86ETp3VdWpxnmzg4NqAyUjwz3I8DlUbt+p8LfM8BDP4AqcMbW8kCc+Pq+R8pX3V+KCfuZjeNKma+/olFboPYgPZNn6WlRzOMcnWNIm9CZDTXC4E4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from ip-185-104-138-50.ptr.icomera.net ([185.104.138.50] helo=phil..)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1ruQIh-0008Ut-EM; Wed, 10 Apr 2024 07:15:11 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Diederik de Haas <didi.debian@cknow.org>,
+	Rob Herring <robh@kernel.org>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: rockchip: rk3588s: Fix ordering of nodes
+Date: Wed, 10 Apr 2024 07:14:59 +0200
+Message-Id: <171272604791.1867483.14821084359814414350.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20240406172821.34173-1-didi.debian@cknow.org>
+References: <20240406172821.34173-1-didi.debian@cknow.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] arm64: dts: ti: k3-j721e-mcu: Add the WKUP ESM
- instance
-To: Neha Malcom Francis <n-francis@ti.com>, <robh@kernel.org>,
-        <conor+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <vigneshr@ti.com>, <nm@ti.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kristo@kernel.org>
-References: <20240326122723.2329402-1-n-francis@ti.com>
- <20240326122723.2329402-2-n-francis@ti.com>
-Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20240326122723.2329402-2-n-francis@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Neha
+On Sat, 6 Apr 2024 19:28:04 +0200, Diederik de Haas wrote:
+> Fix the ordering of the main nodes by sorting them alphabetically and
+> then the ones with a memory address sequentially by that address.
+> 
+> 
 
-On 3/26/2024 5:57 PM, Neha Malcom Francis wrote:
-> Add the WKUP ESM instance for J721E. It has three instances in total,
-> one in the MAIN domain (main_esm) and two in the MCU-WKUP domain
-> (mcu_esm and wkup_esm).
->
-> Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi | 5 +++++
->   1 file changed, 5 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-> index 4618b697fbc4..b0f41e9829cc 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-> @@ -689,4 +689,9 @@ mcu_esm: esm@40800000 {
->   		ti,esm-pins = <95>;
->   		bootph-pre-ram;
->   	};
-> +
-> +	wkup_esm: esm@42080000 {
-> +		compatible = "ti,j721e-esm";
-> +		reg = <0x00 0x42080000 0x00 0x1000>;
+Applied, thanks!
 
-I think , only  esm@40800000 should be good for this SOC.
+[1/1] arm64: dts: rockchip: rk3588s: Fix ordering of nodes
+      commit: cbb97fe18e299ece1c0074924c630de6a19b320f
 
-I am not sure, why you want to add this. If you still want to add this 
-for completeness ,
-
-then two options, I suggest
-
-1) If you plan to use this mention bootph-pre-ram and ti,esm-pins
-
-2) In case , no plan to use this then please mark node as disabled
-
-
-> +	};
->   };
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
