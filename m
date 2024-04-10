@@ -1,218 +1,306 @@
-Return-Path: <devicetree+bounces-57801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37C8789EDCC
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 10:40:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEDD089EDEC
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 10:45:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5AC6F1C20FEC
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 08:40:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 555B81F215CE
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 08:45:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B21A4154BF6;
-	Wed, 10 Apr 2024 08:40:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06380156F27;
+	Wed, 10 Apr 2024 08:44:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="WHSfrO/W"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jhQttSN+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 148C113D28C
-	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 08:40:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1669156C78;
+	Wed, 10 Apr 2024 08:44:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712738452; cv=none; b=mdRTROyuE6a3Sc2O30CatbW3uCCNLL52pH9kpVBRzm8M7z0R5qxiGupEp3mqBtrejsAjG5396hoxBVU7AJRuCZJaCTgPw7u2eT0HZFrcFtk+aViIh/5Rjmq4LSpF5Mr1E++nh/0gaCJYri74u4Wqwwus6O4GvW6KB5+WXeB4aK0=
+	t=1712738662; cv=none; b=fnif9628rL466dgqhWWSQqikxVK0UlVcSVZ9FgErq0v99QVT3Cp8iND6LoWeLVnB4UX5AYgjBZ9FHhL3aM7peQPlEylgBjEczUU17sUGaL1hGknbF9wyhZC//2MDwcsQkDDzbIeXjdiXr0vsF+Boi4c9lUJdTZqnds2/CziypXE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712738452; c=relaxed/simple;
-	bh=tPkV/dgJUzieymppUjyKRIwaMmxFkge2PvtDcrZP96c=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=bsIdtw5ceYwsa8bmcy9takU91ubrEeaaFDmP3bCHN1YJN3Vl5Cjnqzsl8fN8ZcuYmp4FeVCNBm/RrqExrXCXGR0s+M4nYFN7asupfDIyjLESmARQ77E7za7fpNGLMbtKFnYHIyextqaxhtAgVCbFUNyrBG2fNBmIqLEwGFGfCTE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=WHSfrO/W; arc=none smtp.client-ip=209.85.161.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-oo1-f46.google.com with SMTP id 006d021491bc7-5aa318db8a0so2231890eaf.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 01:40:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1712738450; x=1713343250; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=NAyow8X3gkrKIXrdZZsBjPykepVjWpYDrdgw89x4pGE=;
-        b=WHSfrO/WmVJJpSxVIeFYxhZhDTkoW9ZEIDwXDD1EMR5DCkIsE51SmS+nKOzzqOZrM2
-         m0/hVeE3mNrx+wV2CShm/ZA3/3pbkXKIHTD2jpgu2HqYm9bgrBcHnaVAfMEM0FBpU9IE
-         SSEBFRMzfA9K5A6Ok6mZY3Ju7NDCEG9WX1npo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712738450; x=1713343250;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NAyow8X3gkrKIXrdZZsBjPykepVjWpYDrdgw89x4pGE=;
-        b=Kn+4AtrNr+2QuqVoq7Z0SYUsg+2GLvuBChy7Yd5iAOpP8ClQ9va1O9AUYA3KBKh5Ci
-         e8ia3QfpxM6emh9u0lvdQZF4m56lFpzxHA9bLb2QdEc4B64r2UP68WMPA2Seic+uemKv
-         XolDshwPNjI3Zl+7icrg4lFzSU+0hCU1YFXKRnQeYkLZw7iBwY0kYO5zS53ozo1n1aaU
-         FRxQz/DquLpl9bazJsgoTXYy1UMofF95Eye3hLUkZxUugvpeLiYgBKaO8dbQut3iDcmk
-         lYu15aVzTvVX7MCOxC14XS+vi/gySGTVWwudEhbIH6/0EHPaSgOZO+beYY05BoSgCSng
-         Gt4Q==
-X-Gm-Message-State: AOJu0Yzk7rDzQ+zEOVoSKEuxaImM3ksaQX3Fb1BDYudLENUGgoOAwQ6x
-	oD+dp5oEHLzGRn0Y7+P2J0bpDdP12LN5ekWXxF8UqXTcfMtTSNeMFeex5kVJmw==
-X-Google-Smtp-Source: AGHT+IGQIGRSVbir8tD+7BU7dQc6yvCondb+sBONRHguGITH+9jJFPC17Z5wLbgHntSupY3dHcRiGg==
-X-Received: by 2002:a05:6870:700c:b0:22e:d2b2:25fe with SMTP id u12-20020a056870700c00b0022ed2b225femr2049905oae.1.1712738450103;
-        Wed, 10 Apr 2024 01:40:50 -0700 (PDT)
-Received: from yuanhsinte1.c.googlers.com (88.216.124.34.bc.googleusercontent.com. [34.124.216.88])
-        by smtp.gmail.com with ESMTPSA id i6-20020a056a00004600b006e04ca18c2bsm9606330pfk.196.2024.04.10.01.40.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Apr 2024 01:40:49 -0700 (PDT)
-From: Hsin-Te Yuan <yuanhsinte@chromium.org>
-Date: Wed, 10 Apr 2024 08:40:45 +0000
-Subject: [PATCH v2] arm64: dts: mediatek: mt8192: Add missing trip point in
- thermal zone
+	s=arc-20240116; t=1712738662; c=relaxed/simple;
+	bh=22j8uEO0liUSIyAblZj5xYhfKJtbo1A0yPEkeRp6MxQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Swl1K7D4DIVDA0mUx3IpZVQuUEglrulPJxFx+6uOz0tvjpPBNpxhqpXfJRslOhQn8cYsDJizVC3F74v3vFE49U/ht7i19xMz2EPQHDWD3+ok0klGUDdz68ACsnZaHa+te3K7Ey1HIIiahBPrrotboT7BdMdCBHAIQfT7kQaZD7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jhQttSN+; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1712738661; x=1744274661;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=22j8uEO0liUSIyAblZj5xYhfKJtbo1A0yPEkeRp6MxQ=;
+  b=jhQttSN+qicqKS+HkmFN7qwua8QD9IwonMgJuZs4HMB2Ej8ap+U28IvU
+   yg6nTkgsv76ldOaeCwvty8xs0Wptgh5EZNuuhisJFRasHGvEvEBBVfkAq
+   Oc4nvLXYzR4d7Cchr5FICbmLbotqhuOpNPi04hF6G8wBzkwxREgJdxo6p
+   ocqrbSeO1ljJkKzC6dE5+GAprToL9teRNG2STEa9jzF94OaJxnkhi/xyy
+   d2fabcCd4dFjbhxJqwhOTfnCcGI4/3BkR0q+1fLnyPOtfsQjT5IFz5unI
+   X2k1rjeuhv5Nxlxg4TQL58C1vDShEw/fBDZTb5H0Tm/2CopIHnZj1NtIW
+   A==;
+X-CSE-ConnectionGUID: N8PKfO9xQ1KyWPgiMXnbmg==
+X-CSE-MsgGUID: v8lD+EJSQt+Xrdwe6JeeBg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="8312387"
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; 
+   d="scan'208";a="8312387"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Apr 2024 01:44:20 -0700
+X-CSE-ConnectionGUID: ZCEpQddvRGO1fCBVA3e7SA==
+X-CSE-MsgGUID: +JF+LgLfSBCF7PIBaR62nw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; 
+   d="scan'208";a="20442869"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Apr 2024 01:44:16 -0700
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 3DE6711FC46;
+	Wed, 10 Apr 2024 11:44:13 +0300 (EEST)
+Date: Wed, 10 Apr 2024 08:44:13 +0000
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc: Luigi311 <git@luigi311.com>, linux-media@vger.kernel.org,
+	jacopo.mondi@ideasonboard.com, mchehab@kernel.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	pavel@ucw.cz, phone-devel@vger.kernel.org
+Subject: Re: [PATCH v3 19/25] media: i2c: imx258: Change register settings
+ for variants of the sensor
+Message-ID: <ZhZRXbkovF7XpsSr@kekkonen.localdomain>
+References: <20240403150355.189229-1-git@luigi311.com>
+ <20240403150355.189229-20-git@luigi311.com>
+ <Zg2BZXQpzsm7jMnc@kekkonen.localdomain>
+ <998efafa-699b-4226-91d4-2ebba85d63ec@luigi311.com>
+ <Zg_Zl0Q2kEDJoQoe@kekkonen.localdomain>
+ <CAPY8ntDP-EPQK_d=5NeVM-ZTjfhtpYRq_y6PVSn9dRzxD5b1_A@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240410-upstream-torvalds-master-v2-1-679777847b63@chromium.org>
-X-B4-Tracking: v=1; b=H4sIAI1QFmYC/42NTQ6DIBBGr2JYdxqg2L9V79G4IDgoSREzg6SN8
- e6lnqDL9yXvfatgpIAs7s0qCEvgkKYK+tAIN9ppQAh9ZaGlNtIoCcvMmdBGyImKffUM0XJGAiM
- tet8adXYXUfWZ0If3nn52lcfAVfnsT0X91j+iRYGCa6vxJk9eOnQPN1KKYYnHRIPotm37Aoofg
- AjDAAAA
-To: Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>, 
- =?utf-8?q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>, 
- Balsam CHIHI <bchihi@baylibre.com>, 
- Alexandre Mergnat <amergnat@baylibre.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Hsin-Te Yuan <yuanhsinte@chromium.org>
-X-Mailer: b4 0.12.4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPY8ntDP-EPQK_d=5NeVM-ZTjfhtpYRq_y6PVSn9dRzxD5b1_A@mail.gmail.com>
 
-According to Documentation/driver-api/thermal/power_allocator.rst, there
-should be two passive trip points. Adding the missing trip point to
-ensure that the governor works optimally.
+Hi Dave,
 
-Fixes: c7a728051f4e ("arm64: dts: mediatek: mt8192: Add thermal nodes and thermal zones")
-Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
----
-Changes in v2:
-- Clearify the reason of adding another passive trip point
-- Link to v1: https://lore.kernel.org/r/20240410-upstream-torvalds-master-v1-1-852e903f0cec@chromium.org
----
- arch/arm64/boot/dts/mediatek/mt8192.dtsi | 40 ++++++++++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
+On Fri, Apr 05, 2024 at 02:16:31PM +0100, Dave Stevenson wrote:
+> Hi Sakari
+> 
+> On Fri, 5 Apr 2024 at 11:59, Sakari Ailus <sakari.ailus@linux.intel.com> wrote:
+> >
+> > Hi Luis, Dave,
+> >
+> > On Thu, Apr 04, 2024 at 04:44:05PM -0600, Luigi311 wrote:
+> > > On 4/3/24 10:18, Sakari Ailus wrote:
+> > > > Hi Luis, Dave,
+> > > >
+> > > > On Wed, Apr 03, 2024 at 09:03:48AM -0600, git@luigi311.com wrote:
+> > > >> From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> > > >>
+> > > >> Sony have advised that there are variants of the IMX258 sensor which
+> > > >> require slightly different register configuration to the mainline
+> > > >> imx258 driver defaults.
+> > > >>
+> > > >> There is no available run-time detection for the variant, so add
+> > > >> configuration via the DT compatible string.
+> > > >>
+> > > >> The Vision Components imx258 module supports PDAF, so add the
+> > > >> register differences for that variant
+> > > >>
+> > > >> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> > > >> Signed-off-by: Luis Garcia <git@luigi311.com>
+> > > >> ---
+> > > >>  drivers/media/i2c/imx258.c | 48 ++++++++++++++++++++++++++++++++++----
+> > > >>  1 file changed, 44 insertions(+), 4 deletions(-)
+> > > >>
+> > > >> diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
+> > > >> index 775d957c9b87..fa48da212037 100644
+> > > >> --- a/drivers/media/i2c/imx258.c
+> > > >> +++ b/drivers/media/i2c/imx258.c
+> > > >> @@ -6,6 +6,7 @@
+> > > >>  #include <linux/delay.h>
+> > > >>  #include <linux/i2c.h>
+> > > >>  #include <linux/module.h>
+> > > >> +#include <linux/of_device.h>
+> > > >>  #include <linux/pm_runtime.h>
+> > > >>  #include <linux/regulator/consumer.h>
+> > > >>  #include <media/v4l2-ctrls.h>
+> > > >> @@ -321,8 +322,6 @@ static const struct imx258_reg mipi_642mbps_24mhz_4l[] = {
+> > > >>
+> > > >>  static const struct imx258_reg mode_common_regs[] = {
+> > > >>    { 0x3051, 0x00 },
+> > > >> -  { 0x3052, 0x00 },
+> > > >> -  { 0x4E21, 0x14 },
+> > > >>    { 0x6B11, 0xCF },
+> > > >>    { 0x7FF0, 0x08 },
+> > > >>    { 0x7FF1, 0x0F },
+> > > >> @@ -345,7 +344,6 @@ static const struct imx258_reg mode_common_regs[] = {
+> > > >>    { 0x7FA8, 0x03 },
+> > > >>    { 0x7FA9, 0xFE },
+> > > >>    { 0x7B24, 0x81 },
+> > > >> -  { 0x7B25, 0x00 },
+> > > >>    { 0x6564, 0x07 },
+> > > >>    { 0x6B0D, 0x41 },
+> > > >>    { 0x653D, 0x04 },
+> > > >> @@ -460,6 +458,33 @@ static const struct imx258_reg mode_1048_780_regs[] = {
+> > > >>    { 0x034F, 0x0C },
+> > > >>  };
+> > > >>
+> > > >> +struct imx258_variant_cfg {
+> > > >> +  const struct imx258_reg *regs;
+> > > >> +  unsigned int num_regs;
+> > > >> +};
+> > > >> +
+> > > >> +static const struct imx258_reg imx258_cfg_regs[] = {
+> > > >> +  { 0x3052, 0x00 },
+> > > >> +  { 0x4E21, 0x14 },
+> > > >> +  { 0x7B25, 0x00 },
+> > > >> +};
+> > > >> +
+> > > >> +static const struct imx258_variant_cfg imx258_cfg = {
+> > > >> +  .regs = imx258_cfg_regs,
+> > > >> +  .num_regs = ARRAY_SIZE(imx258_cfg_regs),
+> > > >> +};
+> > > >> +
+> > > >> +static const struct imx258_reg imx258_pdaf_cfg_regs[] = {
+> > > >> +  { 0x3052, 0x01 },
+> > > >> +  { 0x4E21, 0x10 },
+> > > >> +  { 0x7B25, 0x01 },
+> > > >> +};
+> > > >> +
+> > > >> +static const struct imx258_variant_cfg imx258_pdaf_cfg = {
+> > > >> +  .regs = imx258_pdaf_cfg_regs,
+> > > >> +  .num_regs = ARRAY_SIZE(imx258_pdaf_cfg_regs),
+> > > >> +};
+> > > >> +
+> > > >>  static const char * const imx258_test_pattern_menu[] = {
+> > > >>    "Disabled",
+> > > >>    "Solid Colour",
+> > > >> @@ -637,6 +662,8 @@ struct imx258 {
+> > > >>    struct v4l2_subdev sd;
+> > > >>    struct media_pad pad;
+> > > >>
+> > > >> +  const struct imx258_variant_cfg *variant_cfg;
+> > > >> +
+> > > >>    struct v4l2_ctrl_handler ctrl_handler;
+> > > >>    /* V4L2 Controls */
+> > > >>    struct v4l2_ctrl *link_freq;
+> > > >> @@ -1104,6 +1131,14 @@ static int imx258_start_streaming(struct imx258 *imx258)
+> > > >>            return ret;
+> > > >>    }
+> > > >>
+> > > >> +  ret = imx258_write_regs(imx258, imx258->variant_cfg->regs,
+> > > >> +                          imx258->variant_cfg->num_regs);
+> > > >> +  if (ret) {
+> > > >> +          dev_err(&client->dev, "%s failed to set variant config\n",
+> > > >> +                  __func__);
+> > > >> +          return ret;
+> > > >> +  }
+> > > >> +
+> > > >>    ret = imx258_write_reg(imx258, IMX258_CLK_BLANK_STOP,
+> > > >>                           IMX258_REG_VALUE_08BIT,
+> > > >>                           imx258->csi2_flags & V4L2_MBUS_CSI2_NONCONTINUOUS_CLOCK ?
+> > > >> @@ -1492,6 +1527,10 @@ static int imx258_probe(struct i2c_client *client)
+> > > >>
+> > > >>    imx258->csi2_flags = ep.bus.mipi_csi2.flags;
+> > > >>
+> > > >> +  imx258->variant_cfg = of_device_get_match_data(&client->dev);
+> > > >
+> > > > You'll also need to keep this working for ACPI based systems. I.e. in
+> > > > practice remove "of_" prefix here and add the non-PDAF variant data to the
+> > > > relevant ACPI ID list.
+> > > >
+> > >
+> > > Removing of_ is easy enough and looking at all the other commits that make
+> > > this change in other drivers I dont see anything else being done besides
+> > > adding in the .data section that is down below for both imx258 and pdaf
+> > > versions. Is that what you are referencing or is there some other place
+> > > to add variant data to ACPI ID list?
+> >
+> > Speaking of which---are you absolutely certain there are two variants of
+> > this sensor? Many sensors that have a different pixel pattern (PDAF pixels
+> > or a non-Bayer pattern) can produce Bayer data when condigured so. The fact
+> > that you have differing register configuration for the PDAF and non-PDAF
+> > cases suggests this may well be the case.
+> 
+> I had a discussion with our contact at Sony over the configuration,
+> and Soho Enterprises who made the module I have also consulted with
+> Sony (their main person is ex Sony himself).
+> 
+> There is a spec version field in the OTP which reflects the pixel
+> pattern. It has defined options of:
+> - HDR pattern
+> - Binning pattern
+> - mono
+> - non-PDAF
+> - HDR HDD
+> 
+> Sony can't release information on how to read that information from
+> the sensor OTP as it is contractually locked by contracts with Intel.
+> Whilst information obtained via other routes means I have checked it
+> on my module as HDR pattern whilst the Nautilus platform has the
+> non-PDAF variant, I'm not going to spoil our relationship with Sony by
+> releasing that.
+> 
+> It's possible that the Nautilus sensor will work happily with the
+> settings required for the PDAF variant, but I have no way of testing
+> that, and the registers in question are undocumented. Changing them
+> blindly isn't going to make any friends, and I doubt existing platform
+> users wish to rerun all their image quality tests on the sensor to
+> validate the change.
+> 
+> Unless Intel wish to release the information on reading the OTP, we
+> have no way of telling the variants apart but need different register
+> configurations. If there is a better way of handling that situation
+> than compatible strings, then I'm open to suggestions.
+> 
+> There's a short thread on libcamera-devel from back in 2022 where I
+> was looking into this [1]
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index 05e401670bced..08d8bccc84669 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -1959,6 +1959,11 @@ cpu0-thermal {
- 			thermal-sensors = <&lvts_mcu MT8192_MCU_LITTLE_CPU0>;
- 
- 			trips {
-+				cpu0_thres: trip-point {
-+					temperature = <68000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
- 				cpu0_alert: trip-alert {
- 					temperature = <85000>;
- 					hysteresis = <2000>;
-@@ -1989,6 +1994,11 @@ cpu1-thermal {
- 			thermal-sensors = <&lvts_mcu MT8192_MCU_LITTLE_CPU1>;
- 
- 			trips {
-+				cpu1_thres: trip-point {
-+					temperature = <68000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
- 				cpu1_alert: trip-alert {
- 					temperature = <85000>;
- 					hysteresis = <2000>;
-@@ -2019,6 +2029,11 @@ cpu2-thermal {
- 			thermal-sensors = <&lvts_mcu MT8192_MCU_LITTLE_CPU2>;
- 
- 			trips {
-+				cpu2_thres: trip-point {
-+					temperature = <68000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
- 				cpu2_alert: trip-alert {
- 					temperature = <85000>;
- 					hysteresis = <2000>;
-@@ -2049,6 +2064,11 @@ cpu3-thermal {
- 			thermal-sensors = <&lvts_mcu MT8192_MCU_LITTLE_CPU3>;
- 
- 			trips {
-+				cpu3_thres: trip-point {
-+					temperature = <68000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
- 				cpu3_alert: trip-alert {
- 					temperature = <85000>;
- 					hysteresis = <2000>;
-@@ -2079,6 +2099,11 @@ cpu4-thermal {
- 			thermal-sensors = <&lvts_mcu MT8192_MCU_BIG_CPU0>;
- 
- 			trips {
-+				cpu4_thres: trip-point {
-+					temperature = <68000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
- 				cpu4_alert: trip-alert {
- 					temperature = <85000>;
- 					hysteresis = <2000>;
-@@ -2109,6 +2134,11 @@ cpu5-thermal {
- 			thermal-sensors = <&lvts_mcu MT8192_MCU_BIG_CPU1>;
- 
- 			trips {
-+				cpu5_thres: trip-point {
-+					temperature = <68000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
- 				cpu5_alert: trip-alert {
- 					temperature = <85000>;
- 					hysteresis = <2000>;
-@@ -2139,6 +2169,11 @@ cpu6-thermal {
- 			thermal-sensors = <&lvts_mcu MT8192_MCU_BIG_CPU2>;
- 
- 			trips {
-+				cpu6_thres: trip-point {
-+					temperature = <68000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
- 				cpu6_alert: trip-alert {
- 					temperature = <85000>;
- 					hysteresis = <2000>;
-@@ -2169,6 +2204,11 @@ cpu7-thermal {
- 			thermal-sensors = <&lvts_mcu MT8192_MCU_BIG_CPU3>;
- 
- 			trips {
-+				cpu7_thres: trip-point {
-+					temperature = <68000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
- 				cpu7_alert: trip-alert {
- 					temperature = <85000>;
- 					hysteresis = <2000>;
+Oops! I guess we'll need these two for now at least.
 
----
-base-commit: 20cb38a7af88dc40095da7c2c9094da3873fea23
-change-id: 20240410-upstream-torvalds-master-40aeff5416c7
+We don't really have support for PDAF anyway (I'd expect this to be
+documented for a driver, for instance) so I presume currently for
+PDAF-variants the configuration is about "correcting" the PDAF pixels?
 
-Best regards,
+The problem seems to be worse on ACPI systems as there's a single HID only.
+
+> 
+>   Dave
+> 
+> [1] https://lists.libcamera.org/pipermail/libcamera-devel/2022-June/031449.html
+> 
+> > >
+> > > >> +  if (!imx258->variant_cfg)
+> > > >> +          imx258->variant_cfg = &imx258_cfg;
+> > > >> +
+> > > >>    /* Initialize subdev */
+> > > >>    v4l2_i2c_subdev_init(&imx258->sd, client, &imx258_subdev_ops);
+> > > >>
+> > > >> @@ -1579,7 +1618,8 @@ MODULE_DEVICE_TABLE(acpi, imx258_acpi_ids);
+> > > >>  #endif
+> > > >>
+> > > >>  static const struct of_device_id imx258_dt_ids[] = {
+> > > >> -  { .compatible = "sony,imx258" },
+> > > >> +  { .compatible = "sony,imx258", .data = &imx258_cfg },
+> > > >> +  { .compatible = "sony,imx258-pdaf", .data = &imx258_pdaf_cfg },
+> > > >>    { /* sentinel */ }
+> > > >>  };
+> > > >>  MODULE_DEVICE_TABLE(of, imx258_dt_ids);
+> > > >
+> > >
+
 -- 
-Hsin-Te Yuan <yuanhsinte@chromium.org>
+Kind regards,
 
+Sakari Ailus
 
