@@ -1,114 +1,151 @@
-Return-Path: <devicetree+bounces-57696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B7AA89E6F6
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 02:40:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEB0189E70C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 02:42:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D2C21C211B5
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 00:40:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 986D2283FFA
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 00:42:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E90A6389;
-	Wed, 10 Apr 2024 00:40:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 936CA1388;
+	Wed, 10 Apr 2024 00:42:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UfxFwwmB"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="RXi3DPw+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0407387;
-	Wed, 10 Apr 2024 00:40:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86D4A5256
+	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 00:42:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712709606; cv=none; b=AzqwtIn+gEZwkQTSLSjoQZaLusMNs3Trt7MM5aqbS/bukDDiLM+0IETxRm/vBGyvGwDk2Z8ZJ5d9zEQZe4DN6Rg+ebt0DOXigLBEqgxVdeTzo2e22YTgzvhvYArjsBGQYbOsqpzXRlguAb42eknxDvW/igxHW7EgqQTruI3VglQ=
+	t=1712709730; cv=none; b=f//5Qo+cEsQKGUwmW/Uul1MViExyxDbmWLygoQsNcBp/F+kj0S32B9jqKLL8cM3UncYk4Ig8/bVPUG1LfmfSAfetL56a3tbW7a0KyS25qEeEx8BC+sUa/SAzkFGztQia8bOQe9WEZo+kZMLXEBtXkOgRoZTAh229/XQIzQdtk7E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712709606; c=relaxed/simple;
-	bh=DFJlsyWtNR4AILqPAwwwDiwJLsYOsOgSTRpDX2EDGcU=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UnX4UXOUB25wZ8GpUS+5m/BBc3rKsUcUeJHq0MMJbhYFpgFtHJckswMWTsX9qmXzo8u7J9RxocbMQW7TxK61BFYZuLzgby+3lVFSFMvuaaeVqOLyd3yycVS9kvSjQmXRXbLGh/wg92L+OHv9VKkVoVywWdDCFJqxop1O8x8P9n4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=UfxFwwmB; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43A0dq7K041056;
-	Tue, 9 Apr 2024 19:39:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1712709592;
-	bh=cmZSSvfxWpFvGOfbBlYMoBX5v+AChVyAxZqkm1pY0HU=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=UfxFwwmB/sQfjtdjat+TPCwB//zI8o0CaKPlUMNH3g0S6HxOhW+HTbpOlYhQq/vN+
-	 7L2oiZIiqY0p35cRLQLFgW1jdhXGOCHkOWqgMLzh98Ah7N5/e4DCrEvWavvhhu7Gjs
-	 hG+ORkD6AKUKqckEyuMRTyMtcS3gxZgV8vEnCzhU=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43A0dqLa130837
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 9 Apr 2024 19:39:52 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 9
- Apr 2024 19:39:52 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 9 Apr 2024 19:39:52 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43A0dqud128754;
-	Tue, 9 Apr 2024 19:39:52 -0500
-Date: Tue, 9 Apr 2024 19:39:52 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC: =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren
-	<tony@atomide.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        <linux-omap@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-Subject: Re: (subset) [PATCH 1/2] arm64: dts: ti: k3-am62p5-sk: minor
- whitespace cleanup
-Message-ID: <20240410003952.wnxayyiyqxkgj7we@supplier>
-References: <20240208105146.128645-1-krzysztof.kozlowski@linaro.org>
- <171269138685.642844.11136653326464585397.b4-ty@ti.com>
- <63fc911e-8906-43d0-a4bf-80ceac83d178@linaro.org>
+	s=arc-20240116; t=1712709730; c=relaxed/simple;
+	bh=6n12Zu2PXd66Y71IlQLtaUfwzP6yoiw9IUKTbil8GRo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=OhxlFrpoSB97ek7DPe6QEQK+h/ZGORTEu7KHhzHjUfZ1RwXasTo4mcswX+RiZOi70T2fjShUtUWpApGRGQgie8N3jeGxXzrAGTjruRhGItk/34A4SiiMd1ltNCbayVz+Cd0Exff8AmzGzHrSEbrTETxjsQ7ueDqRcUYfHVBQCbc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=RXi3DPw+; arc=none smtp.client-ip=209.85.160.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qt1-f175.google.com with SMTP id d75a77b69052e-4348110e888so109881cf.1
+        for <devicetree@vger.kernel.org>; Tue, 09 Apr 2024 17:42:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1712709726; x=1713314526; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=E707FZfqJXCBcA2uPBas1hK+jmqbfEZiGJ11/cbpPtU=;
+        b=RXi3DPw+8a609DGiSGokomsp/tcC/Zdkvf174NC0Xl7hdBOmEzriLAA39/Z44B2AVc
+         x+k1vGgAzOyzmkE0KKB/VGAFH4OY2DcPaHwKg1TR0tIFjs7p3spuBc80Qn2qUo0/ESJ/
+         R7pUVuWO/BlRknRQo6Yr3g/E9P9KFLwtun1g1aONN6++2rPp/+JFTlkPK+dxP12IXhGg
+         nmWbqK9POhXZgUaCNI9yzTgtxd/b4Km7aIfgyF8YkxkSyO3kBbCZ7I63vmazjRq5phV6
+         OF0uglWOZkm5x9NBsmdyf/pmdFarHAcqP2cUun4I7+x49Kdf68A4GJz3dJwVd6JitA8M
+         aYSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712709726; x=1713314526;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=E707FZfqJXCBcA2uPBas1hK+jmqbfEZiGJ11/cbpPtU=;
+        b=lxzW1SQPya4CsFSnHQeIpoqeag4z2Fc8Y17Sj5K1InAX63/wWlj2WRPlJDCus26M/i
+         WEk9HolGIHQHtkL7jfjEdkngkIkDmil+zbOeZhnGvl+Gtbcq+7HSCqgU2vgtvYTM3W3f
+         d2zDIko7n5JpxqkB9bwtcGHcNF3lAqUVFCinuGAZg5hamAxXHbz5cfgxAEFEh1lgu+ZA
+         V2emXtbMbwSqeNG4teB5z7r/eKR+1wNFWrMehhwvFlYib9gaXFyxmqx3IzhybfFeJIky
+         6+XFHQxqbjrXEggdIhVKTBEmTDfvbDQ2BcSoWe1GddyMazsW36MkAjsvA6BwC1gigIZo
+         FwNw==
+X-Forwarded-Encrypted: i=1; AJvYcCXD/+0rpTHQpi9R6VPVCIE1jCIGkYkFArgXo+RyDNInMi4gBaZmWypVZ18CETfIe7v+0WyP9Gw6XE/W6KtCJmSfX+BgY4/Y2MyAbQ==
+X-Gm-Message-State: AOJu0Yx2HlMMGVuqfULz466XTtna//bPpErPinOtXf0lG3PiZUCbte4l
+	QNF4GsC3h17E4lITiBQPqz1TPcLy3EKqjMl3nzCGCrVfyxpgc8ASfH2ZdhLkCnDoLMQ6yr67Dyi
+	8TbIUbG+AgEVlBp9NEztVvNw6feyrLQ108Nro
+X-Google-Smtp-Source: AGHT+IE6pOiRvKwazX638Ih8wKd7cvEo05JqQcXWWafVxMVp5G/KiIGH74/vCv7oIW4NbZNraz/tqKumu97CziTEeuU=
+X-Received: by 2002:a05:622a:1cc3:b0:434:6677:7311 with SMTP id
+ bc3-20020a05622a1cc300b0043466777311mr50389qtb.17.1712709726223; Tue, 09 Apr
+ 2024 17:42:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <63fc911e-8906-43d0-a4bf-80ceac83d178@linaro.org>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20240409053704.428336-1-saravanak@google.com> <CAMuHMdVL4xUMARcze=ZyZA=Hi3=nvfZ34juSKG7cgA5ygxASaw@mail.gmail.com>
+In-Reply-To: <CAMuHMdVL4xUMARcze=ZyZA=Hi3=nvfZ34juSKG7cgA5ygxASaw@mail.gmail.com>
+From: Saravana Kannan <saravanak@google.com>
+Date: Tue, 9 Apr 2024 17:41:30 -0700
+Message-ID: <CAGETcx84fpe4KgrbOr15DYmCKLqdDVHn1DdkVRT8FjBW3qBLXw@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 0/2] fw_devlink overlay fix
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Herve Codina <herve.codina@bootlin.com>, Rob Herring <robh@kernel.org>, kernel-team@android.com, 
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-spi@vger.kernel.org, 
+	linux-acpi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 22:04-20240409, Krzysztof Kozlowski wrote:
-> On 09/04/2024 21:36, Nishanth Menon wrote:
-> > Hi Krzysztof Kozlowski,
-> > 
-> > On Thu, 08 Feb 2024 11:51:45 +0100, Krzysztof Kozlowski wrote:
-> >> The DTS code coding style expects exactly one space before '{'
-> >> character.
-> >>
-> >>
-> > As discussed offline, I am picking this patch up.
-> > 
-> > I have applied the following to branch ti-k3-dts-next on [1].
-> > Thank you!
-> > 
-> > [1/2] arm64: dts: ti: k3-am62p5-sk: minor whitespace cleanup
-> >       commit: 45ab8daed512258c07fd14536a3633440dabfe84
-> 
-> What about the omap one (second in the series)? Shall I take it?
+On Tue, Apr 9, 2024 at 8:10=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68k=
+.org> wrote:
+>
+> Hi Saravana,
+>
+> On Tue, Apr 9, 2024 at 7:37=E2=80=AFAM Saravana Kannan <saravanak@google.=
+com> wrote:
+> > Don't bother reviewing this patch. It needs to be tested and possibly
+> > refactored first.
+> >
+> > Geert and Herve,
+> >
+> > This patch serious should hopefully fix both of your use cases
+> > [1][2][3]. Can you please check to make sure the device links created
+> > to/from the overlay devices are to/from the right ones?
+>
+> Thanks for your series!
+>
+> After applying the first patch (the revert), the issue reported in
+> [1] is back, as expected.
+> After applying both patches, applying[A]/unapplying[B]/reapplying[C]
+> overlay [4] works as without this series, so
+> Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>
+> Note that the state of /sys/class/devlink/ after [C] is still not the
+> same as after [A], as reported before in [5]:
+>   - platform:e6060000.pinctrl--platform:keys link is not recreated in [B]=
+,
+>   - nothing changes in /sys/class/devlink in [C].
+> But that issue is not introduced in this series.
 
-I had poked Tony about it (he is the maintainer for OMAP). Tony: could
-you comment?
+Thanks for the testing and additional info! Looks like I'll need to
+make more changes to accommodate more cases. I'll send out v3 once I
+figure it out, but it should continue working for you.
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+-Saravana
+
+>
+> > [1] - https://lore.kernel.org/lkml/CAMuHMdXEnSD4rRJ-o90x4OprUacN_rJgyo8=
+x6=3D9F9rZ+-KzjOg@mail.gmail.com/
+>
+> [4] "arm64: dts: renesas: ebisu: cn41: Add overlay for MSIOF0 and 25LC040=
+"
+>     https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers=
+.git/commit/?h=3Dtopic/renesas-overlays&id=3D222a4936b0d3dabd43bdffb3a57842=
+3bff97b02d
+> [5] https://lore.kernel.org/lkml/CAMuHMdXNoYH8PJE1xb4PK-vzjXtOzrxNJoZhsHT=
+-H4Ucm=3D7_ig@mail.gmail.com/
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
+8k.org
+>
+> In personal conversations with technical people, I call myself a hacker. =
+But
+> when I'm talking to journalists I just say "programmer" or something like=
+ that.
+>                                 -- Linus Torvalds
 
