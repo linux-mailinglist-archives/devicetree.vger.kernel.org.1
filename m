@@ -1,159 +1,191 @@
-Return-Path: <devicetree+bounces-57959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5109089FBEE
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 17:46:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66C1489FBF1
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 17:46:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03391286DC4
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 15:46:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E88FD1F24613
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 15:46:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A769916F0CC;
-	Wed, 10 Apr 2024 15:45:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 517F116F0D6;
+	Wed, 10 Apr 2024 15:46:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hztov4Vi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HKThYxjC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 769631E878;
-	Wed, 10 Apr 2024 15:45:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7177416EC1F
+	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 15:46:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712763955; cv=none; b=CkmtlIp7JkCNQer5QB2yRfHCRA+EE1uMyXOWee/SjiXCI+CH7hAoYuv6AXFMUm5+FKVqax2feClSMRKZTkwy181E1k/3sWpp38yyeoxhHfW46rbsXfOhIJPB4Rn5wAkWSxyifUzfiwu06SpCHeQdmJ3dyCvdcx1cU87OmCSScJ0=
+	t=1712763964; cv=none; b=cdDVgvt063XBamSATLqX3MU3RJElU5fqJ/l2X/nwVGsS/PL66zFCKeAF/HSWgXC3qAhjfw4+SFlLB1OOvf00X1hrWLa9ff8S2Bg2XSYN5bs3eXA64cwsdcZ6h4HNdlkLKwKMrN+imtv19lIn4UleG1HfOuBHhOuYVpCTZYYL9Y8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712763955; c=relaxed/simple;
-	bh=Iws5TST+OzZUPfFNgljptP+ZHHp7PyVhznvweeW0O3I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NrXEVQoxKJYPovdGpwE5LZ0bNA+YfJokKOUIMA6IzE0sS+CqUsKuZhjqe4knKSGFArZBZ4hgyoWlTXvo+HZolatSYS6xzHxfbTLNs0w39jhWL47Zwiov7Xtw2PQ5QwIzQtcYIQLl21/cHumO8pf0314JkfdkGZI9g1RqTnrNfQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hztov4Vi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9686BC433C7;
-	Wed, 10 Apr 2024 15:45:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712763955;
-	bh=Iws5TST+OzZUPfFNgljptP+ZHHp7PyVhznvweeW0O3I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Hztov4Vi8VkLznfPfx81BXFAyzQZRGXg8qs8z09Njupjvxnx0lq8moLtVwrtZ4ugW
-	 PC8HjJtzouaE2i7H0Fns76YObHbCk/NIkxZi/v36frgl5gP0eRQU6Yy7FjaIqmZeAs
-	 yNY4mKMoX/OlZUES+oyLQeYbXzLk0cWgTsFnn7t3QV1WdJLLJuUAVd7YTMtMU8Z6XV
-	 uXmd1hMQlpO7+R0QCk1KOHaVrg4BK2KNNGvLQuukpT85ZEkIGDSmtDjxdF08TxWyci
-	 FgVLt/uUPuyMo/JzX/4rG9ptLVA+EK4KPlPluLZ+tn/CzS8LgW5E+NzCSeU7Q5n+76
-	 +mWkohOqm0IwQ==
-Date: Wed, 10 Apr 2024 16:45:47 +0100
-From: Will Deacon <will@kernel.org>
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: Frank Li <frank.li@nxp.com>,
-	"mark.rutland@arm.com" <mark.rutland@arm.com>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"shawnguo@kernel.org" <shawnguo@kernel.org>,
-	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>,
-	"festevam@gmail.com" <festevam@gmail.com>,
-	"john.g.garry@oracle.com" <john.g.garry@oracle.com>,
-	"jolsa@kernel.org" <jolsa@kernel.org>,
-	"namhyung@kernel.org" <namhyung@kernel.org>,
-	"irogers@google.com" <irogers@google.com>,
-	"mike.leach@linaro.org" <mike.leach@linaro.org>,
-	"peterz@infradead.org" <peterz@infradead.org>,
-	"mingo@redhat.com" <mingo@redhat.com>,
-	"acme@kernel.org" <acme@kernel.org>,
-	"alexander.shishkin@linux.intel.com" <alexander.shishkin@linux.intel.com>,
-	"adrian.hunter@intel.com" <adrian.hunter@intel.com>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>
-Subject: Re: [EXT] Re: [PATCH v8 3/8] perf: imx_perf: let the driver manage
- the counter usage rather the user
-Message-ID: <20240410154546.GA25225@willie-the-truck>
-References: <20240322063930.749126-1-xu.yang_2@nxp.com>
- <20240322063930.749126-3-xu.yang_2@nxp.com>
- <20240409152627.GA23621@willie-the-truck>
- <DU2PR04MB882209413AB62531713166B38C062@DU2PR04MB8822.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1712763964; c=relaxed/simple;
+	bh=s3d5GTfocV5mY2Zlq7KQ3BlApnCMJ6kcdExQJ0HP7ho=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TAHqyAcYWHC5+P9031XJXEUrBayv4a1nQjx/KHWRC87u02xywpN6EQxBZBVZ95vmDVosbouIkESfNuKhqae4slXxpu+yvobyNwDdzDRl7HHdv2D0eX0vWegsuXrnhWyL6E6Gu1PCp1MfVHTyogQfAeSQ429wbpZhzdse6F4TJ/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HKThYxjC; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-345600106d3so2921674f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 08:46:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712763961; x=1713368761; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=kMSb41Ro1MGCR8DNhZuqmJgnrt1qNZLXyeHX6+ZpN0c=;
+        b=HKThYxjCluXVw7h0qJf7XkddA4WNekRYSyIpBphayZIGVLwsyDdDhqMlBgA5UT3H/d
+         ksU2F84+9UX/kkYk+QMb9r6fA2qD0NkX8Wepwmhr4EbXjT69FmNBz3BvSvE/t9w6YXr4
+         vngiP3P64LcZwPAbzcuvPzNd2uyUsIaWaxZmXe3aKqRvBoYN9eQ5Uicule3u+e3smR79
+         185mnPZe+FDeN/NPGwYpPcIcHST6lHdptYnfN9vjAvVwDYtLPDmqTso1P7QHsF99CXwM
+         mhPhhnFW+r+pCMZ6HgX0EZh0mmZRO/yvu4gObTEZLq9BTHpg6WwN+Xd6KcWLZKo8tHeT
+         ERyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712763961; x=1713368761;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kMSb41Ro1MGCR8DNhZuqmJgnrt1qNZLXyeHX6+ZpN0c=;
+        b=Y8gRzagzkXALY7YWE3NolEkuRs0SARFhpMRjSfOoYQrfjnB9KKNl4jfvVTRdn3zlS3
+         /SxdhgE5RiDRdUvKIQIpluSHefGcFuR97m5EJfA2CriWMtJu08uUvLdZiJAfTik8khD3
+         NGat7/vJdaDl2gardJuQmMMCHrAmmPYANJuQPkR2d0VQeuMGF8b5Hc6R7r6XR8WZytts
+         b5bCjA9oUOtSepxan6/x0f6i6SJWIkaCOB+PHwrNIBHCclUb6LRmzA3glJjrJFoCzaB9
+         83Uqr/5YMCyqzEVGlYOlPLxc34FxjgfnqVs2jx3kRwm1dfhUg9ht7zFlEIAKLMMN6IFo
+         8IQg==
+X-Forwarded-Encrypted: i=1; AJvYcCVqpXXaxynvAcax+WdJplB2w8AOhXIDSJrh727u5ZEwWPwC+AVB8Z5hABrYIHni4G8TLeE2Swe3wa5DBVdclBQRP3duDJujZtkKhA==
+X-Gm-Message-State: AOJu0Yw6qtG7mdt0MCFVFUWsZF2pRwUHCSEDMW3c8+BuPvpvmfojUWRC
+	r91zLRyvpKvmQyp3PzWAMkDzqZr7PuYukNjpQY9i1SkxyfPf1OHLms9zpJi/p7U=
+X-Google-Smtp-Source: AGHT+IF0symX7MBre/8yHxnzDjbqOYY3x1l9Wzi4MUqBDA94Yfii0Mvzcm9Gl+mwzde6Jq79PEtD4g==
+X-Received: by 2002:a5d:4804:0:b0:346:758e:5f29 with SMTP id l4-20020a5d4804000000b00346758e5f29mr1201910wrq.60.1712763960700;
+        Wed, 10 Apr 2024 08:46:00 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id e8-20020a5d4e88000000b003438cc1d2b4sm14027417wru.59.2024.04.10.08.45.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Apr 2024 08:46:00 -0700 (PDT)
+Message-ID: <be000ce5-0450-44a7-994b-e05d1748ad32@linaro.org>
+Date: Wed, 10 Apr 2024 17:45:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DU2PR04MB882209413AB62531713166B38C062@DU2PR04MB8822.eurprd04.prod.outlook.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: sm8650: add description of CCI
+ controllers
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Jagadeesh Kona <quic_jkona@quicinc.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240410074951.447898-1-vladimir.zapolskiy@linaro.org>
+ <d47ce3e8-8ce7-416f-be0f-2283575f24b2@linaro.org>
+ <d91239fb-d15c-4984-96e4-1c2bd1361ad2@linaro.org>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <d91239fb-d15c-4984-96e4-1c2bd1361ad2@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Apr 10, 2024 at 07:39:46AM +0000, Xu Yang wrote:
-> > On Fri, Mar 22, 2024 at 02:39:25PM +0800, Xu Yang wrote:
-> > > In current design, the user of perf app needs to input counter ID to count
-> > > events. However, this is not user-friendly since the user needs to lookup
-> > > the map table to find the counter. Instead of letting the user to input
-> > > the counter, let this driver to manage the counters in this patch.
-> > 
-> > I think we still have to support the old interface so that we don't break
-> > those existing users (even if the driver just ignores whatever counter ID
-> > is provided in a backwards-compatible way).
-> > 
-> > > This will be implemented by:
-> > >  1. allocate counter 0 for cycle event.
-> > >  2. find unused counter from 1-10 for reference events.
-> > >  3. allocate specific counter for counter-specific events.
-> > >
-> > > In this patch, counter attribute is removed too. To mark counter-specific
-> > > events, counter ID will be encoded into perf_pmu_events_attr.id.
-> > >
-> > > Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> > > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> > >
-> > > ---
-> > > Changes in v6:
-> > >  - new patch
-> > > Changes in v7:
-> > >  - no changes
-> > > Changes in v8:
-> > >  - add Rb tag
-> > > ---
-> > >  drivers/perf/fsl_imx9_ddr_perf.c | 168 ++++++++++++++++++-------------
-> > >  1 file changed, 99 insertions(+), 69 deletions(-)
-> > >
-> > > diff --git a/drivers/perf/fsl_imx9_ddr_perf.c b/drivers/perf/fsl_imx9_ddr_perf.c
-> > > index 0017f2c9ef91..b728719b494c 100644
-> > > --- a/drivers/perf/fsl_imx9_ddr_perf.c
-> > > +++ b/drivers/perf/fsl_imx9_ddr_perf.c
-> > > @@ -245,14 +249,12 @@ static const struct attribute_group ddr_perf_events_attr_group = {
-> > >       .attrs = ddr_perf_events_attrs,
-> > >  };
-> > >
-> > > -PMU_FORMAT_ATTR(event, "config:0-7");
-> > > -PMU_FORMAT_ATTR(counter, "config:8-15");
-> > > +PMU_FORMAT_ATTR(event, "config:0-15");
-> > 
-> > Sadly, this is a user-visible change so I think it will break old tools,
-> > won't it?
+On 10/04/2024 15:22, Vladimir Zapolskiy wrote:
+> On 4/10/24 11:26, Krzysztof Kozlowski wrote:
+>> On 10/04/2024 09:49, Vladimir Zapolskiy wrote:
+>>> Qualcomm SM8650 SoC has three CCI controllers with two I2C busses
+>>> connected to each of them.
+>>>
+>>> The CCI controllers on SM8650 are compatible with the ones found on
+>>> many other older generations of Qualcomm SoCs.
+>>>
+>>> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+>>> ---
+>>> The change is based and depends on a patch series from Jagadeesh Kona:
+>>>
+>>>    https://lore.kernel.org/linux-arm-msm/20240321092529.13362-1-quic_jkona@quicinc.com/
+>>>
+>>> It might be an option to add this change right to the series,
+>>> since it anyway requires a respin.
+>>>
+>>> A new compatible value "qcom,sm8650-cci" is NOT added to
+>>> Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml , because
+>>> the controller IP description and selection is covered by a generic
+>>> compatible value "qcom,msm8996-cci".
+>>
+>> I do not understand this reasoning. So you introduce known errors
+>> because errors are ok?
+>>
+>> How does it pass dtbs_check validation?
 > 
-> For imx ddr pmu, most of the people will use metrics rather event itself,
-> and we have speficy the format of event parameters in metrics table.
-> The parameters is also updated in this patchset.
+> To continue the technical discussion let me ask you to comment on the
+> absolutely identical subject, which has been taken in the past in connection
+> to "qcom,sc8280xp-cci" compatible, probably it didn't attact any sufficient
+> attention before, so let's continue now.
 > 
-> And to easy use for user, the counter should be hidden (transparent) to
-> user after I had talk with Frank. Then, the user need't to look up the event
-> table to find which counter to use. 
-> 
-> So this patchset will basically not break the usage of perf tools and will
-> improve practicality.
+> https://lore.kernel.org/linux-arm-msm/0a3cd2f3-85e9-4769-9749-62353e842625@linaro.org/
 
-Sorry, but I don't agree. The original commit adding this driver
-(55691f99d417) gives the following examples in the commit message:
+You mix topics. First, you cannot send patch which knowingly introduces
+errors, regardless these are build errors or dtbs_check errors.
 
-For example:
-      perf stat -a -I 1000 -e imx9_ddr0/eddrtq_pm_rd_trans_filt,counter=2,axi_mask=ID_MASK,axi_id=ID/
-      perf stat -a -I 1000 -e imx9_ddr0/eddrtq_pm_wr_trans_filt,counter=3,axi_mask=ID_MASK,axi_id=ID/
-      perf stat -a -I 1000 -e imx9_ddr0/eddrtq_pm_rd_beat_filt,counter=4,axi_mask=ID_MASK,axi_id=ID/
+Plus checkpatch also complains about it.
 
-I don't think these will work any more if we apply this patch.
+Second, you linked to a driver discussion, but we talk here about
+bindings. Not driver. Each binding must be documented.
 
-Will
+Now, about driver, there is no single point nor need to add there
+duplicated entry, that's why we don't add.
+
+Best regards,
+Krzysztof
+
 
