@@ -1,189 +1,154 @@
-Return-Path: <devicetree+bounces-58009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5753A89FE12
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 19:17:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88EFF89FE1D
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 19:19:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C7E81F217AF
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 17:17:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 28C211F229FC
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 17:19:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B27E17B51F;
-	Wed, 10 Apr 2024 17:17:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7516C17BB0D;
+	Wed, 10 Apr 2024 17:19:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NJcW3Fsv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g8R+u2Lc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D7C317B4FD;
-	Wed, 10 Apr 2024 17:17:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 488D3176FDB;
+	Wed, 10 Apr 2024 17:19:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712769448; cv=none; b=TmUTO/rvdpI8ow1iPeKJkRRihhvuynYZ6xMXMIhhGYub6WV5mNi/lNLA4LPSSsilJDYHhGIDv8g7Vz7edhkutleIw09Tuwjp684wbxNDTr+hFE05trpInEeHIe31db1zyQbd88Yj2lsAyJbGbAAg1WfPOms3jU4ynvmGQO6MIMw=
+	t=1712769568; cv=none; b=tyIe5js0Y8bMEotV3Bj00d6TsBkx0wD/CT0uHzc0pPu05+N00LmN4emviz0Au0WlCZHg4tXlwD2wo5oi+CrtpU0zUPOq+fU4F/ocSBouRxLu+PJGgnR5XIiwohlu9Uq0BO9rQAfeAMZlqdbqi9Vc5dWiG/lK2X7v+7Ij3kJw+q4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712769448; c=relaxed/simple;
-	bh=BCTZpGab+2FtCJfQ4PP88DWifxf6HwadzkSsuqa9U74=;
+	s=arc-20240116; t=1712769568; c=relaxed/simple;
+	bh=W5eX1rU/9P9HprqQ9cPTQC7SCZNm4aigfiIYicPhLKs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G7aqDMUqZZX1BAVaMlzukTqvfvpI6rpty8n9j+NkquT3bnghnCJo5k4HS1JnmEkXM+i5OJnsntuLfMyrCaQnZv5Zbwm3gkwW9o+o30DlG4BaBJpqeOSPKOJdCZBUVX/N93itY53naSjxAjMdxULkwstkwT/8eZhq+3pb4Rz1Yec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NJcW3Fsv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29321C433C7;
-	Wed, 10 Apr 2024 17:17:22 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=SKblNNuSWyJPUv2X9SC1bbUypqDpptpkN3/q+DzK/IvCty31pRdpqYA4rFkEIcsJHQyef4H5xykNLwwW8i2iindizIC8TKaQIM/1fNFVQjYIi4sEhmHSWKijIdRfWM8z0nWa8GhqVv3R62MxaW1q0KfyTEi65dgQzARgdDlIByw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g8R+u2Lc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 919E3C433F1;
+	Wed, 10 Apr 2024 17:19:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712769447;
-	bh=BCTZpGab+2FtCJfQ4PP88DWifxf6HwadzkSsuqa9U74=;
+	s=k20201202; t=1712769567;
+	bh=W5eX1rU/9P9HprqQ9cPTQC7SCZNm4aigfiIYicPhLKs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NJcW3Fsvr3DEhz61yTJRsd8lCqvA7Ql/lS4irbb73HHT6Nfyo5oG0zABOrvXF/5bb
-	 584qAUwmnRPZIboKBXlMdJ1z/Gln22ns+jEVQ++ksb1xTFPcWXI+Xbn+A2qGeW/LUu
-	 oFMTTyd/wEi/mbYrljxUcBcexVxfr/Gc5+9oMibWZshY8wga0k63jw+nVN8T7a6YSa
-	 b8RFpNaFfonqQArKtxIQpnyBLFmIrKUHYm3EMoQAJr/KuB7pm3mM2NEHssDL36jlQh
-	 UZxDe1Q8yPdJrY7AznTIKwFGirzlkCr/X0YWpLJ159OoSmgxyUbBH5aT3nZjfYUdiV
-	 jL6ktJc9WmCig==
-Date: Wed, 10 Apr 2024 22:47:13 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, jingoohan1@gmail.com,
-	marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v6 4/7] PCI: rcar-gen4: Add rcar_gen4_pcie_platdata
-Message-ID: <20240410171713.GB16629@thinkpad>
-References: <20240410004832.3726922-1-yoshihiro.shimoda.uh@renesas.com>
- <20240410004832.3726922-5-yoshihiro.shimoda.uh@renesas.com>
+	b=g8R+u2LcMjuhESgE2vdJd7RAdvDYicV1iPM5LiK+Cex1rJ4Kn+rqiOOKA4YgGBKvU
+	 6wirhtTbJho6uV8fUZjciCHslvPTUwhW4UtoLt0zHxFxemaIr2QGwk1TON+DL5DPwh
+	 h4NyvSfMciSRUzEYpe0gpKjAsugwpEW/EoOvZdRYg0QWazSXf8I5sdanN5s321ELEa
+	 WJiUI7rmI6eD2Nw2Re3rpobNscN0B/NJ0kDU++7gyEtBdjRNw250mUOIQAgU3B7lA7
+	 XlYVjideFzkiT88e516rW9xYi1ojtQpflKSFz+BxOzTxZ829xErrWrYMEn+5+DHuMX
+	 ZuGXuEGz8Zh6A==
+Date: Wed, 10 Apr 2024 12:19:25 -0500
+From: Rob Herring <robh@kernel.org>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Peng Fan <peng.fan@nxp.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/6] dt-bindings: firmware: add i.MX SCMI Extension
+ protocol
+Message-ID: <20240410171925.GA564262-robh@kernel.org>
+References: <20240405-imx95-bbm-misc-v2-v2-0-9fc9186856c2@nxp.com>
+ <20240405-imx95-bbm-misc-v2-v2-2-9fc9186856c2@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240410004832.3726922-5-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20240405-imx95-bbm-misc-v2-v2-2-9fc9186856c2@nxp.com>
 
-On Wed, Apr 10, 2024 at 09:48:29AM +0900, Yoshihiro Shimoda wrote:
-> This driver supports r8a779f0 now. In the future, add support for
-> r8a779g0 and r8a779h0. To support these new SoCs, need other
-> initializing settings. So, at first, add rcar_gen4_pcie_platdata
-> and have a member with mode. No behavior changes.
+On Fri, Apr 05, 2024 at 08:39:24PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-
-How about,
-
-"In order to support future SoCs such as r8a779g0 and r8a779h0 that require
-different initialization settings, let's introduce SoC specific driver data with
-the initial member being the device mode. No functional change."
-
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> Add i.MX SCMI Extension protocols bindings for:
+>  - Battery Backed Secure Module(BBSM)
+>  - MISC settings such as General Purpose Registers settings.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
->  drivers/pci/controller/dwc/pcie-rcar-gen4.c | 30 ++++++++++++++-------
->  1 file changed, 21 insertions(+), 9 deletions(-)
+>  .../devicetree/bindings/firmware/imx,scmi.yaml     | 80 ++++++++++++++++++++++
+>  1 file changed, 80 insertions(+)
 > 
-> diff --git a/drivers/pci/controller/dwc/pcie-rcar-gen4.c b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> index 0be760ed420b..da2821d6efce 100644
-> --- a/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> +++ b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> @@ -48,11 +48,15 @@
->  #define RCAR_GEN4_PCIE_EP_FUNC_DBI_OFFSET	0x1000
->  #define RCAR_GEN4_PCIE_EP_FUNC_DBI2_OFFSET	0x800
->  
-> +struct rcar_gen4_pcie_platdata {
-
-Common naming convention is 'drvdata'.
-
-> +	enum dw_pcie_device_mode mode;
-> +};
+> diff --git a/Documentation/devicetree/bindings/firmware/imx,scmi.yaml b/Documentation/devicetree/bindings/firmware/imx,scmi.yaml
+> new file mode 100644
+> index 000000000000..7ee19a661d83
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/firmware/imx,scmi.yaml
+> @@ -0,0 +1,80 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2024 NXP
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/firmware/imx,scmi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  struct rcar_gen4_pcie {
->  	struct dw_pcie dw;
->  	void __iomem *base;
->  	struct platform_device *pdev;
-> -	enum dw_pcie_device_mode mode;
-> +	const struct rcar_gen4_pcie_platdata *platdata;
->  };
->  #define to_rcar_gen4_pcie(_dw)	container_of(_dw, struct rcar_gen4_pcie, dw)
->  
-> @@ -137,7 +141,7 @@ static int rcar_gen4_pcie_start_link(struct dw_pcie *dw)
->  	 * Since dw_pcie_setup_rc() sets it once, PCIe Gen2 will be trained.
->  	 * So, this needs remaining times for up to PCIe Gen4 if RC mode.
->  	 */
-> -	if (changes && rcar->mode == DW_PCIE_RC_TYPE)
-> +	if (changes && rcar->platdata->mode == DW_PCIE_RC_TYPE)
-
-I'd recommend checking for the existence of the drvdata first. But if you are
-sure that it will be present for all SoCs, then it can be left.
-
-- Mani
-
->  		changes--;
->  
->  	for (i = 0; i < changes; i++) {
-> @@ -172,9 +176,9 @@ static int rcar_gen4_pcie_common_init(struct rcar_gen4_pcie *rcar)
->  		reset_control_assert(dw->core_rsts[DW_PCIE_PWR_RST].rstc);
->  
->  	val = readl(rcar->base + PCIEMSR0);
-> -	if (rcar->mode == DW_PCIE_RC_TYPE) {
-> +	if (rcar->platdata->mode == DW_PCIE_RC_TYPE) {
->  		val |= DEVICE_TYPE_RC;
-> -	} else if (rcar->mode == DW_PCIE_EP_TYPE) {
-> +	} else if (rcar->platdata->mode == DW_PCIE_EP_TYPE) {
->  		val |= DEVICE_TYPE_EP;
->  	} else {
->  		ret = -EINVAL;
-> @@ -437,9 +441,9 @@ static void rcar_gen4_remove_dw_pcie_ep(struct rcar_gen4_pcie *rcar)
->  /* Common */
->  static int rcar_gen4_add_dw_pcie(struct rcar_gen4_pcie *rcar)
->  {
-> -	rcar->mode = (uintptr_t)of_device_get_match_data(&rcar->pdev->dev);
-> +	rcar->platdata = of_device_get_match_data(&rcar->pdev->dev);
->  
-> -	switch (rcar->mode) {
-> +	switch (rcar->platdata->mode) {
->  	case DW_PCIE_RC_TYPE:
->  		return rcar_gen4_add_dw_pcie_rp(rcar);
->  	case DW_PCIE_EP_TYPE:
-> @@ -480,7 +484,7 @@ static int rcar_gen4_pcie_probe(struct platform_device *pdev)
->  
->  static void rcar_gen4_remove_dw_pcie(struct rcar_gen4_pcie *rcar)
->  {
-> -	switch (rcar->mode) {
-> +	switch (rcar->platdata->mode) {
->  	case DW_PCIE_RC_TYPE:
->  		rcar_gen4_remove_dw_pcie_rp(rcar);
->  		break;
-> @@ -500,14 +504,22 @@ static void rcar_gen4_pcie_remove(struct platform_device *pdev)
->  	rcar_gen4_pcie_unprepare(rcar);
->  }
->  
-> +static struct rcar_gen4_pcie_platdata platdata_rcar_gen4_pcie = {
-> +	.mode = DW_PCIE_RC_TYPE,
-> +};
+> +title: i.MX System Control and Management Interface(SCMI) Vendor Protocols Extension
 > +
-> +static struct rcar_gen4_pcie_platdata platdata_rcar_gen4_pcie_ep = {
-> +	.mode = DW_PCIE_EP_TYPE,
-> +};
+> +maintainers:
+> +  - Peng Fan <peng.fan@nxp.com>
 > +
->  static const struct of_device_id rcar_gen4_pcie_of_match[] = {
->  	{
->  		.compatible = "renesas,rcar-gen4-pcie",
-> -		.data = (void *)DW_PCIE_RC_TYPE,
-> +		.data = &platdata_rcar_gen4_pcie,
->  	},
->  	{
->  		.compatible = "renesas,rcar-gen4-pcie-ep",
-> -		.data = (void *)DW_PCIE_EP_TYPE,
-> +		.data = &platdata_rcar_gen4_pcie_ep,
->  	},
->  	{},
->  };
-> -- 
-> 2.25.1
-> 
-> 
+> +allOf:
+> +  - $ref: arm,scmi.yaml#
 
--- 
-மணிவண்ணன் சதாசிவம்
+This needs to be the other way around. Add a ref to this file in 
+arm,scmi.yaml under an 'anyOf' entry.
+
+> +
+> +properties:
+> +  protocol@81:
+> +    $ref: 'arm,scmi.yaml#/$defs/protocol-node'
+> +    unevaluatedProperties: false
+> +    description:
+> +      The BBM Protocol is for managing Battery Backed Secure Module (BBSM) RTC
+> +      and the ON/OFF Key
+> +
+> +    properties:
+> +      reg:
+> +        const: 0x81
+> +
+> +    required:
+> +      - reg
+> +
+> +  protocol@84:
+> +    $ref: 'arm,scmi.yaml#/$defs/protocol-node'
+> +    unevaluatedProperties: false
+> +    description:
+> +      The MISC Protocol is for managing SoC Misc settings, such as GPR settings
+> +
+> +    properties:
+> +      reg:
+> +        const: 0x84
+> +
+> +      wakeup-sources:
+> +        description:
+> +          Each entry consists of 2 integers, represents the source and electric signal edge
+> +        items:
+> +          items:
+> +            - description: the wakeup source
+> +            - description: the wakeup electric signal edge
+
+No constraints on the entry values?
+
+> +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> +
+> +    required:
+> +      - reg
+> +
+> +additionalProperties: false
+
+And then this can be true.
+
+Rob
 
