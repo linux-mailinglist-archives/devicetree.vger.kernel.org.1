@@ -1,249 +1,120 @@
-Return-Path: <devicetree+bounces-57880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DE8689F1DE
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 14:18:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BCDE89F1FC
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 14:25:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C25EF1C21F51
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 12:18:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2BE041F229F6
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 12:25:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5B6115ADBE;
-	Wed, 10 Apr 2024 12:17:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A7E715B14B;
+	Wed, 10 Apr 2024 12:24:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="hqM3Q6uk"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="kz/0yk2P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFB861119F;
-	Wed, 10 Apr 2024 12:17:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7521415E219;
+	Wed, 10 Apr 2024 12:24:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712751477; cv=none; b=E9ggjPcJ4VMbhdog1DmJuLdsG1CS95X8TbWNYeSPvHJRPstbOoqJjje0Osay/WjxkQdBeNjk/JMLoERoKhoFek27MyjTWZA3qu2lNZIGWzCWHKoloN8n1EE6eG3UgU+9WCPiKhy+OjaiZHlhQHzlJDeaAX4NAifP/xbwRcIo0tw=
+	t=1712751888; cv=none; b=Pww3n9DOQRZbViFUswNQsGFmjSPMZsYRgrLuNo2vA0gVw68e3Ar+NkpFWnYr4QJgWJ3PoxDTefJI+M3HS2F9h599uHSYEGqiOGqZup8YhQ5ybH31tj8Tj3RbPsiHwWd0EhN8vYF7ZeF4BvnWcNDzoorNz3FSxRjjpFOxTKPVeHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712751477; c=relaxed/simple;
-	bh=aSWsZW3PPr3ut14CSL6esqj3XAo3ApAiyL2z+qeFyUM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KgP+M3KzEVh1u21AUDpDGLqIUH6/rAuUCzQvTvYidOJW+0m485BbZ9hNFRCzNKjCESB7YGjHv0zJevI2aZbzB72MPcCBbt0kpiKBfbc3v9D8N/rra6GfHgdf1AG8slPlWO+L1m0ecK0OjUrV2iWvTHKVZk3A9NJQF3I/4OWzsC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=hqM3Q6uk; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1712751467;
-	bh=aSWsZW3PPr3ut14CSL6esqj3XAo3ApAiyL2z+qeFyUM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hqM3Q6ukcFIQgwSig39iCJNyMZbUwME4Zc+vHw7Fkq0PbfNvj8FKXgvOxYpZsbdSD
-	 xwcyLgpcf+HtWUiAJLss6ZEswzJtaqGxolgdeSEihM6whs2JJGUzQraueye6dPm6jN
-	 1xDYXNqiDjQB4KrO920HNy65ePd6E52DaLwiopaVEcTZfxf2BDGiv0E87w6Jlq1jrJ
-	 bVaot+9bMLXf0+N5/SPKzSb8+RbtEOW7eek9zgwhrZTVVtCUTy4EZbmympa3moUZB1
-	 PEPq2CSCudJgw2n+RH9roo+gM5/QDLvRIrtSmnCBWk5i1aotOvUDbRvyQzMGMaHKRE
-	 xRgYGCuIjzUAQ==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 0B84737811D1;
-	Wed, 10 Apr 2024 12:17:46 +0000 (UTC)
-Message-ID: <0487ed41-0404-4215-a346-1a3daedc417f@collabora.com>
-Date: Wed, 10 Apr 2024 14:17:46 +0200
+	s=arc-20240116; t=1712751888; c=relaxed/simple;
+	bh=C6TTaj8C3gGDyMgcwpzgLzOx1oB8jniHUKHvI6XaAHM=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=VRTUhhmYEOxbuvblwYYCvpmSJj8oXj5ljwEV8zPw4eESQaBv9/A42KJwgQwQI9/4YqsxwWimkDmuhUwcy/ONyX193zJLIMIu5ohR3oRQA5fS3nM3iWBFB1GITPwcPer0j94MwsQY77McfBS7rMhIWqVagXJJXoL5ChhmX0Cj2TY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=kz/0yk2P; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 68EDD1C0002;
+	Wed, 10 Apr 2024 12:24:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1712751883;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=l3ws31mOJD6WJ5PiqoLqg0x1rdfJP9Z5AmhmFZmsojA=;
+	b=kz/0yk2P0u15uvLO3V2bIiiBeyKMosuhBgHxZkWris1gH74OkoU5jCPXSknQz1fwnbqCjo
+	WU93j8pFtyf1I68J1uRLHRNfAg5gHZOVcMlMzHVsVuI0NHrTx8HflyI9e+u4/KSZym1ID/
+	dLY1ynmBrfb0tNGPH9M0ukL+GBN7W+zJIfMTRlKVe+QSU7q152nT7Stn4Lg2mBWWFD4IAz
+	is0Ld37Wwxu3wR4M4tX6oiZtMUnmBiv5xa+BA5V0S6lyrm4TKrsHU9+Xh30ivTw3v9rkKM
+	KjmEQ3u/Z+jx+Z9jJ5DewvT9iMBn+e0lu7mg7yh+wHeLPrLuMrtg83iOywZIEQ==
+Date: Wed, 10 Apr 2024 14:25:18 +0200 (CEST)
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+cc: Romain Gantois <romain.gantois@bootlin.com>, 
+    "David S. Miller" <davem@davemloft.net>, 
+    Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+    Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+    Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+    Conor Dooley <conor+dt@kernel.org>, 
+    Geert Uytterhoeven <geert+renesas@glider.be>, 
+    Magnus Damm <magnus.damm@gmail.com>, 
+    Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+    Jose Abreu <joabreu@synopsys.com>, 
+    Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+    Russell King <linux@armlinux.org.uk>, 
+    =?ISO-8859-15?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>, 
+    Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org, 
+    devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+    linux-renesas-soc@vger.kernel.org, 
+    linux-stm32@st-md-mailman.stormreply.com, 
+    linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH net-next v2 4/5] net: stmmac: add support for RZ/N1
+ GMAC
+In-Reply-To: <CAMuHMdX-F8LXWx=Ras4f+Dt_r485HKjRDLydDXZsnZBW8HJzxw@mail.gmail.com>
+Message-ID: <9bd8eee4-952d-d5b2-c462-45c1466c54d6@bootlin.com>
+References: <20240409-rzn1-gmac1-v2-0-79ca45f2fc79@bootlin.com> <20240409-rzn1-gmac1-v2-4-79ca45f2fc79@bootlin.com> <CAMuHMdX-F8LXWx=Ras4f+Dt_r485HKjRDLydDXZsnZBW8HJzxw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: mediatek: mt8192: Add missing trip point
- in thermal zone
-To: Hsin-Te Yuan <yuanhsinte@chromium.org>
-Cc: Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?=
- <nfraprado@collabora.com>, =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?=
- <bero@baylibre.com>, Balsam CHIHI <bchihi@baylibre.com>,
- Alexandre Mergnat <amergnat@baylibre.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <20240410-upstream-torvalds-master-v2-1-679777847b63@chromium.org>
- <d1dafc46-9b14-4752-822c-86cbabdcfb8b@collabora.com>
- <CAHc4DNLrU=QVWODOzHXW16Ko1V=W31zkSHOi7rztiJMOMDcKqg@mail.gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <CAHc4DNLrU=QVWODOzHXW16Ko1V=W31zkSHOi7rztiJMOMDcKqg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/mixed; boundary="1582177605-1727822458-1712751921=:538696"
+X-GND-Sasl: romain.gantois@bootlin.com
 
-Il 10/04/24 14:06, Hsin-Te Yuan ha scritto:
-> Hi Angelo,
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
+
+--1582177605-1727822458-1712751921=:538696
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
+
+Hi Geert,
+
+On Tue, 9 Apr 2024, Geert Uytterhoeven wrote:
+
+> > +config DWMAC_RZN1
+> > +       tristate "Renesas RZ/N1 dwmac support"
+> > +       default ARCH_RZN1
 > 
-> 1. 68°C is provided by MediaTek previously in downstream
-> 2. I think sustainable power will be estimated by
-> estimate_sustainable_power in drivers/thermal/gov_power_allocator.c,
-> but I'll ask MediaTek if they can provide the precise value.
-> 3. Sure. I'll do it in v3 after I check 2. with MediaTek
+> Why default to enabled?
 > 
+> > +       depends on OF && (ARCH_RZN1 || COMPILE_TEST)
 
-Perfect, thanks for the clarification.
+The kernel doc states this as one of the possible cases where setting default 
+y/m makes sense:
 
-Will wait for v3.
+```
+Sub-driver behavior or similar options for a driver that is “default n”. This 
+allows you to provide sane defaults.
+```
 
-Cheers,
-Angelo
+In the case of DWMAC_RZN1, it is a suboption of stmmac which is "default n", and 
+I think it makes sense to enable the RZN1 ethernet controller driver if both the 
+stmmac driver and the RZN1 architecture were explicitely selected.
 
-> Regards,
-> Hsin-Te
-> 
-> On Wed, Apr 10, 2024 at 5:50 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Il 10/04/24 10:40, Hsin-Te Yuan ha scritto:
->>> According to Documentation/driver-api/thermal/power_allocator.rst, there
->>> should be two passive trip points. Adding the missing trip point to
->>> ensure that the governor works optimally.
->>>
->>> Fixes: c7a728051f4e ("arm64: dts: mediatek: mt8192: Add thermal nodes and thermal zones")
->>> Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
->>
->> That's better - but while I can agree about setting a general temperature
->> for that, I still have a few questions and requests:
->>
->> 1. Why is this 68°C? Was that value provided by MediaTek, or was it calculated?
->>    1b. If this was calculated, please, can you explain how?
->>
->> 2. The power allocator documentation also says that the governor works good
->>      when a "sustainable dissipatable power" parameter is fed to it through the
->>      `sustainable-power` devicetree property (with that being strictly board
->>      specific and never SoC-global, as that depends on the form factor and on
->>      the cooling method of the machine), can you please also add the right
->>      sustainable power indication to the Chromebook devicetrees?
->>      In the MT8192 specific case, that's mt8192-asurada.dtsi.
->>
->> 3. I just noticed that MT8192 is not the only one that would be affected by
->>      the issue that you're describing in this commit; can you please perform a
->>      similar change on the others, if parameters are known?
->>
->> Thanks,
->> Angelo
->>
->>> ---
->>> Changes in v2:
->>> - Clearify the reason of adding another passive trip point
->>> - Link to v1: https://lore.kernel.org/r/20240410-upstream-torvalds-master-v1-1-852e903f0cec@chromium.org
->>> ---
->>>    arch/arm64/boot/dts/mediatek/mt8192.dtsi | 40 ++++++++++++++++++++++++++++++++
->>>    1 file changed, 40 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
->>> index 05e401670bced..08d8bccc84669 100644
->>> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
->>> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
->>> @@ -1959,6 +1959,11 @@ cpu0-thermal {
->>>                        thermal-sensors = <&lvts_mcu MT8192_MCU_LITTLE_CPU0>;
->>>
->>>                        trips {
->>> +                             cpu0_thres: trip-point {
->>> +                                     temperature = <68000>;
->>> +                                     hysteresis = <2000>;
->>> +                                     type = "passive";
->>> +                             };
->>>                                cpu0_alert: trip-alert {
->>>                                        temperature = <85000>;
->>>                                        hysteresis = <2000>;
->>> @@ -1989,6 +1994,11 @@ cpu1-thermal {
->>>                        thermal-sensors = <&lvts_mcu MT8192_MCU_LITTLE_CPU1>;
->>>
->>>                        trips {
->>> +                             cpu1_thres: trip-point {
->>> +                                     temperature = <68000>;
->>> +                                     hysteresis = <2000>;
->>> +                                     type = "passive";
->>> +                             };
->>>                                cpu1_alert: trip-alert {
->>>                                        temperature = <85000>;
->>>                                        hysteresis = <2000>;
->>> @@ -2019,6 +2029,11 @@ cpu2-thermal {
->>>                        thermal-sensors = <&lvts_mcu MT8192_MCU_LITTLE_CPU2>;
->>>
->>>                        trips {
->>> +                             cpu2_thres: trip-point {
->>> +                                     temperature = <68000>;
->>> +                                     hysteresis = <2000>;
->>> +                                     type = "passive";
->>> +                             };
->>>                                cpu2_alert: trip-alert {
->>>                                        temperature = <85000>;
->>>                                        hysteresis = <2000>;
->>> @@ -2049,6 +2064,11 @@ cpu3-thermal {
->>>                        thermal-sensors = <&lvts_mcu MT8192_MCU_LITTLE_CPU3>;
->>>
->>>                        trips {
->>> +                             cpu3_thres: trip-point {
->>> +                                     temperature = <68000>;
->>> +                                     hysteresis = <2000>;
->>> +                                     type = "passive";
->>> +                             };
->>>                                cpu3_alert: trip-alert {
->>>                                        temperature = <85000>;
->>>                                        hysteresis = <2000>;
->>> @@ -2079,6 +2099,11 @@ cpu4-thermal {
->>>                        thermal-sensors = <&lvts_mcu MT8192_MCU_BIG_CPU0>;
->>>
->>>                        trips {
->>> +                             cpu4_thres: trip-point {
->>> +                                     temperature = <68000>;
->>> +                                     hysteresis = <2000>;
->>> +                                     type = "passive";
->>> +                             };
->>>                                cpu4_alert: trip-alert {
->>>                                        temperature = <85000>;
->>>                                        hysteresis = <2000>;
->>> @@ -2109,6 +2134,11 @@ cpu5-thermal {
->>>                        thermal-sensors = <&lvts_mcu MT8192_MCU_BIG_CPU1>;
->>>
->>>                        trips {
->>> +                             cpu5_thres: trip-point {
->>> +                                     temperature = <68000>;
->>> +                                     hysteresis = <2000>;
->>> +                                     type = "passive";
->>> +                             };
->>>                                cpu5_alert: trip-alert {
->>>                                        temperature = <85000>;
->>>                                        hysteresis = <2000>;
->>> @@ -2139,6 +2169,11 @@ cpu6-thermal {
->>>                        thermal-sensors = <&lvts_mcu MT8192_MCU_BIG_CPU2>;
->>>
->>>                        trips {
->>> +                             cpu6_thres: trip-point {
->>> +                                     temperature = <68000>;
->>> +                                     hysteresis = <2000>;
->>> +                                     type = "passive";
->>> +                             };
->>>                                cpu6_alert: trip-alert {
->>>                                        temperature = <85000>;
->>>                                        hysteresis = <2000>;
->>> @@ -2169,6 +2204,11 @@ cpu7-thermal {
->>>                        thermal-sensors = <&lvts_mcu MT8192_MCU_BIG_CPU3>;
->>>
->>>                        trips {
->>> +                             cpu7_thres: trip-point {
->>> +                                     temperature = <68000>;
->>> +                                     hysteresis = <2000>;
->>> +                                     type = "passive";
->>> +                             };
->>>                                cpu7_alert: trip-alert {
->>>                                        temperature = <85000>;
->>>                                        hysteresis = <2000>;
->>>
->>> ---
->>> base-commit: 20cb38a7af88dc40095da7c2c9094da3873fea23
->>> change-id: 20240410-upstream-torvalds-master-40aeff5416c7
->>>
->>> Best regards,
->>
->>
+Best Regards,
+
+-- 
+Romain Gantois, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+--1582177605-1727822458-1712751921=:538696--
 
