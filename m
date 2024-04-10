@@ -1,168 +1,280 @@
-Return-Path: <devicetree+bounces-57970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0930289FC6C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 18:06:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA13E89FC9D
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 18:13:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B2B231F21111
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 16:06:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 371D92869C6
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 16:13:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E0E8178CC7;
-	Wed, 10 Apr 2024 16:06:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F003179959;
+	Wed, 10 Apr 2024 16:13:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ZthO1lbM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WpP1ch0S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FAE51779B6;
-	Wed, 10 Apr 2024 16:06:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F6BD179670;
+	Wed, 10 Apr 2024 16:13:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712765162; cv=none; b=OpTS7KzUcJCwJf/VqHXvK2DTkd28re5/2RCGvW/bKZkz9jSGASlyTD1NrWOi08thUiaHekKlvXvk5xkkxtMy+MuXxl8KqYBnxCCtFtyosebCmYitaouio9E/o5ZUvSSBNxZ5qhfvVGxuHekZOte2usV+CeMg/L4njj2Z83K1CTg=
+	t=1712765594; cv=none; b=WSPRBg16SrZa/3rmO1L6mwO82ws96crdGsUQv0//yC0DLRmlBEdPOQ9bFbl73h35xZsQoMSd55lmvXHXsOTNtmIIMUr9MCiyAJKUSjBpd/qK6oHKO2e2FGRURvWrjoq+IjsR6HOiPV4ez5XOQzqBtaHVN+WDeMKGcerY0AQnGLo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712765162; c=relaxed/simple;
-	bh=piq+aZgljrVoCDKhCfSkoGK2WF2WNTFw7ziQ5tAjdOc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Lc8Ox9B9x8w7XPCLcLfCcVjyI54QwnThiRi3Jetn7rh+Bc2I46DOsfCHJI5sct4jW8p5Ku3jfL3FgOtOzR7JPJBG4zhoKAynlnaZmbHMQ3HI3fV6TZtLWYjUfF2vUEfvCsE9QfO9qoPes1KUY8vGBmzqDrTkHCaE+0mvFjI3DWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ZthO1lbM; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43AFr5a9030162;
-	Wed, 10 Apr 2024 16:05:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=gofH+p75A2H6MwZ+LcSc2nUNvgwMF53ULI8Ss/9g+q4=; b=Zt
-	hO1lbMnlBlYM6pnlELChyEfOLMh6lvk+6K4hFEz7irHMPx5GRtqr6QJL8OHa4STH
-	oY2274kPX9yaO21fipOT6y3smAhYzPP6GRS/B3aLVLAftOCeGcbeugvhU/G7yK29
-	05SlUnMnkyOMoDEzkj2dQ/8cr08q9dNwIbh/yvuEkLnP6wbKlqYmpXtMd9h/m2du
-	ui1PMRupXHY6oDfb2oMbIKBVK9Zl4o9ukJmcptWLKV/xFDZIsIyyxjPUTswV841P
-	1Jy+QeZYF7p3HG0g7Xb0a/Q2QTLXpZ5Cu4gXcK9WwsPFkTaadMR3vIQNdILQQ/IG
-	jFrXvEZsUHa3880I6uYQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xdskjha29-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 10 Apr 2024 16:05:30 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43AG5T7f022079
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 10 Apr 2024 16:05:29 GMT
-Received: from [10.110.37.144] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Wed, 10 Apr
- 2024 09:05:27 -0700
-Message-ID: <c128cf9b-de30-49f1-9adb-8b03b61f4d51@quicinc.com>
-Date: Wed, 10 Apr 2024 09:05:26 -0700
+	s=arc-20240116; t=1712765594; c=relaxed/simple;
+	bh=EiSUT6z9f9FKUZqNR3GwiGyw/VHRO7l/LNdz3P1SDkU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kLUcA2Nj0Di4c7RzwMmQgtvYTTTdZH1XMD6xolooUq44N8CjusLMQflSZuLyaapM23dOLXkF1C1xTimrDjl0KQ6hKDNT7QdReCvGbfJzCwgrFr7DmcEnPp7kgNsFs8Erp1xhRM0mHc+/VgMUUORIKWqCzHqietOP0rxB+lapoLw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WpP1ch0S; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5010C433C7;
+	Wed, 10 Apr 2024 16:13:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712765594;
+	bh=EiSUT6z9f9FKUZqNR3GwiGyw/VHRO7l/LNdz3P1SDkU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WpP1ch0SaSPGqADO/wz+U7251Hp2PvvVvKW3o5OGz2sAjFN8M4eqv6xhubA5c286k
+	 jH8WRpKYI4llFfR5H1HTcZOSSgKylMdFHXwYRWp2DK+RkR+mAGVUVpnbkg0yv27bfq
+	 AA/i12+sfnAVW3bILXKbaj7cn9CAzaRA29TmyFTMK5SW92HSbc1d4A1aUTMJ26+zur
+	 TxcJyfdH91dgzX5mj9meW8+re4ZdXLDQ1TJjGwNED925jj+hZm5P9+83Dss7/By2dt
+	 3RTSoy9kHo5FYnuzeE74kEZuuSlsq+KKKcaa8zhSUWwrRSwNZyLHp0E3bNpBww/1hi
+	 2DmIvn+c6gPiw==
+Date: Wed, 10 Apr 2024 11:13:11 -0500
+From: Rob Herring <robh@kernel.org>
+To: Yoshinori Sato <ysato@users.sourceforge.jp>
+Cc: linux-sh@vger.kernel.org, Damien Le Moal <dlemoal@kernel.org>,
+	Niklas Cassel <cassel@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Rich Felker <dalias@libc.org>,
+	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+	Lee Jones <lee@kernel.org>, Helge Deller <deller@gmx.de>,
+	Heiko Stuebner <heiko.stuebner@cherry.de>,
+	Shawn Guo <shawnguo@kernel.org>, Sebastian Reichel <sre@kernel.org>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Arnd Bergmann <arnd@arndb.de>, David Rientjes <rientjes@google.com>,
+	Hyeonggon Yoo <42.hyeyoo@gmail.com>,
+	Vlastimil Babka <vbabka@suse.cz>, Baoquan He <bhe@redhat.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Kefeng Wang <wangkefeng.wang@huawei.com>,
+	Stephen Rothwell <sfr@canb.auug.org.au>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	Guo Ren <guoren@kernel.org>, Azeem Shaikh <azeemshaikh38@gmail.com>,
+	Max Filippov <jcmvbkbc@gmail.com>, Jonathan Corbet <corbet@lwn.net>,
+	Jacky Huang <ychuang3@nuvoton.com>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Manikanta Guntupalli <manikanta.guntupalli@amd.com>,
+	Anup Patel <apatel@ventanamicro.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Sergey Shtylyov <s.shtylyov@omp.ru>,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linux-pci@vger.kernel.org, linux-serial@vger.kernel.org,
+	linux-fbdev@vger.kernel.org
+Subject: Re: [RESEND v7 13/37] dt-bindings: clock: sh7750-cpg: Add
+ renesas,sh7750-cpg header.
+Message-ID: <20240410161311.GA4074406-robh@kernel.org>
+References: <cover.1712207606.git.ysato@users.sourceforge.jp>
+ <1db8627e4ca50b9d2d27e95d245518cac1cd62dc.1712207606.git.ysato@users.sourceforge.jp>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 16/16] PCI/pwrctl: add a PCI power control driver for
- power sequenced devices
-Content-Language: en-US
-To: Bartosz Golaszewski <brgl@bgdev.pl>,
-        Marcel Holtmann
-	<marcel@holtmann.org>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        "David
- S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub
- Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>,
-        Bjorn
- Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Catalin
- Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Bjorn
- Helgaas <bhelgaas@google.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Geert
- Uytterhoeven <geert+renesas@glider.be>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Neil
- Armstrong <neil.armstrong@linaro.org>,
-        Marek Szyprowski
-	<m.szyprowski@samsung.com>,
-        Alex Elder <elder@linaro.org>,
-        Srini Kandagatla
-	<srinivas.kandagatla@linaro.org>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Manivannan
- Sadhasivam <mani@kernel.org>,
-        Lukas Wunner <lukas@wunner.de>,
-        Dmitry
- Baryshkov <dmitry.baryshkov@linaro.org>,
-        Amit Pundir
-	<amit.pundir@linaro.org>, Xilin Wu <wuxilin123@gmail.com>
-CC: <linux-bluetooth@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-wireless@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-pci@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>,
-        Bartosz Golaszewski
-	<bartosz.golaszewski@linaro.org>
-References: <20240410124628.171783-1-brgl@bgdev.pl>
- <20240410124628.171783-17-brgl@bgdev.pl>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <20240410124628.171783-17-brgl@bgdev.pl>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: DT7Wv9f2L7fktC3xWXbBoB4QdMNzyLRm
-X-Proofpoint-ORIG-GUID: DT7Wv9f2L7fktC3xWXbBoB4QdMNzyLRm
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-10_04,2024-04-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
- clxscore=1015 adultscore=0 priorityscore=1501 lowpriorityscore=0
- mlxscore=0 phishscore=0 impostorscore=0 bulkscore=0 malwarescore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404100117
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1db8627e4ca50b9d2d27e95d245518cac1cd62dc.1712207606.git.ysato@users.sourceforge.jp>
 
-On 4/10/2024 5:46 AM, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On Thu, Apr 04, 2024 at 02:14:24PM +0900, Yoshinori Sato wrote:
+> SH7750 CPG Clock output define.
+
+This and the subject don't match what the patch does.
+
 > 
-> Add a PCI power control driver that's capable of correctly powering up
-> devices using the power sequencing subsystem. The first user of this
-> driver is the ath11k module on QCA6390.
-[...]
-> +config PCI_PWRCTL_PWRSEQ
-> +	tristate "PCI Power Control driver using the Power Sequencing subsystem"
-> +	select POWER_SEQUENCING
-> +	select PCI_PWRCTL
-> +	default m if (ATH11K_PCI && ARCH_QCOM)
-[...]
-> +static const struct of_device_id pci_pwrctl_pwrseq_of_match[] = {
-> +	{
-> +		/* ATH11K in QCA6390 package. */
-> +		.compatible = "pci17cb,1101",
-> +		.data = "wlan",
-> +	},
-> +	{
-> +		/* ATH12K in WCN7850 package. */
-> +		.compatible = "pci17cb,1107",
-> +		.data = "wlan",
+> Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
+> ---
+>  .../bindings/clock/renesas,sh7750-cpg.yaml    | 105 ++++++++++++++++++
+>  include/dt-bindings/clock/sh7750-cpg.h        |  26 +++++
+>  2 files changed, 131 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/renesas,sh7750-cpg.yaml
+>  create mode 100644 include/dt-bindings/clock/sh7750-cpg.h
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/renesas,sh7750-cpg.yaml b/Documentation/devicetree/bindings/clock/renesas,sh7750-cpg.yaml
+> new file mode 100644
+> index 000000000000..04c10b0834ee
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/renesas,sh7750-cpg.yaml
+> @@ -0,0 +1,105 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/renesas,sh7750-cpg.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas SH7750/7751 Clock Pulse Generator (CPG)
+> +
+> +maintainers:
+> +  - Yoshinori Sato <ysato@users.sourceforge.jp>
+> +
+> +description:
+> +  The Clock Pulse Generator (CPG) generates core clocks for the SoC.  It
+> +  includes PLLs, and variable ratio dividers.
+> +
+> +  The CPG may also provide a Clock Domain for SoC devices, in combination with
+> +  the CPG Module Stop (MSTP) Clocks.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - renesas,sh7750-cpg             # SH7750
+> +      - renesas,sh7750s-cpg            # SH775S
+> +      - renesas,sh7750r-cpg            # SH7750R
+> +      - renesas,sh7751-cpg             # SH7751
+> +      - renesas,sh7751r-cpg            # SH7751R
+> +
+> +  reg: true
+> +
+> +  reg-names: true
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    const: extal
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  renesas,mode:
+> +    description: Board-specific settings of the MD[0-2] pins on SoC
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0
+> +    maximum: 6
+> +
+> +  '#power-domain-cells':
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - clocks
+> +  - clock-names
+> +  - '#clock-cells'
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - renesas,sh7750-cpg
+> +              - renesas,sh7750s-cpg
+> +    then:
+> +      properties:
+> +        reg:
+> +          maxItems: 1
+> +        reg-names:
+> +          items:
+> +            - const: FRQCR
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - renesas,sh7750r-cpg
+> +              - renesas,sh7751-cpg
+> +              - renesas,sh7751r-cpg
+> +    then:
+> +      properties:
+> +        reg:
+> +          maxItems: 2
 
-since you are adding both ath11k and ath12k packages, should you update the
-commit text and the config "default m if" condition to include ath12k?
+minItems: 2 (instead)
 
-/jeff
+> +        reg-names:
+> +          items:
+> +            - const: FRQCR
+> +            - const: CLKSTP00
+
+Move this to the top-level and add 'minItems: 1'. Then above you just 
+need 'maxItems: 1' and here 'minItems: 2'.
+
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/sh7750-cpg.h>
+> +    cpg: clock-controller@ffc00000 {
+> +        #clock-cells = <1>;
+> +        #power-domain-cells = <0>;
+> +        compatible = "renesas,sh7751r-cpg";
+> +        clocks = <&extal>;
+> +        clock-names = "extal";
+> +        reg = <0xffc00000 20>, <0xfe0a0000 16>;
+> +        reg-names = "FRQCR", "CLKSTP00";
+> +        renesas,mode = <0>;
+> +    };
+> diff --git a/include/dt-bindings/clock/sh7750-cpg.h b/include/dt-bindings/clock/sh7750-cpg.h
+> new file mode 100644
+> index 000000000000..ec267be91adf
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/sh7750-cpg.h
+> @@ -0,0 +1,26 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> + *
+> + * Copyright 2023 Yoshinori Sato
+> + */
+> +
+> +#ifndef __DT_BINDINGS_CLOCK_SH7750_H__
+> +#define __DT_BINDINGS_CLOCK_SH7750_H__
+> +
+> +#define SH7750_CPG_PLLOUT	0
+> +
+> +#define SH7750_CPG_PCK		1
+> +#define SH7750_CPG_BCK		2
+> +#define SH7750_CPG_ICK		3
+> +
+> +#define SH7750_MSTP_SCI		4
+> +#define SH7750_MSTP_RTC		5
+> +#define SH7750_MSTP_TMU012	6
+> +#define SH7750_MSTP_SCIF	7
+> +#define SH7750_MSTP_DMAC	8
+> +#define SH7750_MSTP_UBC		9
+> +#define SH7750_MSTP_SQ		10
+> +#define SH7750_CSTP_INTC	11
+> +#define SH7750_CSTP_TMU34	12
+> +#define SH7750_CSTP_PCIC	13
+> +
+> +#endif
+> -- 
+> 2.39.2
+> 
 
