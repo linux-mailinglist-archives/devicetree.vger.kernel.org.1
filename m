@@ -1,77 +1,76 @@
-Return-Path: <devicetree+bounces-57782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D155B89ECB0
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 09:52:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5438089ECB8
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 09:53:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A4AC1F231DA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 07:52:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0AA06284A9A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 07:53:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86ECC13D280;
-	Wed, 10 Apr 2024 07:52:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1582C13D29E;
+	Wed, 10 Apr 2024 07:53:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bsBvAJeD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sO/eDirm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6059813D26E
-	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 07:52:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49BA813CFB3
+	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 07:53:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712735549; cv=none; b=hrQJ+luaPyizeeprJ4rDe4S4HeiFtVwZCG/Err7q70+itHW1CWFy2TKlBJqn99+E/A6ZtnHLa3GHABvPgdd24+MEAdwi4bfKJCLQor70RwseYhxJDGHA1SRcH+oB3kqLKuHdHsdCaw2Bj6N2JOFer0cxxa2zqegQxbkm8aExxTQ=
+	t=1712735614; cv=none; b=ikj6C6uMChDZk1v+R7B2DwFx4Mhs/1hrPCCAya2ZqdWp/BQG5GzWWSiOA0HTkMXwdma21pnq7f4L3xNrRtU+2ai4kxymH85fSqWkJl4Zf5yIriTQxWLJgN3GgN+oY2N3xotE9BkBAz2cnGee3N9JlIy3tUmJeYD47v7J9H/9VT4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712735549; c=relaxed/simple;
-	bh=s55ge6FmZY8BxcYb+Y+MB5u4Uxwu11M89mmH/eppLK4=;
+	s=arc-20240116; t=1712735614; c=relaxed/simple;
+	bh=QVG4evRg8W5VO8NJdh62Fh0biVN6yJlwvqrMftGCzVw=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=oCAP9fiiIZlRpLct1U+h0NpyDZELWcOSGptxhLgwC/FWSj72ffjQ2B0oHqviTwabTEIivafVxGouYM8XTnjNYXwLX/YhFi9W5RLEmi7OoD0q899tYHlnDzwBxabFOsgt6/ZxkQM7fGIjXEn3blEoFDzskiKxPqUFMF0DAJgO3W0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bsBvAJeD; arc=none smtp.client-ip=209.85.221.46
+	 In-Reply-To:Content-Type; b=UcMiuynvGdZ9Uj5gTHIoyAKW/FOSDhF8gEVvlPQ4QgHx2u3AilwTSvD4WN/HACjQVvbLgGLT5bw9NTBMSUIxYPKBe1Oan3pho9f44Nw02YlJZRmuFV6vEU1eUTH3N1cbCHfPsDbfMnDmNLj7lbXZT2MiOm5AJu3z2B1Pd+/kvVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sO/eDirm; arc=none smtp.client-ip=209.85.221.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3464bf56919so429470f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 00:52:27 -0700 (PDT)
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3464bf56919so429919f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 00:53:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712735546; x=1713340346; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712735609; x=1713340409; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=v/m8qJwzkT/VZiX36jHmbUZWWGRc3tHuKkun6/Cnk8s=;
-        b=bsBvAJeD3iTaw5a33b+ILw3sPjlNnxVcpulI3I+3d0REK6mtuSmYgrE+8OKeFFTykG
-         EZWz1DKd30AgZKKeNJZTBbbRdaT2uE2HrX06hGRQ2O7yT3YvYKfBiQGzLRyST3TPopPh
-         ymGOz7SZahO6uZGEIcmThq6xIx3XQROe4poBufiautcGNcujTAtpYGWWaT7RVODKubLB
-         /zSsHZ+mYe7XaaCkF1u4sWEPpaxQ4bylHCbi/P6xB4E6Th/ngrchQIVqlGBNV0neAINB
-         4a/4VzD+/5LdAIRhlC1NV/NGAGU74vAhLV5fwT9NW+NUVfkHxQQGYy94Y71TFaTv0yCm
-         t9IA==
+        bh=mqeWpXq7iVkwpLCfNMJQ1hkeTu7GIqakLNWFUZcYNR8=;
+        b=sO/eDirmSN3fGEb5iPJAk6clUQAd70548sqz9Eve+fW8a5c3ID80KIK85pUJyVYZk3
+         F3smHfzcis+46tpUiF+nBMyOEip3VM79ElbrvL9ERl0BpkDhm8O9xPJUg7T5LZdNgrSv
+         kN/6zNgkZ0tmk8J0XCABcPJ3pfSI+hgt3ATmocBb5rour4Mtb7hj6rf+oG5S/4ZeLyzE
+         TbHdoxzR1B2Vgkhbx3/cn11MP6D52TKo1ORo6ujt+eBNioRHlfM8r52Z9WA1IabbHMIO
+         M5H/tWkGfRiBOF3BL8ZUMDpr6ulrk/MBHjxSw1IZ4PwYpJmPsozmJa7gJf985ewe2e9d
+         M8Jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712735546; x=1713340346;
+        d=1e100.net; s=20230601; t=1712735609; x=1713340409;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=v/m8qJwzkT/VZiX36jHmbUZWWGRc3tHuKkun6/Cnk8s=;
-        b=vnLSOmExmofWRtnX8XMGT/JkumsglDJanXoTU8nfYfUrCDRXBZNhSGZjjMPx9Rd67q
-         Jr6mE0+QOLn7yBM4JtEV4sVMO992D35YnMYlOMksWBZ+WcShem3rKATIKBGfC6Xa12Y/
-         msv3LBoQVnrAd2P11zifZWQp+f7aaDdGEwRO0SikNNiMGptcusTFzcUsoVtE755fGhTx
-         dHm9fEtUBHP6p0xObOQActm0B0iTH3NbundKd5nJnFbTGg/qhg3Y8HE2vBkbYvtAvsKB
-         GvQQWYRmUdDorrumxWhhKAfQw3NrFvivRtwbVrqt0DMR1xzO18B7TN9UR7f0UcItCwCr
-         hfjg==
-X-Forwarded-Encrypted: i=1; AJvYcCUKfZXb77eX5LXvI3gGw1Ksr1Ron1iyWdgUykfGOIxydkh6c5yRb7uPsgRPtMcklf1ugsqVUFv4b4J5oUY9RgCcvVmXyiaWlJLOfw==
-X-Gm-Message-State: AOJu0Yy4bl7h/IXXoypoucxc+VMHwme8OldfSSCxWHvD84y+9ZL9yKft
-	Nqr1TkrkjDogasQAJgWmnkyrv1IJJwmLITjsv++ZATmlP7YU9jyP8DmTKX7e29RUX/fW789sRsN
-	/KEQ=
-X-Google-Smtp-Source: AGHT+IGg5jRi5wpwfPvuEzPPien6Vl3FUXFYM0j9YeRpmHD1u38gUS6R5fD884mpnl6X4NIy/PtnUg==
-X-Received: by 2002:a5d:6d49:0:b0:346:20ea:2e5e with SMTP id k9-20020a5d6d49000000b0034620ea2e5emr3861716wri.21.1712735545423;
-        Wed, 10 Apr 2024 00:52:25 -0700 (PDT)
+        bh=mqeWpXq7iVkwpLCfNMJQ1hkeTu7GIqakLNWFUZcYNR8=;
+        b=L2EIwyTJaGfTNE5EJQTTcpZ3LxZGKFK+/rlxox85iGyvqlathF7HrQjleTXiUhMqhb
+         OwpnXzS7S/k3e0xcHAjV0aBEIPQW1qx7pswkmlhrl3AhhHC19Z/KYlV8B4LCk11WUm+Z
+         NxESAmmpo88Eq0bTnaSwFcEArS9OOrcDryu953ixmSJxiYU0Z6eGU8IdMMiAj1bNizS5
+         7voIXxl2g/sZtTfHY+/72yBKzO44Ao8JUl2AGD8asbK1RjWClSONW7UWyzhRzcgW53Zy
+         GEjEGj+DNH6u+Zvtu9BVR3sM3tKwAGIRTAeSJj/by9+W3C3MpsSZCWcmOGFI6ginn2n0
+         iLFw==
+X-Forwarded-Encrypted: i=1; AJvYcCXBrKDVCnqnkjrdy0zLt/Emaumy/kWZKaLZwPiWNpDdTrVAF8Dn4ZfH20KblzriRW/9NXfAcBig22hLI7KZ0idJ/ZPgiUEACxcw/g==
+X-Gm-Message-State: AOJu0YyMa3xyq/hn2EpJwmXi+AtxarrlB1bza1M5KY/bcqPNxN0CsHen
+	NIt8YuDVy4ptPtGkCRADBFsDnKCtLa6i3M4cwPlycpBvglwhaBQQsO5UFYXhfo4=
+X-Google-Smtp-Source: AGHT+IH6iDnO+uP8H0cIbAAG8d0vXfntJz0LonCnjcAsVy4AbjB4lxfmj6mpbR9+Z686JLFAOkSYzw==
+X-Received: by 2002:adf:f2c6:0:b0:33e:c91b:9083 with SMTP id d6-20020adff2c6000000b0033ec91b9083mr4069681wrp.16.1712735609399;
+        Wed, 10 Apr 2024 00:53:29 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:7b0c:6cd:4afa:674b? ([2a01:e0a:982:cbb0:7b0c:6cd:4afa:674b])
-        by smtp.gmail.com with ESMTPSA id c8-20020adfe748000000b00343a0e2375esm13175297wrn.27.2024.04.10.00.52.24
+        by smtp.gmail.com with ESMTPSA id h8-20020a05600c314800b00416b8da335esm1441821wmo.48.2024.04.10.00.53.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Apr 2024 00:52:25 -0700 (PDT)
-Message-ID: <72816a9f-3c25-44d3-8386-9b561a8ae996@linaro.org>
-Date: Wed, 10 Apr 2024 09:52:24 +0200
+        Wed, 10 Apr 2024 00:53:29 -0700 (PDT)
+Message-ID: <6ac4e36b-91b8-4324-874d-9b90c79451a1@linaro.org>
+Date: Wed, 10 Apr 2024 09:53:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,17 +78,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
+From: neil.armstrong@linaro.org
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] arm64: dts: qcom: sm8650: add description of CCI
- controllers
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+Subject: Re: [PATCH v2 0/5] arm64: dts: qcom: add USB-C orientation GPIOs
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
  Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Jagadeesh Kona <quic_jkona@quicinc.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240410074951.447898-1-vladimir.zapolskiy@linaro.org>
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240409-hdk-orientation-gpios-v2-0-658efd993987@linaro.org>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -116,374 +114,41 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20240410074951.447898-1-vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20240409-hdk-orientation-gpios-v2-0-658efd993987@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi,
-
-On 10/04/2024 09:49, Vladimir Zapolskiy wrote:
-> Qualcomm SM8650 SoC has three CCI controllers with two I2C busses
-> connected to each of them.
+On 09/04/2024 16:28, Dmitry Baryshkov wrote:
+> Populate orientation GPIOs for some of the PMIC-GLINK-based devices.
+> This leaves only FairPhone5, RB3Gen2, SC8180X Primus and SC8280XP CRD
+> without the orientation GPIOs declared.
 > 
-> The CCI controllers on SM8650 are compatible with the ones found on
-> many other older generations of Qualcomm SoCs.
-> 
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
-> The change is based and depends on a patch series from Jagadeesh Kona:
+> Changes in v2:
+> - Relax schema restriction for orientation-gpios property (Luca Weiss)
+> - Link to v1: https://lore.kernel.org/r/20240408-hdk-orientation-gpios-v1-0-8064ba43e52a@linaro.org
 > 
->    https://lore.kernel.org/linux-arm-msm/20240321092529.13362-1-quic_jkona@quicinc.com/
+> ---
+> Dmitry Baryshkov (5):
+>        dt-bindings: soc: qcom: pmic-glink: allow orientation-gpios
+>        arm64: dts: qcom: sm8350-hdk: add USB-C orientation GPIO
+>        arm64: dts: qcom: sm8450-hdk: add USB-C orientation GPIO
+>        arm64: dts: qcom: sc8280xp-lenovo-thinkpad-x13s: add USB-C orientation GPIOs
+>        arm64: dts: qcom: sc8180x-lenovo-flex-5g: add USB-C orientation GPIOs
 > 
-> It might be an option to add this change right to the series,
-> since it anyway requires a respin.
+>   .../devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml      | 14 --------------
+>   arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts        |  2 ++
+>   arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts |  2 ++
+>   arch/arm64/boot/dts/qcom/sm8350-hdk.dts                    |  1 +
+>   arch/arm64/boot/dts/qcom/sm8450-hdk.dts                    |  1 +
+>   5 files changed, 6 insertions(+), 14 deletions(-)
+> ---
+> base-commit: 8568bb2ccc278f344e6ac44af6ed010a90aa88dc
+> change-id: 20240408-hdk-orientation-gpios-141bc7fd247d
 > 
-> A new compatible value "qcom,sm8650-cci" is NOT added to
-> Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml , because
-> the controller IP description and selection is covered by a generic
-> compatible value "qcom,msm8996-cci".
+> Best regards,
 
-You'll still need to add qcom,sm8650-cci to the "CCI v2" list in qcom,i2c-cci.yaml,
-otherwise the DTBS check fail, even if the fallback is already present.
-
-Neil
-
-> 
->   arch/arm64/boot/dts/qcom/sm8650.dtsi | 315 +++++++++++++++++++++++++++
->   1 file changed, 315 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> index b406835b2e71..160b618dff9c 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> @@ -3122,6 +3122,114 @@ videocc: clock-controller@aaf0000 {
->   			#power-domain-cells = <1>;
->   		};
->   
-> +		cci0: cci@ac15000 {
-> +			compatible = "qcom,sm8650-cci", "qcom,msm8996-cci";
-> +			reg = <0 0x0ac15000 0 0x1000>;
-> +			interrupts = <GIC_SPI 426 IRQ_TYPE_EDGE_RISING>;
-> +			power-domains = <&camcc CAM_CC_TITAN_TOP_GDSC>;
-> +			clocks = <&camcc CAM_CC_CAMNOC_AXI_NRT_CLK>,
-> +				 <&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-> +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
-> +				 <&camcc CAM_CC_CCI_0_CLK>;
-> +			clock-names = "camnoc_axi",
-> +				      "slow_ahb_src",
-> +				      "cpas_ahb",
-> +				      "cci";
-> +			pinctrl-0 = <&cci0_default &cci1_default>;
-> +			pinctrl-1 = <&cci0_sleep &cci1_sleep>;
-> +			pinctrl-names = "default", "sleep";
-> +			status = "disabled";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			assigned-clocks = <&camcc CAM_CC_CCI_0_CLK_SRC>;
-> +			assigned-clock-rates = <37500000>;
-> +
-> +			cci0_i2c0: i2c-bus@0 {
-> +				reg = <0>;
-> +				clock-frequency = <400000>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
-> +
-> +			cci0_i2c1: i2c-bus@1 {
-> +				reg = <1>;
-> +				clock-frequency = <400000>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
-> +		};
-> +
-> +		cci1: cci@ac16000 {
-> +			compatible = "qcom,sm8650-cci", "qcom,msm8996-cci";
-> +			reg = <0 0x0ac16000 0 0x1000>;
-> +			interrupts = <GIC_SPI 427 IRQ_TYPE_EDGE_RISING>;
-> +			power-domains = <&camcc CAM_CC_TITAN_TOP_GDSC>;
-> +			clocks = <&camcc CAM_CC_CAMNOC_AXI_NRT_CLK>,
-> +				 <&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-> +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
-> +				 <&camcc CAM_CC_CCI_1_CLK>;
-> +			clock-names = "camnoc_axi",
-> +				      "slow_ahb_src",
-> +				      "cpas_ahb",
-> +				      "cci";
-> +			pinctrl-0 = <&cci2_default &cci3_default>;
-> +			pinctrl-1 = <&cci2_sleep &cci3_sleep>;
-> +			pinctrl-names = "default", "sleep";
-> +			status = "disabled";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			cci1_i2c0: i2c-bus@0 {
-> +				reg = <0>;
-> +				clock-frequency = <1000000>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
-> +
-> +			cci1_i2c1: i2c-bus@1 {
-> +				reg = <1>;
-> +				clock-frequency = <1000000>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
-> +		};
-> +
-> +		cci2: cci@ac17000 {
-> +			compatible = "qcom,sm8650-cci", "qcom,msm8996-cci";
-> +			reg = <0 0x0ac17000 0 0x1000>;
-> +			interrupts = <GIC_SPI 428 IRQ_TYPE_EDGE_RISING>;
-> +			power-domains = <&camcc CAM_CC_TITAN_TOP_GDSC>;
-> +			clocks = <&camcc CAM_CC_CAMNOC_AXI_NRT_CLK>,
-> +				 <&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-> +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
-> +				 <&camcc CAM_CC_CCI_2_CLK>;
-> +			clock-names = "camnoc_axi",
-> +				      "slow_ahb_src",
-> +				      "cpas_ahb",
-> +				      "cci";
-> +			pinctrl-0 = <&cci4_default &cci5_default>;
-> +			pinctrl-1 = <&cci4_sleep &cci5_sleep>;
-> +			pinctrl-names = "default", "sleep";
-> +			status = "disabled";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			cci2_i2c0: i2c-bus@0 {
-> +				reg = <0>;
-> +				clock-frequency = <1000000>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
-> +
-> +			cci2_i2c1: i2c-bus@1 {
-> +				reg = <1>;
-> +				clock-frequency = <1000000>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
-> +		};
-> +
->   		camcc: clock-controller@ade0000 {
->   			compatible = "qcom,sm8650-camcc";
->   			reg = <0 0x0ade0000 0 0x20000>;
-> @@ -3815,6 +3923,213 @@ tlmm: pinctrl@f100000 {
->   
->   			wakeup-parent = <&pdc>;
->   
-> +			cci0_default: cci0-default-state {
-> +				sda-pins {
-> +					pins = "gpio113";
-> +					function = "cci_i2c_sda";
-> +					drive-strength = <2>;
-> +					bias-pull-up = <2200>;
-> +				};
-> +
-> +				scl-pins {
-> +					pins = "gpio114";
-> +					function = "cci_i2c_scl";
-> +					drive-strength = <2>;
-> +					bias-pull-up = <2200>;
-> +				};
-> +			};
-> +
-> +			cci0_sleep: cci0-sleep-state {
-> +				sda-pins {
-> +					pins = "gpio113";
-> +					function = "cci_i2c_sda";
-> +					drive-strength = <2>;
-> +					bias-pull-down;
-> +				};
-> +
-> +				scl-pins {
-> +					pins = "gpio114";
-> +					function = "cci_i2c_scl";
-> +					drive-strength = <2>;
-> +					bias-pull-down;
-> +				};
-> +			};
-> +
-> +			cci1_default: cci1-default-state {
-> +				sda-pins {
-> +					pins = "gpio115";
-> +					function = "cci_i2c_sda";
-> +					drive-strength = <2>;
-> +					bias-pull-up = <2200>;
-> +				};
-> +
-> +				scl-pins {
-> +					pins = "gpio116";
-> +					function = "cci_i2c_scl";
-> +					drive-strength = <2>;
-> +					bias-pull-up = <2200>;
-> +				};
-> +
-> +				mclk-pins {
-> +					pins = "gpio101";
-> +					function = "cam_mclk";
-> +					drive-strength = <2>;
-> +					bias-disable;
-> +				};
-> +
-> +				rst-pins {
-> +					pins = "gpio15";
-> +					function = "gpio";
-> +					drive-strength = <2>;
-> +					bias-disable;
-> +					output-low;
-> +				};
-> +			};
-> +
-> +			cci1_sleep: cci1-sleep-state {
-> +				sda-pins {
-> +					pins = "gpio115";
-> +					function = "cci_i2c_sda";
-> +					drive-strength = <2>;
-> +					bias-pull-down;
-> +				};
-> +
-> +				scl-pins {
-> +					pins = "gpio116";
-> +					function = "cci_i2c_scl";
-> +					drive-strength = <2>;
-> +					bias-pull-down;
-> +				};
-> +			};
-> +
-> +			cci2_default: cci2-default-state {
-> +				sda-pins {
-> +					pins = "gpio117";
-> +					function = "cci_i2c_sda";
-> +					drive-strength = <2>;
-> +					bias-pull-up = <2200>;
-> +				};
-> +
-> +				scl-pins {
-> +					pins = "gpio118";
-> +					function = "cci_i2c_scl";
-> +					drive-strength = <2>;
-> +					bias-pull-up = <2200>;
-> +				};
-> +			};
-> +
-> +			cci2_sleep: cci2-sleep-state {
-> +				sda-pins {
-> +					pins = "gpio117";
-> +					function = "cci_i2c_sda";
-> +					drive-strength = <2>;
-> +					bias-pull-down;
-> +				};
-> +
-> +				scl-pins {
-> +					pins = "gpio118";
-> +					function = "cci_i2c_scl";
-> +					drive-strength = <2>;
-> +					bias-pull-down;
-> +				};
-> +			};
-> +
-> +			cci3_default: cci3-default-state {
-> +				sda-pins {
-> +					pins = "gpio12";
-> +					function = "cci_i2c_sda";
-> +					drive-strength = <2>;
-> +					bias-pull-up = <2200>;
-> +				};
-> +
-> +				scl-pins {
-> +					pins = "gpio13";
-> +					function = "cci_i2c_scl";
-> +					drive-strength = <2>;
-> +					bias-pull-up = <2200>;
-> +				};
-> +			};
-> +
-> +			cci3_sleep: cci3-sleep-state {
-> +				sda-pins {
-> +					pins = "gpio12";
-> +					function = "cci_i2c_sda";
-> +					drive-strength = <2>;
-> +					bias-pull-down;
-> +				};
-> +
-> +				scl-pins {
-> +					pins = "gpio13";
-> +					function = "cci_i2c_scl";
-> +					drive-strength = <2>;
-> +					bias-pull-down;
-> +				};
-> +			};
-> +
-> +			cci4_default: cci4-default-state {
-> +				sda-pins {
-> +					pins = "gpio112";
-> +					function = "cci_i2c_sda";
-> +					drive-strength = <2>;
-> +					bias-pull-up = <2200>;
-> +				};
-> +
-> +				scl-pins {
-> +					pins = "gpio153";
-> +					function = "cci_i2c_scl";
-> +					drive-strength = <2>;
-> +					bias-pull-up = <2200>;
-> +				};
-> +			};
-> +
-> +			cci4_sleep: cci4-sleep-state {
-> +				sda-pins {
-> +					pins = "gpio112";
-> +					function = "cci_i2c_sda";
-> +					drive-strength = <2>;
-> +					bias-pull-down;
-> +				};
-> +
-> +				scl-pins {
-> +					pins = "gpio153";
-> +					function = "cci_i2c_scl";
-> +					drive-strength = <2>;
-> +					bias-pull-down;
-> +				};
-> +			};
-> +
-> +			cci5_default: cci5-default-state {
-> +				sda-pins {
-> +					pins = "gpio119";
-> +					function = "cci_i2c_sda";
-> +					drive-strength = <2>;
-> +					bias-pull-up = <2200>;
-> +				};
-> +
-> +				scl-pins {
-> +					pins = "gpio120";
-> +					function = "cci_i2c_scl";
-> +					drive-strength = <2>;
-> +					bias-pull-up = <2200>;
-> +				};
-> +			};
-> +
-> +			cci5_sleep: cci5-sleep-state {
-> +				sda-pins {
-> +					pins = "gpio119";
-> +					function = "cci_i2c_sda";
-> +					drive-strength = <2>;
-> +					bias-pull-down;
-> +				};
-> +
-> +				scl-pins {
-> +					pins = "gpio120";
-> +					function = "cci_i2c_scl";
-> +					drive-strength = <2>;
-> +					bias-pull-down;
-> +				};
-> +			};
-> +
->   			hub_i2c0_data_clk: hub-i2c0-data-clk-state {
->   				/* SDA, SCL */
->   				pins = "gpio64", "gpio65";
-
+You forgot to pick it on the v1:
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
