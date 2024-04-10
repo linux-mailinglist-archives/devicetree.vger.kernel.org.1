@@ -1,130 +1,236 @@
-Return-Path: <devicetree+bounces-57722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 892C989E8E7
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 06:32:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA50C89E91E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 06:41:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA3E51C225CA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 04:32:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F49B282ACC
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 04:41:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B89D410A09;
-	Wed, 10 Apr 2024 04:32:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2599DD535;
+	Wed, 10 Apr 2024 04:41:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hIHHOS9H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4FA910A13;
-	Wed, 10 Apr 2024 04:32:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FD5BC8E0;
+	Wed, 10 Apr 2024 04:41:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712723530; cv=none; b=C69BhU2xs5oc6283MPzZnmt/e5fZ+KhbBhneyD/lFrZMfs+pYNdQl7fwSVVmKIu9aFOwBiOLG6FCA8wsDhyHc29UItg7LOQPZ2G8FoyZloxrnc6Ne8ZJpWr4YxqAmMdqQc6GiTnxdG9cjarwSB90m78TaXJcU95buaO9q+KtLkQ=
+	t=1712724079; cv=none; b=Wsyk5qWG8Vk4+k3+J8/pM5R5NS6kIc9OWZmL6Ry9TpHoYP/Ud+0akN3h/50N3YJ+ZRMYUD0Fs1MYjX+homH9zr8XTWcYhB/5pL7AdmmTUhlIp62TEtKr9cb92AFexcUZJMOcXV7pMEnAyr6NxS+lFzG5p8SwdgDL1kcGO58cZRY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712723530; c=relaxed/simple;
-	bh=siZOQ+4XPskfy2znOMEDWoSkPbfewpmOGbasV0ucBXs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=NyRdRuEqSzFgfm0jicmlBDlq6o01vywuQ6BkKPHk4Gc0/0HWRVX+MGhOKcsiz491jXqFdSfLEJhUTJGEbpKJn/cEpYfyQltsrW0NJOCVv3ww0eWLGz68n1ol7kbZefhL8qynaV4GdpetGNqNnO88C/xR5g4PR1HcGX9ljUmgLgc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from ip-185-104-138-50.ptr.icomera.net ([185.104.138.50] helo=phil.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1ruPcr-0007Sx-9l; Wed, 10 Apr 2024 06:31:57 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Jianfeng Liu <liujianfeng1994@gmail.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org,
- krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- liujianfeng1994@gmail.com, robh@kernel.org, sfr@canb.auug.org.au
-Subject:
- Re: [PATCH] arm64: dts: rockchip: remove startup-delay-us from
- vcc3v3_pcie2x1l0 on rock-5b
-Date: Wed, 10 Apr 2024 06:31:48 +0200
-Message-ID: <3879529.iIbC2pHGDl@phil>
-In-Reply-To: <20240403075916.1025550-1-liujianfeng1994@gmail.com>
-References:
- <2535182.Sgy9Pd6rRy@diego>
- <20240403075916.1025550-1-liujianfeng1994@gmail.com>
+	s=arc-20240116; t=1712724079; c=relaxed/simple;
+	bh=CvANhkT3bjU8SGaWUSOMNC3pInbPa0QZUBUNA+Qsi5I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=reK4I6KMmmh66XZM6MaxZoozsi3LBf9QbHwQoJAyho0yv20LdaJGIShaR5BzEY4XaISD1iMESJDTKW0MX1czhwVicPn5Dz2dZGV3N2kyoj3fU67d8fOv14mJ6MmGK6euePxmYi0fXr483L1VEX96SeGl+NxVF+O4KNauX1iEK98=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hIHHOS9H; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43A3VNlw031961;
+	Wed, 10 Apr 2024 04:41:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=vJX8hXgmI1cP9JeYXDNUwqcy/x7F81wYrlGr7moQXUA=; b=hI
+	HHOS9HM6rxBD1rl75le+W0C4UZfPIzHVPfwv2q9aqatEFsOU60I7ybphe+cjJcGw
+	8PKJMfzLuokD5b+HmFxoLj1GKVUQdFXns2Z+w5rXazHrfJJYJTKZ3CXWQZbCTlfi
+	/pyYC/0Kj4GIGLIjCxRrV/Xs842wCWsAvZ05e6W16tH827CTfnIOsfHjBeIg8oqG
+	1nGwtWvhHJby8dwu65d/CdDFjGch6hkTMEH7ZSxq04Kh5XkE3xUT0DuX9rQzfl/U
+	sguyVWSLpMuUgWXh/15PQT6Yivb/dAg9IsxPxlC1ZllI3zQX1JYGmw+buq0UUR2D
+	DNlN6eCocMueQqE3Clug==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xdjxh8axt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 Apr 2024 04:41:04 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43A4f3hH008190
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 Apr 2024 04:41:03 GMT
+Received: from [10.216.60.187] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Tue, 9 Apr 2024
+ 21:40:57 -0700
+Message-ID: <60e569d7-0d63-4b62-b666-1dd7919c8af2@quicinc.com>
+Date: Wed, 10 Apr 2024 10:10:54 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-
-Am Mittwoch, 3. April 2024, 09:59:16 CEST schrieb Jianfeng Liu:
-> Hi Heiko,
->=20
-> Tue, 02 Apr 2024 12:39:17 +0200, Heiko St=FCbner wrote:
-> >Does the pcie driver enable the regulator too late somehow?
-> The pcie driver will enable the regulator imediately when it is probed.
-> I added log at when driver is probed and when regulator is enabled.
-> Here is the log with "startup-delay-us =3D <50000>":
-> ```
-> [    1.572991] rockchip-dw-pcie a40800000.pcie: rockchip_pcie_probe start
-> [    1.573697] rockchip-dw-pcie a40800000.pcie: going to enable vpcie3v3 =
-regulator
-> [    1.575194] rockchip-dw-pcie a40800000.pcie: enable vpcie3v3 regulator=
- done
-> ```
->=20
-> And here is the log without "startup-delay-us":
-> ```
-> [    1.518490] rockchip-dw-pcie a40800000.pcie: rockchip_pcie_probe start
-> [    1.518603] rockchip-dw-pcie a40800000.pcie: going to enable vpcie3v3 =
-regulator
-> [    1.518610] rockchip-dw-pcie a40800000.pcie: enable vpcie3v3 regulator=
- done
-> ```
->=20
-> We can see startup-delay-us will delay the driver probe.
->=20
-> I also take a look at rockchip's SDK kernel, their pci driver is probed
-> very late:
-> ```
-> [    3.398682] dw-pcie fe170000.pcie: invalid resource
-> [    3.398686] dw-pcie fe170000.pcie: Failed to initialize host
-> [    3.398688] dw-pcie: probe of fe170000.pcie failed with error -22
-> [    3.399396] rk-pcie fe170000.pcie: invalid prsnt-gpios property in node
-> [    3.399410] rk-pcie fe170000.pcie: Looking up vpcie3v3-supply from dev=
-ice tree
-> [    3.405195] rk-pcie fe170000.pcie: host bridge /pcie@fe170000 ranges:
-> [    3.405253] rk-pcie fe170000.pcie:       IO 0x00f2100000..0x00f21fffff=
- -> 0x00f2100000
-> [    3.405283] rk-pcie fe170000.pcie:      MEM 0x00f2200000..0x00f2ffffff=
- -> 0x00f2200000
-> [    3.405310] rk-pcie fe170000.pcie:      MEM 0x0980000000..0x09bfffffff=
- -> 0x0980000000
-> [    3.405372] rk-pcie fe170000.pcie: iATU unroll: enabled
-> [    3.405381] rk-pcie fe170000.pcie: iATU regions: 8 ob, 8 ib, align 64K=
-, limit 8G
-> [    3.666917] rk-pcie fe170000.pcie: PCIe Link up, LTSSM is 0x30011
-> [    3.666932] rk-pcie fe170000.pcie: PCIe Gen.1 x1 link up
-> [    3.667139] rk-pcie fe170000.pcie: PCI host bridge to bus 0002:20
-> ```
->=20
-> And it is reported that startup-delay-us is necessary in rockchip's SDK
-> kernel. But in mainline kernel it is different.
-
-that's not directly what I meant.
-
-I.e. if the behaviour changes with arbitary delay changes, it points
-very much to some sort of timing issue in the pcie driver itself.
-
-That's why I asked about the regulator turning on, because if the enable
-call returns 50ms earlier or later should never influence the behaviour
-of the driver.
-
-=46or example other threads could also just hinder the kernel from
-continuing the pcie probe even after the regulator is on - again
-leading to undefined behaviour, as you seem to be experiencing as
-described in your mail from yesterday.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v20 4/9] usb: dwc3: core: Refactor PHY logic to support
+ Multiport Controller
+To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring
+	<robh@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+        Wesley Cheng
+	<quic_wcheng@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
+        Johan Hovold
+	<johan@kernel.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "linux-arm-msm@vger.kernel.org"
+	<linux-arm-msm@vger.kernel.org>,
+        "linux-usb@vger.kernel.org"
+	<linux-usb@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>,
+        "quic_ppratap@quicinc.com"
+	<quic_ppratap@quicinc.com>,
+        "quic_jackp@quicinc.com"
+	<quic_jackp@quicinc.com>,
+        Johan Hovold <johan+linaro@kernel.org>
+References: <20240408132925.1880571-1-quic_kriskura@quicinc.com>
+ <20240408132925.1880571-5-quic_kriskura@quicinc.com>
+ <20240409011046.zgjqvhewldch3snu@synopsys.com>
+ <3ab9badd-2cf6-4fe0-aaf0-d08614418968@quicinc.com>
+ <20240409181342.wmjvi6rwtxphnv3z@synopsys.com>
+Content-Language: en-US
+From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <20240409181342.wmjvi6rwtxphnv3z@synopsys.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: d1lbR0JK5Ly33FsAvkn7ErNTNFCqjUpY
+X-Proofpoint-GUID: d1lbR0JK5Ly33FsAvkn7ErNTNFCqjUpY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-09_12,2024-04-09_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 clxscore=1015
+ suspectscore=0 priorityscore=1501 impostorscore=0 malwarescore=0
+ spamscore=0 mlxscore=0 bulkscore=0 mlxlogscore=999 lowpriorityscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404100032
 
 
+
+On 4/9/2024 11:43 PM, Thinh Nguyen wrote:
+> On Tue, Apr 09, 2024, Krishna Kurapati PSSNV wrote:
+>>
+>>
+>> On 4/9/2024 6:41 AM, Thinh Nguyen wrote:
+>>> On Mon, Apr 08, 2024, Krishna Kurapati wrote:
+>>>> Currently the DWC3 driver supports only single port controller
+>>>> which requires at least one HS PHY and at most one SS PHY.
+>>>>
+>>>> But the DWC3 USB controller can be connected to multiple ports and
+>>>> each port can have their own PHYs. Each port of the multiport
+>>>> controller can either be HS+SS capable or HS only capable
+>>>> Proper quantification of them is required to modify GUSB2PHYCFG
+>>>> and GUSB3PIPECTL registers appropriately.
+>>>>
+>>>> Add support for detecting, obtaining and configuring PHYs supported
+>>>> by a multiport controller. Limit support to multiport controllers
+>>>> with up to four ports for now (e.g. as needed for SC8280XP).
+>>>>
+>>>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+>>>> Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
+>>>> ---
+>>>>    drivers/usb/dwc3/core.c | 251 ++++++++++++++++++++++++++++------------
+>>>>    drivers/usb/dwc3/core.h |  14 ++-
+>>>>    drivers/usb/dwc3/drd.c  |  15 ++-
+>>>>    3 files changed, 193 insertions(+), 87 deletions(-)
+>>>>
+>>>
+>>> <snip>
+>>>
+>>>> @@ -1937,6 +2020,10 @@ static int dwc3_get_num_ports(struct dwc3 *dwc)
+>>>>    	iounmap(base);
+>>>> +	if (dwc->num_usb2_ports > DWC3_MAX_PORTS ||
+>>>> +	    dwc->num_usb3_ports > DWC3_MAX_PORTS)
+>>>> +		return -ENOMEM;
+>>>
+>>> This should be -EINVAL.
+>>>
+>>>> +
+>>>>    	return 0;
+>>>>    }
+>>>
+>>> <snip>
+>>>
+>>>> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
+>>>> index 341e4c73cb2e..df2e111aa848 100644
+>>>> --- a/drivers/usb/dwc3/core.h
+>>>> +++ b/drivers/usb/dwc3/core.h
+>>>> @@ -33,6 +33,12 @@
+>>>>    #include <linux/power_supply.h>
+>>>> +/*
+>>>> + * Maximum number of ports currently supported for multiport
+>>>> + * controllers.
+>>>
+>>> This macro here is being used per USB2 vs USB3 ports rather than USB2 +
+>>> USB3, unlike the xHCI MAXPORTS. You can clarify in the comment and
+>>> rename the macro to avoid any confusion. You can also create 2 separate
+>>> macros for number of USB2 and USB3 ports even if they share the same
+>>> value.
+>>>
+>>> As noted[*], we support have different max number of usb2 ports vs usb3
+>>> ports. I would suggest splitting the macros.
+>>>
+>>
+>> Hi Thinh,
+>>
+>>   This macro was intended only to identify how many USB2 (or USB3) Phy's were
+>> serviced/operated by this driver, not how many logical ports present (like
+> 
+> That's not what you described in the comment right above the macro...
+> 
+>> in xHCI). I don't think it would be confusing currently given that it is
+>> only used to identify number of generic phy instances to allocate and not
+>> used for any other purpose. Once the num_usb2_ports and num_usb3_ports are
+>> read by get_num_ports(...) call, they directly indicate how many ports are
+> 
+> Those fields are clear. But for DWC3_MAX_PORTS, based on the name and
+> comment of the macro, it's not clear.
+> 
+>> HS and SS respectively. Keeping the same in mind, I returned ENOMEM above
+>> (as you mentioned) because we don't allocate more than DWC3_MAX_PORTS and if
+>> the number of hs or ss ports is more than that, we simply return ENOMEM
+>> saying the driver doesn't support operating those many phy's.
+> 
+> The error code -ENOMEM indicates out of memory failure. The check
+> condition dwc->num_usb2_ports > DWC3_MAX_PORTS indicates invalid config.
+> There's no allocation in that check.
+> 
+>>
+>>> [*] https://urldefense.com/v3/__https://lore.kernel.org/linux-usb/20230801013031.ft3zpoatiyfegmh6@synopsys.com/__;!!A4F2R9G_pg!azHqgm92ENkFQrpv6Fhs6PCe210VGOAIrsuGFhrgmfaor8N_kWLu6rxkPpbeCBTLL4NbUpOWlQ0ufmP9DFwO9iFc0XdSEg$
+>>>
+>>>> + */
+>>>> +#define DWC3_MAX_PORTS 4
+>>>> +
+>>>>
+>>>
+>>> But it's not a big issue whether you decided to push a new version or a
+>>> create a separate patch for the comments above. Here's my Ack:
+>>>
+>>
+>> Since this is not a bug, I would prefer to make a separate patch to rename
+>> the macros. (If that is fine).
+>>
+> 
+> That is fine with me. Thanks for your effort pursuing and continue
+> working on this series.
+> 
+
+Thanks Thinh. If there are no other issues, I will wait till Greg picks 
+the series up. Thanks for the reviews throughout the series.
+
+Regards,
+Krishna,
 
