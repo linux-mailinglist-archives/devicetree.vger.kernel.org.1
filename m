@@ -1,169 +1,255 @@
-Return-Path: <devicetree+bounces-57795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C365289ED89
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 10:27:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60EC589ED95
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 10:28:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5A181C209F9
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 08:27:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB34D1F22D43
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 08:28:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CCE113D605;
-	Wed, 10 Apr 2024 08:27:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE50313D8A6;
+	Wed, 10 Apr 2024 08:28:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sDxtNBdL"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="CQd2jjGP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E86E613D535
-	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 08:26:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3AF813D88D
+	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 08:28:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712737620; cv=none; b=GPBvjyDNooedHKJB42AyE8pPdmTaxJg8lobFwk8cfTlj2sBTfw7GNT10EriskzXMJUS/8ZKVancPOJ62Is4LHEfOFyFSYuONhpCzxKrG9NgPYpgONqth7RImirb7Fgaxm+KT5+c1SYVxKaGx21UnQMe0WA+ESTrGrlzFhN7Vn2A=
+	t=1712737714; cv=none; b=rjdZyblifvldjzsJXxUKnh2BSWUFHvYM4yYaZMZW+s/c1TWB+p0FzLUU3efDXc2yMHPExp09Nnet7p2WnrwME6gSKswmdYRpiH062zBe1oBdiZLFP1vAOkmSfdlhdRVdK3fjE8zf0bBn7mkxfEM1XFq0/oxTv1aDK5ZJdPMp6iM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712737620; c=relaxed/simple;
-	bh=+ySoNLYAb0OmC00C6xnQBfyWu5Khf41/oV21QlsHOk4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Zl/SG8+NZuSLl609N5+OtuzDUDXXC24mb2WSt13Uzpn6VbLfhzr8cs9cTuMsk79TOXQBmptLmmDWkshhNh8VXLDNX5iYtDwqy0GSD73p0gnhsUJ0WZmcrwRJHZPFnh5ZiVkLrR+sEV3FvxUsHC0itZl8oRG8VQPawo5Im8K/eP0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sDxtNBdL; arc=none smtp.client-ip=209.85.208.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2d89346eb45so36856381fa.0
-        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 01:26:58 -0700 (PDT)
+	s=arc-20240116; t=1712737714; c=relaxed/simple;
+	bh=RdoPGfTRxg4TF3BNotLs/J4hn1wlJbrn+0z/i3iKM08=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=T23RDVuXN7NeJfmy0ylmAZ21S9E0hULEHMWB0Y1NQtjVAqTX7WFmIW1ZifRR2won2PD/wyMVwWtNjeE+zHpVtRRnxib8F28aJKlic/1pCNmraiJ4RZZ2oEa6FNL+WpEjDDaL/VflVeo64jLpXycQlj9ho7x8n0UrpLkClSbNwi4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=CQd2jjGP; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-55a179f5fa1so7294546a12.0
+        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 01:28:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712737617; x=1713342417; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=bm7UxuqoJvIIipcWHzaYnh2r+UzAv7oGOAT76pDRbBQ=;
-        b=sDxtNBdLHZxoyPGdYsrAkuvokmbuEaHY9oo7hm5hd2kjnc3HNL5ufbsl1cgDtgVe3S
-         AFc3imXZJ0C28P7Z2hkrx7d43xxauQcDjRtbWISJ/u2iB0769uD1UEAsOhmQAV2v2Iqx
-         hDYqvh2znTiTw7qYrv4+KSF4Gc7qMlyKb//p4XTvBcfLi4colFLqPX6943iC6PwlvKLT
-         +N8R+s1QOjDJYF0dYzyplXUq30dJQs4n5GepH/It4H7K0xCKrqwLWQNtC3QKa4DLmmqi
-         TH+iKwsqI6cLC9r+dkfoJc6nRp4vlyuZ4Uf1OMi079QY46WkbtzqSrpRfWiIiTJuIj4N
-         csUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712737617; x=1713342417;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=chromium.org; s=google; t=1712737711; x=1713342511; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=bm7UxuqoJvIIipcWHzaYnh2r+UzAv7oGOAT76pDRbBQ=;
-        b=QHD3ExWT6gRyQstjA4VcauoA+EzbHIexpWuGT5nnlCAEH6SVQtWFtz6ptZ+LQE8IqU
-         528PQd84p0OSvNGWlXQHc5eLsqctSY3LSzCJQlgyYDnAuxP3HCgPHmcM47r2qut6xT1v
-         lbcGe/0IEWcWfPFJhvRrBBuj+m626Ik/K4/eAas5bEes5k3YYTASto3uzJZXBVul30I0
-         jtzI+2RioujrlIdD2IGryX630/h1kDlJ5jz7XOKJBUDI4SL9rQ4ERlpMXyEGFO2o8Rv6
-         MyCjSxC8IMZpojMSKzfoB3z/NEPVdl+Z9JU+qEwknkask2EP2t6InPMUYvcGj+s99srD
-         4Ypw==
-X-Forwarded-Encrypted: i=1; AJvYcCUhPPmPSJuGuCavdbospWFiKuqMJsr4J+EJow4uC295IAl2835fIb+KmmufbR7Lsh4jqhW2HhBr4kEwu9ftuGkQHbza0xlUZEDTgQ==
-X-Gm-Message-State: AOJu0YwO8GcV4H1oKyffHL2zDjBxyepJBIDfE8UCaHLEVjZc8DwsECq6
-	64jpNwia5n3ftyugeTUAKQJTPdj8qMyOw0pTNpJCYyT6AwlKJE7IWISbex3fldY=
-X-Google-Smtp-Source: AGHT+IHpx+ZlH0CcdhbdgqYAD4RIwZmGsa9/fN2Ex4V8ch2BDJU6R3H1LwOgynHIyWFZVPuIMXmAgg==
-X-Received: by 2002:a05:651c:454:b0:2d3:8c1f:c0ff with SMTP id g20-20020a05651c045400b002d38c1fc0ffmr1868862ljg.16.1712737613013;
-        Wed, 10 Apr 2024 01:26:53 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id z17-20020a5d4c91000000b00343cc702c56sm13253349wrs.47.2024.04.10.01.26.51
+        bh=gW38Gh9I29r84lVoZWwktFq4DHYBoJff/etd3Fj/TJA=;
+        b=CQd2jjGPQ+mNjGzTALoRhUoqs0P5Ca+BCxoyF0zfUWDYR/cBKSQjj4MGX+oqjX96VS
+         l+fsgKV88VBrrXp907hDNQwJ1WHXgm1ktZKwXWNLUrrLmO5lGVZxUHRNzcNSvEujWL3A
+         4I1hxAg6zMAVQPYd6XtiCg7ntOrtrmYqvNXD8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712737711; x=1713342511;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gW38Gh9I29r84lVoZWwktFq4DHYBoJff/etd3Fj/TJA=;
+        b=oAb2DghBkhLR0rXU0NWc3Q82UgO3AqW9d8DphAOqbvqonjM9+YaFSViHjVGPjN6HRk
+         XtZL5ix5i1cmkQOiexbc12l/1UZLWRKkU8TpWuLLjaRSgxUuz0O3ShfhEoZWYtIVQz7r
+         zY49Gii9pb7jFmXDx9f7V1uW91TdF12ZiGKhuD01NyrJxkmR4EffVWCTs/gn5zHn4lJk
+         gc9VtPGdrd9Ot19KKF0fzeoUvdg1cGJ4YHpYJ4RXvhwKapHDAXKLf9TXFHv4dzVMQtx5
+         g9nXNiNgqT0iI4ao4sDTdhMsVbOv3Pnck69o8vciDPguAICnHsnxt/yibcZ57WG3rR6p
+         RM4A==
+X-Forwarded-Encrypted: i=1; AJvYcCXr+Gnz1cQoA137iu+5A+LBBIiL3/YohYCPZSU2ADzl7fhvWjOnjK3k6mTWS2eRAGjRLrrSg/YEq4jkRTNOVK1KJu6UXexxnyQMMg==
+X-Gm-Message-State: AOJu0Ywo/Epcl3gqrdREhP3495tJLpLyB4phl1DPl0Y427lafyvcK+Cy
+	KcEyhriZ8yf9kRM0u+glEnpnY9EEQ+x3cwD6MX4F6/7SU5ZWyAV+ihsqE4bH0907ye1WT/T/Uzv
+	Acg==
+X-Google-Smtp-Source: AGHT+IHPG4HL/xcaAsjwIJiRTopSWGVKBEZNVL2rSlhJcmcgX0B8g8bSNqvhlD4XHYA70WzOKg19YA==
+X-Received: by 2002:a17:907:a07:b0:a51:fef6:b7d6 with SMTP id bb7-20020a1709070a0700b00a51fef6b7d6mr1605662ejc.19.1712737710930;
+        Wed, 10 Apr 2024 01:28:30 -0700 (PDT)
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com. [209.85.218.41])
+        by smtp.gmail.com with ESMTPSA id sa10-20020a1709076d0a00b00a4e6582edf8sm6616083ejc.102.2024.04.10.01.28.30
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Apr 2024 01:26:52 -0700 (PDT)
-Message-ID: <d47ce3e8-8ce7-416f-be0f-2283575f24b2@linaro.org>
-Date: Wed, 10 Apr 2024 10:26:51 +0200
+        Wed, 10 Apr 2024 01:28:30 -0700 (PDT)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a519ef3054bso607749466b.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 01:28:30 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVhd5y5j+teF9z17VEkKj+k98mfK4eFgfrLgtllmMWPWnAyI/l/YBAB4BOmZOwktaaQoPVppmyVeJLOSuSD9bFrzeimcYyPABo8UQ==
+X-Received: by 2002:a17:907:a41:b0:a51:dd18:bd21 with SMTP id
+ be1-20020a1709070a4100b00a51dd18bd21mr1452940ejc.16.1712737710124; Wed, 10
+ Apr 2024 01:28:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sm8650: add description of CCI
- controllers
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Jagadeesh Kona <quic_jkona@quicinc.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240410074951.447898-1-vladimir.zapolskiy@linaro.org>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240410074951.447898-1-vladimir.zapolskiy@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240410-upstream-torvalds-master-v1-1-852e903f0cec@chromium.org> <c3d05b3e-f784-4606-9634-52dc6feee318@collabora.com>
+In-Reply-To: <c3d05b3e-f784-4606-9634-52dc6feee318@collabora.com>
+From: Hsin-Te Yuan <yuanhsinte@chromium.org>
+Date: Wed, 10 Apr 2024 16:27:53 +0800
+X-Gmail-Original-Message-ID: <CAHc4DN+N7oLNiiVL-T+T0dEr2nipph5f2q5zu37NowPQC+=mkw@mail.gmail.com>
+Message-ID: <CAHc4DN+N7oLNiiVL-T+T0dEr2nipph5f2q5zu37NowPQC+=mkw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8192: Add missing trip point in
+ thermal zone
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Hsin-Te Yuan <yuanhsinte@chromium.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	=?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>, 
+	=?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>, 
+	Balsam CHIHI <bchihi@baylibre.com>, Alexandre Mergnat <amergnat@baylibre.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 10/04/2024 09:49, Vladimir Zapolskiy wrote:
-> Qualcomm SM8650 SoC has three CCI controllers with two I2C busses
-> connected to each of them.
-> 
-> The CCI controllers on SM8650 are compatible with the ones found on
-> many other older generations of Qualcomm SoCs.
-> 
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> ---
-> The change is based and depends on a patch series from Jagadeesh Kona:
-> 
->   https://lore.kernel.org/linux-arm-msm/20240321092529.13362-1-quic_jkona@quicinc.com/
-> 
-> It might be an option to add this change right to the series,
-> since it anyway requires a respin.
-> 
-> A new compatible value "qcom,sm8650-cci" is NOT added to
-> Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml , because
-> the controller IP description and selection is covered by a generic
-> compatible value "qcom,msm8996-cci".
+Hi Angelo,
 
-I do not understand this reasoning. So you introduce known errors
-because errors are ok?
+According to the document
+(https://docs.kernel.org/driver-api/thermal/power_allocator.html),
+there should be two passive trip points. It seems that the switch-on
+temperature will be 0 if we only have one trip point, which hurts
+performance. I'll send v2 to explain this more clearly.
 
-How does it pass dtbs_check validation?
+Regards,
+Hsin-Te
 
-Best regards,
-Krzysztof
 
+On Wed, Apr 10, 2024 at 3:43=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Il 10/04/24 08:20, Hsin-Te Yuan ha scritto:
+> > Add the missing passive trip point which is expected by kernel.
+> >
+> > Fixes: c7a728051f4e ("arm64: dts: mediatek: mt8192: Add thermal nodes a=
+nd thermal zones")
+> > Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
+>
+> Sorry, I don't understand what you're trying to solve here.
+>
+> All of the thermal zones in mt8192.dtsi already do have a passive trip po=
+int
+> which is also used in cooling-maps.
+>
+> Can you please describe the issue?
+>
+> Thanks,
+> Angelo
+>
+> > ---
+> >   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 40 +++++++++++++++++++++++=
++++++++++
+> >   1 file changed, 40 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot=
+/dts/mediatek/mt8192.dtsi
+> > index 05e401670bced..08d8bccc84669 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> > @@ -1959,6 +1959,11 @@ cpu0-thermal {
+> >                       thermal-sensors =3D <&lvts_mcu MT8192_MCU_LITTLE_=
+CPU0>;
+> >
+> >                       trips {
+> > +                             cpu0_thres: trip-point {
+> > +                                     temperature =3D <68000>;
+> > +                                     hysteresis =3D <2000>;
+> > +                                     type =3D "passive";
+> > +                             };
+> >                               cpu0_alert: trip-alert {
+> >                                       temperature =3D <85000>;
+> >                                       hysteresis =3D <2000>;
+> > @@ -1989,6 +1994,11 @@ cpu1-thermal {
+> >                       thermal-sensors =3D <&lvts_mcu MT8192_MCU_LITTLE_=
+CPU1>;
+> >
+> >                       trips {
+> > +                             cpu1_thres: trip-point {
+> > +                                     temperature =3D <68000>;
+> > +                                     hysteresis =3D <2000>;
+> > +                                     type =3D "passive";
+> > +                             };
+> >                               cpu1_alert: trip-alert {
+> >                                       temperature =3D <85000>;
+> >                                       hysteresis =3D <2000>;
+> > @@ -2019,6 +2029,11 @@ cpu2-thermal {
+> >                       thermal-sensors =3D <&lvts_mcu MT8192_MCU_LITTLE_=
+CPU2>;
+> >
+> >                       trips {
+> > +                             cpu2_thres: trip-point {
+> > +                                     temperature =3D <68000>;
+> > +                                     hysteresis =3D <2000>;
+> > +                                     type =3D "passive";
+> > +                             };
+> >                               cpu2_alert: trip-alert {
+> >                                       temperature =3D <85000>;
+> >                                       hysteresis =3D <2000>;
+> > @@ -2049,6 +2064,11 @@ cpu3-thermal {
+> >                       thermal-sensors =3D <&lvts_mcu MT8192_MCU_LITTLE_=
+CPU3>;
+> >
+> >                       trips {
+> > +                             cpu3_thres: trip-point {
+> > +                                     temperature =3D <68000>;
+> > +                                     hysteresis =3D <2000>;
+> > +                                     type =3D "passive";
+> > +                             };
+> >                               cpu3_alert: trip-alert {
+> >                                       temperature =3D <85000>;
+> >                                       hysteresis =3D <2000>;
+> > @@ -2079,6 +2099,11 @@ cpu4-thermal {
+> >                       thermal-sensors =3D <&lvts_mcu MT8192_MCU_BIG_CPU=
+0>;
+> >
+> >                       trips {
+> > +                             cpu4_thres: trip-point {
+> > +                                     temperature =3D <68000>;
+> > +                                     hysteresis =3D <2000>;
+> > +                                     type =3D "passive";
+> > +                             };
+> >                               cpu4_alert: trip-alert {
+> >                                       temperature =3D <85000>;
+> >                                       hysteresis =3D <2000>;
+> > @@ -2109,6 +2134,11 @@ cpu5-thermal {
+> >                       thermal-sensors =3D <&lvts_mcu MT8192_MCU_BIG_CPU=
+1>;
+> >
+> >                       trips {
+> > +                             cpu5_thres: trip-point {
+> > +                                     temperature =3D <68000>;
+> > +                                     hysteresis =3D <2000>;
+> > +                                     type =3D "passive";
+> > +                             };
+> >                               cpu5_alert: trip-alert {
+> >                                       temperature =3D <85000>;
+> >                                       hysteresis =3D <2000>;
+> > @@ -2139,6 +2169,11 @@ cpu6-thermal {
+> >                       thermal-sensors =3D <&lvts_mcu MT8192_MCU_BIG_CPU=
+2>;
+> >
+> >                       trips {
+> > +                             cpu6_thres: trip-point {
+> > +                                     temperature =3D <68000>;
+> > +                                     hysteresis =3D <2000>;
+> > +                                     type =3D "passive";
+> > +                             };
+> >                               cpu6_alert: trip-alert {
+> >                                       temperature =3D <85000>;
+> >                                       hysteresis =3D <2000>;
+> > @@ -2169,6 +2204,11 @@ cpu7-thermal {
+> >                       thermal-sensors =3D <&lvts_mcu MT8192_MCU_BIG_CPU=
+3>;
+> >
+> >                       trips {
+> > +                             cpu7_thres: trip-point {
+> > +                                     temperature =3D <68000>;
+> > +                                     hysteresis =3D <2000>;
+> > +                                     type =3D "passive";
+> > +                             };
+> >                               cpu7_alert: trip-alert {
+> >                                       temperature =3D <85000>;
+> >                                       hysteresis =3D <2000>;
+> >
+> > ---
+> > base-commit: 20cb38a7af88dc40095da7c2c9094da3873fea23
+> > change-id: 20240410-upstream-torvalds-master-40aeff5416c7
+> >
+> > Best regards,
+>
 
