@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-58026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBF0B89FF48
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 19:58:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF0E489FF51
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 20:00:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19C8D1C23113
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 17:58:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 942AF285CF5
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 18:00:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BF1A17F393;
-	Wed, 10 Apr 2024 17:58:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62A361802A2;
+	Wed, 10 Apr 2024 18:00:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="F7ED90C1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Cl1faToI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5010317F36E
-	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 17:58:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 093FF17BB25
+	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 18:00:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712771896; cv=none; b=kURVOJhHWpit0RxUNggnlbGUb6TW/blavOoS5UbRHSveusvccS7UFEMAq8csJjanVJSZSq15/C/KRLkz8CzJEjq/g3DRrvC3bX0j4dPHYTVKzPVn72wpK8jcwNU4Xc1K/iXf4EElyEolGFtUYFWBU5dF9lV4e3FJNKHivO+lGcw=
+	t=1712772024; cv=none; b=glhaa8hAoFnTeZmyDSNFmXwyMLGmDyXyA3IWzNvyVpgkzEhb/ipY/qwG/51sKpBcxZpQUChc2u1w4KMJmfexOEjKgn/IWoddbIXZL3mWAFsJjq50TLnmdUF3a2podq9UxAzvscQ3O7GkGxFOwqTJKGbelmuX2Sogp88P/Ckts5U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712771896; c=relaxed/simple;
-	bh=34y3sACY6A765rM5Z6e1DrfRVhRKxvHeeDEQ7cf3TwM=;
+	s=arc-20240116; t=1712772024; c=relaxed/simple;
+	bh=Ds7ajWYR8A7yLwF6a0aj+BXOtr1axRcbVl7JsyTJu5I=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AwV34BzCMesT0irI2OANOHO40CTP6cUzqQ1P1cIxCKfTrhxGCf/cv/mCDmFO1AFHkw49Oh2POPzNhyHBXTI9WADlVoJFG9g/Qufex1nq5eqNpD+WhfB2YhtkEs1XT6d02gRn6ZW2AjhN0cK5gR06VD48YlS0BfnuFJFPhiXuC0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=F7ED90C1; arc=none smtp.client-ip=209.85.221.54
+	 In-Reply-To:Content-Type; b=Fy36lHKIiYaxdfZagbmGFsRwzBy8N8AXlvgu4Tz3pNS27jEBdlgJ4ysmi3vJnzz8j8lhwRTy5vjmrkXBEyqIYGURsXRmhu3C5vQFnq3fMcwyn+T3I3pW9Fa0hemEPpUzczM8fNDhT9UNVq8F+aprMqLqZj8KkhPiYHHha3nUHUI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Cl1faToI; arc=none smtp.client-ip=209.85.208.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-343f1957ffcso62194f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 10:58:14 -0700 (PDT)
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2d895138ce6so44054201fa.0
+        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 11:00:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712771892; x=1713376692; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712772019; x=1713376819; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=5HKqyxzN7SQ+njXkzFYbZ1bIjg+blMGuSC+t3lHXad8=;
-        b=F7ED90C1xFwVihEIfPebs3U8Nfj7eUCHjrqYj3I4ymftINBj7qzFi4HhX0TferzgSq
-         OkUMp16y0QwdIon0V3axz78R66vv9HR+JxR8M+IXDxaIUv1ij+61GROyoK9zX7UlAUmY
-         qh1AQbqHnZNp304Eu28Iw3dD38Kmfb+N9QKVcgZhQyDr0TtocgzIt4bZsToAUbkDoky4
-         P5/XYOLidM98cPZ1efZzGvO15zbIorCHyvC4mRniOxbXKGO8OUjgVUSE9Qr+NsTUqYdt
-         lsxIyr5i4aMgYsB0zZWhdcJ+rL4YiIUS9vWqscw53BNv2LSmvd+UKsk5oN1YUXmJfRG9
-         /WfA==
+        bh=ccLsCR2InDzvNTsN3aah4jcUq2TjT937xPnrA+vAYdA=;
+        b=Cl1faToIrYhMg4FU8b0uRnbuYk7lGmqaElRlEQScmxtJzMVMQusMYTwnjBl2s9y9Yw
+         Jr/YnQ0Kb0WnIUI3ZAVAyrRihCq7S6hT/GGQAoMr9Q/xpk9IdV9GM0zhIYNzWI6IhDw9
+         QQlzD4A4Qnw5VWln6X6Whx1UTX9/nz+DPpLxHj8tj+H0fomoZLxI3NWNiL+MWEFUo8gL
+         POnzG5RSbxL1dVuuS48WHQiRNRdtyWelCbJzsFyWQktBgNZ4GAgTq9sVmOTLWrKuZV2W
+         NdU1fhOmzPUp4qIkubEQ0BKmUx0h/pJ5ynrubFhHYVtlXXFUCItGgZRX5jhyMoNSbap4
+         4Oig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712771892; x=1713376692;
+        d=1e100.net; s=20230601; t=1712772019; x=1713376819;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=5HKqyxzN7SQ+njXkzFYbZ1bIjg+blMGuSC+t3lHXad8=;
-        b=ruXf0X7B2fdyW4x2F0Si1PwyijoqfE+NiBVoVVVmUXvbIpGm4t1Ina+6J7iY1My1hj
-         YqPEvSQNANxmgwbKOrJi5IlmE+W5MN+41qMWhmPHTdjuN2KTR6urH8KZclSn3vQb4mT3
-         WALhP9dOOMICaeQjSGOe4s48TtUKu9iGv5k3VhhVZa3FLxGAh8Ez9AnKWfI8xtnQBiis
-         bvitYRDYzSIJgrkjrznBS3HuKCZXk6ZGrgg8JkDJJKJlLJkh6HsfgxcKq8s6vjhYbvoW
-         4rGf0a+8jOxv/OqIAg5/nsKXUXqxECZGmKxOYThV2X82oLpNURjuj+axb65r4sGHLTiZ
-         dI/w==
-X-Forwarded-Encrypted: i=1; AJvYcCWkFxyhiqV9fj2jttsLVLHbKLZ6/PJDGZ/cJucQehjfprD5ErT2W0NX8JZIFQO5tXUcit4/GITS/h0g4a96PTOXKHLQmeX51bERFw==
-X-Gm-Message-State: AOJu0Yx6SYicU5Kk0crcxCmgXlSOqqrKNezgFBwxefmrV4QWdK6EExi9
-	Fb8DdtnibSBr4XYSDXP/06eRp+TxM6BXfKdg431YyuyvMXDw2beT2LSBmFBCjfM=
-X-Google-Smtp-Source: AGHT+IGyY55a6V41Q7lbhc1tcmsbXyGB8IOOu2t1+OgOafNcxi8pu3THqPmM/LSBbb4JUlVfaWK7LA==
-X-Received: by 2002:a5d:5f89:0:b0:345:6010:6343 with SMTP id dr9-20020a5d5f89000000b0034560106343mr343727wrb.6.1712771892520;
-        Wed, 10 Apr 2024 10:58:12 -0700 (PDT)
+        bh=ccLsCR2InDzvNTsN3aah4jcUq2TjT937xPnrA+vAYdA=;
+        b=WLBSxXjW6FTV5EHeH6EA/XxdUf7XBsk5VH1Nq4o6Gvs8ff3EQIPxMmxnvCga8qM9XI
+         T7wyo79sSgn0Q2HUXS0aD8/aQ+RbGmeGcMzVFjCmCMopA/ePBRPJinrAhvrl2hHhiLQc
+         kQja8HMtxpdnAKxXle/CDmGQ+DpSekGsbGgtgT0csr6CkwcvXjxuqL0HRUhZQvw6mXYN
+         xom6xZ2J8lZGBJ6FHcdywZ+AnDMJs6d3LRsN+LR3b00w/2N1+z6oztvj6KBW9vLtxz2a
+         c9B26j8pa3X0X20YssOQuoSKc0XArmtL90c6K9SYJEiZLxMKLt9VPQUJJTzYk+GrL5YZ
+         7QDA==
+X-Forwarded-Encrypted: i=1; AJvYcCVpKZfqyvXdMOtB6HkF9DJgxkshnFN9c9XQftrH5dA6tIZ6WPOCeSGays3KvwF60vvZS2KJGB4b1Uwdytgc//K41uz2PYfOvDUYIQ==
+X-Gm-Message-State: AOJu0YwtKR8bZahZOeaTjXUiRa52K2QYbo0SI2OVt9HGkYuQ6bRc0qJr
+	CCxBq9ESdpzIfTmTrqdsJbggbK0P9mgqz/grErvJCpIcoMFNe2iBSpSaPJnrcXU=
+X-Google-Smtp-Source: AGHT+IE4FXe9FSZ4eRDMGzWkvFO3kI6yoJGdyAHguGTa3zbbtbJx+F3WexVwDuK+/2EA3ytcG3csyQ==
+X-Received: by 2002:a05:651c:1a11:b0:2d8:e159:23b3 with SMTP id by17-20020a05651c1a1100b002d8e15923b3mr976848ljb.52.1712772019011;
+        Wed, 10 Apr 2024 11:00:19 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id l4-20020a5d4104000000b00343e392829dsm13934223wrp.97.2024.04.10.10.58.09
+        by smtp.gmail.com with ESMTPSA id k2-20020a5d5242000000b00343c0c24a65sm14198575wrc.89.2024.04.10.11.00.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Apr 2024 10:58:12 -0700 (PDT)
-Message-ID: <f99fcb71-d5f2-4221-af5e-e8d1b4437cd6@linaro.org>
-Date: Wed, 10 Apr 2024 19:58:08 +0200
+        Wed, 10 Apr 2024 11:00:18 -0700 (PDT)
+Message-ID: <57827422-1042-4ef6-a11e-cb53fd930a41@linaro.org>
+Date: Wed, 10 Apr 2024 20:00:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -124,7 +124,7 @@ Cc: Bjorn Helgaas <bhelgaas@google.com>,
  linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org
 References: <20240407102000.37213-1-krzysztof.kozlowski@linaro.org>
  <20240407102000.37213-3-krzysztof.kozlowski@linaro.org>
- <20240410175540.GA802090-robh@kernel.org>
+ <20240410174806.GA788199-robh@kernel.org>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -171,11 +171,42 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240410175540.GA802090-robh@kernel.org>
+In-Reply-To: <20240410174806.GA788199-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/04/2024 19:55, Rob Herring wrote:
+On 10/04/2024 19:48, Rob Herring wrote:
+> On Sun, Apr 07, 2024 at 12:20:00PM +0200, Krzysztof Kozlowski wrote:
+>> dtschema package with core schemas deprecated pci-bus.yaml schema in
+>> favor of pci-host-bridge.yaml.  Update all bindings to use the latter
+>> one.
+>>
+>> The difference between pci-bus.yaml and pci-host-bridge.yaml is only in
+>> lack of "reg" property defined by the latter, which should not have any
+>> effect here, because all these bindings define the "reg".
+>>
+>> The change is therefore quite trivial, except mediatek,mt7621-pcie.yaml
+>> binding which have children nodes being also host bridges, apparently.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>  Documentation/devicetree/bindings/pci/amlogic,axg-pcie.yaml   | 2 +-
+>>  Documentation/devicetree/bindings/pci/apple,pcie.yaml         | 2 +-
+>>  Documentation/devicetree/bindings/pci/brcm,iproc-pcie.yaml    | 2 +-
+>>  Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml      | 2 +-
+>>  Documentation/devicetree/bindings/pci/cdns-pcie-host.yaml     | 2 +-
+>>  Documentation/devicetree/bindings/pci/faraday,ftpci100.yaml   | 2 +-
+>>  Documentation/devicetree/bindings/pci/host-generic-pci.yaml   | 2 +-
+>>  Documentation/devicetree/bindings/pci/intel,ixp4xx-pci.yaml   | 2 +-
+>>  Documentation/devicetree/bindings/pci/intel,keembay-pcie.yaml | 2 +-
+>>  Documentation/devicetree/bindings/pci/loongson.yaml           | 2 +-
+>>  .../devicetree/bindings/pci/mediatek,mt7621-pcie.yaml         | 4 ++--
+>>  Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml | 2 +-
+>>  .../devicetree/bindings/pci/microchip,pcie-host.yaml          | 2 +-
+>>  Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml   | 2 +-
+>>  Documentation/devicetree/bindings/pci/qcom,pcie.yaml          | 2 +-
+>>  Documentation/devicetree/bindings/pci/rcar-pci-host.yaml      | 2 +-
+>>  .../devicetree/bindings/pci/renesas,pci-rcar-gen2.yaml        | 2 +-
 >>  .../devicetree/bindings/pci/rockchip,rk3399-pcie.yaml         | 2 +-
 >>  Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml       | 2 +-
 >>  Documentation/devicetree/bindings/pci/ti,am65-pci-host.yaml   | 2 +-
@@ -186,10 +217,33 @@ On 10/04/2024 19:55, Rob Herring wrote:
 >>  Documentation/devicetree/bindings/pci/xlnx,xdma-host.yaml     | 2 +-
 >>  25 files changed, 26 insertions(+), 26 deletions(-)
 > 
-> This implicitly bumps the minimum version for dtschema. That's fine, but 
-> it should be explicit since we set it explicitly.
+> 
+>> diff --git a/Documentation/devicetree/bindings/pci/mediatek,mt7621-pcie.yaml b/Documentation/devicetree/bindings/pci/mediatek,mt7621-pcie.yaml
+>> index 61d027239910..5bbb4a3f3dbd 100644
+>> --- a/Documentation/devicetree/bindings/pci/mediatek,mt7621-pcie.yaml
+>> +++ b/Documentation/devicetree/bindings/pci/mediatek,mt7621-pcie.yaml
+>> @@ -14,7 +14,7 @@ description: |+
+>>    with 3 Root Ports. Each Root Port supports a Gen1 1-lane Link
+>>  
+>>  allOf:
+>> -  - $ref: /schemas/pci/pci-bus.yaml#
+>> +  - $ref: /schemas/pci/pci-host-bridge.yaml#
+>>  
+>>  properties:
+>>    compatible:
+>> @@ -33,7 +33,7 @@ properties:
+>>  patternProperties:
+>>    '^pcie@[0-2],0$':
+>>      type: object
+>> -    $ref: /schemas/pci/pci-bus.yaml#
+>> +    $ref: /schemas/pci/pci-host-bridge.yaml#
+> 
+> I think this one should be pci-pci-bridge.yaml instead since it says 
+> these are root ports and based on the unit-address here.
 
-Right, I will mention that this requires 2024.02
+I was thinking about this as well, but pci-pci-bridge.yaml defines
+compatible which is not present here at all. Since you suggest pci-pci,
+I'll go with this and make it a separate patch for easier review.
 
 Best regards,
 Krzysztof
