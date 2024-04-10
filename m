@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-57951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1D0889FB14
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 17:07:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 402E489FB5A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 17:18:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 36A141F2C93A
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 15:07:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7276CB35AF6
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 15:14:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1B5616E871;
-	Wed, 10 Apr 2024 15:07:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B351A16F0C4;
+	Wed, 10 Apr 2024 15:13:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="rUfT5de2"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="cMKkbVm/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22C2B16D9D5
-	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 15:07:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 175CE16D9D6
+	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 15:13:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712761662; cv=none; b=D4QSFYigNM5yNBjnEmBbvvC7oKZ5YkbtdWHl1RFnwUbUdUbXEHjVpq1QUIeJwgHl+77IOBveTnzKphv6YYhtZ77yBhHRlTdtjuUVAwIS7ksNt/rIA/6BuND8y1baVSheTHJUllIPkLvW4zTdNL3Eb1ySrsf91OeJB1xHGlvJ4So=
+	t=1712762034; cv=none; b=O1QfIJmVvsFYQg0VBjcqQMsnqsPHXIWGRr3ILYpejwWRZElw88ESZM5rnKqtSBBIB8a6k0srTjpywcWiTvAsdcp20ZdCXeIrXcy5u4IC0We4qguOTww/4ArzOOrjtRGt0WnE5i+96iXGP9s7QJYX3e32ax7YJtKomkdlp/7AN8Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712761662; c=relaxed/simple;
-	bh=uahkF1VOEWvbo4wDDrFwOjLhjLjNoYbSCjv9ymH8OPg=;
+	s=arc-20240116; t=1712762034; c=relaxed/simple;
+	bh=n4JrkSorhynZmSYFDegpGZt7tneK34MYTFY2bPGDfD0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C/zN2X43UnMX0NFn6LZP632tPURFmd3bQeHwVuK+qQjr1mJkm88ufRMmZaGdAL3OzJIgCfUPWTZJnKDEYlJlxLkCKlaZhz1erjfzglRTo887dRm0SawEPiN1269ZD++epDlvARAvUrPyAHRWfTz26jjIOx7C51h9QToIr4aqO+4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=rUfT5de2; arc=none smtp.client-ip=209.85.221.49
+	 In-Reply-To:Content-Type; b=DOCuieeLH1Q4lXb2YUK8mEcIMzTTJkOffmb/Xa96kkmHt6DhOXVy00MNStYZzUnIN3wYFk8HUgb8JFXgITqo2xBOTnbMUocdg5ZELNICwyxHkAlVEgzcjvpNnmtfwrfFz2BQkG9e5iItv8zTlaYrLCn4nBODbTeMuluGE64VO2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=cMKkbVm/; arc=none smtp.client-ip=209.85.221.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-346359c8785so1108387f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 08:07:38 -0700 (PDT)
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3462178fbf9so899860f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 08:13:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712761657; x=1713366457; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712762030; x=1713366830; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=+P+72Hlq99kFNnxAOkF8xNKRqdp0Nj1rk4leGd6q+bQ=;
-        b=rUfT5de2xpcVvd0Qjs4/cQiBCc7lcADNRcqjK02yAvZN6/LGBSJ5jfEAwu+yG+4VKf
-         6fd/StcMagj2tILBeaeecaKRnPekGP5yN3OL68ufh2ULHCuzS9VyzNUozxhyVf7Nnv1N
-         6iyMRcVXrEZcRVQW5wkF4jlgDN+gx14aUeKNwHa3UwwBnRcjgLYC+aJxZh68f7GTGAuR
-         6s7fNU9T0Y5YHFxl1CCtDvpCVlGlkH5zdvINZG0UzTxsv2u17oFRcnx7RWIw5pNyj+df
-         uv5OvIrc1JZqV6TgZKgtoO1tKDQsmXky0JfHwgUdvFXEGSQxyg3CWmsnk2abs+V4FNSw
-         XrQA==
+        bh=Xb0tDuasjSNlJsy4sDFiJMtEhz1/MxQR3B46cvvCuH4=;
+        b=cMKkbVm/23Ha/TQXmdyWLBng44TIPvbuAYM8asMLC5kscwXiUZh+8oEK2bWXWCL7Gd
+         KOUKBc9/qyafWryXHGLLCOwpKHz+rk2uOeoSb1hEtPnC7R50GuZ+EKulDWK8tFsrvVp0
+         RA2vpBKK8kd3qNcNFoszqtIzsg64ITx+nZDwLMRETIXW89df6GprhAXeaQUFQcTon2Fp
+         OfZ5EkVpRY36NYtoDQlWlJ0iVmFQwhxxqzAEXclL6S5ZcS12+aqgb3n04c2F6iom4KWV
+         F1nWjE9b0d5bNc84DF+R5+GocGLNwesbNZSiwGfOWZg0QORiN3v/FoRhEiY7ign0J5P3
+         icbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712761657; x=1713366457;
+        d=1e100.net; s=20230601; t=1712762030; x=1713366830;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+P+72Hlq99kFNnxAOkF8xNKRqdp0Nj1rk4leGd6q+bQ=;
-        b=NnZa9CdT269Kd+vZck/vnK++ETJBtnejIdE8HmfHIa5Skwj0YcQNLfJzaQLOaSQER4
-         7Fed27Fw2bGCAPyztJp5YfzFaIM6rGJFBhUfQ3RRpChfmUYOAeBGkPcnkqVzzGhFiPZM
-         Z4YbFLLTxKV8lEkgoZtM1fXF/6UZYdJn06k+A4ynjAbDzeRzafisDCCjezCHl1bockUy
-         hWVhOWxYn3qgqwOJbNNwgHxVfxP5pYdxjbyAciRXbv5AFV84PpqFHgt/klKU6ARuB8vZ
-         5Ky1sZ7HAVGthClJAgQwUH8a4W3y2Re6dfOluL+r0QlKW7Y24t+k5mYn7YNxsOQbEyoP
-         6gKg==
-X-Forwarded-Encrypted: i=1; AJvYcCVqzKsUDKjv87tEwRQ92I7mdeaXsNJ23m4DwgGye+wuQCymCKkgjnLRKbCZmmxNtl35im7yfZX8EVbaPGuX0vXlrXvy5MWgK6LCcg==
-X-Gm-Message-State: AOJu0Yw6jFG3MVJjmdp6mvsKmLmgfI1Rys0zBhVSuNglCszh1439AKXk
-	gwm5fdkNoXOVjApE8muuiiSkBfYYueVZio+jdDT4t92RKO3dWrwAQtAb5mIFizw=
-X-Google-Smtp-Source: AGHT+IFhnB0gsdOm+IB5xuyR92fHk4A/RRmX5WG9qW/Rsc9kuPzli806ObV+/wdLIouJrwCNwH1GSA==
-X-Received: by 2002:a5d:47a7:0:b0:343:bb25:82f0 with SMTP id 7-20020a5d47a7000000b00343bb2582f0mr2577063wrb.11.1712761657374;
-        Wed, 10 Apr 2024 08:07:37 -0700 (PDT)
+        bh=Xb0tDuasjSNlJsy4sDFiJMtEhz1/MxQR3B46cvvCuH4=;
+        b=IntqrK/WnGiahRLDxDAhUPrQP0TTNiF8dCrLjjPDIEVIRWFnvv8iAXtwCPO5ObJOZx
+         T9qA1PSlLjDKbioIZdWUtlPqIap5Po0hybIwtw1WHoDQX4KYGXsJOzwtzGpqBjs4MbpP
+         B9HdEhbQfQfsrLIXOYnIxfNoWg0iS2BHoLsRTH4uRHou0u0g5TtAXuKOdffh3lAeFa4M
+         Uj/h5Av20Kx3smVrMZnqLNnjMVypWEvSK6N+GBwE18Zz5oW7J49rIi75vNZXSucIGehK
+         Lsh0x91A9NxTJSjRO71ckWu+ur5vpl0NzaHl8y/Nwbdg7borkFt1AMvBG1GDVvu5ptsO
+         JC4Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWWVoZiLuOs0V+qtms7lQdjJ/TAF10+7+2LIp+Bbsb+KvalR4GPIZP2HZMoHSY6YFp93XGxRgTRGFbyGzNcZ8jPxpQ21Fbs0ICTCg==
+X-Gm-Message-State: AOJu0YxsnkQJBZE17Q0vZVH9IG6dxC9Yk8VHYfrbjsvJkN51W5MHJopU
+	hENvpN+nRAHsYfgIaMXPz8ZBqVRr075RB0IJdlesYW8j5c+ixDsTRlZEfMZ0joI=
+X-Google-Smtp-Source: AGHT+IGoier3Sm8gMlqmjZALBvxdoG/1vWwzVX851wh99fQXUyteeMA3kD8B7Fgl7bkM9Q+1QuTWTQ==
+X-Received: by 2002:a05:6000:186b:b0:343:6b76:251f with SMTP id d11-20020a056000186b00b003436b76251fmr3201804wri.42.1712762030404;
+        Wed, 10 Apr 2024 08:13:50 -0700 (PDT)
 Received: from [192.168.1.172] ([93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id c8-20020adfe748000000b00343a0e2375esm13906254wrn.27.2024.04.10.08.07.35
+        by smtp.gmail.com with ESMTPSA id n15-20020a05600c500f00b00417c0fa4b82sm1118117wmr.25.2024.04.10.08.13.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Apr 2024 08:07:37 -0700 (PDT)
-Message-ID: <65b3ec7e-e753-4692-b778-a9246e9e6664@baylibre.com>
-Date: Wed, 10 Apr 2024 17:07:34 +0200
+        Wed, 10 Apr 2024 08:13:50 -0700 (PDT)
+Message-ID: <fd7cc1d7-f293-47f9-9ff6-98b78150d61e@baylibre.com>
+Date: Wed, 10 Apr 2024 17:13:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,8 +76,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 10/18] ASoC: mediatek: mt8186-rt1019: Migrate to the
- common mtk_soundcard_startup
+Subject: Re: [PATCH v4 11/18] ASoC: mediatek: Add common
+ mtk_afe_component_probe callback
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
  broonie@kernel.org
 Cc: wenst@chromium.org, lgirdwood@gmail.com, robh@kernel.org,
@@ -97,92 +97,21 @@ Cc: wenst@chromium.org, lgirdwood@gmail.com, robh@kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
  kernel@collabora.com
 References: <20240409113310.303261-1-angelogioacchino.delregno@collabora.com>
- <20240409113310.303261-11-angelogioacchino.delregno@collabora.com>
+ <20240409113310.303261-12-angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
 From: Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <20240409113310.303261-11-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20240409113310.303261-12-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-What is the purpose of these change ? I don't see the link with the 
-migration to the common mtk_soundcard_startup.
+Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
 
 On 09/04/2024 13:33, AngeloGioacchino Del Regno wrote:
-> diff --git a/sound/soc/mediatek/mt8186/mt8186-afe-pcm.c b/sound/soc/mediatek/mt8186/mt8186-afe-pcm.c
-> index bfcfc68ac64d..dbe5afa0e9ee 100644
-> --- a/sound/soc/mediatek/mt8186/mt8186-afe-pcm.c
-> +++ b/sound/soc/mediatek/mt8186/mt8186-afe-pcm.c
-> @@ -2729,7 +2729,7 @@ static int mt8186_afe_runtime_resume(struct device *dev)
->   	struct mtk_base_afe *afe = dev_get_drvdata(dev);
->   	struct mt8186_afe_private *afe_priv = afe->platform_priv;
->   	int ret;
-> -
-> +pr_err("mt8186 afe runtime_resume\n");
-
-Forgot to remove this print ?
-
->   	ret = mt8186_afe_enable_clock(afe);
->   	if (ret)
->   		return ret;
-> @@ -2739,7 +2739,7 @@ static int mt8186_afe_runtime_resume(struct device *dev)
->   		return ret;
->   
->   	if (!afe->regmap || afe_priv->pm_runtime_bypass_reg_ctl)
-> -		goto skip_regmap;
-> +		return 0;
->   
->   	regcache_cache_only(afe->regmap, false);
->   	regcache_sync(afe->regmap);
-> @@ -2758,13 +2758,20 @@ static int mt8186_afe_runtime_resume(struct device *dev)
->   	/* enable AFE */
->   	regmap_update_bits(afe->regmap, AFE_DAC_CON0, AUDIO_AFE_ON_MASK_SFT, BIT(0));
->   
-> -skip_regmap:
->   	return 0;
->   }
->   
->   static int mt8186_afe_component_probe(struct snd_soc_component *component)
->   {
-> -	mtk_afe_add_sub_dai_control(component);
-> +	struct mtk_base_afe *afe = snd_soc_component_get_drvdata(component);
-> +	int ret;
-> +
-> +	snd_soc_component_init_regmap(component, afe->regmap);
-> +
-> +	ret = mtk_afe_add_sub_dai_control(component);
-> +	if (ret)
-> +		return ret;
-> +
->   	mt8186_add_misc_control(component);
->   
->   	return 0;
-> @@ -2929,6 +2936,10 @@ static int mt8186_afe_pcm_dev_probe(struct platform_device *pdev)
->   		goto err_pm_disable;
->   	}
->   
-> +	ret = regmap_reinit_cache(afe->regmap, &mt8186_afe_regmap_config);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "regmap_reinit_cache fail\n");
-> +
->   	/* others */
->   	afe->mtk_afe_hardware = &mt8186_afe_hardware;
->   	afe->memif_fs = mt8186_memif_fs;
-> diff --git a/sound/soc/mediatek/mt8186/mt8186-dai-adda.c b/sound/soc/mediatek/mt8186/mt8186-dai-adda.c
-> index dbd157d1a1ea..b87b04928678 100644
-> --- a/sound/soc/mediatek/mt8186/mt8186-dai-adda.c
-> +++ b/sound/soc/mediatek/mt8186/mt8186-dai-adda.c
-> @@ -413,7 +413,7 @@ static const struct snd_soc_dapm_widget mtk_dai_adda_widgets[] = {
->   			      SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMD),
->   
->   	SND_SOC_DAPM_SUPPLY_S("AUD_PAD_TOP", SUPPLY_SEQ_ADDA_AUD_PAD_TOP,
-> -			      AFE_AUD_PAD_TOP, RG_RX_FIFO_ON_SFT, 0,
-> +			      SND_SOC_NOPM, 0, 0,
-
-Is it related to the regmap init function added in the AFE PCM probe ?
-
->   			      mtk_adda_pad_top_event,
->   			      SND_SOC_DAPM_PRE_PMU),
->   	SND_SOC_DAPM_SUPPLY_S("ADDA_MTKAIF_CFG", SUPPLY_SEQ_ADDA_MTKAIF_CFG,
+> Multiple MediaTek AFE PCM component drivers are using their own .probe()
+> callback, but most of those are simply duplicated functions as they are
+> doing exactly the same thing over and over.
+> 
+> Add a common probe callback for this component to reduce duplication.
 
 -- 
 Regards,
