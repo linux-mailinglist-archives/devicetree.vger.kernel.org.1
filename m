@@ -1,155 +1,130 @@
-Return-Path: <devicetree+bounces-57721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C41BC89E8C6
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 06:22:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 892C989E8E7
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 06:32:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D61191C22B70
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 04:22:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA3E51C225CA
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 04:32:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C900AC132;
-	Wed, 10 Apr 2024 04:22:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VUGE75SO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B89D410A09;
+	Wed, 10 Apr 2024 04:32:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D1BC8F44;
-	Wed, 10 Apr 2024 04:22:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4FA910A13;
+	Wed, 10 Apr 2024 04:32:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712722964; cv=none; b=j3LhVIZSxEz3zdCTedZJEWJkvuiGm3d9mCWzbVbdSduMpG1RIiUummkYPUcI1x9/echo3/Pai061KXiFamM5QGz71n3+WtWOdIOs6qsbHfvIw/ya7460ai7NFmoATjxAe4fCQcuzdJo+IXt/mNiwaVE5GDFjsWDf6KGL1k0CqJ0=
+	t=1712723530; cv=none; b=C69BhU2xs5oc6283MPzZnmt/e5fZ+KhbBhneyD/lFrZMfs+pYNdQl7fwSVVmKIu9aFOwBiOLG6FCA8wsDhyHc29UItg7LOQPZ2G8FoyZloxrnc6Ne8ZJpWr4YxqAmMdqQc6GiTnxdG9cjarwSB90m78TaXJcU95buaO9q+KtLkQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712722964; c=relaxed/simple;
-	bh=8w/BdtBmOjOFnNyWhqSdLs2iYk08/1oMEjepAgqZSJ4=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=smSU90LcElZzM+4t4ZCB7+2qSmnG8MMqsUtWM90vqgrS+H177VKU7/y7yjN1Vvkh0hahVSidrQR0cKG2s1UxETJOHLOM+u+f10NOHFYXdj+0rpf6xwJFZZzd5hjwcGOhb8tA/V4X/nTMtBwLZsgrtn+ZPmUm8j8WYqqPXK3CMYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VUGE75SO; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-34641b7c49aso717827f8f.2;
-        Tue, 09 Apr 2024 21:22:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712722961; x=1713327761; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=50/EoYp4xiPcQjk7THZgfgs+ueFYqdmiSEQ2Y/A5NR4=;
-        b=VUGE75SOYQyibLm8h71XMlrmnXGMiMslaF5LPny+V5DBBJ0PTyW6GHL+3BdzYUNzM+
-         fBOo+im7vwb9M+7QWFB1qhshAKV/UmOky9xML0LY74hqN0CBGcwBK018z7fa5uF7Qw/b
-         WepuEU/pl95JumFNLjDyeUavlsK7L0xepNs6zfB5Cz9I2jj7HmCozLqWDVehUyih518X
-         1bEBme+1kLjEvmEdxK0+hW3Tn/GyTY+whJBu/bmEEIdYKzGcXlDuC4d1U48qqd8H3btE
-         gvmghnAzWvcmArcrKSKaYwj8uy/XZBtcDym6rg9msTxefX9A7JnuVRwm5HRqRvYy83mc
-         hMHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712722961; x=1713327761;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=50/EoYp4xiPcQjk7THZgfgs+ueFYqdmiSEQ2Y/A5NR4=;
-        b=UF+ZEyz4stmkYbVSIrFvs4sgVVp0V+lXPEnFG6TNASjh+tCFKc0gpf6rHWvustqxSq
-         oiywyV18EVSvnPdKprhaS1ONaRfvm8F57SFLuGgzgcwC/oGe+kVppSV4clxq3rWngd2g
-         MMOzVALSLLnAt2wLdMY6i41zrdeEOnx8hIXu6YKZZuoltxLjXxqatU9lAywsJfVtVgZn
-         L61VR+ZjkYy/vrhQQI1+ktOfSZySTAsYB7OuNvdJzLI93n6Z8cT4tEnQFEEDamAYxvBm
-         4U5zke1rb4AR5o/FtzSTSV74ItN3TTX4bZWMiUt8X2wwLgEtLgjYflDqNsboFSwQZgbP
-         hX5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWtPE972roTy2WhR214T4fbVQN7A+CCrxkECZGftEY4UHgJlQ7qegUZHFQcX7HTC1YnL26WfFqXsE/HgkT4Kms2/YF4aHUqgP1NP0Z+n3uOEVc+BmRmwMVhrPtvtNoFqfjg1Lb+GOuUjA==
-X-Gm-Message-State: AOJu0YyNIpPs/ovQ6Zk3Yw38mT4aMgJoR3yAM4+VmDkFqfrocEpYJxhf
-	Z9SjXyrQIU4oqFPlP2iptMuS8Znb6qAoCgWRP5OIA7dBVNx++PFB
-X-Google-Smtp-Source: AGHT+IHhKHEr3v3LDAgyhKHwIE9KipXbIkSHGprCwjFscoVbk1+9ZU+3a0NumbkHPHLpvO0f/FlwAg==
-X-Received: by 2002:adf:fc4b:0:b0:343:7d3c:ddcd with SMTP id e11-20020adffc4b000000b003437d3cddcdmr964972wrs.1.1712722961051;
-        Tue, 09 Apr 2024 21:22:41 -0700 (PDT)
-Received: from smtpclient.apple ([167.99.200.149])
-        by smtp.gmail.com with ESMTPSA id p13-20020a5d638d000000b00343ad4bca7dsm12898554wru.85.2024.04.09.21.22.37
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 09 Apr 2024 21:22:40 -0700 (PDT)
-Content-Type: text/plain;
-	charset=utf-8
+	s=arc-20240116; t=1712723530; c=relaxed/simple;
+	bh=siZOQ+4XPskfy2znOMEDWoSkPbfewpmOGbasV0ucBXs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=NyRdRuEqSzFgfm0jicmlBDlq6o01vywuQ6BkKPHk4Gc0/0HWRVX+MGhOKcsiz491jXqFdSfLEJhUTJGEbpKJn/cEpYfyQltsrW0NJOCVv3ww0eWLGz68n1ol7kbZefhL8qynaV4GdpetGNqNnO88C/xR5g4PR1HcGX9ljUmgLgc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from ip-185-104-138-50.ptr.icomera.net ([185.104.138.50] helo=phil.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1ruPcr-0007Sx-9l; Wed, 10 Apr 2024 06:31:57 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Jianfeng Liu <liujianfeng1994@gmail.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ liujianfeng1994@gmail.com, robh@kernel.org, sfr@canb.auug.org.au
+Subject:
+ Re: [PATCH] arm64: dts: rockchip: remove startup-delay-us from
+ vcc3v3_pcie2x1l0 on rock-5b
+Date: Wed, 10 Apr 2024 06:31:48 +0200
+Message-ID: <3879529.iIbC2pHGDl@phil>
+In-Reply-To: <20240403075916.1025550-1-liujianfeng1994@gmail.com>
+References:
+ <2535182.Sgy9Pd6rRy@diego>
+ <20240403075916.1025550-1-liujianfeng1994@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.500.171.1.1\))
-Subject: Re: [PATCH 1/2] dt-bindings: panel-simple-dsi: add New Khadas TS050
- panel bindings
-From: Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <20240409082641.359627-1-jacobe.zang@wesion.com>
-Date: Wed, 10 Apr 2024 08:22:25 +0400
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Neil Armstrong <narmstrong@baylibre.com>,
- David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- quic_jesszhan@quicinc.com,
- sam@ravnborg.org,
- nick@khadas.com,
- thierry.reding@gmail.com,
- dri-devel@lists.freedesktop.org,
- devicetree <devicetree@vger.kernel.org>,
- LKML <linux-kernel@vger.kernel.org>,
- AML <linux-amlogic@lists.infradead.org>
+MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-Message-Id: <3CCAF214-09FE-4580-99CD-AB95E78FFB8F@gmail.com>
-References: <20240409082641.359627-1-jacobe.zang@wesion.com>
-To: Jacobe Zang <jacobe.zang@wesion.com>
-X-Mailer: Apple Mail (2.3774.500.171.1.1)
+Content-Type: text/plain; charset="iso-8859-1"
 
-> On 9 Apr 2024, at 12:26=E2=80=AFPM, Jacobe Zang =
-<jacobe.zang@wesion.com> wrote:
+Am Mittwoch, 3. April 2024, 09:59:16 CEST schrieb Jianfeng Liu:
+> Hi Heiko,
 >=20
-> This add the bindings for the New Khadas TS050 1080x1920 5" LCD DSI =
-panel
-> designed to work with the Khadas VIM3 and VIM3L Single Board =
-Computers.
+> Tue, 02 Apr 2024 12:39:17 +0200, Heiko St=FCbner wrote:
+> >Does the pcie driver enable the regulator too late somehow?
+> The pcie driver will enable the regulator imediately when it is probed.
+> I added log at when driver is probed and when regulator is enabled.
+> Here is the log with "startup-delay-us =3D <50000>":
+> ```
+> [    1.572991] rockchip-dw-pcie a40800000.pcie: rockchip_pcie_probe start
+> [    1.573697] rockchip-dw-pcie a40800000.pcie: going to enable vpcie3v3 =
+regulator
+> [    1.575194] rockchip-dw-pcie a40800000.pcie: enable vpcie3v3 regulator=
+ done
+> ```
 >=20
-> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
-> ---
-> .../devicetree/bindings/display/panel/panel-simple-dsi.yaml     | 2 ++
-> 1 file changed, 2 insertions(+)
+> And here is the log without "startup-delay-us":
+> ```
+> [    1.518490] rockchip-dw-pcie a40800000.pcie: rockchip_pcie_probe start
+> [    1.518603] rockchip-dw-pcie a40800000.pcie: going to enable vpcie3v3 =
+regulator
+> [    1.518610] rockchip-dw-pcie a40800000.pcie: enable vpcie3v3 regulator=
+ done
+> ```
 >=20
-> diff --git =
-a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml =
-b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
-> index f9160d7bac3ca..e194309f31b72 100644
-> --- =
-a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
-> +++ =
-b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
-> @@ -36,6 +36,8 @@ properties:
->       - jdi,fhd-r63452
->         # Khadas TS050 5" 1080x1920 LCD panel
->       - khadas,ts050
-> +        # Khadas NEW TS050 5" 1080x1920 LCD panel
-> +      - khadas,newts050
+> We can see startup-delay-us will delay the driver probe.
+>=20
+> I also take a look at rockchip's SDK kernel, their pci driver is probed
+> very late:
+> ```
+> [    3.398682] dw-pcie fe170000.pcie: invalid resource
+> [    3.398686] dw-pcie fe170000.pcie: Failed to initialize host
+> [    3.398688] dw-pcie: probe of fe170000.pcie failed with error -22
+> [    3.399396] rk-pcie fe170000.pcie: invalid prsnt-gpios property in node
+> [    3.399410] rk-pcie fe170000.pcie: Looking up vpcie3v3-supply from dev=
+ice tree
+> [    3.405195] rk-pcie fe170000.pcie: host bridge /pcie@fe170000 ranges:
+> [    3.405253] rk-pcie fe170000.pcie:       IO 0x00f2100000..0x00f21fffff=
+ -> 0x00f2100000
+> [    3.405283] rk-pcie fe170000.pcie:      MEM 0x00f2200000..0x00f2ffffff=
+ -> 0x00f2200000
+> [    3.405310] rk-pcie fe170000.pcie:      MEM 0x0980000000..0x09bfffffff=
+ -> 0x0980000000
+> [    3.405372] rk-pcie fe170000.pcie: iATU unroll: enabled
+> [    3.405381] rk-pcie fe170000.pcie: iATU regions: 8 ob, 8 ib, align 64K=
+, limit 8G
+> [    3.666917] rk-pcie fe170000.pcie: PCIe Link up, LTSSM is 0x30011
+> [    3.666932] rk-pcie fe170000.pcie: PCIe Gen.1 x1 link up
+> [    3.667139] rk-pcie fe170000.pcie: PCI host bridge to bus 0002:20
+> ```
+>=20
+> And it is reported that startup-delay-us is necessary in rockchip's SDK
+> kernel. But in mainline kernel it is different.
 
-Products are only new until they are old. At some future point there =
-will
-inevitably be a third iteration requiring a =E2=80=98new new=E2=80=99 =
-name. IMHO it would
-be better to use something like khadas,ts050v2.
+that's not directly what I meant.
 
-CH.
+I.e. if the behaviour changes with arbitary delay changes, it points
+very much to some sort of timing issue in the pcie driver itself.
 
->         # Kingdisplay KD097D04 9.7" 1536x2048 TFT LCD panel
->       - kingdisplay,kd097d04
->         # LG ACX467AKM-7 4.95" 1080=C3=971920 LCD Panel
-> --=20
-> 2.34.1
->=20
->=20
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+That's why I asked about the regulator turning on, because if the enable
+call returns 50ms earlier or later should never influence the behaviour
+of the driver.
+
+=46or example other threads could also just hinder the kernel from
+continuing the pcie probe even after the regulator is on - again
+leading to undefined behaviour, as you seem to be experiencing as
+described in your mail from yesterday.
+
 
 
