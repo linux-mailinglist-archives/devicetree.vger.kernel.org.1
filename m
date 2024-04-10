@@ -1,105 +1,175 @@
-Return-Path: <devicetree+bounces-58020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D75189FF0C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 19:50:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2834F89FF11
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 19:51:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37503285780
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 17:50:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91F7E1F2491F
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 17:51:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 632A3180A81;
-	Wed, 10 Apr 2024 17:47:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2545181332;
+	Wed, 10 Apr 2024 17:48:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PcuTXzk5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lepQksBy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3225017F36C;
-	Wed, 10 Apr 2024 17:47:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AA8918132D;
+	Wed, 10 Apr 2024 17:48:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712771273; cv=none; b=atOwB/tmtVZdt0wLE+E2+DBIfYwjEhE/QCnDhC01n+7ufundYp5QHYYkKh79p7gFbhHHCDEifhCi3nAnrmCsE5/T3Ygl/OHwwQJND3vmmM1mXelSACix1i1AORek6lyeAUwEShDglstxJ493RpIhbjG4e312hEKXBIxaZsQxg08=
+	t=1712771290; cv=none; b=mmQD06dOWCAB1VFh4HP/zaMdDBE1tfBFMebvZHaNOsYzCF/xcFoAAFx7qDl2exagYYZUU8O5RRFKj40Pj2NXe97x+pA6L38et2uUGmxiFw+goVwSuKfFqoloJ8Auv1sooZp1Q0BFm4pXOHBZ1qlDpVwLUnIxqPSFLSehA6KBwIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712771273; c=relaxed/simple;
-	bh=pNdVV+75knRysY/hsbPP+XHfRDHsUixHnqw79Bm+MJc=;
+	s=arc-20240116; t=1712771290; c=relaxed/simple;
+	bh=hKQowqjPoLWgjXPoVrz9/IkynZj3MiQDAbq+Y6Y7fKE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fki/s2Elav4syeR4KRyQDMU9iEo0oRhFR8XWaTzfPpSMvvqBn0fsQy52ZM+NdLL50TT0yxaCOw4XAF7aFNwlKN25D/hQQcMFH7e9eClXWIReG+lk1LT9RQx5mAS9Fj8hJbs4ItFQieGmUO0IsPwToK+Qgiu2YGM7490QjqWkNYg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PcuTXzk5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67380C43390;
-	Wed, 10 Apr 2024 17:47:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=seTAiNY/XaNcVk0EOXSDqY+nk9q0CVSLOplDW8/lFXQhtH59qgipx5G86/7jnw1jRno1GoVd9BgCVK/gF36s2r1KusUyiaefCnpHBghEvTO2fxt4fO5y0fRM9z9CnnjSRVwd0e0tDMPtA1l7ZMomE/qEAsMo14boupTU/ZOapmo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lepQksBy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9768FC433C7;
+	Wed, 10 Apr 2024 17:48:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712771272;
-	bh=pNdVV+75knRysY/hsbPP+XHfRDHsUixHnqw79Bm+MJc=;
+	s=k20201202; t=1712771288;
+	bh=hKQowqjPoLWgjXPoVrz9/IkynZj3MiQDAbq+Y6Y7fKE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PcuTXzk53QUv7yzxQgNLs8gWhhaYa0uriJUCeSVQtqw6mAoCBhBJCRCQ813RW7yOa
-	 G/A4BFnhcyaBPo85GH+dG1M68uthtslSG98P1N2Nc9JHlx9Ghx0GcNvFk8shiY8x1k
-	 xj28oMM+bwIRG7a9Y8Ma9yJp+KNhV/0sngACWI3ic0NBEenfj0NcPdNmcq7AsGO5rx
-	 fad2XgJIrglXpQSNAUUFZAL2ycKo0V5v7qrKU47d9TAXYbWcz+26KqHjQtBDCnx+r0
-	 0hnBXaOomLjCdk7tUNinnoZIDw4YPasz8ioAfomQKzpPjuuZeBcyJw58a5EzY1tisd
-	 O49kIRRxgMIdg==
-Date: Wed, 10 Apr 2024 18:47:46 +0100
-From: Mark Brown <broonie@kernel.org>
-To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	b=lepQksByl+PqTl3mRAc+aU9f8MqHehaCQQUGPgi+fsm/qm+Be9N4lTABH+eKhoJZV
+	 8F2jEpXDfBuD6xNddLKnY19o5QJ2wOCTjt1x1gNK90WtGYnuRhs7Hk0o992m1td7nZ
+	 cGM68YnxAloIz2GlE0UdK9bEI0b4OW0ouWerwovGLUKzEOXiGhetoA3l1zDKle9CDK
+	 +scXV17wnr3hhMkmXlEwC7N1ipnwX51LP9m32vDCoKY7jmGYEoeJFnapp1xblRClco
+	 5zm4ZYkE0ymijFG865AyXtxZvS2fE7/hsirvObNrVtTMjuwv4dHlQXMRIT4+MqGG+n
+	 mYHv/CtiOmqow==
+Date: Wed, 10 Apr 2024 12:48:06 -0500
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Vaishnav Achath <vaishnav.a@ti.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Rob Herring <robh@kernel.org>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	Gregory CLEMENT <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v3 0/9] spi: cadence-qspi: add Mobileye EyeQ5 support
-Message-ID: <48b302d4-a835-41fe-aa22-2b79ea01c7a4@sirena.org.uk>
-References: <20240410-cdns-qspi-mbly-v3-0-7b7053449cf7@bootlin.com>
+	Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Jim Quinlan <jim2101024@gmail.com>,
+	Nicolas Saenz Julienne <nsaenz@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Will Deacon <will@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Srikanth Thokala <srikanth.thokala@intel.com>,
+	Ryder Lee <ryder.lee@mediatek.com>,
+	Jianjun Wang <jianjun.wang@mediatek.com>,
+	Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Marek Vasut <marek.vasut+renesas@gmail.com>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Heiko Stuebner <heiko@sntech.de>, Jingoo Han <jingoohan1@gmail.com>,
+	Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Mark Kettenis <kettenis@openbsd.org>,
+	Tom Joseph <tjoseph@cadence.com>,
+	Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>,
+	Jiaxun Yang <jiaxun.yang@flygoat.com>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 3/3] dt-bindings: PCI: host-bridges: switch from
+ deprecated pci-bus.yaml
+Message-ID: <20240410174806.GA788199-robh@kernel.org>
+References: <20240407102000.37213-1-krzysztof.kozlowski@linaro.org>
+ <20240407102000.37213-3-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="MxtsBf7T/9C7oqKy"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240410-cdns-qspi-mbly-v3-0-7b7053449cf7@bootlin.com>
-X-Cookie: Join the march to save individuality!
+In-Reply-To: <20240407102000.37213-3-krzysztof.kozlowski@linaro.org>
+
+On Sun, Apr 07, 2024 at 12:20:00PM +0200, Krzysztof Kozlowski wrote:
+> dtschema package with core schemas deprecated pci-bus.yaml schema in
+> favor of pci-host-bridge.yaml.  Update all bindings to use the latter
+> one.
+> 
+> The difference between pci-bus.yaml and pci-host-bridge.yaml is only in
+> lack of "reg" property defined by the latter, which should not have any
+> effect here, because all these bindings define the "reg".
+> 
+> The change is therefore quite trivial, except mediatek,mt7621-pcie.yaml
+> binding which have children nodes being also host bridges, apparently.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/pci/amlogic,axg-pcie.yaml   | 2 +-
+>  Documentation/devicetree/bindings/pci/apple,pcie.yaml         | 2 +-
+>  Documentation/devicetree/bindings/pci/brcm,iproc-pcie.yaml    | 2 +-
+>  Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml      | 2 +-
+>  Documentation/devicetree/bindings/pci/cdns-pcie-host.yaml     | 2 +-
+>  Documentation/devicetree/bindings/pci/faraday,ftpci100.yaml   | 2 +-
+>  Documentation/devicetree/bindings/pci/host-generic-pci.yaml   | 2 +-
+>  Documentation/devicetree/bindings/pci/intel,ixp4xx-pci.yaml   | 2 +-
+>  Documentation/devicetree/bindings/pci/intel,keembay-pcie.yaml | 2 +-
+>  Documentation/devicetree/bindings/pci/loongson.yaml           | 2 +-
+>  .../devicetree/bindings/pci/mediatek,mt7621-pcie.yaml         | 4 ++--
+>  Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml | 2 +-
+>  .../devicetree/bindings/pci/microchip,pcie-host.yaml          | 2 +-
+>  Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml   | 2 +-
+>  Documentation/devicetree/bindings/pci/qcom,pcie.yaml          | 2 +-
+>  Documentation/devicetree/bindings/pci/rcar-pci-host.yaml      | 2 +-
+>  .../devicetree/bindings/pci/renesas,pci-rcar-gen2.yaml        | 2 +-
+>  .../devicetree/bindings/pci/rockchip,rk3399-pcie.yaml         | 2 +-
+>  Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml       | 2 +-
+>  Documentation/devicetree/bindings/pci/ti,am65-pci-host.yaml   | 2 +-
+>  Documentation/devicetree/bindings/pci/versatile.yaml          | 2 +-
+>  Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml  | 2 +-
+>  Documentation/devicetree/bindings/pci/xlnx,axi-pcie-host.yaml | 2 +-
+>  Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml      | 2 +-
+>  Documentation/devicetree/bindings/pci/xlnx,xdma-host.yaml     | 2 +-
+>  25 files changed, 26 insertions(+), 26 deletions(-)
 
 
---MxtsBf7T/9C7oqKy
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> diff --git a/Documentation/devicetree/bindings/pci/mediatek,mt7621-pcie.yaml b/Documentation/devicetree/bindings/pci/mediatek,mt7621-pcie.yaml
+> index 61d027239910..5bbb4a3f3dbd 100644
+> --- a/Documentation/devicetree/bindings/pci/mediatek,mt7621-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/mediatek,mt7621-pcie.yaml
+> @@ -14,7 +14,7 @@ description: |+
+>    with 3 Root Ports. Each Root Port supports a Gen1 1-lane Link
+>  
+>  allOf:
+> -  - $ref: /schemas/pci/pci-bus.yaml#
+> +  - $ref: /schemas/pci/pci-host-bridge.yaml#
+>  
+>  properties:
+>    compatible:
+> @@ -33,7 +33,7 @@ properties:
+>  patternProperties:
+>    '^pcie@[0-2],0$':
+>      type: object
+> -    $ref: /schemas/pci/pci-bus.yaml#
+> +    $ref: /schemas/pci/pci-host-bridge.yaml#
 
-On Wed, Apr 10, 2024 at 11:29:03AM +0200, Th=E9o Lebrun wrote:
+I think this one should be pci-pci-bridge.yaml instead since it says 
+these are root ports and based on the unit-address here.
 
-> V1 cover letter [5] contains a brief summary of what gets added.
-
-Please make your cover letters stand alone things, things like a basic
-description of the contents of the series should just be included
-directly.
-
---MxtsBf7T/9C7oqKy
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmYW0MEACgkQJNaLcl1U
-h9AIJwgAgF4+CxnKc6DP5yCGYWySSpmbeaIK2XNWOU0gi97h3kWAqzcL5bIaOQzW
-2YqOg18yh4oGytWwAMsFSVscj0YDyQD7A/MsP0A5d1eZ4KAu9u5RN5oNdZO3gL2v
-ojkHdR2ygMlBTVXUv098a9LO6V6LEt8edAF4hlgARNgZlFuyAovIMTsDVqR2QTWm
-82UII45YVBKaCWGOz44LrAWVwyQT6hJ4n88+mURXe/AJw43XdkWryfYvzcRA+LTH
-VfLT3c65h9HOGdPHz77e7gHd2khnyozRvQDfpjMfLeoMS7Ij7aqurcMtoQFy5e7t
-TqmjAWnojFy3DVG7dyMbSjFcOnTOTw==
-=1tM3
------END PGP SIGNATURE-----
-
---MxtsBf7T/9C7oqKy--
+Rob
 
