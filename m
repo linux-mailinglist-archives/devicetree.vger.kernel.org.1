@@ -1,138 +1,87 @@
-Return-Path: <devicetree+bounces-57786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 575D189ECD3
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 09:57:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A31589ECD7
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 09:58:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E00F1F22DCB
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 07:57:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56BF12832AB
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 07:58:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E115013D292;
-	Wed, 10 Apr 2024 07:57:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 797CB13D2B6;
+	Wed, 10 Apr 2024 07:58:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kaeV3UOY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bFupmW7T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AF4B13D26E;
-	Wed, 10 Apr 2024 07:57:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49B8813D29E;
+	Wed, 10 Apr 2024 07:58:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712735833; cv=none; b=SN5TNyru/QN+4DIcJfGJVr1mIt+kqd0wNPkkRqptSvQXZh7juJ7jQBhbg8laUInUHByd1sOwUVPh8fzx3s1UzTHDvXiljExYszMeiERXbK9s37FV3lcN+T3uNDfJZZlp6FrhQUvKodhc964GIW9uuZQdLJxoVOPZLr3wJuYioBg=
+	t=1712735895; cv=none; b=PNwqSxobsYGAC3OGyGbddkUBkQq2ABu1mZWaHOfT0uWZd/BGOlcKvuBRFroEoX1vKBkwlhbc6AEbfp8AHO46bjGcjbW6TBwsIJqEDWDYmRcvkVfIqY0xzJwBIZOFhcVKjb41dxiJewxx1oeH5IVJAeDfpd8XoszvL/oiMObTlO0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712735833; c=relaxed/simple;
-	bh=N8vrAP5uFQOixMvkqZwjkipHkwliYmWjkU6FwbXfrGI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=oRHWWQ9bBZs+a38JjX3TUMaag7nE698uov+El3xcwBmzbGhDifuuVdLtt+G154Olp1fa//hY0dw5yZfnfbieNDVQAm/YYHlFF/G4PB7d+RJC98Hb9Pc/Bp10M3vSwnBODaFMbVvneyvCCiNMNF/1/h3JWrPZFjzp3YwRjqPrxXY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kaeV3UOY; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-516d04fc04bso9926964e87.2;
-        Wed, 10 Apr 2024 00:57:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712735830; x=1713340630; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kLwE5KUr5O6m0SoJrIs5Ku904XnsinbX3SC9qeup24Q=;
-        b=kaeV3UOY1bJtIR0750dqY2KbZ66jt+jr7nm2sRw6dOtwqfygTpZyLhW7XtuMkkBhYj
-         NZNCsp9D49ffMeIBw2fyGaSNnwBs+yi/9Ft1AUpHqOFEOzPVwYBlOrO4P3vRqZCOXEwN
-         aFsR0/bqZ2Hg6uFJP3pZnHia2C65vPg4As044DJNs2Y/d9YYH+JZIveraIqB0Xqo6gGe
-         NsfYLXtgvQ2t6OvRyQjRdWsD3vqufI97NS7CQYtOuqadBnoGoWLLJa1WPlVCkwloDvoz
-         Q1RkGbif+eFeqrosF1zkOhJqXe0/zEgS0CCp4kq2sAia8bIGjCxRJjcZZGuvxyHNpWsV
-         +7vQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712735830; x=1713340630;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kLwE5KUr5O6m0SoJrIs5Ku904XnsinbX3SC9qeup24Q=;
-        b=WTnQK8cVB30Uj6jqxyMZ/aDErImNiP67Plcjs6wGQCINgNqdDVbNCZR6Oh7t42ndRu
-         huiyN9m22a8lCx9xru4pDSfFKqz67P/HOqbTWGloy2kDwVWUCOYRKMJFjiKwkmQ4Ypg1
-         aSjvFgET2OSrDQmuYIReWZ2A0rX5CVnAxAWfbL2YAiXsrAyvyQUxroDM+CU+QpvuFCef
-         T1Yk+lH6FOTCG8ehL1xO2JUIyKqX7AqYQNy2UpdhBQWg2lwzRBKEQeULLWP2uAt7tx2q
-         BKsRXvHi+qSfWE9F+yaU1x3e2rD2/AwNBbljuDz+F0IdN8DMUvIoz1kXrctBcQMaKbFT
-         bl6g==
-X-Forwarded-Encrypted: i=1; AJvYcCVIObGWNXMJe/wGNKNg/pn+uwknVyCsaToKfh/4zsRFg19jj6S7SOkoPXeAVPsFfsAoEwxOFEDXe78eWXUTTflV4FjyoEoDdNwofR62p4oAVWgQa9W6QSqQfqEK1UHdkjSKwWbaKGT30Q==
-X-Gm-Message-State: AOJu0YztGt/F3VyN3d8AmADgny1V2NFLwdzAXmAm7yHN1CRfsnNExG0A
-	dqNDxTOa+nOCWXW+Rib4P24lYBrZGDtEcdvto7N+azhcQ/TR6fVp
-X-Google-Smtp-Source: AGHT+IFyDZF1Bpt3awxQX1aOPYdX18UGVvC4teyJcPtJCZVsBciUu8dC7lhcnyap2ZII4AGmyuWEhg==
-X-Received: by 2002:a19:9114:0:b0:516:a686:8ae1 with SMTP id t20-20020a199114000000b00516a6868ae1mr1228867lfd.62.1712735830172;
-        Wed, 10 Apr 2024 00:57:10 -0700 (PDT)
-Received: from [172.16.183.82] ([213.255.186.46])
-        by smtp.gmail.com with ESMTPSA id x20-20020ac24894000000b00516a01d2f44sm1760191lfc.240.2024.04.10.00.57.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Apr 2024 00:57:09 -0700 (PDT)
-Message-ID: <3d5df067-ec94-42c6-bbd0-43ce8cd53e40@gmail.com>
-Date: Wed, 10 Apr 2024 10:57:08 +0300
+	s=arc-20240116; t=1712735895; c=relaxed/simple;
+	bh=K/eDjeU8Zri/YVQwV2qqe0Qm0px/fLneFb5gHVWAUxo=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=GPb9s0pQNrXPLoP7LRITx38Z55dUL+XHkZi2OdcIHSgA+okh2+SPbIrU1ZY+oN3TwLYEweasw7iQ0wadaM1hq5kj+4BZ/1JOtm/sHlHLW9xs7CzXiRQyeiHWc4o5GvvXRJTZsASXvaENMURQ6OYxpHWvK0d87qbngqFJ2tgL344=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bFupmW7T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7EDBC433C7;
+	Wed, 10 Apr 2024 07:58:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712735894;
+	bh=K/eDjeU8Zri/YVQwV2qqe0Qm0px/fLneFb5gHVWAUxo=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=bFupmW7Tlfsnv2qcx3KCImDyVWL/qCvyNMXXxmV16EXbhEDlOjSy/aTx1HPNnvwBJ
+	 H0RSqWI31Fnv1gaZsQo9a4FQvHrUqKBZ0kG69NT6sSfjx8b3C2ZF+/AoDL5BkmSuGS
+	 1iL+tHfz4Lj4uzZwblWR3k3ffJ4NB274arbgIdFRcp8aIJZ2XJ/4NuAhwNPceq5TeT
+	 gvVkuCXzL2XbYKS+8i6utnWpuU7qZKYBS+CPXmKfGqAXfOBCHt0fhR1vUWR2u4h3AG
+	 xJz4MKuRRQ66aOqWxpoQqze6Wo2RRA0LQDz43l/xDbjhPRQe4DzAqB9qYGIto54H57
+	 q0DgaMBDq7t4Q==
+Message-ID: <858299c27c63aa2974b169f9adf624e9.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: mfd: Add ROHM BD71879
-Content-Language: en-US, en-GB
-To: Andreas Kemnade <andreas@kemnade.info>, lee@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240404195423.666446-1-andreas@kemnade.info>
- <20240404195423.666446-2-andreas@kemnade.info>
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20240404195423.666446-2-andreas@kemnade.info>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240410033148.213991-2-xingyu.wu@starfivetech.com>
+References: <20240410033148.213991-1-xingyu.wu@starfivetech.com> <20240410033148.213991-2-xingyu.wu@starfivetech.com>
+Subject: Re: [PATCH v4 1/2] clk: starfive: jh7110-sys: Add notifier for PLL clock
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Emil Renner Berthing <kernel@esmil.dk>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Hal Feng <hal.feng@starfivetech.com>, Xingyu Wu <xingyu.wu@starfivetech.com>, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
+To: Conor Dooley <conor@kernel.org>, Emil Renner Berthing <emil.renner.berthing@canonical.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Xingyu Wu <xingyu.wu@starfivetech.com>
+Date: Wed, 10 Apr 2024 00:58:12 -0700
+User-Agent: alot/0.10
 
-On 4/4/24 22:54, Andreas Kemnade wrote:
-> As this chip was seen in several devices in the wild, add it.
-> 
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> Suggested-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> ---
->   .../devicetree/bindings/mfd/rohm,bd71828-pmic.yaml         | 7 ++++++-
->   1 file changed, 6 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
-> index 0b62f854bf6b..07f99738fcf6 100644
-> --- a/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
-> @@ -17,7 +17,12 @@ description: |
->   
->   properties:
->     compatible:
-> -    const: rohm,bd71828
-> +    oneOf:
-> +      - const: rohm,bd71828
-> +
-> +      - items:
-> +          - const: rohm,bd71879
-> +          - const: rohm,bd71828
->   
->     reg:
->       description:
+Quoting Xingyu Wu (2024-04-09 20:31:47)
+> diff --git a/drivers/clk/starfive/clk-starfive-jh7110-sys.c b/drivers/clk=
+/starfive/clk-starfive-jh7110-sys.c
+> index 8f5e5abfa178..adf62e4d94e4 100644
+> --- a/drivers/clk/starfive/clk-starfive-jh7110-sys.c
+> +++ b/drivers/clk/starfive/clk-starfive-jh7110-sys.c
+> @@ -385,6 +385,32 @@ int jh7110_reset_controller_register(struct jh71x0_c=
+lk_priv *priv,
+>  }
+>  EXPORT_SYMBOL_GPL(jh7110_reset_controller_register);
+> =20
+> +/*
+> + * This clock notifier is called when the rate of PLL0 clock is to be ch=
+ange,
 
-Am I correct, this reads as:
+s/change,/changed./
 
-Either
-	compatible = rohm,bd71828
-or
-	compatible = rohm,bd71879, rohm,bd71828
+> + * The cpu_root clock should save curent parent clock and swicth its par=
+ent
 
-but not compatible = rohm,bd71879?
+s/swicth/switch/
 
-If so, this looks ok to me. :)
-	
-
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
-
+> + * clock to osc before PLL0 rate will be changed. And switch its parent =
+clock
+> + * back after PLL rate finished.
 
