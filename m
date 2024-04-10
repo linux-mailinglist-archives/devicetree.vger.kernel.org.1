@@ -1,151 +1,164 @@
-Return-Path: <devicetree+bounces-57818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0270689EE8B
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 11:17:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6F1889EEAE
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 11:22:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 97ADD1F26BBB
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 09:17:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DA5B28927D
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 09:22:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B53315F411;
-	Wed, 10 Apr 2024 09:11:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C113158205;
+	Wed, 10 Apr 2024 09:21:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="H0S06gwr"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="jQC1D+xy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A83815EFC7
-	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 09:11:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECD34155306
+	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 09:21:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712740287; cv=none; b=XEfvws0/51pEUNhjhXksO2nrENKNxPZnQsahccW8Dqq7LUoaYFDHRpcn7cAUuUN781LC0LycgIG054cj9Rvk3T/rrA2UHwnLVPRjc+er6TnxGGh4u1/m4RQmgpLgDMuC4NMydUIy70s65TFu9iaUobFnL2IGHcd96/0Emtw2UCg=
+	t=1712740867; cv=none; b=dvAGGBJbP3GqXc2lTN7I1H2+vr2ciIjJkY5TsBhwpw9dzWUhN827VWxJGmjcomS82mNzHlbBJfis9SlBt3Hdiuh5hfqeaEJdfshfKojFmI/mqFc55T6o08VcXACKDS5tjB1FGJeXJ45DQPSbUGOrGGr6UzLBC5VXKgoDRq0I4Ng=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712740287; c=relaxed/simple;
-	bh=dIKOQ7+8Gx69BlGHAWDa8bC1hIUZKhgNODc1wgGNviA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WEqo1NakUAY8DT8KwsRH5s5ZFpAYhd5aDOY42vBrGhe5kri1ydkcM7zyNZlCj2je1gnMjQaTMWPccozQodLGSasCrZddt5mHqfZ2Zab80b9qU889NuTG6MAOCeyc5+/rRjYGY4DxnuLhVM9e/lZVzRfQBb//DhL3U/fq9fsYzqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=H0S06gwr; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-516d585c60bso1576421e87.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 02:11:25 -0700 (PDT)
+	s=arc-20240116; t=1712740867; c=relaxed/simple;
+	bh=GOyZlPbibYKkgQOc58qrSRIZg7WlqZDBuxYBzqa/E28=;
+	h=References:From:To:Cc:Subject:Date:In-reply-to:Message-ID:
+	 MIME-Version:Content-Type; b=L86nicZeFEZD7aUZM/SCm6c/l1vk7pjJp4RdnklLQ50cOKOWYlRWglJqxE1t9RAO7DwteuyKKEF5odCAk/MDnRX8vt/BuTzxd+oFfQQ2+kz0fPTYxQUDpaoI5Rx0+MnxXKZtNZJQGEMdNwA9vrFPvO5mV87YKCeOT7z18OMuGgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=jQC1D+xy; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-417c3296643so36305e9.0
+        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 02:21:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1712740283; x=1713345083; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OKIlCd7jL5ol5qvLgWGPfJLjgIu96MFC3958FRvJI8w=;
-        b=H0S06gwrd6ANiW4jrbHvPyJjGiOIaqcVz4LTDzaaXw9vRTwJxBwCfRaGBDPwmq4Yh1
-         cBUW/u2wEhyEo9Jjf0PG0vUrX5/JP9IR8f0e77aLywkf6tipp3gm0/Neyknnz1mRcygn
-         wcW7z1Jt5Moi45dYyMjMdMIP5X4jTjC6YrgUu9d2Wbv4MJgq+GRzDQ7RQ1p0GBl5sFbN
-         HYLFNUl/oZWw3kGA35H0eIAj4ljEzRdZHtyEKD8UnuU2xUBtxUuddWs+BoSNp4XZFUXt
-         GrHm/05lsIvlPjaczukw+t6PGpG8GRwJGms9l/cS+ioiUrohW8mvEjAnZybyHId1GbdJ
-         5/4g==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712740863; x=1713345663; darn=vger.kernel.org;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=OUZ8sj/QyEa+cNbVJTvPrBz5RGRP8IPnLWYdgXsAut4=;
+        b=jQC1D+xy38nUW2UZNKxO+FNwH4GgXSBEeMTEz+A5F8MdEpwdKzqYpJj7blzcNnTWS+
+         Tlgq0AZ70MQqD29z3w79auE/7imgdi26wpCiq0r/Koq4znTBQs2/NZQye8vG5As59ZD+
+         qtMbn3G/2Aki4V7UBQq7oxzungQJkNXDuoDnS8kW60qCJCnNHPlEnIMoTcHdVGm9J56+
+         cmEv0jeVkg4p8jbLfsXTtZy8xQZ6bQgH7goBx+gE8K3zCTfUhm/sNNOVwdrcPdEyj0i2
+         ir/oPvyjQinLSrKAIjlhAcgyZUFRklTI8TmK59U0KwnNv6AxWXvuuy132jjbQMvTwagn
+         E+rA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712740283; x=1713345083;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OKIlCd7jL5ol5qvLgWGPfJLjgIu96MFC3958FRvJI8w=;
-        b=QngebGnnqFq8hzUjEmMPSf+xbJ0pY+fO28+3b3UH2Y1x0/kTSiieG/FUzP5OUFe0Dw
-         4C5jm7h9uzISYZDMC6s4+aJQb7akwp6v4EhGud4YbBWXx5+1E9M8ZRoLcd2EPMbkH1eg
-         4vlTl+jzu26CEA6NzNP8OtiGRo/6m/noTElx/zuwjZDWOZCmh+t/dRztHm53myrzfKQD
-         vOJA5ffP8wGoPom4QpCC/dZQAQ8zDSLL1jHfkIwGqVm/0uszFN8g2OMc6CnQJp5CzZCe
-         9J5i6myMBzy/r2QQCFHse1ZXWjFHFoEaYjZSxxpZB5ont4uBu9ovCBMfntEEA8vEUu7J
-         CHJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUQGmLAqozoguRtH/unevDlVdul2gkdeAaBoIY3FUutJPKcwPIdmcysP3kbsG2Oxdra1G7bwquEwwAz+V+LCxOolx6Js+6pkH6eYA==
-X-Gm-Message-State: AOJu0YwAMbzrVDqFzdXawSVXYSztvIrO+aieYdxMAUhVU5C7bgg2+xp7
-	KQ3M/1fAE/13ot8dOQs2+RWtvIWgXWhlxA86Mq1KLnFuKUWW6adpAE3eBb771MA=
-X-Google-Smtp-Source: AGHT+IGArQ/ya3SIwEsTsgk2V3XdyzaxCK6c7Q9P5Y6CwIgF+pnuGurqpRxGE7Q7fP5In4aquwsCLQ==
-X-Received: by 2002:ac2:484a:0:b0:513:c1b0:dcb2 with SMTP id 10-20020ac2484a000000b00513c1b0dcb2mr1173103lfy.3.1712740283581;
-        Wed, 10 Apr 2024 02:11:23 -0700 (PDT)
-Received: from carbon-x1.. ([2a01:e0a:999:a3a0:d4a6:5856:3e6c:3dff])
-        by smtp.gmail.com with ESMTPSA id d6-20020a056000114600b003456c693fa4sm9079086wrx.93.2024.04.10.02.11.22
+        d=1e100.net; s=20230601; t=1712740863; x=1713345663;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OUZ8sj/QyEa+cNbVJTvPrBz5RGRP8IPnLWYdgXsAut4=;
+        b=s3s+bf0T6+oj/Sb1RWkgu9YPGYx9kvw4c2nAFmboP/I+NCKW3dvOlUJMfp9JJxJYl+
+         1pKihVpvplPR+GGL+9AU3N+ig2ZtdB4S8aOyrQhfDxSxqbLnFEiM+qo2G8AmoZk3AG3n
+         CexkOlIn+waRXR6MiKcwD3lcFy1raB8Ws/djaxsqQFitbqQBrahiqEhl79wP6dAmbT31
+         4ovMno+LUveUqp2Uvb9NgRyRCZS1SZv+LpmseH9BIyILPbgAVsJTzM8qtsUc40Kn247E
+         xzHOfTGveWJx3Me3cbCNUXGlAfRa4kyp2yet70wq5lfc4pWw88fcQwyUW66chtxHOwKc
+         mZuw==
+X-Forwarded-Encrypted: i=1; AJvYcCVmWgg60XslgvNkNl/b8+k4XMDCyZ5GD6OlsYV5k+fFxY2jHMz8W05V+rIl7JNY6Vu+yLMoaxWiKm950WmGXYbVrut0kmPnRNNgfw==
+X-Gm-Message-State: AOJu0YxJtaPg8UkGNOARu6aMrl7Ha4Ak725uGz6/FweTXbQ+szoxR2Mo
+	shyVylkPM2ZbkKxcMEUzWl+PpDbZ1SkOHK7IxFVujBQdsTPluFgZP4z0iOBZk+M=
+X-Google-Smtp-Source: AGHT+IHz7uEirOiTQ6nUGo5cn1c95MQa2CNHbq/vvNf0n1UrWoBuifyOgUpJWz1pEK/x5Eg2R4xW8w==
+X-Received: by 2002:a05:600c:35ce:b0:416:afb2:1df1 with SMTP id r14-20020a05600c35ce00b00416afb21df1mr1507548wmq.7.1712740863156;
+        Wed, 10 Apr 2024 02:21:03 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:49de:129e:d25e:c803])
+        by smtp.gmail.com with ESMTPSA id he12-20020a05600c540c00b0041562a58b75sm1650891wmb.13.2024.04.10.02.21.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Apr 2024 02:11:22 -0700 (PDT)
-From: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>
-To: Jonathan Corbet <corbet@lwn.net>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Anup Patel <anup@brainfault.org>,
-	Shuah Khan <shuah@kernel.org>
-Cc: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>,
-	Atish Patra <atishp@atishpatra.org>,
-	linux-doc@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	kvm@vger.kernel.org,
-	kvm-riscv@lists.infradead.org,
-	linux-kselftest@vger.kernel.org
-Subject: [PATCH 10/10] KVM: riscv: selftests: Add Zcmop extension to get-reg-list test
-Date: Wed, 10 Apr 2024 11:11:03 +0200
-Message-ID: <20240410091106.749233-11-cleger@rivosinc.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240410091106.749233-1-cleger@rivosinc.com>
-References: <20240410091106.749233-1-cleger@rivosinc.com>
+        Wed, 10 Apr 2024 02:21:02 -0700 (PDT)
+References: <20240328010831.884487-1-jan.dakinevich@salutedevices.com>
+ <20240328010831.884487-2-jan.dakinevich@salutedevices.com>
+ <1j7chfiz8e.fsf@starbuckisacylon.baylibre.com>
+ <e3a85852b911fdf16dd9ae158f42b3ef.sboyd@kernel.org>
+ <f01cdd910ab35316b8012795f73fd2b34c8e6f8e.camel@pengutronix.de>
+ <13617b7a892424d2b024c725505a6f4f.sboyd@kernel.org>
+ <20240408-numerator-escargot-a642507a598e@spud>
+ <20240409-shallow-voice-c84ed791bc7d@spud>
+ <dde59dd2ef4da81528e31f65844e0b3f.sboyd@kernel.org>
+ <b9ee67f1a6d782e6b6ee9e273bc8c6fa5bc1813b.camel@pengutronix.de>
+User-agent: mu4e 1.10.8; emacs 29.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor@kernel.org>, Jan
+ Dakinevich <jan.dakinevich@salutedevices.com>, Jerome Brunet
+ <jbrunet@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Michael  Turquette <mturquette@baylibre.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>, Martin  Blumenstingl
+ <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [RFC PATCH v2 1/5] clk: meson: axg: move reset controller's
+ code to separate module
+Date: Wed, 10 Apr 2024 11:17:14 +0200
+In-reply-to: <b9ee67f1a6d782e6b6ee9e273bc8c6fa5bc1813b.camel@pengutronix.de>
+Message-ID: <1jedbdpo8x.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-The KVM RISC-V allows Zcmop extension for Guest/VM so add this
-extension to get-reg-list test.
 
-Signed-off-by: Clément Léger <cleger@rivosinc.com>
----
- tools/testing/selftests/kvm/riscv/get-reg-list.c | 4 ++++
- 1 file changed, 4 insertions(+)
+On Wed 10 Apr 2024 at 10:56, Philipp Zabel <p.zabel@pengutronix.de> wrote:
 
-diff --git a/tools/testing/selftests/kvm/riscv/get-reg-list.c b/tools/testing/selftests/kvm/riscv/get-reg-list.c
-index 61cad4514197..9604c8ece787 100644
---- a/tools/testing/selftests/kvm/riscv/get-reg-list.c
-+++ b/tools/testing/selftests/kvm/riscv/get-reg-list.c
-@@ -59,6 +59,7 @@ bool filter_reg(__u64 reg)
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZCB:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZCD:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZCF:
-+	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZCMOP:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZFA:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZFH:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZFHMIN:
-@@ -429,6 +430,7 @@ static const char *isa_ext_single_id_to_str(__u64 reg_off)
- 		KVM_ISA_EXT_ARR(ZCB),
- 		KVM_ISA_EXT_ARR(ZCD),
- 		KVM_ISA_EXT_ARR(ZCF),
-+		KVM_ISA_EXT_ARR(ZCMOP),
- 		KVM_ISA_EXT_ARR(ZFA),
- 		KVM_ISA_EXT_ARR(ZFH),
- 		KVM_ISA_EXT_ARR(ZFHMIN),
-@@ -957,6 +959,7 @@ KVM_ISA_EXT_SIMPLE_CONFIG(zca, ZCA),
- KVM_ISA_EXT_SIMPLE_CONFIG(zcb, ZCB),
- KVM_ISA_EXT_SIMPLE_CONFIG(zcd, ZCD),
- KVM_ISA_EXT_SIMPLE_CONFIG(zcf, ZCF),
-+KVM_ISA_EXT_SIMPLE_CONFIG(zcmop, ZCMOP);
- KVM_ISA_EXT_SIMPLE_CONFIG(zfa, ZFA);
- KVM_ISA_EXT_SIMPLE_CONFIG(zfh, ZFH);
- KVM_ISA_EXT_SIMPLE_CONFIG(zfhmin, ZFHMIN);
-@@ -1017,6 +1020,7 @@ struct vcpu_reg_list *vcpu_configs[] = {
- 	&config_zcb,
- 	&config_zcd,
- 	&config_zcf,
-+	&config_zcmop,
- 	&config_zfa,
- 	&config_zfh,
- 	&config_zfhmin,
+> On Di, 2024-04-09 at 19:27 -0700, Stephen Boyd wrote:
+>> Quoting Conor Dooley (2024-04-09 05:05:37)
+>> > On Mon, Apr 08, 2024 at 06:05:51PM +0100, Conor Dooley wrote:
+>> > 
+>> > > > > Seconded, the clk-mpfs/reset-mpfs and clk-starfive-jh7110-sys/reset-
+>> > > > > starfive-jh7110 drivers are examples of this.
+>> > > > > 
+>> > > > > > The auxiliary device creation function can also be in the
+>> > > > > > drivers/reset/ directory so that the clk driver calls some function
+>> > > > > > to create and register the device.
+>> > > > > 
+>> > > > > I'm undecided about this, do you think mpfs_reset_controller_register()
+>> > > > > and jh7110_reset_controller_register() should rather live with the
+>> > > > > reset aux drivers in drivers/reset/ ?
+>> > > > 
+>> > > > Yes, and also mpfs_reset_read() and friends. We should pass the base
+>> > > > iomem pointer and parent device to mpfs_reset_adev_alloc() instead and
+>> > > > then move all that code into drivers/reset with some header file
+>> > > > exported function to call. That way the clk driver hands over the data
+>> > > > without having to implement half the implementation.
+>> > > 
+>> > > I'll todo list that :)
+>> > 
+>> > Something like the below?
+>> > 
+>> > -- >8 --
+>> > From a12f281d2cb869bcd9a6ffc45d0c6a0d3aa2e9e2 Mon Sep 17 00:00:00 2001
+>> > From: Conor Dooley <conor.dooley@microchip.com>
+>> > Date: Tue, 9 Apr 2024 11:54:34 +0100
+>> > Subject: [PATCH] clock, reset: microchip: move all mpfs reset code to the
+>> >  reset subsystem
+>> > 
+>> > <insert something here>
+>> > 
+>> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+>> 
+>> Looks pretty good.
+>
+> Yes, that does look convincing.
+
+Thanks a lot for the example Conor !
+
+When it comes to Amlogic, I think the bits of reset instanciated by
+clock drivers could probably share (part of) the code of the existing
+amlogic reset driver. Some have toggle only, no level, but it is mostly
+the same.
+
+I'll try to have a look at it
+
+>
+> regards
+> Philipp
+
+
 -- 
-2.43.0
-
+Jerome
 
