@@ -1,130 +1,92 @@
-Return-Path: <devicetree+bounces-58059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B03208A010C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 22:09:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7E278A013B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 22:23:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 502791F21982
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 20:09:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 56102B2665A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 20:23:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91ED3181B91;
-	Wed, 10 Apr 2024 20:09:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00E541836E1;
+	Wed, 10 Apr 2024 20:22:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u2SAOGBp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WAxFe44W"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F5AA181B8E;
-	Wed, 10 Apr 2024 20:09:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3C5F1836D8;
+	Wed, 10 Apr 2024 20:22:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712779775; cv=none; b=Y8En0F7acbMx9l7ToKGmcwSCOXyXlMyALwMB4LVM7FGxz83w8QVQHohTZ/BU5wqe/IOPnAO6jUjuiuLcIXu12M6VgwyRCpWAAEFULPmGs9aAmB7FQEyc3nDOtO676KvaiJiNhKagOdCS+EIQVHHkumYE7zUaYuon+mVOYFYoEG4=
+	t=1712780575; cv=none; b=EWSYAMWiyvvkGL+77UTeAEvAtQ9HgjKsCevp5UhPom5o+fe5izq6gBBm9spX1B2d3JpUMYgT6BEo4TGXTwOHaTMPbuqpmj99R09yEXgP2g3hkfyCry+rzbYE0APMOGqtuIbjsE292GvXRgOay78vUQSrYj7jfYxVGwlaqwBg25k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712779775; c=relaxed/simple;
-	bh=BOYXvdkLCj/ZV6DxgWGFqH21HfxALiLHSY70/wtzsxQ=;
+	s=arc-20240116; t=1712780575; c=relaxed/simple;
+	bh=zvb47o4mf8GUH8SVKa0m5GiIb1eeKuKunwVjqMtmuhk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dV7303qiiJ6FpU5R4AHmUL1xmpk1Ocaea3/0KKRNsLRxNsD1I8zivpCGMlpvNotSv6zFmYxY0mFg+bChfkYZi9MxQFPrGKP1IxK0CkywbYT2f/lIbbZSzM5xKaWlrx0CLXhSYfoaBIXIfq+E4y42eI8DngckwDk48Pd15csVCZ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u2SAOGBp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A55E9C43390;
-	Wed, 10 Apr 2024 20:09:34 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=N/WU2SLFYdPINbqqPOWlP0CF9Dzkli8br1yc/1m8bcicWCsSSOzKmh/sxO7dabVtpRV9Lnxl+1i1LKmWtCuDx8rn5TwZHGQnfpRGjS7LZtUqjNERSojjZoFnTuMjVuGCPagCuH8Qmm/CCBzFvuRlasiLUe4t5bAScihBTnKmJK0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WAxFe44W; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 759F2C43394;
+	Wed, 10 Apr 2024 20:22:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712779774;
-	bh=BOYXvdkLCj/ZV6DxgWGFqH21HfxALiLHSY70/wtzsxQ=;
+	s=k20201202; t=1712780575;
+	bh=zvb47o4mf8GUH8SVKa0m5GiIb1eeKuKunwVjqMtmuhk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=u2SAOGBp4cUceZ9ejWdgKNmef/cCWAbEeB/xSQVjwSOO2rG3XYFFGCmoKetcpPFo7
-	 fY3G3T1VdgSBh9LCXVBAjJ4FKOfFMK6wfZMntk5xfYkZ1S/pU5/s4hd2z/CWwIdVfk
-	 iz1xs/z1fH0XzQj8/rrh6Ac9eCs5GSBhhsVfDTB6v75lQ1Fc5YZW95RgWNFqs8GwWP
-	 GAP74HP6/oSy3MzOZBPB6ic1TlGRiHMxgiUYm+Abfrm72V88dUTBPLyJBiPLbxnsil
-	 AscNcod3wm7NPSXv2O8EJYS4dgZmFH2BgPs4y5tqamzahL0mX1bs/zOR+14y3hJtm2
-	 CBNT/34AldvDw==
-Date: Wed, 10 Apr 2024 15:09:32 -0500
+	b=WAxFe44Wo9BGnqrVxsazyCzHllK6MSAnUlKym5Kj51SsjK0vgNjrmieVANrt6HX+G
+	 qQLEKWx5FAWHk42/PSn8UCU0XiCsvKwv1Cq1RSNJUoLiAFYldoa/naDB8idGENz8Cn
+	 7oaS8fmWVd8LGC+mpBxWyO9BkTmLMG2xmtXojemYJ2E8ZuB5gv7BUjUJkUXZjsQuTi
+	 8hfn7TaJBDH9fQGzY4heUCmkhNs7SP6C5BcAUavExJ3xURQKb5RfB7P5FtiJsckTuB
+	 Av0L+T7ZKoZJ3/W/1a7E40itpF9Rznpyxv9yEZNFHQ9IL/FCJMS9TEDk01ZV6G6XbU
+	 BcF363w7Bc0Ug==
+Date: Wed, 10 Apr 2024 15:22:53 -0500
 From: Rob Herring <robh@kernel.org>
-To: Sudan Landge <sudanl@amazon.com>
-Cc: graf@amazon.de, tytso@mit.edu, krzysztof.kozlowski+dt@linaro.org,
-	linux-kernel@vger.kernel.org, xmarcalx@amazon.co.uk,
-	robh+dt@kernel.org, Jason@zx2c4.com, bchalios@amazon.es,
-	thomas.lendacky@amd.com, dwmw@amazon.co.uk,
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	Mark Brown <broonie@kernel.org>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 	devicetree@vger.kernel.org,
-	sathyanarayanan.kuppuswamy@linux.intel.com, conor+dt@kernel.org,
-	dan.j.williams@intel.com
-Subject: Re: [PATCH v4 4/5] dt-bindings: rng: Add vmgenid support
-Message-ID: <171277976994.1266656.4960056294355072441.robh@kernel.org>
-References: <20240409181154.9962-1-sudanl@amazon.com>
- <20240409181154.9962-5-sudanl@amazon.com>
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Vaishnav Achath <vaishnav.a@ti.com>, linux-kernel@vger.kernel.org,
+	linux-spi@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	linux-mips@vger.kernel.org
+Subject: Re: [PATCH v3 3/9] spi: dt-bindings: cdns,qspi-nor: make
+ cdns,fifo-depth optional
+Message-ID: <171278057106.1281345.946727466928284923.robh@kernel.org>
+References: <20240410-cdns-qspi-mbly-v3-0-7b7053449cf7@bootlin.com>
+ <20240410-cdns-qspi-mbly-v3-3-7b7053449cf7@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20240409181154.9962-5-sudanl@amazon.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240410-cdns-qspi-mbly-v3-3-7b7053449cf7@bootlin.com>
 
 
-On Tue, 09 Apr 2024 19:11:53 +0100, Sudan Landge wrote:
-> Virtual Machine Generation ID driver was introduced in commit af6b54e2b5ba
-> ("virt: vmgenid: notify RNG of VM fork and supply generation ID"), as an
-> ACPI only device.
+On Wed, 10 Apr 2024 11:29:06 +0200, Théo Lebrun wrote:
+> Make cdns,fifo-depth devicetree property optional.
+> Value can be detected at runtime.
 > 
-> VMGenID specification http://go.microsoft.com/fwlink/?LinkId=260709 defines
-> a mechanism for the BIOS/hypervisors to communicate to the virtual machine
-> that it is executed with a different configuration (e.g. snapshot execution
-> or creation from a template).
-> The guest operating system can use the notification for various purposes
-> such as re-initializing its random number generator etc.
+> Upper SRAMPARTITION register bits are read-only. Procedure to find FIFO
+> depth is therefore to write 0xFFFFFFFF and read back to get amount of
+> writeable bits.
 > 
-> As per the specs, hypervisor should provide a globally unique identified,
-> or GUID via ACPI.
-> 
-> This patch tries to mimic the mechanism to provide the same functionality
-> which is for a hypervisor/BIOS to notify the virtual machine when it is
-> executed with a different configuration.
-> 
-> As part of this support the devicetree bindings requires the hypervisors or
-> BIOS to provide a memory address which holds the GUID and an IRQ which is
-> used to notify when there is a change in the GUID.
-> The memory exposed in the DT should follow the rules defined in the
-> vmgenid spec mentioned above.
-> 
-> *Reason for this change*:
-> Chosing ACPI or devicetree is an intrinsic part of an hypervisor design.
-> Without going into details of why a hypervisor would choose DT over ACPI,
-> we would like to highlight that the hypervisors that have chose devicetree
-> and now want to make use of the vmgenid functionality cannot do so today
-> because vmgenid is an ACPI only device.
-> This forces these hypervisors to change their design which could have
-> undesirable impacts on their use-cases, test-scenarios etc.
-> 
-> vmgenid exposes to the guest a 16-byte cryptographically random number,
-> the value of which changes every time it starts executing from a new
-> configuration (snapshot, backup, etc.). During initialization, the device
-> exposes to the guest the address of the generation ID and
-> an interrupt number, which the device will use to notify the guest when
-> the generation ID changes.
-> These attributes can be trivially communicated via device tree bindings.
-> 
-> We believe that adding a devicetree binding for vmgenid is a simpler
-> alternative way to expose the device to the guest than forcing the
-> hypervisors to implement ACPI.
-> 
-> More references to vmgenid specs:
->  - https://www.qemu.org/docs/master/specs/vmgenid.html
->  - https://learn.microsoft.com/en-us/windows/win32/hyperv_v2/virtual-
-> machine-generation-identifier
-> 
-> Signed-off-by: Sudan Landge <sudanl@amazon.com>
+> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
 > ---
->  .../bindings/rng/microsoft,vmgenid.yaml       | 49 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 50 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rng/microsoft,vmgenid.yaml
+>  Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml | 1 -
+>  1 file changed, 1 deletion(-)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
 
 
