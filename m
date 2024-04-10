@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-57759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74CB489EAEA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 08:32:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD9A989EAEF
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 08:34:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CDD75B227E0
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 06:32:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72B4D283874
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 06:34:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A5021427B;
-	Wed, 10 Apr 2024 06:32:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 276B5C8DD;
+	Wed, 10 Apr 2024 06:34:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zM7BzafQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DkBbFUOS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C113D2E40E
-	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 06:32:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F7062D05D
+	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 06:34:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712730754; cv=none; b=AQVhc/fO1t9fwEevrVp41vwSLTcWRpnc6B38xvZPNympNWVxt2OX3xFx/TirPTpRTD2ZU+y2NH9QcfOSdb0zRtn4FL1sAvx8004Cn2ldc2ezmyRm4gPxrR4m1OaV5SzHlU94fAYANMrBW35AohBwYaqNmG21x7zMfnQp7RPfGkg=
+	t=1712730872; cv=none; b=bHlQcuY1srUfQ0l7l5AK/3MsYUIRAVB2RjdP7TKQuwNbuXJ8qF5OSqcOLbK6okxAukUwQyZASlF4E3NfR7AA+m8V8M43K/yjdMKmQMdHuweXDY/MGcBWJckPPt1sRuTJtFYTeB4R2LkRG5XE1NuhHHNkhgACgSSr7QKm4sTUifg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712730754; c=relaxed/simple;
-	bh=tqpijNMZVhaemUA7jcJvu2ULxhVHVLvCejLdP80YXEE=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=QB1GgRGSs+5xdU51ovD21+VUdz0lyBEn/GHZZdLfYjuTYNIP7D0QsDGvYkyNbu76D/hHtlpKIP/+jEIdtXKD8h/pXLeacVWNw1dJiU8d9x4hPckjmKmZ/Biquux9sXsTugL2ucS+rBXxymHECYhw8bH8Ed19ETnL7vfk5+sF0rU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zM7BzafQ; arc=none smtp.client-ip=209.85.208.42
+	s=arc-20240116; t=1712730872; c=relaxed/simple;
+	bh=fP7ZYTCP2Cdtmo6OmKBxrC0LSQX0ryjEqk/dY6OTcF4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tifF44DJ5QPQj1Mp+PX7fVjQ+8wzkw4PtZpmiwOPBR/+YYXoOUX0TmXbouYA3cb1yx/tH4qfEksRb78dIrwSJeLnmgC4s0g+1Ze79NHCXhFwkG9AIBuZrmeeEpYURYLcU1dvvz6+rymERxFk+fk897KWWLsklJkpXrva85K51Fw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DkBbFUOS; arc=none smtp.client-ip=209.85.208.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-56fc155b646so228022a12.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Apr 2024 23:32:32 -0700 (PDT)
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-56e48d0a632so6209504a12.2
+        for <devicetree@vger.kernel.org>; Tue, 09 Apr 2024 23:34:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712730751; x=1713335551; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=o7EWNXZ7ahmiyoCceER4yIyMNYDrhM2QQjatZB79UKA=;
-        b=zM7BzafQ7lQPbofgwlCh7jP/rCY/NfZXSN4DlJWijUjBwuBrvW51rCDN/Ho2XvHqF2
-         NFUfV70I9TiZrS5N0d/eJXr7Pl4wvjipbfZpX4qrwlTp7hp/dUR2f5rzJiQvp00Q02A1
-         i0yBzedmX3GTdfmqP5BOk5pNLNhw6+5Zws8ULX5F4DACiOiCpSRUL/Wn2pynxIoXgG7v
-         rKA+dzleE3qpauVsNAI4bNBmFbxU3qvG1jmPD20f0hI2Cxbp86sBHYEhp/W1JKGhka9k
-         AxJ0ndS+03rhm166nTaFvUFB/AzR1qDn9iMH0eE50heTrmT2tV9Z/5Z6v9MxqOR7NlbC
-         HKDw==
+        d=linaro.org; s=google; t=1712730869; x=1713335669; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=N5979IbGYafb7GZr+3q8Cz1d31k/aPg4+HIqBqNbL8I=;
+        b=DkBbFUOSjWkS1YmYFDz7lHQ/fSz95EMAIEKlRjjWiZ9QMHNQXQ54pfiA0z9fJEXpIs
+         y9fQv3n3rOtQ5wpX7xnW7zXqukKZ0sb7GJyB4xXPKAx7JysKxIG6Vgj3U8AzQ2u9iEM/
+         Cadk8pXTD5XO7ZQmceQs85MhHdc68W0vXACJts9pMRYJ7C9OVsAJIs8WAmlhEvpqJI3R
+         Ykf1PB84EMgxnCXE3YWYSbGZediA0obKYOIbdwyUl1pynp31tnGf8AlJgXXHxy/hU0kJ
+         Chrc/yj4qS5f9CHnlnDyzPP2SSzTo912TBkdHyBIYXZgPgEaNioM5ZZgNiGE1LdYN+0U
+         AiTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712730751; x=1713335551;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=o7EWNXZ7ahmiyoCceER4yIyMNYDrhM2QQjatZB79UKA=;
-        b=FKhk1r6B4mAoSpC8SDMzhQvvaUr6lnvV/aG58mrscbqDNdPJi4VPqfba21GudhlQav
-         +hgslmF2ZuKblwh2SjoXn7lLdmRSXsUs7BTD5ElOsFSi3OUHe9lXjOT2kbcPUpjpBKYw
-         +Cdx8UnJKAvIND9SgiMa7tkScy771jrGQvZ37WDpHvaNw+QJODs+69dfRu1CoD1V/cuf
-         rvWWwxniiFri5WXJArFL7PyLOksD2/EAasTEs6JwUnlraYU6z5bmONR2w35q0AqJ65F/
-         j/NXQxw42yUAT9BxZ5cMDXvSLEhnn0FQ/UAprEDKvFgFo1CJ/fP76LV7RJO9XtUmV0/E
-         qIJA==
-X-Forwarded-Encrypted: i=1; AJvYcCW8Ri88GdxhhGne1vp9wxo3N2iNwSjnS2ifqR1LxR2y25o5ovQOMG4f6JMFa/V89VGAzI6rWztKlWVVw39OQFZOII9cKHqlfAyh0A==
-X-Gm-Message-State: AOJu0YwyKcIMbluvowYo/y/w+kZpUCfHE4te3/nn3HuxDZF6WPeW0kxp
-	4YTvW5VXNPSnayosDtKTrvv1RyBu9ow1BsVv8rt93+Va8t5m9HMdhhUt46wKlok=
-X-Google-Smtp-Source: AGHT+IEEsAQcH/oLWPV/JGlZ4uSssWErulLZ/+Oov+2FXWP1SnehGQ427YNJfD5zABFDW2w/qKkpRA==
-X-Received: by 2002:a17:906:91c8:b0:a51:f142:e550 with SMTP id b8-20020a17090691c800b00a51f142e550mr887280ejx.29.1712730751059;
-        Tue, 09 Apr 2024 23:32:31 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1712730869; x=1713335669;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=N5979IbGYafb7GZr+3q8Cz1d31k/aPg4+HIqBqNbL8I=;
+        b=knPTLP7+x4EPpW53I9YKHOJ2w1Ym1mkBDqCD1JK6od5ifwKAL7RcosAUrqOZr69oQ/
+         fq4XBXbY+QmZyOQn320dA3PXim40sJT0RXMmIW0XqJxG3jzpnleF5+55pEty+j/9lQJT
+         Hqs3DXzxrbHKD2Ra6PnFIhYWLxgUz1S7UD/Jl/Ya4E3YwIR0pNvr+s+B4WVM31r1c57e
+         GTdtsPKqSMzAmDs6XSIkrhvj0qc0BJNY6ATQRHnW5uAgahFQmEZW3BZgrLGdGTIiDwKE
+         +OiXSiLMmnTR5BrTzORFygwX2nbzuu5Y2ZAoujHb4cC0XjubEHNw7/8/Mhtjgzr6LWIJ
+         xnwQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXHZ2clj1ju0iSS8uIzY4TmYw7JWTlpgn2/fpmOCUkpfj9j15onCebcQZ2kcPst4Neb37qLcQHmQZaJeCS+ckJdSq8qJsuYKAKrhA==
+X-Gm-Message-State: AOJu0Yz2ZN+ItcdAX7X8CM5EPJoUgQOf+cUbpZZUYaGq6nbq3OXQVcqo
+	vVucsCo91qSccdTCkhcQbc1WKxrGl2haM7YYmfVef/SZ6E5oJxABc4RaXU9YPBw=
+X-Google-Smtp-Source: AGHT+IHK0Xzsw7nRgIYHGdHnEFc0s2qdj2x6Ea79N0oZLEa/ugKtyHWIW5uNi6hCTEI7aiOZoi9lBQ==
+X-Received: by 2002:a17:907:3f21:b0:a51:dcda:dcde with SMTP id hq33-20020a1709073f2100b00a51dcdadcdemr1452008ejc.70.1712730868743;
+        Tue, 09 Apr 2024 23:34:28 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id q26-20020a170906b29a00b00a51dd500071sm2893449ejz.169.2024.04.09.23.32.29
+        by smtp.gmail.com with ESMTPSA id g15-20020a170906198f00b00a4e2bf2f743sm6522145ejd.184.2024.04.09.23.34.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Apr 2024 23:32:30 -0700 (PDT)
-Message-ID: <383141cd-7f6f-4ed0-945b-7761833ecc35@linaro.org>
-Date: Wed, 10 Apr 2024 08:32:28 +0200
+        Tue, 09 Apr 2024 23:34:28 -0700 (PDT)
+Message-ID: <d53ab0fd-cd12-48ec-9a80-6ae17690b726@linaro.org>
+Date: Wed, 10 Apr 2024 08:34:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,19 +77,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: dma: fsl-edma: remove 'clocks' from
- required
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org,
- dmaengine@vger.kernel.org, imx@lists.linux.dev,
- krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
- peng.fan@nxp.com, robh@kernel.org, vkoul@kernel.org
-References: <20240409185416.2224609-1-Frank.Li@nxp.com>
- <b15ad271-037e-4ee3-ad88-e8068d31c8c8@linaro.org>
- <ZhWuetC8bRvDyxgX@lizhi-Precision-Tower-5810>
- <680f8830-6cd8-433b-85b7-439070bc528f@linaro.org>
+Subject: Re: [PATCH v2 1/1] arm64: dts: imx93-11x11-evk: add rtc PCF2131
+ support
+To: Joy Zou <joy.zou@nxp.com>, ping.bai@nxp.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org,
+ s.hauer@pengutronix.de
+Cc: kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240410033256.1341662-1-joy.zou@nxp.com>
+ <20240410033256.1341662-2-joy.zou@nxp.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -134,87 +133,45 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <680f8830-6cd8-433b-85b7-439070bc528f@linaro.org>
+In-Reply-To: <20240410033256.1341662-2-joy.zou@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/04/2024 08:30, Krzysztof Kozlowski wrote:
-> On 09/04/2024 23:09, Frank Li wrote:
->> On Tue, Apr 09, 2024 at 10:02:32PM +0200, Krzysztof Kozlowski wrote:
->>> On 09/04/2024 20:54, Frank Li wrote:
->>>> fsl,imx8qm-adma and fsl,imx8qm-edma don't require 'clocks'. Remove it from
->>>> required and add 'if' block for other compatible string to keep the same
->>>> restrictions.
->>>>
->>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>> Signed-off-by: Frank Li <Frank.Li@nxp.com>
->>>> ---
->>>>
->>>> Notes:
->>>>     Change from v2 to v3
->>>>       - rebase to dmaengine/next
->>>
->>> This fails...
->>
->> What's wrong? 
->>
->> https://git.kernel.org/pub/scm/linux/kernel/git/vkoul/dmaengine.git/log/?h=next
->>
->>>
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/dma/fsl,edma.yaml b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
->>>> index 825f4715499e5..657a7d3ebf857 100644
->>>> --- a/Documentation/devicetree/bindings/dma/fsl,edma.yaml
->>>> +++ b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
->>>> @@ -82,7 +82,6 @@ required:
->>>>    - compatible
->>>>    - reg
->>>>    - interrupts
->>>> -  - clocks
->>>>    - dma-channels
->>>>  
->>>>  allOf:
->>>> @@ -187,6 +186,22 @@ allOf:
->>>>          "#dma-cells":
->>>>            const: 3
->>>>  
->>>> +  - if:
->>>> +      properties:
->>>> +        compatible:
->>>> +	  contains:
->>>
->>> It does not look like you tested the bindings, at least after quick
->>> look. Please run `make dt_binding_check` (see
->>> Documentation/devicetree/bindings/writing-schema.rst for instructions).
->>> Maybe you need to update your dtschema and yamllint.
->>
->> Strange, Test passed
->>
->> make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j8  dt_binding_check DT_SCHEMA_FILES=fsl,edma.yaml
->>   LINT    Documentation/devicetree/bindings
->>   DTEX    Documentation/devicetree/bindings/dma/fsl,edma.example.dts
->>   CHKDT   Documentation/devicetree/bindings/processed-schema.json
->>   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
->>   DTC_CHK Documentation/devicetree/bindings/dma/fsl,edma.example.dtb
+On 10/04/2024 05:32, Joy Zou wrote:
+> Support rtc PCF2131 on imx93-11x11-evk.
 > 
-> Nope, you tested other patch. Just look at your second patch for this.
-> When reviewer points to errors to your code, please investigate?
+> Signed-off-by: Joy Zou <joy.zou@nxp.com>
+> ---
+> Changes in v2:
+> 1. remove unnecessary status property.
+> ---
+>  .../boot/dts/freescale/imx93-11x11-evk.dts    | 24 +++++++++++++++++++
+>  1 file changed, 24 insertions(+)
 > 
-> NAK, fix your patches.
+> diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
+> index 07e85a30a25f..e66723ed25c2 100644
+> --- a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
+> @@ -281,6 +281,23 @@ ldo5: LDO5 {
+>  	};
+>  };
+>  
+> +&lpi2c3 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	clock-frequency = <400000>;
+> +	pinctrl-names = "default", "sleep";
+> +	pinctrl-0 = <&pinctrl_lpi2c3>;
+> +	pinctrl-1 = <&pinctrl_lpi2c3>;
+> +	status = "okay";
+> +
+> +	pcf2131: rtc@53 {
+> +			compatible = "nxp,pcf2131";
+> +			reg = <0x53>;
+> +			interrupt-parent = <&pcal6524>;
+> +			interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
 
-And to prove it, so you will stop wasting my time:
-../Documentation/devicetree/bindings/dma/fsl,edma.yaml:192:1: found
-character that cannot start any token
-
-../Documentation/devicetree/bindings/dma/fsl,edma.yaml:192:1: [error]
-syntax error: found character '\t' that cannot start any token (syntax)
-
-../Documentation/devicetree/bindings/dma/fsl,edma.yaml:192:1: found
-character that cannot start any token
-
-Documentation/devicetree/bindings/dma/fsl,edma.yaml: ignoring, error
-parsing file
-
+Fix indentation.
 
 Best regards,
 Krzysztof
