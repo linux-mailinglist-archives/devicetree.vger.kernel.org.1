@@ -1,65 +1,83 @@
-Return-Path: <devicetree+bounces-57993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57994-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BBDD89FD86
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 18:58:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8176489FD8B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 19:00:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE2331C22031
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 16:58:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C4D48B23770
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 16:59:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A09A17B517;
-	Wed, 10 Apr 2024 16:58:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4654C17B51F;
+	Wed, 10 Apr 2024 16:59:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="feBZRsBQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DWgCgCq8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 693211552F7;
-	Wed, 10 Apr 2024 16:58:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94B8517B513
+	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 16:59:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712768312; cv=none; b=bBtRoRhXCSW7y60xj5VUiWAxbFha5ilLBRWagT4stsY5wRHOW7uicKIxt9P9iugZwC2iX1SL7dPrzZQuLOaO7TVKfmfcjwegq33H7zD+S8p7IGb+0wYPaiuc4WJROrF0wMrX/xCviiZBXjsTEoHe4ZuMhM1LxubS21nSYE9Mmn8=
+	t=1712768387; cv=none; b=tGhCJazlhIj1kDhdK92HFsSMdfAhH150v87UYflVYaIci73QSipwSZzsxufcJ1NoV8ySY2GYQNYe9stQvMXUGpjiRvFsUU+prSLd0dWXvpt/By7EfJ9YqPjRiEIzzyKX+kTNKCxV6U777m3sAt42nlQN3qms6hAbamD/6MSCE4Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712768312; c=relaxed/simple;
-	bh=qclzrS6NsZXz3AIVjRhCh6Kq817U/fsiAXFdu2DM+2o=;
+	s=arc-20240116; t=1712768387; c=relaxed/simple;
+	bh=d9+0Flu3Z9XIbbu/++/vLCRyr+xe7f6CAwqFe4WYhD4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JFnBiIbllSer5igAvHmQ7tXZvPsgBqq03FiDn34aVbVBoVb/JykIVkjZgCXfd2IZFlui9RfOkYQgN8fxJ2LawKxB2QyDyzJkHZgHZO4E1hfy/ftZ0upLqpfPar3mxTH3Tnjz9E9Nrh+bsbN2mky5q33/YO8HF1tKkWt6VSohe2k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=feBZRsBQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0BC0C433F1;
-	Wed, 10 Apr 2024 16:58:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712768312;
-	bh=qclzrS6NsZXz3AIVjRhCh6Kq817U/fsiAXFdu2DM+2o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=feBZRsBQazOE6ZZBdOKoboh7JrOW6aek/GUaYR7dibew/1RRPQ+QlMdQMYjwrDRlu
-	 PKTL5EK6QYNZ3PvYV6jdaYyB/MiuTRftX6a+V9XhW312hvZAfYodrIMykgVTswjlb1
-	 7gzAAO0ZKM+3xV7bh06WKoTPcSA1Rs45f5EPXICAdLoFZC2Mt4d2HZOwsSWhfPh6/4
-	 PPs/n/prhRtisIxJesesolYIQTcgTeT0RJh+FCS5rXePDHxWBgmM+pq2JkZ/r5442P
-	 85eoS32Ta36f2Q8QV9n3OctHj6rgqlyu9Sh8201hu0c+CWNKt1D19iiWWGkQcjFFtm
-	 rQh1y95qKGlKw==
-Date: Wed, 10 Apr 2024 11:58:29 -0500
-From: Rob Herring <robh@kernel.org>
-To: Mayank Rana <quic_mrana@quicinc.com>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	linux-pci@vger.kernel.org, lpieralisi@kernel.org, kw@linux.com,
-	bhelgaas@google.com, andersson@kernel.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=ojvLSZg1+LyYscBRfGN+LCSWpiPui2+GCSdFfS8Tw2H5cLZgCqpGsmDaaze+f1tnpYqa74h5pPPfnTZSCwbyODnBzYW9/wjZ+58Ww2Zr9SpkrH/0+NIS280Ml0PFFyuV2VxQtlFOP/slqe/M3iqNhgZLSyipYVV6qBsDF7ODZsQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DWgCgCq8; arc=none smtp.client-ip=209.85.210.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-6ecf8ebff50so24727b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 09:59:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712768384; x=1713373184; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=h3gItgeLsk2aRGs3t/MREgHfzrOkwTRstIedEsXUwnU=;
+        b=DWgCgCq8T/5AZy+QZHiId2nwgRibbI1FF/x23zKjpF2lgP2gUsSDRb1Hai3utzQWif
+         l19Z20bXe2DgtWijfxnQ8s1iw0IslUClNsFK/9rVmDCpK0ThTPD+Hr+gMubJJf56XoSW
+         B2TFNgpqJnFAbRjCIEl2pe1Iey42oA0+XbaqSS9faOgPqcFTdAdNZJ3jpi7aF3+X1BEJ
+         btqPbSkZexi0lC26kQrTahVeeYYIRULhoNfIm67EenAVcV5YZEGVxSytagDb0SHfyUqb
+         aj/1Fypvx3E7pkhwJVLQW7gAx8f0fCoy8rnWRCCXpRBlK5LAgX0GBGPhaNt6vjWqJKLB
+         QocA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712768384; x=1713373184;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=h3gItgeLsk2aRGs3t/MREgHfzrOkwTRstIedEsXUwnU=;
+        b=USGHXM0Js6bwyVTplQW6l3fLtGHa9r12WmyF/NlZmDHZoIin08J+ZUhAmkMVL1D8NG
+         nLku74UY41vYrqxBOPslo3Hh5k5lBnCMP4On9AZsEhLrhhiMkJqyB7mwZ6ODXjtUasSd
+         2/RJplr/8RAkkxbc+xMqUIoWQaTk943hlXFrnL/aq08TThpb9nze8fWeBXQuVDY2ciBU
+         d5tROgrdYNunQ9EDtff8tO446gk91Qx9PBFw984l0p63G/QBVBBiFTAM+iOss6pIg2YS
+         heY/6N652Fi4qTh83EStpG4MdAP81KSQKKEDFIqXgjoJ0tIAw5TJ2k7gma2zJvMbRHOi
+         dFPQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW0MtMOcbjZiDerwhscPGnpXBTOxhUxdHVCxSWA+LfBPI1xVJtgiTHxtvtDdnJVcpWPn0BO68wJFsIFo4BA2GfP1JoYGrAmDndFNQ==
+X-Gm-Message-State: AOJu0Ywe+Gcvaih2ti/77RjhWsU+v5qFxZmbut82+g997w/vSWYRA/aQ
+	qX3omxA09LLli3cg8G3vrgTyoRFhgNELINv4qYZ5Bn7rSFuE0qycpm7DyBy4Qhc=
+X-Google-Smtp-Source: AGHT+IE5o+gUZozO1h4woiYku5yj5y3nVSzJGKLeMDoZ2AlzdCShO3rGN6p/XCqyq50JVOiZlFJY7w==
+X-Received: by 2002:a05:6a21:788d:b0:1a3:a821:f297 with SMTP id bf13-20020a056a21788d00b001a3a821f297mr300212pzc.2.1712768383787;
+        Wed, 10 Apr 2024 09:59:43 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:2912:b981:fe1d:e9ef])
+        by smtp.gmail.com with ESMTPSA id q22-20020aa79836000000b006ea6f189976sm10343619pfl.163.2024.04.10.09.59.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Apr 2024 09:59:43 -0700 (PDT)
+Date: Wed, 10 Apr 2024 10:59:40 -0600
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+To: Tanmay Shah <tanmay.shah@amd.com>
+Cc: andersson@kernel.org, robh@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	quic_ramkri@quicinc.com, quic_nkela@quicinc.com,
-	quic_shazhuss@quicinc.com, quic_msarkar@quicinc.com,
-	quic_nitegupt@quicinc.com
-Subject: Re: [RFC PATCH 2/2] PCI: Add Qualcomm PCIe ECAM root complex driver
-Message-ID: <20240410165829.GA418382-robh@kernel.org>
-References: <1712257884-23841-1-git-send-email-quic_mrana@quicinc.com>
- <1712257884-23841-3-git-send-email-quic_mrana@quicinc.com>
- <20240405052918.GA2953@thinkpad>
- <e2ff3031-bd71-4df7-a3a4-cec9c2339eaa@quicinc.com>
- <20240406041717.GD2678@thinkpad>
- <0b738556-0042-43ab-80f2-d78ed3b432f7@quicinc.com>
+	michal.simek@amd.com, ben.levinsky@amd.com,
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v14 4/4] remoteproc: zynqmp: parse TCM from device tree
+Message-ID: <ZhbFfA7toAkUATfg@p14s>
+References: <20240408205313.3552165-1-tanmay.shah@amd.com>
+ <20240408205313.3552165-5-tanmay.shah@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,83 +86,268 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <0b738556-0042-43ab-80f2-d78ed3b432f7@quicinc.com>
+In-Reply-To: <20240408205313.3552165-5-tanmay.shah@amd.com>
 
-On Mon, Apr 08, 2024 at 11:57:58AM -0700, Mayank Rana wrote:
-> Hi Mani
+On Mon, Apr 08, 2024 at 01:53:14PM -0700, Tanmay Shah wrote:
+> ZynqMP TCM information was fixed in driver. Now ZynqMP TCM information
+> is available in device-tree. Parse TCM information in driver
+> as per new bindings.
 > 
-> On 4/5/2024 9:17 PM, Manivannan Sadhasivam wrote:
-> > On Fri, Apr 05, 2024 at 10:41:15AM -0700, Mayank Rana wrote:
-> > > Hi Mani
-> > > 
-> > > On 4/4/2024 10:30 PM, Manivannan Sadhasivam wrote:
-> > > > On Thu, Apr 04, 2024 at 12:11:24PM -0700, Mayank Rana wrote:
-> > > > > On some of Qualcomm platform, firmware configures PCIe controller into
-> > > > > ECAM mode allowing static memory allocation for configuration space of
-> > > > > supported bus range. Firmware also takes care of bringing up PCIe PHY
-> > > > > and performing required operation to bring PCIe link into D0. Firmware
-> > > > > also manages system resources (e.g. clocks/regulators/resets/ bus voting).
-> > > > > Hence add Qualcomm PCIe ECAM root complex driver which enumerates PCIe
-> > > > > root complex and connected PCIe devices. Firmware won't be enumerating
-> > > > > or powering up PCIe root complex until this driver invokes power domain
-> > > > > based notification to bring PCIe link into D0/D3cold mode.
-> > > > > 
-> > > > 
-> > > > Is this an in-house PCIe IP of Qualcomm or the same DWC IP that is used in other
-> > > > SoCs?
-> > > > 
-> > > > - Mani
-> > > Driver is validated on SA8775p-ride platform using PCIe DWC IP for
-> > > now.Although this driver doesn't need to know used PCIe controller and PHY
-> > > IP as well programming sequence as that would be taken care by firmware.
-> > > 
-> > 
-> > Ok, so it is the same IP but firmware is controlling the resources now. This
-> > information should be present in the commit message.
-> > 
-> > Btw, there is an existing generic ECAM host controller driver:
-> > drivers/pci/controller/pci-host-generic.c
-> > 
-> > This driver is already being used by several vendors as well. So we should try
-> > to extend it for Qcom usecase also.
+> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+> ---
+> 
+> Changes in v14:
+>   - Add Versal platform support
+>   - Add Versal-NET platform support
+>   - Maintain backward compatibility for ZynqMP platform and use hardcode
+>     TCM addresses
+>   - Configure TCM based on xlnx,tcm-mode property for Versal
+>   - Avoid TCM configuration if that property isn't available in DT 
+> 
+>  drivers/remoteproc/xlnx_r5_remoteproc.c | 173 ++++++++++++++++++------
+>  1 file changed, 132 insertions(+), 41 deletions(-)
+> 
+> diff --git a/drivers/remoteproc/xlnx_r5_remoteproc.c b/drivers/remoteproc/xlnx_r5_remoteproc.c
+> index 0f942440b4e2..504492f930ac 100644
+> --- a/drivers/remoteproc/xlnx_r5_remoteproc.c
+> +++ b/drivers/remoteproc/xlnx_r5_remoteproc.c
+> @@ -74,8 +74,8 @@ struct mbox_info {
+>  };
+>  
+>  /*
+> - * Hardcoded TCM bank values. This will be removed once TCM bindings are
+> - * accepted for system-dt specifications and upstreamed in linux kernel
+> + * Hardcoded TCM bank values. This will stay in driver to maintain backward
+> + * compatibility with device-tree that does not have TCM information.
+>   */
+>  static const struct mem_bank_data zynqmp_tcm_banks_split[] = {
+>  	{0xffe00000UL, 0x0, 0x10000UL, PD_R5_0_ATCM, "atcm0"}, /* TCM 64KB each */
+> @@ -300,36 +300,6 @@ static void zynqmp_r5_rproc_kick(struct rproc *rproc, int vqid)
+>  		dev_warn(dev, "failed to send message\n");
+>  }
+>  
+> -/*
+> - * zynqmp_r5_set_mode()
+> - *
+> - * set RPU cluster and TCM operation mode
+> - *
+> - * @r5_core: pointer to zynqmp_r5_core type object
+> - * @fw_reg_val: value expected by firmware to configure RPU cluster mode
+> - * @tcm_mode: value expected by fw to configure TCM mode (lockstep or split)
+> - *
+> - * Return: 0 for success and < 0 for failure
+> - */
+> -static int zynqmp_r5_set_mode(struct zynqmp_r5_core *r5_core,
+> -			      enum rpu_oper_mode fw_reg_val,
+> -			      enum rpu_tcm_comb tcm_mode)
+> -{
+> -	int ret;
+> -
+> -	ret = zynqmp_pm_set_rpu_mode(r5_core->pm_domain_id, fw_reg_val);
+> -	if (ret < 0) {
+> -		dev_err(r5_core->dev, "failed to set RPU mode\n");
+> -		return ret;
+> -	}
+> -
+> -	ret = zynqmp_pm_set_tcm_config(r5_core->pm_domain_id, tcm_mode);
+> -	if (ret < 0)
+> -		dev_err(r5_core->dev, "failed to configure TCM\n");
+> -
+> -	return ret;
+> -}
+> -
+>  /*
+>   * zynqmp_r5_rproc_start()
+>   * @rproc: single R5 core's corresponding rproc instance
+> @@ -761,6 +731,103 @@ static struct zynqmp_r5_core *zynqmp_r5_add_rproc_core(struct device *cdev)
+>  	return ERR_PTR(ret);
+>  }
+>  
+> +static int zynqmp_r5_get_tcm_node_from_dt(struct zynqmp_r5_cluster *cluster)
+> +{
+> +	int i, j, tcm_bank_count, ret, tcm_pd_idx, pd_count;
+> +	struct of_phandle_args out_args;
+> +	struct zynqmp_r5_core *r5_core;
+> +	struct platform_device *cpdev;
+> +	struct mem_bank_data *tcm;
+> +	struct device_node *np;
+> +	struct resource *res;
+> +	u64 abs_addr, size;
+> +	struct device *dev;
+> +
+> +	for (i = 0; i < cluster->core_count; i++) {
+> +		r5_core = cluster->r5_cores[i];
+> +		dev = r5_core->dev;
+> +		np = r5_core->np;
+> +
+> +		pd_count = of_count_phandle_with_args(np, "power-domains",
+> +						      "#power-domain-cells");
+> +
+> +		if (pd_count <= 0) {
+> +			dev_err(dev, "invalid power-domains property, %d\n", pd_count);
+> +			return -EINVAL;
+> +		}
+> +
+> +		/* First entry in power-domains list is for r5 core, rest for TCM. */
+> +		tcm_bank_count = pd_count - 1;
+> +
+> +		if (tcm_bank_count <= 0) {
+> +			dev_err(dev, "invalid TCM count %d\n", tcm_bank_count);
+> +			return -EINVAL;
+> +		}
+> +
+> +		r5_core->tcm_banks = devm_kcalloc(dev, tcm_bank_count,
+> +						  sizeof(struct mem_bank_data *),
+> +						  GFP_KERNEL);
+> +		if (!r5_core->tcm_banks)
+> +			return -ENOMEM;
+> +
+> +		r5_core->tcm_bank_count = tcm_bank_count;
+> +		for (j = 0, tcm_pd_idx = 1; j < tcm_bank_count; j++, tcm_pd_idx++) {
+> +			tcm = devm_kzalloc(dev, sizeof(struct mem_bank_data),
+> +					   GFP_KERNEL);
+> +			if (!tcm)
+> +				return -ENOMEM;
+> +
+> +			r5_core->tcm_banks[j] = tcm;
+> +
+> +			/* Get power-domains id of TCM. */
+> +			ret = of_parse_phandle_with_args(np, "power-domains",
+> +							 "#power-domain-cells",
+> +							 tcm_pd_idx, &out_args);
+> +			if (ret) {
+> +				dev_err(r5_core->dev,
+> +					"failed to get tcm %d pm domain, ret %d\n",
+> +					tcm_pd_idx, ret);
+> +				return ret;
+> +			}
+> +			tcm->pm_domain_id = out_args.args[0];
+> +			of_node_put(out_args.np);
+> +
+> +			/* Get TCM address without translation. */
+> +			ret = of_property_read_reg(np, j, &abs_addr, &size);
+> +			if (ret) {
+> +				dev_err(dev, "failed to get reg property\n");
+> +				return ret;
+> +			}
+> +
+> +			/*
+> +			 * Remote processor can address only 32 bits
+> +			 * so convert 64-bits into 32-bits. This will discard
+> +			 * any unwanted upper 32-bits.
+> +			 */
+> +			tcm->da = (u32)abs_addr;
+> +			tcm->size = (u32)size;
+> +
+> +			cpdev = to_platform_device(dev);
+> +			res = platform_get_resource(cpdev, IORESOURCE_MEM, j);
+> +			if (!res) {
+> +				dev_err(dev, "failed to get tcm resource\n");
+> +				return -EINVAL;
+> +			}
+> +
+> +			tcm->addr = (u32)res->start;
+> +			tcm->bank_name = (char *)res->name;
+> +			res = devm_request_mem_region(dev, tcm->addr, tcm->size,
+> +						      tcm->bank_name);
+> +			if (!res) {
+> +				dev_err(dev, "failed to request tcm resource\n");
+> +				return -EINVAL;
+> +			}
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  /**
+>   * zynqmp_r5_get_tcm_node()
+>   * Ideally this function should parse tcm node and store information
+> @@ -839,9 +906,16 @@ static int zynqmp_r5_core_init(struct zynqmp_r5_cluster *cluster,
+>  	struct zynqmp_r5_core *r5_core;
+>  	int ret, i;
+>  
+> -	ret = zynqmp_r5_get_tcm_node(cluster);
+> -	if (ret < 0) {
+> -		dev_err(dev, "can't get tcm node, err %d\n", ret);
+> +	r5_core = cluster->r5_cores[0];
+> +
+> +	/* Maintain backward compatibility for zynqmp by using hardcode TCM address. */
+> +	if (device_is_compatible(dev, "xlnx,zynqmp-r5fss"))
 
-I would take it a bit further and say if you need your own driver, then 
-just use the default QCom driver. Perhaps extend it to support ECAM. 
-Better yet, copy your firmware setup and always configure the QCom h/w 
-to use ECAM.
+The previous patch moved the definition of the R5FSS to the new bindings but
+this is forcing to use the old bindings - did I something?
 
-If you want to extend the generic driver, that's fine, but we don't need 
-a 3rd.
-
-> I did review pci-host-generic.c driver for usage. although there are more
-> functionalityneeded for use case purpose as below:
-> 1. MSI functionality
-
-Pretty sure the generic driver already supports that.
-
-> 2. Suspend/Resume
-
-Others might want that to work as well.
-
-> 3. Wakeup Functionality (not part of current change, but would be added
-> later)
-
-Others might want that to work as well.
-
-> 4. Here this driver provides way to virtualized PCIe controller. So VMs only
-> talk to a generic ECAM whereas HW is only directed accessed by service VM.
-
-That's the existing driver. If if doesn't work for a VM, fix the VM.
-
-> 5. Adding more Auto based safety use cases related implementation
-
-Now that's just hand waving.
-
-> Hence keeping pci-host-generic.c as generic driver where above functionality
-> may not be needed. 
-
-Duplicating things to avoid touching existing drivers is not how kernel 
-development works.
-
-Rob
+> +		ret = zynqmp_r5_get_tcm_node(cluster);
+> +	else
+> +		ret = zynqmp_r5_get_tcm_node_from_dt(cluster);
+> +
+> +	if (ret) {
+> +		dev_err(dev, "can't get tcm, err %d\n", ret);
+>  		return ret;
+>  	}
+>  
+> @@ -856,12 +930,18 @@ static int zynqmp_r5_core_init(struct zynqmp_r5_cluster *cluster,
+>  			return ret;
+>  		}
+>  
+> -		ret = zynqmp_r5_set_mode(r5_core, fw_reg_val, tcm_mode);
+> -		if (ret) {
+> -			dev_err(dev, "failed to set r5 cluster mode %d, err %d\n",
+> -				cluster->mode, ret);
+> +		ret = zynqmp_pm_set_rpu_mode(r5_core->pm_domain_id, fw_reg_val);
+> +		if (ret < 0) {
+> +			dev_err(r5_core->dev, "failed to set RPU mode\n");
+>  			return ret;
+>  		}
+> +
+> +		if (device_is_compatible(dev, "xlnx,zynqmp-r5fss") ||
+> +		    of_find_property(dev_of_node(dev), "xlnx,tcm-mode", NULL)) {
+> +			ret = zynqmp_pm_set_tcm_config(r5_core->pm_domain_id, tcm_mode);
+> +			if (ret < 0)
+> +				dev_err(r5_core->dev, "failed to configure TCM\n");
+> +		}
+>  	}
+>  
+>  	return 0;
+> @@ -906,16 +986,25 @@ static int zynqmp_r5_cluster_init(struct zynqmp_r5_cluster *cluster)
+>  	 * fail driver probe if either of that is not set in dts.
+>  	 */
+>  	if (cluster_mode == LOCKSTEP_MODE) {
+> -		tcm_mode = PM_RPU_TCM_COMB;
+>  		fw_reg_val = PM_RPU_MODE_LOCKSTEP;
+>  	} else if (cluster_mode == SPLIT_MODE) {
+> -		tcm_mode = PM_RPU_TCM_SPLIT;
+>  		fw_reg_val = PM_RPU_MODE_SPLIT;
+>  	} else {
+>  		dev_err(dev, "driver does not support cluster mode %d\n", cluster_mode);
+>  		return -EINVAL;
+>  	}
+>  
+> +	if (device_is_compatible(dev, "xlnx,zynqmp-r5fss")) {
+> +		if (cluster_mode == LOCKSTEP_MODE)
+> +			tcm_mode = PM_RPU_TCM_COMB;
+> +		else
+> +			tcm_mode = PM_RPU_TCM_SPLIT;
+> +	} else if (of_find_property(dev_node, "xlnx,tcm-mode", NULL)) {
+> +		ret = of_property_read_u32(dev_node, "xlnx,tcm-mode", (u32 *)&tcm_mode);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+>  	/*
+>  	 * Number of cores is decided by number of child nodes of
+>  	 * r5f subsystem node in dts. If Split mode is used in dts
+> @@ -1100,6 +1189,8 @@ static int zynqmp_r5_remoteproc_probe(struct platform_device *pdev)
+>  /* Match table for OF platform binding */
+>  static const struct of_device_id zynqmp_r5_remoteproc_match[] = {
+>  	{ .compatible = "xlnx,zynqmp-r5fss", },
+> +	{ .compatible = "xlnx,versal-r5fss", },
+> +	{ .compatible = "xlnx,versal-net-r52fss", },
+>  	{ /* end of list */ },
+>  };
+>  MODULE_DEVICE_TABLE(of, zynqmp_r5_remoteproc_match);
+> -- 
+> 2.25.1
+> 
 
