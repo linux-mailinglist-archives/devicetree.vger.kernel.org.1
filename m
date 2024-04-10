@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-57935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ADBD89F94B
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 16:05:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B12E89F971
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 16:08:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 864DD1F2D611
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 14:05:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2282B28CC44
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 14:08:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6233315F41A;
-	Wed, 10 Apr 2024 14:01:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 382E416F0C1;
+	Wed, 10 Apr 2024 14:02:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="f/VO2SQ2"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Bxm8SVkL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE13A15EFBD
-	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 14:01:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AD20179659
+	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 14:02:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712757711; cv=none; b=m+kCQHHMEyGJ1ckZN3PpEdvFTUaxJZjYDUJzePcaor4v3KI0GNC0h9GmC5OgbEUxdZS2kQIAADuPtl552TCbxxa4ZWT8IxnE93ex1Mp/9Y/xTlhCg9CvJnv2M9PkPCvok+xlr7mwF0HsX/HNyIVZQ7dlOeUkoRLYWXwAvKyL/CA=
+	t=1712757740; cv=none; b=fnTu37ocAxdUoKsRycSD1PIMZJuVix6Q+7xvBYXD9KNFzLm3srZrJ7BznuuZbd7rcNcnnz6Y89gkkMFUU5zUbRA9pXjKK0hTrhkVBg9A/85y8r7gEvOUlffUti7Xmx79bM0VdA92LpkkPFa0J9Dbmguco/ls6dQe1fu4HTxsuTk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712757711; c=relaxed/simple;
-	bh=e88gyjeUImIcsIbCAmREhMKck+xNyVFvJ6Y/vXAlET0=;
+	s=arc-20240116; t=1712757740; c=relaxed/simple;
+	bh=rJB6/4cV26EW5syN+P1RUCaw8vdLd265D4NK23+6Ks8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nD3Hr7QNmDTuA/JWGSkxjzyPuOf9Ro6lrOTtTmMl2WW8O+lg1HedUyhayQv8hWA2iwuxz+WPKzd8bdEvqaFBn/vwXaClyDzxShMRi0r4JUH/DFNMtzD0belwSCp/NCXxq0ZYQRfc2tVdan3OWORuLpCPsTwsulivGSMc4wdfwOk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=f/VO2SQ2; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-56c404da0ebso10058171a12.0
-        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 07:01:48 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=Uf8dyeQS4f/IU4GdkzE9LYrhfZNUXZjrrqTEOtHaeh/VPpcOtYeZXQSdCqDJUdNk6oWy0PG2BiXv2U9jOMq2vfxsQ/H/IU0q5pmYBcOlagL7pJHLzU4ArCOT9AiRbCGE/tq1ikRTehRdy8tnRHK7w6SRSi18Flb5pnaIXRSEoAQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Bxm8SVkL; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-41739e4f8caso3150255e9.0
+        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 07:02:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1712757707; x=1713362507; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712757737; x=1713362537; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=C7lFcOC7l3g9TVCaL+oCyT/3qdUrXzLc4rgBkKi4hh0=;
-        b=f/VO2SQ2pOmFcRc/SrwFNfrhckWT7PaG3ayy/kd0kmQQ34UC5AjV6wIw8Mr3fr5vfL
-         1edjDA/CeaK2oeFsCv64F+BP779opROVPIIFz7mPxI+CnBum+Qg5TjoeITnumib2yc6D
-         wZ1NwB0ocAjkORSvRguJAdr58YguaUPFvZ09J1KFAIaJyHxM8bd3qsgj1oHBusTQPbd7
-         hlPGJUMQNIiC56h78XjMafJpiTMTlbBRAc0b9wtAFmlFyYl3ekpmtzTeinKZ1no6rJKJ
-         Fl4t8WXbE1kBYf9iSa18ryfCQyDahi/AKvgtRGjffckl09CIuoEwyx4wFgK4lqmknFad
-         tkig==
+        bh=VMjbesMdn+qtLdaftXdet62uuV9p5A/VNrKt/cHgu0g=;
+        b=Bxm8SVkLt8V36Vy+qPdCoVsGbq9onluD++i9UlC0k2P8w4r/FFGDMPR+ClIR0LkDDl
+         15G4ToDULozD/4YGdYw63Q+nTRwlKR0/n/1rDVP4qphIPOhNbT+zdVOAgL8Of7Y3X5VJ
+         ggE4Kd3s9sTtOs91uYPdcBNi1yWqQF+DEgTXvmUZjbBXC30PF3UvvfcAQdFF7eMtgGGV
+         mbDgI27FZuFdV4w3IOY/brgHrlDYqzE5AmuYcXxnDpNFjGzfmx79Yl2P6gNVXd5W9VQ1
+         xXGURW257FRpiY8gmwgBC79tXJMlFYDzamYePmwxa1IU9Id3GnhHX85b2eggQAukIKMJ
+         c/4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712757707; x=1713362507;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1712757737; x=1713362537;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=C7lFcOC7l3g9TVCaL+oCyT/3qdUrXzLc4rgBkKi4hh0=;
-        b=DOOtszgJRbyVaRo1R5gkj9vweDhhgumo4oEm2U6YVZQQXekk89IPprjgR09Pb+97v3
-         eb/ScQ/wrSXSsvOe1WN7ReGx//eGl3mky9xq4dWGKrn+Ozi8mT7UBfAhpj4H8FY5Ii7x
-         Yk1hDy+ourZuRFAnpc/52dK2z45DQnF8oGzhOQzr1Vn3ccdLgNrTogNlFSN0NH3W5xxc
-         VlRrjZIGY4TcEFZQx4tE+5bvBCTApQqeZZc/gdbFaJVmrQ0FLzIdb4Q5pGE7uUh8ig+F
-         afDE50pO+vV+XPF3sJZgI9ZDVVO0zNe7uK7GfIRiOvLonveweyo6YU4Bcd3RoyLv2yoA
-         DlTA==
-X-Forwarded-Encrypted: i=1; AJvYcCXlIM8h/XoiFRLfTHe5VRIT2mkbcXkXd3JQsbEVO47qyFc1x8jv6uAI7L9QCiH3TXxTXHYL6oeDZe1I7fpNfIlypC8AOVLtsE0wzw==
-X-Gm-Message-State: AOJu0YxmuiWGCigb1wDCPn6GCFjZW6JgDYAdJW4ExQ6Cw40ELx1TFjMh
-	nfOZ0wQ2cEdbCE5T336uavbFL1gnut6y5g67HwVAh6TDHB+gDe9D8is5ussMKEE=
-X-Google-Smtp-Source: AGHT+IEWCICihxTK465pYa3JGEG4kSjfnaoh1QVBzAZnHSiEGwF/hNWWILbv56rVqPOCFLNkPNUg0A==
-X-Received: by 2002:a50:8d16:0:b0:56e:743:d4d9 with SMTP id s22-20020a508d16000000b0056e0743d4d9mr1748489eds.42.1712757707092;
-        Wed, 10 Apr 2024 07:01:47 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.8])
-        by smtp.gmail.com with ESMTPSA id de26-20020a056402309a00b0056c1cca33bfsm6405937edb.6.2024.04.10.07.01.44
+        bh=VMjbesMdn+qtLdaftXdet62uuV9p5A/VNrKt/cHgu0g=;
+        b=ILq0aStovNbmSdMFr/yZqyikqIEyz553JFPC2tCaMGASqKvqgyDHFDFxX0sNV3Y13C
+         I2BxlG9hiMScmEtSNprAbTuWjpKmgChtpD/B2OT0j9X6/L3TU7KWwdI8xTALt7A3zwX8
+         pCWHVV9A4o03t53HPmggJJ7lkRmiuzQbT5jU7bXNWQqMLCP4/7JHH5k7bGKBqgWbflgb
+         YK89d6+X6cRjvCT0IQCBUyW64V460m4WXKbNLDzXiVonYkV1RiQVxcKx5tCXdgwwDhQr
+         CX/sg+pi+F/Tt6ROuGa1D+luYJPcxpx/IqjVR721gEj/zPxLz8EsM8AHQFgoz/rv/Wtx
+         u6Qg==
+X-Forwarded-Encrypted: i=1; AJvYcCVi4Q839DTwtnpCK/4Bh/rYf8QcSq+MfM+q6bbO+q5Xuy8vzVuCMK+K66bsnpi8q/GqsUd9/KOe0g86D3wmoFovSohLKqLQ1f7zqw==
+X-Gm-Message-State: AOJu0YwiuFCZ29gM20XIbm/j2dww39D38wV6sPnZDsb132B7Jm+o+Osb
+	rb9aboGtW2h8wvX2+LVYS8Zck/zDE7gd/QTBRXFID/BgPUKQRtMd+oUy2egN0/I=
+X-Google-Smtp-Source: AGHT+IHDRsDMr0SXIA1BZFJa3MxdxnnQmiYZftYqYOsfFpe40vWDa1uC6IrsGh3VJIa1HBNRB3jl0Q==
+X-Received: by 2002:a5d:628d:0:b0:343:bccb:dbbb with SMTP id k13-20020a5d628d000000b00343bccbdbbbmr1888712wru.12.1712757736649;
+        Wed, 10 Apr 2024 07:02:16 -0700 (PDT)
+Received: from [192.168.1.172] ([93.5.22.158])
+        by smtp.gmail.com with ESMTPSA id w5-20020a5d5445000000b003439d2a5f99sm13761613wrv.55.2024.04.10.07.02.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Apr 2024 07:01:46 -0700 (PDT)
-Message-ID: <11a371b5-f649-4dfb-94d1-9a01b15d5993@tuxon.dev>
-Date: Wed, 10 Apr 2024 17:01:44 +0300
+        Wed, 10 Apr 2024 07:02:16 -0700 (PDT)
+Message-ID: <50bf4fb6-7ad8-40b7-ad95-c1fc5e292149@baylibre.com>
+Date: Wed, 10 Apr 2024 16:02:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,139 +76,50 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v8 03/10] watchdog: rzg2l_wdt: Use
- pm_runtime_resume_and_get()
+Subject: Re: [PATCH v4 06/18] ASoC: mediatek: mt8186: Migrate to
+ mtk_soundcard_common_probe
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ broonie@kernel.org
+Cc: wenst@chromium.org, lgirdwood@gmail.com, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com, perex@perex.cz, tiwai@suse.com,
+ trevor.wu@mediatek.com, maso.huang@mediatek.com,
+ xiazhengqiao@huaqin.corp-partner.google.com, arnd@arndb.de,
+ kuninori.morimoto.gx@renesas.com, shraash@google.com,
+ nicolas.ferre@microchip.com, u.kleine-koenig@pengutronix.de,
+ dianders@chromium.org, frank.li@vivo.com, allen-kh.cheng@mediatek.com,
+ eugen.hristev@collabora.com, claudiu.beznea@tuxon.dev,
+ jarkko.nikula@bitmer.com, jiaxin.yu@mediatek.com, alpernebiyasak@gmail.com,
+ ckeepax@opensource.cirrus.com, zhourui@huaqin.corp-partner.google.com,
+ nfraprado@collabora.com, alsa-devel@alsa-project.org,
+ shane.chien@mediatek.com, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ kernel@collabora.com
+References: <20240409113310.303261-1-angelogioacchino.delregno@collabora.com>
+ <20240409113310.303261-7-angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-To: Biju Das <biju.das.jz@bp.renesas.com>,
- "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
- "linux@roeck-us.net" <linux@roeck-us.net>, "robh@kernel.org"
- <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "geert+renesas@glider.be" <geert+renesas@glider.be>,
- "magnus.damm@gmail.com" <magnus.damm@gmail.com>
-Cc: "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240410134044.2138310-1-claudiu.beznea.uj@bp.renesas.com>
- <20240410134044.2138310-4-claudiu.beznea.uj@bp.renesas.com>
- <OSAPR01MB15874891F67AAFAA955A186886062@OSAPR01MB1587.jpnprd01.prod.outlook.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <OSAPR01MB15874891F67AAFAA955A186886062@OSAPR01MB1587.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
+From: Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <20240409113310.303261-7-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
+Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
 
+On 09/04/2024 13:32, AngeloGioacchino Del Regno wrote:
+> Add mtk_soundcard_pdata platform data for the MediaTek common sound card
+> probe mechanism, including a driver/soc-specific probe extension (used
+> for bits that cannot be commonized  hence specific to this driver), and
+> change the probe function to mtk_soundcard_common_probe.
+> 
+> This is also adding the possibility of specifying the links and routing
+> with the audio-routing property and (x)-dai-link nodes in device trees
+> to stop hardcoding machine specific links in the card driver assupported
+> by the common probe function, but support for legacy device trees is
+> retained with a legacy_probe function, which is used only in case the
+> new properties are not found.
 
-On 10.04.2024 16:51, Biju Das wrote:
-> Hi Claudiu,
-> 
->> -----Original Message-----
->> From: Claudiu <claudiu.beznea@tuxon.dev>
->> Sent: Wednesday, April 10, 2024 2:41 PM
->> Subject: [PATCH RESEND v8 03/10] watchdog: rzg2l_wdt: Use pm_runtime_resume_and_get()
->>
->> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>
->> pm_runtime_get_sync() may return with error. In case it returns with error
->> dev->power.usage_count needs to be decremented.
->> dev->pm_runtime_resume_and_get()
->> takes care of this. Thus use it.
->>
->> Along with it the rzg2l_wdt_set_timeout() function was updated to propagate the result of
->> rzg2l_wdt_start() to its caller.
->>
->> Fixes: 2cbc5cd0b55f ("watchdog: Add Watchdog Timer driver for RZ/G2L")
->> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->> ---
->>
->> Changes in v8:
->> - none
->>
->> Changes in v7:
->> - none
->>
->> Changes in v6:
->> - none
->>
->> Changes in v5:
->> - none
->>
->> Changes in v4:
->> - none
->>
->> Changes in v3:
->> - none
->>
->> Changes in v2:
->> - propagate the return code of rzg2l_wdt_start() to it's callers
->>
->>
->>  drivers/watchdog/rzg2l_wdt.c | 11 ++++++++---
->>  1 file changed, 8 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/watchdog/rzg2l_wdt.c b/drivers/watchdog/rzg2l_wdt.c index
->> 1741f98ca67c..d87d4f50180c 100644
->> --- a/drivers/watchdog/rzg2l_wdt.c
->> +++ b/drivers/watchdog/rzg2l_wdt.c
->> @@ -123,8 +123,11 @@ static void rzg2l_wdt_init_timeout(struct watchdog_device *wdev)  static int
->> rzg2l_wdt_start(struct watchdog_device *wdev)  {
->>  	struct rzg2l_wdt_priv *priv = watchdog_get_drvdata(wdev);
->> +	int ret;
->>
->> -	pm_runtime_get_sync(wdev->parent);
->> +	ret = pm_runtime_resume_and_get(wdev->parent);
->> +	if (ret)
->> +		return ret;
->>
->>  	/* Initialize time out */
->>  	rzg2l_wdt_init_timeout(wdev);
->> @@ -150,6 +153,8 @@ static int rzg2l_wdt_stop(struct watchdog_device *wdev)
->>
->>  static int rzg2l_wdt_set_timeout(struct watchdog_device *wdev, unsigned int timeout)  {
->> +	int ret = 0;
->> +
->>  	wdev->timeout = timeout;
->>
->>  	/*
->> @@ -159,10 +164,10 @@ static int rzg2l_wdt_set_timeout(struct watchdog_device *wdev, unsigned int
->> time
->>  	 */
->>  	if (watchdog_active(wdev)) {
->>  		rzg2l_wdt_stop(wdev);
->> -		rzg2l_wdt_start(wdev);
->> +		ret = rzg2l_wdt_start(wdev);
-> 
-> This IP won't be able to update WDT settings once you have set it.
-> 
-> But we can update it, if we do a reset assert followed by deassert.
-> So the previous code looks correct to me.
-> 
-> Current case is if the WDT is active, then start it. Maybe I ma missing something here.
-> 
-
-I'm not sure I got you correctly.
-
-This patch keeps the previous functionality, thus, if the watchdog is
-active rzg2l_wdt_stop() is called which does a reset assert. Then
-rzg2l_wdt_start() is called which does the reset deassert.
-
-Thank you,
-Claudiu Beznea
-
-> Cheers,
-> Biju
-> 
->>  	}
->>
->> -	return 0;
->> +	return ret;
->>  }
->>
->>  static int rzg2l_wdt_restart(struct watchdog_device *wdev,
->> --
->> 2.39.2
-> 
+-- 
+Regards,
+Alexandre
 
