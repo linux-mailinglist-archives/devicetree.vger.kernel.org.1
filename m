@@ -1,74 +1,66 @@
-Return-Path: <devicetree+bounces-57841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57842-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A65289EF34
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 11:51:07 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C47289EF59
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 12:00:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ABED51F22031
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 09:51:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CD69AB20F8E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 10:00:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 421ED15887C;
-	Wed, 10 Apr 2024 09:50:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5643D156C68;
+	Wed, 10 Apr 2024 09:59:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y4Yds2T8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NdK7i2z4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13CA9154C0F;
-	Wed, 10 Apr 2024 09:50:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 287528BE8;
+	Wed, 10 Apr 2024 09:59:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712742645; cv=none; b=lQyceuGAEwi8zS7viCwMpqTZ58akq7MvNLgWynY8LtEI46cCz3N5/L2925XqHztUJd7eKNlDsjFOgt0RGt3Bs4sgtd4xsDHLpn0OrTpL6FphPLJ6RdXj/Vhk4j0QPaYTQCbkoM1ajAXVYX1hwu+G3L7HK7+E8Tt6miqhyrCTeT0=
+	t=1712743199; cv=none; b=l3Eo8My6HR7fW4O72fq9uDvjkzDvU1IPPtUkCMlm9i+RoQKxxfMFR4R6gkFbdD5eDn58gpavyvmwN6bfLsHoYiAx1ZcOYYskDCZVgZVIE6N6VQ5XdKyBdDruct93t8FWhyI+Av1VjZcD6/X6cfGSITnFs0JQwGbFtCUhd1cDoJQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712742645; c=relaxed/simple;
-	bh=9yBCOfKgxlkwBGNHOhriLBVSumh7h9MF0OaGeGig5vI=;
+	s=arc-20240116; t=1712743199; c=relaxed/simple;
+	bh=HIEprZwW3uNJfjxRejUb9wp5IoV3615xoL6q7pONnZE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ob1hUupQ8UmnwklLE6VFXs3J/ZHZBwA6lzTWkxezZN+cKvHcWVfVeEZP8sLA7VfWJ+1HNn2DdGDG1hbOMoaCSu82/DsIB8dVrNcY9PpGJ7GJIWFM66n16YPLSIMvoP/Zzw38x5AHEAA8/8lTE0am3ayhk4ACuCbF+nDmQaOfoVI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y4Yds2T8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F951C43390;
-	Wed, 10 Apr 2024 09:50:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=nkEwM22Etc7F4itiEh562hT0XQcw9sJ5a8C5+FhtlApnzfwAEuO71w+4OrJEYZbfns2g3INeY0W6EOcJ4TTcN40+W+A8UWWdS8RSW9vH1BL2tvj2Bf43MCSKGvBUubic56C6kuK8/MK7QUeZjp3v8ZTnT1DWOZTWznOQDtq6FyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NdK7i2z4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3FF6C433C7;
+	Wed, 10 Apr 2024 09:59:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712742644;
-	bh=9yBCOfKgxlkwBGNHOhriLBVSumh7h9MF0OaGeGig5vI=;
+	s=k20201202; t=1712743199;
+	bh=HIEprZwW3uNJfjxRejUb9wp5IoV3615xoL6q7pONnZE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Y4Yds2T8BK59a1fZOyIHq1m+QNmg+YCXS5+MbFdrDGQQLIcneYVQuh6c25cHUkq0E
-	 QAnywJxznFvHUL3K77yRQZptAgxjvI07nAWiBPIQcKwMyk2oK9NUHG9JhypFPnWXMI
-	 tcjMRLZt2ymd0prVd6bre59nuTxghQPFTOXT8ZJuTRrI8No8kTIRZn7DcEKVYoItfU
-	 mtQxH17+LWIX7AIOTqsrBI0elMYeaRDplU6A5Ec0LoDy86lQigC8wRaC2TFoxErR7Q
-	 CaMBhHNgh4ivvm5mym6uDc1W3vhLwJP7ZrcinkZniQB3x5YBvMOsYCPE1AvQjDFahR
-	 0hU9T9VkftnOg==
-Date: Wed, 10 Apr 2024 10:50:39 +0100
+	b=NdK7i2z4xkqbpJTz+jo/ZQxiEMeEDlrVmS1TU0A8Cfr7K84sSoTE3lBVFGaafzcKQ
+	 WWZreqjxD18LDdXgAifBvZrBlfe5TBz1OtQga7/xted3WDm9oB18i+VtroHFteMDUN
+	 BQw1tqsNkS825AM1BjyFgdY/MXMXtR8onp428Jx1PuaxCDe7IvyFm3w9X/g2hmE20A
+	 cphTw5fZXSbzeAJS+K+X6BFnOWlH8Vx+87I4l+BK+DC38lW8w4tBwcQMUrJkmcNLsb
+	 MqQFHDXIqlr+J2D3Iq14KH8zL7/atev/b7Um+qwdgjSzhdszz3GNSmrtBf334BJdV6
+	 w6ZFNxGTMfHhQ==
+Date: Wed, 10 Apr 2024 10:59:53 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Jan Dakinevich <jan.dakinevich@salutedevices.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [RFC PATCH v2 1/5] clk: meson: axg: move reset controller's code
- to separate module
-Message-ID: <20240410-supremacy-importer-9b5ac1957479@spud>
-References: <20240328010831.884487-1-jan.dakinevich@salutedevices.com>
- <20240328010831.884487-2-jan.dakinevich@salutedevices.com>
- <1j7chfiz8e.fsf@starbuckisacylon.baylibre.com>
- <e3a85852b911fdf16dd9ae158f42b3ef.sboyd@kernel.org>
- <f01cdd910ab35316b8012795f73fd2b34c8e6f8e.camel@pengutronix.de>
- <13617b7a892424d2b024c725505a6f4f.sboyd@kernel.org>
- <20240408-numerator-escargot-a642507a598e@spud>
- <20240409-shallow-voice-c84ed791bc7d@spud>
- <dde59dd2ef4da81528e31f65844e0b3f.sboyd@kernel.org>
+	Huacai Chen <chenhuacai@kernel.org>,
+	loongson-kernel@lists.loongnix.cn, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, Yinbo Zhu <zhuyinbo@loongson.cn>,
+	WANG Xuerui <git@xen0n.name>, loongarch@lists.linux.dev
+Subject: Re: [PATCH 3/4] dt-bindings: thermal: loongson,ls2k-thermal: Fix
+ incorrect compatible definition
+Message-ID: <20240410-wrecker-procreate-11e0915f7bbd@spud>
+References: <cover.1712733065.git.zhoubinbin@loongson.cn>
+ <217ce2745a8787c504bbda1d085daba7e9cb2f70.1712733065.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,140 +68,104 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="JPgr6dKZxpVy8iT7"
+	protocol="application/pgp-signature"; boundary="0hJFhA/h1Zb6GzGw"
 Content-Disposition: inline
-In-Reply-To: <dde59dd2ef4da81528e31f65844e0b3f.sboyd@kernel.org>
+In-Reply-To: <217ce2745a8787c504bbda1d085daba7e9cb2f70.1712733065.git.zhoubinbin@loongson.cn>
 
 
---JPgr6dKZxpVy8iT7
+--0hJFhA/h1Zb6GzGw
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 09, 2024 at 07:27:36PM -0700, Stephen Boyd wrote:
-> Quoting Conor Dooley (2024-04-09 05:05:37)
-> > On Mon, Apr 08, 2024 at 06:05:51PM +0100, Conor Dooley wrote:
-> >=20
-> > > > > Seconded, the clk-mpfs/reset-mpfs and clk-starfive-jh7110-sys/res=
-et-
-> > > > > starfive-jh7110 drivers are examples of this.
-> > > > >=20
-> > > > > > The auxiliary device creation function can also be in the
-> > > > > > drivers/reset/ directory so that the clk driver calls some func=
-tion
-> > > > > > to create and register the device.
-> > > > >=20
-> > > > > I'm undecided about this, do you think mpfs_reset_controller_regi=
-ster()
-> > > > > and jh7110_reset_controller_register() should rather live with the
-> > > > > reset aux drivers in drivers/reset/ ?
-> > > >=20
-> > > > Yes, and also mpfs_reset_read() and friends. We should pass the base
-> > > > iomem pointer and parent device to mpfs_reset_adev_alloc() instead =
-and
-> > > > then move all that code into drivers/reset with some header file
-> > > > exported function to call. That way the clk driver hands over the d=
-ata
-> > > > without having to implement half the implementation.
-> > >=20
-> > > I'll todo list that :)
-> >=20
-> > Something like the below?
-> >=20
-> > -- >8 --
-> > From a12f281d2cb869bcd9a6ffc45d0c6a0d3aa2e9e2 Mon Sep 17 00:00:00 2001
-> > From: Conor Dooley <conor.dooley@microchip.com>
-> > Date: Tue, 9 Apr 2024 11:54:34 +0100
-> > Subject: [PATCH] clock, reset: microchip: move all mpfs reset code to t=
-he
-> >  reset subsystem
-> >=20
-> > <insert something here>
-> >=20
-> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+On Wed, Apr 10, 2024 at 05:49:02PM +0800, Binbin Zhou wrote:
+> The temperature output register of the Loongson-2K2000 is defined in the
+> chip configuration domain, which is different from the Loongson-2K1000,
+> so it can't be fallbacked.
 >=20
-> Looks pretty good.
+> We need to use two groups of registers to describe it: the first group
+> is the high and low temperature threshold setting register; the second
+> group is the temperature output register.
 >=20
-> >  static const struct of_device_id mpfs_clk_of_match_table[] =3D {
-> > diff --git a/drivers/reset/reset-mpfs.c b/drivers/reset/reset-mpfs.c
-> > index 7f3fb2d472f4..27cd68b4ee81 100644
-> > --- a/drivers/reset/reset-mpfs.c
-> > +++ b/drivers/reset/reset-mpfs.c
-> > @@ -137,9 +139,67 @@ static int mpfs_reset_probe(struct auxiliary_devic=
-e *adev,
-> >         return devm_reset_controller_register(dev, rcdev);
-> >  }
-> > =20
-> > +static void mpfs_reset_unregister_adev(void *_adev)
-> > +{
-> > +       struct auxiliary_device *adev =3D _adev;
-> > +
-> > +       auxiliary_device_delete(adev);
-> > +       auxiliary_device_uninit(adev);
-> > +}
-> > +
-> > +static void mpfs_reset_adev_release(struct device *dev)
-> > +{
-> > +       struct auxiliary_device *adev =3D to_auxiliary_dev(dev);
-> > +
-> > +       kfree(adev);
-> > +}
-> > +
-> > +static struct auxiliary_device *mpfs_reset_adev_alloc(struct device *c=
-lk_dev)
-> > +{
-> > +       struct auxiliary_device *adev;
-> > +       int ret;
-> > +
-> > +       adev =3D kzalloc(sizeof(*adev), GFP_KERNEL);
-> > +       if (!adev)
-> > +               return ERR_PTR(-ENOMEM);
-> > +
-> > +       adev->name =3D "reset-mpfs";
-> > +       adev->dev.parent =3D clk_dev;
-> > +       adev->dev.release =3D mpfs_reset_adev_release;
-> > +       adev->id =3D 666u;
-> > +
-> > +       ret =3D auxiliary_device_init(adev);
-> > +       if (ret) {
-> > +               kfree(adev);
-> > +               return ERR_PTR(ret);
-> > +       }
-> > +
-> > +       return adev;
-> > +}
-> > +
-> > +int mpfs_reset_controller_register(struct device *clk_dev, void __iome=
-m *base)
-> > +{
-> > +       struct auxiliary_device *adev;
-> > +       int ret;
-> > +
-> > +       mpfs_reset_addr =3D base;
+> It is true that this fix will cause ABI corruption, but it is necessary
+> otherwise the Loongson-2K2000 temperature sensor will not work properly.
 >=20
-> Instead of a global this can be stashed in adev->dev.platform_data and
-> grabbed in the driver probe?
+> Fixes: 72684d99a854 ("thermal: dt-bindings: add loongson-2 thermal")
+> Cc: Yinbo Zhu <zhuyinbo@loongson.cn>
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> ---
+>  .../thermal/loongson,ls2k-thermal.yaml        | 22 +++++++++++++++++--
+>  1 file changed, 20 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/thermal/loongson,ls2k-ther=
+mal.yaml b/Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.=
+yaml
+> index 9748a479dcd4..a25b42702788 100644
+> --- a/Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.yaml
+> @@ -18,14 +18,15 @@ properties:
+>      oneOf:
+>        - enum:
+>            - loongson,ls2k1000-thermal
+> +          - loongson,ls2k2000-thermal
+>        - items:
+>            - enum:
+>                - loongson,ls2k0500-thermal
+> -              - loongson,ls2k2000-thermal
+>            - const: loongson,ls2k1000-thermal
+> =20
+>    reg:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 2
+> =20
+>    interrupts:
+>      maxItems: 1
+> @@ -41,6 +42,23 @@ required:
+> =20
+>  unevaluatedProperties: false
+> =20
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - loongson,ls2k2000-thermal
+> +
+> +then:
+> +  properties:
+> +    reg:
+> +      maxItems: 2
 
-I suppose, really I was just being "lazy" here and creating a global
-rather than a `struct mpfs_reset` containing only the base address.
-
-The test robot reported some issues with hexagon & COMPILE_TEST, so I'll
-push it out again with this change and the fixes for the reported issues
-and send the patch ones it gets the all clear.
+You need a minItems: 2 here also, so that providing only the original
+reg is not allowed anymore.
 
 Cheers,
 Conor.
 
---JPgr6dKZxpVy8iT7
+> +
+> +else:
+> +  properties:
+> +    reg:
+> +      maxItems: 1
+> +
+>  examples:
+>    - |
+>      #include <dt-bindings/interrupt-controller/irq.h>
+> --=20
+> 2.43.0
+>=20
+
+--0hJFhA/h1Zb6GzGw
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZhZg7wAKCRB4tDGHoIJi
-0hveAPwNpL7h191WykV2UuzkJO3pu772z/AWkwlY/yHmXJVsuwEApGRz5bEryU3C
-JZ94q3AIj7Df4J7rHqDC1re2X9bNwwA=
-=pOIQ
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZhZjGQAKCRB4tDGHoIJi
+0kfpAQDVyTE1sy+ArjjVSZps6stwpjF99KhH+aEb9dFZH+NncAD+NF55jrDXrpyT
+yVDMqwejFh+JDdXBvj/kzmMKvaT8nwQ=
+=y/aq
 -----END PGP SIGNATURE-----
 
---JPgr6dKZxpVy8iT7--
+--0hJFhA/h1Zb6GzGw--
 
