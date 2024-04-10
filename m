@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-57915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE81B89F337
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 14:59:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA0A689F3BE
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 15:11:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 62DE21F2AFC2
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 12:59:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A98E1F291B2
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 13:11:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80AC115DBAF;
-	Wed, 10 Apr 2024 12:58:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CF7215DBA5;
+	Wed, 10 Apr 2024 13:11:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Qo/aNGXx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lUlh/Cjt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6843515DBA5
-	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 12:58:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A440415ADA2
+	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 13:11:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712753895; cv=none; b=j4jYDvzx8GklDhqsucSRuZS8oAruXz1MAw8Ermh9+B/Yc7QxN+015HipVJ2t00iKxJrbJ0TvJDj+vTAH9o49f5Sw32IyhlOt4mFCSryutCeQOBczi3DnDD7D75uqFyI5A4c/45fw1a4WY7mcIWKYvxV9P+78StvSWeKkoGFodtA=
+	t=1712754671; cv=none; b=DD0g6WylCuUqs6aRtLLxMBBwdUhgEEQFFXYuoxnPWRUbFWhAdol7EvWcvcjyty2oYsbF+1yVV1iWxUl+LI4m0uT5fSHv6B5caQBwYRLzZgv25/6C5vSretYbO6fUMu79o9gkgYpFIDav6K1tsuYtg6YNZi+XF9H34knUNSR3lR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712753895; c=relaxed/simple;
-	bh=XvD5fOS/hQ7HPF9KYvW4fabBNiId/tBgRPWvKt02DhA=;
+	s=arc-20240116; t=1712754671; c=relaxed/simple;
+	bh=iJXKJ9CpJ3I9XYiTXdS+1k1wRrzKc2yrbNCLqNpYCc4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tAIpluQbvS4+QENQLfKxutLzeazHEef/VEIwN45n2tKXzhjVGJGnlYtFhsrG7kp01TftItkLubf8G5YrQTNEP/eAjA6X7DP6tUJ/1Tkh/xVgPnSFOmOfyNsJ6EIfwrQnoCiR5O2TKsRT0eYheHxqBDzLdXfLDM6aRo1y5JcQ3WY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Qo/aNGXx; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-346359c8785so1021227f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 05:58:13 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=kbPlSp3D0MUoEtlx8cvVBdLmNgwG1EZ4z+c41vCKoYWZaJtvAvN0sGgVv0I7SrWysC0Kt1eArVIQw7pa/4ZN5BfdQ7NpUsByA+oafichyim9Q3zLjJEfnG+CCZhWgISkA9pG1JvFumCJsN0KvmgruKZM7bIRGdK1XDV0UkVOSLs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lUlh/Cjt; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-516d585c60bso1640245e87.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 06:11:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712753892; x=1713358692; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712754668; x=1713359468; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=SAPCyLKBSHRTWSRRoqdJH1JxTgNtm+xffvG0gyEDWQ8=;
-        b=Qo/aNGXxjrUKSLafOFe4kqGTXdywcDhIyb+D2RJoIL8MoP7akMSk1Mge0BuVmQQrpE
-         KwRQAWfrHVtVfWFINSlOgPAhA4f9Vfq3os839cFuU0aSfvRx6Eg4hxippPBgbyudFq6x
-         IDCyhs/jxVUs0IVXIOuTcfzwyzcsD6+zACc8BeYmW2rB4H/bdfkcnn1S39SnU7dlIMuI
-         1TtQ1lRl/1cys3h25u5vJJtceF4PxApK+6BQMdyDlJLwkti/hKf7DBXCtM6coIFk8AXl
-         VswfYJd1FxYFhUXinHRZ1VpcHd1eOzT+heN+JdkEeUkWh0tzUoKBLhixy+yRkjM5kjfV
-         fqCQ==
+        bh=jJeIiq+w9iVuyYHr5UfbJwHE+rG7lgQOt3FsE89PJGs=;
+        b=lUlh/CjtPYqx4Q7DOSLq0bpmRl/CGqfXDKF+/yVuKbsgonEml1bjIlXQQ0H1+zboNo
+         fMNL1OuS4rvE9Md1k27azfdqwfAVCXNpLdbbiNQbGN5WHQZgb11kGP9ixLBOdBP28eC9
+         GSdZhQBIbmffFuWqqIZ4m5FmkYXO9ONEnHdUciwYMMqB9JCYXoCoNoL9O05KH5W0mnnB
+         rppqzqoAVcSRz9Q3V8PqRmzGwLBGq2zvq1fy7eRJ2ae/P2tcl9CTClHY02zgpGoSyMV2
+         xvZllryUmXfsZtCR2ofB335Qto8+fvR5RhUWKasvNGYjyHKy8w1dcLOSr1Zm1Wf3PAiw
+         E42A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712753892; x=1713358692;
+        d=1e100.net; s=20230601; t=1712754668; x=1713359468;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SAPCyLKBSHRTWSRRoqdJH1JxTgNtm+xffvG0gyEDWQ8=;
-        b=m06NQHVPapcUE7QsVDg0lIJnvCLegSzDPEOLu5DzrAt/cYOXHdryY4xCvAaKYu3Pcv
-         7KpFCXzU80jMHhAquZoBUSwbr4ClM7cSQFzmg06HIHHdWgjWYHmfoh8Hbr6Yswdyop4K
-         RMG2w5ov55a3e11cpE+i4XaWhnpaAyYDrl9W3j76e2l3ubWMckPENlygRpCDBoUhJCle
-         4ZnvfR9WQKlGe/GJSI5wJRol6ivMsQ1d0F585g5yIsgya9QTz/evG8DFDsRZ2tfShQ3m
-         XhX+yxUAndqiXRGVoolD9sdB06PYLhS6VyVTZHF8EZxdOqE7Jtn76eQGdoenkBW9ReVm
-         plJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUsflX0cffvpSbV+cGKFIOlD7xLmcydv7mGh4E+ZFufu7sZhR2WctdMR4OozO7qsGmz9mMkKdm9SKVcHPYuG+n6PiE1NqJSDdePHQ==
-X-Gm-Message-State: AOJu0YzQ1x/FfXyj3V4tLRbsnJ6WFGwt9u/fJLf/CNZv7QOq0Htb/SU0
-	BPFq49ajQ+HRpc4GI6JF807kHl//jbJAAimLQ0dh4863+COQRVssYckI5LpaRH8=
-X-Google-Smtp-Source: AGHT+IHfa120qRAfspKcAyRMy5PXxHlCGJzmW0vlTzwyQGnoeYFwCg8fQKa0TokP1NrBdWntPAlpFg==
-X-Received: by 2002:adf:ee8c:0:b0:346:47d6:5d17 with SMTP id b12-20020adfee8c000000b0034647d65d17mr1758280wro.57.1712753891611;
-        Wed, 10 Apr 2024 05:58:11 -0700 (PDT)
-Received: from [192.168.1.172] ([93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id l4-20020a5d4104000000b00343e392829dsm13404941wrp.97.2024.04.10.05.58.09
+        bh=jJeIiq+w9iVuyYHr5UfbJwHE+rG7lgQOt3FsE89PJGs=;
+        b=ireSR9UGgFTATG8Qt+CEA/TsZXAyHcYoyEGyqOoh2ijLVAijy/JITbLr4zS8RDKb64
+         YVRd2OLeXYeTIIWqShFILrovWx/ev05oplLQmAFjVaL1Loze0Sk9hxsgkye3dFDVTjM5
+         h8HNRsdnZsNYcMp5QVOAI5NvaAP+uoJyoSRJSYw+e8kjliDBcRDih5FqEelawAk2KpB/
+         CrmOJY4+ErwKbIg5y1V8mAeu7SHDrEgB1DPAa92xLDzM7e8FTdgTfLGFNbOYs+ztOwkf
+         eu04SqM4WORhZJMRjWQdLUx4jhX27xTcc0C7EaHBGDA7kGWBpkQlA9y+OO0BtDEWeir+
+         Lz+w==
+X-Forwarded-Encrypted: i=1; AJvYcCUWXgbN77TsMsh8/60y2HDm7LC+87OKR60f/asgKDWGQns5jrZXcZ1kwUQVeiN3k+TD8YUhA8bMRsvEMs79/K5LbYXs4/f9O28mAA==
+X-Gm-Message-State: AOJu0YzCpljcCzLzIQhVcC/G+tJy7sTDBPur/mKI4KOGe+x63mqQLzN1
+	iHC79GVtGLtvRc/wrQPir5Ykwl5xAI5StSs+NBxQxww7jrVwLDKM22wFbap8AZQ=
+X-Google-Smtp-Source: AGHT+IGw1111AQE4BaDv05h1Qy/ZNddTA1/tpPWTBjNDdPuYcgdYsqY0QtjaNl/HCcvqm7k49HEwgA==
+X-Received: by 2002:ac2:515c:0:b0:516:ced5:3af9 with SMTP id q28-20020ac2515c000000b00516ced53af9mr1556490lfd.5.1712754667737;
+        Wed, 10 Apr 2024 06:11:07 -0700 (PDT)
+Received: from [192.168.1.102] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id w26-20020ac2599a000000b00516a1a54edbsm1838685lfn.94.2024.04.10.06.11.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Apr 2024 05:58:11 -0700 (PDT)
-Message-ID: <4c43eafe-f173-4a35-962f-a5f5f020a587@baylibre.com>
-Date: Wed, 10 Apr 2024 14:58:09 +0200
+        Wed, 10 Apr 2024 06:11:07 -0700 (PDT)
+Message-ID: <b5f81ed2-d2d9-4c48-8feb-d78bfd714a40@linaro.org>
+Date: Wed, 10 Apr 2024 16:11:00 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,45 +76,57 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 03/18] ASoC: mediatek: mt8188: Migrate to
- mtk_soundcard_common_probe
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- broonie@kernel.org
-Cc: wenst@chromium.org, lgirdwood@gmail.com, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- matthias.bgg@gmail.com, perex@perex.cz, tiwai@suse.com,
- trevor.wu@mediatek.com, maso.huang@mediatek.com,
- xiazhengqiao@huaqin.corp-partner.google.com, arnd@arndb.de,
- kuninori.morimoto.gx@renesas.com, shraash@google.com,
- nicolas.ferre@microchip.com, u.kleine-koenig@pengutronix.de,
- dianders@chromium.org, frank.li@vivo.com, allen-kh.cheng@mediatek.com,
- eugen.hristev@collabora.com, claudiu.beznea@tuxon.dev,
- jarkko.nikula@bitmer.com, jiaxin.yu@mediatek.com, alpernebiyasak@gmail.com,
- ckeepax@opensource.cirrus.com, zhourui@huaqin.corp-partner.google.com,
- nfraprado@collabora.com, alsa-devel@alsa-project.org,
- shane.chien@mediatek.com, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- kernel@collabora.com
-References: <20240409113310.303261-1-angelogioacchino.delregno@collabora.com>
- <20240409113310.303261-4-angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sm8650: add description of CCI
+ controllers
+To: neil.armstrong@linaro.org, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Jagadeesh Kona <quic_jkona@quicinc.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240410074951.447898-1-vladimir.zapolskiy@linaro.org>
+ <72816a9f-3c25-44d3-8386-9b561a8ae996@linaro.org>
 Content-Language: en-US
-From: Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <20240409113310.303261-4-angelogioacchino.delregno@collabora.com>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <72816a9f-3c25-44d3-8386-9b561a8ae996@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Similar changes has been done for mt8365, it works.
+On 4/10/24 10:52, Neil Armstrong wrote:
+> Hi,
+> 
+> On 10/04/2024 09:49, Vladimir Zapolskiy wrote:
+>> Qualcomm SM8650 SoC has three CCI controllers with two I2C busses
+>> connected to each of them.
+>>
+>> The CCI controllers on SM8650 are compatible with the ones found on
+>> many other older generations of Qualcomm SoCs.
+>>
+>> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+>> ---
+>> The change is based and depends on a patch series from Jagadeesh Kona:
+>>
+>>     https://lore.kernel.org/linux-arm-msm/20240321092529.13362-1-quic_jkona@quicinc.com/
+>>
+>> It might be an option to add this change right to the series,
+>> since it anyway requires a respin.
+>>
+>> A new compatible value "qcom,sm8650-cci" is NOT added to
+>> Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml , because
+>> the controller IP description and selection is covered by a generic
+>> compatible value "qcom,msm8996-cci".
+> 
+> You'll still need to add qcom,sm8650-cci to the "CCI v2" list in qcom,i2c-cci.yaml,
+> otherwise the DTBS check fail, even if the fallback is already present.
 
-Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
+I do recognize the problem related to a build time warning, my motivation was
+to follow the rationale described in commit 3e383dce513f
+("Revert "dt-bindings: i2c: qcom-cci: Document sc8280xp compatible"").
 
-On 09/04/2024 13:32, AngeloGioacchino Del Regno wrote:
-> Add mtk_soundcard_pdata platform data for the MediaTek common sound card
-> probe mechanism, including a driver/soc-specific probe extension (used
-> for bits that cannot be commonized  hence specific to this driver), and
-> change the probe function to mtk_soundcard_common_probe.
+For a similar sc8280xp-cci case it was asked by Konrad to drop a new
+compatible, I kindly ask the reviewers and maintainers to stick to one
+of the two contradicting asks.
 
--- 
-Regards,
-Alexandre
+--
+Best wishes,
+Vladimir
 
