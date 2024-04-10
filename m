@@ -1,61 +1,55 @@
-Return-Path: <devicetree+bounces-58017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C209889FE98
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 19:34:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A11289FE9E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 19:34:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3D7B1C22DC6
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 17:34:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4BE321C21B00
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 17:34:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14CE917BB28;
-	Wed, 10 Apr 2024 17:33:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA84917F371;
+	Wed, 10 Apr 2024 17:34:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qddJ6NjW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MZfyQ2y5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0D5F17B4F8;
-	Wed, 10 Apr 2024 17:33:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8021B17BB36;
+	Wed, 10 Apr 2024 17:34:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712770438; cv=none; b=k6gAdiXNq5hWvqKRPxJ4iJ76zSfWqHTDlYmN0WiQh3qGOxiqF0k5U7b8IWMwXJrc2BX3NvJZqBshlox1aXARqCDLjc6A5iKYdoJ/J6FL7Vyk2wEWOgAhAs08q7sJPLEXRC0j0S+01YmsD6eAhwuv9urJX2j2aPItLY6tfnG4pSw=
+	t=1712770465; cv=none; b=S+4kLXmhIvAjEmG4YrM34c7+4bco0ju4AAF3qyCmq4UYd6wOC2xtJ0VDscSamZVGR3yDsOHg8dwkZXMTCUmlv7b5uMuJC4P5PCXjG6EewNJ2SCIND7O5vwyKuJHYFvoQd8fH/isRBBVqxQNmD6vH/PwA0HkrwoG7an0Y2TsHjVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712770438; c=relaxed/simple;
-	bh=FVEbt/gY3pwVZCMARf+nPQHhp7GBhBacGu6RmqqN3w8=;
+	s=arc-20240116; t=1712770465; c=relaxed/simple;
+	bh=K4zB+3O3ghGQKRCYN+KJYONwtQiBqC1WCVKLSct6Rns=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fyoFZCQy87hs1PEBTz72FqREqWpUEKPIJDSc9UJutv+C70g+vqH9V7ewM1imS9d4J7hbUh0HCjYnfOELabnXZ/yzr7byQQRLSzhIce8ItiNPDqLSVsfkNP63S1S3uQDzA9QI8m4Cjw1PJgQDlDrEOOHTHfl3CXBRIZlRoMm8jHI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qddJ6NjW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C0F6C433F1;
-	Wed, 10 Apr 2024 17:33:57 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=J4/xoXUdoNS5rUXhR7s+K598NZ24xNZvKn3IX1d6yH0zZpCOem9zgH/6w9MqZ3SYOkVkl5UOsPJk55CV3plNKEWMG14/9d6KagAjP2Wgzn2VLpN9gEQzOo2ErgFg44+X11EkvFyO3k5aSc/WnOkFjHCGxDAVJD1rrpM6tXP16n0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MZfyQ2y5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8A3BC433C7;
+	Wed, 10 Apr 2024 17:34:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712770437;
-	bh=FVEbt/gY3pwVZCMARf+nPQHhp7GBhBacGu6RmqqN3w8=;
+	s=k20201202; t=1712770465;
+	bh=K4zB+3O3ghGQKRCYN+KJYONwtQiBqC1WCVKLSct6Rns=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qddJ6NjWlgKEDq3denGBeetfdD3quYuwiT0VaQnAtL9wpUGuz13WbnhC10Y7/Mkr2
-	 5R/x3v+OBKB1NECnCflaRm95xtCDd5mu3VRusKAJEmQRae9MmeeMwwkZ1ooQAC02z/
-	 JOIw1ueP/3ynArY1M0pPN1DsXEECwV+RZAJbMyAOAvsljkCnf5UsG5ip069bsMB//l
-	 pGSsMEWZWL0vCwXqIOs9kRQJtM5P0CqXc4rv1KeYuftl6+BDxuH0zO1MuiZpVsllAT
-	 DElyHYqhsN77GO73xWRfsfMhBnsmvktYpm0+PS+NQdcwJrGFb68V874BmVIICNOFEN
-	 cjotehIDX2QNA==
-Date: Wed, 10 Apr 2024 12:33:55 -0500
+	b=MZfyQ2y5Rh/j7+BCOr/unKlEOWOqLGQc0Yiw1669mVtzrZ3OSB5q76ycBlz5IzwuM
+	 +Dbcw1INPZR/yIDX5OvNKpTmdyidFolhTiqZReM2UbPrxsspSZdRUYhsGo6pR0xfDA
+	 jaGwbCxA27tK5DK0K0Y+rOoL30I370/y7WdPQtN8rgGdMyoHbiGqXh7kuqNbxlpVzP
+	 RvTY4yENXmhhv6xQR1HR4ab0SchcXqa96DFZSfosScy0qhl/M2LuypJwYi6C8jDU37
+	 nMGwdvFtiGRsRIaP4pzXKqC31GGnfFP+FylEebzRHmxNDau5seGcnhL+LKSoVrExAi
+	 MzaHNfn3PsQsw==
+Date: Wed, 10 Apr 2024 12:34:22 -0500
 From: Rob Herring <robh@kernel.org>
-To: Nuno Sa <nuno.sa@analog.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Olivier Moysan <olivier.moysan@foss.st.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Dragos Bogdan <dragos.bogdan@analog.com>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 07/11] dt-bindings: iio: dac: add docs for AD9739A
-Message-ID: <171277043314.785673.13483143132107132297.robh@kernel.org>
-References: <20240405-iio-backend-axi-dac-v2-0-293bab7d5552@analog.com>
- <20240405-iio-backend-axi-dac-v2-7-293bab7d5552@analog.com>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: krzk+dt@kernel.org, Fabio Estevam <festevam@denx.de>,
+	conor+dt@kernel.org, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, gregkh@linuxfoundation.org
+Subject: Re: [PATCH] dt-bindings: usb: hx3: Remove unneeded dr_mode
+Message-ID: <171277046094.786793.2246186660037803294.robh@kernel.org>
+References: <20240405195051.945474-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,20 +58,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240405-iio-backend-axi-dac-v2-7-293bab7d5552@analog.com>
+In-Reply-To: <20240405195051.945474-1-festevam@gmail.com>
 
 
-On Fri, 05 Apr 2024 17:00:05 +0200, Nuno Sa wrote:
-> This adds the bindings documentation for the 14 bit
-> RF Digital-to-Analog converter.
+On Fri, 05 Apr 2024 16:50:51 -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
-> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> It is expected that the USB controller works in host mode
+> to have the USB hub operational.
+> 
+> Remove such unneeded property from the devicetree example.
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
 > ---
->  .../devicetree/bindings/iio/dac/adi,ad9739a.yaml   | 94 ++++++++++++++++++++++
->  MAINTAINERS                                        |  8 ++
->  2 files changed, 102 insertions(+)
+>  Documentation/devicetree/bindings/usb/cypress,hx3.yaml | 1 -
+>  1 file changed, 1 deletion(-)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
 
 
