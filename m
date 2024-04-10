@@ -1,46 +1,75 @@
-Return-Path: <devicetree+bounces-57942-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B34D89FA92
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 16:53:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27C1A89EAE0
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 08:31:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5278028940D
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 14:53:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4AE9F1C210B8
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 06:31:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29D06176FAF;
-	Wed, 10 Apr 2024 14:47:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1587946C;
+	Wed, 10 Apr 2024 06:30:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="fuzoyrPG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VDRJ/0Wq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m19731111.qiye.163.com (mail-m19731111.qiye.163.com [220.197.31.111])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D252E174ED5;
-	Wed, 10 Apr 2024 14:47:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.111
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C77338C15
+	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 06:30:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712760427; cv=none; b=UwGT9SvZPqQK3nPbQ3EtFyJtWy5LpzG/mx3unAuun7W0SYlSDdxaLRzhOF9gN+o2Ma0/bCeVDBNPcjv1Un2wwJ0Jfm905bfC64ENSODNsT2tlgPeFdxgYJmQutof+Q65qmMyUnVaHfRD4+W6vWl6K3gnbfSecyg2lzhKugKD/uA=
+	t=1712730632; cv=none; b=NB9xM7wOYMnlgTnPZSLhdOmTvEPDISM7XTBpocoYYO0zY9I4rlAtHQAz+HqCsBDhj+xLqkvnIocfcJvJTl88BklXL481WAlQLkVfI+ILmNsM38VgAo8YUkUPfXw6NMmJ53qm2qII/q1/3kAOp8MNuDyhjDZJri5Lzfwyu49bXZQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712760427; c=relaxed/simple;
-	bh=wKDkH+37tJ3xsdWBf9SWS/MYhpapMqcyf4lJkhkSO9I=;
-	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=hkCa5ZpjgCgoeaTuVU0nUu50DeYRt91oriXN82opAwXRx/kyqbfiuig+/dClGP8kPFs35IocGbGxVEUgpvEE+sSgvqbnF8atU2euqgeGm+PYr4YHRswR0vopRt+ForBdyUZj2oTo0epK+HKgxzZsk6y4O9sji9l7bT+UInqYg/Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=fuzoyrPG; arc=none smtp.client-ip=220.197.31.111
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-DKIM-Signature: a=rsa-sha256;
-	b=fuzoyrPGx8fUdZlpdp3unmisLPz6WB0BLKButewC27WNIhv4xGsS26ly9usLHFO6RDvJAs5w4u9LC0OF9PclhGZiSeD1xLJ17wzSFN1O25knPyKJjm9zOqujpFTxCKKNcRsrLnAgsv0F/bjPLaztSFw8czESdeVD5J6JP7DUL88=;
-	c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=2DiFiEPKTIb4dIbL4HzejQd26iq2642UkcYkMtQkGes=;
-	h=date:mime-version:subject:message-id:from;
-Received: from [172.16.12.69] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTPA id CC4D44605A2;
-	Wed, 10 Apr 2024 14:30:15 +0800 (CST)
-Message-ID: <432000a6-1de9-4452-beb7-6954677e34c8@rock-chips.com>
-Date: Wed, 10 Apr 2024 14:30:16 +0800
+	s=arc-20240116; t=1712730632; c=relaxed/simple;
+	bh=snLcBzW5JAfOjL33AeXOFsWB7BGPbRw5aXOn3Slj5aE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rEDwNPgq8SF2OACZlG8fmTGy/uhe4Y6fJq6LghBFSf9u3Fup/iKKPWlqZpKX9RzqIuF+UkoRkLrH3vnC/EQmvctYAin6vE5AqO9xUvxcVGGx7o4CZkNPUZC/Aedyzae1TiS8bQlgcTepwFbzE4QvogZObax5Z68BrF+EkEiohQ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VDRJ/0Wq; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4167fce0a41so14615755e9.0
+        for <devicetree@vger.kernel.org>; Tue, 09 Apr 2024 23:30:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712730628; x=1713335428; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=gWci41MJZyAHUWq9dFdkgNIb3G6A9TJ1w2pD10mN2/A=;
+        b=VDRJ/0WqGJPukTRPFaC0F47hHej5EvoXUIR0MVumGpaXexQgu9rLomKqo/258sucxq
+         9Sp2mNrtWZu7CQq+xmhHOP27Xyb0eMkdUTVGPP1zeeXwQFa2/b6mduGUfoAIbdNimFCL
+         tZLSz/7x/UDjUcMLYvKn9DIQINAFTfROM7uNx4Z9A+vlm3g2Q8KlgMAo5VaN8U5xK1IW
+         YZX6VMrTb+6Ln4rcmj0D5NRhNAzfx/fnjtqRYQlNUCukXwgvScPZJ+c647zRkmAvMRAG
+         tOgM/ZaxmCkw+XHcxRQWwTIzm0l+uDq3Omb+gEB7YZwMuDjsi6MqLG52berQqfQIjjsT
+         t0vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712730628; x=1713335428;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gWci41MJZyAHUWq9dFdkgNIb3G6A9TJ1w2pD10mN2/A=;
+        b=I4RpbNv0HUiIzP6m42bDGVOYtQpL2Le9e1fJV6E+L7QYXHI7hye3cRucvI0a0W+9fn
+         Ze6VQM4oH/ewjrfK2rC89X3PFDUEQDESzBwKLsHxZVr9K8erJ/3Lg1DDVG6ERTAUjXar
+         jvj11XJEMCd3wv+SRMI1YbsUWKN/wqhNqzx+5Z1AieG6CPUhpM+GmX4JhA37wnIsqKQS
+         szcCbQuA0Iyd/xpk88MKxa1EBwjGaCbD6/NJXDExPHHgkdXu2IQF+v9Zi+rutab6ljzc
+         BTJLOlSFsPxJiFfyZNWZXSotXqdK6ryLBo1zmV9baPrdC305a8OQ2rrmKLqcOtgdcugo
+         JRRw==
+X-Forwarded-Encrypted: i=1; AJvYcCWCMsBvfroZk9l9KwoQI0jRzyPJa0fzHc0+aSG1bb2BA6ikHzpTfZ3tGa91aXbHMUu5zMtMCGa679LCtyHvDuv/BRB/fxQxkrzh9Q==
+X-Gm-Message-State: AOJu0Yy/Gv2hwBXj0YVEpCmas7zr/4qIFUFIiS/MB0332DK0wChS7/4u
+	ZYaK5C6iO5sivsL9k2QKEGLal7gUtJ2/u2fu+q/SCB6i/wzws8ZdZkMViY38Ma8=
+X-Google-Smtp-Source: AGHT+IF0eTsJpLQnt6d4A/NrzBUkHTYbJp6X8EjIxxI0DFlEzYReQ/Xs/F3dE6+19zJczYeIySaAfA==
+X-Received: by 2002:a05:600c:4f08:b0:416:259d:b250 with SMTP id l8-20020a05600c4f0800b00416259db250mr1522584wmq.18.1712730628148;
+        Tue, 09 Apr 2024 23:30:28 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id f13-20020adfdb4d000000b00341c6b53358sm13049534wrj.66.2024.04.09.23.30.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Apr 2024 23:30:27 -0700 (PDT)
+Message-ID: <680f8830-6cd8-433b-85b7-439070bc528f@linaro.org>
+Date: Wed, 10 Apr 2024 08:30:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,106 +77,130 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Cc: shawn.lin@rock-chips.com, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, heiko@sntech.de,
- sfr@canb.auug.org.au, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: remove startup-delay-us from
- vcc3v3_pcie2x1l0 on rock-5b
-Content-Language: en-GB
-To: Jianfeng Liu <liujianfeng1994@gmail.com>
-References: <20240401081302.942742-1-liujianfeng1994@gmail.com>
-From: Shawn Lin <shawn.lin@rock-chips.com>
-In-Reply-To: <20240401081302.942742-1-liujianfeng1994@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH v3 1/2] dt-bindings: dma: fsl-edma: remove 'clocks' from
+ required
+To: Frank Li <Frank.li@nxp.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org,
+ dmaengine@vger.kernel.org, imx@lists.linux.dev,
+ krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
+ peng.fan@nxp.com, robh@kernel.org, vkoul@kernel.org
+References: <20240409185416.2224609-1-Frank.Li@nxp.com>
+ <b15ad271-037e-4ee3-ad88-e8068d31c8c8@linaro.org>
+ <ZhWuetC8bRvDyxgX@lizhi-Precision-Tower-5810>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <ZhWuetC8bRvDyxgX@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkJOGlZOT0lNHkIeSU1KSk1VEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk1PSU5IVUpLS1VKQk
-	tLWQY+
-X-HM-Tid: 0a8ec6b3367703aekunmcc4d44605a2
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Ogg6Pgw4DjMJLx9NSzwPUTdD
-	Aw0KFDpVSlVKTEpJTEhLTUpMQkxJVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
-	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQU9PTEM3Bg++
 
-Hi Jianfeng,
-
-On 2024/4/1 16:13, Jianfeng Liu wrote:
-> Property startup-delay-us is copied from vendor dts and it will
-> make kernel not detect pcie wifi device. If I run command:
-> "echo 1 > /sys/bus/pci/rescan", pcie wifi device is detected, but
-> my wifi device RTL8822CE failed to load driver. Another device
-> RTL8723BE can load driver but no wifi signal is detected.
+On 09/04/2024 23:09, Frank Li wrote:
+> On Tue, Apr 09, 2024 at 10:02:32PM +0200, Krzysztof Kozlowski wrote:
+>> On 09/04/2024 20:54, Frank Li wrote:
+>>> fsl,imx8qm-adma and fsl,imx8qm-edma don't require 'clocks'. Remove it from
+>>> required and add 'if' block for other compatible string to keep the same
+>>> restrictions.
+>>>
+>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+>>> ---
+>>>
+>>> Notes:
+>>>     Change from v2 to v3
+>>>       - rebase to dmaengine/next
+>>
+>> This fails...
 > 
-> Removing this property will fix issues above.
+> What's wrong? 
 > 
-> Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
-
-startup-delay-us just make sure the power rail is stable before
-any action is taken to start the link, preventing the device from
-unable to work stably. So it shouldn't be the root cause I think.
-
-Could you help try this patch to checkout if it works for you?
-
-diff --git a/drivers/pci/controller/dwc/pcie-dw-rockchip.c 
-b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-index d684214..df30127 100644
---- a/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-+++ b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-@@ -167,7 +167,7 @@ static int rockchip_pcie_start_link(struct dw_pcie *pci)
-         struct rockchip_pcie *rockchip = to_rockchip_pcie(pci);
-
-         /* Reset device */
--       gpiod_set_value_cansleep(rockchip->rst_gpio, 0);
-+       //gpiod_set_value_cansleep(rockchip->rst_gpio, 0);
-
-         rockchip_pcie_enable_ltssm(rockchip);
-
-@@ -180,7 +180,7 @@ static int rockchip_pcie_start_link(struct dw_pcie *pci)
-          * We need more extra time as before, rather than setting just
-          * 100us as we don't know how long should the device need to reset.
-          */
--       msleep(100);
-+       msleep(300);
-         gpiod_set_value_cansleep(rockchip->rst_gpio, 1);
-
-         return 0;
-@@ -311,6 +311,8 @@ static int rockchip_pcie_probe(struct 
-platform_device *pdev)
-         if (ret)
-                 return ret;
-
-+       gpiod_set_value_cansleep(rockchip->rst_gpio, 0);
-+
-         /* DON'T MOVE ME: must be enable before PHY init */
-         rockchip->vpcie3v3 = devm_regulator_get_optional(dev, "vpcie3v3");
-
-
-
-> ---
->   arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 1 -
->   1 file changed, 1 deletion(-)
+> https://git.kernel.org/pub/scm/linux/kernel/git/vkoul/dmaengine.git/log/?h=next
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> index d6bf2ee07..a9af654a0 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> @@ -76,7 +76,6 @@ vcc3v3_pcie2x1l0: vcc3v3-pcie2x1l0-regulator {
->   		regulator-boot-on;
->   		regulator-min-microvolt = <3300000>;
->   		regulator-max-microvolt = <3300000>;
-> -		startup-delay-us = <50000>;
->   		vin-supply = <&vcc5v0_sys>;
->   	};
+>>
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/dma/fsl,edma.yaml b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
+>>> index 825f4715499e5..657a7d3ebf857 100644
+>>> --- a/Documentation/devicetree/bindings/dma/fsl,edma.yaml
+>>> +++ b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
+>>> @@ -82,7 +82,6 @@ required:
+>>>    - compatible
+>>>    - reg
+>>>    - interrupts
+>>> -  - clocks
+>>>    - dma-channels
+>>>  
+>>>  allOf:
+>>> @@ -187,6 +186,22 @@ allOf:
+>>>          "#dma-cells":
+>>>            const: 3
+>>>  
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +	  contains:
+>>
+>> It does not look like you tested the bindings, at least after quick
+>> look. Please run `make dt_binding_check` (see
+>> Documentation/devicetree/bindings/writing-schema.rst for instructions).
+>> Maybe you need to update your dtschema and yamllint.
 > 
-> --
-> 2.34.1
+> Strange, Test passed
 > 
-> 
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j8  dt_binding_check DT_SCHEMA_FILES=fsl,edma.yaml
+>   LINT    Documentation/devicetree/bindings
+>   DTEX    Documentation/devicetree/bindings/dma/fsl,edma.example.dts
+>   CHKDT   Documentation/devicetree/bindings/processed-schema.json
+>   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+>   DTC_CHK Documentation/devicetree/bindings/dma/fsl,edma.example.dtb
+
+Nope, you tested other patch. Just look at your second patch for this.
+When reviewer points to errors to your code, please investigate?
+
+NAK, fix your patches.
+
+Best regards,
+Krzysztof
+
 
