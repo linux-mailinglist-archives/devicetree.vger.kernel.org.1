@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-57952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 402E489FB5A
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 17:18:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73B5089FB4C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 17:15:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7276CB35AF6
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 15:14:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 299A328C87B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 15:15:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B351A16F0C4;
-	Wed, 10 Apr 2024 15:13:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEE5216E872;
+	Wed, 10 Apr 2024 15:14:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="cMKkbVm/"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="b3M0VMCe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 175CE16D9D6
-	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 15:13:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C26D116D9D0
+	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 15:14:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712762034; cv=none; b=O1QfIJmVvsFYQg0VBjcqQMsnqsPHXIWGRr3ILYpejwWRZElw88ESZM5rnKqtSBBIB8a6k0srTjpywcWiTvAsdcp20ZdCXeIrXcy5u4IC0We4qguOTww/4ArzOOrjtRGt0WnE5i+96iXGP9s7QJYX3e32ax7YJtKomkdlp/7AN8Y=
+	t=1712762074; cv=none; b=AKxz/Do0E79VV68yC5OQtjWj+avxxGxxWFrnFOp28PIPULO8l22NOKsWS2mvRbWpGeCfeJFqc3qj2+g12cowIefMjqzv1kTCFeQXiM1oTWvE25TXq3YHLiQ1++cR/D8OKjRWAw3u5+LqGfvmc7IPK5iLk2da2U/HPG1lQTCbbSw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712762034; c=relaxed/simple;
-	bh=n4JrkSorhynZmSYFDegpGZt7tneK34MYTFY2bPGDfD0=;
+	s=arc-20240116; t=1712762074; c=relaxed/simple;
+	bh=xJfhI9QPat0r98+lhtVmHv0dk3LFeZuD6e/my70ds9U=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DOCuieeLH1Q4lXb2YUK8mEcIMzTTJkOffmb/Xa96kkmHt6DhOXVy00MNStYZzUnIN3wYFk8HUgb8JFXgITqo2xBOTnbMUocdg5ZELNICwyxHkAlVEgzcjvpNnmtfwrfFz2BQkG9e5iItv8zTlaYrLCn4nBODbTeMuluGE64VO2I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=cMKkbVm/; arc=none smtp.client-ip=209.85.221.44
+	 In-Reply-To:Content-Type; b=bgoxEi+UeEYWXN0JS4PqAlEIGSnNCXWbzTxT+XKjqIvyqk2OtXoSeEomcT9/cIaK4KUpOaRQnzYnjSyOi7enRp/Ch5K64Dojq2qYz7tvi6Nom0z9DyCzc6qTAlj0btTH0uIrYNq1sk4bFyZHTgc8mxTq59kYM0WJHl32VsD0TMc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=b3M0VMCe; arc=none smtp.client-ip=209.85.221.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3462178fbf9so899860f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 08:13:51 -0700 (PDT)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-345522f7c32so1204339f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 08:14:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712762030; x=1713366830; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712762071; x=1713366871; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Xb0tDuasjSNlJsy4sDFiJMtEhz1/MxQR3B46cvvCuH4=;
-        b=cMKkbVm/23Ha/TQXmdyWLBng44TIPvbuAYM8asMLC5kscwXiUZh+8oEK2bWXWCL7Gd
-         KOUKBc9/qyafWryXHGLLCOwpKHz+rk2uOeoSb1hEtPnC7R50GuZ+EKulDWK8tFsrvVp0
-         RA2vpBKK8kd3qNcNFoszqtIzsg64ITx+nZDwLMRETIXW89df6GprhAXeaQUFQcTon2Fp
-         OfZ5EkVpRY36NYtoDQlWlJ0iVmFQwhxxqzAEXclL6S5ZcS12+aqgb3n04c2F6iom4KWV
-         F1nWjE9b0d5bNc84DF+R5+GocGLNwesbNZSiwGfOWZg0QORiN3v/FoRhEiY7ign0J5P3
-         icbQ==
+        bh=rTWr7zCunTSu7yV6LyAJ4TilgZ8hrFbQ0RRY5+GeIDY=;
+        b=b3M0VMCepZmZP7Nl75QXw13xlqXQdDX50hWB5MSbNZ/RV0U1dGT7aJDIif7sCnjVwv
+         bX+OAkbrcfggDhQ5dXxPvWQE3v+3aFt4ZnQXznZlVAgv7zCgUYsDfkAfhiG0hvI222er
+         hdP4BzBhYVhzAAryhx9Ih9+0W+TGb7JWNhrHnexSsTCyF+iYMWDeHqJ4PfkDXqQ19+mL
+         A7Sp0Z4457LtmPeB5PV8jznZe/36rz7V6dtQJFg8vV3C0QJg+wlbG7UIJo00+7s42PaY
+         GH767zZmkvqGIK001jf2KVBVTD42rv1KKUVokLbt6QiDMJwKIBzlOk9cdK5YnCCJkhSa
+         uEjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712762030; x=1713366830;
+        d=1e100.net; s=20230601; t=1712762071; x=1713366871;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Xb0tDuasjSNlJsy4sDFiJMtEhz1/MxQR3B46cvvCuH4=;
-        b=IntqrK/WnGiahRLDxDAhUPrQP0TTNiF8dCrLjjPDIEVIRWFnvv8iAXtwCPO5ObJOZx
-         T9qA1PSlLjDKbioIZdWUtlPqIap5Po0hybIwtw1WHoDQX4KYGXsJOzwtzGpqBjs4MbpP
-         B9HdEhbQfQfsrLIXOYnIxfNoWg0iS2BHoLsRTH4uRHou0u0g5TtAXuKOdffh3lAeFa4M
-         Uj/h5Av20Kx3smVrMZnqLNnjMVypWEvSK6N+GBwE18Zz5oW7J49rIi75vNZXSucIGehK
-         Lsh0x91A9NxTJSjRO71ckWu+ur5vpl0NzaHl8y/Nwbdg7borkFt1AMvBG1GDVvu5ptsO
-         JC4Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWWVoZiLuOs0V+qtms7lQdjJ/TAF10+7+2LIp+Bbsb+KvalR4GPIZP2HZMoHSY6YFp93XGxRgTRGFbyGzNcZ8jPxpQ21Fbs0ICTCg==
-X-Gm-Message-State: AOJu0YxsnkQJBZE17Q0vZVH9IG6dxC9Yk8VHYfrbjsvJkN51W5MHJopU
-	hENvpN+nRAHsYfgIaMXPz8ZBqVRr075RB0IJdlesYW8j5c+ixDsTRlZEfMZ0joI=
-X-Google-Smtp-Source: AGHT+IGoier3Sm8gMlqmjZALBvxdoG/1vWwzVX851wh99fQXUyteeMA3kD8B7Fgl7bkM9Q+1QuTWTQ==
-X-Received: by 2002:a05:6000:186b:b0:343:6b76:251f with SMTP id d11-20020a056000186b00b003436b76251fmr3201804wri.42.1712762030404;
-        Wed, 10 Apr 2024 08:13:50 -0700 (PDT)
+        bh=rTWr7zCunTSu7yV6LyAJ4TilgZ8hrFbQ0RRY5+GeIDY=;
+        b=dn4nau8UIEYKxHnBMQIyLokWyDHwl4QWEPVUzPQK362/Y/h8br/bhcUw2bNXPUjBqk
+         zPbG/1nzwSdKEyM/ejZL0GKws+8bA8E6bC9a4wfDZSDopE2fgx9eLmv0GkZYRs79cmt7
+         aXVxjchgrN3m8VCV9Aki3xPPwIUPTu9TCBqU6dI6b1vZnzgojf8GgaIg4NnpI4S6oT5A
+         YL5BNhU+73oON3vScnBmgnDdVSiGKCC9dYwefXW8BfQQeMPSuZIUaVdsd4iqlDQLXx51
+         EdCKVCEqD1fHbOUXFK5R0edAO6RbO+Mg0zVlYaUCocJBeXiuwESO96sh8b/AQAOYwqpV
+         +OsA==
+X-Forwarded-Encrypted: i=1; AJvYcCWLkTf8EFQ79Y5vsqyMMrbnTq8d7TwTj2DU8y5rndg28AWcsPZW64stsyUI8yxqslnCqCrNWfSK3zNb7aT0qIuz8PIQh0BAscBtiw==
+X-Gm-Message-State: AOJu0Yya5psCAm2AdD93Q0lGbkSzMC5EPVaZuOaNaHankzBtQEHef8bl
+	w8/8cLa43h2lqnWsEEyQP3x/P9sKLgs6EGAeADn2y8JJ2opOpS4LZ6nS7TDwER4=
+X-Google-Smtp-Source: AGHT+IHsg96eOL2a4LJhVDQUrGOMuFbwCCDLT+zKpSk4ARDLKr/ObMqBjfvII1zIu2uKlKh/jpN3ew==
+X-Received: by 2002:a05:6000:2a5:b0:343:7b6b:dcc6 with SMTP id l5-20020a05600002a500b003437b6bdcc6mr2373938wry.30.1712762070970;
+        Wed, 10 Apr 2024 08:14:30 -0700 (PDT)
 Received: from [192.168.1.172] ([93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id n15-20020a05600c500f00b00417c0fa4b82sm1118117wmr.25.2024.04.10.08.13.48
+        by smtp.gmail.com with ESMTPSA id d26-20020adfa35a000000b003469e7f5c52sm176322wrb.80.2024.04.10.08.14.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Apr 2024 08:13:50 -0700 (PDT)
-Message-ID: <fd7cc1d7-f293-47f9-9ff6-98b78150d61e@baylibre.com>
-Date: Wed, 10 Apr 2024 17:13:48 +0200
+        Wed, 10 Apr 2024 08:14:30 -0700 (PDT)
+Message-ID: <437bdabd-f16e-4a2d-b9c2-55c91b2e399e@baylibre.com>
+Date: Wed, 10 Apr 2024 17:14:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,8 +76,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 11/18] ASoC: mediatek: Add common
- mtk_afe_component_probe callback
+Subject: Re: [PATCH v4 12/18] ASoC: mediatek: Use common mtk_afe_pcm_platform
+ with common probe cb
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
  broonie@kernel.org
 Cc: wenst@chromium.org, lgirdwood@gmail.com, robh@kernel.org,
@@ -97,21 +97,26 @@ Cc: wenst@chromium.org, lgirdwood@gmail.com, robh@kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
  kernel@collabora.com
 References: <20240409113310.303261-1-angelogioacchino.delregno@collabora.com>
- <20240409113310.303261-12-angelogioacchino.delregno@collabora.com>
+ <20240409113310.303261-13-angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
 From: Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <20240409113310.303261-12-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20240409113310.303261-13-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+
+Also done for mt8365-afe-pcm in my serie
 
 Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
 
 On 09/04/2024 13:33, AngeloGioacchino Del Regno wrote:
-> Multiple MediaTek AFE PCM component drivers are using their own .probe()
-> callback, but most of those are simply duplicated functions as they are
-> doing exactly the same thing over and over.
+> Since the mtk-afe-platform-driver generic mtk_afe_pcm_platform now has
+> a common .probe() callback, there is no reason to keep duplicating this
+> function over and over in the SoC specific AFE-PCM drivers: switch over
+> to register with the common bits instead.
 > 
-> Add a common probe callback for this component to reduce duplication.
+> Note that MT8186 was left out of this because it is registering some
+> extra sinegen controls in the AFE-PCM probe callback and needs extra
+> cleanups to be able to use the common bits.
 
 -- 
 Regards,
