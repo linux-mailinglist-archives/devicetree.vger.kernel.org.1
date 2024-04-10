@@ -1,149 +1,211 @@
-Return-Path: <devicetree+bounces-57750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CE0889EAA4
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 08:18:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BE6D89EAAE
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 08:20:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C746028187C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 06:18:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11DAD282024
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 06:20:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C11B2628B;
-	Wed, 10 Apr 2024 06:18:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BF6326AFB;
+	Wed, 10 Apr 2024 06:20:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cv05Vhzd"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="RpyfwBom"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 544D720E3;
-	Wed, 10 Apr 2024 06:18:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 982C620304
+	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 06:20:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712729906; cv=none; b=YlT30qnIMWbwG+JbhCcFoKfMjGnIHKaQHcPwf5J3Ti/xlLAO2/HK7yMgvftWSZA/NrzZ2Jh5YTSP0z/9V2jwS+6lq5iGc0NXSZdcpDq/FhKTUd5QQVBcrWHPpYHwCbkfrSP7dcS3whAnTxlzG8oFpJACUm2Qv0V1OBGyCaR8c1U=
+	t=1712730028; cv=none; b=Q8fgdQPX9RY7kEl40phAF0CQXgY2qzMNkEt6sTacupcwZRlMl5uQxvDvyXyxpnWn/pKgmXKL5XEIEtmwHOrQbCgko0HcP5BQcPnqCsFobIrIKNGZGv5uKEL7af8bg+rik9uGi5w1Zgq4nmnjbxkl6mavNPi7jPNSklRtd3k2x4Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712729906; c=relaxed/simple;
-	bh=ZQ64qwPf6Di8vF2RdPh7RxkPgBZXfSpbbGA0ASv1dUY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GRPbMsQP4A2ODVDaaL1RqHAt+jBQPUMxDwVo9a3NJVpzn7c3EkjxYw0WvzFa3+sdub8WWrpGIXuB2W607GQGME9vlpXr9oeYcPIAK4Ii3qVr7tFdKIBpDqvF/hexVyqVUH3UfNNHePWCWF6b85piYYgdsBjuZ6s8ekm6wx18DXI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cv05Vhzd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CC8FC433C7;
-	Wed, 10 Apr 2024 06:18:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712729905;
-	bh=ZQ64qwPf6Di8vF2RdPh7RxkPgBZXfSpbbGA0ASv1dUY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Cv05VhzdPby0jgRBixv3hcdBlNomY+DwZPiZSH8aaIMyApqH5uK/CRDC2UntPg2Cn
-	 5eIlCDAkiBFtxy115phJaapQBI8k+vtl3Hek272/1HDp3DFyCMRIoHxNm5Zi2cHLLQ
-	 xHNIiGjY/zVaTA7QcsZWSYXQV0P2wBxSYy23PtUGWG1OvUbsdlMgWO9S5azFKYudbQ
-	 6ttIPWX8MmCsw/UqK8qcS6ogAlgpsZSUrBWO2j2ckxPB04iAINveh1QG8xqz5gHO1+
-	 YfyU+mtdbhmEHvKsHaviWdXu84cks+36wP1Vhibr9QPodAg0gKrnjBODoYsZAyq7Lp
-	 eS3gCFS3l6K4w==
-Message-ID: <ea3be8f7-0ee6-4940-828d-2fc15b9239dc@kernel.org>
-Date: Wed, 10 Apr 2024 08:18:21 +0200
+	s=arc-20240116; t=1712730028; c=relaxed/simple;
+	bh=uwt784Shk9K3LkOdlCkuId4R+pmLZMhJOJTkzgnUs+I=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=QN4giq2036oEZTM5ZhaTMeyw3YZwSOIq4APiJjp4JD3aedpDYTTT5ArzN0XUJHcFvBfnvkABOfYJqx9IJduu7Whxaa0wrfP2WxsIoOPkvumNEkezg6eQtv+MRz7jUr4m2/Tveu1wnVwcSwUSZz6VLWGHc9J5XBkoPrkPfI2btV4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=RpyfwBom; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-6eaf9565e6bso4475100b3a.2
+        for <devicetree@vger.kernel.org>; Tue, 09 Apr 2024 23:20:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1712730026; x=1713334826; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=e5v4LfNlblo2WKgRAn2D3NW7xqD55htd+EO/6vEx8Ak=;
+        b=RpyfwBomodqtD+enc0lrnylD7sKxrpv6BBk608AdaH4aN2/3JKS+THUZK3megyV6EW
+         jZdswysfCSTf+wo0a+ZeIuJoQcZtxf5dC/5X/EQM3zQQogEK/4KD66yNwlGZ80dvqiP9
+         UqfhR/FokvPBKv8XoYCZaYwiyp0aiPDJ2tlD8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712730026; x=1713334826;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=e5v4LfNlblo2WKgRAn2D3NW7xqD55htd+EO/6vEx8Ak=;
+        b=Oik/RBd6pg7Rpg4KPgoqDYiRI2+5UFrNG4amCxA7j91LuWLKLJpEf72tJo/VtLdFZK
+         ygWhQSkNELfVxuDfYXGqgWDYNXQ+0BpxBdSsxPh2Z0TFxZwFOqFDXbGadNz/MP2WhC7b
+         0Epi0UAN8mF0Dex471mzcKC4SEVwdaiDAMZ9p+kyd5fLe4vLz8IsN2FWlx7HMiorPMo2
+         SJZwFd2xZW2R2xzyo2vLiEdBXJulfd+EnhsqQSu4Sg4LIyCjkVZwnpurvTxszddshxXQ
+         qtmecsOke8r60NwlcgoPrrUJlJKlyZ1HyjIPDuCgfSpLEHrwoKxgGNmGvWLIcR10lOhr
+         gjPQ==
+X-Gm-Message-State: AOJu0Yw8ICodAIDYSFQiZE97xVmD+avKdTT2PSXP1bc9Aw0Gbhg/U8Yw
+	/l5MmAsS8lbPzLXalqGhSRQtctxTv2Anfyau/YqD+5ppLVNgEytO1siXumCJAg==
+X-Google-Smtp-Source: AGHT+IHAta98FxLNG/x0sc1YsRsry9ENklaCOvy0ZnfjzpSfwTLrCO0ZpnFeZ9TC6+QWoa+lKUCVCQ==
+X-Received: by 2002:a05:6a00:21c9:b0:6ec:ee7c:141c with SMTP id t9-20020a056a0021c900b006ecee7c141cmr2087534pfj.16.1712730025858;
+        Tue, 09 Apr 2024 23:20:25 -0700 (PDT)
+Received: from yuanhsinte1.c.googlers.com (88.216.124.34.bc.googleusercontent.com. [34.124.216.88])
+        by smtp.gmail.com with ESMTPSA id lb14-20020a056a004f0e00b006ead47a65d1sm9411384pfb.109.2024.04.09.23.20.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Apr 2024 23:20:25 -0700 (PDT)
+From: Hsin-Te Yuan <yuanhsinte@chromium.org>
+Date: Wed, 10 Apr 2024 06:20:20 +0000
+Subject: [PATCH] arm64: dts: mediatek: mt8192: Add missing trip point in
+ thermal zone
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: host1x: Add missing 'dma-coherent'
-To: Jon Hunter <jonathanh@nvidia.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Mikko Perttunen <mperttunen@nvidia.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240409082324.9928-1-jonathanh@nvidia.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240409082324.9928-1-jonathanh@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20240410-upstream-torvalds-master-v1-1-852e903f0cec@chromium.org>
+X-B4-Tracking: v=1; b=H4sIAKMvFmYC/x3MTQqEMAxA4atI1gZa6Sh4FXERajoT8I+kiiDe3
+ TLLb/HeDcYqbNBXNyifYrKtBb6uIP5o/TLKVAyNa4IL3uGxW1amBfOmJ82T4UKWWTE44pQ+wbe
+ xg5Lvykmu/3oYn+cFMVnATGoAAAA=
+To: Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>, 
+ =?utf-8?q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>, 
+ Balsam CHIHI <bchihi@baylibre.com>, 
+ Alexandre Mergnat <amergnat@baylibre.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Hsin-Te Yuan <yuanhsinte@chromium.org>
+X-Mailer: b4 0.12.4
 
-On 09/04/2024 10:23, Jon Hunter wrote:
-> The dtbs_check reports that the 'dma-coherent' property is "unevaluated
-> and invalid" for the host1x@13e00000 device on Tegra194 and Tegra234
-> platforms. Fix this by updating the dt-binding document for host1x to
-> add the 'dma-coherent' property for these devices.
+Add the missing passive trip point which is expected by kernel.
 
-That's not really proper reason. What if DTS is wrong? The reason could
-be if device is actually DMA coherent...
+Fixes: c7a728051f4e ("arm64: dts: mediatek: mt8192: Add thermal nodes and thermal zones")
+Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
+---
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi | 40 ++++++++++++++++++++++++++++++++
+ 1 file changed, 40 insertions(+)
 
-> 
-> Fixes: 361238cdc525 ("arm64: tegra: Mark host1x as dma-coherent on Tegra194/234")
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> ---
->  .../bindings/display/tegra/nvidia,tegra20-host1x.yaml | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml
-> index 94c5242c03b2..3563378a01af 100644
-> --- a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml
-> +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml
-> @@ -177,6 +177,15 @@ allOf:
->  
->        required:
->          - reg-names
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - nvidia,tegra194-host1x
-> +    then:
-> +      properties:
-> +        dma-coherent: true
+diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+index 05e401670bced..08d8bccc84669 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+@@ -1959,6 +1959,11 @@ cpu0-thermal {
+ 			thermal-sensors = <&lvts_mcu MT8192_MCU_LITTLE_CPU0>;
+ 
+ 			trips {
++				cpu0_thres: trip-point {
++					temperature = <68000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
+ 				cpu0_alert: trip-alert {
+ 					temperature = <85000>;
+ 					hysteresis = <2000>;
+@@ -1989,6 +1994,11 @@ cpu1-thermal {
+ 			thermal-sensors = <&lvts_mcu MT8192_MCU_LITTLE_CPU1>;
+ 
+ 			trips {
++				cpu1_thres: trip-point {
++					temperature = <68000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
+ 				cpu1_alert: trip-alert {
+ 					temperature = <85000>;
+ 					hysteresis = <2000>;
+@@ -2019,6 +2029,11 @@ cpu2-thermal {
+ 			thermal-sensors = <&lvts_mcu MT8192_MCU_LITTLE_CPU2>;
+ 
+ 			trips {
++				cpu2_thres: trip-point {
++					temperature = <68000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
+ 				cpu2_alert: trip-alert {
+ 					temperature = <85000>;
+ 					hysteresis = <2000>;
+@@ -2049,6 +2064,11 @@ cpu3-thermal {
+ 			thermal-sensors = <&lvts_mcu MT8192_MCU_LITTLE_CPU3>;
+ 
+ 			trips {
++				cpu3_thres: trip-point {
++					temperature = <68000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
+ 				cpu3_alert: trip-alert {
+ 					temperature = <85000>;
+ 					hysteresis = <2000>;
+@@ -2079,6 +2099,11 @@ cpu4-thermal {
+ 			thermal-sensors = <&lvts_mcu MT8192_MCU_BIG_CPU0>;
+ 
+ 			trips {
++				cpu4_thres: trip-point {
++					temperature = <68000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
+ 				cpu4_alert: trip-alert {
+ 					temperature = <85000>;
+ 					hysteresis = <2000>;
+@@ -2109,6 +2134,11 @@ cpu5-thermal {
+ 			thermal-sensors = <&lvts_mcu MT8192_MCU_BIG_CPU1>;
+ 
+ 			trips {
++				cpu5_thres: trip-point {
++					temperature = <68000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
+ 				cpu5_alert: trip-alert {
+ 					temperature = <85000>;
+ 					hysteresis = <2000>;
+@@ -2139,6 +2169,11 @@ cpu6-thermal {
+ 			thermal-sensors = <&lvts_mcu MT8192_MCU_BIG_CPU2>;
+ 
+ 			trips {
++				cpu6_thres: trip-point {
++					temperature = <68000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
+ 				cpu6_alert: trip-alert {
+ 					temperature = <85000>;
+ 					hysteresis = <2000>;
+@@ -2169,6 +2204,11 @@ cpu7-thermal {
+ 			thermal-sensors = <&lvts_mcu MT8192_MCU_BIG_CPU3>;
+ 
+ 			trips {
++				cpu7_thres: trip-point {
++					temperature = <68000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
+ 				cpu7_alert: trip-alert {
+ 					temperature = <85000>;
+ 					hysteresis = <2000>;
 
-Do not define properties in allOf. Put it in top-level. If not all
-devices are DMA coherent, you can disallow it for certain variants (:false).
+---
+base-commit: 20cb38a7af88dc40095da7c2c9094da3873fea23
+change-id: 20240410-upstream-torvalds-master-40aeff5416c7
 
 Best regards,
-Krzysztof
+-- 
+Hsin-Te Yuan <yuanhsinte@chromium.org>
 
 
