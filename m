@@ -1,162 +1,321 @@
-Return-Path: <devicetree+bounces-57968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C19DB89FC55
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 17:59:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DEE6E89FC62
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 18:00:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60AC71F26203
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 15:59:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 54D2E1F21DF5
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 16:00:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA238178CD1;
-	Wed, 10 Apr 2024 15:58:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2010916F91F;
+	Wed, 10 Apr 2024 16:00:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J2lnS80U"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A9uR8xEq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 146FE171E51
-	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 15:58:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CB8C16F0F7;
+	Wed, 10 Apr 2024 16:00:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712764703; cv=none; b=om13sjun9s4qtugqEtXtX+/Qg886JYGRY66391xXX59HutGlqW5RAJuREYH67dOq9pmlt/kXm8GjNe/68jQKyO8jUhACi79RQsgRUQSexAMFKM7g1InXK0fcS2QOXeyo8s/Pqyx8a/JF0+m3axvCSzrzK6Rh4e5gWzhatvlWb28=
+	t=1712764843; cv=none; b=QpIg8si3qxfTE/Phg/Y4xfPYxTn1MLOhfLQGhTvyrPoTokqe26PB7XvdJnmQ9oEaH/I9qT73RvBkQ9g8UQdMuB/4zW7aNeyX1JxVvXwGsnQFLgonQyWkHWe64L7S4UFs5e6623eAZK+OP4XdKGPYDuoAnq9PxJb3OleJ09x4pbY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712764703; c=relaxed/simple;
-	bh=lGqVv5pfHDZ5HymhwMpFyWs9Q9eI9g5txsJwTnH+x4A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dgGn0ebScZ/AzVRS2igFd040a45SKzIOm4+MDOIzIb6zZ+t8QtuitTWdRlx8oGYFlm6oSr1HYxfSrgRkxM8wF9Yd9fqmy0f/APrGf4R7U9SJ2cPebAUZ64emuqdHfc01S5tu8S50TkMfVz9t4L7hLWfJzkaz1jVOabTu8ZZUp8A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=J2lnS80U; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-41550858cabso47212965e9.2
-        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 08:58:21 -0700 (PDT)
+	s=arc-20240116; t=1712764843; c=relaxed/simple;
+	bh=Lg8ZLX35H41RWjwo6tGdMSwExU6jijt9qhVZP6f5lYQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=OFlRRWeqVwpyoCKSmpOvnu6jgQIiRb3D5ZY5/bnoKFfMM6ffN8aWUw98kUk+7UhDNL3zQyUth0o+Hfjiilx0xRwRfuBPPvoeS27QrCy/6Bkq6zJ25cLYa5y1Ug+HUtWbK0xynZcbHzDScek2kDxtF5uB3ZjPZo+8i3wqWRhabF0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A9uR8xEq; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-516db2214e6so5941046e87.1;
+        Wed, 10 Apr 2024 09:00:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712764700; x=1713369500; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=9eUNLVOtVMp8catwaJ37pBKDvYhuLcAT9RhZj/WuEfU=;
-        b=J2lnS80U5NKLeVJMnZ4zr1qJpxMfM+hX58UNPC2PFkKpwIONI8eP8k6joMPWEi9r60
-         NcR7k27Hal9xb1d1VLepx9UDXU3fDviFaIYN89d42+c2+MadrvtyLLvgKdVNQGXyLol/
-         cXj3OmXjt/mora6Qtt13ikPQL5fgdv577zJThrCh9YHASEe8+qalOb0ykbQmG4ki+Uja
-         VwjWsm+WUrJMd3z9ihtzEgo4aKzGHzJFcKUt0Q0V4Rn/P+Zi1Ei4GVyZwQHEg7K7+RVJ
-         AKV+YqfRpxUwY3WmcHhZqqJ3j/FphHEXn3Yro91iThNI7juHnhIy2L6U5+0FpztiHs9a
-         g98A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712764700; x=1713369500;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1712764839; x=1713369639; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9eUNLVOtVMp8catwaJ37pBKDvYhuLcAT9RhZj/WuEfU=;
-        b=Loey3XVwxZL2mO2TnpVhNLzB0V380OAyGnGozL2+c+dpTY/V5YZ8rYiVrg1wn37M6k
-         pl7fOz2wT8RFEmfHsV22nkxe2+BvQYRtUKsedfUnJgfEcClNLvGMi1yUhHWqg3KhpRcu
-         W34AA5LretPgMFvNLqtYnuoHw7EO0Bx4gJdC9WmJUNA1VeEv1rXg3DZgFreHzusQ/eN0
-         uK4GK4d6cpcKGhTbLSrC60ijkqtKgPYrkcm9gk2PVbHTE2qjJqTgSPg9kKN2Y6bnjEDk
-         p0FV5PZCdmeyug75TW7nTTWQMyK6N9QzPEfaiVDuPxKTK4vYnkxjUjYKXPmUTlPWzcS4
-         i+fQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXCaQfg7Bi9sPjqaOmxZDULsIPeVPB43owzFpPg+4c1dU3bogqzOK8Scrng/BCQwWJ4WYCCGZlMVsmvv6HwZCk96tY4LB6Kdq+LFg==
-X-Gm-Message-State: AOJu0YyGwhRLJrNymzMF7LRwmhg6KU2ZHSNsMriXdYEBFZEz1MEGVYAa
-	yM3Ko00dsKmCI3qXD+n6dK4qjPgAQrSJxvPLplS3nYJVL+BWtkMMbirAbRq6/wY=
-X-Google-Smtp-Source: AGHT+IHF/AUc5cXrTQWS8jrxs3ruvEhPZ6RTNh6VcxmTS9wkiXpt7b8FVXiJDlX+EA0SklE6MQ90cg==
-X-Received: by 2002:a05:600c:6a84:b0:416:29df:4938 with SMTP id jl4-20020a05600c6a8400b0041629df4938mr2403581wmb.14.1712764700528;
-        Wed, 10 Apr 2024 08:58:20 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id n3-20020a05600c4f8300b0041627ab1554sm2664464wmq.22.2024.04.10.08.58.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Apr 2024 08:58:19 -0700 (PDT)
-Message-ID: <e07b4e26-f3b6-4b7a-ad5b-b2599bab0fcf@linaro.org>
-Date: Wed, 10 Apr 2024 17:58:18 +0200
+        bh=NKWbmnv6SxDP9tlVgHINWCDu40XftNmGokOibIuXS38=;
+        b=A9uR8xEqpqz7FTOX6Ry7e5SaRe3jT4vWBqnM2EaV7QA1SElN3xwjtm6JQ4PotstoTj
+         kNzrUWswWAngF/O7KKGJsmBd2qXhFWxlJYL/9JrCily25Kq+IrDwBka/F7u/HnQYnLsH
+         yJsdscRtJbg5+iMp0gIp0sWXDtBsQwF45vKe5GrSMo3EaZrkjvVIUdkhERBdvbSSS7mT
+         sE+URFqD3j2bNRalrHb9tZgMIEjTN2V1SBtG4mJkDL6oHcocawRpaV+glkVeIlfZtPKJ
+         PqnTZZbYZcp0+j2vDPTgbmyPjkP/lgV3It0CdftnoFUFmCUfl2a2X5uwARhqwAgZ4nHH
+         0yEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712764839; x=1713369639;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=NKWbmnv6SxDP9tlVgHINWCDu40XftNmGokOibIuXS38=;
+        b=XtQAs0N9XLuEtFxD+ZxPJs7WPrzyoBFBEIkexxgg7BO4mQ1uzfyxEFxCwEMTHK/uK6
+         0KoE/a74NpapHfuKy7UHKQBUk/0mG0q1yk3AgS1ReshNlnGpuml/YPcxL1PGBzQsPoCd
+         QUyrwPS7PIQLBMiXlTnZtmrqby82Yr6DXP6ZR+lLo/RejlRUOlu8LerbTskn0OhbW5vI
+         o6N+F2VBg2IR3RMO0JYUpJ9bG+5mm+RiYChODGtjj8W1QtLimQwquxf4Q3fbGPw6qhIz
+         8X2AZsUWQhqsKW8SHGHmUwd0TAjFL5gutU1J94y/3Q1/RhQ0ElN1IIgGU4pd9wmciYTG
+         Trvg==
+X-Forwarded-Encrypted: i=1; AJvYcCXGvVzlaIkK4sbK8rdz6Q31f1t+J6w65cxeh/K9r5W4nvr59e/y/jZwV+Uj7Nu4qz09VvwNqXBwbUQd2/5igs+HzZIsBHAm2Rgm2kimbJPj1fqDIhL0iCxmBSKZoXLgUtrqukc5wiT+vCnBRXzO6ZVWS8HsE/dY6BYCC3+0bl7MFVlRTgVP
+X-Gm-Message-State: AOJu0YxvAu2e2cOQ9OStqkI/xGwUFOrNZEXaTwizNiv5iNupt6xDquSL
+	1r99T0xRoLrTUpne9noaPs8AhWPHm3LfFbJbS1r3bVUn0k9H7KSMlFMjkXi0g0Ar0KkHt03laMB
+	WSgzCBX5eSzQqA4wAu/xD3f3I2+U=
+X-Google-Smtp-Source: AGHT+IGSHnOK96vFCJZzvUgQ3k6lZ3ILiLB0lx+xPZ8yyAfCfIUY48DwUBLftgt9NPbhHq8s1QzITneytfpnGjLKsOE=
+X-Received: by 2002:ac2:59c1:0:b0:515:c190:140f with SMTP id
+ x1-20020ac259c1000000b00515c190140fmr1842452lfn.14.1712764838860; Wed, 10 Apr
+ 2024 09:00:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] dt-bindings: rtc: stmp3xxx-rtc: convert to
- dtschema
-To: Javier Carrasco <javier.carrasco.cruz@gmail.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jiaxun Yang <jiaxun.yang@flygoat.com>,
- Vladimir Zapolskiy <vz@mleia.com>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-stm32@st-md-mailman.stormreply.com
-References: <20240410-rtc_dtschema-v2-0-d32a11ab0745@gmail.com>
- <20240410-rtc_dtschema-v2-4-d32a11ab0745@gmail.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240410-rtc_dtschema-v2-4-d32a11ab0745@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240410104002.1197-1-zhi.mao@mediatek.com> <20240410104002.1197-3-zhi.mao@mediatek.com>
+In-Reply-To: <20240410104002.1197-3-zhi.mao@mediatek.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Wed, 10 Apr 2024 19:00:02 +0300
+Message-ID: <CAHp75VfF0pbrKXjWZg7sTr-T=_CbjP+deFQP-VLCGX8ooahctg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] media: i2c: Add GT97xx VCM driver
+To: Zhi Mao <zhi.mao@mediatek.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
+	Heiko Stuebner <heiko@sntech.de>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>, Hans de Goede <hdegoede@redhat.com>, 
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, Alain Volmat <alain.volmat@foss.st.com>, 
+	Paul Elder <paul.elder@ideasonboard.com>, Mehdi Djait <mehdi.djait@bootlin.com>, 
+	Bingbu Cao <bingbu.cao@intel.com>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	shengnan.wang@mediatek.com, yaya.chang@mediatek.com, yunkec@chromium.org, 
+	10572168@qq.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 10/04/2024 17:55, Javier Carrasco wrote:
-> Convert existing binding to dtschema to support validation and
-> add the undocumented compatible 'fsl,imx23-rtc'.
-> 
-> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-> ---
->  .../devicetree/bindings/rtc/fsl,stmp3xxx-rtc.yaml  | 51 ++++++++++++++++++++++
->  .../devicetree/bindings/rtc/stmp3xxx-rtc.txt       | 21 ---------
->  2 files changed, 51 insertions(+), 21 deletions(-)
-> 
+On Wed, Apr 10, 2024 at 1:40=E2=80=AFPM Zhi Mao <zhi.mao@mediatek.com> wrot=
+e:
+>
+> Add a V4L2 sub-device driver for Giantec GT97xx VCM.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+...
 
-Best regards,
-Krzysztof
+> +/*
+> + * Ring control and Power control register
+> + * Bit[1] RING_EN
+> + * 0: Direct mode
+> + * 1: AAC mode (ringing control mode)
+> + * Bit[0] PD
+> + * 0: Normal operation mode
+> + * 1: Power down mode
+> + * gt97xx requires waiting time of Topr after PD reset takes place.
+> + */
+> +#define GT97XX_RING_PD_CONTROL_REG CCI_REG8(0x02)
 
+> +#define GT97XX_PD_MODE_OFF 0x00
+
+Okay, this seems to be bitmapped, but do you really need to have this
+separate definition?
+
+> +#define GT97XX_PD_MODE_EN BIT(0)
+> +#define GT97XX_AAC_MODE_EN BIT(1)
+
+...
+
+> +#define GT97XX_TVIB_MS_BASE10 (64 - 1)
+
+Should it be (BIT(6) - 1) ?
+
+...
+
+> +#define GT97XX_AAC_MODE_DEFAULT 2
+> +#define GT97XX_AAC_TIME_DEFAULT 0x20
+
+Some are decimal, some are hexadecimal, but look to me like bitfields.
+
+...
+
+> +#define GT97XX_MAX_FOCUS_POS (1024 - 1)
+
+(BIT(10) - 1) ?
+
+...
+
+> +enum vcm_giantec_reg_desc {
+> +       GT_IC_INFO_REG,
+> +       GT_RING_PD_CONTROL_REG,
+> +       GT_MSB_ADDR_REG,
+> +       GT_AAC_PRESC_REG,
+> +       GT_AAC_TIME_REG,
+
+> +       GT_MAX_REG,
+
+No comma for the terminator.
+
+> +};
+
+...
+
+> +static u32 gt97xx_find_ot_multi(u32 aac_mode_param)
+> +{
+> +       u32 cur_ot_multi_base100 =3D 70;
+> +       unsigned int i;
+> +
+> +       for (i =3D 0; i < ARRAY_SIZE(aac_mode_ot_multi); i++) {
+> +               if (aac_mode_ot_multi[i].aac_mode_enum =3D=3D aac_mode_pa=
+ram) {
+> +                       cur_ot_multi_base100 =3D
+> +                               aac_mode_ot_multi[i].ot_multi_base100;
+> +               }
+
+No break / return here?
+
+> +       }
+> +
+> +       return cur_ot_multi_base100;
+> +}
+> +
+> +static u32 gt97xx_find_dividing_rate(u32 presc_param)
+
+Same comments as per above function.
+
+...
+
+> +static inline u32 gt97xx_cal_move_delay(u32 aac_mode_param, u32 presc_pa=
+ram,
+> +                                       u32 aac_timing_param)
+
+Why inline?
+
+...
+
+> +       return tvib_us * ot_multi_base100 / 100;
+
+HECTO ?
+
+...
+
+> +       val =3D ((unsigned char)read_val & ~mask) | (val & mask);
+
+Why casting?
+
+...
+
+> +static int gt97xx_power_on(struct device *dev)
+> +{
+> +       struct v4l2_subdev *sd =3D dev_get_drvdata(dev);
+> +       struct gt97xx *gt97xx =3D sd_to_gt97xx(sd);
+> +       int ret;
+> +
+> +       ret =3D regulator_bulk_enable(ARRAY_SIZE(gt97xx_supply_names),
+> +                                   gt97xx->supplies);
+> +       if (ret < 0) {
+> +               dev_err(dev, "failed to enable regulators\n");
+
+> +               return ret;
+
+Dup.
+
+> +       }
+> +
+> +       return ret;
+> +}
+> +
+> +static int gt97xx_power_off(struct device *dev)
+> +{
+> +       struct v4l2_subdev *sd =3D dev_get_drvdata(dev);
+> +       struct gt97xx *gt97xx =3D sd_to_gt97xx(sd);
+> +       int ret;
+> +
+> +       ret =3D regulator_bulk_disable(ARRAY_SIZE(gt97xx_supply_names),
+> +                                    gt97xx->supplies);
+> +       if (ret < 0) {
+> +               dev_err(dev, "failed to disable regulators\n");
+
+> +               return ret;
+
+Ditto.
+
+> +       }
+> +
+> +       return ret;
+> +}
+
+...
+
+> +static int gt97xx_open(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh=
+)
+> +{
+> +       return pm_runtime_resume_and_get(sd->dev);
+> +}
+> +
+> +static int gt97xx_close(struct v4l2_subdev *sd, struct v4l2_subdev_fh *f=
+h)
+> +{
+> +       return pm_runtime_put(sd->dev);
+> +}
+
+Hmm... Shouldn't v4l2 take care about these (PM calls)?
+
+...
+
+> +       gt97xx->chip =3D of_device_get_match_data(dev);
+
+device_get_match_data()
+
+...
+
+> +       fwnode_property_read_u32(dev_fwnode(dev), "giantec,aac-mode",
+> +                                &gt97xx->aac_mode);
+
+No, use device_property_read_u32() directly.
+
+...
+
+> +       fwnode_property_read_u32(dev_fwnode(dev), "giantec,clock-presc",
+> +                                &gt97xx->clock_presc);
+
+Ditto.
+
+...
+
+> +       fwnode_property_read_u32(dev_fwnode(dev), "giantec,aac-timing",
+> +                                &gt97xx->aac_timing);
+
+Ditto.
+
+...
+
+> +       /*power on and Initialize hw*/
+
+Missing spaces (and capitalisation?).
+
+...
+
+> +       ret =3D gt97xx_runtime_resume(dev);
+> +       if (ret < 0) {
+> +               dev_err(dev, "failed to power on: %d\n", ret);
+
+Use dev_err_probe() to match the style of the messages.
+
+> +               goto err_clean_entity;
+> +       }
+
+...
+
+> +       ret =3D v4l2_async_register_subdev(&gt97xx->sd);
+> +       if (ret < 0) {
+> +               dev_err(dev, "failed to register V4L2 subdev: %d", ret);
+
+Ditto.
+
+> +               goto err_power_off;
+> +       }
+
+--
+With Best Regards,
+Andy Shevchenko
 
