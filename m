@@ -1,105 +1,128 @@
-Return-Path: <devicetree+bounces-57746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDB7989EA83
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 08:14:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9C8489EA8F
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 08:15:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5E7731F24975
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 06:14:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59DE01F249BC
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 06:15:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C72C727453;
-	Wed, 10 Apr 2024 06:13:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4334B26291;
+	Wed, 10 Apr 2024 06:15:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="k0v2iylN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oO4MybI3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 250DE20DDB;
-	Wed, 10 Apr 2024 06:13:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.50.62.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FCF520DDB;
+	Wed, 10 Apr 2024 06:15:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712729636; cv=none; b=PfSDTUX/nApAjMU3bLnx3gnuYdTOrGSoKZaF8o9CW1Q0UP5iApZiKifA64QTj+UOW+gNKLlpKrkQ3zLlVXEpYi3hYvLjHpIP+5AXWf7N5IbDfumb5Z8fYibnfOr00XEjp1MWWPqTQQnJmq+d03LozoLjqJnYy7wxvVI1O7W1FY4=
+	t=1712729706; cv=none; b=glXJm9rxwZzCmKLBVldr5F6s3hlOcm0z9U3HbRdYK6VTlmGPmL3G614AVBw8+b+BDVTuCVrfipeg0fZsoPtXPfVTCF14A6dZzhVqUzlRdkIIUOYICqoAUZz3I/6rgj7XlEA3t/S2B3+D4lgBVJ8fYZvLivppWwmYgL8+WHeMMOc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712729636; c=relaxed/simple;
-	bh=w8BQn8R5ezAr2HjT1k+QNveNzTEVZOOD0xc+VGKZ60s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RMs24mQxkIye+WU1ggFFjSpXXpC4+FvjCPYb6gjMzsylcKnGllxQEkO7O7JhpfJjE2PuVECv9M9/ui4JKPxvwl2iCpYuu1D7cGjcIwDfAvXL83R4rtTxPDamR2JXvTaNCWHCbhictrJJeIss8GELr4oe02drtCTDrxqRiAlb4oM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com; spf=fail smtp.mailfrom=atomide.com; dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b=k0v2iylN; arc=none smtp.client-ip=74.50.62.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=atomide.com
-Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
-	by mail5.25mail.st (Postfix) with ESMTPSA id 3F96660406;
-	Wed, 10 Apr 2024 06:13:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
-	s=25mailst; t=1712729634;
-	bh=w8BQn8R5ezAr2HjT1k+QNveNzTEVZOOD0xc+VGKZ60s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=k0v2iylN7QMgoGhyo65weD98r3bd1g2P2iXuzB74aERgFSs0+Ky51w1cPqKXmxdqA
-	 yqcejT3KUdogfneWjW4LIC7fC3WnorzM/kpOyhiS2Ri+SXskJF/dcsjEvxSw+tV3Bh
-	 IM9gjZ5BZPy33O8XSllCPKTGe0p0F8Qd9OD1LOxhBZz53ijxBToFfoTQNJ9Uytevyz
-	 DKZc52PyR45qLVekpv9UNR8YHh472/XHxLH3ujkNRO7H6yI5vjk93L7j6mqd8LL+LN
-	 tF7U/C9Scsk/Ig+oLaxMg5wYDYXDexKZFtWN3MyS8MQ+sh6IKbuZVnDd1ZlP8V8qNo
-	 DoXolcRXNEu5A==
-Date: Wed, 10 Apr 2024 09:13:27 +0300
-From: Tony Lindgren <tony@atomide.com>
-To: Nishanth Menon <nm@ti.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	=?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, linux-omap@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: (subset) [PATCH 1/2] arm64: dts: ti: k3-am62p5-sk: minor
- whitespace cleanup
-Message-ID: <20240410061327.GB5156@atomide.com>
-References: <20240208105146.128645-1-krzysztof.kozlowski@linaro.org>
- <171269138685.642844.11136653326464585397.b4-ty@ti.com>
- <63fc911e-8906-43d0-a4bf-80ceac83d178@linaro.org>
- <20240410003952.wnxayyiyqxkgj7we@supplier>
+	s=arc-20240116; t=1712729706; c=relaxed/simple;
+	bh=tTAftMVMvBA8yzjiiDq4ZAl9e9obVzYJO2XCJ0Tz5Ro=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DcapOfEYd/vN5LPNEmvNF9oSYQxqYb1ogHs/TOHCAaYyknzUiN31yHyBoP+VfbsU+7dnO5UWbDdhwYQfJv9qhcSAtVzbjENGWdm5pssZn8c9rO4H+f7PrgPy5ue4yjRRLHDx6mfVl9WhE2XnmDA8vUAkcqTt3JfQnfjKFD06h8s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oO4MybI3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9C1DC433F1;
+	Wed, 10 Apr 2024 06:15:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712729705;
+	bh=tTAftMVMvBA8yzjiiDq4ZAl9e9obVzYJO2XCJ0Tz5Ro=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=oO4MybI3nRypXQ84W3QrqSPHa/ATSg4G1c40Go8Ub7rffrDDphO2GrgYs9OsCHSe0
+	 ZutJTeoSMq1l35YilkbVijUn/C2zesLjKvnT4AiSGebr9LofouRXjowjPjAOgO9onf
+	 PP44U+mTBRzuIY2iRIU/LP8+9PUMbYIa5dDDeQ0g6rnm1CD38TNbCojyI30azvb/S5
+	 ir8XFm+YTZ/sGil20hD87ilLUhAQV227INXYYcySzR+FB7HWMAlspr0ETHaUapWxgM
+	 VnLoC739VJxeurIdGQcj2ZenQiQH25ZxtxUDf4ldQnXdNSwbx/410dHHerDkhXfsYR
+	 cSnTqrZvIL3WA==
+Message-ID: <868bb545-4b87-4437-bfce-18c43f431b51@kernel.org>
+Date: Wed, 10 Apr 2024 08:14:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240410003952.wnxayyiyqxkgj7we@supplier>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: qcom,pmic-gpio: Allow
+ gpio-hog nodes
+To: Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240409-qcom-pmic-gpio-hog-v2-0-5ff812d2baed@z3ntu.xyz>
+ <20240409-qcom-pmic-gpio-hog-v2-1-5ff812d2baed@z3ntu.xyz>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240409-qcom-pmic-gpio-hog-v2-1-5ff812d2baed@z3ntu.xyz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-* Nishanth Menon <nm@ti.com> [240410 00:39]:
-> On 22:04-20240409, Krzysztof Kozlowski wrote:
-> > On 09/04/2024 21:36, Nishanth Menon wrote:
-> > > Hi Krzysztof Kozlowski,
-> > > 
-> > > On Thu, 08 Feb 2024 11:51:45 +0100, Krzysztof Kozlowski wrote:
-> > >> The DTS code coding style expects exactly one space before '{'
-> > >> character.
-> > >>
-> > >>
-> > > As discussed offline, I am picking this patch up.
-> > > 
-> > > I have applied the following to branch ti-k3-dts-next on [1].
-> > > Thank you!
-> > > 
-> > > [1/2] arm64: dts: ti: k3-am62p5-sk: minor whitespace cleanup
-> > >       commit: 45ab8daed512258c07fd14536a3633440dabfe84
-> > 
-> > What about the omap one (second in the series)? Shall I take it?
+On 09/04/2024 20:36, Luca Weiss wrote:
+> Allow specifying a GPIO hog, as already used on
+> qcom-msm8974-lge-nexus5-hammerhead.dts.
 > 
-> I had poked Tony about it (he is the maintainer for OMAP). Tony: could
-> you comment?
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> ---
+>  .../devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml          | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 
-Krzysztof, please go ahead apply it, it's not confilicting with anything
-I have. I just acked the patch.
 
-Regards,
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-Tony
+Best regards,
+Krzysztof
+
 
