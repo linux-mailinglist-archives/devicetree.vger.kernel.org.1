@@ -1,135 +1,137 @@
-Return-Path: <devicetree+bounces-57807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAF1389EE18
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 10:57:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D367D89EE46
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 11:13:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 692031F226AE
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 08:57:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 64B89284FF7
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 09:13:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B116B154C0C;
-	Wed, 10 Apr 2024 08:57:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BDB015ADA1;
+	Wed, 10 Apr 2024 09:11:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="FdZ1AB63"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E230C1494D6
-	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 08:57:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2579C156976
+	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 09:11:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712739431; cv=none; b=HZZoH/2GspS+M9t+vZtYiVaWDeyJFtsEtIGA8XiX/SkPs9UZmKPhBOwIZZVHdWp35CpYxKiml9ojiqP5KjxnSyw1ahj6m552zB69hMjkHibP4vDYZTXFNHjFZt4VfpGNgK6MedkW/KwBSczrzs8h17zvm3p5NpHaVEPNHI5Rnnk=
+	t=1712740274; cv=none; b=qONrHOZGyU/z8TQFTEnDciQcUP5+1pHy1IpDgzbVCcKk2qRkG2uBj9OkyPjQbP5OlrviHx6XzaMhFKQ7NoQC9u/aMP3D6y9Ax0EUSn+8Lddk9VX1daPC/8uydHpZgQ+sB4iIg8ybOLWOE1+tZ+OZpQfOLeopmt2CqvY+iS+9T6I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712739431; c=relaxed/simple;
-	bh=Q1AqR+G96BIjuAm54HH3yhLhu9vaKzbndYjKoX1vp4U=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=BznQ8xeJPtwm+68cH9/Ol55D8+bt/nOSqSx9V6fR4wgtIWriJBr9BkmcN6X94grn36XMFq3SFi2+p1LqkH8uxx9oEg/kflbA7+PT4EJCcfLxRs31Shlm2EXgmM6zUDfDxRmMxvErYbH6sSD5DW1jb4d2PmIGnYmD3LvW+DNbY3o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1ruTlJ-0005R5-Qm; Wed, 10 Apr 2024 10:56:57 +0200
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1ruTlI-00BSie-TL; Wed, 10 Apr 2024 10:56:56 +0200
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1ruTlI-00050O-2l;
-	Wed, 10 Apr 2024 10:56:56 +0200
-Message-ID: <b9ee67f1a6d782e6b6ee9e273bc8c6fa5bc1813b.camel@pengutronix.de>
-Subject: Re: [RFC PATCH v2 1/5] clk: meson: axg: move reset controller's
- code to separate module
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor@kernel.org>
-Cc: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Jerome Brunet
- <jbrunet@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>, Michael
- Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>,  Kevin Hilman <khilman@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>, 
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org
-Date: Wed, 10 Apr 2024 10:56:56 +0200
-In-Reply-To: <dde59dd2ef4da81528e31f65844e0b3f.sboyd@kernel.org>
-References: <20240328010831.884487-1-jan.dakinevich@salutedevices.com>
-	 <20240328010831.884487-2-jan.dakinevich@salutedevices.com>
-	 <1j7chfiz8e.fsf@starbuckisacylon.baylibre.com>
-	 <e3a85852b911fdf16dd9ae158f42b3ef.sboyd@kernel.org>
-	 <f01cdd910ab35316b8012795f73fd2b34c8e6f8e.camel@pengutronix.de>
-	 <13617b7a892424d2b024c725505a6f4f.sboyd@kernel.org>
-	 <20240408-numerator-escargot-a642507a598e@spud>
-	 <20240409-shallow-voice-c84ed791bc7d@spud>
-	 <dde59dd2ef4da81528e31f65844e0b3f.sboyd@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1712740274; c=relaxed/simple;
+	bh=02wvApY4YND9L077VdDD/SvGSk0u3FcO0EiGYiuzYnU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=OAqF6YI3umS4QyXP+PBkOTS0zFTVhILq4Ytt+LWiHZMpljfCjcoqp9nKseUNuj/SzcbREv2pFmHrNeuHylwYPM5vHpFG/8Zw/OBswkJwdSZ8DEnm2fEouSKcsp9qVv3OPBgUEHHDkX8o/hKo5UfcLhaA2EoOfdfHEK6X7yy16yw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=FdZ1AB63; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-343d32aba7eso1127842f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 02:11:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1712740270; x=1713345070; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9SSkPjIJRaiY6nqvP2nXREr1dqNKWljAWGAyK7z7Oro=;
+        b=FdZ1AB63nr0YKyaVj2pv8TgPftr2h7prARsnXTmUCy9rF6XEob0XnX7FZCb688LVIC
+         fvEJXwZMebpTUfXJIKfCbveRhUHfxPfHVKA+9ytZ5gTKUcOfR6/quQSpeaYGu8MlioRi
+         BwcZFc2B73oV7o8HReulOeM8O7MrgxXZNGxyCof8h02COqdPpv25pWYCuiTj+MBfPQzN
+         WTj4zx1M+NypiM7ediOCQuqAqwJRdVuND40SMibdePC7CzuMjRz0WPyj0s64mBZB9vbb
+         pwz2jjs1jeLiylmdAqMUuERRuefaSNn6m2wfhBsYSwrhcBEhJ/2y+uENsAWPD3FckMu7
+         tFdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712740270; x=1713345070;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9SSkPjIJRaiY6nqvP2nXREr1dqNKWljAWGAyK7z7Oro=;
+        b=jdbdLBJLVifeIhv5XT5gDH6X4eFfU6orjDjErRhbcxx5tWWKuVCCz42NdSSL1f56Iw
+         z8PHN4eb1a2HOI+87RSipF7Dg8NaVsktnppXvnJ3pG4+3Mc4AatlQmXJWff0JV2sELPW
+         iwZ76X14yZJ0aWGfGKKgBEAXYlJ2wrJGRJ5jl75BlT+wp9KozZ7+0XTiX0ZnPMNzsr+Q
+         4p3QPhnpDILrYxleoLjldRg5Mf2jmfL3rPZ8RiQTxyn3lIWNXSibXjnEtagMblU+okas
+         P0Zh4aBCZarBlnyXWkVvvgGPpaQaKIRu8X2FfOWt0R73Vb9VZ3OqfN9bLAnZQbeKWxlG
+         iQkg==
+X-Forwarded-Encrypted: i=1; AJvYcCU8Tq+TbTyXDuUngumeVqi4RzlDUrWsyFgaQHJtghS9Uh/Eb1tADTDaPS1HeF+6D2Wp0fYiHkCWksbVv3Adkne0G04wgLPks+5h/Q==
+X-Gm-Message-State: AOJu0YxuMvVgz2wHUmcPdcJ9gXbCIJBTvasXbRZyuzmejPhKhwb+9kNS
+	RllGr+b+WqRU+KBRgPaFd5jwAjAm/L1CEQkx2SSRxeeLtlzzd27ExH4LRzrrg+0=
+X-Google-Smtp-Source: AGHT+IGq6GULyAjPCGB9cLzSRwOlrzNIJikNMv8sgGSqEmo6q9aRp4LbhqVra1QQcW7xHav631ZdHA==
+X-Received: by 2002:a5d:4a52:0:b0:346:500f:9297 with SMTP id v18-20020a5d4a52000000b00346500f9297mr1449075wrs.2.1712740270397;
+        Wed, 10 Apr 2024 02:11:10 -0700 (PDT)
+Received: from carbon-x1.. ([2a01:e0a:999:a3a0:d4a6:5856:3e6c:3dff])
+        by smtp.gmail.com with ESMTPSA id d6-20020a056000114600b003456c693fa4sm9079086wrx.93.2024.04.10.02.11.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Apr 2024 02:11:09 -0700 (PDT)
+From: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>
+To: Jonathan Corbet <corbet@lwn.net>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Anup Patel <anup@brainfault.org>,
+	Shuah Khan <shuah@kernel.org>
+Cc: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>,
+	Atish Patra <atishp@atishpatra.org>,
+	linux-doc@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	kvm@vger.kernel.org,
+	kvm-riscv@lists.infradead.org,
+	linux-kselftest@vger.kernel.org
+Subject: [PATCH 00/10] Add support for a few Zc* extensions as well as Zcmop
+Date: Wed, 10 Apr 2024 11:10:53 +0200
+Message-ID: <20240410091106.749233-1-cleger@rivosinc.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Di, 2024-04-09 at 19:27 -0700, Stephen Boyd wrote:
-> Quoting Conor Dooley (2024-04-09 05:05:37)
-> > On Mon, Apr 08, 2024 at 06:05:51PM +0100, Conor Dooley wrote:
-> >=20
-> > > > > Seconded, the clk-mpfs/reset-mpfs and clk-starfive-jh7110-sys/res=
-et-
-> > > > > starfive-jh7110 drivers are examples of this.
-> > > > >=20
-> > > > > > The auxiliary device creation function can also be in the
-> > > > > > drivers/reset/ directory so that the clk driver calls some func=
-tion
-> > > > > > to create and register the device.
-> > > > >=20
-> > > > > I'm undecided about this, do you think mpfs_reset_controller_regi=
-ster()
-> > > > > and jh7110_reset_controller_register() should rather live with th=
-e
-> > > > > reset aux drivers in drivers/reset/ ?
-> > > >=20
-> > > > Yes, and also mpfs_reset_read() and friends. We should pass the bas=
-e
-> > > > iomem pointer and parent device to mpfs_reset_adev_alloc() instead =
-and
-> > > > then move all that code into drivers/reset with some header file
-> > > > exported function to call. That way the clk driver hands over the d=
-ata
-> > > > without having to implement half the implementation.
-> > >=20
-> > > I'll todo list that :)
-> >=20
-> > Something like the below?
-> >=20
-> > -- >8 --
-> > From a12f281d2cb869bcd9a6ffc45d0c6a0d3aa2e9e2 Mon Sep 17 00:00:00 2001
-> > From: Conor Dooley <conor.dooley@microchip.com>
-> > Date: Tue, 9 Apr 2024 11:54:34 +0100
-> > Subject: [PATCH] clock, reset: microchip: move all mpfs reset code to t=
-he
-> >  reset subsystem
-> >=20
-> > <insert something here>
-> >=20
-> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
->=20
-> Looks pretty good.
+Add support for (yet again) more RVA23U64 missing extensions. Add
+support for Zcmop, Zca, Zcf, Zcd and Zcb extensions isa string parsing,
+hwprobe and kvm support. Zce, Zcmt and Zcmp extensions have been left
+out since they target microcontrollers/embedded CPUs and are not needed
+by RVA23U64
 
-Yes, that does look convincing.
+This series is based on the Zimop one [1].
 
-regards
-Philipp
+Link: https://lore.kernel.org/linux-riscv/20240404103254.1752834-1-cleger@rivosinc.com/ [1]
+
+Clément Léger (10):
+  dt-bindings: riscv: add Zca, Zcf, Zcd and Zcb ISA extension
+    description
+  riscv: add ISA parsing for Zca, Zcf, Zcd and Zcb
+  riscv: hwprobe: export Zca, Zcf, Zcd and Zcb ISA extensions
+  RISC-V: KVM: Allow Zca, Zcf, Zcd and Zcb extensions for Guest/VM
+  KVM: riscv: selftests: Add some Zc* extensions to get-reg-list test
+  dt-bindings: riscv: add Zcmop ISA extension description
+  riscv: add ISA extension parsing for Zcmop
+  riscv: hwprobe: export Zcmop ISA extension
+  RISC-V: KVM: Allow Zcmop extension for Guest/VM
+  KVM: riscv: selftests: Add Zcmop extension to get-reg-list test
+
+ Documentation/arch/riscv/hwprobe.rst          | 24 ++++++++++++
+ .../devicetree/bindings/riscv/extensions.yaml | 37 +++++++++++++++++++
+ arch/riscv/include/asm/hwcap.h                |  5 +++
+ arch/riscv/include/uapi/asm/hwprobe.h         |  5 +++
+ arch/riscv/include/uapi/asm/kvm.h             |  5 +++
+ arch/riscv/kernel/cpufeature.c                |  5 +++
+ arch/riscv/kernel/sys_hwprobe.c               |  5 +++
+ arch/riscv/kvm/vcpu_onereg.c                  | 10 +++++
+ .../selftests/kvm/riscv/get-reg-list.c        | 20 ++++++++++
+ 9 files changed, 116 insertions(+)
+
+-- 
+2.43.0
+
 
