@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-57793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57794-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CEC289ED7C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 10:24:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0469789ED7F
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 10:24:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 52BC9B21377
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 08:24:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 263AD1C20AE9
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 08:24:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7CD813D292;
-	Wed, 10 Apr 2024 08:24:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D6B813D292;
+	Wed, 10 Apr 2024 08:24:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZI01CTZq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Bz4z88D1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC6B2107B6
-	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 08:24:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A97DF13D267
+	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 08:24:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712737442; cv=none; b=Icet9HkIjwJ8/eLSJ3vH29PwDPriK5MteljA+poaDaEkHVwInmiBSn5ypBniVf52j8zOblVV1+5K7wDMc9+brGXESIRZrCCPDEOMefG84DThDJ7YW2afA8ASJsgGHJ+N3oKEAbGwiYfKwW7vyEOCAkW+H5BXV2wGDbofCBog5bY=
+	t=1712737455; cv=none; b=bchKZI6wZWMcZhUUDpICqcq+fceZUPfL4n2MPZ+P9XF1Mi/vgOwZxll5B8dumHZgiJbxhsOlEy4HyCoSOetCASzkIi53zQ21gaqikY+NxoH0r5nFvpnCWPz0cDoGl45ax0HWVZAmC1v1E7GhPa3bHZPIuzKinbvJuCE/b/dwRe4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712737442; c=relaxed/simple;
-	bh=EumlmUbgVFLKPplSSWjhel8lBwR32Ofh4EADYY/Z9C8=;
+	s=arc-20240116; t=1712737455; c=relaxed/simple;
+	bh=QZJ4A/EixpFW4L6UFzffUAX2kcgLP6E7AW8tr5vkcO0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nH37wi9lxUVPvPZtY9f5oGaPvn5rtP8N+3Vc2uz9g7IfxJ7Dij/GVDb67v+LUrMLxbn3fOwbKLTDsJUTPVeZNcuPkJAX6hlBQp2m8LMDsdqJjheLcbDQ9DqVikon/fpe90vBH8yOEvWRBgMVU/+RPcoxXMd7JAshGzxIK219jHA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZI01CTZq; arc=none smtp.client-ip=209.85.208.43
+	 In-Reply-To:Content-Type; b=K4f4SF+KiH0qTEAE83LI2S/gUokRwGBsKXVsQheiPw8Oc48TIuWPPsx3+QnUbbvtUvkS8cIk6dwjMRJSVJt5N5XxcthZekkh0HS3g/83RBejyLftRGPQe8JpypwQ+DqQ9KI0L0WVgypGivNQQ5ZUg8p2Wy95FpPpAoVBw1DgjCQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Bz4z88D1; arc=none smtp.client-ip=209.85.167.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-56845954ffeso8623384a12.2
-        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 01:24:00 -0700 (PDT)
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-516d487659bso6745755e87.2
+        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 01:24:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712737439; x=1713342239; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712737452; x=1713342252; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=CPSUZMqL/jT5W4hOiwjVwrvJ0udkLHPK4L0NohI+tMw=;
-        b=ZI01CTZqLIBLtxuass1ktDmdIPl3sNYRw1cKbiIdJBQuovU0xtmYXL4QKLgQsFXBZh
-         0ZKbTcTdPyppGbmY3hqe6y39KAK+Z43AtM8mFr7h/o//+0SC28PASruSsu8zvgLBrr/y
-         irLyPGYd/xaLNl+Xph/TtfMyUqn6vMZ99hNRU3vhjyWUpW/yLvBaj3PbAg/jbDBy3fud
-         dXgLC0hYfhftbK29ZQRP3B3ZJil/qdyZmaOxL0BTz3L5skFx8yF1srOziH2pOVRj9cd6
-         BBqLasONj1MXCAlR2KoZAPkQ/SrzAiSaZ+EfQPsbJLNJbp9zNRsr4PRtUMl4n6O5u8bk
-         DZKg==
+        bh=osmNZYYHYaoEiq+e67YvU3I3gUGFZgWJO10fvS2C8yE=;
+        b=Bz4z88D1I/ExagKq43DVhb7k+94mn+dBuomETJiPL+zkLnKNkU4Pr+5jw7BoHuhN9S
+         pX8lhT+i8itpwNNIVKcT7f+sFovN+EIgJoNlbfZlqErhMEInFki6LPCx3lQm/0fDfIdj
+         T+oCX9S9SHuCM8c21raJREjOL9UI/nugyxgyCDh4DQ3SVqOn9B8ettdSSKtvd+zXjQxU
+         x2Hp3jr4MUtqviU+EfsnHGdH2skm0LUvOsHfcj7wXRigbIuInIy831VR9FD2smj8LJmo
+         SJdqGSVQjs6m2Dt1tjZ19G/9P8woFXC4yXXynglB2h7qzmzZNGT3oSpZnfQ4PVF8cWrW
+         6WHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712737439; x=1713342239;
+        d=1e100.net; s=20230601; t=1712737452; x=1713342252;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=CPSUZMqL/jT5W4hOiwjVwrvJ0udkLHPK4L0NohI+tMw=;
-        b=wLxGu5pQiT9fvllRN+8S6chlMGlFicripKq1aGhBpJduukTZLAqxh3nHokyi9Bl4p7
-         vpSmhcE4pDxf0q6pXsvgcjzIuA7Fy2NqA4PFDqjXQCJn1GsJV5r1d4Bl+yxfIAgTqavm
-         LOhptpuOOYA56epXXMJQ1jvJtoY04eNDB/dHuQcwC4r14X+EPFsxxhKAsXRAWBK75lA7
-         ag1zBFwiB5NAljZoMygfP3nObfxt5C3tQFHyi23oZmcyy0EGFh5vpbWlORWifPxSyGvA
-         ZbyA/XK/ghe+Yqui+XDD0zmm6rRADjLezB7TQs9ZEGlCxjD0Clx79QDuTLv7AUOxltO7
-         wn0w==
-X-Forwarded-Encrypted: i=1; AJvYcCVZjHfmcfoHEZZAdS3nzz5KZ9ko7+ySSmJUDPkofw6Ns7GprzP1sXvdYQGt9iagRPwy4g4zDlDuPJl+gPlVDi7ZFIwFP3JtcuV35Q==
-X-Gm-Message-State: AOJu0YyHLKizcgiK6XGHb0GBN609DyHfQuU62C0ry7WacktU8qQS6iKJ
-	QYl1sNNGCdZcd3ucj07C+EkWLbr/GFQ8xAMTAifKtSGvYIfiz0CZhkBHzA6Sg5Y=
-X-Google-Smtp-Source: AGHT+IFOamaMSYLoDQQl5mlTN4q2s30Ws1UmUdmwsgjPzCGoJ4TbEjA+VFoB1mirsY5I4CeSWVMOAg==
-X-Received: by 2002:a50:a415:0:b0:56e:cde:8983 with SMTP id u21-20020a50a415000000b0056e0cde8983mr1258494edb.7.1712737439097;
-        Wed, 10 Apr 2024 01:23:59 -0700 (PDT)
+        bh=osmNZYYHYaoEiq+e67YvU3I3gUGFZgWJO10fvS2C8yE=;
+        b=AgnVIlGOjaTkJt4ET0jwIx6UxPB/afsaLzQZ6el6nM0WvRXRH82NexY2R72GpR+WsZ
+         Fnbro1EChnKgqVke4l6a5folyKhxc+QQ4+liiJtIofJtcC8Q/VSj15p3CpfoyTQ7e+AR
+         Yx3fvmHiRRL9sUENZU1uQn9P7KfFwEoDHNjog7WyxlANhSBXw1qNp9kXAfKCcM9vuARc
+         asIJx53cGEX5GFtvMIkLjB4NaazSxjssxisjpNf05EsPNBduNdLv/p6E9pEEBUGl2VGG
+         vGvv22ULz0lzjIVcrSQdvS0xvk7diBMgxCnyjLGzXxk+G4LsVTJjMAOwoWHlBmom9I7Z
+         tvIA==
+X-Forwarded-Encrypted: i=1; AJvYcCWYo1E2EOOoptnQaLwbFLhGjWRiDGlRRMU50zQbb3JjieNfArdLdU6We6xI+jrtclGjt80FG0ez6aMpiWBmsUtt1yFQXQSuM8dbqw==
+X-Gm-Message-State: AOJu0Yy4vTAWT04JkfIiZ9rYyDnbqBTDVf+pcgTJKOJ/FBKH0bgjtDAH
+	hf8Nh0+6nIEmCXGEQYrHsT98rRITqs3cGQgc0n9vJlzhCSZ5QkVVunt3DHZplJ4=
+X-Google-Smtp-Source: AGHT+IF2OCwswt1+i9KeBPeDbtBitGS5VonfN56UIgmfBsfMaitIK3KbAGQPkkbcAY5c4anGR4DiCQ==
+X-Received: by 2002:a05:6512:2824:b0:516:b07b:47b2 with SMTP id cf36-20020a056512282400b00516b07b47b2mr1422553lfb.44.1712737451821;
+        Wed, 10 Apr 2024 01:24:11 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id 12-20020a0564021f4c00b0056e62c8e3bcsm3232347edz.54.2024.04.10.01.23.57
+        by smtp.gmail.com with ESMTPSA id el1-20020a170907284100b00a51ce6730b5sm4221466ejc.84.2024.04.10.01.24.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Apr 2024 01:23:58 -0700 (PDT)
-Message-ID: <0eed83f0-5f5e-41b3-a66c-f46845ddc3a3@linaro.org>
-Date: Wed, 10 Apr 2024 10:23:56 +0200
+        Wed, 10 Apr 2024 01:24:11 -0700 (PDT)
+Message-ID: <9731687d-b239-469b-b014-dfa5d58a0ab3@linaro.org>
+Date: Wed, 10 Apr 2024 10:24:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,8 +77,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/4] dt-bindings: display: panel: Add compatible for
- BOE nv110wum-l60
+Subject: Re: [PATCH v1 3/4] dt-bindings: display: panel: Add compatible for
+ IVO t109nw41
 To: Cong Yang <yangcong5@huaqin.corp-partner.google.com>, sam@ravnborg.org,
  neil.armstrong@linaro.org, daniel@ffwll.ch, dianders@chromium.org,
  airlied@gmail.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -86,7 +86,7 @@ To: Cong Yang <yangcong5@huaqin.corp-partner.google.com>, sam@ravnborg.org,
 Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 References: <20240410071439.2152588-1-yangcong5@huaqin.corp-partner.google.com>
- <20240410071439.2152588-2-yangcong5@huaqin.corp-partner.google.com>
+ <20240410071439.2152588-4-yangcong5@huaqin.corp-partner.google.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -133,14 +133,14 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240410071439.2152588-2-yangcong5@huaqin.corp-partner.google.com>
+In-Reply-To: <20240410071439.2152588-4-yangcong5@huaqin.corp-partner.google.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 10/04/2024 09:14, Cong Yang wrote:
-> The BOE nv110wum-l60 is a 11.0" WUXGA TFT LCD panel, which fits in nicely
-> with the existing panel-boe-tv101wum-nl6 driver. Hence, we add a new
-> compatible with panel specific config.
+> The IVO t109nw41 is a 11.0" WUXGA TFT LCD panel, which fits in nicely with
+> the existing panel-boe-tv101wum-nl6 driver. Hence, we add a new compatible
+> with panel specific config.
 > 
 > Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
 > ---
@@ -148,17 +148,18 @@ On 10/04/2024 09:14, Cong Yang wrote:
 >  1 file changed, 2 insertions(+)
 > 
 > diff --git a/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml b/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml
-> index 906ef62709b8..50351dd3d6e5 100644
+> index 50351dd3d6e5..f15588a2641c 100644
 > --- a/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml
 > +++ b/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml
-> @@ -36,6 +36,8 @@ properties:
->        - starry,himax83102-j02
->          # STARRY ili9882t 10.51" WUXGA TFT LCD panel
+> @@ -38,6 +38,8 @@ properties:
 >        - starry,ili9882t
-> +        # Boe nv110wum-l60 11.0" WUXGA TFT LCD panel
-> +      - boe,nv110wum-l60
+>          # Boe nv110wum-l60 11.0" WUXGA TFT LCD panel
+>        - boe,nv110wum-l60
+> +        # Ivo t109nw41 11.0" WUXGA TFT LCD panel
+> +      - ivo,t109nw41
+>  
 
-Isn't the list ordered?
+Same problem...
 
 Best regards,
 Krzysztof
