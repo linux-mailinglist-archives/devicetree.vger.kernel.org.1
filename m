@@ -1,215 +1,113 @@
-Return-Path: <devicetree+bounces-57891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D39F89F23E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 14:29:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F45089F24C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 14:31:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC6591F214E5
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 12:29:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6DF811C22055
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 12:31:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDD0F15FA60;
-	Wed, 10 Apr 2024 12:27:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C576129E6E;
+	Wed, 10 Apr 2024 12:31:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Og8ORC8D"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="k2nAbddA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1F9315F3FC
-	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 12:27:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C51C38DC9
+	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 12:31:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712752048; cv=none; b=aNR57szV0sSU/sBIP7rlosXrqssHZAcHZkr2jHKiILN6IATdkrn6TesieSblgfHjZoSlchC2fNuyX7g/YwhrCmzFLMzd1t2O8H5RK+Wzc+9hruwephmpxAw5IK3eW2heYQb99MFmfMDnocDQFxAJN0WI1BVCkloKRc51xdiARlw=
+	t=1712752314; cv=none; b=TphjwIy8ILLjaNk8wW0eEGjKE6rDQ+cc7KWckUryOCPBenjNefnitk++uYpPigAFAt0ltuDfNbgDJ2IrW6PR1aJIbsyju5hz6Xkyz0mN5i1sE/CoegeKXLVTvZIK5LTWJ1mxN6+Q8d5Tl+mDtPsC3igSJmmybtOjKYugmvb4Lxs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712752048; c=relaxed/simple;
-	bh=86Zihs4RD1hn6SrBjcfMhYZUXFU5WO3C6czkJe0WKBI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=LXmCjEY02Bg+bAuQQLOS6KK+mFIMpH9UC1aChbnMZytEzf0WweQAobdnZWpMO/QEvl+MC60q0fgZsxKevaCNQz6gtOEZWqfVks4x4kYC82liZmehSppdjnVPl32jnvObAz5PVhBrfj76DX8TZUb/9KCmdrvQLVzBQ3e+1AQJooc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=Og8ORC8D; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-416b5f6813cso15155145e9.0
-        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 05:27:26 -0700 (PDT)
+	s=arc-20240116; t=1712752314; c=relaxed/simple;
+	bh=zZX4qRuSQT4Ixzjk9d+eFBFt6tNhfr6P6XBUzfTBakI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=E1/o5dx4LrM47wG3gPhUj01MshHf2579TlWfVXY16vDG6K36QxrI1s0f3nENmuNeDYqV5noDCx7mW0SNZNWGFIQtp0AlLbh86UqrKivE24SYeib9ANAmWBICnxpFT+VepgtuvWPX1DTgzLlb1rRfl2ht7RAPhbEa2DiSkGpeN2w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=k2nAbddA; arc=none smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-516d68d7a8bso4624799e87.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 05:31:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1712752045; x=1713356845; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=m3u5zjVGbS3GaFiOQIAkLCz3dMJ6JpJB8ancu8bBNik=;
-        b=Og8ORC8D138kesg0fVepRqkgRqRlWqkGijZKAa0SIfY90DejVv+e/aPXi6G78Sk7qZ
-         yobZJkU5Bt3lJ1Xwbzp56H3UqNGt22wDQiIFjfMmGj4Yys29CiFaP64+ou9P1Js7sv+T
-         PwujRf4HLaV54ro8F6KR5ex1kr9l/3o8Qmp9XrsROlklSsxxqp+mXooVS6CBaJ59SEDs
-         pAIpyGjjyWmge6d6cRUYxdFAz4hL6olNzJ5k/JUQHLtuk2WFxTH/qNrMTfPQeIWqYlME
-         rUUjfHHtWYilfbsLvPWuziY0aWKdw0idXuaFn02TDFr1zBkStojs7sTAughWUfvoG0IM
-         jrOQ==
+        d=linaro.org; s=google; t=1712752311; x=1713357111; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4RQ5efwtF91P/NXm4zP+Bn3Bw1Shjn+65DFZgweTfHo=;
+        b=k2nAbddAqlSj4ayOjUK6eeQoU5iV0RcN+LQx/X08d30nKoebg1WdK1t+ENbnL1rIDf
+         00Qru8fzi1ERw9ry4/ZHG637m9DZA+xfbgVAUzaU7/ZSjoUxaizvnndih/JTVJi69pdF
+         naGKHMJyyCAV2BrTWkizLLzV1F2Mljrx84gX3/cZG0JWkUxoOLO21Ry8hX6IJUPVws3/
+         oPM5bKbdb/3nFlegTqqqJg2lMN9l5CjowNrvj1FJ/lr5rcyA76T498tg+oEQuUDimc9e
+         sxjDsa+P8carCzxgJHv/Zfi2XC5evYGJvVqjs4Uhj22KlibC6VOeZBTTHrQhhZQ4lI+w
+         UkYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712752045; x=1713356845;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=m3u5zjVGbS3GaFiOQIAkLCz3dMJ6JpJB8ancu8bBNik=;
-        b=CjMLfF0nkrmnrHVYi2FzlFLxFz9xSxPYawv/QpYP2JEN6mafQef6bqaOAeZ2HZV38y
-         cSStm96Lvytafaf3eIB/Sl7rw+z40sGvXaU6PTqapMGET6CfGj2aFNH5cT9BuGGUnHIw
-         aHavo27HGg60qZyXOoqt9v3TpV21kxi4yT2XbsfWT4IW5do+K4VZYtkfbfG+e/vpz0mU
-         aJQMB4XZ5jAc2eBdxCRRYZ00T4KbHpbYxG6GWJ+hZ6pPHGUVBWMYJcLst4jhuu7ZeW2P
-         jUk1i8QvGmVmKaXYrDksPaj+dj3GITs4/WEXIE4ZARJ6bM/g+W8EbQiAErx09CUYGUQA
-         fmfg==
-X-Forwarded-Encrypted: i=1; AJvYcCWxFzH80YWSdlj3smTJHL8Xxkmx984B7vJ9PfDgXXLNoTbdCydvda9ELmSMHSk6Dk7idS2onyaEeslElXNJ3n6XZdDxp8+ugfbyJw==
-X-Gm-Message-State: AOJu0YyG/hJzGkv6XOuZLiHudh02hrkATS9PNYx8/cJfwvbjpiEM7OkY
-	fZVBo+KoKhb83lwMjeBgqf6O3s9mxHV5KK0OgYdMLU2RNfsverExjHzCnBZrd5w=
-X-Google-Smtp-Source: AGHT+IGldfn3q9XuKDouDY4NU4Zhmr0AFphI9W+EuFxgSw1Y0oiZ+SkBqR9dQCKsZKP30Y0nhzRM/g==
-X-Received: by 2002:a05:600c:198c:b0:416:6b95:c631 with SMTP id t12-20020a05600c198c00b004166b95c631mr2389838wmq.6.1712752045344;
-        Wed, 10 Apr 2024 05:27:25 -0700 (PDT)
-Received: from claudiu-X670E-Pro-RS.. ([82.78.167.8])
-        by smtp.gmail.com with ESMTPSA id m2-20020a05600c3b0200b004171f151a5csm1679446wms.16.2024.04.10.05.27.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Apr 2024 05:27:24 -0700 (PDT)
-From: Claudiu <claudiu.beznea@tuxon.dev>
-X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
-To: geert+renesas@glider.be,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	magnus.damm@gmail.com
-Cc: linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	claudiu.beznea@tuxon.dev,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH v3 9/9] arm64: dts: renesas: r9a08g045: Update #power-domain-cells = <1>
-Date: Wed, 10 Apr 2024 15:26:57 +0300
-Message-Id: <20240410122657.2051132-10-claudiu.beznea.uj@bp.renesas.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240410122657.2051132-1-claudiu.beznea.uj@bp.renesas.com>
-References: <20240410122657.2051132-1-claudiu.beznea.uj@bp.renesas.com>
+        d=1e100.net; s=20230601; t=1712752311; x=1713357111;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4RQ5efwtF91P/NXm4zP+Bn3Bw1Shjn+65DFZgweTfHo=;
+        b=IIP8+uAbAxBOSiLVNmDkahSwjRD9e6tv8+c/Vl/TmnTHBLIm8zOZZSwGgJISEwY0tJ
+         psUMsf8YW8ZiF1D5p8ygTcobnLOg3BmCeqG/DPEcLEX43CoEFtV43tIHbZpdd/Sc6pvE
+         R4bjL2zAsCj6EIohSuOBOO9/X3weddQEO7+J53L8ASJzWGJv3h7FGBvE2NgEwO8ovbmZ
+         r5sErKzqiJNNqOQi1jwoEDGoYcorFVyM62upaf05QtP29/7ZxqkB9bz2UpD2BPQtgZE9
+         FOT2DyRhCDENgljRu/C3Jss5NXSq1lrNQ6g4fwFEN7qcxEiuo7tCbdONtfItuhxID86g
+         SuLA==
+X-Forwarded-Encrypted: i=1; AJvYcCUjbFKVrP27GCKQ5qr8ukm9SauNFfZiXv/ZR5Ut/b54NhcHWzOiUbb1HkvXhAYJUTSqsr7h78qg2B46Csta828pPuF5RT8J/5GsKQ==
+X-Gm-Message-State: AOJu0Yymb7cBjx9pAz6PYyqJvmoPZtiXksTHmNd7dN0UeWNRDqRDe8QV
+	gwQSBYAyCDINzFy4I1QcWQUbZSya5BFPSDoelzLeGCS51avPPPppKttz27mQ/fw=
+X-Google-Smtp-Source: AGHT+IGUBEm3kV7zksxLS/PxGZXtv2FBFfpwUJ+HG5kWCLXfREoERBZay5F1WVN0+sfAAXr9iBMlTQ==
+X-Received: by 2002:ac2:5471:0:b0:516:c3b2:d65c with SMTP id e17-20020ac25471000000b00516c3b2d65cmr1834705lfn.7.1712752310540;
+        Wed, 10 Apr 2024 05:31:50 -0700 (PDT)
+Received: from [172.30.204.89] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id t16-20020a192d50000000b005114a0c56afsm1835819lft.279.2024.04.10.05.31.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Apr 2024 05:31:50 -0700 (PDT)
+Message-ID: <41cd0ac3-bef8-4a0f-8ee0-beb2378a74ef@linaro.org>
+Date: Wed, 10 Apr 2024 14:31:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/9] arm64: dts: qcom: sc8180x: correct dispcc clocks
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
+References: <20240401-typec-fix-sm8250-v3-0-604dce3ad103@linaro.org>
+ <20240401-typec-fix-sm8250-v3-2-604dce3ad103@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20240401-typec-fix-sm8250-v3-2-604dce3ad103@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Update CPG #power-domain-cells = <1> and move all the IPs to be part of the
-IP specific power domain as the driver has been modified to support
-multiple power domains.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
----
+On 4/1/24 22:33, Dmitry Baryshkov wrote:
+> Correct the clocks being used by the display clock controller on the
+> SC8180X platform (to match the schema):
+> - Drop the sleep clock
+> - Add DSI clocks
+> - Reorder eDP / DP clocks
+> 
+> This changes the order of clocks, however it should be noted that the
+> clock list was neither correct nor followed the schema beforehand.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
 
-Changes in v3:
-- collected tags
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Changes in v2:
-- used proper domain ID for IA55 interrupt controller
-
- arch/arm64/boot/dts/renesas/r9a08g045.dtsi | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi b/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-index f5f3f4f4c8d6..bdd4f9376fc0 100644
---- a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-@@ -67,7 +67,7 @@ scif0: serial@1004b800 {
- 					  "bri", "dri", "tei";
- 			clocks = <&cpg CPG_MOD R9A08G045_SCIF0_CLK_PCK>;
- 			clock-names = "fck";
--			power-domains = <&cpg>;
-+			power-domains = <&cpg R9A08G045_PD_SCIF0>;
- 			resets = <&cpg R9A08G045_SCIF0_RST_SYSTEM_N>;
- 			status = "disabled";
- 		};
-@@ -79,7 +79,7 @@ cpg: clock-controller@11010000 {
- 			clock-names = "extal";
- 			#clock-cells = <2>;
- 			#reset-cells = <1>;
--			#power-domain-cells = <0>;
-+			#power-domain-cells = <1>;
- 		};
- 
- 		sysc: system-controller@11020000 {
-@@ -104,7 +104,7 @@ pinctrl: pinctrl@11030000 {
- 			interrupt-parent = <&irqc>;
- 			gpio-ranges = <&pinctrl 0 0 152>;
- 			clocks = <&cpg CPG_MOD R9A08G045_GPIO_HCLK>;
--			power-domains = <&cpg>;
-+			power-domains = <&cpg R9A08G045_PD_ALWAYS_ON>;
- 			resets = <&cpg R9A08G045_GPIO_RSTN>,
- 				 <&cpg R9A08G045_GPIO_PORT_RESETN>,
- 				 <&cpg R9A08G045_GPIO_SPARE_RESETN>;
-@@ -177,7 +177,7 @@ irqc: interrupt-controller@11050000 {
- 			clocks = <&cpg CPG_MOD R9A08G045_IA55_CLK>,
- 				 <&cpg CPG_MOD R9A08G045_IA55_PCLK>;
- 			clock-names = "clk", "pclk";
--			power-domains = <&cpg>;
-+			power-domains = <&cpg R9A08G045_PD_IA55>;
- 			resets = <&cpg R9A08G045_IA55_RESETN>;
- 		};
- 
-@@ -192,7 +192,7 @@ sdhi0: mmc@11c00000  {
- 				 <&cpg CPG_MOD R9A08G045_SDHI0_ACLK>;
- 			clock-names = "core", "clkh", "cd", "aclk";
- 			resets = <&cpg R9A08G045_SDHI0_IXRST>;
--			power-domains = <&cpg>;
-+			power-domains = <&cpg R9A08G045_PD_SDHI0>;
- 			status = "disabled";
- 		};
- 
-@@ -207,7 +207,7 @@ sdhi1: mmc@11c10000 {
- 				 <&cpg CPG_MOD R9A08G045_SDHI1_ACLK>;
- 			clock-names = "core", "clkh", "cd", "aclk";
- 			resets = <&cpg R9A08G045_SDHI1_IXRST>;
--			power-domains = <&cpg>;
-+			power-domains = <&cpg R9A08G045_PD_SDHI1>;
- 			status = "disabled";
- 		};
- 
-@@ -222,7 +222,7 @@ sdhi2: mmc@11c20000 {
- 				 <&cpg CPG_MOD R9A08G045_SDHI2_ACLK>;
- 			clock-names = "core", "clkh", "cd", "aclk";
- 			resets = <&cpg R9A08G045_SDHI2_IXRST>;
--			power-domains = <&cpg>;
-+			power-domains = <&cpg R9A08G045_PD_SDHI2>;
- 			status = "disabled";
- 		};
- 
-@@ -239,7 +239,7 @@ eth0: ethernet@11c30000 {
- 				 <&cpg CPG_MOD R9A08G045_ETH0_REFCLK>;
- 			clock-names = "axi", "chi", "refclk";
- 			resets = <&cpg R9A08G045_ETH0_RST_HW_N>;
--			power-domains = <&cpg>;
-+			power-domains = <&cpg R9A08G045_PD_ETHER0>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			status = "disabled";
-@@ -258,7 +258,7 @@ eth1: ethernet@11c40000 {
- 				 <&cpg CPG_MOD R9A08G045_ETH1_REFCLK>;
- 			clock-names = "axi", "chi", "refclk";
- 			resets = <&cpg R9A08G045_ETH1_RST_HW_N>;
--			power-domains = <&cpg>;
-+			power-domains = <&cpg R9A08G045_PD_ETHER1>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			status = "disabled";
-@@ -284,7 +284,7 @@ wdt0: watchdog@12800800 {
- 				     <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "wdt", "perrout";
- 			resets = <&cpg R9A08G045_WDT0_PRESETN>;
--			power-domains = <&cpg>;
-+			power-domains = <&cpg R9A08G045_PD_WDT0>;
- 			status = "disabled";
- 		};
- 	};
--- 
-2.39.2
-
+Konrad
 
