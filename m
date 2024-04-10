@@ -1,423 +1,283 @@
-Return-Path: <devicetree+bounces-58078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 725268A0378
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 00:36:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A19D68A0430
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 01:47:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2116928719B
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 22:36:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF9EE1C20F22
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 23:47:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47A1E28FD;
-	Wed, 10 Apr 2024 22:36:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 510683F9C2;
+	Wed, 10 Apr 2024 23:47:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="EnJRBk4U"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="XHQcghXz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2111.outbound.protection.outlook.com [40.107.243.111])
+Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2105.outbound.protection.outlook.com [40.107.249.105])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05E697F;
-	Wed, 10 Apr 2024 22:36:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.243.111
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8C59381B1;
+	Wed, 10 Apr 2024 23:47:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.249.105
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712788601; cv=fail; b=uidu+QJGU+o+EB2Jk+y2kqsOMeJK7+hFsndKtRaAvDDrUn8uV2EsVu7tMRHftFDXuyFwRuEX0kQgp5TaJ1ULfoF0Mvbtb36tD7H0bv3n6Zv/6oDtzxG11OKwLopkPOIl8C/I8NODM/h3kLGSZg3ud7VbUyIQWynV/j70isUz36Q=
+	t=1712792842; cv=fail; b=GZJYgBVVdWy69QMIayZ4PLihFtjQwWfkyzMYXNAeYPwcvvi1rlZ32ZFy4pY4MbCm8Wfw/KY36fri0ObPcRbhBaEQPFpQQ4qYHJ96+C7fbUUju7D1I3e9X11NudGyPbjHJ7Z4LiZPibhJ+lnc1eTJ1L+vU/o2wXeoxfqKPfHTwGI=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712788601; c=relaxed/simple;
-	bh=woI38Oi0k0ttynhADHUHXrN00MCA4kWrOfTmbSQYyjc=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=aoGJQl03jHFXlo5GlUvD39gqd8yGh2xhlyYYU9sqa2eKgLC59mqCcO/FVNCZVdUJ9ii9g6bAi0hNvnSJQf2Orpl9TMgIHWxkn1ZyCk4h8psw98GXnUNvaJzge5ZtnsJtp0DgDisuJpvU5djQC2owxBDhiA9roVUCoPmjkEJxrok=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=EnJRBk4U; arc=fail smtp.client-ip=40.107.243.111
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+	s=arc-20240116; t=1712792842; c=relaxed/simple;
+	bh=iyWG5hsoEW5QbBwvdeTXimCdc66j8m8sKYT/zo2PZTM=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=TUq8XGPWQhWpPtBPsE3JuPEdL8MOCr9J8Io5cPnx/mrJhYXinrnhUUAQ8jHVcL/UwGitMnjm6O08yHFmgrUae2gNQ8E4e1gma1k21OgksuaBii2tF28Nh48rSkcaZ1W3XIqIZOLIZnFd93b13OA640NOx09Owo8oBLrrcX4nBV4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=XHQcghXz; arc=fail smtp.client-ip=40.107.249.105
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=J6BE2grVVI+RqKD2QEeQiihWCyA/sSQYfyMyME+bHNFtzDWOJM8z1gh7rjv/+UtszYnXIdyAXS8KB6FTUAIqttM2LgweoIm9GlRW7LqYhcRwlUlAj54Jyblp7amEkmlCOCPka4+BsZSvROboB2uRa5lAl/c5AnnrsAoryd/wDcY4r6TJk7IDIkZjarntUp8LE/qi4CLqZnqiEyS7Tn0Uwir8bnYT4iqgUYODehxT2xMB5tVlGTRSdIPOwdZsee4k1Zdy/xr5u1CHrseLpzKPyM4nAXZI+ElTjnb3gj65OOdknF+BGoamOHn6bTjC4cKl2dzhi3Legk0rUoff5XvbfA==
+ b=XkKppmNqRGQTwkI0XZBfRYu8JrWbRhx6lHeWNSlXy/+5pwLrhvyQ94qfmm4jKT9Nx+1eDGTpbRF2QjTtkfBB/S3gt1FsVk5n83jqhpgUCH/JiP1SGxxt//0/0g24EFDOeSVgGEMiX31KDeNtcfNhlQOEJX4E5g8NIxN3AO6kh53UgtM8tOFpgSbqscMHwUEa5543tbWdvLPil9o+iyPjSC8c8ZlYvuEGs9kVgsT3NaIcvHLQDhWWGaR4W0crVqre66o8GXaLJHDDCmjJ/WAiZ4gLJ2DhRqHwIPI61D2lX+0z4cIzoNHAhZ6/u7KmyVGBG7xVViU2iNoiYU+zHwfcaQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kUmk7plIvOVm2Lg1X0fwcfcfpaYifFXG8mckv1Hkjms=;
- b=U4A9zY1uToEMqAXsitawW9wxKG20MLS7nvkEW9wOpEoxsnjGlYbdd/jxH1Tp4jzMjLPfEm/elc7ZM7aJRI8SDiOZzZCSIvGKCGaOWQbyY7P24WONFhZ9xMNq66+8rsH58XaYYP4mj2qYlMDAUvcs6ThDkh2Bj6LL6iW3YrTdXkaaI3tx0SrjhNKhDPPddhuSbuZWB71ssOnjaZGq7KX7/VTPKAzpIGxvN7EBDdAyrc8Hz/6pNLesJjiC7770C//bxo8MYxS0GP+lGaUSU56mG54IQkl+deevsXeRViKyOCiHhSaFy/qIdmgL02PM8Zt3h2p95u5+9fnH0ozUCd1hGA==
+ bh=uxaCKKT9iv0Sizj0KYABiIJyjeKFTqcoo6pCCoPrklU=;
+ b=L+zAs6K9JWavRva40O3zw11G8sSt0RO+3dcKpeBCIA9JbAGcXdXEj+LmeLi7ErP9PVpTWy6JpWVXhd18yrTXiekNDO4iexpkiKwKevMyLT6dV5m/QIjbvlzefw0/FSxhBVhYMBgUsBPubncahoIONydQyjW9D/j8eJ0fHwsDWtsqc9GYd6GNeYXfHCwXLt6uF3Ln4PPBGg4aqf5L0/ckYwuXav+OgmaWKdCeNrtWcfRrB5D3Ao+SVQIILnW3OojJgnPD08+RAzWvZZN/QeZr1A7TC8hxyPYU2HX5X66b+txrOQxE3+C8LH7A8LHEvxjwnI38wxov7lBkvm1wlbz40w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kUmk7plIvOVm2Lg1X0fwcfcfpaYifFXG8mckv1Hkjms=;
- b=EnJRBk4UoysqlpCX0rexF98IiYXu3uMkDs4/WhxkUfPCr1rRBC+a/XC2OzRD/+JasgaAOo5Qu4d4NmmIEGwcdwGTxCswsJ6Oi6y2Tno2LwZ3aUS00kkcgQwPSk5U2I5aA2RdBQx1RloQ2xh875AmszrNrLZ+u09YYImgBNWERHI=
-Received: from BL1PR12MB5874.namprd12.prod.outlook.com (2603:10b6:208:396::17)
- by DS0PR12MB7558.namprd12.prod.outlook.com (2603:10b6:8:133::21) with
+ bh=uxaCKKT9iv0Sizj0KYABiIJyjeKFTqcoo6pCCoPrklU=;
+ b=XHQcghXzaldKz8wR/7oAoG26TXTeyodZIYF6Pt3bLrhDURqvsUMUNMmVLKPDHC3I8fWEmRiM18T1LD6CKL45tXQkNork9fcqPzR5iSCZ3ij9LJJ2sWD7OdMv9S2oi97jHBjRq7IeJggHHyxymq1qaS/kwS5tgilCtmCen569Tvs=
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by GV1PR04MB9182.eurprd04.prod.outlook.com (2603:10a6:150:26::13) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Wed, 10 Apr
- 2024 22:36:34 +0000
-Received: from BL1PR12MB5874.namprd12.prod.outlook.com
- ([fe80::8b3e:57e8:d574:309a]) by BL1PR12MB5874.namprd12.prod.outlook.com
- ([fe80::8b3e:57e8:d574:309a%4]) with mapi id 15.20.7409.042; Wed, 10 Apr 2024
- 22:36:34 +0000
-Message-ID: <0f62cb47-23bd-41bd-a713-ac9f37a1ec7b@amd.com>
-Date: Wed, 10 Apr 2024 17:36:30 -0500
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH v14 4/4] remoteproc: zynqmp: parse TCM from device tree
-To: Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc: andersson@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, michal.simek@amd.com, ben.levinsky@amd.com,
- linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240408205313.3552165-1-tanmay.shah@amd.com>
- <20240408205313.3552165-5-tanmay.shah@amd.com> <ZhbFfA7toAkUATfg@p14s>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.54; Wed, 10 Apr
+ 2024 23:47:14 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::d30b:44e7:e78e:662d]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::d30b:44e7:e78e:662d%4]) with mapi id 15.20.7386.037; Wed, 10 Apr 2024
+ 23:47:14 +0000
+From: Peng Fan <peng.fan@nxp.com>
+To: Rob Herring <robh@kernel.org>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+	<s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Sudeep Holla <sudeep.holla@arm.com>,
+	Cristian Marussi <cristian.marussi@arm.com>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v2 2/6] dt-bindings: firmware: add i.MX SCMI Extension
+ protocol
+Thread-Topic: [PATCH v2 2/6] dt-bindings: firmware: add i.MX SCMI Extension
+ protocol
+Thread-Index: AQHah1U59RmV1LBnZEq28+9F7LvjPrFhx86AgABr+tA=
+Date: Wed, 10 Apr 2024 23:47:14 +0000
+Message-ID:
+ <DU0PR04MB9417B8B6F35D3F0934D205DA88062@DU0PR04MB9417.eurprd04.prod.outlook.com>
+References: <20240405-imx95-bbm-misc-v2-v2-0-9fc9186856c2@nxp.com>
+ <20240405-imx95-bbm-misc-v2-v2-2-9fc9186856c2@nxp.com>
+ <20240410171925.GA564262-robh@kernel.org>
+In-Reply-To: <20240410171925.GA564262-robh@kernel.org>
+Accept-Language: en-US
 Content-Language: en-US
-From: Tanmay Shah <tanmay.shah@amd.com>
-In-Reply-To: <ZhbFfA7toAkUATfg@p14s>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SN7PR04CA0158.namprd04.prod.outlook.com
- (2603:10b6:806:125::13) To BL1PR12MB5874.namprd12.prod.outlook.com
- (2603:10b6:208:396::17)
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|GV1PR04MB9182:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ uMoqG0AzSe5BCiuiIAENVxFZaSd96lBfGhUNQas1yYCUnD5oVYKHSaiuHETtVWMNCD1899k4vejWoalUleSCF70MRy9PQI/bLXIa9DvZt0obvuZBj4DtWPmKhB0XF0nOcrXIDlZcty8peV8wOgag/Ai1VF13rA2zITV2mJbs7U+eO3MYfzya0g0Lrq+ZDv+cK5+HMfpZ/s+ODa8Lzem9ZmnGRnO9YYFqAT5AOapTSostu+6hn2XMIkZOe/3Py0kHiczS23no1kbppAz3xCWZCmpmV9xJFQ5ckOuf7HxfKAB17NmqDL6Xs0pZz29oAkc3dZzR2VG/XRiAHIag3CfgW8cUeXUrYxELfCvXdzgXoEK9BIMXC7tXd22IXNQzo+dcoyZ7uB6oK55uQF+emLxTVRDuV5TgEz6QvUm26y+9KdSmOM6EzAVBwJXi0JN45hTBqrG7XhUwN61y5rFCiustcL0sUpEAPn0fIHdjIYcUmaQuJf3M95eVUX1pMaovxjiURt6QlG+d1u7ndCyWfQR4jKmYL16gp0ggBZ7Sl0UK57YRTY9UmDBuDrKh3HrVVJiugZl/V1xu2xV7e7hztehW8bOfHaUAQkuRN8VrZ70TqRNfcoROmID7B4A+9Xlm2mlhXKiC+lZ89iT/lO7FVhaiFqOxwjDgh0XoBkS1VC1Pd4I=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(7416005)(1800799015)(376005);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?AIqdLLANQBLXdh+rS09AciJOFuWKULDDYD2S1iocgv0jC9NpYe0LF3VJ6EsF?=
+ =?us-ascii?Q?08LtIcPOlUBQGJRfXE+F6Mk0Qto/Sk+H+Fv/WSaoElZ7DAzKYPWtTPjepp4/?=
+ =?us-ascii?Q?c7jE0iRWTH54LqIIvFIsRUegDAQMEYz38O4tB/6CdPsHU1VOsNKwE9DKqMiS?=
+ =?us-ascii?Q?MA75cp4ujvpboVFUKfC+Ti3VnyqO9yaiyrRun7BGZmzYqohmN6aQifpr3kp2?=
+ =?us-ascii?Q?9wVwASj1vYN1AojGf+acQ9rLbjwwFPGPPuvmvVYxvyKn4R3SxyJipgb0Hjku?=
+ =?us-ascii?Q?HJiXCnGr6Polm3+EevBmLqU1wBUiRm4BC1aR7zv9nS4RGgQ0q+qd32C7sZ3w?=
+ =?us-ascii?Q?udPkOmIgibVEA8HLQVxc2+Nj0P33b8doRXW8sa8L3KT6vrpj4xmY2mLqAAJ9?=
+ =?us-ascii?Q?SKBWcbGVayzC03O3xmD62WSAVmpQzYKtLMYm3vEvivtX4QrrMzER+ABmqxxv?=
+ =?us-ascii?Q?D5SVaTtSYM4SzIMg9tot1kH4iTmvAZ28WE9sSJiJXqYnObyDR150SF6N6C5o?=
+ =?us-ascii?Q?JKdVe+fdwP9cyXkEPmU0b0FJFb/rbDnjPFSiGjncPXr1FRndp01JsxUdBtP9?=
+ =?us-ascii?Q?OCaVBAFdRHIkoiYQMsCRxY3mZvWNapKn9QSE7ABxpVohXcPwL/VL108bt9g5?=
+ =?us-ascii?Q?O0tCyfhaxKO1/kV0d6/ISZXtBDdi+gG2H5caF9ETFHbPXYhGbSwvjby3mw20?=
+ =?us-ascii?Q?vsLV1vHtTM2dsV7cjQid/HZDrPkTV8ysIgcY50Cjxuc8ikz17nB/DvQQ2hPE?=
+ =?us-ascii?Q?PgiF20J9DzBF+O+6M0UU4ef7CbtapDskPumdjzUYKv4zLwTujP33/S6/rQsb?=
+ =?us-ascii?Q?26S1s6vGr1K1jSv82sBllmuQSMs7aat4AzxkMxo417rCk1yQ4ZznewYlCbMO?=
+ =?us-ascii?Q?NzjEJiu2LYn9sltlSV2hxl6PCc+eqoppFOPZZs2I2VlDGul7KTX4e0IwOXM+?=
+ =?us-ascii?Q?kuN+bkfH2RMWgYTWDPEJI1oCFnhQuFBAD7tJ4X+Md2f/7880aoyUfXw6Msob?=
+ =?us-ascii?Q?1pmCMT5bB2IjLof1YrcnNwVJdNXTLl3eByon09y3kcMf/aQFWPLGSZTlOtyd?=
+ =?us-ascii?Q?0LpLV/7q2N7QEU8/hVoRFRJdj5XrTGa7WZ/4D6/yyY20hilE1rMx4QaSbsLr?=
+ =?us-ascii?Q?7cmtBEMBXjwLredS48j2+BLYZ+afBeKdoWNgassAAs/z+C/ZquMgHd9WrpCw?=
+ =?us-ascii?Q?raDtVgaAVz9pGxR6rvesPicK1GKqG7uSrBLEuJ4t6I7Q5jK/ks0oPet9IhyK?=
+ =?us-ascii?Q?5V1W8DIjclOSujW4/tjZunGT4iQiIB9NkKTEaiS13xiyQ0z8ByFBgqobvSwH?=
+ =?us-ascii?Q?B42nQ+63++r50tyAUB5mRfVtutS2OEDETN482xkhEnlGiPt0D3Tt2pDC8P7A?=
+ =?us-ascii?Q?Z2mGvYrhM/fTXeH7LH72CdJ2qnHR3gbiRP7BUDM8Fwi72KTBSH9YcfBJrnwj?=
+ =?us-ascii?Q?FzXpnNPZj69nel0/v8tpa3gFl7CMpLyFf+0XkpyhLv74s5lJ0j/uV76mT3+J?=
+ =?us-ascii?Q?479A+uAo2ZrONqyzQoOwNuHyU0u7aawKq+eBxYFahzdHEfNbelf7WOKPe8gB?=
+ =?us-ascii?Q?xG9W63gHcFaXrf62VzU=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5874:EE_|DS0PR12MB7558:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	Vm2BcBkE+/RMBaBfg4qeQ2hAsIOxIhcOlxLWCPm973q28lB11BshvxaolC0gdeWEM9bWuR7fJIOIejuxpWdsYQpOf6vM47k/zjt7u++x4jxGxBkXwx5ZilEow34XPaU0jYblHM3qDUZsxE+RB1XFQmia+YNWBOTBobHuGJPyPyb6qhGd8ggNG1gR9UH5AkrOKCnKJm8zEew1dv8qWr3DTgfbP6AC72jXAjkaN85rUHOl20uIcASWBstOPNrxJk0OtqLZUvZG5Qob4l+CmXubhB63a6xK7aenTjjM7ZBIXVMCW3gWmnL6Z8BLX9dIHLY8Iwllyc1kcd3T3yjGS8VeCM7AwXaT92Cggn+e0Vu5/tYuU/TprDHmUSnWzTeowUtpp7xgw5ubNd9jmYYTgV7aAwJOr2G+3znKoneqtqCNYErtqg28k2XkbFiMdYJo6QtOvU61jqK+d+zH1c5ySsNTPYfT/k1xZWoxZzwxh5wX2XcK2u+/Nesx2SPJjmR/L7NDTfyITyNoqNzRkHqm4UcvEbM8smxOm1BLMavB/zc6RWKaY0IPwc9CaYiQSJWdB2udOVwjTy8FZlsKQLInGauk+4By+mbhMN7YAkuBXsJiKtGovnEudwMLjrQh9bUOaGEAaSld0akdiyN9Uitp6+KSQkY0jSGi5onNe6uuuVm58k0=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL1PR12MB5874.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(376005)(366007);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?RDhRRUEvd2F6d2s3UzRYWnl4dFZDNnR4TER6V210NkZtMk04T2ZhMS9jSFJu?=
- =?utf-8?B?RGlrQkd4OXdsYjhrUEVUdEhwZjNaeEtoVjRFa0Njd3duTExLM01Ra0Z3QWoy?=
- =?utf-8?B?OWh5SW5yOHA4RW1PZjhFMXBmWVNhWGQvUXBUWWROU3NYWG1WMlRqZlVSeXV6?=
- =?utf-8?B?ZTNwbkwrOUZveXVHVG0ycG90WjIwcFdoSTRBRktlVWI0cUNjRHhwY29ScjFk?=
- =?utf-8?B?SmtHWHZydG15ZHZDVkt4a1YzM1B6UXdzOS82MzR2cVFPelZ6WjZ4NkVOZmFv?=
- =?utf-8?B?bjJ1aXhma2ZBYURPYVZHWjA4NHM1dGNnMVZmNzY5dWNDSGtaMUdiazFBZkNh?=
- =?utf-8?B?WlhLa0xNRUxNNEhlVUUwTEVqQ3JJd0RUZk0vOUJ3Y1Jsb0FreFFMNlFmR1dp?=
- =?utf-8?B?Q013M0FTM3BTcnRHRk1oeDVDVnJBY0tJdmR6NUViODdJYUYrTUJ6TlJGV3FP?=
- =?utf-8?B?b0J3b21HYkQwUUJKUEVZc3VIWWdKL09LSFRSVXFldDRURDNNa0pFeHY5bjJJ?=
- =?utf-8?B?K0s3YjZ5R3g3OTVmSHJHcW9WSnltMDlCVGR4UDQ4a0JxKzd6dFRMZ3lSY3du?=
- =?utf-8?B?aGpVMzJYQjdpMENDNzJXeUFkK3Y5OU1ueldTdDhuZURiYmJXMjVrbUtFUzYr?=
- =?utf-8?B?RHhWUThnZVlHSm9LYlpuMkFFOTVQbFRZeEdIclNNdEUycFFrQm4vc0hnSFhZ?=
- =?utf-8?B?bEtwbXN4MXJyR0FhT3dTVTdwSEtlZWNQbUw4TXBUN3VBcDJSc21PUTVmdEdY?=
- =?utf-8?B?K1I0d2p0N0RiMk41Ym1icXpvMWRvcm8ySGZNeEt6M2Rvbm5kNUt0OVhqbVJQ?=
- =?utf-8?B?R1RHWWg3SFFkaitId1ZhTXhtNDdNYS82eHk2cWtBVEYvU0F5T2VUY1R5VThh?=
- =?utf-8?B?b05xS1NOV1RVSTlzemc2LzJWUDdxMm9jYnB3RGNaRkpOaEcxL2pFV1A1Y0Nq?=
- =?utf-8?B?YmltOWJSeTg3dDNQYW16SkVER0lCTDdzc0F4WEN2STYvTkUxU1N6M0lDWDFC?=
- =?utf-8?B?a01YbGJTOGZKNU15cDhZb2ZpQ04wMU5xd2JySEd3cklSMlMveGlvb3d4NTBY?=
- =?utf-8?B?UUVQb2NrV1Q3TlhmYkNLL2h6aG9qaGVFbExmN29xQUMwMGpLYWlkVUdVSVBO?=
- =?utf-8?B?ODRMNkpudzViYnVLczZJeGVUVDNzYUlZNEo4M3FVdGgwTDZMb3BzUUhTK2lW?=
- =?utf-8?B?UUJKbFcwRFJCMGR2L1crU1dPa2JhQkhPUjRMYktmVzBCVUZ0citYTjhRdDVo?=
- =?utf-8?B?U05DS1g3d2dNb2VuMmQ3MzdrOStFN2tUMlAzNVROa1R6TnNSbkFnOGhEdnNN?=
- =?utf-8?B?QmlGN2FwY0c3R3QxSUNGYlZXYXEyUEE4OFBBOW9vQUJwODYwNHdScW5lVUVi?=
- =?utf-8?B?eDF0b2JlOEZ1MWpQQWdDMXoreUVzUkwyNWZld1plZndzcTNmTVFtTEM5dnB1?=
- =?utf-8?B?UmJjVG5zaTBoVUg2SXZ3ZWVWbDg3bDhSM0hpQzBGTUxFVTdXU0phUUtuM1Yr?=
- =?utf-8?B?Z0NxZERPaHdnQlozNkpRVFZXK3lVQ2F6YnlxSkF2cEFCdmhjRUV2MjhnNTVC?=
- =?utf-8?B?bHpCUlBIN1N5cExuV3BCU2hLMmdSVTVxTmxtaXlNOHgvdy9yR3NLOUJZdWhn?=
- =?utf-8?B?Q043R1pYUnRKVk55S3JMUnNPQVU4MGZSb1FhV1o3cEwybFJhdWRQdFV2M2M4?=
- =?utf-8?B?OGJvd2V5MnRIRjdNNEhKcC9OcGNDT3NBd3ZIV2hNUVAyQkxMNVRCaGltNnFV?=
- =?utf-8?B?NEdtSEZJUTg3OVRJRzRFWXV4Q0c5ZEVKVGNhNDAxc2lGc2w1OUhZd3pyNUhF?=
- =?utf-8?B?MEZadFJxeE14NDRBSUJEdGtJR21vU1pPTTk2VVo0Q2Y1ZkdiN3JNaVU2a2kx?=
- =?utf-8?B?NC8xYS9pRUt5ck5WZUdQWFEvVU1WN29LTy9vOXZPZWtWU01NaDNFd3dxYmwx?=
- =?utf-8?B?eW1ZK3YvUm81Qk96VFlZMjdjYVA1azl3ei9iM016Y3ZzUlZvb0E3WFBrZkNh?=
- =?utf-8?B?blFpdEEwMG4rWEhLVTVLYW1DcytlZndwcW5xbmRsWmgxaW5HdXhSVXFlVWQ4?=
- =?utf-8?B?RlNndTRqUFJaWTErOGxsRHA4bnA4UWNXb0tEdi91c2VqdEhxWjZHREZ3N0I0?=
- =?utf-8?Q?O8LDwn1yfEKyCdk6JmYew/Anx?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3a98690d-1e10-4521-b691-08dc59aeacd2
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5874.namprd12.prod.outlook.com
+X-OriginatorOrg: nxp.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2024 22:36:33.9956
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 94b8d669-8b7e-4d3e-d616-08dc59b88c90
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Apr 2024 23:47:14.6387
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /O7lBz5dWQxaheOR+mbKy+EmtLyDGs+b+nfUcPKGbB78OtwM6GBGn8oAohNMGa5t
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7558
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: tfAAVYu43rART49F79RIZBwZKXShNxDo4Nku/vafPvDHoNVApipMV8tUDzDZSuyXEI8Iq5Wuqh0KlwKA0UPF/g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB9182
 
+> Subject: Re: [PATCH v2 2/6] dt-bindings: firmware: add i.MX SCMI Extensio=
+n
+> protocol
+>=20
+> On Fri, Apr 05, 2024 at 08:39:24PM +0800, Peng Fan (OSS) wrote:
+> > From: Peng Fan <peng.fan@nxp.com>
+> >
+> > Add i.MX SCMI Extension protocols bindings for:
+> >  - Battery Backed Secure Module(BBSM)
+> >  - MISC settings such as General Purpose Registers settings.
+> >
+> > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > ---
+> >  .../devicetree/bindings/firmware/imx,scmi.yaml     | 80
+> ++++++++++++++++++++++
+> >  1 file changed, 80 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/firmware/imx,scmi.yaml
+> > b/Documentation/devicetree/bindings/firmware/imx,scmi.yaml
+> > new file mode 100644
+> > index 000000000000..7ee19a661d83
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/firmware/imx,scmi.yaml
+> > @@ -0,0 +1,80 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause) # Copyright 2024
+> > +NXP %YAML 1.2
+> > +---
+> > +$id:
+> > +https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdev=
+i
+> >
+> +cetree.org%2Fschemas%2Ffirmware%2Fimx%2Cscmi.yaml%23&data=3D05%7
+> C02%7Cp
+> >
+> +eng.fan%40nxp.com%7C25c72418c9864a73924808dc59826288%7C686ea
+> 1d3bc2b4c
+> >
+> +6fa92cd99c5c301635%7C0%7C0%7C638483663734828123%7CUnknown%
+> 7CTWFpbGZsb
+> >
+> +3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn
+> 0%3D
+> >
+> +%7C0%7C%7C%7C&sdata=3DY2uSGDorqR9HK8PO4AQDQ%2FaTv%2BETnulvU
+> C8u9ktDoio%3
+> > +D&reserved=3D0
+> > +$schema:
+> > +https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdev=
+i
+> > +cetree.org%2Fmeta-
+> schemas%2Fcore.yaml%23&data=3D05%7C02%7Cpeng.fan%40nx
+> >
+> +p.com%7C25c72418c9864a73924808dc59826288%7C686ea1d3bc2b4c6fa
+> 92cd99c5c
+> >
+> +301635%7C0%7C0%7C638483663734841350%7CUnknown%7CTWFpbGZs
+> b3d8eyJWIjoiM
+> >
+> +C4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7
+> C%7C%7
+> >
+> +C&sdata=3Dh6lSgnPvR88CEBxmU%2B%2FCfCx9GHUrogWVxck38sIdhB4%3D&r
+> eserved=3D0
+> > +
+> > +title: i.MX System Control and Management Interface(SCMI) Vendor
+> > +Protocols Extension
+> > +
+> > +maintainers:
+> > +  - Peng Fan <peng.fan@nxp.com>
+> > +
+> > +allOf:
+> > +  - $ref: arm,scmi.yaml#
+>=20
+> This needs to be the other way around. Add a ref to this file in arm,scmi=
+.yaml
+> under an 'anyOf' entry.
 
+ok, I will give a try.
 
-On 4/10/24 11:59 AM, Mathieu Poirier wrote:
-> On Mon, Apr 08, 2024 at 01:53:14PM -0700, Tanmay Shah wrote:
->> ZynqMP TCM information was fixed in driver. Now ZynqMP TCM information
->> is available in device-tree. Parse TCM information in driver
->> as per new bindings.
->> 
->> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
->> ---
->> 
->> Changes in v14:
->>   - Add Versal platform support
->>   - Add Versal-NET platform support
->>   - Maintain backward compatibility for ZynqMP platform and use hardcode
->>     TCM addresses
->>   - Configure TCM based on xlnx,tcm-mode property for Versal
->>   - Avoid TCM configuration if that property isn't available in DT 
->> 
->>  drivers/remoteproc/xlnx_r5_remoteproc.c | 173 ++++++++++++++++++------
->>  1 file changed, 132 insertions(+), 41 deletions(-)
->> 
->> diff --git a/drivers/remoteproc/xlnx_r5_remoteproc.c b/drivers/remoteproc/xlnx_r5_remoteproc.c
->> index 0f942440b4e2..504492f930ac 100644
->> --- a/drivers/remoteproc/xlnx_r5_remoteproc.c
->> +++ b/drivers/remoteproc/xlnx_r5_remoteproc.c
->> @@ -74,8 +74,8 @@ struct mbox_info {
->>  };
->>  
->>  /*
->> - * Hardcoded TCM bank values. This will be removed once TCM bindings are
->> - * accepted for system-dt specifications and upstreamed in linux kernel
->> + * Hardcoded TCM bank values. This will stay in driver to maintain backward
->> + * compatibility with device-tree that does not have TCM information.
->>   */
->>  static const struct mem_bank_data zynqmp_tcm_banks_split[] = {
->>  	{0xffe00000UL, 0x0, 0x10000UL, PD_R5_0_ATCM, "atcm0"}, /* TCM 64KB each */
->> @@ -300,36 +300,6 @@ static void zynqmp_r5_rproc_kick(struct rproc *rproc, int vqid)
->>  		dev_warn(dev, "failed to send message\n");
->>  }
->>  
->> -/*
->> - * zynqmp_r5_set_mode()
->> - *
->> - * set RPU cluster and TCM operation mode
->> - *
->> - * @r5_core: pointer to zynqmp_r5_core type object
->> - * @fw_reg_val: value expected by firmware to configure RPU cluster mode
->> - * @tcm_mode: value expected by fw to configure TCM mode (lockstep or split)
->> - *
->> - * Return: 0 for success and < 0 for failure
->> - */
->> -static int zynqmp_r5_set_mode(struct zynqmp_r5_core *r5_core,
->> -			      enum rpu_oper_mode fw_reg_val,
->> -			      enum rpu_tcm_comb tcm_mode)
->> -{
->> -	int ret;
->> -
->> -	ret = zynqmp_pm_set_rpu_mode(r5_core->pm_domain_id, fw_reg_val);
->> -	if (ret < 0) {
->> -		dev_err(r5_core->dev, "failed to set RPU mode\n");
->> -		return ret;
->> -	}
->> -
->> -	ret = zynqmp_pm_set_tcm_config(r5_core->pm_domain_id, tcm_mode);
->> -	if (ret < 0)
->> -		dev_err(r5_core->dev, "failed to configure TCM\n");
->> -
->> -	return ret;
->> -}
->> -
->>  /*
->>   * zynqmp_r5_rproc_start()
->>   * @rproc: single R5 core's corresponding rproc instance
->> @@ -761,6 +731,103 @@ static struct zynqmp_r5_core *zynqmp_r5_add_rproc_core(struct device *cdev)
->>  	return ERR_PTR(ret);
->>  }
->>  
->> +static int zynqmp_r5_get_tcm_node_from_dt(struct zynqmp_r5_cluster *cluster)
->> +{
->> +	int i, j, tcm_bank_count, ret, tcm_pd_idx, pd_count;
->> +	struct of_phandle_args out_args;
->> +	struct zynqmp_r5_core *r5_core;
->> +	struct platform_device *cpdev;
->> +	struct mem_bank_data *tcm;
->> +	struct device_node *np;
->> +	struct resource *res;
->> +	u64 abs_addr, size;
->> +	struct device *dev;
->> +
->> +	for (i = 0; i < cluster->core_count; i++) {
->> +		r5_core = cluster->r5_cores[i];
->> +		dev = r5_core->dev;
->> +		np = r5_core->np;
->> +
->> +		pd_count = of_count_phandle_with_args(np, "power-domains",
->> +						      "#power-domain-cells");
->> +
->> +		if (pd_count <= 0) {
->> +			dev_err(dev, "invalid power-domains property, %d\n", pd_count);
->> +			return -EINVAL;
->> +		}
->> +
->> +		/* First entry in power-domains list is for r5 core, rest for TCM. */
->> +		tcm_bank_count = pd_count - 1;
->> +
->> +		if (tcm_bank_count <= 0) {
->> +			dev_err(dev, "invalid TCM count %d\n", tcm_bank_count);
->> +			return -EINVAL;
->> +		}
->> +
->> +		r5_core->tcm_banks = devm_kcalloc(dev, tcm_bank_count,
->> +						  sizeof(struct mem_bank_data *),
->> +						  GFP_KERNEL);
->> +		if (!r5_core->tcm_banks)
->> +			return -ENOMEM;
->> +
->> +		r5_core->tcm_bank_count = tcm_bank_count;
->> +		for (j = 0, tcm_pd_idx = 1; j < tcm_bank_count; j++, tcm_pd_idx++) {
->> +			tcm = devm_kzalloc(dev, sizeof(struct mem_bank_data),
->> +					   GFP_KERNEL);
->> +			if (!tcm)
->> +				return -ENOMEM;
->> +
->> +			r5_core->tcm_banks[j] = tcm;
->> +
->> +			/* Get power-domains id of TCM. */
->> +			ret = of_parse_phandle_with_args(np, "power-domains",
->> +							 "#power-domain-cells",
->> +							 tcm_pd_idx, &out_args);
->> +			if (ret) {
->> +				dev_err(r5_core->dev,
->> +					"failed to get tcm %d pm domain, ret %d\n",
->> +					tcm_pd_idx, ret);
->> +				return ret;
->> +			}
->> +			tcm->pm_domain_id = out_args.args[0];
->> +			of_node_put(out_args.np);
->> +
->> +			/* Get TCM address without translation. */
->> +			ret = of_property_read_reg(np, j, &abs_addr, &size);
->> +			if (ret) {
->> +				dev_err(dev, "failed to get reg property\n");
->> +				return ret;
->> +			}
->> +
->> +			/*
->> +			 * Remote processor can address only 32 bits
->> +			 * so convert 64-bits into 32-bits. This will discard
->> +			 * any unwanted upper 32-bits.
->> +			 */
->> +			tcm->da = (u32)abs_addr;
->> +			tcm->size = (u32)size;
->> +
->> +			cpdev = to_platform_device(dev);
->> +			res = platform_get_resource(cpdev, IORESOURCE_MEM, j);
->> +			if (!res) {
->> +				dev_err(dev, "failed to get tcm resource\n");
->> +				return -EINVAL;
->> +			}
->> +
->> +			tcm->addr = (u32)res->start;
->> +			tcm->bank_name = (char *)res->name;
->> +			res = devm_request_mem_region(dev, tcm->addr, tcm->size,
->> +						      tcm->bank_name);
->> +			if (!res) {
->> +				dev_err(dev, "failed to request tcm resource\n");
->> +				return -EINVAL;
->> +			}
->> +		}
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->>  /**
->>   * zynqmp_r5_get_tcm_node()
->>   * Ideally this function should parse tcm node and store information
->> @@ -839,9 +906,16 @@ static int zynqmp_r5_core_init(struct zynqmp_r5_cluster *cluster,
->>  	struct zynqmp_r5_core *r5_core;
->>  	int ret, i;
->>  
->> -	ret = zynqmp_r5_get_tcm_node(cluster);
->> -	if (ret < 0) {
->> -		dev_err(dev, "can't get tcm node, err %d\n", ret);
->> +	r5_core = cluster->r5_cores[0];
->> +
->> +	/* Maintain backward compatibility for zynqmp by using hardcode TCM address. */
->> +	if (device_is_compatible(dev, "xlnx,zynqmp-r5fss"))
-> 
-> The previous patch moved the definition of the R5FSS to the new bindings but
-> this is forcing to use the old bindings - did I something?
+>=20
+> > +
+> > +properties:
+> > +  protocol@81:
+> > +    $ref: 'arm,scmi.yaml#/$defs/protocol-node'
+> > +    unevaluatedProperties: false
+> > +    description:
+> > +      The BBM Protocol is for managing Battery Backed Secure Module
+> (BBSM) RTC
+> > +      and the ON/OFF Key
+> > +
+> > +    properties:
+> > +      reg:
+> > +        const: 0x81
+> > +
+> > +    required:
+> > +      - reg
+> > +
+> > +  protocol@84:
+> > +    $ref: 'arm,scmi.yaml#/$defs/protocol-node'
+> > +    unevaluatedProperties: false
+> > +    description:
+> > +      The MISC Protocol is for managing SoC Misc settings, such as
+> > + GPR settings
+> > +
+> > +    properties:
+> > +      reg:
+> > +        const: 0x84
+> > +
+> > +      wakeup-sources:
+> > +        description:
+> > +          Each entry consists of 2 integers, represents the source and=
+ electric
+> signal edge
+> > +        items:
+> > +          items:
+> > +            - description: the wakeup source
+> > +            - description: the wakeup electric signal edge
+>=20
+> No constraints on the entry values?
 
-Hi Mathieu,
+I will change the property name to imx,wakup-sources with constraints
+minItems: 1
+maxItems: 32.
 
-We need to maintain backward compatibility for zynqmp device. So, using old bindings
-for zynqmp. For new devices (Versal and Versal-NET) new bindings are enforced in driver.
-It's not recommended to map two programming sequences to same device. So for
-"xlnx,zynqmp-r5fss" device old bindings are used.
+>=20
+> > +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > +
+> > +    required:
+> > +      - reg
+> > +
+> > +additionalProperties: false
+>=20
+> And then this can be true.
 
-Device tree is matching with new bindings. But that's hardware description. I believe,
-driver can still choose to use hardcode addresses to maintain backward compatibility.
+Fix in v3.
 
-The end result will be same.
+Thanks
+Peng.
 
-Thanks,
-Tanmay
-
-> 
->> +		ret = zynqmp_r5_get_tcm_node(cluster);
->> +	else
->> +		ret = zynqmp_r5_get_tcm_node_from_dt(cluster);
->> +
->> +	if (ret) {
->> +		dev_err(dev, "can't get tcm, err %d\n", ret);
->>  		return ret;
->>  	}
->>  
->> @@ -856,12 +930,18 @@ static int zynqmp_r5_core_init(struct zynqmp_r5_cluster *cluster,
->>  			return ret;
->>  		}
->>  
->> -		ret = zynqmp_r5_set_mode(r5_core, fw_reg_val, tcm_mode);
->> -		if (ret) {
->> -			dev_err(dev, "failed to set r5 cluster mode %d, err %d\n",
->> -				cluster->mode, ret);
->> +		ret = zynqmp_pm_set_rpu_mode(r5_core->pm_domain_id, fw_reg_val);
->> +		if (ret < 0) {
->> +			dev_err(r5_core->dev, "failed to set RPU mode\n");
->>  			return ret;
->>  		}
->> +
->> +		if (device_is_compatible(dev, "xlnx,zynqmp-r5fss") ||
->> +		    of_find_property(dev_of_node(dev), "xlnx,tcm-mode", NULL)) {
->> +			ret = zynqmp_pm_set_tcm_config(r5_core->pm_domain_id, tcm_mode);
->> +			if (ret < 0)
->> +				dev_err(r5_core->dev, "failed to configure TCM\n");
->> +		}
->>  	}
->>  
->>  	return 0;
->> @@ -906,16 +986,25 @@ static int zynqmp_r5_cluster_init(struct zynqmp_r5_cluster *cluster)
->>  	 * fail driver probe if either of that is not set in dts.
->>  	 */
->>  	if (cluster_mode == LOCKSTEP_MODE) {
->> -		tcm_mode = PM_RPU_TCM_COMB;
->>  		fw_reg_val = PM_RPU_MODE_LOCKSTEP;
->>  	} else if (cluster_mode == SPLIT_MODE) {
->> -		tcm_mode = PM_RPU_TCM_SPLIT;
->>  		fw_reg_val = PM_RPU_MODE_SPLIT;
->>  	} else {
->>  		dev_err(dev, "driver does not support cluster mode %d\n", cluster_mode);
->>  		return -EINVAL;
->>  	}
->>  
->> +	if (device_is_compatible(dev, "xlnx,zynqmp-r5fss")) {
->> +		if (cluster_mode == LOCKSTEP_MODE)
->> +			tcm_mode = PM_RPU_TCM_COMB;
->> +		else
->> +			tcm_mode = PM_RPU_TCM_SPLIT;
->> +	} else if (of_find_property(dev_node, "xlnx,tcm-mode", NULL)) {
->> +		ret = of_property_read_u32(dev_node, "xlnx,tcm-mode", (u32 *)&tcm_mode);
->> +		if (ret)
->> +			return ret;
->> +	}
->> +
->>  	/*
->>  	 * Number of cores is decided by number of child nodes of
->>  	 * r5f subsystem node in dts. If Split mode is used in dts
->> @@ -1100,6 +1189,8 @@ static int zynqmp_r5_remoteproc_probe(struct platform_device *pdev)
->>  /* Match table for OF platform binding */
->>  static const struct of_device_id zynqmp_r5_remoteproc_match[] = {
->>  	{ .compatible = "xlnx,zynqmp-r5fss", },
->> +	{ .compatible = "xlnx,versal-r5fss", },
->> +	{ .compatible = "xlnx,versal-net-r52fss", },
->>  	{ /* end of list */ },
->>  };
->>  MODULE_DEVICE_TABLE(of, zynqmp_r5_remoteproc_match);
->> -- 
->> 2.25.1
->> 
-
+>=20
+> Rob
 
