@@ -1,96 +1,142 @@
-Return-Path: <devicetree+bounces-57857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B7E389F01D
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 12:44:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A20489F03C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 12:56:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BCD691C222CB
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 10:44:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE7F81F22FE2
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 10:56:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7446515921B;
-	Wed, 10 Apr 2024 10:44:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDBFF15956B;
+	Wed, 10 Apr 2024 10:56:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JAMREDu1"
+	dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b="R2H1uwrn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-00176a03.pphosted.com (mx0a-00176a03.pphosted.com [67.231.149.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B687154C00;
-	Wed, 10 Apr 2024 10:44:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D9AB1598EE;
+	Wed, 10 Apr 2024 10:56:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712745874; cv=none; b=QS+BstSxDmzj378Au649LJNc/5qnuAAXiJSBLbsb3HC9bZQRnNM4dwroQO6x6hDaAH6KDcKfnw3oQFbTzF5LJJbrGVet1p+TltJKXzP4IRkDKvFOfjIyuipE2zk9DPc6Xx70TsrDyIJAFON/IQwCrTa2CQl8RiBqa8Ie7WQC2qg=
+	t=1712746596; cv=none; b=Q7BYN0gWTlVlXxDf8hjQTAILNRkncgtv69xcmaPAA57ROrB/5qeKlKeoQFtzl0fAA4fyYoTmyRpzbJhLrjTtts/NofqxxR6e9OKa5kT5CzUa5dnSk70TOTbj1Whhxkc45uraAZBf1XmbTwmIU5RDrb0DPWSe9AXLoutQNr3a/74=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712745874; c=relaxed/simple;
-	bh=d+0+LR6L1IBAup/75jhlBSGYcw5/zriWC81MfvfVkUw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DuMAGZy94kC2cq4KyePcwStMvrbIGOTVRIJabARAFmOgQKVzv07R6k/J8iMFqNfPIc5NrNbM3qABtNAaEDUrmOoaPgoQM/6syqDLlBquGtFENUCLNZkWbT0bv2Sg4BpKk0ULnKpgfEFP4tzv0bsUfM95Vp0JSLr+ONMTPtPeCoE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JAMREDu1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10CDEC433C7;
-	Wed, 10 Apr 2024 10:44:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712745873;
-	bh=d+0+LR6L1IBAup/75jhlBSGYcw5/zriWC81MfvfVkUw=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=JAMREDu1dIcEcDV+g0187w85+XnxoAL7Z3ymPOCHjQtuoM9LAYXtv0JlvF4pj66Ba
-	 tODxA4yYGGU/pRF1u0TCwX1mvm04SgYtnI6qTieo4C4kwm0+Y/znmPM04grT5qRn1J
-	 q0bPrWPNvaDs/Ip7k9bpxR+TLiyiLALgyEOFGS4+u4I3bFJWn81AtQ9jCfmi5etT3F
-	 tVC5UEvTqSrez89WnhfsaA2qALK2gihRxR9Pi8XyrBFADfIJW1dm1aTgtfs+DaKrWb
-	 onGQrQWk9oxtzVkcomGlTBnyXUT/VBKqxGkgQVVeIctVJJQkpPdXVHmAT5kDRJ1dam
-	 qY3XzikKOMnCg==
-From: Conor Dooley <conor@kernel.org>
-To: linux-riscv@lists.infradead.org,
-	Conor Dooley <conor@kernel.org>,
-	Yangyu Chen <cyy@cyyself.name>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	linux-kernel@vger.kernel.org,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Dan Carpenter <dan.carpenter@linaro.org>,
-	Guo Ren <guoren@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: Re: (subset) [PATCH RESEND v8 0/6] riscv: add initial support for Canaan Kendryte K230
-Date: Wed, 10 Apr 2024 11:44:17 +0100
-Message-ID: <20240410-endnote-falsify-f22d7fe308cc@spud>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <tencent_22BA0425B4DF1CA1713B62E4423C1BFBF809@qq.com>
-References: <tencent_22BA0425B4DF1CA1713B62E4423C1BFBF809@qq.com>
+	s=arc-20240116; t=1712746596; c=relaxed/simple;
+	bh=nhPe0d6dN1xtXoa/pLx+Q5JNnTdOC3fNY0Y7FDbUkno=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=B0ELqkMangy6VeAT2mOhUA5sdLbqCRFD7bJx1MTaUjde9Zq542TIzw+fPkk0/tWx7tsjf6frS/4LE7zhw79KhZbB8dswPujMgpFNvINlSm/gLRTaALKynuXbDd/VfpgyUr+VQys79OlSpawZYDfhaoeQdkX4KrG5VZfJmvevUZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gehealthcare.com; spf=pass smtp.mailfrom=gehealthcare.com; dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b=R2H1uwrn; arc=none smtp.client-ip=67.231.149.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gehealthcare.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gehealthcare.com
+Received: from pps.filterd (m0047962.ppops.net [127.0.0.1])
+	by m0047962.ppops.net-00176a03. (8.17.1.24/8.17.1.24) with ESMTP id 43AA3Gpi006699;
+	Wed, 10 Apr 2024 06:56:29 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	gehealthcare.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=outbound; bh=gRNkGdhV
+	4ndQT+3cfhHl3osGq/PeHfRnMZPdJWTnA9U=; b=R2H1uwrnPTlqEmkA2Kiu0dX+
+	0Nlvm2fxhW2fU5GJFrDFbALrFxa24D7nKtdI5VjAwjXYeNxkMu6YwsgDczCmdnyw
+	jbyeGWunUBB38Jwfyda3Oa8mY/cCsJLpd5zsbKc/uf6NDsUm/ttMs2flJJ7PBVfT
+	V0UNFqQ/nWTuV2sxMzXroYjYoD49lUwCP9Jx1EPizKgwgChPg5MFsFejaVO+BGRC
+	9z4XrE0y2nSHFgxgrcCJcAwcLbN+pwGrMb0mdynSR45DiO7Iye040APd8F4Ke70T
+	03auGCfThBHW48X5Ye8BeKwFYB6lVpZ5r+teetS00QJ8PYvTXApobMYJ5y7TBQ==
+From: Ian Ray <ian.ray@gehealthcare.com>
+To: Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Cc: Ian Ray <ian.ray@gehealthcare.com>, devicetree@vger.kernel.org,
+        imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH V3 1/2] arm64: dts: imx8mp-msc-sm2s: correct i2c{1..6} pad drive strength
+Date: Wed, 10 Apr 2024 13:56:10 +0300
+Message-Id: <20240410105612.982-1-ian.ray@gehealthcare.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=622; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=aOAuGM/qQpYkpIQU1B2iLXnrNX4jsQerO8QnmDLtYho=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDGliuQ0ffnoILznYbvc5PODQu7f8/olHPkYm7yu7nftUI MjmS7ZDRykLgxgHg6yYIkvi7b4WqfV/XHY497yFmcPKBDKEgYtTACbSuIXhfx579IwcVSftd59d 9x9X6w/a6FsXWZ5+NnGi1gyOo0c+sjEy7P+4o+YIc1bvxaXyvkLGNV48RV41Ue+lixcHRzS0fa3 nAAA=
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: dcDj0jcAueAG4oxK9GL9BXWa2HBSzQmn
+X-Proofpoint-ORIG-GUID: dcDj0jcAueAG4oxK9GL9BXWa2HBSzQmn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-10_04,2024-04-09_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 impostorscore=0 adultscore=0
+ malwarescore=0 bulkscore=0 priorityscore=1501 mlxscore=0 suspectscore=0
+ mlxlogscore=999 lowpriorityscore=0 spamscore=0 phishscore=0 clxscore=1015
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2404010003
+ definitions=main-2404100078
 
-From: Conor Dooley <conor.dooley@microchip.com>
+Adjust i2c drive strength based on latest Avnet BSP.
 
-On Mon, 08 Apr 2024 00:26:58 +0800, Yangyu Chen wrote:
-> K230 is an ideal chip for RISC-V Vector 1.0 evaluation now. Add initial
-> support for it to allow more people to participate in building drivers
-> to mainline for it.
-> 
-> This kernel has been tested upon factory SDK [1] with
-> k230_evb_only_linux_defconfig and patched mainline opensbi [2] to skip
-> locked pmp and successfully booted to busybox on initrd with this log [3].
-> 
-> [...]
+Signed-off-by: Ian Ray <ian.ray@gehealthcare.com>
+---
+ .../boot/dts/freescale/imx8mp-msc-sm2s.dtsi   | 24 +++++++++----------
+ 1 file changed, 12 insertions(+), 12 deletions(-)
 
-Applied to riscv-soc-for-next, thanks!
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s.dtsi
+index 61c2a63efc6d..e794f05cf5aa 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s.dtsi
+@@ -602,38 +602,38 @@ pinctrl_flexspi0: flexspi0grp {
+ 
+ 	pinctrl_i2c1: i2c1grp {
+ 		fsl,pins =
+-			<MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL		0x400001c3>,
+-			<MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA		0x400001c3>;
++			<MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL		0x400001e0>,
++			<MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA		0x400001e0>;
+ 	};
+ 
+ 	pinctrl_i2c2: i2c2grp {
+ 		fsl,pins =
+-			<MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL		0x400001c3>,
+-			<MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA		0x400001c3>;
++			<MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL		0x400001e0>,
++			<MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA		0x400001e0>;
+ 	};
+ 
+ 	pinctrl_i2c3: i2c3grp {
+ 		fsl,pins =
+-			<MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL		0x400001c3>,
+-			<MX8MP_IOMUXC_I2C3_SDA__I2C3_SDA		0x400001c3>;
++			<MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL		0x400001e0>,
++			<MX8MP_IOMUXC_I2C3_SDA__I2C3_SDA		0x400001e0>;
+ 	};
+ 
+ 	pinctrl_i2c4: i2c4grp {
+ 		fsl,pins =
+-			<MX8MP_IOMUXC_I2C4_SCL__I2C4_SCL		0x400001c3>,
+-			<MX8MP_IOMUXC_I2C4_SDA__I2C4_SDA		0x400001c3>;
++			<MX8MP_IOMUXC_I2C4_SCL__I2C4_SCL		0x400001e0>,
++			<MX8MP_IOMUXC_I2C4_SDA__I2C4_SDA		0x400001e0>;
+ 	};
+ 
+ 	pinctrl_i2c5: i2c5grp {
+ 		fsl,pins =
+-			<MX8MP_IOMUXC_SPDIF_TX__I2C5_SCL		0x400001c3>,
+-			<MX8MP_IOMUXC_SPDIF_RX__I2C5_SDA		0x400001c3>;
++			<MX8MP_IOMUXC_SPDIF_TX__I2C5_SCL		0x400001e0>,
++			<MX8MP_IOMUXC_SPDIF_RX__I2C5_SDA		0x400001e0>;
+ 	};
+ 
+ 	pinctrl_i2c6: i2c6grp {
+ 		fsl,pins =
+-			<MX8MP_IOMUXC_SAI5_RXFS__I2C6_SCL		0x400001c3>,
+-			<MX8MP_IOMUXC_SAI5_RXC__I2C6_SDA		0x400001c3>;
++			<MX8MP_IOMUXC_SAI5_RXFS__I2C6_SCL		0x400001e0>,
++			<MX8MP_IOMUXC_SAI5_RXC__I2C6_SDA		0x400001e0>;
+ 	};
+ 
+ 	pinctrl_lcd0_backlight: lcd0-backlightgrp {
+-- 
+2.39.2
 
-[6/6] riscv: config: enable ARCH_CANAAN in defconfig
-      https://git.kernel.org/conor/c/cd899f85b1e4
-
-Thanks,
-Conor.
 
