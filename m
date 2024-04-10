@@ -1,171 +1,120 @@
-Return-Path: <devicetree+bounces-57950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0307589FAEB
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 17:02:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC45889FAB3
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 16:56:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 591031F2AF93
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 15:02:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 791CE1F31222
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 14:56:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6630C15EFAD;
-	Wed, 10 Apr 2024 15:01:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AE1B16EC18;
+	Wed, 10 Apr 2024 14:54:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="ZH0ALDkG"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="FW+n/r2V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2C992AF16;
-	Wed, 10 Apr 2024 15:01:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2DCE16EBF8
+	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 14:54:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712761307; cv=none; b=IPzKfzjwkpO/hKn0HydGATBznBxe6JW2lY+JimfsK4crWf6+9H/fRw4jUZZwpBiqt1FGCYx2yLuxGfcnEZILpr/x+nrosOKBBFdMPXL1RAxGcoW7okfRQ4z/+L1sTeM+vt69F5UQqLnrspYC21cy92dvs5kdzohAFY23t1RnEic=
+	t=1712760853; cv=none; b=J3YDO5fhy2KDAfuG1Q9DD2Muc1JpL4oCGujk9kDTWf4E92LP1uUESgBeiLLD385PiyxiRFZRIN/2lQWtC+7uLIwhMsyMl5xevgcx37EF3eV1zMYATVVMm1QOvxDmPrGu/vy9LPnyFKSNV13Zt4CtdQA4BZFt/8cpyiiMhwgeLww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712761307; c=relaxed/simple;
-	bh=kkXbdZNH9h55ww3tWrdUPk17fd5BeR//NtkGf/l8KO0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=nAOcFfe6DCgacQ+IITCCWfP2SElByZbBriaRLCGS556e4dsFmJlMkLqrrBHlYUB6TeXv2HwpBtuj6An11B0L/sYI6UN5ZSVU0eFQRSaFFss3ES8SmOg+pRq9fYjM94ym7Y7B6sJ6jxoIL0jfD9mXzfjznJA0DePR+8VnbL4SFG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=ZH0ALDkG; arc=none smtp.client-ip=45.89.224.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id B4C4E12005F;
-	Wed, 10 Apr 2024 18:01:42 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru B4C4E12005F
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1712761302;
-	bh=q1gcIhloFFL/kbDvWiIUFlnWRSNETi2Q1q4ICf8bZ6U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=ZH0ALDkGOFqCk6vAz3G8gC5+qvvZ2daY3q3VrOwr+zrqqGSGa07E84C9GlJDBT58g
-	 koMTQTOIv1J0nS663xzaY8Hld8Kq0yA6yu2lMLIrTzdKnnG9+rVXy4KttYznHyKy6E
-	 mRSM+KL5H38VTy3Wi9YNjGCmax06SqZ5m9vbNN6G1wBz+r92CwlDhrnS7IfqMxxEa5
-	 2+iPeI6dnMXqGnRNqt8Iy/pnF2vWaowH6VPsS4IDwSSYGy7qZP/H2hOBZwCJv9V8gf
-	 1GZ/hsQFjDTN4H9z/uCGwDYzkCnnO8WibNenQmM2eVgWayLolSqKqqYkNCmvcqkwZa
-	 G8jph7IqvgDqw==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Wed, 10 Apr 2024 18:01:42 +0300 (MSK)
-Received: from [172.28.64.75] (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Wed, 10 Apr 2024 18:01:42 +0300
-Message-ID: <b623a374-4e2f-7160-8d11-75f9beaac42b@salutedevices.com>
-Date: Wed, 10 Apr 2024 17:51:03 +0300
+	s=arc-20240116; t=1712760853; c=relaxed/simple;
+	bh=lb+10Z0IsQP6fdKaH27sy53CFmYG4HdNoIjZt107yr4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dMUwOfmCzS4TKzO7LkL8twjVs9v7mYiTFXLptg5MT6Xkya03ZWK5YfRSDHNRPoVayZrq/4cGWOUtfDY2ZobdJraibiKwQzU22KuYjQh1GB5OOYiUMj/Qx/uoT4eik3Gjr9MZtQBlMluLKUrRGolXrbKm4g8vCb67eeC8KZOx/lg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=FW+n/r2V; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4173f9e5df7so3782635e9.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 07:54:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712760849; x=1713365649; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UE+4Y18rqT6MP9pTdsa016UUd/maawQyVReuqUWJA2U=;
+        b=FW+n/r2VNGwSr8jy6K8k0RsiZW+t6puuD93D+Rfe6YX8yRF/g3JeluzOfCDtNuznN9
+         P/Mk/7kvItEmuoO4iXnubNtw9BbK87delR4UaKhXxG4qX3at5Df6CPXbT4QQrVsNylm6
+         19A7n0KSEEGRXAJB4lVwjdOJWNUFchPXn1X+B+mZquecUBg6zP05e/K1Ph++QjcBbpxl
+         P7F2J55ulTTXC5YpEm8HO/W/b8Ejev7JAFJmdoSMeArhS9xivH7CkzGJiTVeMAtAqq6b
+         hA08HXE5Vk4NddNG32PAOiyfM3hO63t8jUse8R+36y0zimDBRFdZEHENfZOgditSLENC
+         qayA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712760849; x=1713365649;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UE+4Y18rqT6MP9pTdsa016UUd/maawQyVReuqUWJA2U=;
+        b=KhILTvyd7ctcxq/0Gj4nnZ9Ejr2t6DUDSlk/3zvRYxIhtMdfGFnWNUryXG6KnEjmZ2
+         R3aps9tLF8mve59AX7R6qHU5hiZNcWkv8HZgG1dCwmA0zBQQQ/9tA0IL6NN2PjSIsKjj
+         1feXvkynUXcZRtFXMX3mo9Lj8JZD+cWWPmJT2QHvOGrA7/xkmuqb30SYYoiCDLKr7tgc
+         01i2Tn7B4sqH3NbVo/ry35dtFwJiZ5y5RgGLPGEb40lCEeqO188W0//xmtu5qyzIi3SY
+         M66ansbTD9UsWvT5hwT+rWBHZdsmCR+WVZUrw3UnGf0lqriXVCz4fTwv35NW2FQO83KO
+         ng5w==
+X-Forwarded-Encrypted: i=1; AJvYcCXMcbjI57PHs08JNmpbKvKM9wtb7Q9zfj8CDZNU8/e1bPdq3EcNb3+oXjnyU0lH3L7QgwV8OIul7mDXFFCDrRgYIeE9a6lRupSqYA==
+X-Gm-Message-State: AOJu0Yw9UTz+NHW4ENU0iyxtpvNOUMtu49gLrXeGJM7SJhRyDbCElshz
+	sJ1aLOeBJah5xQr1F5HM3gzdyy4jPVa999ykIrFmhRP5fYBrQkDLQ1w+I5KTeNU=
+X-Google-Smtp-Source: AGHT+IHCUNg5SsYHXd3cnIQYa7aR4oDCUcNCW6UqXLuavJoCReIkeODB8539jlTtqakTtMbi5H4ORw==
+X-Received: by 2002:a05:600c:4f44:b0:416:6abe:2975 with SMTP id m4-20020a05600c4f4400b004166abe2975mr2002047wmq.15.1712760848874;
+        Wed, 10 Apr 2024 07:54:08 -0700 (PDT)
+Received: from [192.168.1.172] ([93.5.22.158])
+        by smtp.gmail.com with ESMTPSA id gw7-20020a05600c850700b004146e58cc35sm2526850wmb.46.2024.04.10.07.54.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Apr 2024 07:54:08 -0700 (PDT)
+Message-ID: <6506db51-121b-4579-bf14-0ab6e33fb048@baylibre.com>
+Date: Wed, 10 Apr 2024 16:54:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v3 1/2] dt-bindings: mtd: amlogic,meson-nand: support
- fields for boot ROM code
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 08/18] ASoC: mediatek: mt8195: Migrate to the common
+ mtk_soundcard_startup
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ broonie@kernel.org
+Cc: wenst@chromium.org, lgirdwood@gmail.com, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com, perex@perex.cz, tiwai@suse.com,
+ trevor.wu@mediatek.com, maso.huang@mediatek.com,
+ xiazhengqiao@huaqin.corp-partner.google.com, arnd@arndb.de,
+ kuninori.morimoto.gx@renesas.com, shraash@google.com,
+ nicolas.ferre@microchip.com, u.kleine-koenig@pengutronix.de,
+ dianders@chromium.org, frank.li@vivo.com, allen-kh.cheng@mediatek.com,
+ eugen.hristev@collabora.com, claudiu.beznea@tuxon.dev,
+ jarkko.nikula@bitmer.com, jiaxin.yu@mediatek.com, alpernebiyasak@gmail.com,
+ ckeepax@opensource.cirrus.com, zhourui@huaqin.corp-partner.google.com,
+ nfraprado@collabora.com, alsa-devel@alsa-project.org,
+ shane.chien@mediatek.com, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ kernel@collabora.com
+References: <20240409113310.303261-1-angelogioacchino.delregno@collabora.com>
+ <20240409113310.303261-9-angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-CC: Richard Weinberger <richard@nod.at>, Vignesh Raghavendra
-	<vigneshr@ti.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Neil
- Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, <linux-mtd@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<oxffffaa@gmail.com>, <kernel@sberdevices.ru>
-References: <20240409181025.55504-1-avkrasnov@salutedevices.com>
- <20240409181025.55504-2-avkrasnov@salutedevices.com>
- <20240410122356.30852b3c@xps-13>
- <588551c9-3426-e623-e2aa-70b040c9324a@salutedevices.com>
- <20240410170040.37a59ff6@xps-13>
-From: Arseniy Krasnov <avkrasnov@salutedevices.com>
-In-Reply-To: <20240410170040.37a59ff6@xps-13>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 184655 [Apr 10 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: avkrasnov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 16 0.3.16 6e64c33514fcbd07e515710c86ba61de7f56194e, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/10 11:03:00 #24738255
-X-KSMG-AntiVirus-Status: Clean, skipped
+From: Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <20240409113310.303261-9-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+Way better with common stuff ! :p
 
+Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
 
-On 10.04.2024 18:00, Miquel Raynal wrote:
-> Hi Arseniy,
-> 
-> avkrasnov@salutedevices.com wrote on Wed, 10 Apr 2024 17:48:02 +0300:
-> 
->> Hi,
->>
->> On 10.04.2024 13:23, Miquel Raynal wrote:
->>> Hi Arseniy,
->>>
->>> avkrasnov@salutedevices.com wrote on Tue, 9 Apr 2024 21:10:24 +0300:
->>>   
->>>> Boot ROM code on Meson requires that some pages on NAND must be written
->>>> in special mode: "short" ECC mode where each block is 384 bytes and
->>>> scrambling mode is on. Such pages located with the specified interval
->>>> within specified offset. Both interval and offset are located in the
->>>> device tree and used by driver if 'nand-is-boot-medium' is set for
->>>> NAND chip.
->>>>
->>>> Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
->>>> ---
->>>>  .../bindings/mtd/amlogic,meson-nand.yaml           | 14 ++++++++++++++
->>>>  1 file changed, 14 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
->>>> index 57b6957c8415..b86a1953056b 100644
->>>> --- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
->>>> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
->>>> @@ -64,11 +64,25 @@ patternProperties:
->>>>          items:
->>>>            maximum: 0
->>>>  
->>>> +      amlogic,boot-page-last:
->>>> +        $ref: /schemas/types.yaml#/definitions/uint32
->>>> +        description:
->>>> +          The NFC driver needs this information to select ECC
->>>> +          algorithms supported by the boot ROM.  
->>>
->>> Shall we have a length rather than the last page?  
->>
->> You mean rename it to "amlogic,boot-pages-length" or something like that ? But I think
->> length in bytes is useless here:
->> 1) boot rom needs that only some single pages are written in special mode (and as I see in
->>    vendor's driver it also works in pages).
->> 2) NAND driver operates in pages during write/read such pages.
->>
->> So length in bytes will be converted to pages anyway.
->>
->> What do You think ?
-> 
-> I didn't talk about units :-)
-> 
-> Maybe: amlogic,boot-pages would make sense? But pointing at the last
-> page seems weird.
+On 09/04/2024 13:33, AngeloGioacchino Del Regno wrote:
+> Add a const mtk_pcm_constraints_data struct array with all of the
+> (again, constant) constraints for all of the supported usecases,
+> remove the duplicated functions and call mtk_soundcard_startup()
+> instead in all of the .startup() callbacks.
 
-Ah ok I see. Got it!
-
-Thanks, Arseniy
-
-> 
-> Miquèl
+-- 
+Regards,
+Alexandre
 
