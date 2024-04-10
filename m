@@ -1,135 +1,108 @@
-Return-Path: <devicetree+bounces-58012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D0DA89FE6E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 19:25:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8149789FE87
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 19:29:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 614A71C22643
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 17:25:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22B7E1F245FD
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 17:29:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D741217F36E;
-	Wed, 10 Apr 2024 17:24:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EE2417BB1F;
+	Wed, 10 Apr 2024 17:29:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fB2/9ZSE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nlJJ3J4H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38CB917B4F8
-	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 17:24:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15A44178CEE;
+	Wed, 10 Apr 2024 17:29:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712769852; cv=none; b=S9+xUpwlkHH2cqwcE/Mv7/UEsTZ0YP0kwSERSV326g2Vx8rxbHLwaqm4LX/CR0lPpCJNBwajFu2hqUCcMyznRDnUKYG2b4l+J9JMV7NgGZc8u03XyqT0joq2wRyPmhf1oVPa/DOHh/Nawnmv0zQhELtMUOh64TIgYRctpKmRY4U=
+	t=1712770167; cv=none; b=LeQThXHn/NfWSrKj77ZRhFQWbYqtlF067naUA3cBfsKXla5v1jjddUm4lVFIV3ODiWfFFLOgZhXfKZJdIihIXJJvsR3zm8vhfaY2vp1TWVi62MIIRPfz2K796+NfZv4m3AdPLkq0ERVbIiw1c6MpJNcPCs7rGFtD6Ll1kXVS2hM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712769852; c=relaxed/simple;
-	bh=T58qNytxxfzTycOisnq+VRw8hxedCluwkFTrhnjXoOE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=BInmv0j6vh9cXjQF48s+H+Nroz2FZlLh1VqNGPbHwqPJwNlY2VeOBAb4n2Qf7Tw+9NwKQhIFox6VO2BSwmud9BS4sG/jq4+fL4f6K3SZ5cCweJNbRxj8DJzKfEJqR4hFotYAS/viu5Au1/wskKDqmOiBCyAInwVlmYxcYXmLVHA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fB2/9ZSE; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43A97l1U016153;
-	Wed, 10 Apr 2024 17:24:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=9gJQgFd+qcYRXpMqMooXX1Nm7TdMKnQKjdYT54V39z8=; b=fB
-	2/9ZSECsZOTT+U6mbks9MUTL8ux3njYJsrbEfvk2asTQhqcSrctbEJXk1tVHdP6x
-	5EgOGqX6HDFjmPMYGaQr+cqKAG2pmY6oSlEK8jd3NDXAufPBXw3Nr5QGTPGz5K7L
-	w9eZJA5JVu+OShLX7Qqdr7PEvxwiBswIVGgyrmgveNBTJf70gTwGI1c/3ub13ayF
-	b1pQvcGSBKV73q7zI2G23CI0ZfO9Vod77PjIzpNOIzXG20FTykXKBhC1Xql4Ir+U
-	LPrgHqOq4kl4di5yJHcdZWV8I4M6zVdXJ/oI2JBBa90VULh3O+7TCDBfJwFYf/Kg
-	6OxZ3Zva6tB1RAYkNoYw==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xdquht9mc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 10 Apr 2024 17:24:05 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43AHO3jR010022
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 10 Apr 2024 17:24:03 GMT
-Received: from [10.71.80.179] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Wed, 10 Apr
- 2024 10:24:02 -0700
-Message-ID: <ae74fd28-9658-4461-9b4d-e31443e7d377@quicinc.com>
-Date: Wed, 10 Apr 2024 10:24:02 -0700
+	s=arc-20240116; t=1712770167; c=relaxed/simple;
+	bh=kKy/KkBjkWZbvlopf+v401WCCnoGXIliP5F7ZNV9yIs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rMIFrk2cj07xgSPsJCllgb+oATNC5RbQL4dqQDJxGLMQqiNe5GreNUPRCpv9q86xKcS62iNd9jSG60ss5QfYdPA4Kg6CWrquc6XUh0t4tNCLex4YgO8HROSIT2+nGcsoqCXIMTQNBDwyXVOpny+1689K5Gv+6xhJXKTs7ipXTzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nlJJ3J4H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A734CC433C7;
+	Wed, 10 Apr 2024 17:29:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712770166;
+	bh=kKy/KkBjkWZbvlopf+v401WCCnoGXIliP5F7ZNV9yIs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nlJJ3J4HT50hadj+1d/lz0xRzTzb5GeCtya2+Cc8lcfxz9pWNZXQ3zT5vdi6NAbeU
+	 Gz+t0h+fPb6sIhdXIBQMKgAix6DnLgS3R2KPwaBLYs3wzebhyXjsuw0MtxcVyo0Hq0
+	 9LwEb7x024/I86PfKizx7SLRp3WmyFHI2ix5zJgIGSb+6dPkEHKlScKPbapMO8S2jM
+	 8BBfe0OIYPunXnX3MkNInb7lFsVMuMMow6wMLlzdQTgmRYR9G9RQkSK3Z8jgRhICVM
+	 G0nwpufPRxE0mPi5WDSh2EpyUHVTIynzAkavDyfTMu/9IzcsXCrKFjxQ2E53roj0SM
+	 TJgMR9Z18HhOg==
+Date: Wed, 10 Apr 2024 12:29:24 -0500
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: matthew.gerlach@linux.intel.com, bhelgaas@google.com,
+	lpieralisi@kernel.org, kw@linux.com,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: PCI: altera: Convert to YAML
+Message-ID: <20240410172924.GA622917-robh@kernel.org>
+References: <20240405145322.3805828-1-matthew.gerlach@linux.intel.com>
+ <2ece9ac2-899c-4185-b0f3-8ab939afc1e5@linaro.org>
+ <alpine.DEB.2.22.394.2404081309050.381257@sj-4150-psse-sw-opae-dev2>
+ <d079bf4d-ebfe-4d98-b718-0c545aabbd30@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: DT Query on "New Compatible vs New Property"
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Sudeep Holla
-	<sudeep.holla@arm.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-CC: Trilok Soni <quic_tsoni@quicinc.com>,
-        Ulf Hansson
-	<ulf.hansson@linaro.org>,
-        Manivannan Sadhasivam
-	<manivannan.sadhasivam@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>, <robh+dt@kernel.org>,
-        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        "Prasad Sodagudi (QUIC)"
-	<quic_psodagud@quicinc.com>
-References: <3e8e7c8c-c14a-452c-a861-e2a07994119a@linaro.org>
- <ZfLXsCaeycRlQg3I@bogus> <487f91af-722f-44eb-a1a2-61dec586d686@quicinc.com>
- <ZfMZ9ATxuvONcGpz@bogus> <0411f99d-231a-af4b-d681-7f7748361aa3@quicinc.com>
- <904978d8-eab4-4936-86dc-b0b1e7c40256@linaro.org> <Zfl-Z3vm-3sQ5TN5@bogus>
- <d51ef79a-012e-4701-ac8c-4d1da1827dd8@linaro.org> <Zfmsjg2rb_ZMc4tA@bogus>
- <33783999-227b-4837-9924-2fd99b210cbb@linaro.org> <Zfm5m2zp4A06ZunW@bogus>
- <c66f280b-aa29-4b18-98f1-701f60cbc63d@quicinc.com>
- <afc07c5d-640b-4eaf-94a2-086a6d43d712@linaro.org>
-Content-Language: en-US
-From: Nikunj Kela <quic_nkela@quicinc.com>
-In-Reply-To: <afc07c5d-640b-4eaf-94a2-086a6d43d712@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Ne7ZnHdYmkdAxUUATh2NaX5ivzx7ryCE
-X-Proofpoint-GUID: Ne7ZnHdYmkdAxUUATh2NaX5ivzx7ryCE
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-10_04,2024-04-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
- adultscore=0 clxscore=1015 mlxscore=0 malwarescore=0 mlxlogscore=791
- phishscore=0 lowpriorityscore=0 suspectscore=0 impostorscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404100127
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d079bf4d-ebfe-4d98-b718-0c545aabbd30@linaro.org>
 
+On Tue, Apr 09, 2024 at 08:29:07AM +0200, Krzysztof Kozlowski wrote:
+> On 08/04/2024 22:34, matthew.gerlach@linux.intel.com wrote:
+> >>> diff --git a/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..999dcda05f55
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
+> >>> @@ -0,0 +1,106 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> >>> +# Copyright (C) 2024, Intel Corporation
+> >>
+> >> This is derivative of previous work, which is easily visible by doing
+> >> the same mistakes in DTS as they were before.
+> > 
+> > This is definitely derivative of previous work, and I want to fix the 
+> > DTS mistakes too.
+> > 
+> >>
+> >> You now added fresh copyrights ignoring all previous work, even though
+> >> you copied it. I don't agree.
+> >>
+> >> If you want to ignore previous copyrights, then at least don't copy
+> >> existing code... although even that would not be sufficient.
+> > 
+> > Ignoring previous copyrights was not my intent. There is no copyright 
+> > statement in the original text version of the device tree bindings. Should 
+> > that lack of copyright statement carry forward?
+> 
+> All the authors are copyright holders automatically, at least in some or
+> maybe most jurisdictions. You do not need to add copyright label for
+> material to be copyrighted. That's why you are not allowed to relicense
+> the work for example, without other authors' agreement.
 
-On 4/10/2024 10:13 AM, Krzysztof Kozlowski wrote:
-> On 10/04/2024 18:55, Nikunj Kela wrote:
->> If there are no more questions on this and everyone is on the same page,
->> I would like to conclude this thread in favor of using a new DT property
->> 'qcom,firmware-managed-resources'.
-> Just to recap my earlier statement, because I am not sure if I got the
-> answer (if answer was provided, then I don't forgot... sorry):
->
-> This is a new hardware, so you have a new compatible, therefore any
-> additional property is not needed.
-This is not a new HW, this is the same HW with different FW and 
-interface to FW is different too. As you can see earlier discussion on 
-this thread, new compatible was ruled out since it is the same HW IP.
->
-> In other cases, just use existing properties, don't bring a third one. :/
-Not sure which existing property you are referring to. There is no 
-property to the best of my knowledge to deal with our scenario. Are you 
-suggesting we reuse "qcom,controlled-remotely" property that is used in 
-Qualcomm BAM DMA Controller for our case too?
->
-> Best regards,
-> Krzysztof
->
+The only thing I see as missing is some years. All the authors were 
+Altera which is now Intel, so Intel is the sole copyright holder. 
+Whether is says 2015 contributions were Altera or Intel is probably 
+immaterial.  There were also contributions by Google (Bjorn), but those 
+were purely editorial.
+
+Rob
 
