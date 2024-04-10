@@ -1,153 +1,99 @@
-Return-Path: <devicetree+bounces-57869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21B8389F17C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 13:54:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AF4089F185
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 13:56:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 538C01C2199D
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 11:54:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF47CB22CE4
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 11:56:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F354415B0F2;
-	Wed, 10 Apr 2024 11:54:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F7A115ADB6;
+	Wed, 10 Apr 2024 11:56:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="uB85bfI7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u3jRSI8k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 306BD15ADB6;
-	Wed, 10 Apr 2024 11:54:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B34515ADB4
+	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 11:56:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712750044; cv=none; b=f2FEBgSJ6usAdACvBCVCoaJbVtYPInx8XxmlOmiJLBBbxItueYw9YfhSnVcEEayvyfO1gTnZT2KlThCc2DNbJi9j/TIXgT89JID0Vb8wBTfARMGZmxXymmTZs/H+q2OtvIVO3OQNzUP/fNB1rtX3pQQaO31jxAwGa+d3KkVykE0=
+	t=1712750200; cv=none; b=p3ZtAfnFfL+sUKIzCdaMV/5xNWPHnyMWaRDUWqGp4HjVVBvaMwBW+/eIVvUIW9NCu45DlbfTvHenpIfKONnA+0Bz1o1ECCkipTgrYKMXfPJm4Lq8LP3eeme8pEzHOsnawB4NETRX3IOo0fTUre9PbFZyh/ZxzcD5yeKyDMtwPe0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712750044; c=relaxed/simple;
-	bh=6Jm7s4gyyTcXqJ/8roiVJygUnDsgGeCObFkYjHDxRTI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=JVxi/LcpUKtVlSKgrGG9x4uZh5mxIHwkIOdmsIR/s8/uIdyvYgc6YjcFRr19Yd0/D3dOEiw0psN+R7hPcghu4/t33xBSqMP5CYpcLJs8xQsutBoiU4kTf3iCwV2PivrekL/JcoN8vDRTXh7l6IUfVGoFaeuuPQJdfn7aIOkudKs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=uB85bfI7; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43ABrfNM114821;
-	Wed, 10 Apr 2024 06:53:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1712750021;
-	bh=toSUfMcLv0WNCJ4zhPtky0YQxNctanvw3Avt3dfN2SM=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=uB85bfI7c/baej7WPg8+D7dOQC2+yyeGWE+/HP5DuhDkdc1NbBOJ65QzOaKOl+OKh
-	 uf0g8cpfoE3W6ygqNe27h2Sgok1DEEjVPrRbSG5IQBXFZrzuh96/9w4iX12Xexeb7q
-	 SSMQlO2VUX4Kkmjr3hOpdjSHSTjdR5xKpDiwITQ4=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43ABrfWN046566
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 10 Apr 2024 06:53:41 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 10
- Apr 2024 06:53:41 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 10 Apr 2024 06:53:41 -0500
-Received: from [172.24.227.252] (jayesh-hp-probook-440-g8-notebook-pc.dhcp.ti.com [172.24.227.252])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43ABrbQo097683;
-	Wed, 10 Apr 2024 06:53:38 -0500
-Message-ID: <66633020-8044-4493-90d4-5deb29abf899@ti.com>
-Date: Wed, 10 Apr 2024 17:23:37 +0530
+	s=arc-20240116; t=1712750200; c=relaxed/simple;
+	bh=h4rJ1BWUa6Fn9iMSZK/APmjQKXECH3I4VEf2yEnegm0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ad0RCuPYPro3aGScf1eHOdrlkbx2qROaCXsmYoUPCyzAeJSE9qqDIe9gRzJNkIVtOOndHzSdnTcF00KMjbfZ8zScmyY17dmQeYU8VEDPYv2IgGWA4uD/Bs0NNQQ1aKSMdV21xs1xcX8nlOh2S2Hs5yLt/w2zja+inVcPLaNtz3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u3jRSI8k; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61796C433C7;
+	Wed, 10 Apr 2024 11:56:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712750199;
+	bh=h4rJ1BWUa6Fn9iMSZK/APmjQKXECH3I4VEf2yEnegm0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=u3jRSI8ktYA8H+HtKWUUG2cPxJnso++uC+r0eqERopv/d/kJMUlU7hWJrMiOP6WeS
+	 gMRCr8erDT1WYe1GyiCozFdVaE1iQy+QJhV2RdjbfBjuFS+XSRL9ZTnTmZC3llJvYH
+	 PhyNSB7gTkWxVzmLtWtpQP3wzzH69RVPkdO1Rq/dKjUUHxsKh97onLu/qU1U6SMFF0
+	 qHEjj0+dP3F/bh2Y9a/+91KqUiGUxpApg1J+Ishr/zELI+w1gh/NNi5TgTLEpINGhL
+	 sVxPI841Ig6hraZyHACZefRLXvzXml8h7dkqo9iD/eKStrI0xZS2aRBta6vaS/oC6S
+	 NP8l8A5mj7LNg==
+Date: Wed, 10 Apr 2024 06:56:37 -0500
+From: Rob Herring <robh@kernel.org>
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Sudeep Holla <sudeep.holla@arm.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: firmware: arm,scmi: Update examples for
+ protocol@13
+Message-ID: <20240410115637.GA4042282-robh@kernel.org>
+References: <20240403111106.1110940-1-ulf.hansson@linaro.org>
+ <Zg1fP57mixbKTjJf@bogus>
+ <CAPDyKFpthS4eZKTTYJ=aoE=FbExD6kd_bcc_WRNLh=2BzNVHPw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-am62-main: Fix the reg-range for
- dma-controller
-To: "Kumar, Udit" <u-kumar1@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <bb@ti.com>, <devicetree@vger.kernel.org>
-CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20240405085208.32227-1-j-choudhary@ti.com>
- <20240405085208.32227-2-j-choudhary@ti.com>
- <b77128a1-8c61-49c2-81a4-c0811c5c8e3c@ti.com>
-Content-Language: en-US
-From: Jayesh Choudhary <j-choudhary@ti.com>
-In-Reply-To: <b77128a1-8c61-49c2-81a4-c0811c5c8e3c@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFpthS4eZKTTYJ=aoE=FbExD6kd_bcc_WRNLh=2BzNVHPw@mail.gmail.com>
 
-Hello Udit,
+On Thu, Apr 04, 2024 at 12:52:08PM +0200, Ulf Hansson wrote:
+> On Wed, 3 Apr 2024 at 15:53, Sudeep Holla <sudeep.holla@arm.com> wrote:
+> >
+> > On Wed, Apr 03, 2024 at 01:11:06PM +0200, Ulf Hansson wrote:
+> > > Recently we extended the binding for protocol@13 to allow it to be modelled
+> > > as a generic performance domain. In a way to promote using the new binding,
+> > > let's update the examples.
+> > >
+> >
+> > Does it make sense to keep one DVFS example with #clock-cells until we
+> > mark it as deprecated ? Otherwise it may be confusing as the binding still
+> > lists. Or leave some comment in the example or something, I am open for
+> > suggestions.
+> 
+> I am certainly fine with either way!
+> 
+> However, if we intend to make #clock-cells deprecated down the road,
+> maybe it's better to start avoiding the use of it already now. That
+> said, what do you think of following up $subject patch with an update
+> to Juno's dts(i) to move to #power-domains-cells too? That would mean
+> we get a nice reference for how to use this too.
+> 
+> >
+> > Other than that,
+> >
+> > Acked-by: Sudeep Holla <sudeep.holla@arm.com>
+> 
+> Are you picking this via your scmi tree, or which route is this going?
 
-On 10/04/24 15:36, Kumar, Udit wrote:
-> Thanks for this fix Jayesh
-> 
-> On 4/5/2024 2:22 PM, Jayesh Choudhary wrote:
->> The TX Channel Realtime Registers region 'tchanrt' is 128KB and Ring
->> Realtime Registers region 'ringrt' is 2MB as shown in memory map in
->> the TRM[0]. So fix ranges for those reg-regions.
-> 
-> Minor one, but it will be better to say that you are fixing these 
-> register ranges for  PKTDMA .
-> 
-> Something like that
+Please take via SCMI tree.
 
-The cover-letter[0] for the series does mention that the changes are for
-DMASS0_PKTDMA_RINGRT and DMASS0_PKTDMA_TCHANRT with the current and
-correct region size.
-It also mentions the section and the Table from where we can check them.
-{*** section for Main Memory Map (Table 2-1)}
-
-[0]: https://lore.kernel.org/all/20240405085208.32227-1-j-choudhary@ti.com/
-
-It was same check across all platform so added in cover letter.
-But I will add that in each patch.
-
-Thanks,
-Jayesh
-
-> 
-> For PKTDMA, The TX Channel Realtime Registers region 'tchanrt' ....
-> 
-> Also, it will help reviewer if you can mention which section in TRM[0], 
-> holding memory map .
-> 
-> If you are doing v2 then please take care of above in commit message.
-> 
-> rest for whole series
-> 
-> LGTM
-> 
-> 
-> 
->> [0]: <https://www.ti.com/lit/pdf/spruiv7>
->>
->> Fixes: c37c58fdeb8a ("arm64: dts: ti: k3-am62: Add more peripheral 
->> nodes")
->> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
->> ---
->>   arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 4 ++--
->>   1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi 
->> b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
->> index e9cffca073ef..e10cc9fc0b10 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
->> @@ -141,8 +141,8 @@ main_pktdma: dma-controller@485c0000 {
->>               compatible = "ti,am64-dmss-pktdma";
->>               reg = <0x00 0x485c0000 0x00 0x100>,
->>                     <0x00 0x4a800000 0x00 0x20000>,
->> -                  <0x00 0x4aa00000 0x00 0x40000>,
->> -                  <0x00 0x4b800000 0x00 0x400000>,
->> +                  <0x00 0x4aa00000 0x00 0x20000>,
->> +                  <0x00 0x4b800000 0x00 0x200000>,
->>                     <0x00 0x485e0000 0x00 0x10000>,
->>                     <0x00 0x484a0000 0x00 0x2000>,
->>                     <0x00 0x484c0000 0x00 0x2000>,
+Acked-by: Rob Herring <robh@kernel.org>
 
