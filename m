@@ -1,90 +1,84 @@
-Return-Path: <devicetree+bounces-58060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7E278A013B
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 22:23:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E1608A0141
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 22:24:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 56102B2665A
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 20:23:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F21A41F27A75
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 20:24:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00E541836E1;
-	Wed, 10 Apr 2024 20:22:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD7D7181CFF;
+	Wed, 10 Apr 2024 20:24:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WAxFe44W"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e/Jidtmb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3C5F1836D8;
-	Wed, 10 Apr 2024 20:22:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FF98181BAB;
+	Wed, 10 Apr 2024 20:24:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712780575; cv=none; b=EWSYAMWiyvvkGL+77UTeAEvAtQ9HgjKsCevp5UhPom5o+fe5izq6gBBm9spX1B2d3JpUMYgT6BEo4TGXTwOHaTMPbuqpmj99R09yEXgP2g3hkfyCry+rzbYE0APMOGqtuIbjsE292GvXRgOay78vUQSrYj7jfYxVGwlaqwBg25k=
+	t=1712780641; cv=none; b=lwcG5fKAp9Npv7480abDI26ke+YdLVVh8N8CT7bInuJnyA8YcHTeZrXgsY5JQQTIHQo2iM9m4fBPDbHLeG00OLuxHGQvrs7aKdBGG4Bep7Q0d6+C9rC8Xt7X0tojxEOwUSlfq5jbXb96PPixQAAW2ILEkIDyMWifcZp1T63Qbt4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712780575; c=relaxed/simple;
-	bh=zvb47o4mf8GUH8SVKa0m5GiIb1eeKuKunwVjqMtmuhk=;
+	s=arc-20240116; t=1712780641; c=relaxed/simple;
+	bh=sWg/KbJxC90lruB1AIuChQK3GO6zYnkej0/XpbiRfcw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N/WU2SLFYdPINbqqPOWlP0CF9Dzkli8br1yc/1m8bcicWCsSSOzKmh/sxO7dabVtpRV9Lnxl+1i1LKmWtCuDx8rn5TwZHGQnfpRGjS7LZtUqjNERSojjZoFnTuMjVuGCPagCuH8Qmm/CCBzFvuRlasiLUe4t5bAScihBTnKmJK0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WAxFe44W; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 759F2C43394;
-	Wed, 10 Apr 2024 20:22:55 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=f03nOKHNxoyhl8TiGIQxp8eTVjUqpmbRY5c/e8MuBOnGs1Xa49+d4mR12Gydmmyjs3ACdd7bwZHMsTk0JlpbTXJ52szMcnRObHhWz5eqhq8pzNuK43mukJgxMTN/SPzrCHskJTvs/sjLzLqAsxl0vOHem9wVtB4pveuyhcCU3yA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e/Jidtmb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE937C433F1;
+	Wed, 10 Apr 2024 20:24:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712780575;
-	bh=zvb47o4mf8GUH8SVKa0m5GiIb1eeKuKunwVjqMtmuhk=;
+	s=k20201202; t=1712780641;
+	bh=sWg/KbJxC90lruB1AIuChQK3GO6zYnkej0/XpbiRfcw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WAxFe44Wo9BGnqrVxsazyCzHllK6MSAnUlKym5Kj51SsjK0vgNjrmieVANrt6HX+G
-	 qQLEKWx5FAWHk42/PSn8UCU0XiCsvKwv1Cq1RSNJUoLiAFYldoa/naDB8idGENz8Cn
-	 7oaS8fmWVd8LGC+mpBxWyO9BkTmLMG2xmtXojemYJ2E8ZuB5gv7BUjUJkUXZjsQuTi
-	 8hfn7TaJBDH9fQGzY4heUCmkhNs7SP6C5BcAUavExJ3xURQKb5RfB7P5FtiJsckTuB
-	 Av0L+T7ZKoZJ3/W/1a7E40itpF9Rznpyxv9yEZNFHQ9IL/FCJMS9TEDk01ZV6G6XbU
-	 BcF363w7Bc0Ug==
-Date: Wed, 10 Apr 2024 15:22:53 -0500
+	b=e/JidtmbhgDCPRrt4YMse9xoD2smjvZqowOsjvxo836/beLksi7HKo+Sr+mwKtb1a
+	 eFZz92n0BSYMyLQVJnDIiBC8mgxw7FInK+k87kgaPVboQNhM3DeTXRYucxn8Swr3n1
+	 MnbDN+LCgTd5zalHKDY7QUua4Snu0rByMWMznfE0GWutTeawFnQKChbc36MrtLUI8z
+	 13/jzbFJcrVVn/5/FdKqjSpcXCOJKQBnqNhWcJ+hdMuniRYTTU7KwzkRDAYEoc9H91
+	 /BqKoSmA6Db58s94pGW/XHrJkgVKJaxPHzPncceVc9DASxprMayu7zCzbnJRln82RF
+	 /J0D7ADEUZXlQ==
+Date: Wed, 10 Apr 2024 15:23:58 -0500
 From: Rob Herring <robh@kernel.org>
-To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	Gregory CLEMENT <gregory.clement@bootlin.com>,
-	Mark Brown <broonie@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	devicetree@vger.kernel.org,
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Rob Herring <robh+dt@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Vaishnav Achath <vaishnav.a@ti.com>, linux-kernel@vger.kernel.org,
-	linux-spi@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	linux-mips@vger.kernel.org
-Subject: Re: [PATCH v3 3/9] spi: dt-bindings: cdns,qspi-nor: make
- cdns,fifo-depth optional
-Message-ID: <171278057106.1281345.946727466928284923.robh@kernel.org>
-References: <20240410-cdns-qspi-mbly-v3-0-7b7053449cf7@bootlin.com>
- <20240410-cdns-qspi-mbly-v3-3-7b7053449cf7@bootlin.com>
+	loongson-kernel@lists.loongnix.cn, linux-pm@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Yinbo Zhu <zhuyinbo@loongson.cn>, Amit Kucheria <amitk@kernel.org>,
+	loongarch@lists.linux.dev, Huacai Chen <chenhuacai@loongson.cn>,
+	WANG Xuerui <git@xen0n.name>, Huacai Chen <chenhuacai@kernel.org>,
+	"Rafael J . Wysocki" <rafael@kernel.org>
+Subject: Re: [PATCH 2/4] dt-bindings: thermal: loongson,ls2k-thermal: Add
+ Loongson-2K0500 compaible
+Message-ID: <171278063662.1282741.14842048022599311146.robh@kernel.org>
+References: <cover.1712733065.git.zhoubinbin@loongson.cn>
+ <7f6a9ea7ad32584d3d3aa1553e5cc033870fb02c.1712733065.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240410-cdns-qspi-mbly-v3-3-7b7053449cf7@bootlin.com>
+In-Reply-To: <7f6a9ea7ad32584d3d3aa1553e5cc033870fb02c.1712733065.git.zhoubinbin@loongson.cn>
 
 
-On Wed, 10 Apr 2024 11:29:06 +0200, Théo Lebrun wrote:
-> Make cdns,fifo-depth devicetree property optional.
-> Value can be detected at runtime.
+On Wed, 10 Apr 2024 17:49:01 +0800, Binbin Zhou wrote:
+> The thermal on the Loongson-2K0500 shares the design with the
+> Loongson-2K1000. Define corresponding compatible string, having the
+> loongson,ls2k1000-thermal as a fallback.
 > 
-> Upper SRAMPARTITION register bits are read-only. Procedure to find FIFO
-> depth is therefore to write 0xFFFFFFFF and read back to get amount of
-> writeable bits.
-> 
-> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
 > ---
->  Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml | 1 -
->  1 file changed, 1 deletion(-)
+>  .../devicetree/bindings/thermal/loongson,ls2k-thermal.yaml       | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
