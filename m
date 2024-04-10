@@ -1,139 +1,190 @@
-Return-Path: <devicetree+bounces-57949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB68189FAE9
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 17:01:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1D0889FB14
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 17:07:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6197B283CD0
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 15:01:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 36A141F2C93A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 15:07:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 275AE16C86A;
-	Wed, 10 Apr 2024 15:00:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1B5616E871;
+	Wed, 10 Apr 2024 15:07:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="d1DEagI4"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="rUfT5de2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 439DC16D9CD;
-	Wed, 10 Apr 2024 15:00:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22C2B16D9D5
+	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 15:07:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712761249; cv=none; b=DdMAEjrdVIKD4UgryHt5x0vOKgWsQXTPmy341FKyKxCqVXW2O/tk387BI/wvM/VQMqrBF2zCcGD5NmMweqP/hAJBm+/r23d+bXS+0TriU+zGLyJJEayoPMvBmklrRC5BY3L8ti84+6pu010Ig5P8gPgV/4cBPnIQ2phX33KPe1c=
+	t=1712761662; cv=none; b=D4QSFYigNM5yNBjnEmBbvvC7oKZ5YkbtdWHl1RFnwUbUdUbXEHjVpq1QUIeJwgHl+77IOBveTnzKphv6YYhtZ77yBhHRlTdtjuUVAwIS7ksNt/rIA/6BuND8y1baVSheTHJUllIPkLvW4zTdNL3Eb1ySrsf91OeJB1xHGlvJ4So=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712761249; c=relaxed/simple;
-	bh=TS++rJeV2yp4ppxLNZ4aJCxbh0/MWI8RIQHG9a9vms8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pZp6eYyML7Tnj099WTwPU4y6G6x0BxFoe2DDgbBVifrCn+OpPoq8bRcxahPxZ0vJCuIf5tcMZ4rnLXnv+d6x13P5OBOSKNgLixlt0/f/Yqzc0w8ElWezbJnW3ZoO8BSorudJexH1A/80Vy8aV/aoqa/IEJK/1PndcX7cgyTKA0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=d1DEagI4; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 2F6841C0005;
-	Wed, 10 Apr 2024 15:00:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1712761244;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=TzMYDMLGBpPQNMah2gckIeh3UT0WgV6HR8G+ppovp+Y=;
-	b=d1DEagI4nb/ol0AaR0vfyiD500UagvM8aAw43x9dEhNl7sPQT3uoUpQgrcfWJl9sYEOjFs
-	KfqwYvvH8RQ/BYupRm3yMeB8xxy6oYtewm5pEmdBjwClHnZOJUAY8xwLmHZcDkpRPM5806
-	xSWAkfYYlhtIWeDgSqYZp1iGAEtxVgd3p5ayB55jQTChqmU08f1qJhrJ7Fsgc1YAokCcmn
-	3edZuXvPg6HZNGNk/oXjDNbiNsmQxGQRLM+sBUIub2sCJmW77hqcsz0jylJuBSYwZyiJCO
-	LkymfrG2MQ5I1FrT8yih+eDtbj1LDRoSl37311ZVUoa/AVRDk/bWRvdRn5Y99g==
-Date: Wed, 10 Apr 2024 17:00:40 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Arseniy Krasnov <avkrasnov@salutedevices.com>
-Cc: Richard Weinberger <richard@nod.at>, Vignesh Raghavendra
- <vigneshr@ti.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
- <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>,
- <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>,
- <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- <oxffffaa@gmail.com>, <kernel@sberdevices.ru>
-Subject: Re: [PATCH v3 1/2] dt-bindings: mtd: amlogic,meson-nand: support
- fields for boot ROM code
-Message-ID: <20240410170040.37a59ff6@xps-13>
-In-Reply-To: <588551c9-3426-e623-e2aa-70b040c9324a@salutedevices.com>
-References: <20240409181025.55504-1-avkrasnov@salutedevices.com>
-	<20240409181025.55504-2-avkrasnov@salutedevices.com>
-	<20240410122356.30852b3c@xps-13>
-	<588551c9-3426-e623-e2aa-70b040c9324a@salutedevices.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1712761662; c=relaxed/simple;
+	bh=uahkF1VOEWvbo4wDDrFwOjLhjLjNoYbSCjv9ymH8OPg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=C/zN2X43UnMX0NFn6LZP632tPURFmd3bQeHwVuK+qQjr1mJkm88ufRMmZaGdAL3OzJIgCfUPWTZJnKDEYlJlxLkCKlaZhz1erjfzglRTo887dRm0SawEPiN1269ZD++epDlvARAvUrPyAHRWfTz26jjIOx7C51h9QToIr4aqO+4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=rUfT5de2; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-346359c8785so1108387f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 08:07:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712761657; x=1713366457; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+P+72Hlq99kFNnxAOkF8xNKRqdp0Nj1rk4leGd6q+bQ=;
+        b=rUfT5de2xpcVvd0Qjs4/cQiBCc7lcADNRcqjK02yAvZN6/LGBSJ5jfEAwu+yG+4VKf
+         6fd/StcMagj2tILBeaeecaKRnPekGP5yN3OL68ufh2ULHCuzS9VyzNUozxhyVf7Nnv1N
+         6iyMRcVXrEZcRVQW5wkF4jlgDN+gx14aUeKNwHa3UwwBnRcjgLYC+aJxZh68f7GTGAuR
+         6s7fNU9T0Y5YHFxl1CCtDvpCVlGlkH5zdvINZG0UzTxsv2u17oFRcnx7RWIw5pNyj+df
+         uv5OvIrc1JZqV6TgZKgtoO1tKDQsmXky0JfHwgUdvFXEGSQxyg3CWmsnk2abs+V4FNSw
+         XrQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712761657; x=1713366457;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+P+72Hlq99kFNnxAOkF8xNKRqdp0Nj1rk4leGd6q+bQ=;
+        b=NnZa9CdT269Kd+vZck/vnK++ETJBtnejIdE8HmfHIa5Skwj0YcQNLfJzaQLOaSQER4
+         7Fed27Fw2bGCAPyztJp5YfzFaIM6rGJFBhUfQ3RRpChfmUYOAeBGkPcnkqVzzGhFiPZM
+         Z4YbFLLTxKV8lEkgoZtM1fXF/6UZYdJn06k+A4ynjAbDzeRzafisDCCjezCHl1bockUy
+         hWVhOWxYn3qgqwOJbNNwgHxVfxP5pYdxjbyAciRXbv5AFV84PpqFHgt/klKU6ARuB8vZ
+         5Ky1sZ7HAVGthClJAgQwUH8a4W3y2Re6dfOluL+r0QlKW7Y24t+k5mYn7YNxsOQbEyoP
+         6gKg==
+X-Forwarded-Encrypted: i=1; AJvYcCVqzKsUDKjv87tEwRQ92I7mdeaXsNJ23m4DwgGye+wuQCymCKkgjnLRKbCZmmxNtl35im7yfZX8EVbaPGuX0vXlrXvy5MWgK6LCcg==
+X-Gm-Message-State: AOJu0Yw6jFG3MVJjmdp6mvsKmLmgfI1Rys0zBhVSuNglCszh1439AKXk
+	gwm5fdkNoXOVjApE8muuiiSkBfYYueVZio+jdDT4t92RKO3dWrwAQtAb5mIFizw=
+X-Google-Smtp-Source: AGHT+IFhnB0gsdOm+IB5xuyR92fHk4A/RRmX5WG9qW/Rsc9kuPzli806ObV+/wdLIouJrwCNwH1GSA==
+X-Received: by 2002:a5d:47a7:0:b0:343:bb25:82f0 with SMTP id 7-20020a5d47a7000000b00343bb2582f0mr2577063wrb.11.1712761657374;
+        Wed, 10 Apr 2024 08:07:37 -0700 (PDT)
+Received: from [192.168.1.172] ([93.5.22.158])
+        by smtp.gmail.com with ESMTPSA id c8-20020adfe748000000b00343a0e2375esm13906254wrn.27.2024.04.10.08.07.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Apr 2024 08:07:37 -0700 (PDT)
+Message-ID: <65b3ec7e-e753-4692-b778-a9246e9e6664@baylibre.com>
+Date: Wed, 10 Apr 2024 17:07:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 10/18] ASoC: mediatek: mt8186-rt1019: Migrate to the
+ common mtk_soundcard_startup
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ broonie@kernel.org
+Cc: wenst@chromium.org, lgirdwood@gmail.com, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com, perex@perex.cz, tiwai@suse.com,
+ trevor.wu@mediatek.com, maso.huang@mediatek.com,
+ xiazhengqiao@huaqin.corp-partner.google.com, arnd@arndb.de,
+ kuninori.morimoto.gx@renesas.com, shraash@google.com,
+ nicolas.ferre@microchip.com, u.kleine-koenig@pengutronix.de,
+ dianders@chromium.org, frank.li@vivo.com, allen-kh.cheng@mediatek.com,
+ eugen.hristev@collabora.com, claudiu.beznea@tuxon.dev,
+ jarkko.nikula@bitmer.com, jiaxin.yu@mediatek.com, alpernebiyasak@gmail.com,
+ ckeepax@opensource.cirrus.com, zhourui@huaqin.corp-partner.google.com,
+ nfraprado@collabora.com, alsa-devel@alsa-project.org,
+ shane.chien@mediatek.com, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ kernel@collabora.com
+References: <20240409113310.303261-1-angelogioacchino.delregno@collabora.com>
+ <20240409113310.303261-11-angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+From: Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <20240409113310.303261-11-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Arseniy,
+What is the purpose of these change ? I don't see the link with the 
+migration to the common mtk_soundcard_startup.
 
-avkrasnov@salutedevices.com wrote on Wed, 10 Apr 2024 17:48:02 +0300:
+On 09/04/2024 13:33, AngeloGioacchino Del Regno wrote:
+> diff --git a/sound/soc/mediatek/mt8186/mt8186-afe-pcm.c b/sound/soc/mediatek/mt8186/mt8186-afe-pcm.c
+> index bfcfc68ac64d..dbe5afa0e9ee 100644
+> --- a/sound/soc/mediatek/mt8186/mt8186-afe-pcm.c
+> +++ b/sound/soc/mediatek/mt8186/mt8186-afe-pcm.c
+> @@ -2729,7 +2729,7 @@ static int mt8186_afe_runtime_resume(struct device *dev)
+>   	struct mtk_base_afe *afe = dev_get_drvdata(dev);
+>   	struct mt8186_afe_private *afe_priv = afe->platform_priv;
+>   	int ret;
+> -
+> +pr_err("mt8186 afe runtime_resume\n");
 
-> Hi,
->=20
-> On 10.04.2024 13:23, Miquel Raynal wrote:
-> > Hi Arseniy,
-> >=20
-> > avkrasnov@salutedevices.com wrote on Tue, 9 Apr 2024 21:10:24 +0300:
-> >  =20
-> >> Boot ROM code on Meson requires that some pages on NAND must be written
-> >> in special mode: "short" ECC mode where each block is 384 bytes and
-> >> scrambling mode is on. Such pages located with the specified interval
-> >> within specified offset. Both interval and offset are located in the
-> >> device tree and used by driver if 'nand-is-boot-medium' is set for
-> >> NAND chip.
-> >>
-> >> Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
-> >> ---
-> >>  .../bindings/mtd/amlogic,meson-nand.yaml           | 14 ++++++++++++++
-> >>  1 file changed, 14 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.=
-yaml b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-> >> index 57b6957c8415..b86a1953056b 100644
-> >> --- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-> >> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-> >> @@ -64,11 +64,25 @@ patternProperties:
-> >>          items:
-> >>            maximum: 0
-> >> =20
-> >> +      amlogic,boot-page-last:
-> >> +        $ref: /schemas/types.yaml#/definitions/uint32
-> >> +        description:
-> >> +          The NFC driver needs this information to select ECC
-> >> +          algorithms supported by the boot ROM. =20
-> >=20
-> > Shall we have a length rather than the last page? =20
->=20
-> You mean rename it to "amlogic,boot-pages-length" or something like that =
-? But I think
-> length in bytes is useless here:
-> 1) boot rom needs that only some single pages are written in special mode=
- (and as I see in
->    vendor's driver it also works in pages).
-> 2) NAND driver operates in pages during write/read such pages.
->=20
-> So length in bytes will be converted to pages anyway.
->=20
-> What do You think ?
+Forgot to remove this print ?
 
-I didn't talk about units :-)
+>   	ret = mt8186_afe_enable_clock(afe);
+>   	if (ret)
+>   		return ret;
+> @@ -2739,7 +2739,7 @@ static int mt8186_afe_runtime_resume(struct device *dev)
+>   		return ret;
+>   
+>   	if (!afe->regmap || afe_priv->pm_runtime_bypass_reg_ctl)
+> -		goto skip_regmap;
+> +		return 0;
+>   
+>   	regcache_cache_only(afe->regmap, false);
+>   	regcache_sync(afe->regmap);
+> @@ -2758,13 +2758,20 @@ static int mt8186_afe_runtime_resume(struct device *dev)
+>   	/* enable AFE */
+>   	regmap_update_bits(afe->regmap, AFE_DAC_CON0, AUDIO_AFE_ON_MASK_SFT, BIT(0));
+>   
+> -skip_regmap:
+>   	return 0;
+>   }
+>   
+>   static int mt8186_afe_component_probe(struct snd_soc_component *component)
+>   {
+> -	mtk_afe_add_sub_dai_control(component);
+> +	struct mtk_base_afe *afe = snd_soc_component_get_drvdata(component);
+> +	int ret;
+> +
+> +	snd_soc_component_init_regmap(component, afe->regmap);
+> +
+> +	ret = mtk_afe_add_sub_dai_control(component);
+> +	if (ret)
+> +		return ret;
+> +
+>   	mt8186_add_misc_control(component);
+>   
+>   	return 0;
+> @@ -2929,6 +2936,10 @@ static int mt8186_afe_pcm_dev_probe(struct platform_device *pdev)
+>   		goto err_pm_disable;
+>   	}
+>   
+> +	ret = regmap_reinit_cache(afe->regmap, &mt8186_afe_regmap_config);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "regmap_reinit_cache fail\n");
+> +
+>   	/* others */
+>   	afe->mtk_afe_hardware = &mt8186_afe_hardware;
+>   	afe->memif_fs = mt8186_memif_fs;
+> diff --git a/sound/soc/mediatek/mt8186/mt8186-dai-adda.c b/sound/soc/mediatek/mt8186/mt8186-dai-adda.c
+> index dbd157d1a1ea..b87b04928678 100644
+> --- a/sound/soc/mediatek/mt8186/mt8186-dai-adda.c
+> +++ b/sound/soc/mediatek/mt8186/mt8186-dai-adda.c
+> @@ -413,7 +413,7 @@ static const struct snd_soc_dapm_widget mtk_dai_adda_widgets[] = {
+>   			      SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMD),
+>   
+>   	SND_SOC_DAPM_SUPPLY_S("AUD_PAD_TOP", SUPPLY_SEQ_ADDA_AUD_PAD_TOP,
+> -			      AFE_AUD_PAD_TOP, RG_RX_FIFO_ON_SFT, 0,
+> +			      SND_SOC_NOPM, 0, 0,
 
-Maybe: amlogic,boot-pages would make sense? But pointing at the last
-page seems weird.
+Is it related to the regmap init function added in the AFE PCM probe ?
 
-Miqu=C3=A8l
+>   			      mtk_adda_pad_top_event,
+>   			      SND_SOC_DAPM_PRE_PMU),
+>   	SND_SOC_DAPM_SUPPLY_S("ADDA_MTKAIF_CFG", SUPPLY_SEQ_ADDA_MTKAIF_CFG,
+
+-- 
+Regards,
+Alexandre
 
