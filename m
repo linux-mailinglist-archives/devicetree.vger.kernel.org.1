@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-57934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C5FC89F93F
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 16:04:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3ADBD89F94B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 16:05:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F2EE1C20E7D
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 14:04:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 864DD1F2D611
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 14:05:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C00BC16E87F;
-	Wed, 10 Apr 2024 14:00:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6233315F41A;
+	Wed, 10 Apr 2024 14:01:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="DPm3wpYw"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="f/VO2SQ2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ADBA17555E
-	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 13:59:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE13A15EFBD
+	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 14:01:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712757601; cv=none; b=u6KTT/Zv3i5yiP7a2CAiGCvtPbTrMEqXZA20pexhOgvs909rGcPW2tIxgC2Ej9unwJR6N6zyyfrVoirKwC6yS1ExSVG6tOxb3DrJDszAgWcAE3yi609ysormU2QXhT2WA+/rKchkkkF9djhZL4VauBVyCbT/uDOhsVEdnsz1BL0=
+	t=1712757711; cv=none; b=m+kCQHHMEyGJ1ckZN3PpEdvFTUaxJZjYDUJzePcaor4v3KI0GNC0h9GmC5OgbEUxdZS2kQIAADuPtl552TCbxxa4ZWT8IxnE93ex1Mp/9Y/xTlhCg9CvJnv2M9PkPCvok+xlr7mwF0HsX/HNyIVZQ7dlOeUkoRLYWXwAvKyL/CA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712757601; c=relaxed/simple;
-	bh=9VfcLjEoMTpi7xm+VUn6B0UvA2/X0m8cCVXK0p51Jw4=;
+	s=arc-20240116; t=1712757711; c=relaxed/simple;
+	bh=e88gyjeUImIcsIbCAmREhMKck+xNyVFvJ6Y/vXAlET0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=o1RG2or8c+n1TMkxH+VtKBp756nZv+OEOZf2ZZMOhWLm+ctoXXlhWxCYWhF1P+4fL9EFD13fGZYl8FElvWxX9gf8leSKdT/xcOsea5KKPeygdHylt4AXWysbut4AhKXZ277UFN/NudeA9arkyoesGYVW8bV5pXC64zsNpB5ZrnQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=DPm3wpYw; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-343f8fc5c69so3064941f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 06:59:58 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=nD3Hr7QNmDTuA/JWGSkxjzyPuOf9Ro6lrOTtTmMl2WW8O+lg1HedUyhayQv8hWA2iwuxz+WPKzd8bdEvqaFBn/vwXaClyDzxShMRi0r4JUH/DFNMtzD0belwSCp/NCXxq0ZYQRfc2tVdan3OWORuLpCPsTwsulivGSMc4wdfwOk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=f/VO2SQ2; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-56c404da0ebso10058171a12.0
+        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 07:01:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712757597; x=1713362397; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=tuxon.dev; s=google; t=1712757707; x=1713362507; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=g67OSHlwNTDKaFrM3/uwoPsdE8uUwCxkLF5hYguHcs4=;
-        b=DPm3wpYwzLFBH4up7aj4PkCtaEjUUp4IPlYcSQMWgeQO+1WBJHx1tiBaFCgfFS1pSe
-         hkC5zZT/FI0S791G9HsFd1tq1oh6SRmJQgkluP0grplmHp8wjiB4kpkD+ZbkHjCQ7fX+
-         C9cvPD1UCdn3g8XGN7kjTnZ3O3QQ3PlZw2I8qaO0eB1uobmTTtW+JfqC8dAYWd1HR/f2
-         ZGd2YPOzvQLsl+2JOLrKv34lwB+dXuTc63Kvabjr9a3zeHu0YS8dcuaU/9I5LQZTm6QL
-         xh6f87WG4v4guGr/2AgmIt5ZuNv2bEfgDkFMneXdLfaT5JVnS4wigDcvCzZ43tMpQyEg
-         Z7pw==
+        bh=C7lFcOC7l3g9TVCaL+oCyT/3qdUrXzLc4rgBkKi4hh0=;
+        b=f/VO2SQ2pOmFcRc/SrwFNfrhckWT7PaG3ayy/kd0kmQQ34UC5AjV6wIw8Mr3fr5vfL
+         1edjDA/CeaK2oeFsCv64F+BP779opROVPIIFz7mPxI+CnBum+Qg5TjoeITnumib2yc6D
+         wZ1NwB0ocAjkORSvRguJAdr58YguaUPFvZ09J1KFAIaJyHxM8bd3qsgj1oHBusTQPbd7
+         hlPGJUMQNIiC56h78XjMafJpiTMTlbBRAc0b9wtAFmlFyYl3ekpmtzTeinKZ1no6rJKJ
+         Fl4t8WXbE1kBYf9iSa18ryfCQyDahi/AKvgtRGjffckl09CIuoEwyx4wFgK4lqmknFad
+         tkig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712757597; x=1713362397;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1712757707; x=1713362507;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=g67OSHlwNTDKaFrM3/uwoPsdE8uUwCxkLF5hYguHcs4=;
-        b=mHfIgB/MV9kbd10HqiC4iq0igtDcxlBJF9DMmSK+zRjE69QYqCaNUyBIyJDW0sjsK8
-         JDuEthWHo10ltoB6Pd+zpYOIpAhw53UiTD/m5FV+vmx4riCfnI8zcK25b9m046tcWwoY
-         PvqHEAr0NZbL83eXd+78MhBEo8NAa0zAIUJb1j0SdUrcXbmEZMseuudUHhgCPSiXqTmj
-         1qmF/4gArKuqcica/1hlRGgo1UqA2VL0lvHu2L75/y8hM+go2JVLo/4W7yQW/kcMsJTO
-         jv31WdN4S87caSxnxgkO9yntu8biPR2HhwLuJCMa3MvZrHexDPHOpSf48a+rEB6LZJop
-         wxiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV7WhY2HUBkYVgQ0G1XnJKxuKjbePjyHxNUElOnwUY8chB/8N5iDRPe50g10dmMpjeoeqmyLjx5cMYdH/y4ijHnPwxqOxL8ou39Wg==
-X-Gm-Message-State: AOJu0YwmMfj366nY+axFcqjTxFOjeTYKgxylEr3VC8SeG0/7ovuJNtXM
-	3DqjSnLqXP4uk9TxEVqcma1ioIIqNDQ2GgQVniKnDiHQSoov+9tnbAxE8Yv7azg=
-X-Google-Smtp-Source: AGHT+IGRtn6DL2DEemnsBxsmvHHTd4nWEQsASvLDi6kfhHaIx+DPnIFaevFeAdtATqfu2OGeHdeMQw==
-X-Received: by 2002:a5d:620c:0:b0:343:98ee:524 with SMTP id y12-20020a5d620c000000b0034398ee0524mr1624742wru.36.1712757597439;
-        Wed, 10 Apr 2024 06:59:57 -0700 (PDT)
-Received: from [192.168.1.172] ([93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id j15-20020a5d452f000000b00343e825d679sm13385379wra.87.2024.04.10.06.59.55
+        bh=C7lFcOC7l3g9TVCaL+oCyT/3qdUrXzLc4rgBkKi4hh0=;
+        b=DOOtszgJRbyVaRo1R5gkj9vweDhhgumo4oEm2U6YVZQQXekk89IPprjgR09Pb+97v3
+         eb/ScQ/wrSXSsvOe1WN7ReGx//eGl3mky9xq4dWGKrn+Ozi8mT7UBfAhpj4H8FY5Ii7x
+         Yk1hDy+ourZuRFAnpc/52dK2z45DQnF8oGzhOQzr1Vn3ccdLgNrTogNlFSN0NH3W5xxc
+         VlRrjZIGY4TcEFZQx4tE+5bvBCTApQqeZZc/gdbFaJVmrQ0FLzIdb4Q5pGE7uUh8ig+F
+         afDE50pO+vV+XPF3sJZgI9ZDVVO0zNe7uK7GfIRiOvLonveweyo6YU4Bcd3RoyLv2yoA
+         DlTA==
+X-Forwarded-Encrypted: i=1; AJvYcCXlIM8h/XoiFRLfTHe5VRIT2mkbcXkXd3JQsbEVO47qyFc1x8jv6uAI7L9QCiH3TXxTXHYL6oeDZe1I7fpNfIlypC8AOVLtsE0wzw==
+X-Gm-Message-State: AOJu0YxmuiWGCigb1wDCPn6GCFjZW6JgDYAdJW4ExQ6Cw40ELx1TFjMh
+	nfOZ0wQ2cEdbCE5T336uavbFL1gnut6y5g67HwVAh6TDHB+gDe9D8is5ussMKEE=
+X-Google-Smtp-Source: AGHT+IEWCICihxTK465pYa3JGEG4kSjfnaoh1QVBzAZnHSiEGwF/hNWWILbv56rVqPOCFLNkPNUg0A==
+X-Received: by 2002:a50:8d16:0:b0:56e:743:d4d9 with SMTP id s22-20020a508d16000000b0056e0743d4d9mr1748489eds.42.1712757707092;
+        Wed, 10 Apr 2024 07:01:47 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.8])
+        by smtp.gmail.com with ESMTPSA id de26-20020a056402309a00b0056c1cca33bfsm6405937edb.6.2024.04.10.07.01.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Apr 2024 06:59:56 -0700 (PDT)
-Message-ID: <cf0184c4-2b3e-4074-9e30-bf65ec7f0aaa@baylibre.com>
-Date: Wed, 10 Apr 2024 15:59:55 +0200
+        Wed, 10 Apr 2024 07:01:46 -0700 (PDT)
+Message-ID: <11a371b5-f649-4dfb-94d1-9a01b15d5993@tuxon.dev>
+Date: Wed, 10 Apr 2024 17:01:44 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,117 +76,139 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 05/18] ASoC: mediatek: mt8192: Migrate to
- mtk_soundcard_common_probe
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- broonie@kernel.org
-Cc: wenst@chromium.org, lgirdwood@gmail.com, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- matthias.bgg@gmail.com, perex@perex.cz, tiwai@suse.com,
- trevor.wu@mediatek.com, maso.huang@mediatek.com,
- xiazhengqiao@huaqin.corp-partner.google.com, arnd@arndb.de,
- kuninori.morimoto.gx@renesas.com, shraash@google.com,
- nicolas.ferre@microchip.com, u.kleine-koenig@pengutronix.de,
- dianders@chromium.org, frank.li@vivo.com, allen-kh.cheng@mediatek.com,
- eugen.hristev@collabora.com, claudiu.beznea@tuxon.dev,
- jarkko.nikula@bitmer.com, jiaxin.yu@mediatek.com, alpernebiyasak@gmail.com,
- ckeepax@opensource.cirrus.com, zhourui@huaqin.corp-partner.google.com,
- nfraprado@collabora.com, alsa-devel@alsa-project.org,
- shane.chien@mediatek.com, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- kernel@collabora.com
-References: <20240409113310.303261-1-angelogioacchino.delregno@collabora.com>
- <20240409113310.303261-6-angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH RESEND v8 03/10] watchdog: rzg2l_wdt: Use
+ pm_runtime_resume_and_get()
 Content-Language: en-US
-From: Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <20240409113310.303261-6-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Biju Das <biju.das.jz@bp.renesas.com>,
+ "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+ "linux@roeck-us.net" <linux@roeck-us.net>, "robh@kernel.org"
+ <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "geert+renesas@glider.be" <geert+renesas@glider.be>,
+ "magnus.damm@gmail.com" <magnus.damm@gmail.com>
+Cc: "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20240410134044.2138310-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240410134044.2138310-4-claudiu.beznea.uj@bp.renesas.com>
+ <OSAPR01MB15874891F67AAFAA955A186886062@OSAPR01MB1587.jpnprd01.prod.outlook.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <OSAPR01MB15874891F67AAFAA955A186886062@OSAPR01MB1587.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 
 
-On 09/04/2024 13:32, AngeloGioacchino Del Regno wrote:
-> @@ -1211,52 +1196,85 @@ static int mt8192_mt6359_dev_probe(struct platform_device *pdev)
->   		if (dai_link->num_codecs && dai_link->codecs[0].dai_name &&
->   		    strcmp(dai_link->codecs[0].dai_name, RT1015_CODEC_DAI) == 0)
->   			dai_link->ops = &mt8192_rt1015_i2s_ops;
-> -
-> -		if (!dai_link->platforms->name)
-> -			dai_link->platforms->of_node = platform_node;
-> -	}
-> -
-> -	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-> -	if (!priv) {
-> -		ret = -ENOMEM;
-> -		goto err_probe;
-> -	}
-> -	snd_soc_card_set_drvdata(card, priv);
-> -
-> -	ret = mt8192_afe_gpio_init(&pdev->dev);
-> -	if (ret) {
-> -		dev_err_probe(&pdev->dev, ret, "%s init gpio error\n", __func__);
+On 10.04.2024 16:51, Biju Das wrote:
+> Hi Claudiu,
+> 
+>> -----Original Message-----
+>> From: Claudiu <claudiu.beznea@tuxon.dev>
+>> Sent: Wednesday, April 10, 2024 2:41 PM
+>> Subject: [PATCH RESEND v8 03/10] watchdog: rzg2l_wdt: Use pm_runtime_resume_and_get()
+>>
+>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>
+>> pm_runtime_get_sync() may return with error. In case it returns with error
+>> dev->power.usage_count needs to be decremented.
+>> dev->pm_runtime_resume_and_get()
+>> takes care of this. Thus use it.
+>>
+>> Along with it the rzg2l_wdt_set_timeout() function was updated to propagate the result of
+>> rzg2l_wdt_start() to its caller.
+>>
+>> Fixes: 2cbc5cd0b55f ("watchdog: Add Watchdog Timer driver for RZ/G2L")
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>> ---
+>>
+>> Changes in v8:
+>> - none
+>>
+>> Changes in v7:
+>> - none
+>>
+>> Changes in v6:
+>> - none
+>>
+>> Changes in v5:
+>> - none
+>>
+>> Changes in v4:
+>> - none
+>>
+>> Changes in v3:
+>> - none
+>>
+>> Changes in v2:
+>> - propagate the return code of rzg2l_wdt_start() to it's callers
+>>
+>>
+>>  drivers/watchdog/rzg2l_wdt.c | 11 ++++++++---
+>>  1 file changed, 8 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/watchdog/rzg2l_wdt.c b/drivers/watchdog/rzg2l_wdt.c index
+>> 1741f98ca67c..d87d4f50180c 100644
+>> --- a/drivers/watchdog/rzg2l_wdt.c
+>> +++ b/drivers/watchdog/rzg2l_wdt.c
+>> @@ -123,8 +123,11 @@ static void rzg2l_wdt_init_timeout(struct watchdog_device *wdev)  static int
+>> rzg2l_wdt_start(struct watchdog_device *wdev)  {
+>>  	struct rzg2l_wdt_priv *priv = watchdog_get_drvdata(wdev);
+>> +	int ret;
+>>
+>> -	pm_runtime_get_sync(wdev->parent);
+>> +	ret = pm_runtime_resume_and_get(wdev->parent);
+>> +	if (ret)
+>> +		return ret;
+>>
+>>  	/* Initialize time out */
+>>  	rzg2l_wdt_init_timeout(wdev);
+>> @@ -150,6 +153,8 @@ static int rzg2l_wdt_stop(struct watchdog_device *wdev)
+>>
+>>  static int rzg2l_wdt_set_timeout(struct watchdog_device *wdev, unsigned int timeout)  {
+>> +	int ret = 0;
+>> +
+>>  	wdev->timeout = timeout;
+>>
+>>  	/*
+>> @@ -159,10 +164,10 @@ static int rzg2l_wdt_set_timeout(struct watchdog_device *wdev, unsigned int
+>> time
+>>  	 */
+>>  	if (watchdog_active(wdev)) {
+>>  		rzg2l_wdt_stop(wdev);
+>> -		rzg2l_wdt_start(wdev);
+>> +		ret = rzg2l_wdt_start(wdev);
+> 
+> This IP won't be able to update WDT settings once you have set it.
+> 
+> But we can update it, if we do a reset assert followed by deassert.
+> So the previous code looks correct to me.
+> 
+> Current case is if the WDT is active, then start it. Maybe I ma missing something here.
+> 
 
-I don't think __func__ is necessary.
+I'm not sure I got you correctly.
 
-> -		goto err_probe;
->   	}
->   
-> -	ret = devm_snd_soc_register_card(&pdev->dev, card);
-> -	if (ret)
-> -		dev_err_probe(&pdev->dev, ret, "%s snd_soc_register_card fail\n", __func__);
+This patch keeps the previous functionality, thus, if the watchdog is
+active rzg2l_wdt_stop() is called which does a reset assert. Then
+rzg2l_wdt_start() is called which does the reset deassert.
 
-I don't think __func__ is necessary.
+Thank you,
+Claudiu Beznea
 
-> -
-> -err_probe:
->   	of_node_put(headset_codec);
->   err_headset_codec:
->   	of_node_put(speaker_codec);
->   err_speaker_codec:
-> -	of_node_put(platform_node);
-> -err_platform_node:
-> -	of_node_put(hdmi_codec);
-> +	if (hdmi_codec)
-> +		of_node_put(hdmi_codec);
-> +
->   	return ret;
->   }
->   
-> +static int mt8192_mt6359_soc_card_probe(struct mtk_soc_card_data *soc_card_data, bool legacy)
-> +{
-> +	struct mtk_platform_card_data *card_data = soc_card_data->card_data;
-> +	struct snd_soc_card *card = card_data->card;
-> +	int ret;
-> +
-> +	if (legacy) {
-> +		ret = mt8192_mt6359_legacy_probe(soc_card_data);
-> +		if (ret)
-> +			return ret;
-> +	} else {
-> +		struct snd_soc_dai_link *dai_link;
-> +		int i;
-> +
-> +		for_each_card_prelinks(card, i, dai_link)
-> +			if (dai_link->num_codecs && dai_link->codecs[0].dai_name &&
-> +			    strcmp(dai_link->codecs[0].dai_name, RT1015_CODEC_DAI) == 0)
-> +				dai_link->ops = &mt8192_rt1015_i2s_ops;
-> +	}
-> +
-> +	ret = mt8192_afe_gpio_init(card->dev);
-> +	if (ret)
-> +		return dev_err_probe(card->dev, ret, "%s init gpio error\n", __func__);
-
-I don't think __func__ is necessary.
-
-> +
-> +	return 0;
-> +}
-
-Beside that,
-Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
-
--- 
-Regards,
-Alexandre
+> Cheers,
+> Biju
+> 
+>>  	}
+>>
+>> -	return 0;
+>> +	return ret;
+>>  }
+>>
+>>  static int rzg2l_wdt_restart(struct watchdog_device *wdev,
+>> --
+>> 2.39.2
+> 
 
