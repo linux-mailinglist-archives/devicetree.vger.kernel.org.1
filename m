@@ -1,64 +1,84 @@
-Return-Path: <devicetree+bounces-58050-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58051-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92D5A8A0066
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 21:15:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 230A18A0082
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 21:20:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 48FF11F24627
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 19:15:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53FD31C2040E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 19:20:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2401180A99;
-	Wed, 10 Apr 2024 19:15:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E138181307;
+	Wed, 10 Apr 2024 19:20:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O6D/MyhR"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="jnBOFofu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C866417F370;
-	Wed, 10 Apr 2024 19:15:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D857BA39;
+	Wed, 10 Apr 2024 19:20:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712776527; cv=none; b=BfJZnbt2Z5sDAXnIrmUt3HlJkwW4z/X6n9OPG66FbZUEhjLiky2fwsjrBrZ4Aob9HGmVaOKo0fA2w79rz/qXU0Qc2FKAWV24gJAqMviKEdzFXyUl6rGQirMZlg37i/XhAcAb+yMWhEjB2Ssq0WeoFX8nlgLaAxu9BKjtF5IruQA=
+	t=1712776814; cv=none; b=fmduH/mz10T9PFHOh+46UPZ+eOVPSIzKyXpTtwcUDYL/aLH5Tx9AjUGkxKI52isrzcHppF3Z985VqPdDrRN1y5qINDf/MZfynBuDujkcXxuYUDnn2DALmRvaX8z1buZVVoJluVfpUXdEVZuURzy6DiLqPwrsKuG6mr4qbL7tozY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712776527; c=relaxed/simple;
-	bh=Y8HrYr9N2X54zlXcRSCoc2hhNScMqkdWP9FAh9Krwpo=;
+	s=arc-20240116; t=1712776814; c=relaxed/simple;
+	bh=l9o/uTy+0cwr3zODJ1peUNnlmhVhrhKvdmKJKAavIUs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A084uA4dNvH4idQ6Z5B4G+hJKsct0gr1DEg08JZxh6+5TATgYtZgwg0l0jYjE3w+RQ/lCMahLvvv6y7LAod/Iq0iAzjmZDdduKOVZn+47wev+4UsJNQLODr0hFj9wRONRdd2O8WK7qTCeoIatCdkwi87QaYxklDqEeVRx47twpA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O6D/MyhR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3F79C433C7;
-	Wed, 10 Apr 2024 19:15:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712776527;
-	bh=Y8HrYr9N2X54zlXcRSCoc2hhNScMqkdWP9FAh9Krwpo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=O6D/MyhRjX4ilUEZ8v2TxELy3AD7IFMbhHI+0f3QYn6legTjbs42EOHPa6Zy/N1Cv
-	 8YdZnZW13beNY1N/uwPLTXi/TBR2m5pfJzQ48FsByqAFNfWGKYGXjP3lH8eU47iMcN
-	 CSB/bud3Vs5fHAeuVXp7i9I4vmDpFB5W2U1iP6Z8oHNACDu9ZoGsmH7b8xVMCdLRjm
-	 giGQSJMdm9AAKD2Q+Mar3iE5l6Pq7TiMnEkuHcnLw+Xl8E8yOeEpYeAO4VuVf0msiJ
-	 CDs7PTm8dmFC/Pzq/Jg8gMPDsu6+wGfX2fqBHzQvlC4gxjU8Lrg0WmgZQrSfZDqG3+
-	 92LTTQTuF6w+g==
-Date: Wed, 10 Apr 2024 14:15:24 -0500
-From: Rob Herring <robh@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: chunkuang.hu@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com,
-	daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, tzimmermann@suse.de, matthias.bgg@gmail.com,
-	shawn.sung@mediatek.com, yu-chang.lee@mediatek.com,
-	ck.hu@mediatek.com, jitao.shi@mediatek.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, wenst@chromium.org,
-	kernel@collabora.com
-Subject: Re: [PATCH v2 2/3] dt-bindings: arm: mediatek: mmsys: Add OF graph
- support for board path
-Message-ID: <20240410191524.GA903053-robh@kernel.org>
-References: <20240409120211.321153-1-angelogioacchino.delregno@collabora.com>
- <20240409120211.321153-3-angelogioacchino.delregno@collabora.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=rOPXaG+lFj4HCODm5gCqk9e+ta4ldlObuRxbYgx5aNt8zXgSOUknf0hJyv0EhwemBP021nejDaapM0tpsTdLk4kPa0gzxlh8g+oaNABJ93pvCwoI0V0h4V4H+zmJbQle4n+TBPoNd8cWJIar1Wi2HwtbJ0Q/pMt315JRMeE436I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=jnBOFofu; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=dd1aVZalUKuA+B9so3sWEVj2LqaGyKO5Aioahoz1vu8=; b=jnBOFofuCRHm+O8XMCs99fUn+L
+	UXp75jYAtDxJlu/wtMb4foX7uSRRD+Q+TwX+nFozurCdwnW8f4TJw0fhYisFCNbgE8TlvJrWRJRl8
+	+qHegzmIZKXaqDrVHvrE4X/DZnbbdHlNKL879QPzG33DfG8e/YHsp8uqcl9kUOrIf0DeyZMlAVa5O
+	pb0kM09fXSNtS7935t6ShX040phZEI0K+QxhJLXNfRgpiVuKwueeSBF+TNkbXcN4m35qjxnMErYyN
+	rpP/4SIGhD8z5sdcmBfKPf3om8cujhnuVjHkociKGNJS6mN2Sld8TTFard2pldEdDHcQBpiyrDZrn
+	h7PnNJkg==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:33334)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1rudU9-0008QF-1o;
+	Wed, 10 Apr 2024 20:19:53 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1rudU6-0006Cb-09; Wed, 10 Apr 2024 20:19:50 +0100
+Date: Wed, 10 Apr 2024 20:19:49 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: Romain Gantois <romain.gantois@bootlin.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>
+Subject: Re: [PATCH net-next v2 3/5] net: stmmac: dwmac-socfpga: use
+ pcs_init/pcs_exit
+Message-ID: <ZhbmVVXgu27ZZaNf@shell.armlinux.org.uk>
+References: <20240409-rzn1-gmac1-v2-0-79ca45f2fc79@bootlin.com>
+ <20240409-rzn1-gmac1-v2-3-79ca45f2fc79@bootlin.com>
+ <20240409183404.7d3eb04f@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,62 +87,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240409120211.321153-3-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20240409183404.7d3eb04f@kernel.org>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Tue, Apr 09, 2024 at 02:02:10PM +0200, AngeloGioacchino Del Regno wrote:
-> Document OF graph on MMSYS/VDOSYS: this supports up to three DDP paths
-> per HW instance (so potentially up to six displays for multi-vdo SoCs).
+On Tue, Apr 09, 2024 at 06:34:04PM -0700, Jakub Kicinski wrote:
+> On Tue, 09 Apr 2024 11:21:46 +0200 Romain Gantois wrote:
+> > +	struct regmap_config pcs_regmap_cfg = {
+> > +		.reg_bits = 16,
+> > +		.val_bits = 16,
+> > +		.reg_shift = regmap_upshift(1),
 > 
-> The MMSYS or VDOSYS is always the first component in the DDP pipeline,
-> so it only supports an output port with multiple endpoints - where each
-> endpoint defines the starting point for one of the (currently three)
-> possible hardware paths.
+> This appears to displease the compiler:
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  .../bindings/arm/mediatek/mediatek,mmsys.yaml | 23 +++++++++++++++++++
->  1 file changed, 23 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-> index b3c6888c1457..4e9acd966aa5 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-> @@ -93,6 +93,29 @@ properties:
->    '#reset-cells':
->      const: 1
->  
-> +  port:
-> +    $ref: /schemas/graph.yaml#/properties/port
-> +    description:
-> +      Output port node. This port connects the MMSYS/VDOSYS output to
-> +      the first component of one display pipeline, for example one of
-> +      the available OVL or RDMA blocks.
-> +      Some MediaTek SoCs support up to three display outputs per MMSYS.
+> drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c:389:16: error: call to undeclared function 'regmap_upshift'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+>   389 |                 .reg_shift = regmap_upshift(1),
+>       |                              ^
 
-I'm have a hard time understanding this, but is it 3 outputs 
-simultaneously or connect mmsys to 1 of 3. Generally it's multiple ports 
-for the former and endpoints for the latter.
+Yes, annoyingly I accidentally it 'u' instead of 'y' in vi which
+lower-cased the entire function, and didn't realise before sending the
+patch as a theoretical solution to Romain. After build-testing it locally
+I did notice it. I would've thought that Romain would've build-tested
+before sending out his patch set and would've fixed it up... I didn't
+have time to properly fix up my patch (essentially would've ment
+redoing the edits from scratch to ensure that it was correct.) Still
+don't have time to do that. Sorry.
 
-> +    properties:
-> +      endpoint@0:
-> +        $ref: /schemas/graph.yaml#/properties/endpoint
-> +        description: Output to the primary display pipeline
-> +
-> +      endpoint@1:
-> +        $ref: /schemas/graph.yaml#/properties/endpoint
-> +        description: Output to the secondary display pipeline
-> +
-> +      endpoint@2:
-> +        $ref: /schemas/graph.yaml#/properties/endpoint
-> +        description: Output to the tertiary display pipeline
-> +
-> +    required:
-> +      - endpoint@0
-> +
->  required:
->    - compatible
->    - reg
-> -- 
-> 2.44.0
-> 
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
