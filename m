@@ -1,116 +1,287 @@
-Return-Path: <devicetree+bounces-57893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A01F089F250
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 14:33:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0246689F259
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 14:35:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5BDA8286892
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 12:33:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC09F283E39
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 12:35:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B76E1411C0;
-	Wed, 10 Apr 2024 12:33:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04CD5158D6D;
+	Wed, 10 Apr 2024 12:35:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="my+Ci1EC"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="BKigrls3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BA7A69DF4
-	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 12:33:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A312C13D2BC;
+	Wed, 10 Apr 2024 12:35:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712752421; cv=none; b=BXsXfINVYlx3rDGNTCCf3f8luXj61qGQBaQAl33k/vHLEFEGn/QDJnexdFGuvDDYkqFCM4FxtsbPtU6AWSyKOL82+FLanHt9rj3TYJYef7K0avP5hAWC7HsLmeQvyCUZK8Wlyher2+jETMZ0khJAx7hVYa9b/+RTNMoD3ue3fjU=
+	t=1712752512; cv=none; b=TF9EMFOCSy5L6Cp3RusV4MCbyfU91MuJHyg+o92FsGJ/dyp/cjrsZkPibKEqtyBsfxs7aSp9a0xfetFoWMupXlOcgtYDgMpjvUxpP3phAIp8MKCAg3ctkjJ+tVKAv3xWzx/Jqhh8lI7BLt2IwXPxkaaJyiuDWiXE2IgwhtfepjQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712752421; c=relaxed/simple;
-	bh=kc0dZ0e3JBP4lFFSI4x6NCpdXrRlKfuJR7I+rUGURhM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hHIKuqSZ4kWtbCcOsD0doWvHUmCDS08BOTv/hU7eGyaeRi4wUQ4cFyr9C5b4UAfjHxdyfE8Wc9zMNdBbQQAh6hakljH9/69dHimuePO4vFdtmKUUm4uIUtHtshA2UzGzAJOszGFonB5akwcOLGfbIrmU0q0rr87JQhWAZCcSxi4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=my+Ci1EC; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-516d2b9cd69so6332224e87.2
-        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 05:33:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712752418; x=1713357218; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MDmd9nV27QdHdemsMkqkYQn+1GeM6AqMiOUOo3y6Fjw=;
-        b=my+Ci1EC6LFP1uNlc+2L9Q7QG94FJ9VneXVizCT5QCKFlmuzMsiz/cSSHQ2qROw4X5
-         z1YYWQz/bAJK+bbkmipK9Ry9eFIL9n+Cp7vWOfap5+W91fRBb9pfaxTsY6SGu0qJQfut
-         GxItmnci9XDh1ug+p/VWWe8uM70NR9LG+IPtNIj7PvnaQQWf5b5B8MJOcsgImfzlGUK6
-         p0LmjzUwotV864u5ItbNFNqVVp6CgeI+/5A3y0hOMEAhgHy02xQokRnO2NVC5a+limFW
-         oZhqguAv4RhIKxwS2w7cOoJfQogMHZOhm6H4Nxz9RyObmdTTHGRRNZOMcVYz3310YHCl
-         r5tw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712752418; x=1713357218;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MDmd9nV27QdHdemsMkqkYQn+1GeM6AqMiOUOo3y6Fjw=;
-        b=iD3kbEkFf0T/qZa87BV2yHISead/mAKa0QZ0dpuqHFyOL9k7T2zqVGuTpdRlqR+M1K
-         hNBqZJPJ7znXA1zbS06GmK8N/JxufiI8ZPjxYITJETWFb4SnX7NZL0kPmh00Z9B2XD+P
-         sWcN9zkljw208mzbXSW43s9ZTXLtwnefZdz6Ve8LGjX3P94Quuo17ZY+V4WhhrzRssoM
-         fo/EhWcy6uRJDm1F3TNyp6JJ6F7rofTHxDGxHgy/5c/A4V8+EPGlXzV+Qt7FMN4/O2S0
-         oXUkJ6hr1Mkj1X6mkfbuvU/TPXKvCGBQ90v+WfYjUY9Ywp+LudtSHNg5U9QiKNPXMb1K
-         B9KA==
-X-Forwarded-Encrypted: i=1; AJvYcCXBv9c2SSamdK2PkdHjlwpCD1ac2aXnD9NaBy8J+dotY/3ZMrGN39G5Zl7Cip6rYb1cZROHLy5HDh4YSaPevg9mVjcOA/EgcsbPcA==
-X-Gm-Message-State: AOJu0YyizQB/S303azghEAbcOeVPfuRSOLGFOo/K5Dqz7Zq1bA0zzYXH
-	4zK+vElsAvnGOtdbggLl4xfWcwDSlk/sU1/EaQ6Ys3uXhf9vDT9DIFAhkagMxfc=
-X-Google-Smtp-Source: AGHT+IFTii5izHkTaj9l6tWb307f9H7wWwEJ+dZ19x9pLNKHm+gaZZyS5VFsXUAMjzM4j2enKnHtww==
-X-Received: by 2002:a05:6512:484d:b0:517:b2b:6ca7 with SMTP id ep13-20020a056512484d00b005170b2b6ca7mr1521768lfb.59.1712752417721;
-        Wed, 10 Apr 2024 05:33:37 -0700 (PDT)
-Received: from [172.30.204.89] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id a3-20020a056512020300b00516d63a315bsm1737647lfo.104.2024.04.10.05.33.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Apr 2024 05:33:37 -0700 (PDT)
-Message-ID: <17b279d9-e353-4d72-8606-0780ef7194cf@linaro.org>
-Date: Wed, 10 Apr 2024 14:33:36 +0200
+	s=arc-20240116; t=1712752512; c=relaxed/simple;
+	bh=zIUfJWhof1UMg6uEwOAu/mj91VoIle+JxLjGJ7YPwWE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=uzA/Ez6vbIqJMMTiD9ym2otB4SH4MoHjcjKFqduo4w/WKtfBluwvd1F9g/nm1Gad9R8ItqL1tpv8jwEUwjrbj6Pj/gNRo1GMpyp3eR6WssfQO3mou8TOaQWFTo0rxmOJTG0gdmPCgWRNAhKqvkgcE3OSecRpmrAVqhIj/yaSkyw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=BKigrls3; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 224176000A;
+	Wed, 10 Apr 2024 12:35:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1712752502;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=zshKLDyDonwwJOFV5yyCRSdib7yb+zjws8DcpnfUXkI=;
+	b=BKigrls3jfxPWZ3a/Ku6NujZQUUa940viUX2NvVyuSDflgyRf7cQ5v5lr0GGQfVfLK7QRx
+	eXs2SeYrU6zP0Upj2/zxGa2SOc5f+QVX83hbvX04odQHq0SPzeHMG53BZ1kDQcykmZPHBJ
+	+gOszkziMDuE1eXeuCi3TW9H83/13Bvp44oym3Bf8rnRHvoMw29KCMk1VhpE8KFP+6KxI8
+	RwwI7+yF2GmBAwhcUpAGCLek7KB8naJjR8gBP2FdRLvNL+DdIjAodEccQUo6w6yZjGVhXT
+	A96Qx4Q9SulLQG9OIRkLr0xHTKqdwRX1WQgEEByHDvBN6IqBWwBGL1O8BQ2HoA==
+Date: Wed, 10 Apr 2024 14:35:00 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Saravana Kannan <saravanak@google.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Rob Herring
+ <robh@kernel.org>, kernel-team@android.com, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-spi@vger.kernel.org, linux-acpi@vger.kernel.org, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [RFC PATCH v2 0/2] fw_devlink overlay fix
+Message-ID: <20240410143500.783d7eba@bootlin.com>
+In-Reply-To: <CAGETcx-Yxtkdfytsota3AciS6M9UeOaKSRtaHfH5pm60KWVmJA@mail.gmail.com>
+References: <20240409053704.428336-1-saravanak@google.com>
+	<20240409150247.61e30a86@bootlin.com>
+	<CAGETcx-Yxtkdfytsota3AciS6M9UeOaKSRtaHfH5pm60KWVmJA@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/9] arm64: dts: qcom: sc8180x: switch USB+DP QMP PHYs
- to new bindings
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
-References: <20240401-typec-fix-sm8250-v3-0-604dce3ad103@linaro.org>
- <20240401-typec-fix-sm8250-v3-5-604dce3ad103@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240401-typec-fix-sm8250-v3-5-604dce3ad103@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
+Hi Saravana,
 
+On Tue, 9 Apr 2024 18:06:33 -0700
+Saravana Kannan <saravanak@google.com> wrote:
 
-On 4/1/24 22:33, Dmitry Baryshkov wrote:
-> To follow other Qualcomm platforms, update QMP USB+DP PHYs to use newer
-> bindings rather than old bindings which had PHYs as subdevices.
+> On Tue, Apr 9, 2024 at 6:02 AM Herve Codina <herve.codina@bootlin.com> wrote:
+> >
+> > Hi Saravana,
+> >
+> > +CC Luca and Thomas
+> >
+> > On Mon,  8 Apr 2024 22:37:01 -0700
+> > Saravana Kannan <saravanak@google.com> wrote:
+> >  
+> > > Don't bother reviewing this patch. It needs to be tested and possibly
+> > > refactored first.
+> > >
+> > > Geert and Herve,
+> > >
+> > > This patch serious should hopefully fix both of your use cases
+> > > [1][2][3]. Can you please check to make sure the device links created
+> > > to/from the overlay devices are to/from the right ones?
+> > >
+> > > I've only compile tested it. If I made some obvious mistake, feel free
+> > > to fix it and give it a shot.
+> > >
+> > > Cc: Rob Herring <robh@kernel.org>
+> > >
+> > > [1] - https://lore.kernel.org/lkml/CAMuHMdXEnSD4rRJ-o90x4OprUacN_rJgyo8x6=9F9rZ+-KzjOg@mail.gmail.com/
+> > > [2] - https://lore.kernel.org/all/20240221095137.616d2aaa@bootlin.com/
+> > > [3] - https://lore.kernel.org/lkml/20240312151835.29ef62a0@bootlin.com/
+> > >  
+> >
+> > I tested your patches.
+> >
+> > Concerning my use cases, they fix the issue described in
+> >   https://lore.kernel.org/all/20240221095137.616d2aaa@bootlin.com/  
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
+> I went back and looked at the example. I'm not even sure I understand
+> that example. In that example at the link above, are you saying
+> without any changes to upstream reg_dock_sys_3v3 was listing it's
+> supplier as i2c5 instead of tca6424_dock_1? Why wasn't Geert's
+> existing changes in of_i2c_notify not sufficient? Looking at it, it
+> does:
+> rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
+> 
+> Which should clear the flag for tca6424_dock_1. Can you help me
+> understand why it's not getting cleared?
 
-[...]
+I don't really know but I can mke some asumptions.
 
->   		usb_sec_qmpphy: phy@88ee000 {
+Maybe the link involved in the issue is created quite early in the overlay
+applying process, before the calls to the of notifier of_i2c_notify() that
+can clear the FWNODE_FLAG_NOT_DEVICE.
 
-This unit address also needs to be updated
+The link is created by of_link_to_phandle(). This functions is triggered
+from of_fwnode_add_links() which is the .add_link() operation of the OF
+fwnode_operations.
 
-LGTM otherwise
+The operation is called by fw_devlink_parse_fwnode(), itself triggered by
+fw_devlink_link_device() each time device_add() is called.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+If the device_add() related to the reg_dock_sys_3v3 is called before the
+of_i2c_notify() related to tca6424_dock_1, the FWNODE_FLAG_NOT_DEVICE flag
+in tca6424_dock_1 is not cleared when of_link_to_phandle() is called.
 
-Konrad
+Does this scenario make sense ?
+
+> 
+> > But not the one described in
+> >   https://lore.kernel.org/lkml/20240312151835.29ef62a0@bootlin.com/
+> > A link is still present between the i2c@600 and the PCI device.
+> > instead of the i2c@600 and the pci-ep-bus.  
+> 
+> What do you mean by PCI device here? You say the same thing in the
+> link, but I don't understand what you mean. Can you clarify what
+> exactly gets added by the overlay? Please use the fwnode name in all
+> the descriptions, even when talking about device links. That should
+> help avoid the confusion.
+> 
+> Also, if you can show what the target node of the overlay looks like,
+> that'd help too.
+> 
+> > Adding the patch clearing the FWNODE_FLAG_NOT_DEVICE in device_add() available
+> > at [1] on top of your patches fixes the link issue.
+> > With this additional patch applied, the link is present between the i2c@600
+> > and the pci-ep-bus.  
+> 
+> I know the problem with this patch series. But to fix it properly, I
+> need to understand the root of the overlay node in your examples and
+> the target it's applied to.
+
+
+This is the Microchip Lan966x PCI device use case.
+The Lan966x is a component that can be a "standard" SoC (i.e. core CPUs
+and some peripherals) or as a PCI device.
+When in PCI device mode, the core CPUs are not available and are replaced
+by an endpoint PCI. The PCI host in PCI device mode has to act the code CPUs
+in SoC mode. In other word the PCI host has access to peripherals (PCI MMIO
+accesses) and has to handle each peripherals.
+
+Drivers for these peripherals are already available in the kernel (reset
+controller, i2c controller, network switch, clock controllers, ...) and are
+functional when the Lan966x is in SoC mode.
+
+In order to re-use all of these drivers, the solution was to have a Lan966x
+PCI driver that is probe() matching the Lan966x PCI Vendor/Device ID.
+This driver then load a DT overlay to described the Lan966x internal components.
+
+Basically, the base DT (the DT describing the PCI host board) has the PCI nodes
+between the root PCI node and the Lan966x PCI device built at runtime during the
+PCI bus scan. At the end of the scan, the Lan966x driver load the overlay and
+the final DT looks like the following:
+--- 8< ---
+soc {
+	...
+	pcie@d0070000 {
+		compatible = "marvell,armada-3700-pcie";
+		...
+		/* A bridge, created at runtime during PCI scan */
+		pci@0,0 {
+			compatible = "pci11ab,100\0pciclass,060400\0pciclass,0604";
+			...
+
+			/* The Lan966x PCI device, created at runtime during PCI scan */
+			dev@0,0 { 
+				compatible = "pci1055,9660\0pciclass,020000\0pciclass,0200";
+				...
+
+				/*
+				 * This node is added by the overlay
+				 * during lan966x PCI driver probe()
+				 */
+				pci-ep-bus@0 {
+					compatible = "simple-bus";
+					...
+
+					flx0: flexcom@e0040000 {
+						compatible = "atmel,sama5d2-flexcom";
+						reg = <0xe0040000 0x100>;
+						ranges = <0x0 0xe0040000 0x800>;
+						...			
+
+						i2c_lan966x: i2c@600 {
+							compatible = "microchip,lan966x-i2c";
+							reg = <0x600 0x200>;
+							...
+						};
+					};
+					...
+				};
+			};
+		};
+	};
+};
+--- 8< ---
+
+Without clearing FWNODE_FLAG_NOT_DEVICE, a link is created between
+i2c@600 and dev@0,0.
+With the FWNODE_FLAG_NOT_DEVICE cleared in device_add(), the link is
+created between i2c@600 and pci-ep-bus@0.
+
+flexcom@e0040000 is a MFD device.
+
+In the lan966x PCI driver, the overlay is applied using the following:
+--- 8< ---
+
+static int lan966x_pci_load_overlay(struct lan966x_pci *data)
+{
+	u32 dtbo_size = __dtbo_lan966x_pci_end - __dtbo_lan966x_pci_begin;
+	void *dtbo_start = __dtbo_lan966x_pci_begin;
+	int ret;
+
+	ret = of_overlay_fdt_apply(dtbo_start, dtbo_size, &data->ovcs_id,
+				   data->dev->of_node);
+	if (ret)
+		return ret;
+
+	return 0;
+}
+
+static int lan966x_pci_probe(struct pci_dev *pdev,
+			     const struct pci_device_id *id)
+{
+	struct device *dev = &pdev->dev;
+	struct lan966x_pci *data;
+	...
+	data->dev = dev;
+	...
+	ret = lan966x_pci_load_overlay(data);
+	if (ret)
+		return ret;
+
+	...
+	ret = of_platform_default_populate(dev->of_node, NULL, dev);
+	if (ret)
+		goto err_unload_overlay;
+
+	return 0;
+	...
+}
+--- 8< ---
+
+Hope my explanations were clear enough and answered your question.
+Feel free to ask some more details if needed.
+
+I provided only extractions of the full dtso file. If you need some more
+information (all nodes, all properties) feel free to ask.
+
+Best regards,
+Hervé
 
