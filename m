@@ -1,147 +1,157 @@
-Return-Path: <devicetree+bounces-57858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6610289F038
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 12:56:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3330C89F047
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 12:57:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 87AB51C220D2
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 10:56:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C83471F2168A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 10:57:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5252115956D;
-	Wed, 10 Apr 2024 10:56:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE394159584;
+	Wed, 10 Apr 2024 10:57:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b="Dktcxcjj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B4k/3g+3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00176a03.pphosted.com (mx0b-00176a03.pphosted.com [67.231.157.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0CF315956B;
-	Wed, 10 Apr 2024 10:56:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.157.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3A16159219;
+	Wed, 10 Apr 2024 10:57:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712746593; cv=none; b=I6/JlUyyAXgYlPoidmzsaWaJYh9QplowpoT5IicBo1uT+Gj3h0SWfztktj8FMqkkTAzWHmtT7xPCxs2fNDvE+AarejFYsjcgYwPVeLZCI8UPGFfZXT6WWGDU4otamJfgHn0X63vPL4MEE2R4eXwUufrRX1ZcrJKKzyoTvqihFbk=
+	t=1712746632; cv=none; b=bl6Ec1SDRyH5WW7ZZmbRhbBvbKVRTmbwRRNw7eoA0scuic1rEAiHZkL/ezNt4lkVv+3knNTsI+0PybI2hFzcgaM4wdQxITA84DiF1xGvNZLjV3DwmsJwrcdq6G0IsBp5BC076mRBQ460TDMj6EaLj+t/VntjT/Jj7ABGWGlXBhw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712746593; c=relaxed/simple;
-	bh=T2Cxr4cQmLbIrGYgWWPyBq4OPBDB8i8INtNZfa2a06o=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=er8Ie671hPRQMdI1xwGqrmZHbXKT+obyDuXmHVO5BJaqEShwxi5YxW+4iD43lB49c5GWXUbuGDNpxqsdTXLRSWGjZ0LpTm998Tt64iRgLz0DXZSwNk5X2p/5OagtlpH6IcUmLXjcNV522n5Rqqgkq/KhM9D90ws4Wx75h5s4KZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gehealthcare.com; spf=pass smtp.mailfrom=gehealthcare.com; dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b=Dktcxcjj; arc=none smtp.client-ip=67.231.157.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gehealthcare.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gehealthcare.com
-Received: from pps.filterd (m0048206.ppops.net [127.0.0.1])
-	by m0048206.ppops.net-00176a03. (8.17.1.24/8.17.1.24) with ESMTP id 43A898Ms004481;
-	Wed, 10 Apr 2024 06:56:30 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	gehealthcare.com; h=from:to:cc:subject:date:message-id
-	:in-reply-to:references:mime-version:content-transfer-encoding;
-	 s=outbound; bh=9nrWY9DytoleI3fgu32cTyh5F+jGWl2jyLpk3CAefTg=; b=
-	DktcxcjjbVf0H9wQkAN91LDTjutpxi9qX+PdOnqHzioZlEIuxHN1l+u1TCtpkx+h
-	HjI28Qg13/Jm+KCN5iBPg6/YiUrp3GM3J1chZ8HETYF1mcLEo3EOy9Iwmjb53y5o
-	/PPvUolyIrbYcEi6S3uaflybnk6Fw4nTEVTh+2PU44jBOLDvb8h0ecr/v6aTgSoJ
-	JE/8bGaIPBEkAf0xHaGKi5GLNZGlamGbOvnjLhWxQ+iV/fgl+S9KR20a5TtB9k1e
-	0EVC//d7GNIB8Ntk+zc04tgHKLbXK84nG1y67ypVE/ntQxf2kKwWX2MmEtP14iqo
-	kJb2FEHG0kuF2wQRrDXMRQ==
-From: Ian Ray <ian.ray@gehealthcare.com>
-To: Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc: Ian Ray <ian.ray@gehealthcare.com>, devicetree@vger.kernel.org,
-        imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH V3 2/2] arm64: dts: imx8mp-msc-sm2s: Add i2c{1,6} sda-/scl-gpios
-Date: Wed, 10 Apr 2024 13:56:11 +0300
-Message-Id: <20240410105612.982-2-ian.ray@gehealthcare.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240410105612.982-1-ian.ray@gehealthcare.com>
-References: <20240410105612.982-1-ian.ray@gehealthcare.com>
+	s=arc-20240116; t=1712746632; c=relaxed/simple;
+	bh=yER5WqfrYOpPdWi09GgpkEmfXYdO+P/p0Yx8KlZR0R8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=skqtIxjTtOtYwfkGlzHsthB8VXA8vgcfXm8RHias2ZCSRP0wB7SEu/g1mexpwdIEFDA1ThD2Owu2xFi9fdmuc2T5IQQ0Zxtg9pM4X1KA3SMbkEyUNnrZ523kWvLNO+t5xOE9e2WxXGf1rcoKj7BFYUVT3pC01HZcbWGx8Gscqd4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B4k/3g+3; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-516ab4b3251so7513397e87.0;
+        Wed, 10 Apr 2024 03:57:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712746629; x=1713351429; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=74ZNNn3OhmGXGqjgqGSkw49LZtWek2Tj9NqPh68R1C4=;
+        b=B4k/3g+3it2Kdx3quHCiQNkvCwoSQoYAt3Pbv4DYHzvX6TDNytIkT8mWoRS8v8fHCS
+         VuhoeLRapc+FW1BeLHJCNdeg3AdGwhGgsBp/Vz5d3j9heoWGC/l0/99kI4pDduDMe+QK
+         o8J2AkFiP0cqRAMwck+wHGkNbf1Xtn2ZnsHWKkCAznFTjPXQoHXHgQF9MpsfZ6Xz6Dq2
+         5WatXwwJkID/CbJBprhuPihw8xGGPVUNCn+zBM4GgDvs9jPMRlohdiFDH48RgqRZwtE5
+         F4YAfjTeOd/geyGtjjwgP0S5jOiWeIxjGsZLvWOenjB62JIzUjIvWbUSgzYotAHEvYj+
+         o93g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712746629; x=1713351429;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=74ZNNn3OhmGXGqjgqGSkw49LZtWek2Tj9NqPh68R1C4=;
+        b=Z8OLwKpp8jdw1rBuRDqnnsCS5j1Sf5c5fxA+NnhzRTAQd2n7MGeVSu9x/49kdv6Ffj
+         7SJdH5zta0p1Tc4cdgawl5gpCeRLW5BI5NA/Gc0mkMD8Wj9DRuKbWHXl9SwCkeuU+Yqy
+         /TaPxO/TiP0hE6tyfM3dtChj6Haqa6mVdQvlquai6OPS/2CPHcHX7zLANI9YxPVloP4g
+         5LlhCEyDxB2BWbQa8mbgtS3B2GCRXHL5KcJA1U2RkdPXq9DJ5HHEuSPRq3aN+s3BVHDf
+         KstmVsrcE8+QEQo6osPpK1XSLDS+54MnLGKEmLP5h+Ih0PXjYJd6Zg6GZZS98+gcQHR4
+         W7hw==
+X-Forwarded-Encrypted: i=1; AJvYcCUgSi61jPum3xtPQPIAEiWvuwwzMHNcSHRDNJjfBGGAD3/igmgSODOGIOt55yTZRsyrbLaHyODHM8FI0GOrkVjfHYuGBEEiCQZtT6YAISthqQhtvOZvZ4Lg/UWIKPWg4fPUSeo6Yx9kjg==
+X-Gm-Message-State: AOJu0YxIxdEwBR0iJFSaqLCjfaJ8XqLYek4Y1O3YSfM1dgw2rq67q7nZ
+	EgB7IFVyHHLF35taCqMCWWho1zMztjQv2DKp154tDGPm/1g0ym8bg2tZ8q8B
+X-Google-Smtp-Source: AGHT+IGOoRrCm8NKtPkPTwaY8w06OViAQwAuOQzUhOLtasjoYvQuK1/vjstArz7gr3uVWZn2CQpi2w==
+X-Received: by 2002:a05:6512:481e:b0:515:b164:4112 with SMTP id eo30-20020a056512481e00b00515b1644112mr1436566lfb.68.1712746628864;
+        Wed, 10 Apr 2024 03:57:08 -0700 (PDT)
+Received: from [172.16.183.82] ([213.255.186.46])
+        by smtp.gmail.com with ESMTPSA id c4-20020ac244a4000000b0051327d2f5e5sm1781863lfm.119.2024.04.10.03.57.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Apr 2024 03:57:08 -0700 (PDT)
+Message-ID: <dd78b1ef-366a-41e4-8046-e368539839df@gmail.com>
+Date: Wed, 10 Apr 2024 13:57:06 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: zzNEZ2C6v6r31bR0u8LXi5DxSsUwnH2k
-X-Proofpoint-ORIG-GUID: zzNEZ2C6v6r31bR0u8LXi5DxSsUwnH2k
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-10_04,2024-04-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999 impostorscore=0
- adultscore=0 priorityscore=1501 lowpriorityscore=0 clxscore=1015
- malwarescore=0 bulkscore=0 mlxscore=0 phishscore=0 suspectscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404100078
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: mfd: Add ROHM BD71879
+Content-Language: en-US, en-GB
+To: Conor Dooley <conor@kernel.org>
+Cc: Andreas Kemnade <andreas@kemnade.info>, lee@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240404195423.666446-1-andreas@kemnade.info>
+ <20240404195423.666446-2-andreas@kemnade.info>
+ <3d5df067-ec94-42c6-bbd0-43ce8cd53e40@gmail.com>
+ <20240410-possum-lecturer-716185901aa5@spud>
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20240410-possum-lecturer-716185901aa5@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add i2c{1,6} sda-/scl-gpios with the corresponding pinmux entries.
+On 4/10/24 13:03, Conor Dooley wrote:
+> On Wed, Apr 10, 2024 at 10:57:08AM +0300, Matti Vaittinen wrote:
+>> On 4/4/24 22:54, Andreas Kemnade wrote:
+>>> As this chip was seen in several devices in the wild, add it.
+>>>
+>>> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+>>> Suggested-by: Matti Vaittinen <mazziesaccount@gmail.com>
+>>> ---
+>>>    .../devicetree/bindings/mfd/rohm,bd71828-pmic.yaml         | 7 ++++++-
+>>>    1 file changed, 6 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
+>>> index 0b62f854bf6b..07f99738fcf6 100644
+>>> --- a/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
+>>> +++ b/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
+>>> @@ -17,7 +17,12 @@ description: |
+>>>    properties:
+>>>      compatible:
+>>> -    const: rohm,bd71828
+>>> +    oneOf:
+>>> +      - const: rohm,bd71828
+>>> +
+>>> +      - items:
+>>> +          - const: rohm,bd71879
+>>> +          - const: rohm,bd71828
+>>>      reg:
+>>>        description:
+>>
+>> Am I correct, this reads as:
+>>
+>> Either
+>> 	compatible = rohm,bd71828
+>> or
+>> 	compatible = rohm,bd71879, rohm,bd71828
+>>
+>> but not compatible = rohm,bd71879?
+> 
+> Correct.
 
-Signed-off-by: Ian Ray <ian.ray@gehealthcare.com>
----
- .../boot/dts/freescale/imx8mp-msc-sm2s.dtsi   | 22 +++++++++++++++++--
- 1 file changed, 20 insertions(+), 2 deletions(-)
+Thanks Conor!
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s.dtsi
-index e794f05cf5aa..0fd5c3abcdb7 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s.dtsi
-@@ -200,8 +200,11 @@ ethphy1: ethernet-phy@1 {
- };
- 
- &i2c1 {
--	pinctrl-names = "default";
-+	pinctrl-names = "default", "gpio";
- 	pinctrl-0 = <&pinctrl_i2c1>;
-+	pinctrl-1 = <&pinctrl_i2c1_gpio>;
-+	scl-gpios = <&gpio5 14 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio5 15 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 	clock-frequency = <400000>;
- 	status = "okay";
- 
-@@ -241,8 +244,11 @@ &i2c5 {
- };
- 
- &i2c6 {
--	pinctrl-names = "default";
-+	pinctrl-names = "default", "gpio";
- 	pinctrl-0 = <&pinctrl_i2c6>;
-+	pinctrl-1 = <&pinctrl_i2c6_gpio>;
-+	scl-gpios = <&gpio3 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio3 20 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 	clock-frequency = <400000>;
- 	status = "okay";
- 
-@@ -606,6 +612,12 @@ pinctrl_i2c1: i2c1grp {
- 			<MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA		0x400001e0>;
- 	};
- 
-+	pinctrl_i2c1_gpio: i2c1gpiogrp {
-+		fsl,pins =
-+			<MX8MP_IOMUXC_I2C1_SCL__GPIO5_IO14		0x1e0>,
-+			<MX8MP_IOMUXC_I2C1_SDA__GPIO5_IO15		0x1e0>;
-+	};
-+
- 	pinctrl_i2c2: i2c2grp {
- 		fsl,pins =
- 			<MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL		0x400001e0>,
-@@ -636,6 +648,12 @@ pinctrl_i2c6: i2c6grp {
- 			<MX8MP_IOMUXC_SAI5_RXC__I2C6_SDA		0x400001e0>;
- 	};
- 
-+	pinctrl_i2c6_gpio: i2c6gpiogrp {
-+		fsl,pins =
-+			<MX8MP_IOMUXC_SAI5_RXFS__GPIO3_IO19		0x1e0>,
-+			<MX8MP_IOMUXC_SAI5_RXC__GPIO3_IO20		0x1e0>;
-+	};
-+
- 	pinctrl_lcd0_backlight: lcd0-backlightgrp {
- 		fsl,pins =
- 			<MX8MP_IOMUXC_GPIO1_IO05__GPIO1_IO05		0x41>;
+I guess that if we later find out that there is a 'gizmo' in BD71828 
+which is not present on BD71879 - and if we write driver supporting 
+this, then we need to have handling for both the BD71879 and BD71828 in 
+this driver to ensure the fall-back wont happen. It's a bit ugly as I 
+think the fall-back compatible should be used only in case where the 
+"fall-back" HW can be guaranteed to have exactly same, or a subset of, 
+features of the "full board".
+
+Well, I've been told these are similar by HW colleagues. I have my 
+doubts if 'similar' really is '_similar_', or if it's 'similar, except 
+of course...' - but let's trust the HW guys on this. We have the above 
+mentioned workaround if we should not have trusted...
+
+Acked-By: Matti Vaittinen <mazziesaccount@gmail.com>
+
 -- 
-2.39.2
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
 
 
