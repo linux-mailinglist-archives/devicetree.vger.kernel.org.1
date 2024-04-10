@@ -1,87 +1,108 @@
-Return-Path: <devicetree+bounces-57734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D245889E9AA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 07:24:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 249C189E9AB
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 07:26:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CBBA283056
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 05:24:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 555A21C214C9
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 05:26:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAA7E125AB;
-	Wed, 10 Apr 2024 05:24:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1988E12E70;
+	Wed, 10 Apr 2024 05:26:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="dRCvWeMQ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="MdYUda89"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04167168CC
-	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 05:24:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F03F8B676;
+	Wed, 10 Apr 2024 05:25:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712726672; cv=none; b=Sr3ivYm7FkjRvq+5oHsF0Q1dK2Edw2wKhpmCebFnyNnnTwDm3v7e+guZ+icGFmIyH0gQdsAgj8/LLlIBrkYQCjmaaOJdvzY4VwQHGIckm+6IhCsphS8ly64NQVxohyvi74LuK3VDWIXQObV3RfGG1njm5gKMZ7ya9IeTpq8mInI=
+	t=1712726761; cv=none; b=D7kUYV96zUg96h+iw1G4CYXddbsI5mHAJbY3hu5shFv+BwZJdZXwiP24JqAd4WzLQ4QzUiYvXDoHQOGfyIrPFGwb/h1MVzqYcbKVlxZRkOHuFRN+nmrazvYQ0LVAv4xIsh2PUYIRE5nL38B3NF0dCFRDYw1CKOXTlb9lK6IaxoM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712726672; c=relaxed/simple;
-	bh=Ti1EN4nFfDJYPH8JDUDuaQJ0xwR5fFhuu2GkUgW2zQw=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=TY6u0NgWcSeA7+YVPO/t4Rj0M8zk8NLSGhhj7xcQgab9BJnPq0lgKLHi39I/UyYySkqHfuRC0bjsI+JOd2I9xoXeiGOP9eLhU+ctI7E2CZtJe8opplR/TLk7b1HCxD8lw/hhYYKB68KvE1mP/yB6edaa13lVjz9aMf3Lz5vJYk4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=dRCvWeMQ; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1712726761; c=relaxed/simple;
+	bh=uemkmvspv5ZB3wuB0TCGG9ab6fnYyfqgNmfpNNRHrkE=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=r5GWiZN++IgdF0oDifW25iswzTeu52vyWvdZvKLCzMCssXI76JZBgzQZZzG6wkVUo5lAKy4IcjTiGj8X+q1i1am7xIn7EAsuvfX/gV0Q9Tfl96J9HoOeCjmdtd/MJZx5ZTx2ex6vAiQOeP6kjFuuixaxjwaf3ZQ0lBdsNsU4Heo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=MdYUda89; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id C971920003;
+	Wed, 10 Apr 2024 05:25:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1712726754;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=pp6MTv8ndXhkZFAi0mOWfa7deuiDrn7kLeffrdA5z5g=;
+	b=MdYUda89nrrNToShetXSgAldJEpsyLQC36tFBUb/UHYzTsDvcF/BeLK/p0FO+at1aNg3xu
+	hj1ABRJmB2DsWkUGLeICvDT969+zaoqPWc7lcD24sfdVf2Q2Bxyol5GbJBDDG7LdnCSgQY
+	/9i6U7Z7vMnyABs5DU9z9yxF91zH9PBgYTnNNGTtEBICU7C0JPKRgkaeitRg/ygtX21lVL
+	YcJQDPO1zYgrn2hgtIKtnwaOfMntWL5HVIGfGz/SLTX85pesxhDtHt0+rtr3M00TclMd0s
+	VMjCT0KwDMAlCILpVPCnBUS+0XHx1yIjNGx6ttOqW5DR1p1J6EPibkMB4V8vMA==
+From: michael.opdenacker@bootlin.com
+To: Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Chao Wei <chao.wei@sophgo.com>
+Cc: Michael Opdenacker <michael.opdenacker@bootlin.com>,
+	linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: riscv: add Milk-V Duo S board compatibles
+Date: Wed, 10 Apr 2024 07:25:17 +0200
+Message-Id: <20240410052518.2945789-2-michael.opdenacker@bootlin.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240410052518.2945789-1-michael.opdenacker@bootlin.com>
+References: <20240410052518.2945789-1-michael.opdenacker@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1712726667;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=GRp2XHxjjL0oPdAnwj+GE/FeGz7oZPrX9tVo9HNUQug=;
-	b=dRCvWeMQY6aMFslHJzQe1GCqWfIWV8b2DaYBSCtwbeS7i46TIf6kYZ+PSwjRFeVAtDJ7WG
-	+pMZ46ViAI2xUWzCyQ2/rZQ5a6T6l8iKp6+vk1v43QU0oGHdH2m57AvgOlAurhMrRJoCqq
-	8Mf24+2cSghQGkCpSrgCZQlZWevGTpCqPF1W7N/i+F3W2rXYzatSJdTAprT8VQh+LSTr4b
-	+zIsWXDA6BHMdf8wV6UO43Gaio2qZ5WWhgG3a/3KIDzfXv37GWusu0eB2v7qTeb63k8fhW
-	QjoIj0KqqWYr5KUGTDSX4QTByEL8wAMxmsiL/h+O/INRNVYpINmrd0u+7knLTQ==
-Date: Wed, 10 Apr 2024 07:24:27 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- linux-arm-kernel@lists.infradead.org, conor+dt@kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Designate the system power
- controller on QuartzPro64
-In-Reply-To: <171272604789.1867483.1717225065687252209.b4-ty@sntech.de>
-References: <c602dfb3972a0844f2a87b6245bdc5c3378c5989.1712512497.git.dsimic@manjaro.org>
- <171272604789.1867483.1717225065687252209.b4-ty@sntech.de>
-Message-ID: <231f154d66369b5c204684ee9f47b3ce@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: michael.opdenacker@bootlin.com
 
-On 2024-04-10 07:15, Heiko Stuebner wrote:
-> On Sun, 7 Apr 2024 19:56:24 +0200, Dragan Simic wrote:
->> Designate the primary RK806 PMIC on the Pine64 QuartzPro64 as the 
->> system
->> power controller, so the board shuts down properly on poweroff(8).
-> 
-> Applied, thanks!
-> 
-> [1/1] arm64: dts: rockchip: Designate the system power controller on 
-> QuartzPro64
->       commit: c2b6d3a2bbf6352f7cddff2abe81dc4af4887672
-> 
-> Added a Fixes-tag
+From: Michael Opdenacker <michael.opdenacker@bootlin.com>
 
-Great, thanks!
+Document the compatible strings for the Milk-V Duo S board[1] which uses
+the SOPHGO SG2000 SoC, compatible with the SOPHGO CV1800B SoC[2].
+
+Link: https://milkv.io/duo-s [1]
+Link: https://en.sophgo.com/product/introduce/cv180xB.html [2]
+
+Signed-off-by: Michael Opdenacker <michael.opdenacker@bootlin.com>
+---
+ Documentation/devicetree/bindings/riscv/sophgo.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/riscv/sophgo.yaml b/Documentation/devicetree/bindings/riscv/sophgo.yaml
+index 9bc813dad098..2bf58bd6f3a0 100644
+--- a/Documentation/devicetree/bindings/riscv/sophgo.yaml
++++ b/Documentation/devicetree/bindings/riscv/sophgo.yaml
+@@ -22,6 +22,10 @@ properties:
+           - enum:
+               - milkv,duo
+           - const: sophgo,cv1800b
++      - items:
++          - enum:
++              - milkv,duos
++          - const: sophgo,cv1800b
+       - items:
+           - enum:
+               - sophgo,huashan-pi
+-- 
+2.34.1
 
 
