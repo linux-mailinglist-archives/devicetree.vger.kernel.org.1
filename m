@@ -1,151 +1,117 @@
-Return-Path: <devicetree+bounces-57697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57699-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEB0189E70C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 02:42:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D74089E725
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 02:48:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 986D2283FFA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 00:42:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 373781C21133
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 00:48:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 936CA1388;
-	Wed, 10 Apr 2024 00:42:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="RXi3DPw+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8053818;
+	Wed, 10 Apr 2024 00:48:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86D4A5256
-	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 00:42:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.175
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82468387;
+	Wed, 10 Apr 2024 00:48:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712709730; cv=none; b=f//5Qo+cEsQKGUwmW/Uul1MViExyxDbmWLygoQsNcBp/F+kj0S32B9jqKLL8cM3UncYk4Ig8/bVPUG1LfmfSAfetL56a3tbW7a0KyS25qEeEx8BC+sUa/SAzkFGztQia8bOQe9WEZo+kZMLXEBtXkOgRoZTAh229/XQIzQdtk7E=
+	t=1712710125; cv=none; b=YuZQfOldy1S7Os6qHE3lO5PRofdFC3RvjZyUJ/S5j0YgkIUSRHBCacpEceccxpwoeLrPWKwLRDzBI4S+0gHGEWICRyh3M9Ez2gSnVR2RxzF4DrozwOLV8CpDztZGui4Ycrakow8lcS8IZJEmNdwvg33s7wlQPcXYhipVK5rmPaw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712709730; c=relaxed/simple;
-	bh=6n12Zu2PXd66Y71IlQLtaUfwzP6yoiw9IUKTbil8GRo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OhxlFrpoSB97ek7DPe6QEQK+h/ZGORTEu7KHhzHjUfZ1RwXasTo4mcswX+RiZOi70T2fjShUtUWpApGRGQgie8N3jeGxXzrAGTjruRhGItk/34A4SiiMd1ltNCbayVz+Cd0Exff8AmzGzHrSEbrTETxjsQ7ueDqRcUYfHVBQCbc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=RXi3DPw+; arc=none smtp.client-ip=209.85.160.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qt1-f175.google.com with SMTP id d75a77b69052e-4348110e888so109881cf.1
-        for <devicetree@vger.kernel.org>; Tue, 09 Apr 2024 17:42:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1712709726; x=1713314526; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=E707FZfqJXCBcA2uPBas1hK+jmqbfEZiGJ11/cbpPtU=;
-        b=RXi3DPw+8a609DGiSGokomsp/tcC/Zdkvf174NC0Xl7hdBOmEzriLAA39/Z44B2AVc
-         x+k1vGgAzOyzmkE0KKB/VGAFH4OY2DcPaHwKg1TR0tIFjs7p3spuBc80Qn2qUo0/ESJ/
-         R7pUVuWO/BlRknRQo6Yr3g/E9P9KFLwtun1g1aONN6++2rPp/+JFTlkPK+dxP12IXhGg
-         nmWbqK9POhXZgUaCNI9yzTgtxd/b4Km7aIfgyF8YkxkSyO3kBbCZ7I63vmazjRq5phV6
-         OF0uglWOZkm5x9NBsmdyf/pmdFarHAcqP2cUun4I7+x49Kdf68A4GJz3dJwVd6JitA8M
-         aYSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712709726; x=1713314526;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=E707FZfqJXCBcA2uPBas1hK+jmqbfEZiGJ11/cbpPtU=;
-        b=lxzW1SQPya4CsFSnHQeIpoqeag4z2Fc8Y17Sj5K1InAX63/wWlj2WRPlJDCus26M/i
-         WEk9HolGIHQHtkL7jfjEdkngkIkDmil+zbOeZhnGvl+Gtbcq+7HSCqgU2vgtvYTM3W3f
-         d2zDIko7n5JpxqkB9bwtcGHcNF3lAqUVFCinuGAZg5hamAxXHbz5cfgxAEFEh1lgu+ZA
-         V2emXtbMbwSqeNG4teB5z7r/eKR+1wNFWrMehhwvFlYib9gaXFyxmqx3IzhybfFeJIky
-         6+XFHQxqbjrXEggdIhVKTBEmTDfvbDQ2BcSoWe1GddyMazsW36MkAjsvA6BwC1gigIZo
-         FwNw==
-X-Forwarded-Encrypted: i=1; AJvYcCXD/+0rpTHQpi9R6VPVCIE1jCIGkYkFArgXo+RyDNInMi4gBaZmWypVZ18CETfIe7v+0WyP9Gw6XE/W6KtCJmSfX+BgY4/Y2MyAbQ==
-X-Gm-Message-State: AOJu0Yx2HlMMGVuqfULz466XTtna//bPpErPinOtXf0lG3PiZUCbte4l
-	QNF4GsC3h17E4lITiBQPqz1TPcLy3EKqjMl3nzCGCrVfyxpgc8ASfH2ZdhLkCnDoLMQ6yr67Dyi
-	8TbIUbG+AgEVlBp9NEztVvNw6feyrLQ108Nro
-X-Google-Smtp-Source: AGHT+IE6pOiRvKwazX638Ih8wKd7cvEo05JqQcXWWafVxMVp5G/KiIGH74/vCv7oIW4NbZNraz/tqKumu97CziTEeuU=
-X-Received: by 2002:a05:622a:1cc3:b0:434:6677:7311 with SMTP id
- bc3-20020a05622a1cc300b0043466777311mr50389qtb.17.1712709726223; Tue, 09 Apr
- 2024 17:42:06 -0700 (PDT)
+	s=arc-20240116; t=1712710125; c=relaxed/simple;
+	bh=6rxsO3hZ2yR4GfX7q+8aOPjoPSTSFdvgU/GkzJpY4LQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=PYyP0go5MZf5+tTvjBhz9QyZ57wP2A0+cdhUBieWUQg/Jbwu60pg1M8EuWqIyqJfiUZalKC0L9cyd+rMTuOSMWvy9wpWy7l+dxzRrVeAKR0/XQ7I7LDja4SidDeT6tbo+/3r/VP9nh6WrIJR2glPmLwL/+NzIenKopOY2VucCgQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+X-IronPort-AV: E=Sophos;i="6.07,190,1708354800"; 
+   d="scan'208";a="200918514"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 10 Apr 2024 09:48:36 +0900
+Received: from localhost.localdomain (unknown [10.166.13.99])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 31662400CF08;
+	Wed, 10 Apr 2024 09:48:36 +0900 (JST)
+From: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To: lpieralisi@kernel.org,
+	kw@linux.com,
+	robh@kernel.org,
+	bhelgaas@google.com,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	jingoohan1@gmail.com,
+	mani@kernel.org
+Cc: marek.vasut+renesas@gmail.com,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH v6 0/7] PCI: rcar-gen4: Add R-Car V4H support
+Date: Wed, 10 Apr 2024 09:48:25 +0900
+Message-Id: <20240410004832.3726922-1-yoshihiro.shimoda.uh@renesas.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240409053704.428336-1-saravanak@google.com> <CAMuHMdVL4xUMARcze=ZyZA=Hi3=nvfZ34juSKG7cgA5ygxASaw@mail.gmail.com>
-In-Reply-To: <CAMuHMdVL4xUMARcze=ZyZA=Hi3=nvfZ34juSKG7cgA5ygxASaw@mail.gmail.com>
-From: Saravana Kannan <saravanak@google.com>
-Date: Tue, 9 Apr 2024 17:41:30 -0700
-Message-ID: <CAGETcx84fpe4KgrbOr15DYmCKLqdDVHn1DdkVRT8FjBW3qBLXw@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 0/2] fw_devlink overlay fix
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Herve Codina <herve.codina@bootlin.com>, Rob Herring <robh@kernel.org>, kernel-team@android.com, 
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-spi@vger.kernel.org, 
-	linux-acpi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Tue, Apr 9, 2024 at 8:10=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68k=
-.org> wrote:
->
-> Hi Saravana,
->
-> On Tue, Apr 9, 2024 at 7:37=E2=80=AFAM Saravana Kannan <saravanak@google.=
-com> wrote:
-> > Don't bother reviewing this patch. It needs to be tested and possibly
-> > refactored first.
-> >
-> > Geert and Herve,
-> >
-> > This patch serious should hopefully fix both of your use cases
-> > [1][2][3]. Can you please check to make sure the device links created
-> > to/from the overlay devices are to/from the right ones?
->
-> Thanks for your series!
->
-> After applying the first patch (the revert), the issue reported in
-> [1] is back, as expected.
-> After applying both patches, applying[A]/unapplying[B]/reapplying[C]
-> overlay [4] works as without this series, so
-> Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
->
-> Note that the state of /sys/class/devlink/ after [C] is still not the
-> same as after [A], as reported before in [5]:
->   - platform:e6060000.pinctrl--platform:keys link is not recreated in [B]=
-,
->   - nothing changes in /sys/class/devlink in [C].
-> But that issue is not introduced in this series.
+The pcie-rcar-gen4 driver can reuse other R-Car Gen4 support like
+r8a779g0 (R-Car V4H) and r8a779h0 (R-Car V4M). However, some
+initializing settings differ between R-Car S4-8 (r8a779f0) and
+others. The R-Car S4-8 will be minority about the setting way. So,
+R-Car V4H will be majority and this is generic initialization way
+as "renesas,rcar-gen4-pcie{-ep}" compatible. For now, I tested
+both R-Car S4-8 and R-Car V4H on this driver. I'll support one more
+other SoC (R-Car V4M) in the future.
 
-Thanks for the testing and additional info! Looks like I'll need to
-make more changes to accommodate more cases. I'll send out v3 once I
-figure it out, but it should continue working for you.
+Changes from v5:
+https://lore.kernel.org/linux-pci/20240408012458.3717977-1-yoshihiro.shimoda.uh@renesas.com/
+- Drop "dwc: " prefixes from the subjects in patch [0456]/7.
 
--Saravana
+Changes from v4:
+https://lore.kernel.org/linux-pci/20240403053304.3695096-1-yoshihiro.shimoda.uh@renesas.com/
+- Fix compatible string for renesas,r8a779f0-pcie-ep which was described
+  accidentally from v3...
 
->
-> > [1] - https://lore.kernel.org/lkml/CAMuHMdXEnSD4rRJ-o90x4OprUacN_rJgyo8=
-x6=3D9F9rZ+-KzjOg@mail.gmail.com/
->
-> [4] "arm64: dts: renesas: ebisu: cn41: Add overlay for MSIOF0 and 25LC040=
-"
->     https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers=
-.git/commit/?h=3Dtopic/renesas-overlays&id=3D222a4936b0d3dabd43bdffb3a57842=
-3bff97b02d
-> [5] https://lore.kernel.org/lkml/CAMuHMdXNoYH8PJE1xb4PK-vzjXtOzrxNJoZhsHT=
--H4Ucm=3D7_ig@mail.gmail.com/
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
-8k.org
->
-> In personal conversations with technical people, I call myself a hacker. =
-But
-> when I'm talking to journalists I just say "programmer" or something like=
- that.
->                                 -- Linus Torvalds
+Changes from v3:
+https://lore.kernel.org/linux-pci/20240401023942.134704-1-yoshihiro.shimoda.uh@renesas.com/
+- Modify the code to use "do .. while" instead of goto in patch 6/7.
+
+Changes from v2:
+https://lore.kernel.org/linux-pci/20240326024540.2336155-1-yoshihiro.shimoda.uh@renesas.com/
+- Add a new patch which just add a platdata in patch 4/7.
+- Modify the subjects in patch [56]/7.
+- Modify the description and code about Bjorn's comment in patch [56]/7.
+- Add missing MODULE_FIRMWARE(9 in patch 6/7.
+- Document a policy aboud adding pci_device_id instead of adding r8a779g0's id
+  in patch 7/7.
+
+Changes from v1:
+https://lore.kernel.org/linux-pci/20240229120719.2553638-1-yoshihiro.shimoda.uh@renesas.com/
+- Based on v6.9-rc1.
+- Add Acked-by and/or Reviewed-by in patch [126/6].
+
+Yoshihiro Shimoda (7):
+  dt-bindings: PCI: rcar-gen4-pci-host: Add R-Car V4H compatible
+  dt-bindings: PCI: rcar-gen4-pci-ep: Add R-Car V4H compatible
+  PCI: dwc: Add PCIE_PORT_{FORCE,LANE_SKEW} macros
+  PCI: rcar-gen4: Add rcar_gen4_pcie_platdata
+  PCI: rcar-gen4: Add .ltssm_enable() for other SoC support
+  PCI: rcar-gen4: Add support for r8a779g0
+  misc: pci_endpoint_test: Document a policy about adding pci_device_id
+
+ .../bindings/pci/rcar-gen4-pci-ep.yaml        |   4 +-
+ .../bindings/pci/rcar-gen4-pci-host.yaml      |   4 +-
+ drivers/misc/pci_endpoint_test.c              |   1 +
+ drivers/pci/controller/dwc/pcie-designware.h  |   6 +
+ drivers/pci/controller/dwc/pcie-rcar-gen4.c   | 272 +++++++++++++++++-
+ 5 files changed, 270 insertions(+), 17 deletions(-)
+
+-- 
+2.25.1
+
 
