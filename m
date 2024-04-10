@@ -1,229 +1,280 @@
-Return-Path: <devicetree+bounces-57874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5C4C89F1A0
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 14:02:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1F0389F1B0
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 14:07:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4AF001F22692
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 12:02:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2780B1F22EE5
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 12:07:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E87D515B10C;
-	Wed, 10 Apr 2024 12:02:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE26715ADA6;
+	Wed, 10 Apr 2024 12:07:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="F5YryM7F"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="UtgZY/IS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C42F01598F2
-	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 12:02:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B62EE155395
+	for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 12:07:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712750544; cv=none; b=F5ClEdptiDzJasSjbX0+cl6MLpH5BO+G3TKBG0DF45gifMfl7Ypn3L6K80p6vUm4uD+TzlMzdtGSOYR17iyaJI0hCTkSdBEfxOKJp2fGRYpzjyPdGsYzi+FSOly7drTlsFEG5lQOk1m0puN0H8XSBs9N/+xO/NDOck8jqUhAM1o=
+	t=1712750834; cv=none; b=QdEkAfyFDFaJPMkz1H9FDJnyLyfeB6tYmMEWHg42DhW5pi8jiDwnlWn7fKPR2ozOsAjU3BUS9SDZ+P5GjeLJ0FX6HHFOmkmJFnV4AOx+xOYyg/xtPtZRBkLb9ClxySOqibeW5xzyw8cHHPuElVZNaehpgP6OnPu42PR63knqLeg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712750544; c=relaxed/simple;
-	bh=xB8xNT5TZ+8idLPQRdpVsxTMm4mthuyK1wxukUtb10c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Yqwyvo+o6hAJd7B5NyYLq6lyDgiHSNOyJfAHUZoD4LKAjRtXupPEBMl92M+zHmYiNDN0ylqgB6mPIKtnjUsul4G6lUUAJ04OAwx+eeVDU713WX7HP6qS+hfMZ9Yj5tGCjphUO0N+osy5HldN8vknB0vBsA55CiFdUFETjLIbfJY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=F5YryM7F; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-516db2214e6so5602430e87.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 05:02:21 -0700 (PDT)
+	s=arc-20240116; t=1712750834; c=relaxed/simple;
+	bh=JeLs9WU+n3dFBi/71GVKzouJbohebsHMG3JE6YDGZ+Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NQpOSkiUxonNlNSa9771Ta2jbZql6WAUFbcquMkVL4rCpD3kvu5Fn7SpZbJNMhpin55lauvEBTs1b+tkk/9RbH6bfYv0cHG7DRsZXAeZjWRXYNgIEcIrTxK4I1WMmhh1E3DQiaoVFpx9Z8qiBP0U+EDup/0CobdOXmjhgO6TplM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=UtgZY/IS; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-56e37503115so4869233a12.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 05:07:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712750540; x=1713355340; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2rOsmIDCW9tEFKE8tS+sIYykh0jMck+s4Yo4qCRXhxo=;
-        b=F5YryM7F1vB9+DeuXt/Zx6l2B9fIIjuSJRQadM3cyAHJw3flXBsZvvzKAjmdN8VGW/
-         HUQlXm6T1lhn030qo4Cqyydl0NqdtPU9kUsez6oth4Pvx0ETmV0eul8TFMSrONsHBjbp
-         dnPDdIVK8EPj3HiTdbq+iYhnEePTqLNc7uX1+JecPecBqT9p+9ibpds80SluKPilo/pS
-         KtOg1/Lb6IJ4F6Rhkh0lH02k7nX9IZpNk1/vrS/BGJ1BdmuFXaRABtKTN3HDwgnrkFiU
-         RL2kOURq8XKY5tvMfdd1u67+aXxHftyAAHfDApqDbKXQ/TZhaR4Eqp0cT3Y/KX9nYLzr
-         5GDQ==
+        d=chromium.org; s=google; t=1712750831; x=1713355631; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+8P5WqVrHeK2zaTvdI8Gl1QefEqSb/GOhR4ipVI1tvQ=;
+        b=UtgZY/ISy/GVSMhPWVCZEjx36BI+wu6njo1We+BYA2h/AJxp1nnK06svLhFEtUocFx
+         qPftjQpVZk/RA4yZQN0jjzvxD1kE0ht70zNi7psswrsR+hKKMwcIbfbtn5lGus3gcjCt
+         u9a02KNw4EY/71R1hgpYwXa+O71UTdB34sbMo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712750540; x=1713355340;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2rOsmIDCW9tEFKE8tS+sIYykh0jMck+s4Yo4qCRXhxo=;
-        b=rKI3IrYUydrvQ0ZgLQ5Jj8KGBsNFfa1Nh/j1KVoWjU46HL29o4hMzZBirzau3Lndwi
-         Fnqk4fN5eyHwLDFnIK8kybaul8lpI7VmFe5FSyIwwJCxFHDHKcC0UMZv3QikUljXQ48Y
-         UPrrIm+Ool6dKq1T5e3ZEiDnKYvg65UqyS4j8b+zLoJupcH5/+Y8GpIhjYpIgI2ARzn6
-         MSBZTs2NqvQ2GT/GG7h4PIXO6WFSPNs0DzINVm5pFp0xRpoUtPovVBTlZljfsjAiUvVB
-         AabxUH799uR82khdN5me3wySx8VuGgERBQpoYce5vE+o1HG/2UIqkkNwSGXUuUQrHCss
-         95Dg==
-X-Forwarded-Encrypted: i=1; AJvYcCWbaoM7uQmyas/6KvYLotMR8UkRZyIy6/4kVtgnn5CqVU13fEs/yk12H3uEXN436vNT8+uQO6FfG9mdNhUc1CL91N/HTw7QjTX/RA==
-X-Gm-Message-State: AOJu0YxmCvS97Pf7UQ8oD79YG1JPsuk2up6pDCFPrLpfpF4eQ8NLpl2+
-	uaRrfRwxV64BFNzhVOwZAOcZH0JUfRW+4LuhUxjZKmU2pXb+74culJN8/+ch+UI=
-X-Google-Smtp-Source: AGHT+IGilayBjVPPPsJrW4/d24tX8SyRvpVvblAytZMmw2oDFnm170N+wpXAz9u0jhqkmG3BfjRZ1g==
-X-Received: by 2002:a2e:bc18:0:b0:2d8:5a4b:1623 with SMTP id b24-20020a2ebc18000000b002d85a4b1623mr2006539ljf.7.1712750539998;
-        Wed, 10 Apr 2024 05:02:19 -0700 (PDT)
-Received: from [172.30.204.89] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id bg22-20020a05651c0b9600b002d6c051d299sm1796301ljb.56.2024.04.10.05.02.18
+        d=1e100.net; s=20230601; t=1712750831; x=1713355631;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+8P5WqVrHeK2zaTvdI8Gl1QefEqSb/GOhR4ipVI1tvQ=;
+        b=TQZAj2CCQ6IDp1/vfoeaMEgVBPp4CNFITkTlrhkSneQfK/gvq4H7t3YYG32KoXXNfY
+         vvPtI1wreulYSJP8Q1ZAPMiooV+qzOFxQyf6AJhO11i/Zx4iAXWtWNZn3sTFY4MInBmt
+         zLTLE8cx+CC+uXF+sFkjgCTnXDVRhlMh8YOxaAe5kRsdKmGc+TFWryCBZvDLLFYNmos1
+         1JCCrMf5Zez4yOM7YR7N2Vp2zNHHmomIsZf5dqcipdJ5CyVc9827pe/xoygg6wPYv7Z8
+         fLNCTdCsuKQluiPO1oG7eNN6ZiXbVgWpooyTY8qZY4pbEop2Wi0i8hC1wtP8DYTmlr/O
+         s99A==
+X-Forwarded-Encrypted: i=1; AJvYcCX4yDv7uZZx8bpRvNQ6p85klSggO6MFL8ZRC8uFO6EXaymjedD1+gnaOLQwOLy/1WiguyDNJ3TOpLjOHcvrGZoRPc1uAQ5wF2cmaA==
+X-Gm-Message-State: AOJu0YzGiCoMbT/G/O6OggHTMeDZQNitILDdrPMHJc7BEZIK0ghqasVW
+	I46vDLxmHa20mbHKbUYX8/4RDOYGt1oPy3exwVslIk+UzYr+Cri7yhxacNJOuKryc3KyPEl6sw7
+	3+A==
+X-Google-Smtp-Source: AGHT+IG6gg/8TAWSkdu2tzGQpbzia1rmzzZ+5BLBVFnagTDmtmwmWsOIkUy5D9XvotDrz1fRgbwRbQ==
+X-Received: by 2002:a50:aa93:0:b0:566:fbf5:a279 with SMTP id q19-20020a50aa93000000b00566fbf5a279mr1706685edc.20.1712750830546;
+        Wed, 10 Apr 2024 05:07:10 -0700 (PDT)
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com. [209.85.218.50])
+        by smtp.gmail.com with ESMTPSA id et6-20020a056402378600b0056b8dcdaca5sm6332982edb.73.2024.04.10.05.07.10
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Apr 2024 05:02:19 -0700 (PDT)
-Message-ID: <38e9be7d-f52d-4610-88d8-362557326b4d@linaro.org>
-Date: Wed, 10 Apr 2024 14:02:18 +0200
+        Wed, 10 Apr 2024 05:07:10 -0700 (PDT)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a46a7208eedso956613466b.0
+        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 05:07:10 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUmK+16jq1fSLJdxswP4fE1GrEv+lBoow/5PBykg+LGEZ2PZm8l4Egd7oFPfcFXaVL69KrzNWjwMa9ZO+WT03Jg71cnO0t3h+Xn8w==
+X-Received: by 2002:a17:907:7202:b0:a51:9d21:2a1e with SMTP id
+ dr2-20020a170907720200b00a519d212a1emr1872195ejc.73.1712750829549; Wed, 10
+ Apr 2024 05:07:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/7] iommu/arm-smmu-qcom-tbu: Add Qualcomm TBU driver
-To: Georgi Djakov <quic_c_gdjako@quicinc.com>, will@kernel.org,
- robin.murphy@arm.com, joro@8bytes.org, iommu@lists.linux.dev
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org, andersson@kernel.org,
- robdclark@gmail.com, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- quic_cgoldswo@quicinc.com, quic_sukadev@quicinc.com, quic_pdaly@quicinc.com,
- quic_sudaraja@quicinc.com, djakov@kernel.org
-References: <20240329210638.3647523-1-quic_c_gdjako@quicinc.com>
- <20240329210638.3647523-3-quic_c_gdjako@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240329210638.3647523-3-quic_c_gdjako@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240410-upstream-torvalds-master-v2-1-679777847b63@chromium.org> <d1dafc46-9b14-4752-822c-86cbabdcfb8b@collabora.com>
+In-Reply-To: <d1dafc46-9b14-4752-822c-86cbabdcfb8b@collabora.com>
+From: Hsin-Te Yuan <yuanhsinte@chromium.org>
+Date: Wed, 10 Apr 2024 20:06:33 +0800
+X-Gmail-Original-Message-ID: <CAHc4DNLrU=QVWODOzHXW16Ko1V=W31zkSHOi7rztiJMOMDcKqg@mail.gmail.com>
+Message-ID: <CAHc4DNLrU=QVWODOzHXW16Ko1V=W31zkSHOi7rztiJMOMDcKqg@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: mediatek: mt8192: Add missing trip point
+ in thermal zone
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Hsin-Te Yuan <yuanhsinte@chromium.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	=?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>, 
+	=?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>, 
+	Balsam CHIHI <bchihi@baylibre.com>, Alexandre Mergnat <amergnat@baylibre.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Angelo,
 
+1. 68=C2=B0C is provided by MediaTek previously in downstream
+2. I think sustainable power will be estimated by
+estimate_sustainable_power in drivers/thermal/gov_power_allocator.c,
+but I'll ask MediaTek if they can provide the precise value.
+3. Sure. I'll do it in v3 after I check 2. with MediaTek
 
-On 3/29/24 22:06, Georgi Djakov wrote:
-> Operating the TBUs (Translation Buffer Units) from Linux on Qualcomm
-> platforms can help with debugging context faults. To help with that,
-> the TBUs can run ATOS (Address Translation Operations) to manually
-> trigger address translation of IOVA to physical address in hardware
-> and provide more details when a context fault happens.
-> 
-> The driver will control the resources needed by the TBU to allow
-> running the debug operations such as ATOS, check for outstanding
-> transactions, do snapshot capture etc.
-> 
-> Signed-off-by: Georgi Djakov <quic_c_gdjako@quicinc.com>
-> ---
->   drivers/iommu/Kconfig                         |   9 +
->   drivers/iommu/arm/arm-smmu/Makefile           |   1 +
->   .../iommu/arm/arm-smmu/arm-smmu-qcom-tbu.c    | 372 ++++++++++++++++++
->   drivers/iommu/arm/arm-smmu/arm-smmu-qcom.h    |   2 +
->   drivers/iommu/arm/arm-smmu/arm-smmu.h         |   2 +
->   5 files changed, 386 insertions(+)
->   create mode 100644 drivers/iommu/arm/arm-smmu/arm-smmu-qcom-tbu.c
-> 
-> diff --git a/drivers/iommu/Kconfig b/drivers/iommu/Kconfig
-> index 0af39bbbe3a3..b699e88f42c5 100644
-> --- a/drivers/iommu/Kconfig
-> +++ b/drivers/iommu/Kconfig
-> @@ -374,6 +374,15 @@ config ARM_SMMU_QCOM
->   	  When running on a Qualcomm platform that has the custom variant
->   	  of the ARM SMMU, this needs to be built into the SMMU driver.
->   
-> +config ARM_SMMU_QCOM_TBU
-> +	bool "Qualcomm TBU driver"
-> +	depends on ARM_SMMU_QCOM
-> +	help
-> +	  The SMMUs on Qualcomm platforms may include Translation Buffer
-> +	  Units (TBUs) for each master. Enabling support for these units
-> +	  allows to operate the TBUs and obtain additional information
-> +	  when debugging memory management issues like context faults.
-> +
->   config ARM_SMMU_QCOM_DEBUG
->   	bool "ARM SMMU QCOM implementation defined debug support"
->   	depends on ARM_SMMU_QCOM
-> diff --git a/drivers/iommu/arm/arm-smmu/Makefile b/drivers/iommu/arm/arm-smmu/Makefile
-> index 2a5a95e8e3f9..c35ff78fcfd5 100644
-> --- a/drivers/iommu/arm/arm-smmu/Makefile
-> +++ b/drivers/iommu/arm/arm-smmu/Makefile
-> @@ -3,4 +3,5 @@ obj-$(CONFIG_QCOM_IOMMU) += qcom_iommu.o
->   obj-$(CONFIG_ARM_SMMU) += arm_smmu.o
->   arm_smmu-objs += arm-smmu.o arm-smmu-impl.o arm-smmu-nvidia.o
->   arm_smmu-$(CONFIG_ARM_SMMU_QCOM) += arm-smmu-qcom.o
-> +arm_smmu-$(CONFIG_ARM_SMMU_QCOM_TBU) += arm-smmu-qcom-tbu.o
->   arm_smmu-$(CONFIG_ARM_SMMU_QCOM_DEBUG) += arm-smmu-qcom-debug.o
-> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom-tbu.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom-tbu.c
-> new file mode 100644
-> index 000000000000..e3202ed89566
-> --- /dev/null
-> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom-tbu.c
-> @@ -0,0 +1,372 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/interconnect.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/list.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/mutex.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/spinlock.h>
-> +
-> +#include "arm-smmu.h"
-> +#include "arm-smmu-qcom.h"
-> +
-> +#define TBU_DBG_TIMEOUT_US		100
-> +#define DEBUG_AXUSER_REG		0x30
-> +#define DEBUG_AXUSER_CDMID		GENMASK_ULL(43, 36)
-> +#define DEBUG_AXUSER_CDMID_VAL		0xff
-> +#define DEBUG_PAR_REG			0x28
-> +#define DEBUG_PAR_FAULT_VAL		BIT(0)
-> +#define DEBUG_PAR_PA			GENMASK_ULL(47, 12)
-> +#define DEBUG_SID_HALT_REG		0x0
-> +#define DEBUG_SID_HALT_VAL		BIT(16)
-> +#define DEBUG_SID_HALT_SID		GENMASK(9, 0)
-> +#define DEBUG_SR_HALT_ACK_REG		0x20
-> +#define DEBUG_SR_HALT_ACK_VAL		BIT(1)
-> +#define DEBUG_SR_ECATS_RUNNING_VAL	BIT(0)
-> +#define DEBUG_TXN_AXCACHE		GENMASK(5, 2)
-> +#define DEBUG_TXN_AXPROT		GENMASK(8, 6)
-> +#define DEBUG_TXN_AXPROT_PRIV		0x1
-> +#define DEBUG_TXN_AXPROT_NSEC		0x2
-> +#define DEBUG_TXN_TRIGG_REG		0x18
-> +#define DEBUG_TXN_TRIGGER		BIT(0)
-> +#define DEBUG_VA_ADDR_REG		0x8
-> +
-> +static LIST_HEAD(tbu_list);
-> +static DEFINE_MUTEX(tbu_list_lock);
-> +static DEFINE_SPINLOCK(atos_lock);
-> +
-> +struct qcom_tbu {
-> +	struct device *dev;
-> +	struct device_node *smmu_np;
-> +	u32 sid_range[2];
-> +	struct list_head list;
-> +	struct clk *clk;
-> +	struct icc_path	*path;
-> +	void __iomem *base;
-> +	spinlock_t halt_lock; /* multiple halt or resume can't execute concurrently */
-> +	int halt_count;
-> +};
-> +
-> +static struct qcom_smmu *to_qcom_smmu(struct arm_smmu_device *smmu)
-> +{
-> +	return container_of(smmu, struct qcom_smmu, smmu);
-> +}
-> +
-> +static struct qcom_tbu *qcom_find_tbu(struct qcom_smmu *qsmmu, u32 sid)
-> +{
-> +	struct qcom_tbu *tbu;
-> +	u32 start, end;
-> +
-> +	mutex_lock(&tbu_list_lock);
+Regards,
+Hsin-Te
 
-#include <linux/cleanup.h>
-
-guard(mutex)(&tbu_list_lock);
-
-and remove the unlocks
-
-similarly for the spinlocks below
-
-Konrad
+On Wed, Apr 10, 2024 at 5:50=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Il 10/04/24 10:40, Hsin-Te Yuan ha scritto:
+> > According to Documentation/driver-api/thermal/power_allocator.rst, ther=
+e
+> > should be two passive trip points. Adding the missing trip point to
+> > ensure that the governor works optimally.
+> >
+> > Fixes: c7a728051f4e ("arm64: dts: mediatek: mt8192: Add thermal nodes a=
+nd thermal zones")
+> > Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
+>
+> That's better - but while I can agree about setting a general temperature
+> for that, I still have a few questions and requests:
+>
+> 1. Why is this 68=C2=B0C? Was that value provided by MediaTek, or was it =
+calculated?
+>   1b. If this was calculated, please, can you explain how?
+>
+> 2. The power allocator documentation also says that the governor works go=
+od
+>     when a "sustainable dissipatable power" parameter is fed to it throug=
+h the
+>     `sustainable-power` devicetree property (with that being strictly boa=
+rd
+>     specific and never SoC-global, as that depends on the form factor and=
+ on
+>     the cooling method of the machine), can you please also add the right
+>     sustainable power indication to the Chromebook devicetrees?
+>     In the MT8192 specific case, that's mt8192-asurada.dtsi.
+>
+> 3. I just noticed that MT8192 is not the only one that would be affected =
+by
+>     the issue that you're describing in this commit; can you please perfo=
+rm a
+>     similar change on the others, if parameters are known?
+>
+> Thanks,
+> Angelo
+>
+> > ---
+> > Changes in v2:
+> > - Clearify the reason of adding another passive trip point
+> > - Link to v1: https://lore.kernel.org/r/20240410-upstream-torvalds-mast=
+er-v1-1-852e903f0cec@chromium.org
+> > ---
+> >   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 40 +++++++++++++++++++++++=
++++++++++
+> >   1 file changed, 40 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot=
+/dts/mediatek/mt8192.dtsi
+> > index 05e401670bced..08d8bccc84669 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> > @@ -1959,6 +1959,11 @@ cpu0-thermal {
+> >                       thermal-sensors =3D <&lvts_mcu MT8192_MCU_LITTLE_=
+CPU0>;
+> >
+> >                       trips {
+> > +                             cpu0_thres: trip-point {
+> > +                                     temperature =3D <68000>;
+> > +                                     hysteresis =3D <2000>;
+> > +                                     type =3D "passive";
+> > +                             };
+> >                               cpu0_alert: trip-alert {
+> >                                       temperature =3D <85000>;
+> >                                       hysteresis =3D <2000>;
+> > @@ -1989,6 +1994,11 @@ cpu1-thermal {
+> >                       thermal-sensors =3D <&lvts_mcu MT8192_MCU_LITTLE_=
+CPU1>;
+> >
+> >                       trips {
+> > +                             cpu1_thres: trip-point {
+> > +                                     temperature =3D <68000>;
+> > +                                     hysteresis =3D <2000>;
+> > +                                     type =3D "passive";
+> > +                             };
+> >                               cpu1_alert: trip-alert {
+> >                                       temperature =3D <85000>;
+> >                                       hysteresis =3D <2000>;
+> > @@ -2019,6 +2029,11 @@ cpu2-thermal {
+> >                       thermal-sensors =3D <&lvts_mcu MT8192_MCU_LITTLE_=
+CPU2>;
+> >
+> >                       trips {
+> > +                             cpu2_thres: trip-point {
+> > +                                     temperature =3D <68000>;
+> > +                                     hysteresis =3D <2000>;
+> > +                                     type =3D "passive";
+> > +                             };
+> >                               cpu2_alert: trip-alert {
+> >                                       temperature =3D <85000>;
+> >                                       hysteresis =3D <2000>;
+> > @@ -2049,6 +2064,11 @@ cpu3-thermal {
+> >                       thermal-sensors =3D <&lvts_mcu MT8192_MCU_LITTLE_=
+CPU3>;
+> >
+> >                       trips {
+> > +                             cpu3_thres: trip-point {
+> > +                                     temperature =3D <68000>;
+> > +                                     hysteresis =3D <2000>;
+> > +                                     type =3D "passive";
+> > +                             };
+> >                               cpu3_alert: trip-alert {
+> >                                       temperature =3D <85000>;
+> >                                       hysteresis =3D <2000>;
+> > @@ -2079,6 +2099,11 @@ cpu4-thermal {
+> >                       thermal-sensors =3D <&lvts_mcu MT8192_MCU_BIG_CPU=
+0>;
+> >
+> >                       trips {
+> > +                             cpu4_thres: trip-point {
+> > +                                     temperature =3D <68000>;
+> > +                                     hysteresis =3D <2000>;
+> > +                                     type =3D "passive";
+> > +                             };
+> >                               cpu4_alert: trip-alert {
+> >                                       temperature =3D <85000>;
+> >                                       hysteresis =3D <2000>;
+> > @@ -2109,6 +2134,11 @@ cpu5-thermal {
+> >                       thermal-sensors =3D <&lvts_mcu MT8192_MCU_BIG_CPU=
+1>;
+> >
+> >                       trips {
+> > +                             cpu5_thres: trip-point {
+> > +                                     temperature =3D <68000>;
+> > +                                     hysteresis =3D <2000>;
+> > +                                     type =3D "passive";
+> > +                             };
+> >                               cpu5_alert: trip-alert {
+> >                                       temperature =3D <85000>;
+> >                                       hysteresis =3D <2000>;
+> > @@ -2139,6 +2169,11 @@ cpu6-thermal {
+> >                       thermal-sensors =3D <&lvts_mcu MT8192_MCU_BIG_CPU=
+2>;
+> >
+> >                       trips {
+> > +                             cpu6_thres: trip-point {
+> > +                                     temperature =3D <68000>;
+> > +                                     hysteresis =3D <2000>;
+> > +                                     type =3D "passive";
+> > +                             };
+> >                               cpu6_alert: trip-alert {
+> >                                       temperature =3D <85000>;
+> >                                       hysteresis =3D <2000>;
+> > @@ -2169,6 +2204,11 @@ cpu7-thermal {
+> >                       thermal-sensors =3D <&lvts_mcu MT8192_MCU_BIG_CPU=
+3>;
+> >
+> >                       trips {
+> > +                             cpu7_thres: trip-point {
+> > +                                     temperature =3D <68000>;
+> > +                                     hysteresis =3D <2000>;
+> > +                                     type =3D "passive";
+> > +                             };
+> >                               cpu7_alert: trip-alert {
+> >                                       temperature =3D <85000>;
+> >                                       hysteresis =3D <2000>;
+> >
+> > ---
+> > base-commit: 20cb38a7af88dc40095da7c2c9094da3873fea23
+> > change-id: 20240410-upstream-torvalds-master-40aeff5416c7
+> >
+> > Best regards,
+>
+>
 
