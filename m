@@ -1,205 +1,329 @@
-Return-Path: <devicetree+bounces-57715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72D2789E823
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 04:27:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2BE189E84C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 04:53:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2334C285691
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 02:27:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 31DE7B24C65
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 02:53:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 322055CBD;
-	Wed, 10 Apr 2024 02:27:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C4DA8464;
+	Wed, 10 Apr 2024 02:53:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cIVXz2yV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c/qTIFgL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04E751C2E;
-	Wed, 10 Apr 2024 02:27:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86BA8944E;
+	Wed, 10 Apr 2024 02:53:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712716059; cv=none; b=YHk3Do2u8KRMexlFqt6qjlKOBi6ozyext75IAtOy4x2suOVTK/QAI1MmkBZMn+CusiQmksu62iNYBOWHgJjnqothySTmYfE2U2hdyRGoCZehgGJOIt/NCJpjSvS9LlfLcllRirOL4nuA9knUP7Hzin80n57ttmAu3W6gGHwXkj0=
+	t=1712717623; cv=none; b=oPQSGUOLZtWT5hEJWUdE26nx4/Jzv4Y+eMV602ZPEiSYyW/KuoKXO0Fr3VEjNSPucsC+4NcLltjbmAI8GIsWv7ooBF1brd/sfKoVL5ZGvS+URVCZp3S+tWydOQognXqfTMDEn3ods4YcrbfaWYJd9RRg2WSe1LOWwtpQ8TdtfSs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712716059; c=relaxed/simple;
-	bh=KCZk5Jghp9ioOCljK8ePjGa/GSS059iFLxQINPpp1zg=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=Atw2RrmbHK5LxYkpT7snLzJrf4O6umXI12sEJapq0UPkBAzz5RlHPXepiuBvDWUDOisjG25aQhntasI9ddA3OfnOx6ttpo94iqAq/U1VMFzTUdKaICqHeV3XtlqH/N5l5rUAlQKiMz9k9JC0xKyPUUUjNx6EpbwSpUlGKb3Km8c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cIVXz2yV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7921FC433C7;
-	Wed, 10 Apr 2024 02:27:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712716058;
-	bh=KCZk5Jghp9ioOCljK8ePjGa/GSS059iFLxQINPpp1zg=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=cIVXz2yVe7ImcNYM7wBUtIVH3Cy2FfbisfRQ6w1VZOtS98YSFvZBVemDOxX2wRjlh
-	 qp9KtrdBV4GqnI4PQE3m42UGIqt2xiOrQI7AadLeMSEKX8h+SDl6ae7vSnSWaE+7il
-	 1xPhVhzCMwkZbrffA4beBS9yVbxTWNX8sjxYNRd7NzlmRB4Sk96MkOpblZSZmFMRmY
-	 fdY5cy3BCh0lC516EQNQxKmmq8FHiV6gBJ7pyQop6ShhDd+VaZ0qxlDxxEKvpBzJU/
-	 YJQZu0B0Yfg8lKTvD5B55HrdrBE7sLIQkKM5KqpKdGA5M9ucZ0x+yWOXu9pO6qbkzX
-	 5uUSILmGfGBtQ==
-Message-ID: <dde59dd2ef4da81528e31f65844e0b3f.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1712717623; c=relaxed/simple;
+	bh=N/c3s4pXiXjsXe27SCDXhfffr8lRzIuMpLM86eZJMFQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JQBIz2rtc/mGCt7a4P+XCQbgy1PEJpp55jWmEToQLSmCc6aOuLQO+S9IOzwX70MgDV0IA+5Xo4TS5dk0MC/4vqLyF1yZuMuuJhspwP04rKHpsbtGLtIJj9Z8vmP90/ztN2Oyv5GdlYBZ+QV4UKoI+bsiluuOhMYQWlKIgMF9R1M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c/qTIFgL; arc=none smtp.client-ip=209.85.215.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-5d81b08d6f2so5046214a12.0;
+        Tue, 09 Apr 2024 19:53:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712717621; x=1713322421; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kjb1A/Xpn+Hcv5f9QW3zcd/teDlI874BzDQ8QmIg9YA=;
+        b=c/qTIFgLCT48BFsBruOKHZBUdrYqNt0oeF3J1p96Y9NDMKNnVMUOmKCWVrE2Fw3CPB
+         ROlDe7Rt4eWvNqQ3wSksYX6LvQvRhAfGa8fH4H8m7YFJyC7jGDS4cwki8ok9yjs+I/7f
+         sJDtVTEty5WVsC9SxF5DqVqjOiXTPNzQMDDeDNnrvQpa/5IR4GxsJLoKvgY4RMu7bFJc
+         Ob4VTworv9zSK33k+1gJcwpc00ZPTOR9NW45YsZriJU4p2vTHYADaIlB1zNf8xZnysCq
+         qTBqVhEUeZvJ5RZ+XYW+q61BYy+QWB+ytTz0WeZ/lhrW2s8aFDk2ZMV/7mj4hEYbFFsI
+         RjgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712717621; x=1713322421;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kjb1A/Xpn+Hcv5f9QW3zcd/teDlI874BzDQ8QmIg9YA=;
+        b=lHM4tyDSqi5x7dlJQwgJLG7j6XccFyvzdRTXZ4J/Ld9VQ7aIZWg/ht4YovrHCpXh9O
+         aSVcHfYeeHImd0JzPXxRJs0JGIcwkvtbwDXZ3+4MCueL56/0T1wvRTYgqJePdhodNVl/
+         UEstv6UrDT5E2koIomGyfxkF+18gWvwXlgADXbMrtPXiHg0Jq4lAu6LmDlqx6aX8//BF
+         oC0g4OneKbPa2EUoRkhrmGioZrfoauRODbcclNHnqq0ssTy6ciiqqNckI3FLJ9yk+4LO
+         PD84kqCVIGWn5OCfbiMJpgevKJs9L1PFmw0r6N5ictKNhBbtX/OmzdLDctVTtb79JnHY
+         R97w==
+X-Forwarded-Encrypted: i=1; AJvYcCU+DUFC8wNUFzMYM6A4+NSdx2+S0kDPRI2qQEQ6CpOpeipG49C6aXMo/16HjMvCrrYhCxbQA5KgPg7duwQVf7YLJPFacTs04+DG0sQG1z2fLRGNkl1uXMzPHbRyDLFlgj/RYJ6QimilrILHaMCsNsTxv5VTYb3PlN2nOxD8L59FGWDp09c=
+X-Gm-Message-State: AOJu0Yw0JgGq1cT0CZfSYD67SBOXTy6FPCLllCvFjJ1RaKmhI/W3yPdU
+	xDJaSC7f+8oxux4Uc55FMIc362AqNr8n+EsgLbTSxtfgMLiwfLBU
+X-Google-Smtp-Source: AGHT+IHj0IOYvfafmf1cM0QwZPdzZmcJIei4sGG4+PVzX/M0pVSI/HSAipov7jn9IagHKnEoD0iK2Q==
+X-Received: by 2002:a17:902:9f96:b0:1e4:30ab:31ca with SMTP id g22-20020a1709029f9600b001e430ab31camr1572325plq.61.1712717620846;
+        Tue, 09 Apr 2024 19:53:40 -0700 (PDT)
+Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id jf20-20020a170903269400b001dd82855d47sm9608915plb.265.2024.04.09.19.53.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Apr 2024 19:53:40 -0700 (PDT)
+Message-ID: <fe81e528-998a-4b3f-b3e5-bf10e031d34f@gmail.com>
+Date: Wed, 10 Apr 2024 10:53:36 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240409-shallow-voice-c84ed791bc7d@spud>
-References: <20240328010831.884487-1-jan.dakinevich@salutedevices.com> <20240328010831.884487-2-jan.dakinevich@salutedevices.com> <1j7chfiz8e.fsf@starbuckisacylon.baylibre.com> <e3a85852b911fdf16dd9ae158f42b3ef.sboyd@kernel.org> <f01cdd910ab35316b8012795f73fd2b34c8e6f8e.camel@pengutronix.de> <13617b7a892424d2b024c725505a6f4f.sboyd@kernel.org> <20240408-numerator-escargot-a642507a598e@spud> <20240409-shallow-voice-c84ed791bc7d@spud>
-Subject: Re: [RFC PATCH v2 1/5] clk: meson: axg: move reset controller's code to separate module
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Jerome Brunet <jbrunet@baylibre.com>, Philipp Zabel <p.zabel@pengutronix.de>, Neil Armstrong <neil.armstrong@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-To: Conor Dooley <conor@kernel.org>
-Date: Tue, 09 Apr 2024 19:27:36 -0700
-User-Agent: alot/0.10
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 2/3] dt-bindings: pinctrl: Document nuvoton ma35d1 pin
+ control
+To: Rob Herring <robh@kernel.org>
+Cc: linus.walleij@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, p.zabel@pengutronix.de, j.neuschaefer@gmx.net,
+ linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ychuang3@nuvoton.com, schung@nuvoton.com,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20240409095637.2135-1-ychuang570808@gmail.com>
+ <20240409095637.2135-3-ychuang570808@gmail.com>
+ <20240409162959.GA1370985-robh@kernel.org>
+Content-Language: en-US
+From: Jacky Huang <ychuang570808@gmail.com>
+In-Reply-To: <20240409162959.GA1370985-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Quoting Conor Dooley (2024-04-09 05:05:37)
-> On Mon, Apr 08, 2024 at 06:05:51PM +0100, Conor Dooley wrote:
->=20
-> > > > Seconded, the clk-mpfs/reset-mpfs and clk-starfive-jh7110-sys/reset-
-> > > > starfive-jh7110 drivers are examples of this.
-> > > >=20
-> > > > > The auxiliary device creation function can also be in the
-> > > > > drivers/reset/ directory so that the clk driver calls some functi=
-on
-> > > > > to create and register the device.
-> > > >=20
-> > > > I'm undecided about this, do you think mpfs_reset_controller_regist=
-er()
-> > > > and jh7110_reset_controller_register() should rather live with the
-> > > > reset aux drivers in drivers/reset/ ?
-> > >=20
-> > > Yes, and also mpfs_reset_read() and friends. We should pass the base
-> > > iomem pointer and parent device to mpfs_reset_adev_alloc() instead and
-> > > then move all that code into drivers/reset with some header file
-> > > exported function to call. That way the clk driver hands over the data
-> > > without having to implement half the implementation.
-> >=20
-> > I'll todo list that :)
->=20
-> Something like the below?
->=20
-> -- >8 --
-> From a12f281d2cb869bcd9a6ffc45d0c6a0d3aa2e9e2 Mon Sep 17 00:00:00 2001
-> From: Conor Dooley <conor.dooley@microchip.com>
-> Date: Tue, 9 Apr 2024 11:54:34 +0100
-> Subject: [PATCH] clock, reset: microchip: move all mpfs reset code to the
->  reset subsystem
->=20
-> <insert something here>
->=20
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 
-Looks pretty good.
+Dear Rob,
 
->  static const struct of_device_id mpfs_clk_of_match_table[] =3D {
-> diff --git a/drivers/reset/reset-mpfs.c b/drivers/reset/reset-mpfs.c
-> index 7f3fb2d472f4..27cd68b4ee81 100644
-> --- a/drivers/reset/reset-mpfs.c
-> +++ b/drivers/reset/reset-mpfs.c
-> @@ -137,9 +139,67 @@ static int mpfs_reset_probe(struct auxiliary_device =
-*adev,
->         return devm_reset_controller_register(dev, rcdev);
->  }
-> =20
-> +static void mpfs_reset_unregister_adev(void *_adev)
-> +{
-> +       struct auxiliary_device *adev =3D _adev;
-> +
-> +       auxiliary_device_delete(adev);
-> +       auxiliary_device_uninit(adev);
-> +}
-> +
-> +static void mpfs_reset_adev_release(struct device *dev)
-> +{
-> +       struct auxiliary_device *adev =3D to_auxiliary_dev(dev);
-> +
-> +       kfree(adev);
-> +}
-> +
-> +static struct auxiliary_device *mpfs_reset_adev_alloc(struct device *clk=
-_dev)
-> +{
-> +       struct auxiliary_device *adev;
-> +       int ret;
-> +
-> +       adev =3D kzalloc(sizeof(*adev), GFP_KERNEL);
-> +       if (!adev)
-> +               return ERR_PTR(-ENOMEM);
-> +
-> +       adev->name =3D "reset-mpfs";
-> +       adev->dev.parent =3D clk_dev;
-> +       adev->dev.release =3D mpfs_reset_adev_release;
-> +       adev->id =3D 666u;
-> +
-> +       ret =3D auxiliary_device_init(adev);
-> +       if (ret) {
-> +               kfree(adev);
-> +               return ERR_PTR(ret);
-> +       }
-> +
-> +       return adev;
-> +}
-> +
-> +int mpfs_reset_controller_register(struct device *clk_dev, void __iomem =
-*base)
-> +{
-> +       struct auxiliary_device *adev;
-> +       int ret;
-> +
-> +       mpfs_reset_addr =3D base;
+Thanks for your review.
 
-Instead of a global this can be stashed in adev->dev.platform_data and
-grabbed in the driver probe?
 
-> +
-> +       adev =3D mpfs_reset_adev_alloc(clk_dev);
-> +       if (IS_ERR(adev))
-> +               return PTR_ERR(adev);
-> +
-> +       ret =3D auxiliary_device_add(adev);
-> +       if (ret) {
-> +               auxiliary_device_uninit(adev);
-> +               return ret;
-> +       }
-> +
-> +       return devm_add_action_or_reset(clk_dev, mpfs_reset_unregister_ad=
-ev, adev);
-> +}
-> +
->  static const struct auxiliary_device_id mpfs_reset_ids[] =3D {
->         {
-> -               .name =3D "clk_mpfs.reset-mpfs",
-> +               .name =3D "reset_mpfs.reset-mpfs",
->         },
->         { }
->  };
-> diff --git a/include/soc/microchip/mpfs.h b/include/soc/microchip/mpfs.h
-> index 09722f83b0ca..0b756bf5e9bd 100644
-> --- a/include/soc/microchip/mpfs.h
-> +++ b/include/soc/microchip/mpfs.h
-> @@ -43,11 +43,11 @@ struct mtd_info *mpfs_sys_controller_get_flash(struct=
- mpfs_sys_controller *mpfs_
->  #endif /* if IS_ENABLED(CONFIG_POLARFIRE_SOC_SYS_CTRL) */
-> =20
->  #if IS_ENABLED(CONFIG_MCHP_CLK_MPFS)
-> -
-> -u32 mpfs_reset_read(struct device *dev);
-> -
-> -void mpfs_reset_write(struct device *dev, u32 val);
-> -
-> +#if IS_ENABLED(CONFIG_RESET_CONTROLLER)
-> +int mpfs_reset_controller_register(struct device *clk_dev, void __iomem =
-*base);
-> +#else
-> +int mpfs_reset_controller_register(struct device *clk_dev, void* __iomem=
- base) { return 0;}
+On 2024/4/10 上午 12:29, Rob Herring wrote:
+> On Tue, Apr 09, 2024 at 09:56:36AM +0000, Jacky Huang wrote:
+>> From: Jacky Huang <ychuang3@nuvoton.com>
+>>
+>> Add documentation to describe nuvoton ma35d1 pin control and GPIO.
+>>
+>> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>   .../pinctrl/nuvoton,ma35d1-pinctrl.yaml       | 163 ++++++++++++++++++
+>>   1 file changed, 163 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/pinctrl/nuvoton,ma35d1-pinctrl.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/pinctrl/nuvoton,ma35d1-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/nuvoton,ma35d1-pinctrl.yaml
+>> new file mode 100644
+>> index 000000000000..8b9ec263213f
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/pinctrl/nuvoton,ma35d1-pinctrl.yaml
+>> @@ -0,0 +1,163 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/pinctrl/nuvoton,ma35d1-pinctrl.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Nuvoton MA35D1 pin control and GPIO
+>> +
+>> +maintainers:
+>> +  - Shan-Chun Hung <schung@nuvoton.com>
+>> +  - Jacky Huang <ychuang3@nuvoton.com>
+>> +
+>> +allOf:
+>> +  - $ref: pinctrl.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - nuvoton,ma35d1-pinctrl
+>> +
+>> +  '#address-cells':
+>> +    const: 1
+>> +
+>> +  '#size-cells':
+>> +    const: 1
+>> +
+>> +  nuvoton,sys:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description:
+>> +      phandle of the system-management node.
+> If these are the *only* registers to access the pinctrl functions, then
+> this binding should be a child node of the system-management node and
+> then you don't need this property.
+>
+> And if the registers for pinctrl are a defined range, you should add a
+> 'reg' property (even though Linux and regmap don't use it).
 
-static inline
+I will add a 'reg' property for this.
+
+>> +
+>> +  ranges: true
+> This property makes no sense with the binding as-is. You don't have
+> any address to translate. Maybe with the above changes it will.
+
+I will fix the
+      ranges = <0 0x40040000 0xc00>;
+as
+      reg = <0 0x40040000 0xc00>;
+      ranges;
+>> +
+>> +patternProperties:
+>> +  "^gpio@[0-9a-f]+$":
+>> +    type: object
+>> +    additionalProperties: false
+>> +    properties:
+>> +      gpio-controller: true
+>> +
+>> +      '#gpio-cells':
+>> +        const: 2
+>> +
+>> +      reg:
+>> +        maxItems: 1
+>> +
+>> +      clocks:
+>> +        maxItems: 1
+>> +
+>> +      interrupt-controller: true
+>> +
+>> +      '#interrupt-cells':
+>> +        const: 2
+>> +
+>> +      interrupts:
+>> +        description:
+>> +          The interrupt outputs to sysirq.
+>> +        maxItems: 1
+>> +
+>> +    required:
+>> +      - gpio-controller
+>> +      - '#gpio-cells'
+>> +      - reg
+>> +      - clocks
+>> +      - interrupt-controller
+>> +      - '#interrupt-cells'
+>> +      - interrupts
+>> +
+>> +  "^pin-[a-z0-9]+$":
+>> +    type: object
+>> +    description:
+>> +      A pinctrl node should contain at least one subnodes representing the
+>> +      pinctrl groups available on the machine. Each subnode will list the
+>> +      pins it needs, and how they should be configured, with regard to muxer
+>> +      configuration, pullups, drive strength, input enable/disable and input
+>> +      schmitt.
+>> +
+>> +    $ref: pincfg-node.yaml#
+>> +
+>> +    properties:
+>> +      power-source:
+>> +        description: |
+>> +          Valid arguments are described as below:
+>> +          0: power supply of 1.8V
+>> +          1: power supply of 3.3V
+>> +        enum: [0, 1]
+>> +
+>> +      drive-strength-microamp:
+>> +        oneOf:
+>> +          - enum: [ 2900, 4400, 5800, 7300, 8600, 10100, 11500, 13000 ]
+>> +            description: 1.8V I/O driving strength
+>> +          - enum: [ 17100, 25600, 34100, 42800, 48000, 56000, 77000, 82000 ]
+>> +            description: 3.3V I/O driving strength
+>> +
+>> +    unevaluatedProperties: false
+> In the indented cases, it's preferred to put this before 'properties'.
+>
+
+I will fix it.
+
+>> +
+>> +  "-grp$":
+>> +    type: object
+>> +    description:
+>> +      Pinctrl node's client devices use subnodes for desired pin configuration.
+>> +      Client device subnodes use below standard properties.
+> Missing $ref to common properties and 'unevaluatedProperties'.
+
+I will fix it.
+
+>> +    properties:
+>> +      nuvoton,pins:
+>> +        description:
+>> +          Each entry consists of 4 parameters and represents the mux and config
+>> +          setting for one pin.
+>> +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
+>> +        minItems: 1
+>> +        items:
+>> +          items:
+>> +            - minimum: 0
+>> +              maximum: 13
+>> +              description:
+>> +                Pin bank.
+>> +            - minimum: 0
+>> +              maximum: 15
+>> +              description:
+>> +                Pin bank index.
+>> +            - minimum: 0
+>> +              maximum: 15
+>> +              description:
+>> +                Mux 0 means GPIO and mux 1 to 15 means the specific device function.
+>> +
+>> +required:
+>> +  - compatible
+>> +  - nuvoton,sys
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    #include <dt-bindings/gpio/gpio.h>
+>> +    #include <dt-bindings/clock/nuvoton,ma35d1-clk.h>
+>> +
+>> +    pinctrl@40040000 {
+>> +        compatible = "nuvoton,ma35d1-pinctrl";
+>> +        #address-cells = <1>;
+>> +        #size-cells = <1>;
+>> +        nuvoton,sys = <&sys>;
+>> +        ranges = <0 0x40040000 0xc00>;
+>> +
+>> +        gpio@0 {
+>> +            reg = <0x0 0x40>;
+>> +            interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
+>> +            clocks = <&clk GPA_GATE>;
+>> +            gpio-controller;
+>> +            #gpio-cells = <2>;
+>> +            interrupt-controller;
+>> +            #interrupt-cells = <2>;
+>> +        };
+>> +
+>> +        uart-grp {
+>> +            uart11-pins {
+> This is not what the schema says.
+>> +                nuvoton,pins = <11 0 2>,
+>> +                               <11 1 2>,
+>> +                               <11 2 2>,
+>> +                               <11 3 2>;
+>> +                bias-disable;
+>> +                power-source = <1>;
+>> +            };
+>> +        };
+> Include a pin-* node in the example.
+
+This is my mistake. "pin-*" was the naming convention used in previous 
+versions, which
+has now been changed to "-pins". Additionally, its hierarchy should be 
+under "-grp".
+I will make corrections for these two issues.
+
+
+>> +    };
+>> -- 
+>> 2.34.1
+>>
+
+Best Regards,
+Jacky Huang
+
+
 
