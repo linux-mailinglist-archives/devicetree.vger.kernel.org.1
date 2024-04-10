@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-57749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8F8889EA9B
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 08:16:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CE0889EAA4
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 08:18:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A24E4281594
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 06:16:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C746028187C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 06:18:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6D3320DDB;
-	Wed, 10 Apr 2024 06:16:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C11B2628B;
+	Wed, 10 Apr 2024 06:18:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oyRfzvKE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cv05Vhzd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A5071CAA9;
-	Wed, 10 Apr 2024 06:16:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 544D720E3;
+	Wed, 10 Apr 2024 06:18:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712729779; cv=none; b=u68s2W415g3fg/Hl1L3u33RqeQgn2oGNafgHKjcDsyktJvVP2XGJZiumqBdeCCOATB1M0mJopt84hLBjjbS6tui09s0n7QCDqM6HOTrSZ+7JII5+6iwBoXlbVGYGC0TCvOhepx6ueVUMtoBk6iCwzn1pcWOWeaCzCGNGLpCyHPE=
+	t=1712729906; cv=none; b=YlT30qnIMWbwG+JbhCcFoKfMjGnIHKaQHcPwf5J3Ti/xlLAO2/HK7yMgvftWSZA/NrzZ2Jh5YTSP0z/9V2jwS+6lq5iGc0NXSZdcpDq/FhKTUd5QQVBcrWHPpYHwCbkfrSP7dcS3whAnTxlzG8oFpJACUm2Qv0V1OBGyCaR8c1U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712729779; c=relaxed/simple;
-	bh=DPpvZcvQ6kvz/nUa81slxbvOIx3m99IS9oIiJBMpv8M=;
+	s=arc-20240116; t=1712729906; c=relaxed/simple;
+	bh=ZQ64qwPf6Di8vF2RdPh7RxkPgBZXfSpbbGA0ASv1dUY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=A6BYBAh4OtSxPhieNkGffJ6/sNmV1pxGvYFIvcrGNzIeJ6dSZwH7KGBSIhHW61iBfKxw/uy2IlNPEvCqzoOCRvDPFxG/8+QWJQmcM9qFmDlZYQvl93NFaZorpFA0Zza/ny4sS0BE7Vu7tCa0C70dzFh9uANzY1A7VXjUWJQzQBA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oyRfzvKE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51854C433C7;
-	Wed, 10 Apr 2024 06:16:16 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=GRPbMsQP4A2ODVDaaL1RqHAt+jBQPUMxDwVo9a3NJVpzn7c3EkjxYw0WvzFa3+sdub8WWrpGIXuB2W607GQGME9vlpXr9oeYcPIAK4Ii3qVr7tFdKIBpDqvF/hexVyqVUH3UfNNHePWCWF6b85piYYgdsBjuZ6s8ekm6wx18DXI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cv05Vhzd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CC8FC433C7;
+	Wed, 10 Apr 2024 06:18:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712729779;
-	bh=DPpvZcvQ6kvz/nUa81slxbvOIx3m99IS9oIiJBMpv8M=;
+	s=k20201202; t=1712729905;
+	bh=ZQ64qwPf6Di8vF2RdPh7RxkPgBZXfSpbbGA0ASv1dUY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oyRfzvKE1fP/eVpFuEMaCxS9bU95+8MWBglw3TUXYOCDpVmVQGfhKfZdawZuQW297
-	 ew9dMA3LrYme06QML2zeBcnXniWFZTijKv35ruNhyRQjZ8tC4XNXyllqEx4BzWEjrO
-	 +cdp8o13jKQkJlMowMBsdROgGAUMJt6RsOJa3udwQ7mHQHUGx+HNQCo+wBuxkHs22j
-	 DgICLrkPJtf/GkbKB3cE+8pO2ZEw/N4q5gvqaegYsAnKaNr5srv/Y7GcNuS/GNeAag
-	 MGeHMj7HTLFKxJW7tr2XhzvIjFo82FA4S2eHKwYp6iVG91ersNe/JAbiVhhT8dkUdL
-	 lZRz/X3XYBVVg==
-Message-ID: <55484f58-f593-4449-b136-e8919234bc91@kernel.org>
-Date: Wed, 10 Apr 2024 08:16:13 +0200
+	b=Cv05VhzdPby0jgRBixv3hcdBlNomY+DwZPiZSH8aaIMyApqH5uK/CRDC2UntPg2Cn
+	 5eIlCDAkiBFtxy115phJaapQBI8k+vtl3Hek272/1HDp3DFyCMRIoHxNm5Zi2cHLLQ
+	 xHNIiGjY/zVaTA7QcsZWSYXQV0P2wBxSYy23PtUGWG1OvUbsdlMgWO9S5azFKYudbQ
+	 6ttIPWX8MmCsw/UqK8qcS6ogAlgpsZSUrBWO2j2ckxPB04iAINveh1QG8xqz5gHO1+
+	 YfyU+mtdbhmEHvKsHaviWdXu84cks+36wP1Vhibr9QPodAg0gKrnjBODoYsZAyq7Lp
+	 eS3gCFS3l6K4w==
+Message-ID: <ea3be8f7-0ee6-4940-828d-2fc15b9239dc@kernel.org>
+Date: Wed, 10 Apr 2024 08:18:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] dt-bindings: soc: qcom: pmic-glink: allow
- orientation-gpios
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH] dt-bindings: host1x: Add missing 'dma-coherent'
+To: Jon Hunter <jonathanh@nvidia.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Mikko Perttunen <mperttunen@nvidia.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240409-hdk-orientation-gpios-v2-0-658efd993987@linaro.org>
- <20240409-hdk-orientation-gpios-v2-1-658efd993987@linaro.org>
+Cc: linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240409082324.9928-1-jonathanh@nvidia.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,23 +102,46 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240409-hdk-orientation-gpios-v2-1-658efd993987@linaro.org>
+In-Reply-To: <20240409082324.9928-1-jonathanh@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/04/2024 16:28, Dmitry Baryshkov wrote:
-> The orientation GPIOs are not limited to sm8450/sm8550/x1e8000
-> platforms. Allow corresponding property to be used on all Qualcom
-> platforms.
-> 
-> Fixes: 65682407f8f4 ("dt-bindings: soc: qcom: qcom,pmic-glink: add a gpio used to determine the Type-C port plug orientation")
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  .../devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml      | 14 --------------
->  1 file changed, 14 deletions(-)
-> 
+On 09/04/2024 10:23, Jon Hunter wrote:
+> The dtbs_check reports that the 'dma-coherent' property is "unevaluated
+> and invalid" for the host1x@13e00000 device on Tegra194 and Tegra234
+> platforms. Fix this by updating the dt-binding document for host1x to
+> add the 'dma-coherent' property for these devices.
 
-Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+That's not really proper reason. What if DTS is wrong? The reason could
+be if device is actually DMA coherent...
+
+> 
+> Fixes: 361238cdc525 ("arm64: tegra: Mark host1x as dma-coherent on Tegra194/234")
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> ---
+>  .../bindings/display/tegra/nvidia,tegra20-host1x.yaml | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml
+> index 94c5242c03b2..3563378a01af 100644
+> --- a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml
+> +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml
+> @@ -177,6 +177,15 @@ allOf:
+>  
+>        required:
+>          - reg-names
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - nvidia,tegra194-host1x
+> +    then:
+> +      properties:
+> +        dma-coherent: true
+
+Do not define properties in allOf. Put it in top-level. If not all
+devices are DMA coherent, you can disallow it for certain variants (:false).
 
 Best regards,
 Krzysztof
