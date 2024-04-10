@@ -1,131 +1,107 @@
-Return-Path: <devicetree+bounces-57852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-57849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA1A889EFFF
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 12:38:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B07F589EFD4
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 12:30:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6585D28949C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 10:38:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E1FD91C21BB6
+	for <lists+devicetree@lfdr.de>; Wed, 10 Apr 2024 10:30:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E135C15921C;
-	Wed, 10 Apr 2024 10:37:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E36ED13D60C;
+	Wed, 10 Apr 2024 10:30:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GJSundnX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c10OJVwq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B927C15B0F0;
-	Wed, 10 Apr 2024 10:37:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B97A02744D;
+	Wed, 10 Apr 2024 10:30:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712745465; cv=none; b=r0oBnxOc3KPkfRX/G6kIUN2OyIXD4e+fN/x5Z/882OiPg1QBkCAkbaafPcmtE1HeFxubqsiVeCE4t0RIAq5HRQ0YqcBU0gCKgEG2dc92TinlVBpNpd/jch/f7RFRHedKNaBb2E4tAXS5x5exA1kXqKhztf390vgh6Tym62Yt9PE=
+	t=1712745048; cv=none; b=UIv5FtFmK8ij+aRLuJIb9hiLShll3jF01cybL6JXVJWH501f7KOG3emfiGMU/P+gNE39QVF64Xe78q7e3z+gD0LRlki8sjhu3DTbHK/JQu69HWembFhV26PBYLcymZp5zkGAUEi1zwIyAWq/CM7mIUqJC0AWhxt1EAkqk7F1K50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712745465; c=relaxed/simple;
-	bh=V6nc2YAKdgKWZHfMO2mdSMDfQwBidaZh7CVlmeQ/RdU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZPqEU1no1u6HmqPmcSMW30kNMeuokGmV3p6X0YtamkCIpGVO2E8/ytPmpCuOjz5gsnx3HvANvVX9Y7GJAnHLYLMN5JvxxisBlzdgjjSIYGTPQKB49dSHfbtrjfZWZdVom6f4WsDEofqz3xwiERduiHR2dI4acd4X0AENYo5sA0A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GJSundnX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71876C433F1;
-	Wed, 10 Apr 2024 10:37:41 +0000 (UTC)
+	s=arc-20240116; t=1712745048; c=relaxed/simple;
+	bh=PFOYzkTQaz4RIV29s8crIVArTeI+klJddc4BaSfF6jM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=AkS26NpTukInXnC/KEqCsgjtgmSIbUqAf5oVPTVZAyhDsGwbgRcEJNoKLP1e+VlFWj78nfhiEhyldxrxYTKHSgZEM+4lXLHJhroaxXvux7bHyryVOK5LM45wCqP+hKsLnroboUSup8LnU5ED7loGmKLhdbMvhC9WUwVmcNYqbCc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c10OJVwq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 725A9C433F1;
+	Wed, 10 Apr 2024 10:30:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712745465;
-	bh=V6nc2YAKdgKWZHfMO2mdSMDfQwBidaZh7CVlmeQ/RdU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GJSundnX+JygdMMTXQhsQvXdAUdTSBEnAWses4V2MkmKT6RU2v7u1bBHWViP4nhOV
-	 hmRE6TrSpSr/OukV8DB98dCuiH3oV+7b1g94qsVe23pmwp83G8CqpK4BX0ZgaVCdZU
-	 qwDUlnRnarHC/3Q0uMj/feOBJIprsLyHzP52RzrpwaMMMCsjUO/zd/+Qp8grH3GmWU
-	 xCs+Z9JvsGIOFEKB/juDLMTu/pDe64Dg+CMCh48WceL1y1dO1Jf8DGySeDpyMYw8f8
-	 jnzJYgMQABhIosVmdnijjnE8hzMWTWXlgy45WBSX+h2rcULdQ4yhEYl40BhK89tzws
-	 v30JLUDt92KHw==
-Date: Wed, 10 Apr 2024 18:24:18 +0800
-From: Jisheng Zhang <jszhang@kernel.org>
-To: Inochi Amaoto <inochiama@outlook.com>
-Cc: Michael Opdenacker <michael.opdenacker@bootlin.com>,
-	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
+	s=k20201202; t=1712745048;
+	bh=PFOYzkTQaz4RIV29s8crIVArTeI+klJddc4BaSfF6jM=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=c10OJVwqruArl5g5dCIgIlZ3UQywtIqmha4t4djM5xAnA40tOoewe49ZDfgnbs38h
+	 kDjnmrcSFdYLitqgQsypKWVoUmWkDcXatkwBPlRgrTu6NvrT67UoxwtkRkKX1Y0pfJ
+	 Dv8WAyqZxbAAD5rnFwpGkX6xcLah7Ylzn0RqYthYchZ51lDX7xdbDjs/GxU3izIIpE
+	 +VSq7LX7heBJlX3KtXnAyQksjEqG6w68dA+JOgWYYz/O1cGRCAy4n3zcELfyYMEp4p
+	 kT/GiIQg5C1LiGKQ6M8jPFLf7nFfqoCHRO/c+Zr895CnKGEiv18IaCub+OvG4MR87f
+	 PpysPvsBYjKPQ==
+From: Conor Dooley <conor@kernel.org>
+To: linux-riscv@lists.infradead.org,
+	Yangyu Chen <cyy@cyyself.name>
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Dan Carpenter <dan.carpenter@linaro.org>,
 	Paul Walmsley <paul.walmsley@sifive.com>,
 	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] riscv: dts: sophgo: add initial Milk-V Duo S board
- device tree
-Message-ID: <ZhZo0iJFSn1te-6d@xhacker>
-References: <20240409064504.4010353-1-michael.opdenacker@bootlin.com>
- <IA1PR20MB49532A8D4294ADCE0C33A654BB072@IA1PR20MB4953.namprd20.prod.outlook.com>
- <20240409-prevent-deepness-2d22bf009b16@spud>
- <IA1PR20MB49534E00CAE29D24F7D7E718BB072@IA1PR20MB4953.namprd20.prod.outlook.com>
- <1514d28a-5e96-4531-a972-894e41902efa@bootlin.com>
- <IA1PR20MB4953CA04D33EA0C7902DFA3ABB062@IA1PR20MB4953.namprd20.prod.outlook.com>
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Guo Ren <guoren@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH RESEND v8 0/6] riscv: add initial support for Canaan Kendryte K230
+Date: Wed, 10 Apr 2024 11:30:25 +0100
+Message-ID: <20240410-unwoven-march-299a9499f5f4@spud>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <tencent_22BA0425B4DF1CA1713B62E4423C1BFBF809@qq.com>
+References: <tencent_22BA0425B4DF1CA1713B62E4423C1BFBF809@qq.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <IA1PR20MB4953CA04D33EA0C7902DFA3ABB062@IA1PR20MB4953.namprd20.prod.outlook.com>
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1058; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=g1jnmXwY+mRbkP1JjfYfibR7YG/ZdsVyF8SLWs6lEX0=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDGliWY7L232dpH74pq6L8PmpOyv0rfqW0Nz7DkK6ErZKi soGl7d2lLIwiHEwyIopsiTe7muRWv/HZYdzz1uYOaxMIEMYuDgFYCJmKowMm6clMFUtl8+J0Rbv 1PZMy9sh+WNTGH9Jk9VBTqklmxheMfwVrewWtTDnvnTFcO2UWyI7hav2M4pdnCRn5xH9WjBVjoM LAA==
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
-On Wed, Apr 10, 2024 at 09:24:40AM +0800, Inochi Amaoto wrote:
-> On Tue, Apr 09, 2024 at 03:08:17PM +0200, Michael Opdenacker wrote:
-> > Hi Inochi
-> > 
-> > On 4/9/24 at 14:27, Inochi Amaoto wrote:
-> > > On Tue, Apr 09, 2024 at 01:13:32PM +0100, Conor Dooley wrote:
-> > > > On Tue, Apr 09, 2024 at 03:17:35PM +0800, Inochi Amaoto wrote:
-> > > > > On Tue, Apr 09, 2024 at 08:45:04AM +0200, michael.opdenacker@bootlin.com wrote:
-> > > > > > From: Michael Opdenacker <michael.opdenacker@bootlin.com>
-> > > > > > 
-> > > > > > This adds initial support for the Milk-V Duo S board
-> > > > > > (https://milkv.io/duo-s), enabling the serial port and
-> > > > > > read-only SD card support, allowing to boot Linux to the
-> > > > > > command line.
-> > > > > > 
-> > > > > Hi Michael,
-> > > > > 
-> > > > > I think your patch losts the board binding and have wrong compatiable.
-> > > > > Also, the SD can have rw support with proper property. See link [1]
-> > > > > (need 'disable-wp').
-> > > > [1] doesn't go anywhere useful.
-> > > > 
-> > > This is my fault, I copied the wrong url. The right patch is
-> > > https://lore.kernel.org/r/20240217144826.3944-1-jszhang@kernel.org.
-> > 
-> > 
-> > No problem, I found out.
-> > I confirm that using the "disable-wp;" property does the trick to make the
-> > MMC writable.
-> > 
-> > However, it wasn't mentioned in the above URL...
-> > 
-> > By the way, do I really need those under &sdhci0?
-> > 
-> > + bus-width = <4>; + no-1-8-v; + no-mmc; + no-sdio;
-> > 
-> > My board looks happy so far without them ;-)
+From: Conor Dooley <conor.dooley@microchip.com>
 
-setting the correct bus-width is necessary for better performance
-no-1-8-v can be removed, but it doesn't harm anything because
-the board doesn't supply 1.8v
-
-no-mmc and no-sdio to make the probe a bit quicker
-
+On Mon, 08 Apr 2024 00:26:58 +0800, Yangyu Chen wrote:
+> K230 is an ideal chip for RISC-V Vector 1.0 evaluation now. Add initial
+> support for it to allow more people to participate in building drivers
+> to mainline for it.
 > 
-> FYI, Jisheng. Could you share some suggestions?
+> This kernel has been tested upon factory SDK [1] with
+> k230_evb_only_linux_defconfig and patched mainline opensbi [2] to skip
+> locked pmp and successfully booted to busybox on initrd with this log [3].
 > 
-> > Thanks again for your help
-> > Cheers
-> > Michael.
-> > 
-> > -- 
-> > Michael Opdenacker, Bootlin
-> > Embedded Linux and Kernel engineering
-> > https://bootlin.com
-> > 
+> [...]
+
+Applied to riscv-dt-for-next, thanks!
+
+[1/6] dt-bindings: riscv: Add T-HEAD C908 compatible
+      https://git.kernel.org/conor/c/64cbc46bb854
+[2/6] dt-bindings: add Canaan K230 boards compatible strings
+      https://git.kernel.org/conor/c/b065da13ea9c
+[3/6] dt-bindings: timer: Add Canaan K230 CLINT
+      https://git.kernel.org/conor/c/b3ae796d0a4f
+[4/6] dt-bindings: interrupt-controller: Add Canaan K230 PLIC
+      https://git.kernel.org/conor/c/db54fda11b13
+[5/6] riscv: dts: add initial canmv-k230 and k230-evb dts
+      https://git.kernel.org/conor/c/5db2c4dc413e
+
+
+6/6 intentionally missing, it goes on another branch.
+
+Thanks,
+Conor.
 
