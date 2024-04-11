@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-58370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D03338A180D
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 17:05:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1C2A8A1826
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 17:07:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA5581C20EB1
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 15:05:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4EA971F2451D
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 15:07:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8584134BF;
-	Thu, 11 Apr 2024 15:05:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58D4B1119B;
+	Thu, 11 Apr 2024 15:07:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WKSzJnIr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IciBfujm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA032BE7F
-	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 15:05:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 972B512E5D
+	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 15:07:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712847927; cv=none; b=HHq4TLbt/ao3+HeiG4YCpnnaAem+ZJpgxMBdcRI0HLD+Secrglb39g6+g8v8LIpANabpiJWeohK7SCVZvaCF41pUyNB0bnTtkH+1HkQI/v4hLYn/h7BRrGkON1Kd4bs6gRIdqxdMgZpJ+PvypXkeMvSvLvY55g41iiNk8oRIlVc=
+	t=1712848049; cv=none; b=SEz+ahpaR0MhBq2iBruldqR+TVpibEz/fxbDvRxHzoPj9t33oG3kWLqtjkhiGyyFsss9nD2QcywvQjJhqpY4riyolDMfYllA7mqwE215bMgX9rj2C760VJu3zBSS9vVI5LIOeGsYPig71wPTJ94j1nwnB5VFsA2ne6BxPJGXQ6s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712847927; c=relaxed/simple;
-	bh=QevyOVKvuSdzQHrZ1in1R1OWAnKYiLrTvJ3OUPJlArA=;
+	s=arc-20240116; t=1712848049; c=relaxed/simple;
+	bh=UwT3dZsEUGf2cX1eyjAmLR3tU+VqTAbl7oBJMslcH8s=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LmvvIWvNfT4JOIlnWj/zzhRxTfrmWKSEHskQswPGngaxrFECg1ZTxUIm7/bXVkbz3rSH3lpBSOKHW1Gd9rnuWYbEQ+IZTUUtfbnzp92R3EoO1Dwk8aWOFrLAAMH5anQvr4VRxbu82DZS8OR5zv4Urzgp+6EeenJh1UCSWWe6A1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WKSzJnIr; arc=none smtp.client-ip=209.85.167.51
+	 In-Reply-To:Content-Type; b=sN2+yNPt0g0AbzW6ugWKbS/h1vw6wNd+uIXK67zM7O69ITEL7PWxHU9/y+ehX1NCqijTWHgDCvLRUMsjqDSBVOppy+IWngi/j+3fjFSC9LGjCaJ8sdf4LMnjydhj6HvhqMPrRfdoNS+iqX1c5c7AJG3biDl5nzSts/e2idGdzMU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IciBfujm; arc=none smtp.client-ip=209.85.221.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5176f217b7bso3192590e87.0
-        for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 08:05:25 -0700 (PDT)
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-343d7ff2350so4486992f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 08:07:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712847924; x=1713452724; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712848046; x=1713452846; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Tm6ZTNxTOPVKjmmIupco1zixq2O8DRitaHGxcnNlY8Q=;
-        b=WKSzJnIr7O6BqvCkTBUww4NdHvPgCN0PZ4fejkM2T7GbfDPR1APiqKjfuIFmPnfyBj
-         /l33gCEQJIzzNeKisDmySwCtIpb04LZGqvyVEjndita5LFVGuVJEOI7Srp5KH/acSsSL
-         zDP9ZQJ1UN+sbHTwVAIKYGXFZ/arT9qEKKZaLs7vRxrhACqKZjM7ECIgcOad08gqByu5
-         I3n/KoTZzbFHTrhljtiOmZB0sSAMPKvjIgx7XYKlDR1zZj2a02JwkyJ52phd6eMErr4A
-         gT9taZecIMvLEur62wM7PgFs3korn7VpRDGxkdvr9bWDl8cyvub/G37pVjNKcQJ9CEAt
-         g8Ag==
+        bh=/tLI+vFCnYgSsVdj6Lzrkmb8rf2aK1682Kp6/AzfUhU=;
+        b=IciBfujmokgVCFRhr2rv1oivQTQcn6ij1bJpZFGJ5gkD5AdZHw1+JWf7CLas0iHnIa
+         F+Osh1gnLtGgNHc3MigDvIlpx7XXAegryWkv1tUH9gjhzU4l3A+WSbekTfoFGYzteoiv
+         /UfOBg+2mO8IO13i4Q2+rUQYwoL4LX3hME/OZmuXBiPZ7+96dKrAbIbxInC8TXPX5fUU
+         Mg5cTIhqBdweSBKJBGyaN2LFlvHFSLFXKFMckVON7jMiSehVxGO+vbYm1XMk1oICgPh2
+         7TGD/29dnL/MKMbtwQ9CubWHB7clCtE/ipxIC4G/FzCJ34/XlNmZ2mBmMoqz66+CNtFB
+         Pk1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712847924; x=1713452724;
+        d=1e100.net; s=20230601; t=1712848046; x=1713452846;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Tm6ZTNxTOPVKjmmIupco1zixq2O8DRitaHGxcnNlY8Q=;
-        b=FDc6/N9G3PZ+2db45FMA3JAp5Np9dz5FeUIcu5S3iRSiiWf6U3AX+/i06zG1vRbv/z
-         7ZxzXsWSYgMKDqoBqvRjS1Gq7dZKvOX+JJLAEW4OTgv3WvqPRxkkHMR9fVVWeHBGkP6r
-         Os5SRgNY2u1mqjbpCkKtmo4FtifOJKFhuM0RS0C4DjFUhhLmHo7QTN44cH6XPGJN0cfl
-         BFhEVh2PQFD6rXdwuUUj1YXOKP9beg889vfGD5/vRbwdrlA5znc5UqQ0XbcUqJsCEKCF
-         rWxEhlnDG0huF3h8K1cV3MwA/ZI2xgLYr1R3mH7uWiTQaRmIBt0HqP4k/sI9MRqoYdBk
-         wrew==
-X-Forwarded-Encrypted: i=1; AJvYcCWyB9ZadC2Fx21xzsZH/N/vT1p6TdXkUt82jUM+Sbhxk+xxmALvyzaXGScFnM9SSV2BEwIFOSYO+bVnVhwzlJzpIS9AQPgKTok2tg==
-X-Gm-Message-State: AOJu0YzhQsLuyPAxuZqVJWv+8yVPScUc1AccYxQNei5bTCwJx+wD89U5
-	+qv2lpMtKUme0GrrzcOB3ISeud0lPwrB61Cc61YRR+TFyqpbtyv48ZLIGLBLuaI=
-X-Google-Smtp-Source: AGHT+IGzDBSQxEdpLg1BfGvNVw+/WhMauDtncjFcsF+rSyVriGUgF4Zznz0ZOynEqwfvz/ZjRzgY1A==
-X-Received: by 2002:a05:6512:539:b0:516:cec0:1fb8 with SMTP id o25-20020a056512053900b00516cec01fb8mr5134101lfc.65.1712847924096;
-        Thu, 11 Apr 2024 08:05:24 -0700 (PDT)
+        bh=/tLI+vFCnYgSsVdj6Lzrkmb8rf2aK1682Kp6/AzfUhU=;
+        b=mI9FtPVMHOoHr5qjqRbGL26+T2RJ61o9unQ/53g78rRkf2HYaPfK80DXIOSkxEQv2H
+         lHg3LX7DnXhKrh+pkq6GHvHcgJ5hgOwN2hDK2lxvKQZUtlpDDB4lK0eiQggaoXBMzG8T
+         3FbPluOTR7/3FEZCN5wPu3ftVdwRR7NUq8T9wVwTGKNJdp5yfeR8v3bib4xeP4Xf68NZ
+         lz7DoQSkan9xRqob8lM3P+Bbo2iR8qg3MsrBr4kG+81hZsoRqpDWboSpLBPTbrHzuox/
+         v4nzPrslzr7ubdLveRGuAum6YCd2oHCLKi07qCDWeSe4sG7N0zq/CuK9EO+SXIK6i27t
+         pIGg==
+X-Forwarded-Encrypted: i=1; AJvYcCWtvQ4J4XiMYT6iL8mxQ614WOscBHxpe/8umBClesNP6vJX7bXHffmRLBSPgwJFsycEErOQgQnAE1ckz8ka0fw+UXc0SaEBOpv4Fg==
+X-Gm-Message-State: AOJu0YzFJO551vfuqio4AeNxdsE0CgyZaXv8xKiQcDN2qifcCZLvyQMb
+	ohg+6XQE2DS2nj7mtnZLSthSZ11ni5MV/V/kfjKq/F4ApeOA/mazwY99AwS+Kls=
+X-Google-Smtp-Source: AGHT+IHZCpov/oi1/ULO8NO1QPM1SvVEcXaBk5vf2wbEFJTyGDjalN4vwdfxdRsfT+Gg820ixSQYZQ==
+X-Received: by 2002:a5d:504c:0:b0:343:61bb:115d with SMTP id h12-20020a5d504c000000b0034361bb115dmr4398793wrt.26.1712848045998;
+        Thu, 11 Apr 2024 08:07:25 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id lo17-20020a170906fa1100b00a466af74ef2sm830566ejb.2.2024.04.11.08.05.22
+        by smtp.gmail.com with ESMTPSA id k1-20020a5d6281000000b003445bb2362esm1974138wru.65.2024.04.11.08.07.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Apr 2024 08:05:23 -0700 (PDT)
-Message-ID: <a6f91997-bbaf-48fd-9b8d-2bb671cd026b@linaro.org>
-Date: Thu, 11 Apr 2024 17:05:22 +0200
+        Thu, 11 Apr 2024 08:07:25 -0700 (PDT)
+Message-ID: <6e3b02d9-9a1e-4fc0-9459-9c9c0d37aa92@linaro.org>
+Date: Thu, 11 Apr 2024 17:07:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,8 +77,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 03/11] dt-bindings: reset: mobileye,eyeq5-reset: add
- EyeQ6L and EyeQ6H
+Subject: Re: [PATCH 08/11] MIPS: mobileye: eyeq5: add OLB syscon node
 To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
  Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -94,9 +93,9 @@ Cc: linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
  Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
  Tawfik Bayouk <tawfik.bayouk@mobileye.com>
 References: <20240410-mbly-olb-v1-0-335e496d7be3@bootlin.com>
- <20240410-mbly-olb-v1-3-335e496d7be3@bootlin.com>
- <975a8554-a299-4394-be15-c910cf9688ae@linaro.org>
- <D0HCMDMWTO61.1F860N5I5SKS3@bootlin.com>
+ <20240410-mbly-olb-v1-8-335e496d7be3@bootlin.com>
+ <faa0769f-bd5e-4c6b-9f61-1a369830ad28@linaro.org>
+ <D0HD94HI3W7W.3KLAW6WFIN6ZE@bootlin.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -143,122 +142,61 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <D0HCMDMWTO61.1F860N5I5SKS3@bootlin.com>
+In-Reply-To: <D0HD94HI3W7W.3KLAW6WFIN6ZE@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 11/04/2024 16:04, Théo Lebrun wrote:
+On 11/04/2024 16:34, Théo Lebrun wrote:
 > Hello,
 > 
-> On Thu Apr 11, 2024 at 8:14 AM CEST, Krzysztof Kozlowski wrote:
+> On Thu Apr 11, 2024 at 8:15 AM CEST, Krzysztof Kozlowski wrote:
 >> On 10/04/2024 19:12, Théo Lebrun wrote:
->>> Add bindings for EyeQ6L and EyeQ6H reset controllers.
->>>
->>> Some controllers host a single domain, meaning a single cell is enough.
->>> We do not enforce reg-names for such nodes.
+>>> The OLB ("Other Logic Block") is a syscon region hosting clock, reset
+>>> and pin controllers. It contains registers such as I2C speed mode that
+>>> need to be accessible by other nodes.
 >>>
 >>> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
 >>> ---
->>>  .../bindings/reset/mobileye,eyeq5-reset.yaml       | 88 ++++++++++++++++++----
->>>  MAINTAINERS                                        |  1 +
->>>  2 files changed, 74 insertions(+), 15 deletions(-)
+>>>  arch/mips/boot/dts/mobileye/eyeq5.dtsi | 8 ++++++++
+>>>  1 file changed, 8 insertions(+)
 >>>
->>> diff --git a/Documentation/devicetree/bindings/reset/mobileye,eyeq5-reset.yaml b/Documentation/devicetree/bindings/reset/mobileye,eyeq5-reset.yaml
->>> index 062b4518347b..799bcf15bed9 100644
->>> --- a/Documentation/devicetree/bindings/reset/mobileye,eyeq5-reset.yaml
->>> +++ b/Documentation/devicetree/bindings/reset/mobileye,eyeq5-reset.yaml
->>> @@ -4,11 +4,13 @@
->>>  $id: http://devicetree.org/schemas/reset/mobileye,eyeq5-reset.yaml#
->>>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> diff --git a/arch/mips/boot/dts/mobileye/eyeq5.dtsi b/arch/mips/boot/dts/mobileye/eyeq5.dtsi
+>>> index 6cc5980e2fa1..e82d2a57f6da 100644
+>>> --- a/arch/mips/boot/dts/mobileye/eyeq5.dtsi
+>>> +++ b/arch/mips/boot/dts/mobileye/eyeq5.dtsi
+>>> @@ -100,6 +100,14 @@ uart2: serial@a00000 {
+>>>  			clock-names = "uartclk", "apb_pclk";
+>>>  		};
 >>>  
->>> -title: Mobileye EyeQ5 reset controller
->>> +title: Mobileye EyeQ reset controller
->>>  
->>>  description:
->>> -  The EyeQ5 reset driver handles three reset domains. Its registers live in a
->>> -  shared region called OLB.
->>> +  EyeQ reset controller handles one or more reset domains. They live in shared
->>> +  regions called OLB. EyeQ5 and EyeQ6L host one OLB each, each with one reset
->>> +  instance. EyeQ6H hosts 7 OLB regions; three of those (west, east,
->>> +  accelerator) host reset controllers. West and east are duplicates.
->>>  
->>>  maintainers:
->>>    - Grégory Clement <gregory.clement@bootlin.com>
->>> @@ -17,27 +19,83 @@ maintainers:
->>>  
->>>  properties:
->>>    compatible:
->>> -    const: mobileye,eyeq5-reset
->>> +    enum:
->>> +      - mobileye,eyeq5-reset
->>> +      - mobileye,eyeq6l-reset
->>> +      - mobileye,eyeq6h-we-reset
->>> +      - mobileye,eyeq6h-acc-reset
->>>  
->>> -  reg:
->>> -    maxItems: 3
->>> +  reg: true
+>>> +		olb: system-controller@e00000 {
+>>> +			compatible = "mobileye,eyeq5-olb", "syscon", "simple-mfd";
+>>> +			reg = <0 0xe00000 0x0 0x400>;
+>>> +			ranges = <0x0 0x0 0xe00000 0x400>;
+>>> +			#address-cells = <1>;
+>>> +			#size-cells = <1>;
 >>
->> Same mistakes. Please open existing bindings with multiple variants,
->> e.g. some Qualcomm, and take a look how it is done there.
+>> Do not add incomplete node. ranges, address/size-cells are incorrect in
+>> this context and you will have warnings.
+>>
+>> Add complete node, so these properties make sense.
 > 
-> Thanks for the pointer to good example, that is useful! So if we take
-> one random binding matching
-> Documentation/devicetree/bindings/clock/qcom,*.yaml and that contains
-> the "reg-names" string, we see:
+> I'll squash all four commits into one. For reference, commits are:
 > 
->   reg:
->     items:
->       - description: LPASS qdsp6ss register
->       - description: LPASS top-cc register
+>  - MIPS: mobileye: eyeq5: add OLB syscon node
+>  - MIPS: mobileye: eyeq5: use OLB clocks controller node
+>  - MIPS: mobileye: eyeq5: add OLB reset controller node
+>  - MIPS: mobileye: eyeq5: add pinctrl node & pinmux function nodes
 > 
->   reg-names:
->     items:
->       - const: qdsp6ss
->       - const: top_cc
-> 
-> I don't understand one thing; this doesn't tell you:
-> 
->    You can provide 2 MMIO blocks, which must be qdsp6ss and top_cc.
+> This means two things: (1) it won't be partially applicable and (2) it
 
-No, it tells you exactly this, with difference: s/can/must/
+Why?
 
-> 
-> But it tells you:
-> 
->    Block zero must be qdsp6ss.
->    Block one must be top_cc.
-> 
-> If we do that I do not get the point of reg-names; we put more
-> information in our devicetree that is in any case imposed.
+> will make one big commit adding pins and editing clocks.
 
-Same old argument. Order is not flexible. Order is fixed.
-
-Why do you need names? I don't need, it's purely your optional choice.
-Maybe you find it more readable, up to you.
-
-
-> 
-> This is why I went with a different approach looking like:
-> 
->   reg:
->     minItems: 2
->     maxItems: 2
->   reg-names:
->     minItems: 2
->     maxItems: 2
->     items:
->       enum: [ d0, d1 ]
-
-No, order is fixed.
-
-> 
-> I know this is not perfect, but at least you don't enforce an order for
-> no reason. If "items: const..." approach should be taken, then I'll
-> remove reg-names which bring no benefit.
-
-You can remove it, you can keep it, whatever makes code more readable,
-but order is fixed.
+It never was partially applicable. Causing warnings does not make things
+partially applicable. If node is too big, although I personally do not
+agree, it's quite moderate size chunk, then sure, split pinctrl groups
+or pinctrl node to additional patch.
 
 Best regards,
 Krzysztof
