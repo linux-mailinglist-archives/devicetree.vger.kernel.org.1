@@ -1,77 +1,140 @@
-Return-Path: <devicetree+bounces-58399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 299C08A1CA9
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 19:52:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A295F8A1CCA
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 19:56:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D78082833DD
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 17:52:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 586AF1F22AF7
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 17:56:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A6F584DFB;
-	Thu, 11 Apr 2024 16:31:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B48901BAA84;
+	Thu, 11 Apr 2024 16:39:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eO5LNKIz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rn0ESlg4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CDF13E462;
-	Thu, 11 Apr 2024 16:31:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FFF243ADA;
+	Thu, 11 Apr 2024 16:39:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712853072; cv=none; b=ZE1xP+RTlyJHxWzaM2Cen4CCZ0NtVrMHdJZ6fkAqm/gNo60w5t37c1Lzmn66cz/mkC71j8qEKCx+C74Gl+GgI8T5Zt88OcOgGBa6ea3XPTgMkG3k85D6iesht2/V9acELoY7ZLDivB4d72OKbPiLDODMMI+6wEXVOxDPrfTXI9Q=
+	t=1712853557; cv=none; b=RImuLkac/YCLXivnif8Ng+yO3HgKinxRNiplY9ON4IUVXqPfkzr2LzlwsqiJBiN+LlD1pbeBDOVuhNkRvTQDtmp3fwhgrzbGrVqReprvERWIjR8howD/aPTb50/yLLcDYPFGLKZCpFMHj9swEvpdAMvjVKeu+d1Ms/qysdpWAEs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712853072; c=relaxed/simple;
-	bh=d0dfFBnNTYgGXuohXJQBT4zJhFADAPc7jBuCcAGNF1A=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=WNqMgzgii0j21Y+mujFAYVeCogVYdsPhV4Kv4l+e5xFD1GqXX1DtnyjgtCHUQ3NyWkjrMYbYwlhuB302T0vTMgsiXod9mWWXqryeVNtuz7CEBo/YvNCosn6qLwVY28sSe2ySeUPFV9lPYrtgTJIPhhhEOoDBITMIFSub0tRH044=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eO5LNKIz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D971C072AA;
-	Thu, 11 Apr 2024 16:31:10 +0000 (UTC)
+	s=arc-20240116; t=1712853557; c=relaxed/simple;
+	bh=KA0gmwx5RKIsM+SMGYg8VxRvhIzvngglfYJ4j6bCzqA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qSV/lMdgt325tSH8x0W5DukmEMcO1LENLQeV0iGl57EK2xpHy678lkbVe2pmSXSzB/Di0kZVRKCTuF5FD2Uwcw0Gkr3F3pegd5KOrSJTOCDfs52BoHSy4BuI4Ec3KA4Kiq2Ap2Ne0dazSSNYIG4ig2QOdIzogGNyDOQC7RD0XKQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rn0ESlg4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A48EC072AA;
+	Thu, 11 Apr 2024 16:39:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712853071;
-	bh=d0dfFBnNTYgGXuohXJQBT4zJhFADAPc7jBuCcAGNF1A=;
-	h=From:To:In-Reply-To:References:Subject:Date:From;
-	b=eO5LNKIzDSjx1TeGFy4qsleB6DGACPeBYuVvC637DlD1bb1o6Yz4VM6lDJasbmNlg
-	 RX0t0g/kFSqFFjh8RzojGHOX3GULzhAraoF6iKffXN5OzE8TJ+TpFXfrG4SszYRv/u
-	 l5guwyVYW2rY1CeN4p6c8l6qhQNzpuv4WeY3AcRqLNgkqmGUXy8wxmPcF0DTsWgH+P
-	 FNHMS/s/+5ZzFZxuA7UZUWZ+oICjiSGjs6S4vV9FvK6Ft0eqsjZcUOQANPWlPDiurh
-	 MqR1j/X4f/yf88B6FHbho1d68+KLVMYuDzKQ2HsBfLrAGNwTcAz1grdwpTeAGWxK2K
-	 Xzo4+d5asWakA==
+	s=k20201202; t=1712853557;
+	bh=KA0gmwx5RKIsM+SMGYg8VxRvhIzvngglfYJ4j6bCzqA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Rn0ESlg4jtpBagbAkT5po/N7qvhzWQy6/9Sx7TaKfeWCIsILTCVpTiBNXjaZwIQBG
+	 dyjURdnyg0YlITzPxqnTPvyR0/mVD34GWYx4jFShg7xGGgWqNtbUu1HvVp2/pHmHSd
+	 Ru+piYEQ1rOrjDwuFrfO6kOW31UPGdCScil/+mNQDF3MvZyN4zgGI0oX8VDb3hW7ut
+	 ZMmND06bgNpHIdPEh0aEzN6sh9nTCKBtTEmZdvOc8rXqjKzK3+0ekK7nVjFQl2fWjY
+	 /AXmrcieLHDYX7M+JUFH9RyUIRk+6cUUpGXvqIcoekPvjG2XR0ESXlmmLrh/OBwN39
+	 k1OcPMGHmRnpA==
+Date: Thu, 11 Apr 2024 17:39:11 +0100
 From: Lee Jones <lee@kernel.org>
-To: lee@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
- conor+dt@kernel.org, mazziesaccount@gmail.com, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Andreas Kemnade <andreas@kemnade.info>
-In-Reply-To: <20240404195423.666446-2-andreas@kemnade.info>
-References: <20240404195423.666446-1-andreas@kemnade.info>
- <20240404195423.666446-2-andreas@kemnade.info>
-Subject: Re: (subset) [PATCH v2 1/2] dt-bindings: mfd: Add ROHM BD71879
-Message-Id: <171285306996.2486859.2492109750495696356.b4-ty@kernel.org>
-Date: Thu, 11 Apr 2024 17:31:09 +0100
+To: Karel Balej <balejk@matfyz.cz>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Subject: Re: [PATCH 2/5] mfd: add driver for Marvell 88PM886 PMIC
+Message-ID: <20240411163911.GJ2399047@google.com>
+References: <20240331105608.7338-2-balejk@matfyz.cz>
+ <20240331105608.7338-4-balejk@matfyz.cz>
+ <20240411113726.GH1980182@google.com>
+ <D0HE07BHD1T8.HQLIBUHTRVGT@matfyz.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.12.4
+In-Reply-To: <D0HE07BHD1T8.HQLIBUHTRVGT@matfyz.cz>
 
-On Thu, 04 Apr 2024 21:54:22 +0200, Andreas Kemnade wrote:
-> As this chip was seen in several devices in the wild, add it.
+On Thu, 11 Apr 2024, Karel Balej wrote:
+
+> Lee Jones, 2024-04-11T12:37:26+01:00:
+> [...]
+> > > diff --git a/drivers/mfd/88pm886.c b/drivers/mfd/88pm886.c
+> > > new file mode 100644
+> > > index 000000000000..e06d418a5da9
+> > > --- /dev/null
+> > > +++ b/drivers/mfd/88pm886.c
+> > > @@ -0,0 +1,157 @@
+> > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > +#include <linux/i2c.h>
+> > > +#include <linux/mfd/core.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/notifier.h>
+> > > +#include <linux/of.h>
+> > > +#include <linux/reboot.h>
+> > > +#include <linux/regmap.h>
+> > > +
+> > > +#include <linux/mfd/88pm886.h>
+> > > +
+> > > +#define PM886_REG_INT_STATUS1			0x05
+> > > +
+> > > +#define PM886_REG_INT_ENA_1			0x0a
+> > > +#define PM886_INT_ENA1_ONKEY			BIT(0)
+> > > +
+> > > +#define PM886_IRQ_ONKEY				0
+> > > +
+> > > +#define PM886_REGMAP_CONF_MAX_REG		0xef
+> >
+> > Why have you split the defines up between here and the header?
 > 
+> I tried to keep defines tied to the code which uses them and only put
+> defines needed in multiple places in the header. With the exception of
+> closely related things, such as register bits which I am keeping
+> together with the respective register definitions for clarity. Does that
+> not make sense?
+
+It makes sense and it's a nice thought, but I think it's nicer to keep
+them all together, rather than have to worry about which ones are and
+which ones are not used here or there.  Also, there will be holes in the
+definitions, etc.
+
+> > Please place them all in the header.
 > 
+> Would you then also have me move all the definitions from the regulators
+> driver there?
 
-Applied, thanks!
+I think it would be nice to have them all nice and contiguous.
 
-[1/2] dt-bindings: mfd: Add ROHM BD71879
-      commit: 9814ee9b64c06aae57c8a8f003014b3d90e09a3d
+So, yes.
 
---
+> [...]
+> 
+> > > +	err = devm_mfd_add_devices(dev, 0, pm886_devs, ARRAY_SIZE(pm886_devs),
+> >
+> > Why 0?
+> 
+> PLATFORM_DEVID_AUTO then? Or will PLATFORM_DEVID_NONE suffice since the
+> cells all have different names now (it would probably cause problems
+> though if the driver was used multiple times for some reason, wouldn't
+> it?)?
+
+You tell me.  Please try and understand the code you author. :)
+
+-- 
 Lee Jones [李琼斯]
-
 
