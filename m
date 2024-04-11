@@ -1,145 +1,153 @@
-Return-Path: <devicetree+bounces-58187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45AC58A0B1D
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 10:25:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 578948A0B4A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 10:34:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F422328172F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 08:25:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89BC11C20FEF
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 08:34:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F61113FD79;
-	Thu, 11 Apr 2024 08:25:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ACE5146A77;
+	Thu, 11 Apr 2024 08:32:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sPNOyi0t"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p+NCAXOP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD29726ACC
-	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 08:25:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D75B14659B;
+	Thu, 11 Apr 2024 08:32:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712823944; cv=none; b=TGpEJve8w6EOo8sauK1gJOKRk0hZbjfwYc/Ezi2mjrJQfkSBQFZS5+1VmmB1gbnyOcITwTkyj44ta7+3MDjUI57R9unEeTZW+3exy7LvZmn+tlRk5ZAbHYJgagAWfrkHWQEgE6bJp+R9jTEN20keEk3D7rg5UvZpTREc4WtARHk=
+	t=1712824327; cv=none; b=bcTcnJKYgLQyTskouniwa8AO+69QG+WbRDEQImsE9Oji1pgn/sgkm9JnesIu7bVpY0vWgpMmSEsmEMnKck1g8gmgAY8fGFUr1hDfuIeVp31WIi2Ud7i9Fwd7WOGybqpeYtt1IpyZ3xkEHATOHmwwt0CsDwTCDoXA6o/buQ804HI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712823944; c=relaxed/simple;
-	bh=nFRw7oi3NFSHVNf0hlNX8zBCL5+/1iE7ciSsVaEYvnk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SvIlfgvgtFdIi92QljURoWTSbD2F3lQ1+IwTMiCWPi2q4kIJh2HyD6SvrIT249Hn6lx+7KoERvh8AasUivWs0GHA6T2m9FIpyZme9K4PzbwzCDmmcB9cLadgGvhLtcIusPqpzWG44nAZ6DZTMmMEWzzQKTQ/ycAGXx29A0UHhgo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sPNOyi0t; arc=none smtp.client-ip=209.85.128.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-6181237230dso43998127b3.2
-        for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 01:25:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712823942; x=1713428742; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=edjaUEw2uJ66Vq5BGBZMcM3KK3F8anEzW+NtxKo9Ndw=;
-        b=sPNOyi0tf2/UCYbD2yfgX2ivSUxlNV0Qs4LeinvNYSNoY79E7NfQ7JBMszCC/GoWte
-         sFZA9chSzXWIJVOAy/Nqk8Ipcgoq7qjesAobToSSRFHRmuiV5ty6MnM0kOLu/INLnEW6
-         ctON0teuzE5TFZ7rjGcxMC1IAeMBxu73uwtOXup++Ku/IsFyZPyJTNbzLswBHyxv7Kil
-         LlB8gyHb9bERwaL/gBkEfnK9M34fwMhDinQsKGMjAz5wLuua2E6mtSTwFy3np+L79W1x
-         YdElWVSRoYB8tj1VtQQcclP01DV45nj+Rhimko8m1YPk3ob1H4GeWxHUoRC3sRFNSXtC
-         SIOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712823942; x=1713428742;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=edjaUEw2uJ66Vq5BGBZMcM3KK3F8anEzW+NtxKo9Ndw=;
-        b=f/c3dserd8oVd+Eic/cG8He9/3kcNaZq2IFsFAaHPtGg4L5qAPobNXnVcJDKNnpwr1
-         7O/6JrKjbgTBCGEemCKxGS+5594vjmEMvKAAIUfDgoI/Fi9lyEXpILdoDrhdkoQS0bh5
-         9GmMr/D+DtOTCDjhzl4JrWb3ciU/pmkAdZ2SOQwNRPVPEzemR8fJ0/89OgoAXXtMgf2P
-         JUAGbf3D9dPu6z1Ulhig0HnwW4TdryBCIE60yEY/c7MpXs//AuWIrcmGqeYIBpk61Lkk
-         ZGybHRQVHdZG8CXhnccj1BPvGXWN8kpy2k71dQAuj66atVu82KCtgXRyGTpVj8rhnNO1
-         3W3w==
-X-Forwarded-Encrypted: i=1; AJvYcCUhq9yee6iVFjcXgBrMQ24Wzqly6G0oZbTssqrVRYkmwKL2J5boxykih6nHUp5uLdAyUSoBBFQ5NLt4ypVAJeNnpkCs0sKwzEVZ4Q==
-X-Gm-Message-State: AOJu0Yyof54Xfmfy2XCEGQUjUpm70pZlHsr9QUCYGQDXLPNt7tEDe0hk
-	vCohF6rCIQTBEqBa0wZbS6BqFeUSeom3Okz3wBH1d7qNV6Wm4BoKDTPMY4g27i92Fd5osN8RBMZ
-	F2jcPs3Z31N8i/+IO7vobygiPmmrUq8cMr9NMXQ==
-X-Google-Smtp-Source: AGHT+IF9pqUlpfdyG5m7u4jEcLSuGnBanWm4vx+2kVsHtqsz6JhvGVog6ml/rhuJaKKjQuzsTC3Fw+qiU/qGdpHU8rc=
-X-Received: by 2002:a05:6902:2b0c:b0:dbf:23cd:c05c with SMTP id
- fi12-20020a0569022b0c00b00dbf23cdc05cmr7015891ybb.13.1712823941903; Thu, 11
- Apr 2024 01:25:41 -0700 (PDT)
+	s=arc-20240116; t=1712824327; c=relaxed/simple;
+	bh=kNslZwOV3XuxhTTrri2kOLx2C0i3TRLUbLC5t/3fJag=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=iuL7G7SzVSGhAF4bbO/O2mNBcNn3YZsVeb7diWHqLGIjxeqvTVi+74+CjLLkJKpkmWD2+cIRLOXVGdYaObUxg3L/NNKSIDopinGhKie5je4OgAQmWZVsdpY8YwsryU4ouMD1qf7+blw0wzldkuOmLOatQl9hMrcuTgSS/cpEPQE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p+NCAXOP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id D81ECC433C7;
+	Thu, 11 Apr 2024 08:32:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712824326;
+	bh=kNslZwOV3XuxhTTrri2kOLx2C0i3TRLUbLC5t/3fJag=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=p+NCAXOP316q4cZnQ43z3YfBXFQlRyK9k6P9OSMK1p+cMZXIwx20fgss11dRcCxKm
+	 xtCIkPxy2dqRRj+WYb0cf3PSiDbcBln71q+Kz6shKQGV2w7lXo1ruNVdacQrnw1h/k
+	 r8Vs1cq4ddmvDz87ISTtK9GsyXjfMc01XKEhns8jlt8jvOanIsyLpZK9MHSnoiBvD2
+	 j472vfDNnmSVY0Pb6gHYfaHx83EIH5xxKiMF1B/r8XRHlI5NeNYuayNAfJwJ5OrA/C
+	 qmktfYU00aVVGFRrUy5MPqakZQf5h/ZWqpEBNDtv1a3lhk71z1ItZY//SxdkT4b7A2
+	 +YKXCiEqqxt9A==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BB36BCD1284;
+	Thu, 11 Apr 2024 08:32:06 +0000 (UTC)
+From: Fenglin Wu via B4 Relay <devnull+quic_fenglinw.quicinc.com@kernel.org>
+Subject: [PATCH v9 0/4] Add support for vibrator in multiple PMICs
+Date: Thu, 11 Apr 2024 16:30:56 +0800
+Message-Id: <20240411-pm8xxx-vibrator-new-design-v9-0-7bf56cb92b28@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240410071439.2152588-1-yangcong5@huaqin.corp-partner.google.com>
- <20240410071439.2152588-3-yangcong5@huaqin.corp-partner.google.com> <CAD=FV=V2J=Tth2zhpo-kPo4uvESt70mFneO2V6TV-haac0VZuQ@mail.gmail.com>
-In-Reply-To: <CAD=FV=V2J=Tth2zhpo-kPo4uvESt70mFneO2V6TV-haac0VZuQ@mail.gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Thu, 11 Apr 2024 10:25:30 +0200
-Message-ID: <CACRpkdYtM=5jdQddCqRFgBRXvcJEjk1ULJNKKFz7jhhkGxV59Q@mail.gmail.com>
-Subject: Re: [PATCH v1 2/4] drm/panel: boe-tv101wum-nl6: Support for BOE
- nv110wum-l60 MIPI-DSI panel
-To: Doug Anderson <dianders@chromium.org>
-Cc: Cong Yang <yangcong5@huaqin.corp-partner.google.com>, sam@ravnborg.org, 
-	neil.armstrong@linaro.org, daniel@ffwll.ch, airlied@gmail.com, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMGfF2YC/33NwRKCIBDG8VdxOLcNohZ26j0aD4Cr7kE0KKJxe
+ PfI7h3/38z+dmMeHaFnl2JjDgN5WmyO9lAwMyk7IlCfmwkual4JCessY4wQSDv1WBxYfEGPnkY
+ L2MiyVH3TolQsA6vDgeKO37rcE/l88d5/Bfldf2zNy39skMDhNAgtNa90bc7X+5MMWXM0y8y6l
+ NIHkF7MX8YAAAA=
+To: kernel@quicinc.com, Andy Gross <agross@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-input@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Fenglin Wu <quic_fenglinw@quicinc.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.13-dev-83828
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1712824325; l=2742;
+ i=quic_fenglinw@quicinc.com; s=20240327; h=from:subject:message-id;
+ bh=kNslZwOV3XuxhTTrri2kOLx2C0i3TRLUbLC5t/3fJag=;
+ b=2dQIoJ04TjfpOwLWNiOsikzGaOEQ5hG77y2zor95vsY7p9XzVxjbJPcNm4Ra1XQS1kZXv/SNz
+ 4EXJpCJmibpB8kSgsbJIy0E7DUe5l5ZCwA/YHuvocG6QglstEknmiN3
+X-Developer-Key: i=quic_fenglinw@quicinc.com; a=ed25519;
+ pk=BF8SA4IVDk8/EBCwlBehKtn2hp6kipuuAuDAHh9s+K4=
+X-Endpoint-Received: by B4 Relay for quic_fenglinw@quicinc.com/20240327
+ with auth_id=146
+X-Original-From: Fenglin Wu <quic_fenglinw@quicinc.com>
+Reply-To: quic_fenglinw@quicinc.com
 
-On Thu, Apr 11, 2024 at 9:40=E2=80=AFAM Doug Anderson <dianders@chromium.or=
-g> wrote:
-> On Wed, Apr 10, 2024 at 12:15=E2=80=AFAM Cong Yang
-> <yangcong5@huaqin.corp-partner.google.com> wrote:
-> >
-> > The BOE nv110wum-l60 is a 11.0" WUXGA TFT LCD panel, which fits in nice=
-ly
-> > with the existing panel-boe-tv101wum-nl6 driver. Hence, we add a new
-> > compatible with panel specific config.
->
-> I guess we have the same question we've had with this driver in the
-> past: do we add more tables here, or do we break this out into a
-> separate driver like we ended up doing with "ili9882t". I guess the
-> question is: what is the display controller used with this panel and
-> is it the same (or nearly the same) display controller as other panels
-> in this driver or is it a completely different display controller.
-> Maybe you could provide this information in the commit message to help
-> reviewers understand.
+Add SW support for the vibrator module inside PMI632, PM7250B, PM7325B, PM7550BA.
+It is very similar to the vibrator module inside PM8916 which is supported in
+pm8xxx-vib driver but just the drive amplitude is controlled with 2 registers,
+and the register base offset in each PMIC is different.
 
-I think at a minimum we need to split out any identifiable display controll=
-ers
-to their own drivers.
+Changes in v9:
+  1. Add a preceding change to correct VIB_MAX_LEVELS calculation
+  2. Address review comments from Konrad
+     Link to v8: https://lore.kernel.org/r/20240401-pm8xxx-vibrator-new-design-v8-0-6f2b8b03b4c7@quicinc.com
 
-Then what developers see is that the code sequence is very similar
-between two completely different display controllers so they have this
-urge to shoehorn several displays into the same driver for this
-reason.
+Changes in v8:
+  1. Remove hw_type, and still keep the register info in match data
+  2. Update to use register offset in pm8xxx_regs, and the base address
+     defined in DT for SPMI vibrator will be added in register access
+  3. Update voltage output range for SPMI vibrator which has 2 bytes drive
+     registers
 
-The latter is not good code reuse, what we need to do here is to split
-out a sequencing library, like if we had
-drivers/gpu/drm/panel/cmd-seqence-lib.c|.h with a bool Kconfig and
-some helpful symbols to do the same seqences in different drivers,
-so the same order can be obtained in different display controller
-drivers that would be great.
+Changes in v7:
+  1. Fix a typo: SSBL_VIB_DRV_REG --> SSBI_VIB_DRV_REG
+  2. Move the hw_type switch case in pm8xxx_vib_set() to the refactoring
+     change.
 
-I'm thinking something along the line of
+Changes in v6:
+  1. Add "qcom,pmi632-vib" as a standalone compatible string.
 
-panel_seq_exit_sleep_mode(unsigned int delay_after_exit_sleep,
-    u8 *cmd_seq_after_exit_sleep,
-    unsigned int delay_after_cmd_seq,
-    unsigned int delay_after_set_display_on);
+Changes in v5:
+  1. Drop "qcom,spmi-vib-gen2" generic compatible string as requested
+     and use device specific compatible strings only.
 
-That will call mipi_dsi_dcs_exit_sleep_mode(), delay, send
-command sequence, delay, call mipi_dsi_dcs_set_display_on()
-and delay where any delay can be 0.
+Changes in v4:
+  1. Update to use the combination of the HW type and register offset
+     as the constant match data, the register base address defined in
+     'reg' property will be added when accessing SPMI registers using
+     regmap APIs.
+  2. Remove 'qcom,spmi-vib-gen1' generic compatible string.
 
-This achieves the same goal without messing up the whole place,
-but requires some tinkering with how to pass a sequence the right
-way etc.
+Changes in v3:
+  1. Refactor the driver to support different type of the vibrators with
+    better flexibility by introducing the HW type with corresponding
+    register fields definitions.
+  2. Add 'qcom,spmi-vib-gen1' and 'qcom,spmi-vib-gen2' compatible
+    strings, and add PMI632, PM7250B, PM7325B, PM7550BA as compatbile as
+    spmi-vib-gen2.
 
-Are Google & partners interested in the job? ;)
+Changes in v2:
+  Remove the "pm7550ba-vib" compatible string as it's compatible with pm7325b.
 
-Yours,
-Linus Walleij
+Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
+---
+Fenglin Wu (4):
+      input: pm8xxx-vibrator: correct VIB_MAX_LEVELS calculation
+      input: pm8xxx-vibrator: refactor to support new SPMI vibrator
+      dt-bindings: input: qcom,pm8xxx-vib: add new SPMI vibrator module
+      input: pm8xxx-vibrator: add new SPMI vibrator support
+
+ .../devicetree/bindings/input/qcom,pm8xxx-vib.yaml | 16 +++-
+ drivers/input/misc/pm8xxx-vibrator.c               | 92 ++++++++++++++++------
+ 2 files changed, 82 insertions(+), 26 deletions(-)
+---
+base-commit: 650cda2ce25f08e8fae391b3ba6be27e7296c6a5
+change-id: 20240328-pm8xxx-vibrator-new-design-e5811ad59e8a
+
+Best regards,
+-- 
+Fenglin Wu <quic_fenglinw@quicinc.com>
+
+
 
