@@ -1,143 +1,122 @@
-Return-Path: <devicetree+bounces-58456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 063198A229A
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 01:50:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D9948A22A9
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 01:56:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82016282F47
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 23:50:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E2C711F23F94
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 23:56:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC8894AED1;
-	Thu, 11 Apr 2024 23:50:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E06F74D9EF;
+	Thu, 11 Apr 2024 23:56:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TphtNR/P"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="tEwNWHMg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f202.google.com (mail-yw1-f202.google.com [209.85.128.202])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DC2E2C68F;
-	Thu, 11 Apr 2024 23:50:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40F5F4D5BF
+	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 23:56:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.202
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712879434; cv=none; b=qokKuAMYGlh1Xbh22MlEXadiQ2MUUzbd2K6hq1Q7k4G5ZWI/ixVu9UiSEjW26RlVsOQaQX+l/IwXzZIPaI00GFiGAPZ9hlb400NG9N3sK9nd2dQ17fffqiKnRmO6ZddpE0mzgDN8n18uPT77q1RBcsvdBS8u3H7DVr23bKJVLA4=
+	t=1712879789; cv=none; b=OW42DujPyABiYrg1VpeQCvybuOfooTO7YZXeTfwj8WMOn7HtMRYUwUgrAJhrRnjI2PBWMvstDoZzRhrQX3co1iXy8jyWVVnQ/JQpRNxpmhZHsc+hwPgz5iXfnLguJNxOu7FSC+TjzSkmbpFlLoX5eUT/SbmgNKXKiAqzvreILNQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712879434; c=relaxed/simple;
-	bh=+ZbVM53olLQwA3LTGhsIEabeEfmwDoxmEtMaj4RVRwM=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q/+iuRkrwgOL7t2uVKe32x5UsOIvJH74LQglo8ez8moiLjR/w1W28Oa5ZP3JZcCh+K95R1OtZokAPTha3POkrgpR1Hw4zf4tcd8lyGh4qHxm2Wg7FWJ5qWfzJa4VoEePA37iepyPYubP76u5hd2pjcGT3uha0KD7/SK8H7U0fSw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TphtNR/P; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43BNUFm6029773;
-	Thu, 11 Apr 2024 23:50:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=qcppdkim1; bh=mzQXyjqX1tud9XJAAPq6t
-	aeKKD1DkGuDn7UJbaDURSY=; b=TphtNR/PMDSRSzMWvgOgtlCNtd1GfQC5UQT0H
-	11DxF6Q2hIGIEWB4PucpPMI1iNYgA3HFW3hiSGJTSn8tctkq+ssUrIfFwD8lsZMe
-	0V4yXTB+7BdRd3AGOmC3h/A8tDAKhD3EVV7bAdTmU/L1l6t8dhYTdIPmtAIfD0Y6
-	JTZlpVeKts9Bo23vHBx71eImeSJbLk1wIa8sUAjXXoKjDSZbHMoHr1nQ8V0BxYaY
-	ONld9xP6EZtRCTojwBIQKFOUP7PKumSxWh/3wRBI7tzCPKxh1IPTlcuGAhm0aMQE
-	7NMmj+0isSrL9Ymvks4tnzI8JpksukDvF6sYjiqh5M1DJYKtQ==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xem8m0n26-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 11 Apr 2024 23:50:22 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43BNnjgX012898
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 11 Apr 2024 23:49:45 GMT
-Received: from hu-eberman-lv.qualcomm.com (10.49.16.6) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 11 Apr 2024 16:49:44 -0700
-Date: Thu, 11 Apr 2024 16:49:44 -0700
-From: Elliot Berman <quic_eberman@quicinc.com>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>, Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, "Daniel
- Vetter" <daniel@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 1/6] soc: qcom: Move some socinfo defines to the header,
- expand them
-Message-ID: <20240411162849104-0700.eberman@hu-eberman-lv.qualcomm.com>
-References: <20240405-topic-smem_speedbin-v1-0-ce2b864251b1@linaro.org>
- <20240405-topic-smem_speedbin-v1-1-ce2b864251b1@linaro.org>
- <20240410132510649-0700.eberman@hu-eberman-lv.qualcomm.com>
- <2c2bca6c-b429-4cef-b63a-ee3bd6c9eecb@linaro.org>
- <20240411130802689-0700.eberman@hu-eberman-lv.qualcomm.com>
- <bbec514f-9672-4e5a-bd83-20ab59b3dcd9@linaro.org>
+	s=arc-20240116; t=1712879789; c=relaxed/simple;
+	bh=MioIrT4usEvNVbA3gUwhZR5hWnkV5a7eD0MVoAZp/Hg=;
+	h=Date:Message-Id:Mime-Version:Subject:From:To:Cc:Content-Type; b=K0buJAk9Fkik7d0SNjGn2oPMkNx3MqqrTH0Cu7QEXe60aGVz/woQ3GuL2B23a/NcZLria4izd+YgfTWnizTWrpciEJs/XUdquGADkVCQIdCc3Z6Isu3XMN6a49cyOXbFOHpr/8e3qxHuXKlY84S9j/TRjQRvtRxCw8F9hKcOm18=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--saravanak.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=tEwNWHMg; arc=none smtp.client-ip=209.85.128.202
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--saravanak.bounces.google.com
+Received: by mail-yw1-f202.google.com with SMTP id 00721157ae682-617fffab703so5847137b3.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 16:56:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1712879786; x=1713484586; darn=vger.kernel.org;
+        h=cc:to:from:subject:mime-version:message-id:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=O0iRscBO4bdcIhUu420mbq2doNMaDlIpBi8l/p1zhKs=;
+        b=tEwNWHMgGsPkrEAf0mcEWf1N2jjPeeE6xdLNTIGi0g8Jn9Ifbpd+RIV+ozrEDg189n
+         PYSDstCBlKNWhvMKW1z7lr56sK5qWYf6qm4jwHjdp6P59AHldqaz629T0zzv+MTbgRnI
+         4PRRdM9GEcy4V5iMHeqLbCISBDf9U+xffRpS0PdCXYIi0fgytZiiNqbOscPtAVEUcKlg
+         K3C5U2Rem0rSDNvMzW0PbaPxRf5nW2jq8hxvpZ4K5eYSI/JKkGKRkpbBE0eL9I6ysKZj
+         uu1D0mVp1XbkjwPLWHPTVxE7JtnM6bPYzEz4F1VyPZQVg+IWE4hMUARJP3oJIIGYa+Mm
+         liiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712879786; x=1713484586;
+        h=cc:to:from:subject:mime-version:message-id:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=O0iRscBO4bdcIhUu420mbq2doNMaDlIpBi8l/p1zhKs=;
+        b=dzf6uEj6T6ZC0z9lbN/ajPs0WoITP3ybgZMVQNZyMTLk6dT4zBjnVu4UjAf51uba1g
+         p8hbULX2tXdTAWYhkTISyO9JuSVpamRnmGNZED03L7091qtxVZRRtdXw+Mfkv6GU6HAp
+         EM10XWlMWGJHBCGMexzzrwlNW6J8J4Qgyc3wq/Rwl3u/RbdFqEMQ/mWmDTwoOZPo6n1z
+         SEtDVKCKzKZpbRiTsMEacHrty/IjHB/7y+LAzL+zsciu8wA/yzqaFiv/8a9039Vrockh
+         NY+0fFoiCZgyd9IzHjQnd2XzOPDFudm2W30pHvVSIjiKch8vcJpqeZg7Vh4Hgrbt4SvT
+         J/Ig==
+X-Forwarded-Encrypted: i=1; AJvYcCU7PEh0WIPg8+em19Lbg8vAxNKxzKoFjQ5qZl1r2s5nFyzO8kj6hece03DLCneIFhcvfbnJ/P0F31odhohmQjAVhsG+CRrQrLSzdw==
+X-Gm-Message-State: AOJu0YwIYj3PiSLlLmpZ8p0QIcWG0t7aNsEme+jWv7Ow3mtnp093RpU6
+	z2kKqSPX+8FULC9SGj26GmZ1GssA3C40q02lTetLu4JiAMXEznDCUbNwM+wG/XjtBXAFHh8OFzw
+	TbOCfptUBXqou0w==
+X-Google-Smtp-Source: AGHT+IFosAoa851C7hPGmSTJhtx34QZTzAQeM/iXE6mN4LYGNHAkSwi0R89BgZ48h/lVqrxY4bUEsjpXIA52Xog=
+X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:a472:f40c:d4ba:c29])
+ (user=saravanak job=sendgmr) by 2002:a0d:ea90:0:b0:615:2ae1:6cd3 with SMTP id
+ t138-20020a0dea90000000b006152ae16cd3mr215649ywe.3.1712879786349; Thu, 11 Apr
+ 2024 16:56:26 -0700 (PDT)
+Date: Thu, 11 Apr 2024 16:56:20 -0700
+Message-Id: <20240411235623.1260061-1-saravanak@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <bbec514f-9672-4e5a-bd83-20ab59b3dcd9@linaro.org>
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: F55obkBZh8Y7oG1qCozFOKbMkGxrJdD9
-X-Proofpoint-GUID: F55obkBZh8Y7oG1qCozFOKbMkGxrJdD9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-11_12,2024-04-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
- priorityscore=1501 malwarescore=0 phishscore=0 impostorscore=0
- mlxlogscore=961 bulkscore=0 lowpriorityscore=0 mlxscore=0 spamscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404110171
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.44.0.683.g7961c838ac-goog
+Subject: [PATCH v3 0/2] fw_devlink overlay fix
+From: Saravana Kannan <saravanak@google.com>
+To: Herve Codina <herve.codina@bootlin.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, Mark Brown <broonie@kernel.org>, Len Brown <lenb@kernel.org>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: kernel-team@android.com, Wolfram Sang <wsa@kernel.org>, linux-kernel@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-spi@vger.kernel.org, linux-acpi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Thu, Apr 11, 2024 at 10:24:08PM +0200, Konrad Dybcio wrote:
-> 
-> 
-> On 4/11/24 22:09, Elliot Berman wrote:
-> > On Thu, Apr 11, 2024 at 10:05:30PM +0200, Konrad Dybcio wrote:
-> > > 
-> > > 
-> > > On 4/11/24 20:55, Elliot Berman wrote:
-> > > > On Fri, Apr 05, 2024 at 10:41:29AM +0200, Konrad Dybcio wrote:
-> > > > > In preparation for parsing the chip "feature code" (FC) and "product
-> > > > > code" (PC) (essentially the parameters that let us conclusively
-> > > > > characterize the sillicon we're running on, including various speed
-> > > > > bins), move the socinfo version defines to the public header and
-> > > > > include some more FC/PC defines.
-> > > > > 
-> > > > > Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> > > > > ---
-> 
-> [...]
-> 
-> > 
-> > 0xf is the last one.
-> 
-> One more question, are the "internal/external feature codes" referring to
-> internality/externality of the chips (i.e. "are they QC-lab-only engineering
-> samples), or what else does that represent?
+Overlays don't work correctly with fw_devlink. This patch series fixes
+it. This series is now ready for review and merging once Geert and Herve
+give they Tested-by.
 
-Yes, QC-lab-only engineering samples is the right interpretation of
-these feature codes.
+Geert and Herve,
+
+This patch series should hopefully fix both of your use cases [1][2][3].
+Can you please check to make sure the device links created to/from the
+overlay devices are to/from the right ones?
 
 Thanks,
-Elliot
+Saravana
+
+Saravana Kannan (2):
+  Revert "treewide: Fix probing of devices in DT overlays"
+  of: dynamic: Fix overlayed devices not probing because of fw_devlink
+
+ drivers/base/core.c       | 76 ++++++++++++++++++++++++++++++++++-----
+ drivers/bus/imx-weim.c    |  6 ----
+ drivers/i2c/i2c-core-of.c |  5 ---
+ drivers/of/dynamic.c      |  1 -
+ drivers/of/overlay.c      | 15 ++++++++
+ drivers/of/platform.c     |  5 ---
+ drivers/spi/spi.c         |  5 ---
+ include/linux/fwnode.h    |  1 +
+ 8 files changed, 83 insertions(+), 31 deletions(-)
+
+-- 
+2.44.0.683.g7961c838ac-goog
 
 
