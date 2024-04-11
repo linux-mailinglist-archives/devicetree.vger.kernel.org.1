@@ -1,194 +1,199 @@
-Return-Path: <devicetree+bounces-58415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48A2B8A1D77
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 20:12:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB5348A1EDE
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 20:46:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F20C42857D9
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 18:12:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03AAAB2AD92
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 18:16:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC0561DFFB3;
-	Thu, 11 Apr 2024 17:08:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FCD117C7F;
+	Thu, 11 Apr 2024 17:24:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="TimF1Lo1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q1nuJfjU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2057.outbound.protection.outlook.com [40.107.21.57])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 348F41DFFA9;
-	Thu, 11 Apr 2024 17:08:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.57
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712855310; cv=fail; b=GqJRoF6Tc7/04E176oRw0P23FBZDRr3qpisazgibLb7BDXAkEMQkvM5yX9hPDe+AQ37Kg7kwFGNDEIxWAlCWLqU8jR9vJwkePNlCHik4XycLBcs3vEceK+u+vhXy4rOIB67iEW4Vq/QA3SMcMVG40SJgFrzQeH5/CXuTqF6Fnos=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712855310; c=relaxed/simple;
-	bh=usGAMv2iGqCBXUMAKkOIkuRGk5as4/0Zz7sWmBECzTw=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=LA5vV2PO+1WWh8ru94/RkN8R5oHef+8IqX0ECQxN4LJuXWcpuRgSrH3BBCEgRONvK7Lroj4Pg8MRd9oZdGZY2QFBkYsZA6VhogTVIMOR8Pp1u5JV7x+RiX3jzP0UAaATUT/L2tkABKjym/JjNvAHeUf+VsyPlegDOo7SPngOFP8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=TimF1Lo1; arc=fail smtp.client-ip=40.107.21.57
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VKJL2PqFpavbrc9vAl38G3bwFWA7c2/2xXRiGQLOkzxKLwwyNHVGo6sTppmzvrNNd1b3c8zMX1RyXr3ls6nZEfqEBa+Ypb3PC0HNNBTKBlhQWP+sJMlCYMcXMRJKIuRPNo4Eq+9fzlvESd6x1yVpIwwyfN0UvboMNn3pKnBLvGhlSYV+b8Gpgd4oNkwdEONtx8bNXHTgxJSuFbAlfdkKOcYgfTtDbV8Z8vKXAB+AOFYXuRY45YKbJY4/oEAUmw7h1vhKLLOVhz+P9Tb9DJ5pzTEYmhEHC0LYhxpj3votehIxqXxvgjNjT04/r8FN98sDQSJAmEOjR3Id+65jVpC8Ew==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+1uQ5MekJYcNGzwltr4NIu+JKx+tCC5Ht7ocupxms3A=;
- b=UhnFGbUN73JooE0b75nts7xFWtlExxHkHiJRogNpffx5PTOih9n3tY66FpkM7yOLQ/Ne4vR7qXJjThAFQ/Js/NURh8yG1O+uJFWAPyMSJjmHGbhRfkzSG3PIy/iDuBgzQkIY4Bp9ZlSocGNKzZzLXLpI7N3ciyoHSu8r1rzdwl+lusj0GSEKkKiZ7FHB+kCWLks3ftC/NVYDuA/jxzk3rtAgFEr/jhWk1tX7Y2sRDToLjPSWag9wDUAwpFMEjXVJErYPLLdJXvt+TnAnaHjKRny8xJ9DC9RYHX/2svQM23Ywx4Tt2jCZyVmrL0raNCbO6LHvfgHbKrt10xOc6HJglQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+1uQ5MekJYcNGzwltr4NIu+JKx+tCC5Ht7ocupxms3A=;
- b=TimF1Lo1/xHO4mzH75aVv5PBRROHzmxJM/Zg30NHjpQrcGb+qtI/Qqi+RWGnxCecRR1vwAWpzDWPxM87ofoPlJHBevUFvfBSG7/6HhV84gBzoLMpvhnkl+IM4QN7pZ44DeQ1Fe7iFlYLG/1ZW2Eq2dMyiiqdTcXuNMHLT3OY0Gg=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
- by DB9PR04MB8394.eurprd04.prod.outlook.com (2603:10a6:10:244::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Thu, 11 Apr
- 2024 17:08:26 +0000
-Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
- ([fe80::1d91:1c96:1413:3ab0]) by DB9PR04MB9626.eurprd04.prod.outlook.com
- ([fe80::1d91:1c96:1413:3ab0%6]) with mapi id 15.20.7409.042; Thu, 11 Apr 2024
- 17:08:26 +0000
-From: Frank Li <Frank.Li@nxp.com>
-Date: Thu, 11 Apr 2024 13:07:48 -0400
-Subject: [PATCH 4/4] arm: dts: nxp: imx6qdl: fix esai clock warning when do
- dtb_check
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240411-esai_arm_dts_warning-v1-4-5e1a7c7be9b9@nxp.com>
-References: <20240411-esai_arm_dts_warning-v1-0-5e1a7c7be9b9@nxp.com>
-In-Reply-To: <20240411-esai_arm_dts_warning-v1-0-5e1a7c7be9b9@nxp.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shengjiu Wang <shengjiu.wang@nxp.com>, 
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, Frank Li <Frank.Li@nxp.com>
-X-Mailer: b4 0.13-dev-e586c
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1712855283; l=1947;
- i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
- bh=usGAMv2iGqCBXUMAKkOIkuRGk5as4/0Zz7sWmBECzTw=;
- b=f7HlyOkpkewFjE0y7U+edfGWgooRGrKwUenhmOOvMseK0jXKPr1vBVNJokeYjXFTVOQ2aCd1j
- 8beSEeySOvmDd9lcG2wvRF1qynUzR36B82ut2Zb7yFaLIsQQTkazuF4
-X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
- pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
-X-ClientProxiedBy: BYAPR11CA0105.namprd11.prod.outlook.com
- (2603:10b6:a03:f4::46) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A05117C72;
+	Thu, 11 Apr 2024 17:24:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712856283; cv=none; b=X1RbNEz1CVWh+g4fqowYuIj9dvaKr7YHOdFs0Aj4EB84NSdDWeGNzIrIqClFDECVvkMxp6+o+DyXVOa5MSoTbSPgy4pV3F6hxXUR48P76zswWVQvCyRYG9uq6b8iC0AAih7Er1vCyK3iQPmjCJmw5usEorZRzOZ+ZQbWmHckHvw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712856283; c=relaxed/simple;
+	bh=3CrqLFN0sU4j3EisFD3rui+nSRvGpntYJwF4YCA+1DQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uOdTqzDRPAnrPgteEJpbTxM7ajCyWA+dLYMVNNMLEescvrpIyMLKk6DODHChZjFAq9vA2ptjwA5ue3QMXo+iqwhkrusaktcLYSyYfxOf05Pw9avYR4WvrT9+bpfNCn8B6U8BtkqMdCzvF+bcbb8PrClhyQQl/p+rc9OPLEyWAH8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q1nuJfjU; arc=none smtp.client-ip=209.85.219.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-dcc7cdb3a98so42165276.2;
+        Thu, 11 Apr 2024 10:24:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712856280; x=1713461080; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3aU+VDcnxdJAiLiKhNqs0MWODsXShfL8imzNJx8uWYI=;
+        b=Q1nuJfjU2wEw/pqUw2jvSlMLG9/zGKRXlrgY3Kgoljreh5M9Pc+oMFIKc2lKu1pkHc
+         wOF7elvzTBvyYoH+w77ZnxTPJf0pguHQYI4ewxGyzICS2pBQGZ9kEXCGoQaPOv4G2eAH
+         3jqgYl22gG9uvaP8j/4O4lBBCJJ/jGakk2ghnxGXlDZauQMRGCU0/Zk2zZK/OgVbTmQ5
+         VfAdLsN+61c+COS28VmX8n18I2KRCg/tQfl2gS1J/jqZfGVf0IpklwaFFrLUtpOwiX5i
+         At+sxaes0ek3zgzBZV+T6AMDu8EJzDhdmLoOxGLKpkx2BusDDl6wMUErHUHvmJro7FyL
+         OrSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712856280; x=1713461080;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3aU+VDcnxdJAiLiKhNqs0MWODsXShfL8imzNJx8uWYI=;
+        b=t+jP1DZaHIAnNIBjmyi0NfkXDuLOyIK6/Qj1YWdc98AuSCUQ+o9k9S8ioe8rNYBG4R
+         1R5JhEX6PC+JE1MH/9M4wpvgOeo3ggEayz5ZdIilQDn5Yz9D/LsqvhOe94Y10DqRHdhG
+         Wv64YtCRGmbV02ow09UnOsXPfRLFJ81+4EN/wAZs5d+JaY1h5H1mGiharTLdRPgbcyxU
+         JZ0TOYWh+y++ZDe6LbCO5FObH8f8YpN9/GL9rUiqJMR8aBJXRxD03MUY1PFOizLU5vHD
+         NZjBF3SADZBc7PlG2f0cdsIm0oFvxvmiUPTCvP7/g28IEJq7kfUovuN4zOByNUgBMywg
+         8Img==
+X-Forwarded-Encrypted: i=1; AJvYcCVQubd1zrD3ePdXFy3E3osJK2hASq35EqOCBvAuHbUHpN4LVts2hVf31MCGtgFLlPAY9YgyweN2GAC5xxMjsIwgZlHDPcrz8cpRpbADTNqPW5EmBEcapk6JI7FSf9U7EGM4vs/KMJz77Q==
+X-Gm-Message-State: AOJu0Yz0hZxK3H/agGxCuGM8MwIW+N2MzC+rL1MZe5VTRPfXXm4FESKa
+	NYjWHCdlw704GTMmuE/hG0M7k+1TCJD7r+6s4WUEm7STIOG+da5f
+X-Google-Smtp-Source: AGHT+IHwtXI6RPcAx6JYyAqjw9V9RWwxVxik8CVr64O0+hIJzbXQ+BRGV5uoANxfOjFaDBQ5uvvq2Q==
+X-Received: by 2002:a05:6902:150b:b0:dc6:4d0c:e9de with SMTP id q11-20020a056902150b00b00dc64d0ce9demr210219ybu.0.1712856280449;
+        Thu, 11 Apr 2024 10:24:40 -0700 (PDT)
+Received: from [192.168.7.169] (c-98-197-58-203.hsd1.tx.comcast.net. [98.197.58.203])
+        by smtp.gmail.com with ESMTPSA id j127-20020a255585000000b00dcc7b9115fcsm383512ybb.3.2024.04.11.10.24.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Apr 2024 10:24:39 -0700 (PDT)
+Message-ID: <144398ae-42ae-b816-62d6-a90738544ca4@gmail.com>
+Date: Thu, 11 Apr 2024 12:24:38 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|DB9PR04MB8394:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6fcee29e-2c5e-46f4-65ba-08dc5a4a0032
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	QVa1/HzwqDryhyBm57egs370M5ZE1HskOaqCB2UGGn0D4FXfv9shtmSNZJpbzU8pFGf7owWlAZwSXHnrHVyGFGWGPTzm/+iA8QVvgMLoDnIgMFPlAE3wkNvvTYM1bKiHn46WjtT1Fuy7s1JCSmgu8iwxznoCmayj71LUESnXkc8n9MZzAUz4xV6edxk2dpg630yIgV0WMSboPGMXtSI4NfcdBuT3pdl/JY69R/o4L0S01eNN0FYm8toV/VdplwbxMMjwf1oKSaJFK7dJOW1uXtmIzaRyGcrT3+OmcptjlqNa1eQmyJp1eT3CtxAX3RuV+oLtu9nQtVf932Yf29a5AZvPOTZn1S95llpoKZUDC9NRsWjfzAVPm/XmKjwgQGcfnmMUwZvcAi25TUUkiukHgVZUJutBm/S+vmwFsTR02hCUmH8zinjRh6fVzhtWny9HlXNAfVXq4Cs/4wH0rkNINZtdlE5QYiqVbpcFFYMYOEL64WWwAoi1cjHe+ZCf4vEerpbJJgzTNY+chKBS4hrWkyve6+Lb2Qv6b979EabakH/azwKSJEU0FTp4FtIFYc1zewuBYS3+kekRHSl+eayDnQZpoRJz0x4wBs25vWIs8JjFg5+jZ3DcXLJcBjUBxfqHO+O0kDeLeZ0tfRbfdnH7xnoSNAiGy6nTtM/GQPdOQ4OEPnRqiAeNro14h4KXSCBX
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(376005)(1800799015)(52116005)(7416005)(38350700005)(921011);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?SjhFUmhoTlRpc0NBZjBzMjBnSEtqWkl4TzVZaEh6ZGwrdjdxbEM2eHQxTUo2?=
- =?utf-8?B?bWkyK1NaQUtJRUk3aHZmS2ovV2wxWlhiS3FIUk9xQzZDZTN3TmhGQjJRWHlU?=
- =?utf-8?B?Yk9jVFovRno1TDBBTlFtUkJXY0ViZ1FlSWdnWTJrcUhrbThleCtFZEJWWml5?=
- =?utf-8?B?ZjE2T280Zk5CZDRLL0tvS1piYTIzWW1XSG9taWdZY3I0aklpQjdNUFNNeE1F?=
- =?utf-8?B?UitITm9ObVl2UXFhS2xiMDdzb2lQSVYwOU5DVmhybjFsZHVDa2plR1pBc1RN?=
- =?utf-8?B?S3dQMEc1TDRiNndiclVMYzkxN3pzSkpjblp0UXhtNm5pS0dZOGM3RUxPVlRm?=
- =?utf-8?B?MUVsTk0yMzZiS1cxM3RUUC9IdzFKWHJKMzYwUWFUTGFhRHdIYTZUeDhQVEZm?=
- =?utf-8?B?K3RDS1FIaHlBdldIbEVWOEl0SGFiRzAzZ2VPZWt5bGVFcU9Od0wvWlhDNCtk?=
- =?utf-8?B?ZGl4WXJnc2ZQK1BnSUdIYWZrR1RULzUyYmhKV1M2RXE2elNLNUd5eVhZOHVj?=
- =?utf-8?B?UVp3TVhGSlFyendnRHVmcGRhdnBraHZyWWpvYmYveU1DVVI0MWEyTzlWdGw2?=
- =?utf-8?B?UENhbC9uSUZLTzlOSmNqZ2dsRitGLzVmeGk0U1BiT01xZjV3VHZjTG5ITlM3?=
- =?utf-8?B?S04xT1NUUUQzVzduZHBzakg0dGVRNnp2ZVpVQVRCTmpIbG10eTc5R2VXUXpE?=
- =?utf-8?B?VUNhMzZibEJ3T3RtdXRuUnhWc2Z6SWZPelJ6enpLY2ljTnNNV0lrQTVOZjQz?=
- =?utf-8?B?US9OSXdTNitpVmVRanFBUnVucDh4U1JxVkQ3N2pYanJzNXFkc3p5KzN0TjRJ?=
- =?utf-8?B?Q0VQb2pWWEptWXp0MHJBZHNHOGJGb0xxT3MrQ0ZhYzc5MGU2c0MyaC9FNnI1?=
- =?utf-8?B?V1FYU2t6TTJ3R0VaREZTSjFkMVJoT3dBRG9xLzRQcU5NZU15cXIyaUZKWmU0?=
- =?utf-8?B?UmwyaTVQeWkrWDIrNGRNek9UbStFWEVKU2JBUzV4eWRlRGZ3R3lEblVDVkV0?=
- =?utf-8?B?V3hTZEF4Z0xReWJyeDJwRHJrem5VMEFvencrWWpxSm9rNjZ2dmdZcmdEUHpR?=
- =?utf-8?B?OXV4QU5CM0NCRXhHaWxXaTBVOUV0OFdzZUJqUEQxWWMyK3Axb1ltSWlUcHIx?=
- =?utf-8?B?UnplVzlIMnBIbTBDWVJVTEhyR0lZZGRVZ01EM3pZNCtiS3puV1VKZGQwdmFQ?=
- =?utf-8?B?cFZDNXJGN3U3aVoyN2MwdFFzTUFxT0dnU25XK1NMZkJQZFcxcXlQUHZVd0Np?=
- =?utf-8?B?QUswZEZtTG5nbHVkaGQ4eU84K0NXSURsZTRLaW1MRDREK0lZdGpPeGlrR0p0?=
- =?utf-8?B?VHhMRFFuQ0pxdTYyTUFGT0ZxcmpvRXcvQ3RISkRGYWRWUkNKeVlpOVFvOUNU?=
- =?utf-8?B?WkdDT0JqOVQ5bU85MXpiZXJZcFBBdFE4K3NRMGlSQmNhMUZ5SCszMUEreEJj?=
- =?utf-8?B?cm5TUEJ3S3N2R2tpTThFSWVWUFZGdFRxdUVSRTRPNnY5MHUrWGpuMmhhelRo?=
- =?utf-8?B?OERKU0I3VGtkZ0FMUjlZSWExWW9QTWR2S1ZZTWRONU8yNGQ1ZlA1NDB1Si9Z?=
- =?utf-8?B?TTBHVW5QbXpBZkFuS0FJalV2WDEzZWIvcmhJL1dJWGkraXNSdnEyL0pWYm5C?=
- =?utf-8?B?aXUvRGZDRnFqaUNtYzIzYWJCc3VFb29WKzBkZUl5Q2gyaHNCQ2lNekxkK1BH?=
- =?utf-8?B?YUc4V2MzU2FLUnIwUkVNNGRDZ0FQNXZ0L0Y1MXNRRTFxNUVGZHRvZENiS25o?=
- =?utf-8?B?SFlJeWN4dzJCSjVFTFlHeVhadDhvRGJUMWxjdDAwTWNuZlJkbnBRU0oyWk5k?=
- =?utf-8?B?cnl1ZHEwN2JnRUdYL0xDd0RXNFJHT1JsUzBlNCtaUDIvL1NKT0k3RHdpNldK?=
- =?utf-8?B?aU1tZGYyU3dtSi9GRW1jQklSelZ1cnIrU1VpZ3FCTjhJNmlWZWtDYjZOcVdY?=
- =?utf-8?B?Q2RCVkVOSmM4K09pUElwekNmU25jdjF3YnhGNlVIRzREZ0Y0N2xEN2ZPTlFX?=
- =?utf-8?B?ZG9HQ3ZoK3pOQlRlS1BHdTdwMUpTUVRyZXRHSDB3YWord2FlbmVZRWs4cmJv?=
- =?utf-8?B?T3dlbDJlekk1UVRnTmRYb2wyNERQLzZoRUd0TlRYYXk4emowKzV4UVRZZTFq?=
- =?utf-8?Q?cAcbqNOVZCCwmTbH41cA/p9X4?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6fcee29e-2c5e-46f4-65ba-08dc5a4a0032
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Apr 2024 17:08:25.9558
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3fTZEFODKPv/JTpSvzZjfDtLZCFSucT9gRUjvMVCTEYJbGmFxLJAZZcrs7k2ka82Fu8b9r6t8ANQYun4cT3oaw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8394
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v2 5/7] dt-bindings: phy: qcom,ipq8074-qmp-pcie: add
+ ipq9574 gen3x2 PHY
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240409190833.3485824-1-mr.nuke.me@gmail.com>
+ <20240409190833.3485824-6-mr.nuke.me@gmail.com>
+ <019180df-67b9-438b-a10d-f92fd4ddec03@linaro.org>
+ <33461c22-21a3-023b-4750-c69304471ea8@gmail.com>
+ <2379377e-ca1c-453f-bb74-186ab738ce39@linaro.org>
+ <a23adb9c-6377-467b-ac3c-0ec51fc97253@linaro.org>
+ <d827ec3c-84fd-9352-b321-79bdc4bdcd40@gmail.com>
+ <27b4b37b-c736-4d6b-98f0-0856e09ec5b6@linaro.org>
+From: mr.nuke.me@gmail.com
+In-Reply-To: <27b4b37b-c736-4d6b-98f0-0856e09ec5b6@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Remove unused clock-names 'mem'.  Driver (sound/soc/fsl/fsl_esai.c.) never
-use clock name 'mem'.
 
-arch/arm/boot/dts/nxp/imx/imx6q-sabreauto.dtb: esai@2024000: clocks: [[2, 208], [2, 209], [2, 118], [2, 208], [2, 156]] is too long
-	from schema $id: http://devicetree.org/schemas/sound/fsl,esai.yaml#
-arch/arm/boot/dts/nxp/imx/imx6q-sabreauto.dtb: esai@2024000: clock-names:1: 'extal' was expected
-	from schema $id: http://devicetree.org/schemas/sound/fsl,esai.yaml#
-arch/arm/boot/dts/nxp/imx/imx6q-sabreauto.dtb: esai@2024000: clock-names:2: 'fsys' was expected
-	from schema $id: http://devicetree.org/schemas/sound/fsl,esai.yaml#
-arch/arm/boot/dts/nxp/imx/imx6q-sabreauto.dtb: esai@2024000: clock-names:3: 'spba' was expected
-	from schema $id: http://devicetree.org/schemas/sound/fsl,esai.yaml#
-arch/arm/boot/dts/nxp/imx/imx6q-sabreauto.dtb: esai@2024000: clock-names: ['core', 'mem', 'extal', 'fsys', 'spba'] is too long
-	from schema $id: http://devicetree.org/schemas/sound/fsl,esai.yaml#
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+On 4/10/24 14:36, Krzysztof Kozlowski wrote:
+> On 10/04/2024 18:29, mr.nuke.me@gmail.com wrote:
+>>
+>>
+>> On 4/10/24 02:02, Krzysztof Kozlowski wrote:
+>>> On 10/04/2024 08:59, Krzysztof Kozlowski wrote:
+>>>> On 09/04/2024 22:19, mr.nuke.me@gmail.com wrote:
+>>>>>>
+>>>>>>
+>>>>>>>     
+>>>>>>>       clock-names:
+>>>>>>>         items:
+>>>>>>>           - const: aux
+>>>>>>>           - const: cfg_ahb
+>>>>>>>           - const: pipe
+>>>>>>> +      - const: anoc
+>>>>>>> +      - const: snoc
+>>>>>>
+>>>>>> OK, you did not test it. Neither this, nor DTS. I stop review, please
+>>>>>> test first.
+>>>>>
+>>>>> I ran both `checkpatch.pl` and `make dt_binding_check`. What in this
+>>>>> patch makes you say I "did not test it", and what test or tests did I miss?
+>>>>>
+>>>>
+>>>> ... and no, you did not. If you tested, you would easily see error:
+>>>> 	clock-names: ['aux', 'cfg_ahb', 'pipe'] is too short
+>>>>
+>>>> When you receive comment from reviewer, please investigate thoroughly
+>>>> what could get wrong. Don't answer just to get rid of reviewer. It's
+>>>> fine to make mistakes, but if reviewer points to issue and you
+>>>> immediately respond "no issue", that's waste of my time.
+>>>
+>>> To clarify: "no issue" response is waste of my time. If you responded
+>>> "oh, I see the error, but I don't know how to fix it", it would be ok, I
+>>> can clarify and help in this.
+>>
+>> I apologize if I gave you this impression. I tried to follow the testing
+>> process, it did not turn out as expected. Obviously, I missed something.
+>> I tried to ask what I missed, and in order for that question to make
+>> sense, I need to describe what I tried.
+>>
+>> It turns out what I missed was "make check_dtbs". I only found that out
+>> after an automated email from Rob describing some troubleshooting steps.
+> 
+> No, the dt_binding_check fails. You don't need to go to dtbs_check even,
+> because the binding already has a failure.
+> 
+>>
+>> If I may have a few sentences to rant, I see the dt-schema as a hurdle
+>> to making an otherwise useful change. I am told I can ask for help when
+>> I get stuck, yet I manage to insult the maintainer by aking for help. I
+>> find this very intimidating.
+> 
+> I don't feel insulted but I feel my time is wasted if I tell you to test
+> your binding and you immediately within few minutes respond "I tested",
+> but then:
+> 1. Bot confirms it was not tested,
+> 2. I apply your patch and test it and see the failure.
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi
-index 8431b8a994f4c..d2200c9db25ae 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi
-@@ -397,11 +397,10 @@ esai: esai@2024000 {
- 					reg = <0x02024000 0x4000>;
- 					interrupts = <0 51 IRQ_TYPE_LEVEL_HIGH>;
- 					clocks = <&clks IMX6QDL_CLK_ESAI_IPG>,
--						 <&clks IMX6QDL_CLK_ESAI_MEM>,
- 						 <&clks IMX6QDL_CLK_ESAI_EXTAL>,
- 						 <&clks IMX6QDL_CLK_ESAI_IPG>,
- 						 <&clks IMX6QDL_CLK_SPBA>;
--					clock-names = "core", "mem", "extal", "fsys", "spba";
-+					clock-names = "core", "extal", "fsys", "spba";
- 					dmas = <&sdma 23 21 0>, <&sdma 24 21 0>;
- 					dma-names = "rx", "tx";
- 					status = "disabled";
+Thank you for double checking, and I am sorry this escalated in this 
+manner. I believed you the first time that something is wrong, and I had 
+a hard time figuring out what.
 
--- 
-2.34.1
+I am now able to repro the errors, and the below changes appear to work. 
+Is that sufficient?
+
+    clocks:
+      minItems: 3
+      maxItems: 5
+
+    clock-names:
+      minItems: 3
+      items:
+        - ... (5 clock names here)
+
+For ipq6018/ipq8074:
+
+       properties:
+         clocks:
+           maxItems: 3
+         clock-names:
+           maxItems: 3
+
+For ipq9574:
+
+       properties:
+         clocks:
+           minItems: 5
+         clock-names:
+           minItems: 5
+
 
 
