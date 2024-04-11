@@ -1,177 +1,161 @@
-Return-Path: <devicetree+bounces-58352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 717CA8A1759
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 16:35:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D00D8A1760
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 16:36:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C972281105
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 14:35:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED7E11F26090
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 14:36:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73D868F44;
-	Thu, 11 Apr 2024 14:35:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02023946F;
+	Thu, 11 Apr 2024 14:36:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gp3S904r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nrexifsf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04F211C2E;
-	Thu, 11 Apr 2024 14:35:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD9724A0F;
+	Thu, 11 Apr 2024 14:36:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712846139; cv=none; b=RVuqwaHKGVGgNUBJoV5TYfheL6Xr9xK81E8Ii1NWdFswDxMtDRaXEMD1R5aZtMWEQfT2G+okitv9Smc2AsPef4d2pCxbWn0UzVemYQ8bimBbaNr1zp/twY8TfILmFvbJHiJ0KH46A3L7gf8PGIXlZT5pGRqq/uHghbiCX9KgBxM=
+	t=1712846214; cv=none; b=bRxJcVgUjLQVP1q7H6QCH/lxVkXgb2l9mUYWNNmjWL7BmEkMbkOD4VFY6uRKmjWLjpWvWHOeKdZgzFnhi+TjYedjIFoJ9FGwfY++z+EN6GkTdTDRt4IRNlm/9NoeJa3jwq4hffq+3NzRB80P0MHHZalP9R0cTntDiYuiPf8iXIU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712846139; c=relaxed/simple;
-	bh=y56pggh6v4u8JozsWax5N7kSFtvMWF/NKsPwxfg55Bo=;
+	s=arc-20240116; t=1712846214; c=relaxed/simple;
+	bh=IewoV/etTVhMO123uGpbggCD3+VxEchZ/PN0HJueGTg=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BQb4pQxpL6AS1uLP0bUvO1U8oYXKNOVrnykyi3h6cRl4nqTz0hlBkUQWcSNMthCxkyU6g4IPL7VyozVESDv5i1EWyRzxlEq9FnbmaW1vwwKzgBjuFSy7F7ikinSq+iZdJMESe2BHVPHjRWTXDmpJd4zND/jdWfIBTaKTcgavm5g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gp3S904r; arc=none smtp.client-ip=209.85.128.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-6151d79db7bso90456697b3.1;
-        Thu, 11 Apr 2024 07:35:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712846137; x=1713450937; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=S38Xw7GZvbXl2KyYUbvZmsZk8xa1F0iUzqS2DgFhfso=;
-        b=gp3S904rsGS62h69QmxxVfjmO8lyTkJhMlgdKawrgxlSWpfWAO61m+B46Q3RevDkeo
-         4ja7R6swEEyRcXpr8Plh5ITkdh8dXX9zL5w2VwqDg8UpNUs3tx5ytoTnst5LPmtlnYbq
-         0+6Un16MzTLMZ2r6RK19/ZMVVZN1hfQwc7XO8CGwzeTWSg9gOsUzJIiQIetL1gd582O+
-         Vkne0k1+oll+OpLKUbch4RWsShpfguZW0XTZtRoc5nAoCO12Y/YxxV2NznZA0wZ0WpHE
-         xqurEg+2LEfBx5KjU/fy/MRFrwDv5iepdmA6qdvAaee25Dyy98nImb5bJ6ZWQYV2wItc
-         QQAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712846137; x=1713450937;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=S38Xw7GZvbXl2KyYUbvZmsZk8xa1F0iUzqS2DgFhfso=;
-        b=X6zg2jatAVp3UnUa+JinTeGSR2RP4bDernHqvW+s2IbDUcHP25TQe9d+QqvB2kV1pP
-         zZ9ENvbhC9h8us5qvpMEZSL4WUG8PXozL92zMsEksh3mDAOyTKfnSBaP4IXamm+Z4mNO
-         A5Sqo0ulnOPo/XOaCWdOF3fkQ3cNLvuvW+9ij69vm8bnsR/DCHEcpFx69k5s9k4BFTVx
-         fx3NWfBT2a6WirZH/sJ1TUTRY2KrrnrgyNezsonRqHrAh0VpHJ+xg5DFkIJXmA+s+oTo
-         l6zJVSqrRvt8rQISG7q/C1YWkyaBJ8ta/a1dbgy29T3HAP6jB080CzH/BBZ1O1ybRd+s
-         1yPg==
-X-Forwarded-Encrypted: i=1; AJvYcCVQvrEMWZEZPRoqfUqHvQ8GKCsC/23slZCNri5hSa043bMWf+oDyTf7ITCgmx6RXKXy+FLul1F9YfkncWUG0Toqx0fwSJuPKFCeAnMyg34t485L5pViY2l9jpfGAYtvNzvi6irUSg==
-X-Gm-Message-State: AOJu0Yx+bcMr7LnEjHI0XcgwNfar/am+i6fAgRtDvjMOfpmefqtoNLJh
-	R7q89FoCHREfx/Mekpf4mU2HNWEUSrDQLeN0qS6meCaQX2e74unYLbJyFR7n5uNgXZbjhBwHU9G
-	NQnFyJD5RZHfFXjaJ4JF+oqTFaqU=
-X-Google-Smtp-Source: AGHT+IGWZrzsyPJUo3DLr0SbGCnVytTgEOhJLFnDzSDxwXe4EdkJ3WD6rLMcDII9/iga5WZXIJdZ/lR9EXlYKZdttzA=
-X-Received: by 2002:a81:4907:0:b0:615:4653:1c11 with SMTP id
- w7-20020a814907000000b0061546531c11mr6336072ywa.12.1712846136880; Thu, 11 Apr
- 2024 07:35:36 -0700 (PDT)
+	 To:Cc:Content-Type; b=q71FV+X9c98moum+jrQudh3B2d+8kEsXGtX4zbUEFpNg1ciZ2LO3WYhLrnvGAWO/OfLqjJXVS4hV/955amQgVo5R5meKGyy0m9Bzptp6XKuJCGaEZeMZzKcMBT5/ntd+sfmCKBFpinGmjp1CjHGfLrCu30+jb/2/eKcCep8MxSc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nrexifsf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A8ADC072AA;
+	Thu, 11 Apr 2024 14:36:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712846214;
+	bh=IewoV/etTVhMO123uGpbggCD3+VxEchZ/PN0HJueGTg=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=NrexifsfvYtAd035gY1nxJkw5su2bADiPYW2S1BQNmWDrkN1u2L1RX9Ap1hUw8jp0
+	 gDuHZ4HcMD/BMDML+89BdOdg4bYaGP50Uu9ziE8rnSPnNruoSSA/oKwXB8CPjpBQfs
+	 PyDY6QZcIxuu5lUT/6vvEGiyuI5Cu3aC5gOghLuvqgkeo42zVuhFmLUMhy+cedkh6W
+	 0pSxDNuSgMPb6jIF9eChphXibSls3IeXpLdudgf81PnqF2+LVlcd8eKDKvSPyHxWLq
+	 oRgdWZnemI+V8tAjXLvffM7zHt2fjHy8StlJRpBB4jLjl4D0sC5G2mc6q+cS6sfW/d
+	 g3tYNlxr9WEeg==
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-516d68d7a8bso817362e87.1;
+        Thu, 11 Apr 2024 07:36:54 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVbTRWF8bLZBIcLaEOF1xs7szt9kzOizzM8QUjrG/LEWiKlDvLqeB9gs9TdL0sEOgia21C0MeDo4nbeoTPq3Gudb9OVqVcsVH6GKA1PgvHBFCwyhwx4MKIZVAnwYgXtXh/1MBpc/h5U
+X-Gm-Message-State: AOJu0YwJmeK8qDC8OlFNmRmZoNanDnYE8B3ZN6YKPBd8lXVgW/XkHMkk
+	mXlXYAh+xPMGWX5wHNbsip8gdHFCisxPCaaVu5lM+0z42oQLJ0dx6naWBbvEeX3OHDTNPofSRIR
+	pLV/fxH1+R5/aO280e07tbt6svQ==
+X-Google-Smtp-Source: AGHT+IGz4GuUoIA2mfwiI30l9Lwfa4dJPZoK0Pb/jyu01DJB6UR3gI6Y5I7rlAqNsTMMhxCMCxHsbb8iha4oP99XyuE=
+X-Received: by 2002:a05:6512:490:b0:517:5d67:6db2 with SMTP id
+ v16-20020a056512049000b005175d676db2mr925190lfq.10.1712846212691; Thu, 11 Apr
+ 2024 07:36:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1712732719.git.zhoubinbin@loongson.cn> <38c234d548b4b9c334cda6e7664a803896b31f6f.1712732719.git.zhoubinbin@loongson.cn>
- <c1399191-6c6d-4eb4-b05b-f87a9f2b4152@linaro.org> <CAMpQs4JiLGJ-nBDmj1pe0SCqKeCnz5DrybJAKE8_6up293YNpw@mail.gmail.com>
- <98d12a5e-e291-40f9-8334-3b5f53ed79a8@linaro.org>
-In-Reply-To: <98d12a5e-e291-40f9-8334-3b5f53ed79a8@linaro.org>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Thu, 11 Apr 2024 22:35:25 +0800
-Message-ID: <CAMpQs4KgzOjJe52BAhTb5P4t5ZynkW9AUEzPBkX_1h5XHuk5Ew@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: Add Loongson PWM controller
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Juxin Gao <gaojuxin@loongson.cn>, Huacai Chen <chenhuacai@kernel.org>, 
-	loongson-kernel@lists.loongnix.cn, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
+References: <20240409082324.9928-1-jonathanh@nvidia.com> <ea3be8f7-0ee6-4940-828d-2fc15b9239dc@kernel.org>
+ <b726b5a0-45f4-457c-afad-6235c1adb640@nvidia.com>
+In-Reply-To: <b726b5a0-45f4-457c-afad-6235c1adb640@nvidia.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 11 Apr 2024 09:36:39 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLf9Obb8wTeriRVopT=jxDoV0i_RvdJibsUsgJt4jOAXQ@mail.gmail.com>
+Message-ID: <CAL_JsqLf9Obb8wTeriRVopT=jxDoV0i_RvdJibsUsgJt4jOAXQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: host1x: Add missing 'dma-coherent'
+To: Jon Hunter <jonathanh@nvidia.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
+	Mikko Perttunen <mperttunen@nvidia.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-tegra@vger.kernel.org, 
+	devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Apr 11, 2024 at 5:07=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Thu, Apr 11, 2024 at 5:09=E2=80=AFAM Jon Hunter <jonathanh@nvidia.com> w=
+rote:
 >
-> On 11/04/2024 13:01, Binbin Zhou wrote:
-> > On Thu, Apr 11, 2024 at 4:26=E2=80=AFPM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 11/04/2024 11:16, Binbin Zhou wrote:
-> >>> Add Loongson PWM controller binding with DT schema format using
-> >>> json-schema.
-> >>>
-> >>> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> >>
-> >>
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    oneOf:
-> >>> +      - const: loongson,ls7a-pwm
-> >>> +      - items:
-> >>> +          - enum:
-> >>> +              - loongson,ls2k0500-pwm
-> >>> +              - loongson,ls2k1000-pwm
-> >>> +              - loongson,ls2k2000-pwm
-> >>> +          - const: loongson,ls7a-pwm
-> >>> +
-> >>> +  reg:
-> >>> +    maxItems: 1
-> >>> +
-> >>> +  interrupts:
-> >>> +    maxItems: 1
-> >>> +
-> >>> +  clocks:
-> >>> +    maxItems: 1
-> >>> +
-> >>> +  '#pwm-cells':
-> >>> +    description:
-> >>> +      The first cell must have a value of 0, which specifies the PWM=
- output signal;
-> >>
-> >> If you have always the same value in PWM phandle, why encoding it in t=
-he
-> >> phandle in the first place? What's the benefit of passing 0?
+>
+> On 10/04/2024 07:18, Krzysztof Kozlowski wrote:
+> > On 09/04/2024 10:23, Jon Hunter wrote:
+> >> The dtbs_check reports that the 'dma-coherent' property is "unevaluate=
+d
+> >> and invalid" for the host1x@13e00000 device on Tegra194 and Tegra234
+> >> platforms. Fix this by updating the dt-binding document for host1x to
+> >> add the 'dma-coherent' property for these devices.
 > >
-> > Hi Krzysztof:
+> > That's not really proper reason. What if DTS is wrong? The reason could
+> > be if device is actually DMA coherent...
+>
+> In this case the DTS is correct. I guess I should have been more
+> explicit about that.
+>
+> >> Fixes: 361238cdc525 ("arm64: tegra: Mark host1x as dma-coherent on Teg=
+ra194/234")
+> >> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> >> ---
+> >>   .../bindings/display/tegra/nvidia,tegra20-host1x.yaml | 11 +++++++++=
+++
+> >>   1 file changed, 11 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,te=
+gra20-host1x.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,=
+tegra20-host1x.yaml
+> >> index 94c5242c03b2..3563378a01af 100644
+> >> --- a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-h=
+ost1x.yaml
+> >> +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-h=
+ost1x.yaml
+> >> @@ -177,6 +177,15 @@ allOf:
+> >>
+> >>         required:
+> >>           - reg-names
+> >> +  - if:
+> >> +      properties:
+> >> +        compatible:
+> >> +          contains:
+> >> +            enum:
+> >> +              - nvidia,tegra194-host1x
+> >> +    then:
+> >> +      properties:
+> >> +        dma-coherent: true
 > >
-> > My thoughts are:
-> > First of all, our pwm has only one output signal, so it can only be 0.
-> > Also, as you know from the pwm xlate function, the first cell is the
-> > pwm index, so I fixed it to be 0 here.
-> >
-> > The xlate function:
-> > https://elixir.bootlin.com/linux/v6.8/source/drivers/pwm/core.c#L106
+> > Do not define properties in allOf. Put it in top-level. If not all
+> > devices are DMA coherent, you can disallow it for certain variants (:fa=
+lse).
 >
-> You refer for xlate for PWM with three cells. You do not have three
-> cells, as you have only on signal, so why insisting on using other
-> xlate? Do you do the same for clocks? Or resets?
 >
-> I don't think you use appropriate argument in this discussion. We talk
-> about hardware and your argument "I don't want to use my own xlate in
-> the driver" is about driver.
+> So for host1x we currently have the following devices supported ...
 >
-Hi Krzysztof:
-
-Thanks for your comments.
-
-Emm... Indeed, I used to think about it from the driver's perspective.
-From the binding perspective, two cells really should be more appropriate.
-I try to make the following changes in the next version patchset:
-
-  '#pwm-cells':
-    description:
-      The first cell is the period in nanoseconds;
-      The second cell flag supported by this binding is PWM_POLARITY_INVERT=
-ED.
-    const: 2
-
-Accordingly, the custom xlate function will be used in the driver.
-
-Thanks.
-Binbin
+> properties:
+>    compatible:
+>      oneOf:
+>        - enum:
+>            - nvidia,tegra20-host1x
+>            - nvidia,tegra30-host1x
+>            - nvidia,tegra114-host1x
+>            - nvidia,tegra124-host1x
+>            - nvidia,tegra210-host1x
+>            - nvidia,tegra186-host1x
+>            - nvidia,tegra194-host1x
+>            - nvidia,tegra234-host1x
 >
-> Best regards,
-> Krzysztof
+>        - items:
+>            - const: nvidia,tegra132-host1x
+>            - const: nvidia,tegra124-host1x
 >
+>
+> Now only the Tegra194 and Tegra234 are coherent (which are the latest
+> devices). So rather than add this to the top and then filter out all
+> those that are not supported, I opted for the above because there is
+> only 2 devices that need this. Admittedly, as much as I like the yaml
+> bindings, for things like this, it is not really clear which is the best
+> way to handle, so appreciate the guidance.
+
+I would say how you have it is fine, but that would only be for common
+boolean properties with no possible constraints. Having that exception
+would make the preferences less clear I think.
+
+Rob
 
