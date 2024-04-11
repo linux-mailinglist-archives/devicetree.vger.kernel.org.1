@@ -1,40 +1,75 @@
-Return-Path: <devicetree+bounces-58258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EB518A127E
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 13:05:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A981B8A1280
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 13:07:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5207B20E63
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 11:05:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3457F1F211DD
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 11:07:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FA6A1474BC;
-	Thu, 11 Apr 2024 11:05:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15CA21474BE;
+	Thu, 11 Apr 2024 11:07:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YZjscJwF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED1901448EF;
-	Thu, 11 Apr 2024 11:05:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34CDF13BACD
+	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 11:07:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712833540; cv=none; b=cDggxUVestaiaGTJuMDE6RDQy45txyXVDefBY5TYgIZqg7O/45GKJi+t40CApsaPtfN0HZAYp42pKoTmNvH8uFpZEWtZ8SvxrzwSnmwDyiH1UuHN4zTlN/Sx7VJO72XSzwZMiHlIfVrStuU97OFjLsLCYGHspemgF+MUQr4wB2o=
+	t=1712833635; cv=none; b=iSapWfWhXnoy4tEQ71xIBKZJ7XF8XqQvkUj69gG58iTPOhZ/7AL6Jnwpn+d+hx6LO1NkMcofKpvZZaAewOP4xN2dBUV9uBXcEkGKCuf63vEIG9wUOpFn65h20AVSwwRyjVIgrrK85dt53AVYo18aKOqFSxfR3G1WDrAyvvBExhs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712833540; c=relaxed/simple;
-	bh=YEJL3ghCsfMB8ZAFRjYsc97OCY/S6Wd4Nn8Odn32JnA=;
+	s=arc-20240116; t=1712833635; c=relaxed/simple;
+	bh=fLit8VjED7zE79F2sopStkIe4xL2XjF5KSYypHS2ERM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SZV2FH17FkbuYntPmhXzPKKaWmx90k6+WljZbS92ueH7WRaOWO8ejrEifotFMWcqQt+v/3fAW9Cacujvj/wnbBrWTafp3B82S6hE7WS/3NOKTVUYsOYSWdxM8bHTbMFOpO+ks3zvEZQLjaAZe0vfI1AnZajutJhxhIrTeo6JaJA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AA3E2113E;
-	Thu, 11 Apr 2024 04:06:05 -0700 (PDT)
-Received: from [10.57.53.156] (unknown [10.57.53.156])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BBFEC3F64C;
-	Thu, 11 Apr 2024 04:05:33 -0700 (PDT)
-Message-ID: <dc9ab047-79cb-42a8-ad75-bc0f306517d5@arm.com>
-Date: Thu, 11 Apr 2024 12:05:31 +0100
+	 In-Reply-To:Content-Type; b=TMb2wJvhC8jvY5N1W+MwjyMmAZdCptDcSrtqt+Lit1em/y83EiEky1k+x98RGGwdZrrEosWhfS48i58EeNx8aOiuPxQVyODNMJkufEGuGsobigqBdymEx2e5nb8B3NpwEVfn5RsWrOEAhyi2l1G9tfFj4z2yrgFklKafG4PtAhY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YZjscJwF; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-346b96f1483so282382f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 04:07:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712833631; x=1713438431; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=5GkNWGxakmJKXBqFXolPskgW0D6/XXw8rh7tWUsTVyk=;
+        b=YZjscJwF5Qm81HAnAabjtqxk17sQPL81qotaWO+RG78Oi/sVZwL7pTiqJr77mqWKi1
+         45E+ELJjn+eSa0wCpyWM0HUd0olmiWPd/+v/NcaM3sWnha/uZjhqOMDzcT8XMORWalJA
+         mU55zaMU3O02XlwzdvJxsjOgMQfdkuGgkmyIPVL9xiBiosT2Rz8SYi8dR5Q4uxtxaXQ7
+         d+UJaqMvBb5bE30o1TYN0RcSftawjzrtq2/VmTzdsELT+0FBwbDwCzg5eXVPgCVNEqDK
+         N7Y74ei1DE+zkn+SvML6dLVERisjKLh+X4RQ8NDrdSCM3WLNbq2Nf0N6dPKK4/rN7wfL
+         7F9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712833631; x=1713438431;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5GkNWGxakmJKXBqFXolPskgW0D6/XXw8rh7tWUsTVyk=;
+        b=nAE10wg5PYOd6OUaWfUONE1iRJz7Kc6gUBqujxBi5hAiiJPSVtsqSH9NipHCSuuViy
+         YU4Y7sk8QLAhpeVGUvVGURErRhLGpbQjbYcQqMosIWTZftGsMoSH7yrs60i3Vxoy/0iA
+         Wc80P4xTT4qCYJvJLfYt2gmo/qqbh0oOKU3mkh3zbXkQSPh3FRQQRwegZn2ht4kU25eG
+         j2HmgoyiMbaxmXhNO8ahMGM+W7+8sIcUm5RsOwvnD8IP+2vJaQ3o0m5jM+OCyEqdUwRK
+         eQxZVF0S4tngP1II1yfAohaTEUTuRg9MD3o4uboQ4fEIDnYEwLlFXhcwvyE74aJWHVDy
+         md2g==
+X-Forwarded-Encrypted: i=1; AJvYcCWRwcp+gL7n8AAMfdl5g7hFutct81cHWm+nTe8N/DLxOn+pSqvGdLLLHuyDw3Lqk+xymYgsaa8ncEHrp3Aselnpaf6BMjpYd+DcpA==
+X-Gm-Message-State: AOJu0Ywq+bokFF+eF1VyroBHIuc2FfFJ50bDJdBgx2+Gn3R9BvvYdusq
+	w8xwsf1QtFJE9ODrMVcha3SlRRjxfpOgo3wHuj3tOR1tofyrc+ughrH8k04mJpI=
+X-Google-Smtp-Source: AGHT+IFi3hjMCBbMTtRxhlllfe8R3Fkj+JS8g2H80ShThs3gsytJR5CfKh/9xqbPBG0TvlGWGBjr0g==
+X-Received: by 2002:a5d:6542:0:b0:343:d23a:c977 with SMTP id z2-20020a5d6542000000b00343d23ac977mr1948319wrv.1.1712833631552;
+        Thu, 11 Apr 2024 04:07:11 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id q4-20020adff504000000b0034635bd6ba5sm1506039wro.92.2024.04.11.04.07.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Apr 2024 04:07:11 -0700 (PDT)
+Message-ID: <98d12a5e-e291-40f9-8334-3b5f53ed79a8@linaro.org>
+Date: Thu, 11 Apr 2024 13:07:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -42,799 +77,128 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/6] drivers/perf: Add SiFive Composable Cache PMU
- driver
-Content-Language: en-GB
-To: Samuel Holland <samuel.holland@sifive.com>, Will Deacon
- <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Eric Lin <eric.lin@sifive.com>, Conor Dooley <conor@kernel.org>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Paul Walmsley <paul.walmsley@sifive.com>,
- linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: Add Loongson PWM controller
+To: Binbin Zhou <zhoubb.aaron@gmail.com>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen
+ <chenhuacai@loongson.cn>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+ <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- linux-arm-kernel@lists.infradead.org
-References: <20240216000837.1868917-1-samuel.holland@sifive.com>
- <20240216000837.1868917-3-samuel.holland@sifive.com>
-From: Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20240216000837.1868917-3-samuel.holland@sifive.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+ Conor Dooley <conor+dt@kernel.org>, Juxin Gao <gaojuxin@loongson.cn>,
+ Huacai Chen <chenhuacai@kernel.org>, loongson-kernel@lists.loongnix.cn,
+ linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+ Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
+References: <cover.1712732719.git.zhoubinbin@loongson.cn>
+ <38c234d548b4b9c334cda6e7664a803896b31f6f.1712732719.git.zhoubinbin@loongson.cn>
+ <c1399191-6c6d-4eb4-b05b-f87a9f2b4152@linaro.org>
+ <CAMpQs4JiLGJ-nBDmj1pe0SCqKeCnz5DrybJAKE8_6up293YNpw@mail.gmail.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <CAMpQs4JiLGJ-nBDmj1pe0SCqKeCnz5DrybJAKE8_6up293YNpw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 2024-02-16 12:08 am, Samuel Holland wrote:
-> From: Eric Lin <eric.lin@sifive.com>
+On 11/04/2024 13:01, Binbin Zhou wrote:
+> On Thu, Apr 11, 2024 at 4:26 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 11/04/2024 11:16, Binbin Zhou wrote:
+>>> Add Loongson PWM controller binding with DT schema format using
+>>> json-schema.
+>>>
+>>> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+>>
+>>
+>>> +properties:
+>>> +  compatible:
+>>> +    oneOf:
+>>> +      - const: loongson,ls7a-pwm
+>>> +      - items:
+>>> +          - enum:
+>>> +              - loongson,ls2k0500-pwm
+>>> +              - loongson,ls2k1000-pwm
+>>> +              - loongson,ls2k2000-pwm
+>>> +          - const: loongson,ls7a-pwm
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  interrupts:
+>>> +    maxItems: 1
+>>> +
+>>> +  clocks:
+>>> +    maxItems: 1
+>>> +
+>>> +  '#pwm-cells':
+>>> +    description:
+>>> +      The first cell must have a value of 0, which specifies the PWM output signal;
+>>
+>> If you have always the same value in PWM phandle, why encoding it in the
+>> phandle in the first place? What's the benefit of passing 0?
 > 
-> Add a driver for the PMU found in the SiFive Composable Cache
-> controller. This PMU provides a configurable number of counters and a
-> variety of events. Events are grouped into sets. Each counter can count
-> events from only one set at a time; however, it can count any number of
-> events within that set simultaneously. The PMU hardware does not provide
-> an overflow interrupt or a way to atomically control groups of counters.
+> Hi Krzysztof:
 > 
-> Some events can be filtered further by client ID (e.g. CPU or external
-> DMA master). That functionality is not supported by this driver.
+> My thoughts are:
+> First of all, our pwm has only one output signal, so it can only be 0.
+> Also, as you know from the pwm xlate function, the first cell is the
+> pwm index, so I fixed it to be 0 here.
 > 
-> This driver further assumes that a single Composable Cache instance is
-> shared by all CPUs in the system.
-> 
-> Example usage:
-> 
-> $ perf stat -a -e sifive_ccache_pmu/inner_acquire_block_btot/,
-> 		  sifive_ccache_pmu/inner_acquire_block_hit/,
-> 		  sifive_ccache_pmu/inner_acquire_block_ntob/ ls
-> 
->   Performance counter stats for 'system wide':
-> 
->                 542      sifive_ccache_pmu/inner_acquire_block_btot/
->               22081      sifive_ccache_pmu/inner_acquire_block_hit/
->               22006      sifive_ccache_pmu/inner_acquire_block_ntob/
-> 
->         0.064672432 seconds time elapsed
-> 
-> Example using numeric event selectors:
-> 
-> $ perf stat -a -e sifive_ccache_pmu/event=0x10001/,
-> 		  sifive_ccache_pmu/event=0x2002/,
-> 		  sifive_ccache_pmu/event=0x4001/ ls
-> 
->   Performance counter stats for 'system wide':
-> 
->                 478      sifive_ccache_pmu/event=0x10001/
->                4717      sifive_ccache_pmu/event=0x2002/
->               44966      sifive_ccache_pmu/event=0x4001/
-> 
->         0.111027326 seconds time elapsed
-> 
-> Signed-off-by: Eric Lin <eric.lin@sifive.com>
-> Co-developed-by: Samuel Holland <samuel.holland@sifive.com>
-> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
-> ---
-> 
->   drivers/perf/Kconfig             |   9 +
->   drivers/perf/Makefile            |   1 +
->   drivers/perf/sifive_ccache_pmu.c | 577 +++++++++++++++++++++++++++++++
->   include/linux/cpuhotplug.h       |   1 +
->   4 files changed, 588 insertions(+)
->   create mode 100644 drivers/perf/sifive_ccache_pmu.c
-> 
-> diff --git a/drivers/perf/Kconfig b/drivers/perf/Kconfig
-> index ec6e0d9194a1..b4e4db7424b4 100644
-> --- a/drivers/perf/Kconfig
-> +++ b/drivers/perf/Kconfig
-> @@ -155,6 +155,15 @@ config QCOM_L3_PMU
->   	   Adds the L3 cache PMU into the perf events subsystem for
->   	   monitoring L3 cache events.
->   
-> +config SIFIVE_CCACHE_PMU
-> +	tristate "SiFive Composable Cache PMU"
-> +	depends on RISCV || COMPILE_TEST
-> +	help
-> +	  Support for the Composable Cache performance monitoring unit (PMU) on
-> +	  SiFive platforms. The Composable Cache PMU provides up to 64 counters
-> +	  for measuring whole-system L2/L3 cache performance using the perf
-> +	  events subsystem.
-> +
->   config THUNDERX2_PMU
->   	tristate "Cavium ThunderX2 SoC PMU UNCORE"
->   	depends on ARCH_THUNDER2 || COMPILE_TEST
-> diff --git a/drivers/perf/Makefile b/drivers/perf/Makefile
-> index a06338e3401c..51ef5f50ace4 100644
-> --- a/drivers/perf/Makefile
-> +++ b/drivers/perf/Makefile
-> @@ -15,6 +15,7 @@ obj-$(CONFIG_QCOM_L3_PMU) += qcom_l3_pmu.o
->   obj-$(CONFIG_RISCV_PMU) += riscv_pmu.o
->   obj-$(CONFIG_RISCV_PMU_LEGACY) += riscv_pmu_legacy.o
->   obj-$(CONFIG_RISCV_PMU_SBI) += riscv_pmu_sbi.o
-> +obj-$(CONFIG_SIFIVE_CCACHE_PMU) += sifive_ccache_pmu.o
->   obj-$(CONFIG_THUNDERX2_PMU) += thunderx2_pmu.o
->   obj-$(CONFIG_XGENE_PMU) += xgene_pmu.o
->   obj-$(CONFIG_ARM_SPE_PMU) += arm_spe_pmu.o
-> diff --git a/drivers/perf/sifive_ccache_pmu.c b/drivers/perf/sifive_ccache_pmu.c
-> new file mode 100644
-> index 000000000000..8c9ef0d09f48
-> --- /dev/null
-> +++ b/drivers/perf/sifive_ccache_pmu.c
-> @@ -0,0 +1,577 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * SiFive Composable Cache PMU driver
-> + *
-> + * Copyright (C) 2022-2024 SiFive, Inc.
-> + * Copyright (C) Eric Lin <eric.lin@sifive.com>
-> + *
-> + */
-> +
-> +#include <linux/cpuhotplug.h>
-> +#include <linux/cpumask.h>
-> +#include <linux/device.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/perf_event.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/property.h>
-> +
-> +#define CCACHE_SELECT_OFFSET		0x2000
-> +#define CCACHE_CLIENT_FILTER_OFFSET	0x2800
-> +#define CCACHE_COUNTER_OFFSET		0x3000
-> +
-> +#define CCACHE_PMU_MAX_COUNTERS		64
-> +
-> +struct sifive_ccache_pmu {
-> +	struct pmu			pmu;
-> +	struct hlist_node		node;
-> +	struct notifier_block		cpu_pm_nb;
+> The xlate function:
+> https://elixir.bootlin.com/linux/v6.8/source/drivers/pwm/core.c#L106
 
-This seems unused.
+You refer for xlate for PWM with three cells. You do not have three
+cells, as you have only on signal, so why insisting on using other
+xlate? Do you do the same for clocks? Or resets?
 
-> +	void __iomem			*base;
-> +	DECLARE_BITMAP(used_mask, CCACHE_PMU_MAX_COUNTERS);
-> +	unsigned int			cpu;
-> +	int				n_counters;
-> +	struct perf_event		*events[] __counted_by(n_counters);
-> +};
-> +
-> +#define to_ccache_pmu(p) (container_of(p, struct sifive_ccache_pmu, pmu))
-> +
-> +#ifndef readq
-> +static inline u64 readq(void __iomem *addr)
-> +{
-> +	return readl(addr) | (((u64)readl(addr + 4)) << 32);
-> +}
-> +#endif
-> +
-> +#ifndef writeq
-> +static inline void writeq(u64 v, void __iomem *addr)
-> +{
-> +	writel(lower_32_bits(v), addr);
-> +	writel(upper_32_bits(v), addr + 4);
-> +}
-> +#endif
-
-As Jonathan says, please include the io-64-nonatomic header of 
-preference and don't reinvent these as-is. However, see later...
-
-> +
-> +/*
-> + * sysfs attributes
-> + *
-> + * We export:
-> + * - cpumask, used by perf user space and other tools to know on which CPUs to create events
-> + * - events, used by perf user space and other tools to create events symbolically, e.g.:
-> + *     perf stat -a -e sifive_ccache_pmu/event=inner_put_partial_data_hit/ ls
-> + *     perf stat -a -e sifive_ccache_pmu/event=0x101/ ls
-> + * - formats, used by perf user space and other tools to configure events
-> + */
-> +
-> +/* cpumask */
-> +static ssize_t cpumask_show(struct device *dev, struct device_attribute *attr, char *buf)
-> +{
-> +	struct sifive_ccache_pmu *ccache_pmu = dev_get_drvdata(dev);
-> +
-> +	if (ccache_pmu->cpu >= nr_cpu_ids)
-> +		return 0;
-
-I'm not sure it's really correct to return no data, but then this is 
-impossible in the first place (if there are no online CPUs, who's 
-reading the file?)
-
-> +
-> +	return sysfs_emit(buf, "%d\n", ccache_pmu->cpu);
-> +};
-> +
-> +static DEVICE_ATTR_RO(cpumask);
-> +
-> +static struct attribute *sifive_ccache_pmu_cpumask_attrs[] = {
-> +	&dev_attr_cpumask.attr,
-> +	NULL,
-> +};
-> +
-> +static const struct attribute_group sifive_ccache_pmu_cpumask_group = {
-> +	.attrs = sifive_ccache_pmu_cpumask_attrs,
-> +};
-> +
-> +/* events */
-> +static ssize_t sifive_ccache_pmu_event_show(struct device *dev, struct device_attribute *attr,
-> +					    char *page)
-> +{
-> +	struct perf_pmu_events_attr *pmu_attr;
-> +
-> +	pmu_attr = container_of(attr, struct perf_pmu_events_attr, attr);
-> +	return sysfs_emit(page, "event=0x%02llx\n", pmu_attr->id);
-> +}
-> +
-> +#define SET_EVENT_SELECT(_event, _set)	(BIT_ULL((_event) + 8) | (_set))
-
-This seems like you really want to have distinct "set" and "event" 
-fields in the config.
-
-> +#define CCACHE_PMU_EVENT_ATTR(_name, _event, _set) \
-> +	PMU_EVENT_ATTR_ID(_name, sifive_ccache_pmu_event_show, SET_EVENT_SELECT(_event, _set))
-> +
-> +enum ccache_pmu_event_set1 {
-> +	INNER_PUT_FULL_DATA = 0,
-> +	INNER_PUT_PARTIAL_DATA,
-> +	INNER_ATOMIC_DATA,
-> +	INNER_GET,
-> +	INNER_PREFETCH_READ,
-> +	INNER_PREFETCH_WRITE,
-> +	INNER_ACQUIRE_BLOCK_NTOB,
-> +	INNER_ACQUIRE_BLOCK_NTOT,
-> +	INNER_ACQUIRE_BLOCK_BTOT,
-> +	INNER_ACQUIRE_PERM_NTOT,
-> +	INNER_ACQUIRE_PERM_BTOT,
-> +	INNER_RELEASE_TTOB,
-> +	INNER_RELEASE_TTON,
-> +	INNER_RELEASE_BTON,
-> +	INNER_RELEASE_DATA_TTOB,
-> +	INNER_RELEASE_DATA_TTON,
-> +	INNER_RELEASE_DATA_BTON,
-> +	OUTER_PROBE_BLOCK_TOT,
-> +	OUTER_PROBE_BLOCK_TOB,
-> +	OUTER_PROBE_BLOCK_TON,
-> +	CCACHE_PMU_MAX_EVENT1_IDX
-> +};
-> +
-> +enum ccache_pmu_event_set2 {
-> +	INNER_PUT_FULL_DATA_HIT = 0,
-> +	INNER_PUT_PARTIAL_DATA_HIT,
-> +	INNER_ATOMIC_DATA_HIT,
-> +	INNER_GET_HIT,
-> +	INNER_PREFETCH_HIT,
-> +	INNER_ACQUIRE_BLOCK_HIT,
-> +	INNER_ACQUIRE_PERM_HIT,
-> +	INNER_RELEASE_HIT,
-> +	INNER_RELEASE_DATA_HIT,
-> +	OUTER_PROBE_HIT,
-> +	INNER_PUT_FULL_DATA_HIT_SHARED,
-> +	INNER_PUT_PARTIAL_DATA_HIT_SHARED,
-> +	INNER_ATOMIC_DATA_HIT_SHARED,
-> +	INNER_GET_HIT_SHARED,
-> +	INNER_PREFETCH_HIT_SHARED,
-> +	INNER_ACQUIRE_BLOCK_HIT_SHARED,
-> +	INNER_ACQUIRE_PERM_HIT_SHARED,
-> +	OUTER_PROBE_HIT_SHARED,
-> +	OUTER_PROBE_HIT_DIRTY,
-> +	CCACHE_PMU_MAX_EVENT2_IDX
-> +};
-> +
-> +enum ccache_pmu_event_set3 {
-> +	OUTER_ACQUIRE_BLOCK_NTOB_MISS = 0,
-> +	OUTER_ACQUIRE_BLOCK_NTOT_MISS,
-> +	OUTER_ACQUIRE_BLOCK_BTOT_MISS,
-> +	OUTER_ACQUIRE_PERM_NTOT_MISS,
-> +	OUTER_ACQUIRE_PERM_BTOT_MISS,
-> +	OUTER_RELEASE_TTOB_EVICTION,
-> +	OUTER_RELEASE_TTON_EVICTION,
-> +	OUTER_RELEASE_BTON_EVICTION,
-> +	OUTER_RELEASE_DATA_TTOB_NOT_APPLICABLE,
-> +	OUTER_RELEASE_DATA_TTON_DIRTY_EVICTION,
-> +	OUTER_RELEASE_DATA_BTON_NOT_APPLICABLE,
-> +	INNER_PROBE_BLOCK_TOT_CODE_MISS_HITS_OTHER_HARTS,
-> +	INNER_PROBE_BLOCK_TOB_LOAD_MISS_HITS_OTHER_HARTS,
-> +	INNER_PROBE_BLOCK_TON_STORE_MISS_HITS_OTHER_HARTS,
-> +	CCACHE_PMU_MAX_EVENT3_IDX
-> +};
-> +
-> +enum ccache_pmu_event_set4 {
-> +	INNER_HINT_HITS_INFLIGHT_MISS = 0,
-> +	CCACHE_PMU_MAX_EVENT4_IDX
-> +};
-> +
-> +static struct attribute *sifive_ccache_pmu_events[] = {
-> +	/*  pmEventSelect1 */
-> +	CCACHE_PMU_EVENT_ATTR(inner_put_full_data, INNER_PUT_FULL_DATA, 1),
-> +	CCACHE_PMU_EVENT_ATTR(inner_put_partial_data, INNER_PUT_PARTIAL_DATA, 1),
-> +	CCACHE_PMU_EVENT_ATTR(inner_atomic_data, INNER_ATOMIC_DATA, 1),
-> +	CCACHE_PMU_EVENT_ATTR(inner_get, INNER_GET, 1),
-> +	CCACHE_PMU_EVENT_ATTR(inner_prefetch_read, INNER_PREFETCH_READ, 1),
-> +	CCACHE_PMU_EVENT_ATTR(inner_prefetch_write, INNER_PREFETCH_WRITE, 1),
-> +	CCACHE_PMU_EVENT_ATTR(inner_acquire_block_ntob, INNER_ACQUIRE_BLOCK_NTOB, 1),
-> +	CCACHE_PMU_EVENT_ATTR(inner_acquire_block_ntot, INNER_ACQUIRE_BLOCK_NTOT, 1),
-> +	CCACHE_PMU_EVENT_ATTR(inner_acquire_block_btot, INNER_ACQUIRE_BLOCK_BTOT, 1),
-> +	CCACHE_PMU_EVENT_ATTR(inner_acquire_perm_ntot, INNER_ACQUIRE_PERM_NTOT, 1),
-> +	CCACHE_PMU_EVENT_ATTR(inner_acquire_perm_btot, INNER_ACQUIRE_PERM_BTOT, 1),
-> +	CCACHE_PMU_EVENT_ATTR(inner_release_ttob, INNER_RELEASE_TTOB, 1),
-> +	CCACHE_PMU_EVENT_ATTR(inner_release_tton, INNER_RELEASE_TTON, 1),
-> +	CCACHE_PMU_EVENT_ATTR(inner_release_bton, INNER_RELEASE_BTON, 1),
-> +	CCACHE_PMU_EVENT_ATTR(inner_release_data_ttob, INNER_RELEASE_DATA_TTOB, 1),
-> +	CCACHE_PMU_EVENT_ATTR(inner_release_data_tton, INNER_RELEASE_DATA_TTON, 1),
-> +	CCACHE_PMU_EVENT_ATTR(inner_release_data_bton, INNER_RELEASE_DATA_BTON, 1),
-> +	CCACHE_PMU_EVENT_ATTR(outer_probe_block_tot, OUTER_PROBE_BLOCK_TOT, 1),
-> +	CCACHE_PMU_EVENT_ATTR(outer_probe_block_tob, OUTER_PROBE_BLOCK_TOB, 1),
-> +	CCACHE_PMU_EVENT_ATTR(outer_probe_block_ton, OUTER_PROBE_BLOCK_TON, 1),
-
-Yuck, those enums not only make the code overly verbose and repetitive, 
-but they completely obfuscate the significant information here. I don't 
-personally care enough to go digging for documentation to review whether 
-the event numbers are correct for the event names they claim to be, but 
-anyone who did wish to do that is clearly in for an unnecessarily hard 
-time :(
-
-> +
-> +	/*  pmEventSelect2 */
-> +	CCACHE_PMU_EVENT_ATTR(inner_put_full_data_hit, INNER_PUT_FULL_DATA_HIT, 2),
-> +	CCACHE_PMU_EVENT_ATTR(inner_put_partial_data_hit, INNER_PUT_PARTIAL_DATA_HIT, 2),
-> +	CCACHE_PMU_EVENT_ATTR(inner_atomic_data_hit, INNER_ATOMIC_DATA_HIT, 2),
-> +	CCACHE_PMU_EVENT_ATTR(inner_get_hit, INNER_GET_HIT, 2),
-> +	CCACHE_PMU_EVENT_ATTR(inner_prefetch_hit, INNER_PREFETCH_HIT, 2),
-> +	CCACHE_PMU_EVENT_ATTR(inner_acquire_block_hit, INNER_ACQUIRE_BLOCK_HIT, 2),
-> +	CCACHE_PMU_EVENT_ATTR(inner_acquire_perm_hit, INNER_ACQUIRE_PERM_HIT, 2),
-> +	CCACHE_PMU_EVENT_ATTR(inner_release_hit, INNER_RELEASE_HIT, 2),
-> +	CCACHE_PMU_EVENT_ATTR(inner_release_data_hit, INNER_RELEASE_DATA_HIT, 2),
-> +	CCACHE_PMU_EVENT_ATTR(outer_probe_hit, OUTER_PROBE_HIT, 2),
-> +	CCACHE_PMU_EVENT_ATTR(inner_put_full_data_hit_shared, INNER_PUT_FULL_DATA_HIT_SHARED, 2),
-> +	CCACHE_PMU_EVENT_ATTR(inner_put_partial_data_hit_shared,
-> +			      INNER_PUT_PARTIAL_DATA_HIT_SHARED, 2),
-> +	CCACHE_PMU_EVENT_ATTR(inner_atomic_data_hit_shared, INNER_ATOMIC_DATA_HIT_SHARED, 2),
-> +	CCACHE_PMU_EVENT_ATTR(inner_get_hit_shared, INNER_GET_HIT_SHARED, 2),
-> +	CCACHE_PMU_EVENT_ATTR(inner_prefetch_hit_shared, INNER_PREFETCH_HIT_SHARED, 2),
-> +	CCACHE_PMU_EVENT_ATTR(inner_acquire_block_hit_shared, INNER_ACQUIRE_BLOCK_HIT_SHARED, 2),
-> +	CCACHE_PMU_EVENT_ATTR(inner_acquire_perm_hit_shared, INNER_ACQUIRE_PERM_HIT_SHARED, 2),
-> +	CCACHE_PMU_EVENT_ATTR(outer_probe_hit_shared, OUTER_PROBE_HIT_SHARED, 2),
-> +	CCACHE_PMU_EVENT_ATTR(outer_probe_hit_dirty, OUTER_PROBE_HIT_DIRTY, 2),
-> +
-> +	/*  pmEventSelect3 */
-> +	CCACHE_PMU_EVENT_ATTR(outer_acquire_block_ntob_miss, OUTER_ACQUIRE_BLOCK_NTOB_MISS, 3),
-> +	CCACHE_PMU_EVENT_ATTR(outer_acquire_block_ntot_miss, OUTER_ACQUIRE_BLOCK_NTOT_MISS, 3),
-> +	CCACHE_PMU_EVENT_ATTR(outer_acquire_block_btot_miss, OUTER_ACQUIRE_BLOCK_BTOT_MISS, 3),
-> +	CCACHE_PMU_EVENT_ATTR(outer_acquire_perm_ntot_miss, OUTER_ACQUIRE_PERM_NTOT_MISS, 3),
-> +	CCACHE_PMU_EVENT_ATTR(outer_acquire_perm_btot_miss, OUTER_ACQUIRE_PERM_BTOT_MISS, 3),
-> +	CCACHE_PMU_EVENT_ATTR(outer_release_ttob_eviction, OUTER_RELEASE_TTOB_EVICTION, 3),
-> +	CCACHE_PMU_EVENT_ATTR(outer_release_tton_eviction, OUTER_RELEASE_TTON_EVICTION, 3),
-> +	CCACHE_PMU_EVENT_ATTR(outer_release_bton_eviction, OUTER_RELEASE_BTON_EVICTION, 3),
-> +	CCACHE_PMU_EVENT_ATTR(outer_release_data_ttob_not_applicable,
-> +			      OUTER_RELEASE_DATA_TTOB_NOT_APPLICABLE, 3),
-> +	CCACHE_PMU_EVENT_ATTR(outer_release_data_tton_dirty_eviction,
-> +			      OUTER_RELEASE_DATA_TTON_DIRTY_EVICTION, 3),
-> +	CCACHE_PMU_EVENT_ATTR(outer_release_data_bton_not_applicable,
-> +			      OUTER_RELEASE_DATA_BTON_NOT_APPLICABLE, 3),
-> +	CCACHE_PMU_EVENT_ATTR(inner_probe_block_tot_code_miss_hits_other_harts,
-> +			      INNER_PROBE_BLOCK_TOT_CODE_MISS_HITS_OTHER_HARTS, 3),
-> +	CCACHE_PMU_EVENT_ATTR(inner_probe_block_tob_load_miss_hits_other_harts,
-> +			      INNER_PROBE_BLOCK_TOB_LOAD_MISS_HITS_OTHER_HARTS, 3),
-> +	CCACHE_PMU_EVENT_ATTR(inner_probe_block_ton_store_miss_hits_other_harts,
-> +			      INNER_PROBE_BLOCK_TON_STORE_MISS_HITS_OTHER_HARTS, 3),
-> +
-> +	/*  pm_event_select4 */
-> +	CCACHE_PMU_EVENT_ATTR(inner_hint_hits_inflight_miss, INNER_HINT_HITS_INFLIGHT_MISS, 4),
-> +	NULL
-> +};
-> +
-> +static struct attribute_group sifive_ccache_pmu_events_group = {
-> +	.name = "events",
-> +	.attrs = sifive_ccache_pmu_events,
-> +};
-> +
-> +/* formats */
-> +PMU_FORMAT_ATTR(event, "config:0-63");
-> +
-> +static struct attribute *sifive_ccache_pmu_formats[] = {
-> +	&format_attr_event.attr,
-> +	NULL,
-> +};
-> +
-> +static struct attribute_group sifive_ccache_pmu_format_group = {
-> +	.name = "format",
-> +	.attrs = sifive_ccache_pmu_formats,
-> +};
-> +
-> +/*
-> + * Per PMU device attribute groups
-> + */
-> +
-> +static const struct attribute_group *sifive_ccache_pmu_attr_grps[] = {
-> +	&sifive_ccache_pmu_cpumask_group,
-> +	&sifive_ccache_pmu_events_group,
-> +	&sifive_ccache_pmu_format_group,
-> +	NULL,
-> +};
-> +
-> +/*
-> + * Event Initialization
-> + */
-> +
-> +static int sifive_ccache_pmu_event_init(struct perf_event *event)
-> +{
-> +	struct sifive_ccache_pmu *ccache_pmu = to_ccache_pmu(event->pmu);
-> +	struct hw_perf_event *hwc = &event->hw;
-> +	u64 config = event->attr.config;
-> +	u64 ev_type = config >> 8;
-> +	u64 set = config & 0xff;
-> +
-
-I have some patches in progress trying to improve the situation, but for 
-now you still must check that the event is actually for your PMU before 
-doing anything else, and return -ENOENT if not, otherwise you may be 
-offered raw or hardware events, misinterpret them, and confuse the user 
-with nonsense counts from the wrong PMU.
-
-> +	/* Check if this is a valid set and event */
-> +	switch (set) {
-> +	case 1:
-> +		if (ev_type >= BIT_ULL(CCACHE_PMU_MAX_EVENT1_IDX))
-> +			return -ENOENT;
-
-Conversely if the event *is* yours, then you must not return -ENOENT for 
-any other error - these look like they would all probably be -EINVAL 
-conditions (see the comments in the definition of struct pmu).
-
-> +		break;
-> +	case 2:
-> +		if (ev_type >= BIT_ULL(CCACHE_PMU_MAX_EVENT2_IDX))
-> +			return -ENOENT;
-> +		break;
-> +	case 3:
-> +		if (ev_type >= BIT_ULL(CCACHE_PMU_MAX_EVENT3_IDX))
-> +			return -ENOENT;
-> +		break;
-> +	case 4:
-> +		if (ev_type >= BIT_ULL(CCACHE_PMU_MAX_EVENT4_IDX))
-> +			return -ENOENT;
-> +		break;
-> +	default:
-> +		return -ENOENT;
-> +	}
-
-There's also the matter of validating event groups - if you can't 
-support them at all that should mean simply rejecting any event grouped 
-with any other non-software event.
-
-> +	/* Do not allocate the hardware counter yet */
-> +	hwc->idx = -1;
-> +	hwc->config = config;
-> +
-> +	event->cpu = ccache_pmu->cpu;
-> +
-> +	return 0;
-> +}
-> +
-> +/*
-> + * pmu->read: read and update the counter
-> + */
-> +static void sifive_ccache_pmu_read(struct perf_event *event)
-> +{
-> +	struct hw_perf_event *hwc = &event->hw;
-> +	u64 prev_raw_count, new_raw_count;
-> +	u64 oldval;
-> +
-> +	do {
-> +		prev_raw_count = local64_read(&hwc->prev_count);
-> +		new_raw_count = readq((void *)hwc->event_base);
-
-The 32-bit non-atomic version could read a torn value here, thus give an 
-apparent large jump backwards in the count. If the 32-bit support is 
-entirely nominal for build-testing then that's probably OK (possibly 
-worth a comment here), but if it's expected to actually be used then I 
-think you want an explicit hi-lo-hi sequence in teh 32-bit case to 
-ensure the value is read correctly.
-
-> +
-> +		oldval = local64_cmpxchg(&hwc->prev_count, prev_raw_count, new_raw_count);
-> +	} while (oldval != prev_raw_count);
-
-If you don't have an overflow interrupt and don't expect to ever have 
-one (not entirely unreasonable if counters are always a full 64 bits), 
-then strictly you shouldn't need the cmpxchg loop, however there is 
-certainly still a consistency argument for sticking to the familiar 
-pattern anyway if it's not getting in the way.
-
-> +
-> +	local64_add(new_raw_count - prev_raw_count, &event->count);
-> +}
-> +
-> +/*
-> + * State transition functions:
-> + *
-> + * start()/stop() & add()/del()
-> + */
-> +
-> +/*
-> + * pmu->start: start the event
-> + */
-> +static void sifive_ccache_pmu_start(struct perf_event *event, int flags)
-> +{
-> +	struct hw_perf_event *hwc = &event->hw;
-> +
-> +	if (WARN_ON_ONCE(!(hwc->state & PERF_HES_STOPPED))) > +		return;
-> +
-> +	hwc->state = 0;
-> +
-> +	/* Set initial value to 0 */
-> +	local64_set(&hwc->prev_count, 0);
-> +	writeq(0, (void *)hwc->event_base);
-> +
-> +	/* Enable this counter to count events */
-> +	writeq(hwc->config, (void *)hwc->config_base);
-> +}
-> +
-> +/*
-> + * pmu->stop: stop the counter
-> + */
-> +static void sifive_ccache_pmu_stop(struct perf_event *event, int flags)
-> +{
-> +	struct hw_perf_event *hwc = &event->hw;
-> +
-> +	if (hwc->state & PERF_HES_STOPPED)
-> +		return;
-> +
-> +	/* Disable this counter to count events */
-> +	writeq(0, (void *)hwc->config_base);
-> +	sifive_ccache_pmu_read(event);
-> +
-> +	hwc->state = PERF_HES_STOPPED | PERF_HES_UPTODATE;
-> +}
-> +
-> +/*
-> + * pmu->add: add the event to the PMU
-> + */
-> +static int sifive_ccache_pmu_add(struct perf_event *event, int flags)
-> +{
-> +	struct sifive_ccache_pmu *ccache_pmu = to_ccache_pmu(event->pmu);
-> +	struct hw_perf_event *hwc = &event->hw;
-> +	int idx;
-> +
-> +	/* Find an available counter idx to use for this event */
-> +	do {
-> +		idx = find_first_zero_bit(ccache_pmu->used_mask, ccache_pmu->n_counters);
-> +		if (idx >= ccache_pmu->n_counters)
-> +			return -EAGAIN;
-> +	} while (test_and_set_bit(idx, ccache_pmu->used_mask));
-
-FWIW I continue to maintain the opinion that faffing around with bitmaps 
-is more costly than simply scanning for an empty slot in the events 
-array that you still have to touch anyway.
-
-> +
-> +	hwc->config_base = (unsigned long)ccache_pmu->base + CCACHE_SELECT_OFFSET + 8 * idx;
-> +	hwc->event_base = (unsigned long)ccache_pmu->base + CCACHE_COUNTER_OFFSET + 8 * idx;
-> +	hwc->idx = idx;
-> +	hwc->state = PERF_HES_STOPPED | PERF_HES_UPTODATE;
-> +
-> +	ccache_pmu->events[idx] = event;
-> +
-> +	if (flags & PERF_EF_START)
-> +		sifive_ccache_pmu_start(event, PERF_EF_RELOAD);
-> +
-> +	perf_event_update_userpage(event);
-> +
-> +	return 0;
-> +}
-> +
-> +/*
-> + * pmu->del: delete the event from the PMU
-> + */
-> +static void sifive_ccache_pmu_del(struct perf_event *event, int flags)
-> +{
-> +	struct sifive_ccache_pmu *ccache_pmu = to_ccache_pmu(event->pmu);
-> +	struct hw_perf_event *hwc = &event->hw;
-> +	int idx = hwc->idx;
-> +
-> +	/* Stop and release this counter */
-> +	sifive_ccache_pmu_stop(event, PERF_EF_UPDATE);
-> +
-> +	ccache_pmu->events[idx] = NULL;
-> +	clear_bit(idx, ccache_pmu->used_mask);
-> +
-> +	perf_event_update_userpage(event);
-> +}
-> +
-> +/*
-> + * Driver initialization
-> + */
-> +
-> +static void sifive_ccache_pmu_hw_init(const struct sifive_ccache_pmu *ccache_pmu)
-> +{
-> +	/* Disable the client filter (not supported by this driver) */
-
-Note that if filtering is something you may want to add support for in 
-future, it's well worth planning ahead in terms of config fields to 
-avoid churning the user API too much later.
-
-> +	writeq(0, ccache_pmu->base + CCACHE_CLIENT_FILTER_OFFSET);
-> +}
-> +
-> +static int sifive_ccache_pmu_online_cpu(unsigned int cpu, struct hlist_node *node)
-> +{
-> +	struct sifive_ccache_pmu *ccache_pmu =
-> +		hlist_entry_safe(node, struct sifive_ccache_pmu, node);
-> +
-> +	if (ccache_pmu->cpu >= nr_cpu_ids)
-> +		ccache_pmu->cpu = cpu;
-
-If you don't have any NUMA of other affinity-related shenangians to 
-worry about, then it's really not worth bothering with an online 
-callback, just assign a CPU directly at the same point as all the other 
-initialisation. Plus it's then also that much clearer to reason about it 
-always being valid and not needing spurious nr_cpu_ids checks.
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int sifive_ccache_pmu_offline_cpu(unsigned int cpu, struct hlist_node *node)
-> +{
-> +	struct sifive_ccache_pmu *ccache_pmu =
-> +		hlist_entry_safe(node, struct sifive_ccache_pmu, node);
-> +
-> +	/* Do nothing if this CPU does not own the events */
-> +	if (cpu != ccache_pmu->cpu)
-> +		return 0;
-> +
-> +	/* Pick a random online CPU */
-> +	ccache_pmu->cpu = cpumask_any_but(cpu_online_mask, cpu);
-> +	if (ccache_pmu->cpu >= nr_cpu_ids)
-> +		return 0;
-> +
-> +	/* Migrate PMU events from this CPU to the target CPU */
-> +	perf_pmu_migrate_context(&ccache_pmu->pmu, cpu, ccache_pmu->cpu);
-> +
-> +	return 0;
-> +}
-> +
-> +static int sifive_ccache_pmu_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct sifive_ccache_pmu *ccache_pmu;
-> +	u32 n_counters;
-> +	int ret;
-> +
-> +	/* Instances without a sifive,perfmon-counters property do not contain a PMU */
-> +	ret = device_property_read_u32(dev, "sifive,perfmon-counters", &n_counters);
-> +	if (ret || !n_counters)
-
-Even simpler is to just initialise n_counters to 0 in the first place, 
-if the return value doesn't matter beyond "did it work or not?"
-
-> +		return -ENODEV;
-> +
-> +	ccache_pmu = devm_kzalloc(dev, struct_size(ccache_pmu, events, n_counters), GFP_KERNEL);
-
-Maybe worth a sanity check that n_counters isn't unrealistically large 
-either?
-
-> +	if (!ccache_pmu)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, ccache_pmu);
-> +
-> +	ccache_pmu->pmu = (struct pmu) {
-> +		.parent		= dev,
-> +		.attr_groups	= sifive_ccache_pmu_attr_grps,
-> +		.capabilities	= PERF_PMU_CAP_NO_EXCLUDE | PERF_PMU_CAP_NO_INTERRUPT,
-> +		.task_ctx_nr	= perf_invalid_context,
-> +		.event_init	= sifive_ccache_pmu_event_init,
-> +		.add		= sifive_ccache_pmu_add,
-> +		.del		= sifive_ccache_pmu_del,
-> +		.start		= sifive_ccache_pmu_start,
-> +		.stop		= sifive_ccache_pmu_stop,
-> +		.read		= sifive_ccache_pmu_read,
-> +	};
-> +	ccache_pmu->cpu = nr_cpu_ids;
-> +	ccache_pmu->n_counters = n_counters;
-> +
-> +	ccache_pmu->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(ccache_pmu->base))
-> +		return PTR_ERR(ccache_pmu->base);
-> +
-> +	sifive_ccache_pmu_hw_init(ccache_pmu);
-> +
-> +	ret = cpuhp_state_add_instance(CPUHP_AP_PERF_RISCV_SIFIVE_CCACHE_ONLINE, &ccache_pmu->node);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to add CPU hotplug instance\n");
-> +
-> +	ret = perf_pmu_register(&ccache_pmu->pmu, "sifive_ccache_pmu", -1);
-> +	if (ret) {
-> +		dev_err_probe(dev, ret, "Failed to register PMU\n");
-> +		goto err_remove_instance;
-> +	}
-> +
-> +	return 0;
-> +
-> +err_remove_instance:
-> +	cpuhp_state_remove_instance(CPUHP_AP_PERF_RISCV_SIFIVE_CCACHE_ONLINE, &ccache_pmu->node);
-
-You need the _nocalls variant here, since attempting to migrate the 
-context of an unregistered and uninitialised PMU tends to end badly.
-
-> +
-> +	return ret;
-> +}
-> +
-> +static void sifive_ccache_pmu_remove(struct platform_device *pdev)
-> +{
-> +	struct sifive_ccache_pmu *ccache_pmu = platform_get_drvdata(pdev);
-> +
-> +	perf_pmu_unregister(&ccache_pmu->pmu);
-> +	cpuhp_state_remove_instance(CPUHP_AP_PERF_RISCV_SIFIVE_CCACHE_ONLINE, &ccache_pmu->node);
-
-Similarly here.
+I don't think you use appropriate argument in this discussion. We talk
+about hardware and your argument "I don't want to use my own xlate in
+the driver" is about driver.
 
 
- From a quick skim I think a lot of these comments will also apply to 
-the other drivers in this series, so I'll stop here for now, and please 
-consider them in general.
+Best regards,
+Krzysztof
 
-Thanks,
-Robin.
-
-> +}
-> +
-> +static const struct of_device_id sifive_ccache_pmu_of_match[] = {
-> +	{ .compatible = "sifive,ccache0" },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, sifive_ccache_pmu_of_match);
-> +
-> +static struct platform_driver sifive_ccache_pmu_driver = {
-> +	.probe	= sifive_ccache_pmu_probe,
-> +	.remove_new	= sifive_ccache_pmu_remove,
-> +	.driver	= {
-> +		.name		= "sifive_ccache_pmu",
-> +		.of_match_table	= sifive_ccache_pmu_of_match,
-> +	},
-> +};
-> +
-> +static void __exit sifive_ccache_pmu_exit(void)
-> +{
-> +	platform_driver_unregister(&sifive_ccache_pmu_driver);
-> +	cpuhp_remove_multi_state(CPUHP_AP_PERF_RISCV_SIFIVE_CCACHE_ONLINE);
-> +}
-> +module_exit(sifive_ccache_pmu_exit);
-> +
-> +static int __init sifive_ccache_pmu_init(void)
-> +{
-> +	int ret;
-> +
-> +	ret = cpuhp_setup_state_multi(CPUHP_AP_PERF_RISCV_SIFIVE_CCACHE_ONLINE,
-> +				      "perf/sifive/ccache:online",
-> +				      sifive_ccache_pmu_online_cpu,
-> +				      sifive_ccache_pmu_offline_cpu);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = platform_driver_register(&sifive_ccache_pmu_driver);
-> +	if (ret)
-> +		goto err_remove_state;
-> +
-> +	return 0;
-> +
-> +err_remove_state:
-> +	cpuhp_remove_multi_state(CPUHP_AP_PERF_RISCV_SIFIVE_CCACHE_ONLINE);
-> +
-> +	return ret;
-> +}
-> +module_init(sifive_ccache_pmu_init);
-> +
-> +MODULE_LICENSE("GPL");
-> diff --git a/include/linux/cpuhotplug.h b/include/linux/cpuhotplug.h
-> index 172d0a743e5d..be6361fdc8ba 100644
-> --- a/include/linux/cpuhotplug.h
-> +++ b/include/linux/cpuhotplug.h
-> @@ -230,6 +230,7 @@ enum cpuhp_state {
->   	CPUHP_AP_PERF_POWERPC_TRACE_IMC_ONLINE,
->   	CPUHP_AP_PERF_POWERPC_HV_24x7_ONLINE,
->   	CPUHP_AP_PERF_POWERPC_HV_GPCI_ONLINE,
-> +	CPUHP_AP_PERF_RISCV_SIFIVE_CCACHE_ONLINE,
->   	CPUHP_AP_PERF_CSKY_ONLINE,
->   	CPUHP_AP_WATCHDOG_ONLINE,
->   	CPUHP_AP_WORKQUEUE_ONLINE,
 
