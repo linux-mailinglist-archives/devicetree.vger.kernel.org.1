@@ -1,229 +1,201 @@
-Return-Path: <devicetree+bounces-58310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58311-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 846878A15A1
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 15:34:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8587A8A15B6
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 15:36:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A864E1C2127F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 13:34:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B469281B27
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 13:36:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5BDE15098A;
-	Thu, 11 Apr 2024 13:33:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C96514D428;
+	Thu, 11 Apr 2024 13:36:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Js1uhFjg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FJjhrMbk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 505561514E0;
-	Thu, 11 Apr 2024 13:33:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 164303AC16
+	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 13:36:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712842431; cv=none; b=SI5QDiJklmleld58NzJBMjTG+BhVl4G4TN8sE4jJ6KgB3oc0Y9aIDHvRukntm0k/ZqnVFep7O5/Y9HW4q2NUrkkfHB5uv3KUE6Um62fK0xtQjLq8w+hwD4rSPkhN0bqafrEyMbZPU6eg3MkQ4LA7JnmlkcFmjkpVyugkVAQQ3lM=
+	t=1712842603; cv=none; b=XaaQeaMTrqIPNoApwO/RNSlVKEAvaQhD4ypXB2ZyBQ2NgMpQQ/jO7MYIbZOS0a/+tqaCdtkXP2vUaf/d0R/P0Zwhl0VcqgxzkBHbd2ieRC2FQKOa24lacdkqNBvCBPGbkL95nnu5f8GVQzu/WeufHojIiP3Hrd9xfw3FSfQX/eQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712842431; c=relaxed/simple;
-	bh=IsdcePQGmtwf23Dn6ZnBklfJevHVN5lRzy64rGYlrRg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FD/usqhYzNBKHYQs2r8eNzZSd6PZvOcLrfysyMnYz+QmPtqXYpKUFW8OLyp6FfqJgJMXsfx/RN/GpHpI5/jI1Rts8oiL0b+omu/vJZBxSmmdoWvs4h00ZRfK4s3IeFP5RTpf+YkLzhI43LvEB2ROs+cKMclqTzcOtoAflRZ6EF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Js1uhFjg; arc=none smtp.client-ip=209.85.161.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f48.google.com with SMTP id 006d021491bc7-5a49261093cso4007544eaf.3;
-        Thu, 11 Apr 2024 06:33:50 -0700 (PDT)
+	s=arc-20240116; t=1712842603; c=relaxed/simple;
+	bh=PsY+0cp0r2CZ1Vl1ULBirCpa74L7iR5OUvVPi2TsLtM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bIAiuMRGtuYPaS778MHEWvHKppB5ArqXROQRZqTdQD19LeyWiNDWBmJIfZo5W+AvKepK6njV/fno4r/v2zr066exFn2EphxuLwQwvK0xl3HneZ80q6Qxcphs96fwf06Y8Wiuiuc959/U75LqQzmLruTDobjdT7JlEEbyybgJ1lo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FJjhrMbk; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-416c4767b07so13896165e9.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 06:36:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712842429; x=1713447229; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tbcCaa8DX09SvsMoBHm+TyAMbhm9qLZzeE5P/R6GO7M=;
-        b=Js1uhFjgMFdtEGeQzgkjk/l/2w54FrgIHPZQsZ+KzHmXFWTNuzOQyNqPGoiugd/QzX
-         JlS9//xxaSFGWExtD86/a7fEsk1LZXsautey1Qsto3lt1M65XHigrRSG1Iq0z47DNj1u
-         juQvx4pJ+mwF7oY3kDl7H6ymZyWfOAjKDepLxBw+X17tiUiop3mB075qjIOnGix871Wb
-         Jc8bqrg3ncgjUlvrgssCiKEYkB9UWDBP3aHMcF4nk1fNxS9A//hDfAKLpTyhLjHy3vXd
-         bTtAGiH2VibZhO4AVRLXJPc9FRZfD8ynZ40Z5Zy2i7mI18T24CIKB3miMbv3jNR29xhp
-         c3qA==
+        d=linaro.org; s=google; t=1712842599; x=1713447399; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=CYaEFXhyb6LZQLHIIVizc6COCxtPhfacc7ilKAheMt0=;
+        b=FJjhrMbksWRyHtkTTcvUcVL5cNP/1kCzAFyjtybKugX3hkKu4vnJPOFj27VK3jusu9
+         FwRS1HXLWyiZd4mn31AWQb6WFUj3cAET+5CzOmzxbFJt+7aBNqE+bpJvRtY87xL+aj55
+         wmCuw4a/K7m3q8nplIlD2/uDbxh01iSwHGQG/ar0RoueuiUjaDPwuCpV7JPE2Tib62R7
+         EbF25lKIGy5Vm4gbxuHOGo+0jfH9vazIYQdmAx5nyRPTIXkMs61F1zQ/7MqDSFCrqkC2
+         RtvN58NYTUdTDchqAOM8lA1yKhm4mz4owm8Sf6hgTlIdhqtjXWw3dDuww3A+21guyMzi
+         afAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712842429; x=1713447229;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tbcCaa8DX09SvsMoBHm+TyAMbhm9qLZzeE5P/R6GO7M=;
-        b=fAVzGBLV/JUM6dvyWp7qWcGbKsaf1vJ5uqZPpD07UnVmCArFA+R9FzFZmg4YsvHz7D
-         +AaXmnrpj+/1efEZuQKLMhHS/yrYH56CXmGUkT8ZjVFHY8aZnv3+XrbZmxNbAxEwFBWV
-         0aBALQredgzOqQ65Ua8Upo4QWzN5v+0SmkG34yrrtc1AC6oSIgkcI4ukr8z/1HsIyTp7
-         sfpDqQdNojBI0ncbbUVSi+EHR6VOHlKX3cvrm7wI7R5Gs9kAF2n/a6hT7k2ZEHjdB8sB
-         t7bUMH6pCDhbNsQgQQY6qhgdiJ3To90v9h89b5mxqIuDbgqABAgOF5U//3sBWeckQ4U7
-         ianQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVJ2//Lc6Tk0VZY2L4/fphfeK2kj/ChS7p/lMnpZVNjOmQSBidDePq20Hoz4s682jU3kieXcvqRWZ2sJsu/pfSufrSzue76cAmo9rXq3Wf8ytTBVhSF0pwV87YmwIgVTkH2IeUKXgnzpRr91FI0vdbQDORIbdgVKpJFi7qTgl0OD2ef8ISxAB15mqlbb0ENiluml5Xy37DC6lCVtEI5RceCBzqzKF5fkgnz3ONp0y8PK8pEX/2TVK6B2szI77lMkWUADScOdA==
-X-Gm-Message-State: AOJu0YyuF0luFDI92wH0kBm0u7Tx9B3O+sl0t7RGVXp4EgET3uGMbqcA
-	MS6gjMvEfAa85EtYot6hq18keOa9xyHJt/JoYwfp+kK4XXrB59bGaItC1BIj5JkTLggeHqHIRBT
-	sFvi8A5NP2BXNgTn2vsdhf2LBvMU=
-X-Google-Smtp-Source: AGHT+IG525FFbMbsm9efSCrv2KXUqFOj0YhoVxH+Cl2iHx5VYUfIZRxfPUChUh11UqyLT5/SR86etSAM7EFlCNkHgHs=
-X-Received: by 2002:a05:6870:b411:b0:22e:e6:673 with SMTP id
- x17-20020a056870b41100b0022e00e60673mr5611022oap.37.1712842429406; Thu, 11
- Apr 2024 06:33:49 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1712842599; x=1713447399;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CYaEFXhyb6LZQLHIIVizc6COCxtPhfacc7ilKAheMt0=;
+        b=sH5zmMF20BekU4ZTlXHVz71QMXWnU+XCDQaCCK+e9AnHCh3EhnCRvzqjzwEC6HhR6b
+         oYnsMgpQaK2Vg4s1vtfIry0xV3z61h/Dy24/mZN9hQGW0TX4e/Lwr5XOKkALDGzwtncC
+         uPPEICl74Y9Ppn962YAINgxNUt6TiVik2QQWGSUjncYrRX4yZZkFGkethXnhvgkkZl93
+         FeBnP1juaeELa5K/6Y261xS9xEpidSzGvrRTf1LBZP81G7p6rMNYzSYR5tjPm4F5aNCi
+         abUGgTt0V63OBXLrSL6VuD10riJ2sS/YmlTf6yAL3YCMuwe12IbvSW9aCA2d8GgHS3pA
+         X7Ag==
+X-Forwarded-Encrypted: i=1; AJvYcCXX9IPStJQdIh106QUXoSKw7a9jvSbhYvN3G/UItq8K1Xjel+sHi8G+CequtWJEnixtghKdvUc81oLrOWLHuCsRiq58XMYTvCUwbA==
+X-Gm-Message-State: AOJu0YyyE1EhVjMaMN7nx0RawjWtCiOb8z+h+UUvdKS6SzKmybRW7fUI
+	x8U/IzI/QlC+MAsgugpiJARw3fcsFGQ6d8vwWOnZ/kJA+4DCjy/J+xf7Ijx4Uu0=
+X-Google-Smtp-Source: AGHT+IEX1udSEiYP7O2GbGoEX1Leu8G80HqYkS34ca2YUfC/I/Vafx1RaNkExfYNKcEtODspKTAWHQ==
+X-Received: by 2002:a05:600c:19d2:b0:416:bbf8:27e0 with SMTP id u18-20020a05600c19d200b00416bbf827e0mr4254479wmq.40.1712842599353;
+        Thu, 11 Apr 2024 06:36:39 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id n18-20020a05600c4f9200b00417caec4135sm2363003wmq.4.2024.04.11.06.36.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Apr 2024 06:36:38 -0700 (PDT)
+Message-ID: <e6465ed5-c52c-44c2-8032-2ce0bbcf07a2@linaro.org>
+Date: Thu, 11 Apr 2024 15:36:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CAMhs-H82Ymc=isxu6AX4_s1QnNpSSNt74--ED1j7JxpzE=eCRg@mail.gmail.com>
- <20240411123917.GA2180141@bhelgaas>
-In-Reply-To: <20240411123917.GA2180141@bhelgaas>
-From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date: Thu, 11 Apr 2024 15:33:37 +0200
-Message-ID: <CAMhs-H_imwV4__G4_pt7eWHdyLPe9_fttWJ2a3x1ESP=B6bb_w@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] dt-bindings: PCI: mediatek,mt7621: add missing
- child node reg
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Ray Jui <rjui@broadcom.com>, 
-	Scott Branden <sbranden@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, Jim Quinlan <jim2101024@gmail.com>, 
-	Nicolas Saenz Julienne <nsaenz@kernel.org>, Will Deacon <will@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Srikanth Thokala <srikanth.thokala@intel.com>, 
-	Ryder Lee <ryder.lee@mediatek.com>, Jianjun Wang <jianjun.wang@mediatek.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Daire McNamara <daire.mcnamara@microchip.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Marek Vasut <marek.vasut+renesas@gmail.com>, 
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, Shawn Lin <shawn.lin@rock-chips.com>, 
-	Heiko Stuebner <heiko@sntech.de>, Jingoo Han <jingoohan1@gmail.com>, 
-	Gustavo Pimentel <gustavo.pimentel@synopsys.com>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>, Michal Simek <michal.simek@amd.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Mark Kettenis <kettenis@openbsd.org>, 
-	Tom Joseph <tjoseph@cadence.com>, Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>, 
-	Jiaxun Yang <jiaxun.yang@flygoat.com>, Kishon Vijay Abraham I <kishon@kernel.org>, 
-	Thippeswamy Havalige <thippeswamy.havalige@amd.com>, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-rpi-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] media: dt-bindings: media: add access-controllers to
+ STM32MP25 video codecs
+To: Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+ Rob Herring <robh@kernel.org>, Hugues Fruchet <hugues.fruchet@foss.st.com>
+Cc: Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-kernel@vger.kernel.org,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20240410144222.714172-1-hugues.fruchet@foss.st.com>
+ <171276671618.403884.13818480350194550959.robh@kernel.org>
+ <278bccaa-edc0-4f3d-8e9e-6159d2b47394@foss.st.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <278bccaa-edc0-4f3d-8e9e-6159d2b47394@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Apr 11, 2024 at 2:39=E2=80=AFPM Bjorn Helgaas <helgaas@kernel.org> =
-wrote:
->
-> On Thu, Apr 11, 2024 at 08:13:18AM +0200, Sergio Paracuellos wrote:
-> > On Thu, Apr 11, 2024 at 8:01=E2=80=AFAM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> > > On 10/04/2024 23:26, Bjorn Helgaas wrote:
-> > > > On Wed, Apr 10, 2024 at 08:15:19PM +0200, Krzysztof Kozlowski wrote=
-:
-> > > >> MT7621 PCI host bridge has children which apparently are also PCI =
-host
-> > > >> bridges, at least that's what the binding suggest.
-> > > >
-> > > > What does it even mean for a PCI host bridge to have a child that i=
-s
-> > > > also a PCI host bridge?
-> > > >
-> > > > Does this mean a driver binds to the "parent" host bridge, enumerat=
-es
-> > > > the PCI devices below it, and finds a "child" host bridge?
-> >
-> > Yes, that is exactly what you can see on enumeration.
-> >
-> > The following is a typical boot trace where all bridges has a device al=
-so below:
-> >
-> > mt7621-pci 1e140000.pcie: host bridge /pcie@1e140000 ranges:
-> > mt7621-pci 1e140000.pcie:   No bus range found for /pcie@1e140000, usin=
-g [bus 00-ff]
-> > mt7621-pci 1e140000.pcie:      MEM 0x0060000000..0x006fffffff -> 0x0060=
-000000
-> > mt7621-pci 1e140000.pcie:       IO 0x001e160000..0x001e16ffff -> 0x0000=
-000000
-> > mt7621-pci 1e140000.pcie: PCIE0 enabled
-> > mt7621-pci 1e140000.pcie: PCIE1 enabled
-> > mt7621-pci 1e140000.pcie: PCIE2 enabled
-> > mt7621-pci 1e140000.pcie: PCI host bridge to bus 0000:00
->
-> 1e140000.pcie is a host bridge.  It has some CPU-specific bus on the
-> upstream side, standard PCI (domain 0000, buses 00-ff) on the
-> downstream side.
->
-> > pci 0000:00:00.0: [0e8d:0801] type 01 class 0x060400
-> > pci 0000:00:01.0: [0e8d:0801] type 01 class 0x060400
-> > pci 0000:00:02.0: [0e8d:0801] type 01 class 0x060400
->
-> > pci 0000:01:00.0: [1b21:0611] type 00 class 0x010185
->
-> > pci 0000:00:00.0: PCI bridge to [bus 01-ff]
-> > pci 0000:00:00.0:   bridge window [io  0x0000-0x0fff]
-> > pci 0000:00:00.0:   bridge window [mem 0x00000000-0x000fffff]
-> > pci 0000:00:00.0:   bridge window [mem 0x00000000-0x000fffff pref]
->
-> 00:00.0 looks like a PCIe Root Port to bus 01.  This is not a host
-> bridge; it's just a standard PCI-to-PCI bridge with PCI on both the
-> upstream and downstream sides.
->
-> > pci 0000:02:00.0: [1b21:0611] type 00 class 0x010185
->
-> > pci 0000:00:01.0: PCI bridge to [bus 02-ff]
-> > pci 0000:00:01.0:   bridge window [io  0x0000-0x0fff]
-> > pci 0000:00:01.0:   bridge window [mem 0x00000000-0x000fffff]
-> > pci 0000:00:01.0:   bridge window [mem 0x00000000-0x000fffff pref]
->
-> 00:01.0 is another Root Port to bus 02.
->
-> > pci 0000:03:00.0: [1b21:0611] type 00 class 0x010185
->
-> > pci 0000:00:02.0: PCI bridge to [bus 03-ff]
-> > pci 0000:00:02.0:   bridge window [io  0x0000-0x0fff]
-> > pci 0000:00:02.0:   bridge window [mem 0x00000000-0x000fffff]
-> > pci 0000:00:02.0:   bridge window [mem 0x00000000-0x000fffff pref]
-> > pci_bus 0000:03: busn_res: [bus 03-ff] end is updated to 03
->
-> And 00:02.0 is a third Root Port to bus 03.
->
-> > pci 0000:00:00.0: PCI bridge to [bus 01]
-> > pci 0000:00:00.0:   bridge window [io  0x0000-0x0fff]
-> > pci 0000:00:00.0:   bridge window [mem 0x60000000-0x600fffff]
-> > pci 0000:00:00.0:   bridge window [mem 0x60100000-0x601fffff pref]
-> > pci 0000:00:01.0: PCI bridge to [bus 02]
-> > pci 0000:00:01.0:   bridge window [io  0x1000-0x1fff]
-> > pci 0000:00:01.0:   bridge window [mem 0x60200000-0x602fffff]
-> > pci 0000:00:01.0:   bridge window [mem 0x60300000-0x603fffff pref]
-> > pci 0000:00:02.0: PCI bridge to [bus 03]
-> > pci 0000:00:02.0:   bridge window [io  0x2000-0x2fff]
-> > pci 0000:00:02.0:   bridge window [mem 0x60400000-0x604fffff]
-> >
-> > > I think the question should be towards Mediatek folks. I don't know w=
-hat
-> > > this hardware is exactly, just looks like pci-pci-bridge. The driver
-> > > calls the children host bridges as "ports".
-> >
-> > You can see the topology here in my first driver submit cover letter
-> > message [0].
-> >
-> >  [0]: https://lore.kernel.org/all/CAMhs-H-BA+KzEwuDPzcmrDPdgJBFA2XdYTBv=
-T4R4MEOUB=3DWQ1g@mail.gmail.com/t/
->
-> Nothing unusual here, this looks like the standard PCIe topology.
->
-> What *might* be unusual is describing the Root Ports in DT.  Since
-> they are standard PCI devices, they shouldn't need DT description
-> unless there's some unusual power/clock/reset control or something
-> that is not discoverable via PCI enumeration.
+On 11/04/2024 14:57, Alexandre TORGUE wrote:
+> Hi Rob
+> 
+> On 4/10/24 18:31, Rob Herring wrote:
+>>
+>> On Wed, 10 Apr 2024 16:42:22 +0200, Hugues Fruchet wrote:
+>>> access-controllers is an optional property that allows a peripheral to
+>>> refer to one or more domain access controller(s).
+>>>
+>>> Signed-off-by: Hugues Fruchet <hugues.fruchet@foss.st.com>
+>>> ---
+>>>   .../devicetree/bindings/media/st,stm32mp25-video-codec.yaml   | 4 ++++
+>>>   1 file changed, 4 insertions(+)
+>>>
+>>
+>> My bot found errors running 'make dt_binding_check' on your patch:
+>>
+>> yamllint warnings/errors:
+>>
+>> dtschema/dtc warnings/errors:
+>> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/st,stm32mp25-video-codec.yaml: access-controllers: missing type definition
+>>
+>> doc reference errors (make refcheckdocs):
+>>
+>> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240410144222.714172-1-hugues.fruchet@foss.st.com
+>>
+>> The base for the series is generally the latest rc1. A different dependency
+>> should be noted in *this* patch.
+>>
+>> If you already ran 'make dt_binding_check' and didn't see the above
+>> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+>> date:
+>>
+>> pip3 install dtschema --upgrade
+>>
+>> Please check and re-submit after running the above command yourself. Note
+>> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+>> your schema. However, it must be unset to test all examples with your schema.
+>>
+> 
+> This patch depends on STM32 firewall bus YAML which has been recently 
+> added in stm32-next branch. I tested it on top of stm32-next and there 
 
-It looks like it is necessary since every port has its own
-configuration registers, phy, clock, reset and interrupt.
+Where is it expressed in the patch? How maintainers are supposed to know
+if this patch should be applied or not?
 
-Thanks,
-    Sergio Paracuellos
+> is no YAML issues (neiter dt-bindings checks nor dtbs_check). If you 
+> agree to ack it, I could merge it on stm32-next.
 
-> Bjorn
+Drop redundant second "media" from the subject. One media is enough.
+
+With the subject fixed:
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
 
