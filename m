@@ -1,131 +1,177 @@
-Return-Path: <devicetree+bounces-58351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58352-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 688668A174F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 16:34:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 717CA8A1759
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 16:35:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6D9B282F59
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 14:34:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C972281105
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 14:35:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B36D2C95;
-	Thu, 11 Apr 2024 14:34:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73D868F44;
+	Thu, 11 Apr 2024 14:35:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Woy0/ww9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gp3S904r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0247BD51D;
-	Thu, 11 Apr 2024 14:34:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04F211C2E;
+	Thu, 11 Apr 2024 14:35:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712846071; cv=none; b=P2Hwn/z3qx1Iu/hMP1bAyBe4MCWp0DcE+kcJ8Zb+9A4ZmYzCKCwW7IJ5rR+StIAsbUV0qys+eBSjkWYseKAa3fMToqB2k2SUdmvTCC95py9+zWfNbUb9d68LnRFLOGYXck/5mySI2poKiV+t3A8kM7HrcngfJWonFkQpedbBtpw=
+	t=1712846139; cv=none; b=RVuqwaHKGVGgNUBJoV5TYfheL6Xr9xK81E8Ii1NWdFswDxMtDRaXEMD1R5aZtMWEQfT2G+okitv9Smc2AsPef4d2pCxbWn0UzVemYQ8bimBbaNr1zp/twY8TfILmFvbJHiJ0KH46A3L7gf8PGIXlZT5pGRqq/uHghbiCX9KgBxM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712846071; c=relaxed/simple;
-	bh=BPWvX7FMnfSHBT1g9xfH5nN+hbcEQ+/3zdHIQgPG0LU=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
-	 References:In-Reply-To; b=RLNYD9256/JvB6RoQDH+QxkcGtc3158xpg1z5+BRu7LLHu8naO9z+PWWNvuyLKPkc/mJwGUXVCFw+cBpycr6U41YOO+yl4DXru1Yv7wwKWgZ2JVItVMzbdrYHhyEy/EHvtZzJU/AZ6WGzZKK+TtSwIIUDKZWJh2yiqiA6PMQtgQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Woy0/ww9; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 16DB5FF806;
-	Thu, 11 Apr 2024 14:34:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1712846060;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=TqUHfFkbPFXkINPYBOMZ3yos79n09w01Malpi4hMiNk=;
-	b=Woy0/ww92LZI/zvaNa6V/i/nNLiYIj1d7++rqOyTjF9of0Yd5gY7fGfDZUGr4nJDspWaPl
-	SjKzDrjNny9O7dQz96809N9VX7fDrC293nMfTFLZoaP9i3Z01K08JXQTZfz8J/DBrM+qRI
-	wLE16x8ARJBceC1RTGvZkAmf0j5KTh0su1TZa+Q4uW6em23D40841bYWZfY51ld9hy/CaF
-	HTRwzU+Un/asZ88OgAuQTpNXq/1moG32vTSyP2C/JFSR9YaVErA9MoD0y1JE2/ywcnlTfX
-	U+Rwi9qALTB7M4ioEN2/OK8QQ/5ynuh9UtY5OPL/CmeYQgiOOzqYn6BQT+jrTg==
+	s=arc-20240116; t=1712846139; c=relaxed/simple;
+	bh=y56pggh6v4u8JozsWax5N7kSFtvMWF/NKsPwxfg55Bo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BQb4pQxpL6AS1uLP0bUvO1U8oYXKNOVrnykyi3h6cRl4nqTz0hlBkUQWcSNMthCxkyU6g4IPL7VyozVESDv5i1EWyRzxlEq9FnbmaW1vwwKzgBjuFSy7F7ikinSq+iZdJMESe2BHVPHjRWTXDmpJd4zND/jdWfIBTaKTcgavm5g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gp3S904r; arc=none smtp.client-ip=209.85.128.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-6151d79db7bso90456697b3.1;
+        Thu, 11 Apr 2024 07:35:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712846137; x=1713450937; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=S38Xw7GZvbXl2KyYUbvZmsZk8xa1F0iUzqS2DgFhfso=;
+        b=gp3S904rsGS62h69QmxxVfjmO8lyTkJhMlgdKawrgxlSWpfWAO61m+B46Q3RevDkeo
+         4ja7R6swEEyRcXpr8Plh5ITkdh8dXX9zL5w2VwqDg8UpNUs3tx5ytoTnst5LPmtlnYbq
+         0+6Un16MzTLMZ2r6RK19/ZMVVZN1hfQwc7XO8CGwzeTWSg9gOsUzJIiQIetL1gd582O+
+         Vkne0k1+oll+OpLKUbch4RWsShpfguZW0XTZtRoc5nAoCO12Y/YxxV2NznZA0wZ0WpHE
+         xqurEg+2LEfBx5KjU/fy/MRFrwDv5iepdmA6qdvAaee25Dyy98nImb5bJ6ZWQYV2wItc
+         QQAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712846137; x=1713450937;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=S38Xw7GZvbXl2KyYUbvZmsZk8xa1F0iUzqS2DgFhfso=;
+        b=X6zg2jatAVp3UnUa+JinTeGSR2RP4bDernHqvW+s2IbDUcHP25TQe9d+QqvB2kV1pP
+         zZ9ENvbhC9h8us5qvpMEZSL4WUG8PXozL92zMsEksh3mDAOyTKfnSBaP4IXamm+Z4mNO
+         A5Sqo0ulnOPo/XOaCWdOF3fkQ3cNLvuvW+9ij69vm8bnsR/DCHEcpFx69k5s9k4BFTVx
+         fx3NWfBT2a6WirZH/sJ1TUTRY2KrrnrgyNezsonRqHrAh0VpHJ+xg5DFkIJXmA+s+oTo
+         l6zJVSqrRvt8rQISG7q/C1YWkyaBJ8ta/a1dbgy29T3HAP6jB080CzH/BBZ1O1ybRd+s
+         1yPg==
+X-Forwarded-Encrypted: i=1; AJvYcCVQvrEMWZEZPRoqfUqHvQ8GKCsC/23slZCNri5hSa043bMWf+oDyTf7ITCgmx6RXKXy+FLul1F9YfkncWUG0Toqx0fwSJuPKFCeAnMyg34t485L5pViY2l9jpfGAYtvNzvi6irUSg==
+X-Gm-Message-State: AOJu0Yx+bcMr7LnEjHI0XcgwNfar/am+i6fAgRtDvjMOfpmefqtoNLJh
+	R7q89FoCHREfx/Mekpf4mU2HNWEUSrDQLeN0qS6meCaQX2e74unYLbJyFR7n5uNgXZbjhBwHU9G
+	NQnFyJD5RZHfFXjaJ4JF+oqTFaqU=
+X-Google-Smtp-Source: AGHT+IGWZrzsyPJUo3DLr0SbGCnVytTgEOhJLFnDzSDxwXe4EdkJ3WD6rLMcDII9/iga5WZXIJdZ/lR9EXlYKZdttzA=
+X-Received: by 2002:a81:4907:0:b0:615:4653:1c11 with SMTP id
+ w7-20020a814907000000b0061546531c11mr6336072ywa.12.1712846136880; Thu, 11 Apr
+ 2024 07:35:36 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <cover.1712732719.git.zhoubinbin@loongson.cn> <38c234d548b4b9c334cda6e7664a803896b31f6f.1712732719.git.zhoubinbin@loongson.cn>
+ <c1399191-6c6d-4eb4-b05b-f87a9f2b4152@linaro.org> <CAMpQs4JiLGJ-nBDmj1pe0SCqKeCnz5DrybJAKE8_6up293YNpw@mail.gmail.com>
+ <98d12a5e-e291-40f9-8334-3b5f53ed79a8@linaro.org>
+In-Reply-To: <98d12a5e-e291-40f9-8334-3b5f53ed79a8@linaro.org>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Thu, 11 Apr 2024 22:35:25 +0800
+Message-ID: <CAMpQs4KgzOjJe52BAhTb5P4t5ZynkW9AUEzPBkX_1h5XHuk5Ew@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: Add Loongson PWM controller
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Juxin Gao <gaojuxin@loongson.cn>, Huacai Chen <chenhuacai@kernel.org>, 
+	loongson-kernel@lists.loongnix.cn, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 11 Apr 2024 16:34:18 +0200
-Message-Id: <D0HD94HI3W7W.3KLAW6WFIN6ZE@bootlin.com>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH 08/11] MIPS: mobileye: eyeq5: add OLB syscon node
-Cc: <linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, "Gregory CLEMENT"
- <gregory.clement@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Michael Turquette" <mturquette@baylibre.com>, "Stephen Boyd"
- <sboyd@kernel.org>, "Philipp Zabel" <p.zabel@pengutronix.de>, "Linus
- Walleij" <linus.walleij@linaro.org>
-X-Mailer: aerc 0.15.2
-References: <20240410-mbly-olb-v1-0-335e496d7be3@bootlin.com>
- <20240410-mbly-olb-v1-8-335e496d7be3@bootlin.com>
- <faa0769f-bd5e-4c6b-9f61-1a369830ad28@linaro.org>
-In-Reply-To: <faa0769f-bd5e-4c6b-9f61-1a369830ad28@linaro.org>
-X-GND-Sasl: theo.lebrun@bootlin.com
 
-Hello,
-
-On Thu Apr 11, 2024 at 8:15 AM CEST, Krzysztof Kozlowski wrote:
-> On 10/04/2024 19:12, Th=C3=A9o Lebrun wrote:
-> > The OLB ("Other Logic Block") is a syscon region hosting clock, reset
-> > and pin controllers. It contains registers such as I2C speed mode that
-> > need to be accessible by other nodes.
-> >=20
-> > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
-> > ---
-> >  arch/mips/boot/dts/mobileye/eyeq5.dtsi | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> >=20
-> > diff --git a/arch/mips/boot/dts/mobileye/eyeq5.dtsi b/arch/mips/boot/dt=
-s/mobileye/eyeq5.dtsi
-> > index 6cc5980e2fa1..e82d2a57f6da 100644
-> > --- a/arch/mips/boot/dts/mobileye/eyeq5.dtsi
-> > +++ b/arch/mips/boot/dts/mobileye/eyeq5.dtsi
-> > @@ -100,6 +100,14 @@ uart2: serial@a00000 {
-> >  			clock-names =3D "uartclk", "apb_pclk";
-> >  		};
-> > =20
-> > +		olb: system-controller@e00000 {
-> > +			compatible =3D "mobileye,eyeq5-olb", "syscon", "simple-mfd";
-> > +			reg =3D <0 0xe00000 0x0 0x400>;
-> > +			ranges =3D <0x0 0x0 0xe00000 0x400>;
-> > +			#address-cells =3D <1>;
-> > +			#size-cells =3D <1>;
+On Thu, Apr 11, 2024 at 5:07=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> Do not add incomplete node. ranges, address/size-cells are incorrect in
-> this context and you will have warnings.
+> On 11/04/2024 13:01, Binbin Zhou wrote:
+> > On Thu, Apr 11, 2024 at 4:26=E2=80=AFPM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 11/04/2024 11:16, Binbin Zhou wrote:
+> >>> Add Loongson PWM controller binding with DT schema format using
+> >>> json-schema.
+> >>>
+> >>> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> >>
+> >>
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    oneOf:
+> >>> +      - const: loongson,ls7a-pwm
+> >>> +      - items:
+> >>> +          - enum:
+> >>> +              - loongson,ls2k0500-pwm
+> >>> +              - loongson,ls2k1000-pwm
+> >>> +              - loongson,ls2k2000-pwm
+> >>> +          - const: loongson,ls7a-pwm
+> >>> +
+> >>> +  reg:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  interrupts:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  clocks:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  '#pwm-cells':
+> >>> +    description:
+> >>> +      The first cell must have a value of 0, which specifies the PWM=
+ output signal;
+> >>
+> >> If you have always the same value in PWM phandle, why encoding it in t=
+he
+> >> phandle in the first place? What's the benefit of passing 0?
+> >
+> > Hi Krzysztof:
+> >
+> > My thoughts are:
+> > First of all, our pwm has only one output signal, so it can only be 0.
+> > Also, as you know from the pwm xlate function, the first cell is the
+> > pwm index, so I fixed it to be 0 here.
+> >
+> > The xlate function:
+> > https://elixir.bootlin.com/linux/v6.8/source/drivers/pwm/core.c#L106
 >
-> Add complete node, so these properties make sense.
+> You refer for xlate for PWM with three cells. You do not have three
+> cells, as you have only on signal, so why insisting on using other
+> xlate? Do you do the same for clocks? Or resets?
+>
+> I don't think you use appropriate argument in this discussion. We talk
+> about hardware and your argument "I don't want to use my own xlate in
+> the driver" is about driver.
+>
+Hi Krzysztof:
 
-I'll squash all four commits into one. For reference, commits are:
+Thanks for your comments.
 
- - MIPS: mobileye: eyeq5: add OLB syscon node
- - MIPS: mobileye: eyeq5: use OLB clocks controller node
- - MIPS: mobileye: eyeq5: add OLB reset controller node
- - MIPS: mobileye: eyeq5: add pinctrl node & pinmux function nodes
+Emm... Indeed, I used to think about it from the driver's perspective.
+From the binding perspective, two cells really should be more appropriate.
+I try to make the following changes in the next version patchset:
 
-This means two things: (1) it won't be partially applicable and (2) it
-will make one big commit adding pins and editing clocks.
+  '#pwm-cells':
+    description:
+      The first cell is the period in nanoseconds;
+      The second cell flag supported by this binding is PWM_POLARITY_INVERT=
+ED.
+    const: 2
 
-Thanks,
+Accordingly, the custom xlate function will be used in the driver.
 
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+Thanks.
+Binbin
+>
+> Best regards,
+> Krzysztof
+>
 
