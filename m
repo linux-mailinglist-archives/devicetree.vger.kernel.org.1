@@ -1,200 +1,386 @@
-Return-Path: <devicetree+bounces-58251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6946D8A1167
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 12:43:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A49898A11A6
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 12:46:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B3B8DB22245
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 10:43:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31DB71F213F9
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 10:46:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03D121448C8;
-	Thu, 11 Apr 2024 10:43:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 703E21465BF;
+	Thu, 11 Apr 2024 10:46:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jrg1kLf8"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="mxh/V2il"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEC6C64CC0;
-	Thu, 11 Apr 2024 10:43:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D01226BB29;
+	Thu, 11 Apr 2024 10:46:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712832224; cv=none; b=K8ep1UYkDZGSJKZE1FffTXIlyQ/CqZ4oHA3wu1Buh9M6l2cvR6yps97OqDQcI34jUtPAO2rY/J9d9vjofJJbG4xrFIT3BPkguDVYWcOUr3tYVlB6TbdK1ezq1YCF04+YEqNgzi/o2VFbBw97oJ3Ya8wdErAcvPrQpPh7LJ+k0Kk=
+	t=1712832376; cv=none; b=D7OjN3HeIlqG4A2rXuQqQr49E+4caGJrDGZbdmIMjPlqoWXwZIgQwd1ul2y6Yki3Q4QVq16GFCBBr0GmdG8YSDK65+fDnifNs5eJg2IQCZNAcXCHJLvNa2Qdz7MNWCZImVjVSU71EmdOnFmlGOJrysVbMPnhKOJAXhjn1hSfpps=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712832224; c=relaxed/simple;
-	bh=m3LdeoBk9yRi14Td0QXtvoK4t+hH0qrQBNeHIaj+1hs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J+fDSoktIdrvIzE/Sbc2P8G6e1ZvkJYRQTtnbP1zmYmG+5KhZ9JaaLDqHAeeLfenbEJMZJF22oXc5UDS22zfwVkIr39KMZbpP93O86ELXJ1bR/h3TuyRlTQx1++Pn9PkOcQS7VEJF+EkhHXMFJR2vIhSQ6sj2AodLYrOWPY22Fw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jrg1kLf8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38AC1C43390;
-	Thu, 11 Apr 2024 10:43:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712832224;
-	bh=m3LdeoBk9yRi14Td0QXtvoK4t+hH0qrQBNeHIaj+1hs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Jrg1kLf86SaY79TpYwUgtxmP++Rdv67PaepTB29DEHV8pQgr7f2N9q4PHmCMo1VFq
-	 uGw7KLaRkxPG/Tl0VVgXRQxQpoK/0hADO3lydktBP5UdF2FhL/izsi6Bm9qYUs/aHa
-	 56YrdjW1Pa5sOd+U/jjBCDwyNUwhDoaBaiTZUrA4uTdg9CdNtRGbsIkraqcaadqheB
-	 Qf382IebSSvFHT300DzGjCYH7lp7YrYS9hP3tdHSoLNS7eVYbMeKqwVB6JHNkyYvtY
-	 4bXvRIS3ZrctRSSUvROVB8NYK6XwxJlomtIqKGXEsZOURh1OMuNoX3jenBVetlIkkP
-	 XdCxUhgtpv61A==
-Message-ID: <87909fc5-e4de-4b74-bdac-61a92777f32c@kernel.org>
-Date: Thu, 11 Apr 2024 12:43:38 +0200
+	s=arc-20240116; t=1712832376; c=relaxed/simple;
+	bh=OoYa2H46hlE4BhwqnM+waNzdjJPOC9QQSf8jKUDCvJQ=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
+	 References:In-Reply-To; b=PIV46fBL037AGkSsWPZbAHUDiqjbONsZhNGXOrPdzn3QlJ9zIWhj+dGLt62ZaTGElMQUaX5ql5J04MZryrvvhD2kyuo+w/flZehXRO8wGk0Lo46wI7dIl1wNlMwpOdaNpb9dNHpjd9W3fk8gjhc8zZJ+Awj34u1GA4oVY1poUmU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=mxh/V2il; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 8CB3A240002;
+	Thu, 11 Apr 2024 10:46:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1712832365;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ew2ILr0DuW/o5wiH4MAXNJgc0vVAo26yBQ6uKtMhuoc=;
+	b=mxh/V2ilGwbzd+R6GSvr5YumfCUNL69/2OP5A4DsAxyGgChkB19SuANkcNvRRnaST951SK
+	U1Xpm5b4kzHKCkr+CDYzvVDmUMQ+Ihcuucw6bCBRvZBhjd+23bSMzWM30O8dxc7LyZ/F0y
+	MCX42dyKyFrcKCAFhN9cZGt76o6ky/lsDvoR3kp8DTQKK/xIPeKnvobrzUX5zCWgO7eDDe
+	ZnmPEAhL+mAx5oGNyi1MYCvhLpnthnWUdrHHru79AL+l7MgHhCyWKOr26VfDMOyaRzUeF8
+	PoFN0yQ6RkGBNL4GdTLFTlkV8WnpdSJ5Htx67STCiugM62DZAjoGROtZnFQahA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: host1x: Add missing 'dma-coherent'
-To: Jon Hunter <jonathanh@nvidia.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Mikko Perttunen <mperttunen@nvidia.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240409082324.9928-1-jonathanh@nvidia.com>
- <ea3be8f7-0ee6-4940-828d-2fc15b9239dc@kernel.org>
- <b726b5a0-45f4-457c-afad-6235c1adb640@nvidia.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <b726b5a0-45f4-457c-afad-6235c1adb640@nvidia.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Date: Thu, 11 Apr 2024 12:46:04 +0200
+Message-Id: <D0H8EDEDKGV9.2FT5JGT59AU8A@bootlin.com>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH 05/11] clk: eyeq: add driver
+Cc: <linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, "Vladimir Kondratiev"
+ <vladimir.kondratiev@mobileye.com>, "Gregory CLEMENT"
+ <gregory.clement@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>
+To: "Stephen Boyd" <sboyd@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Linus Walleij"
+ <linus.walleij@linaro.org>, "Michael Turquette" <mturquette@baylibre.com>,
+ "Philipp Zabel" <p.zabel@pengutronix.de>, "Rob Herring" <robh@kernel.org>
+X-Mailer: aerc 0.15.2
+References: <20240410-mbly-olb-v1-0-335e496d7be3@bootlin.com>
+ <20240410-mbly-olb-v1-5-335e496d7be3@bootlin.com>
+ <daa732cb31d947c308513b535930c729.sboyd@kernel.org>
+In-Reply-To: <daa732cb31d947c308513b535930c729.sboyd@kernel.org>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On 11/04/2024 12:09, Jon Hunter wrote:
-> 
-> On 10/04/2024 07:18, Krzysztof Kozlowski wrote:
->> On 09/04/2024 10:23, Jon Hunter wrote:
->>> The dtbs_check reports that the 'dma-coherent' property is "unevaluated
->>> and invalid" for the host1x@13e00000 device on Tegra194 and Tegra234
->>> platforms. Fix this by updating the dt-binding document for host1x to
->>> add the 'dma-coherent' property for these devices.
->>
->> That's not really proper reason. What if DTS is wrong? The reason could
->> be if device is actually DMA coherent...
-> 
-> In this case the DTS is correct. I guess I should have been more 
-> explicit about that.
-> 
->>> Fixes: 361238cdc525 ("arm64: tegra: Mark host1x as dma-coherent on Tegra194/234")
->>> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
->>> ---
->>>   .../bindings/display/tegra/nvidia,tegra20-host1x.yaml | 11 +++++++++++
->>>   1 file changed, 11 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml
->>> index 94c5242c03b2..3563378a01af 100644
->>> --- a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml
->>> +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml
->>> @@ -177,6 +177,15 @@ allOf:
->>>   
->>>         required:
->>>           - reg-names
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            enum:
->>> +              - nvidia,tegra194-host1x
->>> +    then:
->>> +      properties:
->>> +        dma-coherent: true
->>
->> Do not define properties in allOf. Put it in top-level. If not all
->> devices are DMA coherent, you can disallow it for certain variants (:false).
-> 
-> 
-> So for host1x we currently have the following devices supported ...
-> 
-> properties:
->    compatible:
->      oneOf:
->        - enum:
->            - nvidia,tegra20-host1x
->            - nvidia,tegra30-host1x
->            - nvidia,tegra114-host1x
->            - nvidia,tegra124-host1x
->            - nvidia,tegra210-host1x
->            - nvidia,tegra186-host1x
->            - nvidia,tegra194-host1x
->            - nvidia,tegra234-host1x
-> 
->        - items:
->            - const: nvidia,tegra132-host1x
->            - const: nvidia,tegra124-host1x
-> 
-> 
-> Now only the Tegra194 and Tegra234 are coherent (which are the latest 
-> devices). So rather than add this to the top and then filter out all 
-> those that are not supported, I opted for the above because there is 
-> only 2 devices that need this. Admittedly, as much as I like the yaml 
-> bindings, for things like this, it is not really clear which is the best 
-> way to handle, so appreciate the guidance.
+Hello,
 
-The way to handle is that you must define properties top-level.
+On Thu Apr 11, 2024 at 5:22 AM CEST, Stephen Boyd wrote:
+> Quoting Th=C3=A9o Lebrun (2024-04-10 10:12:34)
+> > diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+> > index 50af5fc7f570..1eb6e70977a3 100644
+> > --- a/drivers/clk/Kconfig
+> > +++ b/drivers/clk/Kconfig
+> > @@ -218,6 +218,17 @@ config COMMON_CLK_EN7523
+> >           This driver provides the fixed clocks and gates present on Ai=
+roha
+> >           ARM silicon.
+> > =20
+> > +config COMMON_CLK_EYEQ
+> > +       bool "Clock driver for the Mobileye EyeQ platform"
+> > +       depends on OF || COMPILE_TEST
+>
+> The OF build dependency looks useless as we have the MACH_ dependency
+> below.
 
-For simplification you could keep the if which duplicates the
-dma-coherent:true but add else: which forbids it
+Indeed. I thought explicit dependency could be useful. Will remove.
 
-if:
- ...
-  then:
-    properties:
-      dma-coherent: true
-  else:
-    properties:
-      dma-coherent: false
+> > +       depends on MACH_EYEQ5 || MACH_EYEQ6H || COMPILE_TEST
+> > +       default MACH_EYEQ5 || MACH_EYEQ6H
+> > +       help
+> > +         This driver provides clocks found on Mobileye EyeQ5, EyeQ6L a=
+nd Eye6H
+> > +         SoCs. Controllers live in shared register regions called OLB.=
+ Driver
+> > +         provides read-only PLLs, derived from the main crystal clock =
+(which
+> > +         must be constant). It also exposes some divider clocks.
+> > +
+> >  config COMMON_CLK_FSL_FLEXSPI
+> >         tristate "Clock driver for FlexSPI on Layerscape SoCs"
+> >         depends on ARCH_LAYERSCAPE || COMPILE_TEST
+> > diff --git a/drivers/clk/clk-eyeq.c b/drivers/clk/clk-eyeq.c
+> > new file mode 100644
+> > index 000000000000..bb2535010ae6
+> > --- /dev/null
+> > +++ b/drivers/clk/clk-eyeq.c
+> > @@ -0,0 +1,644 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * PLL clock driver for the Mobileye EyeQ5, EyeQ6L and EyeQ6H platform=
+s.
+> > + *
+> > + * This controller handles read-only PLLs, all derived from the same m=
+ain
+> > + * crystal clock. It also exposes divider clocks, those are children t=
+o PLLs.
+> > + * Parent clock is expected to be constant. This driver's registers li=
+ve in
+> > + * a shared region called OLB. Some PLLs are initialised early by of_c=
+lk_init().
+>
+> Is OLB a different DT node? It sounds like maybe this is trying to jam a
+> driver into DT when the OLB node should be a #clock-cells node.
 
-Or just ignore the problem. Binding is not 1-to-1 with DTS.
+Yes OLB is a different DT node. It looks like on EyeQ5:
 
-Best regards,
-Krzysztof
+	olb: system-controller@e00000 {
+		compatible =3D "mobileye,eyeq5-olb", "syscon", "simple-mfd";
+		reg =3D <0 0xe00000 0x0 0x400>;
+		ranges =3D <0x0 0x0 0xe00000 0x400>;
+		#address-cells =3D <1>;
+		#size-cells =3D <1>;
+
+		reset: reset-controller@e00000 {
+			compatible =3D "mobileye,eyeq5-reset";
+			reg =3D <0x000 0x0c>, <0x200 0x34>, <0x120 0x04>;
+			reg-names =3D "d0", "d1", "d2";
+			#reset-cells =3D <2>;
+		};
+
+		clocks: clock-controller@e0002c {
+			compatible =3D "mobileye,eyeq5-clk";
+			reg =3D <0x02c 0x50>, <0x11c 0x04>;
+			reg-names =3D "plls", "ospi";
+			#clock-cells =3D <1>;
+			clocks =3D <&xtal>;
+			clock-names =3D "ref";
+		};
+
+		pinctrl: pinctrl@e000b0 {
+			compatible =3D "mobileye,eyeq5-pinctrl";
+			reg =3D <0x0b0 0x30>;
+		};
+	};
+
+Keep in mind OLB is a complex beast. On EyeQ5, it hosts something like
+150 registers, describing 20ish various hardware features. We have to
+expose registers to drivers for one-off reads/writes. One example found
+upstream: I2C speed mode register. Others will be Ethernet, eMMC DMA
+config, etc. A syscon makes sense.
+
+I2C looks like like this for example, look at mobileye,olb.
+
+	i2c@300000 {
+		compatible =3D "mobileye,eyeq5-i2c", "arm,primecell";
+		reg =3D <0x300000 0x1000>;
+		interrupt-parent =3D <&gic>;
+		interrupts =3D <GIC_SHARED 1 IRQ_TYPE_LEVEL_HIGH>;
+		clock-frequency =3D <400000>;
+		#address-cells =3D <1>;
+		#size-cells =3D <0>;
+		clocks =3D <&i2c_ser_clk>, <&i2c_clk>;
+		clock-names =3D "i2cclk", "apb_pclk";
+		mobileye,olb =3D <&olb 0>;
+	};
+
+See commits 7d4c57abb928 and 1b9a8e8af0d9:
+  i2c: nomadik: support Mobileye EyeQ5 I2C controller
+  dt-bindings: i2c: nomadik: add mobileye,eyeq5-i2c bindings and example
+
+> > +
+> > +static int eqc_probe(struct platform_device *pdev)
+> > +{
+> > +       struct device *dev =3D &pdev->dev;
+> > +       void __iomem *div_resources[EQC_MAX_DIV_COUNT];
+> > +       struct device_node *np =3D dev->of_node;
+> > +       const struct eqc_match_data *data;
+> > +       struct eqc_priv *priv =3D NULL;
+> > +       struct clk_hw *hw;
+> > +       unsigned int i;
+> > +
+> > +       data =3D device_get_match_data(dev);
+> > +       if (!data)
+> > +               return -ENODEV;
+> > +
+> > +       if (data->early_pll_count) {
+> > +               /* Device got inited early. Retrieve clock provider fro=
+m list. */
+> > +               struct eqc_priv *entry;
+> > +
+> > +               spin_lock(&eqc_list_slock);
+> > +               list_for_each_entry(entry, &eqc_list, list) {
+> > +                       if (entry->np =3D=3D np) {
+> > +                               priv =3D entry;
+> > +                               break;
+> > +                       }
+> > +               }
+> > +               spin_unlock(&eqc_list_slock);
+> > +
+> > +               if (!priv)
+> > +                       return -ENODEV;
+>
+> This can be a sub-function.
+
+Will do.
+
+[...]
+
+> > +       for (i =3D 0; i < data->pll_count; i++) {
+> > +               const struct eqc_pll *pll =3D &data->plls[i];
+> > +               unsigned long mult, div, acc;
+> > +               u32 r0, r1;
+> > +               u64 val;
+> > +               int ret;
+>
+> All variables should be declared at the start of the function. Once it
+> becomes "too heavy" you can split it up into smaller functions, that
+> again have all variables declared at the start of the function.
+
+Will avoid variables declarations at start of loops.
+
+> > +
+> > +               val =3D readq(priv->base_plls + pll->reg64);
+> > +               r0 =3D val;
+> > +               r1 =3D val >> 32;
+> > +
+> > +               ret =3D eqc_pll_parse_registers(r0, r1, &mult, &div, &a=
+cc);
+> > +               if (ret) {
+> > +                       dev_warn(dev, "failed parsing state of %s\n", p=
+ll->name);
+> > +                       priv->cells->hws[pll->index] =3D ERR_PTR(ret);
+> > +                       continue;
+> > +               }
+> > +
+> > +               hw =3D clk_hw_register_fixed_factor_with_accuracy_fwnam=
+e(dev,
+> > +                               dev->of_node, pll->name, "ref", 0, mult=
+, div, acc);
+> > +               priv->cells->hws[pll->index] =3D hw;
+> > +               if (IS_ERR(hw))
+> > +                       dev_warn(dev, "failed registering %s: %pe\n", p=
+ll->name, hw);
+> > +       }
+> > +
+> > +       BUG_ON(ARRAY_SIZE(div_resources) < data->div_count);
+>
+> Can this be a static assert instead on the arrays these are based on?
+> Put some static_assert() near the match data macros.
+
+I hesitated before sending. Will update.
+
+> > +
+> > +       for (i =3D 0; i < data->div_count; i++) {
+> > +               const struct eqc_div *div =3D &data->divs[i];
+> > +               void __iomem *base =3D NULL;
+> > +               struct clk_hw *parent;
+> > +               unsigned int j;
+> > +
+> > +               /*
+> > +                * Multiple divider clocks can request the same resourc=
+e. Store
+> > +                * resource pointers during probe(). For each divider c=
+lock,
+> > +                * check if previous clocks referenced the same resourc=
+e name.
+> > +                *
+> > +                * See EQ6HC_SOUTH_DIV_OSPI_REF and EQ6HC_SOUTH_DIV_OSP=
+I_SYS.
+> > +                */
+> > +               for (j =3D 0; j < i; j++) {
+> > +                       if (strcmp(data->divs[j].resource_name, div->re=
+source_name) =3D=3D 0) {
+> > +                               base =3D div_resources[j];
+> > +                               break;
+> > +                       }
+> > +               }
+> > +
+> > +               /* Resource is first encountered. */
+> > +               if (!base) {
+> > +                       base =3D devm_platform_ioremap_resource_byname(=
+pdev, div->resource_name);
+> > +                       if (IS_ERR(base)) {
+> > +                               dev_warn(dev, "failed to iomap resource=
+ for %s\n", div->name);
+> > +                               priv->cells->hws[div->index] =3D base;
+> > +                               continue;
+> > +                       }
+> > +               }
+>
+> I don't get this code at all. The driver should simply map the
+> resources because it knows that there's an io resource. I'll look at the
+> binding which is probably wrong and causing the driver to be written
+> this way.
+
+This is here for a single reason: EyeQ6H south OLB has two clocks that
+live in the same register:
+
+ - div-ospi-ref, reg offset 0x90, mask GENMASK(9,  8) =3D=3D 0x300.
+ - div-ospi-sys, reg offset 0x90, mask GENMASK(12, 4) =3D=3D 0x1FF0.
+
+Calling twice devm_platform_ioremap_resource_byname() with the same
+resource name gives an error. So we need to buffer resources already
+requested.
+
+If there is a simpler & better solution I'd be happy to take it.
+
+[...]
+
+> > +static void __init eqc_init(struct device_node *np)
+> > +{
+> > +       const struct eqc_match_data *data;
+> > +       unsigned int nb_clks =3D 0;
+> > +       struct eqc_priv *priv;
+> > +       unsigned int i;
+> > +       int ret;
+> > +
+> > +       data =3D of_match_node(eqc_match_table, np)->data;
+> > +
+> > +       /* No reason to early init this clock provider. Do it at probe.=
+ */
+> > +       if (data->early_pll_count =3D=3D 0)
+>
+> You can have a different match table for this function then.
+
+Ah, clever. Will do.
+
+[...]
+
+> > +       /*
+> > +        * We expect named resources if divider clocks are present.
+> > +        * Else, we only expect one resource.
+> > +        */
+>
+> Please avoid named resources. They give the false sense of hope that the
+> binding can re-order the reg property when that can't be done. Instead,
+> just index and know which index to use in the driver.
+
+It is unclear what you mean by not being able to re-order reg property?
+Are you talking about reg-names being most often defined as items const
+list and therefore cannot be reordered? Here binding declare things
+using minItems/maxItems/enum so it can be reordered, looking like:
+
+  properties:
+    reg:
+      minItems: 2
+      maxItems: 2
+    reg-names:
+      minItems: 2
+      maxItems: 2
+      items:
+        enum: [ plls, ospi ]
+
+If this is not what you are talking about then I rambled about garbage
+and I'll use indexed resources.
+
+Thanks,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
