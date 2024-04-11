@@ -1,45 +1,46 @@
-Return-Path: <devicetree+bounces-58303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C462C8A152F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 15:02:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53CA38A1530
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 15:02:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C798B21520
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 13:02:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CD3A6B21DF4
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 13:02:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DDAF1E4A0;
-	Thu, 11 Apr 2024 13:01:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D5AA145FFA;
+	Thu, 11 Apr 2024 13:02:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c/X/UEdh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ajlmh5HC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AA69624
-	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 13:01:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09DE6624
+	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 13:02:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712840518; cv=none; b=AGVFMp2jAOG8PhqXaGEdhX/Ujx5nxrLjZ4BBstxC0OJ2qthHCz1suwjsXTRoslbTokq17jnT2UX0COFQKLFwRS8W5RObRVrrs1CO9Qgr+qAivbwVS8GhJEHzRiKU1iQqHHTEfKNQ8/AIbPf/zZeK6/aasWhNOmBCOtJLY0U02iQ=
+	t=1712840522; cv=none; b=sICkKY/A0jOZwEt8FAIQhE6ZuEijqKaiVicKqzPxX5lHB3dJ49MhcOJsVeIfjz9HYv/pNWZdjbhW7WsOiphULG1bA4xz7jOlTeTIcxZJL84eKhD+ZkqU+TyvNyvsbafYYJp/tmYxnXTHtuLOpTvUlgp75IC8lmaFzZYZxbIUFA4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712840518; c=relaxed/simple;
-	bh=NmTuJ01mkdJ4M9SVkg9GPWdStss5bWliTugsuTs2VlM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=swaVDm4XXBSgjgEHNkNM34oHEgSjuQGWgIML4QkP/GLNc/o/EkwMArIHPuD84ZUZM9PNxl5fo76ZPeGIdWaBiIXf/fEQlMob6LF/B/WxyA6PHELg7sy4UwAw7YAGMAago75T2a8VmydPy+Y1HlxXeYSkuphOTHNsUHoLwkXLW3Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c/X/UEdh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7454EC433C7;
-	Thu, 11 Apr 2024 13:01:54 +0000 (UTC)
+	s=arc-20240116; t=1712840522; c=relaxed/simple;
+	bh=qArvCH0loValMvQRklgm8B3LhtKJu/iCEN816zFGIGc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=NirY8ROcIFtxdFocI2gVDSn9sX3/SsWkF2xWCnqEbkUYa5aYD0v8nI6AfvYXIpdO/1PUhevEzY1lAkEai1d3gQk22Z5gCYhrFjflIM2ZXPpUszCJhDcGTXPnfyjAAL9rOSSg757ZttPMPXQysUQL1odXkyDVfp7k6YhCKrNKtvo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ajlmh5HC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CB70C43399;
+	Thu, 11 Apr 2024 13:01:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712840517;
-	bh=NmTuJ01mkdJ4M9SVkg9GPWdStss5bWliTugsuTs2VlM=;
-	h=From:To:Cc:Subject:Date:From;
-	b=c/X/UEdh/jiwhdWH1yldKABp0w5pXUdODB2ZvPtWR9kT/vJ7l6NpKQlKp5q3Hmzqn
-	 ZAdmGl7R1F/OxjKxz8d3AXCkuBm0yt2JPPh+iNRkvM4En+76SfAYjzGAYmObzKMc2P
-	 tmeCBVKSLF3XSVKD7kc9UrZIQ190D57JhColEjyAINfnWSBdbUnEu7CREHzi7LtcW1
-	 ye3wrZV//bk1quYBgXKNWtNrHMjP9v43vsrOPt442QxJ+cQDyFEoq5ZsfB5tScFcQB
-	 w+mUH56YSVTuKZ6yT2D+E9IDBDG2EWR1xiJLBbvTLZQ4v2KcyC3EJ4r0dbBLlEO+wh
-	 D2Nl+lq2Wnynw==
+	s=k20201202; t=1712840521;
+	bh=qArvCH0loValMvQRklgm8B3LhtKJu/iCEN816zFGIGc=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=ajlmh5HCGLK6fVFUczGYBXA+AV9/+dY89VDGtD8yQgC+ZQ/W9G6u6nLshRRVtGbrF
+	 IqDZ0GmrOuLgLdcC4yzzLHnefopsjLmOo7cNx0BVGZYvYL8+/Joj/CSPiskNY1376D
+	 +1BRi4Rgr2wMImxCv+EjufVDqBsDeeCMr41PR0KRmyoQFoE4T8wnfiiAaxIxpD5iLO
+	 qCdo7CSS3N3lBV3HPEXg6/6ikSVi9cUGg+54TjNrLqtU/X+oWQ8GwdTfpCGpC87Jmr
+	 +5MSSKy+oN//PW5AYcPy+6zwi2EmF0dFW+6FhZdS2A9/6PPfd93clMwhVJEkIhe2wr
+	 Nl6E4KjbZUxUA==
 From: Niklas Cassel <cassel@kernel.org>
 To: Vinod Koul <vkoul@kernel.org>,
 	Kishon Vijay Abraham I <kishon@kernel.org>,
@@ -56,10 +57,12 @@ Cc: devicetree@vger.kernel.org,
 	linux-phy@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org
-Subject: [PATCH 0/2] rockchip pcie3-phy separate refclk support
-Date: Thu, 11 Apr 2024 15:01:46 +0200
-Message-ID: <20240411130150.128107-1-cassel@kernel.org>
+Subject: [PATCH 1/2] dt-bindings: phy: rockchip,pcie3-phy: add rockchip,rx-common-refclk-mode
+Date: Thu, 11 Apr 2024 15:01:47 +0200
+Message-ID: <20240411130150.128107-2-cassel@kernel.org>
 X-Mailer: git-send-email 2.44.0
+In-Reply-To: <20240411130150.128107-1-cassel@kernel.org>
+References: <20240411130150.128107-1-cassel@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,44 +71,52 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-This series is based on: linux-phy phy/fixes
-(Since there are other rockchip,pcie3-phy changes there that have not
-yet reached mainline and which would otherwise have caused conflicts.)
+From the RK3588 Technical Reference Manual, Part1,
+section 6.19 PCIe3PHY_GRF Register Description:
+"rxX_cmn_refclk_mode"
+RX common reference clock mode for lane X. This mode should be enabled
+only when the far-end and near-end devices are running with a common
+reference clock.
 
-Hello all,
+The hardware reset value for this field is 0x1 (enabled).
+Note that this register field is only available on RK3588, not on RK3568.
 
-The rockchip,pcie3-phy PHY in rk3588 is by default configured to run in
-"common reference clock" mode. (Which is a sensible default, as the most
-commonly used clock configuration is "common reference clock".)
+The link training either fails or is highly unstable (link state will jump
+continuously between L0 and recovery) when this mode is enabled while
+using an endpoint running in Separate Reference Clock with No SSC (SRNS)
+mode or Separate Reference Clock with SSC (SRIS) mode.
+(Which is usually the case when using a real SoC as endpoint, e.g. the
+RK3588 PCIe controller can run in both Root Complex and Endpoint mode.)
 
-However, PCIe also defines two other configurations where the Root Complex
-and Endpoint uses separate reference clocks: SRNS and SRIS.
+Add a rockchip specific property to enable/disable the rxX_cmn_refclk_mode
+per lane. (Since this PHY supports bifurcation.)
 
-Having the Root Complex PHY configured in "common reference clock mode"
-while having an Endpoint connected which is supplying its own reference
-clock (i.e. SRNS or SRIS configuration), will either result in the link
-training failing, or a highly unstable link that continuously jumps
-between link states L0 and recovery.
+Signed-off-by: Niklas Cassel <cassel@kernel.org>
+---
+ .../devicetree/bindings/phy/rockchip,pcie3-phy.yaml    | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-Add a rockchip specific device tree property that can be added to the
-rk3588 Root Complex device tree PHY node, if the connected Endpoint device
-is using a separate refererence clock. This way we will get a stable link
-when using an Endpoint configured in SRNS or SRIS mode.
-
-
-Kind regards,
-Niklas
-
-Niklas Cassel (2):
-  dt-bindings: phy: rockchip,pcie3-phy: add
-    rockchip,rx-common-refclk-mode
-  phy: rockchip-snps-pcie3: add support for
-    rockchip,rx-common-refclk-mode
-
- .../bindings/phy/rockchip,pcie3-phy.yaml      | 10 +++++
- .../phy/rockchip/phy-rockchip-snps-pcie3.c    | 37 +++++++++++++++++++
- 2 files changed, 47 insertions(+)
-
+diff --git a/Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml
+index c4fbffcde6e4..ba67dca5a446 100644
+--- a/Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml
+@@ -54,6 +54,16 @@ properties:
+     $ref: /schemas/types.yaml#/definitions/phandle
+     description: phandle to the syscon managing the pipe "general register files"
+ 
++  rockchip,rx-common-refclk-mode:
++    description: which lanes (by position) should be configured to run in
++      RX common reference clock mode. 0 means disabled, 1 means enabled.
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    minItems: 1
++    maxItems: 16
++    items:
++      minimum: 0
++      maximum: 1
++
+ required:
+   - compatible
+   - reg
 -- 
 2.44.0
 
