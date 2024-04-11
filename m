@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-58116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58117-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 360E08A084E
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 08:18:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79E7C8A085A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 08:20:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF6A01F25A5A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 06:18:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30F312869D7
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 06:20:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 599DE13CA96;
-	Thu, 11 Apr 2024 06:18:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CE3013CA9F;
+	Thu, 11 Apr 2024 06:20:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pdclmzqo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="c6z5I+Ui"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D6A513C806
-	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 06:17:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABF6413CAA7
+	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 06:20:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712816281; cv=none; b=SW52+wH5duIxju6SxVZazN7v+YEHftM53RFiagYv+OJw+ZLI9oSq7mlMAwwfw9aDxw2vkrgkak6K8t5esWJ+vO8lcifjsOzYVqetQiNHAnMh3Tp1xwdO0JvwMOnjTAIpAGjAsAXye5oYQAN/z9+lL5Rusk+zKvr5HzB0koCy0do=
+	t=1712816415; cv=none; b=RYvzuBiAjyWxSxWdqiSBu2L1XPvPGgRBzsNjumWE79Enff0cNbeG5tMprfxaGv5nif5ls4c/xCQFf98ndsyrDqhO/Na/40OEI06Gjx95zghfjt/nNUd1remAEVIMvaKnrVzIdQZ6V6RQ+m8p4vw9iSPRhQiGQcfPpdlw8NK+9Xc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712816281; c=relaxed/simple;
-	bh=i9P3bAcnwVB5TPl/lPoV1TrVudMdEcrlGwHTwNAN+Ms=;
+	s=arc-20240116; t=1712816415; c=relaxed/simple;
+	bh=g1OyMHRe+/BTWY56+BAwp122k0FRFSoSgVC0hnwFTbk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ozgNWhBTh86gva3DwpE0eqxYlUP9dYAE73Nj/xdn63taD5S3Jrtcon74veBCEjXjfVjtldkkvc7ZDPF5YCwrvu6KC3GzZx6MF0RB8tvIKU9DorNgWcx/Ad5Dd+6ux92RKA5ey5neEWpglCDRsfuZXkbFAnUBLtgKFeY8MW+NTtM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pdclmzqo; arc=none smtp.client-ip=209.85.221.45
+	 In-Reply-To:Content-Type; b=UE4uUPR/n6FvvNzwPFgkNdlQb0mXToOyq1VpweCnByyEutaxrfqNSZAJ5daVK3VMv9U2UbgKgcElXtrknXBcHxkoffOZQXaptyV147dXhfaMFy9tCpsNMGRu7jc3f+0YgVJk4jhxmyi3Dvd8lybal7pTURtxWIC9ifsYROwZrbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=c6z5I+Ui; arc=none smtp.client-ip=209.85.221.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-346b94fa7ecso314974f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 23:17:59 -0700 (PDT)
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3462178fbf9so1313352f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 23:20:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712816278; x=1713421078; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712816412; x=1713421212; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=dIqGBLkwho0VDUiHAkhF1AiHua3U+TbpGgqUfassRGY=;
-        b=pdclmzqoKgm+9vNElevyUUDKHT/OD6ai/Wxmgaepuwc/sDD63s6sVpkQSfCVK9e3X+
-         jkAp/n+Iiy8jxzIIwzWvgdpGY/VDhGD4zoCDgDVrEV7NbscvbOH1pyxAghtzYjP33IHv
-         hpkljpvp4Zyh43WkrtTqhAtm/rbzGPgHY6/ecHbh8krBCi2Qz1Y/Q/yM46rRYgEC4VkX
-         drXi5XwhjLMr06q4WfUlsfsUR2zzfBEG5ox+jdoHcUY+R7WNU3XFsi15QLnkVOjsrrZV
-         2WSqLS2nR4pGTwaC7R3k1/mlL9qj4IVigDa2ZOtZXpO43dtJIl9aGb+faiqUGAQ1DBsR
-         zFiQ==
+        bh=bgxpPIyylub3C1vYGNABgvpdvgwuFFhNMQnYuhO6/Qw=;
+        b=c6z5I+UinK/jyuL5cXX3dIqIww9m3txeEjJnVf6/ShiOyrO+IIUs1mUk/qXcDPMgPS
+         fOP4hcxbcoA3m75UjLYa77iTEW19XBNI/hE9F4Y8L3ANxbOpVCURSoJIOPmYc4Qm3/ED
+         5/7zGRLTIkuELuC4c6KaZegeXC/0LEdFqeAReUw7c7D56+9sn2rPkh5aZUJQus7e+6/t
+         AsP0KbbAYodTz8Pdda2T40ojhU8fcOFbNgD5LlUeoEdBqT6CScQ7APh8r0B+OSwns8qK
+         XCEEX/sKNxKIBJmHKlfnSk9rx2e4m3JYC7Ys8ioI2OC8aWh0yVIhY172BpBk/QJZSdff
+         OOLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712816278; x=1713421078;
+        d=1e100.net; s=20230601; t=1712816412; x=1713421212;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=dIqGBLkwho0VDUiHAkhF1AiHua3U+TbpGgqUfassRGY=;
-        b=BeaR9eo3a198tjT6LM2uOSnAx4zU8WlcdNmtCcwlp+IeNIbiOMkqseRPD+ymBDduPh
-         e9Qm/da0zK40rkvEIskEI6iW3GMKXoxpsiGu6/8YK96YvBui7JQNh/dHKZSW+68UIwJE
-         kkGc/kPN6Ku/qN/Fou0xt0sZKcuKpPPVUHIaMVabOmWLVYXQL0hdVmo/8KgaNC8VzI/k
-         yqrYF/GBILQRReapnBX3QNOqRDTB8jPmFjX3L+dX2v4N8h0cyqjkj0A0CX/gpwPWMGlW
-         c8o+ChikiEUgxmjqKo1qdQOcAQrE7r+Xj8LxQSz2at7UaBo4S00Rx0w3oYNkVpGtYm0W
-         Xlxw==
-X-Forwarded-Encrypted: i=1; AJvYcCVPzjR6pO6pTgUoSFtcjWEuM5G9iN26eDf3sLrlb9CKohqBO7OfMmDMq8qdDkZDlA3/xzzSYbQUvYXkXFR6RpdA+GHTySrq2DEGSw==
-X-Gm-Message-State: AOJu0YxWEfsd5zktTk2NWfp4a2W5wLrYx5EH7eOD27vz0TL6fBedbCJ5
-	0izoyRGzi0pDcd3c36fzRt3DBbBft440GEveC1rfPnAqQXyWJtfTWESpvMbvgsk=
-X-Google-Smtp-Source: AGHT+IEJxgJl8yVXSeIGYg35EweCjbaFB2dDJFg8DQCcoBybET4ev5s9QxHjmm6Hc4tA0Ocqh3UGjw==
-X-Received: by 2002:adf:fc46:0:b0:33e:cf4d:c583 with SMTP id e6-20020adffc46000000b0033ecf4dc583mr3434952wrs.16.1712816277879;
-        Wed, 10 Apr 2024 23:17:57 -0700 (PDT)
+        bh=bgxpPIyylub3C1vYGNABgvpdvgwuFFhNMQnYuhO6/Qw=;
+        b=csALcP2+c7emA3M7GbUSZ2QpPy/cK19cxY6loudvXQp9QWHWzdY8aOn7WZGJUotEKk
+         vOIMpTL8vXa8fFFZEzZMBbJ6tzy4FXwP6AwK76aCPuzw6sPLlBZNFnJO2lk+d33Ffgo8
+         zIH2jlAdfZPWzUnHskxRy633pRPSSRnfy4vAYhA7lwXU2O7iWbxpJN3JZUinnCNUGpAT
+         7oNaQ3O8QCzMmpQCli3na7F00xZhy/H7fUoCR5pASa9ZtrpnvsvuKdTzj/Yni0eK+euE
+         j14h4/1X3NJq+UP8yROH6FnMQSDLFwVXJq2927vkWvB1jjeZy/KVJGg1/XlUShk1FnEK
+         ghDA==
+X-Forwarded-Encrypted: i=1; AJvYcCUcq9Ivw5iJ5EFP+yfy8v991jRQglRZPWG2+fIhHrbGWejENgNfWFkSwAJtdNRPn5blZja71IkOePLVVEUGeebBRn3iAhQaIagpWw==
+X-Gm-Message-State: AOJu0Yz9SYr49OSAeNfOUpCfS6UgIjkBq9OWvr/35UTYu09RYsjRxwDk
+	wth6LOXvD+nPUiHgvnHM7Dec1hSuIiqZamdRNQs7YBu5y4ZU1r0NZrcxw+zcr4w=
+X-Google-Smtp-Source: AGHT+IHaHJN8BQUEx5wDGMenFYndPpFo/ibtOb7EnK9HnWtenOFZW5jBUxSdMivgSidg+fuH2honog==
+X-Received: by 2002:adf:ffcb:0:b0:346:407a:a313 with SMTP id x11-20020adfffcb000000b00346407aa313mr4509081wrs.49.1712816412074;
+        Wed, 10 Apr 2024 23:20:12 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id s19-20020adfe013000000b00346bb778e8bsm769518wrh.5.2024.04.10.23.17.56
+        by smtp.gmail.com with ESMTPSA id l15-20020a5d560f000000b0033ea499c645sm982577wrv.4.2024.04.10.23.20.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Apr 2024 23:17:57 -0700 (PDT)
-Message-ID: <130d47d8-3294-44be-9a8c-8474d342cb12@linaro.org>
-Date: Thu, 11 Apr 2024 08:17:55 +0200
+        Wed, 10 Apr 2024 23:20:11 -0700 (PDT)
+Message-ID: <0336b752-ba98-497b-96d0-efc01ffbd93c@linaro.org>
+Date: Thu, 11 Apr 2024 08:20:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,22 +77,53 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] dt-bindings: rtc: lpc32xx-rtc: convert to dtschema
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jiaxun Yang <jiaxun.yang@flygoat.com>,
- Vladimir Zapolskiy <vz@mleia.com>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>, linux-rtc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-stm32@st-md-mailman.stormreply.com
-References: <20240410-rtc_dtschema-v2-0-d32a11ab0745@gmail.com>
- <20240410-rtc_dtschema-v2-2-d32a11ab0745@gmail.com>
- <202404102043571b7450b5@mail.local>
+Subject: Re: [PATCH v2 2/4] dt-bindings: PCI: mediatek,mt7621: add missing
+ child node reg
+To: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc: Bjorn Helgaas <helgaas@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Hector Martin <marcan@marcan.st>,
+ Sven Peter <sven@svenpeter.dev>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Jim Quinlan <jim2101024@gmail.com>,
+ Nicolas Saenz Julienne <nsaenz@kernel.org>, Will Deacon <will@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Srikanth Thokala <srikanth.thokala@intel.com>,
+ Ryder Lee <ryder.lee@mediatek.com>, Jianjun Wang
+ <jianjun.wang@mediatek.com>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Daire McNamara <daire.mcnamara@microchip.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Marek Vasut <marek.vasut+renesas@gmail.com>,
+ Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+ Shawn Lin <shawn.lin@rock-chips.com>, Heiko Stuebner <heiko@sntech.de>,
+ Jingoo Han <jingoohan1@gmail.com>,
+ Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>,
+ Michal Simek <michal.simek@amd.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Mark Kettenis <kettenis@openbsd.org>, Tom Joseph <tjoseph@cadence.com>,
+ Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>,
+ Jiaxun Yang <jiaxun.yang@flygoat.com>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, asahi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-rpi-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org
+References: <20240410212638.GA2159326@bhelgaas>
+ <458ce909-0616-487d-b4bd-42b58d059198@linaro.org>
+ <CAMhs-H82Ymc=isxu6AX4_s1QnNpSSNt74--ED1j7JxpzE=eCRg@mail.gmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -139,84 +170,23 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <202404102043571b7450b5@mail.local>
+In-Reply-To: <CAMhs-H82Ymc=isxu6AX4_s1QnNpSSNt74--ED1j7JxpzE=eCRg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/04/2024 22:43, Alexandre Belloni wrote:
-> On 10/04/2024 17:55:34+0200, Javier Carrasco wrote:
->> Convert existing binding to dtschema to support validation.
->>
->> Add the undocumented 'clocks' property.
->>
->> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
->> ---
->>  .../devicetree/bindings/rtc/lpc32xx-rtc.txt        | 15 --------
->>  .../devicetree/bindings/rtc/nxp,lpc32xx-rtc.yaml   | 41 ++++++++++++++++++++++
->>  2 files changed, 41 insertions(+), 15 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/rtc/lpc32xx-rtc.txt b/Documentation/devicetree/bindings/rtc/lpc32xx-rtc.txt
->> deleted file mode 100644
->> index a87a1e9bc060..000000000000
->> --- a/Documentation/devicetree/bindings/rtc/lpc32xx-rtc.txt
->> +++ /dev/null
->> @@ -1,15 +0,0 @@
->> -* NXP LPC32xx SoC Real Time Clock controller
->> -
->> -Required properties:
->> -- compatible: must be "nxp,lpc3220-rtc"
->> -- reg: physical base address of the controller and length of memory mapped
->> -  region.
->> -- interrupts: The RTC interrupt
->> -
->> -Example:
->> -
->> -	rtc@40024000 {
->> -		compatible = "nxp,lpc3220-rtc";
->> -		reg = <0x40024000 0x1000>;
->> -		interrupts = <52 0>;
->> -	};
->> diff --git a/Documentation/devicetree/bindings/rtc/nxp,lpc32xx-rtc.yaml b/Documentation/devicetree/bindings/rtc/nxp,lpc32xx-rtc.yaml
->> new file mode 100644
->> index 000000000000..62ddeef961e9
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/rtc/nxp,lpc32xx-rtc.yaml
->> @@ -0,0 +1,41 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/rtc/nxp,lpc32xx-rtc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: NXP LPC32xx SoC Real Time Clock
->> +
->> +maintainers:
->> +  - Javier Carrasco <javier.carrasco.cruz@gmail.com>
->> +
->> +allOf:
->> +  - $ref: rtc.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    const: nxp,lpc3220-rtc
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    maxItems: 1
+On 11/04/2024 08:13, Sergio Paracuellos wrote:
 > 
-> As I explained the clock doesn't really exist, there is no control over
-> it, it is a fixed 32768 Hz crystal, there is no point in describing it
-> as this is already the input clock of the SoC.
+>>
+>> I think the question should be towards Mediatek folks. I don't know what
+>> this hardware is exactly, just looks like pci-pci-bridge. The driver
+>> calls the children host bridges as "ports".
+> 
+> You can see the topology here in my first driver submit cover letter
+> message [0].
+> 
 
-That's common for many SoCs but it is still (at least for them) input to
-the RTC. On some SoC boards 32 kHz is controllable.
-
-But if you think it is not correct here, then we should drop it from DTS.
+Useful diagram, thanks. It would be great if you could add it to the
+binding description.
 
 Best regards,
 Krzysztof
