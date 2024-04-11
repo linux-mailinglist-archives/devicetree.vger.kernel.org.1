@@ -1,203 +1,155 @@
-Return-Path: <devicetree+bounces-58173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 315DE8A0A38
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 09:42:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75ED58A0A0D
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 09:39:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 540501C2184D
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 07:42:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 98A9B1C213EE
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 07:39:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F3E213E05F;
-	Thu, 11 Apr 2024 07:41:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B23E413FD94;
+	Thu, 11 Apr 2024 07:35:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="NT8mSxu9"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="MIJFYhYj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2040.outbound.protection.outlook.com [40.107.7.40])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4E1513E048
-	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 07:40:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.176
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712821260; cv=none; b=WcUKbiFBpRJSTp8IEw4Kb5Qb43saFE4c89kL62F7uoLHmrPq7nZIX5RuyGqZhfGfHdPAHBG9FyLpaP8JY6w5CRwWI061hhkLEbZ351Y3YUjfcd9ZVhM1PAHx7bzuCEG/m59HDl5BmoPloYgGw+WVNDlKK9kI7M+IXPqhhxLHA3E=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712821260; c=relaxed/simple;
-	bh=R0uX/xVvn2RVjrdPRgwj4lLpQHY6VHsNg+Od2h8Mims=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=W1lK9t1jlXANAcBylnMav9WFVttZwhxL8Pcc397nunFmjmIVeT4KFYplV6AqTGmIcC1taQDkFU7i2EG9NJ2oCRrBjB8shvaatM6vlBgotQY7nCKDaDnrSlZlQpBx/0U7NWyTXPIKxAxTI4PXnA5SGSMGiHRz0DTHchQLHdya898=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=NT8mSxu9; arc=none smtp.client-ip=209.85.222.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-78d61a716ddso319980385a.3
-        for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 00:40:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1712821257; x=1713426057; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9nNN6WlUUNGTzkwo1N4M16DUFdPJ6ZM0diRivpuzi2Y=;
-        b=NT8mSxu99gI9zdhorVn9I92HjVu6X7ie32IQsLCUSVWbWBzgxOqqMBmkDa8Mmrx1+h
-         0Qg6lJEyvv+m9Km8d+NoUlNzLoZOyYmV1x1Ww+/dAR7A1aRAzGcYtLGturI3Auw5lSDm
-         gVmiPtssutNbOkyzXCbjfIJ7HKHVoo9U54Mig=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712821257; x=1713426057;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9nNN6WlUUNGTzkwo1N4M16DUFdPJ6ZM0diRivpuzi2Y=;
-        b=rVnw2kSbKRAtzDy8nKsEdooqu5iV5qESw9wh/7tyH73HpoGIB5q1OXaJVVP3BeEgxM
-         CclBHRSXbXOoZ0J51k2rivjxJL/x+x1BxsGkYeDbkdJ0INgT2l722m2YD7xGyBclqdtB
-         JIUdiRzIs1NfPAqHUJHpjMW/sl5JROJeEQDbf8XjjjigTxI0NkYyVtjj1xfqFM62GzXs
-         GXLyfKgZ04xXa2fnD7Grxk5ucK9WOG5HQ8Bz2V4K8xgCCe/b7n2tyWGbTjOa/5GV28rJ
-         HVB/746P670V2YwpLGs9nJCTM1paPLarbVkfkpArrGsJDiDMMjVLS9dIZk63u6ZhM7Ki
-         xC6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVpSCmb33V0I0q0d+XXeySJyv4CW3FIF9vB4izjCMm0dK0oSYJ63ttapbnr4bGOomLpf/v8jr2VwUaYriawyUFZt4vDZ7v/McJSaA==
-X-Gm-Message-State: AOJu0YzhiPpUsVthmFB9shKHC8S+wpSTtWVmhr/ENvazlVNXupyxXRhG
-	9pQ496lzwIjJoDq6WZkjvXQ9M0orrcZGZP8Pgr3OfFZa2zrxitsD+Rna0UD35+qYYSN9tcg6E7K
-	PHw==
-X-Google-Smtp-Source: AGHT+IE1FuoirTzEMxqNyiDfRmg6iCq4B7Jup3dovVZxsWOgZW0FWOvCOkfXgL3yN8a4CwRyb3l4jw==
-X-Received: by 2002:a05:620a:8c4:b0:78d:65bc:d83e with SMTP id z4-20020a05620a08c400b0078d65bcd83emr4658412qkz.18.1712821256941;
-        Thu, 11 Apr 2024 00:40:56 -0700 (PDT)
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com. [209.85.160.174])
-        by smtp.gmail.com with ESMTPSA id j25-20020a05620a001900b0078be9e0f9adsm677032qki.43.2024.04.11.00.40.55
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Apr 2024 00:40:55 -0700 (PDT)
-Received: by mail-qt1-f174.google.com with SMTP id d75a77b69052e-434b5abbb0dso162021cf.0
-        for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 00:40:55 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVxT6uJd5aZET9oVX/oNKWRNVOeOxfnnOQBSYsJ7rjzbwdg/9ESRA5WE1h0jS90RxEznQPDrbVsxklGxogcLrjQJSGNqLoOgZf4gQ==
-X-Received: by 2002:a05:622a:4c12:b0:434:7a13:2e7e with SMTP id
- ey18-20020a05622a4c1200b004347a132e7emr198846qtb.24.1712821254947; Thu, 11
- Apr 2024 00:40:54 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CA7013FD8C;
+	Thu, 11 Apr 2024 07:35:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.7.40
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712820953; cv=fail; b=HzOPG41Jasi5JA0iTJJDS+m4qpKhvV3haRMMHOSlNOr9rqtxunVXMO3kyygCYYelYZ5ySGalccqdWP9HDsGHVmaxcMCG/BDCi/Ht2u8LZCY9RQQjGynKpVmgUWIXigUe2NhMdKQ6hjS76+iNSlsw3KUXfVISpyZu+CNvQ9y6tEk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712820953; c=relaxed/simple;
+	bh=vicBYEVcecbcuGVRoAQKMxKnDONvnWdCf/Tn/Mq+DxE=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=Gpe+xsKaN34ip97PA4bLY5iUxjed3eurDyKjIKuTmCBQhNzCgmMEtlvDAHe84MGxle7qHiQrdN/d3r/F265MnGHlp723a4klanOfTjgaHoh3eOAc3QRJjDFDH/yEt15JY4xZwCo4QHUvdPGjJrIhA/kfWUIn/ShiLat6ce417zU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=MIJFYhYj; arc=fail smtp.client-ip=40.107.7.40
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PMuqTanVsrkuXOZZLG0oWEMJ1IyLK7xS0XXQ0CiSybvcL/Bjw1u888oFlNfa2TM5WFR/CZvbSacAAKzcIVlWrcpDH7aU5DRNPLes0T/aKk5zrs0igjAvDpnqEknK/l7RymVu/AdfOvNUEY9VcrTwP7Ks64zUKmGkCIKNcRf+vj2YYGJRIHd92MYujE1an0ZiWUMWgTT5e8ArwahESUO6JMPJazqXudoiJEt9G44xuxiIRYjV2pi7rOMg1j99B/eGwZx4wpC1Wg6T9BJOh3wbcLH5vzPDcZv2M2lI0AmqpdgIqmSEQIceiLQV6XV2Da16pTsQE1Ct6mhAhgutL51k6Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=flLZExif4dTZLba4Ul1vXmL1nXdVCQn63Oy2pwjFo9Y=;
+ b=BYRDQmNylBrFK3Lez+ErgE8f7tH/xMvsDJS9oPnZCZCfu6s/csMhbqXrxkmpHw4IkapXYJxSo+u5K604VER3zLONSmWj1g1dFJxEHgKOJiQShHl8XcTzHcnOfpvYS9m6Egh5BavYBxnfxXvtXpY9v3SwEtthRacbbXbt4B3nD/lTt71+smy4chUoKAsjSA0n0cokMCl7ElWknT5MwZ4oxnPIQIhhza0piag99CwW1W4m2IHdrWler5frtnR1vLwBktpgKUalG4TuP2qq9YC41wn6QI4s4cvscU+dgN2vJKbfieqvxJjS8Ew6cThB9bWqsbH9MpB3Y0jRWcNx+SRwYA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=flLZExif4dTZLba4Ul1vXmL1nXdVCQn63Oy2pwjFo9Y=;
+ b=MIJFYhYjTCBYF7QF9yWvXDWuP/ko7bre8bstOGvYSphnoNse06rQmw3HEA+Ublo57VDopoUtp/tO10d1VyorbqkqERPcRYrChnde5EACQ0F2/EbIidymJScghlGdW9Q2LatjkhyFEMHs7n7lZxgeKkvGAlQzca/0cU7ZTipWRBc=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AS4PR04MB9386.eurprd04.prod.outlook.com (2603:10a6:20b:4e9::8)
+ by AS8PR04MB9173.eurprd04.prod.outlook.com (2603:10a6:20b:448::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Thu, 11 Apr
+ 2024 07:35:47 +0000
+Received: from AS4PR04MB9386.eurprd04.prod.outlook.com
+ ([fe80::4f24:3f44:d5b1:70ba]) by AS4PR04MB9386.eurprd04.prod.outlook.com
+ ([fe80::4f24:3f44:d5b1:70ba%7]) with mapi id 15.20.7409.042; Thu, 11 Apr 2024
+ 07:35:45 +0000
+From: Joy Zou <joy.zou@nxp.com>
+To: frank.li@nxp.com,
+	peng.fan@nxp.com,
+	vkoul@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: imx@lists.linux.dev,
+	dmaengine@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v2 0/2] clean up unused "fsl,imx8qm-adma" compatible string
+Date: Thu, 11 Apr 2024 15:43:24 +0800
+Message-Id: <20240411074326.2462497-1-joy.zou@nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR01CA0193.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:189::18) To AS4PR04MB9386.eurprd04.prod.outlook.com
+ (2603:10a6:20b:4e9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240410071439.2152588-1-yangcong5@huaqin.corp-partner.google.com>
- <20240410071439.2152588-3-yangcong5@huaqin.corp-partner.google.com>
-In-Reply-To: <20240410071439.2152588-3-yangcong5@huaqin.corp-partner.google.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Thu, 11 Apr 2024 00:40:38 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=V2J=Tth2zhpo-kPo4uvESt70mFneO2V6TV-haac0VZuQ@mail.gmail.com>
-Message-ID: <CAD=FV=V2J=Tth2zhpo-kPo4uvESt70mFneO2V6TV-haac0VZuQ@mail.gmail.com>
-Subject: Re: [PATCH v1 2/4] drm/panel: boe-tv101wum-nl6: Support for BOE
- nv110wum-l60 MIPI-DSI panel
-To: Cong Yang <yangcong5@huaqin.corp-partner.google.com>, 
-	LinusW <linus.walleij@linaro.org>
-Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
-	airlied@gmail.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS4PR04MB9386:EE_|AS8PR04MB9173:EE_
+X-MS-Office365-Filtering-Correlation-Id: 41b8449a-c06e-4dac-5c5d-08dc59f9ffde
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	cF512UXqRpLpAevO1ZN0JkjBVEK+gpfkKGRsOnU3FVt2DnPkX5hwOhBXSPFHbdqfKuUqLpfccBtMRRLX2/83L5a81DSOYZKH2Jujy0bkplyk4UMQB6NFYPElffNRowBokqvtZHhDbv3bO//t/HyYrr7Hf3j1S4ZGggNMblZCFvP4CFiF/wtY2fz5+AzMyd/yI4bZwcq6o4fpFnTmxv2pM3YVhxTY3g1xqEqOb4SSyv6jC1UJu1jITwKgNFtzzrhQboNhD5Wrnna5OU9Q7ngb9uCO4dVEv46vikkbPDfEDgMv2PXPuE8bNwG3fGt+4ulguC5kzAn4tSs4ecS+g7GTqJjysaWB1vQ4WM2o7Tszs0q4DVjtKze9Mr29PhOqFelmaKfND9HyTpPI5cvKCFmn1yOYpa81t28Qd867HJLmPEksqS+lJ+isPyUKdHoOhRGvSmRB+x2TNUzmo9+PnrH125N4IXobSMirHyQD2t8b2VOzcEhG6wkbPVZ9GQUJq59fUWXqGk3vFF71Ut2H9fkmYAGl74R7ONwo5Ef9kdNM7GmiSXXgolqS1TbarV2jpiaOZyhdZYi3ZDqNLHy1Pn7GYsvhWeyui0B9HfOCacEZlZqNBzTF1HfeRIPCd0WNao4amPzS/kkUs8QAkn4KKUigKxK4rfvMqY7WgC97EqoXCEIdV+L0SlFUoQNjuZ0cOKVwCCml+FZgI6VBvMNZyZ5TWw==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9386.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(366007)(1800799015)(52116005)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?kgO1aqEKbdE+jw3BOPk+T3jTZrVO1otYWmQERXof1fO/Zs3UNvJ/YXwJpICd?=
+ =?us-ascii?Q?FR48nv2FKZz1/73xnsELZ3mWj1laKHaSH62VJEJ0WmG304VVJ5grokUAnbAw?=
+ =?us-ascii?Q?4JMUnmmSZWFLWi66k5MzH99QZ7PJQFo+FOHNotrcvKsdgGEunHWL+uqV9+nk?=
+ =?us-ascii?Q?KBMvqEO4MNWJcVNqadeS/BLQ8sgYsAC+lalkr5CZxj64l/XARvSHnU1jgFMp?=
+ =?us-ascii?Q?PXO/gXo3hh8nxFxAI9A+A2OZr/PLXttvRW9PfSaYauj+4zfYPUN5wpU4uwH7?=
+ =?us-ascii?Q?7q8m/YmFdBDLwY4Xs6t0KwJXbh3kjxOq/OAg7gVwO8qEOmjzgMa1GAWTgl/u?=
+ =?us-ascii?Q?DS+w99peiuFfkn9VQvv6r1Kpadp3zWDhq4OMrLS/uCKMxNSZzlt6n39hh8ZF?=
+ =?us-ascii?Q?ltnU8tQUs+MbMFHlUpYUE8PHuTjGThwgvyFBXiZZzhYAju8tWON6AxE/J2HK?=
+ =?us-ascii?Q?xibBRKZ4ZL1YgA+kKkceqm5l7u0OYx64Z/htAjQj6h7cZcMN0PuvlCgIY0W7?=
+ =?us-ascii?Q?k40YNOeKnk4Q8KvqS5yeAF23ssp6WoMppnx0b4gMA+WsS4RrtPLlM2lxzKxO?=
+ =?us-ascii?Q?2FIopYnZofoH9FVRt5PUPynBLslKuvWOHFcfCfgJ4De/ysF4X282blhtrz+l?=
+ =?us-ascii?Q?YMP7F1TTfksETWMGFZUG3NQ3qSDxtuv1pdW4wcNGrD5uoJw+TnvziKK2tMaz?=
+ =?us-ascii?Q?6HwCePVfWf5ZGgRtCTb5S3Miqq6J/cWOljMHago+KiJ8RPSxLyegZqLAdBI8?=
+ =?us-ascii?Q?ODpqReqc+kWWQXRID2J4Z37upsUO675AtOoscIRDw16tdZC83ren9BeUIqcB?=
+ =?us-ascii?Q?VHJ3iF/M1rn0uEwdQSbA0tPCGzc44TZRrBKu4z4QwgmZOJD+prCQuEY+aN+X?=
+ =?us-ascii?Q?LB0yTxipFxGpd5sBEey69/SFmo6HXVrpVpdYJfIwWfd8Dbj1IJkG+YR5g1sl?=
+ =?us-ascii?Q?nulzsQCqSMoQvv1lrgaY0EC77/pP0JQsGAPVHdJ8adIZdiioxBtpi/NgPt3o?=
+ =?us-ascii?Q?cSfVYwv1ixR+X2S9CmHPcMqedZfImah4n+l5sZtHL2g4RFyJmGTohLhKnOot?=
+ =?us-ascii?Q?HsWoBF25zKFLVB/SXd26hp3/4dKCaNqOsk9Oj/Nw7wBQZbmGt6wD0f9q9s9B?=
+ =?us-ascii?Q?r63o16GrgiYqaAV7aOG3SXH/Qng79UaN/V2hf61S+xMS6r2XLAM253uJSZSH?=
+ =?us-ascii?Q?7YjD/eMjr2uYaBT3MWBv7wDn9vsnGyeH58lxetGv6c3lnWLzz1QkcPXNdkcK?=
+ =?us-ascii?Q?zlXJH1i6IYKj59urXqu23r5b60lmZ5Sj7qi1y5xOUaqatParD+pjnl11Q6xf?=
+ =?us-ascii?Q?nOtB8q3z0ScgzPiP/SrhXsrJ9hvhb5q6COJkV8V+07Ey2A1o9QXQzGYFIvU4?=
+ =?us-ascii?Q?k3Y+2XVD+vG62Qd3oIZjr3y2ppqyTqaeZRtUh1EQhS7b2MJK/nTDMG+zrtk0?=
+ =?us-ascii?Q?23DjR0wOnBB6hNe9qpkrvsOflIpRrQzkkG1OSVLzm7y4Qez+H1T9W8WX2XJV?=
+ =?us-ascii?Q?6e5Xhyb2rmBE4/3z1ASxkz71dDhYNGcDSqTregczcz1uG43HTLibMWRofZnp?=
+ =?us-ascii?Q?FAoa2ZimbqAgISxceQIrjT6ehNdExdUrFKjaoH6z?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 41b8449a-c06e-4dac-5c5d-08dc59f9ffde
+X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9386.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Apr 2024 07:35:45.7444
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: f1g17Tqdb5tBZhQTT/LY4vmZoFc82/MLmWheW0Iynw2eyOMJhME6QiUDyWPZEUW7
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB9173
 
-Hi,
+The patchset clean up "fsl,imx8qm-adma" compatible string.
+For the details, please check the patch commit log.
+---
+Changes for v2:
+1. Change the patchset subject.
+2. add bindings update.
 
-On Wed, Apr 10, 2024 at 12:15=E2=80=AFAM Cong Yang
-<yangcong5@huaqin.corp-partner.google.com> wrote:
->
-> The BOE nv110wum-l60 is a 11.0" WUXGA TFT LCD panel, which fits in nicely
-> with the existing panel-boe-tv101wum-nl6 driver. Hence, we add a new
-> compatible with panel specific config.
+Joy Zou (2):
+  dmaengine: fsl-edma: Remove unused "fsl,imx8qm-adma" compatible string
+  dma: dt-bindings: fsl-edma: clean up unused "fsl,imx8qm-adma"
+    compatible string
 
-I guess we have the same question we've had with this driver in the
-past: do we add more tables here, or do we break this out into a
-separate driver like we ended up doing with "ili9882t". I guess the
-question is: what is the display controller used with this panel and
-is it the same (or nearly the same) display controller as other panels
-in this driver or is it a completely different display controller.
-Maybe you could provide this information in the commit message to help
-reviewers understand.
+ .../devicetree/bindings/dma/fsl,edma.yaml        |  1 -
+ drivers/dma/fsl-edma-common.c                    | 16 ++++------------
+ drivers/dma/fsl-edma-main.c                      |  8 --------
+ 3 files changed, 4 insertions(+), 21 deletions(-)
 
+-- 
+2.37.1
 
-> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-> ---
->  .../gpu/drm/panel/panel-boe-tv101wum-nl6.c    | 115 ++++++++++++++++++
->  1 file changed, 115 insertions(+)
-
-Maybe add Linus W to your patches since he has had opinions on this
-driver in the past. I've added him as CC here but you should make sure
-to CC him on future versions unless he says not to. ;-)
-
-
-> diff --git a/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c b/drivers/gpu=
-/drm/panel/panel-boe-tv101wum-nl6.c
-> index 0ffe8f8c01de..f91827e1548c 100644
-> --- a/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
-> +++ b/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
-> @@ -1368,6 +1368,91 @@ static const struct panel_init_cmd starry_himax831=
-02_j02_init_cmd[] =3D {
->         {},
->  };
->
-> +static const struct panel_init_cmd boe_nv110wum_init_cmd[] =3D {
-> +       _INIT_DELAY_CMD(60),
-> +       _INIT_DCS_CMD(0xB9, 0x83, 0x10, 0x21, 0x55, 0x00),
-
-Given that the first command of "(0xB9, 0x83, 0x10, 0x21, 0x55, 0x00)"
-seems to be the same as "starry_himax83102_j02" maybe those two are
-the same controller? I'm just guessing, but if those are the same
-controller as the two new ones you're adding in this series, maybe all
-3 of them should be in their own driver? Maybe we can do something to
-make more sense of some of these commands too? There certainly seem to
-be a lot of commonalities in the init sequences of all 3 and if we can
-define the init sequence more logically then we can share more of the
-code between the different panels and we don't have a giant duplicated
-blob.
-
-
-> +       _INIT_DCS_CMD(0xB9, 0x00, 0x00, 0x00),
-> +       _INIT_DELAY_CMD(50),
-> +       _INIT_DCS_CMD(0x11),
-> +       _INIT_DELAY_CMD(110),
-> +       _INIT_DCS_CMD(0x29),
-> +       _INIT_DELAY_CMD(25),
-> +       {},
-> +};
->  static inline struct boe_panel *to_boe_panel(struct drm_panel *panel)
-
-nit: should have a blank line between the end of your struct and the
-next function.
-
-
-> +static const struct panel_desc boe_nv110wum_desc =3D {
-> +       .modes =3D &boe_tv110wum_default_mode,
-> +       .bpc =3D 8,
-> +       .size =3D {
-> +               .width_mm =3D 147,
-> +               .height_mm =3D 235,
-> +       },
-> +       .lanes =3D 4,
-> +       .format =3D MIPI_DSI_FMT_RGB888,
-> +       .mode_flags =3D MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_SYNC_PU=
-LSE |
-> +                     MIPI_DSI_MODE_LPM,
-> +       .init_cmds =3D boe_nv110wum_init_cmd,
-> +       .lp11_before_reset =3D true,
-> +};
->  static int boe_panel_get_modes(struct drm_panel *panel,
->                                struct drm_connector *connector)
-
-nit: should have a blank line between the end of your struct and the
-next function.
-
-
-> @@ -1973,6 +2085,9 @@ static const struct of_device_id boe_of_match[] =3D=
- {
->         { .compatible =3D "starry,himax83102-j02",
->           .data =3D &starry_himax83102_j02_desc
->         },
-> +       { .compatible =3D "boe,nv110wum-l60",
-> +         .data =3D &boe_nv110wum_desc
-> +       },
-
-nit: the existing panels that are supported are sorted alphabetically.
-Please sort things alphabetically throughout your patch series.
-
--Doug
 
