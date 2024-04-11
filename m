@@ -1,155 +1,203 @@
-Return-Path: <devicetree+bounces-58250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 365C38A111A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 12:41:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB6DE8A10FD
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 12:40:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 59DB71C22E9A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 10:41:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0AE3A1C20818
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 10:40:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7339E14884C;
-	Thu, 11 Apr 2024 10:40:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C26114884C;
+	Thu, 11 Apr 2024 10:39:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EFHmO55V"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Zinz33/f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22F001474CB
-	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 10:40:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA8D5147C7E;
+	Thu, 11 Apr 2024 10:39:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712832028; cv=none; b=Yi098e8+yCBs3LOIXTFFOR43Np7VkrP8k3YPvJY77pXd2GLqwOmHFAcu3UweBgbvqp03itdBWuPIXVftPcxryVvA+BuEubi5YeyUKrlBzaOFOJI5BN3J2bcvdMCKM2zSxQPiRmup2k4nR5Ofg6W7a1hOmafE2W247LCb67DIqLc=
+	t=1712831955; cv=none; b=JaU7Fbq//X7QT+qclJ2ST6viplfcUHgfOkVn3tF1CKpzU6JllLbkMq8svMjaxa8HEmJtJan175vpXer7Dq5ZuiU77pP3qghR8MOGZ1Gn7Ykxxx8wM6Gb4gF9kN/Lu3T5DySvwurTu4bT19Qn1ELnF2Dj/YAwU5740wAR0Ni5rNM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712832028; c=relaxed/simple;
-	bh=p5DTHQSaxOGYU7qTRDuD0w3SctuUIsmuqTnGFFf+O9Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=P7qX5TkfC3AzJJ7OTeqUO0AuIFRenZOK+5dsgS14DZemnTkt8AfAusS1Gvs80GGAorT1RUJSV4NEDMVvit0hfZXxT+iyxCI0jc5aPuODQWWtD60x2FZSEMPTWFZ/eGF1uMUf6SXX9r982AiamDEfZm+wZtfgOD81xYQ2tT+jMmY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EFHmO55V; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-417d14c3411so6475705e9.2
-        for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 03:40:25 -0700 (PDT)
+	s=arc-20240116; t=1712831955; c=relaxed/simple;
+	bh=pWfyDzgg2FcL9zucQ9mhivkVL8xEVE3GnMTTbdODBE0=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=KmR08hcBt7Wv9IqZY5E7e1HvYRz5znHVn+WebM99qbK7BwYKlKuiWhhIRx+QFPEFg230bPTKelspZ6OezQzawvyk3W65ruTAffbRfrzISUocwmfdWDfuZm6HdMbqhVUp1jr2aK6Pslk+mu40kBXLpCszgg0VI8qzIUMyQqvgTo4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Zinz33/f; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a522c00ce55so8671766b.0;
+        Thu, 11 Apr 2024 03:39:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712832024; x=1713436824; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=p5DTHQSaxOGYU7qTRDuD0w3SctuUIsmuqTnGFFf+O9Y=;
-        b=EFHmO55Vv9z4PLg/3b7mQycqLEavvTSXvY915kvtM48EqWznF2Od59cjUSK9AzApI8
-         PQ4ONR0TIsSNcsRoyemU78r2xCthVPWgi1mYzGpCVhJQddUnIkj7L3rAjPaI7DkEvKp0
-         H9bH0jssrV86KOfKOAHLrFwV7tJRlL2qRfeasstfJhaL/2ETHBcE0nJ6o/tFC8ceopCf
-         eg/jH5d3TLW/mrwRCG0gRNMGNyjybKPpNHSQ/rXL/WRDat9ffoiu+MGSlX4bbI/0vL32
-         bcXAoekB3R3lMx3sPIwJz5xdDIdXwzlnkmhgZ4TpyhyaCxsydOldhiGWB9J+xk6rcwwh
-         XfrQ==
+        d=gmail.com; s=20230601; t=1712831951; x=1713436751; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=TxHiRwznB/WlWY/qprRawdCtyuIsVjD3shbwYS9mS6Y=;
+        b=Zinz33/fVPavvrk9tDa3IOqA1tAsYOcLcdipxc7LlaXyXjpewnK77dKsYEKuXKJ8LI
+         oLrCTWGDeaefxGp5jmmwg/gxiYaDRtAW3j7yl/QElK4qDuPDx3XeDqFqOFpgKTT5xU72
+         OqKxxJ1boHgrxJd7u/d3UBCPpzS64nVP8E4oRwRlRkjBexFMGBTafL0ldc2l7Xmpc+rQ
+         rfx1jvAw+HrSZrT+ckOEflt2q2/typdrG27iAEgP8aKtz/lkgVb6csWBRBDsSvEbVCas
+         8LZoppVw+Rfyt6nLFMib+T+vSaIzuBspahtlJ0EIJLwBlf34oFbqAhVvuIqTlAyfam/I
+         y6tw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712832024; x=1713436824;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=p5DTHQSaxOGYU7qTRDuD0w3SctuUIsmuqTnGFFf+O9Y=;
-        b=sr2CqexMPY8EGUGZBcWkgx9lZOlgMvOUDq09uOQQMssdgbQRyelvtyIgOZubbUrVO3
-         13z0w1oavsl9Vqi+CkXmjxcBxn49dZY9lGIYjO76YYUA5VfZ3PruW4NG5/5vsOchAKeV
-         y/GJ/Jc8B+HfaCAPUt1xLhTQ1MzjE8Rf9ayV8XNEeCd5sayCiyu3VORhE5eO4tL9wSNL
-         EkxVf4oXMoNNJPR0vznPqSH54qIeEGwn5+7S37lV613ovguGcgCt30GYhMDuQHIifLvw
-         BSi89yj4gfDpFMGXUzybJGEBq9TN18dFtACRIzfFbVih2b2StwqtH5iGmr7Q5QQYwWvS
-         qRXA==
-X-Forwarded-Encrypted: i=1; AJvYcCUv6W1bk8277Eu+YnU10xbc4S5FBWBNuM+RsGQblGUhwvMrm0WRx8JKsewfhh8az42d01pOix9orh/rjsPbtouciQyHHCGYhKzTug==
-X-Gm-Message-State: AOJu0Yy1m60JqIytSqHs10Gj2NOK0NEolHh1TNDmB1A6Fb/O1+h82g3K
-	WQ0XcCvbaCeWlCNfEz7dfYxxVvIhpMhrWHE/F3uJeZogGvO8mI/CmlmBTIzDJs8=
-X-Google-Smtp-Source: AGHT+IEJxoKJuKs0MKlvjwhiWidzPwK0dFjhuZMfGP8+jT7yI+mFIUmmz0aRQyaTKf/0KBg3vyFMdg==
-X-Received: by 2002:a05:600c:358e:b0:416:d0d3:9635 with SMTP id p14-20020a05600c358e00b00416d0d39635mr3632057wmq.17.1712832024442;
-        Thu, 11 Apr 2024 03:40:24 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id iv18-20020a05600c549200b004174ff337f4sm1942627wmb.7.2024.04.11.03.40.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Apr 2024 03:40:23 -0700 (PDT)
-Message-ID: <4429f34b-3878-4fed-897f-82c1702c8acc@linaro.org>
-Date: Thu, 11 Apr 2024 12:40:21 +0200
+        d=1e100.net; s=20230601; t=1712831951; x=1713436751;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TxHiRwznB/WlWY/qprRawdCtyuIsVjD3shbwYS9mS6Y=;
+        b=BbofenDcDMQ3q7MmQAs63KHcgkH+bt7jFRWE9sw3e6RdpBRnt4g4vOC8LHgH24+VPB
+         tmUmj/TleEwAFd4A/+7FltNlI8wvnbY1LbrzYAv1YJxtyNAM4pBq38jSD3i9CIVIy5HW
+         4fMURgbgTV6sOkKyi0Ym6XX/7ajJb5xFFtURd9k+YpOw9Ve3sEwr/Q8lL8dGl3hNJ+Lq
+         n85A+4L2SnLn7d+0UiucpWi/Ez7e8IK3rPN9hTPY5AKm6v2FLKjTt7hbdEKTmef1AS7Q
+         lf4juOUJ+TmEVxcgJdKmDFAa30nhTnawlRZRjkXF9yV5pQ0Zg41GjIwAF1vMiE6booUt
+         7d3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUKwFpCDZgZi7kfZ/3a+Lp1B6RCkzlRS7qyvWTbfS2O4oWpuh3mBpWefS52wqTyxIi69qZycElf8OXUHfxFuPEVzEDf/BFQPcp/M5NS3IeJkk/WS049zCxArkEIoJ7PBsGcXH+RLw==
+X-Gm-Message-State: AOJu0YwZCBJwQpcdZUvCxoeA6TWR+26Ud9Z7QwidvzlzQg2M+r+A2D9Q
+	ZYo2bjNZB6qTFSqS9kWCtHKflnfWewhgqIVax+3fA7ML83ROwoeF
+X-Google-Smtp-Source: AGHT+IE6aq4nNGLNCBVsVw2T5Tl1yUoF/Vd6d1ioqEei+XDXsS50PrvjgzSrllN4DUJB3hrp2n7UXA==
+X-Received: by 2002:a17:906:f159:b0:a4e:2178:d91a with SMTP id gw25-20020a170906f15900b00a4e2178d91amr3855333ejb.59.1712831950652;
+        Thu, 11 Apr 2024 03:39:10 -0700 (PDT)
+Received: from ?IPv6:2003:f6:ef1c:c500:ee59:d953:f148:40ba? (p200300f6ef1cc500ee59d953f14840ba.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:ee59:d953:f148:40ba])
+        by smtp.gmail.com with ESMTPSA id l17-20020a170906079100b00a51b3c951b6sm618080ejc.191.2024.04.11.03.39.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Apr 2024 03:39:10 -0700 (PDT)
+Message-ID: <b3c8b7c8b55a3944e56b71035fc0123dd96cb8b6.camel@gmail.com>
+Subject: Re: [PATCH 1/2 v4] dt-bindings: pwm: Add AXI PWM generator
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Trevor Gamblin <tgamblin@baylibre.com>, linux-pwm@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org, u.kleine-koenig@pengutronix.de, 
+ michael.hennerich@analog.com, nuno.sa@analog.com,
+ devicetree@vger.kernel.org,  robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+ dlechner@baylibre.com, Drew Fustini <dfustini@baylibre.com>, Krzysztof
+ Kozlowski <krzysztof.kozlowski@linaro.org>
+Date: Thu, 11 Apr 2024 12:42:43 +0200
+In-Reply-To: <20240301173343.1086332-2-tgamblin@baylibre.com>
+References: <20240301173343.1086332-1-tgamblin@baylibre.com>
+	 <20240301173343.1086332-2-tgamblin@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.0 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] ARM: dts: imx6: exchange fallback and specific
- compatible string
-To: Shengjiu Wang <shengjiu.wang@nxp.com>, lgirdwood@gmail.com,
- broonie@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, shengjiu.wang@gmail.com, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-References: <1712830305-31350-1-git-send-email-shengjiu.wang@nxp.com>
- <1712830305-31350-3-git-send-email-shengjiu.wang@nxp.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <1712830305-31350-3-git-send-email-shengjiu.wang@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 11/04/2024 12:11, Shengjiu Wang wrote:
-> Exchange fallback and specific compatible string for spdif sound card.
-> The specific compatble string need to be in first place, the fallback
-> compatbile string need to be in the end.
+On Fri, 2024-03-01 at 12:33 -0500, Trevor Gamblin wrote:
+> From: Drew Fustini <dfustini@baylibre.com>
+>=20
+> Add Analog Devices AXI PWM generator.
+>=20
+> Link: https://wiki.analog.com/resources/fpga/docs/axi_pwm_gen
+> Signed-off-by: Drew Fustini <dfustini@baylibre.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Co-developed-by: Trevor Gamblin <tgamblin@baylibre.com>
+> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
+> ---
 
-You have typos in both lines.
+Acked-by: Nuno Sa <nuno.sa@analog.com>
 
-After fixing:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
+> v4 changes: None (rebased, added maintainer's previous Reviewed-by)
+> v3 changes: None (rebased, added maintainer's previous Reviewed-by)
+>=20
+> v2 changes:
+> * Address feedback for driver and device tree in v1:
+> =C2=A0 * Relocate "unevaluatedProperties" in device tree binding
+> =C2=A0 * Remove redundant "bindings for" in description
+>=20
+> ---
+> =C2=A0.../bindings/pwm/adi,axi-pwmgen.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 | 48 +++++++++++++++++++
+> =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ |=C2=A0 8 ++++
+> =C2=A02 files changed, 56 insertions(+)
+> =C2=A0create mode 100644 Documentation/devicetree/bindings/pwm/adi,axi-pw=
+mgen.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
+> b/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
+> new file mode 100644
+> index 000000000000..63461920a362
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
+> @@ -0,0 +1,48 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/adi,axi-pwmgen.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices AXI PWM generator
+> +
+> +maintainers:
+> +=C2=A0 - Michael Hennerich <Michael.Hennerich@analog.com>
+> +=C2=A0 - Nuno S=C3=A1 <nuno.sa@analog.com>
+> +
+> +description:
+> +=C2=A0 The Analog Devices AXI PWM generator can generate PWM signals
+> +=C2=A0 with variable pulse width and period.
+> +
+> +=C2=A0 https://wiki.analog.com/resources/fpga/docs/axi_pwm_gen
+> +
+> +allOf:
+> +=C2=A0 - $ref: pwm.yaml#
+> +
+> +properties:
+> +=C2=A0 compatible:
+> +=C2=A0=C2=A0=C2=A0 const: adi,axi-pwmgen-1.00.a
+> +
+> +=C2=A0 reg:
+> +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> +
+> +=C2=A0 "#pwm-cells":
+> +=C2=A0=C2=A0=C2=A0 const: 2
+> +
+> +=C2=A0 clocks:
+> +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> +
+> +required:
+> +=C2=A0 - reg
+> +=C2=A0 - clocks
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +=C2=A0 - |
+> +=C2=A0=C2=A0=C2=A0 pwm@44b00000 {
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "adi,axi-pwmgen-1.00=
+.a";
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x44b00000 0x1000>;
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks =3D <&spi_clk>;
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #pwm-cells =3D <2>;
+> +=C2=A0=C2=A0=C2=A0 };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 8d1052fa6a69..8a4ed5545680 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -3431,6 +3431,14 @@ W:	https://ez.analog.com/linux-software-drivers
+> =C2=A0F:	Documentation/devicetree/bindings/spi/adi,axi-spi-engine.yaml
+> =C2=A0F:	drivers/spi/spi-axi-spi-engine.c
+> =C2=A0
+> +AXI PWM GENERATOR
+> +M:	Michael Hennerich <michael.hennerich@analog.com>
+> +M:	Nuno S=C3=A1 <nuno.sa@analog.com>
+> +L:	linux-pwm@vger.kernel.org
+> +S:	Supported
+> +W:	https://ez.analog.com/linux-software-drivers
+> +F:	Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
+> +
+> =C2=A0AXXIA I2C CONTROLLER
+> =C2=A0M:	Krzysztof Adamski <krzysztof.adamski@nokia.com>
+> =C2=A0L:	linux-i2c@vger.kernel.org
 
 
