@@ -1,201 +1,214 @@
-Return-Path: <devicetree+bounces-58311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8587A8A15B6
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 15:36:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C45F8A15C5
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 15:39:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B469281B27
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 13:36:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 986D01F23459
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 13:39:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C96514D428;
-	Thu, 11 Apr 2024 13:36:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F91814D29C;
+	Thu, 11 Apr 2024 13:38:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FJjhrMbk"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="ZpLryE+6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 164303AC16
-	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 13:36:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C7AE145FFA;
+	Thu, 11 Apr 2024 13:38:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712842603; cv=none; b=XaaQeaMTrqIPNoApwO/RNSlVKEAvaQhD4ypXB2ZyBQ2NgMpQQ/jO7MYIbZOS0a/+tqaCdtkXP2vUaf/d0R/P0Zwhl0VcqgxzkBHbd2ieRC2FQKOa24lacdkqNBvCBPGbkL95nnu5f8GVQzu/WeufHojIiP3Hrd9xfw3FSfQX/eQ=
+	t=1712842736; cv=none; b=aHKMDBjgffmyg718qw7Xlc4EPwOjHDV6t7UDHuuanUrvmYYbAmWztzeOii3IZi0PyPicQQe+t18SZVifnPfgV54bZjyjaTB3gFNK3ejSYjImAI7VFtHSnc1iHpwZAk2X+kZPDtmKWCPBzDc+sMOha/YCtwQGsFYM/iKUTGD47EA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712842603; c=relaxed/simple;
-	bh=PsY+0cp0r2CZ1Vl1ULBirCpa74L7iR5OUvVPi2TsLtM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bIAiuMRGtuYPaS778MHEWvHKppB5ArqXROQRZqTdQD19LeyWiNDWBmJIfZo5W+AvKepK6njV/fno4r/v2zr066exFn2EphxuLwQwvK0xl3HneZ80q6Qxcphs96fwf06Y8Wiuiuc959/U75LqQzmLruTDobjdT7JlEEbyybgJ1lo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FJjhrMbk; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-416c4767b07so13896165e9.0
-        for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 06:36:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712842599; x=1713447399; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=CYaEFXhyb6LZQLHIIVizc6COCxtPhfacc7ilKAheMt0=;
-        b=FJjhrMbksWRyHtkTTcvUcVL5cNP/1kCzAFyjtybKugX3hkKu4vnJPOFj27VK3jusu9
-         FwRS1HXLWyiZd4mn31AWQb6WFUj3cAET+5CzOmzxbFJt+7aBNqE+bpJvRtY87xL+aj55
-         wmCuw4a/K7m3q8nplIlD2/uDbxh01iSwHGQG/ar0RoueuiUjaDPwuCpV7JPE2Tib62R7
-         EbF25lKIGy5Vm4gbxuHOGo+0jfH9vazIYQdmAx5nyRPTIXkMs61F1zQ/7MqDSFCrqkC2
-         RtvN58NYTUdTDchqAOM8lA1yKhm4mz4owm8Sf6hgTlIdhqtjXWw3dDuww3A+21guyMzi
-         afAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712842599; x=1713447399;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CYaEFXhyb6LZQLHIIVizc6COCxtPhfacc7ilKAheMt0=;
-        b=sH5zmMF20BekU4ZTlXHVz71QMXWnU+XCDQaCCK+e9AnHCh3EhnCRvzqjzwEC6HhR6b
-         oYnsMgpQaK2Vg4s1vtfIry0xV3z61h/Dy24/mZN9hQGW0TX4e/Lwr5XOKkALDGzwtncC
-         uPPEICl74Y9Ppn962YAINgxNUt6TiVik2QQWGSUjncYrRX4yZZkFGkethXnhvgkkZl93
-         FeBnP1juaeELa5K/6Y261xS9xEpidSzGvrRTf1LBZP81G7p6rMNYzSYR5tjPm4F5aNCi
-         abUGgTt0V63OBXLrSL6VuD10riJ2sS/YmlTf6yAL3YCMuwe12IbvSW9aCA2d8GgHS3pA
-         X7Ag==
-X-Forwarded-Encrypted: i=1; AJvYcCXX9IPStJQdIh106QUXoSKw7a9jvSbhYvN3G/UItq8K1Xjel+sHi8G+CequtWJEnixtghKdvUc81oLrOWLHuCsRiq58XMYTvCUwbA==
-X-Gm-Message-State: AOJu0YyyE1EhVjMaMN7nx0RawjWtCiOb8z+h+UUvdKS6SzKmybRW7fUI
-	x8U/IzI/QlC+MAsgugpiJARw3fcsFGQ6d8vwWOnZ/kJA+4DCjy/J+xf7Ijx4Uu0=
-X-Google-Smtp-Source: AGHT+IEX1udSEiYP7O2GbGoEX1Leu8G80HqYkS34ca2YUfC/I/Vafx1RaNkExfYNKcEtODspKTAWHQ==
-X-Received: by 2002:a05:600c:19d2:b0:416:bbf8:27e0 with SMTP id u18-20020a05600c19d200b00416bbf827e0mr4254479wmq.40.1712842599353;
-        Thu, 11 Apr 2024 06:36:39 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id n18-20020a05600c4f9200b00417caec4135sm2363003wmq.4.2024.04.11.06.36.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Apr 2024 06:36:38 -0700 (PDT)
-Message-ID: <e6465ed5-c52c-44c2-8032-2ce0bbcf07a2@linaro.org>
-Date: Thu, 11 Apr 2024 15:36:37 +0200
+	s=arc-20240116; t=1712842736; c=relaxed/simple;
+	bh=cYsl/oiu4j/xkoJTZV4MhH9pfcAuMOByGFV5r9tA7Jc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=f913p5WVIxpxm6RS3jU43dbHD0QTxT/eS3bECMC+bVAQMJV6hjBpiM02DqT1qT/ZunvAOtOVjAuJCft1JCbRcLwjeN/fkir/MzzhzXdz2wjNc+nHQ7z51Ze6JeT9C6lfyQcGV0nPASg1XjLJB7jcqgrIROLlbMx4hzfjj2T6+W4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=ZpLryE+6; arc=none smtp.client-ip=45.89.224.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 3E53D120065;
+	Thu, 11 Apr 2024 16:38:48 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 3E53D120065
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1712842728;
+	bh=g/cmZ5EcPxVqLW90J3yJ5sNPqD6vla76/ub4sdzsxzk=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=ZpLryE+6hwve/7olN4Us/EgR+ZLJNQnc/cighsMUObSdI3AGWbqakdv6NkN4p3ykN
+	 R5FvZjjzq4rf3cY8BJjT1q/7COzDHdA60oiamOBfxuNzLVy2buQQRtvCbEx3EDY8TK
+	 eSmcomtR2sh3Tv2hZKx8096lzGjv94jauuj09Kj3M1G61iy7cMT0Xtiz6XFNN0rNmx
+	 m+xiC5TUp6a8Y7+FbZf1GIKFrYbDkokdvywxHRIBR8ltX4kPcMaWgURQ4bzEXrN0hY
+	 RHP3eJrnD2k7eusfMwUWf3tNwbq0nA6aUUKIT8tnVaCGl9KUDLj5rKCm8NzB0diQxN
+	 fIWEc9CX+WKjw==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Thu, 11 Apr 2024 16:38:48 +0300 (MSK)
+Received: from user-A520M-DS3H.sberdevices.ru (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Thu, 11 Apr 2024 16:38:46 +0300
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: <neil.armstrong@linaro.org>, <clabbe@baylibre.com>,
+	<herbert@gondor.apana.org.au>, <davem@davemloft.net>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <vadim.fedorenko@linux.dev>
+CC: <linux-crypto@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <kernel@salutedevices.com>, Alexey
+ Romanov <avromanov@salutedevices.com>
+Subject: [PATCH v7 00/23] Support more Amlogic SoC families in crypto driver
+Date: Thu, 11 Apr 2024 16:38:09 +0300
+Message-ID: <20240411133832.2896463-1-avromanov@salutedevices.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] media: dt-bindings: media: add access-controllers to
- STM32MP25 video codecs
-To: Alexandre TORGUE <alexandre.torgue@foss.st.com>,
- Rob Herring <robh@kernel.org>, Hugues Fruchet <hugues.fruchet@foss.st.com>
-Cc: Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-kernel@vger.kernel.org,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20240410144222.714172-1-hugues.fruchet@foss.st.com>
- <171276671618.403884.13818480350194550959.robh@kernel.org>
- <278bccaa-edc0-4f3d-8e9e-6159d2b47394@foss.st.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <278bccaa-edc0-4f3d-8e9e-6159d2b47394@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 184672 [Apr 11 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 16 0.3.16 6e64c33514fcbd07e515710c86ba61de7f56194e, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;lore.kernel.org:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;gist.github.com:7.1.1;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/04/11 07:46:00
+X-KSMG-LinksScanning: Clean, bases: 2024/04/11 07:47:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/11 09:22:00 #24744908
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-On 11/04/2024 14:57, Alexandre TORGUE wrote:
-> Hi Rob
-> 
-> On 4/10/24 18:31, Rob Herring wrote:
->>
->> On Wed, 10 Apr 2024 16:42:22 +0200, Hugues Fruchet wrote:
->>> access-controllers is an optional property that allows a peripheral to
->>> refer to one or more domain access controller(s).
->>>
->>> Signed-off-by: Hugues Fruchet <hugues.fruchet@foss.st.com>
->>> ---
->>>   .../devicetree/bindings/media/st,stm32mp25-video-codec.yaml   | 4 ++++
->>>   1 file changed, 4 insertions(+)
->>>
->>
->> My bot found errors running 'make dt_binding_check' on your patch:
->>
->> yamllint warnings/errors:
->>
->> dtschema/dtc warnings/errors:
->> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/st,stm32mp25-video-codec.yaml: access-controllers: missing type definition
->>
->> doc reference errors (make refcheckdocs):
->>
->> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240410144222.714172-1-hugues.fruchet@foss.st.com
->>
->> The base for the series is generally the latest rc1. A different dependency
->> should be noted in *this* patch.
->>
->> If you already ran 'make dt_binding_check' and didn't see the above
->> error(s), then make sure 'yamllint' is installed and dt-schema is up to
->> date:
->>
->> pip3 install dtschema --upgrade
->>
->> Please check and re-submit after running the above command yourself. Note
->> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
->> your schema. However, it must be unset to test all examples with your schema.
->>
-> 
-> This patch depends on STM32 firewall bus YAML which has been recently 
-> added in stm32-next branch. I tested it on top of stm32-next and there 
+Hello!
 
-Where is it expressed in the patch? How maintainers are supposed to know
-if this patch should be applied or not?
+This patchset expand the funcionality of the Amlogic
+crypto driver by adding support for more SoC families:
+AXG, G12A, G12B, SM1, A1, S4.
 
-> is no YAML issues (neiter dt-bindings checks nor dtbs_check). If you 
-> agree to ack it, I could merge it on stm32-next.
+Also specify and enable crypto node in device tree
+for reference Amlogic devices.
 
-Drop redundant second "media" from the subject. One media is enough.
+Tested on GXL, AXG, G12A/B, SM1, A1 and S4 devices via
+custom tests [1] and tcrypt module.
 
-With the subject fixed:
+---
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Changes V1 -> V2 [2]:
 
-Best regards,
-Krzysztof
+- Rebased over linux-next.
+- Adjusted device tree bindings description.
+- A1 and S4 dts use their own compatible, which is a G12 fallback.
+
+Changes V2 -> V3 [3]:
+
+- Fix errors in dt-bindings and device tree.
+- Add new field in platform data, which determines
+whether clock controller should be used for crypto IP.
+- Place back MODULE_DEVICE_TABLE.
+- Correct commit messages.
+
+Changes V3 -> V4 [4]:
+
+- Update dt-bindings as per Krzysztof Kozlowski comments.
+- Fix bisection: get rid of compiler errors in some patches.
+
+Changes V4 -> V5 [5]:
+
+- Tested on GXL board:
+  1. Fix panic detected by Corentin Labbe [6].
+  2. Disable hasher backend for GXL: in its current realization
+     is doesn't work. And there are no examples or docs in the
+     vendor SDK.
+- Fix AES-CTR realization: legacy boards (gxl, g12, axg) requires
+  inversion of the keyiv at keys setup stage.
+- A1 now uses its own compatible string.
+- S4 uses A1 compatible as fallback.
+- Code fixes based on comments Neil Atrmstrong and Rob Herring.
+- Style fixes (set correct indentations)
+
+Changes V5 -> V6 [7]:
+
+- Fix DMA sync warning reported by Corentin Labbe [8].
+- Remove CLK input from driver. Remove clk definition
+  and second interrput line from crypto node inside GXL dtsi.
+
+Changes V6 -> V7 [9]:
+
+- Fix dt-schema: power domain now required only for A1.
+- Use crypto_skcipher_ctx_dma() helper for cipher instead of
+  ____cacheline_aligned.
+- Add import/export functions for hasher.
+- Fix commit message for patch 17, acorrding to discussion [10].
+
+Links:
+  - [1] https://gist.github.com/mRrvz/3fb8943a7487ab7b943ec140706995e7
+  - [2] https://lore.kernel.org/all/20240110201216.18016-1-avromanov@salutedevices.com/
+  - [3] https://lore.kernel.org/all/20240123165831.970023-1-avromanov@salutedevices.com/
+  - [4] https://lore.kernel.org/all/20240205155521.1795552-1-avromanov@salutedevices.com/
+  - [5] https://lore.kernel.org/all/20240212135108.549755-1-avromanov@salutedevices.com/
+  - [6] https://lore.kernel.org/all/ZcsYaPIUrBSg8iXu@Red/
+  - [7] https://lore.kernel.org/all/20240301132936.621238-1-avromanov@salutedevices.com/
+  - [8] https://lore.kernel.org/all/Zf1BAlYtiwPOG-Os@Red/
+  - [9] https://lore.kernel.org/all/20240326153219.2915080-1-avromanov@salutedevices.com/
+  - [10] https://lore.kernel.org/all/20240329-dotted-illusive-9f0593805a05@wendy/
+
+Alexey Romanov (23):
+  drivers: crypto: meson: don't hardcode IRQ count
+  drviers: crypto: meson: add platform data
+  drivers: crypto: meson: remove clock input
+  drivers: crypto: meson: add MMIO helpers
+  drivers: crypto: meson: move get_engine_number()
+  drivers: crypto: meson: drop status field from meson_flow
+  drivers: crypto: meson: move algs definition and cipher API to
+    cipher.c
+  drivers: crypto: meson: cleanup defines
+  drivers: crypto: meson: process more than MAXDESCS descriptors
+  drivers: crypto: meson: avoid kzalloc in engine thread
+  drivers: crypto: meson: introduce hasher
+  drivers: crypto: meson: add support for AES-CTR
+  drivers: crypto: meson: use fallback for 192-bit keys
+  drivers: crypto: meson: add support for G12-series
+  drivers: crypto: meson: add support for AXG-series
+  drivers: crypto: meson: add support for A1-series
+  dt-bindings: crypto: meson: remove clk and second interrupt line for
+    GXL
+  arch: arm64: dts: meson: gxl: correct crypto node definition
+  dt-bindings: crypto: meson: support new SoC's
+  arch: arm64: dts: meson: a1: add crypto node
+  arch: arm64: dts: meson: s4: add crypto node
+  arch: arm64: dts: meson: g12: add crypto node
+  arch: arm64: dts: meson: axg: add crypto node
+
+ .../bindings/crypto/amlogic,gxl-crypto.yaml   |  33 +-
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi     |   7 +
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |   6 +
+ .../boot/dts/amlogic/meson-g12-common.dtsi    |   6 +
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi    |   5 +-
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi     |   6 +
+ drivers/crypto/amlogic/Makefile               |   2 +-
+ drivers/crypto/amlogic/amlogic-gxl-cipher.c   | 629 ++++++++++++------
+ drivers/crypto/amlogic/amlogic-gxl-core.c     | 292 ++++----
+ drivers/crypto/amlogic/amlogic-gxl-hasher.c   | 482 ++++++++++++++
+ drivers/crypto/amlogic/amlogic-gxl.h          | 116 +++-
+ 11 files changed, 1221 insertions(+), 363 deletions(-)
+ create mode 100644 drivers/crypto/amlogic/amlogic-gxl-hasher.c
+
+-- 
+2.34.1
 
 
