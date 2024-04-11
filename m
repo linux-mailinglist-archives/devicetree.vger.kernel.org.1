@@ -1,111 +1,162 @@
-Return-Path: <devicetree+bounces-58278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49E718A1364
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 13:45:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E939B8A1392
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 13:50:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 766011C21694
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 11:45:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9EE221F214B0
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 11:50:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E62EF14EC5F;
-	Thu, 11 Apr 2024 11:43:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3209149DFF;
+	Thu, 11 Apr 2024 11:50:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="NTU/yLSR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HddZYBBR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C47314E2DF;
-	Thu, 11 Apr 2024 11:43:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C3153399F;
+	Thu, 11 Apr 2024 11:50:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712835799; cv=none; b=AOJI0Rva0nxsvDOnhjrMhra4E0cYhbMLZ8iJuTz2t/ka61rmRX3OBdORZBHcwjohWZdhbBmYYpFnoYb8bwK/iI6eWp4pSzmT/WZ8FKqPPNGstkOTu+m5/+Nk9ZfANu50EDPBQwOwvaLd84Y4dMjkLw1w9XyXPgB/L+OyrfAk9iA=
+	t=1712836252; cv=none; b=ZfZrXN6xpmR8OKZNirqDFDx6L7td3VpP5oghuxjnSbO2jsUYFJUVR/mb9gxcR879TmbRAl6rDXXMLWcO9u5fmNk8kTKV4Ju8nz/S+e23Aw37U2Lwx32JKaw59LvboGqNP5YtY+NZjb2NosR4Oi/hfQEHyuiPzgmF/L8ndjWcyQg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712835799; c=relaxed/simple;
-	bh=sY1R1NA7jkwBIAVzv78scvrc0A647hsvQsRji2DzXiM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=lsHKHhQW2jbuWQidIP9mbwKsFlav7X5jTgRposfpDnumBajUyMrq9zzxROQixPYV0Wl10qqGJeXgKmEEDTpM7CzhVcPvg/mxI73z7g5MnOLwdX9IfK3MqVFrZVgbcFE7vGw2dGi3JOg+qv/6ZkT0dXvEgLO33kk/joCCjKQBIGc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=NTU/yLSR; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1712835796;
-	bh=sY1R1NA7jkwBIAVzv78scvrc0A647hsvQsRji2DzXiM=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=NTU/yLSRChU1zIhnZbUUml0WZdVLgoejrrSVR3AU0ddhtd/S9/YcYop24AImmyCBT
-	 CYe6xH1a9bfKr75uwRS2wj8QZElrX3vRCrbnjTpXXPiQ8fzR+2nwcwcxJ5SzjlA6LE
-	 oMyV6N9SxCJWRvOq/mqkpjvM1I/oSFcH8ZRiQcaFoJBdPTzoem42DWzsLQagXWZZvt
-	 YSZwAYfkDiEZSrffIsCTn6SKVDGzeQleQUxyPTraenVcVyOpS6N37k7NywzrIQDChC
-	 GQBnPlTK9HZ949+QHTPTfIpljhcyOm5LLDhJ3TVuP66LeJW5Rv3l6cjQx58ykdlh8H
-	 vttgvk/q3N9Ig==
-Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5525E3782134;
-	Thu, 11 Apr 2024 11:43:15 +0000 (UTC)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: linux-scsi@vger.kernel.org
-Cc: alim.akhtar@samsung.com,
-	avri.altman@wdc.com,
-	bvanassche@acm.org,
-	robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	peter.wang@mediatek.com,
-	chu.stanley@gmail.com,
-	jejb@linux.ibm.com,
-	martin.petersen@oracle.com,
-	lgirdwood@gmail.com,
-	broonie@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	stanley.chu@mediatek.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 8/8] dt-bindings: ufs: mediatek,ufs: Document optional dvfsrc/va09 regulators
-Date: Thu, 11 Apr 2024 13:43:00 +0200
-Message-ID: <20240411114300.169055-9-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240411114300.169055-1-angelogioacchino.delregno@collabora.com>
-References: <20240411114300.169055-1-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1712836252; c=relaxed/simple;
+	bh=x2xmEMXg0ToXdBU/uFQI+8ztDExZFbr51eVT23DMBXs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bGuQcE3THn5n87fz66kVt97yZ49ehM53sTwiMtW5OwKJv8v/6wU7HkC48YBd6WglBh0x7IS1z03UNndxYMexflKPiZjyfMbUo7kgOlaim+H7vqguGca+4qs8w3ByEzLjy2ZSQuGn80Uby9hkqEsmb1Sy0tAn68kb10kwJIfn+Gc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HddZYBBR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91396C433F1;
+	Thu, 11 Apr 2024 11:50:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712836252;
+	bh=x2xmEMXg0ToXdBU/uFQI+8ztDExZFbr51eVT23DMBXs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HddZYBBR7ETEpcmSBl1vlrueptxmLgeRCRvRjPNgIe/F5XpjbrAr3RE6WHwEl/16H
+	 ZZBQDyqaHZ/C7piAbZsOkT+TtOvx0MpQsyoHAnALrGWkfR3rFsFfTwVrJ/wOR0z6ji
+	 4nrcwj6flDD/uv1//kqb+TDVPTEkKQFShwGDtqkJdSp9jJTAOdnTTcPXFpzC+5CiJ7
+	 MUsgCIfphnz1ex3A1cuELUd0bBmxUGnmnCphnJlLO1PtSM0RIPbWoPw6/5g+UScojj
+	 5VMZMHzXL6UIejIxtOtee2Fy/BJh5S7BHVGCF5kPT9OSOVKU1+5Ps7Rd5JNxhCxhP7
+	 knsAJS9yyxQNw==
+Date: Thu, 11 Apr 2024 12:50:47 +0100
+From: Lee Jones <lee@kernel.org>
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, mazziesaccount@gmail.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] mfd: rohm-bd71828: Add power off functionality
+Message-ID: <20240411115047.GI1980182@google.com>
+References: <20240402111700.494004-1-andreas@kemnade.info>
+ <20240402111700.494004-3-andreas@kemnade.info>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240402111700.494004-3-andreas@kemnade.info>
 
-Document the optional dvfsrc-vcore and va09 regulators used for,
-respectively, crypt boost and internal MPHY power management in
-when powering on/off the (external) MediaTek UFS PHY.
+On Tue, 02 Apr 2024, Andreas Kemnade wrote:
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+> Since the chip can power off the system, add the corresponding
+> functionality.
+> Based on https://github.com/kobolabs/Kobo-Reader/raw/master/hw/imx6sll-clara2e/kernel.tar.bz2
+> 
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> Acked-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> ---
+>  drivers/mfd/rohm-bd71828.c       | 36 +++++++++++++++++++++++++++++++-
+>  include/linux/mfd/rohm-bd71828.h |  3 +++
+>  2 files changed, 38 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/mfd/rohm-bd71828.c b/drivers/mfd/rohm-bd71828.c
+> index 594718f7e8e1..4a1fa8a0d76a 100644
+> --- a/drivers/mfd/rohm-bd71828.c
+> +++ b/drivers/mfd/rohm-bd71828.c
+> @@ -464,6 +464,27 @@ static int set_clk_mode(struct device *dev, struct regmap *regmap,
+>  				  OUT32K_MODE_CMOS);
+>  }
+>  
+> +static struct i2c_client *bd71828_dev;
+> +static void bd71828_power_off(void)
+> +{
+> +	while (true) {
+> +		s32 val;
+> +
+> +		/* We are not allowed to sleep, so do not use regmap involving mutexes here. */
+> +		val = i2c_smbus_read_byte_data(bd71828_dev, BD71828_REG_PS_CTRL_1);
+> +		if (val >= 0)
+> +			i2c_smbus_write_byte_data(bd71828_dev,
+> +						  BD71828_REG_PS_CTRL_1,
+> +						  BD71828_MASK_STATE_HBNT | (u8)val);
+> +		mdelay(500);
+> +	}
+> +}
+> +
+> +static void bd71828_remove_poweroff(void *data)
+> +{
+> +	pm_power_off = NULL;
+> +}
+> +
+>  static int bd71828_i2c_probe(struct i2c_client *i2c)
+>  {
+>  	struct regmap_irq_chip_data *irq_data;
+> @@ -542,7 +563,20 @@ static int bd71828_i2c_probe(struct i2c_client *i2c)
+>  	ret = devm_mfd_add_devices(&i2c->dev, PLATFORM_DEVID_AUTO, mfd, cells,
+>  				   NULL, 0, regmap_irq_get_domain(irq_data));
+>  	if (ret)
+> -		dev_err_probe(&i2c->dev, ret, "Failed to create subdevices\n");
+> +		return	dev_err_probe(&i2c->dev, ret, "Failed to create subdevices\n");
+> +
+> +	if (of_device_is_system_power_controller(i2c->dev.of_node) &&
+> +	    chip_type == ROHM_CHIP_TYPE_BD71828) {
+> +		if (!pm_power_off) {
+> +			bd71828_dev = i2c;
+> +			pm_power_off = bd71828_power_off;
+> +			ret = devm_add_action_or_reset(&i2c->dev,
+> +						       bd71828_remove_poweroff,
+> +						       NULL);
+> +		} else {
+> +			dev_warn(&i2c->dev, "Poweroff callback already assigned\n");
+> +		}
+> +	}
+>  
+>  	return ret;
+>  }
+> diff --git a/include/linux/mfd/rohm-bd71828.h b/include/linux/mfd/rohm-bd71828.h
+> index 3b5f3a7db4bd..9776fde1262d 100644
+> --- a/include/linux/mfd/rohm-bd71828.h
+> +++ b/include/linux/mfd/rohm-bd71828.h
+> @@ -4,6 +4,7 @@
+>  #ifndef __LINUX_MFD_BD71828_H__
+>  #define __LINUX_MFD_BD71828_H__
+>  
+> +#include <linux/bits.h>
+>  #include <linux/mfd/rohm-generic.h>
+>  #include <linux/mfd/rohm-shared.h>
+>  
+> @@ -41,6 +42,8 @@ enum {
+>  #define BD71828_REG_PS_CTRL_2		0x05
+>  #define BD71828_REG_PS_CTRL_3		0x06
+>  
+> +#define BD71828_MASK_STATE_HBNT		BIT(1)
+> +
+>  //#define BD71828_REG_SWRESET		0x06
 
-diff --git a/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml b/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml
-index 21b038db100c..2ee8bb7d5aac 100644
---- a/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml
-+++ b/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml
-@@ -50,6 +50,8 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  dvfsrc-vcore-supply: true
-+  va09-supply: true
-   vcc-supply: true
- 
- required:
+How did this get in here?
+
+>  #define BD71828_MASK_RUN_LVL_CTRL	0x30
+>  
+> -- 
+> 2.39.2
+> 
+
 -- 
-2.44.0
-
+Lee Jones [李琼斯]
 
