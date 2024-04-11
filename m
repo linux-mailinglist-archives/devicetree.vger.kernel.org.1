@@ -1,115 +1,114 @@
-Return-Path: <devicetree+bounces-58212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D95C98A0C20
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 11:17:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4F6B8A0C29
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 11:19:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D814EB21D57
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 09:17:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BAD7285190
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 09:19:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C9D8145327;
-	Thu, 11 Apr 2024 09:17:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12C4B1442FE;
+	Thu, 11 Apr 2024 09:19:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Q2dvg2J/"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="URwAt6z3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A10C144D16;
-	Thu, 11 Apr 2024 09:17:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66C7C143C77;
+	Thu, 11 Apr 2024 09:19:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712827033; cv=none; b=qcXEEVaBBuw/Bz0Pc+615a6usOEquPUuMkKF5YPOWL83uJLRhPhtwUv9dAN9ACwTZ0W0t50njOP7j4p7UCQaygB2W3JdN8mf+XTcYuvoZ/MIqAe/IWU4F7H45SWl5u2IL/6c1BdzekILoFZwuxVzp6+iYieZ1duWAbTjJjuleOg=
+	t=1712827183; cv=none; b=QFIenWgid5p5lTB9+styEmi3+nL3L66oh93O4UTbMzL/KzuMFrZDTqz2tXtMd+UFo3NIV9Y/wSLVZB5GCTRCAhOs5DYzR47Yng6bgyYOgS86O3v5YoAjD22QZSvORYKtn4Ka6CmBUMkv4X/6NT/fuiTX0FCWHdH8rWdkeAuArpU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712827033; c=relaxed/simple;
-	bh=9y5foYOUe1zzxCC5L4B/lU0OmGrdu2QwBon//WkLfhk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K6tEMwvCh/6jPmw+cmWFif0OpJU8DOyKi1Ofd5wE2k2AqLfQ0fmttRmTq1412Zka1uuLRvPIlxay3H3h55BdnZcotAn+FySWHXFQLaJtBNZNS5NEerRC5ikk+QPlkmhl0UxRCdcFPOXmUulPMgR4p1vHj94i/wu6DtPx4uhvFi4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Q2dvg2J/; arc=none smtp.client-ip=217.70.183.197
+	s=arc-20240116; t=1712827183; c=relaxed/simple;
+	bh=7YIPbLNqcKNJR0M74cGCjmsO4y8qKvenM6vaUuW0EUo=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
+	 References:In-Reply-To; b=svRIJntm/0yeVdLSctx33Em4YFhO8gq5pZEfkftfquhevK3cumxN+hPFyKGz5xmgSa7gYIBT/WkVqEJXYTjxeb9c9RKw87xZz63jYo0Ld06mU5IbGamNCNCUErGqjKvkBZGW3ZXSjpP/jiVsup6KLBIuADGnlJZY2PeMQ6Mkqkg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=URwAt6z3; arc=none smtp.client-ip=217.70.183.194
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 4B21B1C0005;
-	Thu, 11 Apr 2024 09:17:01 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 833E54000E;
+	Thu, 11 Apr 2024 09:19:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1712827022;
+	t=1712827173;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=HPI71wuuzz/zgN0swML4xk7MozrGvdKbjPLs6yiiQXo=;
-	b=Q2dvg2J/fHIshqJlNqOP5OVrPBGECmv0kAf6Kpr5NXKGjDIV7QgA0GlTHYZieMPuM7Js/9
-	P6euw7U/k7lYojZkZkrM7lnodwPes1Kcl6r7skfSRzzYUXUXbqlnC2npHr4mQx5YNQ81hR
-	OcFTZY9HM8x1HWj1wC1ShslBp68OwWzblt6pdhnKindwUMcIdBCvv+UK+YvDatZQK1n5hs
-	omYSOzWGXjjsVHX7x/iqi0vwyzUkUlrTyYY56FNP278M2mF21jHx/xKrkHxkhHPQL04jpX
-	awDR86TTHrZj5XeFFHOdOA+AQKlsQ5rq8gThAIUO5hvTUBNVkWKmUoIgxysGHA==
-Date: Thu, 11 Apr 2024 11:17:01 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Mihai Sain <mihai.sain@microchip.com>
-Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 00/13] Remove the empty lines from sama5 and sama7 DT
- files
-Message-ID: <20240411091701837a531a@mail.local>
-References: <20240411073353.3831-1-mihai.sain@microchip.com>
+	bh=IbTHzKHKeglXiJiU4uLpJ6nerHMO6Rg9h+b3qg4QPbo=;
+	b=URwAt6z35/hrriUSTvLg+KFe1NEQgQ6qkGAv5W7gPQfEDD9kZqVIJTH7NxAHzz8lt3nFTe
+	aI5x8yFCOXlD91hFPPPb8QZzGfq+C1kSKBWur583kk54jyDrjobWVt52GP4gtrLgLRLxg0
+	gymGYojmf40kwq7A2pc/0uGwxLuTGuxEa3JiYvZvy+RAnxszopEFHpLzU5BWWZA7tTQ+ye
+	1cRps1M0C1bZ70rN/E14V/onA74ZxuZ4ztEsJ2rdDULbsWC5zK6kTx3LSXjamP9Gw8gcOq
+	5KAiowpb/iTZESiw77Fgp0+/D8HTnIVotYKBDQfTlhWLBqhVA8Iy3yWQyS5DzA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240411073353.3831-1-mihai.sain@microchip.com>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 11 Apr 2024 11:19:32 +0200
+Message-Id: <D0H6K479VPHU.2WARS2K8B2SFL@bootlin.com>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH 01/11] dt-bindings: soc: mobileye: add EyeQ5 OLB system
+ controller
+Cc: "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>, "Philipp Zabel"
+ <p.zabel@pengutronix.de>, "Vladimir Kondratiev"
+ <vladimir.kondratiev@mobileye.com>, <linux-gpio@vger.kernel.org>, "Michael
+ Turquette" <mturquette@baylibre.com>, <linux-clk@vger.kernel.org>, "Gregory
+ CLEMENT" <gregory.clement@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Stephen Boyd" <sboyd@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, <linux-mips@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, "Linus
+ Walleij" <linus.walleij@linaro.org>
+To: "Rob Herring" <robh@kernel.org>
+X-Mailer: aerc 0.15.2
+References: <20240410-mbly-olb-v1-0-335e496d7be3@bootlin.com>
+ <20240410-mbly-olb-v1-1-335e496d7be3@bootlin.com>
+ <171277513936.883835.18187305941709008733.robh@kernel.org>
+In-Reply-To: <171277513936.883835.18187305941709008733.robh@kernel.org>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On 11/04/2024 10:33:40+0300, Mihai Sain wrote:
-> This patch series removes the empty lines from sama5 and sama7 DT files.
-> 
-> Mihai Sain (13):
->   ARM: dts: microchip: sama7g5ek: Remove the empty line 50
->   ARM: dts: microchip: sama7g5: Remove the empty line 139
->   ARM: dts: microchip: sama5d2: Remove the empty lines 47 and 63
->   ARM: dts: microchip: sama5d27_som1_ek: Remove the empty lines
->   ARM: dts: microchip: sama5d27_wlsom1_ek: Remove the empty line 31
->   ARM: dts: microchip: sama5d29_curiosity: Remove the empty line 48
->   ARM: dts: microchip: sama5d2_icp: Remove the empty line 47
->   ARM: dts: microchip: sama5d2_ptc_ek: Remove the empty line 401
->   ARM: dts: microchip: sama5d2_xplained: Remove the empty line 710
->   ARM: dts: microchip: sama5d3_eds: Remove the empty line 24
->   ARM: dts: microchip: sama5d3_xplained: Remove the empty line 377
->   ARM: dts: microchip: sama5d4_xplained: Remove the empty line 247
->   ARM: dts: microchip: sama5d4ek: Remove the empty line 274
-> 
->  arch/arm/boot/dts/microchip/at91-sama5d27_som1_ek.dts   | 4 ----
->  arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1_ek.dts | 1 -
->  arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts | 1 -
->  arch/arm/boot/dts/microchip/at91-sama5d2_icp.dts        | 1 -
->  arch/arm/boot/dts/microchip/at91-sama5d2_ptc_ek.dts     | 1 -
->  arch/arm/boot/dts/microchip/at91-sama5d2_xplained.dts   | 1 -
->  arch/arm/boot/dts/microchip/at91-sama5d3_eds.dts        | 1 -
->  arch/arm/boot/dts/microchip/at91-sama5d3_xplained.dts   | 1 -
->  arch/arm/boot/dts/microchip/at91-sama5d4_xplained.dts   | 1 -
->  arch/arm/boot/dts/microchip/at91-sama5d4ek.dts          | 1 -
->  arch/arm/boot/dts/microchip/at91-sama7g5ek.dts          | 1 -
->  arch/arm/boot/dts/microchip/sama5d2.dtsi                | 2 --
->  arch/arm/boot/dts/microchip/sama7g5.dtsi                | 1 -
->  13 files changed, 17 deletions(-)
+Hello,
 
-Please squash all of these in a single commit.
+On Wed Apr 10, 2024 at 8:52 PM CEST, Rob Herring wrote:
+> On Wed, 10 Apr 2024 19:12:30 +0200, Th=C3=A9o Lebrun wrote:
+> > Add documentation to describe the "Other Logic Block" syscon.
+> >=20
+> > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+> > ---
+> >  .../bindings/soc/mobileye/mobileye,eyeq5-olb.yaml  | 125 +++++++++++++=
+++++++++
+> >  MAINTAINERS                                        |   1 +
+> >  2 files changed, 126 insertions(+)
+>
+> My bot found errors running 'make dt_binding_check' on your patch:
+>
+> yamllint warnings/errors:
 
-> 
-> 
-> base-commit: e8c39d0f57f358950356a8e44ee5159f57f86ec5
-> -- 
-> 2.44.0
-> 
+[...]
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
+I made the mistake of putting an EyeQ6H example inside
+Documentation/devicetree/bindings/soc/mobileye/mobileye,eyeq5-olb.yaml
+
+I will remove it to get this error fixed. Else there would be
+dependencies on clk and reset patches from this series:
+
+   dt-bindings: clock: mobileye,eyeq5-clk: add EyeQ6L and EyeQ6H
+   dt-bindings: reset: mobileye,eyeq5-reset: add EyeQ6L and EyeQ6H
+
+Regards,
+
+--
+Th=C3=A9o Lebrun, Bootlin
 Embedded Linux and Kernel engineering
 https://bootlin.com
+
 
