@@ -1,246 +1,488 @@
-Return-Path: <devicetree+bounces-58254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA4618A125B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 12:58:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6BE48A1267
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 13:00:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09B9D1C21E0F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 10:58:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2CDD9B21A19
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 11:00:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3171F146D76;
-	Thu, 11 Apr 2024 10:58:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bUGqGzKA"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91247146D63;
+	Thu, 11 Apr 2024 10:59:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7541D1465BB
-	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 10:58:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DC251474BE
+	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 10:59:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712833103; cv=none; b=Wng0aYFoPhHSJEpCn4cva+BPb4/LqiKolwkaK/w0lF+NPePdiTsQGWpnvqMHM3CKI2wwdAQpG8sq2zPeA47sfk5OB6nP4jSjr/H4Qu7foCHKu5eSQX5kP8EXYVBY2vsvYUOhV2mAscguN1mCMZooRmL/JBBppLveusFlGXCrBcE=
+	t=1712833198; cv=none; b=g7fVcVaL09dSKYesdKcgeERL8dWqVS8hc8MTdWdnM3YIwJjpFt0mVqmMRuluthbALjt2UdrJT2IlDszuLbEZy0PUaPlugGa99JBh64SYbsmWuVm/dQUR72CW9D/A/V8VLHI1ZARmBOA0xITacB27PlzrneQCQSYt6/yJfsNkovA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712833103; c=relaxed/simple;
-	bh=Q2L9EqQaoahvi2kIOMCzAFWuv20QMpQLJXszbwCt9xY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LD+vUq+YZNUQUXflreR7o5Dt/zTtRfE5M8gu9Oq8RJGMfv0dh9iqciojX8ngIxlUm7gqfxjKV7Pg2orHhXSAq6T3vXbc60A9PcZ+l2pD78SHnRMTY99s+huVWcS2+jqfAr7mLi+AUO+EfNpEUWr7ON7WbAm28DcfN1cMrDDPedg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bUGqGzKA; arc=none smtp.client-ip=209.85.219.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-de0f9a501d6so4140747276.3
-        for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 03:58:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712833100; x=1713437900; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=uNQToZQI+fIvP5425itrbp65fFbHh4czABdrVfrmfFw=;
-        b=bUGqGzKAs4XLjE7uEDeAaNitiR1doaw5aznBMJuQ/QdwGjITtwcebuQuiG4DvaSt/O
-         WnTWnJJgHPYQJtczSEdCTK6B6w6RZBpcOcblIPPG0VT4r8sFc9L+gO0gOEHO+ETY/fOl
-         UhxUFbWLBgVMzkO2CtzcDnd1IW8nyh6ynmAEUxaXhmRG0AUYLr0L+JjgGhnQ5VS4iSot
-         yxXRCFO8pJWgaE6ldT+u2zhq6zrrhnPNZAOqEWRKKZOB4I/gpPVHRWo+qoMWNg9MDHRV
-         Oj+3t+XY7sFr9O8CcR5OzgPcplLwyRWAlKaVUuyQ3+c5YBuz6XDXcX1hP+ojbuNQFnpK
-         sO0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712833100; x=1713437900;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uNQToZQI+fIvP5425itrbp65fFbHh4czABdrVfrmfFw=;
-        b=C8rliGy8lukKRnRrSzcZEpoMhTIlrP3cOUZrtE/7j2g3WOZMtifOZx6FWarsLvY6kh
-         jBcMRU9AKfoP01FvdBRnDe2mrVMpi1iZWHcDJAkt2unPnBxd+m2WECqFk61o9RBhkMlI
-         Uk9YcDG0Wsqll2IRp87UjdlGnFoJwZNYLzy7UYnQT5idWOLLrfkrsEAGM5mgvhP2QeWe
-         O5EtgjewPnC+mFnPS5ovuiyj0heUkZ56rpvzgTaemrH9KqSMGSUujt/ck4IajxIE6fQB
-         mgTmQQ8Qesjwd1oRkoSHaRxca/lUZS7TendGaxBnCE5c9fgCxYkjG4RCPZK3JbKqus03
-         lCTA==
-X-Forwarded-Encrypted: i=1; AJvYcCV95hT/AfDfRlXypKhw6JP/2OIoBnV+c05VM4avxTwmiWTw1/XV7bSO43WQVMJi1ElNW0XT29dKWblGHmZZxxI+n95wox2QGlQPqA==
-X-Gm-Message-State: AOJu0YxA9nbVooE38T50d81RBJzIbSKI1ooneoZJooRa/0/l8cuFJL9t
-	94+HinexXKL2pqAcZ8IfPw5easSXekO8j1SO90pPERCJQ2aOK0ycOx/WG6I4xwddEx+sTqdS3pE
-	y3yhbYzu5HW+dogRbXGZYzdzWK9NvvNRV6e24Ew==
-X-Google-Smtp-Source: AGHT+IGRZup25Jt5VsX1lueXFQlvsaNC+dGT12zK30dqQnowjBNlEgsCznI5kspsrHV74XEiR3WlBtWijFWknky5PiI=
-X-Received: by 2002:a25:bc4d:0:b0:dcd:1854:9f43 with SMTP id
- d13-20020a25bc4d000000b00dcd18549f43mr4742934ybk.3.1712833100506; Thu, 11 Apr
- 2024 03:58:20 -0700 (PDT)
+	s=arc-20240116; t=1712833198; c=relaxed/simple;
+	bh=Dg1L9vmqPxmSpwApJmOlITtQQ25Vf/TSPoL6T0MEZLM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=doi9zxQ/gJSMzyeaikv5VnVIXIaObUnnQyenBd7UEEPHEzxwfTgivNudJwznGVLGVp0tuwwTvjw5xk9ErZ3Jtos3raIRd00fSlr1ncOmqRI3FI1nP6RwdwPBezs+e8HIxByBasDpIYCBhAXYirnYPLT0r28D6DjBnT3UWmoXBBc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rus9l-00053c-9Q; Thu, 11 Apr 2024 12:59:49 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rus9k-00BfaR-Aa; Thu, 11 Apr 2024 12:59:48 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rus9k-000VX9-0i;
+	Thu, 11 Apr 2024 12:59:48 +0200
+Date: Thu, 11 Apr 2024 12:59:48 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Trevor Gamblin <tgamblin@baylibre.com>
+Cc: linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	michael.hennerich@analog.com, nuno.sa@analog.com, devicetree@vger.kernel.org, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	dlechner@baylibre.com, Drew Fustini <dfustini@baylibre.com>, 
+	Sergiu Cuciurean <sergiu.cuciurean@analog.com>
+Subject: Re: [PATCH 2/2 v4] pwm: Add driver for AXI PWM generator
+Message-ID: <zwer5e7jmrqfi3yeooandpfyhs663i3adcaxjeizmwgmfxltp3@gnpimhyoaqjf>
+References: <20240301173343.1086332-1-tgamblin@baylibre.com>
+ <20240301173343.1086332-3-tgamblin@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240411-pm8xxx-vibrator-new-design-v9-0-7bf56cb92b28@quicinc.com>
- <20240411-pm8xxx-vibrator-new-design-v9-2-7bf56cb92b28@quicinc.com>
-In-Reply-To: <20240411-pm8xxx-vibrator-new-design-v9-2-7bf56cb92b28@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 11 Apr 2024 13:58:09 +0300
-Message-ID: <CAA8EJpoL9vCAUgWmHcoxppo_gJqaw_xqdYqcJkS6Xza-5aSh3A@mail.gmail.com>
-Subject: Re: [PATCH v9 2/4] input: pm8xxx-vibrator: refactor to support new
- SPMI vibrator
-To: quic_fenglinw@quicinc.com
-Cc: kernel@quicinc.com, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	linux-input@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="mwyjs4i2pfvbdlht"
+Content-Disposition: inline
+In-Reply-To: <20240301173343.1086332-3-tgamblin@baylibre.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Thu, 11 Apr 2024 at 11:32, Fenglin Wu via B4 Relay
-<devnull+quic_fenglinw.quicinc.com@kernel.org> wrote:
->
-> From: Fenglin Wu <quic_fenglinw@quicinc.com>
->
-> Currently, vibrator control register addresses are hard coded,
-> including the base address and offsets, it's not flexible to
-> support new SPMI vibrator module which is usually included in
-> different PMICs with different base address. Refactor it by using
-> the base address defined in devicetree.
->
-> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
+
+--mwyjs4i2pfvbdlht
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+On Fri, Mar 01, 2024 at 12:33:42PM -0500, Trevor Gamblin wrote:
+> From: Drew Fustini <dfustini@baylibre.com>
+>=20
+> Add support for the Analog Devices AXI PWM Generator. This device is an
+> FPGA-implemented peripheral used as PWM signal generator and can be
+> interfaced with AXI4. The register map of this peripheral makes it
+> possible to configure the period and duty cycle of the output signal.
+>=20
+> Link: https://wiki.analog.com/resources/fpga/docs/axi_pwm_gen
+> Co-developed-by: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
+> Signed-off-by: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
+> Co-developed-by: David Lechner <dlechner@baylibre.com>
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> Signed-off-by: Drew Fustini <dfustini@baylibre.com>
+> Acked-by: Nuno Sa <nuno.sa@analog.com>
+> Co-developed-by: Trevor Gamblin <tgamblin@baylibre.com>
+> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
 > ---
->  drivers/input/misc/pm8xxx-vibrator.c | 42 ++++++++++++++++++++++++------------
->  1 file changed, 28 insertions(+), 14 deletions(-)
->
-> diff --git a/drivers/input/misc/pm8xxx-vibrator.c b/drivers/input/misc/pm8xxx-vibrator.c
-> index 89f0f1c810d8..2959edca8eb9 100644
-> --- a/drivers/input/misc/pm8xxx-vibrator.c
-> +++ b/drivers/input/misc/pm8xxx-vibrator.c
-> @@ -20,26 +20,26 @@
->  #define MAX_FF_SPEED           0xff
->
->  struct pm8xxx_regs {
-> -       unsigned int enable_addr;
-> +       unsigned int enable_offset;
->         unsigned int enable_mask;
->
-> -       unsigned int drv_addr;
-> +       unsigned int drv_offset;
->         unsigned int drv_mask;
->         unsigned int drv_shift;
->         unsigned int drv_en_manual_mask;
->  };
->
->  static const struct pm8xxx_regs pm8058_regs = {
-> -       .drv_addr = 0x4A,
-> +       .drv_offset = 0x4A,
-
-If the DT already has reg = <0x4a> and you add drv_offset = 0x4a,
-which register will be used by the driver?
-
-Also, while we are at it, please downcase all the hex numbers that you
-are touching.
-
->         .drv_mask = 0xf8,
->         .drv_shift = 3,
->         .drv_en_manual_mask = 0xfc,
->  };
->
->  static struct pm8xxx_regs pm8916_regs = {
-> -       .enable_addr = 0xc046,
-> +       .enable_offset = 0x46,
->         .enable_mask = BIT(7),
-> -       .drv_addr = 0xc041,
-> +       .drv_offset = 0x41,
->         .drv_mask = 0x1F,
->         .drv_shift = 0,
->         .drv_en_manual_mask = 0,
-> @@ -51,6 +51,8 @@ static struct pm8xxx_regs pm8916_regs = {
->   * @work: work structure to set the vibration parameters
->   * @regmap: regmap for register read/write
->   * @regs: registers' info
-> + * @enable_addr: vibrator enable register
-> + * @drv_addr: vibrator drive strength register
->   * @speed: speed of vibration set from userland
->   * @active: state of vibrator
->   * @level: level of vibration to set in the chip
-> @@ -61,6 +63,8 @@ struct pm8xxx_vib {
->         struct work_struct work;
->         struct regmap *regmap;
->         const struct pm8xxx_regs *regs;
-> +       unsigned int enable_addr;
-> +       unsigned int drv_addr;
->         int speed;
->         int level;
->         bool active;
-> @@ -83,15 +87,15 @@ static int pm8xxx_vib_set(struct pm8xxx_vib *vib, bool on)
->         else
->                 val &= ~regs->drv_mask;
->
-> -       rc = regmap_write(vib->regmap, regs->drv_addr, val);
-> +       rc = regmap_write(vib->regmap, vib->drv_addr, val);
->         if (rc < 0)
->                 return rc;
->
->         vib->reg_vib_drv = val;
->
->         if (regs->enable_mask)
-> -               rc = regmap_update_bits(vib->regmap, regs->enable_addr,
-> -                                       regs->enable_mask, on ? ~0 : 0);
-> +               rc = regmap_update_bits(vib->regmap, vib->enable_addr,
-> +                                       regs->enable_mask, on ? regs->enable_mask : 0);
->
->         return rc;
->  }
-> @@ -103,11 +107,10 @@ static int pm8xxx_vib_set(struct pm8xxx_vib *vib, bool on)
->  static void pm8xxx_work_handler(struct work_struct *work)
->  {
->         struct pm8xxx_vib *vib = container_of(work, struct pm8xxx_vib, work);
-> -       const struct pm8xxx_regs *regs = vib->regs;
-> -       int rc;
->         unsigned int val;
-> +       int rc;
->
-> -       rc = regmap_read(vib->regmap, regs->drv_addr, &val);
-> +       rc = regmap_read(vib->regmap, vib->drv_addr, &val);
->         if (rc < 0)
->                 return;
->
-> @@ -170,7 +173,7 @@ static int pm8xxx_vib_probe(struct platform_device *pdev)
->         struct pm8xxx_vib *vib;
->         struct input_dev *input_dev;
->         int error;
-> -       unsigned int val;
-> +       unsigned int val, reg_base = 0;
->         const struct pm8xxx_regs *regs;
->
->         vib = devm_kzalloc(&pdev->dev, sizeof(*vib), GFP_KERNEL);
-> @@ -190,13 +193,24 @@ static int pm8xxx_vib_probe(struct platform_device *pdev)
->
->         regs = of_device_get_match_data(&pdev->dev);
->
-> +       if (regs->enable_offset != 0) {
-> +               error = fwnode_property_read_u32(pdev->dev.fwnode, "reg", &reg_base);
-> +               if (error < 0) {
-> +                       dev_err(&pdev->dev, "Failed to read reg address, rc=%d\n", error);
-> +                       return error;
-> +               }
-> +       }
+> v4 changes:=20
+> * Address feedback for driver in v3:
+>   * Update to use devm_pwmchip_alloc() function
+>   * Simplify use of dev symbol in axi_pwmgen_probe
+>   * Remove unnecessary axi_pwmgen_from_chip function and use
+>     pwmchip_get_drvdata directly
+>=20
+> v3 changes:
+> * Address feedback for driver in v2:
+>   * Remove unnecessary blank line in axi_pwmgen_apply
+>   * Use macros already defined in <linux/fpga/adi-axi-common.h> for
+>     version checking
+>=20
+> v2 changes:
+> * Address feedback for driver and device tree in v1:
+>   * Use more reasonable Kconfig approach
+>   * Use common prefixes for all functions
+>   * Rename axi_pwmgen struct to axi_pwmgen_ddata
+>   * Change use of "pwm" to "ddata"
+>   * Set and check state->polarity
+>   * Multiply safely with mul_u64_u64_div_u64()
+>   * Improve handling of max and zero periods
+>   * Error if clk_rate_hz > NSEC_PER_SEC
+>   * Add "Limitations" section at top of pwm-axi-pwmgen.c
+>   * Don't disable outputs by default
+>   * Remove unnecessary macros for period, duty, offset
+>   * Fix axi_pwmgen_ddata alignment
+>   * Don't artificially limit npwm to four
+>   * Use clk_rate_exclusive_get(), balance with clk_rate_exclusive_put()
+>   * Cache clk rate in axi_pwmgen_ddata
+>   * Don't assign pwm->chip.base, do assign pwm->chip.atomic
+> * Remove redundant calls to clk_get_rate
+> * Test contents of AXI_PWMGEN_REG_CORE_MAGIC instead of
+>   arbitrary AXI_PWMGEN_TEST_DATA in AXI_PWMGEN_REG_SCRATCHPAD
+> * Remove redundant clk struct from axi_pwmgen_ddata
+> * Add self as module author
+> * Add major version check for IP core
+> ---
+>  MAINTAINERS                  |   1 +
+>  drivers/pwm/Kconfig          |  13 ++
+>  drivers/pwm/Makefile         |   1 +
+>  drivers/pwm/pwm-axi-pwmgen.c | 244 +++++++++++++++++++++++++++++++++++
+>  4 files changed, 259 insertions(+)
+>  create mode 100644 drivers/pwm/pwm-axi-pwmgen.c
+>=20
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 8a4ed5545680..2baa7a0a1c8c 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -3438,6 +3438,7 @@ L:	linux-pwm@vger.kernel.org
+>  S:	Supported
+>  W:	https://ez.analog.com/linux-software-drivers
+>  F:	Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
+> +F:	drivers/pwm/pwm-axi-pwmgen.c
+> =20
+>  AXXIA I2C CONTROLLER
+>  M:	Krzysztof Adamski <krzysztof.adamski@nokia.com>
+> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> index 4b956d661755..d44b0e86adee 100644
+> --- a/drivers/pwm/Kconfig
+> +++ b/drivers/pwm/Kconfig
+> @@ -98,6 +98,19 @@ config PWM_ATMEL_TCB
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called pwm-atmel-tcb.
+> =20
+> +config PWM_AXI_PWMGEN
+> +	tristate "Analog Devices AXI PWM generator"
+> +	depends on MICROBLAZE || NIOS2 || ARCH_ZYNQ || ARCH_ZYNQMP || ARCH_INTE=
+L_SOCFPGA || COMPILE_TEST
+> +	select REGMAP_MMIO
+> +	help
+> +	  This enables support for the Analog Devices AXI PWM generator.
 > +
-> +       vib->enable_addr = reg_base + regs->enable_offset;
-> +       vib->drv_addr = reg_base + regs->drv_offset;
+> +	  This is a configurable PWM generator with variable pulse width and
+> +	  period.
 > +
->         /* operate in manual mode */
-> -       error = regmap_read(vib->regmap, regs->drv_addr, &val);
-> +       error = regmap_read(vib->regmap, vib->drv_addr, &val);
->         if (error < 0)
->                 return error;
->
->         val &= regs->drv_en_manual_mask;
-> -       error = regmap_write(vib->regmap, regs->drv_addr, val);
-> +       error = regmap_write(vib->regmap, vib->drv_addr, val);
->         if (error < 0)
->                 return error;
->
->
-> --
-> 2.25.1
->
->
+> +	  To compile this driver as a module, choose M here: the module will be
+> +	  called pwm-axi-pwmgen.
+> +
+>  config PWM_BCM_IPROC
+>  	tristate "iProc PWM support"
+>  	depends on ARCH_BCM_IPROC || COMPILE_TEST
+> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> index c5ec9e168ee7..8322089954e9 100644
+> --- a/drivers/pwm/Makefile
+> +++ b/drivers/pwm/Makefile
+> @@ -6,6 +6,7 @@ obj-$(CONFIG_PWM_APPLE)		+=3D pwm-apple.o
+>  obj-$(CONFIG_PWM_ATMEL)		+=3D pwm-atmel.o
+>  obj-$(CONFIG_PWM_ATMEL_HLCDC_PWM)	+=3D pwm-atmel-hlcdc.o
+>  obj-$(CONFIG_PWM_ATMEL_TCB)	+=3D pwm-atmel-tcb.o
+> +obj-$(CONFIG_PWM_AXI_PWMGEN)	+=3D pwm-axi-pwmgen.o
+>  obj-$(CONFIG_PWM_BCM_IPROC)	+=3D pwm-bcm-iproc.o
+>  obj-$(CONFIG_PWM_BCM_KONA)	+=3D pwm-bcm-kona.o
+>  obj-$(CONFIG_PWM_BCM2835)	+=3D pwm-bcm2835.o
+> diff --git a/drivers/pwm/pwm-axi-pwmgen.c b/drivers/pwm/pwm-axi-pwmgen.c
+> new file mode 100644
+> index 000000000000..0c8f7f893a21
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-axi-pwmgen.c
+> @@ -0,0 +1,244 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Analog Devices AXI PWM generator
+> + *
+> + * Copyright 2024 Analog Devices Inc.
+> + * Copyright 2024 Baylibre SAS
+> + *
+> + * Limitations:
+> + * - The writes to registers for period and duty are shadowed until
+> + *   LOAD_CONFIG is written to AXI_PWMGEN_REG_CONFIG at the end of the
+> + *   current period.
 
+This implies that a currently running period is completed before the new
+settings get active, right?
 
--- 
-With best wishes
-Dmitry
+> + * - Writing LOAD_CONFIG also has the effect of re-synchronizing all
+> + *   enabled channels, which could cause glitching on other channels. It
+> + *   is therefore expected that channels are assigned harmonic periods
+> + *   and all have a single user coordinating this.
+
+What does "re-synchronize" mean here? Are all counters reset to zero?
+"harmonic" means that all channels should use the same period length?
+
+> + * - Supports normal polarity. Does not support changing polarity.
+
+Please add an item documenting how the HW behaves on disable. (Typical
+behaviours are "freeze" or "inactive".)
+
+> + */
+> +#include <linux/bits.h>
+> +#include <linux/clk.h>
+> +#include <linux/err.h>
+> +#include <linux/fpga/adi-axi-common.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pwm.h>
+> +#include <linux/regmap.h>
+> +#include <linux/slab.h>
+> +
+> +#define AXI_PWMGEN_REG_CORE_VERSION	0x00
+> +#define AXI_PWMGEN_REG_ID		0x04
+> +#define AXI_PWMGEN_REG_SCRATCHPAD	0x08
+> +#define AXI_PWMGEN_REG_CORE_MAGIC	0x0C
+> +#define AXI_PWMGEN_REG_CONFIG		0x10
+> +#define AXI_PWMGEN_REG_NPWM		0x14
+> +#define AXI_PWMGEN_CHX_PERIOD(ch)	(0x40 + (12 * (ch)))
+> +#define AXI_PWMGEN_CHX_DUTY(ch)		(0x44 + (12 * (ch)))
+> +#define AXI_PWMGEN_CHX_OFFSET(ch)	(0x48 + (12 * (ch)))
+
+Reading https://wiki.analog.com/resources/fpga/docs/axi_pwm_gen I would
+have expected:
+
+	/* ch in { 0, ... 15 } */
+	#define AXI_PWMGEN_REG_PULSE_X_PERIOD(ch)	(0x40 + 4 * (ch))
+	#define AXI_PWMGEN_REG_PULSE_X_WIDTH(ch)	(0x80 + 4 * (ch))
+	#define AXI_PWMGEN_REG_PULSE_X_OFFSET		(0xc0 + 4 * (ch))
+
+> +#define AXI_PWMGEN_REG_CORE_MAGIC_VAL	0x601A3471 /* Identification numbe=
+r to test during setup */
+> +#define AXI_PWMGEN_LOAD_CONFIG		BIT(1)
+> +#define AXI_PWMGEN_RESET		BIT(0)
+
+I'm a fan of including the register name in bitfield definitions. So
+maybe:
+
+	#define AXI_PWMGEN_REG_CONFIG_RESET	BIT(0)
+
+> +struct axi_pwmgen_ddata {
+> +	struct regmap *regmap;
+> +	unsigned long clk_rate_hz;
+> +};
+> +
+> +static const struct regmap_config axi_pwmgen_regmap_config =3D {
+> +	.reg_bits =3D 32,
+> +	.reg_stride =3D 4,
+> +	.val_bits =3D 32,
+> +};
+> +
+> +static int axi_pwmgen_apply(struct pwm_chip *chip, struct pwm_device *pw=
+m,
+> +			    const struct pwm_state *state)
+> +{
+> +	struct axi_pwmgen_ddata *ddata =3D pwmchip_get_drvdata(chip);
+> +	unsigned int ch =3D pwm->hwpwm;
+> +	struct regmap *regmap =3D ddata->regmap;
+> +	u64 period_cnt, duty_cnt;
+> +	int ret;
+> +
+> +	if (state->polarity !=3D PWM_POLARITY_NORMAL)
+> +		return -EINVAL;
+> +
+> +	if (state->enabled) {
+> +		period_cnt =3D mul_u64_u64_div_u64(state->period, ddata->clk_rate_hz, =
+NSEC_PER_SEC);
+> +		if (period_cnt > UINT_MAX)
+> +			period_cnt =3D UINT_MAX;
+> +
+> +		if (period_cnt =3D=3D 0)
+> +			return -EINVAL;
+> +
+> +		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_PERIOD(ch), period_cnt);
+> +		if (ret)
+> +			return ret;
+> +
+> +		duty_cnt =3D mul_u64_u64_div_u64(state->duty_cycle, ddata->clk_rate_hz=
+, NSEC_PER_SEC);
+> +		if (duty_cnt > UINT_MAX)
+> +			duty_cnt =3D UINT_MAX;
+> +
+> +		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_DUTY(ch), duty_cnt);
+> +		if (ret)
+> +			return ret;
+> +	} else {
+> +		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_PERIOD(ch), 0);
+> +		if (ret)
+> +			return ret;
+> +
+> +		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_DUTY(ch), 0);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return regmap_write(regmap, AXI_PWMGEN_REG_CONFIG, AXI_PWMGEN_LOAD_CONF=
+IG);
+> +}
+> +
+> +static int axi_pwmgen_get_state(struct pwm_chip *chip, struct pwm_device=
+ *pwm,
+> +				struct pwm_state *state)
+> +{
+> +	struct axi_pwmgen_ddata *ddata =3D pwmchip_get_drvdata(chip);
+> +	struct regmap *regmap =3D ddata->regmap;
+> +	unsigned int ch =3D pwm->hwpwm;
+> +	u32 cnt;
+> +	int ret;
+> +
+> +	ret =3D regmap_read(regmap, AXI_PWMGEN_CHX_PERIOD(ch), &cnt);
+> +	if (ret)
+> +		return ret;
+> +
+> +	state->enabled =3D cnt !=3D 0;
+> +
+> +	state->period =3D DIV_ROUND_UP_ULL((u64)cnt * NSEC_PER_SEC, ddata->clk_=
+rate_hz);
+> +
+> +	ret =3D regmap_read(regmap, AXI_PWMGEN_CHX_DUTY(ch), &cnt);
+> +	if (ret)
+> +		return ret;
+> +
+> +	state->duty_cycle =3D DIV_ROUND_UP_ULL((u64)cnt * NSEC_PER_SEC, ddata->=
+clk_rate_hz);
+> +
+> +	state->polarity =3D PWM_POLARITY_NORMAL;
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct pwm_ops axi_pwmgen_pwm_ops =3D {
+> +	.apply =3D axi_pwmgen_apply,
+> +	.get_state =3D axi_pwmgen_get_state,
+> +};
+> +
+> +static int axi_pwmgen_setup(struct regmap *regmap, struct device *dev)
+> +{
+> +	int ret;
+> +	u32 val;
+> +
+> +	ret =3D regmap_read(regmap, AXI_PWMGEN_REG_CORE_MAGIC, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (val !=3D AXI_PWMGEN_REG_CORE_MAGIC_VAL)
+> +		return dev_err_probe(dev, -ENODEV,
+> +			"failed to read expected value from register: got %08x, expected %08x=
+\n",
+> +			val,
+> +			AXI_PWMGEN_REG_CORE_MAGIC_VAL);
+> +
+> +	ret =3D regmap_read(regmap, AXI_PWMGEN_REG_CORE_VERSION, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (ADI_AXI_PCORE_VER_MAJOR(val) !=3D 1) {
+> +		return dev_err_probe(dev, -ENODEV, "Unsupported peripheral version %u.=
+%u.%u\n",
+> +			ADI_AXI_PCORE_VER_MAJOR(val),
+> +			ADI_AXI_PCORE_VER_MINOR(val),
+> +			ADI_AXI_PCORE_VER_PATCH(val));
+> +	}
+> +
+> +	/* Enable the core */
+> +	ret =3D regmap_update_bits(regmap, AXI_PWMGEN_REG_CONFIG, AXI_PWMGEN_RE=
+SET, 0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D regmap_read(regmap, AXI_PWMGEN_REG_NPWM, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Return the number of PWMs */
+> +	return val;
+> +}
+> +
+> +static void axi_pwmgen_clk_rate_exclusive_put(void *data)
+> +{
+> +	clk_rate_exclusive_put(data);
+> +}
+> +
+> +static int axi_pwmgen_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct regmap *regmap;
+> +	struct pwm_chip *chip;
+> +	struct axi_pwmgen_ddata *ddata;
+> +	struct clk *clk;
+> +	void __iomem *io_base;
+> +	int ret;
+> +
+> +	io_base =3D devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(io_base))
+> +		return PTR_ERR(io_base);
+> +
+> +	regmap =3D devm_regmap_init_mmio(dev, io_base, &axi_pwmgen_regmap_confi=
+g);
+> +	if (IS_ERR(regmap))
+> +		return dev_err_probe(dev, PTR_ERR(regmap),
+> +				     "failed to init register map\n");
+> +
+> +	ret =3D axi_pwmgen_setup(regmap, dev);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	chip =3D devm_pwmchip_alloc(dev, ret, sizeof(*ddata));
+> +	if (IS_ERR(chip))
+> +		return PTR_ERR(chip);
+> +	ddata =3D pwmchip_get_drvdata(chip);
+> +	ddata->regmap =3D regmap;
+> +
+> +	clk =3D devm_clk_get_enabled(dev, NULL);
+> +	if (IS_ERR(clk))
+> +		return dev_err_probe(dev, PTR_ERR(clk), "failed to get clock\n");
+> +
+> +	ret =3D clk_rate_exclusive_get(clk);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "failed to get exclusive rate\n");
+> +
+> +	ret =3D devm_add_action_or_reset(dev, axi_pwmgen_clk_rate_exclusive_put=
+, clk);
+> +	if (ret)
+> +		return ret;
+
+There is a devm variant of clk_rate_exclusive_get() in the meantime.
+
+> +	ddata->clk_rate_hz =3D clk_get_rate(clk);
+> +	if (!ddata->clk_rate_hz || ddata->clk_rate_hz > NSEC_PER_SEC)
+> +		return dev_err_probe(dev, -EINVAL,
+> +				     "Invalid clock rate: %lu\n", ddata->clk_rate_hz);
+> +
+> +	chip->ops =3D &axi_pwmgen_pwm_ops;
+> +	chip->atomic =3D true;
+> +
+> +	return devm_pwmchip_add(dev, chip);
+
+Error message in case devm_pwmchip_add fails, please.
+
+> +}
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--mwyjs4i2pfvbdlht
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmYXwqMACgkQj4D7WH0S
+/k5+uQgApajZcFLOX9MsS00OQVGjE+YcbyPjbW2MGINrYN7tYJwA3iTe272kmy0+
+KZyU/ZgNH5kGMQzU6V5kxRJ1VveMyVsIwQrDkzlGp0lMNhh/nuxR+y+xKm4cNSs/
+I4EMyoNY8vk140PP51AsNLwXyQmpAIb8yRTvQFjhHnirmwDmD4g6lnzCgXtf1SFE
+1CLr7tQbF3h0ES3NK5zhS4ebaE6XJuPH7I8FXdsK/cbbzLcNX2lchuGUScxFDdmy
+plew2K4x0FXN1EkYFV7Kmwp/hLS0xw7M5Wp6DFExO9b0vWRXYNyXuan9PvHK+ufY
+33Iy+74g9SZIQXxEMgYwTJ39QkJPTQ==
+=oKRp
+-----END PGP SIGNATURE-----
+
+--mwyjs4i2pfvbdlht--
 
