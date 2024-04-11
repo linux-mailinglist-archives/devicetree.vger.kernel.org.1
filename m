@@ -1,76 +1,101 @@
-Return-Path: <devicetree+bounces-58124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5941C8A08A5
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 08:42:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E06BF8A08C9
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 08:49:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED5D21F22066
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 06:42:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4AE7DB259C3
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 06:49:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D8EB13D623;
-	Thu, 11 Apr 2024 06:42:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3948B13D8AE;
+	Thu, 11 Apr 2024 06:48:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XSQQvraj"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="UI85FZoB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC97613CA9C;
-	Thu, 11 Apr 2024 06:42:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0C0413D61D;
+	Thu, 11 Apr 2024 06:48:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712817764; cv=none; b=CAvnsRI9sCIxcXeIS7LPjcL+w5V2zXekm1JdM+ErCYRFpag1z4ET7YxCygypMhp/IJGWWEfYOv0OSevIN2SJne2u2mjku5nVEgQdPGXFYBCW+nwawhqhPo5QKsSGgWuwx3tDV5k76ZbfmWU38ZiX6OdKftHzMFOb0t7Q589jNKc=
+	t=1712818133; cv=none; b=KOWi1MCLtcOELiOvSemioGoD2t6ge9jmR2eURbQWlc0tEsL19EL77RZXAM9i8dV8eKXqcEMT+b35Mzm+TC2e2SMD7gmb1XE6YQyUN6aK9+Tb8HA7JT0tTvtIqCizDVmxBnufg0M1X2joKbH4r5zgIO0jwRhziBI9IDIE+eRywG0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712817764; c=relaxed/simple;
-	bh=oY5a4Ot17m0sMgy4zMzuvkfZSw4jNJxJmnt6iW20b3Y=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=G+Ta4rMkHbC0nZE8YjDTlUXs/JkMWk+JloiyJ8sbKy6jBu/94SoL/jCqQHpObArtnKyT0MmyYRu5VU1EzkVZsR/w60IzB2rE18Fu31ftoOuI/8fcEjJR/Gj6rSghD++JCxXAI4LZhODFNY6GfFuZOZOkbN3qdNlKJYfr0DK2RmM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XSQQvraj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0053C433C7;
-	Thu, 11 Apr 2024 06:42:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712817763;
-	bh=oY5a4Ot17m0sMgy4zMzuvkfZSw4jNJxJmnt6iW20b3Y=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=XSQQvraj84k7Lzc+gp3QcKgEXUMRxUhpWcMPwOPxZeXodWv/OqsQ7vDrN27GBxGPQ
-	 JNeHMygM57BQoSpSGZaV5WzkXsWfkO/a2d6pTTEzypAsv9rgVtvZ5ubBaZh7g4gdAg
-	 rOf56enkN/Dv3ygcQksmk5XdQno4jPY5lSOao6QY1Lev8mIdZ2BZPjo/y7FzNDYfCL
-	 UKNWLTYGNSkqnZTMiYEOsvCDbRGBCZ1LWyx4P+xVMrrs1B0YFDP9/qmFH5IZlB3RGv
-	 +DPn/hmrcs3uW9SxE+Tlp5GHbDuoTVEUyPviSr9A6TbDZ3Z4ZDxjN9CcDESVn9gHgM
-	 9PYOiCVRrKN+w==
-Message-ID: <44e544735066391b2ad1682badae4462.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1712818133; c=relaxed/simple;
+	bh=LxDnqQD/Ynf2v6X4vOkgAXNsM8jplzr/Ybx4tashRDc=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=CNf+G6Qqb5X7z7A3lFxFKF/jbPxd1AI3zOqqLIJh1oB9i+yaYCY8+9IO5LYcWNUP6GpTZhHLHmXJrvdYTn6EezRgr3vPBVK2qsj8BmLS3p6qhXIzcsit0dKMavM7rGMLLAInmDJhVmbgC72QCby4tX93RdE6MUptlbw2g5TV57A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=UI85FZoB; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 5AFD7FF803;
+	Thu, 11 Apr 2024 06:48:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1712818127;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ht4yL7p2G9syjEPhGbbLFmsLSUE4MFaHnCtOBwa2f0U=;
+	b=UI85FZoBJxkSr5IRNhTf81V9ubkj+rBrOmYUQdxIB2xHindV3eFcedgof+/ctlJxTgJOKo
+	WWAG8oOTy3wWc4njjvvtTLHkCMKpX3hM+k+qbYOe+sSPR67i6fq59mJt9PhzNqIJIbQcek
+	kyti06DfTIHAM100jdTvgfA9aLu9vH/ZrWmsQUOnZKUd6t0n7WeNkKXagnBBY+47Nj7cKh
+	6K4zEMvfn7S/cnrx+cFY8zurNZ7nwHP1KLCay/Y4NLHj7TGO1vnK6x6J/51VDC7UruHRcW
+	ShkAGAVDIpNFHpiPmN34kIMkB6KZwEGPe4fmQyo1KK7V/sv0JW3vOiVJnqBshg==
+Date: Thu, 11 Apr 2024 08:49:22 +0200 (CEST)
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+cc: Jakub Kicinski <kuba@kernel.org>, 
+    Romain Gantois <romain.gantois@bootlin.com>, 
+    "David S. Miller" <davem@davemloft.net>, 
+    Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, 
+    Rob Herring <robh@kernel.org>, 
+    Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+    Conor Dooley <conor+dt@kernel.org>, 
+    Geert Uytterhoeven <geert+renesas@glider.be>, 
+    Magnus Damm <magnus.damm@gmail.com>, 
+    Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+    Jose Abreu <joabreu@synopsys.com>, 
+    Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+    =?ISO-8859-15?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>, 
+    Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org, 
+    devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+    linux-renesas-soc@vger.kernel.org, 
+    linux-stm32@st-md-mailman.stormreply.com, 
+    linux-arm-kernel@lists.infradead.org, 
+    Maxime Chevallier <maxime.chevallier@bootlin.com>
+Subject: Re: [PATCH net-next v2 3/5] net: stmmac: dwmac-socfpga: use
+ pcs_init/pcs_exit
+In-Reply-To: <ZhbmVVXgu27ZZaNf@shell.armlinux.org.uk>
+Message-ID: <5efb5cb1-92ad-0e94-9431-f525c837b98a@bootlin.com>
+References: <20240409-rzn1-gmac1-v2-0-79ca45f2fc79@bootlin.com> <20240409-rzn1-gmac1-v2-3-79ca45f2fc79@bootlin.com> <20240409183404.7d3eb04f@kernel.org> <ZhbmVVXgu27ZZaNf@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240123025613.3976-1-zhifeng.tang@unisoc.com>
-References: <20240123025613.3976-1-zhifeng.tang@unisoc.com>
-Subject: Re: [PATCH V4 0/3] Add reset controller driver for ums512
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Zhifeng Tang <zhifeng.tang23@gmail.com>, Wenming Wu <wenming.wu@unisoc.com>
-To: Baolin Wang <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Orson Zhai <orsonzhai@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>, Zhifeng Tang <zhifeng.tang@unisoc.com>
-Date: Wed, 10 Apr 2024 23:42:41 -0700
-User-Agent: alot/0.10
+Content-Type: text/plain; charset=US-ASCII
+X-GND-Sasl: romain.gantois@bootlin.com
 
-Quoting Zhifeng Tang (2024-01-22 18:56:10)
-> From: "zhifeng.tang" <zhifeng.tang@unisoc.com>
->=20
-> In most of Sprd SOCs,The clock controller register block also
-> contains reset bits for some of these peripherals,so reset
-> controller and clock provider are combined together as a block,
-> and put it under the driver/clk/.
->=20
-> Changes in v4:
->   - Add description why reset controller put it under the driver/clk/
+Hello Russell,
 
-Please use an auxiliary device and put the code almost entirely under
-drivers/reset/. You can still have the data tables in the clk driver if
-you want, but I don't see why an auxiliary device can't be used.
+On Wed, 10 Apr 2024, Russell King (Oracle) wrote:
+
+> patch as a theoretical solution to Romain. After build-testing it locally
+> I did notice it. I would've thought that Romain would've build-tested
+> before sending out his patch set and would've fixed it up... I didn't
+> have time to properly fix up my patch (essentially would've ment
+
+I build-tested the patches but didn't realize that CONFIG_DWMAC_SOCFPGA was not 
+enabled in my configuration. So that's my bad, sorry.
+
+Best Regards,
+
+-- 
+Romain Gantois, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
