@@ -1,65 +1,76 @@
-Return-Path: <devicetree+bounces-58229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D72E8A0C91
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 11:39:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B49518A0CEA
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 11:57:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 804031C20CDF
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 09:39:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BC8728585F
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 09:57:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 684D914532B;
-	Thu, 11 Apr 2024 09:39:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3770C14535A;
+	Thu, 11 Apr 2024 09:57:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="RH23LTku"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tPb7E83u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3930B13B2A8;
-	Thu, 11 Apr 2024 09:39:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28B621422C4
+	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 09:57:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712828386; cv=none; b=PusHeacMlNx8UuWmN4NbKIVMZcoaG4BKdYp/SRlPNHPaGq7Rwb+PW/8TeXzmByAFPL92qZzyKbEJcOZ4NenJa5ad2MTA0JAHKNKLmsVfQq50PurIT2O6Ec5W45O9pDBU34ahT4O7JZEVWwZkM5L1RPSqmMbfk9KKMxTPd13di5U=
+	t=1712829447; cv=none; b=stYiunoED/0YZdc47uvM1+JgEdnD5k0o4S32yMg1vJUcY/8TAUDEgF+ltJG9O3bysfql1bHUepDo7ZQIE1O2oB1v2mGcAjE4P8i8qkaniLaeFnpoqTsvP9F6VU2pklgaLDC4p9zVn2WhBIE8hmdC0GJVExEnOEWEd/aXRiHp5cM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712828386; c=relaxed/simple;
-	bh=wanp9p18Kaf0ShHZ0lGWcX4M0b7lk+ryk6Qlal5cEOU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=V6pVbqzfPJc7ZepFHHLG6R+/HQ+5hm4Dc0FsZoEHB3Hc68T4bRN5eJ70O2/BbP32elGL92pHfIMI7/c/cL3fCAZO/Gp+YmlWgbpxnSo7s7CkOgg+2cwxg9N81U08ZmXL4G3l725gJxlw0bjioDZYAED3jKQCnnonw4a5+zdEqZ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=RH23LTku; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43B7Pfi7029833;
-	Thu, 11 Apr 2024 11:38:52 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=6rfS5zPiSmzZMMxQ4v6y7X7sH1FVnmMas6q+NGiPbP0=; b=RH
-	23LTkuSOQZgrLqSQPcyDWEaHansF0FyzusSDHHejYeeQubA/RF03+Fcw0JO1uxMG
-	vxF1TpPcpGgm0D5a22KTGFQ7B10VA0NGWF7kWPIuCEes6xP+vVpTvGT3WcMqMrto
-	D4vR5lrxgA/glhjYfqpRe5c0L23nsZVK7DVfPfG0lEV5OCEp0AXAts6p2Sz8Eqn+
-	pfNDTysrxZZj3w6etWkPop5DdColzGvEkh0mS5oMq1L4D7HeqW1uQ1DiKhu8ho9x
-	WWExS/Zmj9aq87LkaFiH+L0wv8VNYlPBEg0uHS/sXlEIu+kMGooWvN+/JWrTbuwL
-	XfW02l4cyVpCxpiEPg5w==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3xbfy12h6s-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 11 Apr 2024 11:38:51 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id D322A4002D;
-	Thu, 11 Apr 2024 11:38:34 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 906DE2132CA;
-	Thu, 11 Apr 2024 11:37:27 +0200 (CEST)
-Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 11 Apr
- 2024 11:37:25 +0200
-Message-ID: <ee47d2e8-763f-4451-b9f3-b46ded4c1b97@foss.st.com>
-Date: Thu, 11 Apr 2024 11:37:24 +0200
+	s=arc-20240116; t=1712829447; c=relaxed/simple;
+	bh=Wl2rfbDkNcvdaUwmseUqc9G7aGJDEjD2pVss9TNNkK8=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=DSux/RDPsrW52T5FsNyMH1JhSiKvJoQHedfzWZzt3JA/LrDcv0yS2zg6NZSTdGVXszLzgNKknuE+o/nXVNZZws7zNJN01adyCIyxdH64Nrzu4Da9j+vESSuLprh4rOdSTczjlAin6EMHmPpsOGFe6JL6Ae4By2YXiyOQtGAyXas=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tPb7E83u; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-516d0162fa1so9231022e87.3
+        for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 02:57:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712829443; x=1713434243; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=y27dFQLhHTNJk4xW/x0GiFoKrdW8RjD8ddYzvU2JnUY=;
+        b=tPb7E83uj/8pCOOCYJG6mhRR81zl8zCLl/AEEYqGUWwAZtd69dSOIVTmKJv+MxDnjP
+         N6aH6PoYdgME+tXBfmQcY8seqvI/Zi83niTs47NDe1Uq990X5NN76coTew0HULiA0Yu6
+         Y+0d0A75cueepJXeMsqeGrX6XqUPpEHDudQ/kxfa0CIJLAC9zgrYeloNKg9JlIxJ0Zie
+         /6XBy70PVXkaYFzIrMrqFe3y7v55lQ/IuU52kyzeAanfLxlsaAv6afmc6kXqyWtGECco
+         zWZiGE71JAprvm91eWAOi7pHeBxc+mRpYQhEycKpemSEdYRFZmPvtQrYsXl1aJS9x828
+         AXKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712829443; x=1713434243;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=y27dFQLhHTNJk4xW/x0GiFoKrdW8RjD8ddYzvU2JnUY=;
+        b=smcXcEMo0w8VSxyNvNr+a6pNwyB7EfAPfgSE3frHV0K7sMP6NNcpE/xw1SQG81xffm
+         zBjpAnKAOCJl/fj97e5P2aVewkitknB1A/NorS7BoN3V4WTa2CfqMMtWHfnKxIr5keMV
+         n7mbvhYJVwpKLAX1WIhaaq0s/tzkz+F1wzXOC5v2g8qX12BNDVrqtd8yg87Gg1pKQhHV
+         QW/A6AJR7ntq7uRFCP8AGts1kcdxFuytKExw3VE9b7EweZcM4QEzq1ok/tXRK9zXEFz3
+         ZP5DGXaxsEFcfT/q1NTcf28YgeM1f4umM3opvYvQubRv6GLWw6i/pUsCb3tKtvC60ZSy
+         T5QQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUi2A8E1bs01amM4fTynSwDvM68qh/aPQv3wX+xV5n+PC27K22tSvnf2i3aHaLxVcu9Vdn9f3I8PM9faqroI75Jv2BBzxEsQXPzSw==
+X-Gm-Message-State: AOJu0YzJ7EIpoWrasrGAAQdwneQNJhrV/eV0E1pIxERsSMgTU487d86F
+	bD7Jj0vSabFsj8efmdfc9nPkmyCdvuGZB1LFa1t9DIGgr9NWxwubqiL9kYbrsM0=
+X-Google-Smtp-Source: AGHT+IHWb4o9DT2saToRoEUO7uwMePeJ5bB4LaVvspYsH1F6PdTl677fMQmZH+iwQvUty4ihnscBrg==
+X-Received: by 2002:a05:6512:971:b0:515:9aba:743a with SMTP id v17-20020a056512097100b005159aba743amr3717033lft.59.1712829442905;
+        Thu, 11 Apr 2024 02:57:22 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:9b22:a845:661:e15f? ([2a01:e0a:982:cbb0:9b22:a845:661:e15f])
+        by smtp.gmail.com with ESMTPSA id h7-20020a5d4fc7000000b00341ba91c1f5sm1363836wrw.102.2024.04.11.02.57.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Apr 2024 02:57:22 -0700 (PDT)
+Message-ID: <2ba516e7-56e3-450a-a82e-a3cf8c5d8b58@linaro.org>
+Date: Thu, 11 Apr 2024 11:57:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,133 +78,150 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 00/13] Introduce STM32 Firewall framework
-To: Rob Herring <robh+dt@kernel.org>
-CC: Gatien Chevallier <gatien.chevallier@foss.st.com>,
-        <Oleksii_Moisieiev@epam.com>, <gregkh@linuxfoundation.org>,
-        <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <vkoul@kernel.org>, <jic23@kernel.org>, <olivier.moysan@foss.st.com>,
-        <arnaud.pouliquen@foss.st.com>, <mchehab@kernel.org>,
-        <fabrice.gasnier@foss.st.com>, <andi.shyti@kernel.org>,
-        <ulf.hansson@linaro.org>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <hugues.fruchet@foss.st.com>, <lee@kernel.org>,
-        <will@kernel.org>, <catalin.marinas@arm.com>, <arnd@kernel.org>,
-        <richardcochran@gmail.com>, Frank Rowand <frowand.list@gmail.com>,
-        <peng.fan@oss.nxp.com>, <lars@metafoo.de>, <rcsekar@samsung.com>,
-        <wg@grandegger.com>, <mkl@pengutronix.de>,
-        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <dmaengine@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
-        <linux-iio@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <linux-media@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <linux-serial@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>
-References: <20240105130404.301172-1-gatien.chevallier@foss.st.com>
- <61608010-fbce-46c6-a83d-94c04d0f000d@foss.st.com>
- <CAL_JsqJTiBK3qzdMzL-ZuARosKGqnf_PjyCj13_H=V415y9sHQ@mail.gmail.com>
-Content-Language: en-US
-From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <CAL_JsqJTiBK3qzdMzL-ZuARosKGqnf_PjyCj13_H=V415y9sHQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH] arm64: dts: qcom: sm8650: add description of CCI
+ controllers
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Jagadeesh Kona <quic_jkona@quicinc.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240410074951.447898-1-vladimir.zapolskiy@linaro.org>
+ <72816a9f-3c25-44d3-8386-9b561a8ae996@linaro.org>
+ <b5f81ed2-d2d9-4c48-8feb-d78bfd714a40@linaro.org>
+ <4162174b-df35-4282-859e-84b0579ff91b@linaro.org>
+ <f5611116-df8e-4118-8aad-16561f65c79f@linaro.org>
+ <93bf3b2e-bf42-42d2-b10a-5586ee9efc6b@linaro.org>
+ <0fab9fb5-7d20-483b-9d40-c015bb8e2577@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <0fab9fb5-7d20-483b-9d40-c015bb8e2577@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-11_03,2024-04-09_01,2023-05-22_02
 
-Hi Rob
-
-On 4/9/24 19:13, Rob Herring wrote:
-> On Mon, Apr 8, 2024 at 3:44 AM Alexandre TORGUE
-> <alexandre.torgue@foss.st.com> wrote:
+On 11/04/2024 10:46, Vladimir Zapolskiy wrote:
+> On 4/10/24 18:26, neil.armstrong@linaro.org wrote:
+>> On 10/04/2024 17:19, Vladimir Zapolskiy wrote:
+>>> Hi Neil,
+>>>
+>>> On 4/10/24 16:50, neil.armstrong@linaro.org wrote:
+>>>> On 10/04/2024 15:11, Vladimir Zapolskiy wrote:
+>>>>> On 4/10/24 10:52, Neil Armstrong wrote:
+>>>>>> Hi,
+>>>>>>
+>>>>>> On 10/04/2024 09:49, Vladimir Zapolskiy wrote:
+>>>>>>> Qualcomm SM8650 SoC has three CCI controllers with two I2C busses
+>>>>>>> connected to each of them.
+>>>>>>>
+>>>>>>> The CCI controllers on SM8650 are compatible with the ones found on
+>>>>>>> many other older generations of Qualcomm SoCs.
+>>>>>>>
+>>>>>>> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+>>>>>>> ---
+>>>>>>> The change is based and depends on a patch series from Jagadeesh Kona:
+>>>>>>>
+>>>>>>>       https://lore.kernel.org/linux-arm-msm/20240321092529.13362-1-quic_jkona@quicinc.com/
+>>>>>>>
+>>>>>>> It might be an option to add this change right to the series,
+>>>>>>> since it anyway requires a respin.
+>>>>>>>
+>>>>>>> A new compatible value "qcom,sm8650-cci" is NOT added to
+>>>>>>> Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml , because
+>>>>>>> the controller IP description and selection is covered by a generic
+>>>>>>> compatible value "qcom,msm8996-cci".
+>>>>>>
+>>>>>> You'll still need to add qcom,sm8650-cci to the "CCI v2" list in qcom,i2c-cci.yaml,
+>>>>>> otherwise the DTBS check fail, even if the fallback is already present.
+>>>>>
+>>>>> I do recognize the problem related to a build time warning, my motivation was
+>>>>> to follow the rationale described in commit 3e383dce513f
+>>>>> ("Revert "dt-bindings: i2c: qcom-cci: Document sc8280xp compatible"").
+>>>>>
+>>>>> For a similar sc8280xp-cci case it was asked by Konrad to drop a new
+>>>>> compatible, I kindly ask the reviewers and maintainers to stick to one
+>>>>> of the two contradicting asks.
+>>>>
+>>>> This is totally different, this commit added a new compatible that is used in the driver,
+>>>> while here, you use a per-soc compatible that is (for now), only used in DT and uses
+>>>
+>>> I'm confused, please elaborate what do you mean above by "this commit" and "here".
+>>> Could you please be more specific to avoid any possible disambiguation?
 >>
->> Hi Gatien,
+>> "this" refer to "dt-bindings: i2c: qcom-cci: Document sc8280xp compatible".
 >>
->> On 1/5/24 14:03, Gatien Chevallier wrote:
->>> Introduce STM32 Firewall framework for STM32MP1x and STM32MP2x
->>> platforms. STM32MP1x(ETZPC) and STM32MP2x(RIFSC) Firewall controllers
->>> register to the framework to offer firewall services such as access
->>> granting.
->>>
->>> This series of patches is a new approach on the previous STM32 system
->>> bus, history is available here:
->>> https://lore.kernel.org/lkml/20230127164040.1047583/
->>>
->>> The need for such framework arises from the fact that there are now
->>> multiple hardware firewalls implemented across multiple products.
->>> Drivers are shared between different products, using the same code.
->>> When it comes to firewalls, the purpose mostly stays the same: Protect
->>> hardware resources. But the implementation differs, and there are
->>> multiple types of firewalls: peripheral, memory, ...
->>>
->>> Some hardware firewall controllers such as the RIFSC implemented on
->>> STM32MP2x platforms may require to take ownership of a resource before
->>> being able to use it, hence the requirement for firewall services to
->>> take/release the ownership of such resources.
->>>
->>> On the other hand, hardware firewall configurations are becoming
->>> more and more complex. These mecanisms prevent platform crashes
->>> or other firewall-related incoveniences by denying access to some
->>> resources.
->>>
->>> The stm32 firewall framework offers an API that is defined in
->>> firewall controllers drivers to best fit the specificity of each
->>> firewall.
->>>
->>> For every peripherals protected by either the ETZPC or the RIFSC, the
->>> firewall framework checks the firewall controlelr registers to see if
->>> the peripheral's access is granted to the Linux kernel. If not, the
->>> peripheral is configured as secure, the node is marked populated,
->>> so that the driver is not probed for that device.
->>>
->>> The firewall framework relies on the access-controller device tree
->>> binding. It is used by peripherals to reference a domain access
->>> controller. In this case a firewall controller. The bus uses the ID
->>> referenced by the access-controller property to know where to look
->>> in the firewall to get the security configuration for the peripheral.
->>> This allows a device tree description rather than a hardcoded peripheral
->>> table in the bus driver.
->>>
->>> The STM32 ETZPC device is responsible for filtering accesses based on
->>> security level, or co-processor isolation for any resource connected
->>> to it.
->>>
->>> The RIFSC is responsible for filtering accesses based on Compartment
->>> ID / security level / privilege level for any resource connected to
->>> it.
->>>
->>> STM32MP13/15/25 SoC device tree files are updated in this series to
->>> implement this mecanism.
->>>
+>>> If you refer to the driver drivers/i2c/busses/i2c-qcom-cci.c, then there is no
+>>> difference between sc8280xp-cci and sm8650-cci. What is the total difference,
+>>> which you found?
 >>
->> ...
+>> If there's no difference between sc8280xp-cci and sm8650-cci, then the policy says
+>> you need to _not_ add a new compatible in the driver, which is what you did here.
 >>
->> After minor cosmetic fixes, series applied on stm32-next.
->> Seen with Arnd: it will be part on my next PR and will come through
->> arm-soc tree.
+>>>
+>>>> the generic "qcom,msm8996-cci" as a fallback because it is considered as beeing 99%
+>>>> compatible and no software change is needed.
+>>>>
+>>>
+>>> I have no objections to revert a "Revert "dt-bindings: i2c: qcom-cci: Document sc8280xp compatible""
+>>> commit and to update the change for sm8650-cci accordingly, but as I've
+>>> already said it would be good to have and follow one common approach for both
+>>> cases, since I based my change on the maintainer's decision from the past.
+>>
+>> The "new" policy is to use a fallback of an already defined compatible if no driver change
+>> is needed, this is the case for the last year so far.
+>> And updating the yaml bindings for the new per-soc compatible is also a year-old
+>> policy, upstreaming of SM8550, SM8650 and X1E80100 have been done following this policy
 > 
-> And there's some new warnings in next with it:
+> I'm sorry, I'm still failing to understand it, it's trivial to check that there is no
+> "sc8280xp-cci" in Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml description.
 > 
->        1  venc@480e0000: 'access-controllers' does not match any of the
-> regexes: 'pinctrl-[0-9]+'
->        1  vdec@480d0000: 'access-controllers' does not match any of the
-> regexes: 'pinctrl-[0-9]+'
+> Despite my multiple asks I did not get an answer from anybody, if commit 3e383dce513f
+> ("Revert "dt-bindings: i2c: qcom-cci: Document sc8280xp compatible"") is wrong and
+> shall be reverted or not.
+> 
+> Since my point of discussion is all about the commit 3e383dce513f, because sm8650-cci
+> change is based on it, I hope that my original understanding that commit 3e383dce513f
+> shall be reverted, I'll send the change shorty.
 
-Yes I noticed it to my colleague. YAML update has been sent for VEND/VDENC.
+No 3e383dce513f shall not be reverted, this has nothing to do with sm8650, just send a patch
+adding the qcom,sm8650-cci entry in qcom,i2c-cci.yaml following the latest version Bryan did:
+https://lore.kernel.org/all/20240111-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v4-0-cdd5c57ff1dc@linaro.org/
 
-https://lore.kernel.org/lkml/171276671618.403884.13818480350194550959.robh@kernel.org/T/
+It was probably reverted because the if/properties/contains for clock/clock-names settings was missing,
+and you should probably do the name otherwise the dtbs_check would fail.
 
-As soon as it is acked I could merge it in my tree.
-
-Alex
+Neil
 
 > 
-> Rob
-
-
+>> in order to :
+>> 1) reduce useless driver changes
+>> 2) have a fully verifiable DT against bindings, so we can ensure the DT is 100% valid against the bindings
+>>
+> 
 
 
