@@ -1,165 +1,160 @@
-Return-Path: <devicetree+bounces-58227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC2628A0C74
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 11:33:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C78808A0C86
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 11:37:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6878E1F239B0
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 09:33:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CB2A282FB5
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 09:37:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 200A1144D33;
-	Thu, 11 Apr 2024 09:33:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC7EA144D3D;
+	Thu, 11 Apr 2024 09:36:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="PwlXeffR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VlGv8JV5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02olkn2032.outbound.protection.outlook.com [40.92.43.32])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32E4B144D30;
-	Thu, 11 Apr 2024 09:33:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.43.32
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712827988; cv=fail; b=AbJ5msc/FHyS5ciTq5Fp3iD+hHwuSXCQfEJO1PNZ1drt4S8z64FFgL8bfmQpahAjxh7P4SUhEjfYyUMIkZdGo2y8gcRFjOZYrj6iBNTzTBTxUScUGogzWFEjiJylIBuXEodSss2XeOtXr+BryZlx6QWbZ3mya6mlN197jWKjzKU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712827988; c=relaxed/simple;
-	bh=zgqDq+eqVr0u1Y9y7W11rrZ6O4LvwhPHX5iryx8PFzk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=FovRscn9rln2q6CKTt1ezhFhZb9+J1pKrblRsEeT9ii318rtmBD2Ul48gNMw1AADXZQ2aB+QDOjOXYfa7Jr5b/nKa95j/PuFfeWyQcodwHJ2Af0AamzxjGxGbc/LHEZOM4YbQV+doLuHSut8L8MNIu87Q75vJtcH2tYJzJrOvzI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=PwlXeffR; arc=fail smtp.client-ip=40.92.43.32
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=K3LwW1IhO1SudGzUYqlAGZD7YNlMtL2xagdmX51vBpLnYalr8proUwKy4a5qD6t/OrnUdhydhVy47dGoWwlYpWLyXi7XKycPsGxY1IMEf5nnzeq8R/EoS/6bJ+9AaftmxpJZ/lviQDWeDYNs9YcMvAA7rIeRHRFexBC8w+nai7LavqYrPg+CBRuYlALots9IO0widzyZB/+pryNb+nhwI1wvtblsap9a7Vt9NbmQOFAyTFlrv8d4zddvq+4SkqLf9zhfZXJdOCuu6DI2WdNIgdkM0/mrcrmt2/fGnN4DaSbXta7JlPtFr/TTAORwTOfTRZWP0kQKb7SBGIHFZq7Unw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aZDKVq0N/Pg2wETew1ZQfXqLkv08ThLu6QVXpB1WLkE=;
- b=VwwuO91JHZaHPf+kimKXLO5rOc4EZmKr84wAv2RViAkk/+/HBUs3dZHsKqzFoVzrgCFmTJRAM7o1vHOHCDe2AZSJmFvDQ7t/zGarOPjktfl/gnsTbFC56krRTO8aSFraXSzaJgj11Mw4zstAvGAK1N4Y11w2BA1VrPxZdDcHPqBYWltQ5LqZgUYeVuBQiN8kfKGmik0+UnqAvjXnVdwqO2EQAQ/ZgKkDUuznYGJ2uHFH/Ug9xelNSRxUN316zi406PE+IhhCk0mIDO4gRrs0WueDo66cUWe73JzyvA2M5LxTVGI5cbEdBiSRu2SxCeF+7A8SvOT2l+5GUhTbcTOoNw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aZDKVq0N/Pg2wETew1ZQfXqLkv08ThLu6QVXpB1WLkE=;
- b=PwlXeffRI3fWroQLJV5okNHD9N4ulOWdT7bOgfu1dJVVTamcWfaipl+462uVZSJw3N0KRZSwqaFqsGQXHsjFRvWtlYpnzycqvoNw+70NfoyekQIGEkuUeWpFTYdPyht72wI646lKknwuJhvKZ9D61TkAFuCG8rxvKP2BdiI9/zW7WFhrNiFQZsErqgn4vcgl49j8l65h3XtOOoqgHFcaI9iyQGlW9BRHsvBWBvtaMPfu+1o/9DM1Mz9PekGNUteFLCSml9KJr8C4n7mR2ltFRaruWyLYGNJRqq+9FxOT4Hfx8CJDiV+gt0liu76FytfDuGp5gLoC8S2OfvS4+kGtbg==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by DM4PR20MB4727.namprd20.prod.outlook.com (2603:10b6:8:b1::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Thu, 11 Apr
- 2024 09:33:04 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::182f:841b:6e76:b819]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::182f:841b:6e76:b819%2]) with mapi id 15.20.7409.042; Thu, 11 Apr 2024
- 09:33:04 +0000
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Chen Wang <unicorn_wang@outlook.com>,
-	Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Inochi Amaoto <inochiama@outlook.com>
-Cc: Jisheng Zhang <jszhang@kernel.org>,
-	Liu Gui <kenneth.liu@sophgo.com>,
-	Jingbao Qiu <qiujingbao.dlmu@gmail.com>,
-	dlan@gentoo.org,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] riscv: sophgo: add i2c and spi device to CV180x/SG2000x SoCs
-Date: Thu, 11 Apr 2024 17:33:23 +0800
-Message-ID:
- <IA1PR20MB4953D0B75F3166917EDA0524BB052@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <IA1PR20MB49539A9C5F5CFF6644ED2C2ABB442@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <IA1PR20MB49539A9C5F5CFF6644ED2C2ABB442@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-TMN: [XUyl0fX9uQ7exBqKy2iOb+TD08wrEC7XfxzYbHsw7UU=]
-X-ClientProxiedBy: TYAPR01CA0108.jpnprd01.prod.outlook.com
- (2603:1096:404:2a::24) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <171282797355.638379.7504915185168452805.b4-ty@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E97BB145FFC
+	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 09:36:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712828216; cv=none; b=L5REmZaNDpGwLFDDbEosfNHWWg42nBGUBuAnMpAV/bWxKaArz+F2e9xIe5ZVjuQKQMDd7Sy++KElS4NeOcqIVXZ5AeZvJhHbW5HVu579VoBfAx/NiWsLVQ+xQrO4VIEu/7CLjPvVzkRc645HRBTzUoKCnBA7g1L06rWbOZb3LGE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712828216; c=relaxed/simple;
+	bh=74PAdT7i418IH1ThCX+tZOogkWay/tnksbUaQ27eM64=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Dm1FpKHlvblZp0LePUXCm7Uq1bNtI10B3IsWYib3zG/cgNhiwCceZAcwnz+ZHaOMtiTexXLHQTwgp8yvE8o+nB/Z63+cGUC6s4P8rRCv9RDdJvye5+JKVqcGz4hbj7+6GUmeoHkTfj0SJRA8HhmI9MUBr48AcBVexrleRnySgPg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VlGv8JV5; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-417c5aa361cso6736255e9.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 02:36:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712828213; x=1713433013; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=wqlbI+J2zR3pfk7HEva1KnDPqPsPCiC+N3EwW7HqRWc=;
+        b=VlGv8JV51u1NBP/DgCPwML/EyDSCltpc2Dnt+3rImi78aoKvEvWvetfeF1izFjy+c0
+         d2yCIDO9a6u3mU0r/GslvtRqRwdWrdVJXmVJG5bHeg2sIasN8nKBflxElY8TzxwLtOKp
+         vjHQDNUjXUqfOaAOr2XgH3uAvdCUZ/7Bo+8lcrA/iriqxEaL0/XAqV3oHDyF7NUGQJST
+         x34dpE+20IChM8PQ5EcJoZEdkfPF0+97MaAdi4OgdRb8Dd6/KeKoz85cn8Beq560+bVO
+         xAX9T3GTSqe0ah/YVBrCan08IBqKaGh8jmm2vEvYUx5E90HchxWRXGQkO12Wc5thtKHd
+         hp5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712828213; x=1713433013;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wqlbI+J2zR3pfk7HEva1KnDPqPsPCiC+N3EwW7HqRWc=;
+        b=OJJEgCA6PuzO/7uZQJ5F3XTvMcnaA0DCubupasDTYaWWUCE80eAPZ0XpoPHrb1PgTR
+         7F1SxMz2Nyyi/eOtxcT1Qa9vk/ac51C5qohAejGAFKovqEPSgFl0VAuFdHWysWTxEie2
+         ceW42yx2gZT6729ddR1P8XBdvqCn2w6jRxX2na0C9MsYKseQ2eWtQnpwWMMBDAyT8HFg
+         wYCVPKgjrwbKch9HnkJlw7cqjY3mdIzUC1Vrhoe0cv6DJ1gKSABVnk/5xobuEUd/qnMJ
+         ela3suAnP8bRZU7Ud/RReXf74ixoaBDq+CtDlxBsOounuOWMU7zWFrkEdbDkEH1W8A0J
+         ZpbA==
+X-Forwarded-Encrypted: i=1; AJvYcCWqmPMqinbBF/Emfx7QSeQPfGDMWg5qrmjsLT4rOJV4tQZvil/QtczYoLKFMTDQk03JYSfgiOSq962M7/CGzuskjAC6pQ8rn6UkpA==
+X-Gm-Message-State: AOJu0Yxu/9MyrBsdTLYqyhVdV+k/T2ZreIqrK0Icg3iFvv6+jodH/de1
+	5wnF8c09a8LRRWZfpPu5Rvo3hHvbJP24bADufdKPsuNsklQBbkHqDTaWerizdF8=
+X-Google-Smtp-Source: AGHT+IFPTS6wq0uacOauElQi9Id2p8p1LxylRIapHj30SWnI+14dQ7z9MKFSCNb8x0JwuJLzWgsMXg==
+X-Received: by 2002:a05:600c:1d95:b0:417:d43e:8372 with SMTP id p21-20020a05600c1d9500b00417d43e8372mr1061640wms.16.1712828213321;
+        Thu, 11 Apr 2024 02:36:53 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id bd12-20020a05600c1f0c00b00416645e7e47sm5028149wmb.13.2024.04.11.02.36.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Apr 2024 02:36:52 -0700 (PDT)
+Message-ID: <94779d2c-d159-4429-b0b2-6baa83461bbd@linaro.org>
+Date: Thu, 11 Apr 2024 11:36:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|DM4PR20MB4727:EE_
-X-MS-Office365-Filtering-Correlation-Id: afdc9bf3-a520-4180-1636-08dc5a0a6319
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	DT5Ofux9KPuJNKSVXm93r7Z6rjW/L5+c7B0i2FtjSN1QZ/OVLb7tWNyVQYJfAJRUgsfWCeKqfWN6AbLLFZSGtlR8fwK5f+2gxobf0UbQi2eKQZqEKTiure/WSWa0r++eJScUe5mKMsn8KB0xd39aTQwi462OcIQ0WvX5u7Tt2lLehGbnT+jmiMrG20yoUgWOLFbwdLG74FibtyBVBH2Yo8vGgc+QLZuQ9Zj16TtNFnXGHHzZFpF5A/tZ9i0BEg3uZsMMVo2VHTN+F9TVRXR0fai8d4KWUNoaVBup0BRVWyO495Sx3z4eRASR48jiv21w+E5YB1mOLHYBUSxBY2DAXMOFSpz7QrfrA2xGRjUzlTxdbCW3JUnTEntutpD7gCXMV45nN8TQdHcISte/mvw+ey3Omu8nSqAxHZQjP5hf7UZEx/6EfLNabe9hWEYs4sMxN32C6jwKcuGnlHbdHDqwSaypwyIagzwhyawFM5yZz2p4ZDWYBS6e7ZvNMPi9hG0mPJ7k4ug45hVUqBnuCgYcNTFBtNUup0vU7xXuW7cRj7gbql8KGUisdg3Ed426X7TvhhUzGOX60IKT4IATyVomWxAe9UaHup9GwW/9VZo9yFjsQZyhdF1Bpd6pD9yMH0jvpICl85XwWKUwMNWClI/CHIgxsyD5NSQnF2jOqckQBJCH5v1BpbWYjpN6nXiKkWHo
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?YmFqYS9xMU5SK0MrWHpRL1BWTTYzQzBCL3JiV0Q4ekFOd0NUeHBGcEJVTnMy?=
- =?utf-8?B?ZzFta080dHliZXkwRWVCNHM2N2pZQzVnS2lHOXhJZ0p0TTVGdzB0dTZFeFFR?=
- =?utf-8?B?SGp3N0YwZThkL2puVzN6bFNzY01Qc1pOeWg5OEJYRGlSeVJ4U1RhQzNlOXJP?=
- =?utf-8?B?b0ZQSmxDZTVzZEp1WGZIRUNlNi8zbkZZb0svRXNVOVZPc1VQS3ozSWM5QllF?=
- =?utf-8?B?MDluWDV4M2MxSGZHN2l3aDVkQjlKYmlCRFp1Q3RYcnl2a2FQU3JmUDNOUHJZ?=
- =?utf-8?B?ZlBaMncyMjJwWi9HMmxPZ1Y2dzZSRjJybW9NMHhLd3JVOFgvNGRtL3BwcWdp?=
- =?utf-8?B?Yy9LV241OEpsbGxtSHNhSDQxT2hVa0ZEdTZSNkNDRkFOaWdwclRINUJocVZP?=
- =?utf-8?B?d3A0NWg4Z3B5b0dxQjUrb1NTTExzVmlrUUExbmlsVkM4TFZxbjlUVnNKRXJr?=
- =?utf-8?B?SHpZaWpzckd3M2xuTkF4N01PT3BpdlJCRjBUTURTQm9XMHF3U2pBTi9qZHNi?=
- =?utf-8?B?aFhBR1hISnMxeWs5MU4vd1BPZDNnUUVBRC8ybkQ5cm1nUWNLWU41VVdiaEQ0?=
- =?utf-8?B?bGZtdXp6emltd095YVd6aHRqaHhYUElycjR4MHVJYVZPL3dhTGhDNFdELzdD?=
- =?utf-8?B?SlVFT01WUzhCVEYvY2tpNjNTOHdPS1RJcHVKM2U4cHA5bGNMQ25mWlZGc2hj?=
- =?utf-8?B?MzRNS0RkRUxiNHhlZGRSV0FRRWczb05IN0h5RDhpR0c0SExYQTg1c2pUbWVC?=
- =?utf-8?B?anN4dzdYY3ZiRjcrbEhyczV4K3Q5YU93Q202U0V2Z1N3enF4WFlwNjlUQ2gy?=
- =?utf-8?B?MXZVdDlOMEZpd0h2N3FkblV1bUs0RnRLYlVISDlsNlFlcVUxeFlTY1RLV1Rj?=
- =?utf-8?B?aEFoR0wxUzEzR3RUTys2WHhCR2dxZmh4WUs1ck00NXZaWEFzb0FGQzQ4RW1r?=
- =?utf-8?B?d3BVaUo3eWxWcDZ2Tlo5T3ZzWFhLdXd6MFFER0lRZlphV0hGOE1MNGlzb0dM?=
- =?utf-8?B?NWJsY0ROMzdId2ZmUG4rT3ovdUcwY2RSRWl3RG9ka01ycFJkeFNWT3Q3UHlJ?=
- =?utf-8?B?UjJhcDk0Q1I4cWhKb0x5bUFzU3BkT1V2c2w2V1I3azluUVJvbzdLbGdMNjBJ?=
- =?utf-8?B?VnFOcURzcVZLZkw5Q2t5WU83SU9qTmY4bWlFWXB4SzVjb2U5U3Jld2lqMGQ4?=
- =?utf-8?B?Mk5DcVcxbUlIcytkT1hzRTU2UHBiYmpEZjJFdHNKUEJTTnJVaVBLWFFhN0FI?=
- =?utf-8?B?NWNyRjJQUTNxZE12SXhrNDd6NzJVRTJsQ25kdUNBRysxcFlzSnZaM1hFVi9y?=
- =?utf-8?B?RE50eUMvLzBOaE56RFNrekVGRWR4SmZKbEtxSEVtUmlwdHQrVTBzL3RvZGJD?=
- =?utf-8?B?WUEwY1ZVQmZVZ1NHWVlFSEtMWXZyYlRvNnJaaFNkVXNQenFPdUVTeDR6UXha?=
- =?utf-8?B?NXN1eEhkVEs5TGFaaEZXeVRUNDFMM3d0c1J5T1NFbW41WjFhb1RGTWw4RUtW?=
- =?utf-8?B?Y2FBcmJaVDBvQVdaQXJDY3JXOG56R3RzVHFtMC9tblBINStPZ2NacGlCbW5q?=
- =?utf-8?B?S0Fua1hWdFpSTGN4M2VoR3hXaUZqR01idi80cmV5RU9LOUk4MWRMTWhUK1lx?=
- =?utf-8?B?RmR5dHpLWU9mOHEvNlNjYjNQN01UR04yRnpRYi9uTGFNZFEvcExpcnIvNHps?=
- =?utf-8?Q?rLDksMxfsfDYLZ/uHHWw?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: afdc9bf3-a520-4180-1636-08dc5a0a6319
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Apr 2024 09:33:04.0229
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR20MB4727
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] Revert "Revert "dt-bindings: i2c: qcom-cci: Document
+ sc8280xp compatible""
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Loic Poulain <loic.poulain@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Wolfram Sang <wsa@kernel.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, linux-i2c@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240411085218.450237-1-vladimir.zapolskiy@linaro.org>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240411085218.450237-1-vladimir.zapolskiy@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, 8 Feb 2024 08:21:29 +0800, Inochi Amaoto wrote:
-> Add i2c and spi devices
+On 11/04/2024 10:52, Vladimir Zapolskiy wrote:
+> This reverts commit 3e383dce513f426b7d79c0e6f8afe5d22a581f58.
 > 
-> The patch depends on the clk patch:
-> https://lore.kernel.org/all/IA1PR20MB4953C774D41EDF1EADB6EC18BB6D2@IA1PR20MB4953.namprd20.prod.outlook.com/
+> The commit ae2a1f0f2cb5 ("dt-bindings: i2c: qcom-cci: Document sc8280xp compatible")
+> was correct apparently, it is required to describe the sc8280xp-cci
+> controller properly, as well it eliminates dtbs_check warnings.
 > 
-> Changed from v1:
-> 1. adjust the order of properties in dts.
-> 
-> [...]
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 
-Applied to sophgo/for-next, thanks!
+I am lost. Not on your patch, because it looks reasonable, but on entire
+history.
 
-[1/2] riscv: dts: sophgo: cv18xx: Add spi devices
-      https://github.com/sophgo/linux/commit/4281f8f1489951a97af856e360c5d0bb8dc43096
-[2/2] riscv: dts: sophgo: cv18xx: Add i2c devices
-      https://github.com/sophgo/linux/commit/65fcc08b4cfe92d5d2c39710b3145d0b56e8391d
+Can anyone explain me why original commit was reverted?
 
-Thanks,
-Inochi
+https://lore.kernel.org/all/767bc246-a0a0-4dad-badc-81ed50573832@linaro.org/
+
+Best regards,
+Krzysztof
 
 
