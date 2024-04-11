@@ -1,107 +1,162 @@
-Return-Path: <devicetree+bounces-58215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54F378A0C3A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 11:23:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 346178A0C43
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 11:26:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F1812840B3
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 09:23:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 65A1D1C223E9
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 09:26:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7CB11448EA;
-	Thu, 11 Apr 2024 09:23:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 000D0144D2C;
+	Thu, 11 Apr 2024 09:25:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="f8ghDbR0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46F741448E2
-	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 09:23:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0194143868;
+	Thu, 11 Apr 2024 09:25:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712827429; cv=none; b=GgbAJi3obR7rNddX7rNpGjBc7j31yL9Q3jNoyHvhjhYp6VPlInnaWo3hqwoBd+R3h9/SAiyvRx5IdZzlfimKiDRzY4p230q+hoG8yY3qKqP3lzyZT2BdWUeBDT4TrqVIZR6sQTiEY4M7poqGiwwZsytvBlLMujkh+3hTVMqOuIY=
+	t=1712827557; cv=none; b=bAu9/Xxd/rYEX54+uQbkFK8WMq6PSBlSrxGX2xU8sj6MXqyNn+jiBzODmFVqMvu0Vz47eX/fhlIdEfvs4XwkKjYyWB6Q0HPUkR3MGXqMkArYRmEGI8ulESPyl8ak2jcXZf3qcyxdcAi2JQ9nG6BnU1fuXFD/wl1S0zn/eMyBFXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712827429; c=relaxed/simple;
-	bh=zaXOHAwB9RVp90LJkiG0jAfc4yIRXlJLhVe84L0maag=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nH1cfDzwOfSXmcu+GaT6/B3CO32eDYH3Q8CbvBGupU3zWiNlIn2loTBqQLwCnGRzwoQJMYBr4Avm8mSgeA0fCi2ohc+qE2fcm8626vW55VNeQEa7kRxGFikuRyi/mNmiFwzld5j59ZZqiuztLOQKIxwm4yRH2GcDli355Hq2eeE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 53A11113E;
-	Thu, 11 Apr 2024 02:24:17 -0700 (PDT)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 25C3C3F6C4;
-	Thu, 11 Apr 2024 02:23:46 -0700 (PDT)
-Date: Thu, 11 Apr 2024 10:23:43 +0100
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Nikunj Kela <quic_nkela@quicinc.com>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Trilok Soni <quic_tsoni@quicinc.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	<krzysztof.kozlowski+dt@linaro.org>,
-	Vincent Guittot <vincent.guittot@linaro.org>, <robh+dt@kernel.org>,
-	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	"Prasad Sodagudi (QUIC)" <quic_psodagud@quicinc.com>
-Subject: Re: DT Query on "New Compatible vs New Property"
-Message-ID: <ZhesH9ikZiy8ah6J@bogus>
-References: <487f91af-722f-44eb-a1a2-61dec586d686@quicinc.com>
- <ZfMZ9ATxuvONcGpz@bogus>
- <0411f99d-231a-af4b-d681-7f7748361aa3@quicinc.com>
- <904978d8-eab4-4936-86dc-b0b1e7c40256@linaro.org>
- <Zfl-Z3vm-3sQ5TN5@bogus>
- <d51ef79a-012e-4701-ac8c-4d1da1827dd8@linaro.org>
- <Zfmsjg2rb_ZMc4tA@bogus>
- <33783999-227b-4837-9924-2fd99b210cbb@linaro.org>
- <Zfm5m2zp4A06ZunW@bogus>
- <c66f280b-aa29-4b18-98f1-701f60cbc63d@quicinc.com>
+	s=arc-20240116; t=1712827557; c=relaxed/simple;
+	bh=lpH3Pg5opeW9yilRG6jpjNBucP0rgbthlWRy8sbS36Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=jBqTC7Xi7aQ4wITVHFoEKl54sjA679uZbMbZ5qDxDInm0NxAXODmI4cowLtcSgJ9wyVMvBB1EHKJcPfe8WYNu9Ar06Ho4m8ivpoyz/Hu1hOILskeBzRvLHmIf088KUmfB2gb68UMYkgQnDwPYY3PcWh1mqfwvj/CdVXGkVUmxf0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=f8ghDbR0; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43B75YPm009700;
+	Thu, 11 Apr 2024 11:25:19 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=TUGotz/RGgZ0ogm1f0DO+fTxmgoJm/qfo/BcIhv3uTA=; b=f8
+	ghDbR00PE6qnZfX0dzmLDa7aMYJHZCxeKnpfIS/E/GjB90q2uq31BhSLuLzSfcAL
+	T+wITslxuyv4F3TwfqeYGFxDT3NPsR488v8hVxQnjdwCXABdGAydkHYrZ1Tt7pEg
+	7ccUetfAO5+EJekbPXAcwMvwvk3BGTt36RagOYF+MKAArAqAXjgzeNVbBLQk+hhP
+	1vuOXNoE5sIae3bIiPo4yY2ILRtwzXqW1hCab2WmzwKwVYT/V5UvVuHd9Co9VGxS
+	/iSlKJXlVCEtv158UnCzN87kcRcnTurL9TJPgU9rSoCz8fvWPJJQZv4NXlVqY5Vz
+	lNCOxiIxeMrg4ZMiPy2g==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3xaw9d41f0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 11 Apr 2024 11:25:19 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 645624002D;
+	Thu, 11 Apr 2024 11:25:14 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 71AE1212FB5;
+	Thu, 11 Apr 2024 11:24:23 +0200 (CEST)
+Received: from [10.48.86.110] (10.48.86.110) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 11 Apr
+ 2024 11:24:22 +0200
+Message-ID: <9eda526d-a38c-4680-9886-114cddf34f00@foss.st.com>
+Date: Thu, 11 Apr 2024 11:24:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c66f280b-aa29-4b18-98f1-701f60cbc63d@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 3/4] clk: stm32: introduce clocks for STM32MP257
+ platform
+To: Stephen Boyd <sboyd@kernel.org>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>
+CC: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20240409171241.274600-1-gabriel.fernandez@foss.st.com>
+ <20240409171241.274600-4-gabriel.fernandez@foss.st.com>
+ <7498985788263268d4acfcd1589a5994.sboyd@kernel.org>
+Content-Language: en-US
+From: Gabriel FERNANDEZ <gabriel.fernandez@foss.st.com>
+In-Reply-To: <7498985788263268d4acfcd1589a5994.sboyd@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-11_03,2024-04-09_01,2023-05-22_02
 
-On Wed, Apr 10, 2024 at 09:55:24AM -0700, Nikunj Kela wrote:
-> 
-> On 3/19/2024 9:13 AM, Sudeep Holla wrote:
-> > On Tue, Mar 19, 2024 at 03:41:40PM +0000, Srinivas Kandagatla wrote:
-> > > On 19/03/2024 15:17, Sudeep Holla wrote:
-> > > > I am not debating on the implementation just to be clear. I accept changes
-> > > > might be needed there. The $subject is all about DT bindings and what need
-> > > > to be changes and for me nothing, just use existing bindings and if there
-> > > > are issues there, let us discuss it with specifics.
-> > > > 
-> > > How can changes to dt bindings be nothing? All the resources
-> > > clk/regulators/resets will become optional and a new power or perf domain
-> > > will become required for each device with firmwares that support SCMI Perf.
-> > > 
-> > Correct, sorry to miss the point that few properties are now optional from
-> > mandatory before. Very good point. I was so caught up with the addition of
-> > the new "firmware controlled blah blah" property/compatible that I missed
-> > to observe mandatory->optional as a change. Thanks for correcting me.
-> > 
-> If there are no more questions on this and everyone is on the same page, I
-> would like to conclude this thread in favor of using a new DT property
-> 'qcom,firmware-managed-resources'.
+
+On 4/11/24 08:36, Stephen Boyd wrote:
+> Quoting gabriel.fernandez@foss.st.com (2024-04-09 10:12:40)
+>> diff --git a/drivers/clk/stm32/clk-stm32mp25.c b/drivers/clk/stm32/clk-stm32mp25.c
+>> new file mode 100644
+>> index 000000000000..23876e7d9863
+>> --- /dev/null
+>> +++ b/drivers/clk/stm32/clk-stm32mp25.c
+>> @@ -0,0 +1,1876 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (C) STMicroelectronics 2023 - All Rights Reserved
+>> + * Author: Gabriel Fernandez <gabriel.fernandez@foss.st.com> for STMicroelectronics.
+>> + */
+>> +
+>> +#include <linux/clk.h>
+> Use clk-provider.h not clk.h
+ok
 >
+>> +#include <linux/of_address.h>
+> Doubt this is the right include. Drop?
 
-This is exactly opposite to what I have advocated so far in this thread.
-Not sure how you drew to this conclusion. Check [1] and [2] for example.
-The point was not to have qcom specific compatibles or properties as it
-doesn't scale well. Please chime into those if you have argument and how
-you came to this conclusion.
+yes i will drop
 
---
-Regards,
-Sudeep
 
-[1] https://lore.kernel.org/all/ZfMZ9ATxuvONcGpz@bogus
-[2] https://lore.kernel.org/all/0411f99d-231a-af4b-d681-7f7748361aa3@quicinc.com
+>> +#include <linux/platform_device.h>
+>> +
+>> +#include "clk-stm32-core.h"
+>> +#include "reset-stm32.h"
+>> +#include "stm32mp25_rcc.h"
+>> +
+>> +#include <dt-bindings/clock/st,stm32mp25-rcc.h>
+> [...]
+>> +       .clock_data     = &stm32mp25_clock_data,
+>> +       .reset_data     = &stm32mp25_reset_data,
+>> +};
+>> +
+>> +static const struct of_device_id stm32mp25_match_data[] = {
+>> +       { .compatible = "st,stm32mp25-rcc", .data = &stm32mp25_data, },
+>> +       { }
+>> +};
+>> +MODULE_DEVICE_TABLE(of, stm32mp25_match_data);
+>> +
+>> +static int stm32mp25_rcc_clocks_probe(struct platform_device *pdev)
+>> +{
+>> +       struct device *dev = &pdev->dev;
+>> +       void __iomem *base;
+>> +
+>> +       base = devm_platform_ioremap_resource(pdev, 0);
+>> +       if (WARN_ON(IS_ERR(base)))
+> Drop WARN_ON
+
+ok
+
+Thank's
+
+Best Regards
+
+Gabriel
+
+
+>> +               return PTR_ERR(base);
 
