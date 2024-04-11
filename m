@@ -1,137 +1,143 @@
-Return-Path: <devicetree+bounces-58455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FDAE8A2258
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 01:34:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 063198A229A
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 01:50:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 93F4C1C2154C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 23:34:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82016282F47
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 23:50:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBAA9481C7;
-	Thu, 11 Apr 2024 23:34:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC8894AED1;
+	Thu, 11 Apr 2024 23:50:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ESAYJtWa"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TphtNR/P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 535A518B14;
-	Thu, 11 Apr 2024 23:34:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DC2E2C68F;
+	Thu, 11 Apr 2024 23:50:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712878468; cv=none; b=PPyZKP44iIgm2cuvOaISwxO5E3BU4P1KZXLzR+vNuaiJlQsKE/oQeTJ5Xs+znahPhtuVg8S/IznEtDMeFf3rmr6zqYnZ43GmgvRkO1NNAyZkX+iriQnMqP+tDCWli5dZXy75ftTtWr5TcgFG131REwNqIdEPtrgMz5zR/D5J+QQ=
+	t=1712879434; cv=none; b=qokKuAMYGlh1Xbh22MlEXadiQ2MUUzbd2K6hq1Q7k4G5ZWI/ixVu9UiSEjW26RlVsOQaQX+l/IwXzZIPaI00GFiGAPZ9hlb400NG9N3sK9nd2dQ17fffqiKnRmO6ZddpE0mzgDN8n18uPT77q1RBcsvdBS8u3H7DVr23bKJVLA4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712878468; c=relaxed/simple;
-	bh=sk0XiYegamb+eqwCZVvKDkTYSQ0dUvVPxzkYMKFwSms=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=oXBrcbIbtz1Z2aAavkxLmPkLgfHXOQ+deaFtKobncMpPxhKtkxUnpj2clctnaW2DhAfmfbBO6uttavgkZPrXJstOwCNwo0+sAMtXiezW26/gLlx/Fy/WxlOJ/j9T3MV4p/shaeC5C+Sbtmw8OKT40hly8r7GNLOmaHTfTQqHXio=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ESAYJtWa; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1712878468; x=1744414468;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=sk0XiYegamb+eqwCZVvKDkTYSQ0dUvVPxzkYMKFwSms=;
-  b=ESAYJtWa9cUNeBwDgfffdhJTSfYgYFrJKx+Lb0hOAuaACPiTiMNolZhu
-   hcSUEHxz7RlJQ7YIvK93Sb8/ShI5agsllBfbNFHBCzcclCPHy/Mp8+iKY
-   Ifua8eeSWTGdXSfagqrW6dPtJJVxpEV3RpIXo1j9Bv0CN7ns4qXomewYu
-   3E3lt7giYZEqIKD+9PFbcYGrH6CHNrudD6WuGIehbegmhs1Ecfifset05
-   W8KzWR7eJBaf0zBOrOOWFKc49c4g6oGrxS1UV8YIdKLUhO0YoU1YaWAjx
-   Mww6Aalob9TzmYZ2rjVr/H/qk7lIl8pQiZUm2ZBGayLL5iUlVjdjW4wYP
-   Q==;
-X-CSE-ConnectionGUID: s58ahnDjS76XxaX9tMEjNw==
-X-CSE-MsgGUID: 1Riv5fVHSdaQQfzRbGsPFw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11041"; a="19033043"
-X-IronPort-AV: E=Sophos;i="6.07,194,1708416000"; 
-   d="scan'208";a="19033043"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Apr 2024 16:34:27 -0700
-X-CSE-ConnectionGUID: J/Y4eHXCSzuDf6OhJw2BTA==
-X-CSE-MsgGUID: Ct90QprWT1SeV9B2FRDd4Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,194,1708416000"; 
-   d="scan'208";a="25597967"
-Received: from sj-4150-psse-sw-opae-dev2.sj.intel.com ([10.233.115.162])
-  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Apr 2024 16:34:26 -0700
-Date: Thu, 11 Apr 2024 16:34:17 -0700 (PDT)
-From: matthew.gerlach@linux.intel.com
-X-X-Sender: mgerlach@sj-4150-psse-sw-opae-dev2
-To: Rob Herring <robh@kernel.org>
-cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, bhelgaas@google.com, 
-    lpieralisi@kernel.org, kw@linux.com, krzysztof.kozlowski+dt@linaro.org, 
-    conor+dt@kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-    linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: PCI: altera: Convert to YAML
-In-Reply-To: <20240410172924.GA622917-robh@kernel.org>
-Message-ID: <alpine.DEB.2.22.394.2404111619010.410528@sj-4150-psse-sw-opae-dev2>
-References: <20240405145322.3805828-1-matthew.gerlach@linux.intel.com> <2ece9ac2-899c-4185-b0f3-8ab939afc1e5@linaro.org> <alpine.DEB.2.22.394.2404081309050.381257@sj-4150-psse-sw-opae-dev2> <d079bf4d-ebfe-4d98-b718-0c545aabbd30@linaro.org>
- <20240410172924.GA622917-robh@kernel.org>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+	s=arc-20240116; t=1712879434; c=relaxed/simple;
+	bh=+ZbVM53olLQwA3LTGhsIEabeEfmwDoxmEtMaj4RVRwM=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=q/+iuRkrwgOL7t2uVKe32x5UsOIvJH74LQglo8ez8moiLjR/w1W28Oa5ZP3JZcCh+K95R1OtZokAPTha3POkrgpR1Hw4zf4tcd8lyGh4qHxm2Wg7FWJ5qWfzJa4VoEePA37iepyPYubP76u5hd2pjcGT3uha0KD7/SK8H7U0fSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TphtNR/P; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43BNUFm6029773;
+	Thu, 11 Apr 2024 23:50:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=qcppdkim1; bh=mzQXyjqX1tud9XJAAPq6t
+	aeKKD1DkGuDn7UJbaDURSY=; b=TphtNR/PMDSRSzMWvgOgtlCNtd1GfQC5UQT0H
+	11DxF6Q2hIGIEWB4PucpPMI1iNYgA3HFW3hiSGJTSn8tctkq+ssUrIfFwD8lsZMe
+	0V4yXTB+7BdRd3AGOmC3h/A8tDAKhD3EVV7bAdTmU/L1l6t8dhYTdIPmtAIfD0Y6
+	JTZlpVeKts9Bo23vHBx71eImeSJbLk1wIa8sUAjXXoKjDSZbHMoHr1nQ8V0BxYaY
+	ONld9xP6EZtRCTojwBIQKFOUP7PKumSxWh/3wRBI7tzCPKxh1IPTlcuGAhm0aMQE
+	7NMmj+0isSrL9Ymvks4tnzI8JpksukDvF6sYjiqh5M1DJYKtQ==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xem8m0n26-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 11 Apr 2024 23:50:22 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43BNnjgX012898
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 11 Apr 2024 23:49:45 GMT
+Received: from hu-eberman-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 11 Apr 2024 16:49:44 -0700
+Date: Thu, 11 Apr 2024 16:49:44 -0700
+From: Elliot Berman <quic_eberman@quicinc.com>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>, Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten
+	<marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, "Daniel
+ Vetter" <daniel@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 1/6] soc: qcom: Move some socinfo defines to the header,
+ expand them
+Message-ID: <20240411162849104-0700.eberman@hu-eberman-lv.qualcomm.com>
+References: <20240405-topic-smem_speedbin-v1-0-ce2b864251b1@linaro.org>
+ <20240405-topic-smem_speedbin-v1-1-ce2b864251b1@linaro.org>
+ <20240410132510649-0700.eberman@hu-eberman-lv.qualcomm.com>
+ <2c2bca6c-b429-4cef-b63a-ee3bd6c9eecb@linaro.org>
+ <20240411130802689-0700.eberman@hu-eberman-lv.qualcomm.com>
+ <bbec514f-9672-4e5a-bd83-20ab59b3dcd9@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <bbec514f-9672-4e5a-bd83-20ab59b3dcd9@linaro.org>
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: F55obkBZh8Y7oG1qCozFOKbMkGxrJdD9
+X-Proofpoint-GUID: F55obkBZh8Y7oG1qCozFOKbMkGxrJdD9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-11_12,2024-04-09_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
+ priorityscore=1501 malwarescore=0 phishscore=0 impostorscore=0
+ mlxlogscore=961 bulkscore=0 lowpriorityscore=0 mlxscore=0 spamscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404110171
 
+On Thu, Apr 11, 2024 at 10:24:08PM +0200, Konrad Dybcio wrote:
+> 
+> 
+> On 4/11/24 22:09, Elliot Berman wrote:
+> > On Thu, Apr 11, 2024 at 10:05:30PM +0200, Konrad Dybcio wrote:
+> > > 
+> > > 
+> > > On 4/11/24 20:55, Elliot Berman wrote:
+> > > > On Fri, Apr 05, 2024 at 10:41:29AM +0200, Konrad Dybcio wrote:
+> > > > > In preparation for parsing the chip "feature code" (FC) and "product
+> > > > > code" (PC) (essentially the parameters that let us conclusively
+> > > > > characterize the sillicon we're running on, including various speed
+> > > > > bins), move the socinfo version defines to the public header and
+> > > > > include some more FC/PC defines.
+> > > > > 
+> > > > > Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> > > > > ---
+> 
+> [...]
+> 
+> > 
+> > 0xf is the last one.
+> 
+> One more question, are the "internal/external feature codes" referring to
+> internality/externality of the chips (i.e. "are they QC-lab-only engineering
+> samples), or what else does that represent?
 
+Yes, QC-lab-only engineering samples is the right interpretation of
+these feature codes.
 
-On Wed, 10 Apr 2024, Rob Herring wrote:
+Thanks,
+Elliot
 
-> On Tue, Apr 09, 2024 at 08:29:07AM +0200, Krzysztof Kozlowski wrote:
->> On 08/04/2024 22:34, matthew.gerlach@linux.intel.com wrote:
->>>>> diff --git a/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..999dcda05f55
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
->>>>> @@ -0,0 +1,106 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>>> +# Copyright (C) 2024, Intel Corporation
->>>>
->>>> This is derivative of previous work, which is easily visible by doing
->>>> the same mistakes in DTS as they were before.
->>>
->>> This is definitely derivative of previous work, and I want to fix the
->>> DTS mistakes too.
->>>
->>>>
->>>> You now added fresh copyrights ignoring all previous work, even though
->>>> you copied it. I don't agree.
->>>>
->>>> If you want to ignore previous copyrights, then at least don't copy
->>>> existing code... although even that would not be sufficient.
->>>
->>> Ignoring previous copyrights was not my intent. There is no copyright
->>> statement in the original text version of the device tree bindings. Should
->>> that lack of copyright statement carry forward?
->>
->> All the authors are copyright holders automatically, at least in some or
->> maybe most jurisdictions. You do not need to add copyright label for
->> material to be copyrighted. That's why you are not allowed to relicense
->> the work for example, without other authors' agreement.
->
-> The only thing I see as missing is some years. All the authors were
-> Altera which is now Intel, so Intel is the sole copyright holder.
-> Whether is says 2015 contributions were Altera or Intel is probably
-> immaterial.  There were also contributions by Google (Bjorn), but those
-> were purely editorial.
-
-Yes, Altera is now Intel who now owns the copyrights. At some point the 
-future this might change as Intel spins off Altera. So given the state 
-now, should the copyright line be as follows?
-
-# Copyright (C) 2015, 2019, 2024, Intel Corporation
-
-
-Matthew
->
-> Rob
->
 
