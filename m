@@ -1,233 +1,88 @@
-Return-Path: <devicetree+bounces-58142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14C3B8A09AA
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 09:26:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F170D8A09C1
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 09:28:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BDD4F282171
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 07:25:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7F906B2274C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 07:28:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C22613E051;
-	Thu, 11 Apr 2024 07:25:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC71A13E028;
+	Thu, 11 Apr 2024 07:28:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IAsiio4o"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dFfkpHtC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48C1E13E043
-	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 07:25:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9788E13DDB8;
+	Thu, 11 Apr 2024 07:28:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712820331; cv=none; b=kIZhu3uQg3mHuuFwlXyfZKNzmF9y9CnMNR51VANlxPkRmAY8XqiJaXXKnrqnSX+y+FysA4Yf8B6BPZP//5tlcqSNEwbb+S4g9c0hlAajEZ+AmuGSYEoCVVjS4QDUpPFmz1Fc6y4N73vD4fTzoaXrAorPDIeDVDJDSL4xCsRtYmM=
+	t=1712820512; cv=none; b=AdztZsZ7wKZhVbXetJHpxFQDSn26pKpfd2UWlo3qih+7BERF+cLqtR5mUMrxLX3N4Pb+hfwExEOgh+F4tI59XUpA7PRqmafOEAOi5x+KGYPHbFuyI0RWHcetxZfw5vfiP5UZYmkLgSmodvAgp7P6AFdMJMCr24rE3PJGQAC7c9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712820331; c=relaxed/simple;
-	bh=h4dFsYtnlN8ZUYzMeIJnNwkAeG3dqWQK76oIMf60zOg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=IKe2cjewe6+FABFcbDX7WJjcNzJClCzJrphnyj9RHiIQjx2GkICGy68n9+ysV6fSp1OeiAaGUU0+tY6mK9q/AQFcOy04sZWWQSw+G7wQM4WaTvypHztO8ARhvDYg372kIdrbJvloT2GEIvdzHUBwIdlVsQsCipQnLgp+d4JOUgE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IAsiio4o; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-346b146199eso360341f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 00:25:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712820328; x=1713425128; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=9zwE2+Q5g17pW6wKSw7re4stV4qmExBkSpcgkO2N+1Q=;
-        b=IAsiio4oYOe5rDh1z4GldBPE57RaYejmAA5gSM8IrZi9eLsagZG/rvT6yoDXDhfbJU
-         OOsMG+MVLMLaSTM5c0fXq2TsOoivgUUPy956UYkj0x1rPV0cQCYn8h5ojeaOHsn+Kl60
-         W2/FJxwe54JJmtOFeQfP2m8sh5AtG1FeBzFsKL8KtZWIiUMn8NNfDW5SGN1o6R1sA1FQ
-         2TF2p4LlPN+t2OPYwUhiPhaaP9Uv1HBOhb9sQxWxJi0gpj6vEDEEL7FSy5W0Rtmq9o9S
-         F9GcRxYCjAzlvhwjKhuzxNjLvZ9s8obeCRca60EsEFIZ2uZ69RlGFtd82/uZa6loukO5
-         uaWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712820328; x=1713425128;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9zwE2+Q5g17pW6wKSw7re4stV4qmExBkSpcgkO2N+1Q=;
-        b=XcgeYCRwjCw00vn4lhI3wDzzipIxOerWGtu08WgmHqzGolhvKWwmu8fxg9MODmkBN2
-         PQ02ZkWQBTUgxTJFTh+hux/cCL0iwUfIICq2AE6u/tY7g2YYP59a0fa/6CLTYpwPEplD
-         hQzDrt5Y2Nru/OgTBgvm+eg0wWFt27M+0dkc0TGqxDYgqYCHjaFU+v+Ay0M2A3wKBJet
-         YCwfN+FjARM/crfw55ZkJyXKk1xPFV/p3wYrCnp0No7QROlXFr4NGKa5349w9huz8ed/
-         e2a2d7FsY/gviMzVLPUKk2wwC31jv7qc0p5h32vScykVENsaiAl5sDUxdeTTuEGXCc3w
-         78ZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWQqJyTMurL/S3Se2HL/KDovqLavij+UMsre4xQ+ybuKJUTFm233pDi3pGgRKjS62g+LIySg2DpBWhe5MrerrUH83IUgHlwq44rUQ==
-X-Gm-Message-State: AOJu0YxKdfCLBK1ubLn0lOQCp2Me4Jk6l1pDc67hWS527Yulr3Q67o0F
-	LGev2VaF8vGdAO4qka20vyBv1nRQJxtcstNLlV6E3toi4SGsJKAzZtIT4/n2heA=
-X-Google-Smtp-Source: AGHT+IHorrDqbK9zt/IoHlc21hKNjB613X7hy+TtL6kaGHau0izWH/4cPFxd84HwbzhID2FR+rKNSw==
-X-Received: by 2002:a5d:6d4e:0:b0:346:72f4:c805 with SMTP id k14-20020a5d6d4e000000b0034672f4c805mr2713947wri.66.1712820327621;
-        Thu, 11 Apr 2024 00:25:27 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id u13-20020a5d434d000000b00346bda84bf9sm816474wrr.78.2024.04.11.00.25.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Apr 2024 00:25:27 -0700 (PDT)
-Message-ID: <051c6e44-4844-48b9-846d-cf9b81611415@linaro.org>
-Date: Thu, 11 Apr 2024 09:25:25 +0200
+	s=arc-20240116; t=1712820512; c=relaxed/simple;
+	bh=SpwLUThuSe0iSjy0+bG0beTilIF19Pllnlt8tkpCy50=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=twOfqSGBnrPYbm2MRDRXZNOr8hjyfbgbApRrB7SC2C3deEvFu4PUt0/AKXgfgzfVh7F3R12yOH8/pZrdz13b5mMagEbvHCbL7FLeh3bSkBDeDQBUt/5ZG6XEpWZFNNeFqy9MRdSSpP3/7C2KW+j8rnemaly7mGDLGfS3eOAqEmc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dFfkpHtC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7342AC433C7;
+	Thu, 11 Apr 2024 07:28:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712820511;
+	bh=SpwLUThuSe0iSjy0+bG0beTilIF19Pllnlt8tkpCy50=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=dFfkpHtCkL45kp6rA4pgBgyVUSoB1mL6MON1H+dEJIDNhsUnrh91I/rORHdMLDcEo
+	 EM4njX49V+eWNfq0gP3EXEcqXfu94Be3uZaXuUi31OqwJvmPDWBbdAZZjqMIj0vhp2
+	 nvwq+Lw959AJoTcFA52Q5N6yHbSL9sDYhCovapt1UGnZN56kuFVE/t3zxHTiFYnp4L
+	 tNLPRUS3SkiDYbHxYnDhKawtQ/5hOr3GJvnv/0rkKH09Nn/Q+p30hDLHDYHox7PFzC
+	 XIqWrNEGhPSFUp0hQ4fmHspiVTTgzQ0AzKr9zEoUbgnj6VA5eKShUSep18hm1n2tMk
+	 WT2soBhqL0aTw==
+Message-ID: <a39fadac1c4150ca51a8c22d749645e1.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: usb: add common Type-C USB Switch schema
-To: Luca Weiss <luca.weiss@fairphone.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org
-References: <20240122094406.32198-1-krzysztof.kozlowski@linaro.org>
- <D0H3VE6RLM2I.MK2NT1P9N02O@fairphone.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <D0H3VE6RLM2I.MK2NT1P9N02O@fairphone.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <fb020d1ca19e6f4cdcc95c87b2748869ca76b8ec.1712731524.git.zhoubinbin@loongson.cn>
+References: <cover.1712731524.git.zhoubinbin@loongson.cn> <fb020d1ca19e6f4cdcc95c87b2748869ca76b8ec.1712731524.git.zhoubinbin@loongson.cn>
+Subject: Re: [PATCH v3 2/6] clk: clk-loongson2: Refactor driver for adding new platforms
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Huacai Chen <chenhuacai@kernel.org>, loongson-kernel@lists.loongnix.cn, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, Binbin Zhou <zhoubinbin@loongson.cn>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>, Binbin Zhou <zhoubinbin@loongson.cn>, Conor Dooley <conor+dt@kernel.org>, Huacai Chen <chenhuacai@loongson.cn>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh+dt@kernel.org>, Yinbo Zhu <zhuyinbo@loongson.cn>
+Date: Thu, 11 Apr 2024 00:28:29 -0700
+User-Agent: alot/0.10
 
-On 11/04/2024 09:13, Luca Weiss wrote:
-> On Mon Jan 22, 2024 at 10:44 AM CET, Krzysztof Kozlowski wrote:
->> Several bindings implement parts of Type-C USB orientation and mode
->> switching, and retiming.  Keep definition of such properties in one
->> place, new usb-switch schema, to avoid duplicate defines.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> ---
->>
->> Changes in v2:
->> 1. Fix language typos handle->handler (Luca)
->> 2. Drop debugging left-over (Luca)
->> ---
->>  .../devicetree/bindings/usb/fcs,fsa4480.yaml  | 12 ++--
->>  .../devicetree/bindings/usb/gpio-sbu-mux.yaml | 12 ++--
->>  .../devicetree/bindings/usb/nxp,ptn36502.yaml | 12 ++--
->>  .../bindings/usb/onnn,nb7vpq904m.yaml         | 13 ++--
->>  .../bindings/usb/qcom,wcd939x-usbss.yaml      | 12 ++--
->>  .../devicetree/bindings/usb/usb-switch.yaml   | 67 +++++++++++++++++++
->>  6 files changed, 92 insertions(+), 36 deletions(-)
->>  create mode 100644 Documentation/devicetree/bindings/usb/usb-switch.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml b/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
->> index f9410eb76a62..8b25b9a01ced 100644
->> --- a/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
->> +++ b/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
->> @@ -27,13 +27,8 @@ properties:
->>    vcc-supply:
->>      description: power supply (2.7V-5.5V)
->>  
->> -  mode-switch:
->> -    description: Flag the port as possible handle of altmode switching
->> -    type: boolean
->> -
->> -  orientation-switch:
->> -    description: Flag the port as possible handler of orientation switching
->> -    type: boolean
->> +  mode-switch: true
->> +  orientation-switch: true
->>  
->>    port:
->>      $ref: /schemas/graph.yaml#/$defs/port-base
->> @@ -79,6 +74,9 @@ required:
->>    - reg
->>    - port
->>  
->> +allOf:
->> +  - $ref: usb-switch.yaml#
->> +
->>  additionalProperties: false
->>  
->>  examples:
-> 
-> Hi Krzysztof,
-> 
-> This patch seems to break validation for fsa4480 if data-lanes is set in
-> the endpoint like the following
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml b/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
-> index f9410eb76a62..3aa03fd65556 100644
-> --- a/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
-> +++ b/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
-> @@ -102,6 +102,7 @@ examples:
->            port {
->              fsa4480_ept: endpoint {
->                remote-endpoint = <&typec_controller>;
-> +              data-lanes = <0 1>;
->              };
->            };
->          };
-> 
-> Similar to how it's already used on qcom/qcm6490-fairphone-fp5.dts
-> 
-> I'm guessing the 'port' definition in the common schema somehow
-> disallows the fsa4480 schema from describing it further?
+Quoting Binbin Zhou (2024-04-10 19:58:07)
+> The driver only supported loongson-2K1000 at first, but the clock
+> structure of loongson-2K0500 and loongson-2K2000 are actually similar,
+> and I tried to refactor the whole driver to adjust to the addition of
+> the new platform.
+>=20
+> Briefly, I have divided all clocks into three categories according to
+> their properties and their parent clocks: Independent PLLs, clocks based
+> on frequency scales, and clock dividers.
+>=20
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> ---
+>  drivers/clk/clk-loongson2.c | 459 ++++++++++++++++--------------------
+>  1 file changed, 199 insertions(+), 260 deletions(-)
+>=20
+> diff --git a/drivers/clk/clk-loongson2.c b/drivers/clk/clk-loongson2.c
+> index bacdcbb287ac..ff2ade6a471a 100644
+> --- a/drivers/clk/clk-loongson2.c
+> +++ b/drivers/clk/clk-loongson2.c
+> @@ -6,6 +6,7 @@
+> =20
+>  #include <linux/err.h>
+>  #include <linux/init.h>
+> +#include <linux/clk.h>
 
-There is no such code in qcm6490-fairphone-fp5.dts. There was no such
-code in the example of fsa4480 when I was testing my changes (and
-examples should be complete), so this did not pop up.
-
-You right, new schema does not allow extending the port. However the
-true question is, why muxing happens on the port to the SoC controller?
-The graph in commit msg fad89aa14 shows it happens on the side of the
-connector.
-
-Looks like fsa4480 mixes connector with the controller.
-
-Best regards,
-Krzysztof
-
+Why is this included? I removed it and applied to clk-next.
 
