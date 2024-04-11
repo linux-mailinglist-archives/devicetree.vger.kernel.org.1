@@ -1,190 +1,385 @@
-Return-Path: <devicetree+bounces-58395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58396-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E79298A1C31
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 19:41:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92D598A1C3A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 19:42:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E531285972
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 17:41:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1EBC91F26210
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 17:42:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E313115A4B8;
-	Thu, 11 Apr 2024 16:11:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C11DD15B12A;
+	Thu, 11 Apr 2024 16:12:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rvm0S2oJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Gb8f/zLW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6EC115A4AF;
-	Thu, 11 Apr 2024 16:11:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F11E015B12D
+	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 16:12:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712851870; cv=none; b=Nhsh5S1oKzDA7EsR7YOsKzxI9dRbsxTPPfn84iutEdMmKBoxD1eZod1O8VZhf7TYL6gL+upVRhTaq3neFdScsdKPgyCiiGDDP+Rwf1GEBL1s/4qTMgnzCE9iL9VmYVBxOZ3boatGms7aEDmVCVHZ4+SqOQ9NbZDbmkCFLJTHdGo=
+	t=1712851961; cv=none; b=bHmNDd1i37mKup+TByacD0hL1NTRwIH8Hd3eOmzq3RmtI0IWKAsta8JX0+FVRV27sUZD5lglYavSjoptuCBBBCUvpNPayIyZdIoLVcev4lZR3HQXyanj/N8tQxrvnETFoN8Mq5TlqoLvBtyoSSOOKVmyAURMPHefEgYzs8w1VtM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712851870; c=relaxed/simple;
-	bh=Co3kGhkNsPgacB/pabyCsenR+0gNcn0apDUzg988VHA=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=q18mJbNr1XEByVMCT5shHMfoltp5jkb+eTD+yntIt286pUr9i8Q5ob0UPCd9qtDc46reH9KA02c4CLwOharuqaHIWRxf2kIaY/Ks4FqzXH/TMEKgQtJv4LwV6I2MQQH19xLo5TNS9MMzravLv21fa/xmUeiBnziQdxk58tEjGCg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rvm0S2oJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 001FEC072AA;
-	Thu, 11 Apr 2024 16:11:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712851870;
-	bh=Co3kGhkNsPgacB/pabyCsenR+0gNcn0apDUzg988VHA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=rvm0S2oJrwiPhJs3eMOF4f2WjbhaHXPCHhoQzlhlvGzTckM5NUJlGvZE//UJTbZuk
-	 7mUvnId3dLSEO383sQdQGizvtxlqOjpE6LHUGEUzOLcvm2FFMA5/b/WtwmbW9OxU3t
-	 vraPDqamiI8esjKLmEPlXpKeb3GokCNr0IyDHPJwJEbgyjnyrMewIrl/lr5uw3SXYu
-	 ufts0B5MaTMqZx4inTcApZhjiikn03+zpnbGKAZYEpPL3yc3b4UbwWwc/biOcTK9tx
-	 O2EDKKXK1jYU6zNUiteXtEM8WNQ9P2BCMa9UpGqUhrAINiWUMdVs8dvmVCMdMSalCs
-	 JbWrghBBIpbBg==
-Date: Thu, 11 Apr 2024 11:11:08 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Jim Quinlan <jim2101024@gmail.com>,
-	Nicolas Saenz Julienne <nsaenz@kernel.org>,
-	Will Deacon <will@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Srikanth Thokala <srikanth.thokala@intel.com>,
-	Ryder Lee <ryder.lee@mediatek.com>,
-	Jianjun Wang <jianjun.wang@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Marek Vasut <marek.vasut+renesas@gmail.com>,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Heiko Stuebner <heiko@sntech.de>, Jingoo Han <jingoohan1@gmail.com>,
-	Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>,
-	Michal Simek <michal.simek@amd.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Mark Kettenis <kettenis@openbsd.org>,
-	Tom Joseph <tjoseph@cadence.com>,
-	Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>,
-	Jiaxun Yang <jiaxun.yang@flygoat.com>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v2 2/4] dt-bindings: PCI: mediatek,mt7621: add missing
- child node reg
-Message-ID: <20240411161108.GA2184354@bhelgaas>
+	s=arc-20240116; t=1712851961; c=relaxed/simple;
+	bh=kKbZ5J7jKEfpEMov+rNKDGVboP+YeG1NwPnMpkDCLnY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=i395IhKp7SQM4blnn86cl4IkMNkVdf/Q+O1j46QuRAF7H+If82PEY/DJnkosoCjZkHVfK4Cz2/jJ3p7DAPpyVt4cOapYXo/u9WKXQjG+/sUfwX7/TCvyIpoMxEBRhQ7/syOc9X1TAegylNfqgua425gNwNoswOqj0ltbFQFQ4XI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Gb8f/zLW; arc=none smtp.client-ip=209.85.210.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-6ed04c91c46so49634b3a.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 09:12:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712851959; x=1713456759; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=HmRrZJnguJ+gxDES/4SwEbz5PEezPjqR1g3BjbuHjpI=;
+        b=Gb8f/zLW++lKMKlHBXXWe+LZdhUXagd3oG1NizZhnZ5Btf4suVdckg1wEjnc0WzpS4
+         3DrFNwRkVqlUrTh6BTVdxkLwqt1NGp2dzY2F8wqK3jB7xrFSMTNFfCkgxefLs07wH/fa
+         UETbDOBaJulH9srJPlS6c8Ne4CW6YDqE348CvVvcL/9kpUuPfHHjOysPcb6Mu04eVseF
+         6gVsuqfF3VqHR2YKLrMn1kk4shkzyQj3Iu3h6wqYJQzMrREyJDF4UiUXMkDO4ITZeOmK
+         9f+oh/JT73dTmvYQzJt2Z2h/ZRtr5Ben8qcW60BVds5vKUfxQ4x5AaiVAyggm+e/z79N
+         9YSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712851959; x=1713456759;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HmRrZJnguJ+gxDES/4SwEbz5PEezPjqR1g3BjbuHjpI=;
+        b=bPvAZQWVMsDYl2Zn/NZHLoTiHGYjgsOLMxFWBmcZOMQrccchuBnhwBLwhJbKM1yp4z
+         W9Bo/8wWTNKBGNQe2GoCq5zkb92Urj8+P5cbi/OMxxc8tYK+IC4hZWdEIcdmVxZE0vot
+         cqckYs7zk2Jk39cDhe8h23qtiKv3M9jspZb3h7h7eVqpAQcXa6bJq81Ig2cjbFItox2W
+         xk57iEs+Ky/h6vFmerOnV5cLteaf8f0w2KyQMK3hlzKsTRMumFU3yanliVVxq4fRKw35
+         ry8gJNCKUe0DRItMjckfXCXQc21vfcNeQ309KuHnDrvXyRLYlLY/prAzTucWbBL0IbmB
+         wM0w==
+X-Forwarded-Encrypted: i=1; AJvYcCXYXSFTmbPcRTVJspZH9g3ZiibiktYBjMDLop2ef5NZM04bfotK/N/2eNyRofNJzDLZd9EtY794FSMBatjtgIrqFy9wqR2QnxascA==
+X-Gm-Message-State: AOJu0Ywu5/igWZ5IAMekrQEVgdFqbe2pPDQVBDqRyVT0UZrpK27c9NtT
+	HguJamadSGxwipUAYMHjxu5JRlSoEfv0kzmblg3rKseSFqaY0lFAuBxcb8dmKXA=
+X-Google-Smtp-Source: AGHT+IEJwbbpJmr8dWIDI56JBWT8u7+E+cZxOalndjf4t0KJjKAXmfM28qwDdGHfA4+7xuf8zlgfuQ==
+X-Received: by 2002:a17:90b:249:b0:2a0:4495:1f3d with SMTP id fz9-20020a17090b024900b002a044951f3dmr72508pjb.0.1712851959206;
+        Thu, 11 Apr 2024 09:12:39 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:efff:a39b:6ec6:a2f3])
+        by smtp.gmail.com with ESMTPSA id v7-20020a17090a778700b002a51a01f447sm2973531pjk.49.2024.04.11.09.12.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Apr 2024 09:12:38 -0700 (PDT)
+Date: Thu, 11 Apr 2024 10:12:35 -0600
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+To: Tanmay Shah <tanmay.shah@amd.com>
+Cc: andersson@kernel.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	michal.simek@amd.com, ben.levinsky@amd.com,
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v14 4/4] remoteproc: zynqmp: parse TCM from device tree
+Message-ID: <ZhgL8/hJZTJnDYuN@p14s>
+References: <20240408205313.3552165-1-tanmay.shah@amd.com>
+ <20240408205313.3552165-5-tanmay.shah@amd.com>
+ <ZhbFfA7toAkUATfg@p14s>
+ <0f62cb47-23bd-41bd-a713-ac9f37a1ec7b@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240411142107.GA3537062-robh@kernel.org>
+In-Reply-To: <0f62cb47-23bd-41bd-a713-ac9f37a1ec7b@amd.com>
 
-On Thu, Apr 11, 2024 at 09:21:07AM -0500, Rob Herring wrote:
-> On Thu, Apr 11, 2024 at 07:39:17AM -0500, Bjorn Helgaas wrote:
-> > On Thu, Apr 11, 2024 at 08:13:18AM +0200, Sergio Paracuellos wrote:
-> > > On Thu, Apr 11, 2024 at 8:01 AM Krzysztof Kozlowski
-> > > <krzysztof.kozlowski@linaro.org> wrote:
-> > > > On 10/04/2024 23:26, Bjorn Helgaas wrote:
-> > > > > On Wed, Apr 10, 2024 at 08:15:19PM +0200, Krzysztof Kozlowski wrote:
-> > > > >> MT7621 PCI host bridge has children which apparently are also PCI host
-> > > > >> bridges, at least that's what the binding suggest.
-> > > > >
-> > > > > What does it even mean for a PCI host bridge to have a child that is
-> > > > > also a PCI host bridge?
+On Wed, Apr 10, 2024 at 05:36:30PM -0500, Tanmay Shah wrote:
 > 
-> It should say 'root port' instead as the binding description correctly 
-> says.
-
-OK, that makes a lot more sense, and we should fix the commit log.
-
-> > > > I think the question should be towards Mediatek folks. I don't know what
-> > > > this hardware is exactly, just looks like pci-pci-bridge. The driver
-> > > > calls the children host bridges as "ports".
-> > > 
-> > > You can see the topology here in my first driver submit cover letter
-> > > message [0].
-> > > 
-> > >  [0]: https://lore.kernel.org/all/CAMhs-H-BA+KzEwuDPzcmrDPdgJBFA2XdYTBvT4R4MEOUB=WQ1g@mail.gmail.com/t/
-> > 
-> > Nothing unusual here, this looks like the standard PCIe topology.
-> > 
-> > What *might* be unusual is describing the Root Ports in DT.  Since
-> > they are standard PCI devices, they shouldn't need DT description
-> > unless there's some unusual power/clock/reset control or something
-> > that is not discoverable via PCI enumeration.
 > 
-> It's only unusual because typically there's only 1 RP per host bridge 
-> and properties which really apply to the RP get stuck in the host bridge 
-> node because we don't have a RP node. An example is perst-gpios. That's 
-> not a property of the RP either, but the RP is the upstream side of a 
-> slot and we often don't have a node for the device either.
+> On 4/10/24 11:59 AM, Mathieu Poirier wrote:
+> > On Mon, Apr 08, 2024 at 01:53:14PM -0700, Tanmay Shah wrote:
+> >> ZynqMP TCM information was fixed in driver. Now ZynqMP TCM information
+> >> is available in device-tree. Parse TCM information in driver
+> >> as per new bindings.
+> >> 
+> >> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+> >> ---
+> >> 
+> >> Changes in v14:
+> >>   - Add Versal platform support
+> >>   - Add Versal-NET platform support
+> >>   - Maintain backward compatibility for ZynqMP platform and use hardcode
+> >>     TCM addresses
+> >>   - Configure TCM based on xlnx,tcm-mode property for Versal
+> >>   - Avoid TCM configuration if that property isn't available in DT 
+> >> 
+> >>  drivers/remoteproc/xlnx_r5_remoteproc.c | 173 ++++++++++++++++++------
+> >>  1 file changed, 132 insertions(+), 41 deletions(-)
+> >> 
+> >> diff --git a/drivers/remoteproc/xlnx_r5_remoteproc.c b/drivers/remoteproc/xlnx_r5_remoteproc.c
+> >> index 0f942440b4e2..504492f930ac 100644
+> >> --- a/drivers/remoteproc/xlnx_r5_remoteproc.c
+> >> +++ b/drivers/remoteproc/xlnx_r5_remoteproc.c
+> >> @@ -74,8 +74,8 @@ struct mbox_info {
+> >>  };
+> >>  
+> >>  /*
+> >> - * Hardcoded TCM bank values. This will be removed once TCM bindings are
+> >> - * accepted for system-dt specifications and upstreamed in linux kernel
+> >> + * Hardcoded TCM bank values. This will stay in driver to maintain backward
+> >> + * compatibility with device-tree that does not have TCM information.
+> >>   */
+> >>  static const struct mem_bank_data zynqmp_tcm_banks_split[] = {
+> >>  	{0xffe00000UL, 0x0, 0x10000UL, PD_R5_0_ATCM, "atcm0"}, /* TCM 64KB each */
+> >> @@ -300,36 +300,6 @@ static void zynqmp_r5_rproc_kick(struct rproc *rproc, int vqid)
+> >>  		dev_warn(dev, "failed to send message\n");
+> >>  }
+> >>  
+> >> -/*
+> >> - * zynqmp_r5_set_mode()
+> >> - *
+> >> - * set RPU cluster and TCM operation mode
+> >> - *
+> >> - * @r5_core: pointer to zynqmp_r5_core type object
+> >> - * @fw_reg_val: value expected by firmware to configure RPU cluster mode
+> >> - * @tcm_mode: value expected by fw to configure TCM mode (lockstep or split)
+> >> - *
+> >> - * Return: 0 for success and < 0 for failure
+> >> - */
+> >> -static int zynqmp_r5_set_mode(struct zynqmp_r5_core *r5_core,
+> >> -			      enum rpu_oper_mode fw_reg_val,
+> >> -			      enum rpu_tcm_comb tcm_mode)
+> >> -{
+> >> -	int ret;
+> >> -
+> >> -	ret = zynqmp_pm_set_rpu_mode(r5_core->pm_domain_id, fw_reg_val);
+> >> -	if (ret < 0) {
+> >> -		dev_err(r5_core->dev, "failed to set RPU mode\n");
+> >> -		return ret;
+> >> -	}
+> >> -
+> >> -	ret = zynqmp_pm_set_tcm_config(r5_core->pm_domain_id, tcm_mode);
+> >> -	if (ret < 0)
+> >> -		dev_err(r5_core->dev, "failed to configure TCM\n");
+> >> -
+> >> -	return ret;
+> >> -}
+> >> -
+> >>  /*
+> >>   * zynqmp_r5_rproc_start()
+> >>   * @rproc: single R5 core's corresponding rproc instance
+> >> @@ -761,6 +731,103 @@ static struct zynqmp_r5_core *zynqmp_r5_add_rproc_core(struct device *cdev)
+> >>  	return ERR_PTR(ret);
+> >>  }
+> >>  
+> >> +static int zynqmp_r5_get_tcm_node_from_dt(struct zynqmp_r5_cluster *cluster)
+> >> +{
+> >> +	int i, j, tcm_bank_count, ret, tcm_pd_idx, pd_count;
+> >> +	struct of_phandle_args out_args;
+> >> +	struct zynqmp_r5_core *r5_core;
+> >> +	struct platform_device *cpdev;
+> >> +	struct mem_bank_data *tcm;
+> >> +	struct device_node *np;
+> >> +	struct resource *res;
+> >> +	u64 abs_addr, size;
+> >> +	struct device *dev;
+> >> +
+> >> +	for (i = 0; i < cluster->core_count; i++) {
+> >> +		r5_core = cluster->r5_cores[i];
+> >> +		dev = r5_core->dev;
+> >> +		np = r5_core->np;
+> >> +
+> >> +		pd_count = of_count_phandle_with_args(np, "power-domains",
+> >> +						      "#power-domain-cells");
+> >> +
+> >> +		if (pd_count <= 0) {
+> >> +			dev_err(dev, "invalid power-domains property, %d\n", pd_count);
+> >> +			return -EINVAL;
+> >> +		}
+> >> +
+> >> +		/* First entry in power-domains list is for r5 core, rest for TCM. */
+> >> +		tcm_bank_count = pd_count - 1;
+> >> +
+> >> +		if (tcm_bank_count <= 0) {
+> >> +			dev_err(dev, "invalid TCM count %d\n", tcm_bank_count);
+> >> +			return -EINVAL;
+> >> +		}
+> >> +
+> >> +		r5_core->tcm_banks = devm_kcalloc(dev, tcm_bank_count,
+> >> +						  sizeof(struct mem_bank_data *),
+> >> +						  GFP_KERNEL);
+> >> +		if (!r5_core->tcm_banks)
+> >> +			return -ENOMEM;
+> >> +
+> >> +		r5_core->tcm_bank_count = tcm_bank_count;
+> >> +		for (j = 0, tcm_pd_idx = 1; j < tcm_bank_count; j++, tcm_pd_idx++) {
+> >> +			tcm = devm_kzalloc(dev, sizeof(struct mem_bank_data),
+> >> +					   GFP_KERNEL);
+> >> +			if (!tcm)
+> >> +				return -ENOMEM;
+> >> +
+> >> +			r5_core->tcm_banks[j] = tcm;
+> >> +
+> >> +			/* Get power-domains id of TCM. */
+> >> +			ret = of_parse_phandle_with_args(np, "power-domains",
+> >> +							 "#power-domain-cells",
+> >> +							 tcm_pd_idx, &out_args);
+> >> +			if (ret) {
+> >> +				dev_err(r5_core->dev,
+> >> +					"failed to get tcm %d pm domain, ret %d\n",
+> >> +					tcm_pd_idx, ret);
+> >> +				return ret;
+> >> +			}
+> >> +			tcm->pm_domain_id = out_args.args[0];
+> >> +			of_node_put(out_args.np);
+> >> +
+> >> +			/* Get TCM address without translation. */
+> >> +			ret = of_property_read_reg(np, j, &abs_addr, &size);
+> >> +			if (ret) {
+> >> +				dev_err(dev, "failed to get reg property\n");
+> >> +				return ret;
+> >> +			}
+> >> +
+> >> +			/*
+> >> +			 * Remote processor can address only 32 bits
+> >> +			 * so convert 64-bits into 32-bits. This will discard
+> >> +			 * any unwanted upper 32-bits.
+> >> +			 */
+> >> +			tcm->da = (u32)abs_addr;
+> >> +			tcm->size = (u32)size;
+> >> +
+> >> +			cpdev = to_platform_device(dev);
+> >> +			res = platform_get_resource(cpdev, IORESOURCE_MEM, j);
+> >> +			if (!res) {
+> >> +				dev_err(dev, "failed to get tcm resource\n");
+> >> +				return -EINVAL;
+> >> +			}
+> >> +
+> >> +			tcm->addr = (u32)res->start;
+> >> +			tcm->bank_name = (char *)res->name;
+> >> +			res = devm_request_mem_region(dev, tcm->addr, tcm->size,
+> >> +						      tcm->bank_name);
+> >> +			if (!res) {
+> >> +				dev_err(dev, "failed to request tcm resource\n");
+> >> +				return -EINVAL;
+> >> +			}
+> >> +		}
+> >> +	}
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +
+> >>  /**
+> >>   * zynqmp_r5_get_tcm_node()
+> >>   * Ideally this function should parse tcm node and store information
+> >> @@ -839,9 +906,16 @@ static int zynqmp_r5_core_init(struct zynqmp_r5_cluster *cluster,
+> >>  	struct zynqmp_r5_core *r5_core;
+> >>  	int ret, i;
+> >>  
+> >> -	ret = zynqmp_r5_get_tcm_node(cluster);
+> >> -	if (ret < 0) {
+> >> -		dev_err(dev, "can't get tcm node, err %d\n", ret);
+> >> +	r5_core = cluster->r5_cores[0];
+> >> +
+> >> +	/* Maintain backward compatibility for zynqmp by using hardcode TCM address. */
+> >> +	if (device_is_compatible(dev, "xlnx,zynqmp-r5fss"))
+> > 
+> > The previous patch moved the definition of the R5FSS to the new bindings but
+> > this is forcing to use the old bindings - did I something?
+> 
+> Hi Mathieu,
+> 
+> We need to maintain backward compatibility for zynqmp device. So, using old bindings
+> for zynqmp. For new devices (Versal and Versal-NET) new bindings are enforced in driver.
+> It's not recommended to map two programming sequences to same device. So for
+> "xlnx,zynqmp-r5fss" device old bindings are used.
+>
 
-Makes sense.
+You are not using two programming sequences for the same device, you are simply
+ensuring backward compatibility for older device tree.  The bindings for r5fss
+have been updated so the driver should be using the new method.  You have used
+"xlnx,tcm-mode" to switch between new and old bindings, do that here too.
 
-I'm still confused about one thing, maybe just because I don't really
-know how to read these bindings.  The binding now looks like this:
+I'm also not sure why Versal and Versal-NET are being added to this patchset...
+It should be in another patchset of its own.
 
-  properties:
-    compatible:
-      const: mediatek,mt7621-pci
-
-    reg:
-      items:
-        - description: host-pci bridge registers
-        - description: pcie port 0 RC control registers       # A
-        - description: pcie port 1 RC control registers       # A
-        - description: pcie port 2 RC control registers       # A
-
-  patternProperties:
-    '^pcie@[0-2],0$':
-      type: object
-      $ref: /schemas/pci/pci-pci-bridge.yaml#
-
-      properties:
-        reg:                                                  # B
-          maxItems: 1
-
-It looks like the "A" items are separate things from the "B" items?
-
-But I think the relevant code is here:
-
-  mt7621_pcie_probe
-    mt7621_pcie_parse_dt
-      pcie->base = devm_platform_ioremap_resource(pdev, 0)             # 1
-      for_each_available_child_of_node(node, child)
-        mt7621_pcie_parse_port
-          port->base = devm_platform_ioremap_resource(pdev, slot + 1)  # 2
-
-where it looks like both "1" and "2" use the items in the "A" list,
-i.e., resources 0, 1, 2, 3, all from the same platform device.  Is
-there code that uses the "B" item that this patch adds?
-
-Bjorn
+> Device tree is matching with new bindings. But that's hardware description. I believe,
+> driver can still choose to use hardcode addresses to maintain backward compatibility.
+> 
+> The end result will be same.
+> 
+> Thanks,
+> Tanmay
+> 
+> > 
+> >> +		ret = zynqmp_r5_get_tcm_node(cluster);
+> >> +	else
+> >> +		ret = zynqmp_r5_get_tcm_node_from_dt(cluster);
+> >> +
+> >> +	if (ret) {
+> >> +		dev_err(dev, "can't get tcm, err %d\n", ret);
+> >>  		return ret;
+> >>  	}
+> >>  
+> >> @@ -856,12 +930,18 @@ static int zynqmp_r5_core_init(struct zynqmp_r5_cluster *cluster,
+> >>  			return ret;
+> >>  		}
+> >>  
+> >> -		ret = zynqmp_r5_set_mode(r5_core, fw_reg_val, tcm_mode);
+> >> -		if (ret) {
+> >> -			dev_err(dev, "failed to set r5 cluster mode %d, err %d\n",
+> >> -				cluster->mode, ret);
+> >> +		ret = zynqmp_pm_set_rpu_mode(r5_core->pm_domain_id, fw_reg_val);
+> >> +		if (ret < 0) {
+> >> +			dev_err(r5_core->dev, "failed to set RPU mode\n");
+> >>  			return ret;
+> >>  		}
+> >> +
+> >> +		if (device_is_compatible(dev, "xlnx,zynqmp-r5fss") ||
+> >> +		    of_find_property(dev_of_node(dev), "xlnx,tcm-mode", NULL)) {
+> >> +			ret = zynqmp_pm_set_tcm_config(r5_core->pm_domain_id, tcm_mode);
+> >> +			if (ret < 0)
+> >> +				dev_err(r5_core->dev, "failed to configure TCM\n");
+> >> +		}
+> >>  	}
+> >>  
+> >>  	return 0;
+> >> @@ -906,16 +986,25 @@ static int zynqmp_r5_cluster_init(struct zynqmp_r5_cluster *cluster)
+> >>  	 * fail driver probe if either of that is not set in dts.
+> >>  	 */
+> >>  	if (cluster_mode == LOCKSTEP_MODE) {
+> >> -		tcm_mode = PM_RPU_TCM_COMB;
+> >>  		fw_reg_val = PM_RPU_MODE_LOCKSTEP;
+> >>  	} else if (cluster_mode == SPLIT_MODE) {
+> >> -		tcm_mode = PM_RPU_TCM_SPLIT;
+> >>  		fw_reg_val = PM_RPU_MODE_SPLIT;
+> >>  	} else {
+> >>  		dev_err(dev, "driver does not support cluster mode %d\n", cluster_mode);
+> >>  		return -EINVAL;
+> >>  	}
+> >>  
+> >> +	if (device_is_compatible(dev, "xlnx,zynqmp-r5fss")) {
+> >> +		if (cluster_mode == LOCKSTEP_MODE)
+> >> +			tcm_mode = PM_RPU_TCM_COMB;
+> >> +		else
+> >> +			tcm_mode = PM_RPU_TCM_SPLIT;
+> >> +	} else if (of_find_property(dev_node, "xlnx,tcm-mode", NULL)) {
+> >> +		ret = of_property_read_u32(dev_node, "xlnx,tcm-mode", (u32 *)&tcm_mode);
+> >> +		if (ret)
+> >> +			return ret;
+> >> +	}
+> >> +
+> >>  	/*
+> >>  	 * Number of cores is decided by number of child nodes of
+> >>  	 * r5f subsystem node in dts. If Split mode is used in dts
+> >> @@ -1100,6 +1189,8 @@ static int zynqmp_r5_remoteproc_probe(struct platform_device *pdev)
+> >>  /* Match table for OF platform binding */
+> >>  static const struct of_device_id zynqmp_r5_remoteproc_match[] = {
+> >>  	{ .compatible = "xlnx,zynqmp-r5fss", },
+> >> +	{ .compatible = "xlnx,versal-r5fss", },
+> >> +	{ .compatible = "xlnx,versal-net-r52fss", },
+> >>  	{ /* end of list */ },
+> >>  };
+> >>  MODULE_DEVICE_TABLE(of, zynqmp_r5_remoteproc_match);
+> >> -- 
+> >> 2.25.1
+> >> 
+> 
 
