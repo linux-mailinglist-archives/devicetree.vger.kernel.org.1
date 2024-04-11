@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-58431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1085B8A1F38
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 21:11:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B60C8A1F3C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 21:11:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC877288100
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 19:11:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF248283906
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 19:11:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D79914286;
-	Thu, 11 Apr 2024 19:09:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14230171C9;
+	Thu, 11 Apr 2024 19:10:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ql4Lf75Z"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wa5izdlx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3C033E48C
-	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 19:09:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CDA814F65
+	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 19:10:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712862589; cv=none; b=ctssoNXFQfFQ3ZnWBKrz0/c8dc3DEJrUzA5q1HnqtEyQJMb12s4gIOMkhx0k2kvhUEIulHLJdAtil0Hx5ruCeA4w19qdcgTX7wyTfReMbFpZkGq8pirPzJUYqICSJjRRYZZk5Q4E6r2e004NtuNQAvh1rXhe2csfYlcD6eWPxrU=
+	t=1712862657; cv=none; b=ABOsUF60RUSlnipj1rCh216ZFc0KTY5dQ1ihPrQQV6t/j7cS5EhFkBwrA8VUmFl8tCjHkv1tyevQhSJ5qGEUWtoYq954JPii1G3NV99jMoTRXjv/5IqGMEmtJPAuupZJ9tA9xwhLAYr8Ico+uLnjTqhaQY7YcIKXyRM0mgEuJtk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712862589; c=relaxed/simple;
-	bh=cavp+LCNLjYxo6Suwi+ERHyAc4fJGNXh1VhWah1icVk=;
+	s=arc-20240116; t=1712862657; c=relaxed/simple;
+	bh=fuQvFrGXXjJVqZYrBWPT8FzS4z7oPtg+2qAYwRGI3p8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J00qcMIhlTKRrFluuBV9FSjUmVqwYNMFcb3DIrR5mJB7sDH5GpC6+Er+x78aq2WJuAAmrewkPciPkN9SMypnqL7hq/caDiDKvMxs2UxaNCr3pBLfmYOH+u2ESgqpg/IaD8nnpwvTomNNZ5BeQyew82mKPIdjmKOprtEkLRqzygM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ql4Lf75Z; arc=none smtp.client-ip=209.85.128.45
+	 In-Reply-To:Content-Type; b=J0nXbT+GNt779YqJ5N5BWMbCIvMy5ZWPpsiphp2NZ5pEPYLR+gz91ou10ea0QVwH4T+uSrp2F9dY2KQJJA5M9u8ItJ7WEhqxqwWqOOBaXZmq9bLoWWCKiyMQTm//umufkzMw0xv2tze9BoMmxJI8/2PeEirgeUJpyTr1rTw+tew=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wa5izdlx; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-417d14b39feso1308655e9.2
-        for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 12:09:46 -0700 (PDT)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-416a8ec0239so1071325e9.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 12:10:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712862585; x=1713467385; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712862653; x=1713467453; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Bot4p4qlJzYz0f8yI25gEfAhoAL7UL+ZFzOhOHx9Urw=;
-        b=Ql4Lf75ZAGEvXrVG8OXV+eJ2Cx/NY9M9TMOPrMMYp/b7hqc4BQGKFvVi7+Bn7H4jVz
-         JWi9AGIhKpBf3DTgcrMQiIfJq6/aPEAW3S/ho50PLW2IEGPykzyoNBzHTaPiqRsOgFZi
-         p9RNPcxqIdZOOPJAf8VRLYyAkYAyt3c34p47LeOeU1YaCE4PJYZn8oJTrEtRxqvbBNBx
-         b1+w2OUxJH5H2Mp3pytz8QwIR47fw9b6cBeV+/Yf+u4sG0pfg7IrPuWLE6PAu6RipqJv
-         q/Cx3Q8y36ePVSwY9NS41pgnTUY10qcWxAPCrk++j2gOfSudMVHFPq60kN2UXbJX0jHR
-         +kQg==
+        bh=BoYaazQjD0tvXqOZypnTJqg/fbRzZsuu2W5M8fTRcss=;
+        b=wa5izdlxojI+6goDY+YAlrc2JTfy56azsyfRBA/dXYX9oAE80T0ogiSocJfu3sOGER
+         OwaFnqGXdpPN7GZrg6X3VQF2dGzxYjyRSPU+d5j/mPEalv78QiXXzyCMp+uyiEeuJVjV
+         ZLWU6NBOm3lG+Y4U/smEZBSDyxIUSW2wFXeFneITG9u4ZNgSJC8V2kfUH0Hpb78KQEcO
+         k9urSH8ZDxZVM6RTtV7ZW9X8Tl5/xfF6/adawBmHCCfJ17O6x6gec9BHjZHTp2U1DbVG
+         KGoX1KWoEgRONlpCiHwhetZb3ZTu4BtnOhiPUhbfHHJS5dUtUeY1FxVi37eezmMaPB3d
+         nPKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712862585; x=1713467385;
+        d=1e100.net; s=20230601; t=1712862653; x=1713467453;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Bot4p4qlJzYz0f8yI25gEfAhoAL7UL+ZFzOhOHx9Urw=;
-        b=oUa/qsilO/QnSODPux42pqhsyliWwwGISMm3pfnR56dQbLPrWNiz4wWlaz4x2JrZDy
-         mmmhSfsucXxzA8/UOezoorNrxRM8K48lwJSsNXqcdoIsHBS7+nzBGpHTjxNwm5OVYYF0
-         ZH8fs1upszCyZFbknB3v4gTWLzy7Fd3xaMG5Lka+3i8IK5j74yj0WcPlaJPKJajs3bJR
-         X66jU/mHM4Y0TFe9uyY08S97R01zbLY9BdwOZYTx8ifAzC+TJB6CaJNJWyuxn9aX+T0Q
-         84hFVJGl4WC8plcCM/uCwLNsYQsPuSbNPc1Qmbn+G/CKs5AoNBewSp296vyfKTMAnh5a
-         Tm2w==
-X-Forwarded-Encrypted: i=1; AJvYcCUpHTv8hD2gBW60j7fbDMwPHhAMYcaOKOBDsaXxdAaMSWoPmXueNsn81UefVERimE/BzT0mtpGBKejjQOwwLy7OrQFbcPtOB4tWnw==
-X-Gm-Message-State: AOJu0YwXNL9iD2/LpnRD8ci5I0tH3BxONb1DFjSa9CNa0wHz01gD7aw7
-	OKFMV5y52cs7AVJmjGJIvpFY7eZ8117UoLg0j39aKchH/mHJV8FkGngOxixba6A=
-X-Google-Smtp-Source: AGHT+IHZUOS5brHa+g2Cz4HV010NylLE8FMAZeToMRc2tDxi39AIESJYbq0cm/SDQ8sFrPU3mNk+qg==
-X-Received: by 2002:a05:6000:11c2:b0:343:878d:d691 with SMTP id i2-20020a05600011c200b00343878dd691mr284875wrx.47.1712862584830;
-        Thu, 11 Apr 2024 12:09:44 -0700 (PDT)
+        bh=BoYaazQjD0tvXqOZypnTJqg/fbRzZsuu2W5M8fTRcss=;
+        b=K6GY7b/ukp1MrhvMfphIs5XyuCbltnR9stizmmpnJgACEQEtZDLtXy2cYlBswJO7r7
+         oqQDHPbcl4+wuukNHRm/B+fQ0yXL3IGFwA2QEtgmFeWCgLw6NXMaBRF2HV3OGO4UY3dD
+         L968YtDS8LniXVTDzW1nh1AZ+f+c8nsbxMjQWwZ+gr10wikMLSXGrjexC0WusTtzxCyY
+         ikBw9abhop5Eew/SGdAY5O77oN7fAdt9CveswJxf7Vv1lo0RBQUE/1JmsYr5cm4YtBqW
+         Jwf38vSk7vcw/t4NSnG/S5HzpwLPzbuEdEJ42ez5h5df0oIG9Z1NnwdWJpGMjAitaJIC
+         dU5w==
+X-Forwarded-Encrypted: i=1; AJvYcCVZdBxQSEHhLF6yZ0JNh3ZIofhmuPlY8FtyulKP2QSS8YICNIp1sOzKgpW0xyDrYHLYG4mlj6K8Scf0EGKL+yTLB+aOWmCQ1uFRwQ==
+X-Gm-Message-State: AOJu0YwRkUgyJAntXsZYqYDlXmzRt4Hgcmlanq5q9/hud1S6FG9yjwbu
+	ISi/Kor3qME/ibyLOYkYeK0Gc7onizx9jiz4Ce9c+f2Hnw3nqlckYzyfQUV+0fM=
+X-Google-Smtp-Source: AGHT+IGNwRUeyUvir55Byrpd3SEPNB7KQCbiphw8y28HpOspgFi8BwSF67pPoL4qOgdRrKMeeL3lOw==
+X-Received: by 2002:a05:600c:35c5:b0:416:69cf:d5f8 with SMTP id r5-20020a05600c35c500b0041669cfd5f8mr3467918wmq.6.1712862653510;
+        Thu, 11 Apr 2024 12:10:53 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id d16-20020adff2d0000000b003418364032asm2405193wrp.112.2024.04.11.12.09.43
+        by smtp.gmail.com with ESMTPSA id r10-20020a05600c35ca00b00415dfa709dasm3185355wmq.15.2024.04.11.12.10.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Apr 2024 12:09:44 -0700 (PDT)
-Message-ID: <dcf612e6-cfe6-4a4d-8001-2e9912534807@linaro.org>
-Date: Thu, 11 Apr 2024 21:09:42 +0200
+        Thu, 11 Apr 2024 12:10:52 -0700 (PDT)
+Message-ID: <bb250368-d1d2-41dd-abef-ae505a4a5d33@linaro.org>
+Date: Thu, 11 Apr 2024 21:10:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,22 +77,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/7] dt-bindings: PCI: qcom: Add IPQ9574 PCIe
- controller
-To: mr.nuke.me@gmail.com, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: Add Loongson PWM controller
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, Binbin Zhou
+ <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240409190833.3485824-1-mr.nuke.me@gmail.com>
- <20240409190833.3485824-4-mr.nuke.me@gmail.com>
- <dbee301e-2e31-4db0-877a-96c972ea4bca@linaro.org>
- <bcb03c7d-f566-11cc-21e2-47e5c5a0776a@gmail.com>
+ Conor Dooley <conor+dt@kernel.org>, Juxin Gao <gaojuxin@loongson.cn>,
+ Huacai Chen <chenhuacai@kernel.org>, loongson-kernel@lists.loongnix.cn,
+ linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+ Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
+References: <cover.1712732719.git.zhoubinbin@loongson.cn>
+ <38c234d548b4b9c334cda6e7664a803896b31f6f.1712732719.git.zhoubinbin@loongson.cn>
+ <c1399191-6c6d-4eb4-b05b-f87a9f2b4152@linaro.org>
+ <CAMpQs4JiLGJ-nBDmj1pe0SCqKeCnz5DrybJAKE8_6up293YNpw@mail.gmail.com>
+ <98d12a5e-e291-40f9-8334-3b5f53ed79a8@linaro.org>
+ <CAMpQs4KgzOjJe52BAhTb5P4t5ZynkW9AUEzPBkX_1h5XHuk5Ew@mail.gmail.com>
+ <b551f712-ed95-4d90-b0fd-7cf471bc9eee@linaro.org>
+ <k2v7ibfc5vjprfw6gvrcelbknhxqf7mnybsnbb2avj6qblkmqz@graeaj372hcg>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -139,53 +141,118 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <bcb03c7d-f566-11cc-21e2-47e5c5a0776a@gmail.com>
+In-Reply-To: <k2v7ibfc5vjprfw6gvrcelbknhxqf7mnybsnbb2avj6qblkmqz@graeaj372hcg>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 11/04/2024 20:00, mr.nuke.me@gmail.com wrote:
+On 11/04/2024 17:21, Uwe Kleine-König wrote:
+> Hello,
 > 
-> 
-> On 4/9/24 15:08, Krzysztof Kozlowski wrote:
->> On 09/04/2024 21:08, Alexandru Gagniuc wrote:
->>> IPQ9574 has PCIe controllers which are almost identical to IPQ6018.
->>> The only difference is that the "iface" clock is not required.
->>> Document this difference along with the compatible string.
+> On Thu, Apr 11, 2024 at 04:44:37PM +0200, Krzysztof Kozlowski wrote:
+>> On 11/04/2024 16:35, Binbin Zhou wrote:
+>>> On Thu, Apr 11, 2024 at 5:07 PM Krzysztof Kozlowski
+>>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>>
+>>>> On 11/04/2024 13:01, Binbin Zhou wrote:
+>>>>> On Thu, Apr 11, 2024 at 4:26 PM Krzysztof Kozlowski
+>>>>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>>>>
+>>>>>> On 11/04/2024 11:16, Binbin Zhou wrote:
+>>>>>>> Add Loongson PWM controller binding with DT schema format using
+>>>>>>> json-schema.
+>>>>>>>
+>>>>>>> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+>>>>>>
+>>>>>>
+>>>>>>> +properties:
+>>>>>>> +  compatible:
+>>>>>>> +    oneOf:
+>>>>>>> +      - const: loongson,ls7a-pwm
+>>>>>>> +      - items:
+>>>>>>> +          - enum:
+>>>>>>> +              - loongson,ls2k0500-pwm
+>>>>>>> +              - loongson,ls2k1000-pwm
+>>>>>>> +              - loongson,ls2k2000-pwm
+>>>>>>> +          - const: loongson,ls7a-pwm
+>>>>>>> +
+>>>>>>> +  reg:
+>>>>>>> +    maxItems: 1
+>>>>>>> +
+>>>>>>> +  interrupts:
+>>>>>>> +    maxItems: 1
+>>>>>>> +
+>>>>>>> +  clocks:
+>>>>>>> +    maxItems: 1
+>>>>>>> +
+>>>>>>> +  '#pwm-cells':
+>>>>>>> +    description:
+>>>>>>> +      The first cell must have a value of 0, which specifies the PWM output signal;
+>>>>>>
+>>>>>> If you have always the same value in PWM phandle, why encoding it in the
+>>>>>> phandle in the first place? What's the benefit of passing 0?
+>>>>>
+>>>>> Hi Krzysztof:
+>>>>>
+>>>>> My thoughts are:
+>>>>> First of all, our pwm has only one output signal, so it can only be 0.
+>>>>> Also, as you know from the pwm xlate function, the first cell is the
+>>>>> pwm index, so I fixed it to be 0 here.
+>>>>>
+>>>>> The xlate function:
+>>>>> https://elixir.bootlin.com/linux/v6.8/source/drivers/pwm/core.c#L106
+>>>>
+>>>> You refer for xlate for PWM with three cells. You do not have three
+>>>> cells, as you have only on signal, so why insisting on using other
+>>>> xlate? Do you do the same for clocks? Or resets?
+>>>>
+>>>> I don't think you use appropriate argument in this discussion. We talk
+>>>> about hardware and your argument "I don't want to use my own xlate in
+>>>> the driver" is about driver.
+>>>>
+>>> Hi Krzysztof:
 >>>
->>> Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
->>> ---
->>>   .../devicetree/bindings/pci/qcom,pcie.yaml    | 34 +++++++++++++++++++
->>>   1 file changed, 34 insertions(+)
+>>> Thanks for your comments.
 >>>
->>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
->>> index cf9a6910b542..1915bea580d3 100644
->>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
->>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
->>> @@ -26,6 +26,7 @@ properties:
->>>             - qcom,pcie-ipq8064-v2
->>>             - qcom,pcie-ipq8074
->>>             - qcom,pcie-ipq8074-gen3
->>> +          - qcom,pcie-ipq9574
->>>             - qcom,pcie-msm8996
->>>             - qcom,pcie-qcs404
->>>             - qcom,pcie-sdm845
->>> @@ -397,6 +398,37 @@ allOf:
->>>               - const: axi_m_sticky # AXI Master Sticky reset
->>>               - const: axi_s_sticky # AXI Slave Sticky reset
->>>   
+>>> Emm... Indeed, I used to think about it from the driver's perspective.
+>>> From the binding perspective, two cells really should be more appropriate.
+>>> I try to make the following changes in the next version patchset:
+>>>
+>>>   '#pwm-cells':
+>>>     description:
+>>>       The first cell is the period in nanoseconds;
+>>>       The second cell flag supported by this binding is PWM_POLARITY_INVERTED.
+>>>     const: 2
+>>>
+>>> Accordingly, the custom xlate function will be used in the driver.
 >>
->> Where do you constrain the reg?
+>> If your other, upcoming variants had more PWM outputs, then I would find
+>> reasonable keeping cells=3 to have one approach for all of them. But I
+>> guess that's not the case here.
 > 
-> I didn't realize that was also required -- the make checks should have 
-> picked this up too? I might be invoking the tests incorrectly.
+> There is an easy way to get rid of the 0, just use chip->of_xlate =
+> of_pwm_single_xlate; Having said that, I don't particularily like that.
+> If it wasn't for dt bindings being stable I'd argue for all PWM chips to
+> use #pwm-cells = <3>; and accept that the 2nd field is zero for
+> consistency.
 > 
-> I should add the ipq9574 in the same list as ipq8074-gen3 and ipq6018, 
-> correct?
+> Some statistics:
+> 
+> There are only two drivers that use of_pwm_single_xlate:
+>  - drivers/pwm/pwm-pxa.c
+>  - drivers/gpu/drm/bridge/ti-sn65dsi86.c
+> 
+> There is one driver that uses a completely custom xlate function (and
+> #pwm-cells = <1>, to specify the pwmid; the period is fixed):
+>  - drivers/pwm/pwm-cros-ec.c
+> 
+> All 65 other drivers use #pwm-cells = <3> with the "usual" semantic. At
+> least 21 among them only have a single output and so always use 0 in the
+> 2nd cell.
+> 
+> So I'm all in favour to stick to the approach used in this binding for
+> the sake of consistency among the drivers^Wbindings.
 
-If you add new variant, look at existing compatibles where they appear.
-If there is a if: constraining compatibles, then it's a hint you should
-do the same for your device. So yes, you must constrain all properties
-which are made flexible in top-level properties.
+Seems fine, thanks for the explanation.
 
 Best regards,
 Krzysztof
