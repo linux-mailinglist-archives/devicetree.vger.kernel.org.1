@@ -1,161 +1,133 @@
-Return-Path: <devicetree+bounces-58353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D00D8A1760
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 16:36:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22AC78A1783
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 16:39:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED7E11F26090
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 14:36:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CAEB11F222EE
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 14:39:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02023946F;
-	Thu, 11 Apr 2024 14:36:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1655171B6;
+	Thu, 11 Apr 2024 14:39:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nrexifsf"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="X+rnlLe8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD9724A0F;
-	Thu, 11 Apr 2024 14:36:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09B67E556;
+	Thu, 11 Apr 2024 14:39:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712846214; cv=none; b=bRxJcVgUjLQVP1q7H6QCH/lxVkXgb2l9mUYWNNmjWL7BmEkMbkOD4VFY6uRKmjWLjpWvWHOeKdZgzFnhi+TjYedjIFoJ9FGwfY++z+EN6GkTdTDRt4IRNlm/9NoeJa3jwq4hffq+3NzRB80P0MHHZalP9R0cTntDiYuiPf8iXIU=
+	t=1712846344; cv=none; b=cIvCldgiW5vt2g0JHKBKlyGOoEEiK+hrCPai1oV9TduKvGVLW9uMvz27/l+5XNaRibVzXBTfhT9XWLKx4rZYD03Js+aflO9s5UmG2xrrnb7ZaxAeQ3NNeRcIle8E8Bi92QOipavTp49+sgBipxtYpEkrjLBXJVuXSE3x9oIFYM4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712846214; c=relaxed/simple;
-	bh=IewoV/etTVhMO123uGpbggCD3+VxEchZ/PN0HJueGTg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=q71FV+X9c98moum+jrQudh3B2d+8kEsXGtX4zbUEFpNg1ciZ2LO3WYhLrnvGAWO/OfLqjJXVS4hV/955amQgVo5R5meKGyy0m9Bzptp6XKuJCGaEZeMZzKcMBT5/ntd+sfmCKBFpinGmjp1CjHGfLrCu30+jb/2/eKcCep8MxSc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nrexifsf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A8ADC072AA;
-	Thu, 11 Apr 2024 14:36:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712846214;
-	bh=IewoV/etTVhMO123uGpbggCD3+VxEchZ/PN0HJueGTg=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=NrexifsfvYtAd035gY1nxJkw5su2bADiPYW2S1BQNmWDrkN1u2L1RX9Ap1hUw8jp0
-	 gDuHZ4HcMD/BMDML+89BdOdg4bYaGP50Uu9ziE8rnSPnNruoSSA/oKwXB8CPjpBQfs
-	 PyDY6QZcIxuu5lUT/6vvEGiyuI5Cu3aC5gOghLuvqgkeo42zVuhFmLUMhy+cedkh6W
-	 0pSxDNuSgMPb6jIF9eChphXibSls3IeXpLdudgf81PnqF2+LVlcd8eKDKvSPyHxWLq
-	 oRgdWZnemI+V8tAjXLvffM7zHt2fjHy8StlJRpBB4jLjl4D0sC5G2mc6q+cS6sfW/d
-	 g3tYNlxr9WEeg==
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-516d68d7a8bso817362e87.1;
-        Thu, 11 Apr 2024 07:36:54 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVbTRWF8bLZBIcLaEOF1xs7szt9kzOizzM8QUjrG/LEWiKlDvLqeB9gs9TdL0sEOgia21C0MeDo4nbeoTPq3Gudb9OVqVcsVH6GKA1PgvHBFCwyhwx4MKIZVAnwYgXtXh/1MBpc/h5U
-X-Gm-Message-State: AOJu0YwJmeK8qDC8OlFNmRmZoNanDnYE8B3ZN6YKPBd8lXVgW/XkHMkk
-	mXlXYAh+xPMGWX5wHNbsip8gdHFCisxPCaaVu5lM+0z42oQLJ0dx6naWBbvEeX3OHDTNPofSRIR
-	pLV/fxH1+R5/aO280e07tbt6svQ==
-X-Google-Smtp-Source: AGHT+IGz4GuUoIA2mfwiI30l9Lwfa4dJPZoK0Pb/jyu01DJB6UR3gI6Y5I7rlAqNsTMMhxCMCxHsbb8iha4oP99XyuE=
-X-Received: by 2002:a05:6512:490:b0:517:5d67:6db2 with SMTP id
- v16-20020a056512049000b005175d676db2mr925190lfq.10.1712846212691; Thu, 11 Apr
- 2024 07:36:52 -0700 (PDT)
+	s=arc-20240116; t=1712846344; c=relaxed/simple;
+	bh=7bY6nOkOAlF1gyhNvUOhk5vTC8tNW8cjWAcSwtGF6BU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=KqidGHKD5bN+OhZxYJUjj44LYESIUTZQ/WbAXoUH88V/HeZHcOA6xlBIXUDcKjwzH6ukdNJashzlZ/ZaRejjBEM7q+yxkoiRaFSQxZujunIN5BuZihL70BwgzoiacW52bONC96pd1K6F741aBKPQiufUyNOCsvwTXv19LMd/w8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=X+rnlLe8; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43BCl6W4029833;
+	Thu, 11 Apr 2024 16:38:35 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=R3t6i2R
+	wKT1qwlckR/vo2LKwYj9pYC+YLWuQmMNxUu0=; b=X+rnlLe89rFmtVYeXFgY67M
+	2U85EeIgO+B9edFEsgxK1mrRyOpWRbZV78aVfR14J/4hZPcYAmLnQJWxY22H77Ss
+	oO9qBSfrnxSLXPGhN/g41E5nDLOQfl6m3/EBYfZDQaFKicom1yH25EGbyYlnpzg5
+	bcLCLofjGy4NMBgX6gQ3OrFaLS3fJ4DVKpi0OB6xTFW+mQam6BJRa+7UA7QQBRDR
+	DWUo5lnNmiWDyttYGRIIbCSvqACUgZNK1CoDB8EE02FkjJyXQ9/jvbXueF95ypxO
+	QV2UcMOl/TNq3Kj6+lsAfs6QwQV/PEnVPwrAxACyvSrs+FqejCgEwctSZeSjplQ=
+	=
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3xbfy13qxj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 11 Apr 2024 16:38:35 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 64CCD40044;
+	Thu, 11 Apr 2024 16:38:30 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id BE42A21BF52;
+	Thu, 11 Apr 2024 16:37:21 +0200 (CEST)
+Received: from localhost (10.48.86.106) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 11 Apr
+ 2024 16:37:21 +0200
+From: Christophe Roullier <christophe.roullier@foss.st.com>
+To: "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni
+	<pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Jose Abreu <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark
+ Brown <broonie@kernel.org>,
+        Christophe Roullier
+	<christophe.roullier@foss.st.com>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH 00/11] Series to deliver Ethernets for STM32MP13
+Date: Thu, 11 Apr 2024 16:36:47 +0200
+Message-ID: <20240411143658.1049706-1-christophe.roullier@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240409082324.9928-1-jonathanh@nvidia.com> <ea3be8f7-0ee6-4940-828d-2fc15b9239dc@kernel.org>
- <b726b5a0-45f4-457c-afad-6235c1adb640@nvidia.com>
-In-Reply-To: <b726b5a0-45f4-457c-afad-6235c1adb640@nvidia.com>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 11 Apr 2024 09:36:39 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLf9Obb8wTeriRVopT=jxDoV0i_RvdJibsUsgJt4jOAXQ@mail.gmail.com>
-Message-ID: <CAL_JsqLf9Obb8wTeriRVopT=jxDoV0i_RvdJibsUsgJt4jOAXQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: host1x: Add missing 'dma-coherent'
-To: Jon Hunter <jonathanh@nvidia.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	Mikko Perttunen <mperttunen@nvidia.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-tegra@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-11_08,2024-04-09_01,2023-05-22_02
 
-On Thu, Apr 11, 2024 at 5:09=E2=80=AFAM Jon Hunter <jonathanh@nvidia.com> w=
-rote:
->
->
-> On 10/04/2024 07:18, Krzysztof Kozlowski wrote:
-> > On 09/04/2024 10:23, Jon Hunter wrote:
-> >> The dtbs_check reports that the 'dma-coherent' property is "unevaluate=
-d
-> >> and invalid" for the host1x@13e00000 device on Tegra194 and Tegra234
-> >> platforms. Fix this by updating the dt-binding document for host1x to
-> >> add the 'dma-coherent' property for these devices.
-> >
-> > That's not really proper reason. What if DTS is wrong? The reason could
-> > be if device is actually DMA coherent...
->
-> In this case the DTS is correct. I guess I should have been more
-> explicit about that.
->
-> >> Fixes: 361238cdc525 ("arm64: tegra: Mark host1x as dma-coherent on Teg=
-ra194/234")
-> >> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> >> ---
-> >>   .../bindings/display/tegra/nvidia,tegra20-host1x.yaml | 11 +++++++++=
-++
-> >>   1 file changed, 11 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,te=
-gra20-host1x.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,=
-tegra20-host1x.yaml
-> >> index 94c5242c03b2..3563378a01af 100644
-> >> --- a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-h=
-ost1x.yaml
-> >> +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-h=
-ost1x.yaml
-> >> @@ -177,6 +177,15 @@ allOf:
-> >>
-> >>         required:
-> >>           - reg-names
-> >> +  - if:
-> >> +      properties:
-> >> +        compatible:
-> >> +          contains:
-> >> +            enum:
-> >> +              - nvidia,tegra194-host1x
-> >> +    then:
-> >> +      properties:
-> >> +        dma-coherent: true
-> >
-> > Do not define properties in allOf. Put it in top-level. If not all
-> > devices are DMA coherent, you can disallow it for certain variants (:fa=
-lse).
->
->
-> So for host1x we currently have the following devices supported ...
->
-> properties:
->    compatible:
->      oneOf:
->        - enum:
->            - nvidia,tegra20-host1x
->            - nvidia,tegra30-host1x
->            - nvidia,tegra114-host1x
->            - nvidia,tegra124-host1x
->            - nvidia,tegra210-host1x
->            - nvidia,tegra186-host1x
->            - nvidia,tegra194-host1x
->            - nvidia,tegra234-host1x
->
->        - items:
->            - const: nvidia,tegra132-host1x
->            - const: nvidia,tegra124-host1x
->
->
-> Now only the Tegra194 and Tegra234 are coherent (which are the latest
-> devices). So rather than add this to the top and then filter out all
-> those that are not supported, I opted for the above because there is
-> only 2 devices that need this. Admittedly, as much as I like the yaml
-> bindings, for things like this, it is not really clear which is the best
-> way to handle, so appreciate the guidance.
+STM32MP13 is STM32 SOC with 2 GMACs instances
+This board have 2 RMII phy:
+  -Ethernet1: RMII with crystal
+  -Ethernet2: RMII without crystal
+Rework dwmac glue to simplify management for next stm32
+Add support for PHY regulator
 
-I would say how you have it is fine, but that would only be for common
-boolean properties with no possible constraints. Having that exception
-would make the preferences less clear I think.
+Christophe Roullier (11):
+  dt-bindings: net: add STM32MP13 compatible in documentation for stm32
+  dt-bindings: net: add phy-supply property for stm32
+  net: ethernet: stmmac: rework glue to simplify management for next
+    stm32
+  net: ethernet: stmmac: add management of stm32mp13 for stm32
+  net: ethernet: stmmac: stm32: update config management for phy wo
+    cristal
+  net: ethernet: stm32: clean the way to manage wol irqwake
+  net: ethernet: stmmac: stm32: support the phy-supply regulator binding
+  ARM: dts: stm32: add ethernet1 and ethernet2 support on stm32mp13
+  ARM: dts: stm32: add ethernet1/2 RMII pins for STM32MP13F-DK board
+  ARM: dts: stm32: add ethernet1 and ethernet2 for STM32MP135F-DK board
+  ARM: multi_v7_defconfig: Add MCP23S08 pinctrl support
 
-Rob
+ .../devicetree/bindings/net/stm32-dwmac.yaml  |  83 ++++++-
+ arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi   |  71 ++++++
+ arch/arm/boot/dts/st/stm32mp131.dtsi          |  31 +++
+ arch/arm/boot/dts/st/stm32mp133.dtsi          |  30 +++
+ arch/arm/boot/dts/st/stm32mp135f-dk.dts       |  48 ++++
+ arch/arm/configs/multi_v7_defconfig           |   1 +
+ .../net/ethernet/stmicro/stmmac/dwmac-stm32.c | 235 ++++++++++++------
+ 7 files changed, 421 insertions(+), 78 deletions(-)
+
+-- 
+2.25.1
+
 
