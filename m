@@ -1,91 +1,76 @@
-Return-Path: <devicetree+bounces-58137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AB628A096D
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 09:14:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F04A8A0987
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 09:18:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 09BE71F2224B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 07:14:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2EF111F24BB2
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 07:18:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA5E213DBBC;
-	Thu, 11 Apr 2024 07:13:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E89713DDBF;
+	Thu, 11 Apr 2024 07:18:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V2yW8qZY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j8lWqN0C"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7EA513CAB3;
-	Thu, 11 Apr 2024 07:13:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56266523A;
+	Thu, 11 Apr 2024 07:18:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712819630; cv=none; b=UvAbggGjjkkO5IecAL9GsN0wJRjT9WKATng8cES+zR4h+3SDPEWh+jmgqn16m5A9/1do7wFKNmeRfLHy1Bg92a6kJn87A2/0b/efgX8G2eQUvqU0eZ24l3WBZIuT8hLEUuCwo1uB1h1pngHf2sYbzpFmcBtwmsgOAHh/3Mxk1YM=
+	t=1712819905; cv=none; b=WpUxvTS8WD5qVltft7suPWDANS+Osmk8yiJ5sAy9MYVHaeK66ZBf4RE345UP/vWm6VBHZ30l0oVTwlEysaKKh2LLqM2RpITEEpUniNuelbrPMMM15XPIqHIZUdxuY1wjA5SxziSih28rBsx0zg2cIEfOb4Z35aC6XJYTjmz3Uf8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712819630; c=relaxed/simple;
-	bh=T2onanXhUB90qbp92d4O/yikgUDkfoXcWX/VnkksrUI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NyGoVVl8Ahn/g3IEIBwBxyKsjMKCkag/An8RvBg+CYIlLE/y1PRs/whAon6geUE8TbIxPMwPEaL57Ov854pn10WIKNyHWaJt+nBswyORF/5PCnSGuiXt3n3WD7+txpbdPeH0+ufsk1zLMZWGF2DqTHBCteNODRt/x1lKB0VRnEk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V2yW8qZY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6868C43394;
-	Thu, 11 Apr 2024 07:13:47 +0000 (UTC)
+	s=arc-20240116; t=1712819905; c=relaxed/simple;
+	bh=Fxl3UAxxdccge/7kQbDMtazesOqAlbDnWZK9DuxS59Y=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=SejrNnE1gJXtJ6rBJnF+zK/jVlprGk9wBtpJs0FP0w/QIjJaFrC/WL7VwSPZoFWcpqnEVyYWP4dMp4OKPn3Zor4OjaTmDybaSZauzeMCkfJQFvSTekIAc0R5vqoU0bdH6Gt2xYL+1a/09ou7/gxxrifYRy05ESocll/BrjITRgg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j8lWqN0C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD5E9C433C7;
+	Thu, 11 Apr 2024 07:18:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712819630;
-	bh=T2onanXhUB90qbp92d4O/yikgUDkfoXcWX/VnkksrUI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=V2yW8qZYPrgZm48lFWXmmyAAjk2yjr5uXgZynyxgAjZ5UeSBzPdwmAWIvaPzuY+EJ
-	 7Ds/gv9fjtHA/z1Y7SI8FFrIXyw3aP+chII4UQF0VDcYjwMrm0LeAwdpGEUnSbk0A3
-	 MPu1uJqxNOSibXBYK+ochRdRk8InqS6377pLX7rgx1zYrSeje3TypkX+5tYUVBDtvH
-	 ORARQNKLYmnykXV76oafHFt+MzRgznD6wazUGOEP6IMRJ8xo1+OSAqCbQS0eULBD/x
-	 Tsqsk+QSq+d0/TaAvAqR9pdCcQEIiPzWXSaTvnBz2zvp+YBF25AMvnzc5px/DJqBD0
-	 ILVJS10uJ2ZQg==
-Date: Thu, 11 Apr 2024 08:13:45 +0100
-From: Lee Jones <lee@kernel.org>
-To: Gergo Koteles <soyer@irl.hu>
-Cc: Ike Panhc <ike.pan@canonical.com>, Hans de Goede <hdegoede@redhat.com>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	platform-driver-x86@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: leds: add LED_FUNCTION_FNLOCK
-Message-ID: <20240411071345.GF6194@google.com>
-References: <cover.1712063200.git.soyer@irl.hu>
- <8ac95e85a53dc0b8cce1e27fc1cab6d19221543b.1712063200.git.soyer@irl.hu>
+	s=k20201202; t=1712819904;
+	bh=Fxl3UAxxdccge/7kQbDMtazesOqAlbDnWZK9DuxS59Y=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=j8lWqN0CKk+hoSc6tvXsWqN3Y6MPkwduDHe9xcToKFwimYhHzc7F1MFPWHacMfkKv
+	 qQXZdsg8GjJQIav7E8lyw2+ZUuqrkS+s/2H0sKGp0TBbq3dnL9d37cFexdebxwB3MY
+	 BEl0OeZhvhCVbCNNcD8r9iM09w9T8JiXfdOmyNPv3OOpOC8Y/Pt1/gvltsyyVjw4GW
+	 cCExcrZYrZungv+EcmPmaeLlBKCkPaDZgIIdfe6WFhftOEO1MjuFkxP1XRhT/yBih5
+	 jhm9wethMGtpYcqT4wYpXUUE3EjmnGA1sr8Q2QqiVBb+DVKkAm0WTcJJEPJnVWdaoh
+	 8Irzz+eQ3wTyA==
+Message-ID: <91d20871180273b2898645ed61028882.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8ac95e85a53dc0b8cce1e27fc1cab6d19221543b.1712063200.git.soyer@irl.hu>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAPUP7E7RmfOpN4C+BZT-52OeLe349NY_XPaj6HaiG_O42r9n9g@mail.gmail.com>
+References: <20231215115914.11588-1-zhifeng.tang@unisoc.com> <20231215115914.11588-3-zhifeng.tang@unisoc.com> <057db34aae21f78ca68ca0cc2930c97f.sboyd@kernel.org> <CAPUP7E7RmfOpN4C+BZT-52OeLe349NY_XPaj6HaiG_O42r9n9g@mail.gmail.com>
+Subject: Re: [PATCH V3 2/3] clk: sprd: Add reset controller driver for ums512
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Baolin Wang <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Orson Zhai <orsonzhai@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>, Zhifeng Tang <zhifeng.tang@unisoc.com>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Wenming Wu <wenming.wu@unisoc.com>
+To: tang zhifeng <zhifeng.tang23@gmail.com>
+Date: Thu, 11 Apr 2024 00:18:22 -0700
+User-Agent: alot/0.10
 
-On Tue, 02 Apr 2024, Gergo Koteles wrote:
+Quoting tang zhifeng (2024-01-15 18:10:45)
+>=20
+> Dear Stephen
+> We clock controller register block also contains reset bits for some of t=
+hese
+> peripherals=EF=BC=8C
+> so reset controller and clock provider are combined together as a block,a=
+nd put
+> it under the driver/clk/.
+> Under driver/clk/, we can also see that other manufacturers support reset
+> controller=E3=80=82
 
-> Newer laptops have FnLock LED.
-> 
-> Add a define for this very common function.
-> 
-> Signed-off-by: Gergo Koteles <soyer@irl.hu>
-> ---
->  include/dt-bindings/leds/common.h | 1 +
->  1 file changed, 1 insertion(+)
-
-Hans,
-
-You can take this in via the x86 tree, but please capitalise the first
-letter of the subject line when doing so.
-
- dt-bindings: leds: Add LED_FUNCTION_FNLOCK
-
-Acked-by: Lee Jones <lee@kernel.org>
-
--- 
-Lee Jones [李琼斯]
+I still don't see any reason why it can't be an auxiliary device and the
+reset driver put in drivers/reset/
 
