@@ -1,131 +1,171 @@
-Return-Path: <devicetree+bounces-58425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5C798A1ED3
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 20:45:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2C8F8A1EF8
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 20:55:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FC2428D638
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 18:45:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 870D6282895
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 18:55:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB144205E28;
-	Thu, 11 Apr 2024 18:42:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4BB7205E1E;
+	Thu, 11 Apr 2024 18:55:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hPzQKzVn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35D6B205E06
-	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 18:42:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7158A12E5D;
+	Thu, 11 Apr 2024 18:55:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712860975; cv=none; b=Pxqa1+yWHCuZJgu7eZ2faQjv7ZlQt7tNgAiRC2CKmrYHjn4UnDC61nNrvRn6SYebm8wWTOnE4vR+9KQq+c6drRuDTXTaprV+JrU8G+P+i4X4L8yYi2ZeapxT2KLhaKm6zsB8LXVXpVxsS9rIbI35UexegWLLvMF72sPbFhTrug8=
+	t=1712861732; cv=none; b=RFp8lfNA4qBiQ+yyLziPY70BuCSx46nl/ovCyD1ZQqEVOWCwkH5ar09Gw60L0wtUY6hxUOA/wrDvFIbblvIOzUrPkOWTtt7lDBVWJkT9swMEUJ6QxaI2+60NLYxQbG2nkLW1q0USwBEHyRhkAhO3lWlTI8D71Sx1I7IDMJbxHWE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712860975; c=relaxed/simple;
-	bh=PlwOz2nj5olIFQ6JWBzsa6f2IdOLbkTR9r5KY02PlYw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=T0OVfZNJmcIWT6qiQaHyMCFMbrUrsqn0ICamFqJ7h9Egt8e94EdQ19WXCkdqzQDAaVULUdB/nn3jLUOQ8b1thE4y9jsqM5sm0A6FpOltbt5abMqL8dND5+RtVEwnNmDluy3ihvtcNd69WnYZHQ0f4P1KvlKQQIpAzoeYCifnh/Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from ip-185-104-138-67.ptr.icomera.net ([185.104.138.67] helo=phil.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1ruzNq-00021k-Hd; Thu, 11 Apr 2024 20:42:50 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: linux-rockchip@lists.infradead.org, Chris Morgan <macroalpha82@gmail.com>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, robh@kernel.org,
- Chris Morgan <macromorgan@hotmail.com>
-Subject:
- Re: [PATCH 4/4] arm64: dts: rockchip: Describe Alternate Regulator Config on
- RGB30
-Date: Thu, 11 Apr 2024 20:42:44 +0200
-Message-ID: <2252888.taCxCBeP46@phil>
-In-Reply-To: <20240325175133.19393-5-macroalpha82@gmail.com>
-References:
- <20240325175133.19393-1-macroalpha82@gmail.com>
- <20240325175133.19393-5-macroalpha82@gmail.com>
+	s=arc-20240116; t=1712861732; c=relaxed/simple;
+	bh=82WAuKFIq3XAh9McX3MVSvtMbClD44X+hGmbxb/6VSs=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=luPKq1iIJCsXO6ZHoxkvyYmzerpaj6y4y1pFiafDht/6zABQcyZwOcPkO82shv4X0G4MyLCBagCNL7kmg7u3AE+nuUCeHu8kTlYjfeIkO8Aze5hFSDMCElXcCcAvwinjWnv2kjGgh3Jt+tidWN9+iJGc2jJPyeptNEELhGe1OCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hPzQKzVn; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43BCvQPb022085;
+	Thu, 11 Apr 2024 18:55:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=qcppdkim1; bh=13hWRm+TBL3RIJcw2GrbA
+	uy0XhTMQdVLg5bf1cuNnwQ=; b=hPzQKzVn5pJ23T/voDQpLrvFroMlqgnJdP3AB
+	4zVxLuMNyTkigBn6MNA37m4H4bsr6VVVZ1fSpuc1dFfO87kSMdagaBZ+JQkfoMnw
+	gD9vecUN3vFrDUut1dm4vVa+8NpbasXQJ5osXv36zWgLhT2u4BD7VeWU4aLGnhZS
+	nbE89JyHt+ZO5RfiscXV4bcY8uSeKQDtjaBp8cN38kOBRxzvCFVhGcHnCpRO12vm
+	FFvNnWMIgnh+Fm72IJ7RL07XpPrxtrmcUMh8UXIplANXgSt77BfiNc17ylW1VaMc
+	gVp05IAcgq4EaFGZ0R7yxjQsI9DrtrHui5LX6u0EsXoQfWAow==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xec6dj0y5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 11 Apr 2024 18:55:21 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43BItK8q012763
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 11 Apr 2024 18:55:20 GMT
+Received: from hu-eberman-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 11 Apr 2024 11:55:19 -0700
+Date: Thu, 11 Apr 2024 11:55:19 -0700
+From: Elliot Berman <quic_eberman@quicinc.com>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>, Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten
+	<marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, "Daniel
+ Vetter" <daniel@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 1/6] soc: qcom: Move some socinfo defines to the header,
+ expand them
+Message-ID: <20240410132510649-0700.eberman@hu-eberman-lv.qualcomm.com>
+References: <20240405-topic-smem_speedbin-v1-0-ce2b864251b1@linaro.org>
+ <20240405-topic-smem_speedbin-v1-1-ce2b864251b1@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240405-topic-smem_speedbin-v1-1-ce2b864251b1@linaro.org>
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: mrfVQikCksSyfWHu_d7-aNRvrtFnBno1
+X-Proofpoint-ORIG-GUID: mrfVQikCksSyfWHu_d7-aNRvrtFnBno1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-11_10,2024-04-09_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1011
+ phishscore=0 bulkscore=0 malwarescore=0 impostorscore=0 priorityscore=1501
+ mlxlogscore=999 lowpriorityscore=0 mlxscore=0 adultscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2404010003
+ definitions=main-2404110138
 
-Am Montag, 25. M=E4rz 2024, 18:51:33 CEST schrieb Chris Morgan:
-> From: Chris Morgan <macromorgan@hotmail.com>
->=20
-> Describe a possible secondary regulator configuration for the RGB30.
-> At some point Powkiddy altered the CPU regulator for the RGB30 without
-> creating a new model revision. Note this in the device-tree in the
-> hopes that it may alleviate a user's confusion (or possibly allow a
-> bootloader to manipulate the tree to swap out the regulators when the
-> alternate configuration is detected).
->=20
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-
-I don't think this is the correct approach here, we'll really need
-a second board dts for the variant.
-
-Only describing the regulator in a comment does not help the affected
-users at all, as they would need to adapt the dt they have on their
-device on each update.
-
-Having a second dtb will have the kernel build both (also improving
-build testing) and allow them to configure their bootloader to load
-the correct one, even if we can't detect the variant device automatically.
-
-
-Heiko
-
+On Fri, Apr 05, 2024 at 10:41:29AM +0200, Konrad Dybcio wrote:
+> In preparation for parsing the chip "feature code" (FC) and "product
+> code" (PC) (essentially the parameters that let us conclusively
+> characterize the sillicon we're running on, including various speed
+> bins), move the socinfo version defines to the public header and
+> include some more FC/PC defines.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->  .../dts/rockchip/rk3566-powkiddy-rgb30.dts    | 24 +++++++++++++++++++
->  1 file changed, 24 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rgb30.dts b/arc=
-h/arm64/boot/dts/rockchip/rk3566-powkiddy-rgb30.dts
-> index e359465eebe9..484f097e9f11 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rgb30.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rgb30.dts
-> @@ -54,6 +54,30 @@ regulator-state-mem {
->  			regulator-off-in-suspend;
->  		};
->  	};
-> +
-> +	/*
-> +	 * Some RGB30 devices use a different CPU regulator. These
-> +	 * devices have no external markings to denote a different
-> +	 * model revision.
-> +	 */
-> +	vdd_cpu_alt: regulator@40 {
-> +		compatible =3D "tcs,tcs4525";
-> +		reg =3D <0x40>;
-> +		fcs,suspend-voltage-selector =3D <1>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt =3D <712500>;
-> +		regulator-max-microvolt =3D <1390000>;
-> +		regulator-name =3D "vdd_cpu_alt";
-> +		regulator-ramp-delay =3D <2300>;
-> +		vin-supply =3D <&vcc_sys>;
-> +
-> +		status =3D "disabled";
-> +
-> +		regulator-state-mem {
-> +			regulator-off-in-suspend;
-> +		};
-> +	};
+>  drivers/soc/qcom/socinfo.c       |  8 --------
+>  include/linux/soc/qcom/socinfo.h | 36 ++++++++++++++++++++++++++++++++++++
+>  2 files changed, 36 insertions(+), 8 deletions(-)
+> 
+...
+> diff --git a/include/linux/soc/qcom/socinfo.h b/include/linux/soc/qcom/socinfo.h
+...
+> @@ -74,4 +84,30 @@ struct socinfo {
+>  	__le32 boot_core;
 >  };
-> =20
->  &sdmmc2 {
->=20
+>  
+> +/* Internal feature codes */
+> +enum feature_code {
+> +	/* External feature codes */
+> +	SOCINFO_FC_UNKNOWN = 0x0,
+> +	SOCINFO_FC_AA,
+> +	SOCINFO_FC_AB,
+> +	SOCINFO_FC_AC,
+> +	SOCINFO_FC_AD,
+> +	SOCINFO_FC_AE,
+> +	SOCINFO_FC_AF,
+> +	SOCINFO_FC_AG,
+> +	SOCINFO_FC_AH,
+> +	SOCINFO_FC_EXT_RESERVE,
+> +};
 
+SOCINFO_FC_EXT_RESERVE was a convenient limit since we mapped
+SOCINFO_FC_AA -> string "AA" via an array, and we've only needed the 8
+feature codes so far.
 
+We should remove the EXT_RESERVE and test for the Y0-YF (internal
+feature code) values instead.
 
+> +
+> +/* Internal feature codes */
+> +/* Valid values: 0 <= n <= 0xf */
+> +#define SOCINFO_FC_Yn(n)		(0xf1 + n)
+> +#define SOCINFO_FC_INT_RESERVE		SOCINFO_FC_Yn(0x10)
 
+We probably should've named this SOCINFO_FC_INT_MAX. Reserve implies
+it's reserved for some future use, but it's really the max value it
+could be.
+
+> +
+> +/* Product codes */
+> +#define SOCINFO_PC_UNKNOWN		0
+> +/* Valid values: 0 <= n <= 8, the rest is reserved */
+> +#define SOCINFO_PCn(n)			(n + 1)
+> +#define SOCINFO_PC_RESERVE		(BIT(31) - 1)
+
+Similar comments here as the SOCINFO_FC_EXT_*. It's more like known
+values are [0,8], but more values could come in future chipsets.
+
+> +
+>  #endif
+> 
 
