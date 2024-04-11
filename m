@@ -1,95 +1,163 @@
-Return-Path: <devicetree+bounces-58387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91C4E8A197A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 18:10:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 853D88A19E8
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 18:26:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 398141F2210F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 16:10:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 25E761F26AE9
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 16:26:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1026715E208;
-	Thu, 11 Apr 2024 15:35:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CX5Di0Me"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BB043B798;
+	Thu, 11 Apr 2024 15:37:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7FBF15E1FC;
-	Thu, 11 Apr 2024 15:35:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8091117CBD3
+	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 15:37:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712849732; cv=none; b=lslZtCa84bDoY1ak2Tl17Q1Wr30Icoj0/sjb0AhKGqcQudm3vcRb+oHVwB5xi5CoDtykUN9G/5SxYO2/hE55FXpzyA549o4+peBwMzp3up1AN7qhjS01T5vGVbDoetXeJcHKSjINCuQwfXevVHcEOSbhiBMPTg5hB5anBSKaAJc=
+	t=1712849854; cv=none; b=TJEMLN2cYRhb2K2V508G8+03QS7+k7gDcLfCxsxZQGZdSYJfBERcdT262eUnbXgyovCnd+BkXh5ZppBJ9KrirWQOTkwqxO2T3vppVa8bMqKRbJw4Cn7RKdUgSrBSbhZ1cqTZCuw86Da1B+cQeTgusA2WeC7bBW438nNct3k885w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712849732; c=relaxed/simple;
-	bh=z0pcroyd11LnVMpI4mi43HQ7jDXW13QpWwjLygxhuGo=;
+	s=arc-20240116; t=1712849854; c=relaxed/simple;
+	bh=tm3OudM3U3aNloJACnj/5Z3NyHZxofdkBhqTIgpdlHM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ttP+8ZEEQaCi3OKL044hm80U3qG3rWDDEPn3Sil30I4z0RLOODUqXSonUhHgh/Dvx5tnfxQEnDZT0sJpHrJLgQv+aJ1aNmybyJh1XdhwxVpxgTVhy3ZJ/Ja6itpVbbBeLw3zyBh3e2038OUdSWykVyOUUZMyZIgaqEj+RFBs+ZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CX5Di0Me; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D6B9C072AA;
-	Thu, 11 Apr 2024 15:35:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712849730;
-	bh=z0pcroyd11LnVMpI4mi43HQ7jDXW13QpWwjLygxhuGo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CX5Di0MeJiiOLUI78MbeuBXjkRJntmpG2H/zV+uqpBdxEE3rsbOczeRF3FzbYGBsR
-	 h2wfrTgLAaQnPicJHaZ6NqGqpMGbAK9Xi7Fsqw4q8WuxNRbfm015QuU69OV+5gT/8f
-	 Sk0KqDXuwvQgcFX8FcAGFeY0WJACDnzBoRyYZMM0rSo5jdfPTE+Ut9WtspxL1AuwMK
-	 8PdRtp4D4+iRSoXLW+5mrtu4nkUeYo9F3utAJNiuHp5nGQAeN03we2PfU1vhX5DM6s
-	 y21K2PphWjyM4afWe2/25HNTeuFlJ1tLU2+9oTetnRTVUVuvM912MgZl+Mxvnysscx
-	 0D/SlDzMBaabw==
-Date: Thu, 11 Apr 2024 16:35:25 +0100
-From: Lee Jones <lee@kernel.org>
-To: James Ogletree <jogletre@opensource.cirrus.com>
-Cc: dmitry.torokhov@gmail.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	broonie@kernel.org, jeff@labundy.com, patches@opensource.cirrus.com,
-	linux-sound@vger.kernel.org, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH RESEND v10 3/5] mfd: cs40l50: Add support for CS40L50
- core driver
-Message-ID: <20240411153525.GF2399047@google.com>
-References: <20240408153214.42368-1-jogletre@opensource.cirrus.com>
- <20240408153214.42368-4-jogletre@opensource.cirrus.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=am97ArwqwrEmvZw/U/0qibzwdK7bI8j3w81l8HdRIntvok7jNthyN3tfZFBfeUamRv1HgNI3L70+52A0NRosMIV/c0YYrcS8bEODHxNm7MkcRqzsPopyuhlMkQq3bpYdMYfQ6DvmBiEaxnpoE08Hl5MMhn9tk7PqjhXnghndCug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1ruwUR-0008Tj-EC; Thu, 11 Apr 2024 17:37:27 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1ruwUQ-00BiHf-Cr; Thu, 11 Apr 2024 17:37:26 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1ruwUQ-000fi4-0y;
+	Thu, 11 Apr 2024 17:37:26 +0200
+Date: Thu, 11 Apr 2024 17:37:26 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Trevor Gamblin <tgamblin@baylibre.com>
+Cc: linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	michael.hennerich@analog.com, nuno.sa@analog.com, devicetree@vger.kernel.org, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	dlechner@baylibre.com, Drew Fustini <dfustini@baylibre.com>, 
+	Sergiu Cuciurean <sergiu.cuciurean@analog.com>
+Subject: Re: [PATCH 2/2 v4] pwm: Add driver for AXI PWM generator
+Message-ID: <7i44urixaxohcae44gleqm6tvgterwjz7kerbozijxzrau7czd@bl6rkkmpes3u>
+References: <20240301173343.1086332-1-tgamblin@baylibre.com>
+ <20240301173343.1086332-3-tgamblin@baylibre.com>
+ <zwer5e7jmrqfi3yeooandpfyhs663i3adcaxjeizmwgmfxltp3@gnpimhyoaqjf>
+ <f2579349-2cb0-434a-bae1-493218a62d53@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="z5pq6rhmfbngiav5"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240408153214.42368-4-jogletre@opensource.cirrus.com>
+In-Reply-To: <f2579349-2cb0-434a-bae1-493218a62d53@baylibre.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Mon, 08 Apr 2024, James Ogletree wrote:
 
-> Introduce support for Cirrus Logic Device CS40L50: a
-> haptic driver with waveform memory, integrated DSP,
-> and closed-loop algorithms.
-> 
-> The MFD component registers and initializes the device.
-> 
-> Signed-off-by: James Ogletree <jogletre@opensource.cirrus.com>
-> ---
->  MAINTAINERS                 |   2 +
->  drivers/mfd/Kconfig         |  30 ++
->  drivers/mfd/Makefile        |   4 +
->  drivers/mfd/cs40l50-core.c  | 570 ++++++++++++++++++++++++++++++++++++
->  drivers/mfd/cs40l50-i2c.c   |  68 +++++
->  drivers/mfd/cs40l50-spi.c   |  68 +++++
->  include/linux/mfd/cs40l50.h | 137 +++++++++
->  7 files changed, 879 insertions(+)
->  create mode 100644 drivers/mfd/cs40l50-core.c
->  create mode 100644 drivers/mfd/cs40l50-i2c.c
->  create mode 100644 drivers/mfd/cs40l50-spi.c
->  create mode 100644 include/linux/mfd/cs40l50.h
+--z5pq6rhmfbngiav5
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Looks like this hasn't been updated since my last review.
+Hello,
 
--- 
-Lee Jones [李琼斯]
+On Thu, Apr 11, 2024 at 10:07:54AM -0400, Trevor Gamblin wrote:
+> On 2024-04-11 12:59, Uwe Kleine-K=F6nig wrote:
+> > > + * - Writing LOAD_CONFIG also has the effect of re-synchronizing all
+> > > + *   enabled channels, which could cause glitching on other channels=
+=2E It
+> > > + *   is therefore expected that channels are assigned harmonic perio=
+ds
+> > > + *   and all have a single user coordinating this.
+> > What does "re-synchronize" mean here? Are all counters reset to zero?
+> > "harmonic" means that all channels should use the same period length?
+> Yes, it means that all counters are reset to zero. Harmonic in this case
+> means that channels can have different periods, but they should be integer
+> multiples of each other. Should I rewrite the comment to be more explicit?
+
+I hesitate to say "yes, please be more specific" because I think it's
+mood. If all pwm lines restart with their counter =3D 0 as soon as one
+line is reconfigured (without completing the current period) being a
+multiple of each other doesn't help at all. So I think the right thing
+to write there is:
+
+ - Reconfiguring a channel doesn't complete the currently running period
+   and resets the counters of all other channels and so very likely
+   introduces glitches on these unrelated outputs.
+
+(Even if the period was completed, and only assuming configuration
+updates that don't modify the period, all channels that don't have a
+period that is a divider of the just configured line (might) glitch. So
+if you have one PWM with period =3D 200 and another with period =3D 400,
+everything is fine if you update the latter, however updating the former
+might make the latter glitch. So essentially you need to have a single
+period for all channels. That's why I asked if "harmonic" means that all
+channels should use the same period.)
+
+> > Reading https://wiki.analog.com/resources/fpga/docs/axi_pwm_gen I would
+> > have expected:
+> >=20
+> > 	/* ch in { 0, ... 15 } */
+> > 	#define AXI_PWMGEN_REG_PULSE_X_PERIOD(ch)	(0x40 + 4 * (ch))
+> > 	#define AXI_PWMGEN_REG_PULSE_X_WIDTH(ch)	(0x80 + 4 * (ch))
+> > 	#define AXI_PWMGEN_REG_PULSE_X_OFFSET		(0xc0 + 4 * (ch))
+>=20
+> The regmap you find there now reflects v2 of the pwmgen IP; v1 used a step
+> of 12 instead of 4. The v2 series sent a little bit later on adds this ex=
+tra
+> support: https://lore.kernel.org/linux-pwm/20240314204722.1291993-1-tgamb=
+lin@baylibre.com/
+>=20
+> I've added support for both versions since v1 of the IP could still be in
+> use on some devices. Would it be better to have the two patch series
+> squashed together into a v5 of the axi-pwmgen driver?
+
+Not necessarily squashed, but I suggest to send them in a single series.
+(Note, this doesn't mean "Don't squash". I didn't look at the other
+series yet, so make a sensible choice yourself (or wait until I come
+around reviewing that other series and hope that I remember the context
+to comment about this question. :-)
+=20
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--z5pq6rhmfbngiav5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmYYA7UACgkQj4D7WH0S
+/k42rAf/dYYgtWgQCwgoIgEbZ3xDBVCMESJkV0AhyE6HM01lBRbUSA5YWTE3kV6b
+opqkoV8PJn0Vc4l0cUkKrW/dtLYdn53XYIzu0G04IJLGN2qpj73UxAl/mcl3r+HW
+5UcYF9SQiXF+xcalszH3x2q7g9Lk4YA2j19Jv1322HWp0PIQ59uD5a/MsDhzvsnr
+e9ZlQ8nnvFVIDozffW+Dzi8TwisbywGvo8IEBtyW8/PQPlNtmvdKfTBiR/1Cjg8p
+wS6wmlYNqqVBIeCMRWr377gE/16YAUCs7uzksJ33B5BuNT8NlkfmAI+2U5QD5jni
+4B2Pqu0G5QpOwMipw/RLhIftklyaeQ==
+=H5Ix
+-----END PGP SIGNATURE-----
+
+--z5pq6rhmfbngiav5--
 
