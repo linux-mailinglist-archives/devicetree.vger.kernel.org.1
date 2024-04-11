@@ -1,71 +1,126 @@
-Return-Path: <devicetree+bounces-58134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1224B8A0949
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 09:10:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CFFA8A095E
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 09:12:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8988DB2891C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 07:10:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26B79282D30
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 07:12:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E317013E88B;
-	Thu, 11 Apr 2024 07:07:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hx0elqZ2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 043ED13DDB8;
+	Thu, 11 Apr 2024 07:11:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5C7D13DDDE;
-	Thu, 11 Apr 2024 07:07:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D924713DBA0;
+	Thu, 11 Apr 2024 07:11:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712819271; cv=none; b=Jk0W+gx6xNAk3VDvHWsju+M0JyA9fZXauim8N4vciNhV+4LAfNg7MMKT+/OLlGOQZTQttVhd3Ls4F40lra91KZKs6vupb/7OsKUlqpFqS3WVBJy+LnND7q2Dm7GHA6ogzkobSUDFZA7PU+1hRysnfjWEoMymgggvbEBpwG2H4YU=
+	t=1712819474; cv=none; b=QRivoBlXPAHnKEPR+vK9MUtrYh7ok8Vvg4Psko77HKB7hIjf0iWUQc+G13Q+U0tMj7+DPBHPVJmCl12PgBLgFCSdIBXikrCgeuIV07oagdZHKqGrEhzWIIDWBv2YCjarl9n/jODj3fFIzOoHJXelZwMLIADqXDHw+tT0KFMrxmA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712819271; c=relaxed/simple;
-	bh=Eg7nKhlQ45pThDmInT2Pa1BtHQZJf9V/GW2+v72Y/Mo=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=mywQ99+hoZKZ26kAlqBS9IN98nb0SuojIO/n5DUvOBHtrjhucXFBqRCKuVlpf1/0dLIFAoETunGeAr6/tMYBhVHEl/HqLWq8n/Kx7hCadXTXHvfEQXXmOmkYgn0OManFKoab9BnSu/xsGAlXH2mXbckdQp7nC11ZL9zSTgYh4eE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hx0elqZ2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 456FDC433C7;
-	Thu, 11 Apr 2024 07:07:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712819271;
-	bh=Eg7nKhlQ45pThDmInT2Pa1BtHQZJf9V/GW2+v72Y/Mo=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=Hx0elqZ25lfBI3qu9ExJoALiB8EBOQTiRMso2dzTuIlFts6YWT8fYoAWmp6VylQ0V
-	 mspLu0J/kFkSXNjh4edmv7H+aMZfX3OWLKc5WApPfwJ8NP+gPy8XrcP//ZGd2L2f1K
-	 XLXOorBu3DRMQVpe+whzSj2KbFz62zOOL2yao4AXWT5YG2eXbajiEsyl049k/llyN9
-	 vPjUatvjFqJk916L0u1XksBfmlWaZhwXTuIIum5YZHgrIzMHQ71voeUs6qjLCiG4xo
-	 6FMfcN07UKC+gbJG97xmJH3wF889JNj7C12FogkwY3ODqjlDaZc6/m2TWoiq3okpwi
-	 5G3rZrXsT34QQ==
-Message-ID: <fb7ffc03721f54b3217725ec2f276f66.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1712819474; c=relaxed/simple;
+	bh=mHFt/G53hAFEMBRtvSArbsest/5VtPkry0VDRfUuA1M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bNOsnGaQdhZI+l8QFgs+0MD42auRWKpphyqbp5gvkgCa5S4JKSIr32OZ6rnDSorWMOOP9LqY2lIq75eJTbSJg+KKConFSaUvmGYARvioaPxq1v/EDDCdn7Rv53rm26VQCe/b2htBgwtJmg1Aor0lKYEXGa1mrGwpzwq1hsaWOSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A9FAC433F1;
+	Thu, 11 Apr 2024 07:11:10 +0000 (UTC)
+Message-ID: <d230b840-471b-4f77-b9f4-34a4063f1db9@xs4all.nl>
+Date: Thu, 11 Apr 2024 09:11:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <IA1PR20MB49537156E71B64483F15C0F2BB262@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <IA1PR20MB4953512A4DCAF293D7B1CBC2BB262@IA1PR20MB4953.namprd20.prod.outlook.com> <IA1PR20MB49537156E71B64483F15C0F2BB262@IA1PR20MB4953.namprd20.prod.outlook.com>
-Subject: Re: [PATCH v9 4/6] clk: sophgo: Add clock support for SG2000 SoC
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Jisheng Zhang <jszhang@kernel.org>, Liu Gui <kenneth.liu@sophgo.com>, Jingbao Qiu <qiujingbao.dlmu@gmail.com>, dlan@gentoo.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-To: Albert Ou <aou@eecs.berkeley.edu>, Chao Wei <chao.wei@sophgo.com>, Chen Wang <unicorn_wang@outlook.com>, Conor Dooley <conor+dt@kernel.org>, Inochi Amaoto <inochiama@outlook.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Rob Herring <robh+dt@kernel.org>
-Date: Thu, 11 Apr 2024 00:07:49 -0700
-User-Agent: alot/0.10
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] media: mediatek: vcodec: support 36 bits physical
+ address
+Content-Language: en-US, nl
+To: Yunfei Dong <yunfei.dong@mediatek.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+ Nathan Hebert <nhebert@chromium.org>,
+ Sebastian Fricke <sebastian.fricke@collabora.com>
+Cc: Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig <frkoenig@chromium.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20240411070127.12384-1-yunfei.dong@mediatek.com>
+From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <20240411070127.12384-1-yunfei.dong@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Quoting Inochi Amaoto (2024-03-09 01:02:54)
-> Add init code for SG2000 SoC.
->=20
-> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
-> Link: https://github.com/sophgo/sophgo-doc/releases/tag/sg2000-datasheet-=
-v1.0-alpha
+Hi Yunfei,
+
+Since the v2 patch is now merged in mainline as-is, you need to make a patch
+on top of that.
+
+So just post a new patch that applies to the mainline.
+
+Regards,
+
+	Hans
+
+On 11/04/2024 09:01, Yunfei Dong wrote:
+> The physical address on the MT8188 platform is larger than 32 bits,
+> change the type from unsigned int to dma_addr_t to be able to access
+> the high bits of the address.
+> 
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
+> compared with v2:
+> - remove unless cast
+> ---
+>  .../media/platform/mediatek/vcodec/decoder/vdec/vdec_vp8_if.c | 2 +-
+>  .../mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c        | 4 ++--
+>  2 files changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp8_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp8_if.c
+> index 9649f4ec1f2a..5f848691cea4 100644
+> --- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp8_if.c
+> +++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp8_if.c
+> @@ -449,7 +449,7 @@ static int vdec_vp8_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
+>  		       inst->frm_cnt, y_fb_dma, c_fb_dma, fb);
+>  
+>  	inst->cur_fb = fb;
+> -	dec->bs_dma = (unsigned long)bs->dma_addr;
+> +	dec->bs_dma = bs->dma_addr;
+>  	dec->bs_sz = bs->size;
+>  	dec->cur_y_fb_dma = y_fb_dma;
+>  	dec->cur_c_fb_dma = c_fb_dma;
+> diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
+> index cf48d09b78d7..eea709d93820 100644
+> --- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
+> +++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
+> @@ -1074,7 +1074,7 @@ static int vdec_vp9_slice_setup_tile_buffer(struct vdec_vp9_slice_instance *inst
+>  	unsigned int mi_row;
+>  	unsigned int mi_col;
+>  	unsigned int offset;
+> -	unsigned int pa;
+> +	dma_addr_t pa;
+>  	unsigned int size;
+>  	struct vdec_vp9_slice_tiles *tiles;
+>  	unsigned char *pos;
+> @@ -1109,7 +1109,7 @@ static int vdec_vp9_slice_setup_tile_buffer(struct vdec_vp9_slice_instance *inst
+>  	pos = va + offset;
+>  	end = va + bs->size;
+>  	/* truncated */
+> -	pa = (unsigned int)bs->dma_addr + offset;
+> +	pa = bs->dma_addr + offset;
+>  	tb = instance->tile.va;
+>  	for (i = 0; i < rows; i++) {
+>  		for (j = 0; j < cols; j++) {
 
-Applied to clk-next
 
