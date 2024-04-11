@@ -1,134 +1,138 @@
-Return-Path: <devicetree+bounces-58375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EF4F8A1839
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 17:08:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3AA38A183D
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 17:09:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA2491F247C0
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 15:08:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 05EBBB2578C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 15:09:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBAA912E74;
-	Thu, 11 Apr 2024 15:08:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98009101DA;
+	Thu, 11 Apr 2024 15:09:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=mff.cuni.cz header.i=@mff.cuni.cz header.b="aZbdSLyI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp1.ms.mff.cuni.cz (smtp-in1.ms.mff.cuni.cz [195.113.20.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F00FA134D1;
-	Thu, 11 Apr 2024 15:08:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75EA8D534;
+	Thu, 11 Apr 2024 15:09:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.113.20.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712848131; cv=none; b=cmDpcTGJKfhMUK4XtqT6SjenzrHwKHwjNhgcKjj+BbuhHMWhejQdIQWuTqGiPeyVXtII2XCLo7qWTzmjojwo0BMoOOeE4/ChkUHdcykxs+/2gf0LCiAMsgKoBYPvovUmBgzeq1czjlGaVSRHU1QNSaMOaQMddxLSPiGMtvC4uEs=
+	t=1712848186; cv=none; b=GsPnhbzsbh8HiwH02qo+4HfOs+0VwGin7oEwumyELaYWq2Izt5toVkxKXHw25z1zW3QmWTRIq24VNo+JYaXVas2MdAHQnhHPBjWvZoUMzbGnJZopSWwYcIP426HUMzO7eu493A/hepGOBQFICLStSBm8HxF8EGGPf+sruKfuzyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712848131; c=relaxed/simple;
-	bh=oU5pCmDkLmmc1H+EyQIYHeeb2Fb2Jfhgrf2CdpJQj8Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Yh2aEpuJpZc+7/lVzOILT1zqrqvbHjqgIFADzPUj7I69Wa8i0La1GyYGuNKLiBXX/1oEb2cPOmRY2wkvuQEhfujpiEYqkNp1bxMpr9WFf2JCMFoUo+NBwhPDU2U/qshAnSl2kzPoP9meAC0a/wy6DsOQo46TidrGHBO4JogdE7M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.161.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f44.google.com with SMTP id 006d021491bc7-5aa369179e1so3489509eaf.3;
-        Thu, 11 Apr 2024 08:08:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712848128; x=1713452928;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=E9hehHCvMAi0CNOjOnNQIxMp+8eSHK8c3QluG1cpQEI=;
-        b=hz4QGYuzWr2n2amu7D31TFJmxANeRJsYllIdIe35MWbW3CVLAqaqEm3UtlwO/nF73s
-         sXV67kGbld3w8LKw3XZt3AHT7DRxUnW00w+0XbXpa8VFB7cfsNQGWHe9vDcy26v/jcQD
-         Ap75NxllBOFQL0DXzKjVBKHgjDstk4sNGF55mwnSj4uaSVeU+p/6/zu964UntFd3KmgD
-         RqkJwWFwlYLWvhA8Ul8DA/MgYpPKKRfkemk/lEoocJh4RxZzM9/A+NsCQrOd8olNabfC
-         T2Mbv4+qEr6MDjXQED6T8fA90TIE83B2Gxysno2ffIhxZ5fHKs4/xe+tfrAt1f646RSu
-         JUBg==
-X-Forwarded-Encrypted: i=1; AJvYcCVU3iFdoXjT9koiwvAA6Sp/kGjdVymi6noVM0koO/OXA3RIvH7XIVX/HdxRqlggDr2+r4aQWykBZwMQPySYc2k97N2atT6zB4sc9pZqphrdw2s6N3ptk+o8ebXaXEA9m0wiS4QkvGkhzqB0oZl2eHXy8fZt2iPT7FIy2L65GRzOIkkOYvj/r2oN4En2NVxF5RREqJiRcTRM7R5riU6tXYExnm3DOGjc
-X-Gm-Message-State: AOJu0YwqWU0rydjKUm9F4x/opKpce6fMKMmSKrENuLZE6Mjg8Uo7PMsV
-	EpsKj8B3CXqzsWSk9OAaNZ8L+BFsTDYuBKPC6vcqyaUBhObf//YPUlLez8s9
-X-Google-Smtp-Source: AGHT+IEJmf89EuiAaKtpLNEr9G1LONI/+H9TLXaQI+A+h7gS1EcDEb3mORpif3yGMOl9JUO9quNKYg==
-X-Received: by 2002:a05:6820:1391:b0:5aa:3b8a:b491 with SMTP id i17-20020a056820139100b005aa3b8ab491mr6955693oow.4.1712848128089;
-        Thu, 11 Apr 2024 08:08:48 -0700 (PDT)
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com. [209.85.167.182])
-        by smtp.gmail.com with ESMTPSA id di12-20020a0568201e8c00b005a4bcb155basm352018oob.23.2024.04.11.08.08.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Apr 2024 08:08:47 -0700 (PDT)
-Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-3c5ee4ce695so795992b6e.0;
-        Thu, 11 Apr 2024 08:08:47 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWga1MW07g+6xV7sR//DAQStXMyY8aX6RtrMyR8BRcIFROJBCdbMkZPaz4ixHRrn3sCUkbUiWFlxZ1R7dALvzcZ0LXZ27Rcjys37oV+XfSXQZa06FOUOWt5J2+FDoDIBPDmMlv3kbipyXrOxldeTBywZ0XLiW0JrX+vLNy/4mLCQWVDpUf4CUwTeD+z2Sxdmx1v4daR2p3f0PRRE2kpZc7twG9zntKZ
-X-Received: by 2002:a05:6808:644:b0:3c5:eaaf:babe with SMTP id
- z4-20020a056808064400b003c5eaafbabemr5366936oih.7.1712848127440; Thu, 11 Apr
- 2024 08:08:47 -0700 (PDT)
+	s=arc-20240116; t=1712848186; c=relaxed/simple;
+	bh=Weouvo161mz85+Ws3kWCHEAN8xCME/9Sry1jGNBqSMk=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:To:From:
+	 References:In-Reply-To; b=jSDbCY6qQws53GZUgVbNSNtz062+J71d1hcs7nycPv1yY6ocP7ZeoPV3dULSz7AYLbf/IomDudIpfvbEvMUNRleLaV0DIeGytQ/udepXPnH7eGlpeS6FcQbyTUcgGowP7A4YmjLA2dr+g8NXdTeXjw5lwUh39luxnSDb9qBF020=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz; spf=pass smtp.mailfrom=matfyz.cz; dkim=pass (2048-bit key) header.d=mff.cuni.cz header.i=@mff.cuni.cz header.b=aZbdSLyI; arc=none smtp.client-ip=195.113.20.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=matfyz.cz
+X-SubmittedBy: id balejk@matfyz.cz subject /postalCode=110+2000/O=Univerzita+20Karlova/street=Ovocn+5CxC3+5CxBD+20trh+20560/5/ST=Praha,+20Hlavn+5CxC3+5CxAD+20m+5CxC4+5Cx9Bsto/C=CZ/CN=Karel+20Balej/emailAddress=balejk@matfyz.cz
+	serial F5FD910E8FE2121B897F7E55B84E351D
+	issued by /C=NL/O=GEANT+20Vereniging/CN=GEANT+20Personal+20CA+204
+	auth type TLS.CUNI
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mff.cuni.cz;
+	s=submission; t=1712848147; x=1714148147;
+	bh=cCeEsEVNtOvyeZAP8P6CFO9h6vuYp0g9sWCTeF8QBqc=; h=From;
+	b=aZbdSLyIVl3tvrFOIk+Zr5D1SzvZAbhOXUdHCwd0UGiy1HV/xtG2xvif53SQKGZVD
+	 GlSQSwoDJnZAU18Tn8N3UoMiINOwj2Eoh9Ohs4RAg/Qas/XfZmkqHLHTDowJHhz9Dn
+	 zGAK1q4EoU6T42iW01R3rM7xDiNXGiajh8N5VqD6uf4tPE55vigQj1M7/TdSu7MPVx
+	 PG9bfGFkXeRhofxZXZ56749LgtBba2obs6DrXTd+2FGglYVN5OVvLJXRVSjunagMRg
+	 iEE93/oB2n+Mdp12ees3RkmlxOcetPxmkq0hrmM17dPmR59egM5i/0fDQ48QZXOICh
+	 dhBomyUksKlPQ==
+Received: from localhost (koleje-wifi-0017.koleje.cuni.cz [78.128.191.17])
+	(authenticated)
+	by smtp1.ms.mff.cuni.cz (8.16.1/8.16.1) with ESMTPS id 43BF95MH032359
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK);
+	Thu, 11 Apr 2024 17:09:07 +0200 (CEST)
+	(envelope-from balejk@matfyz.cz)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20240410122657.2051132-1-claudiu.beznea.uj@bp.renesas.com> <20240410122657.2051132-9-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20240410122657.2051132-9-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 11 Apr 2024 17:08:35 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdW4CEbR0K2OfADS1S834GyRwE45Squ2OY82nDqkPLPUVQ@mail.gmail.com>
-Message-ID: <CAMuHMdW4CEbR0K2OfADS1S834GyRwE45Squ2OY82nDqkPLPUVQ@mail.gmail.com>
-Subject: Re: [PATCH v3 8/9] clk: renesas: rzg2l-cpg: Add suspend/resume
- support for power domains
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, magnus.damm@gmail.com, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 11 Apr 2024 17:09:40 +0200
+Message-Id: <D0HE07BHD1T8.HQLIBUHTRVGT@matfyz.cz>
+Cc: "Rob Herring" <robh@kernel.org>,
+        "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>,
+        "Conor Dooley" <conor+dt@kernel.org>,
+        "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+        "Liam Girdwood"
+ <lgirdwood@gmail.com>,
+        "Mark Brown" <broonie@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-input@vger.kernel.org>,
+        =?utf-8?q?Duje_Mihanovi=C4=87?=
+ <duje.mihanovic@skole.hr>,
+        <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>
+Subject: Re: [PATCH 2/5] mfd: add driver for Marvell 88PM886 PMIC
+To: "Lee Jones" <lee@kernel.org>
+From: "Karel Balej" <balejk@matfyz.cz>
+References: <20240331105608.7338-2-balejk@matfyz.cz>
+ <20240331105608.7338-4-balejk@matfyz.cz>
+ <20240411113726.GH1980182@google.com>
+In-Reply-To: <20240411113726.GH1980182@google.com>
 
-On Wed, Apr 10, 2024 at 2:27=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Lee Jones, 2024-04-11T12:37:26+01:00:
+[...]
+> > diff --git a/drivers/mfd/88pm886.c b/drivers/mfd/88pm886.c
+> > new file mode 100644
+> > index 000000000000..e06d418a5da9
+> > --- /dev/null
+> > +++ b/drivers/mfd/88pm886.c
+> > @@ -0,0 +1,157 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +#include <linux/i2c.h>
+> > +#include <linux/mfd/core.h>
+> > +#include <linux/module.h>
+> > +#include <linux/notifier.h>
+> > +#include <linux/of.h>
+> > +#include <linux/reboot.h>
+> > +#include <linux/regmap.h>
+> > +
+> > +#include <linux/mfd/88pm886.h>
+> > +
+> > +#define PM886_REG_INT_STATUS1			0x05
+> > +
+> > +#define PM886_REG_INT_ENA_1			0x0a
+> > +#define PM886_INT_ENA1_ONKEY			BIT(0)
+> > +
+> > +#define PM886_IRQ_ONKEY				0
+> > +
+> > +#define PM886_REGMAP_CONF_MAX_REG		0xef
 >
-> RZ/G3S supports deep sleep states that it can reach with the help of the
-> TF-A.
->
-> RZ/G3S has a few power domains (e.g. GIC) that need to be always-on while
-> Linux is running. These domains are initialized (and powered on) when
-> clock driver is probed.
->
-> As the TF-A takes control at the very last(suspend)/first(resume)
-> phase of configuring the deep sleep state, it can do it's own settings on
-> power domains.
->
-> Thus, to restore the proper Linux state, add rzg2l_cpg_resume() which
-> powers on the always-on domains and rzg2l_cpg_complete() which activates
-> the power down mode for the IPs selected through CPG_PWRDN_IP{1, 2}.
->
-> Along with it, added the suspend_check member to the RZ/G2L power domain
-> data structure whose purpose is to checks if a domain can be powered off
-> while the system is going to suspend. This is necessary for the serial
-> console domain which needs to be powered on if no_console_suspend is
-> available in bootargs.
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> ---
->
-> Changes in v3:
-> - populate pd->suspend_check on rzg2l_cpg_attach_dev() for serial
->   console; due to this the rzg2l_pd_suspend_check_console() was moved
->   before rzg2l_cpg_attach_dev()
-> - removed RZG2L_PD_F_CONSOLE define
+> Why have you split the defines up between here and the header?
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+I tried to keep defines tied to the code which uses them and only put
+defines needed in multiple places in the header. With the exception of
+closely related things, such as register bits which I am keeping
+together with the respective register definitions for clarity. Does that
+not make sense?
 
-Gr{oetje,eeting}s,
+> Please place them all in the header.
 
-                        Geert
+Would you then also have me move all the definitions from the regulators
+driver there?
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+[...]
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> > +	err =3D devm_mfd_add_devices(dev, 0, pm886_devs, ARRAY_SIZE(pm886_dev=
+s),
+>
+> Why 0?
+
+PLATFORM_DEVID_AUTO then? Or will PLATFORM_DEVID_NONE suffice since the
+cells all have different names now (it would probably cause problems
+though if the driver was used multiple times for some reason, wouldn't
+it?)?
+
+Thank you,
+K. B.
 
