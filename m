@@ -1,112 +1,114 @@
-Return-Path: <devicetree+bounces-58201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58202-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 350DB8A0B5D
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 10:35:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB3DD8A0B67
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 10:37:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF0871F2331A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 08:35:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECBBF1C2243C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 08:37:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4C411487E4;
-	Thu, 11 Apr 2024 08:32:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62F6713E04F;
+	Thu, 11 Apr 2024 08:36:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ZWl6KJ2M"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="JWIXirOD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F33EB146591;
-	Thu, 11 Apr 2024 08:32:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9F6C10A11;
+	Thu, 11 Apr 2024 08:35:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712824328; cv=none; b=nF8KmKD7ImEUtgP5sZDdzzkO8b4MSxK4SGD97IOBWHJJ9Mq7irNu4fCuKrIzKS1G/0+jPalaf8Iajx0rVNiql8vo1iTp5//+sss7brZcurAvajBaVEHL0G7cJR9YOTSxWHeyGWjfx9sSqnX+yck8Q6hTdPIK42POT9osn1vCp7E=
+	t=1712824562; cv=none; b=L+mLPgqSkx1xf3YQlQoMiOHyFaFGQjt6LqLqsYqEauhCLZdZuaRryo6N0/QVaEpmmFIip8rPs82jyeebBd6chkpmRBpaArQpAbWThC8hs14HQIvVrDaXmd7KLyOY0ce4EuS4fxtks5p81r9/zOqQEs1QtY7zwWrHa4rAV0vUmWk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712824328; c=relaxed/simple;
-	bh=pkymiWIPWxat5Rr2zyDqx/dSmImzanbRzBc2AuBwPV8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=MpE5CCa8AANWqmEHsNWeXz4fcW9f4G2urTXuRNdZ0yhu+suoBxrvQOpp1nssiS1Z130DU1sBNnfucch0UTNqgW7tHPBuOI/HAdIurbcDAERDocxTEDeYaLU1kS/WvzaCY5SM+eP5Wksy9L8Dorowd05BnSTGAWjCAdYGVn+x6WU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ZWl6KJ2M; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1712824325;
-	bh=pkymiWIPWxat5Rr2zyDqx/dSmImzanbRzBc2AuBwPV8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ZWl6KJ2MaCPG2TpRWPsqMCPlaKKShFlrxo4JYx5AsHPwuitSP3TaKHqheV8CBG2n8
-	 oG5L0ARRG551EVUNEcTvGHCr8ktGLwojLReg0KceFzgfs0KHn6v+LYtTgg/Pkt8kCx
-	 3sEfFzTaqnYC+FI1RcK1/gTceXl5WEPd6lJa+qNbIBYcNNIdHlF9pvWLkYr8364W3T
-	 2Oh6DfncModQDTz7eSGwZ/RY16x44WbS/jUSCSjeuUMDjrOhnl06Y0ld14hbiFvybY
-	 xRqmmvJ5GL5rAhe2zCtpdgfz1ZMIu1UPudk3xQc8R4GrafUThTIn9dsoVBpIvPJNBR
-	 177BHAR/cYmMw==
-Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 132DF3782139;
-	Thu, 11 Apr 2024 08:32:04 +0000 (UTC)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: linux-scsi@vger.kernel.org
-Cc: alim.akhtar@samsung.com,
-	avri.altman@wdc.com,
-	bvanassche@acm.org,
-	robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	peter.wang@mediatek.com,
-	chu.stanley@gmail.com,
-	jejb@linux.ibm.com,
-	martin.petersen@oracle.com,
-	lgirdwood@gmail.com,
-	broonie@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	stanley.chu@mediatek.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	kernel@collabora.com
-Subject: [PATCH v1 8/8] dt-bindings: ufs: mediatek,ufs: Document optional dvfsrc/va09 regulators
-Date: Thu, 11 Apr 2024 10:31:49 +0200
-Message-ID: <20240411083149.78537-9-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240411083149.78537-1-angelogioacchino.delregno@collabora.com>
-References: <20240411083149.78537-1-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1712824562; c=relaxed/simple;
+	bh=ieaVROucabkX/elO9QC0KMUJebDy7cP20PNCU7hAKsg=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=t5miCa0dnCMLbfhtgMTgMi1NTGgIJ3YIStVPGL3vHhcW236vKnQDTM2OWz3GWShzwEdkesWyOPu2ZCbdQ/1jtd5dmJ78lZ5pHNkR4Menb9Z5cr06ErhHNeQaLYKVp7TF83enbQD6PC0WGt4WVTnioR9JebJtd+M/wsI7kchLCsA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=JWIXirOD; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 50FBC1BF209;
+	Thu, 11 Apr 2024 08:35:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1712824557;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=1p7NHgdFRFW4BhKFxkt0bpU+PZz8Mug1imRTclDT8UQ=;
+	b=JWIXirODoESQAgnqT43QvK+1ct3jUYCegnJvrN7hxW5xFqom7zT1woRDlqCMF0/3JyrUe0
+	itYvrO3TgfEfm1JkPJ6PX2qZSJ34SYUx5631ox3QI8hr0YyPRRHhBDYcsGAjARL+n1ZdV2
+	ec0J9zSlIUkxE7XUHSHJyKVyLuHKEjTfxcPsi8dbTaP6Bpenq2qUxojj5S7C41XJL4ZBoH
+	hOgAK8x/UpYuhgOoZsPbzbIJKzL4vbiAQbMqnp6V7ncxwRlcOCRhpGPtjUzhGv4Bn79DRj
+	Yqf+XAxM+0bFNxomoiJMoBn3nCSLz5SmX1jpq688FiaDxcKFc9omxyko62nf2Q==
+Message-ID: <5fdda638-21ba-4fa7-b666-33cf2fd69dda@bootlin.com>
+Date: Thu, 11 Apr 2024 10:35:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Michael Opdenacker <michael.opdenacker@bootlin.com>
+Subject: Re: [PATCH] riscv: dts: sophgo: add initial Milk-V Duo S board device
+ tree
+To: Jisheng Zhang <jszhang@kernel.org>, Inochi Amaoto <inochiama@outlook.com>
+Cc: michael.opdenacker@bootlin.com, Conor Dooley <conor@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240409064504.4010353-1-michael.opdenacker@bootlin.com>
+ <IA1PR20MB49532A8D4294ADCE0C33A654BB072@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <20240409-prevent-deepness-2d22bf009b16@spud>
+ <IA1PR20MB49534E00CAE29D24F7D7E718BB072@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <1514d28a-5e96-4531-a972-894e41902efa@bootlin.com>
+ <IA1PR20MB4953CA04D33EA0C7902DFA3ABB062@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <ZhZo0iJFSn1te-6d@xhacker>
+Content-Language: en-US
+In-Reply-To: <ZhZo0iJFSn1te-6d@xhacker>
+Organization: Bootlin
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-GND-Sasl: michael.opdenacker@bootlin.com
 
-Document the optional dvfsrc-vcore and va09 regulators used for,
-respectively, crypt boost and internal MPHY power management in
-when powering on/off the (external) MediaTek UFS PHY.
+Hi Jisheng,
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+On 4/10/24 at 12:24, Jisheng Zhang wrote:
+> setting the correct bus-width is necessary for better performance
+> no-1-8-v can be removed, but it doesn't harm anything because
+> the board doesn't supply 1.8v
+>
+> no-mmc and no-sdio to make the probe a bit quicker
 
-diff --git a/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml b/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml
-index df2e2d388e70..118abfad0250 100644
---- a/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml
-+++ b/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml
-@@ -49,6 +49,8 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  dvfsrc-vcore-supply: true
-+  va09-supply: true
-   vcc-supply: true
- 
- required:
+Many thanks for your advice!
+
+However, whether I apply these changes or not, 
+git.kernel.org/pub/scm/linux/kernel/git/riscv/linux.git is now broken 
+for me:
+Error: arch/riscv/boot/dts/sophgo/sg2000-milkv-duos.dts:32.1-8 Label or 
+path sdhci0 not found
+
+I was previously testing with linux-next, but it's now broken too, 
+though in a different way:
+[    1.306811] /dev/root: Can't open blockdev
+[    1.311200] VFS: Cannot open root device "/dev/mmcblk0p2" or 
+unknown-block(0,0): error -6
+
+Shall I submit my updates anyway?
+Cheers
+Michael.
+
 -- 
-2.44.0
+Michael Opdenacker, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
