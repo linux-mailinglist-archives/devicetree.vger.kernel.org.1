@@ -1,163 +1,321 @@
-Return-Path: <devicetree+bounces-58388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 853D88A19E8
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 18:26:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B30998A1ACD
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 19:08:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 25E761F26AE9
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 16:26:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A0821F225CE
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 17:08:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BB043B798;
-	Thu, 11 Apr 2024 15:37:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0DB81F4FDD;
+	Thu, 11 Apr 2024 15:42:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jzu3g4H8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8091117CBD3
-	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 15:37:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B54661F4FD5;
+	Thu, 11 Apr 2024 15:42:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712849854; cv=none; b=TJEMLN2cYRhb2K2V508G8+03QS7+k7gDcLfCxsxZQGZdSYJfBERcdT262eUnbXgyovCnd+BkXh5ZppBJ9KrirWQOTkwqxO2T3vppVa8bMqKRbJw4Cn7RKdUgSrBSbhZ1cqTZCuw86Da1B+cQeTgusA2WeC7bBW438nNct3k885w=
+	t=1712850151; cv=none; b=DipSc2+zjdhiWpDKrp1/I0VbExWchs0oMULluqdoaa8W8O4qihD29bnVBKRvxu2np3MY3YGz8cSlg/72Mpjn8Fo5GM4RBYkavVzcC2XHikPI7r3HD/mBPTxcJjYRkbews6x6u+yUb1677Dufha6GX9CIo1lwjgoa6I1a1s15l/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712849854; c=relaxed/simple;
-	bh=tm3OudM3U3aNloJACnj/5Z3NyHZxofdkBhqTIgpdlHM=;
+	s=arc-20240116; t=1712850151; c=relaxed/simple;
+	bh=+nZnGEmZrNB3s5CE4OLicwn7PuejwQracpvWJM0WbEA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=am97ArwqwrEmvZw/U/0qibzwdK7bI8j3w81l8HdRIntvok7jNthyN3tfZFBfeUamRv1HgNI3L70+52A0NRosMIV/c0YYrcS8bEODHxNm7MkcRqzsPopyuhlMkQq3bpYdMYfQ6DvmBiEaxnpoE08Hl5MMhn9tk7PqjhXnghndCug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1ruwUR-0008Tj-EC; Thu, 11 Apr 2024 17:37:27 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1ruwUQ-00BiHf-Cr; Thu, 11 Apr 2024 17:37:26 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1ruwUQ-000fi4-0y;
-	Thu, 11 Apr 2024 17:37:26 +0200
-Date: Thu, 11 Apr 2024 17:37:26 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Trevor Gamblin <tgamblin@baylibre.com>
-Cc: linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	michael.hennerich@analog.com, nuno.sa@analog.com, devicetree@vger.kernel.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	dlechner@baylibre.com, Drew Fustini <dfustini@baylibre.com>, 
-	Sergiu Cuciurean <sergiu.cuciurean@analog.com>
-Subject: Re: [PATCH 2/2 v4] pwm: Add driver for AXI PWM generator
-Message-ID: <7i44urixaxohcae44gleqm6tvgterwjz7kerbozijxzrau7czd@bl6rkkmpes3u>
-References: <20240301173343.1086332-1-tgamblin@baylibre.com>
- <20240301173343.1086332-3-tgamblin@baylibre.com>
- <zwer5e7jmrqfi3yeooandpfyhs663i3adcaxjeizmwgmfxltp3@gnpimhyoaqjf>
- <f2579349-2cb0-434a-bae1-493218a62d53@baylibre.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=nuERQU9EIUG7gRHwWrLXRupJm6P4G9ORhr/vctC3dVtmVbFUwqKgukyjr6N+X0aPbnsFsxBDuiBrdJSYOXVKVVvztFtLksimBEeX/ZWH0fwRoxZsPhADJPFG3bofcKLTebo9MSxKeWB23PlKA7lfzIcu1+9GAymZ2qFVFodiPq8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jzu3g4H8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20728C072AA;
+	Thu, 11 Apr 2024 15:42:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712850150;
+	bh=+nZnGEmZrNB3s5CE4OLicwn7PuejwQracpvWJM0WbEA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jzu3g4H8bnBM0ZLCtVvhes9KXW6ycau1nmlbhhYlXWT2j0ilPWJ/qM0/B/a3giiCh
+	 roAK28frU9Qv9qSJJRQOzNv1QB9xbjjrAoK3Ov1REgGCsEkfS6hg/yNltpusDo4GhM
+	 ZoHORWasJM9lg7DYIeXNzLCn1IEJIs7yu49wSTfNf5cPQNOQeLG0JVagQyanMueyCg
+	 G8JYW/aCJr3R6nm6kX+J1N3qHvaAK+Qk1KHpu6o4j6qwpt2wbDfPfA1OOJ7PfC5TUw
+	 TdodwJdFigXYmcZSSiJG13GWlBiyOqhhMaRO/6mgBqgwpEmVioA+tHKb1770XIOjuP
+	 u7TN4Lyvn8V8A==
+Date: Thu, 11 Apr 2024 16:42:24 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Alban Browaeys <alban.browaeys@gmail.com>
+Cc: dev@folker-schwesinger.de, Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Chris Ruehl <chris.ruehl@gtsys.com.hk>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Christopher Obbard <chris.obbard@collabora.com>,
+	Doug Anderson <dianders@chromium.org>,
+	Brian Norris <briannorris@chromium.org>,
+	Jensen Huang <jensenhuang@friendlyarm.com>,
+	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] phy: rockchip: emmc: Enable pulldown for strobe line
+Message-ID: <20240411-mushily-pucker-732583c1d340@spud>
+References: <20240326-rk-default-enable-strobe-pulldown-v1-0-f410c71605c0@folker-schwesinger.de>
+ <20240326-rk-default-enable-strobe-pulldown-v1-1-f410c71605c0@folker-schwesinger.de>
+ <20240326-tactical-onlooker-3df8d2352dc2@spud>
+ <871f0b24a38208d9c5d6abc87d83b067162c103e.camel@gmail.com>
+ <20240328-unnatural-unsorted-e53a13f5e87e@spud>
+ <313d5a24b6cffa1a9160e624bb6855aa7f66589e.camel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="z5pq6rhmfbngiav5"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="aLBybTFZShsDA3p/"
 Content-Disposition: inline
-In-Reply-To: <f2579349-2cb0-434a-bae1-493218a62d53@baylibre.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <313d5a24b6cffa1a9160e624bb6855aa7f66589e.camel@gmail.com>
 
 
---z5pq6rhmfbngiav5
+--aLBybTFZShsDA3p/
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
-
-On Thu, Apr 11, 2024 at 10:07:54AM -0400, Trevor Gamblin wrote:
-> On 2024-04-11 12:59, Uwe Kleine-K=F6nig wrote:
-> > > + * - Writing LOAD_CONFIG also has the effect of re-synchronizing all
-> > > + *   enabled channels, which could cause glitching on other channels=
-=2E It
-> > > + *   is therefore expected that channels are assigned harmonic perio=
-ds
-> > > + *   and all have a single user coordinating this.
-> > What does "re-synchronize" mean here? Are all counters reset to zero?
-> > "harmonic" means that all channels should use the same period length?
-> Yes, it means that all counters are reset to zero. Harmonic in this case
-> means that channels can have different periods, but they should be integer
-> multiples of each other. Should I rewrite the comment to be more explicit?
-
-I hesitate to say "yes, please be more specific" because I think it's
-mood. If all pwm lines restart with their counter =3D 0 as soon as one
-line is reconfigured (without completing the current period) being a
-multiple of each other doesn't help at all. So I think the right thing
-to write there is:
-
- - Reconfiguring a channel doesn't complete the currently running period
-   and resets the counters of all other channels and so very likely
-   introduces glitches on these unrelated outputs.
-
-(Even if the period was completed, and only assuming configuration
-updates that don't modify the period, all channels that don't have a
-period that is a divider of the just configured line (might) glitch. So
-if you have one PWM with period =3D 200 and another with period =3D 400,
-everything is fine if you update the latter, however updating the former
-might make the latter glitch. So essentially you need to have a single
-period for all channels. That's why I asked if "harmonic" means that all
-channels should use the same period.)
-
-> > Reading https://wiki.analog.com/resources/fpga/docs/axi_pwm_gen I would
-> > have expected:
+On Wed, Apr 10, 2024 at 08:28:57PM +0200, Alban Browaeys wrote:
+> Le jeudi 28 mars 2024 =E0 18:01 +0000, Conor Dooley a =E9crit=A0:
+> > On Thu, Mar 28, 2024 at 06:00:03PM +0100, Alban Browaeys wrote:
+> > > Le mardi 26 mars 2024 =E0 19:46 +0000, Conor Dooley a =E9crit=A0:
+> > > > On Tue, Mar 26, 2024 at 07:54:35PM +0100, Folker Schwesinger via
+> > > > B4
+> > > > Relay wrote:
+> > > > > From: Folker Schwesinger <dev@folker-schwesinger.de>
+> > > > > -	if (of_property_read_bool(dev->of_node,
+> > > > > "rockchip,enable-
+> > > > > strobe-pulldown"))
+> > > > > -		rk_phy->enable_strobe_pulldown =3D
+> > > > > PHYCTRL_REN_STRB_ENABLE;
+> > > > > +	if (of_property_read_bool(dev->of_node,
+> > > > > "rockchip,disable-
+> > > > > strobe-pulldown"))
+> > > > > +		rk_phy->enable_strobe_pulldown =3D
+> > > > > PHYCTRL_REN_STRB_DISABLE;
+> > > >=20
+> > > > Unfortunately you cannot do this.
+> > > > Previously no property at all meant disabled and a property was
+> > > > required
+> > > > to enable it. With this change the absence of a property means
+> > > > that
+> > > > it
+> > > > will be enabled.
+> > > > An old devicetree is that wanted this to be disabled would have
+> > > > no
+> > > > property and will now end up with it enabled. This is an ABI
+> > > > break
+> > > > and is
+> > > > clearly not backwards compatible, that's a NAK unless it is
+> > > > demonstrable
+> > > > that noone actually wants to disable it at all.
+> > >=20
+> > >=20
+> > > But the patch that introduced the new default to disable the
+> > > pulldown
+> > > explicitely introduced a regression for at least 4 boards.
+> > > It took time to sort out that the default to disable pulldown was
+> > > the
+> > > culprit but still.
+> > > Will we carry this new behavor that breaks the default design for
+> > > rk3399 because since the regression was introduced new board
+> > > definition
+> > > might have expceted this new behavior.
+> > >=20
+> > > Could the best option be to revert to =E9not set a default
+> > > enable/disable
+> > > pulldown" (as before the commit that introduced the regression) and
+> > > allow one to force the pulldown via the enable/disable pulldown
+> > > property?
+> > > I mean the commit that introduced a default value for the pulldown
+> > > did
+> > > not seem to be about fixing anything. But it broke a lot. ANd it
+> > > was
+> > > really really hard to find the description of this commit to
+> > > understand
+> > > that one had to enable pulldown to restore hs400.
+> > >=20
+> > > In more than 3 years, only one board maintainer noticed that this
+> > > property was required to get back HS400=A0 and thanks to a user
+> > > telling
+> > > me that this board was working I found from this board that this
+> > > property was "missing" from most board definitions (while it was
+> > > not
+> > > required before).
+> > >=20
+> > >=20
+> > > I am all for not breaking ABI. But what about not reverting a patch
+> > > that already broke ABI because this patch introduced a new ABI that
+> > > we
+> > > don't want to break?
+> > > I mean shouldn't a new commit with a new ABI that regressed the
+> > > kernel
+> > > be reverted?
 > >=20
-> > 	/* ch in { 0, ... 15 } */
-> > 	#define AXI_PWMGEN_REG_PULSE_X_PERIOD(ch)	(0x40 + 4 * (ch))
-> > 	#define AXI_PWMGEN_REG_PULSE_X_WIDTH(ch)	(0x80 + 4 * (ch))
-> > 	#define AXI_PWMGEN_REG_PULSE_X_OFFSET		(0xc0 + 4 * (ch))
+> > I think I said it after OP replied to me yesterday, but this is a
+> > pretty
+> > shitty situation in that the original default picked for the property
+> > was actually incorrect. Given it's been like this for four years
+> > before
+> > anyone noticed, and others probably depend on the current behaviour,
+> > that's hard to justify.
+> >=20
 >=20
-> The regmap you find there now reflects v2 of the pwmgen IP; v1 used a step
-> of 12 instead of 4. The v2 series sent a little bit later on adds this ex=
-tra
-> support: https://lore.kernel.org/linux-pwm/20240314204722.1291993-1-tgamb=
-lin@baylibre.com/
+> A lot of people noticed fast that HS400 was broken in the 5.10 branch
+> but due to another commit (more later, ie double regulator init that
+> messed up emmc) this second breakage was not detected. But mostly
+> downstream. And most if not all rk3399 boards in Armbian had HS400
+> disabled.
 >=20
-> I've added support for both versions since v1 of the IP could still be in
-> use on some devices. Would it be better to have the two patch series
-> squashed together into a v5 of the axi-pwmgen driver?
+>=20
+> It took 3 years to detect that HS400 was broken on a few boards like
+> Rock Pi4 in the upstream kernel. Any might still be broken.
+> I would not count on the fact that keeping the current behavior equals
+> no more broken boards.
+>=20
+> From the previous exchanges the boards that requires the pulldown to be
+> disabled seems well known.
+>=20
+> Though I am fine with adding a property to set enable pulldown to any
+> board definition file where that is required.
+>=20
+> Only I do not believe keeping the statu quo equal everything works
+> because it has been 3 years.
 
-Not necessarily squashed, but I suggest to send them in a single series.
-(Note, this doesn't mean "Don't squash". I didn't look at the other
-series yet, so make a sensible choice yourself (or wait until I come
-around reviewing that other series and hope that I remember the context
-to comment about this question. :-)
-=20
-Best regards
-Uwe
+FWIW, I didn't say this. Clearly if that was the case, this patch would
+never have arrived.
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+> In fact this commit reached the downstream kernels way later. Any
+> stayed with the 5.10 branch for years.
+>=20
+> But on the other side the disable pulldown by default is alraedy in
+> stable/linux-rolling-lts .
+>=20
+> > > Mind fixing the initial regression 8b5c2b45b8f0 "phy: rockchip: set
+> > > pulldown for strobe line in dts" does not necessarily mean changing
+> > > the
+> > > default to the opposite value but could also be reverting to not
+> > > setting a default.
+> >=20
+> > That's also problematic, as the only way to do this is make setting
+> > one of the enabled or disabled properties required, which is also an
+> > ABI
+> > break, since you'd then be rejecting probe if one is not present.
+>=20
+>=20
+> I don't understand.
+> How reverting to not set either pulldown enabled or disabled by default
+> force all board to set either enabled or disabled.
+> I was telling about making the pulldown set by kernel optional be it
+> enabled or disabled to revert to the previous behavior.=20
+>=20
+> I mean before the patch to set a default pulldown value (to disabled)
+> there were no forced value.
 
---z5pq6rhmfbngiav5
+Ah, maybe I misunderstood what the code originally did. Did the original
+code leave the bit however the bootloader or reset value had left it?
+In that case, probe wouldn't be rejected and you'd not have the sort of
+issue that I mentioned above.
+
+> > > Though I don't know if there are pros to setting a default.
+> >=20
+> > What you probably have to weigh up is the cons of each side. If what
+> > you
+> > lose is HS400 mode with what's in the kernel right now but switching
+> > to
+> > what's been proposed would entirely break some boards, I know which
+> > I think the lesser of two evils is.
+>=20
+> More boards (even if not the most wide spread it seems) are broken by
+> the current behavior.
+>=20
+> I agree that only HS400 is broken by keeping the status quo. But as far
+> as I understand only HS400 will be broken either way.
+> Be that by keeping the current disable pulldown which break the boards
+> based on the rockchip default design or the boards that are non-
+> standard or have a broken design.
+> Both case this lead to data corruption on boot to eMMC.
+>=20
+> The only pro of keeping the current value the default is that most
+> board broken by the new default introduced in 2020 "might" already be
+> fixed (but that is just a guess).
+>=20
+> > It's probably up to the platform maintainer to weigh in at this
+> > point.
+>=20
+> I am not knowledged into the delegation scope. You mean that from now
+> on it is up to the rockchip maintainer?
+> I am fine with it either way.
+
+Yes, I meant the rockchip maintainer. I'm only a lowly bindings
+maintainer, without any knowledge of rockchip specfics or the type of
+boards we're talking about being broken here. Someone has to make a
+judgement call about which "no property" behaviour is used going forward
+and I don't want that to be me!
+
+> I just wanted to point out that maybe we don't have to set a pulldown
+> value after all. And that then all boards will be fine as before
+> setting the pulldown explicitly was introduced.
+
+By "all boards will be fine" you mean "all boards that expected the
+kernel didn't touch this bit will be fine". The boards that need the
+kernel to set this bit because it {comes out of reset,is set by firmware}
+incorrectly are going to need a property added if we revert the default
+behaviour to not touching the bit.
+
+> In fact I am more eager to get this fixed be it by adding a enable-
+> pulldown property to the board definitions, than to change the current
+> behavior.
+> Just wanted to sort out if that was not the wrong way to fix this
+> issue. (ie if adding a setting on most boards was wrong).
+
+> During more than 2 years, I tried various patches and discussed on
+> forums about the HS400 breakage. I had bisected the regulator init
+> issue in the 5.10 branch. Sadly it took so much time for this issue to
+> be understood that when the force pulldown to disable commit was
+> introduced downstream before the first issue go fixed.
+> This only made the matter worse because when one fixed the double
+> regulator init issue HS400 was still broken, this time because the
+> pulldown was forced to disable. But nobody noticed this commit that
+> forced a default pulldown state (that was older than the regulator
+> commit from 5.13 backported to the 5.10 stable branch commit, but that
+> reached downstream later due to not having been backported to 5.10 from
+> 5.11).
+> Otherwise we would have emailed immeditaly.
+> Bisecting was only able to catch the first breakage (as it was only
+> fixed after the second breakage was introduced).
+>=20
+> Maybe the problem is that me and others did not complained to the
+> kernel upstream ML because we were using heavily patched downstream
+> kernels (like most if not all downstream ARM kernels). So sadly, the
+> forums from back then are filled with complaints but nothing seemed to
+> have reached the Linux ML.
+
+Aye, and all I can really say there is to buy boards from a vendor that
+doesn't use some horribly hacked downstream kernel, which I know is
+clearly an unsatisfactory suggestion. That said, we probably should have
+caught that the new default behaviour when the changes were made was not
+the default before. There was only one DT maintainer then though, and
+things just slip by :/
+
+--aLBybTFZShsDA3p/
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmYYA7UACgkQj4D7WH0S
-/k42rAf/dYYgtWgQCwgoIgEbZ3xDBVCMESJkV0AhyE6HM01lBRbUSA5YWTE3kV6b
-opqkoV8PJn0Vc4l0cUkKrW/dtLYdn53XYIzu0G04IJLGN2qpj73UxAl/mcl3r+HW
-5UcYF9SQiXF+xcalszH3x2q7g9Lk4YA2j19Jv1322HWp0PIQ59uD5a/MsDhzvsnr
-e9ZlQ8nnvFVIDozffW+Dzi8TwisbywGvo8IEBtyW8/PQPlNtmvdKfTBiR/1Cjg8p
-wS6wmlYNqqVBIeCMRWr377gE/16YAUCs7uzksJ33B5BuNT8NlkfmAI+2U5QD5jni
-4B2Pqu0G5QpOwMipw/RLhIftklyaeQ==
-=H5Ix
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZhgE4AAKCRB4tDGHoIJi
+0vZnAP0TIt845yAiy0oBXp77jO++qGtE1WNNLRxIX6CYf3M/3QEAgrVA1XfZbrbH
+qEbevdZeVvM96FmZexF+UTJAHmwC2wo=
+=AiwS
 -----END PGP SIGNATURE-----
 
---z5pq6rhmfbngiav5--
+--aLBybTFZShsDA3p/--
 
