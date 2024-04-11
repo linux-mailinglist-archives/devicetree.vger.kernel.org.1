@@ -1,167 +1,77 @@
-Return-Path: <devicetree+bounces-58398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54A608A1E04
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 20:24:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 299C08A1CA9
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 19:52:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7FB56B2DB2E
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 17:43:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D78082833DD
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 17:52:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CF9415E214;
-	Thu, 11 Apr 2024 16:15:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A6F584DFB;
+	Thu, 11 Apr 2024 16:31:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Frce3vEG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eO5LNKIz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F64F15E208;
-	Thu, 11 Apr 2024 16:15:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CDF13E462;
+	Thu, 11 Apr 2024 16:31:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712852106; cv=none; b=E/Emrq9efIZGvUEw1w/b9hHnTbYNRyIMG20VKwMhngNHYynyMW727fU6pceijmaqTXnjG3g18XLhoOKJOs3Lpa257TVpRkT1DC1BV2ckRzjYwuZ3GVgp3DYsGMpvGykATqSZIewcjpYnTcZNOUIXwDh6FekiQVq6YfjgEagIIiY=
+	t=1712853072; cv=none; b=ZE1xP+RTlyJHxWzaM2Cen4CCZ0NtVrMHdJZ6fkAqm/gNo60w5t37c1Lzmn66cz/mkC71j8qEKCx+C74Gl+GgI8T5Zt88OcOgGBa6ea3XPTgMkG3k85D6iesht2/V9acELoY7ZLDivB4d72OKbPiLDODMMI+6wEXVOxDPrfTXI9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712852106; c=relaxed/simple;
-	bh=zFthHjjh9Aso3EVZFd6I/EjfK4r2+rzfemyi6bGp4hI=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=bv4MsA2amkJbw/0k50zZjWcsvZYloE+b5TUtnGkKsWQTc6zjiWONNwZnABUK+XERDHCD+XWAtrkY7z100hS4p7Btu6sPZrpb1vEI5GK9zggszHouTLFMd4x5fterOOndi8h6I7nMgKFn6Hr0tajBiu1NRL2r+7aAhUiOG6eMiPA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Frce3vEG; arc=none smtp.client-ip=209.85.210.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-6ecee5c08e6so38018b3a.3;
-        Thu, 11 Apr 2024 09:15:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712852104; x=1713456904; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=bHKLXIL7AGZ7PCEor3/6k+rOZmYsF608r3G1HPhZ/Ds=;
-        b=Frce3vEGai+M6/ExhG5Tpba6zw8jl9RYa+DDE/FMyjkpyo4O40Gnf0mp5c8qGQy6QO
-         ltSwqpxE/5p6WDvEeuWpbPmJmMXM2FSF9rOliY8dv4wDSlht7o9vXi2oEoqhFI9pCKTX
-         CKCUg7YkPq7QLKmwN2VHwgYwuqqWV8swvWPB5W9ySqxe7gtS9mPxicNVISdde58C8h+j
-         WT2IFNMYCYGwtL4wRRE1OeI85kRQN/XHVSmnjdbMo1MK5jaqMjW6C/G6dp5VftxZz/xT
-         u5afE+B6pY/+cX2zRuWpPLmAi9G/SNDvy5jtmDBdwMgxUueXcVr3FvBfGQFoYppVaHor
-         JKzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712852104; x=1713456904;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bHKLXIL7AGZ7PCEor3/6k+rOZmYsF608r3G1HPhZ/Ds=;
-        b=RMLjO3lXNA8mVozIB8hL29SqeCkZW1C/doQ6nlPgGhyYZZ3IRZp3WQOGq3KLT2xH6B
-         CtfFvpvIZyDTnEBH/2ClEM+QLPg+lKTEFpvDaHMDZvqvDg02CZoUvgZQ/b8D+73kmn5n
-         k7UXeU5bUP+n3fUJ+NwMcFo2pwYjQsdUr9vQDKIIltqVZKj6pG1ZWydX1mFtPIZIKfdJ
-         /Vtn4iNpAdj98rknopkdDvoUBPyeGTe6RNjogKOv422nB/tKOvBaT7b1sz/jj7UOMZs8
-         QRn80baDXlWr7LBCYhezSnMM4RT+fcIpDeDD0AlnEsvPzJlIF19Hh9IOYWIf7TM6qtIB
-         zM9w==
-X-Forwarded-Encrypted: i=1; AJvYcCWin5Ke2OB7JarSkJ3VqE9P8qhZRkHL+iGGZ/wD/WfYjw4iwWiae2AOiqUXsYBTLMYy0nesMJJPPeumPWqk5i6OkloCik/mb5H0IInjXAV9JfBNvbpazGuPF/gYrWCOUN+n8LiB7GDQ/A==
-X-Gm-Message-State: AOJu0YxHDOuV/NBzEhdVJIkonln0OHQmwuZgvk+pOVv1UOHwd3c/JxD1
-	/EZWR1NvaUQylrDpKV0rojg232jMWWcEi821M5RrIluAtBQQpLPu
-X-Google-Smtp-Source: AGHT+IGFtEPQKiuEQiynF7E0e+oZQ/02XP6gKtgqvqBPUSFKvM58AzS0FM2xcxRBqwpZ7OTrkf1t5g==
-X-Received: by 2002:a05:6a20:f3b0:b0:1a7:52f7:8a38 with SMTP id qr48-20020a056a20f3b000b001a752f78a38mr307671pzb.15.1712852104412;
-        Thu, 11 Apr 2024 09:15:04 -0700 (PDT)
-Received: from frhdebian.corp.toradex.com ([201.82.41.210])
-        by smtp.gmail.com with ESMTPSA id t184-20020a632dc1000000b005f410b67e60sm1254185pgt.22.2024.04.11.09.15.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Apr 2024 09:15:04 -0700 (PDT)
-From: Hiago De Franco <hiagofranco@gmail.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Hiago De Franco <hiago.franco@toradex.com>
-Subject: [PATCH] arm64: dts: freescale: imx8m[mp]-verdin: Update audio card name
-Date: Thu, 11 Apr 2024 13:14:41 -0300
-Message-Id: <20240411161441.70262-1-hiagofranco@gmail.com>
-X-Mailer: git-send-email 2.39.2
+	s=arc-20240116; t=1712853072; c=relaxed/simple;
+	bh=d0dfFBnNTYgGXuohXJQBT4zJhFADAPc7jBuCcAGNF1A=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=WNqMgzgii0j21Y+mujFAYVeCogVYdsPhV4Kv4l+e5xFD1GqXX1DtnyjgtCHUQ3NyWkjrMYbYwlhuB302T0vTMgsiXod9mWWXqryeVNtuz7CEBo/YvNCosn6qLwVY28sSe2ySeUPFV9lPYrtgTJIPhhhEOoDBITMIFSub0tRH044=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eO5LNKIz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D971C072AA;
+	Thu, 11 Apr 2024 16:31:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712853071;
+	bh=d0dfFBnNTYgGXuohXJQBT4zJhFADAPc7jBuCcAGNF1A=;
+	h=From:To:In-Reply-To:References:Subject:Date:From;
+	b=eO5LNKIzDSjx1TeGFy4qsleB6DGACPeBYuVvC637DlD1bb1o6Yz4VM6lDJasbmNlg
+	 RX0t0g/kFSqFFjh8RzojGHOX3GULzhAraoF6iKffXN5OzE8TJ+TpFXfrG4SszYRv/u
+	 l5guwyVYW2rY1CeN4p6c8l6qhQNzpuv4WeY3AcRqLNgkqmGUXy8wxmPcF0DTsWgH+P
+	 FNHMS/s/+5ZzFZxuA7UZUWZ+oICjiSGjs6S4vV9FvK6Ft0eqsjZcUOQANPWlPDiurh
+	 MqR1j/X4f/yf88B6FHbho1d68+KLVMYuDzKQ2HsBfLrAGNwTcAz1grdwpTeAGWxK2K
+	 Xzo4+d5asWakA==
+From: Lee Jones <lee@kernel.org>
+To: lee@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+ conor+dt@kernel.org, mazziesaccount@gmail.com, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Andreas Kemnade <andreas@kemnade.info>
+In-Reply-To: <20240404195423.666446-2-andreas@kemnade.info>
+References: <20240404195423.666446-1-andreas@kemnade.info>
+ <20240404195423.666446-2-andreas@kemnade.info>
+Subject: Re: (subset) [PATCH v2 1/2] dt-bindings: mfd: Add ROHM BD71879
+Message-Id: <171285306996.2486859.2492109750495696356.b4-ty@kernel.org>
+Date: Thu, 11 Apr 2024 17:31:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.12.4
 
-From: Hiago De Franco <hiago.franco@toradex.com>
+On Thu, 04 Apr 2024 21:54:22 +0200, Andreas Kemnade wrote:
+> As this chip was seen in several devices in the wild, add it.
+> 
+> 
 
-On the Dahlia and Development carrier boards for the Verdin family
-(iMX8MM and iMX8MP), WM8904 and NAU8822 codecs are used. Instead of
-module-specific names, switch to more generic names based on the codec
-employed on the carrier board itself.
+Applied, thanks!
 
-This modification facilitates access to ALSA card names, ensuring
-consistency across iMX8MP and iMX8MM, as they share the same carrier
-board.
+[1/2] dt-bindings: mfd: Add ROHM BD71879
+      commit: 9814ee9b64c06aae57c8a8f003014b3d90e09a3d
 
-Signed-off-by: Hiago De Franco <hiago.franco@toradex.com>
----
- arch/arm64/boot/dts/freescale/imx8mm-verdin-dahlia.dtsi | 2 +-
- arch/arm64/boot/dts/freescale/imx8mm-verdin-dev.dtsi    | 2 +-
- arch/arm64/boot/dts/freescale/imx8mp-verdin-dahlia.dtsi | 2 +-
- arch/arm64/boot/dts/freescale/imx8mp-verdin-dev.dtsi    | 2 +-
- 4 files changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin-dahlia.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin-dahlia.dtsi
-index 1cff0b829357..45f7b8d87517 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-verdin-dahlia.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin-dahlia.dtsi
-@@ -10,7 +10,7 @@ sound_card: sound-card {
- 		simple-audio-card,format = "i2s";
- 		simple-audio-card,frame-master = <&dailink_master>;
- 		simple-audio-card,mclk-fs = <256>;
--		simple-audio-card,name = "imx8mm-wm8904";
-+		simple-audio-card,name = "verdin-wm8904";
- 		simple-audio-card,routing =
- 			"Headphone Jack", "HPOUTL",
- 			"Headphone Jack", "HPOUTR",
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin-dev.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin-dev.dtsi
-index 3c4b8ca125e3..1f6a37f232da 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-verdin-dev.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin-dev.dtsi
-@@ -10,7 +10,7 @@ sound_card: sound-card {
- 		simple-audio-card,format = "i2s";
- 		simple-audio-card,frame-master = <&dailink_master>;
- 		simple-audio-card,mclk-fs = <256>;
--		simple-audio-card,name = "imx8mm-nau8822";
-+		simple-audio-card,name = "verdin-nau8822";
- 		simple-audio-card,routing =
- 			"Headphones", "LHP",
- 			"Headphones", "RHP",
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin-dahlia.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-verdin-dahlia.dtsi
-index 7e9e4b13b5c5..e9ef9c553a47 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-verdin-dahlia.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin-dahlia.dtsi
-@@ -10,7 +10,7 @@ sound {
- 		simple-audio-card,format = "i2s";
- 		simple-audio-card,frame-master = <&codec_dai>;
- 		simple-audio-card,mclk-fs = <256>;
--		simple-audio-card,name = "imx8mp-wm8904";
-+		simple-audio-card,name = "verdin-wm8904";
- 		simple-audio-card,routing =
- 			"Headphone Jack", "HPOUTL",
- 			"Headphone Jack", "HPOUTR",
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin-dev.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-verdin-dev.dtsi
-index a509b2b7fa85..65cbf905a1d9 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-verdin-dev.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin-dev.dtsi
-@@ -22,7 +22,7 @@ sound {
- 		simple-audio-card,format = "i2s";
- 		simple-audio-card,frame-master = <&codec_dai>;
- 		simple-audio-card,mclk-fs = <256>;
--		simple-audio-card,name = "imx8mp-nau8822";
-+		simple-audio-card,name = "verdin-nau8822";
- 		simple-audio-card,routing =
- 			"Headphones", "LHP",
- 			"Headphones", "RHP",
--- 
-2.39.2
+--
+Lee Jones [李琼斯]
 
 
