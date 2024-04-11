@@ -1,95 +1,144 @@
-Return-Path: <devicetree+bounces-58183-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58184-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D578E8A0ABF
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 10:00:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FA588A0AF1
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 10:13:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FB61287625
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 08:00:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0189287C24
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 08:13:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EDE413E8B3;
-	Thu, 11 Apr 2024 08:00:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFE00140361;
+	Thu, 11 Apr 2024 08:13:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bElwz7Tm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r8PsULaZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3898C13E8AD;
-	Thu, 11 Apr 2024 08:00:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3F1013FD97;
+	Thu, 11 Apr 2024 08:13:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712822416; cv=none; b=SaES5X7RfGM412Vg7q7Mq2M4CUEu2Oeapn5lHRoEB0GFvRoF6RyA0KN32esKNv1p9nq2pzLZKSBNXOBwLs9Mt5JBwc/Pz03nHfSgtP/FPrAd3La2nHNOjqsDs4nGhxLwcCOYXlh+tdHxD0eQDQwpXkpV3/P55ocn9ReJRd53yEM=
+	t=1712823226; cv=none; b=PmsHNa5hhD1t3xDqwlluYpQpYaY4nsxdJkldVYQxh9QT3276l997WA+vvpiFpVfn3wfoV6o5xM31XJDpY6IzmJ4eSSnQFrt9QzPjP7HT8ztFPQKdhemyUJU9B2MCgOZiKxcKoIFmMZo1x51YI0A9oA3hJzhMAJn4SVS0Wau0tNQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712822416; c=relaxed/simple;
-	bh=waEt8fKtfTAHPrtNAXCwzW9ODp2LwQ41zoYR/MtoFg0=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=ZrWTAASFhYgRoFCgRKQPG7u1/b0RVDPxTvDUaP8rL4pLTnkIRyrZpm0bDp9Ibc6FmY69QmbnR4IiSziqIXw3p2IhFplEuRBC3FgQYuwzXE/o0CagHgj5rksdl7PP0NCtpvfAc/6InMmBIODYINwhxHcrwvq9zq9/qwavN+00Q58=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bElwz7Tm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97C3FC433C7;
-	Thu, 11 Apr 2024 08:00:15 +0000 (UTC)
+	s=arc-20240116; t=1712823226; c=relaxed/simple;
+	bh=9UuvO6VmNgNw2yHNpFdeTmy3vJYbe07meO5b/2iM7c0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=t4aD5jp5U+gnMZBX8ZiU1Re2/o5IzPJF08VJDg7U4iYsU8IWI4VIrM/73R9exlEDbHt9JHLVRKfyJtYZO0QpfAOC8CRmjAcy2kV2c2gjPATUpmPem0F/TXtD/9GLhlls40SG3Bq11IYCmWIZTGlNwm3hE3GSToBIytn+HYccrwU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r8PsULaZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E60B9C433C7;
+	Thu, 11 Apr 2024 08:13:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712822415;
-	bh=waEt8fKtfTAHPrtNAXCwzW9ODp2LwQ41zoYR/MtoFg0=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=bElwz7TmiuY0Qzn2A4CYKyVm6jRxsPz9fLs3tgdB5vbkfrFqq/CvpYY+HiqvhvcWw
-	 lqtS7Dsd7UV0xkKAnYzrbfp+De5XTarO7RjpWMJXiZzzs4K0klARaTsx7eta1gBAOb
-	 WeCh5Pt0hpJbL/YwkNUT3ZG70LkqMnsyzFK/z4XK2FQNILTpQQf/RqjV6GAN9nEK39
-	 zViN+RjWkiJ4qdKDYzT6kEAcwCIq30WgrhGNr1z4TmyfaFL8gSPdSaQl5igSG2cN/W
-	 HXq6s6AOx3f1Qfg7vP62R6amtAeVDLyJjLMqgR4JhYR9sf+JJwQJT98faBihwRB+MK
-	 ntBtZB0ML9u5w==
-Message-ID: <3838e4684f98e1ce3818bfb6983844bc.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1712823225;
+	bh=9UuvO6VmNgNw2yHNpFdeTmy3vJYbe07meO5b/2iM7c0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=r8PsULaZnBxGQMES/SJTxin4p/zXNW0BIy1w2apK+41edUlw5fXXhH+SOh9t/rLz3
+	 cxHtDMaOZh2hpzf/XZkEfmy6aQ1z5ZLjkEFX5KvGV9A+OAUnniNoYUhiU6K7rjs9TU
+	 eK8vPtGkJuTzOOiBW7CK4JXBlIDe0PwnZUzXxMBoZYIEL4PJcHuw6vO0/aCOFmhyeU
+	 M/NNnPiUJquOL9EbZwKBso/jx2mqwmcn7rQ+zOXO3SW4RIVueHaJS0yynNuCkiB8q1
+	 ZXffAEyK4DiGa+Kc8Fg5ITGiKLfgd+hD9mnyrFfqIZ4i5Tow0PTQt8re+q4HfyuvpK
+	 92r4abRZGtoLA==
+Message-ID: <703311b6-ee3a-4131-ae11-57b8d765db5c@kernel.org>
+Date: Thu, 11 Apr 2024 10:13:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240402-pxa1908-lkml-v9-5-25a003e83c6f@skole.hr>
-References: <20240402-pxa1908-lkml-v9-0-25a003e83c6f@skole.hr> <20240402-pxa1908-lkml-v9-5-25a003e83c6f@skole.hr>
-Subject: Re: [PATCH v9 5/9] clk: mmp: Add Marvell PXA1908 clock driver
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, Karel Balej <balejk@matfyz.cz>, David Wronek <david@mainlining.org>, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-To: Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley <conor+dt@kernel.org>, Duje =?utf-8?q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>, Guilherme G. Piccoli <gpiccoli@igalia.com>, Haojian Zhuang <haojian.zhuang@linaro.org>, Kees Cook <keescook@chromium.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Linus Walleij <linus.walleij@linaro.org>, Lubomir Rintel <lkundrak@v3.sk>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>, Tony Lindgren <tony@atomide.com>, Tony Luck <tony.luck@intel.com>, Will Deacon <will@kernel.org>
-Date: Thu, 11 Apr 2024 01:00:13 -0700
-User-Agent: alot/0.10
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] dma: dt-bindings: fsl-edma: clean up unused
+ "fsl,imx8qm-adma" compatible string
+To: Joy Zou <joy.zou@nxp.com>, frank.li@nxp.com, peng.fan@nxp.com,
+ vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: imx@lists.linux.dev, dmaengine@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240411074326.2462497-1-joy.zou@nxp.com>
+ <20240411074326.2462497-3-joy.zou@nxp.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240411074326.2462497-3-joy.zou@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Quoting Duje Mihanovi=C4=87 (2024-04-02 13:55:41)
-> diff --git a/drivers/clk/mmp/clk-of-pxa1908.c b/drivers/clk/mmp/clk-of-px=
-a1908.c
-> new file mode 100644
-> index 000000000000..6f1f6e25a718
-> --- /dev/null
-> +++ b/drivers/clk/mmp/clk-of-pxa1908.c
-> @@ -0,0 +1,328 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-[...]
-> +static void __init pxa1908_apbc_clk_init(struct device_node *np)
-> +{
-> +       struct pxa1908_clk_unit *pxa_unit;
-> +
-> +       pxa_unit =3D kzalloc(sizeof(*pxa_unit), GFP_KERNEL);
-> +       if (!pxa_unit)
-> +               return;
-> +
-> +       pxa_unit->apbc_base =3D of_iomap(np, 0);
-> +       if (!pxa_unit->apbc_base) {
-> +               pr_err("failed to map apbc registers\n");
-> +               kfree(pxa_unit);
-> +               return;
-> +       }
-> +
-> +       mmp_clk_init(np, &pxa_unit->unit, APBC_NR_CLKS);
-> +
-> +       pxa1908_apb_periph_clk_init(pxa_unit);
-> +}
-> +CLK_OF_DECLARE(pxa1908_apbc, "marvell,pxa1908-apbc", pxa1908_apbc_clk_in=
-it);
+On 11/04/2024 09:43, Joy Zou wrote:
+> The compatible string "fsl,imx8qm-adma" is unused.
 
-Is there a reason this file can't be a platform driver?
+Why? Commit must stand on its own.
+
+> 
+> Signed-off-by: Joy Zou <joy.zou@nxp.com>
+> ---
+
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching.
+
+>  Documentation/devicetree/bindings/dma/fsl,edma.yaml | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/fsl,edma.yaml b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
+> index 825f4715499e..64fa27d0cd9b 100644
+> --- a/Documentation/devicetree/bindings/dma/fsl,edma.yaml
+> +++ b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
+> @@ -21,7 +21,6 @@ properties:
+>        - enum:
+>            - fsl,vf610-edma
+>            - fsl,imx7ulp-edma
+> -          - fsl,imx8qm-adma
+
+
+I see more usages. One more trivial patch which is incorrect.
+
+Did you implement the internal review?
+
+Best regards,
+Krzysztof
+
 
