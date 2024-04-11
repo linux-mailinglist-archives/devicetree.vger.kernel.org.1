@@ -1,220 +1,170 @@
-Return-Path: <devicetree+bounces-58165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D43B08A0A07
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 09:38:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 215C98A0A1A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 09:40:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BA651F215CE
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 07:38:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D1641F226AD
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 07:40:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8B6913F007;
-	Thu, 11 Apr 2024 07:35:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF17613E3F6;
+	Thu, 11 Apr 2024 07:38:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="NyK6FcWt"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="qWSEX+77"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11olkn2081.outbound.protection.outlook.com [40.92.20.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E5DE13E05F
-	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 07:35:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712820936; cv=none; b=S6pgRb3m4ZXWMU0e45F2FW54+LRH9/LUgM3KqVew4O+mKT2BZ+W0pJFHTZoDt/SjK0Tz2Fi4gJ8lk37uS9mtdOCRRaj1OJ6Btny8dDsL2qYX8Oi0zhD6Z22RIM5eKc9p+dqRvgUtGSbArFwu1yNH6qZa5as8mr7wG55mG9dj/c0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712820936; c=relaxed/simple;
-	bh=DY/4DerGRBb0QqlGFg3p8xcWt1msP7cUgXqVJUnYvXc=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:
-	 References:In-Reply-To; b=nr4fByAxYXLzDSwiIBLNeYaSa8IXWxLGsSPD8/si4CsTqXxNmxeTYn23f62D6es06bvLFusLsOIfTMg7+ZOurvAu/rg6ZGgGg6zym0yRU0knjQ1OoJG1ukxFJr80Qqcz4fXj0C7nCaG2AnyAp4YvKJgn073Lx/QL5EEguXfR8eQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=NyK6FcWt; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a44665605f3so835621766b.2
-        for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 00:35:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1712820933; x=1713425733; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=T6le4foaS4XgBxBuhSj2wdSogbCI/OVt2IshAL3V9iQ=;
-        b=NyK6FcWt0EzWRAequ4sa63Pg2xVrqW4O0obtT4qkxjrr6fvyfEiYYFA2+4EwMFym6E
-         xTufs3pUbiLhYgf6FySExnRoqTu62tcZBwsnnHl2hcYz8tsEQ6N1ja8CrsUpskASrmpb
-         wWrLpvSfPoIC8T6EK6EmZuQr13VKsVcO+88NlSyozf0mVDSTgIi6fNAFMUtqkn50mVAU
-         isHAaYeWcSJZbClWOMGGOZFMP0WHJL5u1cnOW3QhsF089T3voDd5Q1fkvwv+HUJWnsoZ
-         r5aDM6oH6U9NbH+slc8EizWZdfTW0xLCP27JdrjA61/JtJ4Qd2pELQIf65gU2sY6KI9Q
-         5gbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712820933; x=1713425733;
-        h=in-reply-to:references:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=T6le4foaS4XgBxBuhSj2wdSogbCI/OVt2IshAL3V9iQ=;
-        b=AQ2kGSOohD3y1YYmzSDI1XB3rU2KjpN4dZSVGqm5hW755vv9ZqLBtxOqjJrJX74nYb
-         JbrMxHUYF4o+nO3PtLS47kjSckSMjWsPAfxd70tTmK7ns3/ctfGC+czJ5Lzne6Lfd11U
-         Hpc3q4E7J8FI+3RWqNWy4rHpirSU0jEQdKmCBCWQ5ud2egQUfnUlswkueaTMKnhZ6lJK
-         zEPlT1lwxwigHtCvVBzR0/M7wkfqTXoRI7EzmW7GpbkJtcMhXtA+75oJ7Z57uPsEaiVs
-         I4FEIQ/ocUYPlbVcgQp9K8IQqtlb8s5TMWYxP75KnemQ8OGeiRoBslCvtZfnC1/ixDas
-         pypA==
-X-Forwarded-Encrypted: i=1; AJvYcCWGfpg4QfdHW3jmqeIPVL/4rhE6FbLXM+C8DHmHW+8ivc7Q2LwrIUurwPvg1soNgIb3PfnkM+T0hyvH/qzm3OsKNPqPF6/EoyjPuw==
-X-Gm-Message-State: AOJu0YzjSUKD9VeKL18e2u62TN7UfU9nswCVpXTySNqBFdjLFduwBPZI
-	K/sXVupKwBFArYAMlBeLSgIJzmQCot5/DmUU9WbyaMXB8xWTHQDCV1dpeGA6Dbw=
-X-Google-Smtp-Source: AGHT+IEVtEqpCy5E3AYRD1SF9Km0TxRNvi4IhzO3AHxvY8mwuLDPLS8kdDC3zgHw+qXSvVoFbdptWw==
-X-Received: by 2002:a17:906:b1d7:b0:a4e:5c23:f776 with SMTP id bv23-20020a170906b1d700b00a4e5c23f776mr3208301ejb.37.1712820932974;
-        Thu, 11 Apr 2024 00:35:32 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id bm15-20020a170906c04f00b00a46d9966ff8sm488113ejb.147.2024.04.11.00.35.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Apr 2024 00:35:32 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1F8A13E051;
+	Thu, 11 Apr 2024 07:38:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.20.81
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712821123; cv=fail; b=WDoqXRUsUwGKDOG3OH4A9WJudEWI48j3bT/D2WOmoYpB8GHFj/kcDQfsZSiVEBRNiiXTvTv/tWqMZKaLiE+JG7zoBPxrVtnuqqu4ArZSCbAIvYoSyqdbxd4sYZ/LKGrvlW3SjlCwzJb377SMxUdExN4fXBsySeOtF40pcA48ons=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712821123; c=relaxed/simple;
+	bh=VZjcUvfqSrsUxAejDXbi43M9YbfSdAkT3wTyesH36T4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Em7NaOH+QuA2eUcx1KEGD03aoY0DbixWSiNBEErOOKL6y64JEoyXI5bzENDUornyVUwBULpHqpiKzM0G5MF3OGhuPzJPkInj1NSw0J1AuFfuS+jNPg1EOB0TMeNaJltat7JBDxUBu/FE82BvBBE7JmDBZveUXIKF4yLvDgHqfQM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=qWSEX+77; arc=fail smtp.client-ip=40.92.20.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=n33ped5ohpkz4oo5OhWyrwRlVEiAeUzVPVWNFBVKBAGUTj9lifMRNNFZW/fzlMdbYoXXIEp5qk8U9WiDZkYH7Hk1iHnoo6CfKwcyOfUErsw952xuOCQ+aG06/cuwaB+0KJka8LLyYwWJcHuGupiNwRSPuUXuqGG5s0Asr3SankcTnG9LflwQBCyiwJY+7WkQ7SFEB61fHTjJlEK0KctdHYOTbioF7pfuGNhjb8xI2wjHm3u2pwPyqsUqbZggLM78HBpjRWBCChCrnce3f1dWxdZUVmS6eWy4LMS2HT66F2Aduck3dlTJyyzH2Zns3RJXB27IET8XBv7Mo7szHbXS/Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fEQqN+W+wKuKybelqNiTnJZCWU0PpTbjgDYNvqxYRCs=;
+ b=ZgY4l5kefGqTPftFKykN+Yw+g6tnJ3ObaPou0rHl3rSsi8hf71CMViQkVdWr9XB5YDw+LHwlRin3FsaG4/68ngNV4vnduQIfqt3skqRjTPs8HQYY2NFGUqwaDE8SyaGV/NJz2CuCBoTtfjo48smLRzUqbuK0Oc+iOZhnOlhgGINVGjIoEf5iP6NbBQlOIgsubBIucgwoxrN7tr0ptBfiRSYoly39ZH0gtbZy6GAVhe1ZKHSZMW0Uwl5BkTwo8VrWdBII+YMKH7ZEY+iSB325q6K7lqNjx96azk7DBXQOjPALwlUrGPjcfxhwTNoPtJ67b+aYzUyi8ro/6EcPSZJKCQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fEQqN+W+wKuKybelqNiTnJZCWU0PpTbjgDYNvqxYRCs=;
+ b=qWSEX+77gjB6mRcU9HNIRauybXS8+iBsH/tZ5wh9/e8ZdwGBqQfrV5+QuAg/RbAWMJa0iipDJJOEsce+2p7Yxc8RKTc2H5BrFAwVjtUp2au7Oh/N62yVU+hv67LFMyUBSzASRYwOlcj8wsmLWFn9F2hZAJxiJD/EeRfyxS1FgCUV9ZkKOzuUAsmljiwX7rHZ+exjqKCERtnLCP2iuHMnxIgi+9uVO3XuunUG6RU9uOOt7Q0kv7AlJwvANLhgol3C6uK/2zjbyoI3sswHnTdzSZuPp/ZnKPl2+aXUQgkiICUDVKNSIEHDTFe4Qx1AIZs13FOUiM6ek5SezSvOAEaUXA==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by PH7PR20MB5308.namprd20.prod.outlook.com (2603:10b6:510:1ba::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.55; Thu, 11 Apr
+ 2024 07:38:37 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::182f:841b:6e76:b819]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::182f:841b:6e76:b819%2]) with mapi id 15.20.7409.042; Thu, 11 Apr 2024
+ 07:38:36 +0000
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chao Wei <chao.wei@sophgo.com>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Inochi Amaoto <inochiama@outlook.com>
+Cc: Jisheng Zhang <jszhang@kernel.org>,
+	Liu Gui <kenneth.liu@sophgo.com>,
+	Jingbao Qiu <qiujingbao.dlmu@gmail.com>,
+	dlan@gentoo.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: (subset) [PATCH v9 0/6] riscv: sophgo: add clock support for Sophgo CV1800/SG2000 SoCs
+Date: Thu, 11 Apr 2024 15:38:53 +0800
+Message-ID:
+ <IA1PR20MB4953E5E78F930EE25A86EE1CBB052@IA1PR20MB4953.namprd20.prod.outlook.com>
+X-Mailer: git-send-email 2.44.0
+In-Reply-To: <IA1PR20MB4953512A4DCAF293D7B1CBC2BB262@IA1PR20MB4953.namprd20.prod.outlook.com>
+References: <IA1PR20MB4953512A4DCAF293D7B1CBC2BB262@IA1PR20MB4953.namprd20.prod.outlook.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-TMN: [iDtaGmXGwD/g9EANelqzXZc6pF8UbrUjRKGkiBcA1ns=]
+X-ClientProxiedBy: TYWPR01CA0009.jpnprd01.prod.outlook.com
+ (2603:1096:400:a9::14) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <171282109234.564827.16346291400943800204.b4-ty@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 11 Apr 2024 09:35:32 +0200
-Message-Id: <D0H4CHG4KSRF.10Z6DOI8PORI8@fairphone.com>
-Subject: Re: [PATCH v2] dt-bindings: usb: add common Type-C USB Switch
- schema
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rob Herring"
- <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Bjorn Andersson" <andersson@kernel.org>, "Konrad Dybcio"
- <konrad.dybcio@linaro.org>, "Neil Armstrong" <neil.armstrong@linaro.org>,
- <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-X-Mailer: aerc 0.17.0
-References: <20240122094406.32198-1-krzysztof.kozlowski@linaro.org>
- <D0H3VE6RLM2I.MK2NT1P9N02O@fairphone.com>
- <051c6e44-4844-48b9-846d-cf9b81611415@linaro.org>
-In-Reply-To: <051c6e44-4844-48b9-846d-cf9b81611415@linaro.org>
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|PH7PR20MB5308:EE_
+X-MS-Office365-Filtering-Correlation-Id: 467fae24-5bed-4ab3-e657-08dc59fa64da
+X-MS-Exchange-SLBlob-MailProps:
+	ymJijV9pwJm+jY4Q11pAguX0vq6mPxhXIgrpc7SQiJT9YZkbhQJ5aHyogEsH3iMpBbkF3jw+LwZa/NUQMOQYlYj0M6UCteUSubOjP992e5LfphLHKlxhhSlN4tzmSk9HE37jIqVzDgjYZNCA+3pipxukj+8Fk/DUAqnchD/Blh5enseCcgSsspEAjSZU9jyoEdPf/RpMB+N22q+hloze1bwhVbo8rEmCKZ3oBR9t2Y/x7MfJDSlcWaWHLD4f6GwMfEPZUs8Xp3U3T0yV9mCr4mlgI7FfKEnrrVibHURDhXlI4f3LvXRHDt0LetBoP25qBdNERzI9yG0vyIFo+rTBgC1y9TTmrif5uIoql/qZEIQSQU1EkBEOQdi/a5hZVBua7VpKB8x2NsSvg3vTWEVtLsrkZZ65aPsaCCit6s1IVyh2MnrbHh4gkT/s0KfEUq8rMmzcvdnsn23mmV8PMoid/tmT1uY+CNRtazRpN8AIDrG7zFLOmuuPoYalrF9o/SELZA7kioRr+10E8Tui7jSlrArcAVl4aLMs2YYg3P7zI3XoMCAVlbSo944/RDh6fa9AngWcz4q1yfhY0DUpgZpywlhCBWuNVUg5CO3eybpk0rzZt13aHigIVU++MehKqlp4Es+cBN5rk6LXZ5jjyPNtG3G7b0yxdwKxAhb2EgC/LSE8bCQB2C/HkBnF4kCOiBPf1j++rsIdHjYNrc0i7BEJ1jjVjHKjxAC/8VTMjFBi5t2gOes8bmLkGC6CxY/13ZUhrlDWPpfDcrOn9hSxVudUTYSMlLi2Ql4nNfxmdP2Yiga/HK9Q++OLF7eB4On5K90r
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	qs5wmL5YaVfmncpW98DQam8SuxW/sphW15/lw+6HNtM3NVb4YoDy+nTfVx/Xr9duS3zFSwzBWSowxTpuQqTTiCdFZGmwVsfyhIBnXJWFH8EsuAIJGaPy1fSmoUO5Ou+lTog24MwZi8bIVcRqvXpG3ac/t64iSC1PbgwN3L72+ibE4E7MHIhtcOgaB9nh30nLJJA+FQRhmkUQGNuLp89SJD5gq04JFN4jnKXO88SdNLVJTzl38g2rL6QD7n/nmzvlZ3aN4CC//wzgO7ztOpTB6wM1m2J4GlSZcUZjw2S9dLQVVjhcx390B3T7TXQ4XyjyunT0IpMGVNgleZApi6yfZ2nrKWnebNqEd0JI20VCnpRxlt2pExzDkZd6AcofTxLkDZwTnePlr7xJCPYoyHZy6mtREn8Q68n/hXUjOS6xPA1bE+JyC9aNbNUyeU3Z2iEn/1WE4ZQDutcOyK6oKKhAFsAjCy6iDm2DzibVdO9eOB0SgeGzCXOQJZMhAxFytj4Dfd2Wj62VX+aYJM1lxJLuaxFgyRf73eQVilk9eNuzrr4HlR7ouuWmRGSsmDpvPMZbfndp6yfC60DuW/DeaCbQuB3PEmvpn9kI2ffSL56xch3xhoRQzHzEjX2JWUF+TmWkipnVO1KXvMgq+OMXRO1vFT9PyB9EBgeRKrmYYjSVjg+j3rzF+J6s38YjJue9yn4uJ8ep4JS7fKAHdZ2aeNmFQA==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?YUM4VEF5YlEvc1dDSGRYdXE0RHAvdUs0Mk9uY3p2MTdzWGRwUTNJVGFsM3ll?=
+ =?utf-8?B?bDJacGlpNGd1YjA0dmw0VVVLaEFkUGswQWdSVm10TDBSWXd6ZWtOS2txM1pL?=
+ =?utf-8?B?eGZ1bWMyMGFoQ0JHRVhtZ2hRRklscGM2UTVaTmx3eXlmU0ZrQ0xoUVBMWmhl?=
+ =?utf-8?B?a2E1ZElFanQyMCsrcXA4bGcySzRQNS9rbUlBVU9mT25lZHRjTE1CTFlKQjRz?=
+ =?utf-8?B?WWVhVlNXMVc0dTRaZ0svK0pyNWY3Q1lnUWJ3RkhiL1BITzhxeTVNVExMQlMr?=
+ =?utf-8?B?NURRdUM3RnpRNlc2QTdBWTd3Zlh5VWFyTzhHNWx4VnIrUWVNczhIYkI4Z05u?=
+ =?utf-8?B?OW8ydFNuR0tXMzBzQzZseGN5VTBqYkN4d1VyVXR2bXBINldqTGRFYjQzL21M?=
+ =?utf-8?B?anp2WkxuL1JLcFY5bjNBRzJseGRxK1FCeDBteldyTG1oUlVhTFZFdFZUYU5s?=
+ =?utf-8?B?MllCUUczTzhSRUxvWmk4OEpDVGF4N3pRUlcwQUJIVkRaU29BL3d1RnVtRmlq?=
+ =?utf-8?B?cHJ6SnE1R3l0MGVWQVFsYnBJdk1Vb2pmV2xqWnhvVUVPaU1qNktZdDFQK3cv?=
+ =?utf-8?B?dXZSckxXbW5YSytIeUw1eHd1SG1WWWpTTFRySTliUHd4MDRwTU9Qeld4amFm?=
+ =?utf-8?B?SDRhWXNKWGVWbG50Q1lUWjBmdHNFLzI2N090VWZ1VzlvUjZnV3BseGlCV1cr?=
+ =?utf-8?B?QldRcXdMQmkrRk11M1MwalZXeEx1NFkwY05KV2xXUGJLSlFzRHVsRm5Ra3FK?=
+ =?utf-8?B?TFlhMTdzMDBaUWZ4WE5qeXJBVEZOK3ZObDJ1R0JBTGRxRWp6LzF6ekpHYWkz?=
+ =?utf-8?B?NlgxUXgrUXVNb1poOU9RYmVlRzkyWHRmU3BRaDlVcjR6enBqKzRpOGVVay9B?=
+ =?utf-8?B?SmhXWEhrQzRmbVkzY0Y0WUVhU1NnNTZGWUdyUUs0ai9iUkNFMnUzT1Vyd2V2?=
+ =?utf-8?B?TDJRRXpQZUJicXZldk5KQTdFRmVBZ1dyWk1yQ21nU2xjYjk4cmNKKzZLVGRh?=
+ =?utf-8?B?NjQ2aGZ6U3IycnBkblNkUTNwY0NxT3czQzJNejFqYXE4dWc3eGNSNGxSb2N6?=
+ =?utf-8?B?TzhqeDhlY3N0cDNyMnZwOTU3MUdieFpBUmV3WDBwYkFOVGhIUExPMTQwUDNj?=
+ =?utf-8?B?NFV1KzBhaUZOaTNjRDQ0UndsSGZXZ0ZPTWR0cXN5U3hWTGxxZzk0VGN0RHZF?=
+ =?utf-8?B?MGpGTnVqd2FISzdVUWtVdEdiV3JTakdRTWcxOGZ1VWtsUDE5aHhHdlhFTS9R?=
+ =?utf-8?B?REV2MGYvRG1nMkRJM1FRbHJFMHpWM0ptV1NpTmNMT0taMkRFTldsaDcyb1FV?=
+ =?utf-8?B?M0tVdkRYTWp6Q0tHY1QvM3dEYnhKY0x5WXN2VVFBczh5RUtRcTlPUlRIRXlo?=
+ =?utf-8?B?aUdwVkxmTCtLL2JEZFdFQTROUWhBY2crV2E5NkozYzFiYndhZ202ODkraThI?=
+ =?utf-8?B?ZjZxYUJRK1EzSjgxcFhQVXlmQ3phVHAyOWlMU2UzR0ovT2RXby9QLzZuSjhv?=
+ =?utf-8?B?dTFLaW9Ya1orWmtaTDdqdmQwbVhKeFhLTVBoSmJsRllkSTJoUk0zeDUxSGlj?=
+ =?utf-8?B?VlVZa3ZZTUIyRXRFYXR1UTlhUWI1K0FTQjZlSkZHaW1PYWxHczcybEJrOEth?=
+ =?utf-8?B?Mm94Nk9USDBLQUNCNnFreWpTNTVXUkllN1hZZTBsNG1RaUpYNGlKNWg0Nnp3?=
+ =?utf-8?Q?/Srgtl4aNOLY1jSK59v4?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 467fae24-5bed-4ab3-e657-08dc59fa64da
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Apr 2024 07:38:35.2381
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR20MB5308
 
-On Thu Apr 11, 2024 at 9:25 AM CEST, Krzysztof Kozlowski wrote:
-> On 11/04/2024 09:13, Luca Weiss wrote:
-> > On Mon Jan 22, 2024 at 10:44 AM CET, Krzysztof Kozlowski wrote:
-> >> Several bindings implement parts of Type-C USB orientation and mode
-> >> switching, and retiming.  Keep definition of such properties in one
-> >> place, new usb-switch schema, to avoid duplicate defines.
-> >>
-> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >>
-> >> ---
-> >>
-> >> Changes in v2:
-> >> 1. Fix language typos handle->handler (Luca)
-> >> 2. Drop debugging left-over (Luca)
-> >> ---
-> >>  .../devicetree/bindings/usb/fcs,fsa4480.yaml  | 12 ++--
-> >>  .../devicetree/bindings/usb/gpio-sbu-mux.yaml | 12 ++--
-> >>  .../devicetree/bindings/usb/nxp,ptn36502.yaml | 12 ++--
-> >>  .../bindings/usb/onnn,nb7vpq904m.yaml         | 13 ++--
-> >>  .../bindings/usb/qcom,wcd939x-usbss.yaml      | 12 ++--
-> >>  .../devicetree/bindings/usb/usb-switch.yaml   | 67 ++++++++++++++++++=
-+
-> >>  6 files changed, 92 insertions(+), 36 deletions(-)
-> >>  create mode 100644 Documentation/devicetree/bindings/usb/usb-switch.y=
-aml
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml b/=
-Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
-> >> index f9410eb76a62..8b25b9a01ced 100644
-> >> --- a/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
-> >> +++ b/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
-> >> @@ -27,13 +27,8 @@ properties:
-> >>    vcc-supply:
-> >>      description: power supply (2.7V-5.5V)
-> >> =20
-> >> -  mode-switch:
-> >> -    description: Flag the port as possible handle of altmode switchin=
-g
-> >> -    type: boolean
-> >> -
-> >> -  orientation-switch:
-> >> -    description: Flag the port as possible handler of orientation swi=
-tching
-> >> -    type: boolean
-> >> +  mode-switch: true
-> >> +  orientation-switch: true
-> >> =20
-> >>    port:
-> >>      $ref: /schemas/graph.yaml#/$defs/port-base
-> >> @@ -79,6 +74,9 @@ required:
-> >>    - reg
-> >>    - port
-> >> =20
-> >> +allOf:
-> >> +  - $ref: usb-switch.yaml#
-> >> +
-> >>  additionalProperties: false
-> >> =20
-> >>  examples:
-> >=20
-> > Hi Krzysztof,
-> >=20
-> > This patch seems to break validation for fsa4480 if data-lanes is set i=
-n
-> > the endpoint like the following
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml b/D=
-ocumentation/devicetree/bindings/usb/fcs,fsa4480.yaml
-> > index f9410eb76a62..3aa03fd65556 100644
-> > --- a/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
-> > @@ -102,6 +102,7 @@ examples:
-> >            port {
-> >              fsa4480_ept: endpoint {
-> >                remote-endpoint =3D <&typec_controller>;
-> > +              data-lanes =3D <0 1>;
-> >              };
-> >            };
-> >          };
-> >=20
-> > Similar to how it's already used on qcom/qcm6490-fairphone-fp5.dts
-> >=20
-> > I'm guessing the 'port' definition in the common schema somehow
-> > disallows the fsa4480 schema from describing it further?
->
-> There is no such code in qcm6490-fairphone-fp5.dts. There was no such
-> code in the example of fsa4480 when I was testing my changes (and
-> examples should be complete), so this did not pop up.
+On Sat, 9 Mar 2024 17:01:21 +0800, Inochi Amaoto wrote:
+> Add clock controller support for the Sophgo CV1800B, CV1812H and SG2000.
+> 
+> Changed from v8:
+> 1. improve code.
+> 2. remove default config in Kconfig.
+> 3. merge patch 2-4 of v8 into one.
+> 
+> [...]
 
-Right, I'm sorry this is just out-of-tree for now, I've forgotten this.
-There's some dependency chain with some unsupported DSC configuration in
-DPU for now that blocks upstreaming this.
+Applied to sophgo/for-next, thanks!
 
-My tree with these patches is here if you want to take a look:
-https://github.com/sc7280-mainline/linux/blob/sc7280-6.8.y/arch/arm64/boot/=
-dts/qcom/qcm6490-fairphone-fp5.dts#L628
+[5/6] riscv: dts: sophgo: add clock generator for Sophgo CV1800 series SoC
+      https://github.com/sophgo/linux/commit/bb7b3419627eb34f3466022d1f4b3c942c09712d
+[6/6] riscv: dts: sophgo: add uart clock for Sophgo CV1800 series SoC
+      https://github.com/sophgo/linux/commit/18e8c6d2cced6c57d62813f49b57eeb8ee02f984
 
->
-> You right, new schema does not allow extending the port. However the
-> true question is, why muxing happens on the port to the SoC controller?
-> The graph in commit msg fad89aa14 shows it happens on the side of the
-> connector.
->
-> Looks like fsa4480 mixes connector with the controller.
-
-Could be honestly.. I trust you with knowing better how the ports are
-supposed to work.
-
-The property is for telling the fsa4480 driver that essentially the
-hardware is wired up the reverse way. So with this info the driver can
-handle the orientation switching correctly.
-
-There's another layer to this as explained in the patches there that the
-OCP96011 essentially works reversed compared to FSA4480, that's why it's
-all a bit of a mess.
-
-Regards
-Luca
-
->
-> Best regards,
-> Krzysztof
+Thanks,
+Inochi
 
 
