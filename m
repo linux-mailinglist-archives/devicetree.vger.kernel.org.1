@@ -1,97 +1,110 @@
-Return-Path: <devicetree+bounces-58265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D25418A12C6
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 13:15:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEE5E8A12DF
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 13:22:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C1E9282E98
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 11:15:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6849EB23C7D
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 11:22:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA4DC1494C4;
-	Thu, 11 Apr 2024 11:15:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4EA4148FE3;
+	Thu, 11 Apr 2024 11:22:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="UWwrN4Gu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EOG9CM45"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03738147C86;
-	Thu, 11 Apr 2024 11:14:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 995D613BC33;
+	Thu, 11 Apr 2024 11:22:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712834100; cv=none; b=eyJWprqsjJOQu/TLRVA3BnMhCVipjsmZpr3nT+uz7MacYjJ7cIXnrvACiUiEdxcaXXWkl4wh+eeE0ElhFg11bOjwjyu1EMk1vQhmXvaf93HvlQO7+MlC5FOBNnqz51FhXJR8K/7ohss4fvFcsNB6VE3zDLayG/jffl6Ryle51DE=
+	t=1712834547; cv=none; b=gYXBUT92NTzgpilN+fTjrA9qGQM08xyKXxeOYlnoKCzJbObf3CPyA9ajTJdafhwqjcTy1/eG9tRS2+OQ/Bfqx0m6B6oCEUdWH9k9j7h/LcTbzQJ/IIs0ejSItYx/jAaj/n8MzqlLjUee4/pxAIc21RhkauPk6vF5VTax9CYQ8Fc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712834100; c=relaxed/simple;
-	bh=1Wio06GCDmmgIyhqZ2kYvHa+VRTbVW1+zV+94cMb37I=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=LMV/iE6E/CWdLtpM7BSxlhUAAxuXORNFXE/fpNDEwsKY0BdAtO80CbbClTrdxPrFBRS+6/Na0J4EAHj1jmeLCybCVmJwMFMAMPBtVKSu4egudVluWdmG+Ju1grocCMQr9OuCaZVyL46te2FIZT2hmZjqk0XuhbYQhSPkIJkgKeI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=UWwrN4Gu; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1712834096;
-	bh=1Wio06GCDmmgIyhqZ2kYvHa+VRTbVW1+zV+94cMb37I=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=UWwrN4Gu1AJd4b5fra8ol6VHShmnABQYE1fUZoUfCZVysjvRU3YThO8Ya59pIXG0T
-	 /1JoQHBMq6QcQWosUXcKhnZ+AJCIDK/HYnuotFtxWJpF5fiibUXDI3Dk15R7buOYUj
-	 2Y99BJMBBOZ7h7iRpUrwFAwUNPdC4NKDzYEW5MDtCK0EM6abrQEgFtxKcsSXS4vh0u
-	 IhoRGkvc7wQMV4JxWhfJatBile7a1wdBlWY/LVDpBnoONwqY1dpjEhWbXQacRnULuS
-	 T/lhDbLbkenkjLLwJIAHZ1jE8Ko/YeucjDRNMLZJ1yZCsN3+xVxHQCKYz22aJ7onun
-	 ou+fNiYRsAdOw==
-Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id D0A333780BFE;
-	Thu, 11 Apr 2024 11:14:55 +0000 (UTC)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: linux-clk@vger.kernel.org, Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, 
- linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org, 
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, nbd@nbd.name, 
- john@phrozen.org, devicetree@vger.kernel.org, dd@embedd.com, 
- catalin.marinas@arm.com, will@kernel.org, upstream@airoha.com, 
- lorenzo.bianconi83@gmail.com
-In-Reply-To: <cover.1712399980.git.lorenzo@kernel.org>
-References: <cover.1712399980.git.lorenzo@kernel.org>
-Subject: Re: (subset) [PATCH v2 0/4] Introduce clock support for Airoha
- EN7581 SoC
-Message-Id: <171283409577.156755.4799825842114274746.b4-ty@collabora.com>
-Date: Thu, 11 Apr 2024 13:14:55 +0200
+	s=arc-20240116; t=1712834547; c=relaxed/simple;
+	bh=AboIvwKEkvx2wl+siJ2bnUL5g+OOjP+I7jd8D6N6LZk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WfWByavvYUSamEptzfR1LrIEOOdMNkm3qakS7EYNQzvukT8CN+GFlJuPULoiwNooutuOvfKL0TxBWui2NV3gxezE0W+tPLsa2xa8KbaLePIoq/IniZSigxPxGj39xKyBcjHDf3T85GSy/27UpF+/A8tZk7wLA+PxKg5T4PU9iEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EOG9CM45; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5807BC433C7;
+	Thu, 11 Apr 2024 11:22:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712834547;
+	bh=AboIvwKEkvx2wl+siJ2bnUL5g+OOjP+I7jd8D6N6LZk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EOG9CM45kn9Q91tY3xRKqPCxlgj/yVlitdovvmOVUhRtYAkAafiVagsDb5/Cx6aNO
+	 zDbeqdP9fS/dWGA230oszhssMMghOQ75t6bK0MbLxreVYGwmcDXv2ORVxcBo//kqMl
+	 R/94ldLCIVgVh+o2yO5ACS+QmmUwHHAfoWBQ4Ow2UQgeh84rdHu+m/h4sGatqNkQ8y
+	 MLG9LFNfaO/QNHN1TJaIxAKMV75xunq4mV8tLWdnYl1bufsKCOJz4Dr+GVxaah+GJu
+	 c0trW4/vpsPTfKhPpnp+rD40mzViXjS57hQWL9IWVFjH3MCvIeYl2+G/OeCN/tMSlF
+	 h552hEPGImvxA==
+Date: Thu, 11 Apr 2024 12:22:21 +0100
+From: Lee Jones <lee@kernel.org>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Chen-Yu Tsai <wens@csie.org>, Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Ryan Walklin <ryan@testtoast.com>,
+	Chris Morgan <macroalpha82@gmail.com>
+Subject: Re: [PATCH 0/4] regulator: Fix AXP717 PMIC support
+Message-ID: <20240411112221.GG1980182@google.com>
+References: <20240329235033.25309-1-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240329235033.25309-1-andre.przywara@arm.com>
 
-On Sat, 06 Apr 2024 12:43:40 +0200, Lorenzo Bianconi wrote:
-> this series is based on the following series:
-> https://patchwork.kernel.org/project/linux-arm-kernel/cover/cover.1709975956.git.lorenzo@kernel.org/
+On Fri, 29 Mar 2024, Andre Przywara wrote:
+
+> Here are some fixes to the AXP717 PMIC support series. Lee put that in
+> an immutable branch already, so these here go on top.
+> Patch 1 contains fixes to the regulator descriptions: the LDOs had the
+> wrong supply source, and two numbers were wrong. The datasheet describes
+> the voltage ranges and register values differently from what our macros
+> expect, in a way that literally begs for off-by-ones, so here you go.
+> I don't know if that's still feasible, but it would be a good candidate
+> to squash into the patch that it fixes.
 > 
-> Changes since v1:
-> - add .enable()/disable() callbacks to pcie ops
-> - introduce en_clk_soc_data data structure in order to define multiple clk_ops
->   for each supported SoC
-> - rename clock node from system-controller to clock-controller
-> - add missing item descriptions in dt-binding
+> The other three patches add the "boost" regulator, which is meant to
+> provide the 5V USB VBUS power when operating from the battery. It's the
+> usual trinity of binding/mfd/regulator patches.
+> Again this could be squashed into the respective patches from the
+> original series, if people agree.
 > 
-> [...]
+> Please have a look and test on a device, since I could not do this.
+> 
+> Based on mfd/ib-mfd-regulator-6.10, as detailed below.
+> 
+> Cheers,
+> Andre
+> 
+> Andre Przywara (4):
+>   regulator: axp20x: AXP717: fix LDO supply rails and off-by-ones
+>   dt-bindings: mfd: x-powers,axp152: add boost regulator
+>   mfd: axp20x: AXP717: Add support for boost regulator
+>   regulator: axp20x: AXP717: Add boost regulator
+> 
+>  .../bindings/mfd/x-powers,axp152.yaml         |  2 +-
+>  drivers/mfd/axp20x.c                          |  2 ++
+>  drivers/regulator/axp20x-regulator.c          | 32 +++++++++++--------
+>  include/linux/mfd/axp20x.h                    |  3 ++
+>  4 files changed, 24 insertions(+), 15 deletions(-)
 
-Applied to v6.9-next/dts64, thanks!
+I need an Ack from Mark before I can process these.
 
-[2/4] arm64: dts: airoha: Add EN7581 clock node
-      commit: 1dd2e7b97c3c8554f3339397ef6656d90af3ae1d
-
-Cheers,
-Angelo
-
-
+-- 
+Lee Jones [李琼斯]
 
