@@ -1,203 +1,200 @@
-Return-Path: <devicetree+bounces-58249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB6DE8A10FD
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 12:40:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6946D8A1167
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 12:43:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0AE3A1C20818
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 10:40:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B3B8DB22245
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 10:43:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C26114884C;
-	Thu, 11 Apr 2024 10:39:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03D121448C8;
+	Thu, 11 Apr 2024 10:43:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Zinz33/f"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jrg1kLf8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA8D5147C7E;
-	Thu, 11 Apr 2024 10:39:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEC6C64CC0;
+	Thu, 11 Apr 2024 10:43:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712831955; cv=none; b=JaU7Fbq//X7QT+qclJ2ST6viplfcUHgfOkVn3tF1CKpzU6JllLbkMq8svMjaxa8HEmJtJan175vpXer7Dq5ZuiU77pP3qghR8MOGZ1Gn7Ykxxx8wM6Gb4gF9kN/Lu3T5DySvwurTu4bT19Qn1ELnF2Dj/YAwU5740wAR0Ni5rNM=
+	t=1712832224; cv=none; b=K8ep1UYkDZGSJKZE1FffTXIlyQ/CqZ4oHA3wu1Buh9M6l2cvR6yps97OqDQcI34jUtPAO2rY/J9d9vjofJJbG4xrFIT3BPkguDVYWcOUr3tYVlB6TbdK1ezq1YCF04+YEqNgzi/o2VFbBw97oJ3Ya8wdErAcvPrQpPh7LJ+k0Kk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712831955; c=relaxed/simple;
-	bh=pWfyDzgg2FcL9zucQ9mhivkVL8xEVE3GnMTTbdODBE0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=KmR08hcBt7Wv9IqZY5E7e1HvYRz5znHVn+WebM99qbK7BwYKlKuiWhhIRx+QFPEFg230bPTKelspZ6OezQzawvyk3W65ruTAffbRfrzISUocwmfdWDfuZm6HdMbqhVUp1jr2aK6Pslk+mu40kBXLpCszgg0VI8qzIUMyQqvgTo4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Zinz33/f; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a522c00ce55so8671766b.0;
-        Thu, 11 Apr 2024 03:39:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712831951; x=1713436751; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=TxHiRwznB/WlWY/qprRawdCtyuIsVjD3shbwYS9mS6Y=;
-        b=Zinz33/fVPavvrk9tDa3IOqA1tAsYOcLcdipxc7LlaXyXjpewnK77dKsYEKuXKJ8LI
-         oLrCTWGDeaefxGp5jmmwg/gxiYaDRtAW3j7yl/QElK4qDuPDx3XeDqFqOFpgKTT5xU72
-         OqKxxJ1boHgrxJd7u/d3UBCPpzS64nVP8E4oRwRlRkjBexFMGBTafL0ldc2l7Xmpc+rQ
-         rfx1jvAw+HrSZrT+ckOEflt2q2/typdrG27iAEgP8aKtz/lkgVb6csWBRBDsSvEbVCas
-         8LZoppVw+Rfyt6nLFMib+T+vSaIzuBspahtlJ0EIJLwBlf34oFbqAhVvuIqTlAyfam/I
-         y6tw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712831951; x=1713436751;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TxHiRwznB/WlWY/qprRawdCtyuIsVjD3shbwYS9mS6Y=;
-        b=BbofenDcDMQ3q7MmQAs63KHcgkH+bt7jFRWE9sw3e6RdpBRnt4g4vOC8LHgH24+VPB
-         tmUmj/TleEwAFd4A/+7FltNlI8wvnbY1LbrzYAv1YJxtyNAM4pBq38jSD3i9CIVIy5HW
-         4fMURgbgTV6sOkKyi0Ym6XX/7ajJb5xFFtURd9k+YpOw9Ve3sEwr/Q8lL8dGl3hNJ+Lq
-         n85A+4L2SnLn7d+0UiucpWi/Ez7e8IK3rPN9hTPY5AKm6v2FLKjTt7hbdEKTmef1AS7Q
-         lf4juOUJ+TmEVxcgJdKmDFAa30nhTnawlRZRjkXF9yV5pQ0Zg41GjIwAF1vMiE6booUt
-         7d3Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUKwFpCDZgZi7kfZ/3a+Lp1B6RCkzlRS7qyvWTbfS2O4oWpuh3mBpWefS52wqTyxIi69qZycElf8OXUHfxFuPEVzEDf/BFQPcp/M5NS3IeJkk/WS049zCxArkEIoJ7PBsGcXH+RLw==
-X-Gm-Message-State: AOJu0YwZCBJwQpcdZUvCxoeA6TWR+26Ud9Z7QwidvzlzQg2M+r+A2D9Q
-	ZYo2bjNZB6qTFSqS9kWCtHKflnfWewhgqIVax+3fA7ML83ROwoeF
-X-Google-Smtp-Source: AGHT+IE6aq4nNGLNCBVsVw2T5Tl1yUoF/Vd6d1ioqEei+XDXsS50PrvjgzSrllN4DUJB3hrp2n7UXA==
-X-Received: by 2002:a17:906:f159:b0:a4e:2178:d91a with SMTP id gw25-20020a170906f15900b00a4e2178d91amr3855333ejb.59.1712831950652;
-        Thu, 11 Apr 2024 03:39:10 -0700 (PDT)
-Received: from ?IPv6:2003:f6:ef1c:c500:ee59:d953:f148:40ba? (p200300f6ef1cc500ee59d953f14840ba.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:ee59:d953:f148:40ba])
-        by smtp.gmail.com with ESMTPSA id l17-20020a170906079100b00a51b3c951b6sm618080ejc.191.2024.04.11.03.39.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Apr 2024 03:39:10 -0700 (PDT)
-Message-ID: <b3c8b7c8b55a3944e56b71035fc0123dd96cb8b6.camel@gmail.com>
-Subject: Re: [PATCH 1/2 v4] dt-bindings: pwm: Add AXI PWM generator
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Trevor Gamblin <tgamblin@baylibre.com>, linux-pwm@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org, u.kleine-koenig@pengutronix.de, 
- michael.hennerich@analog.com, nuno.sa@analog.com,
- devicetree@vger.kernel.org,  robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
- dlechner@baylibre.com, Drew Fustini <dfustini@baylibre.com>, Krzysztof
- Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Thu, 11 Apr 2024 12:42:43 +0200
-In-Reply-To: <20240301173343.1086332-2-tgamblin@baylibre.com>
-References: <20240301173343.1086332-1-tgamblin@baylibre.com>
-	 <20240301173343.1086332-2-tgamblin@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.0 
+	s=arc-20240116; t=1712832224; c=relaxed/simple;
+	bh=m3LdeoBk9yRi14Td0QXtvoK4t+hH0qrQBNeHIaj+1hs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=J+fDSoktIdrvIzE/Sbc2P8G6e1ZvkJYRQTtnbP1zmYmG+5KhZ9JaaLDqHAeeLfenbEJMZJF22oXc5UDS22zfwVkIr39KMZbpP93O86ELXJ1bR/h3TuyRlTQx1++Pn9PkOcQS7VEJF+EkhHXMFJR2vIhSQ6sj2AodLYrOWPY22Fw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jrg1kLf8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38AC1C43390;
+	Thu, 11 Apr 2024 10:43:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712832224;
+	bh=m3LdeoBk9yRi14Td0QXtvoK4t+hH0qrQBNeHIaj+1hs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Jrg1kLf86SaY79TpYwUgtxmP++Rdv67PaepTB29DEHV8pQgr7f2N9q4PHmCMo1VFq
+	 uGw7KLaRkxPG/Tl0VVgXRQxQpoK/0hADO3lydktBP5UdF2FhL/izsi6Bm9qYUs/aHa
+	 56YrdjW1Pa5sOd+U/jjBCDwyNUwhDoaBaiTZUrA4uTdg9CdNtRGbsIkraqcaadqheB
+	 Qf382IebSSvFHT300DzGjCYH7lp7YrYS9hP3tdHSoLNS7eVYbMeKqwVB6JHNkyYvtY
+	 4bXvRIS3ZrctRSSUvROVB8NYK6XwxJlomtIqKGXEsZOURh1OMuNoX3jenBVetlIkkP
+	 XdCxUhgtpv61A==
+Message-ID: <87909fc5-e4de-4b74-bdac-61a92777f32c@kernel.org>
+Date: Thu, 11 Apr 2024 12:43:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: host1x: Add missing 'dma-coherent'
+To: Jon Hunter <jonathanh@nvidia.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Mikko Perttunen <mperttunen@nvidia.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240409082324.9928-1-jonathanh@nvidia.com>
+ <ea3be8f7-0ee6-4940-828d-2fc15b9239dc@kernel.org>
+ <b726b5a0-45f4-457c-afad-6235c1adb640@nvidia.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <b726b5a0-45f4-457c-afad-6235c1adb640@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, 2024-03-01 at 12:33 -0500, Trevor Gamblin wrote:
-> From: Drew Fustini <dfustini@baylibre.com>
->=20
-> Add Analog Devices AXI PWM generator.
->=20
-> Link: https://wiki.analog.com/resources/fpga/docs/axi_pwm_gen
-> Signed-off-by: Drew Fustini <dfustini@baylibre.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Co-developed-by: Trevor Gamblin <tgamblin@baylibre.com>
-> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
-> ---
+On 11/04/2024 12:09, Jon Hunter wrote:
+> 
+> On 10/04/2024 07:18, Krzysztof Kozlowski wrote:
+>> On 09/04/2024 10:23, Jon Hunter wrote:
+>>> The dtbs_check reports that the 'dma-coherent' property is "unevaluated
+>>> and invalid" for the host1x@13e00000 device on Tegra194 and Tegra234
+>>> platforms. Fix this by updating the dt-binding document for host1x to
+>>> add the 'dma-coherent' property for these devices.
+>>
+>> That's not really proper reason. What if DTS is wrong? The reason could
+>> be if device is actually DMA coherent...
+> 
+> In this case the DTS is correct. I guess I should have been more 
+> explicit about that.
+> 
+>>> Fixes: 361238cdc525 ("arm64: tegra: Mark host1x as dma-coherent on Tegra194/234")
+>>> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+>>> ---
+>>>   .../bindings/display/tegra/nvidia,tegra20-host1x.yaml | 11 +++++++++++
+>>>   1 file changed, 11 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml
+>>> index 94c5242c03b2..3563378a01af 100644
+>>> --- a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml
+>>> +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml
+>>> @@ -177,6 +177,15 @@ allOf:
+>>>   
+>>>         required:
+>>>           - reg-names
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - nvidia,tegra194-host1x
+>>> +    then:
+>>> +      properties:
+>>> +        dma-coherent: true
+>>
+>> Do not define properties in allOf. Put it in top-level. If not all
+>> devices are DMA coherent, you can disallow it for certain variants (:false).
+> 
+> 
+> So for host1x we currently have the following devices supported ...
+> 
+> properties:
+>    compatible:
+>      oneOf:
+>        - enum:
+>            - nvidia,tegra20-host1x
+>            - nvidia,tegra30-host1x
+>            - nvidia,tegra114-host1x
+>            - nvidia,tegra124-host1x
+>            - nvidia,tegra210-host1x
+>            - nvidia,tegra186-host1x
+>            - nvidia,tegra194-host1x
+>            - nvidia,tegra234-host1x
+> 
+>        - items:
+>            - const: nvidia,tegra132-host1x
+>            - const: nvidia,tegra124-host1x
+> 
+> 
+> Now only the Tegra194 and Tegra234 are coherent (which are the latest 
+> devices). So rather than add this to the top and then filter out all 
+> those that are not supported, I opted for the above because there is 
+> only 2 devices that need this. Admittedly, as much as I like the yaml 
+> bindings, for things like this, it is not really clear which is the best 
+> way to handle, so appreciate the guidance.
 
-Acked-by: Nuno Sa <nuno.sa@analog.com>
+The way to handle is that you must define properties top-level.
 
-> v4 changes: None (rebased, added maintainer's previous Reviewed-by)
-> v3 changes: None (rebased, added maintainer's previous Reviewed-by)
->=20
-> v2 changes:
-> * Address feedback for driver and device tree in v1:
-> =C2=A0 * Relocate "unevaluatedProperties" in device tree binding
-> =C2=A0 * Remove redundant "bindings for" in description
->=20
-> ---
-> =C2=A0.../bindings/pwm/adi,axi-pwmgen.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 | 48 +++++++++++++++++++
-> =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- |=C2=A0 8 ++++
-> =C2=A02 files changed, 56 insertions(+)
-> =C2=A0create mode 100644 Documentation/devicetree/bindings/pwm/adi,axi-pw=
-mgen.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
-> b/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
-> new file mode 100644
-> index 000000000000..63461920a362
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
-> @@ -0,0 +1,48 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/adi,axi-pwmgen.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AXI PWM generator
-> +
-> +maintainers:
-> +=C2=A0 - Michael Hennerich <Michael.Hennerich@analog.com>
-> +=C2=A0 - Nuno S=C3=A1 <nuno.sa@analog.com>
-> +
-> +description:
-> +=C2=A0 The Analog Devices AXI PWM generator can generate PWM signals
-> +=C2=A0 with variable pulse width and period.
-> +
-> +=C2=A0 https://wiki.analog.com/resources/fpga/docs/axi_pwm_gen
-> +
-> +allOf:
-> +=C2=A0 - $ref: pwm.yaml#
-> +
-> +properties:
-> +=C2=A0 compatible:
-> +=C2=A0=C2=A0=C2=A0 const: adi,axi-pwmgen-1.00.a
-> +
-> +=C2=A0 reg:
-> +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> +
-> +=C2=A0 "#pwm-cells":
-> +=C2=A0=C2=A0=C2=A0 const: 2
-> +
-> +=C2=A0 clocks:
-> +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> +
-> +required:
-> +=C2=A0 - reg
-> +=C2=A0 - clocks
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +=C2=A0 - |
-> +=C2=A0=C2=A0=C2=A0 pwm@44b00000 {
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "adi,axi-pwmgen-1.00=
-.a";
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x44b00000 0x1000>;
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks =3D <&spi_clk>;
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #pwm-cells =3D <2>;
-> +=C2=A0=C2=A0=C2=A0 };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 8d1052fa6a69..8a4ed5545680 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -3431,6 +3431,14 @@ W:	https://ez.analog.com/linux-software-drivers
-> =C2=A0F:	Documentation/devicetree/bindings/spi/adi,axi-spi-engine.yaml
-> =C2=A0F:	drivers/spi/spi-axi-spi-engine.c
-> =C2=A0
-> +AXI PWM GENERATOR
-> +M:	Michael Hennerich <michael.hennerich@analog.com>
-> +M:	Nuno S=C3=A1 <nuno.sa@analog.com>
-> +L:	linux-pwm@vger.kernel.org
-> +S:	Supported
-> +W:	https://ez.analog.com/linux-software-drivers
-> +F:	Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
-> +
-> =C2=A0AXXIA I2C CONTROLLER
-> =C2=A0M:	Krzysztof Adamski <krzysztof.adamski@nokia.com>
-> =C2=A0L:	linux-i2c@vger.kernel.org
+For simplification you could keep the if which duplicates the
+dma-coherent:true but add else: which forbids it
+
+if:
+ ...
+  then:
+    properties:
+      dma-coherent: true
+  else:
+    properties:
+      dma-coherent: false
+
+Or just ignore the problem. Binding is not 1-to-1 with DTS.
+
+Best regards,
+Krzysztof
 
 
