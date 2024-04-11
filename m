@@ -1,151 +1,129 @@
-Return-Path: <devicetree+bounces-58129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C8AF8A0905
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 09:01:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 911868A091C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 09:06:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC68C282D2E
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 07:01:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C32131C20A9D
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 07:06:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6135613DB9C;
-	Thu, 11 Apr 2024 07:01:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0076713E032;
+	Thu, 11 Apr 2024 07:06:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="EEPm3p+G"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="vfw7bfqh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C578063D;
-	Thu, 11 Apr 2024 07:01:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7E8813DDDD
+	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 07:06:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712818900; cv=none; b=ABAKMR1inBTO+5UZmEw+B1ww355Fhi6OSv1aOdC/CWoO4jlvhpBT/JQg7rSA6PT0p98vC8OXqO2ZSKlSBrSkmBdbaRZsnx8+ixVfpC+Ip1V8ujkO6oaZAKMv+a2IKKY3EYawVCkyXuTqypCza+yNa9qRAOscTSx2/Two2l0PBLE=
+	t=1712819177; cv=none; b=Ijgudn5NxUQjCxEbwrcXz33VCtDRI/+8qJnZVNAGiGtbLF1VQbW2xhvGLDcOVxetOCIEFZ+GwPeqQBCbVw+RyP2fAqUgaTVXZdLuvdBvMrY7WMHv/b/jI8Dy+BSKLF1HiJd8MaJkFW/0iTB+5r6dRE5f0mcO/IN9MYzfNbgmv1E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712818900; c=relaxed/simple;
-	bh=wgvzpYyL+OriZ2Xf642IWK7zWdae/hliyCromzcK2qA=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=DWcoLhFzXsq+vCY1zwNEh0iwVUqvZP3/26hhv/paUEStXd+eWrC/S0Vzj4MTPshT3FVPgznzKFpQuKNPjKoMiBZWSBgBje5jmwLj6HWWJ0EsA2NVCHlH7vpK5gGgQVFyHowq8iRhOmRCQm2esOeDdTd8KOE1IPfa5KTWXXQdkYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=EEPm3p+G; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 5340a76af7d111eeb8927bc1f75efef4-20240411
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=/c1yvJRz8JdPTs1cqIeERB/b/xbXAhULQ4RA+mlvIg8=;
-	b=EEPm3p+GF1lB66eZ6jbesRWIIG9RPKeVSgkGynAJK8jzSot7PuT5r+AUFTNpWFDRs5hgXhG5O1jPdsEqkNR0d8Y7dbUWuv6wM1KwJELswwdKRVY08Z0M2/9soyTxwJAa/xMk5VFNXTN1MLEgMmfaX9qL82kl7m7QO+E7Tug1F5Q=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.37,REQID:321bcacf-41af-40f0-9752-b9ab2dc3527d,IP:0,U
-	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-	N:release,TS:-25
-X-CID-META: VersionHash:6f543d0,CLOUDID:952b7391-e2c0-40b0-a8fe-7c7e47299109,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:11|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
-	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_ULN,TF_CID_SPAM_SNR
-X-UUID: 5340a76af7d111eeb8927bc1f75efef4-20240411
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-	(envelope-from <yunfei.dong@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 404108306; Thu, 11 Apr 2024 15:01:31 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Thu, 11 Apr 2024 15:01:29 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Thu, 11 Apr 2024 15:01:28 +0800
-From: Yunfei Dong <yunfei.dong@mediatek.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	=?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?=
-	<nfraprado@collabora.com>, Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Benjamin Gaignard
-	<benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>,
-	Sebastian Fricke <sebastian.fricke@collabora.com>
-CC: Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig <frkoenig@chromium.org>,
-	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>, "Yunfei
- Dong" <yunfei.dong@mediatek.com>, <linux-media@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v3] media: mediatek: vcodec: support 36 bits physical address
-Date: Thu, 11 Apr 2024 15:01:27 +0800
-Message-ID: <20240411070127.12384-1-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1712819177; c=relaxed/simple;
+	bh=+o7I+daoENcP8Ct9wXBNksspsxmRSv7JiVNJMZWs3cQ=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=J4P++qdJBH5mcCUlmuId1BNWbx7nockZD2h9cVt1UefucrfmCEfDpLG+o4Kz3LXlTEixOVKZsUCMbWZBvFHccLcDlldhPAyydb3oNXHDZgvvrdFhv3m00AieS1GrfgkP3v/bMe0U0PK21Umon9fdrszAxfUH+WCflkwcNIj299c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=vfw7bfqh; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a51ddc783e3so492812266b.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 00:06:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1712819174; x=1713423974; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IPHgQp5i5ObZBE7aupcoMPs0PyMl+eJyHyekbE5zlXs=;
+        b=vfw7bfqhq2me01f9pYWrujssM0ZpdqY2OyNMTHWnZ0602bCm7OXPJKfa+i9quNpHx+
+         ndSMFzW9qXDgd9oBU7FO+WWBsRfv8uVr8Pdrq9/R61rPf7sa61iH3hon1qeKA93U6i8W
+         UstI8UQvbLAQUu34OrBWYDi8Djs2CU06MHVTfODGEPa6YsjZ9W6c5ydDX3n2SxHqH29E
+         Pz1SO2Uurev7cyiNbtqGeGXWGCBS83l53y0WDfLZfU+9CkcETX1W8nBll8pz+WqbRh4i
+         NAeidYSVWmgXy3kx6EHugal5bU7TXZO47mbZDsjv/RNVAA0G383+vabVEdrGFfpPZmFM
+         VAMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712819174; x=1713423974;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IPHgQp5i5ObZBE7aupcoMPs0PyMl+eJyHyekbE5zlXs=;
+        b=QAoo77plixfaJ+mtrK6yZfJc0uno6PeHluhZuHECmkUl8l16SgMeClj1tAVGXVvth1
+         IJW0XUWtCodqCb06GpFNoVF1w5fzM3oAHSlXzSiHX3ZiX+gouMqVl+D5Bm07uFzuCuVe
+         lx/BSRVvdqSYKqYx6rQhIajqsoSziGigq1QEuAPFYBlideRUbf6W11EC1xk6H7WhO4td
+         mzFOY/ybOhnt/J6fSn6jjIGazyXV5bs3JzCeCQV4iUiFfmmxgjnvzkh4nhU6Z98F967n
+         KoLBWdOt30rFMpXgPlUKVKKEt0ZUJmZAqjGbmipKyaNq2IiXevI5IFUS6UJnhOiWQ/lv
+         M1eg==
+X-Forwarded-Encrypted: i=1; AJvYcCX93S4XxhUuW8zWoHOC1ONfv0ueouoV4CNovJLcl2gglF/YwA1sdmQVuBQ/m/YZOHvg/gz3szGRM8Te4nYW9bV/CQSygSC48s97KA==
+X-Gm-Message-State: AOJu0YxEMpX9nlQOhw8CUACq06/yJPq5GFJ/T6dBQyRNontNFd4K/mPi
+	aa7InpWhuuGE0M492mMaSy0ZmmLAXSXbBum6Cebfx4NdVfq7IpnCzCqGuSUJfXA=
+X-Google-Smtp-Source: AGHT+IFwO1V0PB5oOIQfGSzjLElMTnZJSoZTIjXmfOa0FvKysbniFvJxcp6z+3c0bN4piGw2hz2Bbw==
+X-Received: by 2002:a17:906:ee87:b0:a51:962d:cf0d with SMTP id wt7-20020a170906ee8700b00a51962dcf0dmr3622218ejb.12.1712819174137;
+        Thu, 11 Apr 2024 00:06:14 -0700 (PDT)
+Received: from otso.luca.vpn.lucaweiss.eu (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id dk5-20020a170907940500b00a518b14d6cesm461397ejc.172.2024.04.11.00.06.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Apr 2024 00:06:13 -0700 (PDT)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Date: Thu, 11 Apr 2024 09:06:11 +0200
+Subject: [PATCH] arm64: dts: qcom: qcm6490-fairphone-fp5: Add USB-C
+ orientation GPIO
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--8.258800-8.000000
-X-TMASE-MatchedRID: 3Zp7/B+3+xCHTNZBcJlnyHQIOMndeKgE6SXuwUgGH0gjEnikYkL+CP44
-	pYPD16CLlTJXKqh1ne29cOdjc/43lb/eELA70ejcxPkB0MIBaXGH7D1bP/FcOkPL6pqegFS6y+l
-	ts/rkGMs6hUOcTonr9IAy6p60ZV62fJ5/bZ6npdg7AFczfjr/7BBaNQP2ElZ7sBTQNe6q9JnbyF
-	/5J/yVwHQbcUv25Bn5i9UugmfH/Nc=
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--8.258800-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP: 2D4870850A06C752B984B2AFA27145AEA4011B1059274BBEA02A26AFBEEA89602000:8
-X-MTK: N
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240411-fp5-usb-c-gpio-v1-1-78f11deb940a@fairphone.com>
+X-B4-Tracking: v=1; b=H4sIAOKLF2YC/x3MQQqAIBBA0avErBtQMYKuEi1MR5uNilIE4t2Tl
+ m/xf4NKhanCNjUo9HDlFAfkPIG9TAyE7IZBCaWFlhJ9XvCuJ1oMmRMa75RatTTOOhhRLuT5/Yf
+ 70fsHiFICB2AAAAA=
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.13.0
 
-The physical address on the MT8188 platform is larger than 32 bits,
-change the type from unsigned int to dma_addr_t to be able to access
-the high bits of the address.
+Define the USB-C orientation GPIOs so that the USB-C ports orientation
+is known without having to resort to the altmode notifications.
 
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+On PCB level this is the signal from PM7250B (pin CC_OUT) which is
+called USB_PHY_PS.
+
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 ---
-compared with v2:
-- remove unless cast
+Depends on (for bindings): https://lore.kernel.org/linux-arm-msm/20240409-hdk-orientation-gpios-v2-0-658efd993987@linaro.org/
 ---
- .../media/platform/mediatek/vcodec/decoder/vdec/vdec_vp8_if.c | 2 +-
- .../mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c        | 4 ++--
- 2 files changed, 3 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp8_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp8_if.c
-index 9649f4ec1f2a..5f848691cea4 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp8_if.c
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp8_if.c
-@@ -449,7 +449,7 @@ static int vdec_vp8_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
- 		       inst->frm_cnt, y_fb_dma, c_fb_dma, fb);
+diff --git a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
+index 4ff9fc24e50e..f3432701945f 100644
+--- a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
++++ b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
+@@ -77,6 +77,8 @@ pmic-glink {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
  
- 	inst->cur_fb = fb;
--	dec->bs_dma = (unsigned long)bs->dma_addr;
-+	dec->bs_dma = bs->dma_addr;
- 	dec->bs_sz = bs->size;
- 	dec->cur_y_fb_dma = y_fb_dma;
- 	dec->cur_c_fb_dma = c_fb_dma;
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
-index cf48d09b78d7..eea709d93820 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
-@@ -1074,7 +1074,7 @@ static int vdec_vp9_slice_setup_tile_buffer(struct vdec_vp9_slice_instance *inst
- 	unsigned int mi_row;
- 	unsigned int mi_col;
- 	unsigned int offset;
--	unsigned int pa;
-+	dma_addr_t pa;
- 	unsigned int size;
- 	struct vdec_vp9_slice_tiles *tiles;
- 	unsigned char *pos;
-@@ -1109,7 +1109,7 @@ static int vdec_vp9_slice_setup_tile_buffer(struct vdec_vp9_slice_instance *inst
- 	pos = va + offset;
- 	end = va + bs->size;
- 	/* truncated */
--	pa = (unsigned int)bs->dma_addr + offset;
-+	pa = bs->dma_addr + offset;
- 	tb = instance->tile.va;
- 	for (i = 0; i < rows; i++) {
- 		for (j = 0; j < cols; j++) {
++		orientation-gpios = <&tlmm 140 GPIO_ACTIVE_HIGH>;
++
+ 		connector@0 {
+ 			compatible = "usb-c-connector";
+ 			reg = <0>;
+
+---
+base-commit: 65b0418f6e86eef0f62fc053fb3622fbaa3e506e
+change-id: 20240411-fp5-usb-c-gpio-afd22741adcd
+
+Best regards,
 -- 
-2.18.0
+Luca Weiss <luca.weiss@fairphone.com>
 
 
