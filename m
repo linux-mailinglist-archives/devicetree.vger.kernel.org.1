@@ -1,669 +1,162 @@
-Return-Path: <devicetree+bounces-58105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41FBA8A0760
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 06:56:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 949898A0789
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 07:19:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5E1541C2336B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 04:56:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 200F91F24D4F
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 05:19:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B7E813BAEE;
-	Thu, 11 Apr 2024 04:56:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9116113C801;
+	Thu, 11 Apr 2024 05:19:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hHPewMpy"
+	dkim=pass (2048-bit key) header.d=atmark-techno.com header.i=@atmark-techno.com header.b="Ccv5FjoL";
+	dkim=pass (2048-bit key) header.d=atmark-techno.com header.i=@atmark-techno.com header.b="Yc2LXSdw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gw2.atmark-techno.com (gw2.atmark-techno.com [35.74.137.57])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFB861C0DE7;
-	Thu, 11 Apr 2024 04:56:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BE8313C666
+	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 05:18:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=35.74.137.57
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712811395; cv=none; b=VnAo/IycF+6MMfiDF1vYOj4oz75AuHw1WsI9qHMmCMHDa7S/bahblQyqmEJQruH/OPD3IlQuh5Pvm8EHqnnluUDt1O/hXM6n8YTSu63sEcoYCniDqywOSP73+n5SI6Woht3rPRCTtPaaxwqsCxTpVGmibyaRYkKQn5c4UywxQgk=
+	t=1712812740; cv=none; b=ZH1lYo29SOEzcnmGFUjdnabEaL8QUzksj284whBltN3BciR33wqpZojCVwFjFxj/1a8jJmSs+uJzoAzDoQXiOCVn+d9Ko5tl41GBw5ioXQ9HcSwohQc9kRSfF9FdPnKsdDYhTin0ew/CfLpghkz999nisgxY60LSE/w/XBIImCU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712811395; c=relaxed/simple;
-	bh=QrkWE8Xnlw+q5oIxRSNTYtkcjR+a7cB4X4I7TbrA5To=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GqKDh+Gmy+mvD1ZtQwrMzHGFkqMyewrltwo3yO5V4nUTCintGOJ7C++DdUY7vF2o62Wcmrn/uRil+EPumi9O1A4cvwrqxGOBnHdoedgnLjMMzs3hBBXEVrnfU35SUf2IkR1jrdvWeHhxAfS4CA51fZq/xAj5paC+ePON82eqPpg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hHPewMpy; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-6ed5109d924so3042323b3a.0;
-        Wed, 10 Apr 2024 21:56:33 -0700 (PDT)
+	s=arc-20240116; t=1712812740; c=relaxed/simple;
+	bh=+3l8UbUUZkN6lp2JD04jeJySfez+JOB3Ahyd5svuMK4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SGwq8JNf4/x2ERdanSGK+qhFqBGukJZDayq7qFPcqtD7VfSPIimWEhGTEGAyFlXhFxP3MKgWN3chGt3aR4rELYe7jZtFf0efZ/ikM+SQoOVpKCeWX/sE/N4k9nLBb/lCZV8Zqu9Rz9f/SVh7tRMYaIQkoPGhItfTUakgig12I60=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=atmark-techno.com; spf=pass smtp.mailfrom=atmark-techno.com; dkim=pass (2048-bit key) header.d=atmark-techno.com header.i=@atmark-techno.com header.b=Ccv5FjoL; dkim=pass (2048-bit key) header.d=atmark-techno.com header.i=@atmark-techno.com header.b=Yc2LXSdw; arc=none smtp.client-ip=35.74.137.57
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=atmark-techno.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=atmark-techno.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=atmark-techno.com;
+	s=gw2_bookworm; t=1712812283;
+	bh=+3l8UbUUZkN6lp2JD04jeJySfez+JOB3Ahyd5svuMK4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ccv5FjoL2sQoSiUUVocDFpjEMH7Z21hP7WGi74eC/32vurf1xnXiqoGCkshYZa8eJ
+	 79rwacS+C2uwXMEhuAGwDA6sEMugfZdWAt5OI4/f58+S5KhWKniu7m5CAF4j8GZqyr
+	 pVfV/mCIjfxPwAy4eK7vdqRHWvpUb1VZK6gVW8jHvkEitpSM8kt2Z4lhRNpgZepjal
+	 aFSeeq7PzHrkp68PimSrH+jvJTnqR11qKLp5mj+dIk7s7z1W9YEIVnQcRgEcR1JoAI
+	 ilDNUeDNmgYlN497W4RcvZahp3GOgQbjVBzI44MCNvqHZetV/EdIHINNnddxZHeSzi
+	 LRS/UyKx2SQXw==
+Received: from gw2.atmark-techno.com (localhost [127.0.0.1])
+	by gw2.atmark-techno.com (Postfix) with ESMTP id 35DB796A
+	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 14:11:23 +0900 (JST)
+Authentication-Results: gw2.atmark-techno.com;
+	dkim=pass (2048-bit key; unprotected) header.d=atmark-techno.com header.i=@atmark-techno.com header.a=rsa-sha256 header.s=google header.b=Yc2LXSdw;
+	dkim-atps=neutral
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by gw2.atmark-techno.com (Postfix) with ESMTPS id C51F24C6
+	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 14:11:21 +0900 (JST)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-1e51108b454so7546205ad.2
+        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 22:11:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712811393; x=1713416193; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=wHTNrwtVfB656IwmijcBPMC2ZgOyFKP3zBvEDwvoMC8=;
-        b=hHPewMpyKPtzmZd2UINqRn3+v2wpm6FFKo6Qaxfmufu8TcK1p8rVELtJxZOTvyPkM1
-         Q0w5GJMDW8B7Dfev4g7vx/VaVsUD6HZTMPHoSTFIzC/MXneGORWQBxA3ZupYvub+aItW
-         o21btC+BwCixEpG13eMk5RLzjxpw7Qtw+n5afs2vje7nj1IleflrrMXhByQLSIDF4Z8J
-         tFrJSp9CVyCa2znOTKk72Gj7u3c3ynvQrVrkekLILBrBf6eqW18INU+tqMaSMoZVz1Cj
-         dRr9tHyYU8BZXXZoR70BSvwkuN6gSWQ/wmzwx8bRrfpI5qhGsFMp+We44UqAO5I9jyLO
-         iFAQ==
+        d=atmark-techno.com; s=google; t=1712812281; x=1713417081; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZYM4XEihFnPGvzUAhdJCr4dtkp/ouRs0QzEOXLER4XA=;
+        b=Yc2LXSdwUvI7Y9P2B6j1mXa+zKDVh1VyMNrlE65RPEfzH31oAufqmmOJH4fGIE6aWA
+         H3iywtIX0i0Eb7xHm7fUngiDpcQfFB5BfjAyCvEP+JW7WVj5OOGiQk5xfQ0esgZgCOwT
+         wJ1OkZJLIhDGwKXBuWlQUPc2FVIXWC7cTQ1/BRYEDSevahciUeWZC74Uc8MUtuQ6DERS
+         02cZxSkZU9vgfkDoubLgXJM3tbxWkPlZ49avm31wdlmhz1feIAD+RzAqqEIixBuy3gT8
+         MtBrpeZjcZg2gEWHt8InU2yoomeNUccXsEAnCk0DcKX3rpDfw1kK+QKBycxYbk0OkdkQ
+         F9HA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712811393; x=1713416193;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wHTNrwtVfB656IwmijcBPMC2ZgOyFKP3zBvEDwvoMC8=;
-        b=aGBRkMUpnqB7fKdKgz1Q473iyrAwX/BAU8cJMuNmm+atJRQhMPJr+CfVMIyzaj1KmZ
-         pMCya2m8FCRTU0Z2ExEM2zKTfYQUBkz0DtKkmkSu8IxvUATGw7O51xl/ej8pGjDRh+Y0
-         cd+RRUTT+UVFH8NCbwTQk1I135h16hfHRAlPjLcrgqquROSNJOlDB0mJ4xUOXWpirbot
-         k2XGAW6yN1mrxc+AXMCgc6ysPxS6sK+jzLcidiRNT8rJsK177DVHXq/BIGutTYGtqVK+
-         zHIHn7uxgTXMkNN411zNYVMNPb62OnDhciJVnwvaaL6RnKDBRVZswrrAyDUdWFa6VM7x
-         o7LQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXa+LGQMcVGy7ur5B9sav5w2xXr/QXbpdB4TJ+2EfLVcsSmI/cUSAqq6OfLDYka1/LOM5vTPnDqrC6K/hUJqKsMiZfWs02KrLR1pyHNSCNQtmnzUmDWF0erw2weu/FwoKHd2B1KFahqYQ==
-X-Gm-Message-State: AOJu0YxqlhHwj4+PbfVZcNuJwXqb1atbmpFweo8OuYENKl/cavN5M0S1
-	ffp0fDwH6Uic+nYwNa+V1Zhyv9+edh+yXjljzJ0vO3fDGTYxbgv4
-X-Google-Smtp-Source: AGHT+IHtf+Wl4dhvIBwFO5quw26YDztgDGpa8JMW+Q3uEfK/tNr4QU1WIV2KNcjoDf4O75QBFns8wQ==
-X-Received: by 2002:a05:6a21:8806:b0:1a7:9476:6cb9 with SMTP id ta6-20020a056a21880600b001a794766cb9mr6205729pzc.32.1712811392865;
-        Wed, 10 Apr 2024 21:56:32 -0700 (PDT)
-Received: from localhost.localdomain (c-24-6-195-222.hsd1.ca.comcast.net. [24.6.195.222])
-        by smtp.gmail.com with ESMTPSA id c9-20020a17090abf0900b002a610ef880bsm809998pjs.6.2024.04.10.21.56.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Apr 2024 21:56:32 -0700 (PDT)
-From: rentao.bupt@gmail.com
-To: Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20230601; t=1712812281; x=1713417081;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZYM4XEihFnPGvzUAhdJCr4dtkp/ouRs0QzEOXLER4XA=;
+        b=W/rdnOIntdvBaSngcGpINvDs2VBdD6VLkU+4YcNPHlIegYixy6SNHPHZ+dtC3jAtkY
+         bLXhsWTfyfwvQYjt++CKS2w8M+07M0jHbGagn5+FrKp/KKwqW++IsQqdDdGFhTOrSg8Q
+         RU20uPWPloZmqPHDEiSaN6E8EqRKvIwNhbSPUxh7PfNqqxmJDft3fyPQIHQCkJEVp0FK
+         DtDjWEjMREKvGgtqjLeJjsL+yUwtVF4jIeW7FmfMTZXwdqF6/oqEbuUjG5hlSPA3BCyK
+         JXO5cE8KLHb4CGAGmRnrt0s2bet9NNZKo0p+EE+uJ/p8CmY+UbTNHA1ARniV/tHwZ4nY
+         9o5w==
+X-Forwarded-Encrypted: i=1; AJvYcCWAqGyzIIUOIOC9Xf/5zL8jhjXwpyIfxVYrUjadjqbDjQz0v+MAWbJNcHb+Vn2BvGm8ZY56oTEPTdhM4dETh9UTSy5WzK1JRqhvrw==
+X-Gm-Message-State: AOJu0YwJNWSSgg/Cf/2NJjDBaNInenYrRm74iRMbKXw3EQJOt+LKtHwu
+	mogfLFmrhM4O21v0FsGZRT51jmQBw4xie/F57JTWVRhzmJbj+h/bnW3kwn4+eo4bloXb4eaAdMM
+	+GX9fvHJtiwkl0PaP+VrTkKQiQKGhm+ZHI2cfOMJ1MPv9RmOUvD8DkCeLiJJK
+X-Received: by 2002:a17:902:a506:b0:1e5:2883:6ff6 with SMTP id s6-20020a170902a50600b001e528836ff6mr2439152plq.11.1712812280803;
+        Wed, 10 Apr 2024 22:11:20 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFPz2rOs7Q88TP2vpTyjyricUo5wqvT4PCM1GrqrEBYpN9J4sruu7OeLfrUYQtbbQepJwvbww==
+X-Received: by 2002:a17:902:a506:b0:1e5:2883:6ff6 with SMTP id s6-20020a170902a50600b001e528836ff6mr2439129plq.11.1712812280404;
+        Wed, 10 Apr 2024 22:11:20 -0700 (PDT)
+Received: from pc-0182.atmarktech (145.82.198.104.bc.googleusercontent.com. [104.198.82.145])
+        by smtp.gmail.com with ESMTPSA id b10-20020a170902d50a00b001e0f5034e95sm417774plg.288.2024.04.10.22.11.19
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 10 Apr 2024 22:11:19 -0700 (PDT)
+Received: from martinet by pc-0182.atmarktech with local (Exim 4.96)
+	(envelope-from <martinet@pc-zest>)
+	id 1rumiU-009uEk-2P;
+	Thu, 11 Apr 2024 14:11:18 +0900
+Date: Thu, 11 Apr 2024 14:11:08 +0900
+From: Dominique Martinet <dominique.martinet@atmark-techno.com>
+To: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Syunya Ohshio <syunya.ohshio@atmark-techno.com>,
+	Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org,
-	taoren@meta.com
-Cc: Tao Ren <rentao.bupt@gmail.com>
-Subject: [PATCH] ARM: dts: aspeed: Remove Facebook Cloudripper dts
-Date: Wed, 10 Apr 2024 21:56:18 -0700
-Message-ID: <20240411045622.7915-1-rentao.bupt@gmail.com>
-X-Mailer: git-send-email 2.44.0
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] iio: industrialio-core: look for aliases to request
+ device index
+Message-ID: <Zhdw7GPdOe2nOhJy@atmark-techno.com>
+References: <Zd7qz1Qte8HWieF_@atmark-techno.com>
+ <20240228142441.00002a79@Huawei.com>
+ <Zd_zB_ymxkx0HB3q@atmark-techno.com>
+ <ZfPg-nMANUtBlr6S@atmark-techno.com>
+ <CAMknhBG_kJx8JPvTBQo7zpy3mFAkUjZpRY3DLBfXt+39nRJWiA@mail.gmail.com>
+ <ZfejyEvPIncygKJ9@atmark-techno.com>
+ <20240318122953.000013f3@Huawei.com>
+ <20240331152042.394b4289@jic23-huawei>
+ <Zgpt136Q2rGL-cl_@atmark-techno.com>
+ <20240401174756.0000786a@Huawei.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240401174756.0000786a@Huawei.com>
 
-From: Tao Ren <rentao.bupt@gmail.com>
+Jonathan Cameron wrote on Mon, Apr 01, 2024 at 05:47:56PM +0100:
+> Good luck.  If you have time it might be good to hear what you end up
+> with!
 
-Remove Facebook Cloudripper dts because the switch platform is not
-actively maintained (all the units are deprecated).
+Just a quick follow-up since you asked -- given we manage our own kernel
+that already has its share of patches and it's not something
+user-visible we'll stick with the aliases approach for this kernel to
+make identifiers static.
+(and I'm adding labels for meticulous users, but not expecting it to be
+used in practice, it'll mostly be used in automated testing to make sure
+the number doesn't change on our end)
 
-Signed-off-by: Tao Ren <rentao.bupt@gmail.com>
----
- arch/arm/boot/dts/aspeed/Makefile             |   1 -
- .../aspeed-bmc-facebook-cloudripper.dts       | 544 ------------------
- 2 files changed, 545 deletions(-)
- delete mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-cloudripper.dts
+The rationale was as per my previous mails that paths in
+/sys/devices/platform have changed in the past so we'd rather not rely
+on these being set in stone, and while a new symlink would have been
+workable it's a user-noticeable change so we've prefered just pinning
+the device numbers.
 
-diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
-index d3ac20e316d0..1c0e08c9ed3e 100644
---- a/arch/arm/boot/dts/aspeed/Makefile
-+++ b/arch/arm/boot/dts/aspeed/Makefile
-@@ -13,7 +13,6 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-bytedance-g220a.dtb \
- 	aspeed-bmc-delta-ahe50dc.dtb \
- 	aspeed-bmc-facebook-bletchley.dtb \
--	aspeed-bmc-facebook-cloudripper.dtb \
- 	aspeed-bmc-facebook-cmm.dtb \
- 	aspeed-bmc-facebook-elbert.dtb \
- 	aspeed-bmc-facebook-fuji.dtb \
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-cloudripper.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-cloudripper.dts
-deleted file mode 100644
-index d49328fa487a..000000000000
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-cloudripper.dts
-+++ /dev/null
-@@ -1,544 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0+
--// Copyright (c) 2020 Facebook Inc.
--
--/dts-v1/;
--
--#include <dt-bindings/leds/common.h>
--#include "ast2600-facebook-netbmc-common.dtsi"
--
--/ {
--	model = "Facebook Cloudripper BMC";
--	compatible = "facebook,cloudripper-bmc", "aspeed,ast2600";
--
--	aliases {
--		/*
--		 * PCA9548 (1-0070) provides 8 channels connecting to
--		 * SMB (Switch Main Board).
--		 */
--		i2c16 = &imux16;
--		i2c17 = &imux17;
--		i2c18 = &imux18;
--		i2c19 = &imux19;
--		i2c20 = &imux20;
--		i2c21 = &imux21;
--		i2c22 = &imux22;
--		i2c23 = &imux23;
--
--		/*
--		 * PCA9548 (2-0070) provides 8 channels connecting to
--		 * SCM (System Controller Module).
--		 */
--		i2c24 = &imux24;
--		i2c25 = &imux25;
--		i2c26 = &imux26;
--		i2c27 = &imux27;
--		i2c28 = &imux28;
--		i2c29 = &imux29;
--		i2c30 = &imux30;
--		i2c31 = &imux31;
--
--		/*
--		 * PCA9548 (3-0070) provides 8 channels connecting to
--		 * SMB (Switch Main Board).
--		 */
--		i2c32 = &imux32;
--		i2c33 = &imux33;
--		i2c34 = &imux34;
--		i2c35 = &imux35;
--		i2c36 = &imux36;
--		i2c37 = &imux37;
--		i2c38 = &imux38;
--		i2c39 = &imux39;
--
--		/*
--		 * PCA9548 (8-0070) provides 8 channels connecting to
--		 * PDB (Power Delivery Board).
--		 */
--		i2c40 = &imux40;
--		i2c41 = &imux41;
--		i2c42 = &imux42;
--		i2c43 = &imux43;
--		i2c44 = &imux44;
--		i2c45 = &imux45;
--		i2c46 = &imux46;
--		i2c47 = &imux47;
--
--		/*
--		 * PCA9548 (15-0076) provides 8 channels connecting to
--		 * FCM (Fan Controller Module).
--		 */
--		i2c48 = &imux48;
--		i2c49 = &imux49;
--		i2c50 = &imux50;
--		i2c51 = &imux51;
--		i2c52 = &imux52;
--		i2c53 = &imux53;
--		i2c54 = &imux54;
--		i2c55 = &imux55;
--	};
--
--	spi_gpio: spi {
--		num-chipselects = <2>;
--		cs-gpios = <&gpio0 ASPEED_GPIO(X, 0) GPIO_ACTIVE_LOW>,
--			   <&gpio0 ASPEED_GPIO(X, 1) GPIO_ACTIVE_HIGH>;
--
--		eeprom@1 {
--			compatible = "atmel,at93c46d";
--			spi-max-frequency = <250000>;
--			data-size = <16>;
--			spi-cs-high;
--			reg = <1>;
--		};
--	};
--};
--
--&ehci1 {
--	status = "okay";
--};
--
--/*
-- * "mdio1" is connected to the MDC/MDIO interface of the on-board
-- * management switch (whose ports are connected to BMC, Host and front
-- * panel ethernet port).
-- */
--&mdio1 {
--	status = "okay";
--};
--
--&mdio3 {
--	status = "okay";
--
--	ethphy1: ethernet-phy@13 {
--		compatible = "ethernet-phy-ieee802.3-c22";
--		reg = <0x0d>;
--	};
--};
--
--&mac3 {
--	status = "okay";
--	phy-mode = "rgmii";
--	phy-handle = <&ethphy1>;
--	pinctrl-names = "default";
--	pinctrl-0 = <&pinctrl_rgmii4_default>;
--};
--
--&i2c0 {
--	multi-master;
--	bus-frequency = <1000000>;
--};
--
--&i2c1 {
--	/*
--	 * PCA9548 (1-0070) provides 8 channels connecting to SMB (Switch
--	 * Main Board).
--	 */
--	i2c-mux@70 {
--		compatible = "nxp,pca9548";
--		#address-cells = <1>;
--		#size-cells = <0>;
--		reg = <0x70>;
--		i2c-mux-idle-disconnect;
--
--		imux16: i2c@0 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <0>;
--		};
--
--		imux17: i2c@1 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <1>;
--		};
--
--		imux18: i2c@2 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <2>;
--		};
--
--		imux19: i2c@3 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <3>;
--		};
--
--		imux20: i2c@4 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <4>;
--		};
--
--		imux21: i2c@5 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <5>;
--		};
--
--		imux22: i2c@6 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <6>;
--		};
--
--		imux23: i2c@7 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <7>;
--		};
--	};
--};
--
--&i2c2 {
--	/*
--	 * PCA9548 (2-0070) provides 8 channels connecting to SCM (System
--	 * Controller Module).
--	 */
--	i2c-mux@70 {
--		compatible = "nxp,pca9548";
--		#address-cells = <1>;
--		#size-cells = <0>;
--		reg = <0x70>;
--		i2c-mux-idle-disconnect;
--
--		imux24: i2c@0 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <0>;
--		};
--
--		imux25: i2c@1 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <1>;
--		};
--
--		imux26: i2c@2 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <2>;
--		};
--
--		imux27: i2c@3 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <3>;
--		};
--
--		imux28: i2c@4 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <4>;
--		};
--
--		imux29: i2c@5 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <5>;
--		};
--
--		imux30: i2c@6 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <6>;
--		};
--
--		imux31: i2c@7 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <7>;
--		};
--	};
--};
--
--&i2c3 {
--	/*
--	 * PCA9548 (3-0070) provides 8 channels connecting to SMB (Switch
--	 * Main Board).
--	 */
--	i2c-mux@70 {
--		compatible = "nxp,pca9548";
--		#address-cells = <1>;
--		#size-cells = <0>;
--		reg = <0x70>;
--		i2c-mux-idle-disconnect;
--
--		imux32: i2c@0 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <0>;
--		};
--
--		imux33: i2c@1 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <1>;
--		};
--
--		imux34: i2c@2 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <2>;
--		};
--
--		imux35: i2c@3 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <3>;
--		};
--
--		imux36: i2c@4 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <4>;
--		};
--
--		imux37: i2c@5 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <5>;
--		};
--
--		imux38: i2c@6 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <6>;
--		};
--
--		imux39: i2c@7 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <7>;
--		};
--	};
--};
--
--&i2c6 {
--	lp5012@14 {
--		compatible = "ti,lp5012";
--		reg = <0x14>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		multi-led@0 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <0>;
--			color = <LED_COLOR_ID_MULTI>;
--			function = LED_FUNCTION_ACTIVITY;
--			label = "sys";
--
--			led@0 {
--				reg = <0>;
--				color = <LED_COLOR_ID_RED>;
--			};
--
--			led@1 {
--				reg = <1>;
--				color = <LED_COLOR_ID_BLUE>;
--			};
--
--			led@2 {
--				reg = <2>;
--				color = <LED_COLOR_ID_GREEN>;
--			};
--		};
--
--		multi-led@1 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <1>;
--			color = <LED_COLOR_ID_MULTI>;
--			function = LED_FUNCTION_ACTIVITY;
--			label = "fan";
--
--			led@0 {
--				reg = <0>;
--				color = <LED_COLOR_ID_RED>;
--			};
--
--			led@1 {
--				reg = <1>;
--				color = <LED_COLOR_ID_BLUE>;
--			};
--
--			led@2 {
--				reg = <2>;
--				color = <LED_COLOR_ID_GREEN>;
--			};
--		};
--
--		multi-led@2 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <2>;
--			color = <LED_COLOR_ID_MULTI>;
--			function = LED_FUNCTION_ACTIVITY;
--			label = "psu";
--
--			led@0 {
--				reg = <0>;
--				color = <LED_COLOR_ID_RED>;
--			};
--
--			led@1 {
--				reg = <1>;
--				color = <LED_COLOR_ID_BLUE>;
--			};
--
--			led@2 {
--				reg = <2>;
--				color = <LED_COLOR_ID_GREEN>;
--			};
--		};
--
--		multi-led@3 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <3>;
--			color = <LED_COLOR_ID_MULTI>;
--			function = LED_FUNCTION_ACTIVITY;
--			label = "scm";
--
--			led@0 {
--				reg = <0>;
--				color = <LED_COLOR_ID_RED>;
--			};
--
--			led@1 {
--				reg = <1>;
--				color = <LED_COLOR_ID_BLUE>;
--			};
--
--			led@2 {
--				reg = <2>;
--				color = <LED_COLOR_ID_GREEN>;
--			};
--		};
--	};
--};
--
--&i2c8 {
--	/*
--	 * PCA9548 (8-0070) provides 8 channels connecting to PDB (Power
--	 * Delivery Board).
--	 */
--	i2c-mux@70 {
--		compatible = "nxp,pca9548";
--		#address-cells = <1>;
--		#size-cells = <0>;
--		reg = <0x70>;
--		i2c-mux-idle-disconnect;
--
--		imux40: i2c@0 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <0>;
--		};
--
--		imux41: i2c@1 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <1>;
--		};
--
--		imux42: i2c@2 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <2>;
--		};
--
--		imux43: i2c@3 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <3>;
--		};
--
--		imux44: i2c@4 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <4>;
--		};
--
--		imux45: i2c@5 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <5>;
--		};
--
--		imux46: i2c@6 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <6>;
--		};
--
--		imux47: i2c@7 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <7>;
--		};
--
--	};
--};
--
--&i2c15 {
--	/*
--	 * PCA9548 (15-0076) provides 8 channels connecting to FCM (Fan
--	 * Controller Module).
--	 */
--	i2c-mux@76 {
--		compatible = "nxp,pca9548";
--		#address-cells = <1>;
--		#size-cells = <0>;
--		reg = <0x76>;
--		i2c-mux-idle-disconnect;
--
--		imux48: i2c@0 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <0>;
--		};
--
--		imux49: i2c@1 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <1>;
--		};
--
--		imux50: i2c@2 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <2>;
--		};
--
--		imux51: i2c@3 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <3>;
--		};
--
--		imux52: i2c@4 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <4>;
--		};
--
--		imux53: i2c@5 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <5>;
--		};
--
--		imux54: i2c@6 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <6>;
--		};
--
--		imux55: i2c@7 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <7>;
--		};
--	};
--};
+I'm always reluctant to take in more "in house" patches in our tree but
+in this case it's "simple enough" (death by thousands paper cut?), and
+we'll rediscuss this if/when another upstream solution shows up.
+
+
+Thanks a lot for your time thinking it through and discussing it though,
+that was appreciated!
+(Jonathan and everyone else involved)
 -- 
-2.44.0
+Dominique
+
 
 
