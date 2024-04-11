@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-58177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF9ED8A0A6F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 09:48:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD3458A0A6C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 09:47:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 25BB3B280D0
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 07:47:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92949284031
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 07:47:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDF5013E884;
-	Thu, 11 Apr 2024 07:46:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46E0F13E408;
+	Thu, 11 Apr 2024 07:47:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LVoK9A/D"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IEbRw7Ps"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26FB013E3FC
-	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 07:46:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80F8513E3E5
+	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 07:47:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712821576; cv=none; b=ML25YGSnmauGwOPIkCdTPzXWA/VXQZIyWATr40bnbUy+z5hAE6lYYQs1czvev0aGcXsA9M22NOX8WEHwqoEUBk2cL5gb3D3C+w4s8m+W1Fq+easOCoCM9Ljm1/mooOWLwdSmgaxt+wx739cpBZNSGDaoVNQ9Q6rOg+wwFr9V8q8=
+	t=1712821623; cv=none; b=LV205R5AcKvUtKocPqIf4CUUtDURGCbCzGCKWPZlzgS4sBtq+6DA/a5gUkZ7l+5zUj5YwR+tZEb+q3WySaFQLZlRqTUuQ7zmjLV1mEqBKH0JvKWoGKljxoTpCB+tznsdnrbaZkxO/kGqR5wbrbiuCX3+driA9EXHC/aGyr7i30M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712821576; c=relaxed/simple;
-	bh=qjbKxWAP+/Flv/iKP+sYZ6tSCtSa3U9TWay13rkGxpM=;
+	s=arc-20240116; t=1712821623; c=relaxed/simple;
+	bh=EZbpZVzDol2ochxhhoQafG44mGv61bdI5h13F/TClzU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=L2XV2t9kKUDMH9IaHm9zb+cdw0numGbya/tqHfp/COpjQPu/tyPA00Yzt46/vITaHKxgFG7D00kTu68Bht7KcN8tG4D5BInSxFo8u0ZJvj+Ezg8q4aiO0er2Jyx5aaEzwfeeXcO9g3wxk0Ls4OkvcSRcfvmwoz/eqvhWDO3C7/Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LVoK9A/D; arc=none smtp.client-ip=209.85.128.52
+	 In-Reply-To:Content-Type; b=MLg9CNRd8hkyZw9bKfN8wlaZAgc4341EgtRpqnrF9IT4vREZyp+v4HN5IxQUA0hCq0WTwupQvqQJffINM2tmdiwhibPrIQxMPrgEbM7EpWWR4FVS2L0gZE2mPm4JgJxE8w9aTCVN1wS4ge+rzaiNqTDGX6qy2Qxgvbp42w+GnB0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IEbRw7Ps; arc=none smtp.client-ip=209.85.221.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-416c4767b07so12063735e9.0
-        for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 00:46:14 -0700 (PDT)
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-343cfe8cae1so4712944f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 00:47:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712821573; x=1713426373; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712821620; x=1713426420; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=qjbKxWAP+/Flv/iKP+sYZ6tSCtSa3U9TWay13rkGxpM=;
-        b=LVoK9A/DNgQVsPHb9JyDYNIdNTo9oYrTFJ6gGoGTW/gdM2I1ef8sJ1+8DzMlXZRxHI
-         BAe7JQy6Zh/g3P179WAofoQrUWWifFFPlnmwfG8+xKP8HrAzgSJsv0vfvlSCsKyLntT1
-         K9AvysleUKFAsQ95QOsRwvay342i01zuMnFWFc1r1TX0cKWufXwLN3inmW0WHuChtagk
-         YtcKB1lz/Sg93/tHzYVFOtfOGbnpWb44yWhCgtIJFdByWKngx5kotOtFbNXGJ1VYjfPa
-         QvWb52hN0DcrWQ5NrrU5aHmDiPmcuDvs2fTDFhDatGs8IbgQ2dPQFV5Ce8eYPNEALB3b
-         FwyA==
+        bh=yzFgY9cLt511CDM/+jSri25GZnUmXDOO2qPwZ1Xf87s=;
+        b=IEbRw7Ps3uKDPiJEnHl9ZNPezNl7DEKgj6CWzGqrMGZuo1PM9JEzQ2rEs1exInufyS
+         jcah2PJdpxuXnWHOOi7NRaabI9c5RUV7eggvfhi8anvxf+0rypWRSln1/z6kRfYq3MQ+
+         CKjjY0FjmGevZC8m/sAKZRO6J0zHQlGckeYLUwoJGqmR/tLZHROYx2yLVTxzGlEyQYfd
+         Oygtw3cuP3/mtUnHJA6xMCDjCuY8Nqv2lPiFhnV4q6EJyxmV8kNKd7/tB9EoUvKiFtgW
+         8iM4/X3r0/tM0lhWkeqDhkUWwwbPxi3DjI14ygoDN82ydo1jTsUHuziILCKqR7ksQq8z
+         gOzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712821573; x=1713426373;
+        d=1e100.net; s=20230601; t=1712821620; x=1713426420;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=qjbKxWAP+/Flv/iKP+sYZ6tSCtSa3U9TWay13rkGxpM=;
-        b=ozTOcwGoYdBVR9EvLPEDJC0OEkLsDeEklAHqPJ+TNp9f0ZTAzxzNYP8Y3d0WPCXPcq
-         9dIdB3MK3R4OKXpgT87p+HBmz4HHa46uzCWE0oSSE20RNWX0A5LVmDvAEgVfTM1mCKl+
-         MixnwtXGnHdkkVMhSUS4Ua/sU8CKikAE5QRMANnCvfHz7eYESU4Wo+7/BHUawaXalapC
-         reNfmhdpzI7eUksWeTXpebb45+aqYy9Y4RWfIrH84cd+Sq4YtE/yCv4A6VHAa7MQ5QY0
-         gG+NQwzE1k43lWwtx15xbtk5jK1KBVqozhC0dePlQ3ocLkPObp2O0ducRW8iIlop/Rbi
-         Lpew==
-X-Forwarded-Encrypted: i=1; AJvYcCVIdYXRe6r4mWc6xXW/Acpq+wRMyz8NHJmEPmeQsh/6a77PkFbNpXM7aETrJneXxMuorwzZOFA+GTuQlfbRM3SzKQqeoEUeAEPSWg==
-X-Gm-Message-State: AOJu0YxZ/zc0JTv3VQ3YutavCySeys2r/vYEgJguSu4ZOmuUbUnsdyA0
-	zCZJSyv8y/JZrNy4hqu71UPH7+RQhU+XTij9aZ7KjYFpHx7wWAPZPsDKcMj7kIA=
-X-Google-Smtp-Source: AGHT+IGmS38xc0WGpQsdnR5C1VMrisJOEHOQTmf5rVZmpRA7LX4xX0gu5hbeeVxLByFYUDbJ6TdoPQ==
-X-Received: by 2002:a05:600c:4e88:b0:416:a6ff:bba0 with SMTP id f8-20020a05600c4e8800b00416a6ffbba0mr3821304wmq.11.1712821573636;
-        Thu, 11 Apr 2024 00:46:13 -0700 (PDT)
+        bh=yzFgY9cLt511CDM/+jSri25GZnUmXDOO2qPwZ1Xf87s=;
+        b=jPylmImwlEbTTDQq+j20g0+IxPgiWTbHoShdXGsY+ST+lm6ZAULg4EyszG1f31b96P
+         lEXeXf2q6Xm9ocTEHaYcS7E9WDLbPldvbAGk88UYF7nC6LZZbrOfOGHECgBIut48EcxI
+         TXa7KTBd8yXdFqdSvnDphHyFckqVhGS4seNdRXh0Duubp6g3FipZhGGEVbMycZ/LW25t
+         NDaemKjaRtFu7Nr8B6rvZS8KJr0jEySKN7Jtm68w+6f4QM/UixrhqFzylGwP3DErhaOZ
+         i1pgK8GwCKBHxmxOYHFfd9gjhdlHOCJDMJgYir79D9CvEVTTHCjtv03LqD6c3rIES5DA
+         QFew==
+X-Forwarded-Encrypted: i=1; AJvYcCUTIMJPzEzcCLv8PrTs9T9nLe4ayZ+rldv/IfEXypBmx+wQjvqPjyTnoysNzg099pi4lrMwJLeZ3k0WFqhKhDKDLUJGiPla0tCs6w==
+X-Gm-Message-State: AOJu0YwWLP/w/YxfKNK9MiqWl6gAApUY7vLX5s5o4x+j4xVGwoomnyNL
+	SED2c5uZJKb9qSR5yc2S9Mqi8KT3u904cAf67AiUp0F/iW/8rGhf8RPPGTh6d8U=
+X-Google-Smtp-Source: AGHT+IHN/1LW8cTEnJPn0noxnO3sVJdRgmSbkmIRqc9hO3tczHztPyZsmfT2drvV2a7Y8LezMCNm/Q==
+X-Received: by 2002:adf:fece:0:b0:345:223:2dd8 with SMTP id q14-20020adffece000000b0034502232dd8mr2833997wrs.23.1712821619774;
+        Thu, 11 Apr 2024 00:46:59 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id u13-20020a5d434d000000b00346bda84bf9sm853650wrr.78.2024.04.11.00.46.12
+        by smtp.gmail.com with ESMTPSA id b13-20020a5d4d8d000000b003432d61d6b7sm1121448wru.51.2024.04.11.00.46.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Apr 2024 00:46:13 -0700 (PDT)
-Message-ID: <31557c2c-0fe5-4b7d-b323-ffc5973270b2@linaro.org>
-Date: Thu, 11 Apr 2024 09:46:11 +0200
+        Thu, 11 Apr 2024 00:46:59 -0700 (PDT)
+Message-ID: <3249d5dd-bbce-4dfb-b3b0-11f180602714@linaro.org>
+Date: Thu, 11 Apr 2024 09:46:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,15 +77,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/13] ARM: dts: microchip: sama7g5ek: Remove the empty
- line 50
+Subject: Re: [PATCH 00/13] Remove the empty lines from sama5 and sama7 DT
+ files
 To: Mihai Sain <mihai.sain@microchip.com>, robh@kernel.org,
  krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
  nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
  claudiu.beznea@tuxon.dev, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20240411073353.3831-1-mihai.sain@microchip.com>
- <20240411073353.3831-2-mihai.sain@microchip.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -132,17 +131,29 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240411073353.3831-2-mihai.sain@microchip.com>
+In-Reply-To: <20240411073353.3831-1-mihai.sain@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 11/04/2024 09:33, Mihai Sain wrote:
-> Remove the empty line 50 from gpio-keys node.
+> This patch series removes the empty lines from sama5 and sama7 DT files.
+> 
+> Mihai Sain (13):
+>   ARM: dts: microchip: sama7g5ek: Remove the empty line 50
+>   ARM: dts: microchip: sama7g5: Remove the empty line 139
+>   ARM: dts: microchip: sama5d2: Remove the empty lines 47 and 63
+>   ARM: dts: microchip: sama5d27_som1_ek: Remove the empty lines
+>   ARM: dts: microchip: sama5d27_wlsom1_ek: Remove the empty line 31
+>   ARM: dts: microchip: sama5d29_curiosity: Remove the empty line 48
+>   ARM: dts: microchip: sama5d2_icp: Remove the empty line 47
+>   ARM: dts: microchip: sama5d2_ptc_ek: Remove the empty line 401
+>   ARM: dts: microchip: sama5d2_xplained: Remove the empty line 710
+>   ARM: dts: microchip: sama5d3_eds: Remove the empty line 24
+>   ARM: dts: microchip: sama5d3_xplained: Remove the empty line 377
+>   ARM: dts: microchip: sama5d4_xplained: Remove the empty line 247
+>   ARM: dts: microchip: sama5d4ek: Remove the empty line 274
 
-Why? Commit msg *must* say why you are doing this.
-
-I don't see any reason for this. You do not make code readable, you do
-not explain the issue being addressed.
+NAK for entire patchset.
 
 Best regards,
 Krzysztof
