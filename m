@@ -1,112 +1,137 @@
-Return-Path: <devicetree+bounces-58454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 339A18A221E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 01:11:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FDAE8A2258
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 01:34:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC2B5281FAC
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 23:11:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 93F4C1C2154C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 23:34:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B170547A6A;
-	Thu, 11 Apr 2024 23:11:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBAA9481C7;
+	Thu, 11 Apr 2024 23:34:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="RXClZl08"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ESAYJtWa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15CED47A48;
-	Thu, 11 Apr 2024 23:11:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 535A518B14;
+	Thu, 11 Apr 2024 23:34:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712877099; cv=none; b=hBjr0bD7dYtvnYIk92DZlTIWcfmNnN+WLy1NCDbmjGheK3+rG5tg0x6Mn1OOyFNsZDzd5itjTY3FOZjTjDnAjkoLNwswarIB0wZRMAwTf4y/tqodNpy9v/OkelsFzOQTHxypqtqReWAXbllJ5YX0AmNZ7DMERHGbmW2oPzcfqPY=
+	t=1712878468; cv=none; b=PPyZKP44iIgm2cuvOaISwxO5E3BU4P1KZXLzR+vNuaiJlQsKE/oQeTJ5Xs+znahPhtuVg8S/IznEtDMeFf3rmr6zqYnZ43GmgvRkO1NNAyZkX+iriQnMqP+tDCWli5dZXy75ftTtWr5TcgFG131REwNqIdEPtrgMz5zR/D5J+QQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712877099; c=relaxed/simple;
-	bh=WtLY2DfxGmqqzEfjnXrKQl8GF1EVE0kc/WAx1cPu/h4=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=tBdWMHW5r+cJlmXL4CnkoDE8Nu6AWr3LwIA4T1HiJgmraOx23a7Q/qLXYLvEwc6s+u40M6BY8Ye7KWvzfXUMf78YIkQ5GAzvdGQhLQWyT4fo+yK/RQm2nQ55fX+Or8QueQI3GIlSXa2QkjTfg7NXOZtBjyVX3Nm1JbQmpqpf+Os=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=RXClZl08; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43BNBUwI121096;
-	Thu, 11 Apr 2024 18:11:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1712877090;
-	bh=6tLnQPe454SO5phWmUJw7OB46GtzZX5nY3F8YwjWpQQ=;
-	h=From:To:CC:Subject:Date;
-	b=RXClZl084ltGLBPslIgjyPphC/1qbOTlolrY4DkRf5VLYEnpn4qCk5WmUQJAFHpvW
-	 C5ToNIEAN8fePX2UwedZYqqBfGwSRRO7BvT8XJRGH1xOWro439ULori/ZSSj8gQWfP
-	 1phSlql3HXUwbTR+cqVRutGpwN3bdj+eC+Io4xh8=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43BNBU02002917
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 11 Apr 2024 18:11:30 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 11
- Apr 2024 18:11:30 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 11 Apr 2024 18:11:30 -0500
-Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43BNBUsh030769;
-	Thu, 11 Apr 2024 18:11:30 -0500
-From: Judith Mendez <jm@ti.com>
-To: =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren
-	<tony@atomide.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-omap@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH] arm: dts: am335x-evmsk: add alias node for uarts
-Date: Thu, 11 Apr 2024 18:11:30 -0500
-Message-ID: <20240411231130.386222-1-jm@ti.com>
-X-Mailer: git-send-email 2.43.2
+	s=arc-20240116; t=1712878468; c=relaxed/simple;
+	bh=sk0XiYegamb+eqwCZVvKDkTYSQ0dUvVPxzkYMKFwSms=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=oXBrcbIbtz1Z2aAavkxLmPkLgfHXOQ+deaFtKobncMpPxhKtkxUnpj2clctnaW2DhAfmfbBO6uttavgkZPrXJstOwCNwo0+sAMtXiezW26/gLlx/Fy/WxlOJ/j9T3MV4p/shaeC5C+Sbtmw8OKT40hly8r7GNLOmaHTfTQqHXio=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ESAYJtWa; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1712878468; x=1744414468;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=sk0XiYegamb+eqwCZVvKDkTYSQ0dUvVPxzkYMKFwSms=;
+  b=ESAYJtWa9cUNeBwDgfffdhJTSfYgYFrJKx+Lb0hOAuaACPiTiMNolZhu
+   hcSUEHxz7RlJQ7YIvK93Sb8/ShI5agsllBfbNFHBCzcclCPHy/Mp8+iKY
+   Ifua8eeSWTGdXSfagqrW6dPtJJVxpEV3RpIXo1j9Bv0CN7ns4qXomewYu
+   3E3lt7giYZEqIKD+9PFbcYGrH6CHNrudD6WuGIehbegmhs1Ecfifset05
+   W8KzWR7eJBaf0zBOrOOWFKc49c4g6oGrxS1UV8YIdKLUhO0YoU1YaWAjx
+   Mww6Aalob9TzmYZ2rjVr/H/qk7lIl8pQiZUm2ZBGayLL5iUlVjdjW4wYP
+   Q==;
+X-CSE-ConnectionGUID: s58ahnDjS76XxaX9tMEjNw==
+X-CSE-MsgGUID: 1Riv5fVHSdaQQfzRbGsPFw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11041"; a="19033043"
+X-IronPort-AV: E=Sophos;i="6.07,194,1708416000"; 
+   d="scan'208";a="19033043"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Apr 2024 16:34:27 -0700
+X-CSE-ConnectionGUID: J/Y4eHXCSzuDf6OhJw2BTA==
+X-CSE-MsgGUID: Ct90QprWT1SeV9B2FRDd4Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,194,1708416000"; 
+   d="scan'208";a="25597967"
+Received: from sj-4150-psse-sw-opae-dev2.sj.intel.com ([10.233.115.162])
+  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Apr 2024 16:34:26 -0700
+Date: Thu, 11 Apr 2024 16:34:17 -0700 (PDT)
+From: matthew.gerlach@linux.intel.com
+X-X-Sender: mgerlach@sj-4150-psse-sw-opae-dev2
+To: Rob Herring <robh@kernel.org>
+cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, bhelgaas@google.com, 
+    lpieralisi@kernel.org, kw@linux.com, krzysztof.kozlowski+dt@linaro.org, 
+    conor+dt@kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+    linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: PCI: altera: Convert to YAML
+In-Reply-To: <20240410172924.GA622917-robh@kernel.org>
+Message-ID: <alpine.DEB.2.22.394.2404111619010.410528@sj-4150-psse-sw-opae-dev2>
+References: <20240405145322.3805828-1-matthew.gerlach@linux.intel.com> <2ece9ac2-899c-4185-b0f3-8ab939afc1e5@linaro.org> <alpine.DEB.2.22.394.2404081309050.381257@sj-4150-psse-sw-opae-dev2> <d079bf4d-ebfe-4d98-b718-0c545aabbd30@linaro.org>
+ <20240410172924.GA622917-robh@kernel.org>
+User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=US-ASCII; format=flowed
 
-The AM335x SK routes the PRUSS UART pins to the Zigbee header.
-PRUSS UART is enabled and can be tested using the Zigbee header.
-Since there are two UARTS, add alias node to be able to test PRUSS
-UART reliably from userspace.
 
-Signed-off-by: Judith Mendez <jm@ti.com>
----
- arch/arm/boot/dts/ti/omap/am335x-evmsk.dts | 5 +++++
- 1 file changed, 5 insertions(+)
 
-diff --git a/arch/arm/boot/dts/ti/omap/am335x-evmsk.dts b/arch/arm/boot/dts/ti/omap/am335x-evmsk.dts
-index eba888dcd60e7..e6925dc263d31 100644
---- a/arch/arm/boot/dts/ti/omap/am335x-evmsk.dts
-+++ b/arch/arm/boot/dts/ti/omap/am335x-evmsk.dts
-@@ -29,6 +29,11 @@ memory@80000000 {
- 		reg = <0x80000000 0x10000000>; /* 256 MB */
- 	};
- 
-+	aliases {
-+		serial0 = &uart0;
-+		serial1 = &pruss_uart;
-+	};
-+
- 	chosen {
- 		stdout-path = &uart0;
- 	};
+On Wed, 10 Apr 2024, Rob Herring wrote:
 
-base-commit: 534ad093bb80f19c20b251a89f09ce1a0e3d4f2d
--- 
-2.43.2
+> On Tue, Apr 09, 2024 at 08:29:07AM +0200, Krzysztof Kozlowski wrote:
+>> On 08/04/2024 22:34, matthew.gerlach@linux.intel.com wrote:
+>>>>> diff --git a/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..999dcda05f55
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
+>>>>> @@ -0,0 +1,106 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>>>> +# Copyright (C) 2024, Intel Corporation
+>>>>
+>>>> This is derivative of previous work, which is easily visible by doing
+>>>> the same mistakes in DTS as they were before.
+>>>
+>>> This is definitely derivative of previous work, and I want to fix the
+>>> DTS mistakes too.
+>>>
+>>>>
+>>>> You now added fresh copyrights ignoring all previous work, even though
+>>>> you copied it. I don't agree.
+>>>>
+>>>> If you want to ignore previous copyrights, then at least don't copy
+>>>> existing code... although even that would not be sufficient.
+>>>
+>>> Ignoring previous copyrights was not my intent. There is no copyright
+>>> statement in the original text version of the device tree bindings. Should
+>>> that lack of copyright statement carry forward?
+>>
+>> All the authors are copyright holders automatically, at least in some or
+>> maybe most jurisdictions. You do not need to add copyright label for
+>> material to be copyrighted. That's why you are not allowed to relicense
+>> the work for example, without other authors' agreement.
+>
+> The only thing I see as missing is some years. All the authors were
+> Altera which is now Intel, so Intel is the sole copyright holder.
+> Whether is says 2015 contributions were Altera or Intel is probably
+> immaterial.  There were also contributions by Google (Bjorn), but those
+> were purely editorial.
 
+Yes, Altera is now Intel who now owns the copyrights. At some point the 
+future this might change as Intel spins off Altera. So given the state 
+now, should the copyright line be as follows?
+
+# Copyright (C) 2015, 2019, 2024, Intel Corporation
+
+
+Matthew
+>
+> Rob
+>
 
