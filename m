@@ -1,204 +1,92 @@
-Return-Path: <devicetree+bounces-58259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A981B8A1280
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 13:07:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8462C8A1296
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 13:10:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3457F1F211DD
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 11:07:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D4602850E5
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 11:10:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15CA21474BE;
-	Thu, 11 Apr 2024 11:07:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 256691482EF;
+	Thu, 11 Apr 2024 11:09:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YZjscJwF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HqKFIQ3T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34CDF13BACD
-	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 11:07:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF573145345;
+	Thu, 11 Apr 2024 11:09:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712833635; cv=none; b=iSapWfWhXnoy4tEQ71xIBKZJ7XF8XqQvkUj69gG58iTPOhZ/7AL6Jnwpn+d+hx6LO1NkMcofKpvZZaAewOP4xN2dBUV9uBXcEkGKCuf63vEIG9wUOpFn65h20AVSwwRyjVIgrrK85dt53AVYo18aKOqFSxfR3G1WDrAyvvBExhs=
+	t=1712833753; cv=none; b=JatITU3G/I5T0nGVnixRquF1PALMXjwvpmYX4n7lG980EPuMnP9YGFxp8alwqE1QQeqzVFV75r+S94ITPKhJINbl5ZB//M4eN2yLb8/szEtTwD87/5XomcuVrviCevKIGfL6zvlVzgbenB9DTmaRvUJ74y9jFMrfnXYlCqYGrQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712833635; c=relaxed/simple;
-	bh=fLit8VjED7zE79F2sopStkIe4xL2XjF5KSYypHS2ERM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TMb2wJvhC8jvY5N1W+MwjyMmAZdCptDcSrtqt+Lit1em/y83EiEky1k+x98RGGwdZrrEosWhfS48i58EeNx8aOiuPxQVyODNMJkufEGuGsobigqBdymEx2e5nb8B3NpwEVfn5RsWrOEAhyi2l1G9tfFj4z2yrgFklKafG4PtAhY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YZjscJwF; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-346b96f1483so282382f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 04:07:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712833631; x=1713438431; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=5GkNWGxakmJKXBqFXolPskgW0D6/XXw8rh7tWUsTVyk=;
-        b=YZjscJwF5Qm81HAnAabjtqxk17sQPL81qotaWO+RG78Oi/sVZwL7pTiqJr77mqWKi1
-         45E+ELJjn+eSa0wCpyWM0HUd0olmiWPd/+v/NcaM3sWnha/uZjhqOMDzcT8XMORWalJA
-         mU55zaMU3O02XlwzdvJxsjOgMQfdkuGgkmyIPVL9xiBiosT2Rz8SYi8dR5Q4uxtxaXQ7
-         d+UJaqMvBb5bE30o1TYN0RcSftawjzrtq2/VmTzdsELT+0FBwbDwCzg5eXVPgCVNEqDK
-         N7Y74ei1DE+zkn+SvML6dLVERisjKLh+X4RQ8NDrdSCM3WLNbq2Nf0N6dPKK4/rN7wfL
-         7F9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712833631; x=1713438431;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5GkNWGxakmJKXBqFXolPskgW0D6/XXw8rh7tWUsTVyk=;
-        b=nAE10wg5PYOd6OUaWfUONE1iRJz7Kc6gUBqujxBi5hAiiJPSVtsqSH9NipHCSuuViy
-         YU4Y7sk8QLAhpeVGUvVGURErRhLGpbQjbYcQqMosIWTZftGsMoSH7yrs60i3Vxoy/0iA
-         Wc80P4xTT4qCYJvJLfYt2gmo/qqbh0oOKU3mkh3zbXkQSPh3FRQQRwegZn2ht4kU25eG
-         j2HmgoyiMbaxmXhNO8ahMGM+W7+8sIcUm5RsOwvnD8IP+2vJaQ3o0m5jM+OCyEqdUwRK
-         eQxZVF0S4tngP1II1yfAohaTEUTuRg9MD3o4uboQ4fEIDnYEwLlFXhcwvyE74aJWHVDy
-         md2g==
-X-Forwarded-Encrypted: i=1; AJvYcCWRwcp+gL7n8AAMfdl5g7hFutct81cHWm+nTe8N/DLxOn+pSqvGdLLLHuyDw3Lqk+xymYgsaa8ncEHrp3Aselnpaf6BMjpYd+DcpA==
-X-Gm-Message-State: AOJu0Ywq+bokFF+eF1VyroBHIuc2FfFJ50bDJdBgx2+Gn3R9BvvYdusq
-	w8xwsf1QtFJE9ODrMVcha3SlRRjxfpOgo3wHuj3tOR1tofyrc+ughrH8k04mJpI=
-X-Google-Smtp-Source: AGHT+IFi3hjMCBbMTtRxhlllfe8R3Fkj+JS8g2H80ShThs3gsytJR5CfKh/9xqbPBG0TvlGWGBjr0g==
-X-Received: by 2002:a5d:6542:0:b0:343:d23a:c977 with SMTP id z2-20020a5d6542000000b00343d23ac977mr1948319wrv.1.1712833631552;
-        Thu, 11 Apr 2024 04:07:11 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id q4-20020adff504000000b0034635bd6ba5sm1506039wro.92.2024.04.11.04.07.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Apr 2024 04:07:11 -0700 (PDT)
-Message-ID: <98d12a5e-e291-40f9-8334-3b5f53ed79a8@linaro.org>
-Date: Thu, 11 Apr 2024 13:07:09 +0200
+	s=arc-20240116; t=1712833753; c=relaxed/simple;
+	bh=H0hYUoUHZjDxgOQ3vvSzT903/ikqhBk88RpVDT940FI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=UkVMVx+nlsdjbVmEd69nBy1Auy41yXg4eqUfRlcRvpwrnVP8mI76XHfc4OSh5TL2AAoH89I96vjmmm3XxLHYezLnF7QW52hWzt6M1ZxBKIVHvjxjt9cH9ILmAIrmdjnxcECUfg57ZBEtSDfdaW3E2617Az7yOs74qYQkPuI6jm0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HqKFIQ3T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 196D3C43394;
+	Thu, 11 Apr 2024 11:09:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712833752;
+	bh=H0hYUoUHZjDxgOQ3vvSzT903/ikqhBk88RpVDT940FI=;
+	h=From:To:Cc:Subject:Date:From;
+	b=HqKFIQ3T+ucvxZZ74QIdPaNEVpme4ANxYONv55JATRaK7mEt32JfHpJT4v5Pl3LJW
+	 l4C1OBpsHXAao9hwOP51ylmRxD4gYN/T7xLQek1Dkzvh4yo7u7vucJOTJfJmn50RFk
+	 9B30oNfDXganEGGRtys5ybBlHtP3Vf228+4eMalS7e1bn3soQ7+1brtYWW/pDXN0qD
+	 07BKg+HdgPLfeJOAhZjh2bvHDqXkWzBbr96IlVKm/ut/xl0sh+CcNVZtxp6X2vgKHh
+	 7BhuvVhYi2vD2rBe58d+ZMYYsuFvHtpQVT2CK1u7F6NWnvX/l4cJXCcOU7fP14T8IA
+	 vdsB4CwKMhbLw==
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: linux-spi@vger.kernel.org
+Cc: broonie@kernel.org,
+	lorenzo.bianconi83@gmail.com,
+	linux-arm-kernel@lists.infradead.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	nbd@nbd.name,
+	john@phrozen.org,
+	dd@embedd.com,
+	catalin.marinas@arm.com,
+	will@kernel.org,
+	upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com
+Subject: [PATCH 0/3] Add add SPI-NAND Flash controller driver for EN7581
+Date: Thu, 11 Apr 2024 13:08:35 +0200
+Message-ID: <cover.1712833493.git.lorenzo@kernel.org>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: Add Loongson PWM controller
-To: Binbin Zhou <zhoubb.aaron@gmail.com>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen
- <chenhuacai@loongson.cn>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
- <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Juxin Gao <gaojuxin@loongson.cn>,
- Huacai Chen <chenhuacai@kernel.org>, loongson-kernel@lists.loongnix.cn,
- linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
- Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
-References: <cover.1712732719.git.zhoubinbin@loongson.cn>
- <38c234d548b4b9c334cda6e7664a803896b31f6f.1712732719.git.zhoubinbin@loongson.cn>
- <c1399191-6c6d-4eb4-b05b-f87a9f2b4152@linaro.org>
- <CAMpQs4JiLGJ-nBDmj1pe0SCqKeCnz5DrybJAKE8_6up293YNpw@mail.gmail.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAMpQs4JiLGJ-nBDmj1pe0SCqKeCnz5DrybJAKE8_6up293YNpw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 11/04/2024 13:01, Binbin Zhou wrote:
-> On Thu, Apr 11, 2024 at 4:26 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 11/04/2024 11:16, Binbin Zhou wrote:
->>> Add Loongson PWM controller binding with DT schema format using
->>> json-schema.
->>>
->>> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
->>
->>
->>> +properties:
->>> +  compatible:
->>> +    oneOf:
->>> +      - const: loongson,ls7a-pwm
->>> +      - items:
->>> +          - enum:
->>> +              - loongson,ls2k0500-pwm
->>> +              - loongson,ls2k1000-pwm
->>> +              - loongson,ls2k2000-pwm
->>> +          - const: loongson,ls7a-pwm
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    maxItems: 1
->>> +
->>> +  clocks:
->>> +    maxItems: 1
->>> +
->>> +  '#pwm-cells':
->>> +    description:
->>> +      The first cell must have a value of 0, which specifies the PWM output signal;
->>
->> If you have always the same value in PWM phandle, why encoding it in the
->> phandle in the first place? What's the benefit of passing 0?
-> 
-> Hi Krzysztof:
-> 
-> My thoughts are:
-> First of all, our pwm has only one output signal, so it can only be 0.
-> Also, as you know from the pwm xlate function, the first cell is the
-> pwm index, so I fixed it to be 0 here.
-> 
-> The xlate function:
-> https://elixir.bootlin.com/linux/v6.8/source/drivers/pwm/core.c#L106
+Introduce support for SPI-NAND driver of the Airoha NAND Flash Interface
+found on Airoha ARM EN7581 SoCs.
 
-You refer for xlate for PWM with three cells. You do not have three
-cells, as you have only on signal, so why insisting on using other
-xlate? Do you do the same for clocks? Or resets?
+Lorenzo Bianconi (3):
+  dt-bindings: spi: airoha: Add YAML schema for SNFI controller
+  arm64: dts: airoha: add EN7581 spi-nand node
+  spi: airoha: add SPI-NAND Flash controller driver
 
-I don't think you use appropriate argument in this discussion. We talk
-about hardware and your argument "I don't want to use my own xlate in
-the driver" is about driver.
+ .../bindings/spi/airoha,spi-airoha-snfi.yaml  |   56 +
+ MAINTAINERS                                   |    9 +
+ arch/arm64/boot/dts/airoha/en7581.dtsi        |   17 +
+ drivers/spi/Kconfig                           |   10 +
+ drivers/spi/Makefile                          |    1 +
+ drivers/spi/spi-airoha-snfi.c                 | 1146 +++++++++++++++++
+ 6 files changed, 1239 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/spi/airoha,spi-airoha-snfi.yaml
+ create mode 100644 drivers/spi/spi-airoha-snfi.c
 
-
-Best regards,
-Krzysztof
+-- 
+2.44.0
 
 
