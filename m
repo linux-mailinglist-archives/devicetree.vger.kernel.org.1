@@ -1,273 +1,189 @@
-Return-Path: <devicetree+bounces-58339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B2BE8A164B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 15:51:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 058F68A16A2
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 16:06:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A66C1C20CF1
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 13:51:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 76FFEB22729
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 14:06:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2FB414D44D;
-	Thu, 11 Apr 2024 13:51:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 320771509B7;
+	Thu, 11 Apr 2024 14:04:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UeP0lrov"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="dW6gxsCV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4694214D6E0;
-	Thu, 11 Apr 2024 13:51:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4556614EC6A;
+	Thu, 11 Apr 2024 14:04:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712843485; cv=none; b=JIiPqhtgb8K2qBKU6GtwFEUb0sPmhTGz/AGyORcKd/0bXsEOfzzFuTzbH633pnZR/HhSi0WxyiAGD0iMZ3fIvplEVXTyrBML+2HKPRj65gnh6gizmckZp8zQLlf2XkfzUoSgWE6RTHMFzoZWCzxlj8pFLARQ8x/YDOE6ffvNguo=
+	t=1712844282; cv=none; b=MBMbe5BD03nKMEsRxXFXUnW2cjAHvuMT0mvoOEOvbWKewVxmlW7d9Y4mbNUBxHEt7/UwY7r7RwMXiAREx0e/Puey0SYKD4soUvnc4rYDp8NA9aToSPmY6j6ZTD4gzOVJBXorkm34bfhv5Dj26Tx7AcRar/CpFY63h6zLbR2GWeU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712843485; c=relaxed/simple;
-	bh=w3MAx7X4BvLaSfA0z3x3zJFYsikqJJHu1cquCWRQvD0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ubmc27AneQMffEbpm9h0EDHAdAVBYGLRfknfgJbGCPQeQd78MeqHnQxiqiUCKRokAyF6GaXbX3HaR0ZeQfn+Y722Wf7ejWd4RllJPy1Rwfx7zdm98R6r3c5Z3YeO8qjEuJ5lLURUrC7qhO/G2AnAS2DyjnZRRe5uDDuHSEL8658=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UeP0lrov; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43BCdOeu003345;
-	Thu, 11 Apr 2024 13:51:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=PJrPJzI9tZWalVF2HGIgb7pQcW9btb7ItvIvDtE5NqY=; b=Ue
-	P0lrovih7tNWWmVLd7KvhrKW5uWvjjli+LJa+NCNIFkn5ejy/My6UKhxNnS9Zgl4
-	vddHyGm9NGAhKCHDjo2NJr6lu07Usmljr8L2mOE75F+zeKLOhzvqZkxHmJnpGWsB
-	oRhSMdPZwzbt4MAF0DiprrRnh9w8jdZAaxXbyJ5LA9EtN7syQQjvd9zXr4Va9ZUr
-	JNtMjC4BK1v3KpPXMGus/MkKXdHrDWOC/OTgAmiB60c3t6D3llLmjWZQajw2g1/8
-	QDBkmr7Tx7gE87PdHyWzShiWXH61r9deXuRlBmr9WEGu7phNt3afM3FwY483yQQK
-	moJQF3pGTjZIvnLyedfg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xe99jt4n1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 11 Apr 2024 13:51:19 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43BDpI0K019351
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 11 Apr 2024 13:51:18 GMT
-Received: from [10.253.34.126] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Thu, 11 Apr
- 2024 06:51:12 -0700
-Message-ID: <c2ee9ab0-ecb2-aba2-2cc9-653f74d27396@quicinc.com>
-Date: Thu, 11 Apr 2024 21:51:10 +0800
+	s=arc-20240116; t=1712844282; c=relaxed/simple;
+	bh=ZrCt6oej6WWRtK9ajy4DESiiMvZN55Rd82Z7cAO61lE=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
+	 References:In-Reply-To; b=u+KgXPEieQ3WCmSiDLMfKLZFDyc7YYoqIWsr7VZAPgtJgFCv/CxS/YFnP7iT+j7nAxM/2pX9LOHqcY1jHnsdc6T4ev//9MmsN+AuaD7TJfyo+yJv4v2bfo/lUjjTS6oh0UR+CJKGPWGEOZ9BrhCe+JfJxifO7NGeSbZDR2U7Dz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=dW6gxsCV; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 923E7C0008;
+	Thu, 11 Apr 2024 14:04:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1712844277;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=yHMOCEThioFNBRb0/pbHA6siONYSvI8bftJSI3SDdxw=;
+	b=dW6gxsCVgdghqn/IQbcGvOrg1mwarJk5nvxU2EHuog49c2PESSCXprtlxzegLMubTQWTll
+	ob7G/iNruURS6u6995ukRb7IuuEDM+JwqApqib94ioelO8Q01YlC4cK+J1K9MOQolSPRRw
+	3nBIHdL0PD0DQyx9r2Gckk9WbK+dX5wRN/h54M2U0K/V5BxtTqZzyzKXsOQbOmuC7Ezwr6
+	xwpVw7nK3o/VUhABP2sr4Pb0b3DYlCqAXYwyWUDaSgAh4fHhEAZdfIuD5OqTAO/2TVdRGV
+	8LO4Vqf2fDiQLDyx44laxhlTBWi7vcFAKRsxNMTdvEhwPcFDTIZVPLUNzael8g==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH v9 4/4] input: pm8xxx-vibrator: add new SPMI vibrator
- support
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <kernel@quicinc.com>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Dmitry
- Torokhov" <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-input@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20240411-pm8xxx-vibrator-new-design-v9-0-7bf56cb92b28@quicinc.com>
- <20240411-pm8xxx-vibrator-new-design-v9-4-7bf56cb92b28@quicinc.com>
- <CAA8EJprJ4s-o1uPiPjRpq4nwG4cdV7K8XMhVLOQn2D=kJLiVzQ@mail.gmail.com>
-From: Fenglin Wu <quic_fenglinw@quicinc.com>
-In-Reply-To: <CAA8EJprJ4s-o1uPiPjRpq4nwG4cdV7K8XMhVLOQn2D=kJLiVzQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: AadPOHqKIiv8VDR3qAno4-5VC-o6Shqj
-X-Proofpoint-GUID: AadPOHqKIiv8VDR3qAno4-5VC-o6Shqj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-11_07,2024-04-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 clxscore=1015
- phishscore=0 mlxlogscore=999 suspectscore=0 spamscore=0 impostorscore=0
- mlxscore=0 priorityscore=1501 lowpriorityscore=0 adultscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404110100
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 11 Apr 2024 16:04:36 +0200
+Message-Id: <D0HCMDMWTO61.1F860N5I5SKS3@bootlin.com>
+Cc: <linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, "Vladimir Kondratiev"
+ <vladimir.kondratiev@mobileye.com>, "Gregory CLEMENT"
+ <gregory.clement@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>
+To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Michael Turquette" <mturquette@baylibre.com>, "Stephen Boyd"
+ <sboyd@kernel.org>, "Philipp Zabel" <p.zabel@pengutronix.de>, "Linus
+ Walleij" <linus.walleij@linaro.org>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH 03/11] dt-bindings: reset: mobileye,eyeq5-reset: add
+ EyeQ6L and EyeQ6H
+X-Mailer: aerc 0.15.2
+References: <20240410-mbly-olb-v1-0-335e496d7be3@bootlin.com>
+ <20240410-mbly-olb-v1-3-335e496d7be3@bootlin.com>
+ <975a8554-a299-4394-be15-c910cf9688ae@linaro.org>
+In-Reply-To: <975a8554-a299-4394-be15-c910cf9688ae@linaro.org>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
+Hello,
 
+On Thu Apr 11, 2024 at 8:14 AM CEST, Krzysztof Kozlowski wrote:
+> On 10/04/2024 19:12, Th=C3=A9o Lebrun wrote:
+> > Add bindings for EyeQ6L and EyeQ6H reset controllers.
+> >=20
+> > Some controllers host a single domain, meaning a single cell is enough.
+> > We do not enforce reg-names for such nodes.
+> >=20
+> > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+> > ---
+> >  .../bindings/reset/mobileye,eyeq5-reset.yaml       | 88 ++++++++++++++=
+++++----
+> >  MAINTAINERS                                        |  1 +
+> >  2 files changed, 74 insertions(+), 15 deletions(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/reset/mobileye,eyeq5-res=
+et.yaml b/Documentation/devicetree/bindings/reset/mobileye,eyeq5-reset.yaml
+> > index 062b4518347b..799bcf15bed9 100644
+> > --- a/Documentation/devicetree/bindings/reset/mobileye,eyeq5-reset.yaml
+> > +++ b/Documentation/devicetree/bindings/reset/mobileye,eyeq5-reset.yaml
+> > @@ -4,11 +4,13 @@
+> >  $id: http://devicetree.org/schemas/reset/mobileye,eyeq5-reset.yaml#
+> >  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> > =20
+> > -title: Mobileye EyeQ5 reset controller
+> > +title: Mobileye EyeQ reset controller
+> > =20
+> >  description:
+> > -  The EyeQ5 reset driver handles three reset domains. Its registers li=
+ve in a
+> > -  shared region called OLB.
+> > +  EyeQ reset controller handles one or more reset domains. They live i=
+n shared
+> > +  regions called OLB. EyeQ5 and EyeQ6L host one OLB each, each with on=
+e reset
+> > +  instance. EyeQ6H hosts 7 OLB regions; three of those (west, east,
+> > +  accelerator) host reset controllers. West and east are duplicates.
+> > =20
+> >  maintainers:
+> >    - Gr=C3=A9gory Clement <gregory.clement@bootlin.com>
+> > @@ -17,27 +19,83 @@ maintainers:
+> > =20
+> >  properties:
+> >    compatible:
+> > -    const: mobileye,eyeq5-reset
+> > +    enum:
+> > +      - mobileye,eyeq5-reset
+> > +      - mobileye,eyeq6l-reset
+> > +      - mobileye,eyeq6h-we-reset
+> > +      - mobileye,eyeq6h-acc-reset
+> > =20
+> > -  reg:
+> > -    maxItems: 3
+> > +  reg: true
+>
+> Same mistakes. Please open existing bindings with multiple variants,
+> e.g. some Qualcomm, and take a look how it is done there.
 
-On 2024/4/11 19:02, Dmitry Baryshkov wrote:
-> On Thu, 11 Apr 2024 at 11:32, Fenglin Wu via B4 Relay
-> <devnull+quic_fenglinw.quicinc.com@kernel.org> wrote:
->>
->> From: Fenglin Wu <quic_fenglinw@quicinc.com>
->>
->> Add support for a new SPMI vibrator module which is very similar
->> to the vibrator module inside PM8916 but has a finer drive voltage
->> step and different output voltage range, its drive level control
->> is expanded across 2 registers. The vibrator module can be found
->> in following Qualcomm PMICs: PMI632, PM7250B, PM7325B, PM7550BA.
->>
->> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
->> ---
->>   drivers/input/misc/pm8xxx-vibrator.c | 51 +++++++++++++++++++++++++++++-------
->>   1 file changed, 42 insertions(+), 9 deletions(-)
->>
->> diff --git a/drivers/input/misc/pm8xxx-vibrator.c b/drivers/input/misc/pm8xxx-vibrator.c
->> index 2959edca8eb9..35bb6f450fd2 100644
->> --- a/drivers/input/misc/pm8xxx-vibrator.c
->> +++ b/drivers/input/misc/pm8xxx-vibrator.c
->> @@ -12,10 +12,10 @@
->>   #include <linux/regmap.h>
->>   #include <linux/slab.h>
->>
->> -#define VIB_MAX_LEVEL_mV       (3100)
->> -#define VIB_MIN_LEVEL_mV       (1200)
->> -#define VIB_PER_STEP_mV        (100)
->> -#define VIB_MAX_LEVELS         (VIB_MAX_LEVEL_mV - VIB_MIN_LEVEL_mV + VIB_PER_STEP_mV)
->> +#define VIB_MAX_LEVEL_mV(vib)  (vib->drv2_addr ? 3544 : 3100)
->> +#define VIB_MIN_LEVEL_mV(vib)  (vib->drv2_addr ? 1504 : 1200)
->> +#define VIB_PER_STEP_mV(vib)   (vib->drv2_addr ? 8 : 100)
->> +#define VIB_MAX_LEVELS(vib)    (VIB_MAX_LEVEL_mV(vib) - VIB_MIN_LEVEL_mV(vib) + VIB_PER_STEP_mV(vib))
->>
->>   #define MAX_FF_SPEED           0xff
->>
->> @@ -26,6 +26,9 @@ struct pm8xxx_regs {
->>          unsigned int drv_offset;
->>          unsigned int drv_mask;
->>          unsigned int drv_shift;
->> +       unsigned int drv2_offset;
->> +       unsigned int drv2_mask;
->> +       unsigned int drv2_shift;
->>          unsigned int drv_en_manual_mask;
->>   };
->>
->> @@ -45,6 +48,18 @@ static struct pm8xxx_regs pm8916_regs = {
->>          .drv_en_manual_mask = 0,
->>   };
->>
->> +static struct pm8xxx_regs pmi632_regs = {
->> +       .enable_offset = 0x46,
->> +       .enable_mask = BIT(7),
->> +       .drv_offset = 0x40,
->> +       .drv_mask = GENMASK(7, 0),
->> +       .drv_shift = 0,
->> +       .drv2_offset = 0x41,
->> +       .drv2_mask = GENMASK(3, 0),
->> +       .drv2_shift = 8,
->> +       .drv_en_manual_mask = 0,
->> +};
->> +
->>   /**
->>    * struct pm8xxx_vib - structure to hold vibrator data
->>    * @vib_input_dev: input device supporting force feedback
->> @@ -53,6 +68,7 @@ static struct pm8xxx_regs pm8916_regs = {
->>    * @regs: registers' info
->>    * @enable_addr: vibrator enable register
->>    * @drv_addr: vibrator drive strength register
->> + * @drv2_addr: vibrator drive strength upper byte register
->>    * @speed: speed of vibration set from userland
->>    * @active: state of vibrator
->>    * @level: level of vibration to set in the chip
->> @@ -65,6 +81,7 @@ struct pm8xxx_vib {
->>          const struct pm8xxx_regs *regs;
->>          unsigned int enable_addr;
->>          unsigned int drv_addr;
->> +       unsigned int drv2_addr;
->>          int speed;
->>          int level;
->>          bool active;
->> @@ -82,6 +99,10 @@ static int pm8xxx_vib_set(struct pm8xxx_vib *vib, bool on)
->>          unsigned int val = vib->reg_vib_drv;
->>          const struct pm8xxx_regs *regs = vib->regs;
->>
->> +       /* vibrator without drv2_addr needs be programmed in step increments */
-> 
-> How are these two items related? Are you using vib->drv2_addr as a
-> marker for 'particular generation'? In such a case please use a flag
-> instead.
-> 
-> The rest looks good to me.
-> 
-Are you suggesting to add a flag in pm8xxx_vib as a discriminator for 
-the new generation? I actually tried to avoid that because of this comment:
-https://lore.kernel.org/linux-arm-msm/ZgXSBiQcBEbwF060@google.com/#t
+Thanks for the pointer to good example, that is useful! So if we take
+one random binding matching
+Documentation/devicetree/bindings/clock/qcom,*.yaml and that contains
+the "reg-names" string, we see:
 
->> +       if (!vib->drv2_addr)
->> +               vib->level /= VIB_PER_STEP_mV(vib);
->> +
->>          if (on)
->>                  val |= (vib->level << regs->drv_shift) & regs->drv_mask;
->>          else
->> @@ -93,6 +114,17 @@ static int pm8xxx_vib_set(struct pm8xxx_vib *vib, bool on)
->>
->>          vib->reg_vib_drv = val;
->>
->> +       if (regs->drv2_mask) {
->> +               if (on)
->> +                       val = (vib->level << regs->drv2_shift) & regs->drv2_mask;
->> +               else
->> +                       val = 0;
->> +
->> +               rc = regmap_write_bits(vib->regmap, vib->drv2_addr, regs->drv2_mask, val);
->> +               if (rc < 0)
->> +                       return rc;
->> +       }
->> +
->>          if (regs->enable_mask)
->>                  rc = regmap_update_bits(vib->regmap, vib->enable_addr,
->>                                          regs->enable_mask, on ? regs->enable_mask : 0);
->> @@ -115,17 +147,16 @@ static void pm8xxx_work_handler(struct work_struct *work)
->>                  return;
->>
->>          /*
->> -        * pmic vibrator supports voltage ranges from 1.2 to 3.1V, so
->> +        * pmic vibrator supports voltage ranges from MIN_LEVEL to MAX_LEVEL, so
->>           * scale the level to fit into these ranges.
->>           */
->>          if (vib->speed) {
->>                  vib->active = true;
->> -               vib->level = ((VIB_MAX_LEVELS * vib->speed) / MAX_FF_SPEED) +
->> -                                               VIB_MIN_LEVEL_mV;
->> -               vib->level /= VIB_PER_STEP_mV;
->> +               vib->level = VIB_MIN_LEVEL_mV(vib);
->> +               vib->level += mult_frac(VIB_MAX_LEVELS(vib), vib->speed, MAX_FF_SPEED);
->>          } else {
->>                  vib->active = false;
->> -               vib->level = VIB_MIN_LEVEL_mV / VIB_PER_STEP_mV;
->> +               vib->level = VIB_MIN_LEVEL_mV(vib);
->>          }
->>
->>          pm8xxx_vib_set(vib, vib->active);
->> @@ -203,6 +234,7 @@ static int pm8xxx_vib_probe(struct platform_device *pdev)
->>
->>          vib->enable_addr = reg_base + regs->enable_offset;
->>          vib->drv_addr = reg_base + regs->drv_offset;
->> +       vib->drv2_addr = reg_base + regs->drv2_offset;
->>
->>          /* operate in manual mode */
->>          error = regmap_read(vib->regmap, vib->drv_addr, &val);
->> @@ -257,6 +289,7 @@ static const struct of_device_id pm8xxx_vib_id_table[] = {
->>          { .compatible = "qcom,pm8058-vib", .data = &pm8058_regs },
->>          { .compatible = "qcom,pm8921-vib", .data = &pm8058_regs },
->>          { .compatible = "qcom,pm8916-vib", .data = &pm8916_regs },
->> +       { .compatible = "qcom,pmi632-vib", .data = &pmi632_regs },
->>          { }
->>   };
->>   MODULE_DEVICE_TABLE(of, pm8xxx_vib_id_table);
->>
->> --
->> 2.25.1
->>
->>
-> 
-> 
+  reg:
+    items:
+      - description: LPASS qdsp6ss register
+      - description: LPASS top-cc register
+
+  reg-names:
+    items:
+      - const: qdsp6ss
+      - const: top_cc
+
+I don't understand one thing; this doesn't tell you:
+
+   You can provide 2 MMIO blocks, which must be qdsp6ss and top_cc.
+
+But it tells you:
+
+   Block zero must be qdsp6ss.
+   Block one must be top_cc.
+
+If we do that I do not get the point of reg-names; we put more
+information in our devicetree that is in any case imposed.
+
+This is why I went with a different approach looking like:
+
+  reg:
+    minItems: 2
+    maxItems: 2
+  reg-names:
+    minItems: 2
+    maxItems: 2
+    items:
+      enum: [ d0, d1 ]
+
+I know this is not perfect, but at least you don't enforce an order for
+no reason. If "items: const..." approach should be taken, then I'll
+remove reg-names which bring no benefit.
+
+Thanks Krzysztof,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
