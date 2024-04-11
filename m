@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-58115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3400C8A0841
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 08:17:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 360E08A084E
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 08:18:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E33C828180F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 06:17:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF6A01F25A5A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 06:18:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75B5913CAB6;
-	Thu, 11 Apr 2024 06:16:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 599DE13CA96;
+	Thu, 11 Apr 2024 06:18:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="shbH+rBD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pdclmzqo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9F8D13CA9D
-	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 06:16:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D6A513C806
+	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 06:17:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712816165; cv=none; b=dJZkUFrWwjbqpHTQzQD/KiyL/kdEOUwY9KOt6PfzLgQpmHT6wZ+SnYajM0cZYPrYvo8H7WxroUxMCvJLMXYmHBPSLa/rX+76Gu1OnZmPYU8DDZqxy0pq50yKBVT8QX/XPkBVWsEoFVHCnm17EOstEGHgnIeVd7631o8Awn8uk2g=
+	t=1712816281; cv=none; b=SW52+wH5duIxju6SxVZazN7v+YEHftM53RFiagYv+OJw+ZLI9oSq7mlMAwwfw9aDxw2vkrgkak6K8t5esWJ+vO8lcifjsOzYVqetQiNHAnMh3Tp1xwdO0JvwMOnjTAIpAGjAsAXye5oYQAN/z9+lL5Rusk+zKvr5HzB0koCy0do=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712816165; c=relaxed/simple;
-	bh=CS88KkY/o1zSXzsWzYNP5T+t7FA8tAbkbEbGlqCch9w=;
+	s=arc-20240116; t=1712816281; c=relaxed/simple;
+	bh=i9P3bAcnwVB5TPl/lPoV1TrVudMdEcrlGwHTwNAN+Ms=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=T0h/MoxYGglphs9fe25peyt7kfdIAHk4NXPyTgISuJUu4EDPhxWblCqAkwP/Ao+OeLMz1RxNwrRbXWf9hWKZS5j6KOvzt5lH/jQwDQZH6FI240pVugILFEob/XPTM9/0Q5zUySFHc9L/hyoXiG1OhiJk/qsvimS3GRkkHngn3/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=shbH+rBD; arc=none smtp.client-ip=209.85.128.51
+	 In-Reply-To:Content-Type; b=ozgNWhBTh86gva3DwpE0eqxYlUP9dYAE73Nj/xdn63taD5S3Jrtcon74veBCEjXjfVjtldkkvc7ZDPF5YCwrvu6KC3GzZx6MF0RB8tvIKU9DorNgWcx/Ad5Dd+6ux92RKA5ey5neEWpglCDRsfuZXkbFAnUBLtgKFeY8MW+NTtM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pdclmzqo; arc=none smtp.client-ip=209.85.221.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-417d0194703so3815925e9.0
-        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 23:16:03 -0700 (PDT)
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-346b94fa7ecso314974f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 10 Apr 2024 23:17:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712816162; x=1713420962; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712816278; x=1713421078; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=vqvF1Iz6aBOSnf9ysN3Cl7MVobAUUWig+q/OaJGV+mQ=;
-        b=shbH+rBDiROX5kqDMdrKQaL8UNh909hAcpaf3EWwtB3rogdBYmiqdPDPvLoaQjRr5O
-         Ct0jQSu54sbBJ1F3KkGRH56aqxv19QpgLpmVQ2okorvNRrgcAVYic6lq5rSMpDHqKO3f
-         OgIx3oZjhQBhHHYwFBZgHZwX+dG0Mg9jf33Vbg6Uf1VcjZ6BjDtFKiLSNiET3PbhCPDK
-         T9Apl3iQSzrJgSD+cwxOesYWSbO8ZttgbE66E9tOcPaiLisT57eBYI6hAkbQPkKyDnFN
-         d/GpmHJ17DYGUzDVbQ1TgxayASVECBDb0ZuMmjM/CaM6Ei4JkJMk4RFirZRnHesL6SKQ
-         AE8Q==
+        bh=dIqGBLkwho0VDUiHAkhF1AiHua3U+TbpGgqUfassRGY=;
+        b=pdclmzqoKgm+9vNElevyUUDKHT/OD6ai/Wxmgaepuwc/sDD63s6sVpkQSfCVK9e3X+
+         jkAp/n+Iiy8jxzIIwzWvgdpGY/VDhGD4zoCDgDVrEV7NbscvbOH1pyxAghtzYjP33IHv
+         hpkljpvp4Zyh43WkrtTqhAtm/rbzGPgHY6/ecHbh8krBCi2Qz1Y/Q/yM46rRYgEC4VkX
+         drXi5XwhjLMr06q4WfUlsfsUR2zzfBEG5ox+jdoHcUY+R7WNU3XFsi15QLnkVOjsrrZV
+         2WSqLS2nR4pGTwaC7R3k1/mlL9qj4IVigDa2ZOtZXpO43dtJIl9aGb+faiqUGAQ1DBsR
+         zFiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712816162; x=1713420962;
+        d=1e100.net; s=20230601; t=1712816278; x=1713421078;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=vqvF1Iz6aBOSnf9ysN3Cl7MVobAUUWig+q/OaJGV+mQ=;
-        b=q6wfI+QD00X0gLnizWD7TEp+/+Enw3C+29C8D3kuOkqQzcwuIuJOZRIrglyo2jjRdM
-         ar2qFrL+eds+bca9LKr8CR5UDMD47gzGm4NfFxecDgLGwKShsHklMsqKGl4G/TS7LKOP
-         TkGljWwodWg9W5lQMvtvxyhCV/PNDI3EhwEHTClATaaPBa98Lq7p7JTo2QZZgZjwbnTM
-         v1XvphcSR34MCrMf81b8N+5Qtdxl7bEiZmw2F7N/7fa0wajiuKFNfHjfmvO3rCx3/j/Q
-         ZOMuTQN8yFV45+0XTFrc3okLhZbYOQETipp9LgBXuyFMX1LGzLY4NusfqwFyB02Za7LL
-         d2ew==
-X-Forwarded-Encrypted: i=1; AJvYcCXbjcdhfx2CoDeak7ua4VOPrpu0tpirQWW0DKX0U0uLMJx3Ygpr/Sgwux1b4GK6oOoHVhrDQWZkpBYa+TEI3lW0lnKJ4R+d+MNrdA==
-X-Gm-Message-State: AOJu0YzL0fSkmNUooUM0diUR0aDlGDY08GQ7QkMUo/wF0g9VGAZp9Nem
-	2oCqD0BM8wZ6M8Ug/y/HUl5js4kJitdQ5EOlla0y5UIPV9+tr+Lblu7GSi5DLRU=
-X-Google-Smtp-Source: AGHT+IHHP6xLvGXqaX8EeHeppHO+BQ3SypAvOETut0ZopKDH6ade8VDHZbvuK1KScExAVkQF5qKxew==
-X-Received: by 2002:a05:600c:11ce:b0:414:8aa7:f3b7 with SMTP id b14-20020a05600c11ce00b004148aa7f3b7mr3846814wmi.19.1712816162106;
-        Wed, 10 Apr 2024 23:16:02 -0700 (PDT)
+        bh=dIqGBLkwho0VDUiHAkhF1AiHua3U+TbpGgqUfassRGY=;
+        b=BeaR9eo3a198tjT6LM2uOSnAx4zU8WlcdNmtCcwlp+IeNIbiOMkqseRPD+ymBDduPh
+         e9Qm/da0zK40rkvEIskEI6iW3GMKXoxpsiGu6/8YK96YvBui7JQNh/dHKZSW+68UIwJE
+         kkGc/kPN6Ku/qN/Fou0xt0sZKcuKpPPVUHIaMVabOmWLVYXQL0hdVmo/8KgaNC8VzI/k
+         yqrYF/GBILQRReapnBX3QNOqRDTB8jPmFjX3L+dX2v4N8h0cyqjkj0A0CX/gpwPWMGlW
+         c8o+ChikiEUgxmjqKo1qdQOcAQrE7r+Xj8LxQSz2at7UaBo4S00Rx0w3oYNkVpGtYm0W
+         Xlxw==
+X-Forwarded-Encrypted: i=1; AJvYcCVPzjR6pO6pTgUoSFtcjWEuM5G9iN26eDf3sLrlb9CKohqBO7OfMmDMq8qdDkZDlA3/xzzSYbQUvYXkXFR6RpdA+GHTySrq2DEGSw==
+X-Gm-Message-State: AOJu0YxWEfsd5zktTk2NWfp4a2W5wLrYx5EH7eOD27vz0TL6fBedbCJ5
+	0izoyRGzi0pDcd3c36fzRt3DBbBft440GEveC1rfPnAqQXyWJtfTWESpvMbvgsk=
+X-Google-Smtp-Source: AGHT+IEJxgJl8yVXSeIGYg35EweCjbaFB2dDJFg8DQCcoBybET4ev5s9QxHjmm6Hc4tA0Ocqh3UGjw==
+X-Received: by 2002:adf:fc46:0:b0:33e:cf4d:c583 with SMTP id e6-20020adffc46000000b0033ecf4dc583mr3434952wrs.16.1712816277879;
+        Wed, 10 Apr 2024 23:17:57 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id bi19-20020a05600c3d9300b00417d73deb11sm989892wmb.32.2024.04.10.23.16.00
+        by smtp.gmail.com with ESMTPSA id s19-20020adfe013000000b00346bb778e8bsm769518wrh.5.2024.04.10.23.17.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Apr 2024 23:16:01 -0700 (PDT)
-Message-ID: <faa0769f-bd5e-4c6b-9f61-1a369830ad28@linaro.org>
-Date: Thu, 11 Apr 2024 08:15:59 +0200
+        Wed, 10 Apr 2024 23:17:57 -0700 (PDT)
+Message-ID: <130d47d8-3294-44be-9a8c-8474d342cb12@linaro.org>
+Date: Thu, 11 Apr 2024 08:17:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,23 +77,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 08/11] MIPS: mobileye: eyeq5: add OLB syscon node
-To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 2/4] dt-bindings: rtc: lpc32xx-rtc: convert to dtschema
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Cc: Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Linus Walleij <linus.walleij@linaro.org>
-Cc: linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-gpio@vger.kernel.org,
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
- Gregory CLEMENT <gregory.clement@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>
-References: <20240410-mbly-olb-v1-0-335e496d7be3@bootlin.com>
- <20240410-mbly-olb-v1-8-335e496d7be3@bootlin.com>
+ Conor Dooley <conor+dt@kernel.org>, Jiaxun Yang <jiaxun.yang@flygoat.com>,
+ Vladimir Zapolskiy <vz@mleia.com>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, linux-rtc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-stm32@st-md-mailman.stormreply.com
+References: <20240410-rtc_dtschema-v2-0-d32a11ab0745@gmail.com>
+ <20240410-rtc_dtschema-v2-2-d32a11ab0745@gmail.com>
+ <202404102043571b7450b5@mail.local>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -140,39 +139,84 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240410-mbly-olb-v1-8-335e496d7be3@bootlin.com>
+In-Reply-To: <202404102043571b7450b5@mail.local>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 10/04/2024 19:12, Théo Lebrun wrote:
-> The OLB ("Other Logic Block") is a syscon region hosting clock, reset
-> and pin controllers. It contains registers such as I2C speed mode that
-> need to be accessible by other nodes.
+On 10/04/2024 22:43, Alexandre Belloni wrote:
+> On 10/04/2024 17:55:34+0200, Javier Carrasco wrote:
+>> Convert existing binding to dtschema to support validation.
+>>
+>> Add the undocumented 'clocks' property.
+>>
+>> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+>> ---
+>>  .../devicetree/bindings/rtc/lpc32xx-rtc.txt        | 15 --------
+>>  .../devicetree/bindings/rtc/nxp,lpc32xx-rtc.yaml   | 41 ++++++++++++++++++++++
+>>  2 files changed, 41 insertions(+), 15 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/rtc/lpc32xx-rtc.txt b/Documentation/devicetree/bindings/rtc/lpc32xx-rtc.txt
+>> deleted file mode 100644
+>> index a87a1e9bc060..000000000000
+>> --- a/Documentation/devicetree/bindings/rtc/lpc32xx-rtc.txt
+>> +++ /dev/null
+>> @@ -1,15 +0,0 @@
+>> -* NXP LPC32xx SoC Real Time Clock controller
+>> -
+>> -Required properties:
+>> -- compatible: must be "nxp,lpc3220-rtc"
+>> -- reg: physical base address of the controller and length of memory mapped
+>> -  region.
+>> -- interrupts: The RTC interrupt
+>> -
+>> -Example:
+>> -
+>> -	rtc@40024000 {
+>> -		compatible = "nxp,lpc3220-rtc";
+>> -		reg = <0x40024000 0x1000>;
+>> -		interrupts = <52 0>;
+>> -	};
+>> diff --git a/Documentation/devicetree/bindings/rtc/nxp,lpc32xx-rtc.yaml b/Documentation/devicetree/bindings/rtc/nxp,lpc32xx-rtc.yaml
+>> new file mode 100644
+>> index 000000000000..62ddeef961e9
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/rtc/nxp,lpc32xx-rtc.yaml
+>> @@ -0,0 +1,41 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/rtc/nxp,lpc32xx-rtc.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: NXP LPC32xx SoC Real Time Clock
+>> +
+>> +maintainers:
+>> +  - Javier Carrasco <javier.carrasco.cruz@gmail.com>
+>> +
+>> +allOf:
+>> +  - $ref: rtc.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: nxp,lpc3220-rtc
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
 > 
-> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
-> ---
->  arch/mips/boot/dts/mobileye/eyeq5.dtsi | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/arch/mips/boot/dts/mobileye/eyeq5.dtsi b/arch/mips/boot/dts/mobileye/eyeq5.dtsi
-> index 6cc5980e2fa1..e82d2a57f6da 100644
-> --- a/arch/mips/boot/dts/mobileye/eyeq5.dtsi
-> +++ b/arch/mips/boot/dts/mobileye/eyeq5.dtsi
-> @@ -100,6 +100,14 @@ uart2: serial@a00000 {
->  			clock-names = "uartclk", "apb_pclk";
->  		};
->  
-> +		olb: system-controller@e00000 {
-> +			compatible = "mobileye,eyeq5-olb", "syscon", "simple-mfd";
-> +			reg = <0 0xe00000 0x0 0x400>;
-> +			ranges = <0x0 0x0 0xe00000 0x400>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
+> As I explained the clock doesn't really exist, there is no control over
+> it, it is a fixed 32768 Hz crystal, there is no point in describing it
+> as this is already the input clock of the SoC.
 
-Do not add incomplete node. ranges, address/size-cells are incorrect in
-this context and you will have warnings.
+That's common for many SoCs but it is still (at least for them) input to
+the RTC. On some SoC boards 32 kHz is controllable.
 
-Add complete node, so these properties make sense.
+But if you think it is not correct here, then we should drop it from DTS.
 
 Best regards,
 Krzysztof
