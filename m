@@ -1,218 +1,121 @@
-Return-Path: <devicetree+bounces-58220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9A6E8A0C52
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 11:27:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BAF248A0C5E
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 11:28:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC7831C21A0D
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 09:27:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAF8A1C212BB
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 09:28:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B1F3144D17;
-	Thu, 11 Apr 2024 09:26:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5D5E144D16;
+	Thu, 11 Apr 2024 09:27:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I8q9P1uK"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="avKDZ3JH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3170144D0D;
-	Thu, 11 Apr 2024 09:26:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAFE714263A;
+	Thu, 11 Apr 2024 09:27:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712827594; cv=none; b=UveygUUd2WR5Yw0WRHe/oOEjHMc83oqJVUiBg4ExX307KbVEdcNzXUWpHLKYeRPDwYPlquuGZltRoRWDQ9RKNKOpspspflBeBxMAZiX9ube5gTca2f4T97+foiCkR223qk08VbqKMtDVk81UsAFCsGBfDBz+jVM/SvX3o0DF++4=
+	t=1712827668; cv=none; b=G79OsV3CROOkT5ZHVa6SYr2fBYUQetC1fxIP7JHEXb//7KQ2aRbjQKrHk1QITyF7IgdxddXILi+QlcVyGeDnbxez6CSp9zbh8lAkz4tlXKBoMyr8uE6zyZTM+c1CYfvdhsccx9zD0E4CJojyknYRhRNzXFQaADpObaCOpN/xyoU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712827594; c=relaxed/simple;
-	bh=6G71jNSKEd/jZfLMuwnapQpj2Fg6LgOvi0ZpKZsJ1vg=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=MtKiAcbbf5yR3Zgkco26P27z4aOAE+d+wQTXYrY/r0qzbiOgOagCj/ClzFWKcKTkiRSbOQQXgLgPRUX9X7j5v2rvPZVTTiPhXSu8cjYYBQA249y+89KHPFfpstsVw2gG5YfmHS5q+94q4HhJdsj7xhEibxokDwJcX0q4M/7h9VI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I8q9P1uK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76494C43399;
-	Thu, 11 Apr 2024 09:26:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712827593;
-	bh=6G71jNSKEd/jZfLMuwnapQpj2Fg6LgOvi0ZpKZsJ1vg=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=I8q9P1uKGzMtgzzn1YZcwmD8uDci8yHRj+FVaxeLTCg0+Z2OJMxXndW66wVewn0A5
-	 oPw6fKfI33WPLlGZPuToEPbSWdrwdNL4J2fsKXMeUi/a5lqbBdukfYP2GoSgS8U6gg
-	 Jpcedy/K6FH/bxbAeXXgID8AfRnK/nVvonW3fA9UlKcgMR81CZujxKoTHx6/JSq8/2
-	 FuADMCf9bA0vtY4LtlFBlv2VMgGX+AcJuTtEg0bOlsWXXql1Er3J8dPKrEmeP/FutX
-	 WoXC4SrlJa2BwvRDgcCpbGc8+w7a5eJnt963c6BWW026by6LZ95SauCfnRDM5JlBGL
-	 Nhty9hJh2mtYg==
-Message-ID: <11055a03e605f9134f91af3e3f3a6c58.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1712827668; c=relaxed/simple;
+	bh=BUX3q6uB8fMbKKJnsl2nqHWR9WoGSzMH9fjDG70Smv8=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:From:Subject:Cc:
+	 References:In-Reply-To; b=OC6jndfH765zqQ7fMlt11HbKbCe3hHID3o+bNS+EMX4r5QIM6FApPZRRIkOwJdT7Gd1f9p9fdSxhM7uLj2Eb86liK+px91Gdi6PbpqVpr/L66OALiQp6TaPpZFzDQzP6ww3rw645EPgoHfxbSJfO/Tq4cagjL7winsKvSP7LiJM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=avKDZ3JH; arc=none smtp.client-ip=217.70.183.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 99C1540006;
+	Thu, 11 Apr 2024 09:27:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1712827664;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=4zSgBA8xW2dbaQwRIZ3MOom2jnWkBfYRk1zCKM74gmQ=;
+	b=avKDZ3JHvpH9EEjrmu7G3yzibfjjR8gjjEQTw5w/RtaNfV6OUc+EkUCt+4KPlgE0vCsBni
+	MLI3cWixxeI7NhmZOKyHWqmKyqEVjmlvO4Fibu6JJJBZ/XH4amnqKzOI55nGGvZ1aMyhcR
+	NQhkKRvpLsBYTjgc0Ay8uCHR2/o8C7zqM84aS6jORZ05ay0S+ZwbDNacIsxydj+gREpmj3
+	u8rzkHqSCw8AB4LNylgLMsYgwzH7K8GKGZmGxof1k8ClTIlr9SIBoGeD4VwGKzrFQS/pZW
+	fSARUFWQgsnsDRv56FQTUMhtMJWMvQi5QgoYvl0TiCA4jIHScK8s/ub0jj3Feg==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240408-ep93xx-clk-v1-4-1d0f4c324647@maquefel.me>
-References: <20240408-ep93xx-clk-v1-0-1d0f4c324647@maquefel.me> <20240408-ep93xx-clk-v1-4-1d0f4c324647@maquefel.me>
-Subject: Re: [PATCH 4/4] soc: Add SoC driver for Cirrus ep93xx
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, Nikita Shubin <nikita.shubin@maquefel.me>, Arnd Bergmann <arnd@arndb.de>, Linus Walleij <linus.walleij@linaro.org>
-To: Alexander Sverdlin <alexander.sverdlin@gmail.com>, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Nikita Shubin via B4 Relay <devnull+nikita.shubin.maquefel.me@kernel.org>, Rob Herring <robh@kernel.org>, nikita.shubin@maquefel.me
-Date: Thu, 11 Apr 2024 02:26:31 -0700
-User-Agent: alot/0.10
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 11 Apr 2024 11:27:43 +0200
+Message-Id: <D0H6QDTNE0FO.27IGZ1AWYO11S@bootlin.com>
+To: "Mark Brown" <broonie@kernel.org>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH v3 4/9] spi: cadence-qspi: allow FIFO depth detection
+Cc: "Rob Herring" <robh+dt@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Vaishnav Achath" <vaishnav.a@ti.com>, "Thomas Bogendoerfer"
+ <tsbogend@alpha.franken.de>, "Rob Herring" <robh@kernel.org>,
+ <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-mips@vger.kernel.org>, "Vladimir
+ Kondratiev" <vladimir.kondratiev@mobileye.com>, "Gregory CLEMENT"
+ <gregory.clement@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>
+X-Mailer: aerc 0.15.2
+References: <20240410-cdns-qspi-mbly-v3-0-7b7053449cf7@bootlin.com>
+ <20240410-cdns-qspi-mbly-v3-4-7b7053449cf7@bootlin.com>
+ <161eebc1-9417-4ab0-ad8c-c1b17be119b4@sirena.org.uk>
+In-Reply-To: <161eebc1-9417-4ab0-ad8c-c1b17be119b4@sirena.org.uk>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-Quoting Nikita Shubin via B4 Relay (2024-04-08 01:09:56)
-> diff --git a/drivers/soc/cirrus/soc-ep93xx.c b/drivers/soc/cirrus/soc-ep9=
-3xx.c
-> new file mode 100644
-> index 000000000000..044f17f9ba55
-> --- /dev/null
-> +++ b/drivers/soc/cirrus/soc-ep93xx.c
-> @@ -0,0 +1,240 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * SoC driver for Cirrus EP93xx chips.
-> + * Copyright (C) 2022 Nikita Shubin <nikita.shubin@maquefel.me>
-> + *
-> + * Based on a rewrite of arch/arm/mach-ep93xx/core.c
-> + * Copyright (C) 2006 Lennert Buytenhek <buytenh@wantstofly.org>
-> + * Copyright (C) 2007 Herbert Valerio Riedel <hvr@gnu.org>
-> + *
-> + * Thanks go to Michael Burian and Ray Lehtiniemi for their key
-> + * role in the ep93xx Linux community.
-> + */
-> +
-> +#include <linux/bits.h>
-> +#include <linux/cleanup.h>
-> +#include <linux/init.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/of.h>
-> +#include <linux/of_fdt.h>
+Hello,
 
-Are these of includes used?
+On Wed Apr 10, 2024 at 10:03 PM CEST, Mark Brown wrote:
+> On Wed, Apr 10, 2024 at 11:29:07AM +0200, Th=C3=A9o Lebrun wrote:
+>
+> > If FIFO depth DT property is provided, check it matches what hardware
+> > reports and warn otherwise. Else, use hardware provided value.
+> >=20
+> > Hardware exposes FIFO depth indirectly because
+> > CQSPI_REG_SRAMPARTITION is partially read-only.
+>
+> This breaks an allmodconfig build:
+>
+> /build/stage/linux/drivers/spi/spi-cadence-quadspi.c: In function =E2=80=
+=98cqspi_of_get_
+> pdata=E2=80=99:
+> /build/stage/linux/drivers/spi/spi-cadence-quadspi.c:1506:45: error: unus=
+ed vari
+> able =E2=80=98ddata=E2=80=99 [-Werror=3Dunused-variable]
+>  1506 |         const struct cqspi_driver_platdata *ddata =3D cqspi->ddat=
+a;
+>       |                                             ^~~~~
+> /build/stage/linux/drivers/spi/spi-cadence-quadspi.c: In function =E2=80=
+=98cqspi_control
+> ler_detect_fifo_depth=E2=80=99:
+> /build/stage/linux/drivers/spi/spi-cadence-quadspi.c:1582:45: error: unus=
+ed vari
+> able =E2=80=98ddata=E2=80=99 [-Werror=3Dunused-variable]
+>  1582 |         const struct cqspi_driver_platdata *ddata =3D cqspi->ddat=
+a;
+>       |                                             ^~~~~
+> cc1: all warnings being treated as errors
 
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/slab.h>
-> +#include <linux/spinlock.h>
-> +#include <linux/sys_soc.h>
-> +
-> +#include <linux/soc/cirrus/ep93xx.h>
-> +
-> +#define EP93XX_SYSCON_DEVCFG           0x80
-> +
-> +#define EP93XX_SWLOCK_MAGICK           0xaa
-> +#define EP93XX_SYSCON_SWLOCK           0xc0
-> +#define EP93XX_SYSCON_SYSCFG           0x9c
-> +#define EP93XX_SYSCON_SYSCFG_REV_MASK  GENMASK(31, 28)
-> +#define EP93XX_SYSCON_SYSCFG_REV_SHIFT 28
-> +
-[...]
-> +
-> +static void ep93xx_unregister_adev(void *_adev)
-> +{
-> +       struct auxiliary_device *adev =3D _adev;
-> +
-> +       auxiliary_device_delete(adev);
-> +       auxiliary_device_uninit(adev);
-> +}
+I really should fix my kernel compiler warnings. Sorry about that.
+Will fix next revision.
 
-It really seems like auxiliary bus code should expose a
-simple_unregister_adev() function that does this two line function once
-instead of every driver repeating it.
+Regards,
 
-> +
-> +static void ep93xx_adev_release(struct device *dev)
-> +{
-> +       struct auxiliary_device *adev =3D to_auxiliary_dev(dev);
-> +       struct ep93xx_regmap_adev *rdev =3D to_ep93xx_regmap_adev(adev);
-> +
-> +       kfree(rdev);
-> +}
-> +
-> +static struct auxiliary_device *ep93xx_adev_alloc(struct device *parent,=
- const char *name,
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
-__init?
-
-> +                                                 struct ep93xx_map_info =
-*info)
-> +{
-> +       struct ep93xx_regmap_adev *rdev __free(kfree) =3D NULL;
-> +       struct auxiliary_device *adev;
-> +       int ret;
-> +
-> +       rdev =3D kzalloc(sizeof(*rdev), GFP_KERNEL);
-> +       if (!rdev)
-> +               return ERR_PTR(-ENOMEM);
-> +
-> +       rdev->map =3D info->map;
-> +       rdev->base =3D info->base;
-> +       rdev->lock =3D &info->lock;
-> +       rdev->write =3D ep93xx_regmap_write;
-> +       rdev->update_bits =3D ep93xx_regmap_update_bits;
-> +
-> +       adev =3D &rdev->adev;
-> +       adev->name =3D name;
-> +       adev->dev.parent =3D parent;
-> +       adev->dev.release =3D ep93xx_adev_release;
-> +
-> +       ret =3D auxiliary_device_init(adev);
-> +       if (ret)
-> +               return ERR_PTR(ret);
-> +
-> +       return &no_free_ptr(rdev)->adev;
-> +}
-> +
-> +static int ep93xx_controller_register(struct device *parent, const char =
-*name,
-
-__init?
-
-> +                                     struct ep93xx_map_info *info)
-> +{
-> +       struct auxiliary_device *adev;
-> +       int ret;
-> +
-> +       adev =3D ep93xx_adev_alloc(parent, name, info);
-> +       if (IS_ERR(adev))
-> +               return PTR_ERR(adev);
-> +
-> +       ret =3D auxiliary_device_add(adev);
-> +       if (ret) {
-> +               auxiliary_device_uninit(adev);
-> +               return ret;
-> +       }
-> +
-> +       return devm_add_action_or_reset(parent, ep93xx_unregister_adev, a=
-dev);
-> +}
-> +
-[...]
-> +
-> +static const char __init *ep93xx_get_soc_rev(struct regmap *map)
-> +{
-> +       switch (ep93xx_soc_revision(map)) {
-> +       case EP93XX_CHIP_REV_D0:
-> +               return "D0";
-> +       case EP93XX_CHIP_REV_D1:
-> +               return "D1";
-> +       case EP93XX_CHIP_REV_E0:
-> +               return "E0";
-> +       case EP93XX_CHIP_REV_E1:
-> +               return "E1";
-> +       case EP93XX_CHIP_REV_E2:
-> +               return "E2";
-> +       default:
-> +               return "unknown";
-> +       }
-> +}
-> +
-> +const char *pinctrl_names[] =3D {
-
-static? Can also be __initconst? or moved into probe scope and placed on
-the stack?
-
-> +       "pinctrl-ep9301",       /* EP93XX_9301_SOC */
-> +       "pinctrl-ep9307",       /* EP93XX_9307_SOC */
-> +       "pinctrl-ep9312",       /* EP93XX_9312_SOC */
-> +};
 
