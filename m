@@ -1,125 +1,190 @@
-Return-Path: <devicetree+bounces-58205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 026238A0BA1
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 10:52:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7066E8A0BC8
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 11:04:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B1B59282D75
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 08:52:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2729C285030
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 09:04:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 334361411FE;
-	Thu, 11 Apr 2024 08:52:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9F59143C76;
+	Thu, 11 Apr 2024 09:04:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="I3xjWIDs"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="tlvu/boS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73F451411C7
-	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 08:52:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71BEC143C62;
+	Thu, 11 Apr 2024 09:04:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712825546; cv=none; b=g24F1qE1ws2V/sap3gUEaPNLELz2ZDN30+McBsabviu+y47/AAILDeq2J03thVRoQv9iOEz+IA9OgOvlqt6k9VUKDJNMkq4gIGmRVP/5qAuICxLAElx/BxE1dOaipwZkMs30WnE5UxBh+r1EFWF9c56TBits4bh+zzFQX9cM36o=
+	t=1712826250; cv=none; b=L3VKh8HszYV7A3xk+cdAd5FkhyRJBtD8VFyrKb2Vx7UESlwlU9naE7g6myLzMvi1MtONtZjpjcp4aVVQbLE6zF9Cbpg2z4r7JiCIsK4BfDskYdS0KBkiDPy/xJsoFg9UUYzycYmpozYfU69hoqW5hCB5X1Z3fJ9/5UebxUXb+Hc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712825546; c=relaxed/simple;
-	bh=oz1vppDKVcLy3ajc0dto/OD6QDdiRhJGUXxPZ8/cYfY=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=TOifijOZ3Q1YDOwviVkTXGuhAFlSSlmJtgG7T1uotblGdQWl1EDK26CNgm7P0PiGJRJvKs3uTTcfcfSU3JWYS8I8RmDu/qNdeuQUB2r+mB/CHdUczEYoGp3dL2dlFw9v6RRxHHszIx7PWpJd/TtmFfIWSmTYrekg8QBE96c2vb4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=I3xjWIDs; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-516ced2f94cso2516564e87.1
-        for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 01:52:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712825543; x=1713430343; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=PnP8Lqn3WKmBuN4LCmH6PJtaBigbDoHwQF5Dz835wx0=;
-        b=I3xjWIDsRT0fw0gUMq9lb5Nf2aDz4j4wxxFmu3qz4xWUYno2lC2PDW2pthUt8XyyBf
-         w6yyTHi8pQGCQuF7auYdkuI9ElmRIFwxEvs0nH4FbQCeYiUlQzUXxCkiuCbmIS4BC5R5
-         /a0mapzH/XRCgWCQvGK+ckq36wFrKMtUzqMJEV4oFR84q/JmIm/EW+cMKBkeAP0jl+Kb
-         6jktWCKgZcLY26iJzDv59UX4e2pFFR9IyZaVrQF9JaL3JaokXA1rSBxdjkBmF+7RzJ0p
-         rN0jSMV1Tw6qSOn9J6HjDL5FQ5a0DTjnfDqrq3FU+gQAvtWlpbVJCLIsgN84mGbYv/+R
-         tuWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712825543; x=1713430343;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PnP8Lqn3WKmBuN4LCmH6PJtaBigbDoHwQF5Dz835wx0=;
-        b=gJeUMNWnbgtfjyCRHKc4e02hSceoNn+WYmZpJPEZQy/ayUTvxKfoN41zMiLQ4+mn/1
-         F5ZNe63gKsDT3NEM7lteTr3hf/6AfkZ/yYpfrqZtoy2MDd+epekSkQE2HgVyYIYSABkV
-         I7TqdoMKbUYkXKwJLn2iAmKOKMMfQm9p2SiqYztJAPyS4mBJEogC9XKupw27jahfcvjZ
-         ThnZ6wK/6N3P2FkJe0inST/iZVTwTriS7Npr7SOuq3D9UCeN36RFNO+90Kso/s0I248p
-         x+4uz5WH1h5CSBsR6ZUQHoCNkbNhohdUr9J80uGX8Rv1vKQ7PKQ1fxkO+tCPgVoJVRnw
-         gpvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU/3/dog8V84hZOoK+nyR4YuUQPiekRDa9oTvVwkxiGjT79YEmqFqTe5ZVguzEPQWhkJX4yQ41nLNbJ+Buzy5d1rZxNcYB1EyIisQ==
-X-Gm-Message-State: AOJu0YwL+1R5VI7nKJQVeNktR5tcqHM2j0gF77ssD53Qwgv9NaWi2LXk
-	UJWIyKS2OrEEzHg1TM3UNfjqQMV5z9K4D066lIQ9FpTuuUiuq5mNpD5cEKbvXbg=
-X-Google-Smtp-Source: AGHT+IFsgyT59h7uLUMSIJtnMqqqFxMUp0Iiz6ouQd+KPyTANx2sGA/tMfTB7jcSdes20PhfQqYjyg==
-X-Received: by 2002:a19:9153:0:b0:513:cfb8:8cb3 with SMTP id y19-20020a199153000000b00513cfb88cb3mr3295631lfj.1.1712825542648;
-        Thu, 11 Apr 2024 01:52:22 -0700 (PDT)
-Received: from localhost.localdomain (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id o1-20020a056512052100b00513d1e9ce7esm149934lfc.90.2024.04.11.01.52.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Apr 2024 01:52:22 -0700 (PDT)
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Loic Poulain <loic.poulain@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Wolfram Sang <wsa@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	linux-i2c@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH] Revert "Revert "dt-bindings: i2c: qcom-cci: Document sc8280xp compatible""
-Date: Thu, 11 Apr 2024 11:52:18 +0300
-Message-Id: <20240411085218.450237-1-vladimir.zapolskiy@linaro.org>
-X-Mailer: git-send-email 2.33.0
+	s=arc-20240116; t=1712826250; c=relaxed/simple;
+	bh=6TmusjUX3vnMkNQepVsH4u+5hT3VrOI3o3ZMH1yhilU=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aF5Xhdb9KVgTHAzlMuxo3J3irhZvR79PAPIzvuP/En6CqNFTL3IO744Hrm8M1v+S4IltWiOnQyiiof30+p1QJkiDVG0rIp37cdcI95HsA2mRVYGY+k9qQey4WVH3RUiEh5nTpHfbuzEuLjCp05TK6uy0Zly3StSkYr/e32+M1rk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=tlvu/boS; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1712826248; x=1744362248;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=6TmusjUX3vnMkNQepVsH4u+5hT3VrOI3o3ZMH1yhilU=;
+  b=tlvu/boSLS6EuRsVNYCNe07oBP3KIstqVJKSGcysn2LCoaYO0Icn5Elk
+   e9QROPNo2INRavrnWtB4HLOfPgJPgkRj9PKjHMUdAjak9/GQD3H0wBWT6
+   g3mt4tg+CjQMm3er3iM5j+oG9hTMDQcWATJA/y6bKLZWrwW0g77q+lyq9
+   zmkqEEzbRFYRtTt8i3UvDmIjdas2VqpRx/GEEFX/fDshv6VZSI340j122
+   dQhtuSunlMynZPBtyQLzqaDoG53ELrigBDKtRsvFfwtYaeRd7kF7frGuN
+   yyam8huptlC9hp+wUph1cFR6zoh/PiQR8I03xczdZnUn6ox8PL8u8wCBD
+   g==;
+X-CSE-ConnectionGUID: sBUxEcpYQIqblsPw1hMyfQ==
+X-CSE-MsgGUID: 6LquUSg4QDGyfAHGclQ3bA==
+X-IronPort-AV: E=Sophos;i="6.07,193,1708412400"; 
+   d="asc'?scan'208";a="21080514"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 11 Apr 2024 02:04:03 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 11 Apr 2024 02:03:57 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Thu, 11 Apr 2024 02:03:53 -0700
+Date: Thu, 11 Apr 2024 10:03:03 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>
+CC: Deepak Gupta <debug@rivosinc.com>, Conor Dooley <conor@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Anup Patel <anup@brainfault.org>, Shuah
+ Khan <shuah@kernel.org>, Atish Patra <atishp@atishpatra.org>,
+	<linux-doc@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<kvm@vger.kernel.org>, <kvm-riscv@lists.infradead.org>,
+	<linux-kselftest@vger.kernel.org>
+Subject: Re: [PATCH 07/10] riscv: add ISA extension parsing for Zcmop
+Message-ID: <20240411-superglue-errant-b32e5118695f@wendy>
+References: <20240410091106.749233-1-cleger@rivosinc.com>
+ <20240410091106.749233-8-cleger@rivosinc.com>
+ <ZhcFeVYUQJmBAKuv@debug.ba.rivosinc.com>
+ <20240410-jawless-cavalry-a3eaf9c562a4@spud>
+ <20240410-judgingly-appease-5df493852b70@spud>
+ <ZhcTiakvfbjb2hon@debug.ba.rivosinc.com>
+ <1287e6e9-cb8e-4a78-9195-ce29f1c4bace@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="4EMZ8FslzLz1hx5z"
+Content-Disposition: inline
+In-Reply-To: <1287e6e9-cb8e-4a78-9195-ce29f1c4bace@rivosinc.com>
 
-This reverts commit 3e383dce513f426b7d79c0e6f8afe5d22a581f58.
+--4EMZ8FslzLz1hx5z
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The commit ae2a1f0f2cb5 ("dt-bindings: i2c: qcom-cci: Document sc8280xp compatible")
-was correct apparently, it is required to describe the sc8280xp-cci
-controller properly, as well it eliminates dtbs_check warnings.
+On Thu, Apr 11, 2024 at 09:25:06AM +0200, Cl=E9ment L=E9ger wrote:
+>=20
+>=20
+> On 11/04/2024 00:32, Deepak Gupta wrote:
+> > On Wed, Apr 10, 2024 at 11:27:16PM +0100, Conor Dooley wrote:
+> >> On Wed, Apr 10, 2024 at 11:16:11PM +0100, Conor Dooley wrote:
+> >>> On Wed, Apr 10, 2024 at 02:32:41PM -0700, Deepak Gupta wrote:
+> >>> > On Wed, Apr 10, 2024 at 11:11:00AM +0200, Cl=E9ment L=E9ger wrote:
+> >>> > > Add parsing for Zcmop ISA extension which was ratified in commit
+> >>> > > b854a709c00 ("Zcmop is ratified/1.0") of the riscv-isa-manual.
+> >>> > >
+> >>> > > Signed-off-by: Cl=E9ment L=E9ger <cleger@rivosinc.com>
+> >>> > > ---
+> >>> > > arch/riscv/include/asm/hwcap.h | 1 +
+> >>> > > arch/riscv/kernel/cpufeature.c | 1 +
+> >>> > > 2 files changed, 2 insertions(+)
+> >>> > >
+> >>> > > diff --git a/arch/riscv/include/asm/hwcap.h
+> >>> b/arch/riscv/include/asm/hwcap.h
+> >>> > > index b7551bad341b..cff7660de268 100644
+> >>> > > --- a/arch/riscv/include/asm/hwcap.h
+> >>> > > +++ b/arch/riscv/include/asm/hwcap.h
+> >>> > > @@ -86,6 +86,7 @@
+> >>> > > #define RISCV_ISA_EXT_ZCB=A0=A0=A0=A0=A0=A0=A0 77
+> >>> > > #define RISCV_ISA_EXT_ZCD=A0=A0=A0=A0=A0=A0=A0 78
+> >>> > > #define RISCV_ISA_EXT_ZCF=A0=A0=A0=A0=A0=A0=A0 79
+> >>> > > +#define RISCV_ISA_EXT_ZCMOP=A0=A0=A0=A0=A0=A0=A0 80
+> >>> > >
+> >>> > > #define RISCV_ISA_EXT_XLINUXENVCFG=A0=A0=A0 127
+> >>> > >
+> >>> > > diff --git a/arch/riscv/kernel/cpufeature.c
+> >>> b/arch/riscv/kernel/cpufeature.c
+> >>> > > index 09dee071274d..f1450cd7231e 100644
+> >>> > > --- a/arch/riscv/kernel/cpufeature.c
+> >>> > > +++ b/arch/riscv/kernel/cpufeature.c
+> >>> > > @@ -265,6 +265,7 @@ const struct riscv_isa_ext_data
+> >>> riscv_isa_ext[] =3D {
+> >>> > >=A0=A0=A0=A0 __RISCV_ISA_EXT_DATA(zcb, RISCV_ISA_EXT_ZCB),
+> >>> > >=A0=A0=A0=A0 __RISCV_ISA_EXT_DATA(zcd, RISCV_ISA_EXT_ZCD),
+> >>> > >=A0=A0=A0=A0 __RISCV_ISA_EXT_DATA(zcf, RISCV_ISA_EXT_ZCF),
+> >>> > > +=A0=A0=A0 __RISCV_ISA_EXT_DATA(zcmop, RISCV_ISA_EXT_ZCMOP),
+> >>> >
+> >>> > As per spec zcmop is dependent on zca. So perhaps below ?
+> >>> >
+> >>> > __RISCV_ISA_EXT_SUPERSET(zicboz, RISCV_ISA_EXT_ZCMOP,
+> >>> RISCV_ISA_EXT_ZCA)
+> >>>
+> >>> What's zicboz got to do with it, copy-pasto I guess?
+> >=20
+> > Yes, copy-pasta :-)
+> >=20
+> >>> If we're gonna imply stuff like this though I think we need some
+> >>> comments explaining why it's okay.
+> >>
+> >> Also, I'm inclined to call that out specifically in the binding, I've
+> >> not yet checked if dependencies actually work for elements of a string
+> >> array like the do for individual properties. I'll todo list that..
+> >=20
+> > Earlier examples of specifying dependency on envcfg actually had functi=
+onal
+> > use case.
+> > So you are right, I am not sure if its actually needed in this
+> > particular case.
+>=20
+> I actually saw that and think about addressing it but AFAICT, this
+> should be handled by the machine firmware passing the isa string to the
+> kernel (ie, it should be valid). In the case of QEMU, it takes care of
+> setting the extension that are required by this extension itself.
+>=20
+> If we consider to have potentially broken isa string (ie extensions
+> dependencies not correctly handled), then we'll need some way to
+> validate this within the kernel.
 
-Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
----
- Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+No, the DT passed to the kernel should be correct and we by and large we
+should not have to do validation of it. What I meant above was writing
+the binding so that something invalid will not pass dtbs_check.
 
-diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
-index f0eabff86310..43af1c23ebe4 100644
---- a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
-+++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
-@@ -26,6 +26,7 @@ properties:
-       - items:
-           - enum:
-               - qcom,sc7280-cci
-+              - qcom,sc8280xp-cci
-               - qcom,sdm845-cci
-               - qcom,sm6350-cci
-               - qcom,sm8250-cci
-@@ -161,6 +162,7 @@ allOf:
-           contains:
-             enum:
-               - qcom,sc7280-cci
-+              - qcom,sc8280xp-cci
-               - qcom,sm8250-cci
-               - qcom,sm8450-cci
-     then:
--- 
-2.33.0
+--4EMZ8FslzLz1hx5z
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZhenRgAKCRB4tDGHoIJi
+0ntrAP0Tj4WJ1c21e2spkfDS6PwV7wHiJYoWI9/4CiHZwAQORAEApMmTK1BWuikT
+fiLbYMmFEHJbe4+ND/jrK1UaiylnyQ8=
+=p9pA
+-----END PGP SIGNATURE-----
+
+--4EMZ8FslzLz1hx5z--
 
