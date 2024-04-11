@@ -1,161 +1,253 @@
-Return-Path: <devicetree+bounces-58256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58257-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67CA68A126C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 13:01:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B29E68A1273
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 13:02:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 07EFA1F28E11
-	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 11:01:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 14D90B21EF7
+	for <lists+devicetree@lfdr.de>; Thu, 11 Apr 2024 11:02:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A705D146D79;
-	Thu, 11 Apr 2024 11:01:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FE2C1474D7;
+	Thu, 11 Apr 2024 11:02:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XY/jGxzA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J+ieevYi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DF931465BB;
-	Thu, 11 Apr 2024 11:01:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB55D1474B5
+	for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 11:02:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712833285; cv=none; b=GTQU+J7ESTESx0LqTG7079x32A/oYxE8kQeZQvxtZ7fUOur+1SKKjzkS+vkC+Ho/w6MSdxq7dzs56oagz1i/iYGaQUkt+Uon7H11GvSxiE3jKupUWfeOTvQ9nIytIODqOuhBTncR/c/VxOjtqdiHr9oahFGrxofBn/DRU1cbIiY=
+	t=1712833363; cv=none; b=ojcO8xFtGqiYtQnuuOMGy4arW51oGPf+VfT4OCGGMCDFIwzJLjD3+xuf7zd3ycyzBxSl1Vi+hUYKhzwB9gQ2hWYXzlWaviGEekxzDveSPcMrWoFb/aVKFZ1f8SRaTsqYnddsf5wLLZza0qGzhVvFZgDPNHJE43B4n6ObcABXw4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712833285; c=relaxed/simple;
-	bh=8OX6q7MjpcHjZYu08W8z4DDKi4PUGuD09lBZHS7rTJ8=;
+	s=arc-20240116; t=1712833363; c=relaxed/simple;
+	bh=koAJ18xijCKpgh9Hxgs6EZ/agSJ7rjMVowQIHOKcihM=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oU7sYDzbt832xVVCxpcA0VF4Do0sL9d2IdQoaSlr0tl8K2FbydTsk/5UmJl1ByfgBeAZfG6cHURnNmEvEAHnFy6lqWfS40H12XJRTdKV+CohoEbUOqP8TVmrskU+b9d1WSaP2imwbWg1Lb/GiN7jSI79K9EvNbTEeyVY1VCX34I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XY/jGxzA; arc=none smtp.client-ip=209.85.128.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-61518d33293so90062127b3.2;
-        Thu, 11 Apr 2024 04:01:23 -0700 (PDT)
+	 To:Cc:Content-Type; b=pc8DOFNf9Xu21h4IVL7A64w78kBbxuhFC5+4vju64FxmjHzayTeM5DvozKG4Jv+Xc6bYjUcNiVBBZsi85s/71Ba+LZ3ruv9hOosiSu7mMgebSMB4iF2gFmjlQ+s+N2zLL5iim7k6zOHPXe91E98JKr47Aoo3b33aYYp/Jky6Cbo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=J+ieevYi; arc=none smtp.client-ip=209.85.128.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-615053a5252so6800617b3.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 04:02:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712833283; x=1713438083; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XKl13NXA6/90N+K49Hi60xZmTzWhFtfft19m5BrkabY=;
-        b=XY/jGxzAVLw9Lho6mYzgzml1QkXOXrEFEGkisj1D31rnDbw48gcg5eE2mKQCDmyOCM
-         CL3KrcL60ZQcPTjAffav/gQurTDd/ZB8+z84lT9I9yGCxAuCqd9t4B1p7Yz5cIuBQumO
-         QteC4vj7CKzNRwCRz8t5isBl6W/u6RHI5MaFKyerPF0aiclNVTWll1qkfioKQB1DIRuA
-         SszrcuK6ECts4Qgz4CgdAHGh1TenEMPuMvkd64C7XjwyrzRkeXDd/eGo6jc6/xUaYsMA
-         b4BHd8BvseuYrRQw2ZKQbzs7Vf6gNeyNI2nINqKoup4hr+slfwsjIksz7szb6MA7dV1k
-         D1Lg==
+        d=linaro.org; s=google; t=1712833359; x=1713438159; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=2mHoLWByMG5hFDATGezwiAdEXftWUdi3XEvIaRp+Grs=;
+        b=J+ieevYidQPN/OMZMFD+/oVAUd2FRm41CrCahvabNUOqk60ERdCEUAQX5nsi7W/ppt
+         oxGhTQXMzvrBngTR5Age3zAectO1RQy2dE4XwMO6rcbRuppugtqHW0VOUntjrcDpS5bD
+         byHS2hI8ymnMhOvmC/GEsQ1EfQnRaB8nqBuOghA5o3BBzCu6NdswwKQFhO9YYoTDYZBd
+         xQxnEm7yRd1Qx9HWRS1yuzH2s38bcrMNTZ5HwEApJATkO08ODmSVgXYod11SdSSRwfs1
+         w5+Z5RspcvDYqXC07wzbvn65n+ylmRRZGduJT278EQ/qhsFvmOC0zdmO8pJ+H/8tw4PP
+         rM9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712833283; x=1713438083;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XKl13NXA6/90N+K49Hi60xZmTzWhFtfft19m5BrkabY=;
-        b=T42hSIhDXMAw5xwAnPnTqTajHqHi5yAmi4AbYxKKTdoYxyDF7qeBoYMLZa/aBoKn6b
-         JgbuJDcakbZP2ZxCK7/XNJYVZmfL/Q7tjjCn8HAfUKi3lrkGjH3l8c5Vb1xX53i2C29e
-         Gyw0l/PN3+4bIkpzAh/y+VOY1cbcgD9tRVsUopSEdUtT7VXv4iAfyiuYxW7ydlDngOgx
-         7XbtPa+o0iTOH9PZzAbCCxvte89d5RgF1VjhMwnCyl2Stzr0ti1bHIm5ZN90p6s614/K
-         An9tYd1Gb7uaimnEnR2YMqw+a9kJIcMYNZnXQOObCd67odWb6p/k0+UIWPciMUgtpYKz
-         /8xg==
-X-Forwarded-Encrypted: i=1; AJvYcCVu02t4Y4s35CnvDZKLRXHxA4waDAQevhRD+9++HtnnDXr4TIHiWGdz8VyZ5Y7Zzt+UXgL3tKfSKEdNscBgKP7kRyjgdI/m1zxSy6jXT9Z53ghgWJVcJvjVysg2JNLWNiJZoPfDRA==
-X-Gm-Message-State: AOJu0YzNiXxCaySxkkQJsWGYnDVkPHbgrQRcMjDGLViUfNZrDb7xMaKD
-	+RqcVPqB30hf/VOv8mc9VqYZZUKGSKdR4bYUCnM2ihP6PNFgUGRs+6rk1H1T6RXDRysxXhdZkst
-	VHgVVvQumiHXLe4vVc5ymUSlzRBA=
-X-Google-Smtp-Source: AGHT+IER1z7+nq7PONq6o6cpKiyuPF0b+9nOSg0EqvakXGhHGl8OP2Uf/deOlH4QwcJoas8+kUHx+9XfKrZv9dLHZg0=
-X-Received: by 2002:a81:91d0:0:b0:615:3d71:b0ed with SMTP id
- i199-20020a8191d0000000b006153d71b0edmr5490699ywg.12.1712833283126; Thu, 11
- Apr 2024 04:01:23 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1712833359; x=1713438159;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2mHoLWByMG5hFDATGezwiAdEXftWUdi3XEvIaRp+Grs=;
+        b=Jt6g3wfyr78Wo4ayCblHGHrNnLmBcEEleAValMOJ9Dk1vz9VKRb818TS4zwyrb3flO
+         8KSYYMKFIxvzY69AzVoo3UlyvYn9CBiWaTI5/htHPfkcGgQdO7BmgBj7liN1DhXOit3r
+         7XbxDuf/gyvr7qqt03dc4riIzV2a/r4xr+pEQ3kdS+dZZyvnV1k9YrdVAY8crONEUPqP
+         LcmGphjR0gE9smm+IqhY5RFTvMuk5AaC6pYpzxQYzWjI8HG7qWXO0LdGRn0eEBduJwkW
+         CD7sfdhavBoT5J+y9Em8tYswJRzSWos1XFdu9zi5uHE04cF3hKmNd0KSm+cp4tI+koTS
+         JMjg==
+X-Forwarded-Encrypted: i=1; AJvYcCVq+CaBDBufRVfUIdXjwrw7MlIwcrrr8Tv9amfPrfUNoa60kfz4YABDObP0391rmzQyg8Y0av1EsT5Bc2P5OyvGA+Tp19A4lR9f5Q==
+X-Gm-Message-State: AOJu0YyZn1XTHVBag8c1Eul38Kv0LU9GhJ5vEK6DR1b7445EpU5p0Ns4
+	BTXIv+G5vYb/31k+pichIDPXWEMODv09OH+L0ZuApqxuOivtrXdA96UM5OolMJtNPc9jXrx46RU
+	awvbZb+2XaLZb+wTFUb4ZEKlLY+f7nqop7zLnBw==
+X-Google-Smtp-Source: AGHT+IHh3bUULY9MUYjKN8n1JEV1+Ozve/17NFF9n0p/vOM0uIES+twT0cn21u0mGgHaaPc0bylLuIv5XjeucA3l8cg=
+X-Received: by 2002:a05:690c:6a0e:b0:618:1eff:24e4 with SMTP id
+ ih14-20020a05690c6a0e00b006181eff24e4mr1775777ywb.15.1712833358989; Thu, 11
+ Apr 2024 04:02:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1712732719.git.zhoubinbin@loongson.cn> <38c234d548b4b9c334cda6e7664a803896b31f6f.1712732719.git.zhoubinbin@loongson.cn>
- <c1399191-6c6d-4eb4-b05b-f87a9f2b4152@linaro.org>
-In-Reply-To: <c1399191-6c6d-4eb4-b05b-f87a9f2b4152@linaro.org>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Thu, 11 Apr 2024 17:01:10 +0600
-Message-ID: <CAMpQs4JiLGJ-nBDmj1pe0SCqKeCnz5DrybJAKE8_6up293YNpw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: Add Loongson PWM controller
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Juxin Gao <gaojuxin@loongson.cn>, Huacai Chen <chenhuacai@kernel.org>, 
-	loongson-kernel@lists.loongnix.cn, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
+References: <20240411-pm8xxx-vibrator-new-design-v9-0-7bf56cb92b28@quicinc.com>
+ <20240411-pm8xxx-vibrator-new-design-v9-4-7bf56cb92b28@quicinc.com>
+In-Reply-To: <20240411-pm8xxx-vibrator-new-design-v9-4-7bf56cb92b28@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 11 Apr 2024 14:02:28 +0300
+Message-ID: <CAA8EJprJ4s-o1uPiPjRpq4nwG4cdV7K8XMhVLOQn2D=kJLiVzQ@mail.gmail.com>
+Subject: Re: [PATCH v9 4/4] input: pm8xxx-vibrator: add new SPMI vibrator support
+To: quic_fenglinw@quicinc.com
+Cc: kernel@quicinc.com, Andy Gross <agross@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-arm-msm@vger.kernel.org, 
+	linux-input@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Apr 11, 2024 at 4:26=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Thu, 11 Apr 2024 at 11:32, Fenglin Wu via B4 Relay
+<devnull+quic_fenglinw.quicinc.com@kernel.org> wrote:
 >
-> On 11/04/2024 11:16, Binbin Zhou wrote:
-> > Add Loongson PWM controller binding with DT schema format using
-> > json-schema.
-> >
-> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> From: Fenglin Wu <quic_fenglinw@quicinc.com>
 >
+> Add support for a new SPMI vibrator module which is very similar
+> to the vibrator module inside PM8916 but has a finer drive voltage
+> step and different output voltage range, its drive level control
+> is expanded across 2 registers. The vibrator module can be found
+> in following Qualcomm PMICs: PMI632, PM7250B, PM7325B, PM7550BA.
 >
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - const: loongson,ls7a-pwm
-> > +      - items:
-> > +          - enum:
-> > +              - loongson,ls2k0500-pwm
-> > +              - loongson,ls2k1000-pwm
-> > +              - loongson,ls2k2000-pwm
-> > +          - const: loongson,ls7a-pwm
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  '#pwm-cells':
-> > +    description:
-> > +      The first cell must have a value of 0, which specifies the PWM o=
-utput signal;
+> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
+> ---
+>  drivers/input/misc/pm8xxx-vibrator.c | 51 +++++++++++++++++++++++++++++-------
+>  1 file changed, 42 insertions(+), 9 deletions(-)
 >
-> If you have always the same value in PWM phandle, why encoding it in the
-> phandle in the first place? What's the benefit of passing 0?
+> diff --git a/drivers/input/misc/pm8xxx-vibrator.c b/drivers/input/misc/pm8xxx-vibrator.c
+> index 2959edca8eb9..35bb6f450fd2 100644
+> --- a/drivers/input/misc/pm8xxx-vibrator.c
+> +++ b/drivers/input/misc/pm8xxx-vibrator.c
+> @@ -12,10 +12,10 @@
+>  #include <linux/regmap.h>
+>  #include <linux/slab.h>
+>
+> -#define VIB_MAX_LEVEL_mV       (3100)
+> -#define VIB_MIN_LEVEL_mV       (1200)
+> -#define VIB_PER_STEP_mV        (100)
+> -#define VIB_MAX_LEVELS         (VIB_MAX_LEVEL_mV - VIB_MIN_LEVEL_mV + VIB_PER_STEP_mV)
+> +#define VIB_MAX_LEVEL_mV(vib)  (vib->drv2_addr ? 3544 : 3100)
+> +#define VIB_MIN_LEVEL_mV(vib)  (vib->drv2_addr ? 1504 : 1200)
+> +#define VIB_PER_STEP_mV(vib)   (vib->drv2_addr ? 8 : 100)
+> +#define VIB_MAX_LEVELS(vib)    (VIB_MAX_LEVEL_mV(vib) - VIB_MIN_LEVEL_mV(vib) + VIB_PER_STEP_mV(vib))
+>
+>  #define MAX_FF_SPEED           0xff
+>
+> @@ -26,6 +26,9 @@ struct pm8xxx_regs {
+>         unsigned int drv_offset;
+>         unsigned int drv_mask;
+>         unsigned int drv_shift;
+> +       unsigned int drv2_offset;
+> +       unsigned int drv2_mask;
+> +       unsigned int drv2_shift;
+>         unsigned int drv_en_manual_mask;
+>  };
+>
+> @@ -45,6 +48,18 @@ static struct pm8xxx_regs pm8916_regs = {
+>         .drv_en_manual_mask = 0,
+>  };
+>
+> +static struct pm8xxx_regs pmi632_regs = {
+> +       .enable_offset = 0x46,
+> +       .enable_mask = BIT(7),
+> +       .drv_offset = 0x40,
+> +       .drv_mask = GENMASK(7, 0),
+> +       .drv_shift = 0,
+> +       .drv2_offset = 0x41,
+> +       .drv2_mask = GENMASK(3, 0),
+> +       .drv2_shift = 8,
+> +       .drv_en_manual_mask = 0,
+> +};
+> +
+>  /**
+>   * struct pm8xxx_vib - structure to hold vibrator data
+>   * @vib_input_dev: input device supporting force feedback
+> @@ -53,6 +68,7 @@ static struct pm8xxx_regs pm8916_regs = {
+>   * @regs: registers' info
+>   * @enable_addr: vibrator enable register
+>   * @drv_addr: vibrator drive strength register
+> + * @drv2_addr: vibrator drive strength upper byte register
+>   * @speed: speed of vibration set from userland
+>   * @active: state of vibrator
+>   * @level: level of vibration to set in the chip
+> @@ -65,6 +81,7 @@ struct pm8xxx_vib {
+>         const struct pm8xxx_regs *regs;
+>         unsigned int enable_addr;
+>         unsigned int drv_addr;
+> +       unsigned int drv2_addr;
+>         int speed;
+>         int level;
+>         bool active;
+> @@ -82,6 +99,10 @@ static int pm8xxx_vib_set(struct pm8xxx_vib *vib, bool on)
+>         unsigned int val = vib->reg_vib_drv;
+>         const struct pm8xxx_regs *regs = vib->regs;
+>
+> +       /* vibrator without drv2_addr needs be programmed in step increments */
 
-Hi Krzysztof:
+How are these two items related? Are you using vib->drv2_addr as a
+marker for 'particular generation'? In such a case please use a flag
+instead.
 
-My thoughts are:
-First of all, our pwm has only one output signal, so it can only be 0.
-Also, as you know from the pwm xlate function, the first cell is the
-pwm index, so I fixed it to be 0 here.
+The rest looks good to me.
 
-The xlate function:
-https://elixir.bootlin.com/linux/v6.8/source/drivers/pwm/core.c#L106
+> +       if (!vib->drv2_addr)
+> +               vib->level /= VIB_PER_STEP_mV(vib);
+> +
+>         if (on)
+>                 val |= (vib->level << regs->drv_shift) & regs->drv_mask;
+>         else
+> @@ -93,6 +114,17 @@ static int pm8xxx_vib_set(struct pm8xxx_vib *vib, bool on)
+>
+>         vib->reg_vib_drv = val;
+>
+> +       if (regs->drv2_mask) {
+> +               if (on)
+> +                       val = (vib->level << regs->drv2_shift) & regs->drv2_mask;
+> +               else
+> +                       val = 0;
+> +
+> +               rc = regmap_write_bits(vib->regmap, vib->drv2_addr, regs->drv2_mask, val);
+> +               if (rc < 0)
+> +                       return rc;
+> +       }
+> +
+>         if (regs->enable_mask)
+>                 rc = regmap_update_bits(vib->regmap, vib->enable_addr,
+>                                         regs->enable_mask, on ? regs->enable_mask : 0);
+> @@ -115,17 +147,16 @@ static void pm8xxx_work_handler(struct work_struct *work)
+>                 return;
+>
+>         /*
+> -        * pmic vibrator supports voltage ranges from 1.2 to 3.1V, so
+> +        * pmic vibrator supports voltage ranges from MIN_LEVEL to MAX_LEVEL, so
+>          * scale the level to fit into these ranges.
+>          */
+>         if (vib->speed) {
+>                 vib->active = true;
+> -               vib->level = ((VIB_MAX_LEVELS * vib->speed) / MAX_FF_SPEED) +
+> -                                               VIB_MIN_LEVEL_mV;
+> -               vib->level /= VIB_PER_STEP_mV;
+> +               vib->level = VIB_MIN_LEVEL_mV(vib);
+> +               vib->level += mult_frac(VIB_MAX_LEVELS(vib), vib->speed, MAX_FF_SPEED);
+>         } else {
+>                 vib->active = false;
+> -               vib->level = VIB_MIN_LEVEL_mV / VIB_PER_STEP_mV;
+> +               vib->level = VIB_MIN_LEVEL_mV(vib);
+>         }
+>
+>         pm8xxx_vib_set(vib, vib->active);
+> @@ -203,6 +234,7 @@ static int pm8xxx_vib_probe(struct platform_device *pdev)
+>
+>         vib->enable_addr = reg_base + regs->enable_offset;
+>         vib->drv_addr = reg_base + regs->drv_offset;
+> +       vib->drv2_addr = reg_base + regs->drv2_offset;
+>
+>         /* operate in manual mode */
+>         error = regmap_read(vib->regmap, vib->drv_addr, &val);
+> @@ -257,6 +289,7 @@ static const struct of_device_id pm8xxx_vib_id_table[] = {
+>         { .compatible = "qcom,pm8058-vib", .data = &pm8058_regs },
+>         { .compatible = "qcom,pm8921-vib", .data = &pm8058_regs },
+>         { .compatible = "qcom,pm8916-vib", .data = &pm8916_regs },
+> +       { .compatible = "qcom,pmi632-vib", .data = &pmi632_regs },
+>         { }
+>  };
+>  MODULE_DEVICE_TABLE(of, pm8xxx_vib_id_table);
+>
+> --
+> 2.25.1
+>
+>
 
-Thanks.
-Binbin
->
-> > +      The second cell is the period in nanoseconds;
-> > +      The third cell flag supported by this binding is PWM_POLARITY_IN=
-VERTED.
-> > +    const: 3
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +
-> > +additionalProperties: false
-> > +
->
->
-> Best regards,
-> Krzysztof
->
+
+-- 
+With best wishes
+Dmitry
 
