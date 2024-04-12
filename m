@@ -1,300 +1,361 @@
-Return-Path: <devicetree+bounces-58873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 809128A37AD
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 23:13:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FB638A37D0
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 23:23:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A451C1C20F0C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 21:13:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A4CE3B23019
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 21:23:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFF9A1514FC;
-	Fri, 12 Apr 2024 21:08:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D57E7152169;
+	Fri, 12 Apr 2024 21:23:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="MJCHYCpv"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="3S4HzVYE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2081.outbound.protection.outlook.com [40.107.21.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 402511514EF;
-	Fri, 12 Apr 2024 21:08:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.81
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712956130; cv=fail; b=BZBARIBjWDnYgVZOIpihgNlUTlGCi1r0HOiR9Fnl+xZ8p/eWwJgS5WVSZRoj4H/zw06VIQEXv5ErETciBVHQwwHjp3XtChJMc4amdkzj+lxIE92Bcid+RFBUpBBy3/MI+XnhOXxX6aWVAZ/sybgr61FW2De9TXPtxh9RGm/50XM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712956130; c=relaxed/simple;
-	bh=GlZ5fmhIb53K91zNLegnAbi+hD9J5Krzvh4iUkpSjuI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=BhUCJ+MmQRLWHLSHhSdL1owvDvmlakUSqvF+WepEQgR68BRY91UNZ41wIw0XCQGQWfJx9tqzdRrS1IT0JdJq5oHlfTNBY3ogiWaOb8IL83cPe36zLZRdJfEnsRd79pxG4h8mtY6ERMc+oV7C2lpaidOFZuHjZDfn63NNDGXx1Qc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=MJCHYCpv; arc=fail smtp.client-ip=40.107.21.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jgtR7Sz/GKW4XLYGPZLIKdEBdF2xWms3BM+17i6KlRlB2H3nkn7j2aobb+Zt19/I9Rp8VcDkfM22znZ0x/y/X5GG89CpMKHGbr6Tam7VX5wLwm06cm9pjsjDDXsEGkGA4l2pDdlptuGpjar8+o9BBm1OJIXZ6sStp8qVpJbc75fNeiVJq/Dq0bvPF8JDyXHOJb3XY3nzGR6C2FNLrsxWf6CTGtn11imRTxCsrrvCwIfmjLr0ZSdW2Ff47Jxiq5k6n0taPTJnIDDU2+vYWmsgqGCG+qIxyPsvfAEKesPSM77IucPhuh6GNCgMqRN0n45DiK+EUQIB7wYVbLf+Y4uh3Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sct3W+OQh6YHyoPlzce2KedkwkCmmQ6Qe7W0p3HaeOw=;
- b=WAu0ZDO7YfM5Zn++as+nEeg9DsflMtyl0Svh+ZFTXxWMTekggXZ4fipmiiscneZKWutj4iXsqLnuhLxM60GgqgzKldO6QmFVf8dT6jPzpRhvaMjXwq+7dlrn8eAfRFcBXjgYUnQHRMg7893v8TTNDEWHikiiPVMZV+JmuUKw4/bzOxZVCB0U8D8/cIcBLZyedmH/c74gBuvBCG1Not6dr+iZHPek9WgGzNWhWgLhwyxjY0RKneFznEyUfhwWIDUX5ERX1/NYH3ajyRYu2HZXPYr4yTem/F64jcGvdx6hh7X+LYjFMt4E69hV8/NpPg2/9ni944aUkOj2rphe6NpLKQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sct3W+OQh6YHyoPlzce2KedkwkCmmQ6Qe7W0p3HaeOw=;
- b=MJCHYCpvFAJ8WhJi8LVTTZUxaSe6liObbqtothFgkSb/IbgngceuyyvwGXnS8pl8Ue/Uk49/vwgObIq7IlcRTRbK4GrioxoAcmGXov3rt28atAck+VXbectuerqFSnewwhj6zE1BGoH1LoT3V1XXVmQj0z5o8O4TSAhRlokJXRo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AS8PR04MB8690.eurprd04.prod.outlook.com (2603:10a6:20b:429::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.55; Fri, 12 Apr
- 2024 21:08:45 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::1e67:dfc9:d0c1:fe58]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::1e67:dfc9:d0c1:fe58%7]) with mapi id 15.20.7409.055; Fri, 12 Apr 2024
- 21:08:43 +0000
-Date: Fri, 12 Apr 2024 17:08:33 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
-	Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev,
-	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 5/5] PCI: dwc: Add common send PME_Turn_Off message
- method
-Message-ID: <Zhmi0XEUFMIO9OLx@lizhi-Precision-Tower-5810>
-References: <20240319-pme_msg-v5-0-af9ffe57f432@nxp.com>
- <20240319-pme_msg-v5-5-af9ffe57f432@nxp.com>
- <20240405062426.GB2953@thinkpad>
- <ZhALNGyNTAzN86GF@lizhi-Precision-Tower-5810>
- <20240406040131.GC2678@thinkpad>
- <ZhQJD7GjRpDwa6jI@lizhi-Precision-Tower-5810>
- <20240412170548.GB19020@thinkpad>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240412170548.GB19020@thinkpad>
-X-ClientProxiedBy: SJ0PR05CA0019.namprd05.prod.outlook.com
- (2603:10b6:a03:33b::24) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 230011514FE
+	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 21:23:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712956997; cv=none; b=JbEfYI9z3lNSCPnHKBxLl4SnfL3FtnLQ+esA3RcEK0WWt2jm/7v/0LL0WvRs1YT5hZ8Uv3cT0OfYxt5v6yudEwNOUIvTlTEB79GfWFUD5a6bfuerW0zt2qVPLksfSu1pTBrmrmblnwHgIT7hQA+wGeVLSjiF71Jr98UdFXbup+0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712956997; c=relaxed/simple;
+	bh=gjU4uk0GsSZKMlfJwnrDqwWR4YB0R1hQfcDlO8zqaSo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NbR7dCzfds6i/3t9tZKrHL35+GTDN8QPQBlA+98FJYO/zAhABuhsgN3Hc1TvLsUia5lywJzobc1UiVJHh7i/sCNaTmfucHe+HtDNHNdZeJ4MpNexheBMMDOt2Yrswj68ewURUta4jbhELXaNK9AYQmHIUc8yAQuAIzk/fjKg6VY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=3S4HzVYE; arc=none smtp.client-ip=209.85.208.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2d6ff0422a2so15717791fa.2
+        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 14:23:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712956992; x=1713561792; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wI5+qELetGjRtPvxCNwfVsLKWcvg4CEuVj7KWlNVrRE=;
+        b=3S4HzVYE8j/FDn9xDRtnngHYOOAR+U30CHUGlQSYOd+j1sDg4UaiegDgAeeMUW1b3e
+         40MvOun9FLDeVOs+SBmzVr9zV6WwBAJRTkIC1SFsFyfzTKjdou5m5VfQUIxinkTz3ahw
+         fyrtmgs2S5BywNEtKQYu8uME8fRMYA93yfLqDeTsNLw/0eceTQ9fz6Q/1Hlgbb90RfcY
+         1/gB7bjxgTbzJKAPW1I7M1drntVVCF5URl4fEf++8e6PGEFeOHR37XosdS4zYuxD1KLu
+         FeqeR3ClDujoN5ttstLeqR99gkAAPWFcLPDFZ3JivgWdeWPbz9/ULhD8AqfCGyDOL3HT
+         9qdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712956992; x=1713561792;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wI5+qELetGjRtPvxCNwfVsLKWcvg4CEuVj7KWlNVrRE=;
+        b=t4I77yKYncEIVDe+u3Jmm66rY/42s/v4wAedobukadDMKIi+8umA2OwTWmxUUfwIlL
+         9rAlMiig8ZEY3AykLAPkEtdWHBUnQxyKFUQ9omm7Ab7dzUSqPGdYPYVszsfq8F07jTX0
+         94NNS1son/15Im/XmzjdIEF3pPFYfwQBZA8gheyZzcqN7BgBwOiFiP59UekoLsuxsTrJ
+         YQPgm70h8dupiR9BNIbHfuQhPn/AWw1W1YZxJEO76ug843VQjZXEhmh41PG6OkBR9htE
+         KN66rAimaBOicgmAwHHjRk0vzbLzXgM2VE9Jw7GIbcnIrRVsyyyn+jjvv+jVD3gqQi0j
+         wB7g==
+X-Forwarded-Encrypted: i=1; AJvYcCXjRH3OJaGEpMzhKET0D4criz9LtmPX/lpBiG8co2TuzHBnslFx0PXVsP5eODOUEu+PHqQgtf6QVYf5Apnmslpk+XOP+KGxC7yQuA==
+X-Gm-Message-State: AOJu0YwgvZh4FATIsbF6H3mSfDIm0FL1LVlAe5SU+8z3wTRPqW1swNJc
+	dHLda+w5yuhr1Wr62Shk+k2mPiw32DlRf8UZdpejkSy/MP7BTjWQz5GKpkPOPp/v7HpJ+j3c3pM
+	/+iJ3EAfPzWZSg2y7iuu+6qGGb0VaIrUjJEwvHA==
+X-Google-Smtp-Source: AGHT+IFQ1va6+20zWwSm0SxD+9H0KFtcry/X9YiOjzitgl1O072Ts1JaZH3ll9wyEqut1Gk3frIjLR5AAHx+D/dEdag=
+X-Received: by 2002:a05:651c:205c:b0:2d9:eb66:6d39 with SMTP id
+ t28-20020a05651c205c00b002d9eb666d39mr2247871ljo.19.1712956992169; Fri, 12
+ Apr 2024 14:23:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB8690:EE_
-X-MS-Office365-Filtering-Correlation-Id: 809bdefb-e727-4eab-d4f1-08dc5b34bbfa
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	HYvAv4qgMCsCUDxbKN0m0f1Y+nFKy/Yf8xRfrmgaxD24sJMN+sd6eqbledO0TKkMxzRY7QjbX4maty5iCk66o4CQsP+UKsk054ksdW9ueO3mYrkY8V2PJrCELA8VhPbkCuV7s/L9nGNgfnj0vy+TBmgclM0Lut52WtkHgG7SXXvS6LnxPO81ohi/a+ZF+0jQEZ/uWh1kVgaAbiKccTdH0/gCTWdKaI96wGzMcg5dqxMeyQVcfIGkqAwPeAhcaL4PUCW2SR58mD6s97uRzfWlq0qdZMiJkfDVVwg546PBbJfF4eLXFz+EhfceokoaD7SZKU3rjt17QLb4jQpEKQdWsHNOgDPVzxsn1YxMMAA6KaRua5RqTJL19Jn1i8wKwIxAzrDylCH4B3a1RWX/MHWZI19cNILtdYI3yaBh5IMfRAuXq+wedBKNZzWReOax9RQKpWZYalaBu5cjM0AFkEAmdAOyKAU4gzcx4WlLe+Rngc9CxNDXKqYvkl7KF6rDxZdpienb0lXezJzEoEIe/wyU4Z3hPyZcX4/xdTjGhd1yesd2kTR7AGOoNZ6cmOq1G5443Cqdy+owawKzwywzcMtKj4O5q26/BYROdZoTlNdAtxipBEkz/uw2TBeLLTEBCLEj0YCat3rHhlmFcvcq8y3/qBAWRq8fHwnuel/W7dWnvoe0bNKk0PrOTOV1dEyO2Z0+m/tEYh3+LWOukBNrmgvn8XDAgu5XJ4wW4YelvSEByYg=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(1800799015)(366007)(52116005)(7416005)(38350700005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?cGh3VExwQUpUWWxsVU1lQUpqZXcyODlPZUdNVzYwNWRqZ29HWFUxWEtQNkFR?=
- =?utf-8?B?QnRVWG1PZjdZLzZRa3dMVExMSXV2YmNSKy9YaFJwV0RGMFJ1NWNic2VDWENJ?=
- =?utf-8?B?RC9sb1RDMFRQc2I0dm5aUmFXbm8yOUVoTFpTbE9GSWs0Z2dXOW5zMjBqSnp1?=
- =?utf-8?B?bkdGZG9yK05VcERSOXdRZ3U5cDVkL1JuTk1MQnBhVzN4MGZwMy9CODRXYVJj?=
- =?utf-8?B?M2RWMlp5ejZtQ013Y01iSTludEVKVmI2QkNpOWlJQm1HdFlxU2xKYURRYnNh?=
- =?utf-8?B?M3pkS243NU5qMDk1Uks1TmRMNjJMdWRjdEJ0KzZOdkpyTDhMNS9zUkVCWW5X?=
- =?utf-8?B?RUo0ajliVVY1NmdvdUlwWUFQT0cxTW1NZDVOdDhlQ1pYcmNpRjJhVldBNUR4?=
- =?utf-8?B?emF1YXJwMVlzZHREVjBLOEdVOEE3TjRQbnhYV3BMV2k0SG40Y0FTZWZSRFVI?=
- =?utf-8?B?Y1JvQ1U5dVprTk4vRk9jVEVSc3NDTE9IMEZ2MDY4RzA5RnBjL0djRkNZbHkz?=
- =?utf-8?B?Y3pHenc1OTJscTB6dWZySVR3ZzJncGdPYmRGQncxWjA4RnNDbHBLREtJVUR2?=
- =?utf-8?B?UWpFcVRoSHFnTENkRHdLa05Cb3lqalBiVFVudk8rNTJXQjNhNTkweGU0UnZL?=
- =?utf-8?B?WnJva1h3UnVMUnpTUm9yMHd0V0c3YTBmRGpZTU1XOG16QjdMcnNoQldWclhU?=
- =?utf-8?B?c202bFk3QmFZUHVRbFNPMXNlak5zS0YwRWdRdmtvdVNrbFBLMXdtaCs2SlVN?=
- =?utf-8?B?R2R3S1hNQ0dXRC9idy8vUnRrcXJmOVVVem5LRkV0cStBV0h6VVR4V0hTS3Ar?=
- =?utf-8?B?dnNRbDd0UWpTUUx6Z2dMaS8yMjkxUktlQjBzRzlrazFob1B5TExESXpLVXVa?=
- =?utf-8?B?YWNWbzVxQzdGWXpCaTZ5eDBNQTNwbk9zKzRpWGhvSEVOV0dQOUtFN0RCbW8w?=
- =?utf-8?B?ZEVwVG02NFZ5WDVpcTN5ZDRKb3ZtRVBFS2JVR1hUL0FSRmx0RU1uVmxjOUZL?=
- =?utf-8?B?QW5qS3BOZlpLMVZJbVV1VGhBZTdxUmZka2RPUDVmdytSNGFzclhiRytSNyto?=
- =?utf-8?B?R3Z4dVBYZDBoeEVFVHlOMnU2TzlaQlhCaWlJUE8rMHFYQlAzVjc4SWwrc25n?=
- =?utf-8?B?SmVwdW1XZEczSnpuQnBlQTBJR3V0cFVvVGM3ajZrQ0x5aDByR0dzS2pRcUhS?=
- =?utf-8?B?SzdIM2FpWU5GdEhWTXNqOGhoOXNuU09UWUVVSEhvQ1Z1WUwxZ1FmanA3ZDV3?=
- =?utf-8?B?SUd6aGdaOFR6a0c5WjFzTWk4cDAwdytYMFhLdGxRZjJBa2VlNUR2L0NxaHhr?=
- =?utf-8?B?czhSdkVSclRnK2lGcU9sVFNSZVBmckU4U2JUcTNCSjZva1A1R2s2dzZ2dHhG?=
- =?utf-8?B?ZDVkRWM2VVIrYm52eWM4K1ZOTE81d1pIbGZoeXQ5cDZwZXg1K25MZXRtSjZ3?=
- =?utf-8?B?WlUrMk5uQytrRVBIUDNBYjUrTjJJYlF3SkpwbDYrZUswOTE1bEdhSGQ4Z1pU?=
- =?utf-8?B?QU12Ly9QYVZRUTBCYlJON2J3emtISnRJMEtEOExHeWRzbGZGTm9YRDR3Rno3?=
- =?utf-8?B?bzFoVE11bFdXZmoyVEtQd1JHUDQ5aStjcWN6TnFtdDNkZVBPbzFEdjRZUmJw?=
- =?utf-8?B?RXVtamtWWU5HRGxaZjlkWHhpRHM4UTdNemFhMjVOS2UrQTMycVVzRFlYTldW?=
- =?utf-8?B?dENVR01SMUVXSWVFL21pbEpGakcrOGxZMFZocGlrR2l1eThIQzA0U2Zadkhj?=
- =?utf-8?B?T0d6OHhPU3QwUFl6VngrTStQVzNqR1NDNmxubXdpRTBVcWdXRHB1NHk5Ykp3?=
- =?utf-8?B?OHUzV0JXZlJnbE9jcFpnSUF1eklja3MvK2p2R3AxeGFTZE5QV3psY1I3L2xv?=
- =?utf-8?B?b3BhR0puZmdsUWx1dzhQbFRzZzJkbzZWOGVWYklzU1lZVE9HWXQ0ZnJDYjV2?=
- =?utf-8?B?M3N5VEhQY29TcEZoYmdqRXpzTmJqM1h6eWNvSHZoSUh4QTNLOWlLMlc3S1U4?=
- =?utf-8?B?eitZeDJ4eWZ2WDJMS2lJWmc3YTVrZ2I2RTZuRDdUVnFnMDFLeUtjbWlYTFpx?=
- =?utf-8?B?dGFtYW9sN0RZZDlhRm91dXBSNUdpem1EczdhTmJyMElrakYvdFRCamZackwz?=
- =?utf-8?Q?4orPIh1MFLbd4jtGiap5/YYeP?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 809bdefb-e727-4eab-d4f1-08dc5b34bbfa
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Apr 2024 21:08:43.1652
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yMIzFk8k2cGwOzLN9x+buH8UENPLj2TfNf/XZKS7ia0v40Jg1Fx9hMLd2aL5LqpyDq2eGL1akpPNEwBldVwNlg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8690
+References: <20240412032102.136071-1-kimseer.paller@analog.com> <20240412032102.136071-2-kimseer.paller@analog.com>
+In-Reply-To: <20240412032102.136071-2-kimseer.paller@analog.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Fri, 12 Apr 2024 16:23:00 -0500
+Message-ID: <CAMknhBHgKK_OEcPz-5ktxj+YEkB7jHpw5owdh9HVj_qfwuVXkQ@mail.gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: iio: dac: Add adi,ltc2664.yaml
+To: Kim Seer Paller <kimseer.paller@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Michael Hennerich <michael.hennerich@analog.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Apr 12, 2024 at 10:35:48PM +0530, Manivannan Sadhasivam wrote:
-> On Mon, Apr 08, 2024 at 11:11:11AM -0400, Frank Li wrote:
-> > On Sat, Apr 06, 2024 at 09:31:31AM +0530, Manivannan Sadhasivam wrote:
-> > > On Fri, Apr 05, 2024 at 10:31:16AM -0400, Frank Li wrote:
-> > > > On Fri, Apr 05, 2024 at 11:54:26AM +0530, Manivannan Sadhasivam wrote:
-> > > > > On Tue, Mar 19, 2024 at 12:07:15PM -0400, Frank Li wrote:
-> > > > > 
-> > > > > PCI: dwc: Add generic MSG TLP support for sending PME_Turn_Off during system suspend
-> > > > > 
-> > > > > > Reserve space at end of first IORESOURCE_MEM window as message TLP MMIO
-> > > > > > window. This space's size is 'region_align'.
-> > > > > > 
-> > > > > > Set outbound ATU map memory write to send PCI message. So one MMIO write
-> > > > > > can trigger a PCI message, such as PME_Turn_Off.
-> > > > > > 
-> > > > > > Add common dwc_pme_turn_off() function.
-> > > > > > 
-> > > > > > Call dwc_pme_turn_off() to send out PME_Turn_Off message in general
-> > > > > > dw_pcie_suspend_noirq() if there are not platform callback pme_turn_off()
-> > > > > > exist.
-> > > > > > 
-> > > > > 
-> > > > > How about:
-> > > > > 
-> > > > > "Instead of relying on the vendor specific implementations to send the
-> > > > > PME_Turn_Off message, let's introduce a generic way of sending the message using
-> > > > > the MSG TLP.
-> > > > > 
-> > > > > This is achieved by reserving a region for MSG TLP of size 'pci->region_align',
-> > > > > at the end of the first IORESOURCE_MEM window of the host bridge. And then
-> > > > > sending the PME_Turn_Off message during system suspend with the help of iATU.
-> > > > > 
-> > > > > It should be noted that this generic implementation is optional for the glue
-> > > > > drivers and can be overridden by a custom 'pme_turn_off' callback."
-> > > > > 
-> > > > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > > > > ---
-> > > > > >  drivers/pci/controller/dwc/pcie-designware-host.c | 94 ++++++++++++++++++++++-
-> > > > > >  drivers/pci/controller/dwc/pcie-designware.h      |  3 +
-> > > > > >  2 files changed, 93 insertions(+), 4 deletions(-)
-> > > > > > 
-> > > > > > diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > > > > index 267687ab33cbc..d5723fce7a894 100644
-> > > > > > --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > > > > +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > > > > @@ -393,6 +393,31 @@ static int dw_pcie_msi_host_init(struct dw_pcie_rp *pp)
-> > > > > >  	return 0;
-> > > > > >  }
-> > > > > >  
-> > > > > > +static void dw_pcie_host_request_msg_tlp_res(struct dw_pcie_rp *pp)
-> > > > > > +{
-> > > > > > +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> > > > > > +	struct resource_entry *win;
-> > > > > > +	struct resource *res;
-> > > > > > +
-> > > > > > +	win = resource_list_first_type(&pp->bridge->windows, IORESOURCE_MEM);
-> > > > > > +	if (win) {
-> > > > > > +		res = devm_kzalloc(pci->dev, sizeof(*res), GFP_KERNEL);
-> > > > > > +		if (!res)
-> > > > > > +			return;
-> > > > > > +
-> > > > > > +		/* Reserve last region_align block as message TLP space */
-> > > > > > +		res->start = win->res->end - pci->region_align + 1;
-> > > > > > +		res->end = win->res->end;
-> > > > > 
-> > > > > Don't you need to adjust the host bridge window size and end address?
-> > > > 
-> > > > Needn't. request_resource will reserve it from bridge window. Like malloc,
-> > > > if you malloc to get a region of memory, which will never get by malloc
-> > > > again utill you call free.
-> > > > 
-> > > 
-> > > Hmm, will that modify the window->res->end address and size?
-> > 
-> > No. This windows already reported to pci system before this function. It is
-> > not good to modify window-res-end. It just add child resource like below.
-> > 
-> > windows is root resource, which will create may child when call
-> > request_resource.
-> >           bridge -> windows
-> > 		child1 -> msg
-> > 		child2 -> pci ep1
-> > 		child3 -> pci_ep2.
-> > 		...
-> > 
-> > Although you see whole bridge window, 'msg' already used and put under root
-> > resource,  new pci devices will never use 'msg' resource. 
-> > 
-> > If change windows->res->end here, I worry about it may broken resource
-> > tree.
-> > 
-> 
-> Hmm, I think your argument is fair. I was worrying that if someone try to
-> map separately by referencing win->res->end, then they will see access
-> violation.
+On Thu, Apr 11, 2024 at 10:21=E2=80=AFPM Kim Seer Paller
+<kimseer.paller@analog.com> wrote:
+>
+> Add documentation for ltc2664 and ltc2672.
+>
+> Co-developed-by: Michael Hennerich <michael.hennerich@analog.com>
+> Signed-off-by: Michael Hennerich <michael.hennerich@analog.com>
+> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+> ---
+>  .../bindings/iio/dac/adi,ltc2664.yaml         | 230 ++++++++++++++++++
+>  MAINTAINERS                                   |   8 +
+>  2 files changed, 238 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ltc2664=
+.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ltc2664.yaml b=
+/Documentation/devicetree/bindings/iio/dac/adi,ltc2664.yaml
+> new file mode 100644
+> index 000000000..2f581a9e5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ltc2664.yaml
+> @@ -0,0 +1,230 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/dac/adi,ltc2664.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices LTC2664 and LTC2672 DAC
+> +
+> +maintainers:
+> +  - Michael Hennerich <michael.hennerich@analog.com>
+> +  - Kim Seer Paller <kimseer.paller@analog.com>
+> +
+> +description: |
+> +  Analog Devices LTC2664 4 channel, 16 bit, +-10V DAC
+> +  Analog Devices LTC2672 5 channel, 16 bit, 300mA DAC
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/lt=
+c2664.pdf
 
-It should be wrong if use it without request resource.
+This link gives a 404 error. Is there a typo?
 
-> 
-> But why can't you just allocate the resource using 'alloc_resource()' API
-> instead of always allocating at the end?
 
-Alloc will start from windows (for example: 0x8000_0000). 
-0x8000_0000 -> 0x8001_0000 will be allocated to 'msg'.
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/lt=
+c2672.pdf
+> +
+> +$defs:
+> +  toggle-operation:
+> +    type: object
+> +    description: Toggle mode channel setting.
+> +
+> +    properties:
+> +      reg:
+> +        description: Channel number.
+> +        minimum: 0
+> +        maximum: 4
+> +
 
-If ep1 want to get 1MB windows, 0x8010_0000 will return. There is a big
-hole between 0x8001_0000 to 0x8010_0000.
+> +      adi,toggle-mode:
+> +        description:
+> +          Set the channel as a toggle enabled channel. Toggle operation =
+enables
+> +          fast switching of a DAC output between two different DAC codes=
+ without
+> +          any SPI transaction.
+> +        type: boolean
 
-I just want to reduce impact to existed system. So PCIe memory layout will
-be kept the same w/o this patch.
+I'm not convinced that this belongs in the devicetree. It seems like
+everything related to toggling can and should be left to runtime
+configuration.
 
-There are not big difference between allocate resource and reserve resource
-for 'msg'. Just little better friendly for exist system.
+> +
+> +patternProperties:
+> +  "^channel@[0-4]$":
+> +    type: object
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ltc2664
+> +      - adi,ltc2672
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    maximum: 50000000
+> +
+> +  vcc-supply:
+> +    description: Analog Supply Voltage Input.
+> +
 
-Frank
+There is also an input supply for each output channel on ltc2672, so I
+think we also need vdd0-supply, vdd1-supply, etc.
 
-> 
-> - Mani
-> 
-> > > 
-> > > > > 
-> > > > > > +		res->name = "msg";
-> > > > > > +		res->flags = win->res->flags | IORESOURCE_BUSY;
-> > > > > > +
-> > > > > 
-> > > > > Shouldn't this resource be added back to the host bridge?
-> > > > 
-> > > > No, this resource will reserver for msg only for whole bridge life cycle.
-> > > > Genenally alloc resource only happen at PCI devices probe. All pci space
-> > > > will be fixed after system probe.
-> > > > 
-> > > 
-> > > I don't think so. This resource still belongs to the host bridge, so we should
-> > > add it back.
-> > 
-> > When add back?  It was reserved at bridge probe. When bridge remove, all
-> > resource will released. 
-> > 
-> > > 
-> > > - Mani
-> > > 
-> > > -- 
-> > > மணிவண்ணன் சதாசிவம்
-> 
-> -- 
-> மணிவண்ணன் சதாசிவம்
+On ltc2664, there is V+ instead so it needs v-pos-supply.
+
+And there is V~ on both which can be between -5.5V/-15.75V and GND, so
+optional v-neg-supply seems appropriate.
+
+> +  iovcc-supply:
+> +    description: Digital Input/Output Supply Voltage.
+> +
+> +  vref-supply:
+> +    description:
+> +      Reference Input/Output. The voltage at the REF pin sets the full-s=
+cale
+> +      range of all channels. If not provided the internal reference is u=
+sed and
+> +      also provided on the VREF pin.
+
+There is no VREF pin, so it looks like there is a typo. And it would
+make more sense to call this ref-supply as well.
+
+> +
+> +  clr-gpios:
+> +    description:
+> +      If specified, it will be asserted during driver probe. As the line=
+ is
+> +      active low, it should be marked GPIO_ACTIVE_LOW.
+> +    maxItems: 1
+
+Some other potentially properties for complete bindings that would be
+trivial to add now:
+
+* (ltc2672) There is a FAULT output pin, so it would make sense to
+have an interrupts property for that signal.
+* (both) I haven't done any DACs myself yet, but I see ldac-gpios on a
+few other bindings. I assume this is the typical way for handling the
+LDAC signal on most DACs?
+* (both) I see these have daisy chain capabilities, so an optional
+#daisy-chained-devices could be appropriate.
+
+Maybe not so trivial:
+
+* (both) The MUX/MUXOUT pins look like we have an embedded pin mux, so
+it could mean we need #pinctrl-cells. ltc2664 would also need
+muxin-gpios for this.
+
+
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: adi,ltc2664
+> +    then:
+> +      properties:
+> +        adi,manual-span-operation-config:
+> +          description:
+> +            This property must mimic the MSPAN pin configurations.
+> +            By tying the MSPAN pins (MSP2, MSP1 and MSP0) to GND
+> +            and/or VCC, any output range can be hardware-configured
+> +            with different mid-scale or zero-scale reset options.
+> +            The hardware configuration is latched during power on reset
+> +            for proper operation.
+> +              0 - MPS2=3DGND, MPS1=3DGND, MSP0=3DGND
+> +              1 - MPS2=3DGND, MPS1=3DGND, MSP0=3DVCC
+> +              2 - MPS2=3DGND, MPS1=3DVCC, MSP0=3DGND
+> +              3 - MPS2=3DGND, MPS1=3DVCC, MSP0=3DVCC
+> +              4 - MPS2=3DVCC, MPS1=3DGND, MSP0=3DGND
+> +              5 - MPS2=3DVCC, MPS1=3DGND, MSP0=3DVCC
+> +              6 - MPS2=3DVCC, MPS1=3DVCC, MSP0=3DGND
+> +              7 - MPS2=3DVCC, MPS1=3DVCC, MSP0=3DVCC (enables SoftSpan f=
+eature)
+> +          $ref: /schemas/types.yaml#/definitions/uint32
+> +          enum: [0, 1, 2, 3, 4, 5, 6, 7]
+> +          default: 7
+
+Are these always hard-wired or could they be connected to gpios and
+made configurable at runtime?
+
+> +
+> +      patternProperties:
+> +        "^channel@([0-3])$":
+> +          $ref: '#/$defs/toggle-operation'
+> +          unevaluatedProperties: false
+> +
+> +          description: Channel in toggle functionality.
+> +
+> +          properties:
+> +            adi,output-range-microvolt:
+> +              description: Specify the channel output full scale range.
+
+How would someone writing a .dts know what values to select for this
+property? Or is this something that should be configured at runtime
+instead of in the devicetree? Or should this info come from the
+missing voltage supplies I mentioned?
+
+> +              oneOf:
+> +                - items:
+> +                    - const: 0
+> +                    - enum: [5000000, 10000000]
+> +                - items:
+> +                    - const: -5000000
+> +                    - const: 5000000
+> +                - items:
+> +                    - const: -10000000
+> +                    - const: 10000000
+> +                - items:
+> +                    - const: -2500000
+> +                    - const: 2500000
+> +
+> +          required:
+> +            - adi,output-range-microvolt
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: adi,ltc2672
+> +    then:
+> +      properties:
+> +        adi,rfsadj-ohms:
+> +          description: If FSADJ is tied to VCC, an internal RFSADJ (20 k=
+=CE=A9) is
+> +            selected, which results in nominal output ranges. When an ex=
+ternal
+> +            resistor of 19 k=CE=A9 to 41 k=CE=A9 can be used instead by =
+connecting the
+> +            resistor between FSADJ and GND it controls the scaling of th=
+e
+> +            ranges, and the internal resistor is automatically disconnec=
+ted.
+> +          minimum: 19000
+> +          maximum: 41000
+> +          default: 20000
+
+This is the kind of description that would be helpful on some of the
+other properties. It does a good job of explaining what value to
+select based on what is connected to the chip.
+
+> +
+> +      patternProperties:
+> +        "^channel@([0-4])$":
+> +          $ref: '#/$defs/toggle-operation'
+> +          unevaluatedProperties: false
+> +
+> +          description: Configuration properties for a channel in toggle =
+mode
+> +
+> +          properties:
+> +            adi,output-range-microamp:
+> +              description: Specify the channel output full scale range.
+> +              $ref: /schemas/types.yaml#/definitions/uint32
+> +              enum: [3125000, 6250000, 12500000, 25000000, 50000000, 100=
+000000,
+> +                     200000000, 300000000]
+> +
+
+Same comments as adi,output-range-microvolt apply here.
+
+> +          required:
+> +            - adi,output-range-microamp
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - spi-max-frequency
+> +  - vcc-supply
+> +  - iovcc-supply
+> +
+> +additionalProperties: false
+> +
 
