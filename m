@@ -1,133 +1,102 @@
-Return-Path: <devicetree+bounces-58623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74DFB8A298F
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 10:44:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88F9D8A29FE
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 10:58:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 04143B25ACC
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 08:44:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3E9CF1F22AFE
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 08:58:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD3BB53E2C;
-	Fri, 12 Apr 2024 08:42:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FD0512FF99;
+	Fri, 12 Apr 2024 08:44:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eWl/lkBW"
+	dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.b="MEjKgYAK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpdh20-2.aruba.it (smtpdh20-2.aruba.it [62.149.155.165])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 819AE53E1E;
-	Fri, 12 Apr 2024 08:42:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E56D412C547
+	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 08:44:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.149.155.165
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712911354; cv=none; b=AzP1lGVCQxQPDlO79FAz4+jHlDQwfPZ8KLEM25ruJcCc9zVaPRlQiaLeB1p5Je/kyHg60NkYh8VHqb1x2VIzawmeR6uC7ojcpJc9OQz2HIrASQiAT6Ig/9wD+gb8NSTzdZIEOjufpm3Nqe9iQhAjuSgJiApUwMhK4+bnj2Nbw20=
+	t=1712911482; cv=none; b=qunmg46Xbz68dK59ddiGq5KS+sVK6Ah35J8VFyL/KVL/SuV11rbVwLlFmNlnJMI83JIVxVJrzP4EsQTBBpw1POxd0+tzB5pGj2duSrh2RVUWO+Ezw3vMql8GiqS4bFxOOy4LhHR232kYi/3c33Dhk5hE4fDDY9A/32PnzKn58pI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712911354; c=relaxed/simple;
-	bh=A+G6ElGrbdxKFc19F1WFdjKXJ4NPRwN4ZSGf2BITplc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=en/sBPAts5iTGbVDk/mixJBCqyalVE8l32RLYalk8jiwqTRFCgoLMv1IFuyuBOGfh3oVYVSv7jgJlEJWrcr6d6si3wlbFMj9RQmMeDqm/mm/gFhv+AefV1JE4oYnIOGOcaEPqc0YqPLkk5dyL0Q8SzeiC5hLpnIibpQH5k+cU2M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eWl/lkBW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id F0D75C32786;
-	Fri, 12 Apr 2024 08:42:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712911354;
-	bh=A+G6ElGrbdxKFc19F1WFdjKXJ4NPRwN4ZSGf2BITplc=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=eWl/lkBW00ATexLk5CJ4hGJJhnDZK12QlOi9JNpuuLncH0QM6T/lRbazUc4x5HGjZ
-	 MDNqkrXt3e43Yz5moOpe3hzw8Nm253TQpJa2GuU5PPw89QQqLBJmBViaYg5O/KRQBe
-	 5n+LVd540vk7a5zljRj0nPK3TYLDniAUUrLgPtFt/c+tC50UbJ4RMjDskneVv0d39W
-	 EVnUmzlLNVds26f6d6bKnxFQlpvXm8eB5LUW5DV683PxUv/FpC4Wk8xuTjl2X4oI+5
-	 4VylVWq401sPKwAbdFhEkGmrIslN8oMANk1e2Fc239pIdftOKodGlAeikWgi380Lgw
-	 FE5D3N9dSTYvg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D47EFC4345F;
-	Fri, 12 Apr 2024 08:42:33 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Fri, 12 Apr 2024 16:42:30 +0800
-Subject: [PATCH v2] arm64: dts: meson: fix S4 power-controller node
+	s=arc-20240116; t=1712911482; c=relaxed/simple;
+	bh=Mgr+tcoexBfovBQOO3B95Y4QR6G4XpjRCQIUweFdVIw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=UNwd/Y3lsn3Y79xms5ZJqAI3XMDUem113Jf0F8l7yPv0Y6NFMUFfW/6WaRDsyP5ch//Ppc5VWRjxU2Jdb71SSJAumYbOjbftgzYvBWA8haEMVYwfWPa9HwpVtV8gAyblNwyv4PlgRqtZUoLhKNSeiZhb0Gz3i5VQeJUfi1BO9Rc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=engicam.com; spf=pass smtp.mailfrom=engicam.com; dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.b=MEjKgYAK; arc=none smtp.client-ip=62.149.155.165
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=engicam.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=engicam.com
+Received: from engicam.com ([77.32.11.127])
+	by Aruba Outgoing Smtp  with ESMTPSA
+	id vCWKrIsVvwWj2vCWKr0hwx; Fri, 12 Apr 2024 10:44:29 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+	t=1712911469; bh=Mgr+tcoexBfovBQOO3B95Y4QR6G4XpjRCQIUweFdVIw=;
+	h=From:To:Subject:Date:MIME-Version;
+	b=MEjKgYAKmFjQSqeBr5ShLbaxTGn/9E3P0BZfYddiE+TAqX7fm2aoKracx/SMP6X+A
+	 Xw5qha3tFB6SDHqqfwXcj1Zc+Tko8erc/7h/bHE5tca8EThwhj/684jHAtm4yxXSuU
+	 xVYs8hExqB2y602jpbVh/fY0iJE5DgX6OZOhYRCcr7x7XgTLsYM7opjLu/WDO8mTSW
+	 KDJMUQj7WkR1Tg5qrdryZEPAsp08U2Vtn/y1b61a4h6Ay7P6Dd8DDgevt5w/uwtteh
+	 NWVNJmraoahaMMV9SoalbZyd783peqn7PTqwBMgGH2+IHnJqOMYYPNoyCMOWJC4qQC
+	 Bs/cqw/r30Mtw==
+From: Fabio Aiuto <fabio.aiuto@engicam.com>
+To: Mark Brown <broonie@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/2] regulator: pca9450: make warm reset on PMIC_RST_B assertion
+Date: Fri, 12 Apr 2024 10:44:26 +0200
+Message-Id: <20240412084428.400607-1-fabio.aiuto@engicam.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240412-fix-secpwr-s4-v2-1-3802fd936d77@amlogic.com>
-X-B4-Tracking: v=1; b=H4sIAPXzGGYC/3WMQQ6CMBBFr0Jm7Zi2qSKuvIdh0ZQpTCKUdEzVk
- N7dyt7l+/nvbSCUmASuzQaJMgvHpYI5NOAnt4yEPFQGo4xVVl0w8BuF/PpKKBZd14XQndWgHEF
- 11kT1sPfufeWJ5RnTZ89n/Vv/lbJGjUo71xK1xp/Mzc2POLI/+jhDX0r5AkNlCI+sAAAA
-To: Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1712911352; l=1368;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=oKEf8J5zEQ5VRP4drtkFgH9o2pd0Lw+wi/tMBGddobo=;
- b=g58n8V9t/QOY/0zH12yHIGuXoV1zedqzQpBb4TpKujUbaYz9w6Iv3V+0IJTaDWu4CybnE7KPy
- U0mZWlwsjwxBksQosAldqYNI8h4o8x1+ufJ+NDJhg+Mhz7pmacs70Z5
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Reply-To: xianwei.zhao@amlogic.com
+Content-Transfer-Encoding: 8bit
+X-CMAE-Envelope: MS4xfK4oHPsPdScFzaYXVXev1tdi4Txm6ETsUGH2jspVbqAutHrXEIWcUrjnGZ9ffT8sz70SQGyAJhqLj1JpS2icoNVbYd+jE0GQMAhMTewqK0tdlAFaWc4P
+ aSAA1Ufl4kz6ZP4xFnS7Sy7NYRMytfGLu7CgxhKkJNTXPeOQ1L0EsyRwe5NjwTacHBOCQa7kuFSIEDkhiXf0VSzQG0/m6+vmia/X5w/kSRlJzKobvwyWX2Jv
+ QhY99dSEFUylkncXTyoN0iRqH5Yese7timUEFhx4b+yp37PcBLdPC+lCN7qdaVMKK/y6A79Tf8un+EC7i8J1MdAvNhptJEOx7R2qs8DJw/VH98Oqjw7XvNhl
+ kTTnYH57MbS2wZhJ8f1pSU5+z9UmBw==
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Hello all,
 
-The power-controller module works well by adding its parent
-node secure-monitor.
+the following two patches add a property in devicetree
+to mark a board which needs warm reset on PMIC_RST_B pin
+assertion.
 
-Fixes: 085f7a298a14 ("arm64: dts: add support for S4 power domain controller")
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
-Changes in v2:
-- Add fixes tags in commit message.
-- Add firmware node to adapt documentation.
-- Link to v1: https://lore.kernel.org/r/20240408-fix-secpwr-s4-v1-1-01aa7ee72c52@amlogic.com
----
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-index ce90b35686a2..10896f9df682 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-@@ -65,10 +65,15 @@ xtal: xtal-clk {
- 		#clock-cells = <0>;
- 	};
- 
--	pwrc: power-controller {
--		compatible = "amlogic,meson-s4-pwrc";
--		#power-domain-cells = <1>;
--		status = "okay";
-+	firmware {
-+		sm: secure-monitor {
-+			compatible = "amlogic,meson-gxbb-sm";
-+
-+			pwrc: power-controller {
-+				compatible = "amlogic,meson-s4-pwrc";
-+				#power-domain-cells = <1>;
-+			};
-+		};
- 	};
- 
- 	soc {
+kr
 
 ---
-base-commit: 4cece764965020c22cff7665b18a012006359095
-change-id: 20240408-fix-secpwr-s4-a99ff960d0ae
+v3 ---> v4:
+	- improve "dt-bindings" patch commit log
+	- drop yibin.gong@nxp.com email for failure report
 
-Best regards,
+v2 ---> v3:
+	- split patch in two: bindings patch comes first
+	- add missing mailing lists and maintainers
+	- remove underscore in property name
+
+v1 ---> v2:
+	- Fix email addresses
+
+Fabio Aiuto (2):
+  regulator: dt-bindings: pca9450: add PMIC_RST_B warm reset property
+  regulator: pca9450: make warm reset on PMIC_RST_B assertion
+
+ .../bindings/regulator/nxp,pca9450-regulator.yaml     |  6 ++++++
+ drivers/regulator/pca9450-regulator.c                 | 11 ++++++++---
+ include/linux/regulator/pca9450.h                     |  6 ++++++
+ 3 files changed, 20 insertions(+), 3 deletions(-)
+
 -- 
-Xianwei Zhao <xianwei.zhao@amlogic.com>
-
+2.34.1
 
 
