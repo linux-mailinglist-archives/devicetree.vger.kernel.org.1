@@ -1,146 +1,122 @@
-Return-Path: <devicetree+bounces-58754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58756-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 745D18A2F44
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 15:21:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFC518A2F5C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 15:26:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30B44283A17
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 13:21:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 749231F21601
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 13:26:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8BB78248C;
-	Fri, 12 Apr 2024 13:20:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AE796EB4A;
+	Fri, 12 Apr 2024 13:26:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="iIH6QKxm";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="CfYTisVx"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="mbXZ0Fx3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D10181AAA;
-	Fri, 12 Apr 2024 13:20:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E08065914B
+	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 13:26:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.60.130.6
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712928036; cv=none; b=DmxC9VLa8VuytEek/mCFYivAYcsDlADC694jInFgUNZGkEnWIlw7aHIRMlpYOtXZpso2PX088TMUt90mome6/DG/sXliFNX/k2N8jbwYLlhOc91RMNnkstAeiDmapqJKYuXzu9zGtshTpTfAQ3CCiDBwdhcU1ALhRBBQTp5+iHY=
+	t=1712928401; cv=none; b=O7fvx+PfKdx1iJLdh43RjIm8CCiapbdOfH/8DQhzcmkccInyMeXT+aYfBZ+X9+7yv6H6+MYx+5DM0/5j495AWoVI8RXLzGpr12F5SuTV8pfV2s82/2/K/95JSwHK+NuXmKckhxnIP93gS7U+CgACnmZ/snVMvuDaj8ps7KRMhso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712928036; c=relaxed/simple;
-	bh=/txxqYlU4j9GLPahajtTq8tdmlrsxmJZHDfp0xOA2Kk=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=eW1njnCQ9MAlyGyxfaC7AV//l4c9GZWrTxb0IWHU8qIcdQDseYRJDChzoI0I66hQOGbG3tNDThp0nSb0T7EegVpT5ugcHhrDhUCw69uF6m8LAmII5CvnlMvBS4P7JWx+96Tq2+gsSMwkIBKo+R3de4kO7oklRhfrv1hx/7x0iR0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=iIH6QKxm; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=CfYTisVx reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1712928033; x=1744464033;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=aMvVxK4NUeO+EcAGmB+Dwa/0aVRFR5DKQOjKU0G2Dag=;
-  b=iIH6QKxmBPGqgoYkKZA1TYNXlNzED4GOeztt8K3kJbJ1gcGOhxgiG/gD
-   /orDqGbVcETIQzF61+VoPU5R4ui20oOVRmWQ/LB6g8mx9ATFranwMVS/Q
-   /hKqUV0xXEV1bbhmhVxo0HFN1Wtlqfoeb8uHmR+tTAP44oWWc6SZ5m35z
-   L/hmWtT6eyWiYmKlPTQTek6Kao9DnGhdggD+VhUm/0n/bctor89l93Mf5
-   tC5hRfC8AKAtVqKUGTgMDkwWyjkT+yq7GPLc+OhivGv0OgHuV2CN/ka5P
-   Ns8BfsUR2XgBwtfM6B2RddqMPUXsaj7C4+cK3qjPKRwGpuK+pPZyrpGSs
-   g==;
-X-IronPort-AV: E=Sophos;i="6.07,196,1708383600"; 
-   d="scan'208";a="36391625"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 12 Apr 2024 15:20:29 +0200
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5A234174287;
-	Fri, 12 Apr 2024 15:20:24 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1712928025; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding; bh=aMvVxK4NUeO+EcAGmB+Dwa/0aVRFR5DKQOjKU0G2Dag=;
-	b=CfYTisVx8pOM7rt+jKQ8hVvpZN3Mla3TUQipYvq+MxbYpvgC6PrmIGMS0myDHTPnzAOs45
-	n3XDuIpcEx7hq5PuJs7yRVL0yI1nJdQyNzCmb7w0MzpkFa6pCkUHj9VksxKQqqYtFnfOHB
-	WaCA8ZxAD+/gEuvkIC0V9hV5aMZGUAop3yY4TChbFW3hAXnBrKISIe62wQxw70gqdJfAYB
-	cIsd4qlP6n3OETmfyCBe4qJ5J8W0IjzQOpQ596fhePKbcNEYxsakbU27F6tsSfzvd+uVYx
-	Xrzk837JPnkkcMeuqMe6yuvtF2C78nRDR2R6dEtICVAsosqL07cGaArFEKQIgw==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1712928401; c=relaxed/simple;
+	bh=PWGu4IDrF81dnm+B7K1DVES1dBipt3fTbNoatINnUZg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=mkPjTFQr4DTRPvm6ilxtTWdaIMv+S+ze8pDYy5XVLsOU3jzs0q+sE7+q73YhdlA1Xz0WqnQFpzm+xBTgE3jghyvbUA4fnxtcRpo5Ebh2VIsGzFx+Jz/AfyukfsYnCA5ovvPwZONnsgOChaHK3jVcH9D0gTklzfOTAhcfibOBOLM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=igalia.com; spf=pass smtp.mailfrom=igalia.com; dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b=mbXZ0Fx3; arc=none smtp.client-ip=178.60.130.6
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=igalia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=igalia.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+	s=20170329; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+	Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=iz1hx/7L8dynupfWEP0T92mcjVsCWFEKtgxf9KmzahQ=; b=mbXZ0Fx3KAMy1mPfFne1Fsa/Hu
+	fDG/TD996uRBu7v9UWh2HzQ5So3yFLRfwWnRQiFk8ThTcX/KrjFKYNj6fdqVV81g8oxECk6dkqUrZ
+	Tego2i3MBf0McWwZzDBMJs5MIIondjRluhI24lLR0KCyV2nAsBGWTitrKt5GYTQQi7dbBpctW9iPL
+	STcwxxyxg2gKIFsqoCzmXURehHUWJmYMWo+cBoQSoBPt/hKGGjGcWfBsCUXX1s1CtO+k90ZmadSH5
+	aeoRciGBSHEYo3Jp/JFioN61XSi4Ui+1U4b7rDWy6NAmWXKmoab00U0JAS0zzfKSYyuvyw08Rs4/Y
+	9N6Su7TQ==;
+Received: from [177.34.169.177] (helo=localhost.localdomain)
+	by fanzine2.igalia.com with esmtpsa 
+	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+	id 1rvGv6-003uCn-TC; Fri, 12 Apr 2024 15:26:21 +0200
+From: =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>
+To: Maxime Ripard <mripard@kernel.org>,
+	Melissa Wen <mwen@igalia.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	linux@ew.tq-group.com,
+	Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	Andre Przywara <andre.przywara@arm.com>,
+	Romain Perier <romain.perier@gmail.com>,
+	Stefan Wahren <wahrenst@gmx.net>
+Cc: dri-devel@lists.freedesktop.org,
+	bcm-kernel-feedback-list@broadcom.com,
 	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
+	linux-rpi-kernel@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/1] arm64: dts: tqma8mnql: Add EASRC support
-Date: Fri, 12 Apr 2024 15:20:21 +0200
-Message-Id: <20240412132021.520666-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
+	kernel-dev@igalia.com,
+	=?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>
+Subject: [PATCH] ARM: dts: bcm2835: Enable 3D rendering through V3D
+Date: Fri, 12 Apr 2024 10:25:52 -0300
+Message-ID: <20240412132559.2365947-1-mcanal@igalia.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
 
-Enable EASRC support in tlv320aic32x4 sound card.
+RPi 0-3 is packed with a GPU that provides 3D rendering capabilities to
+the RPi. Currently, the downstream kernel uses an overlay to enable the
+GPU and use GPU hardware acceleration. When deploying a mainline kernel
+to the RPi 0-3, we end up without any GPU hardware acceleration
+(essentially, we can't use the OpenGL driver).
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Therefore, enable the V3D core for the RPi 0-3 in the mainline kernel.
+
+Signed-off-by: Maíra Canal <mcanal@igalia.com>
 ---
-Note that the firmware file /lib/firmware/imx/easrc/easrc-imx8mn.bin
-is needed.
 
- arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts | 4 ++++
- arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl.dtsi       | 4 ++++
- arch/arm64/boot/dts/freescale/mba8mx.dtsi                 | 2 +-
- 3 files changed, 9 insertions(+), 1 deletion(-)
+I decided to add the status property to the `bcm2835-common.dtsi`, but
+there are two other options:
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts
-index 433d8bba4425..b05be5b39d45 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts
-@@ -74,6 +74,10 @@ &sai3 {
- 		 <&clk IMX8MN_AUDIO_PLL2_OUT>;
- };
+1. To add the status property to the `bcm2835-rpi-common.dtsi` file
+2. To add the status property to each individual RPi model, e.g.
+`bcm2837-rpi-3-b.dts`.
+
+Let me know which option is more suitable, and if `bcm2835-common.dtsi`
+is not the best option, I can send a v2.
+
+Best Regards,
+- Maíra
+
+ arch/arm/boot/dts/broadcom/bcm2835-common.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi b/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi
+index 9261b67dbee1..851a6bce1939 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi
++++ b/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi
+@@ -139,6 +139,7 @@ v3d: v3d@7ec00000 {
+ 			compatible = "brcm,bcm2835-v3d";
+ 			reg = <0x7ec00000 0x1000>;
+ 			interrupts = <1 10>;
++			status = "okay";
+ 		};
  
-+&sound {
-+	audio-asrc = <&easrc>;
-+};
-+
- &tlv320aic3x04 {
- 	clock-names = "mclk";
- 	clocks = <&clk IMX8MN_CLK_SAI3_ROOT>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl.dtsi
-index fb24b9aa1b93..db47c718e719 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl.dtsi
-@@ -52,6 +52,10 @@ &A53_0 {
- 	cpu-supply = <&buck2_reg>;
- };
- 
-+&easrc {
-+	status = "okay";
-+};
-+
- &flexspi {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_flexspi>;
-diff --git a/arch/arm64/boot/dts/freescale/mba8mx.dtsi b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-index 0dc48e514baa..daba4ba14627 100644
---- a/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-@@ -157,7 +157,7 @@ reg_vcc_5v0: regulator-5v0 {
- 		regulator-always-on;
- 	};
- 
--	sound {
-+	sound: sound {
- 		compatible = "fsl,imx-audio-tlv320aic32x4";
- 		model = "imx-audio-tlv320aic32x4";
- 		ssi-controller = <&sai3>;
+ 		vc4: gpu {
 -- 
-2.34.1
+2.44.0
 
 
