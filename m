@@ -1,105 +1,165 @@
-Return-Path: <devicetree+bounces-58687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88EEE8A2D25
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 13:17:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFFB78A2D2C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 13:19:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 327181F22DC8
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 11:17:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4EF03B21DF3
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 11:19:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 041B2535DC;
-	Fri, 12 Apr 2024 11:17:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B307753E2B;
+	Fri, 12 Apr 2024 11:19:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FVb1Fjbu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mkJObC+U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CACC342064;
-	Fri, 12 Apr 2024 11:17:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C8CD53811
+	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 11:19:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712920649; cv=none; b=WW6Q7ntxU2rub62n9MAGu8PFmnAw+zifgmoGgweb+72Ya0tErsON6Pqjf406PzmjmJu8+8t0T4F4rGQei42MbV4WDzp8PuOxqc7JCwGegr/rzeOrup+SiYg24bBXkoVzTPbJzW/Yov9ZeVjLYP1bHxo+zkCJ3lEUDY3+luOaR9Q=
+	t=1712920769; cv=none; b=D1tynR7HtJIAEft1wn0SX43qkEJscHTiFRgPsI9t6TXLH0nZeLMbMJtUsR4Ex2Ox3AHdYfvEHYVDDps2btyiM4BUtstljycSBqkTn02zzZhB2+3E0tzYjwVzn9EldRIzBDwjaCoZFurKGoGwtKbeRv0zuYDlEHi1WzpABxdtKh0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712920649; c=relaxed/simple;
-	bh=SvdlhNNtUWHChB5l1joPBSlS4XqFexo2+rAXJJlhAE8=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=jEt38bIc/XlA4H3h79GI16jW4BUcON7TaKS5jfjgwu+YUeEuC+yZ46Z2FvxM1MQ0DGDMAnbsiTJi/pbOn//F88MYKtlxpQmOXbw2WPQkM1vZD+jzWLoTtes5N8wHN/IC48SZo2zJfOhZz4bBrTKb+HAel8QSY/oE28KyWOXzJ48=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FVb1Fjbu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B7A7C113CC;
-	Fri, 12 Apr 2024 11:17:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712920649;
-	bh=SvdlhNNtUWHChB5l1joPBSlS4XqFexo2+rAXJJlhAE8=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=FVb1FjbuIh0ACxAJQxzVk9u0EuMVSPdiXpsMhzvNDRhpiVlqEviQ9mzm6ZHvL+uiu
-	 LyPSyrh76UCV6BeRqUhXSHsnc73W+rmgc/FT0ya2cAkH+WHBG4tbyl4ds4AoL2lpdq
-	 NsBRgUzh8OSTyIuouYRSfCmZROhdqHr1I8zZssb14WoFS1Nv9rCIZUqLZZZNAoTA/T
-	 l+niw7ysStJGtIM+leJ/eiMY/oD2in17aYJjMUWf0SEDqEom61jE+lvF64NxoykFg7
-	 jaqw8SrgZTCEhL6QXuTiWcfsXOmMqDfUkcVpqt2I4A1y/ZobeVQ242TSVcBvPiucZC
-	 jIkpSYOezqtrg==
-Date: Fri, 12 Apr 2024 06:17:27 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1712920769; c=relaxed/simple;
+	bh=jJXQWARzxh60e8csc7f0AlY8R8u61wyoaZ5C9ACBeKc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BLjYJgl6jMWBORfJCTLLJ5xVqZJRagaZ8LvBHjjCUFvxhzNokadebuSosnpe3XAIt6nn9UNlMpsMMukStln81WUiQC3mvQByusvny5YWOA099bT0UPKeEf2smIQ2g1PmM/DsFx/+KgOTD+swsNHQflyD+58ol5ZMM0CSyEB+cVM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mkJObC+U; arc=none smtp.client-ip=209.85.219.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-dcbc6a6808fso722470276.2
+        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 04:19:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712920767; x=1713525567; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=v5rDLo34QYHoVsmJR+qXt/vyD8JmocFWIjXhIAKbA2M=;
+        b=mkJObC+U8nDDJgklpIU2LoOmw05ZgepN0LI6hV8mIj+8ORTLPsMXz2BEsPNBXWYWwg
+         bwkKqaJSOUZny7uJwMNVBWfbtQwG/bQgnmKHe5t572TgKJbqbsF0UVpQtII24Lb6qEpG
+         y9FJsyUj4xrQxyPYOmShTpov9U3m6cJzzZASfQCHGa2o6MlI6U9E0YD+qGnHdonYTOIK
+         fvMj0PW79tMCa3Fn/wsEH+rL3vBtI+xc0SEwbP+svld33oQzHaxkohDwQUwYBe0wB/jv
+         VZ5pBXn4yKGdcDBXzbAlgPuk2vLLlka3ibPXdU00NO4GBYTRAWHknON4QLXgvFP9rRcc
+         XgUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712920767; x=1713525567;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=v5rDLo34QYHoVsmJR+qXt/vyD8JmocFWIjXhIAKbA2M=;
+        b=WtkS+rJw5f+x4Kwtb3BGrrnSpuSTym6phAiaaz9WQqzZFXNRMXTtRkWYbywg95A/9j
+         8tnK3O/UJEP1ANrP4DmFBOcQWLDumlYWhp5H61MXkpjUvNuVGx951n521K70dv0+45VL
+         QyDPp16SZa5R+ZKsIsEmRNCH7M0b9iSiHN0dIMp7U30Z9Lb5Xa/4MsT8lglPG0PDVMtm
+         CIoAQJJUSK6v41uN8K0edrglu4ZqQOMSFH5WAQ17nv/1S+p66JFEWhhocTZYQm4ughGy
+         Bq9HFF4vamD9boeae5csBSlTYwb+cCBKKUYS0axw4P84LPFbW9RqXv49ST8D6r+znpII
+         MBBQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVPc4fohTeV3jPXicfcvgxivSNfHQSKG5UNBHHTwwwdnVu2YEYR3LjeUgBdplwDBh+BiDfM9WI6/UmAo5K9z1euJuc0ih6wLfdbYA==
+X-Gm-Message-State: AOJu0Yw1qlipxdPOuFFZ5+wjTBqaHlg7pB+zQdE6nVhNP+ttpIIn3ymV
+	6Q0Jio86UpmSGuHwxNJnSpzRpjLZyIjbUAy/CXO7xU21s7tzQBqIjSYzyosaaUYSaI79K6TEEV4
+	yhyxjwM6oP/Xf4HJUaus+xTyUtfSofjpyVzFErg==
+X-Google-Smtp-Source: AGHT+IGjcxQfZZ4gEXpxEJHHCkUAzxFeclWwScgkVbFOPUQuv53ARt5z+a4tB0oWhU95+YIs637qHwGwylAPZ0V78DI=
+X-Received: by 2002:a25:2d07:0:b0:dcc:ae3:d8a0 with SMTP id
+ t7-20020a252d07000000b00dcc0ae3d8a0mr2500615ybt.48.1712920767132; Fri, 12 Apr
+ 2024 04:19:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Seven Lee <wtli@nuvoton.com>
-Cc: linux-kernel@vger.kernel.org, robh+dt@kernel.org, broonie@kernel.org, 
- linux-sound@vger.kernel.org, dardar923@gmail.com, 
- devicetree@vger.kernel.org, CTLIN0@nuvoton.com, lgirdwood@gmail.com, 
- krzysztof.kozlowski+dt@linaro.org, KCHSU0@nuvoton.com, perex@perex.cz, 
- SJLIN0@nuvoton.com, scott6986@gmail.com, alsa-devel@alsa-project.org, 
- edson.drosdeck@gmail.com, YHCHuang@nuvoton.com, conor+dt@kernel.org, 
- u.kleine-koenig@pengutronix.de, supercraig0719@gmail.com, tiwai@suse.com
-In-Reply-To: <20240412103554.3487290-1-wtli@nuvoton.com>
-References: <20240412103554.3487290-1-wtli@nuvoton.com>
-Message-Id: <171292064682.1830010.10520655676449462428.robh@kernel.org>
-Subject: Re: [PATCH 1/3] ASoC: dt-bindings: nau8821: Add delay control for
- ADC
+References: <20240410134044.2138310-1-claudiu.beznea.uj@bp.renesas.com> <20240410134044.2138310-10-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20240410134044.2138310-10-claudiu.beznea.uj@bp.renesas.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Fri, 12 Apr 2024 13:18:51 +0200
+Message-ID: <CAPDyKFq1+cL1M9qGY0P58ETHUZHGymxQL0w92emUJPMe7a_GxA@mail.gmail.com>
+Subject: Re: [PATCH RESEND v8 09/10] watchdog: rzg2l_wdt: Power on the PM
+ domain in rzg2l_wdt_restart()
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de, 
+	geert+renesas@glider.be, magnus.damm@gmail.com, biju.das.jz@bp.renesas.com, 
+	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
+On Wed, 10 Apr 2024 at 16:19, Claudiu <claudiu.beznea@tuxon.dev> wrote:
+>
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> The rzg2l_wdt_restart() is called from atomic context. Calling
+> pm_runtime_{get_sync, resume_and_get}() or any other runtime PM resume
+> APIs is not an option as it may lead to issues as described in commit
+> e4cf89596c1f ("watchdog: rzg2l_wdt: Fix 'BUG: Invalid wait context'")
+> that removed the pm_runtime_get_sync() and used directly the
+> clk_prepare_enable() APIs.
 
-On Fri, 12 Apr 2024 18:35:52 +0800, Seven Lee wrote:
-> Change the original fixed delay to the assignment from the property. It
-> will make it more flexible to different platforms to avoid pop noise at
-> the beginning of recording.
-> 
-> Signed-off-by: Seven Lee <wtli@nuvoton.com>
+Calling clk_prepare_enable() doesn't work from an atomic context
+either as it may sleep on the clk prepare mutex.
+
+As I said in the other reply too, it looks like we need a different
+solution. I am not sure what, but I am happy to help discuss it.
+
+>
+> Starting with RZ/G3S the watchdog could be part of its own software
+> controlled power domain (see the initial implementation in Link section).
+> In case the watchdog is not used the power domain is off and accessing
+> watchdog registers leads to aborts.
+>
+> To solve this the patch powers on the power domain using
+> dev_pm_genpd_resume() API before enabling its clock. This is not
+> sleeping or taking any other locks as the power domain will not be
+> registered with GENPD_FLAG_IRQ_SAFE flags.
+>
+> Link: https://lore.kernel.org/all/20240208124300.2740313-1-claudiu.beznea.uj@bp.renesas.com
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+
+Kind regards
+Uffe
+
 > ---
->  .../devicetree/bindings/sound/nuvoton,nau8821.yaml        | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/nuvoton,nau8821.example.dtb: codec@1b: Unevaluated properties are not allowed ('nuvoton,nuvoton,adc-delay-ms' was unexpected)
-	from schema $id: http://devicetree.org/schemas/sound/nuvoton,nau8821.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240412103554.3487290-1-wtli@nuvoton.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+>
+> Changes in v8:
+> - none, this patch is new
+>
+>  drivers/watchdog/rzg2l_wdt.c | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+>
+> diff --git a/drivers/watchdog/rzg2l_wdt.c b/drivers/watchdog/rzg2l_wdt.c
+> index c8c20cfb97a3..98e5e9914a5d 100644
+> --- a/drivers/watchdog/rzg2l_wdt.c
+> +++ b/drivers/watchdog/rzg2l_wdt.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/pm_domain.h>
+>  #include <linux/pm_runtime.h>
+>  #include <linux/reset.h>
+>  #include <linux/units.h>
+> @@ -164,6 +165,17 @@ static int rzg2l_wdt_restart(struct watchdog_device *wdev,
+>         struct rzg2l_wdt_priv *priv = watchdog_get_drvdata(wdev);
+>         int ret;
+>
+> +       /*
+> +        * The device may be part of a power domain that is currently
+> +        * powered off. We need to power it up before accessing registers.
+> +        * We don't undo the dev_pm_genpd_resume() as the device need to
+> +        * be up for the reboot to happen. Also, as we are in atomic context
+> +        * here there is no need to increment PM runtime usage counter
+> +        * (to make sure pm_runtime_active() doesn't return wrong code).
+> +        */
+> +       if (!pm_runtime_active(wdev->parent))
+> +               dev_pm_genpd_resume(wdev->parent);
+> +
+>         clk_prepare_enable(priv->pclk);
+>         clk_prepare_enable(priv->osc_clk);
+>
+> --
+> 2.39.2
+>
+>
 
