@@ -1,132 +1,147 @@
-Return-Path: <devicetree+bounces-58723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D39D28A2DEE
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 14:02:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0979C8A2DFE
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 14:08:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DDB1282B26
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 12:02:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B8107283EA5
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 12:08:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFAA55730C;
-	Fri, 12 Apr 2024 12:02:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PaiTwZtq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 633E554FB1;
+	Fri, 12 Apr 2024 12:08:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4E3D57306;
-	Fri, 12 Apr 2024 12:02:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 610C152F9B
+	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 12:08:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712923336; cv=none; b=BdGbGCIgpYM0rVhFddvJzFxIokEResCwv8LyifqiIirh0sKrLV43yaIIzknMMooW63f1FNhbtqAEuzsroflWgQiAIv44gY+RZbmpu6PkPR9hH+3X3xbHiDGCsKVRyfnbRHdh3U7IKvwrNRGFHoeI/N4/EZeT9sqeohZkipKIiq4=
+	t=1712923713; cv=none; b=bto73s82CBP+ADmchYqjaKk7LwX/uCILjBOf6YXIypNz4G8R96/hNrqQvdxC9yxf073kRhtrT4CIJVqtGC5Zjx3ph5g0jOGL8xR8KTKhIaQbqJWPnuIYSU2ONatkkUmvQZnlE8o727zEWMI6QPQcjFIjz9p8FADPoQ/2c2Blp+E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712923336; c=relaxed/simple;
-	bh=3y8NvuBpN3GpgOBuBXKVR4zS66qIFVgEMZeU4j3UftM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=i9BPtN5IycPm1wuKXMLt/MuUfRcPMnP5kwm/5iKV4ZMRsPHjsQGbsBmGwBUVFS8NyFCa+avIBsrboiWm/X9Zew4gQlVNvPN+EC3GOq6ozDHf11KhmLkeY11AB/sIdHqaw62v0OI8MxTxXQsivSncAUnEVZ+2hiJ+QMT6lhfXMCw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PaiTwZtq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C99FC113CD;
-	Fri, 12 Apr 2024 12:02:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712923336;
-	bh=3y8NvuBpN3GpgOBuBXKVR4zS66qIFVgEMZeU4j3UftM=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=PaiTwZtq9AlP3mLK3Jr6OGT4piCSor4fdGvafBJo80qXDOHv2BZGITA5XolZ2Xp9b
-	 q0TTnz6hB3tn9ChJzZVtYOjcDXQHkerYJLXgt+C7ilufqdak4pHNyJAlXP1vvlug2C
-	 jvnZ2eGvoEfEHzxSzbrc/FVpq7LqD9CntHjrj3b11JeRtQi5sS6sl5qan0+Im5Q1vO
-	 9taklG3Zuvc1jh9AKJX/EXs48jOtgU5eLTVrVMpcaId6UivZrS+UPiBmswzGP8KLtH
-	 s8NB//xcl1XQvzDgrFNgQ+VcSYdt8WsvOuX/VOMQSiWBEUVVtofysCeKcNVrvsIWD+
-	 1+Sgl/YRF24sA==
-From: Roger Quadros <rogerq@kernel.org>
-Date: Fri, 12 Apr 2024 15:02:00 +0300
-Subject: [PATCH v7 3/3] arm64: dts: ti: k3-am62a: Disable USB LPM
+	s=arc-20240116; t=1712923713; c=relaxed/simple;
+	bh=aGZGursS0e7p0NN8/DsscT4cCqk++laaAgsgmlWTm/k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CsDUv/tE+bOmxsniFKIrpXz4jDBqmbPRHuwLvSszVF3ApQN/LKe20fncIyR2VAkQ88gLjFoZmkZdQhy7Dch0/uXjwh7sKmoMtlEH7L7uXp9pGXT7jiY2/DrFj9xh6409jCWuhGDY8LoTvKPnH/f1OsxRLUKbDFVSXcJJlGmOhrQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rvFhf-0007RX-Pr; Fri, 12 Apr 2024 14:08:23 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rvFhe-00BsBA-On; Fri, 12 Apr 2024 14:08:22 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rvFhe-0009i4-29;
+	Fri, 12 Apr 2024 14:08:22 +0200
+Date: Fri, 12 Apr 2024 14:08:22 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org, 
+	JunYi Zhao <junyi.zhao@amlogic.com>
+Subject: Re: [PATCH v5 5/5] pwm: meson: add generic compatible for meson8 to
+ sm1
+Message-ID: <24ec3iiudmfapiosygpsvgu7kmdqe6csbkpuzx3p3sa4oyodqu@hshmbpvzhufb>
+References: <20240221151154.26452-1-jbrunet@baylibre.com>
+ <20240221151154.26452-6-jbrunet@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240412-for-v6-10-am62-usb-typec-dt-v7-3-93b827adf97e@kernel.org>
-References: <20240412-for-v6-10-am62-usb-typec-dt-v7-0-93b827adf97e@kernel.org>
-In-Reply-To: <20240412-for-v6-10-am62-usb-typec-dt-v7-0-93b827adf97e@kernel.org>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Andrew Davis <afd@ti.com>, b-liu@ti.com, srk@ti.com, 
- r-gunasekaran@ti.com, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Roger Quadros <rogerq@kernel.org>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1300; i=rogerq@kernel.org;
- h=from:subject:message-id; bh=3y8NvuBpN3GpgOBuBXKVR4zS66qIFVgEMZeU4j3UftM=;
- b=owEBbQKS/ZANAwAIAdJaa9O+djCTAcsmYgBmGSK6md56hUKdg+S6qCjHbbACODTJaVIUfD96o
- y34Kc4rE/GJAjMEAAEIAB0WIQRBIWXUTJ9SeA+rEFjSWmvTvnYwkwUCZhkiugAKCRDSWmvTvnYw
- k7dBEACxOUAiK+miJJPF39Z+KYGn7jWgNCb4uU9cEYH61MYdsfRpGQqAt6lCo+SdtciQ5j833oX
- Q/mXBbQq8j0/itQHzyJRwQRMRv5SDjeeKjYUMQiP2PePUPo1/lWHBp9QQFgpxHkUyGjVM9pzgp6
- nejEYc8YcrH9AwRpTCuTyIg8RoTUVNoz1IDaM+gH2gozlzwsPiEI9P1QHwd8jIlvX+xg4vFxEt7
- +fOpKcRG/ss59ZLK4P7jQY4B5F5RUZT+9QcKbDe750eT6W+By+rGNcm6Kgc3opyqtKm77tpB9/t
- I+aSJXLLGw+W9sd1s4uxpQxOSPblBIe241MiH/BGCI6YE+TP+Vp3ADz9BvXYI+CzIJE3WNqzLJo
- ofMiqBNDi/ZeJFeyHXoDk4INvTiW/kZgtO/UxQO2DmPQv7zGb9poziiJ5P00W7jTYX6d86LPZCX
- +xU5Jf+7133QvACKcsZKfHRYCr/8RADxm7HnJuoajv4IdIyHydMrGcksIc6UM53c9hu+S6+LUc1
- lOUtZLYrnnZXyPB4zVgaRqH+LyMRhu9BABs0LEa+70l1xBrAwccrE8z3p34Xqnuax4AUYUDgslN
- /lSWERiWZoPywtL1v6gTpgsdunoUO4RlOK/8W0gyKHb+MpJEdW4cy5wll8MuDYbLTyzOfbec3se
- QLA1m0yEU2Kqjdw==
-X-Developer-Key: i=rogerq@kernel.org; a=openpgp;
- fpr=412165D44C9F52780FAB1058D25A6BD3BE763093
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="o6zwfw2ds5fuh2ws"
+Content-Disposition: inline
+In-Reply-To: <20240221151154.26452-6-jbrunet@baylibre.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-As per AM62A TRM [1] USB Link Power Management (LPM)
-feature is not supported. Disable it else it may
-cause enumeration failure on some devices.
 
-> 4.9.2.1 USB2SS Unsupported Features
-> The following features are not supported on this family of devices:
-> ...
-> - USB 2.0 ECN: Link Power Management (LPM)
-> ...
+--o6zwfw2ds5fuh2ws
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[1] - https://www.ti.com/lit/pdf/spruj16
+On Wed, Feb 21, 2024 at 04:11:51PM +0100, Jerome Brunet wrote:
+> Introduce a new compatible support in the Amlogic PWM driver.
+>=20
+> The PWM HW is actually the same for all SoCs supported so far. A specific
+> compatible is needed only because the clock sources of the PWMs are
+> hard-coded in the driver.
+>=20
+> It is better to have the clock source described in DT but this changes the
+> bindings so a new compatible must be introduced.
+>=20
+> When all supported platform have migrated to the new compatible, support
+> for the legacy ones may be removed from the driver.
+>=20
+> The addition of this new compatible makes the old ones obsolete, as
+> described in the DT documentation.
+>=20
+> Adding a callback to setup the clock will also make it easier to add
+> support for the new PWM HW found in a1, s4, c3 and t7 SoC families.
+>=20
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 
-Signed-off-by: Roger Quadros <rogerq@kernel.org>
+After spending some brain cycles on this one I think I understood it.
+Looks fine to me, I only considered questioning if the dev_warn_once is
+too offensive.
+
+b4 + git applied the patch just fine even without patch #4 of this
+series. Would you be so kind to double check it works as intended?
+
+BTW, b4 diagnosed:
+
+Checking attestation on all messages, may take a moment...
 ---
-Changelog:
-v7 - Rebased to v6.9-rc1
-v6 - Rebased on next-20240226
-v5 - new patch
----
- arch/arm64/boot/dts/ti/k3-am62a-main.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+  =E2=9C=97 [PATCH v5 5/5] pwm: meson: add generic compatible for meson8 to=
+ sm1
+    + Link: https://lore.kernel.org/r/20240221151154.26452-6-jbrunet@baylib=
+re.com
+    + Signed-off-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
+  ---
+  =E2=9C=97 BADSIG: DKIM/baylibre-com.20230601.gappssmtp.com
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-index a158df0d0ba6..adaf578280f9 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-@@ -621,6 +621,8 @@ usb0: usb@31000000 {
- 			interrupt-names = "host", "peripheral";
- 			maximum-speed = "high-speed";
- 			dr_mode = "otg";
-+			snps,usb2-gadget-lpm-disable;
-+			snps,usb2-lpm-disable;
- 		};
- 	};
- 
-@@ -644,6 +646,8 @@ usb1: usb@31100000 {
- 			interrupt-names = "host", "peripheral";
- 			maximum-speed = "high-speed";
- 			dr_mode = "otg";
-+			snps,usb2-gadget-lpm-disable;
-+			snps,usb2-lpm-disable;
- 		};
- 	};
- 
+Is this only because it took me so long to reply, or is there a
+configuration issue with the baylibre MTA?
 
--- 
-2.34.1
+Best regards
+Uwe
 
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig         =
+   |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--o6zwfw2ds5fuh2ws
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmYZJDUACgkQj4D7WH0S
+/k5YqAf9Gp+g65dKTx78fK8hzvxoD9Y3G0PBNvMZG0cgDhyEIvXcC0zVpdDqgL/L
+UbcBW+DNc5Imw7H91xeUtyD4nDhybz1aG38vALuh8Ojuy+qqfxhZpaaDLl0344sB
+QVRkyJQxgB2VYDslaNPD7caXYtuMTwdyrbXf1jE7dg5ui9zWpr7pR+1TFPEYGsRE
+iRBqz3cZmq1MN0/1hhzw81jXz7rJVgv79bGBHr43wq2EwiAB/Rx1ztYFl9stz9PR
+KLOWaASjPFjeHxdrv6gP/+TEJ2BweZe7wwkEHFe34KUysr2x+QUFK2+x727TD30j
+gAmrGXJHW5AvlZZQMvhhKwxdFsxrpQ==
+=JdWF
+-----END PGP SIGNATURE-----
+
+--o6zwfw2ds5fuh2ws--
 
