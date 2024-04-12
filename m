@@ -1,229 +1,162 @@
-Return-Path: <devicetree+bounces-58718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 018558A2DC4
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 13:51:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FD228A2DCA
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 13:52:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 253AF1C21B2E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 11:51:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A2F328223D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 11:52:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA72F55C08;
-	Fri, 12 Apr 2024 11:50:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD87B54FB8;
+	Fri, 12 Apr 2024 11:52:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="ceZLQ1C4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WSQqejBX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECACF5490C;
-	Fri, 12 Apr 2024 11:50:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 808CE54BD3;
+	Fri, 12 Apr 2024 11:52:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712922658; cv=none; b=DJCSMRom9rmjzpdQYKiaYc9mbRfTm1ZrOg0rw26HUVfasfrZAmiPo1DMlqq2l7bN1llzchTPi9qC1jhlepLdSGQF8t1KbMabFa+4+YpcW2LtW3UA4dtjHzwFR696I7ecDUBag8kIJMHNrwSJWd8kxqfzAwTQQtudkA+JkR9PHU8=
+	t=1712922749; cv=none; b=oBFYnUafrLul67y2IkW63dh5hOC4DKtA9H8CDNUz7X3lF92i7g+C/phkDPXV+EMMCuEjWLKds58M0fTM6QfUpTQJfK5tuMiYT6naCBd6d2DR241dY4TIpg65w/Nhk3kRZJgnQuUAy5A9Uwp5vCRZ1/ivHQIbOcqOO++NUTVAUUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712922658; c=relaxed/simple;
-	bh=/MsWLEJD+g2lmJVxWXE9ihQ+XOiKAY5YDqrlImseWCM=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MkTOMCJ6nT0VWRGTTqrzdAubkjdpPqIgYxyy9ck1tHT0WPD2pN7B8VhkaDUQ7RSnmOjzLja4XawGDVOVvgWBHIPo0tLPLIKfJW7wmypAttHSl70OXqP4+3TJQeqXJYZSkvIMjtoi7Ml2RGTSSYaNDf0GVt0pjB58rlgvNp3DpEA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=ceZLQ1C4; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1712922657; x=1744458657;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=/MsWLEJD+g2lmJVxWXE9ihQ+XOiKAY5YDqrlImseWCM=;
-  b=ceZLQ1C4Zx2xp8ul0pxyDVnNHXuLPYZXqxO0nQ7I6XuPbC6nIRuA69kI
-   eRdD6eR8USM7wblnUfazwkwHa9e4JNspHaofp3h+0Ss3OL2sSky0ZfO0O
-   DCXtC+07GOaBn3mLOuibI4nEHAdCWjDxMZDD2l1/kM5yuLW336YEc8nte
-   qBLfarCIN9lgWPZWGI/4Wx0kALQeIkh6bo4Td73sVdN2/6j/iGHac/fyH
-   FsZTJqBqXQWE2ulUcYqbtnLTThq6Vb8wzbEDGvlfodEUd10K1CzD9/QUI
-   8uCnW0LyXswsfat1pUAKXZSRw4uEzoBIbuce0zXMuTDyRFnzCbCmVjmNp
-   g==;
-X-CSE-ConnectionGUID: DbXRGJMARISTcHYzzFqcJQ==
-X-CSE-MsgGUID: r4WPBt/kRzewCEGLyzl6yw==
-X-IronPort-AV: E=Sophos;i="6.07,196,1708412400"; 
-   d="asc'?scan'208";a="20735309"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 12 Apr 2024 04:50:56 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 12 Apr 2024 04:50:52 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Fri, 12 Apr 2024 04:50:48 -0700
-Date: Fri, 12 Apr 2024 12:49:57 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Charlie Jenkins <charlie@rivosinc.com>
-CC: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Paul Walmsley
-	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
-	<jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Evan Green
-	<evan@rivosinc.com>, =?iso-8859-1?Q?Cl=E9ment_L=E9ger?=
-	<cleger@rivosinc.com>, Jonathan Corbet <corbet@lwn.net>, Shuah Khan
-	<shuah@kernel.org>, <linux-riscv@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, Palmer Dabbelt
-	<palmer@rivosinc.com>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-sunxi@lists.linux.dev>, <linux-doc@vger.kernel.org>,
-	<linux-kselftest@vger.kernel.org>
-Subject: Re: [PATCH 08/19] riscv: Introduce vendor variants of extension
- helpers
-Message-ID: <20240412-dwarf-shower-5a7300fcd283@wendy>
-References: <20240411-dev-charlie-support_thead_vector_6_9-v1-0-4af9815ec746@rivosinc.com>
- <20240411-dev-charlie-support_thead_vector_6_9-v1-8-4af9815ec746@rivosinc.com>
+	s=arc-20240116; t=1712922749; c=relaxed/simple;
+	bh=tDkHRVEdpWscZ2zBfN20MYCSZo70ij53K5V5aJSiuY0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=gydMI8GaIi+bHz7RgiBL8glmVxdl39AFtRHK5cJtoW236claaTNYuZYXoFBRPOD0DxnNxXYkvVioVPyj+G5g58JDXmo85WOW9fKY9cr9EtBamYOE3SQ0WRhRZiJ980z1rEfHyCizlnviIldYw3MPjvK/meBSo5tSsF88zOZFTaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WSQqejBX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5B12C113CC;
+	Fri, 12 Apr 2024 11:52:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712922749;
+	bh=tDkHRVEdpWscZ2zBfN20MYCSZo70ij53K5V5aJSiuY0=;
+	h=From:Date:Subject:To:Cc:From;
+	b=WSQqejBXQiD8VQ1rhERGu649DcEOjqgaLT21pID9O+co5uBuO2D75J5kxIa93nnGX
+	 YE80ZSKcCMYsFILw5tzrGNu+umU13RXwL0+R1Dt5hu1M+4f6PQQcCru5ohQzTt5Oon
+	 bj3mM0xp8QO2gvr0kW5eaARt5kfZuHIEr9/x2FXPzIgeVh4z9c33/TrMZ8n+Oonj+5
+	 LlstWu65eRvykaaVqF01O/tKZQ4n1Frmv78+iAjZnQ7sLL7f2NN2vtNk0wdfKl+zj+
+	 hc2HkG+9nWAmhkffNLvB9otGYDNaSjZb082Xo1HrbZ/jLlVVbdbHJ5PakQfGfTHTG5
+	 NSrMxU7aLMEsA==
+From: Roger Quadros <rogerq@kernel.org>
+Date: Fri, 12 Apr 2024 14:52:14 +0300
+Subject: [PATCH] arm64: dts: ti: k3-am62*: Add PHY2 region to USB wrapper
+ node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="OxSigVsCwYUnQIoR"
-Content-Disposition: inline
-In-Reply-To: <20240411-dev-charlie-support_thead_vector_6_9-v1-8-4af9815ec746@rivosinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240412-for-v6-9-am62-usb-errata-dt-v1-1-ef0d79920f75@kernel.org>
+X-B4-Tracking: v=1; b=H4sIAG0gGWYC/x3MTQqDQAwG0KtI1v1gDGrRq0gXUaPNwh8yKgXx7
+ h1cvs27KKqbRmqyi1xPi7YuCfkro/4ry6SwIZk4cBGKnDGujrNCDZkrxhE7qLvsgmGHcF+WoXt
+ rLYHSsLmO9nv29nPff4xgS0ltAAAA
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: afd@ti.com, srk@ti.com, r-gunasekaran@ti.com, b-liu@ti.com, 
+ francesco@dolcini.it, linux-arm-kernel@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Roger Quadros <rogerq@kernel.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2612; i=rogerq@kernel.org;
+ h=from:subject:message-id; bh=tDkHRVEdpWscZ2zBfN20MYCSZo70ij53K5V5aJSiuY0=;
+ b=owEBbQKS/ZANAwAIAdJaa9O+djCTAcsmYgBmGSB5fzIe0oR9uaBVVpXHzU3tyQo24H75sNRBx
+ aNe7Zj5iJKJAjMEAAEIAB0WIQRBIWXUTJ9SeA+rEFjSWmvTvnYwkwUCZhkgeQAKCRDSWmvTvnYw
+ k+brEADJQId/UCesEm2S8hxTwwWf7z3CPiz1IrsORf2nyW1lW0H+T9NrKMfbnAuhu2CBdseuPVt
+ GfBSl1jegY4+lYw5i0pM2vzYzHT+CWAuqZcCNpkmpkMpTuUGadYlpothox4I18IewoKHN1p4+qs
+ NcjbfxxuVGL6Siw1tdxzM6GyAvFtIUrxFn/+xbbzCPSuJFxUhUR1U1VkUcL0VexcFOfYErfnohZ
+ UcxLoiyIvjZkGvDGbCYOeG0aEr2smW/w6DMy1eC3ap7JKj6BPpEPCNmHOsjFxsNMwHefLOhfrER
+ ic45h7PFLeh7jf51KZFIpWru9UmN5GwOj2uwIgsr9mpN/p7o2u0/JIsCf7As24yhfvODOrFluLW
+ WZ/+PODgL/H/TTexlJPuAFvJxL9C7pNtoO+IRIT7sJMl3/RYxnqyiym7TmMHDUiGrp5m3Y6NDyt
+ zRCJ96oSEDpGPKqsS2oDcVqvf2ZNejh2WfrUwMeZ6tlys6N5TE9y0947Xj2WZrCK28gSIIhEi3C
+ ERP9zNWyj0yoPEshfwjIOAIOKf0cRykMbjdBssoZBRfAVbPWnQAEc4Jb2UUt9hQFWCTT+pK7uRw
+ v3W6cppt91ycJGMPArtXtfPP4sUgFMjQ3D22/mNzv7xkKjQaQBd7OTCFD0PdW0ehqF4AxBdt8GE
+ RqjngIiibTvjnKg==
+X-Developer-Key: i=rogerq@kernel.org; a=openpgp;
+ fpr=412165D44C9F52780FAB1058D25A6BD3BE763093
 
---OxSigVsCwYUnQIoR
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Add PHY2 register space to USB wrapper node. This is required
+to deal with Errata i2409.
 
-On Thu, Apr 11, 2024 at 09:11:14PM -0700, Charlie Jenkins wrote:
-> Create vendor variants of the existing extension helpers. If the
-> existing functions were instead modified to support vendor extensions, a
-> branch based on the ext value being greater than
-> RISCV_ISA_VENDOR_EXT_BASE would have to be introduced. This additional
-> branch would have an unnecessary performance impact.
->=20
-> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+Signed-off-by: Roger Quadros <rogerq@kernel.org>
+---
+Hi Vignesh/Nishanth,
 
-I've not looked at the "main" patch in the series that adds all of the
-probing and structures for representing this info yet beyond a cursory
-glance, but it feels like we're duplicating a bunch of infrastructure
-here before it is necessary. The IDs are all internal to Linux, so I'd
-rather we kept everything in the same structure until we have more than
-a handful of vendor extensions. With this patch (and the theadpmu stuff)
-we will have three vendor extensions which feels like a drop in the
-bucket compared to the standard ones.
+Please include this in -rc cycle. This should get rid of below
+messages since v6.9-rc1
 
+[    0.583305] dwc3-am62 f910000.dwc3-usb: invalid resource (null)
+[    0.589304] dwc3-am62 f910000.dwc3-usb: can't map PHY IOMEM resource. Won't apply i2409 fix.
 
-> ---
->  arch/riscv/include/asm/cpufeature.h | 54 +++++++++++++++++++++++++++++++=
-++++++
->  arch/riscv/kernel/cpufeature.c      | 34 ++++++++++++++++++++---
->  2 files changed, 84 insertions(+), 4 deletions(-)
->=20
-> diff --git a/arch/riscv/include/asm/cpufeature.h b/arch/riscv/include/asm=
-/cpufeature.h
-> index db2ab037843a..8f19e3681b4f 100644
-> --- a/arch/riscv/include/asm/cpufeature.h
-> +++ b/arch/riscv/include/asm/cpufeature.h
-> @@ -89,6 +89,10 @@ bool __riscv_isa_extension_available(const unsigned lo=
-ng *isa_bitmap, unsigned i
->  #define riscv_isa_extension_available(isa_bitmap, ext)	\
->  	__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_##ext)
-> =20
-> +bool __riscv_isa_vendor_extension_available(const unsigned long *vendor_=
-isa_bitmap, unsigned int bit);
-> +#define riscv_isa_vendor_extension_available(isa_bitmap, ext)	\
-> +	__riscv_isa_vendor_extension_available(isa_bitmap, RISCV_ISA_VENDOR_EXT=
-_##ext)
-> +
->  static __always_inline bool
->  __riscv_has_extension_likely_alternatives(const unsigned long ext)
->  {
-> @@ -117,6 +121,8 @@ __riscv_has_extension_unlikely_alternatives(const uns=
-igned long ext)
->  	return true;
->  }
-> =20
-> +/* Standard extension helpers */
-> +
->  static __always_inline bool
->  riscv_has_extension_likely(const unsigned long ext)
->  {
-> @@ -163,4 +169,52 @@ static __always_inline bool riscv_cpu_has_extension_=
-unlikely(int cpu, const unsi
->  		return __riscv_isa_extension_available(hart_isa[cpu].isa, ext);
->  }
-> =20
-> +/* Vendor extension helpers */
-> +
-> +static __always_inline bool
-> +riscv_has_vendor_extension_likely(const unsigned long ext)
-> +{
-> +	compiletime_assert(ext < RISCV_ISA_VENDOR_EXT_MAX,
-> +			   "ext must be < RISCV_ISA_VENDOR_EXT_MAX");
-> +
-> +	if (IS_ENABLED(CONFIG_RISCV_ALTERNATIVE))
-> +		return __riscv_has_extension_likely_alternatives(ext);
-> +	else
-> +		return __riscv_isa_vendor_extension_available(NULL, ext);
-> +}
-> +
-> +static __always_inline bool
-> +riscv_has_vendor_extension_unlikely(const unsigned long ext)
-> +{
-> +	compiletime_assert(ext < RISCV_ISA_VENDOR_EXT_MAX,
-> +			   "ext must be < RISCV_ISA_VENDOR_EXT_MAX");
-> +
-> +	if (IS_ENABLED(CONFIG_RISCV_ALTERNATIVE))
-> +		return __riscv_has_extension_unlikely_alternatives(ext);
-> +	else
-> +		return __riscv_isa_vendor_extension_available(NULL, ext);
-> +}
-> +
-> +static __always_inline bool riscv_cpu_has_vendor_extension_likely(int cp=
-u, const unsigned long ext)
-> +{
-> +	compiletime_assert(ext < RISCV_ISA_VENDOR_EXT_MAX,
-> +			   "ext must be < RISCV_ISA_VENDOR_EXT_MAX");
-> +
-> +	if (IS_ENABLED(CONFIG_RISCV_ALTERNATIVE))
-> +		return __riscv_has_extension_likely_alternatives(ext);
-> +	else
-> +		return __riscv_isa_vendor_extension_available(hart_isa_vendor[cpu].isa=
-, ext);
-> +}
-> +
-> +static __always_inline bool riscv_cpu_has_vendor_extension_unlikely(int =
-cpu, const unsigned long ext)
-> +{
-> +	compiletime_assert(ext < RISCV_ISA_VENDOR_EXT_MAX,
-> +			   "ext must be < RISCV_ISA_VENDOR_EXT_MAX");
-> +
-> +	if (IS_ENABLED(CONFIG_RISCV_ALTERNATIVE))
-> +		return __riscv_has_extension_unlikely_alternatives(ext);
-> +	else
-> +		return __riscv_isa_vendor_extension_available(hart_isa_vendor[cpu].isa=
-, ext);
-> +}
+cheers,
+-roger
+---
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi  | 6 ++++--
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi | 6 ++++--
+ 2 files changed, 8 insertions(+), 4 deletions(-)
 
-Same stuff about constant folding applies to these, I think these should
-just mirror the existing functions (if needed at all).
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+index e9cffca073ef..e0ec28b14a07 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+@@ -619,7 +619,8 @@ sdhci2: mmc@fa20000 {
+ 
+ 	usbss0: dwc3-usb@f900000 {
+ 		compatible = "ti,am62-usb";
+-		reg = <0x00 0x0f900000 0x00 0x800>;
++		reg = <0x00 0x0f900000 0x00 0x800>,
++		      <0x00 0x0f908000 0x00 0x400>;
+ 		clocks = <&k3_clks 161 3>;
+ 		clock-names = "ref";
+ 		ti,syscon-phy-pll-refclk = <&wkup_conf 0x4008>;
+@@ -644,7 +645,8 @@ usb0: usb@31000000 {
+ 
+ 	usbss1: dwc3-usb@f910000 {
+ 		compatible = "ti,am62-usb";
+-		reg = <0x00 0x0f910000 0x00 0x800>;
++		reg = <0x00 0x0f910000 0x00 0x800>,
++		      <0x00 0x0f918000 0x00 0x400>;
+ 		clocks = <&k3_clks 162 3>;
+ 		clock-names = "ref";
+ 		ti,syscon-phy-pll-refclk = <&wkup_conf 0x4018>;
+diff --git a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+index aa1e057082f0..93494e30305b 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+@@ -603,7 +603,8 @@ sdhci2: mmc@fa20000 {
+ 
+ 	usbss0: dwc3-usb@f900000 {
+ 		compatible = "ti,am62-usb";
+-		reg = <0x00 0x0f900000 0x00 0x800>;
++		reg = <0x00 0x0f900000 0x00 0x800>,
++		      <0x00 0x0f908000 0x00 0x400>;
+ 		clocks = <&k3_clks 161 3>;
+ 		clock-names = "ref";
+ 		ti,syscon-phy-pll-refclk = <&wkup_conf 0x4008>;
+@@ -626,7 +627,8 @@ usb0: usb@31000000 {
+ 
+ 	usbss1: dwc3-usb@f910000 {
+ 		compatible = "ti,am62-usb";
+-		reg = <0x00 0x0f910000 0x00 0x800>;
++		reg = <0x00 0x0f910000 0x00 0x800>,
++		      <0x00 0x0f918000 0x00 0x400>;
+ 		clocks = <&k3_clks 162 3>;
+ 		clock-names = "ref";
+ 		ti,syscon-phy-pll-refclk = <&wkup_conf 0x4018>;
 
-Cheers,
-Conor.
+---
+base-commit: 4cece764965020c22cff7665b18a012006359095
+change-id: 20240412-for-v6-9-am62-usb-errata-dt-a2c550b7e9a0
 
---OxSigVsCwYUnQIoR
-Content-Type: application/pgp-signature; name="signature.asc"
+Best regards,
+-- 
+Roger Quadros <rogerq@kernel.org>
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZhkf5QAKCRB4tDGHoIJi
-0t21AQDpXCNkKreoJcGsD1c3KhhnWrrt3e8Dua+btfF4IRjd5AD+OTlLyxva26D5
-OHyd+dKNVKNYXjtuHGTu8h6vqaR8mw0=
-=H6/V
------END PGP SIGNATURE-----
-
---OxSigVsCwYUnQIoR--
 
