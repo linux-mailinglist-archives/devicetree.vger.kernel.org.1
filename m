@@ -1,215 +1,297 @@
-Return-Path: <devicetree+bounces-58593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F69E8A27E1
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 09:23:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F05228A27EB
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 09:25:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D01F51F21CE8
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 07:23:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 116E61C224B9
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 07:25:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D58F9168B1;
-	Fri, 12 Apr 2024 07:23:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF76B4AEEF;
+	Fri, 12 Apr 2024 07:25:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WE588yZA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PH3Q5Lnc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5FC14D9F6;
-	Fri, 12 Apr 2024 07:23:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B87E2C683;
+	Fri, 12 Apr 2024 07:25:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712906633; cv=none; b=q63DPNgM2L5N6idTIMf4vhMcmDrYnZ9bT4dgOZXYGkv4sVUzOGEa0JlXWVuDOQbu8aFxv0O5BrxsSJkSSgfZIKSReyhTIZWi4uoEjh/HpicCmzaMuXYpHH1GP4KwoNWjMW1JMgs29RMeOh3WjsTB0eWpMSIvd24t/fUv5KmFdNw=
+	t=1712906708; cv=none; b=Rdb+wGu6URIHJw/xwdl9HtsS2o4k+LwNJG/9X0AQrkbwLjosb2KWGVy4J3RW0ImNtix3O4GsTwr77r1NKXONztQ95dGIG8rpqfTJ8s83rb8mi7QubYnWaz0ElzRpL4z0XxiJvejE4QxguPsssBAacbI8mz0v7CZl1Lhwox6n838=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712906633; c=relaxed/simple;
-	bh=nL/wsZ3JIHXue+/AiiizwW8D0f/5mk3xFk/IoEMY9+0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bkq+Acu31ZXYf9+raCExtk1MbBLva179fSEtOUE8nhKIuQw89dkAosJC5il9jX1e6JZFc36jTLWkyCwx0jyajkd4HUYTzh0gJK4BauKHAKQN/ATILTSIoU0KjTeGMSCBNWwVx88eEmsrZdaw/+ibH/6qCXFx2/Ne9ysa8oEMLRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WE588yZA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8578BC113CC;
-	Fri, 12 Apr 2024 07:23:50 +0000 (UTC)
+	s=arc-20240116; t=1712906708; c=relaxed/simple;
+	bh=1kX9kfzHzhrxx38AopTffWG2kYPAhrnomHNnphARmp8=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=lOb2DEgG6W2JLqI9WSEVl6DBNPg7ow1bxp0MK72sdUkgDpcldbaHSP3GLInHMrwfIDmsNrVVLPf27cxy0RfBsVjjR/jVZLOBu4JHsG80LIKqfkkVMLyQR9OBvqF5e9Ga9Ud4fNdUXC3s5eFYk0QiJkoLiTA7siWjW69zLzd5q8k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PH3Q5Lnc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED614C113CC;
+	Fri, 12 Apr 2024 07:25:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712906633;
-	bh=nL/wsZ3JIHXue+/AiiizwW8D0f/5mk3xFk/IoEMY9+0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WE588yZAYvl0NLgF+Ffj0Fxdxqq0SwD0C3OOLzCi58F2wINmZoAZLKmEyftOOBc88
-	 aoZsYWQrtWk+DU2qe6R0aXmnV+ZDuG1kGx7+ZGyuLHaQT/JV6oYQv9oLhrfDGZcKgF
-	 VTQQdKseE5CD31eKCJLK91vdafqkVo6vJD5B8R0ib5L/nRBpp1tdKAP2vpRx+9RSRC
-	 mLVZh2dp/1aZzGeYrtIkaYWNm16ERPv8N0horKpZuxZT0d2tMqqAXCS7PN/JSyNxAw
-	 EiVrChPux7ZqSH84ligvvRIwbnertROf+0RgEkQwzY18QX0FdIhSmi5DYECclmvCgz
-	 cBB+AReIj/FGg==
-Date: Fri, 12 Apr 2024 08:23:47 +0100
-From: Lee Jones <lee@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
-Subject: Re: [RFC PATCH 3/6] mfd: support ROHM BD96801 PMIC core
-Message-ID: <20240412072347.GM2399047@google.com>
-References: <cover.1712058690.git.mazziesaccount@gmail.com>
- <b86b7a73968810339b6cea7701bc3b6f626b4086.1712058690.git.mazziesaccount@gmail.com>
- <20240411143856.GD2399047@google.com>
- <25c959bc-fb02-42d9-b973-4a74cebd7208@gmail.com>
+	s=k20201202; t=1712906708;
+	bh=1kX9kfzHzhrxx38AopTffWG2kYPAhrnomHNnphARmp8=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=PH3Q5Lnc1/dyrDs7XafAWFsC4e9SKfVWIecn+kI7jaBT27bEfiFtdA0uHmPVH5J8c
+	 9zHCfa84p3D1trAOIsnNiRi2IrN9qyCN+jtVbqwdjkKfMWppvw0lEVhdLmTapBNjFE
+	 rvDW8Bh6PFK/legh5nAd4uYCYoU/zH0xqH3HT8hdEdXDgTxJIp+nOl1ztSTmQUfUCn
+	 gjTKu+ceV1jgF5L3ssNdSDwGG5izOj/yNTE8nZFJXsucVcMxw8IX87zJS9LHlOEd6+
+	 CcuDo4gtH0wPsrQvNqfxxjCc90PoSfLzkdcB+jPGcf8kxMFQ2VAlTuIr8MBIofSurI
+	 k13csdn57iP2g==
+Message-ID: <9be144291cda6d9714252c9cd83649c2.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <25c959bc-fb02-42d9-b973-4a74cebd7208@gmail.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240401-wpcm-clk-v11-3-379472961244@gmx.net>
+References: <20240401-wpcm-clk-v11-0-379472961244@gmx.net> <20240401-wpcm-clk-v11-3-379472961244@gmx.net>
+Subject: Re: [PATCH v11 3/4] clk: wpcm450: Add Nuvoton WPCM450 clock/reset controller driver
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Philipp Zabel <p.zabel@pengutronix.de>, linux-kernel@vger.kernel.org, Jonathan =?utf-8?q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To: Jonathan =?utf-8?q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>, devicetree@vger.kernel.org, linux-clk@vger.kernel.org, openbmc@lists.ozlabs.org
+Date: Fri, 12 Apr 2024 00:25:05 -0700
+User-Agent: alot/0.10
 
-On Fri, 12 Apr 2024, Matti Vaittinen wrote:
+Quoting Jonathan Neusch=C3=A4fer (2024-04-01 07:06:32)
+> This driver implements the following features w.r.t. the clock and reset
+> controller in the WPCM450 SoC:
+>=20
+> - It calculates the rates for all clocks managed by the clock controller
+> - It leaves the clock tree mostly unchanged, except that it enables/
+>   disables clock gates based on usage.
+> - It exposes the reset lines managed by the controller using the
+>   Generic Reset Controller subsystem
+>=20
+> NOTE: If the driver and the corresponding devicetree node are present,
+>       the driver will disable "unused" clocks. This is problem until
+>       the clock relations are properly declared in the devicetree (in a
+>       later patch). Until then, the clk_ignore_unused kernel parameter
+>       can be used as a workaround.
+>=20
+> Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+> Reviewed-by: Joel Stanley <joel@jms.id.au>
+> ---
+>=20
+> I have considered converting this driver to a platform driver instead of
+> using CLK_OF_DECLARE, because platform drivers are generally the way
+> forward. However, the timer-npcm7xx driver used on the same platform
+> requires is initialized with TIMER_OF_DECLARE and thus requires the
+> clocks to be available earlier than a platform driver can provide them.
 
-> Hi deee Ho Lee!
-> 
-> Thanks a ton for taking a look at this :) I already sent the V2 yesterday,
-> briefly before receiving your comments. I think all of the comments are
-> relevant for the V2 as well, I will fix them for the V3 when I get to that.
-> If you find the time to take a look at V2, then the major things are
-> addition of a watchdog IRQ + a work-around for the debugFS name collision
-> for IRQ domains.
-> 
-> On 4/11/24 17:38, Lee Jones wrote:
-> > On Tue, 02 Apr 2024, Matti Vaittinen wrote:
-> > 
-> > > The ROHM BD96801 PMIC is highly customizable automotive grade PMIC
-> > > which integrates regulator and watchdog funtionalities.
-> > > 
-> > > Provide IRQ and register accesses for regulator/watchdog drivers.
-> > > 
-> > > Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> > > ---
-> > >   drivers/mfd/Kconfig              |  13 +
-> > >   drivers/mfd/Makefile             |   1 +
-> > >   drivers/mfd/rohm-bd96801.c       | 454 +++++++++++++++++++++++++++++++
-> > >   include/linux/mfd/rohm-bd96801.h | 212 +++++++++++++++
-> > >   include/linux/mfd/rohm-generic.h |   1 +
-> > >   5 files changed, 681 insertions(+)
-> > >   create mode 100644 drivers/mfd/rohm-bd96801.c
-> > >   create mode 100644 include/linux/mfd/rohm-bd96801.h
-> > > 
-> > > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> > > index 4b023ee229cf..947045eb3a8e 100644
-> > > --- a/drivers/mfd/Kconfig
-> > > +++ b/drivers/mfd/Kconfig
-> > > @@ -2089,6 +2089,19 @@ config MFD_ROHM_BD957XMUF
-> > >   	  BD9573MUF Power Management ICs. BD9576 and BD9573 are primarily
-> > >   	  designed to be used to power R-Car series processors.
-> > > +config MFD_ROHM_BD96801
-> > > +	tristate "ROHM BD96801 Power Management IC"
-> > > +	depends on I2C=y
-> > > +	depends on OF
-> > > +	select REGMAP_I2C
-> > > +	select REGMAP_IRQ
-> > > +	select MFD_CORE
-> > > +	help
-> > > +	  Select this option to get support for the ROHM BD96801 Power
-> > > +	  Management IC. The ROHM BD96801 is a highly scalable power management
-> > 
-> > Power Management
-> 
-> Out of the curiosity, why is the "Power Management IC" written with
-> capitals, when speaking of a class of devices instead of a model? (I am 100%
-> fine with the change, just curious).
+In that case you can use CLK_OF_DECLARE_DRIVER(), register the clks
+needed for the timer driver to probe, and then put the rest of the clk
+registration in a normal platform driver.
 
-It's no different to how its expressed in the tristate section above.
+> diff --git a/drivers/clk/nuvoton/clk-wpcm450.c b/drivers/clk/nuvoton/clk-=
+wpcm450.c
+> new file mode 100644
+> index 00000000000000..9100c4b8a56483
+> --- /dev/null
+> +++ b/drivers/clk/nuvoton/clk-wpcm450.c
+> @@ -0,0 +1,372 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Nuvoton WPCM450 clock and reset controller driver.
+> + *
+> + * Copyright (C) 2022 Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+> + */
+> +
+> +#define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
-Power Management IC or PMIC.
+Isn't KBUILD_MODNAME an option already for dynamic debug?
 
-  "provides power management capabilities" describes its function?
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/io.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_address.h>
+> +#include <linux/reset-controller.h>
+> +#include <linux/reset/reset-simple.h>
+> +#include <linux/slab.h>
+> +
+[...]
+> +
+> +static const struct clk_parent_data default_parents[] =3D {
+> +       { .name =3D "pll0" },
+> +       { .name =3D "pll1" },
+> +       { .name =3D "ref" },
+> +};
+> +
+> +static const struct clk_parent_data huart_parents[] =3D {
+> +       { .fw_name =3D "ref" },
+> +       { .name =3D "refdiv2" },
 
-  "is a scalable Power Management IC", describes the device?
+Please remove all .name elements and use indexes or direct pointers.
 
-But actually, it just looks odd when both are used in the same section.
+> +};
+> +
+> +static const struct wpcm450_clksel_data clksel_data[] =3D {
+> +       { "cpusel", default_parents, ARRAY_SIZE(default_parents),
+> +               parent_table, 0, 2, -1, CLK_IS_CRITICAL },
+> +       { "clkout", default_parents, ARRAY_SIZE(default_parents),
+> +               parent_table, 2, 2, -1, 0 },
+> +       { "usbphy", default_parents, ARRAY_SIZE(default_parents),
+> +               parent_table, 6, 2, -1, 0 },
+> +       { "uartsel", default_parents, ARRAY_SIZE(default_parents),
+> +               parent_table, 8, 2, WPCM450_CLK_USBPHY, 0 },
+> +       { "huartsel", huart_parents, ARRAY_SIZE(huart_parents),
+> +               parent_table, 10, 1, -1, 0 },
+> +};
+> +
+> +static const struct clk_div_table div_fixed2[] =3D {
+> +       { .val =3D 0, .div =3D 2 },
+> +       { }
+> +};
+> +
+> +struct wpcm450_clkdiv_data {
+> +       const char *name;
+> +       struct clk_parent_data parent;
+> +       int div_flags;
+> +       const struct clk_div_table *table;
+> +       int shift;
+> +       int width;
+> +       unsigned long flags;
+> +};
+> +
+> +static struct wpcm450_clkdiv_data clkdiv_data_early[] =3D {
+> +       { "refdiv2", { .name =3D "ref" }, 0, div_fixed2, 0, 0 },
+> +};
+> +
+> +static const struct wpcm450_clkdiv_data clkdiv_data[] =3D {
+> +       { "cpu", { .name =3D "cpusel" }, 0, div_fixed2, 0, 0, CLK_IS_CRIT=
+ICAL },
+> +       { "adcdiv", { .name =3D "ref" }, CLK_DIVIDER_POWER_OF_TWO, NULL, =
+28, 2, 0 },
+> +       { "apb", { .name =3D "ahb" }, CLK_DIVIDER_POWER_OF_TWO, NULL, 26,=
+ 2, 0 },
+> +       { "ahb", { .name =3D "cpu" }, CLK_DIVIDER_POWER_OF_TWO, NULL, 24,=
+ 2, 0 },
+> +       { "uart", { .name =3D "uartsel" }, 0, NULL, 16, 4, 0 },
+> +       { "ahb3", { .name =3D "ahb" }, CLK_DIVIDER_POWER_OF_TWO, NULL, 8,=
+ 2, 0 },
+> +};
+> +
+> +struct wpcm450_clken_data {
+> +       const char *name;
+> +       struct clk_parent_data parent;
+> +       int bitnum;
+> +       unsigned long flags;
+> +};
+> +
+> +static const struct wpcm450_clken_data clken_data[] =3D {
+> +       { "fiu", { .name =3D "ahb3" }, WPCM450_CLK_FIU, 0 },
 
-/me likes uniformity and consistency.
+This actually is  { .index =3D 0, .name =3D "ahb3" } and that is a bad
+combination. struct clk_parent_data should only have .name as a fallback
+when there's an old binding out there that doesn't have the 'clocks'
+property for the clk provider node. There shouldn't be any .name
+property because this is new code and a new binding.
 
-> > > +	  IC for industrial and automotive use. The BD96801 can be used as a
-> > > +	  master PMIC in a chained PMIC solutions with suitable companion PMICs
-> ...
-> 
-> > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > +//
-> > > +// Copyright (C) 2022 ROHM Semiconductors
-> > 
-> > No updates for 2 years?
-> 
-> The year should be updated - thanks. But, now that you asked...  Almost no
-> updates. The patches have rotten in my outbox, waiting for the permisson to
-> be sent out... But yeah, I've sure added some changes before sending the
-> series - I'll update the copyright :)
-> 
-> > > +
-> > > +static int bd96801_i2c_probe(struct i2c_client *i2c)
-> > > +{
-> > > +	int i, ret, intb_irq, errb_irq, num_regu_irqs, num_intb, num_errb = 0;
-> > > +	struct regmap_irq_chip_data *intb_irq_data, *errb_irq_data;
-> > > +	struct irq_domain *intb_domain, *errb_domain;
-> > > +	const struct fwnode_handle *fwnode;
-> > > +	struct resource *regulator_res;
-> > > +	struct regmap *regmap;
-> > > +
-> > > +	fwnode = dev_fwnode(&i2c->dev);
-> > > +	if (!fwnode) {
-> > > +		dev_err(&i2c->dev, "no fwnode\n");
-> > > +		return -EINVAL;
-> > 
-> > Why not dev_err_probe() here for uniformity?
-> 
-> I can change it to dev_err_probe() if it's strongly preferred. It just feels
-> silly to use dev_err_probe() when the return value is hardcoded.
+> +       { "xbus", { .name =3D "ahb3" }, WPCM450_CLK_XBUS, 0 },
+> +       { "kcs", { .name =3D "apb" }, WPCM450_CLK_KCS, 0 },
+> +       { "shm", { .name =3D "ahb3" }, WPCM450_CLK_SHM, 0 },
+> +       { "usb1", { .name =3D "ahb" }, WPCM450_CLK_USB1, 0 },
+> +       { "emc0", { .name =3D "ahb" }, WPCM450_CLK_EMC0, 0 },
+> +       { "emc1", { .name =3D "ahb" }, WPCM450_CLK_EMC1, 0 },
+> +       { "usb0", { .name =3D "ahb" }, WPCM450_CLK_USB0, 0 },
+> +       { "peci", { .name =3D "apb" }, WPCM450_CLK_PECI, 0 },
+> +       { "aes", { .name =3D "apb" }, WPCM450_CLK_AES, 0 },
+> +       { "uart0", { .name =3D "uart" }, WPCM450_CLK_UART0, 0 },
+> +       { "uart1", { .name =3D "uart" }, WPCM450_CLK_UART1, 0 },
+> +       { "smb2", { .name =3D "apb" }, WPCM450_CLK_SMB2, 0 },
+> +       { "smb3", { .name =3D "apb" }, WPCM450_CLK_SMB3, 0 },
+> +       { "smb4", { .name =3D "apb" }, WPCM450_CLK_SMB4, 0 },
+> +       { "smb5", { .name =3D "apb" }, WPCM450_CLK_SMB5, 0 },
+> +       { "huart", { .name =3D "huartsel" }, WPCM450_CLK_HUART, 0 },
+> +       { "pwm", { .name =3D "apb" }, WPCM450_CLK_PWM, 0 },
+> +       { "timer0", { .name =3D "refdiv2" }, WPCM450_CLK_TIMER0, 0 },
+> +       { "timer1", { .name =3D "refdiv2" }, WPCM450_CLK_TIMER1, 0 },
+> +       { "timer2", { .name =3D "refdiv2" }, WPCM450_CLK_TIMER2, 0 },
+> +       { "timer3", { .name =3D "refdiv2" }, WPCM450_CLK_TIMER3, 0 },
+> +       { "timer4", { .name =3D "refdiv2" }, WPCM450_CLK_TIMER4, 0 },
+> +       { "mft0", { .name =3D "apb" }, WPCM450_CLK_MFT0, 0 },
+> +       { "mft1", { .name =3D "apb" }, WPCM450_CLK_MFT1, 0 },
+> +       { "wdt", { .name =3D "refdiv2" }, WPCM450_CLK_WDT, 0 },
+> +       { "adc", { .name =3D "adcdiv" }, WPCM450_CLK_ADC, 0 },
+> +       { "sdio", { .name =3D "ahb" }, WPCM450_CLK_SDIO, 0 },
+> +       { "sspi", { .name =3D "apb" }, WPCM450_CLK_SSPI, 0 },
+> +       { "smb0", { .name =3D "apb" }, WPCM450_CLK_SMB0, 0 },
+> +       { "smb1", { .name =3D "apb" }, WPCM450_CLK_SMB1, 0 },
+> +};
+> +
+> +static DEFINE_SPINLOCK(wpcm450_clk_lock);
+> +
+> +/*
+> + * NOTE: Error handling is very rudimentary here. If the clock driver in=
+itial-
+> + * ization fails, the system is probably in bigger trouble than what is =
+caused
 
-Not at all:
+Don't break words across lines with hyphens.
 
-git grep dev_err_probe | grep "\-[A-Z]"
+> + * by a few leaked resources.
+> + */
+> +
+> +static void __init wpcm450_clk_init(struct device_node *np)
+> +{
+> +       struct clk_hw_onecell_data *clk_data;
+> +       static struct clk_hw **hws;
+> +       static struct clk_hw *hw;
+> +       void __iomem *clk_base;
+> +       int i, ret;
+> +       struct reset_simple_data *reset;
+> +
+> +       clk_base =3D of_iomap(np, 0);
+> +       if (!clk_base) {
+> +               pr_err("%pOFP: failed to map registers\n", np);
+> +               of_node_put(np);
+> +               return;
+> +       }
+> +       of_node_put(np);
 
-> Intentionally writing code like
-> 
-> err = -EINVAL;
-> if (err == ...)
-> 
-> just makes me feel a bit sick.
+The 'np' is used later when registering PLLs. You can only put the node
+after it's no longer used. Also, you never got the node with
+of_node_get(), so putting it here actually causes an underflow on the
+refcount. Just remove all the get/puts instead.
 
-Why would you want to do that?
+> +
+> +       clk_data =3D kzalloc(struct_size(clk_data, hws, WPCM450_NUM_CLKS)=
+, GFP_KERNEL);
+> +       if (!clk_data)
+> +               return;
+> +
+> +       clk_data->num =3D WPCM450_NUM_CLKS;
+[...]
+> +       /* Reset controller */
+> +       reset =3D kzalloc(sizeof(*reset), GFP_KERNEL);
+> +       if (!reset)
+> +               return;
+> +       reset->rcdev.owner =3D THIS_MODULE;
+> +       reset->rcdev.nr_resets =3D WPCM450_NUM_RESETS;
+> +       reset->rcdev.ops =3D &reset_simple_ops;
+> +       reset->rcdev.of_node =3D np;
+> +       reset->membase =3D clk_base + REG_IPSRST;
+> +       ret =3D reset_controller_register(&reset->rcdev);
+> +       if (ret)
+> +               pr_err("Failed to register reset controller: %pe\n", ERR_=
+PTR(ret));
 
-> > > +	}
-> > > +
-> > > +	intb_irq = fwnode_irq_get_byname(fwnode, "intb");
-> > > +	if (intb_irq < 0)
-> > > +		return dev_err_probe(&i2c->dev, intb_irq,
-> > > +				     "No INTB IRQ configured\n");
-> > 
-> > This function would look nicer if you expanded to 100-chars.
-> 
-> The reason why I still prefer the good old 80-chars for files I work with,
-> is that I am often having 3 terminal windows parallel on my laptop screen.
-> (Or, when I have my wide mofnitor connected it is 3 editor windows +
-> minicom). I need to keep the terminals small enough. Besides... I hate to
-> admit this, but the time is finally taking it's toll. My eyes aren't quite
-> the same they were 2 years ago...
+It would be nicer to register this device as an auxiliary device with a
+single API call and then have all the resets exist in that file
+instead of this file. The driver would be put in drivers/reset/ as well.
 
-Upgrade your 14" CRT monitor to something more modern. :)
+> +
+> +       of_node_put(np);
 
-I have a 32" 4k monitor with a good sized font and each of my 3
-terminals (per i3 workspace) are ~150 chars wide.
-
-> So, same old story, I can change this if it is important enough for others,
-> but personally I rather work with the short lines.
-
-It's not a showstopper.
-
--- 
-Lee Jones [李琼斯]
+Drop this of_node_put()
 
