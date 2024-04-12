@@ -1,180 +1,149 @@
-Return-Path: <devicetree+bounces-58658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 681CA8A2BEA
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 12:06:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 072388A2C04
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 12:12:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 999D51C23694
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 10:06:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B32EB2859B2
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 10:12:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CA3853373;
-	Fri, 12 Apr 2024 10:05:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F252051C4C;
+	Fri, 12 Apr 2024 10:12:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC25430673;
-	Fri, 12 Apr 2024 10:05:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EE33535DC
+	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 10:12:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712916339; cv=none; b=DdKD8KJQbI76dCNyoG3fbh33ie3XV+1C/yIEEW/PMrQWqpCKlRiqrihpSuVg85yAGLsuFHVlmwIFG5iD+sSkmxwPqqqYrwNHXx5twGYc2MvwX36DJrRP+Ny5kUuVC8vG13uW43d4rJ+RBQwCYJgCLHFmY8pZQxA8dit4HJj3eLY=
+	t=1712916754; cv=none; b=oqeVUZ+23TlV42yNYMXZzUgDykkQioUQz3uUIyuQ33+VPJYzkT33xWLuD7EAWardp+3WxP8syhMaCZYeAPzVtZFNMJvaqO3hYOYvBgNFIHzS/bFRjELqYFE5ewynk/eA3PeSeronGLmjHWNuUqI4+O8qy1RWQqBFG96RZyH9kwE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712916339; c=relaxed/simple;
-	bh=EkjLXSEsa7m9cJl/GBEGrhoAnqPXfgfS8vyCa9AUeis=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pUYNNNovtxHbBsVvz4VBGFUer7q6WCARy/FfC/lqOg/fERMMohNmOEgJKFP6H4sBBfccmnnYjGRBhKzqxvf9PtwHhf53ufGRvzVXpbvtis8Mu2YcsKHI1MfstNl9Rq3eCGl4qPf5P46NHJQinXUb768YEQMfeTOA4Mxt/d0ufvA=
+	s=arc-20240116; t=1712916754; c=relaxed/simple;
+	bh=2Rv2YFc8gDQ1ndQyokCmLdr09YpcBmBsZrm8a/rpxyc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KQ4e26as587ioLKn9vo08ShYkS38DXHLO4wERC/RTplNCKYCCM4HgLsBwaVsXg79Xf1/mpWAyBu6Mbvpe5rTMZXFczY3yZp+agvN4xsLhmg0gaL8/xZTkEK7bovTXIh3iVb0Xk0po1cnsQRWVzolZc4Ko9snP6sNyztVaJOqHxc=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3FEAD339;
-	Fri, 12 Apr 2024 03:06:03 -0700 (PDT)
-Received: from [192.168.1.100] (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1ED0B3F64C;
-	Fri, 12 Apr 2024 03:05:32 -0700 (PDT)
-Message-ID: <d707430f-00ee-4427-a9e4-6e42bc5b6aa9@arm.com>
-Date: Fri, 12 Apr 2024 11:05:31 +0100
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 00DC5339;
+	Fri, 12 Apr 2024 03:13:02 -0700 (PDT)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1E7613F64C;
+	Fri, 12 Apr 2024 03:12:31 -0700 (PDT)
+Date: Fri, 12 Apr 2024 11:12:28 +0100
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Nikunj Kela <quic_nkela@quicinc.com>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Trilok Soni <quic_tsoni@quicinc.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	"Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	<krzysztof.kozlowski+dt@linaro.org>,
+	Vincent Guittot <vincent.guittot@linaro.org>, <robh+dt@kernel.org>,
+	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+	"Prasad Sodagudi (QUIC)" <quic_psodagud@quicinc.com>
+Subject: Re: DT Query on "New Compatible vs New Property"
+Message-ID: <ZhkJDNQk1j8koG-H@bogus>
+References: <0411f99d-231a-af4b-d681-7f7748361aa3@quicinc.com>
+ <904978d8-eab4-4936-86dc-b0b1e7c40256@linaro.org>
+ <Zfl-Z3vm-3sQ5TN5@bogus>
+ <d51ef79a-012e-4701-ac8c-4d1da1827dd8@linaro.org>
+ <Zfmsjg2rb_ZMc4tA@bogus>
+ <33783999-227b-4837-9924-2fd99b210cbb@linaro.org>
+ <Zfm5m2zp4A06ZunW@bogus>
+ <c66f280b-aa29-4b18-98f1-701f60cbc63d@quicinc.com>
+ <ZhesH9ikZiy8ah6J@bogus>
+ <7d1491dc-fbe8-44e0-920d-b1bda1a64890@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 5/7] coresight: tmc: Add support for reading crash data
-To: Linu Cherian <lcherian@marvell.com>,
- Suzuki K Poulose <suzuki.poulose@arm.com>
-Cc: linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
- linux-kernel@vger.kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, sgoutham@marvell.com, gcherian@marvell.com,
- Anil Kumar Reddy <areddy3@marvell.com>, Tanmay Jagdale <tanmay@marvell.com>,
- mike.leach@linaro.org, leo.yan@linaro.org
-References: <20240307033625.325058-1-lcherian@marvell.com>
- <20240307033625.325058-6-lcherian@marvell.com>
-Content-Language: en-US
-From: James Clark <james.clark@arm.com>
-In-Reply-To: <20240307033625.325058-6-lcherian@marvell.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <7d1491dc-fbe8-44e0-920d-b1bda1a64890@quicinc.com>
 
-
-
-On 07/03/2024 03:36, Linu Cherian wrote:
-> * Introduce a new mode CS_MODE_READ_CRASHDATA for reading trace
->   captured in previous crash/watchdog reset.
+On Thu, Apr 11, 2024 at 08:59:53AM -0700, Nikunj Kela wrote:
 > 
-> * Add special device files for reading ETR/ETF crash data.
-> 
-> * User can read the crash data as below
-> 
->   For example, for reading crash data from tmc_etf sink
-> 
->   #dd if=/dev/crash_tmc_etfXX of=~/cstrace.bin
-> 
-> Signed-off-by: Anil Kumar Reddy <areddy3@marvell.com>
-> Signed-off-by: Tanmay Jagdale <tanmay@marvell.com>
-> Signed-off-by: Linu Cherian <lcherian@marvell.com>
-> ---
-> Changelog from v6:
-> * Removed read_prevboot flag in sysfs
-> * Added special device files for reading crashdata 
-> * Renamed CS mode READ_PREVBOOT to READ_CRASHDATA 
-> * Setting the READ_CRASHDATA mode is done as part of file open.
-> 
+> On 4/11/2024 2:23 AM, Sudeep Holla wrote:
+> > On Wed, Apr 10, 2024 at 09:55:24AM -0700, Nikunj Kela wrote:
+> > > On 3/19/2024 9:13 AM, Sudeep Holla wrote:
+> > > > On Tue, Mar 19, 2024 at 03:41:40PM +0000, Srinivas Kandagatla wrote:
+> > > > > On 19/03/2024 15:17, Sudeep Holla wrote:
+> > > > > > I am not debating on the implementation just to be clear. I accept changes
+> > > > > > might be needed there. The $subject is all about DT bindings and what need
+> > > > > > to be changes and for me nothing, just use existing bindings and if there
+> > > > > > are issues there, let us discuss it with specifics.
+> > > > > > 
+> > > > > How can changes to dt bindings be nothing? All the resources
+> > > > > clk/regulators/resets will become optional and a new power or perf domain
+> > > > > will become required for each device with firmwares that support SCMI Perf.
+> > > > > 
+> > > > Correct, sorry to miss the point that few properties are now optional from
+> > > > mandatory before. Very good point. I was so caught up with the addition of
+> > > > the new "firmware controlled blah blah" property/compatible that I missed
+> > > > to observe mandatory->optional as a change. Thanks for correcting me.
+> > > > 
+> > > If there are no more questions on this and everyone is on the same page, I
+> > > would like to conclude this thread in favor of using a new DT property
+> > > 'qcom,firmware-managed-resources'.
+> > > 
+> > This is exactly opposite to what I have advocated so far in this thread.
+> > Not sure how you drew to this conclusion. Check [1] and [2] for example.
+> > The point was not to have qcom specific compatibles or properties as it
+> > doesn't scale well. Please chime into those if you have argument and how
+> > you came to this conclusion.
+> > 
+> > --
+> > Regards,
+> > Sudeep
+> > 
+> > [1] https://lore.kernel.org/all/ZfMZ9ATxuvONcGpz@bogus
+> > [2] https://lore.kernel.org/all/0411f99d-231a-af4b-d681-7f7748361aa3@quicinc.com
+> Hi Sudeep, we had a discussion with Linaro team on this and people suggested
+> that this should be a vendor specific property since different vendors might
+> abstract differently.
 
-[...]
+Unless you point to some public discussion or meeting notes it is hard to
+understand what was discussed and how this conclusion was drawn, definitely
+not evident from the thread. Any pointers to the meeting notes ? If it was
+private, just assume it didn't happen when responding on public ML threads
+like these. Otherwise it adds more confusion and won't be much of a help IMO.
 
-> @@ -619,6 +740,19 @@ static int tmc_probe(struct amba_device *adev, const struct amba_id *id)
->  		coresight_unregister(drvdata->csdev);
->  	else
->  		pm_runtime_put(&adev->dev);
-> +
-> +	if (!is_tmc_reserved_region_valid(dev))
-> +		goto out;
-> +
-> +	drvdata->crashdev.name =
-> +		devm_kasprintf(dev, GFP_KERNEL, "%s_%s", "crash", desc.name);
-> +	drvdata->crashdev.minor = MISC_DYNAMIC_MINOR;
-> +	drvdata->crashdev.fops = &tmc_crashdata_fops;
-> +	ret = misc_register(&drvdata->crashdev);
-> +	if (ret)
-> +		pr_err("%s: Failed to setup dev interface for crashdata\n",
-> +		       desc.name);
-> +
+> Moreover, our changes are only in Qualcomm drivers so
+> it made sense to use vendor specific property. That being said, if you are
+> suggesting that we remove Qcom from it, I can again discuss this. I will let
+> Srini and other pitch in here if they want to add more to it.
 
-Is this all optional after the is_tmc_reserved_region_valid()? Skipping
-to out seems to be more like an error condition, but in this case it's
-not? Having it like this makes it more difficult to add extra steps to
-the probe function. You could move it to a function and flip the
-condition which would be clearer:
+Sorry, there are lots of points made on this thread which you have not
+read(missed) or not yet responded. So I suggest you to go through the thread
+and then either respond or better start a new thread summarising what is
+addressed so far what is not addressed, if you have responses to those
+questions.
 
-   if (is_tmc_reserved_region_valid(dev))
-      register_crash_dev_interface(drvdata);
+Since this has become a huge thread now, it may make it hard for people
+to follow, annoy few others 😉. So I suggest to start a new thread capturing
+highlights of the discussion so far.
 
+For me, you seem to have missed how you address this on a generic USB or
+some other non-Qcom IP is the main question I have repeatedly asked and
+haven't received any comments on that topic. Trilok suggested that case
+needs to be considered even on Qcom SoC which makes you argument that I
+will first address Qcom IPs only just weak.
 
->  out:
->  	return ret;
->  }
+So at this point, I have to conclude you are not interested in addressing
+that if you continue in that direction and accept that you will go ahead
+with Qcom specific solution anyways. If so, I may have to skip getting
+involved in these discussions in the future as I believe it may be just
+waste of my time. Sorry if that's harsh, nothing personal.
 
-[...]
-
->  
-> +static int tmc_etr_setup_crashdata_buf(struct tmc_drvdata *drvdata)
-> +{
-> +	int rc = 0;
-> +	u64 trace_addr;
-> +	struct etr_buf *etr_buf;
-> +	struct etr_flat_buf *resrv_buf;
-> +	struct tmc_crash_metadata *mdata;
-> +	struct device *dev = &drvdata->csdev->dev;
-> +
-> +	mdata = drvdata->crash_mdata.vaddr;
-> +
-> +	etr_buf = kzalloc(sizeof(*etr_buf), GFP_ATOMIC);
-> +	if (!etr_buf) {
-> +		rc = -ENOMEM;
-> +		goto out;
-> +	}
-> +	etr_buf->size = drvdata->crash_tbuf.size;
-> +
-> +	resrv_buf = kzalloc(sizeof(*resrv_buf), GFP_ATOMIC);
-> +	if (!resrv_buf) {
-> +		rc = -ENOMEM;
-> +		goto rmem_err;
-> +	}
-> +
-> +	/*
-> +	 * Buffer address given by metadata for retrieval of trace data
-> +	 * from previous boot is expected to be same as the reserved
-> +	 * trace buffer memory region provided through DTS
-> +	 */
-> +	if (is_tmc_reserved_region_valid(dev->parent)
-> +	    && (drvdata->crash_tbuf.paddr == mdata->trc_paddr))
-> +		resrv_buf->vaddr = drvdata->crash_tbuf.vaddr;
-> +	else {
-> +		dev_dbg(dev, "Trace buffer address of previous boot invalid\n");
-> +		rc = -EINVAL;
-> +		goto map_err;
-> +	}
-> +
-> +	resrv_buf->size = etr_buf->size;
-> +	resrv_buf->dev = &drvdata->csdev->dev;
-> +	etr_buf->hwaddr = trace_addr;
-
-trace_addr is uninitialised at this point. If you pull the latest
-coresight branch we enabled some extra compiler warnings which catch this.
-
-I assume it's supposed to be mdata->trc_paddr?
-
-Is there some kind of test that could be added that could have caught
-this? Maybe skip the full reboot flow but just enable the feature and
-see if we can read from the buffer.
-
-Or even just toggling the mode on and off via sysfs. We're running the
-Perf and kselftests on Juno internally so I can add a reserved region to
-the Juno DT and make sure this stays working.
-
-
+--
+Regards,
+Sudeep
 
