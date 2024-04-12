@@ -1,226 +1,313 @@
-Return-Path: <devicetree+bounces-58830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C670D8A3504
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 19:43:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF4248A352B
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 19:53:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3FBC51F23A8C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 17:43:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D54811C21DD3
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 17:53:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F6D614D718;
-	Fri, 12 Apr 2024 17:43:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2CD514E2F4;
+	Fri, 12 Apr 2024 17:53:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="VREmx/I4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J40qsZ/o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EDFA14B08C
-	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 17:43:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9849114E2ED
+	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 17:53:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712943789; cv=none; b=tMp2lhdFNCq/20LNqVLtGr73Bd9kBk45wnK218cgoA21rnbe3eo3HJZnSZdyYVQf+bgWwkoTYMhL4eiPueeMpgOo5rbSwFGJoSDnzxLMYBljobn5IOMLSW20gPe0evwCxESxF/ZeavpgnOHMF3FLpCqMOhG8h3XWnn8y16EoK0M=
+	t=1712944403; cv=none; b=JVnP0M6SLRGa/sBJxr5sZ4KMBdB+SR8ZDBXh7wM0kBsFcnKVfAx1RsvRWexYGSfgDA1j3NPgV/ZFCgS5f5fQdGxUIlTcIUx9U1u/F4Mk+d9f83iskkFXByzDlsczA/adAecYZ5s7NRzCSZTVssWDOul3xtw9Vg3fz7K9EwPLxRw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712943789; c=relaxed/simple;
-	bh=398UBf0wjuXyW1KRcz0N92ExG8gOAwZvnLb+5hA8430=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WkzTvLEtUELp2vvyX9zKBEltRsdk+qeJgtdebKbq6b/Y9VDs3SttbbQYdxRRmWdqC4zw+oqAgSpYnrTOcCr4r/Qyo/ZtxT6dg26G577j4WX3xkbRoXtxU8aKjXmmBeqYPRQ5HQvA0PSJxoyrjh1bf6pK05WSnB/ccIO2A3Zk/PQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=VREmx/I4; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1e3c3aa8938so7900015ad.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 10:43:06 -0700 (PDT)
+	s=arc-20240116; t=1712944403; c=relaxed/simple;
+	bh=Vy2PIzMgnUyeUzulkPx73WrRDMmKgp/2MfijXqNpzkA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=l4fbuUr2sxMrV6K+Lc05aw5ukPw0LVOtQNHyKaS4Ts5H++WF2dSCsHzkpOshPQUsF2ue99RVAjfJnDBGnn3QlZkbYT/ul4OInjesDyWs2i+g7Z8vc1xJra+yC/7n1mhDE98ULlAebmmHZCJPps3UsXQi/yoizfslq8tiMFbSOSE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=J40qsZ/o; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a450bedffdfso153242566b.3
+        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 10:53:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1712943786; x=1713548586; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=8YRvEt+OTF00KrpCNHpUGlZ7toxHUQ85PqnBkH5iiOI=;
-        b=VREmx/I4Bl8fL+erIIvIEgsEoPlqugBORJ930NOMVQeeB8gjpQm0aFTE3G73Jvtrgx
-         B1rAIbF3LXz5Mdnck0/OYdjc3aLIYWNlMq9S7+w8lXvp7DGbceXEfM47U0o1+4wQ6kuo
-         rEB5HpjVvcbkb8hrDI4vcHc0CcMKQxvF8VGrgAZyHrC0zFs4BLnJ4xZNwHZWENg03/Sd
-         lLPrOe7tstnqZZ8p3E0QTAaCoYg+5GlDjhoZr3on5BpjgnnZOru3nbH82Y6WaK/H3P/6
-         kdySzfhHxh8ZGab/OalYe9YkNBc6SdlT6XRz4xPlCBezUQ718IoXkN5Tkm4B/cFyuuzb
-         hLdw==
+        d=linaro.org; s=google; t=1712944400; x=1713549200; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=nKSg4RwnYAFK/sdZVIxX1EI01vqvwtxplSvYVO3pwdw=;
+        b=J40qsZ/oCObbwCh/3eaCg98IrVG7FuMDYzTgR7tAr7+0AHWRwmBFLnGbwTAxwa+fg8
+         IN5IMXTEKcQ+GcnSHzloYNxw0VEgauPZblmCp2uZ4ZE0beeFYmehl8CWIcJDmiRuU7lB
+         oSgFTVGdBIhnGGQk4pAcaYiD/rxyTUPUzioMdKgdOm1LketMhEdhQlGyqQYy54MHhhQH
+         VozbQc497XqoqMo8HudyEmv/NN1lE4eGcEkZJad71LSdhwR8I8syRbOgajRen7v4ANQz
+         98Cdge0jb60qW7p5EI9sdc9oL87YCj5rX7dfjVFncBukeijGTj+Ns2rTUCLKAdIPia+i
+         3JjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712943786; x=1713548586;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1712944400; x=1713549200;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=8YRvEt+OTF00KrpCNHpUGlZ7toxHUQ85PqnBkH5iiOI=;
-        b=OMuRvLWJ3/zjpgwdAlobt7zxPYuy4UDYdgblz5uCcuxvlQYlu6mhCYjbb/sMYpN+9X
-         RqUfX71Bpst2Dc6X+krdW8G1Mr+M+SevzaUFG9z1xQgV2ooUu7W2gyjW6oLYIwF0bhd3
-         K4H5a0xo8azTmN0dx8lRr2c/5+z8TnisDxnKUkvifjdd3UDo1+mE/BahQ3XkIWvLTBlQ
-         6akGADGVEhLOAlY3TbUem3+UphSjDQIi1nJ+vormGFDkWgiXS5LMEMplUUBOZudtx4AI
-         bj7fdjylmQtR0Q4sWreUoliHj3JWANtXiqNC0eCDSrpHGuZ7dv7uvDd/pYQeNS65AxWO
-         swxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVCBwaVCRj0MH9Rfa8NKKy4WeyOMTW/VUH4PpPK8V8EjVy0wOfL50lRLbywQCgACWo2gKzZ8Lsjv9Lf1zL1ia9TFCbRjDKgXvel9A==
-X-Gm-Message-State: AOJu0Yyda6b/gfCUv+qwug8mliWGipsfiS4NDNHdZ2hyj7bTA2fwNreh
-	hr3ktKOAQYk8Q7EUjERIbITs08WHnUdRT2ShVtdlrXN9t3E2dsdQaDjYmF++0kM=
-X-Google-Smtp-Source: AGHT+IE1KS+cgoHgP39ECdNzoJBDC8vTl8/0G5V7240HCpKQkDUzHJq76jMWfkj5KFoeGRTzjJqSZQ==
-X-Received: by 2002:a17:902:d303:b0:1e0:bae4:48f9 with SMTP id b3-20020a170902d30300b001e0bae448f9mr3205407plc.32.1712943785937;
-        Fri, 12 Apr 2024 10:43:05 -0700 (PDT)
-Received: from ghost ([2601:647:5700:6860:121b:da6b:94f1:304])
-        by smtp.gmail.com with ESMTPSA id h9-20020a170902f2c900b001e0e5722788sm3287804plc.17.2024.04.12.10.43.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Apr 2024 10:43:05 -0700 (PDT)
-Date: Fri, 12 Apr 2024 10:43:02 -0700
-From: Charlie Jenkins <charlie@rivosinc.com>
-To: Conor Dooley <conor.dooley@microchip.com>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Evan Green <evan@rivosinc.com>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH 08/19] riscv: Introduce vendor variants of extension
- helpers
-Message-ID: <ZhlypvTdsFPZBr08@ghost>
-References: <20240411-dev-charlie-support_thead_vector_6_9-v1-0-4af9815ec746@rivosinc.com>
- <20240411-dev-charlie-support_thead_vector_6_9-v1-8-4af9815ec746@rivosinc.com>
- <20240412-dwarf-shower-5a7300fcd283@wendy>
+        bh=nKSg4RwnYAFK/sdZVIxX1EI01vqvwtxplSvYVO3pwdw=;
+        b=oJED36PelDHcKI01oPEwdbln0MSHKUdQlUa0IeQqxdw8eraYA0w+vkXN+wQrXaGi2z
+         kL7YE7dwVS18R2S5cJD3ZcIFUWtqjAGY9/xv1UELInLOBH5W51MkhMN0WczBSqW4nNbQ
+         Mzw/qvaHdb3bQ6oPFOUpzvnS6qeGGZ/CHMCOmhaxM0lRp1qZQyVqeSA+1jmXm6Pya8qe
+         jivJqGvMIr8hW92LrVXVePnYohGyCCGyhodJ9qazuBw2gjNqzh/TuCLZ1q6qx9IkX0cM
+         yXNfAuab4bcsPpsqHne9ApeSDxGntwIkIXQl5KaqvShEy9w62ipo29OcWcIlhq3ZRZuj
+         WeEQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUlJvCfrXiegcqBNc6tE8KNtHAxQFfqjYViK8pm8fs2538CbkfyelQ4XIfE/K1LjrbZWn2EcRRff45ZwE7uO86Gn/kIDX0JBvtAPA==
+X-Gm-Message-State: AOJu0YyN2w+tx9G5fYeJC+0NDQUVA+2yKiUozA/YPo4pFyjxuur913nb
+	9vUjCJE/frMF7kskUX7mVEt03KM4kb6fA5xNkTRN+0+S5a3UakVICg76/RYOB+GSRKydO+M6vHa
+	t
+X-Google-Smtp-Source: AGHT+IE+48AwCZJK1tO3vPUrupImxUEL4FlsEHnWSK5nuwyle2XzTwNHPamxrL/MXwiOKVnKZh8Acg==
+X-Received: by 2002:a17:906:e2cd:b0:a52:b11:5406 with SMTP id gr13-20020a170906e2cd00b00a520b115406mr2043944ejb.16.1712944399823;
+        Fri, 12 Apr 2024 10:53:19 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id bb2-20020a1709070a0200b00a520e463227sm2061592ejc.127.2024.04.12.10.53.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Apr 2024 10:53:19 -0700 (PDT)
+Message-ID: <dca6c1bf-4e7f-4177-bfe6-f43e0591b535@linaro.org>
+Date: Fri, 12 Apr 2024 19:53:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240412-dwarf-shower-5a7300fcd283@wendy>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: qcom: sa8155p-adp: fix SDHC2 configuration
+To: Volodymyr Babchuk <Volodymyr_Babchuk@epam.com>
+Cc: Stephan Gerhold <stephan@gerhold.net>,
+ "stable@vger.kernel.org" <stable@vger.kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+ "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20240410134022.732767-1-volodymyr_babchuk@epam.com>
+ <20240411115506.1170360-1-volodymyr_babchuk@epam.com>
+ <769a6a2a-2f38-42de-b3ce-8585b8b0a758@linaro.org> <87v84m4nah.fsf@epam.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <87v84m4nah.fsf@epam.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Apr 12, 2024 at 12:49:57PM +0100, Conor Dooley wrote:
-> On Thu, Apr 11, 2024 at 09:11:14PM -0700, Charlie Jenkins wrote:
-> > Create vendor variants of the existing extension helpers. If the
-> > existing functions were instead modified to support vendor extensions, a
-> > branch based on the ext value being greater than
-> > RISCV_ISA_VENDOR_EXT_BASE would have to be introduced. This additional
-> > branch would have an unnecessary performance impact.
-> > 
-> > Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+On 12/04/2024 17:24, Volodymyr Babchuk wrote:
 > 
-> I've not looked at the "main" patch in the series that adds all of the
-> probing and structures for representing this info yet beyond a cursory
-> glance, but it feels like we're duplicating a bunch of infrastructure
-> here before it is necessary. The IDs are all internal to Linux, so I'd
-> rather we kept everything in the same structure until we have more than
-> a handful of vendor extensions. With this patch (and the theadpmu stuff)
-> we will have three vendor extensions which feels like a drop in the
-> bucket compared to the standard ones.
+> Hi Krzysztof,
+> 
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
+> 
+>> On 11/04/2024 13:55, Volodymyr Babchuk wrote:
+>>> There are multiple issues with SDHC2 configuration for SA8155P-ADP,
+>>> which prevent use of SDHC2 and causes issues with ethernet:
+>>>
+>>> - Card Detect pin for SHDC2 on SA8155P-ADP is connected to gpio4 of
+>>>   PMM8155AU_1, not to SoC itself. SoC's gpio4 is used for DWMAC
+>>>   TX. If sdhc driver probes after dwmac driver, it reconfigures
+>>>   gpio4 and this breaks Ethernet MAC.
+>>>
+>>> - pinctrl configuration mentions gpio96 as CD pin. It seems it was
+>>>   copied from some SM8150 example, because as mentioned above,
+>>>   correct CD pin is gpio4 on PMM8155AU_1.
+>>>
+>>> - L13C voltage regulator limits minimal voltage to 2.504V, which
+>>>   prevents use 1.8V to power SD card, which in turns does not allow
+>>>   card to work in UHS mode.
+>>
+>> That's not really related. One issue, one commit.
+>>
+>>>
+>>> This patch fixes all the mentioned issues.
+>>>
+>>> Fixes: 0deb2624e2d0 ("arm64: dts: qcom: sa8155p-adp: Add support for uSD card")
+>>> Cc: stable@vger.kernel.org
+>>> Signed-off-by: Volodymyr Babchuk <volodymyr_babchuk@epam.com>
+>>>
+>>> ---
+>>>
+>>> In v2:
+>>>  - Added "Fixes:" tag
+>>>  - CCed stable ML
+>>>  - Fixed pinctrl configuration
+>>>  - Extended voltage range for L13C voltage regulator
+>>> ---
+>>>  arch/arm64/boot/dts/qcom/sa8155p-adp.dts | 32 +++++++++++-------------
+>>>  1 file changed, 14 insertions(+), 18 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+>>> index 5e4287f8c8cd1..b9d56bda96759 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+>>> +++ b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+>>> @@ -283,7 +283,7 @@ vreg_l12c_1p808: ldo12 {
+>>>  
+>>>  		vreg_l13c_2p96: ldo13 {
+>>>  			regulator-name = "vreg_l13c_2p96";
+>>> -			regulator-min-microvolt = <2504000>;
+>>> +			regulator-min-microvolt = <1800000>;
+>>>  			regulator-max-microvolt = <2960000>;
+>>>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>>>  		};
+>>> @@ -384,10 +384,10 @@ &remoteproc_cdsp {
+>>>  &sdhc_2 {
+>>>  	status = "okay";
+>>>  
+>>> -	cd-gpios = <&tlmm 4 GPIO_ACTIVE_LOW>;
+>>> +	cd-gpios = <&pmm8155au_1_gpios 4 GPIO_ACTIVE_LOW>;
+>>>  	pinctrl-names = "default", "sleep";
+>>> -	pinctrl-0 = <&sdc2_on>;
+>>> -	pinctrl-1 = <&sdc2_off>;
+>>> +	pinctrl-0 = <&sdc2_on &pmm8155au_1_sdc2_cd>;
+>>> +	pinctrl-1 = <&sdc2_off &pmm8155au_1_sdc2_cd>;
+>>>  	vqmmc-supply = <&vreg_l13c_2p96>; /* IO line power */
+>>>  	vmmc-supply = <&vreg_l17a_2p96>;  /* Card power line */
+>>>  	bus-width = <4>;
+>>> @@ -505,13 +505,6 @@ data-pins {
+>>>  			bias-pull-up;		/* pull up */
+>>>  			drive-strength = <16>;	/* 16 MA */
+>>>  		};
+>>> -
+>>> -		sd-cd-pins {
+>>> -			pins = "gpio96";
+>>> -			function = "gpio";
+>>> -			bias-pull-up;		/* pull up */
+>>> -			drive-strength = <2>;	/* 2 MA */
+>>> -		};
+>>>  	};
+>>>  
+>>>  	sdc2_off: sdc2-off-state {
+>>> @@ -532,13 +525,6 @@ data-pins {
+>>>  			bias-pull-up;		/* pull up */
+>>>  			drive-strength = <2>;	/* 2 MA */
+>>>  		};
+>>> -
+>>> -		sd-cd-pins {
+>>> -			pins = "gpio96";
+>>> -			function = "gpio";
+>>> -			bias-pull-up;		/* pull up */
+>>> -			drive-strength = <2>;	/* 2 MA */
+>>> -		};
+>>>  	};
+>>>  
+>>>  	usb2phy_ac_en1_default: usb2phy-ac-en1-default-state {
+>>> @@ -604,3 +590,13 @@ phy-reset-pins {
+>>>  		};
+>>>  	};
+>>>  };
+>>> +
+>>> +&pmm8155au_1_gpios {
+>>> +	pmm8155au_1_sdc2_cd: pmm8155au_1-sdc2-cd {
+>>
+>> No underscores in node names.
+> 
+> Fill fix.
+> 
+>> Please also follow tlmm style of naming nodes.
+> 
+> Just to be on the same page, will "pmm8155au_1_sdc2_cd: sdc2-cd-pins" be fine?
 
-It is not duplicating infrastructure. If we merge this into the existing
-infrastructure, we would be littering if (ext > RISCV_ISA_VENDOR_EXT_BASE)
-in __riscv_isa_extension_available. This is particularily important
-exactly because we have so few vendor extensions currently so this check
-would be irrelevant in the vast majority of cases.
+pins are for sublevel, so you want -state. Just like other pmic GPIOs.
 
-It is also unecessary to push off the refactoring until we have some
-"sufficient" amount of vendor extensions to deem changing the
-infrastructure when I already have the patch available here. This does
-not introduce any extra overhead to existing functions and will be able
-to support vendors into the future.
+> 
+>> Also does not look like node is placed in alphabetical place. Where did
+>> you put it?
+> 
+> I can't say that the file is sorted in the first place:
+> 
+> # grep "^&" arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+> &apps_rsc {
+> &ethernet {
+> &qupv3_id_1 {
+> &remoteproc_adsp {
+> &remoteproc_cdsp {
+> &sdhc_2 {
+> &uart2 {
+> &uart9 {
+> &ufs_mem_hc {
+> &ufs_mem_phy {
+> &usb_1 {
+> &usb_1_dwc3 {
+> &usb_1_hsphy {
+> &usb_1_qmpphy {
+> &usb_2 {
+> &usb_2_dwc3 {
+> &usb_2_hsphy {
+> &usb_2_qmpphy {
 
-- Charlie
+Was sorted till here...
+
+> &pcie0 {
+> &pcie0_phy {
+> &pcie1_phy {
+> &tlmm {
+
+and here second sorting started...
+
+> &pmm8155au_1_gpios {
+
+and you started third.
 
 > 
 > 
-> > ---
-> >  arch/riscv/include/asm/cpufeature.h | 54 +++++++++++++++++++++++++++++++++++++
-> >  arch/riscv/kernel/cpufeature.c      | 34 ++++++++++++++++++++---
-> >  2 files changed, 84 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/arch/riscv/include/asm/cpufeature.h b/arch/riscv/include/asm/cpufeature.h
-> > index db2ab037843a..8f19e3681b4f 100644
-> > --- a/arch/riscv/include/asm/cpufeature.h
-> > +++ b/arch/riscv/include/asm/cpufeature.h
-> > @@ -89,6 +89,10 @@ bool __riscv_isa_extension_available(const unsigned long *isa_bitmap, unsigned i
-> >  #define riscv_isa_extension_available(isa_bitmap, ext)	\
-> >  	__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_##ext)
-> >  
-> > +bool __riscv_isa_vendor_extension_available(const unsigned long *vendor_isa_bitmap, unsigned int bit);
-> > +#define riscv_isa_vendor_extension_available(isa_bitmap, ext)	\
-> > +	__riscv_isa_vendor_extension_available(isa_bitmap, RISCV_ISA_VENDOR_EXT_##ext)
-> > +
-> >  static __always_inline bool
-> >  __riscv_has_extension_likely_alternatives(const unsigned long ext)
-> >  {
-> > @@ -117,6 +121,8 @@ __riscv_has_extension_unlikely_alternatives(const unsigned long ext)
-> >  	return true;
-> >  }
-> >  
-> > +/* Standard extension helpers */
-> > +
-> >  static __always_inline bool
-> >  riscv_has_extension_likely(const unsigned long ext)
-> >  {
-> > @@ -163,4 +169,52 @@ static __always_inline bool riscv_cpu_has_extension_unlikely(int cpu, const unsi
-> >  		return __riscv_isa_extension_available(hart_isa[cpu].isa, ext);
-> >  }
-> >  
-> > +/* Vendor extension helpers */
-> > +
-> > +static __always_inline bool
-> > +riscv_has_vendor_extension_likely(const unsigned long ext)
-> > +{
-> > +	compiletime_assert(ext < RISCV_ISA_VENDOR_EXT_MAX,
-> > +			   "ext must be < RISCV_ISA_VENDOR_EXT_MAX");
-> > +
-> > +	if (IS_ENABLED(CONFIG_RISCV_ALTERNATIVE))
-> > +		return __riscv_has_extension_likely_alternatives(ext);
-> > +	else
-> > +		return __riscv_isa_vendor_extension_available(NULL, ext);
-> > +}
-> > +
-> > +static __always_inline bool
-> > +riscv_has_vendor_extension_unlikely(const unsigned long ext)
-> > +{
-> > +	compiletime_assert(ext < RISCV_ISA_VENDOR_EXT_MAX,
-> > +			   "ext must be < RISCV_ISA_VENDOR_EXT_MAX");
-> > +
-> > +	if (IS_ENABLED(CONFIG_RISCV_ALTERNATIVE))
-> > +		return __riscv_has_extension_unlikely_alternatives(ext);
-> > +	else
-> > +		return __riscv_isa_vendor_extension_available(NULL, ext);
-> > +}
-> > +
-> > +static __always_inline bool riscv_cpu_has_vendor_extension_likely(int cpu, const unsigned long ext)
-> > +{
-> > +	compiletime_assert(ext < RISCV_ISA_VENDOR_EXT_MAX,
-> > +			   "ext must be < RISCV_ISA_VENDOR_EXT_MAX");
-> > +
-> > +	if (IS_ENABLED(CONFIG_RISCV_ALTERNATIVE))
-> > +		return __riscv_has_extension_likely_alternatives(ext);
-> > +	else
-> > +		return __riscv_isa_vendor_extension_available(hart_isa_vendor[cpu].isa, ext);
-> > +}
-> > +
-> > +static __always_inline bool riscv_cpu_has_vendor_extension_unlikely(int cpu, const unsigned long ext)
-> > +{
-> > +	compiletime_assert(ext < RISCV_ISA_VENDOR_EXT_MAX,
-> > +			   "ext must be < RISCV_ISA_VENDOR_EXT_MAX");
-> > +
-> > +	if (IS_ENABLED(CONFIG_RISCV_ALTERNATIVE))
-> > +		return __riscv_has_extension_unlikely_alternatives(ext);
-> > +	else
-> > +		return __riscv_isa_vendor_extension_available(hart_isa_vendor[cpu].isa, ext);
-> > +}
-> 
-> Same stuff about constant folding applies to these, I think these should
-> just mirror the existing functions (if needed at all).
-> 
-> Cheers,
-> Conor.
+> So, I can put after &pci1 to have it grouped with other entries that
+> start with p*, or I can put right after &ethernet to make it appear in
+> alphabetical order. It is your call.
 
+Please put it in the first group, so after ethernet. If this gets ever
+sorted, then at least one less move.
+
+Best regards,
+Krzysztof
 
 
