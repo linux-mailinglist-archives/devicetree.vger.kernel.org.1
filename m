@@ -1,180 +1,381 @@
-Return-Path: <devicetree+bounces-58878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 464618A37EC
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 23:34:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5212F8A37FF
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 23:42:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 68DE21C21A83
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 21:34:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5337281E16
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 21:42:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76D28152179;
-	Fri, 12 Apr 2024 21:34:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE13815217B;
+	Fri, 12 Apr 2024 21:41:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QQSf3PB4"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mSkNhyJl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4015B610B;
-	Fri, 12 Apr 2024 21:34:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A5C839FD5;
+	Fri, 12 Apr 2024 21:41:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712957657; cv=none; b=sIWLtttjWIDHUHRq8nJYeEnKbGBBeIm77JQpmIIWz1w+15lfEdDRdnRP6Q+cBGe9TNospqALhA9WdhZVhcpaZgLNnemH4I5ADKO6Sb7C4zTHpclDSeCaXxrpReqk3i+7I2Z9mKFXF/5mpefNcwVJ+NRJhb3ukXJ7FP3wNJcVKAs=
+	t=1712958119; cv=none; b=p6VsPZHxeeSroQhxnACHW6MMVLob7gR7V4tFT+byqcYagZxbZNA3lF3pby6GVM+dn8UkUGMNnJ/wn/kJ9sn+MWktCZM0RveIWblK1IBAEQ7JVlNS5QpspovY3Ml+Rdpk/f2LOt7h/7KIjZncthfCQsaAOksfHdVBWLkZfyYIRzg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712957657; c=relaxed/simple;
-	bh=RPMZISUCpRH7rGFvp7EbdpEtkFygpiRP/bPV6ApwRUM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SLbNN+odO50am/JnkWc1n3ZWmfk65jXBs4VX1kbbjTLLT9wO0FlACCPKQnmBjcVqGX5g4jm5FJMTERlcpzJpSyqHO+No1M3DKyKdTJmbIUItGVqmqEEB3dbs6ZcsO8bWnbh6yxs0N3e7YmPsYUj2BsTqyX/2aTKDH3Qi5wYQxFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QQSf3PB4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36A7AC113CC;
-	Fri, 12 Apr 2024 21:34:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712957656;
-	bh=RPMZISUCpRH7rGFvp7EbdpEtkFygpiRP/bPV6ApwRUM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QQSf3PB42KVUAVL/1+OQDtLauoAha7gpWFLEfP7EkJZ7N4u8sjm1TXZET0lcr99if
-	 p323/cwpgZUxDFoAN0LtJD/WtUmkAowRMfrHXs2ADEs+POp65FYXDmivZLLbSGNrbU
-	 cK7psxBkc2pNWhws+T+BLn4rvwbGtErI3pKePtDRrrXtxg4SlAkty9qCRKwyAvaK4o
-	 4J1TYby7DtMN0iDHmvtIaHgU/2W7PPaw1EGmkk8oxy7YqdZ0CGvX2zAsbQmuPAc1vv
-	 Sybl6gdQ0nD7yXd8jpir5Kgy9dj6jXo2NV/g5uxXJoISW/2Z2e9/7qwwU4KNgSB4f8
-	 bogQT43yfNq2A==
-Date: Fri, 12 Apr 2024 22:34:10 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Charlie Jenkins <charlie@rivosinc.com>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Evan Green <evan@rivosinc.com>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH 08/19] riscv: Introduce vendor variants of extension
- helpers
-Message-ID: <20240412-geranium-monotone-b47f414715d1@spud>
-References: <20240411-dev-charlie-support_thead_vector_6_9-v1-0-4af9815ec746@rivosinc.com>
- <20240411-dev-charlie-support_thead_vector_6_9-v1-8-4af9815ec746@rivosinc.com>
- <20240412-dwarf-shower-5a7300fcd283@wendy>
- <ZhlypvTdsFPZBr08@ghost>
- <20240412-drab-french-55d8ff2c8cfa@spud>
- <ZhmhtLS5NuRrPOfu@ghost>
+	s=arc-20240116; t=1712958119; c=relaxed/simple;
+	bh=B342CtOdf9X8OyLmBAxcvx/5wPPbgymJ27LhrFXOkfA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=GNrd/XuSX62ZZzvbd5A5fyfS8FsYiZ+8edRqXFLnKC9EDSJuQtJyvOIwP9g9slYIftPIR27zkIXQguPnmkE3SQsgdYL6wqV55ytTU269HlAfISOlBk5e44ZLlxQUnX5IR6m6i918sgpQNZxEeXJ9PNdOePIUhNdGU7PnR2ILzgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mSkNhyJl; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43CLOcCf031674;
+	Fri, 12 Apr 2024 21:40:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=Nk4TG9yDmY9Q1U96or5wfZFuqpbTyezZPX1b/MEyft4=; b=mS
+	kNhyJlU3LJuUasbUvYHNbbO4hKal6ay8cFUVgVl4i8/HWIQ9IRMh0dbzttTGor5c
+	5VC4GSi6r2uuYwQXZOg94GxzLHxWgCfQs+bZFpuTvd84+pBmHqZ0a5XqTHikhZvf
+	qAfAYnNlR2Ix/pTeeLAeHME3LfvRkHOXsAUxe5VL8gGz+KDD/05+b82+tRBf2AWt
+	WN4Y0Ax6DhVp+op8O52AS0hVowovoNNLR2bY9/SBa0ySBtm8m1X1xeHqZ8XvfWQj
+	YHDlOA5WQwJWPONlXqAPkHKmfUQXvSVmLZYvEMcBxBp9nkB/5fToW7/1DQrCqQ2i
+	ZhUjj96ONHq1WWzF8elw==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xer1ttx5b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 12 Apr 2024 21:40:46 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43CLei3W009864
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 12 Apr 2024 21:40:44 GMT
+Received: from [10.110.105.144] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 12 Apr
+ 2024 14:40:40 -0700
+Message-ID: <7befeeb2-a481-46ac-97d0-a9d6d023427d@quicinc.com>
+Date: Fri, 12 Apr 2024 14:38:54 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="SiZFDomrOPZV4p3t"
-Content-Disposition: inline
-In-Reply-To: <ZhmhtLS5NuRrPOfu@ghost>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/4] of: reserved_mem: Use the unflatten_devicetree
+ APIs to scan reserved mem. nodes
+To: Rob Herring <robh+dt@kernel.org>
+CC: <catalin.marinas@arm.com>, <will@kernel.org>, <frowand.list@gmail.com>,
+        <vgupta@kernel.org>, <arnd@arndb.de>, <olof@lixom.net>,
+        <soc@kernel.org>, <guoren@kernel.org>, <monstr@monstr.eu>,
+        <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>, <dinguyen@kernel.org>,
+        <chenhuacai@kernel.org>, <tsbogend@alpha.franken.de>,
+        <jonas@southpole.se>, <stefan.kristiansson@saunalahti.fi>,
+        <shorne@gmail.com>, <mpe@ellerman.id.au>, <ysato@users.sourceforge.jp>,
+        <dalias@libc.org>, <glaubitz@physik.fu-berlin.de>, <richard@nod.at>,
+        <anton.ivanov@cambridgegreys.com>, <johannes@sipsolutions.net>,
+        <chris@zankel.net>, <jcmvbkbc@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <kernel@quicinc.com>
+References: <20240328211543.191876-1-quic_obabatun@quicinc.com>
+ <20240328211543.191876-4-quic_obabatun@quicinc.com>
+ <CAL_Jsq+RQaKTqB6hnsCJ_d0zM6FkrMXQ0NF0r1P22q95_ZDM4A@mail.gmail.com>
+Content-Language: en-US
+From: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+In-Reply-To: <CAL_Jsq+RQaKTqB6hnsCJ_d0zM6FkrMXQ0NF0r1P22q95_ZDM4A@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: bUs5QiPjttYcdFzuNPx6Sq6bSgwqw58d
+X-Proofpoint-GUID: bUs5QiPjttYcdFzuNPx6Sq6bSgwqw58d
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-12_18,2024-04-09_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ mlxlogscore=999 malwarescore=0 adultscore=0 suspectscore=0
+ lowpriorityscore=0 spamscore=0 bulkscore=0 impostorscore=0 clxscore=1011
+ mlxscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404120156
 
 
---SiZFDomrOPZV4p3t
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 4/11/2024 11:59 AM, Rob Herring wrote:
+> On Thu, Mar 28, 2024 at 4:16 PM Oreoluwa Babatunde
+> <quic_obabatun@quicinc.com> wrote:
+>> The unflatten_devicetree APIs have been setup and are available to be
+>> used by the time the fdt_init_reserved_mem() function is called.
+>> Since the unflatten_devicetree APIs are a more efficient way of scanning
+>> through the DT nodes, switch to using these APIs to facilitate the rest
+>> of the reserved memory processing.
+> Please use get_maintainers.pl. Specifically, you missed maintainers
+> for kernel/dma/.
 
-On Fri, Apr 12, 2024 at 02:03:48PM -0700, Charlie Jenkins wrote:
-> On Fri, Apr 12, 2024 at 09:40:03PM +0100, Conor Dooley wrote:
-> > On Fri, Apr 12, 2024 at 10:43:02AM -0700, Charlie Jenkins wrote:
-> > > On Fri, Apr 12, 2024 at 12:49:57PM +0100, Conor Dooley wrote:
-> > > > On Thu, Apr 11, 2024 at 09:11:14PM -0700, Charlie Jenkins wrote:
-> > > > > Create vendor variants of the existing extension helpers. If the
-> > > > > existing functions were instead modified to support vendor extens=
-ions, a
-> > > > > branch based on the ext value being greater than
-> > > > > RISCV_ISA_VENDOR_EXT_BASE would have to be introduced. This addit=
-ional
-> > > > > branch would have an unnecessary performance impact.
-> > > > >=20
-> > > > > Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
-> > > >=20
-> > > > I've not looked at the "main" patch in the series that adds all of =
-the
-> > > > probing and structures for representing this info yet beyond a curs=
-ory
-> > > > glance, but it feels like we're duplicating a bunch of infrastructu=
-re
-> > > > here before it is necessary. The IDs are all internal to Linux, so =
-I'd
-> > > > rather we kept everything in the same structure until we have more =
-than
-> > > > a handful of vendor extensions. With this patch (and the theadpmu s=
-tuff)
-> > > > we will have three vendor extensions which feels like a drop in the
-> > > > bucket compared to the standard ones.
-> > >=20
-> > > It is not duplicating infrastructure. If we merge this into the exist=
-ing
-> > > infrastructure, we would be littering if (ext > RISCV_ISA_VENDOR_EXT_=
-BASE)
-> > > in __riscv_isa_extension_available. This is particularily important
-> > > exactly because we have so few vendor extensions currently so this ch=
-eck
-> > > would be irrelevant in the vast majority of cases.
-> >=20
-> > That's only because of your implementation. The existing vendor extensi=
-on
-> > works fine without this littering. That's another thing actually, you
-> > forgot to convert over the user we already have :)
->=20
-> Oh right, I will convert them over. The fundemental goal of this patch
-> is to allow a way for vendors to support their own extensions without
-> needing to populate riscv_isa_ext. This is to create separation between
-> vendors so they do not impact each other.
+Sorry about that, Will include them in the next version.
 
-The one that needs converting is xandespmu. As I said on the other patch
-a minute I don't think isolating vendors for the internal representation
-is needed and can be left in hwprobe. I also don't think we can rely on
-a behaviour of "SiFive CPUs will always have SiFive's mvendorid" or that
-kinda thing, I've heard talk of the SoC vendor getting their mvendorid
-for custom CPU cores instead of the CPU vendor and it's possible for
-the SBI implementation to "adjust" the values also.
+>
+>> Signed-off-by: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+>> ---
+>>  drivers/of/of_reserved_mem.c    | 77 +++++++++++++++++++++------------
+>>  include/linux/of_reserved_mem.h |  2 +-
+>>  kernel/dma/coherent.c           |  8 ++--
+>>  kernel/dma/contiguous.c         |  8 ++--
+>>  kernel/dma/swiotlb.c            | 10 ++---
+>>  5 files changed, 64 insertions(+), 41 deletions(-)
+>>
+>> diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+>> index 0aba366eba59..68d1f4cca4bb 100644
+>> --- a/drivers/of/of_reserved_mem.c
+>> +++ b/drivers/of/of_reserved_mem.c
+>> @@ -99,7 +99,7 @@ static void __init alloc_reserved_mem_array(void)
+>>  /*
+>>   * fdt_reserved_mem_save_node() - save fdt node for second pass initialization
+>>   */
+>> -static void __init fdt_reserved_mem_save_node(unsigned long node, const char *uname,
+>> +static void __init fdt_reserved_mem_save_node(struct device_node *node, const char *uname,
+>>                                               phys_addr_t base, phys_addr_t size)
+>>  {
+>>         struct reserved_mem *rmem = &reserved_mem[reserved_mem_count];
+>> @@ -109,7 +109,7 @@ static void __init fdt_reserved_mem_save_node(unsigned long node, const char *un
+>>                 return;
+>>         }
+>>
+>> -       rmem->fdt_node = node;
+>> +       rmem->dev_node = node;
+>>         rmem->name = uname;
+>>         rmem->base = base;
+>>         rmem->size = size;
+>> @@ -178,11 +178,11 @@ static int __init __reserved_mem_reserve_reg(unsigned long node,
+>>  }
+>>
+>>  /*
+>> - * __reserved_mem_check_root() - check if #size-cells, #address-cells provided
+>> + * __fdt_reserved_mem_check_root() - check if #size-cells, #address-cells provided
+>>   * in /reserved-memory matches the values supported by the current implementation,
+>>   * also check if ranges property has been provided
+>>   */
+>> -static int __init __reserved_mem_check_root(unsigned long node)
+>> +static int __init __fdt_reserved_mem_check_root(unsigned long node)
+>>  {
+>>         const __be32 *prop;
+>>
+>> @@ -200,6 +200,29 @@ static int __init __reserved_mem_check_root(unsigned long node)
+>>         return 0;
+>>  }
+>>
+>> +/*
+>> + * __dt_reserved_mem_check_root() - check if #size-cells, #address-cells provided
+>> + * in /reserved-memory matches the values supported by the current implementation,
+>> + * also check if ranges property has been provided
+>> + */
+>> +static int __init __dt_reserved_mem_check_root(struct device_node *node)
+> The normal prefix is 'of', not 'dt'. Weird, right?, but it dates back
+> to OpenFirmware.
+Got it! I will follow the same for the functions that I renamed in Patch 04 as well.
+>
+>> +{
+>> +       const __be32 *prop;
+>> +
+>> +       prop = of_get_property(node, "#size-cells", NULL);
+> Throughout, use the appropriate typed function. Here for example,
+> of_property_read_u32().
+ack.
+>
+>> +       if (!prop || be32_to_cpup(prop) != dt_root_size_cells)
+>> +               return -EINVAL;
+>> +
+>> +       prop = of_get_property(node, "#address-cells", NULL);
+>> +       if (!prop || be32_to_cpup(prop) != dt_root_addr_cells)
+>> +               return -EINVAL;
+>> +
+>> +       prop = of_get_property(node, "ranges", NULL);
+> Or for presence, just of_property_present().
+ack.
+>
+>> +       if (!prop)
+>> +               return -EINVAL;
+>> +       return 0;
+>> +}
+>> +
+>>  /**
+>>   * fdt_scan_reserved_mem_reg_nodes() - Store info for the "reg" defined
+>>   * reserved memory regions.
+>> @@ -213,33 +236,38 @@ static int __init __reserved_mem_check_root(unsigned long node)
+>>  static void __init fdt_scan_reserved_mem_reg_nodes(void)
+>>  {
+>>         int t_len = (dt_root_addr_cells + dt_root_size_cells) * sizeof(__be32);
+>> -       const void *fdt = initial_boot_params;
+>> +       struct device_node *node, *child;
+>>         phys_addr_t base, size;
+>>         const __be32 *prop;
+>> -       int node, child;
+>>         int len;
+>>
+>> -       node = fdt_path_offset(fdt, "/reserved-memory");
+>> -       if (node < 0) {
+>> +       node = of_find_node_by_path("/reserved-memory");
+>> +       if (!node) {
+>>                 pr_info("Reserved memory: No reserved-memory node in the DT\n");
+>>                 return;
+>>         }
+>>
+>> -       if (__reserved_mem_check_root(node)) {
+>> +       if (__dt_reserved_mem_check_root(node)) {
+>>                 pr_err("Reserved memory: unsupported node format, ignoring\n");
+>>                 return;
+>>         }
+>>
+>> -       fdt_for_each_subnode(child, fdt, node) {
+>> +       for_each_child_of_node(node, child) {
+>>                 const char *uname;
+>> +               struct reserved_mem *rmem;
+>>
+>> -               prop = of_get_flat_dt_prop(child, "reg", &len);
+>> -               if (!prop)
+>> +               if (!of_device_is_available(child))
+>>                         continue;
+>> -               if (!of_fdt_device_is_available(fdt, child))
+>> +
+>> +               prop = of_get_property(child, "reg", &len);
+> We have specific unflattened functions for reading 'reg'. Note that
+> you should use the 'translated' ones even though we have a check to
+> disallow any real translation. That restriction should be fixed at
+> some point.
+"of_address_to_resource()" seems to be a function that reads the 'reg' property
+the way you are describing here. I'll switch to that function and see how it works!
 
-> xlinuxenvcfg does not fit into this scheme however. This scheme assumes
-> that a hart cannot have multiple vendors which that extension breaks.
-> xlinuxenvcfg is really filling a hole in the standard isa that is
-> applicible to all vendors and does not appear in the device tree so it
-> is okay for that to live outside this scheme.
+Please let me know if you had another function in mind for me to use here.
+>
+>> +               if (!prop) {
+>> +                       rmem = of_reserved_mem_lookup(child);
+>> +                       if (rmem)
+>> +                               rmem->dev_node = child;
+>>                         continue;
+>> +               }
+>>
+>> -               uname = fdt_get_name(fdt, child, NULL);
+>> +               uname = of_node_full_name(child);
+>>                 if (len && len % t_len != 0) {
+>>                         pr_err("Reserved memory: invalid reg property in '%s', skipping node.\n",
+>>                                uname);
+>> @@ -269,7 +297,7 @@ int __init fdt_scan_reserved_mem(void)
+>>         if (node < 0)
+>>                 return -ENODEV;
+>>
+>> -       if (__reserved_mem_check_root(node) != 0) {
+>> +       if (__fdt_reserved_mem_check_root(node) != 0) {
+>>                 pr_err("Reserved memory: unsupported node format, ignoring\n");
+>>                 return -EINVAL;
+>>         }
+>> @@ -447,7 +475,7 @@ static int __init __reserved_mem_alloc_size(unsigned long node, const char *unam
+>>                        uname, (unsigned long)(size / SZ_1M));
+>>                 return -ENOMEM;
+>>         }
+>> -       fdt_reserved_mem_save_node(node, uname, base, size);
+>> +       fdt_reserved_mem_save_node(NULL, uname, base, size);
+>>         return 0;
+>>  }
+>>
+>> @@ -467,7 +495,7 @@ static int __init __reserved_mem_init_node(struct reserved_mem *rmem)
+>>                 reservedmem_of_init_fn initfn = i->data;
+>>                 const char *compat = i->compatible;
+>>
+>> -               if (!of_flat_dt_is_compatible(rmem->fdt_node, compat))
+>> +               if (!of_device_is_compatible(rmem->dev_node, compat))
+>>                         continue;
+>>
+>>                 ret = initfn(rmem);
+>> @@ -500,11 +528,6 @@ static int __init __rmem_cmp(const void *a, const void *b)
+>>         if (ra->size > rb->size)
+>>                 return 1;
+>>
+>> -       if (ra->fdt_node < rb->fdt_node)
+>> -               return -1;
+>> -       if (ra->fdt_node > rb->fdt_node)
+>> -               return 1;
+>> -
+>>         return 0;
+>>  }
+>>
+>> @@ -551,16 +574,16 @@ void __init fdt_init_reserved_mem(void)
+>>
+>>         for (i = 0; i < reserved_mem_count; i++) {
+>>                 struct reserved_mem *rmem = &reserved_mem[i];
+>> -               unsigned long node = rmem->fdt_node;
+>> +               struct device_node *node = rmem->dev_node;
+>>                 int len;
+>>                 const __be32 *prop;
+>>                 int err = 0;
+>>                 bool nomap;
+>>
+>> -               nomap = of_get_flat_dt_prop(node, "no-map", NULL) != NULL;
+>> -               prop = of_get_flat_dt_prop(node, "phandle", &len);
+>> +               nomap = of_get_property(node, "no-map", NULL) != NULL;
+>> +               prop = of_get_property(node, "phandle", &len);
+> We store the phandle in struct device_node, so reading and storing it
+> here shouldn't be needed I think.
+ack.
+>
+>>                 if (!prop)
+>> -                       prop = of_get_flat_dt_prop(node, "linux,phandle", &len);
+>> +                       prop = of_get_property(node, "linux,phandle", &len);
+>>                 if (prop)
+>>                         rmem->phandle = of_read_number(prop, len/4);
+>>
+>> @@ -574,7 +597,7 @@ void __init fdt_init_reserved_mem(void)
+>>                 } else {
+>>                         phys_addr_t end = rmem->base + rmem->size - 1;
+>>                         bool reusable =
+>> -                               (of_get_flat_dt_prop(node, "reusable", NULL)) != NULL;
+>> +                               (of_get_property(node, "reusable", NULL)) != NULL;
+>>
+>>                         pr_info("%pa..%pa (%lu KiB) %s %s %s\n",
+>>                                 &rmem->base, &end, (unsigned long)(rmem->size / SZ_1K),
+>> diff --git a/include/linux/of_reserved_mem.h b/include/linux/of_reserved_mem.h
+>> index 4de2a24cadc9..b6107a18d170 100644
+>> --- a/include/linux/of_reserved_mem.h
+>> +++ b/include/linux/of_reserved_mem.h
+>> @@ -10,7 +10,7 @@ struct reserved_mem_ops;
+>>
+>>  struct reserved_mem {
+>>         const char                      *name;
+>> -       unsigned long                   fdt_node;
+>> +       struct device_node              *dev_node;
+>>         unsigned long                   phandle;
+>>         const struct reserved_mem_ops   *ops;
+>>         phys_addr_t                     base;
+>> diff --git a/kernel/dma/coherent.c b/kernel/dma/coherent.c
+>> index ff5683a57f77..0db0aae83102 100644
+>> --- a/kernel/dma/coherent.c
+>> +++ b/kernel/dma/coherent.c
+>> @@ -362,20 +362,20 @@ static const struct reserved_mem_ops rmem_dma_ops = {
+>>
+>>  static int __init rmem_dma_setup(struct reserved_mem *rmem)
+>>  {
+>> -       unsigned long node = rmem->fdt_node;
+>> +       struct device_node *node = rmem->dev_node;
+>>
+>> -       if (of_get_flat_dt_prop(node, "reusable", NULL))
+>> +       if (of_get_property(node, "reusable", NULL))
+>>                 return -EINVAL;
+>>
+>>  #ifdef CONFIG_ARM
+>> -       if (!of_get_flat_dt_prop(node, "no-map", NULL)) {
+>> +       if (!of_get_property(node, "no-map", NULL)) {
+> While you are here, convert this to IS_ENABLED():
+>
+> if (IS_ENABLED(CONFIG_ARM) && !of_property_read_bool(node)) {
+>   ...
+> }
+ack.
 
-Ye, xlinuxenvcfg is an internal psuedo-extension that should be treated
-more like a standard one than something vendor.
 
-> > > It is also unecessary to push off the refactoring until we have some
-> > > "sufficient" amount of vendor extensions to deem changing the
-> > > infrastructure when I already have the patch available here. This does
-> > > not introduce any extra overhead to existing functions and will be ab=
-le
-> > > to support vendors into the future.
-> >=20
-> > Yeah, maybe that's true but this was my gut reaction before reading the
-> > other patch in detail (which I've still yet to do).
->=20
-> - Charlie
->=20
+Thank you for your feedback!
 
---SiZFDomrOPZV4p3t
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZhmo0QAKCRB4tDGHoIJi
-0sB2AP9FeUoact1liM4pnP8xEk+uEek2FyqTjYcZiaib0RlcGwD/RBzXv10rgGru
-eAFY4Rmq36PhVYfHdF4UI+zCC4yTAgw=
-=xSsQ
------END PGP SIGNATURE-----
-
---SiZFDomrOPZV4p3t--
+Oreoluwa
 
