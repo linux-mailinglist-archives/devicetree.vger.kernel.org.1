@@ -1,76 +1,74 @@
-Return-Path: <devicetree+bounces-58831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF4248A352B
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 19:53:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F1B48A3533
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 19:57:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D54811C21DD3
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 17:53:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C45F4B23C33
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 17:57:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2CD514E2F4;
-	Fri, 12 Apr 2024 17:53:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D68B714D71E;
+	Fri, 12 Apr 2024 17:57:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J40qsZ/o"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Gqa5k66M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9849114E2ED
-	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 17:53:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 131C514C59B
+	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 17:57:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712944403; cv=none; b=JVnP0M6SLRGa/sBJxr5sZ4KMBdB+SR8ZDBXh7wM0kBsFcnKVfAx1RsvRWexYGSfgDA1j3NPgV/ZFCgS5f5fQdGxUIlTcIUx9U1u/F4Mk+d9f83iskkFXByzDlsczA/adAecYZ5s7NRzCSZTVssWDOul3xtw9Vg3fz7K9EwPLxRw=
+	t=1712944649; cv=none; b=seFSxtWjg/9ydHKv13YHAxSA6XjZV7WBJ7JUlr/W+bmLfsr0+NdOPW7K1leOGlTzbCwn7rnIergonSd4pPtjy+TPun+J8qrZn7vPYygFNytRgSSdW3XmjvRhlZc3do4aqYMp7eVf+wSTIYu5+nXeLCaV+shaNPKrVA3/cmo8Pkw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712944403; c=relaxed/simple;
-	bh=Vy2PIzMgnUyeUzulkPx73WrRDMmKgp/2MfijXqNpzkA=;
+	s=arc-20240116; t=1712944649; c=relaxed/simple;
+	bh=gH3r+1vH2vfw0HvrRrCr2BpjgVrc/VeImANNikZnaKU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=l4fbuUr2sxMrV6K+Lc05aw5ukPw0LVOtQNHyKaS4Ts5H++WF2dSCsHzkpOshPQUsF2ue99RVAjfJnDBGnn3QlZkbYT/ul4OInjesDyWs2i+g7Z8vc1xJra+yC/7n1mhDE98ULlAebmmHZCJPps3UsXQi/yoizfslq8tiMFbSOSE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=J40qsZ/o; arc=none smtp.client-ip=209.85.218.43
+	 In-Reply-To:Content-Type; b=Rlp3dOsreKm/lj/3MJ0HJpESZmTkAll0YdkERTHm1xfU7Ei2EAmrWuyrdHiG8IAnt+iWTPy4p5YM5FB+T+kf+1ahnqrsb0Nqk5PbBv01hgCx6cudYl50zh7ncJYiHqcIv8m5LSa6L5KRsMGngI6oI5tAFP/d2KttJiUa3Zm1kiQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Gqa5k66M; arc=none smtp.client-ip=209.85.167.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a450bedffdfso153242566b.3
-        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 10:53:21 -0700 (PDT)
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-518a3e0d2ebso46421e87.2
+        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 10:57:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712944400; x=1713549200; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712944646; x=1713549446; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=nKSg4RwnYAFK/sdZVIxX1EI01vqvwtxplSvYVO3pwdw=;
-        b=J40qsZ/oCObbwCh/3eaCg98IrVG7FuMDYzTgR7tAr7+0AHWRwmBFLnGbwTAxwa+fg8
-         IN5IMXTEKcQ+GcnSHzloYNxw0VEgauPZblmCp2uZ4ZE0beeFYmehl8CWIcJDmiRuU7lB
-         oSgFTVGdBIhnGGQk4pAcaYiD/rxyTUPUzioMdKgdOm1LketMhEdhQlGyqQYy54MHhhQH
-         VozbQc497XqoqMo8HudyEmv/NN1lE4eGcEkZJad71LSdhwR8I8syRbOgajRen7v4ANQz
-         98Cdge0jb60qW7p5EI9sdc9oL87YCj5rX7dfjVFncBukeijGTj+Ns2rTUCLKAdIPia+i
-         3JjA==
+        bh=4x6CO2roFzlygK8ZkH3v2xYQJthxJprOn/AYJNBa9HE=;
+        b=Gqa5k66MN6T4GWSSINj+qJ61v8tNLUNR2MHaK66gnfI1hZeOa5ZZ6g3gI9bJ0ST7W8
+         OYi7Rs6dBJpG57U5DoiqUnNxw3leV2O2W2vTAJB+kthJS7fjCUwnmQQgBhyKV3ZB20Og
+         RoZnDz+zzQzlgqsxiQKBopZE94yPPgCWe0pBz+QoT9orjOH5X09X6XL/5I/+5u32jxfa
+         UL2ercllhCTQvMT9smdor+pYMtfcXv9XvhxU3VccmNQTAY3PtI7A3kJ38hz96UEit+DI
+         ND+tbNENmMmHJ8daCwZXVKE0axC2e3Ke22/GgVY60xTMfqBtP/yhQu5AakVNwVXYD+/F
+         dZqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712944400; x=1713549200;
+        d=1e100.net; s=20230601; t=1712944646; x=1713549446;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=nKSg4RwnYAFK/sdZVIxX1EI01vqvwtxplSvYVO3pwdw=;
-        b=oJED36PelDHcKI01oPEwdbln0MSHKUdQlUa0IeQqxdw8eraYA0w+vkXN+wQrXaGi2z
-         kL7YE7dwVS18R2S5cJD3ZcIFUWtqjAGY9/xv1UELInLOBH5W51MkhMN0WczBSqW4nNbQ
-         Mzw/qvaHdb3bQ6oPFOUpzvnS6qeGGZ/CHMCOmhaxM0lRp1qZQyVqeSA+1jmXm6Pya8qe
-         jivJqGvMIr8hW92LrVXVePnYohGyCCGyhodJ9qazuBw2gjNqzh/TuCLZ1q6qx9IkX0cM
-         yXNfAuab4bcsPpsqHne9ApeSDxGntwIkIXQl5KaqvShEy9w62ipo29OcWcIlhq3ZRZuj
-         WeEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUlJvCfrXiegcqBNc6tE8KNtHAxQFfqjYViK8pm8fs2538CbkfyelQ4XIfE/K1LjrbZWn2EcRRff45ZwE7uO86Gn/kIDX0JBvtAPA==
-X-Gm-Message-State: AOJu0YyN2w+tx9G5fYeJC+0NDQUVA+2yKiUozA/YPo4pFyjxuur913nb
-	9vUjCJE/frMF7kskUX7mVEt03KM4kb6fA5xNkTRN+0+S5a3UakVICg76/RYOB+GSRKydO+M6vHa
-	t
-X-Google-Smtp-Source: AGHT+IE+48AwCZJK1tO3vPUrupImxUEL4FlsEHnWSK5nuwyle2XzTwNHPamxrL/MXwiOKVnKZh8Acg==
-X-Received: by 2002:a17:906:e2cd:b0:a52:b11:5406 with SMTP id gr13-20020a170906e2cd00b00a520b115406mr2043944ejb.16.1712944399823;
-        Fri, 12 Apr 2024 10:53:19 -0700 (PDT)
+        bh=4x6CO2roFzlygK8ZkH3v2xYQJthxJprOn/AYJNBa9HE=;
+        b=AXXDCF9lk/mVeNZe1ghBbmdlWKe5aI3Ug/pthGloHO0PZL3RPiMaz+TUCrbNf9IQCL
+         pmlObu26V+bKSceKWDgsa+NzLbyT0er2cjupCNMPff04FIDZClv6ZMmek/wGPjwXGYHh
+         z5kPOX5hYn4Mq3Btevc092Bqv1+Q8jYVykBpvu7NuOqUjqBSzniX95xFPyWFzEItl2Ta
+         HJ52pfy2CXxJd0b0+7WDoEJ7ItRNMhQ44HKJMKoSQIlplkt6Ii+4mXbmBvXRDksqQmSn
+         gNt01db8VuXYtsMLzYKSSx6A2LY3ulWjiWwFH1FGKD0dp3/lWKPyrxNYT1dzGxi8vPch
+         iIoA==
+X-Gm-Message-State: AOJu0YyPpbwTEo8LhuIt7AIAyKRd05kT0a9bYXw7TT9D8dcwOgj0Aztk
+	WxlSgbKNyJJCZpK1iHKSgYs8hW5IMomkrPB7m4gwPETJ5huylWOm//teXX+S2Ug=
+X-Google-Smtp-Source: AGHT+IFUzNnjE4vp9FT/3YZwaF/+YBDJmtBRgmP5Mk3dry+LJrwp3YCYOIZWkivM15e9EC3TZeSY6g==
+X-Received: by 2002:a19:430f:0:b0:518:86a8:5a33 with SMTP id q15-20020a19430f000000b0051886a85a33mr1507643lfa.56.1712944645997;
+        Fri, 12 Apr 2024 10:57:25 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id bb2-20020a1709070a0200b00a520e463227sm2061592ejc.127.2024.04.12.10.53.18
+        by smtp.gmail.com with ESMTPSA id bq13-20020a170906d0cd00b00a52307b3aa9sm1158361ejb.57.2024.04.12.10.57.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Apr 2024 10:53:19 -0700 (PDT)
-Message-ID: <dca6c1bf-4e7f-4177-bfe6-f43e0591b535@linaro.org>
-Date: Fri, 12 Apr 2024 19:53:16 +0200
+        Fri, 12 Apr 2024 10:57:25 -0700 (PDT)
+Message-ID: <579a1569-7bba-491f-ba5e-7cfcb34ccc1f@linaro.org>
+Date: Fri, 12 Apr 2024 19:57:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,21 +76,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: qcom: sa8155p-adp: fix SDHC2 configuration
-To: Volodymyr Babchuk <Volodymyr_Babchuk@epam.com>
-Cc: Stephan Gerhold <stephan@gerhold.net>,
- "stable@vger.kernel.org" <stable@vger.kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH 1/3] dt-bindings: reset: Add Amlogic T7 Reset Controller
+To: neil.armstrong@linaro.org, kelvin.zhang@amlogic.com,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Bhupesh Sharma <bhupesh.sharma@linaro.org>,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20240410134022.732767-1-volodymyr_babchuk@epam.com>
- <20240411115506.1170360-1-volodymyr_babchuk@epam.com>
- <769a6a2a-2f38-42de-b3ce-8585b8b0a758@linaro.org> <87v84m4nah.fsf@epam.com>
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Zelong Dong <zelong.dong@amlogic.com>
+References: <20240329-t7-reset-v1-0-4c6e2e68359e@amlogic.com>
+ <20240329-t7-reset-v1-1-4c6e2e68359e@amlogic.com>
+ <927ad2cb-3b41-4eda-b930-856be64ae9ba@linaro.org>
+ <10650c59-96f2-4234-b5fd-aa8efec90e5b@linaro.org>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -139,173 +136,78 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <87v84m4nah.fsf@epam.com>
+In-Reply-To: <10650c59-96f2-4234-b5fd-aa8efec90e5b@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/04/2024 17:24, Volodymyr Babchuk wrote:
+On 12/04/2024 15:12, Neil Armstrong wrote:
+> Hi,
 > 
-> Hi Krzysztof,
-> 
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
-> 
->> On 11/04/2024 13:55, Volodymyr Babchuk wrote:
->>> There are multiple issues with SDHC2 configuration for SA8155P-ADP,
->>> which prevent use of SDHC2 and causes issues with ethernet:
+> On 29/03/2024 20:39, Krzysztof Kozlowski wrote:
+>> On 29/03/2024 10:17, Kelvin Zhang via B4 Relay wrote:
+>>> From: Zelong Dong <zelong.dong@amlogic.com>
 >>>
->>> - Card Detect pin for SHDC2 on SA8155P-ADP is connected to gpio4 of
->>>   PMM8155AU_1, not to SoC itself. SoC's gpio4 is used for DWMAC
->>>   TX. If sdhc driver probes after dwmac driver, it reconfigures
->>>   gpio4 and this breaks Ethernet MAC.
+>>> Add a new compatible and the related header file
+>>> for Amlogic T7 Reset Controller.
 >>>
->>> - pinctrl configuration mentions gpio96 as CD pin. It seems it was
->>>   copied from some SM8150 example, because as mentioned above,
->>>   correct CD pin is gpio4 on PMM8155AU_1.
->>>
->>> - L13C voltage regulator limits minimal voltage to 2.504V, which
->>>   prevents use 1.8V to power SD card, which in turns does not allow
->>>   card to work in UHS mode.
->>
->> That's not really related. One issue, one commit.
->>
->>>
->>> This patch fixes all the mentioned issues.
->>>
->>> Fixes: 0deb2624e2d0 ("arm64: dts: qcom: sa8155p-adp: Add support for uSD card")
->>> Cc: stable@vger.kernel.org
->>> Signed-off-by: Volodymyr Babchuk <volodymyr_babchuk@epam.com>
->>>
+>>> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+>>> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
 >>> ---
+>>>   .../bindings/reset/amlogic,meson-reset.yaml        |   1 +
+>>>   include/dt-bindings/reset/amlogic,t7-reset.h       | 197 +++++++++++++++++++++
+>>>   2 files changed, 198 insertions(+)
 >>>
->>> In v2:
->>>  - Added "Fixes:" tag
->>>  - CCed stable ML
->>>  - Fixed pinctrl configuration
->>>  - Extended voltage range for L13C voltage regulator
->>> ---
->>>  arch/arm64/boot/dts/qcom/sa8155p-adp.dts | 32 +++++++++++-------------
->>>  1 file changed, 14 insertions(+), 18 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
->>> index 5e4287f8c8cd1..b9d56bda96759 100644
->>> --- a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
->>> +++ b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
->>> @@ -283,7 +283,7 @@ vreg_l12c_1p808: ldo12 {
->>>  
->>>  		vreg_l13c_2p96: ldo13 {
->>>  			regulator-name = "vreg_l13c_2p96";
->>> -			regulator-min-microvolt = <2504000>;
->>> +			regulator-min-microvolt = <1800000>;
->>>  			regulator-max-microvolt = <2960000>;
->>>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->>>  		};
->>> @@ -384,10 +384,10 @@ &remoteproc_cdsp {
->>>  &sdhc_2 {
->>>  	status = "okay";
->>>  
->>> -	cd-gpios = <&tlmm 4 GPIO_ACTIVE_LOW>;
->>> +	cd-gpios = <&pmm8155au_1_gpios 4 GPIO_ACTIVE_LOW>;
->>>  	pinctrl-names = "default", "sleep";
->>> -	pinctrl-0 = <&sdc2_on>;
->>> -	pinctrl-1 = <&sdc2_off>;
->>> +	pinctrl-0 = <&sdc2_on &pmm8155au_1_sdc2_cd>;
->>> +	pinctrl-1 = <&sdc2_off &pmm8155au_1_sdc2_cd>;
->>>  	vqmmc-supply = <&vreg_l13c_2p96>; /* IO line power */
->>>  	vmmc-supply = <&vreg_l17a_2p96>;  /* Card power line */
->>>  	bus-width = <4>;
->>> @@ -505,13 +505,6 @@ data-pins {
->>>  			bias-pull-up;		/* pull up */
->>>  			drive-strength = <16>;	/* 16 MA */
->>>  		};
->>> -
->>> -		sd-cd-pins {
->>> -			pins = "gpio96";
->>> -			function = "gpio";
->>> -			bias-pull-up;		/* pull up */
->>> -			drive-strength = <2>;	/* 2 MA */
->>> -		};
->>>  	};
->>>  
->>>  	sdc2_off: sdc2-off-state {
->>> @@ -532,13 +525,6 @@ data-pins {
->>>  			bias-pull-up;		/* pull up */
->>>  			drive-strength = <2>;	/* 2 MA */
->>>  		};
->>> -
->>> -		sd-cd-pins {
->>> -			pins = "gpio96";
->>> -			function = "gpio";
->>> -			bias-pull-up;		/* pull up */
->>> -			drive-strength = <2>;	/* 2 MA */
->>> -		};
->>>  	};
->>>  
->>>  	usb2phy_ac_en1_default: usb2phy-ac-en1-default-state {
->>> @@ -604,3 +590,13 @@ phy-reset-pins {
->>>  		};
->>>  	};
->>>  };
+>>> diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+>>> index f0c6c0df0ce3..fefe343e5afe 100644
+>>> --- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+>>> +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+>>> @@ -19,6 +19,7 @@ properties:
+>>>         - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
+>>>         - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
+>>>         - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
+>>> +      - amlogic,t7-reset # Reset Controller on T7 and compatible SoCs
+>>>   
+>>
+>> If there is going to be any resend, please drop the comment. It's not
+>> really helpful and makes it trickier to read.
+>>
+>>>     reg:
+>>>       maxItems: 1
+>>> diff --git a/include/dt-bindings/reset/amlogic,t7-reset.h b/include/dt-bindings/reset/amlogic,t7-reset.h
+>>> new file mode 100644
+>>> index 000000000000..ca4a832eeeec
+>>> --- /dev/null
+>>> +++ b/include/dt-bindings/reset/amlogic,t7-reset.h
+>>> @@ -0,0 +1,197 @@
+>>> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+>>> +/*
+>>> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
+>>> + */
 >>> +
->>> +&pmm8155au_1_gpios {
->>> +	pmm8155au_1_sdc2_cd: pmm8155au_1-sdc2-cd {
+>>> +#ifndef _DT_BINDINGS_AMLOGIC_T7_RESET_H
+>>> +#define _DT_BINDINGS_AMLOGIC_T7_RESET_H
+>>> +
+>>> +/* RESET0 */
+>>> +/*					0-3	*/
 >>
->> No underscores in node names.
+>> I assume this matches existing drivers which do not use IDs but map the
+>> binding to hardware value? I remember we talked about changing it, so if
+>> something happened about this and it could be changed: please change.
 > 
-> Fill fix.
-> 
->> Please also follow tlmm style of naming nodes.
-> 
-> Just to be on the same page, will "pmm8155au_1_sdc2_cd: sdc2-cd-pins" be fine?
+> I'm not aware of such discussion, and I don't really see the issue...
+> thoses are IDs, and yes they match the Hardware offsets, and ?
 
-pins are for sublevel, so you want -state. Just like other pmic GPIOs.
+Bindings are not for hardware offsets/values/addresses. It's just not a
+binding.
 
-> 
->> Also does not look like node is placed in alphabetical place. Where did
->> you put it?
-> 
-> I can't say that the file is sorted in the first place:
-> 
-> # grep "^&" arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-> &apps_rsc {
-> &ethernet {
-> &qupv3_id_1 {
-> &remoteproc_adsp {
-> &remoteproc_cdsp {
-> &sdhc_2 {
-> &uart2 {
-> &uart9 {
-> &ufs_mem_hc {
-> &ufs_mem_phy {
-> &usb_1 {
-> &usb_1_dwc3 {
-> &usb_1_hsphy {
-> &usb_1_qmpphy {
-> &usb_2 {
-> &usb_2_dwc3 {
-> &usb_2_hsphy {
-> &usb_2_qmpphy {
+I quickly looked at your driver patch and it confirms: not a binding.
+Binding constant is used by the driver and DTS consumer.
 
-Was sorted till here...
-
-> &pcie0 {
-> &pcie0_phy {
-> &pcie1_phy {
-> &tlmm {
-
-and here second sorting started...
-
-> &pmm8155au_1_gpios {
-
-and you started third.
-
-> 
-> 
-> So, I can put after &pci1 to have it grouped with other entries that
-> start with p*, or I can put right after &ethernet to make it appear in
-> alphabetical order. It is your call.
-
-Please put it in the first group, so after ethernet. If this gets ever
-sorted, then at least one less move.
+I am really sure we had this talk in the past, but could be I think
+about different platform. Since this is not a binding, I do not think
+claiming there is any ABI here is reasonable. Feel free to store them
+with other hardware values, like in DTS headers etc. We already moved to
+DTS headers several such "non-binding" constants.
 
 Best regards,
 Krzysztof
