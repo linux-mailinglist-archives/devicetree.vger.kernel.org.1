@@ -1,171 +1,87 @@
-Return-Path: <devicetree+bounces-58734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDA858A2E82
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 14:38:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C7528A2E92
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 14:50:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 505ADB21331
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 12:38:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 120751F2229E
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 12:50:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A1205B5BE;
-	Fri, 12 Apr 2024 12:37:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5360F58AD6;
+	Fri, 12 Apr 2024 12:50:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NfSqe5yw"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="AA3GGZZW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5195555C3B;
-	Fri, 12 Apr 2024 12:37:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9FEE4597C;
+	Fri, 12 Apr 2024 12:50:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712925475; cv=none; b=LUPiIOeY7L9qRgfO7s7TsEeiLh2H2YbXiyn82Bxb2O8QeBa4W12KYXpjwIevm3UqbkCOJo4E1tMjYkAI/6vRf4U+MsaHXZHj4ufgFIm6b9kBOi4hqEPaGCwW2Dk9qLmn/U3ez5DboH5d7p2CgW40zzzOak9T18FD0x3NGitveOw=
+	t=1712926230; cv=none; b=CSnc2+Fj4K5arB7JL4X9a4aJtqtOVj5CXsfSM2qsIM+BRyguhnKbUmtvR9SaJo1v4ZxiI3t/OAx558lPHdOtVqzK0nj/EVtICoMkFi50umy/v5IQDmLaTxjtehZ0OII/qavutT2I20bWXCwVHoBPtODCQpO32nV95vN4M/+/GbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712925475; c=relaxed/simple;
-	bh=C0wVk5cOtI3tAGSa3X+/7Lo5QFB431pX7oYKu/xlIg4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qAiWXCV2WX4kx2Plhe0IT/v2gXFoQopRenJHUE+0H6zTVVvARzMNrCAR//1I6Uhr9VVEHhDUqJY4p/R/ai9xSNyu8sMsgz0OxmrUqjXpW2Ks0ruFa31QV3yIBdzKsXreXgKe0AfQuRtNiSkIIQ6/KFkubjfXeqFczIuFg4MB6NA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NfSqe5yw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7F4AC4AF07;
-	Fri, 12 Apr 2024 12:37:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712925474;
-	bh=C0wVk5cOtI3tAGSa3X+/7Lo5QFB431pX7oYKu/xlIg4=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=NfSqe5ywT9N1aTLIrHBScsTlGElesoeZ2B4h01aGvwgLuo7e/GXmSnp1YdGBOzxhd
-	 ncO601AARHmgdyKTS+w8dEW6WOOBT7aJs6xA3/gETK2O2rAyZrlDcJELUgumpVNSoC
-	 PM2SG7Pq8qzdHTYAJ65ho3rM5lI/pLVhePj6Z5PEdVA8G25LV4l/+hbMvZXuT759cS
-	 PvAvpIKJIThrUf9EobZoeRgutQGI9grhb8jukktuID3mc4HHqXuhpL8m5NqDL45T2V
-	 tY3Tm0lmPYNVIAmJRmHIU90aUWm7YdO7prErJLpWO7OK3Pp+3WiL+/W/eAeD/1DS8o
-	 6t8QvDFFuyMvQ==
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-516d727074eso1086136e87.0;
-        Fri, 12 Apr 2024 05:37:54 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVfB0OvGKgA+ZFGgMsjpFb/HKHfDks5u3ORAy0JRsjDF9QRG4hPTMi37bXHbRfRxO4UR5zRU94zvMdarimb2PBtIPu+U/lTEvFInknRNt+1GHmDv+MAqTwzFPZILgpnhqVg5QgihxXhCA==
-X-Gm-Message-State: AOJu0Yw9RTqJOe/P6ple9waY5axGDkggJU9ILQ+KAgP4PfDWs7JgaGa+
-	nDlVmosJIPMf+hE1c1aKGgS/BRRF5DovBYcQdrR+MngOTnnMa7gaNc5jbbr+bmDVY8yna1GajPd
-	7UEgotaKSpjvgykhXZmfWp8utyg==
-X-Google-Smtp-Source: AGHT+IEPdekwyhDzkGjzMModGVmVX+iai4Ht/W6b6ZsLvIi1Pt2LX57dciG3IUlZb1DPGcgZeVS0Urn1rk9Ty5lLfV0=
-X-Received: by 2002:ac2:4248:0:b0:516:cc2d:f6a1 with SMTP id
- m8-20020ac24248000000b00516cc2df6a1mr1489141lfl.51.1712925473235; Fri, 12 Apr
- 2024 05:37:53 -0700 (PDT)
+	s=arc-20240116; t=1712926230; c=relaxed/simple;
+	bh=RfwAPgOp5LejBlfDqP+Nmw/PGfFWYFcMyq/91l48VgY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=N6sZEltuMjMlSZKVbQp44SW7GTq6s+IkeiQn94OMGHirBjOHLIXc2TC2pnEz7f9huv7SbSuq4pnDmWj9N+Yh2vLLn3JMgsM/mqFu7uG+fI/dPmiSbZ3lL7ILIdPql2Sx3dhLfttibrL1v4qzEUiBQaGce8StNZKQ6k7L8nq9S6g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=AA3GGZZW; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from gaggiata.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id BEC5120210;
+	Fri, 12 Apr 2024 14:42:08 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1712925728;
+	bh=MajZ5hUyuuKB10smjUCbtBuKZkOL7rvb1r77L66soMU=;
+	h=Received:From:To:Subject;
+	b=AA3GGZZWDf93Z9MzYr513rqfZspeYyVtjBNikZlSCkmryx/pzXQ76AFeeQN7CePVb
+	 Qvb7fjhAef5W9ZqQ2zl7op3Gl+T/fjrQTvRMjV1GSBnHkcPfw6+vrw2b45oNJe3+h2
+	 +kqaS9WPzhnOG0VUrjjqfVvFmOpqTms3LkOp7gYBJ8gXnCJbVoOxfDtbJIdGqEobO3
+	 bHldUn03uciNcn69Vq+1m0yLGBcn1R5+SQN68Oinw+2Lh5zX/IHT5nXaItec1jPWEy
+	 pXZnVFJXD8MFFWbwrc4nIualBfjPWayRRx4X4a0pnY8Jc3439jNeVHF8x4sEkPaxKQ
+	 BK+zeffz9iqcg==
+Received: by gaggiata.pivistrello.it (Postfix, from userid 1000)
+	id 590AE7F950; Fri, 12 Apr 2024 14:42:08 +0200 (CEST)
+Date: Fri, 12 Apr 2024 14:42:08 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Roger Quadros <rogerq@kernel.org>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, afd@ti.com, srk@ti.com,
+	r-gunasekaran@ti.com, b-liu@ti.com, francesco@dolcini.it,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: ti: k3-am62*: Add PHY2 region to USB wrapper
+ node
+Message-ID: <ZhksILmpPf5l_-cU@gaggiata.pivistrello.it>
+References: <20240412-for-v6-9-am62-usb-errata-dt-v1-1-ef0d79920f75@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240412112931.285507-1-apatel@ventanamicro.com>
-In-Reply-To: <20240412112931.285507-1-apatel@ventanamicro.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 12 Apr 2024 07:37:40 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJBpN2qNgiKs_nL+JxM7qaaQkd4Gk06UNefp3gB1HQ7_w@mail.gmail.com>
-Message-ID: <CAL_JsqJBpN2qNgiKs_nL+JxM7qaaQkd4Gk06UNefp3gB1HQ7_w@mail.gmail.com>
-Subject: Re: [PATCH] of: property: Add fw_devlink support for interrupt-map property
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: Saravana Kannan <saravanak@google.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Atish Patra <atishp@atishpatra.org>, 
-	Andrew Jones <ajones@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Anup Patel <anup@brainfault.org>, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240412-for-v6-9-am62-usb-errata-dt-v1-1-ef0d79920f75@kernel.org>
 
-On Fri, Apr 12, 2024 at 6:29=E2=80=AFAM Anup Patel <apatel@ventanamicro.com=
-> wrote:
->
-> Some of the PCI controllers (such as generic PCI host controller)
-> use "interrupt-map" DT property to describe the mapping between
-> PCI endpoints and PCI interrupt pins.
+Hello Roger,
 
-I would go as far as saying that's the only case as that's the only
-case where the interrupts are not described in DT.
+On Fri, Apr 12, 2024 at 02:52:14PM +0300, Roger Quadros wrote:
+> Add PHY2 register space to USB wrapper node. This is required
+> to deal with Errata i2409.
+> 
+> Signed-off-by: Roger Quadros <rogerq@kernel.org>
 
-> Currently, there is no fw_devlink created based on "interrupt-map"
-> DT property so interrupt controller is not guaranteed to be probed
-> before PCI host controller. This mainly affects RISC-V platforms
-> where both PCI host controller and interrupt controllers are probed
-> as regular platform devices.
+Closes: https://lore.kernel.org/all/20240408095200.GA14655@francesco-nb/
+Reviewed-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-That's *every* system with PCI really.
+Thanks,
+Francesco
 
-> This creates fw_devlink between consumers (PCI host controller) and
-> supplier (interrupt controller) based on "interrupt-map" DT property.
->
-> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> ---
->  drivers/of/property.c | 53 +++++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 53 insertions(+)
->
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index a6358ee99b74..ccbbb651a89a 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -1311,6 +1311,58 @@ static struct device_node *parse_interrupts(struct=
- device_node *np,
->         return of_irq_parse_one(np, index, &sup_args) ? NULL : sup_args.n=
-p;
->  }
->
-> +static struct device_node *parse_interrupt_map(struct device_node *np,
-> +                                              const char *prop_name, int=
- index)
-> +{
-> +       struct device_node *tn, *ipar, *supnp =3D NULL;
-> +       u32 addrcells, intcells, cells;
-> +       const __be32 *imap, *imap_end;
-> +       int i, imaplen;
-> +
-> +       if (!IS_ENABLED(CONFIG_OF_IRQ))
-> +               return NULL;
-> +
-> +       if (strcmp(prop_name, "interrupt-map"))
-> +               return NULL;
-> +
-> +       ipar =3D of_node_get(np);
-> +       do {
-> +               if (!of_property_read_u32(ipar, "#interrupt-cells", &intc=
-ells))
-> +                       break;
-> +               tn =3D ipar;
-> +               ipar =3D of_irq_find_parent(ipar);
-> +               of_node_put(tn);
-> +       } while (ipar);
-> +       if (!ipar)
-> +               return NULL;
-> +       addrcells =3D of_bus_n_addr_cells(ipar);
-> +       of_node_put(ipar);
-> +
-> +       imap =3D of_get_property(np, "interrupt-map", &imaplen);
-> +       if (!imap || imaplen <=3D (addrcells + intcells))
-> +               return NULL;
-> +       imap_end =3D imap + imaplen;
-> +
-> +       for (i =3D 0; i <=3D index && imap < imap_end; i++) {
-> +               if (supnp)
-> +                       of_node_put(supnp);
-> +
-> +               imap +=3D addrcells;
-> +               imap +=3D intcells;
-> +
-> +               supnp =3D of_find_node_by_phandle(be32_to_cpu(imap[0]));
-> +               if (!supnp)
-> +                       return NULL;
-> +               imap +=3D 1;
-> +
-> +               if (of_property_read_u32(supnp, "#interrupt-cells", &cell=
-s))
-> +                       return NULL;
-> +               imap +=3D cells;
-
-This is wrong. Technically, you can have #address-cells too.
-
-The bigger problem I have is this creates 2 sets of 'interrupt-map'
-parsing code. Your version skips a lot of things like whether the
-interrupt controller is available and there's the list of
-'interrupt-map' abusers to think about.
-
-Rob
 
