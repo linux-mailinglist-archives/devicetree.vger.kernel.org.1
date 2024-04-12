@@ -1,483 +1,240 @@
-Return-Path: <devicetree+bounces-58549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E330F8A26E9
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 08:47:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E53B8A26EF
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 08:48:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 126981C23DBA
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 06:47:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ACDE2B26112
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 06:47:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E28F4087B;
-	Fri, 12 Apr 2024 06:47:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 381404087B;
+	Fri, 12 Apr 2024 06:47:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vG9fet8f"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="Lxx58INx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01olkn2025.outbound.protection.outlook.com [40.92.52.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9FDC4085A;
-	Fri, 12 Apr 2024 06:47:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712904435; cv=none; b=UiEqFlI9KnMScXI2BISjG+fSMJAV+vlsEsZXF90iSYxGAwkMnbduabEFwV8EPRB1MFquGH7bruW0XC/XIBwhoX2f7RlY9Yu1nytRGwgus7eREv6Y9TPniDylqWDYVNdrdlOH+fPVe3BbeMU6b87+VvYrdBDn7UcC0FLjXirrCmg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712904435; c=relaxed/simple;
-	bh=wKiLrCp6fCN4iaMwAjphuSytXreD+DWNdbD8TeZrp3w=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=f9VXxnNj5/ak8FqUfmVe7bJz5tfM85dofB430r0rJVvSGVYysYuhXvq7IdJGMNTLsQKRzWmgays8ZcAfGg7cdJBoJeLEhYsdWX3JijhK6HWWTs1Dx514MEurSYv0JyUca7J6PdWLYuf0p03FlMT5NIZsUJ78/2DdUoV09nK+BVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vG9fet8f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BFCDC32786;
-	Fri, 12 Apr 2024 06:47:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712904435;
-	bh=wKiLrCp6fCN4iaMwAjphuSytXreD+DWNdbD8TeZrp3w=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=vG9fet8fmsg9QWamFa05NESyCetzlr0qsZLhRIQoApXgFPLfOuk71h0/eXrRL2/sz
-	 7OZFcet9BPHj9GYfRgtSJusFdus5AYtJjIv7CZ5WlO82IgyogB7huqzZhX/cW/ovo8
-	 E0PnH34mEPZaSdAiW0zRmTUA9GgbUJ+39Lq7DzvJc6l9Tyr229lNuFKJSckPCQH6Y6
-	 OKhCE3bBa79im26++h7NaByVB06fKO6QNgXW/HGwRoq+Nre5+5QP1iwg9C+ypKXXVv
-	 V6cXP3D9Wg4qhrmrPQSInimh/m8d3jJTPCjgo5aDGhcKXdzjcTTGU4AdavN/Zk/c4d
-	 evYS8LbyYpaCw==
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a5224dfa9adso98137066b.0;
-        Thu, 11 Apr 2024 23:47:15 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUBGOL9DjmfSz9QBux/odMDgCnIo5huGqjW+WaJj7j4Qxp6NY+czDeNPcIJzgjbHqO0WZFntP9AgkNow1pVzmbQVf5HKX3rrdI4KOhDp0t6pWBm6I6Y0absWcVjWqkJEjUeqoNvEg==
-X-Gm-Message-State: AOJu0YzrtWK1xjuIWC8P18Rn/O+cp77cD4NgJPsYtMySNNwbX5sAi7Bi
-	E0+TNunR/aC2oag1YYkk0oIMclaqwyGyTPlD/DUE479OCMT17ugrOTFsfR2VXagLRp/2xKFrNd1
-	w6BZlX6BKKUoJKGId7RL5/eHpJJ4=
-X-Google-Smtp-Source: AGHT+IFKY4P0K7H+yKTtB94FvQDXNSbklhWXmAPB+g0tno+5YbAMun9CgeLDFaWe6sHHQZv6jbVT2uhZ94CHafmUAbI=
-X-Received: by 2002:a17:907:720c:b0:a52:1e5a:3ec4 with SMTP id
- dr12-20020a170907720c00b00a521e5a3ec4mr4073408ejc.5.1712904433765; Thu, 11
- Apr 2024 23:47:13 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC49F3FE37;
+	Fri, 12 Apr 2024 06:47:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.52.25
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712904475; cv=fail; b=Re7YL3RHhTkChG5A/9qp8MVYHSgMznwnfFNR0NbLmPdoBtJXjjV9D5SVVxdgpsEX0BOJ3TRg7LUe3jpl7AqKVvL3uZQq00KnJHszyX+H/jFo/S1n51WppcbyZJq7HWgxuficHn5D8reXimVqmo/OQXZ6jXkNpnYAz8T41cQWLV8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712904475; c=relaxed/simple;
+	bh=hDblfpIt9MohjuiyVISFek5pXfp7uS1ythWwCQGJ/xw=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=TGO77Kphp5tQzVnzqedFlvNUqWy+E8ngXuqhuMD32CM0y9vRs4ettjIt4PUpwTOzSedLhMLjJeCkltP8O6HT16FtX/F6X08cTuw1g8Z2GHUbI96a2xpOdLhFA1WChFPEXecePQH/PTfljnZdalUKw+D+Hk8M7HPAgKTyJlERYwc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=Lxx58INx; arc=fail smtp.client-ip=40.92.52.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RTn5modHXq/FnXmfnfCnyilz0/gx/pO6OSsn6P6qBY4u7IUlXzK5doegY2IOQeCP1yeOewWMw6pHFwSeHyTFwfQKSl/WLVTf+NCmdrNPz0olgr8teAAs7l8JEMCqzYmy3CxiR2vvT/2skeShP1vk0VeMRBfKvVy/FVt/VHH7JgtaVBQ5s1ThhfeJIdf3MDHGVjBTVOO+ewarh5dwEaK6J8cz/jc9S02+ws+nRkUocTigMG8rTKy5cKyAiZWsfzYMWnRETwDgbXpuE2VnsdIUI3ZeId+LKA7B5KDCGk25t1qY+8ilx0plLPJYKptdM/HLGTDi2oLuC6lpMLkUS2F0IA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VmbIhgdVwycnbfINdGtSRJY6O8V/C24FVOUjF93NQWY=;
+ b=GvKwuK6RNFCbThhF5xvc+PqXbNpzRH5FjsE0bTrtaVyhYw1yVzvN2Ifi7xNd4w0zN2F7Gy5sjReqgVfAG9gBztQ0TVy8iF/GzWDcDFh6E4RTTH3sTO6LahdmVyMcMWFVh/jJNyVXG/rE4p1czANZ11RNG3rIRG1f8T09SRzkPtkW8/sF5ceHCW7egIbyjaboK3GWlPUA5HFvIaHScYiJQgyP70bWdBHYmorzNKrhrKg7cYsp9BSBYRr/fo8LYkWltqWQ5LnAbFrHGGZr5mcV8mETfSbfI2qkUJwvM/TyeThuQAZCyZRE2fm8tUIUJrRIlfqsLvX0Mo5hbW8MPjrkBA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VmbIhgdVwycnbfINdGtSRJY6O8V/C24FVOUjF93NQWY=;
+ b=Lxx58INxCc2518C/RfBsJa+lQusFpoUq0CqRb2PQbuiRByegOh4nnefqj4bxQ84nDXVytHLH+Cf3xw30sDqKeWW8t/jDVosBAnLjk3ZJuozkjKxIpjBbRxmGG74rzjxMKcG+WgbYs0IB/CC4YScqystnYiXQW2+zJf+OlPu/7HB6R/SXQjwu/rwIzzq2uYyD4rphAQlfdglAPZtJNDtsAG521Vm7pHTr7AOnsbHWCKYKflcOK+taJCY/q/ZI16ZkypG4OZiDRpAwBLKup8fV/FN8+FxLoPlwlvuux3UrBOBSz1CXN197eCRE7pUWQIBGYO4GHdE4GkqFu/0mIvVJzw==
+Received: from SEZPR06MB6959.apcprd06.prod.outlook.com (2603:1096:101:1ed::14)
+ by SEZPR06MB5785.apcprd06.prod.outlook.com (2603:1096:101:ad::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Fri, 12 Apr
+ 2024 06:47:47 +0000
+Received: from SEZPR06MB6959.apcprd06.prod.outlook.com
+ ([fe80::351e:200b:add4:6478]) by SEZPR06MB6959.apcprd06.prod.outlook.com
+ ([fe80::351e:200b:add4:6478%7]) with mapi id 15.20.7409.053; Fri, 12 Apr 2024
+ 06:47:47 +0000
+Message-ID:
+ <SEZPR06MB695994640AD7B7932CF1711B96042@SEZPR06MB6959.apcprd06.prod.outlook.com>
+Date: Fri, 12 Apr 2024 14:47:41 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v11 0/9] net: hisi-femac: add support for
+ Hi3798MV200, remove unmaintained compatibles
+To: Yisen Zhuang <yisen.zhuang@huawei.com>,
+ Salil Mehta <salil.mehta@huawei.com>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>
+Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20240309-net-v11-0-eb99b76e4a21@outlook.com>
+Content-Language: en-US
+From: Yang Xiwen <forbidden405@outlook.com>
+In-Reply-To: <20240309-net-v11-0-eb99b76e4a21@outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TMN: [9Cu6QSvbRsz9d3ko24mpD8RnzVx6niOJ59vlcyhw0oPA5fXmOZQQgpkQiYtbJob3]
+X-ClientProxiedBy: KL1PR02CA0026.apcprd02.prod.outlook.com
+ (2603:1096:820:d::13) To SEZPR06MB6959.apcprd06.prod.outlook.com
+ (2603:1096:101:1ed::14)
+X-Microsoft-Original-Message-ID:
+ <8ad5d952-a3c1-45c7-9041-8029d9db2e28@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1712732719.git.zhoubinbin@loongson.cn> <6a37f0eda2880d9a763c89a7b1929b908d8fc4fe.1712732719.git.zhoubinbin@loongson.cn>
-In-Reply-To: <6a37f0eda2880d9a763c89a7b1929b908d8fc4fe.1712732719.git.zhoubinbin@loongson.cn>
-From: Huacai Chen <chenhuacai@kernel.org>
-Date: Fri, 12 Apr 2024 14:47:05 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H5Smw_pj6T=O=_EeSNib9LWcy1QVvRNdyBULLEsdjXB5w@mail.gmail.com>
-Message-ID: <CAAhV-H5Smw_pj6T=O=_EeSNib9LWcy1QVvRNdyBULLEsdjXB5w@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] pwm: Add Loongson PWM controller support
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Juxin Gao <gaojuxin@loongson.cn>, loongson-kernel@lists.loongnix.cn, 
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SEZPR06MB6959:EE_|SEZPR06MB5785:EE_
+X-MS-Office365-Filtering-Correlation-Id: 96d13880-600f-4e4f-e6a2-08dc5abc7685
+X-MS-Exchange-SLBlob-MailProps:
+	RlF2DIMZ1qX9gaRkMzR6bWthIDvdvC0tNzJMjE/nCoXPUZhNScG5HdZma/MABDTgq0JqzFde83AFdx5+EoTXXYekshTD1HbO8ROyIVR7sn0dLGNNNDuvpY0XqvPpmqEvjsyElFktmiu0ydWtIqW4b5YM/cqz8m7Hfm+z4Hta/FWW8OQ1wW61DgaVTkuaXbWqD29vd9vsbp5PMiDxred/BbAzBUr+nDM6p/tmsCn/tUTY3ArCYD2NhFY/MZAkQ3F/VpMLT556XMWfYEB1MgLzJx34UwnirPeBJfPUqDaAD9ayMh84+VQW0HmmYd9kYr2Uv8dVfEnCMabATRyQJDXDu24rE2MTE3o+SrCNdbbCgKrynwxT0wOsgDh6dXdQz8JvyprBnNZivVz4LyyeuZAJ2F91fwTJiGMEYOC9dnO9RJL87n3rbwoPsFjdW9p3NWWoLdozsN40rCOWjA3wzm41t3ZhzgM+QO2fserEn9KYbxrdvHT6RrD7j3dulLzdHBqa5X7rE2XE6OLIOpMZk68AXD0wFi9cU9e2yrEanlVn5Jw9Xo2tIS3kFNpAzDBoV0KzklEU2TvLOPhu5a3hUvtQ1X6+YAycOE6M7NNNF1Mf4QY95xSK8v/7izPR7aqbTOUDLmv3QrqDn17fs+D9z1M04r3AYIX404T4oN2WGW7SmLbD7Rdul9VmIjN/55GE7x9ixrxVm0AGWYswjPU5e116kr7eafYx4GQna5+ZRGPWBG1XQ5t6lhln7kq7oPCHaEVcmqr3RhVSRUIJmZ0Qc/MlEw/QCmS7PDfjbHFf4bdX4HL+Hu2gpfvmjgkadD3YHWJsQYtChIlzS/m5BPDz3LgUdjezWhHnkp7I
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	N1LvsT/iJXq8XjCSQjIj6RUdAHKqdg3hZB/NHoj9rO6ak5ZXGhhtxMVDd2HrioOCgP8vrQCGRMrEaYdc6AsLyLacz8JB8AwMCj8C0j4GKZvrArV/T+b/LJN0HJj/iKOmcicuKFxITy0zgMX4dBy477mYrDcGuhz+8rl4oiY/UGbTtxS0VJFRuaRJzI1KzDx1CMHmUWFYF0wV5tqxTJB+FV3NAghYOc/lmOIslXFic4KiS6/6oXgLWxAyuD9yS/Y/MqkFahPYO+/Z4yOsAZ3aol3XOoykU0OcfN9KqdJpu/vooyX6vcTNV+qC5mtY3eritoNuLuq76sY6K879vEQh/ThJxAs7IE7w1+cyvqapAGeUHQC06nseS1dxzQOz8dZbsfng6htBqtvl1hKe1vvUS8qAHPjDc25eTqxhD3DC9uUxjbRRYj8+wf5c56Z0TnySYnUuCjtPH8fDP5d/OyxFk2j5J6vtGkNH30Awvv636IN4upgDtzZ/SdxHKRu7sccnmrnSftXahe9LtW0/DS6pbaSAE1ASTNmzTTcBBt4V1ybS6wyCwD64RIMkpWJ/G79DhzW0XeVsztj1kYlsDnzVtHULQd30jGj8KPvKvO7aobBNUb8VyPMyokxk2X7j5uDu5/tm7e8JLY62SrHPm4Bo6HEg3TgC9NzKOuwBjxgIAj4=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?amUxdWVNc1FEdUdEQTVxemkwSWxWR2JJdzlHY0dHMEJZUHpGYS9pd2xQdDM1?=
+ =?utf-8?B?N21HUW1nRVpiektsaURXdEw1OWlOelBpSjdGN0tjaXp1T2YvRG5qZGlpbWtY?=
+ =?utf-8?B?dkdRRFFBdDQ5RHR5cEorYSs0Mlg3cnA1WkQrY1BIRlE3a0JXV2VVbE9EWnhz?=
+ =?utf-8?B?cnNZWUdjUTl2NzY4cExubUxPTlk0bEZvdkJkSTdjdHpiR04rSDc5cmdCV2Rh?=
+ =?utf-8?B?OHZQZDZVaE5SejV5b0FTdytvQWNCM3pSeUd5clFVUUdYVHNJcTFVcE54R0Y2?=
+ =?utf-8?B?aEY3eUxLa09lTVVEKzkzZlladkJzVmFBOTQ5Q3Vzc2lRZUR0R083b0taNXhl?=
+ =?utf-8?B?ZExNUXhRcE9KLzBiaXBKc0xhKzVRTEYrYTh6SXJXOWFDUGpib0VpVzk5eWNZ?=
+ =?utf-8?B?alBEdWo2aXRrYVJMMlN4clB3U2U0Y1hxODNuQytuN3JSV2hHeGRvcVFibzZ5?=
+ =?utf-8?B?MlB5T0hPQnRCOHRJcUpqMk1XNDhFeWtqQ3pjeGhxWHcveVZpV3luVkhRTzcx?=
+ =?utf-8?B?eVNvaHdTZU1CQWZEYWhnWVY0emtoS3hzQ0lON0I1Y1BHdHRqc1ZuWkFxY0RW?=
+ =?utf-8?B?N2lzNGU3bC9GUVZscW9rbURiYWx4VkNYa0FCalcybTZKeXRJQUJSRVk0bkxy?=
+ =?utf-8?B?SCtxWlducVEvQWtJTyszVC8wNUVrWXFvbkpsaFFXK0VaazRVOGFCTUhPWmlp?=
+ =?utf-8?B?OFZYSVVwQVpZdURaeUxaR21nY2k3RjdwZ3ErY0ZHVVluaXlWU20xdG5pMDdT?=
+ =?utf-8?B?OXlqTTJVYUpYdWZhODhjNnBsOWFlcllnWXZCT2NlOFY2cHBMRHY1VFJ5SHVL?=
+ =?utf-8?B?YU1wS1Ivcjg0VDZBZDVFN0xGL0FURTZycTMweUxUR0lvTnpaYUlHeWc1Zm4r?=
+ =?utf-8?B?N0Npd2xRdEtEQ2hvb0lnMG1iZkxINzlGU2MvRFBURjNuS3BwKzFpdFY2Vk1V?=
+ =?utf-8?B?UjM1R1ZTeGljc2xoSXlLbS9SZDM4M3laTTJ6YWhlMGkzbEk2cE43TDJLcDQ5?=
+ =?utf-8?B?NzN1bnh1MDJuTGUxelJDdmRDS3ExbVJlWjhDeUFLOTAzREloV2JaZUJZSm16?=
+ =?utf-8?B?ckRmQTkybUErOE1tL0xRUGllTE8vSHZvWFhkc1JUamlCaktXaHU5M05BN1Ji?=
+ =?utf-8?B?Y3cvZkpNbWxUMWl3OFFINGVjZFBDQThBQXVKSENuMndzQ3dpYjR1b2xvSG56?=
+ =?utf-8?B?blYzajdFb0tkbGN6Vm9XQ2VIMU1rQXBGdnVteWhDRW1VMWhPd3ZuNEVpQW14?=
+ =?utf-8?B?TCsyRGZqY3phZDBQUFo4eFJuRFJJTjNuNmh2LzNLUDZFWlg0SG1FUHcrVFhU?=
+ =?utf-8?B?WENqV0JDbVFsMVZjZ090ODBQNEdjQW1nN2VENVdnaGZKUmUvTjZxa3MvZkg5?=
+ =?utf-8?B?Vmd1eU5HVitNa2hQVjBNQldhTEFKcUZYN0VGMTJCYlZIMmpMbnQwL21TcjVs?=
+ =?utf-8?B?ZjRmRHc1ZUllYVhON1U0N2ZFVmduVm15NndscTRQYnZNL01YdDNCUFVUSEh3?=
+ =?utf-8?B?QWFybWZiTXhjL1p6QkZTdTBFSkRXMDgzMjUyZGRNWEwrbXk2UHpIV1dIMlNx?=
+ =?utf-8?B?QVVHMEY1MjVKdjRJRnQ2SHNSRkY3ZWVBMWJ6ckZqYW91WmNQRGVEOVdla0Q2?=
+ =?utf-8?B?L0FUbURMbDk1c2h4a2JNYlZBRlJrcWZmTnh0MGpnVEFiS3hGcm5ZODVETU1x?=
+ =?utf-8?B?bCtoL2ZmTmhwUm9QTHlXa2puUjhQcUM2cjFQSS8wMnVGS2d5VWxtK3Z1enc5?=
+ =?utf-8?Q?5iGPg9SaVpEtVDXOqSSTkOwU7YO46LizIixUvjH?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 96d13880-600f-4e4f-e6a2-08dc5abc7685
+X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB6959.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Apr 2024 06:47:47.1778
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR06MB5785
 
-Hi, Binbin,
-
-On Thu, Apr 11, 2024 at 5:16=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.cn=
-> wrote:
->
-> This commit adds a generic PWM framework driver for the PWM controller
-> found on Loongson family chips.
->
-> Co-developed-by: Juxin Gao <gaojuxin@loongson.cn>
-> Signed-off-by: Juxin Gao <gaojuxin@loongson.cn>
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+On 3/9/2024 8:26 PM, Yang Xiwen via B4 Relay wrote:
+> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
 > ---
->  MAINTAINERS                |   1 +
->  drivers/pwm/Kconfig        |  10 ++
->  drivers/pwm/Makefile       |   1 +
->  drivers/pwm/pwm-loongson.c | 300 +++++++++++++++++++++++++++++++++++++
->  4 files changed, 312 insertions(+)
->  create mode 100644 drivers/pwm/pwm-loongson.c
+> Changes in v11:
+> - driver: repick the patch adding mv200 support, which is a stupid mistake (Krzysztof Kozlowski)
+> - Link to v10: https://lore.kernel.org/r/20240308-net-v10-0-3684df40897e@outlook.com
 >
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index cd0d4e2d02ff..fef232ae8cca 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -12762,6 +12762,7 @@ M:      Binbin Zhou <zhoubinbin@loongson.cn>
->  L:     linux-pwm@vger.kernel.org
->  S:     Maintained
->  F:     Documentation/devicetree/bindings/pwm/loongson,ls7a-pwm.yaml
-> +F:     drivers/pwm/pwm-loongson.c
+> Changes in v10:
+> - binding: make hi3516cv300 the fallback compatible (Krzysztof Kozlowski)
+> - driver: drop mv200 match string (Krzysztof Kozlowski)
+> - commit msg: remove #conflicts
+> - Link to v9: https://lore.kernel.org/r/20240307-net-v9-0-6e0cf3e6584d@outlook.com
 >
->  LOONGSON-2 SOC SERIES CLOCK DRIVER
->  M:     Yinbo Zhu <zhuyinbo@loongson.cn>
-> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> index 4b956d661755..bb163c65e5ae 100644
-> --- a/drivers/pwm/Kconfig
-> +++ b/drivers/pwm/Kconfig
-> @@ -324,6 +324,16 @@ config PWM_KEEMBAY
->           To compile this driver as a module, choose M here: the module
->           will be called pwm-keembay.
+> Changes in v9:
+> - binding: remove generic fallback compatible as it's not used in driver
+> - Link to v8: https://lore.kernel.org/r/20240305-net-v8-0-166aaeea2107@outlook.com
 >
-> +config PWM_LOONGSON
-> +       tristate "Loongson PWM support"
-> +       depends on MACH_LOONGSON64
-> +       help
-> +         Generic PWM framework driver for Loongson family.
-> +         It can be found on Loongson-2K series cpu and Loongson LS7A bri=
-dge chips.
-> +
-> +         To compile this driver as a module, choose M here: the module
-> +         will be called pwm-loongson.
-> +
->  config PWM_LP3943
->         tristate "TI/National Semiconductor LP3943 PWM support"
->         depends on MFD_LP3943
-> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-> index c5ec9e168ee7..bffa49500277 100644
-> --- a/drivers/pwm/Makefile
-> +++ b/drivers/pwm/Makefile
-> @@ -28,6 +28,7 @@ obj-$(CONFIG_PWM_INTEL_LGM)   +=3D pwm-intel-lgm.o
->  obj-$(CONFIG_PWM_IQS620A)      +=3D pwm-iqs620a.o
->  obj-$(CONFIG_PWM_JZ4740)       +=3D pwm-jz4740.o
->  obj-$(CONFIG_PWM_KEEMBAY)      +=3D pwm-keembay.o
-> +obj-$(CONFIG_PWM_LOONGSON)     +=3D pwm-loongson.o
->  obj-$(CONFIG_PWM_LP3943)       +=3D pwm-lp3943.o
->  obj-$(CONFIG_PWM_LPC18XX_SCT)  +=3D pwm-lpc18xx-sct.o
->  obj-$(CONFIG_PWM_LPC32XX)      +=3D pwm-lpc32xx.o
-> diff --git a/drivers/pwm/pwm-loongson.c b/drivers/pwm/pwm-loongson.c
-> new file mode 100644
-> index 000000000000..0afae42113a5
-> --- /dev/null
-> +++ b/drivers/pwm/pwm-loongson.c
-> @@ -0,0 +1,300 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Loongson PWM driver
-> + *
-> + * Author: Juxin Gao <gaojuxin@loongson.cn>
-> + * Further cleanup and restructuring by:
-> + *         Binbin Zhou <zhoubinbin@loongson.cn>
-> + *
-> + * Copyright (C) 2017-2024 Loongson Technology Corporation Limited.
-> + */
-> +
-> +#include <linux/acpi.h>
-> +#include <linux/clk.h>
-> +#include <linux/device.h>
-> +#include <linux/init.h>
-> +#include <linux/io.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pwm.h>
-> +#include <linux/units.h>
-> +
-> +/* Loongson PWM registers */
-> +#define PWM_DUTY       0x4 /* Low Pulse Buffer Register */
-> +#define PWM_PERIOD     0x8 /* Pulse Period Buffer Register */
-> +#define PWM_CTRL       0xc /* Control Register */
-> +
-> +/* Control register bits */
-> +#define PWM_CTRL_EN    BIT(0)  /* Counter Enable Bit */
-> +#define PWM_CTRL_OE    BIT(3)  /* Pulse Output Enable Control Bit, Valid=
- Low */
-> +#define PWM_CTRL_SINGLE        BIT(4)  /* Single Pulse Control Bit */
-> +#define PWM_CTRL_INTE  BIT(5)  /* Interrupt Enable Bit */
-> +#define PWM_CTRL_INT   BIT(6)  /* Interrupt Bit */
-> +#define PWM_CTRL_RST   BIT(7)  /* Counter Reset Bit */
-> +#define PWM_CTRL_CAPTE BIT(8)  /* Measurement Pulse Enable Bit */
-> +#define PWM_CTRL_INVERT        BIT(9)  /* Output flip-flop Enable Bit */
-> +#define PWM_CTRL_DZONE BIT(10) /* Anti-dead Zone Enable Bit */
-> +
-> +#define PWM_FREQ_STD       (50 * HZ_PER_KHZ)
-> +
-> +struct pwm_loongson_ddata {
-> +       struct pwm_chip chip;
-> +       struct clk      *clk;
-> +       void __iomem    *base;
-> +       /* The following for PM */
-> +       u32             ctrl;
-> +       u32             duty;
-> +       u32             period;
-> +};
-> +
-> +static inline struct pwm_loongson_ddata *to_pwm_loongson_ddata(struct pw=
-m_chip *chip)
-> +{
-> +       return container_of(chip, struct pwm_loongson_ddata, chip);
-> +}
-> +
-> +static inline u32 pwm_loongson_readl(struct pwm_loongson_ddata *ddata, u=
-64 offset)
-> +{
-> +       return readl(ddata->base + offset);
-> +}
-> +
-> +static inline void pwm_loongson_writel(struct pwm_loongson_ddata *ddata,
-> +                                      u32 val, u64 offset)
-> +{
-> +       writel(val, ddata->base + offset);
-> +}
-> +
-> +static int pwm_loongson_set_polarity(struct pwm_chip *chip, struct pwm_d=
-evice *pwm,
-> +                                    enum pwm_polarity polarity)
-> +{
-> +       struct pwm_loongson_ddata *ddata =3D to_pwm_loongson_ddata(chip);
-> +       u16 val;
-> +
-> +       val =3D pwm_loongson_readl(ddata, PWM_CTRL);
-> +
-> +       if (polarity =3D=3D PWM_POLARITY_INVERSED)
-> +               /* Duty cycle defines LOW period of PWM */
-> +               val |=3D PWM_CTRL_INVERT;
-> +       else
-> +               /* Duty cycle defines HIGH period of PWM */
-> +               val &=3D ~PWM_CTRL_INVERT;
-> +
-> +       pwm_loongson_writel(ddata, val, PWM_CTRL);
-A new line is needed here.
-
-> +       return 0;
-> +}
-> +
-> +static void pwm_loongson_disable(struct pwm_chip *chip, struct pwm_devic=
-e *pwm)
-> +{
-> +       struct pwm_loongson_ddata *ddata =3D to_pwm_loongson_ddata(chip);
-> +       u32 val;
-> +
-> +       if (pwm->state.polarity =3D=3D PWM_POLARITY_NORMAL)
-> +               pwm_loongson_writel(ddata, ddata->period, PWM_DUTY);
-> +       else if (pwm->state.polarity =3D=3D PWM_POLARITY_INVERSED)
-> +               pwm_loongson_writel(ddata, 0, PWM_DUTY);
-> +
-> +       val =3D pwm_loongson_readl(ddata, PWM_CTRL);
-> +       val &=3D ~PWM_CTRL_EN;
-> +       pwm_loongson_writel(ddata, val, PWM_CTRL);
-> +}
-> +
-> +static int pwm_loongson_enable(struct pwm_chip *chip, struct pwm_device =
-*pwm)
-> +{
-> +       struct pwm_loongson_ddata *ddata =3D to_pwm_loongson_ddata(chip);
-> +       u32 val;
-> +
-> +       pwm_loongson_writel(ddata, ddata->duty, PWM_DUTY);
-> +       pwm_loongson_writel(ddata, ddata->period, PWM_PERIOD);
-> +
-> +       val =3D pwm_loongson_readl(ddata, PWM_CTRL);
-> +       val |=3D PWM_CTRL_EN;
-> +       pwm_loongson_writel(ddata, val, PWM_CTRL);
-> +
-> +       return 0;
-> +}
-> +
-> +static u32 pwm_loongson_set_config(struct pwm_loongson_ddata *ddata, int=
- ns,
-> +                                  u64 clk_rate, u64 offset)
-> +{
-> +       u32 val;
-> +       u64 c;
-> +
-> +       c =3D clk_rate * ns;
-> +       do_div(c, NSEC_PER_SEC);
-> +       val =3D c < 1 ? 1 : c;
-> +
-> +       pwm_loongson_writel(ddata, val, offset);
-> +
-> +       return val;
-> +}
-> +
-> +static int pwm_loongson_config(struct pwm_chip *chip, struct pwm_device =
-*pwm,
-> +                              int duty_ns, int period_ns)
-> +{
-> +       struct pwm_loongson_ddata *ddata =3D to_pwm_loongson_ddata(chip);
-> +       struct device *dev =3D chip->dev;
-> +       u64 clk_rate;
-> +
-> +       if (period_ns > NANOHZ_PER_HZ || duty_ns > NANOHZ_PER_HZ)
-> +               return -ERANGE;
-> +
-> +       clk_rate =3D has_acpi_companion(dev) ? PWM_FREQ_STD
-> +                : clk_get_rate(ddata->clk);
-Long lines are acceptable because there is no 80 columns restriction now.
-
-> +
-> +       ddata->period =3D pwm_loongson_set_config(ddata, period_ns,
-> +                                               clk_rate, PWM_PERIOD);
-The same here. And moving the "period" sentence after "duty" is a
-little better because the order will be the same as in
-pwm_loongson_ddata.
-
-> +       ddata->duty =3D pwm_loongson_set_config(ddata, duty_ns, clk_rate,=
- PWM_DUTY);
-> +
-> +       return 0;
-> +}
-> +
-> +static int pwm_loongson_apply(struct pwm_chip *chip, struct pwm_device *=
-pwm,
-> +                             const struct pwm_state *state)
-> +{
-> +       int err;
-> +       bool enabled =3D pwm->state.enabled;
-> +
-> +       if (state->polarity !=3D pwm->state.polarity) {
-> +               if (enabled) {
-> +                       pwm_loongson_disable(chip, pwm);
-> +                       enabled =3D false;
-> +               }
-> +
-> +               err =3D pwm_loongson_set_polarity(chip, pwm, state->polar=
-ity);
-> +               if (err)
-> +                       return err;
-> +       }
-> +
-> +       if (!state->enabled) {
-> +               if (enabled)
-> +                       pwm_loongson_disable(chip, pwm);
-> +               return 0;
-> +       }
-> +
-> +       err =3D pwm_loongson_config(chip, pwm, state->duty_cycle, state->=
-period);
-> +       if (err)
-> +               return err;
-> +
-> +       if (!enabled)
-> +               err =3D pwm_loongson_enable(chip, pwm);
-> +
-> +       return err;
-> +}
-> +
-> +static int pwm_loongson_get_state(struct pwm_chip *chip, struct pwm_devi=
-ce *pwm,
-> +                                 struct pwm_state *state)
-> +{
-> +       struct pwm_loongson_ddata *ddata =3D to_pwm_loongson_ddata(chip);
-> +       u32 period, duty, ctrl;
-> +       u64 ns;
-> +
-> +       period =3D pwm_loongson_readl(ddata, PWM_PERIOD);
-> +       ns =3D period * NSEC_PER_SEC;
-> +       state->period =3D do_div(ns, period);
-> +
-> +       duty =3D pwm_loongson_readl(ddata, PWM_DUTY);
-> +       ns =3D duty * NSEC_PER_SEC;
-> +       state->duty_cycle =3D do_div(ns, duty);
-> +
-> +       ctrl =3D pwm_loongson_readl(ddata, PWM_CTRL);
-> +       state->polarity =3D (ctrl & PWM_CTRL_INVERT) ? PWM_POLARITY_INVER=
-SED
-> +                       : PWM_POLARITY_NORMAL;
-> +       state->enabled =3D (ctrl & PWM_CTRL_EN) ? true : false;
-> +
-> +       ddata->ctrl =3D ctrl;
-> +       ddata->duty =3D pwm_loongson_readl(ddata, PWM_DUTY);
-> +       ddata->period =3D pwm_loongson_readl(ddata, PWM_PERIOD);
-> +
-> +       return 0;
-> +}
-> +
-> +static const struct pwm_ops pwm_loongson_ops =3D {
-> +       .apply =3D pwm_loongson_apply,
-> +       .get_state =3D pwm_loongson_get_state,
-> +};
-> +
-> +static int pwm_loongson_probe(struct platform_device *pdev)
-> +{
-> +       struct pwm_loongson_ddata *ddata;
-> +       struct device *dev =3D &pdev->dev;
-> +
-> +       ddata =3D devm_kzalloc(dev, sizeof(*ddata), GFP_KERNEL);
-> +       if (!ddata)
-> +               return -ENOMEM;
-> +
-> +       ddata->base =3D devm_platform_ioremap_resource(pdev, 0);
-> +       if (IS_ERR(ddata->base))
-> +               return PTR_ERR(ddata->base);
-> +
-> +       if (!has_acpi_companion(dev)) {
-> +               ddata->clk =3D devm_clk_get_enabled(dev, NULL);
-> +               if (IS_ERR(ddata->clk))
-> +                       return PTR_ERR(ddata->clk);
-> +       }
-> +
-> +       ddata->chip.dev =3D dev;
-> +       ddata->chip.ops =3D &pwm_loongson_ops;
-> +       ddata->chip.npwm =3D 1;
-> +       platform_set_drvdata(pdev, ddata);
-> +
-> +       return devm_pwmchip_add(dev, &ddata->chip);
-> +}
-> +
-> +static int pwm_loongson_suspend(struct device *dev)
-> +{
-> +       struct pwm_loongson_ddata *ddata =3D dev_get_drvdata(dev);
-> +
-> +       ddata->ctrl =3D pwm_loongson_readl(ddata, PWM_CTRL);
-> +       ddata->duty =3D pwm_loongson_readl(ddata, PWM_DUTY);
-> +       ddata->period =3D pwm_loongson_readl(ddata, PWM_PERIOD);
-> +
-> +       clk_disable_unprepare(ddata->clk);
-> +
-> +       return 0;
-> +}
-> +
-> +static int pwm_loongson_resume(struct device *dev)
-> +{
-> +       struct pwm_loongson_ddata *ddata =3D dev_get_drvdata(dev);
-> +       int ret;
-> +
-> +       ret =3D clk_prepare_enable(ddata->clk);
-> +       if (ret)
-> +               return ret;
-> +
-> +       pwm_loongson_writel(ddata, ddata->ctrl, PWM_CTRL);
-> +       pwm_loongson_writel(ddata, ddata->duty, PWM_DUTY);
-> +       pwm_loongson_writel(ddata, ddata->period, PWM_PERIOD);
-> +
-> +       return 0;
-> +}
-> +
-> +static DEFINE_SIMPLE_DEV_PM_OPS(pwm_loongson_pm_ops, pwm_loongson_suspen=
-d,
-> +                               pwm_loongson_resume);
-> +
-> +static const struct acpi_device_id pwm_loongson_acpi_ids[] =3D {
-> +       { "LOON0006" },
-> +       { }
-> +};
-> +MODULE_DEVICE_TABLE(acpi, pwm_loongson_acpi_ids);
-Moving the acpi table after the dt table is a little better because
-the order will be the same as in pwm_loongson_driver.
-
-And others look good to me.
-
-Huacai
-
-> +
-> +static const struct of_device_id pwm_loongson_of_ids[] =3D {
-> +       { .compatible =3D "loongson,ls7a-pwm" },
-> +       { /* sentinel */ },
-> +};
-> +MODULE_DEVICE_TABLE(of, pwm_loongson_of_ids);
-> +
-> +static struct platform_driver pwm_loongson_driver =3D {
-> +       .probe  =3D pwm_loongson_probe,
-> +       .driver =3D {
-> +               .name   =3D "loongson-pwm",
-> +               .pm     =3D pm_ptr(&pwm_loongson_pm_ops),
-> +               .of_match_table   =3D pwm_loongson_of_ids,
-> +               .acpi_match_table =3D pwm_loongson_acpi_ids,
-> +       },
-> +};
-> +module_platform_driver(pwm_loongson_driver);
-> +
-> +MODULE_DESCRIPTION("Loongson PWM driver");
-> +MODULE_AUTHOR("Loongson Technology Corporation Limited.");
-> +MODULE_LICENSE("GPL");
-> --
-> 2.43.0
+> Changes in v8:
+> - remove MODULE_ALIAS: rewrite commit msg (Krzysztof Kozlowski)
+> - driver: use only SoC compatibles (Krzysztof Kozlowski)
+> - Link to v7: https://lore.kernel.org/r/20240301-net-v7-0-45823597d4d4@outlook.com
 >
+> Changes in v7:
+> - dt-bindings: squash a bunch of patches to YAML conversion (Krzysztof Kozlowski)
+> - dt-bindings: drop phy-mode->phy-connection-type conversion (Andrew Lunnm, Krzysztof Kozlowski)
+> - driver: drop SoC compatibles
+> - misc: some minor clean ups
+> - driver: remove MODULE_ALIAS()
+> - Link to v6: https://lore.kernel.org/r/20240228-net-v6-0-6d78d3d598c1@outlook.com
 >
+> Changes in v6:
+> - add missing "not" in commit logs (Andrew)
+> - rework binding changes, split it into several commits (Krzysztof Kozlowski)
+> - Link to v5: https://lore.kernel.org/r/20240223-net-v5-0-43b22d39c013@outlook.com
+>
+> Changes in v5:
+> - hisi-femac-mdio: remove clock completely (Krzysztof Kozlowski)
+> - dt-bindings: mdio: apply comments from Krzysztof Kozlowski
+>
+> Changes in v4:
+> - edit commit log to show why mdio bus clk is optional (Krzysztof Kozlowski)
+> - add clk_bulk_disable_unprepare() during error path (Maxime Chevallier)
+> - remove of_node_put() (Simon Horman)
+> - remove histb-clock.h header in binding example as it's goign to be deprecated.
+> - rearrange patches so binding comes before driver
+> - Link to v3: https://lore.kernel.org/r/20240220-net-v3-0-b68e5b75e765@outlook.com
+>
+> Changes in v3:
+> - rearrange patches to fix bot error. (Rob Herring)
+> - rewrite commit logs (Andrew Lunn)
+> - use clk_bulk_ APIs (Andrew Lunn)
+> - fix uninitialization use of ret (assign to -ENODEV before goto) (Simon Horman)
+> - Link to v2: https://lore.kernel.org/r/20240216-net-v2-0-89bd4b7065c2@outlook.com
+>
+> Changes in v2:
+> - replace email.
+> - hisi-femac: s/BUS/MACIF (Andrew Lunn)
+> - hisi-femac: add "hisilicon,hisi-femac" compatible since the driver
+>    seems generic enough for various SoCs
+> - hisi-femac-mdio: convert binding to YAML (Krzysztof Kozlowski)
+> - rewrite commit logs (Krzysztof Kozlowski)
+> - Link to v1: https://lore.kernel.org/r/20240216-net-v1-0-e0ad972cda99@outlook.com
+>
+> ---
+> Yang Xiwen (9):
+>        dt-bindings: net: hisilicon-femac-mdio: convert to YAML
+>        dt-bindings: net: hisilicon,hisi-femac-mdio: remove clocks
+>        net: mdio: hisi-femac: remove clock
+>        dt-bindings: net: convert hisi-femac.txt to YAML
+>        dt-bindings: net: hisi-femac: add mandatory MDIO bus subnode
+>        dt-bindings: net: hisi-femac: add binding for Hi3798MV200 FEMAC core
+>        net: hisi_femac: remove unused compatible strings
+>        net: hisi_femac: add support for hisi_femac core on Hi3798MV200
+>        net: hisi_femac: remove unneeded MODULE_ALIAS()
+>
+>   .../bindings/net/hisilicon,hisi-femac-mdio.yaml    |  39 +++++++
+>   .../bindings/net/hisilicon,hisi-femac.yaml         | 121 +++++++++++++++++++++
+>   .../bindings/net/hisilicon-femac-mdio.txt          |  22 ----
+>   .../devicetree/bindings/net/hisilicon-femac.txt    |  41 -------
+>   drivers/net/ethernet/hisilicon/hisi_femac.c        |  76 ++++++++++---
+>   drivers/net/mdio/mdio-hisi-femac.c                 |  18 +--
+>   6 files changed, 220 insertions(+), 97 deletions(-)
+> ---
+> base-commit: 90d35da658da8cff0d4ecbb5113f5fac9d00eb72
+> change-id: 20240216-net-9a208e17c40f
+>
+> Best regards,
+
+
+Hello, Is this getting lost? Could this be merged?
+
+-- 
+Regards,
+Yang Xiwen
+
 
