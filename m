@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-58515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B8C78A2516
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 06:22:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B0878A251B
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 06:23:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C2C4A1F22224
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 04:22:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE3451F24610
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 04:23:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7203F18021;
-	Fri, 12 Apr 2024 04:22:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B99318044;
+	Fri, 12 Apr 2024 04:23:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="IZiDCNPG"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="J0/ShJo8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AB5D17BCE;
-	Fri, 12 Apr 2024 04:22:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D75B918633;
+	Fri, 12 Apr 2024 04:23:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712895727; cv=none; b=fJ271P45BAtSUfItqrhmt3wMQjCP3pmk05GTQe6CecsCbgW6ZfEF/YrIQcedNhoUv+rDgd6aBUV3Mb7sFhowcGFPx4r0keglLnu6MYSLDJZniWKjN5ln9Zu/Ve24K5/+RA58eIqsKIf48M1rXLfboi2l99iPo1stm+W36YUOdV8=
+	t=1712895820; cv=none; b=T32kGkfkAUicaLacqsS3uqH1rFB6WRjvNwRqTJHYG8znQLzCLKWStSInLFzEMvbT4qGMQi1m8kP/5FV79op+DVsTmkAU/meHjEe/iUnV226KXEhXuuZcR6XJwuPJDMvEcids+h6GVmILB5+sGFpdk0C2sQji9gUKh7Jbnndbggg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712895727; c=relaxed/simple;
-	bh=gP5LcIf5f6zwt9CFFHTn+3rpUH5B2COOjEncatfqQFM=;
+	s=arc-20240116; t=1712895820; c=relaxed/simple;
+	bh=bJVzT5ULI2bDBG42gCgO20HDCUC7DDGEixtHO+5vKLo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=l/k0u/ZSUCZZB8Lv93dwYTE3FAHgSFRR9qtVo794h/RMdsD6gXM1VTN9zNMEPTMa1h1iuvJaN+9nHtpgWvLoFSYAKhnmIMQzE1f1/kJJyrM0vWzgovSKGApymcPCrXBQBhgs6vQy7k5HISo8hkJ0yOAnZN0R3M+OO3iHNvuAWQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=IZiDCNPG; arc=none smtp.client-ip=198.47.19.142
+	 In-Reply-To:Content-Type; b=fJnuUd4I2NQ/vrNT8CK25TV0jaRY42Sgc9TVMKSfTEb1AHrVAT6w1rYJyYlOrbCeztJ/gw+pFl1QgAH0lmtd1p9U/G7CqxPFoGuHBC+xi8oaIwOVxW6/D5QPWxmEjDSzvF25gvmfpESdsbH9pNrbT+bm/+2znGq/ykTMZfWEtMg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=J0/ShJo8; arc=none smtp.client-ip=198.47.19.141
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43C4LqrR110576;
-	Thu, 11 Apr 2024 23:21:52 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43C4NVwG066663;
+	Thu, 11 Apr 2024 23:23:31 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1712895712;
-	bh=nGD2bN17wRnZMsRcdmhnQoilyoPWepFQGNVdEgjLmYs=;
+	s=ti-com-17Q1; t=1712895811;
+	bh=DSqJzUAiVcFR8d5YWxtuzmqMNSMiQ3isYTqV2zQMXOU=;
 	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=IZiDCNPGRXfVZKAmwgvy+HWQMADF1YwNU0nmE20GqJB9lH4z/JahoJ9Mx3MA3SV2v
-	 OBjzTqAu94ivxygPVdTSg80x2yZm1FoRTAWFEe1eShD+pCSakgV9kI5cMW/UjLO+9Y
-	 UrJABkoYRx8bp89TMQ8HF0plaBFMFhq3mPBSEmYE=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43C4Lqic094399
+	b=J0/ShJo8bOdD++3F6ak01h7eGus1Ge7iB+qrDzUSNTPrSxPIW2L+9E0phUBbpv+AT
+	 ffYbRUAtoerlNDdTvQ6UbHGDzsj8JNXMrF1LuHD9AiAKXjpoyv0p3IaNQthxVsgMaA
+	 j4Ujni5j1raxDvA+f23+zZNdOxcukdKxA/fBfIag=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43C4NVE3120980
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 11 Apr 2024 23:21:52 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 11 Apr 2024 23:23:31 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 11
- Apr 2024 23:21:52 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ Apr 2024 23:23:31 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 11 Apr 2024 23:21:52 -0500
+ Frontend Transport; Thu, 11 Apr 2024 23:23:31 -0500
 Received: from [172.24.227.36] (a0497641-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [172.24.227.36])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43C4LmQ5079580;
-	Thu, 11 Apr 2024 23:21:49 -0500
-Message-ID: <3111e684-249e-42f9-9105-f62700fe9959@ti.com>
-Date: Fri, 12 Apr 2024 09:51:48 +0530
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43C4NRAB073737;
+	Thu, 11 Apr 2024 23:23:28 -0500
+Message-ID: <400cc67d-1d86-4fd5-ba1a-ef6bb166d0a0@ti.com>
+Date: Fri, 12 Apr 2024 09:53:27 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,197 +65,90 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: ti: k3-j721e-main: Add the MAIN domain
+Subject: Re: [PATCH 2/4] arm64: dts: ti: k3-j721e-mcu: Add the MCU domain
  watchdog instances
 To: "Kumar, Udit" <u-kumar1@ti.com>, <robh@kernel.org>, <conor+dt@kernel.org>,
         <krzysztof.kozlowski+dt@linaro.org>, <vigneshr@ti.com>, <nm@ti.com>
 CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>, <kristo@kernel.org>
 References: <20240326122723.2329402-1-n-francis@ti.com>
- <20240326122723.2329402-4-n-francis@ti.com>
- <a329fc6b-561c-4300-8778-c90ca97b70f3@ti.com>
+ <20240326122723.2329402-3-n-francis@ti.com>
+ <2455386b-cf9c-4060-ba86-34ea80a5af6a@ti.com>
 Content-Language: en-US
 From: Neha Malcom Francis <n-francis@ti.com>
-In-Reply-To: <a329fc6b-561c-4300-8778-c90ca97b70f3@ti.com>
+In-Reply-To: <2455386b-cf9c-4060-ba86-34ea80a5af6a@ti.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Udit
+Hi Udit,
 
-On 10/04/24 11:06, Kumar, Udit wrote:
+On 10/04/24 11:15, Kumar, Udit wrote:
 > Hi Neha
 > 
 > On 3/26/2024 5:57 PM, Neha Malcom Francis wrote:
->> There are 10 watchdog instances in the MAIN domain:
->>     * one each for the 2 A72 cores
->>     * one for the GPU core
->>     * one for the C7x core
->>     * one each for the 2 C66x cores
->>     * one each for the 4 R5F cores
->>
->> Currently, the devicetree only describes watchdog instances for the A72
->> cores and enables them. Describe the remaining but reserve them as they
->> will be used by their respective firmware.
+>> There are 2 watchdog instances in the MCU domain. These instances are
+>> coupled with the MCU domain R55 instances. Reserve them as they are not
+>> used by A72.
 >>
 >> Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
 >> ---
->>   arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 93 +++++++++++++++++++++++
->>   1 file changed, 93 insertions(+)
+>>   .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      | 26 +++++++++++++++++++
+>>   1 file changed, 26 insertions(+)
 >>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi 
->> b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
->> index c7eafbc862f9..d8930b8ea8ec 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
->> @@ -2157,6 +2157,99 @@ watchdog1: watchdog@2210000 {
->>           assigned-clock-parents = <&k3_clks 253 5>;
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi 
+>> b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+>> index b0f41e9829cc..867f307909be 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+>> @@ -694,4 +694,30 @@ wkup_esm: esm@42080000 {
+>>           compatible = "ti,j721e-esm";
+>>           reg = <0x00 0x42080000 0x00 0x1000>;
 >>       };
-> 
-> Looking at TRM, SPRUIJ7*3–December 2018–Revised March 2019,
-> 
-> Table 12-22646. RTI Instances, says There is gap in numbering
-> 
-> RTI0, RTI1, RTI15 and so on
-> 
-> IMO, labels for watchdog should be as per TRM.
-> 
-> eg watchdog2 to watchdog15, But I don't have strong opinion on either .
-> 
-> Let maintainer suggest on this
-> 
-> 
-> 
+>> +
 >> +    /*
->> +     * The following RTI instances are coupled with MCU R5Fs, c7x and
->> +     * GPU so keeping them reserved as these will be used by their
->> +     * respective firmware
+>> +     * The 2 RTI instances are couple with MCU R5Fs so keeping them
+>> +     * reserved as these will be used by their respective firmware
 >> +     */
->> +    watchdog2: watchdog@22f0000 {
+>> +    mcu_watchdog0: watchdog@40600000 {
 >> +        compatible = "ti,j7-rti-wdt";
->> +        reg = <0x00 0x22f0000 0x00 0x100>;
->> +        clocks = <&k3_clks 257 1>;
->> +        power-domains = <&k3_pds 257 TI_SCI_PD_EXCLUSIVE>;
->> +        assigned-clocks = <&k3_clks 257 1>;
->> +        assigned-clock-parents = <&k3_clks 257 5>;
->> +        /* reserved for GPU */
->> +        status = "reserved";
->> +    };
-> 
-> Please help me to understand, where from you got it for GPU,
-> 
-> May be I am looking at wrong data, Again above TRM
-> 
-> Table 12-22645. RTI Hardware Requests. RTI-15 says esm0
-> 
->> +
->> +    watchdog3: watchdog@2300000 {
->> +        compatible = "ti,j7-rti-wdt";
->> +        reg = <0x00 0x2300000 0x00 0x100>;
->> +        clocks = <&k3_clks 256 1>;
->> +        power-domains = <&k3_pds 256 TI_SCI_PD_EXCLUSIVE>;
->> +        assigned-clocks = <&k3_clks 256 1>;
->> +        assigned-clock-parents = <&k3_clks 256 5>;
->> +        /* reserved for C7X */
->> +        status = "reserved";
-> 
-> This I see in above table for Compute Cluster
-> 
-> 
->> +    };
->> +
->> +    watchdog4: watchdog@2380000 {
->> +        compatible = "ti,j7-rti-wdt";
->> +        reg = <0x00 0x2380000 0x00 0x100>;
->> +        clocks = <&k3_clks 254 1>;
->> +        power-domains = <&k3_pds 254 TI_SCI_PD_EXCLUSIVE>;
->> +        assigned-clocks = <&k3_clks 254 1>;
->> +        assigned-clock-parents = <&k3_clks 254 5>;
->> +        /* reserved for C66X_0 */
+>> +        reg = <0x00 0x40600000 0x00 0x100>;
+>> +        clocks = <&k3_clks 262 1>;
+>> +        power-domains = <&k3_pds 262 TI_SCI_PD_EXCLUSIVE>;
+>> +        assigned-clocks = <&k3_clks 262 1>;
+>> +        assigned-clock-parents = <&k3_clks 262 5>;
+>> +        /* reserved for MCU_R5F0_0 */
 >> +        status = "reserved";
 >> +    };
 >> +
->> +    watchdog5: watchdog@2390000 {
+>> +    mcu_watchdog1: watchdog@40610000 {
 >> +        compatible = "ti,j7-rti-wdt";
->> +        reg = <0x00 0x2390000 0x00 0x100>;
->> +        clocks = <&k3_clks 255 1>;
->> +        power-domains = <&k3_pds 255 TI_SCI_PD_EXCLUSIVE>;
->> +        assigned-clocks = <&k3_clks 255 1>;
->> +        assigned-clock-parents = <&k3_clks 255 5>;
->> +        /* reserved for C66X_1 */
->> +        status = "reserved";
->> +    };
->> +
->> +    watchdog6: watchdog@23c0000 {
->> +        compatible = "ti,j7-rti-wdt";
->> +        reg = <0x00 0x23c0000 0x00 0x100>;
->> +        clocks = <&k3_clks 258 1>;
->> +        power-domains = <&k3_pds 258 TI_SCI_PD_EXCLUSIVE>;
->> +        assigned-clocks = <&k3_clks 258 1>;
->> +        assigned-clock-parents = <&k3_clks 258 5>;
->> +        /* reserved for MAIN_R5F0_0 */
+>> +        reg = <0x00 0x40610000 0x00 0x100>;
+>> +        clocks = <&k3_clks 263 1>;
+>> +        power-domains = <&k3_pds 263 TI_SCI_PD_EXCLUSIVE>;
+>> +        assigned-clocks = <&k3_clks 263 1>;
+>> +        assigned-clock-parents = <&k3_clks 263 5>;
+>> +        /* reserved for MCU_R5F0_1 */
 > 
-> TRM says, this covers both MAIN_R5F0_0 and MAIN_R5F0_1.
+> Table 12-22642. MCU_RTI Hardware Requests (In same TRM referred in 3/4 patch 
+> review ),
 > 
-> Suggest , if split is done at fw level
+> says each WDT has destination of MCU0_R5_CORE0 and MCU0_R5_CORE1
 > 
->> +        status = "reserved";
->> +    };
->> +
->> +    watchdog7: watchdog@23d0000 {
->> +        compatible = "ti,j7-rti-wdt";
->> +        reg = <0x00 0x23d0000 0x00 0x100>;
->> +        clocks = <&k3_clks 259 1>;
->> +        power-domains = <&k3_pds 259 TI_SCI_PD_EXCLUSIVE>;
->> +        assigned-clocks = <&k3_clks 259 1>;
->> +        assigned-clock-parents = <&k3_clks 259 5>;
->> +        /* reserved for MAIN_R5F0_1 */
->> +        status = "reserved";
+> Please suggest, if fw level this is decided to reserved like above ?
 > 
-> TRM says, this covers both MAIN_R5F0_0 and MAIN_R5F0_1.
+> With that clarification, Please use
 > 
-> Suggest , if split is done at fw level
-> 
->> +    };
->> +
->> +    watchdog8: watchdog@23e0000 {
->> +        compatible = "ti,j7-rti-wdt";
->> +        reg = <0x00 0x23e0000 0x00 0x100>;
->> +        clocks = <&k3_clks 260 1>;
->> +        power-domains = <&k3_pds 260 TI_SCI_PD_EXCLUSIVE>;
->> +        assigned-clocks = <&k3_clks 260 1>;
->> +        assigned-clock-parents = <&k3_clks 260 5>;
->> +        /* reserved for MAIN_R5F1_0 */
->> +        status = "reserved";
->> +    };
+> Reviewed-by: Udit Kumar <u-kumar1@ti.com>
 > 
 > 
-> TRM says, this covers both MAIN_R5F1_0 and MAIN_R5F1_1.
-> 
-> Suggest , if split is done at fw level
-> 
->> +
->> +    watchdog9: watchdog@23f0000 {
->> +        compatible = "ti,j7-rti-wdt";
->> +        reg = <0x00 0x23f0000 0x00 0x100>;
->> +        clocks = <&k3_clks 261 1>;
->> +        power-domains = <&k3_pds 261 TI_SCI_PD_EXCLUSIVE>;
->> +        assigned-clocks = <&k3_clks 261 1>;
->> +        assigned-clock-parents = <&k3_clks 261 5>;
->> +        /* reserved for MAIN_R5F1_1 */
-> 
-> TRM says, this covers both MAIN_R5F1_0 and MAIN_R5F1_1.
-> 
-> Suggest , if split is done at fw level
-> 
->> +        status = "reserved";
->> +    };
->> +
->>       main_r5fss0: r5fss@5c00000 {
->>           compatible = "ti,j721e-r5fss";
->>           ti,cluster-mode = <1>;
 
-At firmware level, the MAIN R5s are set to split mode.
+At firmware level, the MCU R5 is in lockstep mode. The dual destination of the 
+WDT interrupt makes sense then.
+
+>> +        status = "reserved";
+>> +    };
+>>   };
 
 -- 
 Thanking You
