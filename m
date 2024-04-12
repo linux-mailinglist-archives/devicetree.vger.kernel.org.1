@@ -1,175 +1,290 @@
-Return-Path: <devicetree+bounces-58602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA8308A288E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 09:54:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 612738A2892
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 09:55:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 42F331F249A8
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 07:54:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC8411F24699
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 07:55:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D71BC4F5FE;
-	Fri, 12 Apr 2024 07:53:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 694994D9F0;
+	Fri, 12 Apr 2024 07:55:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Dfw51veW"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="aeLZh0Vx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CD694DA04
-	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 07:53:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE5054D9FB
+	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 07:55:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712908437; cv=none; b=mf5VZLS66FiY0SoljZo0lQv6uxhFIGxj4tveQPagpfa7V57PfMpu8VrIXD2jxW7LOK7NnUrSzwGALuLba60qNuK82kgqlQ5JmhRpotmDNPlYyLMeZBI/zfF9tpa4HMb7Z5PvVEVS/I84BdWungrQDeS0kIHuYz4TCkE0RIOwaHY=
+	t=1712908523; cv=none; b=GDn/BUdUr3XDNOzVYEJlLUhfX4PnR7y3r3E8nspspLGlqZ1wQ6ZuxYGmKeUJ8U8guaSjqPXDtegyY6iydlysTt6ussCiL3ulCwWHhRffnVvAzs3Aw7mszZP7xLLkag6P6DfRDcht1Ulrag0WtunTwMMr0wE09fJfbDPtrf0l3wA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712908437; c=relaxed/simple;
-	bh=+BIRz40w1PCKmMO2wtU7DDFRbUrYoEXEr9tRma336A4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=c4S4/UVtiPajSgsxgp+fjJKm2wLfiJ6oAaL7JfOZa6CnYhFu+dfCUk3uy9kQ+zJXkUdvAn+tRoxYsDs9/1rfeOucCVFppuW8Z1MBBBtdLCnuR/+fZxvc5QEH7MlWApgL/i6ustTZXJxG/2N1gJXn+2AH5/6FOghpuANYqH3dNLI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Dfw51veW; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-56e4a148aeeso239833a12.2
-        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 00:53:55 -0700 (PDT)
+	s=arc-20240116; t=1712908523; c=relaxed/simple;
+	bh=h/mnaTxvIYTXlw1hUjjSh/ba8UQQ+pFVoTTvYSSuFSM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GqNjZq0qv6oRHuKvkz+klMTdSJxXyCJ+JhweGuyRvTzBIpav0OfsciEzq2mM0egAyHyzcmhTlt2F+gbwUulyIUhtDy60lDnonhkx2VVd/IjPdXPOHyDIRKYrrYv2X+IQYB5/mmxlJmrA7++mH5BkI18Q1xPVRYuXc0NvtFl551Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=aeLZh0Vx; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-1e3f17c6491so6076395ad.2
+        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 00:55:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712908433; x=1713513233; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=RzM6dFST6MTowNeFATbCFv+juTS+kCT2d3nPXhzUOJc=;
-        b=Dfw51veWuu0iob6nylNAghEPZzhHVJB1JrvEbMJk/IH0l0Ilj9EFyY0KqLuyhBaWRA
-         NygyRw4jW68lIZLNheoRep72tdK31oysA1Q5AtlDKBUR076xfECABvvM73Z8Weahjd1n
-         OsFqkDbLED6U/+PQkOkkfOsfbRy8CjkmtI5b9F5g9fEPoATOOLXX5GD7NjBixTjxU+cc
-         zCvNrKfXgtZHtlyQuQcdwSgkVSDRIpizZ99s/pAeWl0ELY3IjeRgvit/5bn3i2FgGQtC
-         DnAukD11fVciZqCc/V3PGH2vaLedEEORje0/8quK9ef4RBWqY7AgD+qUgTmmllzzDPI3
-         mQhg==
+        d=chromium.org; s=google; t=1712908521; x=1713513321; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AoKTfqB+9Kxj81GfGGjmk4oDRtO/OYcUX57xxWs37P0=;
+        b=aeLZh0Vxx7mR+IQbk3Tzje00RQuFn5iJ7pls7iF2CRA8s7JEKkqH9ufXbj2l2KILzj
+         rB//K4KAORFYR3kgapy5YseGDz/R3Xes0XqDLvoKNVBbhpGuxAuZn23Bzs4x3HshcuSc
+         L38YFAuo2wK5HGPqp6m4n+LFnVPlYse4Zp/m4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712908433; x=1713513233;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RzM6dFST6MTowNeFATbCFv+juTS+kCT2d3nPXhzUOJc=;
-        b=Mbr2JghcsUPdSuO/J1CFEFbQNPn83BBkoGx4qu81fdC1ahsuEdzZzmgnDvhxuq0/sG
-         eEMRmDmcHPrEP4sL0DdTbhrBHZp3mPS8RMUQAZmi++np1AMCz/OZ72tV8rQCdwonth69
-         NR1VYFcAA/bkGlnl8S0dboIHBWye9v5kkyYgDKHHCFQu2Z0pCPrB6ECvhCIf5mPGbrte
-         xDi9hphbEnX7vjgalIkPhXcOpgbIduPG6RcJWSnQhOm/qYbw8o0rT9OqgARcmNCcxQ+Z
-         pD5HyyxhGlk0AuNPrgVf7gdI3bkDohY01JmoF79HhS1MmpWqtjgQJP2ECQXYDVlNcxYo
-         T+Fw==
-X-Forwarded-Encrypted: i=1; AJvYcCXBKN9xqcKQ100QhuWWDdq/VrkLzi/ISRsmvc1l8YNT3vpd57AyF4x0wZmqTp82lQGAwThESgAhLJ2xEnAbBZzkvk6XGrxUmzOjhg==
-X-Gm-Message-State: AOJu0Yz3r6vQl9Ga876ZWKnqxDePogNrmyzCa9jEyAR2dXpZQBWoAAVE
-	k/eIKP4NoFoV/NF0vgiZ8jYm3AfaHJasJh/77IA+HLCRVws3ArPjZJmz2QllyE8=
-X-Google-Smtp-Source: AGHT+IHJo9Noj1BumEXH5oWny29fKEvKgw2utImwVpfaNDH8ddjvz9U+Ue1Q8sPDVqAZNqEYjELC0A==
-X-Received: by 2002:a50:a455:0:b0:56d:fc89:ecf8 with SMTP id v21-20020a50a455000000b0056dfc89ecf8mr1552881edb.10.1712908433531;
-        Fri, 12 Apr 2024 00:53:53 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id g29-20020a056402321d00b00570020fbedfsm69375eda.37.2024.04.12.00.53.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Apr 2024 00:53:53 -0700 (PDT)
-Message-ID: <becac82e-aa5a-4ee3-83c7-17b8478439d0@linaro.org>
-Date: Fri, 12 Apr 2024 09:53:49 +0200
+        d=1e100.net; s=20230601; t=1712908521; x=1713513321;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AoKTfqB+9Kxj81GfGGjmk4oDRtO/OYcUX57xxWs37P0=;
+        b=anhOJfA3WSaTDbSDGW5MHgkEXDzzxv6BGerCU56CLXBwXjKZNZQPQK58pCUFDlIz5m
+         tkXn6V6MbOK6t4rtRdMsoJLUbflJCDrqzxesqa8K+2eKkbBU25v6atIffDtDXdcNi3JT
+         ODhl3oH/WQ2lV/vq+D0itDOJj0snIsTQWHWiM8VWP3qJ5aGTxj6xLFQI5FqCT3aTJwDu
+         /GWWnB/6kRkztiggj4LYs9BBiQY5+WHwdOEC/vHEzEj2sPTAAs/paWpWvYU5j17Adyy1
+         50AEvY+YUc6A/xFZerbsiAR4H4QYsIQF5+b544g0Iqh37CUNyEHHZ7dXi+KLfM6t5GEX
+         rUIg==
+X-Forwarded-Encrypted: i=1; AJvYcCVrXHk0c6l04JAeuxXbJWQPQBqhDJSxdbGo7aFyL7cKoHyF234qFqF6b4qGT5/zYJh+qxssbHtyPIItNvqqYLqVXCfY1ldqG7eG6w==
+X-Gm-Message-State: AOJu0Yx0c7LvAK3o3Qz1b77xUNCTfGBeH1X1OvdqhrPPniZXj+4+jAgc
+	sTYBLc/9ojeWQzZ6YWqaT0gK+xIwWZOxHvglAee2pLR8o9dC/cg5M+2Z1F1sqA==
+X-Google-Smtp-Source: AGHT+IHE2tYRZruKtCquqvFgIZalHtBB+3XJOjw2G+9dr8fCHuWkp9Xv3DSW1Uvn5QjEcWGx8LbRnQ==
+X-Received: by 2002:a17:902:e950:b0:1e4:b1a2:b47a with SMTP id b16-20020a170902e95000b001e4b1a2b47amr2262198pll.0.1712908521272;
+        Fri, 12 Apr 2024 00:55:21 -0700 (PDT)
+Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:e3c8:6e1:dcfa:3e8c])
+        by smtp.gmail.com with ESMTPSA id g3-20020a170902868300b001e2c1e56f3bsm2377710plo.104.2024.04.12.00.55.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Apr 2024 00:55:20 -0700 (PDT)
+From: Chen-Yu Tsai <wenst@chromium.org>
+To: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Chen-Yu Tsai <wenst@chromium.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH] arm64: dts: mediatek: Drop mediatek,drive-strength-adv usage
+Date: Fri, 12 Apr 2024 15:55:14 +0800
+Message-ID: <20240412075516.1199846-1-wenst@chromium.org>
+X-Mailer: git-send-email 2.44.0.683.g7961c838ac-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 04/16] dt-bindings: net: wireless: qcom,ath11k:
- describe the ath11k on QCA6390
-To: Bartosz Golaszewski <brgl@bgdev.pl>, Marcel Holtmann
- <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Saravana Kannan <saravanak@google.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>, Arnd Bergmann <arnd@arndb.de>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>, Alex Elder <elder@linaro.org>,
- Srini Kandagatla <srinivas.kandagatla@linaro.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Abel Vesa <abel.vesa@linaro.org>, Manivannan Sadhasivam <mani@kernel.org>,
- Lukas Wunner <lukas@wunner.de>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Amit Pundir <amit.pundir@linaro.org>, Xilin Wu <wuxilin123@gmail.com>
-Cc: linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
- linux-pm@vger.kernel.org,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20240410124628.171783-1-brgl@bgdev.pl>
- <20240410124628.171783-5-brgl@bgdev.pl>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240410124628.171783-5-brgl@bgdev.pl>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 10/04/2024 14:46, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> 
-> Add a PCI compatible for the ATH11K module on QCA6390 and describe the
-> power inputs from the PMU that it consumes.
-> 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> ---
+The "mediatek,drive-strength-adv" pin config property has been
+deprecated in favor of the generic "drive-strength-microamp" property.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Drop or convert all instances. A value of 0 disables the advanced
+mode, which is the hardware default.
 
-Best regards,
-Krzysztof
+Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+---
+ arch/arm64/boot/dts/mediatek/mt8183-evb.dts     | 6 ------
+ arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi  | 6 ------
+ arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts | 6 ------
+ arch/arm64/boot/dts/mediatek/mt8195-evb.dts     | 4 +---
+ 4 files changed, 1 insertion(+), 21 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
+index 681deddffc2a..f04baea5d6cb 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
+@@ -160,7 +160,6 @@ pins_i2c {
+ 			pinmux = <PINMUX_GPIO82__FUNC_SDA0>,
+ 				 <PINMUX_GPIO83__FUNC_SCL0>;
+ 			mediatek,pull-up-adv = <3>;
+-			mediatek,drive-strength-adv = <00>;
+ 		};
+ 	};
+ 
+@@ -169,7 +168,6 @@ pins_i2c {
+ 			pinmux = <PINMUX_GPIO81__FUNC_SDA1>,
+ 				 <PINMUX_GPIO84__FUNC_SCL1>;
+ 			mediatek,pull-up-adv = <3>;
+-			mediatek,drive-strength-adv = <00>;
+ 		};
+ 	};
+ 
+@@ -178,7 +176,6 @@ pins_i2c {
+ 			pinmux = <PINMUX_GPIO103__FUNC_SCL2>,
+ 				 <PINMUX_GPIO104__FUNC_SDA2>;
+ 			mediatek,pull-up-adv = <3>;
+-			mediatek,drive-strength-adv = <00>;
+ 		};
+ 	};
+ 
+@@ -187,7 +184,6 @@ pins_i2c {
+ 			pinmux = <PINMUX_GPIO50__FUNC_SCL3>,
+ 				 <PINMUX_GPIO51__FUNC_SDA3>;
+ 			mediatek,pull-up-adv = <3>;
+-			mediatek,drive-strength-adv = <00>;
+ 		};
+ 	};
+ 
+@@ -196,7 +192,6 @@ pins_i2c {
+ 			pinmux = <PINMUX_GPIO105__FUNC_SCL4>,
+ 				 <PINMUX_GPIO106__FUNC_SDA4>;
+ 			mediatek,pull-up-adv = <3>;
+-			mediatek,drive-strength-adv = <00>;
+ 		};
+ 	};
+ 
+@@ -205,7 +200,6 @@ pins_i2c {
+ 			pinmux = <PINMUX_GPIO48__FUNC_SCL5>,
+ 				 <PINMUX_GPIO49__FUNC_SDA5>;
+ 			mediatek,pull-up-adv = <3>;
+-			mediatek,drive-strength-adv = <00>;
+ 		};
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+index 75c799a6adb4..989c979c99c1 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+@@ -527,7 +527,6 @@ pins-bus {
+ 			pinmux = <PINMUX_GPIO82__FUNC_SDA0>,
+ 				 <PINMUX_GPIO83__FUNC_SCL0>;
+ 			mediatek,pull-up-adv = <3>;
+-			mediatek,drive-strength-adv = <00>;
+ 		};
+ 	};
+ 
+@@ -536,7 +535,6 @@ pins-bus {
+ 			pinmux = <PINMUX_GPIO81__FUNC_SDA1>,
+ 				 <PINMUX_GPIO84__FUNC_SCL1>;
+ 			mediatek,pull-up-adv = <3>;
+-			mediatek,drive-strength-adv = <00>;
+ 		};
+ 	};
+ 
+@@ -545,7 +543,6 @@ pins-bus {
+ 			pinmux = <PINMUX_GPIO103__FUNC_SCL2>,
+ 				 <PINMUX_GPIO104__FUNC_SDA2>;
+ 			bias-disable;
+-			mediatek,drive-strength-adv = <00>;
+ 		};
+ 	};
+ 
+@@ -554,7 +551,6 @@ pins-bus {
+ 			pinmux = <PINMUX_GPIO50__FUNC_SCL3>,
+ 				 <PINMUX_GPIO51__FUNC_SDA3>;
+ 			mediatek,pull-up-adv = <3>;
+-			mediatek,drive-strength-adv = <00>;
+ 		};
+ 	};
+ 
+@@ -563,7 +559,6 @@ pins-bus {
+ 			pinmux = <PINMUX_GPIO105__FUNC_SCL4>,
+ 				 <PINMUX_GPIO106__FUNC_SDA4>;
+ 			bias-disable;
+-			mediatek,drive-strength-adv = <00>;
+ 		};
+ 	};
+ 
+@@ -572,7 +567,6 @@ pins-bus {
+ 			pinmux = <PINMUX_GPIO48__FUNC_SCL5>,
+ 				 <PINMUX_GPIO49__FUNC_SDA5>;
+ 			mediatek,pull-up-adv = <3>;
+-			mediatek,drive-strength-adv = <00>;
+ 		};
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts b/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
+index 333c516af490..81f6c205fa98 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
+@@ -197,7 +197,6 @@ pins_i2c {
+ 			pinmux = <PINMUX_GPIO82__FUNC_SDA0>,
+ 				 <PINMUX_GPIO83__FUNC_SCL0>;
+ 			mediatek,pull-up-adv = <3>;
+-			mediatek,drive-strength-adv = <00>;
+ 		};
+ 	};
+ 
+@@ -206,7 +205,6 @@ pins_i2c {
+ 			pinmux = <PINMUX_GPIO81__FUNC_SDA1>,
+ 				 <PINMUX_GPIO84__FUNC_SCL1>;
+ 			mediatek,pull-up-adv = <3>;
+-			mediatek,drive-strength-adv = <00>;
+ 		};
+ 	};
+ 
+@@ -215,7 +213,6 @@ pins_i2c {
+ 			pinmux = <PINMUX_GPIO103__FUNC_SCL2>,
+ 				 <PINMUX_GPIO104__FUNC_SDA2>;
+ 			mediatek,pull-up-adv = <3>;
+-			mediatek,drive-strength-adv = <00>;
+ 		};
+ 	};
+ 
+@@ -224,7 +221,6 @@ pins_i2c {
+ 			pinmux = <PINMUX_GPIO50__FUNC_SCL3>,
+ 				 <PINMUX_GPIO51__FUNC_SDA3>;
+ 			mediatek,pull-up-adv = <3>;
+-			mediatek,drive-strength-adv = <00>;
+ 		};
+ 	};
+ 
+@@ -233,7 +229,6 @@ pins_i2c {
+ 			pinmux = <PINMUX_GPIO105__FUNC_SCL4>,
+ 				 <PINMUX_GPIO106__FUNC_SDA4>;
+ 			mediatek,pull-up-adv = <3>;
+-			mediatek,drive-strength-adv = <00>;
+ 		};
+ 	};
+ 
+@@ -242,7 +237,6 @@ pins_i2c {
+ 			pinmux = <PINMUX_GPIO48__FUNC_SCL5>,
+ 				 <PINMUX_GPIO49__FUNC_SDA5>;
+ 			mediatek,pull-up-adv = <3>;
+-			mediatek,drive-strength-adv = <00>;
+ 		};
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195-evb.dts b/arch/arm64/boot/dts/mediatek/mt8195-evb.dts
+index 341b6e074139..83456d649ff7 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195-evb.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8195-evb.dts
+@@ -74,7 +74,6 @@ pins {
+ 			pinmux = <PINMUX_GPIO8__FUNC_SDA0>,
+ 				 <PINMUX_GPIO9__FUNC_SCL0>;
+ 			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+-			mediatek,drive-strength-adv = <0>;
+ 			drive-strength = <6>;
+ 		};
+ 	};
+@@ -84,7 +83,6 @@ pins {
+ 			pinmux = <PINMUX_GPIO10__FUNC_SDA1>,
+ 				 <PINMUX_GPIO11__FUNC_SCL1>;
+ 			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+-			mediatek,drive-strength-adv = <0>;
+ 			drive-strength = <6>;
+ 		};
+ 	};
+@@ -94,7 +92,7 @@ pins {
+ 			pinmux = <PINMUX_GPIO16__FUNC_SDA4>,
+ 				 <PINMUX_GPIO17__FUNC_SCL4>;
+ 			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+-			mediatek,drive-strength-adv = <7>;
++			drive-strength-microamp = <1000>;
+ 		};
+ 	};
+ 
+-- 
+2.44.0.683.g7961c838ac-goog
 
 
