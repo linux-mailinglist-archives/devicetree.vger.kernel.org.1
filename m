@@ -1,262 +1,181 @@
-Return-Path: <devicetree+bounces-58576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA25E8A2764
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 09:01:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72F628A278B
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 09:06:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 397D81F244B2
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 07:01:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A1D8D1C22352
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 07:06:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6709C54BEA;
-	Fri, 12 Apr 2024 06:58:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20BCD4DA13;
+	Fri, 12 Apr 2024 07:01:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="N53HGuQv"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="RHoTOsZA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from EUR01-HE1-obe.outbound.protection.outlook.com (mail-he1eur01on2058.outbound.protection.outlook.com [40.107.13.58])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FC7E502B8;
-	Fri, 12 Apr 2024 06:57:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712905082; cv=none; b=Dt4ag8CflyO7hxNhtaBUjQUjxykvwEZ4VRH5eeZINWCSSjx4QH3GXrWUoKVkW9cuZnYI4XSn3YQz6vqm7cKsMo/MwEJ7qcjl3e9KRbyib1wHEvI5HWbc7J/BinkVjyMNNfN4MGWDYwLdbJF+HZdo+D1H7LoNaIyb+AWqhm1Skxo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712905082; c=relaxed/simple;
-	bh=6NZSClo6H6e3G+90fKqbClcpzseP+wjt3nV7iazfOL4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OFeKcNoCy7EHJcNRMjE6KUJkMgN9q+431A++18/XADEzwU1T1l0N+bfv9MmQwU6q2YDWBeVsZGrin1KPNgyqVRbnfClw53L7qTFzOoBTC2vqh0mgWLZS3+SmTgsJYxx0IgMiqA3lPkUpAhJw5p4p6BhM6dwa4r28hPswckEP5R4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=N53HGuQv; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: f9ba49fcf89911eeb8927bc1f75efef4-20240412
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=cANxux1/htpGt52y+Aeho8J1w0VjkDggLi2Ws4XYndE=;
-	b=N53HGuQvVMK+LRhWwTTclNt75yZT2DWWbxmhYZ9/GfMJIMG7XK979gXNiWmS6TaCt6uXjSnjYcGqylaQIKvKMx9TfNJOMsP2lCt1tYa3KekGU97DxyCjNFT8qLGRC22m/D/t5RC/hZ7KIlJY/fKnvOxpV/p1v7JgAUo/eCWblM0=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.37,REQID:8c7f5101-f476-489b-b76b-a8faf39e4798,IP:0,U
-	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-	N:release,TS:-25
-X-CID-META: VersionHash:6f543d0,CLOUDID:8c9a7e91-e2c0-40b0-a8fe-7c7e47299109,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
-	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: f9ba49fcf89911eeb8927bc1f75efef4-20240412
-Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw01.mediatek.com
-	(envelope-from <yi-de.wu@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 213153288; Fri, 12 Apr 2024 14:57:49 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Fri, 12 Apr 2024 14:57:48 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Fri, 12 Apr 2024 14:57:48 +0800
-From: Yi-De Wu <yi-de.wu@mediatek.com>
-To: Yingshiuan Pan <yingshiuan.pan@mediatek.com>, Ze-Yu Wang
-	<ze-yu.wang@mediatek.com>, Yi-De Wu <yi-de.wu@mediatek.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Catalin Marinas
-	<catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Richard Cochran
-	<richardcochran@gmail.com>, Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-doc@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<netdev@vger.kernel.org>, <linux-mediatek@lists.infradead.org>, David Bradil
-	<dbrazdil@google.com>, Trilok Soni <quic_tsoni@quicinc.com>, My Chuang
-	<my.chuang@mediatek.com>, Shawn Hsiao <shawn.hsiao@mediatek.com>, PeiLun Suei
-	<peilun.suei@mediatek.com>, Liju Chen <liju-clr.chen@mediatek.com>, Willix
- Yeh <chi-shen.yeh@mediatek.com>, Kevenny Hsieh <kevenny.hsieh@mediatek.com>
-Subject: [PATCH v10 21/21] virt: geniezone: Enable PTP for synchronizing time between host and guest VMs
-Date: Fri, 12 Apr 2024 14:57:18 +0800
-Message-ID: <20240412065718.29105-22-yi-de.wu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20240412065718.29105-1-yi-de.wu@mediatek.com>
-References: <20240412065718.29105-1-yi-de.wu@mediatek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1C8A482F4;
+	Fri, 12 Apr 2024 07:01:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.13.58
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712905270; cv=fail; b=D27/5DoluvvZjU+sBHlkJk5zoYZOCeWjFk6n8W00ofxDBqpVpZHA3dnwsiyfr3wmZ0YGWtAjakr51sDRu4TToz6do3Ii59NpGGtJd00YjyaLxz9DKlnn8q/0yZPEFbwHi/5matMKmYJyA4448BWvI6Xg3mIhTuYyRc0DgBED7Y0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712905270; c=relaxed/simple;
+	bh=NIVNImOGC8PfG6GZ/pY1MMdpAjFC+SHlD+YtX5ltCQg=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=H0PpX9Xo7mQ97tLtz9ayIxar4LLSYG0j/HEw0cPDnLk7LJc8DyHF6YLOZ1sFUk8EIETzqhPCxC3ypdcN8ZLA8bV1OFa0NTTud+lRwtpmQ22nOrofGNoFTRKD+Hz/6boe5LPOmzA+Acsngb0fvDNl+MNEY2Hl4+DnxdSVzf2PYUQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=RHoTOsZA; arc=fail smtp.client-ip=40.107.13.58
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=J7XVGAw1rBBiKjfcv1krb3ZupCcSKMy1etQ0D5rwvGk9g/ZFbQVl4JzlFHYOs+AhXbyfBZR+VM8YSaJMFAcNq1zfutnsfzbLWMi6JJHWaTjgs+eRomDP50VUgcsAVfhh1EwRdGZi88ZsBVu12qYxOPErM19/vOoTUhZyoEKRyFqjC24IQaE8k2C168NFKtfDlrVaKCBS7tH5ruWt0XqxfIk9ClPc+dh0Lef5l7mrN8fU8SqQswgJ6z2KrC/dABZXtqI+vA1VU4q3VKbKjI45V+k03YV8zmEJgHd56A1rLMhralG0OL3O2AGZIJc6gFBMklwZRU/ZBVVV4bCYTmhjOg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NIVNImOGC8PfG6GZ/pY1MMdpAjFC+SHlD+YtX5ltCQg=;
+ b=PQVf8upATS77AgFl6bNc5v1zpURTRRBMVjCVgoDAfQGx+1S/fswJ3ZN1RRMISHeaTBL/5xwnOlyWSEGkXgXUbrFIYe/ez3GzSowedrRUAzaCQDhPbIlTOFUNLKaxm96LpEvT27sVid5ZkxfVLkUMsgN/oagFcNjh/dgaH0+e9F8RyMMGmJLYps9LwXU5WKCl3lYuQsTMZ0i8d6PHh+kRS5O/HinRWd/LYD5kN+h+TeiUB8FKSH517YGjux0LWDCZbnY/A9tnjyMAtbRcgHaAdGxoKtyD3MI6gja41prwdo1/a05YlytRjF3vGms+n+iHvmGHxqFcH0chDyGNYSFNuQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NIVNImOGC8PfG6GZ/pY1MMdpAjFC+SHlD+YtX5ltCQg=;
+ b=RHoTOsZAOZtirTRNLbZoh0nOynyLHytdv4Evgyo3xE9tscgQsrJjzM6dcN0YYMV6O20OZ0/kMeIePHxUxX28etcQOAOeygjW04RV2JKzcIxm+72RKufFHygidrxSRZCO9mQRC7SiQiYhsQ2mE3rhaeJfYijcTcZF5UzRpmLMyws=
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by AM9PR04MB8323.eurprd04.prod.outlook.com (2603:10a6:20b:3e5::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.55; Fri, 12 Apr
+ 2024 07:01:01 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::d30b:44e7:e78e:662d]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::d30b:44e7:e78e:662d%4]) with mapi id 15.20.7386.037; Fri, 12 Apr 2024
+ 07:01:01 +0000
+From: Peng Fan <peng.fan@nxp.com>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>, "Peng Fan (OSS)"
+	<peng.fan@oss.nxp.com>
+CC: Sudeep Holla <sudeep.holla@arm.com>, Cristian Marussi
+	<cristian.marussi@arm.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, Dan
+ Carpenter <dan.carpenter@linaro.org>, Dhruva Gole <d-gole@ti.com>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-gpio@vger.kernel.org"
+	<linux-gpio@vger.kernel.org>, Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+Subject: RE: [PATCH v9 0/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
+ protocol basic support
+Thread-Topic: [PATCH v9 0/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
+ protocol basic support
+Thread-Index: AQHajG43VACXpQ/Xz0Cypsv4qvfUjLFkJ/aAgAAM6mA=
+Date: Fri, 12 Apr 2024 07:01:01 +0000
+Message-ID:
+ <DU0PR04MB9417DF1519C59AEBE156BC2488042@DU0PR04MB9417.eurprd04.prod.outlook.com>
+References: <20240412-pinctrl-scmi-v9-0-b817344d3a9a@nxp.com>
+ <CAHp75VfBaU+F-+3zte66mxgJ+gW9N7j8E+0gw9_T9J5DHTnsBA@mail.gmail.com>
+In-Reply-To:
+ <CAHp75VfBaU+F-+3zte66mxgJ+gW9N7j8E+0gw9_T9J5DHTnsBA@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|AM9PR04MB8323:EE_
+x-ms-office365-filtering-correlation-id: 2da32323-33be-4e7b-82aa-08dc5abe4fe6
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ DjO/my8gijsP4Y7x6CgdC36hmUzMx3SpRaXjgN6IH0lpPhgBitu/JnTTEnHlm5yLAGVusdafYKg0woirq4yGcMIsBeLxS+Up/oyg472PPsobgDqwUcbxNfDBBSZ9JTLQR7c+jm4tLFjepGcdJyiM6yH4FW7/Q55HoZh0HoePgN+VcRlvIJLKizfV7IDXqBWgUUqZClZlmgTcBhHbu3qDOJsk4xpEN3dAbkNgy/Lv9Kiv5FQ7ZLbJeo/lgj3dahU/2rR2dnwqvw3FiHqo024fvZoVJ7gRAAj9QDBe+HWHHP4H8CaA9FvOrwfqnz6/o/4TyPvVPVoLoIG9ljho0nN8qRT+qdo5wiptmanN8Aq3dpZWJocR0eS27gTCEqMlkYV6Zmvxf/HxRcIulaD2g3614gSUkChlTxK01nMvAXvKQuLOr8JWMYPNblYNduSSXPMkAJC7M/Ie+VViHg9WhKYyyAMJ+LzBilMUZUKWTMQOf6k2M0d4mmfT3iMhHAlpIbembPsbEwR1BBSTES7Sv2C9ouaS5ApZSOy9Yy9nOA1lgLRBDCNhkmw3rbYduFdREOC2ISuFGVtmuHOz3Lmz+NJyZIbFI8JVvAwZADUs2Ox3aID9XoPpb0YSJljC+xhSDsNS/IaSe8NwaAf2gUDztw49LaoqSKGcstRtBHg5g70gE3ei5uu17PukyetI2ypTpAq2CvFU82AXQd/MTKpHd/VvTA==
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(376005)(1800799015)(366007)(38070700009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?RGFxWUVHS2xmWGhCdWlSS3Q0cU1qNnBXbERtZDBsWVJEL0hpbGlza3gxY1FR?=
+ =?utf-8?B?STF3OUIxbzcxeUIwRDRmSDRLSjNPR1NiOTNlSFdvVjhzcjUvZFlQbFJocE8r?=
+ =?utf-8?B?a1JGWi9yQU5wQm1qSUtmM0JOVENqZzVpSXN1QUJPc2pRekhzRzFxcmp1TTBl?=
+ =?utf-8?B?V1dscVk4ek1NMG54MUFBc2xSSUh4Sm1KcnRoYys0aTM4TEpoK3lKdllqcVg1?=
+ =?utf-8?B?ZFEwUExxNlhEU2tOcTJSczczSWc5RkZZNzJvTFJIb0pIbHFwa09HcThXU2ov?=
+ =?utf-8?B?V2ROOU4yb3FKV2N3ZTY3aGFLYXVBVjdkM0xqN1cyNHE2a3E5dnJtSlkvQTFE?=
+ =?utf-8?B?cDQ1aUhoblFEMHc3NDNLWEQ5c0FLT0hscDFHUnQvMFJXSk5GL29lVE9zM2lr?=
+ =?utf-8?B?TldxMVdkc1hWS1F4Q1pxNXY0ZUhPd0oxa3YvdzJiRlZNZ3Q4KzlzMERoVGps?=
+ =?utf-8?B?T1h2TWtSc3lsN0V6ZmpKUENVV2RMSXUrQnFjcWJia3VzTXlSUmtON2JlWXps?=
+ =?utf-8?B?cldNZjFiQ0NMdXpBVkJkaHRwWG5QWGpROTJiUXNQMUlLVnE3OEwzeWFWVGNi?=
+ =?utf-8?B?YmRnSXdBY0hHbXdDOXU0ZlZCWlU2cWh6QWNOTWsxcnlUcUIwOFhaNFFkVEVo?=
+ =?utf-8?B?eG5KOWVGa1pyM0g5S3paU1BweWYvaFZZbytkOCs2STJQSUlINExrc05kWGJJ?=
+ =?utf-8?B?emZoMGlSczhQem5LYnZGbzdoOWg4dFI4eGJac3owWU1Qb2ErQWYxTWdNNzN0?=
+ =?utf-8?B?WktkRDhKVHg5dVNFeEZUckJMc0dKemZVbTZDMys1S0xSc1lmV0dnak1VTWN3?=
+ =?utf-8?B?UXBFaFpZOXliWGpHaUNYOVg3U2tSUGNrRzRqOFNXUG9JbXZaK251SXJVMWJ4?=
+ =?utf-8?B?dit2bnBid1p5a1FIeSt6c29pbThVVnlaeXZhNTFBOStBM21iQnFDeXlqYksv?=
+ =?utf-8?B?M1g3NkJ0MURPV0FtNi9NMGY4NXpXeUducFJwZmErNEdFRlRuNlJJanhVQzlr?=
+ =?utf-8?B?R29Va2tpYW1xeE4wekhVZHRsWTljS3NrNk5WWXR3bktTSHJPdzVvQUZHaWhG?=
+ =?utf-8?B?MGhmandlWlNObGErVUNFSktnN1ZmMWNSb3lnL24yL0xQM05GY1VKVWZyZUd0?=
+ =?utf-8?B?WkMxa2xLQWxzbllLakU3YTFUUWZiNGxacEM0SmdqcXBaY3JhaXVhb1BjL2Iv?=
+ =?utf-8?B?azBxN0VoUnYza0pUM01YWUlRWFAzdFQ1Z2c1RmJCWGNncHVBaUFvSkFScjIx?=
+ =?utf-8?B?WGhIeVREOVN4OE1JTzE5aEhNOHZNNS9POGViR3d5R0dDMkl2ZWFUWFlYK0Nx?=
+ =?utf-8?B?a0lCVlNSZ29jaGZLbzVMb0ZHVzV3bGpobHp2R3Q3THZUdlhxOGF4bUphVk00?=
+ =?utf-8?B?UG4xN012bmpRdzh6UXFGcElzaGdWaE5UZ1RYTDNWMU5GTlFUM1RKLzREajFD?=
+ =?utf-8?B?dHlaKzk4YmFuUnlNTGsrMFFGMEFqang4ZlR0QitNUldSdTJGQUptZHJFSFdR?=
+ =?utf-8?B?T01PelFHdHNzSzdlVEYwdkxNT0pUVUl5WDl6ZUpRNnZsaVV2Rm1aRFBON3JR?=
+ =?utf-8?B?ejgvWjJidGlhNnZsZzVZNjU2czVOQlY1VTdGR2E3RzhYNnJlUkRDWVZ1MmNQ?=
+ =?utf-8?B?eTVvQWpxRGNWbldTNTJRY3JJb1czUUVIWXlDNXJtMnhwMEJxTTNnS0pBS3hw?=
+ =?utf-8?B?cEZvVlN2TFNTSU9jZkFJdnd4elQ0WFNGWGtVR3IvY0JQK2ROSlM2aE9FMmJy?=
+ =?utf-8?B?NXZjNmQ2S2NTVTFvNjRjUjJsZjBFK3ZkbXl3YkV5ZDZjeU5lWDdST2MzNVdn?=
+ =?utf-8?B?aGNSU0JVMkpJbElKaEdxKzBLTW8rbVVqNGRrSGVEMHNDS1ZQc2UzRDByTVZV?=
+ =?utf-8?B?czN5RG9zeDVlazk3b3I4ZXZTMi9VVW4veXpXMTZ2U0JZV2plNXpyU2ZtWXJV?=
+ =?utf-8?B?Mlk3aCs1ek82eEtndC8xUm16Q3BDK1I3K0p5anhqcEJ1OGJhaTdNejJ1MGU0?=
+ =?utf-8?B?LzE2bmM4MktxQ2NVSWFnQzFBRnp5aUE1YXlkcnlheVNzWU52OXdWSjd5N3Zl?=
+ =?utf-8?B?YVVuY0JxSUx4ZGVzZU13Q1Q5dkhzSjBkZFlMMDJmWHNMM2ZPTE1uQ0doZlpZ?=
+ =?utf-8?Q?1nWU=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK: N
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2da32323-33be-4e7b-82aa-08dc5abe4fe6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Apr 2024 07:01:01.0541
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: +9hIG0D9YWD9vIPr/EdhyfANuNrx8BzskCd9J4deAWmqqYldYCeR0EIuMKztCGaCZsqA+ZK0KX5YHlUat0nh1g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8323
 
-From: "Kevenny Hsieh" <kevenny.hsieh@mediatek.com>
-
-Enabled Precision Time Protocol (PTP) for improved host-guest VM time
-synchronization, optimizing operations needing precise clock sync in
-virtual environment.
-
-Signed-off-by: Kevenny Hsieh <kevenny.hsieh@mediatek.com>
-Signed-off-by: Liju Chen <liju-clr.chen@mediatek.com>
-Signed-off-by: Yi-De Wu <yi-de.wu@mediatek.com>
----
- arch/arm64/geniezone/Makefile           |  2 +-
- arch/arm64/geniezone/gzvm_arch_common.h |  3 +
- arch/arm64/geniezone/hvc.c              | 73 +++++++++++++++++++++++++
- drivers/virt/geniezone/gzvm_exception.c |  3 +-
- include/linux/soc/mediatek/gzvm_drv.h   |  1 +
- include/uapi/linux/gzvm.h               |  1 +
- 6 files changed, 80 insertions(+), 3 deletions(-)
- create mode 100644 arch/arm64/geniezone/hvc.c
-
-diff --git a/arch/arm64/geniezone/Makefile b/arch/arm64/geniezone/Makefile
-index 0e4f1087f9de..553a64a926dc 100644
---- a/arch/arm64/geniezone/Makefile
-+++ b/arch/arm64/geniezone/Makefile
-@@ -4,6 +4,6 @@
- #
- include $(srctree)/drivers/virt/geniezone/Makefile
- 
--gzvm-y += vm.o vcpu.o vgic.o
-+gzvm-y += vm.o vcpu.o vgic.o hvc.o
- 
- obj-$(CONFIG_MTK_GZVM) += gzvm.o
-diff --git a/arch/arm64/geniezone/gzvm_arch_common.h b/arch/arm64/geniezone/gzvm_arch_common.h
-index 192d023722e5..8f5d8528ab96 100644
---- a/arch/arm64/geniezone/gzvm_arch_common.h
-+++ b/arch/arm64/geniezone/gzvm_arch_common.h
-@@ -83,6 +83,8 @@ int gzvm_hypcall_wrapper(unsigned long a0, unsigned long a1,
-  * @__pad: add an explicit '__u32 __pad;' in the middle to make it clear
-  *         what the actual layout is.
-  * @lr: The array of LRs(list registers).
-+ * @vtimer_offset: The offset maintained by hypervisor that is host cycle count
-+ *                 when guest VM startup.
-  *
-  * - Keep the same layout of hypervisor data struct.
-  * - Sync list registers back for acking virtual device interrupt status.
-@@ -91,6 +93,7 @@ struct gzvm_vcpu_hwstate {
- 	__le32 nr_lrs;
- 	__le32 __pad;
- 	__le64 lr[GIC_V3_NR_LRS];
-+	__le64 vtimer_offset;
- };
- 
- static inline unsigned int
-diff --git a/arch/arm64/geniezone/hvc.c b/arch/arm64/geniezone/hvc.c
-new file mode 100644
-index 000000000000..3d7f71f20dce
---- /dev/null
-+++ b/arch/arm64/geniezone/hvc.c
-@@ -0,0 +1,73 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2023 MediaTek Inc.
-+ */
-+#include <linux/clocksource.h>
-+#include <linux/kernel.h>
-+#include <linux/timekeeping.h>
-+#include <linux/soc/mediatek/gzvm_drv.h>
-+#include "gzvm_arch_common.h"
-+
-+#define GZVM_PTP_VIRT_COUNTER 0
-+#define GZVM_PTP_PHYS_COUNTER 1
-+/**
-+ * gzvm_handle_ptp_time() - Sync time between host and guest VM
-+ * @vcpu: Pointer to struct gzvm_vcpu_run in userspace
-+ * @counter: Counter type from guest VM
-+ * Return: Always return 0 because there are no cases of failure
-+ *
-+ * The following register values will be passed to the guest VM
-+ * for time synchronization:
-+ * regs->x0 (upper 32 bits) wall clock time
-+ * regs->x1 (lower 32 bits) wall clock time
-+ * regs->x2 (upper 32 bits) cycles
-+ * regs->x3 (lower 32 bits) cycles
-+ */
-+static int gzvm_handle_ptp_time(struct gzvm_vcpu *vcpu, int counter)
-+{
-+	struct system_time_snapshot snapshot;
-+	u64 cycles = 0;
-+
-+	ktime_get_snapshot(&snapshot);
-+
-+	switch (counter) {
-+	case GZVM_PTP_VIRT_COUNTER:
-+		cycles = snapshot.cycles -
-+			 le64_to_cpu(vcpu->hwstate->vtimer_offset);
-+		break;
-+	case GZVM_PTP_PHYS_COUNTER:
-+		cycles = snapshot.cycles;
-+		break;
-+	default:
-+		break;
-+	}
-+
-+	vcpu->run->hypercall.args[0] = upper_32_bits(snapshot.real);
-+	vcpu->run->hypercall.args[1] = lower_32_bits(snapshot.real);
-+	vcpu->run->hypercall.args[2] = upper_32_bits(cycles);
-+	vcpu->run->hypercall.args[3] = lower_32_bits(cycles);
-+
-+	return 0;
-+}
-+
-+/**
-+ * gzvm_arch_handle_guest_hvc() - Handle architecture-related guest hvc
-+ * @vcpu: Pointer to struct gzvm_vcpu_run in userspace
-+ * Return:
-+ * * true - This hvc has been processed, no need to back to VMM.
-+ * * false - This hvc has not been processed, require userspace.
-+ */
-+bool gzvm_arch_handle_guest_hvc(struct gzvm_vcpu *vcpu)
-+{
-+	int ret, counter;
-+
-+	switch (vcpu->run->hypercall.args[0]) {
-+	case GZVM_HVC_PTP:
-+		counter = vcpu->run->hypercall.args[1];
-+		ret = gzvm_handle_ptp_time(vcpu, counter);
-+		return (ret == 0) ? true : false;
-+	default:
-+		break;
-+	}
-+	return false;
-+}
-diff --git a/drivers/virt/geniezone/gzvm_exception.c b/drivers/virt/geniezone/gzvm_exception.c
-index 07871ec74651..d824211f49a6 100644
---- a/drivers/virt/geniezone/gzvm_exception.c
-+++ b/drivers/virt/geniezone/gzvm_exception.c
-@@ -56,7 +56,6 @@ bool gzvm_handle_guest_hvc(struct gzvm_vcpu *vcpu)
- 		ret = gzvm_handle_relinquish(vcpu, ipa);
- 		return (ret == 0) ? true : false;
- 	default:
--		break;
-+		return gzvm_arch_handle_guest_hvc(vcpu);
- 	}
--	return false;
- }
-diff --git a/include/linux/soc/mediatek/gzvm_drv.h b/include/linux/soc/mediatek/gzvm_drv.h
-index e123787cd70d..f6b7acca37b8 100644
---- a/include/linux/soc/mediatek/gzvm_drv.h
-+++ b/include/linux/soc/mediatek/gzvm_drv.h
-@@ -223,6 +223,7 @@ int gzvm_handle_page_fault(struct gzvm_vcpu *vcpu);
- bool gzvm_handle_guest_exception(struct gzvm_vcpu *vcpu);
- int gzvm_handle_relinquish(struct gzvm_vcpu *vcpu, phys_addr_t ipa);
- bool gzvm_handle_guest_hvc(struct gzvm_vcpu *vcpu);
-+bool gzvm_arch_handle_guest_hvc(struct gzvm_vcpu *vcpu);
- 
- int gzvm_arch_create_device(u16 vm_id, struct gzvm_create_device *gzvm_dev);
- int gzvm_arch_inject_irq(struct gzvm *gzvm, unsigned int vcpu_idx,
-diff --git a/include/uapi/linux/gzvm.h b/include/uapi/linux/gzvm.h
-index 5411357ec05e..1cf89213a383 100644
---- a/include/uapi/linux/gzvm.h
-+++ b/include/uapi/linux/gzvm.h
-@@ -197,6 +197,7 @@ enum {
- 
- /* hypercall definitions of GZVM_EXIT_HYPERCALL */
- enum {
-+	GZVM_HVC_PTP = 0x86000001,
- 	GZVM_HVC_MEM_RELINQUISH = 0xc6000009,
- };
- 
--- 
-2.18.0
-
+PiBTdWJqZWN0OiBSZTogW1BBVENIIHY5IDAvNF0gZmlybXdhcmU6IGFybV9zY21pOiBBZGQgU0NN
+SSB2My4yIHBpbmNvbnRyb2wNCj4gcHJvdG9jb2wgYmFzaWMgc3VwcG9ydA0KPiANCj4gT24gRnJp
+LCBBcHIgMTIsIDIwMjQgYXQgMzoxM+KAr0FNIFBlbmcgRmFuIChPU1MpIDxwZW5nLmZhbkBvc3Mu
+bnhwLmNvbT4NCj4gd3JvdGU6DQo+IA0KPiA+IC0tLQ0KPiA+IENoYW5nZXMgaW4gdjk6DQo+ID4g
+LSBSZWJhc2VkIHRvIG5leHQtMjAyNDA0MTANCj4gDQo+ID4gLSBCZWNhdXNlICJwaW5jdHJsOiBw
+aW5jb25mLWdlbmVyaWM6IGNoZWNrIGVycm9yIHZhbHVlIEVPUE5PVFNVUFAiIHdhcw0KPiA+ICAg
+YXBwbGllZCwgc28gcGluY3RybC1zY21pLmMgbm90IGNvbnZlcnQgdG8gZXJyIHJldHVybiB2YWx1
+ZSBmb3INCj4gPiAgICdwaW5jdHJsX29wcy0+c2V0dGluZ3NfZ2V0X29uZSgpJy4NCj4gDQo+IEJl
+Y2F1c2UgaXQncyB0aGVyZSBpdCBkb2VzIG5vdCBtZWFuIHdlIHdhbnQgaXQgcmlnaHQgbm93LiBJ
+IHBpbmdlZCBMaW51cyBhYm91dA0KPiBpdCBhZ2Fpbi4NCg0Kb2ssIGxldCBtZSBpbmNsdWRlIHRo
+ZSBkaWZmWzFdLCBpcyB0aGlzIG9rIGZvciB5b3U/DQoNClsxXWh0dHBzOi8vbG9yZS5rZXJuZWwu
+b3JnL2FsbC9EVTBQUjA0TUI5NDE3NTRBNkQ3NTFFODA4NDBGOUE3OTg4ODAxMkBEVTBQUjA0TUI5
+NDE3LmV1cnByZDA0LnByb2Qub3V0bG9vay5jb20vDQoNClRoYW5rcywNClBlbmcuDQoNCj4gDQo+
+ID4gLSBBZGQgUi1iIGZvciBwYXRjaCBbMSwyLDRdLzQgZnJvbSBEaHJ1dmEgR29sZQ0KPiA+IC0g
+TGluayB0byB2ODoNCj4gPiBodHRwczovL2V1cjAxLnNhZmVsaW5rcy5wcm90ZWN0aW9uLm91dGxv
+b2suY29tLz91cmw9aHR0cHMlM0ElMkYlMkZsb3JlDQo+ID4gLmtlcm5lbC5vcmclMkZyJTJGMjAy
+NDA0MDUtcGluY3RybC1zY21pLXY4LTAtDQo+IDVmYzhlMzM4NzFiZiU0MG54cC5jb20mZGENCj4g
+Pg0KPiB0YT0wNSU3QzAyJTdDcGVuZy5mYW4lNDBueHAuY29tJTdDYzA4YWQ1ZjM3ODQ2NDkxNGIz
+MzgwOGRjNWFiNw0KPiBhMmNhJTdDNg0KPiA+DQo+IDg2ZWExZDNiYzJiNGM2ZmE5MmNkOTljNWMz
+MDE2MzUlN0MwJTdDMCU3QzYzODQ4NDk5MTk1NzYxMzA3OA0KPiAlN0NVbmtub3duDQo+ID4gJTdD
+VFdGcGJHWnNiM2Q4ZXlKV0lqb2lNQzR3TGpBd01EQWlMQ0pRSWpvaVYybHVNeklpTENKQlRpSTZJ
+azFoYQ0KPiBXd2lMQ0oNCj4gPg0KPiBYVkNJNk1uMCUzRCU3QzAlN0MlN0MlN0Mmc2RhdGE9WSUy
+QmpqWTRoTFpIaW03N1NjSUlhZzhDQ1J0T0ZODQo+IGxMNFhJS2FpWA0KPiA+IHRQTGVTbyUzRCZy
+ZXNlcnZlZD0wDQo+IA0KPiANCj4gLS0NCj4gV2l0aCBCZXN0IFJlZ2FyZHMsDQo+IEFuZHkgU2hl
+dmNoZW5rbw0K
 
