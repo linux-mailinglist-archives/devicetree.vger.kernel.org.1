@@ -1,192 +1,154 @@
-Return-Path: <devicetree+bounces-58853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 528088A3650
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 21:26:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21E7B8A3657
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 21:28:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 57EE0B216B6
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 19:26:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CDD77281F4A
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 19:28:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 866DF14F9F4;
-	Fri, 12 Apr 2024 19:26:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BE1ZhfCI"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A7E014F9C6;
+	Fri, 12 Apr 2024 19:28:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DC9714F9ED;
-	Fri, 12 Apr 2024 19:26:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2128413DDAC;
+	Fri, 12 Apr 2024 19:28:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712949979; cv=none; b=KBSkRd1/EeNqTRfbHa434VaEO4nEJcU+GXrS9L5d4PYVt4o79IleJSUO1ho/USB0AriTwZQmR7kGUjAKQNFsCT73e18ZtNf2B7axXTVfRw2WRcS9a6kR3ccf7Qov+gNrQPLNSP8j6Ufcd2ZNRaGqb6AZ8F02faG+LycqsuFOZa0=
+	t=1712950133; cv=none; b=MRIRtTktzd7yKUq0DDw0/dBtK8bZFUaP1JgamUosxk3247Y5tovFKW1kRI/lIxjmpfdntPnnOsD4EQlmuNlRffWoaQQOwK0GCDgkKWrO3Tv7L0G2Nxjv4qnW5GxS/uQbdf8OGb73x2kjk35+lgxSmD+bOLqKte3AUgIWzmigwPg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712949979; c=relaxed/simple;
-	bh=ArpGHG9cuv9OtQt7jL/xNgqJB9MdPk3k7JUvanjZuic=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O4j1llD5C+4462x+yaOTMjojkyUvHHcnKuDeTDjb84KFs7OnjCfwvicTpbS/tAGBZt5H4OSi0ogMk1XvzIlnjm7ejTEek6gnoMVNs8Pn9T0VUWKI+5m/Q8ESuubpWfxRpbW0Tcu2UcQATL/K0Ch0dg61TzYQ+ttPGd44/bSoYg0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BE1ZhfCI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5419DC113CC;
-	Fri, 12 Apr 2024 19:26:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712949978;
-	bh=ArpGHG9cuv9OtQt7jL/xNgqJB9MdPk3k7JUvanjZuic=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BE1ZhfCIepy+Sz+T2/94eePFkoOBa4Wa95SbkS2QeDMiyp12yVm5dxbXQ8DBAVn7e
-	 zaEoB5oI8W25RYxz9nj1KmtQifkJbq6TcZaZvzr2BZLansHu9+OSr3iV9XFoQ9mehr
-	 WDWWtMq8E1dfTt7HdTaOi9lb15ndfSLbPuCdFZmSZKfRDjjictfHUo2RWyRlm9K4E8
-	 9JirdX8YiXS/iJ1fnkO5Y3Wi29otvkyu+i2+2rQtPRBfmq1njgVEabcy+rtzdw7f1H
-	 vOZ2jbfP0fNsPzw0gK+ZL/PdQRjsoz8WjLOPnKbLLA9WO+GJBKQMbXROTtaPlEzejH
-	 FKtr8IV7z/8qw==
-Date: Fri, 12 Apr 2024 20:26:12 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Charlie Jenkins <charlie@rivosinc.com>
-Cc: Evan Green <evan@rivosinc.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH 02/19] riscv: cpufeature: Fix thead vector hwcap removal
-Message-ID: <20240412-earmark-sanction-810b7222cae5@spud>
-References: <20240411-dev-charlie-support_thead_vector_6_9-v1-0-4af9815ec746@rivosinc.com>
- <20240411-dev-charlie-support_thead_vector_6_9-v1-2-4af9815ec746@rivosinc.com>
- <20240412-tuesday-resident-d9d07e75463c@wendy>
- <CALs-HsuMZOMpDh8kwQx6FE2mawzt+qTD-WZ6Mvhrt+hUhkZimg@mail.gmail.com>
- <20240412-employer-crier-c201704d22e3@spud>
- <ZhmBfaKXMMtolwSr@ghost>
+	s=arc-20240116; t=1712950133; c=relaxed/simple;
+	bh=XCy6bbyyqN1LWwKCTQigfobBsswimYECHWPI1zDHCsM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=QosKAwDWEb7+UkSppC8Huu4qovPgEACmk/crh0O7diEXyMde3GiSsJ5N2pwyjOm9H/eqpvyww8xCpd0lN2CNFc4tLDMdmMQyZow9spQRG11MG8DkH+JqDINtuVMoyorvhQRbNPzYVGwkqp4/RR4B9D3QcA+xIV62o7kzb8HAj1w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 18E45339;
+	Fri, 12 Apr 2024 12:29:18 -0700 (PDT)
+Received: from e120937-lin.. (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 73A953F766;
+	Fri, 12 Apr 2024 12:28:47 -0700 (PDT)
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org
+Cc: sudeep.holla@arm.com,
+	cristian.marussi@arm.com,
+	jassisinghbrar@gmail.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	jonathan.cameron@huawei.com
+Subject: [PATCH v4 0/2] Add initial ARM MHUv3 mailbox support
+Date: Fri, 12 Apr 2024 20:27:59 +0100
+Message-Id: <20240412192801.554464-1-cristian.marussi@arm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="tJyAzTWQiwGEEGv9"
-Content-Disposition: inline
-In-Reply-To: <ZhmBfaKXMMtolwSr@ghost>
+Content-Transfer-Encoding: 8bit
+
+Hi,
+
+This series adds support for the new ARM Message Handling Unit v3 mailbox
+controller [1].
+
+The ARM MHUv3 can optionally support various extensions, enabling the
+usage of different transport protocols.
+
+Patch [2/2] adds a platform driver which, as of now, provides support only
+for the Doorbell extension using the combined interrupt.
+
+On the other side, bindings in [1/2] are introduced for all the extensions
+described by the specification, as long as they are of interest to an
+entity running from Normal world, like Linux: as such, Doorbell, FIFO and
+FastChannel extensions are documented.
+
+In these regards, note that the ARM MHUv3 controller can optionally
+implement a considerable number of interrupts to express a great deal of
+events and many of such interrupts are defined as being per-channel: with
+the total maximum amount of possibly implemented channels across all
+extensions being 1216 (1024+128+64), it would mean *a lot* of
+interrupt-names to enumerate in the bindings.
+
+For the sake of simplicity the binding as of now only introduces interrupt
+names for a mere 8-channels in the range (0,7) for each per-channel
+interrupt type: the idea is to leave open the possibility to add more to
+this list of numbered items only when (and if) new real HW appears that
+effectively needs more than 8 channels. (like AMBA, where the maximum
+number of IRQ was progressively increased when needed, AFAIU).
+
+Based on v6.9-rc1, tested on ARM TCS23 [2]
+(TCS23 reference SW stack is still to be made fully publicly available)
+
+Thanks,
+Cristian
+
+[1]: https://developer.arm.com/documentation/aes0072/aa/?lang=en
+[2]: https://community.arm.com/arm-community-blogs/b/tools-software-ides-blog/posts/total-compute-solutions-platform-software-stack-and-fvp
 
 
---tJyAzTWQiwGEEGv9
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+---
+v3 -> v4
+ - avoid magic numbers for regs padding holes
+ - renaming various enums terminators to count_ instead of max_
+ - using scoped_guards for spinlock_save
+ - dropping FIRST_EXT naming for 0-indexed enum
+ - reduce indentation by using early returns or continue on failure-paths
+ - use dev_err_probe where appropriate
+ - be less noisy with dev_dbg
+ - refactored mhuv3_mbx_comb_interrupt using __free cleanups for .read_data
+ - refactored doorbell lookups with scoped_guards
+ - fail on IRQ request failures: do not carry-on best effort
+ - drop usage of platform_set_drvdata and .remove in favour of
+   devm_add_action_or_reset
+ - review failures handling on extensions initialization
+ - removed name clashes
+ - more comments on regs decorations
+ - decreasing line-lengths definitions
+ - use __ffs instead of __builtin_ctz
+ - dropped used of bitfields in favour of bitmasks
+ - reading implementer/revision/variant/product_id
+ - fixed a few misspellings
+ - DT: using ARM GIC defines in example
+ - DT: defined MHUv3 Extensions types in new file dt-bindings/arm/mhuv3-dt.h
+v2 -> v3
+ - fixed spurious tabs/spaces in DT binding
+v1 -> v2
+ - clarified DT bindings extension descriptions around configurability
+   and discoverability
+ - removed unused labels from the DT example
+ - using pattern properties to define DT interrupt-names
+ - bumped DT interrupt maxItems to 74 (allowing uo to 8 channels per extension)
+ - fixed checkpatch warnings about side-effects on write/read bitfield macros
+ - fixed sparse errors as reported
+   | Reported-by: kernel test robot <lkp@intel.com>
+   | Closes: https://lore.kernel.org/oe-kbuild-all/202403290015.tCLXudqC-lkp@intel.com/
 
-On Fri, Apr 12, 2024 at 11:46:21AM -0700, Charlie Jenkins wrote:
-> On Fri, Apr 12, 2024 at 07:38:04PM +0100, Conor Dooley wrote:
-> > On Fri, Apr 12, 2024 at 10:04:17AM -0700, Evan Green wrote:
-> > > On Fri, Apr 12, 2024 at 3:26=E2=80=AFAM Conor Dooley <conor.dooley@mi=
-crochip.com> wrote:
-> > > >
-> > > > On Thu, Apr 11, 2024 at 09:11:08PM -0700, Charlie Jenkins wrote:
-> > > > > The riscv_cpuinfo struct that contains mvendorid and marchid is n=
-ot
-> > > > > populated until all harts are booted which happens after the DT p=
-arsing.
-> > > > > Use the vendorid/archid values from the DT if available or assume=
- all
-> > > > > harts have the same values as the boot hart as a fallback.
-> > > > >
-> > > > > Fixes: d82f32202e0d ("RISC-V: Ignore V from the riscv,isa DT prop=
-erty on older T-Head CPUs")
-> > > >
-> > > > If this is our only use case for getting the mvendorid/marchid stuff
-> > > > from dt, then I don't think we should add it. None of the devicetre=
-es
-> > > > that the commit you're fixing here addresses will have these proper=
-ties
-> > > > and if they did have them, they'd then also be new enough to hopefu=
-lly
-> > > > not have "v" either - the issue is they're using whatever crap the
-> > > > vendor shipped.
-> > > > If we're gonna get the information from DT, we already have somethi=
-ng
-> > > > that we can look at to perform the disable as the cpu compatibles g=
-ive
-> > > > us enough information to make the decision.
-> > > >
-> > > > I also think that we could just cache the boot CPU's marchid/mvendo=
-rid,
-> > > > since we already have to look at it in riscv_fill_cpu_mfr_info(), a=
-void
-> > > > repeating these ecalls on all systems.
-> > > >
-> > > > Perhaps for now we could just look at the boot CPU alone? To my
-> > > > knowledge the systems that this targets all have homogeneous
-> > > > marchid/mvendorid values of 0x0.
-> > >=20
-> > > It's possible I'm misinterpreting, but is the suggestion to apply the
-> > > marchid/mvendorid we find on the boot CPU and assume it's the same on
-> > > all other CPUs? Since we're reporting the marchid/mvendorid/mimpid to
-> > > usermode in a per-hart way, it would be better IMO if we really do
-> > > query marchid/mvendorid/mimpid on each hart. The problem with applying
-> > > the boot CPU's value everywhere is if we're ever wrong in the future
-> > > (ie that assumption doesn't hold on some machine), we'll only find out
-> > > about it after the fact. Since we reported the wrong information to
-> > > usermode via hwprobe, it'll be an ugly userspace ABI issue to clean
-> > > up.
-> >=20
-> > You're misinterpreting, we do get the values on all individually as
-> > they're brought online. This is only used by the code that throws a bone
-> > to people with crappy vendor dtbs that put "v" in riscv,isa when they
-> > support the unratified version.
->=20
-> Not quite,
 
-Remember that this patch stands in isolation and the justification given
-in your commit message does not mention anything other than fixing my
-broken patch.
+Cristian Marussi (2):
+  dt-bindings: mailbox: arm,mhuv3: Add bindings
+  mailbox: arm_mhuv3: Add driver
 
-> the alternatives are patched before the other cpus are
-> booted, so the alternatives will have false positives resulting in
-> broken kernels.
+ .../bindings/mailbox/arm,mhuv3.yaml           |  224 ++++
+ MAINTAINERS                                   |    9 +
+ drivers/mailbox/Kconfig                       |   11 +
+ drivers/mailbox/Makefile                      |    2 +
+ drivers/mailbox/arm_mhuv3.c                   | 1102 +++++++++++++++++
+ include/dt-bindings/arm/mhuv3-dt.h            |   13 +
+ 6 files changed, 1361 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/arm,mhuv3.yaml
+ create mode 100644 drivers/mailbox/arm_mhuv3.c
+ create mode 100644 include/dt-bindings/arm/mhuv3-dt.h
 
-Over-eagerly disabling vector isn't going to break any kernels and
-really should not break a behaving userspace either.
-Under-eagerly disabling it (in a way that this approach could solve) is
-only going to happen on a system where the boot hart has non-zero values
-and claims support for v but a non-boot hart has zero values and
-claims support for v but actually doesn't implement the ratified version.
-If the boot hart doesn't support v, then we currently disable the
-extension as only homogeneous stuff is supported by Linux. If the boot
-hart claims support for "v" but doesn't actually implement the ratified
-version neither the intent of my original patch nor this fix for it are
-going to help avoid a broken kernel.
+-- 
+2.34.1
 
-I think we do have a problem if the boot cpu having some erratum leads
-to the kernel being patched in a way that does not work for the other
-CPUs on the system, but I don't think this series addresses that sort of
-issue at all as you'd be adding code to the pi section if you were fixing
-it. I also don't think we should be making pre-emptive changes to the
-errata patching code either to solve that sort of problem, until an SoC
-shows up where things don't work.
-
-Cheers,
-Conor.
-
---tJyAzTWQiwGEEGv9
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZhmK1AAKCRB4tDGHoIJi
-0hziAP4j1liS/8H3/sGH37oV1Ie6vt982Lewk2FPT35h55TKRQEA/iypRsMhmnBH
-35WadNZuyEtJ844XSGK0IM1bH0q7eAk=
-=Lvox
------END PGP SIGNATURE-----
-
---tJyAzTWQiwGEEGv9--
 
