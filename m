@@ -1,697 +1,311 @@
-Return-Path: <devicetree+bounces-58792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36E348A311C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 16:44:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BAE18A3126
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 16:44:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1750281CC0
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 14:44:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4BD681C2091F
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 14:44:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD017143874;
-	Fri, 12 Apr 2024 14:44:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5588143874;
+	Fri, 12 Apr 2024 14:44:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="JJgpZb9h"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hziH+W09"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A69A2142E75
-	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 14:44:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D875213C9B9;
+	Fri, 12 Apr 2024 14:44:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712933064; cv=none; b=p7HQyaR1vO12oT+qiqYmRZ3MBiytH3gM+8wI5BPXPH6zixiElvhuqLIc/ENUz1mEcQD9oypmS1QCoHWIrh0zZRdVZ25mVd0KrJJN++DLPUcsbbBNhFIaHRlACJjXtzq8Vem8wTUpCbCbyBdeC85hIQdmNddG5bKmrb6jLPpjPmQ=
+	t=1712933086; cv=none; b=qti0SuTfplFCi1Hliu57DMaBiIpqsUufqxD+mXg/3l6Cj/PUDC6itSZxiqfqbADs/xSytF1fBYmI40x1SHQHzcHlluq+yicSJzZcPZuNlvdQfbLPdTtkXhjzGg2489IpYkEJMFO5a/nhKkVL0+2F/eyc+pcE1QzIn6KucviQmXE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712933064; c=relaxed/simple;
-	bh=AzPCBJDfH+46IsbA2F4HMZsO/A0pKjJy6wSZ0JGpBLc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=o4xdbvMzbQRdwZifuo9XRB6nUGz0faFNvqGzomXyTUUIdnxw7CJ7p0GqSWzVECpNYScAquCZa6nH+YwPS07DAFJxY59KPtntUi2KgV5N0K8wj4Zell2EP76EJ24So+UZSy6aG3McpK4g+fFAmoECrLUFXcsvARQbKJDDije4Kyk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=JJgpZb9h; arc=none smtp.client-ip=148.163.158.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0353723.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 43CEgBhY001379;
-	Fri, 12 Apr 2024 14:44:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding; s=pp1;
- bh=cM77hKlTjMdMCjTnqP4eatiEg2lNuxTkALzL5RBLSrk=;
- b=JJgpZb9hDLV/OI+mxIMAK78tfqjUvs5FsBNR9w6PHTDGnois8B6pGmWGbd2BqabqqePB
- prRVReE3nhgtfrbnvOwJuuXsLLv1nYASBFnd+89KQWeuhyztzlFjGyZnrLi2ucvZVbqQ
- 4IKNsuIsZ/tRGco38zgbpD3I4CovlxZGyMb4gf5zXgeokjt1t1AaplnveU1z9450CAYi
- Lr+QcRW/onBVObxL67FrKT0ZN9CRj15uOC0MG3axIFsWdvIsmlgWo7gHzmqVj5bVX5Wj
- +jKXmFW/2TXezfzLuGEmXdEApEv5H9+IBB5Mn6b3tY2YxEcHR4r29veyo7spm3oR4eOE kA== 
-Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3xf4pg8ap6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 12 Apr 2024 14:44:06 +0000
-Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma23.wdc07v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 43CBT4mR029951;
-	Fri, 12 Apr 2024 14:44:05 GMT
-Received: from smtprelay04.dal12v.mail.ibm.com ([172.16.1.6])
-	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 3xbj7mt951-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 12 Apr 2024 14:44:05 +0000
-Received: from smtpav06.wdc07v.mail.ibm.com (smtpav06.wdc07v.mail.ibm.com [10.39.53.233])
-	by smtprelay04.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 43CEi21o39059828
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 12 Apr 2024 14:44:04 GMT
-Received: from smtpav06.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 1E94F5804E;
-	Fri, 12 Apr 2024 14:44:02 +0000 (GMT)
-Received: from smtpav06.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 61C8258054;
-	Fri, 12 Apr 2024 14:44:01 +0000 (GMT)
-Received: from slate16.aus.stglabs.ibm.com (unknown [9.61.38.63])
-	by smtpav06.wdc07v.mail.ibm.com (Postfix) with ESMTP;
-	Fri, 12 Apr 2024 14:44:01 +0000 (GMT)
-From: Eddie James <eajames@linux.ibm.com>
-To: linux-aspeed@lists.ozlabs.org
-Cc: joel@jms.id.au, andrew@codeconstruct.com.au, devicetree@vger.kernel.org,
-        linux-fsi@lists.ozlabs.org, robh@kernel.org, conor+dt@kernel.org,
-        krzk+dt@kernel.org, jk@ozlabs.org, alistair@popple.id.au,
-        eajames@linux.ibm.com, lakshmiy@us.ibm.com
-Subject: [PATCH 3/3] ARM: dts: aspeed: Update Odyssey SBEFIFO compatible strings
-Date: Fri, 12 Apr 2024 09:43:58 -0500
-Message-Id: <20240412144358.204129-4-eajames@linux.ibm.com>
-X-Mailer: git-send-email 2.39.3
-In-Reply-To: <20240412144358.204129-1-eajames@linux.ibm.com>
-References: <20240412144358.204129-1-eajames@linux.ibm.com>
+	s=arc-20240116; t=1712933086; c=relaxed/simple;
+	bh=/27W4DpK6bm6LK7sKH9qasHWmiyh/v2gPTVYEgX1MA8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EFeh5u7oxNTGQw04fUJgrFXQzRv7QIoXeItiawo1TtRA4dz8lmuM231Wd9drZzngSKpCQQTEvyvNN3cBROP6s2Qri8h0fwItba0rLge/xHw3hxj1f32yktGFGZMX/Ad+awr9d261ERm/RlootB+e1usOL5hgiXMqvaEKragpzOk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hziH+W09; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1712933085; x=1744469085;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=/27W4DpK6bm6LK7sKH9qasHWmiyh/v2gPTVYEgX1MA8=;
+  b=hziH+W09nMOfdiUcXPvtn1l/PH7EK832ZzFBpYGx4KhynoGsnEAgJjSo
+   4X2EWLQ2LYi3j8mnaHjRO0MQqd8hTp/Iy9f2OPpvJSRbuBDd50AstW/q5
+   ei0njLGCrVgT4KdSvWH6rgAqzK8LISVoxAUBVxCosV4g5hWVVwBlWDhiO
+   7A9AGiz0vjp992gv4XWGqHqZtB0DsZNu0fEL/nq3rpCh1Gmfk8CuRSCD/
+   NFWTTdewi2fOgT6pJRwWbzgbPZzHyADpPvW5nDQkz8MDhoYB4cyyCNQvH
+   dfEJS3yy8mdGkpxHZwJvvtm9q27OsEM6Spa3WCPuV6KbsBUKdT4QcQOrE
+   g==;
+X-CSE-ConnectionGUID: XLvtH7GESQSfeaPbbev3hw==
+X-CSE-MsgGUID: LzmUQ09SQh+qZNyUbl9R9g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="8245408"
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; 
+   d="scan'208";a="8245408"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Apr 2024 07:44:44 -0700
+X-CSE-ConnectionGUID: TmtMmztsQmaNnVyTO82zCQ==
+X-CSE-MsgGUID: T0wQPY3cQIa8GTKycwqySw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; 
+   d="scan'208";a="21161233"
+Received: from lkp-server01.sh.intel.com (HELO e61807b1d151) ([10.239.97.150])
+  by orviesa010.jf.intel.com with ESMTP; 12 Apr 2024 07:44:38 -0700
+Received: from kbuild by e61807b1d151 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rvI8p-0009qL-1l;
+	Fri, 12 Apr 2024 14:44:35 +0000
+Date: Fri, 12 Apr 2024 22:44:22 +0800
+From: kernel test robot <lkp@intel.com>
+To: Charlie Jenkins <charlie@rivosinc.com>, Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Evan Green <evan@rivosinc.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev, linux-doc@vger.kernel.org,
+	linux-kselftest@vger.kernel.org,
+	Charlie Jenkins <charlie@rivosinc.com>
+Subject: Re: [PATCH 06/19] riscv: Extend cpufeature.c to detect vendor
+ extensions
+Message-ID: <202404122206.TkXKhj29-lkp@intel.com>
+References: <20240411-dev-charlie-support_thead_vector_6_9-v1-6-4af9815ec746@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: LViHzy1xQMhA0XV-Ly-Mp3-4Wh4jkI_f
-X-Proofpoint-ORIG-GUID: LViHzy1xQMhA0XV-Ly-Mp3-4Wh4jkI_f
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-12_11,2024-04-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
- adultscore=0 suspectscore=0 clxscore=1015 phishscore=0 mlxlogscore=904
- impostorscore=0 spamscore=0 malwarescore=0 lowpriorityscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2404010000 definitions=main-2404120106
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240411-dev-charlie-support_thead_vector_6_9-v1-6-4af9815ec746@rivosinc.com>
 
-Set the new compatible string for Odyssey SBEFIFOs so that they
-don't collect async FFDC.
+Hi Charlie,
 
-Signed-off-by: Eddie James <eajames@linux.ibm.com>
----
- .../dts/aspeed/aspeed-bmc-ibm-everest.dts     | 64 +++++++++----------
- .../arm/boot/dts/aspeed/ibm-power10-quad.dtsi | 64 +++++++++----------
- 2 files changed, 64 insertions(+), 64 deletions(-)
+kernel test robot noticed the following build warnings:
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
-index 214b2e6a4c6d..3a2bfdf035cb 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
-@@ -2545,7 +2545,7 @@ scom500: scom@1000 {
- 						};
- 
- 						sbefifo500: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2577,7 +2577,7 @@ scom501: scom@1000 {
- 						};
- 
- 						sbefifo501: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2609,7 +2609,7 @@ scom510: scom@1000 {
- 						};
- 
- 						sbefifo510: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2641,7 +2641,7 @@ scom511: scom@1000 {
- 						};
- 
- 						sbefifo511: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2673,7 +2673,7 @@ scom512: scom@1000 {
- 						};
- 
- 						sbefifo512: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2705,7 +2705,7 @@ scom513: scom@1000 {
- 						};
- 
- 						sbefifo513: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2737,7 +2737,7 @@ scom514: scom@1000 {
- 						};
- 
- 						sbefifo514: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2769,7 +2769,7 @@ scom515: scom@1000 {
- 						};
- 
- 						sbefifo515: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2918,7 +2918,7 @@ scom602: scom@1000 {
- 						};
- 
- 						sbefifo602: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2950,7 +2950,7 @@ scom603: scom@1000 {
- 						};
- 
- 						sbefifo603: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2982,7 +2982,7 @@ scom610: scom@1000 {
- 						};
- 
- 						sbefifo610: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3014,7 +3014,7 @@ scom611: scom@1000 {
- 						};
- 
- 						sbefifo611: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3046,7 +3046,7 @@ scom614: scom@1000 {
- 						};
- 
- 						sbefifo614: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3078,7 +3078,7 @@ scom615: scom@1000 {
- 						};
- 
- 						sbefifo615: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3110,7 +3110,7 @@ scom616: scom@1000 {
- 						};
- 
- 						sbefifo616: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3142,7 +3142,7 @@ scom617: scom@1000 {
- 						};
- 
- 						sbefifo617: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3291,7 +3291,7 @@ scom700: scom@1000 {
- 						};
- 
- 						sbefifo700: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3323,7 +3323,7 @@ scom701: scom@1000 {
- 						};
- 
- 						sbefifo701: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3355,7 +3355,7 @@ scom710: scom@1000 {
- 						};
- 
- 						sbefifo710: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3387,7 +3387,7 @@ scom711: scom@1000 {
- 						};
- 
- 						sbefifo711: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3419,7 +3419,7 @@ scom712: scom@1000 {
- 						};
- 
- 						sbefifo712: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3451,7 +3451,7 @@ scom713: scom@1000 {
- 						};
- 
- 						sbefifo713: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3483,7 +3483,7 @@ scom714: scom@1000 {
- 						};
- 
- 						sbefifo714: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3515,7 +3515,7 @@ scom715: scom@1000 {
- 						};
- 
- 						sbefifo715: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3664,7 +3664,7 @@ scom802: scom@1000 {
- 						};
- 
- 						sbefifo802: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3696,7 +3696,7 @@ scom803: scom@1000 {
- 						};
- 
- 						sbefifo803: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3728,7 +3728,7 @@ scom810: scom@1000 {
- 						};
- 
- 						sbefifo810: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3760,7 +3760,7 @@ scom811: scom@1000 {
- 						};
- 
- 						sbefifo811: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3792,7 +3792,7 @@ scom814: scom@1000 {
- 						};
- 
- 						sbefifo814: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3824,7 +3824,7 @@ scom815: scom@1000 {
- 						};
- 
- 						sbefifo815: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3856,7 +3856,7 @@ scom816: scom@1000 {
- 						};
- 
- 						sbefifo816: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3888,7 +3888,7 @@ scom817: scom@1000 {
- 						};
- 
- 						sbefifo817: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-diff --git a/arch/arm/boot/dts/aspeed/ibm-power10-quad.dtsi b/arch/arm/boot/dts/aspeed/ibm-power10-quad.dtsi
-index 57494c744b5d..ff81d9ea811a 100644
---- a/arch/arm/boot/dts/aspeed/ibm-power10-quad.dtsi
-+++ b/arch/arm/boot/dts/aspeed/ibm-power10-quad.dtsi
-@@ -22,7 +22,7 @@ scom100: scom@1000 {
- 			};
- 
- 			sbefifo100: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,ody-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -50,7 +50,7 @@ scom101: scom@1000 {
- 			};
- 
- 			sbefifo101: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,ody-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -78,7 +78,7 @@ scom110: scom@1000 {
- 			};
- 
- 			sbefifo110: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,ody-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -106,7 +106,7 @@ scom111: scom@1000 {
- 			};
- 
- 			sbefifo111: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,ody-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -134,7 +134,7 @@ scom112: scom@1000 {
- 			};
- 
- 			sbefifo112: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,ody-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -162,7 +162,7 @@ scom113: scom@1000 {
- 			};
- 
- 			sbefifo113: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,ody-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -190,7 +190,7 @@ scom114: scom@1000 {
- 			};
- 
- 			sbefifo114: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,ody-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -218,7 +218,7 @@ scom115: scom@1000 {
- 			};
- 
- 			sbefifo115: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,ody-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -246,7 +246,7 @@ scom202: scom@1000 {
- 			};
- 
- 			sbefifo202: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,ody-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -274,7 +274,7 @@ scom203: scom@1000 {
- 			};
- 
- 			sbefifo203: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,ody-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -302,7 +302,7 @@ scom210: scom@1000 {
- 			};
- 
- 			sbefifo210: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,ody-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -330,7 +330,7 @@ scom211: scom@1000 {
- 			};
- 
- 			sbefifo211: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,ody-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -358,7 +358,7 @@ scom214: scom@1000 {
- 			};
- 
- 			sbefifo214: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,ody-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -386,7 +386,7 @@ scom215: scom@1000 {
- 			};
- 
- 			sbefifo215: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,ody-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -414,7 +414,7 @@ scom216: scom@1000 {
- 			};
- 
- 			sbefifo216: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,ody-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -442,7 +442,7 @@ scom217: scom@1000 {
- 			};
- 
- 			sbefifo217: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,ody-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -492,7 +492,7 @@ scom300: scom@1000 {
- 						};
- 
- 						sbefifo300: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -524,7 +524,7 @@ scom301: scom@1000 {
- 						};
- 
- 						sbefifo301: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -556,7 +556,7 @@ scom310: scom@1000 {
- 						};
- 
- 						sbefifo310: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -588,7 +588,7 @@ scom311: scom@1000 {
- 						};
- 
- 						sbefifo311: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -620,7 +620,7 @@ scom312: scom@1000 {
- 						};
- 
- 						sbefifo312: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -652,7 +652,7 @@ scom313: scom@1000 {
- 						};
- 
- 						sbefifo313: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -684,7 +684,7 @@ scom314: scom@1000 {
- 						};
- 
- 						sbefifo314: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -716,7 +716,7 @@ scom315: scom@1000 {
- 						};
- 
- 						sbefifo315: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -865,7 +865,7 @@ scom402: scom@1000 {
- 						};
- 
- 						sbefifo402: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -897,7 +897,7 @@ scom403: scom@1000 {
- 						};
- 
- 						sbefifo403: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -929,7 +929,7 @@ scom410: scom@1000 {
- 						};
- 
- 						sbefifo410: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -961,7 +961,7 @@ scom411: scom@1000 {
- 						};
- 
- 						sbefifo411: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -993,7 +993,7 @@ scom414: scom@1000 {
- 						};
- 
- 						sbefifo414: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -1025,7 +1025,7 @@ scom415: scom@1000 {
- 						};
- 
- 						sbefifo415: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -1057,7 +1057,7 @@ scom416: scom@1000 {
- 						};
- 
- 						sbefifo416: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -1089,7 +1089,7 @@ scom417: scom@1000 {
- 						};
- 
- 						sbefifo417: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,ody-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
+[auto build test WARNING on 4cece764965020c22cff7665b18a012006359095]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Charlie-Jenkins/dt-bindings-riscv-Add-vendorid-and-archid/20240412-121709
+base:   4cece764965020c22cff7665b18a012006359095
+patch link:    https://lore.kernel.org/r/20240411-dev-charlie-support_thead_vector_6_9-v1-6-4af9815ec746%40rivosinc.com
+patch subject: [PATCH 06/19] riscv: Extend cpufeature.c to detect vendor extensions
+config: riscv-defconfig (https://download.01.org/0day-ci/archive/20240412/202404122206.TkXKhj29-lkp@intel.com/config)
+compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project 8b3b4a92adee40483c27f26c478a384cd69c6f05)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240412/202404122206.TkXKhj29-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202404122206.TkXKhj29-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from arch/riscv/kernel/cpufeature.c:20:
+   In file included from arch/riscv/include/asm/cacheflush.h:9:
+   In file included from include/linux/mm.h:2208:
+   include/linux/vmstat.h:522:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
+     522 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
+         |                               ~~~~~~~~~~~ ^ ~~~
+>> arch/riscv/kernel/cpufeature.c:395:4: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
+     395 |                         bool found;
+         |                         ^
+   2 warnings generated.
+
+
+vim +395 arch/riscv/kernel/cpufeature.c
+
+   370	
+   371	static void __init riscv_parse_isa_string(unsigned long *this_hwcap, struct riscv_isainfo *isainfo,
+   372						struct riscv_isainfo *isavendorinfo, unsigned long vendorid,
+   373						unsigned long *isa2hwcap, const char *isa)
+   374	{
+   375		/*
+   376		 * For all possible cpus, we have already validated in
+   377		 * the boot process that they at least contain "rv" and
+   378		 * whichever of "32"/"64" this kernel supports, and so this
+   379		 * section can be skipped.
+   380		 */
+   381		isa += 4;
+   382	
+   383		while (*isa) {
+   384			const char *ext = isa++;
+   385			const char *ext_end = isa;
+   386			bool ext_long = false, ext_err = false;
+   387			struct riscv_isainfo *selected_isainfo = isainfo;
+   388			const struct riscv_isa_ext_data *selected_riscv_isa_ext = riscv_isa_ext;
+   389			size_t selected_riscv_isa_ext_count = riscv_isa_ext_count;
+   390			unsigned int id_offset = 0;
+   391	
+   392			switch (*ext) {
+   393			case 'x':
+   394			case 'X':
+ > 395				bool found;
+   396	
+   397				found = get_isa_vendor_ext(vendorid,
+   398							   &selected_riscv_isa_ext,
+   399							   &selected_riscv_isa_ext_count);
+   400				selected_isainfo = isavendorinfo;
+   401				id_offset = RISCV_ISA_VENDOR_EXT_BASE;
+   402				if (!found) {
+   403					pr_warn("No associated vendor extensions with vendor id: %lx\n",
+   404						vendorid);
+   405					for (; *isa && *isa != '_'; ++isa)
+   406						;
+   407					ext_err = true;
+   408					break;
+   409				}
+   410				fallthrough;
+   411			case 's':
+   412				/*
+   413				 * Workaround for invalid single-letter 's' & 'u' (QEMU).
+   414				 * No need to set the bit in riscv_isa as 's' & 'u' are
+   415				 * not valid ISA extensions. It works unless the first
+   416				 * multi-letter extension in the ISA string begins with
+   417				 * "Su" and is not prefixed with an underscore.
+   418				 */
+   419				if (ext[-1] != '_' && ext[1] == 'u') {
+   420					++isa;
+   421					ext_err = true;
+   422					break;
+   423				}
+   424				fallthrough;
+   425			case 'S':
+   426			case 'z':
+   427			case 'Z':
+   428				/*
+   429				 * Before attempting to parse the extension itself, we find its end.
+   430				 * As multi-letter extensions must be split from other multi-letter
+   431				 * extensions with an "_", the end of a multi-letter extension will
+   432				 * either be the null character or the "_" at the start of the next
+   433				 * multi-letter extension.
+   434				 *
+   435				 * Next, as the extensions version is currently ignored, we
+   436				 * eliminate that portion. This is done by parsing backwards from
+   437				 * the end of the extension, removing any numbers. This may be a
+   438				 * major or minor number however, so the process is repeated if a
+   439				 * minor number was found.
+   440				 *
+   441				 * ext_end is intended to represent the first character *after* the
+   442				 * name portion of an extension, but will be decremented to the last
+   443				 * character itself while eliminating the extensions version number.
+   444				 * A simple re-increment solves this problem.
+   445				 */
+   446				ext_long = true;
+   447				for (; *isa && *isa != '_'; ++isa)
+   448					if (unlikely(!isalnum(*isa)))
+   449						ext_err = true;
+   450	
+   451				ext_end = isa;
+   452				if (unlikely(ext_err))
+   453					break;
+   454	
+   455				if (!isdigit(ext_end[-1]))
+   456					break;
+   457	
+   458				while (isdigit(*--ext_end))
+   459					;
+   460	
+   461				if (tolower(ext_end[0]) != 'p' || !isdigit(ext_end[-1])) {
+   462					++ext_end;
+   463					break;
+   464				}
+   465	
+   466				while (isdigit(*--ext_end))
+   467					;
+   468	
+   469				++ext_end;
+   470				break;
+   471			default:
+   472				/*
+   473				 * Things are a little easier for single-letter extensions, as they
+   474				 * are parsed forwards.
+   475				 *
+   476				 * After checking that our starting position is valid, we need to
+   477				 * ensure that, when isa was incremented at the start of the loop,
+   478				 * that it arrived at the start of the next extension.
+   479				 *
+   480				 * If we are already on a non-digit, there is nothing to do. Either
+   481				 * we have a multi-letter extension's _, or the start of an
+   482				 * extension.
+   483				 *
+   484				 * Otherwise we have found the current extension's major version
+   485				 * number. Parse past it, and a subsequent p/minor version number
+   486				 * if present. The `p` extension must not appear immediately after
+   487				 * a number, so there is no fear of missing it.
+   488				 *
+   489				 */
+   490				if (unlikely(!isalpha(*ext))) {
+   491					ext_err = true;
+   492					break;
+   493				}
+   494	
+   495				if (!isdigit(*isa))
+   496					break;
+   497	
+   498				while (isdigit(*++isa))
+   499					;
+   500	
+   501				if (tolower(*isa) != 'p')
+   502					break;
+   503	
+   504				if (!isdigit(*++isa)) {
+   505					--isa;
+   506					break;
+   507				}
+   508	
+   509				while (isdigit(*++isa))
+   510					;
+   511	
+   512				break;
+   513			}
+   514	
+   515			/*
+   516			 * The parser expects that at the start of an iteration isa points to the
+   517			 * first character of the next extension. As we stop parsing an extension
+   518			 * on meeting a non-alphanumeric character, an extra increment is needed
+   519			 * where the succeeding extension is a multi-letter prefixed with an "_".
+   520			 */
+   521			if (*isa == '_')
+   522				++isa;
+   523	
+   524			if (unlikely(ext_err))
+   525				continue;
+   526			if (!ext_long) {
+   527				int nr = tolower(*ext) - 'a';
+   528	
+   529				if (riscv_isa_extension_check(nr)) {
+   530					*this_hwcap |= isa2hwcap[nr];
+   531					set_bit(nr, isainfo->isa);
+   532				}
+   533			} else {
+   534				for (int i = 0; i < selected_riscv_isa_ext_count; i++)
+   535					match_isa_ext(&selected_riscv_isa_ext[i], ext,
+   536						      ext_end, selected_isainfo,
+   537						      id_offset);
+   538			}
+   539		}
+   540	}
+   541	
+
 -- 
-2.39.3
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
