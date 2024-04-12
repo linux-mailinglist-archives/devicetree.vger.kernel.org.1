@@ -1,148 +1,129 @@
-Return-Path: <devicetree+bounces-58816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58817-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92C8B8A33AF
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 18:24:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E0C48A33C5
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 18:26:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32BE21F22092
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 16:24:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 685011C21CD6
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 16:26:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7C4414A08B;
-	Fri, 12 Apr 2024 16:21:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 115EE14901F;
+	Fri, 12 Apr 2024 16:25:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SH4ffIlJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TgEaykqD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59280148FE5
-	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 16:21:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D96A1474D2;
+	Fri, 12 Apr 2024 16:25:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712938889; cv=none; b=gnLOvoSfVOh0ZqDvQ4+JB/VQy56Pmp+8Ykyb/VLi5B/jDnE24BQfwxQVAtQygtz3BlsUDfmWZc0iJXTUAJcuVF0je/KpMY1XhOAdc7ul3BwQ2mF4J8jfkVRTZfLtewk4YgPe2YprwCFG4+q8vzMVtR3o9t592GOpKGFQ3+cnzMo=
+	t=1712939117; cv=none; b=NV48gfQe0WWJwp+jrksRw8PfQljsUfTAddiRs62CRagWpny5qDb2rTpJ4tRvqnHqgGLkAWtfH65s6YpyG1qzXylssy+LsNphMMJ63T9zjiaKZdd0Fd++fADdpfzfotpS3TdH3P2Ydaw4/5mLYcr400qCSwv4f7qQTZGZa92+qJs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712938889; c=relaxed/simple;
-	bh=/bBHf8+LhTSqvgNm4MM9zHrseS4i+FeUtlu8k8/NNp8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UDKQeurBuH7VXfHUQaqLjVOTQ0hCVabqkZ3C8T1kZXjBX8+x6Y4OsEDAbiKBfbDi3a4gK7cuDQKs7NS5nxNcJLaEzVxvdMaVVtoDlOuHQUTD8JJR0tacmC1vZSm+Jfhm599XP6+h0rKvv8TLtsfDsM6GPMrS5x8u2oUYtfU0FMg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SH4ffIlJ; arc=none smtp.client-ip=209.85.219.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-dcbef31a9dbso819024276.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 09:21:28 -0700 (PDT)
+	s=arc-20240116; t=1712939117; c=relaxed/simple;
+	bh=IOBMceW+zAzriiimOV4JYDNFwggkdO0bj8MIHegPP4c=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=juABtv1dWE6P8eCtsu/AfmF7U9z3J7a8vf6dxUAW+Jyueu+RwrmgONNYJl0rhPZoNX6cWV60zzVwV/jX9TQKuN+UecEfFdW2sDuxPgV3X3EkaReCj7F6Y4PL/x21wWVf4jhca2WhWqFqpH1NdzdC1IEi1OYdbZl5wxo5JvbRXdk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TgEaykqD; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-518872fcb89so836965e87.3;
+        Fri, 12 Apr 2024 09:25:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712938887; x=1713543687; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=1QDHavbQQqC9GC6PjPIJvqoa4bSQDzx9RT4mlUCMRk0=;
-        b=SH4ffIlJgdxPBfX/uf10HIlaPuQoH8KQCpIWonqXA2Xxm/3i2jcf7Kqpph/TXPjMfW
-         cBB9KEnUl6AC8BmcWyGi4tp/tcpdVQH5SquWRnFqS5XaLlCayEThS45c3irsOgWYo4cm
-         eJbR/ABn2CQwz1Ggb+ltSK2g+S/l+diMNLM6EweXsRnSo9ke6ZGPKJwGNi50luM5Fw+M
-         hDedPoALa8RcnJrx7Yqkkcy3cN5QRRtHbZ/STsFv74pa5ukjYF8+jIkfdOMOGQXA+l2i
-         Z52N5j72PLxBIZTVnq7iSXFLQuffJrijun1P3CXsSadu+cZRkmhqfpEsTGkIANPq3P4E
-         zAdA==
+        d=gmail.com; s=20230601; t=1712939113; x=1713543913; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=caQTinMj4HV+puo76LX890/vq6ddN+KcGH/X/bwBRlw=;
+        b=TgEaykqD9of5s+HZgpZ+sOQOKxFbjki9tZO8R5x26rW2YOB3sY6W0ZgCI1Rwzt4gji
+         NsKcxbOg2DyPkIny8FPWRr3WA5GYaASP9TVHZMDPr6GxWlmIBmwc3JDH/cX6zi0gMPYU
+         8By+I7CEbArQmGoDWwlIIGCRaG5nzWab6413+DOKDy5AfoFY5n4ri7XU83npFo9/2K0e
+         wHU3TZL8mSo1IL17DEqjJCXRGo36jFhMtyBYeRFpPnu45t8MOT9SlZMnq2SoCMXJCgHZ
+         N2SxZgC6cMxz0x5PI86E0eFaTxc38A8Gp4abLHB5452NeeWDJLKvaKZDuvy9JgY/BKoT
+         Iwhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712938887; x=1713543687;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1712939113; x=1713543913;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=1QDHavbQQqC9GC6PjPIJvqoa4bSQDzx9RT4mlUCMRk0=;
-        b=OZym3iJ/0xbubph3/+g1v0ZJEo8bEwJUulhrw9FeDmB0p9b3NLU578f7Y2RsrgeVon
-         pE43bJUXShGZcDaOiC/HY5AcOhGlwYDHNb2XwDtBMhEUWK/tgPr7G2LQ4LrXokql5w7Q
-         7gc05TJXW/T0G6YUz+/HCRa0DgeY7NITYVeNYtD/AoWmwKlB19jB1cvUtexFh6EWaMeN
-         uXpdiYjT8hkgVZIwKPsrKHSxJN3ZAMEPZMOyg6iYsk1RbnRqpoe6873Zk4BRIQG/Y+mw
-         GIcK5K+gzgkmoY7Z7ocGpdLjmqxzGlZZJgRU9YRyl0ExcP1EJffinOaLWqJWZFVvdnI6
-         LKuA==
-X-Forwarded-Encrypted: i=1; AJvYcCXE+oPKmkmClIY/9PfCB1bl4f7kdkDBF5Cr4ppEHvxRHTc1fMGCtKiNcC1aypqVzOB6O/LwembwfIEtsrPrXA27e6aElwJg0GaQgQ==
-X-Gm-Message-State: AOJu0YzxaIUxPCAd6BVO1gQPnxniZQsf7/fH/0lyKBp5BPYsnlXmAJHn
-	Oo2YxFuZ/f9+69E1tZu71Rk5XdKu/4lW914THQo/4YzWikX+tEHOihWd8g2dS4g1dNTEQDsnJAV
-	dWJkbXtEjFbRrOwzf4tqP5NQHuxKSBkJeBshdqQ==
-X-Google-Smtp-Source: AGHT+IEz3OKXrWLV/ZvgH28LAtC8lxPsu1c1fGVznFCJajSMmkV0jqGzuKxeinO2n+Acyg6VdAJNuyazJ5Qz39MvgvU=
-X-Received: by 2002:a05:6902:e13:b0:dc7:4367:2527 with SMTP id
- df19-20020a0569020e1300b00dc743672527mr3787576ybb.49.1712938887518; Fri, 12
- Apr 2024 09:21:27 -0700 (PDT)
+        bh=caQTinMj4HV+puo76LX890/vq6ddN+KcGH/X/bwBRlw=;
+        b=euLlGO2j50n4eXBoQma6wkDkrL3wIMQtMaH4wP2s942mM4irKDUwV9uAdBSqIPF5do
+         ilRzsWKIM3egxwxXyMTsVIxsm3s2pyElqEU/GmK+nlqHD4IS+7L+8xreU+QQyFdFkH81
+         Os1aCkTX49h/oI9XifoYeM7/E5SGxI0r9yzA0Qmk5DRSBtkuOQHe3hAOgTwZwMak7YQe
+         Cs0RUCy9ZR8iftsICBlCUT51e+06ku2PEIANctTbBUav73V6775aiPrRW6wPrDEfiqqN
+         MvdbvozX+H0dKx6c05S+krKxDA7KGAY7sbJvX0yCt3QALRJY5eMXm7eV2VB5bA6gAaE2
+         uGZg==
+X-Forwarded-Encrypted: i=1; AJvYcCWHkysRmQbT/Upq88ClgTZ6o3QsieeNhqepsaA06upVY0lH3BkjjI+iMGTD5SmcucTxbCRcXL0GlE6OV5h+0rKlbbCBwArcRPers9hBvxduk5Mhx3QodCoe/JOLqLcvy6C3MeTaIPrEDhCn7oRNy+rLRzopjzKMhWa91iJKzdYO+N/U5tn0ONDlIm85qxEf7RMqSoF7ABxTdjxMLehtlSaz
+X-Gm-Message-State: AOJu0Yw25hbt3AGkZcaAsx5i/vuh6rALaMZEgjUtbtxZPOso7WPLpCYu
+	eN0Slqw8vzzean8KPWWMxKW8XDO+EvyalpbCWnciw1XtQWQRuoJC
+X-Google-Smtp-Source: AGHT+IFSMXcf/XnY1RW70gVLOV7EXutIJ9X7L4Sz2vOg6Nlj4vKSBVkxS1dxMXOgsnqrl1AAn7dn/w==
+X-Received: by 2002:a05:6512:499:b0:517:855e:2e3e with SMTP id v25-20020a056512049900b00517855e2e3emr2064344lfq.6.1712939113253;
+        Fri, 12 Apr 2024 09:25:13 -0700 (PDT)
+Received: from fedora.. (d-zg2-064.globalnet.hr. [213.149.37.64])
+        by smtp.googlemail.com with ESMTPSA id q4-20020adff504000000b0034635bd6ba5sm4576554wro.92.2024.04.12.09.25.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Apr 2024 09:25:12 -0700 (PDT)
+From: Robert Marko <robimarko@gmail.com>
+To: kvalo@kernel.org,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	jjohnson@kernel.org,
+	linux-wireless@vger.kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	ath11k@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: Robert Marko <robimarko@gmail.com>
+Subject: [PATCH 1/2] dt-bindings: net: wireless: ath11k: add ieee80211-freq-limit property
+Date: Fri, 12 Apr 2024 18:24:08 +0200
+Message-ID: <20240412162510.29483-1-robimarko@gmail.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240412-pm8xxx-vibrator-new-design-v10-0-0ec0ad133866@quicinc.com>
- <20240412-pm8xxx-vibrator-new-design-v10-1-0ec0ad133866@quicinc.com>
-In-Reply-To: <20240412-pm8xxx-vibrator-new-design-v10-1-0ec0ad133866@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 12 Apr 2024 19:21:16 +0300
-Message-ID: <CAA8EJpp-awdTyfngeYyJaOObOWz=UCSK9U08TfFPA0v=8Naz=A@mail.gmail.com>
-Subject: Re: [PATCH v10 1/4] input: pm8xxx-vibrator: correct VIB_MAX_LEVELS calculation
-To: quic_fenglinw@quicinc.com
-Cc: kernel@quicinc.com, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	linux-input@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Fri, 12 Apr 2024 at 15:36, Fenglin Wu via B4 Relay
-<devnull+quic_fenglinw.quicinc.com@kernel.org> wrote:
->
-> From: Fenglin Wu <quic_fenglinw@quicinc.com>
->
-> The output voltage is inclusive hence the max level calculation is
-> off-by-one-step. Correct it.
+This is an existing optional property that ieee80211.yaml/cfg80211
+provides. It's useful to further restrict supported frequencies
+for a specified device through device-tree.
 
-... while we are at it also add a define for the step size instead of
-using the magic value.
+Signed-off-by: Robert Marko <robimarko@gmail.com>
+---
+ .../devicetree/bindings/net/wireless/qcom,ath11k.yaml          | 3 +++
+ 1 file changed, 3 insertions(+)
 
-With that in place:
-
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
->
-> Fixes: 11205bb63e5c ("Input: add support for pm8xxx based vibrator driver")
-> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
-> ---
->  drivers/input/misc/pm8xxx-vibrator.c | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/input/misc/pm8xxx-vibrator.c b/drivers/input/misc/pm8xxx-vibrator.c
-> index 04cb87efd799..844ca7e1f59f 100644
-> --- a/drivers/input/misc/pm8xxx-vibrator.c
-> +++ b/drivers/input/misc/pm8xxx-vibrator.c
-> @@ -14,7 +14,8 @@
->
->  #define VIB_MAX_LEVEL_mV       (3100)
->  #define VIB_MIN_LEVEL_mV       (1200)
-> -#define VIB_MAX_LEVELS         (VIB_MAX_LEVEL_mV - VIB_MIN_LEVEL_mV)
-> +#define VIB_PER_STEP_mV                (100)
-> +#define VIB_MAX_LEVELS         (VIB_MAX_LEVEL_mV - VIB_MIN_LEVEL_mV + VIB_PER_STEP_mV)
->
->  #define MAX_FF_SPEED           0xff
->
-> @@ -118,10 +119,10 @@ static void pm8xxx_work_handler(struct work_struct *work)
->                 vib->active = true;
->                 vib->level = ((VIB_MAX_LEVELS * vib->speed) / MAX_FF_SPEED) +
->                                                 VIB_MIN_LEVEL_mV;
-> -               vib->level /= 100;
-> +               vib->level /= VIB_PER_STEP_mV;
->         } else {
->                 vib->active = false;
-> -               vib->level = VIB_MIN_LEVEL_mV / 100;
-> +               vib->level = VIB_MIN_LEVEL_mV / VIB_PER_STEP_mV;
->         }
->
->         pm8xxx_vib_set(vib, vib->active);
->
-> --
-> 2.25.1
->
->
-
-
+diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+index 672282cdfc2f..907bbb646614 100644
+--- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+@@ -55,6 +55,8 @@ properties:
+       phandle to a node describing reserved memory (System RAM memory)
+       used by ath11k firmware (see bindings/reserved-memory/reserved-memory.txt)
+ 
++  ieee80211-freq-limit: true
++
+   iommus:
+     minItems: 1
+     maxItems: 2
+@@ -88,6 +90,7 @@ required:
+ additionalProperties: false
+ 
+ allOf:
++  - $ref: ieee80211.yaml#
+   - if:
+       properties:
+         compatible:
 -- 
-With best wishes
-Dmitry
+2.44.0
+
 
