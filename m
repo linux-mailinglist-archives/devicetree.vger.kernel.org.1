@@ -1,164 +1,105 @@
-Return-Path: <devicetree+bounces-58686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FE5D8A2D21
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 13:15:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88EEE8A2D25
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 13:17:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A3487B2257B
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 11:15:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 327181F22DC8
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 11:17:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0498753E38;
-	Fri, 12 Apr 2024 11:15:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 041B2535DC;
+	Fri, 12 Apr 2024 11:17:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bifuBWKo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FVb1Fjbu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E83D3FBA4
-	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 11:15:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CACC342064;
+	Fri, 12 Apr 2024 11:17:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712920530; cv=none; b=jStAjUSQkb1CnSlpsm1Q2sGMujS++qnUgSeH+MQMpulxwli0zesHFl6Hk30s8164fBAY5yy2mIwgzOi7y+B0+QhVUGH6Vm5TSh53OHMBG9V77RHoBuamUwCZrirNOl+vqbqJK/lT7AnFAJKh+cwVFscJCPrYOyYOKtUjnxx/6oA=
+	t=1712920649; cv=none; b=WW6Q7ntxU2rub62n9MAGu8PFmnAw+zifgmoGgweb+72Ya0tErsON6Pqjf406PzmjmJu8+8t0T4F4rGQei42MbV4WDzp8PuOxqc7JCwGegr/rzeOrup+SiYg24bBXkoVzTPbJzW/Yov9ZeVjLYP1bHxo+zkCJ3lEUDY3+luOaR9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712920530; c=relaxed/simple;
-	bh=E/uUvnAayS2kUpJvbMbwdVkr1FtYoVzqWi03CDEIUz8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NN2iZbg5oMMPnTO8A/KPQPmCPFha1pupUaOEUw/8t5OdrFJxi7HmkHq4ZSIoZYvK5OdtmtYOSCSeIEm4e1DTmv/lK/enGUcjJcly/OnCSn+iGYeG94rmZtX+WBSnmbmqkyipKznCNC3rUSn9M+CdtUnZT64ApVySQHEwU2FXT6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bifuBWKo; arc=none smtp.client-ip=209.85.128.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-617e6c873f3so8120207b3.2
-        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 04:15:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712920527; x=1713525327; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=+WKE9nZBcXA36QYNF70EQgVWpqyE2qptSPUnfSkOVlI=;
-        b=bifuBWKoqEXsBcEm2jmBN5t75IYOcC8H5WVqonQq9fdP97++mGrx5zzp3GK4SGwz5V
-         B5Bs7BJyG+srVqx2g5olPzboCxYHKOX8RkVv6jgwSy9boFUTDFT34eeuHaowynPMgIBn
-         FALx7sRsip+pT8Agb+hChX8bK9I92A7KZwaMW1jWsQe6XPUeFoYSTT9Itlj9NVjaQUVJ
-         w3dvYwZoYK+7bv8L+2Rc2KXjO/FrmHpEMq0DTke226ZBuCeK6XR+PkmtQgXWbPZN7F6Q
-         +i6vLDGYbcrxZsu4OQcLsmedmO83WBMOjmqPxwPSFtKw9Jc8nu1fkSgVQTtEDCkzrIK3
-         OTDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712920527; x=1713525327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+WKE9nZBcXA36QYNF70EQgVWpqyE2qptSPUnfSkOVlI=;
-        b=lWgJSrnwz2k/u8dRnHtgtquKlSrX3r0BxBp+cvETepfwqWpNOS1OPlPxDULcGgHgbV
-         TybXJBxwlqrlGVOW9dn7iH6Y7yjsI7MKjxGHGFEWIfeW5cXP85M5CSZrf88G4iK8dj6V
-         xdeMVukALjeW0sSm9MkONAXpjnQwFOwhvIkfZoWeYVsfBvZ5ZAqa+3Gys9fr9ZZ9ao6z
-         VQXfv8WqlKffX0a52P4O01U8dyGyrn5Vor3N643jxHh+fHcq1TWX51MhpOCpV/Vopk47
-         WO3mVdCjwVhDDiYHSpyAe2u2Pfg02jO4thBg82DzTtVyS2ao2g4abFpOCI2WJBo7ZivL
-         y2LQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU/hro0fgstziS8v+/qAqjN5KOFMhAKna8yZw3SUJDaJjeha2o6bZg8zv5P3PrsX3FcLEQfpcqmdlZU8Z1AM2BWmcf7+GTWQTDx0A==
-X-Gm-Message-State: AOJu0YxTpvZtCL8MRgYlmxRw2PlNdkmlkNZcmRqviRcAMFG7PZPiwXRd
-	8GiBvSheG8KBCzoRHH4extAGtwus2jyqvoYus7AYBiTrUaMK2i+CZIXDf/bWryl1+NQ9Ye8PvD5
-	aB6/CXVLzqAzqZWFNgHUVXkPfV3/07XW3UidioA==
-X-Google-Smtp-Source: AGHT+IFgT7mF3uN/XJl/pEETuZHEE3BcaQGuPPTM6pYVu0988Ijil85l3VLhQQ0xGShXQRYVoF63WvQ+ywlZ5uk6PAI=
-X-Received: by 2002:a25:bb8c:0:b0:dc2:4f34:c964 with SMTP id
- y12-20020a25bb8c000000b00dc24f34c964mr2068134ybg.23.1712920527317; Fri, 12
- Apr 2024 04:15:27 -0700 (PDT)
+	s=arc-20240116; t=1712920649; c=relaxed/simple;
+	bh=SvdlhNNtUWHChB5l1joPBSlS4XqFexo2+rAXJJlhAE8=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=jEt38bIc/XlA4H3h79GI16jW4BUcON7TaKS5jfjgwu+YUeEuC+yZ46Z2FvxM1MQ0DGDMAnbsiTJi/pbOn//F88MYKtlxpQmOXbw2WPQkM1vZD+jzWLoTtes5N8wHN/IC48SZo2zJfOhZz4bBrTKb+HAel8QSY/oE28KyWOXzJ48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FVb1Fjbu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B7A7C113CC;
+	Fri, 12 Apr 2024 11:17:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712920649;
+	bh=SvdlhNNtUWHChB5l1joPBSlS4XqFexo2+rAXJJlhAE8=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=FVb1FjbuIh0ACxAJQxzVk9u0EuMVSPdiXpsMhzvNDRhpiVlqEviQ9mzm6ZHvL+uiu
+	 LyPSyrh76UCV6BeRqUhXSHsnc73W+rmgc/FT0ya2cAkH+WHBG4tbyl4ds4AoL2lpdq
+	 NsBRgUzh8OSTyIuouYRSfCmZROhdqHr1I8zZssb14WoFS1Nv9rCIZUqLZZZNAoTA/T
+	 l+niw7ysStJGtIM+leJ/eiMY/oD2in17aYJjMUWf0SEDqEom61jE+lvF64NxoykFg7
+	 jaqw8SrgZTCEhL6QXuTiWcfsXOmMqDfUkcVpqt2I4A1y/ZobeVQ242TSVcBvPiucZC
+	 jIkpSYOezqtrg==
+Date: Fri, 12 Apr 2024 06:17:27 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240410134044.2138310-1-claudiu.beznea.uj@bp.renesas.com> <20240410134044.2138310-10-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20240410134044.2138310-10-claudiu.beznea.uj@bp.renesas.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Fri, 12 Apr 2024 13:14:51 +0200
-Message-ID: <CAPDyKFqq+gMDHx_-g-j9rO3nBDcXRSoXRjJK9D51=VaQ5XaGvw@mail.gmail.com>
-Subject: Re: [PATCH RESEND v8 09/10] watchdog: rzg2l_wdt: Power on the PM
- domain in rzg2l_wdt_restart()
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de, 
-	geert+renesas@glider.be, magnus.damm@gmail.com, biju.das.jz@bp.renesas.com, 
-	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+From: Rob Herring <robh@kernel.org>
+To: Seven Lee <wtli@nuvoton.com>
+Cc: linux-kernel@vger.kernel.org, robh+dt@kernel.org, broonie@kernel.org, 
+ linux-sound@vger.kernel.org, dardar923@gmail.com, 
+ devicetree@vger.kernel.org, CTLIN0@nuvoton.com, lgirdwood@gmail.com, 
+ krzysztof.kozlowski+dt@linaro.org, KCHSU0@nuvoton.com, perex@perex.cz, 
+ SJLIN0@nuvoton.com, scott6986@gmail.com, alsa-devel@alsa-project.org, 
+ edson.drosdeck@gmail.com, YHCHuang@nuvoton.com, conor+dt@kernel.org, 
+ u.kleine-koenig@pengutronix.de, supercraig0719@gmail.com, tiwai@suse.com
+In-Reply-To: <20240412103554.3487290-1-wtli@nuvoton.com>
+References: <20240412103554.3487290-1-wtli@nuvoton.com>
+Message-Id: <171292064682.1830010.10520655676449462428.robh@kernel.org>
+Subject: Re: [PATCH 1/3] ASoC: dt-bindings: nau8821: Add delay control for
+ ADC
 
-On Wed, 10 Apr 2024 at 16:19, Claudiu <claudiu.beznea@tuxon.dev> wrote:
->
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> The rzg2l_wdt_restart() is called from atomic context. Calling
-> pm_runtime_{get_sync, resume_and_get}() or any other runtime PM resume
-> APIs is not an option as it may lead to issues as described in commit
-> e4cf89596c1f ("watchdog: rzg2l_wdt: Fix 'BUG: Invalid wait context'")
-> that removed the pm_runtime_get_sync() and used directly the
-> clk_prepare_enable() APIs.
->
-> Starting with RZ/G3S the watchdog could be part of its own software
-> controlled power domain (see the initial implementation in Link section).
-> In case the watchdog is not used the power domain is off and accessing
-> watchdog registers leads to aborts.
->
-> To solve this the patch powers on the power domain using
-> dev_pm_genpd_resume() API before enabling its clock. This is not
-> sleeping or taking any other locks as the power domain will not be
-> registered with GENPD_FLAG_IRQ_SAFE flags.
->
-> Link: https://lore.kernel.org/all/20240208124300.2740313-1-claudiu.beznea.uj@bp.renesas.com
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+
+On Fri, 12 Apr 2024 18:35:52 +0800, Seven Lee wrote:
+> Change the original fixed delay to the assignment from the property. It
+> will make it more flexible to different platforms to avoid pop noise at
+> the beginning of recording.
+> 
+> Signed-off-by: Seven Lee <wtli@nuvoton.com>
 > ---
->
-> Changes in v8:
-> - none, this patch is new
->
->  drivers/watchdog/rzg2l_wdt.c | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
->
-> diff --git a/drivers/watchdog/rzg2l_wdt.c b/drivers/watchdog/rzg2l_wdt.c
-> index c8c20cfb97a3..98e5e9914a5d 100644
-> --- a/drivers/watchdog/rzg2l_wdt.c
-> +++ b/drivers/watchdog/rzg2l_wdt.c
-> @@ -12,6 +12,7 @@
->  #include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/platform_device.h>
-> +#include <linux/pm_domain.h>
->  #include <linux/pm_runtime.h>
->  #include <linux/reset.h>
->  #include <linux/units.h>
-> @@ -164,6 +165,17 @@ static int rzg2l_wdt_restart(struct watchdog_device *wdev,
->         struct rzg2l_wdt_priv *priv = watchdog_get_drvdata(wdev);
->         int ret;
->
-> +       /*
-> +        * The device may be part of a power domain that is currently
-> +        * powered off. We need to power it up before accessing registers.
-> +        * We don't undo the dev_pm_genpd_resume() as the device need to
-> +        * be up for the reboot to happen. Also, as we are in atomic context
-> +        * here there is no need to increment PM runtime usage counter
-> +        * (to make sure pm_runtime_active() doesn't return wrong code).
-> +        */
-> +       if (!pm_runtime_active(wdev->parent))
-> +               dev_pm_genpd_resume(wdev->parent);
-> +
+>  .../devicetree/bindings/sound/nuvoton,nau8821.yaml        | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
 
-I doubt this is the correct solution, but I may be wrong. Unless this
-is invoked at the syscore stage?
+My bot found errors running 'make dt_binding_check' on your patch:
 
->         clk_prepare_enable(priv->pclk);
->         clk_prepare_enable(priv->osc_clk);
->
-> --
-> 2.39.2
->
->
+yamllint warnings/errors:
 
-Can you redirectly me to the complete series, so I can have a better
-overview of the problem?
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/nuvoton,nau8821.example.dtb: codec@1b: Unevaluated properties are not allowed ('nuvoton,nuvoton,adc-delay-ms' was unexpected)
+	from schema $id: http://devicetree.org/schemas/sound/nuvoton,nau8821.yaml#
 
-Kind regards
-Uffe
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240412103554.3487290-1-wtli@nuvoton.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
