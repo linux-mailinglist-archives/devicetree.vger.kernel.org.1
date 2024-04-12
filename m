@@ -1,97 +1,140 @@
-Return-Path: <devicetree+bounces-58783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20D688A3048
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 16:16:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B766D8A305E
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 16:20:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43FC21C23C8D
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 14:16:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E84B11C24086
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 14:20:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95B6C85C7F;
-	Fri, 12 Apr 2024 14:16:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEC4D86262;
+	Fri, 12 Apr 2024 14:20:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VFNM6wCN"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="MABhp0+q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 081C7205E22;
-	Fri, 12 Apr 2024 14:16:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14B088614D
+	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 14:19:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712931391; cv=none; b=lWLiqO4lLKPXkCQmTONOskN91KLUUg0ElXIbAAtip6oOd4fd6rf4mo77TMnMoQkXXZGFIk+AUfq5GEiHQ5WiT1xxpwXhhe2nfrEn4LUsF1j4E3dBG9BhJNunrkKbT4/LpOmXLIkms/M+tZ4ZGU+qGG76rMP8IQxnlP/YwwAr3iY=
+	t=1712931600; cv=none; b=YfRFNjrVP1c1ODxscPqdofqNdNZ+jhA6v/W6ex1lKN1hh0+j60e6Wpb/041c5EMfG4CWkEWWfOZDfSedyuQhDlMZLPefCjpzwbWL3ve3od8NVH+cheWgeOmNSN5GTZibhngMmSjnqq+tnIL9Q/KJ8KrXMcYl/q692rls0n7leKQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712931391; c=relaxed/simple;
-	bh=SA0q6SsNFlcUSbmyksfGP3j4aVnwqM+5MoF1Muj/XLA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GPbfcI1Z7i+qstQlB3lN1UbVbdQEnEzoTI+xE+bI3uZSQheUOR/op1MMDfExKF+NwA13bfRhqIHjTPgYG00lSteMbyFtKMDGtmQsegrMdz6sPSce7eDhsoguFpGc2I974gtNXEs3LUa5U5k7lrSLxC7LpLTf6o18j+VpRVT/f+A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VFNM6wCN; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2d47a92cfefso11100981fa.1;
-        Fri, 12 Apr 2024 07:16:29 -0700 (PDT)
+	s=arc-20240116; t=1712931600; c=relaxed/simple;
+	bh=6UZg2PMKGEVFmidiPHnfxY1Bc8juCTuAW/lviqlEAgE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=FYfZs3zYxTHjtEnEiYBQC4Gxv0ba66zQHPoy7P6rvWNwZ8muHpSdT/A0hAMj9bA0l/or+FWsZwAasOTLEZbbB6bIJzrCr3ggz+uaosrHakjqyc8GbK7h9aWgJP//sB7Ad7oORDqONjJ1EgeHQmnNG4m+/ipO0XF3A+/WfoNcYyE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=MABhp0+q; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-56e6acb39d4so1192092a12.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 07:19:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712931388; x=1713536188; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=SA0q6SsNFlcUSbmyksfGP3j4aVnwqM+5MoF1Muj/XLA=;
-        b=VFNM6wCNQrgh0By69e3PBn2Jmw8uc4aKhbrBZuMwpqzDrfIE+b+E0PKKAqZaE7J6NT
-         3XNNSSd7cPRujvvXTLSbX+SnWEWxtUV8nuPEPNi4nACZCUVXDmSfXnob9NB6zVooryeQ
-         UlIXtSkZRYlIdmvnKIMm4McUzc/RNMNVOAK9mRPxJgRNIN032BVxEn3HhIZAC1HDi924
-         CWPWjfcqRrH+BWDWvP2ghTnveQ8HcKA8L1fUDHbfyauZGiSSDiTtmw3tVVtb6cSVNSb7
-         EdorjixdTw+5+I8GQ2rRAtlgHtsw34Z3uqBqYXt4Kyjy1g/IC0Q6fvx19kal/4HBBO7q
-         Jhdw==
+        d=fairphone.com; s=fair; t=1712931597; x=1713536397; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YQsE65kxl32daih06Z5LQ2GRCxgTRsV2P+cCXBqOo8Y=;
+        b=MABhp0+qKXr36GWUembLKrNRmTMDFfU6wxB2lmMVrIidlcB0rDF6ozzpsEVl+c5Lxm
+         4xPZxPtAZHir8p7z93kAzG58N1elayR0mfnePdwWa7uFzhvqLyouFzWqmQ4vLOYAUAYz
+         MbYuhvvsXP5YSNKGsHGTtRtXztrEEJm6FSP+jNhqjD2SRuBKZMvks452oQCxw8g4ciFo
+         enctp7x+BXtyATx7XwLX/X+T0WnuwwXWPZOKbcjXu8PtglSBKShzkBHgHboLZIbUOudw
+         zLDNKbYBUP3siKtBWJZNWNZsU+y0HzgceQEWVy7dEfYIq3AQ+p35PlM3btu4WVkAC7ic
+         thjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712931388; x=1713536188;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1712931597; x=1713536397;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=SA0q6SsNFlcUSbmyksfGP3j4aVnwqM+5MoF1Muj/XLA=;
-        b=ixZOeQBj3aYeK+rjPsPZHK7J7kzO6oI0M2lEu+JYQHGZqwvpjdvjq/TT+kxQ2aN83f
-         N52V6lYzjGp9J10KRKae7rMi6PJcTHtR3ohOPpKG0AAMKsn5uG5qZlQkUrhfVVyIcbdG
-         9WX9UppgULgadvPJwYvnpBxmx+S3OGDTTnXSLzsKNh+1+2JCCHXftjbVFyNE6kg5FmR5
-         qxx0wLtleZShptcmwnbWYphUE5dpUz1A4q8D0TTiIwoh7asSuMpmGrVqdsVnkgqK8o+P
-         wNk+R5AKDVd+liZVodbU8aLWIuZmQloXhbxwOpOrurYeySUXSzys/q6sMrXYUk1uZFYg
-         gDZA==
-X-Forwarded-Encrypted: i=1; AJvYcCUZvDAZwl6yxN5WN9T+2mAjq8nQOQMXJXeAiwtCDRlETOUe8UXSJfn5DMi5DRZeurbvLWrsDK07f8jWYjdJBDOhtpTsg0Vyhrs3ermHtMb1VHs32mb1bpsIpymPO9q73iEKMSuxU8pp/g==
-X-Gm-Message-State: AOJu0Yyk5Fph+BIRuYH5j86aKcM8SgGBQ1tTw0uCO+jgLQ+//NeOawbM
-	FZ+2smXmdYFvvjsAmHy4/DOffW8cvpCSsdvjjVVYONWfbrRAp7TTCWS0LYAcQ9Ux8P0NXekRO4/
-	Jh1jL/fXbYhuJ/tJ4orKmbblfs08=
-X-Google-Smtp-Source: AGHT+IHN1he0MRVv1bTgEsUkkS+mTqrtLXetL9ppYbRVjNCqz/IXwcP7pZldQHAqVu/k6BLU2IAiQWzC8tpvO83CdzA=
-X-Received: by 2002:a2e:b5ae:0:b0:2d6:fb69:114e with SMTP id
- f14-20020a2eb5ae000000b002d6fb69114emr1557427ljn.21.1712931387856; Fri, 12
- Apr 2024 07:16:27 -0700 (PDT)
+        bh=YQsE65kxl32daih06Z5LQ2GRCxgTRsV2P+cCXBqOo8Y=;
+        b=r9X4eph4yCSuKHSoHXjIy705qwodJOPZLr7YdLDcVptH/XhaTOXBiC9Q4cQjgSRVi3
+         BFpfvn1hDmw3HtPmM3lvuBPK6cJuW1tapkpaLD4y3RjTputXutaRGtjVvNHIEP+jHoL9
+         wlD+nY3kNHVKEj3h5vVxUSsj3GiIqyiuXCJFpDhv6M/AGQM2UTnuONohO0norbwDdD0z
+         dbQKzG8Vk7kFRT+Og8WI340mcojvxNeNVe7zDldPvcjia8H5jMflAPQagvZ3snlV3Tr6
+         p8lP5GhPgpHEVTXoF4WlO9tEeidLbeux3kkMrPcpfLykavc34zLQYAUAMf00z5kuQEhz
+         6CGw==
+X-Forwarded-Encrypted: i=1; AJvYcCVN/APaO+/dJBRctnrCqkB0LKIkSk6qk7vHBXn9QoQlLFezfXy5xM+wPauLvLjWYDz4YfjK4sFIcMiBifwHPnjh4H+84lpnbGHBqA==
+X-Gm-Message-State: AOJu0YxGlIFxjmVFM2BeJ26+cr/Pf4DL+X9SYljRayNt1kHnIGLzPU9K
+	XH1lGxPbuDGkid8i/5/nNhJf7+PInQzh5PVcTx6v0beJf3D95kyeem9Sfu9lWuM18Ra3ZlBDU+i
+	a
+X-Google-Smtp-Source: AGHT+IGKj8XZqLdJ98ZKpJeEDnb8u+b2a/tdKdHn1TQCGxbINivns7Z1Inoz6n2Zx4JNYGOzijn8Qg==
+X-Received: by 2002:a17:907:c29:b0:a51:9304:19fa with SMTP id ga41-20020a1709070c2900b00a51930419famr2005912ejc.70.1712931597392;
+        Fri, 12 Apr 2024 07:19:57 -0700 (PDT)
+Received: from otso.luca.vpn.lucaweiss.eu (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id pj24-20020a170906d79800b00a46a3ad035esm1877005ejb.179.2024.04.12.07.19.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Apr 2024 07:19:56 -0700 (PDT)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Date: Fri, 12 Apr 2024 16:19:50 +0200
+Subject: [PATCH v2] media: dt-bindings: qcom,sc7280-venus: Allow one IOMMU
+ entry
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240404160649.967-1-bavishimithil@gmail.com> <78091796-fd0a-42dd-a4da-f7bed3025bf9@linaro.org>
- <CAGzNGRnuG_gLUrH1N57WvpKbpiNtFrcsG6nJcacQNJB_yMYNrA@mail.gmail.com>
- <ec7f77a7-2cf1-4ea6-b9c4-d4fe8a1673ab@linaro.org> <CAGzNGRktm5gMj=bhtX2RAzcn1v5ref+nV-HV3Fct56FzAzxjWA@mail.gmail.com>
- <c9084453-65f1-43b0-88df-5b73052ccb72@linaro.org> <CAGzNGR=2-us8GRB3RNi4_24QZ9rNBC7Lx0PFsWwbvxuRKk5ngw@mail.gmail.com>
- <352672fc-b6e1-458e-b4f9-840a8ba07c7e@linaro.org> <CAGzNGRnjCydMMJS6Cqht7zT1GvhbVtKAe1hu8oaf8YwRfA=hZg@mail.gmail.com>
-In-Reply-To: <CAGzNGRnjCydMMJS6Cqht7zT1GvhbVtKAe1hu8oaf8YwRfA=hZg@mail.gmail.com>
-From: Mithil <bavishimithil@gmail.com>
-Date: Fri, 12 Apr 2024 19:46:16 +0530
-Message-ID: <CAGzNGR=60czJWH4=1_1Hf1yH1KZQpmDqsv_zySLr-S_D0vqosg@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: omap-mcpdm: Convert to DT schema
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	alsa-devel@alsa-project.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240412-sc7280-venus-bindings-v2-1-48ca8c2ec532@fairphone.com>
+X-B4-Tracking: v=1; b=H4sIAAVDGWYC/4WNQQ6CMBBFr0Jm7Zh2Qqp15T0Mi1IGmIUtabHRE
+ O5u5QIu30v++xtkTsIZbs0GiYtkiaECnRrwswsTowyVgRS1SpPF7C90VVg4vDL2EgYJU0bDhpy
+ 1htTAULdL4lHeR/fRVZ4lrzF9jpuif/ZfsWjUSMrZ3mnbeqPuo5O0zDHw2ccndPu+fwHfYHCFv
+ gAAAA==
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Stanimir Varbanov <stanimir.k.varbanov@gmail.com>, 
+ Vikash Garodia <quic_vgarodia@quicinc.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ Stanimir Varbanov <stanimir.varbanov@linaro.org>, 
+ linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.13.0
 
-Hello,
-Is the patch better now? I'd still like to learn from where i did the
-mistakes (which seem very silly now)
+Some SC7280-based boards crash when providing the "secure_non_pixel"
+context bank, so allow only one iommu in the bindings also.
 
-Best Regards,
-Mithil
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Reference:
+https://lore.kernel.org/linux-arm-msm/20231201-sc7280-venus-pas-v3-2-bc132dc5fc30@fairphone.com/
+---
+Changes in v2:
+- Pick up tags
+- Otherwise just a resend, v1 was sent in January
+- Link to v1: https://lore.kernel.org/r/20240129-sc7280-venus-bindings-v1-1-20a9ba194c60@fairphone.com
+---
+ Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml b/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
+index 8f9b6433aeb8..10c334e6b3dc 100644
+--- a/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
++++ b/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
+@@ -43,6 +43,7 @@ properties:
+       - const: vcodec_bus
+ 
+   iommus:
++    minItems: 1
+     maxItems: 2
+ 
+   interconnects:
+
+---
+base-commit: 9ed46da14b9b9b2ad4edb3b0c545b6dbe5c00d39
+change-id: 20240129-sc7280-venus-bindings-6e62a99620de
+
+Best regards,
+-- 
+Luca Weiss <luca.weiss@fairphone.com>
+
 
