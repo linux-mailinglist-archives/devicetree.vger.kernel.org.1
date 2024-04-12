@@ -1,217 +1,121 @@
-Return-Path: <devicetree+bounces-58869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58871-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 521878A3740
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 22:48:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE7BF8A3752
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 22:53:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7553C1C2308F
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 20:48:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8913D282CB9
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 20:53:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D227A40BE7;
-	Fri, 12 Apr 2024 20:48:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1CDB4438E;
+	Fri, 12 Apr 2024 20:53:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="J8bIf7s4"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NrS0A2bL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2821405C7
-	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 20:48:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0688817C7F;
+	Fri, 12 Apr 2024 20:53:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712954931; cv=none; b=sSwJDHzaiN6fgtMoYdW8ZTx1GAao4LaoRExzBlo6njHKmADsR1lNMGVlZRDptY0gcUcoJq1dKyikbSop8qcRI5AivkfdLT2Ckdnsr31nrTECoDb2fLRNxV0o1Y/S9F5zpioTZTPUcJQA5+ldJxY3nrtslCoJdEjqAsOaRwQcV6A=
+	t=1712955213; cv=none; b=X51A8gf2ml0SaRINugpOUCwU3U0KXPyvn3IrxnlkJfNCoqZPxVVBqMldUIhtCGtpC5D4GefkOvDp1jEPXmRzifoYuWee5fET7HPNHBGRWFcI4fMxj+s8Iyu3kS0PzxJCimrbBnQc7RgZ4SRS1GDjFP7tt1mT9o3q041xWL1mutw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712954931; c=relaxed/simple;
-	bh=KzTQ615Mv6vx3Pd26LD1yrwtq3aAn4qXYzo6CfQ2EVM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bcSQp95xPR5v1fZYiIeeRHdgzpUzUPFpai+lexICzqW4Lmu+vd1jnbogd40eLP4+jxXvRC1Csh326D7yGgZVk0gz5CgePQGyCmbQbtwjWe5BI2ifS8gTSiy1pS0yzCsrLbs/O6K1gZkVLB4z59RbTNhL7dlVJiJkfc1yejQMLRY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=J8bIf7s4; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-6ecf05fd12fso1247598b3a.2
-        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 13:48:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1712954929; x=1713559729; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=527J/UVq95aFiyhIuaQGyZZWXZ7DJpQjeKIDhjey1CQ=;
-        b=J8bIf7s4lvzgmuzcNdVo0pREZ3JZTySbXJInXCaPpEJEtiji8ieWThzpdPJCM1HhXl
-         GD7mYWXXhGYCbgf+zwtxCqrnM8carmyyby5J2UsFW3u/PG+mhtrITThCgh5ZLzQysrtx
-         xk2LBw4+W5dSjlc6AGEeYDIej3h5P09kJxzYvDxGIUNULgPzjlHxySDGnMwlJgg5+9lH
-         awVcu9+jAHr4xKWt1f1hVQRW6Bno+ZENsryA0c9Yw/dhZGaOnLKaC7FadViXvPl30ueA
-         jpN5IEEZjPY2VizM46QxHR3wZoFi5TWwr3+U1Pu8StQdEPWGo0HKtdEzMVXd+6VSO4Wo
-         nnHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712954929; x=1713559729;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=527J/UVq95aFiyhIuaQGyZZWXZ7DJpQjeKIDhjey1CQ=;
-        b=aLEE9/xI5X4GM+6ypYazNtQbFyYP/hxEHuruDGuIzRImXtAQ6OuirM4+FAgqGKCASZ
-         dHnfpkjLYc2xfI4evLBY98ppOPhQYwsufoRulxMfayTsYwceC13NLkqNFJDE1LKDOwJx
-         /7+XEgXozIuSNQAb7Vg9O+oH240PD3O3c3PoRX+BFoVnwXNLsgVT/YKAvrRUtMc/f5ja
-         hwz0NXspgZBEb2c5GEu41gcTuuHoasxrICZMN1QfOcQeWfhd3YyTP0o3EudzglXhCkxO
-         ldRrogVLtzsqGRuvwfMj5G2GVpZsXVA5x/qWCxtTRedhR9sU47yw/RtZe//88C0wkAhb
-         wCKg==
-X-Forwarded-Encrypted: i=1; AJvYcCXVkQFowH3ggvNXDMspTQ+GTa5m5R3GuUsaAbG7sw4YuDjIzMZaQkuIQQOn5RROImSVFmzNtB5diSsperYN8iQ4g5QHBq7TAxDPLQ==
-X-Gm-Message-State: AOJu0Yz8dR7SK4iLrg/ycLJ9MicEuLU82JpAyUXNmWrTQYV552hOLxEo
-	P1XNF30Ge0YNImgqYtl1+WxRnjLeS8WTLblNolMWvzTHJly6GnMlTpHY1NxHBjo=
-X-Google-Smtp-Source: AGHT+IHExcx+PpY1vNf1/BTSjm7xk9HHHkwj+AuQJzMGgY3j/gTBgIIjVbVwL17X10Ibh91JU+hVeg==
-X-Received: by 2002:a05:6a21:8802:b0:1a7:2924:7317 with SMTP id ta2-20020a056a21880200b001a729247317mr4794308pzc.49.1712954928983;
-        Fri, 12 Apr 2024 13:48:48 -0700 (PDT)
-Received: from ghost ([50.145.13.30])
-        by smtp.gmail.com with ESMTPSA id e15-20020a17090301cf00b001e2a4499352sm3399440plh.262.2024.04.12.13.48.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Apr 2024 13:48:48 -0700 (PDT)
-Date: Fri, 12 Apr 2024 13:48:46 -0700
-From: Charlie Jenkins <charlie@rivosinc.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Evan Green <evan@rivosinc.com>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH 02/19] riscv: cpufeature: Fix thead vector hwcap removal
-Message-ID: <ZhmeLoPS+tsfqv1T@ghost>
-References: <20240411-dev-charlie-support_thead_vector_6_9-v1-0-4af9815ec746@rivosinc.com>
- <20240411-dev-charlie-support_thead_vector_6_9-v1-2-4af9815ec746@rivosinc.com>
- <20240412-tuesday-resident-d9d07e75463c@wendy>
- <ZhlrdGXfSushUNTp@ghost>
- <20240412-eastcoast-disparity-9c9e7d178df5@spud>
+	s=arc-20240116; t=1712955213; c=relaxed/simple;
+	bh=gtXa1g8Diw8jhvbhoBh7settfSPef9KvqOllWKOXyXk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=mejmgUbyecRyDlpLHjxefo1QA8qpALpIXTz59XmVlqIQcg96a4LHsIzSe71iSNnZPsQQN6KOPFRLl8YI9FLtxemezcAlxfMdXXZmoI4Q0eP0MCKvUGEIjqKKEschpzeyE7VFArw6cX5hFqwa6rx5Sproxd1efyceDA8C0ZWr7MI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NrS0A2bL; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43CKTvuh002893;
+	Fri, 12 Apr 2024 20:53:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=HgJDa/2EwgakQCDAhk1JenjRlC2wN9yg1hRDEABckvY=; b=Nr
+	S0A2bL0sek98H41TF0941WBLNT3tvWmfofmy3d9Jcx/srTi7/WcjymTS0S14e8RC
+	Zq244J8TXEC+ANlFlpg/KXTjwXNf1plhYGEL4Vzmq3w2g9q8yC76MAgYv9zO4hyt
+	53aCp9iap5FZpTmwILT4PDh4+/YpF6xr35O236D2tcdyQSxVCGKOyQ1YscJMaTO4
+	kGMq2DaXCZLBkAbIiBkdBJ6tloi84bTepA6mDFFNLNhklUWZZAaQU/q3oVevijO0
+	brFSJSSpCkOWFfEUc/ycMrv8Ujasu9x1fXz71swD3grV3QljrVC1Bgd+I/EAdKeg
+	jnuoQIutiLX1OET8C8kQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xf9x6rjuw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 12 Apr 2024 20:53:06 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43CKr5D0021876
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 12 Apr 2024 20:53:05 GMT
+Received: from [10.110.37.144] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 12 Apr
+ 2024 13:53:04 -0700
+Message-ID: <c7106c8e-0c99-4160-966e-b1a8ba5770ee@quicinc.com>
+Date: Fri, 12 Apr 2024 13:53:02 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240412-eastcoast-disparity-9c9e7d178df5@spud>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] wifi: ath11k: support DT ieee80211-freq-limit
+ property to limit channels
+Content-Language: en-US
+To: Christian Lamparter <christian.lamparter@isd.uni-stuttgart.de>,
+        Robert
+ Marko <robimarko@gmail.com>, <kvalo@kernel.org>,
+        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <jjohnson@kernel.org>, <linux-wireless@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <ath11k@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20240412162510.29483-1-robimarko@gmail.com>
+ <20240412162510.29483-2-robimarko@gmail.com>
+ <4a1e0cb6-c319-4eb1-9bd1-5ff13eabfe1b@isd.uni-stuttgart.de>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <4a1e0cb6-c319-4eb1-9bd1-5ff13eabfe1b@isd.uni-stuttgart.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: oKEhJCcr9ogoabfdMqA007OIM4biwoUC
+X-Proofpoint-GUID: oKEhJCcr9ogoabfdMqA007OIM4biwoUC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-12_17,2024-04-09_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ lowpriorityscore=0 impostorscore=0 mlxlogscore=784 spamscore=0
+ phishscore=0 bulkscore=0 mlxscore=0 adultscore=0 priorityscore=1501
+ clxscore=1011 suspectscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2404010003 definitions=main-2404120149
 
-On Fri, Apr 12, 2024 at 07:47:48PM +0100, Conor Dooley wrote:
-> On Fri, Apr 12, 2024 at 10:12:20AM -0700, Charlie Jenkins wrote:
-> > On Fri, Apr 12, 2024 at 11:25:47AM +0100, Conor Dooley wrote:
-> > > On Thu, Apr 11, 2024 at 09:11:08PM -0700, Charlie Jenkins wrote:
-> > > > The riscv_cpuinfo struct that contains mvendorid and marchid is not
-> > > > populated until all harts are booted which happens after the DT parsing.
-> > > > Use the vendorid/archid values from the DT if available or assume all
-> > > > harts have the same values as the boot hart as a fallback.
-> > > > 
-> > > > Fixes: d82f32202e0d ("RISC-V: Ignore V from the riscv,isa DT property on older T-Head CPUs")
-> > > 
-> > > If this is our only use case for getting the mvendorid/marchid stuff
-> > > from dt, then I don't think we should add it. None of the devicetrees
-> > > that the commit you're fixing here addresses will have these properties
-> > > and if they did have them, they'd then also be new enough to hopefully
-> > > not have "v" either - the issue is they're using whatever crap the
-> > > vendor shipped.
-> > 
-> > Yes, the DT those shipped with will not have the property in the DT so
-> > will fall back on the boot hart. The addition of the DT properties allow
-> > future heterogenous systems to be able to function.
+On 4/12/2024 12:52 PM, Christian Lamparter wrote:
+> On 4/12/24 6:24 PM, Robert Marko wrote:
+>> The common DT property can be used to limit the available channels
+>> but ath11k has to manually call wiphy_read_of_freq_limits().
+>>
+>> Signed-off-by: Robert Marko <robimarko@gmail.com>
 > 
-> I think you've kinda missed the point about what the original code was
-> actually doing here. Really the kernel should not be doing validation of
-> the devicetree at all, but I was trying to avoid people shooting
-> themselves in the foot by doing something simple that would work for
-> their (incorrect) vendor dtbs.
-> Future heterogenous systems should be using riscv,isa-extensions, which
-> is totally unaffected by this codepath (and setting actual values for
-> mimpid/marchid too ideally!).
+> I've seen this before.
 > 
-
-I am on the same page with you about that. 
-
-> > > If we're gonna get the information from DT, we already have something
-> > > that we can look at to perform the disable as the cpu compatibles give
-> > > us enough information to make the decision.
-> > > 
-> > > I also think that we could just cache the boot CPU's marchid/mvendorid,
-> > > since we already have to look at it in riscv_fill_cpu_mfr_info(), avoid
-> > > repeating these ecalls on all systems.
-> > 
-> > Yeah that is a minor optimization that can I can apply.
-> > 
-> > > 
-> > > Perhaps for now we could just look at the boot CPU alone? To my
-> > > knowledge the systems that this targets all have homogeneous
-> > > marchid/mvendorid values of 0x0.
-> > 
-> > They have an mvendorid of 0x5b7.
+> https://patchwork.kernel.org/project/linux-wireless/patch/ed266944c721de8dbf0fe35f387a3a71b2c84037.1686486468.git.chunkeey@gmail.com/
 > 
-> That was a braino, clearly I should have typed "mimpid".
+> (dt-binding too. it has/had an ack)
+> https://patchwork.kernel.org/project/linux-wireless/patch/fc606d2550d047a53b4289235dd3c0fe23d5daac.1686486468.git.chunkeey@gmail.com/
 > 
-> > This is already falling back on the boot CPU, but that is not a solution
-> > that scales. Even though all systems currently have homogenous
-> > marchid/mvendorid I am hesitant to assert that all systems are
-> > homogenous without providing an option to override this.
-> 
-> There are already is an option. Use the non-deprecated property in your
-> new system for describing what extesions you support. We don't need to
-> add any more properties (for now at least).
+> sooo.... this is awkward.
 
-The issue is that it is not possible to know which vendor extensions are
-associated with a vendor. That requires a global namespace where each
-extension can be looked up in a table. I have opted to have a
-vendor-specific namespace so that vendors don't have to worry about
-stepping on other vendor's toes (or the other way around). In order to
-support that, the vendorid of the hart needs to be known prior.
-
-I know a rebuttal here is that this is taking away from the point of
-the original patch. I can split this patch up if so. The goal here is to
-allow vendor extensions to play nicely with the rest of the system.
-There are two uses of the mvendorid DT value, this fix, and the patch
-that adds vendor extension support. I felt that it was applicable to
-wrap the mvendorid DT value into this patch, but if you would prefer
-that to live separate of this fix then that is fine too.
-
-- Charlie
-
-> 
-> > The overhead is
-> > looking for a field in the DT which does not seem to be impactful enough
-> > to prevent the addition of this option.
-> > 
-> > > 
-> > > > Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
-> > > 
-> > > > @@ -514,12 +521,23 @@ static void __init riscv_fill_hwcap_from_isa_string(unsigned long *isa2hwcap)
-> > > >  				pr_warn("Unable to find \"riscv,isa\" devicetree entry\n");
-> > > >  				continue;
-> > > >  			}
-> > > > +			if (of_property_read_u64(node, "riscv,vendorid", &this_vendorid) < 0) {
-> > > > +				pr_warn("Unable to find \"riscv,vendorid\" devicetree entry, using boot hart mvendorid instead\n");
-> > > 
-> > > This should 100% not be a warning, it's not a required property in the
-> > > binding.
-> > 
-> > Yes definitely, thank you.
-> > 
-> > - Charlie
-> > 
-> > > 
-> > > Cheers,
-> > > Conor.
-> > > 
-> > > > +				this_vendorid = boot_vendorid;
-> > > > +			}
-> > > 
-> > 
-> > 
-
+Patchwork indicates Changes Requested
+Any idea what changes Kalle is looking for?
 
 
