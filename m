@@ -1,76 +1,75 @@
-Return-Path: <devicetree+bounces-58742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58743-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0B408A2EBF
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 15:03:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C99FE8A2EC9
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 15:05:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55ED42820F6
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 13:03:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EDC651C21441
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 13:05:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBAA65C60D;
-	Fri, 12 Apr 2024 13:03:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 808C35A11F;
+	Fri, 12 Apr 2024 13:05:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PIOoV7FF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yIjE59sR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 046625B200
-	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 13:03:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4427D55E43
+	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 13:05:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712927010; cv=none; b=tcZNwbRnOookFZO1YA9tjtgaBEmNJ3FAMUFnToXodX6QDY6yQbiUt+oG8AMRwotPYAUgrbpJgrElFyb2lpt4oitaAOxWUaAvt79Kr5Bqvj2UHM5z/mY4ysraMbfLXqAzKIM/YwvGuIDKPzRW9sKgSFNIUDgju4D/Kf+VfPf2A3Q=
+	t=1712927123; cv=none; b=czgBZzexEiLMYZmw2BhlDmqJivzqMS/cvfXwUIRYh1P2nqvQ9+fAbZ0vdc/tocNUNgbqoFHW67dIEsDKPN96BXmeghdlOrsnozHi+UQOeMUtGkCKtjexNKXV71rro8CXDzxeNQiIWoHQ7xFd82tlEy44id+pxYMukzwNX8I7vg8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712927010; c=relaxed/simple;
-	bh=fLML18J7yDvY0kAxAiabw/PSTupFBpzee1x9+m9hqUo=;
+	s=arc-20240116; t=1712927123; c=relaxed/simple;
+	bh=wiFlkB+eE3v2d6qF88dWKYMFmze3O8S+7MdMRMGoClE=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=TyC4rdrhkx+4duDhZ72/RDUBI+S09211dTNHffO7OrfZM8SWEWyt8Zl621Gewg4IyhZ/DvD7rxw5M7B3+gW2ZeVI8rLBGLHgVsb//P1GGT0hXySxECUlN36X+vpmTc47oyfmR8LENzGrzrBwcvH9O7NPU0udkbFc1NxozPdZ7OI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PIOoV7FF; arc=none smtp.client-ip=209.85.208.180
+	 In-Reply-To:Content-Type; b=Xbs074v5FRbiO41sO3KbSHc/Zk875wh0lbK2ex0UlXv8jZFSnG0Vw/0T5ZFlOLCyuZp2rTfoRjHWXCokmtFrN8c69qj5eJ+CLKW2EQzEeEjsnQRRbuEsnKJbrBq4AVX9Sgurg4EIssuMpWSkykES+C99r7vO1jAfEPWV1+K4giU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yIjE59sR; arc=none smtp.client-ip=209.85.221.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2d82713f473so13570851fa.3
-        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 06:03:28 -0700 (PDT)
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-346b96f1483so478155f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 06:05:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712927007; x=1713531807; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712927118; x=1713531918; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Nm8LSvH+A0aysY1LVMvbC5kt2UeJVTw7St9EkLFip3k=;
-        b=PIOoV7FFVOm8A4CWOuxzb3QNZR8cJOuyjSqNu51RhhMd8U4G+uaOWmImwfaGdiBOio
-         w+2QZCyenB6qUYgYtmsLvomJKH1T2N+Tq4RGLD01nDx7K8YionwRnua1B6FDeM/Di9Zb
-         rqIYv9tXLHoVqLnOL5Cxn5mwDNSAlvpJTzm2aEPICKNUcR/mWITBjzWsI2CUwD5NzRwt
-         JOJj520HZUN4IomzljoSKpFfhZeEt0CNzH2K0SlUMJKH3QV2lkTBylPRyXBsLA9Hgp4I
-         w7C9sC4tB4WVQKJg2I2qLZa2GyyDuHBtCYyLMj7wqAZzYzGpUhVei+9rzfDqSspUmzzT
-         j0mg==
+        bh=xOcTNt5ByY5dfitA7rAX7DzfF2K3DjcIDFUSulbTkvM=;
+        b=yIjE59sRcyldxdw1rtqAycp4aMOvHaTXkhM0gSfDC3W/41Gb2WrydtGgAQJmKLgKt8
+         3Ykv6EFHIazKGTHpfjSaxbvzBPEjzO6l1UGV2Hiih2z1aJb/k7LTnRjjo9Yh4Xo++juN
+         UwzswAfI05+GVHXxfVRAYilswmRqDzzjzPF8GdYAD4DSj4ChKKqkZ6V0mPdJDr29eNwE
+         QZecqgzWBxxy7OzwMKwgtE4ygtRAbotxVkG74nEtd1hcOvCgcADHcF5kN+pTBPtNF6QI
+         fq/gEbCv0t76wuqQn+vZrG2lX3lkXfy1BgNY+zKEjjU7zw3tubtSwK32n7/ngjuLerPF
+         pNTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712927007; x=1713531807;
+        d=1e100.net; s=20230601; t=1712927118; x=1713531918;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=Nm8LSvH+A0aysY1LVMvbC5kt2UeJVTw7St9EkLFip3k=;
-        b=CTNtlybRacmObf4YahC8lVLBnyiX0VnE2v4atlKl9a28Z5HRZ2DBSAFKv5TupvNa4u
-         Zu6vywL8JtncWQgPGeel0LOo8Tseq8FoTMssgZO9bebqUUhQzDfEEYl7zLCNALlv3w9R
-         MVX0ift6eJSd93xIY4GLOr1upLrJjuR7HY0zp4tcvA4dmWrbiWpL5K+aXCLTSVMG0PAR
-         l43lO4YCZOP5eVZ8p7R0/9FbkFRjf9/x//6L4L7AO4Ij9JslZmZ2F2Tk5Gg0NRIx2sRY
-         vYOHPN7ivib8Tz3S0H8M6oiiKT3Pxe+c9Np77L2+zhckPjfddjcQWuc2XAB7jI8khLjF
-         eIqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX/bEolR+Z3FlEksaP3T8niyh2iSMjP0b5V+50FSZ4/4aakXHb5ecq0vwLugVAtfL6g3vUK/voUXpyT42BOq3tZKO6SlS63cpIK/Q==
-X-Gm-Message-State: AOJu0YzyI7lPWQP1cEoUjFkXN0Sohv1KdsqlRwzq8Q+CZryacxPOw3ZH
-	Q0vknVNyL8MCPkk7OwfkqW8m5b6ECaxFmrNUfQ4bOtfBgYqm82JxtirIQWC5ZDo=
-X-Google-Smtp-Source: AGHT+IHK4CQtsJnkc980vV5S8swNBkt4lBLxARVMCpXsWDOLaK3XIHiJ4ubaGIkNoNRiom/1KZvtjQ==
-X-Received: by 2002:a2e:a545:0:b0:2d8:58b6:c10d with SMTP id e5-20020a2ea545000000b002d858b6c10dmr2214877ljn.18.1712927006961;
-        Fri, 12 Apr 2024 06:03:26 -0700 (PDT)
+        bh=xOcTNt5ByY5dfitA7rAX7DzfF2K3DjcIDFUSulbTkvM=;
+        b=bY19ijAR+tUPImu2kXee/oZxFtuq3Ru/Zh7QzYLok3xxr1oWHTaXkYuwlJRKw0cZZA
+         QMaiuTKA0P2n/UqkC1601cKz4qUkT+Na9LvsP/QsHx6q2MawtuIZWimv7YtjFCk1M2KJ
+         YkjoX88WoMhMzaC5X5kVLXXwlxQEv3x/DQ8efwWQxF13x2GY3gos/sNgsWmnFEWPpLjP
+         9Hg2TZOJp6FqftbvgnIb0fuLXL1cBHBZSooYChM4jN8VYNRflX0BBOb6nFI5Z2D+AWTJ
+         uIDwWJOJr7M4xjqw5qwKYAZo0XTSvNusV0fmAdLvzb+AtvohGuKU5t6+m4MJusEC3wDi
+         BNGw==
+X-Gm-Message-State: AOJu0YzhL3YtqpmCxM7ngGA5NC4tfpoMJAEglmYpTbNYql1JOjnxeF1O
+	N6jdh2ucsoda14ZOcPuduDv29igbamC3WBqYnCLpQnWQ+sTWXem+jqriyxP+XgU=
+X-Google-Smtp-Source: AGHT+IFiR9h8j51gi72vNffX3hceH0q+iH5LXTWgHiNHNmQPVUHiRpuRwEL/hhoSi7c6hrWzj0BB+A==
+X-Received: by 2002:a5d:6542:0:b0:343:d23a:c977 with SMTP id z2-20020a5d6542000000b00343d23ac977mr4802161wrv.1.1712927118429;
+        Fri, 12 Apr 2024 06:05:18 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:986c:54c:12ce:a121? ([2a01:e0a:982:cbb0:986c:54c:12ce:a121])
-        by smtp.gmail.com with ESMTPSA id n9-20020a05651c000900b002d2697570fcsm502800lja.93.2024.04.12.06.03.23
+        by smtp.gmail.com with ESMTPSA id k12-20020a5d6d4c000000b00343e392829dsm4215174wri.97.2024.04.12.06.05.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Apr 2024 06:03:26 -0700 (PDT)
-Message-ID: <00b0e513-bb8a-4db7-aa8e-57632add4752@linaro.org>
-Date: Fri, 12 Apr 2024 15:03:22 +0200
+        Fri, 12 Apr 2024 06:05:18 -0700 (PDT)
+Message-ID: <bb32ccd8-cc94-43ea-b5e8-09162cf56179@linaro.org>
+Date: Fri, 12 Apr 2024 15:05:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,24 +79,15 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v12 4/7] drm/meson: gate px_clk when setting rate
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2] arm64: dts: meson: fix S4 power-controller node
+To: xianwei.zhao@amlogic.com, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Jagan Teki <jagan@amarulasolutions.com>, Nicolas Belin
- <nbelin@baylibre.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- dri-devel@lists.freedesktop.org
-References: <20240403-amlogic-v6-4-upstream-dsi-ccf-vim3-v12-0-99ecdfdc87fc@linaro.org>
- <20240403-amlogic-v6-4-upstream-dsi-ccf-vim3-v12-4-99ecdfdc87fc@linaro.org>
- <CAFBinCChEc+GH+tdmByWDM=Gs_BUpDh=6S=ch3QbGUt501_Ejw@mail.gmail.com>
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240412-fix-secpwr-s4-v2-1-3802fd936d77@amlogic.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -124,91 +114,57 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <CAFBinCChEc+GH+tdmByWDM=Gs_BUpDh=6S=ch3QbGUt501_Ejw@mail.gmail.com>
+In-Reply-To: <20240412-fix-secpwr-s4-v2-1-3802fd936d77@amlogic.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 10/04/2024 21:34, Martin Blumenstingl wrote:
-> Hi Neil,
+On 12/04/2024 10:42, Xianwei Zhao via B4 Relay wrote:
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > 
-> On Wed, Apr 3, 2024 at 9:46 AM Neil Armstrong <neil.armstrong@linaro.org> wrote:
->>
->> Disable the px_clk when setting the rate to recover a fully
->> configured and correctly reset VCLK clock tree after the rate
->> is set.
->>
->> Fixes: 77d9e1e6b846 ("drm/meson: add support for MIPI-DSI transceiver")
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   drivers/gpu/drm/meson/meson_dw_mipi_dsi.c | 7 +++++++
->>   1 file changed, 7 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/meson/meson_dw_mipi_dsi.c b/drivers/gpu/drm/meson/meson_dw_mipi_dsi.c
->> index a6bc1bdb3d0d..a10cff3ca1fe 100644
->> --- a/drivers/gpu/drm/meson/meson_dw_mipi_dsi.c
->> +++ b/drivers/gpu/drm/meson/meson_dw_mipi_dsi.c
->> @@ -95,6 +95,7 @@ static int dw_mipi_dsi_phy_init(void *priv_data)
->>                  return ret;
->>          }
->>
->> +       clk_disable_unprepare(mipi_dsi->px_clk);
-> nit-pick: clk_disable(mipi_dsi->px_clk); should be enough here as my
-> understanding is that we only need to {un,}prepare a clock once.
+> The power-controller module works well by adding its parent
+> node secure-monitor.
 > 
->>          ret = clk_set_rate(mipi_dsi->px_clk, mipi_dsi->mode->clock * 1000);
->>
->>          if (ret) {
->> @@ -103,6 +104,12 @@ static int dw_mipi_dsi_phy_init(void *priv_data)
->>                  return ret;
->>          }
->>
->> +       ret = clk_prepare_enable(mipi_dsi->px_clk);
->> +       if (ret) {
->> +               dev_err(mipi_dsi->dev, "Failed to enable DSI Pixel clock (ret %d)\n", ret);
->> +               return ret;
-> If we ever hit this error case then there will be a lot of additional
-> errors in the kernel log:
-> - initially the clock is prepared and enabled in
-> meson_dw_mipi_dsi_probe() by calling devm_clk_get_enabled()
-> - we then disable the clock above (generally disabling a clock is
-> expected to always succeed)
-> - if the clock can NOT be re-enabled here we just log the error
-> - in case a user tries to rmmod the driver (to modprobe it again) to
-> try and recover from an error the automatic disabling of the pix_clk
-> (based on devm_clk_get_enabled() where it was enabled initially) there
-> will be a splat because the clock is already disabled (and enabled
-> count is zero, so it cannot be disabled any further)
+> Fixes: 085f7a298a14 ("arm64: dts: add support for S4 power domain controller")
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+> Changes in v2:
+> - Add fixes tags in commit message.
+> - Add firmware node to adapt documentation.
+> - Link to v1: https://lore.kernel.org/r/20240408-fix-secpwr-s4-v1-1-01aa7ee72c52@amlogic.com
+> ---
+>   arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 13 +++++++++----
+>   1 file changed, 9 insertions(+), 4 deletions(-)
 > 
-> For the 32-bit SoC video clocks I keep track of them being enabled or
-> disabled, see [0], [1] and [2].
-> In my case this is important because we can run into cases where the
-> PLL doesn't lock (I am not sure how likely this is for your case).
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> index ce90b35686a2..10896f9df682 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> @@ -65,10 +65,15 @@ xtal: xtal-clk {
+>   		#clock-cells = <0>;
+>   	};
+>   
+> -	pwrc: power-controller {
+> -		compatible = "amlogic,meson-s4-pwrc";
+> -		#power-domain-cells = <1>;
+> -		status = "okay";
+> +	firmware {
+> +		sm: secure-monitor {
+> +			compatible = "amlogic,meson-gxbb-sm";
+> +
+> +			pwrc: power-controller {
+> +				compatible = "amlogic,meson-s4-pwrc";
+> +				#power-domain-cells = <1>;
+> +			};
+> +		};
+>   	};
+>   
+>   	soc {
 > 
-> It *seems* like we need to do something similar as
-> dw_mipi_dsi_phy_init() can be called when changing the display
-> resolution (or whenever drm_bridge_funcs.atomic_pre_enable) is called.
-> To illustrate what I have in mind I attached a diff (it's based on
-> this patch) - it's compile tested only as I have no DSI hardware.
-> In case dw_mipi_dsi_phy_init() is called only once per device
-> lifecycle things may get easier.
+> ---
+> base-commit: 4cece764965020c22cff7665b18a012006359095
+> change-id: 20240408-fix-secpwr-s4-a99ff960d0ae
+> 
+> Best regards,
 
-Indeed your scheme looks good, I'll try it since indeed we only need
-to prepare it once in the lifetime of the driver.
-
-> 
-> PS: I'm so happy that we don't need any clock notifiers for this!
-> So: good work with the clock driver bits.
-
-Thx !
-
-> 
-> 
-> Let me know what you think,
-> Martin
-> 
-> 
-> [0] https://github.com/xdarklight/linux/blob/meson-mx-integration-6.9-20240323/drivers/gpu/drm/meson/meson_vclk.c#L1177-L1179
-> [1] https://github.com/xdarklight/linux/blob/meson-mx-integration-6.9-20240323/drivers/gpu/drm/meson/meson_vclk.c#L1077
-> [2] https://github.com/xdarklight/linux/blob/meson-mx-integration-6.9-20240323/drivers/gpu/drm/meson/meson_vclk.c#L1053
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
