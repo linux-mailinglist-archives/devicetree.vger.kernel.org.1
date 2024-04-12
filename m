@@ -1,65 +1,64 @@
-Return-Path: <devicetree+bounces-58736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C7528A2E92
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 14:50:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 171038A2E89
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 14:42:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 120751F2229E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 12:50:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C066B1F2301A
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 12:42:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5360F58AD6;
-	Fri, 12 Apr 2024 12:50:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9988A56B71;
+	Fri, 12 Apr 2024 12:42:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="AA3GGZZW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f4nYe/em"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9FEE4597C;
-	Fri, 12 Apr 2024 12:50:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75B3E42069
+	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 12:42:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712926230; cv=none; b=CSnc2+Fj4K5arB7JL4X9a4aJtqtOVj5CXsfSM2qsIM+BRyguhnKbUmtvR9SaJo1v4ZxiI3t/OAx558lPHdOtVqzK0nj/EVtICoMkFi50umy/v5IQDmLaTxjtehZ0OII/qavutT2I20bWXCwVHoBPtODCQpO32nV95vN4M/+/GbQ=
+	t=1712925767; cv=none; b=V+CK/6RbSMHWGWN2u2KeNLHGUOuxxOzb+2C9amNLTsX+RQJOIwr2TLi+3E78UaJglT18yM52M64pCaGUD2AUYyCdh/26Z/PZh2+w+yCj9nbTQTB28wWFKgBSLJG2w3r8A2/A0LXZsv2Jgy641CXqzHuIRn5SDXRUqQQmNjfgmqk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712926230; c=relaxed/simple;
-	bh=RfwAPgOp5LejBlfDqP+Nmw/PGfFWYFcMyq/91l48VgY=;
+	s=arc-20240116; t=1712925767; c=relaxed/simple;
+	bh=RFZZ+mGFrMvvzGP+Wwx3ZJjWKuRdZUpn09zEfdGc7P0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N6sZEltuMjMlSZKVbQp44SW7GTq6s+IkeiQn94OMGHirBjOHLIXc2TC2pnEz7f9huv7SbSuq4pnDmWj9N+Yh2vLLn3JMgsM/mqFu7uG+fI/dPmiSbZ3lL7ILIdPql2Sx3dhLfttibrL1v4qzEUiBQaGce8StNZKQ6k7L8nq9S6g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=AA3GGZZW; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from gaggiata.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id BEC5120210;
-	Fri, 12 Apr 2024 14:42:08 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1712925728;
-	bh=MajZ5hUyuuKB10smjUCbtBuKZkOL7rvb1r77L66soMU=;
-	h=Received:From:To:Subject;
-	b=AA3GGZZWDf93Z9MzYr513rqfZspeYyVtjBNikZlSCkmryx/pzXQ76AFeeQN7CePVb
-	 Qvb7fjhAef5W9ZqQ2zl7op3Gl+T/fjrQTvRMjV1GSBnHkcPfw6+vrw2b45oNJe3+h2
-	 +kqaS9WPzhnOG0VUrjjqfVvFmOpqTms3LkOp7gYBJ8gXnCJbVoOxfDtbJIdGqEobO3
-	 bHldUn03uciNcn69Vq+1m0yLGBcn1R5+SQN68Oinw+2Lh5zX/IHT5nXaItec1jPWEy
-	 pXZnVFJXD8MFFWbwrc4nIualBfjPWayRRx4X4a0pnY8Jc3439jNeVHF8x4sEkPaxKQ
-	 BK+zeffz9iqcg==
-Received: by gaggiata.pivistrello.it (Postfix, from userid 1000)
-	id 590AE7F950; Fri, 12 Apr 2024 14:42:08 +0200 (CEST)
-Date: Fri, 12 Apr 2024 14:42:08 +0200
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Roger Quadros <rogerq@kernel.org>
-Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=DIOGPqC3eoouiDRyE2RtWhalXdi8S0k+MIF9e/8tj9f4cfsH5uEDRgsK0B2d6uUK2LrqH4ARfYVhtTz+muCDNMF1tp3g1uYaF6yJa9OzPlIPP6B1KORrtauEl/j9Lw+I2sN5hA45j1E/ga2BV65jPw90feBW7mRTqyUA22qjmgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f4nYe/em; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19F31C113CC;
+	Fri, 12 Apr 2024 12:42:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712925767;
+	bh=RFZZ+mGFrMvvzGP+Wwx3ZJjWKuRdZUpn09zEfdGc7P0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=f4nYe/em6FK0f+oAwuh0E1rMXQ1OyU4HGcc0d3wGEkQs8c01qL+qYZXK7o533Ysy4
+	 12FEaeYNYxLWiGTQZbgfQMmJRnPAIosXSS6Zww3JQkROF0SrSm9b1ggXg6zLAYYwKO
+	 odOnXedPol5+Z1ADVvnwDXI7aPmAXVzsYC7lgNGgKqiSH+rgcBS7HfOj6+CsmkRYZw
+	 DRCJo2Rlk4oN1rmCBnunXTTJfaA9Nl+2iXXwuyCohy8+z6igI07gVChSGzHOp3wIZa
+	 JaY092JRKQkFik2TB+OLe0WFl/4PQtSCz8HtXg7oFHfb6dT/JeAcwQkYR72H3Olyk3
+	 ns6WGTbpiZsiA==
+Date: Fri, 12 Apr 2024 14:42:41 +0200
+From: Niklas Cassel <cassel@kernel.org>
+To: Vinod Koul <vkoul@kernel.org>
+Cc: Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, afd@ti.com, srk@ti.com,
-	r-gunasekaran@ti.com, b-liu@ti.com, francesco@dolcini.it,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: ti: k3-am62*: Add PHY2 region to USB wrapper
- node
-Message-ID: <ZhksILmpPf5l_-cU@gaggiata.pivistrello.it>
-References: <20240412-for-v6-9-am62-usb-errata-dt-v1-1-ef0d79920f75@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Michal Tomek <mtdev79b@gmail.com>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Jon Lin <jon.lin@rock-chips.com>, linux-phy@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 0/2] rockchip pcie3-phy separate refclk support
+Message-ID: <ZhksQc1kNDWHAfWw@ryzen>
+References: <20240411130150.128107-1-cassel@kernel.org>
+ <ZhkAB6goB4TmcmWu@matsya>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,20 +67,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240412-for-v6-9-am62-usb-errata-dt-v1-1-ef0d79920f75@kernel.org>
+In-Reply-To: <ZhkAB6goB4TmcmWu@matsya>
 
-Hello Roger,
-
-On Fri, Apr 12, 2024 at 02:52:14PM +0300, Roger Quadros wrote:
-> Add PHY2 register space to USB wrapper node. This is required
-> to deal with Errata i2409.
+On Fri, Apr 12, 2024 at 03:03:59PM +0530, Vinod Koul wrote:
+> Hi Niklas,
 > 
-> Signed-off-by: Roger Quadros <rogerq@kernel.org>
+> On 11-04-24, 15:01, Niklas Cassel wrote:
+> > This series is based on: linux-phy phy/fixes
+> > (Since there are other rockchip,pcie3-phy changes there that have not
+> > yet reached mainline and which would otherwise have caused conflicts.)
+> 
+> I merged the fixes into next and tried to apply this patch but second
+> one fails for me. I guess it needs to be rebased.
+> 
+> Always based these changes on phy/next or phy/fixes+next (which is what
+> I will end up with to resolve)
 
-Closes: https://lore.kernel.org/all/20240408095200.GA14655@francesco-nb/
-Reviewed-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+I based it on phy/fixes since there were commits for this driver in phy/fixes
+that were not in phy/next, so I did it for you to not get conflicts :)
 
-Thanks,
-Francesco
+Since this still gave you conflicts, there must have been other changes in
+phy/next for this driver. I must have missed that, sorry.
 
+I see that you have now merged phy/fixes into phy/next, that will make things
+easier, thank you. I will send out a V2 based on phy/next shortly.
+
+
+Kind regards,
+Niklas
 
