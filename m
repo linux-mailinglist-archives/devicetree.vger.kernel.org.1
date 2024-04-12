@@ -1,274 +1,368 @@
-Return-Path: <devicetree+bounces-58536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DEAD8A25DE
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 07:46:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97D388A25EF
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 07:50:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9EB5282C20
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 05:46:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 05FB31F22429
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 05:50:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D0401BC4B;
-	Fri, 12 Apr 2024 05:46:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 393891BDCE;
+	Fri, 12 Apr 2024 05:50:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p59qphZh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IioVJYwU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04CFA1B977;
-	Fri, 12 Apr 2024 05:46:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D9F71BC4E
+	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 05:50:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712900801; cv=none; b=Js2Suvc4zGcJs6xj7h4skhpHZj77a/B8mnZB/cz2MKUxOTYMQpkxnMkvQp3b5yyr3vUzrqjPTdfv7nf7yloh8DgW/mBmmRzAemFWHjUI+RRGWwRaAo0VnVgz2SOtZOYSLKnB3iRscXH+nL2tRjt9oW6yZEw6gvFZ3x0yiJDxpng=
+	t=1712901023; cv=none; b=N/3kZp17ZIblTTNzRfFW1QCk+Ea//PX7phCzvbMPfPMg+8BVncGtOeiTd1weLE+/y2IqTIObCAEQIV6v6IHyCYmiykIrvKTRsfaGqJMP6LwfwDqQzA4zLgQXarboXT1eP3lkUC4JRKLspoBNMveyo74Roru1K01jG25nJoN6I+4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712900801; c=relaxed/simple;
-	bh=Ay524JZmxpoTbV8GuHOb9vG7nbsde/vcILHmqZNFhL4=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=r7wXAGZZ4dTbq6M2EJzMxSqWVSK7ZT9Dk8hyUNs+8dBMuEvSQaCAGGROHmcXBb7UNHdet3dyu+VXWeqKdE4HW7O8kDfehIGSBIdBRFI3bnUxBP8A+/3OR+QYUAaN1t4ZlbaokpVncGGAbUuY3UqAmrA5mKak1ATFTXGN5EFEuuU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p59qphZh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E72BC2BBFC;
-	Fri, 12 Apr 2024 05:46:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712900800;
-	bh=Ay524JZmxpoTbV8GuHOb9vG7nbsde/vcILHmqZNFhL4=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=p59qphZhyxnonI3QWaQ9INVrnBfqJ5VuU/0x4sZWU/l4iBKYPqYFTKpKBauooOMiC
-	 A7dHP+jwbhFI2vNHEOp39KuWq8o8xRVbS1Lc33pm9Ic+VxnThaO4iamkXaqzz4pJVk
-	 1pjalWCxVnrcYtfFESilAw0JHPaZzAXclrDyvShQIP5vlJjmMkky2TV+lFFdfvQDgt
-	 8hR1jkv0Mq3vyKaDxthrqWMFqxXIjG8DHfc6Q9hnBFJjt3EO6tkynNYtNC+2vKJBIy
-	 kKuiYFXLly42XPoSjc0zzUIbH6i3ynIeLEcprVRDoKjYXivmy6oJkCOH1vLZK3TWFc
-	 hiCDIAFnoWCpg==
-Message-ID: <f97cb190debc849b598e6675f8780470.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1712901023; c=relaxed/simple;
+	bh=u2fBRb2MppOqSy4keS9S2tRusxCbNGSH9M8O8szneiE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=l58XJuQThSUfIdJLBf39YvgoFKReyvDg1Vg3YL2PNyygjCngARsr53MR0qq3VJivmGHNzG/O2Qc1A8RZaavPMwp8FpZ5kE1C9DxnknwKr0NpGT9xLViZKnSymH+m0GaxLYWIhq5IhlZ5licK528N7L7x/hzIc083kF+CASSXe18=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IioVJYwU; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a51f9ad7684so28734566b.2
+        for <devicetree@vger.kernel.org>; Thu, 11 Apr 2024 22:50:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712901019; x=1713505819; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=OR54SlsdcNnu/qmb8DNsogrMX6VvD/PSPML5TmmcnNY=;
+        b=IioVJYwUmEctAaZbZLM2F1Jy2fms9ltTCoL1eqb2B8ERrFOjCSV9UL5ReF4IK+zgZJ
+         vmdefpCJF9TRHERXLYhYsukvN1rwOUnDAS6NaBeIaP+nPF42Yx9el3cK9cZ46h/tLcjI
+         bRYWr6xK5X94RTSFGG91BGditnxv8VtnvM5Bi7wT3qMz4Y0UF5qzbdy/cWQLLOIOTr37
+         1mY0FcgxowsSCeRahsWet7jTZeAj87Y9t9qSwSbao7AKtpF2BurZgQcg4jPDXkSKIHwG
+         4H68zvtfvXWmKAl4QBTPYXKalNYeQODyaw5efAwFEhvs6TuAQS8FJUL1RtrwXcPWs2DZ
+         Or3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712901019; x=1713505819;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OR54SlsdcNnu/qmb8DNsogrMX6VvD/PSPML5TmmcnNY=;
+        b=D3Gl4FLCB87BZ6ED1Urxt5uXNfSyeibIiwZ4JMOkt+gK3G9lkWUmXVd0DZZKtkMA5r
+         6kuIzqmhtqCM9Has49b3Fg5qkNjnYKOgEV2LR0AwTLrP+kNIow+r4CIwW8tKrzl6p9/M
+         jR3WSAy4LQX6PvhvVGAm0Zi2U2kEZYH0iSYjPIcv5HpY8B6Qt6HSG9ZDao7U3NEKs74n
+         hn/jODlI+xvOIjM13WCTlkSczhRGp7OdpMXOFIzJcanSHv7fmJlLTNYAb4DCHxr29Mwu
+         y9Gcm7tYZOlVyJxTOmTDXIK9RAqJbQNXwHS9zw82oCV+NPreNnotRGp9uGoB3OsDStc4
+         cmrA==
+X-Forwarded-Encrypted: i=1; AJvYcCXgPMWofraEo72j58NpOaeP0ap32SnXqYSGQVUUrIfceSsmJQ8Ogv+URFX8u6uZB3u5STgQ/PaGo77LiIlEZ+epKlk6hZK2op6Qog==
+X-Gm-Message-State: AOJu0YxsXI2S473Ck2GtI+RUBdfHU38ex4hiqClP5FsK/jkQt8X6riCT
+	BNeuVcABKTD13FTjVhUABJX2KUCwF+Xj6d+UIKhT8HkMAAQqZLmxIHsOf4+L28z3EXQwY3401iJ
+	7
+X-Google-Smtp-Source: AGHT+IExi1jAUfeOXVkPYiwJYVCGENvkywJmwiCyKsAm0POBLtZ9B23nXH8iJT1aVrHInVp4KbRWJg==
+X-Received: by 2002:a50:cc94:0:b0:56e:2d93:3f7f with SMTP id q20-20020a50cc94000000b0056e2d933f7fmr1391584edi.39.1712901019445;
+        Thu, 11 Apr 2024 22:50:19 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id b11-20020aa7c6cb000000b0056e7ba0497dsm1325309eds.28.2024.04.11.22.50.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Apr 2024 22:50:18 -0700 (PDT)
+Message-ID: <34de2d9b-c62e-4f18-806c-560ba4474237@linaro.org>
+Date: Fri, 12 Apr 2024 07:50:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <D0H8EDEDKGV9.2FT5JGT59AU8A@bootlin.com>
-References: <20240410-mbly-olb-v1-0-335e496d7be3@bootlin.com> <20240410-mbly-olb-v1-5-335e496d7be3@bootlin.com> <daa732cb31d947c308513b535930c729.sboyd@kernel.org> <D0H8EDEDKGV9.2FT5JGT59AU8A@bootlin.com>
-Subject: Re: [PATCH 05/11] clk: eyeq: add driver
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-mips@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, Gregory CLEMENT <gregory.clement@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>
-To: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Linus Walleij <linus.walleij@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, =?utf-8?q?Th=C3=A9o?= Lebrun <theo.lebrun@bootlin.com>
-Date: Thu, 11 Apr 2024 22:46:38 -0700
-User-Agent: alot/0.10
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] dt-bindings: iio: dac: Add adi,ltc2664.yaml
+To: Kim Seer Paller <kimseer.paller@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, David Lechner <dlechner@baylibre.com>,
+ Michael Hennerich <michael.hennerich@analog.com>
+References: <20240412032102.136071-1-kimseer.paller@analog.com>
+ <20240412032102.136071-2-kimseer.paller@analog.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240412032102.136071-2-kimseer.paller@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Quoting Th=C3=A9o Lebrun (2024-04-11 03:46:04)
-> Hello,
->=20
-> On Thu Apr 11, 2024 at 5:22 AM CEST, Stephen Boyd wrote:
-> > Quoting Th=C3=A9o Lebrun (2024-04-10 10:12:34)
-> > > diff --git a/drivers/clk/clk-eyeq.c b/drivers/clk/clk-eyeq.c
-> > > new file mode 100644
-> > > index 000000000000..bb2535010ae6
-> > > --- /dev/null
-> > > +++ b/drivers/clk/clk-eyeq.c
-> > > @@ -0,0 +1,644 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > +/*
-> > > + * PLL clock driver for the Mobileye EyeQ5, EyeQ6L and EyeQ6H platfo=
-rms.
-> > > + *
-> > > + * This controller handles read-only PLLs, all derived from the same=
- main
-> > > + * crystal clock. It also exposes divider clocks, those are children=
- to PLLs.
-> > > + * Parent clock is expected to be constant. This driver's registers =
-live in
-> > > + * a shared region called OLB. Some PLLs are initialised early by of=
-_clk_init().
-> >
-> > Is OLB a different DT node? It sounds like maybe this is trying to jam a
-> > driver into DT when the OLB node should be a #clock-cells node.
->=20
-> Yes OLB is a different DT node. It looks like on EyeQ5:
->=20
->         olb: system-controller@e00000 {
->                 compatible =3D "mobileye,eyeq5-olb", "syscon", "simple-mf=
-d";
->                 reg =3D <0 0xe00000 0x0 0x400>;
->                 ranges =3D <0x0 0x0 0xe00000 0x400>;
->                 #address-cells =3D <1>;
->                 #size-cells =3D <1>;
->=20
->                 reset: reset-controller@e00000 {
->                         compatible =3D "mobileye,eyeq5-reset";
->                         reg =3D <0x000 0x0c>, <0x200 0x34>, <0x120 0x04>;
->                         reg-names =3D "d0", "d1", "d2";
->                         #reset-cells =3D <2>;
->                 };
->=20
->                 clocks: clock-controller@e0002c {
->                         compatible =3D "mobileye,eyeq5-clk";
->                         reg =3D <0x02c 0x50>, <0x11c 0x04>;
+On 12/04/2024 05:20, Kim Seer Paller wrote:
+> Add documentation for ltc2664 and ltc2672.
+> 
+> Co-developed-by: Michael Hennerich <michael.hennerich@analog.com>
+> Signed-off-by: Michael Hennerich <michael.hennerich@analog.com>
+> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+> ---
+>  .../bindings/iio/dac/adi,ltc2664.yaml         | 230 ++++++++++++++++++
+>  MAINTAINERS                                   |   8 +
+>  2 files changed, 238 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ltc2664.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ltc2664.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ltc2664.yaml
+> new file mode 100644
+> index 000000000..2f581a9e5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ltc2664.yaml
+> @@ -0,0 +1,230 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/dac/adi,ltc2664.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices LTC2664 and LTC2672 DAC
+> +
+> +maintainers:
+> +  - Michael Hennerich <michael.hennerich@analog.com>
+> +  - Kim Seer Paller <kimseer.paller@analog.com>
+> +
+> +description: |
+> +  Analog Devices LTC2664 4 channel, 16 bit, +-10V DAC
+> +  Analog Devices LTC2672 5 channel, 16 bit, 300mA DAC
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ltc2664.pdf
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ltc2672.pdf
+> +
+> +$defs:
+> +  toggle-operation:
+> +    type: object
+> +    description: Toggle mode channel setting.
+> +
+> +    properties:
+> +      reg:
+> +        description: Channel number.
+> +        minimum: 0
+> +        maximum: 4
+> +
+> +      adi,toggle-mode:
+> +        description:
+> +          Set the channel as a toggle enabled channel. Toggle operation enables
+> +          fast switching of a DAC output between two different DAC codes without
+> +          any SPI transaction.
+> +        type: boolean
+> +
+> +patternProperties:
+> +  "^channel@[0-4]$":
+> +    type: object
 
-Is this reg property always the same value '0x2c'?
+patternProps go after properties.  You miss additionalProperties: false
+and actual properties defined in top-level part of the binding.
 
->                         reg-names =3D "plls", "ospi";
->                         #clock-cells =3D <1>;
->                         clocks =3D <&xtal>;
->                         clock-names =3D "ref";
->                 };
->=20
->                 pinctrl: pinctrl@e000b0 {
->                         compatible =3D "mobileye,eyeq5-pinctrl";
->                         reg =3D <0x0b0 0x30>;
->                 };
->         };
+I wouldn't call your schema easiest to read. You have two quite
+different devices.
+
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ltc2664
+> +      - adi,ltc2672
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    maximum: 50000000
+
+Missing definition of this property, so ref to spi-peripheral-props.
+Look at other bindings having this property.
+
+> +
+> +  vcc-supply:
+> +    description: Analog Supply Voltage Input.
+> +
+> +  iovcc-supply:
+> +    description: Digital Input/Output Supply Voltage.
+> +
+> +  vref-supply:
+> +    description:
+> +      Reference Input/Output. The voltage at the REF pin sets the full-scale
+> +      range of all channels. If not provided the internal reference is used and
+> +      also provided on the VREF pin.
+> +
+> +  clr-gpios:
+> +    description:
+> +      If specified, it will be asserted during driver probe. As the line is
+> +      active low, it should be marked GPIO_ACTIVE_LOW.
+
+First sentence tells nothing about hardware. Do not describe driver
+behavior, but hardware.
+
+Second sentence is 90% redundant - just say, when describing the
+hardware, that the line for foo bar is active low.
 
 
->=20
-> Keep in mind OLB is a complex beast. On EyeQ5, it hosts something like
-> 150 registers, describing 20ish various hardware features. We have to
-> expose registers to drivers for one-off reads/writes. One example found
-> upstream: I2C speed mode register. Others will be Ethernet, eMMC DMA
-> config, etc. A syscon makes sense.
+> +    maxItems: 1
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: adi,ltc2664
+> +    then:
+> +      properties:
+> +        adi,manual-span-operation-config:
+> +          description:
+> +            This property must mimic the MSPAN pin configurations.
+> +            By tying the MSPAN pins (MSP2, MSP1 and MSP0) to GND
+> +            and/or VCC, any output range can be hardware-configured
+> +            with different mid-scale or zero-scale reset options.
+> +            The hardware configuration is latched during power on reset
+> +            for proper operation.
+> +              0 - MPS2=GND, MPS1=GND, MSP0=GND
+> +              1 - MPS2=GND, MPS1=GND, MSP0=VCC
+> +              2 - MPS2=GND, MPS1=VCC, MSP0=GND
+> +              3 - MPS2=GND, MPS1=VCC, MSP0=VCC
+> +              4 - MPS2=VCC, MPS1=GND, MSP0=GND
+> +              5 - MPS2=VCC, MPS1=GND, MSP0=VCC
+> +              6 - MPS2=VCC, MPS1=VCC, MSP0=GND
+> +              7 - MPS2=VCC, MPS1=VCC, MSP0=VCC (enables SoftSpan feature)
+> +          $ref: /schemas/types.yaml#/definitions/uint32
+> +          enum: [0, 1, 2, 3, 4, 5, 6, 7]
+> +          default: 7
+> +
+> +      patternProperties:
+> +        "^channel@([0-3])$":
 
-Syscons are a slippery slope. It makes it easy to give up abstracting
-the 20ish hardware features and makes the resulting drivers which use
-the syscon highly platform specific.
+and the channel@4 is? You allow anything.
 
-Regardless of having a syscon or not, the binding should collapse the
-sub-nodes into the olb node. If that requires making a different
-compatible for different olb nodes, then that's actually better because
-there may be some quirk for one of the olbs and not the other and we
-won't be able to fix that without a compatible string update. It would
-also make the reg-names property go away, because the sub-functionality
-drivers would have the register offsets hard-coded as some offset from
-the base of olb, instead of encoding that in DT.
+> +          $ref: '#/$defs/toggle-operation'
+> +          unevaluatedProperties: false
+> +
+> +          description: Channel in toggle functionality.
+> +
+> +          properties:
+> +            adi,output-range-microvolt:
+> +              description: Specify the channel output full scale range.
+> +              oneOf:
+> +                - items:
+> +                    - const: 0
+> +                    - enum: [5000000, 10000000]
+> +                - items:
+> +                    - const: -5000000
+> +                    - const: 5000000
+> +                - items:
+> +                    - const: -10000000
+> +                    - const: 10000000
+> +                - items:
+> +                    - const: -2500000
+> +                    - const: 2500000
+> +
+> +          required:
+> +            - adi,output-range-microvolt
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: adi,ltc2672
+> +    then:
+> +      properties:
+> +        adi,rfsadj-ohms:
+> +          description: If FSADJ is tied to VCC, an internal RFSADJ (20 kΩ) is
+> +            selected, which results in nominal output ranges. When an external
+> +            resistor of 19 kΩ to 41 kΩ can be used instead by connecting the
+> +            resistor between FSADJ and GND it controls the scaling of the
+> +            ranges, and the internal resistor is automatically disconnected.
+> +          minimum: 19000
+> +          maximum: 41000
+> +          default: 20000
+> +
+> +      patternProperties:
+> +        "^channel@([0-4])$":
+> +          $ref: '#/$defs/toggle-operation'
+> +          unevaluatedProperties: false
+> +
+> +          description: Configuration properties for a channel in toggle mode
+> +
+> +          properties:
+> +            adi,output-range-microamp:
+> +              description: Specify the channel output full scale range.
+> +              $ref: /schemas/types.yaml#/definitions/uint32
+> +              enum: [3125000, 6250000, 12500000, 25000000, 50000000, 100000000,
+> +                     200000000, 300000000]
+> +
+> +          required:
+> +            - adi,output-range-microamp
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - spi-max-frequency
+> +  - vcc-supply
+> +  - iovcc-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    spi {
+> +          #address-cells = <1>;
 
->=20
-> I2C looks like like this for example, look at mobileye,olb.
->=20
->         i2c@300000 {
->                 compatible =3D "mobileye,eyeq5-i2c", "arm,primecell";
->                 reg =3D <0x300000 0x1000>;
->                 interrupt-parent =3D <&gic>;
->                 interrupts =3D <GIC_SHARED 1 IRQ_TYPE_LEVEL_HIGH>;
->                 clock-frequency =3D <400000>;
->                 #address-cells =3D <1>;
->                 #size-cells =3D <0>;
->                 clocks =3D <&i2c_ser_clk>, <&i2c_clk>;
->                 clock-names =3D "i2cclk", "apb_pclk";
->                 mobileye,olb =3D <&olb 0>;
->         };
->=20
-> See commits 7d4c57abb928 and 1b9a8e8af0d9:
->   i2c: nomadik: support Mobileye EyeQ5 I2C controller
->   dt-bindings: i2c: nomadik: add mobileye,eyeq5-i2c bindings and example
+Use 4 spaces for example indentation.
 
-Why isn't i2c speed mode another clk exposed by OLB that rounds to the
-different rates?
 
->=20
-> > > +
-> > > +       for (i =3D 0; i < data->div_count; i++) {
-> > > +               const struct eqc_div *div =3D &data->divs[i];
-> > > +               void __iomem *base =3D NULL;
-> > > +               struct clk_hw *parent;
-> > > +               unsigned int j;
-> > > +
-> > > +               /*
-> > > +                * Multiple divider clocks can request the same resou=
-rce. Store
-> > > +                * resource pointers during probe(). For each divider=
- clock,
-> > > +                * check if previous clocks referenced the same resou=
-rce name.
-> > > +                *
-> > > +                * See EQ6HC_SOUTH_DIV_OSPI_REF and EQ6HC_SOUTH_DIV_O=
-SPI_SYS.
-> > > +                */
-> > > +               for (j =3D 0; j < i; j++) {
-> > > +                       if (strcmp(data->divs[j].resource_name, div->=
-resource_name) =3D=3D 0) {
-> > > +                               base =3D div_resources[j];
-> > > +                               break;
-> > > +                       }
-> > > +               }
-> > > +
-> > > +               /* Resource is first encountered. */
-> > > +               if (!base) {
-> > > +                       base =3D devm_platform_ioremap_resource_bynam=
-e(pdev, div->resource_name);
-> > > +                       if (IS_ERR(base)) {
-> > > +                               dev_warn(dev, "failed to iomap resour=
-ce for %s\n", div->name);
-> > > +                               priv->cells->hws[div->index] =3D base;
-> > > +                               continue;
-> > > +                       }
-> > > +               }
-> >
-> > I don't get this code at all. The driver should simply map the
-> > resources because it knows that there's an io resource. I'll look at the
-> > binding which is probably wrong and causing the driver to be written
-> > this way.
->=20
-> This is here for a single reason: EyeQ6H south OLB has two clocks that
-> live in the same register:
->=20
->  - div-ospi-ref, reg offset 0x90, mask GENMASK(9,  8) =3D=3D 0x300.
->  - div-ospi-sys, reg offset 0x90, mask GENMASK(12, 4) =3D=3D 0x1FF0.
->=20
-> Calling twice devm_platform_ioremap_resource_byname() with the same
-> resource name gives an error. So we need to buffer resources already
-> requested.
->=20
-> If there is a simpler & better solution I'd be happy to take it.
 
-Sure, don't call platform_ioremap_resource() and friends more than once
-per index. But why is the code written in a way that that is happening?
-Maybe the driver can ioremap resources, and then register clks for those
-resources. I suspect the only way of getting here is that the driver is
-focused on registering clks, and ioremapping resources while registering
-clks. Don't do that, because then you have to write code to track
-resources.
+Best regards,
+Krzysztof
 
->=20
->=20
-> [...]
->=20
-> > > +       /*
-> > > +        * We expect named resources if divider clocks are present.
-> > > +        * Else, we only expect one resource.
-> > > +        */
-> >
-> > Please avoid named resources. They give the false sense of hope that the
-> > binding can re-order the reg property when that can't be done. Instead,
-> > just index and know which index to use in the driver.
->=20
-> It is unclear what you mean by not being able to re-order reg property?
-> Are you talking about reg-names being most often defined as items const
-> list and therefore cannot be reordered? Here binding declare things
-> using minItems/maxItems/enum so it can be reordered, looking like:
-
-Yes, that's wrong.
-
->=20
->   properties:
->     reg:
->       minItems: 2
->       maxItems: 2
->     reg-names:
->       minItems: 2
->       maxItems: 2
->       items:
->         enum: [ plls, ospi ]
->=20
-> If this is not what you are talking about then I rambled about garbage
-> and I'll use indexed resources.
->=20
-
-You cannot reorder strings in a DT binding property after the fact.
-While the code will keep working if the reg-names elements are
-re-ordered, the binding will be backwards incompatible, because the
-reg-names property must have the same order. It can be convenient to use
-reg-names if you have a long list of reg properties to map, but having
-two or one elements isn't a very strong argument.
 
