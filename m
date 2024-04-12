@@ -1,155 +1,146 @@
-Return-Path: <devicetree+bounces-58681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58682-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E59168A2D04
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 13:02:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A3BF8A2D05
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 13:03:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A13FD286ED6
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 11:02:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B7D41C21227
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 11:03:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28F5143AD7;
-	Fri, 12 Apr 2024 11:02:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D78F502B0;
+	Fri, 12 Apr 2024 11:03:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qJerQq9y"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="iS1G2RFQ";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="b7R26/kx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC38250A6C;
-	Fri, 12 Apr 2024 11:02:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6241D42069;
+	Fri, 12 Apr 2024 11:03:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712919730; cv=none; b=J7rCcn4fOuHaaOEarmbqPHvWfKiK6ZJBtvCs8oTEyqgci+i2ZffgfXYJ7mJsc7IrWqsn1nCcLOtV15ggji4x1sFMB9ROlQgYH60BhNBvl4yCtCFhEJpI6ilxqAm2if7U2qUL64pmPCDnN8WdOQcQGcS0wuJkPDyjQZlxwzSep/k=
+	t=1712919822; cv=none; b=tEjRTDfcISdaw/KvWScDD4Q9+kYObf9C+M0J882N7rZ8owR1YQBvbgTIivwXWrrpLDmewrpPmBtlSt9fsaFhg584Oy1jVUDwxPQFiw9INGoUH2UKCvsAMVjVPHBDW+MPf2cHgMl/qJviw5GI2UjvO6MbVDCNLKUO9XmwjucTzhA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712919730; c=relaxed/simple;
-	bh=pg37VYQhVBOP/ZWLsG5FBf76Ky5PRnHG/vG2w8kdFjg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mRGPWSQ5t4PHwA0Vm+NFFLADFhONEb7XjDH8JbRWXZ6h81iqu/DjIf/HJW73Lyi8z37TJdnH+mXNgPeffemiPuuLx/HSFbevHpzye5DOhDUZY/ezCzPOcqGzQnWmD90mtDqny6Xb1p8HMng6a+FzMOTFB3F793Fx/id/awmtQwY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qJerQq9y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3793C113CD;
-	Fri, 12 Apr 2024 11:02:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712919729;
-	bh=pg37VYQhVBOP/ZWLsG5FBf76Ky5PRnHG/vG2w8kdFjg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qJerQq9yCM+8cWMu6PoRUlau9659v6ggFsegxC4YOuFI/PLK+TevvT0hil+1G68NT
-	 wfGCw7AXHRVJugQR+kuGU4dWr1EZPPLJS6RzD3Hj/U/8pscE2ohjm1kmRLvTjgdIrX
-	 PGxJasXGzIb29CfRAJJE4Kw32baJL54vWGbkOrtTLx2fcTxoAnXs0mzunxDzqlDL7R
-	 6By2RlmEVjeN3cgpqXO8mKb8IEGizSR6VcrGbmBvEsXBSPOK933qJnAJN9xRcAAhst
-	 j/9AlVrdGstAykkzPW53XtoNW2eVh0CBUQJVA3vaweZY/UgyizKEEKC7IKftnQQ7MI
-	 GVsUDC0hK7PUA==
-Date: Fri, 12 Apr 2024 13:02:05 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-spi@vger.kernel.org, broonie@kernel.org,
-	lorenzo.bianconi83@gmail.com, linux-arm-kernel@lists.infradead.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org, nbd@nbd.name,
-	john@phrozen.org, dd@embedd.com, catalin.marinas@arm.com,
-	will@kernel.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com
-Subject: Re: [PATCH 1/3] dt-bindings: spi: airoha: Add YAML schema for SNFI
- controller
-Message-ID: <ZhkUrU5pmbvUY27P@lore-desk>
-References: <cover.1712833493.git.lorenzo@kernel.org>
- <bbc03f8d33c538b36e366e289861b90adbe64a37.1712833493.git.lorenzo@kernel.org>
- <19977d0e-ef31-42c0-aa4b-acd7e773c603@linaro.org>
+	s=arc-20240116; t=1712919822; c=relaxed/simple;
+	bh=2TiG6IisAengvrM4yOX4huG1025pb45Hy0xgkFSuDak=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=aVg/B6C7dLCvRrRuD7RRV1guox+ktQ1qkFFNmQJjjzjbYsNGzQ2fPCiRv51XWe4RzZ+sqGPgBFjSlEdtDD/zvAoRTYHm+4cfbUMKaVmPjTu1XFPf7ce7i/BRN7GTYzDBNR4HknWh/Nwf1+nta8qSIfGMnUuEMWrfhYWw0gbcMMw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=iS1G2RFQ; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=b7R26/kx reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1712919816; x=1744455816;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=scQdImwClcmc50EBROn+qrN6qypN0cK/nS7ZnHeZg+Y=;
+  b=iS1G2RFQ5tIkXfjFHtqXR7QRQj24pXU/e+fX+jKSqaa4z9Bi77QZ5hkW
+   RqOR19Db/r6l3zhiAd9YH70VC2+KfQjsDZDxrqsbrApdRYbD187ts7xZF
+   nK+0579iFzWAMgXd923x6bvNzWNE3zLNFjJY5qkDWQe8BkFT8Rd8e0uHj
+   bVJhnudLpJcj0i6V49tIy9Ks43F+0WU5eBN4L/42t9ycZViQBl0gxgk5X
+   KYK67iXqyzz+QeXk3quM/GP2Jwe2oWLlnjHr9jaSJEgmhmtL/x3y6Lk0K
+   eihjSCVcawYEgAiK7+KgtW1axVLH6sAIdEPEf1FDHwKCWmwQ10PKkQhdo
+   A==;
+X-IronPort-AV: E=Sophos;i="6.07,195,1708383600"; 
+   d="scan'208";a="36388726"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 12 Apr 2024 13:03:31 +0200
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 585FA16F866;
+	Fri, 12 Apr 2024 13:03:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1712919807; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=scQdImwClcmc50EBROn+qrN6qypN0cK/nS7ZnHeZg+Y=;
+	b=b7R26/kx6YRsYn20zRnB/zHjFopoBhsOnTAN3r9Z4YUhLUWrW3wVx9mboaa7cMIWwZsIdS
+	jYtHCYnJ+sIBQUIVS6HDroQnmwodIHXU2kkijuGNJYQy2/obQbA7LopuMLD9qwYs1kfGGb
+	zuQUVlCVtoGiKuZRgGBvd2IiMiIecF4cIYsjF8657CBGcuZHIGB5lpHJcwS5/VqREGpQzA
+	JPLJjDbqO5Y5+Eiifxjp+xtztyB7SRIDhVbqi5YhTjmgiZs4ra/wGat5mAwWtV1uPehmkM
+	8M5Q6pktAflCfhGGJ84ZVYPTLOUQfHIrP/B4Z2yS6bE+Gy3J/Cr90tCWsS+Gjw==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lucas Stach <l.stach@pengutronix.de>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v2 1/1] dt-bindings: interrupt-controller: fsl,irqsteer: Add imx8qxp support
+Date: Fri, 12 Apr 2024 13:03:18 +0200
+Message-Id: <20240412110318.273791-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="yK/Y7uL0aO9iUQOp"
-Content-Disposition: inline
-In-Reply-To: <19977d0e-ef31-42c0-aa4b-acd7e773c603@linaro.org>
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
+Some SoC like i.MX8QXP use a power-domain for this IP. Add a SoC-specific
+compatible, which also requires a power-domain.
 
---yK/Y7uL0aO9iUQOp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+This patch replaces v1 from [1].
 
-> On 11/04/2024 13:08, Lorenzo Bianconi wrote:
-> > Introduce Airoha EN7581 SPI NAND controller binding
-> >=20
-> > Tested-by: Rajeev Kumar <Rajeev.Kumar@airoha.com>
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > ---
-> >  .../bindings/spi/airoha,spi-airoha-snfi.yaml  | 56 +++++++++++++++++++
-> >  1 file changed, 56 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/spi/airoha,spi-ai=
-roha-snfi.yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/spi/airoha,spi-airoha-sn=
-fi.yaml b/Documentation/devicetree/bindings/spi/airoha,spi-airoha-snfi.yaml
-> > new file mode 100644
-> > index 000000000000..0244f242eff1
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/spi/airoha,spi-airoha-snfi.yaml
->=20
-> Use compatible as filename.
+Changes in v2:
+* Add imx8qxp specific compatible
+* Require a power-domain for this SoC
 
-ack, I will fix it.
+[1] https://lore.kernel.org/all/20240110094338.472304-1-alexander.stein@ew.tq-group.com/
+ .../interrupt-controller/fsl,irqsteer.yaml    | 20 ++++++++++++++++++-
+ 1 file changed, 19 insertions(+), 1 deletion(-)
 
->=20
-> > @@ -0,0 +1,56 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/spi/airoha,spi-airoha-snfi.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: SPI-NAND flash controller for Airoha ARM SoCs
-> > +
-> > +maintainers:
-> > +  - Lorenzo Bianconi <lorenzo@kernel.org>
-> > +
-> > +allOf:
-> > +  - $ref: spi-controller.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: airoha,en7581-snand
-> > +
-> > +  reg:
-> > +    maxItems: 2
->=20
-> Instead list and describe items.
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml
+index 20ad4ad82ad6..0ce0246870c0 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml
+@@ -14,7 +14,9 @@ properties:
+     oneOf:
+       - const: fsl,imx-irqsteer
+       - items:
+-          - const: fsl,imx8m-irqsteer
++          - enum:
++              - fsl,imx8m-irqsteer
++              - fsl,imx8qxp-irqsteer
+           - const: fsl,imx-irqsteer
+ 
+   reg:
+@@ -42,6 +44,9 @@ properties:
+   clock-names:
+     const: ipg
+ 
++  power-domains:
++    maxItems: 1
++
+   interrupt-controller: true
+ 
+   "#interrupt-cells":
+@@ -72,6 +77,19 @@ required:
+ 
+ additionalProperties: false
+ 
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: fsl,imx8qxp-irqsteer
++    then:
++      properties:
++        power-domains:
++          minItems: 1
++      required:
++        - power-domains
++
+ examples:
+   - |
+     #include <dt-bindings/clock/imx8mq-clock.h>
+-- 
+2.34.1
 
-ack, I will fix it.
-
->=20
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
->=20
-> This looks incomplete. No clocks? No other resources?
-
-actually spi-snand relies on a fixed-rate clock. I will fix it.
-
-Regards,
-Lorenzo
-
->=20
-> Best regards,
-> Krzysztof
->=20
-
---yK/Y7uL0aO9iUQOp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZhkUrQAKCRA6cBh0uS2t
-rA6PAPwPjK+mL49w2V49EIM1p5+n5VL46H/O7L9LSzO9FIc91AD/X+q/N08igp8V
-pFowxI+9/PwAhqvntQ9M5MPXo0NTogg=
-=V33S
------END PGP SIGNATURE-----
-
---yK/Y7uL0aO9iUQOp--
 
