@@ -1,307 +1,164 @@
-Return-Path: <devicetree+bounces-58685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 154638A2D17
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 13:10:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FE5D8A2D21
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 13:15:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3BF32B22281
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 11:10:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A3487B2257B
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 11:15:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 660855336D;
-	Fri, 12 Apr 2024 11:10:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0498753E38;
+	Fri, 12 Apr 2024 11:15:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b="kByBG0EC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bifuBWKo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from meesny.iki.fi (meesny.iki.fi [195.140.195.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 053F551C54;
-	Fri, 12 Apr 2024 11:10:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=195.140.195.201
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712920248; cv=pass; b=KSrwMXC6c5Q6cn7RO05MB7n928BNKEAPGzztkvVZP5T/BRHppVUMwbHIw2YiMSmoVjjTNDBTk8at1bal9/rLvnFOb2wk18CHAXFeZHGVBM5w6X6oL2G8t4xBfIfxnx033Wwle7Kgxxo6H0T8s6UYo0OG8cYcRdbq6TFCILDRdvs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712920248; c=relaxed/simple;
-	bh=sm4OME+SVtDtwtFX9ZHMiNSXlJrN06erUyBu6fEqpDk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ReLpdW6lNz04WO3mqs8UIacz9ZJcQTfAw3+Rpqq+pRVhkQxMTmXIqhOyoFZaMCj3y8nXr6D9iL5mpoHWTsARYr5rETg3zj+B2d448HDIxC1H+15pzGsM+S1c96fs0SOetbeIv8jwg25sZhlNnDjCJG/ClnGSjX2JxGtkURiKgkA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b=kByBG0EC; arc=pass smtp.client-ip=195.140.195.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
-Received: from hillosipuli.retiisi.eu (80-248-247-191.cust.suomicom.net [80.248.247.191])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sailus)
-	by meesny.iki.fi (Postfix) with ESMTPSA id 4VGDPl3DC4zyRj;
-	Fri, 12 Apr 2024 14:10:35 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-	t=1712920235;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=bLRG4cK7PaR45L7fZmpXa+sQpzcokirYHNzWvW3y/9o=;
-	b=kByBG0EC+sDpuFvBpD0s/PmeoBrSKrlsu2nqN8pj++WNZTB1/JI8tUKFXnZrhu9fILVLM3
-	YWRwggCrobxuTPEER/rQOMpo/D7LpSPztTooHQC+r23vteMKhePMuxao7DlRCL6JLS+uPz
-	9IeJjwRoxnJ6X8B73sOc4Ew33JFrpSI=
-ARC-Seal: i=1; s=meesny; d=iki.fi; t=1712920235; a=rsa-sha256; cv=none;
-	b=n6/dBjIDbtgSv4LoTbBOd28swjhwmkQZnXsmLNm3L9kRwZ/AairsXmN/sFmZ41pji9QDoP
-	bXS3Burufrmd2I2TvB2xL+mVYgxxyo3Ur2njd07J+aDrg32I2EJYKYiJRuSCHCMBiXRf9t
-	aH6hkIcJFNls1YuDX9XsV8H7I+c/uS4=
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-	s=meesny; t=1712920235;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=bLRG4cK7PaR45L7fZmpXa+sQpzcokirYHNzWvW3y/9o=;
-	b=mwXqEpkRjGe1jrejzl+aqYeSNMTYG18NU104EF/rSl8qrkQnG3tDhPuwj3huYY7fabFSD5
-	SavNQr0N3MwYVj+cakidfTADSIwGJtY5+xYXv7H7uTE9SqmLMF/yIAQTBjyMEmoQUILCDl
-	igswbE5B2IqwaTloMfukP8uyxKDYMWE=
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 2217B634C96;
-	Fri, 12 Apr 2024 14:10:33 +0300 (EEST)
-Date: Fri, 12 Apr 2024 11:10:32 +0000
-From: Sakari Ailus <sakari.ailus@iki.fi>
-To: Julien Massot <julien.massot@collabora.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	kernel@collabora.com, linux-kernel@vger.kernel.org,
-	mchehab@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Subject: Re: [PATCH v6 1/4] dt-bindings: media: add Maxim MAX96717 GMSL2
- Serializer
-Message-ID: <ZhkWqEAN4RozmPlT@valkosipuli.retiisi.eu>
-References: <20240325131634.165361-1-julien.massot@collabora.com>
- <20240325131634.165361-2-julien.massot@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E83D3FBA4
+	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 11:15:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712920530; cv=none; b=jStAjUSQkb1CnSlpsm1Q2sGMujS++qnUgSeH+MQMpulxwli0zesHFl6Hk30s8164fBAY5yy2mIwgzOi7y+B0+QhVUGH6Vm5TSh53OHMBG9V77RHoBuamUwCZrirNOl+vqbqJK/lT7AnFAJKh+cwVFscJCPrYOyYOKtUjnxx/6oA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712920530; c=relaxed/simple;
+	bh=E/uUvnAayS2kUpJvbMbwdVkr1FtYoVzqWi03CDEIUz8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NN2iZbg5oMMPnTO8A/KPQPmCPFha1pupUaOEUw/8t5OdrFJxi7HmkHq4ZSIoZYvK5OdtmtYOSCSeIEm4e1DTmv/lK/enGUcjJcly/OnCSn+iGYeG94rmZtX+WBSnmbmqkyipKznCNC3rUSn9M+CdtUnZT64ApVySQHEwU2FXT6s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bifuBWKo; arc=none smtp.client-ip=209.85.128.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-617e6c873f3so8120207b3.2
+        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 04:15:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712920527; x=1713525327; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=+WKE9nZBcXA36QYNF70EQgVWpqyE2qptSPUnfSkOVlI=;
+        b=bifuBWKoqEXsBcEm2jmBN5t75IYOcC8H5WVqonQq9fdP97++mGrx5zzp3GK4SGwz5V
+         B5Bs7BJyG+srVqx2g5olPzboCxYHKOX8RkVv6jgwSy9boFUTDFT34eeuHaowynPMgIBn
+         FALx7sRsip+pT8Agb+hChX8bK9I92A7KZwaMW1jWsQe6XPUeFoYSTT9Itlj9NVjaQUVJ
+         w3dvYwZoYK+7bv8L+2Rc2KXjO/FrmHpEMq0DTke226ZBuCeK6XR+PkmtQgXWbPZN7F6Q
+         +i6vLDGYbcrxZsu4OQcLsmedmO83WBMOjmqPxwPSFtKw9Jc8nu1fkSgVQTtEDCkzrIK3
+         OTDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712920527; x=1713525327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+WKE9nZBcXA36QYNF70EQgVWpqyE2qptSPUnfSkOVlI=;
+        b=lWgJSrnwz2k/u8dRnHtgtquKlSrX3r0BxBp+cvETepfwqWpNOS1OPlPxDULcGgHgbV
+         TybXJBxwlqrlGVOW9dn7iH6Y7yjsI7MKjxGHGFEWIfeW5cXP85M5CSZrf88G4iK8dj6V
+         xdeMVukALjeW0sSm9MkONAXpjnQwFOwhvIkfZoWeYVsfBvZ5ZAqa+3Gys9fr9ZZ9ao6z
+         VQXfv8WqlKffX0a52P4O01U8dyGyrn5Vor3N643jxHh+fHcq1TWX51MhpOCpV/Vopk47
+         WO3mVdCjwVhDDiYHSpyAe2u2Pfg02jO4thBg82DzTtVyS2ao2g4abFpOCI2WJBo7ZivL
+         y2LQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU/hro0fgstziS8v+/qAqjN5KOFMhAKna8yZw3SUJDaJjeha2o6bZg8zv5P3PrsX3FcLEQfpcqmdlZU8Z1AM2BWmcf7+GTWQTDx0A==
+X-Gm-Message-State: AOJu0YxTpvZtCL8MRgYlmxRw2PlNdkmlkNZcmRqviRcAMFG7PZPiwXRd
+	8GiBvSheG8KBCzoRHH4extAGtwus2jyqvoYus7AYBiTrUaMK2i+CZIXDf/bWryl1+NQ9Ye8PvD5
+	aB6/CXVLzqAzqZWFNgHUVXkPfV3/07XW3UidioA==
+X-Google-Smtp-Source: AGHT+IFgT7mF3uN/XJl/pEETuZHEE3BcaQGuPPTM6pYVu0988Ijil85l3VLhQQ0xGShXQRYVoF63WvQ+ywlZ5uk6PAI=
+X-Received: by 2002:a25:bb8c:0:b0:dc2:4f34:c964 with SMTP id
+ y12-20020a25bb8c000000b00dc24f34c964mr2068134ybg.23.1712920527317; Fri, 12
+ Apr 2024 04:15:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240325131634.165361-2-julien.massot@collabora.com>
+References: <20240410134044.2138310-1-claudiu.beznea.uj@bp.renesas.com> <20240410134044.2138310-10-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20240410134044.2138310-10-claudiu.beznea.uj@bp.renesas.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Fri, 12 Apr 2024 13:14:51 +0200
+Message-ID: <CAPDyKFqq+gMDHx_-g-j9rO3nBDcXRSoXRjJK9D51=VaQ5XaGvw@mail.gmail.com>
+Subject: Re: [PATCH RESEND v8 09/10] watchdog: rzg2l_wdt: Power on the PM
+ domain in rzg2l_wdt_restart()
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de, 
+	geert+renesas@glider.be, magnus.damm@gmail.com, biju.das.jz@bp.renesas.com, 
+	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Julien,
-
-On Mon, Mar 25, 2024 at 02:16:31PM +0100, Julien Massot wrote:
-> Add DT bindings for Maxim MAX96717 GMSL2 Serializer.
-> 
-> Signed-off-by: Julien Massot <julien.massot@collabora.com>
+On Wed, 10 Apr 2024 at 16:19, Claudiu <claudiu.beznea@tuxon.dev> wrote:
+>
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> The rzg2l_wdt_restart() is called from atomic context. Calling
+> pm_runtime_{get_sync, resume_and_get}() or any other runtime PM resume
+> APIs is not an option as it may lead to issues as described in commit
+> e4cf89596c1f ("watchdog: rzg2l_wdt: Fix 'BUG: Invalid wait context'")
+> that removed the pm_runtime_get_sync() and used directly the
+> clk_prepare_enable() APIs.
+>
+> Starting with RZ/G3S the watchdog could be part of its own software
+> controlled power domain (see the initial implementation in Link section).
+> In case the watchdog is not used the power domain is off and accessing
+> watchdog registers leads to aborts.
+>
+> To solve this the patch powers on the power domain using
+> dev_pm_genpd_resume() API before enabling its clock. This is not
+> sleeping or taking any other locks as the power domain will not be
+> registered with GENPD_FLAG_IRQ_SAFE flags.
+>
+> Link: https://lore.kernel.org/all/20240208124300.2740313-1-claudiu.beznea.uj@bp.renesas.com
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 > ---
-> Change since v5:
->  - Reverse the fallback MAX96717 can fallback to MAX96717F
->  - Use const instead of enum for MAX96717F compatible
->  
-> Change since v4:
->  - Add compatible for MAX96717 and use it as a fallback for MAX96717F
->  - Remove extra '|' for decriptions
->  - Reference 'i2c-gate' instead of 'i2c-controller'
-> 
-> Change since v3:
->  - Renamed file to maxim,max96717.yaml dropped the 'f' suffix
->  - Added lane-polarities and bus type properties to the CSI endpoint
-> 
-> Change since v2:
->  - remove reg description
->  - add data lanes min/maxItems
->  - Use generic node name 
-> ---
->  .../bindings/media/i2c/maxim,max96717.yaml    | 164 ++++++++++++++++++
->  1 file changed, 164 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/maxim,max96717.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max96717.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max96717.yaml
-> new file mode 100644
-> index 000000000000..ac8bf11a6fa5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max96717.yaml
-> @@ -0,0 +1,164 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2024 Collabora Ltd.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/maxim,max96717.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>
+> Changes in v8:
+> - none, this patch is new
+>
+>  drivers/watchdog/rzg2l_wdt.c | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+>
+> diff --git a/drivers/watchdog/rzg2l_wdt.c b/drivers/watchdog/rzg2l_wdt.c
+> index c8c20cfb97a3..98e5e9914a5d 100644
+> --- a/drivers/watchdog/rzg2l_wdt.c
+> +++ b/drivers/watchdog/rzg2l_wdt.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/pm_domain.h>
+>  #include <linux/pm_runtime.h>
+>  #include <linux/reset.h>
+>  #include <linux/units.h>
+> @@ -164,6 +165,17 @@ static int rzg2l_wdt_restart(struct watchdog_device *wdev,
+>         struct rzg2l_wdt_priv *priv = watchdog_get_drvdata(wdev);
+>         int ret;
+>
+> +       /*
+> +        * The device may be part of a power domain that is currently
+> +        * powered off. We need to power it up before accessing registers.
+> +        * We don't undo the dev_pm_genpd_resume() as the device need to
+> +        * be up for the reboot to happen. Also, as we are in atomic context
+> +        * here there is no need to increment PM runtime usage counter
+> +        * (to make sure pm_runtime_active() doesn't return wrong code).
+> +        */
+> +       if (!pm_runtime_active(wdev->parent))
+> +               dev_pm_genpd_resume(wdev->parent);
 > +
-> +title: MAX96717 CSI-2 to GMSL2 Serializer
-> +
-> +maintainers:
-> +  - Julien Massot <julien.massot@collabora.com>
-> +
-> +description:
-> +  The MAX96717 serializer converts MIPI CSI-2 D-PHY or C-PHY formatted input
-> +  into GMSL2 serial outputs. The device allows the GMSL2 link to
-> +  simultaneously transmit bidirectional control-channel data while forward
-> +  video transmissions are in progress. The MAX96717 can connect to one
-> +  remotely located deserializer using industry-standard coax or STP
-> +  interconnects. The device cans operate in pixel or tunnel mode. In pixel mode
-> +  the MAX96717 can select the MIPI datatype, while the tunnel mode forward all the MIPI
-> +  data received by the serializer.
-> +  The MAX96717 supports Reference Over Reverse (channel),
-> +  to generate a clock output for the sensor from the GMSL reverse channel.
-> +
-> +  The GMSL2 serial link operates at a fixed rate of 3Gbps or 6Gbps in the
-> +  forward direction and 187.5Mbps in the reverse direction.
-> +  MAX96717F only supports a fixed rate of 3Gbps in the forward direction.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: maxim,max96717f
-> +      - items:
-> +          - enum:
-> +              - maxim,max96717
-> +          - const: maxim,max96717f
-> +
-> +  '#gpio-cells':
-> +    const: 2
-> +    description:
-> +      First cell is the GPIO pin number, second cell is the flags. The GPIO pin
-> +      number must be in range of [0, 10].
-> +
-> +  gpio-controller: true
-> +
-> +  '#clock-cells':
-> +    const: 0
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: CSI-2 Input port
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/media/video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              data-lanes:
-> +                minItems: 1
-> +                maxItems: 4
-> +
-> +              lane-polarities:
-> +                minItems: 1
-> +                maxItems: 5
-> +
-> +              bus-type:
-> +                enum:
-> +                  - 1 # MEDIA_BUS_TYPE_CSI2_CPHY
-> +                  - 4 # MEDIA_BUS_TYPE_CSI2_DPHY
 
-Now that you have C-PHY here, does the hardware support data line order
-mapping? Just wondering. The bindings can be added without that and support
-added later on---that's what the video-interfaces.yaml is currently
-missing.
+I doubt this is the correct solution, but I may be wrong. Unless this
+is invoked at the syscore stage?
 
-lane-polarities is only valid for D-PHY. What about the data-lanes, the
-maximum is probably different for C-PHY?
+>         clk_prepare_enable(priv->pclk);
+>         clk_prepare_enable(priv->osc_clk);
+>
+> --
+> 2.39.2
+>
+>
 
-> +
-> +            required:
-> +              - data-lanes
-> +              - bus-type
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        unevaluatedProperties: false
-> +        description: GMSL Output port
-> +
-> +    required:
-> +      - port@1
-> +
-> +  i2c-gate:
-> +    $ref: /schemas/i2c/i2c-gate.yaml
-> +    unevaluatedProperties: false
-> +    description:
-> +      The MAX96717 will forward the I2C requests from the
-> +      incoming GMSL2 link. Therefore, it supports an i2c-gate
-> +      subnode to configure a sensor.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/media/video-interfaces.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        serializer: serializer@40 {
-> +            compatible = "maxim,max96717f";
-> +            reg = <0x40>;
-> +            gpio-controller;
-> +            #gpio-cells = <2>;
-> +            #clock-cells = <0>;
-> +
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                port@0 {
-> +                    reg = <0>;
-> +                    max96717f_csi_in: endpoint {
-> +                        bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
-> +                        data-lanes = <1 2 3 4>;
-> +                        remote-endpoint = <&sensor_out>;
-> +                    };
-> +                };
-> +
-> +                port@1 {
-> +                    reg = <1>;
-> +                    max96917f_gmsl_out: endpoint {
-> +                        remote-endpoint = <&deser_gmsl_in>;
-> +                    };
-> +                };
-> +            };
-> +
-> +            i2c-gate {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +                sensor@10 {
-> +                    compatible = "st,st-vgxy61";
-> +                    reg = <0x10>;
-> +                    reset-gpios = <&serializer 0 GPIO_ACTIVE_LOW>;
-> +                    clocks = <&serializer>;
-> +                    VCORE-supply = <&v1v2>;
-> +                    VDDIO-supply = <&v1v8>;
-> +                    VANA-supply = <&v2v8>;
-> +                    port {
-> +                        sensor_out: endpoint {
-> +                            data-lanes = <1 2 3 4>;
-> +                            remote-endpoint = <&max96717f_csi_in>;
-> +                        };
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
+Can you redirectly me to the complete series, so I can have a better
+overview of the problem?
 
--- 
-Regards,
-
-Sakari Ailus
+Kind regards
+Uffe
 
