@@ -1,122 +1,125 @@
-Return-Path: <devicetree+bounces-58771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF4028A2FA9
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 15:38:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10CC88A2FBD
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 15:45:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 00CBA1C23C4C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 13:38:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E4231F22DDE
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 13:45:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 055A584E07;
-	Fri, 12 Apr 2024 13:37:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA51884A50;
+	Fri, 12 Apr 2024 13:44:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MSMaEXef"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dUmCERz1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F06E84DEA;
-	Fri, 12 Apr 2024 13:37:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A91A684FAB;
+	Fri, 12 Apr 2024 13:44:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712929076; cv=none; b=mF4eMCiau9rs8lRFvFGXn3BAnJjvDkmD2qJ293Ike8J2zJMW3bVnbPedqN0P+HliBnMpWWX1MFlPmAOmYPjvvIHU/7Co+9tt6+dwUwALiokpYhkf6VZyT7G00KbSchqBr2zVM3RS+DHFZha+BjQTsPakHLp+0KuqeVZdi3ZLoUE=
+	t=1712929463; cv=none; b=B/x+EdVjXoSlCywLqIrhEUZz8XZK+whll6iWpPwnxLd5LIUoreoPfBK9aiNjkdf0++mqCc7SFR+73F6U5cITcE20Rx9KaiA6c6MKaiil2gvv0B19RhlUCoTdYeAWmnl+Ylqq8CxPk4U2GAEEmckE+vGDJSWrMXTI+nb01pluyUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712929076; c=relaxed/simple;
-	bh=RtPHTSwAiDMZibFKSA4Jdowqk+RE3EK7sCxTQ9Eflpg=;
+	s=arc-20240116; t=1712929463; c=relaxed/simple;
+	bh=8geQCAid38ejEfA5++6WxsYiP02Q2buqSdVzCqz+9h4=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Dj0w9KeUCW2XKk0m8rwCv5wFDnZJ4UHFZzIJ8vjK9zu5g336rZrUuj82ZDyq2aKUP4Zmqs5Mvtok/BTmxE+6cSIEOEY+dO8ZNgumDPwbSyQl54I3Yz/e4lycujlTSBKGuYO/FJ9/8g9ysQS6TzQ2zRzmTfT2FbuzQ5ijGFoEr+g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MSMaEXef; arc=none smtp.client-ip=209.85.167.46
+	 To:Cc:Content-Type; b=Qs2Weeko9C1gm0MR9SyNSJ3O1ZJauVRiGmSaSl02ZuK3QyWJkoZ0AX8pfYC7EuT9hkASQo7BDJB3UQOSlWDWxZQep9wcogmDHbkQuw9xMFeMu699fVrXuCRXPQ0XtXDbteFohCmZosqGI7u4v6FVaeMtEl2vycPqN+A3fdg1X+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dUmCERz1; arc=none smtp.client-ip=209.85.208.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-516d04fc04bso1502109e87.2;
-        Fri, 12 Apr 2024 06:37:54 -0700 (PDT)
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-56e78970853so3070036a12.0;
+        Fri, 12 Apr 2024 06:44:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712929073; x=1713533873; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1712929460; x=1713534260; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ZBZ/trnMtit0L5nOLjCK4i4uNbzRJ+y85cwstMMxmcc=;
-        b=MSMaEXefpKDDc2uYMIpOFc2i2hOxYu0eSZTRHqnSxo7CNMytbY79q2YBxCdcwMDP3v
-         x4Mj4nCuoEgBXE/1FhIJnV3qq65+FwY3z/9ZOer636GPaF2hrA5qUZZHESbkYm8kqp3k
-         g7+/B8TwTkHdqHbsmW16C5KBMdzueFFfwvQb1OiI08FvoCvFc+19KUaLrxWQPUW5Qiqb
-         ZikI0L5Q/GUH3sV1VlSmil9lLJbazMfI6ujoRkGQVuThMFcjoFbSJHDoCpyKWC4QAQ7F
-         TOea65qFLHtxL0ywCMJXt+jTsdegEI72D5s9KVWvo4Oa/RpP1h0Ge+zF3z/8pdINMedA
-         cOrg==
+        bh=5HaWhaqdaDfNBrfCl5nObWWrEOo5ajao2bIANOPV6KI=;
+        b=dUmCERz1taGZKLJeoAkVhnuB7GYeaxyeNCbJcCFr7l8pEwbi58ck7mdVcWw6//ubzn
+         /rp8MZiIAFea75+DSatrgb0/UixoRBUDXsR/Xdx3A2W3LUbJWdxllXcord61pCAxgGIV
+         fu/81wvwF2z4n3SPDOZlcp65jRza3bvOhkkKesjEutp/VJJK0sh1AvdPKsdKRzEBO7rh
+         id20Ywfbj1sTptN9DXZ6Xfsohn/6w3s8yaFheI6yFF2JVyKCEDL54RTbV81PYsLO/g7+
+         7RPzymj23BI9nU6X7qf7X5WucvqKiKvxO/RYiQR7kR2KvONe/sQ27d2a2/aN+hA1ThRt
+         aoeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712929073; x=1713533873;
+        d=1e100.net; s=20230601; t=1712929460; x=1713534260;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ZBZ/trnMtit0L5nOLjCK4i4uNbzRJ+y85cwstMMxmcc=;
-        b=W9Pp6LQYh1iAEa3FGoUmiVeO5YB0X3aapLBKwUwCqQ3KNEC/A7Bgs/LcKALLyhlz75
-         AUiiG2bj8/WnoynGgIQf3kWwF+qKYoqM1S9zM35vMrY1kXrJqdV9sz0apvrKCksc/4sL
-         5LVn9ZIggXqjZGw1ktBEmkQ8Hn/L8cvibXaz47ENnjr+hwJUc6wqh+kinrlslNzptytl
-         +OKwm8yjRy3RCSXv1j3AKVU63FsFHvxM+2HacxUp6AAgCZcJNr6PXJqdutXKX9Gr9yP3
-         bxCLCNmTu1TqY30bmnq3hG6Go7BKpvEdfKNpYSyhxFS8CgSeYja9uzjk8Tl8E6CO65M/
-         FR1A==
-X-Forwarded-Encrypted: i=1; AJvYcCWqa9C0zhFDF4QAzmgDLOEmWjg6SXDjHeCCjGyaYXLXq7nfS7lUzDVqZnhbzdnXx/pbexNzBjDxX/0bHCXEGEGtb3wqj/JbKaTg6f2rl2gLO7ObW3dja+DufzufGHAVdc8nD/IGeDQPvdXilsWQrkOncEwOmG6NZtQJA4eYbfuVAIuNmx8=
-X-Gm-Message-State: AOJu0Yyopy9yiP4kGBgCOJNHKpyzc/eqsUtDZgR+mOr8iOquqAKVz2o7
-	WR/yNp6tfSTbL2EtRUWED/jqcEJLqJgXIeE4mDSagVmwx3z22P74ZDX0QOC0PTuBY3bxNvIU+83
-	uI7BA3zu5fIR7SeStUg6tMxqyxWg=
-X-Google-Smtp-Source: AGHT+IHNCOxpEcg7kq0YLqhVyBPLSvQx/KccK2KXiNpUI+6rMUuNO8y0wPk5vLRyn20x610DSEMMlhpS/tWB09yu4rg=
-X-Received: by 2002:a05:6512:21d1:b0:513:d5ec:afb with SMTP id
- d17-20020a05651221d100b00513d5ec0afbmr1556007lft.40.1712929073158; Fri, 12
- Apr 2024 06:37:53 -0700 (PDT)
+        bh=5HaWhaqdaDfNBrfCl5nObWWrEOo5ajao2bIANOPV6KI=;
+        b=Vxk8FJARpaizA750UCDABDgomj9EB6JId0NKZB4joxUz1oG35xW04QLNpbmTARNn3P
+         m3ZQGyXLDx8UnBHqvS0xH+7+LFhAlELJTWv9dJuJLMa+Gf92eUk/6NQCOOoWkz718EUJ
+         yLMfqCyuRhZMnPRYVR4+Ms05BxXqObrMTQ0gqO2PJX9RpALqIYxSu1xHYk+7mml+6eX+
+         A3s521vm7GrLB8SG3yFp9CVE9Ullwjha/wWgO1MrDGDPDlfRhSd6w0RUrI/mj9I1dOT0
+         dI01eHtXOJJ5j+4rncYUlVFQoUYdAQSM3cdP2/AVNOUUD7jrI44Wt4K6L7oaUGZO/oRZ
+         3i8w==
+X-Forwarded-Encrypted: i=1; AJvYcCW2/X61F1181GzhA+oYmolxA8JOSypWuw2H3/CAIx1NvHKpLjxDfZ0J6H1XY6xngc4ORVVEsb8VwP1fZG48RcejUsK5D174/UH/g36eWj/B71FtyNOU9gsb1t8+sgpwAM0DwzdMzpPwZ9N74l5fvuIKTxcWqGiVIoDeNaK9Q594TRsKycLe
+X-Gm-Message-State: AOJu0YwdxiATibW//DKA9SN6B4BIoW8fCktlXnwp9IDimRc5DdMPCOBd
+	eANkeYWg5p5ZOfFGMfZXSp9w+HzQ82RFGGtLU6r4OrmGLA/MCnPsZLV9vzqMp3bJudd9K0NVLSB
+	3PlWHnBlzjwxRcRu4V4b4MI5/790=
+X-Google-Smtp-Source: AGHT+IFEC8uEkeMBRcT6w34by85kMHZS8oKJ5rLKlabaLd1wkl5XRtWFVYL35N3RsZ6AdPmJmF+szA/5GkrvS36dQyQ=
+X-Received: by 2002:a17:907:2ce6:b0:a52:a25:2077 with SMTP id
+ hz6-20020a1709072ce600b00a520a252077mr5020537ejc.14.1712929459777; Fri, 12
+ Apr 2024 06:44:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240412-pinctrl-scmi-v9-0-b817344d3a9a@nxp.com>
- <CAHp75VfBaU+F-+3zte66mxgJ+gW9N7j8E+0gw9_T9J5DHTnsBA@mail.gmail.com> <DU0PR04MB9417DF1519C59AEBE156BC2488042@DU0PR04MB9417.eurprd04.prod.outlook.com>
-In-Reply-To: <DU0PR04MB9417DF1519C59AEBE156BC2488042@DU0PR04MB9417.eurprd04.prod.outlook.com>
+References: <20240410104002.1197-1-zhi.mao@mediatek.com> <20240410104002.1197-3-zhi.mao@mediatek.com>
+ <CAHp75VfF0pbrKXjWZg7sTr-T=_CbjP+deFQP-VLCGX8ooahctg@mail.gmail.com> <ZhkBIee2X0UY40yD@kekkonen.localdomain>
+In-Reply-To: <ZhkBIee2X0UY40yD@kekkonen.localdomain>
 From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Fri, 12 Apr 2024 16:37:16 +0300
-Message-ID: <CAHp75Vch7TzevZQK4CE_WSVOgUdzODkJXiv0=OuqrmDfgevV+A@mail.gmail.com>
-Subject: Re: [PATCH v9 0/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
- protocol basic support
-To: Peng Fan <peng.fan@nxp.com>
-Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Sudeep Holla <sudeep.holla@arm.com>, 
-	Cristian Marussi <cristian.marussi@arm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Dan Carpenter <dan.carpenter@linaro.org>, 
-	Dhruva Gole <d-gole@ti.com>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+Date: Fri, 12 Apr 2024 16:43:43 +0300
+Message-ID: <CAHp75VcKFCvzcESqsc8OQ5SVuO4gJiE5ZEUwkdoqvLzM=2PejQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] media: i2c: Add GT97xx VCM driver
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Zhi Mao <zhi.mao@mediatek.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
+	Heiko Stuebner <heiko@sntech.de>, Hans Verkuil <hverkuil-cisco@xs4all.nl>, 
+	Hans de Goede <hdegoede@redhat.com>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+	Alain Volmat <alain.volmat@foss.st.com>, Paul Elder <paul.elder@ideasonboard.com>, 
+	Mehdi Djait <mehdi.djait@bootlin.com>, Bingbu Cao <bingbu.cao@intel.com>, 
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, shengnan.wang@mediatek.com, 
+	yaya.chang@mediatek.com, yunkec@chromium.org, 10572168@qq.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Apr 12, 2024 at 10:01=E2=80=AFAM Peng Fan <peng.fan@nxp.com> wrote:
-> > Subject: Re: [PATCH v9 0/4] firmware: arm_scmi: Add SCMI v3.2 pincontro=
-l
-> > protocol basic support
-> > On Fri, Apr 12, 2024 at 3:13=E2=80=AFAM Peng Fan (OSS) <peng.fan@oss.nx=
-p.com>
-> > wrote:
-
-...
-
-> > > - Because "pinctrl: pinconf-generic: check error value EOPNOTSUPP" wa=
-s
-> > >   applied, so pinctrl-scmi.c not convert to err return value for
-> > >   'pinctrl_ops->settings_get_one()'.
+On Fri, Apr 12, 2024 at 12:39=E2=80=AFPM Sakari Ailus
+<sakari.ailus@linux.intel.com> wrote:
+> On Wed, Apr 10, 2024 at 07:00:02PM +0300, Andy Shevchenko wrote:
+> > > +static int gt97xx_open(struct v4l2_subdev *sd, struct v4l2_subdev_fh=
+ *fh)
+> > > +{
+> > > +       return pm_runtime_resume_and_get(sd->dev);
+> > > +}
+> > > +
+> > > +static int gt97xx_close(struct v4l2_subdev *sd, struct v4l2_subdev_f=
+h *fh)
+> > > +{
+> > > +       return pm_runtime_put(sd->dev);
+> > > +}
 > >
-> > Because it's there it does not mean we want it right now. I pinged Linu=
-s about
-> > it again.
+> > Hmm... Shouldn't v4l2 take care about these (PM calls)?
 >
-> ok, let me include the diff[1], is this ok for you?
->
-> [1]https://lore.kernel.org/all/DU0PR04MB941754A6D751E80840F9A79888012@DU0=
-PR04MB9417.eurprd04.prod.outlook.com/
+> Ideally yes. We don't have a good mechanism for this at the moment as the
+> lens isn't part of the image pipeline. Non-data links may be used for thi=
+s
+> in the future but that's not implemented yet.
 
-Yes.
+Aren't you using devlinks? It was designed exactly to make sure that
+the PM chain of calls goes in the correct order.
 
 --=20
 With Best Regards,
