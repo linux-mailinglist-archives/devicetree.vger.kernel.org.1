@@ -1,63 +1,95 @@
-Return-Path: <devicetree+bounces-58650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58651-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 008018A2B4A
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 11:34:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 269DC8A2B59
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 11:39:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A9B471F219D5
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 09:34:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9CA6FB210BA
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 09:39:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D277502B2;
-	Fri, 12 Apr 2024 09:34:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CB0C5102F;
+	Fri, 12 Apr 2024 09:39:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fJiKmBLZ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Oyc966U6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDCDB4D5AA
-	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 09:34:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC511446B6;
+	Fri, 12 Apr 2024 09:39:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712914451; cv=none; b=UnWrUL7299W6zL1psWcPyuvhtiEiqmZKXK8sPsaYcFpfiWTc0zFCUId3IYx9h2SDdWlEhbYowzz2JFgsQGS+a9Ik41he2W0ZwslbzORIDdLoyNeffC+nY3gvTYztRzYipCqpokR2jXpcJ7HEFtGpfHaq1ay+fjJB8T7W0v4HhW0=
+	t=1712914742; cv=none; b=TRp4a/8TKGuvU9xljHiVZgHBp6qBBAuhRK2uaU1X31sMqS/okGflYIqmqUi7U0cRzRSJplrSzhQL/ngyBmW8yKpMQrrBI6o3coa3MRPpUiSYE2ryBNp5ISKIFGpZphLDcmX8NEj9yPD+xtqE5MjKOXuvz8is87s6CQSUeTR6LLI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712914451; c=relaxed/simple;
-	bh=xLQra8oyKWr2gJU0/Rk9xTiOnKsb7illFI7gIOIzVhk=;
+	s=arc-20240116; t=1712914742; c=relaxed/simple;
+	bh=xhZLSdqjCJGkrq/1WHroNk1xCdiol0gprEN4wXQPrlU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e0CmtTkZy35Cvxc2jPn/7eC7zoFYnCRqvec4I8VOmyK8QjLsIy+MVgJ6SSDTJE6f3j67kfgADEEGvsXQrQeAQzbfz/Qc19X3yxy12uVU9GC2gsnBUCMkstFsRoQwV6AYkvJNrUWfxwZiqf7ZslexhAAdh2eNwuhfbMNWnr0GLKA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fJiKmBLZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD6D5C113CC;
-	Fri, 12 Apr 2024 09:34:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712914449;
-	bh=xLQra8oyKWr2gJU0/Rk9xTiOnKsb7illFI7gIOIzVhk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fJiKmBLZyThS4o9klLsG7k+vRZefWZMLLZABuOXb5bUE1cPPFvBXXNdV2C4WRrOvT
-	 e9RrDQdRrfqh5BDLf5swFSPw+jn23s0PAJcyzpdIrVjUM1N99OyXOZLn87p4SDAXsT
-	 sAwWzd3ADkFRcqxaTy9ed5p4t6QDiXcWdRp9M04NS7fp1NNGE4P9mIkkVfnBAeqthh
-	 ii4NDHpReUI7f39KyrrhqDF3ZCwTmpCgKtq3+DNYD37Pm2g6RN2I1Im2hlaL1QQOwF
-	 jINB6EGVNQCSWjel5G+8v9NNihP9mmWjSPZU6xatq8YpHx5WzjqmmT6hSgq6Zm/2Rt
-	 07zW+ALIjeVfw==
-Date: Fri, 12 Apr 2024 15:03:59 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: Niklas Cassel <cassel@kernel.org>
-Cc: Kishon Vijay Abraham I <kishon@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=U8V/RWzuTUETQYMMEc9Ol0Mw1RVF9ThKLyey0PNqEhUr7Zyx9jVPx4cr2x71McZ5qq2VvKFFWoxrXbvAUDnjrONjuaIwsD9NvQTpcTf1Lj44MlEsjzbIPUCAn4HJVNDEJtKNo2u6S+DGkF6RA2/ffHEYu0d5YPaAyKC7qGesP8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Oyc966U6; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1712914741; x=1744450741;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=xhZLSdqjCJGkrq/1WHroNk1xCdiol0gprEN4wXQPrlU=;
+  b=Oyc966U6AQSKPXz8WeHsn8245G4djhYxi2VH5JA6pqriz/6kragD1Pul
+   MR8UIRYJKr5WlRtJvH+DCpblOhx8phlltOPOKfyxZ+cs8P+zzLG5Iox2F
+   dVyMibwEeW5bpSUpelx3bVz8IHL9myFJCI1XazHAz2ctrtFaxSNPuntFt
+   YSD0jdA/h1fZ7pjHGR/AbftfKpIdOcUG+ffi+xADANXq0ubkrVnD6pxOQ
+   2Na9B9RFM9/06KfFxX+qp/GHFKliUE9Nx05J4WVKL1i5bpinR9mcGDEid
+   iBQYuzWOcM6jBvDd18boDuaVTmGk7ogHkHsVMfWjZlgACFtsWVqq85PA7
+   A==;
+X-CSE-ConnectionGUID: 1NobwrQ+SCuf3UOQvonNDw==
+X-CSE-MsgGUID: z0g6NxYJQ5ax2PUGnINwIA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11041"; a="12148183"
+X-IronPort-AV: E=Sophos;i="6.07,195,1708416000"; 
+   d="scan'208";a="12148183"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Apr 2024 02:39:00 -0700
+X-CSE-ConnectionGUID: TEnw0//TQtG62goI0XrVyw==
+X-CSE-MsgGUID: XWlRxbLtQnW4iW48NYWBHw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,195,1708416000"; 
+   d="scan'208";a="25988920"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Apr 2024 02:38:53 -0700
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 304D911FA58;
+	Fri, 12 Apr 2024 12:38:51 +0300 (EEST)
+Date: Fri, 12 Apr 2024 09:38:51 +0000
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Zhi Mao <zhi.mao@mediatek.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Michal Tomek <mtdev79b@gmail.com>,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Jon Lin <jon.lin@rock-chips.com>, linux-phy@lists.infradead.org,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Hans de Goede <hdegoede@redhat.com>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Alain Volmat <alain.volmat@foss.st.com>,
+	Paul Elder <paul.elder@ideasonboard.com>,
+	Mehdi Djait <mehdi.djait@bootlin.com>,
+	Bingbu Cao <bingbu.cao@intel.com>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 0/2] rockchip pcie3-phy separate refclk support
-Message-ID: <ZhkAB6goB4TmcmWu@matsya>
-References: <20240411130150.128107-1-cassel@kernel.org>
+	linux-mediatek@lists.infradead.org, shengnan.wang@mediatek.com,
+	yaya.chang@mediatek.com, yunkec@chromium.org, 10572168@qq.com
+Subject: Re: [PATCH 2/2] media: i2c: Add GT97xx VCM driver
+Message-ID: <ZhkBIee2X0UY40yD@kekkonen.localdomain>
+References: <20240410104002.1197-1-zhi.mao@mediatek.com>
+ <20240410104002.1197-3-zhi.mao@mediatek.com>
+ <CAHp75VfF0pbrKXjWZg7sTr-T=_CbjP+deFQP-VLCGX8ooahctg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,21 +98,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240411130150.128107-1-cassel@kernel.org>
+In-Reply-To: <CAHp75VfF0pbrKXjWZg7sTr-T=_CbjP+deFQP-VLCGX8ooahctg@mail.gmail.com>
 
-Hi Niklas,
+Hi Andy, Zhi,
 
-On 11-04-24, 15:01, Niklas Cassel wrote:
-> This series is based on: linux-phy phy/fixes
-> (Since there are other rockchip,pcie3-phy changes there that have not
-> yet reached mainline and which would otherwise have caused conflicts.)
+On Wed, Apr 10, 2024 at 07:00:02PM +0300, Andy Shevchenko wrote:
+> > +static int gt97xx_open(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
+> > +{
+> > +       return pm_runtime_resume_and_get(sd->dev);
+> > +}
+> > +
+> > +static int gt97xx_close(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
+> > +{
+> > +       return pm_runtime_put(sd->dev);
+> > +}
+> 
+> Hmm... Shouldn't v4l2 take care about these (PM calls)?
 
-I merged the fixes into next and tried to apply this patch but second
-one fails for me. I guess it needs to be rebased.
-
-Always based these changes on phy/next or phy/fixes+next (which is what
-I will end up with to resolve)
+Ideally yes. We don't have a good mechanism for this at the moment as the
+lens isn't part of the image pipeline. Non-data links may be used for this
+in the future but that's not implemented yet.
 
 -- 
-~Vinod
+Regards,
+
+Sakari Ailus
 
