@@ -1,247 +1,274 @@
-Return-Path: <devicetree+bounces-58535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 045C28A25D6
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 07:40:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DEAD8A25DE
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 07:46:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6DD921F23EE6
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 05:40:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9EB5282C20
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 05:46:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11B141B96E;
-	Fri, 12 Apr 2024 05:40:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D0401BC4B;
+	Fri, 12 Apr 2024 05:46:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H9ZpheVx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p59qphZh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DA5118E1A;
-	Fri, 12 Apr 2024 05:40:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04CFA1B977;
+	Fri, 12 Apr 2024 05:46:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712900431; cv=none; b=VQUU93TbCY1IoOV9d70i87Fy8iIqJ+RYpyicLtD3IGSv/5LEQRxoBvASFpTKH9prEaUE+eSWurcRgpJID5+wPoiHg1mNreA8HeqwMC3TiQKVLABCb6PliQK8IvJsXRhzXCIyZUAx7l0icdRhROk7wzLs3DggjbFx/UVS0q2FSn8=
+	t=1712900801; cv=none; b=Js2Suvc4zGcJs6xj7h4skhpHZj77a/B8mnZB/cz2MKUxOTYMQpkxnMkvQp3b5yyr3vUzrqjPTdfv7nf7yloh8DgW/mBmmRzAemFWHjUI+RRGWwRaAo0VnVgz2SOtZOYSLKnB3iRscXH+nL2tRjt9oW6yZEw6gvFZ3x0yiJDxpng=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712900431; c=relaxed/simple;
-	bh=eHh+MadBSrRjj4x7Mn1Pk4ard7v4qjBebG4nGc5YhMw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pcRRrPURYORXoBZxtvI/vGNvcUiGqH8UtSawbxW6V18gKXaoR8w4+fMGaKCt4/2PE7nsszIFLWEbq4TJRWtR9sn6KEjy2lIFd9sl3YijOcuo4LfSZJ3los3CKLMd55VlZPLWzySNhnvtgE1mcKARMGeOcaGIybAC7tI7YsrylsE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H9ZpheVx; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2d87660d5c9so4890481fa.2;
-        Thu, 11 Apr 2024 22:40:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712900427; x=1713505227; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LMaSXsaW9fbyw3ho2GzsCp0Tcex3bC/f/mf6OtQtXpY=;
-        b=H9ZpheVx8L0nfPooZeR7LU9mAsFDFBye72qoxUCZaMxVfpXCU4rqKRAQ94Tkl74TdW
-         8FcghZxSzE47mcKazQi/HvrpCW9UP+QymHIPQwYNSj0y1sDMeFxIGxQfV+IH7mPTdeIP
-         asuc3u5VRXwPib1ZO7MMPmdP0R61jnSeU7sYInVYmMQgbDJkflMRwNjSVp+1BNKGDadD
-         pMXeLnh4qIAJd5fTR6vNIRltSWGh4460I+/qDqVtUzOt40Pgk3UnjGDbPIP1EsX1oURf
-         A29fHSHb/nlElHjWrR2hTikQhqw/xqpfFe4yy51JUt9JLoNYvBm52p78dwc0P1NHKz2Q
-         vhyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712900427; x=1713505227;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LMaSXsaW9fbyw3ho2GzsCp0Tcex3bC/f/mf6OtQtXpY=;
-        b=JHB7vXpTEd0Prl7zDzj77jERr4zJ5wXw1RpuUOCvFVg9PBmxDpGZDmnSJQFrbKSbLJ
-         O1i5pKWVsJgqnNfdTd0bd0MvdFCtF287S/Yfo7mEJzJ9dD9XseOqMmgfTVYPVsMkbtuV
-         6+a4Ti1n+VvZYoHubZA1oSxDXb566R4UB1IdfH8GrdYtduKR3OdWCTT4vItfJNP5fwkB
-         9jjlQnAk00uZ+fWY1WE0wE4aXHp51zAeRI3CadyVyxw9kHW9MzAyzp8aWSIA1JEw0Cqi
-         X642sD8EYqOAol64v8RMwxmmbjjJ7cKRzcejnif+XvIDAM5ebnmOG/u5nX2hzO8BP/pT
-         x1fA==
-X-Forwarded-Encrypted: i=1; AJvYcCVRBa9ODcgCzj2tl26PdSlH7LYxSGoXqEHgEDYoTCEYtJlXxL53WGSr5fARepfEa3pyaCmQ0FuxWLRu7lvI8MJ0TqwAza8dq7KQRppeb9HHizRcPHDbBchXUS3QCvSDuzX1hCXDnTpqOFkCl8+xXIihbbe/XFQFJmC5nOdxFx7OH0dHT2VEzE6u
-X-Gm-Message-State: AOJu0YwTJ7i7eVyBVpMMohgSIYup201bCBogvXP3HbaV0zZ/ZoqIgEKi
-	IpwchxU0sVceWJh7OERusnsAUmK0oYsnfo7vsX7zzvs8rCUWBswcZ7MlEA==
-X-Google-Smtp-Source: AGHT+IGNlDV+xqWci8vCW9+RnWiN/yTjWHozC6/buEcZ4/PNU63vcpd779brq6mcXwFOk9sNFbBCzQ==
-X-Received: by 2002:a2e:a36b:0:b0:2d4:68ef:c711 with SMTP id i11-20020a2ea36b000000b002d468efc711mr1027387ljn.25.1712900427030;
-        Thu, 11 Apr 2024 22:40:27 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:7426:df00::2? (drtxq0yyyyyyyyyyyyyby-3.rev.dnainternet.fi. [2001:14ba:7426:df00::2])
-        by smtp.gmail.com with ESMTPSA id p7-20020a2e9a87000000b002d9e3a525bfsm354505lji.41.2024.04.11.22.40.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Apr 2024 22:40:26 -0700 (PDT)
-Message-ID: <25c959bc-fb02-42d9-b973-4a74cebd7208@gmail.com>
-Date: Fri, 12 Apr 2024 08:40:25 +0300
+	s=arc-20240116; t=1712900801; c=relaxed/simple;
+	bh=Ay524JZmxpoTbV8GuHOb9vG7nbsde/vcILHmqZNFhL4=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=r7wXAGZZ4dTbq6M2EJzMxSqWVSK7ZT9Dk8hyUNs+8dBMuEvSQaCAGGROHmcXBb7UNHdet3dyu+VXWeqKdE4HW7O8kDfehIGSBIdBRFI3bnUxBP8A+/3OR+QYUAaN1t4ZlbaokpVncGGAbUuY3UqAmrA5mKak1ATFTXGN5EFEuuU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p59qphZh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E72BC2BBFC;
+	Fri, 12 Apr 2024 05:46:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712900800;
+	bh=Ay524JZmxpoTbV8GuHOb9vG7nbsde/vcILHmqZNFhL4=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=p59qphZhyxnonI3QWaQ9INVrnBfqJ5VuU/0x4sZWU/l4iBKYPqYFTKpKBauooOMiC
+	 A7dHP+jwbhFI2vNHEOp39KuWq8o8xRVbS1Lc33pm9Ic+VxnThaO4iamkXaqzz4pJVk
+	 1pjalWCxVnrcYtfFESilAw0JHPaZzAXclrDyvShQIP5vlJjmMkky2TV+lFFdfvQDgt
+	 8hR1jkv0Mq3vyKaDxthrqWMFqxXIjG8DHfc6Q9hnBFJjt3EO6tkynNYtNC+2vKJBIy
+	 kKuiYFXLly42XPoSjc0zzUIbH6i3ynIeLEcprVRDoKjYXivmy6oJkCOH1vLZK3TWFc
+	 hiCDIAFnoWCpg==
+Message-ID: <f97cb190debc849b598e6675f8780470.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 3/6] mfd: support ROHM BD96801 PMIC core
-Content-Language: en-US, en-GB
-To: Lee Jones <lee@kernel.org>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
- Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
-References: <cover.1712058690.git.mazziesaccount@gmail.com>
- <b86b7a73968810339b6cea7701bc3b6f626b4086.1712058690.git.mazziesaccount@gmail.com>
- <20240411143856.GD2399047@google.com>
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20240411143856.GD2399047@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <D0H8EDEDKGV9.2FT5JGT59AU8A@bootlin.com>
+References: <20240410-mbly-olb-v1-0-335e496d7be3@bootlin.com> <20240410-mbly-olb-v1-5-335e496d7be3@bootlin.com> <daa732cb31d947c308513b535930c729.sboyd@kernel.org> <D0H8EDEDKGV9.2FT5JGT59AU8A@bootlin.com>
+Subject: Re: [PATCH 05/11] clk: eyeq: add driver
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: linux-mips@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, Gregory CLEMENT <gregory.clement@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+To: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Linus Walleij <linus.walleij@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, =?utf-8?q?Th=C3=A9o?= Lebrun <theo.lebrun@bootlin.com>
+Date: Thu, 11 Apr 2024 22:46:38 -0700
+User-Agent: alot/0.10
 
-Hi deee Ho Lee!
+Quoting Th=C3=A9o Lebrun (2024-04-11 03:46:04)
+> Hello,
+>=20
+> On Thu Apr 11, 2024 at 5:22 AM CEST, Stephen Boyd wrote:
+> > Quoting Th=C3=A9o Lebrun (2024-04-10 10:12:34)
+> > > diff --git a/drivers/clk/clk-eyeq.c b/drivers/clk/clk-eyeq.c
+> > > new file mode 100644
+> > > index 000000000000..bb2535010ae6
+> > > --- /dev/null
+> > > +++ b/drivers/clk/clk-eyeq.c
+> > > @@ -0,0 +1,644 @@
+> > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > +/*
+> > > + * PLL clock driver for the Mobileye EyeQ5, EyeQ6L and EyeQ6H platfo=
+rms.
+> > > + *
+> > > + * This controller handles read-only PLLs, all derived from the same=
+ main
+> > > + * crystal clock. It also exposes divider clocks, those are children=
+ to PLLs.
+> > > + * Parent clock is expected to be constant. This driver's registers =
+live in
+> > > + * a shared region called OLB. Some PLLs are initialised early by of=
+_clk_init().
+> >
+> > Is OLB a different DT node? It sounds like maybe this is trying to jam a
+> > driver into DT when the OLB node should be a #clock-cells node.
+>=20
+> Yes OLB is a different DT node. It looks like on EyeQ5:
+>=20
+>         olb: system-controller@e00000 {
+>                 compatible =3D "mobileye,eyeq5-olb", "syscon", "simple-mf=
+d";
+>                 reg =3D <0 0xe00000 0x0 0x400>;
+>                 ranges =3D <0x0 0x0 0xe00000 0x400>;
+>                 #address-cells =3D <1>;
+>                 #size-cells =3D <1>;
+>=20
+>                 reset: reset-controller@e00000 {
+>                         compatible =3D "mobileye,eyeq5-reset";
+>                         reg =3D <0x000 0x0c>, <0x200 0x34>, <0x120 0x04>;
+>                         reg-names =3D "d0", "d1", "d2";
+>                         #reset-cells =3D <2>;
+>                 };
+>=20
+>                 clocks: clock-controller@e0002c {
+>                         compatible =3D "mobileye,eyeq5-clk";
+>                         reg =3D <0x02c 0x50>, <0x11c 0x04>;
 
-Thanks a ton for taking a look at this :) I already sent the V2 
-yesterday, briefly before receiving your comments. I think all of the 
-comments are relevant for the V2 as well, I will fix them for the V3 
-when I get to that. If you find the time to take a look at V2, then the 
-major things are addition of a watchdog IRQ + a work-around for the 
-debugFS name collision for IRQ domains.
+Is this reg property always the same value '0x2c'?
 
-On 4/11/24 17:38, Lee Jones wrote:
-> On Tue, 02 Apr 2024, Matti Vaittinen wrote:
-> 
->> The ROHM BD96801 PMIC is highly customizable automotive grade PMIC
->> which integrates regulator and watchdog funtionalities.
->>
->> Provide IRQ and register accesses for regulator/watchdog drivers.
->>
->> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
->> ---
->>   drivers/mfd/Kconfig              |  13 +
->>   drivers/mfd/Makefile             |   1 +
->>   drivers/mfd/rohm-bd96801.c       | 454 +++++++++++++++++++++++++++++++
->>   include/linux/mfd/rohm-bd96801.h | 212 +++++++++++++++
->>   include/linux/mfd/rohm-generic.h |   1 +
->>   5 files changed, 681 insertions(+)
->>   create mode 100644 drivers/mfd/rohm-bd96801.c
->>   create mode 100644 include/linux/mfd/rohm-bd96801.h
->>
->> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
->> index 4b023ee229cf..947045eb3a8e 100644
->> --- a/drivers/mfd/Kconfig
->> +++ b/drivers/mfd/Kconfig
->> @@ -2089,6 +2089,19 @@ config MFD_ROHM_BD957XMUF
->>   	  BD9573MUF Power Management ICs. BD9576 and BD9573 are primarily
->>   	  designed to be used to power R-Car series processors.
->>   
->> +config MFD_ROHM_BD96801
->> +	tristate "ROHM BD96801 Power Management IC"
->> +	depends on I2C=y
->> +	depends on OF
->> +	select REGMAP_I2C
->> +	select REGMAP_IRQ
->> +	select MFD_CORE
->> +	help
->> +	  Select this option to get support for the ROHM BD96801 Power
->> +	  Management IC. The ROHM BD96801 is a highly scalable power management
-> 
-> Power Management
-
-Out of the curiosity, why is the "Power Management IC" written with 
-capitals, when speaking of a class of devices instead of a model? (I am 
-100% fine with the change, just curious).
-
-> 
->> +	  IC for industrial and automotive use. The BD96801 can be used as a
->> +	  master PMIC in a chained PMIC solutions with suitable companion PMICs
-...
-
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +//
->> +// Copyright (C) 2022 ROHM Semiconductors
-> 
-> No updates for 2 years?
-
-The year should be updated - thanks. But, now that you asked...  Almost 
-no updates. The patches have rotten in my outbox, waiting for the 
-permisson to be sent out... But yeah, I've sure added some changes 
-before sending the series - I'll update the copyright :)
-
->> +
->> +static int bd96801_i2c_probe(struct i2c_client *i2c)
->> +{
->> +	int i, ret, intb_irq, errb_irq, num_regu_irqs, num_intb, num_errb = 0;
->> +	struct regmap_irq_chip_data *intb_irq_data, *errb_irq_data;
->> +	struct irq_domain *intb_domain, *errb_domain;
->> +	const struct fwnode_handle *fwnode;
->> +	struct resource *regulator_res;
->> +	struct regmap *regmap;
->> +
->> +	fwnode = dev_fwnode(&i2c->dev);
->> +	if (!fwnode) {
->> +		dev_err(&i2c->dev, "no fwnode\n");
->> +		return -EINVAL;
-> 
-> Why not dev_err_probe() here for uniformity?
-
-I can change it to dev_err_probe() if it's strongly preferred. It just 
-feels silly to use dev_err_probe() when the return value is hardcoded. 
-Intentionally writing code like
-
-err = -EINVAL;
-if (err == ...)
-
-just makes me feel a bit sick.
-
->> +	}
->> +
->> +	intb_irq = fwnode_irq_get_byname(fwnode, "intb");
->> +	if (intb_irq < 0)
->> +		return dev_err_probe(&i2c->dev, intb_irq,
->> +				     "No INTB IRQ configured\n");
-> 
-> This function would look nicer if you expanded to 100-chars.
-
-The reason why I still prefer the good old 80-chars for files I work 
-with, is that I am often having 3 terminal windows parallel on my laptop 
-screen. (Or, when I have my wide mofnitor connected it is 3 editor 
-windows + minicom). I need to keep the terminals small enough. 
-Besides... I hate to admit this, but the time is finally taking it's 
-toll. My eyes aren't quite the same they were 2 years ago...
-
-So, same old story, I can change this if it is important enough for 
-others, but personally I rather work with the short lines.
-
-...
-
->> diff --git a/include/linux/mfd/rohm-bd96801.h b/include/linux/mfd/rohm-bd96801.h
->> new file mode 100644
->> index 000000000000..47b07171dcb2
->> --- /dev/null
->> +++ b/include/linux/mfd/rohm-bd96801.h
->> @@ -0,0 +1,212 @@
->> +/* SPDX-License-Identifier: GPL-2.0-or-later */
->> +/* Copyright (C) 2020 ROHM Semiconductors */
->> +
-
-...
-
->> +/* IRQ register area */
->> +#define BD96801_REG_INT_MAIN		0x51
->> +
->> +/*
->> + * The BD96801 has two physical IRQ lines, INTB and ERRB.
->> + * For now we just handle the INTB.
-
-Note to self, this comment is no longer true.
-
-Thanks for the review!
-
-Yours,
-	-- Matti
+>                         reg-names =3D "plls", "ospi";
+>                         #clock-cells =3D <1>;
+>                         clocks =3D <&xtal>;
+>                         clock-names =3D "ref";
+>                 };
+>=20
+>                 pinctrl: pinctrl@e000b0 {
+>                         compatible =3D "mobileye,eyeq5-pinctrl";
+>                         reg =3D <0x0b0 0x30>;
+>                 };
+>         };
 
 
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
+>=20
+> Keep in mind OLB is a complex beast. On EyeQ5, it hosts something like
+> 150 registers, describing 20ish various hardware features. We have to
+> expose registers to drivers for one-off reads/writes. One example found
+> upstream: I2C speed mode register. Others will be Ethernet, eMMC DMA
+> config, etc. A syscon makes sense.
 
-~~ When things go utterly wrong vim users can always type :help! ~~
+Syscons are a slippery slope. It makes it easy to give up abstracting
+the 20ish hardware features and makes the resulting drivers which use
+the syscon highly platform specific.
 
+Regardless of having a syscon or not, the binding should collapse the
+sub-nodes into the olb node. If that requires making a different
+compatible for different olb nodes, then that's actually better because
+there may be some quirk for one of the olbs and not the other and we
+won't be able to fix that without a compatible string update. It would
+also make the reg-names property go away, because the sub-functionality
+drivers would have the register offsets hard-coded as some offset from
+the base of olb, instead of encoding that in DT.
+
+>=20
+> I2C looks like like this for example, look at mobileye,olb.
+>=20
+>         i2c@300000 {
+>                 compatible =3D "mobileye,eyeq5-i2c", "arm,primecell";
+>                 reg =3D <0x300000 0x1000>;
+>                 interrupt-parent =3D <&gic>;
+>                 interrupts =3D <GIC_SHARED 1 IRQ_TYPE_LEVEL_HIGH>;
+>                 clock-frequency =3D <400000>;
+>                 #address-cells =3D <1>;
+>                 #size-cells =3D <0>;
+>                 clocks =3D <&i2c_ser_clk>, <&i2c_clk>;
+>                 clock-names =3D "i2cclk", "apb_pclk";
+>                 mobileye,olb =3D <&olb 0>;
+>         };
+>=20
+> See commits 7d4c57abb928 and 1b9a8e8af0d9:
+>   i2c: nomadik: support Mobileye EyeQ5 I2C controller
+>   dt-bindings: i2c: nomadik: add mobileye,eyeq5-i2c bindings and example
+
+Why isn't i2c speed mode another clk exposed by OLB that rounds to the
+different rates?
+
+>=20
+> > > +
+> > > +       for (i =3D 0; i < data->div_count; i++) {
+> > > +               const struct eqc_div *div =3D &data->divs[i];
+> > > +               void __iomem *base =3D NULL;
+> > > +               struct clk_hw *parent;
+> > > +               unsigned int j;
+> > > +
+> > > +               /*
+> > > +                * Multiple divider clocks can request the same resou=
+rce. Store
+> > > +                * resource pointers during probe(). For each divider=
+ clock,
+> > > +                * check if previous clocks referenced the same resou=
+rce name.
+> > > +                *
+> > > +                * See EQ6HC_SOUTH_DIV_OSPI_REF and EQ6HC_SOUTH_DIV_O=
+SPI_SYS.
+> > > +                */
+> > > +               for (j =3D 0; j < i; j++) {
+> > > +                       if (strcmp(data->divs[j].resource_name, div->=
+resource_name) =3D=3D 0) {
+> > > +                               base =3D div_resources[j];
+> > > +                               break;
+> > > +                       }
+> > > +               }
+> > > +
+> > > +               /* Resource is first encountered. */
+> > > +               if (!base) {
+> > > +                       base =3D devm_platform_ioremap_resource_bynam=
+e(pdev, div->resource_name);
+> > > +                       if (IS_ERR(base)) {
+> > > +                               dev_warn(dev, "failed to iomap resour=
+ce for %s\n", div->name);
+> > > +                               priv->cells->hws[div->index] =3D base;
+> > > +                               continue;
+> > > +                       }
+> > > +               }
+> >
+> > I don't get this code at all. The driver should simply map the
+> > resources because it knows that there's an io resource. I'll look at the
+> > binding which is probably wrong and causing the driver to be written
+> > this way.
+>=20
+> This is here for a single reason: EyeQ6H south OLB has two clocks that
+> live in the same register:
+>=20
+>  - div-ospi-ref, reg offset 0x90, mask GENMASK(9,  8) =3D=3D 0x300.
+>  - div-ospi-sys, reg offset 0x90, mask GENMASK(12, 4) =3D=3D 0x1FF0.
+>=20
+> Calling twice devm_platform_ioremap_resource_byname() with the same
+> resource name gives an error. So we need to buffer resources already
+> requested.
+>=20
+> If there is a simpler & better solution I'd be happy to take it.
+
+Sure, don't call platform_ioremap_resource() and friends more than once
+per index. But why is the code written in a way that that is happening?
+Maybe the driver can ioremap resources, and then register clks for those
+resources. I suspect the only way of getting here is that the driver is
+focused on registering clks, and ioremapping resources while registering
+clks. Don't do that, because then you have to write code to track
+resources.
+
+>=20
+>=20
+> [...]
+>=20
+> > > +       /*
+> > > +        * We expect named resources if divider clocks are present.
+> > > +        * Else, we only expect one resource.
+> > > +        */
+> >
+> > Please avoid named resources. They give the false sense of hope that the
+> > binding can re-order the reg property when that can't be done. Instead,
+> > just index and know which index to use in the driver.
+>=20
+> It is unclear what you mean by not being able to re-order reg property?
+> Are you talking about reg-names being most often defined as items const
+> list and therefore cannot be reordered? Here binding declare things
+> using minItems/maxItems/enum so it can be reordered, looking like:
+
+Yes, that's wrong.
+
+>=20
+>   properties:
+>     reg:
+>       minItems: 2
+>       maxItems: 2
+>     reg-names:
+>       minItems: 2
+>       maxItems: 2
+>       items:
+>         enum: [ plls, ospi ]
+>=20
+> If this is not what you are talking about then I rambled about garbage
+> and I'll use indexed resources.
+>=20
+
+You cannot reorder strings in a DT binding property after the fact.
+While the code will keep working if the reg-names elements are
+re-ordered, the binding will be backwards incompatible, because the
+reg-names property must have the same order. It can be convenient to use
+reg-names if you have a long list of reg properties to map, but having
+two or one elements isn't a very strong argument.
 
