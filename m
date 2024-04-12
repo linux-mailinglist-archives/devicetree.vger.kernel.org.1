@@ -1,120 +1,96 @@
-Return-Path: <devicetree+bounces-58538-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58539-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29D2D8A25F2
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 07:50:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA6908A2607
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 07:55:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5ABF81C21738
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 05:50:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B44111C2126E
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 05:55:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0453E1BDD5;
-	Fri, 12 Apr 2024 05:50:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C63B1C683;
+	Fri, 12 Apr 2024 05:55:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hwe4TmCm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o6LU2fnb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73B891B974;
-	Fri, 12 Apr 2024 05:50:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C51C1BC37;
+	Fri, 12 Apr 2024 05:55:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712901054; cv=none; b=tOXzX73xNNEdtAMe0HOyZHmeVWBSGra8B/jAKigoHce2jSqo0ukK8iFMVi6VRrGd+ua7sx2dsCuhSWVgRfL88MuFKWlQc8cXYljQh3+Wt3qiCk9K+kL7lR/fMZdxZhjehD5NuIENavP1zM5G1xPb6KRW0RY0iaGQ/30/DDVd2wk=
+	t=1712901308; cv=none; b=KkojGIli2psDGR2yXJQ7L8Fb3kIKaG6VdOnKZSlDDCSn5rTMpLG9dLzJH67HyT8QTyuZLn5MYNU+VKueQev4grJOJjyH40X7AYthLIl6/SqpS/swwKZzt5ygcl2nf+YeZiyjBVYJ7zf03mf0AMMAyOdZXug+INt/QNmr+Dsl+JE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712901054; c=relaxed/simple;
-	bh=qx6ompS090EU6oaymJ8vYi09zxJzRBow4hMUa484dWM=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=CkIKcS6kRL+ZGxSQoB+AAcKzHfd4rhIb9+OI9/dF45co6R/Gb6H8j0ysuD+ngqfIbi8oWPlvbLGnRay5g+gEpjDyAHrgksY18R0DdURWqqNVH3dqu5bMT+JL80djZLyvYKbE3JOtXRhwcYSf7KlKoZZyavTE2VEab3+Augsbwjw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hwe4TmCm; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2d8a24f8a3cso4821951fa.1;
-        Thu, 11 Apr 2024 22:50:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712901051; x=1713505851; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OUqqIoLVyl32Am9CtoDJBz/T8IAJNp9zL27JaewSqCE=;
-        b=hwe4TmCm7dM8F07tEJZAIlkhKWr2oogXFaZs9pouuwWG3v5Nx8LPzDXYcQAfMH49oD
-         EUcJTgjb8QXz0FAHWn67WVI0PdPQ6zhIVEByAykHZOZIg5KddiWYwe/F+4fdZE4TXoNi
-         FodY9cZ6rBM3YSLt2lOlOFGrIYuwKtRA7Hx0SUv/RBUxqMGg8VrKsXjIJIWy3sqNv4hm
-         gGtnoLoyMiejyd3mE6sM5aJTwlSi8khORvkg0W0XZbalacLmQZ7Jf8fZb5GtQ05sZzhl
-         dPg7OXRFP3sJz0qBgBCoLBf6orGG1KwCCF+kSnHhY0S6Dgm8dpqzgykEY7AVo9lH0wiF
-         6Z6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712901051; x=1713505851;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OUqqIoLVyl32Am9CtoDJBz/T8IAJNp9zL27JaewSqCE=;
-        b=VlIHpOWLaZkNeFotOafJziZJDzPgTxzzFLg4pBXBxy4VdmklaUpEfHbSZbMINTpHTe
-         K/TxxO+5JVHDt/z81tbyRG2E4VsfKa3UvT/k7h9wstKHnZrIY+gIx0F6yRYa6weiAiHN
-         4AASgwMOCW7DCRQAlXUa9t9k5MSdGsqr0WzUvkaM1r6RyFkzLy9CW5Fl5xPWsCvBlBKY
-         CBkRDE8QfL95N+1o8tHX/NRr5CyCm33ve6y1Bo30baOoe7sau0DOWyYmBp1SFryUVKyk
-         D6ynyB+cP7dbxNRqWx/U03d4YikyhRAa1/7QLI4k6zsTEYrphJl/hsx6nnqsnW5I6s1r
-         I3Og==
-X-Forwarded-Encrypted: i=1; AJvYcCU+A2Czw/TO2tBq2sOh4rxviEHObKTe1ugffP4sGiaLDiLmOYWHeZ9hbry8db+X4EmkEeSGHC+SOBixIn4dh6ToQWJaRQ+dizamPuyhQqFShHT+mzCTXTQ+uNuEnG5ASwmuyHLSZR/Zj3zG7HB/0c437JcXZXjbiZ/Jkh2lrYeb2UssE28hCBaM
-X-Gm-Message-State: AOJu0YxL0RF4ljaFVE6RUkRgXV00dqjfM7YH6qq+Kn0cYs1EdvPTgynP
-	Qz8UsV404DWJYQFAZZEboB96Db1DV2UhPNMFsqdswunjtm1pF6Ned//nYA==
-X-Google-Smtp-Source: AGHT+IGr9w0Z8Z8YBWyPKbrrVMYvt8nmSPJBLsKAdvNhE/qAoPvafm6k/xQx04be5DbmnHEnAUL7nw==
-X-Received: by 2002:a05:651c:1543:b0:2d7:b4f:e3fe with SMTP id y3-20020a05651c154300b002d70b4fe3femr1020212ljp.34.1712901051346;
-        Thu, 11 Apr 2024 22:50:51 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:7426:df00::2? (drtxq0yyyyyyyyyyyyyby-3.rev.dnainternet.fi. [2001:14ba:7426:df00::2])
-        by smtp.gmail.com with ESMTPSA id c13-20020a2e9d8d000000b002d557895e4dsm416005ljj.131.2024.04.11.22.50.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Apr 2024 22:50:51 -0700 (PDT)
-Message-ID: <853e5854-c2b4-475f-9449-29ce0e35b23c@gmail.com>
-Date: Fri, 12 Apr 2024 08:50:50 +0300
+	s=arc-20240116; t=1712901308; c=relaxed/simple;
+	bh=JQfz7/d2ng00GhHS3NyTYEkGb3OA5UK1hgQL93R0kkQ=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:To:Date; b=I2pI2Lt5wu0El0Yusf8ypiZrPhcx3oUbA6r0wsBRXf6FKrMYTeYjztkYBQXjkihGEeMC9l5bpjYd1qurU6uh183mRb7nsLRBth9EiMdJcYlCet9McUxpRiJCxCRWZ6OuGeVChakvMFZNCKIYKOfAZnElyuBNpBcwN1+qgKaKYOA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o6LU2fnb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B58A5C2BBFC;
+	Fri, 12 Apr 2024 05:55:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712901307;
+	bh=JQfz7/d2ng00GhHS3NyTYEkGb3OA5UK1hgQL93R0kkQ=;
+	h=In-Reply-To:References:Subject:From:To:Date:From;
+	b=o6LU2fnb99yOU2DGXXl4CaIGRYOU8kJ0Qnx4M0pnseswKGLRDhngbAk+QiLBy5BHz
+	 WjRPTkYjPrDcOrbjyDcHPBfgCyTjmRyEzW85mz+28WR3Vn4h+Rbb7kzqDObhHLX0Iy
+	 dY200DAjrfmrcbQI4g7YBYpAzk8bEeul9Jj62MzoHHw0i8FR0IRzkiDAXXjMHiz5L7
+	 Mq9Zp4nE3y6sc6yQsG8YvIxbaPAHHfNgF7vGdRXi2w73qay4y3gb6y4V7yp6JuFBxo
+	 7BY613fW8v+8IGw9S63yYpfTsnv9X8YYAtOXnr8Gd/3dasgSr2ZX6GAKjGQgbbmyMs
+	 wzBinFu+Bm6/Q==
+Message-ID: <58956ebc474b993e6da1d6689ecb9324.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 3/6] mfd: support ROHM BD96801 PMIC core
-Content-Language: en-US, en-GB
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-To: Lee Jones <lee@kernel.org>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
- Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
-References: <cover.1712058690.git.mazziesaccount@gmail.com>
- <b86b7a73968810339b6cea7701bc3b6f626b4086.1712058690.git.mazziesaccount@gmail.com>
- <20240411143856.GD2399047@google.com>
- <25c959bc-fb02-42d9-b973-4a74cebd7208@gmail.com>
-In-Reply-To: <25c959bc-fb02-42d9-b973-4a74cebd7208@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <MA0P287MB2822BC109267BD20922FB581FE052@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+References: <cover.1711692169.git.unicorn_wang@outlook.com> <816122e9f22ddd9927e81e627be7f4683ba5c9e8.1711692169.git.unicorn_wang@outlook.com> <433e01f22ce5472aeb28cf0182d951bd.sboyd@kernel.org> <MA0P287MB2822BC109267BD20922FB581FE052@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+Subject: Re: [PATCH v13 4/5] clk: sophgo: Add SG2042 clock driver
+From: Stephen Boyd <sboyd@kernel.org>
+To: Chen Wang <unicorn_wang@outlook.com>, Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu, chao.wei@sophgo.com, conor@kernel.org, devicetree@vger.kernel.org, guoren@kernel.org, haijiao.liu@sophgo.com, inochiama@outlook.com, jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, mturquette@baylibre.com, palmer@dabbelt.com, paul.walmsley@sifive.com, richardcochran@gmail.com, robh+dt@kernel.org, samuel.holland@sifive.com, xiaoguang.xing@sophgo.com
+Date: Thu, 11 Apr 2024 22:55:05 -0700
+User-Agent: alot/0.10
 
-On 4/12/24 08:40, Matti Vaittinen wrote:
-> Hi deee Ho Lee!
-> 
-> Thanks a ton for taking a look at this :) I already sent the V2 
-> yesterday, briefly before receiving your comments.
+Quoting Chen Wang (2024-04-11 05:58:05)
+>=20
+> On 2024/4/11 12:11, Stephen Boyd wrote:
+> > Quoting Chen Wang (2024-03-28 23:21:40)
+> >> +static const u32 sg2042_mux_table[] =3D {1, 0};
+> >> +
+> >> +static const char *const clk_mux_ddr01_p[] =3D {
+> >> +                       "clk_div_ddr01_0", "clk_div_ddr01_1"};
+> >> +static const char *const clk_mux_ddr23_p[] =3D {
+> >> +                       "clk_div_ddr23_0", "clk_div_ddr23_1"};
+> >> +static const char *const clk_mux_rp_cpu_normal_p[] =3D {
+> >> +                       "clk_div_rp_cpu_normal_0", "clk_div_rp_cpu_nor=
+mal_1"};
+> >> +static const char *const clk_mux_axi_ddr_p[] =3D {
+> >> +                       "clk_div_axi_ddr_0", "clk_div_axi_ddr_1"};
+> >> +
+> >> +static struct sg2042_mux_clock sg2042_mux_clks[] =3D {
+> >> +       SG2042_MUX(MUX_CLK_DDR01, "clk_mux_ddr01", clk_mux_ddr01_p,
+> > Please use struct clk_parent_data or struct clk_hw directly instead of
+> > string names.
+>=20
+> Hi, Stephen,
+>=20
+> I understand that for clk_init_data, parent_names/parent_data/parent_hws =
 
-It's not completely unusual I don't know what I am doing. BUT, it's not 
-that common I don't know what I did... Seems like the V2 is still in my 
-outbox, so I will add the fixes to your comments prior sending it! :)
+> are all acceptable. Why do you only suggest me to use=20
+> parent_data/parent_hws here? Can you please explain?
 
-Sorry for the added confusion!
-
-Yours,
-	-- Matti
-
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
-
+Using parent_names requires a global string search for that clk. Using
+clk_parent_data or parent_hws reduces that search significantly,
+speeding things up. Not using any strings furthermore speeds it up, i.e.
+using an index when the clk is external to the device and a clk_hw
+pointer when the clk is internal to the device. We speed things up by
+removing string comparisons, of which there are many. Any new code
+should be using direct pointers or an index, no strings.
 
