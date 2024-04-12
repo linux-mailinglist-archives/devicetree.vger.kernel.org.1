@@ -1,109 +1,127 @@
-Return-Path: <devicetree+bounces-58527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBBDD8A25A2
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 07:19:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D58648A25B1
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 07:26:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09A7D1C223E0
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 05:19:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 848C0286031
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 05:26:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA16218C1A;
-	Fri, 12 Apr 2024 05:19:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F22A18E1A;
+	Fri, 12 Apr 2024 05:26:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J0eg+fB9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R6bWn+gL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B57F317BCE;
-	Fri, 12 Apr 2024 05:19:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7BD18C13;
+	Fri, 12 Apr 2024 05:26:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712899191; cv=none; b=uSACbe4/8teJa2BcNgNp/+Rr0kv3oiqm0T4fW4TzsS/o1FX+jOkHIJtoUU4OHZRZhMksTzdWSWbYF7lFILI4KQyHotC42iEg3gWSlTY0X+bR/SsKn+pKSCgKGstKRuqRxaViCrpCJX4K+AziqkUAjc+/DUHof9x6kpfvy7BODW8=
+	t=1712899563; cv=none; b=eZ6JYSbYJ7zYO/JcYufA3mUiZjTVkzGZDvmxYbcouVp+f+nKda0i3M8b9S6bCZwp+uevtpVGcQcYmbuzYNu0UUm8S8EwvLQm8eFgT7ocax/E5iR/IC7FBoBFt283NGRy4yfvfwQbLqFhU8onWOs8473KVGb84BECEy0ETZwbEDo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712899191; c=relaxed/simple;
-	bh=JnUwlu3hA8OWMeLa8KCW3yju2ShEzFTZuW+pPMy4qJU=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=QD2AMySp98HsoFUKv2W8V/6aVpSEjD+finfvHo5DEfL/X3g7sxuu5vhxX2qA6xIWE4JdqP8z0+dGefnpKxtUHqtqHQboIU6zNamvfkeGONL8QWbjzls2IclmloUB6ffMH7GbnP+UcJQ9FPJrYFO9HhWxnF2UL9zU7ivt/x0oFRg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J0eg+fB9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6608AC2BBFC;
-	Fri, 12 Apr 2024 05:19:51 +0000 (UTC)
+	s=arc-20240116; t=1712899563; c=relaxed/simple;
+	bh=jpqJhTY47pAvsZcvGp52FxqplLyvpgZ6IIxGmctWvNo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VEqLH9vtQNB8qTxFe2LwQ1nAn3Qa8OZmaTU53QzbVpCifJ9YyMgFotrQBM5N1PMaKfHOBElCdgxY3wVL3xjZltA9GKtgMIxI2ae9LZ7d9TfYqmLI9zqX21zjF0Bmz6w3cZJ6vhNf7UXHWaOaHVfqQfjBozDo5k1W4JDSkIDOGA0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R6bWn+gL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B804FC2BBFC;
+	Fri, 12 Apr 2024 05:25:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712899191;
-	bh=JnUwlu3hA8OWMeLa8KCW3yju2ShEzFTZuW+pPMy4qJU=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=J0eg+fB9JaQywMndycZ6ohhjdQC1DvGQG//bGfPBvI17dD7Fh7ivnskva2zGeo78F
-	 g8r6mVScCv0aNZvOmVfY5nyDDruzh/GLJKQwTvKzE8AbrfxxOcgbsbCW+t3t+zxYj7
-	 xhaXcAVZCpKt5viKAByf8mv62xRXoYMcMQKeEIMLHq04iN47t7p4IMXXkbRyMvlEUm
-	 2PweoigGphpnbm30iCN0k7+gBtjMFwofoKKLAi8R+Qy3hdyEupHBtzO+qR7pvgDv+k
-	 DWYbiV4ilGXM3qv2dPtYyiOvf3BI6iDFVZLWZk8x8JPdOJ4rzWSAhqBb14m8qE4oFb
-	 W/F8WDlR+Mhjg==
-Message-ID: <32dec29a9a29ad204930fbf9eefd2b89.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1712899562;
+	bh=jpqJhTY47pAvsZcvGp52FxqplLyvpgZ6IIxGmctWvNo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=R6bWn+gLd/jROclyuyoZWPvcS6lVwEtivIy5gmTB2YZljPkgXYySf7oLSW+Wl7cOj
+	 VIDQPOIt4T4W/5CkOc38BKWJHQmnxkGK1PdF9Y6r3vW5K+5iL3hCj9bJm0SjfU1xIr
+	 a7NsrKld/1iMzpGokvYA3YRNkZlIlx+QTIRAg72r5ABNodwUMz8eAU1l85UUqyXTsf
+	 xT9sPbpc8V+H0z6n/tfYk4G9TZNOidaIcbF/uHWzAWfd0AIxfgQO+cD58mYF64GZT+
+	 V8hR/5OS5zcnacX9Kayvb/OJ1xKGQSGmwY4H+ZmjXkKtCTWX1ng9XihUyblBgqplww
+	 xPG8cyon/LYzA==
+Message-ID: <862d37e1-ab3e-42b6-9591-131751be808e@kernel.org>
+Date: Fri, 12 Apr 2024 07:25:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <D0H7PXOXYNXI.2QM4E0O02FK34@bootlin.com>
-References: <20240410-mbly-olb-v1-0-335e496d7be3@bootlin.com> <20240410-mbly-olb-v1-4-335e496d7be3@bootlin.com> <4ce9f3cea1ecd3777cf3e291cc865210.sboyd@kernel.org> <D0H7PXOXYNXI.2QM4E0O02FK34@bootlin.com>
-Subject: Re: [PATCH 04/11] clk: divider: Introduce CLK_DIVIDER_EVEN_INTEGERS flag
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-mips@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, Gregory CLEMENT <gregory.clement@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>
-To: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Linus Walleij <linus.walleij@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, =?utf-8?q?Th=C3=A9o?= Lebrun <theo.lebrun@bootlin.com>
-Date: Thu, 11 Apr 2024 22:19:49 -0700
-User-Agent: alot/0.10
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: host1x: Add missing 'dma-coherent'
+To: Jon Hunter <jonathanh@nvidia.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Mikko Perttunen <mperttunen@nvidia.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240409082324.9928-1-jonathanh@nvidia.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240409082324.9928-1-jonathanh@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Quoting Th=C3=A9o Lebrun (2024-04-11 03:14:09)
-> Hello,
->=20
-> On Thu Apr 11, 2024 at 5:06 AM CEST, Stephen Boyd wrote:
-> > Quoting Th=C3=A9o Lebrun (2024-04-10 10:12:33)
-> > > index 4a537260f655..cb348e502e41 100644
-> > > --- a/include/linux/clk-provider.h
-> > > +++ b/include/linux/clk-provider.h
-> > > @@ -675,13 +675,15 @@ struct clk_div_table {
-> > >   * CLK_DIVIDER_BIG_ENDIAN - By default little endian register access=
-es are used
-> > >   *     for the divider register.  Setting this flag makes the regist=
-er accesses
-> > >   *     big endian.
-> > > + * CLK_DIVIDER_EVEN_INTEGERS - clock divisor is 2, 4, 6, 8, 10, etc.
-> > > + *     Formula is 2 * (value read from hardware + 1).
-> > >   */
-> > >  struct clk_divider {
-> > >         struct clk_hw   hw;
-> > >         void __iomem    *reg;
-> > >         u8              shift;
-> > >         u8              width;
-> > > -       u8              flags;
-> > > +       u16             flags;
-> >
-> > This can stay u8
->=20
-> It is unclear to me why it can stay u8? __clk_hw_register_divider() puts
-> clk_divider_flags into flags field of struct clk_divider.
-> BIT(8) overflows u8.
+On 09/04/2024 10:23, Jon Hunter wrote:
+> The dtbs_check reports that the 'dma-coherent' property is "unevaluated
+> and invalid" for the host1x@13e00000 device on Tegra194 and Tegra234
+> platforms. Fix this by updating the dt-binding document for host1x to
+> add the 'dma-coherent' property for these devices.
+> 
+> Fixes: 361238cdc525 ("arm64: tegra: Mark host1x as dma-coherent on Tegra194/234")
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> ---
 
-Oh, I missed that part.
+With mentioning in commit msg that these devices are actually
+dma-coherent (and after Rob's explanation):
 
->=20
-> >
-> > >         const struct clk_div_table      *table;
-> > >         spinlock_t      *lock;
-> > >  };
-> >
-> > We should add a kunit test.
->=20
-> Will look into how this works and try something for next revision. I
-> guess you are talking about adding clk_divider tests, not only tests
-> for this flag? I cannot find any existing kunit tests for clk_divider.
->=20
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-Right, there aren't any tests today. Thanks.
+Best regards,
+Krzysztof
+
 
