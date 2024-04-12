@@ -1,174 +1,214 @@
-Return-Path: <devicetree+bounces-58741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 232FE8A2EB3
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 14:58:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0B408A2EBF
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 15:03:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53EAA1C20FC6
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 12:58:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55ED42820F6
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 13:03:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 104965914C;
-	Fri, 12 Apr 2024 12:58:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBAA65C60D;
+	Fri, 12 Apr 2024 13:03:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q3bjNkO3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PIOoV7FF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E127D3D393
-	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 12:58:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 046625B200
+	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 13:03:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712926720; cv=none; b=TohXnq5rkOtmYB4EZUIY8vSeWMNgtAmskfd5GJpCCiV3p8KYS9efOdl/emAWWxUTYcpxEyML1mLLKd8Se0yoZ+EWk5Y8zj4tCtpMrmT8nw62Z4aSgI8z7nwqsHmTaJZHbm8SJ31Wze4h0krs95XAF3BPuNRoXL/vXXFp3mLCt3k=
+	t=1712927010; cv=none; b=tcZNwbRnOookFZO1YA9tjtgaBEmNJ3FAMUFnToXodX6QDY6yQbiUt+oG8AMRwotPYAUgrbpJgrElFyb2lpt4oitaAOxWUaAvt79Kr5Bqvj2UHM5z/mY4ysraMbfLXqAzKIM/YwvGuIDKPzRW9sKgSFNIUDgju4D/Kf+VfPf2A3Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712926720; c=relaxed/simple;
-	bh=VYXNcStunbG4ClvUwhXqmVUrRjlPXdZ08q+1os22bgg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=XF+VDDdQOpwkv/TVzKGH9G/G0i4ymSz0DgoJQNEucbQEREY8TY+npfC+YwrajSY6gBSPKCH4OWZKqSGA6bFdHcTJtU5iksldFd1UX2ffEAvh5TbMkHIzQCM+rsl244FficbNDqvkXMf9J7zFvKWja08XlzLgvTN3IFq5QlZF38g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q3bjNkO3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBD81C2BD11;
-	Fri, 12 Apr 2024 12:58:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712926719;
-	bh=VYXNcStunbG4ClvUwhXqmVUrRjlPXdZ08q+1os22bgg=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Q3bjNkO3ZO5LfDfV90vGyYoElWXRsDm/DuY5FXbOEXcdK5lu9Nynxa9OAXMG8zrxz
-	 gMl187XTnL+spWw6fvG3EQm9Dm2QWWQ4xSNX46Ujf54CQGaA7iETyrZvbwR3gwvpKm
-	 fpNI7gr0Wo1Al5pqXI/5LF+j/W20yjRw4Q4zivdr7bNNoLqOnHnLoOQmzRUKBzCIsx
-	 DPy/lZFe1pW9VQgJdfP70Tv+s1+0Jo9zyM8bRTd+f9r4Nx2rnvGrodLo5y6SFwKaqt
-	 KEFtC9y0ng4nijS716AImgO0ja/cLpUUkgsiy+SmdzTcViSHAC4h7p0elGv74DYdeH
-	 TVmeNqJl0ac4w==
-From: Niklas Cassel <cassel@kernel.org>
-To: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Michal Tomek <mtdev79b@gmail.com>,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Jon Lin <jon.lin@rock-chips.com>,
-	Niklas Cassel <cassel@kernel.org>,
-	linux-phy@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: [PATCH v2 2/2] phy: rockchip-snps-pcie3: add support for rockchip,rx-common-refclk-mode
-Date: Fri, 12 Apr 2024 14:58:16 +0200
-Message-ID: <20240412125818.17052-3-cassel@kernel.org>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240412125818.17052-1-cassel@kernel.org>
-References: <20240412125818.17052-1-cassel@kernel.org>
+	s=arc-20240116; t=1712927010; c=relaxed/simple;
+	bh=fLML18J7yDvY0kAxAiabw/PSTupFBpzee1x9+m9hqUo=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=TyC4rdrhkx+4duDhZ72/RDUBI+S09211dTNHffO7OrfZM8SWEWyt8Zl621Gewg4IyhZ/DvD7rxw5M7B3+gW2ZeVI8rLBGLHgVsb//P1GGT0hXySxECUlN36X+vpmTc47oyfmR8LENzGrzrBwcvH9O7NPU0udkbFc1NxozPdZ7OI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PIOoV7FF; arc=none smtp.client-ip=209.85.208.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2d82713f473so13570851fa.3
+        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 06:03:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712927007; x=1713531807; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Nm8LSvH+A0aysY1LVMvbC5kt2UeJVTw7St9EkLFip3k=;
+        b=PIOoV7FFVOm8A4CWOuxzb3QNZR8cJOuyjSqNu51RhhMd8U4G+uaOWmImwfaGdiBOio
+         w+2QZCyenB6qUYgYtmsLvomJKH1T2N+Tq4RGLD01nDx7K8YionwRnua1B6FDeM/Di9Zb
+         rqIYv9tXLHoVqLnOL5Cxn5mwDNSAlvpJTzm2aEPICKNUcR/mWITBjzWsI2CUwD5NzRwt
+         JOJj520HZUN4IomzljoSKpFfhZeEt0CNzH2K0SlUMJKH3QV2lkTBylPRyXBsLA9Hgp4I
+         w7C9sC4tB4WVQKJg2I2qLZa2GyyDuHBtCYyLMj7wqAZzYzGpUhVei+9rzfDqSspUmzzT
+         j0mg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712927007; x=1713531807;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Nm8LSvH+A0aysY1LVMvbC5kt2UeJVTw7St9EkLFip3k=;
+        b=CTNtlybRacmObf4YahC8lVLBnyiX0VnE2v4atlKl9a28Z5HRZ2DBSAFKv5TupvNa4u
+         Zu6vywL8JtncWQgPGeel0LOo8Tseq8FoTMssgZO9bebqUUhQzDfEEYl7zLCNALlv3w9R
+         MVX0ift6eJSd93xIY4GLOr1upLrJjuR7HY0zp4tcvA4dmWrbiWpL5K+aXCLTSVMG0PAR
+         l43lO4YCZOP5eVZ8p7R0/9FbkFRjf9/x//6L4L7AO4Ij9JslZmZ2F2Tk5Gg0NRIx2sRY
+         vYOHPN7ivib8Tz3S0H8M6oiiKT3Pxe+c9Np77L2+zhckPjfddjcQWuc2XAB7jI8khLjF
+         eIqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX/bEolR+Z3FlEksaP3T8niyh2iSMjP0b5V+50FSZ4/4aakXHb5ecq0vwLugVAtfL6g3vUK/voUXpyT42BOq3tZKO6SlS63cpIK/Q==
+X-Gm-Message-State: AOJu0YzyI7lPWQP1cEoUjFkXN0Sohv1KdsqlRwzq8Q+CZryacxPOw3ZH
+	Q0vknVNyL8MCPkk7OwfkqW8m5b6ECaxFmrNUfQ4bOtfBgYqm82JxtirIQWC5ZDo=
+X-Google-Smtp-Source: AGHT+IHK4CQtsJnkc980vV5S8swNBkt4lBLxARVMCpXsWDOLaK3XIHiJ4ubaGIkNoNRiom/1KZvtjQ==
+X-Received: by 2002:a2e:a545:0:b0:2d8:58b6:c10d with SMTP id e5-20020a2ea545000000b002d858b6c10dmr2214877ljn.18.1712927006961;
+        Fri, 12 Apr 2024 06:03:26 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:986c:54c:12ce:a121? ([2a01:e0a:982:cbb0:986c:54c:12ce:a121])
+        by smtp.gmail.com with ESMTPSA id n9-20020a05651c000900b002d2697570fcsm502800lja.93.2024.04.12.06.03.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Apr 2024 06:03:26 -0700 (PDT)
+Message-ID: <00b0e513-bb8a-4db7-aa8e-57632add4752@linaro.org>
+Date: Fri, 12 Apr 2024 15:03:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v12 4/7] drm/meson: gate px_clk when setting rate
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Jagan Teki <jagan@amarulasolutions.com>, Nicolas Belin
+ <nbelin@baylibre.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ dri-devel@lists.freedesktop.org
+References: <20240403-amlogic-v6-4-upstream-dsi-ccf-vim3-v12-0-99ecdfdc87fc@linaro.org>
+ <20240403-amlogic-v6-4-upstream-dsi-ccf-vim3-v12-4-99ecdfdc87fc@linaro.org>
+ <CAFBinCChEc+GH+tdmByWDM=Gs_BUpDh=6S=ch3QbGUt501_Ejw@mail.gmail.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <CAFBinCChEc+GH+tdmByWDM=Gs_BUpDh=6S=ch3QbGUt501_Ejw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-From the RK3588 Technical Reference Manual, Part1,
-section 6.19 PCIe3PHY_GRF Register Description:
-"rxX_cmn_refclk_mode"
-RX common reference clock mode for lane X. This mode should be enabled
-only when the far-end and near-end devices are running with a common
-reference clock.
+On 10/04/2024 21:34, Martin Blumenstingl wrote:
+> Hi Neil,
+> 
+> On Wed, Apr 3, 2024 at 9:46 AM Neil Armstrong <neil.armstrong@linaro.org> wrote:
+>>
+>> Disable the px_clk when setting the rate to recover a fully
+>> configured and correctly reset VCLK clock tree after the rate
+>> is set.
+>>
+>> Fixes: 77d9e1e6b846 ("drm/meson: add support for MIPI-DSI transceiver")
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   drivers/gpu/drm/meson/meson_dw_mipi_dsi.c | 7 +++++++
+>>   1 file changed, 7 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/meson/meson_dw_mipi_dsi.c b/drivers/gpu/drm/meson/meson_dw_mipi_dsi.c
+>> index a6bc1bdb3d0d..a10cff3ca1fe 100644
+>> --- a/drivers/gpu/drm/meson/meson_dw_mipi_dsi.c
+>> +++ b/drivers/gpu/drm/meson/meson_dw_mipi_dsi.c
+>> @@ -95,6 +95,7 @@ static int dw_mipi_dsi_phy_init(void *priv_data)
+>>                  return ret;
+>>          }
+>>
+>> +       clk_disable_unprepare(mipi_dsi->px_clk);
+> nit-pick: clk_disable(mipi_dsi->px_clk); should be enough here as my
+> understanding is that we only need to {un,}prepare a clock once.
+> 
+>>          ret = clk_set_rate(mipi_dsi->px_clk, mipi_dsi->mode->clock * 1000);
+>>
+>>          if (ret) {
+>> @@ -103,6 +104,12 @@ static int dw_mipi_dsi_phy_init(void *priv_data)
+>>                  return ret;
+>>          }
+>>
+>> +       ret = clk_prepare_enable(mipi_dsi->px_clk);
+>> +       if (ret) {
+>> +               dev_err(mipi_dsi->dev, "Failed to enable DSI Pixel clock (ret %d)\n", ret);
+>> +               return ret;
+> If we ever hit this error case then there will be a lot of additional
+> errors in the kernel log:
+> - initially the clock is prepared and enabled in
+> meson_dw_mipi_dsi_probe() by calling devm_clk_get_enabled()
+> - we then disable the clock above (generally disabling a clock is
+> expected to always succeed)
+> - if the clock can NOT be re-enabled here we just log the error
+> - in case a user tries to rmmod the driver (to modprobe it again) to
+> try and recover from an error the automatic disabling of the pix_clk
+> (based on devm_clk_get_enabled() where it was enabled initially) there
+> will be a splat because the clock is already disabled (and enabled
+> count is zero, so it cannot be disabled any further)
+> 
+> For the 32-bit SoC video clocks I keep track of them being enabled or
+> disabled, see [0], [1] and [2].
+> In my case this is important because we can run into cases where the
+> PLL doesn't lock (I am not sure how likely this is for your case).
+> 
+> It *seems* like we need to do something similar as
+> dw_mipi_dsi_phy_init() can be called when changing the display
+> resolution (or whenever drm_bridge_funcs.atomic_pre_enable) is called.
+> To illustrate what I have in mind I attached a diff (it's based on
+> this patch) - it's compile tested only as I have no DSI hardware.
+> In case dw_mipi_dsi_phy_init() is called only once per device
+> lifecycle things may get easier.
 
-The hardware reset value for this field is 0x1 (enabled).
-Note that this register field is only available on RK3588, not on RK3568.
+Indeed your scheme looks good, I'll try it since indeed we only need
+to prepare it once in the lifetime of the driver.
 
-The link training either fails or is highly unstable (link state will jump
-continuously between L0 and recovery) when this mode is enabled while
-using an endpoint running in Separate Reference Clock with No SSC (SRNS)
-mode or Separate Reference Clock with SSC (SRIS) mode.
-(Which is usually the case when using a real SoC as endpoint, e.g. the
-RK3588 PCIe controller can run in both Root Complex and Endpoint mode.)
+> 
+> PS: I'm so happy that we don't need any clock notifiers for this!
+> So: good work with the clock driver bits.
 
-Add support for the device tree property rockchip,rx-common-refclk-mode,
-such that the PCIe PHY can be used in configurations where the Root
-Complex and Endpoint are not using a common reference clock.
+Thx !
 
-Signed-off-by: Niklas Cassel <cassel@kernel.org>
----
- .../phy/rockchip/phy-rockchip-snps-pcie3.c    | 37 +++++++++++++++++++
- 1 file changed, 37 insertions(+)
-
-diff --git a/drivers/phy/rockchip/phy-rockchip-snps-pcie3.c b/drivers/phy/rockchip/phy-rockchip-snps-pcie3.c
-index dcccee3c211c..4e8ffd173096 100644
---- a/drivers/phy/rockchip/phy-rockchip-snps-pcie3.c
-+++ b/drivers/phy/rockchip/phy-rockchip-snps-pcie3.c
-@@ -35,11 +35,17 @@
- #define RK3588_PCIE3PHY_GRF_CMN_CON0		0x0
- #define RK3588_PCIE3PHY_GRF_PHY0_STATUS1	0x904
- #define RK3588_PCIE3PHY_GRF_PHY1_STATUS1	0xa04
-+#define RK3588_PCIE3PHY_GRF_PHY0_LN0_CON1	0x1004
-+#define RK3588_PCIE3PHY_GRF_PHY0_LN1_CON1	0x1104
-+#define RK3588_PCIE3PHY_GRF_PHY1_LN0_CON1	0x2004
-+#define RK3588_PCIE3PHY_GRF_PHY1_LN1_CON1	0x2104
- #define RK3588_SRAM_INIT_DONE(reg)		(reg & BIT(0))
- 
- #define RK3588_BIFURCATION_LANE_0_1		BIT(0)
- #define RK3588_BIFURCATION_LANE_2_3		BIT(1)
- #define RK3588_LANE_AGGREGATION		BIT(2)
-+#define RK3588_RX_CMN_REFCLK_MODE_EN		((BIT(7) << 16) |  BIT(7))
-+#define RK3588_RX_CMN_REFCLK_MODE_DIS		(BIT(7) << 16)
- #define RK3588_PCIE1LN_SEL_EN			(GENMASK(1, 0) << 16)
- #define RK3588_PCIE30_PHY_MODE_EN		(GENMASK(2, 0) << 16)
- 
-@@ -60,6 +66,7 @@ struct rockchip_p3phy_priv {
- 	int num_clks;
- 	int num_lanes;
- 	u32 lanes[4];
-+	u32 rx_cmn_refclk_mode[4];
- };
- 
- struct rockchip_p3phy_ops {
-@@ -137,6 +144,19 @@ static int rockchip_p3phy_rk3588_init(struct rockchip_p3phy_priv *priv)
- 	u8 mode = RK3588_LANE_AGGREGATION; /* default */
- 	int ret;
- 
-+	regmap_write(priv->phy_grf, RK3588_PCIE3PHY_GRF_PHY0_LN0_CON1,
-+		     priv->rx_cmn_refclk_mode[0] ? RK3588_RX_CMN_REFCLK_MODE_EN :
-+		     RK3588_RX_CMN_REFCLK_MODE_DIS);
-+	regmap_write(priv->phy_grf, RK3588_PCIE3PHY_GRF_PHY0_LN1_CON1,
-+		     priv->rx_cmn_refclk_mode[1] ? RK3588_RX_CMN_REFCLK_MODE_EN :
-+		     RK3588_RX_CMN_REFCLK_MODE_DIS);
-+	regmap_write(priv->phy_grf, RK3588_PCIE3PHY_GRF_PHY1_LN0_CON1,
-+		     priv->rx_cmn_refclk_mode[2] ? RK3588_RX_CMN_REFCLK_MODE_EN :
-+		     RK3588_RX_CMN_REFCLK_MODE_DIS);
-+	regmap_write(priv->phy_grf, RK3588_PCIE3PHY_GRF_PHY1_LN1_CON1,
-+		     priv->rx_cmn_refclk_mode[3] ? RK3588_RX_CMN_REFCLK_MODE_EN :
-+		     RK3588_RX_CMN_REFCLK_MODE_DIS);
-+
- 	/* Deassert PCIe PMA output clamp mode */
- 	regmap_write(priv->phy_grf, RK3588_PCIE3PHY_GRF_CMN_CON0, BIT(8) | BIT(24));
- 
-@@ -275,6 +295,23 @@ static int rockchip_p3phy_probe(struct platform_device *pdev)
- 		return priv->num_lanes;
- 	}
- 
-+	ret = of_property_read_variable_u32_array(dev->of_node,
-+						  "rockchip,rx-common-refclk-mode",
-+						  priv->rx_cmn_refclk_mode, 1,
-+						  ARRAY_SIZE(priv->rx_cmn_refclk_mode));
-+	/*
-+	 * if no rockchip,rx-common-refclk-mode, assume enabled for all lanes in
-+	 * order to be DT backwards compatible. (Since HW reset val is enabled.)
-+	 */
-+	if (ret == -EINVAL) {
-+		for (int i = 0; i < ARRAY_SIZE(priv->rx_cmn_refclk_mode); i++)
-+			priv->rx_cmn_refclk_mode[i] = 1;
-+	} else if (ret < 0) {
-+		dev_err(dev, "failed to read rockchip,rx-common-refclk-mode property %d\n",
-+			ret);
-+		return ret;
-+	}
-+
- 	priv->phy = devm_phy_create(dev, NULL, &rockchip_p3phy_ops);
- 	if (IS_ERR(priv->phy)) {
- 		dev_err(dev, "failed to create combphy\n");
--- 
-2.44.0
+> 
+> 
+> Let me know what you think,
+> Martin
+> 
+> 
+> [0] https://github.com/xdarklight/linux/blob/meson-mx-integration-6.9-20240323/drivers/gpu/drm/meson/meson_vclk.c#L1177-L1179
+> [1] https://github.com/xdarklight/linux/blob/meson-mx-integration-6.9-20240323/drivers/gpu/drm/meson/meson_vclk.c#L1077
+> [2] https://github.com/xdarklight/linux/blob/meson-mx-integration-6.9-20240323/drivers/gpu/drm/meson/meson_vclk.c#L1053
 
 
