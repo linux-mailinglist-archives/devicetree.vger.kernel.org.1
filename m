@@ -1,236 +1,374 @@
-Return-Path: <devicetree+bounces-58661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 113018A2C20
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 12:19:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D95D8A2C3D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 12:23:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C3748285760
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 10:19:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2485E282072
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 10:23:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B53F54646;
-	Fri, 12 Apr 2024 10:18:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24FFF53E0E;
+	Fri, 12 Apr 2024 10:23:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="Apgeq12b";
-	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="c4B7YUPh"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="DX28EUpl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01olkn2092.outbound.protection.outlook.com [40.92.102.92])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A823F535B7;
-	Fri, 12 Apr 2024 10:18:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB9D553384;
+	Fri, 12 Apr 2024 10:23:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.102.92
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712917114; cv=fail; b=lsU7sbWZwSIGLk0en4f3RkOUY5rxqV4WonkJmBcPBNZ5Hi8zH+CKeZclzZLA1fBmMGO26kMxBx/hKVZdb1fpV6c6qdeStuh3OOL8VXDkewr4r1ypP4QlW59y/F+osprWZ0yN6N1pIyvix0FapzDbAHmDdPCHbm/gKnQALhPkGQQ=
+	t=1712917407; cv=fail; b=gVG1uQtwHBA97L6bYFSxfD+KoG4pUI9YdkJO2sEYCuZnxf8AhwQSgwTICtpPT/V16Ypo3qt6sGJNi5FBmYJEzgHpNhs7AKoAXK4Y0sglj0Fd/QR0V8nOCgFe+0UOLO7ED0gghHLEeqWPaJ3z4QDYyPHdlG/3jxXyraxCjBdsjrE=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712917114; c=relaxed/simple;
-	bh=27qGGB317FuMAGjmuszKEYG57Bxj5xBFLZVyomkX09s=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=fjHAaAQzR/wzXRuw32+Bd2QFoOcny8Mk66+MGk8WsI77aoXTPzo78s6A3H1pW5AYZU8Ha8n1nKjZnc/H/RhmuSBWLhso3a4bHy3srZasVUmhjZixJ8gx+b5AHaZQIsmUqoGK1yQaO5MHNEHw1YDexq16b3TgLe/+qeHeIpbCsYc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=Apgeq12b; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=c4B7YUPh; arc=fail smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: fff73e30f8b511eeb8927bc1f75efef4-20240412
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=27qGGB317FuMAGjmuszKEYG57Bxj5xBFLZVyomkX09s=;
-	b=Apgeq12bIRpLzlIq/BMgCgVdJ+kDyIPkNaTfQH2koOChDVAoALR1SlGm/QANnsaJUyXF/IGsArKQ8EcHWvuEFpHiHxwOcCVF9S/QNJIKXZXBlf0hHJUod/bx+LPKWPv3CCfqlEB8HLpaE05n9UgozGpjjhhEMRBnjdam81MOKXw=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.37,REQID:50bd4316-1128-430e-aaaa-2f7d1cbd6b39,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:6f543d0,CLOUDID:bbf88091-e2c0-40b0-a8fe-7c7e47299109,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
-	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: fff73e30f8b511eeb8927bc1f75efef4-20240412
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-	(envelope-from <olivia.wen@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 417480851; Fri, 12 Apr 2024 18:18:26 +0800
-Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
- MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Fri, 12 Apr 2024 18:18:23 +0800
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Fri, 12 Apr 2024 18:18:23 +0800
+	s=arc-20240116; t=1712917407; c=relaxed/simple;
+	bh=SPwY/+bk/JO0ZFn7MGz96nM07sN9xIXy1IzFqOLzFAc=;
+	h=Message-ID:Date:Subject:To:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=Ts8zC6hSVnWkqNC2HN9urJxrjVKglGy/9MObsBBJyT380dprZu3U0FqkdGI3xH7VbazKnt1TRgdZW+vEWoqHm+yzXhtTGgKqh6T/3Dq4SdrWdDqb6rKlsEQpTh+QJqSCSaZln6c0nOSuIWL8gmFIT+VcPY67/USyySPsWPQEev4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=DX28EUpl; arc=fail smtp.client-ip=40.92.102.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BfFvvJWuHe9RL9Cp5YDVFlKgJYQopy4BntxgNiW81HmibW4IM5g8QGpaoEMdq9BUi2G3Q+yU7+zE6MRAQX+ov7vWr7dFtXiRrOtOuVDjrvL3qbAXy/MgrTmeRrGzVfBa+N1EVRvwDRN9XSTAPUg0vi2QsyA28QorqJl1qEA4Yp7SueMo5golrC1nZQzIZCUEYjS+u+rWk9ur6cHWqCUi0fwphiEW1AuTQZ7FwP/XzPvMKTY/lQj9MkVtEjOie5VKEA2VdV35p8ZZ4idVQ0tDTu7lnKt3588WHncFZPJggowJGpXvdC8ioDrWqludWsmuKOuAPDb/UdZTbnQznls99g==
+ b=oBok5bBibzXVjq4hf/Xa3+jA93JvxmOEEGCjzYyigX4e/QZJ2rhA/tAGRT9aT3OlqLnicuiCv0YGrDlivgar6noYaYEzE+qNw9kkBUl0qDiN//+EpBEByIJxEi6GjY51ANJb5f8QJ7oAO2S5gJVvZqX9pYNC25fcMu4MjFzA6NCd6GquL1wfcpi3VRjhrtFsgz4ArhFnsKvoGYgcO9pkXeP7heWnNGegYsdYKhgrWuTU0AU9Drrv5L+C/dA+iIB0uhjKMLqReaJXjhnuMJLNNro7AR3A19gfOwwcDadJFghlVBsh10hOuzkzpvlGIrrKJF6BGaNqEMAHMIEELLfqcg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=27qGGB317FuMAGjmuszKEYG57Bxj5xBFLZVyomkX09s=;
- b=Z0Y8ekDpDd8RVIs0e5423pVg3di/tymc0qdSvBS7ilSUirXvimT98fvPqUuXrdW27taAYvddwnDGIhFUKenAHAt3xGakH8r6oF/azQMvtxSHQBYfV7sPLDBKMB9MEZSRT4BqWJE6cw7LxaOsiNqrKyGOTYog/d+iBFKWSahmKVWaPBKHgS7PudabbD8HNY7+SegkSVBr8ojLb/znpbhXILlEphYPKqAi0Ff+QRplXAAkt/DO+4SKf2SkCE2Dn4V3l8rLDRa9v4KfyhoMhMjh3Rp1hIcYKUbYJGcq0eH995MiS6hxDlWHjzpAEaSAUPHrN18C/2nXU5sZmfRwApl/FQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ bh=xfblepfYTbRGVzZYMUwHrLjsmfB/aOh4FoCyB0F6H2c=;
+ b=RLc2QPKV7SEU5m0Chk2tKUAp7suvg/pBN+r1VCw+jJN1hF2fVPYhGRJWwopFBKeaaNskWguMUu1YBlmNIuVIZ+oDIRz+IvcMbtmq+OPpJx8xoPfmJJR+FOgMnqxQoX7Ka+CdkBEsqaFbRDUo03DudYvvL1Fo1AwyOxYKXs5AEynYZkiwvqrjlI/jPV2zcEoZtIYn9GHIKISA5PROpQmsQA+CC4vinRKefgjWI6rDlEkbTNPTj3/UG6v2DbAKQBDITQRJGs88pw2njObnxNs+lqHMG5IysljanMSyvYmMGAvWgIwfOdKLVagyiohmxCPizlGA6QNnoBORPzT9rAQ1yw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=27qGGB317FuMAGjmuszKEYG57Bxj5xBFLZVyomkX09s=;
- b=c4B7YUPhUerd7doaQbmnhqSsHB9SjTPqj6Sm46OB04jOqnwprOVEtNHDLMARCaNcLXPMO7euqiO46NOaFdI2T+nudqGpoU+d5jQ9wwinpNveRWVwQmRwocG3j41mnc7FGe71P4VmuO5nRAdXVkDbYMcp8+TJpFfbNptvtxGqkOI=
-Received: from KL1PR03MB6226.apcprd03.prod.outlook.com (2603:1096:820:8c::14)
- by SEZPR03MB7631.apcprd03.prod.outlook.com (2603:1096:101:10d::5) with
+ bh=xfblepfYTbRGVzZYMUwHrLjsmfB/aOh4FoCyB0F6H2c=;
+ b=DX28EUpliAQB/5lEbbdE5hRyrq5ft5fUc5VmMcjsFNN0DuzLjc3+jr8r4sfG4lYhJizK24N2bboUwcrixMKdWkLn2A1+CUkxfnVpZ5hiKWkMPk4iNcQFIjJjW84KjLsY4t2pqaqG3WjZTh/wAG/lxYvOePSWz0eI7b/1ljbnf98EbZLC/JihqQqluzp+XY3e1gLMrT3lRjTxWZ+ZhLoAn3ObllSPC5ZsXT1Ro+MnJTp8CfvXo9P+MAffOstywrDXMbST5JJdOzj8PIOc28jvm9rJ2g5NlnlhL/M4fq5bvVsi96NgWd6T1GpfgGRKaVqCC71WT78sToqKQ1s78O2RWg==
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
+ by PN0P287MB1078.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:141::8) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.56; Fri, 12 Apr
- 2024 10:18:20 +0000
-Received: from KL1PR03MB6226.apcprd03.prod.outlook.com
- ([fe80::85d1:1a4f:cc89:46fa]) by KL1PR03MB6226.apcprd03.prod.outlook.com
- ([fe80::85d1:1a4f:cc89:46fa%7]) with mapi id 15.20.7409.053; Fri, 12 Apr 2024
- 10:18:20 +0000
-From: =?utf-8?B?T2xpdmlhIFdlbiAo5rip5YCp6IuTKQ==?= <Olivia.Wen@mediatek.com>
-To: "robh@kernel.org" <robh@kernel.org>, "mathieu.poirier@linaro.org"
-	<mathieu.poirier@linaro.org>, "angelogioacchino.delregno@collabora.com"
-	<angelogioacchino.delregno@collabora.com>, "andersson@kernel.org"
-	<andersson@kernel.org>
-CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	=?utf-8?B?SmFzb24tY2ggQ2hlbiAo6Zmz5bu66LGqKQ==?=
-	<Jason-ch.Chen@mediatek.com>, =?utf-8?B?WWF5YSBDaGFuZyAo5by16ZuF5riFKQ==?=
-	<Yaya.Chang@mediatek.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	Project_Global_Chrome_Upstream_Group
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	=?utf-8?B?VGVkZHkgQ2hlbiAo6Zmz5Lm+5YWDKQ==?= <Teddy.Chen@mediatek.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "matthias.bgg@gmail.com"
-	<matthias.bgg@gmail.com>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	=?utf-8?B?VGluZ0hhbiBTaGVuICjmsojlu7fnv7Ap?= <TingHan.Shen@mediatek.com>
-Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: mediatek: Support MT8188
- dual-core SCP
-Thread-Topic: [PATCH 1/2] dt-bindings: remoteproc: mediatek: Support MT8188
- dual-core SCP
-Thread-Index: AQHai+NzkV2m7c/nxE+B5uMVEPmmbLFkbbOA
-Date: Fri, 12 Apr 2024 10:18:20 +0000
-Message-ID: <caeb4e7e0c58d07d621958ca3d92b3a9b6f6c292.camel@mediatek.com>
-References: <20240411033750.6476-1-olivia.wen@mediatek.com>
-	 <20240411033750.6476-2-olivia.wen@mediatek.com>
-	 <5cf005b9-d737-4509-a9fb-f0e59465482c@collabora.com>
-	 <6e8e553b-8c5f-404a-a396-17d8b3440d93@collabora.com>
-In-Reply-To: <6e8e553b-8c5f-404a-a396-17d8b3440d93@collabora.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: KL1PR03MB6226:EE_|SEZPR03MB7631:EE_
-x-ms-office365-filtering-correlation-id: ef9e36ea-006a-4783-aff1-08dc5ad9e0dc
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: FPNK/yAEGEFqZszXIm+cYz3NS0X6BID38ZWel5BcR+9lw9MrcpgGcnDvdx1xhbvLQu2f+GlL+BqgVovvpdIPaVLLaAZQfEf6+G79F+f3qApOImhjw35OhtNsriW1+39hkYmSC/F92m/Ei8n4de2fVFMbWd8AUtfnVtSEdQlNN4TV3gQfY7S7weNwS+xH43SU8mvcg4/ncYI+AvVZrzjq8ECejaXOTuLw9B/7Vp71RRYjO3K2bqJdXC65WZto/lWl/qbK6PyTxm+y6NNRqSTpY4PE4MiTyt0XC+Aw6NrV8G+OryonDFjlsMaPAh9qGSnBbbg60PCW84MkaUrMt3S08/uviAYMZqIHdiP2R1aP+VJZVfMQYwtrR3/VNAkz/gb5pedAAnuYwvDQDDZYkR9tLLpBBUTPer96qYuT4TnA5rQON6/z3HZVRoaB9sNnGg85QjYkpnaXr+kGtGLQ7NlmXktX4+Q6PN0adMT3X87jtz/vp9XTCq2FAJKxqC9+kq9V9LjrzS6H5mYUQSJihU7BTmRQtIMHYQFz0ZEXtqPbA8J4w6NimXjr9K7qIsAr9OpqkOMuLZY2BwJ3GUubqGJMZvt8izKDWDA8hcxOUf/LrHGbKtzZhDoP3WrV8Iyw5s8y31/Z80nya1qV8Or2OMnhhyWyvIzW5dbSaTsBnAUKHi90QtmLBdSnpJXshZYZHz1dF3LBEx9Y65prUsP/jy6ttTV4/ImX3kzqxgHGq+FynTw=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB6226.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(7416005)(1800799015)(366007)(38070700009);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SDQ4bWgzK0xKakh5Tk5pYXA1dVhOTmFSbFJIWit6VkR2NWtCRGFMcmJvUWl2?=
- =?utf-8?B?RmhxZ2J3Vm81RzE1UVBsVEVxYit0bFBSSFRURGtlTi9zaTl1QmtweE05ejlp?=
- =?utf-8?B?N21XaVBlZGlTWUNicjIzYk1Obzc0dzZOL0s4TXJld0JoK21GdXlTRG5idEcr?=
- =?utf-8?B?b3lUKzFyZG1jWWRTdi9adjZKdjlyUzQyQ2NrQlgxV1l0eVIyR3NzN05TR1px?=
- =?utf-8?B?bmdQRTBSbmFIUWxIUWdPRW1tSGhMY3B5OEdTN0VxenNnV1lvdytjd2ZlSFZh?=
- =?utf-8?B?MWZBYkNSR0FIM1NxMy9OMTFqSisrbGRQeitWS0d1d1Y5ZERBcmpkN01PeWxB?=
- =?utf-8?B?YTF6SjBNMmd5ZHZEb1RJb0RBaXpOa0Z5bzFxOTE0d3NDT2RRRHhQTTNBSkpa?=
- =?utf-8?B?ZFJyeCtnaDF3T0JBbExhcmdydGNvYVg4MUdLMGxmQktZY1hCc2R1c1RDeFBl?=
- =?utf-8?B?ZUh1aXlUc1EvRkFzbXhJcHhoSVk1dG9aK3Q2UHgralcxTUpBcWZYSkJZV1ZH?=
- =?utf-8?B?NkV6NHZpM2RUMXpoOXRoYnpLUGI1WkVyZVlGOEdmWWw2U25IajB0U1gwR2JV?=
- =?utf-8?B?bXZodzdLS1lvRlozeVFya3k1Snl5NnFkVVM4QmEwNjhJeWRIdm1IVXZkMHJF?=
- =?utf-8?B?aVBJSDdYak4rRnR5endHRkpwVTNhYnlZTVdNRXF1MHE5eVM2WDF6TE9tVGJH?=
- =?utf-8?B?ZGZqT0RTZ3h4UDZEMFhnVmdQZ2ZKWE43ZVhGaXpRQmg3VTRlNWRmYi9JVlQ0?=
- =?utf-8?B?R05rbUZWUkdVbTdvT3c5RHNiVjhSeEk0ckxnb3JCeWs2Uk1CUnFpdE51dXBi?=
- =?utf-8?B?SERtWmI4d3lsWXdvWHFSRjBMaDZsOUN3OVpDTHFTdHdUR1Z3ejIrbWN5WUN2?=
- =?utf-8?B?WXVVdi9YM2RTVnJtZFNKMmZxWnMvSlkrZDhWTUpYVldIK0JtZTN4bWJXdHg0?=
- =?utf-8?B?NnVxMS9EZGFOVVVsejkvSVdrS3NrSUZuRlNrbHBhdFVSMEZnS1d4VTV1OEQw?=
- =?utf-8?B?V2JhV0pGbDdVcklrVzh6cTc4REc5Tk1vd21xMU5xSkg3anYwS20yeEJabklp?=
- =?utf-8?B?WDgxdlRSeVU0S2MwbHNlTkZjVEYrZHArMVN1UnBXdzlMWE14dVBOMytnM09X?=
- =?utf-8?B?YjJGa01lSFdFM3hocm1jNnlJcE1HcS9mM25OT1Q1c0w3RE9oZDhQcFJkRHE0?=
- =?utf-8?B?YkF6czFOT3BvMFhHNGVCYTRUYkpWVVJSTC85ak9wamE5TUtoaFlJSjR2WGtr?=
- =?utf-8?B?aVJUZXc1WGFxRG9zRmd3dHlQYXhydnVjYUFJMFpoaWF3dzhkK0dKWkJhQXFE?=
- =?utf-8?B?WlNPREpnQkt2MEEzTFdGL2hBdUpJdlhMbmozVGJnUmsxOVFZdDRWVzl2dHhr?=
- =?utf-8?B?VlZaUzVLY0o5RGZNV3NLcmpxMGNSRkdLeTV2ZldCaFVKZTZPNldZTnRMbEtC?=
- =?utf-8?B?RUY4ZTNCRldiQ3gxbHR2Rm1oc2FzekE1WGJsRzdIc3hmTkVFMFZMT0dheEpn?=
- =?utf-8?B?NXFERkxPTWNzc1Q4MEtTYzBhcG1YUkN0b1hnYWtaMk9RV0NhSWhBS2s3ajhH?=
- =?utf-8?B?U2xLb3BUdm1qalM4c2duUVgxcm8zcXN5T1U0Y09sRzlQWU9wQTZEMTMydmlG?=
- =?utf-8?B?aHlWL0JsR0dyR2o1a0tvQ0ZCSCs3NnlneEZHNUxDcHIxR3lVWlRLd1J4SnZx?=
- =?utf-8?B?bVkxQktuN1h6RUt0VFhFUUZVcDIrRFpHYnpUVVY3SWFsRXk2VVBiTGhqVnlk?=
- =?utf-8?B?YWhMMnduMFFXNU9EMVIvVEp3dS82UTZ6L0d5ekVTUlQ4YWM2dW5rNmgzbXd5?=
- =?utf-8?B?K1BwdWlHSmFlWGt4eFgxMlkzQlM1VlBxOEZtUHd1SVdGZFVQc3hCNEVzbjAw?=
- =?utf-8?B?RGZZanJTRnNYZmN0eEJXTmhjSlY0SEtib2pwU0NPZEY5L3BPSjhhTFFRUy9P?=
- =?utf-8?B?L0MyYytCZkZVY2ZmRlQwR0lGRVo2cWpGNjhMdmt6S0poVnlNSE1tai9POHJp?=
- =?utf-8?B?NnRzczdHb0tXTWcyUStGSktDUmltWTlnZ0tpR3RUN2NFN1RzM1VzdmEwSXNO?=
- =?utf-8?B?a2Zpc3BYSzJnYzFIYnAxNUU3Z1l4aC9SU0FWZEVPWHRSUVc3RU5HK0Q5MG16?=
- =?utf-8?B?Sm1QbXVteWtEdjVmOHF1K3VlSUl4KzQzMUo2QVNNOHkyMFM2NnBPSzE2Zkw2?=
- =?utf-8?B?T2c9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <5023A37EF5539B498EDD808538560ADD@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.47; Fri, 12 Apr
+ 2024 10:23:13 +0000
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::664:2ecc:c36:1f2c]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::664:2ecc:c36:1f2c%3]) with mapi id 15.20.7409.046; Fri, 12 Apr 2024
+ 10:23:13 +0000
+Message-ID:
+ <MA0P287MB28223E4F14E6D08E1139CA63FE042@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+Date: Fri, 12 Apr 2024 18:23:08 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v13 4/5] clk: sophgo: Add SG2042 clock driver
+To: Stephen Boyd <sboyd@kernel.org>, Chen Wang <unicornxw@gmail.com>,
+ aou@eecs.berkeley.edu, chao.wei@sophgo.com, conor@kernel.org,
+ devicetree@vger.kernel.org, guoren@kernel.org, haijiao.liu@sophgo.com,
+ inochiama@outlook.com, jszhang@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ mturquette@baylibre.com, palmer@dabbelt.com, paul.walmsley@sifive.com,
+ richardcochran@gmail.com, robh+dt@kernel.org, samuel.holland@sifive.com,
+ xiaoguang.xing@sophgo.com
+References: <cover.1711692169.git.unicorn_wang@outlook.com>
+ <816122e9f22ddd9927e81e627be7f4683ba5c9e8.1711692169.git.unicorn_wang@outlook.com>
+ <433e01f22ce5472aeb28cf0182d951bd.sboyd@kernel.org>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <433e01f22ce5472aeb28cf0182d951bd.sboyd@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-TMN: [qdbs4tZprd1ql3E+xUca5by/1V4X87i3]
+X-ClientProxiedBy: SI2PR02CA0004.apcprd02.prod.outlook.com
+ (2603:1096:4:194::14) To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:138::5)
+X-Microsoft-Original-Message-ID:
+ <adb50bdb-a30d-4c67-849e-d85ab6be65fa@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|PN0P287MB1078:EE_
+X-MS-Office365-Filtering-Correlation-Id: e9a6f9d4-5a5b-4a28-314c-08dc5ada8f2f
+X-MS-Exchange-SLBlob-MailProps:
+	iS5pQZgsAQDmFN0yKEpvbPDpAvl+/SbOWXduVvlLbBWjF5sNSML0mcvsbdmL77ixpe34E2HOGTgYzKcemFerXjZae30mGFbQL3QAhukIiezaDHMx8I7z9zt9oE7WdT37qEXC8cqbKLYxczY9krdSd5dyAGTQ5/aryOuAEg6zfG0JEKKdcyDtPh78XvkQkG1hT4IBAUJlt3S3B/HV4cWGo7Jrba5ZTCuTWPjh0QcpefDS9A18Vt5iHL+mzEuGBridwsCvIyMc+xlsqKQtQ647JBgJesLZgdADwXVAq7zkyOzCty+W8YChdRY8TAvF+e6/LAs5Ec2wPhC/AUEVKW4Mf+lXysBd1gw4WKIUtyZ/zXbn6U4ioUbS1vYgEfr2dcnebD2NOv37p0vmFVpdZ0tlat/hzLXzLPR/I6jMEf73lkmxn5/OnEu93pSkmR5uwHf434CiZrYbe/Zj8QGFIyfZ7242/EzVpdQainFK/HZXXVoqo0GIwnb80bsGNqQTPFCj3xqU17gq7tT/+7kvzNaBHtWY1NGLW6rAeevdIsb2tPRWDIQ1Ov8iwbNKnZHAeCwtIPx55QKkKLNpfw8TR2EI0aPR7cBUxsLKxwAQEyTp0Mf/suDH5Go0ZalcQku8iyctiIKtNqW8EB5F79fgLObASrmcBBFZy02m2NO1vDiIednXg5x8o+p1sdZrvpor2GGRAxJ1g7iXYnCbWSPrKhzrhhcQdITnHCEPqrd/Dan4P8Bs2KqzCgGh5icLjGa3SovlJE8kR9s8UxXU6CnWdwMPNWdmdUDTNuRWl4S9LTmsNXyJ+Iwb34l5rkVMZP/bL+fh
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	LlYZuGBFzWn+vb+E3HDupUHAlESQljTXEuw9w3dDqVgGsfDqvgojylv7QtBrg2WEHUw/JMN5qfIZNpQRuoY2qI17hu1w4mXFCEIwKODbSDgWHEgv2sSbxJ1J5Gpu7UnhzU33h40RrTVstacwCgm6M1ptsn6nJZk2uButya6qehdPw40+eHszPgdu4SNibdkNnUBkcEntW1dcDScmt7DF2gkjQ9AczZzbeKM+QQvHd9fjp5vxPP5wKxfX999xhnC6P5S/pm2tsmBKF2BY9jLlRKKXCgrMhUnCnwTYWDzpeC3YxIr7rDuId1S1xSaf9YADX2CVBqbDX9KcONRX1AcXjc1rlHtppEUpas+OYNvUuCGHvpNdb5y0nB2if5RzVA2dcLIrkYY/HukkcBbRcTfJZ+ta7vSqAtMxfoN8KT8Fk3csCPSC3nv4OdDsccjUO4sAwTxubIi/8fZ90Qnn7KiD1qwxm7rvdKiEeIEyK0qg5hhNGpdq88tRn46oMc+6kBTr9E5rIxJzr7xMxyomgzNI+2P91rneg5r8N4VLswzyjfpKGU/hwEeeMu5BAfTv3Ux+eNYZ7AHLsQkioHoILXBNaPyIdacyGIxX2N7jsuKTZ7+D93j9G9xP0+wd8bHMbD/RSe2UTocoJa+LTxZ2EOYjhHowB26EKl6YFf3N0JArUWOJvZhelLFUBW3CCrYmIRbd9Ll3cFb4p/7zUbHkoodEAw==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?a1VvRnlnOHI2OTVPWW5xa3ZselFUUVNzVDJNNWhrRmJqcldaOXVpYjI2emI0?=
+ =?utf-8?B?OW5oNXR0amxRdG00SWZXeldRZEl0V2gya3F2Q2JaWk4vcGFSODdMMzRiVWJ4?=
+ =?utf-8?B?ZFZVYWF1LzJEMHhzYXUvNGptWERPK29adExxVDdlNmFUZlV5WTkwVS9Rd2lM?=
+ =?utf-8?B?ZWJDV1dncnI0TlNJNTd3NmsyaFZmRlRsVlVMekJlTytweURoM0pZQ1JBalEz?=
+ =?utf-8?B?bG01NVRDNnZYUkNudXFMbHlsS2NCVllyNnpDV2piUG9Jc0dtdDJqTnl3NmZz?=
+ =?utf-8?B?OWx5N1VBNVMxMXJwZ08rWWViSVd4eCtqWjJVRVpyV2dXZmE2SmdkbUd0SHhM?=
+ =?utf-8?B?cTRwS3M5a2Z0SjVsTVpGNm1Zc3JxTFN1c3VUOHVlWk1aVEoyV0pSSkRmdEdR?=
+ =?utf-8?B?aTVudExlNWZEUEZtOVNNM1daR3R5MjB4bjc2d2Q1OWszazVMZXZ5WXpnUnpF?=
+ =?utf-8?B?Z25KTy9LWGxoOFZaclVyNWZucENuMjR3TTg1Tmhyb0IrZzB1NDR5amxKL2R3?=
+ =?utf-8?B?L1RBZW9jYnpnbE13SXJNR1ZEb3lMQ0RUbVBMbHhENmRmK0IvZXZrYmx2VWJO?=
+ =?utf-8?B?K1c4dUFoQnN3YmlDZHNEWnN2eC9MNVpOSGdiZmZzbVlHT1pTWHNwYXNKMzJn?=
+ =?utf-8?B?Z2N0OUR2N0VYbFo2dmlnNVE5a2tzd20zc1dlaFNiaGhRUzBsZmRFSE5IQ1U0?=
+ =?utf-8?B?aEdaT3RUaDlSdDEzZWpCc3VreWl0Y1RUcmtuT2duZjBRc2RheElkZ0FRU1Yv?=
+ =?utf-8?B?ODNMaFFFL200VUJadVNVK1FYWkZRbGJnaENNS2x6a05XazhxSjdxQTVMdEhl?=
+ =?utf-8?B?Z1o2U1dTM1pHRkxaSUYvMVYvTUc2V0ZuaTdNeGxlZ1NWV0lGajJjTVJkZ0x6?=
+ =?utf-8?B?THNqcDB2NDBvbVZSVTZiNk5RTFVWMWhxdTV4RzdnZEJEeVNVOWVRWXg5QXE1?=
+ =?utf-8?B?aS9vUGEwMS9uUFd3VUJXWFZQaGxhVGRLaXIzM1dMQUFBVGtwUzltdndSeWla?=
+ =?utf-8?B?YTZuSkdYSUZOM2FCTWRJSzhoVUE3MGRoY21jcjd2UHhLWGFidVM5ZnEvZnJr?=
+ =?utf-8?B?Mjl2cXEycUJpbWFvZUtpY29ibmpBbjRiTVpBaXBCMk5rLzVuOENXVWZPVTdB?=
+ =?utf-8?B?dVR5elRaaEkvSGRHdlkxMUVvR0QycERBT3JGQUY4dEovRzFlNjBOaW5xNDZu?=
+ =?utf-8?B?S3lralpGUkFUVzRFRDdCdnhpUzBmUElCT1h5Y0cwZ2F4UlhkYzNaQkJQZEZS?=
+ =?utf-8?B?VlZVZ3ZlWGNhTXZvSHFiMlJWZ3oxVDNSZUsrQSs3NzZiZUdMY25GSHRJcmZB?=
+ =?utf-8?B?Wlp5TktySlZqYVJIUGhvT254eEszbGI0K3lFSlppZ0hHRmVHTnphdWpobmxC?=
+ =?utf-8?B?NE9lOThxL21pNW1TM3hwZ0FRaUdMQlR3dnlvQ2VwY2ZkY0lYWWFNcExsN1lJ?=
+ =?utf-8?B?cWk0eVhRU0s3bmxDODJETkZ3R2wzbVlrVkVCV2NGZjJmaGtLZlBoalQxeHlt?=
+ =?utf-8?B?VkVXNGw5UVdnLy9mdWxDbi9YczBYYVprTTRJTjBnT2JVRUZuUHI3ZFAwTzdJ?=
+ =?utf-8?B?eGRwdXU1RHZyby84dkhSQ0lzdTR1akVzSW9DT0FNUVpTakdSZUZkdUFkaVNF?=
+ =?utf-8?B?YXAyRitaSHZETVpNcm8xdXhqQlYvNFRldm85WG00WUhTK25pUmRUem9NSFZF?=
+ =?utf-8?Q?pNe0V/yFsPw8w3x57ScU?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e9a6f9d4-5a5b-4a28-314c-08dc5ada8f2f
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB6226.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ef9e36ea-006a-4783-aff1-08dc5ad9e0dc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Apr 2024 10:18:20.6365
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Apr 2024 10:23:13.3259
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: F7p2hTxnA2iLLDdZtBNrJlBEBJWs99GmfwBRSImkNTfKjSDrt5uBemsh3ED0bxh4oQJ2T1FncrZhqBMQ2kUv3A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB7631
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--10.659600-8.000000
-X-TMASE-MatchedRID: h20DFeLkM8/UL3YCMmnG4kD6z8N1m1ALjLOy13Cgb49qSjxROy+AU2yd
-	bY7xfgXY9FWgANwn4kLtSq0qk6SvLnEjLiYgp5vhA9lly13c/gExXH/dlhvLv1pbYq2f4jz+fmD
-	BY9YlH79EilqyAMpqss0UUyUNQxLRDHlMveoJOATmAId+2bAQwvySAwufpFSKmyiLZetSf8n5kv
-	mj69FXvEl4W8WVUOR/joczmuoPCq0df3vMTG5xQ1mD4LLk0izcVMgzjBd8JDTVavgPFPTjSMP+n
-	AMZRav2
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--10.659600-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP:
-	494391BA1E72F39E9F3744A9ED37CCB79EABE53BF165D5B65603A8A8E4AE2E9B2000:8
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN0P287MB1078
 
-SGkgQW5nZWxvR2lvYWNjaGlubywNCg0KDQpPbiBUaHUsIDIwMjQtMDQtMTEgYXQgMDk6MzkgKzAy
-MDAsIEFuZ2Vsb0dpb2FjY2hpbm8gRGVsIFJlZ25vIHdyb3RlOg0KPiBJbCAxMS8wNC8yNCAwOToz
-NCwgQW5nZWxvR2lvYWNjaGlubyBEZWwgUmVnbm8gaGEgc2NyaXR0bzoNCj4gPiBJbCAxMS8wNC8y
-NCAwNTozNywgb2xpdmlhLndlbiBoYSBzY3JpdHRvOg0KPiA+ID4gVW5kZXIgZGlmZmVyZW50IGFw
-cGxpY2F0aW9ucywgdGhlIE1UODE4OCBTQ1AgY2FuIGJlIHVzZWQgYXMNCj4gPiA+IHNpbmdsZS1j
-b3JlDQo+ID4gPiBvciBkdWFsLWNvcmUuDQo+ID4gPiANCj4gPiA+IFNpZ25lZC1vZmYtYnk6IG9s
-aXZpYS53ZW4gPG9saXZpYS53ZW5AbWVkaWF0ZWsuY29tPg0KPiA+ID4gLS0tDQo+ID4gPiAgIERv
-Y3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9yZW1vdGVwcm9jL210ayxzY3AueWFtbCB8
-IDMNCj4gPiA+ICsrLQ0KPiA+ID4gICAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAx
-IGRlbGV0aW9uKC0pDQo+ID4gPiANCj4gPiA+IGRpZmYgLS1naXQNCj4gPiA+IGEvRG9jdW1lbnRh
-dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3JlbW90ZXByb2MvbXRrLHNjcC55YW1sIA0KPiA+ID4g
-Yi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcmVtb3RlcHJvYy9tdGssc2NwLnlh
-bWwNCj4gPiA+IGluZGV4IDUwN2Y5OGYuLjdlN2I1NjcgMTAwNjQ0DQo+ID4gPiAtLS0gYS9Eb2N1
-bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcmVtb3RlcHJvYy9tdGssc2NwLnlhbWwNCj4g
-PiA+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9yZW1vdGVwcm9jL210
-ayxzY3AueWFtbA0KPiA+ID4gQEAgLTIyLDcgKzIyLDcgQEAgcHJvcGVydGllczoNCj4gPiA+ICAg
-ICAgICAgLSBtZWRpYXRlayxtdDgxOTItc2NwDQo+ID4gPiAgICAgICAgIC0gbWVkaWF0ZWssbXQ4
-MTk1LXNjcA0KPiA+ID4gICAgICAgICAtIG1lZGlhdGVrLG10ODE5NS1zY3AtZHVhbA0KPiA+ID4g
-LQ0KPiA+IA0KPiA+IERvbid0IHJlbW92ZSB0aGUgYmxhbmsgbGluZSwgaXQncyB0aGVyZSBmb3Ig
-cmVhZGFiaWxpdHkuDQo+ID4gDQo+ID4gPiArICAgICAgLSBtZWRpYXRlayxtdDgxODgtc2NwLWR1
-YWwNCj4gDQo+IEFoLCBzb3JyeSwgb25lIG1vcmUgY29tbWVudC4gUGxlYXNlLCBrZWVwIHRoZSBl
-bnRyaWVzIG9yZGVyZWQgYnkNCj4gbmFtZS4NCj4gODE4OCBnb2VzIGJlZm9yZSA4MTk1Lg0KPiAN
-Cj4gPiANCj4gPiBBZnRlciBhZGRyZXNzaW5nIHRoYXQgY29tbWVudCwNCj4gPiANCj4gPiBSZXZp
-ZXdlZC1ieTogQW5nZWxvR2lvYWNjaGlubyBEZWwgUmVnbm8gPA0KPiA+IGFuZ2Vsb2dpb2FjY2hp
-bm8uZGVscmVnbm9AY29sbGFib3JhLmNvbT4NCj4gPiANCj4gPiA+ICAgICByZWc6DQo+ID4gPiAg
-ICAgICBkZXNjcmlwdGlvbjoNCj4gPiA+ICAgICAgICAgU2hvdWxkIGNvbnRhaW4gdGhlIGFkZHJl
-c3MgcmFuZ2VzIGZvciBtZW1vcnkgcmVnaW9ucw0KPiA+ID4gU1JBTSwgQ0ZHLCBhbmQsDQo+ID4g
-PiBAQCAtMTk1LDYgKzE5NSw3IEBAIGFsbE9mOg0KPiA+ID4gICAgICAgICAgIGNvbXBhdGlibGU6
-DQo+ID4gPiAgICAgICAgICAgICBlbnVtOg0KPiA+ID4gICAgICAgICAgICAgICAtIG1lZGlhdGVr
-LG10ODE5NS1zY3AtZHVhbA0KPiA+ID4gKyAgICAgICAgICAgIC0gbWVkaWF0ZWssbXQ4MTg4LXNj
-cC1kdWFsDQo+IA0KPiBzYW1lIGhlcmUuDQo+IA0KPiA+ID4gICAgICAgdGhlbjoNCj4gPiA+ICAg
-ICAgICAgcHJvcGVydGllczoNCj4gPiA+ICAgICAgICAgICByZWc6DQo+ID4gDQo+ID4gDQo+IA0K
-DQpUaGFua3MgZm9yIHRoZSByZXZpZXdzLg0KSXQgd2lsbCBiZSBjb3JyZWN0ZWQgaW4gdGhlIG5l
-eHQgdmVyc2lvbi4NCg0KQmVzdCByZWdhcmRzLA0KT2xpdmlhDQo=
+My feedback embedded.
+
+On 2024/4/11 12:11, Stephen Boyd wrote:
+> Quoting Chen Wang (2024-03-28 23:21:40)
+>> From: Chen Wang <unicorn_wang@outlook.com>
+>>
+>> Add a driver for the SOPHGO SG2042 clocks.
+>>
+>> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
+>> ---
+>>   drivers/clk/Kconfig                    |    1 +
+>>   drivers/clk/Makefile                   |    1 +
+>>   drivers/clk/sophgo/Kconfig             |    7 +
+>>   drivers/clk/sophgo/Makefile            |    2 +
+>>   drivers/clk/sophgo/clk-sophgo-sg2042.c | 1410 ++++++++++++++++++++++++
+>>   drivers/clk/sophgo/clk-sophgo-sg2042.h |  216 ++++
+> Inline the contents of this file into the driver C file.
+ok, now only one c source is needed.
+>> diff --git a/drivers/clk/sophgo/clk-sophgo-sg2042.c b/drivers/clk/sophgo/clk-sophgo-sg2042.c
+>> new file mode 100644
+>> index 000000000000..7b468e7299ae
+>> --- /dev/null
+>> +++ b/drivers/clk/sophgo/clk-sophgo-sg2042.c
+>> @@ -0,0 +1,1410 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Sophgo SG2042 Clock Generator Driver
+>> + *
+>> + * Copyright (C) 2024 Sophgo Technology Inc. All rights reserved.
+>> + */
+>> +
+>> +#include <linux/clk.h>
+>> +#include <linux/clk-provider.h>
+>> +#include <linux/iopoll.h>
+>> +#include <linux/platform_device.h>
+> Need include for BIT macro, io.h for readl/writel, do_div() header,
+> ARRAY_SIZE, etc. please check.
+
+ok, will check and add them, but I did not see warnings/errors when I 
+build with W=1
+
+[...]
+
+>> +static inline int sg2042_pll_enable(struct sg2042_pll_clock *pll, bool en)
+>> +{
+>> +       unsigned int value = 0;
+> Don't need to initialize value? Also, type should be u32.
+
+Sure, no initializatation is required here, and u32 should be better, I 
+see some other places have the same problem, will fix them too.
+
+[...]
+>> +static unsigned long sg2042_pll_recalc_rate(unsigned int reg_value,
+>> +                                           unsigned long parent_rate)
+>> +{
+>> +       struct sg2042_pll_ctrl ctrl_table;
+>> +       u64 rate, numerator, denominator;
+>> +
+>> +       sg2042_pll_ctrl_decode(reg_value, &ctrl_table);
+>> +
+>> +       numerator = parent_rate * ctrl_table.fbdiv;
+>> +       denominator = ctrl_table.refdiv * ctrl_table.postdiv1 * ctrl_table.postdiv2;
+>> +       do_div(numerator, denominator);
+>> +       rate = numerator;
+>> +
+>> +       return rate;
+> return numerator
+
+yes, my stupid, will fix it, thanks.
+
+[...]
+
+>> +
+>> +       static int postdiv1_2[][3] = {
+> const
+
+Good catch, will fix.
+
+[...]
+>> +static unsigned long sg2042_clk_divider_recalc_rate(struct clk_hw *hw,
+>> +                                                   unsigned long parent_rate)
+>> +{
+>> +       struct sg2042_divider_clock *divider = to_sg2042_clk_divider(hw);
+>> +       unsigned int val;
+>> +       unsigned long ret_rate;
+>> +
+>> +       if (!(readl(divider->reg) & BIT(3))) {
+> What is bit 3? Please make a define.
+
+ok, will fix it and I see some other places have the similar problem, 
+will fix also.
+
+[...]
+
+>> +       }
+>> +       val |= value << divider->shift;
+>> +       val |= 1 << 3;
+> Make a define for bit 3 and bit 0 please.
+
+Same as the issue upon, will fix it. thanks.
+
+[...]
+
+>> +
+>> +static const char *const clk_mux_ddr01_p[] = {
+>> +                       "clk_div_ddr01_0", "clk_div_ddr01_1"};
+>> +static const char *const clk_mux_ddr23_p[] = {
+>> +                       "clk_div_ddr23_0", "clk_div_ddr23_1"};
+>> +static const char *const clk_mux_rp_cpu_normal_p[] = {
+>> +                       "clk_div_rp_cpu_normal_0", "clk_div_rp_cpu_normal_1"};
+>> +static const char *const clk_mux_axi_ddr_p[] = {
+>> +                       "clk_div_axi_ddr_0", "clk_div_axi_ddr_1"};
+>> +
+>> +static struct sg2042_mux_clock sg2042_mux_clks[] = {
+>> +       SG2042_MUX(MUX_CLK_DDR01, "clk_mux_ddr01", clk_mux_ddr01_p,
+> Please use struct clk_parent_data or struct clk_hw directly instead of
+> string names.
+
+Learned and will use clk_parent_data, thanks.
+
+[......]
+
+>> +               hw = &pll->hw;
+>> +               ret = clk_hw_register(NULL, hw);
+> Use devm_clk_hw_register() and pass a device.
+
+yes, will use devm_xxx.
+
+[......]
+>> +
+>> +               hw = clk_hw_register_mux_table(NULL,
+> Pass a device and use devm.
+
+Yes, will use devm_xxx.
+
+[......]
+
+>> +
+>> +       clk_data->iobase = devm_of_iomap(&pdev->dev, pdev->dev.of_node, 0, NULL);
+> Why can't we use devm_platform_ioremap_resource()?
+
+yes, will change todevm_platform_ioremap_resource
+
+[......]
+
+>> +
+>> +       num_clks = ARRAY_SIZE(sg2042_pll_clks);
+>> +       if (num_clks == 0) {
+>> +               ret = -EINVAL;
+>> +               goto error_out;
+>> +       }
+> This is dead code, please remove.
+
+Thanks, you are right, I will remove it together with some other dead 
+code similiar.
+
+>> +
+>> +/*
+>> + * Divider clock
+>> + * @hw:                        clk_hw for initialization
+>> + * @id:                        used to map clk_onecell_data
+>> + * @reg:               used for readl/writel.
+>> + *                     **NOTE**: DIV registers are ALL in CLOCK!
+>> + * @lock:              spinlock to protect register access, modification of
+>> + *                     frequency can only be served one at the time
+>> + * @offset_ctrl:       offset of divider control registers
+>> + * @shift:             shift of "Clock Divider Factor" in divider control register
+>> + * @width:             width of "Clock Divider Factor" in divider control register
+>> + * @div_flags:         private flags for this clock, not for framework-specific
+>> + * @initval:           In the divider control register, we can configure whether
+>> + *                     to use the value of "Clock Divider Factor" or just use
+>> + *                     the initial value pre-configured by IC. BIT[3] controls
+>> + *                     this and by default (value is 0), means initial value
+>> + *                     is used.
+>> + *                     **NOTE** that we cannot read the initial value (default
+>> + *                     value when poweron) and default value of "Clock Divider
+>> + *                     Factor" is zero, which I think is a hardware design flaw
+>> + *                     and should be sync-ed with the initial value. So in
+>> + *                     software we have to add a configuration item (initval)
+>> + *                     to manually configure this value and use it when BIT[3]
+>> + *                     is zero.
+> Do you use the init clk_op for this?
+
+I think this does not apply to init ops, because I want to configure 
+some parameters here, rather than communicate with the physical clocks 
+and do any special initialization work. As I explained in the comments, 
+due to hardware design issues, when the clock use the IC default 
+initval, we cannot read the current initval from the register, so we can 
+only use the initval we configure in code as current factor value.
+
+[......]
+
+>> +
+>> +/*
+>> + * Gate clock
+>> + * @hw:                        clk_hw for initialization
+>> + * @id:                        used to map clk_onecell_data
+>> + * @offset_enable:     offset of gate enable registers
+>> + * @bit_idx:           which bit in the register controls gating of this clock
+>> + */
+>> +struct sg2042_gate_clock {
+>> +       struct clk_hw hw;
+>> +
+>> +       unsigned int id;
+>> +
+>> +       unsigned long offset_enable;
+> Usually we use a u32 or a shorter size so that the member width is
+> unchanged on different CPU architecture.
+
+OK, I find some else similar problem and will fix them altogether.
+
+[......]
+
+>> + * Mux clock
+> Please use kernel doc. See https://docs.kernel.org/doc-guide/kernel-doc.html
+
+Sure，I will learn and try this.
+
+>> + * @hw:                        clk_hw for initialization
+>> + * @id:                        used to map clk_onecell_data
+>> + * @offset_select:     offset of mux selection registers
+>> + *                     **NOTE**: MUX registers are ALL in CLOCK!
+>> + * @shift:             shift of "Clock Select" in mux selection register
+> Is "Clock select" actually @offset_select?
+
+No, the "offset_select" is the offset of register, while "Clock Select" 
+is the bit shift for each mux. For SG2042, every mux has two parents and 
+so just one bit is enough for it to select the parent, and one register 
+contains multiple bits, one for each mux.
+
+[......]
+
 
