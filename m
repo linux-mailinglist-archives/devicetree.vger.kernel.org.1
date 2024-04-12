@@ -1,145 +1,146 @@
-Return-Path: <devicetree+bounces-58753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E2AC8A2F1A
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 15:14:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 745D18A2F44
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 15:21:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EF2FCB21A99
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 13:14:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30B44283A17
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 13:21:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78FF45E093;
-	Fri, 12 Apr 2024 13:14:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8BB78248C;
+	Fri, 12 Apr 2024 13:20:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LnXkro7h"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="iIH6QKxm";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="CfYTisVx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72AB65EE67
-	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 13:14:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D10181AAA;
+	Fri, 12 Apr 2024 13:20:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712927653; cv=none; b=exS2t6ULPVyszh5g9wT1eyQlk/zmPS+s8c1aGEKI3ijlrQ0JbkLC9Hg4kwwzdZVtwWTvAuG856dnOrlPuHDD3jovdNXMMxWD2O/Qjt2jD9IBX9aCC5auo3wsD68zj7edVWlx/AkK+YlJKtXtLJTNMwwac1SrsN3ddqcsx4wn1ss=
+	t=1712928036; cv=none; b=DmxC9VLa8VuytEek/mCFYivAYcsDlADC694jInFgUNZGkEnWIlw7aHIRMlpYOtXZpso2PX088TMUt90mome6/DG/sXliFNX/k2N8jbwYLlhOc91RMNnkstAeiDmapqJKYuXzu9zGtshTpTfAQ3CCiDBwdhcU1ALhRBBQTp5+iHY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712927653; c=relaxed/simple;
-	bh=PUTvlT9riZ19owzSi9HVU/vZE2mXRfMn0J3ryH6SxWA=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=X1QckSnZrIhP5yAiY5g3VSEDlA9n/xNsnJRLsDHMpAcaHnrSVjFyVSXQRU//5pEDoNWRD6oEgiWeYjJArlP+SyM6uKQesyxpBK/90KUlKYtztvOAz0m+51ppuvGwWts4DlrSUxxXjBIW1mp6hJvx+/xpD2CTgmCmGPGP5IxaRwM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LnXkro7h; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4155819f710so6466415e9.2
-        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 06:14:10 -0700 (PDT)
+	s=arc-20240116; t=1712928036; c=relaxed/simple;
+	bh=/txxqYlU4j9GLPahajtTq8tdmlrsxmJZHDfp0xOA2Kk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=eW1njnCQ9MAlyGyxfaC7AV//l4c9GZWrTxb0IWHU8qIcdQDseYRJDChzoI0I66hQOGbG3tNDThp0nSb0T7EegVpT5ugcHhrDhUCw69uF6m8LAmII5CvnlMvBS4P7JWx+96Tq2+gsSMwkIBKo+R3de4kO7oklRhfrv1hx/7x0iR0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=iIH6QKxm; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=CfYTisVx reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712927649; x=1713532449; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aKIKmBiM6jcwJEcZrg6LHG0d6Eum207+g4jW0WFBkI4=;
-        b=LnXkro7hgw6SfUCEgnNonw5ZMrQDi4FGzC9ksXOwG6PTr5DUNyrLgZUjwfZhIPOix0
-         bJAsOOKZRx7r72hgbel1vK7AVg6OuBu9tOD9RM3piCB7eBft/rlqaDKezZEaAyv0Z+Ix
-         HWlh48KE8I1KNIxgcEZcsQLbiuuaoQu9Sp7Wk/7tXPpgn5LLGLAprTAXxbA990yJFk6P
-         GYvlYg9B/zT0apqJUwb3JrIkiXF+s3Ebt+VmccbgDlnO9MuhWjKPE32CDn6fn7qkFYAo
-         NeL0IJGlgtTea0g0ChgO4hYkOMeUxFabRYre0oUpxeuJ1crTURNbYG3XOWQZJcV4avHi
-         kPow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712927649; x=1713532449;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aKIKmBiM6jcwJEcZrg6LHG0d6Eum207+g4jW0WFBkI4=;
-        b=midFUFYfs9PedeIueI9S/s0wWXVEUdA9AbS2G9Gl9EvnembtjKjdHlyQvcIyHL1BY+
-         CnO1Yx4U8VRCCANN9MZqVYjqPbq03X4oDgfGM3bU1sUftNvIiWj9klXmm/pajV7noXpn
-         Ici6R6fdYZgF5sz0JfwM++53AVNek/iJkwGbq5ZSZKca1xug06iyn3O373LvppoD9fPR
-         4qgkisoLaE2AXlXm7lIgc1KayMWs/pgo2l5DdOOz8wrb2jE85A/7IW7BrzPKBheeBXzD
-         wQkPC1ldpHoRJO+UhcKuaAGpWzjqOludA0739J3706tuP/84Zg4X/YLD9jQrM0ELoxib
-         0X/g==
-X-Gm-Message-State: AOJu0YyMGQ/6YnIH04y+F2A4iYf1810Zgv57T/20JeJdLKYPGS1b/665
-	kxcY2XFN2vz5WZwBaXb3Zw+V6KilEwvH7Q1TH+UV1FRLiAVcgEceJZUDG9KOnCc=
-X-Google-Smtp-Source: AGHT+IEqWFd+QuLDbJcv6OTiLAWvUCIGZ2gJlq/aV9qLhe8ioHcLstnAVYQDw4b9SFeb9RuTfwe69Q==
-X-Received: by 2002:a05:600c:4510:b0:417:f58a:57e with SMTP id t16-20020a05600c451000b00417f58a057emr1582523wmo.0.1712927648621;
-        Fri, 12 Apr 2024 06:14:08 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id n3-20020a05600c4f8300b0041627ab1554sm8826376wmq.22.2024.04.12.06.14.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Apr 2024 06:14:08 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-serial@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20240401-basic_dt-v3-0-cb29ae1c16da@amlogic.com>
-References: <20240401-basic_dt-v3-0-cb29ae1c16da@amlogic.com>
-Subject: Re: [PATCH v3 0/5] Baisc devicetree support for Amlogic A4 and A5
-Message-Id: <171292764771.2837390.2489661650748373215.b4-ty@linaro.org>
-Date: Fri, 12 Apr 2024 15:14:07 +0200
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1712928033; x=1744464033;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=aMvVxK4NUeO+EcAGmB+Dwa/0aVRFR5DKQOjKU0G2Dag=;
+  b=iIH6QKxmBPGqgoYkKZA1TYNXlNzED4GOeztt8K3kJbJ1gcGOhxgiG/gD
+   /orDqGbVcETIQzF61+VoPU5R4ui20oOVRmWQ/LB6g8mx9ATFranwMVS/Q
+   /hKqUV0xXEV1bbhmhVxo0HFN1Wtlqfoeb8uHmR+tTAP44oWWc6SZ5m35z
+   L/hmWtT6eyWiYmKlPTQTek6Kao9DnGhdggD+VhUm/0n/bctor89l93Mf5
+   tC5hRfC8AKAtVqKUGTgMDkwWyjkT+yq7GPLc+OhivGv0OgHuV2CN/ka5P
+   Ns8BfsUR2XgBwtfM6B2RddqMPUXsaj7C4+cK3qjPKRwGpuK+pPZyrpGSs
+   g==;
+X-IronPort-AV: E=Sophos;i="6.07,196,1708383600"; 
+   d="scan'208";a="36391625"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 12 Apr 2024 15:20:29 +0200
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5A234174287;
+	Fri, 12 Apr 2024 15:20:24 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1712928025; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=aMvVxK4NUeO+EcAGmB+Dwa/0aVRFR5DKQOjKU0G2Dag=;
+	b=CfYTisVx8pOM7rt+jKQ8hVvpZN3Mla3TUQipYvq+MxbYpvgC6PrmIGMS0myDHTPnzAOs45
+	n3XDuIpcEx7hq5PuJs7yRVL0yI1nJdQyNzCmb7w0MzpkFa6pCkUHj9VksxKQqqYtFnfOHB
+	WaCA8ZxAD+/gEuvkIC0V9hV5aMZGUAop3yY4TChbFW3hAXnBrKISIe62wQxw70gqdJfAYB
+	cIsd4qlP6n3OETmfyCBe4qJ5J8W0IjzQOpQ596fhePKbcNEYxsakbU27F6tsSfzvd+uVYx
+	Xrzk837JPnkkcMeuqMe6yuvtF2C78nRDR2R6dEtICVAsosqL07cGaArFEKQIgw==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	linux@ew.tq-group.com,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/1] arm64: dts: tqma8mnql: Add EASRC support
+Date: Fri, 12 Apr 2024 15:20:21 +0200
+Message-Id: <20240412132021.520666-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.4
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi,
+Enable EASRC support in tlv320aic32x4 sound card.
 
-On Mon, 01 Apr 2024 18:10:48 +0800, Xianwei Zhao wrote:
-> Amlogic A4 and A5 are application processors designed for smart audio
-> and IoT applications.
-> 
-> Add the new A4 SoC/board device tree bindings.
-> 
-> Add the new A5 SoC/board device tree bindings.
-> 
-> [...]
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+Note that the firmware file /lib/firmware/imx/easrc/easrc-imx8mn.bin
+is needed.
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.10/arm64-dt)
+ arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts | 4 ++++
+ arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl.dtsi       | 4 ++++
+ arch/arm64/boot/dts/freescale/mba8mx.dtsi                 | 2 +-
+ 3 files changed, 9 insertions(+), 1 deletion(-)
 
-[1/5] dt-bindings: arm: amlogic: add A4 support
-      https://git.kernel.org/amlogic/c/8b8e6e24eca07efb4860c97aa773dd36fa3a1164
-[2/5] dt-bindings: arm: amlogic: add A5 support
-      https://git.kernel.org/amlogic/c/7e05175cb7be232450e70fe75ba2a852947eecc8
-[3/5] dt-bindings: serial: amlogic,meson-uart: Add compatible string for A4
-      https://git.kernel.org/amlogic/c/a652d67a84575e09b52614a2f81399772d52876b
-[4/5] arm64: dts: add support for A4 based Amlogic BA400
-      https://git.kernel.org/amlogic/c/6ef63301fa37087414342269bc02a2a930e81779
-[5/5] arm64: dts: add support for A5 based Amlogic AV400
-      https://git.kernel.org/amlogic/c/a654af36fe8b54e360fcf155b785df3aa0eab73e
-
-These changes has been applied on the intermediate git tree [1].
-
-The v6.10/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts
+index 433d8bba4425..b05be5b39d45 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts
+@@ -74,6 +74,10 @@ &sai3 {
+ 		 <&clk IMX8MN_AUDIO_PLL2_OUT>;
+ };
+ 
++&sound {
++	audio-asrc = <&easrc>;
++};
++
+ &tlv320aic3x04 {
+ 	clock-names = "mclk";
+ 	clocks = <&clk IMX8MN_CLK_SAI3_ROOT>;
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl.dtsi
+index fb24b9aa1b93..db47c718e719 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl.dtsi
+@@ -52,6 +52,10 @@ &A53_0 {
+ 	cpu-supply = <&buck2_reg>;
+ };
+ 
++&easrc {
++	status = "okay";
++};
++
+ &flexspi {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_flexspi>;
+diff --git a/arch/arm64/boot/dts/freescale/mba8mx.dtsi b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
+index 0dc48e514baa..daba4ba14627 100644
+--- a/arch/arm64/boot/dts/freescale/mba8mx.dtsi
++++ b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
+@@ -157,7 +157,7 @@ reg_vcc_5v0: regulator-5v0 {
+ 		regulator-always-on;
+ 	};
+ 
+-	sound {
++	sound: sound {
+ 		compatible = "fsl,imx-audio-tlv320aic32x4";
+ 		model = "imx-audio-tlv320aic32x4";
+ 		ssi-controller = <&sai3>;
 -- 
-Neil
+2.34.1
 
 
