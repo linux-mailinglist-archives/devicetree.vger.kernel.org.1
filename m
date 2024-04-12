@@ -1,75 +1,40 @@
-Return-Path: <devicetree+bounces-58657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61C608A2BE8
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 12:05:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 681CA8A2BEA
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 12:06:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CDE7A1F23751
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 10:05:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 999D51C23694
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 10:06:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C3AD54677;
-	Fri, 12 Apr 2024 10:05:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Z7HYXTPb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CA3853373;
+	Fri, 12 Apr 2024 10:05:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E38853E13
-	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 10:05:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC25430673;
+	Fri, 12 Apr 2024 10:05:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712916306; cv=none; b=TTxiSHakVI1UkF21R2Tr8zwNFRP3FsXO4JgxvymkhOv9mQKKTgkFG8O+0mUNhHk3dqMQ8B2B7fSzbuDqjIAJu/FZNmN75SHoKvUplTDM/srnCa0oESMffnI9BtT0v+bglA5ekjjQLIFradyQvAgcb1fPPYKvpkdxZksMAQM6cqs=
+	t=1712916339; cv=none; b=DdKD8KJQbI76dCNyoG3fbh33ie3XV+1C/yIEEW/PMrQWqpCKlRiqrihpSuVg85yAGLsuFHVlmwIFG5iD+sSkmxwPqqqYrwNHXx5twGYc2MvwX36DJrRP+Ny5kUuVC8vG13uW43d4rJ+RBQwCYJgCLHFmY8pZQxA8dit4HJj3eLY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712916306; c=relaxed/simple;
-	bh=m7SZnyJBVQZSm3/ZMgPP8KmAohN82QOdxqDUo61ETQY=;
+	s=arc-20240116; t=1712916339; c=relaxed/simple;
+	bh=EkjLXSEsa7m9cJl/GBEGrhoAnqPXfgfS8vyCa9AUeis=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F6+inFhryAlOPT9G9Jji212CxRslMblEc7ESeppgOb2eZWIB/78DOQdopc8Is5kS5L7slpVwp95oEzYrmsc/iQnxia8JQJK8+GL1asA7DMvoS23p6BuO5NsGRcTTnBWesZjoPyqExYY6HkKJ0y3r6OKbclmTZWQ8LYBZY6ccRSY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=Z7HYXTPb; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-56e2c1650d8so684655a12.0
-        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 03:05:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1712916302; x=1713521102; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NmvVpGqH/YnUJn3EKn9NCfL9fG7zsGqsH7iqYTHHqXM=;
-        b=Z7HYXTPbEgHcFEGia5f3Cjw4XQFfFdF11UzWrXfj5n/Cr013pUpChNuVE3Gfi2LXBZ
-         z4MTf+vkcVMv/ixTP04YBHG9LKgTqvq6OqAHs+IuL0l5uDdN4EDadc0x36a8d9OcB/g6
-         K43uquGDN8TlGSmwvb2pk8Ltv4YCTTHny3ZbtWRIPJu5GUX3Fk65V8abkN/385fonp3N
-         FSH17u0IAOZ7rRTg4R6O+hivA7sErjQHtQht5ccslYOAaSCe6RFyxjPrjdgthWUTaF+Y
-         qdw10Cy83XX+CPOc9JdLjLH5FLYZl0F8bI+KSxnAKLRbBban0ytnVIXTOWCwV2wLZY+i
-         tzuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712916302; x=1713521102;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NmvVpGqH/YnUJn3EKn9NCfL9fG7zsGqsH7iqYTHHqXM=;
-        b=fC49BZDl1C04cXrF1uU4TpYt9itbZ/pWwXvV+9xa0/g2pWtClJh7btaL3AtIl8sGot
-         uQCbm7fS/iL9B6+KTKp+lBWMgEMTXcjJbRHoIQ4tG1Lk5gCqP1Xz1PawodYuHvi0W6cu
-         StkoKdG4iC55+1ORgdNyb8f53MKRiDX6c0FmSFr7pNd2UuUj9Pz51drg/OlZTkq47Cpy
-         mv2tXHKj/gCAACU1YIfmC+KRd+Z/Qw94eLGbDxRJkuGzuV5EcbPItMn0tCRT92Lt9PaU
-         hq+4/3NwuaIFsRfOAhNWrQ01pQ47FoiVgoH/8088fVlS5nQl3PCRCs35rGzBCMvhXdeZ
-         z3GQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVI/OwJRZZbo65sEIoclucd0r7F2lwfLdEvhnakXSqLfYNx9IUrsSseJ9FmfdH/s12BSvqJxC7ijD5pSx28Z+N+17DFAuQnNW0Q2w==
-X-Gm-Message-State: AOJu0Ywn0Jk8G+Qh+hJ1Cuyg4IzUqpofFIs6gg7E8I5fsu7bZnqc1cJ/
-	eTDjpveZpPFbvIEGxzOpLyn/Tt7JDrOt/OmKQVHCZuaZZhYJ8Z5G/Un1YWDCJw8+/zTrXYEv/ca
-	A
-X-Google-Smtp-Source: AGHT+IHQMQDAmt/KUMiRX2jfsv9Ugd19LQKa3XJw1aZ7aEKYJ1UBxTCpp3X0iWhacATHBs5n4+le0A==
-X-Received: by 2002:a17:906:36d6:b0:a51:d7f3:324b with SMTP id b22-20020a17090636d600b00a51d7f3324bmr1290933ejc.66.1712916301420;
-        Fri, 12 Apr 2024 03:05:01 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.8])
-        by smtp.gmail.com with ESMTPSA id g22-20020a1709063b1600b00a4e533085aesm1637200ejf.129.2024.04.12.03.04.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Apr 2024 03:05:00 -0700 (PDT)
-Message-ID: <2a07d159-fdd4-48d4-b351-01f5e2579c3a@tuxon.dev>
-Date: Fri, 12 Apr 2024 13:04:58 +0300
+	 In-Reply-To:Content-Type; b=pUYNNNovtxHbBsVvz4VBGFUer7q6WCARy/FfC/lqOg/fERMMohNmOEgJKFP6H4sBBfccmnnYjGRBhKzqxvf9PtwHhf53ufGRvzVXpbvtis8Mu2YcsKHI1MfstNl9Rq3eCGl4qPf5P46NHJQinXUb768YEQMfeTOA4Mxt/d0ufvA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3FEAD339;
+	Fri, 12 Apr 2024 03:06:03 -0700 (PDT)
+Received: from [192.168.1.100] (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1ED0B3F64C;
+	Fri, 12 Apr 2024 03:05:32 -0700 (PDT)
+Message-ID: <d707430f-00ee-4427-a9e4-6e42bc5b6aa9@arm.com>
+Date: Fri, 12 Apr 2024 11:05:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,168 +42,139 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/9] clk: renesas: rzg2l: Add support for power domains
+Subject: Re: [PATCH v7 5/7] coresight: tmc: Add support for reading crash data
+To: Linu Cherian <lcherian@marvell.com>,
+ Suzuki K Poulose <suzuki.poulose@arm.com>
+Cc: linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
+ linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, sgoutham@marvell.com, gcherian@marvell.com,
+ Anil Kumar Reddy <areddy3@marvell.com>, Tanmay Jagdale <tanmay@marvell.com>,
+ mike.leach@linaro.org, leo.yan@linaro.org
+References: <20240307033625.325058-1-lcherian@marvell.com>
+ <20240307033625.325058-6-lcherian@marvell.com>
 Content-Language: en-US
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- magnus.damm@gmail.com, linux-renesas-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
- Ulf Hansson <ulf.hansson@linaro.org>,
- Linux PM list <linux-pm@vger.kernel.org>, Guenter Roeck
- <linux@roeck-us.net>, Wim Van Sebroeck <wim@linux-watchdog.org>,
- Linux Watchdog Mailing List <linux-watchdog@vger.kernel.org>
-References: <20240410122657.2051132-1-claudiu.beznea.uj@bp.renesas.com>
- <CAMuHMdUesJe0396MsH9PSUMEq=sWx3BYc=QrAFzR2EVcLhm03Q@mail.gmail.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <CAMuHMdUesJe0396MsH9PSUMEq=sWx3BYc=QrAFzR2EVcLhm03Q@mail.gmail.com>
+From: James Clark <james.clark@arm.com>
+In-Reply-To: <20240307033625.325058-6-lcherian@marvell.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-Hi, Geert,
 
-On 11.04.2024 18:30, Geert Uytterhoeven wrote:
-> Hi Claudiu,
+
+On 07/03/2024 03:36, Linu Cherian wrote:
+> * Introduce a new mode CS_MODE_READ_CRASHDATA for reading trace
+>   captured in previous crash/watchdog reset.
 > 
-> CC pmdomain, watchdog
+> * Add special device files for reading ETR/ETF crash data.
 > 
-> On Wed, Apr 10, 2024 at 2:27 PM Claudiu <claudiu.beznea@tuxon.dev> wrote:
->> Series adds support for power domains on rzg2l driver.
->>
->> RZ/G2L kind of devices support a functionality called MSTOP (module
->> stop/standby). According to hardware manual the module could be switch
->> to standby after its clocks are disabled. The reverse order of operation
->> should be done when enabling a module (get the module out of standby,
->> enable its clocks etc).
->>
->> In [1] the MSTOP settings were implemented by adding code in driver
->> to attach the MSTOP state to the IP clocks. But it has been proposed
->> to implement it as power domain. The result is this series.
->>
->> Along with MSTOP functionality there is also module power down
->> functionality (which is currently available only on RZ/G3S). This has
->> been also implemented through power domains.
->>
->> The DT bindings were updated with power domain IDs (plain integers
->> that matches the DT with driver data structures). The current DT
->> bindings were updated with module IDs for the modules listed in tables
->> with name "Registers for Module Standby Mode" (see HW manual) exception
->> being RZ/G3S where, due to the power down functionality, the DDR,
->> TZCDDR, OTFDE_DDR were also added, to avoid system being blocked due
->> to the following lines of code from patch 6/9.
->>
->> +       /* Prepare for power down the BUSes in power down mode. */
->> +       if (info->pm_domain_pwrdn_mstop)
->> +               writel(CPG_PWRDN_MSTOP_ENABLE, priv->base + CPG_PWRDN_MSTOP);
->>
->> Domain IDs were added to all SoC specific bindings.
->>
->> Thank you,
->> Claudiu Beznea
->>
->> Changes in v3:
->> - collected tags
->> - dinamically detect if a SCIF is serial console and populate
->>   pd->suspend_check
->> - dropped patch 09/10 from v2
+> * User can read the crash data as below
 > 
-> Thanks for the update!
+>   For example, for reading crash data from tmc_etf sink
 > 
-> I have provided my R-b for all patches, and the usual path for these
-> patches would be for me to queue patches 1-8 in renesas-clk for v6.10,
-> and to queue 9 in renesas-devel.
+>   #dd if=/dev/crash_tmc_etfXX of=~/cstrace.bin
 > 
-> However:
->   1. I had missed before the pmdomain people weren't CCed before,
->      they still might have some comments,
-
-My bad here, I missed it too.
-
->   2. Patch 9 has a hard dependency on the rest of the series, so
->      it has to wait one more cycle,
-
-I think 5/9 should also wait to avoid binding validation failures.
-
->   3. Adding the watchdog domain has a dependency on [1].
-
-Adding the code for it in patch 7/9 w/o passing it as reference to watchdog
-node (as in patch 9/9) is harmless. The previous behavior will be in place.
-
-At the moment the watchdog domain initialization code is not in patch 7/9
-and the patch 9/9 has reference to watchdog domain to pass the DT binding
-validation. The probe will fail though, as I wasn't sure what should be
-better to drop: device probe or reset functionality. I mentioned it in
-patch for suggestions.
-
+> Signed-off-by: Anil Kumar Reddy <areddy3@marvell.com>
+> Signed-off-by: Tanmay Jagdale <tanmay@marvell.com>
+> Signed-off-by: Linu Cherian <lcherian@marvell.com>
+> ---
+> Changelog from v6:
+> * Removed read_prevboot flag in sysfs
+> * Added special device files for reading crashdata 
+> * Renamed CS mode READ_PREVBOOT to READ_CRASHDATA 
+> * Setting the READ_CRASHDATA mode is done as part of file open.
 > 
-> 2 and 2 may be resolved using an immutable branch.
 
-2 and 3?
+[...]
 
-Immutable branch should be good, AFAICT. If that would be the strategy I
-can send an update to also add the initialization data for watchdog domain
-in 7/9. Or I can send an update afterwards. Please let me know how would
-you prefer.
+> @@ -619,6 +740,19 @@ static int tmc_probe(struct amba_device *adev, const struct amba_id *id)
+>  		coresight_unregister(drvdata->csdev);
+>  	else
+>  		pm_runtime_put(&adev->dev);
+> +
+> +	if (!is_tmc_reserved_region_valid(dev))
+> +		goto out;
+> +
+> +	drvdata->crashdev.name =
+> +		devm_kasprintf(dev, GFP_KERNEL, "%s_%s", "crash", desc.name);
+> +	drvdata->crashdev.minor = MISC_DYNAMIC_MINOR;
+> +	drvdata->crashdev.fops = &tmc_crashdata_fops;
+> +	ret = misc_register(&drvdata->crashdev);
+> +	if (ret)
+> +		pr_err("%s: Failed to setup dev interface for crashdata\n",
+> +		       desc.name);
+> +
 
-Thank you,
-Claudiu Beznea
+Is this all optional after the is_tmc_reserved_region_valid()? Skipping
+to out seems to be more like an error condition, but in this case it's
+not? Having it like this makes it more difficult to add extra steps to
+the probe function. You could move it to a function and flip the
+condition which would be clearer:
 
-> Are my assumptions correct?
-> 
-> Thanks!
-> 
-> [1] "[PATCH RESEND v8 09/10] watchdog: rzg2l_wdt: Power on the PM
->     domain in rzg2l_wdt_restart()"
->     https://lore.kernel.org/all/20240410134044.2138310-10-claudiu.beznea.uj@bp.renesas.com
-> 
->> Changes in v2:
->> - addressed review comments
->> - dropped:
->>     - dt-bindings: clock: r9a09g011-cpg: Add always-on power domain IDs
->>     - clk: renesas: r9a07g043: Add initial support for power domains
->>     - clk: renesas: r9a07g044: Add initial support for power domains
->>     - clk: renesas: r9a09g011: Add initial support for power domains
->>     - clk: renesas: r9a09g011: Add initial support for power domains
->>     - arm64: dts: renesas: r9a07g043: Update #power-domain-cells = <1>
->>     - arm64: dts: renesas: r9a07g044: Update #power-domain-cells = <1>
->>     - arm64: dts: renesas: r9a07g054: Update #power-domain-cells = <1>
->>     - arm64: dts: renesas: r9a09g011: Update #power-domain-cells = <1>
->>   as suggested in the review process
->> - dropped "arm64: dts: renesas: rzg3s-smarc-som: Guard the ethernet IRQ
->>   GPIOs with proper flags" patch as it was integrated
->> - added suspend to RAM support
->> - collected tag
->>
->> [1] https://lore.kernel.org/all/20231120070024.4079344-4-claudiu.beznea.uj@bp.renesas.com/
->>
->>
->> Claudiu Beznea (9):
->>   dt-bindings: clock: r9a07g043-cpg: Add power domain IDs
->>   dt-bindings: clock: r9a07g044-cpg: Add power domain IDs
->>   dt-bindings: clock: r9a07g054-cpg: Add power domain IDs
->>   dt-bindings: clock: r9a08g045-cpg: Add power domain IDs
->>   dt-bindings: clock: renesas,rzg2l-cpg: Update #power-domain-cells =
->>     <1> for RZ/G3S
->>   clk: renesas: rzg2l: Extend power domain support
->>   clk: renesas: r9a08g045: Add support for power domains
->>   clk: renesas: rzg2l-cpg: Add suspend/resume support for power domains
->>   arm64: dts: renesas: r9a08g045: Update #power-domain-cells = <1>
->>
->>  .../bindings/clock/renesas,rzg2l-cpg.yaml     |  18 +-
->>  arch/arm64/boot/dts/renesas/r9a08g045.dtsi    |  20 +-
->>  drivers/clk/renesas/r9a08g045-cpg.c           |  61 ++++
->>  drivers/clk/renesas/rzg2l-cpg.c               | 269 +++++++++++++++++-
->>  drivers/clk/renesas/rzg2l-cpg.h               |  77 +++++
->>  include/dt-bindings/clock/r9a07g043-cpg.h     |  52 ++++
->>  include/dt-bindings/clock/r9a07g044-cpg.h     |  58 ++++
->>  include/dt-bindings/clock/r9a07g054-cpg.h     |  58 ++++
->>  include/dt-bindings/clock/r9a08g045-cpg.h     |  70 +++++
->>  9 files changed, 659 insertions(+), 24 deletions(-)
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
+   if (is_tmc_reserved_region_valid(dev))
+      register_crash_dev_interface(drvdata);
+
+
+>  out:
+>  	return ret;
+>  }
+
+[...]
+
+>  
+> +static int tmc_etr_setup_crashdata_buf(struct tmc_drvdata *drvdata)
+> +{
+> +	int rc = 0;
+> +	u64 trace_addr;
+> +	struct etr_buf *etr_buf;
+> +	struct etr_flat_buf *resrv_buf;
+> +	struct tmc_crash_metadata *mdata;
+> +	struct device *dev = &drvdata->csdev->dev;
+> +
+> +	mdata = drvdata->crash_mdata.vaddr;
+> +
+> +	etr_buf = kzalloc(sizeof(*etr_buf), GFP_ATOMIC);
+> +	if (!etr_buf) {
+> +		rc = -ENOMEM;
+> +		goto out;
+> +	}
+> +	etr_buf->size = drvdata->crash_tbuf.size;
+> +
+> +	resrv_buf = kzalloc(sizeof(*resrv_buf), GFP_ATOMIC);
+> +	if (!resrv_buf) {
+> +		rc = -ENOMEM;
+> +		goto rmem_err;
+> +	}
+> +
+> +	/*
+> +	 * Buffer address given by metadata for retrieval of trace data
+> +	 * from previous boot is expected to be same as the reserved
+> +	 * trace buffer memory region provided through DTS
+> +	 */
+> +	if (is_tmc_reserved_region_valid(dev->parent)
+> +	    && (drvdata->crash_tbuf.paddr == mdata->trc_paddr))
+> +		resrv_buf->vaddr = drvdata->crash_tbuf.vaddr;
+> +	else {
+> +		dev_dbg(dev, "Trace buffer address of previous boot invalid\n");
+> +		rc = -EINVAL;
+> +		goto map_err;
+> +	}
+> +
+> +	resrv_buf->size = etr_buf->size;
+> +	resrv_buf->dev = &drvdata->csdev->dev;
+> +	etr_buf->hwaddr = trace_addr;
+
+trace_addr is uninitialised at this point. If you pull the latest
+coresight branch we enabled some extra compiler warnings which catch this.
+
+I assume it's supposed to be mdata->trc_paddr?
+
+Is there some kind of test that could be added that could have caught
+this? Maybe skip the full reboot flow but just enable the feature and
+see if we can read from the buffer.
+
+Or even just toggling the mode on and off via sysfs. We're running the
+Perf and kselftests on Juno internally so I can add a reserved region to
+the Juno DT and make sure this stays working.
+
+
 
