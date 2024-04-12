@@ -1,135 +1,129 @@
-Return-Path: <devicetree+bounces-58807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B5BB8A326E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 17:28:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 935058A3273
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 17:30:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56D7C284FAF
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 15:28:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 928CF1C2459A
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 15:29:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 825EE1474D2;
-	Fri, 12 Apr 2024 15:28:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D28ED147C7D;
+	Fri, 12 Apr 2024 15:29:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="cyTSbVfl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kbk2UBoi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 073B0144D34;
-	Fri, 12 Apr 2024 15:28:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0CF55E22C;
+	Fri, 12 Apr 2024 15:29:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712935695; cv=none; b=hI5J9yoGCw/jndy+3bRzOTmXNdtjq20NBpdO2tGuJFmbAfsW78fy8c0ipQTUyJLLWUgBPUYZzbIf94QJxJx8wjgoVwbEALFnYmz4Z9mF9XT+TqgMdPj5KQTw0InAB5lCfCR5dMpOu1+nd9NoEObA9hjTytBIPfzrckJ9bvlFvNQ=
+	t=1712935794; cv=none; b=jYkTVRzJyKHnV3Nt7Y7kOd+Wijv/4EionQoy/oiZKz5b/8H2tE/2D8TbVLByR//QcatDIT2jsYF5Se+D8JQ4p2gMYz+Eb42MGdBz1WYeLRpkmVFsDwFTgvc0jac/llFm6zefpYZDRZmaz0mSJjRmWyIh6O2J92byKxqUEDppP+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712935695; c=relaxed/simple;
-	bh=xv5GskYPQh/bdYUrHDvVzkViHT9Q8wEHbflL/X/TEkI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=heVGxUReHgu10w94ympsQG8qUhU5cH0EG/zzp81YihMeF0rZWc0inFdzorleyKk5LqUBPHL3GYhLn3E7lm6H6BrcQleszAcv/cT3Pci+b252EA8RMXfCF0LGUbqbujFCmbFb3Xd9vxtdIwLfuQrnSNr+Gfjomz1E+z/pmSEl9xU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=cyTSbVfl; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1712935692;
-	bh=xv5GskYPQh/bdYUrHDvVzkViHT9Q8wEHbflL/X/TEkI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cyTSbVflJjcSfFqNbFhnyVekkJ0HOMl6VOxAWSEMZlIhwqepNVVMXl9nAJxW242h2
-	 ipq417AkNny3HCaw3HKxi2l68bzzu9b0YSBXU4GgjNqpcqrTL8ZG3BaAICwk34CrMX
-	 DFLWxeX8tdIry5q5usnFuO2IMB6VprNiubJZIVfBBfT6H28IEiAuP5uX1o4ljUGO/u
-	 kRj01CaKOo1eL5KjaPejzL8WN/Cqf7XJWP38D0KJVJGu1KVNLJqHRb3eaxpY0ljXPA
-	 7pHB2/JWGRqhfGCAA/Q1js44CP4bqSZW2i1Q8mRYwbUDBHESi9LkOsDbdI822uXITi
-	 gJjFq+85kUMEg==
-Received: from mercury (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 11B923782117;
-	Fri, 12 Apr 2024 15:28:12 +0000 (UTC)
-Received: by mercury (Postfix, from userid 1000)
-	id B79B810608F7; Fri, 12 Apr 2024 17:28:11 +0200 (CEST)
-Date: Fri, 12 Apr 2024 17:28:11 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, linux-rockchip@lists.infradead.org, 
-	linux-phy@lists.infradead.org, Frank Wang <frank.wang@rock-chips.com>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, 
-	Kever Yang <kever.yang@rock-chips.com>, Conor Dooley <conor+dt@kernel.org>, kernel@collabora.com, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: (subset) [PATCH v5 00/10] RK3588 USBDP support
-Message-ID: <msttmdg2va7cwutn23f5zsmi6assert62in5esyovdfcpsudgx@6hwh7qwirstb>
-References: <20240408225109.128953-1-sebastian.reichel@collabora.com>
- <171293314494.1912962.2483494926339362221.b4-ty@sntech.de>
+	s=arc-20240116; t=1712935794; c=relaxed/simple;
+	bh=qGEPCejRwk/YkyvcWWuTjmptHtF6OxrrwTGW2ghtYFk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VsnOGSaXUHibHy09DRjLz05RSDtngN7rMqeJoh7kg7TXMArA2VpdFIt1exUrFoZht9UAT3I0exoMrfuUU4k+8i/UzwcsdUJnBoXxWALfusQrCXlHruvtF1c5Zid8dV+dR9Nl41C7UlPkyOGvhmaFc01dTrRrwwq5uikx4GPWWGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kbk2UBoi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F40DC113CC;
+	Fri, 12 Apr 2024 15:29:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712935794;
+	bh=qGEPCejRwk/YkyvcWWuTjmptHtF6OxrrwTGW2ghtYFk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Kbk2UBoiNO5BqUeKdQW1HzLxYNWWsIxd+wCKn/2g5nlpwVdyyozlrunEpSgsyjz7X
+	 NTgXtDpd3EQO6X6ywGiQF+2o9sMNjRHMl5kmPQYTeFCLKBIQKR9leagc5YG4p/oT7R
+	 XkCkROl/FtKFLP0GHYUGISaxKMvO/exUxP5/wHdXUgKmgkJRE9stQo1gK8GpqmPkDC
+	 bTX/xtF0KYB4HjX7OCh1HvelhN4J6mbYOMsKAPPg9WKa65LZqn/NpiThvy30ZIWDcD
+	 oQGWu60cQmP2okcq56Ou2O39pdL3+HSNSSGvuweCtc6/x0hCGQaJ6+2otowvEwktvn
+	 N753Meoj/bcsw==
+Message-ID: <bf069dc3-9216-4bbc-b0de-a5a3f2b1fc5d@kernel.org>
+Date: Fri, 12 Apr 2024 17:29:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="26xfkqfmlvq46c2i"
-Content-Disposition: inline
-In-Reply-To: <171293314494.1912962.2483494926339362221.b4-ty@sntech.de>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: i2c: qcom-cci: Document sc8280xp compatible
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, wsa@kernel.org,
+ Loic Poulain <loic.poulain@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240412-linux-next-24-04-11-sc8280xp-cci-compat-string-fix-v1-1-7dbafff36932@linaro.org>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240412-linux-next-24-04-11-sc8280xp-cci-compat-string-fix-v1-1-7dbafff36932@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 12/04/2024 15:53, Bryan O'Donoghue wrote:
+> Add sc8280xp compatible consistent with recent CAMSS CCI interfaces.
+> 
+> sc8280xp has the following clock list and so requires its own compat
+> string and sc8280xp specific clock definition in the yaml.
+> 
+> - const: camnoc_axi
+> - const: slow_ahb_src
+> - const: cpas_ahb
+> - const: cci
+> 
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
 
---26xfkqfmlvq46c2i
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-Hello Heiko,
+Best regards,
+Krzysztof
 
-On Fri, Apr 12, 2024 at 04:46:43PM +0200, Heiko Stuebner wrote:
-> On Tue, 9 Apr 2024 00:50:27 +0200, Sebastian Reichel wrote:
-> > This adds Rockchip RK3588 USBDP PHY support, which is used for two of t=
-he three
-> > USB3 controllers in the RK3588 (the third one uses a different PHY, whi=
-ch is
-> > already supported). The USBDP PHY offers USB3 dual-role and DisplayPort=
-=2E The
-> > driver and bindings being upstreamed contains the DP parts, but only US=
-B3 has
-> > been tested by me (upstream does not yet have a DRM DP bridge driver fo=
-r this
-> > platform).
-> >=20
-> > [...]
->=20
-> Applied, thanks!
->=20
-> [...]
->
-> I've rearranged some things in the evb1 patch:
-> - vbus* before vcc*
-> - some newlines between properties and subnodes around
->   the endpoints
-
-Thanks, sorry for the extra work.
-
--- Sebastian
-
---26xfkqfmlvq46c2i
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmYZUwgACgkQ2O7X88g7
-+prvMxAAn/qQMN3VahlJ2xicppQhn/iGZC2aaKw6gEGDJy3xAnFr41nzyLyVHEIr
-dR/Hw7ip1EUYK47Zx8hk4Xoq93bmtiuasmVq/QudBVwa3fYBWhqWRh51PeMC7h40
-ZV0DPXhsTn7imeaDkMI/2Cj1Dqj3guB6VEvlg8L/lReWLA5T5tBNr5rz4Uu/Jab5
-QZeGu/UKGU2LUubE73UdrAikTs+PrExgaE2y471k3szChV08LiBBZjYhRwAD2eCL
-ykU+fa+pntf2ygr90GzGOD69dBkFJIg8C2WH7uBBWB7qEgSAt5C6eFVtNfixALnA
-EBYNSuWQOeSjFxr0ekNdnNETnFMsh1raRK4TqE3rQ+g/WENkp6mLreVHcpg12EgA
-LmKuC5iGgngObHPkST0MUEVbszFAmhoyMlEyg2FFT5FZXK0P+ntSJUVN6tAXCECh
-ztx0qZPagjc+xUgETknb+0w8/EeZTBRYzXs+VnLJxPtiUff7YPu6PiY0s6nvG1po
-I4Es1QSaQ2gR13yzccV3ZEXD/U99VKlq59taeIp+JCEi0AuWhr69eVUaHwyprios
-mPPOgsx8UG+oT53o+YhvcSJRBEwdNRVQYikBtna1XOHOidYb+cMRo9CmVLM8cbBf
-dc09icsSiYLwwP6MDdrvkQ8CUVBySE0QS6kwB9bnY926kJPNMtw=
-=F10l
------END PGP SIGNATURE-----
-
---26xfkqfmlvq46c2i--
 
