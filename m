@@ -1,453 +1,586 @@
-Return-Path: <devicetree+bounces-58886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80A388A3882
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 00:21:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA1AE8A388D
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 00:29:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A7D061C21E91
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 22:21:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FF8B2845BA
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 22:29:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62462152500;
-	Fri, 12 Apr 2024 22:21:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28D1A15219F;
+	Fri, 12 Apr 2024 22:29:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="S94Ro6Zh"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qYW9ll1K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72AB4152199
-	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 22:21:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4D54147C9A;
+	Fri, 12 Apr 2024 22:29:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712960468; cv=none; b=hxoTc8xQ/uBJwx8OZRD/ZLISxt90e7kTX94tJQ6/FL7MKGD33byrezh+A8lHMOKW9GMbBKo/pCTq7KuSsQQJEcEmSeyh2ayBhHocugWjCFfTAYKfFq0WgRfS+3lhDrPDTAGaXssrOawrxvcYdJsrnN0dRsiUIHSwrc1K/G/NEnI=
+	t=1712960952; cv=none; b=cSq9r2QQ2MosGpAi5Rcgbvouv6CjBxpNs+X+tODLrGZYdZd1NxUEf1+aooU3K8woCenY4VGAo2/DF6sgVPT8US85BmTjGa1VM7xDVZvYnuTO1oq4PuNApz4oocqV97gJBYgkouC65dwNgxjOKFu/USiQXAnS17fvC7n1tQdbY1M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712960468; c=relaxed/simple;
-	bh=jxUqPVI7QMdYiKJZ44makQXptF3fBvNQiGIoT8TIpWE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NhGUQO+Rqcrlv/rWgAjFrcx7yKxsPFWNVfRA4ttHPyFjP4DC+PvDL/RYPAUqLvMvH+BdK1x7Big4k0zL0zfiNjQ5fx1ZrpSv/P/kbtZLUTvij5e2/va05eYqOvd1thL9fbEsvrO3a0NDeBj1niIE8bU9Wyk3VHkyAstgRgsBaQY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=S94Ro6Zh; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-1e3e56c9d2cso12199635ad.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 15:21:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1712960466; x=1713565266; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Qw7f13VaApE9P7VRpDrEHdpAzJF1wdaPoxbwIFLmIG4=;
-        b=S94Ro6ZhN7ITDylPwfn0rMRGoJN/Phk0BXblZhqkza5fOV5xlstpCdrlHQoBGIhRif
-         /5fGqRmL986v/v+nVNKCDYgxV/tonrBwJF7PV0KXEskS3yIa+UHvQcoFR1d4yu7yomQp
-         6Pq3dfTWgQYfTBrRWekPt82sc/ktVTa1O95XznZFUqkspSnvzRh5y0GtHdl6fc7I1sCO
-         NRRcSvF5oPkQs76R+JR2XF74Y61Y9dXdjR3RnS5cNZPMJw92sVdy/begk7w/dzULgtxm
-         8A2hrtNupxVoMNwCLm67fSraIgkvIbWSttKntWo4FP2ih2F9ice6h+1pMTO7IEkMN5lg
-         9eNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712960466; x=1713565266;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Qw7f13VaApE9P7VRpDrEHdpAzJF1wdaPoxbwIFLmIG4=;
-        b=TuEjT4xdRAcBXPpMBcaUvPNFM+uT/BOPP/k3m6mS1Ox/payJRelkNAwP0FWhB1Rs6i
-         RMbqef/B5SEj02erpXqhOJhtJ2xmAVnyNaUNGRvysWovptLuEW92CZIshpKBCOcX2bb/
-         Gv8B8NAMg/yoFuEC8wINWMNy/UABUFFmjhwKEuW9hnAqCVcElZjKdTwm0wviT7b/wV8x
-         EsqMirER16aOfMaajka6qdwsVbxAxPZIjno+PASR/ZZPxRWHqpQk4cBGQTH5OdE2QdHS
-         nasyc22uMIB8Uz1tlhOsLKqI29QQwD1zpKq/N7fUmk8jqz9A41xii1bpqUDldBiYjyBU
-         7oHg==
-X-Forwarded-Encrypted: i=1; AJvYcCVI+Ny2+1/WD/V453WjtQy2RV42VmhmlHVIUevUwEWYOj6pRspUnhroD/8MhuJH8KcZFvKPomc4blSgLKkfrpMWDW1JwCwrFoOFdA==
-X-Gm-Message-State: AOJu0YyVswElPxKKUg9MlwVts6/AhWnyxnPZtQ7Iin+dv5KKU9uBKWhx
-	D7aFo7YaemxTqxWkoKrniyO7cJW5QHtKYxCYWO0rcWSuy0FNcKm7nDszhsfKgIM=
-X-Google-Smtp-Source: AGHT+IHUI2RaMq8jaayA5FcthPXUJDbqZ0+AxzpHu6ba0uA91gdIC4L0mbVqNIRm0limEGVhmp0sjg==
-X-Received: by 2002:a17:903:2609:b0:1e2:ca65:68c2 with SMTP id jd9-20020a170903260900b001e2ca6568c2mr3674124plb.51.1712960465476;
-        Fri, 12 Apr 2024 15:21:05 -0700 (PDT)
-Received: from ghost ([50.145.13.30])
-        by smtp.gmail.com with ESMTPSA id b7-20020a170902650700b001e245c5afbfsm3554986plk.155.2024.04.12.15.21.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Apr 2024 15:21:05 -0700 (PDT)
-Date: Fri, 12 Apr 2024 15:21:02 -0700
-From: Charlie Jenkins <charlie@rivosinc.com>
-To: Evan Green <evan@rivosinc.com>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1712960952; c=relaxed/simple;
+	bh=dvHUo9f2ZgG4pJq4r0jugRT+L386jedgydw0yaLdt9A=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dZcsANoHje+jdEQWZma/FaV4GJWyyEpb1sVuRlMPyqJEdsnR03nswkn4MFa94tAonVMklZGXoT0IFUb4POPMIh1ddFe6wilJ5nV1+KRhsq1gkrFn8jTlB0U2Ab9ogbD9SSPh7ovP0EROD2ooYgskawEBuxx3H48Ano8NNPwnE+I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qYW9ll1K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42E03C113CC;
+	Fri, 12 Apr 2024 22:29:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712960951;
+	bh=dvHUo9f2ZgG4pJq4r0jugRT+L386jedgydw0yaLdt9A=;
+	h=From:List-Id:To:Cc:Subject:Date:From;
+	b=qYW9ll1Kzsf6JuvAhzLACQWSIH6GxpiKkhqO/53JcsS9wRqohuTJo+mHekoSRs0nw
+	 f1P5p3H1ZmgETGk+bCXpEjB9qhQY+gIlxVEwlnDheASyI9MGdMN+E0/aYYODcLDjio
+	 esSfxwHmO+YbiA2VN0FiURdAdmwmixp8GAUjKEJwBzkI60sR6ZkBuZVwTqgwDfuZkq
+	 tXqXqzs91sTDXNzHDmCHkgDGCn9ZVwrDpHMPLJyOrlElpgFJpgVGcdMjpKD7YvcK9t
+	 VKQ95+bYRWG8BOkB8LwT8YQMMtD83PSw7OHtVUsFgkprtCOhSFbE+kHcdGfFwOnVVV
+	 czECM54Q56BiA==
+From: Rob Herring <robh@kernel.org>
+To: soc@kernel.org,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH 16/19] riscv: hwprobe: Add vendor extension probing
-Message-ID: <Zhmzzq3oedZ1LozW@ghost>
-References: <20240411-dev-charlie-support_thead_vector_6_9-v1-0-4af9815ec746@rivosinc.com>
- <20240411-dev-charlie-support_thead_vector_6_9-v1-16-4af9815ec746@rivosinc.com>
- <CALs-Hss=vuNgq-8bVL1DOR431qFpn-D13yFGn6yf_2saZO0FVQ@mail.gmail.com>
- <Zhl6lvZzUrCoAB8N@ghost>
- <CALs-Hsu=SLnTJ+gsGZmv7C=K8WGHRiFCn3Q=isE9+QhawcrqCw@mail.gmail.com>
- <ZhmXnUj2B1hD5QiX@ghost>
- <CALs-Hsu4m0y2zSvpZwn2znyxNMfJ5f0NpYOh9TNYB4u5=GUKxw@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Dinh Nguyen <dinguyen@kernel.org>,
+	Tsahee Zidenberg <tsahee@annapurnalabs.com>,
+	Antoine Tenart <atenart@kernel.org>,
+	Khuong Dinh <khuong@os.amperecomputing.com>,
+	Liviu Dudau <liviu.dudau@arm.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	Robert Richter <rric@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Li Yang <leoyang.li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	"Paul J. Murphy" <paul.j.murphy@intel.com>,
+	Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	=?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	linux-fsd@tesla.com,
+	Michal Simek <michal.simek@amd.com>
+Cc: devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-mediatek@lists.infradead.org,
+	linux-tegra@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-realtek-soc@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org
+Subject: [PATCH] arm/arm64: dts: Drop "arm,armv8-pmuv3" compatible usage
+Date: Fri, 12 Apr 2024 17:28:51 -0500
+Message-ID: <20240412222857.3873079-1-robh@kernel.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CALs-Hsu4m0y2zSvpZwn2znyxNMfJ5f0NpYOh9TNYB4u5=GUKxw@mail.gmail.com>
 
-On Fri, Apr 12, 2024 at 02:43:01PM -0700, Evan Green wrote:
-> On Fri, Apr 12, 2024 at 1:20 PM Charlie Jenkins <charlie@rivosinc.com> wrote:
-> >
-> > On Fri, Apr 12, 2024 at 12:07:46PM -0700, Evan Green wrote:
-> > > On Fri, Apr 12, 2024 at 11:17 AM Charlie Jenkins <charlie@rivosinc.com> wrote:
-> > > >
-> > > > On Fri, Apr 12, 2024 at 10:05:21AM -0700, Evan Green wrote:
-> > > > > On Thu, Apr 11, 2024 at 9:12 PM Charlie Jenkins <charlie@rivosinc.com> wrote:
-> > > > > >
-> > > > > > Add a new hwprobe key "RISCV_HWPROBE_KEY_VENDOR_EXT_0" which allows
-> > > > > > userspace to probe for the new RISCV_ISA_VENDOR_EXT_XTHEADVECTOR vendor
-> > > > > > extension.
-> > > > > >
-> > > > > > Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
-> > > > > > ---
-> > > > > >  arch/riscv/include/asm/hwprobe.h      |  4 +--
-> > > > > >  arch/riscv/include/uapi/asm/hwprobe.h | 10 +++++-
-> > > > > >  arch/riscv/kernel/sys_hwprobe.c       | 59 +++++++++++++++++++++++++++++++++--
-> > > > > >  3 files changed, 68 insertions(+), 5 deletions(-)
-> > > > > >
-> > > > > > diff --git a/arch/riscv/include/asm/hwprobe.h b/arch/riscv/include/asm/hwprobe.h
-> > > > > > index 630507dff5ea..e68496b4f8de 100644
-> > > > > > --- a/arch/riscv/include/asm/hwprobe.h
-> > > > > > +++ b/arch/riscv/include/asm/hwprobe.h
-> > > > > > @@ -1,6 +1,6 @@
-> > > > > >  /* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
-> > > > > >  /*
-> > > > > > - * Copyright 2023 Rivos, Inc
-> > > > > > + * Copyright 2023-2024 Rivos, Inc
-> > > > > >   */
-> > > > > >
-> > > > > >  #ifndef _ASM_HWPROBE_H
-> > > > > > @@ -8,7 +8,7 @@
-> > > > > >
-> > > > > >  #include <uapi/asm/hwprobe.h>
-> > > > > >
-> > > > > > -#define RISCV_HWPROBE_MAX_KEY 6
-> > > > > > +#define RISCV_HWPROBE_MAX_KEY 7
-> > > > > >
-> > > > > >  static inline bool riscv_hwprobe_key_is_valid(__s64 key)
-> > > > > >  {
-> > > > > > diff --git a/arch/riscv/include/uapi/asm/hwprobe.h b/arch/riscv/include/uapi/asm/hwprobe.h
-> > > > > > index 9f2a8e3ff204..6614d3adfc75 100644
-> > > > > > --- a/arch/riscv/include/uapi/asm/hwprobe.h
-> > > > > > +++ b/arch/riscv/include/uapi/asm/hwprobe.h
-> > > > > > @@ -1,6 +1,6 @@
-> > > > > >  /* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
-> > > > > >  /*
-> > > > > > - * Copyright 2023 Rivos, Inc
-> > > > > > + * Copyright 2023-2024 Rivos, Inc
-> > > > > >   */
-> > > > > >
-> > > > > >  #ifndef _UAPI_ASM_HWPROBE_H
-> > > > > > @@ -67,6 +67,14 @@ struct riscv_hwprobe {
-> > > > > >  #define                RISCV_HWPROBE_MISALIGNED_UNSUPPORTED    (4 << 0)
-> > > > > >  #define                RISCV_HWPROBE_MISALIGNED_MASK           (7 << 0)
-> > > > > >  #define RISCV_HWPROBE_KEY_ZICBOZ_BLOCK_SIZE    6
-> > > > > > +/*
-> > > > > > + * It is not possible for one CPU to have multiple vendor ids, so each vendor
-> > > > > > + * has its own vendor extension "namespace". The keys for each vendor starts
-> > > > > > + * at zero.
-> > > > > > + */
-> > > > > > +#define RISCV_HWPROBE_KEY_VENDOR_EXT_0 7
-> > > > > > + /* T-Head */
-> > > > > > +#define                RISCV_HWPROBE_VENDOR_EXT_XTHEADVECTOR   (1 << 0)
-> > > > > >  /* Increase RISCV_HWPROBE_MAX_KEY when adding items. */
-> > > > > >
-> > > > > >  /* Flags */
-> > > > > > diff --git a/arch/riscv/kernel/sys_hwprobe.c b/arch/riscv/kernel/sys_hwprobe.c
-> > > > > > index e0a42c851511..365ce7380443 100644
-> > > > > > --- a/arch/riscv/kernel/sys_hwprobe.c
-> > > > > > +++ b/arch/riscv/kernel/sys_hwprobe.c
-> > > > > > @@ -69,7 +69,8 @@ static void hwprobe_isa_ext0(struct riscv_hwprobe *pair,
-> > > > > >         if (riscv_isa_extension_available(NULL, c))
-> > > > > >                 pair->value |= RISCV_HWPROBE_IMA_C;
-> > > > > >
-> > > > > > -       if (has_vector() && !riscv_has_vendor_extension_unlikely(RISCV_ISA_VENDOR_EXT_XTHEADVECTOR))
-> > > > > > +       if (has_vector() &&
-> > > > > > +           !__riscv_isa_vendor_extension_available(NULL, RISCV_ISA_VENDOR_EXT_XTHEADVECTOR))
-> > > > > >                 pair->value |= RISCV_HWPROBE_IMA_V;
-> > > > > >
-> > > > > >         /*
-> > > > > > @@ -112,7 +113,8 @@ static void hwprobe_isa_ext0(struct riscv_hwprobe *pair,
-> > > > > >                 EXT_KEY(ZACAS);
-> > > > > >                 EXT_KEY(ZICOND);
-> > > > > >
-> > > > > > -               if (has_vector() && !riscv_has_vendor_extension_unlikely(RISCV_ISA_VENDOR_EXT_XTHEADVECTOR)) {
-> > > > > > +               if (has_vector() &&
-> > > > > > +                   !riscv_has_vendor_extension_unlikely(RISCV_ISA_VENDOR_EXT_XTHEADVECTOR)) {
-> > > > > >                         EXT_KEY(ZVBB);
-> > > > > >                         EXT_KEY(ZVBC);
-> > > > > >                         EXT_KEY(ZVKB);
-> > > > > > @@ -139,6 +141,55 @@ static void hwprobe_isa_ext0(struct riscv_hwprobe *pair,
-> > > > > >         pair->value &= ~missing;
-> > > > > >  }
-> > > > > >
-> > > > > > +static void hwprobe_isa_vendor_ext0(struct riscv_hwprobe *pair,
-> > > > > > +                                   const struct cpumask *cpus)
-> > > > > > +{
-> > > > > > +       int cpu;
-> > > > > > +       u64 missing = 0;
-> > > > > > +
-> > > > > > +       pair->value = 0;
-> > > > > > +
-> > > > > > +       struct riscv_hwprobe mvendorid = {
-> > > > > > +               .key = RISCV_HWPROBE_KEY_MVENDORID,
-> > > > > > +               .value = 0
-> > > > > > +       };
-> > > > > > +
-> > > > > > +       hwprobe_arch_id(&mvendorid, cpus);
-> > > > > > +
-> > > > > > +       /* Set value to zero if CPUs in the set do not have the same vendor. */
-> > > > > > +       if (mvendorid.value == -1ULL)
-> > > > > > +               return;
-> > > > > > +
-> > > > > > +       /*
-> > > > > > +        * Loop through and record vendor extensions that 1) anyone has, and
-> > > > > > +        * 2) anyone doesn't have.
-> > > > > > +        */
-> > > > > > +       for_each_cpu(cpu, cpus) {
-> > > > > > +               struct riscv_isainfo *isavendorinfo = &hart_isa_vendor[cpu];
-> > > > > > +
-> > > > > > +#define VENDOR_EXT_KEY(ext)                                                            \
-> > > > > > +       do {                                                                            \
-> > > > > > +               if (__riscv_isa_vendor_extension_available(isavendorinfo->isa,          \
-> > > > > > +                                                        RISCV_ISA_VENDOR_EXT_##ext))   \
-> > > > > > +                       pair->value |= RISCV_HWPROBE_VENDOR_EXT_##ext;                  \
-> > > > > > +               else                                                                    \
-> > > > > > +                       missing |= RISCV_HWPROBE_VENDOR_EXT_##ext;                      \
-> > > > > > +       } while (false)
-> > > > > > +
-> > > > > > +       /*
-> > > > > > +        * Only use VENDOR_EXT_KEY() for extensions which can be exposed to userspace,
-> > > > > > +        * regardless of the kernel's configuration, as no other checks, besides
-> > > > > > +        * presence in the hart_vendor_isa bitmap, are made.
-> > > > > > +        */
-> > > > > > +       VENDOR_EXT_KEY(XTHEADVECTOR);
-> > > > > > +
-> > > > > > +#undef VENDOR_EXT_KEY
-> > > > >
-> > > > > Hey Charlie,
-> > > > > Thanks for writing this up! At the very least I think the
-> > > > > THEAD-specific stuff should probably end up in its own file, otherwise
-> > > > > it'll get chaotic with vendors clamoring to add stuff right here.
-> > > >
-> > > > Great idea!
-> > > >
-> > > > > What do you think about this approach:
-> > > > >  * We leave RISCV_HWPROBE_MAX_KEY as the max key for the "generic
-> > > > > world", eg 6-ish
-> > > > >  * We define that any key above 0x8000000000000000 is in the vendor
-> > > > > space, so the meaning of the keys depends first on the mvendorid
-> > > > > value.
-> > > > >  * In the kernel code, each new vendor adds on to a global struct,
-> > > > > which might look something like:
-> > > > > struct hwprobe_vendor_space vendor_space[] = {
-> > > > >         {
-> > > > >                 .mvendorid = VENDOR_THEAD,
-> > > > >                 .max_hwprobe_key = THEAD_MAX_HWPROBE_KEY, // currently
-> > > > > 1 or 0x8000000000000001 with what you've got.
-> > > > >                 .hwprobe_fn = thead_hwprobe
-> > > > >         },
-> > > > >         ...
-> > > > > };
-> > > > >
-> > > > >  * A hwprobe_thead.c implements thead_hwprobe(), and is called
-> > > > > whenever the generic hwprobe encounters a key >=0x8000000000000000.
-> > > > >  * Generic code for setting up the VDSO can then still call the
-> > > > > vendor-specific hwprobe_fn() repeatedly with an "all CPUs" mask from
-> > > > > the base to max_hwprobe_key and set up the cached tables in userspace.
-> > > > >  * Since the VDSO data has limited space we may have to cap the number
-> > > > > of vendor keys we cache to be lower than max_hwprobe_key. Since the
-> > > > > data itself is not exposed to usermode we can raise this cap later if
-> > > > > needed.
-> > > >
-> > > > I know vendor extensions are kind of the "wild west" of riscv, but in
-> > > > spite of that I want to design a consistent API. The issue I had with
-> > > > having this "vendor space" for exposing vendor extensions was that this
-> > > > is something that is inherently the same for all vendors. I see a vendor
-> > > > space like this more applicable for something like
-> > > > "RISCV_HWPROBE_KEY_ZICBOZ_BLOCK_SIZE" where a vendor has a specific
-> > > > value they would like to expose. I do agree that having a vendor space
-> > > > is a good design choice, but I am not convinced that vendor extensions
-> > > > are the proper use-case.
-> > > >
-> > > > By having RISCV_HWPROBE_KEY_VENDOR_EXT_0 we can expose the vendor
-> > > > extensions in the same way that standard extensions are exposed, with a
-> > > > bitmask representing each extension. If these are instead in the vendor
-> > > > space, each vendor would probably be inclined to introduce a key like
-> > > > RISCV_HWPROBE_KEY_THEAD_EXT_0 that returns a bitmask of all of the thead
-> > > > vendor extensions. This duplicated effort is what I am trying to avoid.
-> > > > The alternative would be that vendors have a separate key for each
-> > > > vendor extension they would like to expose, but that is strictly less
-> > > > efficient than the existing bitmask probing.
-> > > >
-> > > > Do you think that having the vendor space is appropriate for vendor
-> > > > extensions given my concerns?
-> > >
-> > > I do see what you're going for. It's tidy for a bitmask to just let
-> > > anyone allocate the next bit, but leaves you with the same problem
-> > > when a vendor decides they want to expose an enum, or decides they
-> > > want to expose a bazillion things. I think a generalized version of
-> >
-> > This patch is strictly to expose if a vendor extension is supported,
-> > how does exposing enums factor in here?
-> >
-> > > the approach you've written would be: simply let vendors allocate keys
-> > > from the same global space we're already using. My worry was that it
-> >
-> > I am missing how my proposal suggests allowing vendors to allocate keys
-> > in a global space.
-> >
-> > > would turn into an expansive suburban sprawl of mostly dead bits, or
-> > > in the case of vendor-specific keys, full of "if (mvendor_id() !=
-> > > MINE) return 0;". My hope with the vendored keyspace is it would keep
-> >
-> > An application will always need to check vendorid before calling hwprobe
-> > with a vendor-specific feature? If that hwprobe support is a key above
-> > 1<<63, then the application will need to pass that vendor-specific key
-> > and interpret the vendor-specific value. If that hwprobe support is what
-> > I have proposed here, then the user calls the standardized vendor
-> > extension hwprobe endpoint and then needs to interpret the result based
-> > on the vendor of the cpumask. In both cases they need to check the
-> > vendorid of the cpumask. In the test case I added I failed to check the
-> > vendorid but I should have had that.
-> >
-> > > the sprawl from polluting the general array of (hopefully valuable)
-> > > info with stuff that's likely to become less relevant as time passes.
-> > > It also lowers the bar a bit to make it easier for vendors to expose
-> > > bits, as they don't consume global space for everyone for all of time,
-> > > just themselves.
-> >
-> > The vendor keys are tied directly to the vendor. So as it grows we would
-> > have something like:
-> >
-> > #define RISCV_HWPROBE_KEY_VENDOR_EXT_0  7
-> > /* T-Head */
-> > #define         RISCV_HWPROBE_VENDOR_EXT_XTHEADVECTOR   (1 << 0)
-> > #define         RISCV_HWPROBE_VENDOR_EXT_XTHEAD2        (2 << 0)
-> > #define         RISCV_HWPROBE_VENDOR_EXT_XTHEAD3        (3 << 0)
-> > /* Vendor 2 */
-> > #define         RISCV_HWPROBE_VENDOR_EXT_XVENDOR1       (1 << 0)
-> > #define         RISCV_HWPROBE_VENDOR_EXT_XVENDOR2       (2 << 0)
-> > /* Vendor 3 */
-> > ...
-> >
-> > The keys overlap between vendors. To determine which extension a vendor
-> > supports, hwprobe gets data from hart_isa_vendor[cpu]. If the vendor is
-> > vendor 2, it is not possible for a vendor extension from vendor 3 to end
-> > up in there. Only the extensions from that vendor can be supported by
-> > that vendor's hardware.
-> 
-> Gotcha. You're right I had misinterpreted this, thinking XTHEADVECTOR
-> was a valid bit regardless of mvendorid, and that other vendors would
-> have to choose new bits for their features and always return 0 for
-> XTHEADVECTOR. With your explanation, it seems like you're allocating
-> keys (in no particular order) whose meaning will change based on
-> mvendorid.
-> 
-> I guess I'm still not convinced that saving each vendor from having to
-> add a VENDOR_EXT key in their keyspace is worth the sacrifice of
-> spraying the vendor-specific keys across the generic keyspace. Are
-> there advantages to having a single key whose category is similar but
-> whose bits are entirely vendor-defined? Maybe if I were userspace and
-> my feature could be satisfied equivalently by XTHEADVECTOR or
-> XRIVOSOTHERTHING, then I could do one hwprobe call instead of two? But
-> I don't think the vendors are going to be consistent enough for that
-> equivalency to ever prove useful. The advantages in my head of the
-> separate vendor keyspace are:
->  * Keeps the kernel code simple: if key >= (1 >> 63)
-> vendor_config->do_hwprobe(), rather than having all these little calls
-> in each specific switch case for vendor_config->do_vendor_ext0(),
-> vendor_config->do_vendor_ext1(), etc.
+The "arm,armv8-pmuv3" compatible is intended only for s/w models. Primarily,
+it doesn't provide any detail on uarch specific events.
 
-The consistency between vendors is guaranteed in this scheme. They just
-add the extension to hwprobe_isa_vendor_ext0. The following code is the
-critical code from the kernel:
+There's still remaining cases for CPUs without any corresponding PMU
+definition and for big.LITTLE systems which only have a single PMU node
+(there should be one per core type).
 
-	for_each_cpu(cpu, cpus) {
-		struct riscv_isainfo *isavendorinfo = &hart_isa_vendor[cpu];
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+SoC Maintainers, Can you please apply this directly.
+---
+ arch/arm/boot/dts/broadcom/bcm2711.dtsi              | 4 ++--
+ arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi    | 2 +-
+ arch/arm64/boot/dts/amazon/alpine-v2.dtsi            | 2 +-
+ arch/arm64/boot/dts/apm/apm-storm.dtsi               | 2 +-
+ arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts | 2 +-
+ arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi     | 2 +-
+ arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi  | 2 +-
+ arch/arm64/boot/dts/cavium/thunder-88xx.dtsi         | 2 +-
+ arch/arm64/boot/dts/cavium/thunder2-99xx.dtsi        | 2 +-
+ arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi       | 2 +-
+ arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi       | 2 +-
+ arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi       | 7 +++++++
+ arch/arm64/boot/dts/freescale/fsl-ls2088a.dtsi       | 7 +++++++
+ arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi       | 5 -----
+ arch/arm64/boot/dts/freescale/imx8dxl.dtsi           | 2 +-
+ arch/arm64/boot/dts/intel/keembay-soc.dtsi           | 2 +-
+ arch/arm64/boot/dts/intel/socfpga_agilex.dtsi        | 2 +-
+ arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi        | 2 +-
+ arch/arm64/boot/dts/marvell/armada-37xx.dtsi         | 2 +-
+ arch/arm64/boot/dts/mediatek/mt8516.dtsi             | 2 +-
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi             | 2 +-
+ arch/arm64/boot/dts/qcom/qcm2290.dtsi                | 2 +-
+ arch/arm64/boot/dts/qcom/qdu1000.dtsi                | 2 +-
+ arch/arm64/boot/dts/qcom/sdm630.dtsi                 | 2 +-
+ arch/arm64/boot/dts/qcom/sdx75.dtsi                  | 2 +-
+ arch/arm64/boot/dts/realtek/rtd16xx.dtsi             | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3368.dtsi             | 2 +-
+ arch/arm64/boot/dts/sprd/sc9860.dtsi                 | 2 +-
+ arch/arm64/boot/dts/sprd/sc9863a.dtsi                | 2 +-
+ arch/arm64/boot/dts/synaptics/berlin4ct.dtsi         | 2 +-
+ arch/arm64/boot/dts/tesla/fsd.dtsi                   | 2 +-
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi               | 2 +-
+ 32 files changed, 44 insertions(+), 35 deletions(-)
 
-#define VENDOR_EXT_KEY(ext)								\
-	do {										\
-		if (__riscv_isa_vendor_extension_available(isavendorinfo->isa,		\
-							 RISCV_ISA_VENDOR_EXT_##ext))	\
-			pair->value |= RISCV_HWPROBE_VENDOR_EXT_##ext;			\
-		else									\
-			missing |= RISCV_HWPROBE_VENDOR_EXT_##ext;			\
-	} while (false)
+diff --git a/arch/arm/boot/dts/broadcom/bcm2711.dtsi b/arch/arm/boot/dts/broadcom/bcm2711.dtsi
+index 22c7f1561344..926f87b86590 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2711.dtsi
++++ b/arch/arm/boot/dts/broadcom/bcm2711.dtsi
+@@ -432,8 +432,8 @@ emmc2: mmc@7e340000 {
+ 		};
+ 	};
+ 
+-	arm-pmu {
+-		compatible = "arm,cortex-a72-pmu", "arm,armv8-pmuv3";
++	pmu {
++		compatible = "arm,cortex-a72-pmu";
+ 		interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
+ 			<GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>,
+ 			<GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>,
+diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+index 072fe20cfca0..cbbc53c47921 100644
+--- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
++++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+@@ -79,7 +79,7 @@ fpga-region {
+ 	};
+ 
+ 	pmu {
+-		compatible = "arm,armv8-pmuv3";
++		compatible = "arm,cortex-a53-pmu";
+ 		interrupts = <0 170 4>,
+ 			     <0 171 4>,
+ 			     <0 172 4>,
+diff --git a/arch/arm64/boot/dts/amazon/alpine-v2.dtsi b/arch/arm64/boot/dts/amazon/alpine-v2.dtsi
+index dbf2dce8d1d6..dbe21d88a29e 100644
+--- a/arch/arm64/boot/dts/amazon/alpine-v2.dtsi
++++ b/arch/arm64/boot/dts/amazon/alpine-v2.dtsi
+@@ -106,7 +106,7 @@ timer {
+ 		};
+ 
+ 		pmu {
+-			compatible = "arm,armv8-pmuv3";
++			compatible = "arm,cortex-a57-pmu";
+ 			interrupts = <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>,
+diff --git a/arch/arm64/boot/dts/apm/apm-storm.dtsi b/arch/arm64/boot/dts/apm/apm-storm.dtsi
+index 988928c60f15..ee3f838b4904 100644
+--- a/arch/arm64/boot/dts/apm/apm-storm.dtsi
++++ b/arch/arm64/boot/dts/apm/apm-storm.dtsi
+@@ -122,7 +122,7 @@ timer {
+ 	};
+ 
+ 	pmu {
+-		compatible = "apm,potenza-pmu", "arm,armv8-pmuv3";
++		compatible = "apm,potenza-pmu";
+ 		interrupts = <1 12 0xff04>;
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts b/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts
+index 8db4243a4947..9115c99d0dc0 100644
+--- a/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts
++++ b/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts
+@@ -102,7 +102,7 @@ timer {
+ 	};
+ 
+ 	pmu {
+-		compatible = "arm,armv8-pmuv3";
++		compatible = "arm,cortex-a53-pmu";
+ 		interrupts = <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
+ 	};
+diff --git a/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi b/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi
+index 896d1f33b5b6..cfd9fd23a1c2 100644
+--- a/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi
++++ b/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi
+@@ -102,7 +102,7 @@ IRQ_TYPE_LEVEL_LOW)>,
+ 	};
+ 
+ 	pmu {
+-		compatible = "arm,armv8-pmuv3";
++		compatible = "arm,cortex-a57-pmu";
+ 		interrupts = <GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH>,
+diff --git a/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi b/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
+index d8516ec0dae7..857fa427e195 100644
+--- a/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
++++ b/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
+@@ -142,7 +142,7 @@ psci {
+ 	};
+ 
+ 	pmu {
+-		compatible = "arm,armv8-pmuv3";
++		compatible = "arm,cortex-a72-pmu";
+ 		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/cavium/thunder-88xx.dtsi b/arch/arm64/boot/dts/cavium/thunder-88xx.dtsi
+index 8ad31dee11a3..4c9f1f808427 100644
+--- a/arch/arm64/boot/dts/cavium/thunder-88xx.dtsi
++++ b/arch/arm64/boot/dts/cavium/thunder-88xx.dtsi
+@@ -361,7 +361,7 @@ timer {
+ 	};
+ 
+ 	pmu {
+-		compatible = "cavium,thunder-pmu", "arm,armv8-pmuv3";
++		compatible = "cavium,thunder-pmu";
+ 		interrupts = <1 7 4>;
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/cavium/thunder2-99xx.dtsi b/arch/arm64/boot/dts/cavium/thunder2-99xx.dtsi
+index 3419bd252696..68cb3d01187a 100644
+--- a/arch/arm64/boot/dts/cavium/thunder2-99xx.dtsi
++++ b/arch/arm64/boot/dts/cavium/thunder2-99xx.dtsi
+@@ -83,7 +83,7 @@ timer {
+ 	};
+ 
+ 	pmu {
+-		compatible = "brcm,vulcan-pmu", "arm,armv8-pmuv3";
++		compatible = "brcm,vulcan-pmu";
+ 		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>; /* PMU overflow */
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi
+index fe9093b3c02e..a0f7bbd691a0 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi
+@@ -81,7 +81,7 @@ timer {
+ 	};
+ 
+ 	pmu {
+-		compatible = "arm,armv8-pmuv3";
++		compatible = "arm,cortex-a53-pmu";
+ 		interrupts = <0 106 IRQ_TYPE_LEVEL_HIGH>;
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
+index d333b773bc45..8ee6d8c0ef61 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
+@@ -276,7 +276,7 @@ timer {
+ 	};
+ 
+ 	pmu {
+-		compatible = "arm,armv8-pmuv3";
++		compatible = "arm,cortex-a53-pmu";
+ 		interrupts = <0 106 0x4>,
+ 			     <0 107 0x4>,
+ 			     <0 95 0x4>,
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi
+index 1aa38ed09aa4..8352197cea6f 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi
+@@ -12,6 +12,13 @@
+ #include <dt-bindings/clock/fsl,qoriq-clockgen.h>
+ #include "fsl-ls208xa.dtsi"
+ 
++/ {
++	pmu {
++		compatible = "arm,cortex-a57-pmu";
++		interrupts = <1 7 0x8>; /* PMU PPI, Level low type */
++	};
++};
++
+ &cpu {
+ 	cpu0: cpu@0 {
+ 		device_type = "cpu";
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls2088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls2088a.dtsi
+index 8581ea55d254..245bbd615c81 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls2088a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls2088a.dtsi
+@@ -12,6 +12,13 @@
+ #include <dt-bindings/clock/fsl,qoriq-clockgen.h>
+ #include "fsl-ls208xa.dtsi"
+ 
++/ {
++	pmu {
++		compatible = "arm,cortex-a72-pmu";
++		interrupts = <1 7 0x8>; /* PMU PPI, Level low type */
++	};
++};
++
+ &cpu {
+ 	cpu0: cpu@0 {
+ 		device_type = "cpu";
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+index 0b7292835906..ccba0a135b24 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+@@ -247,11 +247,6 @@ timer: timer {
+ 			     <1 10 4>; /* Hypervisor PPI, active-low */
+ 	};
+ 
+-	pmu {
+-		compatible = "arm,armv8-pmuv3";
+-		interrupts = <1 7 0x8>; /* PMU PPI, Level low type */
+-	};
+-
+ 	psci {
+ 		compatible = "arm,psci-0.2";
+ 		method = "smc";
+diff --git a/arch/arm64/boot/dts/freescale/imx8dxl.dtsi b/arch/arm64/boot/dts/freescale/imx8dxl.dtsi
+index a0674c5c5576..b8abd98bdc43 100644
+--- a/arch/arm64/boot/dts/freescale/imx8dxl.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8dxl.dtsi
+@@ -104,7 +104,7 @@ dsp_reserved: dsp@92400000 {
+ 	};
+ 
+ 	pmu {
+-		compatible = "arm,armv8-pmuv3";
++		compatible = "arm,cortex-a35-pmu";
+ 		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/intel/keembay-soc.dtsi b/arch/arm64/boot/dts/intel/keembay-soc.dtsi
+index 781761d2942b..ae00e9e54e82 100644
+--- a/arch/arm64/boot/dts/intel/keembay-soc.dtsi
++++ b/arch/arm64/boot/dts/intel/keembay-soc.dtsi
+@@ -70,7 +70,7 @@ timer {
+ 	};
+ 
+ 	pmu {
+-		compatible = "arm,armv8-pmuv3";
++		compatible = "arm,cortex-a53-pmu";
+ 		interrupts = <GIC_PPI 0x7 IRQ_TYPE_LEVEL_HIGH>;
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+index 76aafa172eb0..2a5eeb21da47 100644
+--- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
++++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+@@ -80,7 +80,7 @@ fpga-region {
+ 	};
+ 
+ 	pmu {
+-		compatible = "arm,armv8-pmuv3";
++		compatible = "arm,cortex-a53-pmu";
+ 		interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_SPI 171 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_SPI 172 IRQ_TYPE_LEVEL_HIGH>,
+diff --git a/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi b/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
+index 5591939e057b..75377c292bcb 100644
+--- a/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
++++ b/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
+@@ -68,7 +68,7 @@ timer {
+ 	};
+ 
+ 	pmu {
+-		compatible = "arm,armv8-pmuv3";
++		compatible = "arm,cortex-a55-pmu";
+ 		interrupts = <GIC_PPI 12 IRQ_TYPE_LEVEL_HIGH>;
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi b/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
+index 1cc3fa1c354d..9603223dd761 100644
+--- a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
++++ b/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
+@@ -68,7 +68,7 @@ timer {
+ 	};
+ 
+ 	pmu {
+-		compatible = "arm,armv8-pmuv3";
++		compatible = "arm,cortex-a53-pmu";
+ 		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/mediatek/mt8516.dtsi b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
+index 9cbd6dd8f671..d0b03dc4d3f4 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8516.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
+@@ -165,7 +165,7 @@ timer {
+ 	};
+ 
+ 	pmu {
+-		compatible = "arm,armv8-pmuv3";
++		compatible = "arm,cortex-a35-pmu";
+ 		interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_LOW>,
+ 			     <GIC_SPI 5 IRQ_TYPE_LEVEL_LOW>,
+ 			     <GIC_SPI 6 IRQ_TYPE_LEVEL_LOW>,
+diff --git a/arch/arm64/boot/dts/nvidia/tegra210.dtsi b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
+index 47f8268e46bf..882b1d1f4ada 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra210.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
+@@ -2004,7 +2004,7 @@ L2: l2-cache {
+ 	};
+ 
+ 	pmu {
+-		compatible = "arm,armv8-pmuv3";
++		compatible = "arm,cortex-a57-pmu";
+ 		interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
+diff --git a/arch/arm64/boot/dts/qcom/qcm2290.dtsi b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
+index 89beac833d43..d3cd68190a17 100644
+--- a/arch/arm64/boot/dts/qcom/qcm2290.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
+@@ -165,7 +165,7 @@ memory@40000000 {
+ 	};
+ 
+ 	pmu {
+-		compatible = "arm,armv8-pmuv3";
++		compatible = "arm,cortex-a53-pmu";
+ 		interrupts = <GIC_PPI 6 IRQ_TYPE_LEVEL_HIGH>;
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/qcom/qdu1000.dtsi b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
+index 832f472c4b7a..f2a5e2e40461 100644
+--- a/arch/arm64/boot/dts/qcom/qdu1000.dtsi
++++ b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
+@@ -177,7 +177,7 @@ memory@80000000 {
+ 	};
+ 
+ 	pmu {
+-		compatible = "arm,armv8-pmuv3";
++		compatible = "arm,cortex-a55-pmu";
+ 		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+index f5921b80ef94..349c8ba06aca 100644
+--- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+@@ -352,7 +352,7 @@ opp-262500000 {
+ 	};
+ 
+ 	pmu {
+-		compatible = "arm,armv8-pmuv3";
++		compatible = "arm,cortex-a53-pmu";
+ 		interrupts = <GIC_PPI 6 IRQ_TYPE_LEVEL_HIGH>;
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sdx75.dtsi b/arch/arm64/boot/dts/qcom/sdx75.dtsi
+index 7dbdf8ca6de6..b74cf4baedd6 100644
+--- a/arch/arm64/boot/dts/qcom/sdx75.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdx75.dtsi
+@@ -224,7 +224,7 @@ memory@80000000 {
+ 	};
+ 
+ 	pmu {
+-		compatible = "arm,armv8-pmuv3";
++		compatible = "arm,cortex-a55-pmu";
+ 		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/realtek/rtd16xx.dtsi b/arch/arm64/boot/dts/realtek/rtd16xx.dtsi
+index 34802cc62983..e57317a17aa9 100644
+--- a/arch/arm64/boot/dts/realtek/rtd16xx.dtsi
++++ b/arch/arm64/boot/dts/realtek/rtd16xx.dtsi
+@@ -109,7 +109,7 @@ timer {
+ 	};
+ 
+ 	arm_pmu: pmu {
+-		compatible = "arm,armv8-pmuv3";
++		compatible = "arm,cortex-a55-pmu";
+ 		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+ 		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>,
+ 			<&cpu3>, <&cpu4>, <&cpu5>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3368.dtsi b/arch/arm64/boot/dts/rockchip/rk3368.dtsi
+index 62af0cb94839..734f87db4d11 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3368.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3368.dtsi
+@@ -141,7 +141,7 @@ cpu_b3: cpu@103 {
+ 	};
+ 
+ 	arm-pmu {
+-		compatible = "arm,armv8-pmuv3";
++		compatible = "arm,cortex-a53-pmu";
+ 		interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>,
+diff --git a/arch/arm64/boot/dts/sprd/sc9860.dtsi b/arch/arm64/boot/dts/sprd/sc9860.dtsi
+index e27eb3ed1d47..6bfdbdb0e1cd 100644
+--- a/arch/arm64/boot/dts/sprd/sc9860.dtsi
++++ b/arch/arm64/boot/dts/sprd/sc9860.dtsi
+@@ -165,7 +165,7 @@ timer {
+ 	};
+ 
+ 	pmu {
+-		compatible = "arm,cortex-a53-pmu", "arm,armv8-pmuv3";
++		compatible = "arm,cortex-a53-pmu";
+ 		interrupts = <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>,
+diff --git a/arch/arm64/boot/dts/sprd/sc9863a.dtsi b/arch/arm64/boot/dts/sprd/sc9863a.dtsi
+index 22d81ace740a..53e5b77d70b5 100644
+--- a/arch/arm64/boot/dts/sprd/sc9863a.dtsi
++++ b/arch/arm64/boot/dts/sprd/sc9863a.dtsi
+@@ -134,7 +134,7 @@ timer {
+ 	};
+ 
+ 	pmu {
+-		compatible = "arm,armv8-pmuv3";
++		compatible = "arm,cortex-a55-pmu";
+ 		interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
+diff --git a/arch/arm64/boot/dts/synaptics/berlin4ct.dtsi b/arch/arm64/boot/dts/synaptics/berlin4ct.dtsi
+index 53d616c3cfed..71e4bfcc9e81 100644
+--- a/arch/arm64/boot/dts/synaptics/berlin4ct.dtsi
++++ b/arch/arm64/boot/dts/synaptics/berlin4ct.dtsi
+@@ -88,7 +88,7 @@ osc: osc {
+ 	};
+ 
+ 	pmu {
+-		compatible = "arm,cortex-a53-pmu", "arm,armv8-pmuv3";
++		compatible = "arm,cortex-a53-pmu";
+ 		interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
+diff --git a/arch/arm64/boot/dts/tesla/fsd.dtsi b/arch/arm64/boot/dts/tesla/fsd.dtsi
+index 047a83cee603..690b4ed9c29b 100644
+--- a/arch/arm64/boot/dts/tesla/fsd.dtsi
++++ b/arch/arm64/boot/dts/tesla/fsd.dtsi
+@@ -304,7 +304,7 @@ CPU_SLEEP: cpu-sleep {
+ 	};
+ 
+ 	arm-pmu {
+-		compatible = "arm,armv8-pmuv3";
++		compatible = "arm,cortex-a72-pmu";
+ 		interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>,
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+index 25d20d803230..34d0e0be3fe6 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
++++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+@@ -169,7 +169,7 @@ dcc: dcc {
+ 	};
+ 
+ 	pmu {
+-		compatible = "arm,armv8-pmuv3";
++		compatible = "arm,cortex-a53-pmu";
+ 		interrupt-parent = <&gic>;
+ 		interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
+-- 
+2.43.0
 
-	/*
-	 * Only use VENDOR_EXT_KEY() for extensions which can be exposed to userspace,
-	 * regardless of the kernel's configuration, as no other checks, besides
-	 * presence in the hart_vendor_isa bitmap, are made.
-	 */
-	VENDOR_EXT_KEY(XTHEADVECTOR);
-
-#undef VENDOR_EXT_KEY
-	}
-
-	/* Now turn off reporting features if any CPU is missing it. */
-	pair->value &= ~missing;
-
-The only thing a vendor will have to do is add an entry below
-VENDOR_EXT_KEY(XTHEADVECTOR) with their extension name (of course
-populating a value for the key as well). This existing code will then
-check if the extension is compatible with the hardware and appropriate
-populate the bitmask. All vendors get this functionality for "free"
-without needing to write the boilerplate code to expose vendor
-extensions through hwprobe.
-
-Now that I write this out I do see that I overlooked that this code
-needs to check the vendorid to ensure that the given extension is
-actually associated with the vendorid. This would make this more
-complicated but still seems like a low barrier to entry for a new
-vendor, as well as a standard API for getting all vendor extensions that
-are available on the platform regardless of which platform is being
-used.
-
->  * It extends easily into passing other forms of vendor hwprobe info
-> later, rather than solving only the case of risc-v extensions now, and
-> then having to do this all again for each additional category of
-> vendor data.
-
-This is a great point. I do agree that a different solution will be
-necessary for arbitrary vendor data and I am all for making something
-future compatible. At the same time I don't want to get trapped into
-something that is suboptimal for the sake of doing less work later.
-There is no chance of any compatibility once we leave the realm of
-riscv extensions, so once a vendor needs something exported I would be
-happy to write the code to support that. 
-
->  * Similarly, it discourages future vendors from trying to squint and
-> find a way to make a vaguely generic sounding category for their own
-> hwprobe key which will ultimately only ever be filled in by them
-> anyway.
-
-What do you mean by this? There are no "categories" here, the vendor
-just writes out their extension VENDOR_EXT_KEY(XVENDOREXTENSION) and it
-gets shuttled to userspace on the hwprobe vendor call.
-
-- Charlie
-
-> 
-> -Evan
 
