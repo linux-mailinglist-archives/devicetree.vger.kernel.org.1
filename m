@@ -1,165 +1,146 @@
-Return-Path: <devicetree+bounces-58648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21B608A2B1C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 11:24:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C91D8A2A34
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 11:04:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CAF1628B8DC
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 09:24:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB8B61F215D7
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 09:04:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24C1F50A72;
-	Fri, 12 Apr 2024 09:23:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89FAD58AB9;
+	Fri, 12 Apr 2024 08:52:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="RqOyfTLr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2110.outbound.protection.partner.outlook.cn [139.219.146.110])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12270537F1;
-	Fri, 12 Apr 2024 09:23:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.110
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712913787; cv=fail; b=r0Wm7j8oq8HmC99R2CTFujPFuEm9UJm/p4ZMDkbCUfcdBLVHX5x85UA7FrB3DlyUcNI2GTHmXHBwWqSMerZ5+rN+cEsHX57/reR3SL6l+4+XZifBW3LnM7Mp9kk6Mo5DmvYFU1GE/UGq9VMDjaPyYLnk2PIO39fM1TejpSyUGlE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712913787; c=relaxed/simple;
-	bh=nsfXByscsTsrkJYkrTmIyQI0UPJhy1uV2JM15gBze/8=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=MM06MvM2JJuNZ2M7SOO+kZZnInElt41PppxD2s0hrUKTo18dUWDfQBDC49PEG5BcR76E7rOyRFqD9ZFDCVArKGqkMREU+qq4YQE0CtG6jgyQ9VXrsTlJSnmOc45kLUBNvV3OHCvNtakOaYiI2mw3ppilqeLVYpdWdQSuAUiJrl4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.110
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Hq9ZY9/5RXGLteuMfwxrs1iOP05prw/DBX6scFWOVDL8caLX6NfXgmSGp9CbjOpqI6T3IB+oauUjpZ0ov0avrF3F+e1TRMINeM6jY6cfY68pma1jMenHWPzFrv/8ysD2RE26YaTk/gqa6oACAbISnL2pm/2XVkS6XXUVxS5gTqHAGGwgorU+AlKbx6JKSzVzyNg4FWG1KdIVuLvpeqkl+POLMTS1ZAPqCiKhu/nwdV6MA8YPcvHY/gjNrjLhLn9W4Scx+7OCCQ8FkO23VvUbZrfV/GmEgM6+qXqENK5XHA0ZgE48sGI4U6PN8MZz2kE7t0CHYRm5oISkAzg6+j/Qdw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nsfXByscsTsrkJYkrTmIyQI0UPJhy1uV2JM15gBze/8=;
- b=BOpGIY3mb/KWCChu4/Gb2HboyXDfJjMQPIhVTWHp19O+7lcr+uycn1wJGfGd01Ex+i7lhYQ+DFZZ1mdnsu/QVIy/EGfsVHPPQupsF7f6LOdA/X+V639P1AWs3bcVDVzN2O6PMWwBstzk6gOukREn3SPjL9WTvTO0dkbzfk5oPeuDbo09cJP/o51QAGMPnlUrtigpiwlawQGpLMfEe+L9DKTxASEY3tj5APr21SCG60W0OH5o6/9vfaz6atBHf2ORrZ2PmmAb4Qv1oQmGhgFRSpnTTDsA1ci49G/52PMs4ZbRzlPWpaHiHR7vVhnfYsPlWcK2LsNt2BC2cQ93vYQVbw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Received: from NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c510:8::10) by NTZPR01MB1019.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c510:1::5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Fri, 12 Apr
- 2024 08:48:19 +0000
-Received: from NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn
- ([fe80::6174:711d:d93:87c9]) by NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn
- ([fe80::6174:711d:d93:87c9%4]) with mapi id 15.20.7409.053; Fri, 12 Apr 2024
- 08:48:19 +0000
-From: Xingyu Wu <xingyu.wu@starfivetech.com>
-To: Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor@kernel.org>, Emil
- Renner Berthing <emil.renner.berthing@canonical.com>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Michael Turquette
-	<mturquette@baylibre.com>, Rob Herring <robh@kernel.org>
-CC: Emil Renner Berthing <kernel@esmil.dk>, Paul Walmsley
-	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>, Hal Feng <hal.feng@starfivetech.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH v4 1/2] clk: starfive: jh7110-sys: Add notifier for PLL
- clock
-Thread-Topic: [PATCH v4 1/2] clk: starfive: jh7110-sys: Add notifier for PLL
- clock
-Thread-Index: AQHaivejELTw7uowOEWZFUqhB7mbD7FhI7sAgAMxGjA=
-Date: Fri, 12 Apr 2024 08:48:19 +0000
-Message-ID:
- <NTZPR01MB09568F1094DFB1F0BBFE29ED9F04A@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
-References: <20240410033148.213991-1-xingyu.wu@starfivetech.com>
- <20240410033148.213991-2-xingyu.wu@starfivetech.com>
- <858299c27c63aa2974b169f9adf624e9.sboyd@kernel.org>
-In-Reply-To: <858299c27c63aa2974b169f9adf624e9.sboyd@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: NTZPR01MB0956:EE_|NTZPR01MB1019:EE_
-x-ms-office365-filtering-correlation-id: fe2f1c94-efc0-4cd1-280c-08dc5acd4d59
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- ovXyooCcACVdZp0PlxMqeScxTQJQVm5q3Wlu96GRJaf64Fwk6II/Y1c+mR65GE8GXSoQslBteTnJtz5K3Nsw2TVX6754CwV3X55rpFs429twhsVs4xsqPJd13Ofqi9G2OIc5cl/yBLNvRESntUPrMXz3MLzxdaeWue4dI/bteqFyJwXfqT8GPS4WCimgsu93v/94gI4B/Dy8otueLAzXw//AQSFKUBMdg9/CScPDx7Mr8XWKc2Kx7B3bDufEwQdjgJEStISEsF4w6qUogbUJTUDdwIT7EeJmVJW+Qb/049p8/CyFuclhap2YmB79XWuhrnhNQPbEpZtyik2ZtiO2nzrg7I27Vunm1rGU5gHCKoIStcagItnT3Ve4OC/w2PbnOKEl1kunm6l5LhiRtxR9/OPGMY8zkMoPToUZ4AeUnkLDbO0uGamWlWOwo9cUVAlwB+0EUhgeiGTaqt93XKCHdgIIa7PUmqS8OjI66BuZE1izEMdviyeHD9DfRGY0HvC0bXrv++iBiPIRwdF1PVqMgvRkytlV2LJJvUFivmGDg4lntxAqxLUeZonUq0cHCZaw9hdNFwCIuwRC2eAEpPdkMfMMIzqyYran0ZaCln9RkjuVhs8se9TGqrysH96zFczi
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(41320700004)(7416005)(1800799015)(366007)(38070700009);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?czNQTklDWjh3ODk5SnN6V0U3Y3dXOFhUN2FwS0dhOUVVMWhoK28xOFgyeDV6?=
- =?utf-8?B?QUN3ZWVKT1cweGpkcVVmSHZsOWxHY24yNlBRR2lKbGJzZnk1dkRFYUFmeFBl?=
- =?utf-8?B?R1g0UU0vVXhVRVhyQTFZVVA5VGd1b2dQVjNDQ0l1R3JzVUY1bWMvSEJHVjBX?=
- =?utf-8?B?aTJyTzFVbllxb1BrTmJsakNsNWV1aXRJWTh1TzVRTUxuYjcwWSszb0RkNkZG?=
- =?utf-8?B?UC9zNlY2R0pLbGY3cFJ0dHJnVWhlVS9rZGliVThja3hnVTMzRlVJbGpoN250?=
- =?utf-8?B?alhMTXRDbWhZZWRydGNHZ212Q3U0VXUveWRKVkpNR2cyaGd6N0VPQnV5Yjlu?=
- =?utf-8?B?dHBQTTdtZm5aQ3ZqWjA1S1M0ak5lOWpIUUNPdnZ5em40RklaYVZud1UrM3VD?=
- =?utf-8?B?RUlwTVdFVU5IOTlmQmVNclVqNklGTUI1R3ZBZDBrZHNuOGY3ODB4QTRYcEk1?=
- =?utf-8?B?SnZWS1ZnM0tLcUl6akZhRzVjWVB3M0tvWTVBS3diWGIvZTF1MUZ6d0hwK2pp?=
- =?utf-8?B?cmtCYmMwM0F3RnZkdkk0OFFvYmV1UkplTUFmRDMrQ3lCMFpNdGFjVnQ4Y1ky?=
- =?utf-8?B?QnpYRkUvam5VRVVVU1Bvc3VtVm1ya1lPa1ZKcWNNaWJxT2llc28yaE5ubXM3?=
- =?utf-8?B?OUdlV3NJUkkyOXdlYnQzRFdtVVpnSXZkcGl0UmZ0dHcwTmp2ZU9Cd3ZYeXNI?=
- =?utf-8?B?OWdkK29DWllyTUpJYzlQZjhLcWJmSVlTQTJvR1kwVGc0L2FUYnhhSTlxOWVV?=
- =?utf-8?B?YTlkTU82eUFlK3VUZkdsdFk4RytScjZ3Y0ZyM0VDVTkyK0JZcERpQTlnWTN2?=
- =?utf-8?B?WTd3cEZDWnRuR2NxaWFpaWRqU2YzL2RlTGp3Sk95UFRHWUdmamJWbTlCOVFv?=
- =?utf-8?B?cm92SzlsdFgxSEJxZFdUUzB1ZVhuUGxodWE0QnMybER6TmF2L1g4THR0SEpG?=
- =?utf-8?B?QkpNMDkvQTRsRFM0WFZwbm9oYU10VW1HaG9TWGxxaUl2QWZCQytpNjlCTk9n?=
- =?utf-8?B?MUtuSkUva01yRS9vNEZnM0psUUllYkZQNGROU1RwYlpadzIzVGtTZm40TzhV?=
- =?utf-8?B?byttNGZRZTl3ZFkvVU5wUWhGSnFBNGNzbDVGSmhoM0VUQ3RDQkhuSDJHTWpu?=
- =?utf-8?B?QmZRYi85Z1NJQitnWkFqQlhoNE8vUGNSTkhQK3FKTWpzV01TK2xRcHVNVW5R?=
- =?utf-8?B?R3dRNjNiR3o1Q2ZvVklBUytLR2t1Ykx6azZNTDBHNEN0V3N2T09TbVVZV0x2?=
- =?utf-8?B?ZnVYTlhGTXU3WkZSa0g4Ym5IdFU4VEVXaEhwckJwcXZ2RU1wdzVvTEpSRGNG?=
- =?utf-8?B?RStVVnhqSGNlOFd0ZjNaMGhvQTV2VFMvV0NPNmUxcExKRmptZ1k4YXl2OFdP?=
- =?utf-8?B?VGJQcTNLMUJpVHRQa2ZzSjBwRVhxRWdhUzdEbmNJMStxSm0zeUN4Tlh4dmds?=
- =?utf-8?B?N0tXenZFS0wzWlBvemUzUDB5U3E3WlZTeGpjNUtrY3hENW5PWDJhVzNHZFpp?=
- =?utf-8?B?UEh5UWVOL3FBVkUwYnN2UHVvbURueDVzaTNoR3IxRDM1QjREQm9zOXYvbzNY?=
- =?utf-8?B?ZDcvR1d6ZVRnaTRRYXZwdlEydGJFZDJva2ZHLzk0ZHpDeVRjYTF1UjJPN2My?=
- =?utf-8?B?b2c0TUFKeTlyRExzZHJhOXVNQVR5UzM1Ri9vL3d2cWZBRDcvMnphYXdseVo1?=
- =?utf-8?B?MjYwankvMFRLMG9ZcENjUnJoeU55K0hSR3J1MTRJcmJLUUFjNmptYjdPNlZs?=
- =?utf-8?B?UWNXVWE3SDBpTFRaU2pBdk5HYThUdTZGK1YrbVQxUTQvR3pvQi9GSDNDTE9F?=
- =?utf-8?B?bEI3OGFTUnBHeUZybXU4c2JUdXhoSmNGeFV3RTFWRXZDT0JDZnR1YUNpUVdG?=
- =?utf-8?B?S2hFeEhoTW5VdTBGMFJ0VmhOMUJzK2pwc0NVYTN3WDZzMSs0MWVsQ2RGR292?=
- =?utf-8?B?K0tPcTBTQVlxL0laSlVRb3Q4WDFJenFxUDE0SE1FMEdVaDBoV3VxNGwyZVUw?=
- =?utf-8?B?OUFycHFxek1kU2pSVUZtOWU2UjlyR2duUFdHSC9qbFZQL2tCeW0rRGZybzJB?=
- =?utf-8?B?d2NjamU4c1lYMCtBazJ1eUJRVUJ3aS9qY1hxdE9lalpiNG9MRDV6d2hjZUNH?=
- =?utf-8?Q?OE+lHLg9QrJWtFetWf+R8eVq1?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 138F758AAB
+	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 08:52:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712911970; cv=none; b=DQZpRtCrBIkMO3Ar604J0U0Epm+LVU7TiyPowLPnWzcejPITOIDJV5ymvur33TevBxr1ZuAS4AkoTz6fMqIApF0trRwiK3666wbiPsx/QEkBf7aR0WTag1+6ebd+m7TN2rxLtQyVZFYmd+lgen88XYRZfHuBT/fZ8HE9BrnppKc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712911970; c=relaxed/simple;
+	bh=/IeU9ssGSLw9Ct4KuGTCKCYgaCVVK3WWsbfp9sM9Zro=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=iVRQrRe6+tQrDYs7b+OWnoGsBcCyptqyXHoEb7pzh+mhoe3hwKopnWhqTBTN+5Mii16lO/r6wNogTax8WzZpb5Ug/Cc5oah30ZzG4V2GN8n34oI4UpKO1/trbMaLJkWQ9CMr03t9Yg220KbcQwZq51VVke/tALMBR4w8Vv0XGSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=RqOyfTLr; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-343e096965bso365515f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 01:52:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712911965; x=1713516765; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yqg7/6oBVG7FC2A7yaPi7N20RXmvrxHvn6/HhvcSh6c=;
+        b=RqOyfTLrl4I0+Yl+iJg11oM+9a6lv6BgqUJ9wtodMOtWliCNM8w5JyeTGgqOJwBM1z
+         ftB6q+27wedCE+AIuSxFU3hbRhygw5fPjxpJE5ag9XRPPC7EyLnl1n6Pm+iPQ1k8LIZp
+         Xdy4CJigXNPFtOzOAg8ULhjbKBZv0GGLnERBlGMtwrDxwIbrkYv9wwKz5rsQatoO6YQ3
+         7mXR36iTAjgj5hk4SGcd2Z1eeZr1gEZZA14+z5DZNCbWYi6wb7XW0+mdY7W2sNpa8JxO
+         RajpZ1CxNxn5qCsrOxVol+8oU4aSwDNHBIucgM/oelKJGZgoGmRm9r0mLIgM0SGD+RYw
+         WwDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712911965; x=1713516765;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=yqg7/6oBVG7FC2A7yaPi7N20RXmvrxHvn6/HhvcSh6c=;
+        b=iSxcx+px/lNz8SY2PTSALgVc1S8nwL/gsNG2uGTyDCteZ/mcT0IcuDIb/WaF4aoFgf
+         R4K4XoCFAvl5tNHit7gF354s/e2nsaAxGCpYakR70XEGfk6cK5FEc+69GlDoMa2ZXHlf
+         nnu7WxZCC7pnoNmLozgXcbW0SzRfy8S+1+ekitFGDOCfqJ41WEfBGekgzhwmUTWPIdl4
+         MglSD6y9NMNgxN55Cyamdm7qXk5/1gv8zM4Zs5GAxGTccKd+/lK21Vg2FJVZs9h6uq6h
+         JIiaKSWhBuXFZpS/rS3+Lfld3SZgynaO6quqg3FYCCHK5p7yYKTTYDuobMsBTEn76G9g
+         /OBQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVNFtvS3YR//rirx1rlVsWfe6PJcUKtDXDf6ULv2cvjPbrvQ/+Zm6cwqt0WFDgW8WxPLHYBlhr00Yn4g8XZHqGaeXj30GY9x9VN7Q==
+X-Gm-Message-State: AOJu0YzpEFJ88sogAgETSHV+Em7YnzY2j6/daABr1tR5+SPYmd3DKfZD
+	659dcfojBDU8/zOtm9e3wWE+sGJ+jhoFgHVgydJStqJsQevmaSefeAoD0EDEvRU=
+X-Google-Smtp-Source: AGHT+IGaJEFW2OydWrtGlJEvOj+LQ9miUlniEJ47ZdatRM1Zm7j9aYX06RboRzFi8hrNNAXWEXWFlA==
+X-Received: by 2002:a5d:5982:0:b0:346:ba70:82f4 with SMTP id n2-20020a5d5982000000b00346ba7082f4mr2066199wri.46.1712911965458;
+        Fri, 12 Apr 2024 01:52:45 -0700 (PDT)
+Received: from localhost ([2a01:e0a:448:76e0:776e:989f:b50c:7cf6])
+        by smtp.gmail.com with ESMTPSA id b10-20020a056000054a00b00341b7d5054bsm3783180wrf.72.2024.04.12.01.52.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Apr 2024 01:52:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-Network-Message-Id: fe2f1c94-efc0-4cd1-280c-08dc5acd4d59
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Apr 2024 08:48:19.1767
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: NynfWusYYcK1iBXgvmoIvG5jU5iuTS+XhcgZEPNXvGaOSvTomPSmxi3tkYS7KoUUeaqIC62xxgwCFNyBZm1l+K0KdTcEKBpp2GFf7oC9Xj0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: NTZPR01MB1019
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 12 Apr 2024 10:52:43 +0200
+Message-Id: <D0I0M4T4O9G1.UUESU247CE42@baylibre.com>
+Cc: <m.nirmaladevi@ltts.com>, <lee@kernel.org>, <robh+dt@kernel.org>,
+ <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+ <jpanis@baylibre.com>, <devicetree@vger.kernel.org>, <arnd@arndb.de>,
+ <gregkh@linuxfoundation.org>, <lgirdwood@gmail.com>, <broonie@kernel.org>,
+ <linus.walleij@linaro.org>, <linux-gpio@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, <nm@ti.com>, <vigneshr@ti.com>,
+ <kristo@kernel.org>
+Subject: Re: [PATCH v6 10/11] pinctrl: pinctrl-tps6594: Add TPS65224 PMIC
+ pinctrl and GPIO
+From: "Esteban Blanc" <eblanc@baylibre.com>
+To: "Bhargav Raviprakash" <bhargav.r@ltts.com>,
+ <linux-kernel@vger.kernel.org>
+X-Mailer: aerc 0.15.2
+References: <20240408124047.191895-1-bhargav.r@ltts.com>
+ <20240408124047.191895-11-bhargav.r@ltts.com>
+In-Reply-To: <20240408124047.191895-11-bhargav.r@ltts.com>
 
-T24gMTAvMDQvMjAyNCAxNTo1OCwgU3RlcGhlbiBCb3lkIHdyb3RlOg0KPiANCj4gUXVvdGluZyBY
-aW5neXUgV3UgKDIwMjQtMDQtMDkgMjA6MzE6NDcpDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Y2xrL3N0YXJmaXZlL2Nsay1zdGFyZml2ZS1qaDcxMTAtc3lzLmMNCj4gPiBiL2RyaXZlcnMvY2xr
-L3N0YXJmaXZlL2Nsay1zdGFyZml2ZS1qaDcxMTAtc3lzLmMNCj4gPiBpbmRleCA4ZjVlNWFiZmEx
-NzguLmFkZjYyZTRkOTRlNCAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2Nsay9zdGFyZml2ZS9j
-bGstc3RhcmZpdmUtamg3MTEwLXN5cy5jDQo+ID4gKysrIGIvZHJpdmVycy9jbGsvc3RhcmZpdmUv
-Y2xrLXN0YXJmaXZlLWpoNzExMC1zeXMuYw0KPiA+IEBAIC0zODUsNiArMzg1LDMyIEBAIGludCBq
-aDcxMTBfcmVzZXRfY29udHJvbGxlcl9yZWdpc3RlcihzdHJ1Y3QNCj4gPiBqaDcxeDBfY2xrX3By
-aXYgKnByaXYsICB9DQo+ID4gRVhQT1JUX1NZTUJPTF9HUEwoamg3MTEwX3Jlc2V0X2NvbnRyb2xs
-ZXJfcmVnaXN0ZXIpOw0KPiA+DQo+ID4gKy8qDQo+ID4gKyAqIFRoaXMgY2xvY2sgbm90aWZpZXIg
-aXMgY2FsbGVkIHdoZW4gdGhlIHJhdGUgb2YgUExMMCBjbG9jayBpcyB0byBiZQ0KPiA+ICtjaGFu
-Z2UsDQo+IA0KPiBzL2NoYW5nZSwvY2hhbmdlZC4vDQoNCldpbGwgZml4Lg0KDQo+IA0KPiA+ICsg
-KiBUaGUgY3B1X3Jvb3QgY2xvY2sgc2hvdWxkIHNhdmUgY3VyZW50IHBhcmVudCBjbG9jayBhbmQg
-c3dpY3RoIGl0cw0KPiA+ICsgcGFyZW50DQo+IA0KPiBzL3N3aWN0aC9zd2l0Y2gvDQoNCldpbGwg
-Zml4Lg0KDQo+IA0KPiA+ICsgKiBjbG9jayB0byBvc2MgYmVmb3JlIFBMTDAgcmF0ZSB3aWxsIGJl
-IGNoYW5nZWQuIEFuZCBzd2l0Y2ggaXRzDQo+ID4gKyBwYXJlbnQgY2xvY2sNCj4gPiArICogYmFj
-ayBhZnRlciBQTEwgcmF0ZSBmaW5pc2hlZC4NCg0KVGhhbmtzLA0KWGluZ3l1IFd1DQo=
+On Mon Apr 8, 2024 at 2:40 PM CEST, Bhargav Raviprakash wrote:
+> From: Nirmala Devi Mal Nadar <m.nirmaladevi@ltts.com>
+>
+> Add support for TPS65224 pinctrl and GPIOs to TPS6594 driver as they have
+> significant functional overlap.
+> TPS65224 PMIC has 6 GPIOS which can be configured as GPIO or other
+> dedicated device functions.
+>
+> Signed-off-by: Nirmala Devi Mal Nadar <m.nirmaladevi@ltts.com>
+> Signed-off-by: Bhargav Raviprakash <bhargav.r@ltts.com>
+> Acked-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+>  drivers/pinctrl/pinctrl-tps6594.c | 275 +++++++++++++++++++++++++-----
+>  1 file changed, 228 insertions(+), 47 deletions(-)
+>
+> diff --git a/drivers/pinctrl/pinctrl-tps6594.c b/drivers/pinctrl/pinctrl-=
+tps6594.c
+> index 66985e54b..f3d1c1518 100644
+> --- a/drivers/pinctrl/pinctrl-tps6594.c
+> +++ b/drivers/pinctrl/pinctrl-tps6594.c
+> @@ -338,8 +506,20 @@ static int tps6594_pinctrl_probe(struct platform_dev=
+ice *pdev)
+>  	config.parent =3D tps->dev;
+>  	config.regmap =3D tps->regmap;
+> -	config.ngpio =3D TPS6594_PINCTRL_PINS_NB;
+> -	config.ngpio_per_reg =3D 8;
+> +	switch (tps->chip_id) {
+> +	case TPS65224:
+> +		config.ngpio =3D ARRAY_SIZE(tps65224_gpio_func_group_names);
+> +		config.ngpio_per_reg =3D TPS65224_NGPIO_PER_REG;
+> +		break;
+> +	case TPS6593:
+> +	case TPS6594:
+> +		config.ngpio =3D ARRAY_SIZE(tps6594_gpio_func_group_names);
+> +		config.ngpio_per_reg =3D TPS6594_NGPIO_PER_REG;
+> +		break;
+> +	default:
+> +		break;
+> +	}
+
+Please merge the two switch case.=20
+
+Other than that I think it's ok.
+
+Best regards,
+
+--=20
+Esteban "Skallwar" Blanc
+BayLibre
 
