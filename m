@@ -1,185 +1,150 @@
-Return-Path: <devicetree+bounces-58758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D2D08A2F7F
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 15:34:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C08158A2F83
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 15:36:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 38EEB283B93
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 13:34:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6030F1F227C7
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 13:36:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1613683CB7;
-	Fri, 12 Apr 2024 13:34:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA0B683CD0;
+	Fri, 12 Apr 2024 13:36:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B1F7xpqb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lhvoL0aK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9BB483CA6;
-	Fri, 12 Apr 2024 13:34:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C343559B4B;
+	Fri, 12 Apr 2024 13:36:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712928843; cv=none; b=YpD8JPru9WzdWCmDmFELdw/Tu9yKodXs3tMv5UeTZjYd16ogiOqEfhQRqVnNNH9bfWZO/PVU3s/EgKgDPbMz0gtqTLCU378dJgt5PJr+/umFN6Hi9/e3qmBZASSvzjzvXYVmoi9B1lDAwkZUDZ2EQfEeDrgipHR7GU4zW2dqY6g=
+	t=1712928970; cv=none; b=lnDeUKkS7e5LkFkgS71BUGY2S+diPhRUNqY2QgraPiOYx8z9M9bBZm4RDJyLEMYvFooKsb9I8KJ0L0dGBFAonnH8wa87EZrA+Lu86FPfBk+EAoBCSNEx7nSKeKFxtYWIGi9af1jbDSG6HVNOwlHyV2bH6u6EgicBBm2tpuvZmuc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712928843; c=relaxed/simple;
-	bh=H/5Y4943nz8CB9370bqXYhLtnrWjvViTVIaYI0FXTBU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fYhy+rsKtAnQj+uYriEWfjS5g3Xe1FTYkAE6lki93JMPo/LJYrgPUIfqqCYsCZmeapLnNbFtq4KavkMA3w6LjG0zzyzlu9cEa2ggsg6wuaIW66Hin7qIErTV50I7hyfT0yKLhOu30T0v7ddr/u1KVpEA+nd7caaIBxJ54eYzaoQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B1F7xpqb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 782A1C113CC;
-	Fri, 12 Apr 2024 13:34:02 +0000 (UTC)
+	s=arc-20240116; t=1712928970; c=relaxed/simple;
+	bh=6oxKzxB+8rFGDVu9kvubnME1zu8znjwX0ryuim96c6o=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=mxFOXjQzUZgul/GYFkMrSaSNpHXllMv1hi4kTvQ5FJ7XbLHitHve6dSXzDSsXWOSBHrfLmgFNpJ/hy7eyKe35pxJDcLdv+ySyyMX9QLyvPey16DPfgkccMsXGRIWBeTulbq6ewuakGyYm8S9hfb+xeyFulWa1NiQcGM01ifKuQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lhvoL0aK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4D65BC113CC;
+	Fri, 12 Apr 2024 13:36:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712928842;
-	bh=H/5Y4943nz8CB9370bqXYhLtnrWjvViTVIaYI0FXTBU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=B1F7xpqbXMlsIlbhQv7f04ytdIJi1BFBq1mId+1PLQCCrBozo1jQcO9gVDvi0Wamx
-	 KxXnTzXS/J4MiXbHcUEfJr67duV5rU+gMk51fR3uDKUg61QEAQCa0xRkbmzuHMbnX+
-	 FAIgd/g7qFdkcV5Rlc6w95Ox2msXM53kgDrPX1QXLi4uTN2gQxv0iDwEUFdPYml+VH
-	 hV5M4IiQy5iPlhy3ludusTZSeGDufHKT6GUgvSsSe8Ym+AWJPU/yQfTq5A53T60ALQ
-	 t4uARCqvgIa9VztJ2iOCTqF/dsvkA+tm9ktM+y1rn98+MDhePmdQD+XZQV1phGnHIe
-	 LMaZrzYb4KgTg==
-Date: Fri, 12 Apr 2024 08:34:00 -0500
-From: Rob Herring <robh@kernel.org>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Jonathan Corbet <corbet@lwn.net>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Peng Fan <peng.fan@nxp.com>, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/6] dt-bindings: firmware: add i.MX95 SCMI Extension
- protocol
-Message-ID: <20240412133400.GA2282201-robh@kernel.org>
-References: <20240412-imx95-bbm-misc-v2-v3-0-4380a4070980@nxp.com>
- <20240412-imx95-bbm-misc-v2-v3-2-4380a4070980@nxp.com>
+	s=k20201202; t=1712928970;
+	bh=6oxKzxB+8rFGDVu9kvubnME1zu8znjwX0ryuim96c6o=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=lhvoL0aKqcrcYg8oW7x/FAEJk5h9+5Xc0Yci2A+Wl8Y6ZCfYqdnvhUGdcLgvU0uwl
+	 10VwJ2bk1i0d0XU05t021EbgcOdOwvn6lKddel08KA9gKm/RgP+d9AdeM6UFSHmaTF
+	 CwtbIJcLy5JxR0d6glH7uPZNhUWj0drlAyGQQc3FAwKqj9tODOr100e70PbgT+dFj1
+	 U16SFJmMohjvp2srbRBfBwmYuxSy+BgWDU59R2IpyoiuJdJyClVuKMkQXPBSkpBVSw
+	 E+1N+51AiiY6ZLKgHMIpCoQ5Kgcy6fY3s/NZULykTrMVLlXqgjCgDUXKKnWGgE9Imt
+	 KKjneQ7Be04NQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2F598C4345F;
+	Fri, 12 Apr 2024 13:36:10 +0000 (UTC)
+From: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
+Subject: [PATCH v3 00/10] iio: dac: support IIO backends on the output
+ direction
+Date: Fri, 12 Apr 2024 15:36:07 +0200
+Message-Id: <20240412-iio-backend-axi-dac-v3-0-3e9d4c5201fb@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240412-imx95-bbm-misc-v2-v3-2-4380a4070980@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAMc4GWYC/x3MQQqAIBBA0avIrBswlaCuEi1GnWoINBQiiO6et
+ HyL/x+oXIQrTOqBwpdUyanBdgrCTmljlNgMRhunXW9QJKOncHCKSLdgpIDeDiPFQG4gDa08C69
+ y/9d5ed8Px1ATkGUAAAA=
+To: linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Cc: Dragos Bogdan <dragos.bogdan@analog.com>, 
+ Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Olivier Moysan <olivier.moysan@foss.st.com>, Nuno Sa <nuno.sa@analog.com>, 
+ Paul Cercueil <paul@crapouillou.net>, 
+ Alexandru Ardelean <ardeleanalex@gmail.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1712928968; l=2523;
+ i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
+ bh=6oxKzxB+8rFGDVu9kvubnME1zu8znjwX0ryuim96c6o=;
+ b=ZCNsOMhBadBinoP/FmWDKvnMW9b9E73q5IYzBTA2qO+DOWTDFB8eE5xeoXXZqr5r4o/EA77Eu
+ P65K9TxGJRiAEW+iBlYM4nro/nxjv4NmH3VP8B00UMlP+uWqqyWlbqi
+X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
+ pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
+X-Endpoint-Received: by B4 Relay for nuno.sa@analog.com/20231116 with
+ auth_id=100
+X-Original-From: Nuno Sa <nuno.sa@analog.com>
+Reply-To: nuno.sa@analog.com
 
-On Fri, Apr 12, 2024 at 06:47:08PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Add i.MX SCMI Extension protocols bindings for:
->  - Battery Backed Module(BBM) Protocol
->    This contains persistent storage (GPR), an RTC, and the ON/OFF button.
->    The protocol can also provide access to similar functions implemented via
->    external board components.
->  - MISC Protocol.
->    This includes controls that are misc settings/actions that must be exposed
->    from the SM to agents. They are device specific and are usually define to
->    access bit fields in various mix block control modules, IOMUX_GPR, and other
->    GPR/CSR owned by the SM.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  .../devicetree/bindings/firmware/arm,scmi.yaml     | 21 +++++++++++++
->  .../bindings/firmware/nxp,imx95-scmi.yaml          | 36 ++++++++++++++++++++++
->  2 files changed, 57 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> index 93fb7d05f849..fa2cc910c485 100644
-> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> @@ -247,6 +247,27 @@ properties:
->        reg:
->          const: 0x18
->  
-> +  protocol@81:
-> +    $ref: '#/$defs/protocol-node'
-> +    unevaluatedProperties: false
-> +
-> +    properties:
-> +      reg:
-> +        const: 0x81
-> +
-> +  protocol@84:
-> +    type: object
-> +    anyOf:
-> +      - allOf:
-> +          - $ref: /schemas/firmware/nxp,imx95-scmi.yaml
-> +          - $ref: '#/$defs/protocol-node'
+Hi Jonathan,
 
-If you put the ref under the protocol node, then it's 1 schema file per 
-protocol per vendor. Also, we then have to list every possible protocol 
-node here, and every one listed here will be valid for every vendor.  
-What we discussed is putting the list of vendor protocol schemas at the 
-top-level here and then the vendor schemas can list out all the protocol 
-nodes.
+Here it goes v3. Only thing that is not exactly closed is the 2 channels
+in the DAC driver. So, I kind of added a comment with something similar
+to my reply in v2 [1].
 
-Also, move "$ref: '#/$defs/protocol-node'" to nxp,imx95-scmi.yaml.
+Full log:
 
-> +
-> +    unevaluatedProperties: false
-> +
-> +    properties:
-> +      reg:
-> +        const: 0x84
-> +
->  additionalProperties: false
->  
->  $defs:
-> diff --git a/Documentation/devicetree/bindings/firmware/nxp,imx95-scmi.yaml b/Documentation/devicetree/bindings/firmware/nxp,imx95-scmi.yaml
-> new file mode 100644
-> index 000000000000..b84c4a53b78a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/firmware/nxp,imx95-scmi.yaml
-> @@ -0,0 +1,36 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2024 NXP
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/firmware/nxp,imx95-scmi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: i.MX95 System Control and Management Interface(SCMI) Vendor Protocols Extension
-> +
-> +maintainers:
-> +  - Peng Fan <peng.fan@nxp.com>
-> +
-> +properties:
-> +  nxp,wakeup-sources:
-> +    description:
-> +      Each entry consists of 2 integers, represents the source and electric signal edge
-> +    items:
-> +      items:
-> +        - description: the wakeup source
-> +        - description: the wakeup electric signal edge
-> +    minItems: 1
-> +    maxItems: 32
-> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> +
-> +if:
-> +  properties:
-> +    reg:
-> +      const: 0x84
+v1:
+ * https://lore.kernel.org/all/20240328-iio-backend-axi-dac-v1-0-afc808b3fde3@analog.com/
 
-This schema is only included from protocol@84 node, so how can this be 
-false?
+v2:
+ * https://lore.kernel.org/all/20240405-iio-backend-axi-dac-v2-0-293bab7d5552@analog.com 
 
-> +then:
-> +  properties:
-> +    nxp,wakeup-sources: true
-> +else:
-> +  properties:
-> +    nxp,wakeup-sources: false
-> +
-> +additionalProperties: true
-> 
-> -- 
-> 2.37.1
-> 
+v3:
+ - Patch 3:
+   * Align on open parenthesis.
+ - Patch 8
+   * Removed asm-generic/errno-base.h;
+   * Only use default (1 to 1 backend frontend) method to get backends.
+ - Patch 10:
+   * Add comment for having 2 different channels.
+
+[1]: https://lore.kernel.org/linux-iio/20240405-iio-backend-axi-dac-v2-4-293bab7d5552@analog.com/T/#m11d3716a702e49c217879940cdda14805609909c
+
+---
+Nuno Sa (6):
+      iio: buffer-dma: add iio_dmaengine_buffer_setup()
+      dt-bindings: iio: dac: add docs for AXI DAC IP
+      dt-bindings: iio: dac: add docs for AD9739A
+      iio: backend: add new functionality
+      iio: dac: add support for AXI DAC IP core
+      iio: dac: support the ad9739a RF DAC
+
+Paul Cercueil (4):
+      iio: buffer-dma: Rename iio_dma_buffer_data_available()
+      iio: buffer-dma: Enable buffer write support
+      iio: buffer-dmaengine: Support specifying buffer direction
+      iio: buffer-dmaengine: Enable write support
+
+ Documentation/ABI/testing/sysfs-bus-iio-ad9739a    |  19 +
+ .../devicetree/bindings/iio/dac/adi,ad9739a.yaml   |  94 +++
+ .../devicetree/bindings/iio/dac/adi,axi-dac.yaml   |  62 ++
+ MAINTAINERS                                        |  17 +
+ drivers/iio/adc/adi-axi-adc.c                      |  16 +-
+ drivers/iio/buffer/industrialio-buffer-dma.c       | 100 +++-
+ drivers/iio/buffer/industrialio-buffer-dmaengine.c |  83 +--
+ drivers/iio/dac/Kconfig                            |  37 ++
+ drivers/iio/dac/Makefile                           |   2 +
+ drivers/iio/dac/ad9739a.c                          | 463 +++++++++++++++
+ drivers/iio/dac/adi-axi-dac.c                      | 635 +++++++++++++++++++++
+ drivers/iio/industrialio-backend.c                 | 179 ++++++
+ include/linux/iio/backend.h                        |  49 ++
+ include/linux/iio/buffer-dma.h                     |   4 +-
+ include/linux/iio/buffer-dmaengine.h               |  24 +-
+ 15 files changed, 1705 insertions(+), 79 deletions(-)
+---
+base-commit: aabc0aa90c927a03d509d0b592720d9897894ce4
+change-id: 20240412-iio-backend-axi-dac-b369adca46a0
+--
+
+Thanks!
+- Nuno Sá
+
+
 
