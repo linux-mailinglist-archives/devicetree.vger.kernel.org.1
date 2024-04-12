@@ -1,147 +1,117 @@
-Return-Path: <devicetree+bounces-58724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58725-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0979C8A2DFE
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 14:08:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 599B08A2E04
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 14:14:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B8107283EA5
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 12:08:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CD6F3B220CA
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 12:14:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 633E554FB1;
-	Fri, 12 Apr 2024 12:08:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B627B54FAD;
+	Fri, 12 Apr 2024 12:14:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F17WjDSI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 610C152F9B
-	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 12:08:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69F89D50F;
+	Fri, 12 Apr 2024 12:14:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712923713; cv=none; b=bto73s82CBP+ADmchYqjaKk7LwX/uCILjBOf6YXIypNz4G8R96/hNrqQvdxC9yxf073kRhtrT4CIJVqtGC5Zjx3ph5g0jOGL8xR8KTKhIaQbqJWPnuIYSU2ONatkkUmvQZnlE8o727zEWMI6QPQcjFIjz9p8FADPoQ/2c2Blp+E=
+	t=1712924074; cv=none; b=nblxp7gEAsNULxlQtgU5mlpgBpwvCcAdYAHCl1NXMm8jU7PSTwIqjcOLRA1kIMG0UD6HZUdUqPKodW1XmTgHjUFMv+m0p9b78lLmZCAlQRrYFBUJSUPFvwAglCCegGh7dvdEjG8hTyh0njN1lsHXFvzUgSfsm3KRrusjTZGJ8nY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712923713; c=relaxed/simple;
-	bh=aGZGursS0e7p0NN8/DsscT4cCqk++laaAgsgmlWTm/k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CsDUv/tE+bOmxsniFKIrpXz4jDBqmbPRHuwLvSszVF3ApQN/LKe20fncIyR2VAkQ88gLjFoZmkZdQhy7Dch0/uXjwh7sKmoMtlEH7L7uXp9pGXT7jiY2/DrFj9xh6409jCWuhGDY8LoTvKPnH/f1OsxRLUKbDFVSXcJJlGmOhrQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rvFhf-0007RX-Pr; Fri, 12 Apr 2024 14:08:23 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rvFhe-00BsBA-On; Fri, 12 Apr 2024 14:08:22 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rvFhe-0009i4-29;
-	Fri, 12 Apr 2024 14:08:22 +0200
-Date: Fri, 12 Apr 2024 14:08:22 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org, 
-	JunYi Zhao <junyi.zhao@amlogic.com>
-Subject: Re: [PATCH v5 5/5] pwm: meson: add generic compatible for meson8 to
- sm1
-Message-ID: <24ec3iiudmfapiosygpsvgu7kmdqe6csbkpuzx3p3sa4oyodqu@hshmbpvzhufb>
-References: <20240221151154.26452-1-jbrunet@baylibre.com>
- <20240221151154.26452-6-jbrunet@baylibre.com>
+	s=arc-20240116; t=1712924074; c=relaxed/simple;
+	bh=JsH2Bl4z8+g79OD6+OMeASe1KZSq6//RizDUCnkdXzs=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=cEmhXAP0hNBJWqeflVCKwbMtQbQ8qQaRjsOZhVL5sZPyXy6udzf7nsPOfZXK7Jx/gsxtqa/t+3Sq/vGYbhVhlUhkv3qaQ0ZygA4Y0Pw+vaoZsSM3T8ljTJgCFClNZryzWuww5dPzLMfmXbthSAwb1AV50zeHBUosFf9iGitWOls=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F17WjDSI; arc=none smtp.client-ip=209.85.210.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-6ecf1d22d78so123214b3a.0;
+        Fri, 12 Apr 2024 05:14:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712924073; x=1713528873; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IRYGSIp2GD5yApmE5jSg2wil3KrvtIN27U/7TrpcQA8=;
+        b=F17WjDSIcx0VLOHUNERGJKkmjAljvAYK4mcTr7SeArSgLMXCwpETXTaVxs1wG1wSoi
+         f2K2uBGdUn/4MZgPwseGzw815I8Q/K0yWu0Gft+hGEwevQDT1M0Vnpiv7BC1wYVTauUV
+         DxJVhdUvHxL3hOC5jNJAZicfexv3z6rgl3LtYlxA5JX3qPqsx+w8pEOf+zWVEctuGvSx
+         +XoxKWypT8xTRtIV7CXHdvrCQML0WBmmO2CoDkQGZUg57Or1ked5vmQzMmWeWs8cIzXY
+         ypLkoCN+f9U8N8D59hMCW2pNXppCd5KWtKKw2mK1r2MNRgDCn0P033c2GERxC30aMbZ1
+         VfIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712924073; x=1713528873;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IRYGSIp2GD5yApmE5jSg2wil3KrvtIN27U/7TrpcQA8=;
+        b=Uz28LNa5qGZ9E8xO78lDv6tJIcZJotPO2b/6oJUBvEqbwh6OQIxJiV4YGVKQjSZXBZ
+         0svnvfIoepKFHsmATATE2RZZMzrbokeWzqnPUWsD2xzZCwwvWgPViSeICCI9NIwKye6m
+         Llc9f3dSQBN4FQEDFAN/qdtM+kogET41yXzCSPj19R9X55m47ONEdWLwG9j3hS/8inWt
+         H/9M+64ReXPxhRK1mpm/o56nQfpp2hL6FZG3/8c9iBkb8mDRfZC97p2yBfAU2Kdip3Bj
+         F5V911/LEih0vkaQfjwfBU8vbTKtPvbsW50DMOmvoBjhr62LywRVRAwKYnNQUam52w/U
+         haHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWEk6c5RCTOezCrOlcBQpLMlPH89g9SAz5YA/ASKzTjm7XZsc/HlhmS9fTjorYlS4iiNOCYshfA1SaDeDbEi3Tc8w/ygfkImg+YqWWFAZ2wOGWvQdk7L6AoT7BWsb+oXoWqnKOL9Wvf
+X-Gm-Message-State: AOJu0Yz11QG/awyIs09lDZ2aYNvG49nweHOIz7/A4oxnw4GWnLDasIOR
+	keYmhtv+hwBqm3q05jrO7JX4dBbNahuuJ1+lpfsPBVCBkteBIzqsZ3BKWQ==
+X-Google-Smtp-Source: AGHT+IF0gsjWIjd61CsA07mNyis/Uha/+mVglP3A5sTGDf39gc2JQU7LR8Cm2ueddX9aOWwVsKYvYw==
+X-Received: by 2002:a17:903:2442:b0:1e2:c1ce:5b9d with SMTP id l2-20020a170903244200b001e2c1ce5b9dmr2390296pls.2.1712924072683;
+        Fri, 12 Apr 2024 05:14:32 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:d5ec:bd78:342b:a748])
+        by smtp.gmail.com with ESMTPSA id q4-20020a17090311c400b001e2b8c91f04sm2851189plh.22.2024.04.12.05.14.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Apr 2024 05:14:32 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: broonie@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shengjiu.wang@nxp.com,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH] ASoC: dt-bindings: fsl-asoc-card: Document fsl,imx25-pdk-sgtl5000
+Date: Fri, 12 Apr 2024 09:14:10 -0300
+Message-Id: <20240412121410.2948048-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="o6zwfw2ds5fuh2ws"
-Content-Disposition: inline
-In-Reply-To: <20240221151154.26452-6-jbrunet@baylibre.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 
+From: Fabio Estevam <festevam@denx.de>
 
---o6zwfw2ds5fuh2ws
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Document fsl,imx25-pdk-sgtl5000 to fix the following dt-schema warning:
 
-On Wed, Feb 21, 2024 at 04:11:51PM +0100, Jerome Brunet wrote:
-> Introduce a new compatible support in the Amlogic PWM driver.
->=20
-> The PWM HW is actually the same for all SoCs supported so far. A specific
-> compatible is needed only because the clock sources of the PWMs are
-> hard-coded in the driver.
->=20
-> It is better to have the clock source described in DT but this changes the
-> bindings so a new compatible must be introduced.
->=20
-> When all supported platform have migrated to the new compatible, support
-> for the legacy ones may be removed from the driver.
->=20
-> The addition of this new compatible makes the old ones obsolete, as
-> described in the DT documentation.
->=20
-> Adding a callback to setup the clock will also make it easier to add
-> support for the new PWM HW found in a1, s4, c3 and t7 SoC families.
->=20
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+imx25-pdk.dtb: sound: compatible: 'oneOf' conditional failed, one must be fixed:
+	['fsl,imx25-pdk-sgtl5000', 'fsl,imx-audio-sgtl5000'] is too long
 
-After spending some brain cycles on this one I think I understood it.
-Looks fine to me, I only considered questioning if the dev_warn_once is
-too offensive.
-
-b4 + git applied the patch just fine even without patch #4 of this
-series. Would you be so kind to double check it works as intended?
-
-BTW, b4 diagnosed:
-
-Checking attestation on all messages, may take a moment...
+Fixes: 4189b54220e5 ("ASoC: dt-bindings: fsl-asoc-card: convert to YAML")
+Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
-  =E2=9C=97 [PATCH v5 5/5] pwm: meson: add generic compatible for meson8 to=
- sm1
-    + Link: https://lore.kernel.org/r/20240221151154.26452-6-jbrunet@baylib=
-re.com
-    + Signed-off-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
-  ---
-  =E2=9C=97 BADSIG: DKIM/baylibre-com.20230601.gappssmtp.com
+ Documentation/devicetree/bindings/sound/fsl-asoc-card.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Is this only because it took me so long to reply, or is there a
-configuration issue with the baylibre MTA?
+diff --git a/Documentation/devicetree/bindings/sound/fsl-asoc-card.yaml b/Documentation/devicetree/bindings/sound/fsl-asoc-card.yaml
+index 42ca39eebd49..bbf6fa1a2012 100644
+--- a/Documentation/devicetree/bindings/sound/fsl-asoc-card.yaml
++++ b/Documentation/devicetree/bindings/sound/fsl-asoc-card.yaml
+@@ -33,6 +33,7 @@ properties:
+       - items:
+           - enum:
+               - fsl,imx-sgtl5000
++              - fsl,imx25-pdk-sgtl5000
+               - fsl,imx53-cpuvo-sgtl5000
+               - fsl,imx51-babbage-sgtl5000
+               - fsl,imx53-m53evk-sgtl5000
+-- 
+2.34.1
 
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig         =
-   |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---o6zwfw2ds5fuh2ws
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmYZJDUACgkQj4D7WH0S
-/k5YqAf9Gp+g65dKTx78fK8hzvxoD9Y3G0PBNvMZG0cgDhyEIvXcC0zVpdDqgL/L
-UbcBW+DNc5Imw7H91xeUtyD4nDhybz1aG38vALuh8Ojuy+qqfxhZpaaDLl0344sB
-QVRkyJQxgB2VYDslaNPD7caXYtuMTwdyrbXf1jE7dg5ui9zWpr7pR+1TFPEYGsRE
-iRBqz3cZmq1MN0/1hhzw81jXz7rJVgv79bGBHr43wq2EwiAB/Rx1ztYFl9stz9PR
-KLOWaASjPFjeHxdrv6gP/+TEJ2BweZe7wwkEHFe34KUysr2x+QUFK2+x727TD30j
-gAmrGXJHW5AvlZZQMvhhKwxdFsxrpQ==
-=JdWF
------END PGP SIGNATURE-----
-
---o6zwfw2ds5fuh2ws--
 
