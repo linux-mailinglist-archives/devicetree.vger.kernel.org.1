@@ -1,186 +1,155 @@
-Return-Path: <devicetree+bounces-58882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98AEA8A3819
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 23:56:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6B598A3873
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 00:09:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 479F0283BE6
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 21:56:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 836132864CA
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 22:09:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2D1E15218A;
-	Fri, 12 Apr 2024 21:56:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F570152192;
+	Fri, 12 Apr 2024 22:09:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="fidIA4hg"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="nnL+S1om"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54FA01509BB
-	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 21:56:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CE43152181
+	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 22:09:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712959013; cv=none; b=CVtHChzzat9pUNxNRjZ52Q1JeY+aEAndDlWXexj55ci73rLTYQWzsLVdtF0CoqSAOFdInzfa8elEjkAEnWnax5hgnw+qmEqsYfYFKovYH6C1h+Hrk+opfM7qJul47xIWbNrhdLmLGOkfaFgOsf8zgKGyON0xkw9mhA8s41Zh+z4=
+	t=1712959751; cv=none; b=qETJ1yL1CM4IeGiurPHZcbPqHUSKu1vH1UYn/BMFUnmGuBs4U3KHTD/yrXh1st7iEwnCq9P19DwlOj/XvESorZFu6qnVJJPQTJKJ/632bjytIYXpBGxUSPpMpfcv/3D6+kVg13JI7caz6WbwU6zX1eZ1RFHfRdJk2jRmAnhR+Eo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712959013; c=relaxed/simple;
-	bh=1PaWGfxyrHB5QHCFj3ZBI3SC8je2iOSCNdYW+yj2zZk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lRR3nPnkmq+6hk9MReS94oysuzdNIHGqDvckpSbifXEr3gNytFVw86SjLyGj3vNyiPltCUoGuvhj1WTNGbIXBmWkJOzXf6P26vwYTCYz4FW8RpqWfpQrEm/mjUAHP6EMGuDZmJTvJkYYl9gfCbyh78F+SGXgo+PbhDUG4zP7oMA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=fidIA4hg; arc=none smtp.client-ip=209.85.214.174
+	s=arc-20240116; t=1712959751; c=relaxed/simple;
+	bh=2MgrN6DIBk4r15lQzhiuJv78bk5vHq4Hl6rKok+6bn8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XIbwVIXkORu2Bgpd9o2s+J3hfwc14Ol3GuespQ9z2ZefG6AFvlMTKZGVhKN7GL4zLBxq9psxyG8zbu4nqhXCb1AC78wbRG4etBOLnO67gdz3XRL7QKh3z+SHf+lk87x6XofgdXGczdRQb0aQ6Ol64OwFY86qOJfG5udNmE+i5Ik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=nnL+S1om; arc=none smtp.client-ip=209.85.208.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-1e3ca546d40so10252695ad.3
-        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 14:56:52 -0700 (PDT)
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2d9fe2b37acso16788261fa.2
+        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 15:09:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1712959012; x=1713563812; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=KaHJoFfHeKcbZbr8DZBqF2w1WE3ebjk/glljyT7W9ZI=;
-        b=fidIA4hgMjYhSe/iokhz19RcljwGVludiAbQOtT/mqtLkfFJodHOeqLL4bG9FV1bKQ
-         X/j4onsaejAYs3iXIs9uz25e2mYJ1fs4kNEmLSYFck06h0dM9o8dXqFzCQ/T+TnMcenN
-         a+UESJqJM3K4Sudn3WsAgFEy9UudSyCCg4pE5vUAgA6GVeAkfj366YyRAH8Y5um0Usvb
-         eoOD3aawPKyRzOMVXI9/b/8ZdrGDrnjzMJq5CySWWx3fSm3ApumvMVIdjjFTxooJ6gPY
-         L0rjYklLLPmoCzVbfqCARJ6q7aOTRnpIMgEgojA3es0nLHwRUVCUE/kARg+U8dGN1TJE
-         +lqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712959012; x=1713563812;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1712959748; x=1713564548; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=KaHJoFfHeKcbZbr8DZBqF2w1WE3ebjk/glljyT7W9ZI=;
-        b=xVOzmfUTc2eJ/Y7pEzbPuAaxKEyBr4YsmHWt0F9+KQY0NPsFsuRtNjk6dLpmP+EQ0e
-         WtB6YjPTmjjTgQAG2yCs+taOMTViVRYwRgxZjnqN9+i0gMotj+dRFMQH47PjrTzCsnYZ
-         /HMd7/ftH93IeEM6bpcUvAXdR4NweduOOZYcv11qPhWbZNnbghPCrQJWkrF7FkF/6L+i
-         vKJhLJDfVJvbkIOI+U5a1ZOYG5RDsLK0qOnaahSyMFeRyo+RYyiwDJJyvHRAz8qki5oU
-         E7+X8riaK/25YVTISInm3EWzKUF09C5/peo1G72UuQgN6N1ZyWPYfha+oN3hyxLiomJw
-         gcNQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXrMbJBTjhrC7jpoNlVS2Yycn6Nj77lHDELbOi/fjUodk+QO/waSystTtEqtFiYLRgK5+bp0AD9iJbEV/evKAxi3GMwcf69doqyJA==
-X-Gm-Message-State: AOJu0Ywg1Z2BMzDEgdZTbe9wc+7qYSvxkWiECFr3y8Tn9cNaDq1oSsOq
-	MMglzFWnqDrwf4kqG9l7Oa81o2+Q/o00E8eetZSg45dmu4nCk+B7zGXDj6UyQm8=
-X-Google-Smtp-Source: AGHT+IEWqFfAYkiXilmnZ21u0Vqs/Bc8kyXEc8OwbOgXHViFBz7n/2ViIbfUfkCfp7Uh0oJ1KjxbyQ==
-X-Received: by 2002:a17:903:250:b0:1e4:b1ea:23ef with SMTP id j16-20020a170903025000b001e4b1ea23efmr4487004plh.49.1712959011683;
-        Fri, 12 Apr 2024 14:56:51 -0700 (PDT)
-Received: from ghost ([50.145.13.30])
-        by smtp.gmail.com with ESMTPSA id o16-20020a170902d4d000b001e088a9e2bcsm3463749plg.292.2024.04.12.14.56.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Apr 2024 14:56:51 -0700 (PDT)
-Date: Fri, 12 Apr 2024 14:56:48 -0700
-From: Charlie Jenkins <charlie@rivosinc.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Evan Green <evan@rivosinc.com>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH 08/19] riscv: Introduce vendor variants of extension
- helpers
-Message-ID: <ZhmuIGX71THEuZWx@ghost>
-References: <20240411-dev-charlie-support_thead_vector_6_9-v1-0-4af9815ec746@rivosinc.com>
- <20240411-dev-charlie-support_thead_vector_6_9-v1-8-4af9815ec746@rivosinc.com>
- <20240412-dwarf-shower-5a7300fcd283@wendy>
- <ZhlypvTdsFPZBr08@ghost>
- <20240412-drab-french-55d8ff2c8cfa@spud>
- <ZhmhtLS5NuRrPOfu@ghost>
- <20240412-geranium-monotone-b47f414715d1@spud>
+        bh=+/M8t1HBqBUuifShlatgwWqMHKd8yfGcHLyOfE8iWiY=;
+        b=nnL+S1oml4+lR9EdxQSSRhszMKIGAJuLXJtOHyB1iUb6ys8Z++hGioLVzCRJHE7d0O
+         r9mnGHjxfC9CTTVfOYQHV1a0mfqq/CrjeAtH3P6kzTWgAljeIjg8pWTStVXD60BhySc+
+         0u7irjPEn34bk1iKL0Rcte7AUrUUvTaLRsmBvoPJfbwF4fSYwOIL4BuT3xfRoIUDwc4u
+         2FfqNPJDOMsxGfvzAGzW0YzYmAXSfh+SyR8RRZ9Dw/yhi2rdfA9n/agGvJV2Q9GBCCSZ
+         LGiGMFRx8w7sxTAG1B0Z0kQUNnLkWxC+Bc+Dq/86bixsQi63rzoqfZ8zee6lXb0ydqlj
+         xpUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712959748; x=1713564548;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+/M8t1HBqBUuifShlatgwWqMHKd8yfGcHLyOfE8iWiY=;
+        b=UA/g7LZe/oCksDdKxEnaW8iP1BUZO3mnP2F9+nP0aDAxMGlv/Is8t9NE17cl7YmT02
+         IMaOksrbEpO6EHutaf1udSm656kxZ4wGJDGDo3iaKkYUo5X8kaL8PEixzpbmZyri+raT
+         qRWjIx5sIgQs/e1SqcDuqe/VBLUwyFnL/eMH6e77AKAkdeIla053+I4TDcCsSNXuMLpA
+         i47OLnzmSFB4sKx7MVYdUH8Xch9WJZ6jlK8F24jHmyz7iEdd7ZVCQtOLmJRh8zwoY6Ft
+         FoNJ/kvkNoA6/StO1uy6X4W9UdEePr45aWeGEB9mTOLFtZuU7CZhXwEPtnlrILRIqTtn
+         LaEQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWQq0xEDejH1kXLOLaf82UfDAtM1lQP3RzIPHjiaoA3WfAjFrqaAdXS3wjej/AemggFBmEqmN4+X/cS8KcGA0ZdEQQcFBiAzTAEag==
+X-Gm-Message-State: AOJu0YwH5gjFzGYcpbLP3E1U8fG5z6n+LUKBsNSIcSfwgIkJW0lyQfme
+	qsY1VLZsagDXhFVN3V+QZIkL67cWBoRNyqFePXlLCx91Oc97mT0jk57WQfz98JGLxc3y08cXxtt
+	8dl9HMZqt6ZYwE7DY9jboCVEjTnjW5Y46NC4bsA==
+X-Google-Smtp-Source: AGHT+IF5C2wBUyoWGN92/R3KsVleYtMZwSgDPoheRn1Rem16KloXuSobCZbrLHetSul7X4faQjk9YDXOny1oTJbkyFo=
+X-Received: by 2002:a2e:9e93:0:b0:2d4:6aba:f1a3 with SMTP id
+ f19-20020a2e9e93000000b002d46abaf1a3mr2395096ljk.6.1712959747751; Fri, 12 Apr
+ 2024 15:09:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240412-geranium-monotone-b47f414715d1@spud>
+References: <20240411-dev-charlie-support_thead_vector_6_9-v1-0-4af9815ec746@rivosinc.com>
+ <20240411-dev-charlie-support_thead_vector_6_9-v1-14-4af9815ec746@rivosinc.com>
+ <20240412-moonshine-acting-0df1a90b86d2@wendy> <CALs-HsviR8E-sRvzz7pd5eVGb4+XsAdG1hhbZOPf+m3Cu4JP_Q@mail.gmail.com>
+ <Zhl717rsQ7XLBe2F@ghost>
+In-Reply-To: <Zhl717rsQ7XLBe2F@ghost>
+From: Evan Green <evan@rivosinc.com>
+Date: Fri, 12 Apr 2024 15:08:31 -0700
+Message-ID: <CALs-HsuL8A87mCRU2+1F2sEPYmZWTz_MFwAys0h=1uKhb7EYqg@mail.gmail.com>
+Subject: Re: [PATCH 14/19] riscv: hwprobe: Disambiguate vector and
+ xtheadvector in hwprobe
+To: Charlie Jenkins <charlie@rivosinc.com>
+Cc: Conor Dooley <conor.dooley@microchip.com>, Conor Dooley <conor@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	=?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>, 
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, linux-riscv@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Palmer Dabbelt <palmer@rivosinc.com>, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-doc@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Apr 12, 2024 at 10:34:10PM +0100, Conor Dooley wrote:
-> On Fri, Apr 12, 2024 at 02:03:48PM -0700, Charlie Jenkins wrote:
-> > On Fri, Apr 12, 2024 at 09:40:03PM +0100, Conor Dooley wrote:
-> > > On Fri, Apr 12, 2024 at 10:43:02AM -0700, Charlie Jenkins wrote:
-> > > > On Fri, Apr 12, 2024 at 12:49:57PM +0100, Conor Dooley wrote:
-> > > > > On Thu, Apr 11, 2024 at 09:11:14PM -0700, Charlie Jenkins wrote:
-> > > > > > Create vendor variants of the existing extension helpers. If the
-> > > > > > existing functions were instead modified to support vendor extensions, a
-> > > > > > branch based on the ext value being greater than
-> > > > > > RISCV_ISA_VENDOR_EXT_BASE would have to be introduced. This additional
-> > > > > > branch would have an unnecessary performance impact.
-> > > > > > 
-> > > > > > Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
-> > > > > 
-> > > > > I've not looked at the "main" patch in the series that adds all of the
-> > > > > probing and structures for representing this info yet beyond a cursory
-> > > > > glance, but it feels like we're duplicating a bunch of infrastructure
-> > > > > here before it is necessary. The IDs are all internal to Linux, so I'd
-> > > > > rather we kept everything in the same structure until we have more than
-> > > > > a handful of vendor extensions. With this patch (and the theadpmu stuff)
-> > > > > we will have three vendor extensions which feels like a drop in the
-> > > > > bucket compared to the standard ones.
-> > > > 
-> > > > It is not duplicating infrastructure. If we merge this into the existing
-> > > > infrastructure, we would be littering if (ext > RISCV_ISA_VENDOR_EXT_BASE)
-> > > > in __riscv_isa_extension_available. This is particularily important
-> > > > exactly because we have so few vendor extensions currently so this check
-> > > > would be irrelevant in the vast majority of cases.
-> > > 
-> > > That's only because of your implementation. The existing vendor extension
-> > > works fine without this littering. That's another thing actually, you
-> > > forgot to convert over the user we already have :)
-> > 
-> > Oh right, I will convert them over. The fundemental goal of this patch
-> > is to allow a way for vendors to support their own extensions without
-> > needing to populate riscv_isa_ext. This is to create separation between
-> > vendors so they do not impact each other.
-> 
-> The one that needs converting is xandespmu. As I said on the other patch
-> a minute I don't think isolating vendors for the internal representation
-> is needed and can be left in hwprobe. I also don't think we can rely on
-> a behaviour of "SiFive CPUs will always have SiFive's mvendorid" or that
-> kinda thing, I've heard talk of the SoC vendor getting their mvendorid
-> for custom CPU cores instead of the CPU vendor and it's possible for
-> the SBI implementation to "adjust" the values also.
+On Fri, Apr 12, 2024 at 11:22=E2=80=AFAM Charlie Jenkins <charlie@rivosinc.=
+com> wrote:
+>
+> On Fri, Apr 12, 2024 at 10:04:42AM -0700, Evan Green wrote:
+> > On Fri, Apr 12, 2024 at 4:35=E2=80=AFAM Conor Dooley <conor.dooley@micr=
+ochip.com> wrote:
+> > >
+> > > On Thu, Apr 11, 2024 at 09:11:20PM -0700, Charlie Jenkins wrote:
+> > > > Ensure that hwprobe does not flag "v" when xtheadvector is present.
+> > > >
+> > > > Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+> > > > ---
+> > > >  arch/riscv/kernel/sys_hwprobe.c | 4 ++--
+> > > >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > > >
+> > > > diff --git a/arch/riscv/kernel/sys_hwprobe.c b/arch/riscv/kernel/sy=
+s_hwprobe.c
+> > > > index 8cae41a502dd..e0a42c851511 100644
+> > > > --- a/arch/riscv/kernel/sys_hwprobe.c
+> > > > +++ b/arch/riscv/kernel/sys_hwprobe.c
+> > > > @@ -69,7 +69,7 @@ static void hwprobe_isa_ext0(struct riscv_hwprobe=
+ *pair,
+> > > >       if (riscv_isa_extension_available(NULL, c))
+> > > >               pair->value |=3D RISCV_HWPROBE_IMA_C;
+> > > >
+> > > > -     if (has_vector())
+> > > > +     if (has_vector() && !riscv_has_vendor_extension_unlikely(RISC=
+V_ISA_VENDOR_EXT_XTHEADVECTOR))
+> > >
+> > > Hmm, I think this is "dangerous". has_vector() is used across the ker=
+nel
+> > > now in several places for the in-kernel vector. I don't think that
+> > > has_vector() should return true for the T-Head stuff given that &
+> > > has_vector() should represent the ratified spec. I'll have to think
+> > > about this one and how nasty this makes any of the save/restore code
+> > > etc.
+> >
+> > Yeah, my nose crinkled here as well. If you're having to do a
+> > vendorish thing in this generic spot, then others may too, suggesting
+> > perhaps this isn't the cleanest way to go about it. Ideally extensions
+> > are all additive, rather than subtractive, I guess?
+>
+> This was the "easiest" way to support this but I agree this is not
+> ideal. The vector code is naturally coupled with having support for
+> "v" and I wanted to leverage that. The other concern is all of the
+> ifdefs for having V enabled. I can make all of those V or XTHEADVECTOR;
+> that will increase the surface area of xtheadvector but it is probably
+> the right(?) way to go.
 
-Okay that may be possible but that is up to the vendor when that
-happens. The vendor extensions are fundamentally different from the
-standard extensions and have even less guarantees of correctness which
-seems like it would invite more errata if multiple vendors implement the
-same vendor extensions. I can extract the code into a different file for
-each vendor so that is more clear.
+For the ifdefs, if you've got a Kconfig somewhere for THEAD_VECTOR,
+can't that just depend on the V config? We'd end up with the
+limitation that you can't add V 0.7 support without also dragging in
+V1.0 support, but that's probably fine, right?
 
-- Charlie
-
-> 
-> > xlinuxenvcfg does not fit into this scheme however. This scheme assumes
-> > that a hart cannot have multiple vendors which that extension breaks.
-> > xlinuxenvcfg is really filling a hole in the standard isa that is
-> > applicible to all vendors and does not appear in the device tree so it
-> > is okay for that to live outside this scheme.
-> 
-> Ye, xlinuxenvcfg is an internal psuedo-extension that should be treated
-> more like a standard one than something vendor.
-> 
-> > > > It is also unecessary to push off the refactoring until we have some
-> > > > "sufficient" amount of vendor extensions to deem changing the
-> > > > infrastructure when I already have the patch available here. This does
-> > > > not introduce any extra overhead to existing functions and will be able
-> > > > to support vendors into the future.
-> > > 
-> > > Yeah, maybe that's true but this was my gut reaction before reading the
-> > > other patch in detail (which I've still yet to do).
-> > 
-> > - Charlie
-> > 
-
-
+-Evan
 
