@@ -1,111 +1,145 @@
-Return-Path: <devicetree+bounces-58617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E0968A2939
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 10:23:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BB648A2944
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 10:26:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12EF52816B7
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 08:23:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C16D1C2163A
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 08:26:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 076A250289;
-	Fri, 12 Apr 2024 08:23:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89BE0502A4;
+	Fri, 12 Apr 2024 08:25:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="dPKmMVyY"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="C8YBflIp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6FE24F20A;
-	Fri, 12 Apr 2024 08:23:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8D3D50A62;
+	Fri, 12 Apr 2024 08:25:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712910203; cv=none; b=GhxvpcDf2QUkVCTVjOFF1/ZcKRWBnrcBGCrldv3i4kNYC42pIwZKc0yKAibHXMzZDIcvq9QmRe8BbEBIyQoOEmEit5BKmudIc1XWGFJbXOs0eIfOJG1g0Q0E/bPNTxTFy2dtUszf62xO+4dtqFjp/tC4v1lA0aF2YBQgdClbtag=
+	t=1712910351; cv=none; b=H+X+Se8eIf8pDKqbL5a4NwpVKH/pc4D6yDFYOLWkm64t4boEg7FSQ8UppEGoYRYdbPTt67rVMAjfX/iHMWoWioViuLTEuoMmiwYUnJZUL5AFzhIwgEWGsSNlnHqYnLfcHTrpIBMDMZ3uL6YIB3KDBKC2faf5hknK8GWIaF9mGqs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712910203; c=relaxed/simple;
-	bh=JQsL3l+lpII2c4u6mU33BzB6l2saKrxBERfMXjR3I+Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K3/tyilW26dAY1GoNzD8HwtCm5F44u+LrbrjOaEbqjrupdBfZHctsXQZHAxKyJBb2F/NOooTgpRDehaMUPIuZYCl3zR9xVaFWrzvFnxIiHWztkOFwJcEHVCm6z+d6IJfMDVYfZikhqvtohlo3c0i9HNYb6klvSVTRBqbmMkjAtk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=dPKmMVyY; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 9AB23240002;
-	Fri, 12 Apr 2024 08:23:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1712910199;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=WClP5G2kcne2eneGfMBtJOI0aNW9KDauYWuKR9jT1z4=;
-	b=dPKmMVyYATklsYzaKp5rf8tkpd+f8IfUhBwqPg7KpvV0hJVLgglFurhnD9lDD9pp5jb2BJ
-	EVpvAgSIhTCZuuB1OvUya3PUnL3Of0JjnBLw65HaPawxCiA9cFsr4TQgKpho7BDCght/0X
-	IgyV6JqdpIEKwTiwHRc0jwxsfMpPJAVf/Uq21A5FbA8F5X41Qcm1pCLfK0YQh9Cpvy4GY8
-	e9HY7QaJhLZloTZ8GX+53+ZiuS11njbK9QqEATLSLYyPH60o3RVKD20bvNiyoCJlNWVFqx
-	aLwOgDa0jeU9IHB/ezZs02Ex1epHDZbeGhMeAqpFfCcm6iPgLyTTWWa0ckt1zA==
-Date: Fri, 12 Apr 2024 10:23:15 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: wefu@redhat.com
-Cc: jszhang@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, guoren@kernel.org, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org
-Subject: Re: [PATCH 1/5] drivers/rtc/rtc-xgene: Add prescaler support in APM
- X-Gene RTC driver
-Message-ID: <20240412082315682039eb@mail.local>
-References: <20240412080238.134191-1-wefu@redhat.com>
- <20240412080238.134191-2-wefu@redhat.com>
+	s=arc-20240116; t=1712910351; c=relaxed/simple;
+	bh=AgQMwhLM2SQJL/DxUrA6t4vddU8OTk+2j0IqX/shhbU=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=fZhr9uqlwXhDIx6G+hgZAyjOw6W3pRI9RjROcDNSuJi2cheCk/jmZ01yYIj4kPQfinDx8QzyfQg0zZ9wL5gOrIdurTjqSpH0nWaaDw8paZ61CrqaqwCc2I9prhuzJbxLou4vALE3KNlVPFqjuRJ2pOuRX1+C9n9MXmD3mFf355c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=C8YBflIp; arc=none smtp.client-ip=45.89.224.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id BA55C120006;
+	Fri, 12 Apr 2024 11:25:46 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru BA55C120006
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1712910346;
+	bh=AgQMwhLM2SQJL/DxUrA6t4vddU8OTk+2j0IqX/shhbU=;
+	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version:From;
+	b=C8YBflIpipAZ1mefV1MD4x/XIVT6rsTSMbfjhioBjJDidSL6leypyb9BeXPtgCcCm
+	 XPU3EBax6cIFufbBJy4gPC59D8uvydAABfj8CdDcf7YVqA7KTSVE94RmUD/v77c8NV
+	 1HTkVFrhRvpTH9nBZBkdCyVauNLvXopCCWJSuavTr0P3Xhw3foVhPFW2LAzYAiqJHZ
+	 rkpzr2HijTQdszf39V9GZariGuUkxTe1TUr2wiIQatAHsUv1BnmcRK5LGzLDTVZ3py
+	 FhTahrgp42fUF2ac97CMhCGCpMgbEvSAIZkTr7rfAVz5VFWrDrQW1ttWNH3SeHXfk7
+	 C6m2KpSMAiBng==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Fri, 12 Apr 2024 11:25:46 +0300 (MSK)
+Received: from p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Fri, 12 Apr 2024 11:25:46 +0300
+Received: from p-i-exch-sc-m02.sberdevices.ru ([fe80::10c3:6e04:fd07:c511]) by
+ p-i-exch-sc-m02.sberdevices.ru ([fe80::10c3:6e04:fd07:c511%9]) with mapi id
+ 15.02.1118.040; Fri, 12 Apr 2024 11:25:46 +0300
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: Herbert Xu <herbert@gondor.apana.org.au>
+CC: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+	"clabbe@baylibre.com" <clabbe@baylibre.com>, "davem@davemloft.net"
+	<davem@davemloft.net>, "robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "khilman@baylibre.com"
+	<khilman@baylibre.com>, "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
+	"martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
+	"vadim.fedorenko@linux.dev" <vadim.fedorenko@linux.dev>,
+	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, kernel <kernel@sberdevices.ru>
+Subject: Re: [PATCH v7 00/23] Support more Amlogic SoC families in crypto
+ driver
+Thread-Topic: [PATCH v7 00/23] Support more Amlogic SoC families in crypto
+ driver
+Thread-Index: AQHajBWUrVGAoz0gN0yHbEf56dYdJrFjvtOAgABbAICAAAC3AIAAAQKA
+Date: Fri, 12 Apr 2024 08:25:46 +0000
+Message-ID: <20240412082541.zxlbnigfs733q4sf@cab-wsm-0029881.sigma.sbrf.ru>
+References: <20240411133832.2896463-1-avromanov@salutedevices.com>
+ <ZhiiPVckOYH9dFQ/@gondor.apana.org.au>
+ <20240412081931.3s2fw6hds3hh5cwg@cab-wsm-0029881.sigma.sbrf.ru>
+ <ZhjvLMcMXKNmlCZ7@gondor.apana.org.au>
+In-Reply-To: <ZhjvLMcMXKNmlCZ7@gondor.apana.org.au>
+Accept-Language: ru-RU, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <7DE82C9FF3EB794695833D14A6D82635@sberdevices.ru>
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240412080238.134191-2-wefu@redhat.com>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 184683 [Apr 12 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 16 0.3.16 6e64c33514fcbd07e515710c86ba61de7f56194e, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;gondor.apana.org.au:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;cab-wsm-0029881.sigma.sbrf.ru:7.1.1,5.0.1;smtp.sberdevices.ru:7.1.1,5.0.1;salutedevices.com:7.1.1, FromAlignment: s
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/04/12 08:01:00
+X-KSMG-LinksScanning: Clean, bases: 2024/04/12 08:01:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/12 02:59:00 #24750120
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-On 12/04/2024 16:01:43+0800, wefu@redhat.com wrote:
-> From: Wei Fu <wefu@redhat.com>
-> 
-> This patch add Counter Prescaler support in APM X-Gene RTC driver by
-> getting prescaler (Optional) property value from dtb.
-> 
-> Signed-off-by: Wei Fu <wefu@redhat.com>
-> ---
->  drivers/rtc/Kconfig     | 10 ++++++++++
->  drivers/rtc/rtc-xgene.c | 31 +++++++++++++++++++++++++++++++
->  2 files changed, 41 insertions(+)
-> 
-> diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
-> index c63e32d012f2..3a89f1e6095d 100644
-> --- a/drivers/rtc/Kconfig
-> +++ b/drivers/rtc/Kconfig
-> @@ -1888,6 +1888,16 @@ config RTC_DRV_XGENE
->  	  This driver can also be built as a module, if so, the module
->  	  will be called "rtc-xgene".
->  
-> +config RTC_DRV_XGENE_PRESCALER
-> +	bool "Pre-scaler Counter support for APM X-Gene RTC driver"
-> +	depends on RTC_DRV_XGENE
-> +	depends on ARCH_THEAD
-> +	default y
-> +	help
-> +	  Say Y here if your Soc has Pre-scaler Counter support on rtc-xgene.
-> +
-> +	  This hardware support can only be found in DW_apb_rtc after v2.06a.
-> +
+On Fri, Apr 12, 2024 at 04:22:04PM +0800, Herbert Xu wrote:
+> On Fri, Apr 12, 2024 at 08:19:36AM +0000, Alexey Romanov wrote:
+> >
+> > Old Amlogic Soc's for crypto HW used a BLKMV engine, which required
+> > a clk input and a second interrupt line. New SoC's uses DMA engine
+> > and don't need this.
+> >=20
+> > I spoke with vendor, and they confirmed that AXG, G12A, G12B, SM1,
+> > A1, S4 and GXL is using DMA engine and crypto HW is not connected
+> > to clk / second interrupt line.
+>=20
+> Sorry I'm just asking you to ensure that you've tested the whole
+> patch-series with CRYPTO_MANAGER_EXTRA_TESTS enabled and there are
+> no errors reported.
 
-I don't feel like this needs a config option, rather you should have a
-proper compatible string that will tell the driver whether the feature
-is available.
+Oh, yep, I will test with this option enabled soon.
 
+>=20
+> Thanks,
+> --=20
+> Email: Herbert Xu <herbert@gondor.apana.org.au>
+> Home Page: http://gondor.apana.org.au/~herbert/
+> PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+--=20
+Thank you,
+Alexey=
 
