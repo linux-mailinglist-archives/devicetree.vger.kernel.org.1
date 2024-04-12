@@ -1,117 +1,202 @@
-Return-Path: <devicetree+bounces-58725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58726-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 599B08A2E04
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 14:14:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 183B68A2E53
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 14:31:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CD6F3B220CA
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 12:14:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1AED28B0F2
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 12:31:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B627B54FAD;
-	Fri, 12 Apr 2024 12:14:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F7D156B87;
+	Fri, 12 Apr 2024 12:31:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F17WjDSI"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="YAHg2XAj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69F89D50F;
-	Fri, 12 Apr 2024 12:14:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 001004597F;
+	Fri, 12 Apr 2024 12:31:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712924074; cv=none; b=nblxp7gEAsNULxlQtgU5mlpgBpwvCcAdYAHCl1NXMm8jU7PSTwIqjcOLRA1kIMG0UD6HZUdUqPKodW1XmTgHjUFMv+m0p9b78lLmZCAlQRrYFBUJSUPFvwAglCCegGh7dvdEjG8hTyh0njN1lsHXFvzUgSfsm3KRrusjTZGJ8nY=
+	t=1712925071; cv=none; b=A0IcYShq3v6awrMTK5UAL38mw3DrgTDg8Sa4fmWxBWr2CPUehIyEYt8o6NGKOxU6qQiFPpMbhXWFPyr02xSq617R930/+4XjEPYIZpN7aEVxUThbeZ+rK7E32qYXCLbTpW/fn+x1puaetqLRpXlYQLGCtaJyWjyPB8foMM4znqw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712924074; c=relaxed/simple;
-	bh=JsH2Bl4z8+g79OD6+OMeASe1KZSq6//RizDUCnkdXzs=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=cEmhXAP0hNBJWqeflVCKwbMtQbQ8qQaRjsOZhVL5sZPyXy6udzf7nsPOfZXK7Jx/gsxtqa/t+3Sq/vGYbhVhlUhkv3qaQ0ZygA4Y0Pw+vaoZsSM3T8ljTJgCFClNZryzWuww5dPzLMfmXbthSAwb1AV50zeHBUosFf9iGitWOls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F17WjDSI; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-6ecf1d22d78so123214b3a.0;
-        Fri, 12 Apr 2024 05:14:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712924073; x=1713528873; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=IRYGSIp2GD5yApmE5jSg2wil3KrvtIN27U/7TrpcQA8=;
-        b=F17WjDSIcx0VLOHUNERGJKkmjAljvAYK4mcTr7SeArSgLMXCwpETXTaVxs1wG1wSoi
-         f2K2uBGdUn/4MZgPwseGzw815I8Q/K0yWu0Gft+hGEwevQDT1M0Vnpiv7BC1wYVTauUV
-         DxJVhdUvHxL3hOC5jNJAZicfexv3z6rgl3LtYlxA5JX3qPqsx+w8pEOf+zWVEctuGvSx
-         +XoxKWypT8xTRtIV7CXHdvrCQML0WBmmO2CoDkQGZUg57Or1ked5vmQzMmWeWs8cIzXY
-         ypLkoCN+f9U8N8D59hMCW2pNXppCd5KWtKKw2mK1r2MNRgDCn0P033c2GERxC30aMbZ1
-         VfIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712924073; x=1713528873;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IRYGSIp2GD5yApmE5jSg2wil3KrvtIN27U/7TrpcQA8=;
-        b=Uz28LNa5qGZ9E8xO78lDv6tJIcZJotPO2b/6oJUBvEqbwh6OQIxJiV4YGVKQjSZXBZ
-         0svnvfIoepKFHsmATATE2RZZMzrbokeWzqnPUWsD2xzZCwwvWgPViSeICCI9NIwKye6m
-         Llc9f3dSQBN4FQEDFAN/qdtM+kogET41yXzCSPj19R9X55m47ONEdWLwG9j3hS/8inWt
-         H/9M+64ReXPxhRK1mpm/o56nQfpp2hL6FZG3/8c9iBkb8mDRfZC97p2yBfAU2Kdip3Bj
-         F5V911/LEih0vkaQfjwfBU8vbTKtPvbsW50DMOmvoBjhr62LywRVRAwKYnNQUam52w/U
-         haHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWEk6c5RCTOezCrOlcBQpLMlPH89g9SAz5YA/ASKzTjm7XZsc/HlhmS9fTjorYlS4iiNOCYshfA1SaDeDbEi3Tc8w/ygfkImg+YqWWFAZ2wOGWvQdk7L6AoT7BWsb+oXoWqnKOL9Wvf
-X-Gm-Message-State: AOJu0Yz11QG/awyIs09lDZ2aYNvG49nweHOIz7/A4oxnw4GWnLDasIOR
-	keYmhtv+hwBqm3q05jrO7JX4dBbNahuuJ1+lpfsPBVCBkteBIzqsZ3BKWQ==
-X-Google-Smtp-Source: AGHT+IF0gsjWIjd61CsA07mNyis/Uha/+mVglP3A5sTGDf39gc2JQU7LR8Cm2ueddX9aOWwVsKYvYw==
-X-Received: by 2002:a17:903:2442:b0:1e2:c1ce:5b9d with SMTP id l2-20020a170903244200b001e2c1ce5b9dmr2390296pls.2.1712924072683;
-        Fri, 12 Apr 2024 05:14:32 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:d5ec:bd78:342b:a748])
-        by smtp.gmail.com with ESMTPSA id q4-20020a17090311c400b001e2b8c91f04sm2851189plh.22.2024.04.12.05.14.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Apr 2024 05:14:32 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: broonie@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shengjiu.wang@nxp.com,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] ASoC: dt-bindings: fsl-asoc-card: Document fsl,imx25-pdk-sgtl5000
-Date: Fri, 12 Apr 2024 09:14:10 -0300
-Message-Id: <20240412121410.2948048-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1712925071; c=relaxed/simple;
+	bh=o8YSWsoCfZ7tptBqUVVtBw1fFnKL06BvA0qNMfnioDw=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hrKgMjZgU6xYp+kONcTUnwd/shQlVeMwqsTBstoVwlEBRGLrGq4+SgzFwFIupwpegcnzhpHIudEcjTcvF/pYHBU+bk1ZqIJQyRY/DU1f3daxeAqtihNksiiaP55Yic0GZtaV7RDYz872oJ0aKVOLWWf39kMGwFvW3kq5CfrHeXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=YAHg2XAj; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1712925068; x=1744461068;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=o8YSWsoCfZ7tptBqUVVtBw1fFnKL06BvA0qNMfnioDw=;
+  b=YAHg2XAjz7reUSlwhHo3OfF5Idv4gtTNL0u6hg6Ez4/4TdvRQE+0Jm3h
+   eXn6PURY+LVOAyym2nk8cV6tG4V8Adyy4MCmL4zkXa7z9bcCsuteA58IN
+   Ha84RKCsIEWH+PNTJ7opAhaIvRxwwk5ihL7RUGSDd1ABonlbtKSdziEFZ
+   pbBirLOAHzDllFbmpm3kiWWs/7hfmWVWyP+QxFLNQ4exZxai+XIgE4Fg0
+   i7GMOjQorX47q/94/Ygabzs/O1WULRC3MQhhRU1TpywpP6J5z1tRRocuK
+   xpUsvI+ciSXJH94rX7hYQMd5XQldcMZ4evKM91uEAZmKKXnQqsp7dzxoC
+   Q==;
+X-CSE-ConnectionGUID: 8n3UuTh2QzaDn5A8rQGjFg==
+X-CSE-MsgGUID: nqO9YiBGTYCscAdrhaD7/w==
+X-IronPort-AV: E=Sophos;i="6.07,196,1708412400"; 
+   d="asc'?scan'208";a="188017039"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 12 Apr 2024 05:31:07 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 12 Apr 2024 05:31:03 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Fri, 12 Apr 2024 05:30:59 -0700
+Date: Fri, 12 Apr 2024 13:30:08 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Charlie Jenkins <charlie@rivosinc.com>
+CC: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+	<aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
+	<jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Evan Green
+	<evan@rivosinc.com>, =?iso-8859-1?Q?Cl=E9ment_L=E9ger?=
+	<cleger@rivosinc.com>, Jonathan Corbet <corbet@lwn.net>, Shuah Khan
+	<shuah@kernel.org>, <linux-riscv@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, Palmer Dabbelt
+	<palmer@rivosinc.com>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-sunxi@lists.linux.dev>, <linux-doc@vger.kernel.org>,
+	<linux-kselftest@vger.kernel.org>
+Subject: Re: [PATCH 06/19] riscv: Extend cpufeature.c to detect vendor
+ extensions
+Message-ID: <20240412-sprawl-product-1e1d02e25bca@wendy>
+References: <20240411-dev-charlie-support_thead_vector_6_9-v1-0-4af9815ec746@rivosinc.com>
+ <20240411-dev-charlie-support_thead_vector_6_9-v1-6-4af9815ec746@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="/rKIhypokaxpjzdO"
+Content-Disposition: inline
+In-Reply-To: <20240411-dev-charlie-support_thead_vector_6_9-v1-6-4af9815ec746@rivosinc.com>
 
-From: Fabio Estevam <festevam@denx.de>
+--/rKIhypokaxpjzdO
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Document fsl,imx25-pdk-sgtl5000 to fix the following dt-schema warning:
+On Thu, Apr 11, 2024 at 09:11:12PM -0700, Charlie Jenkins wrote:
+>  static void __init riscv_parse_isa_string(unsigned long *this_hwcap, str=
+uct riscv_isainfo *isainfo,
 
-imx25-pdk.dtb: sound: compatible: 'oneOf' conditional failed, one must be fixed:
-	['fsl,imx25-pdk-sgtl5000', 'fsl,imx-audio-sgtl5000'] is too long
+> -					  unsigned long *isa2hwcap, const char *isa)
+> +					struct riscv_isainfo *isavendorinfo, unsigned long vendorid,
+> +					unsigned long *isa2hwcap, const char *isa)
+>  {
+>  	/*
+>  	 * For all possible cpus, we have already validated in
+> @@ -349,8 +384,30 @@ static void __init riscv_parse_isa_string(unsigned l=
+ong *this_hwcap, struct risc
+>  		const char *ext =3D isa++;
+>  		const char *ext_end =3D isa;
+>  		bool ext_long =3D false, ext_err =3D false;
+> +		struct riscv_isainfo *selected_isainfo =3D isainfo;
+> +		const struct riscv_isa_ext_data *selected_riscv_isa_ext =3D riscv_isa_=
+ext;
+> +		size_t selected_riscv_isa_ext_count =3D riscv_isa_ext_count;
+> +		unsigned int id_offset =3D 0;
+> =20
+>  		switch (*ext) {
+> +		case 'x':
+> +		case 'X':
 
-Fixes: 4189b54220e5 ("ASoC: dt-bindings: fsl-asoc-card: convert to YAML")
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- Documentation/devicetree/bindings/sound/fsl-asoc-card.yaml | 1 +
- 1 file changed, 1 insertion(+)
+One quick remark is that we should not go and support this stuff via
+riscv,isa in my opinion, only allowing it for the riscv,isa-extensions
+parsing. We don't have a way to define meanings for vendor extensions in
+this way. ACPI also uses this codepath and at the moment the kernel's
+docs say we're gonna follow isa string parsing rules in a specific version
+of the ISA manual. While that manual provides a format for the string and
+meanings for standard extensions, there's nothing in there that allows us
+to get consistent meanings for specific vendor extensions, so I think we
+should avoid intentionally supporting this here.
 
-diff --git a/Documentation/devicetree/bindings/sound/fsl-asoc-card.yaml b/Documentation/devicetree/bindings/sound/fsl-asoc-card.yaml
-index 42ca39eebd49..bbf6fa1a2012 100644
---- a/Documentation/devicetree/bindings/sound/fsl-asoc-card.yaml
-+++ b/Documentation/devicetree/bindings/sound/fsl-asoc-card.yaml
-@@ -33,6 +33,7 @@ properties:
-       - items:
-           - enum:
-               - fsl,imx-sgtl5000
-+              - fsl,imx25-pdk-sgtl5000
-               - fsl,imx53-cpuvo-sgtl5000
-               - fsl,imx51-babbage-sgtl5000
-               - fsl,imx53-m53evk-sgtl5000
--- 
-2.34.1
+I'd probably go as far as to actively skip vendor extensions in
+riscv_parse_isa_string() to avoid any potential issues.
 
+> +			bool found;
+> +
+> +			found =3D get_isa_vendor_ext(vendorid,
+> +						   &selected_riscv_isa_ext,
+> +						   &selected_riscv_isa_ext_count);
+> +			selected_isainfo =3D isavendorinfo;
+> +			id_offset =3D RISCV_ISA_VENDOR_EXT_BASE;
+> +			if (!found) {
+> +				pr_warn("No associated vendor extensions with vendor id: %lx\n",
+> +					vendorid);
+
+This should not be a warning, anything we don't understand should be
+silently ignored to avoid spamming just because the kernel has not grown
+support for it yet.
+
+Thanks,
+Conor.
+
+> +				for (; *isa && *isa !=3D '_'; ++isa)
+> +					;
+> +				ext_err =3D true;
+> +				break;
+> +			}
+> +			fallthrough;
+>  		case 's':
+>  			/*
+>  			 * Workaround for invalid single-letter 's' & 'u' (QEMU).
+> @@ -366,8 +423,6 @@ static void __init riscv_parse_isa_string(unsigned lo=
+ng *this_hwcap, struct risc
+>  			}
+>  			fallthrough;
+>  		case 'S':
+> -		case 'x':
+> -		case 'X':
+>  		case 'z':
+>  		case 'Z':
+>  			/*
+> @@ -476,8 +531,10 @@ static void __init riscv_parse_isa_string(unsigned l=
+ong *this_hwcap, struct risc
+>  				set_bit(nr, isainfo->isa);
+>  			}
+>  		} else {
+> -			for (int i =3D 0; i < riscv_isa_ext_count; i++)
+> -				match_isa_ext(&riscv_isa_ext[i], ext, ext_end, isainfo);
+> +			for (int i =3D 0; i < selected_riscv_isa_ext_count; i++)
+> +				match_isa_ext(&selected_riscv_isa_ext[i], ext,
+> +					      ext_end, selected_isainfo,
+> +					      id_offset);
+>  		}
+>  	}
+>  }
+
+--/rKIhypokaxpjzdO
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZhkpUAAKCRB4tDGHoIJi
+0suMAP9hVav0oRL2jmBJm2ACwJ1+CNYfBT488OIk7AWbRjBIigEAtUP/mmReLFMY
+g7/EcQ6a/96RixRPX9yYcg23rYMJOQE=
+=w9t9
+-----END PGP SIGNATURE-----
+
+--/rKIhypokaxpjzdO--
 
