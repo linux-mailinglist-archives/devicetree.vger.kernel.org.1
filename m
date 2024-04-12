@@ -1,110 +1,203 @@
-Return-Path: <devicetree+bounces-58813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B4CE8A32E0
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 17:52:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FF2D8A3341
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 18:09:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E2359B217D5
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 15:52:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9212B1C20B92
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 16:09:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5124A14882A;
-	Fri, 12 Apr 2024 15:52:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1B5F1494DB;
+	Fri, 12 Apr 2024 16:09:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KO9P4/t2"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BpkiKL99"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 273681487F4;
-	Fri, 12 Apr 2024 15:52:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F40E91494C3;
+	Fri, 12 Apr 2024 16:09:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712937143; cv=none; b=mfc3n5cdwB0zujEs/hv4idYD2OW9COceVj4f9ScAOGFfR/b0c/6t25965+T6wIIvi03Sv3fejBBSFJux7Z5yR0u1zmGE7Ikxiyz+DtqCaO/mbYsF6UiO5t9nHCrHvbUIMj6lFiC0pchg1LO2eNsM5bJWHTsg81/hE1iR3BuGeXE=
+	t=1712938157; cv=none; b=QsXSZN9PmYXmXbQOalddCi0PZR21VVqd8Sqw8Ph7Aq/aqM39kDgQKuAziuBYZBTzVtBu6a2uvEbTttzlznGezK5i8LDHtbIM9ERp5HkgPRUZdJLuOmMtbx7i3pNUegMqnXDIC20LnJEQ0K0EhGTlAk+xxOo1jssS1Dmgz67D7MI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712937143; c=relaxed/simple;
-	bh=p8OAbH8ik4uO7b+Ydee6KnfTe8Pqv3txAKJdlPzFN+s=;
+	s=arc-20240116; t=1712938157; c=relaxed/simple;
+	bh=dU3V6Gu0KGvlhDaJGowbUsDhF9fkTIDZLblXxq3gcdg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JEU8B+yJqVXete+c7WrazGscBYFprHqkgAXcgtXThVA4SQYz+gR/o0IN3yYptLlSY89oWKQnw0GuU805tQQfVrqsn+IlZyy7LIfNAh1ByHwl/FSQ84V+RybBbh8s2ezU5+WoPW12k1ULA8KB/Veb+WkLCeHpZSeikhGAQ8BcVAk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KO9P4/t2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B70AC113CC;
-	Fri, 12 Apr 2024 15:52:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712937142;
-	bh=p8OAbH8ik4uO7b+Ydee6KnfTe8Pqv3txAKJdlPzFN+s=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=qiAqOvCr0W84j3oLkW4rz97zqLe2KxM2RwkfkDwGTjeSSO7Q5g6Mkl9XK8Sa8oDD5yWfMdei7FiukrOJ8e6eNf71m/C4UADKxI38FX/F39YcMYTX3bk7m6h69G9ECnJ1GZWm65fCAqIkdcjx0WGHTQXj/Z+zbCmddcTmL61njWI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=BpkiKL99; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1712938154;
+	bh=dU3V6Gu0KGvlhDaJGowbUsDhF9fkTIDZLblXxq3gcdg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KO9P4/t2cDRuWl80w6gOUAPjO0AMXVxD7gC6uP2mwU8ISqAgxs6VNhHozXIZqPg4f
-	 IxIfIc4IjyGe/b6QhzPnay8cP37wmaDZ88pFaCzUFOMc20t0ikqGC58OGZCV+GbyDz
-	 WI93KbnDGseDAwz/NNdCUc5f/9jmB7Vx+RyIICUCQGBUzTfY6Lc75/E09y4R2RQe2v
-	 XWWzyszKnIIXYWZ4k9iyjsQE/3nSlsJtdFf1/ZKtjaJr7IAxKHUFfK6JqE2B+fM4UJ
-	 OZ/+WvCY1aZ1Sqg+hD4vkU9ARhl7iAtiPJbP+z/NrQJ8/kN6A/VFrOg8z4i27eJ5hK
-	 Ci19pwIr5RJ6Q==
-Date: Fri, 12 Apr 2024 10:52:20 -0500
-From: Rob Herring <robh@kernel.org>
-To: Seven Lee <wtli@nuvoton.com>
-Cc: broonie@kernel.org, lgirdwood@gmail.com, alsa-devel@alsa-project.org,
-	devicetree@vger.kernel.org, linux-sound@vger.kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
-	conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com,
-	YHCHuang@nuvoton.com, KCHSU0@nuvoton.com, CTLIN0@nuvoton.com,
-	SJLIN0@nuvoton.com, scott6986@gmail.com, supercraig0719@gmail.com,
-	dardar923@gmail.com, edson.drosdeck@gmail.com,
-	u.kleine-koenig@pengutronix.de
-Subject: Re: [PATCH 1/3] ASoC: dt-bindings: nau8821: Add delay control for ADC
-Message-ID: <20240412155220.GA2918590-robh@kernel.org>
-References: <20240412103554.3487290-1-wtli@nuvoton.com>
+	b=BpkiKL99SQrKKdw2SST9wNaqT2Pbi7yixEyuEVf27vkr3N85bQwkOzS7sR7tNpcCE
+	 /ilX2jzIxNb9Daj4/gumPlZt9oFibx5mr6G8LkSYKxRjNNiAg8tva+LyEL/faTI/Xr
+	 wI14qTGLfmUf0j6WAaiWED+q9j3yqNWvqCXG0vV0m8Z8GR2VgbP1tJ82apXQa0sQDL
+	 GaslDAL3t2iR0n+5sHNessYjd8xSggdIp07YZU1+BGS7rN+zQGeHZEmAgT08YqUR4Q
+	 QB/xJ51lnKNOJFsaF57QNHotN/u66NXGDIvWaN9ndi0+0kysZTkIOkNspWKnhXFMqx
+	 qaMDX14ar9f0g==
+Received: from mercury (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 0CDE8378212C;
+	Fri, 12 Apr 2024 16:09:14 +0000 (UTC)
+Received: by mercury (Postfix, from userid 1000)
+	id 9CA6A10608F9; Fri, 12 Apr 2024 18:09:13 +0200 (CEST)
+Date: Fri, 12 Apr 2024 18:09:13 +0200
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Shawn Lin <shawn.lin@rock-chips.com>
+Cc: Jianfeng Liu <liujianfeng1994@gmail.com>, robh@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, heiko@sntech.de, sfr@canb.auug.org.au, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: rockchip: remove startup-delay-us from
+ vcc3v3_pcie2x1l0 on rock-5b
+Message-ID: <273slx5qkz6ja5qlfjgcaukuzifzsxkdabsld3qodvxaekbzet@ipir56a6afj3>
+References: <20240401081302.942742-1-liujianfeng1994@gmail.com>
+ <432000a6-1de9-4452-beb7-6954677e34c8@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="w3aqmahkcw5xmohz"
+Content-Disposition: inline
+In-Reply-To: <432000a6-1de9-4452-beb7-6954677e34c8@rock-chips.com>
+
+
+--w3aqmahkcw5xmohz
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240412103554.3487290-1-wtli@nuvoton.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Apr 12, 2024 at 06:35:52PM +0800, Seven Lee wrote:
-> Change the original fixed delay to the assignment from the property. It
-> will make it more flexible to different platforms to avoid pop noise at
-> the beginning of recording.
-> 
-> Signed-off-by: Seven Lee <wtli@nuvoton.com>
-> ---
->  .../devicetree/bindings/sound/nuvoton,nau8821.yaml        | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml b/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml
-> index 054b53954ac3..a726c5a9b067 100644
-> --- a/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml
-> +++ b/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml
-> @@ -103,6 +103,13 @@ properties:
->          just limited to the left adc for design demand.
->      type: boolean
->  
-> +  nuvoton,adc-delay-ms:
-> +    description: Delay (in ms) to make input path stable and avoid pop noise.
-> +        The default value is 125 and range between 125 to 500 ms.
+Hi,
 
-No need to state constraints in prose.
+On Wed, Apr 10, 2024 at 02:30:16PM +0800, Shawn Lin wrote:
+> Hi Jianfeng,
+>=20
+> On 2024/4/1 16:13, Jianfeng Liu wrote:
+> > Property startup-delay-us is copied from vendor dts and it will
+> > make kernel not detect pcie wifi device. If I run command:
+> > "echo 1 > /sys/bus/pci/rescan", pcie wifi device is detected, but
+> > my wifi device RTL8822CE failed to load driver. Another device
+> > RTL8723BE can load driver but no wifi signal is detected.
+> >=20
+> > Removing this property will fix issues above.
+> >=20
+> > Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
+>=20
+> startup-delay-us just make sure the power rail is stable before
+> any action is taken to start the link, preventing the device from
+> unable to work stably. So it shouldn't be the root cause I think.
+>=20
+> Could you help try this patch to checkout if it works for you?
+>=20
+> diff --git a/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> index d684214..df30127 100644
+> --- a/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> +++ b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> @@ -167,7 +167,7 @@ static int rockchip_pcie_start_link(struct dw_pcie *p=
+ci)
+>         struct rockchip_pcie *rockchip =3D to_rockchip_pcie(pci);
+>=20
+>         /* Reset device */
+> -       gpiod_set_value_cansleep(rockchip->rst_gpio, 0);
+> +       //gpiod_set_value_cansleep(rockchip->rst_gpio, 0);
 
-> +    minimum: 125
-> +    maximum: 500
-> +    default: 125
+Is this removal actually needed?
+
+>=20
+>         rockchip_pcie_enable_ltssm(rockchip);
+>=20
+> @@ -180,7 +180,7 @@ static int rockchip_pcie_start_link(struct dw_pcie *p=
+ci)
+>          * We need more extra time as before, rather than setting just
+>          * 100us as we don't know how long should the device need to rese=
+t.
+>          */
+> -       msleep(100);
+> +       msleep(300);
+>         gpiod_set_value_cansleep(rockchip->rst_gpio, 1);
+>=20
+>         return 0;
+> @@ -311,6 +311,8 @@ static int rockchip_pcie_probe(struct platform_device
+> *pdev)
+>         if (ret)
+>                 return ret;
+>=20
+> +       gpiod_set_value_cansleep(rockchip->rst_gpio, 0);
+
+I suppose it makes sense to use GPIOD_OUT_LOW in
+rockchip_pcie_resource_get(), so that the GPIO is requested low from
+the start instead of being high for a very short amount of time.
+
+Greetings,
+
+-- Sebastian
+
 > +
->    '#sound-dai-cells':
->      const: 0
->  
-> @@ -136,6 +143,7 @@ examples:
->              nuvoton,jack-eject-debounce = <0>;
->              nuvoton,dmic-clk-threshold = <3072000>;
->              nuvoton,dmic-slew-rate = <0>;
-> +            nuvoton,nuvoton,adc-delay-ms = <125>;
->              #sound-dai-cells = <0>;
->          };
->      };
-> -- 
-> 2.25.1
-> 
+>         /* DON'T MOVE ME: must be enable before PHY init */
+>         rockchip->vpcie3v3 =3D devm_regulator_get_optional(dev, "vpcie3v3=
+");
+>=20
+>=20
+>=20
+> > ---
+> >   arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 1 -
+> >   1 file changed, 1 deletion(-)
+> >=20
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm=
+64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > index d6bf2ee07..a9af654a0 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > @@ -76,7 +76,6 @@ vcc3v3_pcie2x1l0: vcc3v3-pcie2x1l0-regulator {
+> >   		regulator-boot-on;
+> >   		regulator-min-microvolt =3D <3300000>;
+> >   		regulator-max-microvolt =3D <3300000>;
+> > -		startup-delay-us =3D <50000>;
+> >   		vin-supply =3D <&vcc5v0_sys>;
+> >   	};
+> >=20
+> > --
+> > 2.34.1
+> >=20
+> >=20
+> > _______________________________________________
+> > Linux-rockchip mailing list
+> > Linux-rockchip@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-rockchip
+>=20
+
+--w3aqmahkcw5xmohz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmYZXJ8ACgkQ2O7X88g7
++poq6w//dbFA18vJCILXgGK1j5A0KZ53Xji2T9WW5oeSKb8ypl6VgtPlKKdZIRDV
+zwHp6X+QXnzHP4wMfEDTxnmaYX0c5YVY3/ZpXVya2stFTuczmh2ugb9H7DgN1BD9
+XCQ4D1GGo3tBAuOfx10ovjjrSkvp5E4e3yI55ibR/BwuI7nQeKR/1A79Sqm/zx/s
+IG2vwZN1RsncE0kd9Ot1CNoOvAefrtMrmN0lBBMaDyOdN+rTfkV6w0FtyW+vdGff
++A0A0P0RZF8Vnr2Q6Bwp2f1aL6SA2d+tjqEYNlwno5lyZqR+pVsy8KfIsnf39TLk
+5btkAnjFYAc40ulCFUF3jRSp9pC5DCmEET7pU5RWP5cqdiy/mZMJuac2qRsPIJvJ
+KjVRafxtRNCsVasFLD6I8wxouyStu0S0wRqs/Hft+WfJWSVDk1spbvrKBcPC5FVr
+EM82IWmEfKUxztKl4jItlJT55aF0EcIP/jrc4TNqW9bHS5tQXqX3QPvCotapwWon
+GrEdPMLNlIChIMwRZs0r5HKirfWgRGweaBst3tWtk/GjF+zO240zi3xSU7g4hJ0V
+WeddNgOZryXHH7vbN1oZeSpjiVZZ3F7n/YulUf003/9IkVjyhzWoWK+53luhU6AA
+ZKQ4IdSoLQ4nvV9fDDUyuwS6ClPp+oN7h3NZZtNRsSuhq+n9Z8c=
+=D3Tl
+-----END PGP SIGNATURE-----
+
+--w3aqmahkcw5xmohz--
 
