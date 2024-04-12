@@ -1,61 +1,63 @@
-Return-Path: <devicetree+bounces-58472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79CD38A232D
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 03:27:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE1388A2334
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 03:27:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0852DB21E89
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 01:27:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 49AD9B21DBE
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 01:27:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 716C133DD;
-	Fri, 12 Apr 2024 01:27:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4406FDDC9;
+	Fri, 12 Apr 2024 01:27:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JWqTXu0o"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e5raXPwn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 419C94C6C;
-	Fri, 12 Apr 2024 01:27:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12310DDA5;
+	Fri, 12 Apr 2024 01:27:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712885248; cv=none; b=nlI+oRdeqjoGKH3xsmZ1LepPmFXiy4jQIUfHpxNGMtOqhbvUeHvoZJVpplauMWmkbsD7cXg8IKwWJTjXI3MRqxylaQYUuihsLk1hMr3YiDnLh8eE8Z/rpG5x32v3cGPzEiHzm39csAGU3VMKz9GgxKuysl7B/zhJ2iJqsGuf0ug=
+	t=1712885250; cv=none; b=EFpXw/xasJEy7wj291vwVjmdmExg6UNyz6NQxkrSkXR8ufEkEUNWOOFHuuqsCP7zcQnBtMFz38In1rlFGTiPSnSG6itYNebcsR4nPDHnK73ZolnHfKzit/VBQPpgCUyLaf8x2SSz52BIjPUF9bVB+7XUq2eYpr/P9ey5aePiCz8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712885248; c=relaxed/simple;
-	bh=YW9xxHO7EdZuAhVJ5aAbnRjYGBZMzMVifI/U1z8qaWY=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nNj6FaZUl90MDVpaMGHGBsboqNkcRRuMtaUXA5i962JaXHyaKqys1wR/7l3CGNNU3HgtgXH+ITUZznVJ6J41wHQzezXUAZoWTvSFKwVQa43nFd8hz3FezRPkqBobxcbP5wA02egHDYFEaLVr82l2r6LwkoyZkp9482TtEwo0nIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JWqTXu0o; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0E50C072AA;
-	Fri, 12 Apr 2024 01:27:26 +0000 (UTC)
+	s=arc-20240116; t=1712885250; c=relaxed/simple;
+	bh=5ViWQZ7ou49Yi5Tnf91RIZvSahqJo/+6GhHKRmpt2Y4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mINsxBAy9AU7qKxXDCK9n2V4OMbozrysigaEDWMKB2FSoCVDn6Awp47XdmLskWeeQ8Z4cv5aGb/lHVaFhekzlzYca6EWBgImRz8BTG6YjZMW8JPFs7rzzu1iFJ+6gc+bNuE1B8EidYks2JILUT12JGG7vlJ0CA+BDiIrvRDl5iM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e5raXPwn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC9B5C4AF0C;
+	Fri, 12 Apr 2024 01:27:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712885247;
-	bh=YW9xxHO7EdZuAhVJ5aAbnRjYGBZMzMVifI/U1z8qaWY=;
-	h=From:To:Subject:Date:In-Reply-To:References:From;
-	b=JWqTXu0oYKuh+OS1ZrzzCW9yrKDztTSHLkGOuk1EEI8CFn+N+Cz71ECInihlydFoF
-	 qlkpwidcEBFCcOLoJRSC/FgVhTvgmF8xyxc5uOosC6DdhbBVHky/uL97+zHtGeP0In
-	 dnppocm2UsQ3jaefwTMRSAJ3g7rPlpH0nD/ww4NuwCD3tWGXWkua0PBwwQwJkF1t9t
-	 Qth+JFDOz1PWmwsH9eGvhPxC9e7ptlLLu+HoSJX97qZvngp8wekvIyEGuyJuEXG+6L
-	 iXR69jLm+K4wEe9Y0lQRo8NV3ZOC9WD/Y1PUPd+dz2pk3akpmGc46SnthUDw69xxqQ
-	 0pYqlb7QQkNRA==
+	s=k20201202; t=1712885249;
+	bh=5ViWQZ7ou49Yi5Tnf91RIZvSahqJo/+6GhHKRmpt2Y4=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=e5raXPwnOradGJVdlQR6W2+MajpJeqIokJo/5RBLUhJ8myP+u+zKz5ve9QEivkDLQ
+	 4CWGiWADSDFBzlAgt+mWXp4f70J7WVC2gywwDkBLLB/WIXHj2dTZwXm7wU2nH7hdPs
+	 NM/5urLYvf6uUxiLBaleu/9l5lgSM3PXmT0vUyV2N3iPURZrHBPG2ef0/xsTWnLEny
+	 14f0SdtDTfxOVFTBPp8uz5XHz+DXuls6Xe9SkWDp25slx4QHgE+6XaL27pO0bTSto+
+	 VPIvHQmVsIneQJFROXgHXKtLAi0EFbMJ0DfwruhV4+Ubyt3HaJGLcaYjYSu+pZiFFC
+	 vXYwRwCN8wEBw==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To: ~postmarketos/upstreaming@lists.sr.ht,
+	phone-devel@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
+	Luca Weiss <luca@z3ntu.xyz>
+Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Christian Marangi <ansuelsmth@gmail.com>
-Subject: Re: [PATCH] ARM: dts: qcom: ipq4019: add QCA8075 PHY Package nodes
-Date: Thu, 11 Apr 2024 20:27:21 -0500
-Message-ID: <171288524177.749915.3224551491309677040.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: qcom: msm8974-sony-shinano: Enable vibrator
+Date: Thu, 11 Apr 2024 20:27:23 -0500
+Message-ID: <171288524178.749915.2229709720158856709.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240211202700.17810-1-ansuelsmth@gmail.com>
-References: <20240211202700.17810-1-ansuelsmth@gmail.com>
+In-Reply-To: <20240406-shinano-vib-v1-1-fdd02af39d56@z3ntu.xyz>
+References: <20240406-shinano-vib-v1-1-fdd02af39d56@z3ntu.xyz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,20 +68,16 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Sun, 11 Feb 2024 21:26:55 +0100, Christian Marangi wrote:
-> Add QCA8075 PHY Package nodes. The PHY nodes that were previously
-> defined never worked and actually never had a driver to correctly setup
-> these PHY. Now that we have a correct driver, correctly add the PHY
-> Package node and set the default value of 300mw for tx driver strength
-> following specification of ipq4019 SoC.
+On Sat, 06 Apr 2024 17:27:20 +0200, Luca Weiss wrote:
+> Enable the vibrator connected to PM8941 found on the Sony shinano
+> platform.
 > 
 > 
-> [...]
 
 Applied, thanks!
 
-[1/1] ARM: dts: qcom: ipq4019: add QCA8075 PHY Package nodes
-      commit: 2338f4315f16b937e924ff679b91bb8c0ab53f25
+[1/1] ARM: dts: qcom: msm8974-sony-shinano: Enable vibrator
+      commit: 5c94b0b906436aad74e559195007afdd328211f4
 
 Best regards,
 -- 
