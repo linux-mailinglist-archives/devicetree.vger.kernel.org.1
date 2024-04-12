@@ -1,164 +1,161 @@
-Return-Path: <devicetree+bounces-58667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3D908A2C8A
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 12:38:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52B9C8A2CAD
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 12:42:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A73C2839AE
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 10:38:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F436285E39
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 10:42:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF4FC55E75;
-	Fri, 12 Apr 2024 10:36:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C789A3D547;
+	Fri, 12 Apr 2024 10:42:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nuvoton.com header.i=@nuvoton.com header.b="QRCE5ujn"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="GJNxqNCO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2080.outbound.protection.outlook.com [40.107.255.80])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DDDA54FB1;
-	Fri, 12 Apr 2024 10:36:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.255.80
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712918172; cv=fail; b=K/4FCZbdyRxA/Yukxyq/VeY4e4ay/YG3Vznqy9exoISvr5ggiuM66IqYWsOtf2l0bZQIhqq5DRixspl1KV4k1Gl8qadaOMRXAu0oUYc5VL84V87/m3ngu3nuLzYxFhzOy9uC1x0D5Fp02CaAfS6y9/DklX6NWV8eEbBL26Vr+3o=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712918172; c=relaxed/simple;
-	bh=NYVDLadom2jXFuQTJlSk5F8KtYuvfxzT0A5slpkBu44=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TmIamhDTPIDINU69ULPMhKHav2o5WjrUOxNB0FnQI3EIyG/DgAtLptHw7U+ncsJk4zmz+mdiTmlIOwAAtmB9hOXb+iPZo3xiXlJSH+QTPylJhDjZv7J7Wr0xnBrtju3FApeW2MosZTgwGYMVvhTVbFvPuix8Als9++hjHTvjCWE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nuvoton.com; spf=pass smtp.mailfrom=nuvoton.com; dkim=pass (1024-bit key) header.d=nuvoton.com header.i=@nuvoton.com header.b=QRCE5ujn; arc=fail smtp.client-ip=40.107.255.80
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nuvoton.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nuvoton.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XY8jJWj0DPfhC++bhMyfWxcppAfDNLZePe21fctUHImr6JjKVGARfJ4CpKqb0bnBaHhl2zuoZh9fb+JMe2i+g6TIU9cHKHxx+DTYwKezH29AWvHSKyKTV+orlPx6yj8sc6N7+wUBqxne+exHf4LX4xQItWnK9uWaVoGnyjPo89z5y6KUVriqgkW8IMGG0opOmpyY0vMDKvicJ4yugKM+ygfGeBrrZ9h3b6x9K6ooWfZwEdHpdgLQBQdqOkJbri1g1YCP8GRWV5j86S/gNpDsT9qlyZwu/lvB4nlnGwLbQn4yXJCIxebQoZd4wmc+2WfKHZgPyriVfNc/SOl7juQniw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WxZZI88trLcPkuM5m+bNe4H9s474rVMS+WtUW1uoU9s=;
- b=A+4SlsGhwm/73LzKw/R+M3pVDVXn3QC6WD1uzvjXHflo2bWjkgJY6mHSawJJO+n7nS2UEZytDYB/hScMrV0r0sIdZXP9lJ9Md77Xt1GVoiZyx5u199nbQWQtxxkEJewzOmxVnzFT74nGvjxpvuZ2pNJV/TJyiLJKWm7o673BXhqyfPiCrO6TOBs2hx+1UrjgvC7XCQcg/y+1z/wP/Mtxs2+KVe0M/D5wl+wG0ng9y1dOkSZIV5AdUStpUAtehk3+Js9BLoutXHttnd3Ilot0Xu3rBxt1+dZp2rZlhyHDTu8mMt7+Lv8b/y3qujfsV5gAKSiQEPm45IDDYlqR4YYApA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 211.75.126.7) smtp.rcpttodomain=kernel.org smtp.mailfrom=nuvoton.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=nuvoton.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nuvoton.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WxZZI88trLcPkuM5m+bNe4H9s474rVMS+WtUW1uoU9s=;
- b=QRCE5ujnQVQOM7NyYIGbve1f/msAzuNzBLffG6zykSRkjxXfuFyDUe1mIDQnlNGpDxStZ52vYMqT7Hel3SUtZ9YEo2Rwk9mJ+JUP4drJrMW9CyUuLS3Uf+sbea6YJBMf0VDo/3tCBraBWY5G2B3YPpA+MUjSU83vBy5yjVeErOY=
-Received: from SG2PR02CA0029.apcprd02.prod.outlook.com (2603:1096:3:18::17) by
- SEYPR03MB7165.apcprd03.prod.outlook.com (2603:1096:101:d4::11) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7409.46; Fri, 12 Apr 2024 10:36:05 +0000
-Received: from SG2PEPF000B66CA.apcprd03.prod.outlook.com
- (2603:1096:3:18:cafe::29) by SG2PR02CA0029.outlook.office365.com
- (2603:1096:3:18::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.26 via Frontend
- Transport; Fri, 12 Apr 2024 10:36:05 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 211.75.126.7)
- smtp.mailfrom=nuvoton.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nuvoton.com;
-Received-SPF: Pass (protection.outlook.com: domain of nuvoton.com designates
- 211.75.126.7 as permitted sender) receiver=protection.outlook.com;
- client-ip=211.75.126.7; helo=NTHCCAS01.nuvoton.com; pr=C
-Received: from NTHCCAS01.nuvoton.com (211.75.126.7) by
- SG2PEPF000B66CA.mail.protection.outlook.com (10.167.240.22) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7452.22 via Frontend Transport; Fri, 12 Apr 2024 10:36:04 +0000
-Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCCAS01.nuvoton.com
- (10.1.8.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 12 Apr
- 2024 18:35:56 +0800
-Received: from localhost.localdomain (10.11.36.27) by NTHCCAS01.nuvoton.com
- (10.1.8.28) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
- Transport; Fri, 12 Apr 2024 18:35:56 +0800
-From: Seven Lee <wtli@nuvoton.com>
-To: <broonie@kernel.org>
-CC: <lgirdwood@gmail.com>, <alsa-devel@alsa-project.org>,
-	<devicetree@vger.kernel.org>, <linux-sound@vger.kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <linux-kernel@vger.kernel.org>,
-	<robh+dt@kernel.org>, <conor+dt@kernel.org>, <perex@perex.cz>,
-	<tiwai@suse.com>, <YHCHuang@nuvoton.com>, <KCHSU0@nuvoton.com>,
-	<CTLIN0@nuvoton.com>, <SJLIN0@nuvoton.com>, <wtli@nuvoton.com>,
-	<scott6986@gmail.com>, <supercraig0719@gmail.com>, <dardar923@gmail.com>,
-	<edson.drosdeck@gmail.com>, <u.kleine-koenig@pengutronix.de>
-Subject: [PATCH 3/3] ASoC: nau8821: Remove redundant ADC controls
-Date: Fri, 12 Apr 2024 18:35:54 +0800
-Message-ID: <20240412103554.3487290-3-wtli@nuvoton.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240412103554.3487290-1-wtli@nuvoton.com>
-References: <20240412103554.3487290-1-wtli@nuvoton.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A704C20310;
+	Fri, 12 Apr 2024 10:42:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712918526; cv=none; b=MJsbeDvxaVokNh5XDiiZyAX8Gdzbvbjuo0fZy9JU188lc+DDNT6rtmjA8vaFDw0FKlWpEcKDjdGBGyWelybFU/xVgBVsi+HSn16HnRmkrw67KcI6t+lhqUr1aeZiSewcQxq5E+ZhRAhSHSCpR9Yi41gwy7aYUz+Yhv0O3reEc2k=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712918526; c=relaxed/simple;
+	bh=X/p/ft+IL0tus7dW1yBsZJutmsAr0uojLmY1LWYjZes=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CjSykpl8DynrJekHBiF5mbdmqpEl5mQuy3E3XppnrYIJcl4A2svqfZVBlpLc+RRLOJOylx5eh02d20Sc8461yfTrQSpHMLrxUboP8F35MmOZRE/ppXiVE0ivFtfyHW3fSEGKQLt8pmC4gLgVfdEGg4+081KwK6WWfHPF9CDcVBY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=GJNxqNCO; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1712918524; x=1744454524;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=X/p/ft+IL0tus7dW1yBsZJutmsAr0uojLmY1LWYjZes=;
+  b=GJNxqNCOgW14345HFh2W//scsLVA5YXzVszRvY5ns/CCFepjKdJ2fyK4
+   jRN00EWC47Y3OQcvTDu++GS0E8OQ+q9Z3uMa789dHSCLAGi7YQsZ06ndy
+   kbljM56PtNzPcdVWhf9d4xxkXsJf4IiyCexleQhs59Ava6+UG8KhfDTnN
+   gKR8+7m9oG09u/RZx1gfEbYy/d2VrYOzvg81llx8IOwLaz6pgesBLKxKW
+   hupzj1RqqWVDusfd2C9vJFZ6eg1D+ZkHBO+D1mKFiAHZW0QDNfortM35R
+   jbbkEhrwBcNanlSikW/7BvC+yrSjynU2t/eSvFy2NXHALA3nlec62dlhk
+   g==;
+X-CSE-ConnectionGUID: tAWyHYMtQVGntX8nk/B7jA==
+X-CSE-MsgGUID: 13SAqUUaRYm44u3/FKnbdQ==
+X-IronPort-AV: E=Sophos;i="6.07,195,1708412400"; 
+   d="asc'?scan'208";a="20728192"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 12 Apr 2024 03:42:02 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 12 Apr 2024 03:41:33 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Fri, 12 Apr 2024 03:41:29 -0700
+Date: Fri, 12 Apr 2024 11:40:38 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Charlie Jenkins <charlie@rivosinc.com>
+CC: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+	<aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
+	<jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Evan Green
+	<evan@rivosinc.com>, =?iso-8859-1?Q?Cl=E9ment_L=E9ger?=
+	<cleger@rivosinc.com>, Jonathan Corbet <corbet@lwn.net>, Shuah Khan
+	<shuah@kernel.org>, <linux-riscv@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, Palmer Dabbelt
+	<palmer@rivosinc.com>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-sunxi@lists.linux.dev>, <linux-doc@vger.kernel.org>,
+	<linux-kselftest@vger.kernel.org>
+Subject: Re: [PATCH 07/19] riscv: Optimize
+ riscv_cpu_isa_extension_(un)likely()
+Message-ID: <20240412-aerosol-heritage-cec1eca172fb@wendy>
+References: <20240411-dev-charlie-support_thead_vector_6_9-v1-0-4af9815ec746@rivosinc.com>
+ <20240411-dev-charlie-support_thead_vector_6_9-v1-7-4af9815ec746@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NotSetDelaration: True
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CA:EE_|SEYPR03MB7165:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3d05ed57-08af-4290-2476-08dc5adc5b4d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	cw0Izuiv39JV6Di3lOv2ifUa1KWfTx4poERtv4sxwz+z74R5IxljBQlqgxCFEE7A8nqGLo7H4LBCX/4JdkpZ7z4fJSZR3dxPLO4VJLp91rWWRPM4HDn4SuQBH8MJWhTn9jrFjOUAZZJZYPcrQwbin5qIQNAgrKqFV5Hlg9jgBECj7tjClx8MZqv6Ht2uSUPpQ9qhWxAp+vykItAAZ1ZLaS19QczuanIXHJTV60HW7SCkWTlh5lVVcQUBntTRkPkljLo2qxurH8nUDvQCtgTfgKOPAnPaHxbpBu3S6j24Uoa7peagr3btB35xNvoDATq36rYsFOgmfaZGjp6iji82GmczJ5NKkg1wG5Qp0fVJhKFOzCt46dYE8ZxVBU+yEL1CIncaPViaqNjRpApf8BEbHOz0892IBy5Vpy3Ge6X1tA5eJmE2tUmdxUNwvHYTNbXsBh7rj6X3eN4Tl+C1ziuKvDBh4MmsoS25Ovl2qWu+CEJEWPD5BTPMemIzfAAMdQZHhYGCwPRrdkQW8ZATh+Gw71TDQip2rW8hmR86BxVRRo5TDcdzTXwt8ZX6EyIUSgK79r/aNfEin3Iw44tq/DshiH+eEXcCrTpj0acgN3DRH5uphXJgOZcjgWz3AUVids1rP7O8FPIcE0CGCmiSjpbkuxgMSllUmH/SY+2OJiyCtZia96/ADeu2m8palqO8cvPYTylq/p4YNciHMJLrJJudWNxHyLYylPH0heISCjm8XN7/dW31jXKS110A3AZgggsI
-X-Forefront-Antispam-Report:
-	CIP:211.75.126.7;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:NTHCCAS01.nuvoton.com;PTR:211-75-126-7.hinet-ip.hinet.net;CAT:NONE;SFS:(13230031)(376005)(82310400014)(1800799015)(7416005)(36860700004);DIR:OUT;SFP:1101;
-X-OriginatorOrg: nuvoton.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Apr 2024 10:36:04.9761
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3d05ed57-08af-4290-2476-08dc5adc5b4d
-X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a3f24931-d403-4b4a-94f1-7d83ac638e07;Ip=[211.75.126.7];Helo=[NTHCCAS01.nuvoton.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SG2PEPF000B66CA.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB7165
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="YUt35LWoARaS+0kq"
+Content-Disposition: inline
+In-Reply-To: <20240411-dev-charlie-support_thead_vector_6_9-v1-7-4af9815ec746@rivosinc.com>
 
-Remove redundant left/right adc channel enable controls.
+--YUt35LWoARaS+0kq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Seven Lee <wtli@nuvoton.com>
----
- sound/soc/codecs/nau8821.c | 8 --------
- 1 file changed, 8 deletions(-)
+On Thu, Apr 11, 2024 at 09:11:13PM -0700, Charlie Jenkins wrote:
+> When alternatives are disabled, riscv_cpu_isa_extension_(un)likely()
+> checks if the current cpu supports the selected extension if not all
+> cpus support the extension. It is sufficient to only check if the
+> current cpu supports the extension.
+>=20
+> The alternatives code to handle if all cpus support an extension is
+> factored out into a new function to support this.
+>=20
+> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+> ---
 
-diff --git a/sound/soc/codecs/nau8821.c b/sound/soc/codecs/nau8821.c
-index fec669e00a10..6818bbd1d3c7 100644
---- a/sound/soc/codecs/nau8821.c
-+++ b/sound/soc/codecs/nau8821.c
-@@ -512,12 +512,8 @@ static int nau8821_left_adc_event(struct snd_soc_dapm_widget *w,
- 	switch (event) {
- 	case SND_SOC_DAPM_POST_PMU:
- 		msleep(nau8821->adc_delay);
--		regmap_update_bits(nau8821->regmap, NAU8821_R01_ENA_CTRL,
--			NAU8821_EN_ADCL, NAU8821_EN_ADCL);
- 		break;
- 	case SND_SOC_DAPM_POST_PMD:
--		regmap_update_bits(nau8821->regmap,
--			NAU8821_R01_ENA_CTRL, NAU8821_EN_ADCL, 0);
- 		break;
- 	default:
- 		return -EINVAL;
-@@ -536,12 +532,8 @@ static int nau8821_right_adc_event(struct snd_soc_dapm_widget *w,
- 	switch (event) {
- 	case SND_SOC_DAPM_POST_PMU:
- 		msleep(nau8821->adc_delay);
--		regmap_update_bits(nau8821->regmap, NAU8821_R01_ENA_CTRL,
--			NAU8821_EN_ADCR, NAU8821_EN_ADCR);
- 		break;
- 	case SND_SOC_DAPM_POST_PMD:
--		regmap_update_bits(nau8821->regmap,
--			NAU8821_R01_ENA_CTRL, NAU8821_EN_ADCR, 0);
- 		break;
- 	default:
- 		return -EINVAL;
--- 
-2.25.1
+>  static __always_inline bool riscv_cpu_has_extension_unlikely(int cpu, co=
+nst unsigned long ext)
+>  {
+> -	if (IS_ENABLED(CONFIG_RISCV_ALTERNATIVE) && riscv_has_extension_unlikel=
+y(ext))
+> -		return true;
+> +	compiletime_assert(ext < RISCV_ISA_EXT_MAX,
+> +			   "ext must be < RISCV_ISA_EXT_MAX");
+> =20
+> -	return __riscv_isa_extension_available(hart_isa[cpu].isa, ext);
+> +	if (IS_ENABLED(CONFIG_RISCV_ALTERNATIVE) && __riscv_has_extension_unlik=
+ely_alternatives(ext))
+> +		return true;
+> +	else
+> +		return __riscv_isa_extension_available(hart_isa[cpu].isa, ext);
+>  }
 
+static __always_inline bool riscv_cpu_has_extension_likely(int cpu, const u=
+nsigned long ext)
+{
+	if (IS_ENABLED(CONFIG_RISCV_ALTERNATIVE) && riscv_has_extension_likely(ext=
+))
+		return true;
+
+	return __riscv_isa_extension_available(hart_isa[cpu].isa, ext);
+}
+
+This is the code as things stand. If alternatives are disabled, the if
+statement becomes if (0 && foo) which will lead to the function call
+getting constant folded away and all you end up with is the call to
+__riscv_isa_extension_available(). Unless I am missing something, I don't
+think this patch has any affect?
+
+Thanks,
+Conor.
+
+
+--YUt35LWoARaS+0kq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZhkPpgAKCRB4tDGHoIJi
+0gSNAQC+oMqT7zoEL9RxUhkl7uImpatcHajgjd6QJ8PnV2xTcgD/YMRe1XytJnd7
+9pJBNiy2EcDN51fcQvf7s4vI9GM9Awc=
+=Tq3D
+-----END PGP SIGNATURE-----
+
+--YUt35LWoARaS+0kq--
 
