@@ -1,170 +1,160 @@
-Return-Path: <devicetree+bounces-58743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C99FE8A2EC9
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 15:05:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 504558A2ECD
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 15:06:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EDC651C21441
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 13:05:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 06227285744
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 13:06:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 808C35A11F;
-	Fri, 12 Apr 2024 13:05:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 118205F547;
+	Fri, 12 Apr 2024 13:06:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yIjE59sR"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="hz0GlRA7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04on2080.outbound.protection.outlook.com [40.107.102.80])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4427D55E43
-	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 13:05:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712927123; cv=none; b=czgBZzexEiLMYZmw2BhlDmqJivzqMS/cvfXwUIRYh1P2nqvQ9+fAbZ0vdc/tocNUNgbqoFHW67dIEsDKPN96BXmeghdlOrsnozHi+UQOeMUtGkCKtjexNKXV71rro8CXDzxeNQiIWoHQ7xFd82tlEy44id+pxYMukzwNX8I7vg8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712927123; c=relaxed/simple;
-	bh=wiFlkB+eE3v2d6qF88dWKYMFmze3O8S+7MdMRMGoClE=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Xbs074v5FRbiO41sO3KbSHc/Zk875wh0lbK2ex0UlXv8jZFSnG0Vw/0T5ZFlOLCyuZp2rTfoRjHWXCokmtFrN8c69qj5eJ+CLKW2EQzEeEjsnQRRbuEsnKJbrBq4AVX9Sgurg4EIssuMpWSkykES+C99r7vO1jAfEPWV1+K4giU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yIjE59sR; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-346b96f1483so478155f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 06:05:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712927118; x=1713531918; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xOcTNt5ByY5dfitA7rAX7DzfF2K3DjcIDFUSulbTkvM=;
-        b=yIjE59sRcyldxdw1rtqAycp4aMOvHaTXkhM0gSfDC3W/41Gb2WrydtGgAQJmKLgKt8
-         3Ykv6EFHIazKGTHpfjSaxbvzBPEjzO6l1UGV2Hiih2z1aJb/k7LTnRjjo9Yh4Xo++juN
-         UwzswAfI05+GVHXxfVRAYilswmRqDzzjzPF8GdYAD4DSj4ChKKqkZ6V0mPdJDr29eNwE
-         QZecqgzWBxxy7OzwMKwgtE4ygtRAbotxVkG74nEtd1hcOvCgcADHcF5kN+pTBPtNF6QI
-         fq/gEbCv0t76wuqQn+vZrG2lX3lkXfy1BgNY+zKEjjU7zw3tubtSwK32n7/ngjuLerPF
-         pNTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712927118; x=1713531918;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=xOcTNt5ByY5dfitA7rAX7DzfF2K3DjcIDFUSulbTkvM=;
-        b=bY19ijAR+tUPImu2kXee/oZxFtuq3Ru/Zh7QzYLok3xxr1oWHTaXkYuwlJRKw0cZZA
-         QMaiuTKA0P2n/UqkC1601cKz4qUkT+Na9LvsP/QsHx6q2MawtuIZWimv7YtjFCk1M2KJ
-         YkjoX88WoMhMzaC5X5kVLXXwlxQEv3x/DQ8efwWQxF13x2GY3gos/sNgsWmnFEWPpLjP
-         9Hg2TZOJp6FqftbvgnIb0fuLXL1cBHBZSooYChM4jN8VYNRflX0BBOb6nFI5Z2D+AWTJ
-         uIDwWJOJr7M4xjqw5qwKYAZo0XTSvNusV0fmAdLvzb+AtvohGuKU5t6+m4MJusEC3wDi
-         BNGw==
-X-Gm-Message-State: AOJu0YzhL3YtqpmCxM7ngGA5NC4tfpoMJAEglmYpTbNYql1JOjnxeF1O
-	N6jdh2ucsoda14ZOcPuduDv29igbamC3WBqYnCLpQnWQ+sTWXem+jqriyxP+XgU=
-X-Google-Smtp-Source: AGHT+IFiR9h8j51gi72vNffX3hceH0q+iH5LXTWgHiNHNmQPVUHiRpuRwEL/hhoSi7c6hrWzj0BB+A==
-X-Received: by 2002:a5d:6542:0:b0:343:d23a:c977 with SMTP id z2-20020a5d6542000000b00343d23ac977mr4802161wrv.1.1712927118429;
-        Fri, 12 Apr 2024 06:05:18 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:986c:54c:12ce:a121? ([2a01:e0a:982:cbb0:986c:54c:12ce:a121])
-        by smtp.gmail.com with ESMTPSA id k12-20020a5d6d4c000000b00343e392829dsm4215174wri.97.2024.04.12.06.05.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Apr 2024 06:05:18 -0700 (PDT)
-Message-ID: <bb32ccd8-cc94-43ea-b5e8-09162cf56179@linaro.org>
-Date: Fri, 12 Apr 2024 15:05:17 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E4205D8E4;
+	Fri, 12 Apr 2024 13:05:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.102.80
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712927162; cv=fail; b=Y/8YazRBApuZtLag8bbXtpUJV/nnOYe6bziy2AevML6tfexJcBv4EmTIu8YXK/P7qwUMESuHK7K+I58zBWI0RcgEIp95TB89FOeNDqatZTTAWhReRluY45uAelKrIGFQY9b8d6p8qb6bH5KcYvV6CS+i/HbYasbQVnPlZBqnm6g=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712927162; c=relaxed/simple;
+	bh=EUETNjNg1KTODqS2H2cOaD29uibXEb6ATsQxK3u1YNU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ep9rh7zwZxjr9YTO3u0i5CWBSrlgxhpSNEdaohVjtAFcHK//XIr9oIJ9W6P2PSg2+UPl14ESa91WYxXWksXrNjO60FxNGZ//wUoLMyLPsGS9B4QUsVIt3btCWiF3NChCVwfM/+JamQIVyyKjHTB/l2FgaRZVtl4Zz2RZEWNNADs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=hz0GlRA7; arc=fail smtp.client-ip=40.107.102.80
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gs/kSK7FZuwvwbg9sgViGaxoGw9xOzNnOXF4KsNWcfxW1BcgbAlzpEEjmsvM87iBKkIhkEVfc1pVY98EMfIzAkkioRNkRhlgsi2VnmB39F/ticAtGRvvnaxZSCI9t6wP7tY/S8vEe8lcg5usPSwXhQYSHelh8tboLdeWOeTuKgjomrE+Mp/en9zxIC/qNVcY0m8ARRt8oS66PD2iIpv24/KQZB8FfsBHJNkJgixGStt1f/soRaV6tmAUvrj0MPCY6tjTHz5OQHwENAgcOBXtr5LQfukP5xjJOp6I/om3mwxjr66ioPXWL96eI+lrquarPiEy1hHSmcGIahjH99WkmA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=YgpPRdZgQC+ZkTWiUTbnRQ5PMvQQ+bCXlTifXB9NZAc=;
+ b=dzT4fslGAHS0Ag3fHnS65frkAjep4XY/+NEU+gOzpptmqd2O4rE1pDASZxrkt0E0cpUl7BmLwG/BCMo37297HIG+fpCxkJb/FyPwH3gM1Bzhbn+S42Ky4BScL5ZK+i8gglT34P6Cr5lBr7/qK+ShRNWMD4r7KgqdRqTgWWfImcZGDY0Bs4KJ1Fb4/ZqrZLINwo7b7/a7ns04zTyrVNKAvN1qXblEIbaHRTbCcHprBYhnj1cvsYI+AKty63WkZopISpq9bwRi5lG4FiSpJeNpk7fGdZ/AZ5GFCtJhaAvLR9uZ8LYi3Kk9TFa7xlQWuNoM/17fgHVc6cQfiW0ND9G2ig==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.118.232) smtp.rcpttodomain=linaro.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YgpPRdZgQC+ZkTWiUTbnRQ5PMvQQ+bCXlTifXB9NZAc=;
+ b=hz0GlRA7u3I0dm0s/29gmb0KEKAWIiROFafNZSRifByfqQVAU70guwh5JGnj+jUjm8nRiPFP1JvXgtzKYOQcV79YVIEgN/3/YabCaxYzdv29Y4KO67DEKgSnQCv5phIuXfEyRqtVQ8QhmpnbMRogZ7+LiTTNxDO9wi+L31IMb7IY6c6cvCNSezyIsGP6Pqs+xxI3Etk7VxaLF3u3mdjXDeoOhmrQlYIRo766mXmMgumTQlVJPsK4NGmbKw8dsuLu23/mO4USeTbuYjStm7jrik6TOVc6krvtZ6Sq/CfgGsvDobzUbEKzG7sqL8RyrDnlimaN8L9clKb/CEy6hRGGfA==
+Received: from CH0PR03CA0066.namprd03.prod.outlook.com (2603:10b6:610:cc::11)
+ by DM3PR12MB9287.namprd12.prod.outlook.com (2603:10b6:8:1ac::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.55; Fri, 12 Apr
+ 2024 13:05:57 +0000
+Received: from CH1PEPF0000AD7D.namprd04.prod.outlook.com
+ (2603:10b6:610:cc:cafe::c3) by CH0PR03CA0066.outlook.office365.com
+ (2603:10b6:610:cc::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.21 via Frontend
+ Transport; Fri, 12 Apr 2024 13:05:57 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.118.232) by
+ CH1PEPF0000AD7D.mail.protection.outlook.com (10.167.244.86) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7452.22 via Frontend Transport; Fri, 12 Apr 2024 13:05:57 +0000
+Received: from drhqmail203.nvidia.com (10.126.190.182) by mail.nvidia.com
+ (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Fri, 12 Apr
+ 2024 06:05:46 -0700
+Received: from drhqmail201.nvidia.com (10.126.190.180) by
+ drhqmail203.nvidia.com (10.126.190.182) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.4; Fri, 12 Apr 2024 06:05:45 -0700
+Received: from sumitg-l4t.nvidia.com (10.127.8.10) by mail.nvidia.com
+ (10.126.190.180) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
+ Transport; Fri, 12 Apr 2024 06:05:42 -0700
+From: Sumit Gupta <sumitg@nvidia.com>
+To: <krzysztof.kozlowski@linaro.org>, <robh@kernel.org>,
+	<conor+dt@kernel.org>, <maz@kernel.org>, <mark.rutland@arm.com>,
+	<treding@nvidia.com>, <jonathanh@nvidia.com>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-tegra@vger.kernel.org>, <amhetre@nvidia.com>, <bbasu@nvidia.com>,
+	<sumitg@nvidia.com>
+Subject: [Patch v3 0/2] memory: tegra: Skip restricted register access from Guest
+Date: Fri, 12 Apr 2024 18:35:38 +0530
+Message-ID: <20240412130540.28447-1-sumitg@nvidia.com>
+X-Mailer: git-send-email 2.17.1
+X-NVConfidentiality: public
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2] arm64: dts: meson: fix S4 power-controller node
-To: xianwei.zhao@amlogic.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240412-fix-secpwr-s4-v2-1-3802fd936d77@amlogic.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20240412-fix-secpwr-s4-v2-1-3802fd936d77@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD7D:EE_|DM3PR12MB9287:EE_
+X-MS-Office365-Filtering-Correlation-Id: ffd9cc91-9786-4c66-5e30-08dc5af14b0a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	x93W4g5ImBi7TpfE7Yphj4LLyvqDtx/pUtPHx9v4fwfg1Z9ElcJ8X7+CK4YqJHalbNYbwCRLHtWDuiAazTONtb9eT0tsrfafv1YP5O+t6nXjmSZQGvOSV3A8yTYrjW3It2ArN4PvAmEF2nzhoeQoHchfBiFQJK31B7SDsRnMu/FsCZboqrNOaLDOeqxl9FYm7d1R6mKOoErXWVzmngYJ6sDJz/keeGyrsTEOqe+ooAYTmyn2CCDGg82c0DkjBBEEk1ZG3O40sVRxgsb9xZEL1QwYEXOrN62go7cK/gqnLMBMk1kjYG8j6SDmpnl1HMU8uMeO/B651TiOyWdMP8rodxTWAWai7ZRmLP3QBA6pCphD5OG5dEdyP8tMn8vfU2DT5cIVF8IQq9LuP1CmkbxDi1vXm6MaATCRTVogBCpOcM9Dzjr34kyJhOl60EscWmNV/EMrCup8bS3B/jqMb0T4WpPihHFD1a3L83zRXdy67dPSW5jVf84ssuuV0yDmDq/QSE4uPPvRD8Lp07lCNKVESdko3KrXZs/iJF8ys06dGjkUHX2PbznviO37SNVIWpHKLBAuSR5kbQwnS10xwtbcb8RVD+xbjG+g1kNK1hhH7rRMU+mGrCd0c1JQwyZhqbS/V1s3uxdg1pn0UJhD7qGjjoNgQPoF54aUS5Va1BgNStLxUtbUlr1HBtflYaB2dHx90YkSnD20Vt8nLPfIX5CUzsAKHwD1eTqQ1fMAMXcrGErUoT8ZWeFRrWn6KGnEZwLm
+X-Forefront-Antispam-Report:
+	CIP:216.228.118.232;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge1.nvidia.com;CAT:NONE;SFS:(13230031)(376005)(1800799015)(36860700004)(82310400014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Apr 2024 13:05:57.0794
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ffd9cc91-9786-4c66-5e30-08dc5af14b0a
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.232];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CH1PEPF0000AD7D.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PR12MB9287
 
-On 12/04/2024 10:42, Xianwei Zhao via B4 Relay wrote:
-> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> 
-> The power-controller module works well by adding its parent
-> node secure-monitor.
-> 
-> Fixes: 085f7a298a14 ("arm64: dts: add support for S4 power domain controller")
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
-> Changes in v2:
-> - Add fixes tags in commit message.
-> - Add firmware node to adapt documentation.
-> - Link to v1: https://lore.kernel.org/r/20240408-fix-secpwr-s4-v1-1-01aa7ee72c52@amlogic.com
-> ---
->   arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 13 +++++++++----
->   1 file changed, 9 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> index ce90b35686a2..10896f9df682 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> @@ -65,10 +65,15 @@ xtal: xtal-clk {
->   		#clock-cells = <0>;
->   	};
->   
-> -	pwrc: power-controller {
-> -		compatible = "amlogic,meson-s4-pwrc";
-> -		#power-domain-cells = <1>;
-> -		status = "okay";
-> +	firmware {
-> +		sm: secure-monitor {
-> +			compatible = "amlogic,meson-gxbb-sm";
-> +
-> +			pwrc: power-controller {
-> +				compatible = "amlogic,meson-s4-pwrc";
-> +				#power-domain-cells = <1>;
-> +			};
-> +		};
->   	};
->   
->   	soc {
-> 
-> ---
-> base-commit: 4cece764965020c22cff7665b18a012006359095
-> change-id: 20240408-fix-secpwr-s4-a99ff960d0ae
-> 
-> Best regards,
+MC SID and Broadbast channel register access is restricted for Guest VM.
+But the Tegra MC driver is considering both these regions as mandatory
+and causes error on access. Change that to consider both the regions as
+optional in SoC's from Tegra186 onwards. Then skip access to the
+restricted registers from Guest if its region is not present in Guest DT
+and hence not mapped.
+Previously, the solution in [1] was not accepted. Now, handled the
+problem with this alternate solution.
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+v2[2] -> v3:
+- fix the yaml error.
+- add null check for ch_regs in mc_ch_readl() causing error in old SoC's
+- remove unused populate label reported by kernel test robot.
+- fix existing compile warning about length of name in tegra186_mc_probe.
+
+v1[1] -> v2:
+- consider broadcast channel registers also as restricted along with sid
+- make sid and broadcast regions optional and access if present in dt.
+- update the yaml file.
+
+Sumit Gupta (2):
+  dt-bindings: make sid and broadcast reg optional
+  memory: tegra: make sid and broadcast regions optional
+
+ .../nvidia,tegra186-mc.yaml                   | 95 ++++++++++---------
+ drivers/memory/tegra/mc.c                     |  9 +-
+ drivers/memory/tegra/mc.h                     | 22 +++--
+ drivers/memory/tegra/tegra186.c               | 25 ++---
+ 4 files changed, 82 insertions(+), 69 deletions(-)
+
+[1]https://lore.kernel.org/lkml/20240206114852.8472-1-sumitg@nvidia.com/
+[2]https://lore.kernel.org/lkml/20240402132626.24693-1-sumitg@nvidia.com/
+
+-- 
+2.17.1
+
 
