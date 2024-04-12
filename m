@@ -1,202 +1,162 @@
-Return-Path: <devicetree+bounces-58646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD8648A2AF0
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 11:20:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03F538A2AC4
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 11:17:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0CA781C2270B
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 09:20:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE5AB285264
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 09:17:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DB7C57877;
-	Fri, 12 Apr 2024 09:18:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF1924D9FD;
+	Fri, 12 Apr 2024 09:17:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iyj5UWD0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TKFX4Z1X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0723C5732E;
-	Fri, 12 Apr 2024 09:18:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30BCD3EA73
+	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 09:17:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712913518; cv=none; b=pDSA5mLkcjiN/nIVca8GtBslgPbWZ1b3vngoafTRlLQDU0MySsy/3ITh2miXR2NBnN+3j/cY9KjKhSvaZ1utVq8HkV559aoJsEfAQf3Yjlfgy48UopgjihCyVleOedcpkd1zD3b67oyY99vYYGdNqqevZ3TcPNA0DNv9EnCsSkc=
+	t=1712913463; cv=none; b=LCa6JKoDr/pGu6xE5jEHYJK4Sqv3Ki/Tl1MfDklbKiguhKgdDkeFMrSUeoB2UZ7ypoSYbKAtNBiQJvsP6HpIMooGcH461631Kud3IUsuTLLJL4VHxBAqxh0jK5rsuxtX1askaf1LMNSWRn1RwDuLT43HqTccn5172Xw41n+6HUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712913518; c=relaxed/simple;
-	bh=Ryy/lwApd8/64leqR7ninfDTgUFolUziygAVRILXylw=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=BRh77hEtXkL0xZTmnkOChXkvv2cWttyMg7kl5qQ3RWxbdph0Unnh72RFO5psn4B08ZO6PydXpJU8sEumUI0rQBb5g/ME+zJ/IO2KYRNq6eKz1TnRce8kEaAZr0ic5kduYo0qmShNAdxwJYu+pOMB/EdTGMFZ9Paw9gohrxaIFpg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iyj5UWD0; arc=none smtp.client-ip=209.85.215.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-5f415fd71f8so559688a12.3;
-        Fri, 12 Apr 2024 02:18:36 -0700 (PDT)
+	s=arc-20240116; t=1712913463; c=relaxed/simple;
+	bh=FUKtKtdq36Vt1r49LS8QSvI7oP2R7ODnRMLXyosQE2g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=euf+t+O5QtfT+s/vVo/7Fej2vgZUyXqKrLClZ2NJkh7ZP/9OOyuuEeKjEAYomFoFGvpIkVi0kiFLJbqKUW4WIQ2fohG99/RPsBssKTzLSU4AQzKt16ZrZTHlGMMwFwmwgjBWr9wLsVbzLr0XtbThtfv9wm/9aEoEmFtojjktvZM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TKFX4Z1X; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-563cb3ba9daso626918a12.3
+        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 02:17:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712913516; x=1713518316; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OLhEm1cQTgYq4Cay+gDZBnFx7MCkPnHfSrf0in79+7k=;
-        b=iyj5UWD0usEUt2Isa24ieemlJV7DW5zN7i3OHjq2BU8DxUiA9F2Hx1Oha0e6LAyC7w
-         1NfnSCkII2BS5GHn7HDIRXBiN+RwjFUMpCQ+FNKIexZLNp5nd/J9VOCCD8/g1t8hza2O
-         EoOeUYdvTL+fV6UYkdjPkgV8wRFmG85yzO3Awfey9A+F9pjxBfFwUGieMbJ4T1eq4JMr
-         h3xoCf23RS3ywgZkYAilUUNboGpanl29e40xptT26G9uz5wSOgSnPBAJup4iEARsEOVw
-         Hr3E6pAk+dvtEizCGvovZaaBrjTzZk7rGYOYOUJgu6nkeIsXmObdLUZwZqpfLMdw5aty
-         9AcA==
+        d=linaro.org; s=google; t=1712913460; x=1713518260; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=NpTqhd0B9/xzNoER4WA8UDMsth7BUMydRvViv6uQMmo=;
+        b=TKFX4Z1XJWkQ9N4MhCD1f73C1dbDhjWbELbrHG+BfRwZ/jJlCSV4tCzZl3CviydKMf
+         RIBmsiog/28zIBS4juJKek9QmZ8CffYyiputBrLfPNZe7xmvvEyGWoXfwWjRc122MrbO
+         oabKaUJHviRzJnYDbJhbsD3J5pP5aG0CL+iSeCgXvYZP3Fb3cfcUY4WVVryH0A79nmpB
+         Uu4AncipQUvveomsgWxbohkonzuT2aKaT1lSWg6XMKwBg20iM+mTi+b8DTo8bKfzkVI2
+         OUv1PvPgF/lMnyDrB3me6+YR8y6dEF2M9BVtNTy7Mcubc74f6Eu7p/uczxX08kgDHm00
+         l0PA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712913516; x=1713518316;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OLhEm1cQTgYq4Cay+gDZBnFx7MCkPnHfSrf0in79+7k=;
-        b=mlr7/JVkcF5usl9dIQGnbQ+v98ZN1zgNdwVm13/fYMkjLhuHH3LxzZpJ8uDh4DH3YK
-         4a9Lft5ZPkJtNN2xQ54vskbZ4ML+eHul9qUlw0X+sReNkOdkL1Hr+j5w2YmqVmrLCu4B
-         i4Vr7bfQBoEa4ko44VbTrKL5rNwub2FNDv75/QbkYUEgKiP59GOOCYuMddt9+MPsbZhu
-         nt640Q+Ycr7dKVnprhVcLkrr43/2yHFOOsI8EBNc9RxsWMf/PM6jMxWctoDp7CtFCBR2
-         7Wdb8chHRwlSaXPsx/rK7bF2g8p9XmpbCJMXg+2ZuSOZcJxjIbxWNaLzni8GUCee9LgI
-         ugXw==
-X-Forwarded-Encrypted: i=1; AJvYcCWzFgC/5ASI7S/2WaqPw1XESjQpJEm/orCi+eXPuchCp1iQ5iVDk+2I0j43TbMc/X66dogaAAMOSZHxTGLkKE8BGpXaxLvnKcWfD0hWT/GdQc5oIM34ctXTMulVjwLDmvtLtVvDFph8Dw==
-X-Gm-Message-State: AOJu0Yxqwwhf3khPe2KLnCpby531nuw+wTDACsT0jpBiz9Dp3JUkDlwz
-	npfaziA/0F1CSqGnXk4+c6GvKGLpzsxdyb49V6HfdgzDF2ImX7Ts9YVDBQ==
-X-Google-Smtp-Source: AGHT+IGlb1alqgq8RG5vCcKY5zvrVt/1FkUs9Nblo1e0iPMP4ckeJANiyp3bwgt0kBCN42Zklkd+bA==
-X-Received: by 2002:a05:6a20:a11e:b0:1a7:54b4:8e84 with SMTP id q30-20020a056a20a11e00b001a754b48e84mr2667412pzk.10.1712913516383;
-        Fri, 12 Apr 2024 02:18:36 -0700 (PDT)
-Received: from peter-bmc.dhcpserver.bu9bmc.local (1-34-21-66.hinet-ip.hinet.net. [1.34.21.66])
-        by smtp.gmail.com with ESMTPSA id b25-20020a63a119000000b005e840ad9aaesm2332711pgf.30.2024.04.12.02.18.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Apr 2024 02:18:36 -0700 (PDT)
-From: Peter Yin <peteryin.openbmc@gmail.com>
-To: patrick@stwcx.xyz,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@aj.id.au>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v5 12/12] ARM: dts: aspeed: Harma: Modify GPIO line name
-Date: Fri, 12 Apr 2024 17:16:00 +0800
-Message-Id: <20240412091600.2534693-13-peteryin.openbmc@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240412091600.2534693-1-peteryin.openbmc@gmail.com>
-References: <20240412091600.2534693-1-peteryin.openbmc@gmail.com>
+        d=1e100.net; s=20230601; t=1712913460; x=1713518260;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NpTqhd0B9/xzNoER4WA8UDMsth7BUMydRvViv6uQMmo=;
+        b=GveCPgawXxBNeZ/yqNZ8PxYw1xN8uTEH3uExrex2ieknQS+enhrELze/UA/krZB9gc
+         jMSVbuTHdis8j5pKJWLXprsnTciuvLKuenXosxObYhTsq1X219CXqjRHDKgYsmNSRJCh
+         4ju7RqkQN2+KtJSa3DdSKzkCuQrJoAPyKKASpFtP4ofl81VrfZ38Y1q07i1VPd+aMLdA
+         b3953XTdFkogswv59lf1kSBOEgsbHRRcXzs0+nkvnVb2jrLgH/+N7VuJRDF5O2GaeWNC
+         Ntu0QCu8RArgKUk1yg9YowwV58QsQ7tfz8TgfUQ+sMamE8mkSKFtrpbm1wpjnM6HzuQI
+         8tjw==
+X-Forwarded-Encrypted: i=1; AJvYcCWdHr6DZeyxE54yu6wIloZESF8z0hrEfcnAiNkI8ubnfIenWUWNmfx0Do/gmCLJtH0b0hoSoC21DSolg9HEvfFGoVHj1aOOicQDuQ==
+X-Gm-Message-State: AOJu0YwpdJloJuTBgLGCPdU9iz+X8+dSIkPbXpDA9PT4CqkgMhTwsGX3
+	odlcru2S8wQDTMOUrgT1OTzOz64lCxJsSZugzgFdhVgxUxL3W62CPNHkuMAKvS4=
+X-Google-Smtp-Source: AGHT+IHq4nDOY9BE7wVDb1XOnSrleY4Dv23ThXeV1lFWTOEAGTh75Q6EpVDt8PPWewS00Yu7y3phRA==
+X-Received: by 2002:a50:d542:0:b0:56f:e489:471a with SMTP id f2-20020a50d542000000b0056fe489471amr1659588edj.5.1712913460463;
+        Fri, 12 Apr 2024 02:17:40 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id k20-20020aa7c054000000b0056ff82e54a0sm675063edo.31.2024.04.12.02.17.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Apr 2024 02:17:40 -0700 (PDT)
+Message-ID: <86bf8248-2443-4ced-a67c-7845fef98fd3@linaro.org>
+Date: Fri, 12 Apr 2024 11:17:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/5] drivers/rtc/rtc-xgene: Add "snps,dw-apb-rtc" into the
+ "compatible"
+To: wefu@redhat.com, jszhang@kernel.org, alexandre.belloni@bootlin.com,
+ robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ guoren@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+ aou@eecs.berkeley.edu
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org
+References: <20240412080238.134191-1-wefu@redhat.com>
+ <20240412080238.134191-4-wefu@redhat.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240412080238.134191-4-wefu@redhat.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add:
-"reset-cause-platrst", "cpu0-err-alert", "leakage-detect-alert",
-"presence-post-card", "ac-power-button", "P0_I3C_APML_ALERT_L",
-"irq-uv-detect-alert", "irq-hsc-alert", "cpu0-prochot-alert",
-"cpu0-thermtrip-alert", "reset-cause-pcie", "pvdd11-ocp-alert"
+On 12/04/2024 10:01, wefu@redhat.com wrote:
+> From: Wei Fu <wefu@redhat.com>
+> 
+> This patch add "snps,dw-apb-rtc" into the "compatible".
 
-Rename:
-"power-cpu-good" to "host0-ready",
-"host-ready-n" to "post-end-n
 
-Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
----
- .../dts/aspeed/aspeed-bmc-facebook-harma.dts  | 38 ++++++++++++++-----
- 1 file changed, 29 insertions(+), 9 deletions(-)
+Please do not use "This commit/patch/change", but imperative mood. See
+longer explanation here:
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-index a5abb16e5d8b..e7f4823ca4b3 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-@@ -332,6 +332,12 @@ gpio@31 {
- 		reg = <0x31>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"","","","",
-+		"","","presence-cmm","",
-+		"","","","",
-+		"","","","";
- 	};
- 
- 	i2c-mux@71 {
-@@ -471,7 +477,8 @@ &gpio0 {
- 	/*A0-A7*/	"","","","","","","","",
- 	/*B0-B7*/	"","","","",
- 			"bmc-spi-mux-select-0","led-identify","","",
--	/*C0-C7*/	"","","","","","","","",
-+	/*C0-C7*/	"reset-cause-platrst","","","","",
-+			"cpu0-err-alert","","",
- 	/*D0-D7*/	"","","sol-uart-select","","","","","",
- 	/*E0-E7*/	"","","","","","","","",
- 	/*F0-F7*/	"","","","","","","","",
-@@ -480,7 +487,8 @@ &gpio0 {
- 	/*I0-I7*/	"","","","","","","","",
- 	/*J0-J7*/	"","","","","","","","",
- 	/*K0-K7*/	"","","","","","","","",
--	/*L0-L7*/	"","","","","","","","",
-+	/*L0-L7*/	"","","","",
-+			"leakage-detect-alert","","","",
- 	/*M0-M7*/	"","","","","","","","",
- 	/*N0-N7*/	"led-postcode-0","led-postcode-1",
- 			"led-postcode-2","led-postcode-3",
-@@ -499,7 +507,16 @@ &gpio0 {
- 	/*W0-W7*/	"","","","","","","","",
- 	/*X0-X7*/	"","","","","","","","",
- 	/*Y0-Y7*/	"","","","","","","","",
--	/*Z0-Z7*/	"","","","","","","","";
-+	/*Z0-Z7*/	"","","","","","","presence-post-card","";
-+};
-+
-+&gpio1 {
-+	gpio-line-names =
-+	/*18A0-18A7*/ "ac-power-button","","","","","","","",
-+	/*18B0-18B7*/ "","","","","","","","",
-+	/*18C0-18C7*/ "","","","","","","","",
-+	/*18D0-18D7*/ "","","","","","","","",
-+	/*18E0-18E3*/ "","","","","","","","";
- };
- 
- &sgpiom0 {
-@@ -548,10 +565,10 @@ &sgpiom0 {
- 	"","reset-control-cpu0-p1-mux",
- 	"","reset-control-e1s-mux",
- 	"power-host-good","reset-control-mb-mux",
--	"power-cpu-good","reset-control-smb-e1s-0",
-+	"host0-ready","reset-control-smb-e1s-0",
- 	/*E0-E3 line 64-71*/
- 	"","reset-control-smb-e1s-1",
--	"host-ready-n","reset-control-srst",
-+	"post-end-n","reset-control-srst",
- 	"presence-e1s-0","reset-control-usb-hub",
- 	"","reset-control",
- 	/*E4-E7 line 72-79*/
-@@ -602,13 +619,16 @@ &sgpiom0 {
- 	"SLOT_ID_BCB_2","",
- 	"SLOT_ID_BCB_3","",
- 	/*K0-K3 line 160-167*/
--	"","","","","","","","",
-+	"","","","","","","P0_I3C_APML_ALERT_L","",
- 	/*K4-K7 line 168-175*/
--	"","","","","","","","",
-+	"","","","","","","irq-uv-detect-alert","",
- 	/*L0-L3 line 176-183*/
--	"","","","","","","","",
-+	"irq-hsc-alert","",
-+	"cpu0-prochot-alert","",
-+	"cpu0-thermtrip-alert","",
-+	"reset-cause-pcie","",
- 	/*L4-L7 line 184-191*/
--	"","","","","","","","",
-+	"pvdd11-ocp-alert","","","","","","","",
- 	/*M0-M3 line 192-199*/
- 	"","","","","","","","",
- 	/*M4-M7 line 200-207*/
--- 
-2.25.1
+This we see from the patch. Say what hardware are you adding?
+
+Please run scripts/checkpatch.pl and fix reported warnings. Then please
+run `scripts/checkpatch.pl --strict` and (probably) fix more warnings.
+Some warnings can be ignored, especially from --strict run, but the code
+here looks like it needs a fix. Feel free to get in touch if the warning
+is not clear.
+
+
+Best regards,
+Krzysztof
 
 
