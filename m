@@ -1,152 +1,120 @@
-Return-Path: <devicetree+bounces-58893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 956138A38F6
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 01:40:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F202E8A3905
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 01:47:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E8C91F22A70
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 23:40:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 204121C20FB8
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 23:47:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E8C7152532;
-	Fri, 12 Apr 2024 23:40:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38309152DE3;
+	Fri, 12 Apr 2024 23:47:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IPXBUvTS"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="3Bd7Lw4R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 184D910F4;
-	Fri, 12 Apr 2024 23:40:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B5C815218D
+	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 23:47:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712965233; cv=none; b=th+v11f8vTPsopDz1/Aah+7DjWy46BvzMlwZwnd/f/2+Bux4om4EcPS3EqcGa+cpeZtLuyUrObRB/j/Znttd/oF8F1s3AxnejTl3QWyXsiGyNEna9rr/elBEF/tNnBI93micq5AZXUlMLQU3SYnfh59zpvRq6xrSdGnHemy7tZo=
+	t=1712965668; cv=none; b=qaC89C6+RkiydSZOhyh+gJ8zxlmSta2BfguGOjaprJ1aXcpgplXKqjOAtARAX9YG0y6ooKDJdhsNF0PValljtwLMIzLYBlZ0jX/i9v0XTjc0rQ77fkE68K4KGdNhsa+3L+5jvIAsCBhh6Fh0hb6xM0Z4WBeOI84QrSxr6Na/L84=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712965233; c=relaxed/simple;
-	bh=9fTY4WZx/alT8Sa+UXHnrqhnRrKl/iF6TU4j2OrIj/0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=khIr6mALESvWFhk9B8AIIKClNZ5iW9IpugBAgYbTaX548rVA7teD+RbhVFLpBu0g403yMhRX+jUERaVbwOkOfvrhlH+dm1mfRVqIxoEZ2cEB4wIR+fmX+vlhftIs/R224HJ2B5c2kYOmTgu9kgeYZNx+dIUem29xocPGjHpJ88c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IPXBUvTS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EDC9C113CC;
-	Fri, 12 Apr 2024 23:40:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712965232;
-	bh=9fTY4WZx/alT8Sa+UXHnrqhnRrKl/iF6TU4j2OrIj/0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IPXBUvTSeM9fF+xXpA07Gpnzgo9A4roMQAV8BMU8Tsh9iCbQaED1Slw64mRvBxR+l
-	 xpT/q0xlzSKtEP7HbPN96NZ3fSnEHd6VmNwbNSSTBjT1QsvogDycYZNb5G8ytc9y3Z
-	 l63WmrYLwUYiRLttqEDcTiRZKaQJS+5b8J59T+FLhWOZ5ajzoO7HjID3hecqtoSZ73
-	 8rWb3Byn3SqU8X0Mg3+d4S7Ugxc4cnRJtRDPzTk2wUey0Iob5bmb0ek6FurxeJggvg
-	 du6yiPVNMMZwsya5CHQHtdtjM8X0fY/3Hn+Hf1/ZB+wOxZpIaMyUvwXxHbQCo5vnML
-	 NXNVXjT7x52IA==
-Date: Sat, 13 Apr 2024 00:40:26 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Charlie Jenkins <charlie@rivosinc.com>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Evan Green <evan@rivosinc.com>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH 02/19] riscv: cpufeature: Fix thead vector hwcap removal
-Message-ID: <20240413-sharper-unlivable-5a65660b19e2@spud>
-References: <20240411-dev-charlie-support_thead_vector_6_9-v1-0-4af9815ec746@rivosinc.com>
- <20240411-dev-charlie-support_thead_vector_6_9-v1-2-4af9815ec746@rivosinc.com>
- <20240412-tuesday-resident-d9d07e75463c@wendy>
- <ZhlrdGXfSushUNTp@ghost>
- <20240412-eastcoast-disparity-9c9e7d178df5@spud>
- <ZhmeLoPS+tsfqv1T@ghost>
- <20240412-chemist-haunt-0a30a8f280ca@spud>
- <ZhmoPuoR00aS6qZp@ghost>
+	s=arc-20240116; t=1712965668; c=relaxed/simple;
+	bh=jw/yz0yE0kH6mgpkP9FvufT0s7h6fEHt5cUIgmJZCVk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KwDTl4LKRO8LsPn03xtz9PCvDCOGxBwh3W9EoraMjC6FnBUDnHJTuNU3K3FIdxyUF6gEZtigCxE0ugZvwFOaba7PjGOdfmFHZ+VL+mBzim35Ba5HlaQEPwkjvW+Ss9bzDwixOUWP328AxX09jfSqutYI1KjfN7M7XN2mdekgmoA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=3Bd7Lw4R; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2d476d7972aso17936231fa.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 16:47:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712965664; x=1713570464; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eM8/+MVXo4j589BOsrVszGbTlP/kpDmS7ndlq2yapl0=;
+        b=3Bd7Lw4RCRbCJyzVOwolosW85tdJPCGwMiUtVw8pVLAjIHl2DGSa5JOQKaKVPAyAP+
+         kubIz6pM3vTQ3+Mc/GVMerGtVRsuWJEskZ0Gm9aHyv+rmm0CDOGnjRfdzEb6rBzqBL2c
+         BrEBWDlmGXnCY7Z8Aw9D0ex9/NEKjg03jzkB4+/qTcQ8F5Y50W0e1mEYRwnNmu/TUqG5
+         cdNZGNZxAQr2Uwupa/KSCmnYUXtejn90u2cxeJNJr1jdMckVhqXdd1TjMLUqDrquMqmF
+         LSi2l7C9EHyg/20Ql1kdoENrXvMiihj1in9+B05YdWwc3OlV8tlP5S6JYcaShJEpglhA
+         aFwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712965664; x=1713570464;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=eM8/+MVXo4j589BOsrVszGbTlP/kpDmS7ndlq2yapl0=;
+        b=e52gFTm4n8pla3q5XFXYAcg/xIsg72U1TWxIQtJLMSho+bf3UG4m+q2/dgrRRF7UHI
+         xNahMoPE2jUPN/ZJ7fOn+PrlfHLX98N+WZl5oS1bpT0BJ10Q0yJbB/d5sOzRytgXAUgO
+         ZgJNXS6luX3+7oy1ugu7sYokf8GTnqaBKZIwRIdDptXT1+TdBjzEk6PcsJaWAeyYHfGC
+         L5gKz4uOblOkAU1Gt4z/bL2s1RTSpIIqPt5lQnoNYnzl5noPuGJqZln3GJ+HwdEVsMV8
+         JylCqe7BZK5Bxqs/VA54vz+hagEVX1s4PLI+AJIPuuz0s4+j4uZzWriWw6u+mCZvAaWC
+         U/7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUX8YJkB4h9jI0wKqLaWT3MbkpQ5vLNya7sjTtNjJKYWZTGyc3Rlr1SAmQ0fhsHiDSDhr7jm3DM9qKRTk+TULGKPIEs/JZtLH5jzg==
+X-Gm-Message-State: AOJu0YxuJPc6wJCZcbQedF5qU9w5kI1JqcBFEetdvG9V/FZ1nNqZnEam
+	Aq+VsnbH/av5nnXOkuxwF32k5xo6J/SDo8KPRkdaGT4ac4N9fguzMcLrPdf3uhA8FC77Y/0rWHA
+	yPny4vUOCuiBDtJy5VRp4oolZq94UREB+ikAAkQ==
+X-Google-Smtp-Source: AGHT+IExiVIJcWMSlJZEaatbknw9+1QMz0NNtkro7JngoiP2cYevmLCqjU/V1Zl+XIXmghwPbX45naeJ8amcBFZEP8M=
+X-Received: by 2002:a2e:97cf:0:b0:2d8:5e21:8eaf with SMTP id
+ m15-20020a2e97cf000000b002d85e218eafmr3182431ljj.41.1712965664380; Fri, 12
+ Apr 2024 16:47:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="fiOPUQP1XJPUpApw"
-Content-Disposition: inline
-In-Reply-To: <ZhmoPuoR00aS6qZp@ghost>
-
-
---fiOPUQP1XJPUpApw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20240412-iio-backend-axi-dac-v3-0-3e9d4c5201fb@analog.com> <20240412-iio-backend-axi-dac-v3-7-3e9d4c5201fb@analog.com>
+In-Reply-To: <20240412-iio-backend-axi-dac-v3-7-3e9d4c5201fb@analog.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Fri, 12 Apr 2024 18:47:33 -0500
+Message-ID: <CAMknhBHZRfvNtkbpWbi7tTXYa_rgRk+Q4z5MOd0O61FeEqBQnQ@mail.gmail.com>
+Subject: Re: [PATCH v3 07/10] dt-bindings: iio: dac: add docs for AD9739A
+To: nuno.sa@analog.com
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	Dragos Bogdan <dragos.bogdan@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Apr 12, 2024 at 02:31:42PM -0700, Charlie Jenkins wrote:
-> On Fri, Apr 12, 2024 at 10:27:47PM +0100, Conor Dooley wrote:
-> > On Fri, Apr 12, 2024 at 01:48:46PM -0700, Charlie Jenkins wrote:
-> > > On Fri, Apr 12, 2024 at 07:47:48PM +0100, Conor Dooley wrote:
-> > > > On Fri, Apr 12, 2024 at 10:12:20AM -0700, Charlie Jenkins wrote:
+On Fri, Apr 12, 2024 at 8:36=E2=80=AFAM Nuno Sa via B4 Relay
+<devnull+nuno.sa.analog.com@kernel.org> wrote:
+>
+> From: Nuno Sa <nuno.sa@analog.com>
+>
 
-> > > > > This is already falling back on the boot CPU, but that is not a s=
-olution
-> > > > > that scales. Even though all systems currently have homogenous
-> > > > > marchid/mvendorid I am hesitant to assert that all systems are
-> > > > > homogenous without providing an option to override this.
-> > > >=20
-> > > > There are already is an option. Use the non-deprecated property in =
-your
-> > > > new system for describing what extesions you support. We don't need=
- to
-> > > > add any more properties (for now at least).
-> > >=20
-> > > The issue is that it is not possible to know which vendor extensions =
-are
-> > > associated with a vendor. That requires a global namespace where each
-> > > extension can be looked up in a table. I have opted to have a
-> > > vendor-specific namespace so that vendors don't have to worry about
-> > > stepping on other vendor's toes (or the other way around). In order to
-> > > support that, the vendorid of the hart needs to be known prior.
-> >=20
-> > Nah, I think you're mixing up something like hwprobe and having
-> > namespaces there with needing namespacing on the devicetree probing side
-> > too. You don't need any vendor namespacing, it's perfectly fine (IMO)
-> > for a vendor to implement someone else's extension and I think we should
-> > allow probing any vendors extension on any CPU.
->=20
-> I am not mixing it up. Sure a vendor can implement somebody else's
-> extension, they just need to add it to their namespace too.
+...
 
-I didn't mean that you were mixing up how your implementation worked, my
-point was that you're mixing up the hwprobe stuff which may need
-namespacing for $a{b,p}i_reason and probing from DT which does not.
-I don't think that the kernel should need to be changed at all if
-someone shows up and implements another vendor's extension - we already
-have far too many kernel changes required to display support for
-extensions and I don't welcome potential for more.
+> +  adi,full-scale-microamp:
+> +    description: This property represents the DAC full scale current.
 
-Another thing I just thought of was systems where the SoC vendor
-implements some extension that gets communicated in the ISA string but
-is not the vendor in mvendorid in their various CPUs. I wouldn't want to
-see several different entries in structs (or several different hwprobe
-keys, but that's another story) for this situation because you're only
-allowing probing what's in the struct matching the vendorid.
+The description could be improved by saying what determines the value
+that need to be entered here. (Also wondering if this is not something
+that should be set at runtime using the _scale attribute instead.)
 
---fiOPUQP1XJPUpApw
-Content-Type: application/pgp-signature; name="signature.asc"
+> +    minimum: 8700
+> +    maximum: 31700
 
------BEGIN PGP SIGNATURE-----
+Missing a default value since this is not a required property?
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZhnGaQAKCRB4tDGHoIJi
-0sbXAQDqwcw8csQEWGYwvW1DEpXXN05Grqo2xpuKvGADPYkWUgEAtM5EfnQLdtX7
-xI9bLNJaIswXp9N/DvHPHd37C0Uo1wY=
-=7ovm
------END PGP SIGNATURE-----
-
---fiOPUQP1XJPUpApw--
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - io-backends
+> +  - vdd-3p3-supply
+> +  - vdd-supply
+> +  - vdda-supply
+> +  - vddc-supply
+> +
 
