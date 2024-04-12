@@ -1,235 +1,326 @@
-Return-Path: <devicetree+bounces-58833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 964378A3544
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 20:03:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F5198A3578
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 20:17:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B1C2281B3C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 18:03:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0BE2F1F20F3D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 18:17:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A79914E2E1;
-	Fri, 12 Apr 2024 18:03:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D9D414EC4E;
+	Fri, 12 Apr 2024 18:17:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fY9tdDir"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="mKj82HQ5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61F57148313
-	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 18:03:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A720E14E2F2
+	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 18:17:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712945010; cv=none; b=C62CoeuEcI2tL1YGBKX6AbnPXGHnpLe67vpghsdojMC+Ig2000GQn4yijXh8ggJw/PTve33NGeoNcD9Nik0eAOhScfRjFYMorRlGxWYWzmEHTt8sK8tYgCz/cLf02mqUcICvnjJQN0gGFCReAEnkT9W6RBD9j64sSKOQQm5dWWQ=
+	t=1712945824; cv=none; b=ZXe66ZqAlDMQldiMAqGCES6I8Z1jnsfzTnYrGrYP5zancucsZb4AI6Pc6KqJEyF+S0KBWNmlJ6d4rGVDHyo8NnNq6KyAtuxWQhVxPf3er813Z9emsQsB2oCi17S1o5GLEy04fdI8mOlVHo+P8BmwVDLl0bpMLcR+pvqzqX2wwN8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712945010; c=relaxed/simple;
-	bh=/lxF20mKrFXMIZ123CDSd95uJ/Clv7SZv23meh+yWLU=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=lsfKAt+ydiKQRy5UfMfCoAQkFQCsRW1n/HunFdSSS9IzPsAqFuauDw5sj79Y9orVwrwHV7UHWnlJ7bmOnAy8zm1+TVjnU//62bZnOo0jbK2aezthAAGA2F5cMr8iB3kxFrD1qrH51R1vivKuSP7zOxvHljV6m38SsLIevKMXSII=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fY9tdDir; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a450bedffdfso154321666b.3
-        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 11:03:28 -0700 (PDT)
+	s=arc-20240116; t=1712945824; c=relaxed/simple;
+	bh=/MGnUUIFV/PfbJzx4J6fZpaWxaKzHgtnIopUoSjHKuM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=msoDgHl0J03qv+Iroprp5b2wZHOd9hgnSojzV2+i2bHjQFlJaPTKDxB0J7wA2/xi/He3foiEmXEXIUrzICcoZKA9D/ozXFWJxTfTJwH5ghNY+KRrkxc3FiApmlbZ1aTQleZ3W+FKlocivkUDJ8o4BbhHuIt9AoYaUc4diPsPQos=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=mKj82HQ5; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-6ed3cafd766so1093615b3a.0
+        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 11:17:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712945007; x=1713549807; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=HR/aAkjvKF0fR28DfhCSal3L9DD0SQbRu453C6NBc70=;
-        b=fY9tdDirZgdKAX3UPB3LrS8X872i2mS1PervnP62wNuRuF3q7ET88+tp2Aso4Oetta
-         g+XMxK+2bKfXRv8mNyMAC8dOjJJFEwGCuWFzBSFr7WxLrC2gORFAHFQqJJf8NlSmN8bh
-         MwfGtJ5GXDBfEQA67ERxe4C7RAJiTfmIhqPBfU2VKwVQklBijyjNpOFSfinItbnq8baA
-         NfQ5LfoY9c0QifAIXIbvkSTsJbSL2oJ3U6zYzzka7GaoNUcNWeDREqRDzIc+HFa1bOdp
-         7YX4OvhnHGW2oWNVGGQkT21T2Ij64jH4mF2X7Vhr284gIQ3h7BuLogP0YUBvK9DBqVhS
-         Q+tw==
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1712945822; x=1713550622; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=fwRQcSH3hoRqkz4lFFtuwqCwddU8BwqxVywbCJRklZ0=;
+        b=mKj82HQ5l2LxWX9PjeQnzoHJfW4ypXE+8m1/kKRG6p985cZlzvOImli4V9B/V/DLuq
+         hvPYVZK60Ldb0okn66pCvxpEde/9aYDHhXataXpndBwg94VTrDbZBElM6jXpWSGAcaLk
+         /W6kTmp+d31v08y90dDCoAS5F9QALEKVQtHC03Cqwfc7vSxSVDWaooNXDOno1QErCnNb
+         vJjtkOHtYM8OZ0Xbf0hLR+pKufr5NuAQzKS+omNAdZSqBMVOy6qDwnESdWfp2YEcLuJc
+         EA8i+VHDBRP784WxB6lR2VGh24ZRzF+wfwdPpY/kv3lTs+Sb2LJgzQS3lBiYRWlqN+Vp
+         tJ5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712945007; x=1713549807;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HR/aAkjvKF0fR28DfhCSal3L9DD0SQbRu453C6NBc70=;
-        b=qiS3ltCC/QNlsj2euSdEEdiWFg34Ik0yNLRONwFMYompN6h7em/lNuHKLXp6Vld8XB
-         MgAemrStQnWCT91k1WppSe7PTxOpi01W0Rm+lZLq+IPrn7XGE7bOWMQVAXHJiT7e/0+4
-         roYtX9/ptlXVF6+2f6jkpLrj0dB9X31Y7nI7UYy1y5TeUPnkEzTUG2HsMmB0itCV1CxO
-         xksKGK4bGOtmOFHwzSvEwlyJgRdg+u4Ncq09Uo7Qh/d4YVJ0mrjubS0321ZjF/ch9eCJ
-         ySJhWjZXtVzpb9HETZ1hYueDKHBYfp9GIcJkMz25lJSY6WC/iUHC5UCLW+E6Mtykr81W
-         MiqQ==
-X-Gm-Message-State: AOJu0Yz2SEQsKYQdOMXEMMaw1pSqFuyjTgSbIGBEwL16uXeutMPuSiMf
-	vZQoHtKBn1c7GrkiICjuKVbxc+tLLcX/t0MCtGb3NFNqQBhNUi0SAzTaHz3wla4=
-X-Google-Smtp-Source: AGHT+IEuWD72JZ9Ik4dvihzkKi11pD0lYAKVIEdiAiY1u2CC2sce6QkxEAvKZljKbXNtcDpCX/U3uA==
-X-Received: by 2002:a17:906:1589:b0:a51:b1b1:b772 with SMTP id k9-20020a170906158900b00a51b1b1b772mr1918124ejd.65.1712945006687;
-        Fri, 12 Apr 2024 11:03:26 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id u5-20020a170906b10500b00a51ab8fc2f9sm2063689ejy.67.2024.04.12.11.03.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Apr 2024 11:03:26 -0700 (PDT)
-Message-ID: <c7e243e3-3f61-4d63-8727-3837838bdfcc@linaro.org>
-Date: Fri, 12 Apr 2024 20:03:24 +0200
+        d=1e100.net; s=20230601; t=1712945822; x=1713550622;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fwRQcSH3hoRqkz4lFFtuwqCwddU8BwqxVywbCJRklZ0=;
+        b=cbqKfO0E44EpQYAo3I4aWQX0dvEw/Gl9mg1y0nK+SX8SGBN78LLhtPSIycsYdiNTsD
+         0oxCfzbTRv/smVnKmhyNI9L6NYD2ECjcmm+pLIhxpHdunW6tLOfgtFJvUeBRa2yuei9I
+         plW31+v2AYlY/IfnZyAIB4Ooy48OnQ2qV3NHhQDuCVSPLR3XSNlo68OsNmTwqdhuyUE5
+         yEK38Y2xzJTLBKv9mprVl7xPAENOaFUjEzEHOIRQ/J0onyF+jIOR7YtLBlwlX3BDsrGu
+         wTTAkMQj1f6b4Mo+LdgTNeoH4CFwbxhv53XRUnXbu1KmJkFd1BfPLkqYRqFBFJHWJKWT
+         3Qmg==
+X-Forwarded-Encrypted: i=1; AJvYcCVgrtu4ukkNYm2jqFSuJrtS3FyiOXF6GMXTJzquBYAa9qmtzIbADKox8HkRWIy1OQ/UkHRH0fbX7/uQP8rtezejOf99IXfIRbfHKA==
+X-Gm-Message-State: AOJu0YzW6ohFGg3+6GBaj0eiVsI5sAtp83MlJTZ2By3f29W7pr0oStPU
+	FMiKqp9NEwv1aFPp4qc4BaFhNQmmTmeFuKK2PP10pghDVKeaRxoApMY6BlKeTXc=
+X-Google-Smtp-Source: AGHT+IEAA1SdXJJ9JaBE0uNqu1IjKHNyvp0QURZDSkRyrJGkvMsb68Cr5A+LNkkLoKuuki78cgNyYA==
+X-Received: by 2002:a05:6a20:9c90:b0:1a9:c757:a22d with SMTP id mj16-20020a056a209c9000b001a9c757a22dmr336085pzb.14.1712945821769;
+        Fri, 12 Apr 2024 11:17:01 -0700 (PDT)
+Received: from ghost (mobile-166-137-160-039.mycingular.net. [166.137.160.39])
+        by smtp.gmail.com with ESMTPSA id d3-20020a056a00198300b006e6c6a50e5esm3162896pfl.34.2024.04.12.11.16.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Apr 2024 11:17:01 -0700 (PDT)
+Date: Fri, 12 Apr 2024 11:16:54 -0700
+From: Charlie Jenkins <charlie@rivosinc.com>
+To: Evan Green <evan@rivosinc.com>
+Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH 16/19] riscv: hwprobe: Add vendor extension probing
+Message-ID: <Zhl6lvZzUrCoAB8N@ghost>
+References: <20240411-dev-charlie-support_thead_vector_6_9-v1-0-4af9815ec746@rivosinc.com>
+ <20240411-dev-charlie-support_thead_vector_6_9-v1-16-4af9815ec746@rivosinc.com>
+ <CALs-Hss=vuNgq-8bVL1DOR431qFpn-D13yFGn6yf_2saZO0FVQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: reset: Add Amlogic T7 Reset Controller
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: neil.armstrong@linaro.org, kelvin.zhang@amlogic.com,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- Zelong Dong <zelong.dong@amlogic.com>
-References: <20240329-t7-reset-v1-0-4c6e2e68359e@amlogic.com>
- <20240329-t7-reset-v1-1-4c6e2e68359e@amlogic.com>
- <927ad2cb-3b41-4eda-b930-856be64ae9ba@linaro.org>
- <10650c59-96f2-4234-b5fd-aa8efec90e5b@linaro.org>
- <579a1569-7bba-491f-ba5e-7cfcb34ccc1f@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <579a1569-7bba-491f-ba5e-7cfcb34ccc1f@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CALs-Hss=vuNgq-8bVL1DOR431qFpn-D13yFGn6yf_2saZO0FVQ@mail.gmail.com>
 
-On 12/04/2024 19:57, Krzysztof Kozlowski wrote:
-> On 12/04/2024 15:12, Neil Armstrong wrote:
->> Hi,
->>
->> On 29/03/2024 20:39, Krzysztof Kozlowski wrote:
->>> On 29/03/2024 10:17, Kelvin Zhang via B4 Relay wrote:
->>>> From: Zelong Dong <zelong.dong@amlogic.com>
->>>>
->>>> Add a new compatible and the related header file
->>>> for Amlogic T7 Reset Controller.
->>>>
->>>> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
->>>> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
->>>> ---
->>>>   .../bindings/reset/amlogic,meson-reset.yaml        |   1 +
->>>>   include/dt-bindings/reset/amlogic,t7-reset.h       | 197 +++++++++++++++++++++
->>>>   2 files changed, 198 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
->>>> index f0c6c0df0ce3..fefe343e5afe 100644
->>>> --- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
->>>> +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
->>>> @@ -19,6 +19,7 @@ properties:
->>>>         - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
->>>>         - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
->>>>         - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
->>>> +      - amlogic,t7-reset # Reset Controller on T7 and compatible SoCs
->>>>   
->>>
->>> If there is going to be any resend, please drop the comment. It's not
->>> really helpful and makes it trickier to read.
->>>
->>>>     reg:
->>>>       maxItems: 1
->>>> diff --git a/include/dt-bindings/reset/amlogic,t7-reset.h b/include/dt-bindings/reset/amlogic,t7-reset.h
->>>> new file mode 100644
->>>> index 000000000000..ca4a832eeeec
->>>> --- /dev/null
->>>> +++ b/include/dt-bindings/reset/amlogic,t7-reset.h
->>>> @@ -0,0 +1,197 @@
->>>> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
->>>> +/*
->>>> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
->>>> + */
->>>> +
->>>> +#ifndef _DT_BINDINGS_AMLOGIC_T7_RESET_H
->>>> +#define _DT_BINDINGS_AMLOGIC_T7_RESET_H
->>>> +
->>>> +/* RESET0 */
->>>> +/*					0-3	*/
->>>
->>> I assume this matches existing drivers which do not use IDs but map the
->>> binding to hardware value? I remember we talked about changing it, so if
->>> something happened about this and it could be changed: please change.
->>
->> I'm not aware of such discussion, and I don't really see the issue...
->> thoses are IDs, and yes they match the Hardware offsets, and ?
+On Fri, Apr 12, 2024 at 10:05:21AM -0700, Evan Green wrote:
+> On Thu, Apr 11, 2024 at 9:12 PM Charlie Jenkins <charlie@rivosinc.com> wrote:
+> >
+> > Add a new hwprobe key "RISCV_HWPROBE_KEY_VENDOR_EXT_0" which allows
+> > userspace to probe for the new RISCV_ISA_VENDOR_EXT_XTHEADVECTOR vendor
+> > extension.
+> >
+> > Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+> > ---
+> >  arch/riscv/include/asm/hwprobe.h      |  4 +--
+> >  arch/riscv/include/uapi/asm/hwprobe.h | 10 +++++-
+> >  arch/riscv/kernel/sys_hwprobe.c       | 59 +++++++++++++++++++++++++++++++++--
+> >  3 files changed, 68 insertions(+), 5 deletions(-)
+> >
+> > diff --git a/arch/riscv/include/asm/hwprobe.h b/arch/riscv/include/asm/hwprobe.h
+> > index 630507dff5ea..e68496b4f8de 100644
+> > --- a/arch/riscv/include/asm/hwprobe.h
+> > +++ b/arch/riscv/include/asm/hwprobe.h
+> > @@ -1,6 +1,6 @@
+> >  /* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
+> >  /*
+> > - * Copyright 2023 Rivos, Inc
+> > + * Copyright 2023-2024 Rivos, Inc
+> >   */
+> >
+> >  #ifndef _ASM_HWPROBE_H
+> > @@ -8,7 +8,7 @@
+> >
+> >  #include <uapi/asm/hwprobe.h>
+> >
+> > -#define RISCV_HWPROBE_MAX_KEY 6
+> > +#define RISCV_HWPROBE_MAX_KEY 7
+> >
+> >  static inline bool riscv_hwprobe_key_is_valid(__s64 key)
+> >  {
+> > diff --git a/arch/riscv/include/uapi/asm/hwprobe.h b/arch/riscv/include/uapi/asm/hwprobe.h
+> > index 9f2a8e3ff204..6614d3adfc75 100644
+> > --- a/arch/riscv/include/uapi/asm/hwprobe.h
+> > +++ b/arch/riscv/include/uapi/asm/hwprobe.h
+> > @@ -1,6 +1,6 @@
+> >  /* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
+> >  /*
+> > - * Copyright 2023 Rivos, Inc
+> > + * Copyright 2023-2024 Rivos, Inc
+> >   */
+> >
+> >  #ifndef _UAPI_ASM_HWPROBE_H
+> > @@ -67,6 +67,14 @@ struct riscv_hwprobe {
+> >  #define                RISCV_HWPROBE_MISALIGNED_UNSUPPORTED    (4 << 0)
+> >  #define                RISCV_HWPROBE_MISALIGNED_MASK           (7 << 0)
+> >  #define RISCV_HWPROBE_KEY_ZICBOZ_BLOCK_SIZE    6
+> > +/*
+> > + * It is not possible for one CPU to have multiple vendor ids, so each vendor
+> > + * has its own vendor extension "namespace". The keys for each vendor starts
+> > + * at zero.
+> > + */
+> > +#define RISCV_HWPROBE_KEY_VENDOR_EXT_0 7
+> > + /* T-Head */
+> > +#define                RISCV_HWPROBE_VENDOR_EXT_XTHEADVECTOR   (1 << 0)
+> >  /* Increase RISCV_HWPROBE_MAX_KEY when adding items. */
+> >
+> >  /* Flags */
+> > diff --git a/arch/riscv/kernel/sys_hwprobe.c b/arch/riscv/kernel/sys_hwprobe.c
+> > index e0a42c851511..365ce7380443 100644
+> > --- a/arch/riscv/kernel/sys_hwprobe.c
+> > +++ b/arch/riscv/kernel/sys_hwprobe.c
+> > @@ -69,7 +69,8 @@ static void hwprobe_isa_ext0(struct riscv_hwprobe *pair,
+> >         if (riscv_isa_extension_available(NULL, c))
+> >                 pair->value |= RISCV_HWPROBE_IMA_C;
+> >
+> > -       if (has_vector() && !riscv_has_vendor_extension_unlikely(RISCV_ISA_VENDOR_EXT_XTHEADVECTOR))
+> > +       if (has_vector() &&
+> > +           !__riscv_isa_vendor_extension_available(NULL, RISCV_ISA_VENDOR_EXT_XTHEADVECTOR))
+> >                 pair->value |= RISCV_HWPROBE_IMA_V;
+> >
+> >         /*
+> > @@ -112,7 +113,8 @@ static void hwprobe_isa_ext0(struct riscv_hwprobe *pair,
+> >                 EXT_KEY(ZACAS);
+> >                 EXT_KEY(ZICOND);
+> >
+> > -               if (has_vector() && !riscv_has_vendor_extension_unlikely(RISCV_ISA_VENDOR_EXT_XTHEADVECTOR)) {
+> > +               if (has_vector() &&
+> > +                   !riscv_has_vendor_extension_unlikely(RISCV_ISA_VENDOR_EXT_XTHEADVECTOR)) {
+> >                         EXT_KEY(ZVBB);
+> >                         EXT_KEY(ZVBC);
+> >                         EXT_KEY(ZVKB);
+> > @@ -139,6 +141,55 @@ static void hwprobe_isa_ext0(struct riscv_hwprobe *pair,
+> >         pair->value &= ~missing;
+> >  }
+> >
+> > +static void hwprobe_isa_vendor_ext0(struct riscv_hwprobe *pair,
+> > +                                   const struct cpumask *cpus)
+> > +{
+> > +       int cpu;
+> > +       u64 missing = 0;
+> > +
+> > +       pair->value = 0;
+> > +
+> > +       struct riscv_hwprobe mvendorid = {
+> > +               .key = RISCV_HWPROBE_KEY_MVENDORID,
+> > +               .value = 0
+> > +       };
+> > +
+> > +       hwprobe_arch_id(&mvendorid, cpus);
+> > +
+> > +       /* Set value to zero if CPUs in the set do not have the same vendor. */
+> > +       if (mvendorid.value == -1ULL)
+> > +               return;
+> > +
+> > +       /*
+> > +        * Loop through and record vendor extensions that 1) anyone has, and
+> > +        * 2) anyone doesn't have.
+> > +        */
+> > +       for_each_cpu(cpu, cpus) {
+> > +               struct riscv_isainfo *isavendorinfo = &hart_isa_vendor[cpu];
+> > +
+> > +#define VENDOR_EXT_KEY(ext)                                                            \
+> > +       do {                                                                            \
+> > +               if (__riscv_isa_vendor_extension_available(isavendorinfo->isa,          \
+> > +                                                        RISCV_ISA_VENDOR_EXT_##ext))   \
+> > +                       pair->value |= RISCV_HWPROBE_VENDOR_EXT_##ext;                  \
+> > +               else                                                                    \
+> > +                       missing |= RISCV_HWPROBE_VENDOR_EXT_##ext;                      \
+> > +       } while (false)
+> > +
+> > +       /*
+> > +        * Only use VENDOR_EXT_KEY() for extensions which can be exposed to userspace,
+> > +        * regardless of the kernel's configuration, as no other checks, besides
+> > +        * presence in the hart_vendor_isa bitmap, are made.
+> > +        */
+> > +       VENDOR_EXT_KEY(XTHEADVECTOR);
+> > +
+> > +#undef VENDOR_EXT_KEY
 > 
-> Bindings are not for hardware offsets/values/addresses. It's just not a
-> binding.
+> Hey Charlie,
+> Thanks for writing this up! At the very least I think the
+> THEAD-specific stuff should probably end up in its own file, otherwise
+> it'll get chaotic with vendors clamoring to add stuff right here.
+
+Great idea!
+
+> What do you think about this approach:
+>  * We leave RISCV_HWPROBE_MAX_KEY as the max key for the "generic
+> world", eg 6-ish
+>  * We define that any key above 0x8000000000000000 is in the vendor
+> space, so the meaning of the keys depends first on the mvendorid
+> value.
+>  * In the kernel code, each new vendor adds on to a global struct,
+> which might look something like:
+> struct hwprobe_vendor_space vendor_space[] = {
+>         {
+>                 .mvendorid = VENDOR_THEAD,
+>                 .max_hwprobe_key = THEAD_MAX_HWPROBE_KEY, // currently
+> 1 or 0x8000000000000001 with what you've got.
+>                 .hwprobe_fn = thead_hwprobe
+>         },
+>         ...
+> };
 > 
-> I quickly looked at your driver patch and it confirms: not a binding.
-> Binding constant is used by the driver and DTS consumer.
+>  * A hwprobe_thead.c implements thead_hwprobe(), and is called
+> whenever the generic hwprobe encounters a key >=0x8000000000000000.
+>  * Generic code for setting up the VDSO can then still call the
+> vendor-specific hwprobe_fn() repeatedly with an "all CPUs" mask from
+> the base to max_hwprobe_key and set up the cached tables in userspace.
+>  * Since the VDSO data has limited space we may have to cap the number
+> of vendor keys we cache to be lower than max_hwprobe_key. Since the
+> data itself is not exposed to usermode we can raise this cap later if
+> needed.
+
+I know vendor extensions are kind of the "wild west" of riscv, but in
+spite of that I want to design a consistent API. The issue I had with
+having this "vendor space" for exposing vendor extensions was that this
+is something that is inherently the same for all vendors. I see a vendor
+space like this more applicable for something like
+"RISCV_HWPROBE_KEY_ZICBOZ_BLOCK_SIZE" where a vendor has a specific
+value they would like to expose. I do agree that having a vendor space
+is a good design choice, but I am not convinced that vendor extensions
+are the proper use-case.
+
+By having RISCV_HWPROBE_KEY_VENDOR_EXT_0 we can expose the vendor
+extensions in the same way that standard extensions are exposed, with a
+bitmask representing each extension. If these are instead in the vendor
+space, each vendor would probably be inclined to introduce a key like
+RISCV_HWPROBE_KEY_THEAD_EXT_0 that returns a bitmask of all of the thead
+vendor extensions. This duplicated effort is what I am trying to avoid.
+The alternative would be that vendors have a separate key for each
+vendor extension they would like to expose, but that is strictly less
+efficient than the existing bitmask probing.
+
+Do you think that having the vendor space is appropriate for vendor
+extensions given my concerns?
+
+- Charlie
+
 > 
-> I am really sure we had this talk in the past, but could be I think
-> about different platform. Since this is not a binding, I do not think
-> claiming there is any ABI here is reasonable. Feel free to store them
-> with other hardware values, like in DTS headers etc. We already moved to
-> DTS headers several such "non-binding" constants.
-
-Un-acked.
-
-I looked at my archives and we did talk about it and you were CCed:
-
-https://lore.kernel.org/linux-devicetree/c088e01c-0714-82be-8347-6140daf56640@linaro.org/
-simple-reset is an exception.
-
-So to recap:
-That's not a binding. Don't add some real values to binding headers
-because it is not a binding then.
-
-https://lore.kernel.org/linux-devicetree/CAK8P3a1APzs74YTcZ=m43G3zrmwJZKcYSTvV5eDDQX-37UY7Tw@mail.gmail.com/
-https://lore.kernel.org/linux-devicetree/CAK8P3a0fDJQvGLEtG0fxLkG08Fh9V7LEMPsx4AaS+2Ldo_xWxw@mail.gmail.com/
-https://lore.kernel.org/linux-devicetree/b60f5fd2-dc48-9375-da1c-ffcfe8292683@linaro.org/
-https://lore.kernel.org/linux-devicetree/418c5f0c-5279-41f5-3705-345ec9a97ea2@linaro.org/
-https://lore.kernel.org/all/201401111415.29395.arnd@arndb.de/
-
-
-Best regards,
-Krzysztof
-
+> 
+> -Evan
+> 
+> > +       }
+> > +
+> > +       /* Now turn off reporting features if any CPU is missing it. */
+> > +       pair->value &= ~missing;
+> > +}
+> > +
+> >  static bool hwprobe_ext0_has(const struct cpumask *cpus, unsigned long ext)
+> >  {
+> >         struct riscv_hwprobe pair;
+> > @@ -216,6 +267,10 @@ static void hwprobe_one_pair(struct riscv_hwprobe *pair,
+> >                         pair->value = riscv_cboz_block_size;
+> >                 break;
+> >
+> > +       case RISCV_HWPROBE_KEY_VENDOR_EXT_0:
+> > +               hwprobe_isa_vendor_ext0(pair, cpus);
+> > +               break;
+> > +
+> >         /*
+> >          * For forward compatibility, unknown keys don't fail the whole
+> >          * call, but get their element key set to -1 and value set to 0
+> >
+> > --
+> > 2.44.0
+> >
 
