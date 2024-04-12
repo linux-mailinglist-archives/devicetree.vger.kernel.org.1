@@ -1,319 +1,160 @@
-Return-Path: <devicetree+bounces-58804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3464B8A325D
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 17:25:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 700538A3265
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 17:26:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8D845B225F8
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 15:25:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F2905B21464
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 15:26:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AD05148302;
-	Fri, 12 Apr 2024 15:24:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 158B6145B19;
+	Fri, 12 Apr 2024 15:26:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=epam.com header.i=@epam.com header.b="MC58lINQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Q9sFO7ii"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0039f301.pphosted.com (mx0a-0039f301.pphosted.com [148.163.133.242])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86386148FE0;
-	Fri, 12 Apr 2024 15:24:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=148.163.133.242
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712935469; cv=fail; b=DZdCcd1eXipcKdde9YnRIbEKwBfroGecsLuSXattAfZVlN6ya1LsEfq4H2gaUDuDRly+jS18JCON8A29oQ2YQ50vwN0lgsXiiCile/e59Edd4NCMdKniQZW572CgZCOm+jG6Cf8CL4NNV8e+QjgjB6ZMv5vfQ2A9GKRSwG88PV8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712935469; c=relaxed/simple;
-	bh=Stx7cu6/MmkrdWKcFJUKr32GDlNbOd1Mb5vxEdBiHAo=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=FNrXQ892LuR6EjXJK4L4QaFlLMjMAeZ/AbIFLuIQABOiFE9yDC3C+Hj/Bx7MCrco7gMJSfPVZ0tMw72LznCkWZBbcLxi0QVq8f6DYvb0XKMdk6pwwHmkL8VrYBgubvIwE7Xo5VZ41QaIBkesv47Qf57PgvxtLcv+kr9JxRuX3kI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=epam.com; spf=pass smtp.mailfrom=epam.com; dkim=pass (2048-bit key) header.d=epam.com header.i=@epam.com header.b=MC58lINQ; arc=fail smtp.client-ip=148.163.133.242
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=epam.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=epam.com
-Received: from pps.filterd (m0174679.ppops.net [127.0.0.1])
-	by mx0a-0039f301.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43CEtK01028245;
-	Fri, 12 Apr 2024 15:24:11 GMT
-Received: from eur04-he1-obe.outbound.protection.outlook.com (mail-he1eur04lp2051.outbound.protection.outlook.com [104.47.13.51])
-	by mx0a-0039f301.pphosted.com (PPS) with ESMTPS id 3xf0h61xtp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 12 Apr 2024 15:24:10 +0000 (GMT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QwZCfDQigtBys1gd+2ZeYb1Ue4QV7g3btCRI4FKBBv450XbvMHpktBDw4QFMlBnq/4c27NW+ZB5dYGmQ71mYbPEQivD2gsEDpYgeb34WX2s60eKjfF9qrfLhq6TD27mt+pGhgGN6HJ0rrf+dEyGXcVyXaCUe/vFTtBkpGsPK3I54A5nlcKh9rvA2ylFBQip6nhSohiVRr4Q9sh8pmz/XIRnFfsQCuIw232ydvxm/EiQNxCAsnsJ4VCVcoOYwYzR+kpct51iB9a9Th2nuOkaXbCxEzBlxDyFfVsM5XVoqXwUZJAkKLO27ggbfKewa2t+Q6S5i9TcwZcFDSRmUWq0NXw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TUa9uzl1R24nA5HrUaQh95mnVqvZX1bKlMi2tF1g6fY=;
- b=gaDwMfPrUV+YRw5lOe+XAHdcoYhQclY55lo7uiHHlwPdVXmjw4fR7A9C8UcGTUdEtVfGqrNLsk7ay5T0a76cWcdsHwzGd+vyzRVIuhQO6RP0VrDuwYaa8eRRVSyXMa7cUOMWWh/173VPt9l5+e7o/rMBcxV/oABTuQMSQwWnJdk1fpOl3nTxQmncZuMyp4fDsMeQ86vCboISS8tLUlNKU28xPuDiR/x8qwxyOyRetg2cpEt3DYRFLOBAYiHzZJTzdsYc1OJB5SaRJa9qXhH8r1SiTRa8nB2/LaF5xCGqEzWFHBRECybkKrPKbiHi1Aq7nC6g6sp+w7C/0kwLBEIRgQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=epam.com; dmarc=pass action=none header.from=epam.com;
- dkim=pass header.d=epam.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=epam.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TUa9uzl1R24nA5HrUaQh95mnVqvZX1bKlMi2tF1g6fY=;
- b=MC58lINQfw6OYqF2GuXB50NxK/OsjmszN9dwHudmUphz9XXpISj6/yaldY7u4QbivXq9aL7GCOiY46Wcwmt/Vqf1L57LPZ7lXWgwTtKFNdFyp+0Gn7olMzorpXrbtiRvrMTpRj2k+6+xM0049V61K2utDbxjAGYZ0EUo21Nq1Hpy1cDKDaqrPh3DDwBpwP5zjE1R2cF1ckpQxVCIVumZH1cAO/QEyl8bP707mm2Pho7oAIni/uayluSNsdGO7E3pNDBx1f2pRFfj6vwNTXL3hCv+kIZ3Msu1qC8m6ZK5j38cEX6QweOIMiPsFlM6v/lnA4T2YV9F7MUNqhFOzYJESQ==
-Received: from GV1PR03MB10456.eurprd03.prod.outlook.com
- (2603:10a6:150:16a::21) by DU0PR03MB8392.eurprd03.prod.outlook.com
- (2603:10a6:10:3b8::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.55; Fri, 12 Apr
- 2024 15:24:07 +0000
-Received: from GV1PR03MB10456.eurprd03.prod.outlook.com
- ([fe80::74c9:2488:1dd7:b976]) by GV1PR03MB10456.eurprd03.prod.outlook.com
- ([fe80::74c9:2488:1dd7:b976%3]) with mapi id 15.20.7409.053; Fri, 12 Apr 2024
- 15:24:06 +0000
-From: Volodymyr Babchuk <Volodymyr_Babchuk@epam.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC: Stephan Gerhold <stephan@gerhold.net>,
-        "stable@vger.kernel.org"
-	<stable@vger.kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad
- Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] arm64: dts: qcom: sa8155p-adp: fix SDHC2 configuration
-Thread-Topic: [PATCH v2] arm64: dts: qcom: sa8155p-adp: fix SDHC2
- configuration
-Thread-Index: AQHajAc1RfBxI3QF4U667KfqA0a9CLFi93IAgAHIhYA=
-Date: Fri, 12 Apr 2024 15:24:06 +0000
-Message-ID: <87v84m4nah.fsf@epam.com>
-References: <20240410134022.732767-1-volodymyr_babchuk@epam.com>
- <20240411115506.1170360-1-volodymyr_babchuk@epam.com>
- <769a6a2a-2f38-42de-b3ce-8585b8b0a758@linaro.org>
-In-Reply-To: <769a6a2a-2f38-42de-b3ce-8585b8b0a758@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: mu4e 1.10.7; emacs 29.3
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: GV1PR03MB10456:EE_|DU0PR03MB8392:EE_
-x-ms-office365-filtering-correlation-id: 1a5d358d-e6c4-4572-669a-08dc5b049813
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- 8MTi66L2QZNWE9RxTRrAPxl7bA0HFGfGg69TlDA7Uo+PeRrSNUGQYGBZwPaw8Ad9MHAkQpXKSyki9N0lDIFhQoymJkWMsYwR8iB5eRM3ajZxxcogMSbGCcAYMzgrv3zDGLKy6+4RP27UDKj/RZ3dQPiAEoWfrIVeO0NHb0Zkiq3R8WGQVJkLU0lC9xnC/hhfWPZCJ5jd80MvSS0UNyXEkzXpyMay78aNW8fCGPdab8JUrF59TaFEsHKooc6hjUcZu5pZZq+tclL7el/x2DQiZEPTPSif2UUk313bcz9AZu8bLxrOAf6qbsPchwp8UPMWSSwBm3Y3AueYQhBT9IjbIjIbTuka0E3JqTqyA0tvKmQbiteDz7unWYUa9GdkLBYqAQ/iRTpArBlZgpqd4RMsMCEYeNeH3UTLelgxNHrnImoKoqRucJqAzwpGHc4eOoNuEMSBKJuRKSWTxJLxPHZThTPyfdlei6ItLySnXJ/dwz9RaQHzVz3HcA3aZcfkhbPlXh1ZIegeC7FSZVQjZlHECEzmsw8bSUKMvMygutoG+Trh051CmRAQgsQA7oVtn7lXSiNgU02U6awZQGssI43qpkqgd1GNPMRWd+cIGA0vzRXyCNos3/pY+Le+oOCoBeauGKGxnyzXHMOHPil71PSqAIK/G5SiT/oaI1Ekw+Wm2LUa1VwZiPbOOHI7IP2sV+sFG1m0CcJrFou3el7Jo0FuFw==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV1PR03MB10456.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(7416005)(376005)(1800799015)(38070700009);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?iso-8859-1?Q?52j2z567CxGb22u3dTlaQcA3WfB1OIor8pEw1NN6Z1rdu8GTy88kYAWydE?=
- =?iso-8859-1?Q?9ZeMRVcwwpgezXvR+2Ew5Itf12PwNGivrXKF1rjW+q74WtE/6DdYtUxAZy?=
- =?iso-8859-1?Q?GfmqtGoOvcN+cAu816csu8zFTtoBdK8SRdNc5QdGm7xXwWvfKj5EX3WU1o?=
- =?iso-8859-1?Q?g8BragwY9tAJx4agNDW0As8vS+Ijclq5Pqt61RzSykEUoshwRpgv1uQ0WA?=
- =?iso-8859-1?Q?2isyizPnUNINu+FkjOzG1DqyuvY8IzDl+WGur0vZdnZbM8YZExrruG5y0B?=
- =?iso-8859-1?Q?EimqZcVnYtJyP+5DShOETvkWiWs4U0k8U6i78u888hKt8CDupEBjxXcsJr?=
- =?iso-8859-1?Q?UhtNtFSvAKIdv9992iL59r1HrzrnDGMDYyyrIDv/xVdDhdyA6dE6TtMN4q?=
- =?iso-8859-1?Q?gDBnkbCs+3L4u7I1+J7KvMQsnMNB7lOnzAEa3NHeFRDNArCxdv+SYYEeSx?=
- =?iso-8859-1?Q?zEBA22MBqfJuQhjvvrn3j8Pl0wDwJLqugIohX1xdV+AclM/xlPwIaHul0Z?=
- =?iso-8859-1?Q?mWcGAt5YH5CML5sJjcpcc4DdRxdl95uLzZHflbCP+YhLgkPA8kqEGz+EQC?=
- =?iso-8859-1?Q?s5eHXnXrpF5EwfVi8Xy5maLVvP67nmiB3Xi5MV+ggb2yVw8GbTaBge9i9F?=
- =?iso-8859-1?Q?72YX0LtBEfxAgF7izgrRCZC3P9mm3XiJvlKstpUaOuEUbc9eicUqlO/oXJ?=
- =?iso-8859-1?Q?b5qcK8t83AvGpLsSffdKmxmae9OKu3/qgRp//nknjXhyh7YIO4iR3K8RT9?=
- =?iso-8859-1?Q?XlQ5F/NADxR0xNb17eKrkYk5howpTAkN58LRDWtYmmSLYvcUiBP1RhHeLS?=
- =?iso-8859-1?Q?4VemYdDlI/NeFWgQdGIcFyzb4Qm0rIHTCVqyO/rewirxSm+WoiOHv1Q2QZ?=
- =?iso-8859-1?Q?nPz9UQ8QyUv/hcrKtnBoEamEdjAowXJlnOVjURlVWxRm3wqRqvOz5PbzIW?=
- =?iso-8859-1?Q?vJ33vDe+PUNcZivWbWmTxba9QpK7eVUoQhN1Iafp7ndkHKP22Fo2PyEwVK?=
- =?iso-8859-1?Q?nIHyEr0J1rFG/NIehfB9Ju+RZ3moEM6aU/2linJ4MZE6yBT9xk0rESfOqT?=
- =?iso-8859-1?Q?apwyYTUxcif1C0QZkTgNMP6YwKGeQOcITEoYVOC/paBKZiH2Lymmn8bgAX?=
- =?iso-8859-1?Q?ocx0MGxc4aTUARKPeiPnaDywzAj+ajT1zh7Ep2z8BKpmhPVFqh9Lrka4h4?=
- =?iso-8859-1?Q?dB7oggvuKtD/MXxdW/OLkQlN+AUNTUau9PVMhloEZ9TXZTKA5+zXVdDUPT?=
- =?iso-8859-1?Q?UYMfB84irGFzEMnqCxJRJIQINwNQ7hpcxSibpWvCLCjb98Pga28Nj1aO0V?=
- =?iso-8859-1?Q?GA8mm1ywyi6WZwW7dnRC9Vy8P1bCg4QaGE2K07Kx8niKfcCjNkv8oGMuAO?=
- =?iso-8859-1?Q?A8LXxxzUkEbFYpE/O0HGHfzORdoIReEfwRoj7QVUvwSREu+LM36t7USgTA?=
- =?iso-8859-1?Q?u2BYUIOemiN2UYeZ06QqneKtNZ+XI1z+qWUePUbibhmn+kmxnm0CitfvME?=
- =?iso-8859-1?Q?25oXQmvQDEgsKkDtqotNly60nePgmFFL4rJWGgzDPsTs0E+YEujx8hE/HM?=
- =?iso-8859-1?Q?QDYEWL6z7cdU01n7lY5/I66S2WLjXSJrO1qc0ssdiQon6QUjBj2Hr1N48T?=
- =?iso-8859-1?Q?RJTzNRqQHzy9KXk7VI12vl5FGii/RN+XAHdZMM+Nlj8sKogam7EzIUrQ?=
- =?iso-8859-1?Q?=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 765E0144D34
+	for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 15:26:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712935570; cv=none; b=ceR+9xw14j6el6KLKGt/fenDJgh+qW/msHXOPOygsSrgsuDtAOLj7G9CmZUmmHK+4syg+BYU492M2J0kGOKgEH1s2SY9xeB3O8PfMmbpAfKGOoVdeRtYYFxxFJwFRwfyVSCgZ07GPWmeuQJ9RaZV96/1iwbehF6rFxHKzVtSD9w=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712935570; c=relaxed/simple;
+	bh=o9IY7X0CaDwCSy4UweQdb1+I0NKnpEyXZ2zRKOjzlUU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=el/V5Tk/uZQ6fsRfkSThG/Zfzhh7y434OTksA4FHll9EKA+38Xwj/GGIXTGGTndRqPhwTZe80mA4uDG3UhLkJN6+11KF0MzuAvUZhsl233KTf37WLJ+TB5r8vljGkPVg+X4qp31DuVs7KNxVsf3GxtGnCYOVuubSASubUI9g0hY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Q9sFO7ii; arc=none smtp.client-ip=209.85.208.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-56e37503115so889667a12.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Apr 2024 08:26:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712935567; x=1713540367; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=o9IY7X0CaDwCSy4UweQdb1+I0NKnpEyXZ2zRKOjzlUU=;
+        b=Q9sFO7iinM0v+vEfoMKvuxVZoJsACvSHhZvd24DU2aYf0t9C51I98r1mdqQ42gWPym
+         9LeTmXpP9gRVJiDgPvtwcRd3KAMLUp0TaD+Yonu1AVAgMmhotGKJhEcOQGSv15DIeabz
+         4ldnq43EGkOvUSalLPCvmCFxF/DIyzg1lazQ2rfowhWUrS1w6sT7OrOBdy/LqSrY8lvP
+         hqA8YtDN4HA6LhIAYjxGgV/l/efIN/vEyA6f0hcmpvFw8Pzu1xcc4H8/g9QaYSWsrPUZ
+         N1cU6RfPAjeZrfFb6wU/dfqmK7dYGbvOciKbjwEfivEZs3EaPpmSK2v6C9nFAaPyVBUl
+         gkFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712935567; x=1713540367;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=o9IY7X0CaDwCSy4UweQdb1+I0NKnpEyXZ2zRKOjzlUU=;
+        b=tItRglNkgxRapORYMs4CMi5k3EiWCXP0kfYw0eMQbrH4CNs+H3LfdGp/rM/aVjlXJB
+         rEr1ZZ+36GwNdmlQoc5gSLZa7/rTtlKc6vPR3FejUmhJ5GhDht0xuK4IksPzkdcVGo4P
+         hs8zRMMq8R9ePu/PEl09nd0s2cv0i1UgqRDo1nQq+VmZemTvzBsnAKNSGHQ/R6ZjUL+o
+         6qaTK9FTU3RLuHpcYv8gIAdB2Ao9c/gFp6xL+CMnl8xYm3CnoMWqJpGXmdQ5vBDOM7L2
+         kdIbwXd3tg5BhwkrVII4MNQBkWfRubUCU2oXv0GLN/c4JFQLRnN7nbvUuV5h4THEod73
+         fWyA==
+X-Forwarded-Encrypted: i=1; AJvYcCU4szqXRItMQCyEAdHPwmNXiSXHrv/5Yjlp9xFw+VQnB7BhzRJNKdO2GdENgHLrDcRX7JRbwhEeoLY1NCCOnPF3IYcknbH1AJLVDA==
+X-Gm-Message-State: AOJu0YyJ/4uw1FU70KFzMTRHTGN4zQbAUsYMhTQriIhsp2cnLs/4IsHi
+	Y6Dep6evL4GfXeIhAR0KmJ7Cvfey2/2B65oXMVvtHnSVM4EVIiKaqaCLNmbaduQ=
+X-Google-Smtp-Source: AGHT+IGAjjM0SLS5r33qUtPesrT0swfDt0f+kZnlKIwFTq5mNAe4WUb9IoWZ3wHqFmVSIlrJcdPkjg==
+X-Received: by 2002:a50:8a90:0:b0:56e:230c:d686 with SMTP id j16-20020a508a90000000b0056e230cd686mr1894521edj.36.1712935566630;
+        Fri, 12 Apr 2024 08:26:06 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id ev27-20020a056402541b00b0056b8dcdaca5sm1785415edb.73.2024.04.12.08.26.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Apr 2024 08:26:06 -0700 (PDT)
+Message-ID: <6e290aac-d5a1-4b85-82ed-b03220241e5c@linaro.org>
+Date: Fri, 12 Apr 2024 17:26:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: epam.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: GV1PR03MB10456.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1a5d358d-e6c4-4572-669a-08dc5b049813
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Apr 2024 15:24:06.9059
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: b41b72d0-4e9f-4c26-8a69-f949f367c91d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: gM1xO7N/i8ShhWLrCTaZoRrNcfMW7tezolzy90dLHVtjlSZDFh9FAMllIAeTwb0DS+A9//Z6146dns39tze9DY3g0DCpXunTSP1wsRNS4yA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR03MB8392
-X-Proofpoint-ORIG-GUID: R3vKfpgVjFqxYQpYclXxFUhEaR_SEmb_
-X-Proofpoint-GUID: R3vKfpgVjFqxYQpYclXxFUhEaR_SEmb_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-12_11,2024-04-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- impostorscore=0 mlxscore=0 lowpriorityscore=0 clxscore=1011 bulkscore=0
- suspectscore=0 spamscore=0 phishscore=0 mlxlogscore=999 priorityscore=1501
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404120110
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] dt-bindings: omap-mcpdm: Convert to DT schema
+To: Mithil <bavishimithil@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, alsa-devel@alsa-project.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240404160649.967-1-bavishimithil@gmail.com>
+ <78091796-fd0a-42dd-a4da-f7bed3025bf9@linaro.org>
+ <CAGzNGRnuG_gLUrH1N57WvpKbpiNtFrcsG6nJcacQNJB_yMYNrA@mail.gmail.com>
+ <ec7f77a7-2cf1-4ea6-b9c4-d4fe8a1673ab@linaro.org>
+ <CAGzNGRktm5gMj=bhtX2RAzcn1v5ref+nV-HV3Fct56FzAzxjWA@mail.gmail.com>
+ <c9084453-65f1-43b0-88df-5b73052ccb72@linaro.org>
+ <CAGzNGR=2-us8GRB3RNi4_24QZ9rNBC7Lx0PFsWwbvxuRKk5ngw@mail.gmail.com>
+ <352672fc-b6e1-458e-b4f9-840a8ba07c7e@linaro.org>
+ <CAGzNGRnjCydMMJS6Cqht7zT1GvhbVtKAe1hu8oaf8YwRfA=hZg@mail.gmail.com>
+ <CAGzNGR=60czJWH4=1_1Hf1yH1KZQpmDqsv_zySLr-S_D0vqosg@mail.gmail.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <CAGzNGR=60czJWH4=1_1Hf1yH1KZQpmDqsv_zySLr-S_D0vqosg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 12/04/2024 16:16, Mithil wrote:
+> Hello,
+> Is the patch better now? I'd still like to learn from where i did the
+> mistakes (which seem very silly now)
 
-Hi Krzysztof,
+I do not recall any new patch from you. Please follow submitting patches
+document. Each patch is a new submission (new, not reply to something),
+with versioning, with changelog under ---. For example generated with
+`git format-patch -v3 -1`.
 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
+Best regards,
+Krzysztof
 
-> On 11/04/2024 13:55, Volodymyr Babchuk wrote:
->> There are multiple issues with SDHC2 configuration for SA8155P-ADP,
->> which prevent use of SDHC2 and causes issues with ethernet:
->>=20
->> - Card Detect pin for SHDC2 on SA8155P-ADP is connected to gpio4 of
->>   PMM8155AU_1, not to SoC itself. SoC's gpio4 is used for DWMAC
->>   TX. If sdhc driver probes after dwmac driver, it reconfigures
->>   gpio4 and this breaks Ethernet MAC.
->>=20
->> - pinctrl configuration mentions gpio96 as CD pin. It seems it was
->>   copied from some SM8150 example, because as mentioned above,
->>   correct CD pin is gpio4 on PMM8155AU_1.
->>=20
->> - L13C voltage regulator limits minimal voltage to 2.504V, which
->>   prevents use 1.8V to power SD card, which in turns does not allow
->>   card to work in UHS mode.
->
-> That's not really related. One issue, one commit.
->
->>=20
->> This patch fixes all the mentioned issues.
->>=20
->> Fixes: 0deb2624e2d0 ("arm64: dts: qcom: sa8155p-adp: Add support for uSD=
- card")
->> Cc: stable@vger.kernel.org
->> Signed-off-by: Volodymyr Babchuk <volodymyr_babchuk@epam.com>
->>=20
->> ---
->>=20
->> In v2:
->>  - Added "Fixes:" tag
->>  - CCed stable ML
->>  - Fixed pinctrl configuration
->>  - Extended voltage range for L13C voltage regulator
->> ---
->>  arch/arm64/boot/dts/qcom/sa8155p-adp.dts | 32 +++++++++++-------------
->>  1 file changed, 14 insertions(+), 18 deletions(-)
->>=20
->> diff --git a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts b/arch/arm64/boot/=
-dts/qcom/sa8155p-adp.dts
->> index 5e4287f8c8cd1..b9d56bda96759 100644
->> --- a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
->> +++ b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
->> @@ -283,7 +283,7 @@ vreg_l12c_1p808: ldo12 {
->> =20
->>  		vreg_l13c_2p96: ldo13 {
->>  			regulator-name =3D "vreg_l13c_2p96";
->> -			regulator-min-microvolt =3D <2504000>;
->> +			regulator-min-microvolt =3D <1800000>;
->>  			regulator-max-microvolt =3D <2960000>;
->>  			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
->>  		};
->> @@ -384,10 +384,10 @@ &remoteproc_cdsp {
->>  &sdhc_2 {
->>  	status =3D "okay";
->> =20
->> -	cd-gpios =3D <&tlmm 4 GPIO_ACTIVE_LOW>;
->> +	cd-gpios =3D <&pmm8155au_1_gpios 4 GPIO_ACTIVE_LOW>;
->>  	pinctrl-names =3D "default", "sleep";
->> -	pinctrl-0 =3D <&sdc2_on>;
->> -	pinctrl-1 =3D <&sdc2_off>;
->> +	pinctrl-0 =3D <&sdc2_on &pmm8155au_1_sdc2_cd>;
->> +	pinctrl-1 =3D <&sdc2_off &pmm8155au_1_sdc2_cd>;
->>  	vqmmc-supply =3D <&vreg_l13c_2p96>; /* IO line power */
->>  	vmmc-supply =3D <&vreg_l17a_2p96>;  /* Card power line */
->>  	bus-width =3D <4>;
->> @@ -505,13 +505,6 @@ data-pins {
->>  			bias-pull-up;		/* pull up */
->>  			drive-strength =3D <16>;	/* 16 MA */
->>  		};
->> -
->> -		sd-cd-pins {
->> -			pins =3D "gpio96";
->> -			function =3D "gpio";
->> -			bias-pull-up;		/* pull up */
->> -			drive-strength =3D <2>;	/* 2 MA */
->> -		};
->>  	};
->> =20
->>  	sdc2_off: sdc2-off-state {
->> @@ -532,13 +525,6 @@ data-pins {
->>  			bias-pull-up;		/* pull up */
->>  			drive-strength =3D <2>;	/* 2 MA */
->>  		};
->> -
->> -		sd-cd-pins {
->> -			pins =3D "gpio96";
->> -			function =3D "gpio";
->> -			bias-pull-up;		/* pull up */
->> -			drive-strength =3D <2>;	/* 2 MA */
->> -		};
->>  	};
->> =20
->>  	usb2phy_ac_en1_default: usb2phy-ac-en1-default-state {
->> @@ -604,3 +590,13 @@ phy-reset-pins {
->>  		};
->>  	};
->>  };
->> +
->> +&pmm8155au_1_gpios {
->> +	pmm8155au_1_sdc2_cd: pmm8155au_1-sdc2-cd {
->
-> No underscores in node names.
-
-Fill fix.
-
-> Please also follow tlmm style of naming nodes.
-
-Just to be on the same page, will "pmm8155au_1_sdc2_cd: sdc2-cd-pins" be fi=
-ne?
-
-> Also does not look like node is placed in alphabetical place. Where did
-> you put it?
-
-I can't say that the file is sorted in the first place:
-
-# grep "^&" arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-&apps_rsc {
-&ethernet {
-&qupv3_id_1 {
-&remoteproc_adsp {
-&remoteproc_cdsp {
-&sdhc_2 {
-&uart2 {
-&uart9 {
-&ufs_mem_hc {
-&ufs_mem_phy {
-&usb_1 {
-&usb_1_dwc3 {
-&usb_1_hsphy {
-&usb_1_qmpphy {
-&usb_2 {
-&usb_2_dwc3 {
-&usb_2_hsphy {
-&usb_2_qmpphy {
-&pcie0 {
-&pcie0_phy {
-&pcie1_phy {
-&tlmm {
-&pmm8155au_1_gpios {
-
-
-So, I can put after &pci1 to have it grouped with other entries that
-start with p*, or I can put right after &ethernet to make it appear in
-alphabetical order. It is your call.
-
---=20
-WBR, Volodymyr=
 
