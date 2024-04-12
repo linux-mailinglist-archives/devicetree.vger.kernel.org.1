@@ -1,78 +1,80 @@
-Return-Path: <devicetree+bounces-58476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 846268A23ED
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 04:54:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA0478A2400
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 04:57:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B61341C20C0E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 02:53:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95B3628387C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Apr 2024 02:57:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EF2510A2B;
-	Fri, 12 Apr 2024 02:53:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2002711733;
+	Fri, 12 Apr 2024 02:57:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QBXPtoxV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from abb.hmeau.com (abb.hmeau.com [144.6.53.87])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C7CB10940;
-	Fri, 12 Apr 2024 02:53:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=144.6.53.87
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB12A2581;
+	Fri, 12 Apr 2024 02:57:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712890435; cv=none; b=m4nJcIllkyccwtuN9oxnekeymTAAnULPCWFNL17bY66Ye00RQJMkyQvWd5bitP7UiY3fkLRNCUlTSCzHD/fZ1nfPHnBoQI2hNMQoqLHiFOef/reFiC3eaTxPdFpEnkvdIe0zsU/BkZqPdKavX66kkCcHZOVG0jX1t/umaa8vpRc=
+	t=1712890632; cv=none; b=mm5QEvdAxlJq2Gq/vHSSYFsCaAlDdvlWoZoVUt316rVgEwQ1IIZvjfUUfwExHLvaD/nlbSFg5pGWNWaNg7Y2IOTrzeh3i3JNT/Mkc6KRqGL82IFTeaERRh+ay+AxMJjvzsMoXaGfV7SR7WZHtXt9mg9KqmEhnmrTfNv2TeZJn4c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712890435; c=relaxed/simple;
-	bh=s/bHJX5XlC5ZnI4HyolwWE16wndyztBmIJRjBDWURK4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mGrt32uZhWX5JrSzjMi0+jvGgLWFFLEMXlM2DgF0FelTxJqs3dab0tj0Y1OuWRN908R+SQNbsIgJM0b0/1ansgyo3xJU0Xk4NukuBFkX4Fyy9DBkoI5523zAebWK4myTEOhf7fJ3WoBp4YV9njNACh+PBi6mTTTgrkuwxeXFJ1M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; arc=none smtp.client-ip=144.6.53.87
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-	by formenos.hmeau.com with smtp (Exim 4.94.2 #2 (Debian))
-	id 1rv72h-000gk1-KW; Fri, 12 Apr 2024 10:53:32 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Fri, 12 Apr 2024 10:53:49 +0800
-Date: Fri, 12 Apr 2024 10:53:49 +0800
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Alexey Romanov <avromanov@salutedevices.com>
-Cc: neil.armstrong@linaro.org, clabbe@baylibre.com, davem@davemloft.net,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, khilman@baylibre.com, jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com, vadim.fedorenko@linux.dev,
-	linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, kernel@salutedevices.com
-Subject: Re: [PATCH v7 00/23] Support more Amlogic SoC families in crypto
- driver
-Message-ID: <ZhiiPVckOYH9dFQ/@gondor.apana.org.au>
-References: <20240411133832.2896463-1-avromanov@salutedevices.com>
+	s=arc-20240116; t=1712890632; c=relaxed/simple;
+	bh=p+4XkXpOxunuKnnWO83NDMUzum9+mHSSGqv0fFD9r7s=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=L6JyFkn2NKnr/r1c1ydjG3XVmK4h0FWLV1miMn/3gXcXuBF0R2N3+scHv2ObOAu+HOlYug/HOV9iOrPvEiX4+RGMnjWrVD5F1Atnd3O+qPj2Y0JDmjt9Em8EqImeVTB7MlCutjNGDtT/WHEwETI6SCXibHkeAoj9kLQXp+xNGgk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QBXPtoxV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CD58C072AA;
+	Fri, 12 Apr 2024 02:57:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712890631;
+	bh=p+4XkXpOxunuKnnWO83NDMUzum9+mHSSGqv0fFD9r7s=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=QBXPtoxV+vVyS1Qy7tf9k5jCPndXuhDBFvVab65uRIOAwl3+UUsVjhrMNQUyMB0U9
+	 XWrzecCBpSJSY9I7tZfg98E82DlruZ0nEfe9Ebj6o4hw7cfP8Pe9Q+pT9QLqmUv2MF
+	 Ua41VD2K+WiMR8pTxP61JOap3vM/LcNhERXRRRY+DpxhhBBzpTP9Aeobv0aIDhzjkt
+	 LXu0X0iGFgWDydnmQJB9nuxUQoIkHlJp/C8J7tRJjPzd2atq3+WOyGRtIVQ9deYEYD
+	 OKm6mRknWQLxRiZIP/r2Xv7wFQJOp3b+7oypEKXtTwIzx+piu5r8KAcEpn9MWFdc+x
+	 TQEXkVRPsIM2A==
+Message-ID: <58b23157c088cb4774d579cc8700de85.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240411133832.2896463-1-avromanov@salutedevices.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <de4c56a8-488d-4cdb-9d6c-e9d6e63b22b9@skole.hr>
+References: <20240402-pxa1908-lkml-v9-0-25a003e83c6f@skole.hr> <20240402-pxa1908-lkml-v9-5-25a003e83c6f@skole.hr> <3838e4684f98e1ce3818bfb6983844bc.sboyd@kernel.org> <de4c56a8-488d-4cdb-9d6c-e9d6e63b22b9@skole.hr>
+Subject: Re: [PATCH v9 5/9] clk: mmp: Add Marvell PXA1908 clock driver
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, Karel Balej <balejk@matfyz.cz>, David Wronek <david@mainlining.org>, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+To: Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley <conor+dt@kernel.org>, Duje =?utf-8?q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>, Guilherme G. Piccoli <gpiccoli@igalia.com>, Haojian Zhuang <haojian.zhuang@linaro.org>, Kees Cook <keescook@chromium.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Linus Walleij <linus.walleij@linaro.org>, Lubomir Rintel <lkundrak@v3.sk>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>, Tony Lindgren <tony@atomide.com>, Tony Luck <tony.luck@intel.com>, Will Deacon <will@kernel.org>
+Date: Thu, 11 Apr 2024 19:57:09 -0700
+User-Agent: alot/0.10
 
-On Thu, Apr 11, 2024 at 04:38:09PM +0300, Alexey Romanov wrote:
->
-> Changes V6 -> V7 [9]:
-> 
-> - Fix dt-schema: power domain now required only for A1.
-> - Use crypto_skcipher_ctx_dma() helper for cipher instead of
->   ____cacheline_aligned.
-> - Add import/export functions for hasher.
-> - Fix commit message for patch 17, acorrding to discussion [10].
+Quoting Duje Mihanovi=C4=87 (2024-04-11 03:15:34)
+> On 4/11/2024 10:00 AM, Stephen Boyd wrote:
+> >=20
+> > Is there a reason this file can't be a platform driver?
+>=20
+> Not that I know of, I did it like this only because the other in-tree=20
+> MMP clk drivers do so. I guess the initialization should look like any=20
+> of the qcom GCC drivers then?
 
-Please ensure that this passes the self-tests with extra fuzzing
-enabled.
+Yes.
 
-Thanks,
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+>=20
+> While at it, do you think the other MMP clk drivers could use a conversio=
+n?
+>=20
+
+Sure, go for it. I'm a little wary if the conversion cannot be tested
+though. It doesn't hurt that other drivers haven't been converted.
 
