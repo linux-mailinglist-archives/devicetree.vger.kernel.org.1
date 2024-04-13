@@ -1,48 +1,75 @@
-Return-Path: <devicetree+bounces-59000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CDD78A3ECF
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 23:40:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A13D8A3EDC
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 23:44:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6B9F4B215E5
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 21:40:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 598871C20A05
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 21:44:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF7F9548F0;
-	Sat, 13 Apr 2024 21:40:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF2BD55E72;
+	Sat, 13 Apr 2024 21:44:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vF6N3i2Z"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dlP2Tvcx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B599556446;
-	Sat, 13 Apr 2024 21:40:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 062035644B
+	for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 21:44:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713044425; cv=none; b=kNx7hTv1XDb4/FMviQxJk2/rAKPJZR8cHmL70+dDoxkCSjxaoMSdPWko/A1y8w5pB1nfmVPK70HIxp6rv0gecCaw75vmO3HQ9EBR1r5iQgGxdlTO9j3Eegh1OZcsw+PYwBtagLDt1wZGWcKQk1EMihy6lEvjyk5iStUMHvhoNLY=
+	t=1713044689; cv=none; b=BozsFyAmaF76B0hmxvV78mqmVqKjV7trW2ZVX5WGc5wjNl86ZA4loS+K+1A4vkzxEwgRBggLQrxmHlktY+ZGELzbZA8g49FC30qwj2IXoB1jGhU5Jj30jqQUPmxvZyjXOkxBfBWgjpz2Ijglq0Rh6/Lm1mfm4Fbzw+Cd71+dscE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713044425; c=relaxed/simple;
-	bh=qAyRbbo4f0GT87cxJNkINLjKBToCQVPwqC0z+spTdxI=;
+	s=arc-20240116; t=1713044689; c=relaxed/simple;
+	bh=kpNp6whMdD8QUiTqo+pI0/8mnIxvw6OoSc/7tBpHQLU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=t8OoNp3XdJYqCga0gqDnkpgSnR/LWvQ5DweJixEWyffpK6VLoJygjDwtWHFvUQYYYc2Fn+3z8ADQath6Hwcpm+15bT7CaQH8RQUJLBGwmJty5zJIn3nyu8Kx4QJhjrmd2dRjBpgOqRcGRP2ZLhyoVMW9V/ICp2AW8x0VNqAmhOY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vF6N3i2Z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86800C113CD;
-	Sat, 13 Apr 2024 21:40:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713044425;
-	bh=qAyRbbo4f0GT87cxJNkINLjKBToCQVPwqC0z+spTdxI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=vF6N3i2ZXMLHC7I1MqlPUj0ow1ivoLEcwDOmwUCjUhI/H8vtxhlplEL5khz4et7WU
-	 acMeiR+eBs9p7roWlz41+ZdhqD1/DggYy9leD+fu8oPU6n2pFG85g+NCBCHNllBhkd
-	 BosHxo/pHIdeBDLwQsVL5PMvTxu8Uuu42E1pRNsN4wIkHYL2bUzLk+UdsBcuIiew7f
-	 LRsVNP3FpSplN+BVmQ/TlvBvlTpMOROdLD5fPAOjSNLKvFe+qWrceEuxHwR0/IQxoV
-	 OddXZ9gWiqH5MEIR0UBxuGwJjqmt5AKFbBcyps6kWRh2uiEq4WMfowULhP2dphOAoU
-	 uYLnMJ8pd6FrA==
-Message-ID: <46fe43d0-28be-4acb-b0d4-dacd84fef8e5@kernel.org>
-Date: Sat, 13 Apr 2024 23:40:18 +0200
+	 In-Reply-To:Content-Type; b=JalVM4F/Lj5MMODiBRGDHA4ZPjoQHEBsjrohnX8ewZjW/hM4q3ncxtslgb0aHHqU0mNi/MkaELoB8GVsVqqTbsXnh96xJzR5m9vUM/XbtliRHqr5oz3Ds9DsQQPjih1KJZaYhAukyYeyycs3jVpBYcM0/NTbHFVhUWvrVCTP15c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dlP2Tvcx; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-518a56cdbcfso1269207e87.2
+        for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 14:44:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1713044686; x=1713649486; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=9oGC2sAOn5ukxRDRNxawxuCsNvUPfSDD9rN9Jezle2o=;
+        b=dlP2TvcxhsGueRqJP81pE6JeTxNhYECoyrwwZR4XltCi1vPoFiMai/L/HwxhINd+VZ
+         MDnL5071VS2AaoPN89lc6op+Kgs51zpsv79wWz5pxqWP8WLB98GQY2+QumLhPcV8Tljh
+         4UGajaXo+kNrIZndu58PEYGQEh1BzgO/0vCbwgcac6CmhkTGDnIBJ26Ur5bmX9aI3WV2
+         Wb/wqjRNT8jAhgaq+cJ2Rm14RL2qkGVhIhJ9Tkbw3yC7J/BAU6AwtMm7pKF+hrL+ttrS
+         +ctOvcWKeLyc7awdDY24tzbcnXMHz+NkhTpXGaOQeyahJLpULQr4fvjGxPNSq+gzrMJr
+         WTRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713044686; x=1713649486;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9oGC2sAOn5ukxRDRNxawxuCsNvUPfSDD9rN9Jezle2o=;
+        b=j2jcOLjQshRGDSDbA4rLrdUOCqsO+j1X/dZvKJQnjypoVU3rAXztvJJj6SKhbmy8Tf
+         Gyt1nzTIzzNCZd2VN7ty4QLKDYIALQOaDBkAkD84O9V9oPtKFaTbchUm9avfbE+3VBDu
+         JVk/D/CL86M8kOSdFo/pzQDy6Zw5HwVsMMskSrcbkO+jdS0ov2cBWCWEB1pR7u6wN/cf
+         CUNDZhI0pkBDgqGJJvL+Jc1SD3c4JOxhkJ+VOdOrMO+vxSSoWVPTJZNJi6zoGe14o6vB
+         0cvhTYPcAReqOTExAFmK+EbQUu8DBldruQRJ1tOgJZSVkPME1lrx3A3ftbTBJa8rQ9HC
+         01nw==
+X-Forwarded-Encrypted: i=1; AJvYcCUsl4Ll80LbHtILzYMbE7OwnWAfsE2VayMXeBC8xupxTXFjbGTZZG4yw0RdeSuZ/yhZJt8/wFGm7RqdRmg+LAxq2UiAWJEAjz9uig==
+X-Gm-Message-State: AOJu0YwYH4EkDXYKMZKjOBDaMEJuVqHjRTA3WTSSnbEG9k4dVz3n4Y+B
+	rGIo3CZuzABP+21YwCG06z7eaXnrh0Z+QE6+eMDX4I8mWgbNuUzGrPGCz4lIs4M=
+X-Google-Smtp-Source: AGHT+IFz6w2J25hB/cmJI6Pv8fqkwAsdmF8C/onrf+QcfuHlKkxLjVvYLrqDJYJIjs3pf/2GnykQbA==
+X-Received: by 2002:a19:6450:0:b0:513:ca40:fafc with SMTP id b16-20020a196450000000b00513ca40fafcmr4208340lfj.11.1713044686225;
+        Sat, 13 Apr 2024 14:44:46 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id cr19-20020a170906d55300b00a46b4c09670sm3427957ejc.131.2024.04.13.14.44.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 13 Apr 2024 14:44:45 -0700 (PDT)
+Message-ID: <a10139bd-32dc-4610-8de1-2eb6915325e6@linaro.org>
+Date: Sat, 13 Apr 2024 23:44:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +77,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] regulator: dt-bindings: pca9450: add PMIC_RST_B
- warm reset property
-To: Fabio Aiuto <fabio.aiuto@engicam.com>
-Cc: Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Robin Gong <yibin.gong@nxp.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Matteo Lisi <matteo.lisi@engicam.com>,
- Mirko Ardinghi <mirko.ardinghi@engicam.com>
-References: <20240411165801.143160-1-fabio.aiuto@engicam.com>
- <20240411165801.143160-2-fabio.aiuto@engicam.com>
- <e86812b3-a3aa-4bdb-9b32-a0339f0f76b5@kernel.org> <ZhjhCvVNezy9r7P4@engicam>
- <bd1e6507-dee4-4dcf-bbd3-50539270cd63@kernel.org> <Zhq8ibYrZH05/AQt@engicam>
+Subject: Re: [PATCH v3 01/18] ASoC: dt-bindings: mediatek,mt8365-afe: Add
+ audio afe document
+To: Alexandre Mergnat <amergnat@baylibre.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Rob Herring <robh@kernel.org>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
+References: <20240226-audio-i350-v3-0-16bb2c974c55@baylibre.com>
+ <20240226-audio-i350-v3-1-16bb2c974c55@baylibre.com>
+ <e0b48da7-b33c-45e4-b3f3-a6d71bb0afe2@linaro.org>
+ <9ecf2158-10d1-47b3-a02f-54a4cddbf426@baylibre.com>
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
  JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
@@ -74,120 +112,71 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  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
- 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 fv0=
-In-Reply-To: <Zhq8ibYrZH05/AQt@engicam>
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <9ecf2158-10d1-47b3-a02f-54a4cddbf426@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/04/2024 19:10, Fabio Aiuto wrote:
-> Dear Krzysztof,
+On 10/04/2024 11:29, Alexandre Mergnat wrote:
 > 
-> Il Sat, Apr 13, 2024 at 12:58:35PM +0200, Krzysztof Kozlowski ha scritto:
->> On 12/04/2024 09:21, Fabio Aiuto wrote:
->>> Dear Krzysztof,
->>>
->>> Il Thu, Apr 11, 2024 at 09:52:12PM +0200, Krzysztof Kozlowski ha scritto:
->>>> On 11/04/2024 18:58, Fabio Aiuto wrote:
->>>>> Add property to trigger warm reset on PMIC_RST_B assertion
->>>>>
->>>>
->>>> That's rather vague and does not tell me much why this is supposed to be
->>>> board level configuration. It sounds more like a debugging feature:
->>>> during development you want to retain memory contents for pstore etc.
->>>> Then I could imagine this should be turned runtime, e.g. via
->>>> sysfs/debugfs, because for example you want to start inspecting a
->>>> customer's device.
->>>
->>> thanks, I spent too few time writing this commit log and I apologize
->>> for that. I was thinking about something like:
->>>
->>>     The default configuration of the PMIC behavior makes the PMIC
->>>     power cycle most regulators on PMIC_RST_B assertion. This power
->>>     cycling causes the memory contents of OCRAM to be lost.
->>>     Some systems needs some memory that survives reset and
->>>     reboot, therefore add a property to tell PMIC_RST_B is
->>>     wired.
->>>
->>> The actual configuration is made at probe time, anyway we need
->>> to override the default behavior of the pmic to get a warm reset
->>> everytime the PMIC_RST_B pin is asserted and this property tells
->>> us that "something is wired to that pin" and "it has to behave
->>> that way on pin assertion". Our use cases do not meet the need
->>> of further runtime configuration change.
->>
->> What is the use case?
 > 
-> I just have an external power button connected to that pin, it works
-> either with warm reset and cold-reset-except-ldo12. Moreover the default behavior
-> is cold reset and not reset-disabled. Anyway I thought it was useful for other
-> people to add a property selecting behavior for that pin too as was done for
-> WDOG_B. That's why I mainly duplicated the logic. If there is a pin adding a
-> reset source it's a good point to provide a way to access the register bits
-> related to this signal.
-
-I don't understand what is the use case. You wrote runtime does not
-solve your use case. What is the use case?
-
-> 
->>
->> Sorry, you did not bring any further argument why this is board
->> specific. And please don't explain how probing works, but address the
->> problem here: why type of reset is specific to board design. To me it is
->> OS policy.
+> On 09/04/2024 17:46, Krzysztof Kozlowski wrote:
+>>> +    soc {
+>>> +        #address-cells = <2>;
+>>> +        #size-cells = <2>;
+>>> +
+>>> +        afe@11220000 {
+>> Did you implement the comment or decided to keep afe?
 >>
 > 
-> Why reset type is specific to board design? I'm sorry but I don't know
-> what you mean, as said my intention was to enlarge the number of configurable
-> bits in pca9450 register space hoping this would be useful for someone.
+> Though it was clear according to [1]:
+> "
+> Audio Front End, this is the same name used for other MTK SoC, to be
+> consistent.
 > 
-> All I can say is that is specific to board design for the same reason the
-> wdog_b- reset type was specific to board design.
+> Cook a new patch serie to change "afe" by "audio-controller" for all MTK
+> SoC would be great.
+> "
+> 
+> I want to keep it and fix it later with ALL other MTK SoC.
+> You didn't answer after that, I though it was ok for you...
 
-Specific to board design means different boards have somehow different
-configuration/schematics/layout/hardware meaning they need this property
-to configure device differently.
-
-I already said it implicitly, but let's reiterate: Devicetree is for
-hardware properties, not OS policies.
-
-I also said, so repeating the same argument, the choice how you want to
-reboot the system based on button press, sounds like debugging choice
-thus runtime suits better.
-
-Unless you want to say there are two signals and you want to configure
-them differently? But that's your job to explain it, not mine.
+Then no, I don't agree. If you add code, which you already plan to fix,
+it means the code is not correct somehow. Then just add correct code in
+the beginning.
 
 Best regards,
 Krzysztof
