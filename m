@@ -1,94 +1,122 @@
-Return-Path: <devicetree+bounces-58900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58901-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A67B8A3B3D
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 08:06:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6342C8A3B4D
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 08:46:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D90E6284200
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 06:06:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B43F1C211CA
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 06:46:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FB0D1CABD;
-	Sat, 13 Apr 2024 06:06:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 583421C6B5;
+	Sat, 13 Apr 2024 06:46:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="arWYMHYp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g6oX2VPh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AA18182BB
-	for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 06:06:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 101C81C286;
+	Sat, 13 Apr 2024 06:46:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712988400; cv=none; b=gt8js2XbIP0NVTDZsysHWtK7h6FCxB+2AQa37wFJ73+FYccJwofXb5CX+4ZzNH1Lt2NNE68XXGFJHUxVvLAbTvO8qvoqe3TvUQMtlfmFuMx2d0+nOOCzJp0h6gCX+RrDG+5DCx9AcBk3sv2AvipaXklCWw2Gp2fRP9QY8RUX+cY=
+	t=1712990800; cv=none; b=p0jbSJYLYMutBM3rWAZzRsgNkU5Itw8nBZNm7f82lPuVgBHft1ikOYORsIzeUtFPQH9Jd1w42VEWk8ern7pFtqKdH05Qq6b1Y5nxLFcUwAqTbeA7JZAuUUjPWnuv1Zw7Ss5Z4nCUCxTx3/yv1pcGMgC0579G7Iym26U4uRCaijI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712988400; c=relaxed/simple;
-	bh=/zX5Xm2L8b+VZra1dDyJSa/ceyZK2JOrdzFqnq8r2HI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=aQnTm7N4B1V0KTwS3vcMauLMRg84aJa8Mv3Hk7K6lNoIi3hf5wQp/gsMmxQzmrrfPxunb4ouv+RBGwtPeiaFmFlimYKOHYiI0d3jKdQnmmqcYJEUoD3ZTfD03pBPUh2Zyhf7w6eZbqWEkYmx2hnmEsYcECdBgKYy28NvI1W4Bck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=arWYMHYp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80F6EC2BD11;
-	Sat, 13 Apr 2024 06:06:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712988399;
-	bh=/zX5Xm2L8b+VZra1dDyJSa/ceyZK2JOrdzFqnq8r2HI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=arWYMHYpTj6Yp1ZCDS0ClfxXkjXkBhrfIuSxX3lORccNe1FA37EE0jEj2J3OMPC/P
-	 2xzgZ/1AX5Wo+pbH1K92h3fqm4DBAGswUfvgT1ZGsRowdkVqMyax89RlgLj4XgvceL
-	 PFpk/meyNfyYLWgQr1KFfA1dbtyPrHzepEgj8bSv7zogFBzzzu/OHsnj4aSb6GgMVh
-	 2I6J//Ddua5dWW75BzMUXG1C22IDScBhScN9GF/aqGW4yWQKnEMnldAKkOxHIdEBtH
-	 c/iNVI2ql/q7yTEhmhFL97kabOtChMZ+LroS0Ae5pliUYsWFN9uj5kaxknq5+o9wHb
-	 yYhiih+vMpa/A==
-From: Vinod Koul <vkoul@kernel.org>
-To: Kishon Vijay Abraham I <kishon@kernel.org>, 
- Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Niklas Cassel <cassel@kernel.org>
-Cc: devicetree@vger.kernel.org, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- Michal Tomek <mtdev79b@gmail.com>, Damien Le Moal <dlemoal@kernel.org>, 
- Jon Lin <jon.lin@rock-chips.com>, linux-phy@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
-In-Reply-To: <20240412125818.17052-1-cassel@kernel.org>
-References: <20240412125818.17052-1-cassel@kernel.org>
-Subject: Re: [PATCH v2 0/2] rockchip pcie3-phy separate refclk support
-Message-Id: <171298839307.603171.17043839494902342365.b4-ty@kernel.org>
-Date: Sat, 13 Apr 2024 11:36:33 +0530
+	s=arc-20240116; t=1712990800; c=relaxed/simple;
+	bh=b7xic11TrlqPqW6MKWhNjFfRsty3I0aUokUTdGxC8ag=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=PYBpGsCJhMm2cBi2uzp5iCOdVSVoLc060eN8CL5aPCojEKUTadSLQfHJrY2g42YqeMZYzxFCr0Gp1odQzsXzzv3xZeBTq98yCx4R2WaGinFrBI/Rh0EB9t9ezWTLUHoyDl7w7DielNMW0tpylCwTcznHQttwqT/rj8OxS03x9xE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g6oX2VPh; arc=none smtp.client-ip=209.85.210.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-6ef9bd94d81so452081b3a.3;
+        Fri, 12 Apr 2024 23:46:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712990797; x=1713595597; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=twRetE152Y2Fvd4PMDtj8L/32OUiKxwrCOgAjYJA/T4=;
+        b=g6oX2VPhckcw1ceWHz1aS9D0EfChScFdJ4r9L2dKEHT2uXuikVf3pp5DMUXKdSfJeY
+         1NRv1Uf+S50CILqNBKgB3U8I4w/iidcBG6Q9dQFvnMiXtdKzRgnYlxrpEYsgt3e7yjK8
+         PSnnaVv0IgHVvKPVzMuiceGuhBVee2HJETGvEMUvWNpqHqB0TMsBVEtrbaa5lJ0FE+Vn
+         bJTokGW0RUigpO8Sj9RHHkJkJIqvk7Q+mqCgOVSIHQ8WUSMDniDBxtJdW4xxu12KznTE
+         kbvud1yPuaA94/BKS/SGr9i0jPXSXH+QjIIQsFtIWGxTK8qkGALVwN7YQpgviLa74BNn
+         iCPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712990797; x=1713595597;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=twRetE152Y2Fvd4PMDtj8L/32OUiKxwrCOgAjYJA/T4=;
+        b=kskf8D/0GXaojIdFzU1ZjziK17tSw4e3WIPC3YDcEHjjCuXi9z9wOdh8x7qXBghXH2
+         z+VdypmYFwRuFCxI1B83njYbBT4CsFpXLkZanCOW8wVNllzotBkV55qgDwQo5kNb7kNL
+         WQqsHVEgeaNWysJCXMVXy72GksE8LsOoTlEa1TsAqXFqFa0k70Dmg9eXkgpSWHo2U/hM
+         A8v2v7ul50qSt1w5C6JSsL10XVxia9F1BYqZgJLPbiPycJLTnWPfE2tqR3Hh2srAp658
+         IUCmvlQPEv8nEoc7+t5ZFwM8PynAgirs2qsqjVkoHzvQxu9G8TTZ5aMzNwa5BD4RncwU
+         EZOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX5x0ohiJd5FyjmBhymgaFidUzXupMiAXUj/S1l/t5dMUTES7xRN72oVJ/8TZp4e3V8fGpCtyira9/cnm7E1f1TChz20rHMg5nKn9W5cmflsBO1Qz2wniZXlIAbtIVp1TbmtD5OlG8c3Yc=
+X-Gm-Message-State: AOJu0YxL6SzHefUEuKVilCxyZ0k73QPTzIfM/4sfqNgs2LWlbJGJDfjY
+	U0LUImlDxVBw7U7jf4tpJc0oNTjTy5DrPjRO18RmyywB+JkmwdJtf4q7PTu6opc=
+X-Google-Smtp-Source: AGHT+IFW7qpsvXblAiMX/RvthcFLBilYOKUGwz2LBo1EmPVEmqagdDyQemcgq5bYd++1E+at1QyQRg==
+X-Received: by 2002:a17:903:48c:b0:1e4:425f:5795 with SMTP id jj12-20020a170903048c00b001e4425f5795mr3679487plb.58.1712990797341;
+        Fri, 12 Apr 2024 23:46:37 -0700 (PDT)
+Received: from localhost.localdomain ([221.220.133.103])
+        by smtp.gmail.com with ESMTPSA id p6-20020a170902780600b001e2a7e90321sm4096693pll.224.2024.04.12.23.46.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Apr 2024 23:46:36 -0700 (PDT)
+From: Jianfeng Liu <liujianfeng1994@gmail.com>
+To: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	ezequiel@vanguardiasur.com.ar,
+	p.zabel@pengutronix.de,
+	mchehab@kernel.org,
+	sfr@canb.auug.org.au,
+	liujianfeng1994@gmail.com
+Subject: [PATCH v5 0/2] Add hantro g1 video decoder support for RK3588
+Date: Sat, 13 Apr 2024 14:46:06 +0800
+Message-Id: <20240413064608.788561-1-liujianfeng1994@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.3
+Content-Transfer-Encoding: 8bit
 
+This is the v5 version of this series adding hantro g1 video decoder
+support for RK3588.
 
-On Fri, 12 Apr 2024 14:58:14 +0200, Niklas Cassel wrote:
-> This series is based on: linux-phy phy/next
-> 
-> Hello all,
-> 
-> The rockchip,pcie3-phy PHY in rk3588 is by default configured to run in
-> "common reference clock" mode. (Which is a sensible default, as the most
-> commonly used clock configuration is "common reference clock".)
-> 
-> [...]
+RK3588 has Hantro G1 video decoder known as VDPU121 in TRM of RK3588 which
+is capable to decode MPEG2/H.264/VP8 up to 1920x1088. This vpu ip is also
+found in RK3568.
 
-Applied, thanks!
+Test results from fluster can be found from thread of v3[1].
 
-[1/2] dt-bindings: phy: rockchip,pcie3-phy: add rockchip,rx-common-refclk-mode
-      commit: 46492d10067660785a09db4ce9244545126a17b8
-[2/2] phy: rockchip-snps-pcie3: add support for rockchip,rx-common-refclk-mode
-      commit: a1fe1eca0d8be69ccc1f3d615e5a529df1c82e66
+Changes in v5:
+ - Add missing interrupt-names to devicetree node
+ - Rebase devicetree patch based on next-20240412
+ - Link to v4: https://lore.kernel.org/all/20240316071100.2419369-1-liujianfeng1994@gmail.com/
 
-Best regards,
+[1]https://lore.kernel.org/all/20240118080602.9028-1-liujianfeng1994@gmail.com/
+
+Jianfeng Liu (2):
+  arm64: dts: rockchip: Add Hantro G1 VPU support for RK3588
+  dt-bindings: media: rockchip-vpu: Add rk3588 vdpu121 compatible string
+
+ .../bindings/media/rockchip-vpu.yaml          |  3 +++
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 21 +++++++++++++++++++
+ 2 files changed, 24 insertions(+)
+
 -- 
-~Vinod
-
+2.34.1
 
 
