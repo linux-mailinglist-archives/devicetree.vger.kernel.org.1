@@ -1,130 +1,159 @@
-Return-Path: <devicetree+bounces-58922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58923-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 719918A3C5D
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 12:59:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02F7B8A3C62
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 13:00:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B4401F22459
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 10:59:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8293EB21D3F
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 11:00:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99AEC3D0D9;
-	Sat, 13 Apr 2024 10:59:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B2D93C46B;
+	Sat, 13 Apr 2024 11:00:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nq9sqE87"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M/3Nm+BO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69DEA335D3;
-	Sat, 13 Apr 2024 10:59:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 023D23D96B;
+	Sat, 13 Apr 2024 11:00:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713005944; cv=none; b=tU9zRkGbHAOP5Tw1Jbg+sGOocYtdGIxSftNGUCOwoL8C4HUhSgGhHFLyacM2xLXjlKDIS06jiijaBdlQIlPcf7eyDSlgtDTvS1Mv+S0p9i7T192y8l9agyDE30dmeiJRmuRvim8zSxyDu08COf/tcgrg/Wv3Lo5ihDz1ugFHwTE=
+	t=1713006023; cv=none; b=PUE9iKDHZng3HEmJ5WvlGlw/WJXMlZ5dKAHScjDaI7OAmuRPd3moPh162OWa54fFmpQNmO4LbwMsTmpGY9fKyAIQWjrtDvBk5do5ngRRqJAzAe1czxBmdtYdCtZYBXiq/ATnxAIrh6RMs7m3o9JXyd2Cj8KbRBVBnbBGJi8IQeA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713005944; c=relaxed/simple;
-	bh=XyNBnr7ZFttTsLqdtEP1Op0rqj1KHbc1K3+1RVUo3JU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=igcVWC5lSCA71HR8wC67rJgWYjYPHn2/bZoHue+pxBktO4IFXDe64ZCzFtVvPb2ypdSoN/AfB4hq7yLXBSlpMAEMoM6eO1igL/6qCAQhkMhXKdGzj4hGFAF3L/Wn3tVa+jApefH+6uRk2faTsyYGv+fQOPJT+76IGu411hQ+rnc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nq9sqE87; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6CAEC113CD;
-	Sat, 13 Apr 2024 10:59:00 +0000 (UTC)
+	s=arc-20240116; t=1713006023; c=relaxed/simple;
+	bh=Wy4uAqrl89FReDsMDNHZLC7zszIaD0Qcq99/OiCwYmA=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=aSN5tmXy2fL3vNZFaUoFWqGhIvhPZahdd3CGO0PcTo1KLzW1QmjjmgQsPhZJxuKArNfszklmnb+dkJB10GzNQaYe6Vp+TsEI9qUvXUlChpqH/43D5SllioXUR0MszJjgd6S4reE25CsNoshMz1urO1KU+6FrQ2OOwaEcIEBkybQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M/3Nm+BO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47303C2BBFC;
+	Sat, 13 Apr 2024 11:00:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713005944;
-	bh=XyNBnr7ZFttTsLqdtEP1Op0rqj1KHbc1K3+1RVUo3JU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Nq9sqE878GK3tzKgdOCKLRiXzTmcttHGdRZ2QAtOe7mGQ37jPnIskR6nPz0bhGY8I
-	 fhaRy1TEYLZln8KJJIAIvT1E4GbnVCOcC71ay6y3B2vY08Ho26f+1D68WtZJIXG0QB
-	 TJiWEeKFHAVZz7pDwAxe0t6R0j/gDCYTka6zOq2SMvdY82ae9eep9ElH7xNiJ4Lf6a
-	 LtevqiIoTmBA+5fw9jq8b5ugwLnkIZKZySnWu6KTiMCO/ERA0f2V0v2nmP+M+mv5fP
-	 n3TlMi1gS2jM+CPjORNR4XZeYshS+kVWkzciUGd98uEZcMXDhW871QCE4GTSd7W5IE
-	 lRIfC1/FLHdjg==
-Message-ID: <a263ecd6-af04-4a21-b106-a9c208007c81@kernel.org>
-Date: Sat, 13 Apr 2024 12:58:59 +0200
+	s=k20201202; t=1713006022;
+	bh=Wy4uAqrl89FReDsMDNHZLC7zszIaD0Qcq99/OiCwYmA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=M/3Nm+BOj8dpLxdK8NFxvbyqlYu9yvH0cdWDqifm2Cdi69kOTxNXClYocymYWN6eb
+	 YawW0JjfdOUjv572QFLfSzB2Lw8ztsctbhKhXCKhFxqOdpAuWwQ5xfaQ0ezGz8ufZ+
+	 Mwxl4KE77CK3+VBrWB5Jzbv4sNqOUBM0sII5EJvY34+KPkZrYnKeP6Ye5D8UvSz4fi
+	 qtZK3s1SqocX1jJMM6p4Fk4hNNaBNRBPv1/s5BROuY1Fetml48jZ/Rc24n/sFmKVg6
+	 oRGLK0awmMsQ9anf9lRzH+bh1OVJCEitArfO8HkBDkuUq5jBrHd+K0lARk8XqTv4P6
+	 zrbHCdXN9W9Vw==
+Date: Sat, 13 Apr 2024 12:00:07 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
+Cc: Nuno Sa <nuno.sa@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, Dragos Bogdan <dragos.bogdan@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>
+Subject: Re: [PATCH v2 11/11] iio: dac: support the ad9739a RF DAC
+Message-ID: <20240413120007.1f430cb4@jic23-huawei>
+In-Reply-To: <d99653ec9a40a16b088c425d5552de85892564fe.camel@gmail.com>
+References: <20240405-iio-backend-axi-dac-v2-0-293bab7d5552@analog.com>
+	<20240405-iio-backend-axi-dac-v2-11-293bab7d5552@analog.com>
+	<20240406174119.38b821ff@jic23-huawei>
+	<d99653ec9a40a16b088c425d5552de85892564fe.camel@gmail.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] regulator: dt-bindings: pca9450: add PMIC_RST_B
- warm reset property
-To: Fabio Aiuto <fabio.aiuto@engicam.com>, Mark Brown <broonie@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Matteo Lisi <matteo.lisi@engicam.com>,
- Mirko Ardinghi <mirko.ardinghi@engicam.com>
-References: <20240412084428.400607-1-fabio.aiuto@engicam.com>
- <20240412084428.400607-2-fabio.aiuto@engicam.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240412084428.400607-2-fabio.aiuto@engicam.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-On 12/04/2024 10:44, Fabio Aiuto wrote:
-> The default configuration of the PMIC behavior makes the PMIC
-> power cycle most regulators on PMIC_RST_B assertion. This power
-> cycling causes the memory contents of OCRAM to be lost.
-> Some systems needs some memory that survives reset and
-> reboot, therefore add a property to mark the regulator as
-> performing warm resets on PMIC_RST_B assertion.
-> 
-> Cc: Matteo Lisi <matteo.lisi@engicam.com>
-> Cc: Mirko Ardinghi <mirko.ardinghi@engicam.com>
-> Signed-off-by: Fabio Aiuto <fabio.aiuto@engicam.com>
-> ---
+On Mon, 08 Apr 2024 10:51:43 +0200
+Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
 
-Discussion continues in v3.
+> On Sat, 2024-04-06 at 17:41 +0100, Jonathan Cameron wrote:
+> > On Fri, 5 Apr 2024 17:00:09 +0200
+> > Nuno Sa <nuno.sa@analog.com> wrote:
+> >  =20
+> > > The AD9739A is a 14-bit, 2.5 GSPS high performance RF DACs that are c=
+apable
+> > > of synthesizing wideband signals from DC up to 3 GHz.
+> > >=20
+> > > A dual-port, source synchronous, LVDS interface simplifies the digital
+> > > interface with existing FGPA/ASIC technology. On-chip controllers are=
+ used
+> > > to manage external and internal clock domain variations over temperat=
+ure to
+> > > ensure reliable data transfer from the host to the DAC core.
+> > >=20
+> > > Co-developed-by: Dragos Bogdan <dragos.bogdan@analog.com>
+> > > Signed-off-by: Dragos Bogdan <dragos.bogdan@analog.com>
+> > > Signed-off-by: Nuno Sa <nuno.sa@analog.com> =20
+> >=20
+> > The only thing I really have remaining questions on is the choice
+> > of chan_spec with altvoltage and voltage channels.=C2=A0 Why does that
+> > split make sense?=C2=A0 It's odd enough that some comments in the code =
+would
+> > be a good thing to add.
+> >=20
+> > Jonathan
+> >  =20
+> > > new file mode 100644
+> > > index 000000000000..9b91d66f826c
+> > > --- /dev/null
+> > > +++ b/drivers/iio/dac/ad9739a.c
+> > > @@ -0,0 +1,454 @@ =20
+> >  =20
+> > > +
+> > > +static struct iio_chan_spec ad9739a_channels[] =3D {
+> > > +	{
+> > > +		.type =3D IIO_ALTVOLTAGE, =20
+> >=20
+> > So this looks a little unusual. Perhaps some comments on why it
+> > is appropriate to have this channel.
+> >=20
+> > In reality there is only one channel I think? =20
+>=20
+> Yeah, I had this same discussion internally and was also thinking in havi=
+ng one
+> channel (just ALTVOLTAGE). I ended up doing it as we have done it interna=
+lly so
+> far. The reasoning is that we have two sources of data:
+>=20
+> ALTVOLTAGE: It's the internally continuous wave the backend can generate.=
+ That
+> is in fact alternate voltage.
+>=20
+> VOLTAGE: Is kind of what I call external source where we assume is just t=
+ypical
+> DAC data and that typically is VOLTAGE (but for a dac like this, I think =
+it may
+> very well be, if not most of the time, also alternate - the thing is, we =
+can't
+> know for sure as we should be able to have both)
+>=20
 
-Best regards,
-Krzysztof
+Ok. That makes some sense.  These are sort of different channels even if th=
+ey
+come out of the same physical pin and the phase etc definitions only make s=
+ense
+for the DDS case.
+
+The operating mode being tied to only the VOLTAGE channel is a little odd b=
+ut
+I suppose it works  if we think of it as
+
+   DDS altvotage ----inputto----\=20
+                                  MUX -->   voltage channel. --> pin.
+   DAC data      ----input to---/
+
+I we really wanted to make this complex, we'd use an actual IIO Mux for that
+but that is going to lead to a more complex driver for what is a bit of a s=
+pecial
+case so I don't think we need to do so.
+
+Jonathan
+
+> - Nuno S=C3=A1=20
+>=20
 
 
