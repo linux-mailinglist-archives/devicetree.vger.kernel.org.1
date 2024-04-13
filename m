@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-58921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8C1D8A3C5A
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 12:58:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 719918A3C5D
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 12:59:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2ADA1C20FCB
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 10:58:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B4401F22459
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 10:59:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0A43376E2;
-	Sat, 13 Apr 2024 10:58:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99AEC3D0D9;
+	Sat, 13 Apr 2024 10:59:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MrZKCUC6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nq9sqE87"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7075E2110B;
-	Sat, 13 Apr 2024 10:58:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69DEA335D3;
+	Sat, 13 Apr 2024 10:59:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713005921; cv=none; b=I66Ah6IL67OLD8vuFifhYnUzU2+6UuC8EjmwcQiVL2kjx+Lx5efuV7TDE/ReASBdcrKB4WbsE9rmvFk+luERlsa0yICwEHo+mrSVUdGJivPxOsJA0gP+xMDU4e52bJuFJI5Ub0iG8Ye42tp1Ul5CzF/cObgizwkEbUrpXZqyyb0=
+	t=1713005944; cv=none; b=tU9zRkGbHAOP5Tw1Jbg+sGOocYtdGIxSftNGUCOwoL8C4HUhSgGhHFLyacM2xLXjlKDIS06jiijaBdlQIlPcf7eyDSlgtDTvS1Mv+S0p9i7T192y8l9agyDE30dmeiJRmuRvim8zSxyDu08COf/tcgrg/Wv3Lo5ihDz1ugFHwTE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713005921; c=relaxed/simple;
-	bh=3PLDRFsu86HTqC7p6szmKT0R6h58ytHJtkt8pg5ixXA=;
+	s=arc-20240116; t=1713005944; c=relaxed/simple;
+	bh=XyNBnr7ZFttTsLqdtEP1Op0rqj1KHbc1K3+1RVUo3JU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PGg4qHhj8dvFzq2KPqLsuvnILTqDDL58r2q5wl5FgFsLFmoW84nFEalMRnPsw5vMQNXEBUA7e3i9U2HQINup0F9aggMq/1wgwLRC8N33amR7z9BGDUPGma4KC7/pacoXCoQ5feap1mk0ZT31ydeU7RZLhJ+XBGEv7h0Zapm1eL4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MrZKCUC6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79C4CC113CD;
-	Sat, 13 Apr 2024 10:58:37 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=igcVWC5lSCA71HR8wC67rJgWYjYPHn2/bZoHue+pxBktO4IFXDe64ZCzFtVvPb2ypdSoN/AfB4hq7yLXBSlpMAEMoM6eO1igL/6qCAQhkMhXKdGzj4hGFAF3L/Wn3tVa+jApefH+6uRk2faTsyYGv+fQOPJT+76IGu411hQ+rnc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nq9sqE87; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6CAEC113CD;
+	Sat, 13 Apr 2024 10:59:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713005920;
-	bh=3PLDRFsu86HTqC7p6szmKT0R6h58ytHJtkt8pg5ixXA=;
+	s=k20201202; t=1713005944;
+	bh=XyNBnr7ZFttTsLqdtEP1Op0rqj1KHbc1K3+1RVUo3JU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MrZKCUC61Oi0BAGPWX9jDaT/KSCumsNwspTuXPXi+NZM867oe8+VQz5Hdeg8zwnoV
-	 qOeHx8W9g365fbanpNyij1vpbAYpQJR17oNf2w2tIYUhfwzu/zCfdGOJxgS7QCu196
-	 mhP9oIc1DxiChD25WNBAe6DaTATL6kkM4CWVpvAZzSBub4lCMgL1EjASBl0bc2VunI
-	 pgYj86FlpsiZjiLtgskd4kD+g57EhntInSQAHE90ObKPWmlLe+tXI/UwMFm/7jGLw9
-	 CH/pD8K2qv90jwx7riiwjUJxtrYL+GHOB+3pSHpu6vOEXrUQ21luBnrKQogFjnzJVa
-	 Htq6WWHhO81Ow==
-Message-ID: <bd1e6507-dee4-4dcf-bbd3-50539270cd63@kernel.org>
-Date: Sat, 13 Apr 2024 12:58:35 +0200
+	b=Nq9sqE878GK3tzKgdOCKLRiXzTmcttHGdRZ2QAtOe7mGQ37jPnIskR6nPz0bhGY8I
+	 fhaRy1TEYLZln8KJJIAIvT1E4GbnVCOcC71ay6y3B2vY08Ho26f+1D68WtZJIXG0QB
+	 TJiWEeKFHAVZz7pDwAxe0t6R0j/gDCYTka6zOq2SMvdY82ae9eep9ElH7xNiJ4Lf6a
+	 LtevqiIoTmBA+5fw9jq8b5ugwLnkIZKZySnWu6KTiMCO/ERA0f2V0v2nmP+M+mv5fP
+	 n3TlMi1gS2jM+CPjORNR4XZeYshS+kVWkzciUGd98uEZcMXDhW871QCE4GTSd7W5IE
+	 lRIfC1/FLHdjg==
+Message-ID: <a263ecd6-af04-4a21-b106-a9c208007c81@kernel.org>
+Date: Sat, 13 Apr 2024 12:58:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] regulator: dt-bindings: pca9450: add PMIC_RST_B
+Subject: Re: [PATCH v4 1/2] regulator: dt-bindings: pca9450: add PMIC_RST_B
  warm reset property
-To: Fabio Aiuto <fabio.aiuto@engicam.com>
-Cc: Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Robin Gong <yibin.gong@nxp.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Matteo Lisi <matteo.lisi@engicam.com>,
+To: Fabio Aiuto <fabio.aiuto@engicam.com>, Mark Brown <broonie@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Matteo Lisi <matteo.lisi@engicam.com>,
  Mirko Ardinghi <mirko.ardinghi@engicam.com>
-References: <20240411165801.143160-1-fabio.aiuto@engicam.com>
- <20240411165801.143160-2-fabio.aiuto@engicam.com>
- <e86812b3-a3aa-4bdb-9b32-a0339f0f76b5@kernel.org> <ZhjhCvVNezy9r7P4@engicam>
+References: <20240412084428.400607-1-fabio.aiuto@engicam.com>
+ <20240412084428.400607-2-fabio.aiuto@engicam.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,48 +105,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ZhjhCvVNezy9r7P4@engicam>
+In-Reply-To: <20240412084428.400607-2-fabio.aiuto@engicam.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/04/2024 09:21, Fabio Aiuto wrote:
-> Dear Krzysztof,
+On 12/04/2024 10:44, Fabio Aiuto wrote:
+> The default configuration of the PMIC behavior makes the PMIC
+> power cycle most regulators on PMIC_RST_B assertion. This power
+> cycling causes the memory contents of OCRAM to be lost.
+> Some systems needs some memory that survives reset and
+> reboot, therefore add a property to mark the regulator as
+> performing warm resets on PMIC_RST_B assertion.
 > 
-> Il Thu, Apr 11, 2024 at 09:52:12PM +0200, Krzysztof Kozlowski ha scritto:
->> On 11/04/2024 18:58, Fabio Aiuto wrote:
->>> Add property to trigger warm reset on PMIC_RST_B assertion
->>>
->>
->> That's rather vague and does not tell me much why this is supposed to be
->> board level configuration. It sounds more like a debugging feature:
->> during development you want to retain memory contents for pstore etc.
->> Then I could imagine this should be turned runtime, e.g. via
->> sysfs/debugfs, because for example you want to start inspecting a
->> customer's device.
-> 
-> thanks, I spent too few time writing this commit log and I apologize
-> for that. I was thinking about something like:
-> 
->     The default configuration of the PMIC behavior makes the PMIC
->     power cycle most regulators on PMIC_RST_B assertion. This power
->     cycling causes the memory contents of OCRAM to be lost.
->     Some systems needs some memory that survives reset and
->     reboot, therefore add a property to tell PMIC_RST_B is
->     wired.
-> 
-> The actual configuration is made at probe time, anyway we need
-> to override the default behavior of the pmic to get a warm reset
-> everytime the PMIC_RST_B pin is asserted and this property tells
-> us that "something is wired to that pin" and "it has to behave
-> that way on pin assertion". Our use cases do not meet the need
-> of further runtime configuration change.
+> Cc: Matteo Lisi <matteo.lisi@engicam.com>
+> Cc: Mirko Ardinghi <mirko.ardinghi@engicam.com>
+> Signed-off-by: Fabio Aiuto <fabio.aiuto@engicam.com>
+> ---
 
-What is the use case?
-
-Sorry, you did not bring any further argument why this is board
-specific. And please don't explain how probing works, but address the
-problem here: why type of reset is specific to board design. To me it is
-OS policy.
+Discussion continues in v3.
 
 Best regards,
 Krzysztof
