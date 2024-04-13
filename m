@@ -1,143 +1,293 @@
-Return-Path: <devicetree+bounces-58973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58974-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 598018A3DEA
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 19:13:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 807FC8A3DF7
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 19:27:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89F761C20AC9
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 17:13:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A0A191C20A86
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 17:27:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98C5D4CB2E;
-	Sat, 13 Apr 2024 17:13:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 038EC4D9ED;
+	Sat, 13 Apr 2024 17:27:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.b="KyCr+azv"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QgXTkt+u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpcmd02101.aruba.it (smtpcmd02101.aruba.it [62.149.158.101])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0C16482D7
-	for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 17:13:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.149.158.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B85A347A2;
+	Sat, 13 Apr 2024 17:26:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713028428; cv=none; b=QYmp0dl5BY0w7Lb/ceFWDxOEgIvst15fWWuR81bXe6ucnCUFlYNT0tptCPCphbFyWGELmIcXNxt/C7XPod8BQ6N+vNEgxpzI/e+jdI8SSLSuIVj073XXko/QJW7EMMICpIMAXN+Lxht5pRQlwsYTSlRyjmto2+EW8Stu+J+1ML0=
+	t=1713029220; cv=none; b=oZL2Y6yf1kXR2Dj5GMKUf4AZX2iR4OXoGFkdmaBxjTw5FviRUmNjSKPUnV23wK711PsOubyjNECJx6l+/hMnwwOn6QO7VWYsMJ8o3KzcyYYPGxL8MBz+LL5ZVFsyXyfnQCZf8fU5WGJ1AdmlRk3ydoI6w5i4DkBpfSthgyIBNQE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713028428; c=relaxed/simple;
-	bh=IVys/OiNau2OwJaLogqS6aOLz32wgJUF4Aiij97BK7s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eurH5nuuamq/MmW5DuQ0erUq0Sf34VCGCLKjXaojzZzmdfyIaGeWg9iXWz5hqK4ZdCegOfmpPsse4F/v1+2Eu+p2SW7h0XINn51r+68m41XldEqjm6Maan87Ua9+1VCiBkAvsPk8ofAVXVDAwtX1GWe2V50bwDpA/ASv1ncNnno=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=engicam.com; spf=pass smtp.mailfrom=engicam.com; dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.b=KyCr+azv; arc=none smtp.client-ip=62.149.158.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=engicam.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=engicam.com
-Received: from engicam ([77.32.26.8])
-	by Aruba Outgoing Smtp  with ESMTPSA
-	id vgtdrfT9rM2Q6vgterM8lW; Sat, 13 Apr 2024 19:10:35 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
-	t=1713028235; bh=IVys/OiNau2OwJaLogqS6aOLz32wgJUF4Aiij97BK7s=;
-	h=Date:From:To:Subject:MIME-Version:Content-Type;
-	b=KyCr+azv28uuA8I7oOf+sQfh3PKzO8LX1VI2yqJurHQhoaiPg7GXAOnDxu6iCqFKr
-	 ezYHXoxV2iXiieykkKY9L9MP9unI06z3KuSC+5n7aeSvEW23clU2hW1EqOXVcmuuqd
-	 lt2HjmvmOcOCvOyWaXACZgTnhn3spurIs2H4klZlrreQ8QiJLC/AF3JCNeM5jNrYwa
-	 qvBJSQ3B1qgSYOP8c1Rjyu6UIKsihFw42wK7MY6Dvn4y91pzxCuAFvKQviVa/3sVds
-	 ojf+U61RxKh/CkD0l6CSZClxMhNQzFdrJX6dqS+nBKLc0/8Kl4M9seB+Jx/CsnCLLP
-	 NV3Pkh/83nllA==
-Date: Sat, 13 Apr 2024 19:10:33 +0200
-From: Fabio Aiuto <fabio.aiuto@engicam.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Robin Gong <yibin.gong@nxp.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Matteo Lisi <matteo.lisi@engicam.com>,
-	Mirko Ardinghi <mirko.ardinghi@engicam.com>
-Subject: Re: [PATCH v3 1/2] regulator: dt-bindings: pca9450: add PMIC_RST_B
- warm reset property
-Message-ID: <Zhq8ibYrZH05/AQt@engicam>
-References: <20240411165801.143160-1-fabio.aiuto@engicam.com>
- <20240411165801.143160-2-fabio.aiuto@engicam.com>
- <e86812b3-a3aa-4bdb-9b32-a0339f0f76b5@kernel.org>
- <ZhjhCvVNezy9r7P4@engicam>
- <bd1e6507-dee4-4dcf-bbd3-50539270cd63@kernel.org>
+	s=arc-20240116; t=1713029220; c=relaxed/simple;
+	bh=5UeKOyi53VeVQcVkrVDSoWnTbPIVlOepA4P5i5nnoUc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=M8W9LZCV4gt5CqFWzgpfemfe20QNCIGpUV8RWOkngbtol/TaxYiOBD3ZCT3E+2MReRtT5uDopymr9c1IlgM2zDWYJ2W7m44FquwyFOv56m7wcTm1vqJug5ky0wgMHSr6f4eZj3d6+BsJY5Y6ddon8EMvPwkV+GwwUiL/VyAgIWw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=QgXTkt+u; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1713029218; x=1744565218;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=5UeKOyi53VeVQcVkrVDSoWnTbPIVlOepA4P5i5nnoUc=;
+  b=QgXTkt+u/YUi92jtpdvtfeJNWi6AQEqHg6RE9YX1VwgSCCW8K9oPtwwo
+   85Gxu4qJBP9LlcA+tmh+Y8lWgSLoocVt8NmGqCeaJC4pSxccA3/nNWfQS
+   VLcij949Kp8hXFwjsomTuLhDT3n/qObq08nQHcpeZp4ddeorR+Z8lV+En
+   PHSQXndAQxkuXDv271ldjkqVNkHfVkLyKAMCmW9itiGUTRQHSTM/UeIBP
+   ohTbAaQ8XbB5BRdK92Jwk08i1anA7Fzz9sBynUWQdr9+vMmz+pcGyYR9y
+   HkCCh7MWjf8UoPezwzDW4Qv4jRfTTOn2Llvd2spCDd49tnY7bJe3NRB9E
+   Q==;
+X-CSE-ConnectionGUID: vhKUOqhGRTWQtMhv3mhd7Q==
+X-CSE-MsgGUID: 1yuT8kTmQHSHOEo1AhAurQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11043"; a="8637614"
+X-IronPort-AV: E=Sophos;i="6.07,199,1708416000"; 
+   d="scan'208";a="8637614"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Apr 2024 10:26:57 -0700
+X-CSE-ConnectionGUID: ijmeSYHbRPGRhMqmmVVECw==
+X-CSE-MsgGUID: THg4LPW5SrSJE+P+Sjkgxg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,199,1708416000"; 
+   d="scan'208";a="26202088"
+Received: from test2-linux-lab.an.intel.com ([10.122.105.166])
+  by orviesa003.jf.intel.com with ESMTP; 13 Apr 2024 10:26:58 -0700
+From: matthew.gerlach@linux.intel.com
+To: bhelgaas@google.com,
+	lpieralisi@kernel.org,
+	kw@linux.com,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+Subject: [PATCH v3] dt-bindings: PCI: altera: Convert to YAML
+Date: Sat, 13 Apr 2024 12:26:41 -0500
+Message-Id: <20240413172641.436341-1-matthew.gerlach@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bd1e6507-dee4-4dcf-bbd3-50539270cd63@kernel.org>
-X-CMAE-Envelope: MS4xfKq1b6hvFtKreRQ6dwzzBYaCof8q+mOwvcHOyjN6qdlRBeO7CC54ocwz3MMSSwDiw5RBvNhaq40l3tLrV4K/rdlCrxdJZ1FvBh5LHyJu2PYCU+40xZzq
- mxxhaS/zhznl9DMGvH/VpwzYSvtqHDfY2+26MBOgPWT5Cm/5XzrFTgiRuuNxyjUpgjz0enliP7p96fHyxrkLkgIBuAFDpd81EIFTOQlTQSdTEdAUAodckqKO
- m8cSBQcErTUBsqO2M1Te4B73M1MxTIddCzRFlVQRGUKeNVzxMBgiUEaZdn7ZGc4G+E+kL5mw/KmsnReu9OcQFJTMRvCjb3c4K+Qowl7cuHOvhbBjIRpAmfkS
- jHfyx/Urx67u3cZiaf2nOB5AEseIKN66ir1JwQNo5utUircvftn2F0b4GiLdKmfoHcaRUxnbrH0h1d1ysX92Nn4wkJL4W9fCkIoBBvdin6C43QLVnK5myM5u
- s4AzYf+LUWmFVjWK
+Content-Transfer-Encoding: 8bit
 
-Dear Krzysztof,
+From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
 
-Il Sat, Apr 13, 2024 at 12:58:35PM +0200, Krzysztof Kozlowski ha scritto:
-> On 12/04/2024 09:21, Fabio Aiuto wrote:
-> > Dear Krzysztof,
-> > 
-> > Il Thu, Apr 11, 2024 at 09:52:12PM +0200, Krzysztof Kozlowski ha scritto:
-> >> On 11/04/2024 18:58, Fabio Aiuto wrote:
-> >>> Add property to trigger warm reset on PMIC_RST_B assertion
-> >>>
-> >>
-> >> That's rather vague and does not tell me much why this is supposed to be
-> >> board level configuration. It sounds more like a debugging feature:
-> >> during development you want to retain memory contents for pstore etc.
-> >> Then I could imagine this should be turned runtime, e.g. via
-> >> sysfs/debugfs, because for example you want to start inspecting a
-> >> customer's device.
-> > 
-> > thanks, I spent too few time writing this commit log and I apologize
-> > for that. I was thinking about something like:
-> > 
-> >     The default configuration of the PMIC behavior makes the PMIC
-> >     power cycle most regulators on PMIC_RST_B assertion. This power
-> >     cycling causes the memory contents of OCRAM to be lost.
-> >     Some systems needs some memory that survives reset and
-> >     reboot, therefore add a property to tell PMIC_RST_B is
-> >     wired.
-> > 
-> > The actual configuration is made at probe time, anyway we need
-> > to override the default behavior of the pmic to get a warm reset
-> > everytime the PMIC_RST_B pin is asserted and this property tells
-> > us that "something is wired to that pin" and "it has to behave
-> > that way on pin assertion". Our use cases do not meet the need
-> > of further runtime configuration change.
-> 
-> What is the use case?
+Convert the device tree bindings for the Altera Root Port PCIe controller
+from text to YAML.
 
-I just have an external power button connected to that pin, it works
-either with warm reset and cold-reset-except-ldo12. Moreover the default behavior
-is cold reset and not reset-disabled. Anyway I thought it was useful for other
-people to add a property selecting behavior for that pin too as was done for
-WDOG_B. That's why I mainly duplicated the logic. If there is a pin adding a
-reset source it's a good point to provide a way to access the register bits
-related to this signal.
+Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+---
+v3:
+ - Added years to copyright
+ - Correct order in file of allOf and unevaluatedProperties
+ - remove items: in compatible field
+ - fix reg and reg-names constraints
+ - replace deprecated pci-bus.yaml with pci-host-bridge.yaml
+ - fix entries in ranges property
+ - remove device_type from required
 
-> 
-> Sorry, you did not bring any further argument why this is board
-> specific. And please don't explain how probing works, but address the
-> problem here: why type of reset is specific to board design. To me it is
-> OS policy.
-> 
+v2:
+ - Move allOf: to bottom of file, just like example-schema is showing
+ - add constraint for reg and reg-names
+ - remove unneeded device_type
+ - drop #address-cells and #size-cells
+ - change minItems to maxItems for interrupts:
+ - change msi-parent to just "msi-parent: true"
+ - cleaned up required:
+ - make subject consistent with other commits coverting to YAML
+ - s/overt/onvert/g
+---
+ .../devicetree/bindings/pci/altera-pcie.txt   |  50 --------
+ .../bindings/pci/altr,pcie-root-port.yaml     | 112 ++++++++++++++++++
+ 2 files changed, 112 insertions(+), 50 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pci/altera-pcie.txt
+ create mode 100644 Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
 
-Why reset type is specific to board design? I'm sorry but I don't know
-what you mean, as said my intention was to enlarge the number of configurable
-bits in pca9450 register space hoping this would be useful for someone.
+diff --git a/Documentation/devicetree/bindings/pci/altera-pcie.txt b/Documentation/devicetree/bindings/pci/altera-pcie.txt
+deleted file mode 100644
+index 816b244a221e..000000000000
+--- a/Documentation/devicetree/bindings/pci/altera-pcie.txt
++++ /dev/null
+@@ -1,50 +0,0 @@
+-* Altera PCIe controller
+-
+-Required properties:
+-- compatible :	should contain "altr,pcie-root-port-1.0" or "altr,pcie-root-port-2.0"
+-- reg:		a list of physical base address and length for TXS and CRA.
+-		For "altr,pcie-root-port-2.0", additional HIP base address and length.
+-- reg-names:	must include the following entries:
+-		"Txs": TX slave port region
+-		"Cra": Control register access region
+-		"Hip": Hard IP region (if "altr,pcie-root-port-2.0")
+-- interrupts:	specifies the interrupt source of the parent interrupt
+-		controller.  The format of the interrupt specifier depends
+-		on the parent interrupt controller.
+-- device_type:	must be "pci"
+-- #address-cells:	set to <3>
+-- #size-cells:		set to <2>
+-- #interrupt-cells:	set to <1>
+-- ranges:	describes the translation of addresses for root ports and
+-		standard PCI regions.
+-- interrupt-map-mask and interrupt-map: standard PCI properties to define the
+-		mapping of the PCIe interface to interrupt numbers.
+-
+-Optional properties:
+-- msi-parent:	Link to the hardware entity that serves as the MSI controller
+-		for this PCIe controller.
+-- bus-range:	PCI bus numbers covered
+-
+-Example
+-	pcie_0: pcie@c00000000 {
+-		compatible = "altr,pcie-root-port-1.0";
+-		reg = <0xc0000000 0x20000000>,
+-			<0xff220000 0x00004000>;
+-		reg-names = "Txs", "Cra";
+-		interrupt-parent = <&hps_0_arm_gic_0>;
+-		interrupts = <0 40 4>;
+-		interrupt-controller;
+-		#interrupt-cells = <1>;
+-		bus-range = <0x0 0xFF>;
+-		device_type = "pci";
+-		msi-parent = <&msi_to_gic_gen_0>;
+-		#address-cells = <3>;
+-		#size-cells = <2>;
+-		interrupt-map-mask = <0 0 0 7>;
+-		interrupt-map = <0 0 0 1 &pcie_0 1>,
+-			            <0 0 0 2 &pcie_0 2>,
+-			            <0 0 0 3 &pcie_0 3>,
+-			            <0 0 0 4 &pcie_0 4>;
+-		ranges = <0x82000000 0x00000000 0x00000000 0xc0000000 0x00000000 0x10000000
+-			  0x82000000 0x00000000 0x10000000 0xd0000000 0x00000000 0x10000000>;
+-	};
+diff --git a/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
+new file mode 100644
+index 000000000000..13b97f4fd5ee
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
+@@ -0,0 +1,112 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright (C) 2015, 2019, 2024, Intel Corporation
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/altr,pcie-root-port.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Altera PCIe Root Port
++
++maintainers:
++  - Matthew Gerlach <matthew.gerlach@linux.intel.com>
++
++properties:
++  compatible:
++    enum:
++      - altr,pcie-root-port-1.0
++      - altr,pcie-root-port-2.0
++
++  reg:
++    minItems: 2
++    maxItems: 3
++
++  reg-names:
++    minItems: 2
++    maxItems: 3
++
++  interrupts:
++    maxItems: 1
++
++  interrupt-map-mask:
++    items:
++      - const: 0
++      - const: 0
++      - const: 0
++      - const: 7
++
++  interrupt-map:
++    maxItems: 4
++
++  "#interrupt-cells":
++    const: 1
++
++  msi-parent: true
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - interrupts
++  - interrupt-map
++  - interrupt-map-mask
++
++allOf:
++  - $ref: /schemas/pci/pci-host-bridge.yaml#
++  - if:
++      properties:
++        compatible:
++          enum:
++            - altr,pcie-root-port-1.0
++    then:
++      properties:
++        reg:
++          items:
++            - description: TX slave port region
++            - description: Control register access region
++
++        reg-names:
++          items:
++            - const: Txs
++            - const: Cra
++
++    else:
++      properties:
++        reg:
++          items:
++            - description: Hard IP region
++            - description: TX slave port region
++            - description: Control register access region
++
++        reg-names:
++          items:
++            - const: Hip
++            - const: Txs
++            - const: Cra
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    pcie_0: pcie@c00000000 {
++        compatible = "altr,pcie-root-port-1.0";
++        reg = <0xc0000000 0x20000000>,
++              <0xff220000 0x00004000>;
++        reg-names = "Txs", "Cra";
++        interrupt-parent = <&hps_0_arm_gic_0>;
++        interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
++        #interrupt-cells = <1>;
++        bus-range = <0x0 0xff>;
++        device_type = "pci";
++        msi-parent = <&msi_to_gic_gen_0>;
++        #address-cells = <3>;
++        #size-cells = <2>;
++        interrupt-map-mask = <0 0 0 7>;
++        interrupt-map = <0 0 0 1 &pcie_intc 1>,
++                        <0 0 0 2 &pcie_intc 2>,
++                        <0 0 0 3 &pcie_intc 3>,
++                        <0 0 0 4 &pcie_intc 4>;
++        ranges = <0x82000000 0x00000000 0x00000000 0xc0000000 0x00000000 0x10000000>,
++                 <0x82000000 0x00000000 0x10000000 0xd0000000 0x00000000 0x10000000>;
++    };
+-- 
+2.34.1
 
-All I can say is that is specific to board design for the same reason the
-wdog_b- reset type was specific to board design.
-
-Thank you for your time,
-
-fabio
-
-> Best regards,
-> Krzysztof
-> 
 
