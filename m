@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-58996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3C318A3EAB
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 23:23:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12A698A3EB8
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 23:27:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59E901F2143D
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 21:23:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 63B2FB215D5
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 21:27:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8882F55C35;
-	Sat, 13 Apr 2024 21:22:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B2BB55E56;
+	Sat, 13 Apr 2024 21:27:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CeqI7UIj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RIhlfSa7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7CEA1865
-	for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 21:22:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 869AC548F0
+	for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 21:27:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713043377; cv=none; b=LGKqkxfDETTvTLASJmO+IHaolHeF0FQotiO623rsazS/akpi1xFd31muxhb1fBpXhy8H/Cy42MgJFSlohECnxIYd+97LUwISBpr3M355TX/4/x1IwTn6PjaTABqzBWHBy9xyTMvVuTjeesxcw2YLQINOx/WhG87Q+wnw57MUquw=
+	t=1713043672; cv=none; b=EGTTdNf5QXF+WrkrvkAPItfPfW5r1B6gh8AvdNrUp0eJ84dbNUTROepa9M2W8wwvGQZFt+DC2dPI0Ro2Dz9N4zrqeBrHWNJWjpddfG3xQtTxc+XbMYRS4Ebfwk7YzUUTNvdFtjV/TotWgEOv6P5j+oYja8GdSzfLqaUNo81cujc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713043377; c=relaxed/simple;
-	bh=CLOsJ9JefwFWpu6Gyok6bIDnzK0kyZVNcacBldUWqCU=;
+	s=arc-20240116; t=1713043672; c=relaxed/simple;
+	bh=WNLd9EcndabDAeWQ9Cd/Qcu4JrXSt7DWCJoe9nGgKUA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=P2D3vN19jJL/gMpBLC7/DyPBT65iHZpTUz4NiGvyyFqHEJQgeB1G96GH4ocohTaVv3lNZIKQ7BqN/vaoOcujN1hoTqPigPfmlXgmXomtsYJ3gb36avqZwjUtVjjijWIGjHpTw6/JW+aBb50LskjYfpJdlFvGErO4Ib/NIeZsyAg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CeqI7UIj; arc=none smtp.client-ip=209.85.167.51
+	 In-Reply-To:Content-Type; b=QZQAaVmQkkIvI1S2MjjSqsGAKmAN40/0HCmL1cUr8TsvLr0p67vSt+kIkDLd1UESUKno+y0/QV0XlWaNOB8VrVoveo62CYLc76ARUNRXov73gZXIdsQ1ygsnMBlODU+c3HzBp+6kgrl9m4uNzToX+ankhmCmzRZFtyrlmfFy9GQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RIhlfSa7; arc=none smtp.client-ip=209.85.208.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-516d727074eso2631025e87.0
-        for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 14:22:55 -0700 (PDT)
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-56fffb1d14bso2705288a12.1
+        for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 14:27:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713043374; x=1713648174; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1713043669; x=1713648469; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=fQGJpaWsjUM7AHqikTaGEm8A9+HIjPT53LC7Bj6lY+U=;
-        b=CeqI7UIjzrZMAUMqHnfWSprUGsx8wjBcSC7KgtZ1t2wvbcWCwyGoQLrNBR1U0KRYo/
-         ZEDcw5i2LXNDgNflS16GdtejYOmSqYM+FaIqAR6T9/pFldc0E1xWJ6ux6OpfSKsEvh5d
-         mtDP5/ngItOm5scS2aUPS4VSFnLgoR8u0/nBHG14M0GkEeGvDZ/HlxGI8P4Cg46Io1Ze
-         L7xlnsBHN7U8wVkcGN1rV69kkKOz3rSxkOaiBR4sKWm36wM3uJ7anj9V8c+Hm9G8GbO3
-         o4HSAvYUw3sVpFiGlsvSRhaEWAz9UVkbrM8ya9SHFhipPKwwrQRG2RrWLAp+8N6/04Fz
-         6TgA==
+        bh=mQk6Npg49mlyzD38L+YDjKT/YbU4SEnG0KL0Ydq3zk8=;
+        b=RIhlfSa7IbLTQjbIoPKagCznko8BkG9xR7W2W++EbL5HC+bK9h0SS33mEUlmqYjA1J
+         aOFFwbUNEqI1X68j0aFoUDUPd57YxrxOECO1fIAt/PDcmG6lx9jLcULtSZZnvYe1EiS7
+         Yr5EZqMHuxrweACe6BM/sMPdWvfjs8ID2Ie99oRUF2r3x5sfb16LT0d3wfxKsrzocvI0
+         wcsolQj3rf1AJeuGtowloZkonNTo8s4IQqGIn2LAdvXJjCIvKcrLmsFg2Nn4YQwyVbcw
+         c18zaOpMNle1T7+58KqCEsvvUfbY5mNfr23ZuqIa2C1m/3qxdCzl0p8Axru/jE72EZ4C
+         A2tQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713043374; x=1713648174;
+        d=1e100.net; s=20230601; t=1713043669; x=1713648469;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=fQGJpaWsjUM7AHqikTaGEm8A9+HIjPT53LC7Bj6lY+U=;
-        b=Chds0O2sCNGHYRU1FaOuX55tGLCvDb3WUS3GY0MnNaeWsRSHOuLN7hKv4k+tWaSp1Z
-         l+SaPC1Ev8pdlB4v9QU4Qz+mvlrs00fOt+zN3sqTU895YoxQfGz98B1frbFzGdReISqU
-         iyz1qErGczR3VmphL0YA621X4q+eqCvTwnwrNbNefdOWOEmFCY6rPvw2BXDEerNYPnnY
-         dQguEVrvLjeYy6MVWrw1RrmcEd+zut/VmsYTuSfNM1OX3HVAdnhW2GilUqn03ZqebO3z
-         1R++1jmPWSVLYhLxPkPe0WIwgaoj19JaUbv6GKJJ9PXiBJGTJJexMN1A8PSAtK+X2MOt
-         Yyfg==
-X-Forwarded-Encrypted: i=1; AJvYcCW/t6Fe3MUCfur5PPCtngERasYPwMG+AdOj/eAaA85/nZmzP9NRKH+80QdHrC+tfj39pQcI/DHHtCO0KcocPBejLSEbukZcA+ZH/g==
-X-Gm-Message-State: AOJu0Yz9aBlfL34hBPu0gkjeEuwgf9zoZdp9MZd7PO2xa095To/5B0Xq
-	1/w1TAGiuiAI8/ybil6XTlFg2GIZfp9CLdoWxwqh5m1gaq1YFHKVKkKZyE097fI=
-X-Google-Smtp-Source: AGHT+IEpkgGV4cfM8OxwVMC43mCKJlrDMrXOzRC0ZAFr0X9Vk8KLbuzMNlMAoySsyCTi3Vc2bDE5xg==
-X-Received: by 2002:a05:6512:3d19:b0:518:6ee7:b988 with SMTP id d25-20020a0565123d1900b005186ee7b988mr3837518lfv.55.1713043374088;
-        Sat, 13 Apr 2024 14:22:54 -0700 (PDT)
+        bh=mQk6Npg49mlyzD38L+YDjKT/YbU4SEnG0KL0Ydq3zk8=;
+        b=u7Z4PKw3J082AayFngmN7pQH6GcVQ8FlQ5ehP+Ta1tqysnwpeU9mR1oO9HlUc4j7Uj
+         KPnAimKsqp11fVohxDD0CaT/F82N30qZ0vsRA0BfsyNEBKBKKVK5bZrXcwZ604vL0P87
+         wS+PMpzFxy8ms6kCLnyRHWjiuYhlKFhDkkhzRI7TNTZLKfQyQjihtYX4xVwMd7hfCaeL
+         6WUYRZ61QU61HclFEnQbMcClMTipTdeBX+gIVVj15AaJTJoACLi28EOMCozO1jnJKiGC
+         SsZcCaxflDOLy2/SN7KO0mAfM6XMiH8Z6QJMtuvAy2UJ3WtH7YD5SHBpS0GUOaXv8Tp0
+         XlUw==
+X-Forwarded-Encrypted: i=1; AJvYcCWBH0IFZqFQ7GY3iHqs/Vasz/1DtdV6zqP6kkKY0vUsVPF3/m5mx76P8Mt3OTzFvh85+fpkjaAt6IJkskS8gZwhqDVPi//mTXnOXg==
+X-Gm-Message-State: AOJu0YyVyzhHj32bJkkYVsmZMvovY8hrpA1Ubyf32PLsQmsCm5JCXz6H
+	0SiLV7Z1GGjRbOHcmOpRJY8dbFEIr887l27udetXZrpEglId5JGDZP4UDvcI0i9MVqIf1tntdWg
+	a
+X-Google-Smtp-Source: AGHT+IFfQSnL4MNNFkXbY7KbB9xm8Pv2zIu6igGXtj2hRYd7g+pXy58uB6ahfj+OXZeXUxBNPTL2tQ==
+X-Received: by 2002:a50:9e4d:0:b0:56d:faa3:7dac with SMTP id z71-20020a509e4d000000b0056dfaa37dacmr4929773ede.9.1713043668818;
+        Sat, 13 Apr 2024 14:27:48 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id bq3-20020a170906d0c300b00a522f867697sm2533293ejb.132.2024.04.13.14.22.52
+        by smtp.gmail.com with ESMTPSA id b44-20020a509f2f000000b005701ded12a8sm293416edf.69.2024.04.13.14.27.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 Apr 2024 14:22:53 -0700 (PDT)
-Message-ID: <d0839eec-7a92-4834-b47a-be0ba1908c1a@linaro.org>
-Date: Sat, 13 Apr 2024 23:22:51 +0200
+        Sat, 13 Apr 2024 14:27:48 -0700 (PDT)
+Message-ID: <72cf2a5d-55d2-4117-8b80-b3e517a7a9eb@linaro.org>
+Date: Sat, 13 Apr 2024 23:27:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,27 +78,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?Q?Re=3A_=5BPATCH_v3_1/2=5D_media=3A_dt-binding=3A_media=3A_?=
- =?UTF-8?Q?Document_rk3588=E2=80=99s_VEPU121?=
-To: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>, linux-kernel@vger.kernel.org
-Cc: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [RFC PATCH v2 1/6] dt-bindings: ROHM BD96801 PMIC regulators
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+ Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Dragan Simic <dsimic@manjaro.org>,
- Shreeya Patel <shreeya.patel@collabora.com>,
- Chris Morgan <macromorgan@hotmail.com>, Andy Yan <andy.yan@rock-chips.com>,
- Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
- linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- iommu@lists.linux.dev
-References: <20240412151515.837824-1-linkmauve@linkmauve.fr>
- <20240412151515.837824-2-linkmauve@linkmauve.fr>
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
+ Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
+References: <cover.1712920132.git.mazziesaccount@gmail.com>
+ <27a1c489f62e46a80643fe86cca101fb5aadb7f4.1712920132.git.mazziesaccount@gmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -144,27 +135,124 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240412151515.837824-2-linkmauve@linkmauve.fr>
+In-Reply-To: <27a1c489f62e46a80643fe86cca101fb5aadb7f4.1712920132.git.mazziesaccount@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/04/2024 17:15, Emmanuel Gil Peyrot wrote:
-> This encoder-only device is present four times on this SoC, and should
-> support everything the rk3568 vepu supports (so JPEG, H.264 and VP8
-> encoding).
+On 12/04/2024 13:21, Matti Vaittinen wrote:
+> ROHM BD96801 is a highly configurable automotive grade PMIC. Introduce
+> DT bindings for the BD96801 regulators.
 > 
-> According to the TRM[1], there is also the VEPU580 encoder which
-> supports H.264 and H.265, and various VDPU* decoders, of which only the
-> VDPU981 is currently supported.  This patch describes only the VEPU121.
-> 
-> [1] https://github.com/FanX-Tek/rk3588-TRM-and-Datasheet
-> 
-> Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> ---
+> Revision history:
+> - No changes since RFCv1
 
-So you ignored all the tags? No one will pick up your patch if you are
-going to keep ignoring them...
+Subject: missing "regulator" prefix, as first.
 
-Subject: drop the second, redundant "media".
+> 
+>  .../regulator/rohm,bd96801-regulator.yaml     | 69 +++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd96801-regulator.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/rohm,bd96801-regulator.yaml b/Documentation/devicetree/bindings/regulator/rohm,bd96801-regulator.yaml
+> new file mode 100644
+> index 000000000000..4015802a3d84
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/rohm,bd96801-regulator.yaml
+> @@ -0,0 +1,69 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/rohm,bd96801-regulator.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ROHM BD96801 Power Management Integrated Circuit regulators
+> +
+> +maintainers:
+> +  - Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+> +
+> +description: |
+> +  This module is part of the ROHM BD96801 MFD device. For more details
+> +  see Documentation/devicetree/bindings/mfd/rohm,bd96801-pmic.yaml.
+> +
+> +  The regulator controller is represented as a sub-node of the PMIC node
+> +  on the device tree.
+> +
+> +  Regulator nodes should be named to BUCK_<number> and LDO_<number>.
+> +  The valid names for BD96801 regulator nodes are
+> +  BUCK1, BUCK2, BUCK3, BUCK4, LDO5, LDO6, LDO7
+> +
+> +patternProperties:
+> +  "^LDO[5-7]$":
+
+lowercase
+
+> +    type: object
+> +    description:
+> +      Properties for single LDO regulator.
+> +    $ref: regulator.yaml#
+
+Missing unevaluatedProperties: false
+
+> +
+> +    properties:
+> +      regulator-name:
+> +        pattern: "^ldo[5-7]$"
+> +        description:
+> +          Name of the regulator. Should be "ldo5", ..., "ldo7"
+
+Why do you enforce the name? The name should match board schematics, not
+regulator datasheet.
+
+> +      rohm,initial-voltage-microvolt:
+> +        description:
+> +          Initial voltage for regulator. Voltage can be tuned +/-150 mV from
+> +          this value. NOTE, This can be modified via I2C only when PMIC is in
+> +          STBY state.
+> +        minimum: 300000
+> +        maximum: 3300000
+
+Hm, regulator min/max microvolts properties don't work for you? The
+initial will be just middle?
+
+> +
+> +  "^BUCK[1-4]$":
+
+lowercase
+
+> +    type: object
+> +    description:
+> +      Properties for single BUCK regulator.
+> +    $ref: regulator.yaml#
+> +
+> +    properties:
+> +      regulator-name:
+> +        pattern: "^buck[1-4]$"
+> +        description:
+> +          should be "buck1", ..., "buck4"
+> +      rohm,initial-voltage-microvolt:
+> +        description:
+> +          Initial voltage for regulator. Voltage can be tuned +/-150 mV from
+> +          this value. NOTE, This can be modified via I2C only when PMIC is in
+> +          STBY state.
+> +        minimum: 500000
+> +        maximum: 3300000
+
+Missing blank line
+
+> +      rohm,keep-on-stby:
+> +        description:
+> +          Keep the regulator powered when PMIC transitions to STBY state.
+> +        type: boolean
+> +
+> +    required:
+> +      - regulator-name
+> +  additionalProperties: false
+
+Blank line
+
+> +additionalProperties: false
 
 Best regards,
 Krzysztof
