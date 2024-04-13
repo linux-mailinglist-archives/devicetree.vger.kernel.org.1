@@ -1,48 +1,74 @@
-Return-Path: <devicetree+bounces-58911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58912-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C91418A3B84
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 09:50:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46F2F8A3B8E
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 10:04:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26F20286104
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 07:50:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1267283E42
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 08:04:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11FC71CFBB;
-	Sat, 13 Apr 2024 07:49:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98B4B1D54F;
+	Sat, 13 Apr 2024 08:04:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zr0j78IB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TmJtYyuI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCA4933C5;
-	Sat, 13 Apr 2024 07:49:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27DAB1CFBB;
+	Sat, 13 Apr 2024 08:04:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712994599; cv=none; b=mBiI0K8AabvbC/kua2bygySuVZ5jL1UmxtyAZ+ZZnyoXeMw1Yyksid/8cyAQov+MeTXegTKCWTEK1mMDGRV53qr1VjQQmI7UNGenTfC3v/m8u5HU4Qpub+2OvpkcHW78sZIyEuhtEpT6xpvMJ4ZIjQ6VQprgVe/3KjWhKZafWJ0=
+	t=1712995463; cv=none; b=bJKD13k6slE0+BP6vbpL/7jwhnOXPQanL4tou9BdwTy/gyezw4OZuFroZJASZPjt1bqCMAV+G5ELE6C1nDeMpBhPiFZ9hsEchX39pz82/yTKmXSZIsPZweOgF4Klf9j6vW7nzkiQtyJj6R/QZJ0/e4prsip//WUoHo0rfte0NNs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712994599; c=relaxed/simple;
-	bh=SYhkX/AIYfq9tp5wzNXMVL8S00eq1NyhmK882L0KXd8=;
+	s=arc-20240116; t=1712995463; c=relaxed/simple;
+	bh=QZCEK0CIagBybPLkRjQZB+ueBDbozC2tromIPFers3g=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=axcBaZF6xCCIKJFqDME0uoCpXkBjbgonaMWgpAe+F1qpsMVOY5DVx9pVJuXV/GfDloYnQAQCTpX8PmwY5wqopid3cN0E7RXdATgw1id2gnR+BLCkDtc2sPhWIakaXnNkF/CuAUHf0XAz4Crx9E/NOFQOhlf64k21DKIlY1kDSPM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zr0j78IB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8312EC113CD;
-	Sat, 13 Apr 2024 07:49:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712994598;
-	bh=SYhkX/AIYfq9tp5wzNXMVL8S00eq1NyhmK882L0KXd8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Zr0j78IBqu623H1wI0+bFST1OhiAua2PmneVKXXRjKLAu67xZfuG0kqYJIqSXYRRJ
-	 cHY0MusSr8bJeXoP7EakfqFnbvEwiCuOgsfSR2FKoeNDIx00GDhYox/cK7Hm5UVeL+
-	 MUyW1k6onTnu6ag2Oun+jgcmCsmvDG231VzVpKRgaz40P7hwTQWCTWnt0w2/OivU2Q
-	 zgLvZsFw4x3owv3bxJQFKF9DOoux/5cxOvtWYtw3EecPjHXJpc2XJuuesmZDrhKcWq
-	 suskh5JZZRFv5UA4rZ8j9ttABY4uXyvsfByqMjz6KrPG8PqfLorQkCJHbyQVCYWneQ
-	 reem3RhWVZ7ag==
-Message-ID: <c14612d2-cd4d-4331-a14d-2cb7cf19311e@kernel.org>
-Date: Sat, 13 Apr 2024 09:49:53 +0200
+	 In-Reply-To:Content-Type; b=LxMle+v50VkPy6ZQuwm9ngTnoFmLRznb5QCEqN+JTjiELCGRFoj3st10KgoUgVVJ63Rba8rdZFbpQDlMnFUiCsnsyH7tFPSN9XmT7dxwm2EgxKRzaiI62tCHXsrFb6n844jzcj67/NG034tVS+orYjqeKbrz3CDoLXI1BJ+GdB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TmJtYyuI; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-1e3ff14f249so12471235ad.1;
+        Sat, 13 Apr 2024 01:04:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712995461; x=1713600261; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bxLRqhr1FqEjQA1PjAbGBGSdX+2n1rP+a8Vb8lQhOj4=;
+        b=TmJtYyuISRyej/RpB7e9gUcNkNuMxhsJnRQqL1aqKJUpHOGYlZqN9myFKA1CV3V3Ru
+         wf5/yXpeVtRIDjj3NTYlQWKGJ0yRDKjrgvj6Tr1XPOwHv32JO6IyDmSYhSaXEUsZaWVT
+         5V6km8uY/QRM+0cBHDgfoUvlSt1CUA3gHQGQbMuCdjsYfxx01QPSnPz76z8we3Rf0mmJ
+         xa2+HMb2DQGruI95GhALQz6CfRIwoN7VLoy2jB0JoL4GVw5J2mFRVgkM5SDgJlaJrt3k
+         M8mInFu4Kl/AOMY5wQtAgpcY/GZes9dzIc/wXcpcl8BNzjuKtHYltuPDb93ZDYTgPDJB
+         pZdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712995461; x=1713600261;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bxLRqhr1FqEjQA1PjAbGBGSdX+2n1rP+a8Vb8lQhOj4=;
+        b=GbAWbmA9h8mOMOI+OvcWoeoPRbauqk/3uLchdTDzF6EYw/l4GqJvGBr59uB69uUFhL
+         kNuF+ypViqU1Ko90AB+a1L2RlCJJi1m4dxS+Yz3mEuTfBPDrpJIYRubua7ydO+ATBraF
+         9X/g6YIUez2B9wWESN0Bm1+fKfUORD+QP8koiDZDikHhiJNXgiO7A8f8PXur5AqKSCS3
+         ItvIW9ratoO6Q4xtwBBD2Iga1jFTrbiR6eU4VoLU7cXPBhSzTknX8Cuotz6vLIc8j8Oa
+         scWVnO3XUBOTZyZm3mEznUllf0mivunslCnGb5p1B+vGZUCszBYPWITNUW0e9cbs7QjS
+         TJbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWEX9f/1qxx59GCOrduS0GEYoFj+s439GqggBZldocjOFKTbWjtgkMjbQFMG+jrX/K1/rl5forGgrSHw4gFxtLnmxufBz8siBiGMpGMCjZuxRoo5TqbaIKayHtIPJU1WMS+iuzpeOMlYQ==
+X-Gm-Message-State: AOJu0YxZFtXBzdPa5bHmf1g0s59cpJUIQFvBdcyRYTk9YrT/jg4waSZi
+	z+mBM9DzEonGu3AdqBc5iZA04+HdUMvANYo1hz6ILUXOsRyrMa57dUFLSJhGCFk=
+X-Google-Smtp-Source: AGHT+IGUGLWSwfiw7R8x/M8N7rE7Rt5vT6K+6abu8hm6zxcpzczpPkE1/EDPv515yZpWvd8XwEVlPQ==
+X-Received: by 2002:a17:902:d4cb:b0:1e0:c0b9:589e with SMTP id o11-20020a170902d4cb00b001e0c0b9589emr9877377plg.25.1712995461252;
+        Sat, 13 Apr 2024 01:04:21 -0700 (PDT)
+Received: from [0.0.0.0] (42-3-109-144.ptr.netvigator.com. [42.3.109.144])
+        by smtp.gmail.com with ESMTPSA id i18-20020a170902c95200b001e3f148ffb8sm4121481pla.21.2024.04.13.01.04.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 13 Apr 2024 01:04:20 -0700 (PDT)
+Message-ID: <f2496498-d8cb-449c-905b-fb32d9b3deff@gmail.com>
+Date: Sat, 13 Apr 2024 16:04:12 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,133 +76,178 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/1] dt-bindings: interrupt-controller: fsl,irqsteer:
- Add imx8qxp support
-To: Alexander Stein <alexander.stein@ew.tq-group.com>,
- Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Lucas Stach <l.stach@pengutronix.de>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240412110318.273791-1-alexander.stein@ew.tq-group.com>
+Subject: Re: [PATCH] arm64: dts: qcom: Split PMU nodes for heterogeneous CPUs
+To: Rob Herring <robh@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240412222942.3874269-1-robh@kernel.org>
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240412110318.273791-1-alexander.stein@ew.tq-group.com>
-Content-Type: text/plain; charset=UTF-8
+From: Xilin Wu <wuxilin123@gmail.com>
+In-Reply-To: <20240412222942.3874269-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12/04/2024 13:03, Alexander Stein wrote:
-> Some SoC like i.MX8QXP use a power-domain for this IP. Add a SoC-specific
-> compatible, which also requires a power-domain.
+On 2024/4/13 6:29, Rob Herring wrote:
+> Arm heterogeneous configurations should have separate PMU nodes for each
+> CPU uarch as the uarch specific events can be different. The
+> "arm,armv8-pmuv3" compatible is also intended for s/w models rather than
+> specific uarch implementations.
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> All the kryo CPUs are missing PMU compatibles, so they can't be fixed.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
-> This patch replaces v1 from [1].
+>   arch/arm64/boot/dts/qcom/msm8956.dtsi |  4 ++--
+>   arch/arm64/boot/dts/qcom/msm8976.dtsi | 10 ++++++++++
+>   arch/arm64/boot/dts/qcom/sm4450.dtsi  | 11 ++++++++---
+>   arch/arm64/boot/dts/qcom/sm8350.dtsi  | 14 ++++++++++++--
+>   arch/arm64/boot/dts/qcom/sm8550.dtsi  | 19 +++++++++++++++++--
+>   arch/arm64/boot/dts/qcom/sm8650.dtsi  | 14 ++++++++++++--
+>   6 files changed, 61 insertions(+), 11 deletions(-)
 > 
-> Changes in v2:
-> * Add imx8qxp specific compatible
-> * Require a power-domain for this SoC
-> 
-> [1] https://lore.kernel.org/all/20240110094338.472304-1-alexander.stein@ew.tq-group.com/
->  .../interrupt-controller/fsl,irqsteer.yaml    | 20 ++++++++++++++++++-
->  1 file changed, 19 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml
-> index 20ad4ad82ad6..0ce0246870c0 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml
-> @@ -14,7 +14,9 @@ properties:
->      oneOf:
->        - const: fsl,imx-irqsteer
->        - items:
-> -          - const: fsl,imx8m-irqsteer
-> +          - enum:
-> +              - fsl,imx8m-irqsteer
-> +              - fsl,imx8qxp-irqsteer
->            - const: fsl,imx-irqsteer
->  
->    reg:
-> @@ -42,6 +44,9 @@ properties:
->    clock-names:
->      const: ipg
->  
-> +  power-domains:
-> +    maxItems: 1
+> diff --git a/arch/arm64/boot/dts/qcom/msm8956.dtsi b/arch/arm64/boot/dts/qcom/msm8956.dtsi
+> index 668e05185c21..fa36b62156bb 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8956.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8956.dtsi
+> @@ -8,8 +8,8 @@
+>   
+>   #include "msm8976.dtsi"
+>   
+> -&pmu {
+> -	interrupts = <GIC_PPI 7 (GIC_CPU_MASK_SIMPLE(6) | IRQ_TYPE_LEVEL_HIGH)>;
+> +&pmu_a72 {
+> +	interrupts = <GIC_PPI 7 (GIC_CPU_MASK_RAW(0x30) | IRQ_TYPE_LEVEL_HIGH)>;
+>   };
+>   
+>   &tsens {
+> diff --git a/arch/arm64/boot/dts/qcom/msm8976.dtsi b/arch/arm64/boot/dts/qcom/msm8976.dtsi
+> index d2bb1ada361a..1ad102b1633c 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8976.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8976.dtsi
+> @@ -226,6 +226,16 @@ pmu: pmu {
+>   		compatible = "arm,armv8-pmuv3";
+>   		interrupts = <GIC_PPI 7 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_HIGH)>;
+>   	};
+> +	pmu-a53 {
+> +		compatible = "arm,cortex-a53-pmu";
+> +		interrupts = <GIC_PPI 7 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+> +	};
 > +
->    interrupt-controller: true
->  
->    "#interrupt-cells":
-> @@ -72,6 +77,19 @@ required:
->  
->  additionalProperties: false
->  
-> +allOf:
-
-Put allOf before additionalProperties, just like in example-schema.
-
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: fsl,imx8qxp-irqsteer
-> +    then:
-> +      properties:
-> +        power-domains:
-> +          minItems: 1
-
-That's redundant. Drop.
-
-
-> +      required:
-> +        - power-domains
+> +	pmu_a72: pmu-a72 {
+> +		compatible = "arm,cortex-a72-pmu";
+> +		interrupts = <GIC_PPI 7 (GIC_CPU_MASK_RAW(0xf0) | IRQ_TYPE_LEVEL_HIGH)>;
+> +	};
 > +
->  examples:
->    - |
->      #include <dt-bindings/clock/imx8mq-clock.h>
+>   
+>   	psci {
+>   		compatible = "arm,psci-1.0";
+> diff --git a/arch/arm64/boot/dts/qcom/sm4450.dtsi b/arch/arm64/boot/dts/qcom/sm4450.dtsi
+> index 603c962661cc..411eb7577407 100644
+> --- a/arch/arm64/boot/dts/qcom/sm4450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm4450.dtsi
+> @@ -268,9 +268,14 @@ memory@a0000000 {
+>   		reg = <0x0 0xa0000000 0x0 0x0>;
+>   	};
+>   
+> -	pmu {
+> -		compatible = "arm,armv8-pmuv3";
+> -		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> +	pmu-a55 {
+> +		compatible = "arm,cortex-a55-pmu";
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +
+> +	pmu-a78 {
+> +		compatible = "arm,cortex-a78-pmu";
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+>   	};
+>   
+>   	psci {
+> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> index a5e7dbbd8c6c..127fa9a935da 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> @@ -300,8 +300,18 @@ memory@80000000 {
+>   		reg = <0x0 0x80000000 0x0 0x0>;
+>   	};
+>   
+> -	pmu {
+> -		compatible = "arm,armv8-pmuv3";
+> +	pmu-a55 {
+> +		compatible = "arm,cortex-a55-pmu";
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +
+> +	pmu-a78 {
+> +		compatible = "arm,cortex-a78-pmu";
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +
+> +	pmu-x1 {
+> +		compatible = "arm,cortex-x1-pmu";
+>   		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+>   	};
+>   
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> index 3904348075f6..8e7d0ac17a12 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> @@ -357,8 +357,23 @@ memory@a0000000 {
+>   		reg = <0 0xa0000000 0 0>;
+>   	};
+>   
+> -	pmu {
+> -		compatible = "arm,armv8-pmuv3";
+> +	pmu-a510 {
+> +		compatible = "arm,cortex-a510-pmu";
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +
+> +	pmu-a710 {
+> +		compatible = "arm,cortex-a710-pmu";
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +
+> +	pmu-a720 {
+> +		compatible = "arm,cortex-a720-pmu";
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +
+> +	pmu-x3 {
+> +		compatible = "arm,cortex-x3-pmu";
+>   		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+>   	};
+>   
 
-Best regards,
-Krzysztof
+I believe SM8550 uses cortex-a715 instead of a720.
+
+> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> index ba72d8f38420..90102a41489d 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> @@ -394,8 +394,18 @@ memory@a0000000 {
+>   		reg = <0 0xa0000000 0 0>;
+>   	};
+>   
+> -	pmu {
+> -		compatible = "arm,armv8-pmuv3";
+> +	pmu-a520 {
+> +		compatible = "arm,cortex-a520-pmu";
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +
+> +	pmu-a720 {
+> +		compatible = "arm,cortex-a720-pmu";
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +
+> +	pmu-x4 {
+> +		compatible = "arm,cortex-x4-pmu";
+>   		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+>   	};
+>   
 
 
