@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-58955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0EDA8A3D83
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 17:39:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 845F18A3D88
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 17:49:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A7EF2824D2
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 15:39:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3A37281E4E
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 15:49:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2FDD4779D;
-	Sat, 13 Apr 2024 15:39:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 123F047F45;
+	Sat, 13 Apr 2024 15:49:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f5pGf375"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="y/vZRVEs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6056D45C1C;
-	Sat, 13 Apr 2024 15:39:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 654DC45C0B
+	for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 15:49:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713022768; cv=none; b=rh61/xBRhxzQQoiDU65342776J/CfTHEHkVuUXfPfxCNzT+vp/2t4p/PO3x8O7Mn3iTVXZraS8JO9mH1v753arWM3mYqNP2CSkUBP/A3h8Op5wUcq7qIVuA3pE2AaPltAr6/GZZ+wiOxaqCRz0Ksp6JTna5Sieg6ImwXJHcSEMw=
+	t=1713023359; cv=none; b=AHEUHEvTiF4qlHejtShmbMzIRFYYeeMHHNZzL3GVVJNcdyMqePhqu5gm80K7BGBxxcf2T5w2iqb+vzjXSwFT1vNY/7exWAZ/QzzZYNJY/RN3xo88ntRL2GZ81AVI/BeGW7wNmlEje5RidQT3YzJXg1onZ6AZ0wBe94vVzDcObiA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713022768; c=relaxed/simple;
-	bh=jL7uU696zbopMOteh9u4d9k59fFxvMnfP1MVAqxOv94=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=ej4FzS05aTZbhf/7MN66c5sZdWg5stoTTKrXT+/vv+Iq2+R3LtM6NYMugAto0EWFysOV2a49PzRdA1Q0HHbe1OpAIdHECsipoNY0b04gnZxkBVukYzRinkwJpkUFujulSisnaKBYB7Nr3lgv/fQzquTANJS+6k1fr/R9qG4XsO0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f5pGf375; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a5200afe39eso219524966b.1;
-        Sat, 13 Apr 2024 08:39:27 -0700 (PDT)
+	s=arc-20240116; t=1713023359; c=relaxed/simple;
+	bh=rx+g1MSVwq/oqS/V1kYTwnSADbN88wdvY1M+SrZB51o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=k5nUpMpodnW+DwQcPyaryUC9X5wusVVEcc83HSt4YpHxuB+FGqlRclA8IsGQHw/ZIJDICGeqdLokyFYibMQbwfZ3EEfPZsMwr9pO69LRbrBiQUSPQLFA12cR4sMY47pRPeMaZ5PsaL7RUaNTIrUdC1r7eR9XbP3QwhA42pouT3Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=y/vZRVEs; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-516d3a470d5so2117056e87.3
+        for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 08:49:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713022766; x=1713627566; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=HNEWJOBlR0y7Hhtt6axRN9X/exAZdSvN2lHOcVrlbOk=;
-        b=f5pGf375+79N2BHEX1fQKFTM60UI/1ZOoyjwEGlSmdDfMBMa3mKsex/Uul3sQKO/DO
-         Nq2I3sIxxKOjeEvUXYe6SUo8RCN/ejQTPyfNiDEWd4bs1K2G+ymRoN4VaYCbGdS7LmXe
-         kK0I0SxR9P1CXDIAbQN52sUbBteR4hgejOVuvmCdRZPm5KNK0ecQ/9qulcj8rxYrC59q
-         HU85di/6k2LvdfcGe0EVXgDhSAFE0DI/1RFM7kuSSZqUf/6pPAB8iUtTUFB0jEyRt83R
-         lV9DMkuwoXV/4fU3kS25Cw+DvLsAkGVxQi/e8t8n7FaCz1+01VIkmOzKNFvz68+J7i+n
-         TgsQ==
+        d=linaro.org; s=google; t=1713023355; x=1713628155; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=LI1j23QI4qxI38ZToeDX84dvQ68X7cYSls1NW0rPep4=;
+        b=y/vZRVEsAwB04TAEfXwIUkuDl3Zuv2Sl4Z6tCLYGSEMSNDQP+9F+H9Oj/ANeGE7u4a
+         gYOVkUfJmP9YrKYZ6y+h3gE+9qa2w1+7MMb/Xhu0S2SgGEbUK5cTkgzfhOHFgFEjbDuw
+         veTiUGYjuFzfwVMiU1aBolfjuZ/tFJ19ysOYDgfv+qLSXoC5H1w6iaVWs0bivy03kHnQ
+         52FT3FhhQhTZkFSWfPPUxKIDHkBnMKId0kUI7pKbT3LRNHABScL09iyQOS5L6OMx0VWV
+         GEOb/8DrBnVecgy5KX5NH9P/noVuDSChsTvAev8FL0dPol+FiAsBcyOE6wwG1UiZFIGh
+         9emA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713022766; x=1713627566;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HNEWJOBlR0y7Hhtt6axRN9X/exAZdSvN2lHOcVrlbOk=;
-        b=uPkAV2SzsEYL4Jb4M4V9OgJh+zSbKztfUXtt1HAoo8AxSWkAjXVSGWE7CUNpFsYIe9
-         +KG6qHsHk8jpAT38M2aRSlObbAXH5JbW2EEsNdL2OzBtNqB4Gqx9vJc66aYMbLFdFLsk
-         yWOyI4mJyLqsSnY50bU6NRmXoTIZn3vg+vQB+1o36qS69K/7j19rJoRsPv1q4wY1Rt5d
-         X58gzDGtgRBxAHibAwqfUB14lDbFpEDZBcWChuBOJ037CclV9PnOso1AVDczrd/JbCcG
-         DufKZslCiqQpYkRzxyVkIpmX5YY89wR0DbnizN/f2pj9HNNtnLav/gq/+sOyRjvnlW0K
-         YTJg==
-X-Forwarded-Encrypted: i=1; AJvYcCVn9RTmtZGJ24UrFUHkrwfYDxDHBcsXIVV+pQo/q44JDoX9IV5cpcP+SWVFhqx6bo4/n2hZDrybfXojmZvdrB+w4QeTdQEL7E/NoSs+aQmUarzY1pmQ/kDS6S6g2MqvXj5Ki78qmNpEew==
-X-Gm-Message-State: AOJu0Yx4pW/SQGMBGLcAAjZdDeAR+cOuGk+XTxkNwMargUL8KitTG1fP
-	tu+vDFcvWF2kdgtn7Z2p13lzj52dPC9pBrEmX2bCvjv2daqcKxwM
-X-Google-Smtp-Source: AGHT+IHqgFh+uk15K0EwlCSK5KyFNaBttoC/3mMIKlGeivBdJuPR/0PC//p06HrA73var6K2Mhrrtg==
-X-Received: by 2002:a17:906:34d1:b0:a52:2e08:207e with SMTP id h17-20020a17090634d100b00a522e08207emr3722414ejb.77.1713022765539;
-        Sat, 13 Apr 2024 08:39:25 -0700 (PDT)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id cx10-20020a170906c80a00b00a51b5282837sm3131680ejb.15.2024.04.13.08.39.24
+        d=1e100.net; s=20230601; t=1713023355; x=1713628155;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LI1j23QI4qxI38ZToeDX84dvQ68X7cYSls1NW0rPep4=;
+        b=F5ahZW17//S8KlZutzeQlKDpOW30rffo5Mn/xc08RCbIqlWbSwu0iXQpxv2vjwN7Dc
+         W1I2NfzD4vcd2eL9wpKBtYV3feA1HXbhs4QWE+CpC5PlM5VzVocF+QjH3p2QWOrfUHb5
+         SSPx1Vc8fyewV49BgPY99eEjGeTe2ZlCbzSI7QfTvgan67nM4KJKX+ekSsb6ckyPQgA9
+         N9r4oXj73GAlxfO4Flncl/aDXqBokKYbQO32Qy2BpdkadA/rGKWEbWbGsL8l/VeA0XvC
+         fbfnPX7jfZhIDKyK2+fIOCOmyUupAmY0dW7Z2QeuLKLc88Odc9RoHR10RF8oVnxLTkV9
+         C0zg==
+X-Forwarded-Encrypted: i=1; AJvYcCU5C215TjymBfiejHBZWNCsoZUFnn8lLHfiLXOnHjAOaek6Dog0OYqU++f1dVh2C/NBooTXMdVEeJb/FIbXZrV/Ap7iZ4Gq0EhS7g==
+X-Gm-Message-State: AOJu0YzwG+/s2oFBwyCK86pYsbZ/QYM+M1ejhlD/zhxCVTQvu70VJAaQ
+	hMKFCLyGmB8FaA9x2USwKmj7YxbRIvrSYxZsxeGLAld0nTMF2Ohryqp1SMulLnA=
+X-Google-Smtp-Source: AGHT+IGEgI+QLJqSo/abtBRc6T3hoK4XDlnELOmCXYz8Ua3pBgaflgnnDBZwLNOA76sH2R4Va5xr4A==
+X-Received: by 2002:ac2:4c81:0:b0:518:9952:2740 with SMTP id d1-20020ac24c81000000b0051899522740mr2486516lfl.41.1713023355353;
+        Sat, 13 Apr 2024 08:49:15 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id r18-20020a170906549200b00a4e98679e7dsm3125754ejo.87.2024.04.13.08.49.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 Apr 2024 08:39:25 -0700 (PDT)
-Message-ID: <521d4229-7490-4494-8191-cd5f3119249e@gmail.com>
-Date: Sat, 13 Apr 2024 17:39:24 +0200
+        Sat, 13 Apr 2024 08:49:14 -0700 (PDT)
+Message-ID: <45eea851-ed28-4066-8bc1-d04acf4021f7@linaro.org>
+Date: Sat, 13 Apr 2024 17:49:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,61 +77,92 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Johan Jonker <jbx6244@gmail.com>
-Subject: [PATCH v1 3/3] dt-bindings: display: add #sound-dai-cells property to
- rockchip inno hdmi
-To: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com
-Cc: airlied@gmail.com, daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, markyao0591@gmail.com,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <3a035c16-75b5-471d-aa9d-e91c2bb9f8d0@gmail.com>
+Subject: Re: [PATCH] Avoid error message on rk3328 use
+To: Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Johan Jonker <jbx6244@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
+ shironeko <shironeko@tesaguri.club>, Etienne Buira <etienne.buira@free.fr>,
+ Jonas Karlman <jonas@kwiboo.se>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <ZhqO-DEmh-6TeHrt@Z926fQmE5jqhFMgp6>
+ <f245966c-267f-4159-a9ca-2561693d24d9@linaro.org>
+ <Zhqjhvq38oNH5-sR@Z926fQmE5jqhFMgp6>
 Content-Language: en-US
-In-Reply-To: <3a035c16-75b5-471d-aa9d-e91c2bb9f8d0@gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <Zhqjhvq38oNH5-sR@Z926fQmE5jqhFMgp6>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-The Rockchip inno HDMI controller can take one I2S input and transmit it
-over the HDMI output. Add #sound-dai-cells (= 0) to the binding for it.
+On 13/04/2024 17:23, Etienne Buira wrote:
+>>> presence of gpio,syscon-dev node (or it will call dev_err() when probed).
+>>> Correct rk3328.dtsi and related documentation to follow syscon's
+>>> expectations.
+>>
+>> No, look at gpio-syscon driver. Parent is used.
+> 
+> Parent is used, but the next lines are:
+> ret = of_property_read_u32_index(np, "gpio,syscon-dev", 1, &priv->dreg_offset);
+> if (ret)
+> 	dev_err(...)
+> 
+> So if gpio,syscon-dev does not have at least 2 items (or is missing),
+> dev_err will be called, 3 items for dev_dbg.
+> Current tree displays a spurious "can't read the data register offset"
+> message.
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- .../bindings/display/rockchip/rockchip,inno-hdmi.yaml        | 5 +++++
- 1 file changed, 5 insertions(+)
+Hm, indeed, then I think driver, so
+aa1fdda8f7ebf83f678e8d3c2ab4f1638c94195f, should be fixed. Otherwise
+please say why binding is not correct and driver is good.
 
-diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,inno-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,inno-hdmi.yaml
-index be78dcfa1c76..5b87b0f1963e 100644
---- a/Documentation/devicetree/bindings/display/rockchip/rockchip,inno-hdmi.yaml
-+++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,inno-hdmi.yaml
-@@ -37,6 +37,9 @@ properties:
-   power-domains:
-     maxItems: 1
 
-+  "#sound-dai-cells":
-+    const: 0
-+
-   ports:
-     $ref: /schemas/graph.yaml#/properties/ports
-
-@@ -66,6 +69,7 @@ required:
-   - ports
-
- allOf:
-+  - $ref: /schemas/sound/dai-common.yaml#
-   - if:
-       properties:
-         compatible:
-@@ -106,6 +110,7 @@ examples:
-       clock-names = "pclk";
-       pinctrl-names = "default";
-       pinctrl-0 = <&hdmi_ctl>;
-+      #sound-dai-cells = <0>;
-
-       ports {
-         #address-cells = <1>;
---
-2.39.2
+Best regards,
+Krzysztof
 
 
