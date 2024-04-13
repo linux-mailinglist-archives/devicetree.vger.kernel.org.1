@@ -1,233 +1,164 @@
-Return-Path: <devicetree+bounces-58977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40E338A3E08
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 19:34:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D3278A3E10
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 20:05:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52DC31C203DF
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 17:34:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6BBF8B21694
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 18:05:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 533B04C637;
-	Sat, 13 Apr 2024 17:33:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 298DF52F8A;
+	Sat, 13 Apr 2024 18:05:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="IxACskQ4"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="zCJXB4lp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2115F52F67
-	for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 17:33:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 930404AEF9
+	for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 18:05:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713029639; cv=none; b=DLAdwKI9ABzd0ReQElvGry2jIVVYUabOaeLBgI9F1iMbGhZNTQvKh6iRZsjd+ZHGBMfImueeMsc2CEJWC+xJOvw74X0f01px6iHTX33XSHbL/Td3mXMKvB3JjLYbw6Czxg3/87tpnQU5y48Ka1ozMOhp0KGvySSwqyk65vTQsRk=
+	t=1713031518; cv=none; b=txCQEtxyIAiPmkT4MqmyV0kXyNl8oGnxlHvjo6uwDK+HpuuUjClNFXHF/iR5IjIEiPqcRU7pTQSFCMuZU5s4wcXJ0RGb00KQKYqCUKNg8klVELf0uQGD0IkFN1L9xbRwRJuKCX/xbBuV3VaOknX9RGsOu6qYa4uNS3szC/PJ2+w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713029639; c=relaxed/simple;
-	bh=MkeaTZnxqZ9jrAqaSFvVakK85urSq4+qw4OsGe4mfHc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TzmMEPWNOmxuezIpPvUTzwOhoFggpe+TOClbaR3McMNUJ8Gl+l92WPdd68b9HPg44QBHJq/VsVj1oM4kAp55pm9l59BFd93XvyFqYvtigoTQ3ve53/xsBWRPidF1z/VhFSUTLzV3RYMzUVh5G1FbG0Oa1/gMwFm0o/QnLFhQ/ZM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=IxACskQ4; arc=none smtp.client-ip=209.85.160.44
+	s=arc-20240116; t=1713031518; c=relaxed/simple;
+	bh=xU8AWdw09sdQJi0ncss+TnMzhpb6i7Iz6NmzKQpVxMY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hPXMqRGPCcjF5CB1Lgx2YyG7VDi7GFLUYZdKogJj50sW8tEv7Ml/cYv7fw8O4d0eVj9BbvdoFC8hneaUf7MM+tTeimCxI7a/VLqxRfRzut2GOnURURKbWW/ZRLInnua5a45W5lWre4JZ7qcehlGd3neNYy0hXx79g+hGSlYSoqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=zCJXB4lp; arc=none smtp.client-ip=209.85.208.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-2343ae31a9bso212148fac.1
-        for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 10:33:56 -0700 (PDT)
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2d48d75ab70so27640101fa.0
+        for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 11:05:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1713029636; x=1713634436; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8t85JUL690DnqVA/FAbRfv1UaQuRT2kvgiDMk1Zduak=;
-        b=IxACskQ4R3y/P3VGFDdCHwLNjZHIk9mC65Ot+C5uBv7fb1IKUzYRXJY08oFQstnWyi
-         eiXmZm45KOGYF9LOittslopzreRz5sVl6SF0wAtP/iDfFBlocEML0lkuoivxtgOTV88x
-         zlIDYiT11fRKF7A9z0FuNqioXvGHPPKa9ZhTTNlcLypcE2xmsVBIX+QPQbv/O/YS4TRR
-         9lvbmQrlBdDam4lTL6Xhj49t8qIb+jySN99eColw4jobHpHON0DmYOKmT+c4OU9HqkrO
-         zsQYXsRb0Na6XDXeryMWsa3xagy5ia2JRksxHollZV/mqlTbLBABgyxLD8WvmXA9UR0p
-         8I1g==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1713031513; x=1713636313; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RjmAmY6mBQ1oGnN53iqp9T7eFLLOILL/++Sux50ZvHM=;
+        b=zCJXB4lplQhgfNouMCxLdJSOaj1kajPYXiIUhWUeV5xsUf44sa1EtHo2wtIwbNukWF
+         VC9YpguKS8UkKM7vu4WJpPTy8u0MoUsoK4BxAN5cta01neRUa0ryyzwjpGY+PAilr09V
+         N/gxgctrFWdpSdmVT4ohosprRR7looYRGvyXYqas6ovGWJpYAwrTfJOPyWNy+C1PzoU3
+         5WLTW6PLfb89SCRF4hejwvfOT3Iwppo1JSXyt97Af35tChbCxmPw84+2bI6oC7rLjyuV
+         9OU6/G8J2PWjxkDm2syU0/7yqjRtv38RuDN9YIx/EHNsnrPmyKFKHL1POidzI40rHDUT
+         ILXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713029636; x=1713634436;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8t85JUL690DnqVA/FAbRfv1UaQuRT2kvgiDMk1Zduak=;
-        b=Cmde7crGnjKXBzIdW3J080Ji42grXUlvzoBgdmxkcndJjylR7+u9U+7v53iLY4p7I2
-         ydEXkTVPR2ik9Ac0EW2tRDRrFTxcM5jHYwMmuzEy4BsASJDvJeXecVOgfQmE+ATTFqgP
-         qBknXs6muzmviBz2+dvPdRa5Pqw6cmjRESQ8vZZpbjxNONB1/HZcYBVBKxWX+m9Crais
-         VJW6HReMLK6x/9iQhYdLURTCEqQhBin2VyQuYWeIKLjBA+teoOa/0dNo9UzN5zD29ffx
-         QKhvhh2qPL4XZkLoQG/XWgym5WokQkCI8s6Yk8NWwEBJUGjB79qnxgE88CY1bjfgN/xX
-         ukDg==
-X-Forwarded-Encrypted: i=1; AJvYcCV1bdqHwJKTho1Hz4fUzgPHD+MPmUiWJ1cq+yFK8ikhTtGKG3svnfZv7JT8w0krky2ET9fo8vx0lCNFJBygA1pU8fTCqHUcUeZe9Q==
-X-Gm-Message-State: AOJu0YzWeEgoUZp6PyDlMPEAKp4YgsuNtaOjQvTerRKYZ5iKVtxJjgfN
-	dYps6Wp45kUKAykS0bh5op175Rv9aVVGVEsWXNEj6ewZVqPcQu7pE0toXFS6ggw=
-X-Google-Smtp-Source: AGHT+IEFdSh3ImUHY7CzORWpfHAasaXZPoAUrHHHlwSgVOUpQ8MjmjxUQp+N9G+rXfqdoGPL5QQR4Q==
-X-Received: by 2002:a05:6871:7908:b0:233:f867:73a0 with SMTP id pa8-20020a056871790800b00233f86773a0mr3051301oac.22.1713029635863;
-        Sat, 13 Apr 2024 10:33:55 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id sf15-20020a056871230f00b0022f6fd4e1d9sm1416383oab.48.2024.04.13.10.33.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 Apr 2024 10:33:55 -0700 (PDT)
-Message-ID: <87058695-a1a6-4e68-87c5-accdb8451bf4@baylibre.com>
-Date: Sat, 13 Apr 2024 12:33:54 -0500
+        d=1e100.net; s=20230601; t=1713031513; x=1713636313;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RjmAmY6mBQ1oGnN53iqp9T7eFLLOILL/++Sux50ZvHM=;
+        b=Nc/9hBR1Hqbg4KUrYIt2cUoFqMCn26Ryphv7ohuCkuH9JBRCnVuaTIZi51d8upGbJ2
+         cK9d/MYA8oeA3zftlIe24ZUalKo4I1JfAQlXFuo1CoFLxktF8U/jZ0E71637wiTBHYK0
+         RLPKIgVs5BoqYGhIjkvUpEDaRzr41qfnnw2zoVPWQ8df85QBhQbj8RgEXPBv6t5n54qx
+         dpEH3iWDyAsD8t+npt3ffHN76Rs2DCqG0xYK0i+Yl6FQx3qPTEVrc0QHIYd5502o6l7E
+         RWGh+VoyVgN/GvwP6T8gO6zx1Y26RqY4yfwYV/TbppYHOuSzbHoSk0OMSmh5y0FTtCHh
+         daxA==
+X-Forwarded-Encrypted: i=1; AJvYcCVWrvnS4Cqgmp7zIy6ZaJPBWnLRyUPYUXPjaXaAPWkjXNzu+4CIu49Kxyf6q82WF15j9mC49ictuKPB/qArUZcCpAoF1hUU/YOueA==
+X-Gm-Message-State: AOJu0YxKO7eeKyM7JQ95WJO1MyHMykELvEGrODpy50oxlU+FTzYxa9ec
+	SLDwJX6cSxBaARvuB4suQIXADJ0SPsioDk2nzVl+BmaYFkdFqxu+diBgx1Zv2qml7iFgziN6f+T
+	pr2OMNxLTLQq5Cy91hEMb72RoDIwfpSDuGB5s8w==
+X-Google-Smtp-Source: AGHT+IGLFrcrE0njG/Y3034rH32zmQVanzk/BzsxzsfG/+BIUfh1PSUnlIPxiLhp5Hroy+PgJ41zgV+Sb/sbnKAYcVk=
+X-Received: by 2002:a2e:a586:0:b0:2d8:4169:3a58 with SMTP id
+ m6-20020a2ea586000000b002d841693a58mr4205609ljp.41.1713031512592; Sat, 13 Apr
+ 2024 11:05:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: Add AD4000
-To: Jonathan Cameron <jic23@kernel.org>,
- Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, lars@metafoo.de,
- Michael.Hennerich@analog.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <cover.1712585500.git.marcelo.schmitt@analog.com>
- <7c877c865f0b7da28d9f1f177b3b2692b0ae20b9.1712585500.git.marcelo.schmitt@analog.com>
- <CAMknhBGKNZhGbD7pQ0Z7SMCWqxqGux0LcO_wW0XGP4hLTOwNBg@mail.gmail.com>
- <ZhVfARtMfOLOPRid@debian-BULLSEYE-live-builder-AMD64>
- <20240413171409.4575fe6f@jic23-huawei>
-Content-Language: en-US
+References: <20240413151152.165682-1-alisa.roman@analog.com> <20240413151152.165682-3-alisa.roman@analog.com>
+In-Reply-To: <20240413151152.165682-3-alisa.roman@analog.com>
 From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20240413171409.4575fe6f@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Date: Sat, 13 Apr 2024 13:05:01 -0500
+Message-ID: <CAMknhBEwS2O3gWnJcc2RDXbeiUZ54pPm8PskGTTKL9xKYBOZ4A@mail.gmail.com>
+Subject: Re: [PATCH v5 2/5] dt-bindings: iio: adc: ad7192: Add aincom supply
+To: Alisa-Dariana Roman <alisadariana@gmail.com>
+Cc: michael.hennerich@analog.com, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	alexandru.tachici@analog.com, lars@metafoo.de, jic23@kernel.org, 
+	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	lgirdwood@gmail.com, broonie@kernel.org, andy@kernel.org, nuno.sa@analog.com, 
+	marcelo.schmitt@analog.com, bigunclemax@gmail.com, okan.sahin@analog.com, 
+	fr0st61te@gmail.com, alisa.roman@analog.com, marcus.folkesson@gmail.com, 
+	schnelle@linux.ibm.com, liambeguin@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 4/13/24 11:14 AM, Jonathan Cameron wrote:
-> On Tue, 9 Apr 2024 12:30:09 -0300
-> Marcelo Schmitt <marcelo.schmitt1@gmail.com> wrote:
-> 
->> On 04/08, David Lechner wrote:
->>> On Mon, Apr 8, 2024 at 9:32 AM Marcelo Schmitt
->>> <marcelo.schmitt@analog.com> wrote:  
->>>>
+On Sat, Apr 13, 2024 at 10:12=E2=80=AFAM Alisa-Dariana Roman
+<alisadariana@gmail.com> wrote:
+>
+> AINCOM should actually be a supply. If present and it has a non-zero
+> voltage, the pseudo-differential channels are configured as single-ended
+> with an offset. Otherwise, they are configured as differential channels
+> between AINx and AINCOM pins.
+>
+> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
+> ---
+>  .../devicetree/bindings/iio/adc/adi,ad7192.yaml          | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml b/=
+Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+> index 16def2985ab4..ba506af3b73e 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+> @@ -41,6 +41,14 @@ properties:
+>    interrupts:
+>      maxItems: 1
+>
+> +  aincom-supply:
+> +    description: |
+> +      Optional AINCOM voltage supply. If present and it has a non-zero v=
+oltage,
+> +      the pseudo-differential channels are configured as single-ended ch=
+annels
+> +      with the AINCOM voltage as offset. Otherwise, the pseudo-different=
+ial
+> +      channels are configured as differential channels: voltageX-voltage=
+0, with
+> +      AINCOM as the negative input.
 
-...
+This description doesn't sound quite right to me. The datasheet has no
+mention of single-ended inputs. And how each AINx input is used is
+independent of whether this property is present or not. And
+voltageX-voltage0 is a driver implementation detail that doesn't
+really belong in the bindings.
 
->>>> +
->>>> +  adi,spi-mode:
->>>> +    $ref: /schemas/types.yaml#/definitions/string
->>>> +    enum: [ single, chain ]  
->>>
->>> It sounds like there are more possible wiring configurations for these
->>> chips that I thought when suggesting reusing this binding from AD7944
->>> so we probably need more options here. (see my reply to the cover
->>> letter for the complete context of these remarks)
->>>
->>> We identified A) an additional wiring configuration where SDI of the
->>> ADC chip is wired to SDO of the SPI controller and B) a potential need
->>> to pin mux between wiring modes to work around SPI controller
->>> limitations perhaps we could omit the adi,spi-mode property and just
->>> use the standard pinctrl properties.
->>>
->>>   pinctrl-names:
-> 
-> I'm lost on how pinctrl makes sense here.
-> Yes you are changing the modes of the pins, but not in a conventional sense
-> of some register that is being updated to say now use them like this.
-> The mode is dependent on the timing sequence of how the pins are used.
-> Otherwise looking at it a different way it's an external wiring thing we
-> aren't controlling it at all.  Is pinctrl suitable for that?
-> I always thought of it as a way to change configurations of SoC pins.
+Also, just FYI, in a similar case, Jonathan recently mentioned that he
+would prefer that these sorts of supplies would be required rather
+than optional [1]. But in this case, I think it needs to be optional
+for backwards compatibility since we are modifying existing DT
+bindings. But the point still stands that this property being present
+or not doesn't mean anything special (other than we might assume the
+AINCOM pin is connected to GND if the property is omitted).
 
-Yes, this is exactly what I think we need here.
+[1]: https://lore.kernel.org/linux-iio/20240413181025.39d1a62e@jic23-huawei=
+/
 
-To write to the register, the chip has to be wired like this ("default"):
+In any case, a better description would be one more like what the
+datasheet says for the AINCOM pin:
 
-                                         +-------------+
-     +-----------------------------------| SDO         |
-     |                                   |             |
-     |              +--------------------| CS          |
-     |              v                    |             |
-     |    +--------------------+         |     HOST    |
-     |    |        CNV         |         |             |
-     +--->| SDI   AD7944   SDO |-------->| SDI         |
-          |        SCK         |         |             |
-          +--------------------+         |             |
-                    ^                    |             |
-                    +--------------------| SCLK        |
-                                         +-------------+
+"Analog inputs AIN1 to AIN4 are referenced to this input when
+configured for pseudodifferential operation."
 
-But to read sample data, the chip has to be wired in one of these
-3 configurations:
-
-
-3-wire mode ("single"):
-
-                                         +-------------+
-                    +--------------------| CS          |
-                    v                    |             |
-    VIO   +--------------------+         |     HOST    |
-     |    |        CNV         |         |             |
-     +--->| SDI   AD7944   SDO |-------->| SDI         |
-          |        SCK         |         |             |
-          +--------------------+         |             |
-                    ^                    |             |
-                    +--------------------| SCLK        |
-                                         +-------------+
-
-4-wire mode ("multi"):
-                                         +-------------+
-     +-----------------------------------| CS          |
-     |                                   |             |
-     |              +--------------------| GPIO        |
-     |              v                    |             |
-     |    +--------------------+         |     HOST    |
-     |    |        CNV         |         |             |
-     +--->| SDI   AD7944   SDO |-------->| SDI         |
-          |        SCK         |         |             |
-          +--------------------+         |             |
-                    ^                    |             |
-                    +--------------------| SCLK        |
-                                         +-------------+
-
-Chain mode ("chain"):
-
-                                         +-------------+
-                    +--------------------| CS          |
-                    v                    |             |
-          +--------------------+         |     HOST    |
-          |        CNV         |         |             |
-     +--->| SDI   AD7944   SDO |-------->| SDI         |
-     |    |        SCK         |         |             |
-    GND   +--------------------+         |             |
-                    ^                    |             |
-                    +--------------------| SCLK        |
-                                         +-------------+
-
-
-If we want to be able to both write the register and read data,
-some reconfiguration is needed. It might be possible to read data
-using the register-write wiring configuration, but that only
-works if SDO can be set to the correct state *before* the
-CS line changes. This is not something that I think most SPI
-controllers can do (e.g. Marcelo mentioned in the cover letter
-that RPi always returns SDO to low after every xfer while
-the AXI SPI Engine leaves SDO wherever it was last).
-
-> 
-> A pointer to some precendence in another driver for using it like this
-> would go some way towards convincing me.
-> 
-> Jonathan
-> 
-
-
-I didn't find much precedence for something like this, but I
-found devicetree/bindings/net/mediatek-bluetooth.txt that uses
-pinctrl to pull a UART Rx pin low for a bootstrap mode which
-sounds very similar to what we need to do here (pull the SPI
-controller SDO pin high or low for 3-wire or chain mode).
-
-For example, if we wanted to use 3-wire mode for reading
-data, we would set the pinctrl to "default" to write the
-register to configure the chip during driver probe. Then
-to read data, we would change the pinctrl to "single" before
-doing the SPI xfer to ensure that the ADC SDI pin is pulled
-high independent of what the SDO line of the SPI controller
-is currently doing.
-
-
+> +
+>    dvdd-supply:
+>      description: DVdd voltage supply
+>
+> @@ -117,6 +125,7 @@ examples:
+>              clock-names =3D "mclk";
+>              interrupts =3D <25 0x2>;
+>              interrupt-parent =3D <&gpio>;
+> +            aincom-supply =3D <&aincom>;
+>              dvdd-supply =3D <&dvdd>;
+>              avdd-supply =3D <&avdd>;
+>              vref-supply =3D <&vref>;
+> --
+> 2.34.1
+>
 
