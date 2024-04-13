@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-58908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69A8E8A3B7F
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 09:46:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D3168A3B81
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 09:47:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D61801F221EC
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 07:46:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C3875B21772
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 07:47:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52F4E1CF8D;
-	Sat, 13 Apr 2024 07:46:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F41081CF8D;
+	Sat, 13 Apr 2024 07:47:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KcV0yQZq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Su00PqHH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AEBC1CABA;
-	Sat, 13 Apr 2024 07:46:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF1421862F
+	for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 07:47:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712994386; cv=none; b=NzlOIRFGrNXnUW8BXeBhWY9q2B8JiK4ChN+99MTXgtpw0RL0ZpemQpnZaEIBx37uhnpVgkpVKhF/U4wXmNLHjvCyl0VB1DTsLGhoEI86OtB/ZxQaRVBx0Z0XYwu0N/fJYpCy+DQOGJlUtSSATUD0gH7SpPlM21nPECruxQfKiKY=
+	t=1712994458; cv=none; b=MT5efRRbP0LI3rqQbPlErebwHttE62VcZRlcGkm1YeYFks1d3KkUgqYjYoXKDjMdoudkkheq3dZby+SUV5lIdiKhD1pATdJh/8HgjOentWXNN3Y3OTsSEwxrYOaVDxEH/CT7KePQgJJMx14WyMYFYqJxU8XiyC/3O8avXtvr26k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712994386; c=relaxed/simple;
-	bh=EFG57ur6VM2fF5I1LlhEiqOAY8BW8ZGEjVQbtumsv7o=;
+	s=arc-20240116; t=1712994458; c=relaxed/simple;
+	bh=NE/Dj9e6pUZKcTLWph4JFJHFVhf5t1nSl7AieWnTNCI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=r8k+D3Bl8iuC40FPOcnX8MF44fUe0uvS04IdXlhMqIa5wZ+l6x+wPDemwZH3/Iikpu470Xw8k+0vUzGfcclmtC0Nd15kZqTiIlihlEJVHxkgMw/vGaW8d7HZXquNbee6m4dVyYdCfqBwKa0ieB2/N2SAXozNwnnCwdSwi/mj/+c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KcV0yQZq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 217B9C113CD;
-	Sat, 13 Apr 2024 07:46:21 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=kVjcQoMLHciPQiSxtO9Jl5ErLQzfoGtvMem0jnFN4Z7PUYN/08zQmZrftWHsUfakAKaS3Hsj3HAz9rwFwXQfAC8+Nk7h8jPoyujjDzR+KZIVGTAMRtc2twUtEr4hJuhVPV5P/eoMxA54PEH0+vOXusG0YGUQ/S1+TKLtxE9d/4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Su00PqHH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AF77C113CD;
+	Sat, 13 Apr 2024 07:47:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712994385;
-	bh=EFG57ur6VM2fF5I1LlhEiqOAY8BW8ZGEjVQbtumsv7o=;
+	s=k20201202; t=1712994458;
+	bh=NE/Dj9e6pUZKcTLWph4JFJHFVhf5t1nSl7AieWnTNCI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KcV0yQZq8BBvz+6/2T+U0noNlNdEpC1m8O9RsB5po3ycjFSDXHknKojiLQ5nSor9e
-	 aSS3vRBDaJsXfjW0E9EpjbZVjqCJFenjSbzSQwloiyc6zdvPvveywKIQLkckf9/Z1X
-	 joksWKHBW6FlSBaNe1d1iw9cP7JRowjrsK8q9OaRcX0i73oVomKxUtQrZy+jrMgx0u
-	 6SzubZSJrmhQaDHpJn4tJNXKbvWLSHCoApkrzGr1yFUFOXwOf2e7mO086lc/fgp93O
-	 ebJ1ImK/G7pnqjr15/Acb16tvMphJF7ETtZMP1FMa4nkO3rhh6SSKcmBaXubEcuEYD
-	 wpGtACdf7JZGA==
-Message-ID: <a3c8ae52-fd6e-49e3-9733-43a1927fdb94@kernel.org>
-Date: Sat, 13 Apr 2024 09:46:19 +0200
+	b=Su00PqHHy5fTFztHVReRFuH5YwReYulEdku7EM5ACmkstgpIPZfriwJ4SdaOe3hvk
+	 6QrED9NjSmOFIxnH5PlcxJMYJjiJxbIpYTIB8YWOGTnhDxYaP8qZ5wQUd31Bs00OE3
+	 HzYCmh66ew6vmWUOgg2Fi+wkmW6TpVS9P6d4NW6L5mwPqk613oUrWw3gmfr471CIfu
+	 FKMZuvROdEDqyJBkGcZ+vZOx9r+W96pnyF9hK3K6fGbdYpN+BZIQOiwgfplEqn8OHv
+	 AB9F3JZI8rfDIG6zfE385MAG7d1Hg2A25nMjyMUKT+GDBSTcvCS4VkUvFMpWm2aNlQ
+	 Ae/nmRg5qcWgw==
+Message-ID: <2a3e4ef9-1e4b-4f9e-a2f3-0ac95db42fdf@kernel.org>
+Date: Sat, 13 Apr 2024 09:47:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,13 +50,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: rockchip: Add ArmSom Sige7 board
-To: Jianfeng Liu <liujianfeng1994@gmail.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- heiko@sntech.de, sfr@canb.auug.org.au, weizhao.ouyang@arm.com
-References: <20240413032328.784142-1-liujianfeng1994@gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: fsi: Document the IBM SBEFIFO engine
+To: Eddie James <eajames@linux.ibm.com>, linux-aspeed@lists.ozlabs.org
+Cc: joel@jms.id.au, andrew@codeconstruct.com.au, devicetree@vger.kernel.org,
+ linux-fsi@lists.ozlabs.org, robh@kernel.org, conor+dt@kernel.org,
+ krzk+dt@kernel.org, jk@ozlabs.org, alistair@popple.id.au, lakshmiy@us.ibm.com
+References: <20240412144358.204129-1-eajames@linux.ibm.com>
+ <20240412144358.204129-2-eajames@linux.ibm.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,113 +102,54 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240413032328.784142-1-liujianfeng1994@gmail.com>
+In-Reply-To: <20240412144358.204129-2-eajames@linux.ibm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 13/04/2024 05:23, Jianfeng Liu wrote:
-> Specification:
->         Rockchip Rk3588 SoC
->         4x ARM Cortex-A76, 4x ARM Cortex-A55
->         8/16/32GB Memory LPDDR4/LPDDR4x
->         Mali G610MP4 GPU
->         2× MIPI-CSI Connector
->         1× MIPI-DSI Connector
->         1x M.2 Key M (PCIe 3.0 4-lanes)
->         2x RTL8125 2.5G Ethernet
->         Onboard AP6275P for WIFI6/BT5
->         32GB/64GB/128GB eMMC
->         MicroSD card slot
->         1x USB2.0, 1x USB3.0 Type-A, 1x US3.0 Type-C
->         1x HDMI Output, 1x type-C DP Output
+On 12/04/2024 16:43, Eddie James wrote:
+> The SBEFIFO engine provides an interface to the POWER processor
+> Self Boto Engine (SBE).
+
+Boot?
+
 > 
-> Functions work normally:
->         USB2.0 Host
->         USB3.0 Type-A Host (depend on just applied USBDP driver[1])
->         M.2 Key M (PCIe 3.0 4-lanes)
->         2x RTL8125 2.5G Ethernet
->         eMMC
->         MicroSD card
-> 
-> More information can be obtained from the following website
->         https://docs.armsom.org/armsom-sige7
-> 
-> [1] https://lore.kernel.org/all/20240408225109.128953-1-sebastian.reichel@collabora.com/
-> 
-> Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
+> Signed-off-by: Eddie James <eajames@linux.ibm.com>
 > ---
->  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->  .../boot/dts/rockchip/rk3588-armsom-sige7.dts | 725 ++++++++++++++++++
->  2 files changed, 726 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-armsom-sige7.dts
+>  .../devicetree/bindings/fsi/ibm,sbefifo.yaml  | 39 +++++++++++++++++++
+>  1 file changed, 39 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/fsi/ibm,sbefifo.yaml
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-> index 7da198be8..0624c7284 100644
-> --- a/arch/arm64/boot/dts/rockchip/Makefile
-> +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> @@ -111,6 +111,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-roc-pc.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-rock-3a.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-io-expander.dtbo
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-armsom-sige7.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-coolpi-cm5-evb.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-io.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtbo
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-armsom-sige7.dts b/arch/arm64/boot/dts/rockchip/rk3588-armsom-sige7.dts
+> diff --git a/Documentation/devicetree/bindings/fsi/ibm,sbefifo.yaml b/Documentation/devicetree/bindings/fsi/ibm,sbefifo.yaml
 > new file mode 100644
-> index 000000000..aa45e60bb
+> index 000000000000..d70012e42d79
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-armsom-sige7.dts
-> @@ -0,0 +1,725 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +++ b/Documentation/devicetree/bindings/fsi/ibm,sbefifo.yaml
+> @@ -0,0 +1,39 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/fsi/ibm,sbefifo.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +/dts-v1/;
+> +title: IBM FSI-attached SBEFIFO engine
 > +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include "rk3588.dtsi"
+> +maintainers:
+> +  - Eddie James <eajames@linux.ibm.com>
 > +
-> +/ {
-> +	model = "ArmSoM Sige7";
-> +	compatible = "armsom,sige7", "rockchip,rk3588";
+> +description: |
+> +  This binding describes an FSI CFAM engine called the SBEFIFO. Therefore this
 
-Bindings come before users.
+Don't describe the binding, but the hardware. Drop redundant "This
+binding" and say what is the hardware here.
 
+> +  node will always be a child of an FSI CFAM node; see fsi.txt for details on
+> +  FSI slave and CFAM nodes. This SBEFIFO engine provides an interface to the
+> +  POWER processor Self Boot Engine (SBE).
 > +
-> +	aliases {
-> +		mmc0 = &sdhci;
-> +		mmc1 = &sdmmc;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial2:1500000n8";
-> +	};
-> +
-> +	analog-sound {
-> +		compatible = "audio-graph-card";
-> +		label = "rk3588-es8316";
-> +
-> +		widgets = "Microphone", "Mic Jack",
-> +			  "Headphone", "Headphones";
-> +
-> +		routing = "MIC2", "Mic Jack",
-> +			  "Headphones", "HPOL",
-> +			  "Headphones", "HPOR";
-> +
-> +		dais = <&i2s0_8ch_p0>;
-> +		hp-det-gpio = <&gpio1 RK_PD5 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&hp_detect>;
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&led_rgb_g>;
-> +
-> +		led_rgb_g {
 
-No underscores in node names.
+With these two changes:
+
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
 Best regards,
 Krzysztof
