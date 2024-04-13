@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-58910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F48E8A3B83
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 09:48:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C91418A3B84
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 09:50:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D796AB21768
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 07:48:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26F20286104
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 07:50:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81C351CF9B;
-	Sat, 13 Apr 2024 07:48:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11FC71CFBB;
+	Sat, 13 Apr 2024 07:49:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q+2YCz09"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zr0j78IB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AB4E33C5;
-	Sat, 13 Apr 2024 07:48:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCA4933C5;
+	Sat, 13 Apr 2024 07:49:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712994482; cv=none; b=tyKgHodtC8AG+cI8x4Rf5LhZ75+YGcgSALXvpJbrf+XN37CvzlxdZiETxSrDK5vZtdhFUsWn1v4QeRvQGY1bzJv708o+fyNiaggopA57ZgtXIB7Eh3Gepe6kutYYjKW50MLfSN1SKwpmdNph8SLdb2kL570isHSjeB7EfR7Ngq4=
+	t=1712994599; cv=none; b=mBiI0K8AabvbC/kua2bygySuVZ5jL1UmxtyAZ+ZZnyoXeMw1Yyksid/8cyAQov+MeTXegTKCWTEK1mMDGRV53qr1VjQQmI7UNGenTfC3v/m8u5HU4Qpub+2OvpkcHW78sZIyEuhtEpT6xpvMJ4ZIjQ6VQprgVe/3KjWhKZafWJ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712994482; c=relaxed/simple;
-	bh=Vi0IaUsy0cqlIqBLArni+5X6U12GetSARORCPe0cMY8=;
+	s=arc-20240116; t=1712994599; c=relaxed/simple;
+	bh=SYhkX/AIYfq9tp5wzNXMVL8S00eq1NyhmK882L0KXd8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dDqwlmqcsY25R0xgjNxd/C67L5ANPEqAQLeYQJQ6+t01+Q08L+ARomxPx3E5K8HDaI7ifBdXFzJnIutIf60ZVDpV0eF+jTK6n+P68E2BXV76w8ZZzGAbkYernhulgfYDpEfCnpT1U+J/caOVDTYgIX7l2dknE+Wrjz2EiZ4h8AY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q+2YCz09; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A56BC113CD;
-	Sat, 13 Apr 2024 07:47:59 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=axcBaZF6xCCIKJFqDME0uoCpXkBjbgonaMWgpAe+F1qpsMVOY5DVx9pVJuXV/GfDloYnQAQCTpX8PmwY5wqopid3cN0E7RXdATgw1id2gnR+BLCkDtc2sPhWIakaXnNkF/CuAUHf0XAz4Crx9E/NOFQOhlf64k21DKIlY1kDSPM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zr0j78IB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8312EC113CD;
+	Sat, 13 Apr 2024 07:49:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712994482;
-	bh=Vi0IaUsy0cqlIqBLArni+5X6U12GetSARORCPe0cMY8=;
+	s=k20201202; t=1712994598;
+	bh=SYhkX/AIYfq9tp5wzNXMVL8S00eq1NyhmK882L0KXd8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=q+2YCz09oReZJmN6QsI5z+EibvvdJGX7JE2jfGSArs99maxN20FJvVRlIwYidF/8v
-	 rqmqSRWxkOo3Ma5pEH3Jh4ztB2AyCQOQuPJAsjbxorl4sqRrvD2VF1eK7VElE4iamR
-	 //UB2u++50XsjWD2n9oDbVUq30W0YIX48gEOa4ahhlFi+AQlvLjgjrcrdt99dBLkLQ
-	 t5VjOoop32oEatPIlwRXmQ2FIasELW+poHNGq1g22xsbbRIGIUMzTQgseXVmFbZBXS
-	 X9hGUvGyVkFMgblyb62EYEmjKI13lXc/DMunEevHPfswbZREsEjNyM/73o10mAvgP5
-	 WFU2EdVnIZ2Bg==
-Message-ID: <00cb02ed-fced-4c48-88f8-cc3624d3a2d9@kernel.org>
-Date: Sat, 13 Apr 2024 09:47:57 +0200
+	b=Zr0j78IBqu623H1wI0+bFST1OhiAua2PmneVKXXRjKLAu67xZfuG0kqYJIqSXYRRJ
+	 cHY0MusSr8bJeXoP7EakfqFnbvEwiCuOgsfSR2FKoeNDIx00GDhYox/cK7Hm5UVeL+
+	 MUyW1k6onTnu6ag2Oun+jgcmCsmvDG231VzVpKRgaz40P7hwTQWCTWnt0w2/OivU2Q
+	 zgLvZsFw4x3owv3bxJQFKF9DOoux/5cxOvtWYtw3EecPjHXJpc2XJuuesmZDrhKcWq
+	 suskh5JZZRFv5UA4rZ8j9ttABY4uXyvsfByqMjz6KrPG8PqfLorQkCJHbyQVCYWneQ
+	 reem3RhWVZ7ag==
+Message-ID: <c14612d2-cd4d-4331-a14d-2cb7cf19311e@kernel.org>
+Date: Sat, 13 Apr 2024 09:49:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,13 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ASoC: dt-bindings: fsl-asoc-card: Document
- fsl,imx25-pdk-sgtl5000
-To: Fabio Estevam <festevam@gmail.com>, broonie@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- shengjiu.wang@nxp.com, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
-References: <20240412121410.2948048-1-festevam@gmail.com>
+Subject: Re: [PATCH v2 1/1] dt-bindings: interrupt-controller: fsl,irqsteer:
+ Add imx8qxp support
+To: Alexander Stein <alexander.stein@ew.tq-group.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Lucas Stach <l.stach@pengutronix.de>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240412110318.273791-1-alexander.stein@ew.tq-group.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,23 +103,78 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240412121410.2948048-1-festevam@gmail.com>
+In-Reply-To: <20240412110318.273791-1-alexander.stein@ew.tq-group.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/04/2024 14:14, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+On 12/04/2024 13:03, Alexander Stein wrote:
+> Some SoC like i.MX8QXP use a power-domain for this IP. Add a SoC-specific
+> compatible, which also requires a power-domain.
 > 
-> Document fsl,imx25-pdk-sgtl5000 to fix the following dt-schema warning:
-> 
-> imx25-pdk.dtb: sound: compatible: 'oneOf' conditional failed, one must be fixed:
-> 	['fsl,imx25-pdk-sgtl5000', 'fsl,imx-audio-sgtl5000'] is too long
-> 
-> Fixes: 4189b54220e5 ("ASoC: dt-bindings: fsl-asoc-card: convert to YAML")
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 > ---
+> This patch replaces v1 from [1].
+> 
+> Changes in v2:
+> * Add imx8qxp specific compatible
+> * Require a power-domain for this SoC
+> 
+> [1] https://lore.kernel.org/all/20240110094338.472304-1-alexander.stein@ew.tq-group.com/
+>  .../interrupt-controller/fsl,irqsteer.yaml    | 20 ++++++++++++++++++-
+>  1 file changed, 19 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml
+> index 20ad4ad82ad6..0ce0246870c0 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml
+> @@ -14,7 +14,9 @@ properties:
+>      oneOf:
+>        - const: fsl,imx-irqsteer
+>        - items:
+> -          - const: fsl,imx8m-irqsteer
+> +          - enum:
+> +              - fsl,imx8m-irqsteer
+> +              - fsl,imx8qxp-irqsteer
+>            - const: fsl,imx-irqsteer
+>  
+>    reg:
+> @@ -42,6 +44,9 @@ properties:
+>    clock-names:
+>      const: ipg
+>  
+> +  power-domains:
+> +    maxItems: 1
+> +
+>    interrupt-controller: true
+>  
+>    "#interrupt-cells":
+> @@ -72,6 +77,19 @@ required:
+>  
+>  additionalProperties: false
+>  
+> +allOf:
 
-Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+Put allOf before additionalProperties, just like in example-schema.
+
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: fsl,imx8qxp-irqsteer
+> +    then:
+> +      properties:
+> +        power-domains:
+> +          minItems: 1
+
+That's redundant. Drop.
+
+
+> +      required:
+> +        - power-domains
+> +
+>  examples:
+>    - |
+>      #include <dt-bindings/clock/imx8mq-clock.h>
 
 Best regards,
 Krzysztof
