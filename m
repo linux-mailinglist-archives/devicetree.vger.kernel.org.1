@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-58994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 836158A3EA8
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 23:19:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3C318A3EAB
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 23:23:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A43F11C20943
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 21:19:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59E901F2143D
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 21:23:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E24B55E56;
-	Sat, 13 Apr 2024 21:19:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8882F55C35;
+	Sat, 13 Apr 2024 21:22:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cerVMa/5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CeqI7UIj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC39E54747
-	for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 21:19:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7CEA1865
+	for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 21:22:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713043153; cv=none; b=gbsurNC0t7Di1wK4iq19laEud4HBzit7hpR7k5EJ1rIsx0NzFjPQPqXntebtJeuS0NFAO5dW42RAd3nfn/m6IAqUU+kv1GVTHfKONDhFtzlLrWufL3qZD3eINOQyRsykvYlPSj5P97v1zpVamsfJWtIeen31SwaRF5nigfiQvZU=
+	t=1713043377; cv=none; b=LGKqkxfDETTvTLASJmO+IHaolHeF0FQotiO623rsazS/akpi1xFd31muxhb1fBpXhy8H/Cy42MgJFSlohECnxIYd+97LUwISBpr3M355TX/4/x1IwTn6PjaTABqzBWHBy9xyTMvVuTjeesxcw2YLQINOx/WhG87Q+wnw57MUquw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713043153; c=relaxed/simple;
-	bh=f5WpgDyI5RH4w8+qTrxQQLmHeovh7aUIMRBXq45KDFQ=;
+	s=arc-20240116; t=1713043377; c=relaxed/simple;
+	bh=CLOsJ9JefwFWpu6Gyok6bIDnzK0kyZVNcacBldUWqCU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cESx0tt5wD84RmTem6YZrkJwTJkWh4Ar0lyOEgeYP4TGw1fSEbnVRqfihe8V5liI5dbvr2neJ133t/SsPxN8gN+511RR0uJZARdf8kxoBEGiTd6SyrPNK0JeaNOC3rk/0Ci+v+OrL/rjde4CAO5x9NdS8IYDbQme/4fvH7Vtg+o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cerVMa/5; arc=none smtp.client-ip=209.85.208.175
+	 In-Reply-To:Content-Type; b=P2D3vN19jJL/gMpBLC7/DyPBT65iHZpTUz4NiGvyyFqHEJQgeB1G96GH4ocohTaVv3lNZIKQ7BqN/vaoOcujN1hoTqPigPfmlXgmXomtsYJ3gb36avqZwjUtVjjijWIGjHpTw6/JW+aBb50LskjYfpJdlFvGErO4Ib/NIeZsyAg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CeqI7UIj; arc=none smtp.client-ip=209.85.167.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2d858501412so25300401fa.0
-        for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 14:19:10 -0700 (PDT)
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-516d727074eso2631025e87.0
+        for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 14:22:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713043149; x=1713647949; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1713043374; x=1713648174; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=c/t4RoIebmHtQnR1i/xtxOlbaIAoGHKLclvovPcq0xw=;
-        b=cerVMa/5hzIU+1CskjIT/YEU4S02Ul9/CPomQQEUbSgsVcGmLX9Gj4ZpmRoXszhSB5
-         NaCJO5qEpmXKXePkPcKVM/NVkadNXgRSfWnLcjbh8YnVSLGIGYWWg/TddB0724uD17JM
-         vz+w8g5X+fZF+h7dTWFtk0Gutu/BkXmadZXb+x6lBKJxOZtxyHxuQG5mRlsm6FX9bLy1
-         q4qDIBB/iKv6pfV6A1mDaeHrY+8qOPH+OodYLOppBF6AQizSohW1OMSRyTM/x1bJvDwQ
-         yBObj6QJqt+xq+cCiJ16kj11mkJB0Bqn2uNjMCYVBMFtMFdXahAlDbm75XhfJv7CK6/B
-         8hVg==
+        bh=fQGJpaWsjUM7AHqikTaGEm8A9+HIjPT53LC7Bj6lY+U=;
+        b=CeqI7UIjzrZMAUMqHnfWSprUGsx8wjBcSC7KgtZ1t2wvbcWCwyGoQLrNBR1U0KRYo/
+         ZEDcw5i2LXNDgNflS16GdtejYOmSqYM+FaIqAR6T9/pFldc0E1xWJ6ux6OpfSKsEvh5d
+         mtDP5/ngItOm5scS2aUPS4VSFnLgoR8u0/nBHG14M0GkEeGvDZ/HlxGI8P4Cg46Io1Ze
+         L7xlnsBHN7U8wVkcGN1rV69kkKOz3rSxkOaiBR4sKWm36wM3uJ7anj9V8c+Hm9G8GbO3
+         o4HSAvYUw3sVpFiGlsvSRhaEWAz9UVkbrM8ya9SHFhipPKwwrQRG2RrWLAp+8N6/04Fz
+         6TgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713043149; x=1713647949;
+        d=1e100.net; s=20230601; t=1713043374; x=1713648174;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=c/t4RoIebmHtQnR1i/xtxOlbaIAoGHKLclvovPcq0xw=;
-        b=Gh9xTlRrkKU7IR4nKYoJ3kEQY1V1d00xlti1DWD1GYsRTWWHbw2MVdYl2jWY0whBBt
-         SgWdbMUhMxZL7OGEGP0A8uAnOiWx3tlSUwx0OIgZq26SNhJONbx09V5DCLW4WTjBUTMu
-         n8q5Q0X9gG0EOVJc1sGM/ATdOYOgrHXBMiJwfUTOhrSwjdjPn1qdi0TgBzFknzalEyv8
-         yNHc6D4qBw3YL2os1g5BDqsI96g+RCboWPeZVomlFGLIEg3CPer3wgP8fFjmgLvqbmOH
-         OMB59ao+HOIJl78+M7KxwTw/0FA1wgvw0Uh7jg8TDelGL6FlY4uD8ZYUQZkwkEMovfSU
-         eWpg==
-X-Forwarded-Encrypted: i=1; AJvYcCW+RCdAOriei/YdWXjLR8i9ku1e7Pvqwrp9QlYLXkJSliI8bya2i6Ye3SJA724gXVwI28E7WWr/znAFRRvMI+qKolv3pSUgQeadCg==
-X-Gm-Message-State: AOJu0YwSpCqcAdRSs21D8Wqh5KMiWrFMVhr/h62gUpny5MocI1jKYmG0
-	c7lzyVnRFblN2451hf/ys6QcdbhaVPFZYb2AnbBDbeIh0Nd1t9pwzIi3JPE7y2Y=
-X-Google-Smtp-Source: AGHT+IGhEJoY1T2bRdIh0oLnEjbTS4HjO2WSGv+niFTapwKxg+8kSZyCCAZ9hw79+MgWE8QFweZpig==
-X-Received: by 2002:a2e:9cc2:0:b0:2d9:fde1:dcf1 with SMTP id g2-20020a2e9cc2000000b002d9fde1dcf1mr3401347ljj.41.1713043148768;
-        Sat, 13 Apr 2024 14:19:08 -0700 (PDT)
+        bh=fQGJpaWsjUM7AHqikTaGEm8A9+HIjPT53LC7Bj6lY+U=;
+        b=Chds0O2sCNGHYRU1FaOuX55tGLCvDb3WUS3GY0MnNaeWsRSHOuLN7hKv4k+tWaSp1Z
+         l+SaPC1Ev8pdlB4v9QU4Qz+mvlrs00fOt+zN3sqTU895YoxQfGz98B1frbFzGdReISqU
+         iyz1qErGczR3VmphL0YA621X4q+eqCvTwnwrNbNefdOWOEmFCY6rPvw2BXDEerNYPnnY
+         dQguEVrvLjeYy6MVWrw1RrmcEd+zut/VmsYTuSfNM1OX3HVAdnhW2GilUqn03ZqebO3z
+         1R++1jmPWSVLYhLxPkPe0WIwgaoj19JaUbv6GKJJ9PXiBJGTJJexMN1A8PSAtK+X2MOt
+         Yyfg==
+X-Forwarded-Encrypted: i=1; AJvYcCW/t6Fe3MUCfur5PPCtngERasYPwMG+AdOj/eAaA85/nZmzP9NRKH+80QdHrC+tfj39pQcI/DHHtCO0KcocPBejLSEbukZcA+ZH/g==
+X-Gm-Message-State: AOJu0Yz9aBlfL34hBPu0gkjeEuwgf9zoZdp9MZd7PO2xa095To/5B0Xq
+	1/w1TAGiuiAI8/ybil6XTlFg2GIZfp9CLdoWxwqh5m1gaq1YFHKVKkKZyE097fI=
+X-Google-Smtp-Source: AGHT+IEpkgGV4cfM8OxwVMC43mCKJlrDMrXOzRC0ZAFr0X9Vk8KLbuzMNlMAoySsyCTi3Vc2bDE5xg==
+X-Received: by 2002:a05:6512:3d19:b0:518:6ee7:b988 with SMTP id d25-20020a0565123d1900b005186ee7b988mr3837518lfv.55.1713043374088;
+        Sat, 13 Apr 2024 14:22:54 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id q5-20020aa7d445000000b0056b7ed75a46sm2942843edr.27.2024.04.13.14.19.06
+        by smtp.gmail.com with ESMTPSA id bq3-20020a170906d0c300b00a522f867697sm2533293ejb.132.2024.04.13.14.22.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 Apr 2024 14:19:08 -0700 (PDT)
-Message-ID: <2ad06ea8-220f-4d09-bbe7-c4dd12d0d8bd@linaro.org>
-Date: Sat, 13 Apr 2024 23:19:05 +0200
+        Sat, 13 Apr 2024 14:22:53 -0700 (PDT)
+Message-ID: <d0839eec-7a92-4834-b47a-be0ba1908c1a@linaro.org>
+Date: Sat, 13 Apr 2024 23:22:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,19 +77,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/5] dt-bindings: iio: adc: ad7192: Add AD7194 support
-To: Alisa-Dariana Roman <alisadariana@gmail.com>,
- michael.hennerich@analog.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: alexandru.tachici@analog.com, lars@metafoo.de, jic23@kernel.org,
- robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- lgirdwood@gmail.com, broonie@kernel.org, andy@kernel.org,
- nuno.sa@analog.com, marcelo.schmitt@analog.com, bigunclemax@gmail.com,
- dlechner@baylibre.com, okan.sahin@analog.com, fr0st61te@gmail.com,
- alisa.roman@analog.com, marcus.folkesson@gmail.com, schnelle@linux.ibm.com,
- liambeguin@gmail.com
-References: <20240413151152.165682-1-alisa.roman@analog.com>
- <20240413151152.165682-5-alisa.roman@analog.com>
+Subject: =?UTF-8?Q?Re=3A_=5BPATCH_v3_1/2=5D_media=3A_dt-binding=3A_media=3A_?=
+ =?UTF-8?Q?Document_rk3588=E2=80=99s_VEPU121?=
+To: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>, linux-kernel@vger.kernel.org
+Cc: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Dragan Simic <dsimic@manjaro.org>,
+ Shreeya Patel <shreeya.patel@collabora.com>,
+ Chris Morgan <macromorgan@hotmail.com>, Andy Yan <andy.yan@rock-chips.com>,
+ Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+ linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ iommu@lists.linux.dev
+References: <20240412151515.837824-1-linkmauve@linkmauve.fr>
+ <20240412151515.837824-2-linkmauve@linkmauve.fr>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -136,109 +144,27 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240413151152.165682-5-alisa.roman@analog.com>
+In-Reply-To: <20240412151515.837824-2-linkmauve@linkmauve.fr>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/04/2024 17:11, Alisa-Dariana Roman wrote:
-> Unlike the other AD719Xs, AD7194 has configurable differential
-> channels. The user can dynamically configure them in the devicetree.
+On 12/04/2024 17:15, Emmanuel Gil Peyrot wrote:
+> This encoder-only device is present four times on this SoC, and should
+> support everything the rk3568 vepu supports (so JPEG, H.264 and VP8
+> encoding).
 > 
-> Also add an example for AD7194 devicetree.
+> According to the TRM[1], there is also the VEPU580 encoder which
+> supports H.264 and H.265, and various VDPU* decoders, of which only the
+> VDPU981 is currently supported.  This patch describes only the VEPU121.
 > 
-> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
-> ---
->  .../bindings/iio/adc/adi,ad7192.yaml          | 74 +++++++++++++++++++
->  1 file changed, 74 insertions(+)
+> [1] https://github.com/FanX-Tek/rk3588-TRM-and-Datasheet
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
-> index ba506af3b73e..855f0a2d7d75 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
-> @@ -21,8 +21,15 @@ properties:
->        - adi,ad7190
->        - adi,ad7192
->        - adi,ad7193
-> +      - adi,ad7194
->        - adi,ad7195
->  
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
->    reg:
->      maxItems: 1
->  
-> @@ -104,8 +111,43 @@ required:
->    - spi-cpol
->    - spi-cpha
->  
-> +patternProperties:
+> Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
 
-This goes after properties:, so before required: block.
+So you ignored all the tags? No one will pick up your patch if you are
+going to keep ignoring them...
 
-> +  "^channel@[0-9]+$":
-
-Why restricting the pattern? If you have 256 channels, how are you going
-to encode it?
-
-> +    type: object
-> +    $ref: adc.yaml
-> +    unevaluatedProperties: false
-> +
-> +    properties:
-> +      reg:
-> +        description: The channel index.
-> +        minimum: 1
-> +        maximum: 256
-> +
-> +      diff-channels:
-> +        description: |
-> +          Both inputs can be connected to pins AIN1 to AIN16 by choosing the
-> +          appropriate value from 1 to 16.
-> +        items:
-> +          minimum: 1
-> +          maximum: 16
-> +
-> +    required:
-> +      - reg
-> +      - diff-channels
-> +
->  allOf:
->    - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - adi,ad7190
-> +            - adi,ad7192
-> +            - adi,ad7193
-> +            - adi,ad7195
-> +    then:
-> +      patternProperties:
-> +        "^channel@[0-9]+$": false
->  
->  unevaluatedProperties: false
->  
-> @@ -136,3 +178,35 @@ examples:
->              adi,burnout-currents-enable;
->          };
->      };
-> +  - |
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        adc@0 {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            compatible = "adi,ad7194";
-> +            reg = <0>;
-
-compatible is always the first property. reg is second.
-
+Subject: drop the second, redundant "media".
 
 Best regards,
 Krzysztof
