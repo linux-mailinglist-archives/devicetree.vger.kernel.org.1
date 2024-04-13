@@ -1,61 +1,57 @@
-Return-Path: <devicetree+bounces-58924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF1E48A3C67
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 13:02:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B97C08A3C6C
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 13:08:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 998E7281C59
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 11:02:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 43F552824D6
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 11:08:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E641B3D57A;
-	Sat, 13 Apr 2024 11:02:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9E483D977;
+	Sat, 13 Apr 2024 11:08:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BanwFe05"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A190ehRw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B34573D977;
-	Sat, 13 Apr 2024 11:02:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81FCE1E516;
+	Sat, 13 Apr 2024 11:08:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713006126; cv=none; b=WBICCcd2Jj1bcC0/g+kIc9yzbWrN5XCNGSjQ0Dsi+Y5ymMeQvimcHfCCyC2i6u2JwKFU3tOWr1BwoykKdl4EcSBuh6GQJpn7ijZ3O87hOaHKyrH/m9TlFBoI6rYO6eEybildd2SI9XJjVj4SoE/6/ae+Phz+8RZSDR0BdZ0krWk=
+	t=1713006480; cv=none; b=IUaXeQEsfNm8QNGqp1H8nOtxvoBoDk2WPiw4qPFeQ8CMuDYvl8qDLU4ZX80ixLV3zj4VvPh7KKRDb+RITybSeipWeJtL08uRY1kNvLHiV6SFhLMDso7ItNZDW2O/i3ahLuycKoFehmTjMs3HOxPF3TLN0sBvJhh+z98GQIV4U5w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713006126; c=relaxed/simple;
-	bh=tM71ukHSCkRXKEj2erXIhUkB2JuKjCWaxGcrvDZckYg=;
+	s=arc-20240116; t=1713006480; c=relaxed/simple;
+	bh=MHhOzL47t8O9jhHxmlQa3kE77aDFPBgPO+0CV2y2THE=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HmyoqF6IS/mZJs/JbrGuh2zW3vkc6nWyTt1QoidbQ9SjxiBGoHhxSNsyC3u12P/Ux6mLEhwveEaCJGvOmI7Ahq2Qq5Zd4Ld4NGjGy5mWez/GXH4p03AZ2MEMeAyk+vEzzPLaTv0QjNgyLkDjJHMydEbN3l5MQVhbZjUhOUhujWM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BanwFe05; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3519C2BBFC;
-	Sat, 13 Apr 2024 11:02:02 +0000 (UTC)
+	 MIME-Version:Content-Type; b=N9WchUnaI6JvpHacg9Xm5hzfIkALzuXp3uNEO4iUKTEQn2MrrZOu5FyWJZ9mV6Sd4yP/0OPbRwSuwpYZCVZqYvpptyAMMvxsCBjFpqhytXgZfXckbfkGBugR1r9MrsmZ34hBW2FA552IeiLLtXuVZjenoD2rpf5Je7VXfEi8kyc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A190ehRw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBE78C2BBFC;
+	Sat, 13 Apr 2024 11:07:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713006126;
-	bh=tM71ukHSCkRXKEj2erXIhUkB2JuKjCWaxGcrvDZckYg=;
+	s=k20201202; t=1713006480;
+	bh=MHhOzL47t8O9jhHxmlQa3kE77aDFPBgPO+0CV2y2THE=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=BanwFe05mFBZeoKqQGae8f56ZyX/w78VID8Gu0d9G8S/8/6s/ZZucbTuA8rO5BoDM
-	 UvYfWoLYXCvQrXYnCnpf/1Viuk8sOgN2IFjlXTbmWnn7juUmAYmsTUQgJ0c9+3xlew
-	 +3dFK3xZh0QFG+ihtjTNn/t+ZNAoODl3D0Yn9giiyZg++N8sIaPTbrmollMEMyaTOX
-	 LW97mjiI1DPHCrLruglogidkNbYRhnBEUtcN3bGlz7IjF9bmw5nJPjtUWciAzmCrXT
-	 o9C641PDuLnolW2CzcFiP2xOOxRlOttLkaH+gmjoWgDMR3JSu/oh3nDf8KHGvbIvEs
-	 ASsnvHuFaZ23Q==
-Date: Sat, 13 Apr 2024 12:01:52 +0100
+	b=A190ehRw40hYvOr7cKbl8O77URKf8jdcI25qSt/WtDWYkV0wBMlKOOHKEpM904x2e
+	 uOWH4aaD3vVnc1QedpgINVMxGh0bHc092nAUNYzmRJSASn8MM4Inkob+WVWAG6Y/af
+	 E+XI4aLIiIMuQL2lyoQAnlfHr66ZOcZ8D+cR68Od0z+BEbDeCMjeMrOKwKqfJ0e8Qm
+	 JDA71RXu+A/oTIDvllodq5c81gnf+012ZukvkmnWBXC9csHXDlCJnGKlZpRjnfZp8D
+	 RmCN873U5aNZxkeYhmInxwHF/ebrItA6+txJ7xGSpP4UojRBI/k1sQ3zDzaSO22tSQ
+	 YXoDaKEBGLvrQ==
+Date: Sat, 13 Apr 2024 12:07:48 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Jean-Baptiste Maneyrol
- <jmaneyrol@invensense.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: imu: mpu6050: Improve i2c-gate
- disallow list
-Message-ID: <20240413120152.476efa76@jic23-huawei>
-In-Reply-To: <b0055143-96bf-45c6-ae9b-78b60fd02d6c@kernel.org>
-References: <20240408-mpu6050-i2c-gate-v1-1-621f051ce7de@z3ntu.xyz>
-	<b0055143-96bf-45c6-ae9b-78b60fd02d6c@kernel.org>
+To: inv.git-commit@tdk.com
+Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ lars@metafoo.de, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+Subject: Re: [PATCH v3 0/2] iio: imu: inv_icm42600: add support of
+ ICM-42688-P
+Message-ID: <20240413120748.678d6154@jic23-huawei>
+In-Reply-To: <20240408090720.847107-1-inv.git-commit@tdk.com>
+References: <20240408090720.847107-1-inv.git-commit@tdk.com>
 X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -66,26 +62,35 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Tue, 9 Apr 2024 08:36:08 +0200
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On Mon,  8 Apr 2024 09:07:18 +0000
+inv.git-commit@tdk.com wrote:
 
-> On 08/04/2024 18:34, Luca Weiss wrote:
-> > Before all supported sensors except for MPU{9150,9250,9255} were not
-> > allowed to use i2c-gate in the bindings which excluded quite a few
-> > supported sensors where this functionality is supported.
-> > 
-> > Switch the list of sensors to ones where the Linux driver explicitly
-> > disallows support for the auxiliary bus ("inv_mpu_i2c_aux_bus"). Since
-> > the driver is also based on "default: return true" this should scale
-> > better into the future.
-> > 
-> > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>  
+> From: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
 > 
-> Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+> This series is for adding support of high-end specs ICM-42688-P chip.
+Applied.
+
+Thanks,
+
 > 
-> Best regards,
-> Krzysztof
+> Changelog:
+> * v2: change order of chip definitions and order of patches
+> * v3: add patch description and resend without email IP header issue
+> 
+> Jean-Baptiste Maneyrol (2):
+>   dt-bindings: iio: imu: add icm42688 inside inv_icm42600
+>   iio: imu: inv_icm42600: add support of ICM-42688-P
+> 
+>  .../devicetree/bindings/iio/imu/invensense,icm42600.yaml     | 1 +
+>  drivers/iio/imu/inv_icm42600/inv_icm42600.h                  | 2 ++
+>  drivers/iio/imu/inv_icm42600/inv_icm42600_core.c             | 5 +++++
+>  drivers/iio/imu/inv_icm42600/inv_icm42600_i2c.c              | 3 +++
+>  drivers/iio/imu/inv_icm42600/inv_icm42600_spi.c              | 3 +++
+>  5 files changed, 14 insertions(+)
+> 
+> --
+> 2.34.1
 > 
 
-Applied, thanks
+
 
