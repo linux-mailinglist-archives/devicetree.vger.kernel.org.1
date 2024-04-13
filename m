@@ -1,184 +1,310 @@
-Return-Path: <devicetree+bounces-59001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A13D8A3EDC
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 23:44:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F1708A3F5B
+	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 00:11:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 598871C20A05
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 21:44:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 63A85B20EC7
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 22:11:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF2BD55E72;
-	Sat, 13 Apr 2024 21:44:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C86A856773;
+	Sat, 13 Apr 2024 22:11:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dlP2Tvcx"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cLZcUPp9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 062035644B
-	for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 21:44:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2AAE56B74;
+	Sat, 13 Apr 2024 22:11:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713044689; cv=none; b=BozsFyAmaF76B0hmxvV78mqmVqKjV7trW2ZVX5WGc5wjNl86ZA4loS+K+1A4vkzxEwgRBggLQrxmHlktY+ZGELzbZA8g49FC30qwj2IXoB1jGhU5Jj30jqQUPmxvZyjXOkxBfBWgjpz2Ijglq0Rh6/Lm1mfm4Fbzw+Cd71+dscE=
+	t=1713046270; cv=none; b=EV7uZ5nfQ9ComXlCKLckEDLoUH1wcvI4URMwiLJJZcepK9VrzHKhRJ2Q07pY+5V3mMcCPzbGbMU7MY3pYtI/l/rlnQGHLhJ1ZJ3J/8mUQdX0+TiotyF9SJyVKNhTqIyOS4cKiq1IH7UpT0STDbfw5fWj4o9e1XrMYOKMONeYz6w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713044689; c=relaxed/simple;
-	bh=kpNp6whMdD8QUiTqo+pI0/8mnIxvw6OoSc/7tBpHQLU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JalVM4F/Lj5MMODiBRGDHA4ZPjoQHEBsjrohnX8ewZjW/hM4q3ncxtslgb0aHHqU0mNi/MkaELoB8GVsVqqTbsXnh96xJzR5m9vUM/XbtliRHqr5oz3Ds9DsQQPjih1KJZaYhAukyYeyycs3jVpBYcM0/NTbHFVhUWvrVCTP15c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dlP2Tvcx; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-518a56cdbcfso1269207e87.2
-        for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 14:44:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713044686; x=1713649486; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=9oGC2sAOn5ukxRDRNxawxuCsNvUPfSDD9rN9Jezle2o=;
-        b=dlP2TvcxhsGueRqJP81pE6JeTxNhYECoyrwwZR4XltCi1vPoFiMai/L/HwxhINd+VZ
-         MDnL5071VS2AaoPN89lc6op+Kgs51zpsv79wWz5pxqWP8WLB98GQY2+QumLhPcV8Tljh
-         4UGajaXo+kNrIZndu58PEYGQEh1BzgO/0vCbwgcac6CmhkTGDnIBJ26Ur5bmX9aI3WV2
-         Wb/wqjRNT8jAhgaq+cJ2Rm14RL2qkGVhIhJ9Tkbw3yC7J/BAU6AwtMm7pKF+hrL+ttrS
-         +ctOvcWKeLyc7awdDY24tzbcnXMHz+NkhTpXGaOQeyahJLpULQr4fvjGxPNSq+gzrMJr
-         WTRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713044686; x=1713649486;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9oGC2sAOn5ukxRDRNxawxuCsNvUPfSDD9rN9Jezle2o=;
-        b=j2jcOLjQshRGDSDbA4rLrdUOCqsO+j1X/dZvKJQnjypoVU3rAXztvJJj6SKhbmy8Tf
-         Gyt1nzTIzzNCZd2VN7ty4QLKDYIALQOaDBkAkD84O9V9oPtKFaTbchUm9avfbE+3VBDu
-         JVk/D/CL86M8kOSdFo/pzQDy6Zw5HwVsMMskSrcbkO+jdS0ov2cBWCWEB1pR7u6wN/cf
-         CUNDZhI0pkBDgqGJJvL+Jc1SD3c4JOxhkJ+VOdOrMO+vxSSoWVPTJZNJi6zoGe14o6vB
-         0cvhTYPcAReqOTExAFmK+EbQUu8DBldruQRJ1tOgJZSVkPME1lrx3A3ftbTBJa8rQ9HC
-         01nw==
-X-Forwarded-Encrypted: i=1; AJvYcCUsl4Ll80LbHtILzYMbE7OwnWAfsE2VayMXeBC8xupxTXFjbGTZZG4yw0RdeSuZ/yhZJt8/wFGm7RqdRmg+LAxq2UiAWJEAjz9uig==
-X-Gm-Message-State: AOJu0YwYH4EkDXYKMZKjOBDaMEJuVqHjRTA3WTSSnbEG9k4dVz3n4Y+B
-	rGIo3CZuzABP+21YwCG06z7eaXnrh0Z+QE6+eMDX4I8mWgbNuUzGrPGCz4lIs4M=
-X-Google-Smtp-Source: AGHT+IFz6w2J25hB/cmJI6Pv8fqkwAsdmF8C/onrf+QcfuHlKkxLjVvYLrqDJYJIjs3pf/2GnykQbA==
-X-Received: by 2002:a19:6450:0:b0:513:ca40:fafc with SMTP id b16-20020a196450000000b00513ca40fafcmr4208340lfj.11.1713044686225;
-        Sat, 13 Apr 2024 14:44:46 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id cr19-20020a170906d55300b00a46b4c09670sm3427957ejc.131.2024.04.13.14.44.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 Apr 2024 14:44:45 -0700 (PDT)
-Message-ID: <a10139bd-32dc-4610-8de1-2eb6915325e6@linaro.org>
-Date: Sat, 13 Apr 2024 23:44:43 +0200
+	s=arc-20240116; t=1713046270; c=relaxed/simple;
+	bh=aXOBWMvMO7ho0steJlaL6buOfsyAqhe6GhZwED4vdCA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=t5ZRDgAiv+UjUm92mLJnEWtZrpyXDXcdZIKivQCj1TVX0h/2YDGu1ijNVpX59SXsaNJ7Way8YDFimAPX/KMntBG+K7fEMac82/Ec5fKKX8BMWROPfB4xFxlcNLtwdLI76myGYRgvcH3se7keVg2k3rn5m8zwq83cffQtliU9LcQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cLZcUPp9; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1713046269; x=1744582269;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=aXOBWMvMO7ho0steJlaL6buOfsyAqhe6GhZwED4vdCA=;
+  b=cLZcUPp9qZu9tAeZKrHZcyZZD9dDkO4R8BmzUFv6M2Do1D45luUIsIq6
+   dmbB6kMSS8gRLAonYdLuydEcPZDnkhtOlpXcfB4F8MZbYjLlMMa6TowNi
+   J78SSArev388NEJf6RRU2uB6BAXeeEaJiqnKXzleVqSsw9htaxhrOt86H
+   cd/PuZFhM8TijMCsHxPcIBC64N06wfHYq8pjWDe95HVdvrjJ0v8p4b9OV
+   2pze2teX5PKAbIu+73xTlYnFi447lKGN1r8h2RTENyzpO8Uj4otTHz1RB
+   wHfQtBIglywlE9C4xWCWio0nFGDjitLEXqsH9EZ1PL5SIaWmoJjHTmeZW
+   w==;
+X-CSE-ConnectionGUID: xgXbrBk6RPe1PNjEOqukxQ==
+X-CSE-MsgGUID: 4ZvAtuQOSvuu4m7lSleyJg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11043"; a="8649040"
+X-IronPort-AV: E=Sophos;i="6.07,199,1708416000"; 
+   d="scan'208";a="8649040"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Apr 2024 15:11:08 -0700
+X-CSE-ConnectionGUID: oNYeaU4eRpaX0kmlpzKmrQ==
+X-CSE-MsgGUID: Ogf1VbZmTaGfvNpSHEZ+Yw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,199,1708416000"; 
+   d="scan'208";a="52503573"
+Received: from unknown (HELO 23c141fc0fd8) ([10.239.97.151])
+  by orviesa002.jf.intel.com with ESMTP; 13 Apr 2024 15:11:03 -0700
+Received: from kbuild by 23c141fc0fd8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rvlaO-00034K-0o;
+	Sat, 13 Apr 2024 22:11:00 +0000
+Date: Sun, 14 Apr 2024 06:10:50 +0800
+From: kernel test robot <lkp@intel.com>
+To: Charlie Jenkins <charlie@rivosinc.com>, Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Evan Green <evan@rivosinc.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	Charlie Jenkins <charlie@rivosinc.com>
+Subject: Re: [PATCH 06/19] riscv: Extend cpufeature.c to detect vendor
+ extensions
+Message-ID: <202404140621.x9B02eF8-lkp@intel.com>
+References: <20240411-dev-charlie-support_thead_vector_6_9-v1-6-4af9815ec746@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 01/18] ASoC: dt-bindings: mediatek,mt8365-afe: Add
- audio afe document
-To: Alexandre Mergnat <amergnat@baylibre.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Rob Herring <robh@kernel.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
-References: <20240226-audio-i350-v3-0-16bb2c974c55@baylibre.com>
- <20240226-audio-i350-v3-1-16bb2c974c55@baylibre.com>
- <e0b48da7-b33c-45e4-b3f3-a6d71bb0afe2@linaro.org>
- <9ecf2158-10d1-47b3-a02f-54a4cddbf426@baylibre.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <9ecf2158-10d1-47b3-a02f-54a4cddbf426@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240411-dev-charlie-support_thead_vector_6_9-v1-6-4af9815ec746@rivosinc.com>
 
-On 10/04/2024 11:29, Alexandre Mergnat wrote:
-> 
-> 
-> On 09/04/2024 17:46, Krzysztof Kozlowski wrote:
->>> +    soc {
->>> +        #address-cells = <2>;
->>> +        #size-cells = <2>;
->>> +
->>> +        afe@11220000 {
->> Did you implement the comment or decided to keep afe?
->>
-> 
-> Though it was clear according to [1]:
-> "
-> Audio Front End, this is the same name used for other MTK SoC, to be
-> consistent.
-> 
-> Cook a new patch serie to change "afe" by "audio-controller" for all MTK
-> SoC would be great.
-> "
-> 
-> I want to keep it and fix it later with ALL other MTK SoC.
-> You didn't answer after that, I though it was ok for you...
+Hi Charlie,
 
-Then no, I don't agree. If you add code, which you already plan to fix,
-it means the code is not correct somehow. Then just add correct code in
-the beginning.
+kernel test robot noticed the following build errors:
 
-Best regards,
-Krzysztof
+[auto build test ERROR on 4cece764965020c22cff7665b18a012006359095]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Charlie-Jenkins/dt-bindings-riscv-Add-vendorid-and-archid/20240412-121709
+base:   4cece764965020c22cff7665b18a012006359095
+patch link:    https://lore.kernel.org/r/20240411-dev-charlie-support_thead_vector_6_9-v1-6-4af9815ec746%40rivosinc.com
+patch subject: [PATCH 06/19] riscv: Extend cpufeature.c to detect vendor extensions
+config: riscv-randconfig-r133-20240413 (https://download.01.org/0day-ci/archive/20240414/202404140621.x9B02eF8-lkp@intel.com/config)
+compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
+reproduce: (https://download.01.org/0day-ci/archive/20240414/202404140621.x9B02eF8-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202404140621.x9B02eF8-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> arch/riscv/kernel/cpufeature.c:395:4: error: expected expression
+     395 |                         bool found;
+         |                         ^
+>> arch/riscv/kernel/cpufeature.c:397:4: error: use of undeclared identifier 'found'
+     397 |                         found = get_isa_vendor_ext(vendorid,
+         |                         ^
+   arch/riscv/kernel/cpufeature.c:402:9: error: use of undeclared identifier 'found'
+     402 |                         if (!found) {
+         |                              ^
+   3 errors generated.
+
+
+vim +395 arch/riscv/kernel/cpufeature.c
+
+   370	
+   371	static void __init riscv_parse_isa_string(unsigned long *this_hwcap, struct riscv_isainfo *isainfo,
+   372						struct riscv_isainfo *isavendorinfo, unsigned long vendorid,
+   373						unsigned long *isa2hwcap, const char *isa)
+   374	{
+   375		/*
+   376		 * For all possible cpus, we have already validated in
+   377		 * the boot process that they at least contain "rv" and
+   378		 * whichever of "32"/"64" this kernel supports, and so this
+   379		 * section can be skipped.
+   380		 */
+   381		isa += 4;
+   382	
+   383		while (*isa) {
+   384			const char *ext = isa++;
+   385			const char *ext_end = isa;
+   386			bool ext_long = false, ext_err = false;
+   387			struct riscv_isainfo *selected_isainfo = isainfo;
+   388			const struct riscv_isa_ext_data *selected_riscv_isa_ext = riscv_isa_ext;
+   389			size_t selected_riscv_isa_ext_count = riscv_isa_ext_count;
+   390			unsigned int id_offset = 0;
+   391	
+   392			switch (*ext) {
+   393			case 'x':
+   394			case 'X':
+ > 395				bool found;
+   396	
+ > 397				found = get_isa_vendor_ext(vendorid,
+   398							   &selected_riscv_isa_ext,
+   399							   &selected_riscv_isa_ext_count);
+   400				selected_isainfo = isavendorinfo;
+   401				id_offset = RISCV_ISA_VENDOR_EXT_BASE;
+   402				if (!found) {
+   403					pr_warn("No associated vendor extensions with vendor id: %lx\n",
+   404						vendorid);
+   405					for (; *isa && *isa != '_'; ++isa)
+   406						;
+   407					ext_err = true;
+   408					break;
+   409				}
+   410				fallthrough;
+   411			case 's':
+   412				/*
+   413				 * Workaround for invalid single-letter 's' & 'u' (QEMU).
+   414				 * No need to set the bit in riscv_isa as 's' & 'u' are
+   415				 * not valid ISA extensions. It works unless the first
+   416				 * multi-letter extension in the ISA string begins with
+   417				 * "Su" and is not prefixed with an underscore.
+   418				 */
+   419				if (ext[-1] != '_' && ext[1] == 'u') {
+   420					++isa;
+   421					ext_err = true;
+   422					break;
+   423				}
+   424				fallthrough;
+   425			case 'S':
+   426			case 'z':
+   427			case 'Z':
+   428				/*
+   429				 * Before attempting to parse the extension itself, we find its end.
+   430				 * As multi-letter extensions must be split from other multi-letter
+   431				 * extensions with an "_", the end of a multi-letter extension will
+   432				 * either be the null character or the "_" at the start of the next
+   433				 * multi-letter extension.
+   434				 *
+   435				 * Next, as the extensions version is currently ignored, we
+   436				 * eliminate that portion. This is done by parsing backwards from
+   437				 * the end of the extension, removing any numbers. This may be a
+   438				 * major or minor number however, so the process is repeated if a
+   439				 * minor number was found.
+   440				 *
+   441				 * ext_end is intended to represent the first character *after* the
+   442				 * name portion of an extension, but will be decremented to the last
+   443				 * character itself while eliminating the extensions version number.
+   444				 * A simple re-increment solves this problem.
+   445				 */
+   446				ext_long = true;
+   447				for (; *isa && *isa != '_'; ++isa)
+   448					if (unlikely(!isalnum(*isa)))
+   449						ext_err = true;
+   450	
+   451				ext_end = isa;
+   452				if (unlikely(ext_err))
+   453					break;
+   454	
+   455				if (!isdigit(ext_end[-1]))
+   456					break;
+   457	
+   458				while (isdigit(*--ext_end))
+   459					;
+   460	
+   461				if (tolower(ext_end[0]) != 'p' || !isdigit(ext_end[-1])) {
+   462					++ext_end;
+   463					break;
+   464				}
+   465	
+   466				while (isdigit(*--ext_end))
+   467					;
+   468	
+   469				++ext_end;
+   470				break;
+   471			default:
+   472				/*
+   473				 * Things are a little easier for single-letter extensions, as they
+   474				 * are parsed forwards.
+   475				 *
+   476				 * After checking that our starting position is valid, we need to
+   477				 * ensure that, when isa was incremented at the start of the loop,
+   478				 * that it arrived at the start of the next extension.
+   479				 *
+   480				 * If we are already on a non-digit, there is nothing to do. Either
+   481				 * we have a multi-letter extension's _, or the start of an
+   482				 * extension.
+   483				 *
+   484				 * Otherwise we have found the current extension's major version
+   485				 * number. Parse past it, and a subsequent p/minor version number
+   486				 * if present. The `p` extension must not appear immediately after
+   487				 * a number, so there is no fear of missing it.
+   488				 *
+   489				 */
+   490				if (unlikely(!isalpha(*ext))) {
+   491					ext_err = true;
+   492					break;
+   493				}
+   494	
+   495				if (!isdigit(*isa))
+   496					break;
+   497	
+   498				while (isdigit(*++isa))
+   499					;
+   500	
+   501				if (tolower(*isa) != 'p')
+   502					break;
+   503	
+   504				if (!isdigit(*++isa)) {
+   505					--isa;
+   506					break;
+   507				}
+   508	
+   509				while (isdigit(*++isa))
+   510					;
+   511	
+   512				break;
+   513			}
+   514	
+   515			/*
+   516			 * The parser expects that at the start of an iteration isa points to the
+   517			 * first character of the next extension. As we stop parsing an extension
+   518			 * on meeting a non-alphanumeric character, an extra increment is needed
+   519			 * where the succeeding extension is a multi-letter prefixed with an "_".
+   520			 */
+   521			if (*isa == '_')
+   522				++isa;
+   523	
+   524			if (unlikely(ext_err))
+   525				continue;
+   526			if (!ext_long) {
+   527				int nr = tolower(*ext) - 'a';
+   528	
+   529				if (riscv_isa_extension_check(nr)) {
+   530					*this_hwcap |= isa2hwcap[nr];
+   531					set_bit(nr, isainfo->isa);
+   532				}
+   533			} else {
+   534				for (int i = 0; i < selected_riscv_isa_ext_count; i++)
+   535					match_isa_ext(&selected_riscv_isa_ext[i], ext,
+   536						      ext_end, selected_isainfo,
+   537						      id_offset);
+   538			}
+   539		}
+   540	}
+   541	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
