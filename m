@@ -1,73 +1,74 @@
-Return-Path: <devicetree+bounces-58953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58954-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3BC78A3D7B
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 17:38:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12D058A3D7F
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 17:39:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 65080B21489
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 15:38:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0C542822BE
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 15:39:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3C2F47A7A;
-	Sat, 13 Apr 2024 15:38:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62FB147A52;
+	Sat, 13 Apr 2024 15:39:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b/wT2yKd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F7KL8ppn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 501C046421;
-	Sat, 13 Apr 2024 15:38:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADB7346B91;
+	Sat, 13 Apr 2024 15:39:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713022690; cv=none; b=u9fW3S+4bdsCJ7CcVUO7i6qYGk8wKrCheg5XxEaAuCZALMKqrxN2GOqGBF7FiuJ2h2HRvtJlujLTnX95nfJQZELMSkzt0C9brjVLvKoUb7Jz/i0ki+rXfPekVtFCR3NUOtMw8HTV+mWmJ/Yop7NdN5olVlBiM25LSiBIdxfoeIc=
+	t=1713022754; cv=none; b=qVI4/edtqSW95RLftnR7LbzLBlj3+120gfZYre/pnTN9eZ65FqLA1lpR7nEtiICwvHg1D+ZbxMCtH0WfEpAgOeLOKT1SvAX/ofCkzDeAYC7WQTKCKQ65k7uBQOs4ecy4GJNyqMRFP5fJPvPbgkatW+Gq+yeUZ5A/pJQ12g53sjE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713022690; c=relaxed/simple;
-	bh=SGx1zIyqnN1z+tgQVDcYUHrcu8NObV2jamTP00d5gPc=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:Content-Type; b=YhsLwxBbkEtq8zfHu1mVeHPH9OMhteursWhZLYj2OTWZJQKoCPlYTNxZCjSq27revxMjCLDcoFgSU87R1oiTaNWdHZ9YpAVC5sy8gD1xiMeC70RaHN1eeQ1xMNCWhhsPKu7Nn9FgJLoa7ww6pmBCvGjJ3/WQUL/k9ZxwMq6o6Ao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=b/wT2yKd; arc=none smtp.client-ip=209.85.218.43
+	s=arc-20240116; t=1713022754; c=relaxed/simple;
+	bh=R0hQU1JQFBJczNHVHglQM6MToktaoc1ppzYaJMl2mZc=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=EoIbDGkj37fx568BhSUYyh3wfF5mxROXTmzChvOdO+60TedPi2dgCYRWrrznsG5Lj+/WxzaX6PuLkfq0LQ2ZBSjRGwEYeUV4yjgPfawvUFQOr+Xw0AP4jQrv8Cwc8UF/+hFK/S5uL6V3YAJAgcEKM+ugvKiDwvvoJn1sjvYILzA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F7KL8ppn; arc=none smtp.client-ip=209.85.167.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a520410b7c0so196482766b.0;
-        Sat, 13 Apr 2024 08:38:09 -0700 (PDT)
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-516d536f6f2so2082144e87.2;
+        Sat, 13 Apr 2024 08:39:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713022687; x=1713627487; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3ExJoTB3hhXa5q9DtvmCjzuPMuLoa33GZY+I61ZoNag=;
-        b=b/wT2yKdu9MJo7f0GHK9CEtPPwlnBJy4KIat+CR9B/Z1o6aBqhGRlW/1RkYCZddRKH
-         maRdItDILAAt/Q7W6RyJ2KQsMzMVLn6QOoa26Ri0fHdr1t32jhHXv+LH1iQ3utd+w2Ih
-         PYBUJ4WOfuNEKzdY23mpxphl1cvP+2Oi5zHO00YSW4wE5sr12YoPVxqu+UKxP3SY6W+X
-         qg+1FaeS2FvXTVlPuRInHjrYwIlgPdxeMq8Eb4rSu10/6Ro4oreUMvWTVJ7i2M7fu2gb
-         1me3iiLURj/VUoJpBWr8M4bN3JIFh2Q+iMeaBvXbT7U9IdD4vHObCjUE07pK8hbmuT9D
-         wdvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713022687; x=1713627487;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+        d=gmail.com; s=20230601; t=1713022751; x=1713627551; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=3ExJoTB3hhXa5q9DtvmCjzuPMuLoa33GZY+I61ZoNag=;
-        b=GgfwWyBofHmB1/Iu7YfjqsXQzm4KWicELg3YXdHLkZytkabIhmorDNSCApJwQSOPDt
-         XSWPs6u762IYyfATPpNekecyg5bBJSv2felmeBCgOptD23cMjlRhTBcsGcDGm8/xaXn/
-         oowZyKB3Fpo9R4C9ON2O3g0QpfbAJiCmvSVSOJsuUskw8s58ldTIXJb1t06xWFsr+90L
-         1VAX3jx5wsE/gHW6fWS5W8MRA+JHg00EDP7ricn9zL6qN4PgzRhSckrq4DPo6bwIL8nw
-         R2SyI9xLBmZfxsN+5zfhBx1PBslM6A7o2ujny7yb71lmVkgLlU4pTYoYl+Mhc4mmyHKs
-         kBvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVwlyP3LURqKqrbna7sMiGY5KU2MIYs2H2iGvKG/9xDpJj3yMH1+UZjexi+lfKSaJSalJWVUdnI/wQBLDvibkyKAYCoAaDhANUAhBfM9BXPbRxLZjM0+FT0TmXKARzvbZSE9TYWO2vQwA==
-X-Gm-Message-State: AOJu0Yyra+YX2kaM+lyjSt3IXheHuh6Z1RVQ+I+OUMpf7dnQlVytNoH1
-	qQZlVzFG+ZrGSzHhzr9pG27uNDenhVcgUiz0xJyiOARs1BlHlpTD
-X-Google-Smtp-Source: AGHT+IEEl2sbrq/BBwP47g9sQFrSN4a3dH6bzRegvZZXLOpd9zEimISYPga1ISSsuvLUCDhddb9hpg==
-X-Received: by 2002:a17:906:dffa:b0:a52:52e5:bb19 with SMTP id lc26-20020a170906dffa00b00a5252e5bb19mr758772ejc.40.1713022687356;
-        Sat, 13 Apr 2024 08:38:07 -0700 (PDT)
+        bh=f0oNO6mfFQuvlHpMk4G/znEiHbjMhsBrBQyKFqCxSZQ=;
+        b=F7KL8ppnX2gzWYdo3A3BvQ/q3382MtIQzm4ZlxYyfv+63R1f4gg19e8eoYX6dn94W8
+         6/sXcQ3iqBoVd7VrL/NfhbFyb49JpD6qzuKaIbB4aVB2OhflkaiZG1LEwyIE39VPUCTi
+         +l9bZ2h208Wz+Ir3w+G3Fl5SgrzFU/CZAmKfwWAP06MusMlCnO5cgASRrVmvxyPo5e6E
+         3vxCd8Mum41n7XbpJ+0264tbniL99sKl78ugKUBBCWsD3CS6YgIav5PCguTPi2nfjYNo
+         FLMIb5qYKWCRN3DKxhf+JAV/6CGaZzsd2Lx33hnG+CCAtwFSixQ9WMhc3DrxJ7su80s4
+         sAaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713022751; x=1713627551;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=f0oNO6mfFQuvlHpMk4G/znEiHbjMhsBrBQyKFqCxSZQ=;
+        b=CxVKLRMAORuw/aGmf1XGuv827kU269VOsyp8X3QOk12uil1/E0mkIMDyjFq8Y+qG+h
+         OfrgGQLw4QYw5j+5uIFTICcndUXyXM0GWRF5crXQ42p5JWCmVORA+Mf1OTqbcIEdBSkV
+         BzjiAyE0OvYIK442uC/xSKhjYDjOZAYCnWCgd4t3IXJZGPqBXCn5+GySvcaYx2nqgwG2
+         N/XaFW2RS7uJx9CeDGp7MUcYckxUP/ytgcLrGSh4YaEu/oZ3+TXXbFK8r9zx3EapEmrF
+         ce3MMXtNkJeL5GCWQZshQOk7OIDmsCmTTZx0kzXLouql0fo/tIqLQgqybXRQn/kf9qSi
+         etxA==
+X-Forwarded-Encrypted: i=1; AJvYcCUunAjf52Wyhgs89fuEqKIb0dUzcWwDHOCAi68/fMDvousRx9ZQyorp0yiSWIgWnVnXYg8iIPB7xfPdN4G0hWClyP6Zn0LUOjMErGqkfr+2yMducHGDwyXw9/aDGk3ZdKdyxWxJRMxNww==
+X-Gm-Message-State: AOJu0Yxzzf5NuF5HMsMZ3q46NoXu4j2o7/7bJhYOMwA8L06JGp8fBci9
+	ST3MlOski459ue0ko+ckSgXkniQ00HqZIvXFhJuJgW6sefwqk8ja/nFp1w==
+X-Google-Smtp-Source: AGHT+IGZgdHHvUfwKJqy8JDTyxqVid7fQ63n4t17VeuS+OeS1rzrTs5iqeQLOHcedJp/MKxDaD9YEA==
+X-Received: by 2002:a19:7609:0:b0:516:d04f:b58e with SMTP id c9-20020a197609000000b00516d04fb58emr4324330lff.30.1713022750586;
+        Sat, 13 Apr 2024 08:39:10 -0700 (PDT)
 Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id cx10-20020a170906c80a00b00a51b5282837sm3131680ejb.15.2024.04.13.08.38.06
+        by smtp.gmail.com with ESMTPSA id cx10-20020a170906c80a00b00a51b5282837sm3131680ejb.15.2024.04.13.08.39.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 Apr 2024 08:38:07 -0700 (PDT)
-Message-ID: <3a035c16-75b5-471d-aa9d-e91c2bb9f8d0@gmail.com>
-Date: Sat, 13 Apr 2024 17:38:05 +0200
+        Sat, 13 Apr 2024 08:39:10 -0700 (PDT)
+Message-ID: <b9864655-7c60-4066-8305-f291a3551872@gmail.com>
+Date: Sat, 13 Apr 2024 17:39:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,8 +77,8 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Johan Jonker <jbx6244@gmail.com>
-Subject: [PATCH v1 1/3] dt-bindings: display: add #sound-dai-cells property to
- rockchip dw hdmi
+Subject: [PATCH v1 2/3] dt-bindings: display: add #sound-dai-cells property to
+ rockchip rk3066 hdmi
 To: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com
 Cc: airlied@gmail.com, daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
  mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org,
@@ -85,48 +86,52 @@ Cc: airlied@gmail.com, daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
  dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
  linux-kernel@vger.kernel.org
+References: <3a035c16-75b5-471d-aa9d-e91c2bb9f8d0@gmail.com>
 Content-Language: en-US
+In-Reply-To: <3a035c16-75b5-471d-aa9d-e91c2bb9f8d0@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-The Rockchip DWC HDMI TX Encoder can take one I2S input and transmit it
+The Rockchip rk3066 HDMI controller can take one I2S input and transmit it
 over the HDMI output. Add #sound-dai-cells (= 0) to the binding for it.
 
 Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 ---
- .../bindings/display/rockchip/rockchip,dw-hdmi.yaml          | 5 +++++
- 1 file changed, 5 insertions(+)
+ .../bindings/display/rockchip/rockchip,rk3066-hdmi.yaml    | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-index af638b6c0d21..2aac62219ff6 100644
---- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-+++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-@@ -15,6 +15,7 @@ description: |
+diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3066-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3066-hdmi.yaml
+index 1a68a940d165..6d4b78a36576 100644
+--- a/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3066-hdmi.yaml
++++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3066-hdmi.yaml
+@@ -10,6 +10,9 @@ maintainers:
+   - Sandy Huang <hjc@rock-chips.com>
+   - Heiko Stuebner <heiko@sntech.de>
 
- allOf:
-   - $ref: ../bridge/synopsys,dw-hdmi.yaml#
++allOf:
 +  - $ref: /schemas/sound/dai-common.yaml#
-
++
  properties:
    compatible:
-@@ -124,6 +125,9 @@ properties:
+     const: rockchip,rk3066-hdmi
+@@ -34,6 +37,9 @@ properties:
      description:
-       phandle to the GRF to mux vopl/vopb.
+       This soc uses GRF regs to switch the HDMI TX input between vop0 and vop1.
 
 +  "#sound-dai-cells":
 +    const: 0
 +
- required:
-   - compatible
-   - reg
-@@ -153,6 +157,7 @@ examples:
-         ddc-i2c-bus = <&i2c5>;
-         power-domains = <&power RK3288_PD_VIO>;
-         rockchip,grf = <&grf>;
-+        #sound-dai-cells = <0>;
+   ports:
+     $ref: /schemas/graph.yaml#/properties/ports
 
-         ports {
-             #address-cells = <1>;
+@@ -83,6 +89,7 @@ examples:
+       pinctrl-names = "default";
+       power-domains = <&power RK3066_PD_VIO>;
+       rockchip,grf = <&grf>;
++      #sound-dai-cells = <0>;
+
+       ports {
+         #address-cells = <1>;
 --
 2.39.2
 
