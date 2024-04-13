@@ -1,125 +1,255 @@
-Return-Path: <devicetree+bounces-58903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD06A8A3B53
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 08:47:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1829F8A3B60
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 09:09:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6872B281F36
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 06:47:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 26B01B222BF
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 07:09:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E27E1CABD;
-	Sat, 13 Apr 2024 06:46:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 169C41CD20;
+	Sat, 13 Apr 2024 07:09:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K0EuayUA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="l8yenHvb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A77C32C6B3;
-	Sat, 13 Apr 2024 06:46:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29C6019470
+	for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 07:09:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712990812; cv=none; b=H5OtAqrbJLP6wtQlQSvtjU4g21/gqEHCBHrAdGStAZ1U4XNR/P9nvn3NGhtynfyDHuhvvOUXADwg0lr3bq//Ltd1fmFyq3xiKk/mtfe5+2uIwO+MZYmtcJ401WTXNVtQx3OL5r7Yc0NnaRr7SCXfeavsAM3YluSEtOm6AdA/ElY=
+	t=1712992189; cv=none; b=kYQqTtZhXl6b9jU/h7LCAYPUeGu02BuG5CnHNhbHfxhnFVjENEomPA8R1e0i/vprK5IfBzIViGuHerLj5y5ECZVypOvWHs4qdABfEszk2sajk6UDUXiMvEFJsNi0tKpBWb71SUdq3O5RRE97ZtQ4BR6w34aPBfijYiPwPTCl05Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712990812; c=relaxed/simple;
-	bh=TbV8p/Uva02TlZLiHlOrzb+Smt3ZT8NektIy6PK2auE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=AkQQ+61PXBOznjqK+4Vvu+JxTFHLuJZZHpOMpr8evvwkH/qoDCK7zAIQC13cPGHMRa1Z0NMcRhXdFr6qvA1cUg7KZkipHLMcQ8YoIdNo5QSSBXBxPLg7YYdHBWC7Xbq/VxNjj/6BCGWYhiiRDSeBnFKES864gQ9evVASEwthhJ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=K0EuayUA; arc=none smtp.client-ip=209.85.167.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-3c611c787c1so292600b6e.3;
-        Fri, 12 Apr 2024 23:46:50 -0700 (PDT)
+	s=arc-20240116; t=1712992189; c=relaxed/simple;
+	bh=31TPNy+mcj7oxA1P6tKn0QIVaMJ40e7wFclNoiCV3u0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SjYFd69iu3U/8lgh3YepGUUMqaPdOuqbU+nAjOi3S0KYnVRHSk2OxenLUgtZdRRsrWrFrMnDu5krSjwMFlQahlgobdsWLOgR3PvIp4fOSSJLkwlTwMAv/O2i4Q74N4xBcmtPedorCBCrlwV4i7aczknfhtejhMfn3DvpeRFNfVc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=l8yenHvb; arc=none smtp.client-ip=209.85.219.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-dd02fb9a31cso1474359276.3
+        for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 00:09:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712990809; x=1713595609; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xbRqb26QfAthS3CJVq90TpB3Bg3AO5IdQEZJltedfdA=;
-        b=K0EuayUAarcO/PRjqHJZgiLe2gHt/heOn03XWA6VYPxwqmjP9kyJWBtJ3emmbkDT1O
-         MQY/iLTOEYkxHAsgLKWWY8cprblj/qUwtexjM0WJb2SCi4b96Ub3xgKsuWL/ncuhmu14
-         enk+C4nn3CND6BWote4Df7eeDXp6mrph/72aJLDZ3kE82HqfCGsT01CmpumhtlQK3fyf
-         kPwy9AHnaHEGxAdCMFKtKxl6NXxkuebrg0dZoAYYGd8ZUHL1wZh5iT+cyvdU4Z49zY+Q
-         PPMBKvcODJmD3lSNhUltZ8lESRTVqR4Vv6W2Vp9pprchlskvrlDeKbBzHez5zfFN4caG
-         dFNw==
+        d=linaro.org; s=google; t=1712992185; x=1713596985; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=NTeaQI+AbWOvMhpNjK5DyNPGOXCM20rO0Ym7AMK4y8I=;
+        b=l8yenHvbGDLh+wI8Y8VyPMn3+0DkVemoPUi9sRzSNuAo4SlFbc4u5QfBvPT0SgEeT9
+         PgFANCKZvVRGg73P2BbA05bMuLcYpWIVIB7Kj5R70elLOvaZ0ZVkaUkaORVX6gTrXisD
+         eWcsISow/I3ITYNURS0SKY7Lm3yZS78VcJxPM8GikcLFskWAIEGXZZ+1fiaJuUXuneJ0
+         blYvrrXZcyNZf+L92MLRwt/i2v2w9nDpsjMP5npy4dSpmKYbExZqamaLd7TsnmOVger8
+         IADU+Or9TOwNNuYdJTI+vE1OJy3HRSbRkrJQD+uKOwqVK6riH167Wd1iE+QnYuFc9hDU
+         xPew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712990809; x=1713595609;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xbRqb26QfAthS3CJVq90TpB3Bg3AO5IdQEZJltedfdA=;
-        b=RsBSqRFSFyHrYNzFGCaALJ1jPW66D1UbF96YHqgv6w4EIphLzJEHBHNjbYFqSMHGVx
-         IREESZh5qjDzVPXAEANlPDy1i02VY1iQw2CGk2uYzckGgzQHOiJRi3OQzUAay+uwBQ/7
-         Wa+P83ns2R9ihHljYl5q9HZ7c/G4fhS8YMeQNF8e+mU0ZBecUonbZnd5NUz60u8xuV+N
-         gnB3+3Y5DlIwidbyBUsty9K2j7e0lTXv4BzWBEMEE3UT83QETzGrRoH4ZkK4Qw0x0B9K
-         riImmod3x01GHe6YdSYK9JvdSuiTyGu7pdtbbHNSWld8JAcSEFE6+gygG+EPq3JaURdG
-         PD8A==
-X-Forwarded-Encrypted: i=1; AJvYcCXP+DQxGdsg449Y6qwxWPjvLOBm0IF6DvqlUIxLUMpqvsXA9n2S4zjSs9+HJYCX/1CP63Hg4ejaGinRy1wRYUVdlqPZwLrq6FjI0FFnRe7/D4IBPZVh0P/Izg9yyE5KteDy9VZ7OBQDnCc=
-X-Gm-Message-State: AOJu0YyNzGmx+tEN8/rIsxwIzVRYZia0LvVCiGPh30vPSZ6wr0qWJrEf
-	3dWG3gRVOg1q2Xc1sbs6Y759F+8yY/6U7XMQ4PB+dAvhwWLwPp5njp65S2taFsc=
-X-Google-Smtp-Source: AGHT+IErS4TJR2V/CrbkM0Eg5mpkObIhcMcSXT4YWodzpv5E2aaVxsMHBZjnG/n/21SFsqBLpCqNMQ==
-X-Received: by 2002:a05:6808:1a82:b0:3c6:f5ca:86f8 with SMTP id bm2-20020a0568081a8200b003c6f5ca86f8mr3908304oib.27.1712990809391;
-        Fri, 12 Apr 2024 23:46:49 -0700 (PDT)
-Received: from localhost.localdomain ([221.220.133.103])
-        by smtp.gmail.com with ESMTPSA id p6-20020a170902780600b001e2a7e90321sm4096693pll.224.2024.04.12.23.46.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Apr 2024 23:46:48 -0700 (PDT)
-From: Jianfeng Liu <liujianfeng1994@gmail.com>
-To: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de,
-	ezequiel@vanguardiasur.com.ar,
-	p.zabel@pengutronix.de,
-	mchehab@kernel.org,
-	sfr@canb.auug.org.au,
-	liujianfeng1994@gmail.com
-Subject: [PATCH v5 2/2] dt-bindings: media: rockchip-vpu: Add rk3588 vdpu121 compatible string
-Date: Sat, 13 Apr 2024 14:46:08 +0800
-Message-Id: <20240413064608.788561-3-liujianfeng1994@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240413064608.788561-1-liujianfeng1994@gmail.com>
-References: <20240413064608.788561-1-liujianfeng1994@gmail.com>
+        d=1e100.net; s=20230601; t=1712992185; x=1713596985;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NTeaQI+AbWOvMhpNjK5DyNPGOXCM20rO0Ym7AMK4y8I=;
+        b=uDlY0X5aG00mKKV7QQVullOpVVFEV5MENhU6s5fmZMiTzfwQpgOK8mt+71qwlGBlaP
+         KyYDVH8rSwobZAo5qJ0Yya4DFHCunpk6koyQtoJloq+SIKYibLWcKj8nsxSqtizGcRzd
+         Rm6ZwfZdzxQ1+8ifV80C7ULlygbHdvxmjNdGtzhNty9W6msT6mIhIfU+9scWRtD0mF3n
+         Hepcoe/sLrKkjULCBsHkr7LDsVftpbbra+anycxJn/63mVY/GNfFLhvCMNUTnT1UPC5h
+         HA8JqcJE5Yuz+GSiiVyfib+0MfBTRLEGPBJCUJu08odems7ZbyCrIKJPioWDq40UdGlb
+         wLNg==
+X-Forwarded-Encrypted: i=1; AJvYcCWrVH6tG6hwbD9Lmy5QasBkBfLcV2SOk1lj+zCKG199OQ9RAa52nu8iqzIta1Fq48KbOlSj6kGEVw4bSQsJrQ11AmRW7gA+D6b8iA==
+X-Gm-Message-State: AOJu0YyOLLe/Ms88AR1RcmafcPnbvKr8P5mxH+OQ86V36EOHlkrhWllQ
+	OUJm1nu4Jws3auc3k7NWzUgvF4U/m3Y8Yc2qmBG6mP9MsOIblGketYUgIYnSixcwbd9OmY3MMh3
+	AcWGLFiqS9lc6a0dn4I/oBIPg2h7pR0DSL72ujKYESCs0yyrn
+X-Google-Smtp-Source: AGHT+IGR3uOxfxvP+4H+JPxbSUh8CTrL3KHgDDxzmKk1XMdxnKdjOcYpmVZJQrPVbWLzF8Jn7f7zAYxjd8Hq1jMig34=
+X-Received: by 2002:a25:2610:0:b0:ddd:6964:40c with SMTP id
+ m16-20020a252610000000b00ddd6964040cmr4772224ybm.50.1712992185082; Sat, 13
+ Apr 2024 00:09:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240412222942.3874269-1-robh@kernel.org>
+In-Reply-To: <20240412222942.3874269-1-robh@kernel.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Sat, 13 Apr 2024 10:09:33 +0300
+Message-ID: <CAA8EJpqbCOPZfFtMtjy5Sz7R=oR2=5xv9vt8Har3ThLRpot5Xw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: Split PMU nodes for heterogeneous CPUs
+To: Rob Herring <robh@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Add Hantro G1 VPU compatible string for RK3588.
-RK3588 has the same Hantro G1 ip as RK3568, which are both
-known as VDPU121 in TRM of RK3568 and RK3588.
+On Sat, 13 Apr 2024 at 01:30, Rob Herring <robh@kernel.org> wrote:
+>
+> Arm heterogeneous configurations should have separate PMU nodes for each
+> CPU uarch as the uarch specific events can be different. The
+> "arm,armv8-pmuv3" compatible is also intended for s/w models rather than
+> specific uarch implementations.
+>
+> All the kryo CPUs are missing PMU compatibles, so they can't be fixed.
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  arch/arm64/boot/dts/qcom/msm8956.dtsi |  4 ++--
+>  arch/arm64/boot/dts/qcom/msm8976.dtsi | 10 ++++++++++
+>  arch/arm64/boot/dts/qcom/sm4450.dtsi  | 11 ++++++++---
+>  arch/arm64/boot/dts/qcom/sm8350.dtsi  | 14 ++++++++++++--
+>  arch/arm64/boot/dts/qcom/sm8550.dtsi  | 19 +++++++++++++++++--
+>  arch/arm64/boot/dts/qcom/sm8650.dtsi  | 14 ++++++++++++--
+>  6 files changed, 61 insertions(+), 11 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/msm8956.dtsi b/arch/arm64/boot/dts/qcom/msm8956.dtsi
+> index 668e05185c21..fa36b62156bb 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8956.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8956.dtsi
+> @@ -8,8 +8,8 @@
+>
+>  #include "msm8976.dtsi"
+>
+> -&pmu {
+> -       interrupts = <GIC_PPI 7 (GIC_CPU_MASK_SIMPLE(6) | IRQ_TYPE_LEVEL_HIGH)>;
+> +&pmu_a72 {
+> +       interrupts = <GIC_PPI 7 (GIC_CPU_MASK_RAW(0x30) | IRQ_TYPE_LEVEL_HIGH)>;
+>  };
+>
+>  &tsens {
+> diff --git a/arch/arm64/boot/dts/qcom/msm8976.dtsi b/arch/arm64/boot/dts/qcom/msm8976.dtsi
+> index d2bb1ada361a..1ad102b1633c 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8976.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8976.dtsi
+> @@ -226,6 +226,16 @@ pmu: pmu {
+>                 compatible = "arm,armv8-pmuv3";
+>                 interrupts = <GIC_PPI 7 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_HIGH)>;
 
-Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
----
- Documentation/devicetree/bindings/media/rockchip-vpu.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+I think these two lines were supposed to be dropped.
 
-diff --git a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
-index c57e1f488..4f667db91 100644
---- a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
-+++ b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
-@@ -31,6 +31,9 @@ properties:
-       - items:
-           - const: rockchip,rk3228-vpu
-           - const: rockchip,rk3399-vpu
-+      - items:
-+          - const: rockchip,rk3588-vdpu121
-+          - const: rockchip,rk3568-vpu
- 
-   reg:
-     maxItems: 1
+>         };
+> +       pmu-a53 {
+> +               compatible = "arm,cortex-a53-pmu";
+> +               interrupts = <GIC_PPI 7 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+> +       };
+> +
+> +       pmu_a72: pmu-a72 {
+> +               compatible = "arm,cortex-a72-pmu";
+> +               interrupts = <GIC_PPI 7 (GIC_CPU_MASK_RAW(0xf0) | IRQ_TYPE_LEVEL_HIGH)>;
+> +       };
+> +
+>
+>         psci {
+>                 compatible = "arm,psci-1.0";
+> diff --git a/arch/arm64/boot/dts/qcom/sm4450.dtsi b/arch/arm64/boot/dts/qcom/sm4450.dtsi
+> index 603c962661cc..411eb7577407 100644
+> --- a/arch/arm64/boot/dts/qcom/sm4450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm4450.dtsi
+> @@ -268,9 +268,14 @@ memory@a0000000 {
+>                 reg = <0x0 0xa0000000 0x0 0x0>;
+>         };
+>
+> -       pmu {
+> -               compatible = "arm,armv8-pmuv3";
+> -               interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> +       pmu-a55 {
+> +               compatible = "arm,cortex-a55-pmu";
+> +               interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+> +       };
+> +
+> +       pmu-a78 {
+> +               compatible = "arm,cortex-a78-pmu";
+> +               interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+>         };
+>
+>         psci {
+> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> index a5e7dbbd8c6c..127fa9a935da 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> @@ -300,8 +300,18 @@ memory@80000000 {
+>                 reg = <0x0 0x80000000 0x0 0x0>;
+>         };
+>
+> -       pmu {
+> -               compatible = "arm,armv8-pmuv3";
+> +       pmu-a55 {
+> +               compatible = "arm,cortex-a55-pmu";
+> +               interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+> +       };
+> +
+> +       pmu-a78 {
+> +               compatible = "arm,cortex-a78-pmu";
+> +               interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+> +       };
+> +
+> +       pmu-x1 {
+> +               compatible = "arm,cortex-x1-pmu";
+>                 interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+>         };
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> index 3904348075f6..8e7d0ac17a12 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> @@ -357,8 +357,23 @@ memory@a0000000 {
+>                 reg = <0 0xa0000000 0 0>;
+>         };
+>
+> -       pmu {
+> -               compatible = "arm,armv8-pmuv3";
+> +       pmu-a510 {
+> +               compatible = "arm,cortex-a510-pmu";
+> +               interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+> +       };
+> +
+> +       pmu-a710 {
+> +               compatible = "arm,cortex-a710-pmu";
+> +               interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+> +       };
+> +
+> +       pmu-a720 {
+> +               compatible = "arm,cortex-a720-pmu";
+> +               interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+> +       };
+> +
+> +       pmu-x3 {
+> +               compatible = "arm,cortex-x3-pmu";
+>                 interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+>         };
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> index ba72d8f38420..90102a41489d 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> @@ -394,8 +394,18 @@ memory@a0000000 {
+>                 reg = <0 0xa0000000 0 0>;
+>         };
+>
+> -       pmu {
+> -               compatible = "arm,armv8-pmuv3";
+> +       pmu-a520 {
+> +               compatible = "arm,cortex-a520-pmu";
+> +               interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+> +       };
+> +
+> +       pmu-a720 {
+> +               compatible = "arm,cortex-a720-pmu";
+> +               interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+> +       };
+> +
+> +       pmu-x4 {
+> +               compatible = "arm,cortex-x4-pmu";
+>                 interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+>         };
+>
+> --
+> 2.43.0
+>
+>
+
+
 -- 
-2.34.1
-
+With best wishes
+Dmitry
 
