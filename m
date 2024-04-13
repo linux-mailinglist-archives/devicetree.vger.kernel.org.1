@@ -1,215 +1,181 @@
-Return-Path: <devicetree+bounces-58980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1C718A3E3A
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 21:29:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82E528A3E3E
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 21:32:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3FE71C209FF
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 19:29:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 39FAA281CC7
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 19:32:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F0AF53E1B;
-	Sat, 13 Apr 2024 19:29:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7717254730;
+	Sat, 13 Apr 2024 19:31:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="hV8ij7x5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OmD4fAKY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A50753816
-	for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 19:29:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9776053803
+	for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 19:31:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713036592; cv=none; b=WlwxmG9VP4ndzF1RfuN+g1YIlr5X4jmQa9ePANUOrl9e+mfl0qSP50R7XoBfTo9+R0aZFN85XolmuJe4Oi/qWrd/N3qbikl6Mq9eBFDn/WZSP3MTfiQhDMlBssSvAfQP5HteO7EFVoDDflet8P07C3xar0o4Hnb1492ixGEFruk=
+	t=1713036715; cv=none; b=LOMoXh0eXCghJsS43FpmC64R6w7dJUkJtMf0pOQyKJM212fPCa+tRSB/1h5/Udu6t58iTNEY+7KFEGXwq0u8KjT4pW802tT9JOmQZ5X9Kr4eU8KULhJrfdnkIHUI0FgLnzyXaBok1JMxp/Rhdxv2KcWJ7CFTUbynYquVgCRznjM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713036592; c=relaxed/simple;
-	bh=ekR+neUUGWmbfsjnoplr30B2sDuSff7H60x8wNa85gM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fWM5JiT057LN4zcefmHYeN6zYU5ojn6/0Ibq0BudR9LIdn10v++Sa0v2gaOT4/VZRPhXjhNeBPIRd72ou9DiOld1GvrzXsEm86mQqfRU6XOJRarfO3ympiCWa9ttH8i4I9AhpuXnWfloSfRwu0bJxtC1R4FllmOX1HGyU3SgCaM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=hV8ij7x5; arc=none smtp.client-ip=209.85.208.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2d8a24f8a3cso20469021fa.1
-        for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 12:29:49 -0700 (PDT)
+	s=arc-20240116; t=1713036715; c=relaxed/simple;
+	bh=YJ6jDS8SjWnTuVP9uJ1ghT1sfqZX9ES30YU+dQqnSYY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XVozEtrcDiKAsZY9+pFu/mnSQBvbTqOmbGQxSzLmlGj+dRMfUGt7yqiKrmW9qO6Hd51mKfiTbOxGw5XdWXxxEi7p41VsaVXMDo06aAfYxMoIIQToqxWtLSrebXJh87IuroervvYbVKhv6wgygRyxoxz9TyH7otH+VFD8B6Wi2l4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OmD4fAKY; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a46a7208eedso276230366b.0
+        for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 12:31:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1713036588; x=1713641388; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OmYodBx0rt0Xl0DDLUdicsKR5RJwwQ64bgG4rZNjscc=;
-        b=hV8ij7x572hTwhnpjDgp2NYQktu/MbclqyW47ptzJHxMOzFWtz5B814F1GjOyyn6RM
-         SRf5PFpCiWlz7YgBLFWW3npsiy9dpQDZpiNR/UvSZ1JiuvV25/kZ6bNPe2vYUUJxI+SO
-         fJ5K/iH2lXlW1oGSGSsKQhX+HfiEhBFTC9ohT0uE2BY6X1FX59wiVAzd/2dn3no0vkPg
-         3UMvbSGhCskdhUSbYel07PAQGqAaM3OJfefUOC3wZY8zTStPTBmR5kkGxyupxTOVF/0f
-         LGlHzlS+y2tWL3ZJ1cSHqfZhzBCOyqMIP/o02kBuw6VGO+ddEZcddrZ3BhISupFQfwsT
-         P5PQ==
+        d=linaro.org; s=google; t=1713036712; x=1713641512; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=hoM0XAEUpRVPIeinoPGbPpP3Hh4hNSukUOnMJ2HLsSE=;
+        b=OmD4fAKYGHCGIqNRpTYDFLuil6ZKAfwxtzKkm8uPW44ZA8iUPtu6wfi5VaDFis3c0P
+         wA0rZdvUxoG6aC3W1T1z8crx20hZ0ecZo1U2f7BtBf4mwHF63veKU/Q8tNe5LMA7cMnO
+         VU8nw2C+VWqmkApVK2d6vdjGcqQnGKYlNd0+OQh3aZhvPadjLZ5f9DRvjCnGmq0Uo5Wm
+         fjwGAWsPC22ELrzLVSdeFIfl4ZWMS4c9s2I3JpgZFsFA9+kn1Evgm8CdYgT08Fsd5qfV
+         ctFSgkDPayLPP+Z5epQa1YRmkemdm9xvwLNbV13lswtHIMmVQgdzQBn5VgFkAExPQzjQ
+         4xmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713036588; x=1713641388;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OmYodBx0rt0Xl0DDLUdicsKR5RJwwQ64bgG4rZNjscc=;
-        b=oHyWylSyyp6oJkcByXYrKZE/aBaAp2NAhPaan5H0hR8R5iEPoKAyFqJcu2bbcpfm6p
-         90ZZLOdjdiRDQhyG2PJxPv/11y2crio1csJ91lHHeKvW6nsvYiZfAS2YOEUpA+/7SHQS
-         0BzS+3y9VbvDb1wC1cZyL0JrspjZt52YcIlGTdVrrxqV3I5nuaXUQgulv48Ys2TlZiKo
-         vKXkLufWEr5Vw8p77dhD2qK8lNPh25pGPMsq98W+DOkL2RYxzpsJjyUPHl4EqLrIUSJ6
-         2rzdMTdp1ftRm4qbm4lt1KYzMAarrKm1r9GIkp7Ac7CJ2dVAtHL4UaC9vjg6Xzh4Pr6d
-         G3kg==
-X-Forwarded-Encrypted: i=1; AJvYcCUWcwFHFUNF8zeLDv5crkO/aIkBUjWZ6m70Ij/t1vJIfBKFRsFDB3JXAkokxB5JVdJEMMAsI8b7+YfUQ173HzZI3M98SfzcXD9ssg==
-X-Gm-Message-State: AOJu0YztSTGks9VhsXDhMgEJb59hpYdU7X8/ug+0uGC7ufSjM7MeDdfa
-	nlQtpyvIpi/uE43UFjRpbIGdBDn2wCtQ9s0rswbsJisOC4Lib+Al6wW2KIMRxGEbgChSIS/JdGd
-	6288ChPEoud73kZTZUTWJ36BDs4Y8m1PVLmGFfg==
-X-Google-Smtp-Source: AGHT+IHuQd+8CSHgHzAD3dahpcflUyvuwNKT1lpdXWWSt+O07027UJZs7iQNmusRzfJGo3XFDvDPLF3EVD6Ggm652E4=
-X-Received: by 2002:a2e:a586:0:b0:2d8:4169:3a58 with SMTP id
- m6-20020a2ea586000000b002d841693a58mr4281085ljp.41.1713036588403; Sat, 13 Apr
- 2024 12:29:48 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1713036712; x=1713641512;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hoM0XAEUpRVPIeinoPGbPpP3Hh4hNSukUOnMJ2HLsSE=;
+        b=VFi7hS+iz0HrpP0xQAdjE/inE2uq54aXC1za51swJnKPYpx3RA1TRwNZTvF7Xg49kj
+         sgpQMLml9DH4zBIFLbYwK7pnV5T6M11Pqx6zY+wTWGALsmQMCTe++yAgheOtyfLu36bk
+         mfl/dVWcdFXNB9eRP6oA5SQ9JSAEWiNJ3qpvr9RBAlrzp67Yo6E0c7QdmyP1/HxyLw3b
+         0GKeKUgcHwBK79EyRcer2LHAt1y/hTbGzvTXBElpsvB0ix7DAuiY7k2LCnVf+fjDPkdS
+         9zoRkLtnzkJ1f7Po6T/peUwMHBzjXbYNMYPESWdGKTDtCLEt36VFogdsfIMfHCeJy25g
+         9hZA==
+X-Forwarded-Encrypted: i=1; AJvYcCUalKSfPHK+4u96pz9fyMuqsYHtf9tty1N8fss/IXSi9WwFgUtsrE1O4v9twrhJ35nGchWc1Dbmb0Jh0OCnSC0QcLObqz8W+19JUg==
+X-Gm-Message-State: AOJu0YwI9WmVIRO/qsM/+N8UGpGqtdzcVDvA21k+kT8H6troRp3fo3z8
+	c5qH756SZ5eRSpRJEUwIOanq0QZLLycfHBp4E781nauzcc7QY9T3oZM3p9RrS7o=
+X-Google-Smtp-Source: AGHT+IHWPDhTqchT37eSS3hl4fS80ZHtZAxMHWMIjAccLluFFcknTGFsE11xDHgQYFR0iSEAVhIR3Q==
+X-Received: by 2002:a17:907:94c1:b0:a51:e5c7:55b7 with SMTP id dn1-20020a17090794c100b00a51e5c755b7mr4208196ejc.47.1713036711430;
+        Sat, 13 Apr 2024 12:31:51 -0700 (PDT)
+Received: from [192.168.45.55] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
+        by smtp.gmail.com with ESMTPSA id oz16-20020a170906cd1000b00a51bf5932aesm3319727ejb.28.2024.04.13.12.31.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 13 Apr 2024 12:31:50 -0700 (PDT)
+Message-ID: <0a58e05a-7bf5-459a-b202-66d88c095b45@linaro.org>
+Date: Sat, 13 Apr 2024 21:31:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240413151152.165682-1-alisa.roman@analog.com> <20240413151152.165682-5-alisa.roman@analog.com>
-In-Reply-To: <20240413151152.165682-5-alisa.roman@analog.com>
-From: David Lechner <dlechner@baylibre.com>
-Date: Sat, 13 Apr 2024 14:29:37 -0500
-Message-ID: <CAMknhBHJpOxRmJbiprVNfYB4JbLzjR2a9S8=5iVz_9O+013u1Q@mail.gmail.com>
-Subject: Re: [PATCH v5 4/5] dt-bindings: iio: adc: ad7192: Add AD7194 support
-To: Alisa-Dariana Roman <alisadariana@gmail.com>
-Cc: michael.hennerich@analog.com, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	alexandru.tachici@analog.com, lars@metafoo.de, jic23@kernel.org, 
-	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	lgirdwood@gmail.com, broonie@kernel.org, andy@kernel.org, nuno.sa@analog.com, 
-	marcelo.schmitt@analog.com, bigunclemax@gmail.com, okan.sahin@analog.com, 
-	fr0st61te@gmail.com, alisa.roman@analog.com, marcus.folkesson@gmail.com, 
-	schnelle@linux.ibm.com, liambeguin@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/4] interconnect: qcom: icc-rpmh: Add QoS
+ configuration support
+To: Odelu Kukatla <quic_okukatla@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>, Georgi Djakov <djakov@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Kees Cook <keescook@chromium.org>, cros-qcom-dts-watchers@chromium.org,
+ "Gustavo A . R . Silva" <gustavoars@kernel.org>,
+ linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org, quic_rlaggysh@quicinc.com,
+ quic_mdtipton@quicinc.com
+References: <20240325181628.9407-1-quic_okukatla@quicinc.com>
+ <20240325181628.9407-2-quic_okukatla@quicinc.com>
+ <d59896bb-a559-4013-a615-37bb43278b2e@linaro.org>
+ <91f59477-1799-4db6-bcc2-3f0c5225d1c8@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <91f59477-1799-4db6-bcc2-3f0c5225d1c8@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sat, Apr 13, 2024 at 10:13=E2=80=AFAM Alisa-Dariana Roman
-<alisadariana@gmail.com> wrote:
->
-> Unlike the other AD719Xs, AD7194 has configurable differential
-> channels. The user can dynamically configure them in the devicetree.
->
-> Also add an example for AD7194 devicetree.
->
-> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
-> ---
->  .../bindings/iio/adc/adi,ad7192.yaml          | 74 +++++++++++++++++++
->  1 file changed, 74 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml b/=
-Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
-> index ba506af3b73e..855f0a2d7d75 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
-> @@ -21,8 +21,15 @@ properties:
->        - adi,ad7190
->        - adi,ad7192
->        - adi,ad7193
-> +      - adi,ad7194
->        - adi,ad7195
->
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
->    reg:
->      maxItems: 1
->
-> @@ -104,8 +111,43 @@ required:
->    - spi-cpol
->    - spi-cpha
->
-> +patternProperties:
-> +  "^channel@[0-9]+$":
-> +    type: object
-> +    $ref: adc.yaml
-> +    unevaluatedProperties: false
-> +
-> +    properties:
-> +      reg:
-> +        description: The channel index.
-> +        minimum: 1
-> +        maximum: 256
-> +
-> +      diff-channels:
-> +        description: |
-> +          Both inputs can be connected to pins AIN1 to AIN16 by choosing=
- the
-> +          appropriate value from 1 to 16.
-> +        items:
-> +          minimum: 1
-> +          maximum: 16
+On 3.04.2024 10:45 AM, Odelu Kukatla wrote:
+> 
+> 
+> On 3/27/2024 2:26 AM, Konrad Dybcio wrote:
+>> On 25.03.2024 7:16 PM, Odelu Kukatla wrote:
+>>> It adds QoS support for QNOC device and includes support for
+>>> configuring priority, priority forward disable, urgency forwarding.
+>>> This helps in priortizing the traffic originating from different
+>>> interconnect masters at NoC(Network On Chip).
+>>>
+>>> Signed-off-by: Odelu Kukatla <quic_okukatla@quicinc.com>
+>>> ---
 
-Don't we also need to allow 0 for AINCOM here? Or is this property
-only for fully differential pairs and not pseudo-differential pairs?
+[...]
 
+>>> @@ -70,6 +102,7 @@ struct qcom_icc_node {
+>>>  	u64 max_peak[QCOM_ICC_NUM_BUCKETS];
+>>>  	struct qcom_icc_bcm *bcms[MAX_BCM_PER_NODE];
+>>>  	size_t num_bcms;
+>>> +	const struct qcom_icc_qosbox *qosbox;
+>>
+>> I believe I came up with a better approach for storing this.. see [1]
+>>
+>> Konrad
+>>
+>> [1] https://lore.kernel.org/linux-arm-msm/20240326-topic-rpm_icc_qos_cleanup-v1-4-357e736792be@linaro.org/
+>>
+> 
+> I see in this series, QoS parameters are moved into struct qcom_icc_desc. 
+> Even though we program QoS at Provider/Bus level, it is property of the node/master connected to a Bus/NoC.
 
-> +
-> +    required:
-> +      - reg
-> +      - diff-channels
-> +
->  allOf:
->    - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - adi,ad7190
-> +            - adi,ad7192
-> +            - adi,ad7193
-> +            - adi,ad7195
-> +    then:
-> +      patternProperties:
-> +        "^channel@[0-9]+$": false
->
->  unevaluatedProperties: false
->
-> @@ -136,3 +178,35 @@ examples:
->              adi,burnout-currents-enable;
->          };
->      };
-> +  - |
-> +    spi {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        adc@0 {
-> +            #address-cells =3D <1>;
-> +            #size-cells =3D <0>;
-> +            compatible =3D "adi,ad7194";
-> +            reg =3D <0>;
-> +            spi-max-frequency =3D <1000000>;
-> +            spi-cpol;
-> +            spi-cpha;
-> +            clocks =3D <&ad7192_mclk>;
-> +            clock-names =3D "mclk";
-> +            interrupts =3D <25 0x2>;
-> +            interrupt-parent =3D <&gpio>;
-> +            dvdd-supply =3D <&dvdd>;
-> +            avdd-supply =3D <&avdd>;
-> +            vref-supply =3D <&vref>;
-> +
-> +            channel@1 {
-> +                reg =3D <1>;
-> +                diff-channels =3D <1 6>;
-> +            };
-> +
-> +            channel@2 {
-> +                reg =3D <2>;
-> +                diff-channels =3D <16 5>;
-> +            };
-> +        };
-> +    };
-> --
-> 2.34.1
->
+I don't see how it could be the case, we're obviously telling the controller which
+endpoints have priority over others, not telling nodes whether the data they
+transfer can omit the queue.
+
+> It will be easier later to know which master's QoS we are programming if we add in node data.
+> Readability point of view,  it might be good to keep QoS parameters in node data.  
+
+I don't agree here either, with the current approach we've made countless mistakes
+when converting the downstream data (I have already submitted some fixes with more
+in flight), as there's tons of jumping around the code to find what goes where.
+
+Konrad
 
