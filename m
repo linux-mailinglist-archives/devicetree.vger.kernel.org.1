@@ -1,195 +1,107 @@
-Return-Path: <devicetree+bounces-58915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-58916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3B968A3BE4
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 11:19:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1B308A3C23
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 12:11:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A18591C20E66
-	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 09:19:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE47A1C21562
+	for <lists+devicetree@lfdr.de>; Sat, 13 Apr 2024 10:11:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E854224A0D;
-	Sat, 13 Apr 2024 09:19:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A14203D969;
+	Sat, 13 Apr 2024 10:11:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="IVuWcay+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MAev4S6o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70B572137F
-	for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 09:19:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F919381B9
+	for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 10:11:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712999996; cv=none; b=s6HRZnGIpzmrz467X0uE9GVHMxzaBpzAWFyWzyQV5V4TdkJbEDX9T9xOhaGWy+FJg/UJURvY2U8IrU1smxR9YxbtfGyI2PAZUkZr8cEJS9PwFFPCp2bxQ+Gq6jr5+4WmILPvUzGfkqK6bZueKdJpYWPj2Fyb5//ECyr/0N43sgk=
+	t=1713003077; cv=none; b=DMIXqHML7gR6MB+uATbWfkxBLXe3LCDKOdZHvNwYfFrmJP41vXMfrrm4P6C1mLedLb+CnIRJCtCFkTV9KT0gyqnPj6Lsif+JJBcRZVlKqe9q/zLdgD9xU9rlexiSLz7hQSdWPM7eIpAGzdHg4RHRy84kxmRAdTX1y3igHSlirtQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712999996; c=relaxed/simple;
-	bh=xtrhNFYIL5DFjvG5DohoWbQ0qLKf2DBPOxnSj+B1Pv8=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=mQN5hZwSWUCbzXa4Fd7/HUIUGcNBtMeeypqGsyxQsij2kTBDUbAdkCwYaglq2FzuZeQ8glPRTjOxuvp+nNl94srgMbBdk+nB3j3p/8yHBlUvwkScFm61XOcdzjPlKxQu2wLOu4dyITSdJPvlnwNOTFGDkgPeBH5Og+sVDEFVEjI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=IVuWcay+; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-1e5b6e8f662so9459685ad.0
-        for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 02:19:55 -0700 (PDT)
+	s=arc-20240116; t=1713003077; c=relaxed/simple;
+	bh=GTnx26jyD576A9spBEofCrW+259pzNhlga+m/yDLy54=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=p8CfXNg36vuE+1w32v7N+dh5Hqa9PHLBou/PLl4tDpMgBjYbw1MmXPNO+madxnTAUE8bACcy/9AVdQ243qmkufc18kdGO1QiZyN2bEkBY0sGF+p9zoDJVQziRqpnmwKkuoUJx7FoVGdjAsqLcVArY7qIVhQ/UsDjfHxL4pkNOwc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MAev4S6o; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-418247057cbso1778045e9.1
+        for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 03:11:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1712999995; x=1713604795; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=69pCu+lIE1wVXKqySWp1XZJt2aC2QI11IyQxjcSF8a4=;
-        b=IVuWcay+iPBZHYrHvYohZYwRfKpDbTXVfyoxKtYc2SkOtRC7N9DSBil0k5CZ3jNifh
-         uEC/e6eLcZ5sSTdsYXkX41S4MhuRq/Qk5QjQV7Wha0S0sQX2JhnhQvmbgbJXLPYcOIn9
-         k75mZ8R+9DN27TnEKcOpmDO3C9dxPQ6TfMLDiS81/yyyupur73VdRD0DbpYuYA9EwgMq
-         p/hPxY8gwsGWxj1qKIyZFUf+uZNlYyU1Fz/d5q/RKYq1XtDexN5nhXbE6I+FzMgJ7vAF
-         EkzntIkH43rBcwe3vSV/06ePjyLs3nLTr/Betc8k1Bqjs42MEdIgA1DLP7yo9Vipb4Bt
-         Zliw==
+        d=linaro.org; s=google; t=1713003074; x=1713607874; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oCfWmtiLGf5Dk/iFf/fqzadXNsrCvt07/+qhRgK3ZMs=;
+        b=MAev4S6oFM+U6IIAyXDPR/JciWkN4602CCssZ597vQPx19ylQA+BHcveHa+MQO80cm
+         hBoikERzB24VHaWvqKzGXKKXVLjT452rQLZ6SOqLSl9I1GwPc8Rz0wLovJU1NZkjbgVA
+         jdZst2PgvLLd6EgbA0pSs5lXh+GQaomH2TZ1QH6VkaYFfU5VYV8kKLb2LL6eUnFrgF8F
+         s9/1smFO6roIV7U4/e0EghQfTP7eYPc17FQI69c+WQSa591l1aOSB9p0U9weK8j+t0nZ
+         Y+vEzfmYyH3VhB4SIZA5NmlzKZslIAUgP+lJ1U+ocv6x1teqcmhfYebiyaQAGbE1jEel
+         VytQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712999995; x=1713604795;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=69pCu+lIE1wVXKqySWp1XZJt2aC2QI11IyQxjcSF8a4=;
-        b=mCUEOoK3Z/Dba3PyNNWF8mJs1+67SSt8rlTr8ufbJcEMlukXzC6BKlFYmAkWgTy+Ex
-         qU1sXPYhNPGrr65aSpENkOyXbS1fCoi3UCpSa7tRuQCBZmdUX/kfTAVhrEzD6MtuuGv2
-         gYiIa5WLZ3/xnTH2QHqWWiWo/zMSRnT3nlfaz9lWaJwWjCulLn8V7ppUtM36V0e8tuNi
-         ORwaZ9rSA547SZkB3BJLOHJeqcgpDN0RGAfgSnfiAGuYlkWiCDTBHunLsd4Q3UHn7m6r
-         YNFVJRTHdD1fAWnbBo+lcyFjNO7CupKafTDC4CZJfgGjh9hCa2dvnh3dAWiqbOCUvd7U
-         wuLg==
-X-Forwarded-Encrypted: i=1; AJvYcCVecLZrppTbsUipjr/Vsg0t+FLPfjVQWLYHcU9dFLSOa99i8N7AIvFWFYkEIfPv6F8TV298oyFqF8RZnAfnyIlqT+m2vZWZ01FhCA==
-X-Gm-Message-State: AOJu0YyAL9PzmqXsEyEFWME+OK6hhjchRaE6+bW9Z5ZHt0gi3QmJQv9D
-	KI1fQW64zW/gIPB8LQTCvMrFs4GqExx1gpoQNPG9iikHmuwoGqAadxMQvfZXwO0=
-X-Google-Smtp-Source: AGHT+IHtYnolIIRYPs/EmR5EEzZ1sL8+zY8lf7mTvGypESElWwhDypuX4pBANdN1oJ2iOm4IuKjKVA==
-X-Received: by 2002:a17:902:968c:b0:1e2:6d57:c1bb with SMTP id n12-20020a170902968c00b001e26d57c1bbmr3726399plp.21.1712999994631;
-        Sat, 13 Apr 2024 02:19:54 -0700 (PDT)
-Received: from anup-ubuntu-vm.localdomain ([103.97.165.210])
-        by smtp.gmail.com with ESMTPSA id n9-20020a170903110900b001e5c0ac3279sm2157153plh.74.2024.04.13.02.19.49
+        d=1e100.net; s=20230601; t=1713003074; x=1713607874;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oCfWmtiLGf5Dk/iFf/fqzadXNsrCvt07/+qhRgK3ZMs=;
+        b=YCYuns0oUhHRFmybaKuxtzQ9QEzOdRrP5kJt4ETDKANIpsIIFduqq5Iw7bEEG8mzk+
+         Ps2g+uLDqMtT+PPOD4AyKEgkBo0QBM7UmVC3e1RSxHqh7rtb23l56MTJNw+FCzRadqim
+         VZgBGxGtebmLKv8mP+968jxf8taaHb9NBemccG9ZUOssyAA2OVTAicmZ8uQ80EM8h92z
+         LmheXMN/0pg/8sq16zIllfg1KL3TReORtCGcK/NF6DAJTS4UQNLJ6kl2TRIBjpqJ1pQn
+         Cf4DJK5YtiDP7llK9AKQo4AP5qMPrhYwrq7Bh/AE3wRsWPrk7T5ctRnTmwMRHOYrTywM
+         Fwjw==
+X-Forwarded-Encrypted: i=1; AJvYcCVl/h5r3D8HBF9vFuWJyq1f/TbDxCcY+xtLGkcjSxWiTd7LnAfMDdF0eaLpth+IsBEN2FQUnqpx+sXETKa//tQL2fAIHS9L925Rpg==
+X-Gm-Message-State: AOJu0YzI0PZUiiSkGmXO/bEbkfnJi06WjfON/tVuJm/+YrYiPwNn9Hsn
+	0MzbS6r4NwOxoVIh2vHuIIem5H+4FtSYi+iaxQNezYP4pEhq0j8xVUZ9mx5CGhc=
+X-Google-Smtp-Source: AGHT+IHnEx7mY83f6FxHfhh8wbkbgUNNlUcijZBsKkq2m9fO6al3hltka+gyqoXoSe0DdGsWQED7jw==
+X-Received: by 2002:a05:600c:35d5:b0:417:d4f6:1aa0 with SMTP id r21-20020a05600c35d500b00417d4f61aa0mr3363740wmq.6.1713003074305;
+        Sat, 13 Apr 2024 03:11:14 -0700 (PDT)
+Received: from [172.20.10.4] (82-132-212-30.dab.02.net. [82.132.212.30])
+        by smtp.gmail.com with ESMTPSA id gw7-20020a05600c850700b004146e58cc35sm11773696wmb.46.2024.04.13.03.11.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 13 Apr 2024 02:19:54 -0700 (PDT)
-From: Anup Patel <apatel@ventanamicro.com>
-To: Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Atish Patra <atishp@atishpatra.org>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Sunil V L <sunilvl@ventanamicro.com>,
-	Anup Patel <anup@brainfault.org>,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Anup Patel <apatel@ventanamicro.com>
-Subject: [PATCH v2] of: property: Add fw_devlink support for interrupt-map property
-Date: Sat, 13 Apr 2024 14:49:42 +0530
-Message-Id: <20240413091942.316054-1-apatel@ventanamicro.com>
-X-Mailer: git-send-email 2.34.1
+        Sat, 13 Apr 2024 03:11:13 -0700 (PDT)
+From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To: andersson@kernel.org, konrad.dybcio@linaro.org, robh@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+ Mukesh Ojha <quic_mojha@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <1709662869-10569-1-git-send-email-quic_mojha@quicinc.com>
+References: <1709662869-10569-1-git-send-email-quic_mojha@quicinc.com>
+Subject: Re: [PATCH] dt-bindings: nvmem: Add compatible for sm8450, sm8550
+ and sm8650
+Message-Id: <171300307263.22846.5421120272134098432.b4-ty@linaro.org>
+Date: Sat, 13 Apr 2024 11:11:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.2
 
-Some of the PCI controllers (such as generic PCI host controller)
-use "interrupt-map" DT property to describe the mapping between
-PCI endpoints and PCI interrupt pins. This the only case where
-the interrupts are not described in DT.
 
-Currently, there is no fw_devlink created based on "interrupt-map"
-DT property so interrupt controller is not guaranteed to be probed
-before PCI host controller. This affects every platform where both
-PCI host controller and interrupt controllers are probed as regular
-platform devices.
+On Tue, 05 Mar 2024 23:51:09 +0530, Mukesh Ojha wrote:
+> Document QFPROM compatible for sm8450, sm8550 and sm8650 SoCs.
+> 
+> 
 
-This creates fw_devlink between consumers (PCI host controller) and
-supplier (interrupt controller) based on "interrupt-map" DT property.
+Applied, thanks!
 
-Signed-off-by: Anup Patel <apatel@ventanamicro.com>
----
-Changes since v1:
-- Updated commit description based on Rob's suggestion
-- Use of_irq_parse_raw() for parsing interrupt-map DT property
----
- drivers/of/property.c | 58 +++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 58 insertions(+)
+[1/1] dt-bindings: nvmem: Add compatible for sm8450, sm8550 and sm8650
+      commit: e5630036dab1a99720b129360dd398bd0f19d1bc
 
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index a6358ee99b74..67be66384dac 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1311,6 +1311,63 @@ static struct device_node *parse_interrupts(struct device_node *np,
- 	return of_irq_parse_one(np, index, &sup_args) ? NULL : sup_args.np;
- }
- 
-+static struct device_node *parse_interrupt_map(struct device_node *np,
-+					       const char *prop_name, int index)
-+{
-+	const __be32 *imap, *imap_end, *addr;
-+	struct of_phandle_args sup_args;
-+	struct device_node *tn, *ipar;
-+	u32 addrcells, intcells;
-+	int i, j, imaplen;
-+
-+	if (!IS_ENABLED(CONFIG_OF_IRQ))
-+		return NULL;
-+
-+	if (strcmp(prop_name, "interrupt-map"))
-+		return NULL;
-+
-+	ipar = of_node_get(np);
-+	do {
-+		if (!of_property_read_u32(ipar, "#interrupt-cells", &intcells))
-+			break;
-+		tn = ipar;
-+		ipar = of_irq_find_parent(ipar);
-+		of_node_put(tn);
-+	} while (ipar);
-+	if (!ipar)
-+		return NULL;
-+	addrcells = of_bus_n_addr_cells(ipar);
-+	of_node_put(ipar);
-+
-+	imap = of_get_property(np, "interrupt-map", &imaplen);
-+	if (!imap || imaplen <= (addrcells + intcells))
-+		return NULL;
-+	imap_end = imap + imaplen;
-+
-+	sup_args.np = NULL;
-+	for (i = 0; i <= index && imap < imap_end; i++) {
-+		if (sup_args.np) {
-+			of_node_put(sup_args.np);
-+			sup_args.np = NULL;
-+		}
-+
-+		addr = imap;
-+		imap += addrcells;
-+
-+		sup_args.np = np;
-+		sup_args.args_count = intcells;
-+		for (j = 0; j < intcells; j++)
-+			sup_args.args[j] = be32_to_cpu(imap[j]);
-+		imap += intcells;
-+
-+		if (of_irq_parse_raw(addr, &sup_args))
-+			return NULL;
-+		imap += sup_args.args_count + 1;
-+	}
-+
-+	return sup_args.np;
-+}
-+
- static struct device_node *parse_remote_endpoint(struct device_node *np,
- 						 const char *prop_name,
- 						 int index)
-@@ -1359,6 +1416,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
- 	{ .parse_prop = parse_msi_parent, },
- 	{ .parse_prop = parse_gpio_compat, },
- 	{ .parse_prop = parse_interrupts, },
-+	{ .parse_prop = parse_interrupt_map, },
- 	{ .parse_prop = parse_regulators, },
- 	{ .parse_prop = parse_gpio, },
- 	{ .parse_prop = parse_gpios, },
+Best regards,
 -- 
-2.34.1
+Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 
 
