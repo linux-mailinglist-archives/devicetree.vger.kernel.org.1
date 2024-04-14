@@ -1,110 +1,163 @@
-Return-Path: <devicetree+bounces-59127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 776038A43C5
-	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 18:24:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2E188A4439
+	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 19:00:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A102CB22434
-	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 16:24:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 974DE1F2175B
+	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 17:00:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CC08135412;
-	Sun, 14 Apr 2024 16:24:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FFD7135413;
+	Sun, 14 Apr 2024 17:00:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mM57ulN4"
+	dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b="l2iWlvqw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BBA81350FA;
-	Sun, 14 Apr 2024 16:24:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 645B856771;
+	Sun, 14 Apr 2024 16:59:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713111864; cv=none; b=oenZY5jJ8YuA9ZcMa24q8RqY+9MCnSCOORAkjQqAREa7+7jtYjd9U72n3kXQuEHfy9w9UX3KbrSRbjGDQtJhIGzO+sWX5fbbu/pa8TN965CFwloNHtLFqpzTgiLKzO6iNh1i/YYBAb4Ljcpgrmp0gxvRUsACI6b6udRf7/Gle3k=
+	t=1713114002; cv=none; b=Nw9wPoDwtRFCsNfXWN493Z5tK8qzkhD45D5vvrOo/IgirEzipF9Dp5U0Rcp4RH7UQC/UvRaTLxOxVU+nicEz0azWwD9eouNc3jTZFNXaRzfIQhXjBIJLZ5PH0NufZs8YYh0Q9h7VFA3+fLHgPF3XN8IMZ8REdc7Y0SV8nOIytN8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713111864; c=relaxed/simple;
-	bh=QeuvJ+PO6AYKR0nCyfG5EEKVnVTDcMMH6uM8m1EBOfw=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=kfqZRjkvrKghI5bsG/moP0yy3H+XLJ8S076Yh66lvYqOvdVzaMRxcBMF8r5tH85CnI0rU5/+MAkgVYsQw/wOhcbkc631g8u6WBRv8u70XAsa0kEmJ6aI+2VNBMFgsLoe1bOg9A607/jK424I84VfrJxoE48pvbWSPF6i9fjdoxU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mM57ulN4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96930C072AA;
-	Sun, 14 Apr 2024 16:24:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713111863;
-	bh=QeuvJ+PO6AYKR0nCyfG5EEKVnVTDcMMH6uM8m1EBOfw=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=mM57ulN4yzcL1i/NZgwZ45fXjHkAbnLyML+BgrzhXx+IT4kBGEWyDwfQAhA8Ic2uq
-	 7Rod5VeVh0tMMOwX3sWkv9iKPnLyoIWrUGnkueRLAY0HiHIVzjeGvgBjYWb4gSq6Aj
-	 7mVq3DQfr5fm+0F7k+RfDclBYgbT4SMO0ovRe1xty7yA8TjOdpAJVp0z45MiQPdmYX
-	 UmzDE/x2PRT2Yp1Sq8Y3D4lwkouIcEath11hWYBW2umFx57D8v0uWr9bxdX9SuFYXe
-	 UwLFvTyQ1aCZj/WdSH4KrOJT1KX7hXRjWLCbqvsgw4/ra1Tutk0LR5W4FoBNR111sH
-	 PCIdyQCDulWVA==
-Date: Sun, 14 Apr 2024 11:24:22 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1713114002; c=relaxed/simple;
+	bh=2vuBy3JddhPuK9fJ9dNH99j+JK+Ocuh5sJ+yj+qGuyo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Z5t96SqAWluwajBQRP2Y4x+UAuTeMmThOKxpYD5fns1Hq3ADjPqjHUhZRiR19OqbUUSf6oyhJbq7dtB5TxKWhtlXMRzXSdAqXMNlHC92IBk/38oI8ZdW+BnrhNutWhcHSRJGPymxrFvnksLimy1MuhaXx1XiZhYjRw2HaPw1Grw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com; spf=pass smtp.mailfrom=arinc9.com; dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b=l2iWlvqw; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arinc9.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 45EB7C0002;
+	Sun, 14 Apr 2024 16:59:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
+	t=1713113997;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ipEBFetRHAp/1hDn1rxccOCzTGrkejfX5LP8iZREH/g=;
+	b=l2iWlvqw93ZguKYWf/EEd7zOtf7nArGTD28rVSvnJ1QExWcS6YD43CtrdnuA8dRuTOQyDK
+	caI9PHDFXWN7vndkxzfIjzd+qySS1bClcaPovKPT+LXMDjEH113OxG06x7PNPfw6uDelnC
+	5HhlOxXzeJe6O59mh+hUX4QfqpM/OZ34pAUi5cB2/vaWzGire0ACgTR6vqIZQvvqmwdXT0
+	vfKD/eEpilCNPtK85S5H1NibRGffTYGjs5tRauaLkEz4+WOHqqxQ92S3U8XX8v3WUSfGOS
+	n5vS0vZ8RMNRKb9Z3wNQwHENDLl1OsBdTz2dAbHpqRDMrJygu+OhbqgtMt3j8Q==
+Message-ID: <85261d11-d6cb-4718-88d9-95a7efe5c0ab@arinc9.com>
+Date: Sun, 14 Apr 2024 19:59:44 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: David Wronek <david@mainlining.org>
-Cc: dri-devel@lists.freedesktop.org, Sam Ravnborg <sam@ravnborg.org>, 
- Jessica Zhang <quic_jesszhan@quicinc.com>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Daniel Vetter <daniel@ffwll.ch>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- Conor Dooley <conor+dt@kernel.org>, ~postmarketos/upstreaming@lists.sr.ht, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- David Airlie <airlied@gmail.com>, Maxime Ripard <mripard@kernel.org>
-In-Reply-To: <20240414-raydium-rm69380-driver-v1-1-5e86ba2490b5@mainlining.org>
-References: <20240414-raydium-rm69380-driver-v1-0-5e86ba2490b5@mainlining.org>
- <20240414-raydium-rm69380-driver-v1-1-5e86ba2490b5@mainlining.org>
-Message-Id: <171311185909.3846249.17342729762911919460.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Add Raydium RM69380
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] ARM: dts: BCM5301X: Add DT for ASUS RT-AC3200
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>,
+ Hauke Mehrtens <hauke@hauke-m.de>, Rafal Milecki <zajec5@gmail.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: Tom Brautaset <tbrautaset@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20240414-for-soc-asus-rt-ac3200-ac5300-v1-0-118c90bae6e5@arinc9.com>
+ <20240414-for-soc-asus-rt-ac3200-ac5300-v1-3-118c90bae6e5@arinc9.com>
+ <a88385a4-afad-4bd8-afc1-37e185e781f4@kernel.org>
+Content-Language: en-US
+From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <a88385a4-afad-4bd8-afc1-37e185e781f4@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: arinc.unal@arinc9.com
 
-
-On Sun, 14 Apr 2024 17:22:30 +0200, David Wronek wrote:
-> Raydium RM69380 is a display driver IC used to drive OLED DSI panels.
-> Add a dt-binding for it.
+On 14.04.2024 17:13, Krzysztof Kozlowski wrote:
+> On 14/04/2024 13:46, Arınç ÜNAL via B4 Relay wrote:
+>> From: Arınç ÜNAL <arinc.unal@arinc9.com>
+>>
+>> Add the device tree for ASUS RT-AC3200 which is an AC3200 router featuring
+>> 5 Ethernet ports over the integrated Broadcom switch.
+>>
+>> Hardware info:
+>> * Processor: Broadcom BCM4709A0 dual-core @ 1.0 GHz
+>> * Switch: BCM53012 in BCM4709A0
+>> * DDR3 RAM: 256 MB
+>> * Flash: 128 MB
+>> * 2.4GHz: BCM43602 3x3 single chip 802.11b/g/n SoC
+>> * 5GHz: BCM43602 3x3 two chips 802.11a/n/ac SoC
+>> * Ports: 4 LAN Ports, 1 WAN Port
+>>
+>> Co-developed-by: Tom Brautaset <tbrautaset@gmail.com>
+>> Signed-off-by: Tom Brautaset <tbrautaset@gmail.com>
+>> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+>> ---
+>>   arch/arm/boot/dts/broadcom/Makefile                |   1 +
+>>   .../boot/dts/broadcom/bcm4709-asus-rt-ac3200.dts   | 164 +++++++++++++++++++++
+>>   2 files changed, 165 insertions(+)
+>>
+>> diff --git a/arch/arm/boot/dts/broadcom/Makefile b/arch/arm/boot/dts/broadcom/Makefile
+>> index 7099d9560033..c61fca514775 100644
+>> --- a/arch/arm/boot/dts/broadcom/Makefile
+>> +++ b/arch/arm/boot/dts/broadcom/Makefile
+>> @@ -64,6 +64,7 @@ dtb-$(CONFIG_ARCH_BCM_5301X) += \
+>>   	bcm47081-luxul-xap-1410.dtb \
+>>   	bcm47081-luxul-xwr-1200.dtb \
+>>   	bcm47081-tplink-archer-c5-v2.dtb \
+>> +	bcm4709-asus-rt-ac3200.dtb \
+>>   	bcm4709-asus-rt-ac87u.dtb \
+>>   	bcm4709-buffalo-wxr-1900dhp.dtb \
+>>   	bcm4709-linksys-ea9200.dtb \
+>> diff --git a/arch/arm/boot/dts/broadcom/bcm4709-asus-rt-ac3200.dts b/arch/arm/boot/dts/broadcom/bcm4709-asus-rt-ac3200.dts
+>> new file mode 100644
+>> index 000000000000..8640dda211ae
+>> --- /dev/null
+>> +++ b/arch/arm/boot/dts/broadcom/bcm4709-asus-rt-ac3200.dts
+>> @@ -0,0 +1,164 @@
+>> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+>> +/*
+>> + * Author: Tom Brautaset <tbrautaset@gmail.com>
+>> + */
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include "bcm4709.dtsi"
+>> +#include "bcm5301x-nand-cs0-bch8.dtsi"
+>> +
+>> +#include <dt-bindings/leds/common.h>
+>> +
+>> +/ {
+>> +	compatible = "asus,rt-ac3200", "brcm,bcm4709", "brcm,bcm4708";
+>> +	model = "ASUS RT-AC3200";
+>> +
+>> +	chosen {
+>> +		bootargs = "console=ttyS0,115200 earlycon";
 > 
-> Signed-off-by: David Wronek <david@mainlining.org>
-> ---
->  .../bindings/display/panel/raydium,rm69380.yaml    | 94 ++++++++++++++++++++++
->  1 file changed, 94 insertions(+)
+> 1. Use stdout.
+> 2. Drop earlycon, it is for debugging, not regular mainline usage.
+
+I see that bcm4708.dtsi which this device tree includes already describes
+stdout-path with the same value so I'll just get rid of the chosen node
+here.
+
 > 
+>> +	};
+>> +
+>> +	memory@0 {
+>> +		device_type = "memory";
+>> +		reg = <0x00000000 0x08000000>,
+>> +		      <0x88000000 0x08000000>;
+>> +	};
+>> +
+>> +	nvram@1c080000 {
+>> +		compatible = "brcm,nvram";
+>> +		reg = <0x1c080000 0x00180000>;
+> 
+> Why is this outside of soc? Both soc node and soc DTSI?
 
-My bot found errors running 'make dt_binding_check' on your patch:
+I don't maintain the SoC device tree files so I don't know. The nvram node
+doesn't exist on any of the device tree files included by this device tree.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/panel/raydium,rm69380.yaml:
-Error in referenced schema matching $id: http://devicetree.org/schemas/display/panel/panel-common-dual.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/panel/raydium,rm69380.example.dtb: panel@0: False schema does not allow {'compatible': ['lenovo,j716f-edo-rm69380', 'raydium,rm69380'], 'reg': [[0]], 'avdd-supply': [[4294967295]], 'vddio-supply': [[4294967295]], 'reset-gpios': [[4294967295, 75, 1]], 'ports': {'#address-cells': [[1]], '#size-cells': [[0]], 'port@0': {'reg': [[0]], 'endpoint': {'remote-endpoint': [[4294967295]]}}, 'port@1': {'reg': [[1]], 'endpoint': {'remote-endpoint': [[4294967295]]}}}, '$nodename': ['panel@0']}
-	from schema $id: http://devicetree.org/schemas/display/panel/raydium,rm69380.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240414-raydium-rm69380-driver-v1-1-5e86ba2490b5@mainlining.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Arınç
 
