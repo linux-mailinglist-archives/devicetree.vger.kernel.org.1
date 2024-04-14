@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-59019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59020-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B1E38A407D
-	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 08:07:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7078E8A4086
+	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 08:09:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 75F111F213A8
-	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 06:07:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23BFA281BC7
+	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 06:09:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B94601BC3E;
-	Sun, 14 Apr 2024 06:07:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F8E11C2AD;
+	Sun, 14 Apr 2024 06:09:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dVd/1JLG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IORocknP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E7211BF3F
-	for <devicetree@vger.kernel.org>; Sun, 14 Apr 2024 06:07:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D067182DB
+	for <devicetree@vger.kernel.org>; Sun, 14 Apr 2024 06:09:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713074834; cv=none; b=QOHX+MyeYIi1FYwbLP8fxKAr5OMKGoQZF+BgoZW2/k+4SkQ4O1dVydWVvUS9dWooqWvVBOd4/HSc0D5AEWsGNIYtleq+ajTzBCoDI5W5YNhlBHzliDWe8MjRZvfpIyNh4/0cG52IsNPMP8WA+4WIVvsZaOq1wYbjEjD+hrJJl08=
+	t=1713074984; cv=none; b=QfLoLaAirF0YAUZcCyFSwYijaM87dlrSs5roPP6evOtBbSFqcqsI1PZTHNvVr/fUYNzQAfcWTadjDgGgHYu2XLXg5pAynUVSJ/F8LaXIAI6O1DMgOYLIyf5Hld5ksTC1T+5+whtLE/2W720rL79vpz4bSoZ+U3qkdhex0o6eWFE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713074834; c=relaxed/simple;
-	bh=rgUmJRNE583FfwwKk7ImcN7Q38hAoqx0XrUkO1ukD60=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hREAxMmUEeoSNYVQ9orAoAHs9Zy5eU4+aYM5KjhL/3xST8MzC7T5RNJlRSPeynevD6IFuCa9MIEw75yZkVcbnrCs9i7J4dy8mcrmN1Zvixc3+CvhjqBePfWWZgbiTyWa6lCCPCQdqZakVWs2P7kUGHo8h+5EcOvNQH1bjI1Q/ZM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dVd/1JLG; arc=none smtp.client-ip=209.85.218.45
+	s=arc-20240116; t=1713074984; c=relaxed/simple;
+	bh=tV3iOEyquH0DhgcnL2VflNn8ea2xv5Iop9DT83BaobA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=gu0oQws4VQ1MZkS9PAHRhgw0o0POV9K3WISYb4huI5/7iUn0NbzzVX8ENhZj91XTpR1Ig0nI627Rz8vBTTk2w+L71KkmP3t7EeFh6uPRU8l7Xs0p3Bm5f73cPPwfK2AfUCN4eYqZiGXgApNBkUu3ufH4m+n82bD+A2daL0pEyJk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IORocknP; arc=none smtp.client-ip=209.85.218.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a5224dfa9adso345042466b.0
-        for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 23:07:12 -0700 (PDT)
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a5252e5aa01so88494966b.1
+        for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 23:09:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713074831; x=1713679631; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1713074981; x=1713679781; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=birczs2n38bj+qt5ct4BeQZrHZlbkYfeLVY4PLvG/PE=;
-        b=dVd/1JLGtdaSD8GeGmiy1E/j175K0CLtYCiV7+QT2d/WzCQx395lMo0Yj0avJEq/rB
-         bjUjTJKlZLSLXjWIj/YEOnSi9vK9aKUZQYwbrbqbGXJwEnXrJlQYS4KynCNfLRJf2dKu
-         DNtTSpLvPJby2YDkzNPR81cVYvojOwiNd7jtG3nqOISI57DUCazlhX/LHxWj22BZXZZl
-         N7Ka8CJz2PFmy1i/MduMezlIgW3B8gWw4+VmEKhxwn8I0vldGN78GymplTrw0cOvnnZm
-         D5f4186i6CcG/OjvK2nn4lRY6bRVYcoYXDQensvbUVJFRmadjbk+FseG+2L0cQ/ON+cU
-         9Qlw==
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=8h9MKD/isJ62SBrCUg7yXtxM3Ynk3rIOeGl2PTjk+hA=;
+        b=IORocknPONU91g4pgJorckcvfSP0lDzTAmAAiThvsW6lvdqUZDpi8tWrGSVs3kOvHF
+         SvhwbS23fKgAzS18zOnhLg2RMPl+OST5dzjBJZ5xB1bPpK/2W2bv3NGEKAKKF8tLgx7E
+         Snk3lzA6o3VxKV7RibrkfGTqCy+qPWUaBASesKogFX6YUPimyNp9XQBYaOHV+10sZoI8
+         mGgqszV2cMEgrGd58HEsqsA8773hQxSkYFa4/OJ+RKVgfufzBdGO//EaeWu8ETl6VUj9
+         /gm3DiVWJ6SyZxIavugdtvplsi8Uoqq8DTI2QUYKrY1pvCGsTOduq9uDZMqZ0fi+z+Pz
+         dhZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713074831; x=1713679631;
+        d=1e100.net; s=20230601; t=1713074981; x=1713679781;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=birczs2n38bj+qt5ct4BeQZrHZlbkYfeLVY4PLvG/PE=;
-        b=IRJkEBoajhhP7XLBWi/j3ektF1XI3oO05ZW323Yc+tI0fB0isHqG7eyfhsVFfmVGlw
-         l5SYqckKkqz+6QUI+o+Hfeggs846XVWGTILrfktSU+RtuvypZo1hyJkNqL1UqZcfUeyH
-         zYE4Slws7TgwQ0DYEFxw0j+z0KbS1HeR2RQM3dqE0hTi+PMRaQdt8aIo0kX3Q91DeEu3
-         9cWmmypgFyHXnrvtdX6FlYGO2xUJJ+HCP2zHhzZX3CyyvWbpkkib0xidLn05zeVIt+g+
-         oDnW5rQlkvP3Zs208e7hEztZoSX0XcywLfVo2ZtABWMwEZGE1H4ETJaKrVsAcghXoHbv
-         4cew==
-X-Forwarded-Encrypted: i=1; AJvYcCXrm7dYJACUq9U6+H16TDDA4D7yYnEgyf9VreFKGfaRUhk6Sl9tzqrtAf/4VT3C19edTEaFPRNBZM+LpSH1N4MlV5OTM6cPjwxP4A==
-X-Gm-Message-State: AOJu0YyYKqXR7m0vwED8dHCeIu2rjKs+xyDhM4PiXy2sVHWG7JxcM84y
-	Zgbtt7x9DGY7xMMNsu1EDZvD+WfzbahVEzxQFMFkt32z9RjLqXQrLgpg72c/AdY=
-X-Google-Smtp-Source: AGHT+IFRHLi+mC72P5wOlGYDKkwCG3kYJ/bZgR0nHp32C5KCLzYuDmgD3GZXevlyaJteLdQJXgpgpA==
-X-Received: by 2002:a17:907:72c8:b0:a52:51ce:3703 with SMTP id du8-20020a17090772c800b00a5251ce3703mr2468366ejc.2.1713074831322;
-        Sat, 13 Apr 2024 23:07:11 -0700 (PDT)
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8h9MKD/isJ62SBrCUg7yXtxM3Ynk3rIOeGl2PTjk+hA=;
+        b=bZWi4HCr8G0H50ocGDzafCXf/tDGu3XG+S1OKAQw/MuGYE11P3sSGWl9N0YjowtYa8
+         Z/w/o+IAJSFuQtB/N0gzWq6hRT/nh360Ojf5u8qZJL97JUhd7/GOjKPRhhqhTxByEGS+
+         cM6dLrYqCTxQoxJCm8paGak+OYf9ejs2hXe7KyVV00u2NrU+VGxdVSY1iuAjDXTq2gDU
+         iFIKeGzrV8DMwodVytsvtZoeaoytkEC4/Rp5Kat3/cFSY7hcdhFqVuoywvE42H5Yb3n6
+         OqrUvlSJiSKuo+vBWXazzac6vDVR8koutMO/do6EvfVp/47FJswMyDdbVtiSrjAUUdV8
+         UFag==
+X-Forwarded-Encrypted: i=1; AJvYcCUg9DkwDLDUDTIPVb4INGbwmq5WimCddeDgv3dnIZf43caxMmGasV77mvPNGhCy8xC2jOjOC4XGrulYvfjjzy8UTRzDJjfPRKVjHQ==
+X-Gm-Message-State: AOJu0YxU1xsVMOgscji1kVWR62PpWe+E2g90Id6n8IEdPiLJ0bToxiaF
+	zs/kmB20WUzqYH2MsWLR7JUUafZdCLE6Nnnqqmoankh15tLU45JwyrLXz211JwQ=
+X-Google-Smtp-Source: AGHT+IGgmpdwoSQjqLjimpUlEsQbnIPt+4kl1TSepb9xdUqyowlRA7NVI1ZBmUT3RUuTzG9n4FU5NA==
+X-Received: by 2002:a17:907:6d0c:b0:a51:d49f:b6b5 with SMTP id sa12-20020a1709076d0c00b00a51d49fb6b5mr4397466ejc.49.1713074980868;
+        Sat, 13 Apr 2024 23:09:40 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id rs6-20020a170907036600b00a4e6626ae21sm3811546ejb.0.2024.04.13.23.07.09
+        by smtp.gmail.com with ESMTPSA id x26-20020a170906711a00b00a521591ffacsm3812011ejj.34.2024.04.13.23.09.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 Apr 2024 23:07:10 -0700 (PDT)
-Message-ID: <13b195e6-cbbd-4f74-a6fa-d874cb4aaa45@linaro.org>
-Date: Sun, 14 Apr 2024 08:07:09 +0200
+        Sat, 13 Apr 2024 23:09:40 -0700 (PDT)
+Message-ID: <b3227721-1244-48eb-87b4-8aaac46885d1@linaro.org>
+Date: Sun, 14 Apr 2024 08:09:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,22 +77,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] dt-bindings: hwmon: max31790: Add
- maxim,pwmout-pin-as-tach-input property
-To: Chanh Nguyen <chanh@os.amperecomputing.com>,
- Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
- Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH 1/6] dt-bindings: pinctrl: Add support for BCM2712 pin
+ controller
+To: Andrea della Porta <andrea.porta@suse.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Justin Ledford
- <justinledford@google.com>, devicetree@vger.kernel.org,
- linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
- OpenBMC Maillist <openbmc@lists.ozlabs.org>,
- Open Source Submission <patches@amperecomputing.com>
-Cc: Phong Vo <phong@os.amperecomputing.com>,
- Thang Nguyen <thang@os.amperecomputing.com>,
- Quan Nguyen <quan@os.amperecomputing.com>
-References: <20240414042246.8681-1-chanh@os.amperecomputing.com>
- <20240414042246.8681-4-chanh@os.amperecomputing.com>
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Adrian Hunter <adrian.hunter@intel.com>, Kamal Dasu
+ <kamal.dasu@broadcom.com>, Al Cooper <alcooperx@gmail.com>,
+ linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, Jonathan Bell <jonathan@raspberrypi.com>,
+ Phil Elwell <phil@raspberrypi.com>
+References: <cover.1713036964.git.andrea.porta@suse.com>
+ <2d1272cad92ad618297a6683e9264e31b8f2df73.1713036964.git.andrea.porta@suse.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -139,54 +141,140 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240414042246.8681-4-chanh@os.amperecomputing.com>
+In-Reply-To: <2d1272cad92ad618297a6683e9264e31b8f2df73.1713036964.git.andrea.porta@suse.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/04/2024 06:22, Chanh Nguyen wrote:
-> The max31790 supports six pins, which are dedicated PWM outputs. Any of the
-> six PWM outputs can also be configured to serve as tachometer inputs,
-> allowing for up to 12 tachometer fans to be monitored.
-> 
-> Add a new vendor-specific property, 'maxim,pwmout-pin-as-tach-input',
-> to allow PWMOUT to become a TACH input.
-> 
-> An array of six integers responds to six PWM channels for configuring
-> the PWM to TACH mode. When set to 0, the associated PWMOUT produces
-> a PWM waveform for control of fan speed. When set to 1, PWMOUT becomes
-> a TACH input.
-> 
-> Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
-> ---
-> Changes in v2:
->  - Update the vendor property name to "maxim,pwmout-pin-as-tach-input"   [Rob]
->  - Update commit message                                                 [Krzysztof]
+On 14/04/2024 00:14, Andrea della Porta wrote:
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
 
-Please put binding before its user.
+Missing commit msg. We can't take empty commits. You have entire commit
+msg to describe the hardware, why not doing this?
+
+
+Plus, this wasn't even tested...
 
 > ---
->  .../devicetree/bindings/hwmon/maxim,max31790.yaml     | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+>  .../pinctrl/brcm,bcm2712-pinctrl.yaml         | 99 +++++++++++++++++++
+>  1 file changed, 99 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm2712-pinctrl.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/hwmon/maxim,max31790.yaml b/Documentation/devicetree/bindings/hwmon/maxim,max31790.yaml
-> index a561e5a3e9e4..2d4f50bc7c41 100644
-> --- a/Documentation/devicetree/bindings/hwmon/maxim,max31790.yaml
-> +++ b/Documentation/devicetree/bindings/hwmon/maxim,max31790.yaml
-> @@ -30,6 +30,16 @@ properties:
->    resets:
->      maxItems: 1
->  
-> +  maxim,pwmout-pin-as-tach-input:
-> +    description: |
-> +      An array of six integers responds to six PWM channels for
-> +      configuring the pwm to tach mode.
-> +      When set to 0, the associated PWMOUT produces a PWM waveform for
-> +      control of fan speed. When set to 1, PWMOUT becomes a TACH input
-> +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> +    maxItems: 6
-> +    minItems: 6
+> diff --git a/Documentation/devicetree/bindings/pinctrl/brcm,bcm2712-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/brcm,bcm2712-pinctrl.yaml
+> new file mode 100644
+> index 000000000000..2908dfe99f3e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/brcm,bcm2712-pinctrl.yaml
+> @@ -0,0 +1,99 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/brcm,bcm2712-pinctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Broadcom BCM2712 pin controller
+> +
+> +maintainers:
+> +  - Andrea della Porta <andrea.porta@suse.com>
+> +
+> +description:
+> +  Bindings for Broadcom's BCM2712 memory-mapped pin controller.
 
-tach-ch solves your case. You define which inputs should be used for tach.
+Drop "Bindings for" and describe hardware. Bindings do not have to tell
+they are bindings, it's obvious. They cannot be anything else.
+
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - brcm,bcm2712-pinctrl
+> +      - brcm,bcm2712-aon-pinctrl
+> +      - brcm,bcm2712c0-pinctrl
+> +      - brcm,bcm2712c0-aon-pinctrl
+> +      - brcm,bcm2712d0-pinctrl
+> +      - brcm,bcm2712d0-aon-pinctrl
+> +
+> +  reg:
+> +    items:
+> +      - description: pin control registers
+> +
+> +allOf:
+> +  - $ref: pinctrl.yaml#
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties:
+> +  anyOf:
+> +    - type: object  
+> +      allOf:
+> +        - $ref: pincfg-node.yaml#
+> +        - $ref: pinmux-node.yaml#
+> +
+> +      properties:
+> +        function: 
+> +          enum: [ gpio, alt1, alt2, alt3, alt4, alt5, alt6, alt7, alt8,
+> +                 aon_cpu_standbyb, aon_fp_4sec_resetb, aon_gpclk, aon_pwm,
+> +                 arm_jtag, aud_fs_clk0, avs_pmu_bsc, bsc_m0, bsc_m1, bsc_m2,
+> +                 bsc_m3, clk_observe, ctl_hdmi_5v, enet0, enet0_mii,
+> +                 enet0_rgmii, ext_sc_clk, fl0, fl1, gpclk0, gpclk1, gpclk2,
+> +                 hdmi_tx0_auto_i2c, hdmi_tx0_bsc, hdmi_tx1_auto_i2c,
+> +                 hdmi_tx1_bsc, i2s_in, i2s_out, ir_in, mtsif, mtsif_alt,
+> +                 mtsif_alt1, pdm, pkt, pm_led_out, sc0, sd0, sd2, sd_card_a,
+> +                 sd_card_b, sd_card_c, sd_card_d, sd_card_e, sd_card_f,
+> +                 sd_card_g, spdif_out, spi_m, spi_s, sr_edm_sense, te0, te1,
+> +                 tsio, uart0, uart1, uart2, usb_pwr, usb_vbus, uui, vc_i2c0,
+> +                 vc_i2c3, vc_i2c4, vc_i2c5, vc_i2csl, vc_pcm, vc_pwm0,
+> +                 vc_pwm1, vc_spi0, vc_spi3, vc_spi4, vc_spi5, vc_uart0,
+> +                 vc_uart2, vc_uart3, vc_uart4 ]
+> +
+> +        pins:
+> +          items:
+> +            pattern: "^((aon_)?s?gpio[0-6]?[0-9])|(emmc_(clk|cmd|dat[0-7]|ds))$"
+> +
+> +        bias-disable: true
+> +        bias-pull-down: true
+> +        bias-pull-up: true
+> +      additionalProperties: false
+> +
+> +    - type: object
+> +      additionalProperties:
+> +        $ref: "#/additionalProperties/anyOf/0"
+> +
+> +examples:
+> +  - |
+> +    pinctrl: pinctrl@7d504100 {
+> +      compatible = "brcm,bcm2712-pinctrl";
+> +        reg = <0x7d504100 0x30>;
+> +
+> +        uarta_24_pins: uarta_24_pins {
+
+Underscores are not allowed. Please observe the rules of DTS coding
+style (see docs).
+
+> +          pin_rts {
+> +            function = "uart0";
+> +            pins = "gpio24";
+> +            bias-disable;
+> +        };
+> +
+> +        pin_cts {
+> +            function = "uart0";
+> +            pins = "gpio25";
+> +            bias-pull-up;
+> +        };
+> +      };
+> +
+> +      spi10_gpio2: spi10_gpio2 {
+> +        function = "vc_spi0";
+> +        pins = "gpio2", "gpio3", "gpio4";
+
+Messed indentation. Keep 4 space.
+
+> +        bias-disable;
+> +      };
+> +    };
+> +...
 
 Best regards,
 Krzysztof
