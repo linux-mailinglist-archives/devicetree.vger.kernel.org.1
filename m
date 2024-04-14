@@ -1,54 +1,48 @@
-Return-Path: <devicetree+bounces-59156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DD698A44D2
-	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 21:09:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08A2B8A44D3
+	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 21:13:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C3C342814EE
-	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 19:09:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 967C51F211EF
+	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 19:13:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 229A2135A57;
-	Sun, 14 Apr 2024 19:09:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3601A135A5F;
+	Sun, 14 Apr 2024 19:13:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="EESD1DAm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iJ6Qu7w2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2851F6A01E
-	for <devicetree@vger.kernel.org>; Sun, 14 Apr 2024 19:09:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.60.130.6
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 063791350CC;
+	Sun, 14 Apr 2024 19:12:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713121791; cv=none; b=d7a8XJMl96VyxAtJbn2QDtvg778tscvf9vtFKpvUolqzeWgWKquF+dhDtwwTRA0wl5xm5ngivJWIS2qjnrmH5GoqE5P+kz6Nchb6LZOdAJ+hIM2JHt7yIJoY5yCYUZ77g9NdZxTqvB3zn/zlLim5tbHMLuDfymoDuwPSgDP2iOY=
+	t=1713121980; cv=none; b=MxkYss/fK8IJaGCWJoUTMvZc/Qro6VDYt1yzq6OJChwSXei2ZEqqWPAdzUZxUris0lg52/+/FmdhUYs5FpATZqRIrINuufqCBvZiSS2/r0kQUppbYci7xKUid3gLT6p/z6WvxjoEPepA96/FSEZ82qjsNlJd41kbQEoww6T7aag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713121791; c=relaxed/simple;
-	bh=mBoC3Q4luDSZ1VjMdQ7ThioWf94j7iOXik7W7Vj0sUg=;
+	s=arc-20240116; t=1713121980; c=relaxed/simple;
+	bh=b0H1pAKH9vb9A4ZCHP5SLMd9vtO8M7WUiunM9X1el7U=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QEOHiNA6Co+yAeOTMe822Cj+6DgMmQ9EO4GaCBCvwLrcAKiVVS2gEfMCMLM/0EuUKECXru9ZzAHCudwNl5saz2hU1n41Hpky5/y8vgZq6NZWJqFAc1lvmjEVo5aIN40TZmxdfLgDX1crL/w3hqR5RE94Kv7dFxhiOp83J1LvUIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=igalia.com; spf=pass smtp.mailfrom=igalia.com; dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b=EESD1DAm; arc=none smtp.client-ip=178.60.130.6
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=igalia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=igalia.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
-	s=20170329; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=zDNCrN6fvcIr2zEPSC6gJi9XM1WLgWVpPl0/ky0eVEs=; b=EESD1DAmmG6XRweLaG62e7DPNN
-	CdB+1w2EVkj84PK/tmkqLK9O7WndqfXrCAofIgKirfq79PuRdCFcmushwnVhVDsJZKT0abbr0P1xI
-	zVZ1MbhtecvbQk/N9+IoO41L70hgo9WCG2qfRn8UZb2vIpiqMwEIg5LAO+ryBGHhP7iyFl8arjsyY
-	/F7k5XP7pPDcrIrWwhQNXnpIrMfCNsZc4ePeBKgC/MJFe7WQrnXPMd3rm5mmTtkGPqbIj2l67rHVQ
-	MRlL/eZAmxMUaj1uX/CHl/xU/xafl+BwamPGfZT3DNvvEBwykbRrH2viGxUBQ+Alk5EAXt9S810WD
-	iKD9TIJg==;
-Received: from [177.34.169.177] (helo=[192.168.0.139])
-	by fanzine2.igalia.com with esmtpsa 
-	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
-	id 1rw5E8-004VoE-2k; Sun, 14 Apr 2024 21:09:20 +0200
-Message-ID: <758a1f39-25df-42fb-8366-2be07eca2d19@igalia.com>
-Date: Sun, 14 Apr 2024 16:09:08 -0300
+	 In-Reply-To:Content-Type; b=FfVpo2TSXUemqhDXkTW/WSxJWcvH6p0wk+mW4W2fuoJjym98ZQkiPsV5PCgl86V6eJG+mEcKNG4t10XNJEH33p+aA3FElrSd1AdRnsIjH5OdFZ4+Q/HQg28kJlD0oa4pkrFugbg5TUqBxe+7HDwGZGEl0ct35rqOO+zYk0tnkbM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iJ6Qu7w2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA544C072AA;
+	Sun, 14 Apr 2024 19:12:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713121979;
+	bh=b0H1pAKH9vb9A4ZCHP5SLMd9vtO8M7WUiunM9X1el7U=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=iJ6Qu7w2JPrmXgrO69rw2rXJFzaFAErACOeXtqray4lgfah7WLuxMEx7dVrLONEGy
+	 782e/0nRK+2vja8v05BeIcC5dHyYoTeDdbBd6YgjMSp1xoRRw4Vq+qY2ECAdlrlja/
+	 ARfg/lM25nVZTGk/URA4S6o+OblQ4aw60Mt9Z/iqKZAJzA6T2ZgsH9Soz2U964nXsp
+	 46oB8zKpI69h2fIkucJQ74Uvl91H+3dYudHu3zeh3ENhGWucM5FwJpmikbSq8yvT4e
+	 Yz1SY/h/H5mDOlmgKUCJDcdZ97QakcpTgciiz02pg993V/9rMg+Fnu3uNDlWo27L4N
+	 vsvtH74Weay+w==
+Message-ID: <e6cfe735-0a46-4c07-90ee-4ae25c921b03@kernel.org>
+Date: Sun, 14 Apr 2024 21:12:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,136 +50,95 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: bcm2835: Enable 3D rendering through V3D
-To: Phil Elwell <phil@raspberrypi.com>, Stefan Wahren <wahrenst@gmx.net>
-Cc: Maxime Ripard <mripard@kernel.org>, Melissa Wen <mwen@igalia.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
- Scott Branden <sbranden@broadcom.com>,
- Andre Przywara <andre.przywara@arm.com>,
- Romain Perier <romain.perier@gmail.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- dri-devel@lists.freedesktop.org, bcm-kernel-feedback-list@broadcom.com,
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, kernel-dev@igalia.com
-References: <20240412132559.2365947-1-mcanal@igalia.com>
- <41694292-af1f-4760-a7b6-101ed5dd6f9d@gmx.net>
- <CAMEGJJ2mkuBZjo+OAnkVCEi=73zMpXNUwzRqsAOckMhUeN_WJw@mail.gmail.com>
+Subject: Re: [PATCH 3/4] ARM: dts: BCM5301X: Add DT for ASUS RT-AC3200
+To: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>,
+ Hauke Mehrtens <hauke@hauke-m.de>, Rafal Milecki <zajec5@gmail.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: Tom Brautaset <tbrautaset@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20240414-for-soc-asus-rt-ac3200-ac5300-v1-0-118c90bae6e5@arinc9.com>
+ <20240414-for-soc-asus-rt-ac3200-ac5300-v1-3-118c90bae6e5@arinc9.com>
+ <a88385a4-afad-4bd8-afc1-37e185e781f4@kernel.org>
+ <85261d11-d6cb-4718-88d9-95a7efe5c0ab@arinc9.com>
 Content-Language: en-US
-From: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
-Autocrypt: addr=mcanal@igalia.com; keydata=
- xjMEZIsaeRYJKwYBBAHaRw8BAQdAGU6aY8oojw61KS5rGGMrlcilFqR6p6ID45IZ6ovX0h3N
- H01haXJhIENhbmFsIDxtY2FuYWxAaWdhbGlhLmNvbT7CjwQTFggANxYhBDMCqFtIvFKVRJZQ
- hDSPnHLaGFVuBQJkixp5BQkFo5qAAhsDBAsJCAcFFQgJCgsFFgIDAQAACgkQNI+cctoYVW5u
- GAEAwpaC5rI3wD8zqETKwGVoXd6+AbmGfZuVD40xepy7z/8BAM5w95/oyPsHUqOsg/xUTlNp
- rlbhA+WWoaOXA3XgR+wCzjgEZIsaeRIKKwYBBAGXVQEFAQEHQGoOK0jgh0IorMAacx6WUUWb
- s3RLiJYWUU6iNrk5wWUbAwEIB8J+BBgWCAAmFiEEMwKoW0i8UpVEllCENI+cctoYVW4FAmSL
- GnkFCQWjmoACGwwACgkQNI+cctoYVW6cqwD/Q9R98msvkhgRvi18fzUPFDwwogn+F+gQJJ6o
- pwpgFkAA/R2zOfla3IT6G3SBoV5ucdpdCpnIXFpQLbmfHK7dXsAC
-In-Reply-To: <CAMEGJJ2mkuBZjo+OAnkVCEi=73zMpXNUwzRqsAOckMhUeN_WJw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <85261d11-d6cb-4718-88d9-95a7efe5c0ab@arinc9.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Hi Phil,
+On 14/04/2024 18:59, Arınç ÜNAL wrote:
+>>> +	};
+>>> +
+>>> +	memory@0 {
+>>> +		device_type = "memory";
+>>> +		reg = <0x00000000 0x08000000>,
+>>> +		      <0x88000000 0x08000000>;
+>>> +	};
+>>> +
+>>> +	nvram@1c080000 {
+>>> +		compatible = "brcm,nvram";
+>>> +		reg = <0x1c080000 0x00180000>;
+>>
+>> Why is this outside of soc? Both soc node and soc DTSI?
+> 
+> I don't maintain the SoC device tree files so I don't know. The nvram node
+> doesn't exist on any of the device tree files included by this device tree.
 
-On 4/14/24 15:43, Phil Elwell wrote:
-> Hello all,
-> 
-> On Fri, 12 Apr 2024 at 18:17, Stefan Wahren <wahrenst@gmx.net> wrote:
->>
->> Hi Maíra,
->>
->> [add Phil & Dave]
->>
->> Am 12.04.24 um 15:25 schrieb Maíra Canal:
->>> RPi 0-3 is packed with a GPU that provides 3D rendering capabilities to
->>> the RPi. Currently, the downstream kernel uses an overlay to enable the
->>> GPU and use GPU hardware acceleration. When deploying a mainline kernel
->>> to the RPi 0-3, we end up without any GPU hardware acceleration
->>> (essentially, we can't use the OpenGL driver).
->>>
->>> Therefore, enable the V3D core for the RPi 0-3 in the mainline kernel.
->> thanks for trying to improve the combination Raspberry Pi OS + Mainline
->> Kernel. I think i'm able to reproduce the issue with Raspberry Pi 3 B +
->> on Buster.
-> 
-> Buster? We launched Buster with 4.19 and ended on 5.10. We've moved
-> onto Bookworm now. A lot has changed in that time...
-> 
->>  From the kernel side everything looks good:
->>
->> [   11.054833] vc4-drm soc:gpu: bound 3f902000.hdmi (ops vc4_hdmi_ops [vc4])
->> [   11.055118] vc4-drm soc:gpu: bound 3f806000.vec (ops vc4_vec_ops [vc4])
->> [   11.055340] vc4-drm soc:gpu: bound 3f004000.txp (ops vc4_txp_ops [vc4])
->> [   11.055521] vc4-drm soc:gpu: bound 3f206000.pixelvalve (ops
->> vc4_crtc_ops [vc4])
->> [   11.055695] vc4-drm soc:gpu: bound 3f207000.pixelvalve (ops
->> vc4_crtc_ops [vc4])
->> [   11.055874] vc4-drm soc:gpu: bound 3f807000.pixelvalve (ops
->> vc4_crtc_ops [vc4])
->> [   11.056020] vc4-drm soc:gpu: bound 3fc00000.v3d (ops vc4_v3d_ops [vc4])
->> [   11.063277] Bluetooth: hci0: BCM4345C0
->> 'brcm/BCM4345C0.raspberrypi,3-model-b-plus.hcd' Patch
->> [   11.070466] [drm] Initialized vc4 0.0.0 20140616 for soc:gpu on minor 0
->> [   11.174803] Console: switching to colour frame buffer device 240x75
->> [   11.205125] vc4-drm soc:gpu: [drm] fb0: vc4drmfb frame buffer device
->>
->> But in Raspberry Pi OS there is a systemd script which is trying to
->> check for the V3D driver /usr/lib/systemd/scripts/gldriver_test.sh
->> Within the first check "raspi-config nonint is_kms" is called, which
->> always seems to fail. If i run strace on this command it seems to check
->> for /proc/device-tree/soc/v3d@7ec00000/status which doesn't exists in
->> the Mainline device tree.
->>
->> Maybe there is a chance to improve the userspace tool?
-> 
-> ...such as the raspi-config tool, which now always succeeds for is_kms.
-> 
+There are two problems here:
+1. This looks like SoC component and such should not be in board DTS.
+Regardless whether you maintain something or not, you should not add
+incorrect code. Unless this is correct code, but then please share some
+details.
 
-I'm using Raspberry Pi OS Bulleye with the raspi-config tool on version
-20231012~bulleye. I can still reproduce this issue when using a upstream
-kernel.
+2. You cannot have MMIO node outside of soc. That's a W=1 warning.
 
-I ran `sudo apt upgrade`, but a new version of the raspi-config tool
-didn't appeared.
+Best regards,
+Krzysztof
 
-Best Regards,
-- Maíra
-
-> Phil
-> 
->>>
->>> Signed-off-by: Maíra Canal <mcanal@igalia.com>
->>> ---
->>>
->>> I decided to add the status property to the `bcm2835-common.dtsi`, but
->>> there are two other options:
->>>
->>> 1. To add the status property to the `bcm2835-rpi-common.dtsi` file
->>> 2. To add the status property to each individual RPi model, e.g.
->>> `bcm2837-rpi-3-b.dts`.
->>>
->>> Let me know which option is more suitable, and if `bcm2835-common.dtsi`
->>> is not the best option, I can send a v2.
->>>
->>> Best Regards,
->>> - Maíra
->>>
->>>    arch/arm/boot/dts/broadcom/bcm2835-common.dtsi | 1 +
->>>    1 file changed, 1 insertion(+)
->>>
->>> diff --git a/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi b/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi
->>> index 9261b67dbee1..851a6bce1939 100644
->>> --- a/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi
->>> +++ b/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi
->>> @@ -139,6 +139,7 @@ v3d: v3d@7ec00000 {
->>>                        compatible = "brcm,bcm2835-v3d";
->>>                        reg = <0x7ec00000 0x1000>;
->>>                        interrupts = <1 10>;
->>> +                     status = "okay";
->>>                };
->>>
->>>                vc4: gpu {
->>
 
