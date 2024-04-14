@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-59046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B86C8A416D
-	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 11:09:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF23E8A4173
+	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 11:10:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1576E282224
-	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 09:09:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE9C81C20DD9
+	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 09:10:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D73CC225D7;
-	Sun, 14 Apr 2024 09:09:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 690C220B34;
+	Sun, 14 Apr 2024 09:10:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="t8+6mMg8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dFXRTrh8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3BAB225AE
-	for <devicetree@vger.kernel.org>; Sun, 14 Apr 2024 09:09:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A116622EE9
+	for <devicetree@vger.kernel.org>; Sun, 14 Apr 2024 09:10:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713085770; cv=none; b=IDpdto2s9tTb/jF2pTcmLn76Dp6eFz+vroImWhBoPx+IEzxX6mqqTUaJVc7YydDiqGNX+Y2pzMsxG1KtpTa9vqtOz+NGSvRra7MZS7sJMNC5bBTVukl4Fw9HzCdOsSECeWw5EeoJ9p9yfLIWdEYVzlCubO/D+4FyDqZ/UWimgOg=
+	t=1713085813; cv=none; b=B/EFwCUOsLv1lVDbdb1C6OQOWSQENkLcTdpZawJ2GzmASFMTA7tgxxbnh/iWzD6Qbx17xKBHRU7cgA3e+AyVGOxaRvo4ae8+4wfQlJP7GsGAyZO1DjcK27JGmBuiEAI0jsob5fsNVCghO5/5x5wVvRYORY9ANSQY5qdcHT4dL3s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713085770; c=relaxed/simple;
-	bh=Er+CYh9FHJ9mlEBjd/YOvPjUVxvuTJYwdtx5i80ga0w=;
+	s=arc-20240116; t=1713085813; c=relaxed/simple;
+	bh=VG0owNXFGNDuEEJ6HRiEaXklbtfWo1BMnyNxkJBGDKM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ikPIEN3/hJO8iUTdSDEAbuNmXfuL9UkyBkj8dLCH3rqh52Y1kjJJYL6GD+NV0LeJO9w2OiHj02YMUyW1J4RFX7z5TzIQgizEel/flTPdidulOMubN08kKk7BbVsFNjBZnFC4r5JaEhp9CdvJZ2fOw8za8i9+UL1tUKlX6+3SCEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=t8+6mMg8; arc=none smtp.client-ip=209.85.218.42
+	 In-Reply-To:Content-Type; b=PLXOijl5dEYN4tgzDd+0xQ9+UFL9maz4StgfJBlf/Q883uEeB4JOJ6h6qLPcxBoUrwHOYNCOytJL9HzFiLdMpWt2/HrG6SdEJUfNO1Duw+P0fnWkyPCWeZEfRCtDCNrpXrVcVw1kOxbFzRckVIgzyvDZdX9JhdPKj5cO85XPb30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dFXRTrh8; arc=none smtp.client-ip=209.85.218.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a51aac16b6eso122986066b.1
-        for <devicetree@vger.kernel.org>; Sun, 14 Apr 2024 02:09:28 -0700 (PDT)
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a51addddbd4so258531866b.0
+        for <devicetree@vger.kernel.org>; Sun, 14 Apr 2024 02:10:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713085767; x=1713690567; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1713085810; x=1713690610; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=EMcHcmFyDnJKJzACwsJ4Nm10QcmzyItvyxrTFRQZWIs=;
-        b=t8+6mMg8AeFfidBK1QqS3pEPQw7gILZfZfEEwm8tSlzkB9WK+V2EQWcP8c5JM87mZb
-         Npxr6FG3XiTMUCC7t5c93r1yvliuIsmzyRcFNAVQjonBMtkfOT4ORjDg0m9qHcuI0OdG
-         gzFr9QSIRrJP+nb+FpIZBk4t/teUX3xZiKP9t+jBSPu828unghRwv6lUrFgNLhfF/TKJ
-         /ytNNwSFwMf8/lwA3kd6pdl8X5EglWAzYswoLoYEGxiDRlxdm0A6dcZ/frSVbGrJQZnQ
-         D8oAgw1eH//TLOQkCSLlsRdV1Wk9gD1cW7uxAiDG8SJ6ZKLY1UP7Agl7PuSgvbg7GVZi
-         3Yng==
+        bh=qUIus00I9YbNfD03SHuWbNcglTIhnydiZOYidEXVVLI=;
+        b=dFXRTrh8p8VVnAlZzEiRLM12bTI9XpdknfxFVmykpJOLXhtI2COeV/nuyfMmkJcw6I
+         uhXXoh8r+MZ2TZbF90O0VeTVpiAFmDHQ6Km01aGPCjVbfqJe7TRn8MDElkbC+msSM9bG
+         n4n5x0GMCn/brfoekMgAKzy/KHrLp74ijN/ECSzGIDfk+3sEQPP3rtG0Q1LQDjBFmt5S
+         H7AqHiGhMFd0Je6fp1mrO7CJcrK4Nw4L+DKZWYyMWwcbD4eRdHPmp/mfzaXGVd4pxVjG
+         cqIuDSbkMk0ATiEs6prqR0Bkx09c4ua4T23PS6Rpg6BB+KnjJ4Uo2O/MEoYJZTRPhUdi
+         H0hA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713085767; x=1713690567;
+        d=1e100.net; s=20230601; t=1713085810; x=1713690610;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=EMcHcmFyDnJKJzACwsJ4Nm10QcmzyItvyxrTFRQZWIs=;
-        b=EXtZ+ebkXUxJEvYo44CUn1/EOjJAdZslDPLaU/hMX/SyY1Th8rw+31hJlPDsm/sDay
-         wDrDzLfO7OdICqjI9LfKYZyMt6tLT/Fp6t37+u5w2X4wppXqmJapHpa2pLCVgYTWvpCn
-         C9IiM+IilpvF5rl+vifV8HpugDstX9zMviS3fYT2uxrTRuZWWu0KPf+WftWwds9reLJG
-         rbwyWIDVmZNBinT0rGT0MZTZ9fXiiPYn1QxDvvLllcndGukKpIFeHIMRyQ1SbJ8pNiVk
-         RPN5nE/NY0e+T8Kp4uWX9EIzqkcfvcmpeKHPyLoQ+v/farhcL3ca35AVbYtTNyPkp/jn
-         rvBg==
-X-Gm-Message-State: AOJu0YykajszbZXN/ExaHONM7pYOBpx275YG4lVAqafmC4ThABpFYdk9
-	VcnfLjLF6k3veJ57+PJVm4gNNRfAAKhhwblBRxMYfc/GrTd1Asvl/gDaAkYGt5E=
-X-Google-Smtp-Source: AGHT+IEiyMz7ZxSi4H+tn+AeFl9v/pq801XHekzVA6cf33S2t70746pnPkNOP3pue1Ml6L0cC9PC5A==
-X-Received: by 2002:a50:a6dc:0:b0:570:332:aad3 with SMTP id f28-20020a50a6dc000000b005700332aad3mr4637471edc.39.1713085767048;
-        Sun, 14 Apr 2024 02:09:27 -0700 (PDT)
+        bh=qUIus00I9YbNfD03SHuWbNcglTIhnydiZOYidEXVVLI=;
+        b=RzWX6vGUEQDQoN0rkpQdBeeSLh2FheqlXmP/qWB8g6wCOzxhAPEM48CAIZZSUDw3Qa
+         OtoNUC+N6Pc7391l0fBk0tN/tJgu2woINTJsZm3TOfzQTikqPV7MG3UF6ApEzaPx/Awm
+         /D6L6Y3zMVaZxetAIOlGNKRV36eTVxp6H9CTjD/HJ7FQNOiORaFWtMI6XTk5m4BQu++B
+         gDja/5bFDBV8no6CPsD59OLq8jHPEUrd9VL53e4FBidlku61Hhb+fnZ67l1ZDtF/QdOC
+         Vxm4s2/mAqS1ZyGTVfhH4CFnwF79NO9m1izpjmAt88jUVUcSD0wgWY3f7PzZBzFIi9rB
+         9b5g==
+X-Gm-Message-State: AOJu0YxqEE2gzio75XGxsPLDTG+WyVV9MPARdiZimgyBVVrMVzgLDj+K
+	acby5uGCPYIXIbGW0K1EpA8KBDy4yHtgf1kxCp3jBiqIVXwjpDhBjojFWrmU5TA=
+X-Google-Smtp-Source: AGHT+IEfwOXnKMxshP0NpIw/LSWTfbVidZksgZmMZ8MWconsB/clEPF68rLb0cAhW+F31PNogcyCOA==
+X-Received: by 2002:a17:907:7d8d:b0:a52:57d2:1cfa with SMTP id oz13-20020a1709077d8d00b00a5257d21cfamr1395641ejc.62.1713085809980;
+        Sun, 14 Apr 2024 02:10:09 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id w22-20020a170907271600b00a4e48e52ecbsm3961053ejk.198.2024.04.14.02.09.25
+        by smtp.gmail.com with ESMTPSA id gt35-20020a1709072da300b00a522d25b7d9sm3323194ejc.63.2024.04.14.02.10.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 14 Apr 2024 02:09:26 -0700 (PDT)
-Message-ID: <c615c0b0-3dd4-4bac-8bd5-654fd8a35d0c@linaro.org>
-Date: Sun, 14 Apr 2024 11:09:25 +0200
+        Sun, 14 Apr 2024 02:10:09 -0700 (PDT)
+Message-ID: <eb3aaaef-e6cb-4b5d-90b4-b0f041a94215@linaro.org>
+Date: Sun, 14 Apr 2024 11:10:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,7 +76,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] arm64: dts: allwinner: h700: Add RG35XX 2024 DTS
+Subject: Re: [PATCH 3/4] arm64: dts: allwinner: h700: Add RG35XX-Plus DTS
 To: Ryan Walklin <ryan@testtoast.com>, Andre Przywara
  <andre.przywara@arm.com>, Chen-Yu Tsai <wens@csie.org>,
  Rob Herring <robh@kernel.org>,
@@ -86,7 +86,7 @@ To: Ryan Walklin <ryan@testtoast.com>, Andre Przywara
  Chris Morgan <macromorgan@hotmail.com>
 Cc: devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev
 References: <20240414083347.131724-2-ryan@testtoast.com>
- <20240414083347.131724-5-ryan@testtoast.com>
+ <20240414083347.131724-6-ryan@testtoast.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -133,47 +133,32 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240414083347.131724-5-ryan@testtoast.com>
+In-Reply-To: <20240414083347.131724-6-ryan@testtoast.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 14/04/2024 10:33, Ryan Walklin wrote:
 > From: Ryan Walklin <ryan@testtoast.com>
 > 
-> The base model RG35XX (2024) is a handheld gaming device based on an Allwinner 
-> H700 chip.
-> 
-> The H700 is a H616 variant (4x ARM Cortex-A53 cores @ 1.5Ghz with Mali G31 GPU) 
-> which exposes RGB LCD and NMI pins.
-> 
-> Device features:
-> - Allwinner H700 @ 1.5GHz
-> - 1GB LPDDR4 DRAM
-> - X-Powers AXP717 PMIC
-> - 3.5" 640x480 RGB LCD
-> - Two microSD slots
-> - Mini-HDMI out
-> - GPIO keypad
-> - 3.5mm headphone jack
+> The RG35XX-Plus adds a RTL8221CS SDIO Wifi/BT chip to the RG35XX (2024).
 > 
 > Enabled in this DTS:
-> - AXP717 PMIC with regulators (interrupt controller TBC/TBD)
-> - Power LED (charge LED on device controlled directly by PMIC)
-> - Serial UART (accessible from PIN headers on the board)
-> - MMC slots
+> - WiFi
+> - Bluetooth
+> - Supporting power sequence and GPIOs
 > 
 > Signed-off-by: Ryan Walklin <ryan@testtoast.com>
 > ---
->  .../sun50i-h700-anbernic-rg35xx-2024.dts      | 405 ++++++++++++++++++
->  1 file changed, 405 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
+>  .../sun50i-h700-anbernic-rg35xx-plus.dts      | 63 +++++++++++++++++++
+>  1 file changed, 63 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-plus.dts
 > 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-plus.dts b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-plus.dts
 > new file mode 100644
-> index 000000000000..b4140d450687
+> index 000000000000..b9a163ed5d0b
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
-> @@ -0,0 +1,405 @@
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-plus.dts
+> @@ -0,0 +1,63 @@
 > +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +/*
 > + * Copyright (C) 2024 Andre Przywara <andre.przywara@arm.com>.
@@ -183,174 +168,58 @@ On 14/04/2024 10:33, Ryan Walklin wrote:
 > +
 > +/dts-v1/;
 > +
-> +#include "sun50i-h616.dtsi"
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/linux-event-codes.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/leds/common.h>
+> +#include "sun50i-h700-anbernic-rg35xx-2024.dts"
 > +
 > +/ {
-> +    model = "Anbernic RG35XX 2024";
-> +    compatible = "anbernic,rg35xx-2024", "allwinner,sun50i-h700";
+> +    model = "Anbernic RG35XX Plus";
+> +    compatible = "anbernic,rg35xx-plus", "allwinner,sun50i-h700";
 > +
-> +    aliases {
-> +        mmc0 = &mmc0;
-> +        mmc1 = &mmc2;
-> +        mmc2 = &mmc1;
-> +        serial0 = &uart0;
-> +    };
-> +
-> +    chosen {
-> +        stdout-path = "serial0:115200n8";
-> +    };
-> +
-> +    leds {
-> +        compatible = "gpio-leds";
-> +
-> +        led-0 {
-> +            function = LED_FUNCTION_POWER;
-> +            color = <LED_COLOR_ID_GREEN>;
-> +            gpios = <&pio 8 12 GPIO_ACTIVE_HIGH>; /* PI12 */
-> +            default-state = "on";
-> +        };
-> +    };
-> +
-> +    gpio-keys {
-> +       compatible = "gpio-keys";
-> +
-> +       keyUp {
-
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
-
-No uppercase letters are allowed as node names.
-
-...
-
-> +
-> +        keyVol+ {
-
-Neither this
-
-> +            label = "Key Volume Up";
-> +            gpios = <&pio 4 1 GPIO_ACTIVE_LOW>; /* PE1 */
-> +            linux,input-type = <EV_KEY>;
-> +            linux,code = <KEY_VOLUMEUP>;
-> +        };
-> +
-> +        keyVol- {
-
-Although it is allowed but not consistent and readable.
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-
-> +            label = "Key Volume Down";
-> +            gpios = <&pio 4 2 GPIO_ACTIVE_LOW>; /* PE2 */
-> +            linux,input-type = <EV_KEY>;
-> +            linux,code = <KEY_VOLUMEDOWN>;
-> +        };
-> +    };
-> +
-> +    reg_vcc5v: vcc5v {
-
-Use some common reasonable prefix, e.g. regulator
-
-> +        compatible = "regulator-fixed";
-> +        regulator-name = "vcc-5v";
-> +        regulator-always-on;
-> +        regulator-boot-on;
-> +        regulator-min-microvolt = <5000000>;
-> +        regulator-max-microvolt = <5000000>;
-> +    };
-> +
-> +    vcc_5v0_usb: vcc-5v0-usb { /* needs gpios */
-> +            compatible = "regulator-fixed";
-> +            regulator-name = "vcc_5v0_usb";
-> +            regulator-min-microvolt = <5000000>;
-> +            regulator-max-microvolt = <5000000>;
-> +            regulator-always-on;
-> +            regulator-boot-on;
-> +        };
-> +
-> +    reg_vcc3v3: vcc3v3 {
-> +        gpio = <&pio 4 4 GPIO_ACTIVE_HIGH>;
-> +        compatible = "regulator-fixed";
-> +        regulator-name = "vcc-3v3";
-> +        regulator-always-on;
-> +        regulator-boot-on;
-> +        regulator-min-microvolt = <3300000>;
-> +        regulator-max-microvolt = <3300000>;
-> +
-> +    };
-> +
-> +    reg_vcc1v8: vcc1v8 {
-> +        compatible = "regulator-fixed";
-> +        regulator-name = "vcc-1v8";
-> +        regulator-always-on;
-> +        regulator-min-microvolt = <1800000>;
-> +        regulator-max-microvolt = <1800000>;
+> +    wifi_pwrseq: wifi_pwrseq {
+> +        compatible = "mmc-pwrseq-simple";
+> +        clocks = <&rtc CLK_OSC32K_FANOUT>;
+> +        clock-names = "ext_clock";
+> +        pinctrl-0 = <&x32clk_fanout_pin>;
+> +        pinctrl-names = "default";
+> +        post-power-on-delay-ms = <200>;
+> +        reset-gpios = <&pio 6 18 GPIO_ACTIVE_LOW>; /* PG18 */
 > +    };
 > +};
 > +
-> +&cpu0 {
-> +    cpu-supply = <&reg_dcdc1>;
-> +};
-> +
-> +&mmc0 {
-> +    vmmc-supply = <&reg_vcc3v3>;
-> +    disable-wp;
-> +    cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;  /* PF6 */
+> +/* SDIO WiFi RTL8821CS, powered by CLDO4, regon=PG18, hostwake=PG15 */
+> +&mmc1 {
+> +    vmmc-supply = <&reg_cldo4>;
+> +    vqmmc-supply = <&reg_vcc1v8>;
+> +    mmc-pwrseq = <&wifi_pwrseq>;
 > +    bus-width = <4>;
+> +    non-removable;
 > +    status = "okay";
+> +
+> +    sdio_wifi: wifi@1 {
+> +       reg = <1>;
+> +       interrupt-parent = <&pio>;
+> +       interrupts = <6 15 IRQ_TYPE_LEVEL_LOW>; /* PG15 */
+> +       interrupt-names = "host-wake";
+> +    };
 > +};
 > +
-> +&mmc2 {
-> +    vmmc-supply = <&reg_vcc3v3>;
-> +    vqmmc-supply = <&reg_aldo1>;
-> +    cd-gpios = <&pio 4 22 GPIO_ACTIVE_LOW>; /* PE 22 */
-> +    //cd-gpios = <&pio 4 16 GPIO_ACTIVE_LOW>;  /* PE16 */
-
-Please do not add dead code without explanation.
-
-> +    bus-width = <4>;
-> +    status = "okay";
-> +};
-> +
-> +&ohci0 {
-> +    status = "okay";
-> +};
-> +
-> +&ehci1 {
-> +    status = "okay";
-> +};
-> +
-> +&i2c3 {
+> +&uart0 {
 > +    pinctrl-names = "default";
-> +    pinctrl-0 = <&i2c3_ph_pins>;
+> +    pinctrl-0 = <&uart0_ph_pins>;
 > +    status = "okay";
 > +};
 > +
-> +&r_rsb {
-> +   status = "okay";
+> +/* Bluetooth RTL8821CS, RST_N: PG19, BT_WAKE: PG17, BT_HOSTWAKE: PG16 */
+> +&uart1 {
+> +    pinctrl-names = "default";
+> +    pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
+> +    uart-has-rtscts;
+> +    status = "okay";
 > +
-> +   axp717: pmic@3a3 {
-> +       compatible = "x-powers,axp717";
-> +       //interrupt-controller;
-> +       //#interrupt-cells = <1>;
-> +       reg = <0x3a3>;
-> +       //interrupt-parent = <&r_intc>; /* test */
-> +       //interrupts = <0 IRQ_TYPE_LEVEL_LOW>; /* test */
+> +    bluetooth {
+> +        compatible = "realtek,rtl8821cs-bt", "realtek,rtl8723bs-bt";
+> +        device-wake-gpios = <&pio 6 17 GPIO_ACTIVE_HIGH>;
 
-Keep test and dead code outside upstream submission.
-
-
+Wrong indentation. Everywhere. Please follow DTS coding style.
 
 Best regards,
 Krzysztof
