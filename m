@@ -1,345 +1,181 @@
-Return-Path: <devicetree+bounces-59044-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59045-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E55C8A4165
-	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 11:06:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 713508A4167
+	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 11:07:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B1AE01F21DD6
-	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 09:06:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 900201C20BDC
+	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 09:07:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78AB120B34;
-	Sun, 14 Apr 2024 09:05:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76ED3224F2;
+	Sun, 14 Apr 2024 09:07:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HAjqVhRI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0328B22638
-	for <devicetree@vger.kernel.org>; Sun, 14 Apr 2024 09:05:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B082C1AACB
+	for <devicetree@vger.kernel.org>; Sun, 14 Apr 2024 09:07:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713085556; cv=none; b=L0E3Vpti0AiP3VFrQXzNkuwC5EjGOhXusncSBVlioeOKLhKhXL0xzGi/TWC7OHr9IOfTyJNTydMm2mz9q1/9q2GZh2Loi0G5MPGUKSA90oa7MKykZ/EBQzz4WSEe/PoP6FrkNSWg/xT9RtfdmDwj9vUA49KQ2/eBcXvFwgeHtmg=
+	t=1713085645; cv=none; b=LHPa0Z1bXMwGqT7Xnge2qdYEfMkYd+tZM3ZrgNfEh7T84z+gEUbHfXts4tQZSS1tEPBY5lvR53joPuMcKcEV9caMKkt0t7GcR/Z2nLD1CJ6uySiUgrDfk2Uq5Oho7fOoxhBgGY+ec0gA7la8ojPru+tBZPsItttzFfjOP1dX884=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713085556; c=relaxed/simple;
-	bh=eUQSUFsqzUC4ARHWh09c/+7xh9a4BPEUv4J3aTZ78E0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dCcD6wjAif1dIsXsoaHip6XkEh1eIDG+KJa6F1Q6kGeOqPFodBCUOWnjn3O/ZrhNc2+zddad53gFue4cRUgvy+W2QzFu9GJVT4H+bHroOdMlcy1TEl5CK9JWBaYXX4h/UdxYQdcf6tITQTUVq/AtKChabQnmTUM7jg0rbUdo6gc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rvvnt-0000E5-DD; Sun, 14 Apr 2024 11:05:37 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rvvnr-00CDYm-Sy; Sun, 14 Apr 2024 11:05:35 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rvvnr-0015XN-2b;
-	Sun, 14 Apr 2024 11:05:35 +0200
-Date: Sun, 14 Apr 2024 11:05:35 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Trevor Gamblin <tgamblin@baylibre.com>
-Cc: linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	michael.hennerich@analog.com, nuno.sa@analog.com, devicetree@vger.kernel.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	dlechner@baylibre.com
-Subject: Re: [PATCH 2/2] pwm: axi-pwmgen: support version 2.00.a
-Message-ID: <2by7rakflv22s6uk2e2jk5lw65erjljpwdxdxg3z73furlprj5@2qlacusapkgr>
-References: <20240314204722.1291993-1-tgamblin@baylibre.com>
- <20240314204722.1291993-3-tgamblin@baylibre.com>
+	s=arc-20240116; t=1713085645; c=relaxed/simple;
+	bh=BjKU5+T5fs+RM9cbIhVQr4EcL4DjffzBvTs4ER4XO3g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DXFt+HhzFZMfshOVXm/FL6DWQe1Kh2/HwRAEOBvM5dBShKron68Mu6tqeq65rUwnbo4BQoZD22OeBwM3wjuGxDJ6bEo5sLzP+RsI69vcHGcxEozql4RWPZYXSy2C1mCbGhbSLupqoMC+jbmfL8pgJ/kkiGyAcaGh+52ir6Wpr1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HAjqVhRI; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a52582ecde4so55518566b.0
+        for <devicetree@vger.kernel.org>; Sun, 14 Apr 2024 02:07:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1713085642; x=1713690442; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y6ICUCQVmIfh08qGekJz3o0+EeQNUcRqwC4WLDD5uz0=;
+        b=HAjqVhRIWWwNEynnkYy0oEC8MOfkEKVxAowQOuNYeF29s0RNqTkHtY2sa30EWDy/lZ
+         v62A7iEBP3I/Hh3jm/kxztlGTdy8H9w3npzJiiAONFv9YFNomQqZPHhgNBffiYmMSVHk
+         RG/h2Cu6GHgyNJI8PfYsCbeTAIXzCCKzBOQOQguL++7qWfpSqFKdsvgxEhDfaZb4onn/
+         uxwgDyIoi8oDo84YlpECxzPoXFKbySSoMJ/SHiRzV+PJMjiXYgLlIC0JORSjaeVN6I5G
+         D8kfRXkrhbIgsMH32/QZ4270ZS2EYotq0uNCR+sjdEoKdrPvjwZVFI3xe4KR7oP++uLu
+         pl8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713085642; x=1713690442;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Y6ICUCQVmIfh08qGekJz3o0+EeQNUcRqwC4WLDD5uz0=;
+        b=pRO/8LclIBoYIfnIg/aCsQa0FJqDytaeURLQkVw575pqyZIvp6XjpOaOynIn6mzUHx
+         wMkE6SSlp7Dh+B3XkGbqnqx5z0wJyMvZAM6u+OYAI1tzpEWfMVBwZ9ohw+VMUmi0yw0N
+         zYZnzf67s2fscsWv6w7sdDFi+hOKXAYKebJKfrRXjXBlicRRN0LnAJ6oghMDXCjzf14+
+         BFhdqGEPZBXf4LgCYVFgVADZlDgoFPo/5PX0DKAYox/Oqpc2Pan2Lkfn08eonB2K3z71
+         vQFPHeRnsnQ8ZueCPj+sbCsbbPmQaz8K/FssADVnOiJI9ZIrfdgbmuApSTT1XC32k50J
+         gAIw==
+X-Gm-Message-State: AOJu0Yy1bBPi+DYM0P6wmhAoM/5MLJMEyBn+iYibjRkkjjRFeISzM5HS
+	yu4PpTQWBcCK1LGgJ8zl6Ef/D/4qRtSWmfCdSgtXMlhXdKRrSiwYj2/SL+JL/+U=
+X-Google-Smtp-Source: AGHT+IGC0zIf0EZf9Sh9GDNtGVe6hYpMrO/aUR00MO5y1rs14KedWXXN9Xt4GTFhLqc9c8E6kUqxyw==
+X-Received: by 2002:a17:907:724b:b0:a52:571c:3d7b with SMTP id ds11-20020a170907724b00b00a52571c3d7bmr1586579ejc.59.1713085641885;
+        Sun, 14 Apr 2024 02:07:21 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id gf14-20020a170906e20e00b00a51e6222200sm4000307ejb.156.2024.04.14.02.07.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 14 Apr 2024 02:07:21 -0700 (PDT)
+Message-ID: <78b5de01-150e-4537-b6a6-8ca0067a8359@linaro.org>
+Date: Sun, 14 Apr 2024 11:07:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="6obdirpcc2cza6oe"
-Content-Disposition: inline
-In-Reply-To: <20240314204722.1291993-3-tgamblin@baylibre.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] dt-bindings: arm: sunxi: document Anbernic RG35XX
+ handheld gaming device variants
+To: Ryan Walklin <ryan@testtoast.com>, Andre Przywara
+ <andre.przywara@arm.com>, Chen-Yu Tsai <wens@csie.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
+ Chris Morgan <macromorgan@hotmail.com>
+Cc: devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev
+References: <20240414083347.131724-2-ryan@testtoast.com>
+ <20240414083347.131724-3-ryan@testtoast.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240414083347.131724-3-ryan@testtoast.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
---6obdirpcc2cza6oe
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hello Trevor,
-
-On Thu, Mar 14, 2024 at 04:47:22PM -0400, Trevor Gamblin wrote:
-> This adds support for the AXI PWMGEN v2 IP block. This version is
-> nearly identical to v1 other than it supports up to 16 channels instead
-> of 4 and a few of the memory mapped registers have moved.
->=20
-> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
+On 14/04/2024 10:33, Ryan Walklin wrote:
+> From: Ryan Walklin <ryan@testtoast.com>
+> 
+> RG35XX 2024: Base version with Allwinner H700
+> RG35XX Plus: Adds Wifi/BT
+> RG35XX H: Adds second USB port and analog sticks to -Plus in horizontal
+>           altered form factor,
+> 
+> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
 > ---
->  drivers/pwm/pwm-axi-pwmgen.c | 62 ++++++++++++++++++++++++++++--------
->  1 file changed, 49 insertions(+), 13 deletions(-)
->=20
-> diff --git a/drivers/pwm/pwm-axi-pwmgen.c b/drivers/pwm/pwm-axi-pwmgen.c
-> index 0c8f7f893a21..539625c404ac 100644
-> --- a/drivers/pwm/pwm-axi-pwmgen.c
-> +++ b/drivers/pwm/pwm-axi-pwmgen.c
-> @@ -32,16 +32,25 @@
->  #define AXI_PWMGEN_REG_CORE_MAGIC	0x0C
->  #define AXI_PWMGEN_REG_CONFIG		0x10
->  #define AXI_PWMGEN_REG_NPWM		0x14
-> -#define AXI_PWMGEN_CHX_PERIOD(ch)	(0x40 + (12 * (ch)))
-> -#define AXI_PWMGEN_CHX_DUTY(ch)		(0x44 + (12 * (ch)))
-> -#define AXI_PWMGEN_CHX_OFFSET(ch)	(0x48 + (12 * (ch)))
-> +#define AXI_PWMGEN_CHX_PERIOD(v, ch)	((v)->period_base + (v)->ch_step * =
-(ch))
-> +#define AXI_PWMGEN_CHX_DUTY(v, ch)	((v)->duty_base + (v)->ch_step * (ch))
-> +#define AXI_PWMGEN_CHX_OFFSET(v, ch)	((v)->offset_base + (v)->ch_step * =
-(ch))
->  #define AXI_PWMGEN_REG_CORE_MAGIC_VAL	0x601A3471 /* Identification numbe=
-r to test during setup */
->  #define AXI_PWMGEN_LOAD_CONFIG		BIT(1)
->  #define AXI_PWMGEN_RESET		BIT(0)
-> =20
-> +struct axi_pwm_variant {
-> +	u8 period_base;
-> +	u8 duty_base;
-> +	u8 offset_base;
-> +	u8 major_version;
-> +	u8 ch_step;
-> +};
+>  Documentation/devicetree/bindings/arm/sunxi.yaml | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+> index 09d835db6db5..fc10f54561c9 100644
+> --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
+> +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+> @@ -56,6 +56,21 @@ properties:
+>            - const: anbernic,rg-nano
+>            - const: allwinner,sun8i-v3s
+>  
+> +      - description: Anbernic RG35XX (2024)
+> +      - items:
+> +          - const: anbernic,rg35xx-2024
+> +          - const: allwinner,sun50i-h700
 > +
->  struct axi_pwmgen_ddata {
->  	struct regmap *regmap;
->  	unsigned long clk_rate_hz;
-> +	const struct axi_pwm_variant *variant;
->  };
-> =20
->  static const struct regmap_config axi_pwmgen_regmap_config =3D {
-> @@ -50,12 +59,30 @@ static const struct regmap_config axi_pwmgen_regmap_c=
-onfig =3D {
->  	.val_bits =3D 32,
->  };
-> =20
-> +static const struct axi_pwm_variant pwmgen_1_00_variant =3D {
-> +	.period_base =3D 0x40,
-> +	.duty_base =3D 0x44,
-> +	.offset_base =3D 0x48,
-> +	.major_version =3D 1,
-> +	.ch_step =3D 12,
-> +};
+> +      - description: Anbernic RG35XX Plus
+> +      - items:
+> +          - const: anbernic,rg35xx-plus
+> +          - const: allwinner,sun50i-h700
 > +
-> +static const struct axi_pwm_variant pwmgen_2_00_variant =3D {
-> +	.period_base =3D 0x40,
-> +	.duty_base =3D 0x80,
-> +	.offset_base =3D 0xC0,
-> +	.major_version =3D 2,
-> +	.ch_step =3D 4,
-> +};
+> +      - description: Anbernic RG35XX H
+> +      - items:
+> +          - const: anbernic,rg35xx-h
 
-My first intuition to model the register differences would have been
-something like:
+Any reason these are not just one enum with three entires?
 
-	#define ..._PERIOD 0
-	#define ..._DUTY 1
-	#define ..._OFFSET 2
+Best regards,
+Krzysztof
 
-and then store a "register_step"(?) variable (which is 0x4 for v1 and
-0x40 for v2) in the variant struct and then use:
-
-#define AXI_PWMGEN_CHX_PERIOD(v, ch)	(0x40 + (v)->ch_step * (ch))
-#define AXI_PWMGEN_CHX_DUTY(v, ch)	(0x40 + (v)->register_step + (v)->ch_ste=
-p * (ch))
-#define AXI_PWMGEN_CHX_OFFSET(v, ch)	(0x40 + 2 * (v)->register_step + (v)->=
-ch_step * (ch))
-
-This saves a tiny bit of memory, not entirely sure this is a good idea.
-Pick it up if you like, or keep your approach, I don't care much.
-
-> +
->  static int axi_pwmgen_apply(struct pwm_chip *chip, struct pwm_device *pw=
-m,
->  			    const struct pwm_state *state)
->  {
->  	struct axi_pwmgen_ddata *ddata =3D pwmchip_get_drvdata(chip);
->  	unsigned int ch =3D pwm->hwpwm;
->  	struct regmap *regmap =3D ddata->regmap;
-> +	const struct axi_pwm_variant *variant =3D ddata->variant;
->  	u64 period_cnt, duty_cnt;
->  	int ret;
-> =20
-> @@ -70,7 +97,7 @@ static int axi_pwmgen_apply(struct pwm_chip *chip, stru=
-ct pwm_device *pwm,
->  		if (period_cnt =3D=3D 0)
->  			return -EINVAL;
-> =20
-> -		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_PERIOD(ch), period_cnt);
-> +		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_PERIOD(variant, ch), perio=
-d_cnt);
->  		if (ret)
->  			return ret;
-> =20
-> @@ -78,15 +105,15 @@ static int axi_pwmgen_apply(struct pwm_chip *chip, s=
-truct pwm_device *pwm,
->  		if (duty_cnt > UINT_MAX)
->  			duty_cnt =3D UINT_MAX;
-> =20
-> -		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_DUTY(ch), duty_cnt);
-> +		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_DUTY(variant, ch), duty_cn=
-t);
->  		if (ret)
->  			return ret;
->  	} else {
-> -		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_PERIOD(ch), 0);
-> +		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_PERIOD(variant, ch), 0);
->  		if (ret)
->  			return ret;
-> =20
-> -		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_DUTY(ch), 0);
-> +		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_DUTY(variant, ch), 0);
->  		if (ret)
->  			return ret;
->  	}
-> @@ -99,11 +126,12 @@ static int axi_pwmgen_get_state(struct pwm_chip *chi=
-p, struct pwm_device *pwm,
->  {
->  	struct axi_pwmgen_ddata *ddata =3D pwmchip_get_drvdata(chip);
->  	struct regmap *regmap =3D ddata->regmap;
-> +	const struct axi_pwm_variant *variant =3D ddata->variant;
->  	unsigned int ch =3D pwm->hwpwm;
->  	u32 cnt;
->  	int ret;
-> =20
-> -	ret =3D regmap_read(regmap, AXI_PWMGEN_CHX_PERIOD(ch), &cnt);
-> +	ret =3D regmap_read(regmap, AXI_PWMGEN_CHX_PERIOD(variant, ch), &cnt);
->  	if (ret)
->  		return ret;
-> =20
-> @@ -111,7 +139,7 @@ static int axi_pwmgen_get_state(struct pwm_chip *chip=
-, struct pwm_device *pwm,
-> =20
->  	state->period =3D DIV_ROUND_UP_ULL((u64)cnt * NSEC_PER_SEC, ddata->clk_=
-rate_hz);
-> =20
-> -	ret =3D regmap_read(regmap, AXI_PWMGEN_CHX_DUTY(ch), &cnt);
-> +	ret =3D regmap_read(regmap, AXI_PWMGEN_CHX_DUTY(variant, ch), &cnt);
->  	if (ret)
->  		return ret;
-> =20
-> @@ -127,7 +155,8 @@ static const struct pwm_ops axi_pwmgen_pwm_ops =3D {
->  	.get_state =3D axi_pwmgen_get_state,
->  };
-> =20
-> -static int axi_pwmgen_setup(struct regmap *regmap, struct device *dev)
-> +static int axi_pwmgen_setup(struct regmap *regmap, struct device *dev,=
-=20
-> +			    const struct axi_pwm_variant *variant)
->  {
->  	int ret;
->  	u32 val;
-> @@ -146,7 +175,7 @@ static int axi_pwmgen_setup(struct regmap *regmap, st=
-ruct device *dev)
->  	if (ret)
->  		return ret;
-> =20
-> -	if (ADI_AXI_PCORE_VER_MAJOR(val) !=3D 1) {
-> +	if (ADI_AXI_PCORE_VER_MAJOR(val) !=3D variant->major_version) {
->  		return dev_err_probe(dev, -ENODEV, "Unsupported peripheral version %u.=
-%u.%u\n",
-
-Hmm, is it worth to also diagnose a mismatch here? That is if the dt
-tells this was a version 2 device but the register says version 1? In
-this case
-
-	Unsupported peripheral version 1.x.y
-
-might be misleading, because version 1 is supported and the problem is
-maybe only a wrong dt?
-
->  			ADI_AXI_PCORE_VER_MAJOR(val),
->  			ADI_AXI_PCORE_VER_MINOR(val),
-> @@ -178,9 +207,14 @@ static int axi_pwmgen_probe(struct platform_device *=
-pdev)
->  	struct pwm_chip *chip;
->  	struct axi_pwmgen_ddata *ddata;
->  	struct clk *clk;
-> +	const struct axi_pwm_variant *variant;
->  	void __iomem *io_base;
->  	int ret;
-> =20
-> +	variant =3D device_get_match_data(dev);
-> +	if (!variant)
-> +		return -EINVAL;
-> +
->  	io_base =3D devm_platform_ioremap_resource(pdev, 0);
->  	if (IS_ERR(io_base))
->  		return PTR_ERR(io_base);
-> @@ -190,7 +224,7 @@ static int axi_pwmgen_probe(struct platform_device *p=
-dev)
->  		return dev_err_probe(dev, PTR_ERR(regmap),
->  				     "failed to init register map\n");
-> =20
-> -	ret =3D axi_pwmgen_setup(regmap, dev);
-> +	ret =3D axi_pwmgen_setup(regmap, dev, variant);
->  	if (ret < 0)
->  		return ret;
-> =20
-> @@ -199,6 +233,7 @@ static int axi_pwmgen_probe(struct platform_device *p=
-dev)
->  		return PTR_ERR(chip);
->  	ddata =3D pwmchip_get_drvdata(chip);
->  	ddata->regmap =3D regmap;
-> +	ddata->variant =3D variant;
-> =20
->  	clk =3D devm_clk_get_enabled(dev, NULL);
->  	if (IS_ERR(clk))
-> @@ -224,7 +259,8 @@ static int axi_pwmgen_probe(struct platform_device *p=
-dev)
->  }
-> =20
->  static const struct of_device_id axi_pwmgen_ids[] =3D {
-> -	{ .compatible =3D "adi,axi-pwmgen-1.00.a" },
-> +	{ .compatible =3D "adi,axi-pwmgen-1.00.a", .data =3D &pwmgen_1_00_varia=
-nt },
-> +	{ .compatible =3D "adi,axi-pwmgen-2.00.a", .data =3D &pwmgen_2_00_varia=
-nt },
->  	{ }
->  };
->  MODULE_DEVICE_TABLE(of, axi_pwmgen_ids);
-
-Otherwise looks fine.
-
-Can you please add the next iteration of this patch together with the
-series adding support for v1?
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---6obdirpcc2cza6oe
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmYbnF4ACgkQj4D7WH0S
-/k67zggAlhPUv5GAzjNqwsx7wvCjkqBLFv2HvSf0OHAr67/6XkEAmcBSLcIIOyjR
-wxqDsLpRXc/sUTejbz/YcW8uQDwdqSh6QDoaB9l9CFsras1uQuneIoEjX3x1R0oH
-sz/6S42rMwGd2hNYQQke8ngWSg7FP3K5kdc7ItARHrsTb6YLzr/J6hzPzy51vcuU
-xjF0ytB3oDcT//UOCXr/gRaeCXWYCjhZYYN2PWD3RjQIMzgPZW6Q1tPdeTv1myIO
-mgkXEaGgmO2BEb0fvcAIiaVWRhsFnemCvnu18bO/pwOKvHzQHq0eBc96XpxBGNIn
-MtJef4hUhD1WjGz2JtZ59XLahbWGvQ==
-=O0X/
------END PGP SIGNATURE-----
-
---6obdirpcc2cza6oe--
 
