@@ -1,48 +1,53 @@
-Return-Path: <devicetree+bounces-59154-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59155-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 202EC8A44C8
-	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 20:54:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35F068A44CC
+	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 20:55:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF40F2811F9
-	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 18:54:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 946F3B21F0A
+	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 18:55:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18E6959B69;
-	Sun, 14 Apr 2024 18:54:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BC8A134CE8;
+	Sun, 14 Apr 2024 18:55:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="k6n+Otjk"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="SAit9mm0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12CD82E3E0
-	for <devicetree@vger.kernel.org>; Sun, 14 Apr 2024 18:54:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B5F259B69
+	for <devicetree@vger.kernel.org>; Sun, 14 Apr 2024 18:55:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713120851; cv=none; b=oiOUoU0Rk7ISjIyw66mXz6eG787ivcLcGs6r2eOFN3uOn5iOHYXPMlfMisJ49la7+0e6mNYWqlPcDv0gzddqE40tQyaSK6zFxzRPuNXZCAg37osgAVqx4D/+i7DwTLL/PUjtOvBLpEtGGNzKdf3cGp7SqLnx5LObz3tJzU11m+g=
+	t=1713120942; cv=none; b=hcMjiAzFNyPFoymXSIeS2OCC8tUL+47UsDYhWqzyxdU/GeI3KYWbXZungjhqfuXhgLyqaABUR5l4P5vqGqoq9BTq63zKTMzGocHL8kOG2uSoM7UNLOli+DXFviLFRnR4Allku7xFo97nI8tNuVUmuD1LvzhyL+Y578s8ZlcdxBY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713120851; c=relaxed/simple;
-	bh=H42rfY9BXsoD/M4Qn+Bwcc4SFKN/9L44LjCJs4Rpf9Q=;
+	s=arc-20240116; t=1713120942; c=relaxed/simple;
+	bh=h08o5WswVR3W4zkPDDMbBD0eYmz1w0cjBrKgKtgUhA8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j/lr9ToMzaiM+PhHcnOu7inWALgt4UtTwG19I0Rq/DD2/p8wG5A+Iy8QKtK6Mi+8vLkUH88yg2rer3rkWCwV0VOxB1HVCREZvwSJgpEsPOEjr8Ul5CQyVpO9er7JMtdrz7K04rzSN24agkDMHQRIcNcMZNafId5URlJ4/8GAZXg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=k6n+Otjk; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1713120836;
- bh=o6KhYcJny4LUz13HWMoNmuFaXLpJ75r6XYs3Wyyjsn0=;
- b=k6n+OtjkbA7wlZ5stF4QXTbWppmX0pwXK219sGso8n2onXpdB3cQJbvSShQ5oyGG63TayHL1N
- tE9NSnWjtrQtnYhgc0i5v4jATmbjwcE8cSsPA2eVMpVggaZqsDrxFQyV/4aPQtovwi3LiEs4liy
- HQNUbG1x4bXk5wkvWOiz1TlftYUsun+jrfeCnHJkQmVMw53KC5+rx1y3D/OURJrzpBzTiiAUb4k
- rZR7AgHnSJS5IicjnZheu5BK12jW+Asuu3za5oxRFXfCg5gxuMznUEbgUK2znsbV/2bcejLB7YR
- kg9+J8Cy+/5wYZeIl4jhxmFp6N1z1QXTiZUgH1x9yXsQ==
-Message-ID: <ef4b9abc-6796-40bf-98f9-a12f007ed846@kwiboo.se>
-Date: Sun, 14 Apr 2024 20:53:50 +0200
+	 In-Reply-To:Content-Type; b=BD4ewbqpTnPbs5pFR02t/NUbyv5qbKVnlLmb4DIDdOs94HX5tfoGOLHNSKIaYplXlEWutpJkKpAmtt/YHL4RdOdyr9NRsrSrpOeKRrlzWGQjN3pOSI/fxa6UBwygVDJnPQZdIe6Y2lpVNQlk4/3KB0veyP5EHezXGjD8KK1KYXs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=SAit9mm0; arc=none smtp.client-ip=212.227.17.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1713120901; x=1713725701; i=wahrenst@gmx.net;
+	bh=h08o5WswVR3W4zkPDDMbBD0eYmz1w0cjBrKgKtgUhA8=;
+	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
+	 In-Reply-To;
+	b=SAit9mm0xR/7wNXKUwdACw70qM5X81bnjtlziNhZpsr18+wYJ9yNkJ0qnGnKAucJ
+	 TMDzmZ45ynnQ2ILutKxTP7GYuPudiVX4k6k4nVu/GzehzmBYnNYdBPxpFOF3Im1NK
+	 dPiQflEwiKDzQQ4ytpJJibcVKP67ttO34xd7+5q5iMY1ec0dLoTdEY9mmR7W1eSdO
+	 rLOlNt9SWzWbZTTSNOK7acpPQGT+0sW5HGVJR9cstQ/dIA91hOdScmuDAPT3TyfNT
+	 ZMX+oScB5IW9zWsEM3RQyeR75v4+AXVwdpBeZyU602RgdHCefLr0/h3N2Uoq4ERGC
+	 71ZylFHptFLRayH6dA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.167] ([37.4.248.43]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1Mplbx-1sWmHR3Vcb-00qDK0; Sun, 14
+ Apr 2024 20:55:00 +0200
+Message-ID: <74d2e385-6923-419b-a536-806b50c9d5e0@gmx.net>
+Date: Sun, 14 Apr 2024 20:54:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,104 +55,73 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] dt-bindings: display: rockchip,dw-hdmi: Fix
- sound-dai-cells warning
-To: Johan Jonker <jbx6244@yandex.com>
-Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Sandy Huang <hjc@rock-chips.com>, Andy Yan
- <andy.yan@rock-chips.com>, David Airlie <airlied@gmail.com>, Daniel Vetter
- <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann
- <tzimmermann@suse.de>, Mark Yao <markyao0591@gmail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
-References: <20240414151135.1774981-1-jonas@kwiboo.se>
- <20240414151135.1774981-4-jonas@kwiboo.se>
- <0facfa2a-bff7-4cf1-b43a-349bba2f2342@yandex.com>
+Subject: Re: [PATCH] ARM: dts: bcm2835: Enable 3D rendering through V3D
+To: Phil Elwell <phil@raspberrypi.com>
+Cc: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
+ Maxime Ripard <mripard@kernel.org>, Melissa Wen <mwen@igalia.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+ Scott Branden <sbranden@broadcom.com>,
+ Andre Przywara <andre.przywara@arm.com>,
+ Romain Perier <romain.perier@gmail.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ dri-devel@lists.freedesktop.org, bcm-kernel-feedback-list@broadcom.com,
+ devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, kernel-dev@igalia.com
+References: <20240412132559.2365947-1-mcanal@igalia.com>
+ <41694292-af1f-4760-a7b6-101ed5dd6f9d@gmx.net>
+ <CAMEGJJ2mkuBZjo+OAnkVCEi=73zMpXNUwzRqsAOckMhUeN_WJw@mail.gmail.com>
 Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <0facfa2a-bff7-4cf1-b43a-349bba2f2342@yandex.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-ForwardEmail-ID: 661c2644309b3fe15baf7834
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <CAMEGJJ2mkuBZjo+OAnkVCEi=73zMpXNUwzRqsAOckMhUeN_WJw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:yMtb4e0zQYUGQFzh32be+eqXmXdu4XVowazd/HbI9TOvzQsUqak
+ nUDjM+076pQv3n0ft7I3iql+uz6up47vXBPK93744jPVHo17vYMmeCB0pSAbHrStS3FRXNw
+ HHb4c9eWyr77yFMChyKk/dLZ1UVC2HZogbUd8hXDQVlhc7qUB6v6X/X5B8gKhVlhz9nKSik
+ LV4uCa/Jgsn975MkofB1w==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:dMEzIPPdk10=;wffGklYEl5LFT2PHtJKth5+dlRv
+ DSaRSrgaCv3OTnIWJTfK1zXI90wePXsQgc8HNwOLM8H/A6GU/kDONPDeGvMvOIsY2j+gk9VC1
+ vQfnD9AcfaL+pueYbz0OErJsYqh1kwwEEVuKo1CO424S0CvCjc2Ljlz65kZ9D8bzKUmjNBHeR
+ 8zAEumLXrPoxkUKUoWmvFl5K29Aa5EwhWBtHA62JOzkAclXzHxp3x2EKjChgfl8nOLAWa2nmH
+ VU0nR7qV4VB7+adNWlmqH+7SdnVviSEMFoky959oR1AfKIWlALRP+iVAqDB61ZExk55xc/hLB
+ brgClARVpxyUi4RiMMUjqR3bpiywegRTPArdkQW9G91H6oCdsPA/ZC/GLlxiXbzbgvTUOe+Nr
+ ZochcB64OVa9UEPL8dSSfThBuX5sufhstud29fQmSQv33eHv+m+Hs95UUiuUdFlwjFhiYqgaV
+ OTbcfDLz/bBUgR6lfEavT2vgCCr0gnoOgPH0xibTFHQmU3uv0X6NXNhSNE5ol7oFRakAqLweE
+ hF9i5UUuccKHZts2Ah3E39gtu2M2kBky+o5D48WpBpg1Fln4sd8ADaVVn/3CusqfkRnE67qop
+ jRggQ179O252KuhdCvhs/krvW3KfzcvTuxeAk7iPDLbKnrDCdJtE6ZsHDRf5jjGgeXyPesOMr
+ 7SQOhOA8r5jLinUClZsSWbYKF7hsLxprCHhMXUoZmkXf6D1Etz/VeZfVpjyDgF2Q6OdD/ctrq
+ 2d68t/KY++5x1eInk5xL8zZdrBvf44MhaB8769fRGGBVRC6JNLvBSuqGjrMHApwf5GbqoYony
+ on1bmMo+I4r0AZVjdk3/PaJedC1xjijDabuaxo7k1RZGQ=
 
-On 2024-04-14 20:41, Johan Jonker wrote:
-> On 4/14/24 17:11, Jonas Karlman wrote:
->> The rockchip,dw-hdmi node can be used as a sound dai codec, however,
->> dtbs_check may report the following issue:
+Hi Phil,
+
+Am 14.04.24 um 20:43 schrieb Phil Elwell:
+> Hello all,
+>
+> On Fri, 12 Apr 2024 at 18:17, Stefan Wahren <wahrenst@gmx.net> wrote:
+>> Hi Ma=C3=ADra,
 >>
->>   hdmi@fe0a0000: Unevaluated properties are not allowed ('#sound-dai-cells' was unexpected)
->>   from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-hdmi.yaml#
+>> [add Phil & Dave]
 >>
->> Add a reference to dai-common.yaml and add the #sound-dai-cells prop to
->> resolve this warning.
->>
->> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
->> ---
-> 
->> v2: New patch to fix #sound-dai-cells warning
-> 
-> Hi,
-> 
-> You are #4 that does an attempt on this subject.
-> Coincidence with my patches??
-> If other notifications could be fixed with the same amount of interest?
-> Please be welcome to pick some other random Rockchip related ones.
-
-Hehe, I should have looked deeper at what existing patches was out there.
-
-Will send a v3 without this patch and instead reference your patch.
-
-Regards,
-Jonas
-
-> 
-> Johan
-> 
-> ===
-> 
-> [PATCH v1 1/3] dt-bindings: display: add #sound-dai-cells property to rockchip dw hdmi
-> https://lore.kernel.org/linux-rockchip/3a035c16-75b5-471d-aa9d-e91c2bb9f8d0@gmail.com/
-> 
-> [PATCH] dt-bindings: display: rockchip: add missing #sound-dai-cells to dw-hdmi
-> https://lore.kernel.org/linux-rockchip/20240326172801.1163200-1-heiko@sntech.de/
-> 
-> [PATCH 6/6] dt-bindings: display: rockchip: dw-hdmi: Add missing sound-dai-cells property
-> https://lore.kernel.org/linux-rockchip/20231222-pinetab2-v1-6-e148a7f61bd1@mecka.net/
-> 
->> ---
->>  .../bindings/display/rockchip/rockchip,dw-hdmi.yaml           | 4 ++++
->>  1 file changed, 4 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
->> index af638b6c0d21..3285fff54416 100644
->> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
->> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
->> @@ -15,6 +15,7 @@ description: |
->>  
->>  allOf:
->>    - $ref: ../bridge/synopsys,dw-hdmi.yaml#
->> +  - $ref: /schemas/sound/dai-common.yaml#
->>  
->>  properties:
->>    compatible:
->> @@ -124,6 +125,9 @@ properties:
->>      description:
->>        phandle to the GRF to mux vopl/vopb.
->>  
->> +  "#sound-dai-cells":
->> +    const: 0
->> +
->>  required:
->>    - compatible
->>    - reg
-
+>> Am 12.04.24 um 15:25 schrieb Ma=C3=ADra Canal:
+>>> RPi 0-3 is packed with a GPU that provides 3D rendering capabilities t=
+o
+>>> the RPi. Currently, the downstream kernel uses an overlay to enable th=
+e
+>>> GPU and use GPU hardware acceleration. When deploying a mainline kerne=
+l
+>>> to the RPi 0-3, we end up without any GPU hardware acceleration
+>>> (essentially, we can't use the OpenGL driver).
+>>>
+>>> Therefore, enable the V3D core for the RPi 0-3 in the mainline kernel.
+>> thanks for trying to improve the combination Raspberry Pi OS + Mainline
+>> Kernel. I think i'm able to reproduce the issue with Raspberry Pi 3 B +
+>> on Buster.
+> Buster? We launched Buster with 4.19 and ended on 5.10. We've moved
+> onto Bookworm now. A lot has changed in that time...
+Sorry, i meant Bullseye but yes it's not up to date. Anyway i cannot see
+a problem with the devicetree.
 
