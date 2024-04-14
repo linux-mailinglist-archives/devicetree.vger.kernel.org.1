@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-59023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59024-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B879A8A409C
-	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 08:25:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F25D8A40A2
+	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 08:26:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A860281DF8
-	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 06:25:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F38B728206C
+	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 06:26:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D59A51CA82;
-	Sun, 14 Apr 2024 06:25:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F3911CAB0;
+	Sun, 14 Apr 2024 06:26:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Y9OpL61s"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WyelgGnF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFF37FC18
-	for <devicetree@vger.kernel.org>; Sun, 14 Apr 2024 06:25:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87D891C698
+	for <devicetree@vger.kernel.org>; Sun, 14 Apr 2024 06:26:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713075910; cv=none; b=aDyFcCzZxRG10sQq9BLw49ls9MGgJfXSZO4JcQ84hI1GcBcmO3sjNMKjbmiGXSMZBVlHEnbSOi6Q8nsWWIpOi0Hg64VtSUADOjjvgsKRRXmHV39R1vHh2UkAmPmCZlFAHiK8LFDJcOwoKxLWUHCf1nZ/euEdhLg+upkYLuija5U=
+	t=1713076004; cv=none; b=ftzQjih70gCecKRbdSoGdSWIyiPEjHTMw5BdpbZ1p0YQcUbc8LVjg4aDtIismH3kBDq/+vhgTdXG8XRDKs/8w4u7CY14+KkNjZy5qGqRyL1UzcnPB2MasJ92IrLfmp5PqPiDFB0TP301uLvuK97nM27JBIJ9DlEVGIV2QB4Fvzg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713075910; c=relaxed/simple;
-	bh=fgxHtb/5CHFFT/bsZ5y6bjmR0xlX39z2vR+5tdsWpak=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=F12IoZfK7DOo0YB3b7fSXfRWJnbC8mCH3FWi3Lj75opBzzgHt3PKn9PPkBEi/jxnouoGopr2BPtyK6gi5a3I+EjR5R/o3HpeeZBCKd06Qm+anb0Tch2zhEwcULIKLrRwmxIL1N1QS9Lbi9LXjUPzymttXLMLhL/1R7Pw0sYkVVw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Y9OpL61s; arc=none smtp.client-ip=209.85.218.41
+	s=arc-20240116; t=1713076004; c=relaxed/simple;
+	bh=smn24fMwp0ky4DqZfNJQZXfdoNYmUPOFboRBMiP+Dq8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FxIlf0OMxklSZLbl0Ft51aRAS9+fh4rzTzzROSOZ5SyFYLU1m+fNEom0t3lyZnNtA9hA14qAwqw2+pMRimOsrcXjx9B2wgChltBwHNU2t2N5FJbm7T24ahwAGaVoWgMkFfQJlnXBOZgh9+YOjPU3tCorSn4iQMvM52SwgWVoFNc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WyelgGnF; arc=none smtp.client-ip=209.85.208.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a52223e004dso235743966b.2
-        for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 23:25:07 -0700 (PDT)
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-56e1f3462caso2471338a12.3
+        for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 23:26:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713075906; x=1713680706; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1713076000; x=1713680800; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=u/LWT/+84euic85Ih6MoO5wP5ADqT6fgnDeoK7fefwY=;
-        b=Y9OpL61sBAN+DYeY11J7JwuBLwgqgH3MHWJBVoSY3QftlMfS5vErQEM0Wu3pzR6Pzo
-         juMB6RpJ3jggNd41x3qOIJ3Ftf1dZVMsHPBm7EbxtVvAdz33vq/ozyP+DlS3b/raWH4+
-         eSkO1K4DwyTTBnuhEqsrT6mE18KopgETfkVaGTPBrtYSFJKYw44E5irkdfN9JoG80YRD
-         K8gnthXn8a9Qf0ySGHQsSs54fHE79KSsz0Ni6BMXvqogPgXk3kdM+NEvOKPKov8cyAYf
-         Mef8bdkQZ/9CHQcqRnu1/NbhBWsJG9u+1SNM/ZzvXbFgDDPkuItbZlz39q9UAG0FHgKK
-         fMlQ==
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Fb4XT4BpF1keQD/cYuSzqTHELReynHN/QxYtqoQK4B4=;
+        b=WyelgGnFTf71E6+lYZOxiLqtpItMsA3uhmHMrj9a3kUuHbjAwQnhZddMarBFLsAQ/R
+         9uig3UdHtdVVb12dCvn9aUusQZ7W0ABjQRT7T4+/Q/saNpMSdvOJHj9Mr8OyJ+t16FAf
+         pSuYuaWG4ziJixkMRm1PnWclENVEeHU46b76FKYWH5VBH1epgk/AgC3DGfTgcy3EpRA8
+         JnKZYbZLZnDv/ZUMfGIAqAzAJVei0WUznB+X5BUsFn4sln+vCtQZkp0BUMKeVX68QPCf
+         RUZha4Q7ocbJvxSsDjCWiRS5NEPKmIGFqOP5m8jJqAdf58+qQJ+hJEmRPItNcOZbMXTx
+         Zmmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713075906; x=1713680706;
+        d=1e100.net; s=20230601; t=1713076000; x=1713680800;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=u/LWT/+84euic85Ih6MoO5wP5ADqT6fgnDeoK7fefwY=;
-        b=wBipgCJlp75kLORW6vXQFFvGkF1bF7867H6JaWPiZpm/FJYewee/j5UHrHO+s1Y9JR
-         4vPnms/el7La7Q7oi3mWcWMiDVoFLa5snLjCml4jSNVWLilrV2LT0ggZiCfKedT71PCh
-         HIRH+ufHrJMEJBB/xIcX44ldpzRWh+Yk+VU9QBKLmUizctQlAEgRZi2up8qMBaE0cwZ+
-         64IeTYkwdZ+wZgVzeOS7T3yo3H+UyFYUWDaCerPeB6HTFdzQdtymW87jKtwTBM+YsPUd
-         5XIoIB/pVJu1ypGS+wPM26ix6Q7652fJ2RUr+/GQu34FVaoDaCyHbMItvMQagg2ipT+s
-         w98g==
-X-Forwarded-Encrypted: i=1; AJvYcCXFltmAlTA7Kptwux7bIcKd/l6fbA5yjEQ8QcXaUcd4sDi01N4cI2AQcrFgQlTbDHUw2g0ZwIfjhqnRN/TZ+MTYiYQkBX3xugp6mQ==
-X-Gm-Message-State: AOJu0Yx7pag3hqZ62KoI4rVGkTA2EMR45qYbyOq74eAwzKbL+QzGEQQk
-	wU4TGJdA0Cv+x8hywCzgiuaZ2yXzQEEgJkoWaS0io1mxfrD/1xSasBbitfsWirY=
-X-Google-Smtp-Source: AGHT+IF2rO7bpFlt1tuC/ZxBAgzkzfXXnp+rcf4jvvRnSPP/wXVgHC17G1sOEk1odOTpWtBwPVJSyg==
-X-Received: by 2002:a17:906:71c7:b0:a52:3874:63bf with SMTP id i7-20020a17090671c700b00a52387463bfmr4079477ejk.59.1713075906113;
-        Sat, 13 Apr 2024 23:25:06 -0700 (PDT)
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Fb4XT4BpF1keQD/cYuSzqTHELReynHN/QxYtqoQK4B4=;
+        b=AcYZGkdJrH15UcAzDP4Jq6O/aE4JCEhLReajSm1XEi/HcnhVSQ2W+7UzswN4uzusH+
+         E7vG+rn9T6YptrjWhR+awQbPYxhAyymcZQhOgaDQVi5Oab8Pt09Aym8hcEo7aEm7L2fx
+         XNjwabxXwuAO3MRZEd77jvjyhk7NC70yM7hjtVf6JQkfTiaVZ+ZqcxGi9mtaT+5i+CPg
+         nYLL9QP01ACCwVwdTliEUUeqmfhXuH+sbyD5QqVGuPM5d0fFG/wZJb3kXcvGj3D7ZY8j
+         rNuxtcErbCl5AypijiCAqa93G4e3KXEF6A/XnftD3t47sT5KZ0g37QZ4OuDofbMJFCQQ
+         Y23w==
+X-Forwarded-Encrypted: i=1; AJvYcCWAMUVHeZDzMW26iwZxtJS+aLy2ffqcptaoHMhTjXSzJfKio7WqMRNM4mOIFxVpDdgZXPFf85XMkFRZAlnK/DY8oROmBCvki52WOg==
+X-Gm-Message-State: AOJu0YxEIhoIpwFim/vTCkZt7bIq2HDfcMToW8T500s/y+DZlRwDf6Lo
+	8b7js52CJRYzTAy2VOIgpdVDzIbaGDEIoXTEYTquti92R+B1ge30NDTqu5ysVik=
+X-Google-Smtp-Source: AGHT+IFj+22/+7UEp646asI5/i1SIA8IDxe7zCUsAbVg7XNefNbM7Zd0Alf6RdgkHgPJ+y0JOTx0AA==
+X-Received: by 2002:a17:907:724b:b0:a52:5795:226a with SMTP id ds11-20020a170907724b00b00a525795226amr1288123ejc.5.1713075999829;
+        Sat, 13 Apr 2024 23:26:39 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id x13-20020a170906b08d00b00a51d073da7esm3818081ejy.82.2024.04.13.23.25.04
+        by smtp.gmail.com with ESMTPSA id g4-20020a1709063b0400b00a51bbee7e55sm3807492ejf.53.2024.04.13.23.26.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 Apr 2024 23:25:05 -0700 (PDT)
-Message-ID: <0b006463-750a-40ad-8deb-4f1d43ecc102@linaro.org>
-Date: Sun, 14 Apr 2024 08:25:03 +0200
+        Sat, 13 Apr 2024 23:26:39 -0700 (PDT)
+Message-ID: <4a63aa94-e8b4-4282-9622-7c3a7eed1c99@linaro.org>
+Date: Sun, 14 Apr 2024 08:26:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,23 +77,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/6] mmc: sdhci-brcmstb: Add BCM2712 support
-To: Andrea della Porta <andrea.porta@suse.com>,
- Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 15/15] ARM: dts: bcm2711: add bcm2711-dma node
+To: Andrea della Porta <andrea.porta@suse.com>, Vinod Koul
+ <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
+ <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
  Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- Adrian Hunter <adrian.hunter@intel.com>, Kamal Dasu
- <kamal.dasu@broadcom.com>, Al Cooper <alcooperx@gmail.com>,
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, Jonathan Bell <jonathan@raspberrypi.com>,
- Phil Elwell <phil@raspberrypi.com>
-References: <cover.1713036964.git.andrea.porta@suse.com>
- <7a75876def65f6282b7b3ca17ef8008c305d6c32.1713036964.git.andrea.porta@suse.com>
+ <bcm-kernel-feedback-list@broadcom.com>, Saenz Julienne <nsaenz@kernel.org>,
+ dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, dave.stevenson@raspberrypi.com
+Cc: Stefan Wahren <stefan.wahren@i2se.com>
+References: <cover.1710226514.git.andrea.porta@suse.com>
+ <c1ef1ba7cd9153d607e6130277e560b139056fd9.1710226514.git.andrea.porta@suse.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -140,252 +138,45 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <7a75876def65f6282b7b3ca17ef8008c305d6c32.1713036964.git.andrea.porta@suse.com>
+In-Reply-To: <c1ef1ba7cd9153d607e6130277e560b139056fd9.1710226514.git.andrea.porta@suse.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/04/2024 00:14, Andrea della Porta wrote:
-> Broadcom BCM2712 SoC has an SDHCI card controller using the SDIO CFG
-> register block present on other STB chips. Add support for BCM2712
-> SD capabilities of this chipset.
-> The silicon is SD Express capable but this driver port does not currently
-> include that feature yet.
-> Based on downstream driver by raspberry foundation maintained kernel.
-
-DTS and parts of this code look like you just send to us downstream
-code. Upstreaming does not work like this. Please consult your folks in
-Suse to explain you more how upstreaming process looks like.
-
+On 12/03/2024 10:12, Andrea della Porta wrote:
+> BCM2711 has 4 DMA channels with a 40-bit address range, allowing them
+> to access the full 4GB of memory on a Pi 4. Adding a new node to make
+> use of the DMA channels capable of 40 bit addressing.
 > 
+> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
 > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
 > ---
->  drivers/mmc/host/sdhci-brcmstb.c | 130 +++++++++++++++++++++++++++++++
->  1 file changed, 130 insertions(+)
+>  arch/arm/boot/dts/broadcom/bcm2711.dtsi | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 > 
-> diff --git a/drivers/mmc/host/sdhci-brcmstb.c b/drivers/mmc/host/sdhci-brcmstb.c
-> index 9053526fa212..907a4947abe5 100644
-> --- a/drivers/mmc/host/sdhci-brcmstb.c
-> +++ b/drivers/mmc/host/sdhci-brcmstb.c
-> @@ -12,6 +12,8 @@
->  #include <linux/of.h>
->  #include <linux/bitops.h>
->  #include <linux/delay.h>
-> +#include <linux/pinctrl/consumer.h>
-> +#include <linux/regulator/consumer.h>
+> diff --git a/arch/arm/boot/dts/broadcom/bcm2711.dtsi b/arch/arm/boot/dts/broadcom/bcm2711.dtsi
+> index 22c7f1561344..d98e3cf0c569 100644
+> --- a/arch/arm/boot/dts/broadcom/bcm2711.dtsi
+> +++ b/arch/arm/boot/dts/broadcom/bcm2711.dtsi
+> @@ -552,6 +552,22 @@ scb {
+>  		ranges = <0x0 0x7c000000  0x0 0xfc000000  0x03800000>,
+>  			 <0x6 0x00000000  0x6 0x00000000  0x40000000>;
 >  
->  #include "sdhci-cqhci.h"
->  #include "sdhci-pltfm.h"
-> @@ -30,15 +32,31 @@
->  
->  #define SDHCI_ARASAN_CQE_BASE_ADDR		0x200
->  
-> +#define SDIO_CFG_CTRL				0x0
-> +#define  SDIO_CFG_CTRL_SDCD_N_TEST_EN		BIT(31)
-> +#define  SDIO_CFG_CTRL_SDCD_N_TEST_LEV		BIT(30)
-> +
-> +#define SDIO_CFG_SD_PIN_SEL			0x44
-> +#define  SDIO_CFG_SD_PIN_SEL_MASK		0x3
-> +#define  SDIO_CFG_SD_PIN_SEL_SD			BIT(1)
-> +#define  SDIO_CFG_SD_PIN_SEL_MMC		BIT(0)
-> +
-> +#define SDIO_CFG_MAX_50MHZ_MODE			0x1ac
-> +#define  SDIO_CFG_MAX_50MHZ_MODE_STRAP_OVERRIDE	BIT(31)
-> +#define  SDIO_CFG_MAX_50MHZ_MODE_ENABLE		BIT(0)
-> +
->  struct sdhci_brcmstb_priv {
->  	void __iomem *cfg_regs;
->  	unsigned int flags;
->  	struct clk *base_clk;
->  	u32 base_freq_hz;
-> +	struct pinctrl *pinctrl;
-> +	struct pinctrl_state *pins_default;
->  };
->  
->  struct brcmstb_match_priv {
->  	void (*hs400es)(struct mmc_host *mmc, struct mmc_ios *ios);
-> +	void (*cfginit)(struct sdhci_host *host);
->  	struct sdhci_ops *ops;
->  	const unsigned int flags;
->  };
-> @@ -124,6 +142,42 @@ static void sdhci_brcmstb_hs400es(struct mmc_host *mmc, struct mmc_ios *ios)
->  	writel(reg, host->ioaddr + SDHCI_VENDOR);
->  }
->  
-> +static void sdhci_bcm2712_set_clock(struct sdhci_host *host, unsigned int clock)
-> +{
-> +	u16 clk;
-> +	u32 reg;
-> +	bool is_emmc_rate = false;
-> +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> +	struct sdhci_brcmstb_priv *brcmstb_priv = sdhci_pltfm_priv(pltfm_host);
-> +
-> +	host->mmc->actual_clock = 0;
-> +
-> +	sdhci_writew(host, 0, SDHCI_CLOCK_CONTROL);
-> +
-> +	switch (host->mmc->ios.timing) {
-> +	case MMC_TIMING_MMC_HS400:
-> +	case MMC_TIMING_MMC_HS200:
-> +	case MMC_TIMING_MMC_DDR52:
-> +	case MMC_TIMING_MMC_HS:
-> +	is_emmc_rate = true;
-> +	break;
-> +	}
+> +		dma40: dma-controller@7e007b00 {
+> +			compatible = "brcm,bcm2711-dma";
+> +			reg = <0x0 0x7e007b00 0x400>;
+> +			interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>, /* dma4 11 */
+> +				     <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>, /* dma4 12 */
+> +				     <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>, /* dma4 13 */
+> +				     <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>; /* dma4 14 */
+> +			interrupt-names = "dma11",
+> +					  "dma12",
+> +					  "dma13",
+> +					  "dma14";
+> +			#dma-cells = <1>;
+> +			/* The VPU firmware uses DMA channel 11 for VCHIQ */
+> +			brcm,dma-channel-mask = <0x7000>;
 
-That's not indented correctly.
-
-> +
-> +	reg = readl(brcmstb_priv->cfg_regs + SDIO_CFG_SD_PIN_SEL);
-> +	reg &= ~SDIO_CFG_SD_PIN_SEL_MASK;
-> +	if (is_emmc_rate)
-> +		reg |= SDIO_CFG_SD_PIN_SEL_MMC;
-> +	else
-> +		reg |= SDIO_CFG_SD_PIN_SEL_SD;
-> +	writel(reg, brcmstb_priv->cfg_regs + SDIO_CFG_SD_PIN_SEL);
-> +
-> +	if (clock == 0)
-> +		return;
-> +
-> +	clk = sdhci_calc_clk(host, clock, &host->mmc->actual_clock);
-> +	sdhci_enable_clk(host, clk);
-> +}
-> +
->  static void sdhci_brcmstb_set_clock(struct sdhci_host *host, unsigned int clock)
->  {
->  	u16 clk;
-> @@ -139,6 +193,17 @@ static void sdhci_brcmstb_set_clock(struct sdhci_host *host, unsigned int clock)
->  	sdhci_enable_clk(host, clk);
->  }
->  
-> +static void sdhci_brcmstb_set_power(struct sdhci_host *host, unsigned char mode,
-> +				  unsigned short vdd)
-> +{
-> +	if (!IS_ERR(host->mmc->supply.vmmc)) {
-> +		struct mmc_host *mmc = host->mmc;
-> +
-> +		mmc_regulator_set_ocr(mmc, mmc->supply.vmmc, vdd);
-> +	}
-> +	sdhci_set_power_noreg(host, mode, vdd);
-> +}
-> +
->  static void sdhci_brcmstb_set_uhs_signaling(struct sdhci_host *host,
->  					    unsigned int timing)
->  {
-> @@ -168,6 +233,36 @@ static void sdhci_brcmstb_set_uhs_signaling(struct sdhci_host *host,
->  	sdhci_writew(host, ctrl_2, SDHCI_HOST_CONTROL2);
->  }
->  
-> +static void sdhci_brcmstb_cfginit_2712(struct sdhci_host *host)
-> +{
-> +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> +	struct sdhci_brcmstb_priv *brcmstb_priv = sdhci_pltfm_priv(pltfm_host);
-> +	u32 uhs_mask = (MMC_CAP_UHS_SDR50 | MMC_CAP_UHS_SDR104);
-> +	u32 hsemmc_mask = (MMC_CAP2_HS200_1_8V_SDR | MMC_CAP2_HS200_1_2V_SDR |
-> +			   MMC_CAP2_HS400_1_8V | MMC_CAP2_HS400_1_2V);
-> +	u32 reg;
-> +
-> +	/*
-> +	* If we support a speed that requires tuning,
-> +	* then select the delay line PHY as the clock source.
-> +	*/
-> +	if ((host->mmc->caps & uhs_mask) || (host->mmc->caps2 & hsemmc_mask)) {
-> +		reg = readl(brcmstb_priv->cfg_regs + SDIO_CFG_MAX_50MHZ_MODE);
-> +		reg &= ~SDIO_CFG_MAX_50MHZ_MODE_ENABLE;
-> +		reg |= SDIO_CFG_MAX_50MHZ_MODE_STRAP_OVERRIDE;
-> +		writel(reg, brcmstb_priv->cfg_regs + SDIO_CFG_MAX_50MHZ_MODE);
-> +	}
-> +
-> +	if ((host->mmc->caps & MMC_CAP_NONREMOVABLE) ||
-> +	    (host->mmc->caps & MMC_CAP_NEEDS_POLL)) {
-> +		/* Force presence */
-> +		reg = readl(brcmstb_priv->cfg_regs + SDIO_CFG_CTRL);
-> +		reg &= ~SDIO_CFG_CTRL_SDCD_N_TEST_LEV;
-> +		reg |= SDIO_CFG_CTRL_SDCD_N_TEST_EN;
-> +		writel(reg, brcmstb_priv->cfg_regs + SDIO_CFG_CTRL);
-> +	}
-> +}
-> +
->  static void sdhci_brcmstb_dumpregs(struct mmc_host *mmc)
->  {
->  	sdhci_dumpregs(mmc_priv(mmc));
-> @@ -200,6 +295,14 @@ static struct sdhci_ops sdhci_brcmstb_ops = {
->  	.set_uhs_signaling = sdhci_set_uhs_signaling,
->  };
->  
-> +static struct sdhci_ops sdhci_brcmstb_ops_2712 = {
-> +	.set_clock = sdhci_bcm2712_set_clock,
-> +	.set_power = sdhci_brcmstb_set_power,
-> +	.set_bus_width = sdhci_set_bus_width,
-> +	.reset = sdhci_reset,
-> +	.set_uhs_signaling = sdhci_set_uhs_signaling,
-> +};
-> +
->  static struct sdhci_ops sdhci_brcmstb_ops_7216 = {
->  	.set_clock = sdhci_brcmstb_set_clock,
->  	.set_bus_width = sdhci_set_bus_width,
-> @@ -237,7 +340,13 @@ static struct brcmstb_match_priv match_priv_74165b0 = {
->  	.ops = &sdhci_brcmstb_ops_74165b0,
->  };
->  
-> +static const struct brcmstb_match_priv match_priv_2712 = {
-> +	.cfginit = sdhci_brcmstb_cfginit_2712,
-> +	.ops = &sdhci_brcmstb_ops_2712,
-> +};
-> +
->  static const struct of_device_id __maybe_unused sdhci_brcm_of_match[] = {
-> +	{ .compatible = "brcm,bcm2712-sdhci", .data = &match_priv_2712 },
->  	{ .compatible = "brcm,bcm7425-sdhci", .data = &match_priv_7425 },
->  	{ .compatible = "brcm,bcm7445-sdhci", .data = &match_priv_7445 },
->  	{ .compatible = "brcm,bcm7216-sdhci", .data = &match_priv_7216 },
-> @@ -314,11 +423,16 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
->  	struct sdhci_brcmstb_priv *priv;
->  	u32 actual_clock_mhz;
->  	struct sdhci_host *host;
-> +	bool no_pinctrl = false;
->  	struct clk *clk;
->  	struct clk *base_clk = NULL;
->  	int res;
->  
->  	match = of_match_node(sdhci_brcm_of_match, pdev->dev.of_node);
-> +	if (!match) {
-
-Why? This is not explained. Please do not add random pieces of code,
-just because downstream code makes mistakes. This should go otherway -
-downstream should be fixed, not upstream get downstream mistakes.
-
-> +		dev_err(&pdev->dev, "fail to get matching of_match struct\n");
-> +		return -EINVAL;
-> +	}
->  	match_priv = match->data;
->  
->  	dev_dbg(&pdev->dev, "Probe found match for %s\n",  match->compatible);
-> @@ -354,6 +468,19 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
->  	if (res)
->  		goto err;
->  
-> +	priv->pinctrl = devm_pinctrl_get(&pdev->dev);
-> +	if (IS_ERR(priv->pinctrl)) {
-> +			no_pinctrl = true;
-> +	}
-> +	priv->pins_default = pinctrl_lookup_state(priv->pinctrl, "default");
-> +	if (IS_ERR(priv->pins_default)) {
-> +			dev_dbg(&pdev->dev, "No pinctrl default state\n");
-> +			no_pinctrl = true;
-> +	}
-> +
-> +	if (no_pinctrl )
-> +		priv->pinctrl = NULL;
-> +
->  	/*
->  	 * Automatic clock gating does not work for SD cards that may
->  	 * voltage switch so only enable it for non-removable devices.
-> @@ -370,6 +497,9 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
->  	    (host->mmc->caps2 & MMC_CAP2_HS400_ES))
->  		host->mmc_host_ops.hs400_enhanced_strobe = match_priv->hs400es;
->  
-> +	if(match_priv->cfginit)
-
-Not conforming to Linux coding style.
+Isn't one of your commits saying - this property is replaced?
 
 Best regards,
 Krzysztof
