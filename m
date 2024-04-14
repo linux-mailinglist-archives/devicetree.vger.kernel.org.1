@@ -1,52 +1,55 @@
-Return-Path: <devicetree+bounces-59168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17B4A8A4506
-	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 22:21:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9884A8A450C
+	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 22:22:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C27231F2117B
-	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 20:21:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C64B1F2123B
+	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 20:22:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 602F113540C;
-	Sun, 14 Apr 2024 20:21:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E30BD135A75;
+	Sun, 14 Apr 2024 20:22:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b="kosZY0qE"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="VGoWBVEb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.smtpout.orange.fr (smtp-13.smtpout.orange.fr [80.12.242.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70C68219FD;
-	Sun, 14 Apr 2024 20:21:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E97AE50A98;
+	Sun, 14 Apr 2024 20:22:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713126079; cv=none; b=Cox+5yPLI6tdNRoC6LkgZJ6ja8CStqwf4zMxY6lFa8h5Hk5YQJFZi9TMzV2m3i33ao3fOpscVJU1PStxrclaB1XGiUtph/t5puk4/IoH0X4wyJN7hg3C8lCoVfzlGGoJo5M94r9QXKQhue1jztRzQtK75+pOPnfg6LsfxFZTQos=
+	t=1713126159; cv=none; b=DEAqS2naB5/dTyf6mJbg+2xJlKG0Vpnafov3Ev3VRciJIse7/553SfTnQp+tiZsjOFjuBwHiwStbaSAoN4YhtTQF0equafI+1VGjr51qb79qomkwYzZFoxgvKpoZzVdM08///eYPiP4mS/cM2P/4ycfJ4JoWEy4PFG4rhIwqUuY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713126079; c=relaxed/simple;
-	bh=JzFLNuRjCMlM/caJA26X85O0PnN11wXSUA1cnb92poI=;
+	s=arc-20240116; t=1713126159; c=relaxed/simple;
+	bh=jS8aaEgrDy+LAshuOWNAXe/xU8eT+12PkVtGogZg7mo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZLhIiOESziCSmeFjGaj2V3q3YybySZqJOBF9G1FM9yes90bq6AoJl1RlTZpFs2aa26W98wTofqV/xAOc4ahOjGl/ZE3/EBfjmlEuHCAUV0f/+kU0SokyVyq3/XlWebKvtjlgmNuzoW3S0XvldzLQs5CfvSGODZObBwsqkT5gxR4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com; spf=pass smtp.mailfrom=arinc9.com; dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b=kosZY0qE; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arinc9.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 0D7B51C0004;
-	Sun, 14 Apr 2024 20:21:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
-	t=1713126074;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=0FIsDi6ng2aSJz7jUrD/WiOaFEVDZgz7xD82PmhjPSY=;
-	b=kosZY0qErWfQz/ChxhHR7JIVvn8JqUwL4iezepHXlGfiflkvfgiRcVPCfiQ1+xqYzKnQkk
-	lxTYT53NmS0DvFzdqSFOHPFru4gUG2lcOzgOsVzGX6Z/GQtgkHJiAdjaZn6LQMPTYUbdhK
-	9kqXoXWwk3zcCNKg2qG1pBwhsi6g73ebxBwysqmNcwXYw9HiYlPIcKGOp100usY1LC1UI3
-	TjO67g4ZWDY0ipZ2kknAuffcd5jVG3Zu4lQ3wtxiEYJODZU7dcgBsRzBsVLZxjH7XHriK0
-	Zi3z6Eqrd3d+cUDIrFWKaMWFcKmwKzZZz1j/SxnEgjbq7lrISXf/ssBJmfsLWQ==
-Message-ID: <335cdd4b-7309-4633-9b4f-6487c72c395c@arinc9.com>
-Date: Sun, 14 Apr 2024 23:21:02 +0300
+	 In-Reply-To:Content-Type; b=MkWZFNoV6rTidd00vlm5Ou4OurojBMeSL9DwFVaMORy438IDjGjd+SI/3w/DUtQysH6A2c7bO/1dyJixNNsv8kNXj+KY7Wd4FYNUIZebC/iScReDNw3FHItq71HRgJZF+idXKRSy+bseX7MdAsTcBvt0kFHi/mw5DR2+vNjNkWo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=VGoWBVEb; arc=none smtp.client-ip=80.12.242.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.18] ([86.243.17.157])
+	by smtp.orange.fr with ESMTPA
+	id w6MwrHBLldcyQw6MwrhVIY; Sun, 14 Apr 2024 22:22:34 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1713126154;
+	bh=KkvTV2uGL6FKiAI+4rZ2c43iMm1IAPg5puJ5Da/2gmA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=VGoWBVEbO8e8ObnKMMAiI23HFBK4+2cTBNwTBBv5Kpy7FfPiND7324CbPJ81PY2ih
+	 q2KU1txjPuXceK0t39bR64biSeI44UGoWoV30lcr786MM+3bZ2dlmBY4wasbn7omlq
+	 /WolJSFN90P2J2pueY0OG48fPgvLY5b4Sjfo/sRTk+gFk61kYFWUS62urj9Bc7DVGw
+	 SGLfX9M+VMF8LAre/8fxVVjB6eBrLJwno8kUrrvx9Rm9jb51iyPvtRMBOAHTBiWBVq
+	 4WrVnl21vt2XY/b4zxCS7NuYkGeMZnLDqQCZly4H4JHV8WJVBktSL6owB+iojK3Ryp
+	 PZyo6shu+hPVw==
+X-ME-Helo: [192.168.1.18]
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Sun, 14 Apr 2024 22:22:34 +0200
+X-ME-IP: 86.243.17.157
+Message-ID: <d0db78dd-c915-41f3-b1be-b30a0266741d@wanadoo.fr>
+Date: Sun, 14 Apr 2024 22:22:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,75 +57,61 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] ARM: dts: BCM5301X: Add DT for ASUS RT-AC3200
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>,
- Hauke Mehrtens <hauke@hauke-m.de>, Rafal Milecki <zajec5@gmail.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: Tom Brautaset <tbrautaset@gmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20240414-for-soc-asus-rt-ac3200-ac5300-v1-0-118c90bae6e5@arinc9.com>
- <20240414-for-soc-asus-rt-ac3200-ac5300-v1-3-118c90bae6e5@arinc9.com>
- <a88385a4-afad-4bd8-afc1-37e185e781f4@kernel.org>
- <85261d11-d6cb-4718-88d9-95a7efe5c0ab@arinc9.com>
- <e6cfe735-0a46-4c07-90ee-4ae25c921b03@kernel.org>
-Content-Language: en-US
-From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <e6cfe735-0a46-4c07-90ee-4ae25c921b03@kernel.org>
+Subject: Re: [PATCH 2/2] drm/panel: Add driver for EDO RM69380 OLED panel
+To: david@mainlining.org
+Cc: airlied@gmail.com, conor+dt@kernel.org, daniel@ffwll.ch,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ konradybcio@kernel.org, krzk+dt@kernel.org, linux-kernel@vger.kernel.org,
+ maarten.lankhorst@linux.intel.com, marijn.suijten@somainline.org,
+ mripard@kernel.org, neil.armstrong@linaro.org, quic_jesszhan@quicinc.com,
+ robh@kernel.org, sam@ravnborg.org, tzimmermann@suse.de,
+ ~postmarketos/upstreaming@lists.sr.ht
+References: <20240414-raydium-rm69380-driver-v1-0-5e86ba2490b5@mainlining.org>
+ <20240414-raydium-rm69380-driver-v1-2-5e86ba2490b5@mainlining.org>
+Content-Language: en-MW
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20240414-raydium-rm69380-driver-v1-2-5e86ba2490b5@mainlining.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: arinc.unal@arinc9.com
 
-On 14.04.2024 22:12, Krzysztof Kozlowski wrote:
-> On 14/04/2024 18:59, Arınç ÜNAL wrote:
->>>> +	};
->>>> +
->>>> +	memory@0 {
->>>> +		device_type = "memory";
->>>> +		reg = <0x00000000 0x08000000>,
->>>> +		      <0x88000000 0x08000000>;
->>>> +	};
->>>> +
->>>> +	nvram@1c080000 {
->>>> +		compatible = "brcm,nvram";
->>>> +		reg = <0x1c080000 0x00180000>;
->>>
->>> Why is this outside of soc? Both soc node and soc DTSI?
->>
->> I don't maintain the SoC device tree files so I don't know. The nvram node
->> doesn't exist on any of the device tree files included by this device tree.
+Le 14/04/2024 à 17:22, David Wronek a écrit :
+> Add support for the 2560x1600@90Hz OLED panel by EDO bundled with a
+> Raydium RM69380 controller, as found on the Lenovo Xiaoxin Pad Pro 2021.
 > 
-> There are two problems here:
-> 1. This looks like SoC component and such should not be in board DTS.
-> Regardless whether you maintain something or not, you should not add
-> incorrect code. Unless this is correct code, but then please share some
-> details.
-
-NVRAM is described as both flash device partition and memory mapped NVMEM.
-This platform stores NVRAM on flash but makes it also memory accessible.
-
-As device partitions are described in board DTS, the nvram node must also
-be defined there as its address and size will be different by board. It has
-been widely described on at least bcm4709 and bcm47094 SoC board DTS files
-here.
-
+> Signed-off-by: David Wronek <david-vu3DzTD92ROXwddmVfQv5g@public.gmane.org>
+> ---
+>   drivers/gpu/drm/panel/Kconfig                 |  14 +
+>   drivers/gpu/drm/panel/Makefile                |   1 +
+>   drivers/gpu/drm/panel/panel-raydium-rm69380.c | 378 ++++++++++++++++++++++++++
+>   3 files changed, 393 insertions(+)
 > 
-> 2. You cannot have MMIO node outside of soc. That's a W=1 warning.
+> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+> index 154f5bf82980..84cbd838f57e 100644
+> --- a/drivers/gpu/drm/panel/Kconfig
+> +++ b/drivers/gpu/drm/panel/Kconfig
+> @@ -542,6 +542,20 @@ config DRM_PANEL_RAYDIUM_RM692E5
+>   	  Say Y here if you want to enable support for Raydium RM692E5-based
+>   	  display panels, such as the one found in the Fairphone 5 smartphone.
+>   
+> +config DRM_PANEL_RAYDIUM_RM69380
+> +	tristate "Raydium RM69380-based DSI panel"
+> +	depends on BACKLIGHT_CLASS_DEVICE
+> +	depends on DRM_DISPLAY_DP_HELPER
+> +	depends on DRM_DISPLAY_HELPER
+> +	depends on DRM_MIPI_DSI
+> +	depends on OF
+> +	help
+> +	  Say Y here if you want to enable support for Raydium RM69380-based
+> +	  display panels.
+> +
+> +	  This panel controller can be found in the Lenovo Xiaoxin Pad Pro 2021
+> +	  in combiantion with an EDO OLED panel.
 
-I was not able to spot a warning related to this with the command below.
-The source code directory is checked out on a recent soc/soc.git for-next
-tree. Please let me know the correct command to do this.
+combination?
 
-$ make W=1 dtbs
-[...]
-   DTC     arch/arm/boot/dts/broadcom/bcm4709-asus-rt-ac3200.dtb
-arch/arm/boot/dts/broadcom/bcm5301x-nand-cs0.dtsi:10.18-19.5: Warning (avoid_unnecessary_addr_size): /nand-controller@18028000/nand@0: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
-   also defined at arch/arm/boot/dts/broadcom/bcm5301x-nand-cs0-bch8.dtsi:13.9-17.3
-   also defined at arch/arm/boot/dts/broadcom/bcm4709-asus-rt-ac3200.dts:137.9-160.3
-arch/arm/boot/dts/broadcom/bcm-ns.dtsi:24.28-47.4: Warning (unique_unit_address_if_enabled): /chipcommon-a-bus@18000000: duplicate unit-address (also used in node /axi@18000000)
-arch/arm/boot/dts/broadcom/bcm-ns.dtsi:323.22-328.4: Warning (unique_unit_address_if_enabled): /mdio@18003000: duplicate unit-address (also used in node /mdio-mux@18003000)
+> +
+>   config DRM_PANEL_RONBO_RB070D30
+>   	tristate "Ronbo Electronics RB070D30 panel"
+>   	depends on OF
 
-Arınç
 
