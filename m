@@ -1,132 +1,345 @@
-Return-Path: <devicetree+bounces-59043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59044-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9AFC8A415A
-	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 10:51:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E55C8A4165
+	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 11:06:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BEE391C20809
-	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 08:51:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B1AE01F21DD6
+	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 09:06:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A518D21360;
-	Sun, 14 Apr 2024 08:51:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78AB120B34;
+	Sun, 14 Apr 2024 09:05:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx01.omp.ru (mx01.omp.ru [90.154.21.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AFFD18AF4
-	for <devicetree@vger.kernel.org>; Sun, 14 Apr 2024 08:51:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=90.154.21.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0328B22638
+	for <devicetree@vger.kernel.org>; Sun, 14 Apr 2024 09:05:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713084712; cv=none; b=YXeIqOHHV9bMoAWTvRJt9DDNeaU1XMUGwJEnSczqkHzlEMg5Re6qzsg4KMyrYwjRwP5dIx3mBJp7WYIyScd6F+csWr30NAXZYCahIt142lMzYUNL+SOHB+/3rAkIIacTVc3fu+XcExXiP96Eftv1Gp2kNWKtW6I9JeYjeUAIdNQ=
+	t=1713085556; cv=none; b=L0E3Vpti0AiP3VFrQXzNkuwC5EjGOhXusncSBVlioeOKLhKhXL0xzGi/TWC7OHr9IOfTyJNTydMm2mz9q1/9q2GZh2Loi0G5MPGUKSA90oa7MKykZ/EBQzz4WSEe/PoP6FrkNSWg/xT9RtfdmDwj9vUA49KQ2/eBcXvFwgeHtmg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713084712; c=relaxed/simple;
-	bh=fM+9rkGGColibIgHhi58C8MxszQkZFt9Yfp4vJq+MVI=;
-	h=From:Subject:To:CC:Message-ID:Date:MIME-Version:Content-Type; b=jLQoNd76YeFGv2eQzZczoN7nVVGLJkgD2yIVJonPPPE3D4sIznIJgrq6Xjf54GW65f6waID4qdbhuz768MX1ehFryvM86Ac0ZJWYR9fXndu/EYyDtuKR+MSw7jj0ckGSO7wv0skaUTqY1hMKYEIJrXiI+DOqrTcv6SByVOIXWB4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=omp.ru; spf=pass smtp.mailfrom=omp.ru; arc=none smtp.client-ip=90.154.21.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=omp.ru
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=omp.ru
-Received: from [192.168.1.105] (31.173.81.154) by msexch01.omp.ru
- (10.188.4.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.1258.12; Sun, 14 Apr
- 2024 11:51:40 +0300
-From: Sergey Shtylyov <s.shtylyov@omp.ru>
-Subject: [PATCH RESEND] of: module: add buffer overflow check in of_modalias()
-To: <devicetree@vger.kernel.org>, Saravana Kannan <saravanak@google.com>, Rob
- Herring <robh@kernel.org>
-CC: Alexey Khoroshilov <khoroshilov@ispras.ru>
-Organization: Open Mobile Platform
-Message-ID: <bbfc6be0-c687-62b6-d015-5141b93f313e@omp.ru>
-Date: Sun, 14 Apr 2024 11:51:39 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+	s=arc-20240116; t=1713085556; c=relaxed/simple;
+	bh=eUQSUFsqzUC4ARHWh09c/+7xh9a4BPEUv4J3aTZ78E0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dCcD6wjAif1dIsXsoaHip6XkEh1eIDG+KJa6F1Q6kGeOqPFodBCUOWnjn3O/ZrhNc2+zddad53gFue4cRUgvy+W2QzFu9GJVT4H+bHroOdMlcy1TEl5CK9JWBaYXX4h/UdxYQdcf6tITQTUVq/AtKChabQnmTUM7jg0rbUdo6gc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rvvnt-0000E5-DD; Sun, 14 Apr 2024 11:05:37 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rvvnr-00CDYm-Sy; Sun, 14 Apr 2024 11:05:35 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rvvnr-0015XN-2b;
+	Sun, 14 Apr 2024 11:05:35 +0200
+Date: Sun, 14 Apr 2024 11:05:35 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Trevor Gamblin <tgamblin@baylibre.com>
+Cc: linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	michael.hennerich@analog.com, nuno.sa@analog.com, devicetree@vger.kernel.org, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	dlechner@baylibre.com
+Subject: Re: [PATCH 2/2] pwm: axi-pwmgen: support version 2.00.a
+Message-ID: <2by7rakflv22s6uk2e2jk5lw65erjljpwdxdxg3z73furlprj5@2qlacusapkgr>
+References: <20240314204722.1291993-1-tgamblin@baylibre.com>
+ <20240314204722.1291993-3-tgamblin@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: msexch01.omp.ru (10.188.4.12) To msexch01.omp.ru
- (10.188.4.12)
-X-KSE-ServerInfo: msexch01.omp.ru, 9
-X-KSE-AntiSpam-Interceptor-Info: scan successful
-X-KSE-AntiSpam-Version: 6.1.0, Database issued on: 04/14/2024 08:36:38
-X-KSE-AntiSpam-Status: KAS_STATUS_NOT_DETECTED
-X-KSE-AntiSpam-Method: none
-X-KSE-AntiSpam-Rate: 59
-X-KSE-AntiSpam-Info: Lua profiles 184697 [Apr 13 2024]
-X-KSE-AntiSpam-Info: Version: 6.1.0.4
-X-KSE-AntiSpam-Info: Envelope from: s.shtylyov@omp.ru
-X-KSE-AntiSpam-Info: LuaCore: 16 0.3.16
- 6e64c33514fcbd07e515710c86ba61de7f56194e
-X-KSE-AntiSpam-Info: {rep_avail}
-X-KSE-AntiSpam-Info: {Tracking_from_domain_doesnt_match_to}
-X-KSE-AntiSpam-Info: {relay has no DNS name}
-X-KSE-AntiSpam-Info: {SMTP from is not routable}
-X-KSE-AntiSpam-Info: {Found in DNSBL: 31.173.81.154 in (user)
- b.barracudacentral.org}
-X-KSE-AntiSpam-Info: {Found in DNSBL: 31.173.81.154 in (user)
- dbl.spamhaus.org}
-X-KSE-AntiSpam-Info:
-	omp.ru:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2
-X-KSE-AntiSpam-Info: ApMailHostAddress: 31.173.81.154
-X-KSE-AntiSpam-Info: {DNS response errors}
-X-KSE-AntiSpam-Info: Rate: 59
-X-KSE-AntiSpam-Info: Status: not_detected
-X-KSE-AntiSpam-Info: Method: none
-X-KSE-AntiSpam-Info: Auth:dmarc=temperror header.from=omp.ru;spf=temperror
- smtp.mailfrom=omp.ru;dkim=none
-X-KSE-Antiphishing-Info: Clean
-X-KSE-Antiphishing-ScanningType: Heuristic
-X-KSE-Antiphishing-Method: None
-X-KSE-Antiphishing-Bases: 04/14/2024 08:39:00
-X-KSE-Antivirus-Interceptor-Info: scan successful
-X-KSE-Antivirus-Info: Clean, bases: 4/14/2024 6:02:00 AM
-X-KSE-Attachment-Filter-Triggered-Rules: Clean
-X-KSE-Attachment-Filter-Triggered-Filters: Clean
-X-KSE-BulkMessagesFiltering-Scan-Result: InTheLimit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="6obdirpcc2cza6oe"
+Content-Disposition: inline
+In-Reply-To: <20240314204722.1291993-3-tgamblin@baylibre.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-In of_modalias(), if the buffer happens to be too small even for the 1st
-snprintf() call, the len parameter will become negative and str parameter
-(if not NULL initially) will point beyond the buffer's end. Add the buffer
-overflow check after the 1st snprintf() call and fix such check after the
-strlen() call (accounting for the terminating NUL char).
 
-Fixes: bc575064d688 ("of/device: use of_property_for_each_string to parse compatible strings")
-Signed-off-by: Sergey Shtylyov <s.shtylyov@omp.ru>
+--6obdirpcc2cza6oe
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
----
-The patch is against the dt/linus branch of Rob Herring's linux.git repo...
+Hello Trevor,
 
- drivers/of/module.c |    7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+On Thu, Mar 14, 2024 at 04:47:22PM -0400, Trevor Gamblin wrote:
+> This adds support for the AXI PWMGEN v2 IP block. This version is
+> nearly identical to v1 other than it supports up to 16 channels instead
+> of 4 and a few of the memory mapped registers have moved.
+>=20
+> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
+> ---
+>  drivers/pwm/pwm-axi-pwmgen.c | 62 ++++++++++++++++++++++++++++--------
+>  1 file changed, 49 insertions(+), 13 deletions(-)
+>=20
+> diff --git a/drivers/pwm/pwm-axi-pwmgen.c b/drivers/pwm/pwm-axi-pwmgen.c
+> index 0c8f7f893a21..539625c404ac 100644
+> --- a/drivers/pwm/pwm-axi-pwmgen.c
+> +++ b/drivers/pwm/pwm-axi-pwmgen.c
+> @@ -32,16 +32,25 @@
+>  #define AXI_PWMGEN_REG_CORE_MAGIC	0x0C
+>  #define AXI_PWMGEN_REG_CONFIG		0x10
+>  #define AXI_PWMGEN_REG_NPWM		0x14
+> -#define AXI_PWMGEN_CHX_PERIOD(ch)	(0x40 + (12 * (ch)))
+> -#define AXI_PWMGEN_CHX_DUTY(ch)		(0x44 + (12 * (ch)))
+> -#define AXI_PWMGEN_CHX_OFFSET(ch)	(0x48 + (12 * (ch)))
+> +#define AXI_PWMGEN_CHX_PERIOD(v, ch)	((v)->period_base + (v)->ch_step * =
+(ch))
+> +#define AXI_PWMGEN_CHX_DUTY(v, ch)	((v)->duty_base + (v)->ch_step * (ch))
+> +#define AXI_PWMGEN_CHX_OFFSET(v, ch)	((v)->offset_base + (v)->ch_step * =
+(ch))
+>  #define AXI_PWMGEN_REG_CORE_MAGIC_VAL	0x601A3471 /* Identification numbe=
+r to test during setup */
+>  #define AXI_PWMGEN_LOAD_CONFIG		BIT(1)
+>  #define AXI_PWMGEN_RESET		BIT(0)
+> =20
+> +struct axi_pwm_variant {
+> +	u8 period_base;
+> +	u8 duty_base;
+> +	u8 offset_base;
+> +	u8 major_version;
+> +	u8 ch_step;
+> +};
+> +
+>  struct axi_pwmgen_ddata {
+>  	struct regmap *regmap;
+>  	unsigned long clk_rate_hz;
+> +	const struct axi_pwm_variant *variant;
+>  };
+> =20
+>  static const struct regmap_config axi_pwmgen_regmap_config =3D {
+> @@ -50,12 +59,30 @@ static const struct regmap_config axi_pwmgen_regmap_c=
+onfig =3D {
+>  	.val_bits =3D 32,
+>  };
+> =20
+> +static const struct axi_pwm_variant pwmgen_1_00_variant =3D {
+> +	.period_base =3D 0x40,
+> +	.duty_base =3D 0x44,
+> +	.offset_base =3D 0x48,
+> +	.major_version =3D 1,
+> +	.ch_step =3D 12,
+> +};
+> +
+> +static const struct axi_pwm_variant pwmgen_2_00_variant =3D {
+> +	.period_base =3D 0x40,
+> +	.duty_base =3D 0x80,
+> +	.offset_base =3D 0xC0,
+> +	.major_version =3D 2,
+> +	.ch_step =3D 4,
+> +};
 
-Index: linux/drivers/of/module.c
-===================================================================
---- linux.orig/drivers/of/module.c
-+++ linux/drivers/of/module.c
-@@ -29,14 +29,15 @@ ssize_t of_modalias(const struct device_
- 	csize = snprintf(str, len, "of:N%pOFn%c%s", np, 'T',
- 			 of_node_get_device_type(np));
- 	tsize = csize;
-+	if (csize >= len)
-+		csize = len > 0 ? len - 1 : 0;
- 	len -= csize;
--	if (str)
--		str += csize;
-+	str += csize;
- 
- 	of_property_for_each_string(np, "compatible", p, compat) {
- 		csize = strlen(compat) + 1;
- 		tsize += csize;
--		if (csize > len)
-+		if (csize >= len)
- 			continue;
- 
- 		csize = snprintf(str, len, "C%s", compat);
+My first intuition to model the register differences would have been
+something like:
+
+	#define ..._PERIOD 0
+	#define ..._DUTY 1
+	#define ..._OFFSET 2
+
+and then store a "register_step"(?) variable (which is 0x4 for v1 and
+0x40 for v2) in the variant struct and then use:
+
+#define AXI_PWMGEN_CHX_PERIOD(v, ch)	(0x40 + (v)->ch_step * (ch))
+#define AXI_PWMGEN_CHX_DUTY(v, ch)	(0x40 + (v)->register_step + (v)->ch_ste=
+p * (ch))
+#define AXI_PWMGEN_CHX_OFFSET(v, ch)	(0x40 + 2 * (v)->register_step + (v)->=
+ch_step * (ch))
+
+This saves a tiny bit of memory, not entirely sure this is a good idea.
+Pick it up if you like, or keep your approach, I don't care much.
+
+> +
+>  static int axi_pwmgen_apply(struct pwm_chip *chip, struct pwm_device *pw=
+m,
+>  			    const struct pwm_state *state)
+>  {
+>  	struct axi_pwmgen_ddata *ddata =3D pwmchip_get_drvdata(chip);
+>  	unsigned int ch =3D pwm->hwpwm;
+>  	struct regmap *regmap =3D ddata->regmap;
+> +	const struct axi_pwm_variant *variant =3D ddata->variant;
+>  	u64 period_cnt, duty_cnt;
+>  	int ret;
+> =20
+> @@ -70,7 +97,7 @@ static int axi_pwmgen_apply(struct pwm_chip *chip, stru=
+ct pwm_device *pwm,
+>  		if (period_cnt =3D=3D 0)
+>  			return -EINVAL;
+> =20
+> -		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_PERIOD(ch), period_cnt);
+> +		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_PERIOD(variant, ch), perio=
+d_cnt);
+>  		if (ret)
+>  			return ret;
+> =20
+> @@ -78,15 +105,15 @@ static int axi_pwmgen_apply(struct pwm_chip *chip, s=
+truct pwm_device *pwm,
+>  		if (duty_cnt > UINT_MAX)
+>  			duty_cnt =3D UINT_MAX;
+> =20
+> -		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_DUTY(ch), duty_cnt);
+> +		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_DUTY(variant, ch), duty_cn=
+t);
+>  		if (ret)
+>  			return ret;
+>  	} else {
+> -		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_PERIOD(ch), 0);
+> +		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_PERIOD(variant, ch), 0);
+>  		if (ret)
+>  			return ret;
+> =20
+> -		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_DUTY(ch), 0);
+> +		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_DUTY(variant, ch), 0);
+>  		if (ret)
+>  			return ret;
+>  	}
+> @@ -99,11 +126,12 @@ static int axi_pwmgen_get_state(struct pwm_chip *chi=
+p, struct pwm_device *pwm,
+>  {
+>  	struct axi_pwmgen_ddata *ddata =3D pwmchip_get_drvdata(chip);
+>  	struct regmap *regmap =3D ddata->regmap;
+> +	const struct axi_pwm_variant *variant =3D ddata->variant;
+>  	unsigned int ch =3D pwm->hwpwm;
+>  	u32 cnt;
+>  	int ret;
+> =20
+> -	ret =3D regmap_read(regmap, AXI_PWMGEN_CHX_PERIOD(ch), &cnt);
+> +	ret =3D regmap_read(regmap, AXI_PWMGEN_CHX_PERIOD(variant, ch), &cnt);
+>  	if (ret)
+>  		return ret;
+> =20
+> @@ -111,7 +139,7 @@ static int axi_pwmgen_get_state(struct pwm_chip *chip=
+, struct pwm_device *pwm,
+> =20
+>  	state->period =3D DIV_ROUND_UP_ULL((u64)cnt * NSEC_PER_SEC, ddata->clk_=
+rate_hz);
+> =20
+> -	ret =3D regmap_read(regmap, AXI_PWMGEN_CHX_DUTY(ch), &cnt);
+> +	ret =3D regmap_read(regmap, AXI_PWMGEN_CHX_DUTY(variant, ch), &cnt);
+>  	if (ret)
+>  		return ret;
+> =20
+> @@ -127,7 +155,8 @@ static const struct pwm_ops axi_pwmgen_pwm_ops =3D {
+>  	.get_state =3D axi_pwmgen_get_state,
+>  };
+> =20
+> -static int axi_pwmgen_setup(struct regmap *regmap, struct device *dev)
+> +static int axi_pwmgen_setup(struct regmap *regmap, struct device *dev,=
+=20
+> +			    const struct axi_pwm_variant *variant)
+>  {
+>  	int ret;
+>  	u32 val;
+> @@ -146,7 +175,7 @@ static int axi_pwmgen_setup(struct regmap *regmap, st=
+ruct device *dev)
+>  	if (ret)
+>  		return ret;
+> =20
+> -	if (ADI_AXI_PCORE_VER_MAJOR(val) !=3D 1) {
+> +	if (ADI_AXI_PCORE_VER_MAJOR(val) !=3D variant->major_version) {
+>  		return dev_err_probe(dev, -ENODEV, "Unsupported peripheral version %u.=
+%u.%u\n",
+
+Hmm, is it worth to also diagnose a mismatch here? That is if the dt
+tells this was a version 2 device but the register says version 1? In
+this case
+
+	Unsupported peripheral version 1.x.y
+
+might be misleading, because version 1 is supported and the problem is
+maybe only a wrong dt?
+
+>  			ADI_AXI_PCORE_VER_MAJOR(val),
+>  			ADI_AXI_PCORE_VER_MINOR(val),
+> @@ -178,9 +207,14 @@ static int axi_pwmgen_probe(struct platform_device *=
+pdev)
+>  	struct pwm_chip *chip;
+>  	struct axi_pwmgen_ddata *ddata;
+>  	struct clk *clk;
+> +	const struct axi_pwm_variant *variant;
+>  	void __iomem *io_base;
+>  	int ret;
+> =20
+> +	variant =3D device_get_match_data(dev);
+> +	if (!variant)
+> +		return -EINVAL;
+> +
+>  	io_base =3D devm_platform_ioremap_resource(pdev, 0);
+>  	if (IS_ERR(io_base))
+>  		return PTR_ERR(io_base);
+> @@ -190,7 +224,7 @@ static int axi_pwmgen_probe(struct platform_device *p=
+dev)
+>  		return dev_err_probe(dev, PTR_ERR(regmap),
+>  				     "failed to init register map\n");
+> =20
+> -	ret =3D axi_pwmgen_setup(regmap, dev);
+> +	ret =3D axi_pwmgen_setup(regmap, dev, variant);
+>  	if (ret < 0)
+>  		return ret;
+> =20
+> @@ -199,6 +233,7 @@ static int axi_pwmgen_probe(struct platform_device *p=
+dev)
+>  		return PTR_ERR(chip);
+>  	ddata =3D pwmchip_get_drvdata(chip);
+>  	ddata->regmap =3D regmap;
+> +	ddata->variant =3D variant;
+> =20
+>  	clk =3D devm_clk_get_enabled(dev, NULL);
+>  	if (IS_ERR(clk))
+> @@ -224,7 +259,8 @@ static int axi_pwmgen_probe(struct platform_device *p=
+dev)
+>  }
+> =20
+>  static const struct of_device_id axi_pwmgen_ids[] =3D {
+> -	{ .compatible =3D "adi,axi-pwmgen-1.00.a" },
+> +	{ .compatible =3D "adi,axi-pwmgen-1.00.a", .data =3D &pwmgen_1_00_varia=
+nt },
+> +	{ .compatible =3D "adi,axi-pwmgen-2.00.a", .data =3D &pwmgen_2_00_varia=
+nt },
+>  	{ }
+>  };
+>  MODULE_DEVICE_TABLE(of, axi_pwmgen_ids);
+
+Otherwise looks fine.
+
+Can you please add the next iteration of this patch together with the
+series adding support for v1?
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--6obdirpcc2cza6oe
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmYbnF4ACgkQj4D7WH0S
+/k67zggAlhPUv5GAzjNqwsx7wvCjkqBLFv2HvSf0OHAr67/6XkEAmcBSLcIIOyjR
+wxqDsLpRXc/sUTejbz/YcW8uQDwdqSh6QDoaB9l9CFsras1uQuneIoEjX3x1R0oH
+sz/6S42rMwGd2hNYQQke8ngWSg7FP3K5kdc7ItARHrsTb6YLzr/J6hzPzy51vcuU
+xjF0ytB3oDcT//UOCXr/gRaeCXWYCjhZYYN2PWD3RjQIMzgPZW6Q1tPdeTv1myIO
+mgkXEaGgmO2BEb0fvcAIiaVWRhsFnemCvnu18bO/pwOKvHzQHq0eBc96XpxBGNIn
+MtJef4hUhD1WjGz2JtZ59XLahbWGvQ==
+=O0X/
+-----END PGP SIGNATURE-----
+
+--6obdirpcc2cza6oe--
 
