@@ -1,840 +1,245 @@
-Return-Path: <devicetree+bounces-59074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59075-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E6898A4263
-	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 14:59:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 801778A426A
+	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 15:02:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 234B71C210CB
-	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 12:59:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C7052819EA
+	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 13:02:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CF5A3E476;
-	Sun, 14 Apr 2024 12:58:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1CB92E657;
+	Sun, 14 Apr 2024 13:02:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="KnoLZPR0"
+	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="hcOD/iib"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2132.outbound.protection.outlook.com [40.107.249.132])
+Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2104.outbound.protection.outlook.com [40.107.249.104])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B60D535B6;
-	Sun, 14 Apr 2024 12:58:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.249.132
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E91DE1CD06;
+	Sun, 14 Apr 2024 13:02:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.249.104
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713099531; cv=fail; b=ltHhL3webCYAL8cfrGWzvkNH63SJvt4MixVZGqMcFpX6fDbxu9X6Z81kp2TEW8cnQwIRyqstebdTxG13+xbAkj2uDVzsmMPYwuMVEvDzhm8gDzht5R1lA7/JrslSRnLCkOzpZRugWBHsbp/WvZyuo1XEBUSpZrpJ4CMPaj4phuc=
+	t=1713099737; cv=fail; b=N2MKjUL7WTVluLExrbTbPaQxUADA80uY6ALsgNp/Md1zumnJJJhdWbtD+Nxvhn8srWQ4NxlJes58DD0nROZMch4/zN6redaVBxbXawamh3Q8pDi8lSia9WxrWfoctvx6Q37NrLlUFn+x7l1v90/pOiWFsHDEj6+qzj4i9Hg9WD0=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713099531; c=relaxed/simple;
-	bh=+BJP095vXhyQ6i925LDaaKBhLcqzOnwuzr4NW5wb+mU=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=JC05OlmwV+LSz8O4n+WmqoLGewe2IrVfBI/RPfPmeBHnuADTIN1gehHMrs+rIDV4Q5Mz8fQj+e+lzE6IeP4ARmV8gYo5U+XuYeQlQk3hgYU5tWfusip8J6eTooGcagwOM2zi/i/+feE0nrzRVrrN1pyp840j3m5oN5a13d4557g=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com; spf=pass smtp.mailfrom=solid-run.com; dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b=KnoLZPR0; arc=fail smtp.client-ip=40.107.249.132
+	s=arc-20240116; t=1713099737; c=relaxed/simple;
+	bh=u7sgTfvcdwkV8pEcfwnFnpEpOQ2qXZm+yECZsEn7/5g=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=VVV+DbIPaCqS8QOdUeJ6RlzRU2ilkk2uPJoQKRQdvM44Q+XB4zebbBX0ikT2fAzXW4TVegce4wQ7v5MUaasrlLwGPrdvie1ch3IOVZzwr+F8MM7TxyXWDTcRpbqXlTNJePri/dFZ/PVy4/pc7bE9BYfjbwvmbV35eaqhvYhCqLw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com; spf=pass smtp.mailfrom=solid-run.com; dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b=hcOD/iib; arc=fail smtp.client-ip=40.107.249.104
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=solid-run.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NOaFMNMHNqxALnP7aRGDQmKbROeSa/lBmLlhpgANig5vUAWJ+BqTzyI/+uQThEkDY6pBO+TWQjEuRkGIROofLDvwHZ8hYNanG7dh/DWe6sb/UxD7ZGWPB9ERMbFCYR0WySUZHqfl88etk6gQmoUJaMc7EVQLN2hvEhIjrTG6sz9h/WvqKAiBSZVCK9YXZVEhQZhvv6vGQFO/AP9X73RKFtUIggGIo6TaErReJiXtEQn92Zm2LhPuJ2LQLtm5ZWGIZoGl3/h4R9p3m5GCFNQYdMebgTl/jujMK52c9QgGJv54DZ70O0Q+mvdNnf7g90BYKCjPYpO5sXKMFHJ2bnTmQQ==
+ b=D89JbT2D992xMi21L0kd6AktKsX6gbokPWuoiZt/rv2grzIQJdXgMlA9/PSU6QK3SpEhohX7ia52iL5thqZynk+QC8b70HGN0CmuSzA4woa3y7WAHmyOHEjb5uqaXv26WnurOxbbuWdLJ7271TEARVJ5lyCvbHtSfr0IH9CCG/Brq5mdWsyOTNFUIaqClwuEDDSaU7GUH4rLX95Uzc6YQgYe0q2bwzn5ERMofO7wGsDXUrZy4RCPq8HJSh2DhxsAqsST8VJEf50zbCCtRw7gDk8nf7fpWR1xGjAr0My3iLOyT1XUa7ajvFv0cpP+i5D7lgjQC8w9/tn2sdocCCZ6Wg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kiVIvpFPy/3xeNoorbnFw3apwKw/mJ+WH9lzR/t45PM=;
- b=RuNQVUkUTOv8v2Qjvhe+7ZjxXRVWKQq4ykz4h3E7YtYst8K3HfjDiVrwdCe76hu0k+UipLjo1tKAq6fmhFWhhDqXno2s4RFfAVgMH7IAm/8iIbEDL/vCDoxl3qwm/8pwuonCE4fLFz6fOyd4t0hSR8O2GP8PLEnd0CReabXpemPTConthi6URQDsb2iUC3SGzF19voyiuLoQ2KgTHzlLVtfS1zAlqWIm4OJxITgtnQgFF2EepnWOs+VFNTXCUpRzKdKGu2js561npMlVBSjyTpda1RGC39P4J86mkQDiY6hps4hwIYtlo1Jef3XlxYIuobZn3rNpXcfQqjDGMtCWMg==
+ bh=u7sgTfvcdwkV8pEcfwnFnpEpOQ2qXZm+yECZsEn7/5g=;
+ b=MEcPRXmaSZWnapiXrrAp8JY0qGzaAwrmAAlfdGm+aE27bTMLHMLEhY9i6cv3o6SFhQfGoHNmMd+GlJVaFzyiCBdKK0YAjtWtZ47jrw5c5IE/dOO4RJRQ4K4iPY5D1Znt3/6Ii2bscIoTAVbCamnvj1KlPg4XBWi9l8+Qpru8BW7kEVajb4F/GqTmebkD7cYdOXm8vfcamh9a6xdhHi1kwXXE/gK9rprMzRCgvIN/p+gU8g/VDYATfl0b/hFxQxgIeAzo9+0pozGoGEFq8BSo9BGe0fj/GJU6L3v4JC2Km8/SicJAJh/hH3ZlOfzKHnK8ADlttKnTmk5VfeuSZqYyVg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=solid-run.com; dmarc=pass action=none
  header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kiVIvpFPy/3xeNoorbnFw3apwKw/mJ+WH9lzR/t45PM=;
- b=KnoLZPR0OQIydfSSu+cmmYFk/2VUFbZMez3/mW4rUrQH4TGGBptWxGXoeNFNuTCGcmfywJ/OPMT0Jx0hwaVsqFgl2PBV4cujSEmnIa8ibWMJN0GaquiaXByY6bMobIJ5btRRGnfSr7TYdwowJOD2pnvWnv32U9i+Dq9odA1INhI=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=solid-run.com;
+ bh=u7sgTfvcdwkV8pEcfwnFnpEpOQ2qXZm+yECZsEn7/5g=;
+ b=hcOD/iibvmMxSzR+Ss7UT4Wse/6hbLYX5qF5aQH9vmbyufIRwnDHShtyaUna2qpTIp2hN+Db4vJSB1G5s3hhLuaKSaCjXMa/P/1dKeHneHVQszf+OeNXKnUvgvOqGhRUxmHNkOr21wVfUKqhMUddELtLupDhy7E/QFMnZYR6Vfw=
 Received: from AM9PR04MB7586.eurprd04.prod.outlook.com (2603:10a6:20b:2d5::17)
  by DU2PR04MB8645.eurprd04.prod.outlook.com (2603:10a6:10:2dc::21) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.50; Sun, 14 Apr
- 2024 12:58:39 +0000
+ 2024 13:02:13 +0000
 Received: from AM9PR04MB7586.eurprd04.prod.outlook.com
  ([fe80::c04e:8a97:516c:5529]) by AM9PR04MB7586.eurprd04.prod.outlook.com
  ([fe80::c04e:8a97:516c:5529%7]) with mapi id 15.20.7452.046; Sun, 14 Apr 2024
- 12:58:39 +0000
+ 13:02:13 +0000
 From: Josua Mayer <josua@solid-run.com>
-Date: Sun, 14 Apr 2024 14:58:35 +0200
-Subject: [PATCH v3 4/4] arm64: dts: add description for solidrun cn9131
- solidwan board
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240414-cn9130-som-v3-4-350a67d44e0a@solid-run.com>
+To: Andrew Lunn <andrew@lunn.ch>, Gregory Clement
+	<gregory.clement@bootlin.com>, Sebastian Hesselbarth
+	<sebastian.hesselbarth@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Rob Herring <robh@kernel.org>
+CC: Yazan Shhady <yazan.shhady@solid-run.com>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 3/4] arm64: dts: add description for solidrun cn9130
+ som and clearfog boards
+Thread-Topic: [PATCH v3 3/4] arm64: dts: add description for solidrun cn9130
+ som and clearfog boards
+Thread-Index: AQHajmt3TcSJzZq3kU6YWvE1xzrj+rFnuxiA
+Date: Sun, 14 Apr 2024 13:02:13 +0000
+Message-ID: <8d0cd34c-ca04-45db-a95b-3bf5e3800958@solid-run.com>
 References: <20240414-cn9130-som-v3-0-350a67d44e0a@solid-run.com>
-In-Reply-To: <20240414-cn9130-som-v3-0-350a67d44e0a@solid-run.com>
-To: Andrew Lunn <andrew@lunn.ch>, 
- Gregory Clement <gregory.clement@bootlin.com>, 
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: Yazan Shhady <yazan.shhady@solid-run.com>, 
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Josua Mayer <josua@solid-run.com>
-X-Mailer: b4 0.12.4
-X-ClientProxiedBy: FR5P281CA0005.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:f2::18) To AM9PR04MB7586.eurprd04.prod.outlook.com
- (2603:10a6:20b:2d5::17)
+ <20240414-cn9130-som-v3-3-350a67d44e0a@solid-run.com>
+In-Reply-To: <20240414-cn9130-som-v3-3-350a67d44e0a@solid-run.com>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=solid-run.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM9PR04MB7586:EE_|DU2PR04MB8645:EE_
+x-ms-office365-filtering-correlation-id: e8e0a132-cba3-41ad-db12-08dc5c831a84
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ pr45nigsoZpFXtRt7KTVJ73Hb8pJZswJzWTP5aYIM+qf6t+4Fdi/OGE6CQZQzvvvmrD5/Ah3Xab1nCAkOzvUPRkpaainNwNbAiy6YMifaePwtrH6wfVUX+p90kY6sa7o8uhgobvNJqbDuvySlpQK56lI7/+m1WbtvECQC2DDvtJZEFHyd3uHbqJp//u8zr1FK3PifmMxiBBWAhdPiuP/chbtTgDnbdFrE36NMfUkB/seoociehkX/KGa4zVsnXmUiXd7F5uVbWnSy8xdcvkDEjLMoUD+QNCi7V0dM/75wqRaezcagJMu+2bu4+0mDXX5++5DXrboz0sCC0/CxlxASupsngLXuIx/yr6dSRuAVIK5X1cRmVMM3CDYs1ZA0oJOxZf/p8zHfMBB0PGqNWl4C+xrKNvbnXnK/3ZKPP7r9zPG2/ZBTkPgVZo8DYOEumAe6+t2BpwC9MPba+ygIELVUlNSSPEjLfMTwkMw8qU0mfyp+GPKPhsn4acs3P4aV1uAs39DMDEONdXFlXz71vnXNeKGThFduARkgq4LCpil0ZYrJJiaFqgK/PtfR7MV9ydj+RyivyB+ICMor1sxRfSSf7PSk1q+3avMcLXk3TQ7rMI+gy53CzJyu3mZRmKzRbyhdqHpGBFhK52PFlv8DZvWp3b69m7E8jowe7z2lG+K/HFLoTHyF2UkDasV55UW/oYhRvgJKCVopsWCDf8tpMYbjNYAQJcOUk8mvJMpeJJhZVI=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB7586.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(7416005)(376005)(366007)(38070700009);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?cXl3cmpDUkJjM04xS0tyTXhvcXd2ZG1KS01oZS84aldnbHpRZTBCTG1wM0tM?=
+ =?utf-8?B?dk0vU1oycXVDRXhMaEZjdE8xSFJuOVhaYTZkeTA0UEgzRFlLU1RobzJEKzRq?=
+ =?utf-8?B?WkJsKzhXVTlob05SY0xZaDJnV2F5ZjJjVmVZUU50eTl1V05keFlKb21yQTlY?=
+ =?utf-8?B?d1g5b3JURTdCUmJkWkpyOEtHMGd3T2ltaUJ6VkZRK0cyTkExSWlNd2xNUmU5?=
+ =?utf-8?B?VU9XQTNOS0tkZldxNVJqK2xOTUR6akhDbEltbGI1eThxME5zOU0rYXFqWlI3?=
+ =?utf-8?B?L0pINkpOY1Z5NkVZL2FQd1d1b2I3bGcreVdjdnRGSzBsTDdKU3gxb2Jkd2xu?=
+ =?utf-8?B?UnpDMGI5NG5UMVFQNzNsNndlR0QveWF1Mm04QjA1ZkhlK1U2dDN4V01VUTNY?=
+ =?utf-8?B?WlNSWElKb2tkQ2pPeFVySEFvMkJBQ21yYXY3QWdFeGF4cVMyN2JFR0dLbmhI?=
+ =?utf-8?B?bkxhcUN2cXlFSjBvVVEvdUJPUnVUZlpWNTFYeG5pY3FUU1JoNG54S2pLczly?=
+ =?utf-8?B?U2xXWWVRdFI4aWptczlzZVk4eFo1ekcyNTVSRWlSQWhqWWRiallaVmN6M2dE?=
+ =?utf-8?B?a080NHZ6ZExnTW16THFOUFRrdjZaVHExQ1FsTkhlZHNFMW1uRGI5YVVTVkRh?=
+ =?utf-8?B?K2gzMVlIOVU5QVBXSWdEcHpncnhvSWc5amxleHBhMWkyWFBXeEE2WUtpeVB3?=
+ =?utf-8?B?TEVIVDdSNFRjdTZwQ3V5THlHVVBza3BGNFZYYVlpakJmOU55czdJZTJtdGdU?=
+ =?utf-8?B?UmU1SEo5N25VSENDZnkyblVNNGpkY2pHL3BITzFIMnN6bTdyTGM5R2hrc2kw?=
+ =?utf-8?B?bUtBb1ZUNzBkT0ppbWtZWUxVdTBJa0NtNUpoaVJPNWtmWUUzejlhclFRRVNt?=
+ =?utf-8?B?YzFWZjhzRG8vNDVEd1VSdVorYllyM3ptMGpPNzlQSWhjVzYraDR6MzMzMVFG?=
+ =?utf-8?B?NHFYdHZhOWNiRVh4S1ZjcEdCQnFYTXZ3TWRUM2FZOXFjdHR1VDFRRzNmMGVP?=
+ =?utf-8?B?NDNzbWlTOFNuSGI2aTZnUDB4YlViYmlsaGMxOXJHWlVTNEFrQkgweG41cHIy?=
+ =?utf-8?B?MXJRNDdXcFBxV2NLckZFOXZtblp2bFNoQkcrYUg1WjYzS0lwd2xISjY5cC81?=
+ =?utf-8?B?Ulk2QlNSbm1GZkI2dkxMTEd4MHh4bFZHbG4wYUVNOFFQTkxGN0NYK0ZKckJN?=
+ =?utf-8?B?ZVlPczEyVGdlUVhOa0NTYVlveUxYVjAvTWRUcXNWQ0N4SVVEcHdaeGhJZXox?=
+ =?utf-8?B?RW5tUlc5a0NScVlHVm84dy9HM29tRHY4YXhvTkFKRXNlbXptaVgyTjA1bDZQ?=
+ =?utf-8?B?alI0ZHVMQUdld0NEa1NQaWViMHBFZjBMS0VMdDdYdzhETTk3UWNMcjhFUzB3?=
+ =?utf-8?B?eTdJdTJUQTUrQ2ptWTVyUE1BbUF2WUFTVG15NCtONnZObmVNZDZLSzV3NFh5?=
+ =?utf-8?B?cEl6SmY3NGNPSy9nYnh3YjV3cGg1RnhsZW9mOWFYWHhHZVpSZUdiVUFiNkNm?=
+ =?utf-8?B?bmZnSks4V016WG5KSjgxcWlzRnZySU5EZGc2VDMvc3UvOXlwaVptOUdMMlFh?=
+ =?utf-8?B?Um1iK2lJUVV2U1BLdmwwUnpBNWtESU5yZUZZMnBUQjVMQSs2Y3dWNVBEYjRI?=
+ =?utf-8?B?c0hWWElzSGFGdTQ2cDlpVWE3VkkxeWwwakxoaTFCQkk5aWFPN1hQZ09iaWVS?=
+ =?utf-8?B?R1ZJTHV5aVR3QWRxdWdROERlV0ZNWmxhTG1EQzJjaHhKa0llUkJnVStrdWhO?=
+ =?utf-8?B?NitpWm5UZlNGT0J1TlV2SXE0Z1NQdVlrb3VtaTdNYlVac1QrRWdxb3JQaHdH?=
+ =?utf-8?B?M0YwUnlWdmdBcFlBOXNBUzljS0kzWkQ5RWRHUjdMaVozRDBlWXFxVFJTM1ZD?=
+ =?utf-8?B?dnc3d0lSTEhrcDBiU0k1YXZwK1loMEVWcHZuWFNlOUNOSjZZRWdjeko4cjNx?=
+ =?utf-8?B?M0ZUaVFsdG9TUVBFSzBsYzdZdXhGdCtZaDB0OWxTWHNubnR0eVlJRWduSjRP?=
+ =?utf-8?B?RmpEYko1TE5YTlEycTdHbisvb29OVzg0NkJ1NmRoMEMzU3BaOXljQUJpT01V?=
+ =?utf-8?B?ek9zVnFHS2tSVUsyajBYbG52azh6akFQSVpXdFhtT1cxeE0wQVhNdTdtb1Uv?=
+ =?utf-8?Q?XnXA=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <9F222DCFE0340B419505F83F72940A7A@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM9PR04MB7586:EE_|DU2PR04MB8645:EE_
-X-MS-Office365-Filtering-Correlation-Id: 118fa570-3330-4b86-3481-08dc5c829aa8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	LflJbiVjE6ePK0q5SoNpVNJgRUvfgIQLxoUs+gWRt3sJhouFG5TRx+5vLPR7PzD4c46iSEBjLDtZTYzt+YkmnyBEZAlneNVyl3qh3hBCbhU7I23QBfj0YVD+JEJZGmsBt85qVU7A60YEy7HRyqB4XCM+13t8XT1Ga2XbIN47eP28vOW4OFCtNZXVB9dOVJM0iTQFLejnWWnP/TFp48h3cN8DYXRDwVvmrnsCQ1uAJG3zlRbUyK1+KefpbspfvSQaNjXMaTgmAFITg544/wgmuCY2gHMpWeEJ/aDthqJ++KRhDBTZg0qSaE0qAh4FAnJbW7vmFLAF9TsBph9mUhfP/x12Q0R7e7T70kTiwieCCVN9NHuEJ3qks8QO3vQf3oYUQ0m2iQi2sonimuen5B15n3qCd8UfIeQMEIaoPlJoLhdEGRnuGPWcOq3XaurmtffSwRfK9MkankwhmZx5W9BDB0BLSiD1J53rK8jRZ57PfDWHkexiPz9d9E4z/g6eeHZI1uBK/Z6yIgOVnL2BqWFGv0rVpKgXBySsPmlgLsibC9j2RygjEJIQ5EJ1v/cYFz62QdjzhoHvTaSeT2yCZWUhecE4JbPjp17UZd17vi7ObiR+TKF1ZiVmhLeTTK/lwGFr2zAhLGGdatPhekFAiqH9XuAv/47hsrFDk4pCEb5X2DF4l2x4iBu6ppshUwbThiFVhkncSjpfWqgnNdblpMk40xD9DXEufZkiJWqf71PYNko=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB7586.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(52116005)(7416005)(376005)(366007)(38350700005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?NDRKWW9JcnFJSjlLU1NLNUw5MEVaeFdMeXVsSy9oam9vZURPdHBVbmhPTWJh?=
- =?utf-8?B?T01kWVB3NVh5UVN2SlFtU2lhUWFuUEJvMk02eThrcW9rQlJYU2ZrRnBoWG1W?=
- =?utf-8?B?VEhSMlNxdTRWQityY0poY0MxV09HK01BRUV4bUx2cjJ6UXdaK3d1V0s0a1Jv?=
- =?utf-8?B?eWtyRzVoOWVDTUxWWTM3UVpxbGRScFVVWER0aFlvZi9rZFVRUDZWSDZ0Y0hI?=
- =?utf-8?B?QjRLTFlWWWRGS1g0WjJPdFBtRXFONCtGS1FSUitJMkIvK3B0T2RxenlieTdG?=
- =?utf-8?B?ZlhjMEh6eE1zNHMvZGVycXQxb0VLbnVtaENRaG1FV0pOckg3dE1uS0NGVXlR?=
- =?utf-8?B?dm5sekhCOWFoYVpiTHc5clRIV1plNklTek13ZEowUktjQWRuQ3prMk5wQnZZ?=
- =?utf-8?B?eFNBRW9hZThIb3lVNEZJMnhiNGtBNFRnWmozWU5qWTZoMFI0ekNSVm1PWUNO?=
- =?utf-8?B?bjJjV2RJNXFmNmJpRHgrcTlkNitNUjc3WTBUMGhML1BtZk90aXVXaWhrS2lo?=
- =?utf-8?B?UTY4bDBkRFNZQm5QeTQyUkJyQ1ozL1VsV0NtN0kyVWRqSXlkc21nTkVuTnNV?=
- =?utf-8?B?eDA1Z1FwRC9rU0FxQmpHOHdGcE5DWkVXblRXQjBrWnhHTGJHV0pyRTA4T0NC?=
- =?utf-8?B?enltd2NwM0VIVm9lL1NEWTRiNy9JSWJ4bmNCWlRxM21wclI0ekc2VXh0Y210?=
- =?utf-8?B?UHc5SEhvaldiTC9wSUtTWlA0RTNZRS9UZkE3dW1WNm5mRFFvaXNNWnE5cVFZ?=
- =?utf-8?B?MWVQbGxpZlkvNUlpa25VNHpoSjRoQUZEV25oMWZtRFFWTW5kVDBXZ2ROY2Vk?=
- =?utf-8?B?T3llSHl1MUViUEFYM1BadVZmR1dQWm5seHIwTHMxZE8zWm1OQ3h4azFReTYr?=
- =?utf-8?B?Tmc2c3laZFFuTGc5Qy8xVGhrWktxT2dxOVNlRFB3TlJqVk5rdVJhNUVDWU9W?=
- =?utf-8?B?cll3dnl1WnFlaVlaZWppTDRkWTBxd1dGUldQd2hsdXpHNHRkYUZXcTh2TWhG?=
- =?utf-8?B?TzB4dFNFTVFrSGZFZTY2cHlIc3NlMml2cGYyR2dLRzlhckhrUWE4dDZZY2xz?=
- =?utf-8?B?aURwQ1M2ZkJKZjdFV3lTTjhEdVBXWnZDTERUZmlMMHdSNWtyU0RhaThPbm4w?=
- =?utf-8?B?aE9GZmI1Z2FnTCtGZnNWVytwU2Q5ZDBybTJJK1kza1ZvUnpBRGtYMGlkMW1B?=
- =?utf-8?B?Umx1TU00eXYzQUFUQWpZQ0cwVGhKTnQ1ODIrcWlIK2pEcU80ZEUwai9Ud1ln?=
- =?utf-8?B?RmJTUXdJelpiaitKMXZzR3MyYkhPMVhudjBEQ2tLRzlrbUNvVkpiMWdXcEJF?=
- =?utf-8?B?MWovYTB3dXVrdlNneFpNbWtGSW9tVXlGcWtRQ3ZKbTVHNzY1dGpuc3MvVTNa?=
- =?utf-8?B?Z1RLOUIva0dGeUxvZm1Dand3VjJzU1FXQ2N5WTYrcWhIcVVIcjBnOVE4TUZv?=
- =?utf-8?B?SU1PSG5nNGY0UmVENmlMeDFkZ0J5VzFVTFlHMldMN0RJTkQ0KzhUVmltdHRW?=
- =?utf-8?B?MkkvU2ZxQU9ySndWSlRVdFlsR2ltRytLT0QrWmVaOHFJSEtHb2djMkZpRy9k?=
- =?utf-8?B?OVRsVGd5bEV0dVIwdFBqT2Rkc2w3ODZwQTJDZjJsLzNZMmdTU1J4cEZPb0lB?=
- =?utf-8?B?TXUxWldLWWRhdlY1dmJEMWR0NXZCRW93Q0VlSk82VzNCa0JiczBIc29lK1NL?=
- =?utf-8?B?Q1M0N0UvZTVvOUdXOTZFWVF2UFFEcEFaV0U3OFloME9mWEhBZ1N4ZUZneVNT?=
- =?utf-8?B?Z3gvMmVZd3JvK1YxYzJvaDhseE43Ti93QWRKZElDd2oyTkZkREZPby95ckVS?=
- =?utf-8?B?SW5LWmY0cHQxVitscnBFZWQ2akNnVUx5bHNnYW50N1ZUWU1kVElqWjZTK3F2?=
- =?utf-8?B?SHk4ekRCdExKZk11T0xTaVdaS2FWZDZWT1VFYy9XY25ERDlsZTB5eURKZWUz?=
- =?utf-8?B?TDk5SDdIWE9CcjUyQytaajVXWFluVGtGVXJ0TS93L1BTWUtXZGNnazVXaHd5?=
- =?utf-8?B?YzQrUFNzNHd5L09CQzFpSFdLUkNVaWVYbEY3K21JR0dEUWdyYTNwVkNPQ0Jq?=
- =?utf-8?B?OSt5dmI1YzRUaDBFT0N6a3hXTlQzT21zNTFNYnhBWk5uOHF2bHZzOTUySmxj?=
- =?utf-8?Q?GLoHKnnoifZaAtgSQB0+SUSJm?=
 X-OriginatorOrg: solid-run.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 118fa570-3330-4b86-3481-08dc5c829aa8
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB7586.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Apr 2024 12:58:39.0716
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB7586.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e8e0a132-cba3-41ad-db12-08dc5c831a84
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Apr 2024 13:02:13.4934
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8jnI7G9VqvceaQLRwsBonv/lHanf69vFquWdah0yf28W2TP3JFWN0i9I7lnJ3+B8ZUkkB72DetKD6tfflQQUDg==
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: HVVptNgkI5irZLIJvfubXeRRLJ30IWadVYHnZQV5nP4eMs1LBd/NzjN4L4gvfA3Ps95CZtS/E0E8LCiBw2KDsw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8645
 
-Add description for the SolidRun CN9131 SolidWAN, based on CN9130 SoM
-with an extra communication  processor on the carrier board.
-
-This board differentiates itself from CN9130 Clearfog by providing
-additional SoC native network interfaces and pci buses:
-2x 10Gbps SFP+
-4x 1Gbps RJ45
-1x miniPCI-E
-1x m.2 b-key with sata, usb-2.0 and usb-3.0
-1x m.2 m-key with pcie and usb-2.0
-1x m.2 b-key with pcie, usb-2.0, usb-3.0 and 2x sim slots
-1x mpcie with pcie only
-2x type-a usb-2.0/3.0
-
-Signed-off-by: Josua Mayer <josua@solid-run.com>
----
- arch/arm64/boot/dts/marvell/Makefile               |   1 +
- arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts | 653 +++++++++++++++++++++
- 2 files changed, 654 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
-index 019f2251d696..16f9d7156d9f 100644
---- a/arch/arm64/boot/dts/marvell/Makefile
-+++ b/arch/arm64/boot/dts/marvell/Makefile
-@@ -30,3 +30,4 @@ dtb-$(CONFIG_ARCH_MVEBU) += ac5x-rd-carrier-cn9131.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += ac5-98dx35xx-rd.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += cn9130-cf-base.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += cn9130-cf-pro.dtb
-+dtb-$(CONFIG_ARCH_MVEBU) += cn9131-cf-solidwan.dtb
-diff --git a/arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts b/arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts
-new file mode 100644
-index 000000000000..ba7dd55abfb4
---- /dev/null
-+++ b/arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts
-@@ -0,0 +1,653 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Copyright (C) 2024 Josua Mayer <josua@solid-run.com>
-+ *
-+ * DTS for SolidRun CN9130 Clearfog Base.
-+ *
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+
-+#include "cn9130.dtsi"
-+#include "cn9130-sr-som.dtsi"
-+
-+/*
-+ * Instantiate the external CP115
-+ */
-+
-+#define CP11X_NAME		cp1
-+#define CP11X_BASE		f4000000
-+#define CP11X_PCIEx_MEM_BASE(iface) (0xe2000000 + (iface * 0x1000000))
-+#define CP11X_PCIEx_MEM_SIZE(iface) 0xf00000
-+#define CP11X_PCIE0_BASE	f4600000
-+#define CP11X_PCIE1_BASE	f4620000
-+#define CP11X_PCIE2_BASE	f4640000
-+
-+#include "armada-cp115.dtsi"
-+
-+#undef CP11X_NAME
-+#undef CP11X_BASE
-+#undef CP11X_PCIEx_MEM_BASE
-+#undef CP11X_PCIEx_MEM_SIZE
-+#undef CP11X_PCIE0_BASE
-+#undef CP11X_PCIE1_BASE
-+#undef CP11X_PCIE2_BASE
-+
-+/ {
-+	model = "SolidRun CN9131 SolidWAN";
-+	compatible = "solidrun,cn9131-solidwan",
-+		     "solidrun,cn9130-sr-som", "marvell,cn9130";
-+
-+	aliases {
-+		ethernet0 = &cp1_eth1;
-+		ethernet1 = &cp1_eth2;
-+		ethernet2 = &cp0_eth1;
-+		ethernet3 = &cp0_eth2;
-+		ethernet4 = &cp0_eth0;
-+		ethernet5 = &cp1_eth0;
-+		gpio0 = &ap_gpio;
-+		gpio1 = &cp0_gpio1;
-+		gpio2 = &cp0_gpio2;
-+		gpio3 = &cp1_gpio1;
-+		gpio4 = &cp1_gpio2;
-+		gpio5 = &expander0;
-+		i2c0 = &cp0_i2c0;
-+		i2c1 = &cp0_i2c1;
-+		i2c2 = &cp1_i2c1;
-+		mmc0 = &ap_sdhci0;
-+		mmc1 = &cp0_sdhci0;
-+		rtc0 = &cp0_rtc;
-+		rtc1 = &carrier_rtc;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&cp0_led_pins &cp1_led_pins>;
-+
-+		/* for sfp-1 (J42) */
-+		led-sfp1-activity {
-+			label = "sfp1";
-+			gpios = <&cp0_gpio1 7 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_GREEN>;
-+		};
-+
-+		/* for sfp-1 (J42) */
-+		led-sfp1-link {
-+			label = "sfp1";
-+			gpios = <&cp0_gpio1 4 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_YELLOW>;
-+		};
-+
-+		/* (J28) */
-+		led-sfp0-activity {
-+			label = "sfp0";
-+			gpios = <&cp1_gpio2 22 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_GREEN>;
-+		};
-+
-+		/* (J28) */
-+		led-sfp0-link {
-+			label = "sfp0";
-+			gpios = <&cp1_gpio2 23 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_YELLOW>;
-+		};
-+	};
-+
-+	/* Type-A port on J53 */
-+	reg_usb_a_vbus0: regulator-usb-a-vbus0 {
-+		compatible = "regulator-fixed";
-+		pinctrl-0 = <&cp0_reg_usb_a_vbus0_pins>;
-+		pinctrl-names = "default";
-+		regulator-name = "vbus0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-oc-protection-microamp = <1000000>;
-+		gpio = <&cp0_gpio1 27 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-always-on;
-+	};
-+
-+	reg_usb_a_vbus1: regulator-usb-a-vbus1 {
-+		compatible = "regulator-fixed";
-+		pinctrl-0 = <&cp0_reg_usb_a_vbus1_pins>;
-+		pinctrl-names = "default";
-+		regulator-name = "vbus1";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-oc-protection-microamp = <1000000>;
-+		gpio = <&cp0_gpio1 28 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-always-on;
-+	};
-+
-+	sfp0: sfp-0 {
-+		compatible = "sff,sfp";
-+		pinctrl-0 = <&cp0_sfp0_pins>;
-+		pinctrl-names = "default";
-+		i2c-bus = <&cp0_i2c1>;
-+		los-gpio = <&cp0_gpio2 2 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpio = <&cp0_gpio2 0 GPIO_ACTIVE_LOW>;
-+		tx-disable-gpio = <&cp0_gpio2 1 GPIO_ACTIVE_HIGH>;
-+		tx-fault-gpio = <&cp0_gpio1 31 GPIO_ACTIVE_HIGH>;
-+		maximum-power-milliwatt = <2000>;
-+	};
-+
-+	sfp1: sfp-1 {
-+		compatible = "sff,sfp";
-+		pinctrl-0 = <&cp1_sfp1_pins>;
-+		pinctrl-names = "default";
-+		i2c-bus = <&cp1_i2c1>;
-+		los-gpio = <&cp1_gpio2 2 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpio = <&cp1_gpio2 18 GPIO_ACTIVE_LOW>;
-+		tx-disable-gpio = <&cp1_gpio2 1 GPIO_ACTIVE_HIGH>;
-+		tx-fault-gpio = <&cp1_gpio2 17 GPIO_ACTIVE_HIGH>;
-+		maximum-power-milliwatt = <2000>;
-+	};
-+};
-+
-+&cp0_ethernet {
-+	status = "okay";
-+};
-+
-+/* SRDS #2 - SFP+ 10GE */
-+&cp0_eth0 {
-+	managed = "in-band-status";
-+	phy-mode = "10gbase-r";
-+	phys = <&cp0_comphy2 0>;
-+	sfp = <&sfp0>;
-+	status = "okay";
-+};
-+
-+/* SRDS #3 - SGMII 1GE */
-+&cp0_eth1 {
-+	managed = "in-band-status";
-+	phy-mode = "sgmii";
-+	/* Without mdio phy access rely on sgmii auto-negotiation. */
-+	phys = <&cp0_comphy3 1>;
-+	status = "okay";
-+};
-+
-+/* SRDS #1 - SGMII */
-+&cp0_eth2 {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	managed = "in-band-status";
-+	phy-mode = "sgmii";
-+	phy = <&cp0_phy1>;
-+	phys = <&cp0_comphy1 2>;
-+};
-+
-+&cp0_gpio1 {
-+	pcie0-0-w-disable-hog {
-+		gpio-hog;
-+		gpios = <6 GPIO_ACTIVE_LOW>;
-+		output-low;
-+		line-name = "pcie0.0-w-disable";
-+	};
-+
-+	/* J34 */
-+	m2-full-card-power-off-hog {
-+		gpio-hog;
-+		gpios = <8 GPIO_ACTIVE_LOW>;
-+		output-low;
-+		line-name = "m2-full-card-power-off";
-+	};
-+};
-+
-+&cp0_i2c0 {
-+	/* assembly option */
-+	fan-controller@18 {
-+		compatible = "ti,amc6821";
-+		reg = <0x18>;
-+	};
-+
-+	expander0: gpio@41 {
-+		compatible = "nxp,pca9536";
-+		reg = <0x41>;
-+
-+		usb-a-vbus0-ilimit-hog {
-+			gpio-hog;
-+			gpios = <0 GPIO_ACTIVE_LOW>;
-+			input;
-+			line-name = "vbus0-ilimit";
-+		};
-+
-+		/* duplicate connection, controlled by soc gpio */
-+		usb-vbus0-enable-hog {
-+			gpio-hog;
-+			gpios = <1 GPIO_ACTIVE_HIGH>;
-+			input;
-+			line-name = "vbus0-enable";
-+		};
-+
-+		usb-a-vbus1-ilimit-hog {
-+			gpio-hog;
-+			gpios = <2 GPIO_ACTIVE_LOW>;
-+			input;
-+			line-name = "vbus1-ilimit";
-+		};
-+
-+		/* duplicate connection, controlled by soc gpio */
-+		usb-vbus1-enable-hog {
-+			gpio-hog;
-+			gpios = <3 GPIO_ACTIVE_HIGH>;
-+			input;
-+			line-name = "vbus1-enable";
-+		};
-+	};
-+
-+	carrier_eeprom: eeprom@52 {
-+		compatible = "atmel,24c02";
-+		reg = <0x52>;
-+		pagesize = <8>;
-+	};
-+
-+	/* usb-hub@60 */
-+
-+	/* assembly option */
-+	carrier_rtc: rtc@68 {
-+		compatible = "st,m41t83";
-+		reg = <0x68>;
-+		pinctrl-0 = <&cp1_rtc_pins>;
-+		pinctrl-names = "default";
-+		interrupt-parent = <&cp1_gpio1>;
-+		interrupts = <12 IRQ_TYPE_EDGE_FALLING>;
-+		reset-gpios = <&cp1_gpio1 13 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&cp0_i2c1 {
-+	/*
-+	 * Routed to SFP.
-+	 * Limit to 100kHz for compatibility with SFP modules,
-+	 * featuring AT24C01A/02/04 at addresses 0x50/0x51.
-+	 */
-+	clock-frequency = <100000>;
-+	pinctrl-0 = <&cp0_i2c1_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&cp0_mdio {
-+	/*
-+	 * SoM + Carrier each have a PHY at address 0.
-+	 * Remove the SoM phy node, and skip adding the carrier node.
-+	 * SGMII Auto-Negotation is enabled by bootloader for
-+	 * autonomous operation without mdio control.
-+	 */
-+	/delete-node/ ethernet-phy@0;
-+
-+	/* U17016 */
-+	cp0_phy1: ethernet-phy@1 {
-+		reg = <1>;
-+		/*
-+		 * Configure LEDs default behaviour:
-+		 * - LED[0]: link is 1000Mbps: On (yellow)
-+		 * - LED[1]: link/activity: On/blink (green)
-+		 * - LED[2]: high impedance (floating)
-+		 */
-+		marvell,reg-init = <3 16 0xf000 0x0a17>;
-+
-+		leds {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			led@0 {
-+				reg = <0>;
-+				color = <LED_COLOR_ID_YELLOW>;
-+				function = LED_FUNCTION_LAN;
-+				default-state = "keep";
-+			};
-+
-+			led@1 {
-+				reg = <1>;
-+				color = <LED_COLOR_ID_GREEN>;
-+				function = LED_FUNCTION_LAN;
-+				default-state = "keep";
-+			};
-+		};
-+	};
-+};
-+
-+/* SRDS #0 - miniPCIe */
-+&cp0_pcie0 {
-+	num-lanes = <1>;
-+	phys = <&cp0_comphy0 0>;
-+	status = "okay";
-+};
-+
-+/* SRDS #5 - M.2 B-Key (J34) */
-+&cp0_pcie2 {
-+	num-lanes = <1>;
-+	phys = <&cp0_comphy5 2>;
-+	status = "okay";
-+};
-+
-+&cp0_pinctrl {
-+	pinctrl-0 = <&cp0_m2_0_shutdown_pins &cp0_mpcie_rfkill_pins>;
-+	pinctrl-names = "default";
-+
-+	cp0_i2c1_pins: cp0-i2c1-pins {
-+		marvell,pins = "mpp35", "mpp36";
-+		marvell,function = "i2c1";
-+	};
-+
-+	cp0_led_pins: cp0-led-pins {
-+		marvell,pins = "mpp4", "mpp7";
-+		marvell,function = "gpio";
-+	};
-+
-+	cp0_m2_0_shutdown_pins: cp0-m2-0-shutdown-pins {
-+		marvell,pins = "mpp8";
-+		marvell,function = "gpio";
-+	};
-+
-+	cp0_mmc0_pins: cp0-mmc0-pins {
-+		marvell,pins = "mpp43", "mpp56", "mpp57", "mpp58",
-+			       "mpp59", "mpp60", "mpp61";
-+		marvell,function = "sdio";
-+	};
-+
-+	cp0_mpcie_rfkill_pins: cp0-mpcie-rfkill-pins {
-+		marvell,pins = "mpp6";
-+		marvell,function = "gpio";
-+	};
-+
-+	cp0_reg_usb_a_vbus0_pins: cp0-reg-usb-a-vbus0-pins {
-+		marvell,pins = "mpp27";
-+		marvell,function = "gpio";
-+	};
-+
-+	cp0_reg_usb_a_vbus1_pins: cp0-reg-usb-a-vbus1-pins {
-+		marvell,pins = "mpp28";
-+		marvell,function = "gpio";
-+	};
-+
-+	cp0_sfp0_pins: cp0-sfp0-pins {
-+		marvell,pins = "mpp31", "mpp32", "mpp33", "mpp34";
-+		marvell,function = "gpio";
-+	};
-+
-+	cp0_spi1_cs1_pins: cp0-spi1-cs1-pins {
-+		marvell,pins = "mpp12";
-+		marvell,function = "spi1";
-+	};
-+};
-+
-+/* microSD */
-+&cp0_sdhci0 {
-+	pinctrl-0 = <&cp0_mmc0_pins>;
-+	pinctrl-names = "default";
-+	bus-width = <4>;
-+	no-1-8-v;
-+	status = "okay";
-+};
-+
-+&cp0_spi1 {
-+	/* add pin for chip-select 1 */
-+	pinctrl-0 = <&cp0_spi1_pins &cp0_spi1_cs1_pins>;
-+
-+	flash@1 {
-+		compatible = "jedec,spi-nor";
-+		reg = <1>;
-+		/* read command supports max. 50MHz */
-+		spi-max-frequency = <50000000>;
-+	};
-+};
-+
-+/*
-+ * USB-2.0 Host to USB-Hub
-+ */
-+&cp0_usb3_0 {
-+	phys = <&cp0_utmi0>;
-+	phy-names = "utmi";
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+/*
-+ * SRDS #4 - USB 3.0 Host to USB-Hub
-+ */
-+&cp0_usb3_1 {
-+	phys = <&cp0_comphy4 1>;
-+	phy-names = "comphy";
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+&cp0_utmi {
-+	status = "okay";
-+};
-+
-+&cp0_utmi {
-+	status = "okay";
-+};
-+
-+&cp0_utmi1 {
-+	status = "disabled";
-+};
-+
-+&cp1_ethernet {
-+	status = "okay";
-+};
-+
-+/* SRDS #4 - SFP+ 10GE */
-+&cp1_eth0 {
-+	managed = "in-band-status";
-+	phy-mode = "10gbase-r";
-+	phys = <&cp1_comphy4 0>;
-+	sfp = <&sfp1>;
-+	status = "okay";
-+};
-+
-+/* SRDS #3 - SGMII 1GE */
-+&cp1_eth1 {
-+	managed = "in-band-status";
-+	phy-mode = "sgmii";
-+	phy = <&cp1_phy0>;
-+	phys = <&cp0_comphy3 1>;
-+	status = "okay";
-+};
-+
-+/* SRDS #5 - SGMII 1GE */
-+&cp1_eth2 {
-+	managed = "in-band-status";
-+	phy-mode = "sgmii";
-+	phy = <&cp1_phy1>;
-+	phys = <&cp0_comphy5 2>;
-+	status = "okay";
-+};
-+
-+&cp1_gpio1 {
-+	status = "okay";
-+
-+	/* J30 */
-+	m2-full-card-power-off-hog-0 {
-+		gpio-hog;
-+		gpios = <29 GPIO_ACTIVE_LOW>;
-+		output-low;
-+		line-name = "m2-full-card-power-off";
-+	};
-+
-+	/* J44 */
-+	m2-full-card-power-off-hog-1 {
-+		gpio-hog;
-+		gpios = <30 GPIO_ACTIVE_LOW>;
-+		output-low;
-+		line-name = "m2-full-card-power-off";
-+	};
-+};
-+
-+&cp1_gpio2 {
-+	status = "okay";
-+};
-+
-+&cp1_i2c1 {
-+	/*
-+	 * Routed to SFP.
-+	 * Limit to 100kHz for compatibility with SFP modules,
-+	 * featuring AT24C01A/02/04 at addresses 0x50/0x51.
-+	 */
-+	clock-frequency = <100000>;
-+	pinctrl-0 = <&cp1_i2c1_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&cp1_mdio {
-+	pinctrl-0 = <&cp1_mdio_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	cp1_phy0: ethernet-phy@0 {
-+		reg = <0>;
-+		/*
-+		 * Configure LEDs default behaviour:
-+		 * - LED[0]: link is 1000Mbps: On (yellow)
-+		 * - LED[1]: link/activity: On/blink (green)
-+		 * - LED[2]: high impedance (floating)
-+		 */
-+		marvell,reg-init = <3 16 0xf000 0x0a17>;
-+
-+		leds {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			led@0 {
-+				reg = <0>;
-+				color = <LED_COLOR_ID_YELLOW>;
-+				function = LED_FUNCTION_LAN;
-+				default-state = "keep";
-+			};
-+
-+			led@1 {
-+				reg = <1>;
-+				color = <LED_COLOR_ID_GREEN>;
-+				function = LED_FUNCTION_LAN;
-+				default-state = "keep";
-+			};
-+		};
-+	};
-+
-+	cp1_phy1: ethernet-phy@1 {
-+		reg = <1>;
-+		/*
-+		 * Configure LEDs default behaviour:
-+		 * - LED[0]: link is 1000Mbps: On (yellow)
-+		 * - LED[1]: link/activity: On/blink (green)
-+		 * - LED[2]: high impedance (floating)
-+		 */
-+		marvell,reg-init = <3 16 0xf000 0x0a17>;
-+
-+		leds {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			led@0 {
-+				reg = <0>;
-+				color = <LED_COLOR_ID_YELLOW>;
-+				function = LED_FUNCTION_LAN;
-+				default-state = "keep";
-+			};
-+
-+			led@1 {
-+				reg = <1>;
-+				color = <LED_COLOR_ID_GREEN>;
-+				function = LED_FUNCTION_LAN;
-+				default-state = "keep";
-+			};
-+		};
-+	};
-+};
-+
-+/* SRDS #0 - M.2 (J30) */
-+&cp1_pcie0 {
-+	num-lanes = <1>;
-+	phys = <&cp1_comphy0 0>;
-+	status = "okay";
-+};
-+
-+&cp1_rtc {
-+	status = "disabled";
-+};
-+
-+/* SRDS #1 - SATA on M.2 (J44) */
-+&cp1_sata0 {
-+	phys = <&cp1_comphy1 0>;
-+	status = "okay";
-+
-+	/* only port 0 is available */
-+	/delete-node/ sata-port@1;
-+};
-+
-+&cp1_syscon0 {
-+	cp1_pinctrl: pinctrl {
-+		compatible = "marvell,cp115-standalone-pinctrl";
-+		pinctrl-0 = <&cp1_m2_1_shutdown_pins &cp1_m2_2_shutdown_pins>;
-+		pinctrl-names = "default";
-+
-+		cp1_i2c1_pins: cp0-i2c1-pins {
-+			marvell,pins = "mpp35", "mpp36";
-+			marvell,function = "i2c1";
-+		};
-+
-+		cp1_led_pins: cp1-led-pins {
-+			marvell,pins = "mpp54", "mpp55";
-+			marvell,function = "gpio";
-+		};
-+
-+		cp1_m2_1_shutdown_pins: cp1-m2-1-shutdown-pins {
-+			marvell,pins = "mpp29";
-+			marvell,function = "gpio";
-+		};
-+
-+		cp1_m2_2_shutdown_pins: cp1-m2-2-shutdown-pins {
-+			marvell,pins = "mpp30";
-+			marvell,function = "gpio";
-+		};
-+
-+		cp1_mdio_pins: cp1-mdio-pins {
-+			marvell,pins = "mpp37", "mpp38";
-+			marvell,function = "ge";
-+		};
-+
-+		cp1_rtc_pins: cp1-rtc-pins {
-+			marvell,pins = "mpp12", "mpp13";
-+			marvell,function = "gpio";
-+		};
-+
-+		cp1_sfp1_pins: cp1-sfp1-pins {
-+			marvell,pins = "mpp33", "mpp34", "mpp49", "mpp50";
-+			marvell,function = "gpio";
-+		};
-+	};
-+};
-+
-+/*
-+ * SRDS #2 - USB-3.0 Host to M.2 (J44)
-+ * USB-2.0 Host to M.2 (J30)
-+ */
-+&cp1_usb3_0 {
-+	phys = <&cp1_comphy2 0>, <&cp1_utmi0>;
-+	phy-names = "comphy", "utmi";
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+/*
-+ * USB-2.0 Host to M.2 (J44)
-+ */
-+&cp1_usb3_1 {
-+	phys = <&cp1_utmi1>;
-+	phy-names = "utmi";
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+&cp1_utmi {
-+	status = "okay";
-+};
-
--- 
-2.35.3
-
+QW0gMTQuMDQuMjQgdW0gMTQ6NTggc2NocmllYiBKb3N1YSBNYXllcjoNCj4gQWRkIGRlc2NyaXB0
+aW9uIGZvciB0aGUgU29saWRSdW4gQ045MTMwIFNvTSwgYW5kIENsZWFyZm9nIEJhc2UgLyBQcm8N
+Cj4gcmVmZXJlbmNlIGJvYXJkcy4NCj4NCj4gVGhlIFNvTSBoYXMgYmVlbiBkZXNpZ25lZCBhcyBh
+IHBpbi1jb21wYXRpYmxlIHJlcGxhY2VtZW50IGZvciB0aGUgb2xkZXINCj4gQXJtYWRhIDM4OCBi
+YXNlZCBTb00uIFRoZXJlZm9yZSBpdCBzdXBwb3J0cyB0aGUgc2FtZSBib2FyZHMgYW5kIGENCj4g
+c2ltaWxhciBmZWF0dXJlIHNldC4NCj4NCj4gTW9zdCBub3RhYmxlIHVwZ3JhZGVzOg0KPiAtIDR4
+IENvcnRleC1BNzINCj4gLSAxMEdicHMgU0ZQDQo+IC0gQm90aCBlTU1DIGFuZCBTRCBzdXBwb3J0
+ZWQgYXQgdGhlIHNhbWUgdGltZQ0KPg0KPiBUaGUgZGV2ZWxvcGVyIGZpcnN0IHN1cHBvcnRpbmcg
+dGhpcyBwcm9kdWN0IGF0IFNvbGlkUnVuIGRlY2lkZWQgdG8gdXNlDQo+IGRpZmZlcmVudCBmaWxl
+bmFtZXMgZm9yIHRoZSBEVEJzOiBBcm1hZGEgMzg4IHVzZXMgdGhlIGZ1bGwNCj4gImNsZWFyZm9n
+IiBzdHJpbmcgd2hpbGUgY245MTMwIHVzZXMgdGhlIGFiYnJldmlhdGlvbiAiY2YiLg0KPiBUaGlz
+IG5hbWUgaXMgYWxyZWFkeSBoYXJkLWNvZGVkIGluIHByZS1pbnN0YWxsZWQgdmVuZG9yIHUtYm9v
+dCBhbmQgY2FuDQo+IG5vdCBiZSBjaGFuZ2VkIGVhc2lseS4NCj4NCj4gTk9USUNFIElOIENBU0Ug
+QU5ZQk9EWSBXQU5UUyBUTyBTRUxGLVVQR1JBREU6DQo+IENOOTEzMCBTb00gaGFzIGEgZGlmZmVy
+ZW50IGZvb3RwcmludCBmcm9tIEFybWFkYSAzODggU29NLg0KPiBDb21wb25lbnRzIG9uIHRoZSBj
+YXJyaWVyIGJvYXJkIGJlbG93IHRoZSBTb00gbWF5IGNvbGxpZGUgY2F1c2luZw0KPiBkYW1hZ2Us
+IHN1Y2ggYXMgb24gQ2xlYXJmb2cgQmFzZS4NCj4NCj4gU2lnbmVkLW9mZi1ieTogSm9zdWEgTWF5
+ZXIgPGpvc3VhQHNvbGlkLXJ1bi5jb20+DQo+IC0tLQ0KDQpQcmV2aW91cyB2ZXJzaW9uIGhhZCBy
+ZWNlaXZlZCBhbiBhY2sgZnJvbSBLcnp5c3p0b2YgS296bG93c2tpLA0Kd2hpY2ggSSBkcm9wcGVk
+IGJlY2F1c2UgSSBtYWRlIGFkZGl0aW9uYWwgY2hhbmdlcy4NCg0KVG8gc2ltcGxpZnkgcmV2aWV3
+LCBwbGVhc2UgZmluZCBiZWxvdw0KdGhlIGluY3JlbWVudGFsIGNoYW5nZXMgZnJvbSB2MiB0byB2
+MzoNCg0KRnJvbSA4ZTMyZGIzZDViNGZlY2VkOThmMjY2OTU3ODBjNTI1M2I5MjhiYjE0IE1vbiBT
+ZXAgMTcgMDA6MDA6MDAgMjAwMQ0KRnJvbTogSm9zdWEgTWF5ZXIgPGpvc3VhQHNvbGlkLXJ1bi5j
+b20+DQpEYXRlOiBGcmksIDUgQXByIDIwMjQgMTc6MzU6NTIgKzAyMDANClN1YmplY3Q6IFtQQVRD
+SF0gYXJtNjQ6IGR0czogY245MTMxLWNmLXNvbGlkd2FuOiBtaW5vciB0d2Vha3MNCg0KMS4gbW92
+ZSBsZWdhY3kgYXJtYWRhLTM4OCBuZXRkZXYgYWxpYXNlcyB0byBjYXJyaWVyOg0KwqDCoCBMZWdh
+Y3kgcG9ydCBudW1iZXJpbmcgaXMgb25seSB1c2VmdWwgZm9yIHBsYXRmb3JtcyBwcmV2aW91c2x5
+IHVzaW5nDQrCoMKgIHRoZSBhcm1hZGEtMzg4IHNvbSwgYW5kIGNhbiBiZSBhY2hpZXZlZCBpbiBj
+YXJyaWVyIGR0cy4NCsKgwqAgU29NIGR0cyBjYW4gZm9sbG93IHNvYyBwb3J0IG51bWJlcmluZy4N
+Cg0KMi4gRml4IHR3byBzdGF0dXMgcHJvcGVydHkgbWlzdGFrZXM6IG9uZSBkdXBsaWNhdGUgYW5k
+IG9uZSBub3QgbGFzdA0KwqDCoCBwcm9wZXJ0eS4NCg0KMy4gQWRkIHBpbmN0cmwgZm9yIHNwaSBj
+aGlwLXNlbGVjdCAxLCB3aGljaCBpcyBleHBvc2VkIG9uIGNhcnJpZXINCsKgwqAgbWlrcm9idXMg
+aGVhZGVyLg0KDQo0LiBTcGVjaWZ5IHNwaSBidXMgbWF4IGZyZXF1ZW5jaWVzIGJhc2VkIG9uIHNv
+bSBsaW1pdGF0aW9ucy4NCg0KU2lnbmVkLW9mZi1ieTogSm9zdWEgTWF5ZXIgPGpvc3VhQHNvbGlk
+LXJ1bi5jb20+DQotLS0NCsKgYXJjaC9hcm02NC9ib290L2R0cy9tYXJ2ZWxsL2NuOTEzMC1jZi1w
+cm8uZHRzwqAgfCAxMCArKysrKysrKysrDQrCoGFyY2gvYXJtNjQvYm9vdC9kdHMvbWFydmVsbC9j
+bjkxMzAtY2YuZHRzacKgwqDCoMKgIHzCoCA0ICsrKysNCsKgYXJjaC9hcm02NC9ib290L2R0cy9t
+YXJ2ZWxsL2NuOTEzMC1zci1zb20uZHRzaSB8IDEzICsrKysrKystLS0tLS0NCsKgMyBmaWxlcyBj
+aGFuZ2VkLCAyMSBpbnNlcnRpb25zKCspLCA2IGRlbGV0aW9ucygtKQ0KDQpkaWZmIC0tZ2l0IGEv
+YXJjaC9hcm02NC9ib290L2R0cy9tYXJ2ZWxsL2NuOTEzMC1jZi1wcm8uZHRzIGIvYXJjaC9hcm02
+NC9ib290L2R0cy9tYXJ2ZWxsL2NuOTEzMC1jZi1wcm8uZHRzDQppbmRleCAwYjk1ZDVmN2FjZmQu
+LjE1Yzc0ZDU4NGRiZCAxMDA2NDQNCi0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWFydmVsbC9j
+bjkxMzAtY2YtcHJvLmR0cw0KKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9tYXJ2ZWxsL2NuOTEz
+MC1jZi1wcm8uZHRzDQpAQCAtMzM2LDYgKzMzNiwxNiBAQCByZWFyX2J1dHRvbl9waW5zOiBjcDAt
+cmVhci1idXR0b24tcGlucyB7DQrCoMKgwqDCoCDCoMKgwqAgbWFydmVsbCxwaW5zID0gIm1wcDMy
+IjsNCsKgwqDCoMKgIMKgwqDCoCBtYXJ2ZWxsLGZ1bmN0aW9uID0gImdwaW8iOw0KwqDCoMKgwqAg
+fTsNCisNCivCoMKgwqAgY3AwX3NwaTFfY3MxX3BpbnM6IGNwMC1zcGkxLWNzMS1waW5zIHsNCivC
+oMKgwqAgwqDCoMKgIG1hcnZlbGwscGlucyA9ICJtcHAxMiI7DQorwqDCoMKgIMKgwqDCoCBtYXJ2
+ZWxsLGZ1bmN0aW9uID0gInNwaTEiOw0KK8KgwqDCoCB9Ow0KK307DQorDQorJmNwMF9zcGkxIHsN
+CivCoMKgwqAgLyogYWRkIHBpbiBmb3IgY2hpcC1zZWxlY3QgMSBvbiBtaWtyb2J1cyAqLw0KK8Kg
+wqDCoCBwaW5jdHJsLTAgPSA8JmNwMF9zcGkxX3BpbnMgJmNwMF9zcGkxX2NzMV9waW5zPjsNCsKg
+fTsNCsKgDQrCoC8qDQpkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9tYXJ2ZWxsL2Nu
+OTEzMC1jZi5kdHNpIGIvYXJjaC9hcm02NC9ib290L2R0cy9tYXJ2ZWxsL2NuOTEzMC1jZi5kdHNp
+DQppbmRleCA1M2FlZGRkZjBlMjYuLmRjYmJkYmI5YjI1YSAxMDA2NDQNCi0tLSBhL2FyY2gvYXJt
+NjQvYm9vdC9kdHMvbWFydmVsbC9jbjkxMzAtY2YuZHRzaQ0KKysrIGIvYXJjaC9hcm02NC9ib290
+L2R0cy9tYXJ2ZWxsL2NuOTEzMC1jZi5kdHNpDQpAQCAtOCw2ICs4LDEwIEBADQrCoA0KwqAvIHsN
+CsKgwqDCoMKgIGFsaWFzZXMgew0KK8KgwqDCoCDCoMKgwqAgLyogbGFiZWwgbmljcyBzYW1lIG9y
+ZGVyIGFzIGFybWFkYSAzODggY2xlYXJmb2cgKi8NCivCoMKgwqAgwqDCoMKgIGV0aGVybmV0MCA9
+ICZjcDBfZXRoMjsNCivCoMKgwqAgwqDCoMKgIGV0aGVybmV0MSA9ICZjcDBfZXRoMTsNCivCoMKg
+wqAgwqDCoMKgIGV0aGVybmV0MiA9ICZjcDBfZXRoMDsNCsKgwqDCoMKgIMKgwqDCoCBpMmMxID0g
+JmNwMF9pMmMxOw0KwqDCoMKgwqAgwqDCoMKgIG1tYzEgPSAmY3AwX3NkaGNpMDsNCsKgwqDCoMKg
+IH07DQpkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9tYXJ2ZWxsL2NuOTEzMC1zci1z
+b20uZHRzaSBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWFydmVsbC9jbjkxMzAtc3Itc29tLmR0c2kN
+CmluZGV4IGVjMDgwNjZmYjZlOC4uOGYwMjM4YTQ1YTU4IDEwMDY0NA0KLS0tIGEvYXJjaC9hcm02
+NC9ib290L2R0cy9tYXJ2ZWxsL2NuOTEzMC1zci1zb20uZHRzaQ0KKysrIGIvYXJjaC9hcm02NC9i
+b290L2R0cy9tYXJ2ZWxsL2NuOTEzMC1zci1zb20uZHRzaQ0KQEAgLTExLDEwICsxMSw5IEBAIC8g
+ew0KwqDCoMKgwqAgY29tcGF0aWJsZSA9ICJzb2xpZHJ1bixjbjkxMzAtc3Itc29tIiwgIm1hcnZl
+bGwsY245MTMwIjsNCsKgDQrCoMKgwqDCoCBhbGlhc2VzIHsNCi3CoMKgwqAgwqDCoMKgIC8qIGxh
+YmVsIG5pY3MgbGlrZSBhcm1hZGEtMzg4IHNvbSAqLw0KLcKgwqDCoCDCoMKgwqAgZXRoZXJuZXQw
+ID0gJmNwMF9ldGgyOw0KK8KgwqDCoCDCoMKgwqAgZXRoZXJuZXQwID0gJmNwMF9ldGgwOw0KwqDC
+oMKgwqAgwqDCoMKgIGV0aGVybmV0MSA9ICZjcDBfZXRoMTsNCi3CoMKgwqAgwqDCoMKgIGV0aGVy
+bmV0MiA9ICZjcDBfZXRoMDsNCivCoMKgwqAgwqDCoMKgIGV0aGVybmV0MiA9ICZjcDBfZXRoMjsN
+CsKgwqDCoMKgIMKgwqDCoCBpMmMwID0gJmNwMF9pMmMwOw0KwqDCoMKgwqAgwqDCoMKgIG1tYzAg
+PSAmYXBfc2RoY2kwOw0KwqDCoMKgwqAgwqDCoMKgIHJ0YzAgPSAmY3AwX3J0YzsNCkBAIC04Miw3
+ICs4MSw2IEBAICZjcDBfZXRoMiB7DQrCoH07DQrCoA0KwqAmY3AwX2kyYzAgew0KLcKgwqDCoCBz
+dGF0dXMgPSAib2theSI7DQrCoMKgwqDCoCBwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiOw0KwqDC
+oMKgwqAgcGluY3RybC0wID0gPCZjcDBfaTJjMF9waW5zPjsNCsKgwqDCoMKgIGNsb2NrLWZyZXF1
+ZW5jeSA9IDwxMDAwMDA+Ow0KQEAgLTk2LDggKzk0LDggQEAgc29tX2VlcHJvbTogZWVwcm9tQDUz
+IHsNCsKgfTsNCsKgDQrCoCZjcDBfbWRpbyB7DQotwqDCoMKgIHN0YXR1cyA9ICJva2F5IjsNCsKg
+wqDCoMKgIHBpbmN0cmwtMCA9IDwmY3AwX21kaW9fcGlucz47DQorwqDCoMKgIHN0YXR1cyA9ICJv
+a2F5IjsNCsKgDQrCoMKgwqDCoCAvKiBhc3NlbWJseSBvcHRpb24gKi8NCsKgwqDCoMKgIGNwMF9l
+dGgyX3BoeTogZXRoZXJuZXQtcGh5QDAgew0KQEAgLTEwOSwxMSArMTA3LDE0IEBAICZjcDBfc3Bp
+MSB7DQrCoMKgwqDCoCBzdGF0dXMgPSAib2theSI7DQrCoMKgwqDCoCBwaW5jdHJsLW5hbWVzID0g
+ImRlZmF1bHQiOw0KwqDCoMKgwqAgcGluY3RybC0wID0gPCZjcDBfc3BpMV9waW5zPjsNCivCoMKg
+wqAgLyogbWF4IHNwZWVkIGxpbWl0ZWQgYnkgYSBtdXggKi8NCivCoMKgwqAgc3BpLW1heC1mcmVx
+dWVuY3kgPSA8MTgwMDAwMDAwMD47DQrCoA0KwqDCoMKgwqAgZmxhc2hAMCB7DQrCoMKgwqDCoCDC
+oMKgwqAgY29tcGF0aWJsZSA9ICJqZWRlYyxzcGktbm9yIjsNCsKgwqDCoMKgIMKgwqDCoCByZWcg
+PSA8MD47DQotwqDCoMKgIMKgwqDCoCBzcGktbWF4LWZyZXF1ZW5jeSA9IDwxMDAwMDAwMD47DQor
+wqDCoMKgIMKgwqDCoCAvKiByZWFkIGNvbW1hbmQgc3VwcG9ydHMgbWF4LiA1ME1IeiAqLw0KK8Kg
+wqDCoCDCoMKgwqAgc3BpLW1heC1mcmVxdWVuY3kgPSA8NTAwMDAwMDA+Ow0KwqDCoMKgwqAgfTsN
+CsKgfTsNCsKgDQotLSANCjIuMzUuMw0KDQo=
 
