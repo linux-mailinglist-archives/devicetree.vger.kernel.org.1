@@ -1,217 +1,145 @@
-Return-Path: <devicetree+bounces-59053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB1248A4198
-	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 11:49:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B60F8A41A6
+	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 12:04:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19E981C20E29
-	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 09:49:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0247C1F211F5
+	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 10:04:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70FE928DA5;
-	Sun, 14 Apr 2024 09:48:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 451D024A0D;
+	Sun, 14 Apr 2024 10:04:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o2Npsp7Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7028A2374C
-	for <devicetree@vger.kernel.org>; Sun, 14 Apr 2024 09:48:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14C9018AF4;
+	Sun, 14 Apr 2024 10:04:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713088125; cv=none; b=uS/wblLrkE83Ku3TwD0KuxuIqGXgc2QL2U3+3VOiPmECVXscb642p+hHUt2MhxBgFW7q/Picxlqmw6eZFlZCY0M1sU76xusGIXL5/HWnxkOy0z3uEVM93+QKnpbb1SniM++l2TH8J+vxKvc9Mocvh4cyYidhuk+sfXcaFxzHhyI=
+	t=1713089051; cv=none; b=npeEHEhJmFR5rPCOQngNVXX5t3hig0wUzqmtmEVDOOiU13rLYerXZoRBzucfgLAbN1uDpYI8Y8RVqsuNH0nDLIRcd4+KOqJ8a1MfD5aFkMkihcn16d58VMVL3OYUE+QfkxCNJTSZGcMChk6xlWGiSscmqHDcdair6Q7Ga+EkuAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713088125; c=relaxed/simple;
-	bh=7Bp7WR/OmDqOUD3FxH4EWpUeRzpXGskbstL5e7ftf+E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CIfHNM9G6BjS82+J42Tcg8RcDmvgY8faKjcW392e7FjglJyeYvMTxg19GXRZYLjlEXvy6i2ctG2T2rGpJiqQoxTkTKT5k5xD3XdvuGBd6phu0b2XVofqft/dzUm95Jv3jbgwZORU0BN3UrV6IdvI5GOy1R3P4R5fy97SB6uhgNk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rvwTP-0000rN-2t; Sun, 14 Apr 2024 11:48:31 +0200
-Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rvwTO-00CDev-Am; Sun, 14 Apr 2024 11:48:30 +0200
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rvwTO-00CWeq-0i;
-	Sun, 14 Apr 2024 11:48:30 +0200
-Date: Sun, 14 Apr 2024 11:48:30 +0200
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: miquel.raynal@bootlin.com, michael@walle.cc,
-	linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] nvmem: core: add sysfs cell write support
-Message-ID: <20240414094830.jxpqn33ew2us37t7@pengutronix.de>
-References: <20240223154129.1902905-1-m.felsch@pengutronix.de>
- <406eb283-6ac0-4917-9dbf-e45d033bf3de@linaro.org>
+	s=arc-20240116; t=1713089051; c=relaxed/simple;
+	bh=84SLxTZp/DWUX/lhao6dmVikTW+EASr4F/Wo+VvHJ2Q=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=qgP6EH3Yn+dRK4IIdKC2MZLUqJj8DSy2KuDliFqqiS/G/ylfHWpr8ApOYDyPEwUm8eE32MaguQuMoT+WGyt7diFsPKZq8RlaBCF2kKI8SZqM6LcZQKWPbroJbQvZV0DStIf95EYqif82mFfu8a48j79mHJ0Hvlyu0DY1Qce8vxs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o2Npsp7Y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 8F070C072AA;
+	Sun, 14 Apr 2024 10:04:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713089050;
+	bh=84SLxTZp/DWUX/lhao6dmVikTW+EASr4F/Wo+VvHJ2Q=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=o2Npsp7Y/2kFx6aWgxDP3pyAmSaJlirscJnkHNSwFto1h3wewpxzUxLZFOh4vsg7o
+	 /OVOzCy6dndN0a9+9XCD796uTwrsaZoWiJxyTQpdgeiEFCc1tANwFbMLPLBVZ44X12
+	 Q7UB5kwfdyY9WfHy1IpHYthPIH15v8vl1Ux7k7+XIVhh03xVhyGsrFBA734dt4JShs
+	 4ofI649ZGqw8aM5YHrrTaj3gy+auhEYovYxG/S8+gAvck6qFvTPI7W7M7Ilhxfpiyu
+	 9RIK+fBOVv4Wgh7lANfeEPg90P0xQ/0lPkL6QwLYYt91JDmAJHeA5ku2CQWQlONCHN
+	 srxuAt5jEhKhg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 77223C4345F;
+	Sun, 14 Apr 2024 10:04:10 +0000 (UTC)
+From: Nikita Shubin via B4 Relay <devnull+nikita.shubin.maquefel.me@kernel.org>
+Subject: [PATCH v2 0/4] DONOTMERGE: ep93xx-clk from ep93xx device tree
+ conversion
+Date: Sun, 14 Apr 2024 13:03:47 +0300
+Message-Id: <20240408-ep93xx-clk-v2-0-9c5629dec2dd@maquefel.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <406eb283-6ac0-4917-9dbf-e45d033bf3de@linaro.org>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAOqG2YC/22Nyw6CMBREf4Xctde0pVB15X8YFqVcpJGXLTY1h
+ H+3sHZ5ZnJmVvDkLHm4ZSs4CtbbaUwgThmYTo9PQtskBsGEZJJdkOZrHiOa/oVloTTPC9VQqSA
+ JtfaEtdOj6XZl0H4htxezo9bG4+VRJe6sXyb3PU4D39O/+4EjQ96wVppcyFKq+6DfH2qpPw8E1
+ bZtPwK4zrS/AAAA
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Alexander Sverdlin <alexander.sverdlin@gmail.com>
+Cc: linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, Nikita Shubin <nikita.shubin@maquefel.me>, 
+ Arnd Bergmann <arnd@arndb.de>, Linus Walleij <linus.walleij@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1713089049; l=2238;
+ i=nikita.shubin@maquefel.me; s=20230718; h=from:subject:message-id;
+ bh=84SLxTZp/DWUX/lhao6dmVikTW+EASr4F/Wo+VvHJ2Q=;
+ b=z9XAN1DXXWE3QxCyuTkNMTNSk5hrGWnglICBc7KGTF+lnAe7G6ti2xpimedDy1Wf6oac/GtTG3kg
+ fiFfdHpjAaVBVJ7+W+hyMLvKrp8qGPxNIM3ksHHchbay3miQxYWO
+X-Developer-Key: i=nikita.shubin@maquefel.me; a=ed25519;
+ pk=vqf5YIUJ7BJv3EJFaNNxWZgGuMgDH6rwufTLflwU9ac=
+X-Endpoint-Received: by B4 Relay for nikita.shubin@maquefel.me/20230718
+ with auth_id=65
+X-Original-From: Nikita Shubin <nikita.shubin@maquefel.me>
+Reply-To: nikita.shubin@maquefel.me
 
-Hi Srinivas,
+The goal is to recieve ACKs.
 
-+Cc Rob, Krzysztof, Conor for below OF question.
+This is a fraction of v9 "ep93xx device tree conversion" series:
 
-On 24-04-13, Srinivas Kandagatla wrote:
-> Thanks Marco  for the work,
-> 
-> On 23/02/2024 15:41, Marco Felsch wrote:
-> > Add the sysfs cell write support to make it possible to write to exposed
-> > cells from sysfs as well e.g. for device provisioning. The write support
-> 
-> Which device are you testing this on?
+https://lore.kernel.org/all/20240326-ep93xx-v9-0-156e2ae5dfc8@maquefel.me/
 
-An EEPROM device.
+The clk driver for ep93xx was converted to AUX device, as suggested
+originally by Stephen Boyd.
 
-> AFAIU, Normally all the device provisioning happens early stages at
-> production line, not after OS is up and running. I might be wrong.
-> 
-> Can you provide more details on what type of device provisioning that you
-> are referring to.
+Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
+---
+Changes in v2:
+- soc: Add SoC driver for Cirrus ep93xx:
+  - added __init for ep93xx_adev_alloc(), ep93xx_controller_register()
+  - added static, __initconst for pinctrl_names[]
+  - clk revision for SPI is now resolved here through differently named
+    clk device
+  - more verbose Kconfig description
 
-We do have production data and you're right about this. But we have also
-cells which cover sw-feature switches and with the write support they
-can be accessed easily from user-space.
+  NOTE: "of" includes are required unfortunately.
 
-> Write support should not be enabled by default, this has to be an explicit
-> Kconfig with a big WARNING that it could potentially corrupt the nvmem by
-> rouge writes.
+- clk: ep93xx: add DT support for Cirrus EP93xx:
+  - dropped includes
+  - dropped ep93xx_soc_table[]
+  - add different named clk and dropped involved includes
+  - moved pll's and fclk, hclk, pclk init to separate function
+  - fixed ep93xx_clk_ids[] explicit lines
+ 
+  NOTE: clk_hw_register_div() is clk-ep9xx internal function which uses
+  devm.
 
-I'm okay with a Kconfig but I'm not okay with the warning. If an user do
-enable this feature on purpose we shouldn't print a warning. We do limit
-the write support to EEPROM devices only and to cells which do not have
-a special post processing. IMHO this is the simplest use-case and
-corruption shouldn't occure. Of course there can be supply
-interrruptions but in this case other storage devices can be corrupted
-as well.
+---
+Nikita Shubin (4):
+      ARM: ep93xx: add regmap aux_dev
+      clk: ep93xx: add DT support for Cirrus EP93xx
+      dt-bindings: soc: Add Cirrus EP93xx
+      soc: Add SoC driver for Cirrus ep93xx
 
-> I would also like this to be an optional feature from providers side too, as
-> not all nvmem providers want to have device provisioning support from Linux
-> side.
+ .../bindings/arm/cirrus/cirrus,ep9301.yaml         |  38 +
+ .../bindings/soc/cirrus/cirrus,ep9301-syscon.yaml  |  94 +++
+ drivers/clk/Kconfig                                |   8 +
+ drivers/clk/Makefile                               |   1 +
+ drivers/clk/clk-ep93xx.c                           | 834 +++++++++++++++++++++
+ drivers/soc/Kconfig                                |   1 +
+ drivers/soc/Makefile                               |   1 +
+ drivers/soc/cirrus/Kconfig                         |  17 +
+ drivers/soc/cirrus/Makefile                        |   2 +
+ drivers/soc/cirrus/soc-ep93xx.c                    | 252 +++++++
+ include/dt-bindings/clock/cirrus,ep9301-syscon.h   |  46 ++
+ include/linux/soc/cirrus/ep93xx.h                  |  26 +
+ 12 files changed, 1320 insertions(+)
+---
+base-commit: fec50db7033ea478773b159e0e2efb135270e3b7
+change-id: 20240408-ep93xx-clk-657a1357de67
 
-You say instead of checking for NVMEM_TYPE_EEPROM, the nvmem-config
-should have an option which to tell the core that write-support should
-be exposed? I can do this but still it would expose the write support
-for all at24 users. We could have an optional of-property but OF purpose
-is to abstract hw and this clearly is not a hw-feature. What I can
-imagine is an nvmem_core module param and the default is set via the
-Kconfig option. Of course this way still all EEPROMs are either exposed
-as ro/rw but it's the user/distro choice. So in the end an OF
-abstraction would give us a more fine grained possibility to influence
-the behavior.
+Best regards,
+-- 
+Nikita Shubin <nikita.shubin@maquefel.me>
 
-@Rob, Krzysztof, Conor
-Would it be okay to abstract this via an OF property?
 
-> > is limited to EEPROM based nvmem devices and to nvmem-cells which don't
-> > require post-processing.
-> 
-> > 
-> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > ---
-> >   drivers/nvmem/core.c | 43 ++++++++++++++++++++++++++++++++++++++++++-
-> >   1 file changed, 42 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-> > index 980123fb4dde..b1f86cb431ef 100644
-> > --- a/drivers/nvmem/core.c
-> > +++ b/drivers/nvmem/core.c
-> > @@ -336,6 +336,40 @@ static ssize_t nvmem_cell_attr_read(struct file *filp, struct kobject *kobj,
-> >   	return read_len;
-> >   }
-> > +static ssize_t nvmem_cell_attr_write(struct file *filp, struct kobject *kobj,
-> > +				     struct bin_attribute *attr, char *buf,
-> > +				     loff_t pos, size_t count)
-> > +{
-> > +	struct nvmem_cell_entry *entry;
-> > +	struct nvmem_cell *cell;
-> > +	int ret;
-> > +
-> > +	entry = attr->private;
-> > +
-> > +	if (!entry->nvmem->reg_write)
-> 
-> nvmem->read_only ?
-
-In addition or as replacement?
-
-> > +		return -EPERM;
-> > +
-> > +	if (pos >= entry->bytes)
-> > +		return -EFBIG;
-> > +
-> > +	if (pos + count > entry->bytes)
-> > +		count = entry->bytes - pos;
-> > +
-> > +	cell = nvmem_create_cell(entry, entry->name, 0);
-> > +	if (IS_ERR(cell))
-> > +		return PTR_ERR(cell);
-> > +
-> > +	if (!cell)
-> > +		return -EINVAL;
-> > +
-> > +	ret = nvmem_cell_write(cell, buf, count);
-> > +
-> > +	kfree_const(cell->id);
-> > +	kfree(cell);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> >   /* default read/write permissions */
-> >   static struct bin_attribute bin_attr_rw_nvmem = {
-> >   	.attr	= {
-> > @@ -458,13 +492,20 @@ static int nvmem_populate_sysfs_cells(struct nvmem_device *nvmem)
-> >   	/* Initialize each attribute to take the name and size of the cell */
-> >   	list_for_each_entry(entry, &nvmem->cells, node) {
-> > +		umode_t mode = nvmem_bin_attr_get_umode(nvmem);
-> > +
-> > +		/* Limit cell-write support to EEPROMs at the moment */
-> > +		if (entry->read_post_process || nvmem->type != NVMEM_TYPE_EEPROM)
-> > +			mode &= ~0222;
-> > +
-> >   		sysfs_bin_attr_init(&attrs[i]);
-> >   		attrs[i].attr.name = devm_kasprintf(&nvmem->dev, GFP_KERNEL,
-> >   						    "%s@%x", entry->name,
-> >   						    entry->offset);
-> > -		attrs[i].attr.mode = 0444;
-> > +		attrs[i].attr.mode = mode;
-> >   		attrs[i].size = entry->bytes;
-> >   		attrs[i].read = &nvmem_cell_attr_read;
-> can we not make this conditional based on read_only flag?
-
-We do use nvmem_bin_attr_get_umode() to query the mode which covers the
-read_only, but of course I can add it conditional.
-
-Regards,
-  Marco
-
-> > +		attrs[i].write = &nvmem_cell_attr_write;
-> >   		attrs[i].private = entry;
-> >   		if (!attrs[i].attr.name) {
-> >   			ret = -ENOMEM;
-> 
-> thanks,
-> Srini
-> 
 
