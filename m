@@ -1,137 +1,442 @@
-Return-Path: <devicetree+bounces-67667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6674A8C9409
-	for <lists+devicetree@lfdr.de>; Sun, 19 May 2024 10:39:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB3178C9491
+	for <lists+devicetree@lfdr.de>; Sun, 19 May 2024 13:58:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9771C1C20BAF
-	for <lists+devicetree@lfdr.de>; Sun, 19 May 2024 08:39:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 326DFB20BE3
+	for <lists+devicetree@lfdr.de>; Sun, 19 May 2024 11:58:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E1DE224FD;
-	Sun, 19 May 2024 08:39:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54B5945957;
+	Sun, 19 May 2024 11:58:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="FdK/25nw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Oim1VTKa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [217.72.192.78])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 987842D627;
-	Sun, 19 May 2024 08:39:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.72.192.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AACB2A1D2;
+	Sun, 19 May 2024 11:58:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716107950; cv=none; b=lYqgudnHWw8ZVMZRoryUR2ghW3swyMHTexk7HxWauQ5D4DFqlHaAsVESjkcdhMYYDOyBUtRVoGeSKHo5dTp5qadNPTk1YUtAXT0y65fFXnqrvToZce+4igz1UdD5dlTf2TthbsIMmrHSwDOfZUniEAd1VULANqFao4vWTQkEw84=
+	t=1716119902; cv=none; b=f/nQRO9bryEpDoeBd/xKf3ZIJqQXSKCpvy/H99aH5BeYKvDngKIKhFuJsglFIdPIbkIh+wE0zm1Yc7KahNFmFEi8mBr2zc2CKstAZxaq/eW3dykc01DoPMCs1xuZXFbVj9bOgrBfLDYrCpiyYrpJ3FEbkC02/I5TBcPomWI2fUI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716107950; c=relaxed/simple;
-	bh=OG/tFUAqoYY73IiNQhTa9yMsYkxiqOkEshKJYuZoq3E=;
-	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
-	 In-Reply-To:Content-Type; b=ikDKBhXnkou23IiaKEXu3kFSLtkDllY6oZtqACwCFd8o6IIZU7NyXeTCcDu/8s1VjnnG1M6iQBzNDJgCCm4O7E+nJ4bJLZZJG2Ac6ZoasMeBOaE3rv+GSLmpXG12UPZuc5KyV3RLhqPlmFL3XD6SBj4XL2E4mv2UoS2S+NrFj+g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=FdK/25nw; arc=none smtp.client-ip=217.72.192.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1716107907; x=1716712707; i=markus.elfring@web.de;
-	bh=mR4LJmey+5na5DaqpNGAQY1Gu3MobXSjLTQaXj5651M=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
-	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=FdK/25nwCvjaX13KoqZoWlurT3IZ9dAoxgkegtddMSWYTyAPkUk7x//SUGcen6Lb
-	 s6lgMZRQ8N6FaKKD6uk1R9VCJgUPa/l8vtZtZwPLaUXeJrWHlfRBlyLLdQrpiIjTd
-	 A4ZYzrucF+hkGpCIeLbR7TlEf/yNBZrtfsLa5Kw4SsS+oQfas+HawLjpgNz8ujnqE
-	 bwBPuhN6ZfA0v+0AudY3+DwEW+AVkwJajuVlhG2lt6Z2eGpqC9G91CZet+MIZatf2
-	 9NSWHmrjARBt97meKlK41stWWv7GQ4ogCtBAm0McHaWwNeaGIY4B8LIo6wAIbq2b+
-	 LAPqqw2Ol9zpphyoMg==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.21] ([94.31.82.95]) by smtp.web.de (mrweb105
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1Mvbiu-1sRnL32Qh4-014m8l; Sun, 19
- May 2024 10:38:27 +0200
-Message-ID: <feb239b1-7a14-479a-87f2-dcbf9966bffd@web.de>
-Date: Sun, 19 May 2024 10:38:25 +0200
+	s=arc-20240116; t=1716119902; c=relaxed/simple;
+	bh=mTgo2YitYHK1KoUwLjWoZIyp9zqbssF77Gq7r3cJ/dE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=YkOoXDXVidqdpqWp7HlbPiKB6t605NRo+3ahAjT6Hgm8fkdchU+IwWuznXablUBoCTWIPUuoLMpIMVzVhrvzHii+RJa3yHw1cCdSn8RIPghw/xgipcRMg0Rj9z0mCA2IM/NbruAjYgMGquArYmG/9akFnGeMx3AaDuZS9PhHr7I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Oim1VTKa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0338FC32781;
+	Sun, 19 May 2024 11:58:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716119902;
+	bh=mTgo2YitYHK1KoUwLjWoZIyp9zqbssF77Gq7r3cJ/dE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Oim1VTKaFqFTTSe/mezVwyXOe+1vWVWw9yaGAMvAXAhoodoosGNznnPBlkDGRxdQO
+	 YHTUZYKkNLrY5ofljOrFMwwAqwFvG6fd/9tNn6hp3acrpnFYeq9BNFrd7DQimJcl6z
+	 jGbRJg8Xos41epHkYGNCSojPXH7chVXMNh0yscUB3C3QZRTLSgQN7RNQqOn4nvsPRY
+	 UtOgGopwySr4bx1eiOGZMnSDCWqzTbJ0l3GctNqWhERQql+s7+mJp5exuBlFO7MT3W
+	 z+SoTEoq1UTLgsVfg/IVmCUcyQ+8XeDM846we50jiLrEPNGbbEF6+fH+sUNvp3cmK8
+	 wvWPn6JoUTtfw==
+Date: Sun, 14 Apr 2024 17:55:39 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] of: Use scope based of_node_put() cleanups
+Message-ID: <20240414175539.517d677f@jic23-huawei>
+In-Reply-To: <20240409-dt-cleanup-free-v2-3-5b419a4af38d@kernel.org>
+References: <20240409-dt-cleanup-free-v2-0-5b419a4af38d@kernel.org>
+	<20240409-dt-cleanup-free-v2-3-5b419a4af38d@kernel.org>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
- devicetree@vger.kernel.org, linux-sound@vger.kernel.org,
- linux-i2c@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-clk@vger.kernel.org, kernel-janitors@vger.kernel.org
-Cc: LKML <linux-kernel@vger.kernel.org>, =?UTF-8?Q?Alvin_=C5=A0ipraga?=
- <alvin@pqrs.dk>, Emil Svendsen <emas@bang-olufsen.dk>,
- Andi Shyti <andi.shyti@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jaroslav Kysela <perex@perex.cz>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Linus Walleij
- <linus.walleij@linaro.org>, Mark Brown <broonie@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>,
- Saravana Kannan <saravanak@google.com>, Stephen Boyd <sboyd@kernel.org>,
- Takashi Iwai <tiwai@suse.com>
-References: <20240517-a2b-v1-1-b8647554c67b@bang-olufsen.dk>
-Subject: Re: [PATCH 01/13] a2b: add A2B driver core
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20240517-a2b-v1-1-b8647554c67b@bang-olufsen.dk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:+6aU5u5VKwcLLXESSCJnF8xsuqpIE4g1lYcdN79aqgrSALLuexV
- j6Q5oFkmlN/KYjYzP7dplTs7qHuPeGQBbm7zkFL+9Z4rnhJxax6j5KVSpVitC/FZHwjfI6l
- wsh3pVpgGGnuOcIIaXbKVrvGQjEOd5kMwOUDKKiRSzPTKMfDZftdiap5yCPTMTfvbN7ViNr
- svwuIKbYz8wHYMxbZ8QIw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:QPkp+V2A4MU=;+NWHWxpxk3xHAm8+4xiGSlOB4tM
- 7WPwNZ9QuFxh0hJOGJNhkSGyMMS7iLRiBpNtAa8RNVGKSWNjJnv0aOIh9OrKciin8e6nRal/x
- Y1rOFQSpzVYl09hmuxnBO1eEK+wVx7Q7AXUZcyDXTHfKkiCThEv6+UcTG1sUjSOd4ub3vlyXh
- FmmPjsCqAjOPVjUaDzKkW4jc6Or8tT/6KoCSiaz3sdhFJcvDjlNeFOXHumT5TS2/2VgxyiZXF
- ejk6XR6qR5zHIRH4INdUXWMOJ1bBnEGD7AhjF/rkC5o6X2YjWdGzyfQs8bxgJQYmO6X8SyR9A
- vVNTWqRhVgkF5ghyKYp0uzLFBZISOZgQii/ThBxWv8NR1ZW6kW6PIIsBOFWtJNG15xnYNDjeR
- JCHfzHFpQSI6qHbytEA4IDRoPpOPildfBP/WXHiSIyhwRElDJ2iE0n5JKxlizz7P4MeM0WyWz
- OPXGlbh3TIOKMEyuNJCOdjO2c/H6mD+n/dV2F572A/Xvz7SodLy/YgYK6R3wqHzQvronbEJTx
- U5IXnAG4bAer+UfbUOWGa9FdD9MaxySPKbh61outhJubVL4svBXdSumGrjysEtyBZD3CF6gvW
- 1J6cTLwG0ULEe4FqtrmQA6reQNdQs4gznoZPnWr/rM0b1FkxEDQR7i/9lNltW/VejKorZrVcm
- WYtLC/PKJDhdpCKlqRFL9civ5Q6ltwAMxULKgZKkSz0NS8Jb6ZpUszJI+LUDYNr47/M2IWTDQ
- 4yquGs5L1GMJNWX5LvjnYkiJzrphbcGksTV41Y39NhlQMgkQKW+TW8mj5nFLPY/Ng8kLUZgTo
- +MfcBALkcdpdpW8z1HQaEnIkoImLtRzo1Fsd4A1kkJPxE=
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-=E2=80=A6
-> +++ b/drivers/a2b/a2b.c
-> @@ -0,0 +1,1252 @@
-=E2=80=A6
-> +static int a2b_bus_of_add_node(struct a2b_bus *bus, struct device_node =
-*np,
-> +			       unsigned int addr)
-> +{
-=E2=80=A6
-> +	node =3D kzalloc(sizeof(*node), GFP_KERNEL);
-> +	if (IS_ERR(node))
+On Tue, 09 Apr 2024 13:59:41 -0500
+Rob Herring <robh@kernel.org> wrote:
+
+> Use the relatively new scope based of_node_put() cleanup to simplify
+> function exit handling. Doing so reduces the chances of forgetting an
+> of_node_put() and simplifies error paths by avoiding the need for goto
+> statements.
+> 
+> Reviewed-by: Saravana Kannan <saravanak@google.com>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> v2:
+>  - Also use cleanup for 'dev' in __of_translate_address()
+>  - Further simplify of_dma_is_coherent() and of_mmio_is_nonposted()
+> ---
+>  drivers/of/address.c  | 113 +++++++++++++++++---------------------------------
+>  drivers/of/property.c |  22 ++++------
+>  2 files changed, 46 insertions(+), 89 deletions(-)
+> 
+> diff --git a/drivers/of/address.c b/drivers/of/address.c
+> index ae46a3605904..c350185ceaeb 100644
+> --- a/drivers/of/address.c
+> +++ b/drivers/of/address.c
+> @@ -486,34 +486,30 @@ static int of_translate_one(struct device_node *parent, struct of_bus *bus,
+>   * device that had registered logical PIO mapping, and the return code is
+>   * relative to that node.
+>   */
+> -static u64 __of_translate_address(struct device_node *dev,
+> +static u64 __of_translate_address(struct device_node *node,
+>  				  struct device_node *(*get_parent)(const struct device_node *),
+>  				  const __be32 *in_addr, const char *rprop,
+>  				  struct device_node **host)
+>  {
+> -	struct device_node *parent = NULL;
+> +	struct device_node *dev __free(device_node) = of_node_get(node);
+> +	struct device_node *parent __free(device_node) = get_parent(dev);
+>  	struct of_bus *bus, *pbus;
+>  	__be32 addr[OF_MAX_ADDR_CELLS];
+>  	int na, ns, pna, pns;
+> -	u64 result = OF_BAD_ADDR;
+>  
+>  	pr_debug("** translation for device %pOF **\n", dev);
+>  
+> -	/* Increase refcount at current level */
+> -	of_node_get(dev);
+> -
+>  	*host = NULL;
+> -	/* Get parent & match bus type */
+> -	parent = get_parent(dev);
+> +
+>  	if (parent == NULL)
+> -		goto bail;
+> +		return OF_BAD_ADDR;
+>  	bus = of_match_bus(parent);
+>  
+>  	/* Count address cells & copy address locally */
+>  	bus->count_cells(dev, &na, &ns);
+>  	if (!OF_CHECK_COUNTS(na, ns)) {
+>  		pr_debug("Bad cell count for %pOF\n", dev);
+> -		goto bail;
+> +		return OF_BAD_ADDR;
+>  	}
+>  	memcpy(addr, in_addr, na * 4);
+>  
+> @@ -533,8 +529,7 @@ static u64 __of_translate_address(struct device_node *dev,
+>  		/* If root, we have finished */
+>  		if (parent == NULL) {
+>  			pr_debug("reached root node\n");
+> -			result = of_read_number(addr, na);
+> -			break;
+> +			return of_read_number(addr, na);
+>  		}
+>  
+>  		/*
+> @@ -543,11 +538,11 @@ static u64 __of_translate_address(struct device_node *dev,
+>  		 */
+>  		iorange = find_io_range_by_fwnode(&dev->fwnode);
+>  		if (iorange && (iorange->flags != LOGIC_PIO_CPU_MMIO)) {
+> -			result = of_read_number(addr + 1, na - 1);
+> +			u64 result = of_read_number(addr + 1, na - 1);
+>  			pr_debug("indirectIO matched(%pOF) 0x%llx\n",
+>  				 dev, result);
+> -			*host = of_node_get(dev);
+> -			break;
+> +			*host = no_free_ptr(dev);
+> +			return result;
+>  		}
+>  
+>  		/* Get new parent bus and counts */
+> @@ -555,7 +550,7 @@ static u64 __of_translate_address(struct device_node *dev,
+>  		pbus->count_cells(dev, &pna, &pns);
+>  		if (!OF_CHECK_COUNTS(pna, pns)) {
+>  			pr_err("Bad cell count for %pOF\n", dev);
+> -			break;
+> +			return OF_BAD_ADDR;
+>  		}
+>  
+>  		pr_debug("parent bus is %s (na=%d, ns=%d) on %pOF\n",
+> @@ -563,7 +558,7 @@ static u64 __of_translate_address(struct device_node *dev,
+>  
+>  		/* Apply bus translation */
+>  		if (of_translate_one(dev, bus, pbus, addr, na, ns, pna, rprop))
+> -			break;
+> +			return OF_BAD_ADDR;
+>  
+>  		/* Complete the move up one level */
+>  		na = pna;
+> @@ -572,11 +567,8 @@ static u64 __of_translate_address(struct device_node *dev,
+>  
+>  		of_dump_addr("one level translation:", addr, na);
+>  	}
+> - bail:
+> -	of_node_put(parent);
+> -	of_node_put(dev);
+>  
+> -	return result;
+> +	return OF_BAD_ADDR;
+>  }
+>  
+>  u64 of_translate_address(struct device_node *dev, const __be32 *in_addr)
+> @@ -654,19 +646,16 @@ EXPORT_SYMBOL(of_translate_dma_address);
+>  const __be32 *of_translate_dma_region(struct device_node *dev, const __be32 *prop,
+>  				      phys_addr_t *start, size_t *length)
+>  {
+> -	struct device_node *parent;
+> +	struct device_node *parent __free(device_node) = __of_get_dma_parent(dev);
+>  	u64 address, size;
+>  	int na, ns;
+>  
+> -	parent = __of_get_dma_parent(dev);
+>  	if (!parent)
+>  		return NULL;
+>  
+>  	na = of_bus_n_addr_cells(parent);
+>  	ns = of_bus_n_size_cells(parent);
+>  
+> -	of_node_put(parent);
+> -
+>  	address = of_translate_dma_address(dev, prop);
+>  	if (address == OF_BAD_ADDR)
+>  		return NULL;
+> @@ -688,21 +677,19 @@ const __be32 *__of_get_address(struct device_node *dev, int index, int bar_no,
+>  {
+>  	const __be32 *prop;
+>  	unsigned int psize;
+> -	struct device_node *parent;
+> +	struct device_node *parent __free(device_node) = of_get_parent(dev);
+>  	struct of_bus *bus;
+>  	int onesize, i, na, ns;
+>  
+> -	/* Get parent & match bus type */
+> -	parent = of_get_parent(dev);
+>  	if (parent == NULL)
+>  		return NULL;
+> +
+> +	/* match the parent's bus type */
+>  	bus = of_match_bus(parent);
+> -	if (strcmp(bus->name, "pci") && (bar_no >= 0)) {
+> -		of_node_put(parent);
+> +	if (strcmp(bus->name, "pci") && (bar_no >= 0))
+>  		return NULL;
+> -	}
+> +
+>  	bus->count_cells(dev, &na, &ns);
+> -	of_node_put(parent);
+>  	if (!OF_CHECK_ADDR_COUNT(na))
+>  		return NULL;
+>  
+> @@ -888,14 +875,13 @@ static u64 of_translate_ioport(struct device_node *dev, const __be32 *in_addr,
+>   */
+>  int of_dma_get_range(struct device_node *np, const struct bus_dma_region **map)
+>  {
+> -	struct device_node *node = of_node_get(np);
+> +	struct device_node *node __free(device_node) = of_node_get(np);
+>  	const __be32 *ranges = NULL;
+>  	bool found_dma_ranges = false;
+>  	struct of_range_parser parser;
+>  	struct of_range range;
+>  	struct bus_dma_region *r;
+>  	int len, num_ranges = 0;
+> -	int ret = 0;
+>  
+>  	while (node) {
+>  		ranges = of_get_property(node, "dma-ranges", &len);
+> @@ -905,10 +891,9 @@ int of_dma_get_range(struct device_node *np, const struct bus_dma_region **map)
+>  			break;
+>  
+>  		/* Once we find 'dma-ranges', then a missing one is an error */
+> -		if (found_dma_ranges && !ranges) {
+> -			ret = -ENODEV;
+> -			goto out;
+> -		}
+> +		if (found_dma_ranges && !ranges)
+> +			return -ENODEV;
+> +
+>  		found_dma_ranges = true;
+>  
+>  		node = of_get_next_dma_parent(node);
+> @@ -916,10 +901,8 @@ int of_dma_get_range(struct device_node *np, const struct bus_dma_region **map)
+>  
+>  	if (!node || !ranges) {
+>  		pr_debug("no dma-ranges found for node(%pOF)\n", np);
+> -		ret = -ENODEV;
+> -		goto out;
+> +		return -ENODEV;
+>  	}
+> -
+>  	of_dma_range_parser_init(&parser, node);
+>  	for_each_of_range(&parser, &range) {
+>  		if (range.cpu_addr == OF_BAD_ADDR) {
+> @@ -930,16 +913,12 @@ int of_dma_get_range(struct device_node *np, const struct bus_dma_region **map)
+>  		num_ranges++;
+>  	}
+>  
+> -	if (!num_ranges) {
+> -		ret = -EINVAL;
+> -		goto out;
+> -	}
+> +	if (!num_ranges)
+> +		return -EINVAL;
+>  
+>  	r = kcalloc(num_ranges + 1, sizeof(*r), GFP_KERNEL);
+> -	if (!r) {
+> -		ret = -ENOMEM;
+> -		goto out;
+> -	}
+> +	if (!r)
 > +		return -ENOMEM;
-
-Please improve the distinction for checks according to the handling of err=
-or/null pointers.
-
-
-=E2=80=A6
-> +	ret =3D device_register(&node->dev);
-> +	if (ret)
-> +		goto err_put_device;
-> +
+>  
+>  	/*
+>  	 * Record all info in the generic DMA ranges array for struct device,
+> @@ -957,9 +936,7 @@ int of_dma_get_range(struct device_node *np, const struct bus_dma_region **map)
+>  		r->size = range.size;
+>  		r++;
+>  	}
+> -out:
+> -	of_node_put(node);
+> -	return ret;
 > +	return 0;
+>  }
+>  #endif /* CONFIG_HAS_DMA */
+>  
+> @@ -1016,24 +993,18 @@ phys_addr_t __init of_dma_get_max_cpu_address(struct device_node *np)
+>   */
+>  bool of_dma_is_coherent(struct device_node *np)
+>  {
+> -	struct device_node *node;
+> -	bool is_coherent = dma_default_coherent;
+> -
+> -	node = of_node_get(np);
+> +	struct device_node *node __free(device_node) = of_node_get(np);
+>  
+>  	while (node) {
+> -		if (of_property_read_bool(node, "dma-coherent")) {
+> -			is_coherent = true;
+> -			break;
+> -		}
+> -		if (of_property_read_bool(node, "dma-noncoherent")) {
+> -			is_coherent = false;
+> -			break;
+> -		}
+> +		if (of_property_read_bool(node, "dma-coherent"))
+> +			return true;
 > +
-> +err_put_device:
-> +	put_device(&node->dev);
+> +		if (of_property_read_bool(node, "dma-noncoherent"))
+> +			return false;
 > +
-> +	return ret;
-> +}
+>  		node = of_get_next_dma_parent(node);
+>  	}
+> -	of_node_put(node);
+> -	return is_coherent;
+> +	return dma_default_coherent;
+>  }
+>  EXPORT_SYMBOL_GPL(of_dma_is_coherent);
+>  
+> @@ -1049,20 +1020,14 @@ EXPORT_SYMBOL_GPL(of_dma_is_coherent);
+>   */
+>  static bool of_mmio_is_nonposted(struct device_node *np)
+>  {
+> -	struct device_node *parent;
+> -	bool nonposted;
+> -
+>  	if (!IS_ENABLED(CONFIG_ARCH_APPLE))
+>  		return false;
+>  
+> -	parent = of_get_parent(np);
+> +	struct device_node *parent __free(device_node) = of_get_parent(np);
+>  	if (!parent)
+>  		return false;
+>  
+> -	nonposted = of_property_read_bool(parent, "nonposted-mmio");
+> -
+> -	of_node_put(parent);
+> -	return nonposted;
+> +	return of_property_read_bool(parent, "nonposted-mmio");
+>  }
+>  
+>  static int __of_address_to_resource(struct device_node *dev, int index, int bar_no,
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index a6358ee99b74..b73daf81c99d 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -40,15 +40,12 @@
+>   */
+>  bool of_graph_is_present(const struct device_node *node)
+>  {
+> -	struct device_node *ports, *port;
+> +	struct device_node *ports __free(device_node) = of_get_child_by_name(node, "ports");
+>  
+> -	ports = of_get_child_by_name(node, "ports");
+>  	if (ports)
+>  		node = ports;
+>  
+> -	port = of_get_child_by_name(node, "port");
+> -	of_node_put(ports);
+> -	of_node_put(port);
+> +	struct device_node *port __free(device_node) = of_get_child_by_name(node, "port");
+>  
+>  	return !!port;
+>  }
+> @@ -610,9 +607,9 @@ EXPORT_SYMBOL(of_graph_parse_endpoint);
+>   */
+>  struct device_node *of_graph_get_port_by_id(struct device_node *parent, u32 id)
+>  {
+> -	struct device_node *node, *port;
+> +	struct device_node *port;
+> +	struct device_node *node __free(device_node) = of_get_child_by_name(parent, "ports");
+>  
+> -	node = of_get_child_by_name(parent, "ports");
+>  	if (node)
+>  		parent = node;
+>  
+> @@ -626,8 +623,6 @@ struct device_node *of_graph_get_port_by_id(struct device_node *parent, u32 id)
+>  			break;
+Trivial but you could use
+			return port;
+	}
 
-Did you overlook to release the node memory after a failed function call
-at such a source code place?
+	return NULL;
 
-Regards,
-Markus
+which I think would make the flow a tiny bit more obvious to anyone who doesn't
+know that for_each_child_of_node() leaves it set to NULL on exit.
+
+Maybe use the scoped form a a return_ptr() to make it obvious you are intentionally
+holding on to the port node on exit?
+
+
+>  	}
+>  
+> -	of_node_put(node);
+> -
+>  	return port;
+>  }
+>  EXPORT_SYMBOL(of_graph_get_port_by_id);
+> @@ -655,14 +650,13 @@ struct device_node *of_graph_get_next_endpoint(const struct device_node *parent,
+>  	 * parent port node.
+>  	 */
+>  	if (!prev) {
+> -		struct device_node *node;
+> +		struct device_node *node __free(device_node) =
+> +			of_get_child_by_name(parent, "ports");
+>  
+> -		node = of_get_child_by_name(parent, "ports");
+>  		if (node)
+>  			parent = node;
+>  
+>  		port = of_get_child_by_name(parent, "port");
+> -		of_node_put(node);
+Completely trivial but I'd drop the blank line to bring the error check
+up into same block of code as the line that gets what it is checking.
+
+>  
+>  		if (!port) {
+>  			pr_debug("graph: no port node found in %pOF\n", parent);
+
+
+> 
+
 
