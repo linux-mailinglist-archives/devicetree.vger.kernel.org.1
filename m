@@ -1,162 +1,172 @@
-Return-Path: <devicetree+bounces-59148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76E448A449A
-	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 20:36:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D5798A449F
+	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 20:37:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 272871F21186
-	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 18:36:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BEC7E1C2104E
+	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 18:37:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6149A53363;
-	Sun, 14 Apr 2024 18:36:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="tdwmPxjh"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DE1B134CEF;
+	Sun, 14 Apr 2024 18:37:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D13FB29B0;
-	Sun, 14 Apr 2024 18:36:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4547D44384
+	for <devicetree@vger.kernel.org>; Sun, 14 Apr 2024 18:37:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713119807; cv=none; b=a+D+OnB2kibElUxON87LFtJnwybfizNApxBGTdwrc2y7aSBq2OHTEGccYNsJYWlUPSq/hYOQNAXzhULMIKQrjJWm0NZQh0kqDZw9fXiVg4Z8O9ifosANYT+WNVXXRmXOSouepnzPDMCdOXxmkg2ON2xoV5U0xyVCawdOG1xeuEY=
+	t=1713119840; cv=none; b=Ae3mCJq501NZR9goJe6Vqz05VgHUwfGVMZJrp8BOWBEgqtkM3Yv3H7RuQWUzw//XVrwRNcfLYVk1JbrDGgxWVlJY4k9qG59vsLmjYlbWV+IQFuEUFvNskomVYVN3UQUWkaW2SGnhhyTnPq/j/B6OQ/B50gDY/HZzOsidpp+RlsM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713119807; c=relaxed/simple;
-	bh=rT0Ls6DVFCzzlFPUOlmKHuVQHe6JZ+Laed7jwNJb4no=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=be5YJ4TohO9my088OBLgJg8iZSl4hKt9X8v+KDdUAkbMRzDedZj5vAgfr+YIucP8I0N6dBy9plx1e4YwTShSSXXWLInh2g9eM4ZCU0ubpMt7yY3USWubyQgZwQQBapDO48bQAjYD0GohM1w7Dw42OCysAxUafFoPWbdX5QIlg68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=tdwmPxjh; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1713119803;
-	bh=rT0Ls6DVFCzzlFPUOlmKHuVQHe6JZ+Laed7jwNJb4no=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tdwmPxjhpI1tcBVd8qCh7/nSyl+LjbG52efcfiCsa05jLLrWb8WDMD0V2h7DHsRIe
-	 pA2cPJr6sITGynILUsqCSlmenANEGPNeEWqRZdLBz7lFk0bhhfdyVLuhlf7yvPktTr
-	 1TJXzw0OK95ShF1u5/EX0/n3NgDt9zbfIwgIe2WQ5X9XsXt/Bl8lLFOfZJG4+dG+CZ
-	 2bsYl+uTLg1fa7Mm8AgERoRgtQ03Ay92Fxxsdbawh829J7IYiJBt2HOkgXmu4L80OJ
-	 WjUkLix9Mn07oSVZBKel2yYT6tFyOkDWrEhee7YhffLKQEB124D6/le17MP/1fi8LN
-	 2B3QSakDPslYA==
-Received: from mercury (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id B1DE237814A4;
-	Sun, 14 Apr 2024 18:36:43 +0000 (UTC)
-Received: by mercury (Postfix, from userid 1000)
-	id 31571106134A; Sun, 14 Apr 2024 20:36:41 +0200 (CEST)
-Date: Sun, 14 Apr 2024 20:36:41 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Jianfeng Liu <liujianfeng1994@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de, 
-	ezequiel@vanguardiasur.com.ar, p.zabel@pengutronix.de, mchehab@kernel.org, sfr@canb.auug.org.au
-Subject: Re: [PATCH v5 1/2] arm64: dts: rockchip: Add Hantro G1 VPU support
- for RK3588
-Message-ID: <f3s63qq7h7qstu5sbjzcumafpllvineh3tlmbjy7hdj4oickla@gcqixrj623gu>
-References: <20240413064608.788561-1-liujianfeng1994@gmail.com>
- <20240413064608.788561-2-liujianfeng1994@gmail.com>
+	s=arc-20240116; t=1713119840; c=relaxed/simple;
+	bh=RZVfVHfiDkKN+97qkwuDrU6LAJCVY95cLG2p/+2L3JE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=IeVMXMv04RNzo7R8aTCEnTBfMhbzqAhTkqC9V7FZhvkda11MLiaEkx5yHxD17qLJSaHRgAuZEeji0UBTAGUZGa+71lJOo6b6PFCup3SKz+PrIG80oxXP/0JWImBoOGOUBUnAYj57nivrMOnMs8E6/NmkxnsbjxCKAIV/1cVUFvs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 01E7F339;
+	Sun, 14 Apr 2024 11:37:46 -0700 (PDT)
+Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 119EC3F792;
+	Sun, 14 Apr 2024 11:37:15 -0700 (PDT)
+Date: Sun, 14 Apr 2024 19:37:10 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Ryan Walklin <ryan@testtoast.com>
+Cc: Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel
+ Holland <samuel@sholland.org>, Chris Morgan <macromorgan@hotmail.com>,
+ devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH 3/4] arm64: dts: allwinner: h700: Add RG35XX-Plus DTS
+Message-ID: <20240414193710.6ede3db4@minigeek.lan>
+In-Reply-To: <20240414083347.131724-6-ryan@testtoast.com>
+References: <20240414083347.131724-2-ryan@testtoast.com>
+	<20240414083347.131724-6-ryan@testtoast.com>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="cwtj3nebnsz4gzrf"
-Content-Disposition: inline
-In-Reply-To: <20240413064608.788561-2-liujianfeng1994@gmail.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-
---cwtj3nebnsz4gzrf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Sun, 14 Apr 2024 20:33:47 +1200
+Ryan Walklin <ryan@testtoast.com> wrote:
 
 Hi,
 
-On Sat, Apr 13, 2024 at 02:46:07PM +0800, Jianfeng Liu wrote:
-> Enable Hantro G1 video decoder in RK3588's devicetree.
->=20
-> Tested with FFmpeg v4l2_request code taken from [1]
-> with MPEG2, H.264 and VP8 samples.
->=20
-> [1] https://github.com/LibreELEC/LibreELEC.tv/blob/master/packages/multim=
-edia/ffmpeg/patches/v4l2-request/ffmpeg-001-v4l2-request.patch
->=20
-> Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
+> From: Ryan Walklin <ryan@testtoast.com>
+> 
+> The RG35XX-Plus adds a RTL8221CS SDIO Wifi/BT chip to the RG35XX (2024).
+> 
+> Enabled in this DTS:
+> - WiFi
+> - Bluetooth
+> - Supporting power sequence and GPIOs
+> 
+> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
 > ---
+>  .../sun50i-h700-anbernic-rg35xx-plus.dts      | 63 +++++++++++++++++++
+>  1 file changed, 63 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-plus.dts
+> 
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-plus.dts b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-plus.dts
+> new file mode 100644
+> index 000000000000..b9a163ed5d0b
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-plus.dts
+> @@ -0,0 +1,63 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +/*
+> + * Copyright (C) 2024 Andre Przywara <andre.przywara@arm.com>.
 
-Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+I don't remember writing anything in here explicitly, so please remove
+this copyright line.
 
--- Sebastian
-
->  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 21 +++++++++++++++++++++
->  1 file changed, 21 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/=
-dts/rockchip/rk3588s.dtsi
-> index ac5bd630f..de823f461 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> @@ -1072,6 +1072,27 @@ power-domain@RK3588_PD_SDMMC {
->  		};
->  	};
-> =20
-> +	vpu: video-codec@fdb50000 {
-> +		compatible =3D "rockchip,rk3588-vdpu121", "rockchip,rk3568-vpu";
-> +		reg =3D <0x0 0xfdb50000 0x0 0x800>;
-> +		interrupts =3D <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		interrupt-names =3D "vdpu";
-> +		clocks =3D <&cru ACLK_VPU>, <&cru HCLK_VPU>;
-> +		clock-names =3D "aclk", "hclk";
-> +		iommus =3D <&vdpu_mmu>;
-> +		power-domains =3D <&power RK3588_PD_VDPU>;
-> +	};
+> + * Copyright (C) 2024 Ryan Walklin <ryan@testtoast.com>.
+> + * Copyright (C) 2024 Chris Morgan <macroalpha82@gmail.com>.
+> + */
 > +
-> +	vdpu_mmu: iommu@fdb50800 {
-> +		compatible =3D "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
-> +		reg =3D <0x0 0xfdb50800 0x0 0x40>;
-> +		interrupts =3D <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		clock-names =3D "aclk", "iface";
-> +		clocks =3D <&cru ACLK_VPU>, <&cru HCLK_VPU>;
-> +		power-domains =3D <&power RK3588_PD_VDPU>;
-> +		#iommu-cells =3D <0>;
-> +	};
+> +/dts-v1/;
+
+That line is already in the file included next, so please remove it
+from here.
+
 > +
->  	av1d: video-codec@fdc70000 {
->  		compatible =3D "rockchip,rk3588-av1-vpu";
->  		reg =3D <0x0 0xfdc70000 0x0 0x800>;
-> --=20
-> 2.34.1
->=20
->=20
+> +#include "sun50i-h700-anbernic-rg35xx-2024.dts"
+> +
+> +/ {
+> +    model = "Anbernic RG35XX Plus";
+> +    compatible = "anbernic,rg35xx-plus", "allwinner,sun50i-h700";
+> +
+> +    wifi_pwrseq: wifi_pwrseq {
+> +        compatible = "mmc-pwrseq-simple";
+> +        clocks = <&rtc CLK_OSC32K_FANOUT>;
+> +        clock-names = "ext_clock";
+> +        pinctrl-0 = <&x32clk_fanout_pin>;
+> +        pinctrl-names = "default";
+> +        post-power-on-delay-ms = <200>;
+> +        reset-gpios = <&pio 6 18 GPIO_ACTIVE_LOW>; /* PG18 */
+> +    };
+> +};
+> +
+> +/* SDIO WiFi RTL8821CS, powered by CLDO4, regon=PG18, hostwake=PG15 */
+> +&mmc1 {
+> +    vmmc-supply = <&reg_cldo4>;
+> +    vqmmc-supply = <&reg_vcc1v8>;
 
---cwtj3nebnsz4gzrf
-Content-Type: application/pgp-signature; name="signature.asc"
+That regulator should then also provide the PIO's vcc-pg-supply. And
+maybe it should be renamed.
 
------BEGIN PGP SIGNATURE-----
+> +    mmc-pwrseq = <&wifi_pwrseq>;
+> +    bus-width = <4>;
+> +    non-removable;
+> +    status = "okay";
+> +
+> +    sdio_wifi: wifi@1 {
+> +       reg = <1>;
+> +       interrupt-parent = <&pio>;
+> +       interrupts = <6 15 IRQ_TYPE_LEVEL_LOW>; /* PG15 */
+> +       interrupt-names = "host-wake";
+> +    };
+> +};
+> +
+> +&uart0 {
+> +    pinctrl-names = "default";
+> +    pinctrl-0 = <&uart0_ph_pins>;
+> +    status = "okay";
+> +};
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmYcIjQACgkQ2O7X88g7
-+pru+g//TSGr8OdwYvLGz5eiAnvv//OdV2zNbWBeVOb5TQnuvB/kxBbwspIJAY44
-+Bkgz9AWLjEZuooKaIoQrgCFNJu5o4+rdTiIhKMEo9M6QSjji/jRvB0J4TIUVbUR
-brTZUvJhTQJNNh81CWstGJtiYvPf57IJvojjk7VJRJFg97eTf/kZszfRArbWohhn
-4Ij7oW9bR9e9fX8PIJd5zVgJD/ljHHmKU48ZkI8WMwhplYVJh84+lOaI9KbTjuN1
-fqPjTNJeQm4l9VbQ1nvoe/LC9HErVoPc77obiChmO0FwCD4nAL0xMfC6m9Qweayg
-7e9rG8crDGy2takHP5+vrOjLMdwucwzL2vNV8SuZbiF2NWPLDyD1TZkNKI6Tw4af
-xBu4OSA/de+vulnxpfIFYx3ieasHNfgl8PTwDOtliugOf6i+aiczpblhvLsqNcyK
-WtY4VUiR/B+YVNLOdsDFkDwHJ3r+YHCoke67R9MVYPZdq3JKIwxRaj2xqgHAUzBb
-joaX8pRdYrrxPkIquHKPUteegweV1Fr3FiZPvelNcSB/6l90HMa+XoYM5vR3ARnx
-zHpzLKJygYzlkUi4fR3y1Ad2H0FfV5MHx4TIJ+FlQuUJTuEnp30hWb7Sc/YCC0Ec
-YgZGoH/r8ARl0V+Zmvi/R6bFrZmnBETRnn55EzWnOfDUy3KHcyk=
-=HMGY
------END PGP SIGNATURE-----
+That would be redundant, as the node is already contained in the base
+.dts?
 
---cwtj3nebnsz4gzrf--
+> +
+> +/* Bluetooth RTL8821CS, RST_N: PG19, BT_WAKE: PG17, BT_HOSTWAKE: PG16 */
+> +&uart1 {
+> +    pinctrl-names = "default";
+> +    pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
+> +    uart-has-rtscts;
+> +    status = "okay";
+> +
+> +    bluetooth {
+> +        compatible = "realtek,rtl8821cs-bt", "realtek,rtl8723bs-bt";
+> +        device-wake-gpios = <&pio 6 17 GPIO_ACTIVE_HIGH>;
+> +        enable-gpios = <&pio 6 19 GPIO_ACTIVE_HIGH>;
+> +        host-wake-gpios = <&pio 6 16 GPIO_ACTIVE_HIGH>;
+
+As usual, please add the GPIO names as a comment.
+
+Cheers,
+Andre
+
+> +    };
+> +};
+
 
