@@ -1,184 +1,183 @@
-Return-Path: <devicetree+bounces-59024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F25D8A40A2
-	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 08:26:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADC918A40AA
+	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 08:41:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F38B728206C
-	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 06:26:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F2FE8B21099
+	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 06:41:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F3911CAB0;
-	Sun, 14 Apr 2024 06:26:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FC8F17BB7;
+	Sun, 14 Apr 2024 06:41:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WyelgGnF"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="EkCvsSDV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12olkn2061.outbound.protection.outlook.com [40.92.23.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87D891C698
-	for <devicetree@vger.kernel.org>; Sun, 14 Apr 2024 06:26:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713076004; cv=none; b=ftzQjih70gCecKRbdSoGdSWIyiPEjHTMw5BdpbZ1p0YQcUbc8LVjg4aDtIismH3kBDq/+vhgTdXG8XRDKs/8w4u7CY14+KkNjZy5qGqRyL1UzcnPB2MasJ92IrLfmp5PqPiDFB0TP301uLvuK97nM27JBIJ9DlEVGIV2QB4Fvzg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713076004; c=relaxed/simple;
-	bh=smn24fMwp0ky4DqZfNJQZXfdoNYmUPOFboRBMiP+Dq8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FxIlf0OMxklSZLbl0Ft51aRAS9+fh4rzTzzROSOZ5SyFYLU1m+fNEom0t3lyZnNtA9hA14qAwqw2+pMRimOsrcXjx9B2wgChltBwHNU2t2N5FJbm7T24ahwAGaVoWgMkFfQJlnXBOZgh9+YOjPU3tCorSn4iQMvM52SwgWVoFNc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WyelgGnF; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-56e1f3462caso2471338a12.3
-        for <devicetree@vger.kernel.org>; Sat, 13 Apr 2024 23:26:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713076000; x=1713680800; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Fb4XT4BpF1keQD/cYuSzqTHELReynHN/QxYtqoQK4B4=;
-        b=WyelgGnFTf71E6+lYZOxiLqtpItMsA3uhmHMrj9a3kUuHbjAwQnhZddMarBFLsAQ/R
-         9uig3UdHtdVVb12dCvn9aUusQZ7W0ABjQRT7T4+/Q/saNpMSdvOJHj9Mr8OyJ+t16FAf
-         pSuYuaWG4ziJixkMRm1PnWclENVEeHU46b76FKYWH5VBH1epgk/AgC3DGfTgcy3EpRA8
-         JnKZYbZLZnDv/ZUMfGIAqAzAJVei0WUznB+X5BUsFn4sln+vCtQZkp0BUMKeVX68QPCf
-         RUZha4Q7ocbJvxSsDjCWiRS5NEPKmIGFqOP5m8jJqAdf58+qQJ+hJEmRPItNcOZbMXTx
-         Zmmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713076000; x=1713680800;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Fb4XT4BpF1keQD/cYuSzqTHELReynHN/QxYtqoQK4B4=;
-        b=AcYZGkdJrH15UcAzDP4Jq6O/aE4JCEhLReajSm1XEi/HcnhVSQ2W+7UzswN4uzusH+
-         E7vG+rn9T6YptrjWhR+awQbPYxhAyymcZQhOgaDQVi5Oab8Pt09Aym8hcEo7aEm7L2fx
-         XNjwabxXwuAO3MRZEd77jvjyhk7NC70yM7hjtVf6JQkfTiaVZ+ZqcxGi9mtaT+5i+CPg
-         nYLL9QP01ACCwVwdTliEUUeqmfhXuH+sbyD5QqVGuPM5d0fFG/wZJb3kXcvGj3D7ZY8j
-         rNuxtcErbCl5AypijiCAqa93G4e3KXEF6A/XnftD3t47sT5KZ0g37QZ4OuDofbMJFCQQ
-         Y23w==
-X-Forwarded-Encrypted: i=1; AJvYcCWAMUVHeZDzMW26iwZxtJS+aLy2ffqcptaoHMhTjXSzJfKio7WqMRNM4mOIFxVpDdgZXPFf85XMkFRZAlnK/DY8oROmBCvki52WOg==
-X-Gm-Message-State: AOJu0YxEIhoIpwFim/vTCkZt7bIq2HDfcMToW8T500s/y+DZlRwDf6Lo
-	8b7js52CJRYzTAy2VOIgpdVDzIbaGDEIoXTEYTquti92R+B1ge30NDTqu5ysVik=
-X-Google-Smtp-Source: AGHT+IFj+22/+7UEp646asI5/i1SIA8IDxe7zCUsAbVg7XNefNbM7Zd0Alf6RdgkHgPJ+y0JOTx0AA==
-X-Received: by 2002:a17:907:724b:b0:a52:5795:226a with SMTP id ds11-20020a170907724b00b00a525795226amr1288123ejc.5.1713075999829;
-        Sat, 13 Apr 2024 23:26:39 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id g4-20020a1709063b0400b00a51bbee7e55sm3807492ejf.53.2024.04.13.23.26.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 Apr 2024 23:26:39 -0700 (PDT)
-Message-ID: <4a63aa94-e8b4-4282-9622-7c3a7eed1c99@linaro.org>
-Date: Sun, 14 Apr 2024 08:26:37 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7A81EACE;
+	Sun, 14 Apr 2024 06:41:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.23.61
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713076866; cv=fail; b=iiCILl1K9BPvLBhEIgpWWQC8EV1KImjkBzSdxeFqOn14Gu3JT+/BmTiqTpc4JEFCc2LUftYFxrPe4Z0k1W4bF7BCasumXRVLLZpNEWMEDZvPfq4n+sNZYMRZQoevS1HAmKUe4mDIuJBu9vrssB+oQte/CWqRCSNvJjvxV0YRhhg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713076866; c=relaxed/simple;
+	bh=TRZy3OOeN4nleqqemC6hBOL1xCFoUcvTLRTPNTwzDMg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=P2v4Z8AjVuaklqP26Cy2m6cfYVA0bRabc6p4R1pYO9FfPOb46fgQbOHt8tEZAOa3kMv0zabvyszjeZgEaYbIZSGbRZcCpJqLeCPjilyk+sjzaFZKnUMYV4b9Ja5xTLu7MUdD08TPkdUffo2MOVpu4jiZx4yj3r11hMk+fLvmlCo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=EkCvsSDV; arc=fail smtp.client-ip=40.92.23.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bqPNsqy5ZydkjBqSfXP2d73qGS5kdluUuUQy9On582Yv1EU4wEyh4Ip+5cx46zF2c1EyHZfqtaGa20VKCcZqMUmqbK36xw7K7oanlLfBG91Ie06MjISj1F0gX1QITc9vnYUgPjt1GeqluE0El0q2vL3P98gkc6O8SlMWdmjrpKfC26pyIEfpX6o1DwwJFI8uXUmDjU8ZhKh0Db+u1kcoFwAraspKJsrWnGt7W36IhkN9mEPznEy7tbdaIlRWs8YvZkGeA/v/dUOalUySH6yL8LDm4IDHM0TRgtVwB3ctLYH5XXiga2yJfdeO/QAl1EDw92qYCtQfxJSywOByf/9s1w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iPqnSJlTCpzmTfOGUVT6Kr2sGW5ryadgdq0jNs8r+K4=;
+ b=odYNuSaKuXMAxKcIMfckOUIA3MYpjCbE/COG+3+92Bdvl10eB30KmGEMjyJAK+cXdB4sh1Pw4/ki83RxAIWj1/UWPRRP418Xv9sfCS6AFljNuxscdEfLJw4l3BiRVr5MGUOS3nhUc+YUcGethc8nyulCt7QufUgP6LBnLI+7pXSP+2mc0vNIKobJTb2eVz5U4PFYZ6JQCx7KcGzAR94bVUh06vjTaLKAvXanRxQAMpoaK1PtthXx7aEZvAbMhljtuvDO01YvVI5u5T0sUxjxl0B+wZ+ZwrcE/zzO4GBjLOBgGYHaSD9PXKsfC3GcSp8+s2rH1lLPczZ8IV/H/hG3xg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iPqnSJlTCpzmTfOGUVT6Kr2sGW5ryadgdq0jNs8r+K4=;
+ b=EkCvsSDVQrra2lzeYk/kA9Dhhen1w9n5S0IhMqQZr6kSOiSBOKKpvOdlBNrveq6h0XnI082MAxtSNmKAU2LdtjuoqH2jlqbFUV2aL74KOtKS7wQy1rtO8NgaVIcoFVOg3md0CSeFEOn7TRLNxTGi6RPhSqtwpGftRpeTdB5E8BEyWcyAFdqU18FhEITnebKoTErHaYga0NNVuPNiQLB+cV6iZHiSb8MFy0Dt29i48sJK5wAdsRV9m+OsZEeR3HBrgLt6OY8NyEyKPmiI6ItyLQqWyPC9KleBqQ2v8IyKY56ymXGsI6mGLuvaLjCMVWViYOaZrBRWEJgVseMIkk0qdw==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by BY1PR20MB7512.namprd20.prod.outlook.com (2603:10b6:a03:4a8::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.54; Sun, 14 Apr
+ 2024 06:41:02 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::182f:841b:6e76:b819]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::182f:841b:6e76:b819%2]) with mapi id 15.20.7452.046; Sun, 14 Apr 2024
+ 06:41:02 +0000
+Date: Sun, 14 Apr 2024 14:41:21 +0800
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Michael Opdenacker <michael.opdenacker@bootlin.com>, 
+	Inochi Amaoto <inochiama@outlook.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chao Wei <chao.wei@sophgo.com>, Chen Wang <unicorn_wang@outlook.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>
+Cc: Jisheng Zhang <jszhang@kernel.org>, Liu Gui <kenneth.liu@sophgo.com>, 
+	Jingbao Qiu <qiujingbao.dlmu@gmail.com>, dlan@gentoo.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: (subset) [PATCH v9 0/6] riscv: sophgo: add clock support for
+ Sophgo CV1800/SG2000 SoCs
+Message-ID:
+ <IA1PR20MB49536A93C7A684EAE844E316BB0A2@IA1PR20MB4953.namprd20.prod.outlook.com>
+References: <IA1PR20MB4953512A4DCAF293D7B1CBC2BB262@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <IA1PR20MB4953E5E78F930EE25A86EE1CBB052@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <2696c0e0-0f15-44d1-ba40-dcab4be802d2@bootlin.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2696c0e0-0f15-44d1-ba40-dcab4be802d2@bootlin.com>
+X-TMN: [p5mwzyThm9faVPZ0BZNz0RiKJqWiP5D/GzdN0etKhIg=]
+X-ClientProxiedBy: PS2PR02CA0081.apcprd02.prod.outlook.com
+ (2603:1096:300:5c::21) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <p5hrf2bdyhbyx7fw5rbvmdx7tir6mxlf4xzk7ruqlnxv356y3c@td3fnbuh34bf>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 15/15] ARM: dts: bcm2711: add bcm2711-dma node
-To: Andrea della Porta <andrea.porta@suse.com>, Vinod Koul
- <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
- <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Saenz Julienne <nsaenz@kernel.org>,
- dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
- linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, dave.stevenson@raspberrypi.com
-Cc: Stefan Wahren <stefan.wahren@i2se.com>
-References: <cover.1710226514.git.andrea.porta@suse.com>
- <c1ef1ba7cd9153d607e6130277e560b139056fd9.1710226514.git.andrea.porta@suse.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <c1ef1ba7cd9153d607e6130277e560b139056fd9.1710226514.git.andrea.porta@suse.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|BY1PR20MB7512:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5d816a00-c8c6-4084-be9c-08dc5c4dd9f9
+X-MS-Exchange-SLBlob-MailProps:
+	0YULWdH+7mChbaCZv10gjZdR5M+Aa9K07V+FkQu9csKrinwkEAS+8Xgx4FYASICQcsA1wUUfnxq9BJ39wpOF3lcjVDhzvQEXmXHO+n8q3ku8YWCle3VZy5mt4lwHjGGTT2J6xN8/JldgJy+EowM+a0PMk7hKbjeCBl8Kf3dhvZomeBzqJllhAY03uPwC80tI5IKwCtniE4a3iUPOhSvFVvlIcwqhkKEv3iaMRxjCZkM6hxpACa1xOLKmksfTNESGTIq/UE7ERCgQhp3ZJzSfnOok5t0qEM2PiflXP1NTpfgOz4z87suKyX//Lh6FaWESFu2mDu38zYW6RWb7H40X9GPkFOOUvJbmWXFYCiA1QqrXLkWjF+yDqpZaPixH52q7u3Yp0jeKeHSk9zjzLVFq6qe+BWc/hKdIXTXzIysdIR+Vuv+DmlzAdruyAqxWhu1fsWz1HrF8hLdWDymE47lGx12TgwoJ+/5WOK94YBWXLsr8sLG5/zxz2LzqWTtaFinjFEc/1kG5vDCp4On823t6Q5hWmxdbsOdAGcVtSWMTMnGJMxKwg28eST8OzSHrQuYFg43OPSuMy1QvpTXJX3f8zbpda/ei87vACJMYBhhPK/WGkyP7AlDnN2boA2T18x1TEE1qc4yhkzpQdo9l035mOBHre6qgzZ91XqVCnbgmsfvuwlgiPZdGGLMlanWZVk5KeVhNWFeYdYSbqBXCK37CmlPf3ZPYKQLcIkQ1uymYahGyZxtnYK+obqIYaiYIsRrzLZlUC7QvsocU+lSz/2tfyJY7q7ySI7mvaQYo+l50G/s2G8cQlEnfh/dk6gdUJfInX5XxGEEua6kHOqkg4vvrdJOMRUp/+N2pusxjzY7Ta8DR4ignul44QQ==
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	tj+cnadduPsDF6BH9OA+xw2YrlGy5GyQwntKxBhBB2sNU88/eo4anQin74XgaZelFPdcAML9njXlvOcI1i2vaqo4NtjpmhDmCucVqJks8iES0NrV7PbC4qx36ACBivBV9ugp74XP2in25urpu2bHy8aMwmxpiunz65TcYsMCSSihDfWhQ5I4RueqzwnPkwgtzN4PZbt89OUgv8J686jYEuNinsNCkgGPD8+sqSTtnhLP0lYvVBvFuH5Z36m7NnJdBq/UsGHpxR3ox8ti2G7ZoFspJWBaOf0cEsaJJ1oSAg0xmTQTU8QwKGyA8X32Q06yBDwOWrkVrBGOL7HtscKWOL915HYEP4C26MiJmRiExZjMSI4HIijWPl2NfUQcQtd3VmqMZ/84j2gAmc4mNE1p9dExLtKYpGX5zwCAA+xT7TR5jOl36WDoi1VfvJ1ZcnFKss2dxetu4Hkhw4KKWhDnBNRdTlKYiYsRRN4HJ7OTjcQxUAhbGPT07XrPRjpu1iEPD27fKAEPLxmFvShCB2xOFMpGc6ileAUsg+2dqiQcQDKpRwxCz5HBj0Oh465ogWRCxd0/ftBJGuMOPTHwgvPVfytBM6naTVHb/otyn0lWX3eyDRabGeN1hdadMXVhGgeSId6MjyjnX4puDxiKZF10UqS8V+Fl6nRrlESpsN40NSTa9zbdP2qBbqAcC9pTW7OzxAqzPoBAjFBx+qXYFh+zYQ==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?w72vBel9+y725V5E1hmhjjTmEn/V0uNWNSG3HmtvyjJPJDoarhYiE1dLnWqr?=
+ =?us-ascii?Q?nUEEWsFAh77lU/Er2AV0yDRAhyqv91QPv3T0f72pCrqzVAMbMqAIU05XQdd7?=
+ =?us-ascii?Q?xaFaJ+cN7PN2HQxdtfrAKkDyP0CjOZ1F624Ng6ZSbNkdbuVJ4gfxgn3uIDSx?=
+ =?us-ascii?Q?hcZNdzcu7F5M9Ld6G1LQAzPMPSe1k7Kou1lVmr6c5SJvAjeYz3yDKDWjX7HC?=
+ =?us-ascii?Q?rkMhe+MKw2qbDP1WyhZu2hyumFzs3XfwzN8CmJWev8zO9bDQR9MOu4ZYYjf4?=
+ =?us-ascii?Q?tttWxHdaAGvap/xrVBR7HS4hHWl/U6yATJ/mFxwaNdvS0hGNBFyYEcZeHYgf?=
+ =?us-ascii?Q?VacBoMLuMDflgW46XZSx3Hx5Cs/g6Ngi8hyiByddVLc4QhbFVdniqdrR8XBQ?=
+ =?us-ascii?Q?Gnh9bIfTIfrN9RIsWSDLvhAaMXzYWYQxSz1+Tna0GADrD1qxiJNKV3pjjv/D?=
+ =?us-ascii?Q?s5W1lamEVPTbCxV7PlZwV96cBJ+jD0+X3s2WjEkPN1G0VyCmcFPnmENvscGf?=
+ =?us-ascii?Q?JBLDu/E9m42f/Iy4JfG304+L/iLkvRTz95pqnY2a/NHa7zvH6czh/RTlByiW?=
+ =?us-ascii?Q?z0gs8PZNVCSeqlXbtZDZX3h+HzU5ne7KUsOFauUZdhTjwu7iFNJfH5jWKEI1?=
+ =?us-ascii?Q?DNiG9N9Uc/tYRe2lq73TKLhyDDI1yaUrW31YMfWU3DCwSaC7mJr7oqvNT3ZW?=
+ =?us-ascii?Q?29XKhjHaI2Tdi8HN8rqUmhtQPF/+/djsen38vq2BkBW7xLZsacvXmgUrUqCI?=
+ =?us-ascii?Q?7j38MSC9uQCfJVgNfQPL/LMZE552ufBM0r/jWIeRld4MkWGP1IT2Rwo78QNn?=
+ =?us-ascii?Q?KhWJFUR5hw9v583W6oJLL2IPeCfslSo1Sb4n0bbWbvwnt25S+LXe1BP7g8aC?=
+ =?us-ascii?Q?tL8O5aI0FLh7PakKbD4Pkjd6uWvFVw5ydGfCVud6jZEqw/ZFppigUx2ncWAj?=
+ =?us-ascii?Q?j7NiD2j0e13Ykl8qLM9TE+GK658q+RTK5VjbKhJ9IlOfEcmQvBsmAx0eUWgU?=
+ =?us-ascii?Q?dZmw2W6PBF3jE1DPSFb8jVz1DaeOOazt4swFYAbiNC4GWO3Nhg/8l1ZtwUFz?=
+ =?us-ascii?Q?gdHE+EVY92QoXvrBuaII0On5dFaIOrOs/7DHbbQhUl5Z41wMWoUS2gTjz9Fq?=
+ =?us-ascii?Q?WxFpIia8JR1X5siVHnIfm0T8wrsxweQFLMqude0rz8XsIHPAVYoX/hBSNTeg?=
+ =?us-ascii?Q?/VQHlIqt/lKfRmG4qap8MKhHmJKWsHodsLO+x/M+MRB5p7+adBJhraIxaN6O?=
+ =?us-ascii?Q?dVt0XipbSl7pAbHhRF3j?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5d816a00-c8c6-4084-be9c-08dc5c4dd9f9
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Apr 2024 06:41:02.1107
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR20MB7512
 
-On 12/03/2024 10:12, Andrea della Porta wrote:
-> BCM2711 has 4 DMA channels with a 40-bit address range, allowing them
-> to access the full 4GB of memory on a Pi 4. Adding a new node to make
-> use of the DMA channels capable of 40 bit addressing.
+On Sun, Apr 14, 2024 at 07:56:42AM +0200, Michael Opdenacker wrote:
+> Hi Inochi
 > 
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> ---
->  arch/arm/boot/dts/broadcom/bcm2711.dtsi | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
+> On 4/11/24 at 09:38, Inochi Amaoto wrote:
+> > On Sat, 9 Mar 2024 17:01:21 +0800, Inochi Amaoto wrote:
+> > > Add clock controller support for the Sophgo CV1800B, CV1812H and SG2000.
+> > > 
+> > > Changed from v8:
+> > > 1. improve code.
+> > > 2. remove default config in Kconfig.
+> > > 3. merge patch 2-4 of v8 into one.
+> > > 
+> > > [...]
+> > 
+> > Applied to sophgo/for-next, thanks!
+> > 
+> > [5/6] riscv: dts: sophgo: add clock generator for Sophgo CV1800 series SoC
+> >        https://github.com/sophgo/linux/commit/bb7b3419627eb34f3466022d1f4b3c942c09712d
+> > [6/6] riscv: dts: sophgo: add uart clock for Sophgo CV1800 series SoC
+> >        https://github.com/sophgo/linux/commit/18e8c6d2cced6c57d62813f49b57eeb8ee02f984
 > 
-> diff --git a/arch/arm/boot/dts/broadcom/bcm2711.dtsi b/arch/arm/boot/dts/broadcom/bcm2711.dtsi
-> index 22c7f1561344..d98e3cf0c569 100644
-> --- a/arch/arm/boot/dts/broadcom/bcm2711.dtsi
-> +++ b/arch/arm/boot/dts/broadcom/bcm2711.dtsi
-> @@ -552,6 +552,22 @@ scb {
->  		ranges = <0x0 0x7c000000  0x0 0xfc000000  0x03800000>,
->  			 <0x6 0x00000000  0x6 0x00000000  0x40000000>;
->  
-> +		dma40: dma-controller@7e007b00 {
-> +			compatible = "brcm,bcm2711-dma";
-> +			reg = <0x0 0x7e007b00 0x400>;
-> +			interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>, /* dma4 11 */
-> +				     <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>, /* dma4 12 */
-> +				     <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>, /* dma4 13 */
-> +				     <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>; /* dma4 14 */
-> +			interrupt-names = "dma11",
-> +					  "dma12",
-> +					  "dma13",
-> +					  "dma14";
-> +			#dma-cells = <1>;
-> +			/* The VPU firmware uses DMA channel 11 for VCHIQ */
-> +			brcm,dma-channel-mask = <0x7000>;
+> Oops, for your information, this last change
+> ([6/6] riscv: dts: sophgo: add uart clock for Sophgo CV1800 series SoC)
+> breaks my Milk-V Duo S board when I boot it with cv1812h-huashan-pi.dtb as I
+> believe you suggested.
+> 
+> I don't know whether the board actually boots, but at least I don't get any
+> more output in the console.
+> 
+> Has someone tested this on the real Huashan Pi board?
+> 
+> Cheers
+> Michael.
+> 
 
-Isn't one of your commits saying - this property is replaced?
+Hi Michael,
 
-Best regards,
-Krzysztof
+I think you boot with the `defconfig` config. This config does
+not enable the CV1800 clk support. I think you may need to apply
+[1], which enable the clk driver. Also if you want to test sdhci
+with real clk, you can try [2]. I test them on the Milk-V Duo S.
 
+Regards,
+Inochi
+
+[1] https://lore.kernel.org/all/IA1PR20MB4953CA5D46EA8913B130D502BB052@IA1PR20MB4953.namprd20.prod.outlook.com/
+[2] https://lore.kernel.org/all/IA1PR20MB4953CA5D46EA8913B130D502BB052@IA1PR20MB4953.namprd20.prod.outlook.com/
 
