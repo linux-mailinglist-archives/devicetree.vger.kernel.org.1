@@ -1,111 +1,81 @@
-Return-Path: <devicetree+bounces-59358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59360-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9A748A4D2C
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 13:02:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 778C28A4D39
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 13:03:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 169C81C2223B
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 11:02:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 321E828120A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 11:03:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DDC26D1D7;
-	Mon, 15 Apr 2024 11:00:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34DD25D47E;
+	Mon, 15 Apr 2024 11:03:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="oFqOrkCq"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="v8YjF0Jo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07C6D6CDAD;
-	Mon, 15 Apr 2024 11:00:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39E775CDF0;
+	Mon, 15 Apr 2024 11:03:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713178831; cv=none; b=b0AKDvgKmzRqjqlT9N2SMKgrFC2Q86+JSfNEKVrBQxRtwg0bAqa+Q0G/A5VqdUkweJRF6DD3EacTMepRCvgYYr3KfhAN5zPP0h7Lo6JfzWUECWBkAXoseh9YwnDW1JkNCQHLRcEgrM4uSPrWwNANIpG9u8YjChK/0Y9DUu+WAxQ=
+	t=1713178991; cv=none; b=fr/fp+Pe5qW08jDON1RgRGmtTsFRDbUI2ga9oZaiBHbuyz8H1QDuSrgzikPH/EqNOE0PbEk3Az3HROGlzctU98oj2JiPVvsaV3QkMCIO7ejU4K1u04r3K071/D/a7bWM7DxeLGBYxDxf8jY6LCyLCOLBT8dI0PRA/U8B1+e5o1M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713178831; c=relaxed/simple;
-	bh=Y1uqBUPVNGc10mDuk9ItFOcl/06l4dJLjdZpRz+FbPE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=MSgYdM5bozBmjHsysRs4NlZ90FS8FtP1nVQI2VdHKNtv14yplJrhjQFSUnJAsk/VlBa9hOcPf8iw6bU4okplzGOnTUbTl1IpnBS7UTD9dB6pFBINPUaB5Q2Z04iEyM5REbswC2PJvEfR4mFYyGIpuV4BWF/6boXHpaoFbzFTUNM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=oFqOrkCq; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1713178827;
-	bh=Y1uqBUPVNGc10mDuk9ItFOcl/06l4dJLjdZpRz+FbPE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=oFqOrkCqMTSBRYOnWA6mmPsL5ckxO3phYo8v091hzbBSYGJP+AlgdxA/QzqBWSmJx
-	 vfnfG6JEIni9jizg9F5aFgKFADsHQ4ks7pKZOP/G/fsZLojtSUoPaVWRz7uac0fcD0
-	 ZuSqYv9pfQLKelJJDOMXBGnfyG1IiwJr51jQGYR42kzZsT6y5z2dXPi6GgXQnHa/SJ
-	 /Q+fb0z1Ry477hrZcysZTDuqO77TIUm54YNettLANpoh+lp+nnuvjMqOl8iKTSVf0c
-	 evUie7Er2VaF+cIHkxwEmiLvDm+zFOizog1JgSdoFbWZ8WbAKPxfk8HYaq68BZ9tGM
-	 sW3pxEEPzym/A==
-Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5E0DE3780022;
-	Mon, 15 Apr 2024 11:00:26 +0000 (UTC)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: linux-scsi@vger.kernel.org
-Cc: alim.akhtar@samsung.com,
-	avri.altman@wdc.com,
-	bvanassche@acm.org,
-	robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	peter.wang@mediatek.com,
-	jejb@linux.ibm.com,
-	martin.petersen@oracle.com,
-	lgirdwood@gmail.com,
-	broonie@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v4 8/8] dt-bindings: ufs: mediatek,ufs: Document optional dvfsrc/va09 regulators
-Date: Mon, 15 Apr 2024 13:00:12 +0200
-Message-ID: <20240415110012.148871-9-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240415110012.148871-1-angelogioacchino.delregno@collabora.com>
-References: <20240415110012.148871-1-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1713178991; c=relaxed/simple;
+	bh=zeufB+IT2nElS5XbXcpCtUxCwmicTorWNgZOzuZLumw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZvIqfvwCrxRwMYJabdKWx+H9gEYi7A/zPUYLMIycolxwqTZnAQLAj1JE9G5q9r1xw+uuv6STP/pHZ2HpuliiCdVHgKB5Z5/efRXCgHe65x36UwVbn2ikq5Y+fOYKMOGB4vXHgWgGIcU6DQen59gazTaYrO8qMPQ7WR7yaDMYhIo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=v8YjF0Jo; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from gaggiata.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id B28AD1F9AE;
+	Mon, 15 Apr 2024 13:02:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1713178979;
+	bh=IldUJ0BuDZyYdOwP/feqXIRy34BTc4XO/Kq0acOo5N0=;
+	h=Received:From:To:Subject;
+	b=v8YjF0JoIdrE7ytJ0YUkM0uPfAQqgUlz3eROzDkUZ3fTXfdFNdS8RSgjTaQjp0aLL
+	 Pg7tr4dEj6MBb0mxja4M2Frtyyo2PTwp0c2x/kEFpQrkIo5YjR8j5JbolZ7Ym9iws5
+	 pqTF3tYUAjQU8kQyjrdsZ6wgebYn+J6OfkTR2EJ5jyEDYuPpdLZOcDTPrJLcOKlxO5
+	 JNz8rzzm3NflunpN41tAO4DFL4uF/6c/VwMGZbszPEzMSGP12zkg7P+7oGIIn83CxD
+	 7fSGewiJErPrLNZBwOPZT5PnxgGoY7+tTWoyUmsHIiNk4gz94a9mhvlzHl32z4oJyu
+	 zDJhvFN71Eyag==
+Received: by gaggiata.pivistrello.it (Postfix, from userid 1000)
+	id 5C4AA7F950; Mon, 15 Apr 2024 13:02:59 +0200 (CEST)
+Date: Mon, 15 Apr 2024 13:02:59 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Udit Kumar <u-kumar1@ti.com>
+Cc: nm@ti.com, vigneshr@ti.com, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, francesco@dolcini.it, kristo@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] arm64: dts: ti: k3-j784s4-evm: Fix UART pin type
+ and macro type
+Message-ID: <Zh0JY9FlqZOW6Ulw@gaggiata.pivistrello.it>
+References: <20240415095605.3547933-1-u-kumar1@ti.com>
+ <20240415095605.3547933-2-u-kumar1@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240415095605.3547933-2-u-kumar1@ti.com>
 
-Document the optional dvfsrc-vcore and va09 regulators used for,
-respectively, crypt boost and internal MPHY power management in
-when powering on/off the (external) MediaTek UFS PHY.
+On Mon, Apr 15, 2024 at 03:26:04PM +0530, Udit Kumar wrote:
+> Along fixing wkup UART TX pin as OUTPUT instead of INPUT,
+> updating J784S4 macro for pin mux instead of J721S2.
+> 
+> Fixes: 5dfbd1debc8c ("arm64: dts: ti: k3-j784s4-evm: Enable wakeup_i2c0 and eeprom")
+> Fixes: 6fa5d37a2f34 ("arm64: dts: ti: k3-j784s4-evm: Add mcu and wakeup uarts")
+> Signed-off-by: Udit Kumar <u-kumar1@ti.com>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml b/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml
-index 1df8779ee902..b74a2464196d 100644
---- a/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml
-+++ b/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml
-@@ -48,6 +48,8 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  dvfsrc-vcore-supply: true
-+  va09-supply: true
-   vcc-supply: true
- 
- required:
--- 
-2.44.0
+Reviewed-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 
 
