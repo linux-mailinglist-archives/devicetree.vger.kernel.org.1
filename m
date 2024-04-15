@@ -1,98 +1,105 @@
-Return-Path: <devicetree+bounces-59338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59339-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09B0B8A4C2A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 12:07:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 160388A4C7E
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 12:27:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B62E828601D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 10:07:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C3098280E8F
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 10:27:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B7044D9F8;
-	Mon, 15 Apr 2024 10:07:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5B675821C;
+	Mon, 15 Apr 2024 10:27:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="VeIeYz1H"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bANNOlL6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 959A552F8A;
-	Mon, 15 Apr 2024 10:07:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CAAC5811B;
+	Mon, 15 Apr 2024 10:27:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713175637; cv=none; b=BpHHpf4udoQ7f/B+167ylHTUxUXUBkR3pzkjSuET/c9Xin5zqaxa6gBx2wSmryx+1yS95XE7HcfIb1hSgsFuZlyEfeuyrPuwaFv3b+7Y+wLRBs8ThY1AL1ewJhcmh1Y6NXm68VrZsdVtvtRLs8ALHUUZFtOehFxmzJEyZkX1+ow=
+	t=1713176851; cv=none; b=VJqvLR5t0SYV777g8SGA+yvEkk3P0qLW6EYq1Tr9Nv/eD0a32McKUtYJvaFBsQQFdBp6FbDqRnp6KcBuH7RdtleQ6a4AMiL1ia/DW9twDpr/3UPycdXREc8x2/maqkuIPCFDLlBw5kJpm8lQwhNfBFqMdTZzvXbKPe+CtDrdFhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713175637; c=relaxed/simple;
-	bh=vk1/i6detDD7VE5Bt1G8UH/mQuXy8jTVYWZwYABl8W4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=DHb5rXdbss5ZYJ6v4sXKwTAiwlPGhYdRK4wQzn4YrOKAeTw0IZBalLHT2w1R8lwINfkw0n1xJBv+RxgodyiBXicnUZQ6icMRMKrM8wqaXQZtEtwGfBVhRLt2G4VsbLQlaiMvkLr1nVzMnFlbWIxc+Xbkn2Q2WZd3BO8/gSuGX8I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=VeIeYz1H; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id F31B560003;
-	Mon, 15 Apr 2024 10:07:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1713175624;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=hzh6KDR0h3E2eLm0JI3eKxgZxPnuJOrm7c/ie9flbm8=;
-	b=VeIeYz1HQNTmCzsI6Fi1bUuBwGsHemZZrrcjz152OK1dAtDiI3UqF1TmPNHbrfFFum4gOL
-	skLSAEVI4xYPRc9lIFdoPJmw0VLf+6mtaqEMLAV2yN3LqVzTVeMu+SluWoPdG+pVWME832
-	ebZVHsdToNqrys6A6xxzF1GmSkIXLLJ7KFRW+1znKJYYy1+WzcS9zElrnYG6yCYmY1jzGK
-	ztkLfRUCkEUQRn+0T/TI9LS8uVA7dq1851e1h0t7PLmmQWi7dHTewFgZKk6AoiR2Snd8im
-	JSxUyE6dVKGRJReYEabKOgFmQBLJGuKnziRW3g1CDdYGiQwgGarb/pJ/4cBeaw==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Simon Glass <sjg@chromium.org>,
-	devicetree@vger.kernel.org
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
-	U-Boot Mailing List <u-boot@lists.denx.de>,
-	Michael Walle <mwalle@kernel.org>,
-	Tom Rini <trini@konsulko.com>,
-	linux-mtd@lists.infradead.org,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	=?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v11 1/2] dt-bindings: mtd: fixed-partitions: Add alignment properties
-Date: Mon, 15 Apr 2024 12:07:02 +0200
-Message-Id: <20240415100702.32115-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20240412153249.100787-1-sjg@chromium.org>
-References: 
+	s=arc-20240116; t=1713176851; c=relaxed/simple;
+	bh=QTaNE6v9yitIg/5Jk0vp633X8veBSijdhDfr5Qjx7vk=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=ZKc/rJxLFWzFs6WL3+Kk4KAIz7qSWOBygqW5+1IZemG/NigaNUFMX9oxMikdR/XJw/hbEZMVyFGlK8hGuB0pYar7cExi/HKJ3pw1Zc3F6fgw1/Pc2FGF6yuP3oQ33DvXTFKzH50SDyyAf1XQyn8i0cPLCcCMaiwnd25890tg7HI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bANNOlL6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 159A9C32781;
+	Mon, 15 Apr 2024 10:27:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713176851;
+	bh=QTaNE6v9yitIg/5Jk0vp633X8veBSijdhDfr5Qjx7vk=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=bANNOlL621BAycIRNCS9TRMeFEGfc0t4zzHHJbNC58uNPnYg3mKANMFVwejD114gX
+	 0KFY6NHw3x/4nXSjccLiR2G0fF5f5I5653VklH0cdGNm6czAnE5sFxOxdyhjp0inno
+	 L2QfwxJkjKYZ66uKssxBpkNnDGHdEbwBd6YGyLi7jRM73289JSh6SVTFNCMwn+N/cp
+	 Ve4I9mCvDYQwHyRuA7G3j4Y2sEnRWpIjVxfyo2ULGSprA/ZQtQT5owtU7Kk8k+vSWq
+	 TSeQTwEwHDS+XkvBaQuLetH2Zqk63Hvmjte3MSvL698ueJru8ohDhPtk1zDbT1FcQl
+	 8f9rWIimTQAnA==
+Date: Mon, 15 Apr 2024 05:27:30 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: b'd8d42d47a9ff9a997abccab1e4ebffe4fce28f32'
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: miquel.raynal@bootlin.com
+From: Rob Herring <robh@kernel.org>
+To: Hugues Fruchet <hugues.fruchet@foss.st.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, linux-media@vger.kernel.org, 
+ devicetree@vger.kernel.org, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ linux-stm32@st-md-mailman.stormreply.com, Rob Herring <robh+dt@kernel.org>, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20240415093211.809927-1-hugues.fruchet@foss.st.com>
+References: <20240415093211.809927-1-hugues.fruchet@foss.st.com>
+Message-Id: <171317684894.2177567.12294607430511830863.robh@kernel.org>
+Subject: Re: [PATCH v2] media: dt-bindings: add access-controllers to
+ STM32MP25 video codecs
 
-On Fri, 2024-04-12 at 15:32:48 UTC, Simon Glass wrote:
-> Add three properties for controlling alignment of partitions, aka
-> 'entries' in fixed-partition.
-> 
-> For now there is no explicit mention of hierarchy, so a 'section' is
-> just the 'fixed-partitions' node.
-> 
-> These new properties are inputs to the Binman packaging process, but are
-> also needed if the firmware is repacked, to ensure that alignment
-> constraints are not violated. Therefore they are provided as part of
-> the schema.
-> 
-> Signed-off-by: Simon Glass <sjg@chromium.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/next, thanks.
+On Mon, 15 Apr 2024 11:32:11 +0200, Hugues Fruchet wrote:
+> access-controllers is an optional property that allows a peripheral to
+> refer to one or more domain access controller(s).
+> 
+> Acked-by: Rob Herring <robh@kernel.org>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Hugues Fruchet <hugues.fruchet@foss.st.com>
+> ---
+>  .../devicetree/bindings/media/st,stm32mp25-video-codec.yaml   | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
 
-Miquel
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/st,stm32mp25-video-codec.yaml: access-controllers: missing type definition
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240415093211.809927-1-hugues.fruchet@foss.st.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
