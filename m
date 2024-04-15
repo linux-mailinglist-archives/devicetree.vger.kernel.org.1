@@ -1,102 +1,120 @@
-Return-Path: <devicetree+bounces-59206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01CB18A4667
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 02:54:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D661F8A466A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 03:06:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3382E1C20EFF
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 00:54:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C2BA2816B6
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 01:06:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B48A639;
-	Mon, 15 Apr 2024 00:54:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 039AE3D68;
+	Mon, 15 Apr 2024 01:06:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="JJCwfSnh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AP+/Pkre"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF851134A5
-	for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 00:54:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B748333CA;
+	Mon, 15 Apr 2024 01:06:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713142452; cv=none; b=YX50s0KZYd4HoZ2RDsmWLl5Ecrpkfvl2V9NHKIJcqcuXVTDw/l9CQVqGqJVHGe/euIjIxdOPsYPbMoc6iKgqoBQdWhQ0DSg9jyCE+9EID7pLfsZQC8LGyPrv9jrbtwAcDeGrqGgeTG+vjYUl+Ht75ARlLqwwfWVNcHC65k4iOL0=
+	t=1713143213; cv=none; b=IjRHcnB4lcszKPGHqGMm9Qzoszh/GcnPosgI5C5ViMcwecDHFdxhbSEsQYX2b2wtLejCTV8I3ljs4DY0iM1ZqbtQXc+9gOlUF4mctS8Bvx4qRFClR1H79xwGP73tD8q3yOmXiCTcZqO9ov01fiNw7EoJToK9t2whE0hsLeKiZN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713142452; c=relaxed/simple;
-	bh=uDI5ag+UYyQ6uUIKn2HnErW8TfnD3slgt4bV8o5JNtQ=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=tElvwnZqQsVktVQeRnO+9N0F0Aik1dgn1Qi74Ix/QAnhgXcl3Y76wE1sIxxZOt7Q5udFBMzMAyKygEqbeYh9o/SpXN5Q/Fh1+aV1sY3aqxuH55nB6MKz+SQBEIQOrB5dKaAAVNoaCDdqEvB0uHwpi3yDXfrZbv5HidP78FA7rbU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=JJCwfSnh; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-Received: from [192.168.68.112] (ppp14-2-127-66.adl-apt-pir-bras32.tpg.internode.on.net [14.2.127.66])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 1BE9C201BD;
-	Mon, 15 Apr 2024 08:54:08 +0800 (AWST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1713142448;
-	bh=obtxTmSKvgPXEQa4POBsx1nO7wzpz7LF4Uo923gf2K0=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=JJCwfSnhnSVvmpuEJ5zdraw7TH40sS5X/WIOoIvGzmJFUiyg3KVO2b3SvZ4uvFOZT
-	 +RSdzZ2a8d4871p4WM1OKqkclyFcgxE8ogk84R16VIWfjne6j8eiVRihxJf8v6E7tr
-	 UxLVYSb8tKfYoxExPNctJ73CzPUzjAhyNF1ahJmFnBnE22R4fb2lVXcZZYHcAJ3O7q
-	 idE8139o9L50T9UwgUiQUniQfhi6BJhZeaqNT/cI7J7UgSSSuOtUezOxl8R374brv2
-	 EzBDb1iuTIo/re+oIf2C+uyFx9JzF9nxFBKMiLb8w1PWLNhKikc9Iyc9718C+3sR3c
-	 aA1OlOFD2vnBg==
-Message-ID: <5c6f58cc13492988d307504d55cc5d31a512ab8c.camel@codeconstruct.com.au>
-Subject: Re: [PATCH 3/3] ARM: dts: aspeed: Update Odyssey SBEFIFO compatible
- strings
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Eddie James <eajames@linux.ibm.com>, linux-aspeed@lists.ozlabs.org
-Cc: joel@jms.id.au, devicetree@vger.kernel.org, linux-fsi@lists.ozlabs.org, 
-	robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org, jk@ozlabs.org, 
-	alistair@popple.id.au, lakshmiy@us.ibm.com
-Date: Mon, 15 Apr 2024 10:24:07 +0930
-In-Reply-To: <20240412144358.204129-4-eajames@linux.ibm.com>
-References: <20240412144358.204129-1-eajames@linux.ibm.com>
-	 <20240412144358.204129-4-eajames@linux.ibm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1713143213; c=relaxed/simple;
+	bh=rykQa5lyIfiHN9qYO+UH/csm4L0wBhXCNiha9aVGAS8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=btzYzsN1oSPIdPJ3LDhO1xxgR/Zb9xl+zFis1rUGjcFweatPCaUnREoPlNy05OIiEoKnsCX8RRMNhRM4ShQtwWRt+0F7VrYX0RshKE+Iem76TfTj5RvZefm3BIKoJM52YNsmzMySgP4MgwPE3tHgz2JLhnWi+daXEr2u6/HTxAA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AP+/Pkre; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B899DC072AA;
+	Mon, 15 Apr 2024 01:06:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713143213;
+	bh=rykQa5lyIfiHN9qYO+UH/csm4L0wBhXCNiha9aVGAS8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AP+/PkrexOxpAHNN0YFHU1E800DYe/dV1yegf+/alc3ol+qoXvemnIML/FpOsCEZJ
+	 rN/5GIqtxaQSRVAq5ZT2i+etORasmmeAMxK4UFOQedSkwyWkHYYsuJinCLJf0aWace
+	 sMCofiDHLXbDkaWe/45J0y+eRyR/05CDVM7Lcnya5kD/cXchEcE8NbGWLlI75ZKqc2
+	 UX9qhYJWPF3SlGyOMVYB8hHTe9UVPppXnuMuScL5XY62p1hF+N991P+9wuAp7ROMxm
+	 7dSENQwh1P1Q9eVBgHrMtEGodKg/dkuS9HjZgiUbLQPfwOIsHjtyPkpggYlaVY1D0H
+	 iMqHoGZ5KcI3Q==
+Date: Mon, 15 Apr 2024 10:06:50 +0900
+From: Mark Brown <broonie@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Saravana Kannan <saravanak@google.com>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Len Brown <lenb@kernel.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Daniel Scally <djrscally@gmail.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	kernel-team@android.com, Wolfram Sang <wsa@kernel.org>,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+	linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] of: dynamic: Fix overlayed devices not probing
+ because of fw_devlink
+Message-ID: <Zhx9qqiymJdXwYQs@finisterre.sirena.org.uk>
+References: <20240411235623.1260061-1-saravanak@google.com>
+ <20240411235623.1260061-3-saravanak@google.com>
+ <CAL_JsqKRVVNzgQk6PETfJ9RrDuzT1CTjHWW02Twc_T4C82t__Q@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-
-On Fri, 2024-04-12 at 09:43 -0500, Eddie James wrote:
-> Set the new compatible string for Odyssey SBEFIFOs so that they
-> don't collect async FFDC.
->=20
-> Signed-off-by: Eddie James <eajames@linux.ibm.com>
-> ---
->  .../dts/aspeed/aspeed-bmc-ibm-everest.dts     | 64 +++++++++----------
->  .../arm/boot/dts/aspeed/ibm-power10-quad.dtsi | 64 +++++++++----------
->  2 files changed, 64 insertions(+), 64 deletions(-)
->=20
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts b/arch/a=
-rm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
-> index 214b2e6a4c6d..3a2bfdf035cb 100644
-> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
-> @@ -2545,7 +2545,7 @@ scom500: scom@1000 {
->  						};
-> =20
->  						sbefifo500: sbefifo@2400 {
-> -							compatible =3D "ibm,p9-sbefifo";
-> +							compatible =3D "ibm,ody-sbefifo";
->  							reg =3D <0x2400 0x400>;
->  							#address-cells =3D <1>;
->  							#size-cells =3D <0>;
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="w8x69Pci+HaC+o9L"
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqKRVVNzgQk6PETfJ9RrDuzT1CTjHWW02Twc_T4C82t__Q@mail.gmail.com>
+X-Cookie: You might have mail.
 
 
-Bit of a drive-by comment as I'm not really holding any stakes here,
-but did the hardware actually change?
+--w8x69Pci+HaC+o9L
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Would it be better to request the behaviour by a property rather than
-changing the compatible?
+On Fri, Apr 12, 2024 at 07:54:32AM -0500, Rob Herring wrote:
+> On Thu, Apr 11, 2024 at 6:56=E2=80=AFPM Saravana Kannan <saravanak@google=
+=2Ecom> wrote:
 
-Andrew
+> > +#define get_dev_from_fwnode(fwnode)    get_device((fwnode)->dev)
+
+> I think it is better to not have this wrapper. We want it to be clear
+> when we're acquiring a ref. I know get_device() does that, but I have
+> to look up what get_dev_from_fwnode() does exactly.
+
+Or perhaps calling it get_device_from_fwnode() would make it more
+obvious that it is a get_device() variant?
+
+--w8x69Pci+HaC+o9L
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmYcfaAACgkQJNaLcl1U
+h9CojAgAgt2fCimmNYhJQqDqfhM2bmWL/w9vqvYjQe8HGvckNhSuz23yy6xPb/bE
+q9dDK6V1xzGLIMriwY4TgiSXPLVdmp4gORRq3/zEsaSIMDbBzgVuMnxFghARPVwT
+8sjCvifFv9N5yOCMHbYhMteie92AzIWo9yrxq10KgKzX/4HURrT1G8n1zu3jOglG
+2OjGQTHa5LeyE+5RdfaUMwE1JhchXojQe7tWE+tK1lqb5Tk4x1sKmCJG9BkZqE6k
+0x5U+V1i77GpyUhFNbkFBFV1ROZ+oeBnIkd311q9Y8vOF3ecYFA0pe4hr3/6ceyo
+cxfTAKuaqYZknFMwFcvvgiKIHuRFDA==
+=+cQa
+-----END PGP SIGNATURE-----
+
+--w8x69Pci+HaC+o9L--
 
