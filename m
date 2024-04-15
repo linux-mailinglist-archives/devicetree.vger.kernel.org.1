@@ -1,150 +1,281 @@
-Return-Path: <devicetree+bounces-59484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A963A8A5955
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 19:41:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17E498A5973
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 19:57:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3219F1F222CC
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 17:41:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82E8F1F22CDE
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 17:57:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D887D12C46D;
-	Mon, 15 Apr 2024 17:41:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 664951332B7;
+	Mon, 15 Apr 2024 17:57:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ATeo5rCl"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="i7Xw5asM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+Received: from smtp.smtpout.orange.fr (smtp-19.smtpout.orange.fr [80.12.242.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C9E58248E
-	for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 17:41:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 780731E877;
+	Mon, 15 Apr 2024 17:57:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713202910; cv=none; b=lW80ccseJZnv8tiSqPNafC2kFCjMzgUvAk9vDzisCduXGd8N0Jqsg23/LhuFA2zEt1Jl7PjHAcvY0BJEcAznpmeenuuT8JMJj0MjaJU26i3BT7DMQeNkgnwQfPXefX7kY4Cn6p5nn5ilxiWd0d/jJBO757nlYHay+w418ydy20c=
+	t=1713203835; cv=none; b=reCVqmogFsswj81gm+bptWNVnE+u7qKli4yW0UuTwHTTyJPhJopcnGK1/hUUl2ZvnL7othyU5j4oNl6+zvgJTCbZJwn1OYzRGuUFQ3+gdDL2iU5H42WKbmlV/owhDaSNPMCXayvWPd9SaRtnT3/IOrOsce3ikNAGYnWXfsWTFZo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713202910; c=relaxed/simple;
-	bh=xDzP8JtH++TeG6a490HKNdr4gYMBp0MXFefRWtUa87E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GgpFStGQc7aEF7jbHTmVa531yG3iapiEsIqlodonr7caI3NmUCnqCHsIB32nHeju1hVKcluxLqx0YWDGzVaMVf4Pgy0LD8MBYa0qa7QVhXLbKZjCZrO9gOySoXFBZUi/u2+mom+Te1RRPJZA5HwSISzBeA0X375n51I9WKIpxeA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ATeo5rCl; arc=none smtp.client-ip=209.85.219.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-dde0b30ebe2so3141614276.0
-        for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 10:41:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713202908; x=1713807708; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aYgIyvMvRWICpRScbQV/k/jY5uYOgDdkXOWDfquSjCo=;
-        b=ATeo5rClKw3FS7E6DymOTXcte5a7C45OqKGWyd6e8dONwLEwCz/K3oXTy9ighRjuyb
-         /EWaU+ANG8N0FjAh4xSL4jE/b6DyKGuqc/JEKMwCMDhQ1m4TAN6nH+s4xhebIdWii+Tj
-         736xA+AGi4CD1jCjE60s2Ofv5H5NXix9XXYEqveOMvhH0k989iVqpPcTEyUEJb3bdYsF
-         msR29IKkmevBqlFDs/NljGFHvC/K0+9pPjiTC6modLhyeROG3PqBk+stEQCDlHz0rsnS
-         U4XbnQnU+FNt6q187ERxC2ZVMwKP4TeCDc2Chrpe1K0KCDctKCkTw6rXzn/cJ6x4N80E
-         agdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713202908; x=1713807708;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aYgIyvMvRWICpRScbQV/k/jY5uYOgDdkXOWDfquSjCo=;
-        b=sYMPuyIvf/0d/uyLUsMiVoe38xNS4HCsJ88+EV/hV7gmefuThui+9g3ieM2BUEx2XU
-         O8zol2dHkaW4ShVNAflmUguksgUxbTonA+IEUk0lpI6oQw2kIku3tfx5liZvz6BVDmZG
-         ibVw6nWSmiKQ0nUSVhQCETOHa1KBpu1spwdqKzuqb4aoIeNd3laY6+pDu9ACePm8SdkZ
-         3mUNajAw5S/pJRjNLPTX32F+D2Yeupn4gMXrovEmzZS+OxWqwAHJ3oVsoKR26b3i/esq
-         BxO9EekuC5aVy7hYsati5FkCoS91QWukCi/afqxvv8IpgMV9LBICdapbjw6WbIMp3BMJ
-         falg==
-X-Forwarded-Encrypted: i=1; AJvYcCWXWEg4WTsO2fDZ+fuwqoz82TpH6qeA5L4T71P6FwwQa1Ui26Pypu/dWTfqUag9PFAxb3zKQBxFNSylS4JLqvVVdPL9HK013A/0oA==
-X-Gm-Message-State: AOJu0YwImeQWDYwh/wjxhX9392I4R4P4VHRmY8JR8LyQIpNdYssIwcUV
-	H3f55+TlshZC/U3iufn06JLh2KXQFcNlzdw1Vw9D+aMts3dMfvqOis+0r3dx135tqIRVfQVRlXY
-	UJ28lY0zfl42TZbCM99z2I+tR3VLbM5uzBWp6pg==
-X-Google-Smtp-Source: AGHT+IHKpNfr2TaUgVv6Ugvchn9mUOD77xP6+GIEtmI5RLKRLLZLr1EmobTo6CX82MQ9pJIWGNHcl6abRXCvRtZsfeM=
-X-Received: by 2002:a25:80c6:0:b0:dcb:aa26:50fe with SMTP id
- c6-20020a2580c6000000b00dcbaa2650femr10533953ybm.15.1713202908173; Mon, 15
- Apr 2024 10:41:48 -0700 (PDT)
+	s=arc-20240116; t=1713203835; c=relaxed/simple;
+	bh=h60ENWhTd0WQWG/ElpVhgeuLSSZCgBiTUfF88pSPlLw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TgWq7Be+Qt1jFlmT8TwfAaDvHOo+DYAxN/1Ka5DGusQy/A7V5j41XsJBljwnBny8MsxUbBF2U++A9TnBBabZU8wZQ2XsyhcYSzPThPPaajOU336Sx6AA2JsfJZpC9qz5moqOmhj/fIE4XRbvqDA1P6qjIehNvh89skGBu2PrmFE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=i7Xw5asM; arc=none smtp.client-ip=80.12.242.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.18] ([86.243.17.157])
+	by smtp.orange.fr with ESMTPA
+	id wQYWrGoAULfMZwQYWrYCD1; Mon, 15 Apr 2024 19:55:52 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1713203752;
+	bh=dW3oL+k/ZeNgRT3UGBFK7vTFs88VdDG5H8DfUFlIPC4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=i7Xw5asM45SBeb0bSeXC8Fp4smRGc53cIohAynnLwvuUEaaSJNcszOriVjf9r8bE3
+	 qiDhxY5wjQbGahF3VxFjJuD5DS7jYDU6j8gfZoVkYpp637XhqZWmp2SXTs6qQb9TUG
+	 1EyrI4WDInrQMBN7KLyy6BxQ+GzDeeR5uQW+OLQKXLUu+PDD+DQnbTxmOn/5DxvqGw
+	 nUYfc+qiXrN0O3DQKcIUHggNWWm9QCd5ELDJzb2m3BIIQxbCUTkinUt8V1Kh1wQZV+
+	 e9xSjB04woj4hLr3lz5E3b1ozYIKVMFjGM7wsUFESWSOy2WMMcWGZsgbk5NhAJQn59
+	 eXkspoh3YeLlg==
+X-ME-Helo: [192.168.1.18]
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Mon, 15 Apr 2024 19:55:52 +0200
+X-ME-IP: 86.243.17.157
+Message-ID: <97189d64-0db1-4663-8a2e-c1a7c06a241c@wanadoo.fr>
+Date: Mon, 15 Apr 2024 19:55:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240412222857.3873079-1-robh@kernel.org> <Zh0vXinxy7woerJQ@hu-bjorande-lv.qualcomm.com>
- <CAA8EJpqL2T4bJZqtZ9KF=V2NLnFxUjouA6_Hu_H07DofifZaoQ@mail.gmail.com>
- <CAL_Jsq+q3OLEMT=d8=d9o1D9deKGQ5TAtZg_bgptDPQ1cWcctw@mail.gmail.com> <CAL_JsqKSz_WVTTi7+AgjgDzXAnAqaxXM3i2NUv93nZSpyuZK5g@mail.gmail.com>
-In-Reply-To: <CAL_JsqKSz_WVTTi7+AgjgDzXAnAqaxXM3i2NUv93nZSpyuZK5g@mail.gmail.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 15 Apr 2024 20:41:36 +0300
-Message-ID: <CAA8EJporYZBfDoN6m0Wu2wGqq=Y+TskNCguMOHtDAz05eXS6LA@mail.gmail.com>
-Subject: Re: [PATCH] arm/arm64: dts: Drop "arm,armv8-pmuv3" compatible usage
-To: Rob Herring <robh@kernel.org>
-Cc: Bjorn Andersson <quic_bjorande@quicinc.com>, soc@kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Dinh Nguyen <dinguyen@kernel.org>, 
-	Tsahee Zidenberg <tsahee@annapurnalabs.com>, Antoine Tenart <atenart@kernel.org>, 
-	Khuong Dinh <khuong@os.amperecomputing.com>, Liviu Dudau <liviu.dudau@arm.com>, 
-	Sudeep Holla <sudeep.holla@arm.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
-	Robert Richter <rric@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, "Paul J. Murphy" <paul.j.murphy@intel.com>, 
-	Daniele Alessandrelli <daniele.alessandrelli@intel.com>, Andrew Lunn <andrew@lunn.ch>, 
-	Gregory Clement <gregory.clement@bootlin.com>, 
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	=?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>, 
-	Heiko Stuebner <heiko@sntech.de>, Orson Zhai <orsonzhai@gmail.com>, 
-	Baolin Wang <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>, 
-	Jisheng Zhang <jszhang@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, linux-fsd@tesla.com, 
-	Michal Simek <michal.simek@amd.com>, devicetree@vger.kernel.org, 
-	linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	linux-mediatek@lists.infradead.org, linux-tegra@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-realtek-soc@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-samsung-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] drm/panel: Add driver for EDO RM69380 OLED panel
+To: david@mainlining.org
+Cc: airlied@gmail.com, conor+dt@kernel.org, daniel@ffwll.ch,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ konradybcio@kernel.org, krzk+dt@kernel.org, linux-kernel@vger.kernel.org,
+ maarten.lankhorst@linux.intel.com, marijn.suijten@somainline.org,
+ mripard@kernel.org, neil.armstrong@linaro.org, phone-devel@vger.kernel.org,
+ quic_jesszhan@quicinc.com, robh@kernel.org, sam@ravnborg.org,
+ tzimmermann@suse.de, ~postmarketos/upstreaming@lists.sr.ht
+References: <20240415-raydium-rm69380-driver-v2-0-524216461306@mainlining.org>
+ <20240415-raydium-rm69380-driver-v2-2-524216461306@mainlining.org>
+Content-Language: en-MW
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20240415-raydium-rm69380-driver-v2-2-524216461306@mainlining.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Mon, 15 Apr 2024 at 20:15, Rob Herring <robh@kernel.org> wrote:
->
-> On Mon, Apr 15, 2024 at 12:05=E2=80=AFPM Rob Herring <robh@kernel.org> wr=
-ote:
-> >
-> > On Mon, Apr 15, 2024 at 11:52=E2=80=AFAM Dmitry Baryshkov
-> > <dmitry.baryshkov@linaro.org> wrote:
-> > >
-> > > On Mon, 15 Apr 2024 at 16:46, Bjorn Andersson <quic_bjorande@quicinc.=
-com> wrote:
-> > > >
-> > > > On Fri, Apr 12, 2024 at 05:28:51PM -0500, Rob Herring wrote:
-> > > > [..]
-> > > > >  arch/arm64/boot/dts/qcom/qcm2290.dtsi                | 2 +-
-> > > > >  arch/arm64/boot/dts/qcom/qdu1000.dtsi                | 2 +-
-> > > > >  arch/arm64/boot/dts/qcom/sdm630.dtsi                 | 2 +-
-> > > > >  arch/arm64/boot/dts/qcom/sdx75.dtsi                  | 2 +-
-> > > >
-> > > > Acked-by: Bjorn Andersson <andersson@kernel.org>
-> > >
-> > > Note, we'd need to override PMU compatibles in sdm636.dtsi and
-> > > sdm660.dtsi. Ideally it should come as the same patch.
-> >
-> > Uh, that's an A for reuse, but an F for readability... It's sdm632 as
-> > well. Will drop sdm630.
->
-> Actually, aren't those Kryo cores just Cortex-A53 derivatives? So the
-> A53 PMU compatible is an improvement over the generic one still. We
-> can't just add kryo260-pmu compatibles because that breaks
-> compatibility. We could have a fallback, but then that introduces a
-> pattern we don't want.
+Le 15/04/2024 à 18:10, David Wronek a écrit :
+> Add support for the 2560x1600@90Hz OLED panel by EDO bundled with a
+> Raydium RM69380 controller, as found on the Lenovo Xiaoxin Pad Pro 2021.
+> 
+> Signed-off-by: David Wronek <david-vu3DzTD92ROXwddmVfQv5g@public.gmane.org>
+> ---
+>   drivers/gpu/drm/panel/Kconfig                 |  14 +
+>   drivers/gpu/drm/panel/Makefile                |   1 +
+>   drivers/gpu/drm/panel/panel-raydium-rm69380.c | 366 ++++++++++++++++++++++++++
+>   3 files changed, 381 insertions(+)
+> 
 
-I think it is believed that Gold cores are A73-derivatives.
+...
 
---=20
-With best wishes
-Dmitry
+> +static int rm69380_on(struct rm69380_panel *ctx)
+> +{
+> +	struct mipi_dsi_device *dsi = ctx->dsi[0];
+> +	struct device *dev = &dsi->dev;
+> +	int ret;
+> +
+> +	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
+> +	if (ctx->dsi[1])
+> +		ctx->dsi[1]->mode_flags |= MIPI_DSI_MODE_LPM;
+> +
+> +	mipi_dsi_dcs_write_seq(dsi, 0xfe, 0xd4);
+> +	mipi_dsi_dcs_write_seq(dsi, 0x00, 0x80);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xfe, 0xd0);
+> +	mipi_dsi_dcs_write_seq(dsi, 0x48, 0x00);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xfe, 0x26);
+> +	mipi_dsi_dcs_write_seq(dsi, 0x75, 0x3f);
+> +	mipi_dsi_dcs_write_seq(dsi, 0x1d, 0x1a);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xfe, 0x00);
+> +	mipi_dsi_dcs_write_seq(dsi, 0x53, 0x28);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xc2, 0x08);
+> +	mipi_dsi_dcs_write_seq(dsi, 0x35, 0x00);
+> +	mipi_dsi_dcs_write_seq(dsi, 0x51, 0x07, 0xff);
+> +
+> +	ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to exit sleep mode: %d\n", ret);
+> +		return ret;
+> +	}
+> +	msleep(20);
+> +
+> +	ret = mipi_dsi_dcs_set_display_on(dsi);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to set display on: %d\n", ret);
+> +		return ret;
+> +	}
+> +	msleep(36);
+
+36 and 35 below are un-usual values for msleep.
+
+Why 2 different values?
+Would using a #define for this(these) value(s) make sense here?
+
+> +
+> +	return 0;
+> +}
+> +
+> +static int rm69380_off(struct rm69380_panel *ctx)
+> +{
+> +	struct mipi_dsi_device *dsi = ctx->dsi[0];
+> +	struct device *dev = &dsi->dev;
+> +	int ret;
+> +
+> +	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
+> +	if (ctx->dsi[1])
+> +		ctx->dsi[1]->mode_flags &= ~MIPI_DSI_MODE_LPM;
+> +
+> +	ret = mipi_dsi_dcs_set_display_off(dsi);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to set display off: %d\n", ret);
+> +		return ret;
+> +	}
+> +	msleep(35);
+
+(here)
+
+> +
+> +	ret = mipi_dsi_dcs_enter_sleep_mode(dsi);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to enter sleep mode: %d\n", ret);
+> +		return ret;
+> +	}
+> +	msleep(20);
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static int rm69380_probe(struct mipi_dsi_device *dsi)
+> +{
+> +	struct mipi_dsi_host *dsi_sec_host;
+> +	struct rm69380_panel *ctx;
+> +	struct device *dev = &dsi->dev;
+> +	struct device_node *dsi_sec;
+> +	int ret, i;
+> +
+> +	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
+> +	if (!ctx)
+> +		return -ENOMEM;
+> +
+> +	ctx->supplies[0].supply = "vddio";
+> +	ctx->supplies[1].supply = "avdd";
+> +	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(ctx->supplies),
+> +				      ctx->supplies);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "Failed to get regulators\n");
+> +
+> +	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(ctx->reset_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
+> +				     "Failed to get reset-gpios\n");
+> +
+> +	dsi_sec = of_graph_get_remote_node(dsi->dev.of_node, 1, -1);
+> +
+> +	if (dsi_sec) {
+> +		dev_dbg(dev, "Using Dual-DSI\n");
+
+This should be after de 'info' variable below, so...
+
+> +
+> +		const struct mipi_dsi_device_info info = { "RM69380", 0,
+> +							   dsi_sec };
+> +
+> +		dev_dbg(dev, "Found second DSI `%s`\n", dsi_sec->name);
+
+... maybe merge the 2 messages into something like:
+       dev_dbg(dev, "Using Dual-DSI: found `%s`\n", dsi_sec->name);
+
+> +
+> +		dsi_sec_host = of_find_mipi_dsi_host_by_node(dsi_sec);
+> +		of_node_put(dsi_sec);
+> +		if (!dsi_sec_host) {
+> +			return dev_err_probe(dev, -EPROBE_DEFER,
+> +					     "Cannot get secondary DSI host\n");
+> +		}
+> +
+
+Nit: unneeded { }
+
+> +		ctx->dsi[1] =
+> +			mipi_dsi_device_register_full(dsi_sec_host, &info);
+> +		if (IS_ERR(ctx->dsi[1])) {
+> +			return dev_err_probe(dev, PTR_ERR(ctx->dsi[1]),
+> +					     "Cannot get secondary DSI node\n");
+> +		}
+
+Nit: unneeded { }
+
+> +
+> +		dev_dbg(dev, "Second DSI name `%s`\n", ctx->dsi[1]->name);
+> +		mipi_dsi_set_drvdata(ctx->dsi[1], ctx);
+> +	} else {
+> +		dev_dbg(dev, "Using Single-DSI\n");
+> +	}
+> +
+> +	ctx->dsi[0] = dsi;
+> +	mipi_dsi_set_drvdata(dsi, ctx);
+> +
+> +	drm_panel_init(&ctx->panel, dev, &rm69380_panel_funcs,
+> +		       DRM_MODE_CONNECTOR_DSI);
+> +	ctx->panel.prepare_prev_first = true;
+> +
+> +	ctx->panel.backlight = rm69380_create_backlight(dsi);
+> +	if (IS_ERR(ctx->panel.backlight))
+> +		return dev_err_probe(dev, PTR_ERR(ctx->panel.backlight),
+> +				     "Failed to create backlight\n");
+> +
+> +	drm_panel_add(&ctx->panel);
+> +
+> +	for (i = 0; i < ARRAY_SIZE(ctx->dsi); i++) {
+> +		if (!ctx->dsi[i])
+> +			continue;
+> +
+> +		dev_dbg(&ctx->dsi[i]->dev, "Binding DSI %d\n", i);
+> +
+> +		ctx->dsi[i]->lanes = 4;
+> +		ctx->dsi[i]->format = MIPI_DSI_FMT_RGB888;
+> +		ctx->dsi[i]->mode_flags = MIPI_DSI_MODE_VIDEO_BURST |
+> +					  MIPI_DSI_CLOCK_NON_CONTINUOUS;
+> +
+> +		ret = mipi_dsi_attach(ctx->dsi[i]);
+> +		if (ret < 0) {
+> +			drm_panel_remove(&ctx->panel);
+> +			return dev_err_probe(dev, ret,
+> +					     "Failed to attach to DSI%d\n", i);
+
+The error handling looks incomplete.
+Previous mipi_dsi_attach() should be undone by a mipi_dsi_detach() as 
+done in the remove function.
+
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+
+...
+
+CJ
+
 
