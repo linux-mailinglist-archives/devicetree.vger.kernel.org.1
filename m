@@ -1,57 +1,59 @@
-Return-Path: <devicetree+bounces-59221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D518A8A46F0
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 04:26:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCF998A46F1
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 04:26:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 76CFD1F212A0
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 02:26:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 778992833AE
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 02:26:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 647C518C3D;
-	Mon, 15 Apr 2024 02:26:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D014513ACC;
+	Mon, 15 Apr 2024 02:26:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AIoNh3Cv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QToCu0s/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BF6E1864C;
-	Mon, 15 Apr 2024 02:26:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A22E212E78;
+	Mon, 15 Apr 2024 02:26:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713147978; cv=none; b=fpJ4OXvy/D8Kp4b6gVseaa6nVm5Ti92LZoiGWK88nbiupTPYtjHsRLED1wp/CRbnuV81f8M0sz7GqrQagp9px4E9y91F+SpkMl7AiFfOZdfXT7a4ifB92EwlbK9TXn+Ypropx7POtCtXDUb7+KcWSe6984MU8lZXr+G+uM1QIuc=
+	t=1713147985; cv=none; b=eHpOpd9TTSLzS1C8LDnNkKLP1NjGJCSzZzAUEUzStAY5/uRt/BZbPwQb6WkkIVklCgPjHBUai8NsbyuBHY1IEKeOhjat1QlA9MMWnkYgd7Jw6MslAGBgdHPGSVI/TptK5tNaOjgLY3n4pKgMYVhTYdmk8IXlDGwwFjNCdjuwxzY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713147978; c=relaxed/simple;
-	bh=LAgK+StBnGkWbSGATqPLBF1s3gA6gg3TYn11vtSjrE0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=GucJNlygZIlswy8G4GCdUxd9Q2UyErAtdKLtWD+3p1Z3qgBpSj25zVAqsuAN2bYxrpwLR0bT8UbY9V/6b5xx6df+O0YoJU7cr8q6PomlDC5NOox9aHrJPBtn7zzu1zMnMLU0EYsZ8nuFVeTyyUvmYoOgh6JPGMyK2TJ+ANXUqWA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AIoNh3Cv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F065AC32781;
-	Mon, 15 Apr 2024 02:26:15 +0000 (UTC)
+	s=arc-20240116; t=1713147985; c=relaxed/simple;
+	bh=jhwG2TBFB90SEgA5EbacWDF8bEShgDBJ5++qlx6FbMQ=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=ROOqSSgcC58DTV5AZMy2+Km3jX2ByJ0WF9Wo1h1+2WyCUSudlqjqk/tBp/WoNZnqwpl6o8c4Tl9vaZGaNSJnHAA2ZYxI4p0M6kOWnkNpgvZMtzbl34NjRYVdWgFvci7lAUyNEouOA9gdf712T4ANmCKMZePo3ZOrktSXpHD2wKs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QToCu0s/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1B46C2BD10;
+	Mon, 15 Apr 2024 02:26:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713147977;
-	bh=LAgK+StBnGkWbSGATqPLBF1s3gA6gg3TYn11vtSjrE0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=AIoNh3CvaJscKxg5T5HrS1Fv3FZE+H+Til1Qf//LrWvcbg2n6T+OInjVhQsYSs2pp
-	 cR8uN4U/y/YbDwXKFUFxSeHdoHUr4m7gf90qpXcQ6fZ1Qwz8l4ZGX6IRGwZqBH/2Lu
-	 HPWZLYmvOm3mcF6EPUNyu0cee3LLzqO4aFRS8bSzoTTi6Zp8U4lv6+C/0Gp/ldhDWV
-	 6CWTIaS7xb+xrk2L9nNkZsncDWLaS1X/hY4u9H2iMdCfqG+6sJWwvG8UOUPIjkooN8
-	 1+q0hcGtMwkmjxhrhBJnvPeyO+OrySQZTU/So6aInTn0anWhZZHCwmfCr2dF7c0XVF
-	 kW18qA7vJH+rA==
+	s=k20201202; t=1713147985;
+	bh=jhwG2TBFB90SEgA5EbacWDF8bEShgDBJ5++qlx6FbMQ=;
+	h=From:To:In-Reply-To:References:Subject:Date:From;
+	b=QToCu0s/3Va6nO9UEZ+RYEnb4ztCtvPIyVQO/mYXbTu6AmQkhQ4xQoqHpHMpBehaU
+	 Vf4hHsWJ28x4GVqgI8BFgq1OofefAWbixkymbsqg9dLo19PZuszeXqIcRZL+PGzMZz
+	 qET9IK3fl9vNKKNcpMhKbggNKTUx8LeaXb4RPFv/o8vpCadGn35/6hcRsR2nI4eAis
+	 nQgnOrIr1QTU9/9MknnjV0ilpaoTtj0WlioZsJnVuy4fKxQ9qQP2kX5w83zquAxSBG
+	 xAvund36CMnxVsTs0jJfwjCoSksYvnVemk8vKZ1XZyVxrx+kX7wdxRJi59uEwjKwta
+	 bdQ+XiGmGWqSw==
 From: Mark Brown <broonie@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- shengjiu.wang@nxp.com, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
-In-Reply-To: <20240412121410.2948048-1-festevam@gmail.com>
-References: <20240412121410.2948048-1-festevam@gmail.com>
-Subject: Re: [PATCH] ASoC: dt-bindings: fsl-asoc-card: Document
- fsl,imx25-pdk-sgtl5000
-Message-Id: <171314797539.1649319.16109271891144958377.b4-ty@kernel.org>
-Date: Mon, 15 Apr 2024 11:26:15 +0900
+To: lgirdwood@gmail.com, robh+dt@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+ shengjiu.wang@gmail.com, linux-sound@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
+ festevam@gmail.com, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, Shengjiu Wang <shengjiu.wang@nxp.com>
+In-Reply-To: <1712894212-32283-1-git-send-email-shengjiu.wang@nxp.com>
+References: <1712894212-32283-1-git-send-email-shengjiu.wang@nxp.com>
+Subject: Re: (subset) [PATCH v5 0/2] convert imx-audio-spdif.txt to YAML
+Message-Id: <171314798122.1649319.16393301431287899272.b4-ty@kernel.org>
+Date: Mon, 15 Apr 2024 11:26:21 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,13 +64,17 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14-dev
 
-On Fri, 12 Apr 2024 09:14:10 -0300, Fabio Estevam wrote:
-> Document fsl,imx25-pdk-sgtl5000 to fix the following dt-schema warning:
+On Fri, 12 Apr 2024 11:56:50 +0800, Shengjiu Wang wrote:
+> convert imx-audio-spdif.txt to YAML
 > 
-> imx25-pdk.dtb: sound: compatible: 'oneOf' conditional failed, one must be fixed:
-> 	['fsl,imx25-pdk-sgtl5000', 'fsl,imx-audio-sgtl5000'] is too long
+> changes in v5:
+> - fix typos in second commit message
 > 
+> changes in v4:
+> - change the enmu to const
+> - add more comments in commit message for second patch
 > 
+> [...]
 
 Applied to
 
@@ -76,8 +82,8 @@ Applied to
 
 Thanks!
 
-[1/1] ASoC: dt-bindings: fsl-asoc-card: Document fsl,imx25-pdk-sgtl5000
-      commit: 4be7bc275253c0f35c8f6362af1ee5d91d5d83e9
+[1/2] ASoC: dt-bindings: imx-audio-spdif: convert to YAML
+      commit: 62bef5df35a87d0f8464b1a8837540988cfaf5db
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
