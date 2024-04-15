@@ -1,75 +1,63 @@
-Return-Path: <devicetree+bounces-59554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F114C8A5E4D
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 01:31:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C41488A5E51
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 01:31:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 203E41C21291
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 23:31:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E758D1C21865
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 23:31:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09AB61591F8;
-	Mon, 15 Apr 2024 23:31:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77591159902;
+	Mon, 15 Apr 2024 23:31:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YyRC99q/"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="e/uogkw/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 196CE158DDC
-	for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 23:30:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B619C3E48F;
+	Mon, 15 Apr 2024 23:31:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713223859; cv=none; b=JY07PZdyhBjoIs2zO70qbgxKWrW9psebRmgkPiOoZenMZDYz55+iafvDRCe/RDM6yaNCbukoPQNq+99nFqFpWimwV54p5bj/Lmxac5eENNOUwYVJoQh17QlZyk4tmu2X8yfJ1dLNK4apNeMD0FExso17ZkAgYN6RUM/uEsUV8aA=
+	t=1713223873; cv=none; b=KFiLHvBFg/g9UX37xIYW1HAvzXAgd9gLvByfcKTgU5JiPZWqirLmmjLd+NPVav0Fukw96WRsxex+n5H0QkkYSOWnzSomJoK/zdFWyu7qUo1Vi5PvnT2+A0L82RRYDo47OPRvUFdQuAyB/9zam9aTfaLDKMxQlX4FCy0Hh4kXekc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713223859; c=relaxed/simple;
-	bh=+b/kNZ4RcVokUqEMiWdeS9E1tYrTetsBur7rJILc1qo=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=KysUmlLpJXHkz7AQEAyahGP+OnPmnEjMx48MztbqfoKOygxrCqaEEhLn7pxpQh9jCEqF5RB7kqH4AFJoeGpFnFex2I+bkxwrimudJeJo/snIuhHt5opE3JiEtHrB0UmLGD4NybkGLWkCtTPRvm1nJD7luMpJl8x9RekWx/0LJuU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YyRC99q/; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-41884e96fe0so4044355e9.0
-        for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 16:30:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713223856; x=1713828656; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sbgOogGrd7KneMj6zTYHK/GfLd8TwApJl8NSTb8SGlA=;
-        b=YyRC99q/bbnFHUilkatOkVNSaDlY7zYsVqOfSNLhik+gz28m7R2IOtIormtPWtFeS7
-         J32TEktrs/N9Xw8CI4dXGNYXGnnICHZBPs9PmMnSMXrx1NxorNqYUCTLxkg0VgL468+9
-         4Ttg9lVb2Nj6T5633hTFbjLJHAaiRVz+d2AjvbDSLI24raXZ9im33IMSHr5vTGlPVMHF
-         5XppQX1UoVjS00egvBRt5zfWv/4LZS6UUpYqSZ0qtYSQpcVDp8AQvdZza34XE0SgyRl0
-         MhjN5UyhMPMy61ts4cBfUkGEuNXB8zV+gsR14wyvX4J3ehW30EQPYpobFyGfT9LLEW8R
-         ZrIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713223856; x=1713828656;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=sbgOogGrd7KneMj6zTYHK/GfLd8TwApJl8NSTb8SGlA=;
-        b=G6sTEj9V3NSf44KyuQhXB7W3qHR/Mosam2dMtZou5586LrEgwnW8EB9jk5e0TwFCAy
-         aKB4W/BKJcwN18Ptaluwq+IaBQaDE6L+TTxxLGKJlIqFZ4OhOBSW+i14op4Ir2CwlfCX
-         8KzGwMohoxxOjauAOnXTxlaJxqnAsldq3HArJ9wrxYtLu0CFEKMWEA4YOXRANc8gakdY
-         frdblloA7WlUPXqrpzkIYyWtih5meoISkJ0IxcN/nSr6smMqNr08q8oY0DTqR4POyhbV
-         YdCh0ZAhN9GbpN+ppZPszByKrZeWhwlC5a3gG+ivY25saswW/KfV2BFIscKk5c51gGdK
-         N49Q==
-X-Gm-Message-State: AOJu0YzuaSModCAVZKj6w7h/YSD+ytwTZIhBnxy3zmVha6pF/FOZktc+
-	jqopACNlit2NFCOVPOz815bkyvqInuoi9ymiDNzNYalOKadSUzzKgYsfddG+u18=
-X-Google-Smtp-Source: AGHT+IHg/fk42jw6rlYve+PtuNCjcIGhx+aS7sngMv/JYvGAT/GBkMZPb0po+xBYLkmZmcqsfyAR5Q==
-X-Received: by 2002:a05:600c:5128:b0:416:3de5:133d with SMTP id o40-20020a05600c512800b004163de5133dmr8063687wms.7.1713223855973;
-        Mon, 15 Apr 2024 16:30:55 -0700 (PDT)
-Received: from [172.20.10.2] ([37.169.26.183])
-        by smtp.gmail.com with ESMTPSA id s11-20020a5d69cb000000b00346bf37c97bsm12811551wrw.63.2024.04.15.16.30.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Apr 2024 16:30:55 -0700 (PDT)
-Message-ID: <64c765e4-698f-49d6-8d17-4b512c3dc8ec@linaro.org>
-Date: Tue, 16 Apr 2024 01:30:47 +0200
+	s=arc-20240116; t=1713223873; c=relaxed/simple;
+	bh=Ozqw81J6Cm7EIm7S9/9fhN/jyCcOAPejuOm/ULKeqgE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=fGPaRc7pbOrpSUYPfNGAWDkwetBms2QvQLjAlu5cXBNDaJwjhKrCs34JkWoDQtYYqQiDdKDMtW4Fn53MKvc++mG0AwG7sNNPeSAJz3CgOaSVnJGMB45rJyHohnrck4oCILlpifc7yJP++M7nWjWmfcgaULUmIWfODE9m4cBSo1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=e/uogkw/; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43FMw3Xn003994;
+	Mon, 15 Apr 2024 23:31:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=bBP6L1aZea7WJ/01FBS0Qvao0QV2TFtDmz1tmopxE38=; b=e/
+	uogkw/EBkdOFmchRLIrMAbqgXcyL60Jhk5MqoOhxb4pTfXr30qLlJz6RnhZ2JrJA
+	/Nyr9NYthhzjGNmQOMtdoXWQKNXj/qtQ99AX754iqdrf8fZPDR8wvm65KpmFB/1k
+	N7F+LTWCoMG9IoRO5aGM3odZELzr7vnbFcw5ZBaASO2Fp7w+2iOcGjbIS/FD8p3w
+	b0LU+ntwx2P1ClOUKX6623MUQdZP6xudcQG42vcsr7XfvtcUnfftXWlAXmoecILL
+	LnEORjURiPDt1RXY7jskzgeepRXvwc1rXTX6oLpTypP3PRIJKXtrQj+dmOYw/KR5
+	tQaRX7MZPcBmUAyOtFow==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xha8y8d2e-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 15 Apr 2024 23:31:00 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43FNUxYE018125
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 15 Apr 2024 23:30:59 GMT
+Received: from [10.110.122.232] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 15 Apr
+ 2024 16:30:58 -0700
+Message-ID: <c623951e-1b47-4e0b-bfa4-338672a5eeb9@quicinc.com>
+Date: Mon, 15 Apr 2024 16:30:58 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,182 +65,141 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 1/3] dt-bindings: reset: Add Amlogic T7 Reset Controller
-To: Kelvin Zhang <kelvin.zhang@amlogic.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- Zelong Dong <zelong.dong@amlogic.com>
-References: <20240329-t7-reset-v1-0-4c6e2e68359e@amlogic.com>
- <20240329-t7-reset-v1-1-4c6e2e68359e@amlogic.com>
- <927ad2cb-3b41-4eda-b930-856be64ae9ba@linaro.org>
- <10650c59-96f2-4234-b5fd-aa8efec90e5b@linaro.org>
- <579a1569-7bba-491f-ba5e-7cfcb34ccc1f@linaro.org>
- <c7e243e3-3f61-4d63-8727-3837838bdfcc@linaro.org>
- <48005005-54ad-473b-826d-23b0b3f3a52c@amlogic.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <48005005-54ad-473b-826d-23b0b3f3a52c@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [RFC PATCH 2/2] PCI: Add Qualcomm PCIe ECAM root complex driver
+To: Rob Herring <robh@kernel.org>
+CC: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        <linux-pci@vger.kernel.org>, <lpieralisi@kernel.org>, <kw@linux.com>,
+        <bhelgaas@google.com>, <andersson@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <quic_ramkri@quicinc.com>, <quic_nkela@quicinc.com>,
+        <quic_shazhuss@quicinc.com>, <quic_msarkar@quicinc.com>,
+        <quic_nitegupt@quicinc.com>
+References: <1712257884-23841-1-git-send-email-quic_mrana@quicinc.com>
+ <1712257884-23841-3-git-send-email-quic_mrana@quicinc.com>
+ <20240405052918.GA2953@thinkpad>
+ <e2ff3031-bd71-4df7-a3a4-cec9c2339eaa@quicinc.com>
+ <20240406041717.GD2678@thinkpad>
+ <0b738556-0042-43ab-80f2-d78ed3b432f7@quicinc.com>
+ <20240410165829.GA418382-robh@kernel.org>
+Content-Language: en-US
+From: Mayank Rana <quic_mrana@quicinc.com>
+In-Reply-To: <20240410165829.GA418382-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: B6GBLqjdRmKNY-gl3PLAcn2kxvenlyI3
+X-Proofpoint-ORIG-GUID: B6GBLqjdRmKNY-gl3PLAcn2kxvenlyI3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-15_18,2024-04-15_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ mlxlogscore=999 adultscore=0 spamscore=0 malwarescore=0 priorityscore=1501
+ clxscore=1015 phishscore=0 bulkscore=0 mlxscore=0 lowpriorityscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404150157
 
-On 15/04/2024 12:31, Kelvin Zhang wrote:
-> 
-> On 2024/4/13 02:03, Krzysztof Kozlowski wrote:
->> [ EXTERNAL EMAIL ]
+Hi Rob
+
+Excuse me for late response on this (was OOO).
+On 4/10/2024 9:58 AM, Rob Herring wrote:
+> On Mon, Apr 08, 2024 at 11:57:58AM -0700, Mayank Rana wrote:
+>> Hi Mani
 >>
->> On 12/04/2024 19:57, Krzysztof Kozlowski wrote:
->>> On 12/04/2024 15:12, Neil Armstrong wrote:
->>>> Hi,
+>> On 4/5/2024 9:17 PM, Manivannan Sadhasivam wrote:
+>>> On Fri, Apr 05, 2024 at 10:41:15AM -0700, Mayank Rana wrote:
+>>>> Hi Mani
 >>>>
->>>> On 29/03/2024 20:39, Krzysztof Kozlowski wrote:
->>>>> On 29/03/2024 10:17, Kelvin Zhang via B4 Relay wrote:
->>>>>> From: Zelong Dong <zelong.dong@amlogic.com>
->>>>>>
->>>>>> Add a new compatible and the related header file
->>>>>> for Amlogic T7 Reset Controller.
->>>>>>
->>>>>> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
->>>>>> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
->>>>>> ---
->>>>>>    .../bindings/reset/amlogic,meson-reset.yaml        |   1 +
->>>>>>    include/dt-bindings/reset/amlogic,t7-reset.h       | 197 +++++++++++++++++++++
->>>>>>    2 files changed, 198 insertions(+)
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
->>>>>> index f0c6c0df0ce3..fefe343e5afe 100644
->>>>>> --- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
->>>>>> +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
->>>>>> @@ -19,6 +19,7 @@ properties:
->>>>>>          - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
->>>>>>          - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
->>>>>>          - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
->>>>>> +      - amlogic,t7-reset # Reset Controller on T7 and compatible SoCs
+>>>> On 4/4/2024 10:30 PM, Manivannan Sadhasivam wrote:
+>>>>> On Thu, Apr 04, 2024 at 12:11:24PM -0700, Mayank Rana wrote:
+>>>>>> On some of Qualcomm platform, firmware configures PCIe controller into
+>>>>>> ECAM mode allowing static memory allocation for configuration space of
+>>>>>> supported bus range. Firmware also takes care of bringing up PCIe PHY
+>>>>>> and performing required operation to bring PCIe link into D0. Firmware
+>>>>>> also manages system resources (e.g. clocks/regulators/resets/ bus voting).
+>>>>>> Hence add Qualcomm PCIe ECAM root complex driver which enumerates PCIe
+>>>>>> root complex and connected PCIe devices. Firmware won't be enumerating
+>>>>>> or powering up PCIe root complex until this driver invokes power domain
+>>>>>> based notification to bring PCIe link into D0/D3cold mode.
 >>>>>>
 >>>>>
->>>>> If there is going to be any resend, please drop the comment. It's not
->>>>> really helpful and makes it trickier to read.
+>>>>> Is this an in-house PCIe IP of Qualcomm or the same DWC IP that is used in other
+>>>>> SoCs?
 >>>>>
->>>>>>      reg:
->>>>>>        maxItems: 1
->>>>>> diff --git a/include/dt-bindings/reset/amlogic,t7-reset.h b/include/dt-bindings/reset/amlogic,t7-reset.h
->>>>>> new file mode 100644
->>>>>> index 000000000000..ca4a832eeeec
->>>>>> --- /dev/null
->>>>>> +++ b/include/dt-bindings/reset/amlogic,t7-reset.h
->>>>>> @@ -0,0 +1,197 @@
->>>>>> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
->>>>>> +/*
->>>>>> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
->>>>>> + */
->>>>>> +
->>>>>> +#ifndef _DT_BINDINGS_AMLOGIC_T7_RESET_H
->>>>>> +#define _DT_BINDINGS_AMLOGIC_T7_RESET_H
->>>>>> +
->>>>>> +/* RESET0 */
->>>>>> +/*                                        0-3     */
->>>>>
->>>>> I assume this matches existing drivers which do not use IDs but map the
->>>>> binding to hardware value? I remember we talked about changing it, so if
->>>>> something happened about this and it could be changed: please change.
+>>>>> - Mani
+>>>> Driver is validated on SA8775p-ride platform using PCIe DWC IP for
+>>>> now.Although this driver doesn't need to know used PCIe controller and PHY
+>>>> IP as well programming sequence as that would be taken care by firmware.
 >>>>
->>>> I'm not aware of such discussion, and I don't really see the issue...
->>>> thoses are IDs, and yes they match the Hardware offsets, and ?
 >>>
->>> Bindings are not for hardware offsets/values/addresses. It's just not a
->>> binding.
+>>> Ok, so it is the same IP but firmware is controlling the resources now. This
+>>> information should be present in the commit message.
 >>>
->>> I quickly looked at your driver patch and it confirms: not a binding.
->>> Binding constant is used by the driver and DTS consumer.
+>>> Btw, there is an existing generic ECAM host controller driver:
+>>> drivers/pci/controller/pci-host-generic.c
 >>>
->>> I am really sure we had this talk in the past, but could be I think
->>> about different platform. Since this is not a binding, I do not think
->>> claiming there is any ABI here is reasonable. Feel free to store them
->>> with other hardware values, like in DTS headers etc. We already moved to
->>> DTS headers several such "non-binding" constants.
->>
->> Un-acked.
->>
->> I looked at my archives and we did talk about it and you were CCed:
->>
->> https://lore.kernel.org/linux-devicetree/c088e01c-0714-82be-8347-6140daf56640@linaro.org/
->> simple-reset is an exception.
->>
->> So to recap:
->> That's not a binding. Don't add some real values to binding headers
->> because it is not a binding then.
-
-So what's exactly a binding then? random linear numbers that means nothing can be a binding
-but registers numbers can't be ? why ? I still don't understand, why this suddenly gets problematic ?
-
->>
->> https://lore.kernel.org/linux-devicetree/CAK8P3a1APzs74YTcZ=m43G3zrmwJZKcYSTvV5eDDQX-37UY7Tw@mail.gmail.com/
->> https://lore.kernel.org/linux-devicetree/CAK8P3a0fDJQvGLEtG0fxLkG08Fh9V7LEMPsx4AaS+2Ldo_xWxw@mail.gmail.com/
->> https://lore.kernel.org/linux-devicetree/b60f5fd2-dc48-9375-da1c-ffcfe8292683@linaro.org/
->> https://lore.kernel.org/linux-devicetree/418c5f0c-5279-41f5-3705-345ec9a97ea2@linaro.org/
->> https://lore.kernel.org/all/201401111415.29395.arnd@arndb.de/
->>
-> Got it. Will delete amlogic,t7-reset.h and use the hardware numbers
-> directly in the DT. >
-> Hi Neil,
-> As you know, Amlogic reset controller is divided into several groups: reset0, reset1, ..., resetN. I'd like to discuss the rationality of splitting the one device node of reset controller into device nodes according to the groups. Then we can use the bit number within the 'resets' property.
-> reset0: reset-controller@2000 {
-> ...
-> };
+>>> This driver is already being used by several vendors as well. So we should try
+>>> to extend it for Qcom usecase also.
 > 
-> reset1: reset-controller@2004 {
-> ...
-> };
-> ...
+> I would take it a bit further and say if you need your own driver, then
+> just use the default QCom driver. Perhaps extend it to support ECAM.
+> Better yet, copy your firmware setup and always configure the QCom h/w
+> to use ECAM.
+Good suggestion. Although here we are having 2 set of requirements:
+1. ECAM configuration
+2. Managing PCIe controller and PHY resources and programming from 
+firmware as well
+Hence it is not feasible to use default QCOM driver.
+> If you want to extend the generic driver, that's fine, but we don't need
+> a 3rd.
+I did consider this part before coming up with new driver. Although I 
+felt that
+below mentioned functionality may not look more generic to be part of 
+pci-host-generic.c driver.
+>> I did review pci-host-generic.c driver for usage. although there are more
+>> functionalityneeded for use case purpose as below:
+>> 1. MSI functionality
 > 
-> What do you think?
+> Pretty sure the generic driver already supports that.
+I don't find any MSI support with pci-host-generic.c driver.
+>> 2. Suspend/Resume
+> 
+> Others might want that to work as well.
+Others firmware won't have way to handle D3cold and D0 functionality 
+handling as
+needed here for supporting suspend/resume as I don't find any interface 
+for pci-host-generic.c driver to notify firmware. here we are having way 
+to talk to firmware using GenPD based power domain usage to communicate 
+with firmware.
 
-No since you'll basically add a node per register, you need to add a node for the while reset HW function, another
-solution would be to split the phandle arguments in 2, the first first would be the reset bank, and the second one
-the reset line for the bank.
+>> 3. Wakeup Functionality (not part of current change, but would be added
+>> later)
+> 
+> Others might want that to work as well.
+possible if suspend/resume support is available or used.
+>> 4. Here this driver provides way to virtualized PCIe controller. So VMs only
+>> talk to a generic ECAM whereas HW is only directed accessed by service VM.
+> 
+> That's the existing driver. If if doesn't work for a VM, fix the VM.
+Correct.
+>> 5. Adding more Auto based safety use cases related implementation
+> 
+> Now that's just hand waving.
+Here I am trying to provide new set of changes plan to be added as part 
+of required functionality.
 
-But still it's a regression in readability to drop the macros, until gpios or pins the reset number doesn't mean anything per se.
-
-Neil
-
-
-Neil
-
-> Thanks!
->>
->> Best regards,
->> Krzysztof
->>
-
+>> Hence keeping pci-host-generic.c as generic driver where above functionality
+>> may not be needed.
+> 
+> Duplicating things to avoid touching existing drivers is not how kernel
+> development works.
+I shall try your suggestion and see how it looks in terms of code 
+changes. Perhaps then we can have more clarity in terms of adding more
+functionality into generic or having separate driver.
+> Rob
+Regards,
+Mayank
 
