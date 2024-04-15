@@ -1,147 +1,101 @@
-Return-Path: <devicetree+bounces-59308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80B898A4A56
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 10:29:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A0BD8A4A7A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 10:36:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03473B25783
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 08:29:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EFC3E1F224C0
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 08:36:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1E503715E;
-	Mon, 15 Apr 2024 08:28:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XtkS3/f6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4370838390;
+	Mon, 15 Apr 2024 08:36:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B4492D022;
-	Mon, 15 Apr 2024 08:28:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11762110F;
+	Mon, 15 Apr 2024 08:36:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.175.24.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713169739; cv=none; b=LctAxbDg9urmLaTLrAZ8LuqsS1kCIPWkNHpItANcrNc3MuC0f0hH+mmQ94Ro6zEv6kPQGwV4JdfI1IgY9Nz+yodsrgCDpeONuIi5KzJAuNA5CgBIjYhUH2MYTzslzNhHQy+kXQfzsewKUL2NDhrDTAm9zPS1upBx/zBsBgmS2cM=
+	t=1713170187; cv=none; b=rGqH3XFlR/GfPffV9rcJrg0rqDnp/8Ya+RV2U4O4jXrbbEkVcT0ZqJeD2TJ6ukl4vXgkXXsA4xe3RHsIV+CB4wbrnuilmvjSu2HbLI+h1qBKv0eEuwg6Nz1xXCQFtumI4dYD11p2ZQHAw+ART6ovukDAKwMsCvhNTQYnFMrcEMQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713169739; c=relaxed/simple;
-	bh=QPCH8pvDeCCkjQyDPsw0zPk7mzXPjI7CrC2fv1CC2rs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EowbrCoTy06b8Vrw9WfUOhNgVDpfOKRnEgC41TB+xxKS+etcCpU11vseJfCV9m91wy3z6nJ5vQ28poNuL5Npyg6CuS/Eyggc2Kve9ciUl5vshg7nVLSfQl1o98JNfyRPXK8zbLe9k4qgHKNbendhn61voz9aaOb8e+Q8y52sRJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XtkS3/f6; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2d4a8bddc21so33481581fa.0;
-        Mon, 15 Apr 2024 01:28:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713169736; x=1713774536; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DteUBQheQifq+7BN4COm2xS4eoeVr4VB9kK9ci0lcbY=;
-        b=XtkS3/f6C0YAN/bimgHv9Sf0pIo1Ehp7+t0mY2RpawNbJomDQg5Gmk/iNJ3BrgQWZN
-         Mdlt2P76fElHjuctyqucFVU+s+ryLvHkyUDANhoH+fhKCshpH9n8104kRbGIqQ+Ag22A
-         hAgmx0cAk5UDDAaY9cf7iEpPVefFrqqie6yPR9p2T6Q0hvj9d87qrrOhRhreSw8jxmN5
-         WL/sCmzsC+CgGSFxy9/qX8hv0qh8Ex7qKUIdQhIIbH1sYXt++Aul9158RGGx3CELLPdU
-         Idb+KVIgeqP1DYhZ3v3GEB8X5HtQngk9r6+M4DVghoyrQxDkXKhQ+XNLTpmP9WlyqwI2
-         hq1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713169736; x=1713774536;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DteUBQheQifq+7BN4COm2xS4eoeVr4VB9kK9ci0lcbY=;
-        b=vt176NP/42iciKnY5f0w98dv/8kCMxTc4ZtQ9NX+wH0qPS5HC29q8u+A6e+Wt4+Inq
-         2C3U6Wbs+ArAp+hHe9zEg0RrFKdq9qVu2OkouJmadp5zNyazyNeV8wmmvhFOYQySvUVH
-         Sc9mFw+cvCQZpmLEy+LWv43EChCVcntYiYjmUQJQLhuG4IFahEkPVpvhSwfSgLvpbQ0w
-         Bc3IF/W02SPQ3P+Inw6+iqKqBAj2PTb2AOgQEsKZATRXzPI4WMGQyefyXzk3Vme8m2J8
-         yOJZM/PTrD2IW90X/1vRsxMMr1iEZ0msW8jCxQFC5chjaZG8eTUrjCZHn2dIgBe5Ehdc
-         TqrQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWIBSJEQipm2VdISS2htYZCiaEdF/N2sod5o8B/eNimw8oI+h03oSu3xozy7FzX7qI4RAm4UxpLZ5CzObFpoTXh01yjwhDv4iYnE5bzPs8YhHx9ULpG9yLam5Sok0+vM9WF8v8yvWYaVomuGmUQjmhLABGFxeWGV7sAevZ8ts2EB4XzeRBSpV+V
-X-Gm-Message-State: AOJu0YxljPXXPEw3AbzrwYoIhmD/ospaaVTnNBt1RIhs7vHfUKbf8ghF
-	hMxhssDdcLK+ZvOtZ4sViZr3UVi6j4CxdTMNfQKBINI2uObmWuKI
-X-Google-Smtp-Source: AGHT+IFHi1Akx9QfNS+pJPw3+jOsIavo82rP27l+lMa4ETeyDwhQOc6MMhek1QvN4H8U6HC7EjjMGg==
-X-Received: by 2002:a05:651c:170c:b0:2d9:fa96:1634 with SMTP id be12-20020a05651c170c00b002d9fa961634mr4925792ljb.25.1713169736128;
-        Mon, 15 Apr 2024 01:28:56 -0700 (PDT)
-Received: from [172.16.183.82] ([213.255.186.46])
-        by smtp.gmail.com with ESMTPSA id f7-20020a2e9187000000b002d4932b7a94sm1180804ljg.140.2024.04.15.01.28.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Apr 2024 01:28:55 -0700 (PDT)
-Message-ID: <7541fb24-894a-439e-8f9a-b18f04e06afe@gmail.com>
-Date: Mon, 15 Apr 2024 11:28:53 +0300
+	s=arc-20240116; t=1713170187; c=relaxed/simple;
+	bh=dDiFdwFAfGbkDMVzPEsliCJATEf7dvVMGkGRmgu206s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=liOkrI/mzr+Qed/M892IaO125IzAG0NSzFrH3WEwUg0H6kWDPFjw9Ru4IBiJaWPwrsKu6tmwudon953l32Z+iA9wejVaRj2I1Hmv1Y2jKsEMz7sltTH+3kPgdQG5bcrQeWt+/9XsK9J3fWR2lzRoteapizoHl5U3PBAYb94cPMI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de; spf=pass smtp.mailfrom=alpha.franken.de; arc=none smtp.client-ip=193.175.24.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
+Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
+	id 1rwHoa-0004hj-00; Mon, 15 Apr 2024 10:35:48 +0200
+Received: by alpha.franken.de (Postfix, from userid 1000)
+	id F2EC9C0248; Mon, 15 Apr 2024 10:32:46 +0200 (CEST)
+Date: Mon, 15 Apr 2024 10:32:46 +0200
+From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc: Justin Swartz <justin.swartz@risingedge.co.za>,
+	Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 00/14] mips: dts: ralink: mt7621: improve DTS style
+Message-ID: <ZhzmLroS9sPGjeBb@alpha.franken.de>
+References: <20240316045442.31469-1-justin.swartz@risingedge.co.za>
+ <6e8d08e4-5b26-4705-b636-0fc4412a7457@arinc9.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v2 2/6] dt-bindings: mfd: bd96801 PMIC core
-Content-Language: en-US, en-GB
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
- Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
- Fabio Aiuto <fabio.aiuto@engicam.com>
-References: <cover.1712920132.git.mazziesaccount@gmail.com>
- <ea49494429528cf8e60fa984ae1f523ddacd850c.1712920132.git.mazziesaccount@gmail.com>
- <b5eeaf10-e011-452b-840a-176c4f62cac4@linaro.org>
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <b5eeaf10-e011-452b-840a-176c4f62cac4@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <6e8d08e4-5b26-4705-b636-0fc4412a7457@arinc9.com>
 
-On 4/14/24 00:33, Krzysztof Kozlowski wrote:
-> On 12/04/2024 13:21, Matti Vaittinen wrote:
->> ROHM BD96801 is a highly configurable automotive grade PMIC. Introduce
->> DT bindings for the BD96801 core.
->>
->> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
->>
->> ---
->> Revision history:
->> RFCv1 => RFCv2:
->>    - Document rohm,hw-timeout-ms
->>    - Document rohm,wdg-action
->> ---
->>   .../bindings/mfd/rohm,bd96801-pmic.yaml       | 171 ++++++++++++++++++
->>   1 file changed, 171 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd96801-pmic.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd96801-pmic.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd96801-pmic.yaml
-
-...
-
+On Mon, Apr 08, 2024 at 10:35:07AM +0300, Arınç ÜNAL wrote:
+> On 16.03.2024 07:54, Justin Swartz wrote:
+> > This set of patches was created with the intention of cleaning up
+> > arch/mips/boot/dts/ralink/mt7621.dtsi so that it is aligned with
+> > the Devicetree Sources (DTS) Coding Style [1] [2] guide.
+> > 
+> > [1] Documentation/devicetree/bindings/dts-coding-style.rst
+> > 
+> > [2] https://docs.kernel.org/devicetree/bindings/dts-coding-style.html
+> > 
+> > Justin Swartz (14):
+> >    mips: dts: ralink: mt7621: reorder cpu node attributes
+> >    mips: dts: ralink: mt7621: reorder cpuintc node attributes
+> >    mips: dts: ralink: mt7621: reorder mmc regulator attributes
+> >    mips: dts: ralink: mt7621: reorder sysc node attributes
+> >    mips: dts: ralink: mt7621: reorder gpio node attributes
+> >    mips: dts: ralink: mt7621: reorder i2c node attributes
+> >    mips: dts: ralink: mt7621: reorder spi0 node attributes
+> >    mips: dts: ralink: mt7621: move pinctrl and sort its children
+> >    mips: dts: ralink: mt7621: reorder mmc node attributes
+> >    mips: dts: ralink: mt7621: reorder gic node attributes
+> >    mips: dts: ralink: mt7621: reorder ethernet node attributes and kids
+> >    mips: dts: ralink: mt7621: reorder pcie node attributes and children
+> >    mips: dts: ralink: mt7621: reorder pci?_phy attributes
+> >    mips: dts: ralink: mt7621: reorder the attributes of the root node
+> > 
+> >   arch/mips/boot/dts/ralink/mt7621.dtsi | 430 ++++++++++++++------------
+> >   1 file changed, 239 insertions(+), 191 deletions(-)
 > 
-> Missing allOf and $ref to watchdog.yaml
+> Thomas, will you apply this patch series as is or should we squash it to
+> one patch?
 
-Huh. The watchdog.yaml contains:
+I've applied them, no need to squash.
 
-select:
-   properties:
-     $nodename:
-       pattern: "^watchdog(@.*|-([0-9]|[1-9][0-9]+))?$"
-
-properties:
-   $nodename:
-     pattern: "^(timer|watchdog)(@.*|-([0-9]|[1-9][0-9]+))?$"
-
-
-This means the watchdog _must_ have own sub-node inside the PMIC node, 
-right?
-
-Yours,
-	-- Matti
+Thomas.
 
 -- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
-
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
 
