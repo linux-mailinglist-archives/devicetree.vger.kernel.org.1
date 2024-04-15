@@ -1,141 +1,121 @@
-Return-Path: <devicetree+bounces-59470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16BBA8A5895
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 19:06:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 702AC8A58C1
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 19:09:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C60A4281ACB
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 17:06:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2486D1F2117D
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 17:09:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 829D71292CE;
-	Mon, 15 Apr 2024 17:03:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89C2285275;
+	Mon, 15 Apr 2024 17:06:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NdOzrUHQ"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="envm3gPj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5034485952;
-	Mon, 15 Apr 2024 17:03:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57CCE82481;
+	Mon, 15 Apr 2024 17:06:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713200591; cv=none; b=gf+5u/+2mFQHyiHvWS2ZGAYGEbv6pIk9v9njabli9bA8rwbxsIj2lSBRVyzVf130W2qCsPI7WkTjJnX7yJLeTKwvMGc/51ujGTVogC85U2SyG7f8aXMgkdUzZOm3KM1PghKbpkYLkJFfOX0PuqANVbrabN/c4JU8Fc03KzrHWHM=
+	t=1713200764; cv=none; b=UzlZbEd748zgbVB6BcdtSUSioioVM3eu7Z9FiLiWk7gvcFdA+zUcNlAOSoa3XqMeDrSCeCkS69R0kEK8tSwbL2imV7B6idMo7xjIcUO6ME2AqPVguFRFfAgmi2SOM9f88rKy0ZpQXbUkyV2cf9E0ZotgpiReBbkdamJLZ+oWuGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713200591; c=relaxed/simple;
-	bh=qlN+7KOkKA0CC6PwtWEV65NHKwg6/a7Wj/1sIx6SWkE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nFEPXKpY59zaQMLSa9ueO+qRjTw8VF+bTZYVL2iXGnyNj6BA9wmomLx3P8N1j2wPhrxDHmIJaa9z/pTVF5Dcq++o5urpAwydfusp+mjYWx6J7OEYRDdajkIz4jtEXMAmTDbNTz9aFqEeebKBwd48/FNizxBi1Q5Y/1BjOuvfMUE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NdOzrUHQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02D0AC32783;
-	Mon, 15 Apr 2024 17:03:05 +0000 (UTC)
+	s=arc-20240116; t=1713200764; c=relaxed/simple;
+	bh=4a9TlTGikPdPtvIswhMDPVXsOAtTJIQPwslpOZDf9fY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WjX8LsYuPZ0KyCXAF4nlQgVgIWsnsisRY1Yv057p5j42ZuM7imrm8UcoMwU4xW8TAl96kMTLsHdtRZgsWzDof48+NfH49L6/kpCbD9263CyO7LIA7kDL8Ld1pjI5TLOQbsr9CvGyDvbg4RdjLvfQBSpvR2NuQ0xVzuQBVlBL23U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=envm3gPj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB0AEC2BD11;
+	Mon, 15 Apr 2024 17:06:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713200590;
-	bh=qlN+7KOkKA0CC6PwtWEV65NHKwg6/a7Wj/1sIx6SWkE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NdOzrUHQIQ+xohAPgwt7yFhGS86vNEzoGpUkIeGZQPAm8I5BtxYz0mf3gcUoP2Pzs
-	 M9hBbh1YXWRj8qCr0oraEJhFZyaL/Epobq7yEVmzC8yRzIPeCDxiYogc2sbJcsg5Fb
-	 J8wKUf5NmpyMFsh6ZCTmkkPau4UbM9YaxoLDTPM++s0eNGtdwL/VtIWvlMGPAums6X
-	 GDCKNwni4lg9SzyMTXGRE/PLQhzPDv//j/mAtdbBtwhYGrAlI4ItFqg2ZlXnB2SuH3
-	 CSjEut9+y8YEMEUfx0ntXYfH2Em+pliaxvNLNsWhjCb5zBM/Xo1fcyhco+2aLeLE1o
-	 pkAmshwX5thXA==
-Date: Mon, 15 Apr 2024 18:03:03 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Yi-De Wu <yi-de.wu@mediatek.com>
-Cc: Yingshiuan Pan <yingshiuan.pan@mediatek.com>,
-	Ze-Yu Wang <ze-yu.wang@mediatek.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	netdev@vger.kernel.org, linux-mediatek@lists.infradead.org,
-	David Bradil <dbrazdil@google.com>,
-	Trilok Soni <quic_tsoni@quicinc.com>,
-	My Chuang <my.chuang@mediatek.com>,
-	Shawn Hsiao <shawn.hsiao@mediatek.com>,
-	PeiLun Suei <peilun.suei@mediatek.com>,
-	Liju Chen <liju-clr.chen@mediatek.com>,
-	Willix Yeh <chi-shen.yeh@mediatek.com>,
-	Kevenny Hsieh <kevenny.hsieh@mediatek.com>
-Subject: Re: [PATCH v10 03/21] dt-bindings: hypervisor: Add MediaTek
- GenieZone hypervisor
-Message-ID: <20240415-emerald-chief-5f27532d65bd@spud>
-References: <20240412065718.29105-1-yi-de.wu@mediatek.com>
- <20240412065718.29105-4-yi-de.wu@mediatek.com>
+	s=k20201202; t=1713200763;
+	bh=4a9TlTGikPdPtvIswhMDPVXsOAtTJIQPwslpOZDf9fY=;
+	h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
+	b=envm3gPjZkPR25rFILSSoDGtvq58d0n5TS2Ogmxra3RmmqJOLqTClzNaQo60Rcy/8
+	 axCfm2/V7ALzK2j+/+nve1rMfBSKxfrc/66w1h9SakHpGtRH39qBxvnQIWELc/JNt1
+	 70y5d3MUtd06wenDYBRLLmN9O8hgIPdUs+/sO+G2y5beX4FDbqCiauXeAdrQXsfWnB
+	 PckYPDZC66KLbwdVo1CdwHkuaE+chrIGFCZZCCb53eAm56qC0RIamfBj/CR5RSCwYK
+	 oRbMjLRnnDWF2GpgqY32AMqlw6eI3R983vlkCtFSx5kVqwvNCfGp/PfehO9ZBJzbmk
+	 asMALYe/CuGnA==
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-518c9ff3e29so1860444e87.0;
+        Mon, 15 Apr 2024 10:06:03 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVxg/QDIDT+2uFnvQSb2pIZUnrfgF3JX4CUPStTW+RnUMx6reBpkC5C/2rV0f6gLXzUzIo/7PDwKLyYQf9e0m9nNDRlnVHd+mKXS2I4MrFZeZxwP/Zc5EjyzDn25A7QbqxED3QJdoxF99ELngt/1h5HsfJMfmDRJdoB69Fz39rHlkCq4jnAqW5v+dUd1QmtesEA6QMXYvocKooomLhcDj39lUuH3ylPoEQkSn82SF35NmtxbKoAF2AdoFUlnzgV98cyP+HFNwMT
+X-Gm-Message-State: AOJu0YwK1k2oZMcCOfAtzlgBTO/t+HBEL8eHKauKZEOF7ZhQK7lNyrOE
+	lUMQLbwORDPorWOCdZejufmc4oJQ+VtlCjZaqoGXgRBuFANLmgu8Ve/c/xRNgeYqJPF1Jc6NYJe
+	fITp+oJfp+ZjYmMQot63cGLzq1g==
+X-Google-Smtp-Source: AGHT+IGj52gH0/Dg5INd/xZRyWwlGDPcfmpSpbX0KU82iJTE7+TtYLQcTn0dGxCxYIzg49fhJoCRFzAjpf+6SCkqXUk=
+X-Received: by 2002:a2e:b0ef:0:b0:2da:320a:68d9 with SMTP id
+ h15-20020a2eb0ef000000b002da320a68d9mr3627965ljl.13.1713200741392; Mon, 15
+ Apr 2024 10:05:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="C6BOR4TK2ik6wg8F"
-Content-Disposition: inline
-In-Reply-To: <20240412065718.29105-4-yi-de.wu@mediatek.com>
-
-
---C6BOR4TK2ik6wg8F
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20240412222857.3873079-1-robh@kernel.org> <Zh0vXinxy7woerJQ@hu-bjorande-lv.qualcomm.com>
+ <CAA8EJpqL2T4bJZqtZ9KF=V2NLnFxUjouA6_Hu_H07DofifZaoQ@mail.gmail.com>
+In-Reply-To: <CAA8EJpqL2T4bJZqtZ9KF=V2NLnFxUjouA6_Hu_H07DofifZaoQ@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 15 Apr 2024 12:05:26 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+q3OLEMT=d8=d9o1D9deKGQ5TAtZg_bgptDPQ1cWcctw@mail.gmail.com>
+Message-ID: <CAL_Jsq+q3OLEMT=d8=d9o1D9deKGQ5TAtZg_bgptDPQ1cWcctw@mail.gmail.com>
+Subject: Re: [PATCH] arm/arm64: dts: Drop "arm,armv8-pmuv3" compatible usage
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Bjorn Andersson <quic_bjorande@quicinc.com>, soc@kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Dinh Nguyen <dinguyen@kernel.org>, 
+	Tsahee Zidenberg <tsahee@annapurnalabs.com>, Antoine Tenart <atenart@kernel.org>, 
+	Khuong Dinh <khuong@os.amperecomputing.com>, Liviu Dudau <liviu.dudau@arm.com>, 
+	Sudeep Holla <sudeep.holla@arm.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+	Robert Richter <rric@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, "Paul J. Murphy" <paul.j.murphy@intel.com>, 
+	Daniele Alessandrelli <daniele.alessandrelli@intel.com>, Andrew Lunn <andrew@lunn.ch>, 
+	Gregory Clement <gregory.clement@bootlin.com>, 
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	=?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>, 
+	Heiko Stuebner <heiko@sntech.de>, Orson Zhai <orsonzhai@gmail.com>, 
+	Baolin Wang <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>, 
+	Jisheng Zhang <jszhang@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, linux-fsd@tesla.com, 
+	Michal Simek <michal.simek@amd.com>, devicetree@vger.kernel.org, 
+	linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+	linux-mediatek@lists.infradead.org, linux-tegra@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-realtek-soc@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Apr 12, 2024 at 02:57:00PM +0800, Yi-De Wu wrote:
-> From: "Yingshiuan Pan" <yingshiuan.pan@mediatek.com>
->=20
-> Add documentation for GenieZone(gzvm) node. This node informs gzvm
-> driver to start probing if geniezone hypervisor is available and
-> able to do virtual machine operations.
->=20
-> [Reason to use dt solution]
-> - The GenieZone hypervisor serves as a vendor model for facilitating
-> platform virtualization, with an implementation that is independent
-> from Linuxism.
-> - In contrast to the dt solution, our previous approach involved probing
-> via hypercall to determine the existence of our hypervisor. However, this
-> method raised concerns about potentially impacting all systems, including
-> those without the GenieZone hypervisor embedded[ref].
->=20
-> Link: https://lore.kernel.org/all/2fe0c7f9-55fc-ae63-3631-8526a0212ccd@li=
-naro.org/
+On Mon, Apr 15, 2024 at 11:52=E2=80=AFAM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On Mon, 15 Apr 2024 at 16:46, Bjorn Andersson <quic_bjorande@quicinc.com>=
+ wrote:
+> >
+> > On Fri, Apr 12, 2024 at 05:28:51PM -0500, Rob Herring wrote:
+> > [..]
+> > >  arch/arm64/boot/dts/qcom/qcm2290.dtsi                | 2 +-
+> > >  arch/arm64/boot/dts/qcom/qdu1000.dtsi                | 2 +-
+> > >  arch/arm64/boot/dts/qcom/sdm630.dtsi                 | 2 +-
+> > >  arch/arm64/boot/dts/qcom/sdx75.dtsi                  | 2 +-
+> >
+> > Acked-by: Bjorn Andersson <andersson@kernel.org>
+>
+> Note, we'd need to override PMU compatibles in sdm636.dtsi and
+> sdm660.dtsi. Ideally it should come as the same patch.
 
-> +properties:
-> +  compatible:
-> +    const: mediatek,geniezone-hyp
+Uh, that's an A for reuse, but an F for readability... It's sdm632 as
+well. Will drop sdm630.
 
-Been avoiding this binding every time it shows up because Rob had
-already told you no and hasn't revisited it since, but I feel this
-should be s/-hyp// since that's redundant information.
-
-> +description:
-> +  This interface is designed for integrating GenieZone hypervisor into A=
-ndroid
-> +  Virtualization Framework(AVF) along with Crosvm as a VMM.
-> +  It acts like a wrapper for every hypercall to GenieZone hypervisor in
-> +  order to control guest VM lifecycles and virtual interrupt injections.
-
-The description however doesn't really make sense. The binding claims to
-be for geniezone but the description talks about something else entirely
-that "acts like a wrapper" between the OS and geniezone. What is the
-binding actually for?
-
---C6BOR4TK2ik6wg8F
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZh1dxwAKCRB4tDGHoIJi
-0jVFAQCJXfT7nWUYAhn0e8Ajkn5u7oxR2Cu949hDGp7nK9saPAEA3b+xCJOh8wV2
-Hv0FfTlG1rexad0mg/r96/sxZi/z9Qg=
-=e5RQ
------END PGP SIGNATURE-----
-
---C6BOR4TK2ik6wg8F--
+Rob
 
