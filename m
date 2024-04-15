@@ -1,217 +1,239 @@
-Return-Path: <devicetree+bounces-59227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF2C78A46FF
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 04:32:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CDF7D8A4700
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 04:32:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8ECF0283178
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 02:32:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CA81281718
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 02:32:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9138617547;
-	Mon, 15 Apr 2024 02:32:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8751414F6C;
+	Mon, 15 Apr 2024 02:32:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=nuvoton.com header.i=@nuvoton.com header.b="cC5q65Hp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7209115E9B;
-	Mon, 15 Apr 2024 02:32:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713148324; cv=none; b=EGZgeLrrJP/1hRK9An5QlxN0hR6OlZzMlfjmEN6sDLCykF4MTLQ+UO/kw0357lVZ0cX9pHsnFGwxCWJXw2jhmzk8ldCMg3MXbWS9xrEbKTwKCdWhTdHwUuCsySV6/2XFOTLxI5fx9+7vRv5JnGArASnmva9Eki86WzqqlJ9hwW4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713148324; c=relaxed/simple;
-	bh=4HfiDJYJPKc2uNTlZn92xDC19YzzrHiZlY9tOSTHOSM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WfEioQoS8bOI8Rbgv6gtlmeeVxPMTuojUZqDMySbY5oRtITr25nm1yPQKfDIQkpCQRfKSJSUBm5DqL15AabaCQUHO9P4qB0bP8yrMnsZMjIEubj80FHC0pUg3+j0NEtkbB+NfTbAt2OuY88NNRK3hJV50XAmD7cMjP1YSSWqWAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
-Received: from loongson.cn (unknown [112.20.112.218])
-	by gateway (Coremail) with SMTP id _____8DxdbmhkRxmqY4nAA--.8923S3;
-	Mon, 15 Apr 2024 10:32:01 +0800 (CST)
-Received: from localhost.localdomain (unknown [112.20.112.218])
-	by localhost.localdomain (Coremail) with SMTP id AQAAf8BxlhGekRxmBh17AA--.27951S2;
-	Mon, 15 Apr 2024 10:31:59 +0800 (CST)
-From: Binbin Zhou <zhoubinbin@loongson.cn>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Amit Kucheria <amitk@kernel.org>,
-	Zhang Rui <rui.zhang@intel.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Huacai Chen <chenhuacai@kernel.org>,
-	loongson-kernel@lists.loongnix.cn,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Yinbo Zhu <zhuyinbo@loongson.cn>,
-	WANG Xuerui <git@xen0n.name>,
-	loongarch@lists.linux.dev,
-	Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH v2 4/4] thermal: loongson2: Add Loongson-2K2000 support
-Date: Mon, 15 Apr 2024 10:31:57 +0800
-Message-ID: <1004a4c46e83ed5bf3cb7158755aaef3f1517693.1713147645.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1713147645.git.zhoubinbin@loongson.cn>
-References: <cover.1713147645.git.zhoubinbin@loongson.cn>
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2072.outbound.protection.outlook.com [40.107.255.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CF6C17F8;
+	Mon, 15 Apr 2024 02:32:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.255.72
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713148362; cv=fail; b=sAEUHyUUAGGSEcovnlXiA8sNAzd8Z7AItbmFVWrWZBIvP//8O+7pOiinHOcbf13m9HOpxPhBvMr/r0MOqjEaSz4SQzn6YJzRdI3yl48wSpqJiPyLqDlCFrb0nGu4EiUkiWGelhDGSUQ37Rg9u+POLnY7qqeKHkAFAyhGfsHou30=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713148362; c=relaxed/simple;
+	bh=sa5mdYn9TaZXXnuFxQmDMoUnWPfP0O3Uq7UlLne9kyo=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=bYmMTKLVw28QqCkNS5fetl2Gnbx6Z29hetpvRS6atabo7shn7jLnOzsZfDd+GfY7pcdeU/dScl3FCWQJqxNsLoQDlDjHHvVE54em1bYiIPGsPs5kDlNAOV4sxKWaxZdPG9CNw9nF/50kwbLqSGBtUknrZ+verqvbgbWsUOSJdIs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nuvoton.com; spf=pass smtp.mailfrom=nuvoton.com; dkim=pass (1024-bit key) header.d=nuvoton.com header.i=@nuvoton.com header.b=cC5q65Hp; arc=fail smtp.client-ip=40.107.255.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nuvoton.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nuvoton.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Xu8N8q0Np/WlVsNehHpmmv/20+2Ubvc/XwjbENb2Q5iNNXfqghJ6aaonf3HHVPn0fmXd+EvdUk1UTCxJSy/R5e46AYng8NXG3WTATL72ANn0GDuV3nLtcEx4/xcZKiMylv8lx6KymfLiALeBGJ3uVfYOkb5UCb/RQw6pM4dI9OJ3hVXQvD71jj+Y8u0tuOOJXl2EC35AMrJujizvZc9NFwI7Cc0t/uPh6WZ5qm0VCez7D2vfvmdxqEbfXEBeXRmbdvjPk46v1vDnNzjmh1EkTU2uIoMZEDSAmhCrWnAjQpPcY8JkSmC7gfJoYuFcwvMGgcjU8jv2jTcQ2mxiBWcQwQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=m0r+aQP184g4sAk/uS7H0OPkyHiMikFUaIIgla7SlF0=;
+ b=Grz0nVJCVqQxUnctW8v0CDGeIdHPWRgu/bmf3iYj3jAbRxx3GgIAlC1ZNCEi0FDV2iWIOZuvglaNwjN2k7RDNGg74qbYYJ7TVaNQ6TqcFRiRJKriYu4fJVwHc31d9vD4h9ZD6e+TtaDHihToH3HksmpOPZEaICAN9VFMf2DvRHjdervdqpuhdeKeKKv/Hq2TfF/muEB/frvaC0TftyHIjy8mpeErGdrVKd4+vEh03KE9oqOaNY1wLsupq6aYCdQ1+cAT/2D14d7PZgQoZn8MGY3kb3tYmqfyxM7x8MO/YI0Ziv63419jMN+7iffvlSGR4yZpEOUgMv7Trc0n7VFhvA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nuvoton.com; dmarc=pass action=none header.from=nuvoton.com;
+ dkim=pass header.d=nuvoton.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nuvoton.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=m0r+aQP184g4sAk/uS7H0OPkyHiMikFUaIIgla7SlF0=;
+ b=cC5q65Hps01GTMzpiGQKpOr3OxXKJbpMrlaQzaoRqMfPq+ND+TF7CJAdjMrIj7y4ljplY/AS0A/lmIzFiEDs7QujTYC2UfazgJhr87o4ymgQQNgcT5URl2LHEaKOHf7jEF2DyHT1fQF6AnDLOfNY+L/yJNaAdE8NX25d7+HUcE8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nuvoton.com;
+Received: from SI6PR03MB8987.apcprd03.prod.outlook.com (2603:1096:4:235::7) by
+ TYZPR03MB8295.apcprd03.prod.outlook.com (2603:1096:405:1c::10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7409.55; Mon, 15 Apr 2024 02:32:35 +0000
+Received: from SI6PR03MB8987.apcprd03.prod.outlook.com
+ ([fe80::c2be:325a:575:8db9]) by SI6PR03MB8987.apcprd03.prod.outlook.com
+ ([fe80::c2be:325a:575:8db9%7]) with mapi id 15.20.7409.042; Mon, 15 Apr 2024
+ 02:32:35 +0000
+Message-ID: <81fa2939-37b8-479b-a03b-1f2ea17b2131@nuvoton.com>
+Date: Mon, 15 Apr 2024 10:32:29 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] ASoC: dt-bindings: nau8821: Add delay control for ADC
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>
+Cc: broonie@kernel.org, lgirdwood@gmail.com, alsa-devel@alsa-project.org,
+ devicetree@vger.kernel.org, linux-sound@vger.kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
+ conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com, YHCHuang@nuvoton.com,
+ KCHSU0@nuvoton.com, CTLIN0@nuvoton.com, SJLIN0@nuvoton.com,
+ scott6986@gmail.com, supercraig0719@gmail.com, dardar923@gmail.com,
+ edson.drosdeck@gmail.com, u.kleine-koenig@pengutronix.de
+References: <20240412103554.3487290-1-wtli@nuvoton.com>
+ <20240412155220.GA2918590-robh@kernel.org>
+From: WTLI <wtli@nuvoton.com>
+In-Reply-To: <20240412155220.GA2918590-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: TYCP286CA0232.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:3c7::18) To SI6PR03MB8987.apcprd03.prod.outlook.com
+ (2603:1096:4:235::7)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:AQAAf8BxlhGekRxmBh17AA--.27951S2
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj93XoWxAw45Jr1xCr4kJrWUAr1DurX_yoWrurW3p3
-	47C3y5KrZ8Xr4Du3s8Aw1kZF4Yyry3ta9xZFs7Gw1fWrZ3t343Wry5KF10vrWSkFZ8JFy5
-	ZrZ0vFWxC3WDW3gCm3ZEXasCq-sJn29KB7ZKAUJUUUUx529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUBqb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E
-	14v26r4UJVWxJr1ln4kS14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6x
-	kI12xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v2
-	6rWY6Fy7McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2
-	Ij64vIr41lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Y
-	z7v_Jr0_Gr1l4IxYO2xFxVAFwI0_JF0_Jw1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x
-	8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE
-	2Ix0cI8IcVAFwI0_Xr0_Ar1lIxAIcVC0I7IYx2IY6xkF7I0E14v26F4j6r4UJwCI42IY6x
-	AIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY
-	1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU0XdjtUUUUU==
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SI6PR03MB8987:EE_|TYZPR03MB8295:EE_
+X-MS-Office365-Filtering-Correlation-Id: 651c4010-c32d-425a-b512-08dc5cf44f33
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?MjIvWndJclhEbTBqZEVYa1pWRGVzR3hYRDgyeDZVbk1SUStQMXcrL3FBeTln?=
+ =?utf-8?B?M29FMXNsZmlYOCs2YWRBOCtZWGVRUkF0M3VERE1RTGdMS2trVk8zY2t4S2F3?=
+ =?utf-8?B?M3VPRWp3QXJ4ZXJZeEdaOEYzNlhSR09Fblh4Z2lvWlZ1cmpnV1hCVTZyQlM4?=
+ =?utf-8?B?cjYxRlloQVIxd0thRHlBcU9QTDFIYXhIMVVtK3VnaW5vTzVVUm5VQS9kd1Qv?=
+ =?utf-8?B?MjVVTytITkdva0ZuSlZDRTg0d0dNYUhmT1pGYlVOS3F0dEdDLzVFdkpKTFNy?=
+ =?utf-8?B?ZHVad1prdlR3ck5XcktBR0cwcWNYS01Gck9EWC9hamNOQnc0bjVaUk1pWDkr?=
+ =?utf-8?B?cjhlU2xlNnRpWHJGMkhRK0FXdnNxTUY5K0RhWlRWZE9iZjA0SWFlcGRpbDZ5?=
+ =?utf-8?B?V3ZDMk1Md3R6OU9KOENXWWs4N2MvTHd1aytybzFhT3FhdGVIY1YyYjRubXNY?=
+ =?utf-8?B?MjdreVp0TDlMY2ljMFhkWmZ5ckZ1djRWMkRJeWRLbW1oRmZYcGQrM01OUW9a?=
+ =?utf-8?B?RWNFb1JJdGdmUFdxV0pXVVV3cEowWnYwQU52R2dKc3hOWkM2c3E2aDlaRzNt?=
+ =?utf-8?B?YmdwaDNKaWJMRXYzTGlmbk80d3duUWxxRURGZWx6YkszWXFPaUFGUGVHNWh5?=
+ =?utf-8?B?M21ialdLMjVYcW1aTkxKTDZDcmwrVDVLMUxyWVdoSy8rZVdGcHlFVVM2Sk9n?=
+ =?utf-8?B?eEFEZlp6bnZWWnl0emtuWlJUZnR3STJYY1VqK20vdU5yZ2pYZXdEdGsyMWxU?=
+ =?utf-8?B?QjB5cVFHYW9BTEs2aDVzZUVmc3BLcjVENXZacVl2aE5UQmdhamJUOVFJL0w1?=
+ =?utf-8?B?RE4rQnZxa2ZxYVV4YlVpVU9wVytzSHgxOFNIQzBqYWlhWG1pODlUYWNuRnNQ?=
+ =?utf-8?B?MzZCTCtVMzBweWhYT29lT1czYjJCZndwQU4yeTJLcWpNc0lPY0lsTmZzeVYr?=
+ =?utf-8?B?aEZ0dnFZWkNUM1VoZTN4cFNsNnVqalV6SnBZREJSbTluRjJtZmZsd1k1aVAy?=
+ =?utf-8?B?eFQ4ZWlhTitQSHoyTklWZitBeEtNMUNXSGgrN1JZR3g2TlNOTmYrWFVNd0FK?=
+ =?utf-8?B?Wm54cHVZYWw4T3hNQi93dFR2UUxka2xqWisreC85N1BHSXVyV2VNa2FVRCty?=
+ =?utf-8?B?YWJoQ2FtL0l0V1JiN01JektLWUpKL3B6WFBEWnlTdS8yRzYrazdJZ3RyMGVr?=
+ =?utf-8?B?Z0NHcnlXVEo3b3ZYUUNPQmpjUnNqUTU1N1VVNFFVNlZSTlFlY2gzcTlFa2s3?=
+ =?utf-8?B?QjJqUzBrZGgwaGVtbWFHemZ0RWNiYWNERm1xMzdkODlKOTVGZDY5SkJ5bi9o?=
+ =?utf-8?B?MnFFempaWmZxS2E5NmlWR1VidHZyVGlGWngrTUdqV2JpZVBxUWt5bnJvQjl5?=
+ =?utf-8?B?bFJtVzJaeUlVcUM3N2I2L2FZUTZUSkN1TndLWDU3Y1VMWXZSbW5obm5nWXVG?=
+ =?utf-8?B?WlJwZEtvcW9DbU5YNlg5dnVYWmdMSE81cVdhR0RhQlZvYU93SjZYL3pWZUNi?=
+ =?utf-8?B?RnhQdmYySURmWkZkb202R3B2bXEvRE1Cbm4rVWVmZ2s1NlBrK21lVEFFWG9X?=
+ =?utf-8?B?S3FzbG5JZndPaVNNMm1OQjlyU2RIZTVWcE1tUTdTNmZDKzdqZ2dmT3lGQWEy?=
+ =?utf-8?B?UnNEOEFSditzN2pTdUdyZEdxTTJnSkdLS2pxd0EwK2thaXBTTk1NZTNaNHdk?=
+ =?utf-8?B?TUJDSElLUGRCMGI1NTRvb1dKQktRR1h4UFhtRlFBMDZOcnRwQ0s4MW5nPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SI6PR03MB8987.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(376005)(1800799015)(366007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?RS9HakFOYTAvOVVvZXJObVd5OG1CTE5kdGpVdVFCM0lzbU9QK3FqMkd2Zng3?=
+ =?utf-8?B?ODJENXNHUWFjVjRodEc1WFhNa2FWZWUzWkpPbis5Slg0ZjVaUzdvSW5BamxF?=
+ =?utf-8?B?ZWpSeUl2VHE2YkN5N0Y5SGFEbTErMWRmTWd5TjhjUGRyZmc5NE9DM0J1SzIr?=
+ =?utf-8?B?aTk1cmxtTTh4TTVDejlXLzFJL2VaZHFGMlNaQlY4L1Y0L0VxTnFaTTVCbkFn?=
+ =?utf-8?B?OWhGN0pzL3Y3eHQ1dFFQMkdkQysvY3g4NjdzeXBmc1JQVWpGYml6S0Z1K05r?=
+ =?utf-8?B?RDB2QkVSYjhFS0NzNzhKVnJRMHlYYml1a3pwRzM5a0hxRU45SnU4STJvR0lV?=
+ =?utf-8?B?MVBkMlhxUWF1YkVBK3RUYTFVbTE5Ulg5TThuWmRycWVnRDEzWTR4KzZDQStL?=
+ =?utf-8?B?VHg5bCtleDBUS0lXanpYNVdRTFBwN1dhRlJPN1J2MmhqcDhwcGxJd3pTNkNt?=
+ =?utf-8?B?eldvN2pxY2NYb2NVN1htRFdWRGFVaFpqeFFFZmZ2ZXNTQkQzT2pvS1d0RUk4?=
+ =?utf-8?B?NnhoVTZGSXozWWFTdVVncnE3dDBrUGkyRmtzSkNlTmYxN3pZVW5maGNrUmZK?=
+ =?utf-8?B?SXg3ZnlvTHRqeGRXTkk5NmJ1dXFNV1M2THh4ZkNWMlgzbVBFVnpDc1A2eFBY?=
+ =?utf-8?B?QzlsK0ZnZXIzbmJ0NEFVeU9zUk83TUZ1NUc0YmpkZ1dXYmswYnFmSU1wazZP?=
+ =?utf-8?B?NEg4dE5GMEtSSWJGOXVzcVR5YW51bGIzZ090NjB5NFhWUlNKSlZUR0VnYW4x?=
+ =?utf-8?B?SmZRUFl4dmJsTTFTZEl4QjFQUGQ3U25wK3VwUklBNHVzRk4xanhaWXNKWnNK?=
+ =?utf-8?B?T3lOYlh1d0xYd0tYRTFRSldBTjhOS0NZc0cvcW5IcVBpclNEMExuU0lJUlZU?=
+ =?utf-8?B?Q2dIV05lSUk3ZEhxdDd6S2FMMHcvcUcyMytCd3ArMTFwdTllVmlqeUZFT0lp?=
+ =?utf-8?B?N2V6Y2tpcmkyZ1QxWnlMYUowVTJ6T1d2N2c1TFpad2IvTDNOUVhWK2FFQTdm?=
+ =?utf-8?B?a1E4RTc4R1NHYXh1Z2hXRXVzakVzb0JiQy96YXp3Q0IvRHY3eGIxdjBZM0g4?=
+ =?utf-8?B?b1Q1VkRiVEwyRWp2d1NKamMxK3NrK0hOc3lvd1FNdk5CRnNEMlJlTkZ4eFdl?=
+ =?utf-8?B?OU1NSHJpUDZBd0hwQmNnTzl6VzEvUzRGTnQ1VitzNnQxRndJaUxvcGF4M2xC?=
+ =?utf-8?B?dENFOXBocVpFL2hMaUV0V2JQMDZxN0pJQnpyTlltaTUrNlZtdWpIUmwrSlBP?=
+ =?utf-8?B?SEU5dU1heWY1b2hmTHE2WHBPMUtZY2xkdFRESEZnb0JIdmhpUkdxcU91OEFz?=
+ =?utf-8?B?SHhRaVRCQytGN0lFNUpGWmtZbVNaWmZRK3lpdm94MUhoekFvYVg1NVJKeW8z?=
+ =?utf-8?B?ckpnK3Z3WkxqdkpaeWYybTZvYlZMbVY1Y1NHQzlvTjFqcVd2M25YMGcxc2xy?=
+ =?utf-8?B?bnRGZy9OQlFaa0pJd0RscXM4MFYyM3ZoSlBDckdqNTBVYUpCcXFVRi9YTmhn?=
+ =?utf-8?B?LzdrcERhMDZmRzhLYk5MOVdpVXV1VHJwOVZrL2xVUDJtZDJ3VXRVS3NOd3RU?=
+ =?utf-8?B?bzJDYlJsVy9BdFpqbWJod0xEdXB4N01XT2o4N0FPT1RWdTZXaytwdTI1Yzdx?=
+ =?utf-8?B?WDN1MmZvN3RKbXVsSUc1cVZRR28xRm00cnFkUytleW5uRFkxZGdZWkM2VVRX?=
+ =?utf-8?B?Mi8ybmNpU3Q3WXgyV0Y3WElWVG5UMlptdUtsYmNaNXR0UU5DK1F1cDZYOTE4?=
+ =?utf-8?B?VG5zU2FROWZjQ09GczJ0Yk1iR21Sd2NMT09OYzdGdW1CNnlPbmtDdVVzK1Y2?=
+ =?utf-8?B?NHZ1U054bitqMEJBazI1SVBsNytHUzQxVE1DSEl0eXUwOThJWFBlTkkrb2JI?=
+ =?utf-8?B?RnNSYzVEQUNMRUlnVWVLYXJnUUdMZVZocGlBVUVzQ010OUhZVVlqcUlhQ2tN?=
+ =?utf-8?B?aG1FNTAweW9vVkZDL2hyQjRheWFPQXg2VE9nWGF5dDMxYnR2ZWxZRmxoK0ph?=
+ =?utf-8?B?WFU2eTNNQ1lKb2JaeThncU1HSjdjTGM4WUZKRGhtKzVqNzlFSmI2U1RsS3FI?=
+ =?utf-8?B?OXBTRks2TXRWekhsdS9iVUlaVjBndi9BTFNSUHdjU1Y2a3M1bDR3dXQvd0FP?=
+ =?utf-8?Q?lHBxvzNGd5UwhF1vHNkeXWijl?=
+X-OriginatorOrg: nuvoton.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 651c4010-c32d-425a-b512-08dc5cf44f33
+X-MS-Exchange-CrossTenant-AuthSource: SI6PR03MB8987.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Apr 2024 02:32:35.1836
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6xRGQENI2rio76ZXlpZajdhEFPWHDPwubgZHk/Lj0vjfLzj/Cm+rBZ+CmtLZOQjVFMG9ANxT2R4bhgLwvofSIw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB8295
 
-The Loongson-2K2000 and Loongson-2K1000 have similar thermal sensors,
-except that the temperature is read differently.
 
-In particular, the temperature output registers of the Loongson-2K2000
-are defined in the chip configuration domain and are read in a different
-way.
+Rob Herring =E6=96=BC 4/12/2024 11:52 PM =E5=AF=AB=E9=81=93:
+> CAUTION - External Email: Do not click links or open attachments unless y=
+ou acknowledge the sender and content.
+>
+>
+> On Fri, Apr 12, 2024 at 06:35:52PM +0800, Seven Lee wrote:
+>> Change the original fixed delay to the assignment from the property. It
+>> will make it more flexible to different platforms to avoid pop noise at
+>> the beginning of recording.
+>>
+>> Signed-off-by: Seven Lee <wtli@nuvoton.com>
+>> ---
+>>   .../devicetree/bindings/sound/nuvoton,nau8821.yaml        | 8 ++++++++
+>>   1 file changed, 8 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yam=
+l b/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml
+>> index 054b53954ac3..a726c5a9b067 100644
+>> --- a/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml
+>> +++ b/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml
+>> @@ -103,6 +103,13 @@ properties:
+>>           just limited to the left adc for design demand.
+>>       type: boolean
+>>
+>> +  nuvoton,adc-delay-ms:
+>> +    description: Delay (in ms) to make input path stable and avoid pop =
+noise.
+>> +        The default value is 125 and range between 125 to 500 ms.
+> No need to state constraints in prose.
 
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
----
- drivers/thermal/loongson2_thermal.c | 50 +++++++++++++++++++++++------
- 1 file changed, 40 insertions(+), 10 deletions(-)
+okay, I will fix it.
 
-diff --git a/drivers/thermal/loongson2_thermal.c b/drivers/thermal/loongson2_thermal.c
-index d77d829c8b55..d803b6bc35b7 100644
---- a/drivers/thermal/loongson2_thermal.c
-+++ b/drivers/thermal/loongson2_thermal.c
-@@ -29,12 +29,20 @@
- 					 LOONGSON2_THSENS_INT_HIGH)
- #define LOONGSON2_THSENS_OUT_MASK	0xFF
- 
-+/*
-+ * This flag is used to indicate the temperature reading
-+ * method of the Loongson-2K2000
-+ */
-+#define LS2K2000_THSENS_OUT_FLAG	BIT(0)
-+
- struct loongson2_thermal_chip_data {
- 	unsigned int thermal_sensor_sel;
-+	unsigned int flags;
- };
- 
- struct loongson2_thermal_data {
--	void __iomem *regs;
-+	void __iomem *ctrl_reg;
-+	void __iomem *temp_reg;
- 	const struct loongson2_thermal_chip_data *chip_data;
- };
- 
-@@ -48,7 +56,7 @@ static void loongson2_set_ctrl_regs(struct loongson2_thermal_data *data,
- 
- 	reg_ctrl = ctrl_data + HECTO;
- 	reg_ctrl |= enable ? 0x100 : 0;
--	writew(reg_ctrl, data->regs + ctrl_reg + reg_off);
-+	writew(reg_ctrl, data->ctrl_reg + ctrl_reg + reg_off);
- }
- 
- static int loongson2_thermal_set(struct loongson2_thermal_data *data,
-@@ -65,11 +73,16 @@ static int loongson2_thermal_set(struct loongson2_thermal_data *data,
- 
- static int loongson2_thermal_get_temp(struct thermal_zone_device *tz, int *temp)
- {
--	u32 reg_val;
-+	int val;
- 	struct loongson2_thermal_data *data = thermal_zone_device_priv(tz);
- 
--	reg_val = readl(data->regs + LOONGSON2_THSENS_OUT_REG);
--	*temp = ((reg_val & LOONGSON2_THSENS_OUT_MASK) - HECTO) * KILO;
-+	if (data->chip_data->flags) {
-+		val = readl(data->temp_reg);
-+		*temp = ((val & 0xffff) * 820 / 0x4000 - 311) * KILO;
-+	} else {
-+		val = readl(data->ctrl_reg + LOONGSON2_THSENS_OUT_REG);
-+		*temp = ((val & LOONGSON2_THSENS_OUT_MASK) - HECTO) * KILO;
-+	}
- 
- 	return 0;
- }
-@@ -79,7 +92,7 @@ static irqreturn_t loongson2_thermal_irq_thread(int irq, void *dev)
- 	struct thermal_zone_device *tzd = dev;
- 	struct loongson2_thermal_data *data = thermal_zone_device_priv(tzd);
- 
--	writeb(LOONGSON2_THSENS_INT_EN, data->regs + LOONGSON2_THSENS_STATUS_REG);
-+	writeb(LOONGSON2_THSENS_INT_EN, data->ctrl_reg + LOONGSON2_THSENS_STATUS_REG);
- 
- 	thermal_zone_device_update(tzd, THERMAL_EVENT_UNSPECIFIED);
- 
-@@ -112,15 +125,22 @@ static int loongson2_thermal_probe(struct platform_device *pdev)
- 
- 	data->chip_data = device_get_match_data(dev);
- 
--	data->regs = devm_platform_ioremap_resource(pdev, 0);
--	if (IS_ERR(data->regs))
--		return PTR_ERR(data->regs);
-+	data->ctrl_reg = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(data->ctrl_reg))
-+		return PTR_ERR(data->ctrl_reg);
-+
-+	/* The temperature output register is separate for Loongson-2K2000 */
-+	if (data->chip_data->flags) {
-+		data->temp_reg = devm_platform_ioremap_resource(pdev, 1);
-+		if (IS_ERR(data->temp_reg))
-+			return PTR_ERR(data->temp_reg);
-+	}
- 
- 	irq = platform_get_irq(pdev, 0);
- 	if (irq < 0)
- 		return irq;
- 
--	writeb(LOONGSON2_THSENS_INT_EN, data->regs + LOONGSON2_THSENS_STATUS_REG);
-+	writeb(LOONGSON2_THSENS_INT_EN, data->ctrl_reg + LOONGSON2_THSENS_STATUS_REG);
- 
- 	loongson2_thermal_set(data, 0, 0, false);
- 
-@@ -147,6 +167,12 @@ static int loongson2_thermal_probe(struct platform_device *pdev)
- 
- static const struct loongson2_thermal_chip_data loongson2_thermal_ls2k1000_data = {
- 	.thermal_sensor_sel = 0,
-+	.flags = 0,
-+};
-+
-+static const struct loongson2_thermal_chip_data loongson2_thermal_ls2k2000_data = {
-+	.thermal_sensor_sel = 0,
-+	.flags = LS2K2000_THSENS_OUT_FLAG,
- };
- 
- static const struct of_device_id of_loongson2_thermal_match[] = {
-@@ -154,6 +180,10 @@ static const struct of_device_id of_loongson2_thermal_match[] = {
- 		.compatible = "loongson,ls2k1000-thermal",
- 		.data = &loongson2_thermal_ls2k1000_data,
- 	},
-+	{
-+		.compatible = "loongson,ls2k2000-thermal",
-+		.data = &loongson2_thermal_ls2k2000_data,
-+	},
- 	{ /* end */ }
- };
- MODULE_DEVICE_TABLE(of, of_loongson2_thermal_match);
--- 
-2.43.0
-
+>
+>> +    minimum: 125
+>> +    maximum: 500
+>> +    default: 125
+>> +
+>>     '#sound-dai-cells':
+>>       const: 0
+>>
+>> @@ -136,6 +143,7 @@ examples:
+>>               nuvoton,jack-eject-debounce =3D <0>;
+>>               nuvoton,dmic-clk-threshold =3D <3072000>;
+>>               nuvoton,dmic-slew-rate =3D <0>;
+>> +            nuvoton,nuvoton,adc-delay-ms =3D <125>;
+>>               #sound-dai-cells =3D <0>;
+>>           };
+>>       };
+>> --
+>> 2.25.1
+>>
+________________________________
+________________________________
+ The privileged confidential information contained in this email is intende=
+d for use only by the addressees as indicated by the original sender of thi=
+s email. If you are not the addressee indicated in this email or are not re=
+sponsible for delivery of the email to such a person, please kindly reply t=
+o the sender indicating this fact and delete all copies of it from your com=
+puter and network server immediately. Your cooperation is highly appreciate=
+d. It is advised that any unauthorized use of confidential information of N=
+uvoton is strictly prohibited; and any information in this email irrelevant=
+ to the official business of Nuvoton shall be deemed as neither given nor e=
+ndorsed by Nuvoton.
 
