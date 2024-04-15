@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-59209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F0588A4693
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 03:34:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50D178A46AB
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 04:00:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 081711F21EC6
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 01:34:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C504F1F219FE
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 02:00:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33F5A4C81;
-	Mon, 15 Apr 2024 01:34:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC290C8E9;
+	Mon, 15 Apr 2024 02:00:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="lDgqEDHA"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="hBy7g+t/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28869BE58;
-	Mon, 15 Apr 2024 01:34:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36F1E3FDB;
+	Mon, 15 Apr 2024 02:00:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713144846; cv=none; b=an02j9S5pZyr3OkhFyrarjKWQtSQ5jWxuai2/Pp9CGH4HocXPOug/M3E6j67bFtpEVehz2PDECPi4b4+NJ6tJF+jiIq0Zha/00Ze2ziRnUaLdNeA0XYnd9skJaMfG61kHraUNusJCOs7QDUyuA7N4bTms4oFoQ14cTJl46QJHuU=
+	t=1713146424; cv=none; b=Uf3P0zC+cj6F9nVsLMIGbl8WhKZGfqdijh9LOzBsRgBkdcVWg/E4cXD/8yNn4aVWrp3XF2+MI1lfecLc0pVCH4R6/BA75e2P++pMo7XAjxzOPpywSyPPsQCOXfX5Via4tBLaLu1udW5o1ztEb2m3oXHXdnhLDk0D3DI13GTmlUY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713144846; c=relaxed/simple;
-	bh=WGAdQkTH9rCbCFpFlh1ykbW/XFvwiK0fk8p7CK6ZRBM=;
+	s=arc-20240116; t=1713146424; c=relaxed/simple;
+	bh=vi9fj0oeHzZslS4vPIBn1Q71KptvDZx7SmvkEIXIF/I=;
 	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=JiYziWzUUKy5SFVdP3YtiKr+CG/hAOIdbxszXa5HKRJGwiVw8wBHPB+5GmemvCMUAEL2nNK1+/BZSmi/qPQU+y7/JeNRPKDbMuhrkNUzreG5OmV3Pw3KJC+Ym+e189m1lWVf7wAvTvc+t80hN3C3KNpKC2wzNW8P7IqrUupn3aU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=lDgqEDHA; arc=none smtp.client-ip=203.29.241.158
+	 Content-Type:MIME-Version; b=fAzgAXUieXegeuPa+qGqgoupg3YhayhBDHze5m2NQ2Yam8I9XrRSMCgpZbGJZueQpvqlbC0z9/3UslIrllOZzv4tanPi/Vv/FogSM9HmI+H3KBdt+ENjz6Tvo8UOMACd/uAL8gwVElhYkfgS/YBCfmf78FD1YgaxzlgNoANjwOQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=hBy7g+t/; arc=none smtp.client-ip=203.29.241.158
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 Received: from [192.168.68.112] (ppp14-2-127-66.adl-apt-pir-bras32.tpg.internode.on.net [14.2.127.66])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 7F48F20178;
-	Mon, 15 Apr 2024 09:33:59 +0800 (AWST)
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 02EBF20178;
+	Mon, 15 Apr 2024 10:00:16 +0800 (AWST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1713144841;
-	bh=WGAdQkTH9rCbCFpFlh1ykbW/XFvwiK0fk8p7CK6ZRBM=;
+	d=codeconstruct.com.au; s=2022a; t=1713146421;
+	bh=4JN0tAr608v0a3WDiRHuCB76k+2EG5tPDD9zb/YKbbI=;
 	h=Subject:From:To:Date:In-Reply-To:References;
-	b=lDgqEDHAg1RXJVPjPJsL1Nipc2p5NibKJpJLBhuB7aGfoxPFDDAk3AwqR0iaipjik
-	 JjJEenbSECxVoK7JgRvf7DXiZDpPc/0RsEYJLaX2gLgHiAJs1aQGyCSSve+3sRW3Ab
-	 gaLxVLXU/DDPM1gUVnkg7W7CzeXWY60W3c6vCSMDRm7iCumOJigi9dED7PqDyX1JQC
-	 cZo+bPjKv5/Ge5tTW2foG7LmNMJ69Y/09FkhTAZfFmKwi2AkX1gOCTM02GKhu+cn5/
-	 wB8KySadAPnP2UoWH1PUI599p3/gKg/5d3cnzTo33CzTUnceGXhtmC0DXKtSbxHhIN
-	 ZO5z+wylMZ3UQ==
-Message-ID: <7af48dcfba938ea45a78e8a23088a09a8eeeabdd.camel@codeconstruct.com.au>
-Subject: Re: [PATCH] ARM: dts: aspeed: Remove Facebook Cloudripper dts
+	b=hBy7g+t/Ktc0HAQjVZsZridZcZqOWWQUY7N0QVUIDq3zNeN4Im8BKMf0qtOycLPXi
+	 xBq4fpA/kaZH5goAwfoueX3uRkyimqDvxdbM52pyC3hfSDatmoJe1kl6ozjBTPs4CY
+	 c60IMdkEeknajh1SnLUfVkJQrpEkaCyTofYpfp0oMJX/cwBmLOrAuJiLWp835MUUpJ
+	 ky9NnYGT7Tkl/mHVXIXEA+ckKd7KWMT8CPcjfWmwy9gvqx2ln6DKxj5Yequ0yDiPAP
+	 XDn7sDcV0z7drPRCSMhIljXQ+BFp5phmwfcxiysZD70PCq7vWWJT5pSfkNhcv/YCEG
+	 p4cShrTqagJSg==
+Message-ID: <3eb80a2f21a96cc0fc275db60631f673bb14e77f.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v5 00/12] Revise Meta(Facebook) Harma BMC(AST2600)
 From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: rentao.bupt@gmail.com, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org,  linux-kernel@vger.kernel.org,
- taoren@meta.com
-Date: Mon, 15 Apr 2024 11:03:58 +0930
-In-Reply-To: <20240411045622.7915-1-rentao.bupt@gmail.com>
-References: <20240411045622.7915-1-rentao.bupt@gmail.com>
+To: Peter Yin <peteryin.openbmc@gmail.com>, patrick@stwcx.xyz, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
+ Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Date: Mon, 15 Apr 2024 11:30:14 +0930
+In-Reply-To: <20240412091600.2534693-1-peteryin.openbmc@gmail.com>
+References: <20240412091600.2534693-1-peteryin.openbmc@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
@@ -66,18 +66,66 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
-On Wed, 2024-04-10 at 21:56 -0700, rentao.bupt@gmail.com wrote:
-> From: Tao Ren <rentao.bupt@gmail.com>
+On Fri, 2024-04-12 at 17:15 +0800, Peter Yin wrote:
+> Summary:
+> Revise linux device tree entry related to Meta(Facebook) Harma
+> specific devices connected to BMC(AST2600) SoC.
 >=20
-> Remove Facebook Cloudripper dts because the switch platform is not
-> actively maintained (all the units are deprecated).
+> Base on : https://lore.kernel.org/all/CACPK8XePx+PvDKzPMjPRn_g9z8yrtAmLvP=
+8Qbepm1AVjuCbaKw@mail.gmail.com/
 >=20
-> Signed-off-by: Tao Ren <rentao.bupt@gmail.com>
+> Change log:
+>=20
+> v4 -> v5
+>   - Patch 0011 - Add retimer device
+>   - Patch 0012 - Modify gpio line name
+>=20
+> v3 -> v4
+>   - Patch 0010 - Revise node name
+>   - fixed PDB temperature node name in Patch 0006
+>=20
+> v2 -> v3
+>   - Patch 0007 - Revise max31790 address
+>   - Patch 0008 - Harma: Add NIC Fru device
+>   - Patch 0009 - Add ltc4286 device
+>=20
+> v1 -> v2
+>   - Add infineon,slb9670 information for tpm.
+>   - Patch 0006 - Add PDB temperature.
+>=20
+> v1
+>   - Patch 0001 - Revise SGPIO line name.
+>   - Patch 0002 - Mapping ttyS2 to UART4.
+>   - Patch 0003 - Remove Vuart.
+>   - Patch 0004 - Add cpu power good line name.
+>   - Patch 0005 - Add spi-gpio.
+>=20
+> Peter Yin (12):
+>   ARM: dts: aspeed: Harma: Revise SGPIO line name.
+>   ARM: dts: aspeed: Harma: mapping ttyS2 to UART4.
+>   ARM: dts: aspeed: Harma: Remove Vuart
+>   ARM: dts: aspeed: Harma: Add cpu power good line name
+>   ARM: dts: aspeed: Harma: Add spi-gpio
+>   ARM: dts: aspeed: Harma: Add PDB temperature
+>   ARM: dts: aspeed: Harma: Revise max31790 address
+>   ARM: dts: aspeed: Harma: Add NIC Fru device
+>   ARM: dts: aspeed: Harma: Add ltc4286 device
+>   ARM: dts: aspeed: Harma: Revise node name
+>   ARM: dts: aspeed: Harma: Add retimer device
+>   ARM: dts: aspeed: Harma: Modify GPIO line name
+>=20
+>  .../dts/aspeed/aspeed-bmc-facebook-harma.dts  | 107 ++++++++++++++----
+>  1 file changed, 85 insertions(+), 22 deletions(-)
+>=20
 
-I've applied this to my tree to be picked up by Joel.
+Joel had applied an earlier version of this series to his for-next
+branch. I'm collecting patches targeting it while he's on leave. I've
+updated the series he'd applied to the v5 you've posted here.
+
+Can you please post any further changes as patches on top? You can find
+my branch here:
+
+https://github.com/amboar/linux/tree/for/bmc/dt-6.10
 
 Andrew
-
-PS: Sorry if you already have mail saying as much, I ran into issues
-with our mail server late last week.
 
