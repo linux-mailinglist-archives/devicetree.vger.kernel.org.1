@@ -1,383 +1,147 @@
-Return-Path: <devicetree+bounces-59307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E5DF8A4A4B
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 10:27:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80B898A4A56
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 10:29:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B8BD1F245CF
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 08:27:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03473B25783
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 08:29:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A196364AB;
-	Mon, 15 Apr 2024 08:27:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1E503715E;
+	Mon, 15 Apr 2024 08:28:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pbk2lYH7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XtkS3/f6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F97C38FA5;
-	Mon, 15 Apr 2024 08:27:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B4492D022;
+	Mon, 15 Apr 2024 08:28:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713169648; cv=none; b=QgvRnKYjC/1Vu+u7cby7VSfFR8MzYtb5zA2aoQlqrVRZBjIfrIo2uUCHjUMQoOZFBmIYiI8f5meWKLLSlz9AWw9pj+hx5q0UV0AEils8CpUzqDOfQhDSwY2FIw/WYMkZZ5DLuPrCppHA08Z8S8+g/2cCJxgtZo/XDWKV+RU5P6U=
+	t=1713169739; cv=none; b=LctAxbDg9urmLaTLrAZ8LuqsS1kCIPWkNHpItANcrNc3MuC0f0hH+mmQ94Ro6zEv6kPQGwV4JdfI1IgY9Nz+yodsrgCDpeONuIi5KzJAuNA5CgBIjYhUH2MYTzslzNhHQy+kXQfzsewKUL2NDhrDTAm9zPS1upBx/zBsBgmS2cM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713169648; c=relaxed/simple;
-	bh=7XIcMU6cLnWljsTEW24Zl+iNF3bAHIFSevusf2XFM00=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=efBYlYK/vh7Xja1/ec6c8MgTxEMcOdObbYw5695ai/vyp7HbyNcXVgoYIRNP0s1r+eFo1YtP2GCDSdiseLn0iBpbt9EI8Y5gfpRH8JImtuiTbgr0+Z4v5XhrDFiuWtdrKKmuXzEcrZS7VByz70wKDMVmLRnD7aWg74J666JP6/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pbk2lYH7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FA98C2BD11;
-	Mon, 15 Apr 2024 08:27:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713169648;
-	bh=7XIcMU6cLnWljsTEW24Zl+iNF3bAHIFSevusf2XFM00=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pbk2lYH7TF0NtKEx9wvF1SQjhrMwayBBereIlolpc5ZE1bnHYm9eJ1X94Z3VOmA1e
-	 Dn6tySNlcuapKwjhS+e55khynGgCdr4Wwt966J1imEGGd2JErMzJctareCdjkXolIH
-	 55FQyhTU4PxfZ/LlFYPN7MKtzOTWJby+sNfj0QXm9h3IX5lIxLfQ/p/LBaACA4dYIN
-	 U8ISadmsXnB4xI4dNvorQg8XT6iVz76jQJ4eHoMB6+Ez4oR3hhe8/UW8dXSwU4yhl0
-	 Piyr5pvV8+rAbuUhyAXT5LAObezLkWYa/+BXzjKov1ob9VMBCHbfcLCJ0JNGFurudC
-	 K+5FM2Tuw8aeA==
-Date: Mon, 15 Apr 2024 10:27:21 +0200
-From: Niklas Cassel <cassel@kernel.org>
-To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, jingoohan1@gmail.com, mani@kernel.org,
-	marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v7 6/7] PCI: rcar-gen4: Add support for r8a779g0
-Message-ID: <Zhzk6dOkb8RXjv7o@ryzen>
-References: <20240415081135.3814373-1-yoshihiro.shimoda.uh@renesas.com>
- <20240415081135.3814373-7-yoshihiro.shimoda.uh@renesas.com>
+	s=arc-20240116; t=1713169739; c=relaxed/simple;
+	bh=QPCH8pvDeCCkjQyDPsw0zPk7mzXPjI7CrC2fv1CC2rs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EowbrCoTy06b8Vrw9WfUOhNgVDpfOKRnEgC41TB+xxKS+etcCpU11vseJfCV9m91wy3z6nJ5vQ28poNuL5Npyg6CuS/Eyggc2Kve9ciUl5vshg7nVLSfQl1o98JNfyRPXK8zbLe9k4qgHKNbendhn61voz9aaOb8e+Q8y52sRJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XtkS3/f6; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2d4a8bddc21so33481581fa.0;
+        Mon, 15 Apr 2024 01:28:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1713169736; x=1713774536; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DteUBQheQifq+7BN4COm2xS4eoeVr4VB9kK9ci0lcbY=;
+        b=XtkS3/f6C0YAN/bimgHv9Sf0pIo1Ehp7+t0mY2RpawNbJomDQg5Gmk/iNJ3BrgQWZN
+         Mdlt2P76fElHjuctyqucFVU+s+ryLvHkyUDANhoH+fhKCshpH9n8104kRbGIqQ+Ag22A
+         hAgmx0cAk5UDDAaY9cf7iEpPVefFrqqie6yPR9p2T6Q0hvj9d87qrrOhRhreSw8jxmN5
+         WL/sCmzsC+CgGSFxy9/qX8hv0qh8Ex7qKUIdQhIIbH1sYXt++Aul9158RGGx3CELLPdU
+         Idb+KVIgeqP1DYhZ3v3GEB8X5HtQngk9r6+M4DVghoyrQxDkXKhQ+XNLTpmP9WlyqwI2
+         hq1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713169736; x=1713774536;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DteUBQheQifq+7BN4COm2xS4eoeVr4VB9kK9ci0lcbY=;
+        b=vt176NP/42iciKnY5f0w98dv/8kCMxTc4ZtQ9NX+wH0qPS5HC29q8u+A6e+Wt4+Inq
+         2C3U6Wbs+ArAp+hHe9zEg0RrFKdq9qVu2OkouJmadp5zNyazyNeV8wmmvhFOYQySvUVH
+         Sc9mFw+cvCQZpmLEy+LWv43EChCVcntYiYjmUQJQLhuG4IFahEkPVpvhSwfSgLvpbQ0w
+         Bc3IF/W02SPQ3P+Inw6+iqKqBAj2PTb2AOgQEsKZATRXzPI4WMGQyefyXzk3Vme8m2J8
+         yOJZM/PTrD2IW90X/1vRsxMMr1iEZ0msW8jCxQFC5chjaZG8eTUrjCZHn2dIgBe5Ehdc
+         TqrQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWIBSJEQipm2VdISS2htYZCiaEdF/N2sod5o8B/eNimw8oI+h03oSu3xozy7FzX7qI4RAm4UxpLZ5CzObFpoTXh01yjwhDv4iYnE5bzPs8YhHx9ULpG9yLam5Sok0+vM9WF8v8yvWYaVomuGmUQjmhLABGFxeWGV7sAevZ8ts2EB4XzeRBSpV+V
+X-Gm-Message-State: AOJu0YxljPXXPEw3AbzrwYoIhmD/ospaaVTnNBt1RIhs7vHfUKbf8ghF
+	hMxhssDdcLK+ZvOtZ4sViZr3UVi6j4CxdTMNfQKBINI2uObmWuKI
+X-Google-Smtp-Source: AGHT+IFHi1Akx9QfNS+pJPw3+jOsIavo82rP27l+lMa4ETeyDwhQOc6MMhek1QvN4H8U6HC7EjjMGg==
+X-Received: by 2002:a05:651c:170c:b0:2d9:fa96:1634 with SMTP id be12-20020a05651c170c00b002d9fa961634mr4925792ljb.25.1713169736128;
+        Mon, 15 Apr 2024 01:28:56 -0700 (PDT)
+Received: from [172.16.183.82] ([213.255.186.46])
+        by smtp.gmail.com with ESMTPSA id f7-20020a2e9187000000b002d4932b7a94sm1180804ljg.140.2024.04.15.01.28.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Apr 2024 01:28:55 -0700 (PDT)
+Message-ID: <7541fb24-894a-439e-8f9a-b18f04e06afe@gmail.com>
+Date: Mon, 15 Apr 2024 11:28:53 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240415081135.3814373-7-yoshihiro.shimoda.uh@renesas.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH v2 2/6] dt-bindings: mfd: bd96801 PMIC core
+Content-Language: en-US, en-GB
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
+ Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+ Fabio Aiuto <fabio.aiuto@engicam.com>
+References: <cover.1712920132.git.mazziesaccount@gmail.com>
+ <ea49494429528cf8e60fa984ae1f523ddacd850c.1712920132.git.mazziesaccount@gmail.com>
+ <b5eeaf10-e011-452b-840a-176c4f62cac4@linaro.org>
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <b5eeaf10-e011-452b-840a-176c4f62cac4@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Apr 15, 2024 at 05:11:34PM +0900, Yoshihiro Shimoda wrote:
-> This driver previously supported r8a779f0 (R-Car S4-8). Add support
-> for r8a779g0 (R-Car V4H). PCIe features of both r8a779f0 and r8a779g0
-> are almost all the same. For example:
->  - PCI Express Base Specification Revision 4.0
->  - Root complex mode and endpoint mode are supported
+On 4/14/24 00:33, Krzysztof Kozlowski wrote:
+> On 12/04/2024 13:21, Matti Vaittinen wrote:
+>> ROHM BD96801 is a highly configurable automotive grade PMIC. Introduce
+>> DT bindings for the BD96801 core.
+>>
+>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+>>
+>> ---
+>> Revision history:
+>> RFCv1 => RFCv2:
+>>    - Document rohm,hw-timeout-ms
+>>    - Document rohm,wdg-action
+>> ---
+>>   .../bindings/mfd/rohm,bd96801-pmic.yaml       | 171 ++++++++++++++++++
+>>   1 file changed, 171 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd96801-pmic.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd96801-pmic.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd96801-pmic.yaml
+
+...
+
 > 
-> However, r8a779g0 requires specific firmware downloading, to
-> initialize the PHY. Otherwise, the PCIe controller cannot work.
-> The firmware is attached in the manual of the r8a779g0 as text.
-> So, convert it to a binary file by using a script.
-> 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> ---
->  drivers/pci/controller/dwc/pcie-rcar-gen4.c | 201 +++++++++++++++++++-
->  1 file changed, 200 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-rcar-gen4.c b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> index 980a916933d6..4e934e9156f2 100644
-> --- a/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> +++ b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> @@ -5,8 +5,10 @@
->   */
->  
->  #include <linux/delay.h>
-> +#include <linux/firmware.h>
->  #include <linux/interrupt.h>
->  #include <linux/io.h>
-> +#include <linux/iopoll.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/pci.h>
-> @@ -20,9 +22,10 @@
->  /* Renesas-specific */
->  /* PCIe Mode Setting Register 0 */
->  #define PCIEMSR0		0x0000
-> -#define BIFUR_MOD_SET_ON	BIT(0)
-> +#define APP_SRIS_MODE		BIT(6)
->  #define DEVICE_TYPE_EP		0
->  #define DEVICE_TYPE_RC		BIT(4)
-> +#define BIFUR_MOD_SET_ON	BIT(0)
->  
->  /* PCIe Interrupt Status 0 */
->  #define PCIEINTSTS0		0x0084
-> @@ -37,19 +40,47 @@
->  #define PCIEDMAINTSTSEN		0x0314
->  #define PCIEDMAINTSTSEN_INIT	GENMASK(15, 0)
->  
-> +/* Port Logic Registers 89 */
-> +#define PRTLGC89		0x0b70
-> +
-> +/* Port Logic Registers 90 */
-> +#define PRTLGC90		0x0b74
-> +
->  /* PCIe Reset Control Register 1 */
->  #define PCIERSTCTRL1		0x0014
->  #define APP_HOLD_PHY_RST	BIT(16)
->  #define APP_LTSSM_ENABLE	BIT(0)
->  
-> +/* PCIe Power Management Control */
-> +#define PCIEPWRMNGCTRL		0x0070
-> +#define APP_CLK_REQ_N		BIT(11)
-> +#define APP_CLK_PM_EN		BIT(10)
-> +
-> +/*
-> + * The R-Car Gen4 documents don't describe the PHY registers' name.
-> + * But, the initialization procedure describes these offsets. So,
-> + * this driver makes up own #defines for the offsets.
-> + */
-> +#define RCAR_GEN4_PCIE_PHY_0f8	0x0f8
-> +#define RCAR_GEN4_PCIE_PHY_148	0x148
-> +#define RCAR_GEN4_PCIE_PHY_1d4	0x1d4
-> +#define RCAR_GEN4_PCIE_PHY_514	0x514
-> +#define RCAR_GEN4_PCIE_PHY_700	0x700
-> +
->  #define RCAR_NUM_SPEED_CHANGE_RETRIES	10
->  #define RCAR_MAX_LINK_SPEED		4
->  
->  #define RCAR_GEN4_PCIE_EP_FUNC_DBI_OFFSET	0x1000
->  #define RCAR_GEN4_PCIE_EP_FUNC_DBI2_OFFSET	0x800
->  
-> +#define RCAR_GEN4_PCIE_FIRMWARE_NAME		"rcar_gen4_pcie.bin"
-> +#define RCAR_GEN4_PCIE_FIRMWARE_BASE_ADDR	0xc000
-> +
-> +MODULE_FIRMWARE(RCAR_GEN4_PCIE_FIRMWARE_NAME);
-> +
->  struct rcar_gen4_pcie;
->  struct rcar_gen4_pcie_drvdata {
-> +	void (*additional_common_init)(struct rcar_gen4_pcie *rcar);
->  	int (*ltssm_enable)(struct rcar_gen4_pcie *rcar);
->  	enum dw_pcie_device_mode mode;
->  };
-> @@ -57,12 +88,144 @@ struct rcar_gen4_pcie_drvdata {
->  struct rcar_gen4_pcie {
->  	struct dw_pcie dw;
->  	void __iomem *base;
-> +	void __iomem *phy_base;
->  	struct platform_device *pdev;
->  	const struct rcar_gen4_pcie_drvdata *drvdata;
->  };
->  #define to_rcar_gen4_pcie(_dw)	container_of(_dw, struct rcar_gen4_pcie, dw)
->  
->  /* Common */
-> +static void rcar_gen4_pcie_phy_reg_update_bits(struct rcar_gen4_pcie *rcar,
-> +					       u32 offset, u32 mask, u32 val)
-> +{
-> +	u32 tmp;
-> +
-> +	tmp = readl(rcar->phy_base + offset);
-> +	tmp &= ~mask;
-> +	tmp |= val;
-> +	writel(tmp, rcar->phy_base + offset);
-> +}
-> +
-> +static int rcar_gen4_pcie_reg_check(struct rcar_gen4_pcie *rcar,
-> +				    u32 offset, u32 mask)
-> +{
-> +	struct dw_pcie *dw = &rcar->dw;
-> +
-> +	if (dw_pcie_readl_dbi(dw, offset) & mask)
-> +		return -EAGAIN;
-> +
-> +	return 0;
-> +}
-> +
-> +static int rcar_gen4_pcie_download_phy_firmware(struct rcar_gen4_pcie *rcar)
-> +{
-> +	const u32 check_addr[] = { 0x00101018, 0x00101118, 0x00101021, 0x00101121};
-> +	struct dw_pcie *dw = &rcar->dw;
-> +	const struct firmware *fw;
-> +	unsigned int i, timeout;
-> +	u32 data;
-> +	int ret;
-> +
-> +	ret = request_firmware(&fw, RCAR_GEN4_PCIE_FIRMWARE_NAME, dw->dev);
-> +	if (ret) {
-> +		dev_err(dw->dev, "%s: Requesting firmware failed\n", __func__);
-> +		return ret;
-> +	}
-> +
-> +	for (i = 0; i < (fw->size / 2); i++) {
-> +		data = fw->data[(i * 2) + 1] << 8 | fw->data[i * 2];
-> +		timeout = 100;
-> +		do {
-> +			dw_pcie_writel_dbi(dw, PRTLGC89, RCAR_GEN4_PCIE_FIRMWARE_BASE_ADDR + i);
-> +			dw_pcie_writel_dbi(dw, PRTLGC90, data);
-> +			if (rcar_gen4_pcie_reg_check(rcar, PRTLGC89, BIT(30)) >= 0)
-> +				break;
-> +			if (!(--timeout)) {
-> +				ret = -ETIMEDOUT;
-> +				goto exit;
-> +			}
-> +			usleep_range(100, 200);
-> +		} while (1);
-> +	}
-> +
-> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_0f8, BIT(17), BIT(17));
-> +
-> +	for (i = 0; i < ARRAY_SIZE(check_addr); i++) {
-> +		timeout = 100;
-> +		do {
-> +			dw_pcie_writel_dbi(dw, PRTLGC89, check_addr[i]);
-> +			ret = rcar_gen4_pcie_reg_check(rcar, PRTLGC89, BIT(30));
-> +			ret |= rcar_gen4_pcie_reg_check(rcar, PRTLGC90, BIT(0));
-> +			if (ret >= 0)
-> +				break;
-> +			if (!(--timeout)) {
-> +				ret = -ETIMEDOUT;
-> +				goto exit;
-> +			}
-> +			usleep_range(100, 200);
-> +		} while (1);
-> +	}
-> +
-> +	ret = 0;
-> +exit:
-> +	release_firmware(fw);
-> +
-> +	return ret;
-> +}
-> +
-> +static int rcar_gen4_pcie_enable_phy(struct rcar_gen4_pcie *rcar)
-> +{
-> +	struct dw_pcie *dw = &rcar->dw;
-> +	u32 val;
-> +	int ret;
-> +
-> +	val = dw_pcie_readl_dbi(dw, PCIE_PORT_FORCE);
-> +	val |= PORT_FORCE_DO_DESKEW_FOR_SRIS;
-> +	dw_pcie_writel_dbi(dw, PCIE_PORT_FORCE, val);
-> +
-> +	val = readl(rcar->base + PCIEMSR0);
-> +	val |= APP_SRIS_MODE;
-> +	writel(val, rcar->base + PCIEMSR0);
-> +
-> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_700, BIT(28), 0);
-> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_700, BIT(20), 0);
-> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_700, BIT(12), 0);
-> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_700, BIT(4), 0);
-> +
-> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_148,
-> +					   GENMASK(23, 22), BIT(22));
-> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_148,
-> +					   GENMASK(18, 16), GENMASK(17, 16));
-> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_148,
-> +					   GENMASK(7, 6), BIT(6));
-> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_148,
-> +					   GENMASK(2, 0), GENMASK(11, 0));
-> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_1d4,
-> +					   GENMASK(16, 15), GENMASK(16, 15));
-> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_514, BIT(26), BIT(26));
-> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_0f8, BIT(16), 0);
-> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_0f8, BIT(19), BIT(19));
-> +
-> +	val = readl(rcar->base + PCIERSTCTRL1);
-> +	val &= ~APP_HOLD_PHY_RST;
-> +	writel(val, rcar->base + PCIERSTCTRL1);
-> +
-> +	ret = readl_poll_timeout(rcar->phy_base + RCAR_GEN4_PCIE_PHY_0f8, val,
-> +				 !(val & BIT(18)), 100, 10000);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = rcar_gen4_pcie_download_phy_firmware(rcar);
-> +	if (ret)
-> +		return ret;
-> +
-> +	val = readl(rcar->base + PCIERSTCTRL1);
-> +	val |= APP_LTSSM_ENABLE;
-> +	writel(val, rcar->base + PCIERSTCTRL1);
-> +
-> +	return 0;
-> +}
-> +
+> Missing allOf and $ref to watchdog.yaml
 
-Is there a reason why you didn't chose to implement this as a PHY driver
-in drivers/phy ?
+Huh. The watchdog.yaml contains:
+
+select:
+   properties:
+     $nodename:
+       pattern: "^watchdog(@.*|-([0-9]|[1-9][0-9]+))?$"
+
+properties:
+   $nodename:
+     pattern: "^(timer|watchdog)(@.*|-([0-9]|[1-9][0-9]+))?$"
 
 
-Kind regards,
-Niklas
+This means the watchdog _must_ have own sub-node inside the PMIC node, 
+right?
 
+Yours,
+	-- Matti
 
->  static void rcar_gen4_pcie_ltssm_control(struct rcar_gen4_pcie *rcar,
->  					 bool enable)
->  {
-> @@ -200,6 +363,9 @@ static int rcar_gen4_pcie_common_init(struct rcar_gen4_pcie *rcar)
->  	if (ret)
->  		goto err_unprepare;
->  
-> +	if (rcar->drvdata->additional_common_init)
-> +		rcar->drvdata->additional_common_init(rcar);
-> +
->  	return 0;
->  
->  err_unprepare:
-> @@ -241,6 +407,10 @@ static void rcar_gen4_pcie_unprepare(struct rcar_gen4_pcie *rcar)
->  
->  static int rcar_gen4_pcie_get_resources(struct rcar_gen4_pcie *rcar)
->  {
-> +	rcar->phy_base = devm_platform_ioremap_resource_byname(rcar->pdev, "phy");
-> +	if (IS_ERR(rcar->phy_base))
-> +		return PTR_ERR(rcar->phy_base);
-> +
->  	/* Renesas-specific registers */
->  	rcar->base = devm_platform_ioremap_resource_byname(rcar->pdev, "app");
->  
-> @@ -517,6 +687,31 @@ static int r8a779f0_pcie_ltssm_enable(struct rcar_gen4_pcie *rcar)
->  	return 0;
->  }
->  
-> +static void rcar_gen4_pcie_additional_common_init(struct rcar_gen4_pcie *rcar)
-> +{
-> +	struct dw_pcie *dw = &rcar->dw;
-> +	u32 val;
-> +
-> +	/*
-> +	 * The SoC manual said the register setting is required. Otherwise,
-> +	 * linkup failed.
-> +	 */
-> +	val = dw_pcie_readl_dbi(dw, PCIE_PORT_LANE_SKEW);
-> +	val &= ~PORT_LANE_SKEW_INSERT_MASK;
-> +	if (dw->num_lanes < 4)
-> +		val |= BIT(6);
-> +	dw_pcie_writel_dbi(dw, PCIE_PORT_LANE_SKEW, val);
-> +
-> +	val = readl(rcar->base + PCIEPWRMNGCTRL);
-> +	val |= APP_CLK_REQ_N | APP_CLK_PM_EN;
-> +	writel(val, rcar->base + PCIEPWRMNGCTRL);
-> +}
-> +
-> +static int rcar_gen4_pcie_ltssm_enable(struct rcar_gen4_pcie *rcar)
-> +{
-> +	return rcar_gen4_pcie_enable_phy(rcar);
-> +}
-> +
->  static struct rcar_gen4_pcie_drvdata drvdata_r8a779f0_pcie = {
->  	.ltssm_enable = r8a779f0_pcie_ltssm_enable,
->  	.mode = DW_PCIE_RC_TYPE,
-> @@ -528,10 +723,14 @@ static struct rcar_gen4_pcie_drvdata drvdata_r8a779f0_pcie_ep = {
->  };
->  
->  static struct rcar_gen4_pcie_drvdata drvdata_rcar_gen4_pcie = {
-> +	.additional_common_init = rcar_gen4_pcie_additional_common_init,
-> +	.ltssm_enable = rcar_gen4_pcie_ltssm_enable,
->  	.mode = DW_PCIE_RC_TYPE,
->  };
->  
->  static struct rcar_gen4_pcie_drvdata drvdata_rcar_gen4_pcie_ep = {
-> +	.additional_common_init = rcar_gen4_pcie_additional_common_init,
-> +	.ltssm_enable = rcar_gen4_pcie_ltssm_enable,
->  	.mode = DW_PCIE_EP_TYPE,
->  };
->  
-> -- 
-> 2.25.1
-> 
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
+
 
