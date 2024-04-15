@@ -1,172 +1,166 @@
-Return-Path: <devicetree+bounces-59407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEBF08A528B
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 16:01:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EE9F8A52A4
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 16:05:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C48921C229C6
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 14:01:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3FC961C21DAF
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 14:05:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BE6A7352B;
-	Mon, 15 Apr 2024 14:01:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3D1D7442D;
+	Mon, 15 Apr 2024 14:05:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YYy7YDQ4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jpzx8k0X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B26873189;
-	Mon, 15 Apr 2024 14:01:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A0DD74420;
+	Mon, 15 Apr 2024 14:05:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713189675; cv=none; b=dG8Oky7s2knWYGRKj/Fif93wlVtGclnJrhfowU+usyd2NqbjgNm901oj+bBTq1U+80ilR483qt/mt+cwprGxHha5aU8wxZki8+NpX38NHEN2RymONNBqdPXu05+e8xeSQvsYu8PcLh+Gu4fFURnWIFxJkUxwJIjf8mBIEaMfKPI=
+	t=1713189936; cv=none; b=KSbGRzHbl7Ei3IJtOI6+NgekFDiOytgd6WivQpUin0bpD4eQb7WemNG9BRtNKm3783j4HW8ywSbyyBtotWoR35i8H0Xodd9qpI8cx60Vv8RetcIr3LkyXMd7oGxEoSEDe6L8b/xMYI68ieQbpaBXECNANGaAPi4QpJE7UzsB9D4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713189675; c=relaxed/simple;
-	bh=lpBPkRDdCzQNZjrZ+c7eHd34o93n0pvgK/Pf7ypBlwA=;
+	s=arc-20240116; t=1713189936; c=relaxed/simple;
+	bh=C2RaXFcuh6uhrQqFZdquLpLy57EbGKkPUni9Jf4Km8E=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ALRhmPXjajJNctqOiAWAC07ByQ3KWZnyRcJ2ArhErBRtdCrFyBE8SxN0jBpuJclX7q1UCxeaZUuYLAqioNRnLkE9zarTtCdj5lvhtezz+jWeB2Xv3RkbMF1h3B6Hvqyhb88b3SNEVQWxG+2sj4CjFYZNW/uieMwTuthI7yofDUs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YYy7YDQ4; arc=none smtp.client-ip=209.85.208.49
+	 To:Cc:Content-Type; b=gQPDm4x5IosXjz312JCq5OUHq9IJV2631BLzYVNQDkl5TG8QANgKSyMDhsIKA8weBO5ZXyIAtG34F88QZGUvwT765EHIhMNcDInMJzxpxPOAKIMBlix0Zkn69KeUkcs1Lr9q1JCf3vROxUvd2aSA3l9VKT++PUyEkP3HIuMVd+c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jpzx8k0X; arc=none smtp.client-ip=209.85.208.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-570175e8e6fso1991071a12.3;
-        Mon, 15 Apr 2024 07:01:09 -0700 (PDT)
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-563cb3ba9daso3121476a12.3;
+        Mon, 15 Apr 2024 07:05:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713189668; x=1713794468; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1713189929; x=1713794729; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=p24MW4lT8Qhns1Y9ZBylqR7BJKJfhrh/oDdc/sbfEQk=;
-        b=YYy7YDQ4ruW5DHpniNynHooTjnzHWdQpQJLKOP93yhJyq7ZSK1lguAXFxIGzSq7Tsl
-         ptEjrb15JY3BZJjco7y/jbqs4kBGBd+ZH4uePhscuD3wvzeRnc4aizIoTuHB8W2ARd7K
-         GJJkaqTra80UR5vMLcpyGf4ag09OxG3U+P5v3DWvJhSQbqh812o4vVB7p5Rn42VVsvbE
-         iK/DK3AFeerzGNLS/DN+g0cs+ctyfTh4Gi2BaOGU2YTqPJj3/NPvnZYNLcSkSUKsx7p2
-         wo8QPSwbjH3mF7CRLR5bAqqPzZuqb3AkZk0q94earTjvfwD6E3Tl8qE6l5pav6zsze0D
-         uNlg==
+        bh=Ce+RZRNdvY2/c7BMbLG8IKG8g7W50m+r0bqN56BPld4=;
+        b=jpzx8k0XvsE30XWjgOnfcrzTqufdwG0YJLdCGuWsWyorExU7YcQ5d1dQXT4ynOw2uY
+         IxAhq3MiH5qaRTcWmgyg5XRpN95GW9pAnY440FKkbp0I2luXggqwvvnlP+gMUoXWY3BZ
+         Hldh1RGHlbD57FcYBpFhBZ9pVx3CQx5LbHZG/AW0lWr2qLrAoBKcjZY8KkvmZGTOD+sr
+         YTC5eefT7+fedTPXGLIrwQbUHvddnw3NDsWmzfHRFDeLpAlg3MKX25Upflgw8yA7Eogb
+         oQPV2Gs2a+OIiyvJsBXbxe1UTZ38eNqIgoznRoAoxRAAKSwBnfKIzTWrUAaheJK66VVQ
+         C/+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713189668; x=1713794468;
+        d=1e100.net; s=20230601; t=1713189929; x=1713794729;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=p24MW4lT8Qhns1Y9ZBylqR7BJKJfhrh/oDdc/sbfEQk=;
-        b=Dmuz3BcfW93mDntMQ86WIJkJOP3Xafq/Oz4IMFnUp+MVTC14BQm84z+q/lva/iCb9a
-         rpB+7xat+VcILl1rP846FHyXWMkLZ9r3ndcblSxkz5t361z1tEewJpcxxHiikZw/EFI5
-         aQc3EPBNRnFm0g+fSZ8aB5+bdE+9kRgiVVE76XzToK8h4ZJP4CH1NaxoyAhFmXNpOVeL
-         9/03cQC/JDWbkAkCAokudOJZLPqio7q0ZqHSBtVxWkWHGEdZFovYmC7ucDFmNU56yaxx
-         RwWLr9rYhe3BBjxXWSGueuSfJxuMo0nWGNQvkNUXc6//+sJh4FiJuzAuAFLtBkBVz4eA
-         Hb1A==
-X-Forwarded-Encrypted: i=1; AJvYcCU1yX8UW6RUZdPZbP2AZY9Yvf73ljjFgnH0PkA2GGgvbZlskk+dP4Z6VOPbssXKkHtaQGh0KZmSxS0MVpPv2ipoUes7BIVFEC495oWPIjte616Yj0pzUBRIb6NtXYpGcS3XvBBHWk8AVqaVcqG9pYnIKo/oDyP17ToasIqXJ9BEVZHJW90=
-X-Gm-Message-State: AOJu0YzlBJMcTsa/MPchpxgtkjSRRbogBRpEL0L4HbJzBQP7hlnz3SPY
-	+H5Ftun4oh687MIImh+BvTxyZOrbB4EkdmEYnSEu2Bmu1bK6AJvhWEp+o8Z+zBF3PX51k9Czzw3
-	vq4Bhby20paF1zDH2udi1XoOOP2w=
-X-Google-Smtp-Source: AGHT+IGC1BfZnQLhZFzAUp5MFPYOAUjH5/+Y5w23zzmSabgzkZplX8A2dmV0W5bVlElQTHiFmOsGdVmTzH1nBpvI8Ik=
-X-Received: by 2002:a17:907:b9d5:b0:a54:c130:21fd with SMTP id
- xa21-20020a170907b9d500b00a54c13021fdmr983688ejc.13.1713189668195; Mon, 15
- Apr 2024 07:01:08 -0700 (PDT)
+        bh=Ce+RZRNdvY2/c7BMbLG8IKG8g7W50m+r0bqN56BPld4=;
+        b=nWFvHhGZ7DdEJY3mIMW5wwJsT55+DTkXwZo1hrX6OSV4M+qcNQBiibY2l/bRP1dLY5
+         YXM7Fi/FOGBTEmyqiLogQ7ep6pTtoV/bogHKzwH6ElM5t8X37vdXlWB9OKMjAYHQz5wA
+         MJp28yifH40vbVCoKQxemMmCxlYeiDYtNkHOeon65+uzg7NkzN9uqAvJWS5ubzbn1vGC
+         ipa9kNQzGq6lHP4QW79dX/gAy83xh5ZDOzuN/bkMLALKHu0lVmMi2qWi8wkoAB9QQQGS
+         RVwW1ovU/lzpkbVbQMc7SRlTG+xbeGiEhgw2PTpadLSrQQkON6xGkTsPQbI5Vl8l4f4I
+         TDWw==
+X-Forwarded-Encrypted: i=1; AJvYcCVFkolld2GFSqzusotWP8OWhiy852shbAkkZ4sdOoL1vqM9DqmpzM3oaP2asPDb7EZzUK5ci+5EDywlfrsoaXqCBddOwNGzw3AVmhDZx++InNs+ZNMs0Ziz4RkDXD3oHUtWbC2gAFBUComXH4Ztat1IAvz7ArN9iHOZO3DoNx8j487LzhGhwoZ6OYiUVllvkIDbbSpiZsn2mfm8M92xUwwa
+X-Gm-Message-State: AOJu0Yy0FZY007OVcR8AAdQuqipFhgID2qZDOl+X3VE0RilWqSAM6FzT
+	yR//VpNJd0o6w5zME25rCSat/DrAYB4zSfSZNLm+CnrT6eeHuDpMgC+PayWuabZOFSDiuE80S0h
+	DyfFN0kgLanOaCSeiMIvGqSyZChQ=
+X-Google-Smtp-Source: AGHT+IH86wMUY1Sjlbl77b74h8OkFHcq+fDgDK9uWIRulsSWUGwrIz3dHKroKOaN9XoU6ownWtnCcV0AOUGrp658hc4=
+X-Received: by 2002:a17:906:1355:b0:a4a:3441:2e2a with SMTP id
+ x21-20020a170906135500b00a4a34412e2amr6807358ejb.55.1713189929060; Mon, 15
+ Apr 2024 07:05:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240415-pinctrl-scmi-v10-0-59c6e7a586ee@nxp.com> <20240415-pinctrl-scmi-v10-4-59c6e7a586ee@nxp.com>
-In-Reply-To: <20240415-pinctrl-scmi-v10-4-59c6e7a586ee@nxp.com>
+References: <20240414175300.956243-1-aren@peacevolution.org>
+ <20240414175716.958831-1-aren@peacevolution.org> <20240414175716.958831-2-aren@peacevolution.org>
+In-Reply-To: <20240414175716.958831-2-aren@peacevolution.org>
 From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Mon, 15 Apr 2024 17:00:31 +0300
-Message-ID: <CAHp75VdoaL-66vDFeDWXg5V0XnL45F_JQZ_BNeaaOcSwQz5gnQ@mail.gmail.com>
-Subject: Re: [PATCH v10 4/4] pinctrl: Implementation of the generic
- scmi-pinctrl driver
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Sudeep Holla <sudeep.holla@arm.com>, Cristian Marussi <cristian.marussi@arm.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	Dan Carpenter <dan.carpenter@linaro.org>, Dhruva Gole <d-gole@ti.com>, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	Peng Fan <peng.fan@nxp.com>, Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+Date: Mon, 15 Apr 2024 17:04:53 +0300
+Message-ID: <CAHp75VdZavToGYqLYnkKYt53HXoQxXnRER5Cn5b2==gWTvkAWQ@mail.gmail.com>
+Subject: Re: [PATCH 2/4] iio: light: stk3310: Implement vdd supply and power
+ it off during suspend
+To: Aren Moynihan <aren@peacevolution.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Ondrej Jirman <megi@xff.cz>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+	linux-iio@vger.kernel.org, phone-devel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	Willow Barraco <contact@willowbarraco.fr>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Apr 15, 2024 at 11:43=E2=80=AFAM Peng Fan (OSS) <peng.fan@oss.nxp.c=
-om> wrote:
+On Sun, Apr 14, 2024 at 8:57=E2=80=AFPM Aren Moynihan <aren@peacevolution.o=
+rg> wrote:
 >
-> From: Peng Fan <peng.fan@nxp.com>
+> From: Ondrej Jirman <megi@xff.cz>
 >
-> scmi-pinctrl driver implements pinctrl driver interface and using
-> SCMI protocol to redirect messages from pinctrl subsystem SDK to
-> SCMI platform firmware, which does the changes in HW.
-
-Below are some cosmetics, but in general LGTM, thanks!
-Reviewed-by: Andy Shevchenko <andy@kernel.org>
+> VDD power input can be used to completely power off the chip during
+> system suspend. Do so if available.
 
 ...
 
-> +#include <linux/device.h>
-> +#include <linux/dev_printk.h>
+>  #include <linux/iio/events.h>
+>  #include <linux/iio/iio.h>
+>  #include <linux/iio/sysfs.h>
 
-The second one is guaranteed to be included by the first one, so
-dev_printk.h can be removed.
+> +#include <linux/regulator/consumer.h>
 
-> +#include <linux/err.h>
-
-+ errno.h as ENOTSUPP is defined there and surprisingly err.h doesn't
-include that.
-
-+ mod_devicetable.h (for the ID table type definition)
-
-> +#include <linux/module.h>
-> +#include <linux/scmi_protocol.h>
-> +#include <linux/slab.h>
-> +#include <linux/types.h>
+Move it to be ordered and add a blank line to separate iio/*.h group.
 
 ...
 
-> +/* Define num configs, if not large than 4 use stack, else use kcalloc *=
-/
+> +       data->vdd_reg =3D devm_regulator_get_optional(&client->dev, "vdd"=
+);
+> +       if (IS_ERR(data->vdd_reg)) {
+> +               ret =3D PTR_ERR(data->vdd_reg);
+> +               if (ret =3D=3D -ENODEV)
+> +                       data->vdd_reg =3D NULL;
 
-kcalloc()
+> +               else
 
-...
+Redundant 'else' when you follow the pattern "check for error condition fir=
+st".
 
-> +       ret =3D pinctrl_ops->settings_get_one(pmx->ph, pin, PIN_TYPE, typ=
-e,
-> +                                           &config_value);
-> +       if (ret) {
-> +               /* Convert SCMI error code to PINCTRL expected error code=
- */
-> +               if (ret =3D=3D -EOPNOTSUPP)
-> +                       ret =3D -ENOTSUPP;
-> +               return ret;
+> +                       return dev_err_probe(&client->dev, ret,
+> +                                            "get regulator vdd failed\n"=
+);
 > +       }
 
-It can be split as
+...
 
-       ret =3D pinctrl_ops->settings_get_one(pmx->ph, pin, PIN_TYPE, type,
-                                           &config_value);
-       /* Convert SCMI error code to PINCTRL expected error code */
-       if (ret =3D=3D -EOPNOTSUPP)
-               return -ENOTSUPP;
-       if (ret)
-               return ret;
+> +       if (data->vdd_reg) {
+> +               ret =3D regulator_enable(data->vdd_reg);
+> +               if (ret)
+> +                       return dev_err_probe(&client->dev, ret,
+> +                                            "regulator vdd enable failed=
+\n");
+> +
+> +               usleep_range(1000, 2000);
+
+fsleep()
+
+> +       }
 
 ...
 
-> +       ret =3D pinctrl_ops->settings_get_one(pmx->ph, group, GROUP_TYPE,=
- type,
-> +                                           &config_value);
-> +       if (ret) {
-> +               /* Convert SCMI error code to PINCTRL expected error code=
- */
-> +               if (ret =3D=3D -EOPNOTSUPP)
-> +                       ret =3D -ENOTSUPP;
-> +               return ret;
-> +       }
+>         stk3310_set_state(iio_priv(indio_dev), STK3310_STATE_STANDBY);
+> +       if (data->vdd_reg)
+> +               regulator_disable(data->vdd_reg);
 
-As per above.
+I forgot to check the order of freeing resources, be sure you have no
+devm_*() releases happening before this call.
 
---
+...
+
+> +               usleep_range(1000, 2000);
+
+fsleep()
+
+--=20
 With Best Regards,
 Andy Shevchenko
 
