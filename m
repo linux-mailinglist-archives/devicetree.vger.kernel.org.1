@@ -1,169 +1,154 @@
-Return-Path: <devicetree+bounces-59418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDFF98A559C
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 16:53:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EBD28A55CC
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 17:00:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 081B11C21F8D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 14:53:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE100281057
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 15:00:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2731073163;
-	Mon, 15 Apr 2024 14:52:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C603D763EC;
+	Mon, 15 Apr 2024 14:59:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PWrs5fKI"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="KCh//Y+M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB853679E5;
-	Mon, 15 Apr 2024 14:52:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7AD476033
+	for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 14:59:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713192777; cv=none; b=nfQsGIXZk/KcRzhHspHbElF6AeBCMLJ78zbuvexALqpuJMnIjLKlE95NvxWkrgom2dNX+Q7RVemoMzcai04bXAHsO7BhIYl1neZSXCgJ5jhXNBQrpELlmYxTMYBWK/N+A8GZ0ctLurRNZ2Qza/GbHXw/gQmcXMjJbZj6Y8e7p6U=
+	t=1713193188; cv=none; b=Q1gSV8GTxGQUMw4C6QU07FLzlXyY/nIdKBzmtYPld2G7xpHpo6+yE/sd/5CtWpsgpQCUotXSpxM34e9F/sUSloq9N9qcZJjNF6EwdB0gF4Aacr3Hp9jE1A9LbrFJVK/09QCzTHY5KsVgKKhmtPOEXFjekljFmecRmz47ez2pU1k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713192777; c=relaxed/simple;
-	bh=NhbAtc6tAGccokWSTjoKOMtgLuAbLGDa8a3OfLwV230=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OLodLUgG5tV921jANIqjXwrZDqPDNMwnbtc448V9clnxuI5aV09SoRzAK/OxOvxDpzQLMJha6fGGYK89u9eWEbWCpydwXO/5Oqr23wiTNyRxvxKF3K/fFFBF8rDU8VOti+wLxyK2+syr3bfGEKnPervk9hUUQYUYli0HtEqL2wc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PWrs5fKI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 267E2C113CC;
-	Mon, 15 Apr 2024 14:52:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713192776;
-	bh=NhbAtc6tAGccokWSTjoKOMtgLuAbLGDa8a3OfLwV230=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PWrs5fKIlnzoyDAUHDWP4Y/Pvl09ehPKzlzipssc5llEgsM4XodZX0woW/NTST5B0
-	 B03GQhlkgJcyHjeYjkF3SyUa20g6XEuS8KiTh2nzLYc3Gze0gL4BErAp+FmCxJDLqi
-	 bvUg4CwKXnhE2lYPOVePRzcbQQ8MsTc1venCKXnd1OzvhSY+Hnj1xlWlPSkFUF+Jvi
-	 bUpSa71+FXCgHH2/wOsYHf8ByDStbIrmopHRqOwEf0qZSD6UPlNaOMa+5qLAXv2G6P
-	 0KWdSBJRQ3odCtfC+CFjNz5OBy/p8Co9ZLQ0bETvoKnFjr2C56WASlvyOKZAExb91o
-	 UjHI3ixedmu6Q==
-Date: Mon, 15 Apr 2024 15:52:48 +0100
-From: Simon Horman <horms@kernel.org>
-To: Yi-De Wu <yi-de.wu@mediatek.com>
-Cc: Yingshiuan Pan <yingshiuan.pan@mediatek.com>,
-	Ze-Yu Wang <ze-yu.wang@mediatek.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	netdev@vger.kernel.org, linux-mediatek@lists.infradead.org,
-	David Bradil <dbrazdil@google.com>,
-	Trilok Soni <quic_tsoni@quicinc.com>,
-	My Chuang <my.chuang@mediatek.com>,
-	Shawn Hsiao <shawn.hsiao@mediatek.com>,
-	PeiLun Suei <peilun.suei@mediatek.com>,
-	Liju Chen <liju-clr.chen@mediatek.com>,
-	Willix Yeh <chi-shen.yeh@mediatek.com>,
-	Kevenny Hsieh <kevenny.hsieh@mediatek.com>
-Subject: Re: [PATCH v10 15/21] virt: geniezone: Add demand paging support
-Message-ID: <20240415145248.GD2320920@kernel.org>
-References: <20240412065718.29105-1-yi-de.wu@mediatek.com>
- <20240412065718.29105-16-yi-de.wu@mediatek.com>
+	s=arc-20240116; t=1713193188; c=relaxed/simple;
+	bh=FTEKgiTl4Yhos/X4qArVvYBgJ8rqby2g8ZhKekyotco=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IU4CFS3M/PE7uDBlX0kP4wWxEBwNGcCmoQUkK4YJMedbe+sx5IuUOMsTOUQIGlQWdutm22EjI9EENweb8/XYqOGrnS3QVeUZkgfJfMwlgN+Kwd/bpIMKthe8Q0wgg9IlhSp06oXtC/GnYxAxFJ13TSa+qwIFCnMRdac/d2tdklo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=KCh//Y+M; arc=none smtp.client-ip=148.163.156.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0353726.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 43FETkQu011449;
+	Mon, 15 Apr 2024 14:59:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=pp1;
+ bh=ANpJKg4fSvv7T8IJ3z3Xv+8MFN7yFYbJ/uNg2e5H7YI=;
+ b=KCh//Y+MVcCEuPCfzf0qwOuWIGSaK8siSAEG8QWvvTozFhUt/5NpADUOQZzFGzkam2oQ
+ 1j99C1egg22xw+oj799ApaoYZw1ITXZDMi3k5IauWPhFjWc+JqgXc/IrJQxhQlshKOHq
+ WSgqNw21LChm7PAZ89x8H9psxsaOshdmtPGiTwHQvJKXlNVfbAEtA88Sb+aQoak/eJN0
+ fcP9vtJsyoeAkS+jQgMv6QT4sylg3/mlidajn9Ff3Vy8b4FpXlx/nrQEw32IwAz3y+jE
+ Hc7i/77g9cGekmHNKHL3lUAsc5sdtn2HxJHWBuoFVcuwpwHNZjSjq+jdUTSk2LMrb/BB xg== 
+Received: from ppma13.dal12v.mail.ibm.com (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3xfj6gv322-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 15 Apr 2024 14:59:31 +0000
+Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma13.dal12v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 43FEF9ht021350;
+	Mon, 15 Apr 2024 14:59:30 GMT
+Received: from smtprelay05.wdc07v.mail.ibm.com ([172.16.1.72])
+	by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 3xg6kk847a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 15 Apr 2024 14:59:30 +0000
+Received: from smtpav02.dal12v.mail.ibm.com (smtpav02.dal12v.mail.ibm.com [10.241.53.101])
+	by smtprelay05.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 43FExRmV17498822
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 15 Apr 2024 14:59:29 GMT
+Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 911BE58065;
+	Mon, 15 Apr 2024 14:59:27 +0000 (GMT)
+Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 528DF5805E;
+	Mon, 15 Apr 2024 14:59:27 +0000 (GMT)
+Received: from [9.61.157.174] (unknown [9.61.157.174])
+	by smtpav02.dal12v.mail.ibm.com (Postfix) with ESMTP;
+	Mon, 15 Apr 2024 14:59:27 +0000 (GMT)
+Message-ID: <0363badd-f5b0-42bd-bdd5-de6e7b5ee8c6@linux.ibm.com>
+Date: Mon, 15 Apr 2024 09:59:27 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240412065718.29105-16-yi-de.wu@mediatek.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] ARM: dts: aspeed: Update Odyssey SBEFIFO compatible
+ strings
+To: Andrew Jeffery <andrew@codeconstruct.com.au>,
+        linux-aspeed@lists.ozlabs.org
+Cc: joel@jms.id.au, devicetree@vger.kernel.org, linux-fsi@lists.ozlabs.org,
+        robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
+        jk@ozlabs.org, alistair@popple.id.au, lakshmiy@us.ibm.com
+References: <20240412144358.204129-1-eajames@linux.ibm.com>
+ <20240412144358.204129-4-eajames@linux.ibm.com>
+ <5c6f58cc13492988d307504d55cc5d31a512ab8c.camel@codeconstruct.com.au>
+Content-Language: en-US
+From: Eddie James <eajames@linux.ibm.com>
+In-Reply-To: <5c6f58cc13492988d307504d55cc5d31a512ab8c.camel@codeconstruct.com.au>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: Mmzb_TfijQ4ZpDE3zFyVGlCbblj5bn5R
+X-Proofpoint-ORIG-GUID: Mmzb_TfijQ4ZpDE3zFyVGlCbblj5bn5R
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-15_12,2024-04-15_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
+ adultscore=0 mlxscore=0 impostorscore=0 priorityscore=1501 mlxlogscore=999
+ lowpriorityscore=0 spamscore=0 clxscore=1015 phishscore=0 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2404010000
+ definitions=main-2404150097
 
-On Fri, Apr 12, 2024 at 02:57:12PM +0800, Yi-De Wu wrote:
-> From: "Yingshiuan Pan" <yingshiuan.pan@mediatek.com>
-> 
-> This page fault handler helps GenieZone hypervisor to do demand paging.
-> On a lower level translation fault, GenieZone hypervisor will first
-> check the fault GPA (guest physical address or IPA in ARM) is valid
-> e.g. within the registered memory region, then it will setup the
-> vcpu_run->exit_reason with necessary information for returning to
-> gzvm driver.
-> 
-> With the fault information, the gzvm driver looks up the physical
-> address and call the MT_HVC_GZVM_MAP_GUEST to request the hypervisor
-> maps the found PA to the fault GPA (IPA).
-> 
-> There is one exception, for protected vm, we will populate full VM's
-> memory region in advance in order to improve performance.
-> 
-> Signed-off-by: Yingshiuan Pan <yingshiuan.pan@mediatek.com>
-> Signed-off-by: Jerry Wang <ze-yu.wang@mediatek.com>
-> Signed-off-by: kevenny hsieh <kevenny.hsieh@mediatek.com>
-> Signed-off-by: Liju Chen <liju-clr.chen@mediatek.com>
-> Signed-off-by: Yi-De Wu <yi-de.wu@mediatek.com>
 
-...
+On 4/14/24 19:54, Andrew Jeffery wrote:
+> On Fri, 2024-04-12 at 09:43 -0500, Eddie James wrote:
+>> Set the new compatible string for Odyssey SBEFIFOs so that they
+>> don't collect async FFDC.
+>>
+>> Signed-off-by: Eddie James <eajames@linux.ibm.com>
+>> ---
+>>   .../dts/aspeed/aspeed-bmc-ibm-everest.dts     | 64 +++++++++----------
+>>   .../arm/boot/dts/aspeed/ibm-power10-quad.dtsi | 64 +++++++++----------
+>>   2 files changed, 64 insertions(+), 64 deletions(-)
+>>
+>> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
+>> index 214b2e6a4c6d..3a2bfdf035cb 100644
+>> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
+>> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
+>> @@ -2545,7 +2545,7 @@ scom500: scom@1000 {
+>>   						};
+>>   
+>>   						sbefifo500: sbefifo@2400 {
+>> -							compatible = "ibm,p9-sbefifo";
+>> +							compatible = "ibm,ody-sbefifo";
+>>   							reg = <0x2400 0x400>;
+>>   							#address-cells = <1>;
+>>   							#size-cells = <0>;
+>
+> Bit of a drive-by comment as I'm not really holding any stakes here,
+> but did the hardware actually change?
 
-> diff --git a/drivers/virt/geniezone/gzvm_exception.c b/drivers/virt/geniezone/gzvm_exception.c
-> new file mode 100644
-> index 000000000000..475bc15b0689
-> --- /dev/null
-> +++ b/drivers/virt/geniezone/gzvm_exception.c
-> @@ -0,0 +1,39 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2023 MediaTek Inc.
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/soc/mediatek/gzvm_drv.h>
-> +
-> +/**
-> + * gzvm_handle_guest_exception() - Handle guest exception
-> + * @vcpu: Pointer to struct gzvm_vcpu_run in userspace
-> + * Return:
-> + * * true - This exception has been processed, no need to back to VMM.
-> + * * false - This exception has not been processed, require userspace.
-> + */
-> +bool gzvm_handle_guest_exception(struct gzvm_vcpu *vcpu)
 
-Hi Yi-De Wu,
+Yes, the hardware did change in the Odyssey version.
 
-The return type is bool, however the function actually
-returns either a bool or signed int.
+>
+> Would it be better to request the behaviour by a property rather than
+> changing the compatible?
 
-I think that either:
 
-1. The return type should be changed to int,
-   and returning true and false should be updated.
+I'm not sure! In the past devicetree maintainers have objected to 
+behavioral type properties, like the FSI scan behavior one...
 
-2. The function should always return true or false.
 
-Flagged by Smatch.
+Thanks for the review!
 
-> +{
-> +	int ret;
-> +
-> +	for (int i = 0; i < ARRAY_SIZE(vcpu->run->exception.reserved); i++) {
-> +		if (vcpu->run->exception.reserved[i])
-> +			return -EINVAL;
-> +	}
-> +
-> +	switch (vcpu->run->exception.exception) {
-> +	case GZVM_EXCEPTION_PAGE_FAULT:
-> +		ret = gzvm_handle_page_fault(vcpu);
-> +		break;
-> +	case GZVM_EXCEPTION_UNKNOWN:
-> +		fallthrough;
-> +	default:
-> +		ret = -EFAULT;
-> +	}
-> +
-> +	if (!ret)
-> +		return true;
-> +	else
-> +		return false;
-> +}
+Eddie
 
-...
+
+>
+> Andrew
 
