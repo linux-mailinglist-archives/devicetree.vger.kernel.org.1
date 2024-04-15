@@ -1,82 +1,86 @@
-Return-Path: <devicetree+bounces-59542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D2408A5CF1
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 23:28:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 749EB8A5CFC
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 23:35:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5AE51F2297F
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 21:28:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D1B20B22F3C
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 21:34:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0489156F4B;
-	Mon, 15 Apr 2024 21:28:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F4AF157460;
+	Mon, 15 Apr 2024 21:34:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KMk5uch0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DNn3qSHo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A1DC156C72
-	for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 21:28:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09DD3156675;
+	Mon, 15 Apr 2024 21:34:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713216522; cv=none; b=kKV9jjbzxzWGgtYpZVQ8hFiSr/qd8HaqBvYXhWimNKVzTYmLW1RSsJuYChB/GF+VQ22f6XCct0lOetSwCgxp0BPQAgh8SmwsKWV60QTVi3kMg9I3tLO0+5BBV/COYhTM3ZDkzDjD1mEams3hWjEFZ9qxolGYvxjhYxphTdOuFTQ=
+	t=1713216894; cv=none; b=Nyp6Ynt0e6gBv3Fam8gcUOezLL1SqTlz3thxI6WrpJEpDkrTFd+PV0Y1bCtzm4k0D+crOKgJrzZRhaeKwrqTP5FBzZC+WN0m9pWLGzfxhMzkyCJcVG7XZjLCpaVIjj86JctJqVvnAhCJRZxfAO6j8WK5zk4qZsoCJnihZiyl/4g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713216522; c=relaxed/simple;
-	bh=6o2RNpAOIIImMwHc2nDc4z9HtThbUA8rtQ+95VzL2dU=;
+	s=arc-20240116; t=1713216894; c=relaxed/simple;
+	bh=YcBaD99GoN6AuooIAKX/irl2Glt24VolMzRvwDnXKSA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FYsf+DZ1ahzaM96aCvDXBj7keuoJYYFxQSuJbLz0WA7eK2RHQlOvMtMYf6rDGq0ivwYflzbhrP1EzifwWhHNyQH/53DMze8t58CQRurjavdDRdixUqGu5QDh3/NY/ecDMkKqBkzVPPfON5lfhUHsEfUi81F5C9kQrmZUJFJoxak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KMk5uch0; arc=none smtp.client-ip=209.85.221.49
+	 MIME-Version:Content-Type; b=jUueJiOtYdxYQptTW5KA8YuPDyxh6x6cHZSGAbbrbJ4FKRq8a14hzyDsZA+yRgIZZTGZmvItt460mEFubrLMQRa/DdhSWSluEQRNidNknkspL/BXByTMkQQ9MJ94E3D6r5asALasLi0B5XA2CaNG1UEx7kGVoYRmTcDREqc4ua8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DNn3qSHo; arc=none smtp.client-ip=209.85.128.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3455ff1339dso2517526f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 14:28:40 -0700 (PDT)
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-41890fd335fso388305e9.3;
+        Mon, 15 Apr 2024 14:34:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713216519; x=1713821319; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1713216891; x=1713821691; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=M389Tk4mAmP3K0cjNFAlzwXHEn7CaYIwFlCUxuAdzkw=;
-        b=KMk5uch0Azrscl/7apQd1KsfjisL1jOGMmksNmpnL8G21yfSRQ4SO+d2MC4AsWVp3Q
-         rfr2VF7+6d1SmiyqLmUJ0csX8wHaaonWBTu3jiFWKM2R6O0MUqeEQS4Tb2m2wDEdUu8P
-         Ne8wIVvxsHUbR3FzHdPOH0RMfioSBLLK4VVr7pz7jFDz2orT32B9iP3KwjE5cwkA4JlU
-         d1lRr+qBLH/HTENvGtWSL8QLE78+ecNGDLDsPhBEeWKhZyafuOe+c26VEAVCbwuBIRob
-         JoQUyHCfpPMkBwG0JYqNWr/ZVA63n2tcRv/sIZtrlA5ZPbUwfqM24X/8WAfMKg9rUxEP
-         5yOQ==
+        bh=+MngAaDFVN1bHp4jdNB2FOwRByqVy5DrODddXtj7GEQ=;
+        b=DNn3qSHoFozHf0mV860AV0K2JIIVVfsQ1MtdQV7/lGTD6qW786f2eZC+2Nyag4BJ0h
+         +aoQSuwGRJLSA7STsrIXbsJcnOxrjcJD9cbNzAdDR9WszDXBlh6uTWgENyem7mYLKhlS
+         3YRS+GIEd+5RWvl2MMwiV4VlApn4Fgi2jt+ojq97ni+Q1hjDOKjS1hqLFrJ131id89e6
+         Fb+PeT1Pw1svGndqgMhu+YasvNk69yC0/jzJOiiyzXWhbVMyAalo2wcr3HGATdyPDg2+
+         00LTlw53V7+TEv1/kaalB6o95USUvQQWc1diGx+viHwJG5eclgFC3GdMYH+tW5hC+ndo
+         EIhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713216519; x=1713821319;
+        d=1e100.net; s=20230601; t=1713216891; x=1713821691;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=M389Tk4mAmP3K0cjNFAlzwXHEn7CaYIwFlCUxuAdzkw=;
-        b=QhlFRbASFQ7Hxm9qD8eCp6E1uhBYXkluuf+vjmKxD4ZKb2A429cgTpbtAn5SazPv8d
-         6FTOLa/4tpIdJdTKIwLlSUmt2ZEP/aur7T/nEho9GLfNiUWojmThsrXE7+xSup5lITVX
-         5R2SrLJfv/VIR77LUOpp+AcM/daX9OBe90EkSvlEDmzCJ5erG8alS9LitiuUQwlLBU+t
-         JCxcUkBbRqDhQP4/PkweKS5fsKWe5aRGTosheKXqy/vcinuCCzufrLhqfHQjqAmAzphF
-         z6RA1IpIcsIPYg9NSkaLh2sg60XUXCnOZDjZaKYZ1QRzd1CKfv4K9H6na5c2z0URiMot
-         8bYg==
-X-Gm-Message-State: AOJu0Ywz6IrWI3NTcyGLJ3PDEXNr6BH6dJLvI2jtXKHW+a+zF9wad0os
-	o3IoVSDIozDuICgZK2DhQFPUuawdYF+LUa7WaE/DwwZqSIQtZ1q0
-X-Google-Smtp-Source: AGHT+IFEfrCMJfFLq0sZcwQtrD3siw+Wnm6zImHGHNwxQSkjweWfxHE2BRfiQXHiDokuHXDITmhXzA==
-X-Received: by 2002:adf:e607:0:b0:349:40dd:8d7b with SMTP id p7-20020adfe607000000b0034940dd8d7bmr5502wrm.67.1713216519489;
-        Mon, 15 Apr 2024 14:28:39 -0700 (PDT)
+        bh=+MngAaDFVN1bHp4jdNB2FOwRByqVy5DrODddXtj7GEQ=;
+        b=Yasw7UDrDJlQ69HdfPRaHsFUytePcwN30cKWuZCPwbLhytgvYS6+9IptSJWblkZYxY
+         JbA8+yOxGPSUM5tnD/Xs82998SnhDHeK26bsG0pRdwBmHcygnaGfdwiPyDcidtX1rm7t
+         h+Jx4+CHQANaxQJhiz1Y38HIDgmHTr+NuHaxypVoiQ4m+opBY4TSbNVgW/eOt6cwZmpw
+         yBSNOfAJmMMhSfJImZgPlydJwMLrwTJX7vwm298L9GXlCu5gGL4o9JPvLRc7neudASk/
+         qWnF3E94nEFShTtXyky/jSxYNVdRkqV4fgcNC69wXnL2PZkKoYCrERbE9Wy1PuEaHF8O
+         qKuQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWNz88i4OcWmzBS+TNqh9kEl69mMbqohIkHTFfq/MH4cUGVj5xAsdC+8wjQPka0NvNa7j1HVl/UITPfivCmB0OOQ4XppfwqzKDjpIYIAYOn7QdX4u+rDowtGak1BbUfScsZtqa2RKbhrQ==
+X-Gm-Message-State: AOJu0Yw38CP+a/RlTfnPK6ulv6pDK6QL2znoMip49o7VyGX82fOnN15W
+	JGTuVN42stDsUejmGsrAfJZmj5G8L5W2VWmPtRPVzUGFoNRZZny6
+X-Google-Smtp-Source: AGHT+IHO0UydirU0frcJgoHgsd2d9A+XDIfIqbidYVQXXd9jmDbZT1co8v6u3rH+r5lyoWlHcu5gbw==
+X-Received: by 2002:a05:600c:4749:b0:414:12f6:a105 with SMTP id w9-20020a05600c474900b0041412f6a105mr7619233wmo.5.1713216891306;
+        Mon, 15 Apr 2024 14:34:51 -0700 (PDT)
 Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id r26-20020adfb1da000000b0033e745b8bcfsm13214006wra.88.2024.04.15.14.28.38
+        by smtp.gmail.com with ESMTPSA id t9-20020a05600c450900b00417e01ce03bsm16613050wmo.17.2024.04.15.14.34.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Apr 2024 14:28:39 -0700 (PDT)
+        Mon, 15 Apr 2024 14:34:51 -0700 (PDT)
 From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Rob Herring <robh@kernel.org>,
+To: Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Samuel Holland <samuel@sholland.org>, Andre Przywara <andre.przywara@arm.com>
-Cc: devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH] arm64: dts: allwinner: h616: Fix I2C0 pins
-Date: Mon, 15 Apr 2024 23:28:38 +0200
-Message-ID: <9261892.CDJkKcVGEf@jernej-laptop>
-In-Reply-To: <20240329103825.25463-1-andre.przywara@arm.com>
-References: <20240329103825.25463-1-andre.przywara@arm.com>
+ Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ Denis Burkov <hitechshell@mail.ru>
+Cc: Denis Burkov <hitechshell@mail.ru>, Rob Herring <robh@kernel.org>
+Subject: Re: [RESEND v3 1/2] dt-bindings: arm: sunxi: Add PocketBook 614 Plus
+Date: Mon, 15 Apr 2024 23:34:49 +0200
+Message-ID: <3476347.QJadu78ljV@jernej-laptop>
+In-Reply-To: <20240415173416.13838-1-hitechshell@mail.ru>
+References: <20240415173416.13838-1-hitechshell@mail.ru>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,42 +90,16 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="utf-8"
 
-Dne petek, 29. marec 2024 ob 11:38:25 GMT +2 je Andre Przywara napisal(a):
-> Currently we specify the pins for the I2C0 function as PI6 and PI7, even
-> though they are actually PI5 and PI6. Linux' pinctrl driver and the H616
-> user manual confirm this.
+Dne ponedeljek, 15. april 2024 ob 19:34:15 GMT +2 je Denis Burkov napisal(a):
+> Add a new board name.
 > 
-> Fix the pin names in the pins property. None of the existing DTs in the
-> tree seems to use I2C0, which explains why this went unnoticed.
-> 
-> Fixes: 0d17c8651188 ("arm64: dts: allwinner: Add Allwinner H616 .dtsi file")
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> Signed-off-by: Denis Burkov <hitechshell@mail.ru>
+> Acked-by: Rob Herring <robh@kernel.org>
 
-Queued for 6.10 as it doesn't affect any current DT.
+Applied both, thanks!
 
 Best regards,
 Jernej
-
-> ---
->  arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> index f756a396ea3da..95f09204337f0 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> @@ -227,7 +227,7 @@ ext_rgmii_pins: rgmii-pins {
->  			};
->  
->  			i2c0_pins: i2c0-pins {
-> -				pins = "PI6", "PI7";
-> +				pins = "PI5", "PI6";
->  				function = "i2c0";
->  			};
->  
-> 
-
-
 
 
 
