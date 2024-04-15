@@ -1,106 +1,109 @@
-Return-Path: <devicetree+bounces-59363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 803328A4DAF
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 13:27:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0160F8A4DE5
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 13:41:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D38A1F2261A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 11:27:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0E97281423
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 11:41:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF8C65DF1C;
-	Mon, 15 Apr 2024 11:27:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64E05627FC;
+	Mon, 15 Apr 2024 11:41:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BW1+ShCg"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="crASQfuV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C877D5D49F;
-	Mon, 15 Apr 2024 11:27:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0A0A605B6;
+	Mon, 15 Apr 2024 11:41:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713180463; cv=none; b=QvU4v3OCKW3FKcRAhQgSMorWv9CfKqJbJmGhQ6/AFyCzH2rMKeDEJZOsqhn6G5h/NE9Vdf/1BAxx3LaLiKrOxNjO5dCpovxU/y2dVafDsvGmeyGDd/tEp+Z9x2fWRG12e8DvTrfzeawOUrdW9xu0+x/JVQLoIQxHpdVq6qgcorQ=
+	t=1713181312; cv=none; b=pLyigkiz8m5lDzODwKFLXg92zIGwIYyWUeYxYdnam4fNz225TH3IO5BzAUn+e4S5ccrFn5NpHCImsI+Xl5YTqVJDSAQg4Al3Gc8bW84ON7IJgO7AHnGU/S1+SQIdxbqUH89psSFUMIA+bMAsEY2sR/gmquc7a63WRse0/xrBhi0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713180463; c=relaxed/simple;
-	bh=FE+i4A70L7DRRL+U0mi5Ziz97jbyagDFCw1I4beVKMw=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=uV+gGDeiM8TZ0TTQviuUEUalhziUSpZ8V/RuABVgnV21qnj6kKNUZvsLp5FsgwkMCzAYNQRfa3cXfOVu6mWSt29AblaGXnTXyJUGIqzrtHn/TCds/UZQyUSvOmWiDEf3kasTEzE6DRo/qkwfBwB/f3br2XOBARvFTLSZlw4jWC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BW1+ShCg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19E5BC113CC;
-	Mon, 15 Apr 2024 11:27:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713180463;
-	bh=FE+i4A70L7DRRL+U0mi5Ziz97jbyagDFCw1I4beVKMw=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=BW1+ShCg1VAfxs+Ck7wYiiXN6PpqtM4LfVjrdNe7ZlzBLK3/Lru9zS8Zmunvqy+nc
-	 ocmPHWfwSV8WfTfqDubrINXno/VHb1hHmEdU61UGVJi6TJIn7bW5sqT9yxUoIqaRAX
-	 Mx3mfu6KLLWgL03nRZ0vjY/rgb7+irhRvnrbmg79/LIGyqazxpt/huyctxeVWKhHKt
-	 nelcLknBE4GJZBjzS2IQGJEh5EydRwP/t3j7hb60yasMJeMWi9RiYkjYtHJjpTPGg1
-	 6a0sQv7d/+ip2nn+Ny1oUPEgXU7b+5m+OpdpVgaE299epp2eGgKmRE2trbOOgD4oYC
-	 yp0oRgveyVNRg==
-Date: Mon, 15 Apr 2024 06:27:42 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1713181312; c=relaxed/simple;
+	bh=wCmMaeJS2OEoFDljYlRdvuz8/epY3LA+puq7nGe+MK4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=RYZ1dahMVUPW10Q7s8L9t687da0M5Bt0AKHI2nkn/KpBxoB+H7jztyRjTADQZDuJmvGCbSRZaFdH/H6+kTR7hJSCsu4VB2iy65Tru5pJdQvhsi2bDrhwA84IIqZp2k6WTXpCu4JgHzwYraZwf4lKbby/iUzLQYxWO/mthRkdj4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=crASQfuV; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1713181307;
+	bh=wCmMaeJS2OEoFDljYlRdvuz8/epY3LA+puq7nGe+MK4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=crASQfuV6Lq5dewInjTCyMJylZq3pYIy4F0eAdEIQwAlOBZkAqD1SS2jQnggSijvQ
+	 1rFY9ovIUoYMIQ31A8/Xs9MrPw7YGr+jubat2A1A5OXUtsoVmFuxRX75+QxvP6u4or
+	 +foER+mbaj0HCOt/Ubwm/62KVJgDw1f3A8pSJBau/rhgUAj4zL7UV1i15VlYoaWziQ
+	 a92JEPmB/cKujK6PiDZDzG8UN5FRzkL/rW1klD8y3jD+2IXkDRmvRv+FGA3eAZ0PCM
+	 HAHGRAZ/xbASQCK2kO5w32xf6hwz5wAwP5S8yi033/eUaiVYTDU1MrNRAbrtsl/bbK
+	 YS6JdW2Gio2nQ==
+Received: from obbardc-t14.home (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: obbardc)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 2DFA33781FE9;
+	Mon, 15 Apr 2024 11:41:47 +0000 (UTC)
+From: Christopher Obbard <chris.obbard@collabora.com>
+To: linux-kernel@vger.kernel.org
+Cc: Daniel Scally <dan.scally@ideasonboard.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	kernel@collabora.com,
+	Christopher Obbard <chris.obbard@collabora.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v1 0/1] Enable HDMI output support on the Debix Model A SBC
+Date: Mon, 15 Apr 2024 12:41:26 +0100
+Message-ID: <20240415114135.25473-1-chris.obbard@collabora.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Mighty <bavishimithil@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- alsa-devel@alsa-project.org
-In-Reply-To: <20240415103523.139-1-bavishimithil@gmail.com>
-References: <20240415103523.139-1-bavishimithil@gmail.com>
-Message-Id: <171318046103.2331667.2375787628199943181.robh@kernel.org>
-Subject: Re: [PATCH v3] ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
+Content-Transfer-Encoding: 8bit
+
+This series brings up the HDMI output on the Debix Model A SBC.
+
+With support for the HDMI transmitter for the i.MX8MP SoC now merged[0],
+we can now enable the HDMI output on the Debix Model A SBC.
+
+The pinctrl values were blindly taken from the downstream BSP[1] and should
+be checked by someone who knows this platform better than myself.
+
+Also, with a 4K display there were a drm error with no output on the
+display, but this error did not occur with a 1080P display:
+
+   imx-lcdif 32fc6000.display-controller: [drm] *ERROR* fbdev-dma: Failed to setup generic emulation (ret=-12)
+
+It would be interesting to see if this error is present for others on a
+different i.MX8MP device. I didn't have time to check this further and I
+assume the issue to be in the driver rather than specific to this SBC, so
+should not block this patch, but please correct me if I am wrong.
+
+[0]: https://lore.kernel.org/all/20240227220444.77566-1-aford173@gmail.com/
+[1]: https://github.com/debix-tech/linux/blob/debix/arch/arm64/boot/dts/freescale/imx8mp-debix-io-board.dts#L1025
 
 
-On Mon, 15 Apr 2024 16:05:23 +0530, Mighty wrote:
-> From: Mithil Bavishi <bavishimithil@gmail.com>
-> 
-> Convert the OMAP4+ McPDM bindings to DT schema.
-> 
-> Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
-> ---
->  .../devicetree/bindings/sound/omap-mcpdm.txt  | 30 ----------
->  .../bindings/sound/ti,omap4-mcpdm.yaml        | 58 +++++++++++++++++++
->  2 files changed, 58 insertions(+), 30 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/omap-mcpdm.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.yaml
-> 
+Christopher Obbard (1):
+  arm64: dts: imx8mp-debix-model-a: Add HDMI output support
 
-My bot found errors running 'make dt_binding_check' on your patch:
+ .../dts/freescale/imx8mp-debix-model-a.dts    | 47 +++++++++++++++++++
+ 1 file changed, 47 insertions(+)
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.yaml: $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
- 	 $id: http://devicetree.org/schemas/sound/ti,omap-mcpdm.yaml
- 	file: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240415103523.139-1-bavishimithil@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-- 
+2.43.0
 
 
