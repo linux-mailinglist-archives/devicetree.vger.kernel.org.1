@@ -1,122 +1,148 @@
-Return-Path: <devicetree+bounces-59454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EC048A57BC
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 18:28:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96A428A57CA
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 18:32:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E04FD2862D9
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 16:28:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D4B4285A0B
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 16:32:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FC8980BFE;
-	Mon, 15 Apr 2024 16:28:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED02381ABF;
+	Mon, 15 Apr 2024 16:32:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GB+FLZpG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hDAALKxn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11B8D2E40F;
-	Mon, 15 Apr 2024 16:28:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4C4C1CD23;
+	Mon, 15 Apr 2024 16:32:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713198507; cv=none; b=uTif1e8Y2IhShHsV1tkLIdUgmUgPAfuHj/yuP9yTDL13yBTFnIYRpspmNxaSRpZqQGVf8y/THyIaHNfXRNsXzuLW5e7Q9qNEITJFEj4vChJTZfkil87nFAnELAh2/kljrieQThey120uNcSHAoA083bjysnxWrqbpbJORRGQxQw=
+	t=1713198740; cv=none; b=Ja2sahRhEdNuXNIixMGr/hu83BLxsZLWfnQPiv8W5UjLGpfnzrcJx+QQHR+1YC24cCdELmup5VKOI3dDqQuEKzM1E4/i+BsaREYcRpBqAQ8NUHwhICjotTfA0TNgEa63qzDVOxbwyl1sN0XMYUbqn3x6oeKZvTEBnTa3ycA+MRk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713198507; c=relaxed/simple;
-	bh=xd4zvV2217rXjsgC1Jt7muitA/KOg/7nS/ZWUlJXcUQ=;
+	s=arc-20240116; t=1713198740; c=relaxed/simple;
+	bh=Wsb9mO0IMUs6XyEA7C68rG60ROTwki5oNLgFkNQGVfw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NY0/fN+/Sdwi02is4FB2gfcf+Vum46x25krBCFQk9AWbg5H2jz++8qo/CamAlizH45Rs4hbZipZQUdQGP/EguDsaBBgWLOf+YkGCQTh8YitqTqLunaZXEQdZOO3vmVtGjHpP9Ffpkc/zh12PWmNbxQRgs9dJIV+AjUe3iV92uPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GB+FLZpG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D936C113CC;
-	Mon, 15 Apr 2024 16:28:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=XEb4L3hZx/kVXZ15ajtVDPRUXB1pekZkDMZOjwqnpViKSAL9NI35n1qzEPHb5U7M4fT4zlbuLgTe6Atd3DFQdghmJ6mnnuP/xhUAxQIIZ0Q/Nob3cFI9+FeI5n1O8nOjgg5YPk7sVqGm9tptBNKK+NzbfJpLgHEL2tlpsG7jXU4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hDAALKxn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06B94C113CC;
+	Mon, 15 Apr 2024 16:32:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713198506;
-	bh=xd4zvV2217rXjsgC1Jt7muitA/KOg/7nS/ZWUlJXcUQ=;
+	s=k20201202; t=1713198740;
+	bh=Wsb9mO0IMUs6XyEA7C68rG60ROTwki5oNLgFkNQGVfw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GB+FLZpGab57zGWMooAXQke1Jk9XKqTzMel6R8NzSDNHyB4cVZ60BmevVdH+1mjM+
-	 thtucU/I0aDwLd/SCPdqqaFgkhbLAFA+sEm573RPb9q/5kuQY0fV+Y9bhGEj3O+CGe
-	 qtKnzQ7SbP94Fw1zdHCmPG/58vVNzjrP84XOAV3Us2fTBf07NTCHx/jhiAMyDmJhYR
-	 mhYsCEoklIMnG2ufcwSD9NsMJxud+H8vzHOFunxkTFgRg2Y0ySVIfvYNLM1OTr9gcV
-	 Vi0H4m6bpgAzvM8bWqR3L4hXY/dXTaHX/QLnnHEoHxmvCKFsFxuGqQCqfvxGhg1UzL
-	 5YCwGfc3IPL5g==
-Date: Mon, 15 Apr 2024 17:28:22 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Herman van Hazendonk <github.com@herrie.org>
-Cc: sre@kernel.org, benwolsieffer@gmail.com, chris.chapuis@gmail.com,
-	Rob Herring <robh@kernel.org>,
+	b=hDAALKxniYNrhPk7bGdZS6/mD+2lHE9dUHGMqBLvm6ZfPtEwssQoA88x2UurOeeN2
+	 ltpjL7kJB+XXWqoHe229s83KYjjbNhr9s8SHH4V8sYGTU8jYDxwjJPZj6AePV4lA8b
+	 ucSkbhHoj6CaQkA14qENjkLbGPeW4JGeF4hFAiuWTTcfNQAY1HQduj3z9VMS9GkycQ
+	 DI7pojk9FqjWIQKB9JOzHezwyg3iSRcpIh6jRjb4u7T+xoW+knmBlCsRpL4PjkuKxt
+	 3I4/YTgREcipydZmtPp5swjdQqI1Yiru8u7SZ6TNxrZoamRL8MZrxxYxDTBcD05esc
+	 hq8v/xfZ4MvHQ==
+Date: Mon, 15 Apr 2024 17:32:12 +0100
+From: Simon Horman <horms@kernel.org>
+To: Yi-De Wu <yi-de.wu@mediatek.com>
+Cc: Yingshiuan Pan <yingshiuan.pan@mediatek.com>,
+	Ze-Yu Wang <ze-yu.wang@mediatek.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: power: supply: max8903: specify
- flt-gpios as input
-Message-ID: <20240415-pretty-recite-127842ed9a10@spud>
-References: <20240415151645.1986014-1-github.com@herrie.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	netdev@vger.kernel.org, linux-mediatek@lists.infradead.org,
+	David Bradil <dbrazdil@google.com>,
+	Trilok Soni <quic_tsoni@quicinc.com>,
+	My Chuang <my.chuang@mediatek.com>,
+	Shawn Hsiao <shawn.hsiao@mediatek.com>,
+	PeiLun Suei <peilun.suei@mediatek.com>,
+	Liju Chen <liju-clr.chen@mediatek.com>,
+	Willix Yeh <chi-shen.yeh@mediatek.com>,
+	Kevenny Hsieh <kevenny.hsieh@mediatek.com>
+Subject: Re: [PATCH v10 19/21] virt: geniezone: Provide individual VM memory
+ statistics within debugfs
+Message-ID: <20240415163212.GE2320920@kernel.org>
+References: <20240412065718.29105-1-yi-de.wu@mediatek.com>
+ <20240412065718.29105-20-yi-de.wu@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="JCzRbrKQeuOfJEof"
-Content-Disposition: inline
-In-Reply-To: <20240415151645.1986014-1-github.com@herrie.org>
-
-
---JCzRbrKQeuOfJEof
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240412065718.29105-20-yi-de.wu@mediatek.com>
 
-On Mon, Apr 15, 2024 at 05:16:45PM +0200, Herman van Hazendonk wrote:
-> The FLT pin was incorrected documented as an output. The MAX8903 uses it =
-to
-> signal to the processor that a charging fault has occurred.
+On Fri, Apr 12, 2024 at 02:57:16PM +0800, Yi-De Wu wrote:
+> From: "Jerry Wang" <ze-yu.wang@mediatek.com>
+> 
+> Created a dedicated per-VM debugfs folder under gzvm, providing
+> user-level programs with easy access to per-VM memory statistics for
+> debugging and profiling purposes. This enables users to effectively
+> analyze and optimize the memory usage of individual virtual machines.
+> 
+> Two types of information can be obtained:
+> 
+> `cat /sys/kernel/debug/gzvm/<pid>-<vmid>/protected_hyp_mem` shows memory
+> used by the hypervisor and the size of the stage 2 table in bytes.
+> 
+> `cat /sys/kernel/debug/gzvm/<pid>-<vmid>/protected_shared_mem` gives
+> memory used by the shared resources of the guest and host in bytes.
+> 
+> For example:
+> console:/ # cat /sys/kernel/debug/gzvm/3417-15/protected_hyp_mem
+> 180328
+> console:/ # cat /sys/kernel/debug/gzvm/3417-15/protected_shared_mem
+> 262144
+> console:/ #
+> 
+> More stats will be added in the future.
+> 
+> Signed-off-by: Jerry Wang <ze-yu.wang@mediatek.com>
+> Signed-off-by: Liju-Clr Chen <liju-clr.chen@mediatek.com>
+> Signed-off-by: Yi-De Wu <yi-de.wu@mediatek.com>
 
-I guess this is just a matter of framing? Input to the hardware running
-the OS but an output from the max8903?
+...
 
-I'm okay with whatever wording causing less confusion, which may mean
-something that specifics what this is relative to?
+> diff --git a/drivers/virt/geniezone/gzvm_vm.c b/drivers/virt/geniezone/gzvm_vm.c
 
->=20
-> Signed-off-by: Herman van Hazendonk <github.com@herrie.org>
+...
 
-The SoB email should match the from email fyi.
-Cheers,
-Conor.
+> @@ -398,6 +409,113 @@ static void setup_vm_demand_paging(struct gzvm *vm)
+>  	}
+>  }
+>  
+> +static int debugfs_open(struct inode *inode, struct file *file)
+> +{
+> +	file->private_data = inode->i_private;
+> +	return 0;
+> +}
 
-> ---
->  .../devicetree/bindings/power/supply/maxim,max8903.yaml         | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max8903=
-=2Eyaml b/Documentation/devicetree/bindings/power/supply/maxim,max8903.yaml
-> index a8d625f285f1..86af38378999 100644
-> --- a/Documentation/devicetree/bindings/power/supply/maxim,max8903.yaml
-> +++ b/Documentation/devicetree/bindings/power/supply/maxim,max8903.yaml
-> @@ -34,7 +34,7 @@ properties:
-> =20
->    flt-gpios:
->      maxItems: 1
-> -    description: Fault pin (active low, output)
-> +    description: Fault pin (active low, input)
-> =20
->    dcm-gpios:
->      maxItems: 1
+nit: Coccinelle suggests that simple_open() can be used in place
+     of the debugfs_open() implementation above.
 
---JCzRbrKQeuOfJEof
-Content-Type: application/pgp-signature; name="signature.asc"
+...
 
------BEGIN PGP SIGNATURE-----
+> +static const struct file_operations hyp_mem_fops = {
+> +	.owner = THIS_MODULE,
+> +	.open = debugfs_open,
+> +	.read = hyp_mem_read,
+> +	.llseek = no_llseek,
+> +};
+> +
+> +static const struct file_operations shared_mem_fops = {
+> +	.owner = THIS_MODULE,
+> +	.open = debugfs_open,
+> +	.read = shared_mem_read,
+> +	.llseek = no_llseek,
+> +};
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZh1VpgAKCRB4tDGHoIJi
-0jw/AQDaumli7edYvHrMoE4DDwEVzCH7wtuaBqIpvwcPYZM7xQEApHEIX3B9VcZx
-5Gw1n8eCthaQuGt/yznp5f+vfVxRUAg=
-=1mQ7
------END PGP SIGNATURE-----
-
---JCzRbrKQeuOfJEof--
+...
 
