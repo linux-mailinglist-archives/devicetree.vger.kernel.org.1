@@ -1,128 +1,142 @@
-Return-Path: <devicetree+bounces-59349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FD108A4CC7
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 12:44:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84BD88A4D36
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 13:03:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BAEE6B22753
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 10:44:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1081BB242B8
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 11:03:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3EED5C8FC;
-	Mon, 15 Apr 2024 10:44:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D1075D73A;
+	Mon, 15 Apr 2024 11:02:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="DK+ytEaX"
+	dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.b="hAsJDUnQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtpcmd0871.aruba.it (smtpcmd0871.aruba.it [62.149.156.71])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 553385C614;
-	Mon, 15 Apr 2024 10:44:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4AB95D477
+	for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 11:02:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.149.156.71
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713177845; cv=none; b=ZVhvEeOxlUBrt163Fyrt0VKzXmEIQ09IuI6ABPefdp4IJYHFFwTdADy5GJpx78+waoLVd1UBALdpZtfexT2BJPUB9nVgoLzcDBjZAgcbyiv0/+0fVQNtfUhf8i0ZSMG10Q6qf6o95YlcyAu/g6kYcRKkux7tqCo1mdmet8ZdfrI=
+	t=1713178974; cv=none; b=a6cMo6aAZ33k7MI1zJcL7ylVTFezIfAKImR+e+RkOn+4Jg/wtU+d7nqTHDwyQwFs7/fvLE86aogRHxlQAQ3gpRlMI0k8mN1zAfbqNcyScAO4W77lYd6D2ogdEQzB+iWb7kDCxc6OeOpl5QZzVXQkeJpJV3io0EC553m8Y9DwJ9I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713177845; c=relaxed/simple;
-	bh=2lgF7xR+4qhwMSfR8x9yYIAkTKgSFGBLk6Cbmg0EIkg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=p9eiLXWx/9GNWqkHE0RTOoPSTu4qmSWBE9EAxdHSzfVwoD3TSF4UK6oPdWnlhu84MNtNKfd5Npedjndt81rUwfhnYiAWU0lISEdzQ1fG6scC9ZIrVn1848WLC8RE5AVjJXgOvCBg22Xh9QvaxaFYI1kGzrSbQZFIvFdLObjiTuk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=DK+ytEaX; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1713177842;
-	bh=2lgF7xR+4qhwMSfR8x9yYIAkTKgSFGBLk6Cbmg0EIkg=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=DK+ytEaXTOqx2FzSSHYQPTt/xtHPpXCcERxMHTYDoMVqa7HGcIK/fBphXul7q3W40
-	 ttwyhBWMgsK6rP/lkrYI+3c9cH6zoNbv28XeIMHyVQzsE2XEeIXRtl/NGeSO9LYWwp
-	 MYwSu8DaBrPF/6pXWQnWO0kfJA1xrAtrvw2aF0uMG7D5YztqoLyYcEN5QhFIUfxo9I
-	 6WDOwnXPq1bujONMsZ0HrRslWlHbhinnM7Iy6PStJ8N57yhciGH/oDETzmHgcN6Wms
-	 JyZO4sKkUToBygSCeXdT938x4PREqBqdIUxmMRR3WMKTU47M3il9wZz3U8sgJGbqPt
-	 z3vsOZAWhbjWw==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5B9B23782039;
-	Mon, 15 Apr 2024 10:43:59 +0000 (UTC)
-Message-ID: <1f88a0b3-273a-4de8-8733-c4fc1ac407ca@collabora.com>
-Date: Mon, 15 Apr 2024 12:43:58 +0200
+	s=arc-20240116; t=1713178974; c=relaxed/simple;
+	bh=pxUIl7fu+ddmGZYHbXTMFc3Pa2Vv9xfOj4VnNTu17VU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TVd6WOKtH+xZEW2xVhzG4UlHfVV2lzi57uQcaoUMPwruCdmKrbIsz12Yy4Ws6FKr5xoqISgjYXYVKWO8iH+g0U9mF3PDGTZt034ewa+I1TSUS/5r6OJDnZR/gX5aLrFHE0sJmL0lZYimypAb6PnMJzqHsODmySvJ/2Y4ejrIYEE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=engicam.com; spf=pass smtp.mailfrom=engicam.com; dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.b=hAsJDUnQ; arc=none smtp.client-ip=62.149.156.71
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=engicam.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=engicam.com
+Received: from engicam ([77.32.35.178])
+	by Aruba Outgoing Smtp  with ESMTPSA
+	id wK3orSBuzBZCLwK3provIw; Mon, 15 Apr 2024 12:59:42 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+	t=1713178782; bh=pxUIl7fu+ddmGZYHbXTMFc3Pa2Vv9xfOj4VnNTu17VU=;
+	h=Date:From:To:Subject:MIME-Version:Content-Type;
+	b=hAsJDUnQX4GPRNWeCM29c8VdbaE7MnJ5cE+46abmO04tlLAc2g1kS6FSIp7+5Az/g
+	 nuXpUk/lMyVafehKgOKIIUHOs9WYAPrM8QWzxxtwqd2q8Ilj4KwUvJTf6J4pqpEC/w
+	 6xoaUY5ELg83NUsJyp8qk+PsV9zTbwaujIiYVHBX8J/VMoYbUGerqjgab36yrEQrWm
+	 ZvA93Kqf7QIaS0t+/ucbR3gYnV1iE/qL+0ar5ssbWrt9Bi5Yf/czf++jTYoC62sUbc
+	 4wE4j58y2UXyKE3pvoBwQSVF8cifaZ0XiKYPm8kCrCeWPLERhCr55Z96vJrs9WaGfA
+	 cadkNO40shrhg==
+Date: Mon, 15 Apr 2024 12:59:39 +0200
+From: Fabio Aiuto <fabio.aiuto@engicam.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Matteo Lisi <matteo.lisi@engicam.com>,
+	Mirko Ardinghi <mirko.ardinghi@engicam.com>
+Subject: Re: [PATCH v3 1/2] regulator: dt-bindings: pca9450: add PMIC_RST_B
+ warm reset property
+Message-ID: <Zh0ImzJZrxw4Xia+@engicam>
+References: <20240411165801.143160-1-fabio.aiuto@engicam.com>
+ <20240411165801.143160-2-fabio.aiuto@engicam.com>
+ <e86812b3-a3aa-4bdb-9b32-a0339f0f76b5@kernel.org>
+ <ZhjhCvVNezy9r7P4@engicam>
+ <bd1e6507-dee4-4dcf-bbd3-50539270cd63@kernel.org>
+ <Zhq8ibYrZH05/AQt@engicam>
+ <46fe43d0-28be-4acb-b0d4-dacd84fef8e5@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/4] dt-bindings: PCI: mediatek,mt7621-pcie: switch
- from deprecated pci-bus.yaml
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Hector Martin <marcan@marcan.st>,
- Sven Peter <sven@svenpeter.dev>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Jim Quinlan <jim2101024@gmail.com>,
- Nicolas Saenz Julienne <nsaenz@kernel.org>, Will Deacon <will@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>,
- Srikanth Thokala <srikanth.thokala@intel.com>,
- Ryder Lee <ryder.lee@mediatek.com>, Jianjun Wang
- <jianjun.wang@mediatek.com>,
- Sergio Paracuellos <sergio.paracuellos@gmail.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Daire McNamara <daire.mcnamara@microchip.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Marek Vasut <marek.vasut+renesas@gmail.com>,
- Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
- Shawn Lin <shawn.lin@rock-chips.com>, Heiko Stuebner <heiko@sntech.de>,
- Jingoo Han <jingoohan1@gmail.com>,
- Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>,
- Michal Simek <michal.simek@amd.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Mark Kettenis <kettenis@openbsd.org>, Tom Joseph <tjoseph@cadence.com>,
- Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>,
- Jiaxun Yang <jiaxun.yang@flygoat.com>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, asahi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-rpi-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20240413151617.35630-1-krzysztof.kozlowski@linaro.org>
- <20240413151617.35630-4-krzysztof.kozlowski@linaro.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240413151617.35630-4-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <46fe43d0-28be-4acb-b0d4-dacd84fef8e5@kernel.org>
+X-CMAE-Envelope: MS4xfP/z+KuORGknNK6/gX9XtdpZ/tuKdch6lu03DLWqLvfsJNkRhpIeMxIcf2LaVjc/EJcG8uLHP4axebXN2r8breJCmVpl0DcFlHz154BJ57dqSpngd3Yi
+ 76lVgUXM4DOIXz7CAwgfFLvLbvlrme7mQxpanMhn3Kq0Twc7Jf7IcF5r47R1EAv/3Jk2BpY5g4JQh7N1vKqitqcNHJ6LQGxAzOPmvouQfFs+OyAkgrj4e/IK
+ StJPHvjQdAlJdLmun9nr4gra9lEs6o/YGseFzdz7D7XaUjmMPdxxv8g0PUaDctANewz3yrRpjjqUjFoZFMtkHthBpZ3TLoGtAivC3ntZ8wIHI4MBIYcHC2L4
+ K/cyB3siPna2mIOn+xHf7vjQH9r81wjGnxGQsMG6P2X/K9TbLNYln6UEiiIBgDSTYt2mVo8JoTqWQQ63Vtrv5vwJIs9mpQ==
 
-Il 13/04/24 17:16, Krzysztof Kozlowski ha scritto:
-> dtschema package with core schemas deprecated pci-bus.yaml schema in
-> favor of individual schemas per host, device and pci-pci.
-> 
-> Switch Mediatek MT7621 PCIe host bridge binding to this new schema.
-> 
-> This requires dtschema package newer than v2024.02 to work fully.
-> v2024.02 will partially work: with a warning.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
+Dear Krzysztof,
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Il Sat, Apr 13, 2024 at 11:40:18PM +0200, Krzysztof Kozlowski ha scritto:
+> On 13/04/2024 19:10, Fabio Aiuto wrote:
+> > Dear Krzysztof,
+> > 
+> > Il Sat, Apr 13, 2024 at 12:58:35PM +0200, Krzysztof Kozlowski ha scritto:
+> >> On 12/04/2024 09:21, Fabio Aiuto wrote:
+> >>> Dear Krzysztof,
+> >>>
+> >>> Il Thu, Apr 11, 2024 at 09:52:12PM +0200, Krzysztof Kozlowski ha scritto:
+> >>>> On 11/04/2024 18:58, Fabio Aiuto wrote:
+<snip> 
+> I don't understand what is the use case. You wrote runtime does not
+> solve your use case. What is the use case?
 
+We experimented problems on some boards with SD card, if a cold reset
+is done when the card is powered back on it completely freezes, the way
+devices behave when unpowered for such short intervals is design specific,
+not an OS policy.
 
+kr,
+
+fabio
+
+> > 
+> >>
+> >> Sorry, you did not bring any further argument why this is board
+> >> specific. And please don't explain how probing works, but address the
+> >> problem here: why type of reset is specific to board design. To me it is
+> >> OS policy.
+> >>
+> > 
+> > Why reset type is specific to board design? I'm sorry but I don't know
+> > what you mean, as said my intention was to enlarge the number of configurable
+> > bits in pca9450 register space hoping this would be useful for someone.
+> > 
+> > All I can say is that is specific to board design for the same reason the
+> > wdog_b- reset type was specific to board design.
+> 
+> Specific to board design means different boards have somehow different
+> configuration/schematics/layout/hardware meaning they need this property
+> to configure device differently.
+> 
+> I already said it implicitly, but let's reiterate: Devicetree is for
+> hardware properties, not OS policies.
+> 
+> I also said, so repeating the same argument, the choice how you want to
+> reboot the system based on button press, sounds like debugging choice
+> thus runtime suits better.
+> 
+> Unless you want to say there are two signals and you want to configure
+> them differently? But that's your job to explain it, not mine.
+
+please see above,
+
+kr,
+
+fabio
+
+> 
+> Best regards,
+> Krzysztof
+> 
 
