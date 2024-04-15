@@ -1,700 +1,122 @@
-Return-Path: <devicetree+bounces-59439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF9708A569E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 17:39:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BA068A56BA
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 17:47:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B9831F21E87
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 15:39:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B2D4D1F21733
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 15:47:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8D5179DD5;
-	Mon, 15 Apr 2024 15:39:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FF997A140;
+	Mon, 15 Apr 2024 15:47:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="rY9T9HHA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ei46RFry"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB72278C77
-	for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 15:39:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0749D4BA94;
+	Mon, 15 Apr 2024 15:47:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713195568; cv=none; b=jWIIu5GeYAqKa3Wr423iRAvylH81vYYVLn7uBPPNb2aXJWR+fEchIrr90rQnfjuqKXvnfm+9VAisuRV7jqNo+xEoU5WVVuiTQ2HKGiA+j/IrdY7xJJWiBYGnsb7IdSEvBRxutB6zwtbXSajnu1tIjNMBR+dakmPRjoP27YUA6BA=
+	t=1713196029; cv=none; b=QSj4ZCi1vHzSB0Ll9Dz8ESSS4jMJQYXmvtu7zSNWDpAGI8DZZFHuHztP/YuHUxNSrOlwXCCg01U6L7k50QYRe41kjAkH2c/xm6gJ4ubJSctBXIO1dtykmVsuD5zEjES9DANQY9wrF6STu5ZcMHTfnDBfVriH0J3Y8h4VrX/jh24=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713195568; c=relaxed/simple;
-	bh=bR6SDCgawRhT42icn+Zke4eCv4mNjqnpQNWHltr155M=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=RuJ6ja259pRFCA/SVF+khA1uq9tFGDzzHFSveFpfB963VYNNtn3XB65D7fk4ZjlKivIfa8tiFXYm0KCDdCoyx3TWQzl5Y8hz0gUUUICJVDiIy/iFIH0lnpLh9615mzjxMiIOPc5B9npMPezAEbOgEDTBR6wSShZn7TXZY+RSOFk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=rY9T9HHA; arc=none smtp.client-ip=148.163.156.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0353727.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 43FFIce7018778;
-	Mon, 15 Apr 2024 15:39:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding; s=pp1;
- bh=WVhRGnpi4Jky6CoRz/M0dUSeSt+5A5vdmpPLFzS0amw=;
- b=rY9T9HHALKFg2hVh/AvlNo9bG7LGm47N6a5JJQaAWdjDXXV8qVJUz7fh726pWce8hA7L
- gUzAAmWkUov4Lz95nF2HJgHLks3xGJcYQKfq3ycbMpGkzlckNNoVlVChBMWujQYfJXBJ
- l1cdaD/gKS0uLB/DeYiOMOpjib8KLnBN4NVpljfcsM5FZF5UF/T5NiJ+wgUxgtT4lpRu
- uwUYLW8WJp61+NXvKlU4vEO2FU26K7xu4oY1eeApIYgKoHIWEK4sYcSx6rOmp6nUOwYH
- GKq09+uF/9ZcyzdEPvx1vOTANZ/kqspPl+PNiYLtREvS6GxxJNR3ORjZYinVHvXcQIJ5 pQ== 
-Received: from ppma22.wdc07v.mail.ibm.com (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3xh6rbr1fr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 15 Apr 2024 15:39:13 +0000
-Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma22.wdc07v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 43FFFiAK027304;
-	Mon, 15 Apr 2024 15:39:12 GMT
-Received: from smtprelay02.dal12v.mail.ibm.com ([172.16.1.4])
-	by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 3xg4ryrtf5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 15 Apr 2024 15:39:12 +0000
-Received: from smtpav05.dal12v.mail.ibm.com (smtpav05.dal12v.mail.ibm.com [10.241.53.104])
-	by smtprelay02.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 43FFd9NN42205868
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 15 Apr 2024 15:39:11 GMT
-Received: from smtpav05.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id F1CB05806E;
-	Mon, 15 Apr 2024 15:39:08 +0000 (GMT)
-Received: from smtpav05.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id A07345806C;
-	Mon, 15 Apr 2024 15:39:08 +0000 (GMT)
-Received: from slate16.aus.stglabs.ibm.com (unknown [9.61.157.174])
-	by smtpav05.dal12v.mail.ibm.com (Postfix) with ESMTP;
-	Mon, 15 Apr 2024 15:39:08 +0000 (GMT)
-From: Eddie James <eajames@linux.ibm.com>
-To: linux-aspeed@lists.ozlabs.org
-Cc: joel@jms.id.au, andrew@codeconstruct.com.au, devicetree@vger.kernel.org,
-        linux-fsi@lists.ozlabs.org, robh@kernel.org, conor+dt@kernel.org,
-        krzk+dt@kernel.org, jk@ozlabs.org, alistair@popple.id.au,
-        eajames@linux.ibm.com, lakshmiy@us.ibm.com
-Subject: [PATCH v2 3/3] ARM: dts: aspeed: Update Odyssey SBEFIFO compatible strings
-Date: Mon, 15 Apr 2024 10:39:07 -0500
-Message-Id: <20240415153907.10051-4-eajames@linux.ibm.com>
-X-Mailer: git-send-email 2.39.3
-In-Reply-To: <20240415153907.10051-1-eajames@linux.ibm.com>
-References: <20240415153907.10051-1-eajames@linux.ibm.com>
+	s=arc-20240116; t=1713196029; c=relaxed/simple;
+	bh=JR5kOuhn6j79YvltFsCGif42+l9e5TDJ19o8bOjza9E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PLC/hOdQ4ioieE4cTP/2eDaE7Se/9zhVOZxeIQRsF7IeHFPc43f0s4QzHOLYwuNYwpUgB/DPQQyMyHIqXOLjOfoA4dpU1/+imJwxvs+oic0l2ohipkWu4o1LjL/QZdsmolqaVyRRx1MvhYGY7LpHIl3lrIP4PCJOPzZZ2DwLnbM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ei46RFry; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD380C113CC;
+	Mon, 15 Apr 2024 15:47:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713196028;
+	bh=JR5kOuhn6j79YvltFsCGif42+l9e5TDJ19o8bOjza9E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ei46RFryurSS2OgOCf8TMAKsirP/Th368+PpU0bWrT274mzvek1tUGigEqinCXXJ7
+	 3zSG/+jJKDp+ZflJl0EKSubDAz1I43jffwKxCOrnqJ1GmXhEl4hR+rjSYQHFA+DH/1
+	 SOPCz/cXh1el9yxbPlZ2yD/SRjZ16yKVO88b+MA7ALR9AWYmKnaGcdtECDt4E7ylKn
+	 gh/ZGj5hq8R/Hprkj1Z5bTaEZkR4FADe0ypxqMhO4i1ZnupT26x0rKzm39sw1MzkzG
+	 mXMfR+hkt5Rn/YQQEcNboQekCLPn5Z42UKOMolFTPueirRMVdTM1YHXLd9W9sSTIDp
+	 aUjM1wniH/wIA==
+Date: Mon, 15 Apr 2024 16:47:02 +0100
+From: Conor Dooley <conor@kernel.org>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, festevam@gmail.com, xiaoning.wang@nxp.com,
+	linux-imx@nxp.com, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH] dt-bindings: net: nxp,dwmac-imx: allow nvmem cells
+ property
+Message-ID: <20240415-limes-chasing-dbc111fa9cf2@spud>
+References: <20240415103621.1644735-1-peng.fan@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: vYggHsVu-cv-R2PmyfbeZYGpBOkvYsV9
-X-Proofpoint-ORIG-GUID: vYggHsVu-cv-R2PmyfbeZYGpBOkvYsV9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-15_12,2024-04-15_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- malwarescore=0 mlxlogscore=927 impostorscore=0 clxscore=1015
- suspectscore=0 spamscore=0 bulkscore=0 adultscore=0 phishscore=0
- priorityscore=1501 mlxscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2404010000 definitions=main-2404150102
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="pK2WP0nOkwBGBj1a"
+Content-Disposition: inline
+In-Reply-To: <20240415103621.1644735-1-peng.fan@oss.nxp.com>
 
-Set the new compatible string for Odyssey SBEFIFOs so that they
-don't collect async FFDC.
 
-Signed-off-by: Eddie James <eajames@linux.ibm.com>
----
-Changes since v1:
- - Change "ody" to "odyssey"
+--pK2WP0nOkwBGBj1a
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
- .../dts/aspeed/aspeed-bmc-ibm-everest.dts     | 64 +++++++++----------
- .../arm/boot/dts/aspeed/ibm-power10-quad.dtsi | 64 +++++++++----------
- 2 files changed, 64 insertions(+), 64 deletions(-)
+On Mon, Apr 15, 2024 at 06:36:21PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+>=20
+> Allow nvmem-cells and nvmem-cell-names to get mac_address from onchip
+> fuse.
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
-index 214b2e6a4c6d..27dfe315d633 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
-@@ -2545,7 +2545,7 @@ scom500: scom@1000 {
- 						};
- 
- 						sbefifo500: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2577,7 +2577,7 @@ scom501: scom@1000 {
- 						};
- 
- 						sbefifo501: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2609,7 +2609,7 @@ scom510: scom@1000 {
- 						};
- 
- 						sbefifo510: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2641,7 +2641,7 @@ scom511: scom@1000 {
- 						};
- 
- 						sbefifo511: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2673,7 +2673,7 @@ scom512: scom@1000 {
- 						};
- 
- 						sbefifo512: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2705,7 +2705,7 @@ scom513: scom@1000 {
- 						};
- 
- 						sbefifo513: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2737,7 +2737,7 @@ scom514: scom@1000 {
- 						};
- 
- 						sbefifo514: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2769,7 +2769,7 @@ scom515: scom@1000 {
- 						};
- 
- 						sbefifo515: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2918,7 +2918,7 @@ scom602: scom@1000 {
- 						};
- 
- 						sbefifo602: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2950,7 +2950,7 @@ scom603: scom@1000 {
- 						};
- 
- 						sbefifo603: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -2982,7 +2982,7 @@ scom610: scom@1000 {
- 						};
- 
- 						sbefifo610: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3014,7 +3014,7 @@ scom611: scom@1000 {
- 						};
- 
- 						sbefifo611: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3046,7 +3046,7 @@ scom614: scom@1000 {
- 						};
- 
- 						sbefifo614: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3078,7 +3078,7 @@ scom615: scom@1000 {
- 						};
- 
- 						sbefifo615: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3110,7 +3110,7 @@ scom616: scom@1000 {
- 						};
- 
- 						sbefifo616: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3142,7 +3142,7 @@ scom617: scom@1000 {
- 						};
- 
- 						sbefifo617: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3291,7 +3291,7 @@ scom700: scom@1000 {
- 						};
- 
- 						sbefifo700: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3323,7 +3323,7 @@ scom701: scom@1000 {
- 						};
- 
- 						sbefifo701: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3355,7 +3355,7 @@ scom710: scom@1000 {
- 						};
- 
- 						sbefifo710: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3387,7 +3387,7 @@ scom711: scom@1000 {
- 						};
- 
- 						sbefifo711: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3419,7 +3419,7 @@ scom712: scom@1000 {
- 						};
- 
- 						sbefifo712: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3451,7 +3451,7 @@ scom713: scom@1000 {
- 						};
- 
- 						sbefifo713: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3483,7 +3483,7 @@ scom714: scom@1000 {
- 						};
- 
- 						sbefifo714: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3515,7 +3515,7 @@ scom715: scom@1000 {
- 						};
- 
- 						sbefifo715: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3664,7 +3664,7 @@ scom802: scom@1000 {
- 						};
- 
- 						sbefifo802: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3696,7 +3696,7 @@ scom803: scom@1000 {
- 						};
- 
- 						sbefifo803: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3728,7 +3728,7 @@ scom810: scom@1000 {
- 						};
- 
- 						sbefifo810: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3760,7 +3760,7 @@ scom811: scom@1000 {
- 						};
- 
- 						sbefifo811: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3792,7 +3792,7 @@ scom814: scom@1000 {
- 						};
- 
- 						sbefifo814: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3824,7 +3824,7 @@ scom815: scom@1000 {
- 						};
- 
- 						sbefifo815: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3856,7 +3856,7 @@ scom816: scom@1000 {
- 						};
- 
- 						sbefifo816: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -3888,7 +3888,7 @@ scom817: scom@1000 {
- 						};
- 
- 						sbefifo817: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-diff --git a/arch/arm/boot/dts/aspeed/ibm-power10-quad.dtsi b/arch/arm/boot/dts/aspeed/ibm-power10-quad.dtsi
-index 57494c744b5d..58848e77143c 100644
---- a/arch/arm/boot/dts/aspeed/ibm-power10-quad.dtsi
-+++ b/arch/arm/boot/dts/aspeed/ibm-power10-quad.dtsi
-@@ -22,7 +22,7 @@ scom100: scom@1000 {
- 			};
- 
- 			sbefifo100: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -50,7 +50,7 @@ scom101: scom@1000 {
- 			};
- 
- 			sbefifo101: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -78,7 +78,7 @@ scom110: scom@1000 {
- 			};
- 
- 			sbefifo110: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -106,7 +106,7 @@ scom111: scom@1000 {
- 			};
- 
- 			sbefifo111: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -134,7 +134,7 @@ scom112: scom@1000 {
- 			};
- 
- 			sbefifo112: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -162,7 +162,7 @@ scom113: scom@1000 {
- 			};
- 
- 			sbefifo113: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -190,7 +190,7 @@ scom114: scom@1000 {
- 			};
- 
- 			sbefifo114: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -218,7 +218,7 @@ scom115: scom@1000 {
- 			};
- 
- 			sbefifo115: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -246,7 +246,7 @@ scom202: scom@1000 {
- 			};
- 
- 			sbefifo202: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -274,7 +274,7 @@ scom203: scom@1000 {
- 			};
- 
- 			sbefifo203: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -302,7 +302,7 @@ scom210: scom@1000 {
- 			};
- 
- 			sbefifo210: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -330,7 +330,7 @@ scom211: scom@1000 {
- 			};
- 
- 			sbefifo211: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -358,7 +358,7 @@ scom214: scom@1000 {
- 			};
- 
- 			sbefifo214: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -386,7 +386,7 @@ scom215: scom@1000 {
- 			};
- 
- 			sbefifo215: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -414,7 +414,7 @@ scom216: scom@1000 {
- 			};
- 
- 			sbefifo216: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -442,7 +442,7 @@ scom217: scom@1000 {
- 			};
- 
- 			sbefifo217: sbefifo@2400 {
--				compatible = "ibm,p9-sbefifo";
-+				compatible = "ibm,odyssey-sbefifo";
- 				reg = <0x2400 0x400>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -492,7 +492,7 @@ scom300: scom@1000 {
- 						};
- 
- 						sbefifo300: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -524,7 +524,7 @@ scom301: scom@1000 {
- 						};
- 
- 						sbefifo301: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -556,7 +556,7 @@ scom310: scom@1000 {
- 						};
- 
- 						sbefifo310: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -588,7 +588,7 @@ scom311: scom@1000 {
- 						};
- 
- 						sbefifo311: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -620,7 +620,7 @@ scom312: scom@1000 {
- 						};
- 
- 						sbefifo312: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -652,7 +652,7 @@ scom313: scom@1000 {
- 						};
- 
- 						sbefifo313: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -684,7 +684,7 @@ scom314: scom@1000 {
- 						};
- 
- 						sbefifo314: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -716,7 +716,7 @@ scom315: scom@1000 {
- 						};
- 
- 						sbefifo315: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -865,7 +865,7 @@ scom402: scom@1000 {
- 						};
- 
- 						sbefifo402: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -897,7 +897,7 @@ scom403: scom@1000 {
- 						};
- 
- 						sbefifo403: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -929,7 +929,7 @@ scom410: scom@1000 {
- 						};
- 
- 						sbefifo410: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -961,7 +961,7 @@ scom411: scom@1000 {
- 						};
- 
- 						sbefifo411: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -993,7 +993,7 @@ scom414: scom@1000 {
- 						};
- 
- 						sbefifo414: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -1025,7 +1025,7 @@ scom415: scom@1000 {
- 						};
- 
- 						sbefifo415: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -1057,7 +1057,7 @@ scom416: scom@1000 {
- 						};
- 
- 						sbefifo416: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
-@@ -1089,7 +1089,7 @@ scom417: scom@1000 {
- 						};
- 
- 						sbefifo417: sbefifo@2400 {
--							compatible = "ibm,p9-sbefifo";
-+							compatible = "ibm,odyssey-sbefifo";
- 							reg = <0x2400 0x400>;
- 							#address-cells = <1>;
- 							#size-cells = <0>;
--- 
-2.39.3
+Is this valid for all 3 devices in this binding?
 
+>=20
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml b/D=
+ocumentation/devicetree/bindings/net/nxp,dwmac-imx.yaml
+> index 4c01cae7c93a..87bc4416eadf 100644
+> --- a/Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml
+> +++ b/Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml
+> @@ -66,6 +66,10 @@ properties:
+>        Should be phandle/offset pair. The phandle to the syscon node which
+>        encompases the GPR register, and the offset of the GPR register.
+> =20
+> +  nvmem-cells: true
+> +
+> +  nvmem-cell-names: true
+> +
+>    snps,rmii_refclk_ext:
+>      $ref: /schemas/types.yaml#/definitions/flag
+>      description:
+> --=20
+> 2.37.1
+>=20
+
+--pK2WP0nOkwBGBj1a
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZh1L9gAKCRB4tDGHoIJi
+0jExAQCZWUccqyXVLzL9kdshYI62g/bxsBiJ4y9eArAObwLwnwD7BFR2QeVnNjXE
+c7qRz/eFlRTk4Tk6RzO2NmVZECf+AQw=
+=PktI
+-----END PGP SIGNATURE-----
+
+--pK2WP0nOkwBGBj1a--
 
