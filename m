@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-59803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A18358A70B3
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 18:00:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CCCD8A70B4
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 18:00:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3043D1F26421
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 16:00:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F0F91C21DAD
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 16:00:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBF971332A9;
-	Tue, 16 Apr 2024 15:54:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A2DF133421;
+	Tue, 16 Apr 2024 15:54:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EB8iPRfD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KR81scAe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 105AE1311B4
-	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 15:54:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5EDA13172A
+	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 15:54:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713282873; cv=none; b=fSJYQdGnDVPOkO12Anawdt4S/TlrhSNGXuEfc4+KevDCZu2geVchxGqLQZceQiuTmSvZLkoJITnhv7BT2XIusslpQQ+tSWBieuemXaYvjDQ3sSRoJb5jpJzSWm7lGU6BvpINYDpf/epWPuVhlPDb3xPT2eI6TUcS7bRpATBxzyE=
+	t=1713282875; cv=none; b=UtBFsMxavqdPnjDnkLe6aNtWNoIjkzlgG9OgT4YsxOI03rMCkxWHgOCcutuiyVOUh0asl7WfV068zKC9mpfoKeq6oYF1yhZRIpnHBDXv7d7beMIv9QgAbHzyW6bzNOgIxcXcTcQ6pjR0ooNxZltmXkjmXpcV6hBOWf7lzhiHCzs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713282873; c=relaxed/simple;
-	bh=NBX22NzAV2D33/9WevgMcwY9UIk9hlcXx60fYqEoTf8=;
+	s=arc-20240116; t=1713282875; c=relaxed/simple;
+	bh=t5FBk+7lOdE4iEeJ5crFgSx0hNRQ3Jlo7Ou/09aTUME=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DT8yR96aE8dcUe/No2IrZUH8R7W1zh4ZLST9U0Cipty6K83O4EFk7pVleZFZPcv5R7j2YogHYN3/KKOMRLas+tdulCB7GNgyz4T/sLuPseaMn7zSs85kVsTK92Yq2DwtH4uWCt9Rv8sQFAO/Eqgh2McQotkvkVtrffj/uNwTT3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EB8iPRfD; arc=none smtp.client-ip=209.85.214.177
+	 In-Reply-To:Content-Type; b=VKPa47REX3plqseQ0DmA3utvNdpWIrEVSAg3PSqd87+Rl2/D6GJvxhTYItaDCkAb6US9H3u3JLGOfH7ilu8pgwcvP4ouo3oZENavNVqByRDyXsJG11OZrr7rwJP1SwSUQ5xjxDuaN9SzOQ3xEypypZ/4cAP541dBw+K2GBrXpXs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KR81scAe; arc=none smtp.client-ip=209.85.214.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-1e455b630acso20282575ad.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 08:54:30 -0700 (PDT)
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-1e50a04c317so23717365ad.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 08:54:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713282870; x=1713887670; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1713282873; x=1713887673; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=I3CbqEVdCbWeZaOCjzLjzDTuSiZuxL3hZ8odrscUk2Q=;
-        b=EB8iPRfDwRIp0ive8VqaEkpG/vryjbLOdMmFKIPU4pDW29jbCMRdHq49Bb7MQBKsUO
-         aCbdPtWsG4yIV4WXSC+enqF8ZDNk7QxUCz6VjDAc6ExqB/EaxSIzWileq2bPy2MZ68CG
-         boS1nB3XMOSkTtiu/F/8Bm8xO1oXWxEyyLDAeroHVa4Zh+9QDfgDTmkIKcYM4J+xr4UL
-         k8vXSRnYa9Fdp3e5D01PDDYvbhHr6kIEvJyss6RyCKOL9rqzhKYhPqP6igAXC+Gd9uUv
-         /C1kiX2IkIkmFCqsmQvDCVrHcrBftvUqkDD5BIh9YUvqNSQ7pDypra9zhvOHlSoLvsSZ
-         R11Q==
+        bh=dKzyANCG0e2+eCWUxsKN4jLmHlfmN6dK2UB54sEUXfk=;
+        b=KR81scAeCEN1yslENcozdDxH+3+knLKFH0LdSCoi0cLzYE0aoAXCS0e/KwYIQkbdzk
+         DicTJnjJOohny7z5qy4Chbbx3GP7br6Jsdqf69tF/XLEb4dOi1tlZioyHqyrIvQ9WdpP
+         BBjOouTwyJg+zDTAih9CDN6Xein3QJYE8ZpSORidhMinzXcHgscrMmhZqsDRFstWY6Fz
+         UMKzstZBrN5vynMevYPzmgTbKEQyrs7X7arph4lRFB1J1veH+lj9A81gP5FTgQa8wCxy
+         l1aiUksD6tzNBYpP5R5bfxiB8qwDoxkuamTG1Sgqdd+8vp8dX3LGNZCIZvH5zGFLN42p
+         S5uA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713282870; x=1713887670;
+        d=1e100.net; s=20230601; t=1713282873; x=1713887673;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=I3CbqEVdCbWeZaOCjzLjzDTuSiZuxL3hZ8odrscUk2Q=;
-        b=lgDvvF7lWbQgxDNdwNM8jAB1oMiQxtStuIAZDZEu40zHrYo6mqXio7Z5qfiNNQzVvQ
-         CZ7zzzKczxXJX0zfHXkqchhoihumAS8RoQ3lQYMtMTFYTMVj50dGLmzCZstotQ7TNfGG
-         7zfnqwiE7xxvxEkndY//WOpTL2f47/6Bi4ygu2i1ILaVjGsvZiZCFF1ncDWhlU0Ef8EH
-         UpP4S8T+lYU2FJSxHoU7QkmdahsV4zQ/BcjrfZiTkRZcgDG4Y3YhqAbFJOX8Z+BprdCp
-         6TMKnoAxhO9Tj2OGFVBvwdtoVZQ8C+F+59oKhXTxGFP8lXrYE3fWso76mKpni7mRV9De
-         mfmw==
-X-Forwarded-Encrypted: i=1; AJvYcCW6MlfXEHWddCKZxywFjxgImGv0tGhSLaJlAr8Su0zFixlBBjNP62EhWYwV1i1qRdSAgKkoOsjuj82iwSfzf16h/tg9+QyaYV0YfQ==
-X-Gm-Message-State: AOJu0Yx8NA1deGxk76/gE2cnjqpuPu0Pcj/v3pidMI5CITzBa04qBZw/
-	7BBbywnV6NiX/xteIYmuY5vI0TZxCJM9u51oJOdwbIof6bNekjy7Drl5Tk9SKyE=
-X-Google-Smtp-Source: AGHT+IF84lscKCKBm2lowk+hN2Zdtfz4iAdfwocwbawEyeIb+vu86YJ348uVkLyfaajJ3OZlMUKxgQ==
-X-Received: by 2002:a17:902:fc44:b0:1e1:1d5:f857 with SMTP id me4-20020a170902fc4400b001e101d5f857mr13761677plb.34.1713282870357;
-        Tue, 16 Apr 2024 08:54:30 -0700 (PDT)
+        bh=dKzyANCG0e2+eCWUxsKN4jLmHlfmN6dK2UB54sEUXfk=;
+        b=XfPoSkDqTrQmPtRYVglNFDY//b0xtJ0nNpS+QUMuNavc+Gp8XZXTq1gIzaAPNNu573
+         kEq4W6BfwiLKrM7Gln+Vlm6auddI1sR9ceQAbrvTC9+Jljrr1SIgU7AjUKt5jIlTXXYS
+         H/wo1UMms8K57We6VNM3aRBtMpjWEpKKDa8Pk8o95h7XwWk68TAfJ0o3jmj2bAX4vwC5
+         CoImWH62cOvRXQ3iHmA8BPNf6Ua2+zFvQa4ctRVaJRSH0qaQk+ijaslzAsQKyniovWw7
+         Mcg9K/9zrycmrIQyG75oHI9NHnWg3lnNETWFdfAgq6j8JyCdryJaSbxR10lUbv205Hit
+         qZuQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXIlCgyd2NnkrYDJ6I/Z3lpFk6x4oHzA3S4viLYx7pc+UIOf2WqgIQaiSoXzO+/sgozhfRgewluWjGlnFj82juB4JzMHhSj1RK9hg==
+X-Gm-Message-State: AOJu0YwRXhMXNwI+/SVr82nepwpfoy38eukpXKIwg89ZMaxX+zzL1R7v
+	TIFDom+MwAD31nYa7UE8i/E9PtXZBy0fG+IXvJWXcUPq+oS4um4wUwmKpxMf0EY=
+X-Google-Smtp-Source: AGHT+IGwGZ8vFNsBIlcbEwkIeLYsa6VXiJ7uwXqzMCMHZYFTmNIJe81/7Q4GVPzHLd9UHMGUJ8nq5Q==
+X-Received: by 2002:a17:902:e542:b0:1e0:f473:fd8b with SMTP id n2-20020a170902e54200b001e0f473fd8bmr15736917plf.9.1713282872606;
+        Tue, 16 Apr 2024 08:54:32 -0700 (PDT)
 Received: from [10.36.51.174] ([24.75.208.155])
-        by smtp.gmail.com with ESMTPSA id n13-20020a170902e54d00b001dc01efaec2sm9939360plf.168.2024.04.16.08.54.29
+        by smtp.gmail.com with ESMTPSA id n13-20020a170902e54d00b001dc01efaec2sm9939360plf.168.2024.04.16.08.54.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Apr 2024 08:54:29 -0700 (PDT)
-Message-ID: <1f94ee56-7f8e-453b-ab86-f640b298d81c@linaro.org>
-Date: Mon, 15 Apr 2024 17:24:50 +0200
+        Tue, 16 Apr 2024 08:54:32 -0700 (PDT)
+Message-ID: <29e54d8e-6b6b-49c7-b8ba-823b58c05fae@linaro.org>
+Date: Mon, 15 Apr 2024 17:25:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,15 +77,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/5] dt-bindings: power: Extend battery chemistry with
- capacitor
-To: Mike Looijmans <mike.looijmans@topic.nl>, linux-pm@vger.kernel.org
-Cc: Conor Dooley <conor+dt@kernel.org>,
+Subject: Re: [RFC PATCH v2 2/6] dt-bindings: mfd: bd96801 PMIC core
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+ Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh@kernel.org>, Sebastian Reichel <sre@kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.b2a893bc-f00b-47cf-ae07-b37ec1bace22@emailsignatures365.codetwo.com>
- <20240415081305.316107-1-mike.looijmans@topic.nl>
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
+ Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+ Fabio Aiuto <fabio.aiuto@engicam.com>
+References: <cover.1712920132.git.mazziesaccount@gmail.com>
+ <ea49494429528cf8e60fa984ae1f523ddacd850c.1712920132.git.mazziesaccount@gmail.com>
+ <b5eeaf10-e011-452b-840a-176c4f62cac4@linaro.org>
+ <d3e555c2-e740-4aff-aac7-661877166399@gmail.com>
+ <63d3891f-98d3-450f-967b-c72b0516b66b@gmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -132,35 +138,48 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240415081305.316107-1-mike.looijmans@topic.nl>
+In-Reply-To: <63d3891f-98d3-450f-967b-c72b0516b66b@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 15/04/2024 10:13, Mike Looijmans wrote:
-> Another technology to store energy is a (super)capacitor.
+On 15/04/2024 08:24, Matti Vaittinen wrote:
+> On 4/15/24 08:50, Matti Vaittinen wrote:
+>> Morning Krzysztof,
+>>
+>> Thanks again for the review/help!
+>>
+>> On 4/14/24 00:33, Krzysztof Kozlowski wrote:
+>>> On 12/04/2024 13:21, Matti Vaittinen wrote
+>>>> +
+>>>> +  rohm,hw-timeout-ms:
+>>>> +    description:
+>>>> +      Watchdog timeout value(s). First walue is timeout limit. 
+>>>> Second value is
+>>>> +      optional value for 'too early' watchdog ping if window timeout 
+>>>> mode is
+>>>> +      to be used.
+>>>
+>>> Standard property timeout-sec does not work for you? It should allow two
+>>> items as well.
+>>
+>> I don't think so. We need sub-second units. Furthermore, the timeout-sec 
+>> (if I understand it correctly) updates the "timeout policy", which tells 
+>> the expected ping-interval. This can be different from the "HW 
+>> heart-beat" which tells the HW's ping expectation. Hence the "hw-" prefix.
 > 
-> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
-> ---
+> Oh, I just found out that this is an existing property. The ROHM 
+> BD9576/BD9573 do aleady use this. It seems I've had some discussion 
+> about it with Rob/Guenter when adding it. Frightening thing is that I 
+> didin't remember the discussion or that the property existed at all... 
+> Well, luckily we have lore :)
 > 
-> (no changes since v1)
+> https://lore.kernel.org/all/c390476e4279d8b75de53271e9fb8948d8854528.camel@fi.rohmeurope.com/#r
 > 
->  Documentation/devicetree/bindings/power/supply/battery.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> (I don't see the final conclusion in this discussion, it has probably 
+> been done on some later version of the series).
 > 
-> diff --git a/Documentation/devicetree/bindings/power/supply/battery.yaml b/Documentation/devicetree/bindings/power/supply/battery.yaml
-> index 491488e7b970..a22c97dfad88 100644
-> --- a/Documentation/devicetree/bindings/power/supply/battery.yaml
-> +++ b/Documentation/devicetree/bindings/power/supply/battery.yaml
-> @@ -44,6 +44,7 @@ properties:
->        - const: lithium-ion-polymer
->        - const: lithium-ion-iron-phosphate
->        - const: lithium-ion-manganese-oxide
-> +      - const: capacitor
 
-Please keep some sort of order... everyone insists on adding to the end
-of the lists...
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Sure, it's fine then.
 
 Best regards,
 Krzysztof
