@@ -1,172 +1,120 @@
-Return-Path: <devicetree+bounces-59251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 466498A4802
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 08:25:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA7528A481F
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 08:34:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 33DB91F21D50
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 06:25:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85D32281A47
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 06:34:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57D57E556;
-	Mon, 15 Apr 2024 06:25:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A5A6134A9;
+	Mon, 15 Apr 2024 06:33:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="Odsyr3hl";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="nsW9DsEl"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="q6qkveo7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8566D512;
-	Mon, 15 Apr 2024 06:25:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DC231EB35;
+	Mon, 15 Apr 2024 06:33:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713162322; cv=none; b=u56DWjC+RtewlBB6j3JUGGE4SX2VDAlARvNYmmgYjK2CoDMc5HyFYS8fLo/2Ot1W7uzIcR3Z2fMwwrs73Dac75AoOYnu5MgHbNprEowdRlNJKgeef4C1ov0zSNuzR4Xr5eg40//msw9Td80AGS1GI3W3tmbtrpYTvo5fjrIjkak=
+	t=1713162837; cv=none; b=gGsQulA9QPTVXtEw3oCgHa+t2M5gFFPQRhQ5RCVuexAlLIpR3FKJcmixT1PapuChadghmuyPxfcZ9ZXdDfVVvl+M7vLnbprt4aqfjYSqsHlAfFQbELbaBm0M4hKMvZSukeu7OBz56e0gngW4Dn1fE4CqK4qw0f+VJZ6InzVVeaQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713162322; c=relaxed/simple;
-	bh=p2fP606xv4U0DOJltPozS/D8ubtXpwBUB2FkueNSUcs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QLhdZYbUmSHpY9J7jHQVfjx/evSe6WjZUoJAY4YwTeSrQ/DgxLOFTk+ZJCUj8D6T8vqjyWTtIgp2gotxXqi/HF+pgT0MQUoW3T2SmMHvLW2dlsbBkVXQDBPc6xUTGRg3yK9JD4694q2YAwMSpjRCqzHha/CBgL/Pegkba4zgXmY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=Odsyr3hl; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=nsW9DsEl reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1713162318; x=1744698318;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=4MYF8UVl2/Wof6SEkKATDBTMGuXNeURXeKLVHjyphjo=;
-  b=Odsyr3hlpCLAZAWMrZzYQDwE3IuUqJN+IVZ39PsZaFrOAJpX1M0N547T
-   RmEB1seHGI9teZd5m5zjpuJnIilpgk1iDcBKI2X5FgNuzNgYUT/vO3kuF
-   HDiJa7ySyDN47U+VulGuqBJxHtYf36kOM3Zk8VOZhs0vsJ9A1YUmxKHyd
-   x/60kveyRHxpLlXsjmhCRUvYkj91ePNF6GK28zodv7UhvfgQq1iRuCi28
-   FZOebApY/RAfwyf69E++yIouJ/f4Zi6IJuHdDEQrn6hLrGsDOsBEfClvT
-   fRkt4MF++6dxjKcmMS44k1nxi+RxC6A9l7rAK6DGt7SK8PrUW2VZ8lfzt
-   A==;
-X-IronPort-AV: E=Sophos;i="6.07,202,1708383600"; 
-   d="scan'208";a="36406968"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 15 Apr 2024 08:25:09 +0200
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id F176C1729F0;
-	Mon, 15 Apr 2024 08:25:01 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1713162305;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=4MYF8UVl2/Wof6SEkKATDBTMGuXNeURXeKLVHjyphjo=;
-	b=nsW9DsElJ7LZTy3dH+eQKzMOk5fCwlMVjaWP9pjbKcsM0MyrAt7vLSAlTooGeodXM+jebA
-	frWdwaOMSUKv9K7mjIEr86cxDNKCDL8lIgpgSv1n73Dbhz4HC3+NVlawWuehe8fjuPYgEH
-	VWFNQvN8rfHooipltYEj7057virkWjKOMOgOm8em8+lyXYyZX4u3i2mqifnNuE8cyQ3Gi7
-	cWx9ZPsTbe0g8xfFqw8gDXf3zlTSV48aPFFUxKztwYdDJJShXd+08UVIxgLMi89eNCTNl3
-	dmlNY6gHuBs7IZ8JSP9lyAP01+KaezavJfjwJY8BqC6HZ7arW3ca2me1ji2n+g==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: linux-media@vger.kernel.org, git@luigi311.com
-Cc: dave.stevenson@raspberrypi.com, jacopo.mondi@ideasonboard.com, mchehab@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, sakari.ailus@linux.intel.com, devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, pavel@ucw.cz, phone-devel@vger.kernel.org, Luis Garcia <git@luigi311.com>
-Subject: Re: [PATCH v4 02/25] media: i2c: imx258: Make image geometry meet sensor requirements
-Date: Mon, 15 Apr 2024 08:25:02 +0200
-Message-ID: <6041186.lOV4Wx5bFT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20240414203503.18402-3-git@luigi311.com>
-References: <20240414203503.18402-1-git@luigi311.com> <20240414203503.18402-3-git@luigi311.com>
+	s=arc-20240116; t=1713162837; c=relaxed/simple;
+	bh=t4QhWflZmb3a6EAAnOubb1Rw1MiqOWkmdlzFU3Iyd2A=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=J5Rs5GGsDN3IZmazBArFT//UGHf8NMoiXNt1Y+WeqS5kVY7YOtpR2Q19VOd7NXshuU0Ctg+MAJC4YpyJkd7CSdanmAf1pxRG0Ceaw77qkwgaeW9/2XuZf4hJLPCA8ewk6T+YUkl1N4bcdl+2WTCZrTVIF0xHJ7xWLN9bANj6Q6c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=q6qkveo7; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43F6XmYK075291;
+	Mon, 15 Apr 2024 01:33:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1713162828;
+	bh=53CrcW3/BJQjl3Y8bJu9EfeREgM50todFjEwoG6XlvU=;
+	h=From:To:CC:Subject:Date;
+	b=q6qkveo7NjBl3j2dbgdUL+Ps2JSiaPXaYeSp9pzTDxUrAc38F3F6bTXb07gaE/X0G
+	 42cgZVRfYFFgArfHbMRznkCqghReQj7GyZYi10DOtQ4ceBedEtVY/BhMnNIhtnNU6R
+	 J7F4zYpuOxmddZqD7SIrJjTYarGNdLLSI/nLnyuk=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43F6Xmb1024199
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 15 Apr 2024 01:33:48 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 15
+ Apr 2024 01:33:48 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 15 Apr 2024 01:33:48 -0500
+Received: from udit-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (udit-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [172.24.227.18])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43F6Xidb065992;
+	Mon, 15 Apr 2024 01:33:45 -0500
+From: Udit Kumar <u-kumar1@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        Udit Kumar
+	<u-kumar1@ti.com>
+Subject: [PATCH 0/4] Arranging mux and macro update
+Date: Mon, 15 Apr 2024 12:03:25 +0530
+Message-ID: <20240415063329.3286600-1-u-kumar1@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi,
+I need to resend this, as previous git send-email
+just sent cover note and timeout after that.
 
-Am Sonntag, 14. April 2024, 22:34:40 CEST schrieb git@luigi311.com:
-> From: Dave Stevenson <dave.stevenson@raspberrypi.com>
->=20
-> The output image is defined as being 4208x3118 pixels in size.
-> Y_ADD_STA register was set to 0, and Y_ADD_END to 3118, giving
-> 3119 lines total.
->=20
-> The datasheet lists a requirement for Y_ADD_STA to be a multiple
-> of a power of 2 depending on binning/scaling mode (2 for full pixel,
-> 4 for x2-bin/scale, 8 for (x2-bin)+(x2-subsample) or x4-bin, or 16
-> for (x4-bin)+(x2-subsample)).
-> (Y_ADD_END =E2=80=93 Y_ADD_STA + 1) also has to be a similar power of 2.
->=20
-> The current configuration for the full res modes breaks that second
-> requirement, and we can't increase Y_ADD_STA to 1 to retain exactly
-> the same field of view as that then breaks the first requirement.
-> For the binned modes, they are worse off as 3118 is not a multiple of
-> 4.
->=20
-> Increase the main mode to 4208x3120 so that it is the same FOV as the
-> binned modes, with Y_ADD_STA at 0.
-> Fix Y_ADD_STA and Y_ADD_END for the binned modes so that they meet the
-> sensor requirements.
->=20
-> This does change the Bayer order as the default configuration is for
-> H&V flips to be enabled, so readout is from Y_STA_END to Y_ADD_STA,
-> and this patch has changed Y_STA_END.
->=20
-> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> Signed-off-by: Luis Garcia <git@luigi311.com>
-> Reviewed-by: Pavel Machek <pavel@ucw.cz>
-> ---
->  drivers/media/i2c/imx258.c | 26 +++++++++++++-------------
->  1 file changed, 13 insertions(+), 13 deletions(-)
->=20
-> diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
-> index 2dbafd21dd70..4a7048d834c6 100644
-> --- a/drivers/media/i2c/imx258.c
-> +++ b/drivers/media/i2c/imx258.c
-> [snip]
-> @@ -707,7 +707,7 @@ static int imx258_open(struct v4l2_subdev *sd, struct=
- v4l2_subdev_fh *fh)
->  	/* Initialize try_fmt */
->  	try_fmt->width =3D supported_modes[0].width;
->  	try_fmt->height =3D supported_modes[0].height;
-> -	try_fmt->code =3D MEDIA_BUS_FMT_SGRBG10_1X10;
-> +	try_fmt->code =3D MEDIA_BUS_FMT_SBGGR10_1X10;
+This series aims to align ordering of pin muxes in following order
+main_pmx0/1, wkup_pmx0/1/2/3 along with two fixes for 784s4-evm
+and am69 for UART pin type.
 
-Does someone have access to the data sheet? I am wondering how the
-arrangement of the pixel array is shown. I've the following (identical)
-array for these sensors:
-* imx290/imx327
-* imx219
-* imx415
+Also, updating pin mux macro of J784S4 SOC instead of J721S2 for 784s4-evm
+and am69 at few places.
 
-G B G B
-R G R G
-G B G B
-R G R G
+Sorry for this cosmetic push, but usages of pin muxes was not consistent
+across the platforms, and even for j784s4-evm wkup_pmx1 was coded at two
+place.
 
-Yet each driver configures a different bus format:
+For fixes, these errors should be caught during review but missed due to
+cross reference is taken from tool's output.
 
-* imx290.c: MEDIA_BUS_FMT_SRGGB10_1X10
-* imx415.c: MEDIA_BUS_FMT_SGBRG10_1X10
-* imx219.c: MEDIA_BUS_FMT_SRGGB10_1X10 (no flip)
+Note to self, don't always rely on tool's output while reviewing the patch.
 
-imx219 actually defines all 4 10 Bit Bayer patterns and the comment
-indicates this depends on how v or h flip is configured.
-Reading the commit message apparently the same is true for this driver.
+Boot logs
+https://gist.github.com/uditkumarti/089777a8c31482a67be35aa0ab3cefe9 
 
-Still this is confusing as I would have expected flipping to be disabled by
-default, expecting the same Bayer pattern order for all drivers. Can someone
-shed some light?
 
-Best regards,
-Alexander
 
-=2D-=20
-TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
-any
-Amtsgericht M=C3=BCnchen, HRB 105018
-Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
-neider
-http://www.tq-group.com/
+Udit Kumar (4):
+  arm64: dts: ti: k3-j784s4-evm: Arranging mux and macro update
+  arm64: dts: ti: k3-am69-sk: Fix UART pin type and macro update
+  arm64: dts: ti: k3-j7200: Arranging pin mux in order
+  arm64: dts: ti: k3-j721s2: Arranging pin mux in order
 
+ arch/arm64/boot/dts/ti/k3-am69-sk.dts         |  12 +-
+ .../dts/ti/k3-j7200-common-proc-board.dts     | 132 +++++++++---------
+ arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi   |  31 ++--
+ .../dts/ti/k3-j721s2-common-proc-board.dts    |  30 ++--
+ arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi  |  32 ++---
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts      | 116 ++++++++-------
+ 6 files changed, 175 insertions(+), 178 deletions(-)
+
+-- 
+2.34.1
 
 
