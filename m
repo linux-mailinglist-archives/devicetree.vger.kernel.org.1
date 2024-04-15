@@ -1,141 +1,101 @@
-Return-Path: <devicetree+bounces-59220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0F998A46D5
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 04:16:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D518A8A46F0
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 04:26:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE6611C20A55
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 02:16:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 76CFD1F212A0
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 02:26:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DAA411CA9;
-	Mon, 15 Apr 2024 02:16:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 647C518C3D;
+	Mon, 15 Apr 2024 02:26:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="NCxAY8NV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AIoNh3Cv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11olkn2096.outbound.protection.outlook.com [40.92.20.96])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 830D41C02;
-	Mon, 15 Apr 2024 02:16:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.20.96
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713147409; cv=fail; b=R9/4XexEiweMlvQfmgn9VX01yjh0Gjo9Kp0wS29iN3ZhftINYe+LGzuty/q2vJiNfDFaSRcKncz8g5OLYeoKeg+FxjX35LBL1j+98VmEa/u4dj80nRs97ZnAY0rDeFyw2Nzy71YVAShCDVkyftK4e5ER3nawYf4KJjh/LmjcBHo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713147409; c=relaxed/simple;
-	bh=tXqo5g8/qyT9tAf/wuUJTPF1IzTPXxjNRulmJQwY38Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=MS+qUEZvq6jUkdvEX7E/5YmV2/ZJix4NbCCwMGAvO5JCFwLrxkBIL193Rn9XOdD/VBdcP8eGxlSYoCVK3P7pUYgcEMNhyaPqdKOWKagWeMsWdmhvQ9UD/Juvgo1w2UeEf9OVYTQfdePGtEuJZkD7rAobVsAGa8e0cUtksRMLKyE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=NCxAY8NV; arc=fail smtp.client-ip=40.92.20.96
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XHH9jrfR+gweBNIHsI3M6WBQCwOsNLHRzlNlC63DH/QNepMQGawqU2XbYaStAPJP5mZYPU4IxuMNI5Zqp2dPndeBhbKQVJVynaouKIgIV41p5lZkpugTyu5ceMwWyyK7J5aEFJ3jspFHlLS51XZ0CPasWFcjR8HFLtD8bG5LOMQof6VZTxpKKhkBjiHER7I1UB/gZQWN1tK/ZQ+1ztgR72nwKhuifG2aQnfRqibbmoUVhE2cuw/hgNl8sy8dROMvR+InyMK0MzH180rC6O439H/XNH9FvDeaIlEXV7baAWLUbD4/+pjqJeKa1X6p3lCha4ORAOIp676l3tosFmPfuw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=d9O+4O39afhCYPJQ/Do5fQX0e4O1n1aiB+g+lH+2Ung=;
- b=PBAb/gdGl5uURgbwt3dplRAtpRuD6ebhGduCR4nVECirwepu6kfh2M6pAPQZzRvV1x5FROB6Esjw+8CT0SRyzyko0svfaPYrFrj5H0PfcAZPngyxA8WVmDtyUYEvC/pr4yhj5TsMi1QRYKZM2ihqvNP8W3H20zNOyP4OnhSie2mTEzSJA3+JEJEUKq7+49Mu8zTA3zkgn9wxPzvbMWqL14K2YLKiI29Fr7xJbyPwY1F8+L7o/sg1oiiWbCesbNh2iFMA2K/gSzBrMAX2jqqxpnyiw5rWrqEkeJDYga170gYTog69QvPo9tR5oOUKFdONAfK5nMb12tDenT5rwhEduQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=d9O+4O39afhCYPJQ/Do5fQX0e4O1n1aiB+g+lH+2Ung=;
- b=NCxAY8NVHzOEvctAfFS+FjpVBiAUy+f8CXE7Z8p5VvqnP0VaGbRQ4GA2qfvSaT4b0zRZsFE/7NQ/oE17kR0aGt5YV+faHphwECW9FZv1fBhrF1DvlOnAqYJX+MTC5P05JLV+GynxZBLieRV55Pso8UTieArlP6zI1Q0UcFg4ZFdAXKS8HFN5PalFgPGwVrs7LSwwy7xNw45QLGcWZsCnSkCu73VT92UUaLedaPke0mWsH5LQ1qPGEsACEsqnGiOiSpUAZuDqnuoyK20EUeVm91jRp4uPzdsWE3ZsG33Y72T0VeeJZd5t7wBLmdHzES6Lf82+D+fC/WVQSKSuqrA7zg==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by BL1PR20MB4635.namprd20.prod.outlook.com (2603:10b6:208:392::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.50; Mon, 15 Apr
- 2024 02:16:44 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::182f:841b:6e76:b819]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::182f:841b:6e76:b819%2]) with mapi id 15.20.7452.046; Mon, 15 Apr 2024
- 02:16:43 +0000
-Date: Mon, 15 Apr 2024 10:17:03 +0800
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@outlook.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>
-Cc: Jisheng Zhang <jszhang@kernel.org>, Liu Gui <kenneth.liu@sophgo.com>, 
-	Jingbao Qiu <qiujingbao.dlmu@gmail.com>, dlan@gentoo.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 0/2] riscv: sophgo: add USB phy support for CV18XX series
-Message-ID:
- <IA1PR20MB4953BBD9F2D6DF4D4AC793D7BB092@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <IA1PR20MB4953780F4617823F7173B6D6BB042@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <IA1PR20MB4953780F4617823F7173B6D6BB042@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-TMN: [8S8otwRQE3pEji3qN07gvBd6dptOSydpeVFZW0aPTCM=]
-X-ClientProxiedBy: TYAPR01CA0158.jpnprd01.prod.outlook.com
- (2603:1096:404:7e::26) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <qchtya3hmtircseu2cwnrn6rdjlvnai63ztyqhofhvso3e4imt@mjjdfb6kiqpg>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BF6E1864C;
+	Mon, 15 Apr 2024 02:26:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713147978; cv=none; b=fpJ4OXvy/D8Kp4b6gVseaa6nVm5Ti92LZoiGWK88nbiupTPYtjHsRLED1wp/CRbnuV81f8M0sz7GqrQagp9px4E9y91F+SpkMl7AiFfOZdfXT7a4ifB92EwlbK9TXn+Ypropx7POtCtXDUb7+KcWSe6984MU8lZXr+G+uM1QIuc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713147978; c=relaxed/simple;
+	bh=LAgK+StBnGkWbSGATqPLBF1s3gA6gg3TYn11vtSjrE0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=GucJNlygZIlswy8G4GCdUxd9Q2UyErAtdKLtWD+3p1Z3qgBpSj25zVAqsuAN2bYxrpwLR0bT8UbY9V/6b5xx6df+O0YoJU7cr8q6PomlDC5NOox9aHrJPBtn7zzu1zMnMLU0EYsZ8nuFVeTyyUvmYoOgh6JPGMyK2TJ+ANXUqWA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AIoNh3Cv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F065AC32781;
+	Mon, 15 Apr 2024 02:26:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713147977;
+	bh=LAgK+StBnGkWbSGATqPLBF1s3gA6gg3TYn11vtSjrE0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=AIoNh3CvaJscKxg5T5HrS1Fv3FZE+H+Til1Qf//LrWvcbg2n6T+OInjVhQsYSs2pp
+	 cR8uN4U/y/YbDwXKFUFxSeHdoHUr4m7gf90qpXcQ6fZ1Qwz8l4ZGX6IRGwZqBH/2Lu
+	 HPWZLYmvOm3mcF6EPUNyu0cee3LLzqO4aFRS8bSzoTTi6Zp8U4lv6+C/0Gp/ldhDWV
+	 6CWTIaS7xb+xrk2L9nNkZsncDWLaS1X/hY4u9H2iMdCfqG+6sJWwvG8UOUPIjkooN8
+	 1+q0hcGtMwkmjxhrhBJnvPeyO+OrySQZTU/So6aInTn0anWhZZHCwmfCr2dF7c0XVF
+	 kW18qA7vJH+rA==
+From: Mark Brown <broonie@kernel.org>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ shengjiu.wang@nxp.com, linux-sound@vger.kernel.org, 
+ devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+In-Reply-To: <20240412121410.2948048-1-festevam@gmail.com>
+References: <20240412121410.2948048-1-festevam@gmail.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: fsl-asoc-card: Document
+ fsl,imx25-pdk-sgtl5000
+Message-Id: <171314797539.1649319.16109271891144958377.b4-ty@kernel.org>
+Date: Mon, 15 Apr 2024 11:26:15 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|BL1PR20MB4635:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7ec6c4b1-5b9a-4b59-63e9-08dc5cf21800
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	NWK/bFyTLmWD+YOhVoTmf8O5FHuGjRyCcBf66XP4G1foH8ZSq/RyRzGFyRVFBPxGJNpRntxNc6TN4uJjebgPvWCUrPvy3N8g0bLO7nE/S/K9+Ru35Y3Jo5bGBnzqLZU8pW+ihkbukMqvCIflFW4pwU5G4JiyvWey/jhtr7uVeeG0c2faHQJcQOf7iYQBnd4jXizzEaLlWAsKVUauO/lvHmSlP7tm4PVex4hi48VtYq36boAbpOnqp7xaH7x8PogUvV0D6m1Zm29pKw8OaBBbX46Glwu49oBsY8NCiBbWmW6Gp+Q26g5RpsFKjHAaH+3kf/UW8IC5Ikqo1wp4CWzgTZm/RbbtQFKlVA0Jwre60wskMb4PTZGzW3hOG6DEwNCLGxm4aaxye0XMf2Akny8JPENimGv8cD6/+5hXqXwAioIKExnfDDeu4tQD+tT9shhHJAWAt9XiluRvM1vW6TphZzuiMRQn/E7FN1XMH3bEG8Z4tCWeKzP2alq6FdTPx3JDCQSyYFZelEahtXv/02qh6mp2dEDqvW6TyldNGfNyoRGTk+sYbXCZMbAPR0OZ3b3xkkyht6Si4JAo5lOkK/CEckKLAZWTCQL4vMaKpvuBsH5lllz4cQjPWuZFpFK0uuDu59qiM4wj2ItaC61X4N/AHiJFzyb/MMlz0hThuF4oU14OC4kxfbtVQu+2m7vI6L79k9QN3n0Z1M9rfU5uO/wh5RV4LJW4q6iX19FXdp4UH6z0VRzrnnBEZmHFLFdx8sQ6
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?84LNmvLQPdSSo69cFj1mHfedLb88drzy7OhxV4oAwa7dE/oe2pXNRVz+hQ4b?=
- =?us-ascii?Q?+RRggVDfz5hW7b+6YLe0lUibuh4Beuj/qUYzsRQb8ILeVvVaIOieb+9ERFjs?=
- =?us-ascii?Q?vLbHf5kw/JxR7lDChLwUEA5EucBb0pPsCJMyE43py6ByJMonAMceTtMlHq1J?=
- =?us-ascii?Q?OE7htJNJyft+U1xGcpxS9ug31ZMnbDE0uhkhmWJysLflBzbvqNP22qloEzJG?=
- =?us-ascii?Q?hy7609pmppW4XWZ4m5n1j7UTqsWReHA+DVRaTEnWTABUsfn6w+G+2uEJqX6M?=
- =?us-ascii?Q?WPg8fFnPNfBu7uLSE8TjO+FGiD8Bp8Jvx2HP2oRUVznGkj1m9yRdmTwcZzdV?=
- =?us-ascii?Q?wJsZv+j0Trloqa5oe8ir7kcEJx3IOKRMoPU0b5l3491UDI7fodm8z2VvSOIS?=
- =?us-ascii?Q?q08E+JQu1grERcVy+jqF948AM1JhfIza8kaxru0j2ywNxjbPReLENwfRcvtn?=
- =?us-ascii?Q?rKVzCT4pSR/4GpBfaT0K5sPAU1Uyrq9XPOjO6+Pdm4t3sFOHEB0maZnoI+lA?=
- =?us-ascii?Q?QGoX0Z1nEvoumLbjTIkyYsHP1oBoIlkPcoZc9V1BD3nH5lLdRrBbdp56/0tT?=
- =?us-ascii?Q?9iztkuAIl1nnDsMvVfHhcfNpLfkGg7vCX1DDfCbqLAx5kKsJWTbLVzwnSNdy?=
- =?us-ascii?Q?yhJizC6clMRFNgztAtdCJRjSO/75UT9bydKOr11df+T6YhYFI4hLzQ3bOa66?=
- =?us-ascii?Q?HN366ZYdRh9a3z1UNqcYhyXP/EfvQILzGg9mdAkUHKhvarKN6+8QUxSD2rHw?=
- =?us-ascii?Q?QTwIPpMvu1Kmdve4RcyNC4TLlDYg2OXnNxOk8qCfeXqWJGFuRCJ5auLkmeYC?=
- =?us-ascii?Q?LtyGeOwuawYD5CVhqAs2AM2OaD2PR3Sj8k0XgG5q8X6oWQX402orx2QaOS5z?=
- =?us-ascii?Q?1GI7BKt+P5jd4OIOeAsiitfNf5opcRFD9Bk+4m6+cOWZHctlrDqqv83XaU/s?=
- =?us-ascii?Q?kZhRNyXZUt3SdRT4qHskXom2EQElVeMufO2tTT9YBH1xnUV2hmuu9kp5cd7+?=
- =?us-ascii?Q?sKvs4yJFSG9N4zIy7F5qh6vhEqvQ6VLymasQkBxlKgBmb8tPoUvKGAPrxPOi?=
- =?us-ascii?Q?sffwo2IzHPT0mTiSNbyl+ANJfA979DkYEuYZIdBD94rX9AEfu/RZTQdhoWEt?=
- =?us-ascii?Q?iNz5W0MS6+YebJaRjPW+tLmSLVUtHT+oGhlP6pE3QF0dKUz6FtYFATtSdVs7?=
- =?us-ascii?Q?nvICsdUj/jJW+p/Me7QPXF7Qg3ZrRq/iPSCuO35M6x9tictlTxDkAj1KSR5I?=
- =?us-ascii?Q?+x3eLjmM+E4V1v9pnnzj?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7ec6c4b1-5b9a-4b59-63e9-08dc5cf21800
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Apr 2024 02:16:43.7317
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR20MB4635
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14-dev
 
-On Fri, Apr 12, 2024 at 03:21:26PM +0800, Inochi Amaoto wrote:
-> Add USB PHY support for CV18XX/SG200X series
+On Fri, 12 Apr 2024 09:14:10 -0300, Fabio Estevam wrote:
+> Document fsl,imx25-pdk-sgtl5000 to fix the following dt-schema warning:
 > 
-> Inochi Amaoto (2):
->   dt-bindings: phy: Add Sophgo CV1800 USB phy
->   phy: sophgo: Add USB 2.0 PHY driver for Sophgo CV18XX/SG200X
+> imx25-pdk.dtb: sound: compatible: 'oneOf' conditional failed, one must be fixed:
+> 	['fsl,imx25-pdk-sgtl5000', 'fsl,imx-audio-sgtl5000'] is too long
+> 
 > 
 
-I forgot to mention this patch 2 depends a header from
-the following patch:
-https://lore.kernel.org/all/IA1PR20MB4953BAA0F8E06CB202C5C2FBBB062@IA1PR20MB4953.namprd20.prod.outlook.com/
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/1] ASoC: dt-bindings: fsl-asoc-card: Document fsl,imx25-pdk-sgtl5000
+      commit: 4be7bc275253c0f35c8f6362af1ee5d91d5d83e9
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
