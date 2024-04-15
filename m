@@ -1,115 +1,210 @@
-Return-Path: <devicetree+bounces-59368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95F378A4E6D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 14:04:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA2668A4EC4
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 14:19:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4AEF51F21B43
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 12:04:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FB0F1F23B88
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 12:19:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C48A0679E5;
-	Mon, 15 Apr 2024 12:04:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 298D13BBEB;
+	Mon, 15 Apr 2024 12:18:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=herrie.org header.i=@herrie.org header.b="Vjofp4AR"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="kvSIaQOY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from outbound9.mail.transip.nl (outbound9.mail.transip.nl [136.144.136.11])
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2047.outbound.protection.outlook.com [40.107.114.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD1196BB39;
-	Mon, 15 Apr 2024 12:04:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=136.144.136.11
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713182676; cv=none; b=eAne1aqBnxvRYd0IpI1eqzeVLCAgCejIwJuiTnE/KjWRg/WvPDvUd5wuse+FYOgj7P3dsqaJd79WP9xAHE3FdojwMCqlpmH1rkwl1Tnivb/Z9spwLk5Z7sI0Dmc2Wz01iwyNEo7aQMfVmu0nLhzpKT2lgu/lKJV7vseDRop0SgI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713182676; c=relaxed/simple;
-	bh=nie7cPNROHKZ5ttu20WSAASaT3lPTeH5P0IxePoJuPs=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ZgOZaVZPRUAeG421GbAWOdm46JCUQ/BIL+nwNUqyMjfzHYiW5kpRWXRTnXNTHte1NzYT8u6qcJj6C+VACHJHcehkaXCCfX4H4F+L3J8apUlm9VhRucz8SXlUEpCihThf2WvWmy5ZXCZ5ZP3CNC4owl4hqK8TPbC+x5+c1O79Ark=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=herrie.org; spf=pass smtp.mailfrom=herrie.org; dkim=pass (2048-bit key) header.d=herrie.org header.i=@herrie.org header.b=Vjofp4AR; arc=none smtp.client-ip=136.144.136.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=herrie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=herrie.org
-Received: from submission4.mail.transip.nl (unknown [10.103.8.155])
-	by outbound9.mail.transip.nl (Postfix) with ESMTP id 4VJ5HH0gFPzTPNkM;
-	Mon, 15 Apr 2024 13:56:27 +0200 (CEST)
-Received: from herrie-desktop.. (110-31-146-85.ftth.glasoperator.nl [85.146.31.110])
-	by submission4.mail.transip.nl (Postfix) with ESMTPA id 4VJ5HG1N88znTZy;
-	Mon, 15 Apr 2024 13:56:26 +0200 (CEST)
-From: Herman van Hazendonk <github.com@herrie.org>
-To: "Bjorn Andersson " <andersson@kernel.org>
-Cc: benwolsieffer@gmail.com,
-	chris.chapuis@gmail.com,
-	Herman van Hazendonk <me@herrie.org>,
-	Herman van Hazendonk <github.com@herrie.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: phy: qcom,usb-hs-phy: Add compatible
-Date: Mon, 15 Apr 2024 13:56:02 +0200
-Message-Id: <20240415115603.1523974-1-github.com@herrie.org>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <>
-References: <>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF515657AD;
+	Mon, 15 Apr 2024 12:18:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.114.47
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713183538; cv=fail; b=ZLOG1cqeGCKadDjCDCU7gX0YOk9YP64G8w8OB4iPaRZvArChx2zOJWXzyNxIqO1bg0FArZg+S6ApWi2K6Eporfk4UAxSrBZvpfkaKwcnQG8fAtlaXjt/48yBMQ+zLb5PbrEM11d2GYe34Y0X4li/RXZy6Tzm4u+UH/Nx/X9VXdM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713183538; c=relaxed/simple;
+	bh=gWLUOWlVXVfTV3tz/GwEJGZjMCJr3ppGKkWgMuDuHZQ=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=VzgoNM/6xv/BTEK3Cy4arnNeocKKozHASAxYjPZkfWYYdyJjElwmiGNrnhbxiaZGCr3q9OV7h3Qos+4iv4WtoswDy/j5BiHBpUVWfB4cO3v6skLxnFYoYtwdMCP+RLLXD33IlCsQJQNWtJY1YMVhfa5v3zLtpaELbs0pShLEX2c=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=kvSIaQOY; arc=fail smtp.client-ip=40.107.114.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=IUYCAlUs00iAtSBrv0/GJOYSzUdyPWVu7x7XFpVenNlZ9tGkeK0tLelcFmjKiBgS2Kh4gx1uOnqFR2qo2abUrTXDlLsWIF+uB40Rsm/Ms39xzQXbqnkPERMtJNwSG7VhFrr38DhN8wEm1GYtbpiv2YcUY2HZlKBQB0t4ZhPrzzXaGdsqjIoBfGujq/+z7pK0fDUiWIteUVpmSdm71C4NfxpsAW5jsB+k6bkhiKjc+ZCGwbk/EQE+HtffbxAVRNSQkEoP/EMVIDFkHToO6tqNcnkvvNZp+7IO3QqBcuPc1oCsEY81NQtw0vpf8+cBxN0F3tKL6ezwk1r9794AeaX50Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=mgardweZzDc4K+xMU43pMgfHq0hyEmqKx/dhFFNJXps=;
+ b=U8ONO8KC5ABLdozTci6tK2s5CPWpIVUw3wDsJ5bJhZKRO44wCHolIO3w3VFvpRo6MjC6d6jzgyVS/WUH4cGYi1A4IXpT6WGk5Hzej2MOxKzskncK+TrjY4ihSbzesdJDrHUpmza9tx1s8lHU/eCgZe+QiekJ6D5WwUXNPbl+fcif9YSDAnCuMYRBOS3r6/rpuwe35jJidSKwEyb+ZiZtOFOYLb6SFOr8js3wqRoYYe2oPj/9FaIjbfK2ryxg36JW3g9AldLP9DB7EQ40KF+i8XgZbtclvH501AJ4RgRSVhAVI3CzK/WDINLTZ7qXP9jQBRcAaV1BUyxM+SXYTJkggg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mgardweZzDc4K+xMU43pMgfHq0hyEmqKx/dhFFNJXps=;
+ b=kvSIaQOYV5oC6T2aiR2ggDzgz7lVxYA1xoBsJbUROGNy/P+sxem9yGc7Bx8nolmv9hbyxbRQBW62cGmN8k5BOvnAGcp4rQxf/hOmD72CEbfnV8ri9Qn4DCk0FFKrlp+tLCXFnbQFnIhIF21FtfK26UhgX5QDy/sf1Pj1tbxjFIY=
+Received: from OSAPR01MB1587.jpnprd01.prod.outlook.com (2603:1096:603:2e::16)
+ by OSZPR01MB8404.jpnprd01.prod.outlook.com (2603:1096:604:18c::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.50; Mon, 15 Apr
+ 2024 12:18:52 +0000
+Received: from OSAPR01MB1587.jpnprd01.prod.outlook.com
+ ([fe80::fda5:45f9:f1b2:cbce]) by OSAPR01MB1587.jpnprd01.prod.outlook.com
+ ([fe80::fda5:45f9:f1b2:cbce%3]) with mapi id 15.20.7452.049; Mon, 15 Apr 2024
+ 12:18:52 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>, Geert Uytterhoeven
+	<geert@linux-m68k.org>
+CC: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>, Geert
+ Uytterhoeven <geert+renesas@glider.be>, Fabrizio Castro
+	<fabrizio.castro.jz@renesas.com>, "linux-renesas-soc@vger.kernel.org"
+	<linux-renesas-soc@vger.kernel.org>, "open list:OPEN FIRMWARE AND FLATTENED
+ DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH RFC 0/3] Support VBUSEN selection control for RZ/G2L
+Thread-Topic: [PATCH RFC 0/3] Support VBUSEN selection control for RZ/G2L
+Thread-Index: AQHZiaFfkULG6eflqEaqpA3OKcqzp7Ef1iKwgEtzubA=
+Date: Mon, 15 Apr 2024 12:18:51 +0000
+Message-ID:
+ <OSAPR01MB1587FA6A68811C80A574BCBE86092@OSAPR01MB1587.jpnprd01.prod.outlook.com>
+References: <20230518155649.516346-1-biju.das.jz@bp.renesas.com>
+ <TYCPR01MB11269EE1F1FF841AFD999C9AE86592@TYCPR01MB11269.jpnprd01.prod.outlook.com>
+In-Reply-To:
+ <TYCPR01MB11269EE1F1FF841AFD999C9AE86592@TYCPR01MB11269.jpnprd01.prod.outlook.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: OSAPR01MB1587:EE_|OSZPR01MB8404:EE_
+x-ms-office365-filtering-correlation-id: 7026be14-2cca-48bf-5d75-08dc5d463645
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ bZPmuCaoOoM5rSWg4hFyL9g95GD28EAgeZZuot/TI9op0oHBNHKFmtD9+Bbx2cyFVfV+mBtJxunEgfyYbv6MnqKPHGur/b2kdBB7FMkEwgQ8i0Af7IwJ9yhRH0cVgqY57j3lWNZOom/tLRefovldCg3jVJ1pFOzbW7eDhTdAXUkKBmMEijeLaQ9NGg+Kba56EqE+2V+8LG87u62tLGjj6OO0ZcR7ikqqionPzdNGKavi6uNuhumBexMB0z7w3Tl8gUl4Okrc22FHs7JhPdLckM16/mbA6mr/UY8FHbCAsKzqeeA8oWh1RbRr6ZoYDPD6VstJdeSodHfqRD4DXQQBfRBIJXbx/ogAn4ZwFEiuVtTBP8jBYKlWr5xiwGH1NIR6JiEIpic1CIPRewiLPclHb+cjbUbPAYvRd9EYsofQR6CXPB1kgTOkUMgdkzY7nBy0ZxohFCWhzv2DL9VUZuX/XF52nCVtb+PhPFhN22nBc/RE1V55WYGSFMM5Q6LcqkvfKOShWv86N6wFFknAGpeM9p+InFfByy1t2gMa7GB5Z9b8IdzZUEbYIxj/m2/BzUCHIlWxjabH7v0XxDzr5FN+yOuZKVg1K1m7b+kbali6icEZNTvXNCU42OI6D6SHuxl2Swx0AeJPG85xipZ8xsbAwLBnCx43+O2uday9YqWEf3Eupft0gYCCBCshRZfYuv0E+v1JBf4Fcfr15tIiprQ/JA==
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSAPR01MB1587.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(376005)(366007)(38070700009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?C2FUvwakSW3WYC4WsZKFQzr01TQpunw0G++r2+3ed3gIydl/RUeI1nHm+WJa?=
+ =?us-ascii?Q?tj/xGT3BBmkkyfa7bhgoUFYOv03F8lYwZP0QpQE15gRfzyp1dRU9JDNXx6wY?=
+ =?us-ascii?Q?Y5cV334MsMNvUf8Ng5VkgQMjtMU7X+tplHxonUr2NksFyoVodEi+97J2MYjm?=
+ =?us-ascii?Q?FKkyr08KOMI1XWC5flIL65H7qnXMNmh+TCKy+U63sUMzeMGXCSNxt1DyGf3W?=
+ =?us-ascii?Q?rthdgYiD1djzO/NFWCIsci8NZuqRJGPr84KX9Lonasa6CFy8g2GEGCnXRtKu?=
+ =?us-ascii?Q?eRgB+etrvMi670ucr+q8UAmbwMvGELrMacZydohb/MODg20986fBeD1jcuiB?=
+ =?us-ascii?Q?siy3L3yXVJWlxtKHcURLd/l0UUcrti43tk1ZSmG9Fw+LniDvp7XR9etPAYzY?=
+ =?us-ascii?Q?XKnmiicaGznDQBsjgLUkH5tIhiFFCW6u7dRqdut4Tzl5735Oktezrhb8z5D/?=
+ =?us-ascii?Q?eIY0OKf2thm8mEXS/rq2/ETERzP2ZmVeaKzsi8Ean+ru1uTkJehJ+Vpe6vo8?=
+ =?us-ascii?Q?kEZZCQwrzpVlMf9wughFaucFKowWWzd2Hno5gETg8Ermhba1Vf+FPA8c3qHA?=
+ =?us-ascii?Q?lLmAJgz8oBEPrjn6Sm6FQ0r8Dr/4uvijHKP4KMReDo/KtYALP/2jkgy8+EwI?=
+ =?us-ascii?Q?89GGmAby/ZqOcKV2dQM8RuMPHGainQpzshmFmF78LiuW0FvNkPpbvfbPUBgF?=
+ =?us-ascii?Q?kcuHFueVHmT4MQBOj1AB+2xGAlDAjS4ohgFI7dtQFtbcuD1KfDexO8UWQdVA?=
+ =?us-ascii?Q?8RbFazrTGKnGLkrRAMvtnK5OdkHTj7dP1FvqmEyw/e4efaWs3V8K6o7gs69b?=
+ =?us-ascii?Q?X42GPaYVzhOO7DBnwonuF6fQTl+ubFyhzQFll+53jmA+8zoeiu1znGYuG1Ws?=
+ =?us-ascii?Q?W3CuQDl6FUDLkFH8AnSdz138js1kV4nIc26RKFVKC+LV89EcQMMxvfiQEi6+?=
+ =?us-ascii?Q?unAWbbIDBGAmUIpaPv6JEX5VuKcjK7FckZlJ3BNdQLtgdv8w9STeUR66+IOQ?=
+ =?us-ascii?Q?wPLEedDa0v0KY8JueFN/76ONjmGLibyF/MFengyEQ7Ae0ENr9dN9JzxmonuG?=
+ =?us-ascii?Q?S3m1Rt+f5rMUEUqiwJe6itfEuEjcKt5Y8mPfmXHTlFUfmfTVHy8vjTANEf4P?=
+ =?us-ascii?Q?PTnYCXGna3Fgt9dinUNFju8c1AdCLL7zmkxyHAxNMcm2j6A9o8aaMKoxBw5K?=
+ =?us-ascii?Q?nb9dQT978toXHnXbGC5/fRr5bu3DiqoKHI2yBbzI/j7+ACvCJnnQSuNpTFjk?=
+ =?us-ascii?Q?xvSoL2clM5SjKbl8A/QiCXHafU1YzrP18H4Jsmjr96JBhH/oz442mP0RSstd?=
+ =?us-ascii?Q?ZqBL6tZ1vJrK9GkbVrVMG3Umr7uNUNUAQOeMUftnSvL4mY8aJVnTV0wo5zJC?=
+ =?us-ascii?Q?AhTHQjU3c6s2lXJsWFT+dvcR6MO+ljXHP0bx77gvJ757xUmN0D0iP/+mw0VX?=
+ =?us-ascii?Q?NjiV7asKMqQww/b1yaKRWFuyct/c8yuz8XodzyL8pdV5Ee0t02bzxBOPsZ23?=
+ =?us-ascii?Q?XqLNkjAZSHZ1eSz5WErNYg46Uw33qxWw02tULx98XWhYMzyzufUIn3F00h3f?=
+ =?us-ascii?Q?TUipwbCDYJKT28IcMpCIvk5UKWQ2cqNiighQKv7ZB5xcFY1l6MAG5SrghRYv?=
+ =?us-ascii?Q?XQ=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: ClueGetter at submission4.mail.transip.nl
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- s=transip-a; d=herrie.org; t=1713182186; h=from:subject:to:cc:
- references:in-reply-to:date:mime-version;
- bh=GCn4MctOklijAimZP/GbpYzFdmp5YzqVGKFzoeYARW0=;
- b=Vjofp4ARu7vEEvDbcNyEoCL/dQsfhTCVynR0GjMy995c1BTda0A0qwFeC6rJh5XY/EqUPl
- Y1bMvUvc42SZhIojymAIKKFqCODLHnSh5zF79tOhUmA/GVH3yfOlwQ6miFfCCvDw4GQeDm
- 0DNXbVbnijWj+ZNDbbPhSdG4jEl7hacn7QmMqy/P9etW4MDxtQ03gs3VLQaAkAqbgq1MiY
- RtRewzoHiWZqOwml5n4LkhK8Xr8WF2xdG2LwJ/IrxUHGFdSCVru7f08lSfV/dxoWO14GMb
- N3F/3WKQOT7UQDcCF2tfM58QGxCEmEsjSCPMfT4AFhmCd8k1JjzAbaXsgF+x3Q==
-X-Report-Abuse-To: abuse@transip.nl
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OSAPR01MB1587.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7026be14-2cca-48bf-5d75-08dc5d463645
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Apr 2024 12:18:51.8877
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 81tJmjxzcczf5eLwAocAWCxaL4Ln8xhIlKQvm/Hl5G5LcFhNCTZHMFWFnldpUtubwapN8jheTsltltM5F+An9OgH1JENQynB/QoEOvLzeZ8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSZPR01MB8404
 
-From: Herman van Hazendonk <me@herrie.org>
+Hi All,
 
-Adds qcom,usb-hs-phy-msm8660 compatible
+What about modelling VBUSEN as a regulator?
 
-Used by HP Touchpad (tenderloin) for example.
+USB phy ctrl driver shares the resource to VBUSEN regulator driver
+for enable/disable VBUS and PHY driver uses regulator to control the
+VBUS??
 
-Signed-off-by: Herman van Hazendonk <github.com@herrie.org>
----
- Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml | 2 ++
- 1 file changed, 2 insertions(+)
++ DT as it involves different modelling
 
-diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
-index f042d6af1594..1faf1da9f583 100644
---- a/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
-@@ -15,6 +15,7 @@ if:
-       contains:
-         enum:
-           - qcom,usb-hs-phy-apq8064
-+          - qcom,usb-hs-phy-msm8660
-           - qcom,usb-hs-phy-msm8960
- then:
-   properties:
-@@ -42,6 +43,7 @@ properties:
-           - qcom,usb-hs-phy-apq8064
-           - qcom,usb-hs-phy-msm8226
-           - qcom,usb-hs-phy-msm8916
-+          - qcom,usb-hs-phy-msm8660
-           - qcom,usb-hs-phy-msm8960
-           - qcom,usb-hs-phy-msm8974
-       - const: qcom,usb-hs-phy
--- 
-2.40.1
+Cheers,
+Biju
+
+> -----Original Message-----
+> From: Biju Das
+> Sent: Tuesday, February 27, 2024 12:03 PM
+> Subject: RE: [PATCH RFC 0/3] Support VBUSEN selection control for RZ/G2L
+>=20
+> Hi All,
+>=20
+> > -----Original Message-----
+> > From: Biju Das <biju.das.jz@bp.renesas.com>
+> > Sent: Thursday, May 18, 2023 4:57 PM
+> > To: Philipp Zabel <p.zabel@pengutronix.de>
+> > Cc: Biju Das <biju.das.jz@bp.renesas.com>; Vinod Koul
+> > <vkoul@kernel.org>; Kishon Vijay Abraham I <kishon@kernel.org>;
+> > linux-phy@lists.infradead.org; Geert Uytterhoeven
+> > <geert+renesas@glider.be>; Fabrizio Castro
+> > <fabrizio.castro.jz@renesas.com>; linux-renesas-soc@vger.kernel.org
+> > Subject: [PATCH RFC 0/3] Support VBUSEN selection control for RZ/G2L
+> >
+> > This patch series aims to add support for VBUSEN selection control for
+> > RZ/G2L alike SoCs.
+> >
+> > As per RZ/G2L HW(Rev.1.30 May2023) manual, VBUSEN can be controlled by
+> > the Port Power bit of the EHCI/OHCI operational register or by the
+> > VBOUT bit of the VBUS Control Register.
+> >
+> > A reset consumer(phy-rcar-gen3-usb2) needs to find the reset
+> > controller device and then call the provider(reset-rzg2l-usbphy-ctrl)
+> > to configure it.
+> >
+> > Please share your thoughts on this patch series.
+>=20
+> Gentle ping for this RFC series. Is this series is in the right direction=
+?
+>=20
+> Cheers,
+> Biju
+>=20
+> >
+> > Biju Das (3):
+> >   reset: Add reset_controller_get_dev()
+> >   reset: renesas: Add rzg2l_usbphy_ctrl_select_vbus_ctrl()
+> >   phy: renesas: phy-rcar-gen3-usb2: Control VBUSEN selection
+> >
+> >  drivers/phy/renesas/phy-rcar-gen3-usb2.c |  9 ++++++++
+> >  drivers/reset/core.c                     | 14 ++++++++++++
+> >  drivers/reset/reset-rzg2l-usbphy-ctrl.c  | 27 ++++++++++++++++++++++++
+> >  include/linux/reset-controller.h         |  9 ++++++++
+> >  include/linux/reset/rzg2l-usbphy-ctrl.h  | 16 ++++++++++++++
+> >  5 files changed, 75 insertions(+)
+> >  create mode 100644 include/linux/reset/rzg2l-usbphy-ctrl.h
+> >
+> > --
+> > 2.25.1
 
 
