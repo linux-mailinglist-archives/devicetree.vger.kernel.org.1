@@ -1,248 +1,161 @@
-Return-Path: <devicetree+bounces-59304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 582588A4A0E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 10:14:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45E238A4A35
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 10:21:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E78E2860A8
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 08:14:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA8441F26071
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 08:21:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE712364DC;
-	Mon, 15 Apr 2024 08:13:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7055364CD;
+	Mon, 15 Apr 2024 08:21:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=topic.nl header.i=@topic.nl header.b="PVW7RaRp"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="jmdSZtP2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2117.outbound.protection.outlook.com [40.107.6.117])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A2FB3BBF5;
-	Mon, 15 Apr 2024 08:13:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.6.117
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713168810; cv=fail; b=RtV2XDI2wrqSTPEhebLRhQQuJPANl4BIFRfhbBgA+0EjLMJsQMs49/1ejRwaI6oKeLs99PiKEDtSbFamaBzB2RP4QyTi4+bRuXGVEVw18ltY7s8Vu2lnWtzKNiFWWg66aPYKGD5yH4dZA2x4xy75NJ7M8HZJPZ53ipr7SakTA0w=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713168810; c=relaxed/simple;
-	bh=u2jNXUdlEl0kN1j8OchrByc+t9mhlXMj8KWzl9eF8sU=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=VhjMWt6ZcvspOdtrB4cFslpUXSD+PaQyRMIIJs/hRHHh9HLMTqsnheyq3Yz5Enh1esyTmFCqmUIoFzAeKe8Ujv4CfEsAU3JYPx2X6m1+m80bRf1Jdp6Hx5hw5WTFaSjSsFlmbjJjf1HWvj71QbCZKEQNQTg+KkeziZUvd0SdlG8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=topic.nl; spf=pass smtp.mailfrom=topic.nl; dkim=pass (2048-bit key) header.d=topic.nl header.i=@topic.nl header.b=PVW7RaRp; arc=fail smtp.client-ip=40.107.6.117
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=topic.nl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=topic.nl
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UBG5NhOQ31n75EzTLGL3PvtFNml6loPKlnZblWJRYdLUyAmt0yZeRoLSrgHZJwQZfAP+PF8QP4tfkbaEk/YoX2xTkOICKm5IiP9qz5MeIsONY223q2nb3rDtkQ6OgdWY7vi3bCOYjj3V3lzhas3ajadsiYlSv4CWHf08l/4d064ijTwaQzwqEmzfBF5RH8/6GBMCPVPjZI28orYEthZ985tEUCqK9lUNG0NG9v6LQQgi/sN0EKuv8mjd4WypH5fYyxveOjPt4U43G6um5iDZKSx9CRjfRdrOkvlRmclIi6dhy43oiakdSSRjB4OcaEmqTpeAGv8cQYSh/icJk6jISw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5Qkr7nM727EHH45DBlYjU1b/MAYY/KynsP/yC64XoSI=;
- b=EbIBfSMOn7Kh4i8Gv0DOjWFd0wtKUS5JTvxFqF8ZzCRV77DdyzMQM5gkmML3TEBeWAnQ8sfhjRGN4zmgKKgqX9uYZS7v3IyAxIv7KpXAA+i5TEi674aqANDk71E5O5xTnU0cs9RQXM4PAYkp68FHfLVsBbvw2IcCtUqIkWhy94LCgNiFe6gosUzyUn1TzHIh1IyySnt/7qXRM5G+FIZiJdL08JNB5tv0QwCTEBUsVJVJ6SyHwwMeFIlj0HXfN14cRPoX6eyKQ69wKkjCoIwoaEEBoXMTXaHe58X406uI2UlRVhxULHWs5m9jiN6h0gP9vKSOXNuBGptncVfPJ7thTw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 40.69.19.60) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=topic.nl;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=topic.nl;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=topic.nl; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5Qkr7nM727EHH45DBlYjU1b/MAYY/KynsP/yC64XoSI=;
- b=PVW7RaRptLJgD5x/gBS6C5z0X1ilEp9WYcv+3+yZ3KWYhzooP9Rxe0Wa6QGtBb+vgWmXxsoJ7FCMO1xD0HRS1uGy44sJN93zEdJiBBZKkWdjucwbTVmgvyP+SCh60WoqbfaaHdAzN124GTKHTpLVronnNBtG3zOreSWc/geM8y3eMdfMD2HYs6Vd8TgxW/+wchdhH0D6hA9dWAXWs9zPooPA8Wy/wME1kwEBOPMVFpB/qSA7imNGIEzmSIr6MwCqFryX0HL2oVkaixvQbMS5mSCjlU5OtJdzyaMYOKmSqIKwz1iiKqXdSJp6T/siiEpWUWohrlekPosO0hvB1Q/c8g==
-Received: from AS4P251CA0003.EURP251.PROD.OUTLOOK.COM (2603:10a6:20b:5d2::9)
- by PA4PR04MB7968.eurprd04.prod.outlook.com (2603:10a6:102:c0::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.50; Mon, 15 Apr
- 2024 08:13:25 +0000
-Received: from AM4PEPF00027A62.eurprd04.prod.outlook.com
- (2603:10a6:20b:5d2:cafe::92) by AS4P251CA0003.outlook.office365.com
- (2603:10a6:20b:5d2::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.33 via Frontend
- Transport; Mon, 15 Apr 2024 08:13:25 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 40.69.19.60)
- smtp.mailfrom=topic.nl; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=topic.nl;
-Received-SPF: Pass (protection.outlook.com: domain of topic.nl designates
- 40.69.19.60 as permitted sender) receiver=protection.outlook.com;
- client-ip=40.69.19.60; helo=westeu100-emailsignatures-cloud.codetwo.com; pr=C
-Received: from westeu100-emailsignatures-cloud.codetwo.com (40.69.19.60) by
- AM4PEPF00027A62.mail.protection.outlook.com (10.167.16.71) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7452.22 via Frontend Transport; Mon, 15 Apr 2024 08:13:24 +0000
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (104.47.18.105) by westeu100-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12) via SMTP; Mon, 15 Apr 2024 08:13:23 +0000
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=topic.nl;
-Received: from AS8PR04MB8644.eurprd04.prod.outlook.com (2603:10a6:20b:42b::12)
- by PAXPR04MB8288.eurprd04.prod.outlook.com (2603:10a6:102:1bc::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.50; Mon, 15 Apr
- 2024 08:13:13 +0000
-Received: from AS8PR04MB8644.eurprd04.prod.outlook.com
- ([fe80::e86d:f110:534e:480a]) by AS8PR04MB8644.eurprd04.prod.outlook.com
- ([fe80::e86d:f110:534e:480a%4]) with mapi id 15.20.7452.049; Mon, 15 Apr 2024
- 08:13:13 +0000
-From: Mike Looijmans <mike.looijmans@topic.nl>
-To: linux-pm@vger.kernel.org
-CC: Mike Looijmans <mike.looijmans@topic.nl>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Sebastian Reichel <sre@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 4/5] dt-bindings: power: supply: ltc3350-charger: Add bindings
-Date: Mon, 15 Apr 2024 10:13:04 +0200
-Message-ID: <20240415081305.316107-4-mike.looijmans@topic.nl>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240415081305.316107-1-mike.looijmans@topic.nl>
-References: <20240415081305.316107-1-mike.looijmans@topic.nl>
- <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.9959538d-6257-47d8-9ef7-78f72d89b9a7@emailsignatures365.codetwo.com>
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain
-X-ClientProxiedBy: AS4P195CA0029.EURP195.PROD.OUTLOOK.COM
- (2603:10a6:20b:5d6::19) To AS8PR04MB8644.eurprd04.prod.outlook.com
- (2603:10a6:20b:42b::12)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91EA1383AB;
+	Mon, 15 Apr 2024 08:21:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713169273; cv=none; b=Oy9CVQK9qilsz0p8nLc2IeLSFN5wG0kEeGmPjP8aO/5K7ri+/6b2+ZfEkFqOWLyRaSqzwEQ+TqZrYsFz+M6Vvj0nIIbjqNq+o1BaaycRLlN0mumvfgwHchnPVsd1WU3t8xfQuEsXurIDxXKlptxtvVmM4mHXQRnhzImBv9qcRJM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713169273; c=relaxed/simple;
+	bh=oQunxvop27t5yJXcm19bCMeiPUoz/b2hHIJhuJg8Nc8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:Cc:From:
+	 In-Reply-To:Content-Type; b=T/2ReRz6utLmomVEAZy0SrkS/2Qb47GgNeDzwllE6BNEZGNVEEJQBPqNFdfpFV5BOk1OS0j3NROFRIdjBhsQOHOO03ufNJ2sMrotl0JzAXe8aVpYCf1e96Y0qYStohduQxoZFYHDSN1mdo1t71bNScRIflgfNpUKAQNIS0HhQuA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=jmdSZtP2; arc=none smtp.client-ip=212.227.15.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1713169248; x=1713774048; i=wahrenst@gmx.net;
+	bh=KmiBSlvBSznTGtJsTgqRLR9KNsooabNqyzKhFAipvvk=;
+	h=X-UI-Sender-Class:Date:Subject:To:References:Cc:From:
+	 In-Reply-To;
+	b=jmdSZtP2VeLSIPWswAYmTgZ0w8bCZhdP0mVP9+EpcOe0ljAk27S+aDLyONz1GRHx
+	 dEzmyQgYBiZYvnetlfTcde2H+m8Cv8sAxgWrXFU4hjFSII64JtuR75eW551Urp7VE
+	 FReoS2CunvaDAg2XxGcJ5WDc64ab+NxQ8nMdIZ5hN6M2uGwFc6PFF5u2bg65533G5
+	 z4DYbmqP301WeXjWRXXTfEJJiO4iErmCYu1xpVAoBonOFe4KFOXjg3k6X24zE93Fo
+	 VSlcyo71LLIykN8PwzlnkP3MCqJrYsO8DupcYrBBd4os0Sg7jnpvvE/timb+3w1W3
+	 +iXajfT+Dk3YEuX74g==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.167] ([37.4.248.43]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MowKi-1sWzF82qKc-00qPfS; Mon, 15
+ Apr 2024 10:20:48 +0200
+Message-ID: <d7b884dd-9b70-41c3-ac2a-66b54c26d08a@gmx.net>
+Date: Mon, 15 Apr 2024 10:20:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-TrafficTypeDiagnostic:
-	AS8PR04MB8644:EE_|PAXPR04MB8288:EE_|AM4PEPF00027A62:EE_|PA4PR04MB7968:EE_
-X-MS-Office365-Filtering-Correlation-Id: b9b71392-f1e1-4f2f-498d-08dc5d23ec3f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original:
- 9wXLUpS72pTYY3Dyot8GMKGc81wXqrJmV2D+rK/5nf5719YWchM9a/WQKg2BI9hGAnbfrQpA9L0pMzJlQGgHgeDlq9hPhl+JZgrZB7AwCYJEKW3RrMFUVxFDR6ruGbS1DNFKA8WrX+bPCGkQIV8Z8cjnFb1oFyC4VESZ0S7teolz5u5FHp5f9912R6NFloMWeyTVgf2zUkyTTSoa5ZTx48CUN68eqj3JcUuBtDjDeXknGYApyxobBap1iPImAQcgKN2pqfmw8ATEKWZJGf29uo9m0nMYcHUaqrRiXHI6uPv2nlmHlr21kHUfLi0Ragb1uQO1dkWuG7ehea9RH44aTAUresGVqZDdGcAir3WG52kIem4sVe/563w/3HC/yXIZCpqS8ZLEbGZmD4gBhpfjNcgS1/o66d4+r3ctYauzOmdBwZyzdAUJOOStc5DDbhAlrgyVRUZjUm9SIrRluhXD+NgRqjVOZFoA6OqM8SmvJTJf/85iAFIifHpZiVOINnAUKLDJQu6ojEQ1RiT3gLr1lvy47cdPDqGCOOgtBjPT/ktZDC+4s26jMK4gmY6r+D18qhLOB7jJJKDIKzOpfL7cO6/UQtZXpukfLTkMu+bAzVMdTpICnPGhO+LgvoIc108Yli4kFvP0SXWSHQamUUwu2Y0gSzfD1slQcegBosgMD3Y=
-X-Forefront-Antispam-Report-Untrusted:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8644.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(52116005)(376005)(366007)(38350700005);DIR:OUT;SFP:1102;
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8288
-X-CodeTwo-MessageID: dfa4f5f4-9248-4977-970f-28c6487af4be.20240415081323@westeu100-emailsignatures-cloud.codetwo.com
-X-CodeTwoProcessed: true
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped:
- AM4PEPF00027A62.eurprd04.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs:
-	0f4714ae-9dcc-4a6e-8bab-08dc5d23e513
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	zdE3xn9FtIUA1nOsYGaLZNw4iCWEnYXji6Z5prp4femZJh4Imy6pAibN9Vcwd9gF04COBANDgriueKMUBinKDaLoJa5DTWxu9T/0Fk7usi/KjTvRx7JFMmWQT4D1QeQLSPqfAc6GO6hmjYjy13Y6ffxF++xBQn/jDvOXPZ+sTPDsJ752bbSW7nl0MFoMGqdP3h4IdxoUE+eTRSrDgqAohjA2DPwP0fSrYGoQUo6dvkKh4jWgMgsXubyFFm2nw5rbvKnRpuU4exXMtIc6ZEH907VPCoFownZuoeFiOvZ3KmAH2uHicS+wI3EVzlguMzFqg953L1KcSabt60kLDpyuG0pIkuBoEpmZAkZaxivUNPnVt8gDwKv7ej5pFQFpt3aTuDM03wYq2atYr1RIXUx5pgrw4ZTdmTDRanrtnR9Xfiv6QZuDcSCsorPgN6QnpZo/3QCEgxiu1hpvgCDRmv/aWnTGFF5qEM6GQ5a1uLPob7g5Cfq05Qtqf8vhBtv+S+Wd4hiARIjE9lLlpmCOqkk040Aw1YG24wxFP5kYniTr4lOeegseWL/D4g+nQJghcoLTl+bAQ61teRJGIIte9VKsyQ5+IQUnNQK1acHtHJNLGhtPi/u+ZmLTtJnhrCXAcuDx+qM/1mA7/Xmz5ZDghNJVz9Gk6xtkGJcgZ/t5VvgP+X/53N+9tASjb5dEdu/uUd/yMh74bR+voL5+cBJyj2u4Gg==
-X-Forefront-Antispam-Report:
-	CIP:40.69.19.60;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:westeu100-emailsignatures-cloud.codetwo.com;PTR:westeu100-emailsignatures-cloud.codetwo.com;CAT:NONE;SFS:(13230031)(36860700004)(376005)(1800799015)(82310400014);DIR:OUT;SFP:1102;
-X-OriginatorOrg: topic.nl
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Apr 2024 08:13:24.6858
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b9b71392-f1e1-4f2f-498d-08dc5d23ec3f
-X-MS-Exchange-CrossTenant-Id: 449607a5-3517-482d-8d16-41dd868cbda3
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=449607a5-3517-482d-8d16-41dd868cbda3;Ip=[40.69.19.60];Helo=[westeu100-emailsignatures-cloud.codetwo.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AM4PEPF00027A62.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7968
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/6] arm64: dts: broadcom: Add support for BCM2712
+To: Andrea della Porta <andrea.porta@suse.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Jonathan Bell <jonathan@raspberrypi.com>, Phil Elwell <phil@raspberrypi.com>
+References: <cover.1713036964.git.andrea.porta@suse.com>
+ <0ab5a768d686cb634f7144da266c9246e9e90cb4.1713036964.git.andrea.porta@suse.com>
+Content-Language: en-US
+Cc: Ulf Hansson <ulf.hansson@linaro.org>,
+ Adrian Hunter <adrian.hunter@intel.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, linux-kernel@vger.kernel.org,
+ Al Cooper <alcooperx@gmail.com>, linux-mmc@vger.kernel.org,
+ Kamal Dasu <kamal.dasu@broadcom.com>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <0ab5a768d686cb634f7144da266c9246e9e90cb4.1713036964.git.andrea.porta@suse.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:NmOzBldTMHifhoDliViPEkybyqb+Rsr5z1HmhLqafkA7C7So3J1
+ hGr1+DRzYrwMFKJi+d2O8DcYxqms6cf9VFt9LmTHGgTsrD39IPvQ6nwRaEwAiXkfwWd5Sso
+ amChi6M4iST2/ZynvY4vZZvejEWMQu+moYMW2rYIBYJ5nuH9nGSI2+JAayz/pst4DDFcv/r
+ QHrX4yGftKFnqAl52Zvsg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:uVezZPm5UaE=;EUg7JKnJImPZDoSVFZs6vaXZOJG
+ 8oqRo121ptlrfYElOR/Iin6trMJgUR3pVSOxQ4WY0n/wBGQQbYySg3hS2qped5dAJ1q4tMnfn
+ RbQN6RTAvYPQL3TXxDvagP6ajlz8sANpSHMUqlWragnr9/HD8T4iJ99nGl+6m9t3LoR21Qs5v
+ B1XjbHWSPnG/wSV5njsU/KRVnzH6HshgEpL83IgQLPXIsyta9eYUBM3Bv3qNYlpoaSCwoHTXp
+ Ob3+FMo46rLOxkMvMPrPecGKnWdmm/LTMA8NxdggSZaZh0iA0+3nWAKLVs2ThB5hG5QW6ui22
+ N70waAGllSBOTWs3g9xuGVPUoTSppinDD4PCj0RtCD3VCZqr2E7DqASNHxu5AHCWASOr//EdR
+ iSzVZkgqfDUqQJMZ00FjTRQ2kptFaBVRtbTtjU/EyZdGuF0+pt0Kn9yNKEnqIo8vcroR+WTmf
+ WcLFGUhcctmH/Px8nnxmKGhxxl1FASjftQyBsTX/D022jd18xfbWT9Nm+7mTW50/x5xpyHNMX
+ 9lEw3U1MJykA5hNfjWQwFuulPiRkohwuPtUhqJe6umhPsa9dDen2QEJ/vFlVeR09StLMZqRzi
+ O+8MTETgFGFxXW1mmtnwBiPF7ZzT5J9871+K0g7Iya1upTyjeNm4uipSvKYlxsQDk+fQjQW5S
+ 4d7r/92nS0Gq3RR2eX2mbALlcSAST0JiRMaVmxByGIsAsudF32J0WjvGXxRtXpBP+57EPwUGq
+ krAArXwx/mOS6Pt9FfnQWR2aG9wofz73mB/VUxcSXcict8dRAWbUWuk0gA686DkNWbU0VXKzP
+ HlU1yKy6XrvWXTGAoqbO+oToarBJILiZE289h3ocZaJl8=
 
-The LTC3350 is a backup power controller that can charge and monitor
-a series stack of one to four supercapacitors.
+Hi Phil,
 
-Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Am 14.04.24 um 00:14 schrieb Andrea della Porta:
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> ---
+>   arch/arm64/boot/dts/broadcom/Makefile         |   1 +
+>   .../boot/dts/broadcom/bcm2712-rpi-5-b.dts     | 313 +++++++
+>   arch/arm64/boot/dts/broadcom/bcm2712-rpi.dtsi |  81 ++
+>   arch/arm64/boot/dts/broadcom/bcm2712.dtsi     | 841 ++++++++++++++++++
+>   4 files changed, 1236 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
+>   create mode 100644 arch/arm64/boot/dts/broadcom/bcm2712-rpi.dtsi
+>   create mode 100644 arch/arm64/boot/dts/broadcom/bcm2712.dtsi
+>
+> diff --git a/arch/arm64/boot/dts/broadcom/Makefile b/arch/arm64/boot/dts=
+/broadcom/Makefile
+> index 8b4591ddd27c..92565e9781ad 100644
+> --- a/arch/arm64/boot/dts/broadcom/Makefile
+> +++ b/arch/arm64/boot/dts/broadcom/Makefile
+> @@ -6,6 +6,7 @@ DTC_FLAGS :=3D -@
+>   dtb-$(CONFIG_ARCH_BCM2835) +=3D bcm2711-rpi-400.dtb \
+>   			      bcm2711-rpi-4-b.dtb \
+>   			      bcm2711-rpi-cm4-io.dtb \
+> +			      bcm2712-rpi-5-b.dtb \
+>   			      bcm2837-rpi-3-a-plus.dtb \
+>   			      bcm2837-rpi-3-b.dtb \
+>   			      bcm2837-rpi-3-b-plus.dtb \
+> diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts b/arch/arm=
+64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
+> new file mode 100644
+> index 000000000000..2ce180a54e5b
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
+> @@ -0,0 +1,313 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/pwm/pwm.h>
+> +#include <dt-bindings/reset/raspberrypi,firmware-reset.h>
+> +
+> +#define spi0 _spi0
+> +#define uart0 _uart0
+> +
+> +#include "bcm2712.dtsi"
+> +
+> +#undef spi0
+> +#undef uart0
+> +
+> +/ {
+> +	compatible =3D "raspberrypi,5-model-b", "brcm,bcm2712";
+> +	model =3D "Raspberry Pi 5";
+> +
+>
+according to this downstream commit [1] it's just called "Raspberry Pi
+5" without Model B, but the filename and the compatible says something
+different. Is there still a chance to get this consistent or is it too
+late because the firmware expect the compatible?
 
----
-
-(no changes since v3)
-
-Changes in v3:
-Fix $id after rename to lltc,ltc3350.yaml
-
-Changes in v2:
-Rename to lltc,ltc3350.yaml
-Fix spaces and indentation
-
- .../bindings/power/supply/lltc,ltc3350.yaml   | 54 +++++++++++++++++++
- 1 file changed, 54 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/power/supply/lltc,ltc=
-3350.yaml
-
-diff --git a/Documentation/devicetree/bindings/power/supply/lltc,ltc3350.ya=
-ml b/Documentation/devicetree/bindings/power/supply/lltc,ltc3350.yaml
-new file mode 100644
-index 000000000000..dca7fe0f0d8f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/power/supply/lltc,ltc3350.yaml
-@@ -0,0 +1,54 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright (C) 2024 Topic Embedded Products
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/power/supply/lltc,ltc3350.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Linear Technology (Analog Devices) LTC3350 Supercap Charger
-+
-+maintainers:
-+  - Mike Looijmans <mike.looijmans@topic.nl>
-+
-+description: |
-+  The LTC3350 is a High Current Supercapacitor Backup Controller and Syste=
-m
-+  Monitor.
-+  Specifications about the charger can be found at:
-+    https://www.analog.com/en/products/ltc3350.html
-+
-+properties:
-+  compatible:
-+    enum:
-+      - lltc,ltc3350
-+
-+  reg:
-+    maxItems: 1
-+
-+  lltc,rsnsc-micro-ohms:
-+    description: Capacitor charger sense resistor in microohm.
-+    minimum: 1000
-+
-+  lltc,rsnsi-micro-ohms:
-+    description: Input current sense resistor in microohm.
-+    minimum: 1000
-+
-+required:
-+  - compatible
-+  - reg
-+  - lltc,rsnsc-micro-ohms
-+  - lltc,rsnsi-micro-ohms
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells =3D <1>;
-+      #size-cells =3D <0>;
-+      charger: battery-charger@9 {
-+        compatible =3D "lltc,ltc3350";
-+        reg =3D <0x9>;
-+        lltc,rsnsc-micro-ohms =3D <10000>;
-+        lltc,rsnsi-micro-ohms =3D <10000>;
-+      };
-+    };
---=20
-2.34.1
-
-
-Met vriendelijke groet / kind regards,=0A=
-=0A=
-Mike Looijmans=0A=
-System Expert=0A=
-=0A=
-=0A=
-TOPIC Embedded Products B.V.=0A=
-Materiaalweg 4, 5681 RJ Best=0A=
-The Netherlands=0A=
-=0A=
-T: +31 (0) 499 33 69 69=0A=
-E: mike.looijmans@topic.nl=0A=
-W: www.topic.nl=0A=
-=0A=
-Please consider the environment before printing this e-mail=0A=
+[1] -
+https://github.com/raspberrypi/linux/commit/99e359d2f2da2c820fd2a30b1ad08b=
+32c9549adb
 
