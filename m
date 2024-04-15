@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-59292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59293-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EE1F8A49AD
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 10:02:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 990CE8A49BA
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 10:04:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C24DE1C233C2
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 08:02:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9D881C235B8
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 08:04:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3F322C1B6;
-	Mon, 15 Apr 2024 08:02:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4707A2D054;
+	Mon, 15 Apr 2024 08:04:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q7bsStEf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lbSLJUK2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 608F42E83C
-	for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 08:02:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6F3637719
+	for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 08:04:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713168138; cv=none; b=tFM7+URHNwY5/hRmbdOGIf3YfSii7I8wD38J+vnK1vShk2YSMzjrPVLp9GvFnlP+pLJapX25AoOTk0NYAIzTVajPxps+4FkjVh2xIdzmP83lMBw6/wSWRntIPrxS5sR4HbBjfSn3BUX/rnHgehtPwxQ91XGbKuU6sO6GJEBc9gk=
+	t=1713168255; cv=none; b=kD4kbEZRfUThmEFv9po+EMlSMi6wb7MXBc0igtUZ4p64QAF6QjCIPDouAPBrQ+KN+7NlfZRRkhEkyITSR41+L+7Awe8DKmD115D6bKJX0c9Nve8GpCbV6wTqMssxZPNUv7K3S4zbyuRTwW/YCl1OwLQ/1j+Hl35/jLBAU96jSSo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713168138; c=relaxed/simple;
-	bh=6KXKxNw5F60VZHrkJu1tcqRirvIYwhMTVQPJ/ylEqaQ=;
+	s=arc-20240116; t=1713168255; c=relaxed/simple;
+	bh=UiNTy/XwQFjuHdHX/PXrqr/7gdd3eNWdYnpHroTPiKg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=R1SsmMHHHmWU1lzd3ouDYVqEtussWEWvWwXeRbOQk0khOd8X2TywBthLygdUle6AAmHukxMQ1SILC3q5OyRm+3IUBVUVZPOxXji+8VELC98gvUrP08cfKiVeJDvJ81ZcnhaiBEw/irf/YxJRwa/xntoA4MsK3WI8wiksAIHLT+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=q7bsStEf; arc=none smtp.client-ip=209.85.208.43
+	 In-Reply-To:Content-Type; b=fq+z7pzXmZ2x3SLw0gsysFpao0feeecQqf2/xoPjNBB3c6aDxB7ltLhlV2aUMWcUb88ncXhWs0z+SXnE1q+aroSjqgr1w7S//25NUiGXzjVVEzLFWWbGFVqsOBkoaw7Xpb9mjoZwRuwB3Qm2qf8LI4Y73vAhiqSOmTtHW7PRZFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lbSLJUK2; arc=none smtp.client-ip=209.85.218.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-56e136cbcecso3264217a12.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 01:02:17 -0700 (PDT)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a51ddc783e3so342065966b.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 01:04:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713168136; x=1713772936; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1713168250; x=1713773050; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=RxxnOIbWdKNhd8ESydWyV3bXibSeuFiEKlNzMtKAmLk=;
-        b=q7bsStEfY/r1zuENKl0UmefrzWsHNH9VecpJRKPjkejpi23Q57PuORGQF1YRzjorm2
-         EY6NDNG0YR+T5hX7qwd/mv/4oiSKJwv4JXWeS8QdeFrRNN0GgGcaqSrWQyw6IXGb5I6J
-         X6+zqV247MmE502MiOKRn57vPN8ebOYcPvqNrMdeAsXvxjpt25CI0qfxKR/FcsaSdHYC
-         5hdcZI0Rzz0DiZ+CNAvnE2ypRRRNJDD3Z7mpMYCRm1+TecXATRWEZ6TGW4xrRO5Ruipo
-         L9unMS5ibVTze+NMK6lNlHcwTE6pO9iHx/9arnP8iGNdvpwb9PdCAZ185nLTZyMNce2h
-         tSYA==
+        bh=Wo/Ov/gBkdZgWyMrIJS5//z4aGUdM8HoDmUePeCASCE=;
+        b=lbSLJUK2g/tNvnWuxE00430IJWvnS6kQZnSUYYNqbEenxWSMpxqzXLH/fZoVhE7O4S
+         mgMnR8Snn1kAAaenXjTo+NQhqtul8cbLdvC9YvCbp39vDojgW57BUh/tknLAe1GvSZgx
+         tVKeli8rQ5/j6II1+7UBgQJMeMrdbLnyk0QyQeF0g3wIIHegnnujJ4UtsGAiIxUqlD3Y
+         yE0I71d8gfqge849WKMKynYWnMPC0b7CS4DclSxikh9e20Ic+GbiWSLf+5XW3coh7EbF
+         NruzHfCVbRnUxtlTZbDvHigxxNN5xjsigx0sPGPq00Hhs5aP266QiiOsv1KWskONOtKH
+         Hn7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713168136; x=1713772936;
+        d=1e100.net; s=20230601; t=1713168250; x=1713773050;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=RxxnOIbWdKNhd8ESydWyV3bXibSeuFiEKlNzMtKAmLk=;
-        b=ujlQkVO1NsQ5YLW5FOhcCWirPbKbdhh2By1rmLeOywK/922I7vyOUy0kVJpkKR61M9
-         UAtvY4PmDrGcsyn29CO4GFT9jxXLhVSkA+R+4E4zjQavEF5RIAh8OoAb0h60Ow4X0nuj
-         UckfJ8lDZUMCiUYtzSA110aIvieKXPYAEKbi6KcPYGcSjHkNx2/zqW1rl04AThWeCUMw
-         EBqJlYqHsS0pSFUlDx5Mcl5BiJGL5Cu9qa4ZAEOIIDwdCNnNIF2v0ccY7OC77PvrO8pa
-         VXtIo1CQ/KPjOscvzfCLpZfWf98n+zGoW8LRGJamNtuLM9jU7OPATQNzOdmSL8LRikC7
-         HU7A==
-X-Forwarded-Encrypted: i=1; AJvYcCVqq9x92aPE2+q/duuhrnVBTZRfqfa46WbqSBeVvmo4HqyTYkRzdRq5YNXN9BNad838Lhv/p1MMFjC6yqt9Np0IvGarhWpcKy6ZKg==
-X-Gm-Message-State: AOJu0Yz01F1BLhCcZWxi0+XuGDuzz452wf+JiCkvtrFldfA5D/c1V1cw
-	7n68VJLquT6ozpAOyA7POVhXFqkPB++eGxC5CFTrlvHwMl7vIvXFomSLJOS7C7U=
-X-Google-Smtp-Source: AGHT+IE+29LAzKxpO+NSRFKt+Kk57LXcT97w4Z8npCIK16tiVH+cS7yhl+ztmLssddXCKvIelgyqlg==
-X-Received: by 2002:a50:d59d:0:b0:56e:4676:aa3a with SMTP id v29-20020a50d59d000000b0056e4676aa3amr6025013edi.16.1713168135626;
-        Mon, 15 Apr 2024 01:02:15 -0700 (PDT)
+        bh=Wo/Ov/gBkdZgWyMrIJS5//z4aGUdM8HoDmUePeCASCE=;
+        b=FOsaJlyUANTXS98kn16OTPQURgLNy7Vig846xZ/F3FkbE+cMjFb+ozyyX75ihFoZAH
+         TaMP8WObnZA5V6lNB/5mYVVHCeUZAXBN1pf6CoFe7OgRbOyUYC5iYUt+6ga2Jzlplvia
+         X/0Smd7T5Vu2tFsVyt5ESlsRYfph1OMywWHuH0nKvKosu/Mos/UWG/PlkwNa9q5f1n68
+         PobRMgp/0VCqj85yevHYbsvdh/vbi788JiNa4T6NLoEYahLeKcLgi3hgVB8DOgzt8rN6
+         1SanK/U7AfAlq8iB0ddvZMM57/fYjbKfh/0zwab5ToWEtrCqoImTYvsxxRZZBYpxdKcN
+         eyKw==
+X-Forwarded-Encrypted: i=1; AJvYcCV2iea8ws99tc8gUt1BJl5jkObIG6va0mMhFZGVoTPb44L58OMTgvOFu6lFUomdL6kN7uss0SQ1etSAKblXtJzlLQg0anNJ3qjtzw==
+X-Gm-Message-State: AOJu0YwcosOMCw5Cg9Ykj5V2zm10iItonyAnwamYbXbuYY/IJCua9QRI
+	4SmpmGXvldP/MrFjTzd70tu0NXmuweemE4iyVJC1SFB70Ho905Zerqpk54zNbO8=
+X-Google-Smtp-Source: AGHT+IHVldk4+xIRPwEmOh9J1yYwenVSk+L7iaf0VYldevR5MT01e7rR3HVWmGUNHTQFjpvT0HM6nw==
+X-Received: by 2002:a17:906:1355:b0:a4e:4278:8a01 with SMTP id x21-20020a170906135500b00a4e42788a01mr5524245ejb.11.1713168250025;
+        Mon, 15 Apr 2024 01:04:10 -0700 (PDT)
 Received: from [10.230.170.72] (46-253-189-43.dynamic.monzoon.net. [46.253.189.43])
-        by smtp.gmail.com with ESMTPSA id s24-20020a056402037800b0056e44b681a6sm4560227edw.57.2024.04.15.01.02.14
+        by smtp.gmail.com with ESMTPSA id mm10-20020a170906cc4a00b00a524531a580sm3205855ejb.152.2024.04.15.01.04.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Apr 2024 01:02:15 -0700 (PDT)
-Message-ID: <9df035d3-438a-46d7-8fba-183aea84023a@linaro.org>
-Date: Mon, 15 Apr 2024 10:02:13 +0200
+        Mon, 15 Apr 2024 01:04:09 -0700 (PDT)
+Message-ID: <7396c6d4-878f-4b07-9b7f-bc793bebe4bd@linaro.org>
+Date: Mon, 15 Apr 2024 10:04:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,16 +77,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/2] drm/panel: add Khadas TS050 V2 panel support
-To: Jacobe Zang <jacobe.zang@wesion.com>, neil.armstrong@linaro.org,
- airlied@gmail.com, daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: nick@khadas.com, linux-amlogic@lists.infradead.org,
- quic_jesszhan@quicinc.com, sam@ravnborg.org, thierry.reding@gmail.com,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240415031408.8150-1-jacobe.zang@wesion.com>
+Subject: Re: [PATCH v2 3/4] dt-bindings: thermal: loongson,ls2k-thermal: Fix
+ incorrect compatible definition
+To: Binbin Zhou <zhoubinbin@loongson.cn>, Binbin Zhou
+ <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>,
+ "Rafael J . Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Amit Kucheria
+ <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Huacai Chen <chenhuacai@kernel.org>, loongson-kernel@lists.loongnix.cn,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ Yinbo Zhu <zhuyinbo@loongson.cn>, WANG Xuerui <git@xen0n.name>,
+ loongarch@lists.linux.dev
+References: <cover.1713147645.git.zhoubinbin@loongson.cn>
+ <9d2132d4713321a83cdeef3cdc8887b7d39340e6.1713147645.git.zhoubinbin@loongson.cn>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -133,17 +139,61 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240415031408.8150-1-jacobe.zang@wesion.com>
+In-Reply-To: <9d2132d4713321a83cdeef3cdc8887b7d39340e6.1713147645.git.zhoubinbin@loongson.cn>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/04/2024 05:14, Jacobe Zang wrote:
-> Changes from v1 at [1]:
-> - Fix name from "newts050" to "ts050v2"
-> - Add specific description about controller change 
+On 15/04/2024 04:31, Binbin Zhou wrote:
+> The temperature output register of the Loongson-2K2000 is defined in the
+> chip configuration domain, which is different from the Loongson-2K1000,
+> so it can't be fallbacked.
+> 
+> We need to use two groups of registers to describe it: the first group
+> is the high and low temperature threshold setting register; the second
+> group is the temperature output register.
+> 
+> It is true that this fix will cause ABI corruption, but it is necessary
+> otherwise the Loongson-2K2000 temperature sensor will not work properly.
+> 
+> Fixes: 72684d99a854 ("thermal: dt-bindings: add loongson-2 thermal")
+> Cc: Yinbo Zhu <zhuyinbo@loongson.cn>
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> ---
+>  .../thermal/loongson,ls2k-thermal.yaml        | 23 +++++++++++++++++--
+>  1 file changed, 21 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.yaml b/Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.yaml
+> index 9748a479dcd4..fac6f64d6c67 100644
+> --- a/Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.yaml
+> @@ -18,14 +18,15 @@ properties:
+>      oneOf:
+>        - enum:
+>            - loongson,ls2k1000-thermal
+> +          - loongson,ls2k2000-thermal
+>        - items:
+>            - enum:
+>                - loongson,ls2k0500-thermal
+> -              - loongson,ls2k2000-thermal
+>            - const: loongson,ls2k1000-thermal
+>  
+>    reg:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 2
+>  
+>    interrupts:
+>      maxItems: 1
+> @@ -41,6 +42,24 @@ required:
+>  
+>  unevaluatedProperties: false
+>  
+> +if:
 
-You must say that you ignored/dropped received tags.
+This goes before unevaluatedProperties, just like in example schema.
 
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Best regards,
 Krzysztof
 
