@@ -1,124 +1,100 @@
-Return-Path: <devicetree+bounces-59336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54E6D8A4C0C
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 11:56:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 846CB8A4C28
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 12:07:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A8ADB2347A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 09:56:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2332B1F228BF
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 10:07:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FD0C4E1C5;
-	Mon, 15 Apr 2024 09:56:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE45847F4B;
+	Mon, 15 Apr 2024 10:07:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="eBSJofE6"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="WdZH/YOI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB39846424;
-	Mon, 15 Apr 2024 09:56:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83CF650A78;
+	Mon, 15 Apr 2024 10:07:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713174997; cv=none; b=vFIXw98Yv4+eoaGhyyXU/WTeAYHDuI3/tHhUQ+LUDk58aFhgjdLjMuZyB+0IWpFUOE9eSurV757POTgYFU+GeZV/Kn8zEk6JMtVNrRZ1AB1WCiaVIKCQPvlI4IXFXYlhNkjm6p1Fe44xpTJ5zta60cHBmViEOXDjxUwDXQzAWhg=
+	t=1713175629; cv=none; b=eLOQ1KGfPGzCrYE45YlqQmUcfL/VRhAdKm3QlDjlqnHpghAz3Jy+D8AsBFmT31A5b9Hb8KXxxcEXIMcsoumo9tyfqnt4AwbpPVyI240xLvx+Mv7MBXlf+dJLXpTmRrl2tdxhElvpP975I5b+lJzsfhkDvTxzuVqD+TK4rIJy0C8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713174997; c=relaxed/simple;
-	bh=WeLWYUe7bg8deib3zQlN88bewVzUCY56ObqFiGe1e3U=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=glW/ieno70Z1FL3m5B1XmDKtQTz51/iyPmUABd8meuV3lkBFLQVtZ4Rwfnj3ndT4HjLRqlvOQBMTrvrSNlXUswSqIPeYXdsfJaj7C+WB32Dc/5q16CeC6K+t3U0QvpuDEKppXAtUSQsRpM1vtgR3xk+jXDSGYKjWj4re//J5XTA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=eBSJofE6; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43F9uRaJ009892;
-	Mon, 15 Apr 2024 04:56:27 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1713174987;
-	bh=xrejzCDDLxRPs5CNBboER/vkuk0itQTLkLLvMlzfquY=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=eBSJofE6OcD2Cr8e2ZpYT5T/VGKDylz9ZV0zQGXlPn2x6EQgVfsGNFTiwmzHdjToy
-	 lQitJWZvcp7IFsHaw3kM2x0vsz66yR27KqgTV/Ph+7d/0S3z1L137ZC98csSkrtU1H
-	 4LqKwJGoN33C9cj02n+T5N2uKhKcJfxoam2JnZeQ=
-Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43F9uRdu120057
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 15 Apr 2024 04:56:27 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 15
- Apr 2024 04:56:26 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 15 Apr 2024 04:56:26 -0500
-Received: from udit-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (udit-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [172.24.227.18])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43F9uCqx074231;
-	Mon, 15 Apr 2024 04:56:24 -0500
-From: Udit Kumar <u-kumar1@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <francesco@dolcini.it>
-CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-        Udit Kumar
-	<u-kumar1@ti.com>
-Subject: [PATCH v2 2/2] arm64: dts: ti: k3-am69-sk: Fix UART pin type and macro type
-Date: Mon, 15 Apr 2024 15:26:05 +0530
-Message-ID: <20240415095605.3547933-3-u-kumar1@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240415095605.3547933-1-u-kumar1@ti.com>
-References: <20240415095605.3547933-1-u-kumar1@ti.com>
+	s=arc-20240116; t=1713175629; c=relaxed/simple;
+	bh=FnLUTeHzWMiRBs/xI6qC9ARGS8xGisjzcM2cza2/DN0=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=eHnV78ZIKdQd3Zi8yl8Y6TtuP2un0Stu/EK5zAgu6lxF9KQQdhOqE7VWFfmKr9jtd966h9ZzP4JsMYEBVFVkWTFXc23NMAD+ytYOz5e5d48S8qW4zyAqKgYjNuwmiDeOBWp/IYpU4J+trYwIc4PGEuZnhkAyDP0oOzWkAuR4YrQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=WdZH/YOI; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E93DFFF807;
+	Mon, 15 Apr 2024 10:06:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1713175620;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=V5QLmDLe7bTBJ0+9ot2S2z1GTRFgNDrJEqWQ4tSiw9M=;
+	b=WdZH/YOIxbzPqd9V1i0OXiHiO+KJ3JLh/SY9hmxmROpoq4nqPlR0ecLlQqP4y17L6ppZfE
+	J16t1EOO2ixBAFZp7QXfJBxDOoLyzoH1tptJVKNgpB/WeDwSJnsHTFfOShHcSLnxwlR6eD
+	6neDQ32dxdiszoSx4zkvi7nyrvqY8czeyFhO3JiXArWNUvzeYLGSfTF4YwYiFdt4diB7bF
+	x2bJ3MNu9VNsPQaOaYW5Uu5ISJNVjU5DFLeVz0ZMVSnSJB3eOZWIIFTYb2jvtMMOo+0KtM
+	xxiGqj1fBQXP+9Pf97WBy/BUQgQODkM8kiseLNo6HUZ0WO9m3xuJGsBE0zfS9w==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Simon Glass <sjg@chromium.org>,
+	devicetree@vger.kernel.org
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+	U-Boot Mailing List <u-boot@lists.denx.de>,
+	Michael Walle <mwalle@kernel.org>,
+	Tom Rini <trini@konsulko.com>,
+	linux-mtd@lists.infradead.org,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	=?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v11 2/2] dt-bindings: mtd: fixed-partition: Add binman compatibles
+Date: Mon, 15 Apr 2024 12:06:57 +0200
+Message-Id: <20240415100657.32087-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20240412153249.100787-2-sjg@chromium.org>
+References: 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-linux-mtd-patch-notification: thanks
+X-linux-mtd-patch-commit: b'f48d2d6ebd3bde515f4725a88e53953cd6eccc29'
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-Along fixing wkup UART RTS and TX pins as OUTPUT instead of INPUT
-updating J784S4 macro for pin mux instead of J721S2.
+On Fri, 2024-04-12 at 15:32:49 UTC, Simon Glass wrote:
+> Add two compatibles for binman entries, as a starting point for the
+> schema.
+> 
+> Note that, after discussion on v2, we decided to keep the existing
+> meaning of label so as not to require changes to existing userspace
+> software when moving to use binman nodes to specify the firmware
+> layout.
+> 
+> Note also that, after discussion on v6, we decided to use the same
+> 'fixed-partition' schema for the binman features, so this version
+> adds a new 'binman.yaml' file providing the new compatibles to the
+> existing partition.yaml binding.
+> 
+> Signed-off-by: Simon Glass <sjg@chromium.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Fixes: 45299dd1991b ("arm64: dts: ti: k3-am69-sk: Add mcu and wakeup uarts")
-Fixes: 08ae12b63750 ("arm64: dts: ti: k3-am69-sk: Enable wakeup_i2c0 and eeprom")
-Signed-off-by: Udit Kumar <u-kumar1@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am69-sk.dts | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/next, thanks.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-index 50de2a448a3a..d88651c297a2 100644
---- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-@@ -517,18 +517,18 @@ J784S4_WKUP_IOPAD(0x0fc, PIN_INPUT, 7)
- 	wkup_uart0_pins_default: wkup-uart0-default-pins {
- 		bootph-all;
- 		pinctrl-single,pins = <
--			J721S2_WKUP_IOPAD(0x070, PIN_INPUT, 0) /* (L37) WKUP_GPIO0_6.WKUP_UART0_CTSn */
--			J721S2_WKUP_IOPAD(0x074, PIN_INPUT, 0) /* (L36) WKUP_GPIO0_7.WKUP_UART0_RTSn */
--			J721S2_WKUP_IOPAD(0x048, PIN_INPUT, 0) /* (K35) WKUP_UART0_RXD */
--			J721S2_WKUP_IOPAD(0x04c, PIN_INPUT, 0) /* (K34) WKUP_UART0_TXD */
-+			J784S4_WKUP_IOPAD(0x070, PIN_INPUT, 0) /* (L37) WKUP_UART0_CTSn */
-+			J784S4_WKUP_IOPAD(0x074, PIN_OUTPUT, 0) /* (L36) WKUP_UART0_RTSn */
-+			J784S4_WKUP_IOPAD(0x048, PIN_INPUT, 0) /* (K35) WKUP_UART0_RXD */
-+			J784S4_WKUP_IOPAD(0x04c, PIN_OUTPUT, 0) /* (K34) WKUP_UART0_TXD */
- 		>;
- 	};
- 
- 	wkup_i2c0_pins_default: wkup-i2c0-default-pins {
- 		bootph-all;
- 		pinctrl-single,pins = <
--			J721S2_WKUP_IOPAD(0x98, PIN_INPUT, 0) /* (N33) WKUP_I2C0_SCL */
--			J721S2_WKUP_IOPAD(0x9c, PIN_INPUT, 0) /* (N35) WKUP_I2C0_SDA */
-+			J784S4_WKUP_IOPAD(0x98, PIN_INPUT, 0) /* (N33) WKUP_I2C0_SCL */
-+			J784S4_WKUP_IOPAD(0x9c, PIN_INPUT, 0) /* (N35) WKUP_I2C0_SDA */
- 		>;
- 	};
- 
--- 
-2.34.1
-
+Miquel
 
