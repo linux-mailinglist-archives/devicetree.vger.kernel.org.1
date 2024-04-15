@@ -1,93 +1,114 @@
-Return-Path: <devicetree+bounces-59406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59385-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C7EE8A527D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 15:59:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ED9E8A51B6
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 15:40:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 265CE1F22E7D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 13:59:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 292D0289B15
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 13:40:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E11A7353F;
-	Mon, 15 Apr 2024 13:59:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1E738174F;
+	Mon, 15 Apr 2024 13:32:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="H9u2sNuJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PY/xEU9Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A033D33080;
-	Mon, 15 Apr 2024 13:59:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D8608063C;
+	Mon, 15 Apr 2024 13:32:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713189579; cv=none; b=en7i98GhW5g0NHgUpIIlR/qL8EZTW9MbQaqijT8hNK+kx8FHEhKTUKMNgdw1Nx7QsQPUECkDj2V6Rzmmu4PZ5iS0iaKqcI+KOEcoI7yv4yLzMXtZvpWWeMqajEHlETrx/7tOU/W3VxZQdBeKmJdqSJ/8KUcWMVLgmKFnEB2nGcs=
+	t=1713187949; cv=none; b=l+lyvXBSyIa+x9FF0y1it1aXHQsaaixLeXHilVvZNZQ9Erz3jyOBeN7IbH1GRkylSu6nB3wc//B0IGWgbmahiSnS+7V9XEUoOoParNdrI0f4GFhnHGOTxcdWyBrqyxyq7U8fFCK1YQ67YdQ9W2srHzbwW9e71FtkLH2k1xwtf9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713189579; c=relaxed/simple;
-	bh=Tq5QuPKNZYFTN293/j6KeFKcIq45oy1FskvMM4kUq8o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CuoM7/Jz6EEUt2vOwLAdQ44Ff6OiAHO8lxW2UnYRbhcblPA8KNinb+oqfQsych1pH/qBvCiOMzUkSotuuZQoXSzR4EjH7ig+tKaBFNCxGLm29ocsfIgGgF2If0nG8o8JZFtM1SK43eckxeIXc/dCWuaL0e82wkMRPtmsa0u70Q4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=H9u2sNuJ; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 4E294881EF;
-	Mon, 15 Apr 2024 15:59:35 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1713189575;
-	bh=Cj3mFW1RPC+XTHLspPi7w+Q+NY6KDZvpqLKAR5dglRg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=H9u2sNuJjz6Ek0bTU51pap3mtWmT8tl7Y5MVVwT940pK5pchDyCVyKTnUOLF7Dgi+
-	 30ol21PCeqEd/NDwmAkPyzqYH5xjOK/O4sV8esz8Vo1tmc60y0cvyAlsK0vC7yxGP7
-	 2bB08hLdLquNXrdeKshYDrIH+If7E/YP2DsBgJF5BoidPuVRBF1i/pbKDwHyl+tCiv
-	 lkvJXc5aK0AW4Jlp5D5rE7kRv4x67xps0Z7q+ZsIj1YQ6qu1zUVsygMfS7p5f0us+E
-	 hPmPHfxuUyYg+W/rxPX6NGcmWI1s1IbAzi7YjRF2RNkjxhTFvhgXFTO3Gec9DqZw3R
-	 3ZvvJYyFp29Ow==
-Message-ID: <cb857412-add7-4f06-8fbd-7eef57331f8b@denx.de>
-Date: Mon, 15 Apr 2024 15:26:39 +0200
+	s=arc-20240116; t=1713187949; c=relaxed/simple;
+	bh=lY9dhM6iK8H+xRTcxtbZNqjoO3E0/X10GLrYjtfX2BM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rBeFUmiB5mUKBkF4Dak/rwabJhCcXBChif6rH9nWeKPNiPP6J5+GtDiRT/xyqV7i6zkaHv62lfrzsAXb92/vtCD4kJP/ybqo94bGfDd2+UjMEHMfNAEGOGk2silrC1EZtzAHVpOfz5RQvJtoYEzUP3TA6lPOWHibCmi88sUi4eg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PY/xEU9Y; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a46a7208eedso457622666b.0;
+        Mon, 15 Apr 2024 06:32:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1713187943; x=1713792743; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lY9dhM6iK8H+xRTcxtbZNqjoO3E0/X10GLrYjtfX2BM=;
+        b=PY/xEU9YdR31luxBgHMkxKtZtAEIaAIlw7e51YwKSf4rH30O3iZJQFMCEbQ9xT5/rc
+         SXl3oCVS41LsBRR7wpFXmQh6zznxfJ4lAgzQWbwe+nvv0piAQj7lbMrSVi7gQeyaV72B
+         mFU/u+iQKbg82Pa6PnvM6+dhJx58HAS2Eg8ccA/s0/LJr+tvjhHKXeRL4MAnyuQ969nZ
+         zM5DRfA5tETmqMnGQU7A7MY2EwksJnKt0A1pYNCZYYuorH20ryQBTxRFt6d/6jx8oZwh
+         CQmsxQp5C8rFXPBTWrMeUVWWZznhqslI6erqNSK2sIa2wkV1r8PJ6UwhjHOBfHLWYPk1
+         gZfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713187943; x=1713792743;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lY9dhM6iK8H+xRTcxtbZNqjoO3E0/X10GLrYjtfX2BM=;
+        b=OP9c5KJzk4qClCY2GAJVNxjyxpTYCO6DFoK408X9+Bkaw7d4LmF+ikZ18uliMDUC8f
+         MZuOa8EKan/SuSihbyJUCMUfW60IJNJh0nZCIav3I268Rpbv8rfu0FbE8dVqZ9MzCaVw
+         udRzqKKC4jpj5e4yXEqLTQ64k/BiL7fQI6uA3TsnDxPDLeeMwvWzZrhiBhWchURjLdFV
+         DwK0q3UQkcPlK46Xwuwk/q9FIIjihGDI/1MdkBqwTUH3TqUdowILiUU9VSXzKm1dPfl0
+         DXtxdkUcBv5t8ilRKskaOJRXTJolLX+Pxbz0CSj9ClxH1xGgeBycDT9gZDdp33yOPDiD
+         s86w==
+X-Forwarded-Encrypted: i=1; AJvYcCU/LgmKnlCjjwpRU55L63uijLtlTQi0xXyNw9HB98ykesNcxVeDmI+2tFuFHBMeua+BmbUTOOPuB99rf3j2LLTBJHlzuef8PBuZn7q03fp22eY8LLZTiHJaGZwxhay3RSuhXORzjM230nOgg/UPJZBY62agddac+yLi0hOnmP55VSnzxA==
+X-Gm-Message-State: AOJu0YxsaN2srAxH8SoGnkQvnP9l8E/bCi2GhaTAZH9ccP85Rbcfc4xj
+	WGGY6PetHWDX6JRZd2rX8ebXt9CIdLp0EThFatsGmNOe5FYUqBx0ck3W9HjsAXftj9r7Lm0mNEf
+	j0xD2JKfCMIQSxBLQwY3yqsAAPETuCXzAJ2g=
+X-Google-Smtp-Source: AGHT+IFZf9fDssR5nh9Eyau52SHgMzD+ltgsF4y4hSg/CkOl09E9yGPHol2zU8xld7bTfC7pSYrTliB5VDjZb064UEk=
+X-Received: by 2002:a17:907:208f:b0:a52:6b12:3078 with SMTP id
+ pv15-20020a170907208f00b00a526b123078mr1637121ejb.55.1713187942584; Mon, 15
+ Apr 2024 06:32:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: eeprom: at24: Fix ST M24C64-D compatible
- schema
-To: Rob Herring <robh@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Conor Dooley <conor.dooley@microchip.com>, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240415131104.2807041-1-robh@kernel.org>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <20240415131104.2807041-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+References: <20240413151152.165682-1-alisa.roman@analog.com>
+ <20240413151152.165682-6-alisa.roman@analog.com> <CAMknhBFzUeW5+rs_GgCZCiit=eW04VHyCnt-__jXLnO3Z29ksA@mail.gmail.com>
+In-Reply-To: <CAMknhBFzUeW5+rs_GgCZCiit=eW04VHyCnt-__jXLnO3Z29ksA@mail.gmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Mon, 15 Apr 2024 16:31:45 +0300
+Message-ID: <CAHp75Vd3Fh7PgRXF6J2_-TJof3E5=Q5t6qJbDkutJ=5_f-0zPQ@mail.gmail.com>
+Subject: Re: [PATCH v5 5/5] iio: adc: ad7192: Add AD7194 support
+To: David Lechner <dlechner@baylibre.com>
+Cc: Alisa-Dariana Roman <alisadariana@gmail.com>, michael.hennerich@analog.com, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, alexandru.tachici@analog.com, lars@metafoo.de, 
+	jic23@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, lgirdwood@gmail.com, broonie@kernel.org, andy@kernel.org, 
+	nuno.sa@analog.com, marcelo.schmitt@analog.com, bigunclemax@gmail.com, 
+	okan.sahin@analog.com, fr0st61te@gmail.com, alisa.roman@analog.com, 
+	marcus.folkesson@gmail.com, schnelle@linux.ibm.com, liambeguin@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 4/15/24 3:11 PM, Rob Herring wrote:
-> The schema for the ST M24C64-D compatible string doesn't work.
-> Validation fails as the 'd-wl' suffix is not added to the preceeding
-> schema which defines the entries and vendors. The actual users are
-> incorrect as well because the vendor is listed as Atmel whereas the
-> part is made by ST.
-> 
-> As this part doesn't appear to have multiple vendors, move it to its own
-> entry.
-> 
-> Fixes: 0997ff1fc143 ("dt-bindings: at24: add ST M24C64-D Additional Write lockable page")
-> Fixes: c761068f484c ("dt-bindings: at24: add ST M24C32-D Additional Write lockable page")
-> Signed-off-by: Rob Herring <robh@kernel.org>
+On Sat, Apr 13, 2024 at 11:05=E2=80=AFPM David Lechner <dlechner@baylibre.c=
+om> wrote:
+> On Sat, Apr 13, 2024 at 10:13=E2=80=AFAM Alisa-Dariana Roman
+> <alisadariana@gmail.com> wrote:
 
-For what it is worth:
+...
 
-Reviewed-by: Marek Vasut <marex@denx.de>
+> > +static int ad7192_parse_channels(struct iio_dev *indio_dev)
+>
+> Better name might be ad7194_parse_channels() or
+> ad7192_parse_ad7194_channels() since this is specific to the ad7194
+> chip.
+
+Quite unlikely we have the same chip to be supported by somewhere
+else, so I would just name it simpler, i.e.
+
+ad7194_parse_channels()
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
