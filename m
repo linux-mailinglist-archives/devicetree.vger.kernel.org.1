@@ -1,87 +1,55 @@
-Return-Path: <devicetree+bounces-59430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABBF58A5628
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 17:18:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4207C8A565F
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 17:28:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF75E1C2259B
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 15:18:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 73A881C213C8
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 15:28:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 945AD76C76;
-	Mon, 15 Apr 2024 15:18:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F226478B50;
+	Mon, 15 Apr 2024 15:28:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KctaoIzR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ApDGQwSj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1A4F74400;
-	Mon, 15 Apr 2024 15:18:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C745376046;
+	Mon, 15 Apr 2024 15:28:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713194327; cv=none; b=F+5wEQNPCx/RjnC96eN56XhQXjrUygkC70MGXHDIGnQNHEfD4vsqFq92hWdC5+DA8e82LBbtu0XanxyQAvsB2ujbLCvji4gl9DtUwPN92A/lqXXnJRhOxIc83hDihViNfIlbTU0RFEQqm5+17j41ggn83qpRpUo3rc8iqO20noo=
+	t=1713194882; cv=none; b=JscChGA/DHzCV4KqDqNw2LrXHxU6CeYf/zS3RyknFCkc/bgrimNEWde99y3w894/jXjjZJuDcp1P1B3oxNc47ol5cjB5K5Qbpgo1ke4Kl/gnBFGlkz6yVusTu/puoWmC9omeT+j0/ks+6PPWzxjCf9iMT7MZazmOO7hF/MzOJ4Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713194327; c=relaxed/simple;
-	bh=vYNESEOUgzTI40faatByfpCU1dT6sZuS9cR0oF8rJaw=;
+	s=arc-20240116; t=1713194882; c=relaxed/simple;
+	bh=nFuB/EilR2fRv26CVIwpUuMAO5By/98lEvVtc9MltxQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n6OAEI6OfO15f5fghuMMfSTMRKdxkHGOe6MTRcntj8UVekeEVVct6ckl4+W4WLM45tvWnhVFOvGKP4DXxHS2Hz0+rrl01v50+cTe7lPZYhjRSN2qObdwuE8aRUyDkAnjStqSbfIz7bcK1NTUT/feXN2+L3mrIwWHbDxSEGsTR44=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KctaoIzR; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-56e2c1650d8so3147237a12.0;
-        Mon, 15 Apr 2024 08:18:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713194324; x=1713799124; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Vpq7QbSflVZxyFAuGvP4r1TwK6fSOB6v15DB0jnFa2U=;
-        b=KctaoIzRBIU0gGFjzSqrA3s/VWwegyJ3mGX9ZxQP1W6UzkKT7JOWT3Q7TGnuZqkMKF
-         TLreJiFF/Inw37caeZ647Gpzcza3xUprKnU0fdijt1dppGY0IWllBYIDc39d5bez3C3B
-         nnEkrq/Y3kCf+7h4W3ouhvMn7/5mLpCh9LmKr0DnlmKWM+tMB5UUcnynWGzx0MPtrsW2
-         yNSbEewKo6ZUuBW6wkq+RALUXpzq2oWNlqhcAQpbX7jAM5o0r9BIhNc0g4IjQnckTf7k
-         ycaxug6fcvM2ePObpXYf+OiLq2O4ftWDBIbymKOWcS2GPRVJUySkX+ug58mzbYokSPYw
-         xwPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713194324; x=1713799124;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Vpq7QbSflVZxyFAuGvP4r1TwK6fSOB6v15DB0jnFa2U=;
-        b=suEe2ytKZL9y6YgqzphRA57+rmvQfXWwEtu/qFZCHmvwZfbhDvghU7ADQ0MAhRUl5F
-         o17EIubPNvH4rpgOHTNIZiP9s8eD1gTOq/dw2LU7FnRHD82TDXbXp1UG3ORiCdTrKEZ7
-         mybqFRMztrmKfs7lS1Z7nw7c3FyfMRKg7LoPXsMnyzmdy0+TO+1jIUQtyX7bjxuNtMPX
-         pGp5QYS7k+cX0dF46gO1Fa+Q7LoyXrXtyWYbDTuSbONTR2WptfDsDqVeOas2AssPHSQS
-         dwFihMN0QyRPM3UKz7Dk9ToD6YtgjvjUHFsyVD3o/y1tEW+SHvCYU2kpPGsVlDQIEN7W
-         hTyg==
-X-Forwarded-Encrypted: i=1; AJvYcCWtsu6/NLO4KVvoYbd4TWW0SZEpUDsETIwZ3wr/s2jfPrC8MDECj+dbbBM9pzRf9Lx3Iy8qlfID+Be1gryzuBS1w4p69XpR5qy52Q27oD9cqI6Y52d5u01Q6u/TH09fBNKCsf2ghcYPT24L+g/RaAa3oOITux2/p02DOtnJahI++szHlN3x
-X-Gm-Message-State: AOJu0YykJ3fZSESQVjIx3aulSrqjoUVGZfE+FQG/jNbHGh+E0Aohndqs
-	XG1OWVojL2vfYp0x9zCkx9/FLWOpcAGqu0GYT26iwPYu0qnE3B31
-X-Google-Smtp-Source: AGHT+IEZ37fDv/8PATbDYAXJxrOLvA4hobMxdgnN/ln5UGiqgDS8FX1e15FZfty45LYMSm2C40OJEg==
-X-Received: by 2002:a17:907:7283:b0:a52:320a:632f with SMTP id dt3-20020a170907728300b00a52320a632fmr7624800ejc.27.1713194324054;
-        Mon, 15 Apr 2024 08:18:44 -0700 (PDT)
-Received: from tom-HP-ZBook-Fury-15-G7-Mobile-Workstation (net-188-217-57-233.cust.vodafonedsl.it. [188.217.57.233])
-        by smtp.gmail.com with ESMTPSA id bk5-20020a170907360500b00a53f1303771sm739161ejc.151.2024.04.15.08.18.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Apr 2024 08:18:43 -0700 (PDT)
-Date: Mon, 15 Apr 2024 17:18:41 +0200
-From: Tommaso Merciai <tomm.merciai@gmail.com>
-To: git@luigi311.com
-Cc: linux-media@vger.kernel.org, dave.stevenson@raspberrypi.com,
-	jacopo.mondi@ideasonboard.com, mchehab@kernel.org, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, sakari.ailus@linux.intel.com,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	pavel@ucw.cz, phone-devel@vger.kernel.org
-Subject: Re: [PATCH v4 24/25] media:i2c: imx258: Use v4l2_link_freq_to_bitmap
- helper
-Message-ID: <Zh1FUQOt9n/tO3er@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
-References: <20240414203503.18402-1-git@luigi311.com>
- <20240414203503.18402-25-git@luigi311.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=GuJLsM5hKMdua+TTSQtM3I3OhGDNqX9fiDvaZsKE7pYN2IZQVyKCa3Eyx/XWVn/NIA8bg61PMLm2AYYMs1kBDN/nUrh3qWTVbJL3Cce3iGFgcaskf8wvUlIrZMgkOK6soIXz7+ULj5NnEawxKm5Mx4bLl/ib0vR5y8ibhn31ZTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ApDGQwSj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 005C3C113CC;
+	Mon, 15 Apr 2024 15:27:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713194882;
+	bh=nFuB/EilR2fRv26CVIwpUuMAO5By/98lEvVtc9MltxQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ApDGQwSjGww+QFx/JBUZURMz/Z1g46KopFEuqYSkG/6mW733e/JV5rw0ppa96w8k+
+	 5K3DEoHy5Nh8mzFflu3oHifBaPSZuhTJ3rOP+7phlyRQ42DT+b5GanLkYcylCh8R/M
+	 bgLlUeuXJUoDxotpr2xf+0v3ihJ22S8BmYO1IMP2mrQTrwQv6aO8OSmVjpKe/RPjZ9
+	 eHyBwZnTw/59ZxKY4SpdSrYdQRwoj18HWH5CO/vkgPqZNDWXR0vDhnIBzNszH7OxLh
+	 RYeAStgPx9oGW6OgJE1jjUHygivzNCoXPbiA8S5eDAZQaYZ25lB2BfEA6RmSuoEvLg
+	 rnWOwXS8JBDAw==
+Date: Mon, 15 Apr 2024 18:26:55 +0300
+From: Mike Rapoport <rppt@kernel.org>
+To: skseofh@gmail.com
+Cc: robh@kernel.org, saravanak@google.com, akpm@linux-foundation.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mm@kvack.org, Daero Lee <daero_le.lee@samsung.com>
+Subject: Re: [PATCH] memblock: add no-map alloc functions
+Message-ID: <Zh1HP8IWWjexAUKN@kernel.org>
+References: <20240415142448.333271-1-skseofh@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,66 +58,62 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240414203503.18402-25-git@luigi311.com>
+In-Reply-To: <20240415142448.333271-1-skseofh@gmail.com>
 
-Hi Luis,
+On Mon, Apr 15, 2024 at 11:24:48PM +0900, skseofh@gmail.com wrote:
+> From: Daero Lee <daero_le.lee@samsung.com>
+> 
+> Like reserved-memory with the no-map property, there are memory regions
+> need to be allocated in memblock.memory marked with the
+> MEMBLOCK_NOMAP flag, but sholud not be allocated in memblock.reserved.
 
-On Sun, Apr 14, 2024 at 02:35:02PM -0600, git@luigi311.com wrote:
-> From: Luis Garcia <git@luigi311.com>
+Can you please explain your use case?
+Why do you need this functionality?
+ 
+> So, functions were added that find the required memory area in
+> memblock.memory, but do not allocate it to memblock.reserved.
 > 
-> Use the v4l2_link_freq_to_bitmap() helper to figure out which
-> driver-supported link freq can be used on a given system.
+> The early_init_dt_alloc_reserved_memory_arch function was modified
+> using the no-map alloc function.
 > 
-> Signed-off-by: Luis Garcia <git@luigi311.com>
-> Reviewed-by: Pavel Machek <pavel@ucw.cz>
+> Signed-off-by: Daero Lee <daero_le.lee@samsung.com>
 > ---
->  drivers/media/i2c/imx258.c | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+>  drivers/of/of_reserved_mem.c |  9 +++--
+>  mm/memblock.c                | 78 ++++++++++++++++++++++++++++++++++++
+>  2 files changed, 84 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
-> index 5de71cb7c1ae..65846dff775e 100644
-> --- a/drivers/media/i2c/imx258.c
-> +++ b/drivers/media/i2c/imx258.c
-> @@ -693,6 +693,7 @@ struct imx258 {
->  	/* Current mode */
->  	const struct imx258_mode *cur_mode;
+> diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+> index 8236ecae2953..504f2f60689c 100644
+> --- a/drivers/of/of_reserved_mem.c
+> +++ b/drivers/of/of_reserved_mem.c
+> @@ -40,15 +40,18 @@ static int __init early_init_dt_alloc_reserved_memory_arch(phys_addr_t size,
 >  
-> +	unsigned long link_freq_bitmap;
->  	const struct imx258_link_freq_config *link_freq_configs;
->  	const s64 *link_freq_menu_items;
->  	unsigned int lane_mode_idx;
-> @@ -1552,6 +1553,17 @@ static int imx258_probe(struct i2c_client *client)
->  		return ret;
+>  	end = !end ? MEMBLOCK_ALLOC_ANYWHERE : end;
+>  	align = !align ? SMP_CACHE_BYTES : align;
+> -	base = memblock_phys_alloc_range(size, align, start, end);
+> +	if (nomap) {
+> +		base = memblock_phys_alloc_range_nomap(size, align, start, end);
+> +	} else {
+> +		base = memblock_phys_alloc_range(size, align, start, end);
+> +	}
+> +	
+
+This changes behaviour of internal function, what effect will it have on
+the users?
+
+>  	if (!base)
+>  		return -ENOMEM;
+>  
+>  	*res_base = base;
+>  	if (nomap) {
+>  		err = memblock_mark_nomap(base, size);
+> -		if (err)
+> -			memblock_phys_free(base, size);
 >  	}
 >  
-> +	ret = v4l2_link_freq_to_bitmap(&client->dev,
-> +				       ep.link_frequencies,
-> +				       ep.nr_of_link_frequencies,
-> +				       imx258->link_freq_menu_items,
-> +				       ARRAY_SIZE(link_freq_menu_items_19_2),
-> +				       &imx258->link_freq_bitmap);
-> +	if (ret) {
-> +		dev_err(&client->dev, "Link frequency not supported\n");
-> +		goto error_endpoint_free;
-> +	}
-> +
->  	/* Get number of data lanes */
->  	switch (ep.bus.mipi_csi2.num_data_lanes) {
->  	case 2:
+>  	kmemleak_ignore_phys(base);
 
-Looks good to me.
-
-ps:
-Maybe a good plan for the future would be to use: dev_err_probe
-(instead of dev_err into probe function)
-
-But this I think is somenthing for next improvements. :)
-
-Thanks & Regards,
-Tommaso
-
-> -- 
-> 2.44.0
-> 
-> 
+-- 
+Sincerely yours,
+Mike.
 
