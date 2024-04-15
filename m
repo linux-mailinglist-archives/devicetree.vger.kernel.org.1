@@ -1,180 +1,131 @@
-Return-Path: <devicetree+bounces-59532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16D548A5C13
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 22:11:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12D488A5C5D
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 22:46:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0E8D281968
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 20:11:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC0791F22F8C
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 20:46:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF01D156672;
-	Mon, 15 Apr 2024 20:10:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FF1315689F;
+	Mon, 15 Apr 2024 20:46:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oZFANBZw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iOt0FiRv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 553D215666F
-	for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 20:10:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89FC06CDC2;
+	Mon, 15 Apr 2024 20:46:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713211852; cv=none; b=Hv70+LgRtDt7KuP0Djo3OSnXwDez2yFkg7gQgKasF8qjIZwZcKwFrE3hS64v93v8v3so2afeJSut2pfSKWP2S5S/975MeWm/VRBecIm4xVZjBo12EoDQ6erVfZrZzi7KGhjfrYjc+w4q1el8WUw4uPG6sVzUbwP5jwwb90KVDhY=
+	t=1713213993; cv=none; b=AMAqpr3hVu9Cx5tuUaNN91dtqSVWvNtYVCgMAGyJO0j2l5740fxB/R2ZmsKsGCuQINQR7Gy7Mo2MZwPFcHUjLEuDWO5bT755VH03KvEbgByP3I31lNOWjlu0Vcwpnvkqck+wiydMlDa7BL373IClHWjcAvKXPaXUiEn/U3zFPk4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713211852; c=relaxed/simple;
-	bh=HlV7PNxjhHZXhDEySUcwKrxlmqDtJcya54wZ5/zd6IE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nsYWi5T7uHZebzwHAJt/tyITuc6DdsuM1gl4pxDtDXQIWc3DpOVsmya+q6L90ZQR9bQjWykpIBiL+5uSY9T9e5N3F+neb7wv6crZDSBJr00rkHLhylBmGiRpnv+dS0moSokkWUqXingdRz70dncaoz26xQooEn+yNjMVKF9TQ0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oZFANBZw; arc=none smtp.client-ip=209.85.219.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-dc25e12cc63so4332583276.0
-        for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 13:10:41 -0700 (PDT)
+	s=arc-20240116; t=1713213993; c=relaxed/simple;
+	bh=DXWvgmZ3OBUiLaT3J5TtSgfTI4GViAYB4pLbra/t6SQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=VtVpYB9mddgSkXoyip5B7/6M1y7bUyhIQoEGMgLGMQudORMngcdg+U8Z0+5askb2D4ASImTC8twI5an+Dz1P81TrFKvTrDEBwgGNoSq5nJakkC0/Q/sbOYf017ZcIFpDPMuYhiqsYyIwIqSdFsGaO/G1W61AwKMs6jTK9Prw8L4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iOt0FiRv; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-417f5268b12so32009635e9.1;
+        Mon, 15 Apr 2024 13:46:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713211840; x=1713816640; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=N+78Ths3N+m/trnfB/LCX44mWfPui51vN9doYTN2NYM=;
-        b=oZFANBZwkHu8WvJVRRD+CRFuevxDlhxI+A9lkRvRlSigCwdUAO6hZfxFwTWQ7u7eXB
-         AlypVnLUDVa3aaGgnP7RpSVsZv+mcEQUHEG7mXmt7mDySMdaUwlq9JvfkfiaHArMI7Dr
-         vKkTldcwX5Aa1iAuY5QBrEVsPuzyWkx+5nsbH2PpaeknYgiMoLk4cSTHiF0dv1vFGj6H
-         2MG9Lu2ILCx7ucX1q9UMJ6kaJouIo5EMz+LNzRYWmVV/bOHD8ej6K8gu9nXS7OcumUjd
-         6LaZKON0FXWLW0m3ohDAJmpX4AmRymqrQK/qrrsc+S1H+xn30xG0r7SX64FbmIwe+HQv
-         aYSA==
+        d=gmail.com; s=20230601; t=1713213990; x=1713818790; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JQH1fnHdxuhfyl8z9lLAyiPd+rF+Qf9RWJEuMIgG794=;
+        b=iOt0FiRvRjSCpc1AZp7qDi5IzJC71f6WzgNt0Rht4ZxeHHE0QOaVpjE5+RNClXDLqq
+         /8M6KBYRP0S/wv6SixaJ0sKL2+9ccZa2HDn6cjfCpTRiNRlb5NQAIgXCyTy1BrsZuRI/
+         U5N+4NL9c7IA02tJ9T+bpmVnWP5ynz9pQQ4H5/BKAE1wS3oXy43mBk4AJSa56QOncT6a
+         MpTpyQ0z1Bq2Glk7S1bnKSK2ypdgHrGKfi/1zwAZsvnIEGPdh0sUL6QKXiEAk6fWE0yA
+         7F79rC600GkqVGL8LxTP6IE1m6zbwTRF62Fo1COMiA0zA3ZZslhBjx5yizTFpqYt1cZT
+         CBUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713211840; x=1713816640;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=N+78Ths3N+m/trnfB/LCX44mWfPui51vN9doYTN2NYM=;
-        b=CHn4R+enSm48U+xQ7pL7ZKyWUF0kxLMcD2zdiBuMbyDVpnZWosGeDR1zOe1tMyJacc
-         n/FtMsS/G1XmavV28p4hrOwhZzjgKUp7Xx3K7B1e45YeTxSDe822/PosJlmIBNGHN+Fq
-         za9WiMQb6VDlOLpIE6o5E69EhAU4tGSAeNobfO0smkjTNeshbNs1R7+QpuIHpMHkLqLF
-         97TQAu4Rx0QnaJv3FD97uSybFA/QdIHK6Po3J2cV6SAbe6iDizqGWKVXKGBQ9eM9QhsK
-         MD8kbxD+03W+WcHqW8cAGxeMpHiAtxm6VN/WW7rSBz75VBh9VMCOt0OuKNPCfaAP9e1y
-         JLXw==
-X-Forwarded-Encrypted: i=1; AJvYcCXspinyEFQ3AD61YneK2S0A+8Z+aX72sE2hqTo+vEZSzs1Gdu2e+JpkqNlPRkFdw759hP3I2aGI2tDmpvQsX0HACGx6iA9cdP+5eA==
-X-Gm-Message-State: AOJu0YxkC6M4kjnYHwv1Za+o4P1ZcRr1Cmw88TqTQUAFANTK8n78WCgn
-	a84VmeEP/OoNvWOelS8xpgfe4+Gi/58J9M8Ffd7UHAM+xmpPResUcrZxEGxEwFCT25/s5sv8nxK
-	eHIM3yjlwYnRNP0hoBRh9BnuMtPPCEIj1vCz2xg==
-X-Google-Smtp-Source: AGHT+IF3dCILXKJoWIQJ/KpG+i09kWimSM1ct7OC41doCnBTN0/8ltTd5BS3mmOyeIOPSukUr96ntaZGG8MklU++vOk=
-X-Received: by 2002:a5b:90e:0:b0:dc2:23b1:eaef with SMTP id
- a14-20020a5b090e000000b00dc223b1eaefmr36360ybq.18.1713211840182; Mon, 15 Apr
- 2024 13:10:40 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1713213990; x=1713818790;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JQH1fnHdxuhfyl8z9lLAyiPd+rF+Qf9RWJEuMIgG794=;
+        b=YPzKdYjUAoco9Fy5BzCVM5U5MBH70ls01xylfn/R0/weRg0mjQnP3Bg+1oSAwO4X7m
+         VOFyaiZdf6IeEEZukYhkSLnweNjnf1eM8QEk8NtVFlwO+kp0jf1MUgpETnu2NW9KbZ2g
+         OzD0PWqqahHBQ7Shswo6d35qSrjPeF0TL+VczlHW9fC7ouj+xfxwA4Y4XFnYPplzirZT
+         DNLGknjMI4bGCZ2EqsxxiiulDAIlBQ7KC3eqVv1DZs8IMobIDBCQXDLIAHOAToDGd/wK
+         XW7aWEpq22+vEIH84f3xgI+1YzmkABFJhkRYa2xwveOsS99oxLww5+/ROOWMhHItVSWG
+         A5Tw==
+X-Forwarded-Encrypted: i=1; AJvYcCVOUI47TwyTWhrsff18GcgyEWzwNsUuqqTnLZg4Ce3hBIUqtLr2+qOgwcsiChE3rCxuc0oyvIx6nSKibZogfZ8JCI9SulGeWIg7gBULx35V3BlpUCs2Y0mWxCyZh/7VW0oHRYUhP63F+ATzvdniDS8fo2rxy5uvm36cnTavW0E1ilKutmrR5QMiS5fOUYEFD/Axh/D4lR9jiLrRIFQR4YMD
+X-Gm-Message-State: AOJu0YyagyNuW/9Bxxuf9DhWYghIqZG7T/GYaYaZfyAp32EQzf4OfUvO
+	QikVry3EO8i64FKrL2DKEUJDqUpx6CeCKdkk3hbnvDXnJvMDGFIg
+X-Google-Smtp-Source: AGHT+IHz0wOP7okRZmGKnlB9cgbQaWoJFhJdoBH0pyaqWvuNkIdpW8kz8KDqkPKRxlBdxvcDsLAroQ==
+X-Received: by 2002:a05:600c:4f87:b0:418:1e10:ab6f with SMTP id n7-20020a05600c4f8700b004181e10ab6fmr7029506wmq.35.1713213989864;
+        Mon, 15 Apr 2024 13:46:29 -0700 (PDT)
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id j20-20020a5d4534000000b003434f526cb5sm12938715wra.95.2024.04.15.13.46.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Apr 2024 13:46:29 -0700 (PDT)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Aren Moynihan <aren@peacevolution.org>
+Cc: Aren Moynihan <aren@peacevolution.org>,
+ Andy Shevchenko <andy.shevchenko@gmail.com>, Ondrej Jirman <megi@xff.cz>,
+ Uwe =?ISO-8859-1?Q?Kleine=2DK=F6nig?= <u.kleine-koenig@pengutronix.de>,
+ linux-iio@vger.kernel.org, phone-devel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ Willow Barraco <contact@willowbarraco.fr>
+Subject:
+ Re: [PATCH 1/4] dt-bindings: iio: light: stk33xx: add regulator for vdd
+ supply
+Date: Mon, 15 Apr 2024 22:46:28 +0200
+Message-ID: <2319549.ElGaqSPkdT@jernej-laptop>
+In-Reply-To: <20240414175716.958831-1-aren@peacevolution.org>
+References:
+ <20240414175300.956243-1-aren@peacevolution.org>
+ <20240414175716.958831-1-aren@peacevolution.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240415182052.374494-1-mr.nuke.me@gmail.com> <20240415182052.374494-7-mr.nuke.me@gmail.com>
-In-Reply-To: <20240415182052.374494-7-mr.nuke.me@gmail.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 15 Apr 2024 23:10:29 +0300
-Message-ID: <CAA8EJpqY1aDZMaeqBULEOD26UeGYbLd8RsA16jZw7zXJ7_oGPQ@mail.gmail.com>
-Subject: Re: [PATCH v3 6/7] phy: qcom-qmp-pcie: add support for ipq9574 gen3x2 PHY
-To: Alexandru Gagniuc <mr.nuke.me@gmail.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-phy@lists.infradead.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-On Mon, 15 Apr 2024 at 21:23, Alexandru Gagniuc <mr.nuke.me@gmail.com> wrote:
->
-> Add support for the gen3x2 PCIe PHY on IPQ9574, ported form downstream
-> 5.4 kernel. Only the serdes and pcs_misc tables are new, the others
-> being reused from IPQ8074 and IPQ6018 PHYs.
->
-> Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
+Dne nedelja, 14. april 2024 ob 19:57:13 GMT +2 je Aren Moynihan napisal(a):
+> Signed-off-by: Aren Moynihan <aren@peacevolution.org>
+
+Commit message cannot be empty.
+
+Best regards,
+Jernej
+
 > ---
->  drivers/phy/qualcomm/phy-qcom-qmp-pcie.c      | 136 +++++++++++++++++-
->  .../phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5.h   |  14 ++
->  2 files changed, 149 insertions(+), 1 deletion(-)
->
-
-[skipped]
-
-> @@ -2448,7 +2542,7 @@ static inline void qphy_clrbits(void __iomem *base, u32 offset, u32 val)
->
->  /* list of clocks required by phy */
->  static const char * const qmp_pciephy_clk_l[] = {
-> -       "aux", "cfg_ahb", "ref", "refgen", "rchng", "phy_aux",
-> +       "aux", "cfg_ahb", "ref", "refgen", "rchng", "phy_aux", "anoc", "snoc"
-
-Are the NoC clocks really necessary to drive the PHY? I think they are
-usually connected to the controllers, not the PHYs.
-
->  };
->
->  /* list of regulators */
-> @@ -2499,6 +2593,16 @@ static const struct qmp_pcie_offsets qmp_pcie_offsets_v4x1 = {
->         .rx             = 0x0400,
->  };
->
-> +static const struct qmp_pcie_offsets qmp_pcie_offsets_ipq9574 = {
-> +       .serdes         = 0,
-> +       .pcs            = 0x1000,
-> +       .pcs_misc       = 0x1400,
-> +       .tx             = 0x0200,
-> +       .rx             = 0x0400,
-> +       .tx2            = 0x0600,
-> +       .rx2            = 0x0800,
-> +};
-> +
->  static const struct qmp_pcie_offsets qmp_pcie_offsets_v4x2 = {
->         .serdes         = 0,
->         .pcs            = 0x0a00,
-> @@ -2728,6 +2832,33 @@ static const struct qmp_phy_cfg sm8250_qmp_gen3x1_pciephy_cfg = {
->         .phy_status             = PHYSTATUS,
->  };
->
-> +static const struct qmp_phy_cfg ipq9574_pciephy_gen3x2_cfg = {
-> +       .lanes                  = 2,
-> +
-> +       .offsets                = &qmp_pcie_offsets_ipq9574,
-> +
-> +       .tbls = {
-> +               .serdes         = ipq9574_gen3x2_pcie_serdes_tbl,
-> +               .serdes_num     = ARRAY_SIZE(ipq9574_gen3x2_pcie_serdes_tbl),
-> +               .tx             = ipq8074_pcie_gen3_tx_tbl,
-> +               .tx_num         = ARRAY_SIZE(ipq8074_pcie_gen3_tx_tbl),
-> +               .rx             = ipq6018_pcie_rx_tbl,
-> +               .rx_num         = ARRAY_SIZE(ipq6018_pcie_rx_tbl),
-> +               .pcs            = ipq6018_pcie_pcs_tbl,
-> +               .pcs_num        = ARRAY_SIZE(ipq6018_pcie_pcs_tbl),
-> +               .pcs_misc       = ipq9574_gen3x2_pcie_pcs_misc_tbl,
-> +               .pcs_misc_num   = ARRAY_SIZE(ipq9574_gen3x2_pcie_pcs_misc_tbl),
-> +       },
-> +       .reset_list             = ipq8074_pciephy_reset_l,
-> +       .num_resets             = ARRAY_SIZE(ipq8074_pciephy_reset_l),
-> +       .vreg_list              = NULL,
-> +       .num_vregs              = 0,
-> +       .regs                   = pciephy_v4_regs_layout,
-
-So, is it v4 or v5?
-
-
-> +
-> +       .pwrdn_ctrl             = SW_PWRDN | REFCLK_DRV_DSBL,
-> +       .phy_status             = PHYSTATUS,
-> +};
-> +
->  static const struct qmp_phy_cfg sm8250_qmp_gen3x2_pciephy_cfg = {
->         .lanes                  = 2,
->
+>  Documentation/devicetree/bindings/iio/light/stk33xx.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/light/stk33xx.yaml b/Documentation/devicetree/bindings/iio/light/stk33xx.yaml
+> index f6e22dc9814a..db35e239d4a8 100644
+> --- a/Documentation/devicetree/bindings/iio/light/stk33xx.yaml
+> +++ b/Documentation/devicetree/bindings/iio/light/stk33xx.yaml
+> @@ -29,6 +29,7 @@ properties:
+>    interrupts:
+>      maxItems: 1
+>  
+> +  vdd-supply: true
+>    proximity-near-level: true
+>  
+>  required:
+> 
 
 
 
---
-With best wishes
-Dmitry
+
 
