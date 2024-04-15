@@ -1,194 +1,155 @@
-Return-Path: <devicetree+bounces-59420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45FD18A55D9
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 17:01:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71D5D8A55E3
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 17:03:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 696B21C2218E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 15:01:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A36181C21042
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 15:03:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73C89757FC;
-	Mon, 15 Apr 2024 15:01:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 026D01D524;
+	Mon, 15 Apr 2024 15:03:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="igAueFYi"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="CdvLdgUo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42F8F71B3B;
-	Mon, 15 Apr 2024 15:01:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C1FC7603F
+	for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 15:03:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713193287; cv=none; b=aOIbQmF57NjYcbUqzUFDBGjAuHAYMtBsnIMDmGNWy5JozvUB1kTJqbwhl/P5WxhVpvmamVqnnkE2yUFvqbWuh+VhVdzwLrPLLzf4/cpVlYncZlVi3LmjXendkW20a8vu/O73gtYWZ4N/hM273GiPt2dYeBoobJQo90/aLWbJvk8=
+	t=1713193426; cv=none; b=PDh1Ey3jFMVWPCYsMPpwI4yFXrpk1XKqi60Acz2YnJNp3VeU9WQQSPrh7p9iZRFKqHUGWWV/Q/Badn8QHi8VCXN2yNvb9GPZxiNrHakbSK4wRk1VkFD30IceW9EdGAcgBglb4p/FpeD7mgTNMw2keZCftCHS2ulf0ZXMS8YVs64=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713193287; c=relaxed/simple;
-	bh=T7MRLv7FhJRARR1bVP7YZL9xM5lJoY6hPL2r7Wr+kxU=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=n4KsAJuBSdQdCZLH0bpT31GLuhae2bYN1FMA8WxvhYf4baV/TZndqy6lki0peNgpywkUrRAYapNKZxhE6jCke5TbysfGTPCPt2awyopM6ABKowetT3V+nfgALjUmqo8v1jpCN/ptgtxB56KYZnaxLVdY44qu37QhLLQ0Rl9xD+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=igAueFYi; arc=none smtp.client-ip=209.85.208.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2d4a8bddc21so38619041fa.0;
-        Mon, 15 Apr 2024 08:01:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713193280; x=1713798080; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Mx/6MUgB7xl8fVQhit3vdrOM02gBSAL1RlrQaMlTq6k=;
-        b=igAueFYivVbgPE8r9zIGRUH+7LRuUHMgtFqvt6XS18WPOxLtD5syGRHWobzCbPzHWT
-         gLeHD9GnRSaGhEy8NV9797mwjT1R/P69JpUOpEZExMmE22Rmf6LRPH1h4Tf2xz8JUJOC
-         +wimp19ZKKBvTDYR6pcXBDqRa4ScT1bXSX0nu/S7nGMN/XPHQUyhnKzDFOWZDq7+GVOY
-         lKny8EustoQGJwhZXlQ1nH8wo5UXxC18RZi7EOYce3DMNPROu6LL31AGDLdPHM07/xbP
-         IXQecEfTOw2jn397LjZY2HoJsAPg/KI+6+LY4wyZKHZxjDH/PuoHA49mmI+jSEH0BRs7
-         HTUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713193280; x=1713798080;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Mx/6MUgB7xl8fVQhit3vdrOM02gBSAL1RlrQaMlTq6k=;
-        b=enhk5TibIT1jLFRodMdDBIt08aKyPo/8mNoZAGMeZMZUzrGzsJPv0qpHz4MIWe6vr7
-         jAQ5EdhtHX6rqmT12GUbPBIlq1Cid2/JH5pc4/4ySswGe/pbl64Pxnt/wBG7+ehEHysk
-         ccNdNDN+FqjFnhKxc7YE0YPJyWNIi6TqstTLycx+TRGjpHlsAGU7B7HGHnn3/ce5yUME
-         2YfjK4btyk/vbPivnCYhcjHICGP94MbpscaP7rKbqcTJHJL5xlQTpY5zlF6SVgC9DNdl
-         Ks6eROX30ZilMaTYPcPi552hWSkH4Dly16xQ1N84kkAUJ7wOI909hhkv0mYVU36tJShH
-         Odhw==
-X-Forwarded-Encrypted: i=1; AJvYcCXxX5mGI4/Tyipf2CS3UO1VEDOpIZqSregIf+jzPw0F1Lq0gLFpZ0UEJJEFMBCAc694LEP2mNCeAJZrlt+iRUsmr4oyxlGEzPwP2ikOxI8kIL6Oe6g89XwP/ZySv+sXyDk+b4S8lhTKugQD2o0JLOM9CmmSVkY4TNtiho7pLRKEDcq3ImAzsw==
-X-Gm-Message-State: AOJu0Yyo3ZXRfXl0X2FrmdHK+4G6cUcp+ifSuU9R7ZAgrtEP9SSSqEnm
-	/UOpagTjdojiJBb6QsP0xVz2f7+GNddZzH0AQ7RuIcUAabiyHc6s
-X-Google-Smtp-Source: AGHT+IFv/gU+KWM1ufZfi1AtNceIbXbIeTp539sQYbvvFryi8Vyrm8iEP5X7q/0EfTOW2o1A9DL29A==
-X-Received: by 2002:a2e:8012:0:b0:2d8:d23a:f440 with SMTP id j18-20020a2e8012000000b002d8d23af440mr6139405ljg.6.1713193280100;
-        Mon, 15 Apr 2024 08:01:20 -0700 (PDT)
-Received: from pratik-IdeaPad.lan (customer-145-40-29-195.stosn.net. [145.40.29.195])
-        by smtp.googlemail.com with ESMTPSA id n11-20020a2e878b000000b002d8e9a37bfdsm1302799lji.113.2024.04.15.08.01.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Apr 2024 08:01:19 -0700 (PDT)
-From: Pratik Farkase <pratikfarkase94@gmail.com>
-X-Google-Original-From: Pratik Farkase <pratik.farkase@wsisweden.com>
-To: 
-Cc: Pratik Farkase <pratik.farkase@wsisweden.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	Pratik Farkase <pratikfarkase94@gmail.com>,
-	linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] dt-bindings: serial: brcm,bcm2835-aux-uart: convert to dtschema
-Date: Mon, 15 Apr 2024 17:00:44 +0200
-Message-Id: <20240415150046.144987-1-pratik.farkase@wsisweden.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1713193426; c=relaxed/simple;
+	bh=pU++4IxYsVnGikg4srGsNsJnC2IV60SAxiU5f+DCCcw=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=r0YE2L7FZU326qjFZ6jSzSpyEOXBw31kwSRgl668ndMNU28TUyZP15SWNtDTX/bG394cB32Lslwq0LBAuytB8pgT6+663VKPZ5ncAGu8y0A89yRBQxSnbtBD31Aou5qbRQOhNcHzc0zoIEDwqV8uXYL4JXGbMyMrfcz1h7hnEz4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=CdvLdgUo; arc=none smtp.client-ip=148.163.158.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0353724.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 43FF0BQj008473;
+	Mon, 15 Apr 2024 15:03:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
+ subject : to : cc : references : from : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=pp1;
+ bh=zOk8xJi928OveSk9rEcnWkeEMwO03Kpga/cH9y35RmA=;
+ b=CdvLdgUonCMctMRR5fD7jjEu4OcWRpRieO1od2Qnq8PeLlMoCafdOdOEHz5sDROku3jp
+ MI7o4AQoJ304BLit/FxIhdjthK4OoY2NV/KjZgQigLeoIVyTRXu+Lm+pp9qK60Z3Mk1a
+ fo3gakWH31mdvpCZlhDrx6rxm2F85IusyBkmidiqEhXSMGg5Yn4IBx2BYEeWjFLdhqER
+ DLahYEVoSaZFar6VJx0fGGSWQEHw+RGyzNEWgCmm6C4eRSv0J1kLRQwWqyIa9/7UzX7C
+ Z4X/p9J3hl7uODW5B8nFiEP4Uv8r0kVeoUV1Nee2GybuZb1T5PogbTEmqdirzl7y0XPV /Q== 
+Received: from ppma21.wdc07v.mail.ibm.com (5b.69.3da9.ip4.static.sl-reverse.com [169.61.105.91])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3xh6g680ab-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 15 Apr 2024 15:03:18 +0000
+Received: from pps.filterd (ppma21.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma21.wdc07v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 43FCxcU3023555;
+	Mon, 15 Apr 2024 15:03:17 GMT
+Received: from smtprelay07.dal12v.mail.ibm.com ([172.16.1.9])
+	by ppma21.wdc07v.mail.ibm.com (PPS) with ESMTPS id 3xg5cnrg42-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 15 Apr 2024 15:03:17 +0000
+Received: from smtpav02.dal12v.mail.ibm.com (smtpav02.dal12v.mail.ibm.com [10.241.53.101])
+	by smtprelay07.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 43FF3F9u44761566
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 15 Apr 2024 15:03:17 GMT
+Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 18BEA5805E;
+	Mon, 15 Apr 2024 15:03:15 +0000 (GMT)
+Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id AA15558074;
+	Mon, 15 Apr 2024 15:03:14 +0000 (GMT)
+Received: from [9.61.157.174] (unknown [9.61.157.174])
+	by smtpav02.dal12v.mail.ibm.com (Postfix) with ESMTP;
+	Mon, 15 Apr 2024 15:03:14 +0000 (GMT)
+Message-ID: <0752bfea-af49-4483-81a2-0b6fba2feb91@linux.ibm.com>
+Date: Mon, 15 Apr 2024 10:03:14 -0500
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: fsi: Document the IBM SBEFIFO engine
+To: Andrew Jeffery <andrew@codeconstruct.com.au>,
+        linux-aspeed@lists.ozlabs.org
+Cc: joel@jms.id.au, devicetree@vger.kernel.org, linux-fsi@lists.ozlabs.org,
+        robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
+        jk@ozlabs.org, alistair@popple.id.au, lakshmiy@us.ibm.com
+References: <20240412144358.204129-1-eajames@linux.ibm.com>
+ <20240412144358.204129-2-eajames@linux.ibm.com>
+ <95510c550a31305ae192640ce54ed86544e79f12.camel@codeconstruct.com.au>
+Content-Language: en-US
+From: Eddie James <eajames@linux.ibm.com>
+In-Reply-To: <95510c550a31305ae192640ce54ed86544e79f12.camel@codeconstruct.com.au>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: QwOgh6n4GaNW1GW3PPlU8mExiCKbcLu_
+X-Proofpoint-GUID: QwOgh6n4GaNW1GW3PPlU8mExiCKbcLu_
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-UnRewURL: 0 URL was un-rewritten
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-15_12,2024-04-15_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
+ mlxscore=0 clxscore=1015 malwarescore=0 lowpriorityscore=0 spamscore=0
+ suspectscore=0 adultscore=0 priorityscore=1501 mlxlogscore=999
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2404010000 definitions=main-2404150098
 
-Convert the Broadcom BCM2835 Auxiliar UART to newer DT schema.
-Created DT schema based on the .txt file which had
-`compatible`, `reg` `clocks` and `interrupts` as the
-required properties. This binding is used by Broadcom BCM2835
-SOC used in some Raspberry PI boards.
-Changes from original file:
-Implemented complete example which the original txt binding lacked.
 
-Signed-off-by: Pratik Farkase <pratik.farkase@wsisweden.com>
----
- .../bindings/serial/brcm,bcm2835-aux-uart.txt | 18 --------
- .../serial/brcm,bcm2835-aux-uart.yaml         | 46 +++++++++++++++++++
- 2 files changed, 46 insertions(+), 18 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.txt
- create mode 100644 Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.yaml
+On 4/14/24 19:50, Andrew Jeffery wrote:
+> On Fri, 2024-04-12 at 09:43 -0500, Eddie James wrote:
+>> The SBEFIFO engine provides an interface to the POWER processor
+>> Self Boto Engine (SBE).
+>>
+>> Signed-off-by: Eddie James <eajames@linux.ibm.com>
+>> ---
+>>   .../devicetree/bindings/fsi/ibm,sbefifo.yaml  | 39 +++++++++++++++++++
+>>   1 file changed, 39 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/fsi/ibm,sbefifo.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/fsi/ibm,sbefifo.yaml b/Documentation/devicetree/bindings/fsi/ibm,sbefifo.yaml
+>> new file mode 100644
+>> index 000000000000..d70012e42d79
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/fsi/ibm,sbefifo.yaml
+>> @@ -0,0 +1,39 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/fsi/ibm,sbefifo.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: IBM FSI-attached SBEFIFO engine
+>> +
+>> +maintainers:
+>> +  - Eddie James <eajames@linux.ibm.com>
+>> +
+>> +description: |
+>> +  This binding describes an FSI CFAM engine called the SBEFIFO. Therefore this
+>> +  node will always be a child of an FSI CFAM node; see fsi.txt for details on
+>> +  FSI slave and CFAM nodes. This SBEFIFO engine provides an interface to the
+>> +  POWER processor Self Boot Engine (SBE).
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - ibm,p9-sbefifo
+>> +      - ibm,ody-sbefifo
+> Bit of a nitpick, but: Is there any argument against using
+> `ibm,odyssey-sbefifo`? Feels less cryptic.
 
-diff --git a/Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.txt b/Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.txt
-deleted file mode 100644
-index b5cc6297cd1b..000000000000
---- a/Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.txt
-+++ /dev/null
-@@ -1,18 +0,0 @@
--* BCM2835 AUXILIAR UART
--
--Required properties:
--
--- compatible: "brcm,bcm2835-aux-uart"
--- reg: The base address of the UART register bank.
--- interrupts: A single interrupt specifier.
--- clocks: Clock driving the hardware; used to figure out the baud rate
--  divisor.
--
--Example:
--
--	uart1: serial@7e215040 {
--		compatible = "brcm,bcm2835-aux-uart";
--		reg = <0x7e215040 0x40>;
--		interrupts = <1 29>;
--		clocks = <&aux BCM2835_AUX_CLOCK_UART>;
--	};
-diff --git a/Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.yaml b/Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.yaml
-new file mode 100644
-index 000000000000..c52ba2e33f28
---- /dev/null
-+++ b/Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/serial/brcm,bcm2835-aux-uart.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: BCM2835 AUXILIAR UART
-+
-+maintainers:
-+  - Pratik Farkase <pratikfarkase94@gmail.com>
-+
-+allOf:
-+  - $ref: serial.yaml
-+
-+properties:
-+  compatible:
-+    const: brcm,bcm2835-aux-uart
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/bcm2835.h>
-+    #include <dt-bindings/clock/bcm2835-aux.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    uart1: serial@7e215040 {
-+        compatible = "brcm,bcm2835-aux-uart";
-+        reg = <0x7e215040 0x40>;
-+        interrupts = <1 29>;
-+        clocks = <&aux BCM2835_AUX_CLOCK_UART>;
-+    };
--- 
-2.34.1
 
+True, that might be better.
+
+
+>
+> Andrew
 
