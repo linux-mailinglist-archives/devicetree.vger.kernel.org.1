@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-59550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59551-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EA3B8A5DEB
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 00:56:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA97C8A5DFD
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 01:05:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C2F601F21C80
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 22:56:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00807282712
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 23:05:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0B05158217;
-	Mon, 15 Apr 2024 22:56:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52BA5158859;
+	Mon, 15 Apr 2024 23:05:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JrXB+Wij"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gx6d951X"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E3181B80F;
-	Mon, 15 Apr 2024 22:56:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F72B156977;
+	Mon, 15 Apr 2024 23:05:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713221800; cv=none; b=ErWl9Wgffp9oNG4t/6qA25uTvj/yqkQZEuNWvN2Nbu4CQb8uvluCZsjFKzWJV8OBLKn7cmZz29yI9hjeVYuYsWpLJK7HG3MmUV/FehFRMLGEThZLTA1HXLRYUPPzUWzu01WQQfKWCP2BYkIBE4Mwi5g0ZJzHDuHve1TpaSRVEcQ=
+	t=1713222334; cv=none; b=VrT5N84XiJtBY9BnuGtb48cQ2KnJkEceWeUQh9M4QYSdGncoM9OdomXt/dlpIz1dOkUrYYEUtLmsx60B+eas/0N2doTgHXMrN9j1DcfSeEIbYdMol3bmw4FqFr7Yf9hp00fgoDjOa8SrvmwLVmspDrVTeNlRlgbg61UVxyhEI3w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713221800; c=relaxed/simple;
-	bh=8MzTTUx65njv3TFYp00CMmUN6yXR6c3L1wS1VBzTK+Q=;
+	s=arc-20240116; t=1713222334; c=relaxed/simple;
+	bh=ujka/03jMUb0XAncsAq1DSp6vUMODs+NmGkGQhLYg68=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Cf+CoryLnBTo7Muf2mGRk2ZS4BdYi9hsWAGVtC3RwINyqdfyc9FQi3wRebZVB8Gp0zjsJH9iBWlhy9yBXJLhTVblTJ1d8u8sJLTHIl+wdKTaDy9+K4tFomlCFUbw98xi88taihCIOlqiUqVUhI3fB9gaoRfjROOSaRn+bMS4POU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JrXB+Wij; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F348FC113CC;
-	Mon, 15 Apr 2024 22:56:39 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=APnU3uLh8EBtDFJLXntWat0Rma+Jiqn3jhrTnFZx+dVEGXObSgiNQIlknZeKjg4h4Hwjazs/28YOPw1o/RH38CRAAldTdff9W3MccXF1LtWtFXHshicZ7L0Djr1lk+zWbP+3tuaH2ZV/9sudiTRsxuPGAYqUTdOMBDFp8iMUDVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gx6d951X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39EA4C113CC;
+	Mon, 15 Apr 2024 23:05:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713221800;
-	bh=8MzTTUx65njv3TFYp00CMmUN6yXR6c3L1wS1VBzTK+Q=;
+	s=k20201202; t=1713222333;
+	bh=ujka/03jMUb0XAncsAq1DSp6vUMODs+NmGkGQhLYg68=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JrXB+Wijs9KfbMzQPONxzKL2CY+wGjvgU4UIiPwAqxxpcNoBwWzCwkcLuYZcNttOt
-	 RONckGdSQfRDH5Zhq7lKszHPgiKekKgB63QQQHjdib6AY36maQg2owL/RivVFk20D5
-	 OGOgyfpIxEPRDQuzmE/y3K3U3SWwJa19WK+piRsCtO4OHyzY/Tws54AsqwfFdoSPgK
-	 lVfMTBhvQzi6btk5VFDtEWcToRmh4Pi9lhFEsv6U3SKExTaTreaxPNslmARKlPS2gQ
-	 Ul0x4fEdbiJLLJ9RkA+DLEadI5f5CdNFGdy5oxItYDwxJlJkV87ZE4UP3F3HB1fdq7
-	 UMftr6iw+GddQ==
-Date: Mon, 15 Apr 2024 17:56:37 -0500
+	b=Gx6d951XUcnisiPltyGh2R86ooQuEYTrxs3fuuz33iLrsJZKIr4Yh7kIEhpgZYT0u
+	 +cscArqD1yK5tD3G0VQc+Ap7mBDtsJdrKBNrU1S3p32nkeZGHxgvSM3TImP1L3AnT+
+	 F1Nn6ThGM/Nxfr+vuJQoaLTePGQ8EfFhYr8JHlpahucJC6/h2JaGVs/KfAy6oNyMOG
+	 N+dAJk9Pas+V8JpKU1LFAZJsJJQ8Z4hWi+pQzAMfGyvrh+MkM1rVX2dbNMvB1H0UsB
+	 9dOhkk3jUFJLdhWOMw6dCldHzd9gEp8IhUOIXELJODAGnL83vI0TUDlFCajFJHVR0y
+	 /+aHDeMK9aFHg==
+Date: Mon, 15 Apr 2024 18:05:30 -0500
 From: Rob Herring <robh@kernel.org>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@arm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH 2/3] dt-bindings: firmware: arm,scmi: support i.MX95 SCMI
- Pinctrl
-Message-ID: <20240415225637.GA234203-robh@kernel.org>
-References: <20240412-pinctrl-scmi-oem-v1-v1-0-704f242544c1@nxp.com>
- <20240412-pinctrl-scmi-oem-v1-v1-2-704f242544c1@nxp.com>
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	devicetree@vger.kernel.org,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-bluetooth@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+	netdev@vger.kernel.org, Marcel Holtmann <marcel@holtmann.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	Sean Wang <sean.wang@mediatek.com>, linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: net: bluetooth: Add MediaTek MT7921S
+ SDIO Bluetooth
+Message-ID: <171322232789.252337.16326980700188367647.robh@kernel.org>
+References: <20240412073046.1192744-1-wenst@chromium.org>
+ <20240412073046.1192744-2-wenst@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,47 +68,45 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240412-pinctrl-scmi-oem-v1-v1-2-704f242544c1@nxp.com>
+In-Reply-To: <20240412073046.1192744-2-wenst@chromium.org>
 
-On Fri, Apr 12, 2024 at 08:29:26AM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+
+On Fri, 12 Apr 2024 15:30:42 +0800, Chen-Yu Tsai wrote:
+> The MediaTek MT7921S is a WiFi/Bluetooth combo chip that works over
+> SDIO. WiFi and Bluetooth are separate SDIO functions within the chip.
+> While the Bluetooth SDIO function is fully discoverable, the chip has
+> a pin that can reset just the Bluetooth core, as opposed to the full
+> chip. This should be described in the device tree.
 > 
-> i.MX95 SCMI Pinctrl uses OEM specific units, so add '$ref' to
-> '/schemas/pinctrl/nxp,imx95-pinctrl.yaml' and an example.
+> Add a device tree binding for the Bluetooth SDIO function of the MT7921S
+> specifically to document the reset line. This binding is based on the MMC
+> controller binding, which specifies one device node per SDIO function.
 > 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> Cc: Sean Wang <sean.wang@mediatek.com>
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 > ---
->  Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 8 +++++---
->  1 file changed, 5 insertions(+), 3 deletions(-)
+> Changes since v2:
+> - Expand description and commit message to clearly state that WiFi and
+>   Bluetooth are separate SDIO functions, and that each function should
+>   be a separate device node, as specified by the MMC binding.
+> - Change 'additionalProperties' to 'unevaluatedProperties'
+> - Add missing separating new line
+> - s/ot/to/
 > 
-> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> index e9d3f043c4ed..ebc6c083b538 100644
-> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> @@ -249,9 +249,11 @@ properties:
->  
->    protocol@19:
->      type: object
-> -    allOf:
-> -      - $ref: '#/$defs/protocol-node'
-> -      - $ref: /schemas/pinctrl/pinctrl.yaml
-
-I don't think anything from here was actually used...
-
-
-> +    anyOf:
-> +      - $ref: /schemas/pinctrl/nxp,imx95-pinctrl.yaml
-> +      - allOf:
-> +          - $ref: '#/$defs/protocol-node'
-
-This must always apply and should not be under the anyOf.
-
-> +          - $ref: /schemas/pinctrl/pinctrl.yaml
->  
->      unevaluatedProperties: false
->  
+> Angelo's reviewed-by was not picked up due to the above changes.
 > 
-> -- 
-> 2.37.1
+> Changes since v1:
+> - Reworded descriptions
+> - Moved binding maintainer section before description
+> - Added missing reference to bluetooth-controller.yaml
+> - Added missing GPIO header to example
+> ---
+>  .../bluetooth/mediatek,mt7921s-bluetooth.yaml | 55 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 56 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7921s-bluetooth.yaml
 > 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
 
