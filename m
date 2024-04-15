@@ -1,159 +1,160 @@
-Return-Path: <devicetree+bounces-59389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FDEE8A521E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 15:46:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B65A8A5239
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 15:51:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16724284245
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 13:46:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8E4E282788
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 13:51:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06A1C7174D;
-	Mon, 15 Apr 2024 13:46:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7043073510;
+	Mon, 15 Apr 2024 13:51:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Dy752Knc"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="NPCDyNDp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BE371E896;
-	Mon, 15 Apr 2024 13:46:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4443D73189;
+	Mon, 15 Apr 2024 13:51:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713188774; cv=none; b=o4zPzujenZUTE0RYMqCL2b7qX8p57TXCZAgSrKj5MGnZAsO5mrnQuzG31G/Fl2iNm6aoQX/aToRI2fEr2/BUtHZVP7AT3gi7FlWycunIAhby+gS6m2k6bEXdKiPgxfM8d9sb1+SosLVtrDZT5XofMGDWglyujqhC73rZlq/8HBw=
+	t=1713189063; cv=none; b=KqTPr9zrQQrFgPGjjQGfqFV3gUQ99qBvjUkky0I1lnj8YUAgV/nwYXIhaDlpnpn2A5xcckPyMMrMjktJhvTluNOS5+dGSWkTcagSenbeqDyKFb0ASmztLaCSs1pJv/qv4yqh+wRfoHdt1pxNO5OAJ2w6l7Bnpa0hZrB8aDvBWFE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713188774; c=relaxed/simple;
-	bh=z32CIwWQD4JoiW1WeMXZvCwEz34iuVgxLb9gsZ5i56w=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cb6Wo0LyW1Jsrs+mpHC+SCehdJcAWZV1u/EHdp6Uq+KmkBYzo+zAqIO6n2U0Oy/qURQQS5ZePtUYvK7SFRth9xWYzvpOs3L9pweZVzO+NJyLMxoT/IoMpjGxzGZQCz4vBr6Qur5POlDV/rMMVU9ybnOV7SEm7com3LIxKkjpL0Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Dy752Knc; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43FDi9sY023070;
-	Mon, 15 Apr 2024 13:45:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=qcppdkim1; bh=yhE0N2GTjzloNk8jSE6bL
-	1E7cB8XApNZKK5EefZJ4P4=; b=Dy752KncX+0qPUtwl62xGFwJu/DOlByTMSyRV
-	RwDnVwOE2JbPaOKtAnnuZ4KDvEtt96WpkJdEuSqG3Z81yMGtE1tR/JZg0/65ba+L
-	uxKdfeWJY5EYSG7hct3G3MU/VXT0J5qwUObOKD72jcfdItNgQITAWAaQiyLD3wtU
-	qTZa0QlwsrBItBOEfCjUkZos6vP8ZSmi37nZEqU/sC5G1kLjpyRWmFF4oeoVU9+u
-	tZ6b38LS+iFCIGmf+tCxaaDJD/Hsiyzo7vaanv75QPxJjYuzAcmgMxIKlKlnH+e3
-	zVS2p75tmrlqh/enbvxgsTGVThcfHpx2me1Ug9jnaB1kKNFJA==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xgwdph65s-1
+	s=arc-20240116; t=1713189063; c=relaxed/simple;
+	bh=W79q4qRfqlKNo5W8Cdm9qxtElWftePm7dFAR/qWZgKY=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=H6Mm+FK9JCOhxh5Ca19cg6CnOdyOKcSJqOa/nCG+xAxMaiG3xIuFRq1oYt2dBuM5PpZtMZ/N9nayK9Kllr9CB6NIURB/m5w2yG8IPCbD6BUS5SSmNoJtnRCFDPEcxBLXDzsDRbj7wx+h2o0cPujJa4RRYvS/vVYmf651Yx/0YRg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=NPCDyNDp; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43FBtmV0029563;
+	Mon, 15 Apr 2024 15:50:33 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:in-reply-to:references
+	:mime-version:content-transfer-encoding:content-type; s=
+	selector1; bh=oW6KADp3Fq37auFWfzFF4pZHgphtK8RdSAeuAIKLbFQ=; b=NP
+	CDyNDpkhIwvhEv57YXyictHa+mehydSkp7PN4N7SvlUzLkI5/3Al4VOPmqyYvkRO
+	JpTvlCgNcy81K5aJurWmFRuGLmJTTS3ujAkG6OdSgSSBMhzLr7CDC1JZQooubUHs
+	tBM5Wu24BYVtald9HVGRBEIwAi+lCp81U2O4eOhbxxcVopS69fU9Nnhx1xF12Z1b
+	FKk4+EmAch06judREwPItPG78kUBLyCT4qb/z7KtLFc2z55YKaY+O9XfYsQ/iP1O
+	T488+xBp8o5H04pQCz0avHsJLtlEij7eyoPbTX5TgzBEN0WHzemaor3c8P/TSSti
+	W1F3uDUt2daT4RGAV7QA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3xgecy4eq2-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 15 Apr 2024 13:45:05 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43FDj3v4031752
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 15 Apr 2024 13:45:03 GMT
-Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 15 Apr 2024 06:45:03 -0700
-Date: Mon, 15 Apr 2024 06:45:02 -0700
-From: Bjorn Andersson <quic_bjorande@quicinc.com>
-To: Rob Herring <robh@kernel.org>
-CC: <soc@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Florian Fainelli
-	<florian.fainelli@broadcom.com>,
-        Broadcom internal kernel review list
-	<bcm-kernel-feedback-list@broadcom.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Tsahee Zidenberg <tsahee@annapurnalabs.com>,
-        Antoine Tenart
-	<atenart@kernel.org>,
-        Khuong Dinh <khuong@os.amperecomputing.com>,
-        Liviu
- Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo
- Pieralisi <lpieralisi@kernel.org>,
-        Ray Jui <rjui@broadcom.com>, Scott Branden
-	<sbranden@broadcom.com>,
-        Robert Richter <rric@kernel.org>, Shawn Guo
-	<shawnguo@kernel.org>,
-        Li Yang <leoyang.li@nxp.com>, Sascha Hauer
-	<s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        "Paul J. Murphy"
-	<paul.j.murphy@intel.com>,
-        Daniele Alessandrelli
-	<daniele.alessandrelli@intel.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory
- Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth
-	<sebastian.hesselbarth@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-        Thierry
- Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Andreas =?iso-8859-1?Q?F=E4rber?=
-	<afaerber@suse.de>,
-        Heiko Stuebner <heiko@sntech.de>, Orson Zhai
-	<orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Chunyan
- Zhang <zhang.lyra@gmail.com>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Alim Akhtar
-	<alim.akhtar@samsung.com>, <linux-fsd@tesla.com>,
-        Michal Simek
-	<michal.simek@amd.com>, <devicetree@vger.kernel.org>,
-        <linux-rpi-kernel@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <imx@lists.linux.dev>, <linux-mediatek@lists.infradead.org>,
-        <linux-tegra@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-realtek-soc@lists.infradead.org>,
-        <linux-rockchip@lists.infradead.org>,
-        <linux-samsung-soc@vger.kernel.org>
-Subject: Re: [PATCH] arm/arm64: dts: Drop "arm,armv8-pmuv3" compatible usage
-Message-ID: <Zh0vXinxy7woerJQ@hu-bjorande-lv.qualcomm.com>
-References: <20240412222857.3873079-1-robh@kernel.org>
+	Mon, 15 Apr 2024 15:50:33 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 16EA54004A;
+	Mon, 15 Apr 2024 15:50:27 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C499D218627;
+	Mon, 15 Apr 2024 15:49:43 +0200 (CEST)
+Received: from localhost (10.48.86.102) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 15 Apr
+ 2024 15:49:43 +0200
+From: Antonio Borneo <antonio.borneo@foss.st.com>
+To: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre
+ Torgue <alexandre.torgue@foss.st.com>,
+        Catalin Marinas
+	<catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+CC: Antonio Borneo <antonio.borneo@foss.st.com>,
+        Fabrice Gasnier
+	<fabrice.gasnier@foss.st.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v2 00/11] irqchip/stm32-exti: add irq map in DT and STM32MP25 support
+Date: Mon, 15 Apr 2024 15:49:15 +0200
+Message-ID: <20240415134926.1254428-1-antonio.borneo@foss.st.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240216094758.916722-1-antonio.borneo@foss.st.com>
+References: <20240216094758.916722-1-antonio.borneo@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240412222857.3873079-1-robh@kernel.org>
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: JnW3rpgElRZ7l7_IYzSAkLFTQ0q_Cpaq
-X-Proofpoint-GUID: JnW3rpgElRZ7l7_IYzSAkLFTQ0q_Cpaq
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SAFCAS1NODE2.st.com (10.75.90.13) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2024-04-15_11,2024-04-15_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- phishscore=0 priorityscore=1501 spamscore=0 impostorscore=0 bulkscore=0
- malwarescore=0 mlxscore=0 clxscore=1011 mlxlogscore=803 adultscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404150089
 
-On Fri, Apr 12, 2024 at 05:28:51PM -0500, Rob Herring wrote:
-[..]
->  arch/arm64/boot/dts/qcom/qcm2290.dtsi                | 2 +-
->  arch/arm64/boot/dts/qcom/qdu1000.dtsi                | 2 +-
->  arch/arm64/boot/dts/qcom/sdm630.dtsi                 | 2 +-
->  arch/arm64/boot/dts/qcom/sdx75.dtsi                  | 2 +-
+This series adds support for STM32MP25 to stm32-exti driver.
+The STM32MP25 includes two instances of the EXTI irq controller,
+each mapping their EXTI events to different GIC irq sets.
 
-Acked-by: Bjorn Andersson <andersson@kernel.org>
+In the current driver code, the mapping between events and irqs
+would require adding to the driver two new compatibles and two
+new mapping tables for this new SoC. This way of working starts
+showing it's limits; it doesn't scale and is not flexible.
 
-Regards,
-Bjorn
+This series uses the optional DT property interrupts-extended to
+provide the mapping between EXTI events and GIC irqs, thus moving
+in the DT the description of the HW connections between the EXTI
+and the GIC.
+Being the DT property interrupts-extended optional, it guarantees
+the backward compatibility with the existing DT for STM32MP1xx.
+Nevertheless the series updates and uniforms the existing DT by
+adding to them the property interrupts-extended too.
+
+At last, this series enables GPIO irqs on STM32MP25 by using the
+new exti node as interrupt parent of the pinctrl nodes.
+
+
+V1 -> V2
+- Switch away from the clever abuse of interrupt-map to a more
+  humble use of interrupts-extended.
+- Drop the addition of the v2m child node in GIC, as it is not
+  anymore required in this series.
+- Drop Fixes tag on trivial whitespace cleanup.
+- Fix S-O-B chain.
+- Move the variable's declarations in the condition block where
+  they are used.
+- When appropriate, change/use uniformly in the commit messages
+  the terms s/exti/EXTI/ and s/interrupt/event/ .
+
+
+Antonio Borneo (11):
+  irqchip/stm32-exti: Fix minor indentation issue
+  dt-bindings: interrupt-controller: stm32-exti: Add irq mapping to
+    parent
+  irqchip/stm32-exti: Map interrupts through interrupts-extended
+  irqchip/stm32-exti: Convert driver to standard PM
+  irqchip/stm32-exti: Skip secure events
+  irqchip/stm32-exti: Mark events reserved with RIF configuration check
+  arm64: Kconfig.platforms: Enable STM32_EXTI for ARCH_STM32
+  ARM: dts: stm32: List exti parent interrupts on stm32mp151
+  ARM: dts: stm32: List exti parent interrupts on stm32mp131
+  arm64: dts: st: Add exti1 and exti2 nodes on stm32mp251
+  arm64: dts: st: Add interrupt parent to pinctrl on stm32mp251
+
+ .../interrupt-controller/st,stm32-exti.yaml   |  17 +-
+ arch/arm/boot/dts/st/stm32mp131.dtsi          |  74 +++++++-
+ arch/arm/boot/dts/st/stm32mp151.dtsi          |  75 ++++++++
+ arch/arm64/Kconfig.platforms                  |   1 +
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        | 176 ++++++++++++++++++
+ drivers/irqchip/irq-stm32-exti.c              | 139 +++++++++-----
+ 6 files changed, 438 insertions(+), 44 deletions(-)
+
+
+base-commit: 4cece764965020c22cff7665b18a012006359095
+-- 
+2.34.1
+
 
