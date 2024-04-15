@@ -1,168 +1,306 @@
-Return-Path: <devicetree+bounces-59441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBF1D8A56E0
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 18:00:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 547BC8A56F7
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 18:02:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 725BD1F22786
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 16:00:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 782541C21EF2
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 16:02:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6474C7CF16;
-	Mon, 15 Apr 2024 16:00:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 602517F7D1;
+	Mon, 15 Apr 2024 16:02:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iR5RKTz/"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="PTetTvaZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AED3D2837D;
-	Mon, 15 Apr 2024 16:00:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFAFF7F7C1
+	for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 16:02:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.60.130.6
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713196834; cv=none; b=nZMyIL1cKxW9MM3r8RlneDiX0VZvQu/3OgcxgaPEuo3Ryw13JMUtRkhZJGfN6YWztk1X6bR3ibP81myuqwsoddUCdRxp+uw8Kk60S6XdXfxYHhao6Y0drUms3/Zv6EUG/+6VaeZPdxVOHslPKgUP4/5csZc64AD75o5olQYjYBY=
+	t=1713196959; cv=none; b=tFGg461ke8U/GwKb2yovWPjLXipfUsGkhWH4J6hhaxv5NCER3Nm3MWPTvj8iBGxqZuRCQYJECNBoj6hmL1XFbNlTpgofx7ai9/Zxy2RWHAoE2iUoisq9eX+IrzA8pXzyPMI3G1xALdN0dBJAcw41PpdeXqrx3sATUF8lCYu24Nk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713196834; c=relaxed/simple;
-	bh=AIurx8M7UROIIHeLqraX05WDHOH/h7A8uObPQDPI2ng=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BP+wJzznuJihIcfA93AFlvinMyml+89RrE9SXZ87a5xHiC/JRXKDvXIKOpFgByJqGUWmyeNi0coiDVF+VhXSIkQaAFaY5s7/QZPlgYNAITNMpOirR23Is79qZ41SA/V7t0OVsmEqYJS6YCRIxc0qNu6Jz5KSFY4yFAEE3RrbzS0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iR5RKTz/; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2da01cb187cso61665341fa.0;
-        Mon, 15 Apr 2024 09:00:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713196830; x=1713801630; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=WonYqSzvWT83jIX0IgNtkReYkS7CHkadpcuSarICRPQ=;
-        b=iR5RKTz/yrvZ9nCboAo1nWXktPhapgHwq0JWB5kPflUer7S2Z7FbX/d3BxqZPV6Cmt
-         Msyz1SIsXwgG4Y/0GMFxFX1OZXIrOgsCMZuG02PGvnGLQtML11+9yhopk7vaQEzyQuF+
-         iML4sO0SUkhgv/2S5mf191ce6u+gyS6E/2AqVoOUlns3jhqiOGKl7Y3FowQlUr5LDiGt
-         YKbTC9wvuBu+ibflf6cTlR0Xmr+DNkzEbzd9So0xC+xlcyZ1g39ovDk07OYmef5OImGr
-         MI6K2uXOBEoz8++cpEmZuTX9SUfbCtPZSEkn48K8Jnl6GgZ9gmi2tSwjaTXY1NRS3mvR
-         7S3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713196830; x=1713801630;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WonYqSzvWT83jIX0IgNtkReYkS7CHkadpcuSarICRPQ=;
-        b=Tk+e8xcTORGpYEffGGxiIv++pOGbQs2BPIdN1yDeMdGDO+0Gn2yPXLTJhPJ8P23vVc
-         7lYW7+NYWzqo5Tazm4WQ3nVMY35YHG8IvZSekeaCRYbvs7yXKPk04bP9Fcd50zENfxj8
-         CxL7njXzMNdmsd30WmbilXIOd3ec3fN7pGN+DFe+u/2wRcddDCoiofuwrV+RVnnMvlMh
-         Al6kKuCM7sMXZ1y+uAsfP7G0JZUJ5GovOkrXdTJt2t3N7W+aTUi5HJSLvf3k5ROfNwHQ
-         3LN6DjgqgjwQBI86vwYsN6ImfC1fI8x/cnwoaRJudOheO72N32um4eacFzE1/coBWl9P
-         k0RA==
-X-Forwarded-Encrypted: i=1; AJvYcCUYWsDqROxSpRv//vZncK4w+sGCDLl7ShqwgU685pUFJq8M7gUPHt5MOixMaM6xPIoFa5vnWARtWZk2g+W+INBLEtU/6W9xBMVt+4d9BW4qI7rw0fq93bTYSXgZdCkjAMNY2t2HazRFBZfg9ARR9Z+5TR3gydRiP31X/+Aaq+3zlkLhgp1P
-X-Gm-Message-State: AOJu0YxlqHjGBBo1ha1PNAz7x9uGnTKQ5MO+PLCiYJVrvMNUfpAaGuQJ
-	p59W2HTKi58A/z9Bpt/bSQFQQPLNpTR7XauRcToizHDppIwtUWMD
-X-Google-Smtp-Source: AGHT+IFOUuLN0irhPLHYXZ6mYv7PuyHiv+G70JXmObZzyVsigzU8qLZr9NJrU7yz6GsEcOBavXFeVg==
-X-Received: by 2002:a05:651c:b0b:b0:2d4:7455:89f6 with SMTP id b11-20020a05651c0b0b00b002d4745589f6mr9666567ljr.40.1713196829400;
-        Mon, 15 Apr 2024 09:00:29 -0700 (PDT)
-Received: from tom-HP-ZBook-Fury-15-G7-Mobile-Workstation (net-188-217-57-233.cust.vodafonedsl.it. [188.217.57.233])
-        by smtp.gmail.com with ESMTPSA id n21-20020a170906701500b00a53d6b895ddsm783830ejj.200.2024.04.15.09.00.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Apr 2024 09:00:29 -0700 (PDT)
-Date: Mon, 15 Apr 2024 18:00:26 +0200
-From: Tommaso Merciai <tomm.merciai@gmail.com>
-To: git@luigi311.com
-Cc: linux-media@vger.kernel.org, dave.stevenson@raspberrypi.com,
-	jacopo.mondi@ideasonboard.com, mchehab@kernel.org, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, sakari.ailus@linux.intel.com,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	pavel@ucw.cz, phone-devel@vger.kernel.org,
-	Ondrej Jirman <megous@megous.com>
-Subject: Re: [PATCH v4 23/25] media: i2c: imx258: Add support for reset gpio
-Message-ID: <Zh1PGuTjFlttNnLX@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
-References: <20240414203503.18402-1-git@luigi311.com>
- <20240414203503.18402-24-git@luigi311.com>
+	s=arc-20240116; t=1713196959; c=relaxed/simple;
+	bh=jEWHC+g3FBTBRgoAyXp4TpW058C6BkHpuuBPOQiM3x8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Ipw0guT6z8a0ksQG8fRlLm5H1FTgBw4dUJg/gzS90XPSlckM70zZ45L0nnovwaCSewdrMq436HZmyxm2J18Wt9PgRwbq3MTXmidT8a8UGTwaX++QRAsCVhA0M7lwUx1BXIGMeSnly/pX8ExVv/UIpiLxsxjAN/z8hhnWOa/lWQ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=igalia.com; spf=pass smtp.mailfrom=igalia.com; dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b=PTetTvaZ; arc=none smtp.client-ip=178.60.130.6
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=igalia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=igalia.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+	s=20170329; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+	Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=gvP98hInYZFCEb5VK1mtdtvDH7LnJs48ws8WOxjRwBY=; b=PTetTvaZs9ggupnEFrB7AJU0mZ
+	mJlQ0/crf9ub0UjAEW+yON6fneMulycSAmSWYD8W9Y1qc6PX7tT2IQRH1Totn/HtrtTWyBzTPj1VH
+	A9/EIuFWKtXSyAICrMXVafo8CME8B+jfM66c8QsZS37Xw5LgCg7fJJta6znGYAq1o7kUHEoC6CNc5
+	ESgt1pfc/8A7I3IuKP845m+bDx9caKo6qCUyTqVzaJugm8lrakjPwit8ExvQ5OVWfAP39KuIz6CfQ
+	3IK0jTfIpbcMrB/OAX4dcoSdxd3JALXeduAX7V2MuiYkuLH352ApZHFnYkcurK/XVP4swAy3SFExS
+	RBajd2Hg==;
+Received: from [177.34.169.177] (helo=localhost.localdomain)
+	by fanzine2.igalia.com with esmtpsa 
+	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+	id 1rwOmZ-004p8n-Ta; Mon, 15 Apr 2024 18:02:12 +0200
+From: =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>
+To: Maxime Ripard <mripard@kernel.org>,
+	Melissa Wen <mwen@igalia.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	Andre Przywara <andre.przywara@arm.com>,
+	Romain Perier <romain.perier@gmail.com>,
+	Stefan Wahren <wahrenst@gmx.net>
+Cc: dri-devel@lists.freedesktop.org,
+	bcm-kernel-feedback-list@broadcom.com,
+	devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	kernel-dev@igalia.com,
+	=?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>
+Subject: [PATCH v2] ARM: dts: bcm2835: Enable 3D rendering through V3D
+Date: Mon, 15 Apr 2024 13:00:39 -0300
+Message-ID: <20240415160129.14149-2-mcanal@igalia.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240414203503.18402-24-git@luigi311.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Luis,
+RPi 0-3 is packed with a GPU that provides 3D rendering capabilities to
+the RPi. Currently, the downstream kernel uses an overlay to enable the
+GPU and use GPU hardware acceleration. When deploying a mainline kernel
+to the RPi 0-3, we end up without any GPU hardware acceleration
+(essentially, we can't use the OpenGL driver).
 
-On Sun, Apr 14, 2024 at 02:35:01PM -0600, git@luigi311.com wrote:
-> From: Luis Garcia <git@luigi311.com>
-> 
-> It was documented in DT, but not implemented.
+Therefore, enable the V3D core for the RPi 0-3 in the mainline kernel.
 
-Good catch :-)
+Signed-off-by: Maíra Canal <mcanal@igalia.com>
+---
 
-> 
-> Signed-off-by: Ondrej Jirman <megous@megous.com>
-> Signed-off-by: Luis Garcia <git@luigi311.com>
-> ---
->  drivers/media/i2c/imx258.c | 14 +++++++++++++-
->  1 file changed, 13 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
-> index f0bd72f241e4..5de71cb7c1ae 100644
-> --- a/drivers/media/i2c/imx258.c
-> +++ b/drivers/media/i2c/imx258.c
-> @@ -699,6 +699,7 @@ struct imx258 {
->  	unsigned int csi2_flags;
->  
->  	struct gpio_desc *powerdown_gpio;
-> +	struct gpio_desc *reset_gpio;
->  
->  	/*
->  	 * Mutex for serialized access:
-> @@ -1250,7 +1251,11 @@ static int imx258_power_on(struct device *dev)
->  		regulator_bulk_disable(IMX258_NUM_SUPPLIES, imx258->supplies);
->  	}
->  
-> -	return ret;
-> +	gpiod_set_value_cansleep(imx258->reset_gpio, 0);
-> +
+v1 -> v2: https://lore.kernel.org/dri-devel/41694292-af1f-4760-a7b6-101ed5dd6f9d@gmx.net/T/
 
-I think you can remove this new line here.
+* As mentioned by Krzysztof, enabling should be done in last place of
+	override/extend. Therefore, I'm disabling V3D in the common dtsi
+	and enabling in the last place of extend, i.e. the RPi DTS files.
 
-> +	usleep_range(400, 500);
-> +
-> +	return 0;
->  }
->  
->  static int imx258_power_off(struct device *dev)
-> @@ -1260,6 +1265,7 @@ static int imx258_power_off(struct device *dev)
->  
->  	clk_disable_unprepare(imx258->clk);
->  
-> +	gpiod_set_value_cansleep(imx258->reset_gpio, 1);
->  	gpiod_set_value_cansleep(imx258->powerdown_gpio, 1);
->  
->  	regulator_bulk_disable(IMX258_NUM_SUPPLIES, imx258->supplies);
-> @@ -1573,6 +1579,12 @@ static int imx258_probe(struct i2c_client *client)
->  	if (IS_ERR(imx258->powerdown_gpio))
->  		return PTR_ERR(imx258->powerdown_gpio);
->  
-> +	/* request optional reset pin */
-> +	imx258->reset_gpio = devm_gpiod_get_optional(&client->dev, "reset",
-> +						     GPIOD_OUT_HIGH);
-> +	if (IS_ERR(imx258->reset_gpio))
-> +		return PTR_ERR(imx258->reset_gpio);
-> +
->  	/* Initialize subdev */
->  	v4l2_i2c_subdev_init(&imx258->sd, client, &imx258_subdev_ops);
->  
+ arch/arm/boot/dts/broadcom/bcm2835-common.dtsi      | 1 +
+ arch/arm/boot/dts/broadcom/bcm2835-rpi-a-plus.dts   | 4 ++++
+ arch/arm/boot/dts/broadcom/bcm2835-rpi-a.dts        | 4 ++++
+ arch/arm/boot/dts/broadcom/bcm2835-rpi-b-plus.dts   | 4 ++++
+ arch/arm/boot/dts/broadcom/bcm2835-rpi-b-rev2.dts   | 4 ++++
+ arch/arm/boot/dts/broadcom/bcm2835-rpi-b.dts        | 4 ++++
+ arch/arm/boot/dts/broadcom/bcm2835-rpi-cm1-io1.dts  | 4 ++++
+ arch/arm/boot/dts/broadcom/bcm2835-rpi-zero-w.dts   | 4 ++++
+ arch/arm/boot/dts/broadcom/bcm2835-rpi-zero.dts     | 4 ++++
+ arch/arm/boot/dts/broadcom/bcm2836-rpi-2-b.dts      | 4 ++++
+ arch/arm/boot/dts/broadcom/bcm2837-rpi-3-a-plus.dts | 4 ++++
+ arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b-plus.dts | 4 ++++
+ arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b.dts      | 4 ++++
+ arch/arm/boot/dts/broadcom/bcm2837-rpi-cm3-io3.dts  | 4 ++++
+ arch/arm/boot/dts/broadcom/bcm2837-rpi-zero-2-w.dts | 4 ++++
+ 15 files changed, 57 insertions(+)
 
-Looks good to me.
-Reviewed-by: Tommaso Merciai <tomm.merciai@gmail.com>
+diff --git a/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi b/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi
+index 9261b67dbee1..69e34831de51 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi
++++ b/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi
+@@ -139,6 +139,7 @@ v3d: v3d@7ec00000 {
+ 			compatible = "brcm,bcm2835-v3d";
+ 			reg = <0x7ec00000 0x1000>;
+ 			interrupts = <1 10>;
++			status = "disabled";
+ 		};
+ 
+ 		vc4: gpu {
+diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi-a-plus.dts b/arch/arm/boot/dts/broadcom/bcm2835-rpi-a-plus.dts
+index 069b48272aa5..495ab1dfd2ce 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2835-rpi-a-plus.dts
++++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi-a-plus.dts
+@@ -128,3 +128,7 @@ &uart0 {
+ 	pinctrl-0 = <&uart0_gpio14>;
+ 	status = "okay";
+ };
++
++&v3d {
++	status = "okay";
++};
+diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi-a.dts b/arch/arm/boot/dts/broadcom/bcm2835-rpi-a.dts
+index 2726c00431e8..4634d88ce3af 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2835-rpi-a.dts
++++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi-a.dts
+@@ -121,3 +121,7 @@ &uart0 {
+ 	pinctrl-0 = <&uart0_gpio14>;
+ 	status = "okay";
+ };
++
++&v3d {
++	status = "okay";
++};
+diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi-b-plus.dts b/arch/arm/boot/dts/broadcom/bcm2835-rpi-b-plus.dts
+index c57b999a4520..45fa0f6851fc 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2835-rpi-b-plus.dts
++++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi-b-plus.dts
+@@ -130,3 +130,7 @@ &uart0 {
+ 	pinctrl-0 = <&uart0_gpio14>;
+ 	status = "okay";
+ };
++
++&v3d {
++	status = "okay";
++};
+diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi-b-rev2.dts b/arch/arm/boot/dts/broadcom/bcm2835-rpi-b-rev2.dts
+index ae6d3a9586ab..c1dac5d704aa 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2835-rpi-b-rev2.dts
++++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi-b-rev2.dts
+@@ -121,3 +121,7 @@ &uart0 {
+ 	pinctrl-0 = <&uart0_gpio14>;
+ 	status = "okay";
+ };
++
++&v3d {
++	status = "okay";
++};
+diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi-b.dts b/arch/arm/boot/dts/broadcom/bcm2835-rpi-b.dts
+index 72764be75a79..72ca31f2a7d6 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2835-rpi-b.dts
++++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi-b.dts
+@@ -115,3 +115,7 @@ &uart0 {
+ 	pinctrl-0 = <&uart0_gpio14>;
+ 	status = "okay";
+ };
++
++&v3d {
++	status = "okay";
++};
+diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi-cm1-io1.dts b/arch/arm/boot/dts/broadcom/bcm2835-rpi-cm1-io1.dts
+index 3f9d198ac3ab..881a07d2f28f 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2835-rpi-cm1-io1.dts
++++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi-cm1-io1.dts
+@@ -95,3 +95,7 @@ &uart0 {
+ 	pinctrl-0 = <&uart0_gpio14>;
+ 	status = "okay";
+ };
++
++&v3d {
++	status = "okay";
++};
+diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi-zero-w.dts b/arch/arm/boot/dts/broadcom/bcm2835-rpi-zero-w.dts
+index 1f0b163e400c..1c7324067442 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2835-rpi-zero-w.dts
++++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi-zero-w.dts
+@@ -134,6 +134,10 @@ &uart1 {
+ 	status = "okay";
+ };
+ 
++&v3d {
++	status = "okay";
++};
++
+ &wifi_pwrseq {
+ 	reset-gpios = <&gpio 41 GPIO_ACTIVE_LOW>;
+ };
+diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi-zero.dts b/arch/arm/boot/dts/broadcom/bcm2835-rpi-zero.dts
+index 539c19c10946..1568ddc78f22 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2835-rpi-zero.dts
++++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi-zero.dts
+@@ -117,3 +117,7 @@ &uart0 {
+ 	pinctrl-0 = <&uart0_gpio14>;
+ 	status = "okay";
+ };
++
++&v3d {
++	status = "okay";
++};
+diff --git a/arch/arm/boot/dts/broadcom/bcm2836-rpi-2-b.dts b/arch/arm/boot/dts/broadcom/bcm2836-rpi-2-b.dts
+index 79918033750e..8fab6293d1c7 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2836-rpi-2-b.dts
++++ b/arch/arm/boot/dts/broadcom/bcm2836-rpi-2-b.dts
+@@ -129,3 +129,7 @@ &uart0 {
+ 	pinctrl-0 = <&uart0_gpio14>;
+ 	status = "okay";
+ };
++
++&v3d {
++	status = "okay";
++};
+diff --git a/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-a-plus.dts b/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-a-plus.dts
+index 3548306dfbcb..dc45b56054c7 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-a-plus.dts
++++ b/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-a-plus.dts
+@@ -156,3 +156,7 @@ &uart1 {
+ 	pinctrl-0 = <&uart1_gpio14>;
+ 	status = "okay";
+ };
++
++&v3d {
++	status = "okay";
++};
+diff --git a/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b-plus.dts b/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b-plus.dts
+index 2f1800cbc522..ce3a9f7ff529 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b-plus.dts
++++ b/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b-plus.dts
+@@ -161,3 +161,7 @@ &uart1 {
+ &wifi_pwrseq {
+ 	reset-gpios = <&expgpio 1 GPIO_ACTIVE_LOW>;
+ };
++
++&v3d {
++	status = "okay";
++};
+diff --git a/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b.dts b/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b.dts
+index 61270340075c..e398546d105b 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b.dts
++++ b/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b.dts
+@@ -149,6 +149,10 @@ &sdhost {
+ 	bus-width = <4>;
+ };
+ 
++&v3d {
++	status = "okay";
++};
++
+ &wifi_pwrseq {
+ 	reset-gpios = <&expgpio 1 GPIO_ACTIVE_LOW>;
+ };
+diff --git a/arch/arm/boot/dts/broadcom/bcm2837-rpi-cm3-io3.dts b/arch/arm/boot/dts/broadcom/bcm2837-rpi-cm3-io3.dts
+index 72d26d130efa..50471ada79b3 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2837-rpi-cm3-io3.dts
++++ b/arch/arm/boot/dts/broadcom/bcm2837-rpi-cm3-io3.dts
+@@ -94,3 +94,7 @@ &uart0 {
+ 	pinctrl-0 = <&uart0_gpio14>;
+ 	status = "okay";
+ };
++
++&v3d {
++	status = "okay";
++};
+diff --git a/arch/arm/boot/dts/broadcom/bcm2837-rpi-zero-2-w.dts b/arch/arm/boot/dts/broadcom/bcm2837-rpi-zero-2-w.dts
+index 85cf594724ef..876f697e7300 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2837-rpi-zero-2-w.dts
++++ b/arch/arm/boot/dts/broadcom/bcm2837-rpi-zero-2-w.dts
+@@ -132,6 +132,10 @@ &uart1 {
+ 	status = "okay";
+ };
+ 
++&v3d {
++	status = "okay";
++};
++
+ &wifi_pwrseq {
+ 	reset-gpios = <&gpio 41 GPIO_ACTIVE_LOW>;
+ };
+-- 
+2.44.0
 
-> -- 
-> 2.44.0
-> 
-> 
 
