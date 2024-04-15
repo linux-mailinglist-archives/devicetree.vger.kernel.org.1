@@ -1,108 +1,133 @@
-Return-Path: <devicetree+bounces-59379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2634A8A50DE
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 15:18:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 425238A5119
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 15:24:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB27528CD7B
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 13:18:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2F232864BA
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 13:24:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F29FB74C0C;
-	Mon, 15 Apr 2024 13:00:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F297412D1EB;
+	Mon, 15 Apr 2024 13:08:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X+qh7+JX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UJm1CCqc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C68E57317F;
-	Mon, 15 Apr 2024 13:00:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C974612CD8E;
+	Mon, 15 Apr 2024 13:08:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713186050; cv=none; b=bc1Pjo89k9IwTGuA4ptyhh0lN/p4ZLU0MxYwMsHumd2lopIhtunpB/K9wuexGpV8C7unXxSwTAj5Exjsu9ZFrJH771DyPb9iQl+8Xj7XbYvee8ApxijjwD6wBUj41IFnmrfjQDjYh1SGGgWYKYmfrDQS+tgCZ9DgCOJmSSc2eQk=
+	t=1713186489; cv=none; b=DDkZ97QzISFRyiQzHFsHjdlQvNUibcuoINN5Hgyz5URMEofjFW7d1GxQti4LEFwbRJoFtHUPrK1Qsto2JeV2Ra8ymraDTvtrsJOEPma85y/RQYFQ8Fd6YDoHnaI6FvKidf8d1uJph38PjEtLcEM6byK2Ww3e5nYvqkijWrFjDNI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713186050; c=relaxed/simple;
-	bh=gFXhpJysJPGuXbcIUji4D5PA3EJTVGXCEd//a8Dkdns=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ag16Pyc8/v7v3c5ImiPwWv8uIY8ilS1moRo6rktcH/cy3PWz8jdBr2Nt+VXGlYnbdEW9QzflZJWhqPYbX8VkBTgokJRVUMgsWbz/XgXRGSJGo9kjym0MIk8hAT8Kgu0ei9Z8UVCPvaeNYozLViowIbBBVHUSBDNyHYrG0H8mUEo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X+qh7+JX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F38BBC2BD10;
-	Mon, 15 Apr 2024 13:00:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713186050;
-	bh=gFXhpJysJPGuXbcIUji4D5PA3EJTVGXCEd//a8Dkdns=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=X+qh7+JX/x1EW79kqiWY4vAPsXJARYvMII4b6oB3Su0n3rgAi67ZqH7eFotLhSluZ
-	 Szt2K44M8DO7amY6lU2kMWLbRXUNG5ZC46gUy0zHEaG390nB13JIe4Rwl62IehI5YW
-	 w0BdqCjQVct4HblJEIinAq3WGFZX1mvtB6JFcHjlnAXFeDO6bF/95Mi9MqQbkjyRYB
-	 Yr0aeQA8HhJ4wdGDEQWOV28/Q87JVdLsM6jJwQnwQP1uabGPwY2S3lPwVCD3Q2MYvj
-	 OU3mhq4yp2Q1D5enQ8AzV2E35epNQrigp0pnNUiJafe6X1nrjSdThMtPnrj2CAAkNJ
-	 pCHN50U9telPA==
-Date: Mon, 15 Apr 2024 14:00:44 +0100
-From: Conor Dooley <conor@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-scsi@vger.kernel.org, alim.akhtar@samsung.com,
-	avri.altman@wdc.com, bvanassche@acm.org, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	peter.wang@mediatek.com, jejb@linux.ibm.com,
-	martin.petersen@oracle.com, lgirdwood@gmail.com, broonie@kernel.org,
-	matthias.bgg@gmail.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 5/8] dt-bindings: ufs: mediatek,ufs: Document MT8192
- compatible with MT8183
-Message-ID: <20240415-quaking-silicon-e98cac305bee@spud>
-References: <20240415110012.148871-1-angelogioacchino.delregno@collabora.com>
- <20240415110012.148871-6-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1713186489; c=relaxed/simple;
+	bh=87bTwsF4w8g4JFgeI7M+WPF4fLoAHZlVuKCfGMPRLeA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kOjrKjddTsBte0HkocHcFfgFBNSFrJ8hqpk7Z98zP/bZuJ1g8JZnqk12OuPKygm7UuNFUj/SC72b+eWNtbfD9y6QN/tfpGFoEdeh4uzCttA/nzOLzcDPZ11dm3OuPghD7toB32PDZxDC6yZnLT9IwyBTOvgxn8q9/2mevU/Cxdw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UJm1CCqc; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-56e47843cc7so3004088a12.0;
+        Mon, 15 Apr 2024 06:08:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1713186483; x=1713791283; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EOVcyUHEG9Bub93WbTofMHZOaWndJooQSg5/AUTll90=;
+        b=UJm1CCqcR8OL5nAP+WUaZM8LcUEHlUUXgMhxlC7aNsuRO6ba6uhJUUXLEG1AveB/Jg
+         Q5xFo2LPpOg+4PMTs/fhJdgISObaL8Ofeu2P6uJvU/8I59t8h9nvDz2vRtRjbJwbhxjE
+         SDGA74FHwJ0FbdP9M7+zODxcFviS/EvX+A5YCz1gQEVgr35syiAgTvA27wGcJTbK0Zry
+         q2MEm2vMiNW2CWJSV66v6hp3XPWvh0tag2s84p9MNiqR2GLO588L6MEx/dqZ2tL3ZYhs
+         GwpzdZL+xAajiJJExYzS423ylJ7zlkQ+D3Px3mntJCchyyFaWFeCKK5aDF5dngKblcaS
+         5uxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713186483; x=1713791283;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EOVcyUHEG9Bub93WbTofMHZOaWndJooQSg5/AUTll90=;
+        b=YtnkVniik+lV0z6nuH13a7NgDIcFo9jCJb9CUReIs/u+3UcyBunHoUdg3+IQA+DmLL
+         aenHeTlTsXDMGRwCEUIXy1Avh9cFEZ29LcMU/1QMBT0rtyLHUn8x6DkG2fmxCGUEQ2cp
+         yg6FS8KjrSAwBl5FbsMCTEN2dRjVjcHGcPQHU43RcxCkxubtl7Hjhh3SuCgAwG12bbL+
+         AV43bX4dEhpT8Re/hLPvMVFHvSh7d/yqrk1DXrkrpkFPEbhb1frZliQ9P2+iimQjPBbe
+         SVeWVh3/9yzZ/joNflLlyAPeF9zyvqtYa94PPAZLAujk/R2u9NxudSK9dtiZPFLElWDr
+         Ey5A==
+X-Forwarded-Encrypted: i=1; AJvYcCUVX00zkc/gvMZE7+nM+5DlG5w6z+u8LbEfo8SxC2qxVYAVs/MiQPZEY/pzHUpxOVdN9t1lYANfMmiRySTPVazUqVpf6vy9merU8vxPDsHIoIMnli8Zon9+weHbS/L+dbsH9ehsUgENhxik7YaowIxn0U9fG8SyOLc3kkWIXhE+ta2QVg==
+X-Gm-Message-State: AOJu0YxCGlTSByd4ga4bo/8bui98ejLBkxQnzD3qh+zxqLyz6D8/ipD5
+	WJfFOFfsJBXzZ2Fdd4PRgwHjJv1rh++raoZUnis76PmR3L6mjEjY
+X-Google-Smtp-Source: AGHT+IEnoBtkeYeATaHIBYVqrye4LXM5oKiAeXD3POM03pgS2yfGk+ty1Vt9AFH/3QTv52BE7d7ueQ==
+X-Received: by 2002:a17:906:d1c5:b0:a52:5a74:13f4 with SMTP id bs5-20020a170906d1c500b00a525a7413f4mr2496136ejb.12.1713186482697;
+        Mon, 15 Apr 2024 06:08:02 -0700 (PDT)
+Received: from [172.27.138.193] (c7.campus.utcluj.ro. [193.226.6.226])
+        by smtp.gmail.com with ESMTPSA id lb10-20020a170906adca00b00a526fd6362asm922149ejb.117.2024.04.15.06.08.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Apr 2024 06:08:02 -0700 (PDT)
+Message-ID: <105bd25b-e5ea-4649-b9b2-2547e94b103e@gmail.com>
+Date: Mon, 15 Apr 2024 16:08:00 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="7VZHj/xqicOvVrmG"
-Content-Disposition: inline
-In-Reply-To: <20240415110012.148871-6-angelogioacchino.delregno@collabora.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 4/5] dt-bindings: iio: adc: ad7192: Add AD7194 support
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ michael.hennerich@analog.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: alexandru.tachici@analog.com, lars@metafoo.de, jic23@kernel.org,
+ robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ lgirdwood@gmail.com, broonie@kernel.org, andy@kernel.org,
+ nuno.sa@analog.com, marcelo.schmitt@analog.com, bigunclemax@gmail.com,
+ dlechner@baylibre.com, okan.sahin@analog.com, fr0st61te@gmail.com,
+ alisa.roman@analog.com, marcus.folkesson@gmail.com, schnelle@linux.ibm.com,
+ liambeguin@gmail.com
+References: <20240413151152.165682-1-alisa.roman@analog.com>
+ <20240413151152.165682-5-alisa.roman@analog.com>
+ <2ad06ea8-220f-4d09-bbe7-c4dd12d0d8bd@linaro.org>
+Content-Language: en-US
+From: Alisa-Dariana Roman <alisadariana@gmail.com>
+In-Reply-To: <2ad06ea8-220f-4d09-bbe7-c4dd12d0d8bd@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+On 14.04.2024 00:19, Krzysztof Kozlowski wrote:
+> On 13/04/2024 17:11, Alisa-Dariana Roman wrote:
+>> Unlike the other AD719Xs, AD7194 has configurable differential
+>> channels. The user can dynamically configure them in the devicetree.
+>>
+>> Also add an example for AD7194 devicetree.
+>>
+>> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
+>> ---
+>>   .../bindings/iio/adc/adi,ad7192.yaml          | 74 +++++++++++++++++++
+>>   1 file changed, 74 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+>> index ba506af3b73e..855f0a2d7d75 100644
+>> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+>> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+
+...
+
+> 
+>> +  "^channel@[0-9]+$":
+> 
+> Why restricting the pattern? If you have 256 channels, how are you going
+> to encode it?
+
+Hi Krzysztof,
+
+Thank you for your feedback! I applied the rest, but as for this one 
+isn't channel@1 -> channel@256 encoding sufficient?
+
+Kind regards,
+Alisa-Dariana Roman
 
 
---7VZHj/xqicOvVrmG
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Apr 15, 2024 at 01:00:09PM +0200, AngeloGioacchino Del Regno wrote:
-> The MT8192 UFS controller is compatible with the MT8183 one:
-> document this by allowing to assign both compatible strings
-> "mediatek,mt8192-ufshci", "mediatek,mt8183-ufshci" to the UFSHCI node.
->=20
-> Moreover, since no MT8192 devicetree ever declared any UFSHCI node,
-> disallow specifying only the MT8192 compatible.
->=20
-> In preparation for adding MT8195 to the mix, the MT8192 compatible
-> was added as enum instead of const.
->=20
-> Also, while at it, replace Stanley Chu with me in the maintainers
-> field, as he is unreachable and his email isn't active anymore.
->=20
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
---7VZHj/xqicOvVrmG
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZh0k/AAKCRB4tDGHoIJi
-0oGyAP9q76hXD18n90xaMMymxRKrhzGMtdg5ikpw3IkeCOxQiwD/RjOm1GlQs/q9
-5EhQIN3rerOGKrdYGgLZzpX3goItPQE=
-=7MNQ
------END PGP SIGNATURE-----
-
---7VZHj/xqicOvVrmG--
 
