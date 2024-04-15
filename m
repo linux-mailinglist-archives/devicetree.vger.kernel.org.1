@@ -1,274 +1,383 @@
-Return-Path: <devicetree+bounces-59306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 494AB8A4A3A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 10:22:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E5DF8A4A4B
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 10:27:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F28EC28288F
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 08:22:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B8BD1F245CF
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 08:27:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EA4B364CD;
-	Mon, 15 Apr 2024 08:22:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A196364AB;
+	Mon, 15 Apr 2024 08:27:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Swyd+kDN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pbk2lYH7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D3CA2D022;
-	Mon, 15 Apr 2024 08:22:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F97C38FA5;
+	Mon, 15 Apr 2024 08:27:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713169356; cv=none; b=k19aPdpXbODS3qKJkVVwTE7hThDOVauaIZfgVv3gIbm2nBuaMVXMVbyHk9v3H5atTgu47CDYkdpoGlbVtgcEY7NRTsxeRvXNgF9tcZzoVfTgyiknPPIC/YG1F3IOSyP70g3LQBPUt9s4k7fEIdCDCQ6DNb0d7C/mncfvEN4trXo=
+	t=1713169648; cv=none; b=QgvRnKYjC/1Vu+u7cby7VSfFR8MzYtb5zA2aoQlqrVRZBjIfrIo2uUCHjUMQoOZFBmIYiI8f5meWKLLSlz9AWw9pj+hx5q0UV0AEils8CpUzqDOfQhDSwY2FIw/WYMkZZ5DLuPrCppHA08Z8S8+g/2cCJxgtZo/XDWKV+RU5P6U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713169356; c=relaxed/simple;
-	bh=CVVzJFmo/hpBAPqJ6Dtj39yB/aP96Oyqa8EyRW9Q12Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=i0ID+73L+SMaU+VJwKflbvS05l9Q9+XdGUE3fWCtMB56HBzHeKwfLRQ2nmwXv9Ktb8zhPxzm7bBtGzwEStKAs7WNVOOL9CJ7p2+fNZ/WLWhcWFBcX/YOSJt1O3qzpwOtWW3g2DvRunXwlcaxuvK9ypaYBoCgmH9kHixXBqWGA0w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Swyd+kDN; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43F8MI0f061748;
-	Mon, 15 Apr 2024 03:22:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1713169338;
-	bh=O39uRrglIXQjZzfqaVv4IwN4oOZmutfKiQZLaXMiV/U=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=Swyd+kDNjIdJ0C6/67bfzMC3QfTfhatwwtgE6mjyOwTnPmpgLFQ+AjAFmHlrloTDG
-	 6m286gQalbIQMaIC3DUg40DIrDuusG4eiveVlTir++DE5m69mnVpsA9HJ+L2X57tKy
-	 PqYgOWiNfYxXFvPGh+5+grgdVGmgO28PKhrposu0=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43F8MH8W113406
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 15 Apr 2024 03:22:17 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 15
- Apr 2024 03:22:17 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 15 Apr 2024 03:22:17 -0500
-Received: from [10.249.132.73] ([10.249.132.73])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43F8MDZj099513;
-	Mon, 15 Apr 2024 03:22:14 -0500
-Message-ID: <bbc276d6-709b-41f0-9987-63750d78deaa@ti.com>
-Date: Mon, 15 Apr 2024 13:52:12 +0530
+	s=arc-20240116; t=1713169648; c=relaxed/simple;
+	bh=7XIcMU6cLnWljsTEW24Zl+iNF3bAHIFSevusf2XFM00=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=efBYlYK/vh7Xja1/ec6c8MgTxEMcOdObbYw5695ai/vyp7HbyNcXVgoYIRNP0s1r+eFo1YtP2GCDSdiseLn0iBpbt9EI8Y5gfpRH8JImtuiTbgr0+Z4v5XhrDFiuWtdrKKmuXzEcrZS7VByz70wKDMVmLRnD7aWg74J666JP6/8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pbk2lYH7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FA98C2BD11;
+	Mon, 15 Apr 2024 08:27:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713169648;
+	bh=7XIcMU6cLnWljsTEW24Zl+iNF3bAHIFSevusf2XFM00=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pbk2lYH7TF0NtKEx9wvF1SQjhrMwayBBereIlolpc5ZE1bnHYm9eJ1X94Z3VOmA1e
+	 Dn6tySNlcuapKwjhS+e55khynGgCdr4Wwt966J1imEGGd2JErMzJctareCdjkXolIH
+	 55FQyhTU4PxfZ/LlFYPN7MKtzOTWJby+sNfj0QXm9h3IX5lIxLfQ/p/LBaACA4dYIN
+	 U8ISadmsXnB4xI4dNvorQg8XT6iVz76jQJ4eHoMB6+Ez4oR3hhe8/UW8dXSwU4yhl0
+	 Piyr5pvV8+rAbuUhyAXT5LAObezLkWYa/+BXzjKov1ob9VMBCHbfcLCJ0JNGFurudC
+	 K+5FM2Tuw8aeA==
+Date: Mon, 15 Apr 2024 10:27:21 +0200
+From: Niklas Cassel <cassel@kernel.org>
+To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, jingoohan1@gmail.com, mani@kernel.org,
+	marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v7 6/7] PCI: rcar-gen4: Add support for r8a779g0
+Message-ID: <Zhzk6dOkb8RXjv7o@ryzen>
+References: <20240415081135.3814373-1-yoshihiro.shimoda.uh@renesas.com>
+ <20240415081135.3814373-7-yoshihiro.shimoda.uh@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] arm64: dts: ti: k3-j721e-sk: Add support for multiple
- CAN instances
-To: Beleswar Padhi <b-padhi@ti.com>, <nm@ti.com>
-CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>
-References: <20240412112025.201639-1-b-padhi@ti.com>
-Content-Language: en-US
-From: Bhavya Kapoor <b-kapoor@ti.com>
-In-Reply-To: <20240412112025.201639-1-b-padhi@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240415081135.3814373-7-yoshihiro.shimoda.uh@renesas.com>
 
-
-On 12/04/24 16:50, Beleswar Padhi wrote:
-> CAN instance 0 in the mcu domain is brought on the J721E-SK board
-> through header J1. Thus, add its respective transceiver 1 dt node to add
-> support for this CAN instance.
->
-> CAN instances 0, 5 and 9 in the main domain are brought on the J721E-SK
-> board through headers J5, J6 and J2 respectively. Thus, add their
-> respective transceivers 2, 3 and 4 dt nodes to add support for these CAN
-> instances.
->
-> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
-Reviewed-by: Bhavya Kapoor <b-kapoor@ti.com>
+On Mon, Apr 15, 2024 at 05:11:34PM +0900, Yoshihiro Shimoda wrote:
+> This driver previously supported r8a779f0 (R-Car S4-8). Add support
+> for r8a779g0 (R-Car V4H). PCIe features of both r8a779f0 and r8a779g0
+> are almost all the same. For example:
+>  - PCI Express Base Specification Revision 4.0
+>  - Root complex mode and endpoint mode are supported
+> 
+> However, r8a779g0 requires specific firmware downloading, to
+> initialize the PHY. Otherwise, the PCIe controller cannot work.
+> The firmware is attached in the manual of the r8a779g0 as text.
+> So, convert it to a binary file by using a script.
+> 
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 > ---
-> Test logs: https://gist.github.com/3V3RYONE/2144fa883bf3a390981d25572971fcf3
->
-> v3: Changelog:
-> 1) Updated board name in capital letters in commit message description
-> 2) Updated test logs to include communication between all applicable CAN
-> instances
->
-> Link to v2:
-> https://lore.kernel.org/linux-arm-kernel/20240325103405.182692-1-b-padhi@ti.com/
->
-> v2: Changelog:
-> 1) Re-ordered status = "okay" property to the end of all applicable dt
-> nodes following kernel documentation
->
-> Link to v1:
-> https://lore.kernel.org/linux-arm-kernel/20240315124728.490331-1-b-padhi@ti.com/
->
->  arch/arm64/boot/dts/ti/k3-j721e-sk.dts | 116 +++++++++++++++++++++++++
->  1 file changed, 116 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-> index 0c4575ad8d7c..7170f0220afd 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-> @@ -210,6 +210,42 @@ vdd_sd_dv_alt: gpio-regulator-tps659411 {
->  			 <3300000 0x1>;
->  	};
+>  drivers/pci/controller/dwc/pcie-rcar-gen4.c | 201 +++++++++++++++++++-
+>  1 file changed, 200 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-rcar-gen4.c b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
+> index 980a916933d6..4e934e9156f2 100644
+> --- a/drivers/pci/controller/dwc/pcie-rcar-gen4.c
+> +++ b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
+> @@ -5,8 +5,10 @@
+>   */
 >  
-> +	transceiver1: can-phy0 {
-
-Hi Beleswar, all looks good to me just one little suggestion to keep
-
-transceiver and can-phy number as same for better understanding
-
-and to avoid some bit of confusion later.
-
-Eg.) transceiver<x>: can-phy<x>
-
-> +		compatible = "ti,tcan1042";
-> +		#phy-cells = <0>;
-> +		max-bitrate = <5000000>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&mcu_mcan0_gpio_pins_default>;
-> +		standby-gpios = <&wkup_gpio0 3 GPIO_ACTIVE_HIGH>;
-> +	};
-> +
-> +	transceiver2: can-phy1 {
-> +		compatible = "ti,tcan1042";
-> +		#phy-cells = <0>;
-> +		max-bitrate = <5000000>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&main_mcan0_gpio_pins_default>;
-> +		standby-gpios = <&main_gpio0 65 GPIO_ACTIVE_HIGH>;
-> +	};
-> +
-> +	transceiver3: can-phy2 {
-> +		compatible = "ti,tcan1042";
-> +		#phy-cells = <0>;
-> +		max-bitrate = <5000000>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&main_mcan5_gpio_pins_default>;
-> +		standby-gpios = <&main_gpio0 66 GPIO_ACTIVE_HIGH>;
-> +	};
-> +
-> +	transceiver4: can-phy3 {
-> +		compatible = "ti,tcan1042";
-> +		#phy-cells = <0>;
-> +		max-bitrate = <5000000>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&main_mcan9_gpio_pins_default>;
-> +		standby-gpios = <&main_gpio0 67 GPIO_ACTIVE_HIGH>;
-> +	};
-> +
->  	dp_pwr_3v3: fixedregulator-dp-prw {
->  		compatible = "regulator-fixed";
->  		regulator-name = "dp-pwr";
-> @@ -367,6 +403,45 @@ J721E_IOPAD(0x164, PIN_OUTPUT, 7) /* (V29) RGMII5_TD2 */
->  		>;
->  	};
+>  #include <linux/delay.h>
+> +#include <linux/firmware.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/io.h>
+> +#include <linux/iopoll.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/pci.h>
+> @@ -20,9 +22,10 @@
+>  /* Renesas-specific */
+>  /* PCIe Mode Setting Register 0 */
+>  #define PCIEMSR0		0x0000
+> -#define BIFUR_MOD_SET_ON	BIT(0)
+> +#define APP_SRIS_MODE		BIT(6)
+>  #define DEVICE_TYPE_EP		0
+>  #define DEVICE_TYPE_RC		BIT(4)
+> +#define BIFUR_MOD_SET_ON	BIT(0)
 >  
-> +	main_mcan0_pins_default: main-mcan0-default-pins {
-> +		pinctrl-single,pins = <
-> +			J721E_IOPAD(0x208, PIN_INPUT, 0) /* (W5) MCAN0_RX */
-> +			J721E_IOPAD(0x20c, PIN_OUTPUT, 0) /* (W6) MCAN0_TX */
-> +		>;
-> +	};
-> +
-> +	main_mcan0_gpio_pins_default: main-mcan0-gpio-default-pins {
-> +		pinctrl-single,pins = <
-> +			J721E_IOPAD(0x108, PIN_INPUT, 7) /* (AD27) PRG0_PRU1_GPO2.GPIO0_65 */
-> +		>;
-> +	};
-> +
-> +	main_mcan5_pins_default: main-mcan5-default-pins {
-> +		pinctrl-single,pins = <
-> +			J721E_IOPAD(0x050, PIN_INPUT, 6) /* (AE21) PRG1_PRU0_GPO18.MCAN5_RX */
-> +			J721E_IOPAD(0x04c, PIN_OUTPUT, 6) /* (AJ21) PRG1_PRU0_GPO17.MCAN5_TX */
-> +		>;
-> +	};
-> +
-> +	main_mcan5_gpio_pins_default: main-mcan5-gpio-default-pins {
-> +		pinctrl-single,pins = <
-> +			J721E_IOPAD(0x10c, PIN_INPUT, 7) /* (AC25) PRG0_PRU1_GPO3.GPIO0_66 */
-> +		>;
-> +	};
-> +
-> +	main_mcan9_pins_default: main-mcan9-default-pins {
-> +		pinctrl-single,pins = <
-> +			J721E_IOPAD(0x0d0, PIN_INPUT, 6) /* (AC27) PRG0_PRU0_GPO8.MCAN9_RX */
-> +			J721E_IOPAD(0x0cc, PIN_OUTPUT, 6) /* (AC28) PRG0_PRU0_GPO7.MCAN9_TX */
-> +		>;
-> +	};
-> +
-> +	main_mcan9_gpio_pins_default: main-mcan9-gpio-default-pins {
-> +		pinctrl-single,pins = <
-> +			J721E_IOPAD(0x110, PIN_INPUT, 7) /* (AD29) PRG0_PRU1_GPO4.GPIO0_67 */
-> +		>;
-> +	};
-> +
->  	dp0_pins_default: dp0-default-pins {
->  		pinctrl-single,pins = <
->  			J721E_IOPAD(0x1c4, PIN_INPUT, 5) /* SPI0_CS1.DP0_HPD */
-> @@ -555,6 +630,19 @@ J721E_WKUP_IOPAD(0xfc, PIN_INPUT_PULLUP, 0) /* (H24) WKUP_I2C0_SDA */
->  		>;
->  	};
+>  /* PCIe Interrupt Status 0 */
+>  #define PCIEINTSTS0		0x0084
+> @@ -37,19 +40,47 @@
+>  #define PCIEDMAINTSTSEN		0x0314
+>  #define PCIEDMAINTSTSEN_INIT	GENMASK(15, 0)
 >  
-> +	mcu_mcan0_pins_default: mcu-mcan0-default-pins {
-> +		pinctrl-single,pins = <
-> +			J721E_WKUP_IOPAD(0x0ac, PIN_INPUT, 0) /* (C29) MCU_MCAN0_RX */
-> +			J721E_WKUP_IOPAD(0x0a8, PIN_OUTPUT, 0) /* (D29) MCU_MCAN0_TX */
-> +		>;
-> +	};
+> +/* Port Logic Registers 89 */
+> +#define PRTLGC89		0x0b70
 > +
-> +	mcu_mcan0_gpio_pins_default: mcu-mcan0-gpio-default-pins {
-> +		pinctrl-single,pins = <
-> +			J721E_WKUP_IOPAD(0x0bc, PIN_INPUT, 7) /* (F27) WKUP_GPIO0_3 */
-> +		>;
-> +	};
+> +/* Port Logic Registers 90 */
+> +#define PRTLGC90		0x0b74
 > +
->  	/* Reset for M.2 M Key slot on PCIe1  */
->  	mkey_reset_pins_default: mkey-reset-pns-default-pins {
->  		pinctrl-single,pins = <
-> @@ -1108,6 +1196,34 @@ &pcie1_rc {
->  	num-lanes = <2>;
+>  /* PCIe Reset Control Register 1 */
+>  #define PCIERSTCTRL1		0x0014
+>  #define APP_HOLD_PHY_RST	BIT(16)
+>  #define APP_LTSSM_ENABLE	BIT(0)
+>  
+> +/* PCIe Power Management Control */
+> +#define PCIEPWRMNGCTRL		0x0070
+> +#define APP_CLK_REQ_N		BIT(11)
+> +#define APP_CLK_PM_EN		BIT(10)
+> +
+> +/*
+> + * The R-Car Gen4 documents don't describe the PHY registers' name.
+> + * But, the initialization procedure describes these offsets. So,
+> + * this driver makes up own #defines for the offsets.
+> + */
+> +#define RCAR_GEN4_PCIE_PHY_0f8	0x0f8
+> +#define RCAR_GEN4_PCIE_PHY_148	0x148
+> +#define RCAR_GEN4_PCIE_PHY_1d4	0x1d4
+> +#define RCAR_GEN4_PCIE_PHY_514	0x514
+> +#define RCAR_GEN4_PCIE_PHY_700	0x700
+> +
+>  #define RCAR_NUM_SPEED_CHANGE_RETRIES	10
+>  #define RCAR_MAX_LINK_SPEED		4
+>  
+>  #define RCAR_GEN4_PCIE_EP_FUNC_DBI_OFFSET	0x1000
+>  #define RCAR_GEN4_PCIE_EP_FUNC_DBI2_OFFSET	0x800
+>  
+> +#define RCAR_GEN4_PCIE_FIRMWARE_NAME		"rcar_gen4_pcie.bin"
+> +#define RCAR_GEN4_PCIE_FIRMWARE_BASE_ADDR	0xc000
+> +
+> +MODULE_FIRMWARE(RCAR_GEN4_PCIE_FIRMWARE_NAME);
+> +
+>  struct rcar_gen4_pcie;
+>  struct rcar_gen4_pcie_drvdata {
+> +	void (*additional_common_init)(struct rcar_gen4_pcie *rcar);
+>  	int (*ltssm_enable)(struct rcar_gen4_pcie *rcar);
+>  	enum dw_pcie_device_mode mode;
+>  };
+> @@ -57,12 +88,144 @@ struct rcar_gen4_pcie_drvdata {
+>  struct rcar_gen4_pcie {
+>  	struct dw_pcie dw;
+>  	void __iomem *base;
+> +	void __iomem *phy_base;
+>  	struct platform_device *pdev;
+>  	const struct rcar_gen4_pcie_drvdata *drvdata;
+>  };
+>  #define to_rcar_gen4_pcie(_dw)	container_of(_dw, struct rcar_gen4_pcie, dw)
+>  
+>  /* Common */
+> +static void rcar_gen4_pcie_phy_reg_update_bits(struct rcar_gen4_pcie *rcar,
+> +					       u32 offset, u32 mask, u32 val)
+> +{
+> +	u32 tmp;
+> +
+> +	tmp = readl(rcar->phy_base + offset);
+> +	tmp &= ~mask;
+> +	tmp |= val;
+> +	writel(tmp, rcar->phy_base + offset);
+> +}
+> +
+> +static int rcar_gen4_pcie_reg_check(struct rcar_gen4_pcie *rcar,
+> +				    u32 offset, u32 mask)
+> +{
+> +	struct dw_pcie *dw = &rcar->dw;
+> +
+> +	if (dw_pcie_readl_dbi(dw, offset) & mask)
+> +		return -EAGAIN;
+> +
+> +	return 0;
+> +}
+> +
+> +static int rcar_gen4_pcie_download_phy_firmware(struct rcar_gen4_pcie *rcar)
+> +{
+> +	const u32 check_addr[] = { 0x00101018, 0x00101118, 0x00101021, 0x00101121};
+> +	struct dw_pcie *dw = &rcar->dw;
+> +	const struct firmware *fw;
+> +	unsigned int i, timeout;
+> +	u32 data;
+> +	int ret;
+> +
+> +	ret = request_firmware(&fw, RCAR_GEN4_PCIE_FIRMWARE_NAME, dw->dev);
+> +	if (ret) {
+> +		dev_err(dw->dev, "%s: Requesting firmware failed\n", __func__);
+> +		return ret;
+> +	}
+> +
+> +	for (i = 0; i < (fw->size / 2); i++) {
+> +		data = fw->data[(i * 2) + 1] << 8 | fw->data[i * 2];
+> +		timeout = 100;
+> +		do {
+> +			dw_pcie_writel_dbi(dw, PRTLGC89, RCAR_GEN4_PCIE_FIRMWARE_BASE_ADDR + i);
+> +			dw_pcie_writel_dbi(dw, PRTLGC90, data);
+> +			if (rcar_gen4_pcie_reg_check(rcar, PRTLGC89, BIT(30)) >= 0)
+> +				break;
+> +			if (!(--timeout)) {
+> +				ret = -ETIMEDOUT;
+> +				goto exit;
+> +			}
+> +			usleep_range(100, 200);
+> +		} while (1);
+> +	}
+> +
+> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_0f8, BIT(17), BIT(17));
+> +
+> +	for (i = 0; i < ARRAY_SIZE(check_addr); i++) {
+> +		timeout = 100;
+> +		do {
+> +			dw_pcie_writel_dbi(dw, PRTLGC89, check_addr[i]);
+> +			ret = rcar_gen4_pcie_reg_check(rcar, PRTLGC89, BIT(30));
+> +			ret |= rcar_gen4_pcie_reg_check(rcar, PRTLGC90, BIT(0));
+> +			if (ret >= 0)
+> +				break;
+> +			if (!(--timeout)) {
+> +				ret = -ETIMEDOUT;
+> +				goto exit;
+> +			}
+> +			usleep_range(100, 200);
+> +		} while (1);
+> +	}
+> +
+> +	ret = 0;
+> +exit:
+> +	release_firmware(fw);
+> +
+> +	return ret;
+> +}
+> +
+> +static int rcar_gen4_pcie_enable_phy(struct rcar_gen4_pcie *rcar)
+> +{
+> +	struct dw_pcie *dw = &rcar->dw;
+> +	u32 val;
+> +	int ret;
+> +
+> +	val = dw_pcie_readl_dbi(dw, PCIE_PORT_FORCE);
+> +	val |= PORT_FORCE_DO_DESKEW_FOR_SRIS;
+> +	dw_pcie_writel_dbi(dw, PCIE_PORT_FORCE, val);
+> +
+> +	val = readl(rcar->base + PCIEMSR0);
+> +	val |= APP_SRIS_MODE;
+> +	writel(val, rcar->base + PCIEMSR0);
+> +
+> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_700, BIT(28), 0);
+> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_700, BIT(20), 0);
+> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_700, BIT(12), 0);
+> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_700, BIT(4), 0);
+> +
+> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_148,
+> +					   GENMASK(23, 22), BIT(22));
+> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_148,
+> +					   GENMASK(18, 16), GENMASK(17, 16));
+> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_148,
+> +					   GENMASK(7, 6), BIT(6));
+> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_148,
+> +					   GENMASK(2, 0), GENMASK(11, 0));
+> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_1d4,
+> +					   GENMASK(16, 15), GENMASK(16, 15));
+> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_514, BIT(26), BIT(26));
+> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_0f8, BIT(16), 0);
+> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_0f8, BIT(19), BIT(19));
+> +
+> +	val = readl(rcar->base + PCIERSTCTRL1);
+> +	val &= ~APP_HOLD_PHY_RST;
+> +	writel(val, rcar->base + PCIERSTCTRL1);
+> +
+> +	ret = readl_poll_timeout(rcar->phy_base + RCAR_GEN4_PCIE_PHY_0f8, val,
+> +				 !(val & BIT(18)), 100, 10000);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = rcar_gen4_pcie_download_phy_firmware(rcar);
+> +	if (ret)
+> +		return ret;
+> +
+> +	val = readl(rcar->base + PCIERSTCTRL1);
+> +	val |= APP_LTSSM_ENABLE;
+> +	writel(val, rcar->base + PCIERSTCTRL1);
+> +
+> +	return 0;
+> +}
+> +
+
+Is there a reason why you didn't chose to implement this as a PHY driver
+in drivers/phy ?
+
+
+Kind regards,
+Niklas
+
+
+>  static void rcar_gen4_pcie_ltssm_control(struct rcar_gen4_pcie *rcar,
+>  					 bool enable)
+>  {
+> @@ -200,6 +363,9 @@ static int rcar_gen4_pcie_common_init(struct rcar_gen4_pcie *rcar)
+>  	if (ret)
+>  		goto err_unprepare;
+>  
+> +	if (rcar->drvdata->additional_common_init)
+> +		rcar->drvdata->additional_common_init(rcar);
+> +
+>  	return 0;
+>  
+>  err_unprepare:
+> @@ -241,6 +407,10 @@ static void rcar_gen4_pcie_unprepare(struct rcar_gen4_pcie *rcar)
+>  
+>  static int rcar_gen4_pcie_get_resources(struct rcar_gen4_pcie *rcar)
+>  {
+> +	rcar->phy_base = devm_platform_ioremap_resource_byname(rcar->pdev, "phy");
+> +	if (IS_ERR(rcar->phy_base))
+> +		return PTR_ERR(rcar->phy_base);
+> +
+>  	/* Renesas-specific registers */
+>  	rcar->base = devm_platform_ioremap_resource_byname(rcar->pdev, "app");
+>  
+> @@ -517,6 +687,31 @@ static int r8a779f0_pcie_ltssm_enable(struct rcar_gen4_pcie *rcar)
+>  	return 0;
+>  }
+>  
+> +static void rcar_gen4_pcie_additional_common_init(struct rcar_gen4_pcie *rcar)
+> +{
+> +	struct dw_pcie *dw = &rcar->dw;
+> +	u32 val;
+> +
+> +	/*
+> +	 * The SoC manual said the register setting is required. Otherwise,
+> +	 * linkup failed.
+> +	 */
+> +	val = dw_pcie_readl_dbi(dw, PCIE_PORT_LANE_SKEW);
+> +	val &= ~PORT_LANE_SKEW_INSERT_MASK;
+> +	if (dw->num_lanes < 4)
+> +		val |= BIT(6);
+> +	dw_pcie_writel_dbi(dw, PCIE_PORT_LANE_SKEW, val);
+> +
+> +	val = readl(rcar->base + PCIEPWRMNGCTRL);
+> +	val |= APP_CLK_REQ_N | APP_CLK_PM_EN;
+> +	writel(val, rcar->base + PCIEPWRMNGCTRL);
+> +}
+> +
+> +static int rcar_gen4_pcie_ltssm_enable(struct rcar_gen4_pcie *rcar)
+> +{
+> +	return rcar_gen4_pcie_enable_phy(rcar);
+> +}
+> +
+>  static struct rcar_gen4_pcie_drvdata drvdata_r8a779f0_pcie = {
+>  	.ltssm_enable = r8a779f0_pcie_ltssm_enable,
+>  	.mode = DW_PCIE_RC_TYPE,
+> @@ -528,10 +723,14 @@ static struct rcar_gen4_pcie_drvdata drvdata_r8a779f0_pcie_ep = {
 >  };
 >  
-> +&mcu_mcan0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mcu_mcan0_pins_default>;
-> +	phys = <&transceiver1>;
-> +	status = "okay";
-> +};
-> +
-> +&main_mcan0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_mcan0_pins_default>;
-> +	phys = <&transceiver2>;
-> +	status = "okay";
-> +};
-> +
-> +&main_mcan5 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_mcan5_pins_default>;
-> +	phys = <&transceiver3>;
-> +	status = "okay";
-> +};
-> +
-> +&main_mcan9 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_mcan9_pins_default>;
-> +	phys = <&transceiver4>;
-> +	status = "okay";
-> +};
-> +
->  &ufs_wrapper {
->  	status = "disabled";
+>  static struct rcar_gen4_pcie_drvdata drvdata_rcar_gen4_pcie = {
+> +	.additional_common_init = rcar_gen4_pcie_additional_common_init,
+> +	.ltssm_enable = rcar_gen4_pcie_ltssm_enable,
+>  	.mode = DW_PCIE_RC_TYPE,
 >  };
+>  
+>  static struct rcar_gen4_pcie_drvdata drvdata_rcar_gen4_pcie_ep = {
+> +	.additional_common_init = rcar_gen4_pcie_additional_common_init,
+> +	.ltssm_enable = rcar_gen4_pcie_ltssm_enable,
+>  	.mode = DW_PCIE_EP_TYPE,
+>  };
+>  
+> -- 
+> 2.25.1
+> 
 
