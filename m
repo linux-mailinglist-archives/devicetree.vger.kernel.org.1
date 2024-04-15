@@ -1,218 +1,204 @@
-Return-Path: <devicetree+bounces-59472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E4F98A58C6
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 19:10:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D1F48A58CB
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 19:10:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1CAD8281780
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 17:10:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D9CA3B212C1
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 17:10:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF49683A01;
-	Mon, 15 Apr 2024 17:07:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9292886244;
+	Mon, 15 Apr 2024 17:07:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C753SYye"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="D5S2B9N0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C10ED82D91;
-	Mon, 15 Apr 2024 17:07:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 906378614D;
+	Mon, 15 Apr 2024 17:07:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713200829; cv=none; b=XWrbjG1nO6nwYdo27dNtZOXM+4Ktuv3+WCKbE0nJRNnX4canxRK/ZIAMIqVF+f4ZZITRJeE6ceJZgBIjoddzAqVYVfyQ5AKA63RvcOfmt5RV+G4LVZeaqGhpOk4Tc/12N+Odg7VYw0Fw7GWmHqMTvj0J4MWHE80740cfqtskNRE=
+	t=1713200866; cv=none; b=U+vtp+Bse2g119lJboFWt8pzJuXT8Kmx8zDpwkdTtLoJ9g4o5M53gRay65UWTIY7Yssv9bYLLrfqWBn3Rr8U/cYG0O817smaBDc59a1NKJ+rdn4lnQ978FiDNFdHcZ0mm5h1PijP9dPF67xDNPAgr1ezfEllnHk7UEQ9DwnvzNM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713200829; c=relaxed/simple;
-	bh=FOsS3Rqk88ldzlT96VMVnmS+dPPkpqirhwk6Fw5Yn5Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mLVz4P0d6ypwGYVneKcRgjDAgL2B03DvV3Yu696oUArVK9QAmdxLyR8LeLjnJwRZtyrhRDGLRi6sDIjMU8eToy5elvLQMx6cbZRQlZj2v/Zi0nv90QcM/5lLT84z7M9hWVPv6j1EHJ5W4FtWLa4voxkwGMCQA7l3mQIHgij4WbQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C753SYye; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4F68C113CC;
-	Mon, 15 Apr 2024 17:07:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713200829;
-	bh=FOsS3Rqk88ldzlT96VMVnmS+dPPkpqirhwk6Fw5Yn5Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=C753SYyeQDwc2ojdR7attJ5/xEhfc/W0AV1zpqzVThMMxtq+s8KsfpxtWH91J7f/A
-	 IAr/sVVCi45hOea7W1ial9TQqus6DBfOMp1MlCd/EGq7hbNA3HW0BVKdSCgGWB4kHC
-	 4x0oJmrj9sBIDM+FWUvV8/SApcFGPGEu7b9jOXYMexasX0IU3JwaIEIOGWe9Ud8+U/
-	 Z3zyWTNdIp3FV2gY9+n7w4Srns+ZQjdi3QE/hE7B+yHP4sa6uLAdr/1qukeBSmVHeu
-	 k1dLL0vdM+3Wy/pCkb99SH9/VwmiXl4q81VB1WAFjdCfTSsvgs+FsAsv3HKgsm5Qq4
-	 piio5Ei5FEScg==
-Date: Mon, 15 Apr 2024 18:07:03 +0100
-From: Conor Dooley <conor@kernel.org>
-To: David Wronek <david@mainlining.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-	phone-devel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: panel: Add Raydium RM69380
-Message-ID: <20240415-basically-laboring-3a5fde2027ef@spud>
-References: <20240415-raydium-rm69380-driver-v2-0-524216461306@mainlining.org>
- <20240415-raydium-rm69380-driver-v2-1-524216461306@mainlining.org>
+	s=arc-20240116; t=1713200866; c=relaxed/simple;
+	bh=6l3chSwysNSYLfdrCj+z7HDniE1LIkB4ORSPgRyV54M=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=PzTdCOj+OZlKA9Q0Vhy5t9H33LYgAUnP0YnuKjuqsV6KQ++iSYYwiFHddjQ/iFZyt9iES0ZgX7GcgPty7ToaCS8zDEgZaDMCB4XcKHcxHf1Ovf3RtRuXvFKvzBOc6n5DWS953p2WxFQhdPaY7IQAk5UN9tdAWEnpbxk4OXIcSOE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=D5S2B9N0; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1713200860;
+	bh=6l3chSwysNSYLfdrCj+z7HDniE1LIkB4ORSPgRyV54M=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=D5S2B9N0qzaNGROQuBD7b/BHUXxBJ3a6qrYQ/Vw4HYI5c9lezb+VmqclaZabrXfzN
+	 299/pwdeC8tMMFJI63M/6HcL9yjKfVhhGzpUmHbwY4ouWyaffiet0GY0e+Gl3NNzk6
+	 RI+J11ic3fMKOA+6FBRUfRR0gwMYUEXripyx/REYvngfjaet287COJ5gJhF/k2cBQL
+	 pGst5HLbbXKmHxBvwhQ3uhK1xT2iSCkWggA1pOD4L2eXxAe5pP98sBBaOc9hALBSRB
+	 ENwmQ4Z43MYNkWsictrlLWfZ9mo2zPEj1AP9uf2+yRI1ZlCH4HiJhvb7zm+mtDFLnA
+	 5fe3qs9Sms0HQ==
+Received: from [100.77.12.232] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: obbardc)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 04A14378020A;
+	Mon, 15 Apr 2024 17:07:39 +0000 (UTC)
+Message-ID: <525f3c7f7f6613c78ac364c9ce0234cca5e1c710.camel@collabora.com>
+Subject: Re: [PATCH v1 1/1] arm64: dts: imx8mp-debix-model-a: Add HDMI
+ output support
+From: Christopher Obbard <chris.obbard@collabora.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Kieran Bingham
+	 <kieran.bingham@ideasonboard.com>
+Cc: linux-kernel@vger.kernel.org, Daniel Scally
+ <dan.scally@ideasonboard.com>,  kernel@collabora.com, Conor Dooley
+ <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Pengutronix Kernel Team
+ <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>,  Shawn Guo <shawnguo@kernel.org>,
+ devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org
+Date: Mon, 15 Apr 2024 18:07:24 +0100
+In-Reply-To: <20240415163520.GA22954@pendragon.ideasonboard.com>
+References: <20240415114135.25473-1-chris.obbard@collabora.com>
+	 <20240415114135.25473-2-chris.obbard@collabora.com>
+	 <171319369093.2333277.9109576229211275635@ping.linuxembedded.co.uk>
+	 <20240415163520.GA22954@pendragon.ideasonboard.com>
+Autocrypt: addr=chris.obbard@collabora.com; prefer-encrypt=mutual;
+ keydata=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
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.50.3-1+b1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="0GLNjRxLWL3JBgc2"
-Content-Disposition: inline
-In-Reply-To: <20240415-raydium-rm69380-driver-v2-1-524216461306@mainlining.org>
 
+SGkgTGF1cmVudCwKCk9uIE1vbiwgMjAyNC0wNC0xNSBhdCAxOTozNSArMDMwMCwgTGF1cmVudCBQ
+aW5jaGFydCB3cm90ZToKPiBPbiBNb24sIEFwciAxNSwgMjAyNCBhdCAwNDowODoxMFBNICswMTAw
+LCBLaWVyYW4gQmluZ2hhbSB3cm90ZToKPiA+IEhpIENocmlzLAo+ID4gCj4gPiAKPiA+IFF1b3Rp
+bmcgQ2hyaXN0b3BoZXIgT2JiYXJkICgyMDI0LTA0LTE1IDEyOjQxOjI3KQo+ID4gPiBFbmFibGUg
+dGhlIEhETUkgb3V0cHV0IG9uIHRoZSBEZWJpeCBNb2RlbCBBIFNCQywgdXNpbmcgdGhlIEhETUkg
+ZW5jb2Rlcgo+ID4gPiBwcmVzZW50IGluIHRoZSBpLk1YOE1QIFNvQy4KPiA+IAo+ID4gQWhhLCB5
+b3UgYmVhdCBtZSB0byBpdC4gSSBoYXZlIGEgY29tbWl0IGxvY2FsbHkgKERhdGVkIDIwMjItMDkt
+MDYpIGJ1dAo+ID4gbm90IHNlbnQgYmVjYXVzZSBJIGRpZG4ndCByZWFsaXNlIHRoZSBIRE1JIHN1
+cHBvcnQgZmluYWxseSBnb3QgdXBzdHJlYW0KPiA+IFxvLwo+ID4gCj4gPiA+IFNpZ25lZC1vZmYt
+Ynk6IENocmlzdG9waGVyIE9iYmFyZCA8Y2hyaXMub2JiYXJkQGNvbGxhYm9yYS5jb20+Cj4gPiA+
+IC0tLQo+ID4gPiAKPiA+ID4gwqAuLi4vZHRzL2ZyZWVzY2FsZS9pbXg4bXAtZGViaXgtbW9kZWwt
+YS5kdHPCoMKgwqAgfCA0NyArKysrKysrKysrKysrKysrKysrCj4gPiA+IMKgMSBmaWxlIGNoYW5n
+ZWQsIDQ3IGluc2VydGlvbnMoKykKPiA+ID4gCj4gPiA+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0
+L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bXAtZGViaXgtbW9kZWwtYS5kdHMKPiA+ID4gYi9hcmNo
+L2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bXAtZGViaXgtbW9kZWwtYS5kdHMKPiA+ID4g
+aW5kZXggMmMxOTc2NmViZjA5Li4yOTUyOWMyZWNhYzkgMTAwNjQ0Cj4gPiA+IC0tLSBhL2FyY2gv
+YXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtcC1kZWJpeC1tb2RlbC1hLmR0cwo+ID4gPiAr
+KysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bXAtZGViaXgtbW9kZWwtYS5k
+dHMKPiA+ID4gQEAgLTIwLDYgKzIwLDE4IEBAIGNob3NlbiB7Cj4gPiA+IMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoCBzdGRvdXQtcGF0aCA9ICZ1YXJ0MjsKPiA+ID4gwqDCoMKgwqDCoMKg
+wqAgfTsKPiA+ID4gwqAKPiA+ID4gK8KgwqDCoMKgwqDCoCBoZG1pLWNvbm5lY3RvciB7Cj4gPiA+
+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvbXBhdGlibGUgPSAiaGRtaS1jb25uZWN0
+b3IiOwo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBsYWJlbCA9ICJoZG1pIjsK
+PiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgdHlwZSA9ICJhIjsKPiA+ID4gKwo+
+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBwb3J0IHsKPiA+ID4gK8KgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGhkbWlfY29ubmVjdG9yX2luOiBl
+bmRwb2ludCB7Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgcmVtb3RlLWVuZHBvaW50ID0gPCZoZG1pX3R4X291dD47Cj4g
+PiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Owo+ID4g
+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Owo+ID4gPiArwqDCoMKgwqDCoMKgIH07
+Cj4gPiA+ICsKPiA+IAo+ID4gSW50ZXJlc3RpbmcuIE15IHBhdGNoIG1pc3NlZCB0aGlzLiBCdXQg
+aXQgbG9va3MgY29ycmVjdC4KPiA+IAo+ID4gPiDCoMKgwqDCoMKgwqDCoCBsZWRzIHsKPiA+ID4g
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvbXBhdGlibGUgPSAiZ3Bpby1sZWRzIjsK
+PiA+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHBpbmN0cmwtbmFtZXMgPSAiZGVm
+YXVsdCI7Cj4gPiA+IEBAIC05NCw2ICsxMDYsMjggQEAgZXRocGh5MDogZXRoZXJuZXQtcGh5QDAg
+eyAvKiBSVEw4MjExRSAqLwo+ID4gPiDCoMKgwqDCoMKgwqDCoCB9Owo+ID4gPiDCoH07Cj4gPiA+
+IMKgCj4gPiA+ICsmaGRtaV9wdmkgewo+ID4gPiArwqDCoMKgwqDCoMKgIHN0YXR1cyA9ICJva2F5
+IjsKPiA+ID4gK307Cj4gPiA+ICsKPiA+ID4gKyZoZG1pX3R4IHsKPiA+ID4gK8KgwqDCoMKgwqDC
+oCBwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiOwo+ID4gPiArwqDCoMKgwqDCoMKgIHBpbmN0cmwt
+MCA9IDwmcGluY3RybF9oZG1pPjsKPiA+ID4gK8KgwqDCoMKgwqDCoCBzdGF0dXMgPSAib2theSI7
+Cj4gPiA+ICsKPiA+ID4gK8KgwqDCoMKgwqDCoCBwb3J0cyB7Cj4gPiA+ICvCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgIHBvcnRAMSB7Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCBoZG1pX3R4X291dDogZW5kcG9pbnQgewo+ID4gPiArwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJl
+bW90ZS1lbmRwb2ludCA9IDwmaGRtaV9jb25uZWN0b3JfaW4+Owo+ID4gPiArwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfTsKPiA+ID4gK8KgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAgfTsKPiA+ID4gK8KgwqDCoMKgwqDCoCB9Owo+ID4gPiArfTsKPiA+ID4g
+Kwo+ID4gPiArJmhkbWlfdHhfcGh5IHsKPiA+ID4gK8KgwqDCoMKgwqDCoCBzdGF0dXMgPSAib2th
+eSI7Cj4gPiA+ICt9Owo+ID4gPiArCj4gPiA+IMKgJmkyYzEgewo+ID4gPiDCoMKgwqDCoMKgwqDC
+oCBjbG9jay1mcmVxdWVuY3kgPSA8NDAwMDAwPjsKPiA+ID4gwqDCoMKgwqDCoMKgwqAgcGluY3Ry
+bC1uYW1lcyA9ICJkZWZhdWx0IjsKPiA+ID4gQEAgLTI0MSw2ICsyNzUsMTAgQEAgJmkyYzYgewo+
+ID4gPiDCoMKgwqDCoMKgwqDCoCBzdGF0dXMgPSAib2theSI7Cj4gPiA+IMKgfTsKPiA+ID4gwqAK
+PiA+ID4gKyZsY2RpZjMgewo+ID4gPiArwqDCoMKgwqDCoMKgIHN0YXR1cyA9ICJva2F5IjsKPiA+
+ID4gK307Cj4gPiA+ICsKPiA+IAo+ID4gRXhjZXB0IGZvciB0aGUgYWRkaXRpb24gb2YgdGhlIGNv
+bm5lY3RvciwgdGhlIGFib3ZlIG1hdGNoZXMgbXkgcGF0Y2ggdG8KPiA+IGhlcmUuCj4gPiAKPiA+
+ID4gwqAmc252c19wd3JrZXkgewo+ID4gPiDCoMKgwqDCoMKgwqDCoCBzdGF0dXMgPSAib2theSI7
+Cj4gPiA+IMKgfTsKPiA+IAo+ID4gQnV0IGluIG15IHBhdGNoIEkgaGF2ZSB0aGUgZm9sbG93aW5n
+IGh1bmsgaGVyZTogKEkgaGF2ZW4ndCBjaGVja2VkIHRvCj4gPiBzZWUgaWYgdGhpcyBzdGlsbCBh
+cHBsaWVzIG9uIG1haW5saW5lLCBzbyB0YWtlIHdpdGggYSBwaW5jaCBvZiBzYWx0IGlmCj4gPiBp
+dCdzIG5vdCB0aGVyZSEpCj4gPiAKPiA+IAo+ID4gwqAmaW9tdXhjIHsKPiA+IMKgCXBpbmN0cmwt
+bmFtZXMgPSAiZGVmYXVsdCI7Cj4gPiAtCXBpbmN0cmwtMCA9IDwmcGluY3RybF9ob2c+Owo+ID4g
+LQo+ID4gLQlwaW5jdHJsX2hvZzogaG9nZ3JwIHsKPiA+IC0JCWZzbCxwaW5zID0gPAo+ID4gLQo+
+ID4gCQkJTVg4TVBfSU9NVVhDX0hETUlfRERDX1NDTF9fSERNSU1JWF9IRE1JX1NDTAkJCQkJMHg0
+MDAwMDFjMwo+ID4gLQo+ID4gCQkJTVg4TVBfSU9NVVhDX0hETUlfRERDX1NEQV9fSERNSU1JWF9I
+RE1JX1NEQQkJCQkJMHg0MDAwMDFjMwo+ID4gLQo+ID4gCQkJTVg4TVBfSU9NVVhDX0hETUlfSFBE
+X19IRE1JTUlYX0hETUlfSFBECQkJCQkJMHg0MDAwMDAxOQo+ID4gLQo+ID4gCQkJTVg4TVBfSU9N
+VVhDX0hETUlfQ0VDX19IRE1JTUlYX0hETUlfQ0VDCQkJCQkJMHg0MDAwMDAxOQo+ID4gLQkJPjsK
+PiA+IC0JfTsKPiA+IAo+ID4gwqAJcGluY3RybF9lcW9zOiBlcW9zZ3JwIHsKPiA+IMKgCQlmc2ws
+cGlucyA9IDwKPiA+IMKgCQkJTVg4TVBfSU9NVVhDX0VORVRfTURDX19FTkVUX1FPU19NREMJCQo+
+ID4gCQkJCQkweDMKPiA+IMKgCQkJTVg4TVBfSU9NVVhDX0VORVRfTURJT19fRU5FVF9RT1NfTURJ
+TwkJCj4gPiAJCQkJMHgzCj4gPiAKPiA+IAo+ID4gPiBAQCAtMzU4LDYgKzM5NiwxNSBAQAo+ID4g
+PiBNWDhNUF9JT01VWENfTkFORF9SRUFEWV9CX19HUElPM19JTzE2wqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAweDE5Cj4gPiA+IMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCA+Owo+ID4gPiDCoMKgwqDCoMKgwqDCoCB9Owo+ID4g
+PiDCoAo+ID4gPiArwqDCoMKgwqDCoMKgIHBpbmN0cmxfaGRtaTogaGRtaWdycCB7Cj4gPiA+ICvC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGZzbCxwaW5zID0gPAo+ID4gPiArwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAKPiA+ID4gTVg4TVBfSU9NVVhDX0hE
+TUlfRERDX1NDTF9fSERNSU1JWF9IRE1JX1NDTMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqAKPiA+ID4gMHg0MDAwMDFjMwo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAKPiA+ID4gTVg4TVBfSU9NVVhDX0hETUlfRERDX1NEQV9f
+SERNSU1JWF9IRE1JX1NEQcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAK
+PiA+ID4gMHg0MDAwMDFjMwo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqAKPiA+ID4gTVg4TVBfSU9NVVhDX0hETUlfSFBEX19IRE1JTUlYX0hETUlfSFBE
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgCj4gPiA+IDB4
+NDAwMDAwMTkKPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgCj4gPiA+IE1YOE1QX0lPTVVYQ19IRE1JX0NFQ19fSERNSU1JWF9IRE1JX0NFQ8KgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoAo+ID4gPiAweDQwMDAwMDE5
+Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgID47Cj4gPiA+ICvCoMKgwqDCoMKg
+wqAgfTsKPiA+ID4gKwo+ID4gCj4gPiBBbmQgbXkgYWRkaXRpb24gaGVyZSBpcyA6Cj4gPiAKPiA+
+IAo+ID4gKwlwaW5jdHJsX2hkbWk6IGhkbWlncnAgewo+ID4gKwkJZnNsLHBpbnMgPSA8Cj4gPiAr
+CQkJTVg4TVBfSU9NVVhDX0hETUlfRERDX1NDTF9fSERNSU1JWF9IRE1JX1NDTAkwCj4gPiB4MWMz
+Cj4gPiArCQkJTVg4TVBfSU9NVVhDX0hETUlfRERDX1NEQV9fSERNSU1JWF9IRE1JX1NEQQkwCj4g
+PiB4MWMzCj4gPiArCQkJTVg4TVBfSU9NVVhDX0hETUlfSFBEX19IRE1JTUlYX0hETUlfSFBECQo+
+ID4gCTB4MTkKPiA+ICsJCQlNWDhNUF9JT01VWENfSERNSV9DRUNfX0hETUlNSVhfSERNSV9DRUMJ
+Cj4gPiAJMHgxOQo+ID4gKwkJPjsKPiA+ICsJfTsKPiA+ICsKPiA+IAo+ID4gCj4gPiBJIGhhdmVu
+J3QgbG9va2VkIGludG8gd2hhdCB0aGUgMHg0MDAwMDAwMCBkb2VzIHlldCwgYnV0IGp1c3QKPiA+
+IGhpZ2hsaWdodGluZyB0aGUgZGlmZmVyZW5jZSBmcm9tIHRoZSB2ZXJzaW9uIEkndmUgYmVlbiB1
+c2luZyB0byBtYWtlIHVzZQo+ID4gb2YgSERNSSBzbyBmYXIuCj4gPiAKPiA+IERvZXMgYW55b25l
+IGVsc2Uga25vdyB0aGUgaW1wYWN0IGhlcmU/IE90aGVyd2lzZSBJJ2xsIHRyeSB0byBmaW5kIHRp
+bWUKPiA+IHRvIGNoZWNrIHRoaXMgbGF0ZXIuIChGb3Igc29tZSB1bmRlZmluZWQgdGVybSBvZiBs
+YXRlci4uLikKPiAKPiBJbiBkcml2ZXJzL3BpbmN0cmwvZnJlZXNjYWxlL3BpbmN0cmwtaW14LmMs
+Cj4gCj4gI2RlZmluZSBJTVhfTk9fUEFEX0NUTMKgIDB4ODAwMDAwMDDCoMKgwqDCoMKgIC8qIG5v
+IHBpbiBjb25maWcgbmVlZCAqLwo+ICNkZWZpbmUgSU1YX1BBRF9TSU9OIDB4NDAwMDAwMDDCoMKg
+wqDCoMKgwqDCoMKgIC8qIHNldCBTSU9OICovCj4gCj4gVGhlIFNJT04gKFNvZnR3YXJlIElucHV0
+IE9OKSBiaXQgZm9yY2VzIHRoZSBpbnB1dCBwYXRoIGFjdGl2ZSBmb3IgdGhlCj4gcGluLiBUaGlz
+IGNhbiBiZSB1c2VkLCBmb3IgaW5zdGFuY2UsIHRvIGNhcHR1cmUgdGhyb3VnaCBHUElPIHRoZSB2
+YWx1ZQo+IG9mIGEgcGluIGRyaXZlbiBieSBhIG1vZHVsZS4gSSdtIG5vdCBzdXJlIHRoYXQncyBu
+ZWVkZWQgaGVyZS4KClRoYW5rcyBmb3IgdGhlIGV4cGxhbmF0aW9uLCBtYWtlcyBwZXJmZWN0IHNl
+bnNlLiBJIHdpbGwgc2VuZCBhIHYyIHdpdGhvdXQgdGhlClNJT04gYml0IHNldCAoZS5nIGV4YWN0
+bHkgcGVyIHRoZSBodW5rIGluIEtpZXJhbidzIHBhdGNoKS4KCgpDaHJpcwoKPiAKPiA+ID4gwqDC
+oMKgwqDCoMKgwqAgcGluY3RybF9pMmMxOiBpMmMxZ3JwIHsKPiA+ID4gwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgIGZzbCxwaW5zID0gPAo+ID4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgCj4gPiA+IE1YOE1QX0lPTVVYQ19JMkMxX1NDTF9fSTJD
+MV9TQ0zCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgCj4gPiA+IDB4NDAwMDAxYzIKPiAK
 
---0GLNjRxLWL3JBgc2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Apr 15, 2024 at 06:10:41PM +0200, David Wronek wrote:
-> Raydium RM69380 is a display driver IC used to drive OLED DSI panels.
-> Add a dt-binding for it.
->=20
-> Signed-off-by: David Wronek <david@mainlining.org>
-> ---
->  .../bindings/display/panel/raydium,rm69380.yaml    | 91 ++++++++++++++++=
-++++++
->  1 file changed, 91 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/panel/raydium,rm69=
-380.yaml b/Documentation/devicetree/bindings/display/panel/raydium,rm69380.=
-yaml
-> new file mode 100644
-> index 000000000000..0ac7d033cbe0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/raydium,rm69380.yaml
-> @@ -0,0 +1,91 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/raydium,rm69380.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Raydium RM6380-based DSI display panels
-> +
-> +maintainers:
-> +  - David Wronek <david@mainlining.org>
-> +
-> +description:
-> +  The Raydium RM69380 is a generic DSI panel IC used to control
-> +  OLED panels.
-> +
-> +allOf:
-> +  - $ref: panel-common-dual.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - lenovo,j716f-edo-rm69380
-> +      - const: raydium,rm69380
-> +    description: This indicates the panel manufacturer of the panel
-> +      that is in turn using the RM69380 panel driver. The compatible
-> +      string determines how the RM69380 panel driver shall be configured
-> +      to work with the indicated panel. The raydium,rm69380 compatible s=
-hall
-> +      always be provided as a fallback.
-> +
-> +  avdd-supply:
-> +    description: Analog voltage rail
-> +
-> +  vddio-supply:
-> +    description: I/O voltage rail
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description: phandle of gpio for reset line - This should be active =
-low
-> +
-> +  ports: true
-> +  reg: true
-
-Where is reg defined? I briefly checked the two panel-common bindings
-and didn't see it.
-
-Cheers,
-Conor.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - avdd-supply
-> +  - vddio-supply
-> +  - reset-gpios
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    dsi {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        panel@0 {
-> +            compatible =3D "lenovo,j716f-edo-rm69380", "raydium,rm69380";
-> +            reg =3D <0>;
-> +
-> +            avdd-supply =3D <&panel_avdd_regulator>;
-> +            vddio-supply =3D <&vreg_l14a>;
-> +            reset-gpios =3D <&tlmm 75 GPIO_ACTIVE_LOW>;
-> +
-> +            ports {
-> +                #address-cells =3D <1>;
-> +                #size-cells =3D <0>;
-> +
-> +                port@0 {
-> +                    reg =3D <0>;
-> +                    panel_in_0: endpoint {
-> +                        remote-endpoint =3D <&mdss_dsi0_out>;
-> +                    };
-> +                };
-> +
-> +                port@1 {
-> +                    reg =3D <1>;
-> +                    panel_in_1: endpoint {
-> +                        remote-endpoint =3D <&mdss_dsi1_out>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +...
->=20
-> --=20
-> 2.44.0
->=20
-
---0GLNjRxLWL3JBgc2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZh1etwAKCRB4tDGHoIJi
-0mHkAQDH2xKYkE4R7Ku+Y0Z6OrwT1OLZWwQTMHQ67JzNr6FllgD/W2C7opnNMcD7
-rf8AECa0OELVhjuuAVTl3UtDPCqW0gE=
-=+guv
------END PGP SIGNATURE-----
-
---0GLNjRxLWL3JBgc2--
 
