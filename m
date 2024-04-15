@@ -1,232 +1,133 @@
-Return-Path: <devicetree+bounces-59411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E15538A532A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 16:25:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A9E48A53BF
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 16:30:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 64839B21BC7
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 14:25:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C4A7F1F21A35
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 14:30:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3738171B4F;
-	Mon, 15 Apr 2024 14:25:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FAD582872;
+	Mon, 15 Apr 2024 14:28:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B2BpsHAg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PVoYqzxV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B60C471B51;
-	Mon, 15 Apr 2024 14:24:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEC0478C75;
+	Mon, 15 Apr 2024 14:28:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713191100; cv=none; b=pRsENGBzMjDtGHZv755mfAkU/I1SczZYRyhYgI2PEG6dDiUVgldyU3ZEu/CYHdNSi1JEZOaHL9IrmwXpzuoliH3sWCTT35gZynGRnVXYI/mSi9NN3dMp9t01yvD1ARZFUYKaZn6smO1dX9UH4wRkG+vBK0nfATxQuMWU7mp+fXs=
+	t=1713191316; cv=none; b=oJRv9SFyfKP99PRrbmLMhXG6laYjVBmsdi8hGHJ2EDSpPub24eyzhDkIT5HLtnWrZGM0Sjcit+/0r6QKDM7uGYTfFw6Q3VbTqnEpYCjmZLkgmBqgY1r/byE+FTiJjf3onYvkegdgi/agnuLuKiqbAwBUfar2z7aSclaCi98xaIE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713191100; c=relaxed/simple;
-	bh=bVa86gqv3PARO3f+Z3E8jfDXIaHMHfg6rFINKeTnzN4=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=a9sQsabhwDeKtq+uImOrgJHtvI3NawvUWzxv5qu1JjVpubQlZf8TWGMBnwCbxZxSooG9iXx5unI1UFyfbQ5WFPY7D1h7SiGWaXdSQ5/eUV+HIgwIHIIDST9+1AYx3oM0PF6SeEYgqEIfFodrpNS+SsjNGByJozjph6TKNBsYBI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B2BpsHAg; arc=none smtp.client-ip=209.85.210.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-6ed054f282aso2224832b3a.0;
-        Mon, 15 Apr 2024 07:24:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713191098; x=1713795898; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=SwI3ikGV8bbQKlQb5tgKDZE5mmiKSYxR+j/zmva83hc=;
-        b=B2BpsHAg+o+7VsHav62O1AyBwVNc0ua9vXf4pduBJ6EdNYpKzyvVjrg94E/GL0zirh
-         QBBsI9mmVGIr20E500k5SEEnsgbNeFMBxsHRVqgxkgO1MOT91gcps/+30FqHPnmUe99y
-         U8BbATTDYb00qha9PsiTQPIEjGCDdkI4jrDon1Wi6wDXXE30Q91nNasWZJSPuJqWZ3WF
-         wwPzGdM2i1psQLRhX9KCI9iwiftgmlwb06kMZniC9B44KY2pZgFwZjSbSCvJKATVkMyR
-         EgVp38loW62WvohxOHlZ3HSxU2m3IKtcGtxOuzKc78g9vT5jcWdKyJWnD5ufwjDGw6IM
-         UNkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713191098; x=1713795898;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=SwI3ikGV8bbQKlQb5tgKDZE5mmiKSYxR+j/zmva83hc=;
-        b=vhx28bwugW6GeblW1z+KHmme/RUfk7ln4BWMm3Ot1XPj36bt0RhefrhJUInwGy6HSZ
-         AZFpaAn+gZqaWeYtvi4sAemfEDE+2+Mcb1NHZxsv3DC1BADmvE2ezgq0wqKAu9zN7tvg
-         HpwhZwLR6iI4DS1zOO/qBsisvOwhK8O8GIk97PGAQlhueBYnIuddl7orc38aT10HF38A
-         Ik+mqtGcxCg8tPXmwceEKwndS/d7WADuA5i6Grq9F9JFELCDil7XXk2VJF5LnRUtkbOy
-         iFzjhCs0Ch4LVWAhlxz9oWLUd8LQ0DrY7o26H18lZanXn/7X/DLn6OxjCdyA+bAYwR/j
-         fcdQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUoX/M6h5aapqOWIWQI3OKtWIXzl0MkCOniSTyVwYu/2ee6ebFucbYHjmfTCVfO32igcW0amaq4f+lD+MxATMNQhMeOUd7wWTtp7ssA
-X-Gm-Message-State: AOJu0YxKoN0K8R6mf1VM4lJxSnZaUR7mUtGOXI1uvhOG1UxP5WSY2wmk
-	cprF+jW6Bcp1DF6r5cc8sV+9w5PEehnzdSpijB4AwUEErPmiFdAawALusw==
-X-Google-Smtp-Source: AGHT+IFsQN+LB3mh/jEm1d2fe5hkLQN7T98rFJzdJ4KZHRIWX8LGoqxdqu605fUCbmTPQ9gXCq2dDw==
-X-Received: by 2002:a05:6a20:6a20:b0:1a9:22b9:754a with SMTP id p32-20020a056a206a2000b001a922b9754amr10200952pzk.7.1713191095575;
-        Mon, 15 Apr 2024 07:24:55 -0700 (PDT)
-Received: from localhost.localdomain ([49.142.40.215])
-        by smtp.gmail.com with ESMTPSA id x13-20020aa784cd000000b006ea81423c65sm482906pfn.148.2024.04.15.07.24.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Apr 2024 07:24:55 -0700 (PDT)
-From: skseofh@gmail.com
-To: robh@kernel.org,
-	saravanak@google.com,
-	rppt@kernel.org,
-	akpm@linux-foundation.org
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-mm@kvack.org,
-	Daero Lee <daero_le.lee@samsung.com>
-Subject: [PATCH] memblock: add no-map alloc functions
-Date: Mon, 15 Apr 2024 23:24:48 +0900
-Message-Id: <20240415142448.333271-1-skseofh@gmail.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1713191316; c=relaxed/simple;
+	bh=apPf5YxAYqe7YNBX6Cyef/BfXebvMrMHj5etULK04HA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MT2vHQbxjkU04u1UjZ+cuuI+Ot6C9JRQnJ1xF1ITRHZF4/MsG7K9/BX/YkDc1Gdo6nvEnCCiUocQDVO1DZmxZWg/c0EIhn2ylGudAuYwtM/tx+NKHXjo6UQ1pSlixwpfl+zVY8dF2dYrHeeRwwHMgqUlSdJwR8/r6Wop2fkgLrU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PVoYqzxV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66DAEC2BD11;
+	Mon, 15 Apr 2024 14:28:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713191315;
+	bh=apPf5YxAYqe7YNBX6Cyef/BfXebvMrMHj5etULK04HA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PVoYqzxV6FYz2QdGdPUrtfj/AviX3PbD+lIC58voYZbHaWIlbDiQtx/QSrLGh9Cxu
+	 fxtbAFLtLOAcIFaOofyfd/B88GcuceWzI3sgWI3yE1kraBv1gt4sapwjenC+87Z9XJ
+	 9hFGKoZvIZ79nhAd2P+8ut4HoqUxCA2LtFZHjenRtpzkbsR9SW5Zq33JaF1HL+mZ9+
+	 UQD3tLk1yOAu0n8Xgh1OssQookLWj2d2RW5zOmxwjkqUjHIt5Hi5mNJeOEtZCZbOCN
+	 d4jVOfgZ0kZYTKBL7pSx3JTCoMaxVzKVt+mGUPOlAxwf5160v3sVcSl6ealmyvOZ9E
+	 inKWtr9TQffoQ==
+Date: Mon, 15 Apr 2024 15:28:27 +0100
+From: Simon Horman <horms@kernel.org>
+To: Yi-De Wu <yi-de.wu@mediatek.com>
+Cc: Yingshiuan Pan <yingshiuan.pan@mediatek.com>,
+	Ze-Yu Wang <ze-yu.wang@mediatek.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	netdev@vger.kernel.org, linux-mediatek@lists.infradead.org,
+	David Bradil <dbrazdil@google.com>,
+	Trilok Soni <quic_tsoni@quicinc.com>,
+	My Chuang <my.chuang@mediatek.com>,
+	Shawn Hsiao <shawn.hsiao@mediatek.com>,
+	PeiLun Suei <peilun.suei@mediatek.com>,
+	Liju Chen <liju-clr.chen@mediatek.com>,
+	Willix Yeh <chi-shen.yeh@mediatek.com>,
+	Kevenny Hsieh <kevenny.hsieh@mediatek.com>
+Subject: Re: [PATCH v10 04/21] virt: geniezone: Add GenieZone hypervisor
+ driver
+Message-ID: <20240415142827.GA2320920@kernel.org>
+References: <20240412065718.29105-1-yi-de.wu@mediatek.com>
+ <20240412065718.29105-5-yi-de.wu@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240412065718.29105-5-yi-de.wu@mediatek.com>
 
-From: Daero Lee <daero_le.lee@samsung.com>
+On Fri, Apr 12, 2024 at 02:57:01PM +0800, Yi-De Wu wrote:
+> From: "Yingshiuan Pan" <yingshiuan.pan@mediatek.com>
+> 
+> GenieZone hypervisor(gzvm) is a type-1 hypervisor that supports various
+> virtual machine types and provides security features such as TEE-like
+> scenarios and secure boot. It can create guest VMs for security use
+> cases and has virtualization capabilities for both platform and
+> interrupt. Although the hypervisor can be booted independently, it
+> requires the assistance of GenieZone hypervisor kernel driver(gzvm-ko)
+> to leverage the ability of Linux kernel for vCPU scheduling, memory
+> management, inter-VM communication and virtio backend support.
+> 
+> Add the basic hypervisor driver. Subsequent patches will add more
+> supported features to this driver.
+> 
+> Signed-off-by: Yingshiuan Pan <yingshiuan.pan@mediatek.com>
+> Signed-off-by: Jerry Wang <ze-yu.wang@mediatek.com>
+> Signed-off-by: Liju Chen <liju-clr.chen@mediatek.com>
+> Signed-off-by: Yi-De Wu <yi-de.wu@mediatek.com>
 
-Like reserved-memory with the no-map property, there are memory regions
-need to be allocated in memblock.memory marked with the
-MEMBLOCK_NOMAP flag, but sholud not be allocated in memblock.reserved.
+...
 
-So, functions were added that find the required memory area in
-memblock.memory, but do not allocate it to memblock.reserved.
+> +static struct platform_driver gzvm_driver = {
+> +	.probe = gzvm_drv_probe,
+> +	.remove = gzvm_drv_remove,
+> +	.driver = {
+> +		.name = KBUILD_MODNAME,
+> +		.owner = THIS_MODULE,
 
-The early_init_dt_alloc_reserved_memory_arch function was modified
-using the no-map alloc function.
+Hi Yi-De Wu,
 
-Signed-off-by: Daero Lee <daero_le.lee@samsung.com>
----
- drivers/of/of_reserved_mem.c |  9 +++--
- mm/memblock.c                | 78 ++++++++++++++++++++++++++++++++++++
- 2 files changed, 84 insertions(+), 3 deletions(-)
+A minor nit from my side:
 
-diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-index 8236ecae2953..504f2f60689c 100644
---- a/drivers/of/of_reserved_mem.c
-+++ b/drivers/of/of_reserved_mem.c
-@@ -40,15 +40,18 @@ static int __init early_init_dt_alloc_reserved_memory_arch(phys_addr_t size,
- 
- 	end = !end ? MEMBLOCK_ALLOC_ANYWHERE : end;
- 	align = !align ? SMP_CACHE_BYTES : align;
--	base = memblock_phys_alloc_range(size, align, start, end);
-+	if (nomap) {
-+		base = memblock_phys_alloc_range_nomap(size, align, start, end);
-+	} else {
-+		base = memblock_phys_alloc_range(size, align, start, end);
-+	}
-+	
- 	if (!base)
- 		return -ENOMEM;
- 
- 	*res_base = base;
- 	if (nomap) {
- 		err = memblock_mark_nomap(base, size);
--		if (err)
--			memblock_phys_free(base, size);
- 	}
- 
- 	kmemleak_ignore_phys(base);
-diff --git a/mm/memblock.c b/mm/memblock.c
-index d09136e040d3..f103f1ecbfad 100644
---- a/mm/memblock.c
-+++ b/mm/memblock.c
-@@ -1506,6 +1506,72 @@ phys_addr_t __init memblock_alloc_range_nid(phys_addr_t size,
- 	return found;
- }
- 
-+phys_addr_t __init memblock_alloc_range_nid_nomap(phys_addr_t size,
-+                                        phys_addr_t align, phys_addr_t start,
-+                                        phys_addr_t end, int nid,
-+                                        bool exact_nid)
-+{
-+        enum memblock_flags flags = choose_memblock_flags();
-+        phys_addr_t found;
-+
-+        if (WARN_ONCE(nid == MAX_NUMNODES, "Usage of MAX_NUMNODES is deprecated. Use NUMA_NO_NODE instead\n"))
-+                nid = NUMA_NO_NODE;
-+
-+        if (!align) {
-+                /* Can't use WARNs this early in boot on powerpc */
-+                dump_stack();
-+                align = SMP_CACHE_BYTES;
-+        }
-+
-+again:
-+        found = memblock_find_in_range_node(size, align, start, end, nid,
-+                                            flags);
-+        if (found)
-+                goto done;
-+
-+        if (nid != NUMA_NO_NODE && !exact_nid) {
-+                found = memblock_find_in_range_node(size, align, start,
-+                                                    end, NUMA_NO_NODE,
-+                                                    flags);
-+                if (found)
-+                        goto done;
-+        }
-+
-+        if (flags & MEMBLOCK_MIRROR) {
-+                flags &= ~MEMBLOCK_MIRROR;
-+                pr_warn_ratelimited("Could not allocate %pap bytes of mirrored memory\n",
-+                        &size);
-+                goto again;
-+        }
-+
-+        return 0;
-+
-+done:
-+        /*
-+         * Skip kmemleak for those places like kasan_init() and
-+         * early_pgtable_alloc() due to high volume.
-+         */
-+        if (end != MEMBLOCK_ALLOC_NOLEAKTRACE)
-+                /*
-+                 * Memblock allocated blocks are never reported as
-+                 * leaks. This is because many of these blocks are
-+                 * only referred via the physical address which is
-+                 * not looked up by kmemleak.
-+                 */
-+                kmemleak_alloc_phys(found, size, 0);
-+
-+        /*
-+         * Some Virtual Machine platforms, such as Intel TDX or AMD SEV-SNP,
-+         * require memory to be accepted before it can be used by the
-+         * guest.
-+         *
-+         * Accept the memory of the allocated buffer.
-+         */
-+        accept_memory(found, found + size);
-+
-+        return found;
-+}
-+
- /**
-  * memblock_phys_alloc_range - allocate a memory block inside specified range
-  * @size: size of memory block to be allocated in bytes
-@@ -1530,6 +1596,18 @@ phys_addr_t __init memblock_phys_alloc_range(phys_addr_t size,
- 					false);
- }
- 
-+phys_addr_t __init memblock_phys_alloc_range_nomap(phys_addr_t size,
-+                                                   phys_addr_t align,
-+                                                   phys_addr_t start,
-+                                                   phys_addr_t end)
-+{
-+        memblock_dbg("%s: %llu bytes align=0x%llx from=%pa max_addr=%pa %pS\n",
-+                     __func__, (u64)size, (u64)align, &start, &end,
-+                     (void *)_RET_IP_);
-+        return memblock_alloc_range_nid_nomap(size, align, start, end, 
-+					      NUMA_NO_NODE, false);
-+}
-+
- /**
-  * memblock_phys_alloc_try_nid - allocate a memory block from specified NUMA node
-  * @size: size of memory block to be allocated in bytes
--- 
-2.25.1
+There is no need to set owner here as
+owner is set (overridden) by module_platform_driver().
 
+Flagged by Coccinelle.
+
+> +		.of_match_table = gzvm_of_match,
+> +	},
+> +};
+> +
+> +module_platform_driver(gzvm_driver);
+> +
+> +MODULE_DEVICE_TABLE(of, gzvm_of_match);
+> +MODULE_AUTHOR("MediaTek");
+> +MODULE_DESCRIPTION("GenieZone interface for VMM");
+> +MODULE_LICENSE("GPL");
+
+...
 
