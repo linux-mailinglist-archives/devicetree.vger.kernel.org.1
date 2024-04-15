@@ -1,112 +1,105 @@
-Return-Path: <devicetree+bounces-59200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F5E98A462C
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 01:37:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF5098A464E
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 02:19:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C0231C20B70
-	for <lists+devicetree@lfdr.de>; Sun, 14 Apr 2024 23:37:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F03E41C2122D
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 00:19:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F371C13698F;
-	Sun, 14 Apr 2024 23:37:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D36580B;
+	Mon, 15 Apr 2024 00:19:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="giUT0sXr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFE4A1E504
-	for <devicetree@vger.kernel.org>; Sun, 14 Apr 2024 23:37:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 223CF193;
+	Mon, 15 Apr 2024 00:19:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713137870; cv=none; b=NYfwGNUZtCOKjSMCNTkuaNh/Gm7MAtl2kM7dt2dqEIY5egG72vpfA+gsHe0x2ykm1JUopsMP++IlwGJ1B4LpfrWu9Up3MNTmC+sG0/juQR46vAw1LYYmqcrBE/4sYCPvUVnmX1ZMdVukbbRd8g1AybaX/9PKEJufV9XvmVmrhZQ=
+	t=1713140365; cv=none; b=I6LIDAiuEtRHUt+V8yE7q3Tjy5knPZedncNIS1oKge/T0x18NPLX+kj4L0nfCszuGR6jWtlHh+jzZvWmIpyRPMAUd+WeR+JmiABaE5222c6k68DzjXcKIFOqxhXLbAhclI6qx6iXMKf495EdMBXcMz01B18j2OzMD3tvKn+rBg8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713137870; c=relaxed/simple;
-	bh=N8PN0i9XFgCzv+tjanM5VtnZi/j1SkM2FUcJrDgpBRQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=BoAtHEgVIJC6Jr92y24eMmmWb3sBCrLPWH3lqkTeopQP3juH0WE4c2Dej7gEv+u/UKfzzngnl+O2IwwMwM8ZlejcpyT0UkgLx95rETT2yb1dqTybMJz3DWdrHUJZFQTEXx9pNFnTG0P9Gv0XMq1oWwF6kR2EbFXA1pzW1MflxNg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 73049339;
-	Sun, 14 Apr 2024 16:38:16 -0700 (PDT)
-Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 557D13F64C;
-	Sun, 14 Apr 2024 16:37:46 -0700 (PDT)
-Date: Mon, 15 Apr 2024 00:37:40 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Chris Morgan <macroalpha82@gmail.com>
-Cc: linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
- mripard@kernel.org, samuel@sholland.org, jernej.skrabec@gmail.com,
- wens@csie.org, conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- robh@kernel.org, ryan@testtoast.com, Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: allwinner: h616: Add NMI device node
-Message-ID: <20240415003740.666759d0@minigeek.lan>
-In-Reply-To: <20240414170424.614921-3-macroalpha82@gmail.com>
-References: <20240414170424.614921-1-macroalpha82@gmail.com>
-	<20240414170424.614921-3-macroalpha82@gmail.com>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+	s=arc-20240116; t=1713140365; c=relaxed/simple;
+	bh=fn0cP6jHQy9x0E71RjlI6piVigamd0rjnbvWW/k3m8c=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ru9kLuWLIiFrH5vVtSl4e0aNMJ+gXJQT6gMmlk0in4/GvKh55MOYodFvLJZNKQHnG0GBrj5kOCGePTkNyragTuPPW8L6vbnyWsVDgDKtCnP3f8EJiv2bXLLtix4fYuTG5vKJ4fvgMvrPvv4DJATBLMGqWnwW4SI5X7vHk2IgDmo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=giUT0sXr; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+Received: from [192.168.68.112] (ppp14-2-127-66.adl-apt-pir-bras32.tpg.internode.on.net [14.2.127.66])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 0901020178;
+	Mon, 15 Apr 2024 08:09:23 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1713139768;
+	bh=fn0cP6jHQy9x0E71RjlI6piVigamd0rjnbvWW/k3m8c=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=giUT0sXrneLxTzQYgCq5jqn57d27IX2/GFoKfYX+JCY8+ofHGvxXcFgdIfpxcmJTn
+	 jUmOlCOv3LHdaojgs/5Mzh0YddGrpC/RI8UKg9WasG4onjtXOCgZeJ0JmvkuX7kyBT
+	 qz8a8dKkJZTsgtx0O8IXrmztq4QkGmza6igXPyoAJXvC2xE+8+q0QINGwDdgm7rHbw
+	 7PxzbgURR818zIPA/v+KFKWEdMy5Lf2/1JBBHWdmvgiAszW21rCh/k5WAW0DihhNrC
+	 po1vlz/3HZjNlDp4ySUp8tF886a4EpMd+c9olDGwtPDCt3+Zehl2h+zvYTqRJR6pt7
+	 maoIywYca5U8A==
+Message-ID: <82fcd7a4532df119f82ea55208f592460ba5358e.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v3 2/4] dt-bindings: rtc: convert trivial devices into
+ dtschema
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Javier Carrasco <javier.carrasco.cruz@gmail.com>, Alexandre Belloni
+ <alexandre.belloni@bootlin.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jiaxun Yang <jiaxun.yang@flygoat.com>, Vladimir
+ Zapolskiy <vz@mleia.com>, Joel Stanley <joel@jms.id.au>, Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-stm32@st-md-mailman.stormreply.com, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Date: Mon, 15 Apr 2024 09:39:22 +0930
+In-Reply-To: <20240413-rtc_dtschema-v3-2-eff368bcc471@gmail.com>
+References: <20240413-rtc_dtschema-v3-0-eff368bcc471@gmail.com>
+	 <20240413-rtc_dtschema-v3-2-eff368bcc471@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
 
-On Sun, 14 Apr 2024 12:04:24 -0500
-Chris Morgan <macroalpha82@gmail.com> wrote:
+On Sat, 2024-04-13 at 22:22 +0200, Javier Carrasco wrote:
+> These RTCs meet the requirements for a direct conversion into
+> trivial-rtc:
+>=20
+> - google,goldfish-rtc
+> - maxim,ds1742
+> - lpc32xx-rtc
+> - orion-rtc
+> - rtc-aspeed
+> - spear-rtc
+> - via,vt8500-rtc
+>=20
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Andrew Jeffery <andrew@codeconstruct.com.au>
+> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
 
-Hi Chris,
+We have trailers above but then there's more commit message content
+below. Looks like what's below should be trimmed out (bad squash)?
+Maybe the trimming could be done as its applied?
 
-> From: Chris Morgan <macromorgan@hotmail.com>
-> 
-> Add device node for the H616 Non Maskable Interrupt (NMI) controller.
+>=20
+> dt-bindings: rtc: lpc32xx-rtc: convert to dtschema
+>=20
+> Convert existing binding to dtschema to support validation.
+>=20
+> Add the undocumented 'clocks' property.
+>=20
+> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
 
-You might want to mention that the NMI pad is not exposed on the H616 variants, but on
-the T507 and H700 packages.
-
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> ---
->  arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> index b2e85e52d1a1..1e066f3057be 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> @@ -775,6 +775,15 @@ r_ccu: clock@7010000 {
->  			#reset-cells = <1>;
->  		};
->  
-> +		nmi_intc: interrupt-controller@7010320 {
-> +			compatible = "allwinner,sun50i-h616-nmi",
-> +				     "allwinner,sun9i-a80-nmi";
-> +			reg = <0x07010320 0xc>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +			interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
-
-I can confirm that this matches the manual, and the registers behave as
-described in the A80 manual. I don't have access to a chip with the NMI
-pad exposed or used, so I cannot test this fully, but Chris'
-experiments with the AXP717 PMIC connected to that pin on on H700
-board seem to confirm that it indeed works.
-
-So with that small amendment to the commit message please take my:
-
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-
-Cheers,
-Andre
-
->  		r_pio: pinctrl@7022000 {
->  			compatible = "allwinner,sun50i-h616-r-pinctrl";
->  			reg = <0x07022000 0x400>;
-
+Andrew
 
