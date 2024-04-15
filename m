@@ -1,111 +1,122 @@
-Return-Path: <devicetree+bounces-59383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE8928A5128
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 15:25:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8644C8A51F8
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 15:43:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B13C286E42
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 13:25:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3BB671F23C77
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 13:43:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFF687F460;
-	Mon, 15 Apr 2024 13:11:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E35F3763F9;
+	Mon, 15 Apr 2024 13:41:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gyxomfaO"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="e6xAOPHX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81A8D6FE0D;
-	Mon, 15 Apr 2024 13:11:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77FD76FE0D;
+	Mon, 15 Apr 2024 13:41:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713186682; cv=none; b=QFmJchkg0D/K0VJUsZWLRxtkxbubLJ5mSUrrjlRSlox1uIs3cWDBnlOnwxk3GbEOEDNd7p/2b4Nf+4IJtrebG2mE8N8MLpfUZ4wc/CRdO1hxMUyc5e6pcYTIoTUiJTUVsOm5HFwyur2mJZRz3zsy+WcKZ3YhUzeDw4rcKosljrY=
+	t=1713188498; cv=none; b=LdRQnuDsizP16QwEobStigf0q0Jcy9r5jqLqT3VVh8VGwvMpDkdqqS7BrssVvCRJy87UpX+YjON25q8UcxPF2SYQiXNdeG/4wqh8e8+bNw+JgugThOWk+OfGtVmJq3HIf8ZcWPlvUIb+48Zy8FxfO0h68T8twXFVfU3y6dgRBw0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713186682; c=relaxed/simple;
-	bh=ncGh+t4xmi5GVWUdHHtJGEdjbtmWOCqArQu2Lu0BqM8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QKNToaaBceo3JYgIMp+4Kq6QySu//j9ekSPB5kjt9xPz7NByFw2kZVn0kpZvsIkQWz9k13MqefdCQCahq0YIDbB+Z7miZMQhr+MMyEYYI84/4ij8VjcO0sS7HAhtC4bV/D/hetFrm0aLfbwBF6LbdgB/tfV0OhRTFRR73G+TGtc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gyxomfaO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5ED3C113CC;
-	Mon, 15 Apr 2024 13:11:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713186682;
-	bh=ncGh+t4xmi5GVWUdHHtJGEdjbtmWOCqArQu2Lu0BqM8=;
-	h=From:To:Cc:Subject:Date:From;
-	b=gyxomfaOzOtUSxkGZxTpBLqUJN1GpMbQ24yINQLR+a3+C6iZyKaJbT5gE+bnt8es7
-	 E2SvB0qcUr3fuOm2GMcmAH/rmkZZRZwvJ3ApaR3eM9s8bfiA3WjiXpg7yWNUgts+4l
-	 sXFgLl5x6e8KzbNqMdMXi4L2BFgntB/H6UQY+qEm40l213bIAMc7XAzw+OeYLnpdfe
-	 Ybflh03IdYVd9CWsBQCcOo9qv4f6zMj1fCDM9stVoYhNMMD/AhADINM4AS27wkptrr
-	 AVUmWe7ZSVNApVD1fNcYBvJOlT22qTyItyfoCxGHXFDJQ9AKXIElfOpCfAwJh3P0Jg
-	 GhqEhLjFPKkCw==
-From: Rob Herring <robh@kernel.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Marek Vasut <marex@denx.de>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: eeprom: at24: Fix ST M24C64-D compatible schema
-Date: Mon, 15 Apr 2024 08:11:03 -0500
-Message-ID: <20240415131104.2807041-1-robh@kernel.org>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1713188498; c=relaxed/simple;
+	bh=Ze7Bw+QK8PxSu4QALmqRImY4KEW9tq6PtmBvMgUWpAI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ui4Z0LojJSJFNZZ81TU8lHJmmO78EjLMGmZN/gqOul0uBmHjiJ+KM9HDKYsvs+bWXQjDOU5aSYS7ySGC5ZT7ok4iCe/3Ag0fHouCtxeb1T9ait9lc0b15sz4RTzH2imxbbojuf7sHFBcyyOJJ/Uh2t74Nk8zphxHoQB/18JTIZ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=e6xAOPHX; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=EHzIPIlvEMFa/Xeg/4PiXPGWOFI3w89WOsdke+JuLoI=; b=e6xAOPHX2IGsvTthzItSh79fgk
+	IJL48VLuZcrMVW7NCuwIzhnjHb2u6oUgRCJDknwJK62XHlZ6f+TYKF6Njrh7imY0UxeMTay8LKXYf
+	FsqUJkDdDRjIhzSW57wjyOs0+5FHNTCiwji0lNzMWNy+zDdblUMs14ymf9SnLF9xk9WI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rwMBH-00D2Vj-NX; Mon, 15 Apr 2024 15:15:31 +0200
+Date: Mon, 15 Apr 2024 15:15:31 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Parthiban.Veerasooran@microchip.com
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, horms@kernel.org, saeedm@nvidia.com,
+	anthony.l.nguyen@intel.com, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, corbet@lwn.net,
+	linux-doc@vger.kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, Horatiu.Vultur@microchip.com,
+	ruanjinjie@huawei.com, Steen.Hegelund@microchip.com,
+	vladimir.oltean@nxp.com, UNGLinuxDriver@microchip.com,
+	Thorsten.Kummermehr@microchip.com, Pier.Beruto@onsemi.com,
+	Selvamani.Rajagopal@onsemi.com, Nicolas.Ferre@microchip.com,
+	benjamin.bigler@bernformulastudent.ch
+Subject: Re: [PATCH net-next v3 06/12] net: ethernet: oa_tc6: implement
+ internal PHY initialization
+Message-ID: <3fc3b5c3-0750-4aff-ab26-240f4bc55236@lunn.ch>
+References: <20240306085017.21731-1-Parthiban.Veerasooran@microchip.com>
+ <20240306085017.21731-7-Parthiban.Veerasooran@microchip.com>
+ <8c2b95f4-75a7-4d6d-ab9c-9c3498c040d8@lunn.ch>
+ <eeb57938-e21e-406d-a835-93c6fb19b161@microchip.com>
+ <7ddbe599-187e-401f-b508-4dc62bca8374@lunn.ch>
+ <e9bc573e-61f0-484a-b1fb-b5100eb9ee0a@microchip.com>
+ <8de7a4bb-a127-4771-97dd-038f08fcce9d@lunn.ch>
+ <372a45c3-1372-4956-8d42-8e989f86d131@microchip.com>
+ <ee5dcd07-7c44-4317-9d62-0fc68565988a@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ee5dcd07-7c44-4317-9d62-0fc68565988a@microchip.com>
 
-The schema for the ST M24C64-D compatible string doesn't work.
-Validation fails as the 'd-wl' suffix is not added to the preceeding
-schema which defines the entries and vendors. The actual users are
-incorrect as well because the vendor is listed as Atmel whereas the
-part is made by ST.
+On Fri, Apr 12, 2024 at 10:43:15AM +0000, Parthiban.Veerasooran@microchip.com wrote:
+> Hi Andrew,
+> 
+> After implementing the new APIs oa_tc6_mdiobus_read_c45() and 
+> oa_tc6_mdiobus_write_c45(), I tried testing. But, for some reason these 
+> APIs are never get called by phy_read_mmd() or phy_write_mmd() as those 
+> APIs are checking for phydev->is_c45 flag for calling this new c45 APIs 
+> which is not set in this case.
+> 
+> If the phydev is found via c22, phylib does not set phydev->is_c45, and 
+> everything ends up going indirect.
 
-As this part doesn't appear to have multiple vendors, move it to its own
-entry.
+We don't have a clean separation between C22/C45 register space and
+C22/C45 MDIO bus protocols. As you said, if the PHY is discovered via
+C22 bus protocol it assumes it uses C22 protocol.
 
-Fixes: 0997ff1fc143 ("dt-bindings: at24: add ST M24C64-D Additional Write lockable page")
-Fixes: c761068f484c ("dt-bindings: at24: add ST M24C32-D Additional Write lockable page")
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/eeprom/at24.yaml | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+Those PHYs which do support C45, and in particular, features which
+need C45, all call genphy_c45_pma_read_abilities() in there
+.get_features function to add in C45 features. However, it will
+continue using C45 over C22 because genphy_c45_pma_read_abilities()
+only really says the device has C45 registers, not C45 protocol.
 
-diff --git a/Documentation/devicetree/bindings/eeprom/at24.yaml b/Documentation/devicetree/bindings/eeprom/at24.yaml
-index 1812ef31d5f1..3c36cd0510de 100644
---- a/Documentation/devicetree/bindings/eeprom/at24.yaml
-+++ b/Documentation/devicetree/bindings/eeprom/at24.yaml
-@@ -68,14 +68,10 @@ properties:
-                   pattern: cs16$
-               - items:
-                   pattern: c32$
--              - items:
--                  pattern: c32d-wl$
-               - items:
-                   pattern: cs32$
-               - items:
-                   pattern: c64$
--              - items:
--                  pattern: c64d-wl$
-               - items:
-                   pattern: cs64$
-               - items:
-@@ -136,6 +132,7 @@ properties:
-               - renesas,r1ex24128
-               - samsung,s524ad0xd1
-           - const: atmel,24c128
-+      - pattern: '^atmel,24c(32|64)d-wl$' # Actual vendor is st
- 
-   label:
-     description: Descriptive name of the EEPROM.
--- 
-2.43.0
+I can see two different things you can try.
+
+1) set .read_mmd and .write_mmd in the PHY driver to phy_read_mmd()
+   and phy_write_mmd(). That is not great however, since each vendor
+   is likely to have their own PHY driver.
+
+2) Add a helper to set is_c45. This however has side effects you might
+   not want. e.g. auto-neg will be performed via C45, not C22. This
+   might not matter for a T1 PHY where is think auto-neg is not
+   actually used. But i don't see anything in TC6 which limits it to
+   T1, i could well imagine a T2 or T4 PHY being used with full
+   auto-neg.
+
+We really do need to separate C45 registers from C45 protocol in the
+phylib core to cleanly solve this.
+
+       Andrew
 
 
