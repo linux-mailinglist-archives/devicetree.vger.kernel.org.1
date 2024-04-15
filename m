@@ -1,114 +1,147 @@
-Return-Path: <devicetree+bounces-59385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ED9E8A51B6
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 15:40:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B58E8A51C2
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 15:41:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 292D0289B15
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 13:40:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8E544B2414A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 13:40:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1E738174F;
-	Mon, 15 Apr 2024 13:32:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5581C80046;
+	Mon, 15 Apr 2024 13:35:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PY/xEU9Y"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="jLD8owIX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D8608063C;
-	Mon, 15 Apr 2024 13:32:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE4217604D
+	for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 13:35:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713187949; cv=none; b=l+lyvXBSyIa+x9FF0y1it1aXHQsaaixLeXHilVvZNZQ9Erz3jyOBeN7IbH1GRkylSu6nB3wc//B0IGWgbmahiSnS+7V9XEUoOoParNdrI0f4GFhnHGOTxcdWyBrqyxyq7U8fFCK1YQ67YdQ9W2srHzbwW9e71FtkLH2k1xwtf9Q=
+	t=1713188141; cv=none; b=TN+nQ0i4/EytICphgGY1DpzFs6Fwztb1IehQS73TMX48Mnqgtn1BpsTXuH58nOG0hKnd3e1j8dfcjUTmQ5NiXn1IeNN8ru7MUyrX5POZi9BA/H3IDt0lyGkjJJkbmETqv86cYZKMrA4c0jHEw9oqNSOjLKOdH74wiN7AnVqH3Wo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713187949; c=relaxed/simple;
-	bh=lY9dhM6iK8H+xRTcxtbZNqjoO3E0/X10GLrYjtfX2BM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rBeFUmiB5mUKBkF4Dak/rwabJhCcXBChif6rH9nWeKPNiPP6J5+GtDiRT/xyqV7i6zkaHv62lfrzsAXb92/vtCD4kJP/ybqo94bGfDd2+UjMEHMfNAEGOGk2silrC1EZtzAHVpOfz5RQvJtoYEzUP3TA6lPOWHibCmi88sUi4eg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PY/xEU9Y; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a46a7208eedso457622666b.0;
-        Mon, 15 Apr 2024 06:32:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713187943; x=1713792743; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lY9dhM6iK8H+xRTcxtbZNqjoO3E0/X10GLrYjtfX2BM=;
-        b=PY/xEU9YdR31luxBgHMkxKtZtAEIaAIlw7e51YwKSf4rH30O3iZJQFMCEbQ9xT5/rc
-         SXl3oCVS41LsBRR7wpFXmQh6zznxfJ4lAgzQWbwe+nvv0piAQj7lbMrSVi7gQeyaV72B
-         mFU/u+iQKbg82Pa6PnvM6+dhJx58HAS2Eg8ccA/s0/LJr+tvjhHKXeRL4MAnyuQ969nZ
-         zM5DRfA5tETmqMnGQU7A7MY2EwksJnKt0A1pYNCZYYuorH20ryQBTxRFt6d/6jx8oZwh
-         CQmsxQp5C8rFXPBTWrMeUVWWZznhqslI6erqNSK2sIa2wkV1r8PJ6UwhjHOBfHLWYPk1
-         gZfQ==
+	s=arc-20240116; t=1713188141; c=relaxed/simple;
+	bh=hQiFVvAS1mYRf5SJ+jRHKKdDZv4gfSbaYAAYGc2KT5Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PYAgh5adxR15TeQXTIk6jCfXkUiAWzRfFHUekijOPt1CjphdApeKcG/hEIkWeg4s9f4CqiAkOnb4UpdTF4qon2O4CI4nNjZJ2IhsG+1SlyTFMScmIBMi3s5vuOdOwxi8jc7AAyfQEaRJERCFESYGE7jjmWUbNe2CM5pdzi+P2sA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=jLD8owIX; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1713188138;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=6socNntJ3nm9pcmvosaMuRgC2mHfgKc51tUJMcOdLxo=;
+	b=jLD8owIXyazLcLWZU7Ih9F0QR6g6O56O+a0ei7rfiqtlc3mXgF7YqgLdm5L5JmVzwndf7/
+	aXdN4wUleJQBNb1+7pqRvGC3SlLqQTkNOl0xMP+dGZSR6VyicuZhn5DsSt8KozYfJLfAo2
+	MltOn53Z3VFHd79Ypxt3l5vG/w9h2EA=
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
+ [209.85.218.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-615-lK8F3TH0MSC5QhioLsRR9A-1; Mon, 15 Apr 2024 09:35:36 -0400
+X-MC-Unique: lK8F3TH0MSC5QhioLsRR9A-1
+Received: by mail-ej1-f70.google.com with SMTP id a640c23a62f3a-a51beadf204so185772666b.1
+        for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 06:35:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713187943; x=1713792743;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lY9dhM6iK8H+xRTcxtbZNqjoO3E0/X10GLrYjtfX2BM=;
-        b=OP9c5KJzk4qClCY2GAJVNxjyxpTYCO6DFoK408X9+Bkaw7d4LmF+ikZ18uliMDUC8f
-         MZuOa8EKan/SuSihbyJUCMUfW60IJNJh0nZCIav3I268Rpbv8rfu0FbE8dVqZ9MzCaVw
-         udRzqKKC4jpj5e4yXEqLTQ64k/BiL7fQI6uA3TsnDxPDLeeMwvWzZrhiBhWchURjLdFV
-         DwK0q3UQkcPlK46Xwuwk/q9FIIjihGDI/1MdkBqwTUH3TqUdowILiUU9VSXzKm1dPfl0
-         DXtxdkUcBv5t8ilRKskaOJRXTJolLX+Pxbz0CSj9ClxH1xGgeBycDT9gZDdp33yOPDiD
-         s86w==
-X-Forwarded-Encrypted: i=1; AJvYcCU/LgmKnlCjjwpRU55L63uijLtlTQi0xXyNw9HB98ykesNcxVeDmI+2tFuFHBMeua+BmbUTOOPuB99rf3j2LLTBJHlzuef8PBuZn7q03fp22eY8LLZTiHJaGZwxhay3RSuhXORzjM230nOgg/UPJZBY62agddac+yLi0hOnmP55VSnzxA==
-X-Gm-Message-State: AOJu0YxsaN2srAxH8SoGnkQvnP9l8E/bCi2GhaTAZH9ccP85Rbcfc4xj
-	WGGY6PetHWDX6JRZd2rX8ebXt9CIdLp0EThFatsGmNOe5FYUqBx0ck3W9HjsAXftj9r7Lm0mNEf
-	j0xD2JKfCMIQSxBLQwY3yqsAAPETuCXzAJ2g=
-X-Google-Smtp-Source: AGHT+IFZf9fDssR5nh9Eyau52SHgMzD+ltgsF4y4hSg/CkOl09E9yGPHol2zU8xld7bTfC7pSYrTliB5VDjZb064UEk=
-X-Received: by 2002:a17:907:208f:b0:a52:6b12:3078 with SMTP id
- pv15-20020a170907208f00b00a526b123078mr1637121ejb.55.1713187942584; Mon, 15
- Apr 2024 06:32:22 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1713188135; x=1713792935;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6socNntJ3nm9pcmvosaMuRgC2mHfgKc51tUJMcOdLxo=;
+        b=t6Y7NsGhR6J9Lr2oApkoMhg3EyOL1rQb2zCwAplwNS+wVBRK3CRyhZzDKAhntu8Xk2
+         zkcQrVakzonofmOh0Heq80TzfqAUNiaXOYdj352PYp3UCNpEnWaPGCCIIzrEr+IOVtMP
+         eormNQ11pNu3jGL5lrRVulVDH23fx7B2GY5AAmTFVQ/BC417+RWxBNIZGKyh3cAr0JwJ
+         iN+XA7TaQo45o52PV5g5JhtRMIngpk21tM1JcyF4HmOONjAtnX08Nu4pD0JJkfgnkUSi
+         FEM5/bSaatPJowq2x1mcLYVkZGVpGMhPHS7amhjv8kUXZY2Fh/9dPFiN4Gnfs0KBbEAU
+         Y9ag==
+X-Forwarded-Encrypted: i=1; AJvYcCUFIsNJ0mbLIe5w6zlulTPUs01PikrjSYqQLjhfHrXToXf4C3N9OOv4DXbYGdExZlUFgG4oTuonumGdJj0ojTvuVqBl6JmnNwWCiA==
+X-Gm-Message-State: AOJu0YwyrM0z+YrEA30/0T0NXO2yLvEuTCXwLeRHGMg8TNtRwkWVAdGA
+	x3Jf9ncQ1xmClE8T2EgZjZLGgZUkB5UgFY8OvEFFOarAW6ERaK2GlHlbzYok9u+apD+CKy/Xh8Y
+	UD0U56TC1VT0RbUe8K+oSi260LIrd+gBacaZ5FIKQkSK+1sQjqlWqoWgzVH0=
+X-Received: by 2002:a17:906:c10d:b0:a52:3e63:bf9e with SMTP id do13-20020a170906c10d00b00a523e63bf9emr6339716ejc.49.1713188135422;
+        Mon, 15 Apr 2024 06:35:35 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFMogIGpTHXJhvOEm+F2SlJApYBGd7bIz8KwBUMd2MDogeFiyFV+1AMp2c3KRl+1QSxUQ6fVg==
+X-Received: by 2002:a17:906:c10d:b0:a52:3e63:bf9e with SMTP id do13-20020a170906c10d00b00a523e63bf9emr6339692ejc.49.1713188135069;
+        Mon, 15 Apr 2024 06:35:35 -0700 (PDT)
+Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec? (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl. [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
+        by smtp.gmail.com with ESMTPSA id di18-20020a170906731200b00a4e9359fbe8sm5469744ejc.44.2024.04.15.06.35.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Apr 2024 06:35:34 -0700 (PDT)
+Message-ID: <b8236348-476d-4c50-88ab-0409e4bf6bf0@redhat.com>
+Date: Mon, 15 Apr 2024 15:35:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240413151152.165682-1-alisa.roman@analog.com>
- <20240413151152.165682-6-alisa.roman@analog.com> <CAMknhBFzUeW5+rs_GgCZCiit=eW04VHyCnt-__jXLnO3Z29ksA@mail.gmail.com>
-In-Reply-To: <CAMknhBFzUeW5+rs_GgCZCiit=eW04VHyCnt-__jXLnO3Z29ksA@mail.gmail.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Mon, 15 Apr 2024 16:31:45 +0300
-Message-ID: <CAHp75Vd3Fh7PgRXF6J2_-TJof3E5=Q5t6qJbDkutJ=5_f-0zPQ@mail.gmail.com>
-Subject: Re: [PATCH v5 5/5] iio: adc: ad7192: Add AD7194 support
-To: David Lechner <dlechner@baylibre.com>
-Cc: Alisa-Dariana Roman <alisadariana@gmail.com>, michael.hennerich@analog.com, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, alexandru.tachici@analog.com, lars@metafoo.de, 
-	jic23@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, lgirdwood@gmail.com, broonie@kernel.org, andy@kernel.org, 
-	nuno.sa@analog.com, marcelo.schmitt@analog.com, bigunclemax@gmail.com, 
-	okan.sahin@analog.com, fr0st61te@gmail.com, alisa.roman@analog.com, 
-	marcus.folkesson@gmail.com, schnelle@linux.ibm.com, liambeguin@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] add FnLock LED class device to ideapad laptops
+To: Gergo Koteles <soyer@irl.hu>, Ike Panhc <ike.pan@canonical.com>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: platform-driver-x86@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+References: <cover.1712063200.git.soyer@irl.hu>
+Content-Language: en-US, nl
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <cover.1712063200.git.soyer@irl.hu>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sat, Apr 13, 2024 at 11:05=E2=80=AFPM David Lechner <dlechner@baylibre.c=
-om> wrote:
-> On Sat, Apr 13, 2024 at 10:13=E2=80=AFAM Alisa-Dariana Roman
-> <alisadariana@gmail.com> wrote:
+Hi,
 
-...
+On 4/2/24 3:20 PM, Gergo Koteles wrote:
+> Hi All,
+> 
+> This patch series adds a new LED_FUNCTION_FNLOCK define as "fnlock" and 
+> adds a new FnLock LED class device into the ideapad-laptop driver.
+> 
+> This helps to display FnLock LED status in OSD or other places.
 
-> > +static int ad7192_parse_channels(struct iio_dev *indio_dev)
->
-> Better name might be ad7194_parse_channels() or
-> ad7192_parse_ad7194_channels() since this is specific to the ad7194
-> chip.
+Thank you for your patch-series, I've applied the series to my
+review-hans branch:
+https://git.kernel.org/pub/scm/linux/kernel/git/pdx86/platform-drivers-x86.git/log/?h=review-hans
 
-Quite unlikely we have the same chip to be supported by somewhere
-else, so I would just name it simpler, i.e.
+Note it will show up in my review-hans branch once I've pushed my
+local branch there, which might take a while.
 
-ad7194_parse_channels()
+Once I've run some tests on this branch the patches there will be
+added to the platform-drivers-x86/for-next branch and eventually
+will be included in the pdx86 pull-request to Linus for the next
+merge-window.
 
---=20
-With Best Regards,
-Andy Shevchenko
+Regards,
+
+Hans
+
+
+
+
+
+> 
+> Best regards,
+> Gergo
+> 
+> Gergo Koteles (3):
+>   dt-bindings: leds: add LED_FUNCTION_FNLOCK
+>   platform/x86: ideapad-laptop: add fn_lock_get/set functions
+>   platform/x86: ideapad-laptop: add FnLock LED class device
+> 
+>  drivers/platform/x86/ideapad-laptop.c | 133 +++++++++++++++++++++++---
+>  include/dt-bindings/leds/common.h     |   1 +
+>  2 files changed, 123 insertions(+), 11 deletions(-)
+> 
+> 
+> base-commit: 39cd87c4eb2b893354f3b850f916353f2658ae6f
+
 
