@@ -1,137 +1,185 @@
-Return-Path: <devicetree+bounces-59403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59404-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A2978A5264
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 15:55:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 653778A526E
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 15:57:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B3B9C1F22D09
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 13:55:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7AE401C22643
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 13:57:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BB0E7350C;
-	Mon, 15 Apr 2024 13:55:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DFBE73506;
+	Mon, 15 Apr 2024 13:57:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Vq1M0w/G"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="COmuzEfp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CD677317D
-	for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 13:55:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB13573191;
+	Mon, 15 Apr 2024 13:57:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713189324; cv=none; b=RVAPtPc2aMe/xWmuCkf6ILVgwGhw0N1Q5iYFcPZuGgexAV8OIJOKPp/BaksozjLqr0bh1wlJxyRAVCZZYtwdfQB5WxM94WaFoUORDSF4T8nkmqdRv8Zn7QZRc8ZHhX+HXmTBiI1xFCuIK69VyZnCqI0a9iM8kyyx7P5/zdaJM1s=
+	t=1713189429; cv=none; b=oDApnSIqs1CK8Yi6INrauP6ylHnMyihfXZAFbjyTu1atZHzmc3oTj1HFN/5BxT3cpuevkCXJu6N05K9Gx6qERCf+EZQAvKP5pEgzcMyNG/wEAD7lm6eRj35I1CcQeDfo9GYUH5RZRUf2+/8RrCxv0K5DK2YXtIGdTKkN3nATkiQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713189324; c=relaxed/simple;
-	bh=/KqtpQiX1Bts9vzHpMoMbXJoUvqDULdQ15ObKyQGkQ8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=N+85IMiLbfqTk+iWfeqptprI+m2bHqNwElV6oOohmV8ZrAq2/elnMdETc5RDWeNHL4Z0wE8fqJbiKh6NLD7Wt/Mrn5HrnLIDNk5fqaeAcRgBy0RW7UTVFOVFF7KAJSJiQzao/yE+Yf0opm0lPggwyn/FqKpfKW8F6Aqexl4CF3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Vq1M0w/G; arc=none smtp.client-ip=209.85.210.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-6eb7b6f92d4so736220a34.0
-        for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 06:55:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1713189322; x=1713794122; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FDybaBLDv2wiDu+VluN3PgOq81UE8XZcMt1MU2BUL6M=;
-        b=Vq1M0w/GpnnE/tCK6gq04CvjneEpphicmA4ufDVVoOYQ0msR7w9nKFuXTlW6N9oyQB
-         uRmXz7zMPt/NIHro5UNULn4pxYoPRAM8WYl01ZEPEBzSUSr5/Cy22/pseUBQ88OPz2SZ
-         3/4EeOey5C7CANFfaeUe9HppRtQvRHMuXaYbTNrBfFp+IaRCVZvQNlQ3ZPeJQPXmgOi6
-         5RiPxdiPalmZINvbrHqpkF+sq+G91KyRdAormX2Vg6o4VbeJBduUnO6tmNVJ7dH50bu9
-         JkqUuNFqxusKVUc9lVf/v6AJRFPd3uU5ZNkIQWHUc9Md0x+sfy+ObSect1zCw0zZA7GI
-         Ybdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713189322; x=1713794122;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FDybaBLDv2wiDu+VluN3PgOq81UE8XZcMt1MU2BUL6M=;
-        b=qcYFPUilIt+A/qTBHL1J9tdxqfuzFQMdIV2MkL9S4N3h2LU1jagJOK4Rg+LiT0dLnO
-         c53Ty3vX6JCk90T/1zCch36AIaoq1DFb3u4/2TUPZnLOMyPBHU5PNJTlV8cDBeeIrZau
-         etcRXGeJnmgBzkOO7wDhcviyVBDS86XVUKI8ddXYbCy/YG0EBgdz9fb8Vo0XZlT/YeL9
-         sHbTqQLJ8cn1dmXfI2IkXJ7YM5kPlprBN4kclcpivyzsjjjn6tA50IAsqcky2Wudhkbk
-         fTBrr+CiLJVIg+KJURHMxaSNoO6cS6laK7utyGif3yvOjLyJCtt9NQbuUa48BRd7WQan
-         +PMw==
-X-Forwarded-Encrypted: i=1; AJvYcCUVmdks8J6KJBAf4WInXPowAD5sFjXOW9m90UtVFTaeRnmDjrRZjgKLLmwa9lCQqe2YIfZCPIqafkHEm84+t9CTrfhJXFtjb41k1g==
-X-Gm-Message-State: AOJu0YxX/IfEckxWxm2AARs0zNQVXie4B1qLf+DhwyOuAG11e0CSpsyX
-	5R++c5Jd387JdEiidIWwsVfSYrM/aClKJnKRvInjAdYDEcHCrdbMdmtzwFfIt8k=
-X-Google-Smtp-Source: AGHT+IFASyl13hC9uptACMxhhHeBMOBOY+sePtjxfpf//vvHEOFGYAvbdA85itseafAEj76cF6dB4Q==
-X-Received: by 2002:a05:6830:1619:b0:6eb:7d34:e1d7 with SMTP id g25-20020a056830161900b006eb7d34e1d7mr3280527otr.15.1713189321521;
-        Mon, 15 Apr 2024 06:55:21 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id h13-20020a9d600d000000b006ea23d8fcaasm1836074otj.32.2024.04.15.06.55.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Apr 2024 06:55:20 -0700 (PDT)
-Message-ID: <c9c33784-d047-42d1-934e-d9e10cf47a65@baylibre.com>
-Date: Mon, 15 Apr 2024 08:55:19 -0500
+	s=arc-20240116; t=1713189429; c=relaxed/simple;
+	bh=FFFmuk3Sh3rIjA2N2SIYnU2di8Sv7qRk0RmCi36RXX8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Jrx2TPp5xz6VMwT31ewgSrkULKTX+7uHAK6/TJpVucxuRxLT7BC/L4+1jhcgOS178GBNpgTO9IZCMM/IyAw+LEz8We7Y1TVNDo1GGSm8bOoG7nI6fpFZWJi4TW/ECjDFKc7LRi8FRp6u/J7kagvettxX/4KB4nstaLT1+ieG8jU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=COmuzEfp; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1713189427; x=1744725427;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=FFFmuk3Sh3rIjA2N2SIYnU2di8Sv7qRk0RmCi36RXX8=;
+  b=COmuzEfp4RVYN18BF7FPy+b0fnoQYPYfaJ8jCAmRmKPgf5US4qVSdBkm
+   wI21NRHzdfBD/J5PvdHhFQMSmAlLAHAyHzX1nuB+CmSiN3NHA2T7SWvS1
+   dphZM4TVNOWuEZd7eCXeXUjZ4upfnBUABbGKdnimqLMp1BqYbfOsbybl0
+   pPCnDTTMsB9Bpx5eghiqJKpYre1SbZRQ8ukULj+xzu2chA3vu9C+xPFI/
+   0WNRhwm9Hjywacpo52edBmrev6kYEtMeIaHfy150R8w8GpUeu/FWdhg7g
+   Hxd85VVopF2WFkvbPEKMt1XXMk75SYhITA2RU/JfFpvE6pABo9Dmath6V
+   Q==;
+X-CSE-ConnectionGUID: 8wwhY1sgRcCEIu+tzFv37A==
+X-CSE-MsgGUID: YSWmDJT1Ra6vy6AVLGs5ew==
+X-IronPort-AV: E=McAfee;i="6600,9927,11045"; a="19972042"
+X-IronPort-AV: E=Sophos;i="6.07,203,1708416000"; 
+   d="scan'208";a="19972042"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Apr 2024 06:57:06 -0700
+X-CSE-ConnectionGUID: 7+1nZ9cnT7+N2KghsnO28Q==
+X-CSE-MsgGUID: T2yAK3UEQfSyJQcpT7LylA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,203,1708416000"; 
+   d="scan'208";a="26485040"
+Received: from unknown (HELO 23c141fc0fd8) ([10.239.97.151])
+  by fmviesa003.fm.intel.com with ESMTP; 15 Apr 2024 06:57:03 -0700
+Received: from kbuild by 23c141fc0fd8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rwMpR-0004Cs-0C;
+	Mon, 15 Apr 2024 13:57:01 +0000
+Date: Mon, 15 Apr 2024 21:56:52 +0800
+From: kernel test robot <lkp@intel.com>
+To: Cristian Marussi <cristian.marussi@arm.com>,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, sudeep.holla@arm.com,
+	cristian.marussi@arm.com, jassisinghbrar@gmail.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, jonathan.cameron@huawei.com
+Subject: Re: [PATCH v4 2/2] mailbox: arm_mhuv3: Add driver
+Message-ID: <202404152144.RtJxmEsQ-lkp@intel.com>
+References: <20240412192801.554464-3-cristian.marussi@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/5] dt-bindings: iio: adc: ad7192: Add AD7194 support
-To: Alisa-Dariana Roman <alisadariana@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- michael.hennerich@analog.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: alexandru.tachici@analog.com, lars@metafoo.de, jic23@kernel.org,
- robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- lgirdwood@gmail.com, broonie@kernel.org, andy@kernel.org,
- nuno.sa@analog.com, marcelo.schmitt@analog.com, bigunclemax@gmail.com,
- okan.sahin@analog.com, fr0st61te@gmail.com, alisa.roman@analog.com,
- marcus.folkesson@gmail.com, schnelle@linux.ibm.com, liambeguin@gmail.com
-References: <20240413151152.165682-1-alisa.roman@analog.com>
- <20240413151152.165682-5-alisa.roman@analog.com>
- <2ad06ea8-220f-4d09-bbe7-c4dd12d0d8bd@linaro.org>
- <105bd25b-e5ea-4649-b9b2-2547e94b103e@gmail.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <105bd25b-e5ea-4649-b9b2-2547e94b103e@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240412192801.554464-3-cristian.marussi@arm.com>
 
-On 4/15/24 8:08 AM, Alisa-Dariana Roman wrote:
-> On 14.04.2024 00:19, Krzysztof Kozlowski wrote:
->> On 13/04/2024 17:11, Alisa-Dariana Roman wrote:
->>> Unlike the other AD719Xs, AD7194 has configurable differential
->>> channels. The user can dynamically configure them in the devicetree.
->>>
->>> Also add an example for AD7194 devicetree.
->>>
->>> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
->>> ---
->>>   .../bindings/iio/adc/adi,ad7192.yaml          | 74 +++++++++++++++++++
->>>   1 file changed, 74 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
->>> index ba506af3b73e..855f0a2d7d75 100644
->>> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
->>> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
-> 
-> ...
-> 
->>
->>> +  "^channel@[0-9]+$":
->>
->> Why restricting the pattern? If you have 256 channels, how are you going
->> to encode it?
-> 
-> Hi Krzysztof,
-> 
-> Thank you for your feedback! I applied the rest, but as for this one isn't channel@1 -> channel@256 encoding sufficient?
-> 
-> Kind regards,
-> Alisa-Dariana Roman
-> 
-> 
+Hi Cristian,
 
-The number after @ is hexidecimal (without leading 0x), so it should be
-[0-9a-f]. channel@0 to channel@ff.
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on soc/for-next linus/master v6.9-rc4 next-20240415]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Cristian-Marussi/dt-bindings-mailbox-arm-mhuv3-Add-bindings/20240415-094106
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20240412192801.554464-3-cristian.marussi%40arm.com
+patch subject: [PATCH v4 2/2] mailbox: arm_mhuv3: Add driver
+config: i386-allmodconfig (https://download.01.org/0day-ci/archive/20240415/202404152144.RtJxmEsQ-lkp@intel.com/config)
+compiler: gcc-13 (Ubuntu 13.2.0-4ubuntu3) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240415/202404152144.RtJxmEsQ-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202404152144.RtJxmEsQ-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/mailbox/arm_mhuv3.c: In function 'mhuv3_mbx_comb_interrupt':
+>> drivers/mailbox/arm_mhuv3.c:922:17: error: cleanup argument not a function
+     922 |                 void *data __free(kfree) = NULL;
+         |                 ^~~~
+
+
+vim +922 drivers/mailbox/arm_mhuv3.c
+
+   910	
+   911	static irqreturn_t mhuv3_mbx_comb_interrupt(int irq, void *arg)
+   912	{
+   913		unsigned int i, found = 0;
+   914		struct mhuv3 *mhu = arg;
+   915		struct mbox_chan *chan;
+   916		struct device *dev;
+   917		int ret = IRQ_NONE;
+   918	
+   919		dev = mhu->mbox.dev;
+   920		for (i = 0; i < NUM_EXT; i++) {
+   921			struct mhuv3_mbox_chan_priv *priv;
+ > 922			void *data __free(kfree) = NULL;
+   923	
+   924			if (!mhu->ext[i])
+   925				continue;
+   926	
+   927			/* Process any extension which could be source of the IRQ */
+   928			chan = mhu->ext[i]->chan_from_comb_irq_get(mhu);
+   929			if (IS_ERR(chan))
+   930				continue;
+   931	
+   932			found++;
+   933			/* From here on we need to call rx_complete even on error */
+   934			priv = chan->con_priv;
+   935			if (!chan->cl) {
+   936				dev_warn(dev, "RX Data on UNBOUND channel (%u)\n",
+   937					 priv->ch_idx);
+   938				goto rx_ack;
+   939			}
+   940	
+   941			/* Read optional in-band LE data first. */
+   942			if (priv->ops->read_data) {
+   943				data = priv->ops->read_data(mhu, chan);
+   944				if (IS_ERR(data)) {
+   945					dev_err(dev,
+   946						"Failed to read in-band data. err:%ld\n",
+   947						PTR_ERR(no_free_ptr(data)));
+   948					goto rx_ack;
+   949				}
+   950			}
+   951	
+   952			mbox_chan_received_data(chan, data);
+   953			ret = IRQ_HANDLED;
+   954	
+   955			/*
+   956			 * Acknowledge transfer after any possible optional
+   957			 * out-of-band data has also been retrieved via
+   958			 * mbox_chan_received_data().
+   959			 */
+   960	rx_ack:
+   961			if (priv->ops->rx_complete)
+   962				priv->ops->rx_complete(mhu, chan);
+   963		}
+   964	
+   965		if (found == 0)
+   966			dev_warn_once(dev, "Failed to find channel for the RX interrupt\n");
+   967	
+   968		return ret;
+   969	}
+   970	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
