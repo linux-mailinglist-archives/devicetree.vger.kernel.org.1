@@ -1,113 +1,136 @@
-Return-Path: <devicetree+bounces-59536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C47878A5CA5
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 23:07:59 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C58E8A5CB6
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 23:10:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6480A1F237FE
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 21:07:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1C405B22754
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 21:10:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B8CC15698A;
-	Mon, 15 Apr 2024 21:07:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48532156969;
+	Mon, 15 Apr 2024 21:10:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Gy8h3WNJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P4tLtEj/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE749823CE;
-	Mon, 15 Apr 2024 21:07:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A76EC82D93;
+	Mon, 15 Apr 2024 21:10:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713215275; cv=none; b=i44X/z13TR+4KEzX1zL8NomWid4C1iI8NMJDIBxKkVuS59uKouQgLNk4Aw4+EOSEMHz8YUdbfB27FEkdiIHpjO+4s0zLENfcuWlcMoIfUaWLxihJZfRXt8YEkAhNRZRStqrmaH6OuzlaZV8jfsF6pcaf3KaXhUw7EjyQLiKBd3g=
+	t=1713215446; cv=none; b=K/cFEpV+rky2dekzJQxtyZpP6zWbju2f6H4clyUrUG4Ia2/9SPmC+lXsoTa+M33eWYoPyNza/TcIVMuifCzd2zqLvcdoCSgp7fe5qllnkukcVfSET7Jmi6Klzi+ki9VSDG1sGdzmQWFwpIcPRwIpLycLDD8HjQz98fAKaV52KOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713215275; c=relaxed/simple;
-	bh=dZGyHYW2YHPRCCg2XTiPDm+RfQJLoDRhsLPv4FfLvfc=;
+	s=arc-20240116; t=1713215446; c=relaxed/simple;
+	bh=xWsOHMwDq20aIhCRQXclo2deHd25wdzzVkxVCdIGEhA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=u2ttbpbYZZWzLSybJNj7tgMJC6q128a5zwvqfT9+POMLXBEX6wA3ajLjMgJHSXwovZRTrZYB7wqLkSKnKVb1f5cW8oMadJWJLewvvotUOP6bZP6NzVxZ3DyH/n67+O9GcTaH9WIIW/OzvVZu1FtZv0dEjVHvnxvt+j3Gi61MQVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Gy8h3WNJ; arc=none smtp.client-ip=209.85.208.180
+	 MIME-Version:Content-Type; b=BiaOQlr6FEb9iyuWT+VZJkwtIRPVCQbe6jbKMFlQvskslhbE0RO6xT9+1F2S3wwyi2ju4Yyu65UnzZwN2RdZpm52dSuFS41tAbbal22Ez80NbuaabKmQv0M6z/KnX5Nds3/EjNHtBGMcw86z23aTUDdHxQmfREkxJ5MdnbqXkiM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P4tLtEj/; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2dac79e350cso1401271fa.2;
-        Mon, 15 Apr 2024 14:07:53 -0700 (PDT)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-41879819915so6691595e9.1;
+        Mon, 15 Apr 2024 14:10:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713215272; x=1713820072; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1713215443; x=1713820243; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=dZGyHYW2YHPRCCg2XTiPDm+RfQJLoDRhsLPv4FfLvfc=;
-        b=Gy8h3WNJXAL/ZrOnZ/+bJlI5uylosvOjCidl+opQOJN/ZHTjJbl5rLfhjfX1F4IyX0
-         7vUKWGbZ2TnRnHdIW+jBhVhWr5Y5tACr4Ap5VGLySW6RrRaXTqJhAxosSLBHYzc1R6C3
-         eZZgtUWUvB5pf6DKQ6eiQfst3TY+/FlFnJ+RMj/GrulBGdjMtHMHw6gs2HwaUTgO0cAN
-         42iGxUK+n5JOcXwH0Aj/8WBMT2KYnWvh7OomU+pjlrvZq1jBjV6dnl6RQRZ3Q9/yHL/g
-         FsjY79qd7BBsu2y5yV7a4dH2ihZN4pkbuOMj2wuNwjDcXo6YiThruQBrU5Cf40MbqBhB
-         vMpA==
+        bh=POu8ivNdiDybNb2buQjdK1aWft9b5HTgPPEBvxZY5SM=;
+        b=P4tLtEj/uLdz7pzzC22tRt7Fg8Kk6kL7Wu/Y4myTGJfJaD0FVdp3Ax7JFBcEENuBlu
+         sJCfssws98TQU067kZurJ1/s8nfA5LKXvbhAGWq9SPyaq3hniJPBOdXOoHR8IkUqHD0J
+         4vozPGMu0aHOZtnSfSQjwk7Ig5e+3fOIy/td95fvKnwH0h9fb4LIzRvtUGzaImpDPG6W
+         5a4P4hrb6fOSzWg9hh6lXXyMrrvtK29RHSHWdHvqha8wcmKTogKBZxvy54YHNfmgfUgU
+         NcAihGJMljlJHnIKPeo/el6b67q3wOtPk4i3raggqCit9eUnrZs7b7D1FZoGSNoK7CBh
+         WMNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713215272; x=1713820072;
+        d=1e100.net; s=20230601; t=1713215443; x=1713820243;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=dZGyHYW2YHPRCCg2XTiPDm+RfQJLoDRhsLPv4FfLvfc=;
-        b=l9/HwAXSE6QVyOTZgQ6CCjIIYoePa9yi4Tfos/p0Z4RLmadDQf4DJHILtFUplcAwEa
-         sEs+AL9clGgYlwE56fupV9LwX0wzoCdymgGIDcS00jWFVIKfi5T5UdhYqMZm/51mnCF1
-         SatN3a9eqEWBm+uXCIVpIvJHNTCeWxDrGOMC+47s38j7hOSwlIIpYWBTs+k9romT+JLJ
-         WHpHd+5/BtNt4ScGwWHbtHlydRcQqnoj4sI66qKVtWJrLzOmJjCXkCkH4w7INczgr1lh
-         ydGSvY9tKWsM0jnF5OQ/6sHpSG2oa7RGLJJtSp+YHSEPlQ9oFIY+1UOg7eLcr2zNglV+
-         ZocA==
-X-Forwarded-Encrypted: i=1; AJvYcCXdaB5zj2ntMQKYis4NkpGOcpMfGOqIJ4TSK9qG6Rl5jVjwDR1lLpbXC9dtYNOR9x3vD3zpFgPMq+RwH9oYQBl6TNLylZHLeEpztg==
-X-Gm-Message-State: AOJu0Ywuw4I/VnJWFrg7n0e53xc8afsFWvd380uz0NgWK/rWkUfIW5gb
-	cv+5J8/DHvXq41EZbL8319NBI2/tuwXvNhaiUCsIEFaRCaqL6qbC7TfLh7GT
-X-Google-Smtp-Source: AGHT+IErQ/YHbW+POwBNnVs+xxSRp19T+6PTSAH/8LvETVMHLcYYh9s7DrvZ4rEKVLjZxM4vADHwAg==
-X-Received: by 2002:a2e:b94e:0:b0:2d5:9703:263f with SMTP id 14-20020a2eb94e000000b002d59703263fmr5617484ljs.44.1713215271826;
-        Mon, 15 Apr 2024 14:07:51 -0700 (PDT)
+        bh=POu8ivNdiDybNb2buQjdK1aWft9b5HTgPPEBvxZY5SM=;
+        b=L/Tg77E69MKxsCCu3oqQZ8h6hWtAjYnop2PIPO/qR/f+ibBWx5+GY1I+zBuK7SLbDu
+         Ej1gV3UgmkO19Rp7DZbxbxsIIppogdEP+QREpR6lkxQxHg5DV/UEwFu080qyQ54uNGEF
+         0XacR3bNM4NsE0U/h8K0vbXDbN02yg7vWT+HT1FYqIekmzTw7bGvB0X02mK4pCEF+DHn
+         iqD3wVrJkJZ3wRygfrzcH201rKGSuH6w3YupDeszYKktH9Osjhqr+SggtQT01Rk29mbb
+         x3WNILUqkFBoFy/6+JT7InWbmRpZ8PXZMoXT2IwjqFqSvpe1F2RbqByBtY09jg94A7u1
+         K1DQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWWWZ/xFGPURQ/fmum/VC2Hwy70VJcg/4uxOHrv0mCTFWmyH1/WN4y+rCevQi/DemYN+jVx7+/45cyBo3GBiOBpIE0hN8ZPeEP4Ba8B0pX+QUOZdbxblONvzk5kszod984hoNoz8Nd5vA==
+X-Gm-Message-State: AOJu0YwbYcQAFfW1uLXSuOShmsr9J62NsU5OVHgRxIOenJHsz+TxxzaM
+	ZBAAs5tOzwy6+37g4WXNxUp0Vss1Bu2Vgtf5PIZkJlEqfRvO9M8r
+X-Google-Smtp-Source: AGHT+IG2p9m0jXcUa5+DHZuhGziToQ0Nz6/fB0gCfrIcRX7Kn8dYiFFVLNTE3sOo8pUzHpdfzw4S1w==
+X-Received: by 2002:a05:600c:458d:b0:415:6afd:9ba6 with SMTP id r13-20020a05600c458d00b004156afd9ba6mr8104239wmo.1.1713215442970;
+        Mon, 15 Apr 2024 14:10:42 -0700 (PDT)
 Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id m18-20020a05600c3b1200b0041668162b45sm20796813wms.26.2024.04.15.14.07.50
+        by smtp.gmail.com with ESMTPSA id fc18-20020a05600c525200b0041563096e15sm20910578wmb.5.2024.04.15.14.10.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Apr 2024 14:07:51 -0700 (PDT)
+        Mon, 15 Apr 2024 14:10:42 -0700 (PDT)
 From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: linux-kernel@vger.kernel.org, Aren Moynihan <aren@peacevolution.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Chen-Yu Tsai <wens@csie.org>, Pavel Machek <pavel@ucw.cz>,
- devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
- Miles Alan <m@milesalan.com>, Samuel Holland <samuel@sholland.org>,
- linux-arm-kernel@lists.infradead.org, Ondrej Jirman <megi@xff.cz>,
- Aren Moynihan <aren@peacevolution.org>
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>, Corentin Labbe <clabbe@baylibre.com>,
+ Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Subject:
- Re: [PATCH v3 2/2] arm64: dts: allwinner: pinephone: add multicolor LED node
-Date: Mon, 15 Apr 2024 23:07:50 +0200
-Message-ID: <3289584.44csPzL39Z@jernej-laptop>
-In-Reply-To: <3796126.kQq0lBPeGt@jernej-laptop>
-References:
- <20240317004116.1473967-1-aren@peacevolution.org>
- <20240317004116.1473967-2-aren@peacevolution.org>
- <3796126.kQq0lBPeGt@jernej-laptop>
+ Re: [PATCH 1/4] arm64: dts: allwinner: Pine H64: correctly remove
+ reg_gmac_3v3
+Date: Mon, 15 Apr 2024 23:10:41 +0200
+Message-ID: <10447698.nUPlyArG6x@jernej-laptop>
+In-Reply-To: <20240317184130.157695-1-krzysztof.kozlowski@linaro.org>
+References: <20240317184130.157695-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="utf-8"
 
-Dne torek, 26. marec 2024 ob 23:44:39 GMT +2 je Jernej =C5=A0krabec napisal=
-(a):
-> Dne nedelja, 17. marec 2024 ob 01:39:29 CET je Aren Moynihan napisal(a):
-> > The red, green, and blue LEDs currently in the device tree represent a
-> > single RGB LED on the front of the PinePhone.
-> >=20
-> > Signed-off-by: Aren Moynihan <aren@peacevolution.org>
->=20
-> Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Dne nedelja, 17. marec 2024 ob 19:41:27 GMT +2 je Krzysztof Kozlowski napisal(a):
+> There is no "reg_gmac_3v3" device node in sun50i-h6-pine-h64.dts,
+> although there is "gmac-3v3" with "reg_gmac_3v3" label, so let's assume
+> author wanted to remove that node.  Delete node via phandle, not via
+> full node path, to fix this.
+> 
+> Fixes: f33a91175029 ("arm64: dts: allwinner: add pineh64 model B")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Applied both, thanks!
+Applied all, thanks!
 
 Best regards,
 Jernej
+
+> ---
+>  arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts
+> index b710f1a0f53a..1b6e5595ac6e 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts
+> @@ -5,12 +5,12 @@
+>  
+>  #include "sun50i-h6-pine-h64.dts"
+>  
+> +/delete-node/ &reg_gmac_3v3;
+> +
+>  / {
+>  	model = "Pine H64 model B";
+>  	compatible = "pine64,pine-h64-model-b", "allwinner,sun50i-h6";
+>  
+> -	/delete-node/ reg_gmac_3v3;
+> -
+>  	wifi_pwrseq: wifi_pwrseq {
+>  		compatible = "mmc-pwrseq-simple";
+>  		reset-gpios = <&r_pio 1 3 GPIO_ACTIVE_LOW>; /* PM3 */
+> 
 
 
 
