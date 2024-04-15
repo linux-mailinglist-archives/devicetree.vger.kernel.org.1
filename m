@@ -1,131 +1,136 @@
-Return-Path: <devicetree+bounces-59401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59396-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C1998A5256
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 15:53:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79B4F8A5245
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 15:52:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B885283901
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 13:53:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A56C31C21DDC
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 13:52:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 083EB7317D;
-	Mon, 15 Apr 2024 13:52:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BD9B74E37;
+	Mon, 15 Apr 2024 13:51:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="h93D0VG0"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="T63ToMWp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7029D208B0;
-	Mon, 15 Apr 2024 13:52:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AB9E73186
+	for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 13:51:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713189175; cv=none; b=hhq7O8fQBrVd8lm2GfRuam0scOp1eEI13zUTneS8n4NJDoXJJirgKHb9fwaavs6FR06IFeOpC8z75JW+kjCd3zGlbadtDGHToYl1nSoHxcrj7UcEZBDlfdhKF1YZVYjbJKg3pWC28XPvM9NHKYUEau8xY8XgS5SpHaRglOdxA0o=
+	t=1713189090; cv=none; b=M9CvHfHkQti6uwFU0hZBdVsPOAquawWIKfiS7CARAyAT7EazMS2VrpomU8ybvkoPp+PebgjYsXPUq196vDLCKZLmW7bmuoCKwqvnHaLWeYegdT8JmKZgpLyr8hDglCpNRVwe9xfyJSYBHRNFV2ZF5nOWG8HeLQBU64zIXhRIcAw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713189175; c=relaxed/simple;
-	bh=U+4pgle3dsFiaWJNGuuL2e5Su5y14I72sd1m/tBMuo0=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DJADNS2RazbutOMBHo5T1gj4qjzolsoKKzazPOtTMWCcIugOguKN0UBS0YcF9Uidbl8KU4HIG/EwxSnJJrvgWxnkgGL2VfITJJiRCJ3NUraM6DNLuhceBrVj+DPzjd2c1lVzhNHwbUwPkZ1hIDvo8IHpERPAS7rTmaCKmszgCNU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=h93D0VG0; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43FBMjbU004772;
-	Mon, 15 Apr 2024 15:52:44 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	selector1; bh=uIBsK4tjXsUxouAGNHNv9Rqw7KTBxkK0VeFWE/k0QV8=; b=h9
-	3D0VG0zKklMLfBxL9Kup7dWymvKQhLpAVfP6X53XJxVpN4E82OhQK0nyQa0wdIyS
-	idXP62w1QRH753D/lpd0fdMFIhFpF4Jt8Q/Xu4dfiXqx1xeA0QhwK/C1M/YNz1nP
-	oGNIdJeKJvemh8iBw6W8oDAUPtxC8IvP1az8BsihtYRZrhgRx+jkwHqENv0W/ONI
-	r01G0arw/s2Tj/B70IR2Hbo8HL5tvGqnZ6y3JEP5sWax/PHKnP0lbVSNIHMezxft
-	K030qvUHD7uv+0402Xhe3u5gy8ESKJiZx+K5yojy/IWE5faDonWjVc6sfhQZA/ra
-	UMGN93iHL6tWUe29F0vw==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3xffff8665-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 15 Apr 2024 15:52:43 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 4F60940044;
-	Mon, 15 Apr 2024 15:52:40 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A7F7F215BEB;
-	Mon, 15 Apr 2024 15:51:54 +0200 (CEST)
-Received: from localhost (10.48.86.102) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 15 Apr
- 2024 15:51:54 +0200
-From: Antonio Borneo <antonio.borneo@foss.st.com>
-To: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre
- Torgue <alexandre.torgue@foss.st.com>,
-        Catalin Marinas
-	<catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-CC: Antonio Borneo <antonio.borneo@foss.st.com>,
-        Fabrice Gasnier
-	<fabrice.gasnier@foss.st.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v2 11/11] arm64: dts: st: Add interrupt parent to pinctrl on stm32mp251
-Date: Mon, 15 Apr 2024 15:49:26 +0200
-Message-ID: <20240415134926.1254428-12-antonio.borneo@foss.st.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240216094758.916722-1-antonio.borneo@foss.st.com>
-References: <20240216094758.916722-1-antonio.borneo@foss.st.com>
+	s=arc-20240116; t=1713189090; c=relaxed/simple;
+	bh=U5z04xeFEFohHeXTPP89QCfpwW85LDF/gltJCpHi0Jk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eqOOqEH+ZDKeVJ5Y/YiA4cJ+igD3oneRjRB+v7uSSanxO5Rqm2WuhkmSmNynzTdzDvE8jh/IQLPUd7LOlNSmGu13Tfmo55Rc+qfoR6wAOp6vFUoenthhD6hxhjTnPkj5MCYiSel4QBZhNjbwT+OJWPkBdCQ4mIJYXVVF4cIjjXc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=T63ToMWp; arc=none smtp.client-ip=209.85.210.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f48.google.com with SMTP id 46e09a7af769-6eb6b9e1808so758572a34.3
+        for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 06:51:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1713189087; x=1713793887; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yyF8j5e/Vn0tkB4dA5H/pOoSsq2QxVYbcq1G8bYyi4c=;
+        b=T63ToMWpX6YPVHEyKABvnEAhvFMTBD+HnrTzRCLWXvnJaF6XFBCXT87CTLriAoTyyG
+         MBi5NPTJYAgIf+68SMQnprffM2asOw34Wfa9HHg2F0/veFoeZglBVw6iRZW327A/u8+J
+         FYG1cXGtbTOOnZid0STQiMsMtstWOmyRSKqx7ZHTh9MoUY1Rr3RzHkIElS0ZhIH0+8x2
+         4zbqFaNtYRQK63PTfc1XfluSnjzgQJTSFfjhK0oA+JEMRm43zJ9mGnJ6rn8X4gNicem5
+         aBTnOXt4H0OLSSyjwNAIMrpCOs+2n9zp8T+2GkG4CDiceeWxvwUUMGNzMR8XZ0b8xrQH
+         koxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713189087; x=1713793887;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yyF8j5e/Vn0tkB4dA5H/pOoSsq2QxVYbcq1G8bYyi4c=;
+        b=qwHOMwqxU9t/W9LucrYQrtYXVe2EBnkLjiTLmMaxhlssuSmkYQsE295ls1xkMBax1Y
+         HwOJwtrYwFP2YL8NU671g+pL6KowSR4DpGgCcY0/HjNpNioTTGc9RRWEV+goC5i8FAIc
+         ebhmaHV1imBqCuwtQLCDIsawZSeoQenDWUGs3+pxxFEATMrwX7i6zfYdVUuIgMk85F1z
+         kns5brwBnQVSHpzYXcxdDciAzcsbj5r5rWzvkGuO/9xyHHZuakH4L8kEvsCXQlzcAT4F
+         ih9vozT9Tvyclm6BECuuuOskTmMTYAqXt9vcDJvTZwiXrtO55l1amqkACFSb8+eB6m42
+         GDrg==
+X-Forwarded-Encrypted: i=1; AJvYcCXArxpYBHY05979Abq+jpSboBp+uGUr0K1YpH0WBKhFKhyiuqQAQh82CzHrUAvWuT36YtoWSe8DhwTd9/BwwGDxg9qU20It58ZRig==
+X-Gm-Message-State: AOJu0YzXTZQ7vGrWS2DdxeG7AIJKs2yFl/9hjluLUaIyUzcmFfJenOqE
+	fFyfryMU9TkC0Nxp43T+pxqRe69jkBCBHRE/lX0fjs2sxbb0r5bFh8fXQ+chptc=
+X-Google-Smtp-Source: AGHT+IEmNyG9InWbQhMb9+DiiGHS58IgBunb+N8T0XLN3J26EwxmoNFAoBWtY98vSMwY5P12yVPY1A==
+X-Received: by 2002:a05:6830:1e57:b0:6ea:108a:ec55 with SMTP id e23-20020a0568301e5700b006ea108aec55mr10666655otj.11.1713189087594;
+        Mon, 15 Apr 2024 06:51:27 -0700 (PDT)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id l14-20020a0568301d6e00b006eb7abcd6d7sm622048oti.62.2024.04.15.06.51.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Apr 2024 06:51:26 -0700 (PDT)
+Message-ID: <179a795a-f012-4c0e-a615-c1ab3ba9093d@baylibre.com>
+Date: Mon, 15 Apr 2024 08:51:25 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 07/10] dt-bindings: iio: dac: add docs for AD9739A
+To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>, nuno.sa@analog.com
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ Dragos Bogdan <dragos.bogdan@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Olivier Moysan <olivier.moysan@foss.st.com>
+References: <20240412-iio-backend-axi-dac-v3-0-3e9d4c5201fb@analog.com>
+ <20240412-iio-backend-axi-dac-v3-7-3e9d4c5201fb@analog.com>
+ <CAMknhBHZRfvNtkbpWbi7tTXYa_rgRk+Q4z5MOd0O61FeEqBQnQ@mail.gmail.com>
+ <304de7549627332ebdda77cd0c00b327f7a7c188.camel@gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <304de7549627332ebdda77cd0c00b327f7a7c188.camel@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SAFCAS1NODE2.st.com (10.75.90.13) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-15_11,2024-04-15_01,2023-05-22_02
 
-Add exti1 as interrupt parent for the two pin controllers.
-Add the additional required property st,syscfg.
+On 4/15/24 7:25 AM, Nuno Sá wrote:
+> On Fri, 2024-04-12 at 18:47 -0500, David Lechner wrote:
+>> On Fri, Apr 12, 2024 at 8:36 AM Nuno Sa via B4 Relay
+>> <devnull+nuno.sa.analog.com@kernel.org> wrote:
+>>>
+>>> From: Nuno Sa <nuno.sa@analog.com>
+>>>
+>>
+>> ...
+>>
+>>> +  adi,full-scale-microamp:
+>>> +    description: This property represents the DAC full scale current.
+>>
+>> The description could be improved by saying what determines the value
+>> that need to be entered here. (Also wondering if this is not something
+>> that should be set at runtime using the _scale attribute instead.)
+>>
+> 
+> Hmm, not sure what you mean here? For anyone using a device like this, it should
+> be clear what this is about :)
 
-Signed-off-by: Antonio Borneo <antonio.borneo@foss.st.com>
----
- arch/arm64/boot/dts/st/stm32mp251.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+I never used a part like this before, but Jonathan explained it in his
+reply to my comments on the LTC2672 bindings. It does sound like this
+is a common property.
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-index 1426446ca1b11..e7d1614dc744c 100644
---- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-@@ -271,6 +271,8 @@ pinctrl: pinctrl@44240000 {
- 			#size-cells = <1>;
- 			compatible = "st,stm32mp257-pinctrl";
- 			ranges = <0 0x44240000 0xa0400>;
-+			interrupt-parent = <&exti1>;
-+			st,syscfg = <&exti1 0x60 0xff>;
- 			pins-are-numbered;
- 
- 			gpioa: gpio@44240000 {
-@@ -400,6 +402,8 @@ pinctrl_z: pinctrl@46200000 {
- 			#size-cells = <1>;
- 			compatible = "st,stm32mp257-z-pinctrl";
- 			ranges = <0 0x46200000 0x400>;
-+			interrupt-parent = <&exti1>;
-+			st,syscfg = <&exti1 0x60 0xff>;
- 			pins-are-numbered;
- 
- 			gpioz: gpio@46200000 {
--- 
-2.34.1
+> 
+>>> +    minimum: 8700
+>>> +    maximum: 31700
+>>
+>> Missing a default value since this is not a required property?
+>>
+> 
+> Hmm, yes. That could definitely be added.
+> 
+> - Nuno Sá
+>>
 
 
