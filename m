@@ -1,240 +1,119 @@
-Return-Path: <devicetree+bounces-59330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D45A98A4B6E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 11:28:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 330228A4B86
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 11:33:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C9112815F0
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 09:28:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7BA21F22543
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 09:33:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38AA93DBB3;
-	Mon, 15 Apr 2024 09:28:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 959AD3FB89;
+	Mon, 15 Apr 2024 09:33:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="7Rdq0cTp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EEAA1BF2B;
-	Mon, 15 Apr 2024 09:28:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB5D1446AD;
+	Mon, 15 Apr 2024 09:33:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713173324; cv=none; b=ZKejjKSevitrR+Ca92TnMTDf97T36eWZvZ8dpDOXhyEhN4Y5Pas/Np1cTOLIuOCb15G0ByAM6P304ptgRAnY2WE4CngBVW904gHOb944VCrXiTcBxz8Qp59zJn/o8oXp5qWxjUjzN3AJzMRbdV58Ks6YWhf2Zc/7gzNqtK8AbLc=
+	t=1713173605; cv=none; b=LYAFHH/d/epi0wHXAR88VIKGfsnWAf5yutknl80EuUEZe0Sw58Pw7uRnRVJo3UGr3WNZcy1dbl1STd+oF+rK3mWCuirZPcHXsnr0e9mOq0eS7dS6fMGv26hmcbKDL0o8hoMrVGzbFadFx8kAW7KZzO6MakETRCfYzaFKK0lh1hw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713173324; c=relaxed/simple;
-	bh=ngml+9qlMlfIm2PqGnHZsrZJ2/bGHZk/OCrm7zti4uo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IR38+iMAqRpZMMHQ7GNN7D3RE9LzK8oRnwaktnWiMRQAVxsppCFRaHQk4hLJxJmDYCuvmAUAID42Yxdad19nDCddHqmLMu9kMUZTD9EUtX0dN6oUtO9Gqtu2uuh4S6ujJF/2yFUjzrXKmxu2+b2Q8eYjmtx67oaBjLCKU8occnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 29A6C2F4;
-	Mon, 15 Apr 2024 02:29:09 -0700 (PDT)
-Received: from [192.168.1.100] (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EA0663F64C;
-	Mon, 15 Apr 2024 02:28:37 -0700 (PDT)
-Message-ID: <a7b8d15f-5bcf-4774-a5b2-eb95d6174c43@arm.com>
-Date: Mon, 15 Apr 2024 10:28:36 +0100
+	s=arc-20240116; t=1713173605; c=relaxed/simple;
+	bh=e7OmjfW0ZfmdJF/7hY2wwAd8dJ7JCsJijNaaHD9bWC4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=b62Kpp1J3CRZP8VXkqILQK5YljrLDTMVFIER9T/Hb4On5knhZk3D1FSkuVeoiiqOVuo95mplknQlOP5yxEyM0eEWsDPOv+GgnBabQ9/0lhjxQkSR0GCjz/RVKrFYJ63V0QLLXmwRUNydLgN/61UHuVk88Fi4ldfAH4ptvqxxcWc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=7Rdq0cTp; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43F75qkx004772;
+	Mon, 15 Apr 2024 11:32:57 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=CJMsyOU
+	vibO44hZ0FRzGuvGUbPQDu1y2PkvDKBeOhvI=; b=7Rdq0cTp5JrEfksjWZr6Myp
+	nDuhTxoxGqkrFsf/4oZzLIPsqnbb2GKzTde4YNJrPpiYHa559deP2GthwmpF9BmH
+	sKSVulLtuu1dTc4aHMBdR8Y+IQQ7ggQCiktgbwGAxK++tVUzAhX4VQq0biO01DDU
+	CUmTiA6m2qPvIEYDGSoybPznT6CiX5IyF4wbszY6btiomtx/wrjaEEZbw8hZFcag
+	aPFnBY8lmNOu0m/v3pcNe3ZIyJruq2wMZWxPKfvClhY0d3L9rCyhHBdrPXTc2HAt
+	zN1++Y6bExfJe3313flDL5FKW1q7hoEOed779ULq+RCU4Oto3yefH6uEFirvlfw=
+	=
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3xffff6ybt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 15 Apr 2024 11:32:57 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 486924002D;
+	Mon, 15 Apr 2024 11:32:51 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id EA4E7211F06;
+	Mon, 15 Apr 2024 11:32:13 +0200 (CEST)
+Received: from localhost (10.48.86.141) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 15 Apr
+ 2024 11:32:13 +0200
+From: Hugues Fruchet <hugues.fruchet@foss.st.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+CC: Hugues Fruchet <hugues.fruchet@foss.st.com>
+Subject: [PATCH v2] media: dt-bindings: add access-controllers to STM32MP25 video codecs
+Date: Mon, 15 Apr 2024 11:32:11 +0200
+Message-ID: <20240415093211.809927-1-hugues.fruchet@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [EXTERNAL] Re: [PATCH v7 5/7] coresight: tmc: Add support for
- reading crash data
-To: Linu Cherian <lcherian@marvell.com>,
- Suzuki K Poulose <suzuki.poulose@arm.com>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "coresight@lists.linaro.org" <coresight@lists.linaro.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Sunil Kovvuri Goutham <sgoutham@marvell.com>,
- George Cherian <gcherian@marvell.com>,
- Anil Kumar Reddy H <areddy3@marvell.com>, Tanmay Jagdale
- <tanmay@marvell.com>, "mike.leach@linaro.org" <mike.leach@linaro.org>,
- "leo.yan@linaro.org" <leo.yan@linaro.org>
-References: <20240307033625.325058-1-lcherian@marvell.com>
- <20240307033625.325058-6-lcherian@marvell.com>
- <d707430f-00ee-4427-a9e4-6e42bc5b6aa9@arm.com>
- <PH0PR18MB5002D42E980EDF6317051B77CE092@PH0PR18MB5002.namprd18.prod.outlook.com>
-Content-Language: en-US
-From: James Clark <james.clark@arm.com>
-In-Reply-To: <PH0PR18MB5002D42E980EDF6317051B77CE092@PH0PR18MB5002.namprd18.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-15_08,2024-04-09_01,2023-05-22_02
 
+access-controllers is an optional property that allows a peripheral to
+refer to one or more domain access controller(s).
 
+Acked-by: Rob Herring <robh@kernel.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Hugues Fruchet <hugues.fruchet@foss.st.com>
+---
+ .../devicetree/bindings/media/st,stm32mp25-video-codec.yaml   | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-On 15/04/2024 05:01, Linu Cherian wrote:
-> Hi James,
-> 
->> -----Original Message-----
->> From: James Clark <james.clark@arm.com>
->> Sent: Friday, April 12, 2024 3:36 PM
->> To: Linu Cherian <lcherian@marvell.com>; Suzuki K Poulose
->> <suzuki.poulose@arm.com>
->> Cc: linux-arm-kernel@lists.infradead.org; coresight@lists.linaro.org; linux-
->> kernel@vger.kernel.org; robh+dt@kernel.org;
->> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
->> devicetree@vger.kernel.org; Sunil Kovvuri Goutham
->> <sgoutham@marvell.com>; George Cherian <gcherian@marvell.com>; Anil
->> Kumar Reddy H <areddy3@marvell.com>; Tanmay Jagdale
->> <tanmay@marvell.com>; mike.leach@linaro.org; leo.yan@linaro.org
->> Subject: [EXTERNAL] Re: [PATCH v7 5/7] coresight: tmc: Add support for
->> reading crash data
->>
->> Prioritize security for external emails: Confirm sender and content safety
->> before clicking links or opening attachments
->>
->> ----------------------------------------------------------------------
->>
->>
->> On 07/03/2024 03:36, Linu Cherian wrote:
->>> * Introduce a new mode CS_MODE_READ_CRASHDATA for reading trace
->>>   captured in previous crash/watchdog reset.
->>>
->>> * Add special device files for reading ETR/ETF crash data.
->>>
->>> * User can read the crash data as below
->>>
->>>   For example, for reading crash data from tmc_etf sink
->>>
->>>   #dd if=/dev/crash_tmc_etfXX of=~/cstrace.bin
->>>
->>> Signed-off-by: Anil Kumar Reddy <areddy3@marvell.com>
->>> Signed-off-by: Tanmay Jagdale <tanmay@marvell.com>
->>> Signed-off-by: Linu Cherian <lcherian@marvell.com>
->>> ---
->>> Changelog from v6:
->>> * Removed read_prevboot flag in sysfs
->>> * Added special device files for reading crashdata
->>> * Renamed CS mode READ_PREVBOOT to READ_CRASHDATA
->>> * Setting the READ_CRASHDATA mode is done as part of file open.
->>>
->>
->> [...]
->>
->>> @@ -619,6 +740,19 @@ static int tmc_probe(struct amba_device *adev,
->> const struct amba_id *id)
->>>  		coresight_unregister(drvdata->csdev);
->>>  	else
->>>  		pm_runtime_put(&adev->dev);
->>> +
->>> +	if (!is_tmc_reserved_region_valid(dev))
->>> +		goto out;
->>> +
->>> +	drvdata->crashdev.name =
->>> +		devm_kasprintf(dev, GFP_KERNEL, "%s_%s", "crash",
->> desc.name);
->>> +	drvdata->crashdev.minor = MISC_DYNAMIC_MINOR;
->>> +	drvdata->crashdev.fops = &tmc_crashdata_fops;
->>> +	ret = misc_register(&drvdata->crashdev);
->>> +	if (ret)
->>> +		pr_err("%s: Failed to setup dev interface for crashdata\n",
->>> +		       desc.name);
->>> +
->>
->> Is this all optional after the is_tmc_reserved_region_valid()? Skipping to out
->> seems to be more like an error condition, but in this case it's not? Having it
->> like this makes it more difficult to add extra steps to the probe function. You
->> could move it to a function and flip the condition which would be clearer:
->>
-> 
-> Ack.
-> 
->>    if (is_tmc_reserved_region_valid(dev))
->>       register_crash_dev_interface(drvdata);
->>
->>
->>>  out:
->>>  	return ret;
->>>  }
->>
->> [...]
->>
->>>
->>> +static int tmc_etr_setup_crashdata_buf(struct tmc_drvdata *drvdata) {
->>> +	int rc = 0;
->>> +	u64 trace_addr;
->>> +	struct etr_buf *etr_buf;
->>> +	struct etr_flat_buf *resrv_buf;
->>> +	struct tmc_crash_metadata *mdata;
->>> +	struct device *dev = &drvdata->csdev->dev;
->>> +
->>> +	mdata = drvdata->crash_mdata.vaddr;
->>> +
->>> +	etr_buf = kzalloc(sizeof(*etr_buf), GFP_ATOMIC);
->>> +	if (!etr_buf) {
->>> +		rc = -ENOMEM;
->>> +		goto out;
->>> +	}
->>> +	etr_buf->size = drvdata->crash_tbuf.size;
->>> +
->>> +	resrv_buf = kzalloc(sizeof(*resrv_buf), GFP_ATOMIC);
->>> +	if (!resrv_buf) {
->>> +		rc = -ENOMEM;
->>> +		goto rmem_err;
->>> +	}
->>> +
->>> +	/*
->>> +	 * Buffer address given by metadata for retrieval of trace data
->>> +	 * from previous boot is expected to be same as the reserved
->>> +	 * trace buffer memory region provided through DTS
->>> +	 */
->>> +	if (is_tmc_reserved_region_valid(dev->parent)
->>> +	    && (drvdata->crash_tbuf.paddr == mdata->trc_paddr))
->>> +		resrv_buf->vaddr = drvdata->crash_tbuf.vaddr;
->>> +	else {
->>> +		dev_dbg(dev, "Trace buffer address of previous boot
->> invalid\n");
->>> +		rc = -EINVAL;
->>> +		goto map_err;
->>> +	}
->>> +
->>> +	resrv_buf->size = etr_buf->size;
->>> +	resrv_buf->dev = &drvdata->csdev->dev;
->>> +	etr_buf->hwaddr = trace_addr;
->>
->> trace_addr is uninitialised at this point. If you pull the latest coresight branch
->> we enabled some extra compiler warnings which catch this.
->>
->> I assume it's supposed to be mdata->trc_paddr?
-> 
-> 
-> Since no DMA operation happens here, its supposed to be kept NULL.
-> Since it was redundant for crash data read operation, missed catching this. Will fix this.
-> 
->>
->> Is there some kind of test that could be added that could have caught this?
->> Maybe skip the full reboot flow but just enable the feature and see if we can
->> read from the buffer.
-> 
-> As pointed above this field is redundant for crashdata read mode. So its not a functionality breakage as such.
-> 
-
-Ah ok that's not as bad as I thought then. I went back to version 4 or 5
-and thought I saw it was assigned so assumed there was a mistake.
-
->>
->> Or even just toggling the mode on and off via sysfs. We're running the Perf
->> and kselftests on Juno internally so I can add a reserved region to the Juno DT
->> and make sure this stays working.
-> 
-> Did you meant adding a kselftest for tracing and reading back tracedata in sysfs mode using the reserved region ?
-> 
-
-Yes just enable, disable then read back. I don't think we need to do a
-decode, but make sure a non zero size is read. And the test can be
-skipped if the reserved region doesn't exist.
-
-> Thanks
-> Linu Cherian. 
-> 
+diff --git a/Documentation/devicetree/bindings/media/st,stm32mp25-video-codec.yaml b/Documentation/devicetree/bindings/media/st,stm32mp25-video-codec.yaml
+index b8611bc8756c..73726c65cfb9 100644
+--- a/Documentation/devicetree/bindings/media/st,stm32mp25-video-codec.yaml
++++ b/Documentation/devicetree/bindings/media/st,stm32mp25-video-codec.yaml
+@@ -30,6 +30,10 @@ properties:
+   clocks:
+     maxItems: 1
+ 
++  access-controllers:
++    minItems: 1
++    maxItems: 2
++
+ required:
+   - compatible
+   - reg
+-- 
+2.25.1
 
 
