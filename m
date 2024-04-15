@@ -1,89 +1,98 @@
-Return-Path: <devicetree+bounces-59538-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59539-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E0478A5CC1
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 23:16:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 088F68A5CE3
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 23:25:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 100A3284FA5
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 21:16:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B40A1C20B22
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 21:25:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C235F156995;
-	Mon, 15 Apr 2024 21:16:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54427156C53;
+	Mon, 15 Apr 2024 21:25:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="li+2Ib5F"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O2Du+09d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 991B7156978;
-	Mon, 15 Apr 2024 21:16:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2E41156236;
+	Mon, 15 Apr 2024 21:25:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713215786; cv=none; b=uEGzz9sIeWeqHG6hZ3HjknKpW8U0tUTQQGY16+7lpy/QzjP7HaTRFZpMpBRXh5tRWNH4Opljx1euR5r18wWXYojKTpcgo4e5fZAecRDT1Awp8A5bHFmp/ECx2bQoJWaHTYdeZvyIRRE7bEHSVlT2a6ucyLHWZWcsxuZnADHFNVE=
+	t=1713216341; cv=none; b=g+kit+MfDcDj1AWxxjI+L0WEqCn6nkA77gZvnJDq1aKKFFLn9lSmgMg7CFTyCIaI3iSfSAbUPKMwinPrNCPbvUwTm0SGgeXFBlECrydKgfVttnpoh3ho1hjzgWlid7wSCatr2TAWLgo49CJn4zxMdj7uTmlKkRzXpp9v8MSaomY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713215786; c=relaxed/simple;
-	bh=oZPAjt91gUsPpRGNmYe9ZMT1R5xWBkyHHX9xbVqU6dA=;
+	s=arc-20240116; t=1713216341; c=relaxed/simple;
+	bh=m2bnyXoPve6kFs+KbC7IXQMTZpUcBMgtxbv/xYm98h0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KJRJ88uFHt0nEmtP9xYPk9q7ZF0Hz+sntQ6tIJ+YufCOuaF+KTdB8iBv1AtRPC4wLA5qFp42q8cPpJUMih0wE4/Kr8PBcdOMph8qS8ivEQwShCh1mlC7N7vSLxw8jKVctNd6sv2jsHZiBOzCOxv+qqtqnlXwCySI1pNTcJOUABs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=li+2Ib5F; arc=none smtp.client-ip=209.85.128.49
+	 MIME-Version:Content-Type; b=Gb+UcK/AUrLJ9y9KVmd2a2L6c1WHaWyI1IFOprPPNUPQeVti96weX8SdCQLnbi5KgTnsQTmu2hpi1Ka8KdMk3KKb09BkJXWW9cdr0UwZZUfQai823ZSwIYC4ZzKLBq9Vb1Fg2ZGz6IukOsoMEUuG0ddJa0pHNWoyq0ztnrhZ1C8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=O2Du+09d; arc=none smtp.client-ip=209.85.221.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-41892a7518aso10595e9.1;
-        Mon, 15 Apr 2024 14:16:23 -0700 (PDT)
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-343c891bca5so2412173f8f.2;
+        Mon, 15 Apr 2024 14:25:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713215782; x=1713820582; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1713216338; x=1713821138; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=V9fIh3VALFqD9z061oWIYxmy/nGl9jyEMXX1h/25FRE=;
-        b=li+2Ib5FY4BwcgCJJae4j5Ggva+op1MyggsOJpxl9zq3WhvpSEE8vpyJ+QFgDfNT+o
-         NMbuyCDasVOT33/P9ErqzcYXUMLDXD2jBYtR6hlEeDESt876k7uj1gKymg8uv4xriihR
-         79inGd9JqolqFfu9f9D50/rvjrKq+OUXNKXj19Raq7SmbHio8/AqFpcMNVwkt6E43YzX
-         0mQFsJkgNMCDB/Mr8jrd4G4TJk3PFySOySSVPqj8ORE/ylxwNZ0g7iWZ5m5mLLitxlZS
-         qn2VBI2Gsp8+IQ1z4SH3tK0II6VEUO4kmnUvGtjrb0w0tixSdRA7XU14A71z8VZrWQMr
-         7rgg==
+        bh=I6Ar2yG1hipbO/wSAi/ZjpkXRjk4zWz8MUQpTTF6vT8=;
+        b=O2Du+09dXNpJsUWjh3iFtMzAWPX5ne7+7MnCYAm9z7C1u5vfUzD3TVChhT80wEDBMn
+         JAQCWBPEg9B7Fqjz/oG4qidmafIzXRmaT4OmGgRE7UQtzC3/Xpwh5s9pxHea3p1nQO4D
+         /ZCHS13XxGc2OWlHKCL9vdOgAI3sxTLb5QspirwJtLEFi3SISwAJp5Yc8g9bS6K8y31E
+         kKV7oiZhdVVFPLxLwSgNvyCR5mecW9mCATQ0IMDz/Bb05AzrFXL+ogRIIfhsCCVExBPF
+         cpbrcJevZrrJAyoiop9k8ZavvFay9E2nMi9EjrwqVxc1W+4WBpW6cDMq6jFCdFrvXfPd
+         vvMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713215782; x=1713820582;
+        d=1e100.net; s=20230601; t=1713216338; x=1713821138;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=V9fIh3VALFqD9z061oWIYxmy/nGl9jyEMXX1h/25FRE=;
-        b=Eg/ZtK8G6meyMXfPI8rWju/oOO8SxaNirenYCQNxHttoR3Szswc9siMo02xEqh1bC3
-         hRBYBo6wxxDQMJY98MarMam7LEFmfX5nMREfxA3ex/fbjoG8YE3hCleOSv3l+ftNTB2m
-         Ir0a4zJVdAJrLYVtry2bFj+yL1l8d5IoVghep+hcBrUA4Cix+cfHcsuwrgLxNwX6WobC
-         f5ANHie+5nD2Wm0ZJQawvAUntnEEtIvzeT51m6HsCL36SWeyf006qtBXczymoXzxaHkL
-         Poad/hwhW0apwnmYD9xDYgkmkIHuwkvcon06zlEgs31qUJa4RqFavoMItUMjiGbH52jm
-         rRhw==
-X-Forwarded-Encrypted: i=1; AJvYcCWbbTlW5pnBL04W3Zewu8Rw4+u4/KU67bsdcTpMGBYhkbcc23nmxYO7tcagFypKVrZ21Xs5h9CmBXBLXUNl1VtpRv25G3Xwa2R1nr7y
-X-Gm-Message-State: AOJu0Yw6m3dQXeif+y8ATBUPGZcm1YgBxsIcriazurWPcauPK6adSNAU
-	DvM3avV60wW3SHtA7pY6HiLPPzZTieBPd//S9PBa0EzuYZKUjDJp
-X-Google-Smtp-Source: AGHT+IF1+uTq+xQ1n82ioW6Y/uh7mUgzMhyFGYdL7XD+lH07tjIkRcaSxgf7cBVA/IExEHo4wNounw==
-X-Received: by 2002:a05:600c:1f89:b0:416:a4e8:715b with SMTP id je9-20020a05600c1f8900b00416a4e8715bmr8378072wmb.35.1713215781903;
-        Mon, 15 Apr 2024 14:16:21 -0700 (PDT)
+        bh=I6Ar2yG1hipbO/wSAi/ZjpkXRjk4zWz8MUQpTTF6vT8=;
+        b=jsySIBO+/Z2+eDyw+LFerltOa2kQW8Gs7mML2M/hTUlo48/aQWOzxLeS27MI3lBqJ6
+         aGT3bF3l58kXazvIQQdFDFtsQ6MAshPp9W0A0BT+iHF3XVBPVyhrE5JhWAjoabJ/3Cl+
+         larJh47W9NFA9UR2I58Ww4dJuprQ+SE6EfnXotGh4L8V477fuQ0SwOSKVMRAD8e1lHeb
+         UtP5mRxgQSKKqaxlGmu1r0j/gQxb05jsG/I905BOI5FKp3M8Mxyi4dzBC7oHERizDec4
+         kfsGYVr6/IQUDRbTJ4/btWdP0C9S1J+pLHavZpS0+ogBOB9WlRq3+/YiKVMZFS+mHf03
+         +RdQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVT1M1n33fBMqsRRQE3+1BosXL1n4fqHJe3B6ka31YDZxSlYrrpNLLRHq78ZlaDE7MA1UGzHu4K7X3+zsUfJzOT5Fmt8i4Q9oW4ebSiVd07cUohM0J0N893vQp/JquL11n7RlfLnDS92KfeXxHLNJPexTYcMc9ZgVLRhFtT5DyTN+tNYAlPPXHMTCYEOC7xCieh0XdtXUZroZ+ntg==
+X-Gm-Message-State: AOJu0Yz6z1JTf25aKq7NcPmTzkQkr2bDlaTHhLifgnau7MmKod4dEBAL
+	3MKA/D/JWxgjvfjDfCTEIJLvDLMEin4AR0/I6T6VM8Fy3xmje6b8
+X-Google-Smtp-Source: AGHT+IHVDq4wHkTRDLnml3w8/vY76YStJGi0lNRDZ+kQK8Q3T8+RWX2Nxrxp2FGdXz1LeKjvjVxvOA==
+X-Received: by 2002:adf:cc89:0:b0:348:b435:273e with SMTP id p9-20020adfcc89000000b00348b435273emr161943wrj.48.1713216337895;
+        Mon, 15 Apr 2024 14:25:37 -0700 (PDT)
 Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id a14-20020a05600c348e00b004188a8369d9sm675883wmq.47.2024.04.15.14.16.20
+        by smtp.gmail.com with ESMTPSA id e3-20020a5d5943000000b00346c169362esm12606521wri.23.2024.04.15.14.25.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Apr 2024 14:16:21 -0700 (PDT)
+        Mon, 15 Apr 2024 14:25:37 -0700 (PDT)
 From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+To: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
  Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>,
- Kamil Kasperski <ressetkk@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Frank Oltmanns <frank@oltmanns.dev>
+Cc: Guido =?ISO-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
+ Purism Kernel Team <kernel@puri.sm>, Ondrej Jirman <megi@xff.cz>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- Kamil Kasperski <ressetkk@gmail.com>
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, stable@vger.kernel.org,
+ Diego Roversi <diegor@tiscali.it>, Erico Nunes <nunes.erico@gmail.com>
 Subject:
- Re: [PATCH v4 3/3] arm64: dts: allwinner: h616: add support for T95 tv boxes
-Date: Mon, 15 Apr 2024 23:16:20 +0200
-Message-ID: <1961464.PYKUYFuaPT@jernej-laptop>
-In-Reply-To: <20240319-add-t95-axp313-support-v4-3-6204b6d23229@gmail.com>
+ Re: [PATCH v4 0/5] Pinephone video out fixes (flipping between two frames)
+Date: Mon, 15 Apr 2024 23:25:35 +0200
+Message-ID: <3799968.kQq0lBPeGt@jernej-laptop>
+In-Reply-To: <87frw2a2e4.fsf@oltmanns.dev>
 References:
- <20240319-add-t95-axp313-support-v4-0-6204b6d23229@gmail.com>
- <20240319-add-t95-axp313-support-v4-3-6204b6d23229@gmail.com>
+ <20240310-pinephone-pll-fixes-v4-0-46fc80c83637@oltmanns.dev>
+ <87frw2a2e4.fsf@oltmanns.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,247 +102,95 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="utf-8"
 
-Hi Kamil,
-
-sorry for being a bit late.
-
-Dne torek, 19. marec 2024 ob 18:50:24 GMT +2 je Kamil Kasperski napisal(a):
-> Add dtsi file for T95 tv boxes and add initial support for T95 5G AXP313A
-> variant with a board name H616-T95MAX-AXP313A-v3.0 Internal storage is not
-> accessible due to lack of support for H616 NAND controller.
+Dne sreda, 3. april 2024 ob 17:31:47 GMT +2 je Frank Oltmanns napisal(a):
+> Dear clk and sunxi-ng maintainers,
 > 
-> Signed-off-by: Kamil Kasperski <ressetkk@gmail.com>
-> ---
->  arch/arm64/boot/dts/allwinner/Makefile             |   1 +
->  arch/arm64/boot/dts/allwinner/sun50i-h616-t95.dtsi | 109 +++++++++++++++++++++
->  .../dts/allwinner/sun50i-h616-t95max-axp313.dts    |  84 ++++++++++++++++
->  3 files changed, 194 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-> index 21149b346a60..294921f12b73 100644
-> --- a/arch/arm64/boot/dts/allwinner/Makefile
-> +++ b/arch/arm64/boot/dts/allwinner/Makefile
-> @@ -42,6 +42,7 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-cb1-manta.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-pi.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
-> +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-t95max-axp313.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-longanpi-3h.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero2w.dtb
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-t95.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616-t95.dtsi
-> new file mode 100644
-> index 000000000000..4c02408733bc
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-t95.dtsi
-> @@ -0,0 +1,109 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (C) 2024 Kamil Kasperski <ressetkk@gmail.com>
-> + *
-> + * Common DT nodes for H616-based T95 TV boxes
-> + * There are two versions reported with different PMIC variants.
-> + */
-> +
-> +#include "sun50i-h616.dtsi"
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +/ {
-> +	aliases {
-> +		ethernet1 = &sdio_wifi;
-> +		serial0 = &uart0;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	reg_vcc5v: vcc5v {
-> +		/* board wide 5V supply directly from the DC input */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc-5v";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	reg_vcc3v3: vcc3v3 {
-> +		/* discrete 3.3V regulator */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc-3v3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	wifi_pwrseq: pwrseq {
-> +		compatible = "mmc-pwrseq-simple";
-> +		clocks = <&rtc CLK_OSC32K_FANOUT>;
-> +		clock-names = "ext_clock";
-> +		pinctrl-0 = <&x32clk_fanout_pin>;
-> +		pinctrl-names = "default";
-> +		reset-gpios = <&pio 6 18 GPIO_ACTIVE_LOW>; /* PG18 */
-> +	};
-> +};
-> +
-> +&ehci0 {
-> +	status = "okay";
-> +};
-> +
-> +&ehci2 {
-> +	status = "okay";
-> +};
-> +
-> +&ir {
-> +	status = "okay";
-> +};
-> +
-> +&mmc0 {
-> +	cd-gpios = <&pio 8 16 GPIO_ACTIVE_LOW>;	/* PI16 */
-> +	bus-width = <4>;
-> +	status = "okay";
-> +};
-> +
-> +&mmc1 {
-> +	mmc-pwrseq = <&wifi_pwrseq>;
-> +	bus-width = <4>;
-> +	non-removable;
-> +	status = "okay";
-> +
-> +	sdio_wifi: wifi@1 {
-> +		reg = <1>;
-> +	};
-> +};
-> +
-> +&ohci0 {
-> +	status = "okay";
-> +};
-> +
-> +&ohci2 {
-> +	status = "okay";
-> +};
-> +
-> +&uart0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&uart0_ph_pins>;
-> +	status = "okay";
-> +};
-> +
-> +&uart1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
-> +	uart-has-rtscts;
-> +	status = "okay";
-> +};
+> Patches 1-4 have been reviewed and there are no pending issues. If there
+> is something else you need me to do to get this applied, please let me
+> know.
 
-I suppose UART1 is used for bluetooth, right? As is, this currently doesn't
-help much. Is there any appropriate BT compatible?
+Sorry for late patch merge. Patch 1-2 are applied as a fix to 6.9, the rest
+will go to 6.10.
 
 Best regards,
 Jernej
 
-> +
-> +&usbotg {
-> +	dr_mode = "host";	/* USB A type receptable */
-> +	status = "okay";
-> +};
-> +
-> +&usbphy {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-t95max-axp313.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-t95max-axp313.dts
-> new file mode 100644
-> index 000000000000..08a6b4fcc235
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-t95max-axp313.dts
-> @@ -0,0 +1,84 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (C) 2024 Kamil Kasperski <ressetkk@gmail.com>
-> + *
-> + * Configuration for T95 TV box with board label H616-T95MAX-AXP313A-v3.0
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "sun50i-h616-t95.dtsi"
-> +
-> +/ {
-> +	model = "T95 5G (AXP313)";
-> +	compatible = "t95,t95max-axp313", "allwinner,sun50i-h616";
-> +};
-> +
-> +&mmc0 {
-> +	vmmc-supply = <&reg_dldo1>;
-> +};
-> +
-> +&mmc1 {
-> +	vmmc-supply = <&reg_dldo1>;
-> +	vqmmc-supply = <&reg_aldo1>;
-> +};
-> +
-> +&r_i2c {
-> +	status = "okay";
-> +
-> +	axp313: pmic@36 {
-> +		compatible = "x-powers,axp313a";
-> +		reg = <0x36>;
-> +		#interrupt-cells = <1>;
-> +		interrupt-controller;
-> +
-> +		vin1-supply = <&reg_vcc5v>;
-> +		vin2-supply = <&reg_vcc5v>;
-> +		vin3-supply = <&reg_vcc5v>;
-> +
-> +		regulators {
-> +			reg_aldo1: aldo1 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-name = "vcc1v8";
-> +			};
-> +
-> +			reg_dldo1: dldo1 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-name = "vcc3v3";
-> +			};
-> +
-> +			reg_dcdc1: dcdc1 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <810000>;
-> +				regulator-max-microvolt = <990000>;
-> +				regulator-name = "vdd-gpu-sys";
-> +			};
-> +
-> +			reg_dcdc2: dcdc2 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <810000>;
-> +				regulator-max-microvolt = <1100000>;
-> +				regulator-name = "vdd-cpu";
-> +			};
-> +
-> +			reg_dcdc3: dcdc3 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <1500000>;
-> +				regulator-max-microvolt = <1500000>;
-> +				regulator-name = "vdd-dram";
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&pio {
-> +	vcc-pc-supply = <&reg_aldo1>;
-> +	vcc-pf-supply = <&reg_dldo1>;
-> +	vcc-pg-supply = <&reg_aldo1>;
-> +	vcc-ph-supply = <&reg_dldo1>;
-> +	vcc-pi-supply = <&reg_dldo1>;
-> +};
 > 
+> Thanks,
+>   Frank
+> 
+> On 2024-03-10 at 14:21:10 +0100, Frank Oltmanns <frank@oltmanns.dev> wrote:
+> > On some pinephones the video output sometimes freezes (flips between two
+> > frames) [1]. It seems to be that the reason for this behaviour is that
+> > PLL-MIPI is outside its limits, and the GPU is not running at a fixed
+> > rate.
+> >
+> > In this patch series I propose the following changes:
+> >   1. sunxi-ng: Adhere to the following constraints given in the
+> >      Allwinner A64 Manual regarding PLL-MIPI:
+> >       * M/N <= 3
+> >       * (PLL_VIDEO0)/M >= 24MHz
+> >       * 500MHz <= clockrate <= 1400MHz
+> >
+> >   2. Remove two operating points from the A64 DTS OPPs, so that the GPU
+> >      runs at a fixed rate of 432 MHz.
+> >
+> > Note, that when pinning the GPU to 432 MHz the issue [1] completely
+> > disappears for me. I've searched the BSP and could not find any
+> > indication that supports the idea of having the three OPPs. The only
+> > frequency I found in the BPSs for A64 is 432 MHz, which has also proven
+> > stable for me.
+> >
+> > I very much appreciate your feedback!
+> >
+> > [1] https://gitlab.com/postmarketOS/pmaports/-/issues/805
+> >
+> > Signed-off-by: Frank Oltmanns <frank@oltmanns.dev>
+> > ---
+> > Changes in v4:
+> > - sunxi-ng: common: Address review comments.
+> > - Link to v3: https://lore.kernel.org/r/20240304-pinephone-pll-fixes-v3-0-94ab828f269a@oltmanns.dev
+> >
+> > Changes in v3:
+> > - dts: Pin GPU to 432 MHz.
+> > - nkm and a64: Move minimum and maximum rate handling to the common part
+> >   of the sunxi-ng driver.
+> > - Removed st7703 patch from series.
+> > - Link to v2: https://lore.kernel.org/r/20240205-pinephone-pll-fixes-v2-0-96a46a2d8c9b@oltmanns.dev
+> >
+> > Changes in v2:
+> > - dts: Increase minimum GPU frequency to 192 MHz.
+> > - nkm and a64: Add minimum and maximum rate for PLL-MIPI.
+> > - nkm: Use the same approach for skipping invalid rates in
+> >   ccu_nkm_find_best() as in ccu_nkm_find_best_with_parent_adj().
+> > - nkm: Improve names for ratio struct members and hence get rid of
+> >   describing comments.
+> > - nkm and a64: Correct description in the commit messages: M/N <= 3
+> > - Remove patches for nm as they were not needed.
+> > - st7703: Rework the commit message to cover more background for the
+> >   change.
+> > - Link to v1: https://lore.kernel.org/r/20231218-pinephone-pll-fixes-v1-0-e238b6ed6dc1@oltmanns.dev
+> >
+> > ---
+> > Frank Oltmanns (5):
+> >       clk: sunxi-ng: common: Support minimum and maximum rate
+> >       clk: sunxi-ng: a64: Set minimum and maximum rate for PLL-MIPI
+> >       clk: sunxi-ng: nkm: Support constraints on m/n ratio and parent rate
+> >       clk: sunxi-ng: a64: Add constraints on PLL-MIPI's n/m ratio and parent rate
+> >       arm64: dts: allwinner: a64: Run GPU at 432 MHz
+> >
+> >  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi |  8 --------
+> >  drivers/clk/sunxi-ng/ccu-sun50i-a64.c         | 14 +++++++++-----
+> >  drivers/clk/sunxi-ng/ccu_common.c             | 19 +++++++++++++++++++
+> >  drivers/clk/sunxi-ng/ccu_common.h             |  3 +++
+> >  drivers/clk/sunxi-ng/ccu_nkm.c                | 21 +++++++++++++++++++++
+> >  drivers/clk/sunxi-ng/ccu_nkm.h                |  2 ++
+> >  6 files changed, 54 insertions(+), 13 deletions(-)
+> > ---
+> > base-commit: dcb6c8ee6acc6c347caec1e73fb900c0f4ff9806
+> > change-id: 20231218-pinephone-pll-fixes-0ccdfde273e4
+> >
+> > Best regards,
 > 
 
 
