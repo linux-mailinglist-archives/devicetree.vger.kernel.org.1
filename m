@@ -1,115 +1,163 @@
-Return-Path: <devicetree+bounces-59317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 076ED8A4AE8
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 10:54:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE1768A4AFF
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 10:57:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A58BB2409F
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 08:54:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A58B283C18
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 08:57:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 896F73A1DA;
-	Mon, 15 Apr 2024 08:54:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JYAe4tg+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8823C3BBCE;
+	Mon, 15 Apr 2024 08:57:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3451A3F9D4;
-	Mon, 15 Apr 2024 08:54:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.172
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D01D63BB25;
+	Mon, 15 Apr 2024 08:57:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713171273; cv=none; b=IGLYHMjqFDKwyjvSP0QWN3qia7Jsch2XgPIfyxb/3Lci1Hun128k+tUouzRtJKucjxlh40HfaWcPpKhTOnWcCznkuzEQPnTT7ywYdKnFSF4iUXg6L9QfjBy2GK5BW8r0tXENxa4sOP47Wm6HaEuXaOKlNvOQ07y8mhtxYk0+50w=
+	t=1713171476; cv=none; b=pt8A/MTvPtZ+oB70UEOA4vM0Xw0Lx9I257V3H3VdYXl+a1JFo1485+pX/eNyUF31ghFCuSw74PjYAIaoOV4OLt/BCv8XCyn6Gskmt/WjI0WVmUOa+Mxen062I678vDgfLLEeB+mbdvc3+/fI2oxsUrttN21rCSexyH1WZlVHYY4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713171273; c=relaxed/simple;
-	bh=s40uCXQURYbe0UBuprud/njSs0ZIWjKApDAezTTAv5A=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=kSLvqLwr9gPdFKfNm5IK6ell6Yaru9YfMtNQCbg8O0Jg95wI8isTagWznX8S0E5v0+8w1klOIMMLISFzgy1GWb4kEWZeJs9TFNBg5q3UHRJTF4/3ULVL8+HKWUd7DciH+w1EpfaywSwyrDxuZBj6rAboZktypY288kkPxN7StjI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JYAe4tg+; arc=none smtp.client-ip=209.85.167.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-3c6f6c5bc37so1232177b6e.1;
-        Mon, 15 Apr 2024 01:54:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713171270; x=1713776070; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=s40uCXQURYbe0UBuprud/njSs0ZIWjKApDAezTTAv5A=;
-        b=JYAe4tg+Incl0rrL+wJYWh8x605R709md1yYJejK+EzXHJNI7gxXZ8qvkc5ces0lfV
-         E5/+wjORjv80nHc/wRl+5V59Ekaa6gzN9QhCSAJ5wc5s5mtGJIqteurD3Rlg1qE4QztX
-         LhYyg7qCu3e+j9IwfHFaA//TSEA2Qd7HSgwfBAjlAJUGCvlusniIhtklTrOBz3xCDor+
-         SQ7w1N1XYMDX3Bxx45k58/UzW/3EHe9FVs4/gUVB9wmeVgDhbvIRiJ1kFCgrWXBCf7zw
-         Hhl/9A04+OEZPqkj47oVXvMOHDPIHUDMhFfw/gZkSuNHAwUVEwIWIua7IqyJbTFhzCCn
-         +2jA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713171270; x=1713776070;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=s40uCXQURYbe0UBuprud/njSs0ZIWjKApDAezTTAv5A=;
-        b=p0GigOI71KUSDo3zvJrppUe0IXElNcysDLt1+taVGokNZ8bqYWTWmpUQl6wZ8DlJlZ
-         uswjP/pkDgVrXVMU2jn5bQqoaHRI27IZWiOCRCp+dF7e1PEkFAUD5gcbdcB8/pHb5Jbt
-         mBHK9NcTOGtjL+fwl+ZIvZhv4V7BHbp0TAbt3rWKAUF5xA+COmXcgBOOFoiRDo8JhWgs
-         Wiinh/ZUC3Ft69hj4am6MIP5MktIoFMP7TProNOzllDcT5vSy2RaJ5Q//PSW0l5vaVbD
-         TFG3Yr21/86KUO6LxNwA+/AQybQkaR7BfIKSooVeMfTy4Sqc0dKJOyvb2Rlvjkx6g83E
-         RjOw==
-X-Forwarded-Encrypted: i=1; AJvYcCXp763sX5e4+cMUi/dnWWxJJyyuyUTboM8tDXV7Eh7UYH+K/k+dIx7Zl6UfyLK7plV+GJbFKdfju9QAGyE0VN5QN/ZCVUKJdDBSbzzxKApQSI3B/Bi6PG6KPiwUH1CT8tCegSflOxYapg==
-X-Gm-Message-State: AOJu0Yw2eVD+z/SYppSqnHySdXwxjSTROJWyf7Tt8XqOLHs5+S18seIX
-	b3V8kef5N6hOjWZJjM8wigXw8Lih4DIcmOs0eujsrpvgypBHmwsYC2gHRBh3KLFZsQ==
-X-Google-Smtp-Source: AGHT+IFLGktyFceX77eS/EWTNIy/C/EEkP/6Uwj0JtLUM5Gch3gRYxudIsXV7Uwh5tX3uhb6kSATHw==
-X-Received: by 2002:a05:6870:818b:b0:229:7f9f:adee with SMTP id k11-20020a056870818b00b002297f9fadeemr11347247oae.30.1713171270183;
-        Mon, 15 Apr 2024 01:54:30 -0700 (PDT)
-Received: from localhost.localdomain ([221.220.135.251])
-        by smtp.gmail.com with ESMTPSA id h11-20020aa786cb000000b006eadc87233dsm6786293pfo.165.2024.04.15.01.54.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Apr 2024 01:54:29 -0700 (PDT)
-From: Jianfeng Liu <liujianfeng1994@gmail.com>
-To: krzk@kernel.org
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
+	s=arc-20240116; t=1713171476; c=relaxed/simple;
+	bh=y17O9lADy1koeCNGu1Oe7+FyvbVjW2CQKFJ5vnc/bJk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ny2kBMLj5rh7luH0Vl2mG1y2ZAPnkk0MLgXY8BDkVedg/WnVs8m78aBFzqovagbYpc6AZE1c8HsdbOgUlPvv2lt4NoCUbt9XaaGKFbbroH1Xr6s/Gwb5W21Tae2wzCbFjV2Kj2SHQY/Mdw/3A52pNimag8gkAWE//t88PCjXbBM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8D38C2F;
+	Mon, 15 Apr 2024 01:58:22 -0700 (PDT)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5E68D3F64C;
+	Mon, 15 Apr 2024 01:57:48 -0700 (PDT)
+Date: Mon, 15 Apr 2024 09:57:45 +0100
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Rob Herring <robh@kernel.org>
+Cc: soc@kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Dinh Nguyen <dinguyen@kernel.org>,
+	Tsahee Zidenberg <tsahee@annapurnalabs.com>,
+	Antoine Tenart <atenart@kernel.org>,
+	Khuong Dinh <khuong@os.amperecomputing.com>,
+	Liviu Dudau <liviu.dudau@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Robert Richter <rric@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Li Yang <leoyang.li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	"Paul J. Murphy" <paul.j.murphy@intel.com>,
+	Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+	Heiko Stuebner <heiko@sntech.de>, Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>, linux-fsd@tesla.com,
+	Michal Simek <michal.simek@amd.com>, devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-mediatek@lists.infradead.org,
+	linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-realtek-soc@lists.infradead.org,
 	linux-rockchip@lists.infradead.org,
-	liujianfeng1994@gmail.com,
-	robh@kernel.org,
-	sfr@canb.auug.org.au,
-	weizhao.ouyang@arm.com
-Subject: Re: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: add ArmSoM
-Date: Mon, 15 Apr 2024 16:54:19 +0800
-Message-Id: <20240415085419.6107-1-liujianfeng1994@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <dcda2991-90bc-41eb-afa3-14a2071a6d19@kernel.org>
-References: <dcda2991-90bc-41eb-afa3-14a2071a6d19@kernel.org>
+	linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH] arm/arm64: dts: Drop "arm,armv8-pmuv3" compatible usage
+Message-ID: <ZhzsCYu4PEYaQFaF@bogus>
+References: <20240412222857.3873079-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240412222857.3873079-1-robh@kernel.org>
 
-Hi Krzysztof,
-
-On Mon, 15 Apr 2024 10:04:14 +0200, Krzysztof Kozlowski wrote:
->> Add vendor prefix for ArmSoM (https://www.armsom.org)
+On Fri, Apr 12, 2024 at 05:28:51PM -0500, Rob Herring wrote:
+> The "arm,armv8-pmuv3" compatible is intended only for s/w models. Primarily,
+> it doesn't provide any detail on uarch specific events.
+> 
+> There's still remaining cases for CPUs without any corresponding PMU
+> definition and for big.LITTLE systems which only have a single PMU node
+> (there should be one per core type).
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> SoC Maintainers, Can you please apply this directly.
+> ---
+>  arch/arm/boot/dts/broadcom/bcm2711.dtsi              | 4 ++--
+>  arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi    | 2 +-
+>  arch/arm64/boot/dts/amazon/alpine-v2.dtsi            | 2 +-
+>  arch/arm64/boot/dts/apm/apm-storm.dtsi               | 2 +-
+>  arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts | 2 +-
+>  arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi     | 2 +-
+>  arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi  | 2 +-
+>  arch/arm64/boot/dts/cavium/thunder-88xx.dtsi         | 2 +-
+>  arch/arm64/boot/dts/cavium/thunder2-99xx.dtsi        | 2 +-
+>  arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi       | 2 +-
+>  arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi       | 2 +-
+>  arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi       | 7 +++++++
+>  arch/arm64/boot/dts/freescale/fsl-ls2088a.dtsi       | 7 +++++++
+>  arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi       | 5 -----
+>  arch/arm64/boot/dts/freescale/imx8dxl.dtsi           | 2 +-
+>  arch/arm64/boot/dts/intel/keembay-soc.dtsi           | 2 +-
+>  arch/arm64/boot/dts/intel/socfpga_agilex.dtsi        | 2 +-
+>  arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi        | 2 +-
+>  arch/arm64/boot/dts/marvell/armada-37xx.dtsi         | 2 +-
+>  arch/arm64/boot/dts/mediatek/mt8516.dtsi             | 2 +-
+>  arch/arm64/boot/dts/nvidia/tegra210.dtsi             | 2 +-
+>  arch/arm64/boot/dts/qcom/qcm2290.dtsi                | 2 +-
+>  arch/arm64/boot/dts/qcom/qdu1000.dtsi                | 2 +-
+>  arch/arm64/boot/dts/qcom/sdm630.dtsi                 | 2 +-
+>  arch/arm64/boot/dts/qcom/sdx75.dtsi                  | 2 +-
+>  arch/arm64/boot/dts/realtek/rtd16xx.dtsi             | 2 +-
+>  arch/arm64/boot/dts/rockchip/rk3368.dtsi             | 2 +-
+>  arch/arm64/boot/dts/sprd/sc9860.dtsi                 | 2 +-
+>  arch/arm64/boot/dts/sprd/sc9863a.dtsi                | 2 +-
+>  arch/arm64/boot/dts/synaptics/berlin4ct.dtsi         | 2 +-
+>  arch/arm64/boot/dts/tesla/fsd.dtsi                   | 2 +-
+>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi               | 2 +-
+>  32 files changed, 44 insertions(+), 35 deletions(-)
 >
->I feel some lawsuits coming...
 
-The brand name "ArmSoM" was first registered on 10 December 2021, which
-means "System-on-Module of ARM". Would you please explan it further
-about the risk of law? We are working with ARM for the SystemReady
-certification.
+[...]
 
->Website says different name. Please use name from the website.
+> diff --git a/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts b/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts
+> index 8db4243a4947..9115c99d0dc0 100644
+> --- a/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts
+> +++ b/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts
+> @@ -102,7 +102,7 @@ timer {
+>  	};
+>
+>  	pmu {
+> -		compatible = "arm,armv8-pmuv3";
+> +		compatible = "arm,cortex-a53-pmu";
+>  		interrupts = <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>,
+>  			     <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
+>  	};
 
-Sure, I will change it to "ArmSoM Technology Co., Ltd." in v3.
+(For vexpress related change)
 
-Best regards,
-Jianfeng
+Acked-by: Sudeep Holla <sudeep.holla@arm.com>
+
+--
+Regards,
+Sudeep
 
