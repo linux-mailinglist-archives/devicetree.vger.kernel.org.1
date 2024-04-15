@@ -1,101 +1,106 @@
-Return-Path: <devicetree+bounces-59434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59435-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 203878A5683
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 17:33:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B1538A5687
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 17:34:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D0773281439
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 15:33:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9AFC41C20C38
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 15:34:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34E7280BFF;
-	Mon, 15 Apr 2024 15:32:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7FE979945;
+	Mon, 15 Apr 2024 15:34:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q9zao9fW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HBgSgn1o"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F97080BF5;
-	Mon, 15 Apr 2024 15:32:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBF8378C82;
+	Mon, 15 Apr 2024 15:34:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713195165; cv=none; b=GpX9TsoZyriAkmQtDRvDL/Fhy+GGKqFU1KDzIWbJM4AQRpDcvZ3nsQ8meZwVnAeSA2G8puytZa3+821e/5jPMDmhvTRMuMgBowF+hFwH39PB4AzvKQt2w0NwNp8gIrlRq1opRK1gGdvQeIc5VqZfBzlofMejZDbTpn0HxNuUVBk=
+	t=1713195271; cv=none; b=q0FRQ1gKYT9oQ/uFckSC6cF4s84fxU85iJ/amUTRwSXQS4ECTes1YvrZO2e5mViD8g4OjaSRCKrGaqGf6hR/Seijkc3VuVpMn4wGUD46WRdSBPOZvGiIgnJ+WbSVrXI159P4rMDfwPbuXTyexvMKjyk4/qf7PfeVGrtn2xX2pNg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713195165; c=relaxed/simple;
-	bh=xQYU0e7X39DSajVS8rhXQ8Da6tifi91BKqm4wTgtmCs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XSh4M5hfEkywgTc2CW8idDkQN/E4yCHDXHh2FU5W5ZFaF1AKb9l2EzJStcWIHgIQSC0Jdg2S5jYd1ZLT5vaCM5mvneI6JtAaTYqyt+R0wkxSn3Iuzm6m91aOW9oPNm++Xz1HRQVsgj97/bjwb+wvEX9l2fb+GEHycKRF9wc63GU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q9zao9fW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B1E3C4AF08;
-	Mon, 15 Apr 2024 15:32:41 +0000 (UTC)
+	s=arc-20240116; t=1713195271; c=relaxed/simple;
+	bh=lt3EqHtUbz9qchyHitXc3Sc+ljn9HGqN4eVLmg6FtSg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y8xjutUl2T+Ae1nhY05JlE2aTOzeh538uID6jgMaSMtdGHSv+1z9JTAKBHo4jghyxPwgq6OUSbKouaLXHv7oE6UOnSR+XGh7Tj8hjlLBlb66I86OJODfcldsn6u5k9zMz9r0TUOUKPrvwCsqwAwLzhoIqM3IH5TZ/KYbjo3KjWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HBgSgn1o; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75FC4C113CC;
+	Mon, 15 Apr 2024 15:34:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713195164;
-	bh=xQYU0e7X39DSajVS8rhXQ8Da6tifi91BKqm4wTgtmCs=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=q9zao9fWypDb5owZQLC9RQqNQgusD6wLSs9G1KIccnC9I1OE92AdBFYfxrbwsfXtB
-	 7pY5Uox28KLcfro/G3puHy6GnGGUjzLaqhvNwDa7Rb4RjxUGXjmhrnyEnzSvErupr0
-	 ixX/7RMQBasUr1QaY9Wq4W2wUyOD3C0F4QTdwT62mpyTTkXVQwXBlmAPkC63w4i2h/
-	 MB7yX3UUrqT8y9rUxGV7NhHL/SIGNzwdE5gGCo/zp1MaUBZsmb6uilJht0uSD38rO1
-	 sZBOpIiRr/sJTbhjKzTNupj7fJ3IzJboan3tVNcjAJsEIdPn3JK7TObKnVjpxsDBCe
-	 gbDEO1O1DuXDQ==
+	s=k20201202; t=1713195270;
+	bh=lt3EqHtUbz9qchyHitXc3Sc+ljn9HGqN4eVLmg6FtSg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HBgSgn1o2HGiJb4m1axjl/pD+9VyP89viUPwunxWu4TaDdwU532LXIRqlpQJTrWfz
+	 e/H4DQgm6oFOD3HVXK2NdcS+VFtHbByfgRjGGjGbR87SsOhghNbJCoewKmYywfDPAi
+	 cIAdfr7n0OZ0Xe5ZirzXALUzlR/i+F+bYzmXaKtaW4WYSQuMTWnY4epADe1Uook69O
+	 GViZe6mNG5IfWlRXNJdVHtAYCU86ZCdrzMd6GRtTUuzI2PcdaYd0Jf9+hbqexeXfL6
+	 kMqPDc89mAuZdfV/vnUSaWA26huFgCqoNkDz7VNBxk2TeU+ng/G7lJrSfb8WVHZpCM
+	 t/DSG86pbsSRg==
+Date: Mon, 15 Apr 2024 16:34:26 +0100
 From: Conor Dooley <conor@kernel.org>
-To: linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Hannah Peuckmann <hannah.peuckmann@canonical.com>
-Cc: conor@kernel.org,
+To: Rob Herring <robh@kernel.org>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Marek Vasut <marex@denx.de>,
 	Conor Dooley <conor.dooley@microchip.com>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Walker Chen <walker.chen@starfivetech.com>,
-	Hal Feng <hal.feng@starfivetech.com>,
-	Xingyu Wu <xingyu.wu@starfivetech.com>
-Subject: Re: [PATCH v1 0/2] riscv: dts: starfive: visionfive 2: Remove non-existing hardware
-Date: Mon, 15 Apr 2024 16:31:19 +0100
-Message-ID: <20240415-tabasco-avalanche-5dc660e5701a@spud>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240415125033.86909-1-hannah.peuckmann@canonical.com>
-References: <20240415125033.86909-1-hannah.peuckmann@canonical.com>
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: eeprom: at24: Fix ST M24C64-D compatible
+ schema
+Message-ID: <20240415-mandate-sanded-41cd7d180e22@spud>
+References: <20240415131104.2807041-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=807; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=m4UTRyLnDIb2TXMDA83B0GKpyfK7QjI3ZTJ599y3sUo=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDGmyHu6KF62be57ZP1D6xSz6W2Jmp+9BWfWp1x2/H3fdn mirWXWqo5SFQYyDQVZMkSXxdl+L1Po/Ljuce97CzGFlAhnCwMUpABPJK2D4K/Hj5Y5rdl6rq1qP mC6pEA5IOiHySJTZZ8v8O0/eb/31upjhr+Dq3ncGMyZuOur6TUzTL+v/BgHVrwZidSH8H29OFet w5QcA
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="FniYWCs6OrcrsZmX"
+Content-Disposition: inline
+In-Reply-To: <20240415131104.2807041-1-robh@kernel.org>
 
-From: Conor Dooley <conor.dooley@microchip.com>
 
-On Mon, 15 Apr 2024 14:50:31 +0200, Hannah Peuckmann wrote:
-> This series fixes the device tree for the VisionFive 2 which has nodes for
-> non-existing hardware which should have been left to overlays. It also results
-> in error on boot when both both the TDM and I2S drivers tries to claim GPIO 44.
-> 
-> Hannah Peuckmann (2):
->   riscv: dts: starfive: visionfive 2: Remove non-existing TDM hardware
->   riscv: dts: starfive: visionfive 2: Remove non-existing I2S hardware
-> 
-> [...]
+--FniYWCs6OrcrsZmX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Applied to riscv-dt-fixes, thanks. I should've probably realised this
-when I merged them - thinking back I think I might even have had to do a
-conflict resolution. Sorry about this.
+On Mon, Apr 15, 2024 at 08:11:03AM -0500, Rob Herring wrote:
+> The schema for the ST M24C64-D compatible string doesn't work.
+> Validation fails as the 'd-wl' suffix is not added to the preceeding
+> schema which defines the entries and vendors. The actual users are
+> incorrect as well because the vendor is listed as Atmel whereas the
+> part is made by ST.
+>=20
+> As this part doesn't appear to have multiple vendors, move it to its own
+> entry.
+>=20
+> Fixes: 0997ff1fc143 ("dt-bindings: at24: add ST M24C64-D Additional Write=
+ lockable page")
+> Fixes: c761068f484c ("dt-bindings: at24: add ST M24C32-D Additional Write=
+ lockable page")
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-[1/2] riscv: dts: starfive: visionfive 2: Remove non-existing TDM hardware
-      https://git.kernel.org/conor/c/dcde4e97b122
-[2/2] riscv: dts: starfive: visionfive 2: Remove non-existing I2S hardware
-      https://git.kernel.org/conor/c/e0503d47e93d
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Thanks,
-Conor.
+--FniYWCs6OrcrsZmX
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZh1JAgAKCRB4tDGHoIJi
+0gclAQCWccrJ4dPLhkH99N4CTLpBd/8QjhYnM+wgs98ToyWIcwD9G6ZxF1VGSJ3Z
+YOlT+SchgWFpUFBJltE4A3gYHb3XAgY=
+=7dSY
+-----END PGP SIGNATURE-----
+
+--FniYWCs6OrcrsZmX--
 
