@@ -1,146 +1,132 @@
-Return-Path: <devicetree+bounces-59512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59513-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0B738A5B63
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 21:49:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FD358A5B6D
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 21:50:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 258B5B23FD2
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 19:49:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A0CA288BA7
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 19:50:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0746159202;
-	Mon, 15 Apr 2024 19:40:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EC4F15AAB3;
+	Mon, 15 Apr 2024 19:41:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="c4ECtoC7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X68uGwjX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1C741591E4
-	for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 19:40:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ABB715696C;
+	Mon, 15 Apr 2024 19:41:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713210004; cv=none; b=d8R/jry5YrlRjFQvRXx0XOjJUqafEWdEo7uiSGLSQ7LULcTSILpU+R9TlU/SDvBlGXXQUzoGC+MLAwp0b3nB+ovg96i3G4YezelnSg7t7AhDnGQRlA2jtY7e1eJVkkjzLaHF8uVjjJgB68fvAnqju4P9J4c3KXXS8Q+fgty8p5E=
+	t=1713210071; cv=none; b=NvgDl23RCcbrfe2sCf6w4Hao6JnPR2H2P9snncy1GnOvvGTbCFVIN5hamEXb3sLeJJfRzUEFMnmm/MdWLGO3m6/0AWaAt46Txhs+LQs751ouB0RzuKuGN1rqc+G3dEiy5f55isVqejZRhSKFqN0NcQxQrCHldBI6c+sWU6ZpyTM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713210004; c=relaxed/simple;
-	bh=oLw1Yo8/eaqjN1EPHHKDjW5h66jbiS/C8MlDodlUxck=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XcZyQKk9IYskU3/luwf58mn+NxgWxtqvwoZNDAXLMmnwhCDhBVLAD92I1QgpxjzdVwwTLXYe/CxawITY8cSx+4mYFEPmPWbMJjplegJCR5hjt04SQ5+ABv+TBIusYUqHDlZIgiuvhQ4v00utrZc0syRMJ7odlK0Zdmzv9aL5BMg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=c4ECtoC7; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-518a3e0d2ecso3972982e87.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 12:40:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713210001; x=1713814801; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=t7tsrnDTZbk4SPKL6+qy7+cpPN7/TAFHKqUJ8Ysh/C4=;
-        b=c4ECtoC7zON9uvTdTS7SyksGYu/Uda1RIKjrsT6qdwIef9IWrfcvZ8oUVH5gaWP3mI
-         ODKSRbVKn3Hq4Er7u4tUS0ljLA74BvQTy8CWbbMgvsg+u4upXPkVQfAdvNk7fpj3ZNc2
-         g+6IrNX8EGIODFPcGlxaVPIw2nLCdW9pFMKoyr5I6IVitcI9p2emwTyiwGOXz4l3Bqbs
-         Ojo0Sz79l75ROgrfSDIOlednW/iRF3AL80XFirkZKNg1geEenCjW8H3kdCviu0cV6Jbe
-         nLK9R+IxOK9DODl6yHc4j+XuM7xk2kglDNQAIhCMvB1BoUUd3Ku/CMXGiyGwpjsKcALE
-         6APA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713210001; x=1713814801;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=t7tsrnDTZbk4SPKL6+qy7+cpPN7/TAFHKqUJ8Ysh/C4=;
-        b=e6lbM1h54Gaz/vsuxz0cl+Slnc2fX7Ykd3n39Zq4ul8OWftCNuAfgq/fnsRPhxy5LF
-         OOxi/DikB5u0s5INs4h8YLS1UjlunL1Sde4OSjF91dWf+bbbxN586swQf0tbC/n8tA3S
-         YB2iWlNOvs2R4GrJ4jjksGIRfn438zVIGnBFYpyjEFNot6L1g9wFtpJ7CUie89cWfHPw
-         l/BmYQt+SOH/aHZgye81Lw/CYQm3iFl7KV+EHfbrR47jfwA07yhJIaT9yeWLfu9seQ0a
-         /UgxUpE2hJtv4e7cFk9E8CyGtr+GKHjyDzWEbDvqoFW0CyDoABdR67uvwAF6i/pIAJHg
-         d7vA==
-X-Forwarded-Encrypted: i=1; AJvYcCXffJUW9hVu/ugw3HNbz7msAystgAMv2jsk3CPwZqYrfF08hQLE+xSTNYKvHvYDmoM9Or9SkW7nRtZ4f+1a9mKp4zJ+RwEtxQJiBg==
-X-Gm-Message-State: AOJu0YzLp9bwo5m2a3tvdB7ZBtXw56piq5M/djW12qqLaz8N8Vup/Q/o
-	qjkPELyynhCRajAWr4SkMIPNKPvNJ1lUcLPOl+XoBhAO09HnLARDMASSr1/MTmg=
-X-Google-Smtp-Source: AGHT+IEvWyaU3DDSHRGhHKAWLIUQW7NovoNH7LtXjxt2ZC08B71s/35oMI48FkGtZAuiQS+3TCw9ug==
-X-Received: by 2002:a05:6512:2247:b0:515:d176:dfd1 with SMTP id i7-20020a056512224700b00515d176dfd1mr10519441lfu.56.1713210001060;
-        Mon, 15 Apr 2024 12:40:01 -0700 (PDT)
-Received: from [172.30.205.18] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id v23-20020a05651203b700b00515bad4cd0asm1332203lfp.155.2024.04.15.12.39.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Apr 2024 12:40:00 -0700 (PDT)
-Message-ID: <90b9da5e-8a2b-4a0d-bee8-bb21c74cb355@linaro.org>
-Date: Mon, 15 Apr 2024 21:39:56 +0200
+	s=arc-20240116; t=1713210071; c=relaxed/simple;
+	bh=c88aT9uSkW8Wa6uVyZD8LuIy0fX3f9Ky0S7uWq9mvQY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QlUIP1wqu8feqIFVpgt0jvBqsitewTz7HB06cSv4lXpKLVqlz8DbWUigBG6RPixgz1c0fEqIAg3xFgDyS5kZ0h3VWsVrRLZk3KHOf4yMLPNc2TAEd6KvS7zVobXDLQu5WUui5vA2BFDf6KvJjdStuKdZr6XjIWOMxoHLHFC0QOc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X68uGwjX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CF39C113CC;
+	Mon, 15 Apr 2024 19:41:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713210070;
+	bh=c88aT9uSkW8Wa6uVyZD8LuIy0fX3f9Ky0S7uWq9mvQY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=X68uGwjXzKz0fwXuVWglnVmtjb8qUFt0+9nP0i3Fh6inoupbLbEmeOsUeFr3Vlyu2
+	 /rIaj/7xrtoELSRzrikvjHJzvBXG6Y0HGwvmfuE8JXG3fGbyUYJTw1FDlbQqif2rxr
+	 rdSfVD5LsKfQK86tKtHslMvJYmCdmnsksFWx63JIrpnCmpecx7GDTRe3gLBp2VKi48
+	 9pLugPwYPPZ6eJW1sqZaeTR0lBloo9rgt4RPccFBTdgwa5NybNYw0HIr0aBbC1D15J
+	 3dxw/0B9HIOAgdH6EbCtVKWNmmscw0jRSf+0Vu81xEUZgT9DHFqiVH8eyesDjtrHwa
+	 ycgl8QvkK1BnA==
+Date: Mon, 15 Apr 2024 14:41:05 -0500
+From: Rob Herring <robh@kernel.org>
+To: Deepak Gupta <debug@rivosinc.com>
+Cc: paul.walmsley@sifive.com, rick.p.edgecombe@intel.com,
+	broonie@kernel.org, Szabolcs.Nagy@arm.com, kito.cheng@sifive.com,
+	keescook@chromium.org, ajones@ventanamicro.com,
+	conor.dooley@microchip.com, cleger@rivosinc.com,
+	atishp@atishpatra.org, alex@ghiti.fr, bjorn@rivosinc.com,
+	alexghiti@rivosinc.com, samuel.holland@sifive.com, conor@kernel.org,
+	linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-mm@kvack.org, linux-arch@vger.kernel.org,
+	linux-kselftest@vger.kernel.org, corbet@lwn.net, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, krzysztof.kozlowski+dt@linaro.org,
+	oleg@redhat.com, akpm@linux-foundation.org, arnd@arndb.de,
+	ebiederm@xmission.com, Liam.Howlett@oracle.com, vbabka@suse.cz,
+	lstoakes@gmail.com, shuah@kernel.org, brauner@kernel.org,
+	andy.chiu@sifive.com, jerry.shih@sifive.com,
+	hankuan.chen@sifive.com, greentime.hu@sifive.com, evan@rivosinc.com,
+	xiao.w.wang@intel.com, charlie@rivosinc.com,
+	apatel@ventanamicro.com, mchitale@ventanamicro.com,
+	dbarboza@ventanamicro.com, sameo@rivosinc.com,
+	shikemeng@huaweicloud.com, willy@infradead.org,
+	vincent.chen@sifive.com, guoren@kernel.org, samitolvanen@google.com,
+	songshuaishuai@tinylab.org, gerg@kernel.org, heiko@sntech.de,
+	bhe@redhat.com, jeeheng.sia@starfivetech.com, cyy@cyyself.name,
+	maskray@google.com, ancientmodern4@gmail.com,
+	mathis.salmen@matsal.de, cuiyunhui@bytedance.com,
+	bgray@linux.ibm.com, mpe@ellerman.id.au, baruch@tkos.co.il,
+	alx@kernel.org, david@redhat.com, catalin.marinas@arm.com,
+	revest@chromium.org, josh@joshtriplett.org, shr@devkernel.io,
+	deller@gmx.de, omosnace@redhat.com, ojeda@kernel.org,
+	jhubbard@nvidia.com
+Subject: Re: [PATCH v3 04/29] riscv: zicfilp / zicfiss in dt-bindings
+ (extensions.yaml)
+Message-ID: <20240415194105.GA94432-robh@kernel.org>
+References: <20240403234054.2020347-1-debug@rivosinc.com>
+ <20240403234054.2020347-5-debug@rivosinc.com>
+ <20240410115806.GA4044117-robh@kernel.org>
+ <CAKC1njSsZ6wfvJtXkp4J4J6wXFtU92W9JGca-atKxBy8UvUwRg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] firmware: psci: Read and use vendor reset types
-To: Elliot Berman <quic_eberman@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>, Sebastian Reichel <sre@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Andy Yan <andy.yan@rock-chips.com>, Lorenzo Pieralisi
- <lpieralisi@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Cc: Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
- Melody Olvera <quic_molvera@quicinc.com>,
- Shivendra Pratap <quic_spratap@quicinc.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Florian Fainelli <florian.fainelli@broadcom.com>, linux-pm@vger.kernel.org,
- linux-arm-msm@vger.kernel.org
-References: <20240414-arm-psci-system_reset2-vendor-reboots-v2-0-da9a055a648f@quicinc.com>
- <20240414-arm-psci-system_reset2-vendor-reboots-v2-3-da9a055a648f@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240414-arm-psci-system_reset2-vendor-reboots-v2-3-da9a055a648f@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAKC1njSsZ6wfvJtXkp4J4J6wXFtU92W9JGca-atKxBy8UvUwRg@mail.gmail.com>
 
-
-
-On 4/14/24 21:30, Elliot Berman wrote:
-> SoC vendors have different types of resets and are controlled through
-> various registers. For instance, Qualcomm chipsets can reboot to a
-> "download mode" that allows a RAM dump to be collected. Another example
-> is they also support writing a cookie that can be read by bootloader
-> during next boot. PSCI offers a mechanism, SYSTEM_RESET2, for these
-> vendor reset types to be implemented without requiring drivers for every
-> register/cookie.
+On Wed, Apr 10, 2024 at 02:37:21PM -0700, Deepak Gupta wrote:
+> On Wed, Apr 10, 2024 at 4:58 AM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Wed, Apr 03, 2024 at 04:34:52PM -0700, Deepak Gupta wrote:
+> > > Make an entry for cfi extensions in extensions.yaml.
+> > >
+> > > Signed-off-by: Deepak Gupta <debug@rivosinc.com>
+> > > ---
+> > >  .../devicetree/bindings/riscv/extensions.yaml          | 10 ++++++++++
+> > >  1 file changed, 10 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> > > index 63d81dc895e5..45b87ad6cc1c 100644
+> > > --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> > > +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> > > @@ -317,6 +317,16 @@ properties:
+> > >              The standard Zicboz extension for cache-block zeroing as ratified
+> > >              in commit 3dd606f ("Create cmobase-v1.0.pdf") of riscv-CMOs.
+> > >
+> > > +        - const: zicfilp
+> > > +          description:
+> > > +            The standard Zicfilp extension for enforcing forward edge control-flow
+> > > +            integrity in commit 3a20dc9 of riscv-cfi and is in public review.
+> >
+> > Does in public review mean the commit sha is going to change?
+> >
 > 
-> Add support in PSCI to statically map reboot mode commands from
-> userspace to a vendor reset and cookie value using the device tree.
-> 
-> Reboot mode framework is close but doesn't quite fit with the
-> design and requirements for PSCI SYSTEM_RESET2. Some of these issues can
-> be solved but doesn't seem reasonable in sum:
->   1. reboot mode registers against the reboot_notifier_list, which is too
->      early to call SYSTEM_RESET2. PSCI would need to remember the reset
->      type from the reboot-mode framework callback and use it
->      psci_sys_reset.
->   2. reboot mode assumes only one cookie/parameter is described in the
->      device tree. SYSTEM_RESET2 uses 2: one for the type and one for
->      cookie.
->   3. psci cpuidle driver already registers a driver against the
->      arm,psci-1.0 compatible. Refactoring would be needed to have both a
->      cpuidle and reboot-mode driver.
-> 
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
-> ---
+> Less likely. Next step after public review is to gather comments from
+> public review.
+> If something is really pressing and needs to be addressed, then yes
+> this will change.
+> Else this gets ratified as it is.
 
-[...]
+If the commit sha can change, then it is useless. What's the guarantee 
+someone is going to remember to update it if it changes?
 
-> +arch_initcall(psci_init_system_reset2_modes);
-
-Perhaps this could be called from \/
-
-Konrad
-
-> +
->   int __init psci_dt_init(void)
->   {
->   	struct device_node *np;
-> 
+Rob
 
