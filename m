@@ -1,133 +1,95 @@
-Return-Path: <devicetree+bounces-59380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 425238A5119
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 15:24:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA3E88A511E
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 15:24:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2F232864BA
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 13:24:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBDCC1C2207E
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 13:24:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F297412D1EB;
-	Mon, 15 Apr 2024 13:08:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B17673165;
+	Mon, 15 Apr 2024 13:10:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UJm1CCqc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bj6lUXf3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C974612CD8E;
-	Mon, 15 Apr 2024 13:08:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAA5C71B40;
+	Mon, 15 Apr 2024 13:10:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713186489; cv=none; b=DDkZ97QzISFRyiQzHFsHjdlQvNUibcuoINN5Hgyz5URMEofjFW7d1GxQti4LEFwbRJoFtHUPrK1Qsto2JeV2Ra8ymraDTvtrsJOEPma85y/RQYFQ8Fd6YDoHnaI6FvKidf8d1uJph38PjEtLcEM6byK2Ww3e5nYvqkijWrFjDNI=
+	t=1713186615; cv=none; b=hdDjAtp4CS1Dz7iwHYrFFD2LqEXcIxZ/jxhjVCpk4O1EOSFmQyyT4qzrZxxqSOJ1iaWe4iRUT4fU0BJBQkx/gYhorPaak3t7iPwgMbnrkalexdEV04qao0TPqKAkM9NjMTL6yoIzjZP/CH/hx6mj49LyEibJbmPCEph2JUF2Lik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713186489; c=relaxed/simple;
-	bh=87bTwsF4w8g4JFgeI7M+WPF4fLoAHZlVuKCfGMPRLeA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kOjrKjddTsBte0HkocHcFfgFBNSFrJ8hqpk7Z98zP/bZuJ1g8JZnqk12OuPKygm7UuNFUj/SC72b+eWNtbfD9y6QN/tfpGFoEdeh4uzCttA/nzOLzcDPZ11dm3OuPghD7toB32PDZxDC6yZnLT9IwyBTOvgxn8q9/2mevU/Cxdw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UJm1CCqc; arc=none smtp.client-ip=209.85.208.42
+	s=arc-20240116; t=1713186615; c=relaxed/simple;
+	bh=VpE1Qnwojfh1X5BHVf4R6O3zFOF2Mqea75mnDO8ikEs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IbM71PFh7zA808ffoPmZvJei+yTJz19htGsd3eFe8MOhH4gCY+a/tZP/qBI6XO3HilavQQV2Afr1+X4U0K8azhcoa3wTkZCSRGLKbBfu4nn41BWNoC3l4EZbaIBFyIWh4fNbwcnZ1ZidS3EiDE2kE8fgCp+E80/xn/LDf2FS/2o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bj6lUXf3; arc=none smtp.client-ip=209.85.208.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-56e47843cc7so3004088a12.0;
-        Mon, 15 Apr 2024 06:08:04 -0700 (PDT)
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2da63269e75so12768501fa.1;
+        Mon, 15 Apr 2024 06:10:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713186483; x=1713791283; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EOVcyUHEG9Bub93WbTofMHZOaWndJooQSg5/AUTll90=;
-        b=UJm1CCqcR8OL5nAP+WUaZM8LcUEHlUUXgMhxlC7aNsuRO6ba6uhJUUXLEG1AveB/Jg
-         Q5xFo2LPpOg+4PMTs/fhJdgISObaL8Ofeu2P6uJvU/8I59t8h9nvDz2vRtRjbJwbhxjE
-         SDGA74FHwJ0FbdP9M7+zODxcFviS/EvX+A5YCz1gQEVgr35syiAgTvA27wGcJTbK0Zry
-         q2MEm2vMiNW2CWJSV66v6hp3XPWvh0tag2s84p9MNiqR2GLO588L6MEx/dqZ2tL3ZYhs
-         GwpzdZL+xAajiJJExYzS423ylJ7zlkQ+D3Px3mntJCchyyFaWFeCKK5aDF5dngKblcaS
-         5uxQ==
+        d=gmail.com; s=20230601; t=1713186611; x=1713791411; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=4YmX6u/Der+0IzS/XTdYy6+ZCel0Tz8ZK2bZueMcf0Y=;
+        b=Bj6lUXf3eJ7XC1gy39UH3PBlQVsWw5abv1CLDM/v7hBlrNQxnXF9ipSYweMqfqDQP5
+         6cAx919MYhdYwU5oksZJLiZTMI4N1+358yb3kMXDwceKjSJTuLuh+60nBMXd+Ig0d2Ru
+         is8ogeMzbz7zlT+mAeO4K/WcL6LXH+8bwxFGETyBpm9bjs6l8pkDLm3UylIVKzY+tH4z
+         6uqsE1BGwEXAR8aoBBP/18f9OX6KItUbfPgiZhPbzwQKcG+wNBJ24UBLJgEv+PNpF6SY
+         AtJZE/IRhnk15i8c+Lt/RIy+GMq+i0YyqE0nH46+ECynBLrISiv50SeKzN+OngHbggIn
+         GKnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713186483; x=1713791283;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EOVcyUHEG9Bub93WbTofMHZOaWndJooQSg5/AUTll90=;
-        b=YtnkVniik+lV0z6nuH13a7NgDIcFo9jCJb9CUReIs/u+3UcyBunHoUdg3+IQA+DmLL
-         aenHeTlTsXDMGRwCEUIXy1Avh9cFEZ29LcMU/1QMBT0rtyLHUn8x6DkG2fmxCGUEQ2cp
-         yg6FS8KjrSAwBl5FbsMCTEN2dRjVjcHGcPQHU43RcxCkxubtl7Hjhh3SuCgAwG12bbL+
-         AV43bX4dEhpT8Re/hLPvMVFHvSh7d/yqrk1DXrkrpkFPEbhb1frZliQ9P2+iimQjPBbe
-         SVeWVh3/9yzZ/joNflLlyAPeF9zyvqtYa94PPAZLAujk/R2u9NxudSK9dtiZPFLElWDr
-         Ey5A==
-X-Forwarded-Encrypted: i=1; AJvYcCUVX00zkc/gvMZE7+nM+5DlG5w6z+u8LbEfo8SxC2qxVYAVs/MiQPZEY/pzHUpxOVdN9t1lYANfMmiRySTPVazUqVpf6vy9merU8vxPDsHIoIMnli8Zon9+weHbS/L+dbsH9ehsUgENhxik7YaowIxn0U9fG8SyOLc3kkWIXhE+ta2QVg==
-X-Gm-Message-State: AOJu0YxCGlTSByd4ga4bo/8bui98ejLBkxQnzD3qh+zxqLyz6D8/ipD5
-	WJfFOFfsJBXzZ2Fdd4PRgwHjJv1rh++raoZUnis76PmR3L6mjEjY
-X-Google-Smtp-Source: AGHT+IEnoBtkeYeATaHIBYVqrye4LXM5oKiAeXD3POM03pgS2yfGk+ty1Vt9AFH/3QTv52BE7d7ueQ==
-X-Received: by 2002:a17:906:d1c5:b0:a52:5a74:13f4 with SMTP id bs5-20020a170906d1c500b00a525a7413f4mr2496136ejb.12.1713186482697;
-        Mon, 15 Apr 2024 06:08:02 -0700 (PDT)
-Received: from [172.27.138.193] (c7.campus.utcluj.ro. [193.226.6.226])
-        by smtp.gmail.com with ESMTPSA id lb10-20020a170906adca00b00a526fd6362asm922149ejb.117.2024.04.15.06.08.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Apr 2024 06:08:02 -0700 (PDT)
-Message-ID: <105bd25b-e5ea-4649-b9b2-2547e94b103e@gmail.com>
-Date: Mon, 15 Apr 2024 16:08:00 +0300
+        d=1e100.net; s=20230601; t=1713186611; x=1713791411;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4YmX6u/Der+0IzS/XTdYy6+ZCel0Tz8ZK2bZueMcf0Y=;
+        b=Rv9fppIrhAefoLJFgWd2h05iHGBFuvflvJw2gsrmZqj4SqQpU2P1yJS3+eLu2fGX50
+         oxNZtsDSaU03oRb1Q5HiW9nTEnWSwwuVDQ2vh1GkFDlYDa/iYxUcek+rloWgUayoHQaB
+         OA0ogbIMvtm5tYmiqOM3XBetZir+blv5l6GWPaS2QtKd0dkyzAWOCjv/YcYc6lcmL8EJ
+         BB1vh6xW0IoH7AWxq/sS9fDKM6rpo4taWqmm4HVGCFenO4GqQJY07vRJeNmKAhTYjMaX
+         Daf7HF8+RKScSvYIv5pFVnlCyC0gk8dA7jE17tnqcX6aXJjmBxG4wjQkMg9E6SI/K7nm
+         Kztg==
+X-Forwarded-Encrypted: i=1; AJvYcCWOnYQgK6Rq5SzA/qW44wOhUtPl6E4A9XYuebx4feL+9EjO0YpycIaYiXWKddaLm/CPQhOzKdhGePAuGzCBe96j2PnRdy+YXjOEPTJVfKC32UEPPaZgr3ydX6O6P5lrjliXNTZnwZiZ8w==
+X-Gm-Message-State: AOJu0YzweB0tUqDBuf96c84zfmRm82CDe19LiFrkLG+2EhWyBW9bPOGM
+	RC3XclUPk48sGhTrW5JpkH+qQqc7txhEZhO8T+Ax20LpfdZjLfk3l24iwf5hu+sPvQrKem9KKuN
+	EeMS0XldiIUB1+3ygRaH7ETHj+sk=
+X-Google-Smtp-Source: AGHT+IGjIewtaI/sCKBqHEj0RrILEoev+3bQJiesZn9r6UVM/5fQn7CYy4r2gYKHReg36HLwcCY0Lx9k7BkYodlJaOk=
+X-Received: by 2002:a2e:9984:0:b0:2d7:17e0:ff56 with SMTP id
+ w4-20020a2e9984000000b002d717e0ff56mr7325159lji.18.1713186610759; Mon, 15 Apr
+ 2024 06:10:10 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/5] dt-bindings: iio: adc: ad7192: Add AD7194 support
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- michael.hennerich@analog.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: alexandru.tachici@analog.com, lars@metafoo.de, jic23@kernel.org,
- robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- lgirdwood@gmail.com, broonie@kernel.org, andy@kernel.org,
- nuno.sa@analog.com, marcelo.schmitt@analog.com, bigunclemax@gmail.com,
- dlechner@baylibre.com, okan.sahin@analog.com, fr0st61te@gmail.com,
- alisa.roman@analog.com, marcus.folkesson@gmail.com, schnelle@linux.ibm.com,
- liambeguin@gmail.com
-References: <20240413151152.165682-1-alisa.roman@analog.com>
- <20240413151152.165682-5-alisa.roman@analog.com>
- <2ad06ea8-220f-4d09-bbe7-c4dd12d0d8bd@linaro.org>
-Content-Language: en-US
-From: Alisa-Dariana Roman <alisadariana@gmail.com>
-In-Reply-To: <2ad06ea8-220f-4d09-bbe7-c4dd12d0d8bd@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240415103523.139-1-bavishimithil@gmail.com> <171318046103.2331667.2375787628199943181.robh@kernel.org>
+In-Reply-To: <171318046103.2331667.2375787628199943181.robh@kernel.org>
+From: Mithil <bavishimithil@gmail.com>
+Date: Mon, 15 Apr 2024 18:39:58 +0530
+Message-ID: <CAGzNGRk1S3G1jWZMarRP6YaFOTVciqkUT8ipDvu96pmTvoDBLA@mail.gmail.com>
+Subject: Re: [PATCH v3] ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
+To: Rob Herring <robh@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, linux-kernel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, alsa-devel@alsa-project.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 14.04.2024 00:19, Krzysztof Kozlowski wrote:
-> On 13/04/2024 17:11, Alisa-Dariana Roman wrote:
->> Unlike the other AD719Xs, AD7194 has configurable differential
->> channels. The user can dynamically configure them in the devicetree.
->>
->> Also add an example for AD7194 devicetree.
->>
->> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
->> ---
->>   .../bindings/iio/adc/adi,ad7192.yaml          | 74 +++++++++++++++++++
->>   1 file changed, 74 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
->> index ba506af3b73e..855f0a2d7d75 100644
->> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
->> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.yaml: $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
+>          $id: http://devicetree.org/schemas/sound/ti,omap-mcpdm.yaml
+>         file: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.yaml
+>
+Right forgot to rename it to omap4 in the id, should i send a patch v4
+in a new mail?
 
-...
-
-> 
->> +  "^channel@[0-9]+$":
-> 
-> Why restricting the pattern? If you have 256 channels, how are you going
-> to encode it?
-
-Hi Krzysztof,
-
-Thank you for your feedback! I applied the rest, but as for this one 
-isn't channel@1 -> channel@256 encoding sufficient?
-
-Kind regards,
-Alisa-Dariana Roman
-
-
+Best Regards,
+Mithil
 
