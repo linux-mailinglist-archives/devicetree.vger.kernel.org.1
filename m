@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-59288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EB1F8A4988
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 09:57:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B98198A499E
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 09:59:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF6701F21CDB
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 07:57:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3AD05B24DAF
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 07:59:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB25E2C69D;
-	Mon, 15 Apr 2024 07:57:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E29AA2C6B7;
+	Mon, 15 Apr 2024 07:59:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IPHT20zP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GsayHtGC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81FAF2C1B6;
-	Mon, 15 Apr 2024 07:57:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B63B92C85D;
+	Mon, 15 Apr 2024 07:59:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713167845; cv=none; b=B2dmd57hZu0ZeRWRC+HwGaTitUO1sT1ZCMcjXWugbTVtuhSmWHg0RJF4Sdln+2CLJBws+++gYhEXsJkQ4ELlndVGWTFP8qAxmlv6E3isa2lxe4NFwCb2gJmKxqmegDCTkJahc+94z1H29GeSAq2nyqZKBnbTwpZr1kKsEQJn8Ms=
+	t=1713167989; cv=none; b=V4JZUyWqone/G77/ZStvCiLFX3W254iJtyuNvZnr9vgIUnjkC4k+qCEXBULYlUn5GD9e2QueGav/Kj5KAK9b6lscwKNLIXNuRYSrHXRAAefkD4TxXJsGrc62nMCS2lsHbEC4h4S1UtpxAKdZpl22LpDD6WHoSbsV5INTTAv3JQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713167845; c=relaxed/simple;
-	bh=VMk72HLyRcA38+7muouKcqLS3YNIP0PuAQdBz4CAedY=;
+	s=arc-20240116; t=1713167989; c=relaxed/simple;
+	bh=OCFHUEJzQqIvQbhGEuMI7coBUcSnUd6YBPKNngEKrQo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YJp4FxgGiW2mTs7Fj1VqnYikaSJ85dRFVdDleoSbNESXjqGZ4mwIzBhERd6oi/REjjNLoV7WIvhUeGeevBPTly9ToUt9ZpdsV31yXIkzyID3bIHRvRoKlI58AtWQX/N5Q0U37MymmU4edavMTAZCdNsugDMrlLpyEOAWbIjY+9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IPHT20zP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F3A1C113CC;
-	Mon, 15 Apr 2024 07:57:21 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=uQkRYApYo4QPMBEFZkGKny68mT6zafw7FQIVzK1AOtqQvl/vjHqP8KBLdFMWCeS0TqUeedbw9CatcA0QripZuyDBov3B4Gi7lhcs4Iyzf1o6Q/i2gM80ScUJjf6M7+yhU4gJuz9v92iRbXuj2LY+NEw6fXO3sRogYo8cOYsexg0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GsayHtGC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B32DAC113CC;
+	Mon, 15 Apr 2024 07:59:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713167845;
-	bh=VMk72HLyRcA38+7muouKcqLS3YNIP0PuAQdBz4CAedY=;
+	s=k20201202; t=1713167989;
+	bh=OCFHUEJzQqIvQbhGEuMI7coBUcSnUd6YBPKNngEKrQo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=IPHT20zP88ukcSnJTf+pXwf/RhjZg4/a3cCzF/4UrinIjyffepsYc/rGnXMD/zNuV
-	 7Uz+J2TIJuCwLilayDLsHFvgGxg6CctohB2mm3OFNUFKY6tIOMxi+3c8mqAIt08fNg
-	 Lg7hCTSCaEJKotyxWVvUofykSqO7HjPfDYwESD5Dp/o4nmIvaf3ugeBH9PckOr4WVJ
-	 xVy1WBBs1JV+cDnd0To1uw9mnalMnp79j3WOHHMUFtAlIU52FsCe68NnvY7sFblHe8
-	 vXvoM9DY7EEHXy9jp+3K5P+KuRPiPP0+2Q9Sr7Reofo3qe0UrMGjhfMo9T/nbdqh0o
-	 79HnFs9jt+uOg==
-Message-ID: <07c9c5f5-c4b9-44d6-b909-5aa306f56898@kernel.org>
-Date: Mon, 15 Apr 2024 09:57:20 +0200
+	b=GsayHtGCCu4N9qrWLVdE0Ai1rZvT6MykztciJc/J6VpwRtL55uGYkW8XZMcFPQyes
+	 zN7/5V+Bm6yGmswH90tSX0AeADAtHkbCU62lPdC0UqKHHRT9p6qhBQjMz+JxuTqpjZ
+	 YaadAh3vDxW3hxdzgszjjgVZgexC4H480ZReR6zv6Diel74d8YGTuykgjf68UzX+CU
+	 pS7HNEQ/y34cLscKDVusCxZ91zx6BjCUVkYu3Buft2qyMNHcnOdOkGoAlJRxtWVZn7
+	 mxoDA0jPNxRD/eQMJlRbYqLYlr2PDV3UaMH/6UfSfGpwO+Fa2qmT19lc8sGGM17O6S
+	 28fM4YUQkd1zw==
+Message-ID: <9641e5b7-09e5-4346-a295-533b05585fb3@kernel.org>
+Date: Mon, 15 Apr 2024 09:59:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] ARM: dts: BCM5301X: Add DT for ASUS RT-AC3200
-To: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>,
- Hauke Mehrtens <hauke@hauke-m.de>, Rafal Milecki <zajec5@gmail.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: Tom Brautaset <tbrautaset@gmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20240414-for-soc-asus-rt-ac3200-ac5300-v1-0-118c90bae6e5@arinc9.com>
- <20240414-for-soc-asus-rt-ac3200-ac5300-v1-3-118c90bae6e5@arinc9.com>
- <a88385a4-afad-4bd8-afc1-37e185e781f4@kernel.org>
- <85261d11-d6cb-4718-88d9-95a7efe5c0ab@arinc9.com>
- <e6cfe735-0a46-4c07-90ee-4ae25c921b03@kernel.org>
- <335cdd4b-7309-4633-9b4f-6487c72c395c@arinc9.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: arm: rockchip: Add ArmSoM Sige7
+To: Jianfeng Liu <liujianfeng1994@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ heiko@sntech.de, sfr@canb.auug.org.au, weizhao.ouyang@arm.com
+References: <20240413153633.801759-1-liujianfeng1994@gmail.com>
+ <20240413153633.801759-3-liujianfeng1994@gmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,78 +103,18 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <335cdd4b-7309-4633-9b4f-6487c72c395c@arinc9.com>
+In-Reply-To: <20240413153633.801759-3-liujianfeng1994@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 14/04/2024 22:21, Arınç ÜNAL wrote:
-> On 14.04.2024 22:12, Krzysztof Kozlowski wrote:
->> On 14/04/2024 18:59, Arınç ÜNAL wrote:
->>>>> +	};
->>>>> +
->>>>> +	memory@0 {
->>>>> +		device_type = "memory";
->>>>> +		reg = <0x00000000 0x08000000>,
->>>>> +		      <0x88000000 0x08000000>;
->>>>> +	};
->>>>> +
->>>>> +	nvram@1c080000 {
->>>>> +		compatible = "brcm,nvram";
->>>>> +		reg = <0x1c080000 0x00180000>;
->>>>
->>>> Why is this outside of soc? Both soc node and soc DTSI?
->>>
->>> I don't maintain the SoC device tree files so I don't know. The nvram node
->>> doesn't exist on any of the device tree files included by this device tree.
->>
->> There are two problems here:
->> 1. This looks like SoC component and such should not be in board DTS.
->> Regardless whether you maintain something or not, you should not add
->> incorrect code. Unless this is correct code, but then please share some
->> details.
+On 13/04/2024 17:36, Jianfeng Liu wrote:
+> Add devicetree binding for ArmSoM Sige7 board
 > 
-> NVRAM is described as both flash device partition and memory mapped NVMEM.
-> This platform stores NVRAM on flash but makes it also memory accessible.
-> 
-> As device partitions are described in board DTS, the nvram node must also
-
-Sorry, but we do not talk about partitions. Partitions are indeed board
-property. But the piece of hardware, so NVMEM, is provided by SoC.
-
-> be defined there as its address and size will be different by board. It has
-> been widely described on at least bcm4709 and bcm47094 SoC board DTS files
-> here.
-
-These not proper arguments. What you are saying here is that SoC does no
-have nvram at address 0x1c08000. Instead you are saying there some sort
-of bus going out of SoC to the board and on the board physically there
-is some NVRAM sort of memory attached to this bus.
+> Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
+> ---
 
 
-> 
->>
->> 2. You cannot have MMIO node outside of soc. That's a W=1 warning.
-> 
-> I was not able to spot a warning related to this with the command below.
-> The source code directory is checked out on a recent soc/soc.git for-next
-> tree. Please let me know the correct command to do this.
-> 
-> $ make W=1 dtbs
-> [...]
->    DTC     arch/arm/boot/dts/broadcom/bcm4709-asus-rt-ac3200.dtb
-> arch/arm/boot/dts/broadcom/bcm5301x-nand-cs0.dtsi:10.18-19.5: Warning (avoid_unnecessary_addr_size): /nand-controller@18028000/nand@0: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
->    also defined at arch/arm/boot/dts/broadcom/bcm5301x-nand-cs0-bch8.dtsi:13.9-17.3
->    also defined at arch/arm/boot/dts/broadcom/bcm4709-asus-rt-ac3200.dts:137.9-160.3
-> arch/arm/boot/dts/broadcom/bcm-ns.dtsi:24.28-47.4: Warning (unique_unit_address_if_enabled): /chipcommon-a-bus@18000000: duplicate unit-address (also used in node /axi@18000000)
-> arch/arm/boot/dts/broadcom/bcm-ns.dtsi:323.22-328.4: Warning (unique_unit_address_if_enabled): /mdio@18003000: duplicate unit-address (also used in node /mdio-mux@18003000)
-
-Hm, indeed, that way it works. Actually should work if we allow soc@0
-and memory@x, obviously.
-
-Anyway, it is outside of soc node and soc dtsi, which leads to previous
-point - you claim that it is not physically in the SoC package. How is
-it connected? If it is on the board, why does it have brcm compatible,
-not some "ti,whatever-eeprom-nvram"?
+Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 
 Best regards,
 Krzysztof
