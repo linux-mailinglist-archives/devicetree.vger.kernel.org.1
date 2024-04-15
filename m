@@ -1,119 +1,117 @@
-Return-Path: <devicetree+bounces-59331-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59332-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 330228A4B86
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 11:33:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA7658A4BCE
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 11:47:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7BA21F22543
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 09:33:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 77E471F22CB7
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 09:47:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 959AD3FB89;
-	Mon, 15 Apr 2024 09:33:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C067840878;
+	Mon, 15 Apr 2024 09:47:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="7Rdq0cTp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Syr37wLU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB5D1446AD;
-	Mon, 15 Apr 2024 09:33:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 908053FBB0;
+	Mon, 15 Apr 2024 09:47:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713173605; cv=none; b=LYAFHH/d/epi0wHXAR88VIKGfsnWAf5yutknl80EuUEZe0Sw58Pw7uRnRVJo3UGr3WNZcy1dbl1STd+oF+rK3mWCuirZPcHXsnr0e9mOq0eS7dS6fMGv26hmcbKDL0o8hoMrVGzbFadFx8kAW7KZzO6MakETRCfYzaFKK0lh1hw=
+	t=1713174440; cv=none; b=I+G0v2ztJzt7nEThaqNsFJIs9biOLfwpO9znTmjVZ59vW4LobVXDRk8yfes7RwRoCTDLEZMh90S6d5tZ3ZD0pcwhbyQBcxPwlbjMnCm2mYVhmV5+QXM/ozEMCGaxWEJT4JagqUXGXhtgZ8MC1qOGfuIkq8ihd22gLLOXXMvG8QQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713173605; c=relaxed/simple;
-	bh=e7OmjfW0ZfmdJF/7hY2wwAd8dJ7JCsJijNaaHD9bWC4=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=b62Kpp1J3CRZP8VXkqILQK5YljrLDTMVFIER9T/Hb4On5knhZk3D1FSkuVeoiiqOVuo95mplknQlOP5yxEyM0eEWsDPOv+GgnBabQ9/0lhjxQkSR0GCjz/RVKrFYJ63V0QLLXmwRUNydLgN/61UHuVk88Fi4ldfAH4ptvqxxcWc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=7Rdq0cTp; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43F75qkx004772;
-	Mon, 15 Apr 2024 11:32:57 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding:content-type; s=selector1; bh=CJMsyOU
-	vibO44hZ0FRzGuvGUbPQDu1y2PkvDKBeOhvI=; b=7Rdq0cTp5JrEfksjWZr6Myp
-	nDuhTxoxGqkrFsf/4oZzLIPsqnbb2GKzTde4YNJrPpiYHa559deP2GthwmpF9BmH
-	sKSVulLtuu1dTc4aHMBdR8Y+IQQ7ggQCiktgbwGAxK++tVUzAhX4VQq0biO01DDU
-	CUmTiA6m2qPvIEYDGSoybPznT6CiX5IyF4wbszY6btiomtx/wrjaEEZbw8hZFcag
-	aPFnBY8lmNOu0m/v3pcNe3ZIyJruq2wMZWxPKfvClhY0d3L9rCyhHBdrPXTc2HAt
-	zN1++Y6bExfJe3313flDL5FKW1q7hoEOed779ULq+RCU4Oto3yefH6uEFirvlfw=
-	=
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3xffff6ybt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 15 Apr 2024 11:32:57 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 486924002D;
-	Mon, 15 Apr 2024 11:32:51 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id EA4E7211F06;
-	Mon, 15 Apr 2024 11:32:13 +0200 (CEST)
-Received: from localhost (10.48.86.141) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 15 Apr
- 2024 11:32:13 +0200
-From: Hugues Fruchet <hugues.fruchet@foss.st.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-CC: Hugues Fruchet <hugues.fruchet@foss.st.com>
-Subject: [PATCH v2] media: dt-bindings: add access-controllers to STM32MP25 video codecs
-Date: Mon, 15 Apr 2024 11:32:11 +0200
-Message-ID: <20240415093211.809927-1-hugues.fruchet@foss.st.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1713174440; c=relaxed/simple;
+	bh=1/IM4SD6RQjMA7f0keRrx2D+uJepsW1+KqOkX5Hx4qM=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=LvnrBd5dFTpOK1rQOt9/qodLa6B/XvpztMzT1Mv38rwKUSWplGw0bF3nFZr8/EsZrLvrD8X7nXst/vbzL+FV/OFv9ldXcn3qdXzGLTFRESnWBWZGSHKuQG1QXtC0UWJBQKNOgnuSKkGOpiUMO66lstx7AwuVnbV16pJNB8hp2PE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Syr37wLU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8B9EC113CC;
+	Mon, 15 Apr 2024 09:47:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713174440;
+	bh=1/IM4SD6RQjMA7f0keRrx2D+uJepsW1+KqOkX5Hx4qM=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=Syr37wLU2whncM8An2JhKAUTx3aGf/KU3btiPMYO3UcFq6l1XJm+Uk39ezKCvLhwh
+	 xKn9BN/BrJ5+o9DbpMnOm0xsKz9F6mRJEqf3hL6kkYp2fFfKVblDQCbyNcxD9RjebT
+	 +PORt+an85D9ovE0k0axBBF4M/B+u1e8B7bnMCcDhwfmhVjFBQsXWNbMbmW8LPaUIl
+	 dQYAzphX91g2OHw/LSvgWsXdCM5e6lmW1LzOATB9iFd/AcYnpgfNzn3XG+kIYUNk6V
+	 audGB83kKKy+MNtFvIHmVx+EohA2o/P4CepycjnxDJku6RKmo2937w8HAWP3O7FOmH
+	 pK1wF1lUnt+Fw==
+Date: Mon, 15 Apr 2024 04:47:18 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-15_08,2024-04-09_01,2023-05-22_02
+From: Rob Herring <robh@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: broonie@kernel.org, alim.akhtar@samsung.com, 
+ linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ peter.wang@mediatek.com, conor+dt@kernel.org, avri.altman@wdc.com, 
+ matthias.bgg@gmail.com, stanley.chu@mediatek.com, 
+ linux-arm-kernel@lists.infradead.org, linux-scsi@vger.kernel.org, 
+ bvanassche@acm.org, martin.petersen@oracle.com, lgirdwood@gmail.com, 
+ chu.stanley@gmail.com, devicetree@vger.kernel.org, jejb@linux.ibm.com, 
+ krzysztof.kozlowski+dt@linaro.org
+In-Reply-To: <20240415075406.47543-6-angelogioacchino.delregno@collabora.com>
+References: <20240415075406.47543-1-angelogioacchino.delregno@collabora.com>
+ <20240415075406.47543-6-angelogioacchino.delregno@collabora.com>
+Message-Id: <171317443702.1944933.10779110163028215758.robh@kernel.org>
+Subject: Re: [PATCH v3 5/8] dt-bindings: ufs: mediatek,ufs: Document MT8192
+ compatible with MT8183
 
-access-controllers is an optional property that allows a peripheral to
-refer to one or more domain access controller(s).
 
-Acked-by: Rob Herring <robh@kernel.org>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Hugues Fruchet <hugues.fruchet@foss.st.com>
----
- .../devicetree/bindings/media/st,stm32mp25-video-codec.yaml   | 4 ++++
- 1 file changed, 4 insertions(+)
+On Mon, 15 Apr 2024 09:54:03 +0200, AngeloGioacchino Del Regno wrote:
+> The MT8192 UFS controller is compatible with the MT8183 one:
+> document this by allowing to assign both compatible strings
+> "mediatek,mt8192-ufshci", "mediatek,mt8183-ufshci" to the UFSHCI node.
+> 
+> Moreover, since no MT8192 devicetree ever declared any UFSHCI node,
+> disallow specifying only the MT8192 compatible.
+> 
+> In preparation for adding MT8195 to the mix, the MT8192 compatible
+> was added as enum instead of const.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
+> 
 
-diff --git a/Documentation/devicetree/bindings/media/st,stm32mp25-video-codec.yaml b/Documentation/devicetree/bindings/media/st,stm32mp25-video-codec.yaml
-index b8611bc8756c..73726c65cfb9 100644
---- a/Documentation/devicetree/bindings/media/st,stm32mp25-video-codec.yaml
-+++ b/Documentation/devicetree/bindings/media/st,stm32mp25-video-codec.yaml
-@@ -30,6 +30,10 @@ properties:
-   clocks:
-     maxItems: 1
- 
-+  access-controllers:
-+    minItems: 1
-+    maxItems: 2
-+
- required:
-   - compatible
-   - reg
--- 
-2.25.1
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/ufs/mediatek,ufs.example.dtb: ufs@ff3c0000: compatible:0: 'mediatek,mt8183-ufshci' is not one of ['mediatek,mt8192-ufshci']
+	from schema $id: http://devicetree.org/schemas/ufs/mediatek,ufs.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/ufs/mediatek,ufs.example.dtb: ufs@ff3c0000: compatible: ['mediatek,mt8183-ufshci'] is too short
+	from schema $id: http://devicetree.org/schemas/ufs/mediatek,ufs.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/ufs/mediatek,ufs.example.dtb: ufs@ff3c0000: Unevaluated properties are not allowed ('compatible' was unexpected)
+	from schema $id: http://devicetree.org/schemas/ufs/mediatek,ufs.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240415075406.47543-6-angelogioacchino.delregno@collabora.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
