@@ -1,105 +1,103 @@
-Return-Path: <devicetree+bounces-59543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 749EB8A5CFC
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 23:35:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE4378A5D9E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 00:11:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D1B20B22F3C
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 21:34:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 143CBB210FA
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 22:11:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F4AF157460;
-	Mon, 15 Apr 2024 21:34:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87764157496;
+	Mon, 15 Apr 2024 22:11:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DNn3qSHo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UXefIzaQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09DD3156675;
-	Mon, 15 Apr 2024 21:34:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B92725601;
+	Mon, 15 Apr 2024 22:11:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713216894; cv=none; b=Nyp6Ynt0e6gBv3Fam8gcUOezLL1SqTlz3thxI6WrpJEpDkrTFd+PV0Y1bCtzm4k0D+crOKgJrzZRhaeKwrqTP5FBzZC+WN0m9pWLGzfxhMzkyCJcVG7XZjLCpaVIjj86JctJqVvnAhCJRZxfAO6j8WK5zk4qZsoCJnihZiyl/4g=
+	t=1713219068; cv=none; b=fEyMlJfYtNxt4KL8F1DDoOr7LFkpo1eXcIPC+2wd59Xr7HI/831NuP/u5FpKb46zVn6POQwgcN7W/q0/wjyRfJegqxhAGbnzA2zJqCO3Gj+kMkmKje+urUhrsnJWPP15dn5teczjtGim7o4k5nHrvvnqH37Ef3L8hkg5B7NM+go=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713216894; c=relaxed/simple;
-	bh=YcBaD99GoN6AuooIAKX/irl2Glt24VolMzRvwDnXKSA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jUueJiOtYdxYQptTW5KA8YuPDyxh6x6cHZSGAbbrbJ4FKRq8a14hzyDsZA+yRgIZZTGZmvItt460mEFubrLMQRa/DdhSWSluEQRNidNknkspL/BXByTMkQQ9MJ94E3D6r5asALasLi0B5XA2CaNG1UEx7kGVoYRmTcDREqc4ua8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DNn3qSHo; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-41890fd335fso388305e9.3;
-        Mon, 15 Apr 2024 14:34:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713216891; x=1713821691; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+MngAaDFVN1bHp4jdNB2FOwRByqVy5DrODddXtj7GEQ=;
-        b=DNn3qSHoFozHf0mV860AV0K2JIIVVfsQ1MtdQV7/lGTD6qW786f2eZC+2Nyag4BJ0h
-         +aoQSuwGRJLSA7STsrIXbsJcnOxrjcJD9cbNzAdDR9WszDXBlh6uTWgENyem7mYLKhlS
-         3YRS+GIEd+5RWvl2MMwiV4VlApn4Fgi2jt+ojq97ni+Q1hjDOKjS1hqLFrJ131id89e6
-         Fb+PeT1Pw1svGndqgMhu+YasvNk69yC0/jzJOiiyzXWhbVMyAalo2wcr3HGATdyPDg2+
-         00LTlw53V7+TEv1/kaalB6o95USUvQQWc1diGx+viHwJG5eclgFC3GdMYH+tW5hC+ndo
-         EIhQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713216891; x=1713821691;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+MngAaDFVN1bHp4jdNB2FOwRByqVy5DrODddXtj7GEQ=;
-        b=Yasw7UDrDJlQ69HdfPRaHsFUytePcwN30cKWuZCPwbLhytgvYS6+9IptSJWblkZYxY
-         JbA8+yOxGPSUM5tnD/Xs82998SnhDHeK26bsG0pRdwBmHcygnaGfdwiPyDcidtX1rm7t
-         h+Jx4+CHQANaxQJhiz1Y38HIDgmHTr+NuHaxypVoiQ4m+opBY4TSbNVgW/eOt6cwZmpw
-         yBSNOfAJmMMhSfJImZgPlydJwMLrwTJX7vwm298L9GXlCu5gGL4o9JPvLRc7neudASk/
-         qWnF3E94nEFShTtXyky/jSxYNVdRkqV4fgcNC69wXnL2PZkKoYCrERbE9Wy1PuEaHF8O
-         qKuQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWNz88i4OcWmzBS+TNqh9kEl69mMbqohIkHTFfq/MH4cUGVj5xAsdC+8wjQPka0NvNa7j1HVl/UITPfivCmB0OOQ4XppfwqzKDjpIYIAYOn7QdX4u+rDowtGak1BbUfScsZtqa2RKbhrQ==
-X-Gm-Message-State: AOJu0Yw38CP+a/RlTfnPK6ulv6pDK6QL2znoMip49o7VyGX82fOnN15W
-	JGTuVN42stDsUejmGsrAfJZmj5G8L5W2VWmPtRPVzUGFoNRZZny6
-X-Google-Smtp-Source: AGHT+IHO0UydirU0frcJgoHgsd2d9A+XDIfIqbidYVQXXd9jmDbZT1co8v6u3rH+r5lyoWlHcu5gbw==
-X-Received: by 2002:a05:600c:4749:b0:414:12f6:a105 with SMTP id w9-20020a05600c474900b0041412f6a105mr7619233wmo.5.1713216891306;
-        Mon, 15 Apr 2024 14:34:51 -0700 (PDT)
-Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id t9-20020a05600c450900b00417e01ce03bsm16613050wmo.17.2024.04.15.14.34.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Apr 2024 14:34:51 -0700 (PDT)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- Denis Burkov <hitechshell@mail.ru>
-Cc: Denis Burkov <hitechshell@mail.ru>, Rob Herring <robh@kernel.org>
-Subject: Re: [RESEND v3 1/2] dt-bindings: arm: sunxi: Add PocketBook 614 Plus
-Date: Mon, 15 Apr 2024 23:34:49 +0200
-Message-ID: <3476347.QJadu78ljV@jernej-laptop>
-In-Reply-To: <20240415173416.13838-1-hitechshell@mail.ru>
-References: <20240415173416.13838-1-hitechshell@mail.ru>
+	s=arc-20240116; t=1713219068; c=relaxed/simple;
+	bh=yAUhUPGP6pRFUgJ6hrCL5leLqTgSSXyLqybDbhMmenw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Pdu4iw85a6a1W81PXCxoRhqxcYUzGlb66wf5qltDNB95mYNoa+eHcuFQ0xggeezoRM1RHsTXbKJD31TQEIdNjwzqFgI6K/2tTJ4nbeLAf3lV01bkLpdq7bMJS+ZsWRt0iW2+7JbLhI58lr9wr7T8jKPOi1PSbPKUEPjBEblL53Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UXefIzaQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8311C113CC;
+	Mon, 15 Apr 2024 22:11:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713219067;
+	bh=yAUhUPGP6pRFUgJ6hrCL5leLqTgSSXyLqybDbhMmenw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UXefIzaQSP3GV6t/Bw7PBgqAbtRin9sQLZR50mi6lrZhBJfqPVblrDvLIlbVyIo3H
+	 qwEEHCUHrR4fWLpcO1meS8DQu8DBkrg4DvBUUrmYhJraswx0CvTscXOWtRsoiJU9GX
+	 dWkw1TOkunZ3b7bJaqAtu2MB/mbgsuWttdjzB+EgB+EWjkPhBr4z9/Sy8maHB0UQ7u
+	 c8zpxXH+DD+6xAtwbNVyDwmYKYr30cx98cI5aXY7oUA99tSy9t7hxiBuiT3tRxkMUR
+	 sxbteIj+Mu5squUUP1n5rk+LEVJ1E5DPCFNPspntr09m5hUVF3rP9NnfSLyAsWvoRJ
+	 c/yx2OPtd89Cw==
+Date: Tue, 16 Apr 2024 00:11:03 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Eddie James <eajames@linux.ibm.com>
+Cc: linux-fsi@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, alistair@popple.id.au, 
+	joel@jms.id.au, jk@ozlabs.org, robh@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, lakshmiy@us.ibmcom
+Subject: Re: [PATCH v2 25/31] i2c: fsi: Calculate clock divider from local
+ bus frequency
+Message-ID: <q6bl7sbskt4ukd3mylfgwpo6dmv444umdpycs6xp7ozd2kv335@syeymu62fczb>
+References: <20240226165321.91976-1-eajames@linux.ibm.com>
+ <20240226165321.91976-26-eajames@linux.ibm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240226165321.91976-26-eajames@linux.ibm.com>
 
-Dne ponedeljek, 15. april 2024 ob 19:34:15 GMT +2 je Denis Burkov napisal(a):
-> Add a new board name.
+Hi Eddie,
+
+> @@ -689,6 +692,20 @@ static int fsi_i2c_probe(struct device *dev)
+>  	mutex_init(&i2c->lock);
+>  	i2c->fsi = to_fsi_dev(dev);
+>  	INIT_LIST_HEAD(&i2c->ports);
+> +	i2c->clock_div = I2C_DEFAULT_CLK_DIV;
+> +
+> +	lbus = fsi_device_local_bus_frequency(i2c->fsi);
+> +	if (lbus) {
+> +		u32 clock = I2C_DEFAULT_CLK_RATE;
+
+I don't see the need for initialization.
+
+> +
+> +		if (!device_property_read_u32(dev, "clock-frequency", &clock)) {
+> +			if (!clock)
+> +				clock = I2C_DEFAULT_CLK_RATE;
+> +		}
+
+no need for brackets.
+
+> +
+> +		// i2c clock rate = local bus clock / (4 * (i2c clock div + 1))
+
+You forgot to remove this.
+
+Andi
+
+> +		i2c->clock_div = (((lbus + (clock - 1)) / clock) / 4) - 1;
+> +	}
+>  
+>  	rc = fsi_i2c_dev_init(i2c);
+>  	if (rc)
+> -- 
+> 2.39.3
 > 
-> Signed-off-by: Denis Burkov <hitechshell@mail.ru>
-> Acked-by: Rob Herring <robh@kernel.org>
-
-Applied both, thanks!
-
-Best regards,
-Jernej
-
-
 
