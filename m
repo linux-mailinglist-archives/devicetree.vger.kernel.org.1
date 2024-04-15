@@ -1,325 +1,172 @@
-Return-Path: <devicetree+bounces-59405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF58C8A5270
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 15:58:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEBF08A528B
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 16:01:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8601F282042
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 13:58:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C48921C229C6
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 14:01:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A640E7350C;
-	Mon, 15 Apr 2024 13:58:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BE6A7352B;
+	Mon, 15 Apr 2024 14:01:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="BywKZqOv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YYy7YDQ4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 754EF73163
-	for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 13:58:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B26873189;
+	Mon, 15 Apr 2024 14:01:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713189486; cv=none; b=NRMoilzu/xJQuKZeaTYU6Y+Uc1dVrKb5wYpKxn88ANrvnzy9jo3zfKupSkwkzqyJA4KLQDQWUFG8W+tOhxptM2xMxnK99qJdjtbEvtpgGPQibMky2fLmSEyvlV09DTBe/gQpgwo/i93mQs3v3AzmnATV+AkUbpakIDudcAs3tvI=
+	t=1713189675; cv=none; b=dG8Oky7s2knWYGRKj/Fif93wlVtGclnJrhfowU+usyd2NqbjgNm901oj+bBTq1U+80ilR483qt/mt+cwprGxHha5aU8wxZki8+NpX38NHEN2RymONNBqdPXu05+e8xeSQvsYu8PcLh+Gu4fFURnWIFxJkUxwJIjf8mBIEaMfKPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713189486; c=relaxed/simple;
-	bh=cXmuk02yardD7sK0mmbeHpQjs8LzSBc0Pq+OZbHu/tQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fjJDFMGZYTNSwW2bu9ey860AlFt7Btel3ngtZrM7LddshGPhgrkfmSaSPiS25Mw4MSIOdKZL+DMnF9FYjLaOaQbv70sUTOulK9ri3Kr+pzmZOqvLt0x0iUBvx0v1M/bBhf/5mK6Brkrzk5TKfDqkvmjc+Ci6AAaAy6QglbDpJIY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=BywKZqOv; arc=none smtp.client-ip=209.85.215.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-5d8b887bb0cso2498449a12.2
-        for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 06:58:04 -0700 (PDT)
+	s=arc-20240116; t=1713189675; c=relaxed/simple;
+	bh=lpBPkRDdCzQNZjrZ+c7eHd34o93n0pvgK/Pf7ypBlwA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ALRhmPXjajJNctqOiAWAC07ByQ3KWZnyRcJ2ArhErBRtdCrFyBE8SxN0jBpuJclX7q1UCxeaZUuYLAqioNRnLkE9zarTtCdj5lvhtezz+jWeB2Xv3RkbMF1h3B6Hvqyhb88b3SNEVQWxG+2sj4CjFYZNW/uieMwTuthI7yofDUs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YYy7YDQ4; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-570175e8e6fso1991071a12.3;
+        Mon, 15 Apr 2024 07:01:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1713189484; x=1713794284; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lVuQCo/DoesmumNLbytxbUmN6PFT19OiHvggiXb/Rg4=;
-        b=BywKZqOv72fFNdV3hcqhYpM5OAwvGmhgRto34LsJxNYuO/MsLFMIommBm7WPFFXsS3
-         duaXkxzorkO7yBzFizAwpw6ZF2QHQ/9MCgXc3o9htGS7KZyJfzMc688SrYsXjU9nt7Oc
-         nXX7tXHJoLsWvEsF2hMB6NatIG9bHEU6k6bEFGS8yMO1eCx4n+q+4mWGP6wp9cdfRJis
-         ZYWUQ2qJcN70BTuAoZbU0RABWnEDX+n+l2Ma1GczWMBDiCn5feFJXB2DlBYSGegQ+TiS
-         Xkqaiibxvl4QtIuF0gCFi6e6+/llAd7se257cNh5ZrBkJdecd/8s+VgeE91f82koG3Ir
-         z2rA==
+        d=gmail.com; s=20230601; t=1713189668; x=1713794468; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=p24MW4lT8Qhns1Y9ZBylqR7BJKJfhrh/oDdc/sbfEQk=;
+        b=YYy7YDQ4ruW5DHpniNynHooTjnzHWdQpQJLKOP93yhJyq7ZSK1lguAXFxIGzSq7Tsl
+         ptEjrb15JY3BZJjco7y/jbqs4kBGBd+ZH4uePhscuD3wvzeRnc4aizIoTuHB8W2ARd7K
+         GJJkaqTra80UR5vMLcpyGf4ag09OxG3U+P5v3DWvJhSQbqh812o4vVB7p5Rn42VVsvbE
+         iK/DK3AFeerzGNLS/DN+g0cs+ctyfTh4Gi2BaOGU2YTqPJj3/NPvnZYNLcSkSUKsx7p2
+         wo8QPSwbjH3mF7CRLR5bAqqPzZuqb3AkZk0q94earTjvfwD6E3Tl8qE6l5pav6zsze0D
+         uNlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713189484; x=1713794284;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lVuQCo/DoesmumNLbytxbUmN6PFT19OiHvggiXb/Rg4=;
-        b=DbZiWEc1akKcYoTUE7HoQhoDVlvPSVLi9kfe6q+ckNcxyxIA3UlLAMgx7zN+LAv0Ob
-         XVU3r5uRKnUwlXrUBcLqp2TCtRysIYkQCP7dpW1h5q4f1JEvsay782Bp1h6H2lT/If66
-         SejvIqynrYDmmvuR2mQFmBc0bM3RdBpObETEkUyt5mo3pQR/Hwd9mCp1VPqBZUYXm+Ik
-         dKoEb1Mg/Bg+Oni3WUsngD7Xdrh2EYot31wXoxieWwSY4G3S6xYT3VRHR5EQtHzEwVsT
-         txlI765JZGbmmsWKoPiIixzRYYQ9zac4csHdxO3OdEgkXaEF5GpBuyT0+v6VNp9gvaWr
-         dlag==
-X-Forwarded-Encrypted: i=1; AJvYcCVjycgrMzPzYJsfblPyA7CMh/DUTriNUWY/E/MkAqk3Zn390noXiBtEg8Eu49ZDCRRp/zyWK8S432EByrS0xhI4WgpPneCEWoFuQw==
-X-Gm-Message-State: AOJu0YwZrcHqaF7XcBVYw3SXqZyT+64SYD6M7KJNg4quIgT4hju84RQr
-	YZ85RBPg7tpWkTMjFzaQC2Nk4FIgXNcT4Xn5Uv5IqNF2AlqVbrUCWIIdt4tqEiw=
-X-Google-Smtp-Source: AGHT+IH1EJlNhxHBbJx4rlhNdixoqaV81K17xIAdFpby2ITRn1UkjQwWr1KOH1NPYHANUXU7rHhUMA==
-X-Received: by 2002:a17:902:e786:b0:1e6:3494:61fc with SMTP id cp6-20020a170902e78600b001e6349461fcmr4593155plb.0.1713189483773;
-        Mon, 15 Apr 2024 06:58:03 -0700 (PDT)
-Received: from ?IPV6:2601:602:9081:11e0::ba8? ([2601:602:9081:11e0::ba8])
-        by smtp.gmail.com with ESMTPSA id m6-20020a170902db0600b001e2a7ed52d0sm7939883plx.239.2024.04.15.06.58.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Apr 2024 06:58:03 -0700 (PDT)
-Message-ID: <6adb0adb-51b7-40cd-9768-23373265388b@baylibre.com>
-Date: Mon, 15 Apr 2024 06:58:02 -0700
+        d=1e100.net; s=20230601; t=1713189668; x=1713794468;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=p24MW4lT8Qhns1Y9ZBylqR7BJKJfhrh/oDdc/sbfEQk=;
+        b=Dmuz3BcfW93mDntMQ86WIJkJOP3Xafq/Oz4IMFnUp+MVTC14BQm84z+q/lva/iCb9a
+         rpB+7xat+VcILl1rP846FHyXWMkLZ9r3ndcblSxkz5t361z1tEewJpcxxHiikZw/EFI5
+         aQc3EPBNRnFm0g+fSZ8aB5+bdE+9kRgiVVE76XzToK8h4ZJP4CH1NaxoyAhFmXNpOVeL
+         9/03cQC/JDWbkAkCAokudOJZLPqio7q0ZqHSBtVxWkWHGEdZFovYmC7ucDFmNU56yaxx
+         RwWLr9rYhe3BBjxXWSGueuSfJxuMo0nWGNQvkNUXc6//+sJh4FiJuzAuAFLtBkBVz4eA
+         Hb1A==
+X-Forwarded-Encrypted: i=1; AJvYcCU1yX8UW6RUZdPZbP2AZY9Yvf73ljjFgnH0PkA2GGgvbZlskk+dP4Z6VOPbssXKkHtaQGh0KZmSxS0MVpPv2ipoUes7BIVFEC495oWPIjte616Yj0pzUBRIb6NtXYpGcS3XvBBHWk8AVqaVcqG9pYnIKo/oDyP17ToasIqXJ9BEVZHJW90=
+X-Gm-Message-State: AOJu0YzlBJMcTsa/MPchpxgtkjSRRbogBRpEL0L4HbJzBQP7hlnz3SPY
+	+H5Ftun4oh687MIImh+BvTxyZOrbB4EkdmEYnSEu2Bmu1bK6AJvhWEp+o8Z+zBF3PX51k9Czzw3
+	vq4Bhby20paF1zDH2udi1XoOOP2w=
+X-Google-Smtp-Source: AGHT+IGC1BfZnQLhZFzAUp5MFPYOAUjH5/+Y5w23zzmSabgzkZplX8A2dmV0W5bVlElQTHiFmOsGdVmTzH1nBpvI8Ik=
+X-Received: by 2002:a17:907:b9d5:b0:a54:c130:21fd with SMTP id
+ xa21-20020a170907b9d500b00a54c13021fdmr983688ejc.13.1713189668195; Mon, 15
+ Apr 2024 07:01:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] pwm: axi-pwmgen: support version 2.00.a
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org,
- michael.hennerich@analog.com, nuno.sa@analog.com,
- devicetree@vger.kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, dlechner@baylibre.com
-References: <20240314204722.1291993-1-tgamblin@baylibre.com>
- <20240314204722.1291993-3-tgamblin@baylibre.com>
- <2by7rakflv22s6uk2e2jk5lw65erjljpwdxdxg3z73furlprj5@2qlacusapkgr>
-Content-Language: en-US
-From: Trevor Gamblin <tgamblin@baylibre.com>
-In-Reply-To: <2by7rakflv22s6uk2e2jk5lw65erjljpwdxdxg3z73furlprj5@2qlacusapkgr>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20240415-pinctrl-scmi-v10-0-59c6e7a586ee@nxp.com> <20240415-pinctrl-scmi-v10-4-59c6e7a586ee@nxp.com>
+In-Reply-To: <20240415-pinctrl-scmi-v10-4-59c6e7a586ee@nxp.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Mon, 15 Apr 2024 17:00:31 +0300
+Message-ID: <CAHp75VdoaL-66vDFeDWXg5V0XnL45F_JQZ_BNeaaOcSwQz5gnQ@mail.gmail.com>
+Subject: Re: [PATCH v10 4/4] pinctrl: Implementation of the generic
+ scmi-pinctrl driver
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Sudeep Holla <sudeep.holla@arm.com>, Cristian Marussi <cristian.marussi@arm.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
+	Dan Carpenter <dan.carpenter@linaro.org>, Dhruva Gole <d-gole@ti.com>, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	Peng Fan <peng.fan@nxp.com>, Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Mon, Apr 15, 2024 at 11:43=E2=80=AFAM Peng Fan (OSS) <peng.fan@oss.nxp.c=
+om> wrote:
+>
+> From: Peng Fan <peng.fan@nxp.com>
+>
+> scmi-pinctrl driver implements pinctrl driver interface and using
+> SCMI protocol to redirect messages from pinctrl subsystem SDK to
+> SCMI platform firmware, which does the changes in HW.
 
-On 2024-04-14 05:05, Uwe Kleine-König wrote:
-> Hello Trevor,
-Hi Uwe,
->
-> On Thu, Mar 14, 2024 at 04:47:22PM -0400, Trevor Gamblin wrote:
->> This adds support for the AXI PWMGEN v2 IP block. This version is
->> nearly identical to v1 other than it supports up to 16 channels instead
->> of 4 and a few of the memory mapped registers have moved.
->>
->> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
->> ---
->>   drivers/pwm/pwm-axi-pwmgen.c | 62 ++++++++++++++++++++++++++++--------
->>   1 file changed, 49 insertions(+), 13 deletions(-)
->>
->> diff --git a/drivers/pwm/pwm-axi-pwmgen.c b/drivers/pwm/pwm-axi-pwmgen.c
->> index 0c8f7f893a21..539625c404ac 100644
->> --- a/drivers/pwm/pwm-axi-pwmgen.c
->> +++ b/drivers/pwm/pwm-axi-pwmgen.c
->> @@ -32,16 +32,25 @@
->>   #define AXI_PWMGEN_REG_CORE_MAGIC	0x0C
->>   #define AXI_PWMGEN_REG_CONFIG		0x10
->>   #define AXI_PWMGEN_REG_NPWM		0x14
->> -#define AXI_PWMGEN_CHX_PERIOD(ch)	(0x40 + (12 * (ch)))
->> -#define AXI_PWMGEN_CHX_DUTY(ch)		(0x44 + (12 * (ch)))
->> -#define AXI_PWMGEN_CHX_OFFSET(ch)	(0x48 + (12 * (ch)))
->> +#define AXI_PWMGEN_CHX_PERIOD(v, ch)	((v)->period_base + (v)->ch_step * (ch))
->> +#define AXI_PWMGEN_CHX_DUTY(v, ch)	((v)->duty_base + (v)->ch_step * (ch))
->> +#define AXI_PWMGEN_CHX_OFFSET(v, ch)	((v)->offset_base + (v)->ch_step * (ch))
->>   #define AXI_PWMGEN_REG_CORE_MAGIC_VAL	0x601A3471 /* Identification number to test during setup */
->>   #define AXI_PWMGEN_LOAD_CONFIG		BIT(1)
->>   #define AXI_PWMGEN_RESET		BIT(0)
->>   
->> +struct axi_pwm_variant {
->> +	u8 period_base;
->> +	u8 duty_base;
->> +	u8 offset_base;
->> +	u8 major_version;
->> +	u8 ch_step;
->> +};
->> +
->>   struct axi_pwmgen_ddata {
->>   	struct regmap *regmap;
->>   	unsigned long clk_rate_hz;
->> +	const struct axi_pwm_variant *variant;
->>   };
->>   
->>   static const struct regmap_config axi_pwmgen_regmap_config = {
->> @@ -50,12 +59,30 @@ static const struct regmap_config axi_pwmgen_regmap_config = {
->>   	.val_bits = 32,
->>   };
->>   
->> +static const struct axi_pwm_variant pwmgen_1_00_variant = {
->> +	.period_base = 0x40,
->> +	.duty_base = 0x44,
->> +	.offset_base = 0x48,
->> +	.major_version = 1,
->> +	.ch_step = 12,
->> +};
->> +
->> +static const struct axi_pwm_variant pwmgen_2_00_variant = {
->> +	.period_base = 0x40,
->> +	.duty_base = 0x80,
->> +	.offset_base = 0xC0,
->> +	.major_version = 2,
->> +	.ch_step = 4,
->> +};
-> My first intuition to model the register differences would have been
-> something like:
->
-> 	#define ..._PERIOD 0
-> 	#define ..._DUTY 1
-> 	#define ..._OFFSET 2
->
-> and then store a "register_step"(?) variable (which is 0x4 for v1 and
-> 0x40 for v2) in the variant struct and then use:
->
-> #define AXI_PWMGEN_CHX_PERIOD(v, ch)	(0x40 + (v)->ch_step * (ch))
-> #define AXI_PWMGEN_CHX_DUTY(v, ch)	(0x40 + (v)->register_step + (v)->ch_step * (ch))
-> #define AXI_PWMGEN_CHX_OFFSET(v, ch)	(0x40 + 2 * (v)->register_step + (v)->ch_step * (ch))
->
-> This saves a tiny bit of memory, not entirely sure this is a good idea.
-> Pick it up if you like, or keep your approach, I don't care much.
->
->> +
->>   static int axi_pwmgen_apply(struct pwm_chip *chip, struct pwm_device *pwm,
->>   			    const struct pwm_state *state)
->>   {
->>   	struct axi_pwmgen_ddata *ddata = pwmchip_get_drvdata(chip);
->>   	unsigned int ch = pwm->hwpwm;
->>   	struct regmap *regmap = ddata->regmap;
->> +	const struct axi_pwm_variant *variant = ddata->variant;
->>   	u64 period_cnt, duty_cnt;
->>   	int ret;
->>   
->> @@ -70,7 +97,7 @@ static int axi_pwmgen_apply(struct pwm_chip *chip, struct pwm_device *pwm,
->>   		if (period_cnt == 0)
->>   			return -EINVAL;
->>   
->> -		ret = regmap_write(regmap, AXI_PWMGEN_CHX_PERIOD(ch), period_cnt);
->> +		ret = regmap_write(regmap, AXI_PWMGEN_CHX_PERIOD(variant, ch), period_cnt);
->>   		if (ret)
->>   			return ret;
->>   
->> @@ -78,15 +105,15 @@ static int axi_pwmgen_apply(struct pwm_chip *chip, struct pwm_device *pwm,
->>   		if (duty_cnt > UINT_MAX)
->>   			duty_cnt = UINT_MAX;
->>   
->> -		ret = regmap_write(regmap, AXI_PWMGEN_CHX_DUTY(ch), duty_cnt);
->> +		ret = regmap_write(regmap, AXI_PWMGEN_CHX_DUTY(variant, ch), duty_cnt);
->>   		if (ret)
->>   			return ret;
->>   	} else {
->> -		ret = regmap_write(regmap, AXI_PWMGEN_CHX_PERIOD(ch), 0);
->> +		ret = regmap_write(regmap, AXI_PWMGEN_CHX_PERIOD(variant, ch), 0);
->>   		if (ret)
->>   			return ret;
->>   
->> -		ret = regmap_write(regmap, AXI_PWMGEN_CHX_DUTY(ch), 0);
->> +		ret = regmap_write(regmap, AXI_PWMGEN_CHX_DUTY(variant, ch), 0);
->>   		if (ret)
->>   			return ret;
->>   	}
->> @@ -99,11 +126,12 @@ static int axi_pwmgen_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
->>   {
->>   	struct axi_pwmgen_ddata *ddata = pwmchip_get_drvdata(chip);
->>   	struct regmap *regmap = ddata->regmap;
->> +	const struct axi_pwm_variant *variant = ddata->variant;
->>   	unsigned int ch = pwm->hwpwm;
->>   	u32 cnt;
->>   	int ret;
->>   
->> -	ret = regmap_read(regmap, AXI_PWMGEN_CHX_PERIOD(ch), &cnt);
->> +	ret = regmap_read(regmap, AXI_PWMGEN_CHX_PERIOD(variant, ch), &cnt);
->>   	if (ret)
->>   		return ret;
->>   
->> @@ -111,7 +139,7 @@ static int axi_pwmgen_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
->>   
->>   	state->period = DIV_ROUND_UP_ULL((u64)cnt * NSEC_PER_SEC, ddata->clk_rate_hz);
->>   
->> -	ret = regmap_read(regmap, AXI_PWMGEN_CHX_DUTY(ch), &cnt);
->> +	ret = regmap_read(regmap, AXI_PWMGEN_CHX_DUTY(variant, ch), &cnt);
->>   	if (ret)
->>   		return ret;
->>   
->> @@ -127,7 +155,8 @@ static const struct pwm_ops axi_pwmgen_pwm_ops = {
->>   	.get_state = axi_pwmgen_get_state,
->>   };
->>   
->> -static int axi_pwmgen_setup(struct regmap *regmap, struct device *dev)
->> +static int axi_pwmgen_setup(struct regmap *regmap, struct device *dev,
->> +			    const struct axi_pwm_variant *variant)
->>   {
->>   	int ret;
->>   	u32 val;
->> @@ -146,7 +175,7 @@ static int axi_pwmgen_setup(struct regmap *regmap, struct device *dev)
->>   	if (ret)
->>   		return ret;
->>   
->> -	if (ADI_AXI_PCORE_VER_MAJOR(val) != 1) {
->> +	if (ADI_AXI_PCORE_VER_MAJOR(val) != variant->major_version) {
->>   		return dev_err_probe(dev, -ENODEV, "Unsupported peripheral version %u.%u.%u\n",
-> Hmm, is it worth to also diagnose a mismatch here? That is if the dt
-> tells this was a version 2 device but the register says version 1? In
-> this case
->
-> 	Unsupported peripheral version 1.x.y
->
-> might be misleading, because version 1 is supported and the problem is
-> maybe only a wrong dt?
-Good point, I'll look into this change too.
->
->>   			ADI_AXI_PCORE_VER_MAJOR(val),
->>   			ADI_AXI_PCORE_VER_MINOR(val),
->> @@ -178,9 +207,14 @@ static int axi_pwmgen_probe(struct platform_device *pdev)
->>   	struct pwm_chip *chip;
->>   	struct axi_pwmgen_ddata *ddata;
->>   	struct clk *clk;
->> +	const struct axi_pwm_variant *variant;
->>   	void __iomem *io_base;
->>   	int ret;
->>   
->> +	variant = device_get_match_data(dev);
->> +	if (!variant)
->> +		return -EINVAL;
->> +
->>   	io_base = devm_platform_ioremap_resource(pdev, 0);
->>   	if (IS_ERR(io_base))
->>   		return PTR_ERR(io_base);
->> @@ -190,7 +224,7 @@ static int axi_pwmgen_probe(struct platform_device *pdev)
->>   		return dev_err_probe(dev, PTR_ERR(regmap),
->>   				     "failed to init register map\n");
->>   
->> -	ret = axi_pwmgen_setup(regmap, dev);
->> +	ret = axi_pwmgen_setup(regmap, dev, variant);
->>   	if (ret < 0)
->>   		return ret;
->>   
->> @@ -199,6 +233,7 @@ static int axi_pwmgen_probe(struct platform_device *pdev)
->>   		return PTR_ERR(chip);
->>   	ddata = pwmchip_get_drvdata(chip);
->>   	ddata->regmap = regmap;
->> +	ddata->variant = variant;
->>   
->>   	clk = devm_clk_get_enabled(dev, NULL);
->>   	if (IS_ERR(clk))
->> @@ -224,7 +259,8 @@ static int axi_pwmgen_probe(struct platform_device *pdev)
->>   }
->>   
->>   static const struct of_device_id axi_pwmgen_ids[] = {
->> -	{ .compatible = "adi,axi-pwmgen-1.00.a" },
->> +	{ .compatible = "adi,axi-pwmgen-1.00.a", .data = &pwmgen_1_00_variant },
->> +	{ .compatible = "adi,axi-pwmgen-2.00.a", .data = &pwmgen_2_00_variant },
->>   	{ }
->>   };
->>   MODULE_DEVICE_TABLE(of, axi_pwmgen_ids);
-> Otherwise looks fine.
->
-> Can you please add the next iteration of this patch together with the
-> series adding support for v1?
+Below are some cosmetics, but in general LGTM, thanks!
+Reviewed-by: Andy Shevchenko <andy@kernel.org>
 
-Thank you, will do. I'm currently traveling so I may not get to it until 
-the weekend or early next week.
+...
 
-Trevor
+> +#include <linux/device.h>
+> +#include <linux/dev_printk.h>
 
->
-> Best regards
-> Uwe
->
+The second one is guaranteed to be included by the first one, so
+dev_printk.h can be removed.
+
+> +#include <linux/err.h>
+
++ errno.h as ENOTSUPP is defined there and surprisingly err.h doesn't
+include that.
+
++ mod_devicetable.h (for the ID table type definition)
+
+> +#include <linux/module.h>
+> +#include <linux/scmi_protocol.h>
+> +#include <linux/slab.h>
+> +#include <linux/types.h>
+
+...
+
+> +/* Define num configs, if not large than 4 use stack, else use kcalloc *=
+/
+
+kcalloc()
+
+...
+
+> +       ret =3D pinctrl_ops->settings_get_one(pmx->ph, pin, PIN_TYPE, typ=
+e,
+> +                                           &config_value);
+> +       if (ret) {
+> +               /* Convert SCMI error code to PINCTRL expected error code=
+ */
+> +               if (ret =3D=3D -EOPNOTSUPP)
+> +                       ret =3D -ENOTSUPP;
+> +               return ret;
+> +       }
+
+It can be split as
+
+       ret =3D pinctrl_ops->settings_get_one(pmx->ph, pin, PIN_TYPE, type,
+                                           &config_value);
+       /* Convert SCMI error code to PINCTRL expected error code */
+       if (ret =3D=3D -EOPNOTSUPP)
+               return -ENOTSUPP;
+       if (ret)
+               return ret;
+
+...
+
+> +       ret =3D pinctrl_ops->settings_get_one(pmx->ph, group, GROUP_TYPE,=
+ type,
+> +                                           &config_value);
+> +       if (ret) {
+> +               /* Convert SCMI error code to PINCTRL expected error code=
+ */
+> +               if (ret =3D=3D -EOPNOTSUPP)
+> +                       ret =3D -ENOTSUPP;
+> +               return ret;
+> +       }
+
+As per above.
+
+--
+With Best Regards,
+Andy Shevchenko
 
