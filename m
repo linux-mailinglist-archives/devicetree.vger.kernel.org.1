@@ -1,207 +1,129 @@
-Return-Path: <devicetree+bounces-59540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 636848A5CEA
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 23:26:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 013AC8A5CEF
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 23:27:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8614C1C217C7
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 21:26:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B18EF2833F9
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 21:27:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A0C8156F32;
-	Mon, 15 Apr 2024 21:25:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01F85156F32;
+	Mon, 15 Apr 2024 21:27:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GPJ9KN6N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hXy8eAQj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A60CF156236;
-	Mon, 15 Apr 2024 21:25:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD1A5156236;
+	Mon, 15 Apr 2024 21:27:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713216352; cv=none; b=UI2L3HPSv+zzlmMxNT2SIxhipvqab/U6Jsry0HPDM3UXW0aHBCktdVp3+ifDeGGmJLsKvHPs7KoG1h9hAVpGP+ASnWVJ+PCnfURQtw81TQ7U9lc3YsLv7EfTQ3BTfdRjUlLEGHQM56PDdiDGjDKfPg6IBjjBGiMj4v8wnpA33zg=
+	t=1713216433; cv=none; b=DyZXAnDuC+T6qQOYg0tzCpytq1qMAHS03/3F+rm/EWMZUmEcB3wAbODV7fvPQYaG0GL70fOKJ2UEU1Kam+rFrCpW7jTL6R8QwugKvIZwQFMXqPwFGgxSwVBXiIN8scJVzuo078A0ttPd6JPBQwf0AD2YY8rONNd2HlA7TyxWPXw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713216352; c=relaxed/simple;
-	bh=xDX9qwIGAqnxwZvcmlu1AWdO+expzOyzESC+Fa4D8aE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qXlHoESN2Bm777Q3qEDHxa6GSach2FltB+KOo423iP7Ju3cFSzoespg8haBAaLbSFrvYNksZbRtEmiTOtNle4ZNZQG3XdhFGbWvomq/Z5hiEHzjH4Qx+KujUXw+VePMzWLbTiHGCqGZBCexFr0GYvQaw+KUIrRxoH/pi4nSEuJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GPJ9KN6N; arc=none smtp.client-ip=209.85.167.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f175.google.com with SMTP id 5614622812f47-3c70ef25e19so641711b6e.3;
-        Mon, 15 Apr 2024 14:25:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713216350; x=1713821150; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MnRyb1KC+1OBK62QHuW79588BJIAAupCpTaTbO7XI1c=;
-        b=GPJ9KN6NTAyYLzxxokgqxpDFNYq08tLfEorB1Y9ujzYPwgNKLJSVlHPJswHEZxE+dS
-         CbpKXd6SAGGht4ehPTkMfxaPI2pYqzCxOWRO6jqTJ07LAmY9OTGT27+t+yKamHX4/knw
-         ZTfmMchWBoVIfvprL2j667YtCueUfGALbGz5bZdsilF4cRPew1Ym15AVuYw/VC6UYPOJ
-         HcZVwoocCscuiTHQVwBCOwNOz7dI8oCjSmLK9Cylw6g0eRySVDaKQQ72oRHJobo35b9c
-         L8plfmrUbPmYKIs+YZqlH2UOPiX325ZPg1xNDAFNO2nu0LOgA/mHf7E+5G4gfyb6wJgS
-         nhwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713216350; x=1713821150;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MnRyb1KC+1OBK62QHuW79588BJIAAupCpTaTbO7XI1c=;
-        b=MdACqbEvaITeb246+bX7wi80dOQQeoBqx5Z6E5W43Acs1ZhV3H0M2IG3GkPDuS8X9Z
-         t21NTeYmugbHU7/Qde1ksIbTs/Pqy4d1X6cVFsLEpq5p/0tddnE5v4NSnl2QKnz7L/g7
-         ets2kI03JdJC3LftmkIFaRy5ox9HVMhSP4FtEiwMXhITyB8xo0yVYfEXqxm6KEfMKPjn
-         AWUhdEYbciXbnbhHxggw+eB3ywLw/2BhJjrJAuNxa0WhMTBoG2FhYiFY2m8geyvndKDl
-         0hIpOdiMxSISsLDim2Bjr7lOjGk1pqrMXbuTUuxFRaCkqHFZWrmz1UCbDU+A1TcnptOr
-         1klA==
-X-Forwarded-Encrypted: i=1; AJvYcCXmUmSlbY7xFZmbQlVH+SMGCJV1YHRu+IuaoI4n1zKvn2IPYPB1aHBOa+cbKMhrIqc9QPARlgJl1dlNJvBB3/QdukT0LVN9+24zSbQUPKbaIRe1MgY5lwegNA52RxloA6t+vg0SiGM7fU4SCv0GEm9UuX2rEaAj12SyrjNFpAqiVHBeGCRv648QifJd/FRdS7ckt1QOjFgFHq3P9G5fJfzTxYq7yxDcjlC8zLZ8aS1/woxqyHKN4eSnEoYJjvc=
-X-Gm-Message-State: AOJu0YyogEzsHbM+FT/Sjbkqh1rxLrP8UQ4NjbGGh9UXIKzeekmlzY1o
-	5pHdrTD5tDcKkl8sG9v/gq7vTP79uSsQydkDwhW9Mhj1OpE+3hPB
-X-Google-Smtp-Source: AGHT+IFVx8xuKRS2VgjDQ5gszpCC9VDV/CVDiERN6wC4LXmwFjfelkaJR7tB/uZCbmijCe/eZtORlA==
-X-Received: by 2002:a05:6808:2a69:b0:3c7:76c:c279 with SMTP id fu9-20020a0568082a6900b003c7076cc279mr6166827oib.14.1713216349788;
-        Mon, 15 Apr 2024 14:25:49 -0700 (PDT)
-Received: from [192.168.7.169] (c-98-197-58-203.hsd1.tx.comcast.net. [98.197.58.203])
-        by smtp.gmail.com with ESMTPSA id n4-20020aca2404000000b003c60db822e7sm1774266oic.4.2024.04.15.14.25.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Apr 2024 14:25:49 -0700 (PDT)
-Message-ID: <6726fa2b-f5fe-10fb-6aab-f76d61f0b3cd@gmail.com>
-Date: Mon, 15 Apr 2024 16:25:48 -0500
+	s=arc-20240116; t=1713216433; c=relaxed/simple;
+	bh=AokiBwLoenA+AuAq05ya7tY/KjTt6b5eb9h8P1KVQgY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Smrx3I99aSmmZcix2r+KUrPqJRRWUY4EBAZLMp6V/PccuguRo1VJw0iE/1FrTbYbuGkOG+GKnn7JJhgUqANr1txGKw9K97YBh847pt95wBBNBd0ReIQujQAeI3/7uZ3CvfQtEFbqeOt0pI8VrlFPNZD9I5bl/HVQ0wO7WlbwWrA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hXy8eAQj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28C9AC113CC;
+	Mon, 15 Apr 2024 21:27:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713216433;
+	bh=AokiBwLoenA+AuAq05ya7tY/KjTt6b5eb9h8P1KVQgY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hXy8eAQj0AlY6mfR43iRJ6wS/B4Mn29gxVYqTjINDIeY7vknv4DS3h4gc4pDRJLUq
+	 uB1iJajd7UgRZ7Da4E2BzwyONCB1jPrkpDxaA01jy7sQbz4WuQreTY69KXFrZtxtU7
+	 t1AwZARUlS1IyHp3/w+trYZ2JH5XrcDvDnKpvJlJKyKgMJTGyZV9ZxlQjEQ2pPgCGa
+	 FeY9zkIYRVhknFX9GyEYSvm3upQRX61YNLdl2jQz94icifluufllDDRCdHdT61HzE3
+	 osRcwcH6S3/KK/Bei8f6d22RF+Qa1WXy+tnX1cni3hG61xlz534rwNjrKLvaAO4KzF
+	 kJqePPDycI82Q==
+Date: Mon, 15 Apr 2024 16:27:10 -0500
+From: Rob Herring <robh@kernel.org>
+To: Arseniy Krasnov <avkrasnov@salutedevices.com>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+	oxffffaa@gmail.com, kernel@sberdevices.ru
+Subject: Re: [PATCH v4 1/2] dt-bindings: mtd: amlogic,meson-nand: support
+ fields for boot ROM code
+Message-ID: <20240415212710.GA105671-robh@kernel.org>
+References: <20240410185409.2635622-1-avkrasnov@salutedevices.com>
+ <20240410185409.2635622-2-avkrasnov@salutedevices.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v3 6/7] phy: qcom-qmp-pcie: add support for ipq9574 gen3x2
- PHY
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Manivannan Sadhasivam
- <manivannan.sadhasivam@linaro.org>, linux-arm-msm@vger.kernel.org,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-clk@vger.kernel.org
-References: <20240415182052.374494-1-mr.nuke.me@gmail.com>
- <20240415182052.374494-7-mr.nuke.me@gmail.com>
- <CAA8EJpqY1aDZMaeqBULEOD26UeGYbLd8RsA16jZw7zXJ7_oGPQ@mail.gmail.com>
-From: mr.nuke.me@gmail.com
-In-Reply-To: <CAA8EJpqY1aDZMaeqBULEOD26UeGYbLd8RsA16jZw7zXJ7_oGPQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240410185409.2635622-2-avkrasnov@salutedevices.com>
 
+On Wed, Apr 10, 2024 at 09:54:08PM +0300, Arseniy Krasnov wrote:
+> Boot ROM code on Meson requires that some pages on NAND must be written
+> in special mode: "short" ECC mode where each block is 384 bytes and
+> scrambling mode is on. Such pages located with the specified interval
+> within specified offset. Both interval and offset are located in the
+> device tree and used by driver if 'nand-is-boot-medium' is set for
+> NAND chip.
+> 
+> Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
+> ---
+>  .../bindings/mtd/amlogic,meson-nand.yaml           | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+> index 57b6957c8415..838ae1847ef0 100644
+> --- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+> @@ -64,11 +64,25 @@ patternProperties:
+>          items:
+>            maximum: 0
+>  
+> +      amlogic,boot-pages:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description:
+> +          The NFC driver needs this information to select ECC
+> +          algorithms supported by the boot ROM.
 
+'the $driver drivers needs this information' is true for every property, 
+so it's redundant. You fail to say *what* the property represents or 
+defines.
 
-On 4/15/24 15:10, Dmitry Baryshkov wrote:
-> On Mon, 15 Apr 2024 at 21:23, Alexandru Gagniuc <mr.nuke.me@gmail.com> wrote:
->>
->> Add support for the gen3x2 PCIe PHY on IPQ9574, ported form downstream
->> 5.4 kernel. Only the serdes and pcs_misc tables are new, the others
->> being reused from IPQ8074 and IPQ6018 PHYs.
->>
->> Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
->> ---
->>   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c      | 136 +++++++++++++++++-
->>   .../phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5.h   |  14 ++
->>   2 files changed, 149 insertions(+), 1 deletion(-)
->>
-> 
-> [skipped]
-> 
->> @@ -2448,7 +2542,7 @@ static inline void qphy_clrbits(void __iomem *base, u32 offset, u32 val)
->>
->>   /* list of clocks required by phy */
->>   static const char * const qmp_pciephy_clk_l[] = {
->> -       "aux", "cfg_ahb", "ref", "refgen", "rchng", "phy_aux",
->> +       "aux", "cfg_ahb", "ref", "refgen", "rchng", "phy_aux", "anoc", "snoc"
-> 
-> Are the NoC clocks really necessary to drive the PHY? I think they are
-> usually connected to the controllers, not the PHYs.
+> +
+> +      amlogic,boot-page-step:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description:
+> +          The NFC driver needs this information to select ECC
+> +          algorithms supported by the boot ROM (in pages).
 
-The system will hang if these clocks are not enabled. They are also 
-attached to the PHY in the QCA 5.4 downstream kernel.
+Same issue here.
 
->>   };
->>
->>   /* list of regulators */
->> @@ -2499,6 +2593,16 @@ static const struct qmp_pcie_offsets qmp_pcie_offsets_v4x1 = {
->>          .rx             = 0x0400,
->>   };
->>
->> +static const struct qmp_pcie_offsets qmp_pcie_offsets_ipq9574 = {
->> +       .serdes         = 0,
->> +       .pcs            = 0x1000,
->> +       .pcs_misc       = 0x1400,
->> +       .tx             = 0x0200,
->> +       .rx             = 0x0400,
->> +       .tx2            = 0x0600,
->> +       .rx2            = 0x0800,
->> +};
->> +
->>   static const struct qmp_pcie_offsets qmp_pcie_offsets_v4x2 = {
->>          .serdes         = 0,
->>          .pcs            = 0x0a00,
->> @@ -2728,6 +2832,33 @@ static const struct qmp_phy_cfg sm8250_qmp_gen3x1_pciephy_cfg = {
->>          .phy_status             = PHYSTATUS,
->>   };
->>
->> +static const struct qmp_phy_cfg ipq9574_pciephy_gen3x2_cfg = {
->> +       .lanes                  = 2,
->> +
->> +       .offsets                = &qmp_pcie_offsets_ipq9574,
->> +
->> +       .tbls = {
->> +               .serdes         = ipq9574_gen3x2_pcie_serdes_tbl,
->> +               .serdes_num     = ARRAY_SIZE(ipq9574_gen3x2_pcie_serdes_tbl),
->> +               .tx             = ipq8074_pcie_gen3_tx_tbl,
->> +               .tx_num         = ARRAY_SIZE(ipq8074_pcie_gen3_tx_tbl),
->> +               .rx             = ipq6018_pcie_rx_tbl,
->> +               .rx_num         = ARRAY_SIZE(ipq6018_pcie_rx_tbl),
->> +               .pcs            = ipq6018_pcie_pcs_tbl,
->> +               .pcs_num        = ARRAY_SIZE(ipq6018_pcie_pcs_tbl),
->> +               .pcs_misc       = ipq9574_gen3x2_pcie_pcs_misc_tbl,
->> +               .pcs_misc_num   = ARRAY_SIZE(ipq9574_gen3x2_pcie_pcs_misc_tbl),
->> +       },
->> +       .reset_list             = ipq8074_pciephy_reset_l,
->> +       .num_resets             = ARRAY_SIZE(ipq8074_pciephy_reset_l),
->> +       .vreg_list              = NULL,
->> +       .num_vregs              = 0,
->> +       .regs                   = pciephy_v4_regs_layout,
+> +
+>      unevaluatedProperties: false
+>  
+>      dependencies:
+>        nand-ecc-strength: [nand-ecc-step-size]
+>        nand-ecc-step-size: [nand-ecc-strength]
+> +      amlogic,boot-pages: [nand-is-boot-medium, "amlogic,boot-page-step"]
+> +      amlogic,boot-page-step: [nand-is-boot-medium, "amlogic,boot-pages"]
+>  
+>  
+>  required:
+> -- 
+> 2.35.0
 > 
-> So, is it v4 or v5?
-
-Please give me a day or so to go over my notes and give you a more 
-coherent explanation of why this versioning was chosen. I am only 
-working from the QCA 5.4 downstream sources. I don't have any 
-documentation for the silicon
-
-Alex
-> 
->> +
->> +       .pwrdn_ctrl             = SW_PWRDN | REFCLK_DRV_DSBL,
->> +       .phy_status             = PHYSTATUS,
->> +};
->> +
->>   static const struct qmp_phy_cfg sm8250_qmp_gen3x2_pciephy_cfg = {
->>          .lanes                  = 2,
->>
-> 
-> 
-> 
-> --
-> With best wishes
-> Dmitry
 
