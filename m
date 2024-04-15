@@ -1,48 +1,57 @@
-Return-Path: <devicetree+bounces-59479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A9288A58F5
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 19:17:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8DD28A5913
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 19:25:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 25A311F216AE
-	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 17:17:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88CF21F21BC9
+	for <lists+devicetree@lfdr.de>; Mon, 15 Apr 2024 17:25:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9251B82D93;
-	Mon, 15 Apr 2024 17:17:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09B1283A10;
+	Mon, 15 Apr 2024 17:25:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="s6rN87AU"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b="x9ISdxzx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-108-mta107.mxroute.com (mail-108-mta107.mxroute.com [136.175.108.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D6AE82862;
-	Mon, 15 Apr 2024 17:17:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7727C82C6C
+	for <devicetree@vger.kernel.org>; Mon, 15 Apr 2024 17:25:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=136.175.108.107
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713201428; cv=none; b=UCa0qmxxfbAz1Lf1K4fe1QtW6sIF5p+f9KPAKV1aoSyPeNtH2hiSCYwLqqri0slQ8kocnTqu+kSfPJ5mLNCeEPDUMVVffYSV9yiXYA1g3NIjELOkYj1miR13ZwEZyXoukAuVodXLbHut60rBx7oOYl8VMHJYUG6k1a/Eq8UZs2g=
+	t=1713201937; cv=none; b=Z62llxZr7FBQ4OLu8i9XYAmjWUg/wrDK/bAiV8veg2MJlwi9u38ieME+5WMrfVA2n0HkP0Z1MkBYlZsS4Z10uwUOa80lmbw3R0PwtLvnTMDtg6TfZIT/2H7IaXFCN0+KSVX6I1XVakjXkmidcWEdcaJf+JcjjjSpEdx01loHWkw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713201428; c=relaxed/simple;
-	bh=4BkJwkl/uYopsa8E8PWG5WHDYPiwLD4WoLbgqd2ThUE=;
+	s=arc-20240116; t=1713201937; c=relaxed/simple;
+	bh=jReH0gjQfi3jqUjUN7a8QPlR9o04IUhbNwjdpet1ZNs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MSohESmTnWXlVa2dSXaATVM94zbQSVQ65DgYYxIj4hKlyMV0HO+SmyV0IbPK75j+n43qyPn+cEDO0rR+ilzLrHsQ4kLyFDNz1xIahQHYXBXwU+zWCQ41qmPAoz+egCZ6qZ43lA8dSBcGjbSYrnbj49tM0CSkzvv//w6Gs3oOHp0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=s6rN87AU; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-154-34-181.elisa-laajakaista.fi [91.154.34.181])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 37CE65B2;
-	Mon, 15 Apr 2024 19:16:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1713201379;
-	bh=4BkJwkl/uYopsa8E8PWG5WHDYPiwLD4WoLbgqd2ThUE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=s6rN87AUn6cOji1XlKyMu6z9FpL2GzwtHGjJAYNKjOrvT335v8CJWrvu1T+SFZi7m
-	 kEygJwSj86PXuHYxDsWmoh8QlzwbeIW6eQc9APQH1C5Tlnt6Vz1+D+UgjZZaZbWwDI
-	 yNQPHBEK4g+Q/9xNCd367QWjAh9V7mHrqNUbaZ8E=
-Message-ID: <d4cd0323-4792-49b0-a4e2-0bc92068e7f0@ideasonboard.com>
-Date: Mon, 15 Apr 2024 20:17:00 +0300
+	 In-Reply-To:Content-Type; b=R7tEr7i7fPaxyAy1H9By+GpVfDLQifZzOhaGM6+QVkH2HncGewDEqUDlJgGtHPc9ByhFRKp2JcA4UXwSG9tvsw+AiI9vS5CvntOX/MTNB35jmgAtyCcXQIGVCmPuQppSSpfAVU4pCIZp5CvDGbxXkMKi/rgmQ25jafEqf6mqNQE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com; spf=pass smtp.mailfrom=luigi311.com; dkim=pass (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b=x9ISdxzx; arc=none smtp.client-ip=136.175.108.107
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=luigi311.com
+Received: from filter006.mxroute.com ([136.175.111.2] filter006.mxroute.com)
+ (Authenticated sender: mN4UYu2MZsgR)
+ by mail-108-mta107.mxroute.com (ZoneMTA) with ESMTPSA id 18ee2c62c560003bea.00f
+ for <devicetree@vger.kernel.org>
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+ Mon, 15 Apr 2024 17:20:22 +0000
+X-Zone-Loop: 3277bb003e004f089ab41c8c849d4e4eb67236c458aa
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=luigi311.com; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+	From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=MrkMLSqeYoxQaLeqLd7FGAd8dfapbsuwWEhhKVbCiyA=; b=x9ISdxzxA+VX+pUaAb/YyVrN/I
+	PDRGE29wQIOTE4K0H9J0GqjrLk/wRi31jdEDUQsg+HwMd1lyJellzwJcF8/XwL8bLZPdC5/1i32qO
+	NlixLlqM//ltkxCajb0JKF7O7AXA93omkAY7xvFPsKwKLNbAeHMfEP9hrJw9aKNgZcLE7kgkpROnp
+	uXyZat782B9Rj6/G2O3iNfov6CVEuoba6rnvdF1lhWVLGM0/8bMX7wjhPsQtOalQTaXWvpF37+Pt2
+	qDwwVJR40Dy8V7TTpk+37fMwcFuSBHFaFHyxba61QpeJmSS1vKxe0NofMMnKRbaHt2bPOWGOj4JhU
+	5j7sZWBA==;
+Message-ID: <6c87d95a-817e-4ead-bff1-89e6639103e0@luigi311.com>
+Date: Mon, 15 Apr 2024 11:20:17 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,219 +59,42 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 2/2] pmdomain: ti-sci: Support retaining PD boot time
- state
-To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
- Santosh Shilimkar <ssantosh@kernel.org>, Dave Gerlach <d-gerlach@ti.com>,
- J Keerthy <j-keerthy@ti.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Santosh Shilimkar <santosh.shilimkar@oracle.com>,
- linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Devarsh Thakkar <devarsht@ti.com>
-References: <20240415-ti-sci-pd-v1-0-a0e56b8ad897@ideasonboard.com>
- <20240415-ti-sci-pd-v1-2-a0e56b8ad897@ideasonboard.com>
+Subject: Re: [PATCH v3 22/25] dt-bindings: media: imx258: Add binding for
+ powerdown-gpio
+To: Pavel Machek <pavel@ucw.cz>
+Cc: linux-media@vger.kernel.org, dave.stevenson@raspberrypi.com,
+ jacopo.mondi@ideasonboard.com, mchehab@kernel.org, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org,
+ s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+ sakari.ailus@linux.intel.com, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+ Ondrej Jirman <megi@xff.cz>
+References: <20240403150355.189229-1-git@luigi311.com>
+ <20240403150355.189229-23-git@luigi311.com> <Zg2kn5/5T9ukP4nd@duo.ucw.cz>
 Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- xsFNBE6ms0cBEACyizowecZqXfMZtnBniOieTuFdErHAUyxVgtmr0f5ZfIi9Z4l+uUN4Zdw2
- wCEZjx3o0Z34diXBaMRJ3rAk9yB90UJAnLtb8A97Oq64DskLF81GCYB2P1i0qrG7UjpASgCA
- Ru0lVvxsWyIwSfoYoLrazbT1wkWRs8YBkkXQFfL7Mn3ZMoGPcpfwYH9O7bV1NslbmyJzRCMO
- eYV258gjCcwYlrkyIratlHCek4GrwV8Z9NQcjD5iLzrONjfafrWPwj6yn2RlL0mQEwt1lOvn
- LnI7QRtB3zxA3yB+FLsT1hx0va6xCHpX3QO2gBsyHCyVafFMrg3c/7IIWkDLngJxFgz6DLiA
- G4ld1QK/jsYqfP2GIMH1mFdjY+iagG4DqOsjip479HCWAptpNxSOCL6z3qxCU8MCz8iNOtZk
- DYXQWVscM5qgYSn+fmMM2qN+eoWlnCGVURZZLDjg387S2E1jT/dNTOsM/IqQj+ZROUZuRcF7
- 0RTtuU5q1HnbRNwy+23xeoSGuwmLQ2UsUk7Q5CnrjYfiPo3wHze8avK95JBoSd+WIRmV3uoO
- rXCoYOIRlDhg9XJTrbnQ3Ot5zOa0Y9c4IpyAlut6mDtxtKXr4+8OzjSVFww7tIwadTK3wDQv
- Bus4jxHjS6dz1g2ypT65qnHen6mUUH63lhzewqO9peAHJ0SLrQARAQABzTBUb21pIFZhbGtl
- aW5lbiA8dG9taS52YWxrZWluZW5AaWRlYXNvbmJvYXJkLmNvbT7CwY4EEwEIADgWIQTEOAw+
- ll79gQef86f6PaqMvJYe9QUCX/HruAIbAwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgAAKCRD6
- PaqMvJYe9WmFD/99NGoD5lBJhlFDHMZvO+Op8vCwnIRZdTsyrtGl72rVh9xRfcSgYPZUvBuT
- VDxE53mY9HaZyu1eGMccYRBaTLJSfCXl/g317CrMNdY0k40b9YeIX10feiRYEWoDIPQ3tMmA
- 0nHDygzcnuPiPT68JYZ6tUOvAt7r6OX/litM+m2/E9mtp8xCoWOo/kYO4mOAIoMNvLB8vufi
- uBB4e/AvAjtny4ScuNV5c5q8MkfNIiOyag9QCiQ/JfoAqzXRjVb4VZG72AKaElwipiKCWEcU
- R4+Bu5Qbaxj7Cd36M/bI54OrbWWETJkVVSV1i0tghCd6HHyquTdFl7wYcz6cL1hn/6byVnD+
- sR3BLvSBHYp8WSwv0TCuf6tLiNgHAO1hWiQ1pOoXyMEsxZlgPXT+wb4dbNVunckwqFjGxRbl
- Rz7apFT/ZRwbazEzEzNyrBOfB55xdipG/2+SmFn0oMFqFOBEszXLQVslh64lI0CMJm2OYYe3
- PxHqYaztyeXsx13Bfnq9+bUynAQ4uW1P5DJ3OIRZWKmbQd/Me3Fq6TU57LsvwRgE0Le9PFQs
- dcP2071rMTpqTUteEgODJS4VDf4lXJfY91u32BJkiqM7/62Cqatcz5UWWHq5xeF03MIUTqdE
- qHWk3RJEoWHWQRzQfcx6Fn2fDAUKhAddvoopfcjAHfpAWJ+ENc7BTQROprNHARAAx0aat8GU
- hsusCLc4MIxOQwidecCTRc9Dz/7U2goUwhw2O5j9TPqLtp57VITmHILnvZf6q3QAho2QMQyE
- DDvHubrdtEoqaaSKxKkFie1uhWNNvXPhwkKLYieyL9m2JdU+b88HaDnpzdyTTR4uH7wk0bBa
- KbTSgIFDDe5lXInypewPO30TmYNkFSexnnM3n1PBCqiJXsJahE4ZQ+WnV5FbPUj8T2zXS2xk
- 0LZ0+DwKmZ0ZDovvdEWRWrz3UzJ8DLHb7blPpGhmqj3ANXQXC7mb9qJ6J/VSl61GbxIO2Dwb
- xPNkHk8fwnxlUBCOyBti/uD2uSTgKHNdabhVm2dgFNVuS1y3bBHbI/qjC3J7rWE0WiaHWEqy
- UVPk8rsph4rqITsj2RiY70vEW0SKePrChvET7D8P1UPqmveBNNtSS7In+DdZ5kUqLV7rJnM9
- /4cwy+uZUt8cuCZlcA5u8IsBCNJudxEqBG10GHg1B6h1RZIz9Q9XfiBdaqa5+CjyFs8ua01c
- 9HmyfkuhXG2OLjfQuK+Ygd56mV3lq0aFdwbaX16DG22c6flkkBSjyWXYepFtHz9KsBS0DaZb
- 4IkLmZwEXpZcIOQjQ71fqlpiXkXSIaQ6YMEs8WjBbpP81h7QxWIfWtp+VnwNGc6nq5IQDESH
- mvQcsFS7d3eGVI6eyjCFdcAO8eMAEQEAAcLBXwQYAQIACQUCTqazRwIbDAAKCRD6PaqMvJYe
- 9fA7EACS6exUedsBKmt4pT7nqXBcRsqm6YzT6DeCM8PWMTeaVGHiR4TnNFiT3otD5UpYQI7S
- suYxoTdHrrrBzdlKe5rUWpzoZkVK6p0s9OIvGzLT0lrb0HC9iNDWT3JgpYDnk4Z2mFi6tTbq
- xKMtpVFRA6FjviGDRsfkfoURZI51nf2RSAk/A8BEDDZ7lgJHskYoklSpwyrXhkp9FHGMaYII
- m9EKuUTX9JPDG2FTthCBrdsgWYPdJQvM+zscq09vFMQ9Fykbx5N8z/oFEUy3ACyPqW2oyfvU
- CH5WDpWBG0s5BALp1gBJPytIAd/pY/5ZdNoi0Cx3+Z7jaBFEyYJdWy1hGddpkgnMjyOfLI7B
- CFrdecTZbR5upjNSDvQ7RG85SnpYJTIin+SAUazAeA2nS6gTZzumgtdw8XmVXZwdBfF+ICof
- 92UkbYcYNbzWO/GHgsNT1WnM4sa9lwCSWH8Fw1o/3bX1VVPEsnESOfxkNdu+gAF5S6+I6n3a
- ueeIlwJl5CpT5l8RpoZXEOVtXYn8zzOJ7oGZYINRV9Pf8qKGLf3Dft7zKBP832I3PQjeok7F
- yjt+9S+KgSFSHP3Pa4E7lsSdWhSlHYNdG/czhoUkSCN09C0rEK93wxACx3vtxPLjXu6RptBw
- 3dRq7n+mQChEB1am0BueV1JZaBboIL0AGlSJkm23kw==
-In-Reply-To: <20240415-ti-sci-pd-v1-2-a0e56b8ad897@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Luis Garcia <git@luigi311.com>
+In-Reply-To: <Zg2kn5/5T9ukP4nd@duo.ucw.cz>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Authenticated-Id: git@luigi311.com
 
-On 15/04/2024 19:00, Tomi Valkeinen wrote:
-> Add a new flag, TI_SCI_PD_KEEP_BOOT_STATE, which can be set in the dts
-> when referring to power domains. When this flag is set, the ti-sci
-> driver will check if the PD is currently enabled in the HW, and if so,
-> set the GENPD_FLAG_ALWAYS_ON flag so that the PD will stay enabled.
+On 4/3/24 12:49, Pavel Machek wrote:
+> Hi!
 > 
-> The main issue I'm trying to solve here is this:
+>> From: Luis Garcia <git@luigi311.com>
+>>
+>> Add powerdown-gpio binding as it is required for some boards
 > 
-> If the Display Subsystem (DSS) has been enabled by the bootloader, the
-> related PD has also been enabled in the HW. When the tidss driver
-> probes, the driver framework will automatically enable the PD. While
-> executing the probe function it is very common for the probe to return
-> EPROBE_DEFER, and, in rarer cases, an actual error. When this happens
-> (probe() returns an error), the driver framework will automatically
-> disable the related PD.
+> "." at end of sentence.
 > 
-> Powering off the PD while the DSS is enabled and displaying a picture
-> will cause the DSS HW to enter a bad state, from which (afaik) it can't
-> be woken up except with full power-cycle. Trying to access the DSS in
-> this state (e.g. when retrying the probe) will usually cause the board
-> to hang sooner or later.
+>> Signed-off-by: Ondrej Jirman <megi@xff.cz>
+>> Signed-off-by: Luis Garcia <git@luigi311.com>
 > 
-> Even if we wouldn't have this board-hangs issue, it's nice to be able to
-> keep the DSS PD enabled: we want to keep the DSS enabled when the
-> bootloader has enabled the screen. If, instead, we disable the PD at the
-> first EPROBE_DEFER, the screen will (probably) go black.
-
-A few things occurred to me. The driver is supposed to clear the 
-GENPD_FLAG_ALWAYS_ON when the driver has probed successfully. There are 
-two possible issues with that:
-
-- Afaics, there's no API to do that, and currently I just clear the bit 
-in genpd->flags. There's a clear race there, so some locking would be 
-required.
-
-- This uses the GENPD_FLAG_ALWAYS_ON flag to say "PD is always on, until 
-the driver has started". If the PD would have GENPD_FLAG_ALWAYS_ON set 
-for other reasons, the driver would still go and clear the flag, which 
-might break things.
-
-Also, unrelated to the above and not a problem in practice at the very 
-moment, but I think clocks should also be dealt with somehow. Something, 
-at early-ish boot stage, should mark the relevant clocks as in use, so 
-that there's no chance they would be turned off when the main kernel has 
-started (the main display driver is often a module).
-
-It would be nice to deal with all the above in a single place. I wonder 
-if the tidss driver itself could somehow be split into two parts, an 
-early part that would probe with minimal dependencies, mainly to reserve 
-the core resources without doing any kind of DRM init. And a main part 
-which would (somehow) finish the initialization at a later point, when 
-we have the filesystem (for firmware) and the other bridge/panel drivers 
-have probed.
-
-That can be somewhat achieved with simplefb or simpledrm, though, but we 
-can't do any TI DSS specific things there, and it also creates a 
-requirement to have either of those drivers built-in, and the related DT 
-nodes to be added.
-
-  Tomi
-
-> Another option here would perhaps be to change the driver framework
-> (drivers/base/platform.c) which attaches and detaches the PD, and make
-> it somehow optional, allowing the driver the manage the PD. That option
-> has two downsides: 1) the driver _has_ to manage the PD, which would
-> rule out the use of simplefb and simpledrm, and 2) it would leave the PD
-> in off state from Linux's perspective until a driver enables the PD, and
-> that might mean that the PD gets actually disabled as part of normal
-> system wide power management (disabling unused resources).
+> If the patch is from Ondrej, he should be in From:, I believe.
 > 
-> Yet another option would be to do this outside the ti_sci_pm_domains
-> driver: a piece of code that would somehow be ran after the
-> ti_sci_pm_domains driver has probed (so that we have the PDs), but
-> before tidss/simplefb/simpledrm probes. The problem here is the
-> "somehow" part. Also, this would partly have the same issue 2) as
-> mentioned above.
-> 
-> TODO: If this approach is ok, sci-pm-domain.yaml needs to be extended.
-> Also, it sounds a bit like the cell value is not a bit-mask, so maybe
-> adding TI_SCI_PD_KEEP_BOOT_STATE flag this way is not fine.
-> 
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> ---
->   drivers/pmdomain/ti/ti_sci_pm_domains.c    | 27 +++++++++++++++++++++++++--
->   include/dt-bindings/soc/ti,sci_pm_domain.h |  1 +
->   2 files changed, 26 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/pmdomain/ti/ti_sci_pm_domains.c b/drivers/pmdomain/ti/ti_sci_pm_domains.c
-> index 1510d5ddae3d..b71b390aaa39 100644
-> --- a/drivers/pmdomain/ti/ti_sci_pm_domains.c
-> +++ b/drivers/pmdomain/ti/ti_sci_pm_domains.c
-> @@ -103,7 +103,7 @@ static struct generic_pm_domain *ti_sci_pd_xlate(
->   		return ERR_PTR(-ENOENT);
->   
->   	genpd_to_ti_sci_pd(genpd_data->domains[idx])->exclusive =
-> -		genpdspec->args[1];
-> +		genpdspec->args[1] & TI_SCI_PD_EXCLUSIVE;
->   
->   	return genpd_data->domains[idx];
->   }
-> @@ -161,6 +161,8 @@ static int ti_sci_pm_domain_probe(struct platform_device *pdev)
->   				break;
->   
->   			if (args.args_count >= 1 && args.np == dev->of_node) {
-> +				bool is_on = false;
-> +
->   				if (args.args[0] > max_id) {
->   					max_id = args.args[0];
->   				} else {
-> @@ -189,7 +191,28 @@ static int ti_sci_pm_domain_probe(struct platform_device *pdev)
->   				pd->idx = args.args[0];
->   				pd->parent = pd_provider;
->   
-> -				pm_genpd_init(&pd->pd, NULL, true);
-> +				/*
-> +				 * If TI_SCI_PD_KEEP_BOOT_STATE is set and the
-> +				 * PD has been enabled by the bootloader, set
-> +				 * the PD to GENPD_FLAG_ALWAYS_ON. This will
-> +				 * make sure the PD stays enabled until a driver
-> +				 * takes over and clears the GENPD_FLAG_ALWAYS_ON
-> +				 * flag.
-> +				 */
-> +				if (args.args_count > 1 &&
-> +				    args.args[1] & TI_SCI_PD_KEEP_BOOT_STATE) {
-> +					/*
-> +					 * We ignore any error here, and in case
-> +					 * of error just assume the PD is off.
-> +					 */
-> +					pd_provider->ti_sci->ops.dev_ops.is_on(pd_provider->ti_sci,
-> +						pd->idx, NULL, &is_on);
-> +
-> +					if (is_on)
-> +						pd->pd.flags |= GENPD_FLAG_ALWAYS_ON;
-> +				}
-> +
-> +				pm_genpd_init(&pd->pd, NULL, !is_on);
->   
->   				list_add(&pd->node, &pd_provider->pd_list);
->   			}
-> diff --git a/include/dt-bindings/soc/ti,sci_pm_domain.h b/include/dt-bindings/soc/ti,sci_pm_domain.h
-> index 8f2a7360b65e..af610208e3a3 100644
-> --- a/include/dt-bindings/soc/ti,sci_pm_domain.h
-> +++ b/include/dt-bindings/soc/ti,sci_pm_domain.h
-> @@ -3,6 +3,7 @@
->   #ifndef __DT_BINDINGS_TI_SCI_PM_DOMAIN_H
->   #define __DT_BINDINGS_TI_SCI_PM_DOMAIN_H
->   
-> +#define TI_SCI_PD_KEEP_BOOT_STATE 2
->   #define TI_SCI_PD_EXCLUSIVE	1
->   #define TI_SCI_PD_SHARED	0
->   
-> 
+> Best regards,
+> 							Pavel
 
+Forgot to change the from in v4 but should be in v5
 
