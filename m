@@ -1,55 +1,48 @@
-Return-Path: <devicetree+bounces-59644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D5918A657B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 09:55:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 280978A65AA
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 10:05:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DDC821F21EC0
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 07:55:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D945628493B
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 08:05:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9FAE84FA9;
-	Tue, 16 Apr 2024 07:55:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B915130482;
+	Tue, 16 Apr 2024 08:05:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ndXtNV3h"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="HWK+CtFd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D5267FBBA;
-	Tue, 16 Apr 2024 07:55:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64B296F066
+	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 08:05:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713254127; cv=none; b=karfiswCWIucZOimuSRS36iFdiPgR21q/mGA9lb3LJywpzOyUB2hvTgsn8ykMZSl6UDMZTkV5mdFO59tSTLwhXaIuYvaoeDWF06fot9iiNyWNRPLBvGnM69iumeskf9sFM+vvFAE4OSeGEip6aF5xoQ75EW2H263wBbG5Pv9zV0=
+	t=1713254726; cv=none; b=BXjSjtsD1q1Jt/+1OS/5a/dlpUOmHW/hgC56AEjzQZdAEaEs7/Tm7yRIR1CpI5/YFHt+hAKxokzsyyI4LNDjaBnGNIOiqycU7H6kEaYDecAr3XXDDO+/dvcqtINZJ9y0zcCKlckmjGABJsxAE5GwxUDHqH9BTxaoKDXdenZ1cDI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713254127; c=relaxed/simple;
-	bh=/N51T8HnLQj9KU4DpUIGD0F8mipJ+bMfeUuzlyssn4Q=;
+	s=arc-20240116; t=1713254726; c=relaxed/simple;
+	bh=jmOu2PsQhNoTt9z6LN3rQcp77Qspy3rBNUwBSbFMvxI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kc6qQ/LI6G9IJEkqq1sN1EUfQNSr4g+N1mqzyEmnd5JhAuw57jRjwSycZAOqC7w20hg4rYmj/AZaRVu9z6nUDR6Ybob6k3ZhS39b9LrWk9Zcrr8cKeSq1Bk8EDfNvWGjESw5d5CgWJflHbxBA6G7GeBltt51MAamEUi9h+VupkE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ndXtNV3h; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1713254119;
-	bh=/N51T8HnLQj9KU4DpUIGD0F8mipJ+bMfeUuzlyssn4Q=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ndXtNV3hcFpkcNYJo8JuG7v+O3l6lDGNurA3lFy6h2pDZZGy9mMH3RXI7tSDsSIoj
-	 tf1QBfxFe2Mn0z9lpqVd8FGPlQRwoosatdNvPrBeSuv00uqnC5Gh6FZrn2Gtm/GakO
-	 idCukbxDYZrkjXV6mPP68/W6HO5+IwyITWJop/zr8XtkX82mWjBIWazunwNrfln70x
-	 o/UV/Qb6phNaxfZVtlYpsh21k0glAS8aO1MjzFDKMcxpRgnwfPmFykO8GgQ2YJvvTt
-	 4KJS4xnwBWGnKM37nTdEFYVoGo1F6cxlixLcN7vhV9FGQE25OjAVAD4luS1nHCFjkd
-	 /u/9FsyQeCQzw==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 225CB37804B2;
-	Tue, 16 Apr 2024 07:55:18 +0000 (UTC)
-Message-ID: <4d60e9e4-9eae-4b0a-abb2-b1ad3d278fc9@collabora.com>
-Date: Tue, 16 Apr 2024 09:55:17 +0200
+	 In-Reply-To:Content-Type; b=pCUs7CVB2DPMSBDIJibL9mtBNO3YVpcwptTRjzHae5hXZyX19UQdWHKLvIED80pbRTazE3Lsor7cgNGOPbAlKKZfPtSgZ8pS8szPdU5/rVAfLSrzpzulD49nfT9WhCb1uchsLOvFOJI7fEFp+f3oxgz4h+SSLwes8zARsPR4GYY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=HWK+CtFd; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1713254714;
+ bh=9v28hOIUE9GkM0a76qA4AwgtWDjyV1OaSvUjBLLAPY8=;
+ b=HWK+CtFdqlfcCh0mmfXdyKbDIxtifX9DA2Yz5T+Gtbu9xskeu/1MKoki1WMnCWovx89Vt4HDm
+ wJcO+eEraJWf65BgmA+UAqFk16FkoQpAgMRIQ3CNrH/waHhO9vmO1deULXy7FLvBCnkxMCn/sFK
+ KvXQn0su+k89Y9o+Rf6egTtIwREkdfRsCp7QvOjO0qyiKHlb5G4fxUaRZb+f52APvzs3e/Ob9On
+ wrorhEaE7dKDxBlB/oW354NUEIFhE11JDrhzPQcM3Zq5zrvOrZcZevy55MyMYww3UMG85+iZCxG
+ L/quX65XN8qTqznAw9W5c2StwlhAWjjY7z8+WLT8sLLw==
+Message-ID: <f5a9e7c0-1d8c-462b-bf7a-d6aa73f63afa@kwiboo.se>
+Date: Tue, 16 Apr 2024 10:05:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,208 +50,111 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/8] scsi: ufs: ufs-mediatek: Remove useless
- mediatek,ufs-boost-crypt property
-To: =?UTF-8?B?UGV0ZXIgV2FuZyAo546L5L+h5Y+LKQ==?= <peter.wang@mediatek.com>,
- "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "jejb@linux.ibm.com" <jejb@linux.ibm.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "avri.altman@wdc.com" <avri.altman@wdc.com>,
- "bvanassche@acm.org" <bvanassche@acm.org>,
- "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
- "broonie@kernel.org" <broonie@kernel.org>,
- "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>,
- "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
-References: <20240415110012.148871-1-angelogioacchino.delregno@collabora.com>
- <20240415110012.148871-4-angelogioacchino.delregno@collabora.com>
- <c9634a286fbdb4c98a7fe6703a4eb10d66dfcb9e.camel@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v3 2/2] arm64: dts: rockchip: Add Radxa ZERO 3W/3E
+To: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240415150349.2207075-1-jonas@kwiboo.se>
+ <20240415150349.2207075-3-jonas@kwiboo.se>
 Content-Language: en-US
-In-Reply-To: <c9634a286fbdb4c98a7fe6703a4eb10d66dfcb9e.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20240415150349.2207075-3-jonas@kwiboo.se>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-ForwardEmail-ID: 661e313a0360d053efe603b4
 
-Il 16/04/24 09:03, Peter Wang (王信友) ha scritto:
-> On Mon, 2024-04-15 at 13:00 +0200, AngeloGioacchino Del Regno wrote:
->> There is no need to have a property that activates the inline crypto
->> boost feature, as this needs many things: a regulator, three clocks,
->> and the mediatek,boost-crypt-microvolt property to be set.
->>
->> If any one of these is missing, the feature won't be activated,
->> hence, it is useless to have yet one more property to enable that.
->>
->> While at it, also address another two issues:
->> 1. Give back the return value to the caller and make sure to fail
->>     probing if we get an -EPROBE_DEFER or -ENOMEM; and
->> 2. Free the ufs_mtk_crypt_cfg structure allocated in the crypto
->>     boost function if said functionality could not be enabled because
->>     it's not supported, as that'd be only wasted memory.
->>
->> Last but not least, move the devm_kzalloc() call for
->> ufs_mtk_crypt_cfg
->> to after getting the dvfsrc-vcore regulator and the boost microvolt
->> property, as if those fail there's no reason to even allocate that.
->>
->> Fixes: ac8c2459091c ("scsi: ufs-mediatek: Decouple features from
->> platform bindings")
->> Signed-off-by: AngeloGioacchino Del Regno <
->> angelogioacchino.delregno@collabora.com>
->> ---
->>   drivers/ufs/host/ufs-mediatek.c | 55 ++++++++++++++++++-------------
->> --
->>   1 file changed, 30 insertions(+), 25 deletions(-)
->>
->> diff --git a/drivers/ufs/host/ufs-mediatek.c b/drivers/ufs/host/ufs-
->> mediatek.c
->> index 688d85909ad6..47f16e6720f4 100644
->> --- a/drivers/ufs/host/ufs-mediatek.c
->> +++ b/drivers/ufs/host/ufs-mediatek.c
->> @@ -575,51 +575,55 @@ static int ufs_mtk_init_host_clk(struct ufs_hba
->> *hba, const char *name,
->>   	return ret;
->>   }
->>   
->> -static void ufs_mtk_init_boost_crypt(struct ufs_hba *hba)
->> +static int ufs_mtk_init_boost_crypt(struct ufs_hba *hba)
->>   {
->>   	struct ufs_mtk_host *host = ufshcd_get_variant(hba);
->>   	struct ufs_mtk_crypt_cfg *cfg;
->>   	struct device *dev = hba->dev;
->>   	struct regulator *reg;
->>   	u32 volt;
->> -
->> -	host->crypt = devm_kzalloc(dev, sizeof(*(host->crypt)),
->> -				   GFP_KERNEL);
->> -	if (!host->crypt)
->> -		goto disable_caps;
->> +	int ret;
->>   
->>   	reg = devm_regulator_get_optional(dev, "dvfsrc-vcore");
->>   	if (IS_ERR(reg)) {
->> -		dev_info(dev, "failed to get dvfsrc-vcore: %ld",
->> -			 PTR_ERR(reg));
->> -		goto disable_caps;
->> +		ret = PTR_ERR(reg);
->> +		if (ret == -EPROBE_DEFER)
->> +			return ret;
->> +
->> +		return 0;
->>   	}
->>   
->> -	if (of_property_read_u32(dev->of_node, "mediatek,boost-crypt-
->> microvolt",
->> -				 &volt)) {
->> +	ret = of_property_read_u32(dev->of_node, "mediatek,boost-crypt-
->> microvolt", &volt);
->> +	if (ret) {
->>   		dev_info(dev, "failed to get mediatek,boost-crypt-
->> microvolt");
->> -		goto disable_caps;
->> +		return 0;
->>   	}
->>   
->> +	host->crypt = devm_kzalloc(dev, sizeof(*host->crypt),
->> GFP_KERNEL);
->> +	if (!host->crypt)
->> +		return -ENOMEM;
->> +
->>
+On 2024-04-15 17:03, Jonas Karlman wrote:
+> The Radxa ZERO 3W/3E is an ultra-small, high-performance single board
+> computer based on the Rockchip RK3566, with a compact form factor and
+> rich interfaces.
 > 
-> Hi Angelo,
+> The ZERO 3W and ZERO 3E are basically the same size and model, but
+> differ only in storage and network interfaces.
 > 
-> If retrun -ENOMEN, host will init fail.
-> But previous is skip boost crypt feature only.
-> It change the driver behavior.
+> - eMMC (3W)
+> - SD-card (both)
+> - Ethernet (3E)
+> - WiFi/BT (3W)
+> 
+> This adds initial support for eMMC, SD-card, Ethernet, HDMI and USB.
+> 
+> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+> ---
+> v2: Add to Makefile
+> v3: Sort hdmi-con and leds nodes alphabetically
+> v3: Sort pmic@20 and regulator@40 nodes by reg
+> v3: Change to regulator-off-in-suspend for vdd_logic
+> 
+> Following issue is reported by dtbs_check and is fixed by patch at [1]:
+> 
+>   hdmi@fe0a0000: Unevaluated properties are not allowed ('#sound-dai-cells' was unexpected)
+>   from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-hdmi.yaml#
+> 
+> [1] https://lore.kernel.org/linux-rockchip/3a035c16-75b5-471d-aa9d-e91c2bb9f8d0@gmail.com/
+> ---
+>  arch/arm64/boot/dts/rockchip/Makefile         |   2 +
+>  .../dts/rockchip/rk3566-radxa-zero-3e.dts     |  41 ++
+>  .../dts/rockchip/rk3566-radxa-zero-3w.dts     |  26 +
+>  .../boot/dts/rockchip/rk3566-radxa-zero3.dtsi | 443 ++++++++++++++++++
+>  4 files changed, 512 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3e.dts
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3w.dts
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-radxa-zero3.dtsi
 > 
 
-This is fully intentional: if a platform supports boost-crypt, this means that the
-feature *MUST* be enabled, and must *not* be disabled if a memory allocation fails,
-as that is relative to available pages at boot, and not to SoC feature support.
+[snip]
 
-Keep in mind that the allocation was moved to *after* checking if such platform
-does indeed support the boost-crypt feature, and it is critical to FAIL probing
-if there was no memory to allocate the host->crypt structure.
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero3.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero3.dtsi
+> new file mode 100644
+> index 000000000000..ea8ade3a4c99
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero3.dtsi
 
-> 
-> 
-> 
->>   	cfg = host->crypt;
->> -	if (ufs_mtk_init_host_clk(hba, "crypt_mux",
->> -				  &cfg->clk_crypt_mux))
->> -		goto disable_caps;
->> +	ret = ufs_mtk_init_host_clk(hba, "crypt_mux", &cfg-
->>> clk_crypt_mux);
->> +	if (ret)
->> +		goto out;
->>   
->> -	if (ufs_mtk_init_host_clk(hba, "crypt_lp",
->> -				  &cfg->clk_crypt_lp))
->> -		goto disable_caps;
->> +	ret = ufs_mtk_init_host_clk(hba, "crypt_lp", &cfg-
->>> clk_crypt_lp);
->> +	if (ret)
->> +		goto out;
->>   
->> -	if (ufs_mtk_init_host_clk(hba, "crypt_perf",
->> -				  &cfg->clk_crypt_perf))
->> -		goto disable_caps;
->> +	ret = ufs_mtk_init_host_clk(hba, "crypt_perf", &cfg-
->>> clk_crypt_perf);
->> +	if (ret)
->> +		goto out;
->>   
->>   	cfg->reg_vcore = reg;
->>   	cfg->vcore_volt = volt;
->>   	host->caps |= UFS_MTK_CAP_BOOST_CRYPT_ENGINE;
->>   
->> -disable_caps:
->> -	return;
->> +out:
->> +	if (ret)
->> +		devm_kfree(dev, host->crypt);
->> +	return 0;
->>   }
->>   
->>   static int ufs_mtk_init_va09_pwr_ctrl(struct ufs_hba *hba)
->> @@ -648,8 +652,9 @@ static int ufs_mtk_init_host_caps(struct ufs_hba
->> *hba)
->>   	struct device_node *np = hba->dev->of_node;
->>   	int ret;
->>   
->> -	if (of_property_read_bool(np, "mediatek,ufs-boost-crypt"))
->> -		ufs_mtk_init_boost_crypt(hba);
->> +	ret = ufs_mtk_init_boost_crypt(hba);
->> +	if (ret)
->> +		return ret;
->>   
-> 
-> Most ufs-mediatek platform dosen't need "mediatek,ufs-boost-crypt"
-> Remove this property will casue most platform try error and add init
-> latency.
-> 
+[snip]
 
-Yes this causes -> less than half of a millisecond <- of additional boot time
-if the dvfsrc-supply is present but boost-microvolt is not.
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +
 
-I really don't see the problem with that :-)
+[snip]
+
+> +	vdd_cpu: regulator@40 {
+> +		compatible = "silergy,syr827";
+
+After checking once more on schematic and inspecting the board this is
+actually a RK860-0 regulator and should use following:
+
+  compatible = "rockchip,rk8600";
+
+Will send a v4 with this change later this week.
 
 Regards,
-Angelo
+Jonas
 
-> Thanks.
-> Peter
-> 
-> 
-> 
->>   	ret = ufs_mtk_init_va09_pwr_ctrl(hba);
->>   	if (ret)
+> +		reg = <0x40>;
+> +		fcs,suspend-voltage-selector = <1>;
+> +		regulator-name = "vdd_cpu";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <712500>;
+> +		regulator-max-microvolt = <1390000>;
+> +		regulator-ramp-delay = <2300>;
+> +		vin-supply = <&vcc_sys>;
+> +
+> +		regulator-state-mem {
+> +			regulator-off-in-suspend;
+> +		};
+> +	};
+> +};
 
+[snip]
 
