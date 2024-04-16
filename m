@@ -1,69 +1,94 @@
-Return-Path: <devicetree+bounces-59653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A4398A6746
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 11:37:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF0478A6769
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 11:50:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C88D128350F
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 09:37:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 71CEFB20EB0
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 09:50:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2C2885C7B;
-	Tue, 16 Apr 2024 09:37:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96A6285C68;
+	Tue, 16 Apr 2024 09:50:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Py+J3tBt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OHNgwoEa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 081498595C;
-	Tue, 16 Apr 2024 09:37:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CC953FE2A;
+	Tue, 16 Apr 2024 09:50:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713260236; cv=none; b=OtjE3W0WG1H12hR76XkzCqngmqPb4l9Kf16yS3Q9jAfTRenQGl5rsGZA/wP3We/MaAEBfdYXuP5cA54s/DOcgdki5M6yQ4qP375njyftOWbA+sw/TUQeQghbTVFos3TFzJ/wSOdjzP6Hg/Z/GfNB2OXd/V8hdHclUEpfj+zRqYQ=
+	t=1713261029; cv=none; b=Ue69jMq65sjrW6nXrvP5tmfE4FlySak2ZXlbShIL2wNvlYqy7Hm9j+g66QfMWJzOfOy6mLI/m6HybD2VWmTyLLZta4bhCYR87//btZyXnnp+tsWNQfhaTPZGjNU2JxsPdNYan/Mn4008biEwkr+6kFLgM/NpIV2KWUX0qaV5C20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713260236; c=relaxed/simple;
-	bh=f9XkjnH89zXY3LmS3xR4VLcpu9vmNtgVXPAVkmkaQAM=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ll2UIf7CCqcSt7SVf4GAAqkYZ/l1gB9RLPKVTJDE3Arl+dlb4nMVRQ4L4dEFRF+5f6vBYCInFvw8whPDVRiR2YZtDRgT6wUdUGOio2nQM3VNE+esR46iI6lm1VUoAmgCGBGurRPlU4DWR7dYz/XIx3GJf37X0ObW3WS3NeLKm24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Py+J3tBt; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43G9axuD067677;
-	Tue, 16 Apr 2024 04:36:59 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1713260219;
-	bh=3+4yCUe856YSCywDQIBGfdnlq8U1G2XXbSOviL1uR8U=;
-	h=From:To:CC:Subject:Date;
-	b=Py+J3tBtJAqOYyIAh11cfHG6ijuWg9u8Os+tG5P/Kw8VmK7J0PMXPlSC56fApD7Ga
-	 iaG1OEwo4IsEgmXZKJEM/dYHY+zezFYXx2e5Er88Aqh4l8WN2BjtKacdASWyNlxKwo
-	 2leJYNktqsmVrwvCJfKKj5chlkxUWD/vy4rtM/Lw=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43G9axH9117964
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 16 Apr 2024 04:36:59 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 16
- Apr 2024 04:36:59 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 16 Apr 2024 04:36:59 -0500
-Received: from udit-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (udit-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [172.24.227.18])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43G9atpJ057522;
-	Tue, 16 Apr 2024 04:36:56 -0500
-From: Udit Kumar <u-kumar1@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <francesco@dolcini.it>
-CC: <kristo@kernel.org>, <conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-        Udit Kumar <u-kumar1@ti.com>
-Subject: [RFC PATCH] arm64: dts: ti: k3-j721s2: Add reserved status in msmc node
-Date: Tue, 16 Apr 2024 15:06:48 +0530
-Message-ID: <20240416093648.3620423-1-u-kumar1@ti.com>
+	s=arc-20240116; t=1713261029; c=relaxed/simple;
+	bh=AmL4OzNOa5RSLZU8EnoXbFMAeiXWA1+x1kMtQF2XERw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=WF+QEyiqa5u1rbp/FxyLtodmH7tMy6xlK67i3w9iSuJ5i9HqyibKycB81oQ+Du7hyFM1PXpUgFaeWRA8Olpsy5izhH/ATH/e5ztp+7z75az9dSrwg82eoYQ3KoQzcc6j7bTaGBb+8hOyp1kVh6ykqlTP5VZYFh4v2kvCedLASlA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OHNgwoEa; arc=none smtp.client-ip=209.85.161.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-5aa17c69cf7so3033026eaf.2;
+        Tue, 16 Apr 2024 02:50:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1713261027; x=1713865827; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AzPu/UiUvA3k3gEc6xFuTsUjWTRQgYweYisjZPbivEY=;
+        b=OHNgwoEavC/a/ubPpkYKWMXIy+mA16+GoURqTW3NbxzrAwg82VUFHdINat9jOemO3P
+         7d9zMKHVNpJNOj/EM0hVkiLSoehb/UCxbhaX9x936QNkK3oU6C4vFU8IBbMsn7IJLVWO
+         kjRmlIZ7c5Gpxg3DMqg/vmTe/EjE376BvpWJTFnYnmGyTGiFmrPB6xoCCQ669n8AyA+Y
+         mXKHWV+9O+J4pt5YJ/6VrdlrTc4HxyiVOyUTB5TUz5s0MnWEUjM+OnKVXyhLhMw4IiHa
+         g9pn3G3+RA6xnGt/DAD+0jPXt1IcXjTQAseMbvoJsY30IPWGKEAUB/hW5Df009m1wL8r
+         CitA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713261027; x=1713865827;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AzPu/UiUvA3k3gEc6xFuTsUjWTRQgYweYisjZPbivEY=;
+        b=P2LrSpVBFnLjjMUvOCywNT98S4WO8Z3DFw5u9uaiFvpm8weMudlMOV6T1VKvFgN0ie
+         U9qoisFgA/5qfQki+BUl/OUmmrGGPOpefC9vMlDQFr0i4kzD2pXbbxHZW0PBigV0bUnk
+         rQsxab1Wdomza2xlTNUjJKc5/QPhVdftuCMEW9egkomgD9fgy6wijgbttRc3JT8Ptlhh
+         opX6HJR3KmckxzHaCS7GNCdrYl0Z6ppswM8X33w367R/E+dBvG2lpPappfcnMRcT/IRq
+         iZiT3kvm1sbGxDka4s9pofMFvQKrwOJJ+AGV4YIRTPpMQr7i4vncqBacrIMcY8LLj48x
+         3rwg==
+X-Forwarded-Encrypted: i=1; AJvYcCX04335TyQ8duxuOS0wjAB+Zs60xLMc8tbgQToBgSH0QaKHyvxmijpmtEICZ2dTsN9ObtjzED054k1btOUKa8wWGBR6f/QX+bEwYmwcp6A5FJKEBbjVYsFsofaJHWnAQSUhYIwOJvheN5tFXppV/E9B9cRVZW8VOHgv+DI6eAX2WrI6Xg==
+X-Gm-Message-State: AOJu0YzoEUS2pbUPWGADK0dGhNpc6ezn9NfU5esdcwrTz4Wv8Y4pfWm+
+	WGDYs7uXEp9Z/nkxgj5+CsF74S1KBnBDDFRmRdRgC2nyPKYjh3oC
+X-Google-Smtp-Source: AGHT+IFnGRfaqTMKMw+sqVlviPGyiJjLh5HEIewQkEWrBktvio2oxeHymaib3oW5wQ8ddqOkyMzKGA==
+X-Received: by 2002:a4a:1a85:0:b0:5ac:9e85:59d8 with SMTP id 127-20020a4a1a85000000b005ac9e8559d8mr5605165oof.1.1713261027313;
+        Tue, 16 Apr 2024 02:50:27 -0700 (PDT)
+Received: from localhost.localdomain ([122.8.183.87])
+        by smtp.gmail.com with ESMTPSA id by27-20020a056820201b00b005aa4e48efc3sm2460056oob.37.2024.04.16.02.50.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Apr 2024 02:50:26 -0700 (PDT)
+From: Chen Wang <unicornxw@gmail.com>
+To: adrian.hunter@intel.com,
+	aou@eecs.berkeley.edu,
+	conor+dt@kernel.org,
+	guoren@kernel.org,
+	inochiama@outlook.com,
+	jszhang@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	palmer@dabbelt.com,
+	paul.walmsley@sifive.com,
+	robh@kernel.org,
+	ulf.hansson@linaro.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	chao.wei@sophgo.com,
+	haijiao.liu@sophgo.com,
+	xiaoguang.xing@sophgo.com,
+	tingzhu.wang@sophgo.com
+Cc: Chen Wang <unicorn_wang@outlook.com>
+Subject: [PATCH 0/3] mmc: sdhci-of-dwcmshc: support Sophgo SG2042
+Date: Tue, 16 Apr 2024 17:50:17 +0800
+Message-Id: <cover.1713258948.git.unicorn_wang@outlook.com>
 X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -72,67 +97,39 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-TI K3 SOCs have msmc sram, part of it can be configured as L3 cache
-depending upon system firmware configuration file.
+From: Chen Wang <unicorn_wang@outlook.com>
 
-MSMC memory typically host four tenants atf, system firmware (tifs),
-l3 cache and as sram.
+Add support for the mmc controller for Sophgo SG2042.
+Adding corresponding new compatible strings, and implement
+custom sdhci_ops.
 
-Allocation done for atf, tifs and l3-cache is not accessible in address
-space of OS.
-Therefore u-boot deletes sysfw and l3cache node before passing DT to OS[0].
-But keeping tifs (system firmware) subnode as is.
+This patchset is based on v6.9-rc1 and depends on following pathsets:
 
-Since TIFS node is not also accessible to OS, I need suggestion for
-selection of right option.
+- [PATCH 0/1] mmc: sdhci-of-dwcmshc: enhance framework [1]
+- [PATCH v14 0/5] riscv: sophgo: add clock support for sg2042 [2]
+- [PATCH v1] mmc: sdhci-of-dwcmshc: th1520: Increase tuning loop count to 128 [3]
 
-In my view we can handle in two ways
 
-1) delete tifs node as well
-In this case, only accessible sram will be visible to OS[1]
+Link: https://lore.kernel.org/linux-kernel/cover.1713257181.git.unicorn_wang@outlook.com/ [1]
+Link: https://lore.kernel.org/linux-riscv/cover.1713164546.git.unicorn_wang@outlook.com/ [2]
+Link: https://lore.kernel.org/all/20240402093539.184287-1-bigunclemax@gmail.com/ [3]
 
-2) make these nodes (tifs, atf and l3cache) as reserved,
-so that OS has complete view of memory.
 
-This is patch for option 2 to mark atf, l3-cache and tifs as
-reserved.
-
-Also other options are welcome.
-
-[0]: https://github.com/u-boot/u-boot/blob/master/arch/arm/mach-k3/common_fdt.c#L67
-[1]: https://lore.kernel.org/all/20230420081128.3617214-1-u-kumar1@ti.com/
-
-Signed-off-by: Udit Kumar <u-kumar1@ti.com>
 ---
- arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-index 3cb06a7e4117..f64c8b0780d8 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-@@ -25,14 +25,17 @@ msmc_ram: sram@70000000 {
- 		ranges = <0x0 0x0 0x70000000 0x400000>;
- 
- 		atf-sram@0 {
-+			status = "reserved";
- 			reg = <0x0 0x20000>;
- 		};
- 
- 		tifs-sram@1f0000 {
-+			status = "reserved";
- 			reg = <0x1f0000 0x10000>;
- 		};
- 
- 		l3cache-sram@200000 {
-+			status = "reserved";
- 			reg = <0x200000 0x200000>;
- 		};
- 	};
+Chen Wang (3):
+  dt-bindings: mmc: sdhci-of-dwcmhsc: Add Sophgo SG2042 support
+  mmc: sdhci-of-dwcmshc: Add support for Sophgo SG2042
+  riscv: dts: add mmc controllers for Sophgo SG2042 SoC
+
+ .../bindings/mmc/snps,dwcmshc-sdhci.yaml      |  67 +++++--
+ .../boot/dts/sophgo/sg2042-milkv-pioneer.dts  |  15 ++
+ arch/riscv/boot/dts/sophgo/sg2042.dtsi        |  32 ++++
+ drivers/mmc/host/sdhci-of-dwcmshc.c           | 173 +++++++++++++++++-
+ 4 files changed, 264 insertions(+), 23 deletions(-)
+
 -- 
-2.34.1
+2.25.1
 
 
