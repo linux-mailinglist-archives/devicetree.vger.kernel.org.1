@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-59858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1C308A745E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 21:08:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7AE18A7460
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 21:08:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9DCC928219F
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 19:08:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 150401C2161A
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 19:08:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 930B013791E;
-	Tue, 16 Apr 2024 19:08:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13E06137C23;
+	Tue, 16 Apr 2024 19:08:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="uG15JyPb"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="LSXatYpj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5567E134CE0;
-	Tue, 16 Apr 2024 19:08:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6221137769;
+	Tue, 16 Apr 2024 19:08:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713294492; cv=none; b=pvI3WK78I85WO4CSA6tXAAxxvl1BnPwpCL7LSmanjoEuoLYGgHjfe/YqpKay/XKsZ93hOmzyQyn1coIo0cv9qKud5/Qpliq4tvJfg8KqqZNC20DwQlN6WRtGQtvUdSpIpv4xL/xNITO7TD5XUJfayNGXCmIaFN9zHX6qGJpEt9Q=
+	t=1713294494; cv=none; b=uHW+ZpgXE3WU401T4Xh9qf4FtvxGJ5ZAbOPPg02Pim50uPFv9pwZLMXKnqASbjoxdNDxWIb+UuEa1RNukzakICzW/FPFcxnaSE191w6+DNGzAcTAtURwvaizVrPtiVytTJGq382Iq2QKswlVMb/3x+3v93XbQ7BArU+gVO4dxJ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713294492; c=relaxed/simple;
-	bh=ONM7js0UsEioCIsIWdDlgL8nKp4nm4tHUrOq1i26068=;
+	s=arc-20240116; t=1713294494; c=relaxed/simple;
+	bh=PEe85yDrpJfP9064T54tsddkdL+XKVlLAq1PSTbFBu0=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=m/aNsP2VmOYYdPZJ83RLkcooaBFGwxEpJw15BhhuU36gMnJ7LFgbl1VV4H9PrndkAV/iLnzgI4JfwycoMWaiuGp9B8sYZHv0wzKpIXnNVA5LRtfFHfLE4/Afyh3oLMf9+tcKzkXEuGHdfPUnGXPeKdXq2yDMWfPF4HijF5kzZM8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=uG15JyPb; arc=none smtp.client-ip=212.227.15.15
+	 MIME-Version; b=jwo8bEJWK4GMscKXWS0HxRwmXNr/avff09gbZYcJ1pc4WDnL0nX6JmC/wvvmkRaBNYfYNZCZwPaIO4dbuJVYcp+79DPHFSo2R03ljQR11B0VTZRRUQ4P366ymyXfsFvuLpi9+fb7PILvKxYqlMqshfa27NY7Rf2a9aMPjE1nszE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=LSXatYpj; arc=none smtp.client-ip=212.227.15.15
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1713294452; x=1713899252; i=wahrenst@gmx.net;
-	bh=jC8r4y3AfFoQsNDpNzSnkUGCOZhI0Day5D2F4Gf5Xro=;
+	s=s31663417; t=1713294453; x=1713899253; i=wahrenst@gmx.net;
+	bh=6eNTH1NR9UJkd8glrTCGvxeQETtqM7WHOX7C0LGv91Q=;
 	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-Id:In-Reply-To:
 	 References:MIME-Version:Content-Transfer-Encoding:cc:
 	 content-transfer-encoding:content-type:date:from:message-id:
 	 mime-version:reply-to:subject:to;
-	b=uG15JyPb2SSJ0rlfpyUUv+bl3ri23T8NR2BXgAYJ6U3jUNeEzvw/5vgU7HNuRbrK
-	 cJEZmAZvWKjutxQLJ1ZFBqMfUyzoyChHMqXMpCiMPsGgFxArP3VQgoU8d/29hUIM3
-	 hNNl2a+QB1AvJ4mz/K+YCuQrJT7GMCWN8FvuvLkWhJopXrXE9/3fXa67h+4kEDbor
-	 bv0psWEs89Fkjm4DpRz9W18Ca0PGAVlr43oANL81N8YnDZoxMqEt3xoiighlcPvVx
-	 11y/Oho1np3hjl9JWUPh4Z4keMQJ1ojgAX+jjj8VBgexf9bLfgis4qXqBChggA5Bl
-	 Y8xk6jt5spNXEJX82A==
+	b=LSXatYpj0X41WdiiI8nWaFNPmv8so47bbX07gS+1IKSLkpPkPSgUJE2nNLEwJ1z4
+	 cGVwz4MN5NF01hBVx1DqwxhtiW4QmsiT3UD4L6T1xUNh45qmwlQPscfNiz8B9ie7h
+	 5yx20dpjirNjObupSNo2t6ZAcOkpcbM4ufmDscKGZ+My7fiVvb+C6PDMTR2gNx0gS
+	 IKubGTDRE14ROXxKmBXCTzm56OcCQT8SCIRUWYfVlkQG7DZllavJHsIBa4R/0yvBu
+	 6YMWrvU8Yz9vsliNxynHIhnHUzmRfDc1BbLUAmNZZA2JxvYBuMJEt3Fiphu+Km8oM
+	 7nKVRwfUxWri9F5dxg==
 X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
 Received: from stefanw-SCHENKER ([37.4.248.43]) by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MxlzI-1sf9ha26r0-00zDRq; Tue, 16
- Apr 2024 21:07:32 +0200
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MY6Cl-1sFkhV3t77-00YR9V; Tue, 16
+ Apr 2024 21:07:33 +0200
 From: Stefan Wahren <wahrenst@gmx.net>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -59,11 +59,10 @@ Cc: kernel@pengutronix.de,
 	imx@lists.linux.dev,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	Michael Heimpold <michael.heimpold@chargebyte.com>,
 	Stefan Wahren <wahrenst@gmx.net>
-Subject: [PATCH 1/2] ARM: dts: imx6ull-tarragon: fix USB over-current polarity
-Date: Tue, 16 Apr 2024 21:06:58 +0200
-Message-Id: <20240416190659.15430-2-wahrenst@gmx.net>
+Subject: [PATCH 2/2] ARM: dts: imx6ull-tarragon: Reduce SPI clock for QCA7000
+Date: Tue, 16 Apr 2024 21:06:59 +0200
+Message-Id: <20240416190659.15430-3-wahrenst@gmx.net>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240416190659.15430-1-wahrenst@gmx.net>
 References: <20240416190659.15430-1-wahrenst@gmx.net>
@@ -74,50 +73,89 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:iU5Q5yT8figHDhKZ0bNQItKWrDerod+Bl5JHHypWpRMkB5BhhIV
- FiH6PWOPlINlCDmZ51U+wCW7n+v1xRBnSTYIDHybyicWf9o8IheXEEQl5Aw1pWYl5dKtWCz
- bCw4+vV3FMmrhbGZ4fySZNKHLX9hieB/2ZFqspNjvFcGOyoe8LQm0TuzPEIMMdDidgz4UXH
- sPEjDLzHTrwgn4qnx2gww==
+X-Provags-ID: V03:K1:96kVfHWmqmisRl4AuStm+7j2jSg2AZu8uqGwvwbHNmC8+U0X6V4
+ X4GGrPk1yOlmiFWM1YPkiUX7jizP5IX1BQC8Gd3bbPtcUZcJby0TinIUprr2rs7FjtoCpdR
+ 0sti3eHtIa84GwHI8sWBR4oj0MigZ6ZYcAWtLtgwZB7IbqQb/3Uk2CQRtLgSRYfVqxcjixA
+ S5s7o2ITD5Ot51k6eOpIg==
 X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:Qp7tvBErl/E=;c3gb6dQ22ckJFv70N8untiLFfW2
- pCtIsXotQN8EI9SNzWeJo12q/I4tm3vW1/gCaM+uImq6Wtt0+AkbDn3GL0JE5BeYy5ji0iepX
- 4XcMbaH3k+ibaQYsgKlV3WjLW+3V8WQUI/NITN6ZRvlaC7BxWh4XOd9HDUY0kEiO2XRkdshOW
- 7REd2lfh3b0HunaL4eL4P9JE79STV4qb8MbiaPCfJLzDHfiFpkcZ0gZJjLhnVhDl7Fna8HEP+
- ZrGWDB8nhsF/RtHXTTLI5/R3L9VLjc4p1mm40oGbNr1LWSKc6Ijf1fsIPX1kvceHinEJiElWk
- lLlo79fSjX7vMCJnCVoobjuzRSxkVDC1d3NbVmmwy05lknUA1XGKDGOPEERrqb8dUbTP2kgsL
- Bgmnhr6XUW2d9eoBSg0RLn9Rnv83jUsM03s0TcMJwvPnEBCza5ayOiyEHaJFWf4Iz+Ia/NBFX
- BurMlUGVwZjl9DZ2jEstjg9S51Q3aO98ki5eYVIAJxT2kjZR6lEL0Ql3ae66L6fdnjjPEWjA0
- qEvYhZy/DhpPUNdk4KJQnO68Xbq0vwGL+cQ4YbpfKV94f583FqnFFd/qMd8/B/xc6u3Aw/1io
- NOvvD22RX5PUxA0X4XTmWSTFjUMpEXxOn41xkljJxgv2ABdkKN4WLGjhFGLkPFYlSgl5CWpIb
- hVouNut4DIJoEsZ0mtvGvyGJ5ZZtZNo+A2VOk76OpxSnbdb4YLaQ14aJ3ZCQvEEe2NTnMxJM7
- KKzB/2XbxWV//omqsKQbNwHCS9N35wQjqNegJ4UBOczzNpy3KOm1UMCKiXFBAavV2tF/MYNZC
- NNJdRf+vQiJ8kLdVznbeWmPO2umds1M5vhU+xH0nBH08Q=
+UI-OutboundReport: notjunk:1;M01:P0:5Iw0jdwG3GI=;7+ygiubD9LS+ohSgeMnPbuWM6g6
+ VZzd2P9SjuPATGrLuHZ5Z7/NQ57YUgO5larn4JmbbgBbjcET0U+EiEYTZG8dwe1ZZa4/dd+D2
+ YtJG7a9vDHNOSVbBIqCBFzzAfkYtnNkGsIbgLPX1v2dkkBczKneEA1VFPp1SSuzDGwn+RJCdI
+ cLh0s2jzU+v1yuQ4gSNe0lml7XtUhghtuzGjhNcYLx9+R4b8u9S8FFoDvB/nt0ub6amgj7N5y
+ n/3vt8i13HzVbse8PYvoAboPFIhTc+MtbbN4Roay41XMyUguEGeeUD/Rz7gv6qfP3rGXL2BCr
+ 4yCqtHcvEk4npIwNoB9QWluT0nCQmmJv1Xy1R59/X1xeUtYgnsS3latlfYvChkIwEeWz7sIor
+ M7dEYf4FbH/M3uTKgFDsG4daXEMwbsZ4ODqHJRZTNbvef245TvJZCUdcWhToLg2slE/bCTRKE
+ hOT9GBS2+0jxQgTWqkzV0ty2NJ+vfdyqx8JADm39AlQmz/PDY45oPX2ocIjAf4828vpg6YOgA
+ Io6czD4H7Y0pdmY/FwJ7yMfK1299PeAPud/SuEZt3VGzSy7P5itbmW/LNLr8UOk157CJKImhv
+ oqOeG0bCSjv3d67OZ/xzjXisQW+tIlwAW0iZKg0o+0/ZKOYTI/ei+eAsbuwfXD5MHqIaZTbhi
+ XM7Eiv8QX88eo7AC6WcmkSsGTIx2MQkTZ33mVrUpe7WH66bB1ZQijJFa0+38fivjscWOSDZzJ
+ fSjqgWAWAgQtm7DXkxBiGWv593p9deCnt2HIpY9rIyxACb0rENPHOXXBDLiev0BLppNfHwgNh
+ xEbMCXtIXf39UkFBMMNQtUnpqjnoLE6gyR8b0zw/QlkSc=
 
-From: Michael Heimpold <michael.heimpold@chargebyte.com>
+Our hardware department recently informed us that, according to
+the specification, the QCA7000 should be operated with a
+maximum SPI clock frequency of 12 MHz. Even if it appears to work
+at a higher frequency, we should not take any risks here. A short
+performance test showed no measurable loss of speed.
 
-Our Tarragon platform uses a active-low signal to inform
-the i.MX6ULL about the over-current detection.
-
-Fixes: 5e4f393ccbf0 ("ARM: dts: imx6ull: Add chargebyte Tarragon support")
-Signed-off-by: Michael Heimpold <michael.heimpold@chargebyte.com>
 Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
 =2D--
- arch/arm/boot/dts/nxp/imx/imx6ull-tarragon-common.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm/boot/dts/nxp/imx/imx6ull-tarragon-master.dts  | 4 ++--
+ arch/arm/boot/dts/nxp/imx/imx6ull-tarragon-slave.dts   | 2 +-
+ arch/arm/boot/dts/nxp/imx/imx6ull-tarragon-slavext.dts | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-tarragon-common.dtsi b/arch=
-/arm/boot/dts/nxp/imx/imx6ull-tarragon-common.dtsi
-index 3fdece5bd31f..5248a058230c 100644
-=2D-- a/arch/arm/boot/dts/nxp/imx/imx6ull-tarragon-common.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull-tarragon-common.dtsi
-@@ -805,6 +805,7 @@ &usbotg1 {
- 		     &pinctrl_usb_pwr>;
- 	dr_mode =3D "host";
- 	power-active-high;
-+	over-current-active-low;
- 	disable-over-current;
- 	status =3D "okay";
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-tarragon-master.dts b/arch/=
+arm/boot/dts/nxp/imx/imx6ull-tarragon-master.dts
+index 67007ce383e3..f9bbd589b66d 100644
+=2D-- a/arch/arm/boot/dts/nxp/imx/imx6ull-tarragon-master.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6ull-tarragon-master.dts
+@@ -45,7 +45,7 @@ &pinctrl_qca700x_cp_rst
+ 		interrupts =3D <19 IRQ_TYPE_EDGE_RISING>;
+ 		spi-cpha;
+ 		spi-cpol;
+-		spi-max-frequency =3D <16000000>;
++		spi-max-frequency =3D <12000000>;
+ 	};
  };
+
+@@ -63,7 +63,7 @@ &pinctrl_qca700x_mains_rst
+ 		interrupts =3D <9 IRQ_TYPE_EDGE_RISING>;
+ 		spi-cpha;
+ 		spi-cpol;
+-		spi-max-frequency =3D <16000000>;
++		spi-max-frequency =3D <12000000>;
+ 	};
+ };
+
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-tarragon-slave.dts b/arch/a=
+rm/boot/dts/nxp/imx/imx6ull-tarragon-slave.dts
+index cee223b5f8e1..ef06619d7c86 100644
+=2D-- a/arch/arm/boot/dts/nxp/imx/imx6ull-tarragon-slave.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6ull-tarragon-slave.dts
+@@ -23,7 +23,7 @@ &pinctrl_qca700x_cp_rst
+ 		interrupts =3D <19 IRQ_TYPE_EDGE_RISING>;
+ 		spi-cpha;
+ 		spi-cpol;
+-		spi-max-frequency =3D <16000000>;
++		spi-max-frequency =3D <12000000>;
+ 	};
+ };
+
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-tarragon-slavext.dts b/arch=
+/arm/boot/dts/nxp/imx/imx6ull-tarragon-slavext.dts
+index 7fd53b7a4372..83db65bf630f 100644
+=2D-- a/arch/arm/boot/dts/nxp/imx/imx6ull-tarragon-slavext.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6ull-tarragon-slavext.dts
+@@ -45,7 +45,7 @@ &pinctrl_qca700x_cp_rst
+ 		interrupts =3D <19 IRQ_TYPE_EDGE_RISING>;
+ 		spi-cpha;
+ 		spi-cpol;
+-		spi-max-frequency =3D <16000000>;
++		spi-max-frequency =3D <12000000>;
+ 	};
+ };
+
 =2D-
 2.34.1
 
