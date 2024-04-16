@@ -1,79 +1,120 @@
-Return-Path: <devicetree+bounces-59732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C8EE8A6E6A
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 16:35:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CCC98A6E7A
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 16:36:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED5A92844B0
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 14:35:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0869C284B0B
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 14:36:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C43841311B5;
-	Tue, 16 Apr 2024 14:33:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CB211304BE;
+	Tue, 16 Apr 2024 14:35:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hrqv4mjP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EfCE4Bqn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B60A1E871;
-	Tue, 16 Apr 2024 14:33:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EABF12D741;
+	Tue, 16 Apr 2024 14:35:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713278034; cv=none; b=eZOutbggIMfqPk0HpaZnZ5dWxH295xznaNgj5grXekCntAGnBRXOTAdw4tUqmiL30Qx+KvCHen88L1BtsUQ6dJJG6ITKZEl1U31Xn3NdJ13S9s3R5YDLusyuDTSv8uVo+LKOIOOLKqHgbiNwVA2Etba5vAShtwOBDXBxcPSWB0Q=
+	t=1713278137; cv=none; b=g73pDEXN6uYlrqLwTTLRDXBL12lvkwSH7IrKHM5nUsrwrixaw5uWTKR9YBV8jR6vfb9oXiWF0u3olJpUhtL0x1Bv+Vs1RkxWqNmoohRgfTSLcyD3sMh8rg3cA+eIm28b5mJwfgiVXkPuZSHO26WJRJJo6rMwVlPw1HNUTgoGJ8U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713278034; c=relaxed/simple;
-	bh=P9TEN91S9OsDLEik2ocnZfo8gjiyP0GBJ9gzUPVNrCc=;
+	s=arc-20240116; t=1713278137; c=relaxed/simple;
+	bh=bucavU5HfQwA1yemtOpcU4H0NN+3+/h4cXMCk96/A6s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LN67wBqKb2fwVhy0qAj8J+/0hvn4J13blemh3VvDR1wYgayRHnqm8TG4ZWDNPpalXc6tG41X9R24UYYHpXziYeUWXaBVDELft4l0sQ661AWVXEjPkmMQ+HDZceOi2UvtBAf/2lFYs78HgVLKEQQhcyah8RKQ+sNrHsSgSeSlBDM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hrqv4mjP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2BB1C4AF07;
-	Tue, 16 Apr 2024 14:33:53 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=s+RP/jmVu4/RQg7HHAJr4GMla/sLeaMaw1IxJGQ8htkkzzrHjuroV7fKP0IakspcLWcKDQi/9QyxEIVORLaHlORx1ZUs5Mn7hCOmp6BLa4nqzBBEtLv+YhBXO+IigPM3mZ8tbRlFyZSXNo5FAoppZR1Z1XcVNchjkl6KRRUm5RE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EfCE4Bqn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 220D1C113CE;
+	Tue, 16 Apr 2024 14:35:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713278034;
-	bh=P9TEN91S9OsDLEik2ocnZfo8gjiyP0GBJ9gzUPVNrCc=;
+	s=k20201202; t=1713278136;
+	bh=bucavU5HfQwA1yemtOpcU4H0NN+3+/h4cXMCk96/A6s=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Hrqv4mjPPf+ejBTfvRTU5ZuD5NSlrnq1RDxjqe4ogXhhyxt5/Uwgf7IasFk+WAIFa
-	 cb8H4AJWqV3VYw/suhNGgniW0rc4cOrMWpnMMQMkICFMZMPRf6fHhvEt2WxW2A1/oO
-	 FPQdvRlPD5255ABT6L/sm5ycqXQlLnxuc1bbRiT6BNTTgmsWeS/paZgHtvSJKD2owB
-	 1vyrrsLJMDqOA6VyklHHsFfOG7ZXu/GBOOB6oHLT9IIbO1/IVJH/ijRzjG/QfO1ONI
-	 12Cg8DfGzX5eTK4eNBnnDK9qExB2KwQES6xu0uxxfhZb1bwHlmrmdeyFehtedzaEAB
-	 RKWZgOqcHETSA==
-Date: Tue, 16 Apr 2024 09:33:51 -0500
-From: Rob Herring <robh@kernel.org>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: linux-renesas-soc@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
-	linux-kernel@vger.kernel.org,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH] dt-bindings: timer: renesas,tmu: Add R-Car V4M support
-Message-ID: <171327802944.2258253.16105089685467889251.robh@kernel.org>
-References: <8a39386b1a33db6e83e852b3b365bc1adeb25242.1712068574.git.geert+renesas@glider.be>
+	b=EfCE4BqnmunYvNboW8U7r6o8if1ruEE5iowfEac9iRxH4d4Xm3OTot+uQA2GiM5Ej
+	 H7RHsx5q2j+CbSW9LMVB9w0LR7PojkHBgceHEEQFKeuXf/vfZKUs7YVAW/wdfdLT49
+	 FZGKZFgzUTQPx4PuNaWX/ZLVrSvf15Pfi4Uzq7tXXdOyPwl4+CWO4CqKk0zb4lYas4
+	 Oc/QbSjsEP6v9m/Sxk3rEQEB3kgNvttj4aJaktOMnfh6fj/v5OfIUeDfHIiCi/26D6
+	 urAHd0PnMxQ40jtgJoKU0miGkV+H2OHw+qJK8ZlNDiyBbUq71T5or4uaa+jXOJAzns
+	 GIMFhnOfSnuQQ==
+Date: Tue, 16 Apr 2024 15:35:30 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Peng Fan <peng.fan@nxp.com>
+Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+	"davem@davemloft.net" <davem@davemloft.net>,
+	"edumazet@google.com" <edumazet@google.com>,
+	"kuba@kernel.org" <kuba@kernel.org>,
+	"pabeni@redhat.com" <pabeni@redhat.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"shawnguo@kernel.org" <shawnguo@kernel.org>,
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>,
+	"festevam@gmail.com" <festevam@gmail.com>,
+	Clark Wang <xiaoning.wang@nxp.com>,
+	dl-linux-imx <linux-imx@nxp.com>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: net: nxp,dwmac-imx: allow nvmem cells
+ property
+Message-ID: <20240416-simplify-septic-0fd3f7fe4b31@spud>
+References: <20240415103621.1644735-1-peng.fan@oss.nxp.com>
+ <20240415-limes-chasing-dbc111fa9cf2@spud>
+ <DU0PR04MB94173B23CBB11E8DC736E90788082@DU0PR04MB9417.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="LbFcVf2EOeZRzbNd"
+Content-Disposition: inline
+In-Reply-To: <DU0PR04MB94173B23CBB11E8DC736E90788082@DU0PR04MB9417.eurprd04.prod.outlook.com>
+
+
+--LbFcVf2EOeZRzbNd
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <8a39386b1a33db6e83e852b3b365bc1adeb25242.1712068574.git.geert+renesas@glider.be>
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Apr 16, 2024 at 01:52:18PM +0000, Peng Fan wrote:
+> > Subject: Re: [PATCH] dt-bindings: net: nxp,dwmac-imx: allow nvmem cells
+> > property
+> >=20
+> > On Mon, Apr 15, 2024 at 06:36:21PM +0800, Peng Fan (OSS) wrote:
+> > > From: Peng Fan <peng.fan@nxp.com>
+> > >
+> > > Allow nvmem-cells and nvmem-cell-names to get mac_address from onchip
+> > > fuse.
+> >=20
+> > Is this valid for all 3 devices in this binding?
+>=20
+> Yes. It is valid for all the three devices.
 
-On Tue, 02 Apr 2024 16:37:02 +0200, Geert Uytterhoeven wrote:
-> Document support for the Timer Unit (TMU) in the Renesas R-Car V4M
-> (R8A779H0) SoC.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  Documentation/devicetree/bindings/timer/renesas,tmu.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Applied, thanks!
+Ty,
+Conor.
 
+--LbFcVf2EOeZRzbNd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZh6MsQAKCRB4tDGHoIJi
+0qwpAP4yvTjwx08VV0VAKWzRYa9NlvgQYCEVtOlvbUu9rEG4VwEAhqWVRlHReAgp
+ezG+zW9kzq6/B7Zd0xKKWyPpR4NZaws=
+=TITW
+-----END PGP SIGNATURE-----
+
+--LbFcVf2EOeZRzbNd--
 
