@@ -1,144 +1,141 @@
-Return-Path: <devicetree+bounces-59693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E4318A6AC6
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 14:21:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DDEC8A6ADB
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 14:25:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D89A8281C3E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 12:21:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED899283A32
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 12:25:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 633D512AAE2;
-	Tue, 16 Apr 2024 12:21:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61F8312AADC;
+	Tue, 16 Apr 2024 12:25:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RiJ8v845"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dLELNjgk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0573C1DFEF
-	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 12:21:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32FFC12A172;
+	Tue, 16 Apr 2024 12:25:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713270081; cv=none; b=WrWqHOB7WDhH+e7m+w9ENXMvjaB0b/jfbfTpCbYkqDT6PYNX8Dml48cV9XjDxSO1d+I90ebwovXITN5vzS4zibcRS3J6nEDmG+ypjBptBELZPbyZbw1UvGOq3bdk9RbILmTqJrMllPlTu1aoZPjZV8fjMaOLeO0iR2L1m+RTWPg=
+	t=1713270312; cv=none; b=Qe5J1eNSOSqBwscL+8IEhnl9NCKmewC+awJiclVuDx+xUa7UK4Pf/20YC0bxlccLdECXO9NmAhbCu0zsDORi/aZu7/GwDKImMx5UWz0m0FE9mfRmJZYyP0ghzgTHp32a3SsGbYQXRNfpNOLNR5wkDasidj+Vz8Vpr4QxkO4EaiM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713270081; c=relaxed/simple;
-	bh=PpGMn2INMbylfu21Bj48tT8p8k7cCHT4iq/KSWuJyTg=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=rCNFlBN+n339WBVwc32Nr3Nkn9WRxZmFe/RtP2uOZ4ePIpvMeTaeriZDYYUSJnc4xIhqQh/6TZFCsUvN9Ovvs9DKfItBj4ObCuS/alX1KShgI1A76iuVsZtvqjWvsBbHZWyxH7UbMsdHo8mcyqDFxKqCkmTEMwsUDY9r+R4xV/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RiJ8v845; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-415515178ceso26713405e9.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 05:21:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713270077; x=1713874877; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=PpGMn2INMbylfu21Bj48tT8p8k7cCHT4iq/KSWuJyTg=;
-        b=RiJ8v845EGOdqa2pEpylA4TK4TdFfvFTUauoaWaFXf14MXgyjiDVDXHt3BG2VcNO39
-         ZcbnlhZcQ3HSoREVvA42MkEOVQg/JWJEhPcJKzlRlmfM5dBi8g87EV+7hl/BP+2iONpT
-         3U3VFKriZvyG9k7gT+N6zfz9i1D08mD+hSC2Y0E+yVImT8OJZGoTnXtfQFIy4i2imIeJ
-         84njENQvgfYdmvdgBnVxRBBl9xI3OS88blfio9ISlljo17UoKJq9DBKCjKSD0PgpugA8
-         79t8Ksp8Y8Bm6X2/0CWRBFC/2VeGCDXzYx1F1DcH5TisbNdVZlTe7Rq2/jt/nEJwf6wN
-         8Mnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713270077; x=1713874877;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=PpGMn2INMbylfu21Bj48tT8p8k7cCHT4iq/KSWuJyTg=;
-        b=J2BatEbllCJs7cQHMV6FF5394mvjY7Lai2xNlPCxOjWSlmixWG+nmBqyKSgfYyeDyz
-         uvRsDkHPXZ2S2pVNq2qnAoOibGAwnY159Jj+2/Ji25m5b0KyXHEJPeMQaVRgfkm0E42/
-         82BvGtzSxzGECgKEwKuPIwo3DNpfXUwqgV5xiftKI3hsM2+wrSnlw79lqJRr1YEzl5j3
-         zd4PWh6w5YmdZzJTisZBtq2DlhMXrN2l85luzsvwMkqyXWz5WAb0fWacu3qJgsFKH+No
-         6f+XuunofuqOWXZNSWe5x1YaIa+qNsplbZXumukLFR0YOy8oTH+2lwdE2tHP7heXac8e
-         sxsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWITmqxO0VYSQb04CFzaK0kna6k4hlTjvfqjtWjWq4nGdlVQ1rEsAJAslqRyYvFEba0rPEqGDv+g9lG0zlafzr/ppwV3DvLbFpyng==
-X-Gm-Message-State: AOJu0YwWKe2IRAehdXZMiBIeLPSl80gHNYIaDB9zDkZgiEZxWlzgOq1S
-	7sJOOaPYujKNzuApu1pEijVfSymCcokCjPfef4o4iqrxypACLVrcziBTUcfgMnY=
-X-Google-Smtp-Source: AGHT+IEarf8EjO2ZNF9aRPs7b+B99CG3Z13jwHh5GhKJjOi8E/PYDa6irLtmrtjDcPbYmA7uQaI9Vw==
-X-Received: by 2002:a05:600c:4748:b0:418:2ccf:cbc7 with SMTP id w8-20020a05600c474800b004182ccfcbc7mr6287275wmo.2.1713270077431;
-        Tue, 16 Apr 2024 05:21:17 -0700 (PDT)
-Received: from [10.1.1.109] ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id ay29-20020a05600c1e1d00b0041892e839bcsm2285227wmb.33.2024.04.16.05.21.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Apr 2024 05:21:16 -0700 (PDT)
-Message-ID: <fd7fe44ecbd99358bac583df3cc8192e250e758b.camel@linaro.org>
-Subject: Re: [PATCH 05/17] arm64: dts: exynos: gs101: enable cmu-hsi2 clock
- controller
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Peter Griffin <peter.griffin@linaro.org>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
- krzk+dt@kernel.org, conor+dt@kernel.org, vkoul@kernel.org,
- kishon@kernel.org,  alim.akhtar@samsung.com, avri.altman@wdc.com,
- bvanassche@acm.org,  s.nawrocki@samsung.com, cw00.choi@samsung.com,
- jejb@linux.ibm.com,  martin.petersen@oracle.com, chanho61.park@samsung.com,
- ebiggers@kernel.org,  linux-scsi@vger.kernel.org,
- linux-phy@lists.infradead.org,  devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org,  linux-samsung-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
- tudor.ambarus@linaro.org,  saravanak@google.com, willmcvicker@google.com
-Date: Tue, 16 Apr 2024 13:21:15 +0100
-In-Reply-To: <CADrjBPqwLt6gzwMpkZvxp5sC-owdDYUN91F0-nV2NvEzek_v9g@mail.gmail.com>
-References: <20240404122559.898930-1-peter.griffin@linaro.org>
-	 <20240404122559.898930-6-peter.griffin@linaro.org>
-	 <391a874522a4141b4bc7f0314a9e50d27142123a.camel@linaro.org>
-	 <CADrjBPqwLt6gzwMpkZvxp5sC-owdDYUN91F0-nV2NvEzek_v9g@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.50.3-1 
+	s=arc-20240116; t=1713270312; c=relaxed/simple;
+	bh=SCges8dT7+vStvKdwldW6puBln6FxrIx8NsJAHgA4dU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tNYm8ufJuJN+AH3w4DrNDr89FfVakeI3R/dvZRa07QZNzhAWpf4gquWKLi/ir7xdscGggddLZjxtqCWo8z9vyl8Y4VOqSrAovEjbHyeI2/pkzi0O6kFa9s5yiWKLFonfPRpS11iPwTpQjFwnWCVnEEgPzxGF2TbpjBbhB8lR0Yw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dLELNjgk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94C9BC113CE;
+	Tue, 16 Apr 2024 12:25:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713270311;
+	bh=SCges8dT7+vStvKdwldW6puBln6FxrIx8NsJAHgA4dU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dLELNjgkJ8uBxjq5d2HVAG08umXZz/asximy7u3HShHBTFfgOWEGJQWA622y7ObRc
+	 zwYF9hPOT7NdQVDUdTZwnZ1xUGEDJTt9WeKDhPBm2C+kJz7+p+7x2pc/bVZZfhh39w
+	 sodPEU/xXGMH/4wjk2TIC360/+5OSZjMVgcQSDXQoftnCch459y7MjvWxHg6SXTi7c
+	 YLTbZdm75kYJJ0x8sCY+evcTzIqg3sx6JX6+3Mbm/ESrqflBuZ1zzQcoJFy9bIW9IL
+	 312F2PowTrdWU8sOy1ILgv0n0T23QKhxjaiL3QhoxHsk6qBYb2iiw5lq+CCjmxRENe
+	 W//ndQe/2SA0A==
+Date: Tue, 16 Apr 2024 13:25:04 +0100
+From: Lee Jones <lee@kernel.org>
+To: Bhargav Raviprakash <bhargav.r@ltts.com>
+Cc: arnd@arndb.de, broonie@kernel.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, eblanc@baylibre.com,
+	gregkh@linuxfoundation.org, jpanis@baylibre.com, kristo@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, lgirdwood@gmail.com,
+	linus.walleij@linaro.org, linux-arm-kernel@lists.infradead.org,
+	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	m.nirmaladevi@ltts.com, nm@ti.com, robh+dt@kernel.org,
+	vigneshr@ti.com, khilman@kernel.org
+Subject: Re: [RESEND PATCH v1 05/13] mfd: tps6594-spi: Add TI TPS65224 PMIC
+ SPI
+Message-ID: <20240416122504.GV2399047@google.com>
+References: <20240411170344.GK2399047@google.com>
+ <0109018ee1e1d91a-d3a0a73a-548d-4b9c-a6a5-a4f375c3adf3-000000@ap-south-1.amazonses.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <0109018ee1e1d91a-d3a0a73a-548d-4b9c-a6a5-a4f375c3adf3-000000@ap-south-1.amazonses.com>
 
-SGkgUGV0ZSwKCk9uIFR1ZSwgMjAyNC0wNC0xNiBhdCAxMjo1NiArMDEwMCwgUGV0ZXIgR3JpZmZp
-biB3cm90ZToKPiBIaSBBbmRyw6ksCj4gCj4gVGhhbmtzIGZvciB0aGUgcmV2aWV3Lgo+IAo+IE9u
-IEZyaSwgNSBBcHIgMjAyNCBhdCAwODozOCwgQW5kcsOpIERyYXN6aWsgPGFuZHJlLmRyYXN6aWtA
-bGluYXJvLm9yZz4gd3JvdGU6Cj4gPiAKPiA+IE9uIFRodSwgMjAyNC0wNC0wNCBhdCAxMzoyNSAr
-MDEwMCwgUGV0ZXIgR3JpZmZpbiB3cm90ZToKPiA+ID4gRW5hYmxlIHRoZSBjbXVfaHNpMiBjbG9j
-ayBtYW5hZ2VtZW50IHVuaXQuIEl0IGZlZWRzIHNvbWUgb2YKPiA+ID4gdGhlIGhpZ2ggc3BlZWQg
-aW50ZXJmYWNlcyBzdWNoIGFzIFBDSWUgYW5kIFVGUy4KPiA+ID4gCj4gPiA+IFNpZ25lZC1vZmYt
-Ynk6IFBldGVyIEdyaWZmaW4gPHBldGVyLmdyaWZmaW5AbGluYXJvLm9yZz4KPiA+ID4gLS0tCj4g
-PiA+IMKgYXJjaC9hcm02NC9ib290L2R0cy9leHlub3MvZ29vZ2xlL2dzMTAxLmR0c2kgfCAxMiAr
-KysrKysrKysrKysKPiA+ID4gwqAxIGZpbGUgY2hhbmdlZCwgMTIgaW5zZXJ0aW9ucygrKQo+ID4g
-PiAKPiA+ID4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZXh5bm9zL2dvb2dsZS9n
-czEwMS5kdHNpIGIvYXJjaC9hcm02NC9ib290L2R0cy9leHlub3MvZ29vZ2xlL2dzMTAxLmR0c2kK
-PiA+ID4gaW5kZXggZWRkYjZiMzI2ZmRlLi4zOGFjNGZiMTM5N2UgMTAwNjQ0Cj4gPiA+IC0tLSBh
-L2FyY2gvYXJtNjQvYm9vdC9kdHMvZXh5bm9zL2dvb2dsZS9nczEwMS5kdHNpCj4gPiA+ICsrKyBi
-L2FyY2gvYXJtNjQvYm9vdC9kdHMvZXh5bm9zL2dvb2dsZS9nczEwMS5kdHNpCj4gPiA+IEBAIC0x
-MjUzLDYgKzEyNTMsMTggQEAgcGluY3RybF9oc2kxOiBwaW5jdHJsQDExODQwMDAwIHsKPiA+ID4g
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGludGVycnVwdHMgPSA8
-R0lDX1NQSSA0NzEgSVJRX1RZUEVfTEVWRUxfSElHSCAwPjsKPiA+ID4gwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgfTsKPiA+ID4gCj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY211
-X2hzaTI6IGNsb2NrLWNvbnRyb2xsZXJAMTQ0MDAwMDAgewo+ID4gPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjb21wYXRpYmxlID0gImdvb2dsZSxnczEwMS1jbXUt
-aHNpMiI7Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJl
-ZyA9IDwweDE0NDAwMDAwIDB4NDAwMD47Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgICNjbG9jay1jZWxscyA9IDwxPjsKPiA+ID4gK8KgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY2xvY2tzID0gPCZleHRfMjRfNW0+LAo+ID4gPiAr
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCA8JmNtdV90b3AgQ0xLX0RPVVRfQ01VX0hTSTJfQlVTPiwKPiA+ID4gK8KgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPCZjbXVfdG9wIENM
-S19ET1VUX0NNVV9IU0kyX1BDSUU+LAo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCA8JmNtdV90b3AgQ0xLX0RPVVRfQ01VX0hT
-STJfVUZTX0VNQkQ+LAo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCA8JmNtdV90b3AgQ0xLX0RPVVRfQ01VX0hTSTJfTU1DX0NB
-UkQ+Owo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjbG9j
-ay1uYW1lcyA9ICJvc2NjbGsiLCAiYnVzIiwgInBjaWUiLCAidWZzX2VtYmQiLCAibW1jX2NhcmQi
-Owo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH07Cj4gPiAKPiA+IFRoaXMgZG9lc24n
-dCBidWlsZCBiZWNhdXNlIHlvdSBkaWRuJ3QgYWRkIHRoZSBjbG9jayBpZHMgaW4gdGhlIGJpbmRp
-bmcgcGF0Y2guCj4gCj4gVGhlc2UgY2xvY2sgSURzIGFyZSBmb3IgY211X3RvcCwgbm90IGNtdV9o
-c2kyLgoKUmlnaHQuIEkgcmVwbGllZCB0byB0aGUgd3JvbmcgcGF0Y2guIFNvcnJ5IGZvciB0aGF0
-LiBJdCBpcyBwYXRjaCA3IHRoYXQKdXNlcyBjbG9jayBpZHMgdGhhdCBhcmUgb25seSBhZGRlZCBp
-biBwYXRjaCA4LiBUaGUgY2xvY2sgaWRzIGZyb20gcGF0Y2ggOAppbiBpbmNsdWRlL2R0LWJpbmRp
-bmdzL2Nsb2NrL2dvb2dsZSxnczEwMS5oIHNob3VsZCBiZSBhZGRlZCBpbiBwYXRjaCAxCmluc3Rl
-YWQuCgpDaGVlcnMsCkFuZHJlJwoK
+On Mon, 15 Apr 2024, Bhargav Raviprakash wrote:
 
+> Hello,
+> 
+> On Wed, 14 Feb 2024 10:10:17 -0800, Lee Jones wrote:
+> > On Mon, 08 Apr 2024, Bhargav Raviprakash wrote:
+> > 
+> > > Introduces a new struct tps6594_match_data. This struct holds fields for
+> > > chip id and regmap config. Using this struct in of_device_id data field.
+> > > This helps in adding support for TPS65224 PMIC.
+> > > 
+> > > Signed-off-by: Bhargav Raviprakash <bhargav.r@ltts.com>
+> > > Acked-by: Julien Panis <jpanis@baylibre.com>
+> > > ---
+> > >  drivers/mfd/tps6594-i2c.c   | 24 ++++++++++++++++--------
+> > >  drivers/mfd/tps6594-spi.c   | 24 ++++++++++++++++--------
+> > >  include/linux/mfd/tps6594.h | 11 +++++++++++
+> > >  3 files changed, 43 insertions(+), 16 deletions(-)
+> > > 
+> > > diff --git a/drivers/mfd/tps6594-i2c.c b/drivers/mfd/tps6594-i2c.c
+> > > index c125b474b..9e2ed48b7 100644
+> > > --- a/drivers/mfd/tps6594-i2c.c
+> > > +++ b/drivers/mfd/tps6594-i2c.c
+> > > @@ -192,10 +192,16 @@ static const struct regmap_config tps6594_i2c_regmap_config = {
+> > >  	.write = tps6594_i2c_write,
+> > >  };
+> > >  
+> > > +static const struct tps6594_match_data match_data[] = {
+> > > +	[TPS6594] = {TPS6594, &tps6594_i2c_regmap_config},
+> > > +	[TPS6593] = {TPS6593, &tps6594_i2c_regmap_config},
+> > > +	[LP8764] = {LP8764, &tps6594_i2c_regmap_config},
+> > 
+> > Nit: There should be spaces after the '{' and before the '}'.
+> > 
+> 
+> Sure! will fix it in the next version.
+> 
+> > > +};
+> > > +
+> > >  static const struct of_device_id tps6594_i2c_of_match_table[] = {
+> > > -	{ .compatible = "ti,tps6594-q1", .data = (void *)TPS6594, },
+> > > -	{ .compatible = "ti,tps6593-q1", .data = (void *)TPS6593, },
+> > > -	{ .compatible = "ti,lp8764-q1",  .data = (void *)LP8764,  },
+> > > +	{ .compatible = "ti,tps6594-q1", .data = &match_data[TPS6594], },
+> > > +	{ .compatible = "ti,tps6593-q1", .data = &match_data[TPS6593], },
+> > > +	{ .compatible = "ti,lp8764-q1",  .data = &match_data[LP8764], },
+> > 
+> > Not keen on this.  Why do you pass the regmap data through here and
+> > leave everything else to be matched on device ID?  It would be better to
+> > keep passing the device ID through and match everything off of that.
+> > 
+> > 
+> > -- 
+> > Lee Jones [李琼斯]
+> 
+> Thanks for the feedback!
+> 
+> These changes were made because of the following message:
+> https://lore.kernel.org/all/7hcysy6ho6.fsf@baylibre.com/
+> 
+> Please let us know which one to follow.
+
+Right, except this doesn't eliminate "any \"if (chip_id)\" checking".
+Instead you have a hodge-podge of passing a little bit of (Regmap) data
+via match and the rest via "if (chip_id)".  So either pass all platform
+type data via .data or just the chip ID.  My suggestion 99% of the time
+is the latter.
+
+-- 
+Lee Jones [李琼斯]
 
