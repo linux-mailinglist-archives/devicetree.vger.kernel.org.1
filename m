@@ -1,272 +1,334 @@
-Return-Path: <devicetree+bounces-59686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59684-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E95378A6A56
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 14:09:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C2B98A6A4A
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 14:08:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4E22BB21657
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 12:09:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB94F1F21A11
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 12:08:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BD7412AADC;
-	Tue, 16 Apr 2024 12:09:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A18F212B143;
+	Tue, 16 Apr 2024 12:08:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c6UDPgQ0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IzhD7XkG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 970D2127B57;
-	Tue, 16 Apr 2024 12:09:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D580C129E88
+	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 12:08:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713269372; cv=none; b=FmsIEAtTEisZ5SeLEH5+EhbPHB5R7GcP36m7jzcfcb73F7HBykuPKRIK1oft24Rp/2pGgg8kSDUpeWE6hq5pZi/s81LHN/E2kFNVFqQgtB/CY9NXJF+dGEiTKiV7xDZV2fcPTxWg5vqFzd97W8fNsJz6V46no3gY4HHW/lgnpQU=
+	t=1713269297; cv=none; b=h15YfhPaOitcReeeSViO9Lypm/RlDk1z72CUynqGkSdAII6WM5f3yZtLHbRG8SW/GRfhMN8p//+dvyJetTN5xG5+moD0mLwcvMN6IblFrv7SQTjkKnLMLFlxK0sT03KYSMGLDRDnqZ4SORa3EZNgJ2FSYGI182s1b5rKkdcE9kc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713269372; c=relaxed/simple;
-	bh=/9DPldZqbWio1+0gvzK6CYEaCP+EGJBXDMgrZtk6GVE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=LehvW51oEmu9ZmVG+Rsywke9lpzYCyw5s5iJsDa61UQbAbI7SRp8JZxArKo219IV9gXS9dZCmBY+fw7jXgQql+OHEq8FcCAO4FU4PkXSUxcXCg97NKGi6W4azlKDEoTlfxxKjhNZAZFXOnbY0zWd7JqD7lXu65fdyCGgCjAHv5s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c6UDPgQ0; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-1e4266673bbso37251925ad.2;
-        Tue, 16 Apr 2024 05:09:28 -0700 (PDT)
+	s=arc-20240116; t=1713269297; c=relaxed/simple;
+	bh=imj9FU964ipR270SsIgTiSstsL4zLPFQC2BSRYMML+I=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QE4B9TtvhzM0x1o8TcMOnfRBrdYMCNbYpW98nWToVOplB6rJaCqhbJUntyfL2ZsDAJpVzXR7cOfdNvI0KrDCHY8deEB/+DXgyMZEqA+ZJwG294BRLEbNsrQDdamUYbT3/r/HlWCoBxs46CPczh3HZakEXA2/p6/FtHsOgJjCzys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IzhD7XkG; arc=none smtp.client-ip=209.85.128.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-61ae4743d36so15177007b3.2
+        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 05:08:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713269368; x=1713874168; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hdTcvMX0MA6Qf+Koh6U+bB/gDVKh29MBVCeUWNkXxss=;
-        b=c6UDPgQ026jXcboKvUSRTNOcx+SnTlvmP9xuJdiGpjdni2TkDrXFeAJty4t597qvmH
-         8dAt2HlK6VD9LGafURp9VT6BtKLEehjc2tdgiC/j2RSQVA0JhJtVtsrP1drMkCXeOTAq
-         SYm53RWpyGPamXpTDMXsQ5ur3dWWmvR0/76rNhtkqBUm2pxnYHSjolAmaf6ZmbHcXIsj
-         Jye0FYwVPwtzKhx1F3Q4UWFBGqpB63UaAizM3nyiOaZ61cgUpQEoaje+GcFp16Nr1c/u
-         s03wHFG8Qbzkf4/0f5NHwUaNrYG1csJdwUH/1/h3MzPmVOJHpS2ABxW/zvyR+1WvrS5w
-         UhUA==
+        d=linaro.org; s=google; t=1713269294; x=1713874094; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Mv6O9ENZ1HB7/Vm/R0vkAKjxXVgkFYsZ40itiMTKBZ0=;
+        b=IzhD7XkGzJmc997dMPpEXq1dgcYBDaRy16Z5oXZQn1Ot7tCKHcw5+lJ3eL3KmH4RVi
+         irP9tn+u/hIbU1EbGcIvHQggGx2b1wOLzrwHvNLcJFu7+xqTtl0gj5hxaH6ZVKVRJTki
+         YbFNn1HzJJDVehe5f58dVAXq89DWqJKt5nEBCtvsoh83mDjDWenG6xxarsn9+OCIchVR
+         UXeb/fPELHAeGxjVaUbOcbSQ8af7j1WDxcD1QIF8hwoe7JfEuptfkwxMnzhAPLLCkc5r
+         C8garSYo31TSdm0VYVgW1mmG5xe/WtrglFpQ5xllPwA3aPQYDQKniZpJcvpurqOIrxsg
+         SDMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713269368; x=1713874168;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hdTcvMX0MA6Qf+Koh6U+bB/gDVKh29MBVCeUWNkXxss=;
-        b=lRwrSPiU6COtNsQanNE5FU/qdzNLD7xQi/58bbGA8ef0+KZkCDNWAEg1JS++zFw61l
-         SFC9O8kSfN2uZF4IxvcZgea3E2H78ZFoRzIA7aZz1vqxmQtpogBnrLEmp3tVxVlLXOI4
-         Iruod++x8okBc3folLwlbepTwPtrpc0Gd1r+8tETC8JQtefNE1/Vf71sgZjpd5U9R7MV
-         +eIc8MEYgyKjIo4La9AZwd2Cl8wgzzpNEyi1bxzVIAUU6VmMCoeOD83JpFXGHIkCarPt
-         vnzTRrjfxwh3uctdyndmpXY+b4aOosNS2wndqA0k8S1WEBpcVVaEUWEp+gtPIVEvAVkC
-         47kw==
-X-Forwarded-Encrypted: i=1; AJvYcCXGrf7GdD99zfxXMeVBN1tDoOWQroOBp6X7oQRjhUVFmUjgmXejPH1On1wAi5CnlL3Jb0meQZ2XxsapPNMyx3e++voHPzktwMQ6iajx
-X-Gm-Message-State: AOJu0YwQnwXnWpvtbk1AWeoQN7UDZTVroAqoghi2ClpQMTgblp3rLcC8
-	3kuCUFZchF2lJCPTKqWuT0RekWW+2vlB/MyQfkJg7F15bqbL1aEkBu945Q==
-X-Google-Smtp-Source: AGHT+IEJ7F2Z7YWgH14O0xbmG1gNps2XW0QDAHnGf5wcGH4vLEI3r0IS9XAwzBjdZnYLFyHCkWE9lw==
-X-Received: by 2002:a17:902:a511:b0:1e2:616e:2883 with SMTP id s17-20020a170902a51100b001e2616e2883mr9996647plq.24.1713269367746;
-        Tue, 16 Apr 2024 05:09:27 -0700 (PDT)
-Received: from localhost.localdomain ([49.142.40.215])
-        by smtp.gmail.com with ESMTPSA id b11-20020a170902650b00b001e509d4d6ddsm9813684plk.1.2024.04.16.05.09.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Apr 2024 05:09:27 -0700 (PDT)
-From: skseofh@gmail.com
-To: robh@kernel.org,
-	saravanak@google.com,
-	rppt@kernel.org,
-	akpm@linux-foundation.org
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-mm@kvack.org,
-	Daero Lee <daero_le.lee@samsung.com>
-Subject: [PATCH v2] memblock: add no-map alloc functions
-Date: Tue, 16 Apr 2024 21:06:35 +0900
-Message-Id: <20240416120635.361838-2-skseofh@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240416120635.361838-1-skseofh@gmail.com>
-References: <linux-mm@kvack.org>
- <20240416120635.361838-1-skseofh@gmail.com>
+        d=1e100.net; s=20230601; t=1713269294; x=1713874094;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Mv6O9ENZ1HB7/Vm/R0vkAKjxXVgkFYsZ40itiMTKBZ0=;
+        b=tSVYyv3MaGpHx8aEhvBijEDgSTSaWImBi2nldeXIrR67clhX1LHSw//q3ERX3QEQ/J
+         DwdKRg00TB5unVExlWYbvDg/lemnpIg+sF3QYbQh9D0hwHzJ/1TW3Fr8MkRFBKvum3/f
+         +DivOLYlEUYM1xOn5XYvy4SlBg/IF/TddztHgsQA1vllRfcZ+v44z8hzVJVR0+KSHJvS
+         p44U3b0gQStSRZh7MWe4bnsLYT1Th6C5D2e6xR7MH9HPkxVNejbGWCXrB5iyVoiaGEX3
+         Skp1BjrVoq9X6GzZrTvWOQ6W5ENHXTms86xAFn819W8WIryfS8LDlicyNw0w9FdrmJgy
+         cafw==
+X-Forwarded-Encrypted: i=1; AJvYcCV1np9lXVwyUyrhWItjAqiTZsi9DBfpVJeZvDtwjiW+9gPnVhcxv5WtfQxmywi4f+xsYTa8XICDFZ39ZiaoJQZrUbXe7p41h8LfEA==
+X-Gm-Message-State: AOJu0YzSCGNj118CsGjn9rqNk4MLZDCbBxVc3n5EGhouk7E2PqAT5Wdd
+	+lI566U1SswQoIxHObWFShF3lvKEH/T/P4/TSvAPY5hsn6jHApmirzf96OPlNsnOvnatQGsMiNq
+	u8jH4SYJhS4vAFUgKgPDa8VJXJdkpQ40UTtd3cg==
+X-Google-Smtp-Source: AGHT+IEKp6p1uPXxrEyB0FdKc6HRZsP1/zTSv3J7Xs4AHz4+a41DBwpfyqxTVd6fjk4b1Brb2X5G+Ngd4xWL9iLBuJQ=
+X-Received: by 2002:a25:203:0:b0:dc7:4725:56df with SMTP id
+ 3-20020a250203000000b00dc7472556dfmr11611038ybc.23.1713269293654; Tue, 16 Apr
+ 2024 05:08:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240307140728.190184-1-claudiu.beznea.uj@bp.renesas.com> <20240307140728.190184-9-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20240307140728.190184-9-claudiu.beznea.uj@bp.renesas.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Tue, 16 Apr 2024 14:07:37 +0200
+Message-ID: <CAPDyKFos=FP3GxX+5qAmBpqrR-8Q7MRhhV3HvPAtu2K6x=7XEw@mail.gmail.com>
+Subject: Re: [PATCH v2 08/10] clk: renesas: rzg2l-cpg: Add suspend/resume
+ support for power domains
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org, 
+	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	magnus.damm@gmail.com, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-From: Daero Lee <daero_le.lee@samsung.com>
+On Thu, 7 Mar 2024 at 15:10, Claudiu <claudiu.beznea@tuxon.dev> wrote:
+>
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> RZ/G3S supports deep sleep states that it can reach with the help of the
+> TF-A.
+>
+> RZ/G3S has a few power domains (e.g. GIC) that need to be always-on while
+> Linux is running. These domains are initialized (and powered on) when
+> clock driver is probed.
+>
+> As the TF-A takes control at the very last(suspend)/first(resume)
+> phase of configuring the deep sleep state, it can do it's own settings on
+> power domains.
 
-Like reserved-memory with the 'no-map' property and only 'size' property
-(w/o 'reg' property), there are memory regions need to be allocated in
-memblock.memory marked with the MEMBLOCK_NOMAP flag, but should not be
-allocated in memblock.reserved.
+For my understanding, can you please elaborate on this part a bit.
+What does the "last suspend/resume phase" mean, more exactly, here?
 
-example : arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
-        reserved-memory {
-                #address-cells = <2>;
-                #size-cells = <2>;
-                ranges;
+>
+> Thus, to restore the proper Linux state, add rzg2l_cpg_resume() which
+> powers on the always-on domains and rzg2l_cpg_complete() which activates
+> the power down mode for the IPs selected through CPG_PWRDN_IP{1, 2}.
+>
+> Along with it, added the suspend_check member to the RZ/G2L power domain
+> data structure whose purpose is to checks if a domain can be powered off
+> while the system is going to suspend. This is necessary for the serial
+> console domain which needs to be powered on if no_console_suspend is
+> available in bootargs.
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> ---
+>
+> Changes in v2:
+> - none; this patch is new
+>
+>  drivers/clk/renesas/rzg2l-cpg.c | 66 ++++++++++++++++++++++++++++++---
+>  drivers/clk/renesas/rzg2l-cpg.h |  1 +
+>  2 files changed, 62 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/clk/renesas/rzg2l-cpg.c b/drivers/clk/renesas/rzg2l-cpg.c
+> index b36700f4a9f5..b18af227177e 100644
+> --- a/drivers/clk/renesas/rzg2l-cpg.c
+> +++ b/drivers/clk/renesas/rzg2l-cpg.c
+> @@ -15,6 +15,7 @@
+>  #include <linux/clk.h>
+>  #include <linux/clk-provider.h>
+>  #include <linux/clk/renesas.h>
+> +#include <linux/console.h>
+>  #include <linux/delay.h>
+>  #include <linux/device.h>
+>  #include <linux/init.h>
+> @@ -139,6 +140,7 @@ struct rzg2l_pll5_mux_dsi_div_param {
+>   * @num_resets: Number of Module Resets in info->resets[]
+>   * @last_dt_core_clk: ID of the last Core Clock exported to DT
+>   * @info: Pointer to platform data
+> + * @domains: generic PM domains
+>   * @mux_dsi_div_params: pll5 mux and dsi div parameters
+>   */
+>  struct rzg2l_cpg_priv {
+> @@ -155,6 +157,8 @@ struct rzg2l_cpg_priv {
+>
+>         const struct rzg2l_cpg_info *info;
+>
+> +       struct generic_pm_domain **domains;
+> +
+>         struct rzg2l_pll5_mux_dsi_div_param mux_dsi_div_params;
+>  };
+>
+> @@ -1570,12 +1574,14 @@ struct rzg2l_cpg_pm_domains {
+>   * struct rzg2l_cpg_pd - RZ/G2L power domain data structure
+>   * @genpd: generic PM domain
+>   * @priv: pointer to CPG private data structure
+> + * @suspend_check: check if domain could be powered off in suspend
+>   * @conf: CPG PM domain configuration info
+>   * @id: RZ/G2L power domain ID
+>   */
+>  struct rzg2l_cpg_pd {
+>         struct generic_pm_domain genpd;
+>         struct rzg2l_cpg_priv *priv;
+> +       int (*suspend_check)(void);
+>         struct rzg2l_cpg_pm_domain_conf conf;
+>         u16 id;
+>  };
+> @@ -1676,6 +1682,13 @@ static int rzg2l_cpg_power_off(struct generic_pm_domain *domain)
+>         struct rzg2l_cpg_reg_conf pwrdn = pd->conf.pwrdn;
+>         struct rzg2l_cpg_priv *priv = pd->priv;
+>
+> +       if (pd->suspend_check) {
+> +               int ret = pd->suspend_check();
+> +
+> +               if (ret)
+> +                       return ret;
+> +       }
+> +
 
-                bman_fbpr: bman-fbpr {
-                        compatible = "shared-dma-pool";
-                        size = <0 0x1000000>;
-                        alignment = <0 0x1000000>;
-                        no-map;
-                };
+This should not be needed at all, I think.
 
-                qman_fqd: qman-fqd {
-                        compatible = "shared-dma-pool";
-                        size = <0 0x400000>;
-                        alignment = <0 0x400000>;
-                        no-map;
-                };
+Instead, genpd should be able to take the correct decision during
+system-wide suspend and simply avoid calling the ->power_off()
+callback, when that is needed.
 
-                qman_pfdr: qman-pfdr {
-                        compatible = "shared-dma-pool";
-                        size = <0 0x2000000>;
-                        alignment = <0 0x2000000>;
-                        no-map;
-                };
-        };
+If I understand correctly, GENPD_FLAG_ACTIVE_WAKEUP is set for the
+genpd in question. The only remaining thing would then be to let the
+console driver, during system suspend, check whether
+"console_suspend_enabled" is set and then call device_set_awake_path()
+for its device. In this way, genpd should then keep the corresponding
+PM domain powered-on.
 
-So, functions were added that find the required memory area in
-memblock.memory, but do not allocate it to memblock.reserved.
+>         /* Set MSTOP. */
+>         if (mstop.mask)
+>                 writel(mstop.mask | (mstop.mask << 16), priv->base + mstop.off);
+> @@ -1687,8 +1700,14 @@ static int rzg2l_cpg_power_off(struct generic_pm_domain *domain)
+>         return 0;
+>  }
+>
+> -static int __init rzg2l_cpg_pd_setup(struct rzg2l_cpg_pd *pd, bool always_on)
+> +static int rzg2l_pd_suspend_check_console(void)
+>  {
+> +       return console_suspend_enabled ? 0 : -EBUSY;
+> +}
+> +
+> +static int __init rzg2l_cpg_pd_setup(struct rzg2l_cpg_pd *pd, u32 flags)
+> +{
+> +       bool always_on = !!(flags & RZG2L_PD_F_ALWAYS_ON);
+>         struct dev_power_governor *governor;
+>
+>         pd->genpd.flags |= GENPD_FLAG_PM_CLK | GENPD_FLAG_ACTIVE_WAKEUP;
+> @@ -1700,6 +1719,8 @@ static int __init rzg2l_cpg_pd_setup(struct rzg2l_cpg_pd *pd, bool always_on)
+>         } else {
+>                 pd->genpd.power_on = rzg2l_cpg_power_on;
+>                 pd->genpd.power_off = rzg2l_cpg_power_off;
+> +               if (flags & RZG2L_PD_F_CONSOLE)
+> +                       pd->suspend_check = rzg2l_pd_suspend_check_console;
+>                 governor = &simple_qos_governor;
+>         }
+>
+> @@ -1719,7 +1740,7 @@ static int __init rzg2l_cpg_add_clk_domain(struct rzg2l_cpg_priv *priv)
+>
+>         pd->genpd.name = np->name;
+>         pd->priv = priv;
+> -       ret = rzg2l_cpg_pd_setup(pd, true);
+> +       ret = rzg2l_cpg_pd_setup(pd, RZG2L_PD_F_ALWAYS_ON);
+>         if (ret)
+>                 return ret;
+>
+> @@ -1778,13 +1799,13 @@ static int __init rzg2l_cpg_add_pm_domains(struct rzg2l_cpg_priv *priv)
+>         domains->onecell_data.domains = domains->domains;
+>         domains->onecell_data.num_domains = info->num_pm_domains;
+>         domains->onecell_data.xlate = rzg2l_cpg_pm_domain_xlate;
+> +       priv->domains = domains->domains;
+>
+>         ret = devm_add_action_or_reset(dev, rzg2l_cpg_genpd_remove, &domains->onecell_data);
+>         if (ret)
+>                 return ret;
+>
+>         for (unsigned int i = 0; i < info->num_pm_domains; i++) {
+> -               bool always_on = !!(info->pm_domains[i].flags & RZG2L_PD_F_ALWAYS_ON);
+>                 struct rzg2l_cpg_pd *pd;
+>
+>                 pd = devm_kzalloc(dev, sizeof(*pd), GFP_KERNEL);
+> @@ -1796,11 +1817,11 @@ static int __init rzg2l_cpg_add_pm_domains(struct rzg2l_cpg_priv *priv)
+>                 pd->id = info->pm_domains[i].id;
+>                 pd->priv = priv;
+>
+> -               ret = rzg2l_cpg_pd_setup(pd, always_on);
+> +               ret = rzg2l_cpg_pd_setup(pd, info->pm_domains[i].flags);
+>                 if (ret)
+>                         return ret;
+>
+> -               if (always_on) {
+> +               if (info->pm_domains[i].flags & RZG2L_PD_F_ALWAYS_ON) {
+>                         ret = rzg2l_cpg_power_on(&pd->genpd);
+>                         if (ret)
+>                                 return ret;
+> @@ -1890,9 +1911,43 @@ static int __init rzg2l_cpg_probe(struct platform_device *pdev)
+>         if (error)
+>                 return error;
+>
+> +       dev_set_drvdata(dev, priv);
+> +
+>         return 0;
+>  }
+>
+> +static int rzg2l_cpg_resume(struct device *dev)
+> +{
+> +       struct rzg2l_cpg_priv *priv = dev_get_drvdata(dev);
+> +       const struct rzg2l_cpg_info *info = priv->info;
+> +
+> +       /* Power on always ON domains. */
+> +       for (unsigned int i = 0; i < info->num_pm_domains; i++) {
+> +               if (info->pm_domains[i].flags & RZG2L_PD_F_ALWAYS_ON) {
+> +                       int ret = rzg2l_cpg_power_on(priv->domains[i]);
+> +
+> +                       if (ret)
+> +                               return ret;
+> +               }
+> +       }
 
-In previous patch(a7259df), early_init_dt_alloc_reserved_memory was
-modified to use memblock_phys_alloc_range allocating memory in
-memblock.reserved, instead of memblock_find_in_range that just find the
-available region. But if there is a 'no-map' property, memory region
-should not be allocated to memblock.reserved.
+I don't quite understand why this is needed? Is always-on PM domains
+being powered-off during system wide suspend, so you need to power
+them on again?
 
-So, the early_init_dt_alloc_reserved_memory_arch function was modified
-using the no-map alloc function.
+> +
+> +       return 0;
+> +}
+> +
+> +static void rzg2l_cpg_complete(struct device *dev)
+> +{
+> +       struct rzg2l_cpg_priv *priv = dev_get_drvdata(dev);
+> +
+> +       /* Prepare for power down the BUSes in power down mode. */
+> +       if (priv->info->pm_domain_pwrdn_mstop)
+> +               writel(CPG_PWRDN_MSTOP_ENABLE, priv->base + CPG_PWRDN_MSTOP);
+> +}
+> +
+> +static const struct dev_pm_ops rzg2l_cpg_pm_ops = {
+> +       NOIRQ_SYSTEM_SLEEP_PM_OPS(NULL, rzg2l_cpg_resume)
+> +       .complete = rzg2l_cpg_complete,
+> +};
+> +
+>  static const struct of_device_id rzg2l_cpg_match[] = {
+>  #ifdef CONFIG_CLK_R9A07G043
+>         {
+> @@ -1931,6 +1986,7 @@ static struct platform_driver rzg2l_cpg_driver = {
+>         .driver         = {
+>                 .name   = "rzg2l-cpg",
+>                 .of_match_table = rzg2l_cpg_match,
+> +               .pm     = pm_sleep_ptr(&rzg2l_cpg_pm_ops),
+>         },
+>  };
+>
+> diff --git a/drivers/clk/renesas/rzg2l-cpg.h b/drivers/clk/renesas/rzg2l-cpg.h
+> index d9a7357c4873..abff85644270 100644
+> --- a/drivers/clk/renesas/rzg2l-cpg.h
+> +++ b/drivers/clk/renesas/rzg2l-cpg.h
+> @@ -301,6 +301,7 @@ struct rzg2l_cpg_pm_domain_init_data {
+>
+>  /* Power domain flags. */
+>  #define RZG2L_PD_F_ALWAYS_ON   BIT(0)
+> +#define RZG2L_PD_F_CONSOLE     BIT(1)
+>  #define RZG2L_PD_F_NONE                (0)
+>
 
-Signed-off-by: Daero Lee <daero_le.lee@samsung.com>
----
- drivers/of/of_reserved_mem.c |  9 +++--
- mm/memblock.c                | 78 ++++++++++++++++++++++++++++++++++++
- 2 files changed, 84 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-index 8236ecae2953..504f2f60689c 100644
---- a/drivers/of/of_reserved_mem.c
-+++ b/drivers/of/of_reserved_mem.c
-@@ -40,15 +40,18 @@ static int __init early_init_dt_alloc_reserved_memory_arch(phys_addr_t size,
- 
- 	end = !end ? MEMBLOCK_ALLOC_ANYWHERE : end;
- 	align = !align ? SMP_CACHE_BYTES : align;
--	base = memblock_phys_alloc_range(size, align, start, end);
-+	if (nomap) {
-+		base = memblock_phys_alloc_range_nomap(size, align, start, end);
-+	} else {
-+		base = memblock_phys_alloc_range(size, align, start, end);
-+	}
-+	
- 	if (!base)
- 		return -ENOMEM;
- 
- 	*res_base = base;
- 	if (nomap) {
- 		err = memblock_mark_nomap(base, size);
--		if (err)
--			memblock_phys_free(base, size);
- 	}
- 
- 	kmemleak_ignore_phys(base);
-diff --git a/mm/memblock.c b/mm/memblock.c
-index d09136e040d3..f103f1ecbfad 100644
---- a/mm/memblock.c
-+++ b/mm/memblock.c
-@@ -1506,6 +1506,72 @@ phys_addr_t __init memblock_alloc_range_nid(phys_addr_t size,
- 	return found;
- }
- 
-+phys_addr_t __init memblock_alloc_range_nid_nomap(phys_addr_t size,
-+                                        phys_addr_t align, phys_addr_t start,
-+                                        phys_addr_t end, int nid,
-+                                        bool exact_nid)
-+{
-+        enum memblock_flags flags = choose_memblock_flags();
-+        phys_addr_t found;
-+
-+        if (WARN_ONCE(nid == MAX_NUMNODES, "Usage of MAX_NUMNODES is deprecated. Use NUMA_NO_NODE instead\n"))
-+                nid = NUMA_NO_NODE;
-+
-+        if (!align) {
-+                /* Can't use WARNs this early in boot on powerpc */
-+                dump_stack();
-+                align = SMP_CACHE_BYTES;
-+        }
-+
-+again:
-+        found = memblock_find_in_range_node(size, align, start, end, nid,
-+                                            flags);
-+        if (found)
-+                goto done;
-+
-+        if (nid != NUMA_NO_NODE && !exact_nid) {
-+                found = memblock_find_in_range_node(size, align, start,
-+                                                    end, NUMA_NO_NODE,
-+                                                    flags);
-+                if (found)
-+                        goto done;
-+        }
-+
-+        if (flags & MEMBLOCK_MIRROR) {
-+                flags &= ~MEMBLOCK_MIRROR;
-+                pr_warn_ratelimited("Could not allocate %pap bytes of mirrored memory\n",
-+                        &size);
-+                goto again;
-+        }
-+
-+        return 0;
-+
-+done:
-+        /*
-+         * Skip kmemleak for those places like kasan_init() and
-+         * early_pgtable_alloc() due to high volume.
-+         */
-+        if (end != MEMBLOCK_ALLOC_NOLEAKTRACE)
-+                /*
-+                 * Memblock allocated blocks are never reported as
-+                 * leaks. This is because many of these blocks are
-+                 * only referred via the physical address which is
-+                 * not looked up by kmemleak.
-+                 */
-+                kmemleak_alloc_phys(found, size, 0);
-+
-+        /*
-+         * Some Virtual Machine platforms, such as Intel TDX or AMD SEV-SNP,
-+         * require memory to be accepted before it can be used by the
-+         * guest.
-+         *
-+         * Accept the memory of the allocated buffer.
-+         */
-+        accept_memory(found, found + size);
-+
-+        return found;
-+}
-+
- /**
-  * memblock_phys_alloc_range - allocate a memory block inside specified range
-  * @size: size of memory block to be allocated in bytes
-@@ -1530,6 +1596,18 @@ phys_addr_t __init memblock_phys_alloc_range(phys_addr_t size,
- 					false);
- }
- 
-+phys_addr_t __init memblock_phys_alloc_range_nomap(phys_addr_t size,
-+                                                   phys_addr_t align,
-+                                                   phys_addr_t start,
-+                                                   phys_addr_t end)
-+{
-+        memblock_dbg("%s: %llu bytes align=0x%llx from=%pa max_addr=%pa %pS\n",
-+                     __func__, (u64)size, (u64)align, &start, &end,
-+                     (void *)_RET_IP_);
-+        return memblock_alloc_range_nid_nomap(size, align, start, end, 
-+					      NUMA_NO_NODE, false);
-+}
-+
- /**
-  * memblock_phys_alloc_try_nid - allocate a memory block from specified NUMA node
-  * @size: size of memory block to be allocated in bytes
--- 
-2.25.1
-
+Kind regards
+Uffe
 
