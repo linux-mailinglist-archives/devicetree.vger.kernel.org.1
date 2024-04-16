@@ -1,205 +1,130 @@
-Return-Path: <devicetree+bounces-59843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00A8D8A72F9
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 20:20:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5F8F8A733C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 20:31:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F2F91C21BD7
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 18:20:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65BB0284251
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 18:31:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 160CE1353FF;
-	Tue, 16 Apr 2024 18:20:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 641651CF8A;
+	Tue, 16 Apr 2024 18:31:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fyg4MVEb"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="kqKrEHo1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.mainlining.org (mainlining.org [94.241.141.152])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44A601350DD
-	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 18:20:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BAE21C06;
+	Tue, 16 Apr 2024 18:31:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.241.141.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713291620; cv=none; b=TzyWDpHvPPDoKAoPevxy4/0Pq5pRcwvARoK7jcRhpIuNZvOuUDparAcNN8b0T4125Wwmf5F7qWsxZgzxoyuR80kKUMbI2EvNOz/Zo/GJdhJ+XN0lRW5Il8Jno4XOEHw32xGopuXzz6hx+X69NzccEeCdyB0GkRXXUZ1VE2Jl0qU=
+	t=1713292275; cv=none; b=q6/CgW0B5wWSvutx505HAPdoK0j7D65X8h/6ocY5HbWpiBG1h1oYHTTsIwTpBu+w+Bn+BO4qfvtHXKUKEywB9txMhqgSfgksG2uCdr8GqL5B5iUmFozoJY9OefzlP7i24uAeWtw1WlFWHZ3pwyTZProrWcT2MisIFNdBJiBC3rQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713291620; c=relaxed/simple;
-	bh=J7nUs4Rfj55fuHNvurg0yldD2Cii+ZfFJaDPt10pkV4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QkYY2pPsfXEZE7QjiVcgTdHPBskPhUtINX51x3AWjUk9wWlt0ZlKglPle5mjg4nlRnyscpDXuEE+4HvyKMkZtti64SWmLhCPNqDZBVuT/FpUILbLNyLwik7C714+FL3mwx+Kuhj+9WpCg8uPkY0C87AUnQ+1xa4DOVJfN2CXiMU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fyg4MVEb; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-56e69a51a33so4707037a12.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 11:20:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713291616; x=1713896416; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=LiZoFre+EEvabWrIaMGE+RnIgnE08Xi8rFbTEN0hiU4=;
-        b=fyg4MVEbD9pejP2uIVotcF6eLNGpHlaUVMEwbzVt8yoaOK9OUUum4tkV52nQheXgUn
-         hBCRCpg605Xyl5U6KKXycFlIyeUt5EOgepR+IhRtl+dtUFGvQAw1pKFAMT0HRcz6G4nY
-         YapLp2Gh9GzmKJ2LZcvv4dPoDxoKIN/SZ8lJjsSQWgiM6Tx8cyKrxB6QC65m66+1sgPH
-         OzurHeCanvw8KdT6W7OLWDO9UG0yCGvuMueGRdWcfCt65ICgnJxx5cearncle3W+N2K9
-         ntkXFsmDp/hF/302XH1919KAsdYnkl5rEnMr0MpQebeavfz8QyO2WRmSHbxonAC7+Vrb
-         8fmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713291616; x=1713896416;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LiZoFre+EEvabWrIaMGE+RnIgnE08Xi8rFbTEN0hiU4=;
-        b=pevais17P+JDJv+EkS5+cyhk+mVHbChAL4OK0PveUhnUt6vjg09eypXuywG4WVrHAf
-         10uKvgZawkiHI5CyIDMZep4OF0Y8nFPdiVJxw1FE178bIYuvlDSJg1gMi1PpZDowtTBt
-         35uW1P6SgTisnw0lmaqqqQdrGenoDJhjY3rsKKdK5fcS2a/z/z4OGuqmmWBgnb7hXIwe
-         NKS33vtA3mLzzPIu7NVu5ZYa02IO+WOnChZQxGBSQ9zFgrqkIpcsg9ykz7ZajbxrOUyJ
-         p5Vdlf4/19hf5oKud4pd34amm7frWAZQIZ3hsn79zaV4pSzuN1hTGrCZumMJt6y5mpPZ
-         7YcA==
-X-Forwarded-Encrypted: i=1; AJvYcCWaMhIwaa8gWW2KMayf1ybwpquh2KSt9AS7yBHeMovxnkFm9XUpJKkEkkHgGKXt6D57FkzQFZCA0OXGfqfkID8d2sQFR0OVDve6OA==
-X-Gm-Message-State: AOJu0YzsTIoszeSeXdI3+aU2vYmmjRP0Pw3jDSWZ/zK0rBAo2yARxfT5
-	BG/bR2GjmFjJHiH8D5Eijui9UZ7q1jSX69+l9dyaFiU+VuJ/aopJ0nwF8U1b8+A=
-X-Google-Smtp-Source: AGHT+IFZwq6l2AcJ1KK82U+CiB1zqh+Plqpd5qrQkIit5NN7rI1eBA5ieSH+2EC/GhdndnlKEBkgKQ==
-X-Received: by 2002:a17:907:360d:b0:a52:5a04:faff with SMTP id bk13-20020a170907360d00b00a525a04faffmr6845924ejc.8.1713291616151;
-        Tue, 16 Apr 2024 11:20:16 -0700 (PDT)
-Received: from localhost ([102.222.70.76])
-        by smtp.gmail.com with ESMTPSA id o7-20020a17090611c700b00a4672fb2a03sm7229104eja.10.2024.04.16.11.20.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Apr 2024 11:20:15 -0700 (PDT)
-Date: Tue, 16 Apr 2024 21:20:11 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Linus Walleij <linus.walleij@linaro.org>
-Cc: Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Dhruva Gole <d-gole@ti.com>,
-	Andy Shevchenko <andy.shevchenko@gmail.com>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Peng Fan <peng.fan@nxp.com>,
-	Oleksii Moisieiev <oleksii_moisieiev@epam.com>
-Subject: Re: [PATCH v10 0/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
- protocol basic support
-Message-ID: <6c652af8-151e-4d8b-9587-8eae1254a4fe@moroto.mountain>
-References: <20240415-pinctrl-scmi-v10-0-59c6e7a586ee@nxp.com>
+	s=arc-20240116; t=1713292275; c=relaxed/simple;
+	bh=rzC5W1TaCb9OYzxdOKGyAXPykw9cGXSoLeHQch7h958=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ghSHvqigmNB1hHExPRuQo170LxmfsQhVkbhAZ4aompv8Z2vSNYXasEzh1u/ZYGZSFiaUyuUCmIXnlpLeFsTOkw4krUI8sAStxdEuw/udNcDnFcBRv1odPglGaqvVFgN0YAE3fka+1gNR1q3gzfngpZaxTtKXrRKK+Z7EZDBgN6s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=kqKrEHo1; arc=none smtp.client-ip=94.241.141.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+Received: from david-ryuzu.localdomain (ipbcc3a836.dynamic.kabel-deutschland.de [188.195.168.54])
+	by mail.mainlining.org (Postfix) with ESMTPSA id 4063BE20E0;
+	Tue, 16 Apr 2024 18:31:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
+	s=psm; t=1713292269;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=CDEkPdtKTNgd1iLFlJr4m5I7DfTRIEGCJhDqsto7S8E=;
+	b=kqKrEHo1pbhQ4q90yt5ppV/kDqBM412ZH23DtnlWM5son7smI/mtbCocuiEd0jAxVkyYtj
+	MG2QMeINp4283CTadR7wg6IRgNIUe15YuN/fS9ppYJu2bzC7xLfnDvO9SHJAuisk9hOhPf
+	8onesEvjlU4SdYqak1qoGPECcD8U0HPKZ0eaJTAMlMvnYfA4jl55YoOLQNyFyCkaNaDQKj
+	AFe5TedYsPVvuEaqInUnymlUjCCJsVL4FD0R0iA1bvQphbp818XopUUW5A0qHDajygaBkT
+	fRs8iIevRiT2fo+noUX5xIbof9Q2oEPbDk1f2fvy+WxETp+iEAryLZAEtcGaug==
+From: David Wronek <david@mainlining.org>
+Subject: [PATCH v3 0/2] Add driver for Raydium RM69380-based DSI panels
+Date: Tue, 16 Apr 2024 20:30:47 +0200
+Message-Id: <20240416-raydium-rm69380-driver-v3-0-21600ac4ce5f@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240415-pinctrl-scmi-v10-0-59c6e7a586ee@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANfDHmYC/4XNQQ6CMBCF4auQrq1ph1LBlfcwLkCmMIkUM9VGQ
+ ri7hZWJMS7/l8w3swjIhEEcs1kwRgo0+hT5LhPXvvYdSmpTC1BglNFGcj219BwkD7bKSyVbpog
+ szcEBNNaBcSjS8Z3R0WuDz5fUPYXHyNP2J+p1/UtGLZUssLRNDaZSTXEaavI38uS7/cidWN0In
+ 1bx04LVAgPaGqtzZb+sZVne/26T/g0BAAA=
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
+ Daniel Vetter <daniel@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ phone-devel@vger.kernel.org, David Wronek <david@mainlining.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1713292268; l=1909;
+ i=david@mainlining.org; s=20240121; h=from:subject:message-id;
+ bh=rzC5W1TaCb9OYzxdOKGyAXPykw9cGXSoLeHQch7h958=;
+ b=fHVKKYgh2Xauj1zzwwZfD7fVDUSHyQbzzy8cMaSXyu45ThbcnMq9DmCxgd6s4bzXCnISa63oG
+ n0+jqf0FGN8D9RP9FYhxxXnkRX8e3/bUqdDQoey/lSkQOotsVK/2sF/
+X-Developer-Key: i=david@mainlining.org; a=ed25519;
+ pk=PJIYyFK3VrK6x+9W6ih8IGSJ5dxRXHiYay+gG1qQzqs=
 
-I'm trying to re-base AKASHI Takahiro's gpio driver on top of your scmi
-pinctrl driver.
-https://lore.kernel.org/all/20231005025843.508689-1-takahiro.akashi@linaro.org/
-I need to do something like this below to save the gpio information.
+This patch adds support the 2560x1600@90Hz dual DSI command mode panel by
+EDO in combination with a Raydium RM69380 driver IC.
 
-So now, great, I have the information but I'm not sure how to export it
-from the scmi pinctrl driver to the gpio driver...  (This is a probably
-a stupid question but I am real newbie with regards to gpio).
+This driver IC can be found in the following devices:
+ * Lenovo Xiaoxin Pad Pro 2021 (TB-J716F) with EDO panel
+ * Lenovo Tab P11 Pro (TB-J706F) with EDO panel
+ * Robo & Kala 2-in-1 Laptop with Sharp panel
 
-The other thing is that the SCMI spec says:
+Signed-off-by: David Wronek <david@mainlining.org>
+---
+Changes in v3:
+- Removed unneeded curly brackets from some if statments
+- Fix error handling code in probe function
+- Include video/mipi_display.h and make use of MIPI command definitions
+- Removed DRM_MODE_TYPE_PREFERRED
+- Dropped 'prepared' bool entirely
+- Register second DSI host using mipi_dsi_device_register_full()
+- Link to v2: https://lore.kernel.org/r/20240415-raydium-rm69380-driver-v2-0-524216461306@mainlining.org
 
-    4.11.2.7
-    PINCTRL_SETTINGS_GET
+Changes in v2:
+- Fixed typo in Kconfig
+- Removed ctx->prepared = true; in prepare function
+- Switched to drm_connector_helper_get_modes_fixed in get_modes function
+- Changed dev_notice() to dev_dbg()
+- Add description for compatible and reset-gpio in the dt-binding
+- Always require 'ports' node in the dt-binding regardless of compatible
+- Link to v1: https://lore.kernel.org/r/20240414-raydium-rm69380-driver-v1-0-5e86ba2490b5@mainlining.org
 
-    This command can be used by an agent to get the pin or group
-    configuration, and the function selected to be enabled. It can also
-    be used to read the value of a pin when it is set to GPIO mode.
+---
+David Wronek (2):
+      dt-bindings: display: panel: Add Raydium RM69380
+      drm/panel: Add driver for EDO RM69380 OLED panel
 
-What does that mean?  Is that right, or is it something left over from a
-previous revision of the spec.
+ .../bindings/display/panel/raydium,rm69380.yaml    |  91 +++++
+ drivers/gpu/drm/panel/Kconfig                      |  14 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-raydium-rm69380.c      | 367 +++++++++++++++++++++
+ 4 files changed, 473 insertions(+)
+---
+base-commit: 66e4190e92ce0e4a50b2f6be0e5f5b2e47e072f4
+change-id: 20240414-raydium-rm69380-driver-47f22b6f24fe
 
-regards,
-dan carpenter
+Best regards,
+-- 
+David Wronek <david@mainlining.org>
 
-diff --git a/drivers/firmware/arm_scmi/pinctrl.c b/drivers/firmware/arm_scmi/pinctrl.c
-index a2a7f880d6a3..f803be8a223f 100644
---- a/drivers/firmware/arm_scmi/pinctrl.c
-+++ b/drivers/firmware/arm_scmi/pinctrl.c
-@@ -26,6 +26,7 @@
- #define GET_PINS_NR(x)		le32_get_bits((x), GENMASK(15, 0))
- #define GET_FUNCTIONS_NR(x)	le32_get_bits((x), GENMASK(15, 0))
- 
-+#define IS_GPIO_FUNC(x)		le32_get_bits((x), BIT(17))
- #define EXT_NAME_FLAG(x)	le32_get_bits((x), BIT(31))
- #define NUM_ELEMS(x)		le32_get_bits((x), GENMASK(15, 0))
- 
-@@ -107,6 +108,7 @@ struct scmi_group_info {
- struct scmi_function_info {
- 	char name[SCMI_MAX_STR_SIZE];
- 	bool present;
-+	bool gpio;
- 	u32 *groups;
- 	u32 nr_groups;
- };
-@@ -189,7 +191,7 @@ static int scmi_pinctrl_validate_id(const struct scmi_protocol_handle *ph,
- 
- static int scmi_pinctrl_attributes(const struct scmi_protocol_handle *ph,
- 				   enum scmi_pinctrl_selector_type type,
--				   u32 selector, char *name,
-+				   u32 selector, char *name, bool *gpio,
- 				   u32 *n_elems)
- {
- 	int ret;
-@@ -216,17 +218,20 @@ static int scmi_pinctrl_attributes(const struct scmi_protocol_handle *ph,
- 	tx->flags = cpu_to_le32(type);
- 
- 	ret = ph->xops->do_xfer(ph, t);
--	if (!ret) {
--		if (n_elems)
--			*n_elems = NUM_ELEMS(rx->attributes);
-+	if (ret)
-+		goto xfer_put;
- 
--		strscpy(name, rx->name, SCMI_SHORT_NAME_MAX_SIZE);
-+	if (n_elems)
-+		*n_elems = NUM_ELEMS(rx->attributes);
- 
--		ext_name_flag = !!EXT_NAME_FLAG(rx->attributes);
--	}
-+	if (type == FUNCTION_TYPE && gpio)
-+		*gpio = !!IS_GPIO_FUNC(rx->attributes);
- 
--	ph->xops->xfer_put(ph, t);
-+	strscpy(name, rx->name, SCMI_SHORT_NAME_MAX_SIZE);
-+	ext_name_flag = !!EXT_NAME_FLAG(rx->attributes);
- 
-+xfer_put:
-+	ph->xops->xfer_put(ph, t);
- 	if (ret)
- 		return ret;
- 	/*
-@@ -602,7 +607,7 @@ static int scmi_pinctrl_get_group_info(const struct scmi_protocol_handle *ph,
- 	int ret;
- 
- 	ret = scmi_pinctrl_attributes(ph, GROUP_TYPE, selector, group->name,
--				      &group->nr_pins);
-+				      NULL, &group->nr_pins);
- 	if (ret)
- 		return ret;
- 
-@@ -687,7 +692,7 @@ static int scmi_pinctrl_get_function_info(const struct scmi_protocol_handle *ph,
- 	int ret;
- 
- 	ret = scmi_pinctrl_attributes(ph, FUNCTION_TYPE, selector, func->name,
--				      &func->nr_groups);
-+				      &func->gpio, &func->nr_groups);
- 	if (ret)
- 		return ret;
- 
-@@ -778,7 +783,8 @@ static int scmi_pinctrl_get_pin_info(const struct scmi_protocol_handle *ph,
- 	if (!pin)
- 		return -EINVAL;
- 
--	ret = scmi_pinctrl_attributes(ph, PIN_TYPE, selector, pin->name, NULL);
-+	ret = scmi_pinctrl_attributes(ph, PIN_TYPE, selector, pin->name, NULL,
-+				      NULL);
- 	if (ret)
- 		return ret;
- 
 
