@@ -1,119 +1,264 @@
-Return-Path: <devicetree+bounces-59643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D76A78A656F
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 09:51:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D5918A657B
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 09:55:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B384B22258
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 07:51:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DDC821F21EC0
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 07:55:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AAAB84DE6;
-	Tue, 16 Apr 2024 07:51:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9FAE84FA9;
+	Tue, 16 Apr 2024 07:55:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pa53K9ZC"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ndXtNV3h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A7B47FBC4;
-	Tue, 16 Apr 2024 07:51:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D5267FBBA;
+	Tue, 16 Apr 2024 07:55:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713253906; cv=none; b=qvl4POpwyINDQJjum4qrnUQ0IwUvFdHl1atCTjsrpJrZEVhoBStHZGcQKM2kbyDHtloQghmeQ8WpNxh0WgyuDVoRTfquvIZiNNiH9Njf/uWfqZyX4Bnf6oG4RhvBMRzmFxWeB0FpIph/Os3KVrGGc0B5tFS76V54TsI/IbaMync=
+	t=1713254127; cv=none; b=karfiswCWIucZOimuSRS36iFdiPgR21q/mGA9lb3LJywpzOyUB2hvTgsn8ykMZSl6UDMZTkV5mdFO59tSTLwhXaIuYvaoeDWF06fot9iiNyWNRPLBvGnM69iumeskf9sFM+vvFAE4OSeGEip6aF5xoQ75EW2H263wBbG5Pv9zV0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713253906; c=relaxed/simple;
-	bh=a19vA6wI20HdT0Dr8/OmeBGoDRFOQGDMAe/IdzCQ1Wc=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=KZYialFxQmYAh6tvaydX1bRgZdHe4ckHTZpyjS8BY+6B6OiDm88dee+E5PTuGZdnZa6iMRYWWwOSSHT4Xztra92JzAle3BxeL1yaxKmsQLmcOI2EhuIyDd/h+bcuYpNI49DiEf7p17YrOUZ1O7qrUKDeL9S4qseIRc8cejnUjpk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pa53K9ZC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE4C2C113CE;
-	Tue, 16 Apr 2024 07:51:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713253905;
-	bh=a19vA6wI20HdT0Dr8/OmeBGoDRFOQGDMAe/IdzCQ1Wc=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=pa53K9ZChmBVU8nR3+qp6d91nC5m2nR2Wl5sSGi2QJSsJEbusQo7tijjpUG3wJgaS
-	 WKM2nloIaEmglewwgemiEGrjgtolzRKdyM40iGqJU4yE/cm+Ojm3wH6dbzNNM8/7kf
-	 HYQwdmV10GXXuOFOdF7ioPoCHVo30ecS4OJml2NAti5DmPcIX3t7JD6GK56nYvHEWh
-	 WN5xb2om9+P8wewmRP4xLuQgr4gFAU5tHqVuBy08NWf+ma9Qo4sDLds8KjAFpIeNhx
-	 i7XUyD6aKilDLyUAxjJC+vNPbjrDHU1xYLiADrwzfAZk7eBf9G8L0mGVuN6JPRoUcS
-	 qWqDj6DLvyEIA==
-Date: Tue, 16 Apr 2024 02:51:44 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1713254127; c=relaxed/simple;
+	bh=/N51T8HnLQj9KU4DpUIGD0F8mipJ+bMfeUuzlyssn4Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kc6qQ/LI6G9IJEkqq1sN1EUfQNSr4g+N1mqzyEmnd5JhAuw57jRjwSycZAOqC7w20hg4rYmj/AZaRVu9z6nUDR6Ybob6k3ZhS39b9LrWk9Zcrr8cKeSq1Bk8EDfNvWGjESw5d5CgWJflHbxBA6G7GeBltt51MAamEUi9h+VupkE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ndXtNV3h; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1713254119;
+	bh=/N51T8HnLQj9KU4DpUIGD0F8mipJ+bMfeUuzlyssn4Q=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ndXtNV3hcFpkcNYJo8JuG7v+O3l6lDGNurA3lFy6h2pDZZGy9mMH3RXI7tSDsSIoj
+	 tf1QBfxFe2Mn0z9lpqVd8FGPlQRwoosatdNvPrBeSuv00uqnC5Gh6FZrn2Gtm/GakO
+	 idCukbxDYZrkjXV6mPP68/W6HO5+IwyITWJop/zr8XtkX82mWjBIWazunwNrfln70x
+	 o/UV/Qb6phNaxfZVtlYpsh21k0glAS8aO1MjzFDKMcxpRgnwfPmFykO8GgQ2YJvvTt
+	 4KJS4xnwBWGnKM37nTdEFYVoGo1F6cxlixLcN7vhV9FGQE25OjAVAD4luS1nHCFjkd
+	 /u/9FsyQeCQzw==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 225CB37804B2;
+	Tue, 16 Apr 2024 07:55:18 +0000 (UTC)
+Message-ID: <4d60e9e4-9eae-4b0a-abb2-b1ad3d278fc9@collabora.com>
+Date: Tue, 16 Apr 2024 09:55:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org, 
- Jaroslav Kysela <perex@perex.cz>, quic_pkumpatl@quicinc.com, 
- Takashi Iwai <tiwai@suse.com>, linux-arm-msm@vger.kernel.org, 
- Banajit Goswami <bgoswami@quicinc.com>, devicetree@vger.kernel.org, 
- quic_rohkumar@quicinc.com, Mark Brown <broonie@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, alsa-devel@alsa-project.org
-In-Reply-To: <20240416063600.309747-4-quic_mohs@quicinc.com>
-References: <20240416063600.309747-1-quic_mohs@quicinc.com>
- <20240416063600.309747-4-quic_mohs@quicinc.com>
-Message-Id: <171325390367.1353462.6738496215058640142.robh@kernel.org>
-Subject: Re: [PATCH v2 3/8] ASoC: dt-bindings: wcd937x-sdw: add bindings
- for wcd937x-sdw
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/8] scsi: ufs: ufs-mediatek: Remove useless
+ mediatek,ufs-boost-crypt property
+To: =?UTF-8?B?UGV0ZXIgV2FuZyAo546L5L+h5Y+LKQ==?= <peter.wang@mediatek.com>,
+ "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "jejb@linux.ibm.com" <jejb@linux.ibm.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "avri.altman@wdc.com" <avri.altman@wdc.com>,
+ "bvanassche@acm.org" <bvanassche@acm.org>,
+ "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
+ "broonie@kernel.org" <broonie@kernel.org>,
+ "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "robh@kernel.org" <robh@kernel.org>,
+ "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
+References: <20240415110012.148871-1-angelogioacchino.delregno@collabora.com>
+ <20240415110012.148871-4-angelogioacchino.delregno@collabora.com>
+ <c9634a286fbdb4c98a7fe6703a4eb10d66dfcb9e.camel@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <c9634a286fbdb4c98a7fe6703a4eb10d66dfcb9e.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-
-On Tue, 16 Apr 2024 12:05:55 +0530, Mohammad Rafi Shaik wrote:
-> From: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+Il 16/04/24 09:03, Peter Wang (王信友) ha scritto:
+> On Mon, 2024-04-15 at 13:00 +0200, AngeloGioacchino Del Regno wrote:
+>> There is no need to have a property that activates the inline crypto
+>> boost feature, as this needs many things: a regulator, three clocks,
+>> and the mediatek,boost-crypt-microvolt property to be set.
+>>
+>> If any one of these is missing, the feature won't be activated,
+>> hence, it is useless to have yet one more property to enable that.
+>>
+>> While at it, also address another two issues:
+>> 1. Give back the return value to the caller and make sure to fail
+>>     probing if we get an -EPROBE_DEFER or -ENOMEM; and
+>> 2. Free the ufs_mtk_crypt_cfg structure allocated in the crypto
+>>     boost function if said functionality could not be enabled because
+>>     it's not supported, as that'd be only wasted memory.
+>>
+>> Last but not least, move the devm_kzalloc() call for
+>> ufs_mtk_crypt_cfg
+>> to after getting the dvfsrc-vcore regulator and the boost microvolt
+>> property, as if those fail there's no reason to even allocate that.
+>>
+>> Fixes: ac8c2459091c ("scsi: ufs-mediatek: Decouple features from
+>> platform bindings")
+>> Signed-off-by: AngeloGioacchino Del Regno <
+>> angelogioacchino.delregno@collabora.com>
+>> ---
+>>   drivers/ufs/host/ufs-mediatek.c | 55 ++++++++++++++++++-------------
+>> --
+>>   1 file changed, 30 insertions(+), 25 deletions(-)
+>>
+>> diff --git a/drivers/ufs/host/ufs-mediatek.c b/drivers/ufs/host/ufs-
+>> mediatek.c
+>> index 688d85909ad6..47f16e6720f4 100644
+>> --- a/drivers/ufs/host/ufs-mediatek.c
+>> +++ b/drivers/ufs/host/ufs-mediatek.c
+>> @@ -575,51 +575,55 @@ static int ufs_mtk_init_host_clk(struct ufs_hba
+>> *hba, const char *name,
+>>   	return ret;
+>>   }
+>>   
+>> -static void ufs_mtk_init_boost_crypt(struct ufs_hba *hba)
+>> +static int ufs_mtk_init_boost_crypt(struct ufs_hba *hba)
+>>   {
+>>   	struct ufs_mtk_host *host = ufshcd_get_variant(hba);
+>>   	struct ufs_mtk_crypt_cfg *cfg;
+>>   	struct device *dev = hba->dev;
+>>   	struct regulator *reg;
+>>   	u32 volt;
+>> -
+>> -	host->crypt = devm_kzalloc(dev, sizeof(*(host->crypt)),
+>> -				   GFP_KERNEL);
+>> -	if (!host->crypt)
+>> -		goto disable_caps;
+>> +	int ret;
+>>   
+>>   	reg = devm_regulator_get_optional(dev, "dvfsrc-vcore");
+>>   	if (IS_ERR(reg)) {
+>> -		dev_info(dev, "failed to get dvfsrc-vcore: %ld",
+>> -			 PTR_ERR(reg));
+>> -		goto disable_caps;
+>> +		ret = PTR_ERR(reg);
+>> +		if (ret == -EPROBE_DEFER)
+>> +			return ret;
+>> +
+>> +		return 0;
+>>   	}
+>>   
+>> -	if (of_property_read_u32(dev->of_node, "mediatek,boost-crypt-
+>> microvolt",
+>> -				 &volt)) {
+>> +	ret = of_property_read_u32(dev->of_node, "mediatek,boost-crypt-
+>> microvolt", &volt);
+>> +	if (ret) {
+>>   		dev_info(dev, "failed to get mediatek,boost-crypt-
+>> microvolt");
+>> -		goto disable_caps;
+>> +		return 0;
+>>   	}
+>>   
+>> +	host->crypt = devm_kzalloc(dev, sizeof(*host->crypt),
+>> GFP_KERNEL);
+>> +	if (!host->crypt)
+>> +		return -ENOMEM;
+>> +
+>>
 > 
-> Qualcomm WCD9370/WCD9375 Codec is a standalone Hi-Fi audio codec IC
-> connected over SoundWire. This device has two SoundWire devices RX and
-> TX respectively.
-> This binding is for those slave devices on WCD9370/WCD9375.
+> Hi Angelo,
 > 
-> Co-developed-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-> Signed-off-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
-> ---
->  .../bindings/sound/qcom,wcd937x-sdw.yaml      | 71 +++++++++++++++++++
->  1 file changed, 71 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.yaml
+> If retrun -ENOMEN, host will init fail.
+> But previous is skip boost crypt feature only.
+> It change the driver behavior.
 > 
 
-My bot found errors running 'make dt_binding_check' on your patch:
+This is fully intentional: if a platform supports boost-crypt, this means that the
+feature *MUST* be enabled, and must *not* be disabled if a memory allocation fails,
+as that is relative to available pages at boot, and not to SoC feature support.
 
-yamllint warnings/errors:
+Keep in mind that the allocation was moved to *after* checking if such platform
+does indeed support the boost-crypt feature, and it is critical to FAIL probing
+if there was no memory to allocate the host->crypt structure.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/qcom,wcd937x.example.dtb: codec@0,4: 'qcom,port-mapping' is a required property
-	from schema $id: http://devicetree.org/schemas/sound/qcom,wcd937x-sdw.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/qcom,wcd937x.example.dtb: codec@0,3: 'qcom,port-mapping' is a required property
-	from schema $id: http://devicetree.org/schemas/sound/qcom,wcd937x-sdw.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.example.dtb: codec@0,4: 'qcom,port-mapping' is a required property
-	from schema $id: http://devicetree.org/schemas/sound/qcom,wcd937x-sdw.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.example.dtb: codec@0,3: 'qcom,port-mapping' is a required property
-	from schema $id: http://devicetree.org/schemas/sound/qcom,wcd937x-sdw.yaml#
+> 
+> 
+> 
+>>   	cfg = host->crypt;
+>> -	if (ufs_mtk_init_host_clk(hba, "crypt_mux",
+>> -				  &cfg->clk_crypt_mux))
+>> -		goto disable_caps;
+>> +	ret = ufs_mtk_init_host_clk(hba, "crypt_mux", &cfg-
+>>> clk_crypt_mux);
+>> +	if (ret)
+>> +		goto out;
+>>   
+>> -	if (ufs_mtk_init_host_clk(hba, "crypt_lp",
+>> -				  &cfg->clk_crypt_lp))
+>> -		goto disable_caps;
+>> +	ret = ufs_mtk_init_host_clk(hba, "crypt_lp", &cfg-
+>>> clk_crypt_lp);
+>> +	if (ret)
+>> +		goto out;
+>>   
+>> -	if (ufs_mtk_init_host_clk(hba, "crypt_perf",
+>> -				  &cfg->clk_crypt_perf))
+>> -		goto disable_caps;
+>> +	ret = ufs_mtk_init_host_clk(hba, "crypt_perf", &cfg-
+>>> clk_crypt_perf);
+>> +	if (ret)
+>> +		goto out;
+>>   
+>>   	cfg->reg_vcore = reg;
+>>   	cfg->vcore_volt = volt;
+>>   	host->caps |= UFS_MTK_CAP_BOOST_CRYPT_ENGINE;
+>>   
+>> -disable_caps:
+>> -	return;
+>> +out:
+>> +	if (ret)
+>> +		devm_kfree(dev, host->crypt);
+>> +	return 0;
+>>   }
+>>   
+>>   static int ufs_mtk_init_va09_pwr_ctrl(struct ufs_hba *hba)
+>> @@ -648,8 +652,9 @@ static int ufs_mtk_init_host_caps(struct ufs_hba
+>> *hba)
+>>   	struct device_node *np = hba->dev->of_node;
+>>   	int ret;
+>>   
+>> -	if (of_property_read_bool(np, "mediatek,ufs-boost-crypt"))
+>> -		ufs_mtk_init_boost_crypt(hba);
+>> +	ret = ufs_mtk_init_boost_crypt(hba);
+>> +	if (ret)
+>> +		return ret;
+>>   
+> 
+> Most ufs-mediatek platform dosen't need "mediatek,ufs-boost-crypt"
+> Remove this property will casue most platform try error and add init
+> latency.
+> 
 
-doc reference errors (make refcheckdocs):
+Yes this causes -> less than half of a millisecond <- of additional boot time
+if the dvfsrc-supply is present but boost-microvolt is not.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240416063600.309747-4-quic_mohs@quicinc.com
+I really don't see the problem with that :-)
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+Regards,
+Angelo
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+> Thanks.
+> Peter
+> 
+> 
+> 
+>>   	ret = ufs_mtk_init_va09_pwr_ctrl(hba);
+>>   	if (ret)
 
 
