@@ -1,254 +1,169 @@
-Return-Path: <devicetree+bounces-59722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED55D8A6D58
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 16:08:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEBC58A6DA7
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 16:15:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F4311F217BA
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 14:08:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 26C4AB24CD6
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 14:15:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C441A12CD8F;
-	Tue, 16 Apr 2024 14:07:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98CAE13440F;
+	Tue, 16 Apr 2024 14:10:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="NcFrXxBs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="imdJkKDY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2065.outbound.protection.outlook.com [40.107.249.65])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B03C612CDB2;
-	Tue, 16 Apr 2024 14:07:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.249.65
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713276466; cv=fail; b=Icj9ByrXDGfsMlaziTza7W4HCiJ5wYxcHcLbF/1FsuAc7pVb7OnQn9jgKZL2ZF6KUzCpT9HAFmkFkPKYQ/NtEU2RANF/QzDjVNhhdPFmsed3J1f54PtlL2f4KOc747xmAkl5wgWKsyBAi5jirq4v1Cdlw0g1p88aMOsxYdEUaPg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713276466; c=relaxed/simple;
-	bh=Iz2BlTF0VPxWihMRnmVkVjSEvJR5ORV/78YcffebBPI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=XTSf9Kmj3q4aQImk6dYkJl63kePGCyt5xgWC3MVw2yQSsTN9mYcaNUMvGj6xHt/Wg/SIDrFEHAi2l9wgt0tuc/zyqky44WfMcFJPIOxKatXD5bUvqgP9HWvL1cIFot/reZUPWd0hyunjRu2kQcgwGhaTEOZMqadzHfYMRU70/Z4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=NcFrXxBs; arc=fail smtp.client-ip=40.107.249.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eFv2pGvh2hJAYKH8BW2c7rfogAc75vkPoZ47mquIHr0UyfKirwWTtSgYSZB9Cr9KiD0Rv4UnXy/Q1aCAGPBgkLwKVbzxndL+rv0oJDI+yq7hpxtpyjwTE5Fx1Fw26n72DVjdELP70/fouorXRwfZb04giiKeX9v0oDWy9HzTJeqa2mFt1rlTkJqeqS2Cl8zAGZwWeYQUVyS0Ij6V1eiLNqWd2OiD/jQxcItFI/I4qTxDYMD6wS+yqKJ73mU8pdKwrsrTkzmhUsWswCXLOMJs4m/ktA8v6Bb+a3Qr3zZnZ4iXZPpolWAU6dUiTxmWQiSys+XYWhh/P6rI80HCSVvJ0g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GccN7hfp3cs20aVlZarHXNfD7QdlVvWwyNSA3uBh8OI=;
- b=D3qu3OMN5qRao9E5WWY+T/nkkstLe+5XZ6byeU7eO+iQW/v9ryHiF1sYN9oXkFw99MSf4S2jeB57hHxxLSBZGoI3yBgsspD+g6AeynRPG5SbNLaVooBgN6X3C5agZDIIRwOVnm5dqlhJV9/kdS3S8Fi8gWLzIAMwT9vyrzIVTgm44zM3PPqjj9CjjGxviLoY+kyTZ7zE4SAvhyt2bLaC9tPGWsAPpOaZTHFeoc2oJPisZiLU1Fupc6c7g5nXQRr44nGMPIN/r+tEasPqEKY+HJUHSkKVm0ziATn0qM1OUNhy/zllQzJ+9utP3TvS6sbVfO1dzUmn5oPpfqSvw5zCGA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GccN7hfp3cs20aVlZarHXNfD7QdlVvWwyNSA3uBh8OI=;
- b=NcFrXxBsBRb4zQESdcMWrnw5KDTJjB2VH+mGjWRtPormyO4oYaEY0HOCOLx/3VAC+cevu7Nwx9KFYEmdp448k6D9AEpJxBGJsz+uKtruKxf8VfT1d+WTD+iI1YZIdBwqSJNDLl1TBigfZrG1bsCmTepUAzOGmsrSamyZWYj7TDo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AS5PR04MB9827.eurprd04.prod.outlook.com (2603:10a6:20b:652::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.50; Tue, 16 Apr
- 2024 14:07:38 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::1e67:dfc9:d0c1:fe58]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::1e67:dfc9:d0c1:fe58%7]) with mapi id 15.20.7452.049; Tue, 16 Apr 2024
- 14:07:38 +0000
-Date: Tue, 16 Apr 2024 10:07:25 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-pci@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	bpf@vger.kernel.org, devicetree@vger.kernel.org,
-	Jason Liu <jason.hui.liu@nxp.com>
-Subject: Re: [PATCH v3 00/11] PCI: imx6: Fix\rename\clean up and add lut
- information for imx95
-Message-ID: <Zh6GHcARSmlV/QdS@lizhi-Precision-Tower-5810>
-References: <20240402-pci2_upstream-v3-0-803414bdb430@nxp.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240402-pci2_upstream-v3-0-803414bdb430@nxp.com>
-X-ClientProxiedBy: BYAPR11CA0063.namprd11.prod.outlook.com
- (2603:10b6:a03:80::40) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70882134406;
+	Tue, 16 Apr 2024 14:10:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713276652; cv=none; b=VVurmvnTemEmGbceNSgEp/OMQSF3lDN4V+IVoYvEgOyqIfqq8wRgdgemmADT5XyBVDKRS5hdAjsK0CmQ86kKTKVaG3sCKC2se1Z7rmb/esDPc7eNwjk5qduQiopjfTK9v0oktg5CgMBEQ6c7SWVpX/3k6CRkWV1DZYPY5X2uJIs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713276652; c=relaxed/simple;
+	bh=KrWX/mg6sB3IEZrckEkLG2wQSu4eyNuu4r2kX+Ke2dM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Db3wHoY1pd3GKhChwlDAGwFg+xY98oukv4CKtjuk3Z67Ya2VFbtV5wXiWMqv9m/X/Dc27RrjMdWnSBhwe12IK8Qy2o2h3ovIPmAhwk+VmXh5RuPCGYjGdz7u57TlDDWilQGGHI6TeK6aiy7T++wJxpUaCeYapc6zkgvjU7O/zFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=imdJkKDY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA9EAC4AF0B;
+	Tue, 16 Apr 2024 14:10:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713276652;
+	bh=KrWX/mg6sB3IEZrckEkLG2wQSu4eyNuu4r2kX+Ke2dM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=imdJkKDYt4IFdH2ZckctnvXhpZbwxdxcgmUWwCvsrSIY1BBC3Zve/1ZAOnUB2VU7r
+	 o4QWE3QJ+6HF2FSN6XVw50nGwR+64xUP/kb4KIAsCz1CUF/S04ZGbwS6f0cNjWe/6v
+	 Rhj+mq5FCttUy+RNqV+pPUOjSwdGaS4b88AK/rycT+U6phHhDzlgDZf0O84XN0yt+1
+	 e32QCFkUFHSakyxij42InYbVbscHOW6jZ387u0s5pPfaJqOT1VIUeRuM5INvBzmzCY
+	 AXM8KInzJKNcTTY+bsVy+F9LdvQ2sltQNRfvKI1Wg3WsbTvJHSVVGU9ob7lxzLUD1E
+	 RLYXnH8XFlEuA==
+Date: Tue, 16 Apr 2024 09:10:49 -0500
+From: Rob Herring <robh@kernel.org>
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Saravana Kannan <saravanak@google.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Atish Patra <atishp@atishpatra.org>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Sunil V L <sunilvl@ventanamicro.com>,
+	Anup Patel <anup@brainfault.org>, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] of: property: Add fw_devlink support for
+ interrupt-map property
+Message-ID: <20240416141049.GA2148267-robh@kernel.org>
+References: <20240413091942.316054-1-apatel@ventanamicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS5PR04MB9827:EE_
-X-MS-Office365-Filtering-Correlation-Id: 393dd287-e3c7-4361-8ae5-08dc5e1e92a3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	Tu7Fq60EKu5W4Y2hXVzAuvFTavWdop/4PXDnbHXUmTlXtuBEzhVbEJS5Oqy7mPdW0tdzk0zQYU5e1nIaf5RPNy6+hekRUFAFSJf0I4cgs8jbdfX4VhoRLsKtbyFohnr2LtB26WHA4HwMPOrcRbRtQm3mGEmuse2usK1WRsgHX6Q02wRRGKjA6nsGJL/atpE+/q3C76zJ+M/k+ORelhgh+xVgH9E6X4j8SaVZ6TFbuideQ1Dl4Wx/O6Tp3K8Hr1B7fkkfvfJCocEfC4ST7SsGCoFi8K2QfFmg93Daw0kIB4nwST9Q0niQMSlExw2BzGjsbeNe3+p+vy6/63nnY9ABq7zECwF/9UPAHjoxBcdqWSPYgz/o972u/Fxho8mmj/CP7PVEjDVmuzAxtt9Fn/dqgsJWkjPebb8tewN3O7B2PVKbW9LHSLZ9Mi1mO9DgkyFCZXNtLBuocUQwZuQIKqAnT7+FTgqV8OlakzPHKLq1tsYQkC9EIC9bPtWif8BRn2+BWRnn+HqJvmRlJEnlEo2bk0kOw9OMyJJxydQfvN1GNFptrA+Mw2KOV62bp0n7icIVLdIhCdnN271hG2/LVOWn7kJEB7/9hXpxSBzSpeQwA6cR1Q2hu1Q5eo0Kfq9OtybMzBbCi7483zJn/ofim1iDWgHTXEJdWTe32HOn+o5UKC+bdeGAM3NJkgxPwcPtMN6LURGEXon6N2zc+2ACE7Q7Z3C/zadr/aTuQitM0NLXZr0=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(7416005)(52116005)(1800799015)(366007)(38350700005)(921011);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?UEpXTjZiVnNhZTEySmRMaU9SRkRQYlBvNzB5U3lKdzZuN3RET2pRNVpEbU9l?=
- =?utf-8?B?K1BuNitZRnUvWU92aUxETnQ1WFdVR01wYTF6MURYUTFhY1VoczJZbU9UTU92?=
- =?utf-8?B?WVNDY2V1M3diMXVvc3Rrd2JFOTNpYnJlOHRhWDNWSEl4TklWM2w2dnVYQm5D?=
- =?utf-8?B?VEMwa1dnSVdSakhMZzhOYWQxb1ZzcUxKWjRCWE1sSzFabWRtK0lER0UrY0lw?=
- =?utf-8?B?UUZkc21BQlUxOVM4YkVsTDd0dnpDVnFmdVNIQTk4TkF2MSsrd0FZdC8vYzZS?=
- =?utf-8?B?TXZPSUx3NUFxZXpaRXo5eFk5WmRHMUY2T3RVSUQ0OVRYaFhod2NOOE5vUzlN?=
- =?utf-8?B?SXp3enFVRUZrRWQ1NlFwbHFJZVdYWEErdXROQlRLWXJ5blZyVVphajIwSEho?=
- =?utf-8?B?T2dkM2FWd0xmMFNHc1Mzdk1DSkF4aGtRc0tJU0lxcnJ1bkNWcDBLOHdyV0Ry?=
- =?utf-8?B?M3dMaU9hUDl0U1oxM0krZmdpWTNPMi9ZdkpDVnROM0gvVmZmVDBNZ1VKUVZE?=
- =?utf-8?B?RGxrY2ZhM2tKcmYzQUZaMzdFbFl2dmpYUklFbUR0TU9WL05INzRTQkRaQ1Jj?=
- =?utf-8?B?NzZMbVoxeTkrVnBtazZ4N2ZQRUd6TG1DZ2gvR0VTWTMyckJCT05mQnZFN1Vn?=
- =?utf-8?B?QnBSK2N1QXBtRVVHdXVqemdqV2dndmZuUDNhbDhSVUtia05qcUsrbVRHaWg5?=
- =?utf-8?B?TUFPeE9Cc1FwRTRJSVlxRmJsOW84bjhmUElENnpodTJHS3VpWGpMUUoyQ2xz?=
- =?utf-8?B?Y1QxQ3dDbjUwd29aWmU0M3lQbWU5S1NsWGxiWVY0S3Z4ZGhJNW1oeThiK01v?=
- =?utf-8?B?WXdjdFZwZ2Q3RFhzWnBYQkFjR0pFTlYzdVE4ZFBmWGdnKzNlcmd4dmpnajhM?=
- =?utf-8?B?L3lMZ2lwc0hyVWVmTmFwT25iekcrdHY0NG1lNzJGN0FWWndhcmpjbk5za051?=
- =?utf-8?B?a0t1TGFSRFE2ckpmaThlbmRNMDB4U3FtZGt2c2xrZDdiQU5ycW9CTCs4L01Q?=
- =?utf-8?B?WWUvTmhnMHhCdDFGQXdTdVhkSnVMRHJ5WEZaa2hqRG0wa0YzUENuS2JFQmdt?=
- =?utf-8?B?WjU0R0ZCZVNaRWpLenB2R1RBTXpMckVPTUtQMHUxMzBXRGNteWEwUjF1UlBY?=
- =?utf-8?B?YVlFb3lYemgrNFROcnBCY3drNWs5Y3RtZ0hML0t4ZUt0VlVyclhEMFNqbEg4?=
- =?utf-8?B?WUE1NDdIWm1KN1Y5TUpYa1V1cUxibWZ4WGNoWGtTaFI5R2JwejBHdnVFYklm?=
- =?utf-8?B?VlFCM0c2S3RlSFhYSXBkTmhwQ2lXUDd3dm5HWHZCRzAwREFaVERWT2lNU1ZH?=
- =?utf-8?B?SFBqb3NjOUJVZUlYZzc1MkYvdUpQcXhPU3JXelNJTGRCMUUvdnphSFo3Ri9y?=
- =?utf-8?B?ZVoxcStaR29vUS9XNGh6cGtZcWI3TkUrNTIySzJCSG5vTnNqZzRmZnQrM0Nu?=
- =?utf-8?B?cGE5WmJJdlppMW1ZYzlXRDJ1OHZ5Mi9pWndGT2xLWG9BQWJOeXQ4YTBFb0RZ?=
- =?utf-8?B?bUpaL0xYZDJ1aGt2NzJvQldHeWNvNjBMVUN2WlU0KzBpK2lpaU9WWkRPS0sw?=
- =?utf-8?B?MXdHUUxyLzlIUFd3RnBqbVFaRlRyeHhzeStmUzVhRGFqU2IzT3owMUtRUnNt?=
- =?utf-8?B?MGgwODlSRGlUYW81REdpNGFndW1tSUU3MnQ5NGNSb1gzcW1DNDVrWTdQM25E?=
- =?utf-8?B?UG1YNHY0WWxobGFMOXhVV1c0cW9iM2ZpQW9Sb0VnTHZRWkRySEJ6SHYrMEps?=
- =?utf-8?B?UDRFRDlNVTNPVFVaVXJqZ1dGcm1obzNIM0w0WE94bFg0K1FmTEg5N28xUFdC?=
- =?utf-8?B?aXpQVVRQaTkwc0tYVjdBclRidnhtMmt4ZDUyQThDWjVkU3hGalZJcGdodkZO?=
- =?utf-8?B?SG4zTnNGdHlYckxLeHhqeXZWNG5sQThaZmc3aGlvUTB3UEYzaUNsNXh2UkxY?=
- =?utf-8?B?OXRqMm93c2dEaEkzNE02QXFGR1NxK2N4NTBBNGVQSWx0NVl0Y3p4cjBKT3JX?=
- =?utf-8?B?VmZsYmQ3U2g1WnFMQ3pxMlI0WlpnK3dRZFdmWks5ZkdpbUl2NFltWGFQaTVL?=
- =?utf-8?B?T2VwWEpzUFpmbnJSTGlHK0krNWRzTFJrMmxOd0ljeG1laUFZZWFQeVVsT1Mw?=
- =?utf-8?Q?O7Q8=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 393dd287-e3c7-4361-8ae5-08dc5e1e92a3
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2024 14:07:38.3645
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NeB0nydf6b2wXHuHa2hySmwJtiTKN6pm0bS0FZMNqD5A2jeS6uK+RsX2OfksEhwvulCV0jxFK1n5v/35GZCUDQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS5PR04MB9827
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240413091942.316054-1-apatel@ventanamicro.com>
 
-On Tue, Apr 02, 2024 at 10:33:36AM -0400, Frank Li wrote:
-> Fixed 8mp EP mode problem.
+On Sat, Apr 13, 2024 at 02:49:42PM +0530, Anup Patel wrote:
+> Some of the PCI controllers (such as generic PCI host controller)
+> use "interrupt-map" DT property to describe the mapping between
+> PCI endpoints and PCI interrupt pins. This the only case where
+> the interrupts are not described in DT.
 > 
-> imx6 actaully for all imx chips (imx6*, imx7*, imx8*, imx9*). To avoid     
-> confuse, rename all imx6_* to imx_*, IMX6_* to IMX_*. pci-imx6.c to        
-> pci-imx.c to avoid confuse.                                                
-
-
-Mani and lorenzo:
-
-Do you have chance to look these patches?
-
-Frank
-
+> Currently, there is no fw_devlink created based on "interrupt-map"
+> DT property so interrupt controller is not guaranteed to be probed
+> before PCI host controller. This affects every platform where both
+> PCI host controller and interrupt controllers are probed as regular
+> platform devices.
 > 
-> Using callback to reduce switch case for core reset and refclk.            
+> This creates fw_devlink between consumers (PCI host controller) and
+> supplier (interrupt controller) based on "interrupt-map" DT property.
 > 
-> Add imx95 iommux and its stream id information.                            
-> 
-> Base on linux-pci/controller/imx
-> 
-> To: Richard Zhu <hongxing.zhu@nxp.com>
-> To: Lucas Stach <l.stach@pengutronix.de>
-> To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-> To: Krzysztof Wilczyński <kw@linux.com>
-> To: Rob Herring <robh@kernel.org>
-> To: Bjorn Helgaas <bhelgaas@google.com>
-> To: Shawn Guo <shawnguo@kernel.org>
-> To: Sascha Hauer <s.hauer@pengutronix.de>
-> To: Pengutronix Kernel Team <kernel@pengutronix.de>
-> To: Fabio Estevam <festevam@gmail.com>
-> To: NXP Linux Team <linux-imx@nxp.com>
-> To: Philipp Zabel <p.zabel@pengutronix.de>
-> To: Liam Girdwood <lgirdwood@gmail.com>
-> To: Mark Brown <broonie@kernel.org>
-> To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> To: Conor Dooley <conor+dt@kernel.org>
-> Cc: linux-pci@vger.kernel.org
-> Cc: imx@lists.linux.dev
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: bpf@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> 
-> Changes in v3:
-> - Add an EP fixed patch
->   PCI: imx6: Fix PCIe link down when i.MX8MM and i.MX8MP PCIe is EP mode
->   PCI: imx6: Fix i.MX8MP PCIe EP can not trigger MSI
-> - Add 8qxp rc support
-> dt-bing yaml pass binding check
-> make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j8  dt_binding_check DT_SCHEMA_FILES=fsl,imx6q-pcie.yaml
->   LINT    Documentation/devicetree/bindings
->   DTEX    Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.example.dts
->   CHKDT   Documentation/devicetree/bindings/processed-schema.json
->   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
->   DTC_CHK Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.example.dtb
-> 
-> - Link to v2: https://lore.kernel.org/r/20240304-pci2_upstream-v2-0-ad07c5eb6d67@nxp.com
-> 
-> Changes in v2:
-> - remove file to 'pcie-imx.c'
-> - keep CONFIG unchange.
-> - Link to v1: https://lore.kernel.org/r/20240227-pci2_upstream-v1-0-b952f8333606@nxp.com
-> 
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
 > ---
-> Frank Li (7):
->       PCI: imx6: Rename imx6_* with imx_*
->       PCI: imx6: Rename pci-imx6.c to pcie-imx.c
->       MAINTAINERS: pci: imx: update imx6* to imx* since rename driver file
->       PCI: imx: Simplify switch-case logic by involve set_ref_clk callback
->       PCI: imx: Simplify switch-case logic by involve core_reset callback
->       PCI: imx: Config look up table(LUT) to support MSI ITS and IOMMU for i.MX95
->       PCI: imx: Consolidate redundant if-checks
-> 
-> Richard Zhu (4):
->       PCI: imx6: Fix PCIe link down when i.MX8MM and i.MX8MP PCIe is EP mode
->       PCI: imx6: Fix i.MX8MP PCIe EP can not trigger MSI
->       dt-bindings: imx6q-pcie: Add i.MX8Q pcie compatible string
->       PCI: imx6: Add i.MX8Q PCIe support
-> 
->  .../bindings/pci/fsl,imx6q-pcie-common.yaml        |    5 +
->  .../devicetree/bindings/pci/fsl,imx6q-pcie.yaml    |   18 +
->  MAINTAINERS                                        |    4 +-
->  drivers/pci/controller/dwc/Makefile                |    2 +-
->  .../pci/controller/dwc/{pci-imx6.c => pcie-imx.c}  | 1173 ++++++++++++--------
->  5 files changed, 727 insertions(+), 475 deletions(-)
+> Changes since v1:
+> - Updated commit description based on Rob's suggestion
+> - Use of_irq_parse_raw() for parsing interrupt-map DT property
 > ---
-> base-commit: 2e45e73eebd43365cb585c49b3a671dcfae6b5b5
-> change-id: 20240227-pci2_upstream-0cdd19a15163
+>  drivers/of/property.c | 58 +++++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 58 insertions(+)
 > 
-> Best regards,
-> ---
-> Frank Li <Frank.Li@nxp.com>
-> 
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index a6358ee99b74..67be66384dac 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -1311,6 +1311,63 @@ static struct device_node *parse_interrupts(struct device_node *np,
+>  	return of_irq_parse_one(np, index, &sup_args) ? NULL : sup_args.np;
+>  }
+>  
+> +static struct device_node *parse_interrupt_map(struct device_node *np,
+> +					       const char *prop_name, int index)
+> +{
+> +	const __be32 *imap, *imap_end, *addr;
+> +	struct of_phandle_args sup_args;
+> +	struct device_node *tn, *ipar;
+> +	u32 addrcells, intcells;
+> +	int i, j, imaplen;
+> +
+> +	if (!IS_ENABLED(CONFIG_OF_IRQ))
+> +		return NULL;
+> +
+> +	if (strcmp(prop_name, "interrupt-map"))
+> +		return NULL;
+> +
+> +	ipar = of_node_get(np);
+> +	do {
+> +		if (!of_property_read_u32(ipar, "#interrupt-cells", &intcells))
+> +			break;
+> +		tn = ipar;
+> +		ipar = of_irq_find_parent(ipar);
+> +		of_node_put(tn);
+> +	} while (ipar);
+
+No need for this loop. We've only gotten here if 'interrupt-map' is 
+present in the node and '#interrupt-cells' is required if 
+'interrupt-map' is present.
+
+> +	if (!ipar)
+> +		return NULL;
+> +	addrcells = of_bus_n_addr_cells(ipar);
+> +	of_node_put(ipar);
+> +
+> +	imap = of_get_property(np, "interrupt-map", &imaplen);
+> +	if (!imap || imaplen <= (addrcells + intcells))
+> +		return NULL;
+> +	imap_end = imap + imaplen;
+> +
+> +	sup_args.np = NULL;
+> +	for (i = 0; i <= index && imap < imap_end; i++) {
+> +		if (sup_args.np) {
+> +			of_node_put(sup_args.np);
+> +			sup_args.np = NULL;
+> +		}
+> +
+> +		addr = imap;
+> +		imap += addrcells;
+> +
+> +		sup_args.np = np;
+> +		sup_args.args_count = intcells;
+> +		for (j = 0; j < intcells; j++)
+> +			sup_args.args[j] = be32_to_cpu(imap[j]);
+> +		imap += intcells;
+> +
+> +		if (of_irq_parse_raw(addr, &sup_args))
+> +			return NULL;
+> +		imap += sup_args.args_count + 1;
+> +	}
+
+Doesn't this leak a ref on the last time the function is invoked? For 
+example, if we have 2 entries and index is 2. We'll get index=1, but 
+then exit because imap==imap_end. We need a put on index==1 node.
+
+Look at my next branch where I've converted things to use __free() 
+cleanups. I don't see it helping here as-is, but maybe when it is 
+correct.
+
+Rob
 
