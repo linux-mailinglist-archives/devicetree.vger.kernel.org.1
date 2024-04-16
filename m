@@ -1,897 +1,281 @@
-Return-Path: <devicetree+bounces-59675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E04DA8A6981
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 13:18:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DA718A698A
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 13:23:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0ECB71C20BD5
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 11:18:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E1C8282154
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 11:23:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AECC6128809;
-	Tue, 16 Apr 2024 11:18:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P1YzWqHS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 592FF1292C1;
+	Tue, 16 Apr 2024 11:23:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5037186259;
-	Tue, 16 Apr 2024 11:18:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3A76128396;
+	Tue, 16 Apr 2024 11:23:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713266318; cv=none; b=XQfJ8P3vNyaax/uOkY/CeUvZ+4ei6/6MeVuYBvO6k3KreJ5GAUCjIPo9Ok331h5FXaQvzZ4f8tbQrEdPOaNXFtUwurYvmeDZeOYXja5wNt98aMfr6EFpckVFfYLGf9Sj48HUG9q+GPuB5JZnRPgVXgMWE4msTZ6bFKH85Syxa3c=
+	t=1713266592; cv=none; b=Jg4vsstHDUkhpp7M1EGumffXYrgP4005rzzo4hHLurscgORRRY9CNDdFKuCNYMdf4WCODn2gWIosrmLmoApbU7gvh/g9zp/5/rF46u/WcjhqpEGLDpK4ODSP0eems+txicsSwl2m5VGx/gACGntKZwLmGlBj6nCGa78Ig5R8AVQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713266318; c=relaxed/simple;
-	bh=kpQ1yuDjttfNfP4+fmCQ5YPN2/gdTzBoERqWcQ7bhJ4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZzLLOhM2LRrMblxIEd8cc0cWB9bEucOvY5AprR+DhaJAw5XONbKnXw01mubt0CDFgxijpl1hBa0dboZpAW3lx1CmqZghf7Y5IQMvc7aGZZhfwK0qh2ffXoIcl2CEwh9R22jYVYRBM/kxfnnLCKZJ8bc53ngIMtvlEtKMSZaXHo0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P1YzWqHS; arc=none smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-57042f84cabso809343a12.2;
-        Tue, 16 Apr 2024 04:18:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713266314; x=1713871114; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=C+xoXI6wDSPeQ9KXnenP6ksJjguTa3RR9PTO48E5G8Y=;
-        b=P1YzWqHSlZCko4hc06QnnBCRuPuRob6r6hYJX/7zutVDbphLxLaEhAoPOsOXnBVSbf
-         mt+q+TIsRqEKvE6n+W7exsimGsNexSMK12ChW1MRD3Cp9wWrQUO4Begx0JoxxXAYQ48N
-         M5bakEkJUlpnezcxuBjfzW9B0+RX+hxZMd6lIFBkM0GqSXTno/e+mt1XZ/fEAsDAjNxJ
-         UF5tZSa3uo+V6DTja8d8HcPOe2W6I7Pif+jBphB8m3DE9pS1IIz3pE7m8ocnZ6Jf/g3o
-         3J5NmwZJrJR0fJpnm2RnxElsJUhko1R2DUITPS/OQLljFXkFaZUFDpdWPbmlx3UQERM2
-         YY8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713266314; x=1713871114;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=C+xoXI6wDSPeQ9KXnenP6ksJjguTa3RR9PTO48E5G8Y=;
-        b=Sao1uN5mEz4baDEsHPfvwSKuizQd3h4qaMsUxX3NioQGLPrD1vGsHDq/TPJtCfD4sq
-         wFPjKVewSie5vyexubbRl+yWekBZcOarJzJPZzEsg9uVJvj9ENP9dmxmmzDVnx4MsYC1
-         2KxRN2mqY7SJSNBJdp9LoeRU+iPFN1B2bZCNg2H1AYoIctQqdAfs7K2FuXD7sx25Ty4Z
-         CgyTcpPIoxmreXvHfZ8U2TRPL3qR9+IGKhnLJsbnGrkKNn3SJFRcgUMBcEBFxffm6RNv
-         FpFfhZNaOfUcSEJCdlq5rdK44y1ZrBgOGBYIL1sogD+gR6OCb9D2CKBp/GcfLOr0bZjt
-         ZGrw==
-X-Forwarded-Encrypted: i=1; AJvYcCWP6Qx0LXonMaj/z6lB5+CNDoFSeavSR4SwIelJi0Taocyudma+V1dDC/+c9mWlOo3kNFI7Ij/2o6sTI/3qD2ttrlcrM16d8Y/LzLEI
-X-Gm-Message-State: AOJu0YwVXvtXPmruSYi0qQRczSKRMImAsX3hJMPYJ5xQQmyAoFP2e13V
-	ItdqDphZY9iwWT9LvCVufZauOv+CrTIMlqaIiep2/WjwHFVE5YGgBUgjJmBpQs/KwOUlUL+XpOb
-	rcHBNe/v3TUMOemNB2Y+wMcpy1B8=
-X-Google-Smtp-Source: AGHT+IG/QCOY+uHYrMmSTbhmuvcvfxKiVeKzU7GtkdKMvWNWYEFUoL2UkhpZzFM5F5xYDEfeEvoGKE0vJ4plEaP4OFA=
-X-Received: by 2002:a50:9b1e:0:b0:568:bfcd:e895 with SMTP id
- o30-20020a509b1e000000b00568bfcde895mr8459679edi.41.1713266313976; Tue, 16
- Apr 2024 04:18:33 -0700 (PDT)
+	s=arc-20240116; t=1713266592; c=relaxed/simple;
+	bh=Y3llxjIXmfW7rF8sJgQDYyWp+vAUQOKaIP1rcLgHknU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=GMrPqxhYjwLG9531j5F/AXA7cDhVmdcZInL5MTHvtpGPRcXdrlN54XOgQJB43SGNXAc8+5EifCvz6EYmtSPYz5q9nFoMdTVpnNm9n6Ga668DqTDOvv9Rjd9Ik8p9MPQPK2TmXRgqlbMGankC731XXliKJujDTUR2bItS8rtKebY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 463A2339;
+	Tue, 16 Apr 2024 04:23:38 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2B96B3F738;
+	Tue, 16 Apr 2024 04:23:08 -0700 (PDT)
+Date: Tue, 16 Apr 2024 12:23:05 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: John Watts <contact@jookia.org>
+Cc: Chen-Yu Tsai <wens@csie.org>, Lee Jones <lee@kernel.org>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Ryan
+ Walklin <ryan@testtoast.com>, Chris Morgan <macroalpha82@gmail.com>
+Subject: Re: [PATCH 1/4] regulator: axp20x: AXP717: fix LDO supply rails and
+ off-by-ones
+Message-ID: <20240416122305.3ffc2bda@donnerap.manchester.arm.com>
+In-Reply-To: <ZhuNCUnJri4hBOxx@titan>
+References: <20240329235033.25309-1-andre.przywara@arm.com>
+	<20240329235033.25309-2-andre.przywara@arm.com>
+	<ZhuNCUnJri4hBOxx@titan>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240416034626.317823-1-liujianfeng1994@gmail.com> <20240416034626.317823-4-liujianfeng1994@gmail.com>
-In-Reply-To: <20240416034626.317823-4-liujianfeng1994@gmail.com>
-From: Weizhao Ouyang <o451686892@gmail.com>
-Date: Tue, 16 Apr 2024 19:18:22 +0800
-Message-ID: <CAHk0HotDt0MCoU12eFD9f6-7y1Vmjijjx_jbQd3WiyT=tofypg@mail.gmail.com>
-Subject: Re: [PATCH v4 3/3] arm64: dts: rockchip: Add ArmSom Sige7 board
-To: Jianfeng Liu <liujianfeng1994@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de, 
-	sfr@canb.auug.org.au, weizhao.ouyang@arm.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Tue, Apr 16, 2024 at 11:46=E2=80=AFAM Jianfeng Liu <liujianfeng1994@gmai=
-l.com> wrote:
->
-> Specification:
->         Rockchip Rk3588 SoC
->         4x ARM Cortex-A76, 4x ARM Cortex-A55
->         8/16/32GB Memory LPDDR4/LPDDR4x
->         Mali G610MP4 GPU
->         2=C3=97 MIPI-CSI Connector
->         1=C3=97 MIPI-DSI Connector
->         1x M.2 Key M (PCIe 3.0 4-lanes)
->         2x RTL8125 2.5G Ethernet
->         Onboard AP6275P for WIFI6/BT5
->         32GB/64GB/128GB eMMC
->         MicroSD card slot
->         1x USB2.0, 1x USB3.0 Type-A, 1x US3.0 Type-C
->         1x HDMI Output, 1x type-C DP Output
->
-> Functions work normally:
->         USB2.0 Host
->         USB3.0 Type-A Host
->         M.2 Key M (PCIe 3.0 4-lanes)
->         2x RTL8125 2.5G Ethernet
->         eMMC
->         MicroSD card
->
-> More information can be obtained from the following website
->         https://docs.armsom.org/armsom-sige7
->
-> Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
+On Sun, 14 Apr 2024 18:00:09 +1000
+John Watts <contact@jookia.org> wrote:
 
-nit: RK3588 GPU and USB-DP support is in the linux-rockchip tree and
-waiting for the next merge window.
-Other looks good to me.
+Hi John,
 
-Reviewed-by: Weizhao Ouyang <weizhao.ouyang@arm.com>
+many thanks for the detailed review (also on the other two patches), much
+appreciated!
 
-BR,
-Weizhao
+> On Fri, Mar 29, 2024 at 11:50:30PM +0000, Andre Przywara wrote:
+> > The X-Powers AXP717 PMIC has separate input supply pins for each group
+> > of LDOs, so they are not all using the same DCDC1 input, as described
+> > currently.
+> > 
+> > Replace the "supply" member of each LDO description with the respective
+> > group supply name, so that the supply dependencies can be correctly
+> > described in the devicetree.
+> > Also fix two off-by-ones in the regulator macros, after some double
+> > checking the numbers against the datasheet.
+> > 
+> > Fixes: d2ac3df75c3a ("regulator: axp20x: add support for the AXP717")
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>  
+> 
+> Hi,
+> 
+> > ---
+> >  drivers/regulator/axp20x-regulator.c | 28 ++++++++++++++--------------
+> >  1 file changed, 14 insertions(+), 14 deletions(-)
+> > 
+> > diff --git a/drivers/regulator/axp20x-regulator.c b/drivers/regulator/axp20x-regulator.c
+> > index 34fcdd82b2eaa..3907606b091f6 100644
+> > --- a/drivers/regulator/axp20x-regulator.c
+> > +++ b/drivers/regulator/axp20x-regulator.c
+> > @@ -140,7 +140,7 @@
+> >  
+> >  #define AXP717_DCDC1_NUM_VOLTAGES	88
+> >  #define AXP717_DCDC2_NUM_VOLTAGES	107
+> > -#define AXP717_DCDC3_NUM_VOLTAGES	104
+> > +#define AXP717_DCDC3_NUM_VOLTAGES	103
+> >  #define AXP717_DCDC_V_OUT_MASK		GENMASK(6, 0)
+> >  #define AXP717_LDO_V_OUT_MASK		GENMASK(4, 0)
+> >  
+> > @@ -766,7 +766,7 @@ static const struct linear_range axp717_dcdc1_ranges[] = {
+> >  static const struct linear_range axp717_dcdc2_ranges[] = {
+> >  	REGULATOR_LINEAR_RANGE(500000,   0,  70,  10000),
+> >  	REGULATOR_LINEAR_RANGE(1220000, 71,  87,  20000),
+> > -	REGULATOR_LINEAR_RANGE(1600000, 88, 107, 100000),
+> > +	REGULATOR_LINEAR_RANGE(1600000, 88, 106, 100000),
+> >  };  
+> 
+> I'm not entirely sure these are correct after reading the datasheet.
+> 
+> From what I can tell REGULATOR_LINEAR_RANGE is inclusive, so for DCDC1
+> we have these ranges (we agree DCDC1 is correct, it is not affected by
+> this patch):
+> 
+> #define AXP717_DCDC1_NUM_VOLTAGES	88
+> static const struct linear_range axp717_dcdc1_ranges[] = {
+> 	REGULATOR_LINEAR_RANGE(500000,   0, 70, 10000),
+> 	REGULATOR_LINEAR_RANGE(1220000, 71, 87, 20000),
+> };
+> 
+> The datasheet says this for the register:
+> 
+> 0.5~1.2V,10mV/step,71steps
+> 1.22~1.54V,20mV/step,17steps
+> 0000000: 0.50V
+> 0000001: 0.51V
+> ...
+> 1000110: 1.20V
+> 1000111: 1.22V
+> 1001000: 1.24V
+> ...
+> 1010111: 1.54V
+> 1011000~1111111: Reserve
+> 
+> Converting to decimal:
+> 
+> 0: 0.50V (range 1 start)
+> 1: 0.51V
+> ...
+> 70: 1.20V (range 1 end)
+> 71: 1.22V (range 2 start)
+> 72: 1.24V
+> ...
+> 87: 1.54V (range 2 end)
+> 88 onwards: reserved
+> 
+> The maximum voltages are the last value plus one (to include voltage zero).
+> 
+> For DCDC2 after applying this patch we get:
+> 
+> #define AXP717_DCDC2_NUM_VOLTAGES	107
+> static const struct linear_range axp717_dcdc2_ranges[] = {
+> 	REGULATOR_LINEAR_RANGE(500000,   0,  70,  10000),
+> 	REGULATOR_LINEAR_RANGE(1220000, 71,  87,  20000),
+> 	REGULATOR_LINEAR_RANGE(1600000, 88, 106, 100000),
+> };
+> 
+> The datasheet marks the maximum value as 1101011: 3.40V, so 106 (the old
+> value for range) seems correct, but the NUM_VOLTAGES seems like it
+> should be bumped up to 108. I think you fixed the wrong thing here.
 
-> ---
->  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->  .../boot/dts/rockchip/rk3588-armsom-sige7.dts | 724 ++++++++++++++++++
->  2 files changed, 725 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-armsom-sige7.dts
->
-> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/=
-rockchip/Makefile
-> index 7da198be8..0624c7284 100644
-> --- a/arch/arm64/boot/dts/rockchip/Makefile
-> +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> @@ -111,6 +111,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-roc-pc.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-rock-3a.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-wolfvision-pf5.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-wolfvision-pf5-io-expander.dtbo
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588-armsom-sige7.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588-coolpi-cm5-evb.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588-edgeble-neu6a-io.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588-edgeble-neu6a-wifi.dtbo
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-armsom-sige7.dts b/arch/=
-arm64/boot/dts/rockchip/rk3588-armsom-sige7.dts
-> new file mode 100644
-> index 000000000..f1fc7cc48
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-armsom-sige7.dts
-> @@ -0,0 +1,724 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include "rk3588.dtsi"
-> +
-> +/ {
-> +       model =3D "ArmSoM Sige7";
-> +       compatible =3D "armsom,sige7", "rockchip,rk3588";
-> +
-> +       aliases {
-> +               mmc0 =3D &sdhci;
-> +               mmc1 =3D &sdmmc;
-> +       };
-> +
-> +       chosen {
-> +               stdout-path =3D "serial2:1500000n8";
-> +       };
-> +
-> +       analog-sound {
-> +               compatible =3D "audio-graph-card";
-> +               label =3D "rk3588-es8316";
-> +
-> +               widgets =3D "Microphone", "Mic Jack",
-> +                         "Headphone", "Headphones";
-> +
-> +               routing =3D "MIC2", "Mic Jack",
-> +                         "Headphones", "HPOL",
-> +                         "Headphones", "HPOR";
-> +
-> +               dais =3D <&i2s0_8ch_p0>;
-> +               hp-det-gpio =3D <&gpio1 RK_PD5 GPIO_ACTIVE_HIGH>;
-> +               pinctrl-names =3D "default";
-> +               pinctrl-0 =3D <&hp_detect>;
-> +       };
-> +
-> +       leds {
-> +               compatible =3D "gpio-leds";
-> +               pinctrl-names =3D "default";
-> +               pinctrl-0 =3D <&led_rgb_b>;
-> +
-> +               led_blue: led-0 {
-> +                       function =3D LED_FUNCTION_STATUS;
-> +                       color =3D <LED_COLOR_ID_BLUE>;
-> +                       gpios =3D <&gpio0 RK_PB7 GPIO_ACTIVE_HIGH>;
-> +                       linux,default-trigger =3D "heartbeat";
-> +               };
-> +
-> +               led_red: led-1 {
-> +                       function =3D LED_FUNCTION_STATUS;
-> +                       color =3D <LED_COLOR_ID_RED>;
-> +                       gpios =3D <&gpio4 RK_PC5 GPIO_ACTIVE_HIGH>;
-> +                       linux,default-trigger =3D "none";
-> +               };
-> +       };
-> +
-> +       fan: pwm-fan {
-> +               compatible =3D "pwm-fan";
-> +               cooling-levels =3D <0 95 145 195 255>;
-> +               fan-supply =3D <&vcc5v0_sys>;
-> +               pwms =3D <&pwm1 0 50000 0>;
-> +               #cooling-cells =3D <2>;
-> +       };
-> +
-> +       vcc3v3_pcie2x1l2: vcc3v3-pcie2x1l2-regulator {
-> +               compatible =3D "regulator-fixed";
-> +               regulator-name =3D "vcc3v3_pcie2x1l2";
-> +               regulator-min-microvolt =3D <3300000>;
-> +               regulator-max-microvolt =3D <3300000>;
-> +               startup-delay-us =3D <5000>;
-> +               vin-supply =3D <&vcc_3v3_s3>;
-> +       };
-> +
-> +       vcc3v3_pcie30: vcc3v3-pcie30-regulator {
-> +               compatible =3D "regulator-fixed";
-> +               enable-active-high;
-> +               gpios =3D <&gpio1 RK_PA4 GPIO_ACTIVE_HIGH>;
-> +               regulator-name =3D "vcc3v3_pcie30";
-> +               regulator-min-microvolt =3D <3300000>;
-> +               regulator-max-microvolt =3D <3300000>;
-> +               startup-delay-us =3D <5000>;
-> +               vin-supply =3D <&vcc5v0_sys>;
-> +       };
-> +
-> +       vcc5v0_host: vcc5v0-host-regulator {
-> +               compatible =3D "regulator-fixed";
-> +               regulator-name =3D "vcc5v0_host";
-> +               regulator-boot-on;
-> +               regulator-always-on;
-> +               regulator-min-microvolt =3D <5000000>;
-> +               regulator-max-microvolt =3D <5000000>;
-> +               enable-active-high;
-> +               gpio =3D <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;
-> +               pinctrl-names =3D "default";
-> +               pinctrl-0 =3D <&vcc5v0_host_en>;
-> +               vin-supply =3D <&vcc5v0_sys>;
-> +       };
-> +
-> +       vcc5v0_sys: vcc5v0-sys-regulator {
-> +               compatible =3D "regulator-fixed";
-> +               regulator-name =3D "vcc5v0_sys";
-> +               regulator-always-on;
-> +               regulator-boot-on;
-> +               regulator-min-microvolt =3D <5000000>;
-> +               regulator-max-microvolt =3D <5000000>;
-> +       };
-> +
-> +       vcc_1v1_nldo_s3: vcc-1v1-nldo-s3-regulator {
-> +               compatible =3D "regulator-fixed";
-> +               regulator-name =3D "vcc_1v1_nldo_s3";
-> +               regulator-always-on;
-> +               regulator-boot-on;
-> +               regulator-min-microvolt =3D <1100000>;
-> +               regulator-max-microvolt =3D <1100000>;
-> +               vin-supply =3D <&vcc5v0_sys>;
-> +       };
-> +};
-> +
-> +&combphy0_ps {
-> +       status =3D "okay";
-> +};
-> +
-> +&combphy1_ps {
-> +       status =3D "okay";
-> +};
-> +
-> +&combphy2_psu {
-> +       status =3D "okay";
-> +};
-> +
-> +&cpu_b0 {
-> +       cpu-supply =3D <&vdd_cpu_big0_s0>;
-> +};
-> +
-> +&cpu_b1 {
-> +       cpu-supply =3D <&vdd_cpu_big0_s0>;
-> +};
-> +
-> +&cpu_b2 {
-> +       cpu-supply =3D <&vdd_cpu_big1_s0>;
-> +};
-> +
-> +&cpu_b3 {
-> +       cpu-supply =3D <&vdd_cpu_big1_s0>;
-> +};
-> +
-> +&cpu_l0 {
-> +       cpu-supply =3D <&vdd_cpu_lit_s0>;
-> +};
-> +
-> +&cpu_l1 {
-> +       cpu-supply =3D <&vdd_cpu_lit_s0>;
-> +};
-> +
-> +&cpu_l2 {
-> +       cpu-supply =3D <&vdd_cpu_lit_s0>;
-> +};
-> +
-> +&cpu_l3 {
-> +       cpu-supply =3D <&vdd_cpu_lit_s0>;
-> +};
-> +
-> +&gpu {
-> +       mali-supply =3D <&vdd_gpu_s0>;
-> +       status =3D "okay";
-> +};
-> +
-> +&i2c0 {
-> +       pinctrl-names =3D "default";
-> +       pinctrl-0 =3D <&i2c0m2_xfer>;
-> +       status =3D "okay";
-> +
-> +       vdd_cpu_big0_s0: regulator@42 {
-> +               compatible =3D "rockchip,rk8602";
-> +               reg =3D <0x42>;
-> +               fcs,suspend-voltage-selector =3D <1>;
-> +               regulator-name =3D "vdd_cpu_big0_s0";
-> +               regulator-always-on;
-> +               regulator-boot-on;
-> +               regulator-min-microvolt =3D <550000>;
-> +               regulator-max-microvolt =3D <1050000>;
-> +               regulator-ramp-delay =3D <2300>;
-> +               vin-supply =3D <&vcc5v0_sys>;
-> +
-> +               regulator-state-mem {
-> +                       regulator-off-in-suspend;
-> +               };
-> +       };
-> +
-> +       vdd_cpu_big1_s0: regulator@43 {
-> +               compatible =3D "rockchip,rk8603", "rockchip,rk8602";
-> +               reg =3D <0x43>;
-> +               fcs,suspend-voltage-selector =3D <1>;
-> +               regulator-name =3D "vdd_cpu_big1_s0";
-> +               regulator-always-on;
-> +               regulator-boot-on;
-> +               regulator-min-microvolt =3D <550000>;
-> +               regulator-max-microvolt =3D <1050000>;
-> +               regulator-ramp-delay =3D <2300>;
-> +               vin-supply =3D <&vcc5v0_sys>;
-> +
-> +               regulator-state-mem {
-> +                       regulator-off-in-suspend;
-> +               };
-> +       };
-> +};
-> +
-> +&i2c6 {
-> +       status =3D "okay";
-> +
-> +       hym8563: rtc@51 {
-> +               compatible =3D "haoyu,hym8563";
-> +               reg =3D <0x51>;
-> +               #clock-cells =3D <0>;
-> +               clock-output-names =3D "hym8563";
-> +               pinctrl-names =3D "default";
-> +               pinctrl-0 =3D <&hym8563_int>;
-> +               interrupt-parent =3D <&gpio0>;
-> +               interrupts =3D <RK_PB0 IRQ_TYPE_LEVEL_LOW>;
-> +               wakeup-source;
-> +       };
-> +};
-> +
-> +&i2c7 {
-> +       status =3D "okay";
-> +
-> +       es8316: audio-codec@11 {
-> +               compatible =3D "everest,es8316";
-> +               reg =3D <0x11>;
-> +               clocks =3D <&cru I2S0_8CH_MCLKOUT>;
-> +               clock-names =3D "mclk";
-> +               assigned-clocks =3D <&cru I2S0_8CH_MCLKOUT>;
-> +               assigned-clock-rates =3D <12288000>;
-> +               #sound-dai-cells =3D <0>;
-> +
-> +               port {
-> +                       es8316_p0_0: endpoint {
-> +                               remote-endpoint =3D <&i2s0_8ch_p0_0>;
-> +                       };
-> +               };
-> +       };
-> +};
-> +
-> +&i2s0_8ch {
-> +       pinctrl-names =3D "default";
-> +       pinctrl-0 =3D <&i2s0_lrck
-> +                    &i2s0_mclk
-> +                    &i2s0_sclk
-> +                    &i2s0_sdi0
-> +                    &i2s0_sdo0>;
-> +       status =3D "okay";
-> +
-> +       i2s0_8ch_p0: port {
-> +               i2s0_8ch_p0_0: endpoint {
-> +                       dai-format =3D "i2s";
-> +                       mclk-fs =3D <256>;
-> +                       remote-endpoint =3D <&es8316_p0_0>;
-> +               };
-> +       };
-> +};
-> +
-> +/* phy1 - right ethernet port */
-> +&pcie2x1l0 {
-> +       reset-gpios =3D <&gpio4 RK_PA5 GPIO_ACTIVE_HIGH>;
-> +       status =3D "okay";
-> +};
-> +
-> +/* phy2 - WiFi */
-> +&pcie2x1l1 {
-> +       reset-gpios =3D <&gpio3 RK_PD4 GPIO_ACTIVE_HIGH>;
-> +       status =3D "okay";
-> +};
-> +
-> +/* phy0 - left ethernet port */
-> +&pcie2x1l2 {
-> +       reset-gpios =3D <&gpio3 RK_PB0 GPIO_ACTIVE_HIGH>;
-> +       status =3D "okay";
-> +};
-> +
-> +&pcie30phy {
-> +       status =3D "okay";
-> +};
-> +
-> +&pcie3x4 {
-> +       reset-gpios =3D <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
-> +       vpcie3v3-supply =3D <&vcc3v3_pcie30>;
-> +       status =3D "okay";
-> +};
-> +
-> +&pinctrl {
-> +       hym8563 {
-> +               hym8563_int: hym8563-int {
-> +                       rockchip,pins =3D <0 RK_PB0 RK_FUNC_GPIO &pcfg_pu=
-ll_none>;
-> +               };
-> +       };
-> +
-> +       leds {
-> +               led_rgb_b: led-rgb-b {
-> +                       rockchip,pins =3D <0 RK_PB7 RK_FUNC_GPIO &pcfg_pu=
-ll_none>;
-> +               };
-> +               led_rgb_r: led-rgb-r {
-> +                       rockchip,pins =3D <0 RK_PB7 RK_FUNC_GPIO &pcfg_pu=
-ll_none>;
-> +               };
-> +       };
-> +
-> +       sound {
-> +               hp_detect: hp-detect {
-> +                       rockchip,pins =3D <1 RK_PD5 RK_FUNC_GPIO &pcfg_pu=
-ll_none>;
-> +               };
-> +       };
-> +
-> +       usb {
-> +               vcc5v0_host_en: vcc5v0-host-en {
-> +                       rockchip,pins =3D <4 RK_PB0 RK_FUNC_GPIO &pcfg_pu=
-ll_none>;
-> +               };
-> +       };
-> +};
-> +
-> +&pwm1 {
-> +       status =3D "okay";
-> +};
-> +
-> +&saradc {
-> +       vref-supply =3D <&avcc_1v8_s0>;
-> +       status =3D "okay";
-> +};
-> +
-> +&sdhci {
-> +       bus-width =3D <8>;
-> +       no-sdio;
-> +       no-sd;
-> +       non-removable;
-> +       mmc-hs200-1_8v;
-> +       status =3D "okay";
-> +};
-> +
-> +&sdmmc {
-> +       max-frequency =3D <200000000>;
-> +       no-sdio;
-> +       no-mmc;
-> +       bus-width =3D <4>;
-> +       cap-mmc-highspeed;
-> +       cap-sd-highspeed;
-> +       disable-wp;
-> +       sd-uhs-sdr104;
-> +       vmmc-supply =3D <&vcc_3v3_s3>;
-> +       vqmmc-supply =3D <&vccio_sd_s0>;
-> +       status =3D "okay";
-> +};
-> +
-> +&spi2 {
-> +       status =3D "okay";
-> +       assigned-clocks =3D <&cru CLK_SPI2>;
-> +       assigned-clock-rates =3D <200000000>;
-> +       pinctrl-names =3D "default";
-> +       pinctrl-0 =3D <&spi2m2_cs0 &spi2m2_pins>;
-> +       num-cs =3D <1>;
-> +
-> +       pmic@0 {
-> +               compatible =3D "rockchip,rk806";
-> +               spi-max-frequency =3D <1000000>;
-> +               reg =3D <0x0>;
-> +
-> +               interrupt-parent =3D <&gpio0>;
-> +               interrupts =3D <7 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +               pinctrl-names =3D "default";
-> +               pinctrl-0 =3D <&pmic_pins>, <&rk806_dvs1_null>,
-> +                           <&rk806_dvs2_null>, <&rk806_dvs3_null>;
-> +
-> +               system-power-controller;
-> +
-> +               vcc1-supply =3D <&vcc5v0_sys>;
-> +               vcc2-supply =3D <&vcc5v0_sys>;
-> +               vcc3-supply =3D <&vcc5v0_sys>;
-> +               vcc4-supply =3D <&vcc5v0_sys>;
-> +               vcc5-supply =3D <&vcc5v0_sys>;
-> +               vcc6-supply =3D <&vcc5v0_sys>;
-> +               vcc7-supply =3D <&vcc5v0_sys>;
-> +               vcc8-supply =3D <&vcc5v0_sys>;
-> +               vcc9-supply =3D <&vcc5v0_sys>;
-> +               vcc10-supply =3D <&vcc5v0_sys>;
-> +               vcc11-supply =3D <&vcc_2v0_pldo_s3>;
-> +               vcc12-supply =3D <&vcc5v0_sys>;
-> +               vcc13-supply =3D <&vcc_1v1_nldo_s3>;
-> +               vcc14-supply =3D <&vcc_1v1_nldo_s3>;
-> +               vcca-supply =3D <&vcc5v0_sys>;
-> +
-> +               gpio-controller;
-> +               #gpio-cells =3D <2>;
-> +
-> +               rk806_dvs1_null: dvs1-null-pins {
-> +                       pins =3D "gpio_pwrctrl1";
-> +                       function =3D "pin_fun0";
-> +               };
-> +
-> +               rk806_dvs2_null: dvs2-null-pins {
-> +                       pins =3D "gpio_pwrctrl2";
-> +                       function =3D "pin_fun0";
-> +               };
-> +
-> +               rk806_dvs3_null: dvs3-null-pins {
-> +                       pins =3D "gpio_pwrctrl3";
-> +                       function =3D "pin_fun0";
-> +               };
-> +
-> +               regulators {
-> +                       vdd_gpu_s0: vdd_gpu_mem_s0: dcdc-reg1 {
-> +                               regulator-always-on;
-> +                               regulator-boot-on;
-> +                               regulator-min-microvolt =3D <550000>;
-> +                               regulator-max-microvolt =3D <950000>;
-> +                               regulator-ramp-delay =3D <12500>;
-> +                               regulator-name =3D "vdd_gpu_s0";
-> +                               regulator-enable-ramp-delay =3D <400>;
-> +
-> +                               regulator-state-mem {
-> +                                       regulator-off-in-suspend;
-> +                               };
-> +                       };
-> +
-> +                       vdd_cpu_lit_s0: vdd_cpu_lit_mem_s0: dcdc-reg2 {
-> +                               regulator-always-on;
-> +                               regulator-boot-on;
-> +                               regulator-min-microvolt =3D <550000>;
-> +                               regulator-max-microvolt =3D <950000>;
-> +                               regulator-ramp-delay =3D <12500>;
-> +                               regulator-name =3D "vdd_cpu_lit_s0";
-> +
-> +                               regulator-state-mem {
-> +                                       regulator-off-in-suspend;
-> +                               };
-> +                       };
-> +
-> +                       vdd_log_s0: dcdc-reg3 {
-> +                               regulator-always-on;
-> +                               regulator-boot-on;
-> +                               regulator-min-microvolt =3D <675000>;
-> +                               regulator-max-microvolt =3D <750000>;
-> +                               regulator-ramp-delay =3D <12500>;
-> +                               regulator-name =3D "vdd_log_s0";
-> +
-> +                               regulator-state-mem {
-> +                                       regulator-off-in-suspend;
-> +                                       regulator-suspend-microvolt =3D <=
-750000>;
-> +                               };
-> +                       };
-> +
-> +                       vdd_vdenc_s0: vdd_vdenc_mem_s0: dcdc-reg4 {
-> +                               regulator-always-on;
-> +                               regulator-boot-on;
-> +                               regulator-min-microvolt =3D <550000>;
-> +                               regulator-max-microvolt =3D <950000>;
-> +                               regulator-ramp-delay =3D <12500>;
-> +                               regulator-name =3D "vdd_vdenc_s0";
-> +
-> +                               regulator-state-mem {
-> +                                       regulator-off-in-suspend;
-> +                               };
-> +                       };
-> +
-> +                       vdd_ddr_s0: dcdc-reg5 {
-> +                               regulator-always-on;
-> +                               regulator-boot-on;
-> +                               regulator-min-microvolt =3D <675000>;
-> +                               regulator-max-microvolt =3D <900000>;
-> +                               regulator-ramp-delay =3D <12500>;
-> +                               regulator-name =3D "vdd_ddr_s0";
-> +
-> +                               regulator-state-mem {
-> +                                       regulator-off-in-suspend;
-> +                                       regulator-suspend-microvolt =3D <=
-850000>;
-> +                               };
-> +                       };
-> +
-> +                       vdd2_ddr_s3: dcdc-reg6 {
-> +                               regulator-always-on;
-> +                               regulator-boot-on;
-> +                               regulator-name =3D "vdd2_ddr_s3";
-> +
-> +                               regulator-state-mem {
-> +                                       regulator-on-in-suspend;
-> +                               };
-> +                       };
-> +
-> +                       vcc_2v0_pldo_s3: dcdc-reg7 {
-> +                               regulator-always-on;
-> +                               regulator-boot-on;
-> +                               regulator-min-microvolt =3D <2000000>;
-> +                               regulator-max-microvolt =3D <2000000>;
-> +                               regulator-ramp-delay =3D <12500>;
-> +                               regulator-name =3D "vdd_2v0_pldo_s3";
-> +
-> +                               regulator-state-mem {
-> +                                       regulator-on-in-suspend;
-> +                                       regulator-suspend-microvolt =3D <=
-2000000>;
-> +                               };
-> +                       };
-> +
-> +                       vcc_3v3_s3: dcdc-reg8 {
-> +                               regulator-always-on;
-> +                               regulator-boot-on;
-> +                               regulator-min-microvolt =3D <3300000>;
-> +                               regulator-max-microvolt =3D <3300000>;
-> +                               regulator-name =3D "vcc_3v3_s3";
-> +
-> +                               regulator-state-mem {
-> +                                       regulator-on-in-suspend;
-> +                                       regulator-suspend-microvolt =3D <=
-3300000>;
-> +                               };
-> +                       };
-> +
-> +                       vddq_ddr_s0: dcdc-reg9 {
-> +                               regulator-always-on;
-> +                               regulator-boot-on;
-> +                               regulator-name =3D "vddq_ddr_s0";
-> +
-> +                               regulator-state-mem {
-> +                                       regulator-off-in-suspend;
-> +                               };
-> +                       };
-> +
-> +                       vcc_1v8_s3: dcdc-reg10 {
-> +                               regulator-always-on;
-> +                               regulator-boot-on;
-> +                               regulator-min-microvolt =3D <1800000>;
-> +                               regulator-max-microvolt =3D <1800000>;
-> +                               regulator-name =3D "vcc_1v8_s3";
-> +
-> +                               regulator-state-mem {
-> +                                       regulator-on-in-suspend;
-> +                                       regulator-suspend-microvolt =3D <=
-1800000>;
-> +                               };
-> +                       };
-> +
-> +                       avcc_1v8_s0: pldo-reg1 {
-> +                               regulator-always-on;
-> +                               regulator-boot-on;
-> +                               regulator-min-microvolt =3D <1800000>;
-> +                               regulator-max-microvolt =3D <1800000>;
-> +                               regulator-name =3D "avcc_1v8_s0";
-> +
-> +                               regulator-state-mem {
-> +                                       regulator-off-in-suspend;
-> +                               };
-> +                       };
-> +
-> +                       vcc_1v8_s0: pldo-reg2 {
-> +                               regulator-always-on;
-> +                               regulator-boot-on;
-> +                               regulator-min-microvolt =3D <1800000>;
-> +                               regulator-max-microvolt =3D <1800000>;
-> +                               regulator-name =3D "vcc_1v8_s0";
-> +
-> +                               regulator-state-mem {
-> +                                       regulator-off-in-suspend;
-> +                                       regulator-suspend-microvolt =3D <=
-1800000>;
-> +                               };
-> +                       };
-> +
-> +                       avdd_1v2_s0: pldo-reg3 {
-> +                               regulator-always-on;
-> +                               regulator-boot-on;
-> +                               regulator-min-microvolt =3D <1200000>;
-> +                               regulator-max-microvolt =3D <1200000>;
-> +                               regulator-name =3D "avdd_1v2_s0";
-> +
-> +                               regulator-state-mem {
-> +                                       regulator-off-in-suspend;
-> +                               };
-> +                       };
-> +
-> +                       vcc_3v3_s0: pldo-reg4 {
-> +                               regulator-always-on;
-> +                               regulator-boot-on;
-> +                               regulator-min-microvolt =3D <3300000>;
-> +                               regulator-max-microvolt =3D <3300000>;
-> +                               regulator-ramp-delay =3D <12500>;
-> +                               regulator-name =3D "vcc_3v3_s0";
-> +
-> +                               regulator-state-mem {
-> +                                       regulator-off-in-suspend;
-> +                               };
-> +                       };
-> +
-> +                       vccio_sd_s0: pldo-reg5 {
-> +                               regulator-always-on;
-> +                               regulator-boot-on;
-> +                               regulator-min-microvolt =3D <1800000>;
-> +                               regulator-max-microvolt =3D <3300000>;
-> +                               regulator-ramp-delay =3D <12500>;
-> +                               regulator-name =3D "vccio_sd_s0";
-> +
-> +                               regulator-state-mem {
-> +                                       regulator-off-in-suspend;
-> +                               };
-> +                       };
-> +
-> +                       pldo6_s3: pldo-reg6 {
-> +                               regulator-always-on;
-> +                               regulator-boot-on;
-> +                               regulator-min-microvolt =3D <1800000>;
-> +                               regulator-max-microvolt =3D <1800000>;
-> +                               regulator-name =3D "pldo6_s3";
-> +
-> +                               regulator-state-mem {
-> +                                       regulator-on-in-suspend;
-> +                                       regulator-suspend-microvolt =3D <=
-1800000>;
-> +                               };
-> +                       };
-> +
-> +                       vdd_0v75_s3: nldo-reg1 {
-> +                               regulator-always-on;
-> +                               regulator-boot-on;
-> +                               regulator-min-microvolt =3D <750000>;
-> +                               regulator-max-microvolt =3D <750000>;
-> +                               regulator-name =3D "vdd_0v75_s3";
-> +
-> +                               regulator-state-mem {
-> +                                       regulator-on-in-suspend;
-> +                                       regulator-suspend-microvolt =3D <=
-750000>;
-> +                               };
-> +                       };
-> +
-> +                       vdd_ddr_pll_s0: nldo-reg2 {
-> +                               regulator-always-on;
-> +                               regulator-boot-on;
-> +                               regulator-min-microvolt =3D <850000>;
-> +                               regulator-max-microvolt =3D <850000>;
-> +                               regulator-name =3D "vdd_ddr_pll_s0";
-> +
-> +                               regulator-state-mem {
-> +                                       regulator-off-in-suspend;
-> +                                       regulator-suspend-microvolt =3D <=
-850000>;
-> +                               };
-> +                       };
-> +
-> +                       avdd_0v75_s0: nldo-reg3 {
-> +                               regulator-always-on;
-> +                               regulator-boot-on;
-> +                               regulator-min-microvolt =3D <750000>;
-> +                               regulator-max-microvolt =3D <750000>;
-> +                               regulator-name =3D "avdd_0v75_s0";
-> +
-> +                               regulator-state-mem {
-> +                                       regulator-off-in-suspend;
-> +                               };
-> +                       };
-> +
-> +                       vdd_0v85_s0: nldo-reg4 {
-> +                               regulator-always-on;
-> +                               regulator-boot-on;
-> +                               regulator-min-microvolt =3D <850000>;
-> +                               regulator-max-microvolt =3D <850000>;
-> +                               regulator-name =3D "vdd_0v85_s0";
-> +
-> +                               regulator-state-mem {
-> +                                       regulator-off-in-suspend;
-> +                               };
-> +                       };
-> +
-> +                       vdd_0v75_s0: nldo-reg5 {
-> +                               regulator-always-on;
-> +                               regulator-boot-on;
-> +                               regulator-min-microvolt =3D <750000>;
-> +                               regulator-max-microvolt =3D <750000>;
-> +                               regulator-name =3D "vdd_0v75_s0";
-> +
-> +                               regulator-state-mem {
-> +                                       regulator-off-in-suspend;
-> +                               };
-> +                       };
-> +               };
-> +       };
-> +};
-> +
-> +&uart2 {
-> +       pinctrl-0 =3D <&uart2m0_xfer>;
-> +       status =3D "okay";
-> +};
-> +
-> +&u2phy0 {
-> +       status =3D "okay";
-> +};
-> +
-> +&u2phy0_otg {
-> +       status =3D "okay";
-> +};
-> +
-> +&u2phy1 {
-> +       status =3D "okay";
-> +};
-> +
-> +&u2phy1_otg {
-> +       status =3D "okay";
-> +};
-> +
-> +&u2phy3 {
-> +       status =3D "okay";
-> +};
-> +
-> +&u2phy3_host {
-> +       phy-supply =3D <&vcc5v0_host>;
-> +       status =3D "okay";
-> +};
-> +
-> +&usbdp_phy1 {
-> +       status =3D "okay";
-> +};
-> +
-> +&usb_host1_ehci {
-> +       status =3D "okay";
-> +};
-> +
-> +&usb_host1_ohci {
-> +       status =3D "okay";
-> +};
-> +
-> +&usb_host1_xhci {
-> +       dr_mode =3D "host";
-> +       status =3D "okay";
-> +};
-> --
-> 2.34.1
->
->
->
+I see what you mean, though I actually looked at the number of steps
+mentioned in the first part of the register description. Now
+triple-checking this I came up with this table (generated by a spreadsheet
+to minimise human error):
+voltage	decimal	binary	
+1600	88	1011000
+1700	89	1011001
+1800	90	1011010
+1900	91	1011011
+2000	92	1011100
+2100	93	1011101
+2200	94	1011110
+2300	95	1011111
+2400	96	1100000
+2500	97	1100001
+2600	98	1100010
+2700	99	1100011
+2800	100	1100100
+2900	101	1100101
+3000	102	1100110
+3100	103	1100111
+3200	104	1101000
+3300	105	1101001
+3400	106	1101010
+
+Which means the final binary value in the datasheet is wrong, as 1101011
+would mean 3.5V.
+Also  1101010 = 106
+     -1011000 = 88
+=============
+      0010010 = 18
+and 18 * 100 + 1600 = 3400, right?
+
+This *is* admittedly quite bonkers, especially since the representations
+between the manual and the code are so different, but can you check that
+this makes sense?
+
+I discovered some other issue in the original patch (missed declaring the
+range of IRQ acknowledge registers in the MFD part), so I will send a v2 of
+this series soonish.
+
+> For DCDC3 after applying this patch we get:
+> 
+> #define AXP717_DCDC3_NUM_VOLTAGES	103
+> static const struct linear_range axp717_dcdc3_ranges[] = {
+> 	REGULATOR_LINEAR_RANGE(500000,   0,  70, 10000),
+> 	REGULATOR_LINEAR_RANGE(1220000, 71, 102, 20000),
+> };
+> 
+> The datasheet marks the maximum value as 1100110: 1.84V, which is 102.
+> So this patch to correct the AXP717_DCDC3_NUM_VOLTAGES is correct here.
+
+I agree ;-) thanks for checking!
+
+Cheers,
+Andre
+
+> >  static const struct linear_range axp717_dcdc3_ranges[] = {
+> > @@ -790,40 +790,40 @@ static const struct regulator_desc axp717_regulators[] = {
+> >  	AXP_DESC(AXP717, DCDC4, "dcdc4", "vin4", 1000, 3700, 100,
+> >  		 AXP717_DCDC4_CONTROL, AXP717_DCDC_V_OUT_MASK,
+> >  		 AXP717_DCDC_OUTPUT_CONTROL, BIT(3)),
+> > -	AXP_DESC(AXP717, ALDO1, "aldo1", "vin1", 500, 3500, 100,
+> > +	AXP_DESC(AXP717, ALDO1, "aldo1", "aldoin", 500, 3500, 100,
+> >  		 AXP717_ALDO1_CONTROL, AXP717_LDO_V_OUT_MASK,
+> >  		 AXP717_LDO0_OUTPUT_CONTROL, BIT(0)),
+> > -	AXP_DESC(AXP717, ALDO2, "aldo2", "vin1", 500, 3500, 100,
+> > +	AXP_DESC(AXP717, ALDO2, "aldo2", "aldoin", 500, 3500, 100,
+> >  		 AXP717_ALDO2_CONTROL, AXP717_LDO_V_OUT_MASK,
+> >  		 AXP717_LDO0_OUTPUT_CONTROL, BIT(1)),
+> > -	AXP_DESC(AXP717, ALDO3, "aldo3", "vin1", 500, 3500, 100,
+> > +	AXP_DESC(AXP717, ALDO3, "aldo3", "aldoin", 500, 3500, 100,
+> >  		 AXP717_ALDO3_CONTROL, AXP717_LDO_V_OUT_MASK,
+> >  		 AXP717_LDO0_OUTPUT_CONTROL, BIT(2)),
+> > -	AXP_DESC(AXP717, ALDO4, "aldo4", "vin1", 500, 3500, 100,
+> > +	AXP_DESC(AXP717, ALDO4, "aldo4", "aldoin", 500, 3500, 100,
+> >  		 AXP717_ALDO4_CONTROL, AXP717_LDO_V_OUT_MASK,
+> >  		 AXP717_LDO0_OUTPUT_CONTROL, BIT(3)),
+> > -	AXP_DESC(AXP717, BLDO1, "bldo1", "vin1", 500, 3500, 100,
+> > +	AXP_DESC(AXP717, BLDO1, "bldo1", "bldoin", 500, 3500, 100,
+> >  		 AXP717_BLDO1_CONTROL, AXP717_LDO_V_OUT_MASK,
+> >  		 AXP717_LDO0_OUTPUT_CONTROL, BIT(4)),
+> > -	AXP_DESC(AXP717, BLDO2, "bldo2", "vin1", 500, 3500, 100,
+> > +	AXP_DESC(AXP717, BLDO2, "bldo2", "bldoin", 500, 3500, 100,
+> >  		 AXP717_BLDO2_CONTROL, AXP717_LDO_V_OUT_MASK,
+> >  		 AXP717_LDO0_OUTPUT_CONTROL, BIT(5)),
+> > -	AXP_DESC(AXP717, BLDO3, "bldo3", "vin1", 500, 3500, 100,
+> > +	AXP_DESC(AXP717, BLDO3, "bldo3", "bldoin", 500, 3500, 100,
+> >  		 AXP717_BLDO3_CONTROL, AXP717_LDO_V_OUT_MASK,
+> >  		 AXP717_LDO0_OUTPUT_CONTROL, BIT(6)),
+> > -	AXP_DESC(AXP717, BLDO4, "bldo4", "vin1", 500, 3500, 100,
+> > +	AXP_DESC(AXP717, BLDO4, "bldo4", "bldoin", 500, 3500, 100,
+> >  		 AXP717_BLDO4_CONTROL, AXP717_LDO_V_OUT_MASK,
+> >  		 AXP717_LDO0_OUTPUT_CONTROL, BIT(7)),
+> > -	AXP_DESC(AXP717, CLDO1, "cldo1", "vin1", 500, 3500, 100,
+> > +	AXP_DESC(AXP717, CLDO1, "cldo1", "cldoin", 500, 3500, 100,
+> >  		 AXP717_CLDO1_CONTROL, AXP717_LDO_V_OUT_MASK,
+> >  		 AXP717_LDO1_OUTPUT_CONTROL, BIT(0)),
+> > -	AXP_DESC(AXP717, CLDO2, "cldo2", "vin1", 500, 3500, 100,
+> > +	AXP_DESC(AXP717, CLDO2, "cldo2", "cldoin", 500, 3500, 100,
+> >  		 AXP717_CLDO2_CONTROL, AXP717_LDO_V_OUT_MASK,
+> >  		 AXP717_LDO1_OUTPUT_CONTROL, BIT(1)),
+> > -	AXP_DESC(AXP717, CLDO3, "cldo3", "vin1", 500, 3500, 100,
+> > +	AXP_DESC(AXP717, CLDO3, "cldo3", "cldoin", 500, 3500, 100,
+> >  		 AXP717_CLDO3_CONTROL, AXP717_LDO_V_OUT_MASK,
+> >  		 AXP717_LDO1_OUTPUT_CONTROL, BIT(2)),
+> > -	AXP_DESC(AXP717, CLDO4, "cldo4", "vin1", 500, 3500, 100,
+> > +	AXP_DESC(AXP717, CLDO4, "cldo4", "cldoin", 500, 3500, 100,
+> >  		 AXP717_CLDO4_CONTROL, AXP717_LDO_V_OUT_MASK,
+> >  		 AXP717_LDO1_OUTPUT_CONTROL, BIT(3)),
+> >  	AXP_DESC(AXP717, CPUSLDO, "cpusldo", "vin1", 500, 1400, 50,
+> > -- 
+> > 2.35.8
+> >   
+
 
