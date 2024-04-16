@@ -1,108 +1,145 @@
-Return-Path: <devicetree+bounces-59700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 071F78A6B45
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 14:39:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 302348A6B4C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 14:40:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B5F51F22316
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 12:39:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E013F2820B1
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 12:40:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C512912BF02;
-	Tue, 16 Apr 2024 12:39:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92B9112BF3A;
+	Tue, 16 Apr 2024 12:40:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OEEv3x+l"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mWBYVw7R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AB30811F1
-	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 12:39:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C0EB12B148
+	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 12:40:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713271158; cv=none; b=lcpaITjDLflkya15jUBZOzw3qYrwOCxT6J1S5R7c5stToSvvYv2PstNQyqcBvPdo/hgsm1bpIzhAQmGS9R90/vU8YjM+ASlq+L/YM2nfQP5jIaOHKFwKFczE6RWGvyUVbQeB7C8vZyDh1PioVpWzSNL6pzb0YsLYqToCZDOwi/8=
+	t=1713271214; cv=none; b=hpGMghymRZbmiiv4X/cjgS/n3QLYCeTeJBKwiyLu4i+Qnn8NMnkEQGZeUcdsLc8gyrGs45ZY0adCzxUS/v4PluPT7qr34NapWyD4+KwF251W4JrUzwfI1XJwUpfyPqNbJQ/aaNpxumWu1aS/96vtfNJzZ7BGbIR7zfXa4rijHxM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713271158; c=relaxed/simple;
-	bh=INkgGkw3lfof6ttOSzX5lzwufaDoB7uPeJ1nhpgVeBU=;
+	s=arc-20240116; t=1713271214; c=relaxed/simple;
+	bh=qmhVGDCB3p9HB3TLlFjPrZ/6xvV+VH4aBoNpHmYC524=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kO/5hg6LLvmK5Vvo1MJqwhQGhs32gefMxAgGikaU+Go8VLq+eTp+CjGwB1w2D4FQv0DkmZntAtlenL9iiAERawVp64q+OaCKm85ihI+SJ6RogdQc0KhwzOvxafNG5kDPl7Y35Gd6KJyQIKy7RRmhHy5QprhjmNmfjS5tP1HyEfo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OEEv3x+l; arc=none smtp.client-ip=209.85.219.176
+	 To:Cc:Content-Type; b=JRsOxS54XPnQesHi7qWj72V6X02OBddb0y8zcuCTLN8Qdi13yhSmLIZP5tn46ES2kxX3D9ALc1HdITcln59/Ud75TTkgQ9z1a8xkhvSXtbDWIRRf4nO4YORTwXKhLxXogOfMmyOjdOY+wlVP+50GY3iV8JmlpEmrTCIbz/MOWoo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mWBYVw7R; arc=none smtp.client-ip=209.85.219.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-dcc80d6006aso4218079276.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 05:39:17 -0700 (PDT)
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-dc6d8bd618eso4151681276.3
+        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 05:40:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713271156; x=1713875956; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1713271212; x=1713876012; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=L5+AVlKX0UKLNpDnTXG4nLDmpjGwbimLrrB82xXakLA=;
-        b=OEEv3x+lS4XGYlyWSp1K2umbJiSxK1HR5BAJqWRb7JWbFXnppyecl/uUENSFWXMFbq
-         qLXMKHxWIhle0EEqFiC+cQCOR/X9NRJq8ly1QR11M34bmL2MyXLLDpkIHlQv+qdPQVAn
-         F+tt/AVs/OsgJTdbkBGI865zapaZjRQkignR+Xql8iIhYqY5+d+yrpV2HKQIYE39r1ra
-         kvTgR+QdZOZAAf+D2Ez8dvPKGXSV3NrqiPPOT8PXchYEWEF+deYJJNl6iov52XIVjTee
-         GEghGjHAztoO8k1qhjzk5BJhxH1knZry+GUDSAqPGRS7f1bY3vVt7Wsyj1hFgp7O61CS
-         xAuQ==
+        bh=XocEjulw3kAiCxPyVJw1Ya87AMjOi1KyGw4TtHVGXCk=;
+        b=mWBYVw7RCfJV1TzZT9Y+25z1rdh0Ea34oBx8ic3A13g2D4fw9qSpqHuoR4Ha7ooHEW
+         n3ZnCLcXgq9J0AY6FH1lknlJekuei4bw1SzbbXgQLf9iVST9FPPK/KvSji5ZzYXTXUfo
+         gOfFhBNtc8zjygZ3LbbAuc1GjNV+hRwH/r3oogmrM163wd/vqHeEK/dbaRl8+8xj2mAB
+         i9253NYcF9I8Q2QfBn9y7bLUw5q1fMoV1RDDERhDaL3GG9gIHToD7+m888uenc3Ggkr0
+         U5Qj3coGtfpVPeO+fiXjKGl3T2QNY6Zhlf25j+4DTOq2Trwu34XSWvit9PXpMYeap48R
+         VaKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713271156; x=1713875956;
+        d=1e100.net; s=20230601; t=1713271212; x=1713876012;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=L5+AVlKX0UKLNpDnTXG4nLDmpjGwbimLrrB82xXakLA=;
-        b=WU0JdUJXHcNETbhS0znj+lhTfb51GVPRZk4uAJBJR8JK84pKTozAACzD6rsyIq5uzh
-         UPe4HeZ5OwTlOolEwFiPXKA5el23O2+PZc6x0vIIQbC/EzdWeqJc/I37O42FThrLKlSP
-         WY/4fDankkmDeB/Xy213e/dwbxLYOEIGQYX9kCJgwPUn85zg11ZAyuu+WqpCzjP6ttcL
-         vrQsERPolP/0TMM2EMZCfj++U4zNB+jvo92l/nelRuUYUwiYlzCot9i2wNLqT2uSYQj7
-         YERK+xavnT1PUPnA5YlfB1zXnuCmpD2sTJkF7O1x8uyQZzqo6OftR5hMeiO4qJhfXDcF
-         K9nQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVVIX89PNhsKd51gowy+K23eyiTmuheVBOsRFanWLYawH9+IxzKst3ZXxwsfAN+py7muNJA/UINAsNjt6gHIdYH0G66Bvq2DdI0OQ==
-X-Gm-Message-State: AOJu0YwHzTBsns1D8F0weRseluANjG7YmCDoVT7bGOINvn6rfU2j9RCA
-	0nzHgC7cO4HgYP0G3yBRAw+PG3ulQSIQsPQYVXk0CNQGKE9qSqzChcqUzJZEUPRCBxoQlzVGvCl
-	IWKDKbHwFa4+Ks7gKeajx0jiF7y+ysqXC7df/yw==
-X-Google-Smtp-Source: AGHT+IEwQ0Ngh3qKjVVX87FYrtRCF4iosRKAkJdiG4FLgPF1wzvvHbh6c2T/y9yAEHN+DSCC8BOhOKXji/M+uyanmTc=
-X-Received: by 2002:a25:dc92:0:b0:dc2:2041:fc49 with SMTP id
- y140-20020a25dc92000000b00dc22041fc49mr12430917ybe.5.1713271156421; Tue, 16
- Apr 2024 05:39:16 -0700 (PDT)
+        bh=XocEjulw3kAiCxPyVJw1Ya87AMjOi1KyGw4TtHVGXCk=;
+        b=V1SnCp9Vf8uYZWND2iHnX/yOxHZCDYS+80+b+yVOR6VEyrnHZBa+d48iciYRjEfDJ+
+         1aW4TLDmlCdR0sjb1okJ/uxCOKOQlx3PGzmCvcHVDvso6sloO3zYnFi00ZmPwVRVgdv1
+         nTMwM0ora/p+6yJoWXTdfCa7ZQfcHEGwiCp4TyjBlSHAVZzd0KXI00UBlVDv/6XkdH/q
+         g/3wFv20Qr1zE/XudwobAQGphI4W+xqIV/byThvnZRYxNRiEBJO3xrYlh3rKGF/KULav
+         XwO5nKPB2cUbqhOnk1RAGBiHqvIHXpH2tlFVMJ4DnzLh3o87/QzNY1oAnO8FWQfsqmkR
+         cXlQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWBPSmjW8DvHqw4WYDfuQidnY9uSWnK/4N2b6zlP+m1kdmE5qHcqEpWvix/qUGs+f5STH3HfvxmF/BmE3xtG78ReAQtzNNIur+rpA==
+X-Gm-Message-State: AOJu0YyWTupN0Dyu11oCP6FeP8vQq+TImtHvASbpdoD3WVvvPvyyXfQ5
+	lccpiXkhKb/83VnDuHCpYeQsEKwLKrZRF2WkghKPW3CcD/qljThrfKw5k6ONMBVyG42jWuvT46x
+	5unguBTODVdu0NLWzW+Yg/SCpRTR8rhHU7RX/6A==
+X-Google-Smtp-Source: AGHT+IGJhFIyKEbY2TNHNPrCm3GRm5c6L7GB4Z/sH1BLsFZXKmx3pHDdVDxtNq7uyYtUlxMVzqOrk0oaE4WyfbJcIG8=
+X-Received: by 2002:a25:bc4c:0:b0:dcb:fe58:a08b with SMTP id
+ d12-20020a25bc4c000000b00dcbfe58a08bmr11907548ybk.15.1713271212014; Tue, 16
+ Apr 2024 05:40:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240416-pm8xxx-vibrator-new-design-v11-0-7b1c951e1515@quicinc.com>
- <20240416-pm8xxx-vibrator-new-design-v11-3-7b1c951e1515@quicinc.com>
-In-Reply-To: <20240416-pm8xxx-vibrator-new-design-v11-3-7b1c951e1515@quicinc.com>
+References: <20240416063600.309747-1-quic_mohs@quicinc.com>
+In-Reply-To: <20240416063600.309747-1-quic_mohs@quicinc.com>
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 16 Apr 2024 15:39:05 +0300
-Message-ID: <CAA8EJpp9Td4ttqQN-hU72bEcRxMk0Wug92cTjvOKxfCaJb0Smw@mail.gmail.com>
-Subject: Re: [PATCH v11 3/3] input: pm8xxx-vibrator: add new SPMI vibrator support
-To: quic_fenglinw@quicinc.com
-Cc: kernel@quicinc.com, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	linux-input@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
+Date: Tue, 16 Apr 2024 15:40:01 +0300
+Message-ID: <CAA8EJprABOeWrAm-PyeLF1ZM95qC17bxyZvEVpGG1Wz97KLYWQ@mail.gmail.com>
+Subject: Re: [PATCH v2 0/8] ASoC: codecs: wcd937x: add wcd937x audio codec support
+To: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Banajit Goswami <bgoswami@quicinc.com>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org, 
+	linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	quic_rohkumar@quicinc.com, quic_pkumpatl@quicinc.com
 Content-Type: text/plain; charset="UTF-8"
 
-On Tue, 16 Apr 2024 at 05:44, Fenglin Wu via B4 Relay
-<devnull+quic_fenglinw.quicinc.com@kernel.org> wrote:
+On Tue, 16 Apr 2024 at 09:36, Mohammad Rafi Shaik <quic_mohs@quicinc.com> wrote:
 >
-> From: Fenglin Wu <quic_fenglinw@quicinc.com>
+> This patchset adds support for Qualcomm WCD937X codec.
 >
-> Add support for a new SPMI vibrator module which is very similar
-> to the vibrator module inside PM8916 but has a finer drive voltage
-> step and different output voltage range, its drive level control
-> is expanded across 2 registers. The vibrator module can be found
-> in following Qualcomm PMICs: PMI632, PM7250B, PM7325B, PM7550BA.
+> Qualcomm WCD9370/WCD9375 Codec is a standalone Hi-Fi audio codec IC
+> connected over SoundWire. This device has two SoundWire devices, RX and
+> TX respectively supporting 3 x ADCs, ClassH, Ear, Aux PA, 2xHPH,
+> 6 DMICs and MBHC.
 >
-> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
-> ---
->  drivers/input/misc/pm8xxx-vibrator.c | 52 +++++++++++++++++++++++++++++-------
->  1 file changed, 43 insertions(+), 9 deletions(-)
+> For codec driver to be functional it would need both tx and rx Soundwire devices
+> to be up and this is taken care by using device component framework and device-links
+> are used to ensure proper pm dependencies. Ex tx does not enter suspend
+> before rx or codec is suspended.
+>
+> This patchset along with other SoundWire patches on the list
+> have been tested on QCM6490 IDP device.
+>
+> Changes since v8:
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+I hope it's a typo here since the series is v2, not v9
+
+>  - Split the patch per driver for easier review as suggested by Krzysztof
+>  - Used devm_gpiod_get api to get reset gpio as suggested by Krzysztof
+>
+> Prasad Kumpatla (8):
+>   ASoC: dt-bindings: wcd937x: add bindings for wcd937x
+>   ASoC: codecs: wcd937x: add wcd937x codec driver
+>   ASoC: dt-bindings: wcd937x-sdw: add bindings for wcd937x-sdw
+>   ASoC: codecs: wcd937x-sdw: add SoundWire driver
+>   ASoC: codecs: wcd937x: add basic controls
+>   ASoC: codecs: wcd937x: add playback dapm widgets
+>   ASoC: codecs: wcd937x: add capture dapm widgets
+>   ASoC: codecs: wcd937x: add audio routing and Kconfig
+>
+>  .../bindings/sound/qcom,wcd937x-sdw.yaml      |   71 +
+>  .../bindings/sound/qcom,wcd937x.yaml          |  119 +
+>  sound/soc/codecs/Kconfig                      |   20 +
+>  sound/soc/codecs/Makefile                     |    7 +
+>  sound/soc/codecs/wcd937x-sdw.c                | 1148 +++++++
+>  sound/soc/codecs/wcd937x.c                    | 3036 +++++++++++++++++
+>  sound/soc/codecs/wcd937x.h                    |  655 ++++
+>  7 files changed, 5056 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.yaml
+>  create mode 100644 Documentation/devicetree/bindings/sound/qcom,wcd937x.yaml
+>  create mode 100644 sound/soc/codecs/wcd937x-sdw.c
+>  create mode 100644 sound/soc/codecs/wcd937x.c
+>  create mode 100644 sound/soc/codecs/wcd937x.h
+>
+>
+> base-commit: 6bd343537461b57f3efe5dfc5fc193a232dfef1e
+> --
+> 2.25.1
+>
+>
 
 
 -- 
