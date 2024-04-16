@@ -1,114 +1,110 @@
-Return-Path: <devicetree+bounces-59861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59862-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47C428A7498
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 21:21:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC3B78A7515
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 21:49:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A7C07B22518
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 19:21:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 58B05B2168D
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 19:49:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56E04139577;
-	Tue, 16 Apr 2024 19:20:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F36B31386B4;
+	Tue, 16 Apr 2024 19:49:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X/uVauMK"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="PBcZVa4c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27B0B139566;
-	Tue, 16 Apr 2024 19:20:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00BAA1386C8;
+	Tue, 16 Apr 2024 19:49:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713295245; cv=none; b=MUYbA87XYXH3ichnxCKwGka2x88fxj8l6NUymOdbuc9fcuWHgKtwEG2M1rEskEmQd8RgCGg2ZT41SJeUqK3cm1Y1UVRH1z1/QhREimssC/W/vAy1HeCeTUQsRgqRDa4iG7omokpe6POrF1zyuDfy5FWFVVvEGyKN5rRPGMAYcpI=
+	t=1713296944; cv=none; b=CLHaUx34BM5xxQxETxOrvkhQ3TZ89OR+MDV9BlBuK0MCL0EWT/dfPXd6Tt4ljKx27PkyE1H6zk54HUQwFQDokomKDYFM1QsXG/bGAQGkN7vlrZ946NFUQKzygrBW6mzqcq3sQFbRj+Xfe3amipBEQKvz81dz24gY+7V/ndOAGXw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713295245; c=relaxed/simple;
-	bh=JPCYyaNQ5aLMEvbd/QgJU8hMpf/HQ03GExzcJL2Qv/A=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=IYTrzTMgs+Xi0R75r8DsTUfkx2pCV2Ht8PYXmIoNP5uLMZH6Lih6F2L0TkyMenBK/NCkmQlZGujLlr9/KP4F9cPr2ZcaxSc3q6XmjiBIq+X3rAmTcZUE6TI+ShdO4cCjGtObtkucPiBOFVBKCAqpm5gZw2+UnJeloJDHwMOBMfw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X/uVauMK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B805C4AF07;
-	Tue, 16 Apr 2024 19:20:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713295244;
-	bh=JPCYyaNQ5aLMEvbd/QgJU8hMpf/HQ03GExzcJL2Qv/A=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=X/uVauMKTrEJKeHSuimCQFH2qffGX5UJUXLGp1Lqc3Xd/2hDX3v0OBwGBl6m8PBmJ
-	 DJt3NYegAPxEIlk1Rbuzi190amVwRoVXW2W2DEdgFMHpGFbxq9ZgTBTtaWA2aX7QSq
-	 GU3xbx6+Ikyif5ExRKSpHxFKJ2wfDOGRkN4WtL/Gisu/3IY3+dDHj8gB+1v4gjoIUW
-	 KEfNA9D7tcxIyd1DtV2IHHCf2VeG50atxHUUxmYDW1XFQneVMwhCtYBmJ1GabzGVss
-	 XahY/K3DuAfbXRy7wT1+oBKfFxas8aEMBMAjK90vg7hvZqfssYTAN77R5i9m57VEfl
-	 stiZpF3I8DUyw==
-Date: Tue, 16 Apr 2024 14:20:43 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1713296944; c=relaxed/simple;
+	bh=DRHJkO6kW21lCA8xbVqR0lnoCcT0jw+6x4TIGceqT/M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rWJeXI0Sq3C2y/BeNywMnPoUD4DdCe0bWqEsmZlNR8oWNoRcjMe/rbkW30zMYiFVYbWgasx1WV3VjBTUoymuKRMmf421PiCieV000690asjM7flbUNTSQDXpVoB5hrdRTU/flbmXvhs3LfnB5csuilPj7Z4Mp4ceEJaZX5sHTJ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=PBcZVa4c; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 012F51FA95;
+	Tue, 16 Apr 2024 21:48:52 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1713296933;
+	bh=jolt/bWmgNdjRRTMqPywevqRkZPgyOYkBhjw856lYdo=; h=From:To:Subject;
+	b=PBcZVa4cg0mVFmI3uTE8852dqxAzDK436gZT9jvdoTf83VrACJi2J8/DYlYI3cLII
+	 9sgvOB08nw0yo/5GrZ3F3sBC7LEsrrWhh1naocGWlR3rfBie2tQgXGR3IAd2fa1OcU
+	 gmYcMSWrQGU+iCKVjVPNfwkLWOC/ai+foIZD3ZQw0/JYuDtgN2tJ5o+YZv+Vpsk7Ed
+	 dKe21O6t/nxHEs8gATTO/VMT3IaD9WdCWb2b3f2uMSF96KA6Pqr9yohVzyvkg/xCKY
+	 EPi3izCyV4Jk6oOCeRlfd2YH1Gbzu8bW+yZtwTnvhXovceQp+tVdLSuyAsr+r0BcId
+	 izsiS91/0Ui5w==
+Date: Tue, 16 Apr 2024 21:48:49 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
+	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/1] arm64: dts: imx8qxp-mek: add cm40_i2c, wm8960 and
+ sai[0,1,4,5]
+Message-ID: <20240416194849.GA4516@francesco-nb>
+References: <20240416163256.2121923-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: David Wronek <david@mainlining.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Maxime Ripard <mripard@kernel.org>, phone-devel@vger.kernel.org, 
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
- devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Konrad Dybcio <konradybcio@kernel.org>, linux-kernel@vger.kernel.org, 
- Neil Armstrong <neil.armstrong@linaro.org>
-In-Reply-To: <20240416-raydium-rm69380-driver-v3-1-21600ac4ce5f@mainlining.org>
-References: <20240416-raydium-rm69380-driver-v3-0-21600ac4ce5f@mainlining.org>
- <20240416-raydium-rm69380-driver-v3-1-21600ac4ce5f@mainlining.org>
-Message-Id: <171329524217.3866491.17133323798824607275.robh@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: display: panel: Add Raydium
- RM69380
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240416163256.2121923-1-Frank.Li@nxp.com>
 
+Hello Frank,
 
-On Tue, 16 Apr 2024 20:30:48 +0200, David Wronek wrote:
-> Raydium RM69380 is a display driver IC used to drive OLED DSI panels.
-> Add a dt-binding for it.
+On Tue, Apr 16, 2024 at 12:32:56PM -0400, Frank Li wrote:
+> Add cm40_i2c, wm8960 and sai[0,1,4,5] for imx8qxp-mek (SCH-38813).
 > 
-> Signed-off-by: David Wronek <david@mainlining.org>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
-> Note:
-> Depends on commit 48a516363e29 ("dt-bindings: display: panel: add common dual-link schema")
-> ---
->  .../bindings/display/panel/raydium,rm69380.yaml    | 91 ++++++++++++++++++++++
->  1 file changed, 91 insertions(+)
 > 
+> Notes:
+>     Change from v1 to v2
+>     Remove dummy i2c bus to support both wm8960 and wm8962 boards.
+>     Only support old wm8960 boards in this patch, which most popluar in market.
+> 
+>  arch/arm64/boot/dts/freescale/imx8qxp-mek.dts | 139 ++++++++++++++++++
+>  1 file changed, 139 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+> index 8360bb851ac03..36a7d16f658f8 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+> @@ -188,6 +205,47 @@ typec_con_ss: endpoint {
 
-My bot found errors running 'make dt_binding_check' on your patch:
+...
 
-yamllint warnings/errors:
+> +	wm8960: wm8960@1a {
+> +		compatible = "wlf,wm8960";
+> +		reg = <0x1a>;
+> +		clocks = <&mclkout0_lpcg IMX_LPCG_CLK_0>;
+> +		clock-names = "mclk";
+> +		wlf,shared-lrclk;
+> +		wlf,hp-cfg = <2 2 3>;
+> +		wlf,gpio-cfg = <1 3>;
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/panel/raydium,rm69380.yaml:
-Error in referenced schema matching $id: http://devicetree.org/schemas/display/panel/panel-common-dual.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/panel/raydium,rm69380.example.dtb: panel@0: False schema does not allow {'compatible': ['lenovo,j716f-edo-rm69380', 'raydium,rm69380'], 'reg': [[0]], 'avdd-supply': [[4294967295]], 'vddio-supply': [[4294967295]], 'reset-gpios': [[4294967295, 75, 1]], 'ports': {'#address-cells': [[1]], '#size-cells': [[0]], 'port@0': {'reg': [[0]], 'endpoint': {'remote-endpoint': [[4294967295]]}}, 'port@1': {'reg': [[1]], 'endpoint': {'remote-endpoint': [[4294967295]]}}}, '$nodename': ['panel@0']}
-	from schema $id: http://devicetree.org/schemas/display/panel/raydium,rm69380.yaml#
+wlf,* properties should be last, see DT coding guidelines
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240416-raydium-rm69380-driver-v3-1-21600ac4ce5f@mainlining.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Francesco
 
 
