@@ -1,87 +1,156 @@
-Return-Path: <devicetree+bounces-59749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8831C8A6F66
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 17:11:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D474B8A6F7C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 17:16:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 315411F2213D
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 15:11:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11AB71C21972
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 15:16:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C21D81304B4;
-	Tue, 16 Apr 2024 15:11:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9112D130A79;
+	Tue, 16 Apr 2024 15:16:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bmi+PdFU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from michel.telenet-ops.be (michel.telenet-ops.be [195.130.137.88])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70C3B13049C
-	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 15:11:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.137.88
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59753130491;
+	Tue, 16 Apr 2024 15:16:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713280314; cv=none; b=HoRI03i206DXVwf7fcR7rZFYCHdvU9qYwGuM89mR4XJvNyO1deQ5HXhoUmb/QCIs8z10B/XavExvfiFsFW8RxirHAzcb2AnI9PQAtPXQrpQyv6aNWHkH44gPWRUs8mIdhNG3y8WEAGwaB+HdCNaV6bOgI73JJks+Rm+Pq1Cdv/I=
+	t=1713280597; cv=none; b=Q1c07aKANlOAbojy1Tf5nTwJMPFvrNNhcfYKOt9UFQ+bUnschgoRTlL4xUWxLJbdLIQ0Fq+C1DvXPWhtBPBWLStIi63WVoP7CyW1klz3jppvrggTFRC8YRIkh5ahMHEdmCwmwaWC4esMXbKguG61SDqgbp16HXvtRa7J3N+Bsg0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713280314; c=relaxed/simple;
-	bh=4i9DUqbUmi5G2UyjqfPTTv3swrA0F4CllH4pCopYeRg=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Ie1Df+Z/Qa0NCWPcQ48Ctl+WjTDr96ADElTGXRQ4HLahqpwIr2oDUuSwZA0DT/WnrJJpFItqI6X3m2VZOpQDRSUI5rctje/UOZp0RPhYXWckx38JEE8jFSSB7LE0N2enp1C57G/r+Rrad3PhSE3nt9W2J69ATeb/jP06sBM21Yw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.137.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:76d0:2bff:fec8:549])
-	by michel.telenet-ops.be with bizsmtp
-	id BrBq2C00Q0SSLxL06rBqVq; Tue, 16 Apr 2024 17:11:50 +0200
-Received: from rox.of.borg ([192.168.97.57])
-	by ramsan.of.borg with esmtp (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1rwkSo-008EY4-VG;
-	Tue, 16 Apr 2024 17:11:50 +0200
-Received: from geert by rox.of.borg with local (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1rwkTO-00EbHw-Cx;
-	Tue, 16 Apr 2024 17:11:50 +0200
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1713280597; c=relaxed/simple;
+	bh=InnM2wKHZDVJcxsb32eryq9FZ+eyYPiDT6PDeAxmkcU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MBrMr6s2dtX2aNKy5TkmkdgDJrxF0rM/tYeie/eXCr874JHLEHC9zaceO1J2vG/Yb7EzsuRxWZPdyeZa8cqDBaKgrwMOKz7PTf1jYKSqvE+TRsU1L3wRlVVeWCgz2cgj7FOOeJHXtP6KWqn2foxRAParW3JAIO8I5eEJn7IcyWU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bmi+PdFU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D578C113CE;
+	Tue, 16 Apr 2024 15:16:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713280596;
+	bh=InnM2wKHZDVJcxsb32eryq9FZ+eyYPiDT6PDeAxmkcU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bmi+PdFUk+pqNCmA5Tv0nMe1Rms4QVLfeQiS3gEo2aznB+h0Md9qBqkDmhELSwa1R
+	 t9+iuyni43iZdovlFAk11+AliTSkSgGoT7H+mgYODHPu8nasGgUL/zmkpkE7+oMI7c
+	 tbBKUook+UHjhFPKv5g/OCrVnSoawHnjFg49vkvTn2jz+m8UcHyt5Nw26siTYzx7eJ
+	 eZ2Cwrvr5w4QWb7V5ibYtiglDiMzL7ydyDO+/rEuFwcxbkYvGyNFgKvAQrlLSigLVW
+	 pnhgn1uhMYYILoGbd6MAWFg4yBXocjTlf6qJEdzTRMQ4G9kzfE82E9lw08ZzbXwk2v
+	 GYvtZW1LJtf1g==
+Date: Tue, 16 Apr 2024 16:16:30 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Charlie Jenkins <charlie@rivosinc.com>
+Cc: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH dt-bindings] spi: renesas,sh-msiof: Add r8a779h0 support
-Date: Tue, 16 Apr 2024 17:11:48 +0200
-Message-Id: <68a4d8ad8638c1133e21d0eef87e8982ddea3dd8.1713279687.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Evan Green <evan@rivosinc.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v2 02/17] dt-bindings: riscv: Add xtheadvector ISA
+ extension description
+Message-ID: <20240416-underwire-bright-b2ab0fa991ec@spud>
+References: <20240415-dev-charlie-support_thead_vector_6_9-v2-0-c7d68c603268@rivosinc.com>
+ <20240415-dev-charlie-support_thead_vector_6_9-v2-2-c7d68c603268@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="FdN+IanOF5jba0gw"
+Content-Disposition: inline
+In-Reply-To: <20240415-dev-charlie-support_thead_vector_6_9-v2-2-c7d68c603268@rivosinc.com>
 
-Document support for the Clock-Synchronized Serial Interface with FIFO
-(MSIOF) in the Renesas R-Car V4M (R8A779H0) SoC.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml | 1 +
- 1 file changed, 1 insertion(+)
+--FdN+IanOF5jba0gw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml b/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
-index 00acbbb0f65dcf57..49649fc3f95af971 100644
---- a/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
-+++ b/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
-@@ -54,6 +54,7 @@ properties:
-               - renesas,msiof-r8a779a0      # R-Car V3U
-               - renesas,msiof-r8a779f0      # R-Car S4-8
-               - renesas,msiof-r8a779g0      # R-Car V4H
-+              - renesas,msiof-r8a779h0      # R-Car V4M
-           - const: renesas,rcar-gen4-msiof  # generic R-Car Gen4
-                                             # compatible device
-       - items:
--- 
-2.34.1
+On Mon, Apr 15, 2024 at 09:11:59PM -0700, Charlie Jenkins wrote:
+> The xtheadvector ISA extension is described on the T-Head extension spec
+> Github page [1] at commit 95358cb2cca9.
+>=20
+> Link: https://github.com/T-head-Semi/thead-extension-spec/blob/95358cb2cc=
+a9489361c61d3
+> 35e03d3134b14133f/xtheadvector.adoc [1]
 
+This should not be wrapped btw.
+Otherwise,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Thanks,
+Conor.
+
+>=20
+> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+> ---
+>  Documentation/devicetree/bindings/riscv/extensions.yaml | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Do=
+cumentation/devicetree/bindings/riscv/extensions.yaml
+> index 468c646247aa..99d2a9e8c52d 100644
+> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> @@ -477,6 +477,10 @@ properties:
+>              latency, as ratified in commit 56ed795 ("Update
+>              riscv-crypto-spec-vector.adoc") of riscv-crypto.
+> =20
+> +        # vendor extensions, each extension sorted alphanumerically unde=
+r the
+> +        # vendor they belong to. Vendors are sorted alphanumerically as =
+well.
+> +
+> +        # Andes
+>          - const: xandespmu
+>            description:
+>              The Andes Technology performance monitor extension for count=
+er overflow
+> @@ -484,5 +488,11 @@ properties:
+>              Registers in the AX45MP datasheet.
+>              https://www.andestech.com/wp-content/uploads/AX45MP-1C-Rev.-=
+5.0.0-Datasheet.pdf
+> =20
+> +        # T-HEAD
+> +        - const: xtheadvector
+> +          description:
+> +            The T-HEAD specific 0.7.1 vector implementation as written in
+> +            https://github.com/T-head-Semi/thead-extension-spec/blob/953=
+58cb2cca9489361c61d335e03d3134b14133f/xtheadvector.adoc.
+> +
+>  additionalProperties: true
+>  ...
+>=20
+> --=20
+> 2.44.0
+>=20
+
+--FdN+IanOF5jba0gw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZh6WTgAKCRB4tDGHoIJi
+0sMWAP4+aeJt178cyWMEA9Mn4d+S37RsUbed8NjDYrowtrQETAEAti61pmdoJgct
+1P4NAn7MiJAgxQW6b5m82/RPqoVkTwo=
+=Ucx5
+-----END PGP SIGNATURE-----
+
+--FdN+IanOF5jba0gw--
 
