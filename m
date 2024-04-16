@@ -1,363 +1,129 @@
-Return-Path: <devicetree+bounces-59802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BB028A70A5
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 17:59:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 806E48A70CA
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 18:02:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B77051F25A5C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 15:59:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E2AE71F2356C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 16:02:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F87413BC21;
-	Tue, 16 Apr 2024 15:53:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6376131BC0;
+	Tue, 16 Apr 2024 16:01:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="o60sRPAD"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="wg/HhgsP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3483D13BC06
-	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 15:53:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A44F013175E;
+	Tue, 16 Apr 2024 16:01:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713282832; cv=none; b=RrRsNkdHu3CJY0KUOXdg5jJyNK/mWhAvJK+BR02li9WvRGxudtS7f1fexgy+gZb2fVqTE9K1KhhbzAe/feOy3wF71NsH+iu5geHGlTEgxHmsH13BwrGieaKi7X0zT8vLcx3tR4O0lwbitQDUyPEposd8+Pg4tUCHJunGGnlYyrU=
+	t=1713283266; cv=none; b=HQs/KIgn42xKbdgKvQK2jwFCEZSyJ9gI3eNjjAnsOMDkvTrF8ndHzU9vue+dgKHMmtStuX/O4d0iE1cGzble+CM9iuYXhwJgMaKrJfL7sjcouTIp754ASKsmjP97JYkcA4agLYPdtXCCON3JleK3gaZfYSDOkpLmtz65oYoi6pU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713282832; c=relaxed/simple;
-	bh=M4i1c6AYDA2tEdZrTCUtzyXixpIxmwigGiG2fPItjfs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=prcDUJew2vVye7RJOq4DOJ8hh8C2MwM7s1v3hsG9QqeqXRbhqR1ic9j06pYSk3z9NPJ/9u1T2g6/5YfNYQF7yU8Lq/42HfHghNamFWw73pLtY57pv/9h6wUu68PoNzScOZgtZHZw/gBRg+RSagiXcRA3LiYxR8rzG0OaV5nI0Fc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=o60sRPAD; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a5200202c1bso603229666b.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 08:53:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1713282828; x=1713887628; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Kk43UIDm9M9R8V3T1CIiMiMRKcLoO2R/eVKjmVeC/UE=;
-        b=o60sRPADiDQNwfVEzWFCKUehB4Z4zCK25cvSv3edf9d7Uf0L7ekATOpZVo0jHC0dUq
-         EB5jWgXc+AhyeGQxX/sTwWAOJ0u4tUaburQ1YQX6bH8oNB8JiRRoHCYIGa3vbVtuE7X/
-         9zohXVIo96xcyStmsDDZ5+uJPorQuuZSpVTHas7iwDsiBW6H0gtzlWMn49OcLLce4J2e
-         xXtdpgjleLDCCP8Rd7WCdxZrDEBkAqAiePRe+DbQroJ2WbWhkWXh/sKSQ57sBVmnsQ6Q
-         cvk1ZSAfWp1dgXFRM2rvvaLItJo2GjLqtPazyylDeacCxWDd1KSBbOgCHo3cZAW6K/JQ
-         2+Rg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713282828; x=1713887628;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Kk43UIDm9M9R8V3T1CIiMiMRKcLoO2R/eVKjmVeC/UE=;
-        b=paM63ERngBnigV7WWNBIuA/VFZ/cerz/tf+11fol2hn1plka+eEeELePhIi+TZybrF
-         KoSmg4voF1804X9kzYpIn1ma8UK59BW3JdN3RjLJVGcFKfRbWcYKJoJMrdFPboNwOU20
-         pXElMXtNAOXuQtRp6UUWu01mczfXoxHWpCSF1wCnustcpFtLmkr3GqbkqvU+1gfhILF8
-         H+E5MWoBO3AVL7UFS8ofIiz9JRv7cAgOb0p+357O+wXc+e1NUSEZ49d5oX8Cggnya6l9
-         Hq6R31/sqT487Irx0DrdDX7rsyBmGwhh6FQdtv7ZVm6qDAlAaVqPTeUXruiVvp275BD7
-         wMfw==
-X-Forwarded-Encrypted: i=1; AJvYcCWCd68Q/W6xwa+qcamadbHJjtAcNSXQG5RoV6u59EgFtnBDTYWihF2h0EfBCwVq2/3VtJk4P6gV9cklFM+3gxQMGlTBI6z98J1zGg==
-X-Gm-Message-State: AOJu0YwZuMxb18nnag1TwBsAWtIbqTj9VEN5dc2W2Da+nQMclipC2D5d
-	1AYI4CZa/kU50gOtFEk8Z2h7Rn4NGrXsvYHrwtwsS9tJfcxu5iyXW9xdVsP/zMk=
-X-Google-Smtp-Source: AGHT+IFO9RIMh6kvWocz6pLKLsYWpWuuznyn5mp7qBiekbbqjWT0jnC8LdvlQLxbJKuw5b6fDOrdsg==
-X-Received: by 2002:a17:907:1b29:b0:a52:617d:d77f with SMTP id mp41-20020a1709071b2900b00a52617dd77fmr6077497ejc.56.1713282828539;
-        Tue, 16 Apr 2024 08:53:48 -0700 (PDT)
-Received: from [127.0.1.1] ([93.5.22.158])
-        by smtp.googlemail.com with ESMTPSA id d12-20020a170906174c00b00a52567ca1b6sm4156691eje.94.2024.04.16.08.53.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Apr 2024 08:53:48 -0700 (PDT)
-From: Alexandre Mergnat <amergnat@baylibre.com>
-Date: Tue, 16 Apr 2024 17:53:19 +0200
-Subject: [PATCH v2 18/18] arm64: dts: mediatek: add display support for
- mt8365-evk
+	s=arc-20240116; t=1713283266; c=relaxed/simple;
+	bh=DhO5h+b7vIc6jbIsUWA7z1iTfKMcBvd2Dz5vJhvMzhs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=m1CubdqeDx8sn/GJ9rGY56SqYpfiRGf3nBUdZsR6cgq5kpBx9eYi16WDsa9ebg4iRRaLabO1d+p9rLuCP9VAwk92yhK5vpthKVdGM3Ly4WCh/KzAgqTawPJITIwNy32LIkIxlGFSsJTNiof5CkU0mj9rJzrmbVyNNN2pTSE1dMw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=wg/HhgsP; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=xeBMrRqxBEZ22eqTgIxs2B4bjpNxoQ68pH+OW+DIVMQ=; b=wg/HhgsPYE6YyJZQVYTCS/CrYE
+	+Uhyf2Cn4T3O5dFfSP+jCgrPe9F6/099JdqxRqP+Haa1VP1hbHEg+Zi99y6VPbGfEHd0mlM4Vb3gd
+	Epqw1r3yPo43uot0cs2K93+BzqJB8EZ/syBaZhrFSvC1fW5yLF1Ae8DRqHiBL/OSujAQP4P9dlDcF
+	vXn8OjaYYHzUfisd0Jmyr1KlEg7H6tLn6YjvoZdtLnexRqbSqP1Lxli6A3HC/xZ2Guxr3o1IwSpXs
+	O8ZLiXs7qYU9B6Yau36kPMHxe4EIOIly4MB0k6MLvTGK2sdFHy6ILqE5peqeeMWfyIau1YiAKoV8S
+	iYVYZmfg==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:45642)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1rwlEm-0000cR-1Y;
+	Tue, 16 Apr 2024 17:00:48 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1rwlEm-0004xr-Bh; Tue, 16 Apr 2024 17:00:48 +0100
+Date: Tue, 16 Apr 2024 17:00:48 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Stefan Eichenberger <eichest@gmail.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	lxu@maxlinear.com, hkallweit1@gmail.com, michael@walle.cc,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 2/2] net: phy: mxl-gpy: add new device tree property
+ to disable SGMII autoneg
+Message-ID: <Zh6gsHqOM+ienmzE@shell.armlinux.org.uk>
+References: <20240416121032.52108-1-eichest@gmail.com>
+ <20240416121032.52108-3-eichest@gmail.com>
+ <3f7f278f-e490-47f1-971c-ecf44a70cee4@lunn.ch>
+ <Zh6clAtI3NO+nMEi@eichest-laptop>
+ <Zh6d0VKVFK7JJWAf@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231023-display-support-v2-18-33ce8864b227@baylibre.com>
-References: <20231023-display-support-v2-0-33ce8864b227@baylibre.com>
-In-Reply-To: <20231023-display-support-v2-0-33ce8864b227@baylibre.com>
-To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>, 
- Daniel Vetter <daniel@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Jitao Shi <jitao.shi@mediatek.com>, CK Hu <ck.hu@mediatek.com>, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
- Will Deacon <will@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org, 
- linux-clk@vger.kernel.org, Alexandre Mergnat <amergnat@baylibre.com>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6020; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=M4i1c6AYDA2tEdZrTCUtzyXixpIxmwigGiG2fPItjfs=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBmHp7qUFBca7E08f1ngHlmp33iL1Pv9Lit7GgjOUw5
- xOYM3ZKJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZh6e6gAKCRArRkmdfjHURaHuD/
- oCDVBZHaWA9Ah4glfGxpEvI/qAqr19rDwqndy7g+YFxItm1BLLAQsDWf3PWwXWINhgk1qp8AKEfHag
- H+AgyR6sJ+RSScJKKnJpxbAnFBw+VTYtw9YxMX6UcBQXdAIuyPREY7V/IxD3NgiMT6YQ60IClUChxT
- g+mZFSBsW83vT6Os/DHuIPf7G4qrYf5kfjjqM1P4PAU0YTT3vxIYB4xZQP8Cp2l1MhcFd7eZ9XZ9Nf
- INmIdRUKKzna7mDY12ofaylFrWAJg5oiNKou9p+gAHHNFtXJ88IILb/zhm+QwKa2E7DchvaenxuLME
- iAfx6sPPAy/YM/AoFIGL8APqIDo/0aFnx010D6scRIxnTKaH04WJXRcJXb744L2Hgti8Jjr9WtrPwS
- dnEy3ADN6SsQDNKHZblKrG+ptfXXklXcYlGeXFJLm5958HRxXXtH9HX+4tHPMOZW3KZ1baxi4UW12Z
- r2ZNaFEFEXXfMoWK8srpDlMujcNCcEGCUWpUoiQ8iOk+mbbl8b0XZkDLsO3dfmDAzYDFHnFFeGdCoK
- BE2whclWEqaxtuwJcuUoduLTywfv+CIlhjgIjLnexvgj2aRnIZYWutHGxZVLArR2HiwGUWXWI3vVnz
- oViDNci7PccfDEQKUvr+wE988NJEI+SgKvgrbd1s+zW9Tz/4onA2Wzl07Smg==
-X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
- fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Zh6d0VKVFK7JJWAf@shell.armlinux.org.uk>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-MIPI DSI:
-- Add "vsys_lcm_reg" regulator support and setup the "mt6357_vsim1_reg",
-to power the pannel plugged to the DSI connector.
-- Setup the Display Parallel Interface.
-  - Add the startek kd070fhfid015 pannel support.
+On Tue, Apr 16, 2024 at 04:48:34PM +0100, Russell King (Oracle) wrote:
+> On Tue, Apr 16, 2024 at 05:43:16PM +0200, Stefan Eichenberger wrote:
+> > Hi Andrew,
+> > 
+> > Thanks a lot for the feedback.
+> > 
+> > On Tue, Apr 16, 2024 at 03:46:19PM +0200, Andrew Lunn wrote:
+> > > On Tue, Apr 16, 2024 at 02:10:32PM +0200, Stefan Eichenberger wrote:
+> > > > Add a new device tree property to disable SGMII autonegotiation and
+> > > > instead use the option to match the SGMII speed to what was negotiated
+> > > > on the twisted pair interface (tpi).
+> > > 
+> > > Could you explain this is more detail.
+> > > 
+> > > SGMII always runs its clocks at 1000Mbps. The MAC needs to duplicate
+> > > the symbols 100 times when running at 10Mbs, and 10 times when running
+> > > at 100Mbps.
+> > 
+> > Currently, the mxl-gpy driver uses SGMII autonegotiation for 10 Mbps,
+> > 100 Mbps, and 1000 Mbps. For our Ethernet controller, which is on an
+> > Octeon TX2 SoC, this means that we have to enable "in-band-status" on
+> > the controller. This will work for all three speed settings. However, if
+> > we have a link partner that can do 2.5 Gbps, the mxl-gpy driver will
+> > disable SGMII autonegotiation in gpy_update_interface. This is not
+> > supported by this Ethernet controller because in-band-status is still
+> > enabled. Therefore, we will not be able to transfer data at 2.5 Gbps,
+> > the SGMII link will not go into a working state.
+> 
+> I have been working on a phylink/phylib patch set to address this. As
+> I've been busy with health-based appointments during last week and this
+> week, I haven't been able to spend enough time to get that to a point
+> that I'm happy to publish it yet.
 
-HDMI:
-- Add HDMI connector support.
-- Add the "ite,it66121" HDMI bridge support, driven by I2C1.
-- Setup the Display Parallel Interface.
+You can find the experimental patches at:
 
-Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
----
- arch/arm64/boot/dts/mediatek/mt8365-evk.dts | 182 ++++++++++++++++++++++++++++
- 1 file changed, 182 insertions(+)
+http://git.armlinux.org.uk/cgit/linux-arm.git/commit/?h=net-queue&id=0c2fb62db211312ad2f5695997694908b54e9a17
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-index 50cbaefa1a99..4afdcbefc481 100644
---- a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-@@ -26,6 +26,18 @@ chosen {
- 		stdout-path = "serial0:921600n8";
- 	};
- 
-+	connector {
-+		compatible = "hdmi-connector";
-+		label = "hdmi";
-+		type = "d";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_connector_out>;
-+			};
-+		};
-+	};
-+
- 	firmware {
- 		optee {
- 			compatible = "linaro,optee-tz";
-@@ -86,6 +98,56 @@ optee_reserved: optee@43200000 {
- 			reg = <0 0x43200000 0 0x00c00000>;
- 		};
- 	};
-+
-+	vsys_lcm_reg: regulator-vsys-lcm {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&pio 129 GPIO_ACTIVE_HIGH>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-name = "vsys_lcm";
-+	};
-+};
-+
-+&dpi0 {
-+	pinctrl-0 = <&dpi_default_pins>;
-+	pinctrl-1 = <&dpi_idle_pins>;
-+	pinctrl-names = "default", "sleep";
-+	status = "okay";
-+
-+	port {
-+		dpi_out: endpoint {
-+			remote-endpoint = <&it66121_in>;
-+		};
-+	};
-+};
-+
-+&dsi0 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	panel@0 {
-+		compatible = "startek,kd070fhfid015";
-+		status = "okay";
-+		reg = <0>;
-+		enable-gpios = <&pio 67 GPIO_ACTIVE_HIGH>;
-+		reset-gpios = <&pio 20 GPIO_ACTIVE_HIGH>;
-+		iovcc-supply = <&mt6357_vsim1_reg>;
-+		power-supply = <&vsys_lcm_reg>;
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&dsi_out>;
-+			};
-+		};
-+	};
-+
-+	port {
-+		dsi_out: endpoint {
-+			remote-endpoint = <&panel_in>;
-+		};
-+	};
- };
- 
- &cpu0 {
-@@ -138,6 +200,50 @@ &i2c0 {
- 	status = "okay";
- };
- 
-+&i2c1 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	clock-div = <2>;
-+	clock-frequency = <100000>;
-+	pinctrl-0 = <&i2c1_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	it66121hdmitx: it66121hdmitx@4c {
-+		#sound-dai-cells = <0>;
-+		compatible = "ite,it66121";
-+		interrupt-parent = <&pio>;
-+		interrupts = <68 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-0 = <&ite_pins>;
-+		pinctrl-names = "default";
-+		reg = <0x4c>;
-+		reset-gpios = <&pio 69 GPIO_ACTIVE_LOW>;
-+		vcn18-supply = <&mt6357_vsim2_reg>;
-+		vcn33-supply = <&mt6357_vibr_reg>;
-+		vrf12-supply = <&mt6357_vrf12_reg>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				it66121_in: endpoint {
-+					bus-width = <12>;
-+					remote-endpoint = <&dpi_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+				hdmi_connector_out: endpoint {
-+					remote-endpoint = <&hdmi_connector_in>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &mmc0 {
- 	assigned-clock-parents = <&topckgen CLK_TOP_MSDCPLL>;
- 	assigned-clocks = <&topckgen CLK_TOP_MSDC50_0_SEL>;
-@@ -180,7 +286,55 @@ &mt6357_pmic {
- 	#interrupt-cells = <2>;
- };
- 
-+&mt6357_vsim1_reg {
-+	regulator-min-microvolt = <1800000>;
-+	regulator-max-microvolt = <1800000>;
-+};
-+
- &pio {
-+	dpi_default_pins: dpi-default-pins {
-+		pins {
-+			pinmux = <MT8365_PIN_0_GPIO0__FUNC_DPI_D0>,
-+				 <MT8365_PIN_1_GPIO1__FUNC_DPI_D1>,
-+				 <MT8365_PIN_2_GPIO2__FUNC_DPI_D2>,
-+				 <MT8365_PIN_3_GPIO3__FUNC_DPI_D3>,
-+				 <MT8365_PIN_4_GPIO4__FUNC_DPI_D4>,
-+				 <MT8365_PIN_5_GPIO5__FUNC_DPI_D5>,
-+				 <MT8365_PIN_6_GPIO6__FUNC_DPI_D6>,
-+				 <MT8365_PIN_7_GPIO7__FUNC_DPI_D7>,
-+				 <MT8365_PIN_8_GPIO8__FUNC_DPI_D8>,
-+				 <MT8365_PIN_9_GPIO9__FUNC_DPI_D9>,
-+				 <MT8365_PIN_10_GPIO10__FUNC_DPI_D10>,
-+				 <MT8365_PIN_11_GPIO11__FUNC_DPI_D11>,
-+				 <MT8365_PIN_12_GPIO12__FUNC_DPI_DE>,
-+				 <MT8365_PIN_13_GPIO13__FUNC_DPI_VSYNC>,
-+				 <MT8365_PIN_14_GPIO14__FUNC_DPI_CK>,
-+				 <MT8365_PIN_15_GPIO15__FUNC_DPI_HSYNC>;
-+			drive-strength = <MTK_DRIVE_4mA>;
-+		};
-+	};
-+
-+	dpi_idle_pins: dpi-idle-pins {
-+		pins {
-+			pinmux = <MT8365_PIN_0_GPIO0__FUNC_GPIO0>,
-+				 <MT8365_PIN_1_GPIO1__FUNC_GPIO1>,
-+				 <MT8365_PIN_2_GPIO2__FUNC_GPIO2>,
-+				 <MT8365_PIN_3_GPIO3__FUNC_GPIO3>,
-+				 <MT8365_PIN_4_GPIO4__FUNC_GPIO4>,
-+				 <MT8365_PIN_5_GPIO5__FUNC_GPIO5>,
-+				 <MT8365_PIN_6_GPIO6__FUNC_GPIO6>,
-+				 <MT8365_PIN_7_GPIO7__FUNC_GPIO7>,
-+				 <MT8365_PIN_8_GPIO8__FUNC_GPIO8>,
-+				 <MT8365_PIN_9_GPIO9__FUNC_GPIO9>,
-+				 <MT8365_PIN_10_GPIO10__FUNC_GPIO10>,
-+				 <MT8365_PIN_11_GPIO11__FUNC_GPIO11>,
-+				 <MT8365_PIN_12_GPIO12__FUNC_GPIO12>,
-+				 <MT8365_PIN_13_GPIO13__FUNC_GPIO13>,
-+				 <MT8365_PIN_14_GPIO14__FUNC_GPIO14>,
-+				 <MT8365_PIN_15_GPIO15__FUNC_GPIO15>;
-+		};
-+	};
-+
- 	ethernet_pins: ethernet-pins {
- 		phy_reset_pins {
- 			pinmux = <MT8365_PIN_133_TDM_TX_DATA1__FUNC_GPIO133>;
-@@ -222,6 +376,34 @@ pins {
- 		};
- 	};
- 
-+	i2c1_pins: i2c1-pins {
-+		pins {
-+			pinmux = <MT8365_PIN_59_SDA1__FUNC_SDA1_0>,
-+				 <MT8365_PIN_60_SCL1__FUNC_SCL1_0>;
-+			bias-pull-up;
-+		};
-+	};
-+
-+	ite_pins: ite-pins {
-+
-+		irq_ite_pins {
-+			pinmux = <MT8365_PIN_68_CMDAT0__FUNC_GPIO68>;
-+			input-enable;
-+			bias-pull-up;
-+		};
-+
-+		pwr_pins {
-+			pinmux = <MT8365_PIN_70_CMDAT2__FUNC_GPIO70>,
-+				 <MT8365_PIN_71_CMDAT3__FUNC_GPIO71>;
-+			output-high;
-+		};
-+
-+		rst_ite_pins {
-+			pinmux = <MT8365_PIN_69_CMDAT1__FUNC_GPIO69>;
-+			output-high;
-+		};
-+	};
-+
- 	mmc0_default_pins: mmc0-default-pins {
- 		clk-pins {
- 			pinmux = <MT8365_PIN_99_MSDC0_CLK__FUNC_MSDC0_CLK>;
+and the three parents to that patch.
+
+It's buried in:
+
+http://git.armlinux.org.uk/cgit/linux-arm.git/log/?h=net-queue
 
 -- 
-2.25.1
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
