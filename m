@@ -1,109 +1,263 @@
-Return-Path: <devicetree+bounces-59576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 645C68A6142
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 05:02:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7E1E8A614A
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 05:07:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A3FF1C21807
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 03:02:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2A064B2160E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 03:07:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A1141755C;
-	Tue, 16 Apr 2024 03:02:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C445413AF9;
+	Tue, 16 Apr 2024 03:07:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EIPgwBuX"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="pYWbPcTa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2082.outbound.protection.outlook.com [40.107.21.82])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AE0D2110F;
-	Tue, 16 Apr 2024 03:02:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713236524; cv=none; b=hejJx1Xn3sAisWmM0Uc+S+HZ6GH6DO5Hd6VsLxjFna88hHELXHWt9cy1h5tJuDD+Td8KEkxt1Jvk0jIeiDHO8tb053ZKlw6DUIzt5anQvlwxUMnCxLbzwyqt4jWKcIWYHdBWSMM3Rl5pFcz6/U0gLDlX51XlXP+KIKerAvME61M=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713236524; c=relaxed/simple;
-	bh=goyH9+TLCFLYzjM6kwvbHz19xxuQz4u4EiT1p7hK700=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=cxmUnK4U6+ZypR8hgS1m99gPgv0CLCWi+e3uZmyv5h5N006JmOrea1G2qJo5YmldseBypzcAGaZL+qRugTN7AlUWdochjXUDTeGPm8pkEPxinvcAfik+wLvmI99bQ2Ul6v/70KZr1jDeG0hsrObG4oxx5jOi/jxfo2OsRCqdeMI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EIPgwBuX; arc=none smtp.client-ip=209.85.216.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-2a4df5d83c7so2525438a91.0;
-        Mon, 15 Apr 2024 20:02:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713236522; x=1713841322; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=goyH9+TLCFLYzjM6kwvbHz19xxuQz4u4EiT1p7hK700=;
-        b=EIPgwBuX610UNFD1+qCcbrgOdxACfy25gMzaCymc1hLLWmi1Y7hUTlQYmqGDers3cx
-         m0C0AEf2hWgiHrP+2J6FIhaml4pJOUTmrZG0JtzYRk1E/tXCNMbM7qVg3H13RmqLJ68t
-         C5qTDRJUI+Bw3cezDzjZpibQETeZWdFAJlnfOeG5jEX+BPJmDXTWANQkXyRv7FwiClk7
-         gA3JghwSp69Y6+mnA96p32RF4oZGn2I4X+/fkfh08Ec3xIJgCoBPcwvQ5fu/h56LzyfU
-         +0fzyZgjzaujcC9QB3yAvLyDwx/IXgI93ITxIeM+WSzo0PVofMuJb/4yWO/VyHHH6UKw
-         sYUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713236522; x=1713841322;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=goyH9+TLCFLYzjM6kwvbHz19xxuQz4u4EiT1p7hK700=;
-        b=SRoCQiJju22r/5PqEuh7RvPdZqV/Bh1s9+V3nQuCC8BeWUkYPNLpvwE6JCkSV0ezhH
-         VVzsZXe3VplAmoptVgxowyroSqXFWoqNwjIqvp8y0p4J+obvtkTjL9/LhkQZLocXBnYT
-         Iw4oC9XD5O3qMBtA4TWFBerDGvO0jiUXjh2vIDfI1dLDOEP8EN5Z9s1QvYrtiM8TnvU0
-         TDkrC2B6dLyddprlJw3cj2vDAwbwbltGKaLBrPNXiyAA3Phte6a9YGe/kCMbAwui1Kty
-         vzhCbGcqSZKmlwQHEXQwlXiGg4nWMKj3HAeTdoDri98h4bbu1/vWiMXE12vOhFLmCU7e
-         g6ig==
-X-Forwarded-Encrypted: i=1; AJvYcCW+TFRgaspeQ3f0uCjtYXkf8fPGKUMoYuOLSHt+44J5Pk1aaLR7Rsf7B88mUZsqddu55kIGb9r6xITilUSKzs4DFh4ZS8L+Ul6ajT0ttz3SaQv+LKguNcIvyYjZR0igEgJOwwpla6hPsw==
-X-Gm-Message-State: AOJu0YyPKG/leDCYamIuH6d7b5ofV23K9qdyGpQUDUpJvcgpkG9uVu3Z
-	O6L6CGdlCVm9oJuVNY5mqyYTSzuCATaaiGuRDS/am/zSS/cd4QR9
-X-Google-Smtp-Source: AGHT+IGoAT+ooiCtpCFxy4xAqYZG4G/w+O0USbguVhVRr8kBlygkh/RDH21n2MkgKqwLt4lC0frHxA==
-X-Received: by 2002:a17:90a:8b05:b0:2a7:40ba:48bc with SMTP id y5-20020a17090a8b0500b002a740ba48bcmr9399013pjn.6.1713236522273;
-        Mon, 15 Apr 2024 20:02:02 -0700 (PDT)
-Received: from localhost.localdomain ([221.220.135.251])
-        by smtp.gmail.com with ESMTPSA id v9-20020a17090a458900b0029bacd0f271sm9427284pjg.31.2024.04.15.20.01.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Apr 2024 20:02:01 -0700 (PDT)
-From: Jianfeng Liu <liujianfeng1994@gmail.com>
-To: robh@kernel.org
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	liujianfeng1994@gmail.com,
-	sfr@canb.auug.org.au,
-	weizhao.ouyang@arm.com
-Subject: Re: [PATCH v2 0/3] Add ArmSom Sige7 board
-Date: Tue, 16 Apr 2024 11:01:51 +0800
-Message-Id: <20240416030151.311231-1-liujianfeng1994@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <171320634254.4749.2865905152184927129.robh@kernel.org>
-References: <171320634254.4749.2865905152184927129.robh@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6158171D2;
+	Tue, 16 Apr 2024 03:07:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.82
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713236857; cv=fail; b=sOdNf0Qs1bmqxkmSarH670D/hGHdnjj4NqHkg33g7R7kwPT+IHNsZMRWnFA8XiOyLtJqTrLYe4Ad7iF1zRlVuX5L8UmFMbgQDUH+IfiBk0MIgmikGHjj8DFQif7TIgSN8yXZ5eP4wCw9VgeaVf+vpYZTMIN8IAiunOa993uY3Y4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713236857; c=relaxed/simple;
+	bh=1+tD5ilSPiMRpfDpHa1G+adQPK3FaLSCbfrah8QW4I0=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=V1l5H+WyRKQSR8RichzRYE7CJvVXIuAMOFXmdYR1Ii5E/87mIgNe5wZtFAYKstcnS6k14SW/tAQdsUSrl6q/7Avd4L1glhGl4cyIQBanGkSBdk69Fed0CiScHcMqRgCJEMnUGrZhS1pOSAYlZ6ONTtoltvN39Ix+6QntZaTpSgQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=pYWbPcTa; arc=fail smtp.client-ip=40.107.21.82
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=haPG8LtE9mNx41JQVJT8PDiWANS3IV9PMKioFYKfguE4raFvqOr7oQZ37biVMXGLibDC6L0B9swiqEvP5EeTZCCOK5Aj/Eq7koJ8e40o+ysY+/f54U3Xn/prR4wJUNBXFvFt71bqEYs/Afbv0HKIn71SE5aZFfeGOhQlcZgTjc6VqbijuOqB1ARNJWDQV8VhDrdHtCNDKp3yfsWQXxHCnevRg7+NCfAO26T9B3FpRNVpuDh/Ya/h0lhzCjvWO28eWoU/Z+RjjpAnrF7yiGHvBSRvSrrTc2jdpjJVKiuNh6+peD4poXyUrgKuZ1VZkFQmCVMm+JONuFEERRewCG+DCQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nySIb/Iw+lI/CT3Zpo8ioILLfp8eWdiip/rK2Zz3xrg=;
+ b=eunDGIsSSlHl6PO1Dg6OYP+Gm3cwzMbeUy3BZ4RVRI6TrbFFvHzc+vj6d9DZagtxRN+dNCBpM40pJkeTrw5QDZsOXMxpO5KjUC7bgguUWGPEx53/A2fJbLm39/lsxRyl1KLhNQ2vXO69OTas3mNFpEJd/p49oTtEt5363hM3hO+njIV1pkcPdHNSReg4EP9qgt9Qah7VJPrg6Vnn69CuU7KoL4oM9ozm3wq+dSwdKj6Wq9WMGtjoU+mpt/cvEmQV2tc1nT9KMiYzVMMXHQ9E+UzDWRR9sTFntY8nEkEF4yaD1dfShxM3UP5MQ7qJ0IoOXMcA8G/lhDjwhOD83C4/GQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nySIb/Iw+lI/CT3Zpo8ioILLfp8eWdiip/rK2Zz3xrg=;
+ b=pYWbPcTa0Ofc3tj/5cbDLsfixe8JGUQaFnnIP9UCt2N0g9F7rqtAZi67yLpC4Yd98JKTeY7f8oXzTZTT1DjTWWyhMmxAAjE3qgQZjnoUa/I584ihHVYBpyQt66v++NqFWg4UGS7tSeBczOO3OvIxsN3nUEIyBmINKu1QDmN9V1A=
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by AS5PR04MB9731.eurprd04.prod.outlook.com (2603:10a6:20b:654::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.50; Tue, 16 Apr
+ 2024 03:07:32 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::d30b:44e7:e78e:662d]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::d30b:44e7:e78e:662d%4]) with mapi id 15.20.7452.049; Tue, 16 Apr 2024
+ 03:07:32 +0000
+From: Peng Fan <peng.fan@nxp.com>
+To: Rob Herring <robh@kernel.org>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+CC: Linus Walleij <linus.walleij@linaro.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo
+	<shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
+ Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+	Sudeep Holla <sudeep.holla@arm.com>, Cristian Marussi
+	<cristian.marussi@arm.com>, "linux-gpio@vger.kernel.org"
+	<linux-gpio@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH 2/3] dt-bindings: firmware: arm,scmi: support i.MX95 SCMI
+ Pinctrl
+Thread-Topic: [PATCH 2/3] dt-bindings: firmware: arm,scmi: support i.MX95 SCMI
+ Pinctrl
+Thread-Index: AQHajG9fogbrSJSEIkC/zlbnV4Z6dbFp93iAgABErEA=
+Date: Tue, 16 Apr 2024 03:07:32 +0000
+Message-ID:
+ <DU0PR04MB941714AFCDC74997BFF34DFD88082@DU0PR04MB9417.eurprd04.prod.outlook.com>
+References: <20240412-pinctrl-scmi-oem-v1-v1-0-704f242544c1@nxp.com>
+ <20240412-pinctrl-scmi-oem-v1-v1-2-704f242544c1@nxp.com>
+ <20240415225637.GA234203-robh@kernel.org>
+In-Reply-To: <20240415225637.GA234203-robh@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|AS5PR04MB9731:EE_
+x-ms-office365-filtering-correlation-id: 4fa1e5a0-b40e-46f3-85b4-08dc5dc25bbb
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ rGnob1dvScK1ej3IZio28m8wM13Rrl4LmwiONX6v1bZ+jCIU77Fu0/++pQhEfxAfruzuZxIMO1lyWcJUcHaMRND8XEfqtPeBQ17/vL4ebK/nIoTMSkvUC8wOA6Zp8cbwb3cb7muRi4Z1724AzQ7lS58mH+JzgUHoy0ijc7acOavTT8Pwn8szWT+J9wqEcpkN0UNx2rUqeHpoN+E//F2kVR/dTTtMy2MWgGvf5VwSH1Rp/f/NvD7q/JcaovvkrRtXd0Jr3PIRCjCihe2sXj2v8Ivjl3hJInVO/m2bnmSYUq+AlS7cLl+GMIwO2xshp1Edb0+Kte95mNqMcYsQOduToZn2w2Znrp9MHQnsWmfCLlpRIrZtDnPPdx6ZGKOw66msv23GXPMGykXdy1yWuqjemyzpIa0YKuHSaSb6DkhGMcKwjzHOWqY2fmyVfN6dE+BSLz/2hRuxwliO/9+lImN7IwoaQzbE1U+eXhipixognt0/JIDLnObK8l1zbnvp/dKe67yxA2mXjp801LYW8xlZqvfdwzJGG/glLh3TEn5Ypax60FCSUWDy8rzTZydPv8xVDypdX6rnohdKYqXQD4gUqqqLK+ezFhZzk6/U0AJa5EkurWRcEnSyjYD/NzsTITL4r1KOZxDtlRONpPm9JRJ+P0uUaHrQUEirucRAnQisDryEcyQz1d2UEymKd4eDUp8Lmfy6Os3+DRr3+5KzteJSuTFIUHSPodD8WfWkJow0RoY=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(7416005)(366007)(1800799015)(38070700009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?ixbvclbe5YFb8FOOSQQ8BNoi09iZFwWOwLau2qObJ3TRTDN8QgfCTDuUCtGU?=
+ =?us-ascii?Q?oJRybjl191QuE7M8r6u4jS6zkb48DtYk+sDQ3ITK6mmF2CXevIFEtayp/Bfq?=
+ =?us-ascii?Q?Ve5ucrH0y0+B+92YPusMCbcDjnz95v+J3sIMDftI73F7QPUqGfVOwACoqz/X?=
+ =?us-ascii?Q?bnnl1r4sHEUsA/YxxkGXZervpKhDSalO/NQTpSmHuN7NbmqmPrFuqXzvOFDr?=
+ =?us-ascii?Q?qb9yLaRp3FjKDmxu5KD04OpKtrgvkjJlA7bb6PiQS+pW27IVd52sTLcQU2tI?=
+ =?us-ascii?Q?L0Na776nKaphcxidNsBM0C8LhdKUcg+RTlTWHnEpCYNPct2yptgHR+ebbxcm?=
+ =?us-ascii?Q?Gp7cT+cOXozwI1n1l1nEXF3+2yKLxC30frjieGaBwPAO1YXbe2KSbhNmzdhP?=
+ =?us-ascii?Q?LHOIo4zTgdVYHcARY0jMPDSBhw3HbuBJIhvNKmGSQ1kb4pYgrR9do0OHW6CN?=
+ =?us-ascii?Q?JD6W+gdZGEdE7AbDOe+rbU1reRGAnBSXYkwIj+TBrfLp0hzeh/4H/+b9WFKs?=
+ =?us-ascii?Q?SJ03vJ8j6gh6x5wRjdRBRgCWuUdclwsCSbUrCg3R41mfu8Sbi72Cmj+PSxsS?=
+ =?us-ascii?Q?Xe1aRJIEU46xzLt9RxY/Q5Vbw2brSCmaEfknPUYF3FaipqN+xGEWHwKclQ5Z?=
+ =?us-ascii?Q?e3wOMOzyvkMWQi9zWh+rl9r/m59XVdj/J6BuhSGZetvxp6hg63GuOJyfk16k?=
+ =?us-ascii?Q?jBTFyU9NN3HI0DtLw3TS95OL8kmAZMJ4Xev6aD1bCPjDfnzF/yZeLWa5AAN+?=
+ =?us-ascii?Q?wxMEHhlKOyc/pPiVn6FhIc1yADTXCzpjLvVkFQXhviwisJI9aQ/GG/mDBcO5?=
+ =?us-ascii?Q?lQDntEAB/u+clfc2BTYaQqCeBZNkzIrc1WWWQvfuyABgmQVpr7v9FJT/CqN0?=
+ =?us-ascii?Q?B7LatwPuU9T8UonRndq9zxaUUVohOnLUbIY5cGs1EDM9wiJfU9QhmuYA4f9t?=
+ =?us-ascii?Q?Y7F0YdqMITNh51uBuf4OC8yyR61cnsRII+eBwdSQ3QTADphRWeTL4p3MlywK?=
+ =?us-ascii?Q?H8C0p+4VG0EbXfNH1FyAXCXk7NBv8P9EiYaN6jYYsAEQ3fa3riJoIx/wDaOh?=
+ =?us-ascii?Q?gumVandmFINHu6J/CKX354BlJkfWuS9OWoBgYZvSHimZnVHpgVbAMe/mwa6u?=
+ =?us-ascii?Q?4q1L30F54F3NiWbQc48NqpU2mGrYKg+MPPOVCmeqeFr7NcjDwyHXeFLkTfyr?=
+ =?us-ascii?Q?7TITDemd+pw8xKbE6kX8st1FYZ4LXv2TjTYGuZ84xipFhYWuG9lMIIgWsVFd?=
+ =?us-ascii?Q?cGLdkdhr9h7vct23WK3bCTleaoeZb0hyktuSHfK3jFAirCnCPpZFfo2RzpXv?=
+ =?us-ascii?Q?CJ6aIh42XwbFsIOxcb94RWV8TCigw8CvKEFNaxJugPnIZunJXXKarFmwxM5x?=
+ =?us-ascii?Q?FrMnv4Elml9lz1YQaKx5B04jsm9YVe3LLOdEvuiDWg6OeTTe+9ZGsaBjyi3p?=
+ =?us-ascii?Q?GOq2w1+F47Q4W2f0MqJt5lz/ijmDjvxC1bLStLzf0WDinPaLlzlWQ4RbbEoD?=
+ =?us-ascii?Q?oBTzpDK/9tWSE28zIq25cIeuWn5YgvKB7KmsytoSCIMt0eBKzzlgByii0QNj?=
+ =?us-ascii?Q?AItO7no+o8q9vuJRyKo=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4fa1e5a0-b40e-46f3-85b4-08dc5dc25bbb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Apr 2024 03:07:32.3574
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: fU5OnVZWP1Z1TA1i8liGTq46KXWd4wBcN7YZLnNT9eLxV5s24u/gWTLKn1DqZXKlbu36YUBDy8VitBTVtL7jlQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS5PR04MB9731
 
-On Mon, 15 Apr 2024 13:46:53 -0500, Rob Herring wrote:
->New warnings running 'make CHECK_DTBS=y rockchip/rk3588-armsom-sige7.dtb' for 20240413153633.801759-1-liujianfeng1994@gmail.com:
->
->arch/arm64/boot/dts/rockchip/rk3588-armsom-sige7.dts:44.20-49.5: ERROR (duplicate_label): /leds/led-0: Duplicate label 'led_rgb_g' on /leds/led-0 and /pinctrl/leds/led-rgb-g
->arch/arm64/boot/dts/rockchip/rk3588-armsom-sige7.dts:51.20-56.5: ERROR (duplicate_label): /leds/led-1: Duplicate label 'led_rgb_r' on /leds/led-1 and /pinctrl/leds/led-rgb-r
->ERROR: Input tree has errors, aborting (use -f to force output)
->make[3]: *** [scripts/Makefile.lib:427: arch/arm64/boot/dts/rockchip/rk3588-armsom-sige7.dtb] Error 2
+Hi Rob,
 
-Thank you for checking this. I'm sorry that I added the led label since
-v2 without checking. I will check the whole devicetree and send patch v4.
+> Subject: Re: [PATCH 2/3] dt-bindings: firmware: arm,scmi: support i.MX95
+> SCMI Pinctrl
+>=20
+> On Fri, Apr 12, 2024 at 08:29:26AM +0800, Peng Fan (OSS) wrote:
+> > From: Peng Fan <peng.fan@nxp.com>
+> >
+> > i.MX95 SCMI Pinctrl uses OEM specific units, so add '$ref' to
+> > '/schemas/pinctrl/nxp,imx95-pinctrl.yaml' and an example.
+> >
+> > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > ---
+> >  Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 8 +++++---
+> >  1 file changed, 5 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > index e9d3f043c4ed..ebc6c083b538 100644
+> > --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > @@ -249,9 +249,11 @@ properties:
+> >
+> >    protocol@19:
+> >      type: object
+> > -    allOf:
+> > -      - $ref: '#/$defs/protocol-node'
+> > -      - $ref: /schemas/pinctrl/pinctrl.yaml
+>=20
+> I don't think anything from here was actually used...
 
-Best regards,
-Jianfeng
+You mean this not used?
+allOf:
+  - $ref: '#/$defs/protocol-node'
+  - $ref: /schemas/pinctrl/pinctrl.yaml
+
+Or below?
+>=20
+>=20
+> > +    anyOf:
+> > +      - $ref: /schemas/pinctrl/nxp,imx95-pinctrl.yaml
+> > +      - allOf:
+> > +          - $ref: '#/$defs/protocol-node'
+>=20
+> This must always apply and should not be under the anyOf.
+
+I just try in arm,scmi.yaml:
+  protocol@19:                                                             =
+                        =20
+    type: object                                                           =
+                        =20
+    allOf:                                                                 =
+                        =20
+      - $ref: '#/$defs/protocol-node'                                      =
+                        =20
+      - anyOf:                                                             =
+                        =20
+          - $ref: /schemas/pinctrl/nxp,imx95-pinctrl.yaml                  =
+                        =20
+          - $ref: /schemas/pinctrl/pinctrl.yaml                            =
+                        =20
+                                                                           =
+                        =20
+    unevaluatedProperties: false =20
+
+And in nxp,imx95-pinctrl.yaml:
+patternProperties:                                                         =
+                        =20
+  'grp$':                                                                  =
+                        =20
+    type: object                                                           =
+                        =20
+    additionalProperties: false                                            =
+                        =20
+                                                                           =
+                        =20
+    patternProperties:                                                     =
+                        =20
+      '[a-f0-9]+$':                                                        =
+                        =20
+        type: object                                                       =
+                        =20
+        unevaluatedProperties: false    =20
+
+But the following example always reports:=20
+                pinctrl_usdhc1: usdhc1grp {                                =
+                      =20
+                    sd1-pin0 {                                             =
+                        =20
+                        pins =3D "sd1cmd";                                 =
+                          =20
+                        nxp,func-id =3D <0>;                               =
+                          =20
+                        nxp,pin-conf =3D <0x138e>;                         =
+                          =20
+                    };                                                     =
+                        =20
+                };
+
+arm,scmi.example.dtb: scmi: protocol@19: Unevaluated properties are not all=
+owed ('usdhc1grp' was unexpected)
+
+Do you have any suggestions on how to write the yaml correct?
+
+Thanks,
+Peng.
+
+>=20
+> > +          - $ref: /schemas/pinctrl/pinctrl.yaml
+> >
+> >      unevaluatedProperties: false
+> >
+> >
+> > --
+> > 2.37.1
+> >
 
