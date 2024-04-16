@@ -1,348 +1,390 @@
-Return-Path: <devicetree+bounces-59659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A97FD8A6789
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 11:55:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48ECA8A67F2
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 12:14:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01E3EB20EB0
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 09:55:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B34E1C21390
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 10:14:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E0D48627D;
-	Tue, 16 Apr 2024 09:55:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6139126F02;
+	Tue, 16 Apr 2024 10:14:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=j.neuschaefer@gmx.net header.b="EF2vSz/h"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="oad1UeCs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B025585929;
-	Tue, 16 Apr 2024 09:55:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9083F86659
+	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 10:14:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.60.130.6
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713261314; cv=none; b=Ij20/Os2HLBSjAdUdGnsPen/R4YILgQuxbhDbx7BHpljhyqPVrTkG0Nxo5/L2Mra1wyOc3XTeTbZ9+8fwAn5FID7dDb+qU7Jp/QC6+DhwQ+/k83kdBDA/M/n8lc6Xvsbf90okjnLNpZcvqQKBVA5FE5Gb0PYyfiRiSJzeP2KPk4=
+	t=1713262457; cv=none; b=hHr9NXMjVRnmQWJOocONzfaFpSVu23ehmXDwCR7pg8TQc1xe4F2/McokVkt4IWlpcbygmABjRZ/6k6PVgMDpNVLI4H4s7dSQlR8NAsATkwuNN9R79Fp9f26mRGOWcQK3894/QcysoY6WBkx0q14CJN/ILn/FxPQt0udCpBJWtQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713261314; c=relaxed/simple;
-	bh=NDVVz2tNW8u2IWNrr+miCbFi17mYCzGc+pwSHtSoFQU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UqAJIh/6zKEiXVAvxG/3oR/hVjGGBbsIaqEFV6lNTgIlxIIpAGeH+yrPKMoZ31oQ4Bx2B9gBFJ7gcoctjmmWy3LwL1tAw0t61hQuzZF+3W0pDDZUOX/7kGPrqpvZtlGnKP707cQSNxsYFi/ifWJSY/mXtlYtq9lM7PosL6DNRuc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=j.neuschaefer@gmx.net header.b=EF2vSz/h; arc=none smtp.client-ip=212.227.17.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1713261301; x=1713866101; i=j.neuschaefer@gmx.net;
-	bh=8VCPRF0Vi4vNnqUQWVncBOVnCYeatzGZKVzuabhLX+s=;
-	h=X-UI-Sender-Class:Date:From:To:Cc:Subject:Message-ID:References:
-	 MIME-Version:Content-Type:In-Reply-To:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=EF2vSz/hH2dfmb22obzz/aifo+GrF6I9VZadrZtCJqQDB4p8FWRV36dq2aTp4Dsb
-	 eVBDPQ8Jb8VguliZdqtgeC9I4v9sfefz6kuOfgQ5MKsszJxVqXW2L6EHr/7/7Zgrt
-	 PCo7RySPIMzg4lZNpsPndMCtCOyC3BgjA1t2l/k7a/RokiUsHj6q4UeFUOeYKBRG3
-	 8M26XuL0UqfAi4iFvRhZFVYZiLgcgP+iILkoBQOdDnbhQMyG2Uyn1/9YQmZ4gYIQ2
-	 PHSVWe+Rg92dH28OUCRAD9iF2JhseI2Ww/KeRm8bOLgzRoh5+QJSjKsq+Z9PMwT7U
-	 MM0uOi2lwAXlz3vWKw==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from probook ([5.226.147.226]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MrhUK-1sZMJd1W56-00ne89; Tue, 16
- Apr 2024 11:55:01 +0200
-Date: Tue, 16 Apr 2024 11:54:59 +0200
-From: Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-	openbmc@lists.ozlabs.org,
-	Michael Turquette <mturquette@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v11 3/4] clk: wpcm450: Add Nuvoton WPCM450 clock/reset
- controller driver
-Message-ID: <Zh5K8_FuUtPq7Pqj@probook>
-References: <20240401-wpcm-clk-v11-0-379472961244@gmx.net>
- <20240401-wpcm-clk-v11-3-379472961244@gmx.net>
- <9be144291cda6d9714252c9cd83649c2.sboyd@kernel.org>
+	s=arc-20240116; t=1713262457; c=relaxed/simple;
+	bh=x65LFtLFF5VvE/qywRhggy4zbjOkQ5P03aZ0K87Sqvg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MuCKdegziqmxlPHNKjsG9yqXuQDXT6Etgu96oTPDXBlOQGg56ElxE+3nIV1VBAEl8oUX2h0vqZF+At36DN5D9t+IU4gssjnDRjbTl0yaMjJy8AJjpdGbVM6sWLFxAgcNdgh1qhuQagtTPtC0UmUihNCnrt9x+EMuLQQUA5SAO4k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=igalia.com; spf=pass smtp.mailfrom=igalia.com; dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b=oad1UeCs; arc=none smtp.client-ip=178.60.130.6
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=igalia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=igalia.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+	s=20170329; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=RW6+h7t9p1LI5fWEQcjpviq/acxasqEv8/PAV3cJpec=; b=oad1UeCs/e0CtxUZjqHx12YOjq
+	BsUZml4mFATJCDuaEP2+xsEl7H6Ndwa6FQGOxZ/19dnoe0jga0MuXG0wZ+9QEG3kUbvM0fdiRhjRB
+	tB9bHWLqjLVlnUE+WbJ6V/QorP2acJXGh98cVrXHpe1vGD3fQbIxTBXLxONo+4jbWHDDbOfbaLMbx
+	b2INWIsFQgyGXKtAGHOvgKHw+5z9W2grJ0kxlxhhc7vFjbVjUcHlcCmqxmWOS5mAzH0OY0KK76+yt
+	4f0yG1FGMt9YAuY4kf9GtB/NaFZVScLaxUHpOIuqH/LsSSok5Cc2EBYYr0ATzriyzT85UkejFZBn3
+	FvCXFx+Q==;
+Received: from [177.34.169.177] (helo=[192.168.0.139])
+	by fanzine2.igalia.com with esmtpsa 
+	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+	id 1rwfp9-00570E-Fp; Tue, 16 Apr 2024 12:14:00 +0200
+Message-ID: <2f6e13c7-e6d6-414f-b97d-d9a02ae6a696@igalia.com>
+Date: Tue, 16 Apr 2024 07:13:51 -0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="WXvGHi2mgeFMSsi1"
-Content-Disposition: inline
-In-Reply-To: <9be144291cda6d9714252c9cd83649c2.sboyd@kernel.org>
-X-Provags-ID: V03:K1:8gvjSYTbOrJ8fToEjyuFJf3piXDlv7j1XoNQPn/z0zjfW3S9ii/
- AbXWqO5laHqjLXgSi2ovXuHD8lcJpKZacUrHKJ0EwXhbyPIVxSLD0CkTxBGVCs5SQGEl4Dv
- pAlNH3+UU55RVFOouCg10LcqK9o2lgET3zDa4E3XXPSeyKR8dXZNRoycy8hmgl87N5bKZW4
- Sa9+Bp6LoLq6Mj4t9vPGQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:UhqP2+Ik+Xo=;kbab+yCYAiyFtXldN06Ow8ypsUN
- 4o0jeI2HJYKOcan0gge7tswtUJbeQYWuosKkrI0P253EuSTIHjVXW1/6SRu47SmPIvV3FiVth
- tpXCQdJC+y7Jakv36eQwkN5wnQQLIEstQGzWqRWtV+IGkvxOmD+YrBV0sjh7ipiRUg+e164NM
- PSs+NT1H2VBSUyam4v9V2oN4GII3kGkZ2z9+sXEth8FmuZ1F8CDB4Z/mc3A0xad+LrmIfI6Fc
- cIqrDtUDA8FhFOMBtnjGY+DBoZrTaOLR4uGQEW+ST5g3nMdQAZS71L2chW5P1TsA5acDUA5GF
- PzcwLa2X/pIC+3XsstMiE2iDPlMSZz5Z/y/aN74/Xjpsr0yfq1j8gL+1xYR2XqcI/1mkY2icG
- bK5LI0uGTPo9MfL+DioQYXTpuEwuxxKAqQSrsHn4QlBmfqVoAWs5D1YCoAtDSgs//dANB/jl/
- RdxyFvoKDoan0nxI3/kddECMBjRC59YfJO5aGqBuqcoM+j1llIRbo4nZEYbXDGJoooz1JYX0h
- Nr5aEI+DNd99DYvIk4fFa3pqVmv4NDOrE0suRaCKkKgyQlFROyeKOCMSjC6whB9LqT0LZR+Ey
- gswGo0sMu/d5bi2YI8aOfYxRY5qf0GWn5BMusWowdZnh6uxoqovz+zAKfMh3tihyLLi2CSNJP
- MeaLjeitfv2Uwt+6cTsw+sPLL8sLbhm3ROaafwUW0P11I16ZJ5tHFEXWYVNVI0Prbck4Cmz8w
- d+m+JvdO0lHoTaYqlGPOzi0tCtHvzt5iptnrWRj+ZCzqULykOFMqmaDlg6FeTVy5j3ujChHhQ
- 9NRx5t4iorFDXB3PJU34wxwOnTqCjSfrADywnsTClUr8Q=
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] ARM: dts: bcm2835: Enable 3D rendering through V3D
+To: Stefan Wahren <wahrenst@gmx.net>, Andre Przywara <andre.przywara@arm.com>
+Cc: Maxime Ripard <mripard@kernel.org>, Melissa Wen <mwen@igalia.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+ Scott Branden <sbranden@broadcom.com>,
+ Romain Perier <romain.perier@gmail.com>, dri-devel@lists.freedesktop.org,
+ bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ kernel-dev@igalia.com
+References: <20240415160129.14149-2-mcanal@igalia.com>
+ <20240415175433.6e63d40f@donnerap.manchester.arm.com>
+ <dc9f2926-3a8f-4191-9319-3d7e78c6758b@igalia.com>
+ <41629496-9be6-470c-931b-146ca22cdd7e@gmx.net>
+Content-Language: en-US
+From: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
+Autocrypt: addr=mcanal@igalia.com; keydata=
+ xjMEZIsaeRYJKwYBBAHaRw8BAQdAGU6aY8oojw61KS5rGGMrlcilFqR6p6ID45IZ6ovX0h3N
+ H01haXJhIENhbmFsIDxtY2FuYWxAaWdhbGlhLmNvbT7CjwQTFggANxYhBDMCqFtIvFKVRJZQ
+ hDSPnHLaGFVuBQJkixp5BQkFo5qAAhsDBAsJCAcFFQgJCgsFFgIDAQAACgkQNI+cctoYVW5u
+ GAEAwpaC5rI3wD8zqETKwGVoXd6+AbmGfZuVD40xepy7z/8BAM5w95/oyPsHUqOsg/xUTlNp
+ rlbhA+WWoaOXA3XgR+wCzjgEZIsaeRIKKwYBBAGXVQEFAQEHQGoOK0jgh0IorMAacx6WUUWb
+ s3RLiJYWUU6iNrk5wWUbAwEIB8J+BBgWCAAmFiEEMwKoW0i8UpVEllCENI+cctoYVW4FAmSL
+ GnkFCQWjmoACGwwACgkQNI+cctoYVW6cqwD/Q9R98msvkhgRvi18fzUPFDwwogn+F+gQJJ6o
+ pwpgFkAA/R2zOfla3IT6G3SBoV5ucdpdCpnIXFpQLbmfHK7dXsAC
+In-Reply-To: <41629496-9be6-470c-931b-146ca22cdd7e@gmx.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
+On 4/16/24 02:30, Stefan Wahren wrote:
+> Hi Maíra,
+> 
+> Am 16.04.24 um 03:02 schrieb Maíra Canal:
+>> On 4/15/24 13:54, Andre Przywara wrote:
+>>> On Mon, 15 Apr 2024 13:00:39 -0300
+>>> Maíra Canal <mcanal@igalia.com> wrote:
+>>>
+>>> Hi,
+>>>
+>>>> RPi 0-3 is packed with a GPU that provides 3D rendering capabilities to
+>>>> the RPi. Currently, the downstream kernel uses an overlay to enable the
+>>>> GPU and use GPU hardware acceleration. When deploying a mainline kernel
+>>>> to the RPi 0-3, we end up without any GPU hardware acceleration
+>>>> (essentially, we can't use the OpenGL driver).
+>>>>
+>>>> Therefore, enable the V3D core for the RPi 0-3 in the mainline kernel.
+>>>
+>>> So I think Krzysztof's initial comment still stands: What does that
+>>> patch
+>>> actually change? If I build those DTBs as of now, none of them has a
+>>> status property in the v3d node. Which means it's enabled:
+>>> https://github.com/devicetree-org/devicetree-specification/blob/main/source/chapter2-devicetree-basics.rst#status
+>>>
+>>> So adding an explicit 'status = "okay";' doesn't make a difference.
+>>>
+>>> What do I miss here?
+>>
+>> As mentioned by Stefan in the last version, in Raspberry Pi OS, there is
+>> a systemd script which is trying to check for the V3D driver (/usr/lib
+>> /systemd/scripts/gldriver_test.sh). Within the first check, "raspi-
+>> config nonint is_kms" is called, which always seems to fail. What
+>> "raspi-config" does is check if
+>> /proc/device-tree/soc/v3d@7ec00000/status is equal to "okay". As
+>> /proc/device-tree/soc/v3d@7ec00000/status doesn't exists, it returns
+>> false.
+> yes, but i also mention that the V3D driver starts without this patch.
+> The commit message of this patch suggests this is a DT issue, which is not.
+> 
+> I hadn't the time to update my SD card to Bookworm yet. Does the issue
+> still exists with this version?
 
---WXvGHi2mgeFMSsi1
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I'm using a 32-bit kernel and the recommended OS for 32-bit is Bullseye.
+But I checked the Bookworm code and indeed, Bookworm doesn't check
+the device tree [1].
 
-Hi,
+I'm thinking about sending a patch to the Bullseye branch to fix this
+issue.
 
-On Fri, Apr 12, 2024 at 12:25:05AM -0700, Stephen Boyd wrote:
-> Quoting Jonathan Neusch=C3=A4fer (2024-04-01 07:06:32)
-> > This driver implements the following features w.r.t. the clock and reset
-> > controller in the WPCM450 SoC:
-> >=20
-> > - It calculates the rates for all clocks managed by the clock controller
-> > - It leaves the clock tree mostly unchanged, except that it enables/
-> >   disables clock gates based on usage.
-> > - It exposes the reset lines managed by the controller using the
-> >   Generic Reset Controller subsystem
-> >=20
-> > NOTE: If the driver and the corresponding devicetree node are present,
-> >       the driver will disable "unused" clocks. This is problem until
-> >       the clock relations are properly declared in the devicetree (in a
-> >       later patch). Until then, the clk_ignore_unused kernel parameter
-> >       can be used as a workaround.
-> >=20
-> > Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-> > Reviewed-by: Joel Stanley <joel@jms.id.au>
-> > ---
-> >=20
-> > I have considered converting this driver to a platform driver instead of
-> > using CLK_OF_DECLARE, because platform drivers are generally the way
-> > forward. However, the timer-npcm7xx driver used on the same platform
-> > requires is initialized with TIMER_OF_DECLARE and thus requires the
-> > clocks to be available earlier than a platform driver can provide them.
->=20
-> In that case you can use CLK_OF_DECLARE_DRIVER(), register the clks
-> needed for the timer driver to probe, and then put the rest of the clk
-> registration in a normal platform driver.
+[1] 
+https://github.com/RPi-Distro/raspi-config/blob/966ed3fecc159ff3e69a774d74bfd716c04dafff/raspi-config#L128
 
-I'll give it a try. I'm not sure how to make it work correctly without
-calling (devm_)of_clk_add_hw_provider twice, though (once for the early
-clock, timer0; once for the rest).
+Best Regards,
+- Maíra
 
-Another (probably simpler) approach seems be to declare a fixed-clock or
-fixed-factor-clock in the DT, and use that in the timer:
-
-	refclk_div2: clock-div2 {
-		compatible =3D "fixed-factor-clock";
-		clocks =3D <&refclk>;
-		#clock-cells =3D <0>;
-		clock-mult =3D <1>;
-		clock-div =3D <2>;
-	};
-
-	timer0: timer@b8001000 {
-		compatible =3D "nuvoton,wpcm450-timer";
-		interrupts =3D <12 IRQ_TYPE_LEVEL_HIGH>;
-		reg =3D <0xb8001000 0x1c>;
-		clocks =3D <&refclk_div2>;
-	};
-
-=2E.. and additionally to mark the timer clocks as critical in
-clk-wpcm450.c, so they don't get disabled for being "unused".
-
-
-> > diff --git a/drivers/clk/nuvoton/clk-wpcm450.c b/drivers/clk/nuvoton/cl=
-k-wpcm450.c
-> > new file mode 100644
-> > index 00000000000000..9100c4b8a56483
-> > --- /dev/null
-> > +++ b/drivers/clk/nuvoton/clk-wpcm450.c
-> > @@ -0,0 +1,372 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * Nuvoton WPCM450 clock and reset controller driver.
-> > + *
-> > + * Copyright (C) 2022 Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-> > + */
-> > +
-> > +#define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
->=20
-> Isn't KBUILD_MODNAME an option already for dynamic debug?
-
-Indeed, it's the +m option.
-
-My motivation for setting pr_fmt in the first place should become
-obsolete with the move towards a platform driver anyway, because then I
-can use dev_err() etc. I'll remove the #define.
-
->=20
-> > +
-> > +#include <linux/bitfield.h>
-> > +#include <linux/clk-provider.h>
-> > +#include <linux/io.h>
-> > +#include <linux/kernel.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of.h>
-> > +#include <linux/of_address.h>
-> > +#include <linux/reset-controller.h>
-> > +#include <linux/reset/reset-simple.h>
-> > +#include <linux/slab.h>
-> > +
-> [...]
-> > +
-> > +static const struct clk_parent_data default_parents[] =3D {
-> > +       { .name =3D "pll0" },
-> > +       { .name =3D "pll1" },
-> > +       { .name =3D "ref" },
-> > +};
-> > +
-> > +static const struct clk_parent_data huart_parents[] =3D {
-> > +       { .fw_name =3D "ref" },
-> > +       { .name =3D "refdiv2" },
->=20
-> Please remove all .name elements and use indexes or direct pointers.
-
-Will do.
-
-What I'm not yet sure about, is which of these is better:
-
- 1. Having two kinds of indexes, 1. for internal use in the driver,
-    identifying all clocks, 2. public as part of the devicetree binding
-    ABI (defined in include/dt-bindings/clock/nuvoton,wpcm450-clk.h)
- 2. Unifying the two and giving every clock a public index
- 3. Using the same number space, but only providing public definitions
-    (in the binding) for clocks that can be used outside the clock
-    controller.
-
-Option 3 sounds fairly reasonable.
-
-> > +static const struct wpcm450_clken_data clken_data[] =3D {
-> > +       { "fiu", { .name =3D "ahb3" }, WPCM450_CLK_FIU, 0 },
->=20
-> This actually is  { .index =3D 0, .name =3D "ahb3" } and that is a bad
-> combination. struct clk_parent_data should only have .name as a fallback
-> when there's an old binding out there that doesn't have the 'clocks'
-> property for the clk provider node. There shouldn't be any .name
-> property because this is new code and a new binding.
-
-I'll try switching to .index or .hw instead for the references to
-internal clocks.
-
-
-[...]
-> > +/*
-> > + * NOTE: Error handling is very rudimentary here. If the clock driver =
-initial-
-> > + * ization fails, the system is probably in bigger trouble than what i=
-s caused
->=20
-> Don't break words across lines with hyphens.
-
-Good point.
-
-(Due to the switch to a platform driver, this comment will probably
-become obsolete anyway.)
-
-> > + * by a few leaked resources.
-> > + */
-> > +
-> > +static void __init wpcm450_clk_init(struct device_node *np)
-> > +{
-> > +       struct clk_hw_onecell_data *clk_data;
-> > +       static struct clk_hw **hws;
-> > +       static struct clk_hw *hw;
-> > +       void __iomem *clk_base;
-> > +       int i, ret;
-> > +       struct reset_simple_data *reset;
-> > +
-> > +       clk_base =3D of_iomap(np, 0);
-> > +       if (!clk_base) {
-> > +               pr_err("%pOFP: failed to map registers\n", np);
-> > +               of_node_put(np);
-> > +               return;
-> > +       }
-> > +       of_node_put(np);
->=20
-> The 'np' is used later when registering PLLs. You can only put the node
-> after it's no longer used. Also, you never got the node with
-> of_node_get(), so putting it here actually causes an underflow on the
-> refcount. Just remove all the get/puts instead.
-
-That simplifies it, thanks for the hint!
-
-> > +
-> > +       clk_data =3D kzalloc(struct_size(clk_data, hws, WPCM450_NUM_CLK=
-S), GFP_KERNEL);
-> > +       if (!clk_data)
-> > +               return;
-> > +
-> > +       clk_data->num =3D WPCM450_NUM_CLKS;
-> [...]
-> > +       /* Reset controller */
-> > +       reset =3D kzalloc(sizeof(*reset), GFP_KERNEL);
-> > +       if (!reset)
-> > +               return;
-> > +       reset->rcdev.owner =3D THIS_MODULE;
-> > +       reset->rcdev.nr_resets =3D WPCM450_NUM_RESETS;
-> > +       reset->rcdev.ops =3D &reset_simple_ops;
-> > +       reset->rcdev.of_node =3D np;
-> > +       reset->membase =3D clk_base + REG_IPSRST;
-> > +       ret =3D reset_controller_register(&reset->rcdev);
-> > +       if (ret)
-> > +               pr_err("Failed to register reset controller: %pe\n", ER=
-R_PTR(ret));
->=20
-> It would be nicer to register this device as an auxiliary device with a
-> single API call and then have all the resets exist in that file
-> instead of this file. The driver would be put in drivers/reset/ as well.
-
-Not sure I'd move ten lines to a whole new file, but moving them to a
-separate function definitely makes sense, I'll do that.
-
->=20
-> > +
-> > +       of_node_put(np);
->=20
-> Drop this of_node_put()
-
-Ok.
-
-
-Thanks for your detailed review!
-
-I'll send the next revision after testing my changes on the relevant
-hardware (which I currently don't have with me).
-
--jn
-
---WXvGHi2mgeFMSsi1
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmYeSscACgkQCDBEmo7z
-X9v2Tw/+OlPtGnFxff1/A/65NMHgzu86TjFdCRf3hxLcDRlAcW/QKbbFIzrLimmf
-1Fqx7I1qjUNBbQ67QDDgRPm1lebJRE9zVjWJIjXFC6LC1juGXPTts/GSHNJYcUpR
-ueDuLC4+qql/oQbLr5L3yye1uljuFc/LTA80iUl6figpSkRLxVdyfMBqdVuDMQSH
-7B0hWc/fwsU5/OLQR01vYtPzFrWCBQ9/gM8dHITdemGD8bJEvEzDxi6LJb4+yijd
-kdnIDhQmVhLU9OCWaUO6SoXiyN3pAFbydCSi3z2sY21/8Ic+HiPttsMeqycThlKV
-fHPFr4Ra4pFDbRuQwgSbVejseZukrnfVAAew6VgLCJLSUr+sw2Ub3iA2v87vnID6
-Ur3FG0W+QB2W8O8NJ82NXJO3UTRLVejuTrcmaemyBPXK3qkWIWYLkDBhcd5++QAw
-e/d0KkKHhxKgqe7f1oEcZv3el2f8daslpew+9SARp6OMXf61YqI7FihXjpsWXTNv
-u7TyPBrfFlBw9mOMxr3WbNGzPJJc2wBokiAvGJWmbaQvdT2SNFadQM2fczS8oIdG
-S0LTPzd5Vg0Gy288r1jUQiN8sedUeY2Ya+hipCYxzA1ftF0+VjoaQUv+BzH3P1F5
-UtBnZEcs7UiRxStFPJdyHqmIZVQ5NTfoDvwDAXgH5riSqKlLRRk=
-=6Ug7
------END PGP SIGNATURE-----
-
---WXvGHi2mgeFMSsi1--
+>>
+>> I'll send if I can improve the userspace tool by just checking if the
+>> folder /proc/device-tree/soc/v3d@7ec00000/ exists. >>
+>> Thanks for the explanation!
+>>
+>> Best Regards,
+>> - Maíra
+>>
+>>>
+>>> Cheers,
+>>> Andre
+>>>
+>>>> Signed-off-by: Maíra Canal <mcanal@igalia.com>
+>>>> ---
+>>>>
+>>>> v1 -> v2:
+>>>> https://lore.kernel.org/dri-devel/41694292-af1f-4760-a7b6-101ed5dd6f9d@gmx.net/T/
+>>>>
+>>>> * As mentioned by Krzysztof, enabling should be done in last place of
+>>>>     override/extend. Therefore, I'm disabling V3D in the common dtsi
+>>>>     and enabling in the last place of extend, i.e. the RPi DTS files.
+>>>>
+>>>>   arch/arm/boot/dts/broadcom/bcm2835-common.dtsi      | 1 +
+>>>>   arch/arm/boot/dts/broadcom/bcm2835-rpi-a-plus.dts   | 4 ++++
+>>>>   arch/arm/boot/dts/broadcom/bcm2835-rpi-a.dts        | 4 ++++
+>>>>   arch/arm/boot/dts/broadcom/bcm2835-rpi-b-plus.dts   | 4 ++++
+>>>>   arch/arm/boot/dts/broadcom/bcm2835-rpi-b-rev2.dts   | 4 ++++
+>>>>   arch/arm/boot/dts/broadcom/bcm2835-rpi-b.dts        | 4 ++++
+>>>>   arch/arm/boot/dts/broadcom/bcm2835-rpi-cm1-io1.dts  | 4 ++++
+>>>>   arch/arm/boot/dts/broadcom/bcm2835-rpi-zero-w.dts   | 4 ++++
+>>>>   arch/arm/boot/dts/broadcom/bcm2835-rpi-zero.dts     | 4 ++++
+>>>>   arch/arm/boot/dts/broadcom/bcm2836-rpi-2-b.dts      | 4 ++++
+>>>>   arch/arm/boot/dts/broadcom/bcm2837-rpi-3-a-plus.dts | 4 ++++
+>>>>   arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b-plus.dts | 4 ++++
+>>>>   arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b.dts      | 4 ++++
+>>>>   arch/arm/boot/dts/broadcom/bcm2837-rpi-cm3-io3.dts  | 4 ++++
+>>>>   arch/arm/boot/dts/broadcom/bcm2837-rpi-zero-2-w.dts | 4 ++++
+>>>>   15 files changed, 57 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi
+>>>> b/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi
+>>>> index 9261b67dbee1..69e34831de51 100644
+>>>> --- a/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi
+>>>> +++ b/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi
+>>>> @@ -139,6 +139,7 @@ v3d: v3d@7ec00000 {
+>>>>               compatible = "brcm,bcm2835-v3d";
+>>>>               reg = <0x7ec00000 0x1000>;
+>>>>               interrupts = <1 10>;
+>>>> +            status = "disabled";
+>>>>           };
+>>>>             vc4: gpu {
+>>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi-a-plus.dts
+>>>> b/arch/arm/boot/dts/broadcom/bcm2835-rpi-a-plus.dts
+>>>> index 069b48272aa5..495ab1dfd2ce 100644
+>>>> --- a/arch/arm/boot/dts/broadcom/bcm2835-rpi-a-plus.dts
+>>>> +++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi-a-plus.dts
+>>>> @@ -128,3 +128,7 @@ &uart0 {
+>>>>       pinctrl-0 = <&uart0_gpio14>;
+>>>>       status = "okay";
+>>>>   };
+>>>> +
+>>>> +&v3d {
+>>>> +    status = "okay";
+>>>> +};
+>>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi-a.dts
+>>>> b/arch/arm/boot/dts/broadcom/bcm2835-rpi-a.dts
+>>>> index 2726c00431e8..4634d88ce3af 100644
+>>>> --- a/arch/arm/boot/dts/broadcom/bcm2835-rpi-a.dts
+>>>> +++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi-a.dts
+>>>> @@ -121,3 +121,7 @@ &uart0 {
+>>>>       pinctrl-0 = <&uart0_gpio14>;
+>>>>       status = "okay";
+>>>>   };
+>>>> +
+>>>> +&v3d {
+>>>> +    status = "okay";
+>>>> +};
+>>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi-b-plus.dts
+>>>> b/arch/arm/boot/dts/broadcom/bcm2835-rpi-b-plus.dts
+>>>> index c57b999a4520..45fa0f6851fc 100644
+>>>> --- a/arch/arm/boot/dts/broadcom/bcm2835-rpi-b-plus.dts
+>>>> +++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi-b-plus.dts
+>>>> @@ -130,3 +130,7 @@ &uart0 {
+>>>>       pinctrl-0 = <&uart0_gpio14>;
+>>>>       status = "okay";
+>>>>   };
+>>>> +
+>>>> +&v3d {
+>>>> +    status = "okay";
+>>>> +};
+>>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi-b-rev2.dts
+>>>> b/arch/arm/boot/dts/broadcom/bcm2835-rpi-b-rev2.dts
+>>>> index ae6d3a9586ab..c1dac5d704aa 100644
+>>>> --- a/arch/arm/boot/dts/broadcom/bcm2835-rpi-b-rev2.dts
+>>>> +++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi-b-rev2.dts
+>>>> @@ -121,3 +121,7 @@ &uart0 {
+>>>>       pinctrl-0 = <&uart0_gpio14>;
+>>>>       status = "okay";
+>>>>   };
+>>>> +
+>>>> +&v3d {
+>>>> +    status = "okay";
+>>>> +};
+>>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi-b.dts
+>>>> b/arch/arm/boot/dts/broadcom/bcm2835-rpi-b.dts
+>>>> index 72764be75a79..72ca31f2a7d6 100644
+>>>> --- a/arch/arm/boot/dts/broadcom/bcm2835-rpi-b.dts
+>>>> +++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi-b.dts
+>>>> @@ -115,3 +115,7 @@ &uart0 {
+>>>>       pinctrl-0 = <&uart0_gpio14>;
+>>>>       status = "okay";
+>>>>   };
+>>>> +
+>>>> +&v3d {
+>>>> +    status = "okay";
+>>>> +};
+>>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi-cm1-io1.dts
+>>>> b/arch/arm/boot/dts/broadcom/bcm2835-rpi-cm1-io1.dts
+>>>> index 3f9d198ac3ab..881a07d2f28f 100644
+>>>> --- a/arch/arm/boot/dts/broadcom/bcm2835-rpi-cm1-io1.dts
+>>>> +++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi-cm1-io1.dts
+>>>> @@ -95,3 +95,7 @@ &uart0 {
+>>>>       pinctrl-0 = <&uart0_gpio14>;
+>>>>       status = "okay";
+>>>>   };
+>>>> +
+>>>> +&v3d {
+>>>> +    status = "okay";
+>>>> +};
+>>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi-zero-w.dts
+>>>> b/arch/arm/boot/dts/broadcom/bcm2835-rpi-zero-w.dts
+>>>> index 1f0b163e400c..1c7324067442 100644
+>>>> --- a/arch/arm/boot/dts/broadcom/bcm2835-rpi-zero-w.dts
+>>>> +++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi-zero-w.dts
+>>>> @@ -134,6 +134,10 @@ &uart1 {
+>>>>       status = "okay";
+>>>>   };
+>>>>   +&v3d {
+>>>> +    status = "okay";
+>>>> +};
+>>>> +
+>>>>   &wifi_pwrseq {
+>>>>       reset-gpios = <&gpio 41 GPIO_ACTIVE_LOW>;
+>>>>   };
+>>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi-zero.dts
+>>>> b/arch/arm/boot/dts/broadcom/bcm2835-rpi-zero.dts
+>>>> index 539c19c10946..1568ddc78f22 100644
+>>>> --- a/arch/arm/boot/dts/broadcom/bcm2835-rpi-zero.dts
+>>>> +++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi-zero.dts
+>>>> @@ -117,3 +117,7 @@ &uart0 {
+>>>>       pinctrl-0 = <&uart0_gpio14>;
+>>>>       status = "okay";
+>>>>   };
+>>>> +
+>>>> +&v3d {
+>>>> +    status = "okay";
+>>>> +};
+>>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2836-rpi-2-b.dts
+>>>> b/arch/arm/boot/dts/broadcom/bcm2836-rpi-2-b.dts
+>>>> index 79918033750e..8fab6293d1c7 100644
+>>>> --- a/arch/arm/boot/dts/broadcom/bcm2836-rpi-2-b.dts
+>>>> +++ b/arch/arm/boot/dts/broadcom/bcm2836-rpi-2-b.dts
+>>>> @@ -129,3 +129,7 @@ &uart0 {
+>>>>       pinctrl-0 = <&uart0_gpio14>;
+>>>>       status = "okay";
+>>>>   };
+>>>> +
+>>>> +&v3d {
+>>>> +    status = "okay";
+>>>> +};
+>>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-a-plus.dts
+>>>> b/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-a-plus.dts
+>>>> index 3548306dfbcb..dc45b56054c7 100644
+>>>> --- a/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-a-plus.dts
+>>>> +++ b/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-a-plus.dts
+>>>> @@ -156,3 +156,7 @@ &uart1 {
+>>>>       pinctrl-0 = <&uart1_gpio14>;
+>>>>       status = "okay";
+>>>>   };
+>>>> +
+>>>> +&v3d {
+>>>> +    status = "okay";
+>>>> +};
+>>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b-plus.dts
+>>>> b/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b-plus.dts
+>>>> index 2f1800cbc522..ce3a9f7ff529 100644
+>>>> --- a/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b-plus.dts
+>>>> +++ b/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b-plus.dts
+>>>> @@ -161,3 +161,7 @@ &uart1 {
+>>>>   &wifi_pwrseq {
+>>>>       reset-gpios = <&expgpio 1 GPIO_ACTIVE_LOW>;
+>>>>   };
+>>>> +
+>>>> +&v3d {
+>>>> +    status = "okay";
+>>>> +};
+>>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b.dts
+>>>> b/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b.dts
+>>>> index 61270340075c..e398546d105b 100644
+>>>> --- a/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b.dts
+>>>> +++ b/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b.dts
+>>>> @@ -149,6 +149,10 @@ &sdhost {
+>>>>       bus-width = <4>;
+>>>>   };
+>>>>   +&v3d {
+>>>> +    status = "okay";
+>>>> +};
+>>>> +
+>>>>   &wifi_pwrseq {
+>>>>       reset-gpios = <&expgpio 1 GPIO_ACTIVE_LOW>;
+>>>>   };
+>>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2837-rpi-cm3-io3.dts
+>>>> b/arch/arm/boot/dts/broadcom/bcm2837-rpi-cm3-io3.dts
+>>>> index 72d26d130efa..50471ada79b3 100644
+>>>> --- a/arch/arm/boot/dts/broadcom/bcm2837-rpi-cm3-io3.dts
+>>>> +++ b/arch/arm/boot/dts/broadcom/bcm2837-rpi-cm3-io3.dts
+>>>> @@ -94,3 +94,7 @@ &uart0 {
+>>>>       pinctrl-0 = <&uart0_gpio14>;
+>>>>       status = "okay";
+>>>>   };
+>>>> +
+>>>> +&v3d {
+>>>> +    status = "okay";
+>>>> +};
+>>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2837-rpi-zero-2-w.dts
+>>>> b/arch/arm/boot/dts/broadcom/bcm2837-rpi-zero-2-w.dts
+>>>> index 85cf594724ef..876f697e7300 100644
+>>>> --- a/arch/arm/boot/dts/broadcom/bcm2837-rpi-zero-2-w.dts
+>>>> +++ b/arch/arm/boot/dts/broadcom/bcm2837-rpi-zero-2-w.dts
+>>>> @@ -132,6 +132,10 @@ &uart1 {
+>>>>       status = "okay";
+>>>>   };
+>>>>   +&v3d {
+>>>> +    status = "okay";
+>>>> +};
+>>>> +
+>>>>   &wifi_pwrseq {
+>>>>       reset-gpios = <&gpio 41 GPIO_ACTIVE_LOW>;
+>>>>   };
+>>>
+>>
+>> _______________________________________________
+>> linux-arm-kernel mailing list
+>> linux-arm-kernel@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
 
