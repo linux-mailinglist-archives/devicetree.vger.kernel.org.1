@@ -1,217 +1,220 @@
-Return-Path: <devicetree+bounces-59826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59827-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDEBC8A719D
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 18:45:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6215F8A71C1
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 18:57:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 933BB1F21343
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 16:45:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CEB3F1F21678
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 16:57:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3AE642055;
-	Tue, 16 Apr 2024 16:44:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70C6512F36F;
+	Tue, 16 Apr 2024 16:57:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WeHRO+SC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xb5J9BNu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 778AB2EAF9;
-	Tue, 16 Apr 2024 16:44:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D658812B156
+	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 16:57:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713285895; cv=none; b=Ubw0eGpGHCUcHPUWrExNCS8bA8uCL1jWj/Pcsd3BZTAwZG8scskd4ejISZ68f5NnH4lXYSqpX8IP/N0B+pAMZJ53Vs7Ly2rtSGa0ikOvGw4bby23wJSg+jCR+r1KO0ighKJwKVRVqvXY0bqHAX1PzRIJ8+DJ5f1IBCzRXUcjBKQ=
+	t=1713286666; cv=none; b=PFrDkhqulg+Rp/UxAD8IJbU4s8z+yAdw9O+U/BHlkOzpaM9YlFsJResvYhv0KnU1RBI23IXyz22uZtC2eGc5D3ZFFjW7EObC9Hv34Awpz/OxBcXHnVz8EyxrBdQZqApfipx1gMtiWikeF+uZaizHIqg2VpXo5MW2sbxcRx3PRmg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713285895; c=relaxed/simple;
-	bh=WFbKwxX8WMuQfW+cB0Y60i7L1vzoyLXTtdrcolu9Gbw=;
+	s=arc-20240116; t=1713286666; c=relaxed/simple;
+	bh=8B8T20wTCBW9BOKM/mQM//HuSXmdcJjW0wYxFxTR0RQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GxDD2VjIF3xLckXP653mvGr7yekTYSWAzowSDuzm/+49yLBKj9m0JzCI/G46IHGNx3HCi0hxtqM2OJAyJ4a9171k0UwPI6crWNR5nuF+ku8s/N0TWbW0q2tPoS0YBdawsov5sfAtacvC22689t9vUM50XaP7odxR3D+N+bnZabU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WeHRO+SC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1573FC113CE;
-	Tue, 16 Apr 2024 16:44:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713285895;
-	bh=WFbKwxX8WMuQfW+cB0Y60i7L1vzoyLXTtdrcolu9Gbw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WeHRO+SCyFOm2lrN9+zZTmXWsbUPJELegE9c39+uTW+nLXLSzamhs5IfwqkA+a6B6
-	 Imhs4el6W1gohJ8crDSFfRT+CbcC287m/o8+qtxv8NSOJ83MvJ8CNQ5yVxn1XCD7ju
-	 HH8VYsaEnVDRMHLSOqje9X8tDJ7A0WU40EgDZYQsuMl8hsG5Ds48ERNiijWgpQJPhr
-	 0BgekzClovYy4FWHFNn5G9BXvJ/lbopZnmR/QMdngL3MBt88qYThcx0FNS+2aOwAX1
-	 sGGuVhZ8PaH/t3ISr5UgWSXqw1CeyO+2NrV5V8YVbMsJsie54xtDQ3+l7KevVqdimA
-	 nrjcKEKNv1mRg==
-Date: Tue, 16 Apr 2024 17:44:48 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Chen Wang <unicornxw@gmail.com>
-Cc: adrian.hunter@intel.com, aou@eecs.berkeley.edu, conor+dt@kernel.org,
-	guoren@kernel.org, inochiama@outlook.com, jszhang@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
-	paul.walmsley@sifive.com, robh@kernel.org, ulf.hansson@linaro.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mmc@vger.kernel.org, linux-riscv@lists.infradead.org,
-	chao.wei@sophgo.com, haijiao.liu@sophgo.com,
-	xiaoguang.xing@sophgo.com, tingzhu.wang@sophgo.com,
-	Chen Wang <unicorn_wang@outlook.com>
-Subject: Re: [PATCH 1/3] dt-bindings: mmc: sdhci-of-dwcmhsc: Add Sophgo
- SG2042 support
-Message-ID: <20240416-pretext-cognitive-295526072596@spud>
-References: <cover.1713258948.git.unicorn_wang@outlook.com>
- <032c06642b01f06c86ba8bcd2108d18c005b57eb.1713258948.git.unicorn_wang@outlook.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=dMKgRnP7OPKlxqo28BjbQBvdoQcKdd24VpugClAv3SiQA3Yos6GKZkHI8csst8Fr0+zz8+GUlmjSyXNu36Cm78Lb4GumPYjvBQkP+kKOaeY9t3RnDyemmlMJmk3Gqp4Fz+jt7Q1hvUmxpVkqrW00CWGbmQwzAlUdKM1FXBl/GFo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xb5J9BNu; arc=none smtp.client-ip=209.85.216.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-2a526803fccso2704422a91.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 09:57:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1713286664; x=1713891464; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Rw1srMaM4ShVIEeEfySOxO+TrGv+HQPY/srdrVtHzS4=;
+        b=xb5J9BNuJBwh6vNFAo2V3VJB50/6zhGP1aJZZBz3WqRgiRjWkbJD3wPzACia3Sc2xQ
+         2b3MaOVq2WiCsmArXaS371Prtkm2OwbzEM22PpOYyyCk2xcbPjxs5gxYwWxQpH805nOI
+         JMPRfXwdzibtN8Wj6Iii9Hjs+hc3z8k5Iyyd1pK/fh9BU9Ahlxf2LZC0VzF5eZYT9RYw
+         qV5ehu8YmQGjQnKvmBpCPUbKoSgj2uv3vO9NjhoZZFjXe4ahX1IdK+7+UWwcfJhJpuo1
+         SIZe+XENvdp/X1SR4DJ7nHXioPzdzjeK/SXdsMlu5HtXokDmiukEzXh2jMVor80Rhw87
+         UdqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713286664; x=1713891464;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Rw1srMaM4ShVIEeEfySOxO+TrGv+HQPY/srdrVtHzS4=;
+        b=oACWhB1oRVNTyi2Cj+tw82OwbfZDUsKz32y2vseW7TdyWQUtGmqlZDqoiuZ/X+m6jW
+         vGjN9xdIjAC0pC+2riMjZBu5wISfLvipbQyj/lc4ufSTKGTAOhRLJdQa5T7sndioAa0C
+         fQ0iPujEOWDRbnfO7kk80ogMLO/JO2P/ipUs0YyGRnFZ0AhJkNf/XYz4/DmDoOHmCgOK
+         NWmRzHd13uCab5sOV22xuG3MJhZnkGXQWVhMFeLnV/PsqE0PXQS508tRgcYJXqwOQyaz
+         ZtR8e42ivWu9b241vXtGcDehyBJRc0MyRIPEmjgRGFNj33Fk4f91L95S0avdjR9lxbak
+         AZvg==
+X-Forwarded-Encrypted: i=1; AJvYcCWpk7LqG3QaPConwq2PKxW6v/2YOERy/nd/QUoPnRZMn3UugiFmwLLRXd/ZiQuvvlBrAnuGeYkgAbyoDwYLcPDBFLaCED6LJA6fzA==
+X-Gm-Message-State: AOJu0YywClC7NOBYHTCr24FQ4gSynCVrIkQLmTgieVTnamWG2g3vApAy
+	7aWtwM+T+Ltlna2D6N5m2YHz5lTU0UO8DPRYIAjTnWfKd7XEF1ADGG2PDs4x6BM=
+X-Google-Smtp-Source: AGHT+IEp84o6IK282BkD3qXrX+vMTGaXMfMKPn9YJTqjKw0JZ1i5GYptiKbnVjjF3JOST3nhPrPtyQ==
+X-Received: by 2002:a17:90a:34ce:b0:2aa:ead0:900c with SMTP id m14-20020a17090a34ce00b002aaead0900cmr1113127pjf.24.1713286664143;
+        Tue, 16 Apr 2024 09:57:44 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:6e4e:6aac:cff6:726e])
+        by smtp.gmail.com with ESMTPSA id ei18-20020a17090ae55200b002a2559fe52esm9147190pjb.56.2024.04.16.09.57.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Apr 2024 09:57:43 -0700 (PDT)
+Date: Tue, 16 Apr 2024 10:57:40 -0600
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+To: Tanmay Shah <tanmay.shah@amd.com>
+Cc: andersson@kernel.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	michal.simek@amd.com, ben.levinsky@amd.com,
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v15 3/4] dts: zynqmp: add properties for TCM in remoteproc
+Message-ID: <Zh6uBDdyiTnSvrhg@p14s>
+References: <20240412183708.4036007-1-tanmay.shah@amd.com>
+ <20240412183708.4036007-4-tanmay.shah@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Oj7/7BmivF9LBeQt"
-Content-Disposition: inline
-In-Reply-To: <032c06642b01f06c86ba8bcd2108d18c005b57eb.1713258948.git.unicorn_wang@outlook.com>
-
-
---Oj7/7BmivF9LBeQt
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240412183708.4036007-4-tanmay.shah@amd.com>
 
-On Tue, Apr 16, 2024 at 05:50:37PM +0800, Chen Wang wrote:
-> From: Chen Wang <unicorn_wang@outlook.com>
->=20
-> SG2042 use Synopsys dwcnshc IP for SD/eMMC controllers.
->=20
-> SG2042 defines 3 clocks for SD/eMMC controllers.
-> - AXI_EMMC/AXI_SD for aclk/hclk(Bus interface clocks in DWC_mshc)
->   and blck(Core Base Clock in DWC_mshc), these 3 clocks share one
->   source, so reuse existing "core".
-> - 100K_EMMC/100K_SD for cqetmclk(Timer clocks in DWC_mshc), so reuse
->   existing "timer" which was added for rockchip specified.
-> - EMMC_100M/SD_100M for cclk(Card clocks in DWC_mshc), add new "card".
->=20
-> Adding some examples.
->=20
-> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
+On Fri, Apr 12, 2024 at 11:37:07AM -0700, Tanmay Shah wrote:
+> Add properties as per new bindings in zynqmp remoteproc node
+> to represent TCM address and size.
+> 
+> This patch also adds alternative remoteproc node to represent
+> remoteproc cluster in split mode. By default lockstep mode is
+> enabled and users should disable it before using split mode
+> dts. Both device-tree nodes can't be used simultaneously one
+> of them must be disabled. For zcu102-1.0 and zcu102-1.1 board
+> remoteproc split mode dts node is enabled and lockstep mode
+> dts is disabled.
+> 
+> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
 > ---
->  .../bindings/mmc/snps,dwcmshc-sdhci.yaml      | 67 ++++++++++++++-----
->  1 file changed, 51 insertions(+), 16 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yam=
-l b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> index 4d3031d9965f..a04ccae216cf 100644
-> --- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> @@ -21,6 +21,7 @@ properties:
->        - snps,dwcmshc-sdhci
->        - sophgo,cv1800b-dwcmshc
->        - sophgo,sg2002-dwcmshc
-> +      - sophgo,sg2042-dwcmshc
->        - thead,th1520-dwcmshc
-> =20
->    reg:
-> @@ -30,23 +31,36 @@ properties:
->      maxItems: 1
-> =20
->    clocks:
-> -    minItems: 1
-> -    items:
-> -      - description: core clock
-> -      - description: bus clock for optional
-> -      - description: axi clock for rockchip specified
-> -      - description: block clock for rockchip specified
-> -      - description: timer clock for rockchip specified
-> -
-> +    anyOf:
-> +      - minItems: 1
-> +        items:
-> +          - description: core clock
-> +          - description: bus clock for optional
-> +          - description: axi clock for rockchip specified
-> +          - description: block clock for rockchip specified
-> +          - description: timer clock for rockchip specified
+>  .../boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts  |  8 +++
+>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi        | 67 +++++++++++++++++--
+>  2 files changed, 70 insertions(+), 5 deletions(-)
+>
+
+Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts
+> index c8f71a1aec89..495ca94b45db 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts
+> @@ -14,6 +14,14 @@ / {
+>  	compatible = "xlnx,zynqmp-zcu102-rev1.0", "xlnx,zynqmp-zcu102", "xlnx,zynqmp";
+>  };
+>  
+> +&rproc_split {
+> +	status = "okay";
+> +};
 > +
-> +      - minItems: 1
-
-I don't think this minItems is needed, this is for one device which has
-all 3, no?
-
-I also think this combination should only be permitted for the sg2042,
-since it is not valid for the existing devices.
-
-Cheers,
-Conor.
-
-> +        items:
-> +          - description: core clock
-> +          - description: timer clock
-> +          - description: card clock
-> =20
->    clock-names:
-> -    minItems: 1
-> -    items:
-> -      - const: core
-> -      - const: bus
-> -      - const: axi
-> -      - const: block
-> -      - const: timer
-> +    anyOf:
-> +      - minItems: 1
-> +        items:
-> +          - const: core
-> +          - const: bus
-> +          - const: axi
-> +          - const: block
-> +          - const: timer
+> +&rproc_lockstep {
+> +	status = "disabled";
+> +};
 > +
-> +      - minItems: 1
-> +        items:
-> +          - const: core
-> +          - const: timer
-> +          - const: card
-> =20
->    resets:
->      maxItems: 5
-> @@ -96,5 +110,26 @@ examples:
->        #address-cells =3D <1>;
->        #size-cells =3D <0>;
->      };
-> -
-> +  - |
-> +    mmc@bb0000 {
-> +      compatible =3D "snps,dwcmshc-sdhci";
-> +      reg =3D <0xbb000 0x1000>;
-> +      interrupts =3D <0 25 0x4>;
-> +      clocks =3D <&cru 17>;
-> +      clock-names =3D "core";
-> +      bus-width =3D <8>;
-> +      #address-cells =3D <1>;
-> +      #size-cells =3D <0>;
-> +    };
-> +  - |
-> +    mmc@cc0000 {
-> +      compatible =3D "snps,dwcmshc-sdhci";
-> +      reg =3D <0xcc000 0x1000>;
-> +      interrupts =3D <0 25 0x4>;
-> +      clocks =3D <&cru 17>, <&cru 18>, <&cru 19>;
-> +      clock-names =3D "core", "timer", "card";
-> +      bus-width =3D <8>;
-> +      #address-cells =3D <1>;
-> +      #size-cells =3D <0>;
-> +    };
->  ...
-> --=20
+>  &eeprom {
+>  	#address-cells = <1>;
+>  	#size-cells = <1>;
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> index 25d20d803230..ef31b0fc73d1 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> @@ -260,19 +260,76 @@ fpga_full: fpga-full {
+>  		ranges;
+>  	};
+>  
+> -	remoteproc {
+> +	rproc_lockstep: remoteproc@ffe00000 {
+>  		compatible = "xlnx,zynqmp-r5fss";
+>  		xlnx,cluster-mode = <1>;
+> +		xlnx,tcm-mode = <1>;
+>  
+> -		r5f-0 {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +
+> +		ranges = <0x0 0x0 0x0 0xffe00000 0x0 0x10000>,
+> +			 <0x0 0x20000 0x0 0xffe20000 0x0 0x10000>,
+> +			 <0x0 0x10000 0x0 0xffe10000 0x0 0x10000>,
+> +			 <0x0 0x30000 0x0 0xffe30000 0x0 0x10000>;
+> +
+> +		r5f@0 {
+> +			compatible = "xlnx,zynqmp-r5f";
+> +			reg = <0x0 0x0 0x0 0x10000>,
+> +			      <0x0 0x20000 0x0 0x10000>,
+> +			      <0x0 0x10000 0x0 0x10000>,
+> +			      <0x0 0x30000 0x0 0x10000>;
+> +			reg-names = "atcm0", "btcm0", "atcm1", "btcm1";
+> +			power-domains = <&zynqmp_firmware PD_RPU_0>,
+> +					<&zynqmp_firmware PD_R5_0_ATCM>,
+> +					<&zynqmp_firmware PD_R5_0_BTCM>,
+> +					<&zynqmp_firmware PD_R5_1_ATCM>,
+> +					<&zynqmp_firmware PD_R5_1_BTCM>;
+> +			memory-region = <&rproc_0_fw_image>;
+> +		};
+> +
+> +		r5f@1 {
+> +			compatible = "xlnx,zynqmp-r5f";
+> +			reg = <0x1 0x0 0x0 0x10000>, <0x1 0x20000 0x0 0x10000>;
+> +			reg-names = "atcm0", "btcm0";
+> +			power-domains = <&zynqmp_firmware PD_RPU_1>,
+> +					<&zynqmp_firmware PD_R5_1_ATCM>,
+> +					<&zynqmp_firmware PD_R5_1_BTCM>;
+> +			memory-region = <&rproc_1_fw_image>;
+> +		};
+> +	};
+> +
+> +	rproc_split: remoteproc-split@ffe00000 {
+> +		status = "disabled";
+> +		compatible = "xlnx,zynqmp-r5fss";
+> +		xlnx,cluster-mode = <0>;
+> +		xlnx,tcm-mode = <0>;
+> +
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +
+> +		ranges = <0x0 0x0 0x0 0xffe00000 0x0 0x10000>,
+> +			 <0x0 0x20000 0x0 0xffe20000 0x0 0x10000>,
+> +			 <0x1 0x0 0x0 0xffe90000 0x0 0x10000>,
+> +			 <0x1 0x20000 0x0 0xffeb0000 0x0 0x10000>;
+> +
+> +		r5f@0 {
+>  			compatible = "xlnx,zynqmp-r5f";
+> -			power-domains = <&zynqmp_firmware PD_RPU_0>;
+> +			reg = <0x0 0x0 0x0 0x10000>, <0x0 0x20000 0x0 0x10000>;
+> +			reg-names = "atcm0", "btcm0";
+> +			power-domains = <&zynqmp_firmware PD_RPU_0>,
+> +					<&zynqmp_firmware PD_R5_0_ATCM>,
+> +					<&zynqmp_firmware PD_R5_0_BTCM>;
+>  			memory-region = <&rproc_0_fw_image>;
+>  		};
+>  
+> -		r5f-1 {
+> +		r5f@1 {
+>  			compatible = "xlnx,zynqmp-r5f";
+> -			power-domains = <&zynqmp_firmware PD_RPU_1>;
+> +			reg = <0x1 0x0 0x0 0x10000>, <0x1 0x20000 0x0 0x10000>;
+> +			reg-names = "atcm0", "btcm0";
+> +			power-domains = <&zynqmp_firmware PD_RPU_1>,
+> +					<&zynqmp_firmware PD_R5_1_ATCM>,
+> +					<&zynqmp_firmware PD_R5_1_BTCM>;
+>  			memory-region = <&rproc_1_fw_image>;
+>  		};
+>  	};
+> -- 
 > 2.25.1
->=20
-
---Oj7/7BmivF9LBeQt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZh6rAAAKCRB4tDGHoIJi
-0qoyAQCTaZUNTGi76+cefoQMna0yBcbNZZK6zaaeA6hNVqADngD+LinzXBk8I+hU
-Bdhb0V7rfjXZ7RK2SnqiZSWXNVclQAY=
-=+oDk
------END PGP SIGNATURE-----
-
---Oj7/7BmivF9LBeQt--
+> 
 
