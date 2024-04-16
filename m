@@ -1,94 +1,138 @@
-Return-Path: <devicetree+bounces-59652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 449B58A6732
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 11:35:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A4398A6746
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 11:37:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01605282356
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 09:35:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C88D128350F
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 09:37:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8453D85939;
-	Tue, 16 Apr 2024 09:35:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2C2885C7B;
+	Tue, 16 Apr 2024 09:37:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Py+J3tBt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D28B184E0A;
-	Tue, 16 Apr 2024 09:35:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 081498595C;
+	Tue, 16 Apr 2024 09:37:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713260130; cv=none; b=MGijnzhyLtbzMY6nRJyAb9cy2XM1Zirej+DRYIICQFZ2D2p5+3YWir6lGqBPprvIRCl52L+RY+HM4aIbWPVabkkZvOBi5UUAdlW0NLxgG3F+s8mLvFr/Vz68LZvdzs97xhHSIkHmfw0Iwhp7WUeRm3MGOg6AJzvPfB81ShFS45g=
+	t=1713260236; cv=none; b=OtjE3W0WG1H12hR76XkzCqngmqPb4l9Kf16yS3Q9jAfTRenQGl5rsGZA/wP3We/MaAEBfdYXuP5cA54s/DOcgdki5M6yQ4qP375njyftOWbA+sw/TUQeQghbTVFos3TFzJ/wSOdjzP6Hg/Z/GfNB2OXd/V8hdHclUEpfj+zRqYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713260130; c=relaxed/simple;
-	bh=TNm9wA9VCf4GRpizHagVxFmlH0uk3TxbxAtSjpVSKiY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nGlQ5+0CmJTlqMXrtZhxJ/o5LY02aPo+EeTrJHK67e5kkrZJTtBcnA8+5NWlyFgvXPi0SG/h76D06cX874rPYVQ61AG+EXB0ZOEvjEqRf77OvA+cP1BkKvNeKRRWtqQCzzd+MjUcsjeUTR0qKeqaGAnJvu82IBqEzTZwURzuN5w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 28C53339;
-	Tue, 16 Apr 2024 02:35:56 -0700 (PDT)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5B0A83F792;
-	Tue, 16 Apr 2024 02:35:25 -0700 (PDT)
-Date: Tue, 16 Apr 2024 10:35:22 +0100
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Elliot Berman <quic_eberman@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	"Mark Rutland" <mark.rutland@arm.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
-	Melody Olvera <quic_molvera@quicinc.com>,
-	Shivendra Pratap <quic_spratap@quicinc.com>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	<linux-pm@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-Subject: Re: [PATCH v2 0/4] Implement vendor resets for PSCI SYSTEM_RESET2
-Message-ID: <Zh5GWqt2oCNHdF_h@bogus>
-References: <20240414-arm-psci-system_reset2-vendor-reboots-v2-0-da9a055a648f@quicinc.com>
+	s=arc-20240116; t=1713260236; c=relaxed/simple;
+	bh=f9XkjnH89zXY3LmS3xR4VLcpu9vmNtgVXPAVkmkaQAM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ll2UIf7CCqcSt7SVf4GAAqkYZ/l1gB9RLPKVTJDE3Arl+dlb4nMVRQ4L4dEFRF+5f6vBYCInFvw8whPDVRiR2YZtDRgT6wUdUGOio2nQM3VNE+esR46iI6lm1VUoAmgCGBGurRPlU4DWR7dYz/XIx3GJf37X0ObW3WS3NeLKm24=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Py+J3tBt; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43G9axuD067677;
+	Tue, 16 Apr 2024 04:36:59 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1713260219;
+	bh=3+4yCUe856YSCywDQIBGfdnlq8U1G2XXbSOviL1uR8U=;
+	h=From:To:CC:Subject:Date;
+	b=Py+J3tBtJAqOYyIAh11cfHG6ijuWg9u8Os+tG5P/Kw8VmK7J0PMXPlSC56fApD7Ga
+	 iaG1OEwo4IsEgmXZKJEM/dYHY+zezFYXx2e5Er88Aqh4l8WN2BjtKacdASWyNlxKwo
+	 2leJYNktqsmVrwvCJfKKj5chlkxUWD/vy4rtM/Lw=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43G9axH9117964
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 16 Apr 2024 04:36:59 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 16
+ Apr 2024 04:36:59 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 16 Apr 2024 04:36:59 -0500
+Received: from udit-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (udit-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [172.24.227.18])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43G9atpJ057522;
+	Tue, 16 Apr 2024 04:36:56 -0500
+From: Udit Kumar <u-kumar1@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <francesco@dolcini.it>
+CC: <kristo@kernel.org>, <conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        Udit Kumar <u-kumar1@ti.com>
+Subject: [RFC PATCH] arm64: dts: ti: k3-j721s2: Add reserved status in msmc node
+Date: Tue, 16 Apr 2024 15:06:48 +0530
+Message-ID: <20240416093648.3620423-1-u-kumar1@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240414-arm-psci-system_reset2-vendor-reboots-v2-0-da9a055a648f@quicinc.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Sun, Apr 14, 2024 at 12:30:23PM -0700, Elliot Berman wrote:
-> The PSCI SYSTEM_RESET2 call allows vendor firmware to define additional
-> reset types which could be mapped to the reboot argument.
->
-> Setting up reboot on Qualcomm devices can be inconsistent from chipset
-> to chipset.
+TI K3 SOCs have msmc sram, part of it can be configured as L3 cache
+depending upon system firmware configuration file.
 
-That doesn't sound good. Do you mean PSCI SYSTEM_RESET doesn't work as
-expected ? Does it mean it is not conformant to the specification ?
+MSMC memory typically host four tenants atf, system firmware (tifs),
+l3 cache and as sram.
 
-> Generally, there is a PMIC register that gets written to
-> decide the reboot type. There is also sometimes a cookie that can be
-> written to indicate that the bootloader should behave differently than a
-> regular boot. These knobs evolve over product generations and require
-> more drivers. Qualcomm firmwares are beginning to expose vendor
-> SYSTEM_RESET2 types to simplify driver requirements from Linux.
->
+Allocation done for atf, tifs and l3-cache is not accessible in address
+space of OS.
+Therefore u-boot deletes sysfw and l3cache node before passing DT to OS[0].
+But keeping tifs (system firmware) subnode as is.
 
-Why can't this be fully userspace driven ? What is the need to keep the
-cookie in the DT ?
+Since TIFS node is not also accessible to OS, I need suggestion for
+selection of right option.
 
+In my view we can handle in two ways
 
+1) delete tifs node as well
+In this case, only accessible sram will be visible to OS[1]
+
+2) make these nodes (tifs, atf and l3cache) as reserved,
+so that OS has complete view of memory.
+
+This is patch for option 2 to mark atf, l3-cache and tifs as
+reserved.
+
+Also other options are welcome.
+
+[0]: https://github.com/u-boot/u-boot/blob/master/arch/arm/mach-k3/common_fdt.c#L67
+[1]: https://lore.kernel.org/all/20230420081128.3617214-1-u-kumar1@ti.com/
+
+Signed-off-by: Udit Kumar <u-kumar1@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+index 3cb06a7e4117..f64c8b0780d8 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+@@ -25,14 +25,17 @@ msmc_ram: sram@70000000 {
+ 		ranges = <0x0 0x0 0x70000000 0x400000>;
+ 
+ 		atf-sram@0 {
++			status = "reserved";
+ 			reg = <0x0 0x20000>;
+ 		};
+ 
+ 		tifs-sram@1f0000 {
++			status = "reserved";
+ 			reg = <0x1f0000 0x10000>;
+ 		};
+ 
+ 		l3cache-sram@200000 {
++			status = "reserved";
+ 			reg = <0x200000 0x200000>;
+ 		};
+ 	};
 -- 
-Regards,
-Sudeep
+2.34.1
+
 
