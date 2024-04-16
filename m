@@ -1,82 +1,61 @@
-Return-Path: <devicetree+bounces-59828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 461738A71C7
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 18:59:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF6E68A71DA
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 19:02:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 698A51C21049
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 16:59:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 32F37B2342A
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 17:02:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC11B132C1F;
-	Tue, 16 Apr 2024 16:59:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D955130E46;
+	Tue, 16 Apr 2024 17:02:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gjabBRnw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HZqFs0N2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCEF812AAE3
-	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 16:58:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 182F36CDC8;
+	Tue, 16 Apr 2024 17:02:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713286741; cv=none; b=GnABdk4W8xUmcZkmzVb/3oPPDHK03DoCiWQpkltdLXZtRu8No2M/7RNEcOezCbKUyeEIg5WFVl01kox9SlKcfnCEQFzUvTTz3FPGEmbxwsz1yy7Szf2HxLg38Y72DUzSgZKR3avLPulurlnoCL84JDkBDzUXUErsroj0+MQgXDk=
+	t=1713286965; cv=none; b=CfCg1pk1H5YSCj/3M6gPq2YR4ez5y2wand4/8xE471UszDhLOhjTLCO9pkkoInO8y4Wh1MVhAXUl3pjKwiqMoUPbQrKeib3WRGn6s+HpqgEB235biqs0eBxLh+uEGcJoa8Z+z2bduX/HiE2oZp5GrCY5iA3pFSv/UOhf8LIquPw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713286741; c=relaxed/simple;
-	bh=tWfbnoK1Qaj31Z0XQ+nOrUn3n/AiI7P9NYHI0EI/IIk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VrMf12qE2iCKoxQyKBJR4qz+7fiRQ4aTEWzgqs2Y+ddeJtDmYhcj5zOr4TOjz3jcIY0X1gjN8fmZv4D8WE/Jt/hkV/i642KKjN6ZLVLEUsfA7iB0Rx3FGiMIvRmc/1/xHAPiGsi8eqTAf8d+HDvXA8gblmmotPuZXhKi0PATeLA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gjabBRnw; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-6ed2dc03df6so4129745b3a.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 09:58:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713286739; x=1713891539; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=KWfaKH5keS4brSMvsRe/D018x90YicD6A19pBYw0+W8=;
-        b=gjabBRnwUH2PnhpG34XpL/9XllrCwvZ8bvvq1QpjuDGyyPHz0Lkh77w2ZCgO74gRhT
-         hNnJdsulyWo1vsNRIYO9rgZlqL6/ueu+5KOM3Q0ggvZUxiY4ccvmVUovaPA01QMbeLrB
-         8Iz2JTVRAS4AO3SXr0mE/65OVR5yLy+fMlj1fcDOoESM5ZiCaTm2xV7l4zdtLm4BuPCC
-         P9AC8rwmfSp+zdvpTOE1JhaVXrtGRt1LwXj1hae4urEtkxPW82/+aGXq0lNWaXDq4eak
-         8obpXMUCggJOBgkNASu1py9QNxQOsSfTutvq+Zi+ibOZwE+jZMDqSVtVQM/r1jKK/53Y
-         3ctQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713286739; x=1713891539;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KWfaKH5keS4brSMvsRe/D018x90YicD6A19pBYw0+W8=;
-        b=bBKyry4CJHA8+idXgTRVhhOdIH5+Luv3rGAYfndWGCRXxXubYqcTYFxdMfp9JJGm7x
-         h3qv0nHC6I5+fs/JCktOTbP4hOd2D55gBcOzaf6r/khN3Z7lL5W6A4Nt2jyeZdsHSVfL
-         wHNzNOOl/Ztq6AuBVu+QbLPHJcUPwCaJQuXIHDWtfVSgeSgw4QvG6ETWHYl6pn+kF7oI
-         gD9buVe4UavxLv19F1byqbQxytxUj/IxJbKp3yF5pECTtSje703g4WBo4fys9By8zUck
-         2nzmQtpv+xEa/cyPjpBZcY03Jrnsso+LDmHcs71t1uORmj6yevviKd5RyNkFHXbybSGf
-         rq5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWLlb+5UdfhLlWCsiqjD2j4gPLYFHvnZFS7yY/LF2WJ0k+kMVRq2/QZjylCGg4tSZB/TsNF6LQ1obyw54w4eOuhlDa7bvODjrO+5g==
-X-Gm-Message-State: AOJu0YxdjI36A4171NUC/M+GopBNYrHocA4xZ/q5plFyjJcSTlOBsW+G
-	laptznO9gbDE+JeuRcH459gxVef6xmls5UD/vNpew0IsxAMV++oBME6u4yC/Hz8=
-X-Google-Smtp-Source: AGHT+IF5bchOM5Ajqn1ld2S/Wn8rEC3XoO6+HL/hiPq0GTjHE721escY4Q1kI6+RN+TccwK9SjISXg==
-X-Received: by 2002:a05:6a00:22d6:b0:6ed:d8d2:5040 with SMTP id f22-20020a056a0022d600b006edd8d25040mr17657763pfj.21.1713286739096;
-        Tue, 16 Apr 2024 09:58:59 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:6e4e:6aac:cff6:726e])
-        by smtp.gmail.com with ESMTPSA id d20-20020a63d654000000b005dc3fc53f19sm9190074pgj.7.2024.04.16.09.58.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Apr 2024 09:58:57 -0700 (PDT)
-Date: Tue, 16 Apr 2024 10:58:54 -0600
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-To: Tanmay Shah <tanmay.shah@amd.com>
-Cc: andersson@kernel.org, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	michal.simek@amd.com, ben.levinsky@amd.com,
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v15 0/4] add zynqmp TCM bindings
-Message-ID: <Zh6uTkK/ZoI5+l/F@p14s>
-References: <20240412183708.4036007-1-tanmay.shah@amd.com>
+	s=arc-20240116; t=1713286965; c=relaxed/simple;
+	bh=swpRmuyUm0NTUnfkBwhLOJvbAum9jZWIxRc49A9ZH5s=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=KJQzVtqfNYJJw8cp/bYzTfUfyw6tFiltDsqxrZNywdIjQmx2NwTAYO0ZZDFb2Wy57yTSFhnWpcACGbChlXsorTckYzlman/SNlYYTNE+geT1+Js/ErdByuGDyr4VR42/IkedBA4zkBsM8XjEJwqF6nw4YR7vSnWzliAmJLhIqFM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HZqFs0N2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68FC6C113CE;
+	Tue, 16 Apr 2024 17:02:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713286964;
+	bh=swpRmuyUm0NTUnfkBwhLOJvbAum9jZWIxRc49A9ZH5s=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=HZqFs0N2qr133iHkYPMr1Mc2JByYkEaWVvjnKEfjaX32Nhmv2fqJG7Th2YDS66Tqs
+	 4tpQoGzhikLNsaxlvpvZfPLEZ5mkf63F7BV6Y45dcVMkLUHVXzQjwmE6LNJHlU6qSa
+	 HCITBkntv5/CzIqgXeNgaitqisOJRTNxP27ZMevlI1SM9fXNRp4bLw5RiNzHbUhuET
+	 iMApbzOVc2SajcWEOI/aWRYOin/aZ25kh1mxYg5zENyMQ+DAYGVGpZRZqeV/WyM0v2
+	 /fqYQzwTKLJvd6PHAdItQkBHuMO64xfKG98KmGhkCWJyC39XXmMqJpFqP1+TYm1Rv7
+	 1SgIAXwx7MGiw==
+Date: Tue, 16 Apr 2024 12:02:42 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
+	Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev,
+	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 4/5] PCI: Add PCIE_MSG_CODE_PME_TURN_OFF message macro
+Message-ID: <20240416170242.GA164032@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,82 +64,52 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240412183708.4036007-1-tanmay.shah@amd.com>
+In-Reply-To: <20240415-pme_msg-v6-4-56dad968ad3a@nxp.com>
 
-On Fri, Apr 12, 2024 at 11:37:04AM -0700, Tanmay Shah wrote:
-> Tightly-Coupled Memories(TCMs) are low-latency memory that provides
-> predictable instruction execution and predictable data load/store
-> timing. Each Cortex-R5F processor contains exclusive two 64 KB memory
-> banks on the ATCM and BTCM ports, for a total of 128 KB of memory.
-> In lockstep mode, both 128KB memory is accessible to the cluster.
+On Mon, Apr 15, 2024 at 03:33:28PM -0400, Frank Li wrote:
+> Add PCIE_MSG_CODE_PME_TURN_OFF macros to enable a PCIe host driver to send
+> PME_Turn_Off messages.
 > 
-> As per ZynqMP Ultrascale+ Technical Reference Manual UG1085, following
-> is address space of TCM memory. The bindings in this patch series
-> introduces properties to accommodate following address space with
-> address translation between Linux and Cortex-R5 views.
-> 
-> |     |     |     |
-> | --- | --- | --- |
-> |      *Mode*        |   *R5 View* | *Linux view* |  Notes               |
-> | *Split Mode*       | *start addr*| *start addr* |                      |
-> | R5_0 ATCM (64 KB)  | 0x0000_0000 | 0xFFE0_0000  |                      |
-> | R5_0 BTCM (64 KB)  | 0x0002_0000 | 0xFFE2_0000  |                      |
-> | R5_1 ATCM (64 KB)  | 0x0000_0000 | 0xFFE9_0000  | alias of 0xFFE1_0000 |
-> | R5_1 BTCM (64 KB)  | 0x0002_0000 | 0xFFEB_0000  | alias of 0xFFE3_0000 |
-> |  ___               |     ___     |    ___       |                      |
-> | *Lockstep Mode*    |             |              |                      |
-> | R5_0 ATCM (128 KB) | 0x0000_0000 | 0xFFE0_0000  |                      |
-> | R5_0 BTCM (128 KB) | 0x0002_0000 | 0xFFE2_0000  |                      |
-> 
-> References:
-> UG1085 TCM address space:
-> https://docs.xilinx.com/r/en-US/ug1085-zynq-ultrascale-trm/Tightly-Coupled-Memory-Address-Map
->
-
-I have applied patches 1, 2 and 4 of this set.  Patch 3 should to through
-Michal's tree.
-
-Thanks,
-Mathieu
-
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
+>  drivers/pci/pci.h | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> prerequisite-patch-link: https://lore.kernel.org/all/d4556268-8274-4089-949f-3b97d67793c7@gmail.com/
-> Base Branch: 6.9.rc2
+> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
+> index 19b4227a8a7e8..1f6d54a5a7cfc 100644
+> --- a/drivers/pci/pci.h
+> +++ b/drivers/pci/pci.h
+> @@ -30,6 +30,8 @@
+>  #define PCIE_MSG_TYPE_R_LOCAL	4
+>  #define PCIE_MSG_TYPE_R_GATHER	5
+>  
+> +#define PCIE_MSG_CODE_PME_TURN_OFF	0x19
+
+This is defined in PCIe r6.0, sec 2.2.8.2, so move this below the INTx
+#defines so they're all in the order of the spec sections and add the
+spec citation to follow the same style as the surrounding #defines,
+i.e.,
+
+  /* Power Management Messages; PCIe r6.0, sec 2.2.8.2 */
+  #define PCIE_MSG_CODE_PME_TURN_OFF   0x19
+
+While you're at it, tweak the [1/5] comments to be:
+
+  /* Message Routing (r[2:0]); PCIe r6.0, sec 2.2.8 */
+  /* INTx Mechanism Messages; PCIe r6.0, sec 2.2.8.1 */
+
+since the "Message Routing See: PCIe ..." comments are run together
+and need some punctuation between the text and the citation.
+
+With these,
+
+Acked-by: Bjorn Helgaas <bhelgaas@google.com>
+
+>  /* INTx Mechanism Messages See: PCIe r6.0, sec 2.2.8.1 */
+>  #define PCIE_MSG_CODE_ASSERT_INTA	0x20
+>  #define PCIE_MSG_CODE_ASSERT_INTB	0x21
 > 
-> Changes in v15:
->   - Use hardcode TCM addresses as fallback method if "reg" unavailable
->   - Use new bindings for r5fss subsystem
-> 
-> Changes in v14:
->   - Add xlnx,tcm-mode property and use it for TCM configuration
->   - Add Versal and Versal-NET platform support
->   - Maintain backward compatibility for ZynqMP platform and use hardcode
->     TCM addresses
-> 
-> Changes in v13:
->   - Have power-domains property for lockstep case instead of
->     keeping it flexible.
->   - Add "items:" list in power-domains property
-> 
-> 
-> Radhey Shyam Pandey (1):
->   dt-bindings: remoteproc: add Tightly Coupled Memory (TCM) bindings
-> 
-> Tanmay Shah (3):
->   remoteproc: zynqmp: fix lockstep mode memory region
->   dts: zynqmp: add properties for TCM in remoteproc
->   remoteproc: zynqmp: parse TCM from device tree
-> 
->  .../remoteproc/xlnx,zynqmp-r5fss.yaml         | 279 ++++++++++++++++--
->  .../boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts  |   8 +
->  arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |  67 ++++-
->  drivers/remoteproc/xlnx_r5_remoteproc.c       | 273 +++++++++--------
->  4 files changed, 459 insertions(+), 168 deletions(-)
-> 
-> 
-> base-commit: 4d5aabb6843939fad36912be8bf109adf9af0848
 > -- 
-> 2.25.1
+> 2.34.1
 > 
 
