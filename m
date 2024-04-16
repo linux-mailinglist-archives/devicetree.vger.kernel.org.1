@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-59836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59837-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF8C98A724C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 19:29:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12BF88A725E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 19:30:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C12D21F228FC
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 17:29:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33BE51C2105F
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 17:30:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ABB71332A6;
-	Tue, 16 Apr 2024 17:29:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9889F1332A7;
+	Tue, 16 Apr 2024 17:30:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N088a8C9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="peVMTXH5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BC17132C1F;
-	Tue, 16 Apr 2024 17:29:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C05EF9F0;
+	Tue, 16 Apr 2024 17:30:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713288545; cv=none; b=JtS/xhOWW4eFmcDR+8RNYQU8Un1ANY5CspaHKX9XDY5MrOM64UvgReWxeT9lzml23Gw+Xu6frKT1Q3y97+lNOkYgD0SzU2b8UqprbgtqZxQyDW8eic9+nSKQmdGc2C53KWM/EjG9Lc8/dE3pKfr/Q75vvHfdcW03h4sj2dWsNWI=
+	t=1713288630; cv=none; b=FACgbarAy11Ie2V//1Is8uY24ekW8CaVrvb4xItmHKz2oCEdFqvro379UPqs4XdlGuUozSPDsJO5QMqRDWQvTjRRZ36X/g6eIUOAbM2QYRinDXLXTCffWuIm+p6ptbbu/kE66gdG7HsHgV1gtT3Y6Hp5KofmFQ9Gc7NmzSr6IKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713288545; c=relaxed/simple;
-	bh=pzLiPf2BmuAp4EQPnQxHsJQ/UQhL2QfZVqplzTySip0=;
+	s=arc-20240116; t=1713288630; c=relaxed/simple;
+	bh=XS4hUiQRaKWKxZ54JJm6tIu8KmrPOVRJYpat6/cOu/w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a147pu4TpOtuzElRm0d/G/KN4Mj4ZhxEoc7S3n5t30oIYB99+CzSSaAhzGOfYdQ/eRN3dC6vJn1bHAAuFyzQf4tl/A8XNAwbJKMEzfzK5txS1kbztUge6eNwwpuWAyAIBs9xZMHXIp1/OLZDtPyaiXWsI3SBPIWZgKnjq+Hp0ZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N088a8C9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04842C113CE;
-	Tue, 16 Apr 2024 17:29:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GUqkNDAc1xaGPMMr/5ObBXVyBJ0/HDQF1QbkHp2KApEqkaO09NW6QI8bsgGalUkqFKg6I5zv/Y/VPYTgwZgfC8f7wOhY2YSw+ETnk6UAanCKp8OM5u6yZ5p5e14srLFXHqSIrrsJPuqYxRd2wLu46VfPTCBB7dbaptIh/uZCK94=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=peVMTXH5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6269DC113CE;
+	Tue, 16 Apr 2024 17:30:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713288544;
-	bh=pzLiPf2BmuAp4EQPnQxHsJQ/UQhL2QfZVqplzTySip0=;
+	s=k20201202; t=1713288630;
+	bh=XS4hUiQRaKWKxZ54JJm6tIu8KmrPOVRJYpat6/cOu/w=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=N088a8C9FmN1VDWp65w6E1bCyNFVGRowbzimjCqepdy/ECyTGaVp+1KASSq2Txbmz
-	 bAzLr+c/xvmHHlAIHlhx8UY4DCAxN/RJbnduYekj3LMv0sD5mOqSn2dwun4A3FLg/l
-	 yo9r9tuaYG/JgCEBkKi0lT3a8Yzk9aj84ckvsJFP23ytkKLj44JgTbaTLzg+wfcDof
-	 3GRbca/uy/VeOXkBCvUfrs4AXmScm1vs1zerx8bdj+FEskS/d22VJ4mL+y29CoTF/z
-	 sM6OS8/Mee1L9NqdFcTCZiLNimgzBEP8SSEL7IvhPyzMYniKdWrCf1OHNSXhlYl4fO
-	 wUoYVFFjPcG2w==
-Date: Tue, 16 Apr 2024 18:28:58 +0100
+	b=peVMTXH5eF7pekueJv97cqfGgMnF5D9QmHNZ/BvBc0ERATh0KcYTfOhZE72qeet5T
+	 3qAJjziGx/cr9NSmS4wsvKCgBSsTSCVYeN+A3B+ce2DfyYSt2SyIQHEarZ8LFQT6tY
+	 TMulnWeGAIGcHloWMxoBNPpfSnzpBkpCB/BexAIVcoozLjcOx0SCNmGldPQyxtRYVK
+	 gCTRzmcywanWRZp2dL0D59SWouf0IwEUcxt2jFoMbBon/mIaFUl611pd41ZwwLLUtx
+	 6wpKl0FbZ7e3KFun0wTB6jQ4l2hk2KOXLUXIU7diGh24DqY9N++wFBWtI8UEobEHtX
+	 j/E/YI7vuYghQ==
+Date: Tue, 16 Apr 2024 18:30:24 +0100
 From: Conor Dooley <conor@kernel.org>
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Cc: djakov@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -54,9 +54,10 @@ Cc: djakov@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
 	wenst@chromium.org, amergnat@baylibre.com
 Subject: Re: [PATCH v1 1/6] dt-bindings: soc: mediatek: Add DVFSRC bindings
  for MT8183 and MT8195
-Message-ID: <20240416-grope-blissful-a914854b3732@spud>
+Message-ID: <20240416-onion-prone-44b45d5a003e@spud>
 References: <20240416153805.431118-1-angelogioacchino.delregno@collabora.com>
  <20240416153805.431118-2-angelogioacchino.delregno@collabora.com>
+ <20240416-grope-blissful-a914854b3732@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,132 +65,141 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="29wYAvcTm3T+HZi+"
+	protocol="application/pgp-signature"; boundary="wP1ObGMFQC4n3zme"
 Content-Disposition: inline
-In-Reply-To: <20240416153805.431118-2-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20240416-grope-blissful-a914854b3732@spud>
 
 
---29wYAvcTm3T+HZi+
+--wP1ObGMFQC4n3zme
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 16, 2024 at 05:38:00PM +0200, AngeloGioacchino Del Regno wrote:
-> Add bindings for the MediaTek Dynamic Voltage and Frequency Scaling
-> Resource Collector (DVFSRC), a hardware module used to collect all the
-> requests from both software and the various remote processors embedded
-> into the SoC and decide about a minimum operating voltage and a minimum
-> DRAM frequency to fulfill those requests in an effort to provide the
-> best achievable performance per watt.
+On Tue, Apr 16, 2024 at 06:28:58PM +0100, Conor Dooley wrote:
+> On Tue, Apr 16, 2024 at 05:38:00PM +0200, AngeloGioacchino Del Regno wrot=
+e:
+> > Add bindings for the MediaTek Dynamic Voltage and Frequency Scaling
+> > Resource Collector (DVFSRC), a hardware module used to collect all the
+> > requests from both software and the various remote processors embedded
+> > into the SoC and decide about a minimum operating voltage and a minimum
+> > DRAM frequency to fulfill those requests in an effort to provide the
+> > best achievable performance per watt.
+> >=20
+> > This hardware IP is capable of transparently performing direct register
+> > R/W on all of the DVFSRC-controlled regulators and SoC bandwidth knobs.
+> >=20
+> > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@co=
+llabora.com>
+> > ---
+> >  .../soc/mediatek/mediatek,mt8183-dvfsrc.yaml  | 57 +++++++++++++++++++
+> >  1 file changed, 57 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/soc/mediatek/medi=
+atek,mt8183-dvfsrc.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/soc/mediatek/mediatek,mt=
+8183-dvfsrc.yaml b/Documentation/devicetree/bindings/soc/mediatek/mediatek,=
+mt8183-dvfsrc.yaml
+> > new file mode 100644
+> > index 000000000000..12bcc3fdfd07
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/soc/mediatek/mediatek,mt8183-dv=
+fsrc.yaml
+> > @@ -0,0 +1,57 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/soc/mediatek/mediatek,mt8183-dvfsrc=
+=2Eyaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: MediaTek Dynamic Voltage and Frequency Scaling Resource Collect=
+or (DVFSRC)
+> > +
+> > +description:
+> > +  The Dynamic Voltage and Frequency Scaling Resource Collector (DVFSRC=
+) is a
+> > +  Hardware module used to collect all the requests from both software =
+and the
+> > +  various remote processors embedded into the SoC and decide about a m=
+inimum
+> > +  operating voltage and a minimum DRAM frequency to fulfill those requ=
+ests in
+> > +  an effort to provide the best achievable performance per watt.
+> > +  This hardware IP is capable of transparently performing direct regis=
+ter R/W
+> > +  on all of the DVFSRC-controlled regulators and SoC bandwidth knobs.
+> > +
+> > +maintainers:
+> > +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.co=
+m>
+> > +  - Henry Chen <henryc.chen@mediatek.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - items:
 >=20
-> This hardware IP is capable of transparently performing direct register
-> R/W on all of the DVFSRC-controlled regulators and SoC bandwidth knobs.
+> This items should not be needed with the enum, right?
 >=20
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
-> ---
->  .../soc/mediatek/mediatek,mt8183-dvfsrc.yaml  | 57 +++++++++++++++++++
->  1 file changed, 57 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediat=
-ek,mt8183-dvfsrc.yaml
+> > +          - enum:
+> > +              - mediatek,mt8183-dvfsrc
+> > +              - mediatek,mt8195-dvfsrc
+> > +      - items:
+> > +          - const: mediatek,mt8192-dvfsrc
+> > +          - const: mediatek,mt8195-dvfsrc
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +    description: DVFSRC common register address and length.
+> > +
+> > +patternProperties:
+> > +  "@[0-9a-f]+$":
+> > +    type: object
 >=20
-> diff --git a/Documentation/devicetree/bindings/soc/mediatek/mediatek,mt81=
-83-dvfsrc.yaml b/Documentation/devicetree/bindings/soc/mediatek/mediatek,mt=
-8183-dvfsrc.yaml
-> new file mode 100644
-> index 000000000000..12bcc3fdfd07
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/mediatek/mediatek,mt8183-dvfs=
-rc.yaml
-> @@ -0,0 +1,57 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/mediatek/mediatek,mt8183-dvfsrc.y=
-aml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek Dynamic Voltage and Frequency Scaling Resource Collector=
- (DVFSRC)
-> +
-> +description:
-> +  The Dynamic Voltage and Frequency Scaling Resource Collector (DVFSRC) =
-is a
-> +  Hardware module used to collect all the requests from both software an=
-d the
-> +  various remote processors embedded into the SoC and decide about a min=
-imum
-> +  operating voltage and a minimum DRAM frequency to fulfill those reques=
-ts in
-> +  an effort to provide the best achievable performance per watt.
-> +  This hardware IP is capable of transparently performing direct registe=
-r R/W
-> +  on all of the DVFSRC-controlled regulators and SoC bandwidth knobs.
-> +
-> +maintainers:
-> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> +  - Henry Chen <henryc.chen@mediatek.com>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
+> Why is there no enforcement of what a child could be here?
 
-This items should not be needed with the enum, right?
+Seems like you know exactly what the children are: regulators and an
+interconnect? What am I missing?
 
-> +          - enum:
-> +              - mediatek,mt8183-dvfsrc
-> +              - mediatek,mt8195-dvfsrc
-> +      - items:
-> +          - const: mediatek,mt8192-dvfsrc
-> +          - const: mediatek,mt8195-dvfsrc
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: DVFSRC common register address and length.
-> +
-> +patternProperties:
-> +  "@[0-9a-f]+$":
-> +    type: object
-
-Why is there no enforcement of what a child could be here?
-
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    soc {
-> +        #address-cells =3D <2>;
-> +        #size-cells =3D <2>;
-> +
-> +        dvfsrc@10012000 {
-
-"dvfsrc" looks like something my (imaginary given allergies) cat would
-produce from sitting on my keyboard. Could you use full words for the
-node name and make it something that attempts to be generic please?
-
-> +            compatible =3D "mediatek,mt8195-dvfsrc";
-> +            reg =3D <0 0x10012000 0 0x1000>;
-> +        };
-> +    };
-> --=20
-> 2.44.0
 >=20
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    soc {
+> > +        #address-cells =3D <2>;
+> > +        #size-cells =3D <2>;
+> > +
+> > +        dvfsrc@10012000 {
+>=20
+> "dvfsrc" looks like something my (imaginary given allergies) cat would
+> produce from sitting on my keyboard. Could you use full words for the
+> node name and make it something that attempts to be generic please?
+>=20
+> > +            compatible =3D "mediatek,mt8195-dvfsrc";
+> > +            reg =3D <0 0x10012000 0 0x1000>;
+> > +        };
+> > +    };
+> > --=20
+> > 2.44.0
+> >=20
 
---29wYAvcTm3T+HZi+
+
+
+--wP1ObGMFQC4n3zme
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZh61WgAKCRB4tDGHoIJi
-0nNWAQCySaXXigINWOe/Zbh6nvFd8lAElm6OUs1rfgKt63696wD/R+RgIT2mRIEQ
-WUVPpbyXy3TS22RWrWgU0ZHHesGKRgg=
-=DGfI
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZh61sAAKCRB4tDGHoIJi
+0kmFAP93becCTty5zhdZz9iHDigSwk/4jcVZ97Bb+qr2Aa9DnAEA3ztf7bZFSh7q
+Dy/w11JkKRpcOGwlnr3cqLVVUtw4zgs=
+=XJy2
 -----END PGP SIGNATURE-----
 
---29wYAvcTm3T+HZi+--
+--wP1ObGMFQC4n3zme--
 
