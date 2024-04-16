@@ -1,240 +1,110 @@
-Return-Path: <devicetree+bounces-59857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 887968A73F0
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 20:56:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9D998A745F
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 21:08:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ABCCE1C21868
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 18:56:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 04DBB1C21731
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 19:08:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20908137777;
-	Tue, 16 Apr 2024 18:56:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D87C8137933;
+	Tue, 16 Apr 2024 19:08:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fOkn/iN4"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="ckF5F8tx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E177413776A
-	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 18:56:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D36C113473F;
+	Tue, 16 Apr 2024 19:08:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713293779; cv=none; b=sbB149Buogn1fLl/OI1M2Sv6B7vYn4/M8pzq/MlE0POmD4jOvKkTnCSY4xruBMWf7o0UHhSBM7AVuAWSaGiYhv1IbUh8wCUrKI+7NuMADSBTGXT8SS11+bFxopfkJue4+AZpdzd10V/krzIlW1LPQzYpxv+rdmQBFrFXjHnhmpQ=
+	t=1713294492; cv=none; b=lEopwy8A5gEw+sEF+MH842y8mwaBiibg8TI2Nmj99gHFvDwVn1FZ2vrPwD/Cqx7iK31tVGFY145f9LJHNGFlLp/bFdIjcyGcHxBFNdgb6zUfq8MkxwcWiX24CIv3cgx1arSR3EetwHd7B6WlDT/dner79DbXDq9h9uT/zuseG74=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713293779; c=relaxed/simple;
-	bh=gcTRf65a+ftJnH8+Aa+F0CBgeHDfFdCEJgFqbkaBRy4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gvLnDi3r2oYXScJ20qnSFlGbTkNZQxtgB7Nh0rGLw7ONZVgan6wla6W8+ke/1SGrQEWQJVZcJI8Zu2BvR/1mVpY0qV9/BreJW9YOygHitWqwPJtL7vJd9bZezjbHLAPtaCoHR0sqirsk8h4HpKZFsDRH+dJD4iXBfRyex1AvIEQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fOkn/iN4; arc=none smtp.client-ip=209.85.219.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-dc23bf7e5aaso4943440276.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 11:56:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713293776; x=1713898576; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=m3jRsJcFFlAEIpn9uxJ8q/UOrjJ8uD5kt4UN94jZCSY=;
-        b=fOkn/iN4jMbcWz9Mo2oBsXlRkpo2SkLqXMYzNDa0UZVWn/SeX/ypoJi5BdsfHjPk2p
-         wBusiqYME80vnVBoeaIk3CfYI2Gs/ky1K8p78LxhtMZeMqFx3NGJa1oKXqExPmiclapR
-         BLNBkPZ/G/1r2t+X3wmWHhYn+GBlOU4j6weDf07h5k/CIrRTFkNXwxH9CCeSiX5oxim3
-         LGp2PmH4ElcyqrMaHC1fgxwnNaPjxnEbowsaBVLMAKUQR44/mRIWNFiYuRj6BAKib3NF
-         k3JnZ54cxM1EHi9qwRyT32M5z1t0G2C+HPpsJuV3NlguV6l0jqMh2lesEgp1jy21OiQg
-         EDSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713293776; x=1713898576;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=m3jRsJcFFlAEIpn9uxJ8q/UOrjJ8uD5kt4UN94jZCSY=;
-        b=deUuQUuTWk8zfP37F45gkZ1XxpIa+hOCY85EKS1bB4dX/KqMeg4YcBoTuPfl3Lff1H
-         gKyC4bv0IKrJQszYfccWHjW56RKReFco/RZBEfVkGhivJV5w8Cwm0EO/f5AX7xmSX8b3
-         vyhJfePBuyWmyFCUd0Qgf/O6MAumC6OnVLxOw+R9UFwv0oRnj8cDUkDGkY3+EdkksA/H
-         4WFOzNuLptU3HCFWO5n+M/o0k5YKndiOY0xmRXbh6v4WPrMaqCrRkeMEtRhbIE43u8cI
-         gF4iWpnOrM1BzaskJ7IEMx3oqdkbCVjza045sitPO0q6NdHXgNf2fOvJo4jBK35WdOOq
-         w8eA==
-X-Forwarded-Encrypted: i=1; AJvYcCVmsITpeJ2gxMengTUdAzGDz7cM8yqrf4fGqRdMzMJBU78y1R9eZT7OQiRc/Z0/0Rl9Zh8bhHS6vSRplbeOk04b0nXLRGhvWolMlw==
-X-Gm-Message-State: AOJu0YxXH9Chs2LhtK+Ch9D91U8A2faszMimkQlVrOlBTf5S8PN1pnp8
-	eyIRYdjNygJHuuJQEdJlW7n19lVqIWXrYGgQ3bnYPRx36GDYfYswUq+zr4uAcqWYtX6f3cVqdPh
-	sHDT0opG6y5sfeAGA3jmmGze3zNtdlglYIkneHw==
-X-Google-Smtp-Source: AGHT+IFxPCU3aUsqiq75v8UkxRyLa6/K+D4YbVrUrwZxzduOFhICd6UrgSRPeNifliYxS3rzszb0p2HGn9HqqJ1UIJI=
-X-Received: by 2002:a25:6890:0:b0:ddd:7459:c970 with SMTP id
- d138-20020a256890000000b00ddd7459c970mr11800947ybc.63.1713293775884; Tue, 16
- Apr 2024 11:56:15 -0700 (PDT)
+	s=arc-20240116; t=1713294492; c=relaxed/simple;
+	bh=xoV/0NX+5XnKVIk3GmXGamNW0qmhi5b+KDk5yMo4UwE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=UoD5XQ8ih9g9ve/TDhm2YenUlcR705Z1Kw3TqKg/HVqIHygYNBl5eX72PkFuRd9qddKQR529QeYWo/WSM67sqMj3yPnKeyfIy6BkenOjVn9RkwiaIFN1Qbu+OBSLp4vU/eNtAYwDR/W58D7BGE2F/gpwmFB2P6+Yd+XItep18Vk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=ckF5F8tx; arc=none smtp.client-ip=212.227.15.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1713294452; x=1713899252; i=wahrenst@gmx.net;
+	bh=/h/viIiUYkLhfi7uF/NbFRpHXMV676+PkfpqOe2XJxY=;
+	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-Id:
+	 MIME-Version:Content-Transfer-Encoding:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=ckF5F8txHsSKptrqjnFSy4QXy6ztZXkXdExc4O/hL+j5YZ8/aJed4Bm93Dy1kliC
+	 oRModu2nLvN5vpz4OoGxyjREyAasDaHL/qHK+VJUi8OjQ6VerOSqRl0GgByQFq1BR
+	 WwcBQ1XdyZk56PS0ZV3bRJATd5UJQWEQTBGy86KJ6zJfj0c3HRHlr7eCAkolPNuju
+	 2o15qdlLDN4LIpb3gqYzntl1xCUk0h9TM0d/7MXXrrHOK6mlrTOXapR/e6Nj0qqB/
+	 N4j08xmv3zWByU7wiaQArf2IuOByELRLew3LWCf6I9H7Ol2oKhutVhRovemW81YQy
+	 rgkHAFKeaY0u0b2c3g==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from stefanw-SCHENKER ([37.4.248.43]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MYvY2-1sImyB4BMG-00Uqma; Tue, 16
+ Apr 2024 21:07:32 +0200
+From: Stefan Wahren <wahrenst@gmx.net>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: kernel@pengutronix.de,
+	imx@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Stefan Wahren <wahrenst@gmx.net>
+Subject: [PATCH 0/2] ARM: dts: imx6ull-tarragon: Minor changes
+Date: Tue, 16 Apr 2024 21:06:57 +0200
+Message-Id: <20240416190659.15430-1-wahrenst@gmx.net>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240416182005.75422-1-quic_ajipan@quicinc.com> <20240416182005.75422-4-quic_ajipan@quicinc.com>
-In-Reply-To: <20240416182005.75422-4-quic_ajipan@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 16 Apr 2024 21:56:05 +0300
-Message-ID: <CAA8EJprnMVSoOt7XtwcVXjFGzkPhompcfz3Zw4Hoxhk5-g5W0g@mail.gmail.com>
-Subject: Re: [PATCH V2 3/8] clk: qcom: Add DISPCC driver support for SM4450
-To: Ajit Pandey <quic_ajipan@quicinc.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>, 
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Taniya Das <quic_tdas@quicinc.com>, 
-	Jagadeesh Kona <quic_jkona@quicinc.com>, Imran Shaik <quic_imrashai@quicinc.com>, 
-	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:fBkg5eaKfA6ZRVcYjQEJD49r1pZnTgbDGdv9gnbQ4meJyCA7cDK
+ BGsZVXz1uQxb7/AzORSAh9rEIUoJ8SYuaZHX56nTVtyqzj6M7alKOxSeePIg6xsu+93d+ID
+ gCqJhbFc80/xaxMjOaB5ddHQAntZPXd/1Y58iSY9ACLLzKEC0Sq86z8VQddLmX2a+/Wtte7
+ nVobOegnqZLqoK6482DhA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:jBjl7F7v9aY=;v2OdQfFgilenzuqsSV3A7ueY69k
+ 6M4tvdSpwU1+O+xArl+2D/sTe0KrCDiQyXBMFLtT/WlS3qwFuN34zoYng2d7GBDfis6tXyyqa
+ w1M1Int8DZJu5+5mg51bziKRt1unZmaSipr0me8MLezBdo2lMNg9A81+qsIWlvOJVfVA8/7aM
+ Gz6f5xzEVScmqRQQhMWfv4iQ8xdutNQjOF3Qu7jB40++5PJ6D57PQ0Re6fhHngspMWiWzzM3u
+ txU4L/DMGCa8q/S4pu+H8BsGaLJ33silQOkgRODJ6i0dixlvZAtZ5qk+VRu3oZ+4BSOyboEGr
+ LbQD95Tjy4hR2uAt3R9gkfqRng0byb2cHKD40XK/G1QAd7qRf6KwlWK83YxLnMrZ7sAN8LGxK
+ tDwXNoIU2zKvKYJ4Haim/eirY4HMThJ6v8ovdxJxsMJuMRIssTS9FiY06S/HY6U04Ep84Oqv9
+ F8eyxdAF7Jd1gqcH0EdZ4maJ78t2R/sg9Vvol0fb1+eNef0TRSdCsiEPfbllY4y00hp/Az9Sb
+ Vz5iNlXM09fV7YGIH/WUPxJIZWl2L5saxHJhwVNFL4Zv4+aF5gSj5SpzXyb2Af4uKB6MrtGJy
+ LWEwcZgldesNgX56wlwEytDmuYAfIkPx6PtaUI0eevOCmltWcK6uaQNMeflB+PNKQBaJkzWzK
+ Vzul1OdCTrkrKsJ9iOfLPohZegIIwiB6UerPoyh0A7DxpxRGlzdUJE1UA0kpoem4IoiasJg+w
+ uek1ah6fk9yjmIBxRVGfm1cIN7sY5j2HDNklWxfCu6KDnuFrojEXxl5TFVhANfBvfmQhgxs5X
+ 6g3Vr6Yk1Br9kB6x87j0eJbREmLOrXF4enE/fScQe2ujE=
 
-On Tue, 16 Apr 2024 at 21:22, Ajit Pandey <quic_ajipan@quicinc.com> wrote:
->
-> Add Display Clock Controller (DISPCC) support for SM4450 platform.
->
-> Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
-> ---
->  drivers/clk/qcom/Kconfig         |  10 +
->  drivers/clk/qcom/Makefile        |   1 +
->  drivers/clk/qcom/dispcc-sm4450.c | 781 +++++++++++++++++++++++++++++++
->  3 files changed, 792 insertions(+)
->  create mode 100644 drivers/clk/qcom/dispcc-sm4450.c
->
-> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-> index 8ab08e7b5b6c..9fce64ced353 100644
-> --- a/drivers/clk/qcom/Kconfig
-> +++ b/drivers/clk/qcom/Kconfig
-> @@ -826,6 +826,16 @@ config SM_CAMCC_8550
->           Support for the camera clock controller on SM8550 devices.
->           Say Y if you want to support camera devices and camera functionality.
->
-> +config SM_DISPCC_4450
-> +       tristate "SM4450 Display Clock Controller"
-> +       depends on ARM64 || COMPILE_TEST
-> +       depends on SM_GCC_4450
-> +       help
-> +         Support for the display clock controller on Qualcomm Technologies, Inc
-> +         SM4450 devices.
-> +         Say Y if you want to support display devices and functionality such as
-> +         splash screen
-> +
->  config SM_DISPCC_6115
->         tristate "SM6115 Display Clock Controller"
->         depends on ARM64 || COMPILE_TEST
-> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
-> index dec5b6db6860..68d1c5192c86 100644
-> --- a/drivers/clk/qcom/Makefile
-> +++ b/drivers/clk/qcom/Makefile
-> @@ -109,6 +109,7 @@ obj-$(CONFIG_SM_CAMCC_6350) += camcc-sm6350.o
->  obj-$(CONFIG_SM_CAMCC_8250) += camcc-sm8250.o
->  obj-$(CONFIG_SM_CAMCC_8450) += camcc-sm8450.o
->  obj-$(CONFIG_SM_CAMCC_8550) += camcc-sm8550.o
-> +obj-$(CONFIG_SM_DISPCC_4450) += dispcc-sm4450.o
->  obj-$(CONFIG_SM_DISPCC_6115) += dispcc-sm6115.o
->  obj-$(CONFIG_SM_DISPCC_6125) += dispcc-sm6125.o
->  obj-$(CONFIG_SM_DISPCC_6350) += dispcc-sm6350.o
-> diff --git a/drivers/clk/qcom/dispcc-sm4450.c b/drivers/clk/qcom/dispcc-sm4450.c
-> new file mode 100644
-> index 000000000000..7668b4bafae5
-> --- /dev/null
-> +++ b/drivers/clk/qcom/dispcc-sm4450.c
-> @@ -0,0 +1,781 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/clk-provider.h>
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/of.h>
-> +#include <linux/regmap.h>
-> +#include <linux/platform_device.h>
-> +
-> +#include <dt-bindings/clock/qcom,sm4450-dispcc.h>
-> +
-> +#include "clk-alpha-pll.h"
-> +#include "clk-branch.h"
-> +#include "clk-pll.h"
-> +#include "clk-rcg.h"
-> +#include "clk-regmap.h"
-> +#include "clk-regmap-divider.h"
-> +#include "common.h"
-> +#include "gdsc.h"
-> +#include "reset.h"
-> +
-> +enum {
-> +       DT_BI_TCXO,
-> +       DT_BI_TCXO_AO,
-> +       DT_AHB_CLK,
-> +       DT_SLEEP_CLK,
-> +
-> +       DT_DSI0_PHY_PLL_OUT_BYTECLK,
-> +       DT_DSI0_PHY_PLL_OUT_DSICLK,
-> +};
-> +
-> +enum {
-> +       P_BI_TCXO,
-> +       P_DISP_CC_PLL0_OUT_MAIN,
-> +       P_DISP_CC_PLL1_OUT_EVEN,
-> +       P_DISP_CC_PLL1_OUT_MAIN,
-> +       P_DSI0_PHY_PLL_OUT_BYTECLK,
-> +       P_DSI0_PHY_PLL_OUT_DSICLK,
-> +       P_SLEEP_CLK,
-> +};
-> +
-> +static const struct pll_vco lucid_evo_vco[] = {
-> +       { 249600000, 2020000000, 0 },
-> +};
-> +
-> +/* 600.0 MHz Configuration */
-> +static const struct alpha_pll_config disp_cc_pll0_config = {
-> +       .l = 0x1f,
-> +       .alpha = 0x4000,
-> +       .config_ctl_val = 0x20485699,
-> +       .config_ctl_hi_val = 0x00182261,
-> +       .config_ctl_hi1_val = 0x32aa299c,
-> +       .user_ctl_val = 0x00000000,
-> +       .user_ctl_hi_val = 0x00000805,
-> +};
-> +
-> +static struct clk_alpha_pll disp_cc_pll0 = {
-> +       .offset = 0x0,
-> +       .vco_table = lucid_evo_vco,
-> +       .num_vco = ARRAY_SIZE(lucid_evo_vco),
-> +       .regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_LUCID_EVO],
-> +       .clkr = {
-> +               .hw.init = &(const struct clk_init_data) {
-> +                       .name = "disp_cc_pll0",
-> +                       .parent_data = &(const struct clk_parent_data) {
-> +                               .index = DT_BI_TCXO,
-> +                       },
-> +                       .num_parents = 1,
-> +                       .ops = &clk_alpha_pll_lucid_evo_ops,
-> +               },
-> +       },
-> +};
-> +
-> +/* 600.0 MHz Configuration */
-> +static const struct alpha_pll_config disp_cc_pll1_config = {
+This small series contains 2 changes for the chargebyte Tarragon
+boards.
 
-Can disp_cc_pll0_config be used here?
+Michael Heimpold (1):
+  ARM: dts: imx6ull-tarragon: fix USB over-current polarity
 
-> +       .l = 0x1f,
-> +       .alpha = 0x4000,
-> +       .config_ctl_val = 0x20485699,
-> +       .config_ctl_hi_val = 0x00182261,
-> +       .config_ctl_hi1_val = 0x32aa299c,
-> +       .user_ctl_val = 0x00000000,
-> +       .user_ctl_hi_val = 0x00000805,
-> +};
+Stefan Wahren (1):
+  ARM: dts: imx6ull-tarragon: Reduce SPI clock for QCA7000
 
-With that fixed:
+ arch/arm/boot/dts/nxp/imx/imx6ull-tarragon-common.dtsi | 1 +
+ arch/arm/boot/dts/nxp/imx/imx6ull-tarragon-master.dts  | 4 ++--
+ arch/arm/boot/dts/nxp/imx/imx6ull-tarragon-slave.dts   | 2 +-
+ arch/arm/boot/dts/nxp/imx/imx6ull-tarragon-slavext.dts | 2 +-
+ 4 files changed, 5 insertions(+), 4 deletions(-)
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+=2D-
+2.34.1
 
-
--- 
-With best wishes
-Dmitry
 
