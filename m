@@ -1,198 +1,246 @@
-Return-Path: <devicetree+bounces-59746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4AB18A6F38
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 17:02:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43A138A6F42
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 17:03:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C82AB1C21490
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 15:02:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E95F4281E1F
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 15:03:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8B2A130AE1;
-	Tue, 16 Apr 2024 15:01:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18F4C12F392;
+	Tue, 16 Apr 2024 15:03:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="jJMSpz3S"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d1EqWvM4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2086.outbound.protection.outlook.com [40.107.6.86])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0469C130AEC
-	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 15:01:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.6.86
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713279682; cv=fail; b=VPOKX5JX9cY72QjFlVvInZjTayz8QZJ2OgR+126Os/EoAoJai/H9HNLuAlzjhmU0HQP46f0RdgZTslZmwVnSkMbvwKEgKf3/4ivx8prwe1gnKzJcIkjg6mGTjeDLa+ulg7dqlY61ETtoW5xLNznIBNGIRNBpnlqtqSD2IOPNNl8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713279682; c=relaxed/simple;
-	bh=U77LR2Wsyu7cpS68XdjztdUiAn0bBiIl9DMNAlajT9M=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=K8KbJSn8KUhLiVdxIeWtE3sY5/QIQWC3KJrOkv8ljyZ+PYWhfBBmU3KuWLRckBn27I61D2Qvf6VSK19JkCLyXBzhp7vQH0k1+o+Mwhm4GjbDuwEl2jIoWvGE6t9zGFVgFc+KqEwVOrN2bopm+dvNt2tR65LbCdge0DIVy2KOEOM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=jJMSpz3S; arc=fail smtp.client-ip=40.107.6.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WO11t6V4DKwBfIYvP+0iMT9oJYR4aZiAJavTkT2RDeYM/IKjyrque9llyHJDJMvTY81J/7/L5rQf27fmj1MVYMLEFCXJpomZxqryWooEM1eRWij9S0NiV2/obrUxilhkyB0I8lChMSTaVZWNyMYSJ0yhuxI8leTX/R9rN1mJwhW8YwriL45YhotGNO/BlSnjRZh3jNXvmQVBloXVdH+p0TkHHFhjDtwrrh6c5+AAUb4OhA0P0ekPH3TvxCys8u+57D54Q8It7D2ENXuE25ii8AaO8SJmrLaSiRoShB3d8oxhk2/5LFjV0ijbtSMetV2Q4UxbFBOfqgjvaEXR6+5i5A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7+FoYLsobtJx2Ch8O9TBCjQjvp1ONHyWwffKgr2BS7o=;
- b=Qf/ox+DT8/u8w4FU7pdVy3ydRgQQfYS7mnBnWMfGwEQKzQ6NgiCgM1iUZAAFUcMWtLWKcpnUA3909b3IQFXUT1i7V2omx0cYbAb78NFwMKMungAaxPuunwqJrFLqoBOLLrvASJGxVVwsQKXb5Jv2uqGHmLLftAhMdQyfAYWYzVXpo9Qg47n9fotiB6kJRxaDdNKsVMfBV+dDN0tphCTl+mvx/lMy48UKw0hwQpkO4T35FWn5EsBjkgNogecFCS8FgkNcR1rfLzEEkE1kJyvdha8zxN6kfBdI7clG/oR2YRXKm+rxOMEKMQf059oCuMZsATLR+waxRUKLFz7Zn6pWEQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7+FoYLsobtJx2Ch8O9TBCjQjvp1ONHyWwffKgr2BS7o=;
- b=jJMSpz3SdpWzV0O7LQr1VPRGnfhY3eY32K9VOQZPdufLRp8BG3DxY4tvQzkhsBvSea6ztyiwStCTSBstVJWklFysgOGzWYTgL8+IU+WTtW7wBac4nri+rKbn7eolRNsZen60DRAAUpKxUZY7P1F333lautcynwjDTzDmsUHaXj8=
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by DB9PR04MB8431.eurprd04.prod.outlook.com (2603:10a6:10:24e::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.50; Tue, 16 Apr
- 2024 15:01:13 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::d30b:44e7:e78e:662d]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::d30b:44e7:e78e:662d%4]) with mapi id 15.20.7452.049; Tue, 16 Apr 2024
- 15:01:09 +0000
-From: Peng Fan <peng.fan@nxp.com>
-To: Marek Vasut <marex@denx.de>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>
-CC: Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Laurent Pinchart
-	<laurent.pinchart@ideasonboard.com>, Paul Elder
-	<paul.elder@ideasonboard.com>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, Sascha Hauer
-	<s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>, "G.N. Zhou"
-	<guoniu.zhou@nxp.com>
-Subject: RE: [PATCH v2] arm64: dts: imx8mp: Align both CSI2 pixel clock
-Thread-Topic: [PATCH v2] arm64: dts: imx8mp: Align both CSI2 pixel clock
-Thread-Index: AQHakAmOWMT1O5M1oEi6lA340xpOkLFq/Tow
-Date: Tue, 16 Apr 2024 15:01:09 +0000
-Message-ID:
- <DU0PR04MB9417681F7C7551DF5BF4C4CC88082@DU0PR04MB9417.eurprd04.prod.outlook.com>
-References: <20240416141914.9375-1-marex@denx.de>
-In-Reply-To: <20240416141914.9375-1-marex@denx.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|DB9PR04MB8431:EE_
-x-ms-office365-filtering-correlation-id: 3268b354-afb0-4ca7-e6e6-08dc5e260c8d
-x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- HmWQHgiyk38IrVqtc7UstFJ1mHuHFz8E3HKssiGDp3Z/dGUeBLffX+Y/5njXv+OMvOVS3Qo7i/HE9DSNlEGdJxskDEos/2aovYn1FGsB77wVAHXTi49ooxPshjVqjxpEgJC8DJgnx5Y29WNWobit2WPJ3zBlcJnUvAsue/6lZDZXjIrX/kLGt4+3eVQ35M9PPx07JPer4Ov60wFlPSFOGq6tFEX0ragOR08i/+W2WdCkxxPXUwo1B92m4QyA2V6/5NQ0JDj+fyTA2rHTfTqltJ/z1dlbubDLaMPJ8ln3pFVBX7cgTcK5WrQ/ljeNRAucKlMIKYkDWIorXpNAgi32fF5k0ekqB8Grz0MfRN8/qg3zeisWlKTqRH9fr54eHQAzHboVwuRHvP9mAVF4Cp3GKCHIw5FTi0bXu6Gqu+8F5Za+SA+9IHYVZHbCzopBM0Ht4WiFrguhkgf3PNyI88V/zoFo0jAlo3XexY4cbDi0ivVTYAZ6fhDs9RVJukULr4gHVJW0HmGheslxe+s8CuJSteqMQAhIJfShTGCfI3T6jSewF8FihV6Wvy2OnNR1Xb6ZdDOv/rep2P9wZYBWvK8JVI+QV0ZX2cz90v5P6QWD607pTlzYQsB5gj6YjurwhebAepqe/ZSqIU8jhWSBlgqztS8JxGM6lKYDiae/e55HfPJKdRGEKTvFR3mBiHJn5qUUGrWoND0RzMS8b+rYpmzO5ouOtAe+DftXswjSW+heMwg=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(1800799015)(376005)(7416005)(38070700009);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?tb8UC9L5tcSMwwvQICIwF9WmGOkJ9Mhw6lArsMsPTibLkZOrHQ6lafhnhsnb?=
- =?us-ascii?Q?yfvvJtKFypP5yrKgLVucv/ZA/qytj3R4wWCwcuqOW5mVx6NhPyB1ygXm52iM?=
- =?us-ascii?Q?oxZTwH7/acvugoUOLNc/vVctJKrbEbfmgUY5ppnpNDwBJL5peNMJi9ay5es0?=
- =?us-ascii?Q?XA2PKfCRyigMjLgul9J4DE9JDMNvpOwzROKzji4eO3BHkcYeH3aY4aLVSBFI?=
- =?us-ascii?Q?Z3W2OcsTKOmo3Lf6Whwbcnj9Aec7fiurjdSzA5nawyB41HUP3lrZYpPnZKYT?=
- =?us-ascii?Q?1aDUjTuLmihtL/6o6rd7KvG9xWWB9eMx2JHbrGNji3guZgtRK7vP6L5P/Dl4?=
- =?us-ascii?Q?bQtfD/rBAo12r61m0oRDl1mmFX0oPnSllE6wzwjX6ZKjOl2fcY07U/ICmdna?=
- =?us-ascii?Q?f/8aD7Pc1hQmCpf6bcqCRfpwf4iJcHZoNd4dGpARJ37248ATlgosqKjmi8+x?=
- =?us-ascii?Q?1yNm3gdPjCpJZRn4sIjeTZsxn32D2gZlXHoIv6oIJmoV7ib6dq5+GoZPJ0Ob?=
- =?us-ascii?Q?zbv0CD0eqB5hiGYzfhalatko9V9HRKMdCPB0++9pMA/mN6wce8yT4zDbObnF?=
- =?us-ascii?Q?vV25EAfMHfbfTIkrX0U54vhKWstSx6UWVopRNI97w1PoSFRZlqANgeqvfQN6?=
- =?us-ascii?Q?WGZRAl1ZzAQRWCWARHXclSBMiZtXc/fZGFuwAuyQ986wtvH5zJLm7jOLKwQc?=
- =?us-ascii?Q?UO7Mu37K/hy3RR8sA4z3coJccv7eYZRoZpCUBkl3MiUeB29qPcBWRSxoEVqL?=
- =?us-ascii?Q?qKbeeWj2xBIToO7a/deTdR3BF8roMONj3gjTuP/Ul8seOSKDkzYaMj67nhZF?=
- =?us-ascii?Q?xnrwPh/AHaY5NumJ+lu9vBzCoejQ5m8q+0Mb7uvFLcY8hd+7txplm19jEFWU?=
- =?us-ascii?Q?EWpHDK2pHBFfXai0L3AViL6vDy4M3bTvO4f8fmS7znScRsNyn2s8jDmGvWaq?=
- =?us-ascii?Q?HDFF4+xwiKm8p7iUX8hAWVfoBGlhmyTyaEgNNo1xHxK4JfQtpGvP4mujq/XJ?=
- =?us-ascii?Q?lYyGn6f9xwTWVGrC5TAWlC6Nar0ZVo1q0s1Z6wYUT5QNQrrWrud7bKLxubqZ?=
- =?us-ascii?Q?ke+FzDlBuHPh/I5hZFvKKaCAEu2oY5OFgSEt/TAm5qWUiY5lbztTo7YEiv6d?=
- =?us-ascii?Q?fWJw3/JOgfNEWrpWlCCgmtzp3aox+031XYBlrqY9rm6fWpAyOl0tWEsjhRqs?=
- =?us-ascii?Q?55UccJqzr/R6B1v6DK5OfpekbZ03PndMA5PI2mlQmO1dBnHzBpC03TTz99/m?=
- =?us-ascii?Q?EYnOWfAi7G282TSh3alMHEFI6K6jhaHnXwEZOdSd5oHDXfGkACXKgSoH7ASO?=
- =?us-ascii?Q?9NRiU3SYpudTZuulSYurGsdHyttpUknYXCITHSIy1R9VfvY6D/5OpqPJnosh?=
- =?us-ascii?Q?zbj9KH5RoF5aoCbYHDFeeb2JM+/hCQBYCVPVETwJSFHnBnIkT1uhP5dnZKeQ?=
- =?us-ascii?Q?yRisrQiNBD8bmXRy5Nowmpk80sWYzJre28F69q48Vd9MXcKS32bVJ2nhLDA8?=
- =?us-ascii?Q?DcFIxDJ90Css6pi2e9679RP8rh77W9w1ZoI/ILWUbbuzjnSaZR/aOkBBD7xF?=
- =?us-ascii?Q?tsQ3HAOWPYTwCDAH2Uc=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF9B212C47A;
+	Tue, 16 Apr 2024 15:03:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713279808; cv=none; b=KPNA/zk5UcfMaSaPnr8cB/Np2gpqC9pvjstoJ9nFmgcg9c/ROw+QpjrwmfjDkjHk8zw5csA+gJFawI5xfxdeTTyOReBKqyhOUAnMbMSeGUkBLJayk/qUNrxQSHC2YFHsZEzXk5F/zN2dlAeiaPpgqHea3IZ8zKsFq/3OSLU2gA4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713279808; c=relaxed/simple;
+	bh=0dFehR7bAofXvwdhbQHUWpVwxNS4jlbytNrjxajS/Pg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hs5MoXZHwUfWUwQj15pwRco7LA3j6dTuBf5CqMZ9YERMPKwc//W3NFqHf8SJ3L0WPOvI4zCxKisHt2fVQK3K51iU+6weopSu3AsEhVirFte9CzpgrJEKp1O9LThMk757OCHESk3Z3K3SH7/93aqsqUk+DGcwyzu1bJGtnB5qcWw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d1EqWvM4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBA14C113CE;
+	Tue, 16 Apr 2024 15:03:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713279807;
+	bh=0dFehR7bAofXvwdhbQHUWpVwxNS4jlbytNrjxajS/Pg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=d1EqWvM4R01QG++RsWmY7K55v0olQvvgXIenexsbrc4JKA4nwVfDNHbXnpJ2hODiu
+	 uKXP42Z5t3X8ceOGrFIX++T91LRgNZrljeuacqKst+uLTaMHaV99gERfLC1bHjBbod
+	 uCrU9jKaCvpAs4YTPg8bY4yfClF1wx8tsQqjMthQc5BA0EToSY6K1fPSqef/N+PSro
+	 ozaY5pPAqJBmIuxx6sHAeyRk60Mr9DyVOlmvpu+y3z4jVI9aHvcO3wiChQu9vPek6+
+	 ANtnjbfUJ/4nZQqhFLpPwXnHN61iI1y9UYuY2KOIzVPTHSIbTmXWfY9vUYJGk1R2cL
+	 GwKYqAUJQnPDg==
+Date: Tue, 16 Apr 2024 16:03:20 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Charlie Jenkins <charlie@rivosinc.com>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Evan Green <evan@rivosinc.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v2 01/17] riscv: cpufeature: Fix thead vector hwcap
+ removal
+Message-ID: <20240416-swipe-flattered-7cdccc01f0fe@spud>
+References: <20240415-dev-charlie-support_thead_vector_6_9-v2-0-c7d68c603268@rivosinc.com>
+ <20240415-dev-charlie-support_thead_vector_6_9-v2-1-c7d68c603268@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3268b354-afb0-4ca7-e6e6-08dc5e260c8d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Apr 2024 15:01:09.1940
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: LT1Clgt4RYWUFOZPHHH+uf2FMdLYN+UWQ1pLYyCNEsoWFwffr8tVWpcm5S7e+3dNg+EuI6nbhKsNP/oAPrgPxQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8431
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="RbQjJEERG41bUbGr"
+Content-Disposition: inline
+In-Reply-To: <20240415-dev-charlie-support_thead_vector_6_9-v2-1-c7d68c603268@rivosinc.com>
 
-> Subject: [PATCH v2] arm64: dts: imx8mp: Align both CSI2 pixel clock
->=20
-> Configure both CSI2 assigned-clock-rates the same way.
-> There does not seem to be any reason for keeping the two CSI2 pixel clock=
- set
-> to different frequencies.
->=20
-> This also reduces first CSI2 clock from overdrive mode frequency which is=
- 500
-> MHz down below the regular mode frequency of 400 MHz.
->=20
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Paul Elder <paul.elder@ideasonboard.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: imx@lists.linux.dev
-> Cc: linux-arm-kernel@lists.infradead.org
 
-Reviewed-by: Peng Fan <peng.fan@nxp.com>
-> ---
-> V2: Align both clock to 266 MHz and update commit message
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+--RbQjJEERG41bUbGr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Apr 15, 2024 at 09:11:58PM -0700, Charlie Jenkins wrote:
+> The riscv_cpuinfo struct that contains mvendorid and marchid is not
+> populated until all harts are booted which happens after the DT parsing.
+> Use the vendorid/archid values from the DT if available or assume all
+> harts have the same values as the boot hart as a fallback.
 >=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> index 1bb96e96639f2..7883f5c056f4e 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -1667,7 +1667,7 @@ mipi_csi_0: csi@32e40000 {
->  						  <&clk
-> IMX8MP_CLK_MEDIA_MIPI_PHY1_REF>;
->  				assigned-clock-parents =3D <&clk
-> IMX8MP_SYS_PLL2_1000M>,
->  							 <&clk
-> IMX8MP_CLK_24M>;
-> -				assigned-clock-rates =3D <500000000>;
-> +				assigned-clock-rates =3D <266000000>;
->  				power-domains =3D <&media_blk_ctrl
-> IMX8MP_MEDIABLK_PD_MIPI_CSI2_1>;
->  				status =3D "disabled";
+> Fixes: d82f32202e0d ("RISC-V: Ignore V from the riscv,isa DT property on =
+older T-Head CPUs")
+> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+> ---
+>  arch/riscv/include/asm/sbi.h   |  2 ++
+>  arch/riscv/kernel/cpu.c        | 36 ++++++++++++++++++++++++++++++++----
+>  arch/riscv/kernel/cpufeature.c | 12 ++++++++++--
+>  3 files changed, 44 insertions(+), 6 deletions(-)
 >=20
-> --
-> 2.43.0
+> diff --git a/arch/riscv/include/asm/sbi.h b/arch/riscv/include/asm/sbi.h
+> index 6e68f8dff76b..0fab508a65b3 100644
+> --- a/arch/riscv/include/asm/sbi.h
+> +++ b/arch/riscv/include/asm/sbi.h
+> @@ -370,6 +370,8 @@ static inline int sbi_remote_fence_i(const struct cpu=
+mask *cpu_mask) { return -1
+>  static inline void sbi_init(void) {}
+>  #endif /* CONFIG_RISCV_SBI */
+> =20
+> +unsigned long riscv_get_mvendorid(void);
+> +unsigned long riscv_get_marchid(void);
+>  unsigned long riscv_cached_mvendorid(unsigned int cpu_id);
+>  unsigned long riscv_cached_marchid(unsigned int cpu_id);
+>  unsigned long riscv_cached_mimpid(unsigned int cpu_id);
+> diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
+> index d11d6320fb0d..8c8250b98752 100644
+> --- a/arch/riscv/kernel/cpu.c
+> +++ b/arch/riscv/kernel/cpu.c
+> @@ -139,6 +139,34 @@ int riscv_of_parent_hartid(struct device_node *node,=
+ unsigned long *hartid)
+>  	return -1;
+>  }
+> =20
+> +unsigned long __init riscv_get_marchid(void)
+> +{
+> +	struct riscv_cpuinfo *ci =3D this_cpu_ptr(&riscv_cpuinfo);
+> +
+> +#if IS_ENABLED(CONFIG_RISCV_SBI)
+> +	ci->marchid =3D sbi_spec_is_0_1() ? 0 : sbi_get_marchid();
+> +#elif IS_ENABLED(CONFIG_RISCV_M_MODE)
+> +	ci->marchid =3D csr_read(CSR_MARCHID);
+> +#else
+> +	ci->marchid =3D 0;
+> +#endif
+> +	return ci->marchid;
+> +}
+> +
+> +unsigned long __init riscv_get_mvendorid(void)
+> +{
+> +	struct riscv_cpuinfo *ci =3D this_cpu_ptr(&riscv_cpuinfo);
+> +
+> +#if IS_ENABLED(CONFIG_RISCV_SBI)
+> +	ci->mvendorid =3D sbi_spec_is_0_1() ? 0 : sbi_get_mvendorid();
+> +#elif IS_ENABLED(CONFIG_RISCV_M_MODE)
+> +	ci->mvendorid =3D csr_read(CSR_MVENDORID);
+> +#else
+> +	ci->mvendorid =3D 0;
+> +#endif
+> +	return ci->mvendorid;
+> +}
+> +
+>  DEFINE_PER_CPU(struct riscv_cpuinfo, riscv_cpuinfo);
+> =20
+>  unsigned long riscv_cached_mvendorid(unsigned int cpu_id)
+> @@ -170,12 +198,12 @@ static int riscv_cpuinfo_starting(unsigned int cpu)
+>  	struct riscv_cpuinfo *ci =3D this_cpu_ptr(&riscv_cpuinfo);
+> =20
+>  #if IS_ENABLED(CONFIG_RISCV_SBI)
+> -	ci->mvendorid =3D sbi_spec_is_0_1() ? 0 : sbi_get_mvendorid();
+> -	ci->marchid =3D sbi_spec_is_0_1() ? 0 : sbi_get_marchid();
+> +	ci->mvendorid =3D ci->mvendorid ? ci->mvendorid : sbi_spec_is_0_1() ? 0=
+ : sbi_get_mvendorid();
+> +	ci->marchid =3D ci->marchid ? ci->marchid : sbi_spec_is_0_1() ? 0 : sbi=
+_get_marchid();
+
+Can we please not have double ternary stuff? This is awful to grok :(
+Can you do
+if (!ci->m*id)
+	sbi_spec_is_0_1() ? 0 : sbi_get_m*id();
+instead? I think that is much easier to understand.
+Otherwise,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+>  	ci->mimpid =3D sbi_spec_is_0_1() ? 0 : sbi_get_mimpid();
+>  #elif IS_ENABLED(CONFIG_RISCV_M_MODE)
+> -	ci->mvendorid =3D csr_read(CSR_MVENDORID);
+> -	ci->marchid =3D csr_read(CSR_MARCHID);
+> +	ci->mvendorid =3D ci->mvendorid ? ci->mvendorid : csr_read(CSR_MVENDORI=
+D);
+> +	ci->marchid =3D ci->marchid ? ci->marchid : csr_read(CSR_MARCHID);
+>  	ci->mimpid =3D csr_read(CSR_MIMPID);
+>  #else
+>  	ci->mvendorid =3D 0;
+> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeatur=
+e.c
+> index 3ed2359eae35..c6e27b45e192 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -490,6 +490,8 @@ static void __init riscv_fill_hwcap_from_isa_string(u=
+nsigned long *isa2hwcap)
+>  	struct acpi_table_header *rhct;
+>  	acpi_status status;
+>  	unsigned int cpu;
+> +	u64 boot_vendorid;
+> +	u64 boot_archid;
+> =20
+>  	if (!acpi_disabled) {
+>  		status =3D acpi_get_table(ACPI_SIG_RHCT, 0, &rhct);
+> @@ -497,6 +499,13 @@ static void __init riscv_fill_hwcap_from_isa_string(=
+unsigned long *isa2hwcap)
+>  			return;
+>  	}
+> =20
+> +	/*
+> +	 * Naively assume that all harts have the same mvendorid/marchid as the
+> +	 * boot hart.
+> +	 */
+> +	boot_vendorid =3D riscv_get_mvendorid();
+> +	boot_archid =3D riscv_get_marchid();
+> +
+>  	for_each_possible_cpu(cpu) {
+>  		struct riscv_isainfo *isainfo =3D &hart_isa[cpu];
+>  		unsigned long this_hwcap =3D 0;
+> @@ -544,8 +553,7 @@ static void __init riscv_fill_hwcap_from_isa_string(u=
+nsigned long *isa2hwcap)
+>  		 * CPU cores with the ratified spec will contain non-zero
+>  		 * marchid.
+>  		 */
+> -		if (acpi_disabled && riscv_cached_mvendorid(cpu) =3D=3D THEAD_VENDOR_I=
+D &&
+> -		    riscv_cached_marchid(cpu) =3D=3D 0x0) {
+> +		if (acpi_disabled && boot_vendorid =3D=3D THEAD_VENDOR_ID && boot_arch=
+id =3D=3D 0x0) {
+>  			this_hwcap &=3D ~isa2hwcap[RISCV_ISA_EXT_v];
+>  			clear_bit(RISCV_ISA_EXT_v, isainfo->isa);
+>  		}
+>=20
+> --=20
+> 2.44.0
 >=20
 
+--RbQjJEERG41bUbGr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZh6TOAAKCRB4tDGHoIJi
+0ugHAP9wq53A/rRMZA7YNcwk3t+YkspiOROzoX/lB6mQceQcywEA6kOQ31DLs19U
+K7NuAGuzzBkZ9AZreTReZw47pw/tXwo=
+=YaUr
+-----END PGP SIGNATURE-----
+
+--RbQjJEERG41bUbGr--
 
