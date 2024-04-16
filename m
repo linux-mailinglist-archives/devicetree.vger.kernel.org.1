@@ -1,160 +1,137 @@
-Return-Path: <devicetree+bounces-59682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CCF58A6A01
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 13:57:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B5F58A6A38
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 14:07:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDEC71F21660
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 11:57:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADF801C20B6A
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 12:06:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8E72129E70;
-	Tue, 16 Apr 2024 11:57:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEEF3129E85;
+	Tue, 16 Apr 2024 12:06:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lUiVh0v6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q6R8VmxA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BBDE128361
-	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 11:57:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46D896D1BC;
+	Tue, 16 Apr 2024 12:06:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713268624; cv=none; b=nU/6Kix6OxARZ3LaIvukUn3ksuW4iM6X9k1fJ3Bka3q3GHm1INu3PHAOEyQ2c7/5gtZvvQv5lbsIxR+WkerS2OPKjhFEkV6flIx8/V7xseZHP4WKT2wtt0NWvH7I59+zkpNDQdZnTCnWtoK3cG9EGJg7DTNMXYXS37HMM5eX9fs=
+	t=1713269217; cv=none; b=cwQcMt3avox2sUpTbINcKKqIJvCAMl5mKre9gx7XsdADejJVHC9mgy2JRY00GHlSfu4TbHnUeBC/DRhq9+5JuW7Sma5XAAmy6F/KD6fH45SeppqujxU1E6WMl3Nw8vITAtwP4f+NOhmVweJFjPwNoiEpLDVMnHr4u4TdbmymDo8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713268624; c=relaxed/simple;
-	bh=vIl3v//FVA36XrKiforyh9hY0/yXzSMuW90U1Lzldf4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=J9wbjG8lz+e4LMemjsbyPaeqH7wJCSObh5bd6fcJ51yXtyzdepBAWwQVGN332RICSY9xYGCR7MEp8kk7ry8tZEnehX2JH7R/uoy5KBLEUPc7h36ePrvP2ey6LbtNu06OkUg1Axy5FJO/eRR0Bz6ZXOuy9pmDKNLK11KUa82KHnk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lUiVh0v6; arc=none smtp.client-ip=209.85.161.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oo1-f48.google.com with SMTP id 006d021491bc7-5aa1e9527d1so3060238eaf.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 04:57:02 -0700 (PDT)
+	s=arc-20240116; t=1713269217; c=relaxed/simple;
+	bh=aLGjwKsUkhJyDnihkDIIByyYkg6df93bUPXuv1sTlYw=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=FxRDTcg6gEI18xy/v84KvoJ+xnNqKg0kW11HJxNwuo0hPkIRHG5iizQllzO1ncQBT1cp1MTgJowFUPzMg8s63LQIzskN3FMBiZi/UuEdlLEB09LeQuem8aA5N/v9c/TI/nKVt3qTGtVK14c0HleGMLsVR5j9D2/aXufimQeCBvA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q6R8VmxA; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-1e3ca546d40so30651725ad.3;
+        Tue, 16 Apr 2024 05:06:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713268622; x=1713873422; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1713269213; x=1713874013; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ophtYrF9IpPwZurMvgYV2hp9I3BGj1tkL8j63ZRtc2I=;
-        b=lUiVh0v6VXLizYUcK0M96Bctmm2xWa0laYIWV6HrsIrGktNGwYh70q/FZCP2ZBHvzG
-         9ln/Av54beFwnCve/6yPbPgpQ/5BCSbQ0pPMIN2aU3S5QFzEcQyYxTzoVCB37bJsvb1r
-         N8gEtd31m+Ax7EZu3csc7Sr12XzcGFWGQs0Q6Au9GWI9rEdzjGB2HVYxw7Y1Fr2Z/L0Y
-         9PzKIYAGdFC6gg8acLr0EieHFMB0GTkiw6MPD9JuYvFhZpIKGYeL3iAsS2FG5KyhBGED
-         qy9d7wRlOA5qj7centymS1MUENzdxEmldiwPoFu+k91P4dzV8GlKBSbk5Kfms4btnU2V
-         ykFA==
+        bh=5bxCFPrPN7YYp9G6q6vxreo9zNUW585IcR1CQUImrPQ=;
+        b=Q6R8VmxAdY4Pt2XUpv6pcrpSQ1+YI+Ba+uHmHjzl10T2QLlic3Fq8rQEXUdKvb7+Ne
+         Hzb0TxMXjTo4p9uRT4wHQw00bOkLkKCEmvKa9RTTzBaE95mbOpz6j3fXtG3/DJZEIngN
+         WhF+NgtXkQCBPD/QBHeVosA/+HMxfGUCMbIsI/na14hI7qBobAWUb7SsuV0/IHFqE0aW
+         SWNXKM5WKOL8UCBK2Xn07x0PX4ypYuB2eDME6NLNUSnCIQ73EYsfIFZq/2xi4skVZf1I
+         bsBLDfzMxp6EBNCa6gGiUIpoOLphbRf7xk+hNYrG3vKDimYVYkYu6zCN+AbGI++9V5Eo
+         RDMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713268622; x=1713873422;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1713269213; x=1713874013;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ophtYrF9IpPwZurMvgYV2hp9I3BGj1tkL8j63ZRtc2I=;
-        b=E2FL5d3djJIvQaGLYsuWe4pw4SxDuTsPso9AYexSW89yfNsN3diWsKMVX5ALSHgDxF
-         LBVUztCYtTfBCxN9D0j6JXiXeYRC08DR6MCF4y+ayD4hcxEOneHIj62MsenJ7Y6LwBuE
-         e0KmxjWGK/cpj+vNmMcmrzTkHewcw4zrXQ6dgEQrJvjxMqctQmjy7IxNffiKNdqBCJsW
-         F8hB1jBQpRCz7faUip0/maB8ce/tLxxpXJwesYDksXmTcmk5D/n1yV9hrFpwmyTQ6s2l
-         8xeQ4uKfQAyq6l/xDHR8jHZevvHTrLIluvKCoNLJJiqtucUrOJhpaJijedJ8a9md3JD3
-         UlwA==
-X-Forwarded-Encrypted: i=1; AJvYcCUjKqzfvUx28brBOafDs5lME6eQapQS+s3DEG/enJOYsDlzGBnglcFnE8Fw8Pr6uHohB8jLtigZTYj2X7pIFOzVPDr6XqrwW3bWMA==
-X-Gm-Message-State: AOJu0YyJ/Sv0QpM8a0U7GWBVzDB5nS01wnB2M8PgxCDXCcRCARgoac2E
-	9phScXjHbZaDlaXrqLIaK/vCWtosyWwK/QAlVH/E13apf3fXunVGI86SKxaeIdec7pH1Rnl+LZ8
-	/vms6jfPERajTjk2QgA23n/5L8C7k4uY59E9n2w==
-X-Google-Smtp-Source: AGHT+IGdAJXHt7mAsVZuzt9JgE7vdWoLagtGQT3T15A+kBPHpQZl6zuXKVT8ycszrHB5VvpVeZdYSex6pwkAq/Bp7sg=
-X-Received: by 2002:a4a:aecb:0:b0:5ac:9efc:3b02 with SMTP id
- v11-20020a4aaecb000000b005ac9efc3b02mr5501112oon.8.1713268621486; Tue, 16 Apr
- 2024 04:57:01 -0700 (PDT)
+        bh=5bxCFPrPN7YYp9G6q6vxreo9zNUW585IcR1CQUImrPQ=;
+        b=wKHDc5qZWkZe/E3BnInD7qreZC9QdAIJnuQ7NzU6mOjkJ7X64a+u4v2T0YtE/aLWm2
+         39yqBlsRU+7tmaiR50KdU/JYEvVX6J66aK20g3zOxewZfPEyeNCSL3t29AT/1yY2C5Py
+         ZWKoXkMazGQdIHBrN/mBNqVebmykx1TnL4fQM6bOtzBxMZW8EWR3Ls0lIf52/9rKQWHE
+         j4qwSwLxIZEy4osGzaWWSkOeA5eI4LvB/4GSwROfG/ddTW56LPb52U2xujwxUF190o5O
+         oQfhuL8BRQylD6CvzNdyqmPR30jjrd7pkHYDBqzlgDfRemI4Dek4I/v6wYR0Be03ZVfT
+         G2gw==
+X-Forwarded-Encrypted: i=1; AJvYcCXlyLhe74eGBTvYtKcd7Vw+R7njIGDPuOKkP67d6/j/xIG6ikxjTsJxHPfUNLYYyhsHRCOudEBusHsD9PrMLwQXOaPZbX/m4wQ+NC1D
+X-Gm-Message-State: AOJu0Yxxqk5af00seGx9GUr84U5m17oyB9p28F1cZsuyPelpam7UlTF+
+	wAsVPJZyuEVrzop6yaODcbJO7tTQTFjW8lH0CtUxPrGEBX8/KauM
+X-Google-Smtp-Source: AGHT+IHJUj+W9eJafOlJEfgDLN0EndGh1v6rprUj/GjSniPiLyQ1kYUQIqtp8KYoLEs3BGKJk++KYg==
+X-Received: by 2002:a17:902:e9d4:b0:1e4:1bff:1f6f with SMTP id 20-20020a170902e9d400b001e41bff1f6fmr9339067plk.50.1713269212500;
+        Tue, 16 Apr 2024 05:06:52 -0700 (PDT)
+Received: from localhost.localdomain ([49.142.40.215])
+        by smtp.gmail.com with ESMTPSA id b11-20020a170902650b00b001e509d4d6ddsm9813684plk.1.2024.04.16.05.06.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Apr 2024 05:06:52 -0700 (PDT)
+From: skseofh@gmail.com
+To: robh@kernel.org,
+	saravanak@google.com,
+	rppt@kernel.org,
+	akpm@linux-foundation.org
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-mm@kvack.org
+Subject: [PATCH v2] memblock: add no-map alloc functions
+Date: Tue, 16 Apr 2024 21:06:34 +0900
+Message-Id: <20240416120635.361838-1-skseofh@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <linux-mm@kvack.org>
+References: <linux-mm@kvack.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240404122559.898930-1-peter.griffin@linaro.org>
- <20240404122559.898930-6-peter.griffin@linaro.org> <391a874522a4141b4bc7f0314a9e50d27142123a.camel@linaro.org>
-In-Reply-To: <391a874522a4141b4bc7f0314a9e50d27142123a.camel@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Tue, 16 Apr 2024 12:56:50 +0100
-Message-ID: <CADrjBPqwLt6gzwMpkZvxp5sC-owdDYUN91F0-nV2NvEzek_v9g@mail.gmail.com>
-Subject: Re: [PATCH 05/17] arm64: dts: exynos: gs101: enable cmu-hsi2 clock controller
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org, 
-	alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org, 
-	s.nawrocki@samsung.com, cw00.choi@samsung.com, jejb@linux.ibm.com, 
-	martin.petersen@oracle.com, chanho61.park@samsung.com, ebiggers@kernel.org, 
-	linux-scsi@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, tudor.ambarus@linaro.org, 
-	saravanak@google.com, willmcvicker@google.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Andr=C3=A9,
 
-Thanks for the review.
+> > From: Daero Lee <daero_le.lee@samsung.com>
+> > 
+> > Like reserved-memory with the no-map property, there are memory regions
+> > need to be allocated in memblock.memory marked with the
+> > MEMBLOCK_NOMAP flag, but sholud not be allocated in memblock.reserved.
+> 
+> Can you please explain your use case?
+> Why do you need this functionality?
+Thank you for your comments.
+I added a example to the commit message.
 
-On Fri, 5 Apr 2024 at 08:38, Andr=C3=A9 Draszik <andre.draszik@linaro.org> =
-wrote:
->
-> On Thu, 2024-04-04 at 13:25 +0100, Peter Griffin wrote:
-> > Enable the cmu_hsi2 clock management unit. It feeds some of
-> > the high speed interfaces such as PCIe and UFS.
-> >
-> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> > So, functions were added that find the required memory area in
+> > memblock.memory, but do not allocate it to memblock.reserved.
+> > 
+> > The early_init_dt_alloc_reserved_memory_arch function was modified
+> > using the no-map alloc function.
+> > 
+> > Signed-off-by: Daero Lee <daero_le.lee@samsung.com>
 > > ---
-> >  arch/arm64/boot/dts/exynos/google/gs101.dtsi | 12 ++++++++++++
-> >  1 file changed, 12 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/=
-boot/dts/exynos/google/gs101.dtsi
-> > index eddb6b326fde..38ac4fb1397e 100644
-> > --- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-> > +++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-> > @@ -1253,6 +1253,18 @@ pinctrl_hsi1: pinctrl@11840000 {
-> >                       interrupts =3D <GIC_SPI 471 IRQ_TYPE_LEVEL_HIGH 0=
->;
-> >               };
-> >
-> > +             cmu_hsi2: clock-controller@14400000 {
-> > +                     compatible =3D "google,gs101-cmu-hsi2";
-> > +                     reg =3D <0x14400000 0x4000>;
-> > +                     #clock-cells =3D <1>;
-> > +                     clocks =3D <&ext_24_5m>,
-> > +                              <&cmu_top CLK_DOUT_CMU_HSI2_BUS>,
-> > +                              <&cmu_top CLK_DOUT_CMU_HSI2_PCIE>,
-> > +                              <&cmu_top CLK_DOUT_CMU_HSI2_UFS_EMBD>,
-> > +                              <&cmu_top CLK_DOUT_CMU_HSI2_MMC_CARD>;
-> > +                     clock-names =3D "oscclk", "bus", "pcie", "ufs_emb=
-d", "mmc_card";
-> > +             };
+> >  drivers/of/of_reserved_mem.c |  9 +++--
+> >  mm/memblock.c                | 78 ++++++++++++++++++++++++++++++++++++
+> >  2 files changed, 84 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+> > index 8236ecae2953..504f2f60689c 100644
+> > --- a/drivers/of/of_reserved_mem.c
+> > +++ b/drivers/of/of_reserved_mem.c
+> > @@ -40,15 +40,18 @@ static int __init early_init_dt_alloc_reserved_memory_arch(phys_addr_t size,
+> >  
+> >  	end = !end ? MEMBLOCK_ALLOC_ANYWHERE : end;
+> >  	align = !align ? SMP_CACHE_BYTES : align;
+> > -	base = memblock_phys_alloc_range(size, align, start, end);
+> > +	if (nomap) {
+> > +		base = memblock_phys_alloc_range_nomap(size, align, start, end);
+> > +	} else {
+> > +		base = memblock_phys_alloc_range(size, align, start, end);
+> > +	}
+> > +	
 >
-> This doesn't build because you didn't add the clock ids in the binding pa=
-tch.
+> This changes behaviour of internal function, what effect will it have on
+> the users?
+I added explanation about this to the commit message, too.
 
-These clock IDs are for cmu_top, not cmu_hsi2. They were added as part
-of the initial gs101/Oriole upstream support series in the following
-commit
-
-commit 0a910f1606384a5886a045e36b1fc80a7fa6706b
-Author: Peter Griffin <peter.griffin@linaro.org>
-Date:   Sat Dec 9 23:30:48 2023 +0000
-
-    dt-bindings: clock: Add Google gs101 clock management unit bindings
-
-    Provide dt-schema documentation for Google gs101 SoC clock controller.
-    Currently this adds support for cmu_top, cmu_misc and cmu_apm.
-
-    Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
-    Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-    Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-    Link: https://lore.kernel.org/r/20231209233106.147416-3-peter.griffin@l=
-inaro.org
-    Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-regards,
-
-Peter
+Thank you.
 
