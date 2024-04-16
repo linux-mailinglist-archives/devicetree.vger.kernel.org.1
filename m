@@ -1,290 +1,339 @@
-Return-Path: <devicetree+bounces-59616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBB278A641C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 08:38:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62ED48A6429
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 08:41:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81CCD2828B6
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 06:38:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CEDDE1F21A6A
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 06:41:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CF29156979;
-	Tue, 16 Apr 2024 06:37:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 715756D1AF;
+	Tue, 16 Apr 2024 06:41:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KxHToYqR"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="Twy8jQGU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2062.outbound.protection.outlook.com [40.107.21.62])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CB8B15574E;
-	Tue, 16 Apr 2024 06:37:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713249448; cv=none; b=LLRY5s6BrMrMOH/Ak3zHUR0S3BXsi/5urcOLlebo9OGy17XkSKJ4Def9VxsdGqr5cMqRFwbPd4ThyYJcsAkmjUKQCIDQKk41FaPceWysEYZNB0jpvQyYxi9HCM4exhsIxQ0XRo6w8SvUcq4zD5NwNq/X/WbKwdHCr4cKpdrrleM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713249448; c=relaxed/simple;
-	bh=V6vBdqA+1/0QAN744yAvKXN/zayOAXioRLshFUwhcF0=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=E6YuFIBS1AHm0oGreY15FSlxirLtrzINZ5h3BD7ZjydnNiPo3qZYwPxdD0vNk0eVa+wVETqcaDH4Z3U2H9duIp7/Mh+SMGGR2vS7Vt9nzHQxnV7QrbHlmtkrgR4SL5T+5nVCueaxN08WPXWMTQrFIT6iU2f3OYPgrJ8x+0PJnrc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=KxHToYqR; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43G4e6K8021136;
-	Tue, 16 Apr 2024 06:37:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	qcppdkim1; bh=c6TdiCbWj5rHM2MNFsGN3bhjHBR3WKc7S23Su7X75S0=; b=Kx
-	HToYqRvP2PkMCuEKrAUhY+NWMQB1KM3VdVKPrkxCGiXpQ69wA8Y7rBkQJzeSHW4W
-	LKZVUM6iDulxVnvtm3rEYnjgCXQUYqtDPNtrcrZsppLYCrgqcgdD1KDCy3ag2DBX
-	FaottgX3mLWiMU/fdeFUH9+yQ5X+26TfK25N4vrYg43zK7UppNKnXWb7A4p/zvv6
-	mSrDxigzhf+LY1wwnh8hBuw9DGfVWJ5YKjsVXUXquzKwilRWjxTgWG2HHhcC9C5v
-	G2lHWVYz+/RJ6oH29aaEmJv94CzRqBf+kynGw0d0upAFTxJBZFIrWUGMF94YsfHk
-	Y5PTJEU4Lktg4m/G394w==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xhftw0n9k-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 16 Apr 2024 06:37:12 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43G6bCKb029457
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 16 Apr 2024 06:37:12 GMT
-Received: from hu-mohs-hyd.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 15 Apr 2024 23:37:07 -0700
-From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Banajit Goswami
-	<bgoswami@quicinc.com>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
-	<broonie@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela
-	<perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>
-CC: <alsa-devel@alsa-project.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_rohkumar@quicinc.com>,
-        <quic_pkumpatl@quicinc.com>,
-        Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-Subject: [PATCH v2 8/8] ASoC: codecs: wcd937x: add audio routing and Kconfig
-Date: Tue, 16 Apr 2024 12:06:00 +0530
-Message-ID: <20240416063600.309747-9-quic_mohs@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240416063600.309747-1-quic_mohs@quicinc.com>
-References: <20240416063600.309747-1-quic_mohs@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1D396DCE3;
+	Tue, 16 Apr 2024 06:41:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.62
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713249692; cv=fail; b=U49qHdm1Nj3Nv7nkZoYrTvhS0cFhyLxNuEmwFtnSDYRbJM4XzfCqQemR/PCAZVBpXKcZwNW3D7PByHCOEH8NyAa1e5zr22eUv3cJsoIxeA2zpaGKvIo3hoRJECLPlXj76RZmuhKl3XMm0ir7Me2wI/COGSnadmV9rJSOxFzo9bQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713249692; c=relaxed/simple;
+	bh=KSmPltwVZQvzrSyOWqE4B/Ar+KJ/2EkJxupXdkYelD8=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=XmhXO32hwCjDhNwpOidlTY8jvnIwetLO4vfXuL5n4GCRDM44qtkenh2Nq1n+5g21eDWquFJBMudl03mgWlJlpJAvNr0/P3yvZLxAnJzsLxskAbnTQ/+2dDv3LQq/sen8tTtfuuBGi+Ak1ee4weF7dtxMU86uN1knWm3dUyoa6jQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=Twy8jQGU; arc=fail smtp.client-ip=40.107.21.62
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DFF+HfgSBLcrdKtOBfEwH3BhO9hh7je4T8E6xQ3J4R35BiWFNJlLNVK6hUOEczU+Nc6ZatBZhNkwTaZXd6VoUHAuItk4iWWRpFSGNUBXY1QvXy6GFQr33o0yN3LgnAXBBPcTJrfCxQfVf9sefH8gqb/j6GljynOd3suif09Gox7B3qi+WVVsRNft1wWBvzuIFuzUcET1FxbvOYrktHcfcnHSJAvvuhb5j2l7+w49jD//n+oe/B6aJlKDSeFBKSHKzAV6xeG2Q25ai9y0r9WCuRj8OWSQWD4tqqrSHYw261PMarx+wlUaYn+r25RKrzAvvC8rnT4wPqPPV+QBX8Sb7Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=T4dWuYCWNnSxkT41Og5vrvBLO3JF6VjGkDdVzSdKUj4=;
+ b=hazLW5nSAO6lZ6LFmJDoV9nz9rnywZNf+eixAHLCeQM+JZKHN4MC/LUoLGLWqXfibt9FcyIgnrUgoa3VK0iNFObSpqXTotaevXcvHgL3VDSFCQt5Xmk88+VOVB0m1kuPGZS/meFTjKyWHAGKXiu5yDbU8zdBnmP6ukEqUuWBh1TpgfjRd0HlBbkj/gZGqF2QRDLrKb7nsOUJ9ERV6f5RtSuW0p6zqciFOo7mE7WmIilS9ZkbYrrEuVukqNoaz0+m8IYSZqk1bx7ScuI1yov9sUqBGIB2spLvAwvGJCuGgyyhl4Gs/D0OM4CI1W6kKemG5hC7L653fve8UwCnThPxdw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=T4dWuYCWNnSxkT41Og5vrvBLO3JF6VjGkDdVzSdKUj4=;
+ b=Twy8jQGUQ4aGE3xD8zLC0JVL6H/BdIdLzADMJ5nxOP2O9xHLK32OQ5cNF/JkFPAf32g5Y8d4yG/khFvp5Rgx+Yk/Grox4/MbU3KgnHY8C76BKX8F7594OaTgeq00hb6vKyw3lGUKJ68foHo/A1/O+AJvFCF2lyq3XYZ+FhpgAoM=
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by AS5PR04MB9969.eurprd04.prod.outlook.com (2603:10a6:20b:67c::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.50; Tue, 16 Apr
+ 2024 06:41:25 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::d30b:44e7:e78e:662d]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::d30b:44e7:e78e:662d%4]) with mapi id 15.20.7452.049; Tue, 16 Apr 2024
+ 06:41:25 +0000
+From: Peng Fan <peng.fan@nxp.com>
+To: Peng Fan <peng.fan@nxp.com>, Rob Herring <robh@kernel.org>, "Peng Fan
+ (OSS)" <peng.fan@oss.nxp.com>
+CC: Linus Walleij <linus.walleij@linaro.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo
+	<shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
+ Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+	Sudeep Holla <sudeep.holla@arm.com>, Cristian Marussi
+	<cristian.marussi@arm.com>, "linux-gpio@vger.kernel.org"
+	<linux-gpio@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH 2/3] dt-bindings: firmware: arm,scmi: support i.MX95 SCMI
+ Pinctrl
+Thread-Topic: [PATCH 2/3] dt-bindings: firmware: arm,scmi: support i.MX95 SCMI
+ Pinctrl
+Thread-Index: AQHajG9fogbrSJSEIkC/zlbnV4Z6dbFp93iAgABErECAADwqIA==
+Date: Tue, 16 Apr 2024 06:41:25 +0000
+Message-ID:
+ <DU0PR04MB941794994D2D0A2CE5D0C33B88082@DU0PR04MB9417.eurprd04.prod.outlook.com>
+References: <20240412-pinctrl-scmi-oem-v1-v1-0-704f242544c1@nxp.com>
+ <20240412-pinctrl-scmi-oem-v1-v1-2-704f242544c1@nxp.com>
+ <20240415225637.GA234203-robh@kernel.org>
+ <DU0PR04MB941714AFCDC74997BFF34DFD88082@DU0PR04MB9417.eurprd04.prod.outlook.com>
+In-Reply-To:
+ <DU0PR04MB941714AFCDC74997BFF34DFD88082@DU0PR04MB9417.eurprd04.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|AS5PR04MB9969:EE_
+x-ms-office365-filtering-correlation-id: 32490c32-5fc2-48eb-c339-08dc5de03cbb
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ HGdqhWScfC1BlfkFb8I/z02nHe8EhhTwHO98A/ozN8XsXccm2/akD4dQr7+SZmyBlSuls+69s8YY+KC5p8T0iAgi1fO6GcZD8+6rcVqW+jJ8bQELhhl3buhM7oficb6A0rPgTZ91UXWETlyJwDR69FgqURuoZmLWdet0oWFuiKON3YJK++4cePMuujvTvk59RBHwsWYzhSPCWfxlDUx3l7NyFSTlf0ma1G8CDJGAU9G2s9MD7qcOfjf21sRi1hPEkbDJfQzMO/rKTo7Hg1cDjultR2AsI+ct15zfEtbGfkZCI/8JNu62Zi0PKi+zNMP0vmEOeGfk5gho0DwMW4JzWc3jsuUMG/exBo1Wg/rQJE0SkyN3CS+ejalkXYXaJbLcbF3b4hxMKi6P3FxWCIg7dHow9Rt4Ju139YzJk9K2clETdn/VFzm6t1rQnxRqImSulaMXLbbPIQSS0n3wC2rU0x0fEykHynBf3tbfFWSmMLUPqI9nHUcEeFXKkXSvc7T2CuzWMu0VdFd/MXqyPSMOdQYFIzo5K9bJeNhDnG/agYPOFBGXMKFKIb4NBuZYDucaB3tkGtVNPBR9m3nK0GHr7xesZVz4OuhGrxoRk50MdBwHV+2Ei4UD1Atc6DSUdvQCIHaeK34d5GNV4o22EYYG+T5mYouLy+5Mm0TUjIha9wRsdZFK0rUUz46wplHhXOpmxnXB2qz0yDwZR4h73dFferfGWCp22G3na7oeMOmWbUU=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(7416005)(376005)(366007)(38070700009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?wa8ehcEj+Vk87xjH63szBYzVTv+R2Vn5FqkSrvfvxTEQXWTSN0vYEGCZWLhs?=
+ =?us-ascii?Q?WuTGyrVkP9HWAC3aR8jYH+rUp/vXRW5tGQMUzz0+dnjn7DpinAN7Bep50Vp1?=
+ =?us-ascii?Q?NoxRIRV0jc5/hGTaFxbSlCkO+1mt/slE9NVGLzZzE4hhkK/6THaPXSI0Zfl2?=
+ =?us-ascii?Q?+kN9w8VVhl2+Z6xyIvUuHk0jZ1Nygk9hxGsA1GUxZMCOoydOn6E6wTHN7lAT?=
+ =?us-ascii?Q?IJlZibX1qVD6u8BV3phqe5v+PGFHYteZHCu1tIPjOIYAwrhXS/L4gbkxoae4?=
+ =?us-ascii?Q?WFeSAOcrbfInzFxSIvRbckp0KoKXwF4nQ8vttZEktMj1xjz1OqN6irrYmhAv?=
+ =?us-ascii?Q?Y011hOsyBoksCxYWs7P0ARM0xLUrZo1kDnQ+y62JCT9iy1OBZTAgKSrteMwt?=
+ =?us-ascii?Q?HE3bjIdQ8ZPVN3wur/aqmvHqzQZfo2qaxQAXBTrlIHB0YuTebVFL85Pg2n+S?=
+ =?us-ascii?Q?706xuSX5LH125agEht/XQe+1jre3VGDntxp51jeHvqjGJUyl2YYpdU1RTmeb?=
+ =?us-ascii?Q?1UtbdikaT1DoVNIQJqb/Dng/OxucYoPa5UyvHb6UKnJH2f4ZJQ2TfaZ1X3Uz?=
+ =?us-ascii?Q?dHkn/hIk5LEQ6HdWdrSRK0vLrmoLmGBXk1Sg8yiMeNe1kZAgF06TBDQsxVez?=
+ =?us-ascii?Q?XDYWbghFabFGptY27jvXZ5vzLuarkUDvZ+Vi8doApxbKnMp//3RP77/yaJwj?=
+ =?us-ascii?Q?R7TaicgGAeFe6yMu6YcfWyzM26XFFKzmFLPu//jISOPkyoLDpyhujZvtz0d2?=
+ =?us-ascii?Q?9hRD5ZDQ0/Dj7g2F9Oe8MDqCStFVKticDljvdNgEMdtdxWh1pSsj/yOuGF3K?=
+ =?us-ascii?Q?tUZvYnaePZwJK1ZLEEv1NMj7L7vn2l3QF7IsvbQVpBf8ZPSS6MJylTucUjgB?=
+ =?us-ascii?Q?8yXjWMHvcTikrgceSrZ1yk0MeYeZtSGEnJkuZMtjUV59Kv/0Hi9fFAyUyry2?=
+ =?us-ascii?Q?39hOjDmpONfM4/p4KuBirAaM7m3zlCQwsoMni3rrzkGSyU+BO3mV0SQsO47C?=
+ =?us-ascii?Q?wdhcC5rRDP+N1ZKLw8HnqfovTj0coAeIZmQBPRh353PVKCbY2/CY8W8CGRdM?=
+ =?us-ascii?Q?rP1Svs+fk94vy0CxQbIqLcvDYt/7CewQgdUMuAjMKdph8baMTgDl9GgRUGg3?=
+ =?us-ascii?Q?HE4xBPJ19VnKctmD3Q+2wEmy9+4Ue8hC4jMkoriGfcxqL9U+XMXvm3CT68sX?=
+ =?us-ascii?Q?EfbDtiqfbI45WD2fr8abTyjI6EMKGAE7tirr0TATi69fKVcWkKYZg32zh+De?=
+ =?us-ascii?Q?fKqxj2uFQ/a3+qrePts7PwGuw0z4fwhxq0IjAOWBqhoXJxfUfQNsgh0tJUPx?=
+ =?us-ascii?Q?waOSDGSwUKl917YWLCHF0Kw1pI1jWh/7+QETqGZLvoBVbRT1P4gwAX8M98dw?=
+ =?us-ascii?Q?LQNaxvoG+QKWgyj6oN9r/Y4L0fs3iaAe5vtxRA5pLUOkH3Q+wjalXlA7udr3?=
+ =?us-ascii?Q?XSIjE+g0lcVeK/i6Hj3v6Q2o50xgYC6F0KqYgnykHppHaGUWP2oaJoE7za1Z?=
+ =?us-ascii?Q?ECckeHlo2ELHXlzOXpk0GrnQoTMBNhXW78dBWpPXYHKaSm2IKkJk/kO59xDf?=
+ =?us-ascii?Q?uBLj/2h2DK3x+9BDt24=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: VI0brMK1RMkKRZ22jcUpXRyBBwBVh7L6
-X-Proofpoint-ORIG-GUID: VI0brMK1RMkKRZ22jcUpXRyBBwBVh7L6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-16_04,2024-04-15_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
- priorityscore=1501 mlxscore=0 phishscore=0 clxscore=1015 suspectscore=0
- bulkscore=0 mlxlogscore=999 adultscore=0 impostorscore=0
- lowpriorityscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2404010003 definitions=main-2404160039
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 32490c32-5fc2-48eb-c339-08dc5de03cbb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Apr 2024 06:41:25.2568
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: zj6zJzFdy2LGoraMfzOyI5Qjb87gfSqCbhFxw8BYLAsfrj2sbtB5YpELVYrA24yJWI/D5gI/unR84ZUC3kGUeg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS5PR04MB9969
 
-From: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+> Subject: RE: [PATCH 2/3] dt-bindings: firmware: arm,scmi: support i.MX95
+> SCMI Pinctrl
+>=20
+> Hi Rob,
+>=20
+> > Subject: Re: [PATCH 2/3] dt-bindings: firmware: arm,scmi: support
+> > i.MX95 SCMI Pinctrl
+> >
+> > On Fri, Apr 12, 2024 at 08:29:26AM +0800, Peng Fan (OSS) wrote:
+> > > From: Peng Fan <peng.fan@nxp.com>
+> > >
+> > > i.MX95 SCMI Pinctrl uses OEM specific units, so add '$ref' to
+> > > '/schemas/pinctrl/nxp,imx95-pinctrl.yaml' and an example.
+> > >
+> > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 8
+> > > +++++---
+> > >  1 file changed, 5 insertions(+), 3 deletions(-)
+> > >
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > > b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > > index e9d3f043c4ed..ebc6c083b538 100644
+> > > --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > > +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > > @@ -249,9 +249,11 @@ properties:
+> > >
+> > >    protocol@19:
+> > >      type: object
+> > > -    allOf:
+> > > -      - $ref: '#/$defs/protocol-node'
+> > > -      - $ref: /schemas/pinctrl/pinctrl.yaml
+> >
+> > I don't think anything from here was actually used...
+>=20
 
-This patch adds audio routing for both playback and capture and
-Makefile and Kconfigs changes for wcd937x.
+After some check, I work out the following:
+diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Doc=
+umentation/devicetree/bindings/firmware/arm,scmi.yaml
+index e9d3f043c4ed..26b7395c4326 100644
+--- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
++++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+@@ -262,9 +262,12 @@ properties:
+     patternProperties:
+       '-pins$':
+         type: object
+-        allOf:
+-          - $ref: /schemas/pinctrl/pincfg-node.yaml#
+-          - $ref: /schemas/pinctrl/pinmux-node.yaml#
++        anyOf:
++          - $ref: /schemas/pinctrl/nxp,imx95-pinctrl.yaml
++          - allOf:
++              - $ref: /schemas/pinctrl/pincfg-node.yaml#
++              - $ref: /schemas/pinctrl/pinmux-node.yaml#
++
+         unevaluatedProperties: false
+=20
+         description:
 
-Co-developed-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-Signed-off-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
----
- sound/soc/codecs/Kconfig   | 20 ++++++++++
- sound/soc/codecs/Makefile  |  7 ++++
- sound/soc/codecs/wcd937x.c | 80 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 107 insertions(+)
+The nxp,imx95-pinctrl.yaml:
++patternProperties:
++  '[a-f0-9]+$':
++    type: object
++    unevaluatedProperties: false
++
++    properties:
++      pins:
++        $ref: /schemas/types.yaml#/definitions/string
++        description: name of the pin
++
++      nxp,func-id:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        description: Indicates the PAD connections which function module
++
++      nxp,pin-conf:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        description: The PAD configuration
++
++      nxp,daisy-id:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        description: The select input register ID
++
++      nxp,daisy-conf:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        description: The select input register value
++
++additionalProperties: true
 
-diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-index 995eab954dd5..daf42c0b0444 100644
---- a/sound/soc/codecs/Kconfig
-+++ b/sound/soc/codecs/Kconfig
-@@ -277,6 +277,7 @@ config SND_SOC_ALL_CODECS
- 	imply SND_SOC_UDA1380
- 	imply SND_SOC_WCD9335
- 	imply SND_SOC_WCD934X
-+	imply SND_SOC_WCD937X_SDW
- 	imply SND_SOC_WCD938X_SDW
- 	imply SND_SOC_WCD939X_SDW
- 	imply SND_SOC_LPASS_MACRO_COMMON
-@@ -2090,6 +2091,25 @@ config SND_SOC_WCD934X
- 	  The WCD9340/9341 is a audio codec IC Integrated in
- 	  Qualcomm SoCs like SDM845.
- 
-+config SND_SOC_WCD937X
-+	depends on SND_SOC_WCD937X_SDW
-+	tristate
-+	depends on SOUNDWIRE || !SOUNDWIRE
-+	select SND_SOC_WCD_CLASSH
-+
-+config SND_SOC_WCD937X_SDW
-+	tristate "WCD9370/WCD9375 Codec - SDW"
-+	select SND_SOC_WCD937X
-+	select SND_SOC_WCD_MBHC
-+	select REGMAP_IRQ
-+	depends on SOUNDWIRE
-+	select REGMAP_SOUNDWIRE
-+	help
-+	  The WCD9370/9375 is an audio codec IC used with SoCs
-+	  like SC7280 or QCM6490 chipsets, and it connected
-+	  via soundwire.
-+	  To compile this codec driver say Y or m.
-+
- config SND_SOC_WCD938X
- 	depends on SND_SOC_WCD938X_SDW
- 	tristate
-diff --git a/sound/soc/codecs/Makefile b/sound/soc/codecs/Makefile
-index 9ba24fb870b1..09aad6c12449 100644
---- a/sound/soc/codecs/Makefile
-+++ b/sound/soc/codecs/Makefile
-@@ -315,6 +315,8 @@ snd-soc-wcd-classh-objs := wcd-clsh-v2.o
- snd-soc-wcd-mbhc-objs := wcd-mbhc-v2.o
- snd-soc-wcd9335-objs := wcd9335.o
- snd-soc-wcd934x-objs := wcd934x.o
-+snd-soc-wcd937x-objs := wcd937x.o
-+snd-soc-wcd937x-sdw-objs := wcd937x-sdw.o
- snd-soc-wcd938x-objs := wcd938x.o
- snd-soc-wcd938x-sdw-objs := wcd938x-sdw.o
- snd-soc-wcd939x-objs := wcd939x.o
-@@ -708,6 +710,11 @@ obj-$(CONFIG_SND_SOC_WCD_CLASSH)	+= snd-soc-wcd-classh.o
- obj-$(CONFIG_SND_SOC_WCD_MBHC)	+= snd-soc-wcd-mbhc.o
- obj-$(CONFIG_SND_SOC_WCD9335)	+= snd-soc-wcd9335.o
- obj-$(CONFIG_SND_SOC_WCD934X)	+= snd-soc-wcd934x.o
-+obj-$(CONFIG_SND_SOC_WCD937X)	+= snd-soc-wcd937x.o
-+ifdef CONFIG_SND_SOC_WCD937X_SDW
-+# avoid link failure by forcing sdw code built-in when needed
-+obj-$(CONFIG_SND_SOC_WCD937X) += snd-soc-wcd937x-sdw.o
-+endif
- obj-$(CONFIG_SND_SOC_WCD938X)	+= snd-soc-wcd938x.o
- ifdef CONFIG_SND_SOC_WCD938X_SDW
- # avoid link failure by forcing sdw code built-in when needed
-diff --git a/sound/soc/codecs/wcd937x.c b/sound/soc/codecs/wcd937x.c
-index 87e571dc4a11..d0795e39e99b 100644
---- a/sound/soc/codecs/wcd937x.c
-+++ b/sound/soc/codecs/wcd937x.c
-@@ -2421,6 +2421,77 @@ static const struct snd_soc_dapm_widget wcd9375_dapm_widgets[] = {
- 	SND_SOC_DAPM_OUTPUT("DMIC6_OUTPUT"),
- };
- 
-+static const struct snd_soc_dapm_route wcd937x_audio_map[] = {
-+	{ "ADC1_OUTPUT", NULL, "ADC1_MIXER" },
-+	{ "ADC1_MIXER", "Switch", "ADC1 REQ" },
-+	{ "ADC1 REQ", NULL, "ADC1" },
-+	{ "ADC1", NULL, "AMIC1" },
-+
-+	{ "ADC2_OUTPUT", NULL, "ADC2_MIXER" },
-+	{ "ADC2_MIXER", "Switch", "ADC2 REQ" },
-+	{ "ADC2 REQ", NULL, "ADC2" },
-+	{ "ADC2", NULL, "ADC2 MUX" },
-+	{ "ADC2 MUX", "INP3", "AMIC3" },
-+	{ "ADC2 MUX", "INP2", "AMIC2" },
-+
-+	{ "IN1_HPHL", NULL, "VDD_BUCK" },
-+	{ "IN1_HPHL", NULL, "CLS_H_PORT" },
-+	{ "RX1", NULL, "IN1_HPHL" },
-+	{ "RDAC1", NULL, "RX1" },
-+	{ "HPHL_RDAC", "Switch", "RDAC1" },
-+	{ "HPHL PGA", NULL, "HPHL_RDAC" },
-+	{ "HPHL", NULL, "HPHL PGA" },
-+
-+	{ "IN2_HPHR", NULL, "VDD_BUCK" },
-+	{ "IN2_HPHR", NULL, "CLS_H_PORT" },
-+	{ "RX2", NULL, "IN2_HPHR" },
-+	{ "RDAC2", NULL, "RX2" },
-+	{ "HPHR_RDAC", "Switch", "RDAC2" },
-+	{ "HPHR PGA", NULL, "HPHR_RDAC" },
-+	{ "HPHR", NULL, "HPHR PGA" },
-+
-+	{ "IN3_AUX", NULL, "VDD_BUCK" },
-+	{ "IN3_AUX", NULL, "CLS_H_PORT" },
-+	{ "RX3", NULL, "IN3_AUX" },
-+	{ "RDAC4", NULL, "RX3" },
-+	{ "AUX_RDAC", "Switch", "RDAC4" },
-+	{ "AUX PGA", NULL, "AUX_RDAC" },
-+	{ "AUX", NULL, "AUX PGA" },
-+
-+	{ "RDAC3_MUX", "RX3", "RX3" },
-+	{ "RDAC3_MUX", "RX1", "RX1" },
-+	{ "RDAC3", NULL, "RDAC3_MUX" },
-+	{ "EAR_RDAC", "Switch", "RDAC3" },
-+	{ "EAR PGA", NULL, "EAR_RDAC" },
-+	{ "EAR", NULL, "EAR PGA" },
-+};
-+
-+static const struct snd_soc_dapm_route wcd9375_audio_map[] = {
-+	{ "ADC3_OUTPUT", NULL, "ADC3_MIXER" },
-+	{ "ADC3_OUTPUT", NULL, "ADC3_MIXER" },
-+	{ "ADC3_MIXER", "Switch", "ADC3 REQ" },
-+	{ "ADC3 REQ", NULL, "ADC3" },
-+	{ "ADC3", NULL, "AMIC4" },
-+
-+	{ "DMIC1_OUTPUT", NULL, "DMIC1_MIXER" },
-+	{ "DMIC1_MIXER", "Switch", "DMIC1" },
-+
-+	{ "DMIC2_OUTPUT", NULL, "DMIC2_MIXER" },
-+	{ "DMIC2_MIXER", "Switch", "DMIC2" },
-+
-+	{ "DMIC3_OUTPUT", NULL, "DMIC3_MIXER" },
-+	{ "DMIC3_MIXER", "Switch", "DMIC3" },
-+
-+	{ "DMIC4_OUTPUT", NULL, "DMIC4_MIXER" },
-+	{ "DMIC4_MIXER", "Switch", "DMIC4" },
-+
-+	{ "DMIC5_OUTPUT", NULL, "DMIC5_MIXER" },
-+	{ "DMIC5_MIXER", "Switch", "DMIC5" },
-+
-+	{ "DMIC6_OUTPUT", NULL, "DMIC6_MIXER" },
-+	{ "DMIC6_MIXER", "Switch", "DMIC6" },
-+};
-+
- static int wcd937x_set_micbias_data(struct wcd937x_priv *wcd937x)
- {
- 	int vout_ctl[3];
-@@ -2557,6 +2628,13 @@ static int wcd937x_soc_codec_probe(struct snd_soc_component *component)
- 			dev_err(component->dev, "Failed to add snd_ctls\n");
- 			return ret;
- 		}
-+
-+		ret = snd_soc_dapm_add_routes(dapm, wcd9375_audio_map,
-+					      ARRAY_SIZE(wcd9375_audio_map));
-+		if (ret < 0) {
-+			dev_err(component->dev, "Failed to add routes\n");
-+			return ret;
-+		}
- 	}
- 
- 	ret = wcd937x_mbhc_init(component);
-@@ -2600,6 +2678,8 @@ static const struct snd_soc_component_driver soc_codec_dev_wcd937x = {
- 	.num_controls = ARRAY_SIZE(wcd937x_snd_controls),
- 	.dapm_widgets = wcd937x_dapm_widgets,
- 	.num_dapm_widgets = ARRAY_SIZE(wcd937x_dapm_widgets),
-+	.dapm_routes = wcd937x_audio_map,
-+	.num_dapm_routes = ARRAY_SIZE(wcd937x_audio_map),
- 	.set_jack = wcd937x_codec_set_jack,
- 	.endianness = 1,
- };
--- 
-2.25.1
+
+The node will as below:
+           scmi_pinctrl: protocol@19 {                                     =
+                       =20
+                reg =3D <0x19>;                                            =
+                          =20
+                                                                           =
+                        =20
+                sd-pins {                                                  =
+                        =20
+                  sd1cmd {                                                 =
+                        =20
+                    pins =3D "sd1cmd";                                     =
+                          =20
+                    nxp,func-id =3D <0>;                                   =
+                          =20
+                    nxp,pin-conf =3D <0x138e>;                             =
+                          =20
+                  };                                                       =
+                        =20
+                  sd1data0 {                                               =
+                        =20
+                    pins =3D "sd1data0";                                   =
+                          =20
+                    nxp,func-id =3D <0>;                                   =
+                          =20
+                    nxp,pin-conf =3D <0x138e>;                             =
+                          =20
+                  };                                                       =
+                        =20
+                };
+
+I will use the upper in v2.
+
+Thanks,
+Peng.
+> You mean this not used?
+> allOf:
+>   - $ref: '#/$defs/protocol-node'
+>   - $ref: /schemas/pinctrl/pinctrl.yaml
+>=20
+> Or below?
+> >
+> >
+> > > +    anyOf:
+> > > +      - $ref: /schemas/pinctrl/nxp,imx95-pinctrl.yaml
+> > > +      - allOf:
+> > > +          - $ref: '#/$defs/protocol-node'
+> >
+> > This must always apply and should not be under the anyOf.
+>=20
+> I just try in arm,scmi.yaml:
+>   protocol@19:
+>     type: object
+>     allOf:
+>       - $ref: '#/$defs/protocol-node'
+>       - anyOf:
+>           - $ref: /schemas/pinctrl/nxp,imx95-pinctrl.yaml
+>           - $ref: /schemas/pinctrl/pinctrl.yaml
+>=20
+>     unevaluatedProperties: false
+>=20
+> And in nxp,imx95-pinctrl.yaml:
+> patternProperties:
+>   'grp$':
+>     type: object
+>     additionalProperties: false
+>=20
+>     patternProperties:
+>       '[a-f0-9]+$':
+>         type: object
+>         unevaluatedProperties: false
+>=20
+> But the following example always reports:
+>                 pinctrl_usdhc1: usdhc1grp {
+>                     sd1-pin0 {
+>                         pins =3D "sd1cmd";
+>                         nxp,func-id =3D <0>;
+>                         nxp,pin-conf =3D <0x138e>;
+>                     };
+>                 };
+>=20
+> arm,scmi.example.dtb: scmi: protocol@19: Unevaluated properties are not
+> allowed ('usdhc1grp' was unexpected)
+>=20
+> Do you have any suggestions on how to write the yaml correct?
+>=20
+> Thanks,
+> Peng.
+>=20
+> >
+> > > +          - $ref: /schemas/pinctrl/pinctrl.yaml
+> > >
+> > >      unevaluatedProperties: false
+> > >
+> > >
+> > > --
+> > > 2.37.1
+> > >
 
 
