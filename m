@@ -1,68 +1,91 @@
-Return-Path: <devicetree+bounces-59715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7CF48A6C9D
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 15:36:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9516D8A6CAF
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 15:41:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F1A1AB2106D
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 13:36:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B81311C2210D
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 13:41:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A90112C496;
-	Tue, 16 Apr 2024 13:36:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C140212C520;
+	Tue, 16 Apr 2024 13:41:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=jookia.org header.i=@jookia.org header.b="WsN+inhp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VFL0eeVS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-170.mta1.migadu.com (out-170.mta1.migadu.com [95.215.58.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C38412882C
-	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 13:36:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFCD412C49C;
+	Tue, 16 Apr 2024 13:41:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713274568; cv=none; b=e5JLvPGIm5KgSDiblCnfI1x18LkEUCOaFgKX/qEzPQS2gbsyf/vhDOVLXrgFNrAhaiSPa2Rgp+iavKcZB42Wk6ettAGD13wiJ/3Vxu0n10v3O8CXJhTovGhS6QBpEGKgCdnzbrkNKEivdwiGA4BQTrQU7ib9vHi8X0rPwtVBR/s=
+	t=1713274899; cv=none; b=LqF0eulw1+VeR23DXnqMJREI2QOxog1tSCxAAvBZuntn6X4TLk5dwxPE1n9uTWIW9V1DgbaFfWVYRc+msCNnT+gyQ0p1abmMCkllXROS+qJMUpbk0tdJ2sefv1r0x8iq/wHspg4fSBqJP69JUUuv+cRppHvd8i19qSiN+K8O9Nc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713274568; c=relaxed/simple;
-	bh=ESXTOBerJ11ivDTEUscWQdRvIS+xShE+sRa69XlINm4=;
+	s=arc-20240116; t=1713274899; c=relaxed/simple;
+	bh=YJJUfd4jr/wf+NqVzJgTp9ROozx0cPdT0Jm6mCpIowM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ctE/uTWRD9/y2wutMlMH9OTj1NxIRudvVNn0W7xkWYoCmHIAk7ngObk1TcJicXehmbFYDnzRyXioSPQq81PCJAVv8Q7P8WAd8RqSCHibxgpDbXfOqB6M+8YAHJPCx4shWz5n1A5EriJ0JnguSIXsUDup598o10qssPPDMgdzeBg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=jookia.org; spf=none smtp.mailfrom=jookia.org; dkim=pass (2048-bit key) header.d=jookia.org header.i=@jookia.org header.b=WsN+inhp; arc=none smtp.client-ip=95.215.58.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=jookia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=jookia.org
-Date: Tue, 16 Apr 2024 23:30:43 +1000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jookia.org; s=key1;
-	t=1713274563;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Yi0/qfx4nmZfF6fdXRi1R9ZAidfFCHR7CYYCzr1ALiw=;
-	b=WsN+inhptWBlLAn4tYfGJsUTwLFrLAQSCnnMGn3U0Hj6QgcJ0wxYAoALpOZh7Oi3b5sI6g
-	ssaUcULn7c0mtcvWJpB5DP8Qxift4AYjIswvzH2NQmGSI++Cs1XukEkGoRC/byHQ7jsOMO
-	CBpOw1a/3pWu8VVA2M41nalYMiRHr3NqB8IzAnPX+iPHISnvSscRdyHTik1VSqmAuFSzAl
-	0cKjzNVkuR854rG/g0FK6mX9bCOzX9mAyPnrT3MQNEOHRQl4tzDPZwCR4Cld5ESfftonXn
-	sZ5BKACEjTG79h4w+ANMd8FiuEllga+k6ObB5tCsNVvAd/8FjNWdBw5IQmof/g==
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: John Watts <contact@jookia.org>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Chen-Yu Tsai <wens@csie.org>, Lee Jones <lee@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Ryan Walklin <ryan@testtoast.com>,
-	Chris Morgan <macroalpha82@gmail.com>
-Subject: Re: [PATCH 1/4] regulator: axp20x: AXP717: fix LDO supply rails and
- off-by-ones
-Message-ID: <Zh59gzEB61lNdmMh@titan>
-References: <20240329235033.25309-1-andre.przywara@arm.com>
- <20240329235033.25309-2-andre.przywara@arm.com>
- <ZhuNCUnJri4hBOxx@titan>
- <20240416122305.3ffc2bda@donnerap.manchester.arm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=DPkL7iR/AUfRCAAJhlKAxsBDPFrLm7Kvcso1Yg/GSLGRgX9RcbTkaOUGi4uBC6g0cN+2E41Q2EaXRK496x1/RC4fFhWnse226Diz1SJ3XvtDdaTfoNoE1UZC/PsDs2grEfL7pYYtFNWvCPVv3YC2WafTv3viUzbYGoQeJ8wAonU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VFL0eeVS; arc=none smtp.client-ip=209.85.208.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2da08b06e0dso47170281fa.2;
+        Tue, 16 Apr 2024 06:41:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1713274896; x=1713879696; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=nItft6gjoHuRS9giH3fTnlakGsKJ/3yHC4ii5RtOabA=;
+        b=VFL0eeVSd5hNj0cvrj43YWm/gvODG+APGEE/IdUqyVAfomdhU1nkY97sbgf0mB8UIX
+         Rs7Bx9mEra8BHP6ZDacW0T6eU+GG6o+tCTXqsBn/5k/u/v2XJ8dMW15vPQZM07OglqBD
+         lMZV0Xm8JDheyqaQ8BmojSNGpokvbx7THK0FpRtOkh/E3L8m9/pYtdfQ/G99PulpoqE1
+         VNbupvgzQrwljw9Ebuxpp70ppbAo8t7KNFAmLuqFzmlBjTHAOrFV9uYfTCU2RSaPc84v
+         Bxj9E071xulChaNrjwHYTEVR6GtY76GSGQ5GN4KqSldOo0FsqhZfwngFhw4NSlrRN4ll
+         2qKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713274896; x=1713879696;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nItft6gjoHuRS9giH3fTnlakGsKJ/3yHC4ii5RtOabA=;
+        b=W1h7tycgdX2FID+4gdhQJdyb0WdUuZgD4tIHoOnXyfb5CD9WSDWqJSWGBrWoGF/rMl
+         IhmtNZEcORoCLNWhL4MIyykf1qVXOXoR0MSQG9KKgvC7CCVoqkSdO8zxiPj/GZMANi3t
+         /GuVaXP0fag8ir4JUyd/kx5OencNsHK1o4KYdgexNzu4BeaRPnFbMJLCvQ6SsdxLdt+C
+         KhQ6I98Z7CKLzWozTjlhrYcIiu3zSefk/whh7bmzHNfuIl1+fmYxWiSrH0/ybpB0Clt+
+         5/NgHHSWG+OZjcmnbXQwihOaJKrjLuQO7lofqu86bWdE6ZgXmTzn5QUJFBsGt2Xa6uDJ
+         e08Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUOmuZO8p8MzKBoRgkzbcL8mUU+DbVOzx/eEYgAJlE7AtPVJ0FsLUAFIEycOLv2LOsGB5qT+YcuACmFRCBuwO9KEdEj1mp0OOlyV0OCjA+ZcS1GukzpNY2j9IdXYgG+/hNWh5it866JJnxy0E/9az1cAQ2DlC+OJfW3bnfiPNBw+vFJG7Va5orF++i9v6xv6NrOUe68vDEYGcai56fgQ3zrrx8L
+X-Gm-Message-State: AOJu0Yzq1vQNC8VMk4lBy6DOqyge7IHlL3ewuy4BK29YXN1qEXvZWzei
+	QUOO2WOj0nVsiDXt9+02PgOa2OjLhSF4mkI6fv5Wesa2MB7EejwN
+X-Google-Smtp-Source: AGHT+IGy2KUFbhI6AaWFOmsemnnvP81uRkcNjM8jwXDSPhTQ3CP4mbDjx7oSLqi6TS3lljjR2AgDcg==
+X-Received: by 2002:a05:651c:620:b0:2d9:f68a:d82c with SMTP id k32-20020a05651c062000b002d9f68ad82cmr7690751lje.41.1713274895863;
+        Tue, 16 Apr 2024 06:41:35 -0700 (PDT)
+Received: from mobilestation (srv1.baikalchip.ru. [87.245.175.227])
+        by smtp.gmail.com with ESMTPSA id x21-20020a05651c105500b002d893f9fc22sm1556573ljm.57.2024.04.16.06.41.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Apr 2024 06:41:35 -0700 (PDT)
+Date: Tue, 16 Apr 2024 16:41:33 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Romain Gantois <romain.gantois@bootlin.com>
+Cc: "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+	=?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>, 
+	Maxime Chevallier <maxime.chevallier@bootlin.com>
+Subject: Re: [PATCH net-next v3 2/5] net: stmmac: introduce pcs_init/pcs_exit
+ stmmac operations
+Message-ID: <42chuecdt7dpgm6fcrtt2crifvv5hflmtnmdrw5fvk3r7pwjgu@hlcv56dbeosf>
+References: <20240415-rzn1-gmac1-v3-0-ab12f2c4401d@bootlin.com>
+ <20240415-rzn1-gmac1-v3-2-ab12f2c4401d@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,115 +94,132 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240416122305.3ffc2bda@donnerap.manchester.arm.com>
-X-Migadu-Flow: FLOW_OUT
+In-Reply-To: <20240415-rzn1-gmac1-v3-2-ab12f2c4401d@bootlin.com>
 
-On Tue, Apr 16, 2024 at 12:23:05PM +0100, Andre Przywara wrote:
-> On Sun, 14 Apr 2024 18:00:09 +1000
-> John Watts <contact@jookia.org> wrote:
+Hi Romain, Russell
+
+On Mon, Apr 15, 2024 at 11:18:42AM +0200, Romain Gantois wrote:
+> From: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
 > 
-> Hi John,
+> Introduce a mechanism whereby platforms can create their PCS instances
+> prior to the network device being published to userspace, but after
+> some of the core stmmac initialisation has been completed. This means
+> that the data structures that platforms need will be available.
 > 
-> many thanks for the detailed review (also on the other two patches), much
-> appreciated!
-
-No problem!
-
-> I see what you mean, though I actually looked at the number of steps
-> mentioned in the first part of the register description. Now
-> triple-checking this I came up with this table (generated by a spreadsheet
-> to minimise human error):
-> voltage	decimal	binary	
-> 1600	88	1011000
-> 1700	89	1011001
-> 1800	90	1011010
-> 1900	91	1011011
-> 2000	92	1011100
-> 2100	93	1011101
-> 2200	94	1011110
-> 2300	95	1011111
-> 2400	96	1100000
-> 2500	97	1100001
-> 2600	98	1100010
-> 2700	99	1100011
-> 2800	100	1100100
-> 2900	101	1100101
-> 3000	102	1100110
-> 3100	103	1100111
-> 3200	104	1101000
-> 3300	105	1101001
-> 3400	106	1101010
+> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+> Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
+> ---
+>  drivers/net/ethernet/stmicro/stmmac/stmmac_main.c | 14 ++++++++++++++
+>  include/linux/stmmac.h                            |  2 ++
+>  2 files changed, 16 insertions(+)
 > 
-> Which means the final binary value in the datasheet is wrong, as 1101011
-> would mean 3.5V.
-> Also  1101010 = 106
->      -1011000 = 88
-> =============
->       0010010 = 18
-> and 18 * 100 + 1600 = 3400, right?
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> index fe3498e86de9d..25fa33ae7017b 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> @@ -7208,6 +7208,12 @@ static int stmmac_hw_init(struct stmmac_priv *priv)
+>  	if (ret)
+>  		return ret;
+>  
+> +	if (priv->plat->pcs_init) {
+> +		ret = priv->plat->pcs_init(priv, priv->hw);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+
+I am currently working on my Memory-mapped DW XPCS patchset cooking:
+https://lore.kernel.org/netdev/20231205103559.9605-1-fancer.lancer@gmail.com/
+The changes in this series seems to intersect to what is/will be
+introduced in my patchset. In particular as before I am going to
+use the "pcs-handle" property for getting the XPCS node. If so what
+about collecting PCS-related things in a single place. Like this:
+
+int stmmac_xpcs_setup(struct net_device *ndev)
+{
+	...
+
+	if (priv->plat->pcs_init) {
+		return priv->plat->pcs_init(priv); /* Romain' part */
+	} else if (fwnode_property_present(priv->plat->port_node, "pcs-handle")) {
+		/* My DW XPCS part */
+	} else if (priv->plat->mdio_bus_data && priv->plat->mdio_bus_data->has_xpcs) {
+		/* Currently implemented procedure */
+	}
+
+	...
+}
+
+void stmmac_xpcs_clean(struct net_device *ndev)
+{
+	...
+
+	if (priv->plat->pcs_exit) {
+		priv->plat->pcs_exit(priv);
+		return;
+
+	}
+
+	xpcs_destroy(priv->hw->xpcs);
+	priv->hw->xpcs = NULL;
+}
+
+Please see the last two patches in my series:
+https://lore.kernel.org/netdev/20231205103559.9605-16-fancer.lancer@gmail.com/
+https://lore.kernel.org/netdev/20231205103559.9605-17-fancer.lancer@gmail.com/
+as a reference of how the changes could be provided.
+
+-Serge(y)
+
+>  	/* Get the HW capability (new GMAC newer than 3.50a) */
+>  	priv->hw_cap_support = stmmac_get_hw_features(priv);
+>  	if (priv->hw_cap_support) {
+> @@ -7290,6 +7296,12 @@ static int stmmac_hw_init(struct stmmac_priv *priv)
+>  	return 0;
+>  }
+>  
+> +static void stmmac_hw_exit(struct stmmac_priv *priv)
+> +{
+> +	if (priv->plat->pcs_exit)
+> +		priv->plat->pcs_exit(priv, priv->hw);
+> +}
+> +
+>  static void stmmac_napi_add(struct net_device *dev)
+>  {
+>  	struct stmmac_priv *priv = netdev_priv(dev);
+> @@ -7804,6 +7816,7 @@ int stmmac_dvr_probe(struct device *device,
+>  	    priv->hw->pcs != STMMAC_PCS_RTBI)
+>  		stmmac_mdio_unregister(ndev);
+>  error_mdio_register:
+> +	stmmac_hw_exit(priv);
+>  	stmmac_napi_del(ndev);
+>  error_hw_init:
+>  	destroy_workqueue(priv->wq);
+> @@ -7844,6 +7857,7 @@ void stmmac_dvr_remove(struct device *dev)
+>  	if (priv->hw->pcs != STMMAC_PCS_TBI &&
+>  	    priv->hw->pcs != STMMAC_PCS_RTBI)
+>  		stmmac_mdio_unregister(ndev);
+> +	stmmac_hw_exit(priv);
+>  	destroy_workqueue(priv->wq);
+>  	mutex_destroy(&priv->lock);
+>  	bitmap_free(priv->af_xdp_zc_qps);
+> diff --git a/include/linux/stmmac.h b/include/linux/stmmac.h
+> index dfa1828cd756a..941fde506e514 100644
+> --- a/include/linux/stmmac.h
+> +++ b/include/linux/stmmac.h
+> @@ -285,6 +285,8 @@ struct plat_stmmacenet_data {
+>  	int (*crosststamp)(ktime_t *device, struct system_counterval_t *system,
+>  			   void *ctx);
+>  	void (*dump_debug_regs)(void *priv);
+> +	int (*pcs_init)(struct stmmac_priv *priv, struct mac_device_info *hw);
+> +	void (*pcs_exit)(struct stmmac_priv *priv, struct mac_device_info *hw);
+>  	void *bsp_priv;
+>  	struct clk *stmmac_clk;
+>  	struct clk *pclk;
 > 
-> This *is* admittedly quite bonkers, especially since the representations
-> between the manual and the code are so different, but can you check that
-> this makes sense?
-
-I wrote a program in Python that steps through each range and prints its
-value, and according to it value 106 is 3.4V. I dumped it at the end of
-this email for anyone curious. Your math checks out too.
-
-So the datasheet must be wrong. Maybe it originally supported up to 3.5V
-and someone who doesn't know binary updated the sheet.
-
-I think you should add a note saying that the datasheet is wrong, to
-show people this isn't a bug and also save time of others trying to
-write their own drivers and check their logic. Something like this:
-
-Warning, the datasheet specifies that 3.40V is 107, which is incorrect:
-- There are only 107 steps in total, making the highest step value 106
-- 1.60V is listed as 1011000 (88 in decimal), with 18 steps after that 
-- Adding 100mV for each of the 18 steps past 1.60V gives 3.4V
-
-I think this logic convinces me at least. :)
-
-John.
-
-> I discovered some other issue in the original patch (missed declaring the
-> range of IRQ acknowledge registers in the MFD part), so I will send a v2 of
-> this series soonish.
+> -- 
+> 2.44.0
 > 
-> > For DCDC3 after applying this patch we get:
-> > 
-> > #define AXP717_DCDC3_NUM_VOLTAGES	103
-> > static const struct linear_range axp717_dcdc3_ranges[] = {
-> > 	REGULATOR_LINEAR_RANGE(500000,   0,  70, 10000),
-> > 	REGULATOR_LINEAR_RANGE(1220000, 71, 102, 20000),
-> > };
-> > 
-> > The datasheet marks the maximum value as 1100110: 1.84V, which is 102.
-> > So this patch to correct the AXP717_DCDC3_NUM_VOLTAGES is correct here.
 > 
-> I agree ;-) thanks for checking!
-> 
-> Cheers,
-> Andre
-
----
-
-Python program:
-
-reg = 0
-value = 500
-for x in range(71):
-	print("%i: %imV" % (reg, value))
-	value += 10
-	reg += 1
-value = 1220
-for x in range(17):
-	print("%i: %imV" % (reg, value))
-	value += 20
-	reg += 1
-value = 1600
-for x in range(19):
-	print("%i: %imV" % (reg, value))
-	value += 100
-	reg += 1
 
