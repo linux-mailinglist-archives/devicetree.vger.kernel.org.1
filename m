@@ -1,164 +1,278 @@
-Return-Path: <devicetree+bounces-59834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 168B08A7232
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 19:25:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 978FE8A723C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 19:26:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C7D46283FBC
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 17:25:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EB362843CF
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 17:26:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AF8813280C;
-	Tue, 16 Apr 2024 17:25:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C5C713280C;
+	Tue, 16 Apr 2024 17:26:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R1MQ0yXd"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Zzga6lJa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5786C1F956
-	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 17:25:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81FBF10A22
+	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 17:26:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713288335; cv=none; b=BnJO44cnhl6w7IG6CeBT1unNqGoh8BdG6XlzwwT/HG+wns0EKLKje2rpMcTKzlf8uLmck5PxPeVrcwgkqtlrVhXsH/WqcMEvDRDSHP8dguutS+X3CoEHR0X4ZXdNHbP3Ge521ChKN2k/65ycHns7BUC3dErvaktEqmdYkgB7Yu4=
+	t=1713288381; cv=none; b=D31lEOTtcSumoXcFBW9STbZgLfFDgrm46HBxC5rVY4WAPA0CQt89fiI64AE9R4OHRSai4ITWXlg1Ay8GSgz5NdvwPZmV+TzsbaCg/ihPrMYVwUT9PXPo6i55WnYxj4BmCTxSqsRUgDxJ52PWV+oXPaB4js/AdLzReaiEbjopSaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713288335; c=relaxed/simple;
-	bh=SAa9s3VJpC0ue6WJQEp5gjjZX/3kAnQf4xSZ8MArlO4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uHWqNC4vlWkrA/NLz5ctFyhuFVgOJjbGBBe1+fhEufBdjyAbmq796kUW+wybmU30xhPv5J1XE1TQMARUqTAFVmYYhSVWbb0PgjKus4JKqrlfwhq0S8krUaj1HgvhuvhsUpgwTBN+Ruf+JMr4dtnPKFO7L7gk1l0DKi89vA5/c+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R1MQ0yXd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64B64C32783;
-	Tue, 16 Apr 2024 17:25:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713288334;
-	bh=SAa9s3VJpC0ue6WJQEp5gjjZX/3kAnQf4xSZ8MArlO4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=R1MQ0yXdgMP7a9GSZTNHVYo8piid3ASYxDLSjEJUL/kOnd24CQB4qd81mSGI2c8fj
-	 nDB2W3o8qjhdPEoCD3Ws9AUpXM+HgXpVe3vz1hpWFoi+U/mFEHuoANJ67xxGKklrr9
-	 WgOx0Q1EERTaV79CMuj+RlVdq4fflk5jFmYsdkmpe/tFAQgNavNRsqxEgE0P3IY7Sg
-	 JCqE2Cmiw/X6PGbNFleYVa9OWgCYb7+Lv4FAAlI1bIvpE5tqvjiZf71x/7ml9Z9ONa
-	 3QGPSq1eYpS1U+WjWNKic2PjbIPb7nsJJgGF2EQ1p5w4Rp5m/JZedSN+MdiDuqjslq
-	 TLoE3V95zThGQ==
-Date: Tue, 16 Apr 2024 18:25:30 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Eddie James <eajames@linux.ibm.com>
-Cc: linux-aspeed@lists.ozlabs.org, joel@jms.id.au,
-	andrew@codeconstruct.com.au, devicetree@vger.kernel.org,
-	linux-fsi@lists.ozlabs.org, robh@kernel.org, conor+dt@kernel.org,
-	krzk+dt@kernel.org, jk@ozlabs.org, alistair@popple.id.au,
-	lakshmiy@us.ibm.com
-Subject: Re: [PATCH v2 1/3] dt-bindings: fsi: Document the IBM SBEFIFO engine
-Message-ID: <20240416-askew-slapstick-994453ecbf73@spud>
-References: <20240415153907.10051-1-eajames@linux.ibm.com>
- <20240415153907.10051-2-eajames@linux.ibm.com>
+	s=arc-20240116; t=1713288381; c=relaxed/simple;
+	bh=gugj190yNrZfHM85C7hbd2HpXMawIUK+imGyZeo832E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FlYRu8skChxPg3npOriBYiesMgrsN2LE/RyywOyeSpAcjd5KhYw8Tj+rbqm1pWWkNHSPisfv0GMfyzgWE8pUh3PUQJ/BYXquvnKj2fbdjgachshyDULMkwb1Kamd0DO4OO3oVhLQMS4gjsql3vSXHNCLxI8M6j16t+0wDJP97No=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=Zzga6lJa; arc=none smtp.client-ip=209.85.222.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-qk1-f174.google.com with SMTP id af79cd13be357-78a26aaefc8so268264485a.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 10:26:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1713288378; x=1713893178; darn=vger.kernel.org;
+        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Y6gH6tF6/zgIB0ej/q/4tDhc/QrnznUUigqHZ/8uMiM=;
+        b=Zzga6lJaXqm6XlIzC3U5/mkcanim843boecVdyp2wMy8FhpYHpL2fcA28/VNZQxTI/
+         Aiv5w/Fm+H9mBVv1E2tmdk4iReUNMzn37QBxIDbA7+XxcsG6rpWwdNiMYPTsJSxQklXS
+         29WKvUh5CIAd+vclpQsHbPYmahhvVENTbBNRE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713288378; x=1713893178;
+        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Y6gH6tF6/zgIB0ej/q/4tDhc/QrnznUUigqHZ/8uMiM=;
+        b=EnFdO5CfU9Ccu91AhR8qwSHsT4CuG3I7GaxoAfCOMIJAMtMkT3k8FcX/uIzAtuLYUO
+         ftBD0LT7GcZIrtNDsfjaZ0wl+YveNbt0Jtq+UAaxLr1XonJhykW5hqzLPWBwPCOJJmha
+         any/l+APLT6PiAs779EwEurIABI3GGnl6nZFb+fb/8v1y0VMYRdaB2TuF5WxEaSvK5ky
+         Q9sejvi572txfg2GKs8iTiYuBa6DnkjQPBKpUcewh6uZZ1oYA6X4I+5n9FtZhtbj+pk5
+         Fu0QuPZ6wyptvWhXeCNZU6dQgz3UspQVWQaLLKVs8z3QlyfaTB16diu0m547M8Bw+2SE
+         K5JQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU5r4Nh38S5ROQ7VD4RQOSoxUy4JjyBqq+oTgCjdFruRu5EYBX5QJNJhizkyjCarbJNk9MgV6SPeqWcwFrfIMm1uVN1cC2nY6wZoQ==
+X-Gm-Message-State: AOJu0Yx/XTkpkZKY000omsu6nejnZHyLf6w5cDyG4AuQEfqCNA3p9K+D
+	BxVLdqsSWDah8K3QO0jYH6pWxqfUa8dGQoR5S/h3jOYIAoRchU5BIYmKwVUTyQ==
+X-Google-Smtp-Source: AGHT+IH9/5oy3kMo/u8W1odNW6h++Qef15gSqnl0sSzLLph5WYcb7pu8xTeCpp+yC3MFlyoQAFwZTw==
+X-Received: by 2002:ad4:53a3:0:b0:69b:3aef:c08 with SMTP id j3-20020ad453a3000000b0069b3aef0c08mr12947389qvv.27.1713288378400;
+        Tue, 16 Apr 2024 10:26:18 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id x15-20020a0ceb8f000000b0069b6e19090csm3988971qvo.10.2024.04.16.10.26.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Apr 2024 10:26:17 -0700 (PDT)
+Message-ID: <a88db14a-eb82-4539-855c-52886dea2285@broadcom.com>
+Date: Tue, 16 Apr 2024 10:26:10 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="MSKVpxQ0QimsDgBf"
-Content-Disposition: inline
-In-Reply-To: <20240415153907.10051-2-eajames@linux.ibm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] ARM: dts: bcm2835: Enable 3D rendering through V3D
+To: Conor Dooley <conor@kernel.org>, =?UTF-8?Q?Ma=C3=ADra_Canal?=
+ <mcanal@igalia.com>
+Cc: Stefan Wahren <wahrenst@gmx.net>, Andre Przywara
+ <andre.przywara@arm.com>, Maxime Ripard <mripard@kernel.org>,
+ Melissa Wen <mwen@igalia.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+ Scott Branden <sbranden@broadcom.com>,
+ Romain Perier <romain.perier@gmail.com>, dri-devel@lists.freedesktop.org,
+ bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ kernel-dev@igalia.com
+References: <20240415160129.14149-2-mcanal@igalia.com>
+ <20240415175433.6e63d40f@donnerap.manchester.arm.com>
+ <dc9f2926-3a8f-4191-9319-3d7e78c6758b@igalia.com>
+ <41629496-9be6-470c-931b-146ca22cdd7e@gmx.net>
+ <2f6e13c7-e6d6-414f-b97d-d9a02ae6a696@igalia.com>
+ <20240416-gave-upchuck-fcf973214266@spud>
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <20240416-gave-upchuck-fcf973214266@spud>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+	boundary="00000000000036a46d06163a099b"
+
+--00000000000036a46d06163a099b
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+On 4/16/24 10:21, Conor Dooley wrote:
+> On Tue, Apr 16, 2024 at 07:13:51AM -0300, Maíra Canal wrote:
+>> On 4/16/24 02:30, Stefan Wahren wrote:
+>>> Hi Maíra,
+>>>
+>>> Am 16.04.24 um 03:02 schrieb Maíra Canal:
+>>>> On 4/15/24 13:54, Andre Przywara wrote:
+>>>>> On Mon, 15 Apr 2024 13:00:39 -0300
+>>>>> Maíra Canal <mcanal@igalia.com> wrote:
+>>>>>
+>>>>> Hi,
+>>>>>
+>>>>>> RPi 0-3 is packed with a GPU that provides 3D rendering capabilities to
+>>>>>> the RPi. Currently, the downstream kernel uses an overlay to enable the
+>>>>>> GPU and use GPU hardware acceleration. When deploying a mainline kernel
+>>>>>> to the RPi 0-3, we end up without any GPU hardware acceleration
+>>>>>> (essentially, we can't use the OpenGL driver).
+>>>>>>
+>>>>>> Therefore, enable the V3D core for the RPi 0-3 in the mainline kernel.
+>>>>>
+>>>>> So I think Krzysztof's initial comment still stands: What does that
+>>>>> patch
+>>>>> actually change? If I build those DTBs as of now, none of them has a
+>>>>> status property in the v3d node. Which means it's enabled:
+>>>>> https://github.com/devicetree-org/devicetree-specification/blob/main/source/chapter2-devicetree-basics.rst#status
+>>>>>
+>>>>> So adding an explicit 'status = "okay";' doesn't make a difference.
+>>>>>
+>>>>> What do I miss here?
+>>>>
+>>>> As mentioned by Stefan in the last version, in Raspberry Pi OS, there is
+>>>> a systemd script which is trying to check for the V3D driver (/usr/lib
+>>>> /systemd/scripts/gldriver_test.sh). Within the first check, "raspi-
+>>>> config nonint is_kms" is called, which always seems to fail. What
+>>>> "raspi-config" does is check if
+>>>> /proc/device-tree/soc/v3d@7ec00000/status is equal to "okay". As
+>>>> /proc/device-tree/soc/v3d@7ec00000/status doesn't exists, it returns
+>>>> false.
+>>> yes, but i also mention that the V3D driver starts without this patch.
+>>> The commit message of this patch suggests this is a DT issue, which is not.
+>>>
+>>> I hadn't the time to update my SD card to Bookworm yet. Does the issue
+>>> still exists with this version?
+>>
+>> I'm using a 32-bit kernel and the recommended OS for 32-bit is Bullseye.
+>> But I checked the Bookworm code and indeed, Bookworm doesn't check
+>> the device tree [1].
+>>
+>> I'm thinking about sending a patch to the Bullseye branch to fix this
+>> issue.
+> 
+> I think you should, sounds like they're making invalid assumptions about
+> the status property.
+
+Agreed, fix the script, not the DTSes.
+-- 
+Florian
 
 
---MSKVpxQ0QimsDgBf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+--00000000000036a46d06163a099b
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
-On Mon, Apr 15, 2024 at 10:39:05AM -0500, Eddie James wrote:
-> The SBEFIFO engine provides an interface to the POWER processor
-> Self Boot Engine (SBE).
->=20
-> Signed-off-by: Eddie James <eajames@linux.ibm.com>
-> ---
-> Changes since v1:
->  - Chance "ody" to "odyssey"
->  - Fix typo in commit message
->  - Reword description to describe the hardware only
->=20
->  .../devicetree/bindings/fsi/ibm,sbefifo.yaml  | 39 +++++++++++++++++++
->  1 file changed, 39 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/fsi/ibm,sbefifo.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/fsi/ibm,sbefifo.yaml b/Doc=
-umentation/devicetree/bindings/fsi/ibm,sbefifo.yaml
-> new file mode 100644
-> index 000000000000..69521b1cfb25
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/fsi/ibm,sbefifo.yaml
-
-Filename matching a compatible please.
-
-> @@ -0,0 +1,39 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/fsi/ibm,sbefifo.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: IBM FSI-attached SBEFIFO engine
-> +
-> +maintainers:
-> +  - Eddie James <eajames@linux.ibm.com>
-> +
-> +description: |
-
-This | should not be needed, there's no formatting to preserve.
-
-> +  The SBEFIFO is an FSI CFAM engine that provides an interface to the
-> +  POWER processor Self Boot Engine (SBE). This node will always be a chi=
-ld
-> +  of an FSI CFAM node; see fsi.txt for details on FSI slave and CFAM
-> +  nodes.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ibm,p9-sbefifo
-> +      - ibm,odyssey-sbefifo
-> +
-> +  reg:
-> +    items:
-> +      - description: FSI slave address
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    sbefifo@2400 {
-
-Per fsi.txt, the generic node name looks like it should be
-"fsi-slave-engine"?
-
-Cheers,
-Conor.
-
-> +        compatible =3D "ibm,p9-sbefifo";
-> +        reg =3D <0x2400 0x400>;
-> +    };
-> --=20
-> 2.39.3
->=20
-
---MSKVpxQ0QimsDgBf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZh60igAKCRB4tDGHoIJi
-0riyAP9Y7YRTnsQXUck7bocG8d1Z6DOgkf6/GdAs2Q40yO93dQD/Ssb64e2hbTr4
-L5rS5qThpe1oEpcgL5WCoik0TlQLeQ0=
-=9qd6
------END PGP SIGNATURE-----
-
---MSKVpxQ0QimsDgBf--
+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
+riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
+QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
+UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
+M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
+Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
+14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
+a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
+XzCCBVgwggRAoAMCAQICDBP8P9hKRVySg3Qv5DANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
+RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
+UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMjE4MTFaFw0yNTA5MTAxMjE4MTFaMIGW
+MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
+BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEZsb3JpYW4gRmFpbmVsbGkxLDAqBgkqhkiG
+9w0BCQEWHWZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
+AQ8AMIIBCgKCAQEA+oi3jMmHltY4LMUy8Up5+1zjd1iSgUBXhwCJLj1GJQF+GwP8InemBbk5rjlC
+UwbQDeIlOfb8xGqHoQFGSW8p9V1XUw+cthISLkycex0AJ09ufePshLZygRLREU0H4ecNPMejxCte
+KdtB4COST4uhBkUCo9BSy1gkl8DJ8j/BQ1KNUx6oYe0CntRag+EnHv9TM9BeXBBLfmMRnWNhvOSk
+nSmRX0J3d9/G2A3FIC6WY2XnLW7eAZCQPa1Tz3n2B5BGOxwqhwKLGLNu2SRCPHwOdD6e0drURF7/
+Vax85/EqkVnFNlfxtZhS0ugx5gn2pta7bTdBm1IG4TX+A3B1G57rVwIDAQABo4IB3jCCAdowDgYD
+VR0PAQH/BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3Vy
+ZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEG
+CCsGAQUFBzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWdu
+MmNhMjAyMDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93
+d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6
+hjhodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNy
+bDAoBgNVHREEITAfgR1mbG9yaWFuLmZhaW5lbGxpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggr
+BgEFBQcDBDAfBgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUUwwfJ6/F
+KL0fRdVROal/Lp4lAF0wDQYJKoZIhvcNAQELBQADggEBAKBgfteDc1mChZjKBY4xAplC6uXGyBrZ
+kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
+2s1RH00JOkO5SkYdwCHj4DB9B7KEnLatJtD8MBorvt+QxTuSh4ze96Jz3kEIoHMvwGFkgObWblsc
+3/YcLBmCgaWpZ3Ksev1vJPr5n8riG3/N4on8gO5qinmmr9Y7vGeuf5dmZrYMbnb+yCBalkUmZQwY
+NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
+AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
+LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIMAosRwuKFHNoLFO
+dP0TPWbdRQpLzs+YyqnNnot5STsLMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTI0MDQxNjE3MjYxOFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQDW0CuSd0Z4LjbM5/HdgGu6EzDtdOCN4fdW
+HDTBEhSI024e7ngup7B/cynpp/iYsJStgL145dW3GwpThpt5ZEhJ9Qf46F2yJd2ICjBtGYwYKYWB
+/j0DHlevy81ub3OEV4bvXomWnUGZ1RYr6AKI0TYqufkAzLLZMI5CpBBjbimerL7Bu1YsqnwU7ANj
+XkQslprcleSyLe6il1IsYUeenRXBaYLU3SH3+0eF42L/NTXgS1ZqslgaEkaNZIY9sKCQOaoaGiSV
+U4oX6W7SymJFALM3lQmbJMlOZAQh5cnTbqEf/miupJh2mBxFNJOjgGZnVlk2BU+LvQf/Ox043KUc
+rLHG
+--00000000000036a46d06163a099b--
 
