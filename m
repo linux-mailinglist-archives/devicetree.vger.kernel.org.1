@@ -1,331 +1,148 @@
-Return-Path: <devicetree+bounces-59872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AF578A75B8
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 22:33:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78D728A75CA
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 22:39:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4099282DBE
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 20:33:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A5FFE1C21097
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 20:39:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA97084E1B;
-	Tue, 16 Apr 2024 20:32:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BA864206F;
+	Tue, 16 Apr 2024 20:39:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="lWHkOTBu"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="ssQW8vIR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2042.outbound.protection.outlook.com [40.107.244.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 188AF84E01;
-	Tue, 16 Apr 2024 20:32:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.244.42
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713299530; cv=fail; b=LDZ6rBauBxrH066RVSlVH7povEPzTGPg7QskyA6fpLbAT6Le5AX+L6/pHscBxsvOB4NMadpU/d7IVfPsvLkpiqU02v9IjHhQjOeqZFSOYYcgt9K3EwzH6FlRoTsZWBuGwiFL6m/zKTmtVs0UoLbSFCB8GVhJCQSGNSNTL9h/0mY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713299530; c=relaxed/simple;
-	bh=DQDuToZUbYaztNRGSCUeEGfmA4zMDWlB0+yD6Djukpk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=pcpM375G2C9OwBdTLDrYACmzc36dceLRidbs5NcZsZSLgwGjunAb5VtMZmCL8nBVKOJ46uIvRoroLU0W5dwWpPe1x2/2DdobQ36g/NRaT1XQW25VE1uKw09g4QrpA8g70kXpEEw40e/sgjhdNVZs1rQG0g9sE36ZxGxpkgN9QP0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=lWHkOTBu; arc=fail smtp.client-ip=40.107.244.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UfC3xT9LxMtEutS1qYJWlU8TIKh2a6e6bFCOV14bQ/6Rzn2uCVHYrggnucuokR+b1cNNxI6m0cOEWAUdY2hDjxhWR8aLNIMsrIe5QBuegfI+M8hiJ8UUG2m4mdV1Q5EAFQDAKcANsh3S0543gm+OlYKNJXVBOlMnf5zEJeVJ5PIhZYsf13O7RKLwc8S4aIxNboT+6mRoCymC8jBerKWX4EJR9FAMXRdT5pKidC/yU6MbRGo4ZDU3lAlBrXdFo5IWpnv+zabieJ23AGHumEch8PCRnAuwp4ZN4N8abQmmjCyvc9V2ge1ngkemNsluKAIXmZj7/yCSQGmz/33Q4Gb9lQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=c0ImcF5+f8PxLy3F3qASiZOnUYitjVli58R3DNOhPXQ=;
- b=Xd9BM6zaygH4MV0QI4oLOnQ963ESAYkcDRvhf+XkNmJTkJO2y9Krn1SjCZIc/iC2zi88l67kRR5UECjJO1lKMdWrppLU/V+vIhCHjlNgdIjJVX3NK6iYD/+zYUT6RKEARFMem47ddbG2QF3+4/9boQ3n6k7dVCESTr2ADFoMlg2pXEgfjb30aT8TOuL7NX/igSyMUuCi4Z7aQfmexbQjRO+Z+Zh7Kjf0S9WQZlM6eG9ujqbxP13UjspuMhvZFsRzSyILKm5F6zpPYS1i8yYF+uOGiGiQdVmb/COvMftLBWgmvFcUMdT9gLW4ye36DG4he+xESjAGiUpxT0VZPqXnfw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=c0ImcF5+f8PxLy3F3qASiZOnUYitjVli58R3DNOhPXQ=;
- b=lWHkOTBuuuzOE+b7TewSlcO0NZBpCKleDVLTG16uIByo+B6yDTZdsK+ElnpGuL5GwQU6F5LTCtcxOCCXCzbpxrBEvNzAxcbniD7lWbn3t10wnVR9wSTGfKw9IfKTFGiUq79Gvq4O+6ZNbEKhs/K8HNUkZGoit6Ur0m9wjxfMMEE=
-Received: from BL1PR13CA0239.namprd13.prod.outlook.com (2603:10b6:208:2bf::34)
- by IA1PR12MB7615.namprd12.prod.outlook.com (2603:10b6:208:428::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.50; Tue, 16 Apr
- 2024 20:32:05 +0000
-Received: from BL6PEPF0001AB76.namprd02.prod.outlook.com
- (2603:10b6:208:2bf:cafe::f4) by BL1PR13CA0239.outlook.office365.com
- (2603:10b6:208:2bf::34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7495.19 via Frontend
- Transport; Tue, 16 Apr 2024 20:32:05 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BL6PEPF0001AB76.mail.protection.outlook.com (10.167.242.169) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7452.22 via Frontend Transport; Tue, 16 Apr 2024 20:32:05 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Tue, 16 Apr
- 2024 15:32:02 -0500
-Received: from xsjanatoliy50.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Tue, 16 Apr 2024 15:32:00 -0500
-From: Anatoliy Klymenko <anatoliy.klymenko@amd.com>
-Date: Tue, 16 Apr 2024 13:31:42 -0700
-Subject: [PATCH v4 7/7] drm/atomic-helper: Add select_output_bus_format
- callback
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A4CA3B1A4
+	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 20:39:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713299980; cv=none; b=lj8HeFqiI3Gjb0W7lQB+6DmgjkftRgiTf1LGjzdsDJ3djDkTQmXWcXykxKDh1cQ9YnJjRT3MMiliBDNUH6+5jmzcO4qDYHJ+h9XHv6naIjzS7Ggnv8X6SmvsfYd1UQzZ+j1TSZ0SKsNJyEGTqYALGNWtyPtvwXiRVp9sowktpR8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713299980; c=relaxed/simple;
+	bh=83pdUfUUCdF5WrGmIF1GO0LUgsvG5H+wRIvNQRdgzmg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IF6Nsxs9cxf5fRDZBzeX7MLRttWJJ4bP5qKwcyVrfBOj2oSSzpijPhf3mink8uyA+OHOa+SOFa965571V4Y97OEWXxWZMAbsh37kFYm7PkYrFlt0crMBNJrBuL1SAUmKA0Gxl8JsISrfPjGnzFTT5RN7Xt9Mlebz5EIFxeZfy5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=ssQW8vIR; arc=none smtp.client-ip=209.85.214.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-1e3ff14f249so1174735ad.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 13:39:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1713299977; x=1713904777; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=BMsxIpE4Z9nqdYgum8o4M/KssYPkdpnJdREANM4LfZ4=;
+        b=ssQW8vIRunxIy7lC6PDn3XcfeNOontz5cjIBQxhwfMOIiH1ClJZPWOoyydgc0vxNJf
+         rx5vNo4mCBe0krsS1Ozx7fbaCmsuGx3cGC+OOeX5+MFZQt7yySoua+CgnT4oBqcuEDro
+         ANymcYwQU1aUDK/KYwxplgAPubazLqJzb+X81gD5pKDC4PPhlIDCMW4B4iiHFKhpBbFr
+         f2hWm/IIVDl9XgWkcbE9t8WBy3xk4UM8YOUayX/SJqq1qsCFqdC0B/i3F4inL5V8beAM
+         J/t2xIxOrpQx8jBd+1GPM/GdGwk8JJ/YzIfYPNrNlxtQKkiIlvBewbJSRJOdc6Q7YQmZ
+         6o+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713299977; x=1713904777;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BMsxIpE4Z9nqdYgum8o4M/KssYPkdpnJdREANM4LfZ4=;
+        b=ZnNGpbQNMtkybIolEYuxm8zmV97USsfykDQxz36swAUvqEB0D8lecT9qebZaQtaaf6
+         b7d5rI+U43+PO9vAbYzjOFjv0pBBqqmB6C+EXCbielKkqMKtm3EZ4DsFMvIDTUR8ZH7I
+         np6fYRyQdFzSUbBZesVVVjs+L1hHsrVqYR4ZO47KgiGbgi6jE6lOS3CpWN/osgo10T8x
+         +8LlwVriwWebumCsuqfoWHeSfzR8Fen9xXkLfqq7GPFPG/J/4BuaQvO0bsb35JDMQilA
+         qEYp1GmaC9q5P69A2/QLFTsa4015XWPWgVLc8O0+vzjiFYr6owwKTyimQoZFJlL8GsBM
+         Tfug==
+X-Forwarded-Encrypted: i=1; AJvYcCV4uK7n5RuJqJaDe4Pkun2pzvVN5R5QPu1xqPRZdFJO0UH69wMWQI1Nkhgvz5nu/2VUbkGOxilel4wneNY1U+Y3xz99d3/xzOVIGw==
+X-Gm-Message-State: AOJu0YzqWrut3X6zq/AWkXwgAouJGPxECQNGHjwSa8sTH+LraXHQ7hHW
+	ghnCN9X/yv3riHKFcBqNRLuBi3qQNdm9Wu5j/7taT0hlY6TLUVYqoOxgwon+4rI=
+X-Google-Smtp-Source: AGHT+IH1gf91D0Jx8EX2o/Z8Zgr/8lKTTJMrgChMy1jkDn9GpdgrT/0VA+/pYw0KTlvpLVreUrkRWg==
+X-Received: by 2002:a17:902:e811:b0:1e4:6cd7:30b3 with SMTP id u17-20020a170902e81100b001e46cd730b3mr4087832plg.23.1713299976719;
+        Tue, 16 Apr 2024 13:39:36 -0700 (PDT)
+Received: from ghost ([50.145.13.30])
+        by smtp.gmail.com with ESMTPSA id u22-20020a1709026e1600b001e2ba8605dfsm8797603plk.150.2024.04.16.13.39.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Apr 2024 13:39:36 -0700 (PDT)
+Date: Tue, 16 Apr 2024 13:39:33 -0700
+From: Charlie Jenkins <charlie@rivosinc.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Evan Green <evan@rivosinc.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v2 04/17] riscv: dts: allwinner: Add xtheadvector to the
+ D1/D1s devicetree
+Message-ID: <Zh7iBRUybq1BAReT@ghost>
+References: <20240415-dev-charlie-support_thead_vector_6_9-v2-0-c7d68c603268@rivosinc.com>
+ <20240415-dev-charlie-support_thead_vector_6_9-v2-4-c7d68c603268@rivosinc.com>
+ <20240416-scorer-easeful-4dae3c18465d@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240416-dp-live-fmt-v4-7-c7f379b7168e@amd.com>
-References: <20240416-dp-live-fmt-v4-0-c7f379b7168e@amd.com>
-In-Reply-To: <20240416-dp-live-fmt-v4-0-c7f379b7168e@amd.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>, Michal Simek <michal.simek@amd.com>,
-	"Andrzej Hajda" <andrzej.hajda@intel.com>, Neil Armstrong
-	<neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Jonas Karlman
-	<jonas@kwiboo.se>, "Jernej Skrabec" <jernej.skrabec@gmail.com>, Rob Herring
-	<robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>
-CC: <dri-devel@lists.freedesktop.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, Tomi Valkeinen
-	<tomi.valkeinen@ideasonboard.com>, <devicetree@vger.kernel.org>,
-	<linux-media@vger.kernel.org>, Anatoliy Klymenko <anatoliy.klymenko@amd.com>
-X-Mailer: b4 0.13.0
-Received-SPF: None (SATLEXMB03.amd.com: anatoliy.klymenko@amd.com does not
- designate permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB76:EE_|IA1PR12MB7615:EE_
-X-MS-Office365-Filtering-Correlation-Id: da737df2-7fd8-4601-d812-08dc5e5447d9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	jDA817bVm9BsEJpJDauXzLbudcC1L3b7BEA4b4AhwNvO6/6z2sCz4EqRn98HRTgm5Sqd48lPu4GbACHDaM7urQgcoWoXjQLcEUtGwDAlyCbEj4AkduErS0MwER/5BbciniXw2uMn9TbE9FoRcsA3SXfksjZubqGviRW9tjxtMP7mRBRFUQLP7ZPc743tHe7/VCxADLSgzLQ1kl2z2k9QzgUkap0yxqp4/DJMwMH46xih1I44XOMqYMv0Hs4YHBl3B+QaJbl0wQDGXFEz6+UpFP4K6WyeW34utrnxDtbZi/MI35inXfUuWlaXTitqQgHrtUKWKsWFU4k6/kJ0/y/vnTWtJgraEJuUTodSf0Lw33y3vr/37JUw2WVzS79UUsefC+HDncbKYrUSXfMSIoWOo2QibdBPCON/Br/MgTym53BRXsW/D+uYAJicaErVSFUZvr6h/N3El7U8mZFBugFPGzZO8078+AeocDM/TLXN+XS9Y116Zysg1apNWbh6tZLPQ4uGj93YAi90AbQ2tAK8Xz60dI0g2dTffWfunIeAt08q+Kft1IcgatG4CeHy/BC7c+zSd3gmO+/14i4Jgmmvul7Fh2EgvNwugMzOIYDeBITzZBBzJsw0k7RmrhMqa8F7GU4Dtl8Ssx6pXQXdcbh9qc5z4WXsv5ROgN+mFgiRTzyQJRU2L/XUz0cMlORHJtTikoM2kz+o8YGhSu0R4/89v28x0Sg0Oa7tWYi6oEi6Vbpd+auWhWbzaE7XhsvF94rwyfUdtWvg6jFgsiiQ/eb1oA==
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(82310400014)(36860700004)(1800799015)(376005)(7416005)(921011);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2024 20:32:05.4396
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: da737df2-7fd8-4601-d812-08dc5e5447d9
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BL6PEPF0001AB76.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7615
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240416-scorer-easeful-4dae3c18465d@spud>
 
-Add optional drm_crtc_helper_funcs.select_output_bus_format callback. This
-callback allows to negotiate compatible media bus format on the link
-between CRTC and connected DRM encoder or DRM bridge chain. A good usage
-example is the CRTC implemented as FPGA soft IP. This kind of CRTC will
-most certainly support a single output media bus format, as supporting
-multiple runtime options consumes extra FPGA resources. A variety of
-options for the FPGA designs are usually achieved by synthesizing IP with
-different parameters.
+On Tue, Apr 16, 2024 at 04:28:19PM +0100, Conor Dooley wrote:
+> On Mon, Apr 15, 2024 at 09:12:01PM -0700, Charlie Jenkins wrote:
+> > The D1/D1s SoCs support xtheadvector which should be included in the
+> > devicetree. Also include vendorid for the cpu.
+> > 
+> > Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+> > ---
+> >  arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi | 3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+> > index 64c3c2e6cbe0..4788bb50afa2 100644
+> > --- a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+> > +++ b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+> > @@ -27,7 +27,8 @@ cpu0: cpu@0 {
+> >  			riscv,isa = "rv64imafdc";
+> >  			riscv,isa-base = "rv64i";
+> >  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
+> > -					       "zifencei", "zihpm";
+> > +					       "zifencei", "zihpm", "xtheadvector";
+> 
+> 
+> > +			riscv,vendorid = <0x00000000 0x0000005b7>;
+> 
+> Isn't this effectively useless given there's only one CPU here?
+> We also already know the vendor of the hart, because the compatible says
+> it is a "thead,c906" so this doesn't provide any new information.
 
-Add drm_helper_crtc_select_output_bus_format that wraps
-drm_crtc_helper_funcs.select_output_bus_format.
+Yes, it was simply to provide an example of using this field to make it
+easier for somebody who wants to use it in the future. I can remove it
+if it's confusing.
 
-Incorporate select_output_bus_format callback into the format negotiation
-stage to fix the input bus format of the first DRM bridge in the chain.
+- Charlie
 
-Save negotiated output media bus format in drm_crtc_state.
+> 
+> >  			#cooling-cells = <2>;
+> >  
+> >  			cpu0_intc: interrupt-controller {
+> > 
+> > -- 
+> > 2.44.0
+> > 
 
-Signed-off-by: Anatoliy Klymenko <anatoliy.klymenko@amd.com>
----
- drivers/gpu/drm/drm_bridge.c             | 14 ++++++++++--
- drivers/gpu/drm/drm_crtc_helper.c        | 38 ++++++++++++++++++++++++++++++++
- include/drm/drm_crtc.h                   | 11 +++++++++
- include/drm/drm_crtc_helper.h            |  5 +++++
- include/drm/drm_modeset_helper_vtables.h | 30 +++++++++++++++++++++++++
- 5 files changed, 96 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
-index 521a71c61b16..955ca108cd4b 100644
---- a/drivers/gpu/drm/drm_bridge.c
-+++ b/drivers/gpu/drm/drm_bridge.c
-@@ -28,6 +28,7 @@
- 
- #include <drm/drm_atomic_state_helper.h>
- #include <drm/drm_bridge.h>
-+#include <drm/drm_crtc_helper.h>
- #include <drm/drm_debugfs.h>
- #include <drm/drm_edid.h>
- #include <drm/drm_encoder.h>
-@@ -879,7 +880,8 @@ static int select_bus_fmt_recursive(struct drm_bridge *first_bridge,
- 	unsigned int i, num_in_bus_fmts = 0;
- 	struct drm_bridge_state *cur_state;
- 	struct drm_bridge *prev_bridge;
--	u32 *in_bus_fmts;
-+	struct drm_crtc *crtc = crtc_state->crtc;
-+	u32 *in_bus_fmts, in_fmt;
- 	int ret;
- 
- 	prev_bridge = drm_bridge_get_prev_bridge(cur_bridge);
-@@ -933,7 +935,15 @@ static int select_bus_fmt_recursive(struct drm_bridge *first_bridge,
- 		return -ENOMEM;
- 
- 	if (first_bridge == cur_bridge) {
--		cur_state->input_bus_cfg.format = in_bus_fmts[0];
-+		in_fmt = drm_helper_crtc_select_output_bus_format(crtc,
-+							crtc_state,
-+							in_bus_fmts,
-+							num_in_bus_fmts);
-+		if (!in_fmt) {
-+			kfree(in_bus_fmts);
-+			return -ENOTSUPP;
-+		}
-+		cur_state->input_bus_cfg.format = in_fmt;
- 		cur_state->output_bus_cfg.format = out_bus_fmt;
- 		kfree(in_bus_fmts);
- 		return 0;
-diff --git a/drivers/gpu/drm/drm_crtc_helper.c b/drivers/gpu/drm/drm_crtc_helper.c
-index 2dafc39a27cb..4d3aa39c8a82 100644
---- a/drivers/gpu/drm/drm_crtc_helper.c
-+++ b/drivers/gpu/drm/drm_crtc_helper.c
-@@ -1055,3 +1055,41 @@ int drm_helper_force_disable_all(struct drm_device *dev)
- 	return ret;
- }
- EXPORT_SYMBOL(drm_helper_force_disable_all);
-+
-+/**
-+ * drm_helper_crtc_select_output_bus_format - Select output media bus format
-+ * @crtc: The CRTC to query
-+ * @crtc_state: The new CRTC state
-+ * @supported_fmts: List of media bus format options to pick from
-+ * @num_supported_fmts: Number of media bus formats in @supported_fmts list
-+ *
-+ * Encoder drivers may call this helper to give the connected CRTC a chance to
-+ * select compatible or preffered media bus format to use over the CRTC encoder
-+ * link. Encoders should provide list of supported input MEDIA_BUS_FMT_* for
-+ * CRTC to pick from. CRTC driver is expected to select preferred media bus
-+ * format from the list and, once enabled, generate the signal accordingly.
-+ *
-+ * Returns:
-+ * Selected preferred media bus format or 0 if CRTC does not support any from
-+ * @supported_fmts list.
-+ */
-+u32 drm_helper_crtc_select_output_bus_format(struct drm_crtc *crtc,
-+					     struct drm_crtc_state *crtc_state,
-+					     const u32 *supported_fmts,
-+					     unsigned int num_supported_fmts)
-+{
-+	if (!crtc || !crtc_state || !supported_fmts || !num_supported_fmts)
-+		return 0;
-+
-+	if (!crtc->helper_private ||
-+	    !crtc->helper_private->select_output_bus_format)
-+		crtc_state->output_bus_format = supported_fmts[0];
-+	else
-+		crtc_state->output_bus_format =
-+			crtc->helper_private->select_output_bus_format(crtc,
-+							crtc_state,
-+							supported_fmts,
-+							num_supported_fmts);
-+	return crtc_state->output_bus_format;
-+}
-+EXPORT_SYMBOL(drm_helper_crtc_select_output_bus_format);
-diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h
-index 8b48a1974da3..cdaa27f50af7 100644
---- a/include/drm/drm_crtc.h
-+++ b/include/drm/drm_crtc.h
-@@ -317,6 +317,17 @@ struct drm_crtc_state {
- 	 */
- 	enum drm_scaling_filter scaling_filter;
- 
-+	/**
-+	 * @output_bus_format:
-+	 *
-+	 * CRTC output media bus format of the video signal negotiated between
-+	 * CRTC and encoder. This value should be one of MEDIA_BUS_FMT*
-+	 * from uapi/linux/media-bus-format.h. It is safe to ignore
-+	 * @output_bus_format if CRTC doesn't support multiple output bus format
-+	 * options.
-+	 */
-+	u32 output_bus_format;
-+
- 	/**
- 	 * @event:
- 	 *
-diff --git a/include/drm/drm_crtc_helper.h b/include/drm/drm_crtc_helper.h
-index 8c886fc46ef2..b7eb52f3ce41 100644
---- a/include/drm/drm_crtc_helper.h
-+++ b/include/drm/drm_crtc_helper.h
-@@ -38,6 +38,7 @@
- struct drm_atomic_state;
- struct drm_connector;
- struct drm_crtc;
-+struct drm_crtc_state;
- struct drm_device;
- struct drm_display_mode;
- struct drm_encoder;
-@@ -61,5 +62,9 @@ int drm_helper_connector_dpms(struct drm_connector *connector, int mode);
- 
- void drm_helper_resume_force_mode(struct drm_device *dev);
- int drm_helper_force_disable_all(struct drm_device *dev);
-+u32 drm_helper_crtc_select_output_bus_format(struct drm_crtc *crtc,
-+					     struct drm_crtc_state *crtc_state,
-+					     const u32 *supported_fmts,
-+					     unsigned int num_supported_fmts);
- 
- #endif
-diff --git a/include/drm/drm_modeset_helper_vtables.h b/include/drm/drm_modeset_helper_vtables.h
-index 881b03e4dc28..6d5a081e21a4 100644
---- a/include/drm/drm_modeset_helper_vtables.h
-+++ b/include/drm/drm_modeset_helper_vtables.h
-@@ -489,6 +489,36 @@ struct drm_crtc_helper_funcs {
- 				     bool in_vblank_irq, int *vpos, int *hpos,
- 				     ktime_t *stime, ktime_t *etime,
- 				     const struct drm_display_mode *mode);
-+
-+	/**
-+	 * @select_output_bus_format
-+	 *
-+	 * Called by the connected DRM encoder to negotiate input media bus
-+	 * format. CRTC is expected to pick preferable media formats from the
-+	 * list provided by the DRM encoder.
-+	 *
-+	 * This callback is optional.
-+	 *
-+	 * Parameters:
-+	 *
-+	 * crtc:
-+	 *     The CRTC.
-+	 * crcs_state:
-+	 *     New CRTC state.
-+	 * supported_fmts:
-+	 *     List of input bus formats supported by the encoder.
-+	 * num_supported_fmts:
-+	 *     Number of formats in the list.
-+	 *
-+	 * Returns:
-+	 *
-+	 * Preferred bus format from the list or 0 if CRTC doesn't support any
-+	 * from the provided list.
-+	 */
-+	u32 (*select_output_bus_format)(struct drm_crtc *crtc,
-+					struct drm_crtc_state *crtc_state,
-+					const u32 *supported_fmts,
-+					unsigned int num_supported_fmts);
- };
- 
- /**
-
--- 
-2.25.1
 
 
