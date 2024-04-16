@@ -1,123 +1,144 @@
-Return-Path: <devicetree+bounces-59878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69AA98A761F
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 23:10:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AC668A762B
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 23:14:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FFBE1F2225B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 21:10:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 785791C21CB2
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 21:14:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BAC15B697;
-	Tue, 16 Apr 2024 21:10:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4D1E679ED;
+	Tue, 16 Apr 2024 21:14:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b37s1TWz"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="sluXXdnc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03C391C10;
-	Tue, 16 Apr 2024 21:10:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D12A5A4CF
+	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 21:14:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713301846; cv=none; b=bzorw/xnj1tHtv8FGU3/LfzHy0As2mZc1a6eG7BKAdrSSFau3+MMTeNICICRpt822YP3jYMB7Mrcav+wu427/oml5mIsEfLm0lX9X88HsVD9xJaY4RQZ1mWrIT9Bu8aFi2zL7S5i4UDsFBrYzUKe1fKN0zYfglqSGpbJ6gTsyuM=
+	t=1713302048; cv=none; b=oG45lv9HHKxfwa6O6LkQpIMJ6BntjFRJWXkm7F9y2A8LojKH8a46gZhliVDqRQ+YXWhNlTLFE/pMdQPiXQj/vXp3BCw3y4t3MyjMjN5wa4QPTywd8elMjIbMkqwPivErrIaSWoC/o3zFQ2WGfttAEayF/pah56F9MVxUa3NBIB4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713301846; c=relaxed/simple;
-	bh=6SKY8bqj53o+GZYyijFSxu3zJnsN2yU7FXXH7uzjaJo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b/qnNF1wYp4dmjzht0L2c7bj/esRIWliTP3L4gPPzONOtvsrgBB1VgE7+M26mrkYQcPrsK+vWf8pBe+fF7Cgv/WgKXD9jJyxel91tBX1e+d1NEEPRfI0NqakBjKFeIuzXfXZdTbBux5yINm4lqW604FXxEUeFkkus1liqquNj+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b37s1TWz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B04AC113CE;
-	Tue, 16 Apr 2024 21:10:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713301845;
-	bh=6SKY8bqj53o+GZYyijFSxu3zJnsN2yU7FXXH7uzjaJo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=b37s1TWztoEP1XtKjvnrYhTztn6FEZSBRfS0CB5E/U2BBjp0zO04UvRS5kEmszB8L
-	 2ZSzdsdQuVvsFeKpVdqg8pBTpg/B/DuOCBe4UGtZTDtsUoTVS53u6IEeCTU/9X/btu
-	 gVT1MTAal9in/KAKNRctjS4hF7PK3Gn3VXjqow1RSmhAuKZMhKsJJhxDHnjJASdGFK
-	 velt7R45/pMbac6a2dg8Pk+zO7MuKRdtuo8813r7UOcMGTKClRdEXACNsm1mLQwLKh
-	 AoUclerCfq7D68JiZg/fJswcJi6GyHh5ghp4zX7el4+4XH2Jp9DLmI+v5ptUZmy5G8
-	 oZlcN1+GPeUCg==
-Date: Tue, 16 Apr 2024 22:10:39 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Charlie Jenkins <charlie@rivosinc.com>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Evan Green <evan@rivosinc.com>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH v2 02/17] dt-bindings: riscv: Add xtheadvector ISA
- extension description
-Message-ID: <20240416-budget-cause-c4002a9cc05b@spud>
-References: <20240415-dev-charlie-support_thead_vector_6_9-v2-0-c7d68c603268@rivosinc.com>
- <20240415-dev-charlie-support_thead_vector_6_9-v2-2-c7d68c603268@rivosinc.com>
- <20240416-underwire-bright-b2ab0fa991ec@spud>
- <Zh7i2pir0j6tXfPD@ghost>
+	s=arc-20240116; t=1713302048; c=relaxed/simple;
+	bh=hYbx6PTsoNsyBmCWhe2uOm9re81gqj53ZsseQt9fWB4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oLKfwrZilOEAqiJKeuhWCMl18NiUt2fqzzHde6eX/66vRMa7xtnFg64JIAJZjDnv99rcqdr0xfB5DyUDX/GpuE4iI6ABQNk4x+HghWOiEwY8Yzktm6SCghK+k1G14iISC0AvYSfiKZ5TgkxCA8MmPgNGVSxx5j2kgG7Rm0QxDus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=sluXXdnc; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-516db2214e6so6040276e87.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 14:14:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1713302044; x=1713906844; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dn04wT0JBm+obxx+kTlgG9j7vzEDda0ye02bvz0wRxM=;
+        b=sluXXdnc6zdIs4x9p+gDWVyfXHvhECnrb0kh/6H9CxC3yxUcvbKWCW0Ape+I8l0i9U
+         W9ZeZobz1qmCW39geKwWfPYrDAlXPXVifNNvv0bawPASmEwmF/LA7J7lhrApjyRLiVdz
+         4TfEeajCgDREwrov0hKC7Oshdsam1q91u7msP2RoulU+sgsY5fMr97QSxD8uP8N59sWL
+         Qx9+/BUHXLKoV7+5P2fzGXyBJ18ZWyTIXK51qTFC0RkJcsi16/6w7O8ixhVzxWcWUVfN
+         wVla90dAB15OGkhRWafEYM+wi7txvBODZ5xK2eEAo1/bXudY99irrjauwtSz9rUBodwX
+         fctg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713302044; x=1713906844;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dn04wT0JBm+obxx+kTlgG9j7vzEDda0ye02bvz0wRxM=;
+        b=GVYQOe7+pTUleDchQj7mIuW7TEVs5tx9LOzFDyzio4jRAAwLXVP92nPjZOg2fY22lt
+         8Gcv00llbr3ux99I3UTTm+9m8Ir8YCn5yEijju+T/eHRCizgPYMT6djQOnAtgDmrlqqe
+         4GDo4nKnIMgdEZg7o15ruhhU/CfxE+/J5CqW7KHb2TjiP8YBYH2B47xBEDaO2P8ibBUy
+         aONIhRlp6M6SyVkMpN6EDweARk68BPFKt11bkyYsxMISLjNKTDqVQI290RsyVuL4BEfv
+         bbwvbkmho4D02aqNRRri+exNxRtQi2mxnKpHCZ6Jx4RhWbYaHJD8UWQW3aKBgV8BzJLV
+         7qWA==
+X-Forwarded-Encrypted: i=1; AJvYcCXRn4k2QxLOriGof9AaNU8eefMqY5Wv2HqsDiss8GmIy2TTsPtucrD/RMGW19isfYowTnzrW5zs9Wfu92JSGEZ5mXgrSqmjTrdgug==
+X-Gm-Message-State: AOJu0Yw97Ju0T3cjYshIshMd4XXF6Ygn1YU9eNzh44O3dDpt9dfhic7G
+	JTT6QLUS+i7I+kC6uV6gDfkPUTYNk7xlkSyg9QyL6x3MPtyOQ0A/4fjgqm6OXRGWvEI8ucMwT46
+	PrSbCAGiX+67cHA0yOpVGH8+AAp9I3CM7GwxjrA==
+X-Google-Smtp-Source: AGHT+IGAyUGV6VvWLvHMDAGW8JKzTq1oIDcVu3L+TgdMnw0Thj8YRZxvbWr+f5vVYXNKQFG5YhxvVU34ldmvzwxme38=
+X-Received: by 2002:a19:8c49:0:b0:517:87ba:aff3 with SMTP id
+ i9-20020a198c49000000b0051787baaff3mr9237406lfj.43.1713302044303; Tue, 16 Apr
+ 2024 14:14:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="N+EO9PqJ6paNtHI3"
-Content-Disposition: inline
-In-Reply-To: <Zh7i2pir0j6tXfPD@ghost>
-
-
---N+EO9PqJ6paNtHI3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20240415131104.2807041-1-robh@kernel.org>
+In-Reply-To: <20240415131104.2807041-1-robh@kernel.org>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Tue, 16 Apr 2024 23:13:53 +0200
+Message-ID: <CAMRc=Mf+tFOCawEf=hmAYyBQMyMpPrXTrNhK3J19BM4Gx6zh6g@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: eeprom: at24: Fix ST M24C64-D compatible schema
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alexander Stein <alexander.stein@ew.tq-group.com>, Marek Vasut <marex@denx.de>, 
+	Conor Dooley <conor.dooley@microchip.com>, linux-i2c@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 16, 2024 at 01:43:06PM -0700, Charlie Jenkins wrote:
-> On Tue, Apr 16, 2024 at 04:16:30PM +0100, Conor Dooley wrote:
-> > On Mon, Apr 15, 2024 at 09:11:59PM -0700, Charlie Jenkins wrote:
-> > > The xtheadvector ISA extension is described on the T-Head extension s=
-pec
-> > > Github page [1] at commit 95358cb2cca9.
-> > >=20
-> > > Link: https://github.com/T-head-Semi/thead-extension-spec/blob/95358c=
-b2cca9489361c61d3
-> > > 35e03d3134b14133f/xtheadvector.adoc [1]
-> >=20
-> > This should not be wrapped btw.
-> > Otherwise,
-> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->=20
-> I don't believe it is wrapped? It appears wrapped in your response but
-> it appears on lore correctly:
->=20
-> https://lore.kernel.org/lkml/20240415-dev-charlie-support_thead_vector_6_=
-9-v2-2-c7d68c603268@rivosinc.com/
+On Mon, Apr 15, 2024 at 3:11=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> The schema for the ST M24C64-D compatible string doesn't work.
+> Validation fails as the 'd-wl' suffix is not added to the preceeding
+> schema which defines the entries and vendors. The actual users are
+> incorrect as well because the vendor is listed as Atmel whereas the
+> part is made by ST.
+>
+> As this part doesn't appear to have multiple vendors, move it to its own
+> entry.
+>
+> Fixes: 0997ff1fc143 ("dt-bindings: at24: add ST M24C64-D Additional Write=
+ lockable page")
+> Fixes: c761068f484c ("dt-bindings: at24: add ST M24C32-D Additional Write=
+ lockable page")
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/eeprom/at24.yaml | 5 +----
+>  1 file changed, 1 insertion(+), 4 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/eeprom/at24.yaml b/Documen=
+tation/devicetree/bindings/eeprom/at24.yaml
+> index 1812ef31d5f1..3c36cd0510de 100644
+> --- a/Documentation/devicetree/bindings/eeprom/at24.yaml
+> +++ b/Documentation/devicetree/bindings/eeprom/at24.yaml
+> @@ -68,14 +68,10 @@ properties:
+>                    pattern: cs16$
+>                - items:
+>                    pattern: c32$
+> -              - items:
+> -                  pattern: c32d-wl$
+>                - items:
+>                    pattern: cs32$
+>                - items:
+>                    pattern: c64$
+> -              - items:
+> -                  pattern: c64d-wl$
+>                - items:
+>                    pattern: cs64$
+>                - items:
+> @@ -136,6 +132,7 @@ properties:
+>                - renesas,r1ex24128
+>                - samsung,s524ad0xd1
+>            - const: atmel,24c128
+> +      - pattern: '^atmel,24c(32|64)d-wl$' # Actual vendor is st
+>
+>    label:
+>      description: Descriptive name of the EEPROM.
+> --
+> 2.43.0
+>
 
-IDK man, looks wrapped on lore too. The other copy of the same link
-isn't wrapped & I've never had mutt wrap stuff like this before.
+Applied, thanks!
 
---N+EO9PqJ6paNtHI3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZh7pTwAKCRB4tDGHoIJi
-0oe3AQDQG/kHZeAldrMoBtsuQPLTNJ0Epz1UV1aUIpGum4LtuQEAogQ6sgpTP4rw
-9y6K4GRRCRzQDtYDNsq3qY/MEznY0As=
-=fCu9
------END PGP SIGNATURE-----
-
---N+EO9PqJ6paNtHI3--
+Bart
 
