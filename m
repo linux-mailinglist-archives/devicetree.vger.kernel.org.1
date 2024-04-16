@@ -1,123 +1,139 @@
-Return-Path: <devicetree+bounces-59775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83F2C8A6FFC
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 17:40:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CBFE8A700A
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 17:43:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B40AD1C21379
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 15:40:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F3A01F221BA
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 15:43:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C59401311AC;
-	Tue, 16 Apr 2024 15:39:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5B7A1311A1;
+	Tue, 16 Apr 2024 15:43:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ujZk1EHT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CKoPsWCr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90DF2130E55;
-	Tue, 16 Apr 2024 15:39:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E1A9127B7E;
+	Tue, 16 Apr 2024 15:43:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713281974; cv=none; b=QSfYZxlvMgPb/wsB1RMlclQZYB/uJ+cyBy3KUHQhLdOG79VdOeowFVmvydHL1rEjmAjRSDAGs5R5VDg4DB6SN9RY7bb6ou5NWxq5KFGFyLHl4UjZ2xQZgjX6e4JHNQMHcZsgAfajfZbkV/gmdpZ4zxEcE8iDqJXHsC08qukHx58=
+	t=1713282202; cv=none; b=afs8uBF/62egjQencN0joeiUjjVEYGzPfBRjnu/xlS7q2XkTvgcqNwxVxMRKTaodDwjA5Qm8zUfwG45AR88pYlgDywsQVSvL/Ra+vnD1C3norDUAEPd2p8zkbj2cMg2yja1LdEAXX2zs5/GETbERh82eIh9gZ4xoSYdpN/u9XLo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713281974; c=relaxed/simple;
-	bh=KJDi6z6/U9cziW9yQDAhSzhquj/YiV34HJLdtVilEJM=;
+	s=arc-20240116; t=1713282202; c=relaxed/simple;
+	bh=+ljhu//9lkmemnsfYqPaaR+oUUleH5aVvLvp0L9bs6E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pNzEuQpRIu3+1ujur7fgx9uPVMVnxEBu2Fmg+ZsaRlk3g/q9L/9NdEoXZJLWrcB611UYOeS95S1KqzQKC3DjV9HCoo5FypvspxbyyxBAkn1SGc80YEiqzhBbvnRLo7qvn3p/TwE8P+gnvCD6T+Bjei4R5Xj/WVKxzzBXFkmzjpg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ujZk1EHT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F4CAC2BD10;
-	Tue, 16 Apr 2024 15:39:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713281974;
-	bh=KJDi6z6/U9cziW9yQDAhSzhquj/YiV34HJLdtVilEJM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ujZk1EHTMYG6e3LIKsVhqs298UOQP1HsHzdkcfICrpHwZ3YUadJ4RC2OobgfiPNHI
-	 lAtOcI+YXVprYmBTkU2ebh69W4CDs8tLl+aB19+l8f7FcutfSctw0Aa6boskTtBI+D
-	 AWFlkLNLrnMUx2/zFkx8yQ/J+g9wO6I5/R6lR+a0vv2CHU7SZWJSu9Xkxk5xEeQbXx
-	 37RokpQuCiFj6tviL8/Ae8K84VyLdbTd2ubOoeeJ5Pmw0VdDAPXE/RJDHPB8NigPsR
-	 aL1UjrRjQT6wIjr9mDMEuT0mlNfdfCKuFi14iFBvH8AGKKx3s1z0luTqJLt7Mdembq
-	 IJwgP4grIJdvA==
-Date: Tue, 16 Apr 2024 16:39:27 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Charlie Jenkins <charlie@rivosinc.com>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Evan Green <evan@rivosinc.com>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
-	Heiko Stuebner <heiko@sntech.de>
-Subject: Re: [PATCH v2 00/17] riscv: Support vendor extensions and
- xtheadvector
-Message-ID: <20240416-hurry-garbage-c5b43241dbe0@spud>
-References: <20240415-dev-charlie-support_thead_vector_6_9-v2-0-c7d68c603268@rivosinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=HdBUm4np1N5rhTeeX3kZvkhg3Dw/bv09iPhXSYr19YSe3dXGkc64fXqIYDQr+R/qoRW4/FqU9+8L5aI8freKghnTTUdWJO+YIneSrKeYrE4zFycgfmVc1WNB5gGPHbRozjG8ING7Wv80SYkXKDooUhQM5sTSuaukcdFlM0Es+mc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CKoPsWCr; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-416a8ec0239so26151175e9.0;
+        Tue, 16 Apr 2024 08:43:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1713282199; x=1713886999; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=rlm0dfXLfkEH5xBpat5170b8UC+JxKpO7m7UhhNk8/E=;
+        b=CKoPsWCrrjqlEaLpQRaFrlrxXMogKf2QyCJ4lttBzRZGG1CFFxkaEaW4fTjhYsDRIE
+         LHdZsRvH9nQmYC2AVTrTDFcCyxobsm4WUfODwzbh9OKmxq120D92XNmCOggLf6lyU7Rq
+         oNTo7TciT1i2R1JYY9Z+RnCXVcxnmXiPdqunbgFIBBx/ddnc63CMSHKdxXZbfb6uHK/g
+         K6tVK2dCqfH+dDmMRKJ4fdEFxuEbJWdYaki79DXUMiwnottpGyZqr7wl633zwyOsGL0I
+         jTtOJBNFhTMFVLTqPT4iGp6gJIKgIAO8fmy572hYBapEKsCX+onO7HVJW30I977o4lMl
+         DXnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713282199; x=1713886999;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rlm0dfXLfkEH5xBpat5170b8UC+JxKpO7m7UhhNk8/E=;
+        b=AswtgWRUhiBXdB5pPDhc6er0AoNwySPXnWGBKKkEneWebamKI/eXseyw2jXApxoFew
+         iNghY6w/TZxPoULOhG3dalBygGzMHmRbM5w8aYs52D/lmtS2t+FxEiQjj1tL9oW8quxr
+         A0XqQTHX0U8F+zTJyDq1UM52nv65Ow+XFoWHVUx9YnmQm2W6d3/HMcW9AP738NUQ1KMT
+         KBGw2qdzYTKE+AeWZ3y/klZumfzR+9MpEUvSpeKAOV1RzniCi20sU2ug0ve/eRGAGdL8
+         VtXjvc1A8LOWBy0QIRZUQ7mSqMbqqvBzsMGmzcryraeqFu4D5rPE4WVfkB9jzZNv7TkA
+         GqjA==
+X-Forwarded-Encrypted: i=1; AJvYcCVjroQXrEreq1z46Mws5sFdG31njqhMSZuyD06ylHX7MwrKXiXg9sCoZS93543VehhtCyB+H435lqd2pWcAEQdmsU6XpPd9JifpXK/zfguoMkCVmvzx1BtbxfAmj3iTmBqUlrzf27D1DvPvOzo7kUxdjouv0zQZLiggZr3avMSaRg==
+X-Gm-Message-State: AOJu0YwWREOv9Q4wcQRLCEg1Dy98hFNuOs38yY5oQiVc+g16DX6HE0Mu
+	F4HEW47qh2ZA/1162M5681TjZ/WrZEZVUH3QtAMwJoim7f/ailnV
+X-Google-Smtp-Source: AGHT+IE65oRYbQjWzqoR0xYZpBUekWGdgxn6KmQ0t1p+/kqrnfx0kml9nE0ftIlR6iskBEI8fvGCvg==
+X-Received: by 2002:a05:600c:1f17:b0:418:7e71:bff5 with SMTP id bd23-20020a05600c1f1700b004187e71bff5mr2306202wmb.12.1713282199081;
+        Tue, 16 Apr 2024 08:43:19 -0700 (PDT)
+Received: from eichest-laptop ([2a02:168:af72:0:ac34:e164:f0a1:f75a])
+        by smtp.gmail.com with ESMTPSA id c10-20020adfc04a000000b003467a420243sm15338365wrf.12.2024.04.16.08.43.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Apr 2024 08:43:18 -0700 (PDT)
+Date: Tue, 16 Apr 2024 17:43:16 +0200
+From: Stefan Eichenberger <eichest@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	lxu@maxlinear.com, hkallweit1@gmail.com, linux@armlinux.org.uk,
+	michael@walle.cc, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 2/2] net: phy: mxl-gpy: add new device tree property
+ to disable SGMII autoneg
+Message-ID: <Zh6clAtI3NO+nMEi@eichest-laptop>
+References: <20240416121032.52108-1-eichest@gmail.com>
+ <20240416121032.52108-3-eichest@gmail.com>
+ <3f7f278f-e490-47f1-971c-ecf44a70cee4@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="MtdbaA8z8FH3b/rB"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240415-dev-charlie-support_thead_vector_6_9-v2-0-c7d68c603268@rivosinc.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3f7f278f-e490-47f1-971c-ecf44a70cee4@lunn.ch>
 
+Hi Andrew,
 
---MtdbaA8z8FH3b/rB
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Thanks a lot for the feedback.
 
-On Mon, Apr 15, 2024 at 09:11:57PM -0700, Charlie Jenkins wrote:
+On Tue, Apr 16, 2024 at 03:46:19PM +0200, Andrew Lunn wrote:
+> On Tue, Apr 16, 2024 at 02:10:32PM +0200, Stefan Eichenberger wrote:
+> > Add a new device tree property to disable SGMII autonegotiation and
+> > instead use the option to match the SGMII speed to what was negotiated
+> > on the twisted pair interface (tpi).
+> 
+> Could you explain this is more detail.
+> 
+> SGMII always runs its clocks at 1000Mbps. The MAC needs to duplicate
+> the symbols 100 times when running at 10Mbs, and 10 times when running
+> at 100Mbps.
 
-> Changes in v2:
-> - Added commit hash to xtheadvector
-> - Simplified riscv,isa vector removal fix to not mess with the DT
->   riscv,vendorid
-> - Moved riscv,vendorid parsing into a different patch and cache the
->   value to be used by alternative patching
-> - Reduce riscv,vendorid missing severity to "info"
-> - Separate vendor extension list to vendor files
-> - xtheadvector no longer puts v in the elf_hwcap
+Currently, the mxl-gpy driver uses SGMII autonegotiation for 10 Mbps,
+100 Mbps, and 1000 Mbps. For our Ethernet controller, which is on an
+Octeon TX2 SoC, this means that we have to enable "in-band-status" on
+the controller. This will work for all three speed settings. However, if
+we have a link partner that can do 2.5 Gbps, the mxl-gpy driver will
+disable SGMII autonegotiation in gpy_update_interface. This is not
+supported by this Ethernet controller because in-band-status is still
+enabled. Therefore, we will not be able to transfer data at 2.5 Gbps,
+the SGMII link will not go into a working state.
 
-> - Only patch vendor extension if all harts are associated with the same
->   vendor. This is the best chance the kernel has for working properly if
->   there are multiple vendors.
+What this patch does is, if the maxlinear,sgmii-match-tpi-speed property
+is set, it will always use the link speed negotiated on the twisted pair
+interface and adjust the SGMII data rate accordingly. For the Octeon
+controller, this means that we don't set the in-band-status mode because
+we don't use the SGMII autnegotiation and all 4 speeds (10, 100, 1000,
+2500 Mbps) are working.
 
-I don't agree with this lack of trust in what firmware is telling us.
+Here the description from the datasheet (this patch forces the SGMII
+speed to the TPI speed):
+If bit 12 is set to a logic one, ANMODE field determines the Auto-
+Negotiation protocol. If bit 12 is cleared to a logic zero, speed is set
+to maximum in full duplex mode. Once the TPI link is up, the SGMII speed
+is automatically forced to match the TPI speed. This bit has no effect
+when SGMII_FIXED2G5 is ‘1’.
 
-I'm not really gonna review this v2 until discussion has finished in v1
-about some things, I fundamentally disagree with handling the same
-extension differently for different CPU vendors and I don't wanna
-fracture that conversation further.
-
-> - Split hwprobe vendor keys out into vendor file
-> - Add attribution for Heiko's patches
-> - Link to v1: https://lore.kernel.org/r/20240411-dev-charlie-support_thead_vector_6_9-v1-0-4af9815ec746@rivosinc.com
-
---MtdbaA8z8FH3b/rB
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZh6brwAKCRB4tDGHoIJi
-0mfRAQDv3w5+C9suCRRRiwfjjVWoUxMRKczJo1O3djhERhZohQEA3PKM7ixcBZ/+
-gCDOCf12p1w6L8bmXsvYZ36xQsLl6g0=
-=ZdJE
------END PGP SIGNATURE-----
-
---MtdbaA8z8FH3b/rB--
+Best regards,
+Stefan
 
