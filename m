@@ -1,243 +1,109 @@
-Return-Path: <devicetree+bounces-59575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68E328A6128
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 04:45:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 645C68A6142
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 05:02:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7E9E1F22DD8
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 02:45:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A3FF1C21807
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 03:02:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16B8A1862C;
-	Tue, 16 Apr 2024 02:44:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A1141755C;
+	Tue, 16 Apr 2024 03:02:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QZ40ErWr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EIPgwBuX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4480171D2;
-	Tue, 16 Apr 2024 02:44:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AE0D2110F;
+	Tue, 16 Apr 2024 03:02:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713235481; cv=none; b=YnkuggRMlpAbvY+1PggAMlmF5E2i5GbtYrbb20wG2/WQ7yaloxVvQRBScCF1rKD5o2YpAnr2BWvb/QD1X0lpf9pb1g1EJUY1m1RTDypilcSDhan7eP7SXyDcBe8/4o214Cimii/qSlIXj5JeoUTcC9Sg3t1KpOOVyRsWJEXpSvQ=
+	t=1713236524; cv=none; b=hejJx1Xn3sAisWmM0Uc+S+HZ6GH6DO5Hd6VsLxjFna88hHELXHWt9cy1h5tJuDD+Td8KEkxt1Jvk0jIeiDHO8tb053ZKlw6DUIzt5anQvlwxUMnCxLbzwyqt4jWKcIWYHdBWSMM3Rl5pFcz6/U0gLDlX51XlXP+KIKerAvME61M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713235481; c=relaxed/simple;
-	bh=3ygo566KgNes/y1LnnasDIozu4wqPQgtkAmJdJFtQ0U=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=DxCiqFfEdNO7EHDCJRaPnKXKS2RV0IZt580Y8HSt6dxIH9Qae/Z0lfLI/6eqg6gBRQ8mXF+ssR4l6XKQLIhmu5EZpI3MatvvlfIRhyHuni2wwHv5n7iAPKqEdwPgGyxjGJI177bZoawGCBvBAtvxGvQiAJq8vVzZxMOJMXtuFp8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QZ40ErWr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 6F17DC4AF0C;
-	Tue, 16 Apr 2024 02:44:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713235481;
-	bh=3ygo566KgNes/y1LnnasDIozu4wqPQgtkAmJdJFtQ0U=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=QZ40ErWrn5XtEtonMojY5vHzFnnHAwMKEGafsomu8FfPecoagy8UIaz6TJ5C9VvE2
-	 TpFJRy6PH+PayzGui8+OMBqhMFXrq3w9zaQ/KrE+VbRfMDnHRFNyvk//+cx/PA3KgV
-	 Mmmb40/5HnY0pMiiHTxszGpWPfwmFSo9vKw+ps2hXA7BUVaw/AhrcymyQzLRuFRnYe
-	 kIzzzgzFcygnb4SKwXDxipu9aol7b/m7qxELm6o0Cl8KTA3vTwfp1iVCzhleKBAB6M
-	 0znEDxieW3OG1GzqyJ9URbPiGi9THpBTtX9zkhOJ+Xuxw1CveYr9/S07EEiHcGBhBd
-	 1K3g3SuO7zvtQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 59803C04FFE;
-	Tue, 16 Apr 2024 02:44:41 +0000 (UTC)
-From: Fenglin Wu via B4 Relay <devnull+quic_fenglinw.quicinc.com@kernel.org>
-Date: Tue, 16 Apr 2024 10:44:34 +0800
-Subject: [PATCH v11 3/3] input: pm8xxx-vibrator: add new SPMI vibrator
- support
+	s=arc-20240116; t=1713236524; c=relaxed/simple;
+	bh=goyH9+TLCFLYzjM6kwvbHz19xxuQz4u4EiT1p7hK700=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=cxmUnK4U6+ZypR8hgS1m99gPgv0CLCWi+e3uZmyv5h5N006JmOrea1G2qJo5YmldseBypzcAGaZL+qRugTN7AlUWdochjXUDTeGPm8pkEPxinvcAfik+wLvmI99bQ2Ul6v/70KZr1jDeG0hsrObG4oxx5jOi/jxfo2OsRCqdeMI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EIPgwBuX; arc=none smtp.client-ip=209.85.216.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-2a4df5d83c7so2525438a91.0;
+        Mon, 15 Apr 2024 20:02:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1713236522; x=1713841322; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=goyH9+TLCFLYzjM6kwvbHz19xxuQz4u4EiT1p7hK700=;
+        b=EIPgwBuX610UNFD1+qCcbrgOdxACfy25gMzaCymc1hLLWmi1Y7hUTlQYmqGDers3cx
+         m0C0AEf2hWgiHrP+2J6FIhaml4pJOUTmrZG0JtzYRk1E/tXCNMbM7qVg3H13RmqLJ68t
+         C5qTDRJUI+Bw3cezDzjZpibQETeZWdFAJlnfOeG5jEX+BPJmDXTWANQkXyRv7FwiClk7
+         gA3JghwSp69Y6+mnA96p32RF4oZGn2I4X+/fkfh08Ec3xIJgCoBPcwvQ5fu/h56LzyfU
+         +0fzyZgjzaujcC9QB3yAvLyDwx/IXgI93ITxIeM+WSzo0PVofMuJb/4yWO/VyHHH6UKw
+         sYUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713236522; x=1713841322;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=goyH9+TLCFLYzjM6kwvbHz19xxuQz4u4EiT1p7hK700=;
+        b=SRoCQiJju22r/5PqEuh7RvPdZqV/Bh1s9+V3nQuCC8BeWUkYPNLpvwE6JCkSV0ezhH
+         VVzsZXe3VplAmoptVgxowyroSqXFWoqNwjIqvp8y0p4J+obvtkTjL9/LhkQZLocXBnYT
+         Iw4oC9XD5O3qMBtA4TWFBerDGvO0jiUXjh2vIDfI1dLDOEP8EN5Z9s1QvYrtiM8TnvU0
+         TDkrC2B6dLyddprlJw3cj2vDAwbwbltGKaLBrPNXiyAA3Phte6a9YGe/kCMbAwui1Kty
+         vzhCbGcqSZKmlwQHEXQwlXiGg4nWMKj3HAeTdoDri98h4bbu1/vWiMXE12vOhFLmCU7e
+         g6ig==
+X-Forwarded-Encrypted: i=1; AJvYcCW+TFRgaspeQ3f0uCjtYXkf8fPGKUMoYuOLSHt+44J5Pk1aaLR7Rsf7B88mUZsqddu55kIGb9r6xITilUSKzs4DFh4ZS8L+Ul6ajT0ttz3SaQv+LKguNcIvyYjZR0igEgJOwwpla6hPsw==
+X-Gm-Message-State: AOJu0YyPKG/leDCYamIuH6d7b5ofV23K9qdyGpQUDUpJvcgpkG9uVu3Z
+	O6L6CGdlCVm9oJuVNY5mqyYTSzuCATaaiGuRDS/am/zSS/cd4QR9
+X-Google-Smtp-Source: AGHT+IGoAT+ooiCtpCFxy4xAqYZG4G/w+O0USbguVhVRr8kBlygkh/RDH21n2MkgKqwLt4lC0frHxA==
+X-Received: by 2002:a17:90a:8b05:b0:2a7:40ba:48bc with SMTP id y5-20020a17090a8b0500b002a740ba48bcmr9399013pjn.6.1713236522273;
+        Mon, 15 Apr 2024 20:02:02 -0700 (PDT)
+Received: from localhost.localdomain ([221.220.135.251])
+        by smtp.gmail.com with ESMTPSA id v9-20020a17090a458900b0029bacd0f271sm9427284pjg.31.2024.04.15.20.01.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Apr 2024 20:02:01 -0700 (PDT)
+From: Jianfeng Liu <liujianfeng1994@gmail.com>
+To: robh@kernel.org
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	liujianfeng1994@gmail.com,
+	sfr@canb.auug.org.au,
+	weizhao.ouyang@arm.com
+Subject: Re: [PATCH v2 0/3] Add ArmSom Sige7 board
+Date: Tue, 16 Apr 2024 11:01:51 +0800
+Message-Id: <20240416030151.311231-1-liujianfeng1994@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <171320634254.4749.2865905152184927129.robh@kernel.org>
+References: <171320634254.4749.2865905152184927129.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240416-pm8xxx-vibrator-new-design-v11-3-7b1c951e1515@quicinc.com>
-References: <20240416-pm8xxx-vibrator-new-design-v11-0-7b1c951e1515@quicinc.com>
-In-Reply-To: <20240416-pm8xxx-vibrator-new-design-v11-0-7b1c951e1515@quicinc.com>
-To: kernel@quicinc.com, Andy Gross <agross@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-input@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Fenglin Wu <quic_fenglinw@quicinc.com>
-X-Mailer: b4 0.13-dev-83828
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1713235479; l=5248;
- i=quic_fenglinw@quicinc.com; s=20240327; h=from:subject:message-id;
- bh=O6jY1vE2jMlOuUDvAlQRyMO4JqLMmvGnt6KvdZSWoX4=;
- b=DoVE674AWh7yt0zyoiZS7k+TyNiecyJD6qsCJWj6VcIDOmE8qE0HfBZR8zD/tDtfLs4P4Die3
- wPTFMEcosIoC5u84zbHjJVsJI1xojlhrLWDyobziNQDybr+cg6EEK1H
-X-Developer-Key: i=quic_fenglinw@quicinc.com; a=ed25519;
- pk=BF8SA4IVDk8/EBCwlBehKtn2hp6kipuuAuDAHh9s+K4=
-X-Endpoint-Received: by B4 Relay for quic_fenglinw@quicinc.com/20240327
- with auth_id=146
-X-Original-From: Fenglin Wu <quic_fenglinw@quicinc.com>
-Reply-To: quic_fenglinw@quicinc.com
+Content-Transfer-Encoding: 8bit
 
-From: Fenglin Wu <quic_fenglinw@quicinc.com>
+On Mon, 15 Apr 2024 13:46:53 -0500, Rob Herring wrote:
+>New warnings running 'make CHECK_DTBS=y rockchip/rk3588-armsom-sige7.dtb' for 20240413153633.801759-1-liujianfeng1994@gmail.com:
+>
+>arch/arm64/boot/dts/rockchip/rk3588-armsom-sige7.dts:44.20-49.5: ERROR (duplicate_label): /leds/led-0: Duplicate label 'led_rgb_g' on /leds/led-0 and /pinctrl/leds/led-rgb-g
+>arch/arm64/boot/dts/rockchip/rk3588-armsom-sige7.dts:51.20-56.5: ERROR (duplicate_label): /leds/led-1: Duplicate label 'led_rgb_r' on /leds/led-1 and /pinctrl/leds/led-rgb-r
+>ERROR: Input tree has errors, aborting (use -f to force output)
+>make[3]: *** [scripts/Makefile.lib:427: arch/arm64/boot/dts/rockchip/rk3588-armsom-sige7.dtb] Error 2
 
-Add support for a new SPMI vibrator module which is very similar
-to the vibrator module inside PM8916 but has a finer drive voltage
-step and different output voltage range, its drive level control
-is expanded across 2 registers. The vibrator module can be found
-in following Qualcomm PMICs: PMI632, PM7250B, PM7325B, PM7550BA.
+Thank you for checking this. I'm sorry that I added the led label since
+v2 without checking. I will check the whole devicetree and send patch v4.
 
-Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
----
- drivers/input/misc/pm8xxx-vibrator.c | 52 +++++++++++++++++++++++++++++-------
- 1 file changed, 43 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/input/misc/pm8xxx-vibrator.c b/drivers/input/misc/pm8xxx-vibrator.c
-index 2bcfa7ed3d6b..381b06473279 100644
---- a/drivers/input/misc/pm8xxx-vibrator.c
-+++ b/drivers/input/misc/pm8xxx-vibrator.c
-@@ -11,10 +11,11 @@
- #include <linux/regmap.h>
- #include <linux/slab.h>
- 
--#define VIB_MAX_LEVEL_mV	(3100)
--#define VIB_MIN_LEVEL_mV	(1200)
--#define VIB_PER_STEP_mV		(100)
--#define VIB_MAX_LEVELS		(VIB_MAX_LEVEL_mV - VIB_MIN_LEVEL_mV + VIB_PER_STEP_mV)
-+#define VIB_MAX_LEVEL_mV(vib)	(vib->drv2_addr ? 3544 : 3100)
-+#define VIB_MIN_LEVEL_mV(vib)	(vib->drv2_addr ? 1504 : 1200)
-+#define VIB_PER_STEP_mV(vib)	(vib->drv2_addr ? 8 : 100)
-+#define VIB_MAX_LEVELS(vib) \
-+	(VIB_MAX_LEVEL_mV(vib) - VIB_MIN_LEVEL_mV(vib) + VIB_PER_STEP_mV(vib))
- 
- #define MAX_FF_SPEED		0xff
- 
-@@ -25,7 +26,11 @@ struct pm8xxx_regs {
- 	unsigned int drv_offset;
- 	unsigned int drv_mask;
- 	unsigned int drv_shift;
-+	unsigned int drv2_offset;
-+	unsigned int drv2_mask;
-+	unsigned int drv2_shift;
- 	unsigned int drv_en_manual_mask;
-+	bool	     drv_in_step;
- };
- 
- static const struct pm8xxx_regs pm8058_regs = {
-@@ -33,6 +38,7 @@ static const struct pm8xxx_regs pm8058_regs = {
- 	.drv_mask = GENMASK(7, 3),
- 	.drv_shift = 3,
- 	.drv_en_manual_mask = 0xfc,
-+	.drv_in_step = true,
- };
- 
- static struct pm8xxx_regs pm8916_regs = {
-@@ -42,6 +48,20 @@ static struct pm8xxx_regs pm8916_regs = {
- 	.drv_mask = GENMASK(4, 0),
- 	.drv_shift = 0,
- 	.drv_en_manual_mask = 0,
-+	.drv_in_step = true,
-+};
-+
-+static struct pm8xxx_regs pmi632_regs = {
-+	.enable_offset = 0x46,
-+	.enable_mask = BIT(7),
-+	.drv_offset = 0x40,
-+	.drv_mask = GENMASK(7, 0),
-+	.drv_shift = 0,
-+	.drv2_offset = 0x41,
-+	.drv2_mask = GENMASK(3, 0),
-+	.drv2_shift = 8,
-+	.drv_en_manual_mask = 0,
-+	.drv_in_step = false,
- };
- 
- /**
-@@ -52,6 +72,7 @@ static struct pm8xxx_regs pm8916_regs = {
-  * @regs: registers' info
-  * @enable_addr: vibrator enable register
-  * @drv_addr: vibrator drive strength register
-+ * @drv2_addr: vibrator drive strength upper byte register
-  * @speed: speed of vibration set from userland
-  * @active: state of vibrator
-  * @level: level of vibration to set in the chip
-@@ -64,6 +85,7 @@ struct pm8xxx_vib {
- 	const struct pm8xxx_regs *regs;
- 	unsigned int enable_addr;
- 	unsigned int drv_addr;
-+	unsigned int drv2_addr;
- 	int speed;
- 	int level;
- 	bool active;
-@@ -81,6 +103,9 @@ static int pm8xxx_vib_set(struct pm8xxx_vib *vib, bool on)
- 	unsigned int val = vib->reg_vib_drv;
- 	const struct pm8xxx_regs *regs = vib->regs;
- 
-+	if (regs->drv_in_step)
-+		vib->level /= VIB_PER_STEP_mV(vib);
-+
- 	if (on)
- 		val |= (vib->level << regs->drv_shift) & regs->drv_mask;
- 	else
-@@ -92,6 +117,14 @@ static int pm8xxx_vib_set(struct pm8xxx_vib *vib, bool on)
- 
- 	vib->reg_vib_drv = val;
- 
-+	if (regs->drv2_mask) {
-+		val = vib->level << regs->drv2_shift;
-+		rc = regmap_write_bits(vib->regmap, vib->drv2_addr,
-+				regs->drv2_mask, on ? val : 0);
-+		if (rc < 0)
-+			return rc;
-+	}
-+
- 	if (regs->enable_mask)
- 		rc = regmap_update_bits(vib->regmap, vib->enable_addr,
- 					regs->enable_mask, on ? regs->enable_mask : 0);
-@@ -114,17 +147,16 @@ static void pm8xxx_work_handler(struct work_struct *work)
- 		return;
- 
- 	/*
--	 * pmic vibrator supports voltage ranges from 1.2 to 3.1V, so
-+	 * pmic vibrator supports voltage ranges from MIN_LEVEL to MAX_LEVEL, so
- 	 * scale the level to fit into these ranges.
- 	 */
- 	if (vib->speed) {
- 		vib->active = true;
--		vib->level = ((VIB_MAX_LEVELS * vib->speed) / MAX_FF_SPEED) +
--						VIB_MIN_LEVEL_mV;
--		vib->level /= VIB_PER_STEP_mV;
-+		vib->level = VIB_MIN_LEVEL_mV(vib);
-+		vib->level += mult_frac(VIB_MAX_LEVELS(vib), vib->speed, MAX_FF_SPEED);
- 	} else {
- 		vib->active = false;
--		vib->level = VIB_MIN_LEVEL_mV / VIB_PER_STEP_mV;
-+		vib->level = VIB_MIN_LEVEL_mV(vib);
- 	}
- 
- 	pm8xxx_vib_set(vib, vib->active);
-@@ -197,6 +229,7 @@ static int pm8xxx_vib_probe(struct platform_device *pdev)
- 	regs = of_device_get_match_data(&pdev->dev);
- 	vib->enable_addr = reg_base + regs->enable_offset;
- 	vib->drv_addr = reg_base + regs->drv_offset;
-+	vib->drv2_addr = reg_base + regs->drv2_offset;
- 
- 	/* operate in manual mode */
- 	error = regmap_read(vib->regmap, vib->drv_addr, &val);
-@@ -251,6 +284,7 @@ static const struct of_device_id pm8xxx_vib_id_table[] = {
- 	{ .compatible = "qcom,pm8058-vib", .data = &pm8058_regs },
- 	{ .compatible = "qcom,pm8921-vib", .data = &pm8058_regs },
- 	{ .compatible = "qcom,pm8916-vib", .data = &pm8916_regs },
-+	{ .compatible = "qcom,pmi632-vib", .data = &pmi632_regs },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, pm8xxx_vib_id_table);
-
--- 
-2.25.1
-
-
+Best regards,
+Jianfeng
 
