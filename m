@@ -1,194 +1,156 @@
-Return-Path: <devicetree+bounces-59742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59743-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B71BC8A6EEF
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 16:50:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 357DD8A6EF0
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 16:50:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9C421C21A3F
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 14:50:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 66CA71C21EAB
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 14:50:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6B4E131740;
-	Tue, 16 Apr 2024 14:48:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52C1F131750;
+	Tue, 16 Apr 2024 14:48:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="mfqiIyh3"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="hkGOeIZJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2047.outbound.protection.outlook.com [40.107.249.47])
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB31D131725;
-	Tue, 16 Apr 2024 14:48:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.249.47
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713278919; cv=fail; b=YbbEbEaBv5xjAsexNylJvFHK/C/329EYXqgv7pt8vLEN9oY6iqW2bG2nwOj02b7AvbM/nbqmgH5AzPZsET6Xh7WVMH119mnQwFuNs5+xrd8RUbUkWx0BPZ6X6bpl0Lm8fJum9bxuatvkOde0EzTDOJYRAB2PHz76yvAHb3jg/Wk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713278919; c=relaxed/simple;
-	bh=usGAMv2iGqCBXUMAKkOIkuRGk5as4/0Zz7sWmBECzTw=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=EEVuHqQHURCS1WovFLg4r3sxMGxc14edGFA5rpqALGXRhuIgaPGeEQFno8lRmN0fSQjwrtEHlkA2T19wtv6IMoeWJcag3TUuLLpa0bmlI24NlDB8rkrbrjXyYNhfVZVf9M2G/5DeZz/BJX3W1jBd9gE1PzS5XdbtboSCMPi++wk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=mfqiIyh3; arc=fail smtp.client-ip=40.107.249.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hWUOMnd89l8yo/3jd5Um7sXOY6xUFM60Hqwj9YfOCE6Hbwkt70jV99wDJijrBoGe55ga2aNw8fHI33IzJAr4NuoGQxOefcZgXYkmFYQccdpXrU4vSj5TGv5KCuFyxcw6FE4vjpmKZlaWw1szbAJtNzlR/y6TF8n0xRHEagszA/sYSnoorSkdYS1n6L9bNQIurE/x08fEaUtP/8SVbQR+9qh5ijqzoMtxTTqy9WFQPa+NG4dDThycagJor2bk40Fqj9r3ELW+Rn+BflZNg4LSEybKtvKFlygEtVwriAESdLGahp3OuXUFaoJQ02CqszvknvnW0cUKqCwQxyNI/4w1tg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+1uQ5MekJYcNGzwltr4NIu+JKx+tCC5Ht7ocupxms3A=;
- b=b8CubSgs3obvekQ8J/kZVZTI46bHzQdJ/sw/UBZnTaImNQ8eVWUESNvFW17ZGxm9eNvR3S13kQlWNXujNpEdAi1GYIn8xckEgmyp8GiCAUNEDL4EChPhy0HVeNGSIbej2Cg3DocjrwjiLOZ/UKZnJBvp4AlJgfp1K/Na0GgoJDu+/k5lh/yWMr8K2wkAR9PNN3htsyOX4p0F9jbl5FuROtI8NBHORbTYO663PstX/lRsje3oDHXjahhPJuajQV2EZwpdCTb1bMhJ6Or1qGdBlEoNJ6pvq6ofda1UmI/QK/Uy/VZl4xDyYAnetsttu7ENiAgaF6HZOqZXh9y9fALPPw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+1uQ5MekJYcNGzwltr4NIu+JKx+tCC5Ht7ocupxms3A=;
- b=mfqiIyh3Gd4hHOUZUsP09D5uUoYTCzJYT/++IRtohW2YvgBfqmn2w5NL/Oe4J39zSN5Xv+O2SKSH9JeYyQNL1Rwn4sBnPAizN8j8qZuO9rxjG7lujskqQ0gzfkWMy2xES+yKxFhjGncffEEVuUqDJ79Y9LMNeq+Gsqhf6ZKlWDg=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PAXPR04MB8622.eurprd04.prod.outlook.com (2603:10a6:102:219::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.50; Tue, 16 Apr
- 2024 14:48:35 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::1e67:dfc9:d0c1:fe58]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::1e67:dfc9:d0c1:fe58%7]) with mapi id 15.20.7452.049; Tue, 16 Apr 2024
- 14:48:35 +0000
-From: Frank Li <Frank.Li@nxp.com>
-Date: Tue, 16 Apr 2024 10:47:50 -0400
-Subject: [PATCH v2 4/4] arm: dts: nxp: imx6qdl: fix esai clock warning when
- do dtb_check
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240416-esai_arm_dts_warning-v2-4-879e59c0c3b8@nxp.com>
-References: <20240416-esai_arm_dts_warning-v2-0-879e59c0c3b8@nxp.com>
-In-Reply-To: <20240416-esai_arm_dts_warning-v2-0-879e59c0c3b8@nxp.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shengjiu Wang <shengjiu.wang@nxp.com>, 
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, Frank Li <Frank.Li@nxp.com>
-X-Mailer: b4 0.13-dev-e586c
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1713278896; l=1947;
- i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
- bh=usGAMv2iGqCBXUMAKkOIkuRGk5as4/0Zz7sWmBECzTw=;
- b=OPajSP5wmUQnitDHC9hxBvyYlbYomGkO3U22Pj5PQwberoY+ReNa+kpTjvUaSWS52N91wmUCj
- Ai4nhovGITHDq9/mK/XV7tLg+I0T0xl9sGJqLKzX4fx+FZP/ZTdJ3xI
-X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
- pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
-X-ClientProxiedBy: BY5PR17CA0020.namprd17.prod.outlook.com
- (2603:10b6:a03:1b8::33) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A22561311AA
+	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 14:48:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713278920; cv=none; b=qui/8kQM78lrTvobSc8iJzCHiCqQFAaMzvM+lwlT5fMX9mui/iwIwfG14k0czZSIEbnEiUoFNlRh8llaLUp63aQgFgza2SwSzNMSokMbzgXw3dHujW5evZ/gfortcM72LNSPYtTOgQ6P15qS+ywg7zAChD2bLoYgyNUxhG6NTxQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713278920; c=relaxed/simple;
+	bh=Ze2qit/Mdbe+XG6nMaSdD7BXLHYygNw82z6IuyiJAmw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ioXI68hmPB5NVz48YBoRHfOSWMtkiKaTzDQXH14w8XXj8TMEu1Ws7LQGWgtLCxamSqIJn3lVCslTFlPv45w916N6PeQzlw2UDUrdvikIzoXDm3Qltj8qlI8J/CMz/CeBE29HK7K6MbrrYoB75/cklHLI5SrYxTDEGnr/kAvBHQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=hkGOeIZJ; arc=none smtp.client-ip=148.163.156.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0353728.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 43GEgIPL018068;
+	Tue, 16 Apr 2024 14:48:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=pp1;
+ bh=yZt6MkvLg7nYmZ4oyJG7VlSIDFFNonAFGQ2Q/dtRc4U=;
+ b=hkGOeIZJZ+65WuDAgI1VBwplKjnrWMtoSWIkf3fna4pYzXzxkWSIhW5JybYaVJmW40hw
+ DeaA9Zt9+6ec2KXszE94HHVWDXThIwuYi6o5ufLP1IczFvkdKmbRqfZ2nQObjep5urbP
+ mScy//Bi89BZrh0/9Tk94eW4MGn6Ct4Zw9ytE3J/F4nTMRIaw3ZyXpMzUNtF7vTxvQxq
+ LRDruQddqchG31ojQnQ5sCFViFtwKDDeGvAN3fWqcao6zIUV7Z9xFWG0CyXmex+qKXt3
+ OOzhewK9LL2V4EW3/GgSOvqN12Sy4K92hjaUWVyuQJtd7rc9nHkqjyf1dmQmX/uTzvQ4 OQ== 
+Received: from ppma13.dal12v.mail.ibm.com (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3xhuatg0et-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 16 Apr 2024 14:48:20 +0000
+Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma13.dal12v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 43GDrVEu021366;
+	Tue, 16 Apr 2024 14:48:19 GMT
+Received: from smtprelay07.dal12v.mail.ibm.com ([172.16.1.9])
+	by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 3xg6kkea5f-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 16 Apr 2024 14:48:19 +0000
+Received: from smtpav02.dal12v.mail.ibm.com (smtpav02.dal12v.mail.ibm.com [10.241.53.101])
+	by smtprelay07.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 43GEmGrG42271404
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 16 Apr 2024 14:48:18 GMT
+Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id A7F875805F;
+	Tue, 16 Apr 2024 14:48:16 +0000 (GMT)
+Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 6CE3058070;
+	Tue, 16 Apr 2024 14:48:16 +0000 (GMT)
+Received: from [9.61.157.174] (unknown [9.61.157.174])
+	by smtpav02.dal12v.mail.ibm.com (Postfix) with ESMTP;
+	Tue, 16 Apr 2024 14:48:16 +0000 (GMT)
+Message-ID: <2ee4084d-1891-4ea4-ba3d-b99ee1d7b5fb@linux.ibm.com>
+Date: Tue, 16 Apr 2024 09:48:16 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAXPR04MB8622:EE_
-X-MS-Office365-Filtering-Correlation-Id: c16090e0-8618-48f3-49e3-08dc5e244b50
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	ojP6co351OV4nRI/LuQOYYeMFW+kH+3gFI8w7f8yU2Tx+NUX6ZEDFUCH5H6Y/6v53SiBE0fOSLsAKvi4kmGzxlAmHYditmMYy7jDsB5XYWfI7q5ai2OTMgvlidIbt3Z3tYLigZlXR1VPlaRf69ZkrhAvq+E3u3n8B3dQfwd/FrE9tbJm8/fjsYzj7+Gw3noL8nnFFBAK4dKuztK4xzN8PMVLkPAKk9JDI1Scsf1Ura4TcMedYo4RzZMdY/u2F8aSaucMU2y49j9jfh/52uJAPd/GH2vLe65UhUWTp93LAwqpHlEWFEuvl61xY5CNNe1vnxmOZLpd0gRBJEUfXH/i4Ybvlp91CzyqdqTpvTnmtWHYQbYcGbcU3Hrs+RYNM/O9IcZhNycaRTj+YT0Nq99dzg8RsxdKi8kjFOjpe6GDoKXNavWMy0NIVK955YLsVbv4cC0j8WdRxaAvJWEl+Kd8nMrPKjTNR8WX9vvaH+YTHVr09cAkNwyuwSUAZDhDwznPEGwEcDLht1W2991S/PEieYE7uf/QA3ORH67KVnSSf2YBzWbAMsrqz7CatgvRGHCk31NKV3HTJ8/18UiAukN3Wtvnmkfdw0s1B1fFc6UsXvfC3/RdVc6pBBQoBxtCky2hoj7jGWnC1qEsDnH62gTLJ2bi1i2HrtSJUp12Diw5gU46ETlwP62Trach+XwEmA7s
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(376005)(7416005)(52116005)(1800799015)(921011)(38350700005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?bDFmTTdwUzJQSmcwbkpTZlF2TFByVVhHSGlEN0x5aXhwZ0p1VTFUSHNBSm1q?=
- =?utf-8?B?VDNwL1hUT0pRb1ptOUJwdlg3QjVFdXpkQjFQeEtONEdIVVRENkIrWU56M0R2?=
- =?utf-8?B?N2g1U3pZek9sb3Q5b3lIejJjS3ZITHBEeFVXSnpXSS9uTG11QnhNdGhuWWZl?=
- =?utf-8?B?WkQ2ckd2amlBUk9LWlJBeVV6Ym82SWhNaFpXYUYxbGNRdDdpWU1pZ1lGWjEx?=
- =?utf-8?B?amVPdTh1bGlUaUJ2T0w4R2o2eW1qS25NTXlEZGlJTGVhZ0JaMUFFS1QwalNP?=
- =?utf-8?B?dmtRTzBMNDRNUkVsRTJEOEN3NStKbU1BVVlVY0E4YUUyd29ucDVMZ0g0cld1?=
- =?utf-8?B?UHlDOE9zMTlkOTFsaDBvWC9qYXlxQU5KUXpId2pQdklWdTgvcEsvc0Y0RW1C?=
- =?utf-8?B?VWp1NmI3SzY2RStIK1hJYjNGOHJMckdYZkw0TkZCT2UvM2IrMGRVQlZnUUJE?=
- =?utf-8?B?YlBDc2RXOXVNN09GUDFxc2E3c003Z04wWk9aWEthS29KRzlWcXFEdnBMQUFo?=
- =?utf-8?B?NVhmYTJJS0JwSHBKZzRjNlQvRXJ6RkVuTnM3cjBkTS9ZMWtySE5qUUExR1Rw?=
- =?utf-8?B?eVNNdWVKZ2x1Vk01YTFLRXBoUkE4TlRvQ09QWDZmY1VhWXdLZTRTQnRuTlFW?=
- =?utf-8?B?TDVHWWFGTEt0QkZRY1RyazlXajlJeUp3WmV1WERTN09sVTdQT2lGRkFTYXRF?=
- =?utf-8?B?TFM2R243NXdjYVBrSWNmOVp4dmRaaGwrWFBQVkpzN3BsOXpZcWwyNkxuZWtj?=
- =?utf-8?B?VDU1OUp4MXowZTk0Mld5Q3FydUdrcFhKZjFzcHJ6R2VIeGhLNi9KOWZrcnNv?=
- =?utf-8?B?Sk1rZEZPbHNjaG9CdGdwTlVQU0c2UFZSbjl1anA5TnRsY3JBUUN5RHhvN0ph?=
- =?utf-8?B?eGxZd1d6Y3k2cXVIY2dNeWxGU1J3dGl6dzRFSGZJNTA0R21VUXFlK0VYdVdN?=
- =?utf-8?B?TFJ2bEQvMjFYWlZ4d3FKVkJmQ1hOWCt4Snd2UjltVVN5YVFueThRSXFuM1ZT?=
- =?utf-8?B?U3ZhVlQ4T2h5SmI2RTZIMUVkWjdyb082aEJOQ3F2VmtOaEd3UVA3dy8zRmdH?=
- =?utf-8?B?SWFVdDNvLzVyaUYxRGhVUmVSSlk3REpBVHVmQk00NmlTdVhIdE1XRnpaUHUy?=
- =?utf-8?B?RFJzN0pSSjNVR1JZR0lDTkNiSHhsa3Jpa2t6WUpBa2Q4MWNsNEsyTGp0empG?=
- =?utf-8?B?K3NBVVZBaFl6Mi95RDZ3aHpZV0I0OTZINmRRV09rTXNtTmZzdlczcmNGRVFI?=
- =?utf-8?B?ZVRhSnUvSWNESS9LdEN0bDQxYzgrVEthdy9mRVpKbERQTWIzbDZCUmJMdXM1?=
- =?utf-8?B?c1ViTXNGWERVODhQOUNaL0xDM2F5aVN0OUR0ZUR4RVJVRFZRLysxVFFiNGY0?=
- =?utf-8?B?T2JXTGFYajJVaDVoY0JBdm9vdDEvd3huN3BSd3g2WlVzWmN2K05mQXI2L3Y1?=
- =?utf-8?B?T2FMTXg5SHZrMkdWQXIzOVZNRzBscGx2UjM0dEo4cXA0OWxHTXgxTFNNOFcz?=
- =?utf-8?B?N3VYTXlQYllXWmE1dlNvcktTVEQxbTNEMEhmVXBmRysrM3dvTnkxYnIxQnd4?=
- =?utf-8?B?L24vbXFvYzNLc1JZVU9zWFg0dmlpdTRqdU5iR0hTSkI4aVRRcG1JYmdtU3pu?=
- =?utf-8?B?bmhXZXpMd0N3aFlQeXNqVzJIOXFjNTJlSGp1ZVlUT1BveVM4TTlNY2lIb0dX?=
- =?utf-8?B?WUtvVTJtL0MzUHFlaE1oeDVpYUJpcE10TEVTaW1KaHF1MWRBaXRvTVVsNy8z?=
- =?utf-8?B?a0Z1bVFhaHczS2J6akRNalFXa2JxdUxHcWExQWcyODhoUFFrVVAzV3ZmMDVI?=
- =?utf-8?B?WHpYWUNSdWh0Vkw0UkZscjRJdURmQVd4ZDdFQWk1c2xPUFJZZ3liekZ5TGFU?=
- =?utf-8?B?b09JRU1hd1lab2pINzVJeW5rU09zNWltUDd1U1o3aXpLTW9tSXkvek0xaVpD?=
- =?utf-8?B?VzM0MWxCb0YyaEduZE4wRGwyOXo2TDlYZkh3RXdEMklXbUVtajRYVWdtWWNx?=
- =?utf-8?B?VVozekdNZ2hUZ0lPRVNwdmVHN2Z3NlpDZW1xQUova1Fjd3VyTU14bzJnTVV1?=
- =?utf-8?B?WWJsWk5nWVJSZXV4QjFOcUMzRlVrZHArZHFNSXY3ME5xcnJTTWNTVkNObTB4?=
- =?utf-8?Q?Y25hRsmp9cY4YZFfQC8Mo2X9N?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c16090e0-8618-48f3-49e3-08dc5e244b50
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2024 14:48:35.6375
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7U8DhVknGdmb1iuBlozxAXXrTPxmIav6r115OWfcmLI/3YJL0Cy8T9m/BJ95Fzmpv9EcY4FsZqaquuqzeG6C3g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8622
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] ARM: dts: aspeed: Update Odyssey SBEFIFO compatible
+ strings
+To: Andrew Jeffery <andrew@codeconstruct.com.au>,
+        linux-aspeed@lists.ozlabs.org
+Cc: joel@jms.id.au, devicetree@vger.kernel.org, linux-fsi@lists.ozlabs.org,
+        robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
+        jk@ozlabs.org, alistair@popple.id.au, lakshmiy@us.ibm.com
+References: <20240412144358.204129-1-eajames@linux.ibm.com>
+ <20240412144358.204129-4-eajames@linux.ibm.com>
+ <5c6f58cc13492988d307504d55cc5d31a512ab8c.camel@codeconstruct.com.au>
+ <0363badd-f5b0-42bd-bdd5-de6e7b5ee8c6@linux.ibm.com>
+ <90ced7e271213da481f7c0ec883d0189671563e8.camel@codeconstruct.com.au>
+Content-Language: en-US
+From: Eddie James <eajames@linux.ibm.com>
+In-Reply-To: <90ced7e271213da481f7c0ec883d0189671563e8.camel@codeconstruct.com.au>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: l5nYePDoWbcmQxnqdJY4-VQBK8fY8w0m
+X-Proofpoint-ORIG-GUID: l5nYePDoWbcmQxnqdJY4-VQBK8fY8w0m
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-16_10,2024-04-16_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ impostorscore=0 suspectscore=0 clxscore=1015 spamscore=0
+ priorityscore=1501 adultscore=0 phishscore=0 mlxscore=0 bulkscore=0
+ malwarescore=0 mlxlogscore=999 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2404010000 definitions=main-2404160090
 
-Remove unused clock-names 'mem'.  Driver (sound/soc/fsl/fsl_esai.c.) never
-use clock name 'mem'.
 
-arch/arm/boot/dts/nxp/imx/imx6q-sabreauto.dtb: esai@2024000: clocks: [[2, 208], [2, 209], [2, 118], [2, 208], [2, 156]] is too long
-	from schema $id: http://devicetree.org/schemas/sound/fsl,esai.yaml#
-arch/arm/boot/dts/nxp/imx/imx6q-sabreauto.dtb: esai@2024000: clock-names:1: 'extal' was expected
-	from schema $id: http://devicetree.org/schemas/sound/fsl,esai.yaml#
-arch/arm/boot/dts/nxp/imx/imx6q-sabreauto.dtb: esai@2024000: clock-names:2: 'fsys' was expected
-	from schema $id: http://devicetree.org/schemas/sound/fsl,esai.yaml#
-arch/arm/boot/dts/nxp/imx/imx6q-sabreauto.dtb: esai@2024000: clock-names:3: 'spba' was expected
-	from schema $id: http://devicetree.org/schemas/sound/fsl,esai.yaml#
-arch/arm/boot/dts/nxp/imx/imx6q-sabreauto.dtb: esai@2024000: clock-names: ['core', 'mem', 'extal', 'fsys', 'spba'] is too long
-	from schema $id: http://devicetree.org/schemas/sound/fsl,esai.yaml#
+On 4/15/24 19:06, Andrew Jeffery wrote:
+> On Mon, 2024-04-15 at 09:59 -0500, Eddie James wrote:
+>> On 4/14/24 19:54, Andrew Jeffery wrote:
+>>> On Fri, 2024-04-12 at 09:43 -0500, Eddie James wrote:
+>>>> Set the new compatible string for Odyssey SBEFIFOs so that they
+>>>> don't collect async FFDC.
+>>>>
+>>>> Signed-off-by: Eddie James <eajames@linux.ibm.com>
+>>>> ---
+>>>>    .../dts/aspeed/aspeed-bmc-ibm-everest.dts     | 64 +++++++++----------
+>>>>    .../arm/boot/dts/aspeed/ibm-power10-quad.dtsi | 64 +++++++++----------
+>>>>    2 files changed, 64 insertions(+), 64 deletions(-)
+>>>>
+>>>> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
+>>>> index 214b2e6a4c6d..3a2bfdf035cb 100644
+>>>> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
+>>>> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
+>>>> @@ -2545,7 +2545,7 @@ scom500: scom@1000 {
+>>>>    						};
+>>>>    
+>>>>    						sbefifo500: sbefifo@2400 {
+>>>> -							compatible = "ibm,p9-sbefifo";
+>>>> +							compatible = "ibm,ody-sbefifo";
+>>>>    							reg = <0x2400 0x400>;
+>>>>    							#address-cells = <1>;
+>>>>    							#size-cells = <0>;
+>>> Bit of a drive-by comment as I'm not really holding any stakes here,
+>>> but did the hardware actually change?
+>>
+>> Yes, the hardware did change in the Odyssey version.
+> Should there not be a new platform DTS then? Seems a bit puzzling, but
+> again this is a bit of a drive-by comment.
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi
-index 8431b8a994f4c..d2200c9db25ae 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi
-@@ -397,11 +397,10 @@ esai: esai@2024000 {
- 					reg = <0x02024000 0x4000>;
- 					interrupts = <0 51 IRQ_TYPE_LEVEL_HIGH>;
- 					clocks = <&clks IMX6QDL_CLK_ESAI_IPG>,
--						 <&clks IMX6QDL_CLK_ESAI_MEM>,
- 						 <&clks IMX6QDL_CLK_ESAI_EXTAL>,
- 						 <&clks IMX6QDL_CLK_ESAI_IPG>,
- 						 <&clks IMX6QDL_CLK_SPBA>;
--					clock-names = "core", "mem", "extal", "fsys", "spba";
-+					clock-names = "core", "extal", "fsys", "spba";
- 					dmas = <&sdma 23 21 0>, <&sdma 24 21 0>;
- 					dma-names = "rx", "tx";
- 					status = "disabled";
+Ah, I should clarify. The SBE hardware was changed between P9/P10 and 
+Odyssey versions. The Odyssey hasn't changed. The difference in the SBE 
+wasn't apparent when we initially added support for Odyssey, so this is 
+effectively a bug fix on the new hardware. There is no new platform.
 
--- 
-2.34.1
 
+Thanks,
+
+Eddie
+
+
+>
+> Andrew
 
