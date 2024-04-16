@@ -1,293 +1,164 @@
-Return-Path: <devicetree+bounces-59833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 351DB8A722B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 19:24:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 168B08A7232
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 19:25:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E11CD283D34
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 17:24:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C7D46283FBC
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 17:25:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4323B1332A6;
-	Tue, 16 Apr 2024 17:24:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AF8813280C;
+	Tue, 16 Apr 2024 17:25:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="fDtTofg4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R1MQ0yXd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mainlining.org [94.241.141.152])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92E85133284;
-	Tue, 16 Apr 2024 17:24:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.241.141.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5786C1F956
+	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 17:25:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713288266; cv=none; b=AXeulYOiPyMu8A7w8x77/wH+x+kEoDUMI7Kp0ayBgIFMKq15CKM2FPXOOg285xB2dC+3Qr/E+gny5sn++HgG4iqXCZX/6XOwnlMbWC3TsSLRSDhr7aNOpAa9kBIk2tcLEUnIJf+tYZiWaBXmNEE/HDI69Q79nNLThN3kuC8g+so=
+	t=1713288335; cv=none; b=BnJO44cnhl6w7IG6CeBT1unNqGoh8BdG6XlzwwT/HG+wns0EKLKje2rpMcTKzlf8uLmck5PxPeVrcwgkqtlrVhXsH/WqcMEvDRDSHP8dguutS+X3CoEHR0X4ZXdNHbP3Ge521ChKN2k/65ycHns7BUC3dErvaktEqmdYkgB7Yu4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713288266; c=relaxed/simple;
-	bh=0/KYCUdInxUjEwD51RraRlf2GRvArVKF/9wENzLof70=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=GPkci0e9WG2aBfnD/Pne+JPWJqnwaMBiXVBhZPXSGr3rBtaTis4lFzETmev+b8KQJVHaDE5eJI+WydnKJ1wrJd+ytXdrBbgxPNdMz9mG5aQ9ZeEvjX9w5BIVVyupGQpYbDEnnG70TqgBur/6NCy1EbtOMG2DDaLPHg1NwjMrRno=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=fDtTofg4; arc=none smtp.client-ip=94.241.141.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-Received: from localhost (docker-mailserver-web-1.docker-mailserver_default [172.18.0.7])
-	by mail.mainlining.org (Postfix) with ESMTPSA id 1F16FE2251;
-	Tue, 16 Apr 2024 17:24:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
-	s=psm; t=1713288255;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=TBd4zsLEBvuus5xMkBd2zhnEZ3ZqG69cxDy5FsjdcvU=;
-	b=fDtTofg4zZJMwwMvB/E8tobfS9uvjjO6VrhdlmO7Ig9A/ho3ob+1+oRjrCyWCCBT66V3Zo
-	yaeephDeo7gjWqSYTgNFfWKSZZP9UtJtJYhLSkGx/BWrXwFkJxNg96pKoE1cwgAtjpH0Rd
-	UkighS8KdKe4gjCionjSZC7yT9cczmN7lHaSiG8pkqtE/4GgtNRmsMFnUiV9rzL0NiMlR2
-	c3BvXaZgQJu6LuHqLk8Xye0GBFv+AoWKFXxHtHcVw3f/PSp2yxjDLS6Oxm3e2A/ZrwfnWB
-	dH8AmuhImiW0Ss70Uvmgy9GOPZ6JEN3wvIaCt2p/s/TygH0nlg5xFpZYAuljLw==
+	s=arc-20240116; t=1713288335; c=relaxed/simple;
+	bh=SAa9s3VJpC0ue6WJQEp5gjjZX/3kAnQf4xSZ8MArlO4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uHWqNC4vlWkrA/NLz5ctFyhuFVgOJjbGBBe1+fhEufBdjyAbmq796kUW+wybmU30xhPv5J1XE1TQMARUqTAFVmYYhSVWbb0PgjKus4JKqrlfwhq0S8krUaj1HgvhuvhsUpgwTBN+Ruf+JMr4dtnPKFO7L7gk1l0DKi89vA5/c+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R1MQ0yXd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64B64C32783;
+	Tue, 16 Apr 2024 17:25:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713288334;
+	bh=SAa9s3VJpC0ue6WJQEp5gjjZX/3kAnQf4xSZ8MArlO4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=R1MQ0yXdgMP7a9GSZTNHVYo8piid3ASYxDLSjEJUL/kOnd24CQB4qd81mSGI2c8fj
+	 nDB2W3o8qjhdPEoCD3Ws9AUpXM+HgXpVe3vz1hpWFoi+U/mFEHuoANJ67xxGKklrr9
+	 WgOx0Q1EERTaV79CMuj+RlVdq4fflk5jFmYsdkmpe/tFAQgNavNRsqxEgE0P3IY7Sg
+	 JCqE2Cmiw/X6PGbNFleYVa9OWgCYb7+Lv4FAAlI1bIvpE5tqvjiZf71x/7ml9Z9ONa
+	 3QGPSq1eYpS1U+WjWNKic2PjbIPb7nsJJgGF2EQ1p5w4Rp5m/JZedSN+MdiDuqjslq
+	 TLoE3V95zThGQ==
+Date: Tue, 16 Apr 2024 18:25:30 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Eddie James <eajames@linux.ibm.com>
+Cc: linux-aspeed@lists.ozlabs.org, joel@jms.id.au,
+	andrew@codeconstruct.com.au, devicetree@vger.kernel.org,
+	linux-fsi@lists.ozlabs.org, robh@kernel.org, conor+dt@kernel.org,
+	krzk+dt@kernel.org, jk@ozlabs.org, alistair@popple.id.au,
+	lakshmiy@us.ibm.com
+Subject: Re: [PATCH v2 1/3] dt-bindings: fsi: Document the IBM SBEFIFO engine
+Message-ID: <20240416-askew-slapstick-994453ecbf73@spud>
+References: <20240415153907.10051-1-eajames@linux.ibm.com>
+ <20240415153907.10051-2-eajames@linux.ibm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Tue, 16 Apr 2024 19:24:14 +0200
-From: David Wronek <david@mainlining.org>
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc: airlied@gmail.com, conor+dt@kernel.org, daniel@ffwll.ch,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- konradybcio@kernel.org, krzk+dt@kernel.org, linux-kernel@vger.kernel.org,
- maarten.lankhorst@linux.intel.com, marijn.suijten@somainline.org,
- mripard@kernel.org, neil.armstrong@linaro.org, phone-devel@vger.kernel.org,
- quic_jesszhan@quicinc.com, robh@kernel.org, sam@ravnborg.org,
- tzimmermann@suse.de, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v2 2/2] drm/panel: Add driver for EDO RM69380 OLED panel
-In-Reply-To: <97189d64-0db1-4663-8a2e-c1a7c06a241c@wanadoo.fr>
-References: <20240415-raydium-rm69380-driver-v2-0-524216461306@mainlining.org>
- <20240415-raydium-rm69380-driver-v2-2-524216461306@mainlining.org>
- <97189d64-0db1-4663-8a2e-c1a7c06a241c@wanadoo.fr>
-Message-ID: <8fc2f44637dfbb641366a7eb8e71bf1c@mainlining.org>
-X-Sender: david@mainlining.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="MSKVpxQ0QimsDgBf"
+Content-Disposition: inline
+In-Reply-To: <20240415153907.10051-2-eajames@linux.ibm.com>
 
-W dniu 2024-04-15 19:55, Christophe JAILLET napisał(a):
-> Le 15/04/2024 à 18:10, David Wronek a écrit :
->> Add support for the 2560x1600@90Hz OLED panel by EDO bundled with a
->> Raydium RM69380 controller, as found on the Lenovo Xiaoxin Pad Pro 
->> 2021.
->> 
->> Signed-off-by: David Wronek 
->> <david-vu3DzTD92ROXwddmVfQv5g@public.gmane.org>
->> ---
->>   drivers/gpu/drm/panel/Kconfig                 |  14 +
->>   drivers/gpu/drm/panel/Makefile                |   1 +
->>   drivers/gpu/drm/panel/panel-raydium-rm69380.c | 366 
->> ++++++++++++++++++++++++++
->>   3 files changed, 381 insertions(+)
->> 
-> 
-> ...
-> 
->> +static int rm69380_on(struct rm69380_panel *ctx)
->> +{
->> +	struct mipi_dsi_device *dsi = ctx->dsi[0];
->> +	struct device *dev = &dsi->dev;
->> +	int ret;
->> +
->> +	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
->> +	if (ctx->dsi[1])
->> +		ctx->dsi[1]->mode_flags |= MIPI_DSI_MODE_LPM;
->> +
->> +	mipi_dsi_dcs_write_seq(dsi, 0xfe, 0xd4);
->> +	mipi_dsi_dcs_write_seq(dsi, 0x00, 0x80);
->> +	mipi_dsi_dcs_write_seq(dsi, 0xfe, 0xd0);
->> +	mipi_dsi_dcs_write_seq(dsi, 0x48, 0x00);
->> +	mipi_dsi_dcs_write_seq(dsi, 0xfe, 0x26);
->> +	mipi_dsi_dcs_write_seq(dsi, 0x75, 0x3f);
->> +	mipi_dsi_dcs_write_seq(dsi, 0x1d, 0x1a);
->> +	mipi_dsi_dcs_write_seq(dsi, 0xfe, 0x00);
->> +	mipi_dsi_dcs_write_seq(dsi, 0x53, 0x28);
->> +	mipi_dsi_dcs_write_seq(dsi, 0xc2, 0x08);
->> +	mipi_dsi_dcs_write_seq(dsi, 0x35, 0x00);
->> +	mipi_dsi_dcs_write_seq(dsi, 0x51, 0x07, 0xff);
->> +
->> +	ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
->> +	if (ret < 0) {
->> +		dev_err(dev, "Failed to exit sleep mode: %d\n", ret);
->> +		return ret;
->> +	}
->> +	msleep(20);
->> +
->> +	ret = mipi_dsi_dcs_set_display_on(dsi);
->> +	if (ret < 0) {
->> +		dev_err(dev, "Failed to set display on: %d\n", ret);
->> +		return ret;
->> +	}
->> +	msleep(36);
-> 
-> 36 and 35 below are un-usual values for msleep.
-> 
-> Why 2 different values?
-> Would using a #define for this(these) value(s) make sense here?
-> 
 
-I am not sure of that either. This is how the panel is being set up in 
-Android, as well as the bootloader.
-See lines 67 and 92 here: 
-https://github.com/ungeskriptet/QcomXblBinaries/blob/master/J716F/BOOT.XF.3.2-00354-SM8250-1/RawFiles/Panel_rm69380_amoled_2k_cmd.xml
+--MSKVpxQ0QimsDgBf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->> +
->> +	return 0;
->> +}
->> +
->> +static int rm69380_off(struct rm69380_panel *ctx)
->> +{
->> +	struct mipi_dsi_device *dsi = ctx->dsi[0];
->> +	struct device *dev = &dsi->dev;
->> +	int ret;
->> +
->> +	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
->> +	if (ctx->dsi[1])
->> +		ctx->dsi[1]->mode_flags &= ~MIPI_DSI_MODE_LPM;
->> +
->> +	ret = mipi_dsi_dcs_set_display_off(dsi);
->> +	if (ret < 0) {
->> +		dev_err(dev, "Failed to set display off: %d\n", ret);
->> +		return ret;
->> +	}
->> +	msleep(35);
-> 
-> (here)
-> 
->> +
->> +	ret = mipi_dsi_dcs_enter_sleep_mode(dsi);
->> +	if (ret < 0) {
->> +		dev_err(dev, "Failed to enter sleep mode: %d\n", ret);
->> +		return ret;
->> +	}
->> +	msleep(20);
->> +
->> +	return 0;
->> +}
-> 
-> ...
-> 
->> +static int rm69380_probe(struct mipi_dsi_device *dsi)
->> +{
->> +	struct mipi_dsi_host *dsi_sec_host;
->> +	struct rm69380_panel *ctx;
->> +	struct device *dev = &dsi->dev;
->> +	struct device_node *dsi_sec;
->> +	int ret, i;
->> +
->> +	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
->> +	if (!ctx)
->> +		return -ENOMEM;
->> +
->> +	ctx->supplies[0].supply = "vddio";
->> +	ctx->supplies[1].supply = "avdd";
->> +	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(ctx->supplies),
->> +				      ctx->supplies);
->> +	if (ret < 0)
->> +		return dev_err_probe(dev, ret, "Failed to get regulators\n");
->> +
->> +	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
->> +	if (IS_ERR(ctx->reset_gpio))
->> +		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
->> +				     "Failed to get reset-gpios\n");
->> +
->> +	dsi_sec = of_graph_get_remote_node(dsi->dev.of_node, 1, -1);
->> +
->> +	if (dsi_sec) {
->> +		dev_dbg(dev, "Using Dual-DSI\n");
-> 
-> This should be after de 'info' variable below, so...
-> 
->> +
->> +		const struct mipi_dsi_device_info info = { "RM69380", 0,
->> +							   dsi_sec };
->> +
->> +		dev_dbg(dev, "Found second DSI `%s`\n", dsi_sec->name);
-> 
-> ... maybe merge the 2 messages into something like:
->       dev_dbg(dev, "Using Dual-DSI: found `%s`\n", dsi_sec->name);
-> 
->> +
->> +		dsi_sec_host = of_find_mipi_dsi_host_by_node(dsi_sec);
->> +		of_node_put(dsi_sec);
->> +		if (!dsi_sec_host) {
->> +			return dev_err_probe(dev, -EPROBE_DEFER,
->> +					     "Cannot get secondary DSI host\n");
->> +		}
->> +
-> 
-> Nit: unneeded { }
-> 
->> +		ctx->dsi[1] =
->> +			mipi_dsi_device_register_full(dsi_sec_host, &info);
->> +		if (IS_ERR(ctx->dsi[1])) {
->> +			return dev_err_probe(dev, PTR_ERR(ctx->dsi[1]),
->> +					     "Cannot get secondary DSI node\n");
->> +		}
-> 
-> Nit: unneeded { }
-> 
->> +
->> +		dev_dbg(dev, "Second DSI name `%s`\n", ctx->dsi[1]->name);
->> +		mipi_dsi_set_drvdata(ctx->dsi[1], ctx);
->> +	} else {
->> +		dev_dbg(dev, "Using Single-DSI\n");
->> +	}
->> +
->> +	ctx->dsi[0] = dsi;
->> +	mipi_dsi_set_drvdata(dsi, ctx);
->> +
->> +	drm_panel_init(&ctx->panel, dev, &rm69380_panel_funcs,
->> +		       DRM_MODE_CONNECTOR_DSI);
->> +	ctx->panel.prepare_prev_first = true;
->> +
->> +	ctx->panel.backlight = rm69380_create_backlight(dsi);
->> +	if (IS_ERR(ctx->panel.backlight))
->> +		return dev_err_probe(dev, PTR_ERR(ctx->panel.backlight),
->> +				     "Failed to create backlight\n");
->> +
->> +	drm_panel_add(&ctx->panel);
->> +
->> +	for (i = 0; i < ARRAY_SIZE(ctx->dsi); i++) {
->> +		if (!ctx->dsi[i])
->> +			continue;
->> +
->> +		dev_dbg(&ctx->dsi[i]->dev, "Binding DSI %d\n", i);
->> +
->> +		ctx->dsi[i]->lanes = 4;
->> +		ctx->dsi[i]->format = MIPI_DSI_FMT_RGB888;
->> +		ctx->dsi[i]->mode_flags = MIPI_DSI_MODE_VIDEO_BURST |
->> +					  MIPI_DSI_CLOCK_NON_CONTINUOUS;
->> +
->> +		ret = mipi_dsi_attach(ctx->dsi[i]);
->> +		if (ret < 0) {
->> +			drm_panel_remove(&ctx->panel);
->> +			return dev_err_probe(dev, ret,
->> +					     "Failed to attach to DSI%d\n", i);
-> 
-> The error handling looks incomplete.
-> Previous mipi_dsi_attach() should be undone by a mipi_dsi_detach() as 
-> done in the remove function.
-> 
->> +		}
->> +	}
->> +
->> +	return 0;
->> +}
-> 
-> ...
-> 
-> CJ
+On Mon, Apr 15, 2024 at 10:39:05AM -0500, Eddie James wrote:
+> The SBEFIFO engine provides an interface to the POWER processor
+> Self Boot Engine (SBE).
+>=20
+> Signed-off-by: Eddie James <eajames@linux.ibm.com>
+> ---
+> Changes since v1:
+>  - Chance "ody" to "odyssey"
+>  - Fix typo in commit message
+>  - Reword description to describe the hardware only
+>=20
+>  .../devicetree/bindings/fsi/ibm,sbefifo.yaml  | 39 +++++++++++++++++++
+>  1 file changed, 39 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/fsi/ibm,sbefifo.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/fsi/ibm,sbefifo.yaml b/Doc=
+umentation/devicetree/bindings/fsi/ibm,sbefifo.yaml
+> new file mode 100644
+> index 000000000000..69521b1cfb25
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/fsi/ibm,sbefifo.yaml
 
--- 
-Best regards,
-David Wronek <david@mainlining.org>
+Filename matching a compatible please.
+
+> @@ -0,0 +1,39 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/fsi/ibm,sbefifo.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: IBM FSI-attached SBEFIFO engine
+> +
+> +maintainers:
+> +  - Eddie James <eajames@linux.ibm.com>
+> +
+> +description: |
+
+This | should not be needed, there's no formatting to preserve.
+
+> +  The SBEFIFO is an FSI CFAM engine that provides an interface to the
+> +  POWER processor Self Boot Engine (SBE). This node will always be a chi=
+ld
+> +  of an FSI CFAM node; see fsi.txt for details on FSI slave and CFAM
+> +  nodes.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ibm,p9-sbefifo
+> +      - ibm,odyssey-sbefifo
+> +
+> +  reg:
+> +    items:
+> +      - description: FSI slave address
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    sbefifo@2400 {
+
+Per fsi.txt, the generic node name looks like it should be
+"fsi-slave-engine"?
+
+Cheers,
+Conor.
+
+> +        compatible =3D "ibm,p9-sbefifo";
+> +        reg =3D <0x2400 0x400>;
+> +    };
+> --=20
+> 2.39.3
+>=20
+
+--MSKVpxQ0QimsDgBf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZh60igAKCRB4tDGHoIJi
+0riyAP9Y7YRTnsQXUck7bocG8d1Z6DOgkf6/GdAs2Q40yO93dQD/Ssb64e2hbTr4
+L5rS5qThpe1oEpcgL5WCoik0TlQLeQ0=
+=9qd6
+-----END PGP SIGNATURE-----
+
+--MSKVpxQ0QimsDgBf--
 
