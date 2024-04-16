@@ -1,128 +1,173 @@
-Return-Path: <devicetree+bounces-59679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBCD48A69B0
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 13:36:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 381158A69BE
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 13:38:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 988522830F7
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 11:36:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B7D671F21507
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 11:38:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F29A81292FC;
-	Tue, 16 Apr 2024 11:36:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8901129A67;
+	Tue, 16 Apr 2024 11:38:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="RSaCR/kS"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="k/MOR36/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 629B31292D7
-	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 11:36:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B94E1292DE
+	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 11:38:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713267370; cv=none; b=frHHxJpS1P3TgMkYur/SWAQWLdlTv5gmJU/VXUkjP8WcSUR67e7yUNO2vc4EINwNUVUW7WCBzqvWaI2sRa/W/AahLNVFtwR54SaOryw9BEwtacazCSl75CHPdjrbgFIQC2IauyJ2qlGYpNyf8EcFPtNyRaaEQxekagS5J9oB35Y=
+	t=1713267528; cv=none; b=FBvGdqRiYmZhDAKo7WphQaNlaMs52Ow+hkpuvcdNot4bPeQLh4kHp5olI/yHDB5XRhiuUNeIlw7YGcIQWw804I+mkYNm+iPVEReXz+Nsx57hJJQ8S/BDzjxAe+MAoxaqZ/6pxkU3JrP4IkUWDgw7vjthPIygKbzmuHe9O/H83Z8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713267370; c=relaxed/simple;
-	bh=dMQSx8CCJTZi0c0vMxyWRS6E0AI8Ut2Td+Fzfj3dowg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B4faS+2st+c8lPobfbb2R2GZZ4++vMh8Ic6mkChqaNg7f1CAoxGkmyvodJcqlq6q69eMah/zVxnLEOXLeAGk4bA0f6IToZISbN9yJlPlB+7nhvZm0bU2R+siechODYtq+DQjrJ84dqYKty6U3fKltKBhSwe6crybi9laLeS/MFY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=RSaCR/kS; arc=none smtp.client-ip=209.85.208.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2d718ee7344so42395341fa.2
-        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 04:36:09 -0700 (PDT)
+	s=arc-20240116; t=1713267528; c=relaxed/simple;
+	bh=78vEOqzL95dc+B7WbWraGxUA3wTUPg9rnOmG+t2Iy9Y=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
+	 References:In-Reply-To; b=BICeqs/gUVt4cupj3xHeFINN1YcszQuQ9F/IeTmIC20SZwFLqBqw4KX1FXaKexo7v/7VoyG0RcvFUbn0H9BsZfDZHPHwETQkCWSLibRzTgRwTtj9uGw73h74F8kFC2RGJIr+Vnrb6AXDJtg8bYkymKDtsXJhtGnyG3T8V1+8FOs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=k/MOR36/; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-570005cdf62so3388972a12.2
+        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 04:38:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1713267367; x=1713872167; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=okFG0DnwE5R50C1UP70PPaJXyomv8+BdqCRrBYX27h0=;
-        b=RSaCR/kSZybnVrUMDAh5QrYXEt3EtmACW303bCHj+nrSRUuFjNyemCtWUThQ5jh/AS
-         OHRXjx9GRd1kdocOELO7TYC/XUMylG/Lqc7Ot7pa2xiEA2ernr4xt08izGJYMfkz49/U
-         mSwj/L+1HweRBdxjp6Svkr9yrP/NkcBRMPndugLAIL52r+g8A5ReXecrR2/gm5LNwYuy
-         Adl13fhL47ClJLhqUdhM1Lw8znXWmNhDxu//fIzsD/jXUcXVbOA1ZsOZQWFq6Zs/0Nbu
-         qkygo2ZChb9XnxxpgXi9BRCYnXNMiRENQcZHS9Lsy0PKjLwFKP1F4GP+EfCLpYo8advq
-         mlrg==
+        d=fairphone.com; s=fair; t=1713267524; x=1713872324; darn=vger.kernel.org;
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yLga7OC4nYSq9BYdu8C0P/BImJRfA0KFWKdGFi9hq8g=;
+        b=k/MOR36/WBCAUC5+dkiiqXGmS4obsvDIBZlYz6RvPI82op2gyM8KmbYo+oIEYlAlD/
+         SkHj6oo84T1ovPXl6wnLHDqvKYvE2+xEuxdKlGniZC83ihYNW0cmkBUshBATeAFd0q6V
+         4kWySr22KCE2+jOJfGE4kns/GDu2EYUc5Ib3rO7I4n0x82+0i/F+RGiakp6VSGJalpJg
+         BxySIvIp3ZnsGcKR/266LaxJ5QfzxUde3PTpljchfq6bBtXC50szYOdIuNeu9ByV6pS0
+         Ep2Hpjm3TCna32jrxg23ONEINGEKeCBRNM3L7l/KdQVuTi9QX94RaM3u2+VE8TKy+ndP
+         LCgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713267367; x=1713872167;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=okFG0DnwE5R50C1UP70PPaJXyomv8+BdqCRrBYX27h0=;
-        b=ZRM4w5qmBgIKiGrLJl6wCvRdYd1MPd7BVZc7646ipgZQ9SKQqWrYw6l52/BTSwjqGE
-         w2WaBrJtGji8g/kt0o0LMfsLWMFDWxLDX3qEsgAWrHDSZ0S3lU1Tp5VTbXZMWxV6pVzV
-         SK5hrlRLA+n1XOk+AnH6DwDEKuqsHSmqNhGI4McrWx4RjBhUensNwirMmTda3g0IdWZZ
-         OhoN09VzBGFq5mmYsP6pDhlG5Et0enylsAWU/FSFtCp6M685/XIN3Z7ieD5sIu8Lrm3j
-         vM4WUOigaAGPmORB7ArXRoVadMEh6ctwyEDaJiTKUjaDZZx1/Cgc8+GjjeSiQzJVNvBb
-         IFsg==
-X-Forwarded-Encrypted: i=1; AJvYcCXWMzozG62QR2y9Xsqv2DNERANay6Wfv5ORJn6AnmKqv76y+cozdHcg2unUji/OPnfTqYTJyJcnQw9QOEF+uQG5Ao19UgB2cCOVHg==
-X-Gm-Message-State: AOJu0Ywd9auW5kZAOT6n5u0RrIeRiZbRLueyDX4hCZocNUH1E1p5eroF
-	v61do8mOeOCZOhBxRrXF+6dzeOn8tPFSUk6mfzt3qBMoK3IKZN57K0qeMdg4aMM=
-X-Google-Smtp-Source: AGHT+IFuxrJYpKT46xpDoYSQlh9kRKqJVNyvZUvf2JQsE9jM/VsfStjJqR7Leh9rvEkjKCCzelhBJg==
-X-Received: by 2002:a2e:91c9:0:b0:2d9:b2be:bc7 with SMTP id u9-20020a2e91c9000000b002d9b2be0bc7mr9463931ljg.4.1713267367375;
-        Tue, 16 Apr 2024 04:36:07 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.8])
-        by smtp.gmail.com with ESMTPSA id t13-20020a05600c450d00b004171f151a5csm19556794wmo.16.2024.04.16.04.36.05
+        d=1e100.net; s=20230601; t=1713267524; x=1713872324;
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=yLga7OC4nYSq9BYdu8C0P/BImJRfA0KFWKdGFi9hq8g=;
+        b=Uq77LOpQwp6kO4b0qu8nJ+4Awpsved0krfCncExicghi9H7UsMTFlfdxEBEgOduhD1
+         IZgxtRgqz45dqGJuoSAms2TPDr8EDAZEu7CvQ9FvF0p8Zk1gli2sqBlVxymtrv+n/D4w
+         WOkNVKPddUBgg376lCdEP6K8VxLe81MCBxnn1FnWg7mjwvVF3ZHyAbCvBZKoDdbcb7wQ
+         EEtoisZW9VduVBtMkIVHo9sDnnUXI0vrB2ItLhT2DVGbRSjR6WYINNhawTyB9aaRb3ZW
+         amK5UYhJS6I0qmSNaVemgqtSiJrcgU2IcQM33ywPZjK70lI54YUDTVJ1ugoPtvZJvifB
+         up5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCX/CR9arg3aFo2YgSh3n9yDgXZKPwl8BAX6Fl/yWQjCMpdtc+Vn1jzqmn+WhzO8eemgjr+LSxSx+42ZgjCiHDmMc88v2nG7PNcCHw==
+X-Gm-Message-State: AOJu0YzpIo5XC1jANfesA9aaSAePcLQJwVL2EBTkb0O8VHBkAzkSF9sB
+	VBat66x4+WCQIta66jw9z55PLnN9nSjSX1qOjSt+VZx1lRyoBBlgvwIMwlknRgI=
+X-Google-Smtp-Source: AGHT+IGsl2HiaOewcfGkAfX8WYgD4puftl3jXzNcbfuXILpdAUeSXu7mMz9n+3mpi50aQf05U7taGQ==
+X-Received: by 2002:a50:9357:0:b0:56e:232b:95cd with SMTP id n23-20020a509357000000b0056e232b95cdmr8225752eda.41.1713267524650;
+        Tue, 16 Apr 2024 04:38:44 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id fe1-20020a056402390100b005701df2ea98sm3207437edb.32.2024.04.16.04.38.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Apr 2024 04:36:06 -0700 (PDT)
-Message-ID: <e50bb9c1-e094-4868-9403-fb7430195ad9@tuxon.dev>
-Date: Tue, 16 Apr 2024 14:36:05 +0300
+        Tue, 16 Apr 2024 04:38:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/9] clk: renesas: rzg2l: Add support for power domains
-Content-Language: en-US
-To: Ulf Hansson <ulf.hansson@linaro.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- magnus.damm@gmail.com, linux-renesas-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240410122657.2051132-1-claudiu.beznea.uj@bp.renesas.com>
- <CAPDyKFr405qt58wrqNdSn8bQPRqPKJ1omUZHS_VpQrX5zxUJug@mail.gmail.com>
- <CAMuHMdXRwcYMt7p+xT3svo1RmJ2Tvbamrx4++iYQ-mffKb6ZQQ@mail.gmail.com>
- <CAPDyKFoMiseXbSEK4ANOeWSuVhREibm0v0zg46Q3kJHX8jYpgQ@mail.gmail.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <CAPDyKFoMiseXbSEK4ANOeWSuVhREibm0v0zg46Q3kJHX8jYpgQ@mail.gmail.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Date: Tue, 16 Apr 2024 13:38:43 +0200
+Message-Id: <D0LINETM8WNA.27BORT75W1N0C@fairphone.com>
+To: "Viken Dadhaniya" <quic_vdadhani@quicinc.com>,
+ <cros-qcom-dts-watchers@chromium.org>, <andersson@kernel.org>,
+ <konrad.dybcio@linaro.org>, <swboyd@chromium.org>, <robh@kernel.org>,
+ <krzk+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+ <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <rajpat@codeaurora.org>,
+ <mka@chromium.org>, <rojay@codeaurora.org>
+Cc: <quic_msavaliy@quicinc.com>, <quic_anupkulk@quicinc.com>
+Subject: Re: [PATCH v1] arm64: dts: qcom: sc7280: Remove CTS/RTS
+ configuration
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+X-Mailer: aerc 0.17.0
+References: <20240416105650.2626-1-quic_vdadhani@quicinc.com>
+In-Reply-To: <20240416105650.2626-1-quic_vdadhani@quicinc.com>
 
-Hi, Ulf,
+On Tue Apr 16, 2024 at 12:56 PM CEST, Viken Dadhaniya wrote:
+> Remove CTS and RTS pinctrl configuration for UART5 node as
+> it's designed for debug UART for all the board variants of the
+> sc7280 chipset.
+>
+> Also change compatible string to debug UART.
 
-On 16.04.2024 14:14, Ulf Hansson wrote:
-> On Mon, 15 Apr 2024 at 09:28, Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->>
->> Hi Ulf,
->>
->> On Fri, Apr 12, 2024 at 1:31 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
->>> That said, maybe we should start separating and moving the
->>> power-domain parts out from the clk directory into the pmdomain
->>> directory instead, that should improve these situations!?
->>
->> The clk and pmdomain functions are tied rather closely together on
->> Renesas SoCs, that's why the clock drivers are also pmdomain providers.
->>
-> 
-> I understand, it's your call to make!
-> 
-> Anyway, I just wanted to help with reviews and to make sure genpd
-> providers get implemented in a nice and proper way.
+This change has little to do with the SoC design though and is dependent
+on the usage on a given board, right? Also the QCM6490 datasheet
+mentions gpio21 & gpio22 can be used for UART_CTS and UART_RFR.
 
-I'll keep in mind to also add you and PM domain list for future patches, if
-any. Would you prefer to re-send this series and cc you and pm domain list?
+But at least consistency-wise this change makes sense, in practically
+all other SoCs one UART is marked as geni-debug-uart.
 
-Thank you,
-Claudiu Beznea
+But with this patch you should then also remove some overrides that are
+placed in various boards already?
 
-> 
-> Kind regards
-> Uffe
+arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts:     compatible =3D "qco=
+m,geni-debug-uart";
+arch/arm64/boot/dts/qcom/qcm6490-idp.dts:       compatible =3D "qcom,geni-d=
+ebug-uart";
+arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts:   compatible =3D "qcom,geni-d=
+ebug-uart";
+arch/arm64/boot/dts/qcom/sc7280-idp.dtsi:       compatible =3D "qcom,geni-d=
+ebug-uart";
+arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi:     compatible =3D "qcom,geni-d=
+ebug-uart";
+
+Regards
+Luca
+
+>
+> Fixes: 38cd93f413fd ("arm64: dts: qcom: sc7280: Update QUPv3 UART5 DT nod=
+e")
+> Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 14 ++------------
+>  1 file changed, 2 insertions(+), 12 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/q=
+com/sc7280.dtsi
+> index 38c183b2bb26..2a6b4c4639d1 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -1440,12 +1440,12 @@
+>  			};
+> =20
+>  			uart5: serial@994000 {
+> -				compatible =3D "qcom,geni-uart";
+> +				compatible =3D "qcom,geni-debug-uart";
+>  				reg =3D <0 0x00994000 0 0x4000>;
+>  				clocks =3D <&gcc GCC_QUPV3_WRAP0_S5_CLK>;
+>  				clock-names =3D "se";
+>  				pinctrl-names =3D "default";
+> -				pinctrl-0 =3D <&qup_uart5_cts>, <&qup_uart5_rts>, <&qup_uart5_tx>, <=
+&qup_uart5_rx>;
+> +				pinctrl-0 =3D <&qup_uart5_tx>, <&qup_uart5_rx>;
+>  				interrupts =3D <GIC_SPI 606 IRQ_TYPE_LEVEL_HIGH>;
+>  				power-domains =3D <&rpmhpd SC7280_CX>;
+>  				operating-points-v2 =3D <&qup_opp_table>;
+> @@ -5397,16 +5397,6 @@
+>  				function =3D "qup04";
+>  			};
+> =20
+> -			qup_uart5_cts: qup-uart5-cts-state {
+> -				pins =3D "gpio20";
+> -				function =3D "qup05";
+> -			};
+> -
+> -			qup_uart5_rts: qup-uart5-rts-state {
+> -				pins =3D "gpio21";
+> -				function =3D "qup05";
+> -			};
+> -
+>  			qup_uart5_tx: qup-uart5-tx-state {
+>  				pins =3D "gpio22";
+>  				function =3D "qup05";
+
 
