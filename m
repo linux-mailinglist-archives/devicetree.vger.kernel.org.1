@@ -1,160 +1,132 @@
-Return-Path: <devicetree+bounces-59645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 280978A65AA
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 10:05:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16E298A6600
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 10:23:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D945628493B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 08:05:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA9161F236AC
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 08:23:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B915130482;
-	Tue, 16 Apr 2024 08:05:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="HWK+CtFd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C9A7136E2B;
+	Tue, 16 Apr 2024 08:23:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64B296F066
-	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 08:05:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 837CE84FD4;
+	Tue, 16 Apr 2024 08:23:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713254726; cv=none; b=BXjSjtsD1q1Jt/+1OS/5a/dlpUOmHW/hgC56AEjzQZdAEaEs7/Tm7yRIR1CpI5/YFHt+hAKxokzsyyI4LNDjaBnGNIOiqycU7H6kEaYDecAr3XXDDO+/dvcqtINZJ9y0zcCKlckmjGABJsxAE5GwxUDHqH9BTxaoKDXdenZ1cDI=
+	t=1713255804; cv=none; b=jczVNOxUDp1ChkZi75z9HJKX3ucFAmrqKYlhbpOADAJuigl/5XjNXO/eAA7HQIhnKZcPGC4wSMwf64Rr6XQgrP9eIvwk6vpQdNBR0w77ps8mDwoi3Dg3LjFcjC1WQu7c6JqWIOKRDf4ITX+x0f2T+BoFQ2NUUlrj3nxdkA16DbA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713254726; c=relaxed/simple;
-	bh=jmOu2PsQhNoTt9z6LN3rQcp77Qspy3rBNUwBSbFMvxI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pCUs7CVB2DPMSBDIJibL9mtBNO3YVpcwptTRjzHae5hXZyX19UQdWHKLvIED80pbRTazE3Lsor7cgNGOPbAlKKZfPtSgZ8pS8szPdU5/rVAfLSrzpzulD49nfT9WhCb1uchsLOvFOJI7fEFp+f3oxgz4h+SSLwes8zARsPR4GYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=HWK+CtFd; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1713254714;
- bh=9v28hOIUE9GkM0a76qA4AwgtWDjyV1OaSvUjBLLAPY8=;
- b=HWK+CtFdqlfcCh0mmfXdyKbDIxtifX9DA2Yz5T+Gtbu9xskeu/1MKoki1WMnCWovx89Vt4HDm
- wJcO+eEraJWf65BgmA+UAqFk16FkoQpAgMRIQ3CNrH/waHhO9vmO1deULXy7FLvBCnkxMCn/sFK
- KvXQn0su+k89Y9o+Rf6egTtIwREkdfRsCp7QvOjO0qyiKHlb5G4fxUaRZb+f52APvzs3e/Ob9On
- wrorhEaE7dKDxBlB/oW354NUEIFhE11JDrhzPQcM3Zq5zrvOrZcZevy55MyMYww3UMG85+iZCxG
- L/quX65XN8qTqznAw9W5c2StwlhAWjjY7z8+WLT8sLLw==
-Message-ID: <f5a9e7c0-1d8c-462b-bf7a-d6aa73f63afa@kwiboo.se>
-Date: Tue, 16 Apr 2024 10:05:09 +0200
+	s=arc-20240116; t=1713255804; c=relaxed/simple;
+	bh=p68xkyKuBZA7fEKJRalJTGKpkaBVQFxxtFERSe+QPME=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qZT59JbmKjwz4FDRG65lYhu7M46nQy7aM8LeqMioiUKL9xTc1AkvrzcMgFHiRTSBAuH1XJLkhbUKOcgfaik7cvhcEjbDlYs3HbkTTadUVRltnHsK9yHznKIZo1txDVbdh27dBSKfHw8FmYXyKLwZ1cF2FHx5gUhQvBX3df/qNNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i5e8616c3.versanet.de ([94.134.22.195] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1rwe5z-0006fs-Ci; Tue, 16 Apr 2024 10:23:15 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonas Karlman <jonas@kwiboo.se>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] arm64: dts: rockchip: Add Radxa ZERO 3W/3E
+Date: Tue, 16 Apr 2024 10:23:14 +0200
+Message-ID: <5772116.DvuYhMxLoT@diego>
+In-Reply-To: <f5a9e7c0-1d8c-462b-bf7a-d6aa73f63afa@kwiboo.se>
+References:
+ <20240415150349.2207075-1-jonas@kwiboo.se>
+ <20240415150349.2207075-3-jonas@kwiboo.se>
+ <f5a9e7c0-1d8c-462b-bf7a-d6aa73f63afa@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] arm64: dts: rockchip: Add Radxa ZERO 3W/3E
-To: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240415150349.2207075-1-jonas@kwiboo.se>
- <20240415150349.2207075-3-jonas@kwiboo.se>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20240415150349.2207075-3-jonas@kwiboo.se>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-ForwardEmail-ID: 661e313a0360d053efe603b4
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 2024-04-15 17:03, Jonas Karlman wrote:
-> The Radxa ZERO 3W/3E is an ultra-small, high-performance single board
-> computer based on the Rockchip RK3566, with a compact form factor and
-> rich interfaces.
+Am Dienstag, 16. April 2024, 10:05:09 CEST schrieb Jonas Karlman:
+> On 2024-04-15 17:03, Jonas Karlman wrote:
+> > The Radxa ZERO 3W/3E is an ultra-small, high-performance single board
+> > computer based on the Rockchip RK3566, with a compact form factor and
+> > rich interfaces.
+> > 
+> > The ZERO 3W and ZERO 3E are basically the same size and model, but
+> > differ only in storage and network interfaces.
+> > 
+> > - eMMC (3W)
+> > - SD-card (both)
+> > - Ethernet (3E)
+> > - WiFi/BT (3W)
+> > 
+> > This adds initial support for eMMC, SD-card, Ethernet, HDMI and USB.
+> > 
+> > Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+> > ---
+> > v2: Add to Makefile
+> > v3: Sort hdmi-con and leds nodes alphabetically
+> > v3: Sort pmic@20 and regulator@40 nodes by reg
+> > v3: Change to regulator-off-in-suspend for vdd_logic
+> > 
+> > Following issue is reported by dtbs_check and is fixed by patch at [1]:
+> > 
+> >   hdmi@fe0a0000: Unevaluated properties are not allowed ('#sound-dai-cells' was unexpected)
+> >   from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-hdmi.yaml#
+> > 
+> > [1] https://lore.kernel.org/linux-rockchip/3a035c16-75b5-471d-aa9d-e91c2bb9f8d0@gmail.com/
+> > ---
+> >  arch/arm64/boot/dts/rockchip/Makefile         |   2 +
+> >  .../dts/rockchip/rk3566-radxa-zero-3e.dts     |  41 ++
+> >  .../dts/rockchip/rk3566-radxa-zero-3w.dts     |  26 +
+> >  .../boot/dts/rockchip/rk3566-radxa-zero3.dtsi | 443 ++++++++++++++++++
+> >  4 files changed, 512 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3e.dts
+> >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3w.dts
+> >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-radxa-zero3.dtsi
+> > 
 > 
-> The ZERO 3W and ZERO 3E are basically the same size and model, but
-> differ only in storage and network interfaces.
+> [snip]
 > 
-> - eMMC (3W)
-> - SD-card (both)
-> - Ethernet (3E)
-> - WiFi/BT (3W)
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero3.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero3.dtsi
+> > new file mode 100644
+> > index 000000000000..ea8ade3a4c99
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero3.dtsi
 > 
-> This adds initial support for eMMC, SD-card, Ethernet, HDMI and USB.
+> [snip]
 > 
-> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
-> ---
-> v2: Add to Makefile
-> v3: Sort hdmi-con and leds nodes alphabetically
-> v3: Sort pmic@20 and regulator@40 nodes by reg
-> v3: Change to regulator-off-in-suspend for vdd_logic
+> > +
+> > +&i2c0 {
+> > +	status = "okay";
+> > +
 > 
-> Following issue is reported by dtbs_check and is fixed by patch at [1]:
+> [snip]
 > 
->   hdmi@fe0a0000: Unevaluated properties are not allowed ('#sound-dai-cells' was unexpected)
->   from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-hdmi.yaml#
+> > +	vdd_cpu: regulator@40 {
+> > +		compatible = "silergy,syr827";
 > 
-> [1] https://lore.kernel.org/linux-rockchip/3a035c16-75b5-471d-aa9d-e91c2bb9f8d0@gmail.com/
-> ---
->  arch/arm64/boot/dts/rockchip/Makefile         |   2 +
->  .../dts/rockchip/rk3566-radxa-zero-3e.dts     |  41 ++
->  .../dts/rockchip/rk3566-radxa-zero-3w.dts     |  26 +
->  .../boot/dts/rockchip/rk3566-radxa-zero3.dtsi | 443 ++++++++++++++++++
->  4 files changed, 512 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3e.dts
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3w.dts
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-radxa-zero3.dtsi
+> After checking once more on schematic and inspecting the board this is
+> actually a RK860-0 regulator and should use following:
 > 
+>   compatible = "rockchip,rk8600";
+> 
+> Will send a v4 with this change later this week.
 
-[snip]
+ok, will wait for that then.
 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero3.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero3.dtsi
-> new file mode 100644
-> index 000000000000..ea8ade3a4c99
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero3.dtsi
+Heiko
 
-[snip]
 
-> +
-> +&i2c0 {
-> +	status = "okay";
-> +
-
-[snip]
-
-> +	vdd_cpu: regulator@40 {
-> +		compatible = "silergy,syr827";
-
-After checking once more on schematic and inspecting the board this is
-actually a RK860-0 regulator and should use following:
-
-  compatible = "rockchip,rk8600";
-
-Will send a v4 with this change later this week.
-
-Regards,
-Jonas
-
-> +		reg = <0x40>;
-> +		fcs,suspend-voltage-selector = <1>;
-> +		regulator-name = "vdd_cpu";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <712500>;
-> +		regulator-max-microvolt = <1390000>;
-> +		regulator-ramp-delay = <2300>;
-> +		vin-supply = <&vcc_sys>;
-> +
-> +		regulator-state-mem {
-> +			regulator-off-in-suspend;
-> +		};
-> +	};
-> +};
-
-[snip]
 
