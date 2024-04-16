@@ -1,390 +1,128 @@
-Return-Path: <devicetree+bounces-59660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48ECA8A67F2
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 12:14:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97B448A6859
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 12:28:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B34E1C21390
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 10:14:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C2EF1F21B6B
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 10:28:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6139126F02;
-	Tue, 16 Apr 2024 10:14:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7014C127E1C;
+	Tue, 16 Apr 2024 10:28:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="oad1UeCs"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hdKv9A7+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9083F86659
-	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 10:14:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.60.130.6
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 006DB127B60
+	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 10:28:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713262457; cv=none; b=hHr9NXMjVRnmQWJOocONzfaFpSVu23ehmXDwCR7pg8TQc1xe4F2/McokVkt4IWlpcbygmABjRZ/6k6PVgMDpNVLI4H4s7dSQlR8NAsATkwuNN9R79Fp9f26mRGOWcQK3894/QcysoY6WBkx0q14CJN/ILn/FxPQt0udCpBJWtQQ=
+	t=1713263323; cv=none; b=ccCIa893XbhFCDZY9oQsMCjN+g+yD4preZ58m7g6qKnuXU54SJut+/Qhk+R6cercneLIE7g8n4xwCsFWMSbSjsaTybmnGKGLUq255Ec83fs8j83ma4Y/negEFh/5ruXZp4C/c4k8R7nwUD1ikelMFYCQFJmH2QhI8y/3L6Bv9es=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713262457; c=relaxed/simple;
-	bh=x65LFtLFF5VvE/qywRhggy4zbjOkQ5P03aZ0K87Sqvg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MuCKdegziqmxlPHNKjsG9yqXuQDXT6Etgu96oTPDXBlOQGg56ElxE+3nIV1VBAEl8oUX2h0vqZF+At36DN5D9t+IU4gssjnDRjbTl0yaMjJy8AJjpdGbVM6sWLFxAgcNdgh1qhuQagtTPtC0UmUihNCnrt9x+EMuLQQUA5SAO4k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=igalia.com; spf=pass smtp.mailfrom=igalia.com; dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b=oad1UeCs; arc=none smtp.client-ip=178.60.130.6
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=igalia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=igalia.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
-	s=20170329; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=RW6+h7t9p1LI5fWEQcjpviq/acxasqEv8/PAV3cJpec=; b=oad1UeCs/e0CtxUZjqHx12YOjq
-	BsUZml4mFATJCDuaEP2+xsEl7H6Ndwa6FQGOxZ/19dnoe0jga0MuXG0wZ+9QEG3kUbvM0fdiRhjRB
-	tB9bHWLqjLVlnUE+WbJ6V/QorP2acJXGh98cVrXHpe1vGD3fQbIxTBXLxONo+4jbWHDDbOfbaLMbx
-	b2INWIsFQgyGXKtAGHOvgKHw+5z9W2grJ0kxlxhhc7vFjbVjUcHlcCmqxmWOS5mAzH0OY0KK76+yt
-	4f0yG1FGMt9YAuY4kf9GtB/NaFZVScLaxUHpOIuqH/LsSSok5Cc2EBYYr0ATzriyzT85UkejFZBn3
-	FvCXFx+Q==;
-Received: from [177.34.169.177] (helo=[192.168.0.139])
-	by fanzine2.igalia.com with esmtpsa 
-	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
-	id 1rwfp9-00570E-Fp; Tue, 16 Apr 2024 12:14:00 +0200
-Message-ID: <2f6e13c7-e6d6-414f-b97d-d9a02ae6a696@igalia.com>
-Date: Tue, 16 Apr 2024 07:13:51 -0300
+	s=arc-20240116; t=1713263323; c=relaxed/simple;
+	bh=gXScnn7hEl87X0LHuVINW9LoVC2gyqeNWlwiwXYKs4A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=feaQgxHTmujiM3we/tDdq8Ceob6ds9vhuLpdVsLZQigwoqMCLboeDf6JeLhhA1qnOHWRguNWFzKB0EfIXy/r5RnBlarhy5MLcoDFztev/qzAJl7mHUjxneZ+zpeXmn3b4e/+Vou4fLHfY7gAhMD2WL0koOmQ4Vul5lEzy924vRs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hdKv9A7+; arc=none smtp.client-ip=209.85.161.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-5aa28cde736so2474123eaf.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 03:28:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1713263321; x=1713868121; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=gXScnn7hEl87X0LHuVINW9LoVC2gyqeNWlwiwXYKs4A=;
+        b=hdKv9A7+Y9zW7yIVLwQVu0RoSY0kp0nc1FOJVW7N89Z4k4IxwzGF1BJvplkVMHXBxl
+         s+J5vXnuxaQIpfIPVccqRLum5dVHoJ8be3GJHRZk4wffNInRtVjyAOI8uxPAeawlU7Na
+         OWrbVuc7XYOpllPVcO0knJMdnTcQYxtYC4wqwXM9u71knbX6ie+9Lp8s3csdMgO+cyZc
+         TMQ+7wbsyg2XXE7IPQUJZdE3T1INlP7L7uwEv9ZDHScIYvBt8oHlobo4Z3dBUi/1aWSO
+         cTi7YFbEqXQIfDMye3512OST9IWAle2r5km9EEfDas4oCRcilhJG0LXkrNcd5IgyMybC
+         R8Bw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713263321; x=1713868121;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gXScnn7hEl87X0LHuVINW9LoVC2gyqeNWlwiwXYKs4A=;
+        b=LTB6gG93hKl9RQ1E+6LbAc7KV4dWS0bZC4ckSnm3hQb9wL/4a/X4ujzVgkfBszHKxf
+         HKBlGPKYrgugc/exH2HIcWODA7bGhXg9OlaG4iD0FsNb36/ZZ4qGEkNn3RxklE3ZRWJs
+         MyykCYM0v0V2/mmrR+Py1K/spY9MMxr7ceUYneATRuHmDNHSNEzrZmqF0aB4sRw9k6uf
+         R+QBl5uPJ5nIp7Myw890KjUIBnFil62eOCs/Z+HGnMvF4XZL+S1H/e5QCdWkX/Es5Amf
+         7ZthtdjGtqgoMLBEYjPHO31NXixxKgBJvK+49/MkVm6+bSydL/CrkyaJfJD5zDnI4c8d
+         TaDg==
+X-Forwarded-Encrypted: i=1; AJvYcCXKKppexj3o+j6k70/x7cyd5OYq7P1W7AYEeWmPcIYydkeRFUfXZvSCIf9Y/Pv4OvjIbR4TEhcDW3QAsfHKIPtWh0SCWDewL2FdMg==
+X-Gm-Message-State: AOJu0YwbcmITMR0+8U6yivL2FdSSN/v6R7j6ogxX3J6Mvd0v8JOV390T
+	+6K3AnmvDUAxm4brt/c54Pgle/Lr2mgV74nxUllAqw7udEcwQdzh8uQhII4W1z2qQkecFkpwovt
+	6MnsHwZMOSVD0D0z71HTGAZ/H7m8xjKoWSsD+DQ==
+X-Google-Smtp-Source: AGHT+IE+KH4+3J+4bWImbLmf/i6TMO+pjq+Zhj12DdRm1Ocu0R700WdkfWb+yJ4DCJJOFwu9s9QfuRU794n8yE834po=
+X-Received: by 2002:a05:6820:1e16:b0:5aa:676e:9ad9 with SMTP id
+ dh22-20020a0568201e1600b005aa676e9ad9mr12599912oob.2.1713263321084; Tue, 16
+ Apr 2024 03:28:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] ARM: dts: bcm2835: Enable 3D rendering through V3D
-To: Stefan Wahren <wahrenst@gmx.net>, Andre Przywara <andre.przywara@arm.com>
-Cc: Maxime Ripard <mripard@kernel.org>, Melissa Wen <mwen@igalia.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
- Scott Branden <sbranden@broadcom.com>,
- Romain Perier <romain.perier@gmail.com>, dri-devel@lists.freedesktop.org,
- bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
- linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- kernel-dev@igalia.com
-References: <20240415160129.14149-2-mcanal@igalia.com>
- <20240415175433.6e63d40f@donnerap.manchester.arm.com>
- <dc9f2926-3a8f-4191-9319-3d7e78c6758b@igalia.com>
- <41629496-9be6-470c-931b-146ca22cdd7e@gmx.net>
-Content-Language: en-US
-From: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
-Autocrypt: addr=mcanal@igalia.com; keydata=
- xjMEZIsaeRYJKwYBBAHaRw8BAQdAGU6aY8oojw61KS5rGGMrlcilFqR6p6ID45IZ6ovX0h3N
- H01haXJhIENhbmFsIDxtY2FuYWxAaWdhbGlhLmNvbT7CjwQTFggANxYhBDMCqFtIvFKVRJZQ
- hDSPnHLaGFVuBQJkixp5BQkFo5qAAhsDBAsJCAcFFQgJCgsFFgIDAQAACgkQNI+cctoYVW5u
- GAEAwpaC5rI3wD8zqETKwGVoXd6+AbmGfZuVD40xepy7z/8BAM5w95/oyPsHUqOsg/xUTlNp
- rlbhA+WWoaOXA3XgR+wCzjgEZIsaeRIKKwYBBAGXVQEFAQEHQGoOK0jgh0IorMAacx6WUUWb
- s3RLiJYWUU6iNrk5wWUbAwEIB8J+BBgWCAAmFiEEMwKoW0i8UpVEllCENI+cctoYVW4FAmSL
- GnkFCQWjmoACGwwACgkQNI+cctoYVW6cqwD/Q9R98msvkhgRvi18fzUPFDwwogn+F+gQJJ6o
- pwpgFkAA/R2zOfla3IT6G3SBoV5ucdpdCpnIXFpQLbmfHK7dXsAC
-In-Reply-To: <41629496-9be6-470c-931b-146ca22cdd7e@gmx.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20240404122559.898930-1-peter.griffin@linaro.org> <948a70ed-e3de-41d6-ada8-b547aa004ef0@kernel.org>
+In-Reply-To: <948a70ed-e3de-41d6-ada8-b547aa004ef0@kernel.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Tue, 16 Apr 2024 11:28:30 +0100
+Message-ID: <CADrjBPoo4uwiv1x1mNdtNUiaYkbksTre19AYT-ZtzjXaV63CyQ@mail.gmail.com>
+Subject: Re: [PATCH 00/17] HSI2, UFS & UFS phy support for Tensor GS101
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org, 
+	alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org, 
+	s.nawrocki@samsung.com, cw00.choi@samsung.com, jejb@linux.ibm.com, 
+	martin.petersen@oracle.com, chanho61.park@samsung.com, ebiggers@kernel.org, 
+	linux-scsi@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, tudor.ambarus@linaro.org, 
+	andre.draszik@linaro.org, saravanak@google.com, willmcvicker@google.com
+Content-Type: text/plain; charset="UTF-8"
 
-On 4/16/24 02:30, Stefan Wahren wrote:
-> Hi Maíra,
-> 
-> Am 16.04.24 um 03:02 schrieb Maíra Canal:
->> On 4/15/24 13:54, Andre Przywara wrote:
->>> On Mon, 15 Apr 2024 13:00:39 -0300
->>> Maíra Canal <mcanal@igalia.com> wrote:
->>>
->>> Hi,
->>>
->>>> RPi 0-3 is packed with a GPU that provides 3D rendering capabilities to
->>>> the RPi. Currently, the downstream kernel uses an overlay to enable the
->>>> GPU and use GPU hardware acceleration. When deploying a mainline kernel
->>>> to the RPi 0-3, we end up without any GPU hardware acceleration
->>>> (essentially, we can't use the OpenGL driver).
->>>>
->>>> Therefore, enable the V3D core for the RPi 0-3 in the mainline kernel.
->>>
->>> So I think Krzysztof's initial comment still stands: What does that
->>> patch
->>> actually change? If I build those DTBs as of now, none of them has a
->>> status property in the v3d node. Which means it's enabled:
->>> https://github.com/devicetree-org/devicetree-specification/blob/main/source/chapter2-devicetree-basics.rst#status
->>>
->>> So adding an explicit 'status = "okay";' doesn't make a difference.
->>>
->>> What do I miss here?
->>
->> As mentioned by Stefan in the last version, in Raspberry Pi OS, there is
->> a systemd script which is trying to check for the V3D driver (/usr/lib
->> /systemd/scripts/gldriver_test.sh). Within the first check, "raspi-
->> config nonint is_kms" is called, which always seems to fail. What
->> "raspi-config" does is check if
->> /proc/device-tree/soc/v3d@7ec00000/status is equal to "okay". As
->> /proc/device-tree/soc/v3d@7ec00000/status doesn't exists, it returns
->> false.
-> yes, but i also mention that the V3D driver starts without this patch.
-> The commit message of this patch suggests this is a DT issue, which is not.
-> 
-> I hadn't the time to update my SD card to Bookworm yet. Does the issue
-> still exists with this version?
+Hi Krzysztof,
 
-I'm using a 32-bit kernel and the recommended OS for 32-bit is Bullseye.
-But I checked the Bookworm code and indeed, Bookworm doesn't check
-the device tree [1].
+On Fri, 5 Apr 2024 at 08:45, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> On 04/04/2024 14:25, Peter Griffin wrote:
+> > Hi folks,
+> >
+> > This series adds support for the High Speed Interface (HSI) 2 clock
+> > management unit, UFS controller and UFS phy calibration/tuning for GS101.
+> >
+> > With this series applied, UFS is now functional! The SKhynix HN8T05BZGKX015
+> > can be enumerated, partitions mounted etc. This then allows us to move away
+> > from the initramfs rootfs we have been using for development so far.
+> >
+> > The intention is this series will be merged via Krzysztofs Samsung Exynos
+> > tree(s). This series is rebased on next-20240404.
+> >
+> > The series is broadly split into the following parts:
+> > 1) dt-bindings documentation updates
+> > 2) gs101 device tree updates
+> > 3) Prepatory patches for samsung-ufs driver
+> > 4) GS101 ufs-phy support
+> > 5) Prepatory patches for ufs-exynos driver
+> > 6) GS101 ufs-exynos support
+>
+> UFS phy and host should go through their trees. What is the
+> reason/need/requirement to put it into this patchset and merge via
+> Samsung SoC tree?
 
-I'm thinking about sending a patch to the Bullseye branch to fix this
-issue.
+Good point, there is no requirement for it to all go via Samsung SoC
+tree I will remove that from the cover letter in future versions.
+I see Vinod has already queued the phy parts of the series which is great :-)
 
-[1] 
-https://github.com/RPi-Distro/raspi-config/blob/966ed3fecc159ff3e69a774d74bfd716c04dafff/raspi-config#L128
+regards,
 
-Best Regards,
-- Maíra
-
->>
->> I'll send if I can improve the userspace tool by just checking if the
->> folder /proc/device-tree/soc/v3d@7ec00000/ exists. >>
->> Thanks for the explanation!
->>
->> Best Regards,
->> - Maíra
->>
->>>
->>> Cheers,
->>> Andre
->>>
->>>> Signed-off-by: Maíra Canal <mcanal@igalia.com>
->>>> ---
->>>>
->>>> v1 -> v2:
->>>> https://lore.kernel.org/dri-devel/41694292-af1f-4760-a7b6-101ed5dd6f9d@gmx.net/T/
->>>>
->>>> * As mentioned by Krzysztof, enabling should be done in last place of
->>>>     override/extend. Therefore, I'm disabling V3D in the common dtsi
->>>>     and enabling in the last place of extend, i.e. the RPi DTS files.
->>>>
->>>>   arch/arm/boot/dts/broadcom/bcm2835-common.dtsi      | 1 +
->>>>   arch/arm/boot/dts/broadcom/bcm2835-rpi-a-plus.dts   | 4 ++++
->>>>   arch/arm/boot/dts/broadcom/bcm2835-rpi-a.dts        | 4 ++++
->>>>   arch/arm/boot/dts/broadcom/bcm2835-rpi-b-plus.dts   | 4 ++++
->>>>   arch/arm/boot/dts/broadcom/bcm2835-rpi-b-rev2.dts   | 4 ++++
->>>>   arch/arm/boot/dts/broadcom/bcm2835-rpi-b.dts        | 4 ++++
->>>>   arch/arm/boot/dts/broadcom/bcm2835-rpi-cm1-io1.dts  | 4 ++++
->>>>   arch/arm/boot/dts/broadcom/bcm2835-rpi-zero-w.dts   | 4 ++++
->>>>   arch/arm/boot/dts/broadcom/bcm2835-rpi-zero.dts     | 4 ++++
->>>>   arch/arm/boot/dts/broadcom/bcm2836-rpi-2-b.dts      | 4 ++++
->>>>   arch/arm/boot/dts/broadcom/bcm2837-rpi-3-a-plus.dts | 4 ++++
->>>>   arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b-plus.dts | 4 ++++
->>>>   arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b.dts      | 4 ++++
->>>>   arch/arm/boot/dts/broadcom/bcm2837-rpi-cm3-io3.dts  | 4 ++++
->>>>   arch/arm/boot/dts/broadcom/bcm2837-rpi-zero-2-w.dts | 4 ++++
->>>>   15 files changed, 57 insertions(+)
->>>>
->>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi
->>>> b/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi
->>>> index 9261b67dbee1..69e34831de51 100644
->>>> --- a/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi
->>>> +++ b/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi
->>>> @@ -139,6 +139,7 @@ v3d: v3d@7ec00000 {
->>>>               compatible = "brcm,bcm2835-v3d";
->>>>               reg = <0x7ec00000 0x1000>;
->>>>               interrupts = <1 10>;
->>>> +            status = "disabled";
->>>>           };
->>>>             vc4: gpu {
->>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi-a-plus.dts
->>>> b/arch/arm/boot/dts/broadcom/bcm2835-rpi-a-plus.dts
->>>> index 069b48272aa5..495ab1dfd2ce 100644
->>>> --- a/arch/arm/boot/dts/broadcom/bcm2835-rpi-a-plus.dts
->>>> +++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi-a-plus.dts
->>>> @@ -128,3 +128,7 @@ &uart0 {
->>>>       pinctrl-0 = <&uart0_gpio14>;
->>>>       status = "okay";
->>>>   };
->>>> +
->>>> +&v3d {
->>>> +    status = "okay";
->>>> +};
->>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi-a.dts
->>>> b/arch/arm/boot/dts/broadcom/bcm2835-rpi-a.dts
->>>> index 2726c00431e8..4634d88ce3af 100644
->>>> --- a/arch/arm/boot/dts/broadcom/bcm2835-rpi-a.dts
->>>> +++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi-a.dts
->>>> @@ -121,3 +121,7 @@ &uart0 {
->>>>       pinctrl-0 = <&uart0_gpio14>;
->>>>       status = "okay";
->>>>   };
->>>> +
->>>> +&v3d {
->>>> +    status = "okay";
->>>> +};
->>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi-b-plus.dts
->>>> b/arch/arm/boot/dts/broadcom/bcm2835-rpi-b-plus.dts
->>>> index c57b999a4520..45fa0f6851fc 100644
->>>> --- a/arch/arm/boot/dts/broadcom/bcm2835-rpi-b-plus.dts
->>>> +++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi-b-plus.dts
->>>> @@ -130,3 +130,7 @@ &uart0 {
->>>>       pinctrl-0 = <&uart0_gpio14>;
->>>>       status = "okay";
->>>>   };
->>>> +
->>>> +&v3d {
->>>> +    status = "okay";
->>>> +};
->>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi-b-rev2.dts
->>>> b/arch/arm/boot/dts/broadcom/bcm2835-rpi-b-rev2.dts
->>>> index ae6d3a9586ab..c1dac5d704aa 100644
->>>> --- a/arch/arm/boot/dts/broadcom/bcm2835-rpi-b-rev2.dts
->>>> +++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi-b-rev2.dts
->>>> @@ -121,3 +121,7 @@ &uart0 {
->>>>       pinctrl-0 = <&uart0_gpio14>;
->>>>       status = "okay";
->>>>   };
->>>> +
->>>> +&v3d {
->>>> +    status = "okay";
->>>> +};
->>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi-b.dts
->>>> b/arch/arm/boot/dts/broadcom/bcm2835-rpi-b.dts
->>>> index 72764be75a79..72ca31f2a7d6 100644
->>>> --- a/arch/arm/boot/dts/broadcom/bcm2835-rpi-b.dts
->>>> +++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi-b.dts
->>>> @@ -115,3 +115,7 @@ &uart0 {
->>>>       pinctrl-0 = <&uart0_gpio14>;
->>>>       status = "okay";
->>>>   };
->>>> +
->>>> +&v3d {
->>>> +    status = "okay";
->>>> +};
->>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi-cm1-io1.dts
->>>> b/arch/arm/boot/dts/broadcom/bcm2835-rpi-cm1-io1.dts
->>>> index 3f9d198ac3ab..881a07d2f28f 100644
->>>> --- a/arch/arm/boot/dts/broadcom/bcm2835-rpi-cm1-io1.dts
->>>> +++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi-cm1-io1.dts
->>>> @@ -95,3 +95,7 @@ &uart0 {
->>>>       pinctrl-0 = <&uart0_gpio14>;
->>>>       status = "okay";
->>>>   };
->>>> +
->>>> +&v3d {
->>>> +    status = "okay";
->>>> +};
->>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi-zero-w.dts
->>>> b/arch/arm/boot/dts/broadcom/bcm2835-rpi-zero-w.dts
->>>> index 1f0b163e400c..1c7324067442 100644
->>>> --- a/arch/arm/boot/dts/broadcom/bcm2835-rpi-zero-w.dts
->>>> +++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi-zero-w.dts
->>>> @@ -134,6 +134,10 @@ &uart1 {
->>>>       status = "okay";
->>>>   };
->>>>   +&v3d {
->>>> +    status = "okay";
->>>> +};
->>>> +
->>>>   &wifi_pwrseq {
->>>>       reset-gpios = <&gpio 41 GPIO_ACTIVE_LOW>;
->>>>   };
->>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi-zero.dts
->>>> b/arch/arm/boot/dts/broadcom/bcm2835-rpi-zero.dts
->>>> index 539c19c10946..1568ddc78f22 100644
->>>> --- a/arch/arm/boot/dts/broadcom/bcm2835-rpi-zero.dts
->>>> +++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi-zero.dts
->>>> @@ -117,3 +117,7 @@ &uart0 {
->>>>       pinctrl-0 = <&uart0_gpio14>;
->>>>       status = "okay";
->>>>   };
->>>> +
->>>> +&v3d {
->>>> +    status = "okay";
->>>> +};
->>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2836-rpi-2-b.dts
->>>> b/arch/arm/boot/dts/broadcom/bcm2836-rpi-2-b.dts
->>>> index 79918033750e..8fab6293d1c7 100644
->>>> --- a/arch/arm/boot/dts/broadcom/bcm2836-rpi-2-b.dts
->>>> +++ b/arch/arm/boot/dts/broadcom/bcm2836-rpi-2-b.dts
->>>> @@ -129,3 +129,7 @@ &uart0 {
->>>>       pinctrl-0 = <&uart0_gpio14>;
->>>>       status = "okay";
->>>>   };
->>>> +
->>>> +&v3d {
->>>> +    status = "okay";
->>>> +};
->>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-a-plus.dts
->>>> b/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-a-plus.dts
->>>> index 3548306dfbcb..dc45b56054c7 100644
->>>> --- a/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-a-plus.dts
->>>> +++ b/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-a-plus.dts
->>>> @@ -156,3 +156,7 @@ &uart1 {
->>>>       pinctrl-0 = <&uart1_gpio14>;
->>>>       status = "okay";
->>>>   };
->>>> +
->>>> +&v3d {
->>>> +    status = "okay";
->>>> +};
->>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b-plus.dts
->>>> b/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b-plus.dts
->>>> index 2f1800cbc522..ce3a9f7ff529 100644
->>>> --- a/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b-plus.dts
->>>> +++ b/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b-plus.dts
->>>> @@ -161,3 +161,7 @@ &uart1 {
->>>>   &wifi_pwrseq {
->>>>       reset-gpios = <&expgpio 1 GPIO_ACTIVE_LOW>;
->>>>   };
->>>> +
->>>> +&v3d {
->>>> +    status = "okay";
->>>> +};
->>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b.dts
->>>> b/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b.dts
->>>> index 61270340075c..e398546d105b 100644
->>>> --- a/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b.dts
->>>> +++ b/arch/arm/boot/dts/broadcom/bcm2837-rpi-3-b.dts
->>>> @@ -149,6 +149,10 @@ &sdhost {
->>>>       bus-width = <4>;
->>>>   };
->>>>   +&v3d {
->>>> +    status = "okay";
->>>> +};
->>>> +
->>>>   &wifi_pwrseq {
->>>>       reset-gpios = <&expgpio 1 GPIO_ACTIVE_LOW>;
->>>>   };
->>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2837-rpi-cm3-io3.dts
->>>> b/arch/arm/boot/dts/broadcom/bcm2837-rpi-cm3-io3.dts
->>>> index 72d26d130efa..50471ada79b3 100644
->>>> --- a/arch/arm/boot/dts/broadcom/bcm2837-rpi-cm3-io3.dts
->>>> +++ b/arch/arm/boot/dts/broadcom/bcm2837-rpi-cm3-io3.dts
->>>> @@ -94,3 +94,7 @@ &uart0 {
->>>>       pinctrl-0 = <&uart0_gpio14>;
->>>>       status = "okay";
->>>>   };
->>>> +
->>>> +&v3d {
->>>> +    status = "okay";
->>>> +};
->>>> diff --git a/arch/arm/boot/dts/broadcom/bcm2837-rpi-zero-2-w.dts
->>>> b/arch/arm/boot/dts/broadcom/bcm2837-rpi-zero-2-w.dts
->>>> index 85cf594724ef..876f697e7300 100644
->>>> --- a/arch/arm/boot/dts/broadcom/bcm2837-rpi-zero-2-w.dts
->>>> +++ b/arch/arm/boot/dts/broadcom/bcm2837-rpi-zero-2-w.dts
->>>> @@ -132,6 +132,10 @@ &uart1 {
->>>>       status = "okay";
->>>>   };
->>>>   +&v3d {
->>>> +    status = "okay";
->>>> +};
->>>> +
->>>>   &wifi_pwrseq {
->>>>       reset-gpios = <&gpio 41 GPIO_ACTIVE_LOW>;
->>>>   };
->>>
->>
->> _______________________________________________
->> linux-arm-kernel mailing list
->> linux-arm-kernel@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-> 
+Peter
 
