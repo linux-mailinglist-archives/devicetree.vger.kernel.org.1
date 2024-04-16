@@ -1,82 +1,81 @@
-Return-Path: <devicetree+bounces-59856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D0B48A73DF
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 20:54:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 887968A73F0
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 20:56:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09722281C4C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 18:54:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ABCCE1C21868
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 18:56:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99C2013958A;
-	Tue, 16 Apr 2024 18:52:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20908137777;
+	Tue, 16 Apr 2024 18:56:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hE6e2M02"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fOkn/iN4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 128C4137C33
-	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 18:52:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E177413776A
+	for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 18:56:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713293539; cv=none; b=NkbUa5uEyMGlrrVknhLvEuxSEtENj4zqdXg/pNOn/bhqIaCMTiW8iSKJBWXVGk6FoFeTATVnxrIk2bDAn7euSJcLwYAkq9be3uLqUK4ecGQo0mYzEFYUCAH1FYzNk6VWBdfnT0/5oDr0FURD+asJ9XQL792VofIqGFoxqE1cZOI=
+	t=1713293779; cv=none; b=sbB149Buogn1fLl/OI1M2Sv6B7vYn4/M8pzq/MlE0POmD4jOvKkTnCSY4xruBMWf7o0UHhSBM7AVuAWSaGiYhv1IbUh8wCUrKI+7NuMADSBTGXT8SS11+bFxopfkJue4+AZpdzd10V/krzIlW1LPQzYpxv+rdmQBFrFXjHnhmpQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713293539; c=relaxed/simple;
-	bh=y0uVH3oZE1a3APxihRtxusmQeZlfaUfpI73EDsl34Ic=;
+	s=arc-20240116; t=1713293779; c=relaxed/simple;
+	bh=gcTRf65a+ftJnH8+Aa+F0CBgeHDfFdCEJgFqbkaBRy4=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZXrrN0xQVj5dnpaljg126yIjCTqKyl0Y85xQ00n5hIAO4ggrUAEuqpRuqfnZ5K6IX9nQkOo/YrLaV+UUcr0DBjc2EnhgFpEmv3CB4p0ejcVX4gq4dabYT/q/439HZ7QxgtFCB4dgO34TacWn6W+6A5aK+b2F8bwLy7CafEeMSew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hE6e2M02; arc=none smtp.client-ip=209.85.219.170
+	 To:Cc:Content-Type; b=gvLnDi3r2oYXScJ20qnSFlGbTkNZQxtgB7Nh0rGLw7ONZVgan6wla6W8+ke/1SGrQEWQJVZcJI8Zu2BvR/1mVpY0qV9/BreJW9YOygHitWqwPJtL7vJd9bZezjbHLAPtaCoHR0sqirsk8h4HpKZFsDRH+dJD4iXBfRyex1AvIEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fOkn/iN4; arc=none smtp.client-ip=209.85.219.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-dc742543119so4206434276.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 11:52:17 -0700 (PDT)
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-dc23bf7e5aaso4943440276.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 11:56:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713293537; x=1713898337; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1713293776; x=1713898576; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=W5vQzyryFWgKw/gamp30zKVmQkGglywjftI1PpywStM=;
-        b=hE6e2M028SGdn1J6NmvTGc0lCnYRBo1IY3+/VzIBb3MWrQuKMXFHc5jKbZK2qWzNNt
-         7PdZ79yy7q11oLk6TiikHUAUGrFMokjcDDrzwcxbZ/GegpglgHJJK7qBAJn7X45jWl1n
-         S/14eYV+R3WcmcbxVIqX5vV6R/86JQykzksgHOj955lugAHoMt7897vfTVH9E6IOeuPn
-         XxbdKEQP3P+ls8G60k8KdRY51dpvxr8zD4E1ydjl++DTY0/FJLB7YaFQVxSO1FZv7C9J
-         +WigZwi3uCdz7KOm9N/b2svuqCmDMJE+RcEPVj/pTLwJLZjU6SVuRg/mrXwk7fsSb39K
-         Lq1w==
+        bh=m3jRsJcFFlAEIpn9uxJ8q/UOrjJ8uD5kt4UN94jZCSY=;
+        b=fOkn/iN4jMbcWz9Mo2oBsXlRkpo2SkLqXMYzNDa0UZVWn/SeX/ypoJi5BdsfHjPk2p
+         wBusiqYME80vnVBoeaIk3CfYI2Gs/ky1K8p78LxhtMZeMqFx3NGJa1oKXqExPmiclapR
+         BLNBkPZ/G/1r2t+X3wmWHhYn+GBlOU4j6weDf07h5k/CIrRTFkNXwxH9CCeSiX5oxim3
+         LGp2PmH4ElcyqrMaHC1fgxwnNaPjxnEbowsaBVLMAKUQR44/mRIWNFiYuRj6BAKib3NF
+         k3JnZ54cxM1EHi9qwRyT32M5z1t0G2C+HPpsJuV3NlguV6l0jqMh2lesEgp1jy21OiQg
+         EDSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713293537; x=1713898337;
+        d=1e100.net; s=20230601; t=1713293776; x=1713898576;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=W5vQzyryFWgKw/gamp30zKVmQkGglywjftI1PpywStM=;
-        b=aDU6ycZWVVRIagJoGq4eZQ5bSskVHXgaqAwr1va+Fhg73mmC+iSuvC8VkENs2PKbpO
-         NpOu5CeGgdmjt1jNHrLQ7LXHqhjxFVjMxFzVchyXVcrrnfWY3A7GAqVuDJNUl8URKLK1
-         Z2nQXVMdvJb2mIv69+kZHVx0ckDr9ISLn6NYgKiEjugdVAq4DYbrYJEHHtaEVsmjm7h1
-         8/QDLpq5HkRMrnaHOpX/25lYNd3hbJCVHINp9r1IKCE34MRGtcXQJGhb/f1/f0+eWu55
-         0woxcxvvEd2CGB3pKpGAfVv9bR5qbyFylRN3Frd9goDPHgOnWl49P0gT1k6yfEtzY8Kx
-         UcIA==
-X-Forwarded-Encrypted: i=1; AJvYcCURrm/b+v8rvquGtmrHCVmGkN3TH4Mx5nYI+I3k7cqSTXsMaAIZagLKevhLYZuulYfE2eLdo55KFV8No66NrWyzN31di+k4CvHMJQ==
-X-Gm-Message-State: AOJu0Yx5LeKUXNcnFTAUYIo1VMYyhxihqQBUAZHHSUe2F2sq+xGErHIp
-	jCXh6XEdB/N72+3lCs+2z1aqp0LPamW90PAsML6JRhF2LmYgednGurpT+lvTazkSQWo8nnpW1HY
-	1CCZeDfhFgfIv84ljKfDoiRMMqcLkS5bc8c75xQ==
-X-Google-Smtp-Source: AGHT+IEJjJJdzKD55UTLRTScRGrfAh2UPKsgtVqF6P2ql9N19AKf5+ktuo3JFOBl4aK0CuRCXG6qMrNHQ+pcEav3Cwg=
-X-Received: by 2002:a25:1e56:0:b0:de1:1b21:4f8 with SMTP id
- e83-20020a251e56000000b00de11b2104f8mr10605271ybe.62.1713293536905; Tue, 16
- Apr 2024 11:52:16 -0700 (PDT)
+        bh=m3jRsJcFFlAEIpn9uxJ8q/UOrjJ8uD5kt4UN94jZCSY=;
+        b=deUuQUuTWk8zfP37F45gkZ1XxpIa+hOCY85EKS1bB4dX/KqMeg4YcBoTuPfl3Lff1H
+         gKyC4bv0IKrJQszYfccWHjW56RKReFco/RZBEfVkGhivJV5w8Cwm0EO/f5AX7xmSX8b3
+         vyhJfePBuyWmyFCUd0Qgf/O6MAumC6OnVLxOw+R9UFwv0oRnj8cDUkDGkY3+EdkksA/H
+         4WFOzNuLptU3HCFWO5n+M/o0k5YKndiOY0xmRXbh6v4WPrMaqCrRkeMEtRhbIE43u8cI
+         gF4iWpnOrM1BzaskJ7IEMx3oqdkbCVjza045sitPO0q6NdHXgNf2fOvJo4jBK35WdOOq
+         w8eA==
+X-Forwarded-Encrypted: i=1; AJvYcCVmsITpeJ2gxMengTUdAzGDz7cM8yqrf4fGqRdMzMJBU78y1R9eZT7OQiRc/Z0/0Rl9Zh8bhHS6vSRplbeOk04b0nXLRGhvWolMlw==
+X-Gm-Message-State: AOJu0YxXH9Chs2LhtK+Ch9D91U8A2faszMimkQlVrOlBTf5S8PN1pnp8
+	eyIRYdjNygJHuuJQEdJlW7n19lVqIWXrYGgQ3bnYPRx36GDYfYswUq+zr4uAcqWYtX6f3cVqdPh
+	sHDT0opG6y5sfeAGA3jmmGze3zNtdlglYIkneHw==
+X-Google-Smtp-Source: AGHT+IFxPCU3aUsqiq75v8UkxRyLa6/K+D4YbVrUrwZxzduOFhICd6UrgSRPeNifliYxS3rzszb0p2HGn9HqqJ1UIJI=
+X-Received: by 2002:a25:6890:0:b0:ddd:7459:c970 with SMTP id
+ d138-20020a256890000000b00ddd7459c970mr11800947ybc.63.1713293775884; Tue, 16
+ Apr 2024 11:56:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240416182005.75422-1-quic_ajipan@quicinc.com> <20240416182005.75422-2-quic_ajipan@quicinc.com>
-In-Reply-To: <20240416182005.75422-2-quic_ajipan@quicinc.com>
+References: <20240416182005.75422-1-quic_ajipan@quicinc.com> <20240416182005.75422-4-quic_ajipan@quicinc.com>
+In-Reply-To: <20240416182005.75422-4-quic_ajipan@quicinc.com>
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 16 Apr 2024 21:52:05 +0300
-Message-ID: <CAA8EJpox_C7hdHYxM4-w6YKHN2BMQqJ6xaGZqvzFdOYyrYtZFA@mail.gmail.com>
-Subject: Re: [PATCH V2 1/8] clk: qcom: clk-alpha-pll: Fix CAL_L_VAL override
- for LUCID EVO PLL
+Date: Tue, 16 Apr 2024 21:56:05 +0300
+Message-ID: <CAA8EJprnMVSoOt7XtwcVXjFGzkPhompcfz3Zw4Hoxhk5-g5W0g@mail.gmail.com>
+Subject: Re: [PATCH V2 3/8] clk: qcom: Add DISPCC driver support for SM4450
 To: Ajit Pandey <quic_ajipan@quicinc.com>
 Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
@@ -86,51 +85,153 @@ Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>
 	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org, Taniya Das <quic_tdas@quicinc.com>, 
 	Jagadeesh Kona <quic_jkona@quicinc.com>, Imran Shaik <quic_imrashai@quicinc.com>, 
-	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>, stable@vger.kernel.org
+	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
 Content-Type: text/plain; charset="UTF-8"
 
-On Tue, 16 Apr 2024 at 21:21, Ajit Pandey <quic_ajipan@quicinc.com> wrote:
+On Tue, 16 Apr 2024 at 21:22, Ajit Pandey <quic_ajipan@quicinc.com> wrote:
 >
-> In LUCID EVO PLL CAL_L_VAL and L_VAL bitfields are part of single
-> PLL_L_VAL register. Update for L_VAL bitfield values in PLL_L_VAL
-> register using regmap_write() API in __alpha_pll_trion_set_rate
-> callback will override LUCID EVO PLL initial configuration related
-> to PLL_CAL_L_VAL bit fields in PLL_L_VAL register.
+> Add Display Clock Controller (DISPCC) support for SM4450 platform.
 >
-> Observed random PLL lock failures during PLL enable due to such
-> override in PLL calibration value. Use regmap_update_bits() with
-> L_VAL bitfield mask instead of regmap_write() API to update only
-> PLL_L_VAL bitfields in __alpha_pll_trion_set_rate callback.
->
-> Fixes: 260e36606a03 ("clk: qcom: clk-alpha-pll: add Lucid EVO PLL configuration interfaces")
 > Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
-> Cc: stable@vger.kernel.org
+> ---
+>  drivers/clk/qcom/Kconfig         |  10 +
+>  drivers/clk/qcom/Makefile        |   1 +
+>  drivers/clk/qcom/dispcc-sm4450.c | 781 +++++++++++++++++++++++++++++++
+>  3 files changed, 792 insertions(+)
+>  create mode 100644 drivers/clk/qcom/dispcc-sm4450.c
+>
+> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+> index 8ab08e7b5b6c..9fce64ced353 100644
+> --- a/drivers/clk/qcom/Kconfig
+> +++ b/drivers/clk/qcom/Kconfig
+> @@ -826,6 +826,16 @@ config SM_CAMCC_8550
+>           Support for the camera clock controller on SM8550 devices.
+>           Say Y if you want to support camera devices and camera functionality.
+>
+> +config SM_DISPCC_4450
+> +       tristate "SM4450 Display Clock Controller"
+> +       depends on ARM64 || COMPILE_TEST
+> +       depends on SM_GCC_4450
+> +       help
+> +         Support for the display clock controller on Qualcomm Technologies, Inc
+> +         SM4450 devices.
+> +         Say Y if you want to support display devices and functionality such as
+> +         splash screen
+> +
+>  config SM_DISPCC_6115
+>         tristate "SM6115 Display Clock Controller"
+>         depends on ARM64 || COMPILE_TEST
+> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
+> index dec5b6db6860..68d1c5192c86 100644
+> --- a/drivers/clk/qcom/Makefile
+> +++ b/drivers/clk/qcom/Makefile
+> @@ -109,6 +109,7 @@ obj-$(CONFIG_SM_CAMCC_6350) += camcc-sm6350.o
+>  obj-$(CONFIG_SM_CAMCC_8250) += camcc-sm8250.o
+>  obj-$(CONFIG_SM_CAMCC_8450) += camcc-sm8450.o
+>  obj-$(CONFIG_SM_CAMCC_8550) += camcc-sm8550.o
+> +obj-$(CONFIG_SM_DISPCC_4450) += dispcc-sm4450.o
+>  obj-$(CONFIG_SM_DISPCC_6115) += dispcc-sm6115.o
+>  obj-$(CONFIG_SM_DISPCC_6125) += dispcc-sm6125.o
+>  obj-$(CONFIG_SM_DISPCC_6350) += dispcc-sm6350.o
+> diff --git a/drivers/clk/qcom/dispcc-sm4450.c b/drivers/clk/qcom/dispcc-sm4450.c
+> new file mode 100644
+> index 000000000000..7668b4bafae5
+> --- /dev/null
+> +++ b/drivers/clk/qcom/dispcc-sm4450.c
+> @@ -0,0 +1,781 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/module.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/of.h>
+> +#include <linux/regmap.h>
+> +#include <linux/platform_device.h>
+> +
+> +#include <dt-bindings/clock/qcom,sm4450-dispcc.h>
+> +
+> +#include "clk-alpha-pll.h"
+> +#include "clk-branch.h"
+> +#include "clk-pll.h"
+> +#include "clk-rcg.h"
+> +#include "clk-regmap.h"
+> +#include "clk-regmap-divider.h"
+> +#include "common.h"
+> +#include "gdsc.h"
+> +#include "reset.h"
+> +
+> +enum {
+> +       DT_BI_TCXO,
+> +       DT_BI_TCXO_AO,
+> +       DT_AHB_CLK,
+> +       DT_SLEEP_CLK,
+> +
+> +       DT_DSI0_PHY_PLL_OUT_BYTECLK,
+> +       DT_DSI0_PHY_PLL_OUT_DSICLK,
+> +};
+> +
+> +enum {
+> +       P_BI_TCXO,
+> +       P_DISP_CC_PLL0_OUT_MAIN,
+> +       P_DISP_CC_PLL1_OUT_EVEN,
+> +       P_DISP_CC_PLL1_OUT_MAIN,
+> +       P_DSI0_PHY_PLL_OUT_BYTECLK,
+> +       P_DSI0_PHY_PLL_OUT_DSICLK,
+> +       P_SLEEP_CLK,
+> +};
+> +
+> +static const struct pll_vco lucid_evo_vco[] = {
+> +       { 249600000, 2020000000, 0 },
+> +};
+> +
+> +/* 600.0 MHz Configuration */
+> +static const struct alpha_pll_config disp_cc_pll0_config = {
+> +       .l = 0x1f,
+> +       .alpha = 0x4000,
+> +       .config_ctl_val = 0x20485699,
+> +       .config_ctl_hi_val = 0x00182261,
+> +       .config_ctl_hi1_val = 0x32aa299c,
+> +       .user_ctl_val = 0x00000000,
+> +       .user_ctl_hi_val = 0x00000805,
+> +};
+> +
+> +static struct clk_alpha_pll disp_cc_pll0 = {
+> +       .offset = 0x0,
+> +       .vco_table = lucid_evo_vco,
+> +       .num_vco = ARRAY_SIZE(lucid_evo_vco),
+> +       .regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_LUCID_EVO],
+> +       .clkr = {
+> +               .hw.init = &(const struct clk_init_data) {
+> +                       .name = "disp_cc_pll0",
+> +                       .parent_data = &(const struct clk_parent_data) {
+> +                               .index = DT_BI_TCXO,
+> +                       },
+> +                       .num_parents = 1,
+> +                       .ops = &clk_alpha_pll_lucid_evo_ops,
+> +               },
+> +       },
+> +};
+> +
+> +/* 600.0 MHz Configuration */
+> +static const struct alpha_pll_config disp_cc_pll1_config = {
 
-S-o-B tag should be the last one. With that fixed:
+Can disp_cc_pll0_config be used here?
+
+> +       .l = 0x1f,
+> +       .alpha = 0x4000,
+> +       .config_ctl_val = 0x20485699,
+> +       .config_ctl_hi_val = 0x00182261,
+> +       .config_ctl_hi1_val = 0x32aa299c,
+> +       .user_ctl_val = 0x00000000,
+> +       .user_ctl_hi_val = 0x00000805,
+> +};
+
+With that fixed:
 
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
-> ---
->  drivers/clk/qcom/clk-alpha-pll.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
-> index 8a412ef47e16..81cabd28eabe 100644
-> --- a/drivers/clk/qcom/clk-alpha-pll.c
-> +++ b/drivers/clk/qcom/clk-alpha-pll.c
-> @@ -1656,7 +1656,7 @@ static int __alpha_pll_trion_set_rate(struct clk_hw *hw, unsigned long rate,
->         if (ret < 0)
->                 return ret;
->
-> -       regmap_write(pll->clkr.regmap, PLL_L_VAL(pll), l);
-> +       regmap_update_bits(pll->clkr.regmap, PLL_L_VAL(pll), LUCID_EVO_PLL_L_VAL_MASK,  l);
->         regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL(pll), a);
->
->         /* Latch the PLL input */
-> --
-> 2.25.1
->
->
 
 
 -- 
