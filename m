@@ -1,166 +1,129 @@
-Return-Path: <devicetree+bounces-59561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 544EF8A6013
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 03:17:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 367188A6095
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 03:55:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1097F289772
-	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 01:17:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5C5E2821C0
+	for <lists+devicetree@lfdr.de>; Tue, 16 Apr 2024 01:55:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CEA95240;
-	Tue, 16 Apr 2024 01:11:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cHJd2rKg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A03948F5A;
+	Tue, 16 Apr 2024 01:55:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 970DA5223;
-	Tue, 16 Apr 2024 01:11:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F33E139E;
+	Tue, 16 Apr 2024 01:55:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713229885; cv=none; b=kfm6vQjweGBe4r+iQ3wREiuvp+wv49X6+ujZo2XmCkL2kbaF1HN0u8c1KVZdNTeUY2eVPshZsFCHrgxTHqiWgZRbw+J9S/VTs1YvPJSdv37cFeabKmb7o1hbUhTq18kH5+JqAcL/2KU3IX7JrIJUceZrQUzUfzejnP5mrCcW05c=
+	t=1713232544; cv=none; b=Jwgcgt2Pm+g775eu5wnUnu05nptaTurnUvU0zXZh5bkbZn0Hh0OdZgO0xTtrW+9G1Msarv9zSeAQFLpmn2d6kdYVm7anBJBuUE1RgqY9P/9rOvEeXBx8na7px3X2wrlkmtF0CGXzNLR0dHbix0vjC9BIh+tuUw7tmBZfk5lBLOw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713229885; c=relaxed/simple;
-	bh=DTe0SYylnC9J3y1Ml9vbf6iKbIaZ8MV4bdiF/+8kOd8=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XVHzC++/ngPLRlgdNNWNxWGTux9HOYCbdWSizUR6H2LSIh8rHMWQbLCEq8ERlz57WrB1DSFxjIFSOvkBQy5HaVZg8en7nspRXPOeJR4IcZm05t1gkbtMLt8s+hUWRjK7DXPKDDp8b+zJbSDPwe/7Xthot5Tu5he26NXBKYekFl8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cHJd2rKg; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43FNocAQ004353;
-	Tue, 16 Apr 2024 01:11:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=qcppdkim1; bh=DF6xjwVEYJH6vaL4RMK0y
-	Xhgc3M/qQ6eMe0NEkdCmpw=; b=cHJd2rKgXJ1Aaka/myi/A0I/68AwmdM4ukeAt
-	5W53Ywk3J4yXWIMDVf94jGqDvfMUxFAT1roBIsYsy+gET0IYroU+ZQNvgtSb0/dn
-	YIqVdBEA2P9gzacrOBWu0ExK2gRl5mFg/+3T9RuXvRZoWQGKf6o5BxcBLNPKtmzG
-	jV1efe8RxfmSjyeJXbw/+ak4ROVui4rR1Xhq1lqareCn1xrrIyzagxuDCFK6188M
-	6GO8ySjUmT7oUf/iwa2fzPsbfjrU2zincM3qIU8xKdi0Gka3g/pxlTv/cav0cbil
-	hrrW383UXzuw/6Sfctzm3DV/7V+QOUarAKZrx46Htm6/kjdKQ==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xh1m5hyyw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 16 Apr 2024 01:11:05 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43G1B3aS030860
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 16 Apr 2024 01:11:03 GMT
-Received: from hu-eberman-lv.qualcomm.com (10.49.16.6) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 15 Apr 2024 18:11:02 -0700
-Date: Mon, 15 Apr 2024 18:11:02 -0700
-From: Elliot Berman <quic_eberman@quicinc.com>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-CC: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Andy Yan
-	<andy.yan@rock-chips.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        "Mark
- Rutland" <mark.rutland@arm.com>,
-        Bartosz Golaszewski
-	<bartosz.golaszewski@linaro.org>,
-        Satya Durga Srinivasu Prabhala
-	<quic_satyap@quicinc.com>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Shivendra Pratap <quic_spratap@quicinc.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        <linux-pm@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: Add PSCI SYSTEM_RESET2 types
- for qcm6490-idp
-Message-ID: <20240415180247696-0700.eberman@hu-eberman-lv.qualcomm.com>
-References: <20240414-arm-psci-system_reset2-vendor-reboots-v2-0-da9a055a648f@quicinc.com>
- <20240414-arm-psci-system_reset2-vendor-reboots-v2-4-da9a055a648f@quicinc.com>
- <CAA8EJpoXrbdD5xVmuo-2b4-WwpSachcJ-abDtu4BS_qa-2A+OA@mail.gmail.com>
- <20240414173158942-0700.eberman@hu-eberman-lv.qualcomm.com>
- <be5bd196-a782-41a7-a1a8-8aea6b4b2365@linaro.org>
+	s=arc-20240116; t=1713232544; c=relaxed/simple;
+	bh=Ddt9D9vZZJFWa/2VcRbjOoZVh+tfdhH0m/joOXcnMMM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gssvfAcjAopk0eoqqBzCjDQqbaqY1/w1lKEs0MsKneJv1tiLaQqePTFPHURdvfed9Of4Jj9LFfC3C/2vO0REQQNvQlK63dz9ZqMkNOXEyRwPcya3X2N6X6u1onN/48Q7BG9a0HYZCPLsou+ZVe4j6IxbZxz/sOWi7v+3rZDrTLs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [112.20.112.218])
+	by gateway (Coremail) with SMTP id _____8DxdbmU2h1mABAoAA--.10012S3;
+	Tue, 16 Apr 2024 09:55:32 +0800 (CST)
+Received: from localhost.localdomain (unknown [112.20.112.218])
+	by localhost.localdomain (Coremail) with SMTP id AQAAf8CxaRKQ2h1mCVR8AA--.30179S2;
+	Tue, 16 Apr 2024 09:55:29 +0800 (CST)
+From: Binbin Zhou <zhoubinbin@loongson.cn>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Juxin Gao <gaojuxin@loongson.cn>
+Cc: Huacai Chen <chenhuacai@kernel.org>,
+	loongson-kernel@lists.loongnix.cn,
+	linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
+	Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH v3 0/2] pwm: Introduce pwm driver for the Loongson family chips
+Date: Tue, 16 Apr 2024 09:55:13 +0800
+Message-ID: <cover.1713164810.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <be5bd196-a782-41a7-a1a8-8aea6b4b2365@linaro.org>
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: U-8j-JyVKdKj6fhq0S1oYCcKoreolAsg
-X-Proofpoint-ORIG-GUID: U-8j-JyVKdKj6fhq0S1oYCcKoreolAsg
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-15_20,2024-04-15_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- phishscore=0 impostorscore=0 bulkscore=0 priorityscore=1501 spamscore=0
- mlxscore=0 suspectscore=0 malwarescore=0 clxscore=1015 adultscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404160005
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:AQAAf8CxaRKQ2h1mCVR8AA--.30179S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBj93XoW7uryDCF43tFW8Ar1kWr43twc_yoW8Gw4xpF
+	s8A343Cr18tF12yrn3Xa48Cr1fZa4fJFZrKan3t348XFZ8Ca4Yq34fKw45ArZxCrnFqFy2
+	qrZakF4UGa4UuFXCm3ZEXasCq-sJn29KB7ZKAUJUUUUx529EdanIXcx71UUUUU7KY7ZEXa
+	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+	0xBIdaVrnRJUUUBYb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+	0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv6xkF7I0E14v2
+	6r4j6r4UJwAaw2AFwI0_JF0_Jw1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0c
+	Ia020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_JF0_
+	Jw1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwI
+	xGrwCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWU
+	JVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4
+	vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IY
+	x2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcVCF04k26c
+	xKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAF
+	wI0_Jr0_GrUvcSsGvfC2KfnxnUUI43ZEXa7IU8Dl1DUUUUU==
 
-On Mon, Apr 15, 2024 at 09:42:40PM +0200, Konrad Dybcio wrote:
-> 
-> 
-> On 4/15/24 02:32, Elliot Berman wrote:
-> > On Mon, Apr 15, 2024 at 02:13:29AM +0300, Dmitry Baryshkov wrote:
-> > > On Sun, 14 Apr 2024 at 22:32, Elliot Berman <quic_eberman@quicinc.com> wrote:
-> > > > 
-> > > > Add nodes for the vendor-defined system resets. "bootloader" will cause
-> > > > device to reboot and stop in the bootloader's fastboot mode. "edl" will
-> > > > cause device to reboot into "emergency download mode", which permits
-> > > > loading images via the Firehose protocol.
-> > > > 
-> > > > Co-developed-by: Shivendra Pratap <quic_spratap@quicinc.com>
-> > > > Signed-off-by: Shivendra Pratap <quic_spratap@quicinc.com>
-> > > > Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
-> > > > ---
-> > > >   arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 5 +++++
-> > > >   1 file changed, 5 insertions(+)
-> > > > 
-> > > > diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> > > > index e4bfad50a669..a966f6c8dd7c 100644
-> > > > --- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> > > > +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> > > > @@ -126,6 +126,11 @@ debug_vm_mem: debug-vm@d0600000 {
-> > > >                  };
-> > > >          };
-> > > > 
-> > > > +       psci {
-> > > 
-> > > Please use a label instead. Otherwise it looks as if you are adding
-> > > new device node.
-> > > 
-> > 
-> > Right. Fixed for the next revision.
-> 
-> Are you guys planning to make this sorta ABI-like?
-> 
-> If so (which would be greatly appreciated by the way..), perhaps you
-> could stick these magic values in dt-bindings and give them cool names
-> 
-> FWIW DEN0022 (my second-favorite book) suggests these values are almost
-> totally vendor-defined, so if I were Qualcomm, I'd take the creative
-> liberty to come up with a set of numbers and never ever ever change
-> them
+Hi all:
 
-This is my goal as well. I'd like to keep the magic values out of
-dt-bindings until we get the vendor SYSTEM_RESET2 spread across more
-devices, as things might need a bit of settling. Since having stable
-vendor reset2 is (IMO) primarily a benefit to Qualcomm, I expect this
-will happen naturally.
+This patchset introduce a generic PWM framework driver for Loongson family.
+Each PWM has one pulse width output signal and one pulse input signal to be measured.
+
+It can be found on Loongson-2K series cpus and Loongson LS7A bridge chips.
+
+Thanks.
+
+-------
+V3:
+patch (1/2):
+ - Add Reviewed-by tag from Krzysztof, thanks.
+patch (2/2):
+ - Several code stlye adjustments, such as line breaks.
+
+Link to V2:
+https://lore.kernel.org/all/cover.1712732719.git.zhoubinbin@loongson.cn/
+
+v2:
+- Remove the dts-related patches and update dts at once after all
+relevant drivers are complete.
+patch (1/2):
+ - The dt-binding filename should match compatible, rename it as
+   loongson,ls7a-pwm.yaml;
+ - Update binding description;
+ - Add description for each pwm cell;
+ - Drop '#pwm-cells' from required, for pwm.yaml makes it required already.
+
+Link to v1:
+https://lore.kernel.org/linux-pwm/cover.1711953223.git.zhoubinbin@loongson.cn/
+
+Binbin Zhou (2):
+  dt-bindings: pwm: Add Loongson PWM controller
+  pwm: Add Loongson PWM controller support
+
+ .../bindings/pwm/loongson,ls7a-pwm.yaml       |  66 ++++
+ MAINTAINERS                                   |   7 +
+ drivers/pwm/Kconfig                           |  10 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-loongson.c                    | 298 ++++++++++++++++++
+ 5 files changed, 382 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/loongson,ls7a-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-loongson.c
+
+-- 
+2.43.0
 
 
