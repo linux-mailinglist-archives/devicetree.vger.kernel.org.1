@@ -1,202 +1,94 @@
-Return-Path: <devicetree+bounces-60161-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60162-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBCD68A8564
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 15:58:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9986F8A8586
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 16:03:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7AB14281CB5
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 13:57:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 23E7AB2408D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 13:59:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 037AB140E3D;
-	Wed, 17 Apr 2024 13:57:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WELsYkuE"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74717140E25;
+	Wed, 17 Apr 2024 13:59:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B21813F443;
-	Wed, 17 Apr 2024 13:57:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5F92139F
+	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 13:58:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713362267; cv=none; b=VFcXMrZRTu+ss9FqHuqgLP9TRessLXBvXn4N8HsTlQ6CFsLe1vpM7FWAruJi5MRtg4Kt0HtSe4UAoXJWgXHZ2u17j0U0I70SRrrkcciZUW4dhCCAiyRcitoAwRNOqVCAx4Zbp+VEGnvLvsYEcyoyB+s9lKQTEXXQX6yX4TgXIw0=
+	t=1713362341; cv=none; b=ggS2t2Ssp44mmsjgau03Vd//FRLu11LYrJxp0wvB3Valft7A2MI0v1bERlylR25kaBrGY3nV+Y5T7++H2UnMxPR/PxzksF7ERJ8ie9RoIS81jdSpFtwUzBWJZr7hI6RudxLstPMTqwfFjnS532dkaQ2YQvqgFlSXmKgi0HrrYXA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713362267; c=relaxed/simple;
-	bh=tAuTme6GkvilwxtiDUHh+kXeYKrHGiZ7i8iQOkzrPBg=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=InFuWzyg+czyAZ/0dBOlT38rBmczfvtJwLm9QSUvzUaaEZG9lJBkUpQRPp5O6nQjlfvJEu3lJ+L/yhuAwdTCRo8pExZQob1SSNvdqI632MKTZacGrBPDEU5Hz1hQCNXX4ecAviwJ8InfehZ/RisYbbhMYHLcQyBU/hAzsMVnMZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WELsYkuE; arc=none smtp.client-ip=209.85.208.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2d8863d8a6eso72972451fa.3;
-        Wed, 17 Apr 2024 06:57:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713362264; x=1713967064; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=4CPt5wsPPyfiuSaFsXxCJvkSsW2VMZQ8yMjMPQ4gYeA=;
-        b=WELsYkuE8+DsMAIZkP1dXlRBmiYEGRDFXl3KCwgDOAwnMYMcHwUBVwPXoBXBTuE2qw
-         iQ7B8wBV3u3XfE0VFoeq2LB0yF+C7DEIy1Yk/saRHhehyEfp2+EC3H08VaHX+Mi5gBxw
-         c/do0vM3MI/LhVJ2YWZMPsqWJ/F4EOHfBCJMTUFB1dpCPWWDCMcXc/rZJtu5Unzl88Ka
-         yLphbsBFMBWbjnHcvHTCDUbkZMQDskZkPN/mGKHvSoRCZrQuXAqKFKrtpulV6avd1Ezq
-         kolHQoLnMF4FPJ5v/T8eDof6MyjTGrZ0qEiyEfDieMJ+km1rusl3HBe5HhuVH3XamcYG
-         OD2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713362264; x=1713967064;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4CPt5wsPPyfiuSaFsXxCJvkSsW2VMZQ8yMjMPQ4gYeA=;
-        b=Zhy2bXn34M1xgkC5eirBWXkLl8nuzcV+OGWfdAB7fCVVVZZljf0pG/dxiEwf6zIBVO
-         UNG15qgjb3Wf9Y5+IIigS/OAUE3JKwXhIVQa6JywMqa8EFdJf1adi197Kz9rV4RXI49z
-         REV5c/+q64iAYzBOxjcalrYT4gQSk4o94Qc7I0XaBl3atpBeONeYYWVInXTwZpcZ5IDB
-         +k64hwEg8tOV1do3seTfwo1/qXaE87U5zdIj3gL2Bjq51Z7yrtwFxOVTb2DzYcEBQuCN
-         zsWgE+Q0sAIuc0ycna+7ZT0eNfp1GpYofU6zbWLHbDHbnN5XA5o1Abczmxn6Zu4TvAqN
-         hlJg==
-X-Forwarded-Encrypted: i=1; AJvYcCXcHVPaZ2uCQnOg9PccnBS953PrNcwuWITbnqfWaFkbNjbvcsJe5AM5g/XV0wRJlZKH0yT3p/56Kvfja9As9HIPz1E8MsSz1bPV9Ht/L11BQVEpyZ/e8cgiENeoDqLLMtq6a1NCqIFPRYs9oVE2aL/TgV1MqZPwSxCFMEcJg1F8qPfwXyxQ6g==
-X-Gm-Message-State: AOJu0Yzsk0lQ7rTh086OrssEc4I7ShBApEaF8jW4wxn8w2DQeSBsehVp
-	7x2YTNXB/MmzNrrVEavg4tXmpCHNEwcsRwFeQQRdvqIlGZuy7S4A
-X-Google-Smtp-Source: AGHT+IHxA3at9V3J8oOOjFoQI8Hxcudvb/valQNqHmVnxagYSsadcG/jKBH3OuVO++fYzASwT0Gzcg==
-X-Received: by 2002:a2e:a695:0:b0:2da:38e:f73d with SMTP id q21-20020a2ea695000000b002da038ef73dmr11056940lje.51.1713362264074;
-        Wed, 17 Apr 2024 06:57:44 -0700 (PDT)
-Received: from pratik-IdeaPad.lan (customer-145-40-29-195.stosn.net. [145.40.29.195])
-        by smtp.googlemail.com with ESMTPSA id e9-20020a2e8189000000b002d7095bf808sm1864467ljg.128.2024.04.17.06.57.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Apr 2024 06:57:43 -0700 (PDT)
-From: Pratik Farkase <pratikfarkase94@gmail.com>
-X-Google-Original-From: Pratik Farkase <pratik.farkase@wsisweden.com>
-To: 
-Cc: Pratik Farkase <pratik.farkase@wsisweden.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	Pratik Farkase <pratikfarkase94@gmail.com>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2] dt-bindings: serial: brcm,bcm2835-aux-uart: convert to dtschema
-Date: Wed, 17 Apr 2024 15:51:10 +0200
-Message-Id: <20240417135111.20375-1-pratik.farkase@wsisweden.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1713362341; c=relaxed/simple;
+	bh=LWkTk7CJZ298OX2BHh1YwAZQVrBGrq8/jaBno+Mjxr8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Umpn5kbGhq32SCO8dLqYpXNjOcj9EYcErnODFes7RuOcmqjJye2CGswuoohwSvly2LY2OmTy3ljRodGAZmyeSaMWe1lfN5uvLkVcn99YqQiKO01QBI54aNwsds7G8k6iUEstSdgkhFZ7TjagimDFslZXLbN8z26iif0P9tahuSY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CE1C6339;
+	Wed, 17 Apr 2024 06:59:26 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7BCBE3F738;
+	Wed, 17 Apr 2024 06:58:57 -0700 (PDT)
+Date: Wed, 17 Apr 2024 14:58:54 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Ryan Walklin <ryan@testtoast.com>, Chen-Yu Tsai <wens@csie.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland
+ <samuel@sholland.org>, Chris Morgan <macromorgan@hotmail.com>,
+ devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH 1/4] dt-bindings: arm: sunxi: document Anbernic RG35XX
+ handheld gaming device variants
+Message-ID: <20240417145854.46827456@donnerap.manchester.arm.com>
+In-Reply-To: <ec2be6d0-68ea-41b5-a12c-5f926c7a8f81@linaro.org>
+References: <20240414083347.131724-2-ryan@testtoast.com>
+	<20240414083347.131724-3-ryan@testtoast.com>
+	<78b5de01-150e-4537-b6a6-8ca0067a8359@linaro.org>
+	<f0b5aea5-54f6-4c3b-9c16-f7e97c58ea6d@app.fastmail.com>
+	<ec2be6d0-68ea-41b5-a12c-5f926c7a8f81@linaro.org>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Convert the Broadcom BCM2835 Auxiliary UART to newer DT schema.
-Created DT schema based on the .txt file which had
-`compatible`, `reg` `clocks` and `interrupts` as the
-required properties. This binding is used by Broadcom BCM2835
-SOC used in some Raspberry PI boards.
-Changes from original file:
-Implemented complete example which the original txt binding lacked.
+On Wed, 17 Apr 2024 15:33:13 +0200
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-Signed-off-by: Pratik Farkase <pratik.farkase@wsisweden.com>
----
-Changes in v2
-- Updated Maintainers list according to feedback
-- Fixed typo `Auxiliar` to `Auxiliary`
----
----
- .../bindings/serial/brcm,bcm2835-aux-uart.txt | 18 -------
- .../serial/brcm,bcm2835-aux-uart.yaml         | 48 +++++++++++++++++++
- 2 files changed, 48 insertions(+), 18 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.txt
- create mode 100644 Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.yaml
+Hi,
 
-diff --git a/Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.txt b/Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.txt
-deleted file mode 100644
-index b5cc6297cd1b..000000000000
---- a/Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.txt
-+++ /dev/null
-@@ -1,18 +0,0 @@
--* BCM2835 AUXILIAR UART
--
--Required properties:
--
--- compatible: "brcm,bcm2835-aux-uart"
--- reg: The base address of the UART register bank.
--- interrupts: A single interrupt specifier.
--- clocks: Clock driving the hardware; used to figure out the baud rate
--  divisor.
--
--Example:
--
--	uart1: serial@7e215040 {
--		compatible = "brcm,bcm2835-aux-uart";
--		reg = <0x7e215040 0x40>;
--		interrupts = <1 29>;
--		clocks = <&aux BCM2835_AUX_CLOCK_UART>;
--	};
-diff --git a/Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.yaml b/Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.yaml
-new file mode 100644
-index 000000000000..5d4d37371d6b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.yaml
-@@ -0,0 +1,48 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/serial/brcm,bcm2835-aux-uart.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: BCM2835 AUXILIARY UART
-+
-+maintainers:
-+  - Pratik Farkase <pratikfarkase94@gmail.com>
-+  - Florian Fainelli <florian.fainelli@broadcom.com>
-+  - Stefan Wahren <wahrenst@gmx.net>
-+
-+allOf:
-+  - $ref: serial.yaml
-+
-+properties:
-+  compatible:
-+    const: brcm,bcm2835-aux-uart
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/bcm2835.h>
-+    #include <dt-bindings/clock/bcm2835-aux.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    uart1: serial@7e215040 {
-+        compatible = "brcm,bcm2835-aux-uart";
-+        reg = <0x7e215040 0x40>;
-+        interrupts = <1 29>;
-+        clocks = <&aux BCM2835_AUX_CLOCK_UART>;
-+    };
--- 
-2.34.1
+> On 17/04/2024 11:05, Ryan Walklin wrote:
+> > Thanks for the review and feedback.
+> >   
+> >> Any reason these are not just one enum with three entires?  
+> > 
+> > No, this is just to match the existing devices, are you able to point to an example elsewhere?
+> >   
+> 
+> Even for variants of same boards?
+> 
+> The examples are everywhere, e.g. Qualcomm or NXP.
 
+We have separate entries for closely related boards (Pine64 H64 model A
+and B), and also indeed for updated variants (the various PinePhone
+revisions).
+That doesn't need the stay this way, of course. We would lose a quite
+natural way of putting a descriptive name to each compatible string (cf.
+"Pine64 PinePhone Developer Batch (1.0)"), but if the main purpose of this
+file is to *reserve* the compatible strings, it would indeed be shorter to
+use enums for related boards.
+Don't know if this would a real advantage, though.
+
+Cheers,
+Andre
 
