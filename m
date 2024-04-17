@@ -1,113 +1,177 @@
-Return-Path: <devicetree+bounces-60072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23DDF8A8140
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 12:44:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BB218A8152
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 12:56:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D3122281513
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 10:44:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B387D283069
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 10:56:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4B3E13C67C;
-	Wed, 17 Apr 2024 10:44:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B012013C68E;
+	Wed, 17 Apr 2024 10:56:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="hFjXpzvI"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Y7byvPVF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77A14128807;
-	Wed, 17 Apr 2024 10:44:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03A9513C80D;
+	Wed, 17 Apr 2024 10:56:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713350689; cv=none; b=apAFA/aCgYWxHTXN8vS4TpAfs0OWY1VXHh37EViSzqnvEclkDvgDOFNKEbu+PBVEBVOTHcvWJyzIOtz8Smiq19Llzr6Hdd+KbXAUB/AI42XxVuWJIE3ra7wOAzA3gf2158ZhNhBXknqlJIFfJ9y01IX4F168sWrbFechk85dfPM=
+	t=1713351403; cv=none; b=QbU9j+4nmG7qhBT+qBqz2s1ub44hvs89sPZkcPTV9ZfXkTHnhiq1QA9RZ9aTvK68DZAtuSDih1TqUV4aHrzwaWoViVj/RLF7z1+nzkYK6MCn78t9//oFt00PmTvg8iYiq6OjoRywrYyHQtHfljhblJlXU4dCQN2W6r2G24vt/bE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713350689; c=relaxed/simple;
-	bh=lqVSHyjQovkmdTfW/oYvU9zJi0CsYmYN+rogRbERdeA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NoMpttb0NpBXKyMzvY10KH3SFFpzujG7ZmwcUHaG5h14lJ+My3QtiCij4LlIa5Xt5YEYlLAiZqHDsMo+ohiXVRid+sY6rhDKjYEVoc8u9jyk3vhlnV/XfeyrSdIRalNa+37XiUi4GIjd3me/m5zSU9QfT1wzmni8kZX9PasjoVg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=hFjXpzvI; arc=none smtp.client-ip=212.227.15.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1713350671; x=1713955471; i=wahrenst@gmx.net;
-	bh=lqVSHyjQovkmdTfW/oYvU9zJi0CsYmYN+rogRbERdeA=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=hFjXpzvIWwkDQ8sPuAV+L5B/gWL40iKo8vPRggiwG3rMN+hvhGcsouvmlcB8ypLW
-	 WXuoPQfiAtAiwrcUmBwFrsltfG4BdL/02+VpCdNM0V5xb7jaIxP4VMkYskAa/G9F+
-	 cN76VZhHSCG4qiun+HFiSRGXEO3tMJ4C2VzFfi8SsWeIHn5RK/WAQaRW9Drwvl1MV
-	 yeYnymWaRHiwbdvpma7hVbFbJOUQMN/YfOOA+PqpNk39WCGtIoV4WNJALJ7jBfPaB
-	 6kwk4uVSgoCi5li0KdS0yOOFwCuQ276idoG7jjUniDTaKOnegCXka/gYZSCzJfPGb
-	 rSZEKDltcfZH3Uxjkg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.167] ([37.4.248.43]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1N4hvR-1sucWG2INT-011jA8; Wed, 17
- Apr 2024 12:44:31 +0200
-Message-ID: <97a35f13-ef9b-43db-a10f-0593b91464c4@gmx.net>
-Date: Wed, 17 Apr 2024 12:44:30 +0200
+	s=arc-20240116; t=1713351403; c=relaxed/simple;
+	bh=afjPJ+/sEGHXn5XptKJhYoMIJReCKeOloC55pJERJ/k=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=F18+aX4CDJyga0TMttdHJqrBuP5kwZUvsZTlZ+ZhkO2cvvlLmojbTBeT13LHS+z0cpWrCmyVvMLZZaq8GNoqz/KA3q9uiMP1lp3b6Edwk8KxScpDKS4uzv3GvDkA6IBWnL3A/F4x3n1gfbT8NJ1pBYROxkByA6hrBv6SBmPX6uo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Y7byvPVF; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43HAe6vt008139;
+	Wed, 17 Apr 2024 10:56:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=jpKK8kT
+	JPz/dw2xT2ql4d4xaFedCm5918xzB0Fm1l9E=; b=Y7byvPVFY+qlvZ4fFvL+97O
+	+XSBzzg7afr1nP4/963tAsqY5dC4zby3GiR8YCDLW/g4O/h92ngvV63z5jYZyl2e
+	U9vOJP8cNwL2UO4iXmbU9rwxJrshqEXRnAEBuHyTYI+gHTjIWgylq0OWVXr3lseI
+	EGshGo4gH6+9MCpc03+hkzqPkQsWMBHD4NdJNyxATlcFIYZflmQKtHLKVPIxQAN2
+	eZOPWlSqaKPL4GwZIYPO5m3ssgDr50SttASRE16Nzw4xt/0+OKhjsta93XSguy2o
+	sAa/pmbFeDmiQ4GK1RqnYwTRxC6zOu0J+02qBxZ6Uui9QcIobsJCBYKL536ABQw=
+	=
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xj7j90t26-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 17 Apr 2024 10:56:36 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43HAuZ0p008853
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 17 Apr 2024 10:56:35 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 17 Apr 2024 03:56:30 -0700
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: <andersson@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <konrad.dybcio@linaro.org>, <djakov@kernel.org>,
+        <quic_varada@quicinc.com>, <dmitry.baryshkov@linaro.org>,
+        <quic_anusha@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>
+Subject: [PATCH v8 0/7] Add interconnect driver for IPQ9574 SoC
+Date: Wed, 17 Apr 2024 16:25:58 +0530
+Message-ID: <20240417105605.836705-1-quic_varada@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] ARM: dts: imx6ull-tarragon: Reduce SPI clock for
- QCA7000
-To: Fabio Estevam <festevam@gmail.com>
-Cc: Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, kernel@pengutronix.de,
- imx@lists.linux.dev, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20240416190659.15430-1-wahrenst@gmx.net>
- <20240416190659.15430-3-wahrenst@gmx.net>
- <CAOMZO5BA0f9Y9knYm3MPbZ-t0=v2V3kkLTa7111tUndNep7moQ@mail.gmail.com>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <CAOMZO5BA0f9Y9knYm3MPbZ-t0=v2V3kkLTa7111tUndNep7moQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:aGs2FQXEeNjUXfXlVX7xhs5BDVZ84hUx3Z4b1BBDzhi41PM/8ER
- sDHFVIuyoSCV/cIP/0KpxTWesRYeeu4t25VnXDI9PIkvTRLA1ZNaEsRAP5cNR2wRq2syfe1
- lENPTUe+fnLps/TD/Vr7qnIj9iW2VxJsELYyuVW75cww3pcZ0Yza7vXHLA5Y1iEd1jJNVjb
- xyncPh3aZH7vO8FquMcjg==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:4EedHW3+NBg=;qn1PZ3odbYIAPafAlPZSoZFcGfh
- h9uoXdtN5BEbt3iWi2upwg+m3/Qix9G5MvA22LEmKsz/loArb5jJqKiyHpqPd+1FCAfaCjMVe
- ImzENB0HsxhryqW5oLN8F5xM/l9LRQhn0hHx4n1X0Ws195oU2cY79M5rq//j2zb/n3BXFEVqX
- I4Xim1Wk04RajYG4vZkeeIB6dmlcKZiJdv4smnpTN+CjFQtegL3WIUx44rqP4tkrOTeBbp1Dq
- kluZFZlsdraWRwimxOh3/PnIpGNXFXPbTCHGHsskL8fnEbf9+K2QS7JuSdP72Rcp69EWa6dk8
- ERvSXFvJg+HGspLKqxGCX0kJmbXZeas9vUcn+AmVsqOCZHfeyaxl2OV/0Ww94epWv34E3rB5t
- cCHbnHIba+W0ZNWeYhHZri8vmn5PPrfZUePDxi/xZ0rv//kFrAnpqaZe1KuJx6uG/F+uJdSoj
- yi8fs6iOb366qJeS9K9neFjjrd1QzI8A+okKqsxNEVhyCmCR7oJbuTX408s2/CNYYPYMNKvRT
- ozHRpcoMr4mo+23UhepH1zrbdIw3ilKHxmCKjoDQ4MNS7oEdsDWARSZ9wt4g5ePWAC4hId9QF
- 5pPq5tdcz3EvJDafBO+klerFFoZuPzT5Zr53m7S7JbR/VHdhVg3Ddp+PCvBNYQLVPwACH+qIt
- Q096nQCb/8aG85Uh4y2U2reNpxPZ81wI5FVZ5kbx8HQ5BWjJLoPuyC5D4ZEUsBPd+k8PFqwXb
- BecwQcWhheqCCyQ/qWrCAjGj1uGwP3R978mYHV1Dct+85fZMkmMWqxfulpkzsEFj6sJqWz751
- WEi0Npq/SKO1McWAeooThei7r+uhZt7z1JzlJyrgI1v7M=
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: CRyEgWiZEmJhBKsE7FkG-yEzEaWC1k1o
+X-Proofpoint-ORIG-GUID: CRyEgWiZEmJhBKsE7FkG-yEzEaWC1k1o
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-17_08,2024-04-16_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 priorityscore=1501
+ adultscore=0 clxscore=1011 impostorscore=0 mlxlogscore=970 malwarescore=0
+ phishscore=0 suspectscore=0 spamscore=0 bulkscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2404010003
+ definitions=main-2404170075
 
-Hi Fabio,
+MSM platforms manage NoC related clocks and scaling from RPM.
+However, in IPQ SoCs, RPM is not involved in managing NoC
+related clocks and there is no NoC scaling.
 
-Am 17.04.24 um 05:00 schrieb Fabio Estevam:
-> Hi Stefan,
->
-> On Tue, Apr 16, 2024 at 4:07=E2=80=AFPM Stefan Wahren <wahrenst@gmx.net>=
- wrote:
->> Our hardware department recently informed us that, according to
->> the specification, the QCA7000 should be operated with a
->> maximum SPI clock frequency of 12 MHz. Even if it appears to work
->> at a higher frequency, we should not take any risks here. A short
->> performance test showed no measurable loss of speed.
-> Should this one have a Fixes tag?
-i'm undecided about that. On the one hand the the former clock
-frequencies are wrong, on the other hand we didn't experience any issues
-with these frequencies.
+However, there is a requirement to enable some NoC interface
+clocks for the accessing the peripherals present in the
+system. Hence add a minimalistic interconnect driver that
+establishes a path from the processor/memory to those peripherals
+and vice versa.
+
+---
+v8:	Change icc-clk driver to take master and slave ids instead
+	of auto generating
+	Remove ICC_xxx defines from dt-bindings header
+	Define MASTER/SLAVE_xxx macros from 0 .. n
+
+v7:	Fix macro names in dt-bindings header
+	Do clock get in icc driver
+
+v6:	Removed 'Reviewed-by: Krzysztof' from dt-bindings patch
+	Remove clock get from ICC driver as suggested by Stephen Boyd
+	so that the actual peripheral can do the clock get
+	first_id -> icc_first_node_id
+	Remove tristate from INTERCONNECT_CLK
+v5:
+	Split gcc-ipq9574.c and common.c changes into separate patches
+	Introduce devm_icc_clk_register
+	Fix error handling
+v4:
+gcc-ipq9574.c
+	Use clk_hw instead of indices
+common.c
+	Do icc register in qcom_cc_probe() call stream
+common.h
+	Add icc clock info to qcom_cc_desc structure
+
+v3:
+qcom,ipq9574.h
+	Move 'first id' define to clock driver
+gcc-ipq9574.c:
+	Use indexed identifiers here to avoid confusion
+	Fix error messages and move code to common.c as it can be
+	shared with future SoCs
+
+v2:
+qcom,ipq9574.h
+	Fix license identifier
+	Rename macros
+qcom,ipq9574-gcc.yaml
+	Include interconnect-cells
+gcc-ipq9574.c
+	Update commit log
+	Remove IS_ENABLED(CONFIG_INTERCONNECT) and auto select it from Kconfig
+ipq9574.dtsi
+	Moved to separate patch
+	Include interconnect-cells to clock controller node
+drivers/clk/qcom/Kconfig:
+	Auto select CONFIG_INTERCONNECT & CONFIG_INTERCONNECT_CLK
+
+Varadarajan Narayanan (7):
+  interconnect: icc-clk: Allow user to specify master/slave ids
+  clk: qcom: cbf-msm8996: Specify master and slave id
+  dt-bindings: interconnect: Add Qualcomm IPQ9574 support
+  interconnect: icc-clk: Add devm_icc_clk_register
+  clk: qcom: common: Add interconnect clocks support
+  clk: qcom: ipq9574: Use icc-clk for enabling NoC related clocks
+  arm64: dts: qcom: ipq9574: Add icc provider ability to gcc
+
+ .../bindings/clock/qcom,ipq9574-gcc.yaml      |  3 +
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi         |  2 +
+ drivers/clk/qcom/Kconfig                      |  2 +
+ drivers/clk/qcom/clk-cbf-8996.c               |  7 ++-
+ drivers/clk/qcom/common.c                     | 35 ++++++++++-
+ drivers/clk/qcom/common.h                     | 16 +++++
+ drivers/clk/qcom/gcc-ipq9574.c                | 31 ++++++++++
+ drivers/interconnect/icc-clk.c                | 24 +++++++-
+ .../dt-bindings/interconnect/qcom,ipq9574.h   | 59 +++++++++++++++++++
+ include/linux/interconnect-clk.h              |  4 ++
+ 10 files changed, 178 insertions(+), 5 deletions(-)
+ create mode 100644 include/dt-bindings/interconnect/qcom,ipq9574.h
+
+-- 
+2.34.1
+
 
