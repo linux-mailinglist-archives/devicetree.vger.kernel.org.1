@@ -1,124 +1,119 @@
-Return-Path: <devicetree+bounces-60043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60044-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DEC38A8044
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 12:02:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B8198A8074
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 12:14:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 462E51C21FF7
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 10:02:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C6AB1C20C21
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 10:14:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2B94139D01;
-	Wed, 17 Apr 2024 10:02:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E094713AA5C;
+	Wed, 17 Apr 2024 10:14:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="L8Vengu4"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="SstsGJ1d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20753535D0;
-	Wed, 17 Apr 2024 10:02:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F0A31327E0;
+	Wed, 17 Apr 2024 10:14:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713348131; cv=none; b=CtjvCJLyVZoDDFHyl8vyvUn6DtlDmtLSTGEhBoMvJjprH+9OzoDR/f+J3ct9t5tf9AN9xXCS/3H7mLqqZx4b8ZFTVAWvruGH5lkvlKCtjGZiySSmM3lZLzv0SG2dZJXmNV/UueRuXAm9Eo1d8l6A6jaf8xtd7b6hbV2UDlDpM2E=
+	t=1713348878; cv=none; b=LAh/GK1tuqn3Og2zREMEw6FWEkJ9/q/rHPXzVZFmZu3DvnFrEp1k+XXQhC7Jg8TzfMsOx8W1Hmd2xxW94izK3V4xZtJMLP8VENWwhhWM62MZrVQOvewBvEIWazkMNodf4x0QMPaZvsHsZ2C/sgmAVvxqYlvCrw7+0GqolkeDb7Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713348131; c=relaxed/simple;
-	bh=j5QapwJgxI2kAVpWJ86KsfIFve70wOAB94QAKWyo+8s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b6dPTt0IF//5duRGvLwheivSoGcvXQLJwGsy/YeATQFqmjTqlEtVTQTJbcsl9ldVtyF8MkXk1q5VUVHmC/A5W+STZZFKimDfLm4zVbedBHLlo+RZuHNetBXnCPUb7MMc3ECC4tQW6BAUZiCK55yMfB1dzo5Vccu0mQGDl2Y5cV4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=L8Vengu4; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1713348126; x=1744884126;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=j5QapwJgxI2kAVpWJ86KsfIFve70wOAB94QAKWyo+8s=;
-  b=L8Vengu4njo3rMylwMbbH3DvZMilMiZ2UVhCC8iIMg48nLrfYAPxVEXk
-   UoTTfZ6DOv+3slCnHvSURc1co1cD2n1kaQuJk8cYKDyOsQVKyBeo70bHV
-   vf3K0lDQyctecZNDdhwNMEIF0JKys//1xl975f38B4SGXEfswQQMr8hel
-   /8mlYpRY2/IVhtY0CWm8SXNhvDw7O8pCi1YJqJlFEh0ftceOPYqArksTX
-   9DyV5fDmJrJA37YQYP2tQQihA560RRR9V6BSjl98Dge58ZXRMd46OKkk2
-   Wvm8EhssaL5+kmjstTXrND01RyN3USo5zsN7qQTy+VPpNRfAfC45KtZ4y
-   w==;
-X-CSE-ConnectionGUID: HOThHCXpR5W9lGJUpmFQVA==
-X-CSE-MsgGUID: 0BjlTZ80RDuzEMGz6eul5A==
-X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="19977848"
-X-IronPort-AV: E=Sophos;i="6.07,208,1708416000"; 
-   d="scan'208";a="19977848"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2024 03:02:05 -0700
-X-CSE-ConnectionGUID: SXGPqkptROK03BOFiHKbJw==
-X-CSE-MsgGUID: V5WWlJZXTUq+1eW/WdLPQQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,208,1708416000"; 
-   d="scan'208";a="27013466"
-Received: from unknown (HELO 23c141fc0fd8) ([10.239.97.151])
-  by fmviesa005.fm.intel.com with ESMTP; 17 Apr 2024 03:02:01 -0700
-Received: from kbuild by 23c141fc0fd8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rx275-0006SX-15;
-	Wed, 17 Apr 2024 10:01:59 +0000
-Date: Wed, 17 Apr 2024 18:01:48 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lorenzo Bianconi <lorenzo@kernel.org>, linux-spi@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, broonie@kernel.org,
-	lorenzo.bianconi83@gmail.com, linux-arm-kernel@lists.infradead.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org, nbd@nbd.name,
-	john@phrozen.org, dd@embedd.com, catalin.marinas@arm.com,
-	will@kernel.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com
-Subject: Re: [PATCH v2 3/3] spi: airoha: add SPI-NAND Flash controller driver
-Message-ID: <202404171712.GiwLsZEI-lkp@intel.com>
-References: <25dd4334e3b37eaa628c20265841f251968c2b75.1713335916.git.lorenzo@kernel.org>
+	s=arc-20240116; t=1713348878; c=relaxed/simple;
+	bh=nP6Y2cH6R/RSVNj91LUL6ipM/UHgj+V1OQwPKKnkgjQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NwPeQLHJizVBJMD2pnQdWPFl44BskeOZa1HLQdmBQnbelIw4p3w+uKalems+60ObYi/2l+KvO/5ZVmPVElnIRnnCnYuNeHSblrFQ2Thcbz3ln0dq1sNrAwYaZifsT10Xku5mflIfQj8QGBbJr6khHwK8ZU4slpadZGv4XTYJJJw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=SstsGJ1d; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1713348875;
+	bh=nP6Y2cH6R/RSVNj91LUL6ipM/UHgj+V1OQwPKKnkgjQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=SstsGJ1d7dF0sTiCq19GAQDn9PeB6bYpjCOvzfpX6z4o9hc+KpF0FbQsPvO371n/C
+	 GnsKq719DLEgjgoXZ3DGGJ1t4/BZdaJC2+Nul+USg1vFiARr9mKkfOdgbS0TXFQJPd
+	 yMeow0v4fKoHqlKgNSTCpBKVdtACyjIc94RpPjpuz98RryoTV/fs61uhsWWKPp0ObR
+	 jx1QJ/3wXJmNpHHHlQlmOBTtUl0HbVAl75rb9i+HKeFSTyuexydG76wDgiFvUj91wx
+	 iEgJfGjVhJ30+X3lwEtXi3BX9UC5cVBWYtStI1XeOJEqgXQ6zEoon8dqvxS+GgzJ1s
+	 GtCKvWnb+nWsA==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id E30BD378020A;
+	Wed, 17 Apr 2024 10:14:33 +0000 (UTC)
+Message-ID: <105c9ee8-2b9e-4117-b4d8-472982ef59d1@collabora.com>
+Date: Wed, 17 Apr 2024 12:14:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <25dd4334e3b37eaa628c20265841f251968c2b75.1713335916.git.lorenzo@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 07/18] dt-bindings: display: mediatek: dpi: add
+ compatible for MT8365
+To: Alexandre Mergnat <amergnat@baylibre.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Jitao Shi <jitao.shi@mediatek.com>,
+ CK Hu <ck.hu@mediatek.com>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+ <u.kleine-koenig@pengutronix.de>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20231023-display-support-v2-0-33ce8864b227@baylibre.com>
+ <20231023-display-support-v2-7-33ce8864b227@baylibre.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20231023-display-support-v2-7-33ce8864b227@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Lorenzo,
+Il 16/04/24 17:53, Alexandre Mergnat ha scritto:
+> Add dt-binding documentation of dpi for MediaTek MT8365 SoC.
+> 
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> ---
+>   Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+> index e126486e8eac..ebb61bc4eab7 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+> @@ -27,6 +27,7 @@ properties:
+>             - mediatek,mt8188-dp-intf
+>             - mediatek,mt8192-dpi
+>             - mediatek,mt8195-dp-intf
+> +          - mediatek,mt8365-dpi
+>         - items:
+>             - enum:
+>                 - mediatek,mt6795-dpi
+> 
 
-kernel test robot noticed the following build warnings:
+MT8365 and MT8192 are identical. I'll make it easy for you:
 
-[auto build test WARNING on next-20240416]
-[cannot apply to broonie-spi/for-next robh/for-next arm/for-next arm/fixes arm64/for-next/core kvmarm/next rockchip/for-next shawnguo/for-next soc/for-next linus/master v6.9-rc4 v6.9-rc3 v6.9-rc2 v6.9-rc4]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+       - items:
+           - enum:
+               - mediatek,mt8365-dpi
+           - const: mediatek,mt8192-dpi
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Lorenzo-Bianconi/dt-bindings-spi-airoha-Add-YAML-schema-for-SNFI-controller/20240417-144847
-base:   next-20240416
-patch link:    https://lore.kernel.org/r/25dd4334e3b37eaa628c20265841f251968c2b75.1713335916.git.lorenzo%40kernel.org
-patch subject: [PATCH v2 3/3] spi: airoha: add SPI-NAND Flash controller driver
-reproduce: (https://download.01.org/0day-ci/archive/20240417/202404171712.GiwLsZEI-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202404171712.GiwLsZEI-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   Documentation/userspace-api/netlink/netlink-raw.rst: :doc:`tc<../../networking/netlink_spec/tc>`
-   Warning: Documentation/devicetree/bindings/power/wakeup-source.txt references a file that doesn't exist: Documentation/devicetree/bindings/input/qcom,pm8xxx-keypad.txt
-   Warning: Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/siliconmitus,sm5703.yaml
-   Warning: Documentation/userspace-api/netlink/index.rst references a file that doesn't exist: Documentation/networking/netlink_spec/index.rst
-   Warning: Documentation/userspace-api/netlink/specs.rst references a file that doesn't exist: Documentation/networking/netlink_spec/index.rst
->> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/spi/airoha,spi-airoha-snfi.yaml
-   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/reserved-memory/qcom
-   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/display/exynos/
-   Using alabaster theme
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Cheers,
+Angelo
 
