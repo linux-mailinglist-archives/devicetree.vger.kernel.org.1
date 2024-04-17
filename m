@@ -1,151 +1,118 @@
-Return-Path: <devicetree+bounces-59968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFA918A7CAA
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 09:02:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FFFC8A7CC5
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 09:06:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6D493B22422
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 07:02:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 462AE1F225C9
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 07:06:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E59C6A8A4;
-	Wed, 17 Apr 2024 07:02:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B0146D1BD;
+	Wed, 17 Apr 2024 07:05:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TZSHvCfO"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="C+7inE7F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E273F6A339
-	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 07:02:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 813C26A8A7
+	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 07:05:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713337345; cv=none; b=V26x/yVntAUsBqb88+5sM7R8jVibZ2ObRbV+hkPz9qHwlWfp4VPJQcSnxYgFg6vq/Uq3ScSoi+TQil52vyAILXjPq18E6uhqwMy0WSgAO/YoPfmVhjwV+fbwkx4YeenzHK2zrqrZw2kQyhLfsJ4CKePGURjunyHXLg35RedW210=
+	t=1713337538; cv=none; b=NqrfQnGhyAOL5QwuCr115yqbNnDoQOR7Q+TX8kPMa8WKSHs0VaAt4a81FncCi8pNHaSi8KN9tP7WzL6qt3gaFQb1iCWcRbRfZJ6BO6fX7wWL/j17PPeNn/7umSuad35kNitmbN0ArIiRoQyzt6wQ6ITHGjBqtpwa82DcbZrj0Vc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713337345; c=relaxed/simple;
-	bh=ZEDa5YTizJoRKvvXZle+WMCzPDMzbAnkbhmq2IQY7R0=;
+	s=arc-20240116; t=1713337538; c=relaxed/simple;
+	bh=mcsr3csBU7bHGMkIHe2AoCdtg1CXoDmljtGVCug6ERg=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KGjcjVN4T/gf4N6Hw5lyLFOqKHC+jNExqlp1Fwm83+McKZ5Y6veGAUDbAfJwlKBwOr5aMIQFdzudQAsXsejgnHylJzIl72aWb3erhCjS9y0qjzU+XRKrP5Ioh7EFcfMMzEIj1UUcQvZc5ByzB+qCvoknxxOfnyEZcqDaql8xkhY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TZSHvCfO; arc=none smtp.client-ip=209.85.219.179
+	 To:Cc:Content-Type; b=XzneiPtRhfkQWzzhjdWK74r7SMdNIW2TktmtDyqxynCqAas0zO00nqEn/il/z6vkcHQNQLq6UxzeAP8IQzJbs2a4jTfNLcAlIwQwrz/1/9yFKKLaPt+S7PryOKh/wp8gYUkZI5vzDBfrk67/nuJkjGwmsjSIxPeXqW1yPOQimFM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=C+7inE7F; arc=none smtp.client-ip=209.85.219.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-dc6d9a8815fso5315213276.3
-        for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 00:02:22 -0700 (PDT)
+Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-ddaad2aeab1so4549327276.3
+        for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 00:05:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713337342; x=1713942142; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1713337534; x=1713942334; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=sGvt/OcevPOUXaTJnaPKCznXL12lo9XavRWzKBHcfZU=;
-        b=TZSHvCfO7fKK0pRSSY3yqOFhqCJUdQguPeDEvISu5T9J3IjCbL6yR6LlMS1+nSxnxE
-         uekvqMnIIkcG2ZBXM286bUe6XFcuGshj70i6AyGHF2d++X9FneHriAnpRMaZmL/aXLCW
-         XQtyCXI5Cle1SnR5R3F9ldI8CtHg1+sEiGkDxRvc6Jubpf3FoELzTf4BcyCPKT26u7Yu
-         JKYUdlXCOGesjAHikSN4bO2WrpcX9nkKJo/VwZ3jwRBhcMYUON6kF4OZA6IddatF6qcd
-         ofvE4KBvq4skg/PImWg7L3QsgaIVINCi5zj0mmr7wlsQl5Pz5l7VjGhtWuQQGQtYoT6O
-         2a1w==
+        bh=EkjVwN4rKPhkulRFdv6fIescIc1N6dkILoDWgTfK/5I=;
+        b=C+7inE7FU7EoI73NvofWvGDcZi+oip2wk6yr/RLGNTRsq0EQyxLpC4wL4g+HbXJf/W
+         Ovv3SHrT4u3AHL/zuxVwZdj+XKVRRJ05TTy7A9j97gXYH6BG+ujNOOKk6vpvT2hxl12f
+         ZD66/9udqmuxyP9c752avMGq1N2oc3kwOpYQStgiEvhcUMQsnqydSbsAYaikBwvO0aJ4
+         +N59Kg2J7Ect3+tH1kr0z+atLSSi1xzKvf4JNvG2avL1YnJED+gjvSXIwW9YhppBgHX1
+         lC1Q+eR7tYq9AK6iAr0++bNj3NsaiY0kmrnMAa2G1q604AyoHotA2mlbDumO0NALYY4E
+         fwYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713337342; x=1713942142;
+        d=1e100.net; s=20230601; t=1713337534; x=1713942334;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=sGvt/OcevPOUXaTJnaPKCznXL12lo9XavRWzKBHcfZU=;
-        b=Z9WgmGkLVugNETDWoCCZ00XrlWtfjBSLKIBmjOVYB06+ecUdnHon0V7bawZR4ZRqMl
-         0e/RLw0cD42rTLudGbRKRkVTqKliOFJEGj3qZ8OB1pNCov90080+MvID8kr5jRMOnkQY
-         d5LW6Cc5sX+u0Txl0aCKz0X+RQIeq3w8SBfsVxwo5AQu8/orDCi25zdfaRO1pCUaQ/6q
-         Wwmc0BcO5LI5w1CsulhHInY8UILzZqrK1ReoHvZpb1uMe05KXZiVr0YeKIeAikjqz1rC
-         EluuqG7X5tgit2Iqhatf3pXmi7fRQA8koSJFwD0ZVlIPg6LvDjvzEswAHf1HP5O425dR
-         gGZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXLvjKfSU7cQIW0rvtulXuIZqBEOldZogPHklNwmmEmjvgV6/+bWKaetjSEjV2wFrpZt4AuKSmK1xBiO9Sbve5izu13OMe4yCqErw==
-X-Gm-Message-State: AOJu0YwgBkySSJ9EqWbeG4S+PimILzt8o/AOVBhSMBL6SnZBNFxj2rfw
-	4Un+bmzAKMHkzVaIayI47/wWhmTr7ZppRjzVOOnHzVrPsH2ntupLqLiChQAxoeJ1HU1ul/QbbLH
-	GQ5UyLDNvf2jHmviVczp9W6rsdpPi59KQ8wVDoA==
-X-Google-Smtp-Source: AGHT+IH9CEuOupRBWZQNFxyza2VtLQoxomckgth+p7ynPNtYc07M5PELX35fU9fO3bLqrnFXrCHVMiYXlfx9K0YMLWY=
-X-Received: by 2002:a25:aa30:0:b0:dd0:c12:411b with SMTP id
- s45-20020a25aa30000000b00dd00c12411bmr14962497ybi.8.1713337341963; Wed, 17
- Apr 2024 00:02:21 -0700 (PDT)
+        bh=EkjVwN4rKPhkulRFdv6fIescIc1N6dkILoDWgTfK/5I=;
+        b=YieIZ52jEh1MyBiqgJ1FokI2JVKzqcQN8LG1bzmZ68Ye3Fo2tbDUD6cq2HtxVifMJP
+         cGxV5fwmeC8JIDTauJ8UvGclrLfXo80UGIMfOP18KGOPt6180mYuHXIjrjw/wlW3dvMu
+         JAzbOik/U22yGtP1wXngyoPqRWnCozNzNMyK1+cMyBi/OP7PYW3wdcnW7Z0OwQFkibdm
+         MEcZ5tU+rfK89nlZuZ2AViN01Qeqd5f2NuYh7OhOycBeymcCwKtXmW6FoS4UiuKRbaNb
+         DwBZwu/Ykgl1rrfA8bWBGitfiKQOU8DPyNmSeIltDjBEQYVcZ8tKcPttXscZYMEH2L74
+         BG8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUfGgBTaZ6jPMBxR8jhQ8nxsTNVnuHEJPxNmDG4xhIV6+qLCUIrfHjN+HmoNCO7YmQQ1r7ZBLlCNz8uFFp+bjaUPHZ3HOyEiitzlA==
+X-Gm-Message-State: AOJu0YxIt3cH2yvPDCNLpg6k6FzqtIBYef+51V9Ek08crNGffI1YmRL+
+	O2RU+h3zL/NpJCTr9Sr1xA9ffl14PkF9Ks6Tn1PsrBBVWn33KWOvkI88N7HIPcqFlYK6Uycfh8m
+	AtYar9B/Nw6hnnuH0zOV5MXIyJJ+/R5KLWInX/w==
+X-Google-Smtp-Source: AGHT+IHd4i1ahSg32Wqz83l6dw/WilhOpfq2RFb1LUbBXluSLvsl6Ej9Qz8ZGcvBj9jzJA20eZYuz5z2/kQs2d89rq0=
+X-Received: by 2002:a25:fe05:0:b0:dcc:b719:4e4f with SMTP id
+ k5-20020a25fe05000000b00dccb7194e4fmr14247637ybe.53.1713337534608; Wed, 17
+ Apr 2024 00:05:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CAA8EJpo=nd8ywUzz2e42p7WAyuFm439yvNf6H=MD63LCV0xTnw@mail.gmail.com>
- <20240417065020.3599755-1-github.com@herrie.org>
-In-Reply-To: <20240417065020.3599755-1-github.com@herrie.org>
+References: <20240415141743.1983350-1-github.com@herrie.org>
+In-Reply-To: <20240415141743.1983350-1-github.com@herrie.org>
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 17 Apr 2024 10:02:10 +0300
-Message-ID: <CAA8EJpq4mEKi=WW2o-tmkSCoKv01sV5wM-U-KxXXGAcaKSp84g@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: phy: qcom,usb-hs-phy: Add compatible
+Date: Wed, 17 Apr 2024 10:05:23 +0300
+Message-ID: <CAA8EJpo+xarzGbfy42U1NOBG+ieQXwHu85fdgLccK4-_6+bNzw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] pinctrl: qcom-ssbi: add support for PM8901
 To: Herman van Hazendonk <github.com@herrie.org>
 Cc: andersson@kernel.org, benwolsieffer@gmail.com, chris.chapuis@gmail.com, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org, kishon@kernel.org, 
-	konrad.dybcio@linaro.org, krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, me@herrie.org, 
-	robh@kernel.org, vkoul@kernel.org
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Linus Walleij <linus.walleij@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 
-On Wed, 17 Apr 2024 at 09:50, Herman van Hazendonk
+On Mon, 15 Apr 2024 at 17:28, Herman van Hazendonk
 <github.com@herrie.org> wrote:
 >
-> On Wed, 17 Apr 2024 at 07:52, Herman van Hazendonk
-> <github.com@herrie.org> wrote:
-> >>
-> >> Adds qcom,usb-hs-phy-msm8660 compatible
-> >>
-> >> Used by HP Touchpad (tenderloin) for example.
-> >>
-> >> Signed-off-by: Herman van Hazendonk <github.com@herrie.org>
-> >> ---
-> >>  Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml | 2 ++
-> >>  1 file changed, 2 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
-> >> index f042d6af1594..ccf23170cd17 100644
-> >> --- a/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
-> >> +++ b/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
-> >> @@ -15,6 +15,7 @@ if:
-> >>        contains:
-> >>          enum:
-> >>            - qcom,usb-hs-phy-apq8064
-> >> +          - qcom,usb-hs-phy-msm8660
-> >>            - qcom,usb-hs-phy-msm8960
-> >>  then:
-> >>    properties:
-> >> @@ -41,6 +42,7 @@ properties:
-> >>        - enum:
-> >>            - qcom,usb-hs-phy-apq8064
-> >>            - qcom,usb-hs-phy-msm8226
-> >> +          - qcom,usb-hs-phy-msm8960
+> The PM8901 is used alongside the APQ8060/MSM8660 on the APQ8060 Dragonboard
+> and HP TouchPad. It works the same as all others, so just add the
+> compatible string for this variant.
 >
-> > This should probably be msm8660 rather than 8960
-> Hi Dmitry,
->
-> Thanks for the swift feedback. I'll send a v3.
-> I need more coffee before doing this in the morning
+> Signed-off-by: Herman van Hazendonk <github.com@herrie.org>
+> ---
+>  Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-Please wait for the feedback from bindings maintainers (this might
-take a couple of days).
+Subject should be "dt-bindings: pinctrl: qcom,pmic-mpp: ..... "
 
-> > Note, nowadays the rule would be to use qcom,msm8660-usb-hs-phy
-> > compatible, but I wonder if we should enforce this for such an old
-> > platform or whether similarity wins.
 >
-> >>            - qcom,usb-hs-phy-msm8916
-> >>            - qcom,usb-hs-phy-msm8960
-> >>            - qcom,usb-hs-phy-msm8974
-> >>
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml
+> index fe717d8d4798..43146709e204 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml
+> @@ -35,6 +35,7 @@ properties:
+>                - qcom,pm8038-mpp
+>                - qcom,pm8058-mpp
+>                - qcom,pm8821-mpp
+> +              - qcom,pm8901-mpp
+>                - qcom,pm8917-mpp
+>                - qcom,pm8921-mpp
+>            - const: qcom,ssbi-mpp
 >
-> I plan to send more patches for the msm8660, so happy to understand what
-> is the preferred approach, because it doesn't seem consistent.
->
-> These are my first patches, so learning mainly from what I see in commit
-> history (which might be outdated)
-> It's indeed ancient platform, we just would like to get HP TouchPad
-> (tenderloin) running with a mainline kernel, hence these patches.
 
-This sounds really interesting. I recently got apq8060 so I should be
-able to test your patches if the time permits.
 
 -- 
 With best wishes
