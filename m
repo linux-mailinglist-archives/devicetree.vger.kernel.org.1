@@ -1,115 +1,114 @@
-Return-Path: <devicetree+bounces-60326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 601CC8A8CAE
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 22:06:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD26D8A8CC1
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 22:08:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 14A821F21273
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 20:06:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7781C287C3C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 20:08:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F356364BA;
-	Wed, 17 Apr 2024 20:05:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B80E364AA;
+	Wed, 17 Apr 2024 20:07:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o4A/Zm5+"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="PPD1h5D+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f201.google.com (mail-yb1-f201.google.com [209.85.219.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44A8624B21;
-	Wed, 17 Apr 2024 20:05:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1599B36126
+	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 20:07:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713384311; cv=none; b=riRTKRzwKz3tel2CLwyv2VLGTMrw+5GqYqtXnW5UcWd6VEW27ZbkcQ8n/S1EAz5sTYnxg4GDutziJ/N9qBI9mZmq58KQyCDmRJ9Yrf0h3Ck42CsPdFyd/a+cnIIJ/T6kICC9wyi6IipRQxZSrHyhhl/zoKlHW9Dkrt4+dAAnyIs=
+	t=1713384464; cv=none; b=VjvNnhDoodpEiy/Q3z44lCrv8X0FUSx/2qIqGSMutiZAdHMMuzydgKjPFPMlAWCjXhfTW54LimUm5uQHmMYhz87jqcb9TF3/k1rvZPF+UlEHrQtee4lDE/dlGzUGJQh9Hz5Bb4w1sut1UqVWUkELMW04lmcpLAO2B1l7xt6bjUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713384311; c=relaxed/simple;
-	bh=3awQOdHTX/JaPbXW7mXrHqbLtpUvvBMlSihUEiwYNyc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Ui82XKz1B2TCH11YAGsE3RTu+KN+FjiJDLzdZU38LdarJqXfbdiDyBFek5Z/GC+I495Cpj/2y9oXJ8Soe6QeoLJAa1D/OnlMJb0Gv/HB7FxaeeWeVPd4eHmp6LQxPWYQ9CQW/teSMRhH73I64PTNP8Yvtp2hQ2i2eMRES2i8Pxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o4A/Zm5+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 873ABC072AA;
-	Wed, 17 Apr 2024 20:05:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713384310;
-	bh=3awQOdHTX/JaPbXW7mXrHqbLtpUvvBMlSihUEiwYNyc=;
-	h=From:To:Cc:Subject:Date:From;
-	b=o4A/Zm5+Oh1EKYCKADawrdTF+Mq3xCK09TY8KV6CvyKPOyPKkrSeMUTvctyLfuopT
-	 7oiwwKGGy/RSzrpphDkdkx1+N3UwHLk6vw/Z5TNXg7+rhpL1zPzmcjErnboO256Me+
-	 7Ha/bANv7+xWWE2zje+SxaIi+Uw6AwWOliIyP4ln4+EX+6mBWY41uNi+PxI7aRND+F
-	 qaD7vgc51AiXqChSjB0gZ/eBGZ4vKF5kXSfb1U9xEMZEgUxmDOPQHOkT8M/bAPnWN/
-	 OT0O/mO2ylhs8eLSsDiVyKj4mrfa7KHGVxzgQzIPtFGt+XlnFZdrpAxnLVfK4ZuaEP
-	 QExdMJQUjOl0g==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: PCI: qcom,pcie-sm8350: Drop redundant 'oneOf' sub-schema
-Date: Wed, 17 Apr 2024 15:04:30 -0500
-Message-ID: <20240417200431.3173953-1-robh@kernel.org>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1713384464; c=relaxed/simple;
+	bh=R/Fnwb9c9N8aN1+rMEQSyK+TRzGedantgI6SeqNlfoo=;
+	h=Date:Message-Id:Mime-Version:Subject:From:To:Cc:Content-Type; b=G4YbfFDlXrhb2rtoNPJlCjLpxS9gY+mKqY6O8U5wxPnJ7djSdAM5LmBehd9FjFwZCiE1UvPtN8UR7wzdbAhDQcUdMA8/kgc9Nr3oLa3RaOGoqTEZzNq6KeLI+0aHPf3wioG5dX7mXem1zeW5RFg3bf63cuKGmHybxOlA1B+bqYk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--saravanak.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=PPD1h5D+; arc=none smtp.client-ip=209.85.219.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--saravanak.bounces.google.com
+Received: by mail-yb1-f201.google.com with SMTP id 3f1490d57ef6-dc647f65573so268330276.2
+        for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 13:07:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1713384462; x=1713989262; darn=vger.kernel.org;
+        h=cc:to:from:subject:mime-version:message-id:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=O5cs1fBxJDaZN6YqSCf5MzlG00LUScCVPL4VGimu12Y=;
+        b=PPD1h5D+shMCwX36tEyIlpFneYqo7RAy4szqfmloBd+y445eHEzqAAd7CnMkAC7+pu
+         Pfv4pEAXUMoFaSNP+EprS5cifaNz//I9+7P3dhOKcO2cl4qxPDxQYq+g4gut7MW3wxRw
+         kbjwO9qvDZdB6dD2jtnV0JO9yYlPtVj7pWnbpdnKfrkXiReWiI+yPkIIELt6ywS99RbD
+         565xoAZfHn1grqTSepPHMejByj19FIYYjEUIV0YnOmReqviLt+5OutOkSFBY4jmFZtEo
+         8Z4JF2x3fn4jqq8On6AtEgUDKScMw1vwqEZ4seMpC5Qbyez8UKOFhcAzoCM5iDHjueTm
+         g6WA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713384462; x=1713989262;
+        h=cc:to:from:subject:mime-version:message-id:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=O5cs1fBxJDaZN6YqSCf5MzlG00LUScCVPL4VGimu12Y=;
+        b=rg3sCIuaUNOG5vHolDp/LUeiCzJ5yyvkPPddTTHnWKoNQ8AOsljLw2SY212Ikz2fLw
+         hr8j2BITHgnj5N0PmT5ecqEciwdUwOZITZPmHjVMviV125cgQNj6570pAufXWZamxvPC
+         nyRqnSb9Sh4g8FjqLiAIhtF8NmVkNIVXkZOxXco0WmwkTNRws/xXKUIxVp/bTDKBZvC3
+         n8yXCQO26cLeCj/XlY9DDB12fplQECK9g/H8wTh2RPGgbNWJOT2c5H3oLCOOIY8deJBL
+         ax2nuXuMqgeeEGHM+TPTYPxk7mFIh20KuVZ2XujREa46rVqh0aQFel8c/rfKJfj0NzdH
+         1NYA==
+X-Forwarded-Encrypted: i=1; AJvYcCUSgJVtenD6CiZdW26VINNub1E6hR0h92Hz4UuOAHGm2f8wYwfQLfLhy3dD7GjdM5/J4hQVcJAc5L20fDYqjTbaO0I6q9gu7+0q+g==
+X-Gm-Message-State: AOJu0YzRUc5zyxObP2aMGHh/xGhh4VNGLbtjxJRQlkP4cRD/mUJLIn9+
+	F5UgJy5o/fPJ45RjSuGgDyYDnlt7q5S9MBQP9vgzUzRVcP0vkBwKEVIzuI2u040TIgKJbVzLYLm
+	ZtdScWTwuk4d0ig==
+X-Google-Smtp-Source: AGHT+IHVH0/P6V4QetaySMqB9+GumxJzFMTPG9+eO6bnMhfvbIyKW38v4Q19n4x7pzRVOb7RLYI4EuzMUUs+qLw=
+X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:7d65:be58:393e:6674])
+ (user=saravanak job=sendgmr) by 2002:a05:6902:1149:b0:dc7:8e30:e2e3 with SMTP
+ id p9-20020a056902114900b00dc78e30e2e3mr112153ybu.2.1713384462059; Wed, 17
+ Apr 2024 13:07:42 -0700 (PDT)
+Date: Wed, 17 Apr 2024 13:07:37 -0700
+Message-Id: <20240417200738.1370896-1-saravanak@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.44.0.683.g7961c838ac-goog
+Subject: [PATCH v1] of: property: fw_devlink: Add support for "power-supplies" binding
+From: Saravana Kannan <saravanak@google.com>
+To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>
+Cc: Sebastian Reichel <sre@kernel.org>, kernel-team@android.com, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-The first entry in the 'oneOf' schema doesn't work because the top
-level schema requires exactly 8 interrupt entries. The 2nd entry is just
-redundant with the top level. Since 1 entry appears to have been a
-mistake, let's just drop the entire 'oneOf' rather than reworking the
-top-level to allow 1 entry.
+Add support for parsing power-supplies binding so that fw_devlink can
+enforce the dependency.
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Saravana Kannan <saravanak@google.com>
+Cc: Sebastian Reichel <sre@kernel.org>
 ---
- .../bindings/pci/qcom,pcie-sm8350.yaml        | 22 -------------------
- 1 file changed, 22 deletions(-)
+ drivers/of/property.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-sm8350.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-sm8350.yaml
-index 9eb6e457b07f..2a4cc41fc710 100644
---- a/Documentation/devicetree/bindings/pci/qcom,pcie-sm8350.yaml
-+++ b/Documentation/devicetree/bindings/pci/qcom,pcie-sm8350.yaml
-@@ -71,28 +71,6 @@ properties:
-     items:
-       - const: pci
+diff --git a/drivers/of/property.c b/drivers/of/property.c
+index a6358ee99b74..aa83e9bb9bad 100644
+--- a/drivers/of/property.c
++++ b/drivers/of/property.c
+@@ -1252,6 +1252,7 @@ DEFINE_SIMPLE_PROP(backlight, "backlight", NULL)
+ DEFINE_SIMPLE_PROP(panel, "panel", NULL)
+ DEFINE_SIMPLE_PROP(msi_parent, "msi-parent", "#msi-cells")
+ DEFINE_SIMPLE_PROP(post_init_providers, "post-init-providers", NULL)
++DEFINE_SIMPLE_PROP(power_supplies, "power-supplies", NULL)
+ DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
+ DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
  
--oneOf:
--  - properties:
--      interrupts:
--        maxItems: 1
--      interrupt-names:
--        items:
--          - const: msi
--
--  - properties:
--      interrupts:
--        minItems: 8
--      interrupt-names:
--        items:
--          - const: msi0
--          - const: msi1
--          - const: msi2
--          - const: msi3
--          - const: msi4
--          - const: msi5
--          - const: msi6
--          - const: msi7
--
- allOf:
-   - $ref: qcom,pcie-common.yaml#
- 
+@@ -1357,6 +1358,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
+ 	{ .parse_prop = parse_backlight, },
+ 	{ .parse_prop = parse_panel, },
+ 	{ .parse_prop = parse_msi_parent, },
++	{ .parse_prop = parse_power_supplies, },
+ 	{ .parse_prop = parse_gpio_compat, },
+ 	{ .parse_prop = parse_interrupts, },
+ 	{ .parse_prop = parse_regulators, },
 -- 
-2.43.0
+2.44.0.683.g7961c838ac-goog
 
 
