@@ -1,140 +1,140 @@
-Return-Path: <devicetree+bounces-60021-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60022-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2E478A7F42
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 11:08:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7DA98A7F52
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 11:12:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53B4D1F23015
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 09:08:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 56653B21E66
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 09:12:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1658B127B45;
-	Wed, 17 Apr 2024 09:08:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E40FC12BF30;
+	Wed, 17 Apr 2024 09:12:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="Gz9pC/K1";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="eFUw+9zF"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="GT8A1lfV";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="q/UG8DAU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from wfhigh8-smtp.messagingengine.com (wfhigh8-smtp.messagingengine.com [64.147.123.159])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B341F8529D
-	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 09:08:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.159
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CBC712AAE3
+	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 09:12:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713344911; cv=none; b=n7dcjHt0zbvbO2TR09Xq25j7OKFdKmFFXrgTEJ+A6qsG1dR/2GR8NXrO9k3T8el3nv9jmSGtKuICaPsyWCRLXbLfsdDX1RHvRhT1a76DtyLggOJ2zF6EWaV6fQjzjHtGyEH5RMJ41TuOCfEe2XxsilFt60hC2qnmcRaHPWg3HLk=
+	t=1713345136; cv=none; b=oyFl0jPjI0uAV+S4kYDdIFeYZmAmBFlcXmIu7fQzTOl8O/R9UMezWeUQmYGSRxrGbpCq+M7boNYrWknW0kgREAmZuctRmuoRVRAZY4R6fS/Im00HkBjA9uoE4QpyNJvvfZmU6suBgjTYMcyS4u2WoI4AEsKY2pRH4H5gNXMYMCw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713344911; c=relaxed/simple;
-	bh=9wMPOGcMfFhs576IvQ/3eQ44FOciCioeMSGj1QMA970=;
-	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
-	 Subject:Content-Type; b=r+9Gy6VzCK38Sg6ywbQPvwz7EIzqKxGv3mhW7pj2xO/nrkKgXg0MODDgSnsNSud0V6JALwEaZuLLSw6qO9WAztrl4XVO8gY3WPVTZV2GB2Vs+1CoKS8hvPZ8XUgUpzQEw4LteVCO7Mcffxr55T83E9BfyJxiZ6rfaH5bcUm39os=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=Gz9pC/K1; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=eFUw+9zF; arc=none smtp.client-ip=64.147.123.159
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailfhigh.west.internal (Postfix) with ESMTP id 2E34D18000D1;
-	Wed, 17 Apr 2024 05:08:28 -0400 (EDT)
-Received: from imap47 ([10.202.2.97])
-  by compute5.internal (MEProxy); Wed, 17 Apr 2024 05:08:29 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-type:content-type:date:date:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm3; t=1713344907; x=
-	1713431307; bh=OEuPHp7Mhc4rHaqG5rHQ9AxcWl4mv6Ixa/oolIbFFNw=; b=G
-	z9pC/K1Ehf1HLjPxinsuFu6x94mjI0Cl/5FCeEkYwc5/qnQ1UnZ6V2jMP/zgI6WZ
-	IEpwtq7+KXQUbdlJCxncDIawRFLu7GnqNIhI/1NQ5Fsax0Bz/kBetjb9eiKaX2JY
-	JhqJyOhM8ZmoPSKMAa2NEf+M+EaKw1i6jPiyi2Abt+fuKNQOoIEnhDzcuAWJKLjc
-	n6mCw6LHPpcuw2svPhxkK2yIFhhU7ufN/yMLOF3eD8kPO0W3NuqEPCIhVXDJovBD
-	8XXiTJPBJNBwdOJ2D/eJ0iYIldIESxCJPSdbYIrNQQqgq3BXb7WK0UFbwIA4V7nD
-	7wzrXb3C1enNDv0fwxpZw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm3; t=1713344907; x=1713431307; bh=OEuPHp7Mhc4rHaqG5rHQ9AxcWl4m
-	v6Ixa/oolIbFFNw=; b=eFUw+9zFwjFhdmESbiH52HE3mOdEg+cHi69gFpZVdTK+
-	tIT2cw0KirpSbooBgUJLLNSHijdRzc7P7oYrT8VuhFfdNMwo8pNewzfuT3GtFEvT
-	mr2/Vpzp+XvRXwC6wwiFaGOAnRfv3lYIn6VCydNT59XPLX/UwtzTAGzCZ068L7yY
-	/zMD1dSTinaFwzW/RVEen/mtugA/uMyat7Q4RZ4PGAnmNeO29lC2RubJLQogOyub
-	w7LaohmvS9qtt0hwyrOvduFQsoq6lksXFq/+Xch3YH1e5CyUBY+Kqf5heMHOXQ7i
-	EMHDLpDH7Z4VvA2Af97vwB8RRcq1wRwcxDxvnYmdDw==
-X-ME-Sender: <xms:i5EfZuVDiB1AQ8pYLQ2iO6TJEwkoq3PheH1fxXAsG0Qq67tv01VfBw>
-    <xme:i5EfZqnCFnWZTJ3qx9zwvA7aAKqcDrq_Ddt0O5U-OrExDRZS6G_j6umiHKV3mFS1h
-    R2a1ENPRpGdJeK0mA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudejkedguddvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftfih
-    rghnucghrghlkhhlihhnfdcuoehrhigrnhesthgvshhtthhorghsthdrtghomheqnecugg
-    ftrfgrthhtvghrnhepveefledufeffjeefleegleeuudduieeiueduvefgudfhfeegjeeh
-    jedvieehgefgnecuffhomhgrihhnpehlihhnrghrohdrohhrghdprhgvrgguthhhvgguoh
-    gtshdrihhonecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhho
-    mheprhihrghnsehtvghsthhtohgrshhtrdgtohhm
-X-ME-Proxy: <xmx:i5EfZiYQwUbaLouARbETuoRuZwO-Rpy1VjanCEd00SIRw97EbBhuQg>
-    <xmx:i5EfZlVwobAxtbA5t6uqLa6vlpREJkCuxOtnqBdpV-qfla3L45dWuw>
-    <xmx:i5EfZon2SMCSoT3VPn85pSjHUXn9MosuReSkhFoBQKxr9H544RQynA>
-    <xmx:i5EfZqeqwgGY6ryzxkGakKh4NtW2aB6tI_igAgs0z8ohb347Ajc_tw>
-    <xmx:i5EfZhc97gpbSmwu86xkUwK7j9L7jayqlT1-pTIcH_dMnpP7iVoM1ryy>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 61F08A60079; Wed, 17 Apr 2024 05:08:27 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-379-gabd37849b7-fm-20240408.001-gabd37849
+	s=arc-20240116; t=1713345136; c=relaxed/simple;
+	bh=s+oA79rozNKbEdCS8EDNeATMYSzbbJ1tGkLt+Y+RLnQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=XFzuKB5qUImI4d2kRelv3HTJEhWqGOrTPwVSLGRvRilcFsVYRtXHE7zABsgReBEaaQCsf93O/uBk6xMTzhT+WLUYjdlgYJF+eWhpG7+W5ZGPfkiH91osdl/ehUnzqBbG+UIvm4R9RT/etFA05F/d/s0m0TGN3J7dB+VbzVbtGrw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=GT8A1lfV; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=q/UG8DAU reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1713345133; x=1744881133;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=lF4tmDu4GI9aEs4Mh8KJn0WdInCsh2CXUX6g0XK0ZGM=;
+  b=GT8A1lfVLVQeora8EyMtZf/eBu9T2N/R1zxccLZI7j0bGwCmW/InRpzV
+   ++0p97Sjb2dhSPbDbbNEXeyJie6LABQtGdg38KDVv34ZSKGAbx+UY2OPe
+   u8SqBF6GZdoUyxcdH0w9w+WU8N5XZ/klsE6U/Z+Af7aOFa1Yp82upIwaU
+   hYisIJm4Q60BOpcAMhSgOrxCtq0W9WIMP+g/0hMDgMY278xcdOpk2/6oY
+   DK4vtCECHzYEgYHjjFzxpiz3dIezJhwrOLMsvoopmHl3aZihyGojRnZ62
+   MoLqfOug+6m6Xz7T+R7T95LXIu/cwYoGaUVGjqw9pEYdAc05bGbVjrZlI
+   w==;
+X-IronPort-AV: E=Sophos;i="6.07,208,1708383600"; 
+   d="scan'208";a="36462618"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 17 Apr 2024 11:12:10 +0200
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5DD97175E76;
+	Wed, 17 Apr 2024 11:12:05 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1713345126;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=lF4tmDu4GI9aEs4Mh8KJn0WdInCsh2CXUX6g0XK0ZGM=;
+	b=q/UG8DAUHWYjq8aFI9lw09UJZzhLoumjoboCuCKudXiDrE44Z8d3zqyH4v8HNjJDZg0brZ
+	Ri6vtJnkLSwpqk4RI81pPVBmkYZnE/4sG5skRVhCat/wBJSSfAlmaicWWq3PPItaardZo3
+	ulePIBWXWlaZHlN3SoQMd8zKkNXSJyOmncaSi276iYNwI6KXitTNMb57Cha3C9FYheVc/J
+	7k2ERb/fzSvtHNn95kjHBDxAHqgBaGUHwhGYAekDElsq6IdiPnTKSLR5I5apDDQ45fVML1
+	RWvHhkNJu6x6AANS8c4GkHa94+txcxCs7ZrGMzzTVxdq1owRiD4DpHhXTrP1kg==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marex@denx.de>, Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Paul Elder <paul.elder@ideasonboard.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org, imx@lists.linux.dev, Marek Vasut <marex@denx.de>
+Subject: Re: [PATCH v2] arm64: dts: imx8mp: Align both CSI2 pixel clock
+Date: Wed, 17 Apr 2024 11:12:04 +0200
+Message-ID: <2327389.ElGaqSPkdT@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20240416141914.9375-1-marex@denx.de>
+References: <20240416141914.9375-1-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <1eb4a701-e0f2-4615-aac6-53f10f762ada@app.fastmail.com>
-In-Reply-To: <c615c0b0-3dd4-4bac-8bd5-654fd8a35d0c@linaro.org>
-References: <20240414083347.131724-2-ryan@testtoast.com>
- <20240414083347.131724-5-ryan@testtoast.com>
- <c615c0b0-3dd4-4bac-8bd5-654fd8a35d0c@linaro.org>
-Date: Wed, 17 Apr 2024 21:08:07 +1200
-From: "Ryan Walklin" <ryan@testtoast.com>
-To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
- "Andre Przywara" <andre.przywara@arm.com>, "Chen-Yu Tsai" <wens@csie.org>,
- "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Jernej Skrabec" <jernej.skrabec@gmail.com>,
- "Samuel Holland" <samuel@sholland.org>,
- "Chris Morgan" <macromorgan@hotmail.com>
-Cc: devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 2/4] arm64: dts: allwinner: h700: Add RG35XX 2024 DTS
-Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-> It does not look like you tested the DTS against bindings. Please run
-> `make dtbs_check W=1` (see
-> Documentation/devicetree/bindings/writing-schema.rst or
-> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-> for instructions).
->
-> No uppercase letters are allowed as node names.
+Am Dienstag, 16. April 2024, 16:19:10 CEST schrieb Marek Vasut:
+> Configure both CSI2 assigned-clock-rates the same way.
+> There does not seem to be any reason for keeping the
+> two CSI2 pixel clock set to different frequencies.
+>=20
+> This also reduces first CSI2 clock from overdrive mode
+> frequency which is 500 MHz down below the regular mode
+> frequency of 400 MHz.
+>=20
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
-Apologies, this was my omission.
+Apparently there is no difference when using imx415 (3840x2160) sensor.
+Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-> Node names should be generic. See also an explanation and list of
-> examples (not exhaustive) in DT specification:
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
->
-Noted, thanks.
+> ---
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Paul Elder <paul.elder@ideasonboard.com>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: imx@lists.linux.dev
+> Cc: linux-arm-kernel@lists.infradead.org
+> ---
+> V2: Align both clock to 266 MHz and update commit message
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/=
+dts/freescale/imx8mp.dtsi
+> index 1bb96e96639f2..7883f5c056f4e 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> @@ -1667,7 +1667,7 @@ mipi_csi_0: csi@32e40000 {
+>  						  <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF>;
+>  				assigned-clock-parents =3D <&clk IMX8MP_SYS_PLL2_1000M>,
+>  							 <&clk IMX8MP_CLK_24M>;
+> -				assigned-clock-rates =3D <500000000>;
+> +				assigned-clock-rates =3D <266000000>;
+>  				power-domains =3D <&media_blk_ctrl IMX8MP_MEDIABLK_PD_MIPI_CSI2_1>;
+>  				status =3D "disabled";
+> =20
+>=20
 
->> +
->> +    reg_vcc5v: vcc5v {
->
-> Use some common reasonable prefix, e.g. regulator
->
-Noted, thanks.
 
-> Please do not add dead code without explanation.
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
-Noted, thanks.
 
-Regards,
-
-Ryan
 
