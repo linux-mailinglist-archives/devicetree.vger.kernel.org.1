@@ -1,165 +1,95 @@
-Return-Path: <devicetree+bounces-59954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB52C8A7C66
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 08:38:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 447958A7C7C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 08:47:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 235181F24336
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 06:38:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 757361C22582
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 06:47:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E151F657BC;
-	Wed, 17 Apr 2024 06:38:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FB5D6A34C;
+	Wed, 17 Apr 2024 06:46:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tfQnUk7q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 003771E481;
-	Wed, 17 Apr 2024 06:38:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC5376A346;
+	Wed, 17 Apr 2024 06:46:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713335914; cv=none; b=liREv+EzzSqyqm4M/UfCsm9VJAuzFDiInD7fMbs6+pZ1IkvXIF+8lrCNQEBLbRu8mbXtED4yN/zdVYGCGCbR3VyDfrpUnNOzOEPNEqayzqkhyCmvicWSth2Pkjk/HXzuVEiJIH3Nq44z3K0ZviBljwPwufRzCwREQrTcFChjkQM=
+	t=1713336409; cv=none; b=ZCp5nTQkpyD+QRb76gKfVGWpSVKyXT1BfV5XopiW8IyCGhVSC3ihqRXrGNTBwxu4lpxjF3XjJ+s7I9VroC3r75BKApB+g1Z/mCyBrqmLV4eeg5eqTgV8pamK9Qxq8ARiDSfVnM4ZHTCpiM4c298d6J/NuLFldQhzh9yWdG/7aAk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713335914; c=relaxed/simple;
-	bh=EcOvw8+bLjtsHGYZAabB3AX78BMDNvnnVdl7iKbcCx4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q5MFEiyYGObYDbbCWhpLEG51NmqD9Dx9dcqXCqcJLh0yxIKnvRURzUBWn54vn/Ds56ur5xbCHNW5Kt2TF5Sop3TpWUV+B63GD4SJGT5do7cYvPtqidrDXeZ75tL52lnNt+eK5bsYZKP1BcqcKi3F+UGmAIh/IICBr5Hg1d8wEY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 676EC339;
-	Tue, 16 Apr 2024 23:38:58 -0700 (PDT)
-Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 703923F738;
-	Tue, 16 Apr 2024 23:38:28 -0700 (PDT)
-Date: Wed, 17 Apr 2024 07:38:25 +0100
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: Dan Carpenter <dan.carpenter@linaro.org>
-Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Dhruva Gole <d-gole@ti.com>,
-	Andy Shevchenko <andy.shevchenko@gmail.com>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Peng Fan <peng.fan@nxp.com>,
-	Oleksii Moisieiev <oleksii_moisieiev@epam.com>
-Subject: Re: [PATCH v10 0/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
- protocol basic support
-Message-ID: <Zh9uYdxgJCVSufAE@pluto>
-References: <20240415-pinctrl-scmi-v10-0-59c6e7a586ee@nxp.com>
- <6c652af8-151e-4d8b-9587-8eae1254a4fe@moroto.mountain>
+	s=arc-20240116; t=1713336409; c=relaxed/simple;
+	bh=E4q+YSo1YOEMJ7zA55hWRmGVOUH6Obv/UCTB2oZfBqw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=P5gq9dSfyD3MUwJl3utNeP/WX//YwE0ZlaWhHFd9jl7M4sO0KP1uxJZZO+KA+wqhSISKiQeAcVd3bSnkD1F7XV35ckLdU/HBHHfdPozTTwFym2ULbsf8+RjLDCjq1ib++NDIQ3GxAXQHB7BfysBcZQQ6um7WAJoW+BhWeHXa2M8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tfQnUk7q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A342EC072AA;
+	Wed, 17 Apr 2024 06:46:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713336408;
+	bh=E4q+YSo1YOEMJ7zA55hWRmGVOUH6Obv/UCTB2oZfBqw=;
+	h=From:To:Cc:Subject:Date:From;
+	b=tfQnUk7qWz2GdAqxuRNBPdZI4JKeDjq9tCJSrVgW1PceBUmMixF1+PZbVuAjbaJwQ
+	 B8rPepPMCT6B7s1jikubJE86n5hHzjLD5YRojCLfCEgdePRpSR4uF1zAIpQQ6ThITn
+	 7lJW2OJe2iTq5Fvne8ADvVroOXAxTv8Qgkn8QQBdY5FQdOvOnjZlU8AAaB/YW6fWUi
+	 ujuwvt5u1RtkXZSrAPgtvONP0IBzRrzgWk4xpnPcYyd3wn9UVqni6+DEJZQuF9DSyx
+	 k445y1M8TtJnuj9ACqbvnx+4j6pqCUePwNE+JkVMziPtBQkVSwXwMD11JY7gHl/6HP
+	 9qvfOgnu3eqEw==
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: linux-spi@vger.kernel.org
+Cc: broonie@kernel.org,
+	lorenzo.bianconi83@gmail.com,
+	linux-arm-kernel@lists.infradead.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	nbd@nbd.name,
+	john@phrozen.org,
+	dd@embedd.com,
+	catalin.marinas@arm.com,
+	will@kernel.org,
+	upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com
+Subject: [PATCH v2 0/3] Add add SPI-NAND Flash controller driver for EN7581
+Date: Wed, 17 Apr 2024 08:45:49 +0200
+Message-ID: <cover.1713335916.git.lorenzo@kernel.org>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6c652af8-151e-4d8b-9587-8eae1254a4fe@moroto.mountain>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Apr 16, 2024 at 09:20:11PM +0300, Dan Carpenter wrote:
-> I'm trying to re-base AKASHI Takahiro's gpio driver on top of your scmi
-> pinctrl driver.
-> https://lore.kernel.org/all/20231005025843.508689-1-takahiro.akashi@linaro.org/
-> I need to do something like this below to save the gpio information.
-> 
-> So now, great, I have the information but I'm not sure how to export it
-> from the scmi pinctrl driver to the gpio driver...  (This is a probably
-> a stupid question but I am real newbie with regards to gpio).
-> 
+Introduce support for SPI-NAND driver of the Airoha NAND Flash Interface
+found on Airoha ARM EN7581 SoCs.
 
-Hi Dan,
+Changes since v1:
+- Introduce spi clock dependency
 
-I dont think it is a stupid question, I'll try to answer your questions
-as much as possible, regarding the SCMI side, since I am definitely not so
-much familiar with the GPIO/Pinctrl subsystem either.
+Lorenzo Bianconi (3):
+  dt-bindings: spi: airoha: Add YAML schema for SNFI controller
+  arm64: dts: airoha: add EN7581 spi-nand node
+  spi: airoha: add SPI-NAND Flash controller driver
 
-First of all, to put things in perspective, drivers/firmware/arm_scmi/pinctrl.c
-is just the SCMI protocol layer, which as part of the core SCMI driver is in
-charge of implementing the specific protocol (i.e. building and sending
-appropriate messages via the SCMI core) and which, in turn, exposes a set of
-protocol-specific operations in scmi_protocol.h.
+ .../bindings/spi/airoha,en7581-snand.yaml     |   72 +
+ MAINTAINERS                                   |    9 +
+ arch/arm64/boot/dts/airoha/en7581.dtsi        |   21 +
+ drivers/spi/Kconfig                           |   10 +
+ drivers/spi/Makefile                          |    1 +
+ drivers/spi/spi-airoha-snfi.c                 | 1155 +++++++++++++++++
+ 6 files changed, 1268 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/spi/airoha,en7581-snand.yaml
+ create mode 100644 drivers/spi/spi-airoha-snfi.c
 
-On top of this there are the SCMI drivers (like drivers/pinctrl/pinctrl-scmi.c)
-that, on one side, plug into the SCMI stack, and as such can use the specific
-protocol_ops, and on the other side register into some custom existing Linux
-susbsystem like Pinctrl, so that it can relay generic Pinctrl related requests,
-via the above SCMI pinctrl_ops, to the platform SCMI fw (finally translated into
-SCMI messages at the protocol layer...)
+-- 
+2.44.0
 
-In all of this, note that the various protocol_ops in scmi_protocol.h are NOT
-exported symbols (would have been dozens): that is the reason why a driver
-willing to use an SCMI protocol via its specific ops, has to be, first, an SCMI
-driver so that can grab the related protocol_ops and an handle to the SCMI
-instance, during its probe phase.
-
-NOW, as far as I can remember (and have understood) AKASHI gpio-pinctrl driver
-was INSTEAD meant to be a generic GPIO driver on top of Pinctrl subsystem,
-so something that could work on top of any pinctrl controller, NOT necessarily
-an SCMI one, so, as a consequence it is NOT an SCMI driver and it cannot access
-directly any of the pinctrl_ops (existing or future), BUT it will have, instead,
-to be based on the Pinctrl subsystem API to achieve its functionalities in a generic
-manner.
-
-So at the end, AFAICU:
-
-- you collect any additional gpio info you need (and can get from the spec) at
-  the SCMI Pinctrl protocol layer in drivers/firmware/arm_scmi/pinctrl.c (as you
-  are doing)
-
-- you expose such info via pinctrl_ops: in these regards many OTHER
-  protocols usually exposes some .get_info() ops to get a generic info
-  descriptor including all info about a specific resource, BUT this is not
-  the case for pinctrl_ops, which just exposes a few custom ops to get
-  only the bits that are strictly needed (like resource names via
-  .name_get()). Here is up to you which kind of interface to expose really,
-  depending on the SCMI Pinctrl driver usage pattern. (is_gpio() ?
-  .get_gpios() ? just a new out-param in an existing ops ?)
-
-- in the SCMI pinctrl-scmi driver you can finally make use of your new
-  protocol_ops to provide to the Pinctrl subsystem the funcs needed by
-  the Pinctrl API calls as issued by the gpio-pinctrl driver....and in these
-  regards I really dont know what are the missing bits...I suppose something
-  that has to work as the SCMI backend for the pinctrl_gpio_* calls inside
-  gpio-pinctrl.
-
-> The other thing is that the SCMI spec says:
-> 
->     4.11.2.7
->     PINCTRL_SETTINGS_GET
-> 
->     This command can be used by an agent to get the pin or group
->     configuration, and the function selected to be enabled. It can also
->     be used to read the value of a pin when it is set to GPIO mode.
-> 
-> What does that mean?  Is that right, or is it something left over from a
-> previous revision of the spec.
-> 
-
-My guess is that, this is a (certainly obscure) way for the spec to
-express the fact that using this message you can get the pin/group
-selected funcs AND pin/group configs, configs, that, include the settings
-for any OEM Config type as specified in SCMI spec Table 24, which, in
-turn, contains Input-mode/Output-mode/Output-value types that I suppose
-pertain to the GPIO world.
-
-As a consequence, I guess you neeed somehow to connect the above
-pinctrl_gpio_set/get_config and pinctrl_gpio_get_direction into the
-pinctrl_ops .setting_get_one() and .settings_conf() by using the proper
-GPIO-related OEM types, not sure of the details (as said I am ignorant)
-BUT it could be that this is already handled somehow by the current
-pinctrl-scmi driver if the GPIO ranges are handled correctly throughout
-all the chain of susbsystem involved... (looking at the internals of
- https://elixir.bootlin.com/linux/latest/source/drivers/pinctrl/core.c#L912)
-...but I really not familiar on how GPIO ranges are supposed to work so
-it is better that now I shut up :D
-
-...apologies for the long email, especially if I said something already obvious.
-
-Thanks,
-Cristian
 
