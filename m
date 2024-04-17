@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-60164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C89C8A8592
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 16:08:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B50C8A859B
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 16:10:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 230AE281951
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 14:08:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DCDF51F2371B
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 14:10:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 509F01411CC;
-	Wed, 17 Apr 2024 14:08:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 935A714039D;
+	Wed, 17 Apr 2024 14:09:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZQiaEkQ5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AraSwQd3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A92C14039D;
-	Wed, 17 Apr 2024 14:07:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69CDF13A869;
+	Wed, 17 Apr 2024 14:09:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713362880; cv=none; b=iFetm3Aiw3+bLLarrzQvjO9OPxHXcrahsK54ziFLZUPHYVz3JCX24RplRJmLuD22EpcP7OBD5K4B37m+921T6YfQnDIk8KevrgCJbbdTjAnhKzEkrY9SEk+Vc9Tax/IjyQaFtePoWG5KeeeWHXx/PkzqO4DlsjrHHn/XAMmz1zo=
+	t=1713362992; cv=none; b=fyDgeGzoU6SEp4jcOyvP/YrZZzJno8EGSTCGHrTPMu18qWGzFF/+3mm/6hA9bAR9mHBKJUzFKiwHP6+9EQBdbeSLTwtG3vRE9XlK3jhm7CIwhkuCyV3Grwcx3msCZQzrfItDpLpDKEYX/UVbpaDvBCJaoVRnBzTDX2qEfKiSDiA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713362880; c=relaxed/simple;
-	bh=5hS45g5M3LFot7tByWQpyieDDMvyjOnns7f0oJIOwl8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=L46LU/Lk3tsQZ0aCc+3Bwm/KQaxfPn0ZsdL5oi86bYXTm8THcPziAlPs4ylU4qDxB9d9u3cBIp0/4zrvHnG1nWDlfIMqgLnIgezKkJfpS9T3XNF6soIjGjtokBkRony2sQOEwx58IsQ7vGALgtw+iDlgNJos3cOARPKjfzu5z5c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZQiaEkQ5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 602EEC072AA;
-	Wed, 17 Apr 2024 14:07:59 +0000 (UTC)
+	s=arc-20240116; t=1713362992; c=relaxed/simple;
+	bh=Ffi4YvLul39xQcUmuQFR79aNhxBEoyGSwfFrwm4Dr+s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IS26iAbVapNALClvWfzm6n/SlW8bqMUWuE7YZYKDRvZ0UzEAFo8RbuyQOrveu8+y3Ymq31Dn1wAmI5Hr2Y/yF5/Qv6bDbZKRIMZC/oSztcfZWW0uFuOfmZ9IlZhWYvJduk5MH/aDbMEIpSuTCo+daRYLNsjB6DH0GnOPV98Y+xw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AraSwQd3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C087CC072AA;
+	Wed, 17 Apr 2024 14:09:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713362879;
-	bh=5hS45g5M3LFot7tByWQpyieDDMvyjOnns7f0oJIOwl8=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=ZQiaEkQ5LEF9f2Mr4pZ3UqHjKtntViJumK3VVtzx2AzjVPN6leObj1i4//Ek22y5Q
-	 hZJuO9bYZtgmaweNPcZzd1AvTehpALBan7rGpnzUGjrjTpaWMXOg/+b+j4Eq+uts0T
-	 GsOtD+rRY7ucw+zQEOcfXyA0BX9eDct9O2DymevoF1mZXgIgNzJ7/ckWg6k2ZXGou9
-	 hZ6kWrHWt5dvZdUos2pbjV/Lth9cQWzwCrra09fdKP6iwPFV/PiZzPT0CRSRm4/rHY
-	 GulJAyu8ZhgPL/dCT7+0TwAKn4j/Ui8oa2uCZvLHfJ6K7zDC1LlvNkjgOHfnCNUvqF
-	 8k2C9yrBV3qYg==
-Message-ID: <f00a62c8-6f4d-4be4-800e-58898ea58490@kernel.org>
-Date: Wed, 17 Apr 2024 16:07:59 +0200
+	s=k20201202; t=1713362992;
+	bh=Ffi4YvLul39xQcUmuQFR79aNhxBEoyGSwfFrwm4Dr+s=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=AraSwQd31D+ISuyyjD07QULP8o882r3PE6nVkMLWB0cXVEDnZf5LsyvzV+yB6Pq/5
+	 yzkw+HFYNSRFGAB1k+/Tzq1mn3570HDX07+RW6VfugX+Pgu1z2t8KT/GyTxZHBGloF
+	 TNIHUmZV1pSr1L0y83W/sonYaPe06XjGlEHlHPslwpoXCCjr9xaB9GLEQeTPt8ifzb
+	 oek4gInOA9CpKKBnHceubFpw5kBW97Bel2oHyPOCdm6XgQtF3NNucSKiQLNrgeQ5Jp
+	 Vui7Ud67h6AHo8nMSPz4seTZcnw0X13AWy1tUu/bH6bhFl5XbQks5fPMccIytzuKBE
+	 PNTg/2gcIa0UA==
+Message-ID: <a9f1d643-f171-4b41-88c5-bd9bae0f8200@kernel.org>
+Date: Wed, 17 Apr 2024 16:09:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 3/7] dt-bindings: interconnect: Add Qualcomm IPQ9574
- support
-To: Varadarajan Narayanan <quic_varada@quicinc.com>, andersson@kernel.org,
- mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, konrad.dybcio@linaro.org,
- djakov@kernel.org, dmitry.baryshkov@linaro.org, quic_anusha@quicinc.com,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org
-References: <20240417105605.836705-1-quic_varada@quicinc.com>
- <20240417105605.836705-4-quic_varada@quicinc.com>
+Subject: Re: [PATCH v6 4/5] dt-bindings: rng: Add vmgenid support
+To: Babis Chalios <bchalios@amazon.es>, tytso@mit.edu, Jason@zx2c4.com,
+ olivia@selenic.com, herbert@gondor.apana.org.au, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, linux-crypto@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: sudanl@amazon.com, graf@amazon.de, xmarcalx@amazon.co.uk,
+ dwmw@amazon.co.uk, Alexander Graf <graf@amazon.com>
+References: <20240417104046.27253-1-bchalios@amazon.es>
+ <20240417104046.27253-5-bchalios@amazon.es>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,75 +104,73 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240417105605.836705-4-quic_varada@quicinc.com>
+In-Reply-To: <20240417104046.27253-5-bchalios@amazon.es>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/04/2024 12:56, Varadarajan Narayanan wrote:
-> Add interconnect-cells to clock provider so that it can be
-> used as icc provider.
+On 17/04/2024 12:40, Babis Chalios wrote:
+> Virtual Machine Generation ID driver was introduced in commit af6b54e2b5ba
+> ("virt: vmgenid: notify RNG of VM fork and supply generation ID"), as an
+> ACPI only device.
 > 
-> Add master/slave ids for Qualcomm IPQ9574 Network-On-Chip
-> interfaces. This will be used by the gcc-ipq9574 driver
-> that will for providing interconnect services using the
-> icc-clk framework.
+> VMGenID specification http://go.microsoft.com/fwlink/?LinkId=260709 defines
+> a mechanism for the BIOS/hypervisors to communicate to the virtual machine
+> that it is executed with a different configuration (e.g. snapshot execution
+> or creation from a template).
+> The guest operating system can use the notification for various purposes
+> such as re-initializing its random number generator etc.
 > 
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
-> v8:
-> Remove ICC_xxx macros
-> Fix macro defines to be consistent with other bindings
-> v7:
-> Fix macro names to be consistent with other bindings
-> v6:
-> Removed Reviewed-by: Krzysztof Kozlowski
-> Redefine the bindings such that driver and DT can share them
+> As per the specs, hypervisor should provide a globally unique identified,
+> or GUID via ACPI.
 > 
-> v3:
-> Squash Documentation/ and include/ changes into same patch
+> This patch tries to mimic the mechanism to provide the same functionality
+> which is for a hypervisor/BIOS to notify the virtual machine when it is
+> executed with a different configuration.
 > 
-> qcom,ipq9574.h
-> 	Move 'first id' to clock driver
+> As part of this support the devicetree bindings requires the hypervisors or
+> BIOS to provide a memory address which holds the GUID and an IRQ which is
+> used to notify when there is a change in the GUID.
+> The memory exposed in the DT should follow the rules defined in the
+> vmgenid spec mentioned above.
 > 
-> ---
->  .../bindings/clock/qcom,ipq9574-gcc.yaml      |  3 +
->  .../dt-bindings/interconnect/qcom,ipq9574.h   | 59 +++++++++++++++++++
->  2 files changed, 62 insertions(+)
->  create mode 100644 include/dt-bindings/interconnect/qcom,ipq9574.h
+> *Reason for this change*:
+> Chosing ACPI or devicetree is an intrinsic part of an hypervisor design.
+> Without going into details of why a hypervisor would chose DT over ACPI,
+> we would like to highlight that the hypervisors that have chose devicetree
+> and now want to make use of the vmgenid functionality cannot do so today
+> because vmgenid is an ACPI only device.
+> This forces these hypervisors to change their design which could have
+> undesirable impacts on their use-cases, test-scenarios etc.
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,ipq9574-gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,ipq9574-gcc.yaml
-> index 944a0ea79cd6..824781cbdf34 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,ipq9574-gcc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,ipq9574-gcc.yaml
-> @@ -33,6 +33,9 @@ properties:
->        - description: PCIE30 PHY3 pipe clock source
->        - description: USB3 PHY pipe clock source
->  
-> +  '#interconnect-cells':
-> +    const: 1
-> +
->  required:
->    - compatible
->    - clocks
-> diff --git a/include/dt-bindings/interconnect/qcom,ipq9574.h b/include/dt-bindings/interconnect/qcom,ipq9574.h
-> new file mode 100644
-> index 000000000000..42019335c7dd
-> --- /dev/null
-> +++ b/include/dt-bindings/interconnect/qcom,ipq9574.h
-> @@ -0,0 +1,59 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +#ifndef INTERCONNECT_QCOM_IPQ9574_H
-> +#define INTERCONNECT_QCOM_IPQ9574_H
-> +
-> +#define MASTER_ANOC_PCIE0		0
-> +#define SLAVE_ANOC_PCIE0		1
+> The point of vmgenid is to provide a mechanism to discover a GUID when
+> the execution state of a virtual machine changes and the simplest
+> way to do it is pass a memory location and an interrupt via devicetree.
+> It would complicate things unnecessarily if instead of using devicetree,
+> we try to implement a new protocol or modify other protocols to somehow
+> provide the same functionility.
+> 
+> We believe that adding a devicetree binding for vmgenid is a simpler,
+> better alternative to provide the same functionality and will allow
+> such hypervisors as mentioned above to continue using devicetree.
+> 
+> More references to vmgenid specs:
+>  - https://www.qemu.org/docs/master/specs/vmgenid.html
+>  - https://learn.microsoft.com/en-us/windows/win32/hyperv_v2/virtual-
+> machine-generation-identifier
+> 
+> Co-authored-by: Sudan Landge <sudanl@amazon.com>
+> Signed-off-by: Babis Chalios <bchalios@amazon.es>
 
-I still do not see any usage of it. At least symbol cannot be resolved.
-I assume you use the value, otherwise it would mean our entire feedback
-was ignored, but then why this cannot be searchable?
+What happened here?
 
-Again, open existing drivers and look how it is there. Not being able to
-find the constant is not good.
+NAK
+
+You are no the author of this patch. You changed here nothing and you
+took authorship?
+
+Read carefully submitting patches, this is not acceptable.
+
+
 
 Best regards,
 Krzysztof
