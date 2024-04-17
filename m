@@ -1,156 +1,189 @@
-Return-Path: <devicetree+bounces-60343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60344-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E6AD8A8E5A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 23:55:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 115EB8A8EA9
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 00:00:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FB2D1C20D7F
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 21:55:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9ED2284793
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 22:00:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC4618004A;
-	Wed, 17 Apr 2024 21:55:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57DC813B7AF;
+	Wed, 17 Apr 2024 22:00:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="R9CkucTj"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="WOraZj8S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20F3212E1DE;
-	Wed, 17 Apr 2024 21:55:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A6FD47F7C
+	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 22:00:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713390928; cv=none; b=Wa+IWGgcHn53cNMNAKxgOBQsgAHDl4CWib8cwPY/vTZ/Dg/75RrWL/B64wmR9E+hsk0mi2jbI77z9Vz48OH6ifIZOuQNh7rIjAx8GqFn3ZFtDQMfmesaYDQWUp2N8RDX5MTDzqSEl9XjrJbdDeHBR6PQeyaTPh4M7jrfXLVL99E=
+	t=1713391219; cv=none; b=cV5YccP2sT+0ZGxcIwpGGUpIz7utUy5h+ca6+FKXEmbjU+wPF2mfuk0rl0jKSZnNgek/n10WxBLWVazKsV/hsNXKDUqm6wMwwpmf4ZgpzOWvgW7pG2ccW4pOs/ZLDOhKP8ygsIe/jKoxoy4+bQBXdmOqRwqd2FIE2ysJzZj9lTs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713390928; c=relaxed/simple;
-	bh=ev4z2iRO1kF+bMaP55rRGKH6OK9Jeje9YeGmXIt+15g=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CJlFzAfQ9/cO7HZPvG35hAN0SfVWMCYKgD+FIvZwZB4jTodrMCoV1Xi7wYj/Igv8Ejbxsgj+Z9w7a2RxJMGiNMN/v8Le5/4jnTXUhP+AAvEDg8+fGHd4cQ7YFrQB77CkR2BEFohWIWCh8yJpSWhPkcBM+XRPNL2D0gBGTXXOLcA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=R9CkucTj; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43HLSujJ016011;
-	Wed, 17 Apr 2024 21:55:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=qcppdkim1; bh=TDIAnHm/ZUhSuPlUruXFm
-	A+SpAnGyjShzKLJ5rfhgtk=; b=R9CkucTjyCITUuWsyhAuUdunoCJCAiMlyGV3e
-	mGr3/PoGdVF2ayXNRRglagEmhe3daC22jhL2L2yiM7SFQM+ZJ4O5jIp5MjIl06LC
-	JKqSqDXVsvExdyllvHCfZc41Ge13iTcnsjq1ptr3RYpinYDIpCL5voD8arn7WPhz
-	++v2JF02IvloWwx3nKXLyNUDUP98IAoG+4whaRnn1a6zCt8XLsnlGBaiNnpz2sup
-	5Nz/CS1gftLURBMutCLa+CHKnml/OXgf5+mpKDsMQT5WccgwfJ73gsLV/go5Qqdo
-	KfDEvghRESRSCW731UaSqT2OxFkL5t8tsZuJGFCr1eUUZbzAA==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xj8auth2q-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 17 Apr 2024 21:55:11 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43HLsggm015445
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 17 Apr 2024 21:54:42 GMT
-Received: from hu-eberman-lv.qualcomm.com (10.49.16.6) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 17 Apr 2024 14:54:41 -0700
-Date: Wed, 17 Apr 2024 14:54:41 -0700
-From: Elliot Berman <quic_eberman@quicinc.com>
-To: Sudeep Holla <sudeep.holla@arm.com>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Andy Yan
-	<andy.yan@rock-chips.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        "Mark
- Rutland" <mark.rutland@arm.com>,
-        Bartosz Golaszewski
-	<bartosz.golaszewski@linaro.org>,
-        Satya Durga Srinivasu Prabhala
-	<quic_satyap@quicinc.com>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Shivendra Pratap <quic_spratap@quicinc.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        <linux-pm@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-Subject: Re: [PATCH v2 0/4] Implement vendor resets for PSCI SYSTEM_RESET2
-Message-ID: <20240417140957985-0700.eberman@hu-eberman-lv.qualcomm.com>
-References: <20240414-arm-psci-system_reset2-vendor-reboots-v2-0-da9a055a648f@quicinc.com>
- <Zh5GWqt2oCNHdF_h@bogus>
+	s=arc-20240116; t=1713391219; c=relaxed/simple;
+	bh=y60YK/Ker0fujTzSEW4X61Wqj5tFfBJ72FsvVhhhsmo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BxdbFK8w/pr/z4z0daB75Nixy8XE+uGoh4zklEfvsD17MxMUBYVUYwQE/5SbeTw/bogIytw44x5vUWvWoDX4J0Zz+qSAuKIXZkYaI/8X1TNPTzX7/yTFjWOuU4iuZInFkUFYM+LEc/JTBOgz36SSADryQEBMh26bPSQSOqbmJ4A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=WOraZj8S; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-6ed691fb83eso254690b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 15:00:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1713391216; x=1713996016; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=uQ2asP1T1xuvOSck++wQC9ZSwwPqaUNm6JnqVfU5CKQ=;
+        b=WOraZj8Sbz+hDwLdUooQH8nRon6s7mp3lUF3a2n46o14xuM63XMWIPmPc+Gb8lg9kv
+         UuItN69vz2It/+oBRBla2raav294ryg0MoTJFjBTR0ezGusXbPJb8ljUA0B3YXj2BbUB
+         kp4uuLSXxJGcnKPQCN62o9vinXFsR9Of7Y00RbPmPr+dc0VFESlgDmyeeKeHO3nb0Svm
+         d7jyXALVNYu172jS820gfIrg6Tdq+J4vjNboJ7FtpgoUMCc+bDSP314LRjJCoOW5JZ4/
+         CXfYShbX0y5V4yqcU/w+KE4H5uEewqSOtISzYYtI6AzLWREFoBHl0+jVUIbRf3asa220
+         l+GQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713391216; x=1713996016;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uQ2asP1T1xuvOSck++wQC9ZSwwPqaUNm6JnqVfU5CKQ=;
+        b=sXWcd0hxFdAYIugHcU7muim3b1+rBq692R6siOgfhWcgjdZTHzHYgSbIGHaHvMVNru
+         +A4ppRPELgsNt/+mtlTFubjshRyfHz1qoIxEYQlAcj/hi7+ToyXCdXNZpaXKJMhR/cEO
+         I2rhQF236x8TpOMUi0hB31q04s4e5h5NaAiXyfxGy5I9Dlo3NkMIdPDZ+jaRWbu3nLk5
+         VQyLkYsvtWBfz+FmsHUtbXG6WA5GvkiyoxUIUa2En6gKxEXbcAfdu2vYDDd/x/wPqpZn
+         KS1+bfn5f0YObzABAJLKpC1tEfbXZ4RcW360U3KqDXKvRH/3Ixw1vuIoblPiGie3BBWu
+         sHBQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXqLGW379s1UXLEGxewR1OATQzYINyWnWVNh6I+mN8tOzX7At4Rno4E/BVcrSHVjGOi1wjMNtc89UvGuomg0Vi0oIx36KySaBrVrg==
+X-Gm-Message-State: AOJu0Yxld29YWIY8/J/0G49qQuhXdXSbz+QW4Cy6QRE/fkZN6+9ZiQ1a
+	hTgGom2YkBnud5XqyhWhMKLxmxx571fh0jUTrc8x9xZUxgCO6eoT1Grlrnva7QE=
+X-Google-Smtp-Source: AGHT+IEiDU5SQjuL7+0vdKdkoS1KFGY8onYhPVJwXQzy7eXZ9mhuURRy3tq7dfxgiflxBiFa6A84tg==
+X-Received: by 2002:a05:6a21:3381:b0:1aa:6ddb:4adf with SMTP id yy1-20020a056a21338100b001aa6ddb4adfmr1271607pzb.39.1713391214298;
+        Wed, 17 Apr 2024 15:00:14 -0700 (PDT)
+Received: from ghost ([50.145.13.30])
+        by smtp.gmail.com with ESMTPSA id j18-20020a62e912000000b006e681769ee0sm151780pfh.145.2024.04.17.15.00.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Apr 2024 15:00:13 -0700 (PDT)
+Date: Wed, 17 Apr 2024 15:00:07 -0700
+From: Charlie Jenkins <charlie@rivosinc.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Evan Green <evan@rivosinc.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v2 13/17] riscv: vector: Support xtheadvector save/restore
+Message-ID: <ZiBGZ9UOpYm3Grvh@ghost>
+References: <20240415-dev-charlie-support_thead_vector_6_9-v2-0-c7d68c603268@rivosinc.com>
+ <20240415-dev-charlie-support_thead_vector_6_9-v2-13-c7d68c603268@rivosinc.com>
+ <20240417-semisweet-willed-1ce1098d8c41@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Zh5GWqt2oCNHdF_h@bogus>
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Fj2qyuwf4HChIqXQIWRk-MgKV3h44KJW
-X-Proofpoint-GUID: Fj2qyuwf4HChIqXQIWRk-MgKV3h44KJW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-17_18,2024-04-17_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
- bulkscore=0 priorityscore=1501 mlxlogscore=846 clxscore=1011 mlxscore=0
- suspectscore=0 adultscore=0 impostorscore=0 malwarescore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404170156
+In-Reply-To: <20240417-semisweet-willed-1ce1098d8c41@spud>
 
-On Tue, Apr 16, 2024 at 10:35:22AM +0100, Sudeep Holla wrote:
-> On Sun, Apr 14, 2024 at 12:30:23PM -0700, Elliot Berman wrote:
-> > The PSCI SYSTEM_RESET2 call allows vendor firmware to define additional
-> > reset types which could be mapped to the reboot argument.
-> >
-> > Setting up reboot on Qualcomm devices can be inconsistent from chipset
-> > to chipset.
+On Wed, Apr 17, 2024 at 03:50:24PM +0100, Conor Dooley wrote:
+> On Mon, Apr 15, 2024 at 09:12:10PM -0700, Charlie Jenkins wrote:
 > 
-> That doesn't sound good. Do you mean PSCI SYSTEM_RESET doesn't work as
-> expected ? Does it mean it is not conformant to the specification ?
+> > diff --git a/arch/riscv/kernel/vector.c b/arch/riscv/kernel/vector.c
+> > index 6727d1d3b8f2..f42eaa8178e9 100644
+> > --- a/arch/riscv/kernel/vector.c
+> > +++ b/arch/riscv/kernel/vector.c
+> > @@ -33,10 +33,24 @@ int riscv_v_setup_vsize(void)
+> >  {
+> >  	unsigned long this_vsize;
+> >  
+> > -	/* There are 32 vector registers with vlenb length. */
+> > -	riscv_v_enable();
+> > -	this_vsize = csr_read(CSR_VLENB) * 32;
+> > -	riscv_v_disable();
+> > +	/*
+> > +	 * This is called before alternatives have been patched so can't use
+> > +	 * riscv_has_vendor_extension_unlikely
 > 
-
-I was motivating the reason for using SYSTEM_RESET2. How to set the PMIC
-register and IMEM cookie can change between chipsets. Using
-SYSTEM_RESET2 alows us to abstract how to perform the reset.
-
-> > Generally, there is a PMIC register that gets written to
-> > decide the reboot type. There is also sometimes a cookie that can be
-> > written to indicate that the bootloader should behave differently than a
-> > regular boot. These knobs evolve over product generations and require
-> > more drivers. Qualcomm firmwares are beginning to expose vendor
-> > SYSTEM_RESET2 types to simplify driver requirements from Linux.
-> >
+> () after that function name please.
 > 
-> Why can't this be fully userspace driven ? What is the need to keep the
-> cookie in the DT ?
+> > +	 */
+> > +	if (has_xtheadvector_no_alternatives()) {
+> > +		/*
+> > +		 * Although xtheadvector states that th.vlenb exists and
+> > +		 * overlaps with the vector 1.0 vlenb, an illegal instruction is
+> > +		 * raised if read. These systems all currently have a fixed
+> > +		 * vector length of 128, so hardcode that value.
+> 
+> I had this written before the meeting, so pasting it anyway:
+> -- >8 --
+> From 5ed25d0f841e755b8dd4f1f6a3ea824601758d8e Mon Sep 17 00:00:00 2001
+> From: Conor Dooley <conor.dooley@microchip.com>
+> Date: Wed, 17 Apr 2024 14:39:36 +0100
+> Subject: [PATCH] dt-bindings: riscv: cpus: add a vlen register length property
+> 
+> Add a property analogous to the vlenb CSR so that software can detect
+> the vector length of each CPU prior to it being brought online.
+> Currently software has to assume that the vector length read from the
+> boot CPU applies to all possible CPUs. On T-Head CPUs implementing
+> pre-ratification vector, reading the th.vlenb CSR may produce an illegal
+> instruction trap, so this property is required on such systems.
+> 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> We could actually enforce the latter since we know the compatibles of
+> the relevant CPUs and can tell if xtheadvector is present.
+> ---
+>  Documentation/devicetree/bindings/riscv/cpus.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> index d067f2a468ee..2a6449a0f1d7 100644
+> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> @@ -95,6 +95,12 @@ properties:
+>      description:
+>        The blocksize in bytes for the Zicboz cache operations.
+>  
+> +  riscv,vlenb:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      VLEN/8, the vector register length in bytes. This property is required in
+> +      systems where the vector register length is not identical on all harts.
+> +
+>    # RISC-V has multiple properties for cache op block sizes as the sizes
+>    # differ between individual CBO extensions
+>    cache-op-block-size: false
+> -- 
+> 2.43.0
+> 
+> 
+> 
+> > +		 */
+> > +		this_vsize = 128;
+> > +	} else {
+> > +		/* There are 32 vector registers with vlenb length. */
+> > +		riscv_v_enable();
+> > +		this_vsize = csr_read(CSR_VLENB) * 32;
+> > +		riscv_v_disable();
+> > +	}
 
-As Dmitry pointed out, this information isn't discoverable. I suppose
-we could technically use bootconfig or kernel command-line to convey the
-map although I think devicetree is the right spot for this mapping.
+Thank you for this, I can add this patch to my v3.
 
-- Other vendor-specific bits for PSCI are described in the devicetree.
-  One example is the suspend param (e.g. the StateID) for cpu idle
-  states.
-- Describing firmware bits in the DT isn't unprecedented, and putting
-  this information outside the DT means that other OSes (besides Linux)
-  need their own way to convey this information.
-- PSCI would be the odd one out that reboot mode map is not described in
-  DT. Other reboot-mode drivers specify the mapping in the DT. Userspace
-  that runs with firmware that support vendor reset2 need to make sure
-  they can configure the mapping early enough.
-
-Thanks,
-Elliot
+- Charlie
 
 
