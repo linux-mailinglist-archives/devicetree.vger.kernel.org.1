@@ -1,172 +1,129 @@
-Return-Path: <devicetree+bounces-60197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E35D8A86C5
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 16:54:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 354CB8A86D0
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 16:58:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DBE1D287DBF
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 14:54:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 65E841C21626
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 14:58:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A80F01422AA;
-	Wed, 17 Apr 2024 14:54:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WIwLMovJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3700A145FE2;
+	Wed, 17 Apr 2024 14:57:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D0DF1420D0;
-	Wed, 17 Apr 2024 14:54:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C519E13DDC1;
+	Wed, 17 Apr 2024 14:57:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713365645; cv=none; b=o/LYWowRkjZUARZb43T7qxFpGBmJH3HHBFiLuhz6yEgnb++COWxlpdh5KqhfG5lBhNCTirmf5HAdJjbU74i7QtlUkg7CZRIAFiiXp01ZpkCw12B/ZZIx13vv0v89U1ytzYoSym62qd5TQ23mJ3lMpfM3tkGNfhCltW0oD360zbU=
+	t=1713365877; cv=none; b=byfRXjMhbt3JeCkn/qaPftjum0DbYN5tlyDtBFEVcD1qz/hIBwGKP3Ya1MvaJw6QdYAplVSBRei0UWuJzPMzgfWL8rjSye7qL7eWw/Y1eNhaM5bVm/X7urv9f5vpvNgUSyS43DcytgKSC05TWkz+t+rB1t5YgjYwLelequuYLoE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713365645; c=relaxed/simple;
-	bh=7RPukjZeREzRQeYifxWz1+LP+GxBg1xWTJAJdsC2t/k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W0DlvNuetNy/n3PaNBv9Vx+PAs6KDzFOX7NCA7Su9U18Fe11Aa6SPhKU68OqoV3C3mEzqBQNbZMhvWRcm8UqvTmL8yBbrVMEOdCfvtdWE905cfwX4/wD7KBpIddpgHNG5hAVbkO25GpyOgh6yY6qbZlA/hYxvNDoT3icybQd8mc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WIwLMovJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F11EFC32781;
-	Wed, 17 Apr 2024 14:54:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713365645;
-	bh=7RPukjZeREzRQeYifxWz1+LP+GxBg1xWTJAJdsC2t/k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WIwLMovJAc/KjZB0q7r91gFvQ9By8zffzDPKt2zIopXCNOgRS+z5UWF/60XkNHHGM
-	 H2nXO4a4yZ1lVYPUhCFDyPsAUvNzLh1UB4gskJZweclhTriS6lf3PzDWgTuXezJRRH
-	 5t2zTgpRu9ERroCtgr4/k2KrvkpOHRrG3sUsCKBXlnc7Vk7ZNJsCos+m+ArrUcRwVV
-	 /z2WtMRpV8FZlk0Letk8YWc7WyzFhQTqZOVKCnVewE+PdOHE4BwKMxBDiHKToYtyhO
-	 BnnTJH/4uxJtMcoeytc07olK4uqP3kzpHw22fFrPv4eo29IS9uKOSb4sX7nQwAGnA8
-	 u7YNzxq6MEd9A==
-Date: Wed, 17 Apr 2024 09:54:02 -0500
-From: Rob Herring <robh@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: djakov@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com,
-	broonie@kernel.org, keescook@chromium.org, gustavoars@kernel.org,
-	henryc.chen@mediatek.com, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, kernel@collabora.com,
-	wenst@chromium.org, amergnat@baylibre.com
-Subject: Re: [PATCH v2 2/7] dt-bindings: interconnect: Add MediaTek EMI
- Interconnect bindings
-Message-ID: <20240417145402.GA2355631-robh@kernel.org>
-References: <20240417091442.170505-1-angelogioacchino.delregno@collabora.com>
- <20240417091442.170505-3-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1713365877; c=relaxed/simple;
+	bh=I1oDjU2SnAvnKCZ4Fbsgj8ZqpidkDzxMQ1IMMwwKmyo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=k+e28gvKayWOVkI4Xnd+yrz/Y4gJUk5Bl5T9FlKDWiOaKsUW+BNaU5tZyyDSBLs0xSKjb+nqgrnUxA5PANmMlbfu9AFLJ5Jxg4klffbO7D5A7Eet1dmLPMUN5KH6miFIvIjuwVsSUbTdqg0jRnUHPKN2PsepVy5ZYrCYITYabkY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-617d411a6b3so48095847b3.3;
+        Wed, 17 Apr 2024 07:57:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713365874; x=1713970674;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XIB/bn0qTZ+RacTHRUBa81rylaxIuxMhSYvKeSr6kL0=;
+        b=BM9nQg4v0qu536SG20xkDX/xwLTFepr6qyYgzIPx+hEmh7cSvdfYAMQuMxHG2yp48Q
+         I9JmE6Z3Q+tb/keOWZpDf2gDQZR7Mfg1dXksewfWnk6XsbCwAm3oYdPUajZHauVT9Ewk
+         e0XQ86Ns8CcRsMtKXPlXdrAeXDREzm7fWVqJGl4vhuP4x/cQxoMiNhHnvWvszXIWgidU
+         BpLrLymavJgUVMK7184Ptnfnw60toOV0vXq3DV2tfWffDVk2wi5u6G9A0mFx0f8LsT8i
+         sr1IOJVCFa3zAi5wmyENYng+ZdndZPioJrWnFYFiwk+xJP2iifL9k3+iW5+xexmQqh9l
+         MXPA==
+X-Forwarded-Encrypted: i=1; AJvYcCXHM+gCHWd9sah2lH3JDu58RHKLCWrEpHXKFigL4NsHYF8DDLYAbBRPXIEKZsGqpmLMyQ2lSlpvVGw9Mxrg1srzSdezD1/Ofl4ASzqzE94t0yDEar4Bwm/FQ9U79Ns8LxAC3OSuJNInLAcj8GFDKBV1fuMMSwYF+qSC6F15fKa1mvt0EFxiR1jL+6RYSd4scOAION/6SwoOhMKFsY9aFTFvlrOLazfs7q6j
+X-Gm-Message-State: AOJu0YwSNFE9kkSu59qBI+bFk7wvUrVn37kyPIsuYdl0r9lz1/NohtlK
+	zSxaSfIMJM1cr4Sb9Ml33TRhxshPn6Hze6TKP3Kw1IyNReV8xpr6S0tw5cR1EJY=
+X-Google-Smtp-Source: AGHT+IGkVxy8upiWaimviWg2OxcCCFiiZWUZdHJF+PQHhbnEPy0SkTeZMsA5SVr8iQ2igTNke4uB4w==
+X-Received: by 2002:a05:690c:989:b0:61b:97c:5ffa with SMTP id ce9-20020a05690c098900b0061b097c5ffamr2039339ywb.22.1713365874009;
+        Wed, 17 Apr 2024 07:57:54 -0700 (PDT)
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
+        by smtp.gmail.com with ESMTPSA id ce11-20020a05690c098b00b0061aba26c91esm1733433ywb.97.2024.04.17.07.57.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Apr 2024 07:57:53 -0700 (PDT)
+Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-dcc7cdb3a98so5518169276.2;
+        Wed, 17 Apr 2024 07:57:53 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXqZkZGS7xaKDMNQ6JhK83/pP+YLHa0iBuXqkozvKiXfxd2WMUE8nG6PQ6rZFD+AEHq02EIJicYxaagPdqfrEpEbhAXpD903h8DETgXaKD6SZiKPfq39njBJCOjTw6aBeraM0tr6XU1GbIb6jP5Q7V/OUjVbHB9r52VDeD/BoQiHW7gDGkFOVwLCYqbtnSPIr+TpWzhyzg8U2mOm3rXfBLzF9fjo3CfeS50
+X-Received: by 2002:a25:848d:0:b0:dc2:4397:6ad3 with SMTP id
+ v13-20020a25848d000000b00dc243976ad3mr18415156ybk.44.1713365873455; Wed, 17
+ Apr 2024 07:57:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240417091442.170505-3-angelogioacchino.delregno@collabora.com>
+References: <20240322144355.878930-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240322144355.878930-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240322144355.878930-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 17 Apr 2024 16:57:41 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVT7N2GGcMbY64d5oChgZ+nh66w6-Cw_-hnhMXiN-D=wA@mail.gmail.com>
+Message-ID: <CAMuHMdVT7N2GGcMbY64d5oChgZ+nh66w6-Cw_-hnhMXiN-D=wA@mail.gmail.com>
+Subject: Re: [PATCH v4 4/5] dt-bindings: serial: Add documentation for Renesas
+ RZ/V2H(P) (R9A09G057) SCIF support
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-serial@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Apr 17, 2024 at 11:14:37AM +0200, AngeloGioacchino Del Regno wrote:
-> Add bindings for the MediaTek External Memory Interface Interconnect,
-> which providers support system bandwidth requirements through Dynamic
-> Voltage Frequency Scaling Resource Collector (DVFSRC) hardware.
-> 
-> This adds bindings for MediaTek MT8183 and MT8195 SoCs.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+On Fri, Mar 22, 2024 at 3:45=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
+om> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Document support for the Serial Communication Interface with FIFO (SCIF)
+> available in the Renesas RZ/V2H(P) (R9A09G057) SoC. The SCIF interface in
+> the Renesas RZ/V2H(P) is similar to that available in the RZ/G2L
+> (R9A07G044) SoC, with the following differences:
+>
+> - RZ/V2H(P) SoC has three additional interrupts: one for Tx end/Rx ready
+>   and two for Rx and Tx buffer full, all of which are edge-triggered.
+> - RZ/V2H(P) supports asynchronous mode, whereas RZ/G2L supports both
+>   synchronous and asynchronous modes.
+> - There are differences in the configuration of certain registers such
+>   as SCSMR, SCFCR, and SCSPTR between the two SoCs.
+>
+> To handle these differences in the driver, a new SoC-specific compatible
+> string is added, ensuring proper handling of the unique features and
+> register configurations of the RZ/V2H(P) SoC.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > ---
->  .../interconnect/mediatek,mt8183-emi.yaml     | 76 +++++++++++++++++++
->  .../interconnect/mediatek,mt8183.h            | 23 ++++++
->  .../interconnect/mediatek,mt8195.h            | 44 +++++++++++
->  3 files changed, 143 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interconnect/mediatek,mt8183-emi.yaml
->  create mode 100644 include/dt-bindings/interconnect/mediatek,mt8183.h
->  create mode 100644 include/dt-bindings/interconnect/mediatek,mt8195.h
-> 
-> diff --git a/Documentation/devicetree/bindings/interconnect/mediatek,mt8183-emi.yaml b/Documentation/devicetree/bindings/interconnect/mediatek,mt8183-emi.yaml
-> new file mode 100644
-> index 000000000000..3ad60fd21f83
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interconnect/mediatek,mt8183-emi.yaml
-> @@ -0,0 +1,76 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interconnect/mediatek,mt8183-emi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek External Memory Interface (EMI) Interconnect
-> +
-> +maintainers:
-> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> +
-> +description: |
-> +  EMI interconnect providers support system bandwidth requirements through
-> +  Dynamic Voltage Frequency Scaling Resource Collector (DVFSRC) hardware.
-> +  The provider is able to communicate with the DVFSRC through Secure Monitor
-> +  Call (SMC).
-> +
-> +             ICC provider         ICC Nodes
-> +                              ----          ----
-> +             _________       |CPU |   |--- |VPU |
-> +    _____   |         |-----  ----    |     ----
-> +   |     |->|  DRAM   |       ----    |     ----
-> +   |DRAM |->|scheduler|----- |GPU |   |--- |DISP|
-> +   |     |->|  (EMI)  |       ----    |     ----
-> +   |_____|->|_________|---.   -----   |     ----
-> +               /|\         `-|MMSYS|--|--- |VDEC|
-> +                |             -----   |     ----
-> +                |                     |     ----
-> +                | change DRAM freq    |--- |VENC|
-> +             --------                 |     ----
-> +    SMC --> | DVFSRC |                |     ----
-> +             --------                 |--- |IMG |
-> +                                      |     ----
-> +                                      |     ----
-> +                                      |--- |CAM |
-> +                                            ----
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt8183-emi
-> +      - mediatek,mt8195-emi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#interconnect-cells':
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - '#interconnect-cells'
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interconnect/mediatek,mt8195.h>
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        system-controller@10012000 {
-> +            compatible = "mediatek,mt8195-dvfsrc";
-> +            reg = <0 0x10012000 0 0x1000>;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            emi_icc: interconnect@1 {
-> +                compatible = "mediatek,mt8195-emi";
-> +                reg = <1>;
-> +                #interconnect-cells = <1>;
+> v3->v4
+> - Appended the interrupts instead of adding SoC specific
+> - Added restriction for clocks and reset
 
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-There's not really any need for this node. Just put #interconnect-cells 
-in the parent.
+Gr{oetje,eeting}s,
 
-Rob
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
