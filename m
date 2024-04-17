@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-60120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D6238A83ED
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 15:12:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D1698A8404
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 15:16:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 656D91F24FDB
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 13:12:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A1ECD1F25B35
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 13:16:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1583313F429;
-	Wed, 17 Apr 2024 13:12:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C5BA13D60E;
+	Wed, 17 Apr 2024 13:16:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WWPyUSti"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qpf1ADhB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D515D13F01A;
-	Wed, 17 Apr 2024 13:12:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DA2913D2A9;
+	Wed, 17 Apr 2024 13:16:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713359527; cv=none; b=DAHfepebwGRbZexIvY5LyTkRS5ecKiNUcVBeBfzPcMQN3poekRFhD+pee4hIeni9SguL/jqjMmfWpTe8MWVsV9e51g9WV6V+6NBoQF0MEiHIHiRd/P024PkZ5umuq+TfwYGSpD08VvFyOdmRCZh0oOBv5fG2wWZwmAKIdwl3yyA=
+	t=1713359770; cv=none; b=XzZ5RTyJPqhkpwKiUHSWsi29N9yAHypbcWBvr7veucU1wlseXP8iWFEIRRZU65uyQgZQjSlcJk554ze77mrqaOa4gABX5lhW1+9/XhFbXiM4caVtMebZpWD2I+7LjLXHDjvY5J4UCErbHHGzFEDUNC4lRKxrhwlkr/iF8E6rr5g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713359527; c=relaxed/simple;
-	bh=kPWeSFcFPXFuvbJls+Y5yQfrhQbbBP7OBjl0oczt/VE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=rwd+CWvyM2l4TwHn9vjxVzOZNHNT4DW5Am79x4dlHwFQ9e2KUU+QAQcyJLKvRFhPV68ZFJkcxHQu1KJdNFNItvYEUtf0q60YL/0ChRcopmOO1ZUOiWSsp8wZg4kZ6MrExHR6e7er/+o7SXeOZdwriVDD+s/Uiqu6fD/ij1tNMKM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WWPyUSti; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A2C7C072AA;
-	Wed, 17 Apr 2024 13:12:06 +0000 (UTC)
+	s=arc-20240116; t=1713359770; c=relaxed/simple;
+	bh=R6TC7JKYD0DDcZkU4htGYhkt/HbLeZov03taEWMCGGk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Lu2yYmOBa+m6qy3F1edOEdL4Z32G/Txlc/DyTY1aFPm5aklkCHwniHaJOXCNU9ljrsLhaYAsBMSfiUDUwu7SWL/8I0OqEKa3pKOMwKuCIiOHtAoroYQ6L5fdE31qcWDbDzw9ef/ydhubhaWGks+jDXMOHVAHbvv/Z+0Aeq5IQls=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qpf1ADhB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7513CC072AA;
+	Wed, 17 Apr 2024 13:16:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713359526;
-	bh=kPWeSFcFPXFuvbJls+Y5yQfrhQbbBP7OBjl0oczt/VE=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=WWPyUStiBszPszoPQtDdb0CNNl6hDRgPB23WqyudxCveub9vZbpjPJFAGDQ1Ap16b
-	 cUw27pQGYZFbQAinWJLDBNp737tukgjG6n+jC3suxq2kvvDdBu09I0AEvSeDBTMOzy
-	 rOs40M0g7kD/RlKZAu8S2arsv3Xvj2okMcVKDheLh9N1Cjo0Apw0u82vuM559bnDnU
-	 KGeJTO2JIQOZ1t8Nvjz2SWHm1LNR+RUlFxe4b+wTT/UFyYnWXJubjSJhcCsByqTtMD
-	 hpP2s6MP/kYD9NOsuK4fhriN7YiNAaMpzj3ixUafqS9GEGJH3J4rcPXmoUjmrLCvdN
-	 bs9qax2NrsJ6w==
-Message-ID: <150d467e-3ea6-40fb-8ddf-21d678b150d1@kernel.org>
-Date: Wed, 17 Apr 2024 15:12:05 +0200
+	s=k20201202; t=1713359769;
+	bh=R6TC7JKYD0DDcZkU4htGYhkt/HbLeZov03taEWMCGGk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Qpf1ADhBtA7bNAlMqu+AgwZKKGQrbXSjtXX+AhkTeX/5VKNNqbgFEi44cFcGd2pxq
+	 klv0KhgosfVzwVoz7k2cFU1ll4PItQNYxrBQ5M273dqPCOUSgny3xaz9tGg2Gi59nZ
+	 prMyU/eSAK3VK9/bSw/aQ3spOtUjss8Jnsi4uyBUBMxnUR7XqkY4pc+Kupila+JAwJ
+	 5PDQPTRKyfS+ilwHWuaT2Xs6OFXq4loUdM0iX0BdOlowXX6dLATQ2hvIwMeTo6Pfh6
+	 c34+/XTHXsC0SL/WaJoodjMAGmIO9W+lmDm2Mp97pXwMwhqT1VVyrnu8sFHG/c0hBD
+	 10Ri82M6cubhw==
+Message-ID: <71006589-c725-481d-be99-7ca1857d1e33@kernel.org>
+Date: Wed, 17 Apr 2024 15:16:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: net/nfc: ti,trf7970a: Add
- rx-gain-reduction option
-To: Paul Geurts <paul_geurts@live.nl>, mgreer@animalcreek.com,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, robh@kernel.org, conor+dt@kernel.org,
- linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+Subject: Re: [PATCH v5 4/5] dt-bindings: rng: Add vmgenid support
+To: Babis Chalios <bchalios@amazon.es>, tytso@mit.edu, Jason@zx2c4.com,
+ olivia@selenic.com, herbert@gondor.apana.org.au, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, linux-crypto@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <cover.1713305374.git.paul_geurts@live.nl>
- <AM0PR09MB267553535F7A85EA639D739C95082@AM0PR09MB2675.eurprd09.prod.outlook.com>
+Cc: sudanl@amazon.com, graf@amazon.de, xmarcalx@amazon.co.uk,
+ dwmw@amazon.co.uk
+References: <20240417081212.99657-1-bchalios@amazon.es>
+ <20240417081212.99657-5-bchalios@amazon.es>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,40 +104,33 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <AM0PR09MB267553535F7A85EA639D739C95082@AM0PR09MB2675.eurprd09.prod.outlook.com>
+In-Reply-To: <20240417081212.99657-5-bchalios@amazon.es>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/04/2024 00:18, Paul Geurts wrote:
-> Add option to reduce the RX antenna gain to be able to reduce the
-> sensitivity.
+On 17/04/2024 10:12, Babis Chalios wrote:
+> From: Sudan Landge <sudanl@amazon.com>
 > 
-> Signed-off-by: Paul Geurts <paul_geurts@live.nl>
-> ---
->  Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+> Virtual Machine Generation ID driver was introduced in commit af6b54e2b5ba
+> ("virt: vmgenid: notify RNG of VM fork and supply generation ID"), as an
+> ACPI only device.
 > 
-> diff --git a/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml b/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml
-> index d0332eb76ad2..bbd045f6cf04 100644
-> --- a/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml
-> +++ b/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml
-> @@ -55,6 +55,11 @@ properties:
->      description: |
->        Regulator for supply voltage to VIN pin
->  
-> +  rx-gain-reduction:
 
-Missing vendor prefix.
+This is a friendly reminder during the review process.
 
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
+It looks like you received a tag and forgot to add it.
 
-Do not need '|' unless you need to preserve formatting.
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
 
-> +      Specify a RX gain reduction to reduce antenna sensitivity.
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
 
-Reduction by what? What are the units?
-
+If a tag was not added on purpose, please state why and what changed.
 
 Best regards,
 Krzysztof
