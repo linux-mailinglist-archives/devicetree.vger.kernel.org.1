@@ -1,54 +1,48 @@
-Return-Path: <devicetree+bounces-60218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60164-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0829E8A879B
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 17:30:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C89C8A8592
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 16:08:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7CD02829BE
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 15:30:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 230AE281951
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 14:08:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 392BA147C60;
-	Wed, 17 Apr 2024 15:30:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 509F01411CC;
+	Wed, 17 Apr 2024 14:08:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="z4k6Q+0y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZQiaEkQ5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1A1B1474DB
-	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 15:30:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A92C14039D;
+	Wed, 17 Apr 2024 14:07:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713367841; cv=none; b=CqG+yUV866olpgIcEow405Vvs66CRzemjINSXURG/wfXsHXYgslR9lEmau+uHtDyli8Td+VrbaGHL0sTwTWaEONoS7SsLtZKyqIqcRQa4GJzfcPECe5JhIiQkWRobbMQBJXgHLPykotPzsrQtn7Wv39ziV9FBKK1prANVsz0EsE=
+	t=1713362880; cv=none; b=iFetm3Aiw3+bLLarrzQvjO9OPxHXcrahsK54ziFLZUPHYVz3JCX24RplRJmLuD22EpcP7OBD5K4B37m+921T6YfQnDIk8KevrgCJbbdTjAnhKzEkrY9SEk+Vc9Tax/IjyQaFtePoWG5KeeeWHXx/PkzqO4DlsjrHHn/XAMmz1zo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713367841; c=relaxed/simple;
-	bh=8L9FWH/LHbEyj85WryAl1y2Vb4mXu+cGmOWVxsOrNHo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=O8iZ8JXONbAV0Gj2zCSLLxbHkwpxkOLzEmooXKrwoEIXdVx1+sgaF8bHx9bn9IKCgWFCzJoVg0qTwwEsqrRF2dVf7IxpeiezQ9bCKLe003MwPTqwkPtCYND6wejHDpeC9xuIc581AbjAqwDVP5HtV9RXfQih9rCCdR8exnxdIeA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=z4k6Q+0y; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 138CD8841D;
-	Wed, 17 Apr 2024 17:30:29 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1713367830;
-	bh=1KtpGSfLviXFz3BNKiwi3I/lwFR3Jar+xTmmX6ZHb3g=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=z4k6Q+0yfGx/89jLtjQJ0Kedqp1V3qyJ8JPo8sjpHVXt40Sq+EYKXWEkoZXvS95B+
-	 50C/96VROErYpWOgXyt9Lx4zrnDlAmiChVPwWCSvbvjZP3Dl0qxhYwG6PVxGXXf8Lw
-	 2JMBXRGLDfSaH4zMM7o04EqwPZOOIbCCrKIzMw8R6nZ1ZNtz2/Em3lytVgZZpw8spp
-	 sjYLRQyOG2gLKCc+IcrKoThUoTR1U/vRWraDKCPDt3D/oShmJ8+F9oWv8PeGm+kKNQ
-	 nrEaPK3bnf7XFLDtEWeipa9npHo1d+wgvU8Chp1DI2295XPxQg/KCgaRS9BnDjkhaV
-	 VOp4+8J5wtSkQ==
-Message-ID: <b9147e01-4759-44c6-9588-6151ae2ff113@denx.de>
-Date: Wed, 17 Apr 2024 13:06:31 +0200
+	s=arc-20240116; t=1713362880; c=relaxed/simple;
+	bh=5hS45g5M3LFot7tByWQpyieDDMvyjOnns7f0oJIOwl8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=L46LU/Lk3tsQZ0aCc+3Bwm/KQaxfPn0ZsdL5oi86bYXTm8THcPziAlPs4ylU4qDxB9d9u3cBIp0/4zrvHnG1nWDlfIMqgLnIgezKkJfpS9T3XNF6soIjGjtokBkRony2sQOEwx58IsQ7vGALgtw+iDlgNJos3cOARPKjfzu5z5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZQiaEkQ5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 602EEC072AA;
+	Wed, 17 Apr 2024 14:07:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713362879;
+	bh=5hS45g5M3LFot7tByWQpyieDDMvyjOnns7f0oJIOwl8=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=ZQiaEkQ5LEF9f2Mr4pZ3UqHjKtntViJumK3VVtzx2AzjVPN6leObj1i4//Ek22y5Q
+	 hZJuO9bYZtgmaweNPcZzd1AvTehpALBan7rGpnzUGjrjTpaWMXOg/+b+j4Eq+uts0T
+	 GsOtD+rRY7ucw+zQEOcfXyA0BX9eDct9O2DymevoF1mZXgIgNzJ7/ckWg6k2ZXGou9
+	 hZ6kWrHWt5dvZdUos2pbjV/Lth9cQWzwCrra09fdKP6iwPFV/PiZzPT0CRSRm4/rHY
+	 GulJAyu8ZhgPL/dCT7+0TwAKn4j/Ui8oa2uCZvLHfJ6K7zDC1LlvNkjgOHfnCNUvqF
+	 8k2C9yrBV3qYg==
+Message-ID: <f00a62c8-6f4d-4be4-800e-58898ea58490@kernel.org>
+Date: Wed, 17 Apr 2024 16:07:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,45 +50,133 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: imx8mp: Align both CSI2 pixel clock
-To: Ahmad Fatoum <a.fatoum@pengutronix.de>,
- linux-arm-kernel@lists.infradead.org
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Paul Elder <paul.elder@ideasonboard.com>, imx@lists.linux.dev,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Shawn Guo <shawnguo@kernel.org>
-References: <20240416141914.9375-1-marex@denx.de>
- <352388ee-a267-4c1f-b968-e1a7709d46ea@pengutronix.de>
- <6872097d-b1c8-40c0-8392-28c351dad3dc@pengutronix.de>
+Subject: Re: [PATCH v8 3/7] dt-bindings: interconnect: Add Qualcomm IPQ9574
+ support
+To: Varadarajan Narayanan <quic_varada@quicinc.com>, andersson@kernel.org,
+ mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, konrad.dybcio@linaro.org,
+ djakov@kernel.org, dmitry.baryshkov@linaro.org, quic_anusha@quicinc.com,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org
+References: <20240417105605.836705-1-quic_varada@quicinc.com>
+ <20240417105605.836705-4-quic_varada@quicinc.com>
 Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <6872097d-b1c8-40c0-8392-28c351dad3dc@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240417105605.836705-4-quic_varada@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
 
-On 4/17/24 12:17 PM, Ahmad Fatoum wrote:
-> On 17.04.24 12:14, Ahmad Fatoum wrote:
->> On 16.04.24 16:19, Marek Vasut wrote:
->>> Configure both CSI2 assigned-clock-rates the same way.
->>> There does not seem to be any reason for keeping the
->>> two CSI2 pixel clock set to different frequencies.
->>>
->>> This also reduces first CSI2 clock from overdrive mode
->>> frequency which is 500 MHz down below the regular mode
->>> frequency of 400 MHz.
->>>
->>> Signed-off-by: Marek Vasut <marex@denx.de>
->>
->> Reviewed-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+On 17/04/2024 12:56, Varadarajan Narayanan wrote:
+> Add interconnect-cells to clock provider so that it can be
+> used as icc provider.
 > 
-> I see now that the node has a clock-frequency = <500000000>; still.
-> This should be lowered too, shouldn't it?
+> Add master/slave ids for Qualcomm IPQ9574 Network-On-Chip
+> interfaces. This will be used by the gcc-ipq9574 driver
+> that will for providing interconnect services using the
+> icc-clk framework.
+> 
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> ---
+> v8:
+> Remove ICC_xxx macros
+> Fix macro defines to be consistent with other bindings
+> v7:
+> Fix macro names to be consistent with other bindings
+> v6:
+> Removed Reviewed-by: Krzysztof Kozlowski
+> Redefine the bindings such that driver and DT can share them
+> 
+> v3:
+> Squash Documentation/ and include/ changes into same patch
+> 
+> qcom,ipq9574.h
+> 	Move 'first id' to clock driver
+> 
+> ---
+>  .../bindings/clock/qcom,ipq9574-gcc.yaml      |  3 +
+>  .../dt-bindings/interconnect/qcom,ipq9574.h   | 59 +++++++++++++++++++
+>  2 files changed, 62 insertions(+)
+>  create mode 100644 include/dt-bindings/interconnect/qcom,ipq9574.h
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,ipq9574-gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,ipq9574-gcc.yaml
+> index 944a0ea79cd6..824781cbdf34 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,ipq9574-gcc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,ipq9574-gcc.yaml
+> @@ -33,6 +33,9 @@ properties:
+>        - description: PCIE30 PHY3 pipe clock source
+>        - description: USB3 PHY pipe clock source
+>  
+> +  '#interconnect-cells':
+> +    const: 1
+> +
+>  required:
+>    - compatible
+>    - clocks
+> diff --git a/include/dt-bindings/interconnect/qcom,ipq9574.h b/include/dt-bindings/interconnect/qcom,ipq9574.h
+> new file mode 100644
+> index 000000000000..42019335c7dd
+> --- /dev/null
+> +++ b/include/dt-bindings/interconnect/qcom,ipq9574.h
+> @@ -0,0 +1,59 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +#ifndef INTERCONNECT_QCOM_IPQ9574_H
+> +#define INTERCONNECT_QCOM_IPQ9574_H
+> +
+> +#define MASTER_ANOC_PCIE0		0
+> +#define SLAVE_ANOC_PCIE0		1
 
-Oh, right, good catch.
+I still do not see any usage of it. At least symbol cannot be resolved.
+I assume you use the value, otherwise it would mean our entire feedback
+was ignored, but then why this cannot be searchable?
+
+Again, open existing drivers and look how it is there. Not being able to
+find the constant is not good.
+
+Best regards,
+Krzysztof
+
 
