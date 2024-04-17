@@ -1,366 +1,292 @@
-Return-Path: <devicetree+bounces-60112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B19FA8A82EB
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 14:12:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9CFA8A82F7
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 14:16:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C9BA1F21A26
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 12:12:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D36E28396F
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 12:16:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 374EF13D24E;
-	Wed, 17 Apr 2024 12:12:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66FEE13D293;
+	Wed, 17 Apr 2024 12:16:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HfjzBj7u"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="FHDHk7nr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR01-HE1-obe.outbound.protection.outlook.com (mail-he1eur01on2049.outbound.protection.outlook.com [40.107.13.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AC6913D245;
-	Wed, 17 Apr 2024 12:12:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713355975; cv=none; b=BwNeFHrklVdgN3mdXp/m0hSuNevjjpGSP6X2tOsr+9T4/MR3GI5TS48itL22iwWELBr5t2WbuNKVOcOfaFu7qTSrfzQUs6LledjCks1JjbZQNsRxbTVvrSrVBNK8QYhhVJrRkFoXBN7XlFRf01hH1BTLSmy0iQOpNyFArCbUf4g=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713355975; c=relaxed/simple;
-	bh=HrZpYSTsoC4ix4EpnTAb47aPRg1jX1QDOboBvCgUWeI=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=CHCVs916ik0d8H0o8HigQACi/9Lh6exx2rFZ49SClbd/W1mM19QLBQ8SUlh37XEHa+tQnguMhqBZh39XaPn8c/RSGez26ZIgBQghJDD5VudDob4mlWTeZwFyeka34RC1pxS5+BpIcllgzkaolQovZ7GYJ5Rde8gipX5rotJYADI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HfjzBj7u; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-416a8ec0239so4689365e9.0;
-        Wed, 17 Apr 2024 05:12:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713355971; x=1713960771; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=HrZpYSTsoC4ix4EpnTAb47aPRg1jX1QDOboBvCgUWeI=;
-        b=HfjzBj7uYh4jhpTEEk6ge3FeynYUzCIlfo+ERSwghI0QYNfnWe+DhwdBnFkK5OmaQS
-         xY8A9zwj39s1h1IS50H5XzOzc7KharXnD4AZUAe9X5jp7V0fdhqxQYBRapotaNjrqNBT
-         UgXMwjdMn0E/3jsnquW5egd5x7P4kvZ7mBYfAzTG1wBxE6tpG9lVuUqJQQOJfg9JT5bL
-         xEApHYX9rLnaPQnIOtww/yqk/f3PrFcO7iTlvH39ELXTUjOgkJKHjpHNKDet0JbD2OKQ
-         bj4u29L0XquwRxwiVbr0am1JRVoaOWTdrWnvYEaRjAoZYi201XokvlGySsJMtwo2chte
-         uJLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713355971; x=1713960771;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HrZpYSTsoC4ix4EpnTAb47aPRg1jX1QDOboBvCgUWeI=;
-        b=k4Fb+NhfRgedjt1ZDBODlsdpJO3i79EEywCpEBovqazSM5MsEb/1jrHaA2TFzInCJE
-         IqC9+s0CoTUq5r46h8AC9rav++thHaTnx8vtPkujjSUI0/9fpHmbUtVITdpkLFb5F96e
-         tlTsdieL4eZCR4cQt58b5SZNVY7aPx45akY606CAhZqcTZMUZ+FbRAlhb0+ytwcbW0gF
-         MKUK7m2e+HjxF8p37fOFG1BgN4lhcBR0WLazUHMPzNMo/1/Np8H6IihK30KSy8CFoPTF
-         9dFKOnhPBjJBzrzbggdgv8o2rvP8xvPhDpmD6sxDTaiTyuN2kF82DEuiDy1aOa7+N6/O
-         6k5g==
-X-Forwarded-Encrypted: i=1; AJvYcCVe/ocGO2wA145KGQvxT30tOUL255TLYwp1SOdSvTZ7hjxGcDVecvFTJlVhtFrSccR/ZQn5AZ/eAwyz2ZgnER2ZU4KHEvdeJ3WcZ+ocrG3Hv5DpzDGyHxjH5keuffbIlJK46ZfzuNvTWrBbom2w3/bGS2etNU1nApBxuvSv52vNGg==
-X-Gm-Message-State: AOJu0YwKNlfsbKcr4vvxfXAzQxgIXH7194GFhKmMBik+94u8qLoYdyWS
-	8xmTVbwGE3VwVvLjKgnuBo7WFJBzyaMG5o3njt0dVYx3ubLpniFO
-X-Google-Smtp-Source: AGHT+IHSLygSTkmUK8kxFK7/Y0W8n7WxJu8sNlhyt+B+fUCRZxXO7GbTQJ3brmq96IFuBDfw86LBsw==
-X-Received: by 2002:a05:600c:1d09:b0:417:d347:ac68 with SMTP id l9-20020a05600c1d0900b00417d347ac68mr4178655wms.17.1713355971267;
-        Wed, 17 Apr 2024 05:12:51 -0700 (PDT)
-Received: from ?IPv6:2001:8a0:e622:f700:abb8:8caf:bab6:45a3? ([2001:8a0:e622:f700:abb8:8caf:bab6:45a3])
-        by smtp.gmail.com with ESMTPSA id n26-20020a05600c3b9a00b00418a2ce884bsm2632187wms.32.2024.04.17.05.12.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Apr 2024 05:12:50 -0700 (PDT)
-Message-ID: <ae7a78f5e3258e5e1e0cd1515a50c2c9c0ce1edf.camel@gmail.com>
-Subject: Re: [PATCH v1] arm64: dts: imx8mm: fix missing pgc_vpu_* power
- domain parent
-From: Vitor Soares <ivitro@gmail.com>
-To: Lucas Stach <l.stach@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,  Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>
-Cc: Vitor Soares <vitor.soares@toradex.com>, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Date: Wed, 17 Apr 2024 13:12:44 +0100
-In-Reply-To: <47cd522d09fbfb4cce7d1d82e6657b6b21fa04d7.camel@pengutronix.de>
-References: <20240409085802.290439-1-ivitro@gmail.com>
-	 <9ce35b9bb5a15891f6bd01bd54b7dc84b3ba4021.camel@pengutronix.de>
-	 <e1552a3008a30ef7ed9097b4b80cda23ccb9e840.camel@gmail.com>
-	 <fcd6acc268b8642371cf289149b2b1c3e90c7f45.camel@pengutronix.de>
-	 <bd4d7198e58bd89b46a4c721546f6975b287a5fc.camel@gmail.com>
-	 <c76d98a300a9d65d236d334da62916a7d658ef27.camel@gmail.com>
-	 <564fa534b32f4a6e96da6752f531fc7447ec633d.camel@gmail.com>
-	 <c064940ba46449b540a3cba14ebab96d31ba19de.camel@gmail.com>
-	 <47cd522d09fbfb4cce7d1d82e6657b6b21fa04d7.camel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93CE813D265;
+	Wed, 17 Apr 2024 12:16:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.13.49
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713356164; cv=fail; b=oRtwMErkGRlxRBMYQ9uQatptcf3b/7IOq8vWYeoDxSef5BzT3c/D2hXZWyw072Hm/I3bKq5NFJ7FCl41f4+fpx9jwCo1YoTrst5YOFxrEUlUDnTwATgzQ8k3wC2RJo/AA7pYvZ/8v+pSDTYamNbML8mXnYwg03GcI0nlezPWFb8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713356164; c=relaxed/simple;
+	bh=Dudj6X1fFg/euOFDnBrDEQLJPYVa/bBFo/YkyLPuQSQ=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=WBCjB+sGxKOLuzoLXckxG1+e+bOEW/G3syxd1vQknLvXdYARMRj1zAyfDbOWSYePh5vb9opO/y+Tpz88Oi0sHohGOe87BtyVGfLlYQ0wIKfE2G06wYOIKPgEhdRw6vAobdNoDeD6rEzT3w9z91Wmk48Jxb7jkx+dF8JCG+Gn/VU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=FHDHk7nr; arc=fail smtp.client-ip=40.107.13.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JNSwXHAjZlNN7y1LJQs9WWFnQpcoPnBb5xumLwBlIYrwrkIyfc2baEkCoYw4TW2VJG9LLH9DvK2OE5P9jiGiyX9pBiVa3bX5jrmNJlRhIkhkOLFEjgLUmW/HVfhVsGVRQtJp6lxyyswfT0IP8fTPhcWXYSLdO6Ufa0wfo30TvkRvxY3aNSIAvYoqjC45imvOcq3PkW7DbCZrsNKy4baIUyByjDVtMhkG5qObGolnBAk5lrA3s8r3nxFp/c/6+flikQ5CXbDopt+dbGi7oS4IQBGvgeUVw7Syu3psUmZ0XU4zQmWwsBHLnNxwFGak4gLq5/r4QB7+/enNmWOW9vQFaw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vqnUi3So4h7wNlu6U+OhyqfqIMWKGurdVXS/PzRXS9E=;
+ b=k73v5yk7doMK7nZ34ArFK5r3v1nl5wv//6umQQEjX1RXEkVW7o7Y+fV7EtPWG8EOQFDd422Ey6EuvHwoHpj9BoOpXx8sEM+CG+ypLGs44ZhI5iZxm4rY54zE6czMDFw4bhU0f0BuyMh/KKF2ccaB2EbSv5GbnbOs8r/Gih8e5Zc4YyT5QDFvP9kFfnz/ocwbPQ1dDvslJLLWXatNqfaDXE52PbzrEtkxfGT6z/SmS1n8wZePae7eT7p76FEoV3/Szkeg5WiE2gtTd6q2gijxFZBxgfqy+9mFsBwcthK6nLeTtPiSEClxD77b1TR93ISGPt3De8nVabn93DyyEQ+vKA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vqnUi3So4h7wNlu6U+OhyqfqIMWKGurdVXS/PzRXS9E=;
+ b=FHDHk7nrhP9+/B4FqmMZcZqngDzA43U+NBBayF7AnWGwNHo+Y5zAt/MVpoemk9EZZNl0hJ0G57D/Ho3Mqe61orvoXon6CZ5ICZxT3tkQOPaq+wWORj5KAjw+v7UtzFq13B9O3fNawu7k58adw9a7DGenD1v5GuQFYRKpWO2mKG8=
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by DB9PR04MB9773.eurprd04.prod.outlook.com (2603:10a6:10:4ed::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.50; Wed, 17 Apr
+ 2024 12:15:57 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::d30b:44e7:e78e:662d]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::d30b:44e7:e78e:662d%4]) with mapi id 15.20.7452.049; Wed, 17 Apr 2024
+ 12:15:57 +0000
+From: Peng Fan <peng.fan@nxp.com>
+To: Dan Carpenter <dan.carpenter@linaro.org>, "Peng Fan (OSS)"
+	<peng.fan@oss.nxp.com>, Cristian Marussi <cristian.marussi@arm.com>, Linus
+ Walleij <linus.walleij@linaro.org>
+CC: Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Dhruva Gole <d-gole@ti.com>, Andy Shevchenko
+	<andy.shevchenko@gmail.com>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-gpio@vger.kernel.org"
+	<linux-gpio@vger.kernel.org>, Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+Subject: RE: [PATCH v10 0/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
+ protocol basic support
+Thread-Topic: [PATCH v10 0/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
+ protocol basic support
+Thread-Index: AQHajxDlnYbGicEx0kmgH54RWsBtKLFrN06AgAErjYA=
+Date: Wed, 17 Apr 2024 12:15:57 +0000
+Message-ID:
+ <DU0PR04MB941737BD9ACF18526D8A50C7880F2@DU0PR04MB9417.eurprd04.prod.outlook.com>
+References: <20240415-pinctrl-scmi-v10-0-59c6e7a586ee@nxp.com>
+ <6c652af8-151e-4d8b-9587-8eae1254a4fe@moroto.mountain>
+In-Reply-To: <6c652af8-151e-4d8b-9587-8eae1254a4fe@moroto.mountain>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|DB9PR04MB9773:EE_
+x-ms-office365-filtering-correlation-id: 4e6b2793-3aea-47f8-0489-08dc5ed8231a
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ MCgszVmteO+L2Lg3eXSVy8zO9EAGWS7vm5wu67R/xXaJO2ShR+dKfwh4qUk8yV/RT+fOai5frTXy7rN8t+2/7xS+HEvA7O035G6Nz7mKmZvVfDKbQwiY9jg9nr/YqMfCYaJpL2b4g2I56LfiWiYSmICGjLHUn0wkTh+AlFdVAtp93JXPkNiPG4l8zeUfAr60zmyAJWzlhLyhcXoOO6CCooaOB5AQkfWYMi8spKIVmt5fYZ+cP9bEm6LNc2AIOCP/Ks3VvIkjC2p47BSayBU9oUYvn/+h4EraGYC+CiwIzvY0bpwOs1aw9FDQoBH6Sp5C3CWpk/MIHK6AnEAYKlKIPeqAMldUbL/GN2rCfnJKjgorPcgacJkWWrzX1dS8GfHakEwwJFSELqTGBj7e+JPYrmwnojM0ufN8ZRObO5J+Ox0mSUR3KpfPrIX0xy27P41d1WUlYoif9JyH+R2whVoNaYInesipVqcWg70UXvPYGnSbjDKPdUNvv9kK4qhi/KLIROVUrQBCOoTfic1hJ6QKhwexjfP1Q2x0agn36sgzEbOYFWxOp+IZuB5MLrp2V661qeIsDWj2xAZjZ0jJbvDOpMKSqkF7MmUG2lZ1c7W8stqXb+vufQWqiVDVpv9dMF/vzbnOkhFZgJUUlGkzs/TMOJJaHaSjDkD4YNmQ+FmXTIk=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(1800799015)(366007)(376005)(38070700009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?7+6TBeo2jRam/X2nbTp10iXWibRkr9dK12KMuFUJCZYUx2Bp6D3jsZC/lMes?=
+ =?us-ascii?Q?EHSCQwmfOEKupnhAXDAPE+h87BXYD/ggw8pgFESJsTfFz/ueYUahN7YNIMlk?=
+ =?us-ascii?Q?qunBpRm/9ESVDn71jvoYQSEz5Skw36ZNyKtRHJQWy0MMMpdB/MuQk7E5NvXh?=
+ =?us-ascii?Q?b18Fy0UlSszHPcQExMegcsHnOR5PSBCPNqBiruc9j3QjBVD/anTDMBl4BFUv?=
+ =?us-ascii?Q?dOFmrPODHBgY9937/Q4r/aTdh97t/lDdxYVvpPoFKqSf+TKJRyRZv7eYSzMV?=
+ =?us-ascii?Q?oTJxb4BiRcQ9Vm4qvRA5mg9rq+zJ5bzkplG5nnsRRqSgHLxcyholC32xQuJO?=
+ =?us-ascii?Q?pb1aLOFUgC/yMD2Dc9KhFoTby0G88zjaW1nUEoSYH888z4nxprtTEqmG+g+G?=
+ =?us-ascii?Q?uHTZkBOiHWuTRX3rKx2ZuWV1/lZvT1E2nNmFbB9zL/U0hSrNNY+Zc1PQ2rU4?=
+ =?us-ascii?Q?S3umOF60TZ1od3Lr69S4ag8xbxWlas7gXmhyYTSaxfBnZQZyuMv3QL6UzH9K?=
+ =?us-ascii?Q?jYq8AsccxlHiZOZ/EZWlkd3djnDCijaCGh/b2WKpIhPUon8OKK+FAXE2ofwF?=
+ =?us-ascii?Q?w2xT6p4M/r5eQUWrrHWeLY0qu/CuVMxAPd55YAnZp6zu0ipabxHE8BhfoHeT?=
+ =?us-ascii?Q?6qrrI2oTFZsl8O4dSYhOqJ2zfycIlUgUQxqdM9iKEbDzzZCA4jVbCfVrhAiH?=
+ =?us-ascii?Q?7l6Ya2ElJwfX3gd31r5J5XZ784T7fBS+j9XWhydc0H3oioTNNT/fxrj6Xzxm?=
+ =?us-ascii?Q?4jdKkS9KXD9ipT412W/nkEe2vhGPwMSQsz9TTJD6EgM1LIhNOv4dIpQUrfIg?=
+ =?us-ascii?Q?1dkeEJpemGblUNzOuluFn2BezAH9UeQ3If+yXAahc7zDoF/3caHoGil2oDer?=
+ =?us-ascii?Q?oCZWxpSGvwv4bcmXmSatg5NkP256vnm0T0tWNt4AefV58orELBgsoi0dGuvk?=
+ =?us-ascii?Q?rgzycuv24lGqmcG6Kht/+HhJnnTCQyg1VvsZ0Sudh83w+Ylyudt0k1yDAG75?=
+ =?us-ascii?Q?EtDyDlUXSgAnA9JpNiC3TBqRM1SYXFnmDGRURA1fPd6T5tv7O4/+0arB+YsQ?=
+ =?us-ascii?Q?Wtrcb5YyBhsOJxYtrUFAbJzK1RZB0IV+eRguj26OFDp7jkgRN7ZQvgLEAUUk?=
+ =?us-ascii?Q?cYWHujGHKcHNjAP73mPr7BkrVjEjC3nbDvCDDNCVdPBm+6edFTNxwkMsYQJ7?=
+ =?us-ascii?Q?SoDlkegRTjle3KjvcdHFCu1pw3d2QzJRiVAuVnZTfuNF7n/8zfx0NOfcNOnI?=
+ =?us-ascii?Q?Jxs4ya/R9CambUwgvcopKdO84xPBgmuuGfWpuf5oLcHoZ8XNQSPHV7/yUPMx?=
+ =?us-ascii?Q?j1xJokKd7EWeJPuWprJ3bbNCCMy0iwIbTGRJ8Ar9RamFDdMTfaaAG+x/f6cn?=
+ =?us-ascii?Q?3eoCST2by/kv3VGZZGLBktLghr+c6DiJ9r6uGCyP6YsItB/1/UTInOUS3mJY?=
+ =?us-ascii?Q?HFgVtPEBPNMVZI0OUa7E/YiQW5xFiTAMbXkKLL/O8yTRyWsdWwq1bfQc6YpE?=
+ =?us-ascii?Q?veS4U5TcFH8xTjmJvo2qxH0WmeoGooOlWrQ3VFxZbecMyLCT0+rvbO8ZUf/u?=
+ =?us-ascii?Q?PFgZzs0OAfzCmVBUq44=3D?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4-0ubuntu2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4e6b2793-3aea-47f8-0489-08dc5ed8231a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Apr 2024 12:15:57.4468
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: FZx7KkcTqSHJ37ZHSwwtTzm6JDnrCrCtVCd/fP1atUhbBcI+lA9nef0Tfuqk5cPD26oQMletCCPVhxalC4pNLA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9773
 
-Hi Lucas,
+Hi Dan,
 
-On Wed, 2024-04-17 at 10:00 +0200, Lucas Stach wrote:
-> Hi Vitor,
->=20
-> Am Dienstag, dem 16.04.2024 um 17:08 +0100 schrieb Vitor Soares:
-> > On Tue, 2024-04-16 at 11:53 +0100, Vitor Soares wrote:
-> > > ++ Peng Fan <peng.fan@nxp.com>
-> > >=20
-> > > Greetings,
-> > >=20
-> > >=20
-> > > On Wed, 2024-04-10 at 12:01 +0100, Vitor Soares wrote:
-> > > > Hi Lucas,
-> > > >=20
-> > > > On Tue, 2024-04-09 at 17:44 +0100, Vitor Soares wrote:
-> > > > > On Tue, 2024-04-09 at 16:36 +0200, Lucas Stach wrote:
-> > > > > > Am Dienstag, dem 09.04.2024 um 14:22 +0100 schrieb Vitor Soares=
-:
-> > > > > > > Hi Lucas,
-> > > > > > >=20
-> > > > > > > Thanks for your feedback.
-> > > > > > >=20
-> > > > > > > On Tue, 2024-04-09 at 11:13 +0200, Lucas Stach wrote:
-> > > > > > > > Hi Vitor,
-> > > > > > > >=20
-> > > > > > > > Am Dienstag, dem 09.04.2024 um 09:58 +0100 schrieb Vitor
-> > > > > > > > Soares:
-> > > > > > > > > From: Vitor Soares <vitor.soares@toradex.com>
-> > > > > > > > >=20
-> > > > > > > > > The pgc_vpu_* nodes miss the reference to the power domai=
-n
-> > > > > > > > > parent,
-> > > > > > > > > leading the system to hang during the resume.
-> > > > > > > > >=20
-> > > > > > > > This change is not correct. The vpumix domain is controlled
-> > > > > > > > through
-> > > > > > > > the
-> > > > > > > > imx8mm-vpu-blk-ctrl and must not be directly triggered by t=
-he
-> > > > > > > > child
-> > > > > > > > domains in order to guarantee proper power sequencing.
-> > > > > > > >=20
-> > > > > > > > If the sequencing is incorrect for resume, it needs to be
-> > > > > > > > fixed
-> > > > > > > > in
-> > > > > > > > the
-> > > > > > > > blk-ctrl driver. I'll happily assist if you have any
-> > > > > > > > questions
-> > > > > > > > about
-> > > > > > > > this intricate mix between GPC and blk-ctrl hardware/driver=
-s.
-> > > > > > > =C2=A0
-> > > > > > > I'm new into the topic, so I tried to follow same approach as
-> > > > > > > in
-> > > > > > > imx8mp
-> > > > > > > DT.
-> > > > > > >=20
-> > > > > > That's a good hint, the 8MP VPU GPC node additions missed my
-> > > > > > radar.
-> > > > > > The
-> > > > > > direct dependency there between the GPC domains is equally wron=
-g.
-> > > > > >=20
-> > > > > > > I also checked the imx8mq DT and it only have one domain for
-> > > > > > > the
-> > > > > > > VPU in the GPC. It seem blk-ctrl also dependes on pgc_vpu_* t=
-o
-> > > > > > > work
-> > > > > > > properly.
-> > > > > > >=20
-> > > > > > > The blk-ctrl driver hangs on imx8m_blk_ctrl_power_on() when
-> > > > > > > access
-> > > > > > > the
-> > > > > > > ip registers for the soft reset. I tried to power-up the befo=
-re
-> > > > > > > the
-> > > > > > > soft reset, but it didn't work.
-> > > > > > >=20
-> > > > > > The runtime_pm_get_sync() at the start of that function should
-> > > > > > ensure
-> > > > > > that bus GPC domain aka vpumix is powered up. Can you check if
-> > > > > > that
-> > > > > > is
-> > > > > > happening?
-> > > > >=20
-> > > > > I checked bc->bus_power_dev->power.runtime_status and it is
-> > > > > RPM_ACTIVE.
-> > > > >=20
-> > > > > Am I looking to on the right thing? It is RPM_ACTIVE event before
-> > > > > runtime_pm_get_sync().
-> > > >=20
-> > > > During the probe I can see that
-> > > > bus_power_dev->power.runtime_status =3D RPM_SUSPENDED and then vpum=
-ix
-> > > > is
-> > > > powered up on GPC driver.
-> > > >=20
-> > > > On resume routine I can't see this flow. bus_power_dev-
-> > > > > power.runtime_status =3D RPM_ACTIVE and vpumix end up not being
-> > > > > powered-
-> > > > up.
-> > > >=20
-> > > > I checked the suspend flow and the GPC tries to poweroff vpumix.
-> > > >=20
-> > > >=20
-> > >=20
-> > > My understanding is that when resuming the 38310000.video-codec, the
-> > > vpumix isn't powered up. It happens because runtime_status and
-> > > runtime_last_status =3D RPM_ACTIVE.=20
-> > >=20
-> > > I tried to change blk-ctrl suspend routine to force the runtime_statu=
-s
-> > > =3D RPM_SUSPENDED, but the system ended up hanging on another device.
-> > >=20
-> > > From the comment in blk-ctrl suspend, we rely on PM_SLEEP code that
-> > > iterates over dpm_list for suspend/resume.
-> > > I did look at the dpm_list, and it changes the order on every boot.=
-=20
-> > >=20
-> > > With all the tests, I also found that the system randomly hangs on
-> > > dispblk-lcdif suspend. I have confirmed this device is in a different
-> > > place in the dpm_list (not sure if it is the root cause).=20
-> > > I haven't understood how blk-ctrl ensures the correct order there yet=
-.=20
-> > >=20
-> Random order of the DPM list seems like a good find to investigate
-> further.
->=20
-> > > Taking the following dpm_list excerpt:
-> > > idx - device
-> > > ------------------------------
-> > > ...=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > > 191 - imx-pgc-domain.7=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0
-> > > 192 - imx-pgc-domain.8=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0
-> > > 193 - imx-pgc-domain.9=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0
-> > > 194 - 38330000.blk-ctrl=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0
-> > > 195 - 38310000.video-codec=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > > 196 - 38300000.video-codec=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > > ...
-> > > 205 - genpd:0:38330000.blk-ctrl
-> > > 206 - genpd:1:38330000.blk-ctrl
-> > > 207 - genpd:2:38330000.blk-ctrl
-> > > 208 - genpd:3:38330000.blk-ctrl
-> > > ------------------------------
-> > >=20
-> > > Shouldn't genpd devices be before 38330000.blk-ctrl?
-> > > As their power domain is GPC and the blk-ctrl power domain is genpd.
-> > >=20
-> >=20
-> > I did the following change to have genpd device before 38330000.blk-ctr=
-l
-> > on dpm_list and it did work.
-> >=20
-> > diff --git a/drivers/pmdomain/imx/imx8m-blk-ctrl.c b/drivers/pmdomain/i=
-mx/imx8m-blk-ctrl.c
-> > index ca942d7929c2..0f1471dcd4e8 100644
-> > --- a/drivers/pmdomain/imx/imx8m-blk-ctrl.c
-> > +++ b/drivers/pmdomain/imx/imx8m-blk-ctrl.c
-> > @@ -220,6 +220,7 @@ static int imx8m_blk_ctrl_probe(struct platform_dev=
-ice *pdev)
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 retur=
-n dev_err_probe(dev, PTR_ERR(bc->bus_power_dev),
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "failed to attach power domai=
-n \"bus\"\n");
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 device_move(dev, bc->bus_power_de=
-v, DPM_ORDER_PARENT_BEFORE_DEV);
-> > =C2=A0
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 for (i =3D 0; i < bc_data->n=
-um_domains; i++) {
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 const struct imx8m_blk_ctrl_domain_data *data =3D &bc=
-_data->domains[i];
-> > @@ -268,6 +269,7 @@ static int imx8m_blk_ctrl_probe(struct platform_dev=
-ice *pdev)
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 data->gpc_name);
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 goto =
-cleanup_pds;
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 }
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 device_move(dev, domain->power_dev, DPM_ORDER_PARENT_BEFORE=
-_DEV);
-> > =C2=A0
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 domain->genpd.name =3D data->name;
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 domain->genpd.power_on =3D imx8m_blk_ctrl_power_on;
-> >=20
-> > any concern about this approach?
-> >=20
-> I'm a bit uncomfortable with calling such a low-level function from
-> this driver. Also we don't really want to move the device to a new
-> parent, but just want to ensure proper order on the dpm list. Adding a
-> device_link between the devices seems like the better way to do so.
+> Subject: Re: [PATCH v10 0/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
+> protocol basic support
+>
+> I'm trying to re-base AKASHI Takahiro's gpio driver on top of your scmi p=
+inctrl
+> driver.
+> https://lore.ke/
+> rnel.org%2Fall%2F20231005025843.508689-1-
+> takahiro.akashi%40linaro.org%2F&data=3D05%7C02%7Cpeng.fan%40nxp.com%
+> 7C342dd6eb0463456d0d6608dc5e41de1c%7C686ea1d3bc2b4c6fa92cd99c5
+> c301635%7C0%7C0%7C638488884186606528%7CUnknown%7CTWFpbGZs
+> b3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn
+> 0%3D%7C0%7C%7C%7C&sdata=3DDMJZ2uwuJigkEnEcY7JdBw6DMPjHxcUvvh7
+> 2fsaep50%3D&reserved=3D0
+> I need to do something like this below to save the gpio information.
+>
+> So now, great, I have the information but I'm not sure how to export it f=
+rom
+> the scmi pinctrl driver to the gpio driver...  (This is a probably a stup=
+id
+> question but I am real newbie with regards to gpio).
+>
+> The other thing is that the SCMI spec says:
+>
+>     4.11.2.7
+>     PINCTRL_SETTINGS_GET
+>
+>     This command can be used by an agent to get the pin or group
+>     configuration, and the function selected to be enabled. It can also
+>     be used to read the value of a pin when it is set to GPIO mode.
+>
+> What does that mean?  Is that right, or is it something left over from a
+> previous revision of the spec.
+>
+> regards,
+> dan carpenter
+>
+> diff --git a/drivers/firmware/arm_scmi/pinctrl.c
+> b/drivers/firmware/arm_scmi/pinctrl.c
 
-Thanks for your feedback.
+Just a short question, you will make this a standalone
+patch part of your gpio pinctrl patchset, right?
 
-I have tested with device_link_add() and it is working. I will prepare a ne=
-w patch with this change.
+Or you wanna include this change in my v11 patch?
 
-Best regards,
-Vitor Soares
->=20
-> Regards,
-> Lucas
->=20
-> > Best regards,
-> > Vitor Soares
-> > >=20
-> > > >=20
-> > > > >=20
-> > > > >=20
-> > > > > >=20
-> > > > > > Regards,
-> > > > > > Lucas
-> > > > > >=20
-> > > > > > > Do you have an idea how we can address this within blk-ctrl?
-> > > > > > >=20
-> > > > > > > Best regards,
-> > > > > > > Vitor
-> > > > >=20
-> > > >=20
-> > >=20
-> >=20
->=20
+I hope v11 + imx oem patches could land in 6.10,
+so I would not expect big changes to v11.
 
+Thanks,
+Peng.
+
+> index a2a7f880d6a3..f803be8a223f 100644
+> --- a/drivers/firmware/arm_scmi/pinctrl.c
+> +++ b/drivers/firmware/arm_scmi/pinctrl.c
+> @@ -26,6 +26,7 @@
+>  #define GET_PINS_NR(x)               le32_get_bits((x), GENMASK(15, 0))
+>  #define GET_FUNCTIONS_NR(x)  le32_get_bits((x), GENMASK(15, 0))
+>
+> +#define IS_GPIO_FUNC(x)              le32_get_bits((x), BIT(17))
+>  #define EXT_NAME_FLAG(x)     le32_get_bits((x), BIT(31))
+>  #define NUM_ELEMS(x)         le32_get_bits((x), GENMASK(15, 0))
+>
+> @@ -107,6 +108,7 @@ struct scmi_group_info {  struct scmi_function_info {
+>       char name[SCMI_MAX_STR_SIZE];
+>       bool present;
+> +     bool gpio;
+>       u32 *groups;
+>       u32 nr_groups;
+>  };
+> @@ -189,7 +191,7 @@ static int scmi_pinctrl_validate_id(const struct
+> scmi_protocol_handle *ph,
+>
+>  static int scmi_pinctrl_attributes(const struct scmi_protocol_handle *ph=
+,
+>                                  enum scmi_pinctrl_selector_type type,
+> -                                u32 selector, char *name,
+> +                                u32 selector, char *name, bool *gpio,
+>                                  u32 *n_elems)
+>  {
+>       int ret;
+> @@ -216,17 +218,20 @@ static int scmi_pinctrl_attributes(const struct
+> scmi_protocol_handle *ph,
+>       tx->flags =3D cpu_to_le32(type);
+>
+>       ret =3D ph->xops->do_xfer(ph, t);
+> -     if (!ret) {
+> -             if (n_elems)
+> -                     *n_elems =3D NUM_ELEMS(rx->attributes);
+> +     if (ret)
+> +             goto xfer_put;
+>
+> -             strscpy(name, rx->name, SCMI_SHORT_NAME_MAX_SIZE);
+> +     if (n_elems)
+> +             *n_elems =3D NUM_ELEMS(rx->attributes);
+>
+> -             ext_name_flag =3D !!EXT_NAME_FLAG(rx->attributes);
+> -     }
+> +     if (type =3D=3D FUNCTION_TYPE && gpio)
+> +             *gpio =3D !!IS_GPIO_FUNC(rx->attributes);
+>
+> -     ph->xops->xfer_put(ph, t);
+> +     strscpy(name, rx->name, SCMI_SHORT_NAME_MAX_SIZE);
+> +     ext_name_flag =3D !!EXT_NAME_FLAG(rx->attributes);
+>
+> +xfer_put:
+> +     ph->xops->xfer_put(ph, t);
+>       if (ret)
+>               return ret;
+>       /*
+> @@ -602,7 +607,7 @@ static int scmi_pinctrl_get_group_info(const struct
+> scmi_protocol_handle *ph,
+>       int ret;
+>
+>       ret =3D scmi_pinctrl_attributes(ph, GROUP_TYPE, selector, group-
+> >name,
+> -                                   &group->nr_pins);
+> +                                   NULL, &group->nr_pins);
+>       if (ret)
+>               return ret;
+>
+> @@ -687,7 +692,7 @@ static int scmi_pinctrl_get_function_info(const struc=
+t
+> scmi_protocol_handle *ph,
+>       int ret;
+>
+>       ret =3D scmi_pinctrl_attributes(ph, FUNCTION_TYPE, selector, func-
+> >name,
+> -                                   &func->nr_groups);
+> +                                   &func->gpio, &func->nr_groups);
+>       if (ret)
+>               return ret;
+>
+> @@ -778,7 +783,8 @@ static int scmi_pinctrl_get_pin_info(const struct
+> scmi_protocol_handle *ph,
+>       if (!pin)
+>               return -EINVAL;
+>
+> -     ret =3D scmi_pinctrl_attributes(ph, PIN_TYPE, selector, pin->name,
+> NULL);
+> +     ret =3D scmi_pinctrl_attributes(ph, PIN_TYPE, selector, pin->name,
+> NULL,
+> +                                   NULL);
+>       if (ret)
+>               return ret;
+>
 
