@@ -1,132 +1,118 @@
-Return-Path: <devicetree+bounces-59946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 572558A7BFC
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 07:57:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54AF28A7C06
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 08:03:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11F0B281C06
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 05:57:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0FED52829CB
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 06:03:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4C404EB5F;
-	Wed, 17 Apr 2024 05:57:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5306D5339F;
+	Wed, 17 Apr 2024 06:03:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oyQdX9OS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r1Y1CQib"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 347A9537ED
-	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 05:57:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B2D42209B;
+	Wed, 17 Apr 2024 06:03:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713333459; cv=none; b=BPXq9d6OU9jBQ1OeLfWoD5+uHg4pUHP5H/dH/NVMjZjtRRsfwLdqwtJJNcV9m317B1+R5ERp/FjNjjvCRKc7OibD+6gJpqOXbzxwC9WhRO3Bv62Xjh38YEqipBnv901bW1I35+R+qw/9LpcXoO2UgKnITYWRFTxycZY6ERs3obs=
+	t=1713333826; cv=none; b=FYUKP2so5Z79Dqs82qP1jkRQUkXbuwMKLAhRBN/MkIxxoON0NxgTtGwLXcIxgaGDW9XIzAR9SNKkmVZj5pS9N7sOOoznwx6Zj9JPnR99A0OGKzjJYLhc4ePEPIeBJkTlmJA+/7pkEkzr0rZ6i+YuLeAMbyMjKkJwpS3bM+x6v8U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713333459; c=relaxed/simple;
-	bh=+37MR6MdJMZsDizwLtZ66hNEIJ8H6WWiH+pKyVxVm+M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HrRrD2qLIu3ZrfDh2CGf0IPC6coYK9pGxqoZH2qfTskMbEVB/Tl3qQPT0nqu7Je+9Blo1zRXH/BQFpOLAM/ofgotp8eGaRMdWMLilDyMF1CeMV3Fe9Y5dp80FCb8UDbboiClAFtwZ2JShkfWEj5BR3FcdUQXmrtPrIE3qM0TF+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oyQdX9OS; arc=none smtp.client-ip=209.85.219.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-ddaebc9d6c9so4747093276.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 22:57:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713333457; x=1713938257; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=rNcOWvfk3UIO9gpF1vedzWy9UX8ITuyEtwuAcYcPDTE=;
-        b=oyQdX9OS3XwnqqvnV9Yo5QzeRKhxYMDPUxT8GAWmyl7Vow1SDMP3lKiOKPzpQmx7C+
-         Ehkv+9pV8OUT82mLXxi2+8j/v4BwYw8NSv1zpMjzJiZkKhIf0vIRrtxPfouMvB3otU/D
-         9ZgZiVh/yNkx6H4q5x3Ve8M/G8H48/lWzEIzWIg28P5H5dlyKmqOKsL5gKsQstQ3mF9z
-         HjKa7XNBr9DpEtUfUazLaIJ+LMhSrDO0MO8GDeHZ4Wx2yTNXQ4VCvPJ0nbTs6a9MnvYG
-         J3ITMn8MWPj/vaLGVmfpmnv9fSOGCBqOAaf3NsuH8T0+zRyo4BWKcLF1I0MEjIsTTRfc
-         gg/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713333457; x=1713938257;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rNcOWvfk3UIO9gpF1vedzWy9UX8ITuyEtwuAcYcPDTE=;
-        b=e9Uuj1DMeaIIbfjUOf1QQL6nKXbzBqj5RLaDx8G4PltBhYTClq2b/82M9kz5rL3fvd
-         gyFKkafLGZky7CZ1LNzALOm3jNv0h41qy7l4Ti+mE2xOnl2vsEt2+OkxxHbMbc0JlWYX
-         +xnQ7amkVZb55BQ6b7xS4EM/NvOAN4LO+2CfCEGC3WeLMZc0lgYRoOjSwaatYU12GZgv
-         POGxAEHl2ZhYsR9S5rnQ4s9thRnGjyfC5Y0n1VI7fyMbueG+DRArWWchPnAoVlGWuFlY
-         cIvBS5i7Rq6Uy0PUp1B34Rh2e+nwPpMw0JjeCcLnKd//Pe4yQkDJQO2M7TkcG4oxn0cU
-         zRMQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVtkgkUHbPQWEjPlYjLI+X+QFu6G9oRvSu1QrGwlPiIyDSwhMatjmvYRX13GMffpccIPahfAo99UkHVue2nAoLtXP9gRliuJI2Qpg==
-X-Gm-Message-State: AOJu0YxvDqrbj0sEYVv/lE8c99KWtTLK0riFqw46+VYA5g8a1bX2jo1a
-	fH77vD/BpZajUDeWopnv943YzscAw8TB38oNR2tRa/NW/OTF9QInyftUil1IF177wGLUiDaevPQ
-	Q/sfEN8bNj656mmGEODe4UdvtnWYmGhesmxdvGQ==
-X-Google-Smtp-Source: AGHT+IFvUyY4VR6NF7RdZCvXFlEENeC2C1SHZuye8tqXC6fIwkIUmwR3VOt9Upi8bmgYZVnv+2wX6k4TBDNDViUqr10=
-X-Received: by 2002:a25:81ce:0:b0:dcc:245b:690e with SMTP id
- n14-20020a2581ce000000b00dcc245b690emr8017444ybm.40.1713333457167; Tue, 16
- Apr 2024 22:57:37 -0700 (PDT)
+	s=arc-20240116; t=1713333826; c=relaxed/simple;
+	bh=+Eq3FWKGrjqS7seNZKXEpLlxTviRiT6+OZ9xQJRqG4U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OWuhKfyxkxNJIZzYx9aduBXWAGPVVdxNPFSlakuE4CIuRtdjBlSgc9FR+T+Ii20ohH5Hsz6o3Fi167dgyahStD5rvOx4D9WVJdK8s3kcnOQIp2ks2HQodXQ+8P3JWeMAmnud272wkLnFkTBYVUCLJ5/Xh7pN99F92EPEUvr+yuo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r1Y1CQib; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC58CC072AA;
+	Wed, 17 Apr 2024 06:03:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713333825;
+	bh=+Eq3FWKGrjqS7seNZKXEpLlxTviRiT6+OZ9xQJRqG4U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=r1Y1CQibHTdcudeq5dwRUa2vqa/wiYnKE6l4s7SxAT9G3vk5VhpLBiKTYvFBMhJeP
+	 K8tGsbHguWZi1NE4p0IymTKorSlCRAz86GUra+tCkGeVW/LfGIzdzDm3tpePhvBjZn
+	 4x67S+iZcpUHPVcAH03gFvPsIYznEGerpBYt+SQl4Oo/SvQCPzh8H1rwqaQgWKy+rm
+	 w5hfRMrDxD5sRn9UZW0xOhUJkkvub4lJYOd3DU4Acj4WDSaenNL2RKiWDBE9wJ5n/3
+	 8ekXq+wxbUqdoKd7QVf8HsvFbahBuA0TUGx4KvLfXVnnMizJ75ZnDllOJpQz5O8K2A
+	 qC/e9wFfzWBQA==
+Date: Wed, 17 Apr 2024 09:02:36 +0300
+From: Mike Rapoport <rppt@kernel.org>
+To: skseofh@gmail.com
+Cc: robh@kernel.org, saravanak@google.com, akpm@linux-foundation.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mm@kvack.org, Daero Lee <daero_le.lee@samsung.com>
+Subject: Re: [PATCH v2] memblock: add no-map alloc functions
+Message-ID: <Zh9l_LpThq9aFUR7@kernel.org>
+References: <linux-mm@kvack.org>
+ <20240416120635.361838-1-skseofh@gmail.com>
+ <20240416120635.361838-2-skseofh@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240415115603.1523974-1-github.com@herrie.org> <20240417045207.3594931-1-github.com@herrie.org>
-In-Reply-To: <20240417045207.3594931-1-github.com@herrie.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 17 Apr 2024 08:57:26 +0300
-Message-ID: <CAA8EJpo=nd8ywUzz2e42p7WAyuFm439yvNf6H=MD63LCV0xTnw@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: phy: qcom,usb-hs-phy: Add compatible
-To: Herman van Hazendonk <github.com@herrie.org>
-Cc: andersson@kernel.org, benwolsieffer@gmail.com, chris.chapuis@gmail.com, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org, kishon@kernel.org, 
-	konrad.dybcio@linaro.org, krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, me@herrie.org, 
-	robh@kernel.org, vkoul@kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240416120635.361838-2-skseofh@gmail.com>
 
-On Wed, 17 Apr 2024 at 07:52, Herman van Hazendonk
-<github.com@herrie.org> wrote:
->
-> Adds qcom,usb-hs-phy-msm8660 compatible
->
-> Used by HP Touchpad (tenderloin) for example.
->
-> Signed-off-by: Herman van Hazendonk <github.com@herrie.org>
-> ---
->  Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
-> index f042d6af1594..ccf23170cd17 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
-> @@ -15,6 +15,7 @@ if:
->        contains:
->          enum:
->            - qcom,usb-hs-phy-apq8064
-> +          - qcom,usb-hs-phy-msm8660
->            - qcom,usb-hs-phy-msm8960
->  then:
->    properties:
-> @@ -41,6 +42,7 @@ properties:
->        - enum:
->            - qcom,usb-hs-phy-apq8064
->            - qcom,usb-hs-phy-msm8226
-> +          - qcom,usb-hs-phy-msm8960
+On Tue, Apr 16, 2024 at 09:06:35PM +0900, skseofh@gmail.com wrote:
+> From: Daero Lee <daero_le.lee@samsung.com>
+> 
+> Like reserved-memory with the 'no-map' property and only 'size' property
+> (w/o 'reg' property), there are memory regions need to be allocated in
+> memblock.memory marked with the MEMBLOCK_NOMAP flag, but should not be
+> allocated in memblock.reserved.
 
-This should probably be msm8660 rather than 8960
+This still does not explain why you need such regions.
 
-Note, nowadays the rule would be to use qcom,msm8660-usb-hs-phy
-compatible, but I wonder if we should enforce this for such an old
-platform or whether similarity wins.
+As Wei Yang explained, memblock does not allocate memory from
+memblock.reserved. The memblock.reserved array represents memory that is in
+use by firmware or by early kernel allocations and cannot be freed to page
+allocator.
 
->            - qcom,usb-hs-phy-msm8916
->            - qcom,usb-hs-phy-msm8960
->            - qcom,usb-hs-phy-msm8974
->
+If you have a region that's _NOMAP in memblock.memory and is absent in
+memblock.reserved it will not be mapped by the kernel page tables, but it
+will be considered as free memory by the core mm. 
 
+Is this really what you want?
+ 
+> example : arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
+>         reserved-memory {
+>                 #address-cells = <2>;
+>                 #size-cells = <2>;
+>                 ranges;
+> 
+>                 bman_fbpr: bman-fbpr {
+>                         compatible = "shared-dma-pool";
+>                         size = <0 0x1000000>;
+>                         alignment = <0 0x1000000>;
+>                         no-map;
+>                 };
+> 
+>                 qman_fqd: qman-fqd {
+>                         compatible = "shared-dma-pool";
+>                         size = <0 0x400000>;
+>                         alignment = <0 0x400000>;
+>                         no-map;
+>                 };
+> 
+>                 qman_pfdr: qman-pfdr {
+>                         compatible = "shared-dma-pool";
+>                         size = <0 0x2000000>;
+>                         alignment = <0 0x2000000>;
+>                         no-map;
+>                 };
+>         };
+> 
 
 -- 
-With best wishes
-Dmitry
+Sincerely yours,
+Mike.
 
