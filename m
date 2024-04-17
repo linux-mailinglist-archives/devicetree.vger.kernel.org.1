@@ -1,134 +1,127 @@
-Return-Path: <devicetree+bounces-60263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2D008A89D4
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 19:06:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE9A28A89C9
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 19:05:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E4C82862F3
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 17:06:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A55591F20CDB
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 17:05:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70ACA172BDD;
-	Wed, 17 Apr 2024 17:04:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8877B172778;
+	Wed, 17 Apr 2024 17:04:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Oeu7oTlX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pIHWSQBz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0062F172BC3;
-	Wed, 17 Apr 2024 17:04:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D3FC172773;
+	Wed, 17 Apr 2024 17:04:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713373473; cv=none; b=kpeMP1eeesbZ7PHstf9JwLpd0BqzpXBNqAVf4plXxm7Tlsv0ue6vlv7iv5zs27/11woeDPVqfhrR/JkeMyCZm7Wn6LnWlEkcOjpE0Fgv8Qfit0JdGqgTwKF762zNlWn3UiQEcf6LveJQo9Rui0zkTpN39Opm9yP/0n8EsdfDR/o=
+	t=1713373466; cv=none; b=rumwKkg3FfbwqxwrkQY9jdw2RXdL+ppqMotXz3yKbHtdR2vfdmFaZ9a9KQVZyCERTwTVy2m7sCkYXtj/C9uBNq2G5X8+UUu5PCxiv/0OoO063HsfsmB3e9aWG5b3sNUhfmALsW53cYonqAO1Cv7+o3cxz0Ul2vwGiAFs33HFa6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713373473; c=relaxed/simple;
-	bh=a5yNIb3DWETpDcHe/Vm3HaAy/ZuOIsSOSp2yUIilK2Q=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=rsj8Ar9RXN/+KsOmAoPVPN28nIHbAtHL5vvJOvXeYRX5LwoL/iR00XMlFBa1LH5MQJrdkItxaMnjgBMU71UioInuU31uvANmWtz92vDDbkU3Mi8QKKXaz20NpTym43NB5BiSSyUWoxkmIFqBDEwMvA7E99osa9rw3UtpIe35Qo0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Oeu7oTlX; arc=none smtp.client-ip=209.85.210.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-6ea2375d8d0so5152487a34.0;
-        Wed, 17 Apr 2024 10:04:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713373471; x=1713978271; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=prMdfKdVjihJkVjtxII37s/3IfYAkYUes4DRF7hF/AA=;
-        b=Oeu7oTlX0QvdGUw9kqUg7od8FfyAbkQ7hivpy+sc2UChUJVmwOLsWj29FwfwcfCTKN
-         k9sBmb7ksmbM3R3h6Rpri+S0KXD/gg8vlf6SR+I/ud8Pr9YYyq81zaMFnq0DRDxCeC+I
-         PaNiLuFeX7ODpfUPQRcxJw+0iTJ/B4REL5itaedZnIlryCEWHnLGNhXHEaGpDg8RNd+s
-         hinPPBiMbKzp3uGfAuahy5f5jR8zVEeAQrxcJC7WFC9M2rrIj3+thS0z2xm+s6ja+wbV
-         EN5WlVIFkR2T1cxOrWLarg7pb360k4xmBOJjJxkJcR3DgerdmpliJQnhSIC4Z0FSavdw
-         fYdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713373471; x=1713978271;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=prMdfKdVjihJkVjtxII37s/3IfYAkYUes4DRF7hF/AA=;
-        b=Dc1VDWMYMN/VF2pzK3LQbKUjUdOTDo9NZkbET8lfPOkaelhaEcg/hKHhNHk+DwirzP
-         GNr0Hdzm84dhN+lZiF5EJb6LurxxQKoKGqc5Z1nszRAwWK6PPsyh4UgJJEsqQqempbZc
-         2byFc5YGTXVIbt15GG7tQ2jgb0h0Rz/+SPyX/j9ZU9Fi4+0r08tiP7DjqCdmET9CPLNY
-         D4JK4CMtASR4Wusums+nMZUYymiL/bWzaGNnyZj2PfwADU22lKLRNIQHuM7t6485nwsD
-         eirOkp3oHQHytDs60hPEzpNdbSR75K1MV1V8Pa6p80pYigLaH5b7nZXxl0NoHZl05c2O
-         c6cw==
-X-Forwarded-Encrypted: i=1; AJvYcCXhD2V5sSX//iz5YHBBiJpGpStYv2FnU5HyzAB9blOC6p8wDHagXKogEf+qxqurRX8VfwnNo5AQ4iKekFXWBHI4bWBWjp/GJSJfsuLCFtLhmME+iUnerjfx5KKBWjIK+C6mDVDD2w==
-X-Gm-Message-State: AOJu0YzjvgzFdXP0k22NyTMIiUBnkVuQodf1Nk0pAmD1PofixCzel1XD
-	yyZ0Szab/6ZlPdkeSMW9YI5XFJ4nJuc9+Y6Ic7cXhu+Nw1xUKTj4pE3U4w==
-X-Google-Smtp-Source: AGHT+IF8Esnmptd+mkJwzWr0neEUR60f7GHzPM5hDrXG022mYRdPS3fkX8aR4HdDgDvlX+/YdQQOKg==
-X-Received: by 2002:a05:6830:1197:b0:6eb:7963:160b with SMTP id u23-20020a056830119700b006eb7963160bmr49471otq.11.1713373471034;
-        Wed, 17 Apr 2024 10:04:31 -0700 (PDT)
-Received: from localhost.localdomain ([75.28.21.198])
-        by smtp.gmail.com with ESMTPSA id k20-20020a056830151400b006eb77e42ff5sm1721615otp.26.2024.04.17.10.04.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Apr 2024 10:04:30 -0700 (PDT)
-From: Chris Morgan <macroalpha82@gmail.com>
-To: linux-sunxi@lists.linux.dev
-Cc: linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	p.zabel@pengutronix.de,
-	sboyd@kernel.org,
-	mturquette@baylibre.com,
-	samuel@sholland.org,
-	jernej.skrabec@gmail.com,
-	wens@csie.org,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH 3/3] arm64: dts: allwinner: h616: Add GPADC device node
-Date: Wed, 17 Apr 2024 12:04:23 -0500
-Message-Id: <20240417170423.20640-4-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240417170423.20640-1-macroalpha82@gmail.com>
-References: <20240417170423.20640-1-macroalpha82@gmail.com>
+	s=arc-20240116; t=1713373466; c=relaxed/simple;
+	bh=vFdg+IPm07Jyi+OKV3BxelBJQ7lv3C4XgVMhmkJpzaE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qnxqxNfx6mJ7nNHQJk/0gqHiWg4XV0Wxl85cMC1JoemD/9wIU7XSl2JErSbe4rUUCH3frpDdZQoxfgOdySralIfxC4zo5S+m70QiBwS5k4RnPXKJ6VdYNC2i5Gq55sL2utdfTtUpnwBLt+vq54Gp185hgxRWXT0eV5ZdV45ZOGc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pIHWSQBz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5D30C072AA;
+	Wed, 17 Apr 2024 17:04:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713373466;
+	bh=vFdg+IPm07Jyi+OKV3BxelBJQ7lv3C4XgVMhmkJpzaE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=pIHWSQBzvbu2BxY/nm9KPGHS5tU+cYzzjd1JiPwxPUN7se6UZxdYQZI8s6Se/ITta
+	 Z/paVvbJ9Azofox9eR/kZnsWawXlGs9V3pNR7g43v6x5hlfQC8wRHuewVoUYItWxUQ
+	 BPyArIRTJvlQHGKiXTSZW2W9Isxd+Jr8jHE5HzqkScdgIoTLUjWMH8cR96ip8jc6Pu
+	 sl+f3lCK44cnLbww3ST2xG6pDnt5Hl3Js+v/J/IDeY4ICoI+0l7O4S+yN/vKik/2rE
+	 u0f8VPxjcSjpl65wLDGJJMEQBgynU5R3qRc+8QhhPlqJTXbcaQsgZta6a0Fi044+J4
+	 Jj4QB4t88nDFQ==
+Message-ID: <02c7f0ee-06fc-4bb2-bc7a-aeceaa3be3aa@kernel.org>
+Date: Wed, 17 Apr 2024 19:04:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] regulator: dt-bindings: pca9450: add pca9451a support
+To: Fabio Aiuto <fabio.aiuto@engicam.com>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Matteo Lisi <matteo.lisi@engicam.com>,
+ Mirko Ardinghi <mirko.ardinghi@engicam.com>
+References: <20240417153528.7838-1-fabio.aiuto@engicam.com>
+ <20240417153528.7838-3-fabio.aiuto@engicam.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240417153528.7838-3-fabio.aiuto@engicam.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Chris Morgan <macromorgan@hotmail.com>
+On 17/04/2024 17:35, Fabio Aiuto wrote:
+> Update bindings for pca9451a support.
+> 
+> Cc: Matteo Lisi <matteo.lisi@engicam.com>
+> Cc: Mirko Ardinghi <mirko.ardinghi@engicam.com>
+> Signed-off-by: Fabio Aiuto <fabio.aiuto@engicam.com>
+> ---
 
-The H616 has a GPADC controller which is identical to the one found on
-the D1/T113s/R329/T507 SoCs.
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-index b2e85e52d1a1..3da37948b89f 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-@@ -581,6 +581,17 @@ spdif: spdif@5093000 {
- 			status = "disabled";
- 		};
- 
-+		gpadc: adc@5070000 {
-+			compatible = "allwinner,sun50i-h616-gpadc",
-+				     "allwinner,sun20i-d1-gpadc";
-+			reg = <0x05070000 0x400>;
-+			clocks = <&ccu CLK_BUS_GPADC>;
-+			resets = <&ccu RST_BUS_GPADC>;
-+			interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+			#io-channel-cells = <1>;
-+		};
-+
- 		ths: thermal-sensor@5070400 {
- 			compatible = "allwinner,sun50i-h616-ths";
- 			reg = <0x05070400 0x400>;
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
