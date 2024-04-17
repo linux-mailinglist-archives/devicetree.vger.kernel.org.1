@@ -1,218 +1,133 @@
-Return-Path: <devicetree+bounces-59998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B12728A7DF0
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 10:17:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AB578A7E04
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 10:19:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69CC5283C30
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 08:17:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 738AC1C21DD3
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 08:19:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C1BD7E563;
-	Wed, 17 Apr 2024 08:17:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE4DE7D410;
+	Wed, 17 Apr 2024 08:19:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ivKuyAT5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bUVAjLy3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFBEE7D3E4;
-	Wed, 17 Apr 2024 08:17:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31E927D3E4;
+	Wed, 17 Apr 2024 08:19:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713341847; cv=none; b=GUGLQEwEKwCXYI0lxiw6+KgrPKrQwivtZkNqZ5XNcrHW7l6SbK0iPpCQcQVJlO2GocNWBvaU+iOC0vUHinLdfisJKyDFl5Ta44B1nlM2bXo9+JdNGwBfKjRJ4eb+v7cpqn18ZI900be2X5Wm2bMLtpBAWW1vDvoKytar9bZJau0=
+	t=1713341950; cv=none; b=V5Kx8Gglp3J6y3m/z0HdtFASb0cZPjE+URmZtMQ1LvtMiYvaKSfPV8F1l7LMgcBOWtE9IsgY6X6Y13JKLrztN57NZHOP9KWG+SPYiBxr0axe7RxOsyerSJrpyY7ptx3vF26j1khyLv4DA7YsPSKiXfPmi4DqiEEsbAMnnre0dBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713341847; c=relaxed/simple;
-	bh=RM9ZBHtvZ8LTwszIbZZWTkb98vredc/IQ7JGaF2pg7I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ltLxWYI6J/3Xf2dY5Za1Gt0I2cF4YnxwQ55bkKh3FUv5jjZrErrq9FX/1zruR0DuGt6ygqnRIJ3cs5BJa1ggOfOwt4ApbBecS2A7XR27yxVw/PRoAglySKsDy46KuFlZ3G7s3RWhpMctKbrlSzrsTAGiUxUjzSw6qKvr7BYqaNg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ivKuyAT5; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43H6pNTJ005096;
-	Wed, 17 Apr 2024 08:17:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=Htu9QXA5aLlbaAxRyDgW1Hl5A5etbp7+sMkhoF3/F+k=; b=iv
-	KuyAT5kwmF+JgfSVVFVVg9RlSOiK0WPriR1IYBxryrfPHv/qrEPfgc/Fzi7VwoQk
-	yk+c05xdPvWpMjUq4Ihu6w05qzojExFLCPPFxFZ/o1a7ubQ7VlQegaoyVnDeTfjT
-	oJQTSP6yZM9xqvWXLhUlD63Bt6VNv2Wn5mwZAZ+v0d3Bprg+lyPswhm2x9bu8nja
-	Jir3aCKrkRkJ7yZQiF2T+TRviFRMkKqoNmv9/eC9+3NqfcIqFpV7qxDxmEKDP2YB
-	cIaHfNxILBxJoD7gC+Q/MFdY87DbVjpSr9UZf92wVYhjhP3yA1anup+7TOv+BcXs
-	HPTqQ6A8NSGP8r1eT79g==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xj2sxs1wj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 17 Apr 2024 08:17:09 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43H8H8uX007517
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 17 Apr 2024 08:17:08 GMT
-Received: from [10.216.25.227] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 17 Apr
- 2024 01:17:03 -0700
-Message-ID: <13bff1dd-d134-e5ab-6691-b2bcb0a786c8@quicinc.com>
-Date: Wed, 17 Apr 2024 13:47:00 +0530
+	s=arc-20240116; t=1713341950; c=relaxed/simple;
+	bh=vQ0bSBSXVcW7woDznB4l2mZtCtQ6d2dmKIq6OArUyRQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AcY0QiAievZcd3h9BMMHy5gu3ZMWQIVwR6G/rMZzhISypZFVxrH7G5Xg8VcUuywsQhjQhbdqAOandvo1YKI+F6XGLmAhzgI5aJ+1uX07nEnP7dWv/1KVFuvhsdItnilILL6nbbRXeiTJbbmOPX+LZi3ehoTbbBXMV2yXIUjJjHA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bUVAjLy3; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-518c9ff3e29so3962449e87.0;
+        Wed, 17 Apr 2024 01:19:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1713341947; x=1713946747; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3WVqvTWkSJuMK42oCBd4QTeLpoVUswiSt5bNCxSQhCk=;
+        b=bUVAjLy32mUGt//z1Tk46VDz+ZN2Yuvc+bHMeeVtOHuyEBOwT2Y8TBFF/WRz6ueCHR
+         pjJ/AbXKq2FBuE7JEr7UYMUw0GpcjRv2Gt+PXq2IuUZjWJv13suPvldwGTpgLE96STSz
+         jkue8eH/ifoA1mEloAL9zE7vx0jCIDGYHk77ZZ4q/BkDumXN15SiMQ3uYMf3J7yIIWvB
+         RW/3nYU5w9+YI3kNaSualwwbLVaPqweUdVTWd9py9iXqd2rScZS7TKe98CUOSyxy8Fiy
+         bUn7FG3nw6mOiE80SzeDHKfXtYv80cHB7uwp19Mda+MmXy/jSHNReSoN+zkrkLvPR6Jg
+         vCQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713341947; x=1713946747;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3WVqvTWkSJuMK42oCBd4QTeLpoVUswiSt5bNCxSQhCk=;
+        b=ByKaG5cRV0KEuOca7gIRiD+nMXrnmXu+R1w1aSbi7a0lgbJJZ2rcqyhqVhTUfBiP+7
+         KrgW7LBB1PFot+VjgSwpr1qD/leyVdzXjWUhfqRk2GE8qDDIJrRZomRKsT2+QA5xDIh5
+         4jgp+xevJC9cKVmbYKf8t/A4Y//RgXovrDHz9OLSEQaEMdSgrrcKi8/r9eX9NP/kGLQD
+         d6rAMLwTTmJn0/GsSTLJbKCjyVKCNCH6hPgIxbfEE+Vc8zLkRqnf6T8d5AtMuAYLu4Bo
+         8gMkBk1c67E1J3aY/5Hao3SW1IFoY6FjWtSE3CbcfbHbZCKOQ+WRyoq9U4V6wtceHSt9
+         GBsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWc/hLOsnm3L8SaSr704x4BdY26H+mDQk+MqDRTHn5iaFg6IkvvHcSViMYQ7qsU1Ry1Ooa2ANXWLTMsylHAnQR8e87I5BmBO8doskfajLOFIF54D49EsnjVxs3J+S16S/1ybQSOKbfqVm/H9oPvo1AxWBsjnoAgRqT6bVx5IAdmCN/j1A==
+X-Gm-Message-State: AOJu0YyvsY2iZoRFpd4XDi6MbJVPO6gwp5SJS8NJJ166++NmLwaOent3
+	dSax1kQl4Xgq5P3Wom3lyXK1ITkR1yWzq37OYa7Il9POiMNcXrKP
+X-Google-Smtp-Source: AGHT+IEZH+ylq78IQkJNfP5FDxkXscm3aRgH3ubDyx46wNRqQbkl2T+2tyX+4h0ejdbXrQysINo+Vg==
+X-Received: by 2002:ac2:5106:0:b0:518:8c8c:db33 with SMTP id q6-20020ac25106000000b005188c8cdb33mr8624693lfb.7.1713341946952;
+        Wed, 17 Apr 2024 01:19:06 -0700 (PDT)
+Received: from [10.10.12.27] (91-118-163-37.static.upcbusiness.at. [91.118.163.37])
+        by smtp.gmail.com with ESMTPSA id p27-20020ac246db000000b00518948d6910sm1446525lfo.205.2024.04.17.01.19.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Apr 2024 01:19:06 -0700 (PDT)
+Message-ID: <04f71d99-aad2-4e56-8f92-89469c159b48@gmail.com>
+Date: Wed, 17 Apr 2024 10:19:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v2 3/8] ASoC: dt-bindings: wcd937x-sdw: add bindings for
- wcd937x-sdw
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>
-CC: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Banajit Goswami
-	<bgoswami@quicinc.com>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
-	<broonie@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai
-	<tiwai@suse.com>, <alsa-devel@alsa-project.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-sound@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_rohkumar@quicinc.com>, <quic_pkumpatl@quicinc.com>
-References: <20240416063600.309747-1-quic_mohs@quicinc.com>
- <20240416063600.309747-4-quic_mohs@quicinc.com>
- <20240416143237.GA2250258-robh@kernel.org>
-From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-In-Reply-To: <20240416143237.GA2250258-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/9] dt-bindings: rtc: google,goldfish-rtc: move to
+ trivial-rtc
+To: kernel test robot <lkp@intel.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jiaxun Yang <jiaxun.yang@flygoat.com>,
+ Vladimir Zapolskiy <vz@mleia.com>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-rtc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-stm32@st-md-mailman.stormreply.com
+References: <20240408-rtc_dtschema-v1-2-c447542fc362@gmail.com>
+ <202404170656.LoL9eBYs-lkp@intel.com>
+Content-Language: en-US, de-AT
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+In-Reply-To: <202404170656.LoL9eBYs-lkp@intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 0HHyvM2ank2fxScBe0q2l6VEcz40MkiC
-X-Proofpoint-ORIG-GUID: 0HHyvM2ank2fxScBe0q2l6VEcz40MkiC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-17_07,2024-04-16_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
- impostorscore=0 mlxscore=0 priorityscore=1501 mlxlogscore=999
- lowpriorityscore=0 clxscore=1015 spamscore=0 adultscore=0 bulkscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404170056
 
-On 4/16/2024 8:02 PM, Rob Herring wrote:
-> On Tue, Apr 16, 2024 at 12:05:55PM +0530, Mohammad Rafi Shaik wrote:
->> From: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
->>
->> Qualcomm WCD9370/WCD9375 Codec is a standalone Hi-Fi audio codec IC
->> connected over SoundWire. This device has two SoundWire devices RX and
->> TX respectively.
->> This binding is for those slave devices on WCD9370/WCD9375.
->>
->> Co-developed-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
->> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
->> Signed-off-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
->> ---
->>   .../bindings/sound/qcom,wcd937x-sdw.yaml      | 71 +++++++++++++++++++
->>   1 file changed, 71 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.yaml b/Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.yaml
->> new file mode 100644
->> index 000000000000..2b7358e266ba
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.yaml
->> @@ -0,0 +1,71 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/sound/qcom,wcd937x-sdw.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm SoundWire Slave devices on WCD9370
->> +
->> +maintainers:
->> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->> +
->> +description: |
+On 4/17/24 00:45, kernel test robot wrote:
+> Hi Javier,
 > 
-> Don't need '|' if no formatting.
+> kernel test robot noticed the following build warnings:
 > 
->> +  Qualcomm WCD9370 Codec is a standalone Hi-Fi audio codec IC.
->> +  It has RX and TX Soundwire slave devices. This bindings is for the
->> +  slave devices.
->> +
->> +properties:
->> +  compatible:
->> +    const: sdw20217010a00
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  qcom,tx-port-mapping:
->> +    description: |
->> +      Specifies static port mapping between slave and master tx ports.
->> +      In the order of slave port index.
+> [auto build test WARNING on fec50db7033ea478773b159e0e2efb135270e3b7]
 > 
-> Are there constraints on the values of the entries?
+> url:    https://github.com/intel-lab-lkp/linux/commits/Javier-Carrasco/dt-bindings-rtc-orion-rtc-move-to-trivial-rtc/20240408-235612
+> base:   fec50db7033ea478773b159e0e2efb135270e3b7
+> patch link:    https://lore.kernel.org/r/20240408-rtc_dtschema-v1-2-c447542fc362%40gmail.com
+> patch subject: [PATCH 2/9] dt-bindings: rtc: google,goldfish-rtc: move to trivial-rtc
+> reproduce: (https://download.01.org/0day-ci/archive/20240417/202404170656.LoL9eBYs-lkp@intel.com/reproduce)
+> 
+> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202404170656.LoL9eBYs-lkp@intel.com/
+> 
+> All warnings (new ones prefixed by >>):
+> 
+>    Warning: Documentation/devicetree/bindings/power/wakeup-source.txt references a file that doesn't exist: Documentation/devicetree/bindings/input/qcom,pm8xxx-keypad.txt
+>    Warning: Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/siliconmitus,sm5703.yaml
+>    Warning: Documentation/devicetree/bindings/sound/fsl-asoc-card.txt references a file that doesn't exist: Documentation/devicetree/bindings/sound/fsl,asrc.txt
+>    Warning: Documentation/gpu/amdgpu/display/display-contributing.rst references a file that doesn't exist: Documentation/GPU/amdgpu/display/mpo-overview.rst
+>>> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/rtc/google,goldfish-rtc.txt
+>    Using alabaster theme
+> 
 
-The port mapping entries are fixed values.
-There is no constraints.
+This issue has already been addressed in v2, which was sent a week ago.
 
-Thanks
-Rafi
-> 
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->> +    minItems: 4
->> +    maxItems: 4
->> +
->> +  qcom,rx-port-mapping:
->> +    description: |
->> +      Specifies static port mapping between slave and master rx ports.
->> +      In the order of slave port index.
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->> +    minItems: 5
->> +    maxItems: 5
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - qcom,port-mapping
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    soundwire@3210000 {
->> +        #address-cells = <2>;
->> +        #size-cells = <0>;
->> +        reg = <0x03210000 0x2000>;
->> +        wcd937x_rx: codec@0,4 {
->> +            compatible = "sdw20217010a00";
->> +            reg  = <0 4>;
->> +            qcom,rx-port-mapping = <1 2 3 4 5>;
->> +        };
->> +    };
->> +
->> +    soundwire@3230000 {
->> +        #address-cells = <2>;
->> +        #size-cells = <0>;
->> +        reg = <0x03230000 0x2000>;
->> +        wcd937x_tx: codec@0,3 {
->> +            compatible = "sdw20217010a00";
->> +            reg  = <0 3>;
->> +            qcom,tx-port-mapping = <2 3 4 5>;
->> +        };
->> +    };
->> +
->> +...
->> -- 
->> 2.25.1
->>
-
+Best regards,
+Javier Carrasco
 
