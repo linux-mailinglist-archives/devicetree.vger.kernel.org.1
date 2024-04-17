@@ -1,234 +1,171 @@
-Return-Path: <devicetree+bounces-59974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A187F8A7D2B
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 09:36:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25A838A7D42
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 09:41:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29E7A283398
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 07:36:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 48BDE1C20C6E
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 07:41:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31FE66CDBC;
-	Wed, 17 Apr 2024 07:35:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2D2C6A347;
+	Wed, 17 Apr 2024 07:41:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IOk3u++w"
+	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="cQ17gMKG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01olkn2031.outbound.protection.outlook.com [40.92.107.31])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E68C54F96;
-	Wed, 17 Apr 2024 07:35:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713339348; cv=none; b=JHByDD1+6wMF7PLs2aREU+vaB2DwNZKZJJYQhU6iY7oHK5u1Hr2PLBx/LuJ8pK9aM53U4ruZumoWkwVISbKoACxTbJ5k3+B01tgikhevaRxCxEFt2QWd6qO4bmOtrQgOjn5JQHENf4xbrTSdDd9aEFcym7OqTD2X6hlmhJn2VnI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713339348; c=relaxed/simple;
-	bh=loCEYmCNq0bWoL3QRJvjkDo2M/+Dk1ZSmKRR+9qBE2E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kM0C55IRVR/VFdnUl/PDDlgS/N1a4A6DnfCJgQtMpssvwe0uvn962Jo5SY9XU0IOPs1RRV3Tgs0CshdbOd2SO6qzxBqI/A4WpAhhKbSRv9IYn9cirVdWB6c1Nfp0StPQLnRe7idItruXx+qHR9yoEKGr078tLD69igODdcG3Evg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IOk3u++w; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-516d3776334so6697618e87.1;
-        Wed, 17 Apr 2024 00:35:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713339345; x=1713944145; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=f6EVRLrBsLhKslUhuzemyZUHO7VOX5hRp+ari7MTAR4=;
-        b=IOk3u++we5xhBEmX+m466ascDNABrIllU6jBNz9D1nVTWehXDKycE7l38wgleK3zRR
-         JPOfi3iS9V0JY+5yfSsyUDGSkg3tDhHN2eiwCaO5l/rxfBch7nqm1zWf0mr8l5V8KY3F
-         q7MNzHsfPhq1GsIFHSYht0sNN9Y5ucXGaDfTu/IgNKtNiVbKjy8IZmtDbSB+F5gQM9K5
-         EjrWeJY51LIg9QCL0n8+DZI/JK6cyYYm5tLBYJKHgMrJd3Af0wN5Eq6Hj/pKjBbKv6Ms
-         KNlL+o77DdE57/78LpaPzdrdShVdZfv3gHyjVsokR08DS9eIfM02ybRbr9x91UinzDQq
-         3UQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713339345; x=1713944145;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=f6EVRLrBsLhKslUhuzemyZUHO7VOX5hRp+ari7MTAR4=;
-        b=R98vUYOJhMeycg1zevWzgP39eIeq41y0orUZODpkPxXMNlUvK4r+NslTpgNdmi/jV9
-         3y3CjWzVTElYaM0yTxA2PfZZroy24Jn84JgLW7cbJNY1k3O5F9x8wp8uJCkPT1ICyMTG
-         kaVtENqNaINuAPZ3r0HM3VvyI8eBhJNhYhiu1h1xeTWWuVbliu5MtR/wR25pPcFG03Fx
-         Fc5ghMqpJF7bH0Qb5omtwZKz4dP0yeYeJuPVZj/mKwEXMOZuScvWGTWCbCZ3VYuz2ZWH
-         Rd5H125ZN7WbOn8iHWmUV9uRpLry/3+et1OdBb+3SVJih+Ra0qVYWnixtrhiqMFJUpVz
-         6k3Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVMUHLdUV6tanCMZcTcQuaSEWcaVKMa/UNcxUYeZWfqN4VxB1hqLo9LItheOLRYuNBiTAJZTQQjIny6wLUDnrR/tVBKooKIMIeSeed0/jKuy8rl5kDWPGqn2imD4WtVUJYG5YFEi7ODH4E89fBqC6mcQ0ZhO0P00Jwn3/hwEMV46H5dWCn4B2BQ
-X-Gm-Message-State: AOJu0Yw27gzxaXRloowLh2Dwfe8+0AFTVL6NwR5XFJrkMNEV/g3d8t2j
-	UXdacuCU/ZgkmYLze1nyqHe6MTOfniAxCdJkGI97NtCZ5mLKVNxr
-X-Google-Smtp-Source: AGHT+IEA1hY6wIdC7jGk1wjFx3vL0HTS8jscv+ahPQi5VCoVUSyHqQ3JTEIslI3xC7B5GXshPR4sug==
-X-Received: by 2002:a05:6512:e9d:b0:519:730:b399 with SMTP id bi29-20020a0565120e9d00b005190730b399mr6189120lfb.9.1713339344439;
-        Wed, 17 Apr 2024 00:35:44 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:7426:df00::2? (drtxq0yyyyyyyyyyyyyby-3.rev.dnainternet.fi. [2001:14ba:7426:df00::2])
-        by smtp.gmail.com with ESMTPSA id s6-20020a197706000000b00518ac6f0b37sm1267379lfc.244.2024.04.17.00.35.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Apr 2024 00:35:44 -0700 (PDT)
-Message-ID: <a605e79e-7b3d-477b-b6af-56ffb0cca6d3@gmail.com>
-Date: Wed, 17 Apr 2024 10:35:43 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45D0040850;
+	Wed, 17 Apr 2024 07:41:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.107.31
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713339714; cv=fail; b=NI6uH+shLAMSSWBWaosokp8k3m4iyiJ4UJ6zdTVrdtKz19Y0TxKSI3sjQEt1aginkihYhInenZeY9FrWMISnf10FadplK1wCeUkFIaUVe9yGSCUcK1ZLTFwYflRF5ga0MgG4zFOu0cPu/PlqnyYKjGktILAYtr03Cxj8dEbLwzI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713339714; c=relaxed/simple;
+	bh=B1A94KCr13rjsMwKhSgPtfzKd+sWXoK4PvoG2yclImA=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=utaRpeDddLHJcMA8XEp9LTbn16bclCt4IVRC5jn2tk/9usN3Cv5XBEHAwrB/VsKJU4tp71/lSQCpVd9tKxpcBDkHIt4j2g6DrjQqP0/lgHr+3VmmMDWfueNcI6fvrY0AS9LsD9vJHGNTiKP1OUGb5NF+Dqq0awoK7zyjco+NURg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com; spf=pass smtp.mailfrom=hotmail.com; dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b=cQ17gMKG; arc=fail smtp.client-ip=40.92.107.31
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hotmail.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=J6u8s4iLUkFuCX7LHCi8axz2Xun2DpTUTyrkQehDLLn+K5leHapmxkmi24sxANHxBTiZ6OCy8s+P19SZcvZAgPa1XOgJLKcOQXU88/a0g/zsxBXcyhHimaik3friBfYRSoZw0iaBzvmx/BAldLZVB6pIWkuNHQFW0Xh0VUKREJCTXnTLKwGbK+vecexfmgeZ5a7ajFOOj4bDy6sDCpqVq67FIqvu2fT9vqiVK0SfoT8ceeKqcm4uEvgaXzxcwpsw0J6WVL6YKx8J3LruQXQsosoV8O5s5Bn6ljzrwiVi/TlIdfaLP670OG1GUUtAcg97gbFmRhjMZhnB1rmMUhpBnA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/oa3u4Os+yrLu7G4Ykf9zRNpFydcAdbwoVT/0Wu6ciY=;
+ b=CpW1Rt42NmBqbKzEwku11S3mPy5sJZ+xeVMQAFs2ubnVhs7RE28VWLvTFJwNzjOhUbIjCOXrYYeh1iqInrOLP0ElF2FSQe+70iGaqAQXOsf5tl6zamiuZRwupAxt/RJcJJaJGSPOc3NHr7yDUQgGG3GenLBwf5Fa8aFFZiIfOSnimo6zIWFq6xFiUfvgt7jeHdRKq6uSo3wDcdfcGEXEa4HIZYGcFyNoC1fCE9Nn4AGaiT+sDtvkJFI3sGUP5DzZLKAxRjXeM35m/h8vghge1eF0pJNruoJOLeNCul2wG0DyKOWbI/5Pc/G0hEoEjPvqPiybPc05NHVSPeMe9L47ag==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/oa3u4Os+yrLu7G4Ykf9zRNpFydcAdbwoVT/0Wu6ciY=;
+ b=cQ17gMKGFPceHdP/y9bf9GAevjIFWCgdfLprnu6dE5oIsBELOarsPvjSX6NcewfydgnIWpFy/NlK+rtLG2t7sqogOicsxQAwSmahFlEe92mmH9E6iSubW85lvaDK7T4Z63uPMcXqGLJuMItIPkhvZ4jE8ESQpH2+pqmofv23HAoL2xHelQtYse1UqPPUR6C4gLQpiSNLBT9YAYb5rAt+jLWL1RByTIFhQOZ6GAXS8A8wddnz+6qp6IaJqk+/FoCavqW7M6QgSBAj5b0d40bQVwdYnmjDjKArrnGjJ0ikv7fK1cvN+bypDURweWn54jrKdhq/BbyYa+2CV7KFSeGwKw==
+Received: from TY0PR06MB5611.apcprd06.prod.outlook.com (2603:1096:400:31e::8)
+ by SEZPR06MB7228.apcprd06.prod.outlook.com (2603:1096:101:229::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.55; Wed, 17 Apr
+ 2024 07:41:48 +0000
+Received: from TY0PR06MB5611.apcprd06.prod.outlook.com
+ ([fe80::d57a:9f0e:1ee7:85bf]) by TY0PR06MB5611.apcprd06.prod.outlook.com
+ ([fe80::d57a:9f0e:1ee7:85bf%5]) with mapi id 15.20.7452.049; Wed, 17 Apr 2024
+ 07:41:48 +0000
+From: Allen_Lin <allencl_lin@hotmail.com>
+To: dmitry.torokhov@gmail.com,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor@kernel.org,
+	jikos@kernel.org,
+	benjamin.tissoires@redhat.com,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Allen_Lin <allencl_lin@hotmail.com>
+Subject: [PATCH v4 0/4] HID: Add support for Himax HX83102j touchscreen
+Date: Wed, 17 Apr 2024 15:41:11 +0800
+Message-ID:
+ <TY0PR06MB56110754EB9D827BE3304A259E0F2@TY0PR06MB5611.apcprd06.prod.outlook.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN: [sf2nz5GcrYS3ORIYuty0zqB/LdXS9KU3]
+X-ClientProxiedBy: PU1PR01CA0016.apcprd01.prod.exchangelabs.com
+ (2603:1096:803:15::28) To TY0PR06MB5611.apcprd06.prod.outlook.com
+ (2603:1096:400:31e::8)
+X-Microsoft-Original-Message-ID:
+ <20240417074115.1137885-1-allencl_lin@hotmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v2 5/6] watchdog: ROHM BD96801 PMIC WDG driver
-Content-Language: en-US, en-GB
-To: George Cherian <george.cherian@marvell.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
- Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
-References: <cover.1712920132.git.mazziesaccount@gmail.com>
- <d52fd63e98635293022e5a607fd763b580e24189.1712920132.git.mazziesaccount@gmail.com>
- <20240417042949.GA3513394@IPBU-BLR-SERVER1>
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20240417042949.GA3513394@IPBU-BLR-SERVER1>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY0PR06MB5611:EE_|SEZPR06MB7228:EE_
+X-MS-Office365-Filtering-Correlation-Id: 26b6f6c4-5cdf-4f0e-34b8-08dc5eb1d68f
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	QqEDcdAwSUE6krWOiBZ1R7t84Z/taH/OAXVHyUB1/4Pqglhdx+nIA/Ck1l9AkAmjHcWNJHy8KQVvE4OcUVz8MiQ426Nl85FIltFuBvVrbe99jZanTqRRAHSKo7aA1VO67ju1BaGTCWLncs7YfC3ILca5K7iyRQxhQ0zDvDxXN+6DKwQz2y/Q51HJ2Y+wyOT4P6NUgI22OoPv8algU+2BSzwGgbJLesex8s1KGdO7vS6gMSuD9aT3VsUECGt4eDSTUqasZYoPwHaM+5MXpDfR0DYDWw+PoRVXhiHSDnmO6jejsO1gKbCHdo7Bcbv5RGg7Maoa3u361KxWagqz+ZJ665B07kqS5ILodemIaWsrjvmMfHlpkF+GklWKR2+OBAhuu+8KRsIybuhbUL2oJra9hjZasdM2ZmHPW2tow4pqCJRDISMJnH4AGO3F/w+5ReBAtPRFMB8SXlepMEq16o17NStUWE33Z6BAbML+F6HpzilicFGLjP1fV1qrJRzfBFNB7eccZL6xBUwDh1aIia8ABU6yIV26QTQ1TM7CYb6RvNIki+Lc/84Nb7LzaxFbV7qjv9z6MR8FMLVSVR1uNdjp/1YucpEX9DT6PhJ35QAgseRTYGKBZR/SW3MdrBWTYC8z
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?HmjjInY7TvM442sdzhGty/rmeBvmu80+AUh5+XJ8MdFIh4IahubJBMnjBZ54?=
+ =?us-ascii?Q?gzS/C68OPPqIokRxf9GWYQGr4a2tdS34N0sk31qwW7kn4NSCEtSiuPC3/Nna?=
+ =?us-ascii?Q?GtJp3KOjDc91pbYnwbtyARf2b9EuHuThUp2KX0Wy3gnncq8m7xh1FD7MC+Aa?=
+ =?us-ascii?Q?FkCLcXZNscVvqIlY1fa6tG54Z/I+K781xgoxj1fEi/1BsG55VuKtWkVjonDb?=
+ =?us-ascii?Q?CUZwPjmy6Fz7LZ0eOjYQsdMPe3u10RtoJlflJnosZmA+qnFKK0PdFYrZ2YtT?=
+ =?us-ascii?Q?Ks6N4Dc6DO4e7GOtGen3RGqKg0ndsWpUitV4J5/C2aZqjninTeEVidiils9I?=
+ =?us-ascii?Q?s4wwZ4fhQ2sFxinY38wvZMXQ0PzUBhjarPHGi7ahyrMDhC42Y0AM1fFebM26?=
+ =?us-ascii?Q?UdYLkFJ0GE8IPpmI8C6onb3eZyCOJrNT7TAeOLhOrtJ79WA9aIFnJCLU37XP?=
+ =?us-ascii?Q?5vHMx+lHh2V4Akem4GaxMHuoAu1FOIPoA1qNzrINVY8lYL1sDSNgZ1pRtwMT?=
+ =?us-ascii?Q?j/QDwZznwISMFlwG/NFgu448mUTVm5GkRnsRm626iOcJZ3KEKlmMYSKZuK2j?=
+ =?us-ascii?Q?mYtTHgNkwo200zmWMaYJ9EBHlLqwDyupP2dNXcS4rfGEI/zUylCzkeqJcSMD?=
+ =?us-ascii?Q?xeYFJeFFWVDVvLH+fHJzeoYIdSUABuR+y0iQmE0VRfIrumWpA9SGP4iR2rYy?=
+ =?us-ascii?Q?LfBFoAZt90D0i4RxGDbcOsxtjT+bv8cW91NKDPxnN5o7OzpWA4a3HaNL7KtL?=
+ =?us-ascii?Q?gIfGxnxc5Q3tTzfAM/F8IpEdmzgnl7xogp5Jmh6tMtMXgZ074vghJbfEEG0I?=
+ =?us-ascii?Q?CcyKd2DOOaj47JSMciklUGSYBUTbD49Lc6dUGntyRuqrPtOYxd3abWfJBARE?=
+ =?us-ascii?Q?wZ6amb2fblWFdNE3w+L85OulgfBT1lkhndd64L9rAf9nPhrx2acMnRKppjLG?=
+ =?us-ascii?Q?mSDXF5+vmkuwCEG56vQZ4/5RMOuxzhY6UiQbBPS/qZbs9wWeR3a3ntn6Gmxv?=
+ =?us-ascii?Q?VehZJ7rW/LMmWkGiEgEz+kSB8oV0H3hUHhrF/cOQQzURLTgS3BVjeD+Zpr9i?=
+ =?us-ascii?Q?jc/mNJvNL3bNfbc7lEsx8QLsxs/OqhUywN9naQReaiz6K5rxYg83q5HnTO6m?=
+ =?us-ascii?Q?jNk2Q4k1jYSfD4CUB8nFqKd9ChPzkIzRb6uYYHD55ISTu0ckcWsonUxqNhSm?=
+ =?us-ascii?Q?zju32cDZy/r/4CWNikQ55/6Vp/wMfmbhyz86Zj1jIv2yDLI7oPs5DbgVCXY?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-3208f.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 26b6f6c4-5cdf-4f0e-34b8-08dc5eb1d68f
+X-MS-Exchange-CrossTenant-AuthSource: TY0PR06MB5611.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2024 07:41:48.5571
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR06MB7228
 
-Hi George,
+Hi,
+This driver implements for Himax HID touchscreen HX83102j.
 
-Thanks for the input! Reviewing is very much appreciated :)
+Using SPI interface to receive/send HID packets.
 
-On 4/17/24 07:29, George Cherian wrote:
-> On 2024-04-12 at 16:52:46, Matti Vaittinen (mazziesaccount@gmail.com) wrote:
->> Introduce driver for WDG block on ROHM BD96801 scalable PMIC.
->>
->> This driver only supports watchdog with I2C feeding and delayed
->> response detection. Whether the watchdog toggles PRSTB pin or
->> just causes an interrupt can be configured via device-tree.
->>
->> The BD96801 PMIC HW supports also window watchdog (too early
->> feeding detection) and Q&A mode. These are not supported by
->> this driver.
->>
->> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
->>
->> ---
->> Revision history:
->> RFCv1 => RFCv2:
->> - remove always running
->> - add IRQ handling
->> - call emergency_restart()
->> - drop MODULE_ALIAS and add MODULE_DEVICE_TABLE
->> ---
->>   drivers/watchdog/Kconfig       |  13 ++
->>   drivers/watchdog/Makefile      |   1 +
->>   drivers/watchdog/bd96801_wdt.c | 389 +++++++++++++++++++++++++++++++++
->>   3 files changed, 403 insertions(+)
->>   create mode 100644 drivers/watchdog/bd96801_wdt.c
->>4
->> +
->> +static const struct watchdog_ops bd96801_wdt_ops = {
->> +	.start		= bd96801_wdt_start,
->> +	.stop		= bd96801_wdt_stop,
->> +	.ping		= bd96801_wdt_ping,
->> +};
-> Is there no way to setup a timeout to the WDOG device from userspace?
-> 
+Changes in v2 :
+-Added power description in YAML document. 
+-Added ddreset-gpios property in YAML document.
+-Added firmware-name property in YAML document.
+-Modified the description of pid.
+-Modified the example.
 
-For the BD96801 hardware? Currently no. (See below)
 
->> +
->> +static int init_wdg_hw(struct wdtbd96801 *w)
->> +{
->> +	u32 hw_margin[2];
->> +	int count, ret;
->> +	u32 hw_margin_max = BD96801_WDT_DEFAULT_MARGIN, hw_margin_min = 0;
->> +
->> +	count = device_property_count_u32(w->dev->parent, "rohm,hw-timeout-ms");
-> Why is that timeout need to be configured from a devicce-tree property?
-> set_timeout/get_timeout can't be done for this device?
+Changes in v3:
+-Fix "regulator" spelling in YAML file.
+-Change himax,firmware-name to firmware-name in YAML file.
+-Remove himax,pid in YAML file.
+-Change driver name from hid-himax-83102j to hid-himax.
 
-The BD96801 supports 32 different "slow detection" timeouts - only 1 of 
-which is guaranteed to be greater than 1s (1.8432 Sec). The timeout 
-setting interface uses seconds.
+Changes in v4:
+-Fix "no new line character at the end of file" error in YAML file.
 
-Furthermore, I think that the HW heartbeat is not all that meaningful to 
-the user-space. What is meaningful to user-space is how often the 
-userland daemon needs to write the watchdog file to keep system alive. 
-This is different thing. With the sub-second HW timeouts it is better 
-the kernel keeps feeding the watchdog based on a timer (adjusted to meet 
-the HW requirements) and can thus require the userspace to ping less 
-frequently than the HW heartbeat.
+Allen_Lin (4):
+  dt-bindings: input: Add Himax HX83102J touchscreen
+  HID: Add Himax HX83102J touchscreen driver
+  HID: Add DRM panel follower function
+  HID: Load firmware directly from file to IC
 
->> +	if (count < 0 && count != -EINVAL)
->> +		return count;
->> +
->> +	if (count > 0) {
->> +		if (count > ARRAY_SIZE(hw_margin))
->> +			return -EINVAL;
->> +
->> +		ret = device_property_read_u32_array(w->dev->parent,
->> +						     "rohm,hw-timeout-ms",
->> +						     &hw_margin[0], count);
->> +		if (ret < 0)
->> +			return ret;
->> +
->> +		if (count == 1)
->> +			hw_margin_max = hw_margin[0];
->> +
->> +		if (count == 2) {
->> +			hw_margin_max = hw_margin[1];
->> +			hw_margin_min = hw_margin[0];
->> +		}
->> +	}
->> +
->> +	ret = bd96801_set_wdt_mode(w, hw_margin_max, hw_margin_min);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = device_property_match_string(w->dev->parent, "rohm,wdg-action",
->> +					   "prstb");
->> +	if (ret >= 0) {
->> +		ret = regmap_update_bits(w->regmap, BD96801_REG_WD_CONF,
->> +				 BD96801_WD_ASSERT_MASK,
->> +				 BD96801_WD_ASSERT_RST);
->> +		return ret;
->> +	}
->> +
->> +	ret = device_property_match_string(w->dev->parent, "rohm,wdg-action",
->> +					   "intb-only");
->> +	if (ret >= 0) {
->> +		ret = regmap_update_bits(w->regmap, BD96801_REG_WD_CONF,
->> +				 BD96801_WD_ASSERT_MASK,
->> +				 BD96801_WD_ASSERT_IRQ);
->> +		return ret;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +extern void emergency_restart(void);
->> +static irqreturn_t bd96801_irq_hnd(int irq, void *data)
->> +{
->> +	emergency_restart();
-> In case of a full system hang will this function get executed?
-
-Maybe, maybe not. It is probably still the best we can do if the 
-watchdog has not been configured to kill the power by HW. Or, do you 
-have some other suggestion? (The emergency_restart() was actually 
-suggested by Guenter during the v1 review).
-
->> +	return IRQ_NONE;
->> +}
-
-Yours,
-	-- Matti
+ .../input/touchscreen/himax,hx83102j.yaml     |   93 +
+ MAINTAINERS                                   |    7 +
+ drivers/hid/Kconfig                           |    7 +
+ drivers/hid/Makefile                          |    2 +
+ drivers/hid/hid-himax.c                       | 3133 +++++++++++++++++
+ drivers/hid/hid-himax.h                       |  460 +++
+ 6 files changed, 3702 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/himax,hx83102j.yaml
+ create mode 100644 drivers/hid/hid-himax.c
+ create mode 100644 drivers/hid/hid-himax.h
 
 -- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
+2.34.1
 
 
