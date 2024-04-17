@@ -1,181 +1,127 @@
-Return-Path: <devicetree+bounces-60192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7CA28A86AB
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 16:51:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AB248A86B5
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 16:52:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72D072850F0
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 14:51:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C65B1C2188D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 14:52:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BF081428F4;
-	Wed, 17 Apr 2024 14:50:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S0TE9tNy"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 623681422A1;
+	Wed, 17 Apr 2024 14:52:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5966C1411DB;
-	Wed, 17 Apr 2024 14:50:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CED2138DD3;
+	Wed, 17 Apr 2024 14:52:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713365431; cv=none; b=PmZPPlZXynEAKggAjouHzX14Pdyy4w0WC0oOv0skEX3CEuXwRxaoiys2sHGc13uFK4UABAWFFnGtatfozAKoI9q7Kf9DOXJtHtGtZ9+4ljUfCc0tIirCgpyHX3W9rit+NajDFEWA9tt/CuM7Vp5L4qXWCYZGGvIxIpqm1XHPSWY=
+	t=1713365533; cv=none; b=MqWFWpqoWXgdrz3hgikboExCjo1Ry3aY8PC4UHMVckuL17hsxiBElj3rIMV9k3AXQ8znqsXCOB8Svu3kXYANTR6UfnmjQOO1EIEXLsbSUBS0fS/CBYsfPjLlWglpAnZW3oFhaxVnF+zp7xSP8Qczb/8irSRaGZUNlT5dCXB6Nho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713365431; c=relaxed/simple;
-	bh=FykH/T46P+7wCQWaQbgZ5I3yQADVR9jYDVfl8lpXZM8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NfnvJLmgJ1D/1SovZLX32Y3CPm69iGic+Z7cBFHhyi4/8tOyAU2DyteJ3FI8Vw+yrVnCiKF7cMx+QFzQ8R4vkWD7fj7120JFDJ4T/E1dA3O7qc8JS5mn7kcUMi+8NNmVGG3T15RTYbkRYi6mJ82UozaqpgHpe5/tlXORW17xut8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S0TE9tNy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE0ADC072AA;
-	Wed, 17 Apr 2024 14:50:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713365431;
-	bh=FykH/T46P+7wCQWaQbgZ5I3yQADVR9jYDVfl8lpXZM8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=S0TE9tNy0I6n0GmJCfpRHv5LLvD0sH8KvnXmmKZyKXPN+5gEXa1Q4AzpPYORPb1xh
-	 6FZSy9x854VCtsJj3uGAdR0tZAl4NgVGuKIpFvzOv7wQ/K1slgqe+H/pZwCHuXNc+I
-	 OdqHsqKaB1sZzrNKlgxgQSHT6SVN4ew8Xt1FvR89JkG94e9Y5WUwwr6m3CcTva7TVU
-	 axGqATm2OFiDzneSdmBmoG6CAyUFtgtaE6OtFXe+jyNkvltWV5OGGXBYFS1/HqHN+1
-	 VATui1UTMFtHkyEBpfjqFA3OoMm0FuBmS5Qtw6Vov597ADDOjsY7mHjcUEne6ZAG6x
-	 lLhgT/5aLIfzg==
-Date: Wed, 17 Apr 2024 15:50:24 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Charlie Jenkins <charlie@rivosinc.com>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Evan Green <evan@rivosinc.com>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH v2 13/17] riscv: vector: Support xtheadvector save/restore
-Message-ID: <20240417-semisweet-willed-1ce1098d8c41@spud>
-References: <20240415-dev-charlie-support_thead_vector_6_9-v2-0-c7d68c603268@rivosinc.com>
- <20240415-dev-charlie-support_thead_vector_6_9-v2-13-c7d68c603268@rivosinc.com>
+	s=arc-20240116; t=1713365533; c=relaxed/simple;
+	bh=ns7K8uQ8uC8NFTMTiEiwqxwnLZ/spdSlLaZ/lCi4ruA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Tn2pyCeG0pZV4WiZaYOGIqspCkNFVw7I76K9HV+xCFrlgTPUCOhf9K2qE/YyG4YUddJOFmxOmsGkwLuMznTBvsEDuyL55u9qjHj/rASonRuau8vLOzWFhCT0IuFfUZ9jszcKIgGjvzjkAWyWS3isGKWlfhlEoztxHZIZOMwmUKo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-dc742543119so5044612276.0;
+        Wed, 17 Apr 2024 07:52:11 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713365531; x=1713970331;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=U4rFLFMP7uhBZnwM9rYpM+VdFgfW6XVyJZ9NVk6uI1k=;
+        b=gCESApHYwXkc8EFXFgu0SZG/WB6Siy+pjee8Lw8u6IKoqT8yuO4Jh98eo4qVpvDVZ+
+         TeVyqFbj8ZZS4NldTE3cvJ47L36EQgXDrJedpE9AvGd+lLEZeEl1FpRA/0R2qI3ITHK+
+         Mn8rfW7ih3u5Fwf94XoivE0dbxVJ0eSShEPqJmwyughOpP8EnGdmF+wUZEwC0MoPpCKt
+         11R2mXcW8Iz4OvyCJps4AXunzurmh5mG5ri3dIeBjfMtP1gAB5ahmrMZ3kqUi671LugK
+         Pbyiaai6dk+77R++lcFURk8PpRw6rSb+ivhYe/uSsiW2c+avRFrqLf8ZVsyp9iq35Wmx
+         5obQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVobZJ2JrM88zzwm3J/kAC8P/NFZHc5Dgc2iGafNQEbjyjPz1qXrtM1JbQQKjDe6YVchnEP9Gf8hTqMV+gsmqk06Cy4nyV/Y3u1G5avtFrukjmmS13k1owKVh0/4ybBdz0QwIHs9qE6GrnrgvDS44snDbPWAeBzPTmWTeple67fzJvLc5C8narzJ26F/JRnXUuX54/eSviBFNqtuWHo4ZrE1BFBRg0m0jLn
+X-Gm-Message-State: AOJu0Yx9l5Ucy3bg9WfoeJeZzIDZfUZdV7bWq3MMO5ecS1w99/tk+7zr
+	1lL/twqzT2F4VtzoeYqwAUUzHK8qoScFXNnI9Zq1arT+Sh7VgeyI0VxCA0NLt4U=
+X-Google-Smtp-Source: AGHT+IFKKi9klGLYTQg9HEkjQKa/7JPlPlA9FAXgS1pP4VDcZe62kmmi0QczEMVM877cxX6ucFYZZQ==
+X-Received: by 2002:a0d:d60d:0:b0:61a:c19f:fc4c with SMTP id y13-20020a0dd60d000000b0061ac19ffc4cmr8882978ywd.3.1713365530719;
+        Wed, 17 Apr 2024 07:52:10 -0700 (PDT)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
+        by smtp.gmail.com with ESMTPSA id m124-20020a817182000000b00611213d62adsm2989372ywc.124.2024.04.17.07.52.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Apr 2024 07:52:10 -0700 (PDT)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-61816fc256dso50555137b3.0;
+        Wed, 17 Apr 2024 07:52:10 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVqK/8V4XZ47dviTvvk64ftnO35leWjYc3bJuzQUS5y+QLxoPd86u+w/mZjywTqx07rJXAMcBXCDiBi8CiEGpxjt+0GYocneiw8vEq42cmSrfb1vcULeFuDmI/MXa1PAjqcEd5hDf4R2OYsFw67/llFG1dCpTbQNxQRgmP5zJA2t6qUVOQbIJzRFYkN09nYgWKDKJx8+ZCOm8JMg/FnBA3Kdc5CIfAa0HlB
+X-Received: by 2002:a81:4ec7:0:b0:615:21e7:6bf6 with SMTP id
+ c190-20020a814ec7000000b0061521e76bf6mr14888644ywb.14.1713365530376; Wed, 17
+ Apr 2024 07:52:10 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="TWtuz8+j2Sj8ixHN"
-Content-Disposition: inline
-In-Reply-To: <20240415-dev-charlie-support_thead_vector_6_9-v2-13-c7d68c603268@rivosinc.com>
-
-
---TWtuz8+j2Sj8ixHN
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20240322144355.878930-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240322144355.878930-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240322144355.878930-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 17 Apr 2024 16:51:58 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXaCAkQ3BdjR-iUookW2o5jd3KHc_AC5MHxLKaYZTikpw@mail.gmail.com>
+Message-ID: <CAMuHMdXaCAkQ3BdjR-iUookW2o5jd3KHc_AC5MHxLKaYZTikpw@mail.gmail.com>
+Subject: Re: [PATCH v4 3/5] dt-bindings: serial: renesas,scif: Make
+ 'interrupt-names' property as required
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-serial@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Apr 15, 2024 at 09:12:10PM -0700, Charlie Jenkins wrote:
+On Fri, Mar 22, 2024 at 3:45=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
+om> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> As all the SoCs having multiple interrupts have 'interrupt-names' propert=
+y
+> in their respective DTSIs, make 'interrupt-names' property as required
+> so that we can validate them using dtbs_check.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v3->v4
+> - New patch
 
-> diff --git a/arch/riscv/kernel/vector.c b/arch/riscv/kernel/vector.c
-> index 6727d1d3b8f2..f42eaa8178e9 100644
-> --- a/arch/riscv/kernel/vector.c
-> +++ b/arch/riscv/kernel/vector.c
-> @@ -33,10 +33,24 @@ int riscv_v_setup_vsize(void)
->  {
->  	unsigned long this_vsize;
-> =20
-> -	/* There are 32 vector registers with vlenb length. */
-> -	riscv_v_enable();
-> -	this_vsize =3D csr_read(CSR_VLENB) * 32;
-> -	riscv_v_disable();
-> +	/*
-> +	 * This is called before alternatives have been patched so can't use
-> +	 * riscv_has_vendor_extension_unlikely
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-() after that function name please.
+> Note, we need patch [0] to be applied or else we might see
+> dtbs_check warning.
+>
+> [0] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20240318=
+174345.46824-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
 
-> +	 */
-> +	if (has_xtheadvector_no_alternatives()) {
-> +		/*
-> +		 * Although xtheadvector states that th.vlenb exists and
-> +		 * overlaps with the vector 1.0 vlenb, an illegal instruction is
-> +		 * raised if read. These systems all currently have a fixed
-> +		 * vector length of 128, so hardcode that value.
+That is commit 7db74b65a93bac5a ("ARM: dts: renesas: r7s72100:
+Add interrupt-names to SCIF nodes") in renesas-dts-for-v6.10
+(next-20240327 and later).
 
-I had this written before the meeting, so pasting it anyway:
--- >8 --
-=46rom 5ed25d0f841e755b8dd4f1f6a3ea824601758d8e Mon Sep 17 00:00:00 2001
-=46rom: Conor Dooley <conor.dooley@microchip.com>
-Date: Wed, 17 Apr 2024 14:39:36 +0100
-Subject: [PATCH] dt-bindings: riscv: cpus: add a vlen register length prope=
-rty
+Gr{oetje,eeting}s,
 
-Add a property analogous to the vlenb CSR so that software can detect
-the vector length of each CPU prior to it being brought online.
-Currently software has to assume that the vector length read from the
-boot CPU applies to all possible CPUs. On T-Head CPUs implementing
-pre-ratification vector, reading the th.vlenb CSR may produce an illegal
-instruction trap, so this property is required on such systems.
+                        Geert
 
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
-We could actually enforce the latter since we know the compatibles of
-the relevant CPUs and can tell if xtheadvector is present.
----
- Documentation/devicetree/bindings/riscv/cpus.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentat=
-ion/devicetree/bindings/riscv/cpus.yaml
-index d067f2a468ee..2a6449a0f1d7 100644
---- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-+++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-@@ -95,6 +95,12 @@ properties:
-     description:
-       The blocksize in bytes for the Zicboz cache operations.
-=20
-+  riscv,vlenb:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      VLEN/8, the vector register length in bytes. This property is requir=
-ed in
-+      systems where the vector register length is not identical on all har=
-ts.
-+
-   # RISC-V has multiple properties for cache op block sizes as the sizes
-   # differ between individual CBO extensions
-   cache-op-block-size: false
 --=20
-2.43.0
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-
-
-> +		 */
-> +		this_vsize =3D 128;
-> +	} else {
-> +		/* There are 32 vector registers with vlenb length. */
-> +		riscv_v_enable();
-> +		this_vsize =3D csr_read(CSR_VLENB) * 32;
-> +		riscv_v_disable();
-> +	}
-
---TWtuz8+j2Sj8ixHN
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZh/hsAAKCRB4tDGHoIJi
-0uymAQC52tKEjWhnlrK5EZxs57FTgtZequO5iT1oxcXhr1buWwD/eH4/QhI+A7+a
-rSSXaCKwy6W28YxEUDpHe9r7Re8SMgs=
-=l2tD
------END PGP SIGNATURE-----
-
---TWtuz8+j2Sj8ixHN--
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
