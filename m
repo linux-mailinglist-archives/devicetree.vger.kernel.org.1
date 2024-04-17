@@ -1,167 +1,131 @@
-Return-Path: <devicetree+bounces-59901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FB178A798E
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 02:01:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA0B08A799A
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 02:08:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0346EB21240
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 00:00:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E51FEB220B9
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 00:08:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6C784A19;
-	Wed, 17 Apr 2024 00:00:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 396A615A8;
+	Wed, 17 Apr 2024 00:08:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="uqHnMyBB"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="lKtLeQ0M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01olkn2057.outbound.protection.outlook.com [40.92.102.57])
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D20D4685;
-	Wed, 17 Apr 2024 00:00:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.102.57
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713312053; cv=fail; b=TOzDI8axHr5wbkEgUdQ80daEcR/NmKNuK0oMcE8Q83LoItW+sW54Zo4BvxdhUQXKMOvmJgkLPpcpNKWe7JF6ozTqIuPpPO2+VAXvZXULYslIXTgPX2MPvau70sfulajYuBVR/sBLh4mvgQ+fUK+fX3Jmw21lDSN3WPRsxo0U8Bg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713312053; c=relaxed/simple;
-	bh=ueAbQ9/b1HVTFLtY06HmKX9nSz+NHnYPRR62+euzxmk=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=iSfSpnaRkogsrxqDfnyslNoDENzZlDb8LFk5c6S7ksIPEyfsqioxjhc0fyxm7q2VwBh5Arqo3rdNK/pngH0UW1M1XP4fD+2ges/7lmMTyXAppQcS+EW7Dm1T+ytZBQzvuVHZiSV6D/G8Y9fJl/tRgXhKU/PPjXbLT7bI5MngArk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=uqHnMyBB; arc=fail smtp.client-ip=40.92.102.57
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SsyKP5ishRLXZ7wVZeNAnVpUY4aSSVSRGDB6YljKWuVSgzBoucoDXz6VSJ9Zyd8e+phMcdM26WPOKFSKnn0Pw86QtQh5iUVQubkukYRmcPpok0oABe8DusN8Tt7c4BY3ry+Pbd+XCX2PJHI1hCdHc+0csjn3+fqGN+EZSfs4aosVh+xIzAl2OWUc2+s/FBTR4VvtlfPfXDBBHHPnX6r2oRZtvDH1b29g+Lvh608ZecQCo2yRBZ1l+61P+kwTjAH2wKIsBFknMJxVyyXGsmNMaNYws8WHEhOsJ5L3CQNO27AQt0QH1VYYx8y+nmtrC5t5Qm1MgJ9pR7jI/gDWhiDEDA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fA/JWBoybBau7SjbgcugZNDu/G5eQKw173HmHJdAhJY=;
- b=SimbWnTCqyxjLumkLX7HqFNfQjILDmEolEhHcwqaG/TPmGrlWtoGph9XyNenRUPmsV83+VzkS3Lzf1ntOWeo5diNIAezV65oGaHhY9p2W2kLTVlChu/kfpw+OrhZcFXKmT5HAnopszsB5hGJsHqzm9QGbPaHzIm6AZJ1YxMLliM2CrwAu9sOJ9Z+KxFArBTLzs0rAqSCReKZy8dT4ZENdFMpQTAwjRqjhenKCr9FQPoXjFKs6aWO7izbiaFI9JMPh+MCsmcwy5QEtBqmnRSje0RZTsxN0DXQ0SFP4hboSYtsJsjbBoEAVPDVX+4Dwx8VU0n8NVkKlGKlfv3XW8JtXg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fA/JWBoybBau7SjbgcugZNDu/G5eQKw173HmHJdAhJY=;
- b=uqHnMyBBIzyYjYp+g2eWRmkmjEYrw/hGBLprq/Xflw3KAStZy+QExEOh+m+C4TixkzJmG9s4+qz/tr0Q6Y5OyMu8O2QC0vAdEnvIQc58k+2fwAhVv5xeiOgQgSh3RLEg0n0FZw+jrmUyiwDEqwGuK9E+zbMDr8RybOcQzbY5z/9FraBTFaPrAzNleqe/zucFtCuZ0g8WIf9lrtoRsdwCrBViha23oYDSE7W3fY4ZGMcIWwbVprYq36ZJdjt5LQKwwD5+qNqI2nDOEo9tD5e/3yYeNuLIr1e3fNTh3ZjhhgR3G/daIolnxTd0CgyJj70GBgR4Yz58OaTVk7ATgjx2ag==
-Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
- by PN2P287MB1455.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1ae::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.50; Wed, 17 Apr
- 2024 00:00:33 +0000
-Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- ([fe80::664:2ecc:c36:1f2c]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- ([fe80::664:2ecc:c36:1f2c%3]) with mapi id 15.20.7452.049; Wed, 17 Apr 2024
- 00:00:32 +0000
-Message-ID:
- <MA0P287MB2822D66AFB826428DB13E527FE0F2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
-Date: Wed, 17 Apr 2024 08:00:28 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: mmc: sdhci-of-dwcmhsc: Add Sophgo SG2042
- support
-To: Conor Dooley <conor@kernel.org>, Chen Wang <unicornxw@gmail.com>
-Cc: adrian.hunter@intel.com, aou@eecs.berkeley.edu, conor+dt@kernel.org,
- guoren@kernel.org, inochiama@outlook.com, jszhang@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
- paul.walmsley@sifive.com, robh@kernel.org, ulf.hansson@linaro.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mmc@vger.kernel.org, linux-riscv@lists.infradead.org,
- chao.wei@sophgo.com, haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com,
- tingzhu.wang@sophgo.com
-References: <cover.1713258948.git.unicorn_wang@outlook.com>
- <032c06642b01f06c86ba8bcd2108d18c005b57eb.1713258948.git.unicorn_wang@outlook.com>
- <20240416-pretext-cognitive-295526072596@spud>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <20240416-pretext-cognitive-295526072596@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-TMN: [8YyUbG5YfFeNjWhzcYu+9xbHjs8TDo1H]
-X-ClientProxiedBy: SG2PR04CA0156.apcprd04.prod.outlook.com (2603:1096:4::18)
- To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
-X-Microsoft-Original-Message-ID:
- <553df95a-8b6d-4486-b047-0d5f8af91ff8@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0BF510E9;
+	Wed, 17 Apr 2024 00:08:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713312488; cv=none; b=qKLK5tXQEqnEAuXvrqIhXq9g3vsmbn3nBGdG+KMpHM1ezqItct9MIPgvAAMpIbWqwm0dLShB1vIet8QVL4FKjwaILK48V3AUlqJkVN9ncqlj4MzvSi9Ef4MBWYQYdKQnas68ni9+Y2/V9jFFqRj0kEcFKkxNB9ps3/UNdA2H8As=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713312488; c=relaxed/simple;
+	bh=QEbKUHPN28xQg3hvNSYLsfLMm928kGAUtV175U5I5Bg=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=K4mOGMyaZ6oqud44EGpW62zn8sR234w5Cn1CVU8yI6vishgiDew75XIUu0spZp9j68yRazWGADSMhF0c/h28AZA0KMs4IVsOQUkcwC8UGbl3g+62w8Lvqlwspit/Bv4LLWHBCW+GZOoCo394Jw+YwCukT2u5sQ9H8EMSLWE1ma8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=lKtLeQ0M; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43GMA8LX000873;
+	Tue, 16 Apr 2024 20:07:51 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=DKIM; bh=tdJYlHJm0iil
+	Nkuzycg5ruKr1mm1sq6tC0qj4zXy3U8=; b=lKtLeQ0Mjok9i8mPNM9XLS274hjL
+	qo4Jf+NzeDFP66zCGlzDOUhb+vaS4tR8CC9FwIyIgl3Y2Gfr7Ku9GQ/PPGZb6dlL
+	IJWfe2ZYmtFBnzVT0/DlJtams+XoR8zqm3tW1EXPWKJuD97sTB2iiqj/+jSsA367
+	9R1fN3/yeRrVNSqLaBLh30ndFr6gJTLnGmf62hLcwzJ2I0W1N96XNtt0Lj+5yfYf
+	anNJJ14tx4iLm0ZWsDH5m4Rc0pRR6a7lNdx2GLmotfqcMWD452k5nH4BeYf2UNRc
+	gIDWNUVZ6tRJylmCXOxjQAWMCWTiaLO97+dsA6NGDNy9eFobf+OOC64KgQ==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 3xhvv99fqn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 16 Apr 2024 20:07:50 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 43H07nkM061332
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 16 Apr 2024 20:07:49 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Tue, 16 Apr 2024 20:07:48 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Tue, 16 Apr 2024 20:07:48 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Tue, 16 Apr 2024 20:07:48 -0400
+Received: from JSANBUEN-L01.ad.analog.com (JSANBUEN-L01.ad.analog.com [10.117.220.64])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 43H07T2t022696;
+	Tue, 16 Apr 2024 20:07:32 -0400
+From: Jose Ramon San Buenaventura <jose.sanbuenaventura@analog.com>
+To: <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-i2c@vger.kernel.org>
+CC: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+        "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        "Delphine CC
+ Chiu" <Delphine_CC_Chiu@Wiwynn.com>,
+        Jose Ramon San Buenaventura
+	<jose.sanbuenaventura@analog.com>
+Subject: [PATCH 0/2] Add adm1281 support
+Date: Wed, 17 Apr 2024 08:07:20 +0800
+Message-ID: <20240417000722.919-1-jose.sanbuenaventura@analog.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|PN2P287MB1455:EE_
-X-MS-Office365-Filtering-Correlation-Id: d57cae31-fcdb-4ecf-c60c-08dc5e716694
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	8sudoPhejsCiyen+dYIAbGqKo5shvPfSQORoUbvOMDqlhR2id/n62a3p70de1+47w1KkAfdTDGjo1PqJ47YOwCJNi2R8P8t22TzUcPQIXPNtmWXm8GKgWdUpqwKnxVlFVi1HQdFBugZbYr0KOgUTC3+XGS0W5gmmB/37IjPgHVXxcvX6Vlqj2O4Iu+F97NezI0pqod6V6fHcL/ewMinI35bo147UFBNNpRkJCqhrGgJUuu7HWnF8lVl7coJ+5CoJOTEPjiaIEQJO8RoQGqUtLpsxmPI8S2TVxRKhG0EHm/u95aKZN9e00ETm3kaJXak/zEgPs5SH32ey4OJhQad6lZrbo5DtbE+dwpP71clczH2EizK1+M3JgT+4f2MsIBZDqTU55R3jXL2vM9RzFkAtdX5EDxn1Rg1rmwunsnY1uKQQAY0eIZJ0KeLyRonztOuD5aVMBOD5TQmI6mHLu8LlU06hg5k/AAEMwJvAoTr2yap1PE6XkxIbfbkYHebLqXPzZp/SL2Fne6GIiwrrI9ejIDir03x1GDB/1lwes1Bl17jWBos+pmjSPYEjKMEX5cw9
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?bkN1eWd5azJ1TGxtWnppL1ZuQ3hSNXZVSXgzQlNmRjlWQjQzeXdxRGxRMDQx?=
- =?utf-8?B?TGpESmxQVjExYkczOTBhS3h4UVlla0xZaDlQdGFBZUFiUlhQOCtvMmNkazlN?=
- =?utf-8?B?TFZ4Q2RXaHU1QjcvOUdoTEdVR0dBTk9xZ1NjZVVyeTBrRU5xZzh4cURjbUdW?=
- =?utf-8?B?M3lBMmNlQkV6RXhKRWNwS2RwR3BDSnljdXU2VGdiU0RBU3l1cVZlVnZJWXoz?=
- =?utf-8?B?VDE4R2EzVXFWYklZUHk4TE13TEg1WUw3cUFveU91RUF3ZXJuVHlQNmlrQ1hi?=
- =?utf-8?B?U3JLWlh6VUs3TkhnVXh4SnhlNjY2QklGWjRXTWMzS1AxUTY5SGpyT0hWcCtS?=
- =?utf-8?B?YXlVOHJ5MVYwdWRySUF3MnFyLzU5SU40Vjk1Z1VQVkxIbjNhQlRyNkh3TFh6?=
- =?utf-8?B?MFdTbXZNNEpwdFpqQzhCN1JuQ1ViWFZqWEZFcUF5NmQ1bEJnL2tZa3NpVGJK?=
- =?utf-8?B?NDRSSFRhUXl0c0VINHBZVlFhcTB3WGNENlRXbEd2ZXNKbFA1WC8zcitnS1Av?=
- =?utf-8?B?N3VpbkkydlNnZ3pSenNMZXB1dlhBdzBHMVQ3SEQ3Zm90YnhiQnN2SklsQmlE?=
- =?utf-8?B?S3BzWHpjS2hHTU12NVV0M0ZpamRsSmtSSFFuUWpzL2pRNWxFeGFodk13TUxo?=
- =?utf-8?B?Y0hkQXlRTDdRc0FYWVJvZmtCa0cybmg5bGNPekhacm9ORktsWGxJVE0zQnpB?=
- =?utf-8?B?RXdBZlQ1QklKMmZPU1Q4aUpXWGc0UkREQ3JKd1pZTHFSUlVieU1wTVEwdHJU?=
- =?utf-8?B?TnI2dE1sSjhPSUYvOXhwK1Jod3pGZTNZbEdpUTJlK3ZmQk82TXhpUlNTQjJ0?=
- =?utf-8?B?cUZWeEQ3Nysrc0ZRQVJERW5ITmROa1ZINHdHMDk2d3dKM014d202K2k1RWtE?=
- =?utf-8?B?d2E5angzc3V5a211RzlkckloblNUL1pHRUc5OUswSjFqQjhOMXJzMG1mOHA3?=
- =?utf-8?B?TVBUQTVkN0tqdGxqYlVMNEMyMStNa1RWM0RMYWwyYi94UWd5YVhGTyt5V1hR?=
- =?utf-8?B?VFFEclBiYTkzZ1JYRFFGVERUT1JFRGVYL0Uvd0xrZFV5czVPOXdpU0I3SVp0?=
- =?utf-8?B?WkJiaFNFek1qTDhvVW04ZXNMQ05TT3BremNZdEFuOCtaV1BHMmZ4Ym8yZENk?=
- =?utf-8?B?WktMTW5wN0FMbWlYeVp6NjQ1c3l0cDRRWkJvT0xoeXlzNWMzaUlMSm8wcVdH?=
- =?utf-8?B?SGJBUUhVZE1lQ2JqRWg4Qm04WklXSWJqeThqVnJiMjBnZjBmQm1xMFpZTHUy?=
- =?utf-8?B?UmVscFR0WkIxWThzZm44TTJZVTNQWWt6ZXZ3TTQrNDdybE0wLy9vQzBzWXJH?=
- =?utf-8?B?RlpuVjBSNHIvMEVzV2tBaWhHZU5jM0IyKzZTV2JabzRvL2QzeWtsdHE5bytX?=
- =?utf-8?B?WGNDZXNydjMyZm9Ud1JtRkNSdGt4dlErY1doeEdaTXBYMmlqN0tvVUhZb0xw?=
- =?utf-8?B?a0ljbU1ZR3drRzhaMTBpdWdCVWVxb1VCTkxad0NjMTF2T3d0c2QzWHhtb01j?=
- =?utf-8?B?dENEQkRuSW1nK2RiWGNOVDA3cFprdlVpdzZPTFc3a1VRVm9FTkltZU1uVVN3?=
- =?utf-8?B?MVpwYmNHbFdrMCs1STlFMDFuNXpWdUZaRW00Y0ZDTHhiZEQ5QzJsNnVXM0lt?=
- =?utf-8?B?bXR3eGVYb0duaFhKRmpJc3hVRnFIVzBuU24xQmhlRVhYbEZTeXNHNy9DNk1M?=
- =?utf-8?Q?UkWHycfN7INId+w8xLbh?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d57cae31-fcdb-4ecf-c60c-08dc5e716694
-X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2024 00:00:32.7793
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN2P287MB1455
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: 7sk41kH7McFLjaVSan5K9mfnfvPsDT-S
+X-Proofpoint-ORIG-GUID: 7sk41kH7McFLjaVSan5K9mfnfvPsDT-S
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-16_19,2024-04-16_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ suspectscore=0 priorityscore=1501 clxscore=1011 spamscore=0
+ mlxlogscore=950 bulkscore=0 malwarescore=0 phishscore=0 lowpriorityscore=0
+ adultscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404160158
+
+The ADM1281 is also a Hot-swap controller designed to be a drop-in
+replacement to the ADM1278. The currently available adm1275 driver supports
+the adm1278 and this patch adds support for the adm1281, specifically
+adding support for STATUS_CML register reads.
+ 
+An existing patch was found that adds support for the adm1281 but has not 
+been followed up since November 22, 2023. This patch aims to serve as a
+follow up or an improvement of the previously submitted patch especially
+since the code was tested on the actual adm1281 evaluation board.
+
+Jose Ramon San Buenaventura (2):
+  dt-bindings: hwmon: adm1275: add adm1281
+  hwmon: pmbus: adm1275: add adm1281 support
+
+ .../bindings/hwmon/adi,adm1275.yaml           |  4 ++-
+ Documentation/hwmon/adm1275.rst               | 14 +++++++---
+ drivers/hwmon/pmbus/Kconfig                   |  4 +--
+ drivers/hwmon/pmbus/adm1275.c                 | 27 +++++++++++++++++--
+ 4 files changed, 41 insertions(+), 8 deletions(-)
 
 
-On 2024/4/17 0:44, Conor Dooley wrote:
-> On Tue, Apr 16, 2024 at 05:50:37PM +0800, Chen Wang wrote:
-[......]
->> +    anyOf:
->> +      - minItems: 1
->> +        items:
->> +          - description: core clock
->> +          - description: bus clock for optional
->> +          - description: axi clock for rockchip specified
->> +          - description: block clock for rockchip specified
->> +          - description: timer clock for rockchip specified
->> +
->> +      - minItems: 1
-> I don't think this minItems is needed, this is for one device which has
-> all 3, no?
-Yes, SG2042 requires all the 3 clocks presented,  I will remove this 
-minItems.
-> I also think this combination should only be permitted for the sg2042,
-> since it is not valid for the existing devices.
-Yes, I will add condition to allow this combination only for sg2042, 
-thanks.
-> Cheers,
-> Conor.
-
-[......]
+base-commit: 96fca68c4fbf77a8185eb10f7557e23352732ea2
+-- 
+2.39.2
 
 
