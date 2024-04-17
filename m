@@ -1,212 +1,113 @@
-Return-Path: <devicetree+bounces-60071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F35B8A813E
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 12:43:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23DDF8A8140
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 12:44:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E7956B20F93
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 10:43:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D3122281513
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 10:44:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1969213C679;
-	Wed, 17 Apr 2024 10:43:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4B3E13C67C;
+	Wed, 17 Apr 2024 10:44:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amazon.es header.i=@amazon.es header.b="MgxsYVQJ"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="hFjXpzvI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-fw-52003.amazon.com (smtp-fw-52003.amazon.com [52.119.213.152])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 397FA128807;
-	Wed, 17 Apr 2024 10:43:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.119.213.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77A14128807;
+	Wed, 17 Apr 2024 10:44:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713350617; cv=none; b=Hw0YZTtlFhRQneh7F5hIVqeGbWes0/8NdcShNx65oUEM/51ytKuJ3iTtMhnMgXSBO95fv7PFm2zPEpzMCcdMi+Y1jpxntZRKeN8y5L8X/fh0YqxrD5vKdO1NB7Rf3V4qR/ro7mhxTapEp+6/G9JegchizeKzDMlvxYd+BuNbpcs=
+	t=1713350689; cv=none; b=apAFA/aCgYWxHTXN8vS4TpAfs0OWY1VXHh37EViSzqnvEclkDvgDOFNKEbu+PBVEBVOTHcvWJyzIOtz8Smiq19Llzr6Hdd+KbXAUB/AI42XxVuWJIE3ra7wOAzA3gf2158ZhNhBXknqlJIFfJ9y01IX4F168sWrbFechk85dfPM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713350617; c=relaxed/simple;
-	bh=mJml5qWfZ8nlSFywTk/ONcwzQZz8heZFKS7gzIVI5lc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tCWZIc8Xm0TxEdsyMAIgAyxsVGezr3JhB2GAUO1kzWup4xt/VlNkhdMEo6vi6fCBQRYvL7gQX0d+NtE6IP8vvEAnJDLqtUUFnqDOLVggGc91ekJwyJH2Aq0wALouJJ/FqsF5OtP/DCTJNwWOgKi5dTgtjdRVj+YB0Ph0ziVWlgw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.es; spf=pass smtp.mailfrom=amazon.es; dkim=pass (1024-bit key) header.d=amazon.es header.i=@amazon.es header.b=MgxsYVQJ; arc=none smtp.client-ip=52.119.213.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.es
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.es
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.es; i=@amazon.es; q=dns/txt; s=amazon201209;
-  t=1713350616; x=1744886616;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=pB206NtwaUbEhMjjil9wyDcA6enkKxcWAv9suS66OrY=;
-  b=MgxsYVQJQ/J/ePGhIM3bOs6VCPFgrYCtsk/vDjGmUbq19fWFtEfNrGaY
-   z8nB34vLkj0L9f0vTyuj/NBu7R7b7OkpS+O4l8Bl0kHiy1JZZI98mlk3G
-   iLTnCk3/gpttygJm6QIXhapUZXimp8sSfszMIGy44g0VP1JUwp1M09msE
-   o=;
-X-IronPort-AV: E=Sophos;i="6.07,209,1708387200"; 
-   d="scan'208";a="652567382"
-Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev) ([10.43.8.6])
-  by smtp-border-fw-52003.iad7.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2024 10:43:32 +0000
-Received: from EX19MTAEUC001.ant.amazon.com [10.0.43.254:48862]
- by smtpin.naws.eu-west-1.prod.farcaster.email.amazon.dev [10.0.40.183:2525] with esmtp (Farcaster)
- id 9ad80e1d-3dc3-45c1-bbdc-8f35e4f070b7; Wed, 17 Apr 2024 10:43:30 +0000 (UTC)
-X-Farcaster-Flow-ID: 9ad80e1d-3dc3-45c1-bbdc-8f35e4f070b7
-Received: from EX19D037EUB003.ant.amazon.com (10.252.61.119) by
- EX19MTAEUC001.ant.amazon.com (10.252.51.155) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.28; Wed, 17 Apr 2024 10:43:30 +0000
-Received: from f4d4887fdcfb.ant.amazon.com (10.106.83.20) by
- EX19D037EUB003.ant.amazon.com (10.252.61.119) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.28; Wed, 17 Apr 2024 10:43:25 +0000
-From: Babis Chalios <bchalios@amazon.es>
-To: <tytso@mit.edu>, <Jason@zx2c4.com>, <olivia@selenic.com>,
-	<herbert@gondor.apana.org.au>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <linux-crypto@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <sudanl@amazon.com>, <bchalios@amazon.es>, <graf@amazon.de>,
-	<xmarcalx@amazon.co.uk>, <dwmw@amazon.co.uk>, Alexander Graf
-	<graf@amazon.com>
-Subject: [PATCH v6 5/5] virt: vmgenid: add support for devicetree bindings
-Date: Wed, 17 Apr 2024 12:40:46 +0200
-Message-ID: <20240417104046.27253-6-bchalios@amazon.es>
-X-Mailer: git-send-email 2.39.3 (Apple Git-145)
-In-Reply-To: <20240417104046.27253-1-bchalios@amazon.es>
-References: <20240417104046.27253-1-bchalios@amazon.es>
+	s=arc-20240116; t=1713350689; c=relaxed/simple;
+	bh=lqVSHyjQovkmdTfW/oYvU9zJi0CsYmYN+rogRbERdeA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NoMpttb0NpBXKyMzvY10KH3SFFpzujG7ZmwcUHaG5h14lJ+My3QtiCij4LlIa5Xt5YEYlLAiZqHDsMo+ohiXVRid+sY6rhDKjYEVoc8u9jyk3vhlnV/XfeyrSdIRalNa+37XiUi4GIjd3me/m5zSU9QfT1wzmni8kZX9PasjoVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=hFjXpzvI; arc=none smtp.client-ip=212.227.15.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1713350671; x=1713955471; i=wahrenst@gmx.net;
+	bh=lqVSHyjQovkmdTfW/oYvU9zJi0CsYmYN+rogRbERdeA=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=hFjXpzvIWwkDQ8sPuAV+L5B/gWL40iKo8vPRggiwG3rMN+hvhGcsouvmlcB8ypLW
+	 WXuoPQfiAtAiwrcUmBwFrsltfG4BdL/02+VpCdNM0V5xb7jaIxP4VMkYskAa/G9F+
+	 cN76VZhHSCG4qiun+HFiSRGXEO3tMJ4C2VzFfi8SsWeIHn5RK/WAQaRW9Drwvl1MV
+	 yeYnymWaRHiwbdvpma7hVbFbJOUQMN/YfOOA+PqpNk39WCGtIoV4WNJALJ7jBfPaB
+	 6kwk4uVSgoCi5li0KdS0yOOFwCuQ276idoG7jjUniDTaKOnegCXka/gYZSCzJfPGb
+	 rSZEKDltcfZH3Uxjkg==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.167] ([37.4.248.43]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1N4hvR-1sucWG2INT-011jA8; Wed, 17
+ Apr 2024 12:44:31 +0200
+Message-ID: <97a35f13-ef9b-43db-a10f-0593b91464c4@gmx.net>
+Date: Wed, 17 Apr 2024 12:44:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: EX19D041UWA003.ant.amazon.com (10.13.139.105) To
- EX19D037EUB003.ant.amazon.com (10.252.61.119)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] ARM: dts: imx6ull-tarragon: Reduce SPI clock for
+ QCA7000
+To: Fabio Estevam <festevam@gmail.com>
+Cc: Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, kernel@pengutronix.de,
+ imx@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20240416190659.15430-1-wahrenst@gmx.net>
+ <20240416190659.15430-3-wahrenst@gmx.net>
+ <CAOMZO5BA0f9Y9knYm3MPbZ-t0=v2V3kkLTa7111tUndNep7moQ@mail.gmail.com>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <CAOMZO5BA0f9Y9knYm3MPbZ-t0=v2V3kkLTa7111tUndNep7moQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:aGs2FQXEeNjUXfXlVX7xhs5BDVZ84hUx3Z4b1BBDzhi41PM/8ER
+ sDHFVIuyoSCV/cIP/0KpxTWesRYeeu4t25VnXDI9PIkvTRLA1ZNaEsRAP5cNR2wRq2syfe1
+ lENPTUe+fnLps/TD/Vr7qnIj9iW2VxJsELYyuVW75cww3pcZ0Yza7vXHLA5Y1iEd1jJNVjb
+ xyncPh3aZH7vO8FquMcjg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:4EedHW3+NBg=;qn1PZ3odbYIAPafAlPZSoZFcGfh
+ h9uoXdtN5BEbt3iWi2upwg+m3/Qix9G5MvA22LEmKsz/loArb5jJqKiyHpqPd+1FCAfaCjMVe
+ ImzENB0HsxhryqW5oLN8F5xM/l9LRQhn0hHx4n1X0Ws195oU2cY79M5rq//j2zb/n3BXFEVqX
+ I4Xim1Wk04RajYG4vZkeeIB6dmlcKZiJdv4smnpTN+CjFQtegL3WIUx44rqP4tkrOTeBbp1Dq
+ kluZFZlsdraWRwimxOh3/PnIpGNXFXPbTCHGHsskL8fnEbf9+K2QS7JuSdP72Rcp69EWa6dk8
+ ERvSXFvJg+HGspLKqxGCX0kJmbXZeas9vUcn+AmVsqOCZHfeyaxl2OV/0Ww94epWv34E3rB5t
+ cCHbnHIba+W0ZNWeYhHZri8vmn5PPrfZUePDxi/xZ0rv//kFrAnpqaZe1KuJx6uG/F+uJdSoj
+ yi8fs6iOb366qJeS9K9neFjjrd1QzI8A+okKqsxNEVhyCmCR7oJbuTX408s2/CNYYPYMNKvRT
+ ozHRpcoMr4mo+23UhepH1zrbdIw3ilKHxmCKjoDQ4MNS7oEdsDWARSZ9wt4g5ePWAC4hId9QF
+ 5pPq5tdcz3EvJDafBO+klerFFoZuPzT5Zr53m7S7JbR/VHdhVg3Ddp+PCvBNYQLVPwACH+qIt
+ Q096nQCb/8aG85Uh4y2U2reNpxPZ81wI5FVZ5kbx8HQ5BWjJLoPuyC5D4ZEUsBPd+k8PFqwXb
+ BecwQcWhheqCCyQ/qWrCAjGj1uGwP3R978mYHV1Dct+85fZMkmMWqxfulpkzsEFj6sJqWz751
+ WEi0Npq/SKO1McWAeooThei7r+uhZt7z1JzlJyrgI1v7M=
 
-Extend the vmgenid platform driver to support devicetree bindings.
-With this support, hypervisors can send vmgenid notifications to
-the virtual machine without the need to enable ACPI.
-The bindings are located at:
-Documentation/devicetree/bindings/rng/microsoft,vmgenid.yaml
+Hi Fabio,
 
-Co-authored-by: Sudan Landge <sudanl@amazon.com>
-Signed-off-by: Babis Chalios <bchalios@amazon.es>
-Reviewed-by: Alexander Graf <graf@amazon.com>
----
- drivers/virt/vmgenid.c | 53 ++++++++++++++++++++++++++++++++++++++++--
- 1 file changed, 51 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/virt/vmgenid.c b/drivers/virt/vmgenid.c
-index 3d93e3fb94c4..9a3c12e5dd6e 100644
---- a/drivers/virt/vmgenid.c
-+++ b/drivers/virt/vmgenid.c
-@@ -2,12 +2,13 @@
- /*
-  * Copyright (C) 2022 Jason A. Donenfeld <Jason@zx2c4.com>. All Rights Reserved.
-  *
-- * The "Virtual Machine Generation ID" is exposed via ACPI and changes when a
-+ * The "Virtual Machine Generation ID" is exposed via ACPI or DT and changes when a
-  * virtual machine forks or is cloned. This driver exists for shepherding that
-  * information to random.c.
-  */
- 
- #include <linux/acpi.h>
-+#include <linux/interrupt.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/platform_device.h>
-@@ -20,6 +21,7 @@ enum { VMGENID_SIZE = 16 };
- struct vmgenid_state {
- 	u8 *next_id;
- 	u8 this_id[VMGENID_SIZE];
-+	int irq;
- };
- 
- static void vmgenid_notify(struct device *device)
-@@ -43,6 +45,14 @@ vmgenid_acpi_handler(acpi_handle __always_unused handle,
- 	vmgenid_notify(dev);
- }
- 
-+static irqreturn_t
-+vmgenid_of_irq_handler(int __always_unused irq, void *dev)
-+{
-+	vmgenid_notify(dev);
-+
-+	return IRQ_HANDLED;
-+}
-+
- static int __maybe_unused
- setup_vmgenid_state(struct vmgenid_state *state, u8 *next_id)
- {
-@@ -106,6 +116,35 @@ static int vmgenid_add_acpi(struct device __maybe_unused *dev,
- #endif
- }
- 
-+static int vmgenid_add_of(struct platform_device *pdev,
-+			  struct vmgenid_state *state)
-+{
-+	u8 *virt_addr;
-+	int ret = 0;
-+
-+	virt_addr = (u8 *)devm_platform_get_and_ioremap_resource(pdev, 0, NULL);
-+	if (IS_ERR(virt_addr))
-+		return PTR_ERR(virt_addr);
-+
-+	ret = setup_vmgenid_state(state, virt_addr);
-+	if (ret)
-+		return ret;
-+
-+	ret = platform_get_irq(pdev, 0);
-+	if (ret < 0)
-+		return ret;
-+
-+	state->irq = ret;
-+	pdev->dev.driver_data = state;
-+
-+	ret = devm_request_irq(&pdev->dev, state->irq, vmgenid_of_irq_handler,
-+			       IRQF_SHARED, "vmgenid", &pdev->dev);
-+	if (ret)
-+		pdev->dev.driver_data = NULL;
-+
-+	return ret;
-+}
-+
- static int vmgenid_add(struct platform_device *pdev)
- {
- 	struct vmgenid_state *state;
-@@ -116,7 +155,10 @@ static int vmgenid_add(struct platform_device *pdev)
- 	if (!state)
- 		return -ENOMEM;
- 
--	ret = vmgenid_add_acpi(dev, state);
-+	if (dev->of_node)
-+		ret = vmgenid_add_of(pdev, state);
-+	else
-+		ret = vmgenid_add_acpi(dev, state);
- 
- 	if (ret)
- 		devm_kfree(dev, state);
-@@ -124,6 +166,12 @@ static int vmgenid_add(struct platform_device *pdev)
- 	return ret;
- }
- 
-+static const struct of_device_id vmgenid_of_ids[] = {
-+	{ .compatible = "microsoft,vmgenid", },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, vmgenid_of_ids);
-+
- static const struct acpi_device_id vmgenid_acpi_ids[] = {
- 	{ "VMGENCTR", 0 },
- 	{ "VM_GEN_COUNTER", 0 },
-@@ -136,6 +184,7 @@ static struct platform_driver vmgenid_plaform_driver = {
- 	.driver     = {
- 		.name   = "vmgenid",
- 		.acpi_match_table = vmgenid_acpi_ids,
-+		.of_match_table = vmgenid_of_ids,
- 	},
- };
- 
--- 
-2.40.1
-
+Am 17.04.24 um 05:00 schrieb Fabio Estevam:
+> Hi Stefan,
+>
+> On Tue, Apr 16, 2024 at 4:07=E2=80=AFPM Stefan Wahren <wahrenst@gmx.net>=
+ wrote:
+>> Our hardware department recently informed us that, according to
+>> the specification, the QCA7000 should be operated with a
+>> maximum SPI clock frequency of 12 MHz. Even if it appears to work
+>> at a higher frequency, we should not take any risks here. A short
+>> performance test showed no measurable loss of speed.
+> Should this one have a Fixes tag?
+i'm undecided about that. On the one hand the the former clock
+frequencies are wrong, on the other hand we didn't experience any issues
+with these frequencies.
 
