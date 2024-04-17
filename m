@@ -1,262 +1,138 @@
-Return-Path: <devicetree+bounces-60090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CE7D8A822C
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 13:32:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75F908A8246
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 13:42:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C01881C215EE
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 11:32:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0DAA4B25FF4
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 11:42:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33F2D13CF85;
-	Wed, 17 Apr 2024 11:32:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DD4513C8EA;
+	Wed, 17 Apr 2024 11:42:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CPdvH8+w"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="jIy/z3eF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CC3B13342F
-	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 11:32:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AA4F13CAAE
+	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 11:42:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713353531; cv=none; b=uZi6zKJtRhaDDp/zUDk5auqrun1RZRBfn9e1dqhHiEMPqO3aXQZRU0T3jUyXNWP452TagjGRqMjiFyvX8odE70ZxGweIXNX0Iwy9oJpn3K0c4UY20KfnRVLx3IqW1fOOEXsglwqZ7F1z67z1o3ci6TogjkGaZlDuYQe2iHG2dMs=
+	t=1713354167; cv=none; b=Nno9BAyDssdsWIHFBF5FeaqrqerXH0vRiulANyeF8jw4GeRfD0AxIBXs7UBOC940ekV3v+zeA39e6BrB32GeSOU0uQDR7WXbIGYMC3xv8CmGnqwXjY6DUnwCV6tXfSf8EDR/ukqulNMqRT401SbEp7ibKUWX5k39RKwmmJ2OoDY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713353531; c=relaxed/simple;
-	bh=nFgsoHDRyjy2pIUsSKGk1hmqklyXjtnFV+C3uDT2Vhs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hHSLAVsh9xOB/6WN4xsEoX/Fz+wJwQMFy4sji10XR3rf5OkU74ZK78kn64zMdrPCKsjo4NnJMWu8t6OElslt112at5qXihK9ZgrGOoT1b7IATA3e+fevPD2vmPLGIgLgYwcKknDvKEofbEXtyyUbyy+KpZxtzsENGf7fHOKvcN0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CPdvH8+w; arc=none smtp.client-ip=209.85.219.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-dcc80d6004bso5424994276.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 04:32:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713353527; x=1713958327; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=4v6W4xRXl47pD7tcdIWVC0ohUwgC4w53EhK5/Us5XW8=;
-        b=CPdvH8+wJfhTlC/mHx8KvpLpc2b+sBGpjenoeruZjuBU2w13lQSTba3LURSWxTIgV7
-         eu8FHW1F49UiQmbwDE1Dkz0xL/MiEIUK7n50gAfWuQm1WeyngtAiN2+xDrkswQWbuduc
-         d/iw0x5ObAaFDtP+d+cco/5pW8CkPN4Iq37ef6dTdHar7nM1t9xAVRtEhF37AJSj9e08
-         ZZLCuBPgN9CbspkjvHcLLklqlZm18Ie5E/QKfY0wVUw9OLqgSGAyWIJBAVpqZ34kcHZe
-         sAHmyllcF8NPKp5nMyUwxwsB5ff9SZQDcdYawfGAKrkkvQyXtXO2pBrPcxIJNDnsfyPe
-         5/XA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713353527; x=1713958327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4v6W4xRXl47pD7tcdIWVC0ohUwgC4w53EhK5/Us5XW8=;
-        b=BBYsx4IXvm4pxuyAraTFWPHVFdbWD5AYFZAa1oolNyjsbDBtCqReCeXK+lSgJwwFVZ
-         G45/APyTGgxd54iWgfqqdQIpPWfYq7LLVmPxf3BZSXZUV/7lXRt1zVo8vBMWTMn8q29e
-         nGreBf0v0Y3y6rV+wMUdSgovxhpdGaiSVxNqsg7wbqSseZJZctBdS6gk7tEQ5DcjgnM8
-         DEvFUw68Qz2fWVrQJtbgdaNh4XNRSBD7ysdk3rCyyjfKVmbTG/XGqkW6LeuCqvgN8jax
-         PXOie+CiIctj+7cDtFu2IK2hLhc281o7BCk5cudnJqyp/f0q5Kd9b2qii+wnvSK/yKmD
-         Kr5A==
-X-Forwarded-Encrypted: i=1; AJvYcCWw2mNn2sQ4DuiFncGabE7Q+9yMfc/UgXVPMLXVX8RW1tHJwUSeK6jccrnr4wZ+g3PSRE6IfT8pZlq989BNTzpP2bE3ViDf8Jb9GA==
-X-Gm-Message-State: AOJu0YzoJWJobamYntUQoCYq5cYvQDgoz5DdJtALE1vNmIWBLgRD3UuC
-	NRisKcvE9IgmS/yqwq2rMjcWPJoCyql4MeDG00nauL2v4JIMN1RA29Bz2w3tAqIp1eS6Bac6Bzt
-	1wn6Mmya0hue1wk/vtgwhrSo7rS6N8C6b3nkMFw==
-X-Google-Smtp-Source: AGHT+IGJsiKoSqmYiWaxLuSfBI71OWu7yHvjT6+1+LiQWOtye6HbuVUzEHh6QVyzBCyZxtzgkP9l9l9etXx82f2Rgm0=
-X-Received: by 2002:a05:6902:545:b0:dc7:4ad4:c977 with SMTP id
- z5-20020a056902054500b00dc74ad4c977mr14666907ybs.25.1713353527377; Wed, 17
- Apr 2024 04:32:07 -0700 (PDT)
+	s=arc-20240116; t=1713354167; c=relaxed/simple;
+	bh=NYeg8orai6KBD+CcId5wXJtIw99UyoTcZSujtN87lYw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=WZbuQ7aKKvppiLQLxjUzRnH7B6icBd5CI4UuKqFoc5LvTly+1yGVnzzUjgqrxNiJLttdEme0OpJSvhqPoAu4DnCvrBoLSLYtF+xqztlGQCL4JZAGoQChe8c9LRLA6bx5nMWV355/3C1NUlwzW0zmXStz8NbeSyC1XnwtX9rmVh8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=jIy/z3eF; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id F00E28847E;
+	Wed, 17 Apr 2024 13:42:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1713354163;
+	bh=re+dmG4DlmUNXzNLIkTemvL4r73mnMr+yNxVCRTHIjk=;
+	h=From:To:Cc:Subject:Date:From;
+	b=jIy/z3eFKN6vZc+7gGYVspfzSLQWvI72wgfyQiZNNj0XtIVVVgDiOU3NVtB8Esysl
+	 tMGqkrT1zk8T6ICyM9uX9kwMjd/+CR2jW4dqWlYVPWdcf1lMHEL/dUAwl2kPrnUD8v
+	 m6UU9/JJBPCCE+8GGDFj+ioj7Fq7lNiO6nCpwUZPNeJjsTeJR0lL9aU7IktW+/cmpq
+	 ZU6mqujYnGqhLo3RDd2DjanIoZ/Uq+S7dGBWiJFI/gtJ5bCQV/quAL6tcpSuvXi+kh
+	 h4SIB7J1DStNUSGK0j4Wyjg1hUZ2fKvn7RxMDwE8aRGf7Kf+aPH8g7RhhOqf+fbv1H
+	 Fg7XEjS/YO59g==
+From: Marek Vasut <marex@denx.de>
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marex@denx.de>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Peng Fan <peng.fan@nxp.com>,
+	Ahmad Fatoum <a.fatoum@pengutronix.de>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Paul Elder <paul.elder@ideasonboard.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev
+Subject: [PATCH v3] arm64: dts: imx8mp: Align both CSI2 pixel clock
+Date: Wed, 17 Apr 2024 13:42:06 +0200
+Message-ID: <20240417114231.7044-1-marex@denx.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240417-msm8660-mmcc-v1-1-efc9e455268c@herrie.org>
-In-Reply-To: <20240417-msm8660-mmcc-v1-1-efc9e455268c@herrie.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 17 Apr 2024 14:31:56 +0300
-Message-ID: <CAA8EJpo62Co3GjstPZQtgdYHkE=ZJ9x89FDBi_4zXO6W=2P8KQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: clock: Add qcom MSM8660 MMCC defines
-To: Herman van Hazendonk <github.com@herrie.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On Wed, 17 Apr 2024 at 14:19, Herman van Hazendonk
-<github.com@herrie.org> wrote:
->
-> From: Linus Walleij <linus.walleij@linaro.org>
->
-> The compatible binding for the MSM8660 MMCC already exist
-> but the enumerator defines are missing. Add them.
->
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Herman van Hazendonk <github.com@herrie.org>
+Configure both CSI2 clock-frequency and assigned-clock-rates
+the same way. There does not seem to be any reason for keeping
+the two CSI2 pixel clock set to different frequencies.
 
-Bindings don't make sense without a driver to back them. Otherwise
-they are just dead headers.
+This also reduces first CSI2 clock from overdrive mode
+frequency which is 500 MHz down below the regular mode
+frequency of 400 MHz.
 
-> ---
->  include/dt-bindings/clock/qcom,mmcc-msm8660.h | 75 +++++++++++++++++++++++++++
->  include/dt-bindings/reset/qcom,mmcc-msm8660.h | 53 +++++++++++++++++++
->  2 files changed, 128 insertions(+)
->
-> diff --git a/include/dt-bindings/clock/qcom,mmcc-msm8660.h b/include/dt-bindings/clock/qcom,mmcc-msm8660.h
-> new file mode 100644
-> index 000000000000..2c7a6a3ae328
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/qcom,mmcc-msm8660.h
-> @@ -0,0 +1,75 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Copyright (c) 2013, The Linux Foundation. All rights reserved.
-> + */
-> +
-> +#ifndef _DT_BINDINGS_CLK_MSM_MMCC_8660_H
-> +#define _DT_BINDINGS_CLK_MSM_MMCC_8660_H
-> +
-> +#define GMEM_AXI_CLK           0
-> +#define IJPEG_AXI_CLK          1
-> +#define IMEM_AXI_CLK           2
-> +#define JPEGD_AXI_CLK          3
-> +#define MDP_AXI_CLK            4
-> +#define VCODEC_AXI_CLK         5
-> +#define VFE_AXI_CLK            6
-> +#define ROT_AXI_CLK            7
-> +#define VPE_AXI_CLK            8
-> +#define SMI_2X_AXI_CLK         9
-> +#define AMP_AHB_CLK            10
-> +#define CSI0_AHB_CLK           11
-> +#define CSI1_AHB_CLK           12
-> +#define DSI_M_AHB_CLK          13
-> +#define DSI_S_AHB_CLK          14
-> +#define GFX2D0_AHB_CLK         15
-> +#define GFX2D1_AHB_CLK         16
-> +#define GFX3D_AHB_CLK          17
-> +#define HDMI_M_AHB_CLK         18
-> +#define HDMI_S_AHB_CLK         19
-> +#define IJPEG_AHB_CLK          20
-> +#define IMEM_AHB_CLK           21
-> +#define JPEGD_AHB_CLK          22
-> +#define MDP_AHB_CLK            23
-> +#define ROT_AHB_CLK            24
-> +#define SMMU_AHB_CLK           25
-> +#define TV_ENC_AHB_CLK         26
-> +#define VCODEC_AHB_CLK         27
-> +#define VFE_AHB_CLK            28
-> +#define VPE_AHB_CLK            29
-> +#define GFX3D_SRC              30
-> +#define GFX3D_CLK              31
-> +#define MDP_SRC                        32
-> +#define MDP_CLK                        33
-> +#define MDP_VSYNC_SRC          34
-> +#define MDP_VSYNC_CLK          35
-> +#define MDP_PIXEL_SRC          36
-> +#define MDP_PIXEL_CLK          37
-> +#define MDP_LCDC_CLK           38
-> +#define ROT_SRC                        39
-> +#define ROT_CLK                        40
-> +#define CAM_SRC                        41
-> +#define CAM_CLK                        42
-> +#define CSI_SRC                        43
-> +#define CSI0_CLK               44
-> +#define CSI1_CLK               45
-> +#define DSI_BYTE_SRC           46
-> +#define DSI_BYTE_CLK           47
-> +#define DSI_ESC_CLK            48
-> +#define TV_SRC                 49
-> +#define TV_ENC_CLK             50
-> +#define TV_DAC_CLK             51
-> +#define MDP_TV_CLK             52
-> +#define HDMI_TV_CLK            53
-> +#define HDMI_APP_CLK           54
-> +#define VCODEC_SRC             55
-> +#define VCODEC_CLK             56
-> +#define VPE_SRC                        57
-> +#define VPE_CLK                        58
-> +#define VFE_SRC                        59
-> +#define VFE_CLK                        60
-> +#define CSI0_VFE_CLK           61
-> +#define CSI1_VFE_CLK           62
-> +#define PLL2                   63
-> +#define PLL3                   64
-> +
-> +#endif
-> diff --git a/include/dt-bindings/reset/qcom,mmcc-msm8660.h b/include/dt-bindings/reset/qcom,mmcc-msm8660.h
-> new file mode 100644
-> index 000000000000..c12156b3b8ac
-> --- /dev/null
-> +++ b/include/dt-bindings/reset/qcom,mmcc-msm8660.h
-> @@ -0,0 +1,53 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Copyright (c) 2013, The Linux Foundation. All rights reserved.
-> + */
-> +
-> +#ifndef _DT_BINDINGS_RESET_MSM_MMCC_8660_H
-> +#define _DT_BINDINGS_RESET_MSM_MMCC_8660_H
-> +
-> +#define IJPEG_AXI_RESET                0
-> +#define IMEM_AXI_RESET         1
-> +#define MDP_AXI_RESET          2
-> +#define VCODEC_AXI_RESET       3
-> +#define VFE_AXI_RESET          4
-> +#define ROT_AXI_RESET          5
-> +#define VPE_AXI_RESET          6
-> +#define AMP_AHB_RESET          7
-> +#define CSI0_AHB_RESET         8
-> +#define CSI1_AHB_RESET         9
-> +#define DSI_M_AHB_RESET                10
-> +#define DSI_S_AHB_RESET                11
-> +#define GFX2D0_AHB_RESET       12
-> +#define GFX2D1_AHB_RESET       13
-> +#define GFX3D_AHB_RESET                14
-> +#define HDMI_M_AHB_RESET       15
-> +#define HDMI_S_AHB_RESET       16
-> +#define IJPEG_AHB_RESET                17
-> +#define IMEM_AHB_RESET         18
-> +#define JPEGD_AHB_RESET                19
-> +#define MDP_AHB_RESET          20
-> +#define ROT_AHB_RESET          21
-> +#define TV_ENC_AHB_RESET       22
-> +#define VCODEC_AHB_RESET       23
-> +#define VFE_AHB_RESET          24
-> +#define VPE_AHB_RESET          25
-> +#define MDP_RESET              26
-> +#define MDP_VSYNC_RESET                27
-> +#define MDP_PIXEL_RESET                28
-> +#define ROT_RESET              29
-> +#define GFX3D_RESET            30
-> +#define CSI0_RESET             31
-> +#define CSI1_RESET             32
-> +#define DSI_BYTE_RESET         33
-> +#define TV_ENC_RESET           34
-> +#define MDP_TV_RESET           35
-> +#define HDMI_TV_RESET          36
-> +#define HDMI_APP_RESET         37
-> +#define VCODEC_RESET           38
-> +#define VPE_RESET              39
-> +#define VFE_RESET              40
-> +#define CSI0_VFE_RESET         41
-> +#define CSI1_VFE_RESET         42
-> +
-> +#endif
->
-> ---
-> base-commit: 96fca68c4fbf77a8185eb10f7557e23352732ea2
-> change-id: 20240417-msm8660-mmcc-51c1d1866dcb
->
-> Best regards,
-> --
-> Herman van Hazendonk <github.com@herrie.org>
->
->
+Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Reviewed-by: Peng Fan <peng.fan@nxp.com>
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Paul Elder <paul.elder@ideasonboard.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: imx@lists.linux.dev
+Cc: linux-arm-kernel@lists.infradead.org
+---
+V2: Align both clock to 266 MHz and update commit message
+V3: - Fix up clock-frequency to 266 MHz as well, update commit message
+    - Add RB from Peng and Alexander, but maybe those need to be updated?
+---
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+index 1bb96e96639f2..b92abb5a5c536 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+@@ -1657,7 +1657,7 @@ mipi_csi_0: csi@32e40000 {
+ 				compatible = "fsl,imx8mp-mipi-csi2", "fsl,imx8mm-mipi-csi2";
+ 				reg = <0x32e40000 0x10000>;
+ 				interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
+-				clock-frequency = <500000000>;
++				clock-frequency = <266000000>;
+ 				clocks = <&clk IMX8MP_CLK_MEDIA_APB_ROOT>,
+ 					 <&clk IMX8MP_CLK_MEDIA_CAM1_PIX_ROOT>,
+ 					 <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF_ROOT>,
+@@ -1667,7 +1667,7 @@ mipi_csi_0: csi@32e40000 {
+ 						  <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF>;
+ 				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>,
+ 							 <&clk IMX8MP_CLK_24M>;
+-				assigned-clock-rates = <500000000>;
++				assigned-clock-rates = <266000000>;
+ 				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_MIPI_CSI2_1>;
+ 				status = "disabled";
+ 
 -- 
-With best wishes
-Dmitry
+2.43.0
+
 
