@@ -1,154 +1,107 @@
-Return-Path: <devicetree+bounces-60222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83CCE8A87B5
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 17:34:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEA828A87CC
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 17:37:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 376FD1F22D56
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 15:34:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C3261C21E2D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 15:37:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 955F0146D4B;
-	Wed, 17 Apr 2024 15:34:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1E9F1487CF;
+	Wed, 17 Apr 2024 15:35:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i4T6AISh"
+	dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.b="j4M13Y0U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpcmd13146.aruba.it (smtpcmd13146.aruba.it [62.149.156.146])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 651C113C3EF;
-	Wed, 17 Apr 2024 15:34:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9663C147C96
+	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 15:35:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.149.156.146
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713368068; cv=none; b=ARFys+a6ITm7aw+zHvcO88YYbb08f5aTUGdKeCPLJxtxGyPkcmIZa+EdWnkQRZYinsYKRO8JJYRq+InxkAqmFoY0VOmOkEOwhY+SJeFGNIQ2Rls1zKLrDEvEviKS+Ai2mzgxuuzdBjMiEVAa70W/sToC2wenLEKW7uEDUv/+1/M=
+	t=1713368146; cv=none; b=fIyCQIab5FKMbHLHsts7EGc/K8WEw7x/l9ajExEhJWhJgwXPUWGuEtEj3+573tgmFiyUj4Ka7CmMB+UmKL/0VOoQZbZf0Y6IoEzyuByolVmNgBSwB9GcLLb5uQ0ekXsOwdYJE3aBsQBp+iB4shpaVINjtR8lcKY6mQQTfKhKP8U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713368068; c=relaxed/simple;
-	bh=IaRbObB5dEEIBtmpY4TQrQpfkbKo3yd2zwxXbfaJry0=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=jcS+eTpuaZWeVijKeU8wGzXirr/TzjuVnRf6vuvOTyySPhANT2/7qE9a31rq7CyYoztjjdnMseZOteXJdOG1qYreKfY7aiP+GkMOiscNyQfi7nc/4sIZQY0gdmz8z1SYJ+E23pEMu5YeqVZGk3SpxauCsLDcSvGR5NbgiHuQ+A8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i4T6AISh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCB6DC072AA;
-	Wed, 17 Apr 2024 15:34:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713368068;
-	bh=IaRbObB5dEEIBtmpY4TQrQpfkbKo3yd2zwxXbfaJry0=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=i4T6AIShq8iv6NzCQXuiVcBRjXys+gIu07VpRelIM/4VXfkxa3i1aKygFMcqTfTIP
-	 AxI1eScM8ogH6mCi0qFjCiT8MznN+YC6bE97ooKRydobQsZBEBBPl14dFQ/xJn7HcJ
-	 WhAUpXTxxQ+2Ln9OGR3rqkl/aitwNGoa5G5ULy5RqNdc8NReBC8F7Aw/raXUAR5Vla
-	 sVdUqc4laN664krEG2iJfuh8vTv5eP5X/Cd5kMpYf6dUmdG1Ce3KMwmHj+zgdDoFUO
-	 jLR33YbSwCQZlA1pjaR0uIv/IyOSNecht8uQWZ1RfasrybthQd67T+YCEJKhb1akT9
-	 aqEUnB1f0DATQ==
-Date: Wed, 17 Apr 2024 10:34:26 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1713368146; c=relaxed/simple;
+	bh=pDXnvTYDcnQuVId72ZBjMPQReEig8zoC6BZfnfYFX44=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=nrmxfmuLa4rNXda53sGivakUC87ym0PdmDs+2u3wTV0xb9iPWxYYUBnP3BcTvvI++83dSyHjCoMzaPFL2YXK04ha9gsktgunkSpJpQkMjmyBvmbASg5OqAQcI4xEcuVo0T8/DAn61T8K9Jj74E7kNc6G1cqwgWEHkXTNS4tUL0g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=engicam.com; spf=pass smtp.mailfrom=engicam.com; dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.b=j4M13Y0U; arc=none smtp.client-ip=62.149.156.146
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=engicam.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=engicam.com
+Received: from engicam.com ([77.32.9.15])
+	by Aruba Outgoing Smtp  with ESMTPSA
+	id x7JrrIqgbiznzx7JsrXauv; Wed, 17 Apr 2024 17:35:33 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+	t=1713368133; bh=pDXnvTYDcnQuVId72ZBjMPQReEig8zoC6BZfnfYFX44=;
+	h=From:To:Subject:Date:MIME-Version;
+	b=j4M13Y0UKIEQQLubyKuY7puuKS5hkz1FaH5n8h+9l7SuNQhfg4pChcJq90yEApGDD
+	 XDop4U73PkpDe4ME5pDK5CSRSy0ZbLEZLAjLxMJqVgDKHuRESnYT+1UOBFPntM+cHh
+	 w1eyhRZu9wY51syVCYrVKqDguThcTezleqiAiFRejGci/odAXrDYl2S8hv4TvvEZ4a
+	 1u/CHeLbOpNeQZfLZDzfxwm6HQ1ECq4KDJD2xUMQiGLxiw3PJLr0JUi/ALyphMRGdK
+	 aimhmEPtjc7/bHV6hASao3wAh/bXtA19C5FjErhSAyqISezzvkr3iM9O8kcFGSUdjM
+	 a6ExR0kvICl5A==
+From: Fabio Aiuto <fabio.aiuto@engicam.com>
+To: Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Fabio Aiuto <fabio.aiuto@engicam.com>
+Subject: [PATCH 0/4] arm64: dts: imx93: add i.Core MX93 EDIMM 2.0 board
+Date: Wed, 17 Apr 2024 17:35:24 +0200
+Message-Id: <20240417153528.7838-1-fabio.aiuto@engicam.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: Luis Chamberlain <mcgrof@kernel.org>, 
- Dent Project <dentproject@linuxfoundation.org>, 
- linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- kernel@pengutronix.de, "Rafael J. Wysocki" <rafael@kernel.org>, 
- linux-doc@vger.kernel.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Russell King <linux@armlinux.org.uk>, Russ Weight <russ.weight@linux.dev>, 
- Jakub Kicinski <kuba@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, 
- Andrew Lunn <andrew@lunn.ch>, Mark Brown <broonie@kernel.org>, 
- Eric Dumazet <edumazet@google.com>, 
- Oleksij Rempel <o.rempel@pengutronix.de>, 
- Frank Rowand <frowand.list@gmail.com>, Paolo Abeni <pabeni@redhat.com>, 
- "David S. Miller" <davem@davemloft.net>, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Jonathan Corbet <corbet@lwn.net>, netdev@vger.kernel.org, 
- Rob Herring <robh+dt@kernel.org>
-In-Reply-To: <20240417-feature_poe-v9-8-242293fd1900@bootlin.com>
-References: <20240417-feature_poe-v9-0-242293fd1900@bootlin.com>
- <20240417-feature_poe-v9-8-242293fd1900@bootlin.com>
-Message-Id: <171336806575.2618779.157615998420721814.robh@kernel.org>
-Subject: Re: [PATCH net-next v9 08/14] dt-bindings: net: pse-pd: Add
- another way of describing several PSE PIs
+Content-Transfer-Encoding: 8bit
+X-CMAE-Envelope: MS4xfKf54hZLWy+EqOg5Nqgc0goNOHAhokwMzcseEGM/md4Kj+Xk6iBWYxM59JqOzXCKNRty4XULab5exIS2u3izr6RaljxgtYxGjR+musWIS2kHsPo2muOv
+ cx3OAN2qTT04yrg1TnQSd/TGRTbIBJ49ikYOuGYSAC668GVbSEiL+A4+F+NF7/UcLRNHt+Ljnq15HKJMUA19RxQpy1tgpl/+zVIFANO0OhDrAfynWBafbNqy
+ 90LKZbt8HIO9w1KJHfR486IuQhL8t3QtB6A11+64v8UOgzF3MRFf+OnPpipSZSdLmEP2BPimD/TBmqs0wevGvygwAjNPsqPcPSfytRAb1owt02fMSYPS98fV
+ dSAYjNwraYX9oQdhmcBjVWistHt5eU+ACMQB+x+o7LTyT6dOKcknOXv81kvwXtuOHcMfr6YbjT7clvO1o7g1HevnAxxsSpavI6pJWA7EE9KfjSpPMMIWXCLN
+ 6+Y/7DmdNLbtQ5JlGfwfqPigO732gyjIKhEFKgzIG53Gy0hmaaYhTBi4FGAQYneeZCTK8txkrwQJaMeAo/nNmQSrJUs4B8+RuW59dw==
 
+Hello all,
 
-On Wed, 17 Apr 2024 16:39:56 +0200, Kory Maincent wrote:
-> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
-> 
-> PSE PI setup may encompass multiple PSE controllers or auxiliary circuits
-> that collectively manage power delivery to one Ethernet port.
-> Such configurations might support a range of PoE standards and require
-> the capability to dynamically configure power delivery based on the
-> operational mode (e.g., PoE2 versus PoE4) or specific requirements of
-> connected devices. In these instances, a dedicated PSE PI node becomes
-> essential for accurately documenting the system architecture. This node
-> would serve to detail the interactions between different PSE controllers,
-> the support for various PoE modes, and any additional logic required to
-> coordinate power delivery across the network infrastructure.
-> 
-> The old usage of "#pse-cells" is unsuficient as it carries only the PSE PI
-> index information.
-> 
-> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
-> ---
-> 
-> Changes in v3:
-> - New patch
-> 
-> Changes in v4:
-> - Remove $def
-> - Fix pairset-names item list
-> - Upgrade few properties description
-> - Update the commit message
-> 
-> Changes in v5:
-> - Fix yamllint error.
-> - Replace underscore by dash in properties names.
-> - Add polarity-supported property.
-> 
-> Changes in v6:
-> - Reorder the pairset pinout table documentation to shrink the lines size.
-> - Remove pairset and polarity as required fields.
-> - Add vpwr-supply regulator supply.
-> 
-> Changes in v7:
-> - Fix weird characters issue.
-> - Fix documentation nit.
-> ---
->  .../bindings/net/pse-pd/pse-controller.yaml        | 101 ++++++++++++++++++++-
->  1 file changed, 98 insertions(+), 3 deletions(-)
-> 
+this patchset adds support for i.Core MX93 EDIMM 2.0 Starter Kit,
+a SoM + Evaluation Board combination from Engicam.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+If I'm not wrong the change I propose on patch 2 has been already
+queued up in regulator subsystem, anyway I put it here to satisfy
+requirements for dt-bindings patch submission (if I don't do that
+checkpatch complains about that).
 
-yamllint warnings/errors:
+Thanks in advance,
 
-dtschema/dtc warnings/errors:
+fabio
 
+Fabio Aiuto (4):
+  dt-bindings: arm: fsl: add Engicam i.Core MX93 EDIMM 2.0 Starter Kit
+  regulator: dt-bindings: pca9450: add pca9451a support
+  arm64: dts: imx93: add Engicam i.Core MX93 SoM
+  arm64: dts: imx93: Add Engicam i.Core MX93 EDIMM 2.0 Starter Kit
 
-doc reference errors (make refcheckdocs):
-Warning: Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml references a file that doesn't exist: Documentation/networking/pse-pd/pse-pi.rst
-Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml: Documentation/networking/pse-pd/pse-pi.rst
+ .../devicetree/bindings/arm/fsl.yaml          |   7 +
+ .../regulator/nxp,pca9450-regulator.yaml      |   1 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../dts/freescale/imx93-icore-mx93-edimm2.dts | 356 ++++++++++++++++++
+ .../boot/dts/freescale/imx93-icore-mx93.dtsi  | 271 +++++++++++++
+ 5 files changed, 636 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-icore-mx93-edimm2.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-icore-mx93.dtsi
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240417-feature_poe-v9-8-242293fd1900@bootlin.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-- 
+2.34.1
 
 
