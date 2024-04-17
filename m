@@ -1,110 +1,91 @@
-Return-Path: <devicetree+bounces-60116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60117-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D0A58A8349
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 14:42:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7D498A83D0
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 15:07:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB48E28255A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 12:42:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D94EF1C214D9
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 13:07:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 838CB13D527;
-	Wed, 17 Apr 2024 12:42:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com header.b="aOUSpA2i"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2361B13D610;
+	Wed, 17 Apr 2024 13:07:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 563D913D2BA;
-	Wed, 17 Apr 2024 12:42:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2023113C9BF;
+	Wed, 17 Apr 2024 13:07:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713357742; cv=none; b=adqMK6VPd+JpDbtJvzcjxJe65yXuhbPGjWA6W0FErMTc+9N9WlAfcUKXcb8/BgESplBtq/GhFFdgZ1d6GzESyg4s4LZgiY/cRGFJgZupLrZTzRduG9uh6FzVCnsdKfFhjxhyl8PAi0fc7uyyYlelhYXMm6vtSBcwd24OtKiRUhA=
+	t=1713359271; cv=none; b=f65s0IE/v9f3nogEZ5xR4hPzSk+fo4COXKr2Pt8SsOZ3K3dbUuBy9b1hv90VMnptbaPozAaYqp+vuTBm8u8WQOA+Dh7m5aOeeUofiSnbIv0nj8Flh9isYH2ZxfZVCLBeYsT/7xEH34tDXIlJeWmxDyg1x7landY7aX2CGR8hTsw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713357742; c=relaxed/simple;
-	bh=iElS8fLYtQfkeJ74Kw3ZZys+/3ME/EXDLVa34ENKV2w=;
+	s=arc-20240116; t=1713359271; c=relaxed/simple;
+	bh=UwDPpPTO8fr38xZWC6BfjYWgirJI4xegCIDYLE9yDCI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BSWIofdunBgHBoXSQAvLtELnY17zGbrSQHsjd763Q1iSRf1gdKzFfeyGcsEEE6lwpnsUNjgdLOHJHcMZy5tMH5torJv86O9PFVNbzlf8wvHndmVpBkrlhY3/he44NIepBxMPELO0B7Y+o8EkWNXYvlP3NTbyLUDVgZh6y4cHwUE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com header.b=aOUSpA2i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B7F2C072AA;
-	Wed, 17 Apr 2024 12:42:20 +0000 (UTC)
-Authentication-Results: smtp.kernel.org;
-	dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com header.b="aOUSpA2i"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zx2c4.com; s=20210105;
-	t=1713357739;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nhGk4qQoX6Vgfs3FX2NokLuDYqMjjQUysDddQh+F5Ec=;
-	b=aOUSpA2iqqAFoAaoF1qsBUUCw8TiJlDAqdWwniW4Z1WMUCMmLjMzLESJjhk5KT+IBBZ30q
-	Pk/saUu2ma4Gh+N5QHJN5NT95kdi+MbojjsJFloP8IZ+rOd0SY8PgCNHUeIwfGg8pIY9Is
-	1uaYzzO+TYwQRjOXmuiwVEczgRzYreE=
-Received: 
-	by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id 91e10a78 (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO);
-	Wed, 17 Apr 2024 12:42:16 +0000 (UTC)
-Date: Wed, 17 Apr 2024 14:42:14 +0200
-From: "Jason A. Donenfeld" <Jason@zx2c4.com>
-To: Babis Chalios <bchalios@amazon.es>
-Cc: Alexander Graf <graf@amazon.de>, tytso@mit.edu, olivia@selenic.com,
-	herbert@gondor.apana.org.au, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	sudanl@amazon.com, xmarcalx@amazon.co.uk, dwmw@amazon.co.uk
-Subject: Re: [PATCH v5 1/5] virt: vmgenid: rearrange code to make review
- easier
-Message-ID: <Zh_Dpi630-LXJkJm@zx2c4.com>
-References: <20240417081212.99657-1-bchalios@amazon.es>
- <20240417081212.99657-2-bchalios@amazon.es>
- <10d41e7e-87b1-4036-a740-da36270a4325@amazon.de>
- <2838b126-ad87-4642-9223-e24f3fdb2c63@amazon.es>
+	 Content-Type:Content-Disposition:In-Reply-To; b=oAA5QejyVs2GwSYvBMeJ7GU6dB0w7uYVmQVWIz5s2vC9TsOdciHQrbNU5dNueB/mkTTDH3sdnJap2Myy5g5pB5AwBurVg41rS3pQuej5P9WAylFM9trlHvE+psjUjqpkCqeNPmlmpDdFlQ9FCBMQ46f/VHVHdpJew3IeFx18UQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 31E6D339;
+	Wed, 17 Apr 2024 06:08:13 -0700 (PDT)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 14CC73F738;
+	Wed, 17 Apr 2024 06:07:42 -0700 (PDT)
+Date: Wed, 17 Apr 2024 14:07:40 +0100
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Peng Fan <peng.fan@nxp.com>, Linus Walleij <linus.walleij@linaro.org>
+Cc: Dan Carpenter <dan.carpenter@linaro.org>,
+	"Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Dhruva Gole <d-gole@ti.com>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+	Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+Subject: Re: [PATCH v10 0/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
+ protocol basic support
+Message-ID: <20240417130740.rxmseispc32d2sjz@bogus>
+References: <20240415-pinctrl-scmi-v10-0-59c6e7a586ee@nxp.com>
+ <6c652af8-151e-4d8b-9587-8eae1254a4fe@moroto.mountain>
+ <DU0PR04MB941737BD9ACF18526D8A50C7880F2@DU0PR04MB9417.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <2838b126-ad87-4642-9223-e24f3fdb2c63@amazon.es>
+In-Reply-To: <DU0PR04MB941737BD9ACF18526D8A50C7880F2@DU0PR04MB9417.eurprd04.prod.outlook.com>
 
-On Wed, Apr 17, 2024 at 11:05:27AM +0200, Babis Chalios wrote:
-> 
-> 
-> On 17/4/24 10:35, Alexander Graf wrote:
-> >
-> > On 17.04.24 10:12, Babis Chalios wrote:
-> >> From: Sudan Landge <sudanl@amazon.com>
-> >>
-> >> Rearrage the functions of vmgenid to make the next commit,
-> >> which re-implements vmgenid as a platform driver, easier to review.
-> >>
-> >> Signed-off-by: Sudan Landge <sudanl@amazon.com>
-> >
-> >
-> > You can't sign off on behalf of someone else. The SoB here needs to be 
-> > yours. If you are taking over this code from Sudan, I'd suggest to 
-> > take over full ownership of it and put your own name as author and SoB 
-> > in all patches.
-> >
-> 
-> I thought about it and it seemed weird to me that I take over SoB and 
-> authorship since I only touched one line in one of
-> the patches, but I will be taking over the patches, so I can do that if 
-> that's the way we things are done.
-> 
-> Does it make sense to at least add "Co-authored-by Sudan Landge 
-> <sudanl@amazon.com>" here?
+On Wed, Apr 17, 2024 at 12:15:57PM +0000, Peng Fan wrote:
+> Hi Dan,
+>
+> Just a short question, you will make this a standalone
+> patch part of your gpio pinctrl patchset, right?
+>
+> Or you wanna include this change in my v11 patch?
+>
+> I hope v11 + imx oem patches could land in 6.10,
 
-Wait, what? No. If you didn't write these patches, you're not the
-author. Sudan is the author. However, if they passed through you, it's
-fine to add your S-o-b. You can even mention the trivial change you made
-between Sudan's S-o-b and your own.
+I haven't looked at i.MX OEM patches even once so far. IIRC it is all
+in the pinctrl driver and you may not need my review/ack. But let us get
+this series in first.
 
-Anyway, if there doesn't wind up being a need for another patchset, I
-can fix this up upon committing to the tree.
+This series looks good overall. Since it has pinctrl driver, I need Linus
+to ack/agree to pick the whole series up or I can ack them so that Linus
+can take the whole series. Either way it is fine for me.
 
-Jason
+Thanks for all your efforts in pursuing this.
+
+--
+Regards,
+Sudeep
 
