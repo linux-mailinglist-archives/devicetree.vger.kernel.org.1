@@ -1,177 +1,274 @@
-Return-Path: <devicetree+bounces-59937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59939-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DC908A7B09
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 05:19:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBC5D8A7B5A
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 06:25:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 709711C229DA
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 03:19:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 747712835A8
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 04:25:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 081108BFA;
-	Wed, 17 Apr 2024 03:19:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A2F542AAC;
+	Wed, 17 Apr 2024 04:25:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="d6uhlPSi"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="IkgCYkNP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2088.outbound.protection.outlook.com [40.107.6.88])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CB3B79FE;
-	Wed, 17 Apr 2024 03:19:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.6.88
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713323947; cv=fail; b=qqVvhncedblWwWVNjTM9YsU7kROue1pebVI5dB/tmk7cur4KRBkT+chjzNALRSrPCYn3ik1yA0qCBCPFPy2vbtqkBAua4JvoC3/4C4WNEaW9EV7VklI9Haq+Cn2lmcN2ijBu0oZ0Lv576jR1Kui/U4l2+AUVAKlobtcuEbkoTao=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713323947; c=relaxed/simple;
-	bh=X8I0NVkB5cPgM+ewO79bZ6bG1vv+v2RmfcQqyLHUJ+U=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=hutbQgDWG6bngsnSaZa3ogr+EzLKljyxg3zReodj/owAYQ0V1JM1fNDzTqUzCeIr/Zjf+veEXEJjbdiqOcl+phGkBlYt4IsdugUN8jENLx6R4cu0DJznCZQfBZjr/DdOW/UzFLN2zaK+ZNVnw5nUoNVgoEaF0CW9sXyyQaKiBus=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=d6uhlPSi; arc=fail smtp.client-ip=40.107.6.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nbZueDS+rhYdJ83SWz9vQTqv7EOe94ogmQ48xPincR8DpDwX69BTCr1GBuA/YODV2d96/5C6CKcEbbrsedUSFo47roFBc6w2nMcCn7tpWBoUGyQ57O7qM5KGoMLeruyzAKW5F7SSWtoHZKfZ598Q9q7bpu9zZM4SkhVQfCBVOyocvNgkXWZgWyISVcwkBQiv2qs4qUSap+seEx2XC6usTYCIX0m4HoqWnckOjtvPYQqzQFsBTLxixFg1gNfIesr+U0hUr72P1cwK32sq93PKhDWYPbKTFRYtcp4eunDPJq2LXDHJcKqYfrBpwIBxnRL6Dxu/ZzAgAKbK4a+c73u/BA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JJ/A2kIA4eK09P3pYu6HqE7psf4Y4ahFHkWHIjim5VA=;
- b=UyRLbYDL5WV0nd0I34KWy8jBBooHlwN6xMDm5/iKKVPstaRTgoijA7QClOwC+FrmqB2hcngtRo6UmRPHXDxwfzrrMWzDQws4UeCgsEya60qCkBdyJsTfvHrWwvWgVj4Y3xduEQzu2U97uIcIz6jH8JheQIHBFQDzWmJr3Qz9kOEmTajTCKanRGSR1aG5yc8o4ov9VuIb7LgGIW64XDG5sNMoDKRjeVAoccKazQa9CXw3ayvpqgSUkNe3mROWAgjoD9r9w6DHGzVkTqS7u6BC3P/WrzqfG84LXfWcX5GV4a4BHCLOwQe4hqgyZLWM6SwaBPrrk4FZx5TtGadfzaM8rA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JJ/A2kIA4eK09P3pYu6HqE7psf4Y4ahFHkWHIjim5VA=;
- b=d6uhlPSiaGRLJya5y8NBl3hsDGspMm3RB3eDO3n97zXpzJEXh2DP0Kktbhq/fjJNzyZr5DOc1ks+/W4nK3VlKgFC+PRpE35FPfVhyQOMNV1JC8FGO/I3vhuSgDyngl/seBvIoNbmIep3TwmnFfWUtWUDpdwQ3OMHuceTSxaizL8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AS4PR04MB9386.eurprd04.prod.outlook.com (2603:10a6:20b:4e9::8)
- by DB9PR04MB9305.eurprd04.prod.outlook.com (2603:10a6:10:36f::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.43; Wed, 17 Apr
- 2024 03:19:01 +0000
-Received: from AS4PR04MB9386.eurprd04.prod.outlook.com
- ([fe80::4f24:3f44:d5b1:70ba]) by AS4PR04MB9386.eurprd04.prod.outlook.com
- ([fe80::4f24:3f44:d5b1:70ba%7]) with mapi id 15.20.7452.049; Wed, 17 Apr 2024
- 03:19:01 +0000
-From: Joy Zou <joy.zou@nxp.com>
-To: frank.li@nxp.com,
-	peng.fan@nxp.com,
-	vkoul@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: imx@lists.linux.dev,
-	dmaengine@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v4 2/2] dt-bindings: fsl-dma: fsl-edma: clean up unused "fsl,imx8qm-adma" compatible string
-Date: Wed, 17 Apr 2024 11:26:42 +0800
-Message-Id: <20240417032642.3178669-3-joy.zou@nxp.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20240417032642.3178669-1-joy.zou@nxp.com>
-References: <20240417032642.3178669-1-joy.zou@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2PR02CA0004.apcprd02.prod.outlook.com
- (2603:1096:4:194::14) To AS4PR04MB9386.eurprd04.prod.outlook.com
- (2603:10a6:20b:4e9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92C4A42AA6
+	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 04:25:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.178
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713327925; cv=none; b=rf7wjFOqj3Yc9uzcFKy3linaJR1p1tT0c1SZdoowjn7+AGg9X3EOCvAltsIyxofV45SAuhkheWYcej44MJtNrZbTWV9LMV/t9JIkMM2to1n6OD47y+FXOld5+AUMrGQLAmHHXTtd3s+MTNq+f3go6XTsEHlQYi2C2nWTGAyRkOI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713327925; c=relaxed/simple;
+	bh=rFwkC511KvsC0YP2FZrFpvy2jy7jJpi7upeWgfMoueg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tXzzHcxTCX3Z5mOvB8wFU/fGK9BuiviIDmlSXlIV+TQvEDyuTVZ2mLXQMKEfeG6ZKct6LZtrK0PzNxxgpcv7BaYpkGmWWHtb0kp1KES+NqXWmbRlxpy647FPdQDhOJ0wf2v2EltNKaqDO6/FjGFHAM8rmjyDVGk0h0G45ymM0ZY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=IkgCYkNP; arc=none smtp.client-ip=209.85.167.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-3c70ef25e19so1542020b6e.3
+        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 21:25:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1713327922; x=1713932722; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=e2tZ+yG9t3/35QrGeru3QI9bqAmKuIVqOJ+PisGAvLA=;
+        b=IkgCYkNPxxMVBd4CKylSE3fOvUc5M5HuGcZodYPZBhtTY2Vhih+fJBHSqJEXd9AFoR
+         PdxfgKpx8vlQvzhHAeGpYEhyjYPKXjfm9UYFdcCJU1XpIV8oAZN+n2NaURbnmHjcwKwn
+         DrFZDi9q7+leX0QWj/RkS6VbJH3ZN0+rTQbQ/vR8roK64NoD0gNVE9oPHhsQszWrIZjc
+         Mu6V8xFlo1dZu2TXou71wuL44dXQXQP4ErRrA2vdv3c9pd+VYy0MH20HYzre69Y/5MFA
+         pQHucHlvDmUzenjtzYTr01sz49eMrHwj1xt8ES5OVMxX9r2uAh29cq5LV0IvjzG/BsiA
+         mFXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713327922; x=1713932722;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=e2tZ+yG9t3/35QrGeru3QI9bqAmKuIVqOJ+PisGAvLA=;
+        b=vZo3vwQXzDRbLaTtamlZQ3KNhsUrofwXrHiFRShjpEVKJmQbIbAs93aRqoOdQExSaI
+         SkQZLW8zVi0hA7PmzIRtexg43Tv9gtRUfrnWxNDf4uT86je188+ke5dUZHk7+y9ZyqRy
+         K6Q13PSjsDy69RRFPv7hzVGtoQ7kTMph0QTFt4nL/uIWXFlraHGGuDPwR55W40ckD5LJ
+         lr9pA1Pj0WZ8puUm39rwinKCEkeAaWwVMmK3HkDK6Il1cwX5JoF5Uv3DzTEIXFDFkqIL
+         VyjMvFe2iSpUTWNF1YorpelA/SEAX84L/YgAxCNrOog0LvDmMK2QG48LjZrI+vhawatD
+         USWA==
+X-Forwarded-Encrypted: i=1; AJvYcCUjrjLS6cnsXbNBJfcNU/qk+PTHelFvWF61XdUkIPdKLBxqymLJQKkFTCyfSqerQ0XD09iwHBBKotTfu5Yiq9ljQxCWGvRiiHByGw==
+X-Gm-Message-State: AOJu0Yy/yrNfd7TVoHCmwe73qqf2blM421jHND1NetcmFR7q7XXxtiqC
+	MAtAU8eblvCeS0aZ0xlTV3/yStiNdKxmHauGCmys6fA9mZEfitrC7exrvxpROt0=
+X-Google-Smtp-Source: AGHT+IGWLA0NcQXbZEfFdR3YsDPfVHr118QZ4WjhomG+9rzHNhvOanaWIT94NHLW+jEwwRIrKftHvw==
+X-Received: by 2002:a05:6808:298b:b0:3c5:f473:f35e with SMTP id ex11-20020a056808298b00b003c5f473f35emr16376428oib.12.1713327922458;
+        Tue, 16 Apr 2024 21:25:22 -0700 (PDT)
+Received: from ghost ([2601:647:5700:6860:6b78:3121:f067:eafa])
+        by smtp.gmail.com with ESMTPSA id v29-20020aa799dd000000b006ea6f189976sm9733237pfi.163.2024.04.16.21.25.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Apr 2024 21:25:21 -0700 (PDT)
+Date: Tue, 16 Apr 2024 21:25:18 -0700
+From: Charlie Jenkins <charlie@rivosinc.com>
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Evan Green <evan@rivosinc.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH 02/19] riscv: cpufeature: Fix thead vector hwcap removal
+Message-ID: <Zh9PLhUZmCF5mLXc@ghost>
+References: <20240411-dev-charlie-support_thead_vector_6_9-v1-2-4af9815ec746@rivosinc.com>
+ <20240412-tuesday-resident-d9d07e75463c@wendy>
+ <ZhlrdGXfSushUNTp@ghost>
+ <20240412-eastcoast-disparity-9c9e7d178df5@spud>
+ <ZhmeLoPS+tsfqv1T@ghost>
+ <20240412-chemist-haunt-0a30a8f280ca@spud>
+ <ZhmoPuoR00aS6qZp@ghost>
+ <20240413-sharper-unlivable-5a65660b19e2@spud>
+ <Zh3xrTfjjk3b4GHb@ghost>
+ <20240416-husband-flavored-96c1dad58b6e@wendy>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS4PR04MB9386:EE_|DB9PR04MB9305:EE_
-X-MS-Office365-Filtering-Correlation-Id: f67c00fb-0087-497d-076c-08dc5e8d20e3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	/L0pJPtYUz1Xl3NucqQlvUNUXcBGdWmmd7mL/Q4DtTd83I9DeFF9t2jLoabHbSpKV+HZrDsTtRm35UNgRFYt4RmdyK8R6i/EJJcUzwy0xiLXZv1vMv3DtHDdESLx7o62LfUz3mpv7HkTbWBtBvgEbrYq7akQBwhRDGzTFpFP4ykQAITXwTSjkKDhtUTdPX8ySdSBmxCeyDrBh5nunpW+CJ2THdK1Vs8SKHFM/wt77AXc3Z8s19S/n3LVDk3jlbgtvujpwyaxE2bZZJRoh2iv8kL7B7E9JpjTdzBIASNB+tFLBx9HToluAuULBPEGS9yNzotsQOAFa8A9HbF7x/k0FAnjYvRVdsntlGFKMpK1LfMGk5/xe59yTQqI6jFygMrlLpFvYyBUtdgPWBRiECbcbZqGFDmIJPXmGLbX5uJdX4X0hDeYGObSHwQVZnxYZY1XPUNgC68g0GymgXx4CPT2SG31bJH843C2xXr7DeAEvr4EvxQ2BJFNBYYoUfhKIlslQ1cBd81q2X0d2An2QyHzrkQsvApbeXdlu3zgTF5g7mlSDxocIe126QDTBBt+vVwrdKUz8Oyb+rwZPHd6xFpHJTs5hVQEfPhjFbozi7SMR99ZjtppHk9BUmcQu00WHoky8Yrv9XX+5XvwzOyonazsnhlqKPGc8f6dnnE/lVO29nhSdquYBEyrQs8pk/7Jr1/WLygsTYnMBCCOLIxuS1ux+/l9pJ+P3XJwumIusf8eqqs=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9386.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(52116005)(366007)(1800799015)(38350700005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?miwPTFFSv7wfgtL3ZzrU+iSsA8sD6R4ig/5pQdm949H+hZVWqRNi0l78CjLc?=
- =?us-ascii?Q?EMKR4VhQUVey4tWhrJWrRBg5cvitxy4kTif5NIdLBTx2vKb6Na0X5M/MqdwL?=
- =?us-ascii?Q?TarjLqmBmZa+5QiWUoBd8dSTCArQG1Zb253HIaeAh8EjKy5JERuWmdrRkmue?=
- =?us-ascii?Q?BRIIdxwdDV2eWZSUWEVQAVUrht/Xt/KR8OEa1CPC/hnNDx+ZDcLX/lMvtHXS?=
- =?us-ascii?Q?sMy+Z0xJLO5dXrseoJoJz1EhahcsuEI5Io6eCB3AlBOjJc4i3/QaMzbrB3HY?=
- =?us-ascii?Q?kDKTzIDDqRtNFUun2gKa2jyVJhy10s4Pt4p0eFVDyFKS+kIoDGeUIm8hAYSH?=
- =?us-ascii?Q?htQO93ktu7a9pCFit+EkLLYJYu1VTWya3BhKlZg81+k8YI7434eEomM/UgHP?=
- =?us-ascii?Q?QwD1b15/drSwKe3IYlIL0ZlknPegrdNEzEGGd2X10SeCexDUVyWgcN8FwuHs?=
- =?us-ascii?Q?NDGaFU8YZUkazfPGD0Ch1xYMXPE75NiNx8QcpiPkYotvPctRVGsHXHQHwSK4?=
- =?us-ascii?Q?q3Gzq22xeylo9mUtz9kKqdiLFzuIf3+wHjmW5PKj9aNxZIkTn3WvRb1au3rF?=
- =?us-ascii?Q?8WqNzW0nFPPzXp09pZdtJdI7yrXJPHT94Dc86U8i2Fo+osVIBnS38GBBSZsN?=
- =?us-ascii?Q?R0NnLRIjLksFU95krUTLbZhOA/7G5bdKC8rkE6QuajFXenseoezk9/t0He/T?=
- =?us-ascii?Q?XUM28VMypfSkSZX+4JEmrmVuJrDR2vOkiAzvoiK3feDgIqtrKsFmwri8WCrK?=
- =?us-ascii?Q?4bDPFOX4I5aqQjpGLvZowHQFQ9b4gTUNTpLJ8pTnrwEyIHf1hpAXrzomo6Xf?=
- =?us-ascii?Q?dln0fUvBG/OkJhpzwAhlQ988XHJ+V0sancmZL/ILKtVovy/mwfMLzzXKxRFj?=
- =?us-ascii?Q?95JblguCR2qmJYDu7x10xyW0DCkOK1qkIZm8fs0h5j+Vly5PUkzrsGNZz83/?=
- =?us-ascii?Q?1ZThZQNLSTV7ZvSdrjwkwbEeOGM99jSA5SzFpZ1SezNJnYu1nbvOoU23UbwN?=
- =?us-ascii?Q?Psj4i0APuPXO8YhyHMgKsWpneSQYpSbf+hEWGC6+Bn1/yJCK6W8PYTprE+AR?=
- =?us-ascii?Q?SO29Kd9ozgxBzHt1HG/47zKQl9tcvpEKXzk5iMU2ezB648I1mHz7uIJt6z5R?=
- =?us-ascii?Q?mhYlnQdq+fh1zreBF//25vGNTUkYSAfq1Qip9/+tSwcsaWUbueGga+zSzu/U?=
- =?us-ascii?Q?s6zznKNBblRkHQIcFI+pTH/VQFt7GzHkFGHTB5cbUG/xFYYQ+g2LMoFhycnE?=
- =?us-ascii?Q?Ultde1bgpxvF2/0SahHvYwolkTKCLawKZCKxwiIQfgpLmKtauOgSjngvnpn0?=
- =?us-ascii?Q?XCofbKXrS64fSGlS92AEBxhcAXzTEzFAfYqiH7hTlpM5Y0QtwTs52ieYn4dC?=
- =?us-ascii?Q?fGxyeBVWjKyG0Z/Qj3anEWFMs0Z5DdQ1ojNQpApwK2FRAyLWKeNq6GEZHgrg?=
- =?us-ascii?Q?5cKFlnxfLF0zMdJE53u2uOqEaZeqA+FdR5Xu65UtBz7+b5JyXgqajSqn1PnM?=
- =?us-ascii?Q?xnz4b4mzLOzCgfZ1ykjEddQm4uXw5brq8+M4Mc0wakVlItYAWTHr+FtzpJfc?=
- =?us-ascii?Q?blD1fAXTnZi92k6yCUfesLXsfb8xxd9Pamu1/+yl?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f67c00fb-0087-497d-076c-08dc5e8d20e3
-X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9386.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2024 03:19:01.7712
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: BHBseYmmr4Z5mfaOA60xVEvTq6Csfkx0g3OdJvguncXkNeX5QuCb6wqYG1RJYXRF
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9305
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240416-husband-flavored-96c1dad58b6e@wendy>
 
-The eDMA hardware issue only exist imx8QM A0. A0 never mass production.
-The compatible string "fsl,imx8qm-adma" is unused. So remove the
-workaround safely.
+On Tue, Apr 16, 2024 at 08:36:33AM +0100, Conor Dooley wrote:
+> On Mon, Apr 15, 2024 at 08:34:05PM -0700, Charlie Jenkins wrote:
+> > On Sat, Apr 13, 2024 at 12:40:26AM +0100, Conor Dooley wrote:
+> > > On Fri, Apr 12, 2024 at 02:31:42PM -0700, Charlie Jenkins wrote:
+> > > > On Fri, Apr 12, 2024 at 10:27:47PM +0100, Conor Dooley wrote:
+> > > > > On Fri, Apr 12, 2024 at 01:48:46PM -0700, Charlie Jenkins wrote:
+> > > > > > On Fri, Apr 12, 2024 at 07:47:48PM +0100, Conor Dooley wrote:
+> > > > > > > On Fri, Apr 12, 2024 at 10:12:20AM -0700, Charlie Jenkins wrote:
+> > > 
+> > > > > > > > This is already falling back on the boot CPU, but that is not a solution
+> > > > > > > > that scales. Even though all systems currently have homogenous
+> > > > > > > > marchid/mvendorid I am hesitant to assert that all systems are
+> > > > > > > > homogenous without providing an option to override this.
+> > > > > > > 
+> > > > > > > There are already is an option. Use the non-deprecated property in your
+> > > > > > > new system for describing what extesions you support. We don't need to
+> > > > > > > add any more properties (for now at least).
+> > > > > > 
+> > > > > > The issue is that it is not possible to know which vendor extensions are
+> > > > > > associated with a vendor. That requires a global namespace where each
+> > > > > > extension can be looked up in a table. I have opted to have a
+> > > > > > vendor-specific namespace so that vendors don't have to worry about
+> > > > > > stepping on other vendor's toes (or the other way around). In order to
+> > > > > > support that, the vendorid of the hart needs to be known prior.
+> > > > > 
+> > > > > Nah, I think you're mixing up something like hwprobe and having
+> > > > > namespaces there with needing namespacing on the devicetree probing side
+> > > > > too. You don't need any vendor namespacing, it's perfectly fine (IMO)
+> > > > > for a vendor to implement someone else's extension and I think we should
+> > > > > allow probing any vendors extension on any CPU.
+> > > > 
+> > > > I am not mixing it up. Sure a vendor can implement somebody else's
+> > > > extension, they just need to add it to their namespace too.
+> > > 
+> > > I didn't mean that you were mixing up how your implementation worked, my
+> > > point was that you're mixing up the hwprobe stuff which may need
+> > > namespacing for $a{b,p}i_reason and probing from DT which does not.
+> > > I don't think that the kernel should need to be changed at all if
+> > > someone shows up and implements another vendor's extension - we already
+> > > have far too many kernel changes required to display support for
+> > > extensions and I don't welcome potential for more.
+> > 
+> > Yes I understand where you are coming from. We do not want it to require
+> > very many changes to add an extension. With this framework, there are
+> > the same number of changes to add a vendor extension as there is to add
+> > a standard extension. 
+> 
+> No, it is actually subtly different. Even if the kernel already supports
+> the extension, it needs to be patched for each vendor
+> 
+> > There is the upfront cost of creating the struct
+> > for the first vendor extension from a vendor, but after that the
+> > extension only needs to be added to the associated vendor's file (I am
+> > extracting this out to a vendor file in the next version). This is also
+> > a very easy task since the fields from a different vendor can be copied
+> > and adapted.
+> > 
+> > > Another thing I just thought of was systems where the SoC vendor
+> > > implements some extension that gets communicated in the ISA string but
+> > > is not the vendor in mvendorid in their various CPUs. I wouldn't want to
+> > > see several different entries in structs (or several different hwprobe
+> > > keys, but that's another story) for this situation because you're only
+> > > allowing probing what's in the struct matching the vendorid.
+> > 
+> > Since the isa string is a per-hart field, the vendor associated with the
+> > hart will be used.
+> 
+> I don't know if you just didn't really read what I said or didn't
+> understand it, but this response doesn't address my comment.
 
-Signed-off-by: Joy Zou <joy.zou@nxp.com>
----
-Changes for v4:
-1. adjust the subject to keep consistent with existing patches.
+I read what you said! This question seemed to me as another variant of
+"what happens when one vendor implements an extension from a different
+vendor", and since we already discussed that I was trying to figure out
+what you were actually asking.
 
-Changes for v3:
-1. modify the commit message.
-2. remove the unused compatible string "fsl,imx8qm-adma" from allOf property.
----
- Documentation/devicetree/bindings/dma/fsl,edma.yaml | 2 --
- 1 file changed, 2 deletions(-)
+> Consider SoC vendor S buys CPUs from vendors A & B and asks both of them
+> to implement Xsjam. The CPUs are have the vendorid of either A or B,
+> depending on who made it. This scenario should not result in two
+> different hwprobe keys nor two different in-kernel riscv_has_vendor_ext()
+> checks to see if the extension is supported. *If* the extension is vendor
+> namespaced, it should be to the SoC vendor whose extension it is, not
+> the individual CPU vendors that implemented it.
+> 
+> Additionally, consider that CPUs from both vendors are in the same SoC
+> and all CPUs support Xsjam. Linux only supports homogeneous extensions
+> so we should be able to detect that all CPUs support the extension and
+> use it in a driver etc, but that's either not going to work (or be
+> difficult to orchestrate) with different mappings per CPU vendor. I saw
+> your v2 cover letter, in which you said:
+>   Only patch vendor extension if all harts are associated with the same
+>   vendor. This is the best chance the kernel has for working properly if
+>   there are multiple vendors.
+> I don't think that level of paranoia is required: if firmware tells us
+> that an extension is supported, then we can trust that those extensions
+> have been implemented correctly. If the fear of implementation bugs is
+> what is driving the namespacing that you've gone for, I don't think that
+> it is required and we can simplify things, with the per-vendor structs
+> being the vendor of the extension (so SoC vendor S in my example), not
+> A and B who are the vendors of the CPU IP.
+> 
+> Thanks,
+> Conor.
+> 
 
-diff --git a/Documentation/devicetree/bindings/dma/fsl,edma.yaml b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-index 825f4715499e..cf97ea86a7a2 100644
---- a/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-+++ b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-@@ -21,7 +21,6 @@ properties:
-       - enum:
-           - fsl,vf610-edma
-           - fsl,imx7ulp-edma
--          - fsl,imx8qm-adma
-           - fsl,imx8qm-edma
-           - fsl,imx8ulp-edma
-           - fsl,imx93-edma3
-@@ -92,7 +91,6 @@ allOf:
-         compatible:
-           contains:
-             enum:
--              - fsl,imx8qm-adma
-               - fsl,imx8qm-edma
-               - fsl,imx93-edma3
-               - fsl,imx93-edma4
--- 
-2.37.1
+Thank you for expanding upon this idea further. This solution of
+indexing the extensions based on the vendor who proposed them does make
+a lot of sense. There are some key differences here of note. When
+vendors are able to mix vendor extensions, defining a bitmask that
+contains all of the vendor extensions gets a bit messier. I see two
+possible solutions.
+
+1. Vendor keys cannot overlap between vendors. A set bit in the bitmask
+is associated with exactly one extension.
+
+2. Vendor keys can overlap between vendors. There is a vendor bitmask
+per vendor. When setting/checking a vendor extension, first index into
+the vendor extension bitmask with the vendor associated with the
+extension and then with the key of the vendor extension.
+
+A third option would be to use the standard extension framework. This
+causes the standard extension list to become populated with extensions
+that most harts will never implement so I am opposed to that.
+
+This problem carries over into hwprobe since the schemes proposed by
+Evan and I both rely on the mvendorid of harts associated with the
+cpumask. To have this level of support in hwprobe for SoCs with a mix of
+vendors but the same extensions I again see two options:
+
+1. Vendor keys cannot overlap between vendors. A set bit in the bitmask
+is associated with exactly one extension. This bitmask would be returned
+by the vendor extension hwprobe key.
+
+2. Vendor keys can overlap between vendors. There is an hwprobe key per
+vendor. Automatic resolution of the vendor doesn't work because the
+vendor-specific feature being requested (extensions in the case) may be
+of a vendor that is different than the hart's vendor, in otherwords
+there are two variables necessary: the vendor and a way to ask hwprobe
+for a list of the vendor extensions. With hwprobe there is only the
+"key" that can be used to encode these variables simultaneously. We
+could have something like a HWPROBE_THEAD_EXT_0 key that would return
+all thead vendor extensions supported by the harts corresponding to the
+cpumask.
+
+I didn't list the option that we shove all of the vendor extensions into
+the same fields that are used for standard extensions because that will
+fill up the standard extension probing with all of the vendor extensions
+that most SoCs will not care about.
+
+The second option for hwprobe is nice because there are "only" 64 values
+supported in the returned bitmask so if there ends up being a lot of
+vendor extensions that need to be exposed, then we would end up with a
+lot of unused bits on most systems.
+
+For the internal kernel structures it matters less (or doesn't matter at
+all) since it's not exposed to userspace and it can always change.
+Having consistency is nice for developers though so it would be my
+preference to have schemes that reflect each other for the in-kernel
+structures and hwprobe.
+
+Thank you for working this problem out with me. I know there is a lot of
+text I am pushing here, hopefully we can design something that doesn't
+need to be re-written in the future.
+
+- Charlie
 
 
