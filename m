@@ -1,131 +1,125 @@
-Return-Path: <devicetree+bounces-60108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 502F78A8298
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 13:57:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B0598A82DB
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 14:10:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E53431F21173
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 11:57:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1547B28199C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 12:10:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBA9113CF8A;
-	Wed, 17 Apr 2024 11:57:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7939713D50B;
+	Wed, 17 Apr 2024 12:09:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="R3A4vAf1"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="L/s35Z4+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31BDC7FBD2;
-	Wed, 17 Apr 2024 11:57:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECFD413D260;
+	Wed, 17 Apr 2024 12:09:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713355036; cv=none; b=WwQTOQBqHs9puR7V34GDU0WErcXnk9RNIYTyepeuvh1LNKJWEAzeLALghIIflDpwnm+Rez+goza77OYb5wVxH+vWSi9A8hK266ABjcXRpQHPqzdHF+BBzonKKtOMv9DDWIgoooC8EZwH+oOXj4td2tkHj1KLBk/eS3xOW0b3Zj4=
+	t=1713355797; cv=none; b=aXXETYGE7L+gGNqw9leC/+sua30gkGhCittZf6I2WKy9uxchCNbkIS578rtgbHJEIx72PFoRoCROjGJnSY52VmmAl7EkR8zxeip6E8bpSpZqEY10Ks9o9IqVN/L1MHeoQ0haHkfY081au30G+c361b45Zjqb/YijO/59AQZA0ps=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713355036; c=relaxed/simple;
-	bh=HemC5jj1e7aQcD8qKpIfEBsO/Z/wNcPGtYU3mwsGTSI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=KEF+Fje6CoXK4TpR5lvE2txdL44+O5tpy3RtU+8KHi/sg2pY9E7bMR9Fi8ccPX9dBod2SJ8vN9KtuP8QiXpzuD1wL87tRwb+iFdw42h/JXrMjnJ2eYOXVPrPaUc6vcOiYpDz6nlRGvocMOrDWZ/RkT2B1LkBRlOz9s0R0sSnlAk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=R3A4vAf1; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43HBv5lW026341;
-	Wed, 17 Apr 2024 06:57:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1713355025;
-	bh=DCMypKZidOB2wAZl80SkaybM9OwuNT+k3d3G7XXO11A=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=R3A4vAf1D5eaPJy72DdQNATMLOPy9iLlkA1hQbp1PCNuLDNaw00i+tHTwZNE+t6Jt
-	 nnOJhrSGKi3PTeMgbOLSoMfWgX4wSnYbs8GnRwLtmcfWJyxjLd0IHWpjuNLIiDU/ik
-	 7a1z1sRO4qbFjONLQmjGiBdrgGSNPvLgbtY0LOW8=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43HBv5SL095613
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 17 Apr 2024 06:57:05 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 17
- Apr 2024 06:57:05 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 17 Apr 2024 06:57:05 -0500
-Received: from [10.24.69.25] (danish-tpc.dhcp.ti.com [10.24.69.25])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43HBv1pA053558;
-	Wed, 17 Apr 2024 06:57:02 -0500
-Message-ID: <c6288523-84a6-48b0-bf9f-c25721a1519f@ti.com>
-Date: Wed, 17 Apr 2024 17:27:00 +0530
+	s=arc-20240116; t=1713355797; c=relaxed/simple;
+	bh=5ZCuMbSOx5PzTzG86k0uHA7B5Sds+m43lxgfPjVxcaE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=GXdiQ5oQXJ2JxVRJID4vKPdCiq0xPM2huIf3eR4xK2vBw0z6TKtgJxfNkNxOPyZPGeO5xwo5qndibXu39/RYfJ8M/VNnnfjEosH8KnOrNjh7OVrgOPasM4vv+Idn/o0wdsqBnfT2qSDaHoCKeqs2fw3fV1YQwo0vNSRLpw3bNII=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=L/s35Z4+; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43H8Lw2p018158;
+	Wed, 17 Apr 2024 12:09:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=IUd6C29
+	1tIljlQ1DA+NAWe8phSTzOJc12+ylUffSaB0=; b=L/s35Z4+AP+1eSqiHsF90+H
+	ysb3kwtZJwCB+C1nGx7y4/jjC6vfC9GIi4hugXe3R/wIa4niENKKx7uPQNIU48E3
+	hHPQQXyM5CQZEMcX65pk/aUst5Ri5S5+Z5Dsz1mMlxMxTBA3llwWplschHeh9f1S
+	1UTdBU4zs+Hi1QzbQWZ3JlkrdcfXQmMlLzvUvEFDpMmF8LiWVSK/XQ2IUejyd6Wp
+	S+aqtfLYJ/MUYuw7d0UYUSUWej2SYBNcsXlvXZYtdxC3M36FTfsgrfKcwM5YbbwV
+	5SAPXOggDdh3kMnvjn8UBy/cOp2e+HiNMTMJWLiQkhzTBBtcKIdJlaZPm5e7RAg=
+	=
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xjauprg6v-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 17 Apr 2024 12:09:50 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43HC9nOa031198
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 17 Apr 2024 12:09:49 GMT
+Received: from hu-kbajaj-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 17 Apr 2024 05:09:45 -0700
+From: Komal Bajaj <quic_kbajaj@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Bjorn
+ Andersson" <quic_bjorande@quicinc.com>,
+        <quic_tsoni@quicinc.com>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Komal Bajaj <quic_kbajaj@quicinc.com>
+Subject: [PATCH v3 0/2] Enable various remoteprocs for qcm6490-idp and qcs6490-rb3gen2
+Date: Wed, 17 Apr 2024 17:39:26 +0530
+Message-ID: <20240417120928.32344-1-quic_kbajaj@quicinc.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 0/5] Add CPSW2G and CPSW9G nodes for J784S4
-Content-Language: en-US
-To: Chintan Vankar <c-vankar@ti.com>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring
-	<robh@kernel.org>, Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <s-vadapalli@ti.com>
-References: <20240329053130.2822129-1-c-vankar@ti.com>
-From: MD Danish Anwar <danishanwar@ti.com>
-In-Reply-To: <20240329053130.2822129-1-c-vankar@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Pcuskxe2QWdddG_0pVf_fr6o0L_XHao_
+X-Proofpoint-ORIG-GUID: Pcuskxe2QWdddG_0pVf_fr6o0L_XHao_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-17_09,2024-04-16_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxscore=0
+ suspectscore=0 priorityscore=1501 adultscore=0 malwarescore=0 phishscore=0
+ spamscore=0 impostorscore=0 clxscore=1011 lowpriorityscore=0
+ mlxlogscore=424 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404170084
 
-Hi Chintan,
+Enable various applicable remoteproc nodes for qcm6490-idp
+and qcs6490-rb3gen2.
 
-On 29/03/24 11:01 am, Chintan Vankar wrote:
-> This series adds device-tree nodes for CPSW2G and CPSW9G instance
-> of the CPSW Ethernet Switch on TI's J784S4 SoC. Additionally,
-> two device-tree overlays are also added:
-> 1. QSGMII mode with the CPSW9G instance via the ENET EXPANSION 1
->    connector.
-> 2. USXGMII mode with MAC Ports 1 and 2 of the CPSW9G instance via
->    ENET EXPANSION 1 and 2 connectors, configured in fixed-link
->    mode of operation at 5Gbps link speed.
-> 
-> Link to v5:
-> https://lore.kernel.org/r/20240314072129.1520475-1-c-vankar@ti.com/
-> 
-> Changes from v5 to v6:
-> - Updated order of properties in Device Nodes based on
->   https://docs.kernel.org/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node
-> 
-> Chintan Vankar (1):
->   arm64: dts: ti: k3-j784s4-evm: Add alias for MCU CPSW2G
-> 
-> Siddharth Vadapalli (4):
->   arm64: dts: ti: k3-j784s4-main: Add CPSW2G and CPSW9G nodes
->   arm64: dts: ti: k3-j784s4-evm: Enable Main CPSW2G node and add aliases
->     for it
->   arm64: dts: ti: k3-j784s4: Add overlay to enable QSGMII mode with
->     CPSW9G
->   arm64: dts: ti: k3-j784s4: Add overlay for dual port USXGMII mode
-> 
->  arch/arm64/boot/dts/ti/Makefile               |  11 +-
->  .../ti/k3-j784s4-evm-quad-port-eth-exp1.dtso  | 147 ++++++++++++++
->  .../ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso   |  81 ++++++++
->  arch/arm64/boot/dts/ti/k3-j784s4-evm.dts      |  51 +++++
->  arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi    | 187 ++++++++++++++++++
->  5 files changed, 476 insertions(+), 1 deletion(-)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-evm-quad-port-eth-exp1.dtso
->  create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso
-> 
+Firmwares are not shared at linux-firmware.git, it is under legal approval process.
+Meantime, submitting the DT node changes for FW for review.
 
-For this series,
-Reviewed-by: MD Danish Anwar <danishanwar@ti.com>
+--------
+Changes in v3:
+* Rebased on top of linux-next
+* Added firmware path for modem for rb3gen2 board for GPS usecase
+* Link to v2: https://lore.kernel.org/all/20240402090349.30172-1-quic_kbajaj@quicinc.com/
 
--- 
-Thanks and Regards,
-Danish
+Changes in v2:
+* Updating the firmware name from mdt to mbn
+* Link to v1: https://lore.kernel.org/all/20231220114225.26567-1-quic_kbajaj@quicinc.com/
+
+Komal Bajaj (2):
+  arm64: dts: qcom: qcm6490-idp: Enable various remoteprocs
+  arm64: dts: qcom: qcs6490-rb3gen2: Enable various remoteprocs
+
+ arch/arm64/boot/dts/qcom/qcm6490-idp.dts     | 20 ++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 10 ++++++++++
+ 2 files changed, 30 insertions(+)
+
+--
+2.42.0
+
 
