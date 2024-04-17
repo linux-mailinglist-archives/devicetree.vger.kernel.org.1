@@ -1,121 +1,103 @@
-Return-Path: <devicetree+bounces-60001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3739E8A7E24
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 10:24:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6526A8A7E26
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 10:24:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CBC281F21406
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 08:24:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9624C1C20CA7
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 08:24:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8F7B7D405;
-	Wed, 17 Apr 2024 08:24:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51C337E588;
+	Wed, 17 Apr 2024 08:24:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b="dlprTLWJ"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="BahzZkh5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56E3A5D8F6;
-	Wed, 17 Apr 2024 08:24:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17E8C7D405;
+	Wed, 17 Apr 2024 08:24:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713342257; cv=none; b=CIpgM48ueXl7NE9TyydCKTxz4PgIl9YLha2B7eiujthqGWvqNu2+h9f8uR62d/q0dkcnIrjqW4Uh4O5s8uU6b7I3tXKA6zUSgbDFb8v9ib6CuiWYoNWa8zP0lB2wAJPgf0qYjIAf6m3gex/ogm3MkW/z2IQt4O5DeNaXt7Wdin8=
+	t=1713342271; cv=none; b=ZMZJ04VAEXujZtPIJv9kwBKsEC7NM05yn620qDlCJNog8zVLGPzC7xjtDg7Ku25YDToyklO6lo6U5hpn1vqyTx6ty/+818CYRcfOoxuEZ6jjFHBnw6EifJUwPY14hewoqs9YHSvLrvbSAYhPhw8GSCiVbVkVpMhV41eplJx2IiA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713342257; c=relaxed/simple;
-	bh=UnJDeGW6hTOWzM5xTq9iID1BjEcevOyGCrGHXGGwe+c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Twx1wq540uT9a2MR/CKnQL1KG5KdIJWek5jxf3KyNP67l+qY5Ac/TAwVJRRARomSpfPT/eb0qwcuIFXZg41277ZVj+fjMT286Inph3hKfsPlXzPllqpxWoq4jJi1w298NLt8O2GuAR5/z5qpveGi1AeFTw+VJw92I07djqBFZ+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com; spf=pass smtp.mailfrom=arinc9.com; dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b=dlprTLWJ; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arinc9.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 70A831BF20C;
-	Wed, 17 Apr 2024 08:24:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
-	t=1713342251;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=eNl2kpmyXA4EHz7sEmeC1SnU4Qf3LOV2W8Qe8fDoaho=;
-	b=dlprTLWJZaB2rIyPzBM8ThbSYbelvbq/IxjTNJ7L+SPus8J681T/AATFX5fEGJ0nZlYiKu
-	DCDAJecOWm5735clknwrECBHmbnsrtvhA85W4/eKi7hFufQHcVtHao+XPVuauI/tF8T2dZ
-	qXFgtbJ9aH5q1IHc7RFkZiBTjmPD0MfeaHBEraCbd5hmCOBMh469nKcoMKMhG/5fWzTMq3
-	XYLf9fkW6kkUW9bk/3cYcM/eaDF7yoH/+G18OkFAaIKl0MNXU42IGswTB+xarf99oJnTFk
-	QUC3qaqO6aKgcgBoQ+7TZXuE1XhiLaRZXrFJYqhwXmUGTOuSxIRK6E0UmRJhvw==
-Message-ID: <29f098cb-db41-4d4f-9033-a88d70ebdd0f@arinc9.com>
-Date: Wed, 17 Apr 2024 11:24:06 +0300
+	s=arc-20240116; t=1713342271; c=relaxed/simple;
+	bh=iDH0wPp8RuBNMMZYQphzWYhg0PnpKVzTZbt4Js0BeD4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=X6BG+oRpOENe7W2IXwCYEZkXk2SGcWPcW4AGWiKbsrZ7xeAwzRFunqUUZGyhd8MSACLfz7V+KiWFgEejLwurCTGHEHbLmew6BG0lxCTt0k9FRDhVPx2t6RjLCMJx6VALvDmP8sfe5QVGs8XbqnthFLiY9IX63t2CHdoqawWOWbA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=BahzZkh5; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (ptr-212-224-238-3.dyn.orange.be [212.224.238.3])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 50D71DD9;
+	Wed, 17 Apr 2024 10:23:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1713342214;
+	bh=iDH0wPp8RuBNMMZYQphzWYhg0PnpKVzTZbt4Js0BeD4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BahzZkh5qUP9h3c1DOjkObB2oJESB+JviGJflioInWzrWSBVydEBfoFwYG0woifHX
+	 arZ8DMP/k3FKj6bMzgxvEmFDGCvvktQ2Jp+gKBAuhPlLhQziFgXV4xx67RthgwUt+9
+	 +7nVoBqfzp0tcTyftkZU7o1Ogi4aSQ3QfalxkgyM=
+Date: Wed, 17 Apr 2024 11:24:13 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: linux-media@vger.kernel.org,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	David Plowman <david.plowman@raspberrypi.com>,
+	Jean-Michel Hautbois <jeanmichel.hautbois@yoseli.org>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Naushir Patuck <naush@raspberrypi.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	kernel-list@raspberrypi.com, linux-rpi-kernel@lists.infradead.org,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	bcm-kernel-feedback-list@broadcom.com,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v9 06/10] ARM: dts: bcm2835: Add Unicam CSI nodes
+Message-ID: <20240417082413.GK12561@pendragon.ideasonboard.com>
+References: <20240402000424.4650-1-laurent.pinchart@ideasonboard.com>
+ <20240402000424.4650-7-laurent.pinchart@ideasonboard.com>
+ <c3f1773a-b65b-4ccc-a684-e5e57b325777@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] ARM: dts: BCM5301X: Add DT for ASUS RT-AC3200
-To: Florian Fainelli <florian.fainelli@broadcom.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>,
- Hauke Mehrtens <hauke@hauke-m.de>, Rafal Milecki <zajec5@gmail.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: Tom Brautaset <tbrautaset@gmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20240414-for-soc-asus-rt-ac3200-ac5300-v1-0-118c90bae6e5@arinc9.com>
- <20240414-for-soc-asus-rt-ac3200-ac5300-v1-3-118c90bae6e5@arinc9.com>
- <a88385a4-afad-4bd8-afc1-37e185e781f4@kernel.org>
- <85261d11-d6cb-4718-88d9-95a7efe5c0ab@arinc9.com>
- <e6cfe735-0a46-4c07-90ee-4ae25c921b03@kernel.org>
- <335cdd4b-7309-4633-9b4f-6487c72c395c@arinc9.com>
- <07c9c5f5-c4b9-44d6-b909-5aa306f56898@kernel.org>
- <00ba4593-d720-419a-a97d-37c402c91e44@arinc9.com>
- <7b465ddb-2b18-4e7f-8b03-d4e51006e1cb@broadcom.com>
-Content-Language: en-US
-From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <7b465ddb-2b18-4e7f-8b03-d4e51006e1cb@broadcom.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: arinc.unal@arinc9.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <c3f1773a-b65b-4ccc-a684-e5e57b325777@broadcom.com>
 
-On 17/04/2024 06:15, Florian Fainelli wrote:
-> 
-> 
-> On 4/15/2024 2:10 AM, Arınç ÜNAL wrote:
->> On 15.04.2024 10:57, Krzysztof Kozlowski wrote:
->>> On 14/04/2024 22:21, Arınç ÜNAL wrote:
->>>> NVRAM is described as both flash device partition and memory mapped NVMEM.
->>>> This platform stores NVRAM on flash but makes it also memory accessible.
->>>>
->>>> As device partitions are described in board DTS, the nvram node must also
->>>
->>> Sorry, but we do not talk about partitions. Partitions are indeed board
->>> property. But the piece of hardware, so NVMEM, is provided by SoC.
->>>
->>>> be defined there as its address and size will be different by board. It has
->>>> been widely described on at least bcm4709 and bcm47094 SoC board DTS files
->>>> here.
->>>
->>> These not proper arguments. What you are saying here is that SoC does no
->>> have nvram at address 0x1c08000. Instead you are saying there some sort
->>> of bus going out of SoC to the board and on the board physically there
->>> is some NVRAM sort of memory attached to this bus.
->>
->> Yes that is the case. NVRAM is stored on a partition on the flash. On the
->> Broadcom NorthStar platform, the NAND flash base is 0x1c000000, the NOR
->> flash base is 0x1e000000.
->>
->> For the board in this patch, the flash is a NAND flash. The NVRAM partition
->> starts at address 0x00080000. Therefore, the NVRAM component's address is
->> 0x1c080000.
-> 
-> Because the flash is memory mapped into the CPU's address space, a separate node was defined since it is not part of the "soc" node which describes the bridge that connects all of the peripherals.
-> 
-> Whether we should create an additional bus node which describes the bridge being used to access the flash devices using the MMIO windows is debatable. Rafal, what do you think?
+Hi Florian,
 
-Will this block this patch series? If not, I'd like to submit the next
-version with Krzysztof's comments on earlycon and stdout-path addressed.
+On Tue, Apr 16, 2024 at 08:18:30PM -0700, Florian Fainelli wrote:
+> On 4/1/2024 5:04 PM, Laurent Pinchart wrote:
+> > From: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
+> > 
+> > Add both MIPI CSI-2 nodes in the bcm283x tree and take care of the
+> > Raspberry Pi / BCM2711 specific in the related files.
+> > 
+> > Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
+> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+> 
+> Should I be taking this patch for the upcoming merge window as well or 
+> do you anticipate more changes to be needed? AFAICT the binding has been 
+> approved by Rob, so we should be good to go with the basic node proposed 
+> here?
 
-Arınç
+We're trying to land the Unicam driver in the next merge window, but it
+may slip to v6.11. From my point of view the bindings are stable, so
+merging the DT integration is fine with me, as long as the DT
+maintainers are fine if the bindings end up being merged one kernel
+release later.
+
+-- 
+Regards,
+
+Laurent Pinchart
 
