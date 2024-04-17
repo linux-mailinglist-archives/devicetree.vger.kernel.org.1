@@ -1,113 +1,124 @@
-Return-Path: <devicetree+bounces-60042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60043-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E83178A802A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 11:54:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DEC38A8044
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 12:02:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 251761C216FE
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 09:54:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 462E51C21FF7
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 10:02:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4404B1327E0;
-	Wed, 17 Apr 2024 09:54:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2B94139D01;
+	Wed, 17 Apr 2024 10:02:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="L8Vengu4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 020737E590
-	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 09:54:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20753535D0;
+	Wed, 17 Apr 2024 10:02:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713347686; cv=none; b=j3sQ6m45Mm/DUFnrjfdN1BdEPSuvOTsjgM+IUPIt7s39P/G82o+u+RKnzl45RxEnR2h0jqoJ8FIVW93jX/NTpHxIqGbrPST7LTR17KCmv/dvil8u+DCU2VH7GrtbK8UXjwZG0e62uKpfBjxH0jF00QupEU6WpQ9ENQGbrlQSW1I=
+	t=1713348131; cv=none; b=CtjvCJLyVZoDDFHyl8vyvUn6DtlDmtLSTGEhBoMvJjprH+9OzoDR/f+J3ct9t5tf9AN9xXCS/3H7mLqqZx4b8ZFTVAWvruGH5lkvlKCtjGZiySSmM3lZLzv0SG2dZJXmNV/UueRuXAm9Eo1d8l6A6jaf8xtd7b6hbV2UDlDpM2E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713347686; c=relaxed/simple;
-	bh=wxzAIZCsb6qYmZgvaeV7YE0JgPMqgrPF11FYAWXhCV4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RpbFRYCfKa+cNURkG4L7ZzOLXOeCinnatXRwdbB9EnHO4dNWGZIZ7MKM7ofnn+zHHxNzhRTkSh8sGGSxVW3gJQniVewmyE9TiJgQvWVU+1yD6c9ptLH+yyTzq568b1JIQaeodsu3UWEMNkB/t1rK2XekoQ2Eq0dqlqv6kyq31ao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5C76C339;
-	Wed, 17 Apr 2024 02:55:12 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 251963F64C;
-	Wed, 17 Apr 2024 02:54:43 -0700 (PDT)
-Date: Wed, 17 Apr 2024 10:54:39 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Ryan Walklin <ryan@testtoast.com>, Chen-Yu Tsai <wens@csie.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland
- <samuel@sholland.org>, Chris Morgan <macromorgan@hotmail.com>,
- devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 1/4] dt-bindings: arm: sunxi: document Anbernic RG35XX
- handheld gaming device variants
-Message-ID: <20240417105439.2674be75@donnerap.manchester.arm.com>
-In-Reply-To: <78b5de01-150e-4537-b6a6-8ca0067a8359@linaro.org>
-References: <20240414083347.131724-2-ryan@testtoast.com>
-	<20240414083347.131724-3-ryan@testtoast.com>
-	<78b5de01-150e-4537-b6a6-8ca0067a8359@linaro.org>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1713348131; c=relaxed/simple;
+	bh=j5QapwJgxI2kAVpWJ86KsfIFve70wOAB94QAKWyo+8s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=b6dPTt0IF//5duRGvLwheivSoGcvXQLJwGsy/YeATQFqmjTqlEtVTQTJbcsl9ldVtyF8MkXk1q5VUVHmC/A5W+STZZFKimDfLm4zVbedBHLlo+RZuHNetBXnCPUb7MMc3ECC4tQW6BAUZiCK55yMfB1dzo5Vccu0mQGDl2Y5cV4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=L8Vengu4; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1713348126; x=1744884126;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=j5QapwJgxI2kAVpWJ86KsfIFve70wOAB94QAKWyo+8s=;
+  b=L8Vengu4njo3rMylwMbbH3DvZMilMiZ2UVhCC8iIMg48nLrfYAPxVEXk
+   UoTTfZ6DOv+3slCnHvSURc1co1cD2n1kaQuJk8cYKDyOsQVKyBeo70bHV
+   vf3K0lDQyctecZNDdhwNMEIF0JKys//1xl975f38B4SGXEfswQQMr8hel
+   /8mlYpRY2/IVhtY0CWm8SXNhvDw7O8pCi1YJqJlFEh0ftceOPYqArksTX
+   9DyV5fDmJrJA37YQYP2tQQihA560RRR9V6BSjl98Dge58ZXRMd46OKkk2
+   Wvm8EhssaL5+kmjstTXrND01RyN3USo5zsN7qQTy+VPpNRfAfC45KtZ4y
+   w==;
+X-CSE-ConnectionGUID: HOThHCXpR5W9lGJUpmFQVA==
+X-CSE-MsgGUID: 0BjlTZ80RDuzEMGz6eul5A==
+X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="19977848"
+X-IronPort-AV: E=Sophos;i="6.07,208,1708416000"; 
+   d="scan'208";a="19977848"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2024 03:02:05 -0700
+X-CSE-ConnectionGUID: SXGPqkptROK03BOFiHKbJw==
+X-CSE-MsgGUID: V5WWlJZXTUq+1eW/WdLPQQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,208,1708416000"; 
+   d="scan'208";a="27013466"
+Received: from unknown (HELO 23c141fc0fd8) ([10.239.97.151])
+  by fmviesa005.fm.intel.com with ESMTP; 17 Apr 2024 03:02:01 -0700
+Received: from kbuild by 23c141fc0fd8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rx275-0006SX-15;
+	Wed, 17 Apr 2024 10:01:59 +0000
+Date: Wed, 17 Apr 2024 18:01:48 +0800
+From: kernel test robot <lkp@intel.com>
+To: Lorenzo Bianconi <lorenzo@kernel.org>, linux-spi@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, broonie@kernel.org,
+	lorenzo.bianconi83@gmail.com, linux-arm-kernel@lists.infradead.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org, nbd@nbd.name,
+	john@phrozen.org, dd@embedd.com, catalin.marinas@arm.com,
+	will@kernel.org, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com
+Subject: Re: [PATCH v2 3/3] spi: airoha: add SPI-NAND Flash controller driver
+Message-ID: <202404171712.GiwLsZEI-lkp@intel.com>
+References: <25dd4334e3b37eaa628c20265841f251968c2b75.1713335916.git.lorenzo@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <25dd4334e3b37eaa628c20265841f251968c2b75.1713335916.git.lorenzo@kernel.org>
 
-On Sun, 14 Apr 2024 11:07:19 +0200
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+Hi Lorenzo,
 
-Hi Krzysztof,
+kernel test robot noticed the following build warnings:
 
-> On 14/04/2024 10:33, Ryan Walklin wrote:
-> > From: Ryan Walklin <ryan@testtoast.com>
-> > 
-> > RG35XX 2024: Base version with Allwinner H700
-> > RG35XX Plus: Adds Wifi/BT
-> > RG35XX H: Adds second USB port and analog sticks to -Plus in horizontal
-> >           altered form factor,
-> > 
-> > Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-> > ---
-> >  Documentation/devicetree/bindings/arm/sunxi.yaml | 15 +++++++++++++++
-> >  1 file changed, 15 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
-> > index 09d835db6db5..fc10f54561c9 100644
-> > --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-> > @@ -56,6 +56,21 @@ properties:
-> >            - const: anbernic,rg-nano
-> >            - const: allwinner,sun8i-v3s
-> >  
-> > +      - description: Anbernic RG35XX (2024)
-> > +      - items:
-> > +          - const: anbernic,rg35xx-2024
-> > +          - const: allwinner,sun50i-h700
-> > +
-> > +      - description: Anbernic RG35XX Plus
-> > +      - items:
-> > +          - const: anbernic,rg35xx-plus
-> > +          - const: allwinner,sun50i-h700
-> > +
-> > +      - description: Anbernic RG35XX H
-> > +      - items:
-> > +          - const: anbernic,rg35xx-h  
-> 
-> Any reason these are not just one enum with three entires?
+[auto build test WARNING on next-20240416]
+[cannot apply to broonie-spi/for-next robh/for-next arm/for-next arm/fixes arm64/for-next/core kvmarm/next rockchip/for-next shawnguo/for-next soc/for-next linus/master v6.9-rc4 v6.9-rc3 v6.9-rc2 v6.9-rc4]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-I think the policy in *this* file is one entry for each device, so that we
-can attribute a device name ("Anbernic RG35XX H") to the compatible string.
-I mean otherwise we could group all H616 boards for instance into one
-entry. Don't know if this is what we want?
+url:    https://github.com/intel-lab-lkp/linux/commits/Lorenzo-Bianconi/dt-bindings-spi-airoha-Add-YAML-schema-for-SNFI-controller/20240417-144847
+base:   next-20240416
+patch link:    https://lore.kernel.org/r/25dd4334e3b37eaa628c20265841f251968c2b75.1713335916.git.lorenzo%40kernel.org
+patch subject: [PATCH v2 3/3] spi: airoha: add SPI-NAND Flash controller driver
+reproduce: (https://download.01.org/0day-ci/archive/20240417/202404171712.GiwLsZEI-lkp@intel.com/reproduce)
 
-Cheers,
-Andre
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202404171712.GiwLsZEI-lkp@intel.com/
 
+All warnings (new ones prefixed by >>):
+
+   Documentation/userspace-api/netlink/netlink-raw.rst: :doc:`tc<../../networking/netlink_spec/tc>`
+   Warning: Documentation/devicetree/bindings/power/wakeup-source.txt references a file that doesn't exist: Documentation/devicetree/bindings/input/qcom,pm8xxx-keypad.txt
+   Warning: Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/siliconmitus,sm5703.yaml
+   Warning: Documentation/userspace-api/netlink/index.rst references a file that doesn't exist: Documentation/networking/netlink_spec/index.rst
+   Warning: Documentation/userspace-api/netlink/specs.rst references a file that doesn't exist: Documentation/networking/netlink_spec/index.rst
+>> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/spi/airoha,spi-airoha-snfi.yaml
+   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/reserved-memory/qcom
+   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/display/exynos/
+   Using alabaster theme
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
