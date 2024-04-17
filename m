@@ -1,257 +1,431 @@
-Return-Path: <devicetree+bounces-59952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5A4E8A7C5C
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 08:34:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEBB78A7C60
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 08:35:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C849E1C2246C
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 06:34:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F19981C2140F
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 06:35:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A8E0657BC;
-	Wed, 17 Apr 2024 06:34:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D55469DEE;
+	Wed, 17 Apr 2024 06:35:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="pdHxun0G"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HtxxG/xO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74FE82746B
-	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 06:34:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55FF76A02E
+	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 06:35:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713335678; cv=none; b=rbFZ+gjr11YfjbB4ldQiC0bKRTHuxYT/zvmvCEhlPKuMh79ePnDQ0+oINyvTzuN8m6Xnc9Jpx07h7BG1OQQUqJqK5eq3GRbA59I7TIg4NvAb7QiS5bgLmGw6VWLd4VHycaceQg2eVxL9jYIffcW2dGDeoO3LWlmheDIVrkIzGl0=
+	t=1713335710; cv=none; b=PnGJMeHXIXmVQF8W66JCjHZOQdWCZtfS1488sni1a9fZS+nkrg+SHaWCbpf21+Z+WuK2W+cfpUJ2ZBk/mcJLICa8nQ5qOjtifbLbCw9PACk5WaCjjy93TUrBxE+smkCiFjc87znZNWJ2lvFGxk3Ws3MBOCJ3oifLQG/GjiKU6Zg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713335678; c=relaxed/simple;
-	bh=GxlMnKFxDHm6BKouuZF++ZDuw+J4sqaiENNxZ5h/kY4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AlnN4ATedZ0kfjf9w3R2KCxofcPyPQyE2uraQ7qhxm7gJYAgyNsKDbITtg9aBOXE7k9gKOXTraDO7UL6/pU487Mbg8XsqiJdUcOQASOgOd7UpvDfNn9Wj02VWmoh87EXzRX3sC5Zes/Kzkd3jkFuV/EMgqWs06IHfjsZC0taWdI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=pdHxun0G; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5194a4da476so283200e87.3
-        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 23:34:35 -0700 (PDT)
+	s=arc-20240116; t=1713335710; c=relaxed/simple;
+	bh=FDaRJJ33qv1xm+S09c0gl/k9+JnmbBPj6CI6UdpRDVI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UpH9Rno9WeCDtPpn06FgT0RhVSQArVwLnSottueE2bFEmCYM3SzNR1m8sw191WAPw30JCfi4pW3NXI2io4b6WkL6GbTbLKGoOy1AA8XAliEdITNAf/xz0T8y1bKu+FfA4sWF8WTbBJ8w9V2lJqor4oyi7+LLf33rAA4hsgQ3jmw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HtxxG/xO; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2dac77cdf43so23460741fa.2
+        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 23:35:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1713335673; x=1713940473; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4X0jqgr7Qs0LvDOxxOvNJdmszxXp/NxTce1ZQe6WIVg=;
-        b=pdHxun0GqD3+e6JXkjXw0unUiVTwSBydbxWiCphuHPEn67gzU6U+fw3dRn6119mEoJ
-         NdQRmbfhwDdS06bMcstKYt4mldBaY7ZvZopqfpPiuGDbfW7sl2WTKGKqQrcrq8mh+2MA
-         uH/3xumnLjjMxl2EBBWtR9DFF8zMe7qfFSy8tEvJUh0SvK4UlazNGxqcQ63k8O02qoig
-         IDoyLUW1cWi72VeKKRiICoCSv/pS/5JhFstmqB7w5eNDZzXO6Pro+eMiTYVwbbTI8XLi
-         /hohwdlz23K1/KParsigyNZcpRwt2cHFwFGlNx5A+n3WH7YbS/gtivgNYMqHwH+8oAI6
-         O6+g==
+        d=linaro.org; s=google; t=1713335706; x=1713940506; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=2Xb24KjnVD8H3G5GkJAAV0E3O47INRr7NamuW4Oc84A=;
+        b=HtxxG/xOUdrNf+8oixJGB57m26rN5vdRmMVs+rEsVsVJmpDy0Ku8BR22b5GT5wjwkO
+         ePPXhTGChPlmEotEVSgfX+3WPQgUI9tk2UfRlRTfPZKG816DHDw/brbxhXh5T4+QgLob
+         OKvUG9098TfU3bUzgVKyqix8We3UZycUmy1JPH9hrsSJq82FCZTzzRzRUFix5IlkvqXj
+         xXk+kugYyssPD78YW0O+nEEVQ0o893gXhkZjq+LGyxZHrF/V63uLeTwxf5a/xgKRZs15
+         K9VRL8651mKn25IMQnb5ZC2YYK2UAa1Yn4GpgoPwStyAcWBqTLa3Jnzfn8YkrxNtgWaz
+         UtRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713335673; x=1713940473;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4X0jqgr7Qs0LvDOxxOvNJdmszxXp/NxTce1ZQe6WIVg=;
-        b=EoePWnIoiyxl9z46y1BJIWHGskna9+yafKYrg5Y+PogbyesTxPgcp2NoSffSS4Xef1
-         Y8Y6mRRcjuhic5haiDDHx3WKkRm3wC3trsd6wUnXPo0JIZIF98Lpmhldyax2TwDYu0ll
-         aM2BYwY2jdD9ugQpqHXNkFvfgis67tU+JT01BzVK4PRXF2e3SHMy9rbr9catQ2HCq4cU
-         Zq4NUK+6W1id11cPPy6SqORypovMVpCca4tq3/SUjkDv3y2SpNhomnj8gvhpUolKGl27
-         rJNkJ+4f3CYQCtvvaN1oIvOr0RjxpjEij3RF+nQwiw0S4d8Qrx23UhTeur3Ip7IjC7bc
-         brLw==
-X-Forwarded-Encrypted: i=1; AJvYcCX8T/jThUqjQ7ZeK+k5VU5qWEm3FE+Ca6jIqL7B/Plga8wvjBDyzWEcEuQUd97hf93dW12aPUG2ommsMUSTko0ASxcYz6WZfeA7MQ==
-X-Gm-Message-State: AOJu0YwOh6/iyqe0F5TI5o/KDACC8rvVu9GqhmyP841IOw+A2LUr6/8t
-	Pjlc9kaxyLYmoWPr/7uhLmqEp94VgPGVC6LCRFTssEx3kDzfDj/cqiBqSJ5qtwfugnIzGtvX0yd
-	Enp3EjkaOGVAy8IlD590Ejt0OQcIn2X/TJ3pe3w==
-X-Google-Smtp-Source: AGHT+IFXhzUTZ1cSjL2EAEeIKsVwob3jWS7E3nZRN1q1zCR6DzxT7RqsTlAaXxF7WxowaPLP0UuGKv6yNyoMzXpgNYE=
-X-Received: by 2002:ac2:51a7:0:b0:518:bb6e:7985 with SMTP id
- f7-20020ac251a7000000b00518bb6e7985mr8053670lfk.51.1713335673304; Tue, 16 Apr
- 2024 23:34:33 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1713335706; x=1713940506;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2Xb24KjnVD8H3G5GkJAAV0E3O47INRr7NamuW4Oc84A=;
+        b=cE0MDLGyw5Kr0K2fU8rpWtUZbESfurUFKV/ZrMGgnLlhRivYBddu8VyEle4fPWS0jX
+         KTJZeJtsbyeiZp9otLGTLwFRvZQepnnFB98sr1Zgww/zNTNfWe5wQjYOK242Pu2aNTKH
+         PKI3w2W4WzlXx74BMgz+C9fHBQClw5jzUElpEZeKbuqTmJTly/pSMecfbx70zgZHCipN
+         +r0ZNESH6OS2MLbyNQIiLgCqLrdISYQJcpR3JqRUCVq1SSZvgBxde/lGWo8I8KqOVYMw
+         A3i4AKwX20hKLv3Grx1XJIatI0PxqJ4QCKHdRmAXuXhIFwQiDiWdV0xYPB6uvgYfH41s
+         u9LA==
+X-Forwarded-Encrypted: i=1; AJvYcCXpCnvgYoGN2jTVdk7JlwrWy34mZQ0NxH9eyFFhSx47au6c3P/FMwlUCstknpQ31pHNwt3ICvOAMXw6kWxRq8vTh6YECj95N3Wngg==
+X-Gm-Message-State: AOJu0YyWoKe6xxrmRO5Ygc/JZB1YK1Sl6hdyiFiov5916Z+AK5ReLq4x
+	CNaEKT68OKtH7eyQIkCW2xMfBGBedDa8RwlyFi7CPTFb0Y0B5zSDB8fBGg9lVXo=
+X-Google-Smtp-Source: AGHT+IH65Sawq2nFbVz2eJjUlQ0Y/zsiekJC7R9FVP82pwC7pqNX9qf+KBXaMzJCakWnL8hpm23f9Q==
+X-Received: by 2002:a2e:6e12:0:b0:2d8:3eaf:86d2 with SMTP id j18-20020a2e6e12000000b002d83eaf86d2mr9582302ljc.47.1713335706222;
+        Tue, 16 Apr 2024 23:35:06 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
+        by smtp.gmail.com with ESMTPSA id s21-20020a2e83d5000000b002daedd9c696sm336801ljh.53.2024.04.16.23.35.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Apr 2024 23:35:05 -0700 (PDT)
+Date: Wed, 17 Apr 2024 09:35:04 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Dharma Balasubiramani <dharma.b@microchip.com>
+Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, 
+	daniel@ffwll.ch, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, linux@armlinux.org.uk, Nicolas.Ferre@microchip.com, 
+	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev, Manikandan.M@microchip.com, 
+	arnd@arndb.de, geert+renesas@glider.be, Jason@zx2c4.com, mpe@ellerman.id.au, 
+	gerg@linux-m68k.org, rdunlap@infradead.org, vbabka@suse.cz, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v6 2/4] drm/bridge: add lvds controller support for sam9x7
+Message-ID: <xbefyxiyiwckjsi5wyqaf5thqgpyyizy7sjojed4yc7bvm46l3@omffdudkxyhl>
+References: <20240417024137.144727-1-dharma.b@microchip.com>
+ <20240417024137.144727-3-dharma.b@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240413091942.316054-1-apatel@ventanamicro.com>
- <20240416141049.GA2148267-robh@kernel.org> <CAGETcx_Ni3MjwVHDOdre1nSqQP07=gaUtCDj31ndKcMFtm+xjg@mail.gmail.com>
-In-Reply-To: <CAGETcx_Ni3MjwVHDOdre1nSqQP07=gaUtCDj31ndKcMFtm+xjg@mail.gmail.com>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Wed, 17 Apr 2024 12:04:20 +0530
-Message-ID: <CAK9=C2WUe-JWk4QLxHNc_gSCqjBCxrVfcPcYP9-_QFoGk-vF5Q@mail.gmail.com>
-Subject: Re: [PATCH v2] of: property: Add fw_devlink support for interrupt-map property
-To: Saravana Kannan <saravanak@google.com>
-Cc: Rob Herring <robh@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Atish Patra <atishp@atishpatra.org>, 
-	Andrew Jones <ajones@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Anup Patel <anup@brainfault.org>, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240417024137.144727-3-dharma.b@microchip.com>
 
-On Wed, Apr 17, 2024 at 6:34=E2=80=AFAM Saravana Kannan <saravanak@google.c=
-om> wrote:
->
-> On Tue, Apr 16, 2024 at 7:11=E2=80=AFAM Rob Herring <robh@kernel.org> wro=
-te:
-> >
-> > On Sat, Apr 13, 2024 at 02:49:42PM +0530, Anup Patel wrote:
-> > > Some of the PCI controllers (such as generic PCI host controller)
-> > > use "interrupt-map" DT property to describe the mapping between
-> > > PCI endpoints and PCI interrupt pins. This the only case where
-> > > the interrupts are not described in DT.
-> > >
-> > > Currently, there is no fw_devlink created based on "interrupt-map"
-> > > DT property
->
-> parse_interrupts() calls of_irq_parse_one() that in turn calls
-> of_irq_parse_one() that does the "interrupts-map" handling. In fact
-> of_irq_parse_pci() also calls of_irq_parse_one() if the PCI device has
-> a DT node. So I don't think any new functionality needs to be added.
-> If I'm not mistaken we just need parse_interrupts to not ignore
-> interrupts-map? A one line change?
->
-> Why do we need all of this code you wrote below?
+On Wed, Apr 17, 2024 at 08:11:35AM +0530, Dharma Balasubiramani wrote:
+> Add a new LVDS controller driver for sam9x7 which does the following:
+> - Prepares and enables the LVDS Peripheral clock
+> - Defines its connector type as DRM_MODE_CONNECTOR_LVDS and adds itself
+> to the global bridge list.
+> - Identifies its output endpoint as panel and adds it to the encoder
+> display pipeline
+> - Enables the LVDS serializer
+> 
+> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+> ---
+> Changelog
+> v5 -> v6
+> - No Changes.
+> v4 -> v5
+> - Drop the unused variable 'format'.
+> - Use DRM wrapper for dev_err() to maintain uniformity.
+> - return -ENODEV instead of -EINVAL to maintain consistency with other DRM
+>   bridge drivers.
+> v3 -> v4
+> - No changes.
+> v2 ->v3
+> - Correct Typo error "serializer".
+> - Consolidate get() and prepare() functions and use devm_clk_get_prepared().
+> - Remove unused variable 'ret' in probe().
+> - Use devm_pm_runtime_enable() and drop the mchp_lvds_remove().
+> v1 -> v2
+> - Drop 'res' variable and combine two lines into one.
+> - Handle deferred probe properly, use dev_err_probe().
+> - Don't print anything on deferred probe. Dropped print.
+> - Remove the MODULE_ALIAS and add MODULE_DEVICE_TABLE().
+> - symbol 'mchp_lvds_driver' was not declared. It should be static.
+> ---
+>  drivers/gpu/drm/bridge/Kconfig          |   7 +
+>  drivers/gpu/drm/bridge/Makefile         |   1 +
+>  drivers/gpu/drm/bridge/microchip-lvds.c | 228 ++++++++++++++++++++++++
+>  3 files changed, 236 insertions(+)
+>  create mode 100644 drivers/gpu/drm/bridge/microchip-lvds.c
+> 
+> diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
+> index efd996f6c138..889098e2d65f 100644
+> --- a/drivers/gpu/drm/bridge/Kconfig
+> +++ b/drivers/gpu/drm/bridge/Kconfig
+> @@ -190,6 +190,13 @@ config DRM_MEGACHIPS_STDPXXXX_GE_B850V3_FW
+>  	  to DP++. This is used with the i.MX6 imx-ldb
+>  	  driver. You are likely to say N here.
+>  
+> +config DRM_MICROCHIP_LVDS_SERIALIZER
+> +	tristate "Microchip LVDS serializer support"
+> +	depends on OF
+> +	depends on DRM_ATMEL_HLCDC
+> +	help
+> +	  Support for Microchip's LVDS serializer.
+> +
+>  config DRM_NWL_MIPI_DSI
+>  	tristate "Northwest Logic MIPI DSI Host controller"
+>  	depends on DRM
+> diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
+> index 017b5832733b..7df87b582dca 100644
+> --- a/drivers/gpu/drm/bridge/Makefile
+> +++ b/drivers/gpu/drm/bridge/Makefile
+> @@ -13,6 +13,7 @@ obj-$(CONFIG_DRM_LONTIUM_LT9611) += lontium-lt9611.o
+>  obj-$(CONFIG_DRM_LONTIUM_LT9611UXC) += lontium-lt9611uxc.o
+>  obj-$(CONFIG_DRM_LVDS_CODEC) += lvds-codec.o
+>  obj-$(CONFIG_DRM_MEGACHIPS_STDPXXXX_GE_B850V3_FW) += megachips-stdpxxxx-ge-b850v3-fw.o
+> +obj-$(CONFIG_DRM_MICROCHIP_LVDS_SERIALIZER) += microchip-lvds.o
+>  obj-$(CONFIG_DRM_NXP_PTN3460) += nxp-ptn3460.o
+>  obj-$(CONFIG_DRM_PARADE_PS8622) += parade-ps8622.o
+>  obj-$(CONFIG_DRM_PARADE_PS8640) += parade-ps8640.o
+> diff --git a/drivers/gpu/drm/bridge/microchip-lvds.c b/drivers/gpu/drm/bridge/microchip-lvds.c
+> new file mode 100644
+> index 000000000000..149704f498a6
+> --- /dev/null
+> +++ b/drivers/gpu/drm/bridge/microchip-lvds.c
+> @@ -0,0 +1,228 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2023 Microchip Technology Inc. and its subsidiaries
+> + *
+> + * Author: Manikandan Muralidharan <manikandan.m@microchip.com>
+> + * Author: Dharma Balasubiramani <dharma.b@microchip.com>
+> + *
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/component.h>
+> +#include <linux/delay.h>
+> +#include <linux/jiffies.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/of_graph.h>
+> +#include <linux/pinctrl/devinfo.h>
+> +#include <linux/phy/phy.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/regmap.h>
+> +#include <linux/reset.h>
+> +
+> +#include <drm/drm_atomic_helper.h>
+> +#include <drm/drm_bridge.h>
+> +#include <drm/drm_of.h>
+> +#include <drm/drm_panel.h>
+> +#include <drm/drm_print.h>
+> +#include <drm/drm_probe_helper.h>
+> +#include <drm/drm_simple_kms_helper.h>
+> +
+> +#define LVDS_POLL_TIMEOUT_MS 1000
+> +
+> +/* LVDSC register offsets */
+> +#define LVDSC_CR	0x00
+> +#define LVDSC_CFGR	0x04
+> +#define LVDSC_SR	0x0C
+> +#define LVDSC_WPMR	0xE4
+> +
+> +/* Bitfields in LVDSC_CR (Control Register) */
+> +#define LVDSC_CR_SER_EN	BIT(0)
+> +
+> +/* Bitfields in LVDSC_CFGR (Configuration Register) */
+> +#define LVDSC_CFGR_PIXSIZE_24BITS	0
+> +#define LVDSC_CFGR_DEN_POL_HIGH		0
+> +#define LVDSC_CFGR_DC_UNBALANCED	0
+> +#define LVDSC_CFGR_MAPPING_JEIDA	BIT(6)
+> +
+> +/*Bitfields in LVDSC_SR */
+> +#define LVDSC_SR_CS	BIT(0)
+> +
+> +/* Bitfields in LVDSC_WPMR (Write Protection Mode Register) */
+> +#define LVDSC_WPMR_WPKEY_MASK	GENMASK(31, 8)
+> +#define LVDSC_WPMR_WPKEY_PSSWD	0x4C5644
+> +
+> +struct mchp_lvds {
+> +	struct device *dev;
+> +	void __iomem *regs;
+> +	struct clk *pclk;
+> +	struct drm_panel *panel;
+> +	struct drm_bridge bridge;
+> +	struct drm_bridge *panel_bridge;
+> +};
+> +
+> +static inline struct mchp_lvds *bridge_to_lvds(struct drm_bridge *bridge)
+> +{
+> +	return container_of(bridge, struct mchp_lvds, bridge);
+> +}
+> +
+> +static inline u32 lvds_readl(struct mchp_lvds *lvds, u32 offset)
+> +{
+> +	return readl_relaxed(lvds->regs + offset);
+> +}
+> +
+> +static inline void lvds_writel(struct mchp_lvds *lvds, u32 offset, u32 val)
+> +{
+> +	writel_relaxed(val, lvds->regs + offset);
+> +}
+> +
+> +static void lvds_serialiser_on(struct mchp_lvds *lvds)
+> +{
+> +	unsigned long timeout = jiffies + msecs_to_jiffies(LVDS_POLL_TIMEOUT_MS);
+> +
+> +	/* The LVDSC registers can only be written if WPEN is cleared */
+> +	lvds_writel(lvds, LVDSC_WPMR, (LVDSC_WPMR_WPKEY_PSSWD &
+> +				LVDSC_WPMR_WPKEY_MASK));
+> +
+> +	/* Wait for the status of configuration registers to be changed */
+> +	while (lvds_readl(lvds, LVDSC_SR) & LVDSC_SR_CS) {
+> +		if (time_after(jiffies, timeout)) {
+> +			DRM_DEV_ERROR(lvds->dev, "%s: timeout error\n",
+> +				      __func__);
+> +			return;
+> +		}
+> +		usleep_range(1000, 2000);
+> +	}
+> +
+> +	/* Configure the LVDSC */
+> +	lvds_writel(lvds, LVDSC_CFGR, (LVDSC_CFGR_MAPPING_JEIDA |
+> +				LVDSC_CFGR_DC_UNBALANCED |
+> +				LVDSC_CFGR_DEN_POL_HIGH |
+> +				LVDSC_CFGR_PIXSIZE_24BITS));
+> +
+> +	/* Enable the LVDS serializer */
+> +	lvds_writel(lvds, LVDSC_CR, LVDSC_CR_SER_EN);
+> +}
+> +
+> +static int mchp_lvds_attach(struct drm_bridge *bridge,
+> +			    enum drm_bridge_attach_flags flags)
+> +{
+> +	struct mchp_lvds *lvds = bridge_to_lvds(bridge);
+> +
+> +	bridge->encoder->encoder_type = DRM_MODE_ENCODER_LVDS;
 
-The of_irq_parse_one() calls of_irq_parse_raw() only if the DT
-node has "interrupts" or "interrupts-extended" DT property. This
-means for most PCI host controller DT nodes, the of_irq_parse_one()
-will not return any interrupts.
+Why do you need to touch encoder_type here? It's not your bridge's
+responsibility.
 
-Here's an example PCI host DT node from the RISC-V world
-(but this also applies to other architectures):
+> +
+> +	return drm_bridge_attach(bridge->encoder, lvds->panel_bridge,
+> +				 bridge, flags);
+> +}
+> +
+> +static void mchp_lvds_enable(struct drm_bridge *bridge)
+> +{
+> +	struct mchp_lvds *lvds = bridge_to_lvds(bridge);
+> +	int ret;
+> +
+> +	ret = clk_enable(lvds->pclk);
+> +	if (ret < 0) {
+> +		DRM_DEV_ERROR(lvds->dev, "failed to enable lvds pclk %d\n", ret);
+> +		return;
+> +	}
+> +
+> +	ret = pm_runtime_get_sync(lvds->dev);
+> +	if (ret < 0) {
+> +		DRM_DEV_ERROR(lvds->dev, "failed to get pm runtime: %d\n", ret);
+> +		clk_disable(lvds->pclk);
 
-pci@30000000 {
-    compatible =3D "pci-host-ecam-generic";
-     device_type =3D "pci";
-     #address-cells =3D <0x03>;
-     #size-cells =3D <0x02>;
-     #interrupt-cells =3D <0x01>;
-     interrupt-map-mask =3D <0x0 0x00 0x00 0x07>;
-     interrupt-map =3D <0x00 0x00 0x00 0x01 &aplic_slevel 28 0x04>,
-                              <0x00 0x00 0x00 0x02 &aplic_slevel 29 0x04>,
-                              <0x00 0x00 0x00 0x03 &aplic_slevel 30 0x04>,
-                              <0x00 0x00 0x00 0x04 &aplic_slevel 31 0x04>;
-     reg =3D <0x0 0x30000000 0x0 0x10000000>;
-     ranges =3D <0x01000000 0x0 0x0 0x0 0x1fff0000 0x00000000 0x10000>,
-                    <0x02000000 0x0 0x40000000 0x0 0x40000000 0x0 0x4000000=
-0>,
-                     <0x03000000 0x100 0x0 0x100 0x0 0x4 0x0>;
-     interrupt-parent =3D <&aplic_slevel>;
-     msi-parent =3D <&imsic_slevel>;
-     bus-range =3D <0x00 0xff>;
-     linux,pci-domain =3D <0x00>;
-};
+This can result in unbalanced clk_disable(), if pm_runtime_get_sync()
+fails. This function calls clk_disable(), but the framework has no way
+to know that .enable() was not successful and calls .disable(), which
+also calls clk_disable().
 
-In the above example, the "interrupt-map" DT property maps a set
-of PCIe endpoints to APLIC interrupt sources but this only applies
-if the corresponding PCIe endpoints are actually present. Also,
-which entry of "interrupt-map" DT property is used for a PCIe
-endpoint also depends on the PCI requester ID (bus-device-func)
-assigned to the PCIe endpoint.
+Please consider turning pclk into pm_clk so that its state is managed
+automatically (or at least moving clk_enable/disable into pm_ops).
 
-Regards,
-Anup
+> +		return;
+> +	}
+> +
+> +	lvds_serialiser_on(lvds);
+> +}
+> +
+> +static void mchp_lvds_disable(struct drm_bridge *bridge)
+> +{
+> +	struct mchp_lvds *lvds = bridge_to_lvds(bridge);
+> +
+> +	pm_runtime_put(lvds->dev);
+> +	clk_disable(lvds->pclk);
+> +}
+> +
+> +static const struct drm_bridge_funcs mchp_lvds_bridge_funcs = {
+> +	.attach = mchp_lvds_attach,
+> +	.enable = mchp_lvds_enable,
+> +	.disable = mchp_lvds_disable,
+> +};
+> +
+> +static int mchp_lvds_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct mchp_lvds *lvds;
+> +	struct device_node *port;
+> +
+> +	if (!dev->of_node)
+> +		return -ENODEV;
+> +
+> +	lvds = devm_kzalloc(&pdev->dev, sizeof(*lvds), GFP_KERNEL);
+> +	if (!lvds)
+> +		return -ENOMEM;
+> +
+> +	lvds->dev = dev;
+> +
+> +	lvds->regs = devm_ioremap_resource(lvds->dev,
+> +			platform_get_resource(pdev, IORESOURCE_MEM, 0));
+> +	if (IS_ERR(lvds->regs))
+> +		return PTR_ERR(lvds->regs);
+> +
+> +	lvds->pclk = devm_clk_get_prepared(lvds->dev, "pclk");
 
->
-> -Saravana
->
-> > >  so interrupt controller is not guaranteed to be probed
-> > > before PCI host controller. This affects every platform where both
-> > > PCI host controller and interrupt controllers are probed as regular
-> > > platform devices.
-> > >
-> > > This creates fw_devlink between consumers (PCI host controller) and
-> > > supplier (interrupt controller) based on "interrupt-map" DT property.
-> > >
-> > > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> > > ---
-> > > Changes since v1:
-> > > - Updated commit description based on Rob's suggestion
-> > > - Use of_irq_parse_raw() for parsing interrupt-map DT property
-> > > ---
-> > >  drivers/of/property.c | 58 +++++++++++++++++++++++++++++++++++++++++=
-++
-> > >  1 file changed, 58 insertions(+)
-> > >
-> > > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > > index a6358ee99b74..67be66384dac 100644
-> > > --- a/drivers/of/property.c
-> > > +++ b/drivers/of/property.c
-> > > @@ -1311,6 +1311,63 @@ static struct device_node *parse_interrupts(st=
-ruct device_node *np,
-> > >       return of_irq_parse_one(np, index, &sup_args) ? NULL : sup_args=
-.np;
-> > >  }
-> > >
-> > > +static struct device_node *parse_interrupt_map(struct device_node *n=
-p,
-> > > +                                            const char *prop_name, i=
-nt index)
-> > > +{
-> > > +     const __be32 *imap, *imap_end, *addr;
-> > > +     struct of_phandle_args sup_args;
-> > > +     struct device_node *tn, *ipar;
-> > > +     u32 addrcells, intcells;
-> > > +     int i, j, imaplen;
-> > > +
-> > > +     if (!IS_ENABLED(CONFIG_OF_IRQ))
-> > > +             return NULL;
-> > > +
-> > > +     if (strcmp(prop_name, "interrupt-map"))
-> > > +             return NULL;
-> > > +
-> > > +     ipar =3D of_node_get(np);
-> > > +     do {
-> > > +             if (!of_property_read_u32(ipar, "#interrupt-cells", &in=
-tcells))
-> > > +                     break;
-> > > +             tn =3D ipar;
-> > > +             ipar =3D of_irq_find_parent(ipar);
-> > > +             of_node_put(tn);
-> > > +     } while (ipar);
-> >
-> > No need for this loop. We've only gotten here if 'interrupt-map' is
-> > present in the node and '#interrupt-cells' is required if
-> > 'interrupt-map' is present.
-> >
-> > > +     if (!ipar)
-> > > +             return NULL;
-> > > +     addrcells =3D of_bus_n_addr_cells(ipar);
-> > > +     of_node_put(ipar);
-> > > +
-> > > +     imap =3D of_get_property(np, "interrupt-map", &imaplen);
-> > > +     if (!imap || imaplen <=3D (addrcells + intcells))
-> > > +             return NULL;
-> > > +     imap_end =3D imap + imaplen;
-> > > +
-> > > +     sup_args.np =3D NULL;
-> > > +     for (i =3D 0; i <=3D index && imap < imap_end; i++) {
-> > > +             if (sup_args.np) {
-> > > +                     of_node_put(sup_args.np);
-> > > +                     sup_args.np =3D NULL;
-> > > +             }
-> > > +
-> > > +             addr =3D imap;
-> > > +             imap +=3D addrcells;
-> > > +
-> > > +             sup_args.np =3D np;
-> > > +             sup_args.args_count =3D intcells;
-> > > +             for (j =3D 0; j < intcells; j++)
-> > > +                     sup_args.args[j] =3D be32_to_cpu(imap[j]);
-> > > +             imap +=3D intcells;
-> > > +
-> > > +             if (of_irq_parse_raw(addr, &sup_args))
-> > > +                     return NULL;
-> > > +             imap +=3D sup_args.args_count + 1;
-> > > +     }
-> >
-> > Doesn't this leak a ref on the last time the function is invoked? For
-> > example, if we have 2 entries and index is 2. We'll get index=3D1, but
-> > then exit because imap=3D=3Dimap_end. We need a put on index=3D=3D1 nod=
-e.
-> >
-> > Look at my next branch where I've converted things to use __free()
-> > cleanups. I don't see it helping here as-is, but maybe when it is
-> > correct.
-> >
-> > Rob
+Why do you need _prepared version?
+
+> +	if (IS_ERR(lvds->pclk))
+> +		return dev_err_probe(lvds->dev, PTR_ERR(lvds->pclk),
+> +				"could not get pclk_lvds prepared\n");
+> +
+> +	port = of_graph_get_remote_node(dev->of_node, 1, 0);
+> +	if (!port) {
+> +		DRM_DEV_ERROR(dev,
+> +			      "can't find port point, please init lvds panel port!\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	lvds->panel = of_drm_find_panel(port);
+> +	of_node_put(port);
+> +
+> +	if (IS_ERR(lvds->panel))
+> +		return -EPROBE_DEFER;
+> +
+> +	lvds->panel_bridge = devm_drm_panel_bridge_add(dev, lvds->panel);
+
+Please use instead:
+
+devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
+
+> +
+> +	if (IS_ERR(lvds->panel_bridge))
+> +		return PTR_ERR(lvds->panel_bridge);
+> +
+> +	lvds->bridge.of_node = dev->of_node;
+> +	lvds->bridge.type = DRM_MODE_CONNECTOR_LVDS;
+> +	lvds->bridge.funcs = &mchp_lvds_bridge_funcs;
+> +
+> +	dev_set_drvdata(dev, lvds);
+> +	devm_pm_runtime_enable(dev);
+
+Error check is missing.
+
+> +
+> +	drm_bridge_add(&lvds->bridge);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id mchp_lvds_dt_ids[] = {
+> +	{
+> +		.compatible = "microchip,sam9x75-lvds",
+> +	},
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, mchp_lvds_dt_ids);
+> +
+> +static struct platform_driver mchp_lvds_driver = {
+> +	.probe = mchp_lvds_probe,
+> +	.driver = {
+> +		   .name = "microchip-lvds",
+> +		   .of_match_table = mchp_lvds_dt_ids,
+> +	},
+> +};
+> +module_platform_driver(mchp_lvds_driver);
+> +
+> +MODULE_AUTHOR("Manikandan Muralidharan <manikandan.m@microchip.com>");
+> +MODULE_AUTHOR("Dharma Balasubiramani <dharma.b@microchip.com>");
+> +MODULE_DESCRIPTION("Low Voltage Differential Signaling Controller Driver");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.25.1
+> 
+
+-- 
+With best wishes
+Dmitry
 
