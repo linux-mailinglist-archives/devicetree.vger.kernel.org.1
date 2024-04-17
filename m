@@ -1,107 +1,119 @@
-Return-Path: <devicetree+bounces-59950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BADD8A7C25
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 08:15:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9E638A7C4E
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 08:29:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B2081F22067
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 06:15:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5923A1F23C10
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 06:29:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B42D6537E4;
-	Wed, 17 Apr 2024 06:14:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A6955811E;
+	Wed, 17 Apr 2024 06:29:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="o0vJFIB9"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="LpsV1kuJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56D1F184D;
-	Wed, 17 Apr 2024 06:14:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A070E57870
+	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 06:29:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713334498; cv=none; b=l4yiYDi7C+K0/sNKb7VP+ZfsbHBww4ABTOJ73mL07vK5ngk5nyubX0Q38Ocfmt26lMHiarpxzQaoX1Gs494OyvPjvGPclZABU1wAjqi77+FwwlmLcbMqcbMJC9N/b2xIAMKb/cPIguQItMx/ClvJ5gR0Gu6iYH3i2BYKWGeLTak=
+	t=1713335367; cv=none; b=N2rjG5aKKludFKVSLT9bK3zU8XhvsTLQxAEHs5RKgXUkd6oMfv9JgNQ7lCqlLGk4aIrgfiDPi6JMKdYjQXCTiS/13mSRoB7MM/99L1dTVP+6PBIo/I21IBLHX5HfEy5uFF9sktRWxJB7IsOVKWW7Q0TWCjyb5viX78WMYaeoSko=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713334498; c=relaxed/simple;
-	bh=6OCRfMWE1Nl1glL6JHGetGOp1oOm4UmouTp4ctm6Ohs=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bMda3uhHG/kGcJrQgEm2ur0qDIyp+q9gdHQg+tCLSmmOG/wDEqf9Sd3k4z3m/VYclUUnmW+M+q9ikSUQOJ4WLQY5G3MGuwkdujjV1wNph102y1KSAi0mf1on9bIr0PHMgmQFZrmMRUI5YvVivgQZEDwJFhyHQBvN+Md1TTdARDM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=o0vJFIB9; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 25FAB1BF203;
-	Wed, 17 Apr 2024 06:14:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1713334494;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=zExFMDHxfXPeW+ilYZceHxAY8OTO9Z8sxt8dwhaGhUs=;
-	b=o0vJFIB9IpqBkYfqT711EFYlGPpY7zc8iqeBbo7HWthTkRRu7+428Psex93iwDUr4tcarP
-	57G59lHiH6Jywws3w/0ECVc5c5D0LrU3ApKd3I0m69mYaDdzsJBAe66wNOQBybNWMAv9QP
-	PEqvrTcjSAT2S0hN1Emj6o7MbFmaJwEE08s/y0nfmj90MHmLDJmV/LLXYvbY5/0er3p6OO
-	FCAyaYcxa6fjqdInrNiEIn3czQuno4yWq+8zwi6Ut7MBKALh2XR54wqYeN0corNCe8cANe
-	Wm7bVYKqTl/XfFrm60EiLwygqICx+R4cA+RQVqvDvc2b8V3qQZCVzx+8P5vqGg==
-Date: Wed, 17 Apr 2024 08:14:43 +0200
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Jonathan Corbet
- <corbet@lwn.net>, Luis Chamberlain <mcgrof@kernel.org>, Russ Weight
- <russ.weight@linux.dev>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Oleksij Rempel <o.rempel@pengutronix.de>, Mark Brown
- <broonie@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Andrew Lunn
- <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, devicetree@vger.kernel.org, Dent Project
- <dentproject@linuxfoundation.org>, kernel@pengutronix.de, Maxime Chevallier
- <maxime.chevallier@bootlin.com>
-Subject: Re: [PATCH net-next v8 06/17] net: ethtool: pse-pd: Expand pse
- commands with the PSE PoE interface
-Message-ID: <20240417081443.4bcfc452@kmaincent-XPS-13-7390>
-In-Reply-To: <20240416192302.72b37f09@kernel.org>
-References: <20240414-feature_poe-v8-0-e4bf1e860da5@bootlin.com>
-	<20240414-feature_poe-v8-6-e4bf1e860da5@bootlin.com>
-	<20240416192302.72b37f09@kernel.org>
-Organization: bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1713335367; c=relaxed/simple;
+	bh=zOuw1eJRYDZNmaVdVjGYIu581bMf2HS6hcsde8LTzaQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZM3yd55n3a++5GJO4VXboccwB116WW9sR/BD3b6paaekABGDB9ocG6ItMi7L/lmKFAwSWryT6FS9GI/LhW1wQj8HW/E48d4ITaTiwR2EaekJ34aG5hCfyMu1IjmN9OIx0oMBKQ2jLnab72/FaDPojr5hNRXlWwlv4G55Qp9V0GU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=LpsV1kuJ; arc=none smtp.client-ip=209.85.160.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qt1-f175.google.com with SMTP id d75a77b69052e-4348110e888so204431cf.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 23:29:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1713335364; x=1713940164; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UyngQvsvNX4IVjE6EtxACZNPOHV77/T++2RB3m9+N3E=;
+        b=LpsV1kuJMLYPXRTYCAnuBPVjaC74V2HYUZOxWm4EMfnHIZZdKVQpI1CYfmojmI0zsZ
+         aeRI0Zia6cthod57DF6kjhhmMaqlXIP+i4Twap4YQePJV3kiY6tL1NiALOtA/ZHIxuE2
+         th2ZW5QgykcXDxOfOnmHIp0cIF2u3GIieYb0Jv5Lvn7bezZi0wHt25xRVPSEBdFE2tb8
+         kX1xGMq5FjQ/4cjFPRdOY4lhxn+dG/zQViTbhpnbTGEyC7lBSIiJWb/n1zHLW+mGKvmy
+         DPS6MFCsrZrn4pA1YMx37z102QALxM9mYgthr2kj48Kmv7ztOAOIFM5rUyx1FJk+DzEr
+         vD9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713335364; x=1713940164;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=UyngQvsvNX4IVjE6EtxACZNPOHV77/T++2RB3m9+N3E=;
+        b=wfxH0FVb7YV/GW5pIzfZnVgkYFbFxFsXeQDyrh5ijiICg4SyPsNA3TbbGV42+hQs53
+         tXsQ50vG6AdIb7rvxbmSGqCFXcsam/4nYZ/CDGK3lNzv+1YEb1pubnfG7n5LvmkxEzZM
+         jgUgjFxkgjsM67wWbKAEfUCp/0ZXIMY0onqwlNYr54C38pjqU3l4pwWDwwdR5V8IVnZv
+         GlaFPkf3PAi3Yt7DYT4cFPeJtVlXYFaBAH7+ab2eNfQHiHFGdPCp72X6sWEZVZs30UfW
+         WFDJF4MG8XA/dEiEiR9qIhjuVUFBzrghBGIiBh38P+rICgGbxcqt12fjcl+rr9tX0wYB
+         Pr8A==
+X-Forwarded-Encrypted: i=1; AJvYcCVRYa0yi5pY5RiEvh7UgGVwCsMwHTgpWCeHCc8iR3ch2k+xlUPepdFXiiAXNJBjEmRQ7PEHfiP55JAI+KE61Pa7I/cg56Cjg6teTQ==
+X-Gm-Message-State: AOJu0YyG3n0KmRnhXTnejgXr42N8hKNtMaiCHqkj9xQXZjG5X8gbdl3+
+	vVn2L02S20SgDOTueXJqoRtBmJGgwX/wKVxyJf3GNm616CECwM/iKKBY2Sp38VcHyalR4MmcXw2
+	Af31lbOG4xfZxJag/4+zBzS4Pbmk+Xi1ApVsZ
+X-Google-Smtp-Source: AGHT+IGHXQ5c36NdPnQ8e2OzYJ8YGPtp3VigSixmG1sd9NrQgjUSDxsXVn1v8tti2TbzQ+n3DGTVwYYT2xmvyD/Cdj8=
+X-Received: by 2002:a05:622a:24f:b0:436:4015:1d82 with SMTP id
+ c15-20020a05622a024f00b0043640151d82mr176693qtx.24.1713335364329; Tue, 16 Apr
+ 2024 23:29:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+References: <20240411235623.1260061-1-saravanak@google.com>
+ <20240411235623.1260061-3-saravanak@google.com> <CAL_JsqKRVVNzgQk6PETfJ9RrDuzT1CTjHWW02Twc_T4C82t__Q@mail.gmail.com>
+ <Zhx9qqiymJdXwYQs@finisterre.sirena.org.uk>
+In-Reply-To: <Zhx9qqiymJdXwYQs@finisterre.sirena.org.uk>
+From: Saravana Kannan <saravanak@google.com>
+Date: Tue, 16 Apr 2024 23:28:48 -0700
+Message-ID: <CAGETcx97QjnjVR8Z5g0ndLHpK96hLd4aYSV=iEkKPNbNOccYmA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] of: dynamic: Fix overlayed devices not probing
+ because of fw_devlink
+To: Mark Brown <broonie@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Herve Codina <herve.codina@bootlin.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, Len Brown <lenb@kernel.org>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	kernel-team@android.com, Wolfram Sang <wsa@kernel.org>, linux-kernel@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-spi@vger.kernel.org, linux-acpi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: kory.maincent@bootlin.com
 
-On Tue, 16 Apr 2024 19:23:02 -0700
-Jakub Kicinski <kuba@kernel.org> wrote:
+On Sun, Apr 14, 2024 at 6:06=E2=80=AFPM Mark Brown <broonie@kernel.org> wro=
+te:
+>
+> On Fri, Apr 12, 2024 at 07:54:32AM -0500, Rob Herring wrote:
+> > On Thu, Apr 11, 2024 at 6:56=E2=80=AFPM Saravana Kannan <saravanak@goog=
+le.com> wrote:
+>
+> > > +#define get_dev_from_fwnode(fwnode)    get_device((fwnode)->dev)
+>
+> > I think it is better to not have this wrapper. We want it to be clear
+> > when we're acquiring a ref. I know get_device() does that, but I have
+> > to look up what get_dev_from_fwnode() does exactly.
+>
+> Or perhaps calling it get_device_from_fwnode() would make it more
+> obvious that it is a get_device() variant?
 
-> On Sun, 14 Apr 2024 16:21:55 +0200 Kory Maincent wrote:
-> > +	    !(pse_has_podl(phydev->psec))) {
-> > +		NL_SET_ERR_MSG_ATTR(info->extack,
-> > +				    tb[ETHTOOL_A_PODL_PSE_ADMIN_CONTROL],
-> > +				    "setting PoDL PSE admin control not
-> > supported");
-> > +		return -EOPNOTSUPP;
-> > +	}
-> > +	if (tb[ETHTOOL_A_C33_PSE_ADMIN_CONTROL] &&
-> > +	    !(pse_has_c33(phydev->psec))) { =20
->=20
-> nit: unnecessary parenthesis around the function call
+Ack, I'll do this in my next version. Right now I'm waiting for Herve
+and Geert to confirm this series fixes their issues.
 
-Right, thanks for spotting it!
-
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+-Saravana
 
