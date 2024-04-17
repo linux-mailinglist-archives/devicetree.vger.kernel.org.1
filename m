@@ -1,128 +1,134 @@
-Return-Path: <devicetree+bounces-59916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59917-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95C7C8A7A95
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 04:31:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6FB98A7A9D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 04:40:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C3511F21DCF
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 02:31:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67A0E2832FD
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 02:40:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 171F81878;
-	Wed, 17 Apr 2024 02:31:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBB901851;
+	Wed, 17 Apr 2024 02:40:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mx4DaGaJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j2Y9A9uY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80ECC7F8;
-	Wed, 17 Apr 2024 02:31:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9955F4685;
+	Wed, 17 Apr 2024 02:40:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713321113; cv=none; b=piAhk+OHFnFhMHQ1mEqTciX9YWwP7V+tmSsBVFM2iVSlsQBF3sr0ddCuXUw6RPcLNlCh0ye9XQY+0g7HsQfD726PT9T0EcP2hPcNr+wcPuEvucNClEFuL3h1cY1nFy76Fco2ei220k8izeJ73VNtwjZI/+F0P6LVzFe8Dv9fdGU=
+	t=1713321627; cv=none; b=BF5yn7yKo1ZubeGb4p3QRNsNQqWV5Aax1Y/wyJLltBWDZoGprQmV5sdHFqmHl8nF2nSFlzMI/5aMnc63cPcl7cRC22AkXbYSK3sD0tDnXnEOknHO1pX+aW1O7muZyLfZbF2bwv++8wFaI0gPjgzLU77XGo9B2uz9jThXeJu0NT4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713321113; c=relaxed/simple;
-	bh=Bdjzekcy0eGckzdChAQ1WLyEcYZJNaqrGH6nC/2iSUA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Le62P6pXZZyALnlFrMCMw/UiSQNx1kOXuzJwbMyrWuLWGzcgOSV1ISyJSTYVF+Y/8xOdxCCGgUsrU0reyWcyJ4N6pNVYNaxkfsFAT/4TYGNzPSqGOAHNln9uWgeB0djLLNu40WJGY5IaFaqbyuLX1wGO+KogxHg0oS1d6fFU0rs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mx4DaGaJ; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-570441bc23bso1588346a12.0;
-        Tue, 16 Apr 2024 19:31:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713321110; x=1713925910; darn=vger.kernel.org;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :reply-to:message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sLxzFgXT3MHB159K1sbDGa/EUJR7X/HFjnuDr4sEUno=;
-        b=mx4DaGaJ7XC4BGfIiWz/ibYYgZX81oYuTM9p8fx0TvPyBiqIAi7TzFADpOivlBGKf+
-         /1OVn77nh6e7klTCMI+O4y7zLOTL+zfanvTBkfcY3weErhhGS0F3VPWPZphqEhm5lq0+
-         e9mblRWnOk+uA5kUzRASI/T5IQvDVRIh01WQABom/XOGi7yYlqrmZ09FxfM1YlSp1oTI
-         xTD3q6GSxBlgXhSvLkCMrrdQFMUbC57dQEkOijFEVdddLoWoJ/8To0vFfReIZF4agaCU
-         ffiZfl90KJfIAht4MlTOFq2pIBvmFKONYbJqnv98nIwFIIgKZVAhZViqg3MrRj+wJ+iN
-         3WWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713321110; x=1713925910;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :reply-to:message-id:subject:cc:to:from:date:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=sLxzFgXT3MHB159K1sbDGa/EUJR7X/HFjnuDr4sEUno=;
-        b=awsPk3f9fbP96dSoYKg2OxXuI9oANyJ0F7NrRIRXZfumLqD3HO/LYHX3v0I41RfvUD
-         5PXHYkoo/GKEtwNMiK2OQrGn/mNLpFEQaVlPI+pUXx4t5syWbyI+dUe+vrOP7o8R53td
-         f/ki4T+vFMWsNdfDvu6LdAD3OqoyNfHA5yuKVg8xlXPPPOsCaG+sqrSqcUYix2jsTFMO
-         ycg7I/sA77fXh7gO+PzZoF66vuIR1tUn6m6oT+LCpiNPrPoUakDLBIu0gIhRjiBxmv00
-         9ZB26HDlGyM7i6fEQembQWES6YJVbZfhEe4zA+Qo0pokOKnpEniYAIlmrceLvwhPIWEr
-         Pi3A==
-X-Forwarded-Encrypted: i=1; AJvYcCUYOeOGXS6oampVWBFEgH5pmfIXiSfUYz+eXCzK9ri8G0fGaCUgZ758qUsCPrhyI6QkemCsBmWY04TFbvrQhugnc2tDaEbkTKrWW0cxnx9x5hgxJ01zIA4ez6KkxLRWRxfUwC22gR9kAQ==
-X-Gm-Message-State: AOJu0YwgnnEoz1ICSy2vWSi/OR++pA9gdzKCHwnBjIY5yz6YJep5nmra
-	6RCUD0xSLSQKjK0mjE4j1MnIR+jCo/ksZgAJ37Vy3LWiaX6bWPd+voeP9FOf
-X-Google-Smtp-Source: AGHT+IG1ofJ/hLCDgOPDzSCQq51uNaCKrfcQLvF5/n8mz4DFU14PSiIxYZGV04kc10i/EV/WUsy98Q==
-X-Received: by 2002:a50:c302:0:b0:570:7e4:8e9e with SMTP id a2-20020a50c302000000b0057007e48e9emr7402448edb.15.1713321109214;
-        Tue, 16 Apr 2024 19:31:49 -0700 (PDT)
-Received: from localhost ([185.92.221.13])
-        by smtp.gmail.com with ESMTPSA id cn22-20020a0564020cb600b0056e34297cbasm6686274edb.80.2024.04.16.19.31.47
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 16 Apr 2024 19:31:48 -0700 (PDT)
-Date: Wed, 17 Apr 2024 02:31:47 +0000
-From: Wei Yang <richard.weiyang@gmail.com>
-To: Mike Rapoport <rppt@kernel.org>
-Cc: skseofh@gmail.com, robh@kernel.org, saravanak@google.com,
-	akpm@linux-foundation.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-mm@kvack.org,
-	Daero Lee <daero_le.lee@samsung.com>
-Subject: Re: [PATCH] memblock: add no-map alloc functions
-Message-ID: <20240417023147.ybefdy6fn5drvq5w@master>
-Reply-To: Wei Yang <richard.weiyang@gmail.com>
-References: <20240415142448.333271-1-skseofh@gmail.com>
- <Zh1HP8IWWjexAUKN@kernel.org>
+	s=arc-20240116; t=1713321627; c=relaxed/simple;
+	bh=V99ZMHxoBTHytjMQdtrR3q5MRRZkyWWbMOm1NYQYc0I=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=pv7i4JgLwz89rG/wGxZswRPGuSgEfsGitaV/bl3Z9z4MuKBEo5Mf9q5If4ENLOiEGYZYMJK94izTtqxLzIcS4AsuhEXZMTOtQq/yTvTSYzWvSAvuSf82mIUBeiYCl9DEF1AdM28GYrFqdRCdZvm1kZonOwX4uCTmbNQk/+eLfAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j2Y9A9uY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 183C9C3277B;
+	Wed, 17 Apr 2024 02:40:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713321627;
+	bh=V99ZMHxoBTHytjMQdtrR3q5MRRZkyWWbMOm1NYQYc0I=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=j2Y9A9uYUAmJdyWQQtnOwgfA++w7VjBu304Y5yKqRaGqu0NQruRhzkbSzpN7zV93j
+	 BnsOeYvEuAtXQ3ikRVpx6Q99H1oqw2ogVOdWZxnZKTPI3qUJsWj7wxtwqbeRK+AXWQ
+	 3JwZQRu3quwASWKDMYXyLlMrU1hbAPhyVJ8K6FDbuYJ+Xn1T8eCs4Ie/zlmBZD21JL
+	 rqHhoSaJr2xZL19d4N3QyKkgAwZ4xQwBxrBYy9cIaUWqY9WQsd+8pVqwPG9CvNdqTy
+	 Zlp94C8NVE0kzfu82DkURI8f36Ww8dpWHsKAN/gnfm/XTu1yfylywQEO81E0fDAwWu
+	 UqQdVGWz1X+Og==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 07FD8D4F15F;
+	Wed, 17 Apr 2024 02:40:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zh1HP8IWWjexAUKN@kernel.org>
-User-Agent: NeoMutt/20170113 (1.7.2)
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v8 01/17] MAINTAINERS: net: Add Oleksij to pse-pd
+ maintainers
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <171332162702.29795.17179061419076983944.git-patchwork-notify@kernel.org>
+Date: Wed, 17 Apr 2024 02:40:27 +0000
+References: <20240414-feature_poe-v8-1-e4bf1e860da5@bootlin.com>
+In-Reply-To: <20240414-feature_poe-v8-1-e4bf1e860da5@bootlin.com>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, corbet@lwn.net, mcgrof@kernel.org, russ.weight@linux.dev,
+ gregkh@linuxfoundation.org, rafael@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ o.rempel@pengutronix.de, broonie@kernel.org, frowand.list@gmail.com,
+ andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
+ thomas.petazzoni@bootlin.com, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ devicetree@vger.kernel.org, dentproject@linuxfoundation.org,
+ kernel@pengutronix.de, maxime.chevallier@bootlin.com
 
-On Mon, Apr 15, 2024 at 06:26:55PM +0300, Mike Rapoport wrote:
-[...]
->> +	
->
->This changes behaviour of internal function, what effect will it have on
->the users?
->
->>  	if (!base)
->>  		return -ENOMEM;
->>  
->>  	*res_base = base;
->>  	if (nomap) {
->>  		err = memblock_mark_nomap(base, size);
+Hello:
 
-Mike
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-One question may not directly relevant to this thread.
+On Sun, 14 Apr 2024 16:21:50 +0200 you wrote:
+> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+> 
+> Oleksij was the first to add support for pse-pd net subsystem.
+> Add himself to the maintainers seems logical.
+> 
+> Acked-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> 
+> [...]
 
-NOMAP doesn't apply to all arch? I took a look into the direct mapping
-function on x86, memory_map_top_down(). It seems iterate all available pfn
-instead of skipping NOMAP range. 
+Here is the summary with links:
+  - [net-next,v8,01/17] MAINTAINERS: net: Add Oleksij to pse-pd maintainers
+    https://git.kernel.org/netdev/net-next/c/57f73805b99d
+  - [net-next,v8,02/17] of: property: Add fw_devlink support for pse parent
+    https://git.kernel.org/netdev/net-next/c/93c0d8c0ac30
+  - [net-next,v8,03/17] net: pse-pd: Rectify and adapt the naming of admin_cotrol member of struct pse_control_config
+    https://git.kernel.org/netdev/net-next/c/b010bf72da5a
+  - [net-next,v8,04/17] ethtool: Expand Ethernet Power Equipment with c33 (PoE) alongside PoDL
+    (no matching commit)
+  - [net-next,v8,05/17] net: pse-pd: Introduce PSE types enumeration
+    (no matching commit)
+  - [net-next,v8,06/17] net: ethtool: pse-pd: Expand pse commands with the PSE PoE interface
+    (no matching commit)
+  - [net-next,v8,07/17] netlink: specs: Modify pse attribute prefix
+    (no matching commit)
+  - [net-next,v8,08/17] netlink: specs: Expand the pse netlink command with PoE interface
+    (no matching commit)
+  - [net-next,v8,09/17] MAINTAINERS: Add myself to pse networking maintainer
+    (no matching commit)
+  - [net-next,v8,10/17] net: pse-pd: Add support for PSE PIs
+    (no matching commit)
+  - [net-next,v8,11/17] dt-bindings: net: pse-pd: Add another way of describing several PSE PIs
+    (no matching commit)
+  - [net-next,v8,12/17] net: pse-pd: Add support for setup_pi_matrix callback
+    (no matching commit)
+  - [net-next,v8,13/17] net: pse-pd: Use regulator framework within PSE framework
+    (no matching commit)
+  - [net-next,v8,14/17] dt-bindings: net: pse-pd: Add bindings for PD692x0 PSE controller
+    (no matching commit)
+  - [net-next,v8,15/17] net: pse-pd: Add PD692x0 PSE controller driver
+    (no matching commit)
+  - [net-next,v8,16/17] dt-bindings: net: pse-pd: Add bindings for TPS23881 PSE controller
+    (no matching commit)
+  - [net-next,v8,17/17] net: pse-pd: Add TI TPS23881 PSE controller driver
+    (no matching commit)
 
->> -		if (err)
->> -			memblock_phys_free(base, size);
->>  	}
->>  
->>  	kmemleak_ignore_phys(base);
->
->-- 
->Sincerely yours,
->Mike.
-
+You are awesome, thank you!
 -- 
-Wei Yang
-Help you, Help me
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
 
