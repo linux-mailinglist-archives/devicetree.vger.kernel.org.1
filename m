@@ -1,903 +1,558 @@
-Return-Path: <devicetree+bounces-60031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B90E38A7F72
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 11:16:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EA348A7F82
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 11:21:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB7601C210DC
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 09:16:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51BCC1C2128C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 09:21:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6955013C3DC;
-	Wed, 17 Apr 2024 09:14:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="TowMP2Wx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8E7712EBDB;
+	Wed, 17 Apr 2024 09:21:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0939C13BACE;
-	Wed, 17 Apr 2024 09:14:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA2267D3F0;
+	Wed, 17 Apr 2024 09:21:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713345299; cv=none; b=AsMplbaBLNqn96kfpi5+uBTPJUyC8xHjPNNOEODOruKx9eMHqY+XQOtpGpAi5NNvtkcJXXn4/hoKNY5k6MoJPhycrjpcUjfkLlOjKFHLoVJ1Jo0QLMN4OjXXw7wN2tdeRWDqJDoIUa58YOu6SYCXJk8HcO08CQgV8kCIoPmWBhE=
+	t=1713345683; cv=none; b=er0sqqPl0klJR0GItlkU1QZvCtKE+A2FxgNDArkJBXDb/CF3dHU8u1OPYmcFWZe4mCORrRZPrnUoyo8BfO/KCHh26STxVqkDaGqR5LObCmi3T0HGD9AMWd/vSP22QYE7t/hbO3QD3EkTTmZUL2Vqp5Ii1Bff8ny3ldAWVgjFc5E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713345299; c=relaxed/simple;
-	bh=kHK683RtoyRF7nZWSIYwGwjmNGONAkN+rHwluYAbqCU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ZS+HbU/yeuHxz/hgxgIHsNFzSzIPP5xO/Fkz0I9BMTsUjCcWKRxFlHKTcP9DY9xG6wK+ULav8AtGFlQDuXuv4QVyr8kmPWvAMqsppjhS3wm4otj+GIKQbNdZpx16V5GS90toW/SRGYuUgizseAEpBxyS3nBYkaj0T5Z4siYrAuY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=TowMP2Wx; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1713345295;
-	bh=kHK683RtoyRF7nZWSIYwGwjmNGONAkN+rHwluYAbqCU=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=TowMP2WxDn7r7w1dMF4X+SIx4lmgowa+vbBWog9EHEfphp8T4pCoAr2mzdfhi3kBW
-	 ctm6cAHVqhwuDUhlz9W8NLsyamdHHrxEqIY/vLNRKbU4OIeYDnt/V/L3s8GzgIqYn2
-	 Yl5ZJu/yPhTWJ3NwkdR3BpFpdvk6XXiKJDXmXF4PCqTItQCr4v1tGA5qdhRso68vDv
-	 RMmc1XyZ64/6u9dltOglB3NFoMKIdZzc4W5r/x3W8imKp6DJbIibA+VahB9So6877s
-	 5yL2/E6DC7KcJWx3KCZ0JfISyW0oVyeRr1cwHBV7VaQI7TcJqMGE+8vVMlpjLcVM3K
-	 6WQuTXNmLQ2XQ==
-Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5DE8A3782145;
-	Wed, 17 Apr 2024 09:14:54 +0000 (UTC)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: djakov@kernel.org
-Cc: robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	lgirdwood@gmail.com,
-	broonie@kernel.org,
-	keescook@chromium.org,
-	gustavoars@kernel.org,
-	henryc.chen@mediatek.com,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	kernel@collabora.com,
-	wenst@chromium.org,
-	amergnat@baylibre.com
-Subject: [PATCH v2 7/7] interconnect: mediatek: Add MediaTek MT8183/8195 EMI Interconnect driver
-Date: Wed, 17 Apr 2024 11:14:42 +0200
-Message-ID: <20240417091442.170505-8-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240417091442.170505-1-angelogioacchino.delregno@collabora.com>
-References: <20240417091442.170505-1-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1713345683; c=relaxed/simple;
+	bh=O1nBjOOWh9px5wLu2zlaZi76VNrX9auLbGaIbQk4Ydg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NbkvHOvDSIicsyGzYNG7D7/UP6n8zImDe+Ues09C01pWmIm2sPL5VTBkbmMTytmmG4Zurxm2sZSI2R0r8UbCtR8Bbc8qU2Vcbhc4fGSJCILm65VApSQJLRU9gZKcaKiad8MPqDddG/Myt0SqWtv7ZwLrKSv8G80l/v4gdnaQVZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BA7C7339;
+	Wed, 17 Apr 2024 02:21:48 -0700 (PDT)
+Received: from [10.1.197.1] (ewhatever.cambridge.arm.com [10.1.197.1])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 87C623F64C;
+	Wed, 17 Apr 2024 02:21:10 -0700 (PDT)
+Message-ID: <1f9609fe-298f-4a5f-aa5e-be8c7dd6a719@arm.com>
+Date: Wed, 17 Apr 2024 10:21:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] coresight: Add support for multiple output ports on
+ the funnel
+To: Mike Leach <mike.leach@linaro.org>
+Cc: Tao Zhang <quic_taozha@quicinc.com>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Konrad Dybcio <konradybcio@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Jinlong Mao <quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, coresight@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+ Trilok Soni <quic_tsoni@quicinc.com>, Song Chai <quic_songchai@quicinc.com>,
+ linux-arm-msm@vger.kernel.org, andersson@kernel.org
+References: <1711009927-17873-1-git-send-email-quic_taozha@quicinc.com>
+ <1711009927-17873-3-git-send-email-quic_taozha@quicinc.com>
+ <8d381e6e-9328-46ff-83fe-efbe5bb4363e@arm.com>
+ <ffce4577-b0f9-4af3-a379-0385a02ddae8@quicinc.com>
+ <a8947ac4-e251-47ba-b44a-6f4fc58f1aac@arm.com>
+ <6baaff95-728b-4492-ae3e-00dedbb50fb0@quicinc.com>
+ <7fc09bfe-b34a-4658-a141-105f0f62e62c@arm.com>
+ <CAJ9a7VjP_B8o4krdZcz3J9qzUMSYmvVyy4cFyrYZOdg43YD2YA@mail.gmail.com>
+Content-Language: en-US
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <CAJ9a7VjP_B8o4krdZcz3J9qzUMSYmvVyy4cFyrYZOdg43YD2YA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add an interconnect driver for the External Memory Interface (EMI),
-voting for bus bandwidth over the Dynamic Voltage and Frequency Scaling
-Resource Collector (DVFSRC).
+Hi Mike
 
-             ICC provider         ICC Nodes
-                              ----          ----
-             ---------       |CPU |   |--- |VPU |
-    -----   |         |-----  ----    |     ----
-   |DRAM |--|DRAM     |       ----    |     ----
-   |     |--|scheduler|----- |GPU |   |--- |DISP|
-   |     |--|(EMI)    |       ----    |     ----
-   |     |--|         |       -----   |     ----
-    -----   |         |----- |MMSYS|--|--- |VDEC|
-             ---------        -----   |     ----
-               /|\                    |     ----
-                |change DRAM freq     |--- |VENC|
-             ----------               |     ----
-            |  DVFSR   |              |
-            |          |              |     ----
-             ----------               |--- |IMG |
-                                      |     ----
-                                      |     ----
-                                      |--- |CAM |
-                                            ----
+On 16/04/2024 15:19, Mike Leach wrote:
+> Hi,
+> 
+> On Mon, 15 Apr 2024 at 14:24, Suzuki K Poulose <suzuki.poulose@arm.com> wrote:
+>>
+>> On 09/04/2024 14:22, Tao Zhang wrote:
+>>>
+>>> On 4/9/2024 3:13 PM, Suzuki K Poulose wrote:
+>>>> Hi
+>>>>
+>>>> On 29/03/2024 09:27, Tao Zhang wrote:
+>>>>>
+>>>>> On 3/22/2024 12:41 AM, Suzuki K Poulose wrote:
+>>>>>> On 21/03/2024 08:32, Tao Zhang wrote:
+>>>>>>> Funnel devices are now capable of supporting multiple-inputs and
+>>>>>>> multiple-outputs configuration with in built hardware filtering
+>>>>>>> for TPDM devices. Add software support to this function. Output
+>>>>>>> port is selected according to the source in the trace path.
+>>>>>>>
+>>>>>>> The source of the input port on funnels will be marked in the
+>>>>>>> device tree.
+>>>>>>> e.g.
+>>>>>>> tpdm@xxxxxxx {
+>>>>>>>       ... ... ... ...
+>>>>>>> };
+>>>>>>>
+>>>>>>> funnel_XXX: funnel@xxxxxxx {
+>>>>>>>       ... ... ... ...
+>>>>>>>       out-ports {
+>>>>>>>           ... ... ... ...
+>>>>>>>           port@x {
+>>>>>>>               ... ... ... ...
+>>>>>>>               label = "xxxxxxx.tpdm"; <-- To label the source
+>>>>>>>           };                           corresponding to the output
+>>>>>>>       ... ... ... ...                  connection "port@x". And this
+>>>>>>>       };                               is a hardware static
+>>>>>>> connections.
+>>>>>>>       ... ... ... ...                  Here needs to refer to hardware
+>>>>>>> };                                   design.
+>>>>>>>
+>>>>>>> Then driver will parse the source label marked in the device tree, and
+>>>>>>> save it to the coresight path. When the function needs to know the
+>>>>>>> source label, it could obtain it from coresight path parameter.
+>>>>>>> Finally,
+>>>>>>> the output port knows which source it corresponds to, and it also
+>>>>>>> knows
+>>>>>>> which input port it corresponds to.
+>>>>>>
+>>>>>> Why do we need labels ? We have connection information for all devices
+>>>>>> (both in and out), so, why do we need this label to find a device ?
+>>>>>
+>>>>> Because our funnel's design has multi-output ports, the data stream
+>>>>> will not
+>>>>>
+>>>>> know which output port should pass in building the data trace path.
+>>>>> This source
+>>>>>
+>>>>> label can make the data stream find the right output port to go.
+>>>>>
+>>>>>>
+>>>>>> And also, I thought TPDM is a source device, why does a funnel output
+>>>>>> port link to a source ?
+>>>>>
+>>>>> No, this label doesn't mean this funnel output port link to a source,
+>>>>> it just let
+>>>>>
+>>>>> the output port know its data source.
+>>>>>
+>>>>>>
+>>>>>> Are these funnels programmable ? Or, are they static ? If they are
+>>>>>> static, do these need to be described in the DT ? If they are simply
+>>>>>> acting as a "LINK" (or HWFIFO ?)
+>>>>>
+>>>>> These funnels are static, and we will add the "label" to the DT to
+>>>>> describe the
+>>>>>
+>>>>> multi-output ports for these funnels.
+>>>>
+>>>> I think there is still a bit of confusion. By "Dynamic" I mean,
+>>>> the "dynamic funnel" (explicit port enablement via MMIO) vs "static
+>>>> funnel" (no programming, always ON).
+>>>>
+>>>> So, coming to your example, do we need to "explicitly" enable trace
+>>>> flow for an "input" and/or an "output" port in your "funnel" ?
+>>>
+>>> Sorry for my misunderstanding in the previous mails. Our funnels are
+>>> programmable just like the common dynamic funnels.
+>>>
+>>> In our solution, we just make funnels have multiple output ports
+>>> connected to different devices or ports. When we use it, we still
+>>>
+>>> enable the input port through programming. Our solution is to know which
+>>> input port the expected data comes from based on the
+>>>
+>>> source label corresponding to the output port. This way we can build the
+>>> expected trace path. In other respects, it is used the same
+>>>
+>>> as common dynamic funnels.
+>>
+>>
+>> Ok. So, to summarise :
+>>
+>> 1. This is not a standard Funnel, but a trace link with multiple-input
+>>      and multiple-output, with inputs hardwired to an outline at
+>>      integration.
+>> 2. The programming model is same as that of a "standard funnel".
+>>
+>> Now, we do have enough information in the coresight_connections
+>> to traverse input/output ports. But we need additional logic
+>> to "hardwire" the ports to each other and necessary logic
+>> to handle the
+>>
+>> There are two options here :
+>>
+>> 1. Treat this as a new component and have its own driver, with
+>>      additional logic to handle the input/output wiring.
+>>
+>> 2. Drive it using the funnel driver, with a a new compatible and
+>>      add additional logic to handle the input/output wiring.
+>>
+>> My inclination is towards (2), we need to see how this works out.
+>>
+>> We need to irrespective of the options, we need special handling
+>> for hardwired ports in 1) building path 2) walking back the path
+>> (in TPDA driver)
+>>
+>> We also need some "DT" information to bind a given input port
+>> to an output port. We must not use "any device" labels to hack
+>> this up, like the approach in this series.
+>>
+> 
+> Given that the internal connections are static for the given device,
+> then the compatible will imply these connections in just the same way
+> as the arm,coresight-funnel implies that all inputs are connected to
+> the single output.
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/interconnect/Kconfig            |   1 +
- drivers/interconnect/Makefile           |   1 +
- drivers/interconnect/mediatek/Kconfig   |  32 +++
- drivers/interconnect/mediatek/Makefile  |   5 +
- drivers/interconnect/mediatek/icc-emi.c | 153 +++++++++++
- drivers/interconnect/mediatek/icc-emi.h |  40 +++
- drivers/interconnect/mediatek/mt8183.c  | 143 ++++++++++
- drivers/interconnect/mediatek/mt8195.c  | 339 ++++++++++++++++++++++++
- 8 files changed, 714 insertions(+)
- create mode 100644 drivers/interconnect/mediatek/Kconfig
- create mode 100644 drivers/interconnect/mediatek/Makefile
- create mode 100644 drivers/interconnect/mediatek/icc-emi.c
- create mode 100644 drivers/interconnect/mediatek/icc-emi.h
- create mode 100644 drivers/interconnect/mediatek/mt8183.c
- create mode 100644 drivers/interconnect/mediatek/mt8195.c
+I am sorry, I couldn't follow the last part. We have two or more output
+ports and we need a way to identify, which input port is hardwired to
+output-port0 and output-port1. Given we need special handling for these
+anyway, I would like to avoid hard coding the input-output connection.
+i.e., we do not want to assume that input-0  is always => output-0.
 
-diff --git a/drivers/interconnect/Kconfig b/drivers/interconnect/Kconfig
-index 5faa8d2aecff..f2e49bd97d31 100644
---- a/drivers/interconnect/Kconfig
-+++ b/drivers/interconnect/Kconfig
-@@ -12,6 +12,7 @@ menuconfig INTERCONNECT
- if INTERCONNECT
- 
- source "drivers/interconnect/imx/Kconfig"
-+source "drivers/interconnect/mediatek/Kconfig"
- source "drivers/interconnect/qcom/Kconfig"
- source "drivers/interconnect/samsung/Kconfig"
- 
-diff --git a/drivers/interconnect/Makefile b/drivers/interconnect/Makefile
-index d0888babb9a1..b0a9a6753b9d 100644
---- a/drivers/interconnect/Makefile
-+++ b/drivers/interconnect/Makefile
-@@ -5,6 +5,7 @@ icc-core-objs				:= core.o bulk.o debugfs-client.o
- 
- obj-$(CONFIG_INTERCONNECT)		+= icc-core.o
- obj-$(CONFIG_INTERCONNECT_IMX)		+= imx/
-+obj-$(CONFIG_INTERCONNECT_MTK)		+= mediatek/
- obj-$(CONFIG_INTERCONNECT_QCOM)		+= qcom/
- obj-$(CONFIG_INTERCONNECT_SAMSUNG)	+= samsung/
- 
-diff --git a/drivers/interconnect/mediatek/Kconfig b/drivers/interconnect/mediatek/Kconfig
-new file mode 100644
-index 000000000000..6da70d904b8c
---- /dev/null
-+++ b/drivers/interconnect/mediatek/Kconfig
-@@ -0,0 +1,32 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+
-+config INTERCONNECT_MTK
-+	bool "MediaTek interconnect drivers"
-+	depends on ARCH_MEDIATEK || COMPILE_TEST
-+	help
-+	  Support for MediaTek's bus interconnect hardware.
-+
-+config INTERCONNECT_MTK_DVFSRC_EMI
-+	tristate "MediaTek DVFSRC EMI interconnect driver"
-+	depends on INTERCONNECT_MTK
-+	depends on MTK_DVFSRC || COMPILE_TEST
-+	help
-+	  This is a driver for the MediaTek External Memory Interface
-+	  interconnect on SoCs equipped with the integrated Dynamic
-+	  Voltage Frequency Scaling Resource Collector (DVFSRC) MCU
-+
-+config INTERCONNECT_MTK_MT8183
-+	tristate "MediaTek MT8183 interconnect driver"
-+	depends on INTERCONNECT_MTK
-+	select INTERCONNECT_MTK_DVFSRC_EMI
-+	help
-+	  This is a driver for the MediaTek bus interconnect on MT8183-based
-+	  platforms.
-+
-+config INTERCONNECT_MTK_MT8195
-+	tristate "MediaTek MT8195 interconnect driver"
-+	depends on INTERCONNECT_MTK
-+	select INTERCONNECT_MTK_DVFSRC_EMI
-+	help
-+	  This is a driver for the MediaTek bus interconnect on MT8195-based
-+	  platforms.
-diff --git a/drivers/interconnect/mediatek/Makefile b/drivers/interconnect/mediatek/Makefile
-new file mode 100644
-index 000000000000..8e2283a9a5b5
---- /dev/null
-+++ b/drivers/interconnect/mediatek/Makefile
-@@ -0,0 +1,5 @@
-+# SPDX-License-Identifier: GPL-2.0
-+
-+obj-$(CONFIG_INTERCONNECT_MTK_DVFSRC_EMI) += icc-emi.o
-+obj-$(CONFIG_INTERCONNECT_MTK_MT8183) += mt8183.o
-+obj-$(CONFIG_INTERCONNECT_MTK_MT8195) += mt8195.o
-diff --git a/drivers/interconnect/mediatek/icc-emi.c b/drivers/interconnect/mediatek/icc-emi.c
-new file mode 100644
-index 000000000000..d420c55682d0
---- /dev/null
-+++ b/drivers/interconnect/mediatek/icc-emi.c
-@@ -0,0 +1,153 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * MediaTek External Memory Interface (EMI) Interconnect driver
-+ *
-+ * Copyright (c) 2021 MediaTek Inc.
-+ * Copyright (c) 2024 Collabora Ltd.
-+ *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-+ */
-+
-+#include <linux/interconnect.h>
-+#include <linux/interconnect-provider.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_platform.h>
-+#include <linux/platform_device.h>
-+#include <linux/soc/mediatek/dvfsrc.h>
-+
-+#include "icc-emi.h"
-+
-+static int mtk_emi_icc_aggregate(struct icc_node *node, u32 tag, u32 avg_bw,
-+				 u32 peak_bw, u32 *agg_avg, u32 *agg_peak)
-+{
-+	struct mtk_icc_node *in = node->data;
-+
-+	*agg_avg += avg_bw;
-+	*agg_peak = max_t(u32, *agg_peak, peak_bw);
-+
-+	in->sum_avg = *agg_avg;
-+	in->max_peak = *agg_peak;
-+
-+	return 0;
-+}
-+
-+static int mtk_emi_icc_set(struct icc_node *src, struct icc_node *dst)
-+{
-+	struct mtk_icc_node *node = dst->data;
-+	struct device *dev;
-+	int ret;
-+
-+	if (unlikely(!src->provider))
-+		return -EINVAL;
-+
-+	dev = src->provider->dev;
-+
-+	switch (node->ep) {
-+	case 0:
-+		break;
-+	case 1:
-+		ret = mtk_dvfsrc_send_request(dev, MTK_DVFSRC_CMD_PEAK_BW, node->max_peak);
-+		if (ret) {
-+			dev_err(dev, "Cannot send peak bw request: %d\n", ret);
-+			return ret;
-+		}
-+
-+		ret = mtk_dvfsrc_send_request(dev, MTK_DVFSRC_CMD_BW, node->sum_avg);
-+		if (ret) {
-+			dev_err(dev, "Cannot send bw request: %d\n", ret);
-+			return ret;
-+		}
-+		break;
-+	case 2:
-+		ret = mtk_dvfsrc_send_request(dev, MTK_DVFSRC_CMD_HRT_BW, node->sum_avg);
-+		if (ret) {
-+			dev_err(dev, "Cannot send HRT bw request: %d\n", ret);
-+			return ret;
-+		}
-+		break;
-+	default:
-+		dev_err(src->provider->dev, "Unknown endpoint %u\n", node->ep);
-+		return -EINVAL;
-+	};
-+
-+	return 0;
-+}
-+
-+int mtk_emi_icc_probe(struct platform_device *pdev)
-+{
-+	const struct mtk_icc_desc *desc;
-+	struct device *dev = &pdev->dev;
-+	struct icc_node *node;
-+	struct icc_onecell_data *data;
-+	struct icc_provider *provider;
-+	struct mtk_icc_node **mnodes;
-+	int i, j, ret;
-+
-+	desc = of_device_get_match_data(dev);
-+	if (!desc)
-+		return -EINVAL;
-+
-+	mnodes = desc->nodes;
-+
-+	provider = devm_kzalloc(dev, sizeof(*provider), GFP_KERNEL);
-+	if (!provider)
-+		return -ENOMEM;
-+
-+	data = devm_kzalloc(dev, struct_size(data, nodes, desc->num_nodes), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	provider->dev = pdev->dev.parent;
-+	provider->set = mtk_emi_icc_set;
-+	provider->aggregate = mtk_emi_icc_aggregate;
-+	provider->xlate = of_icc_xlate_onecell;
-+	INIT_LIST_HEAD(&provider->nodes);
-+	provider->data = data;
-+
-+	for (i = 0; i < desc->num_nodes; i++) {
-+		if (!mnodes[i])
-+			continue;
-+
-+		node = icc_node_create(mnodes[i]->id);
-+		if (IS_ERR(node)) {
-+			ret = PTR_ERR(node);
-+			goto err;
-+		}
-+
-+		node->name = mnodes[i]->name;
-+		node->data = mnodes[i];
-+		icc_node_add(node, provider);
-+
-+		for (j = 0; j < mnodes[i]->num_links; j++)
-+			icc_link_create(node, mnodes[i]->links[j]);
-+
-+		data->nodes[i] = node;
-+	}
-+	data->num_nodes = desc->num_nodes;
-+
-+	ret = icc_provider_register(provider);
-+	if (ret)
-+		goto err;
-+
-+	platform_set_drvdata(pdev, provider);
-+
-+	return 0;
-+err:
-+	icc_nodes_remove(provider);
-+	return ret;
-+}
-+EXPORT_SYMBOL_GPL(mtk_emi_icc_probe);
-+
-+void mtk_emi_icc_remove(struct platform_device *pdev)
-+{
-+	struct icc_provider *provider = platform_get_drvdata(pdev);
-+
-+	icc_provider_deregister(provider);
-+	icc_nodes_remove(provider);
-+}
-+EXPORT_SYMBOL_GPL(mtk_emi_icc_remove);
-+
-+MODULE_AUTHOR("AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>");
-+MODULE_AUTHOR("Henry Chen <henryc.chen@mediatek.com>");
-+MODULE_DESCRIPTION("MediaTek External Memory Interface interconnect driver");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/interconnect/mediatek/icc-emi.h b/drivers/interconnect/mediatek/icc-emi.h
-new file mode 100644
-index 000000000000..9512a50db6fa
---- /dev/null
-+++ b/drivers/interconnect/mediatek/icc-emi.h
-@@ -0,0 +1,40 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (c) 2021 MediaTek Inc.
-+ * Copyright (c) 2024 Collabora Ltd.
-+ *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-+ */
-+
-+#ifndef __DRIVERS_INTERCONNECT_MEDIATEK_ICC_EMI_H
-+#define __DRIVERS_INTERCONNECT_MEDIATEK_ICC_EMI_H
-+
-+/**
-+ * struct mtk_icc_node - Mediatek EMI Interconnect Node
-+ * @name:      The interconnect node name which is shown in debugfs
-+ * @ep:        Type of this endpoint
-+ * @id:        Unique node identifier
-+ * @sum_avg:   Current sum aggregate value of all average bw requests in kBps
-+ * @max_peak:  Current max aggregate value of all peak bw requests in kBps
-+ * @num_links: The total number of @links
-+ * @links:     Array of @id linked to this node
-+ */
-+struct mtk_icc_node {
-+	unsigned char *name;
-+	int ep;
-+	u16 id;
-+	u64 sum_avg;
-+	u64 max_peak;
-+
-+	u16 num_links;
-+	u16 links[] __counted_by(num_links);
-+};
-+
-+struct mtk_icc_desc {
-+	struct mtk_icc_node **nodes;
-+	size_t num_nodes;
-+};
-+
-+int mtk_emi_icc_probe(struct platform_device *pdev);
-+void mtk_emi_icc_remove(struct platform_device *pdev);
-+
-+#endif /* __DRIVERS_INTERCONNECT_MEDIATEK_ICC_EMI_H */
-diff --git a/drivers/interconnect/mediatek/mt8183.c b/drivers/interconnect/mediatek/mt8183.c
-new file mode 100644
-index 000000000000..eb98b7f821a1
---- /dev/null
-+++ b/drivers/interconnect/mediatek/mt8183.c
-@@ -0,0 +1,143 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2021 MediaTek Inc.
-+ * Copyright (c) 2024 Collabora Ltd.
-+ *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-+ */
-+
-+#include <linux/device.h>
-+#include <linux/interconnect.h>
-+#include <linux/interconnect-provider.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <dt-bindings/interconnect/mediatek,mt8183.h>
-+
-+#include "icc-emi.h"
-+
-+static struct mtk_icc_node ddr_emi = {
-+	.name = "ddr-emi",
-+	.id = SLAVE_DDR_EMI,
-+	.ep = 1,
-+};
-+
-+static struct mtk_icc_node mcusys = {
-+	.name = "mcusys",
-+	.id = MASTER_MCUSYS,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { SLAVE_DDR_EMI }
-+};
-+
-+static struct mtk_icc_node gpu = {
-+	.name = "gpu",
-+	.id = MASTER_MFG,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { SLAVE_DDR_EMI }
-+};
-+
-+static struct mtk_icc_node mmsys = {
-+	.name = "mmsys",
-+	.id = MASTER_MMSYS,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { SLAVE_DDR_EMI }
-+};
-+
-+static struct mtk_icc_node mm_vpu = {
-+	.name = "mm-vpu",
-+	.id = MASTER_MM_VPU,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { MASTER_MMSYS }
-+};
-+
-+static struct mtk_icc_node mm_disp = {
-+	.name = "mm-disp",
-+	.id = MASTER_MM_DISP,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { MASTER_MMSYS }
-+};
-+
-+static struct mtk_icc_node mm_vdec = {
-+	.name = "mm-vdec",
-+	.id = MASTER_MM_VDEC,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { MASTER_MMSYS }
-+};
-+
-+static struct mtk_icc_node mm_venc = {
-+	.name = "mm-venc",
-+	.id = MASTER_MM_VENC,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { MASTER_MMSYS }
-+};
-+
-+static struct mtk_icc_node mm_cam = {
-+	.name = "mm-cam",
-+	.id = MASTER_MM_CAM,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { MASTER_MMSYS }
-+};
-+
-+static struct mtk_icc_node mm_img = {
-+	.name = "mm-img",
-+	.id = MASTER_MM_IMG,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { MASTER_MMSYS }
-+};
-+
-+static struct mtk_icc_node mm_mdp = {
-+	.name = "mm-mdp",
-+	.id = MASTER_MM_MDP,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { MASTER_MMSYS }
-+};
-+
-+static struct mtk_icc_node *mt8183_emi_icc_nodes[] = {
-+	[SLAVE_DDR_EMI] = &ddr_emi,
-+	[MASTER_MCUSYS] = &mcusys,
-+	[MASTER_MFG] = &gpu,
-+	[MASTER_MMSYS] = &mmsys,
-+	[MASTER_MM_VPU] = &mm_vpu,
-+	[MASTER_MM_DISP] = &mm_disp,
-+	[MASTER_MM_VDEC] = &mm_vdec,
-+	[MASTER_MM_VENC] = &mm_venc,
-+	[MASTER_MM_CAM] = &mm_cam,
-+	[MASTER_MM_IMG] = &mm_img,
-+	[MASTER_MM_MDP] = &mm_mdp
-+};
-+
-+static const struct mtk_icc_desc mt8183_emi_icc = {
-+	.nodes = mt8183_emi_icc_nodes,
-+	.num_nodes = ARRAY_SIZE(mt8183_emi_icc_nodes),
-+};
-+
-+static const struct of_device_id mtk_mt8183_emi_icc_of_match[] = {
-+	{ .compatible = "mediatek,mt8183-emi", .data = &mt8183_emi_icc },
-+	{ /* sentinel */ },
-+};
-+MODULE_DEVICE_TABLE(of, mtk_emi_icc_of_match);
-+
-+static struct platform_driver mtk_emi_icc_mt8183_driver = {
-+	.driver = {
-+		.name = "emi-icc-mt8183",
-+		.of_match_table = mtk_mt8183_emi_icc_of_match,
-+		.sync_state = icc_sync_state,
-+	},
-+	.probe = mtk_emi_icc_probe,
-+	.remove_new = mtk_emi_icc_remove,
-+
-+};
-+module_platform_driver(mtk_emi_icc_mt8183_driver);
-+
-+MODULE_AUTHOR("AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>");
-+MODULE_DESCRIPTION("MediaTek MT8183 EMI ICC driver");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/interconnect/mediatek/mt8195.c b/drivers/interconnect/mediatek/mt8195.c
-new file mode 100644
-index 000000000000..e782c5974e50
---- /dev/null
-+++ b/drivers/interconnect/mediatek/mt8195.c
-@@ -0,0 +1,339 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2021 MediaTek Inc.
-+ * Copyright (c) 2024 Collabora Ltd.
-+ *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-+ */
-+
-+#include <linux/device.h>
-+#include <linux/interconnect.h>
-+#include <linux/interconnect-provider.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <dt-bindings/interconnect/mediatek,mt8195.h>
-+
-+#include "icc-emi.h"
-+
-+static struct mtk_icc_node ddr_emi = {
-+	.name = "ddr-emi",
-+	.id = SLAVE_DDR_EMI,
-+	.ep = 1,
-+};
-+
-+static struct mtk_icc_node mcusys = {
-+	.name = "mcusys",
-+	.id = MASTER_MCUSYS,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { SLAVE_DDR_EMI }
-+};
-+
-+static struct mtk_icc_node gpu = {
-+	.name = "gpu",
-+	.id = MASTER_GPUSYS,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { SLAVE_DDR_EMI }
-+};
-+
-+static struct mtk_icc_node mmsys = {
-+	.name = "mmsys",
-+	.id = MASTER_MMSYS,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { SLAVE_DDR_EMI }
-+};
-+
-+static struct mtk_icc_node mm_vpu = {
-+	.name = "mm-vpu",
-+	.id = MASTER_MM_VPU,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { MASTER_MMSYS }
-+};
-+
-+static struct mtk_icc_node mm_disp = {
-+	.name = "mm-disp",
-+	.id = MASTER_MM_DISP,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { MASTER_MMSYS }
-+};
-+
-+static struct mtk_icc_node mm_vdec = {
-+	.name = "mm-vdec",
-+	.id = MASTER_MM_VDEC,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { MASTER_MMSYS }
-+};
-+
-+static struct mtk_icc_node mm_venc = {
-+	.name = "mm-venc",
-+	.id = MASTER_MM_VENC,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { MASTER_MMSYS }
-+};
-+
-+static struct mtk_icc_node mm_cam = {
-+	.name = "mm-cam",
-+	.id = MASTER_MM_CAM,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { MASTER_MMSYS }
-+};
-+
-+static struct mtk_icc_node mm_img = {
-+	.name = "mm-img",
-+	.id = MASTER_MM_IMG,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { MASTER_MMSYS }
-+};
-+
-+static struct mtk_icc_node mm_mdp = {
-+	.name = "mm-mdp",
-+	.id = MASTER_MM_MDP,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { MASTER_MMSYS }
-+};
-+
-+static struct mtk_icc_node vpusys = {
-+	.name = "vpusys",
-+	.id = MASTER_VPUSYS,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { SLAVE_DDR_EMI }
-+};
-+
-+static struct mtk_icc_node vpu_port0 = {
-+	.name = "vpu-port0",
-+	.id = MASTER_VPU_0,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { MASTER_VPUSYS }
-+};
-+
-+static struct mtk_icc_node vpu_port1 = {
-+	.name = "vpu-port1",
-+	.id = MASTER_VPU_1,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { MASTER_VPUSYS }
-+};
-+
-+static struct mtk_icc_node mdlasys = {
-+	.name = "mdlasys",
-+	.id = MASTER_MDLASYS,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { SLAVE_DDR_EMI }
-+};
-+
-+static struct mtk_icc_node mdla_port0 = {
-+	.name = "mdla-port0",
-+	.id = MASTER_MDLA_0,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { MASTER_MDLASYS }
-+};
-+
-+static struct mtk_icc_node ufs = {
-+	.name = "ufs",
-+	.id = MASTER_UFS,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { SLAVE_DDR_EMI }
-+};
-+
-+static struct mtk_icc_node pcie0 = {
-+	.name = "pcie0",
-+	.id = MASTER_PCIE_0,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { SLAVE_DDR_EMI }
-+};
-+
-+static struct mtk_icc_node pcie1 = {
-+	.name = "pcie1",
-+	.id = MASTER_PCIE_1,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { SLAVE_DDR_EMI }
-+};
-+
-+static struct mtk_icc_node usb = {
-+	.name = "usb",
-+	.id = MASTER_USB,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { SLAVE_DDR_EMI }
-+};
-+
-+static struct mtk_icc_node wifi = {
-+	.name = "wifi",
-+	.id = MASTER_WIFI,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { SLAVE_DDR_EMI }
-+};
-+
-+static struct mtk_icc_node bt = {
-+	.name = "bt",
-+	.id = MASTER_BT,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { SLAVE_DDR_EMI }
-+};
-+
-+static struct mtk_icc_node netsys = {
-+	.name = "netsys",
-+	.id = MASTER_NETSYS,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { SLAVE_DDR_EMI }
-+};
-+
-+static struct mtk_icc_node dbgif = {
-+	.name = "dbgif",
-+	.id = MASTER_DBGIF,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { SLAVE_DDR_EMI }
-+};
-+
-+static struct mtk_icc_node hrt_ddr_emi = {
-+	.name = "hrt-ddr-emi",
-+	.id = SLAVE_HRT_DDR_EMI,
-+	.ep = 2,
-+};
-+
-+static struct mtk_icc_node hrt_mmsys = {
-+	.name = "hrt-mmsys",
-+	.id = MASTER_HRT_MMSYS,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { SLAVE_HRT_DDR_EMI }
-+};
-+
-+static struct mtk_icc_node hrt_mm_disp = {
-+	.name = "hrt-mm-disp",
-+	.id = MASTER_HRT_MM_DISP,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { MASTER_HRT_MMSYS }
-+};
-+
-+static struct mtk_icc_node hrt_mm_vdec = {
-+	.name = "hrt-mm-vdec",
-+	.id = MASTER_HRT_MM_VDEC,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { MASTER_HRT_MMSYS }
-+};
-+
-+static struct mtk_icc_node hrt_mm_venc = {
-+	.name = "hrt-mm-venc",
-+	.id = MASTER_HRT_MM_VENC,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { MASTER_HRT_MMSYS }
-+};
-+
-+static struct mtk_icc_node hrt_mm_cam = {
-+	.name = "hrt-mm-cam",
-+	.id = MASTER_HRT_MM_CAM,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { MASTER_HRT_MMSYS }
-+};
-+
-+static struct mtk_icc_node hrt_mm_img = {
-+	.name = "hrt-mm-img",
-+	.id = MASTER_HRT_MM_IMG,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { MASTER_HRT_MMSYS }
-+};
-+
-+static struct mtk_icc_node hrt_mm_mdp = {
-+	.name = "hrt-mm-mdp",
-+	.id = MASTER_HRT_MM_MDP,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { MASTER_HRT_MMSYS }
-+};
-+
-+static struct mtk_icc_node hrt_dbgif = {
-+	.name = "hrt-dbgif",
-+	.id = MASTER_HRT_DBGIF,
-+	.ep = 0,
-+	.num_links = 1,
-+	.links = { SLAVE_HRT_DDR_EMI }
-+};
-+
-+static struct mtk_icc_node *mt8195_emi_icc_nodes[] = {
-+	[SLAVE_DDR_EMI] = &ddr_emi,
-+	[MASTER_MCUSYS] = &mcusys,
-+	[MASTER_GPUSYS] = &gpu,
-+	[MASTER_MMSYS] = &mmsys,
-+	[MASTER_MM_VPU] = &mm_vpu,
-+	[MASTER_MM_DISP] = &mm_disp,
-+	[MASTER_MM_VDEC] = &mm_vdec,
-+	[MASTER_MM_VENC] = &mm_venc,
-+	[MASTER_MM_CAM] = &mm_cam,
-+	[MASTER_MM_IMG] = &mm_img,
-+	[MASTER_MM_MDP] = &mm_mdp,
-+	[MASTER_VPUSYS] = &vpusys,
-+	[MASTER_VPU_0] = &vpu_port0,
-+	[MASTER_VPU_1] = &vpu_port1,
-+	[MASTER_MDLASYS] = &mdlasys,
-+	[MASTER_MDLA_0] = &mdla_port0,
-+	[MASTER_UFS] = &ufs,
-+	[MASTER_PCIE_0] = &pcie0,
-+	[MASTER_PCIE_1] = &pcie1,
-+	[MASTER_USB] = &usb,
-+	[MASTER_WIFI] = &wifi,
-+	[MASTER_BT] = &bt,
-+	[MASTER_NETSYS] = &netsys,
-+	[MASTER_DBGIF] = &dbgif,
-+	[SLAVE_HRT_DDR_EMI] = &hrt_ddr_emi,
-+	[MASTER_HRT_MMSYS] = &hrt_mmsys,
-+	[MASTER_HRT_MM_DISP] = &hrt_mm_disp,
-+	[MASTER_HRT_MM_VDEC] = &hrt_mm_vdec,
-+	[MASTER_HRT_MM_VENC] = &hrt_mm_venc,
-+	[MASTER_HRT_MM_CAM] = &hrt_mm_cam,
-+	[MASTER_HRT_MM_IMG] = &hrt_mm_img,
-+	[MASTER_HRT_MM_MDP] = &hrt_mm_mdp,
-+	[MASTER_HRT_DBGIF] = &hrt_dbgif
-+};
-+
-+static struct mtk_icc_desc mt8195_emi_icc = {
-+	.nodes = mt8195_emi_icc_nodes,
-+	.num_nodes = ARRAY_SIZE(mt8195_emi_icc_nodes),
-+};
-+
-+static const struct of_device_id mtk_mt8195_emi_icc_of_match[] = {
-+	{ .compatible = "mediatek,mt8195-emi", .data = &mt8195_emi_icc },
-+	{ /* sentinel */ },
-+};
-+MODULE_DEVICE_TABLE(of, mtk_emi_icc_of_match);
-+
-+static struct platform_driver mtk_emi_icc_mt8195_driver = {
-+	.driver = {
-+		.name = "emi-icc-mt8195",
-+		.of_match_table = mtk_mt8195_emi_icc_of_match,
-+		.sync_state = icc_sync_state,
-+	},
-+	.probe = mtk_emi_icc_probe,
-+	.remove_new = mtk_emi_icc_remove,
-+
-+};
-+module_platform_driver(mtk_emi_icc_mt8195_driver);
-+
-+MODULE_AUTHOR("AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>");
-+MODULE_DESCRIPTION("MediaTek MT8195 EMI ICC driver");
-+MODULE_LICENSE("GPL");
--- 
-2.44.0
+
+> 
+> Irrespective of if a new driver is used, or an extension to the
+> current funnel driver to handle a new compatible - the mapping between
+> input and output ports are created based on the compatible..
+> 
+> As we are building a path from source to sink, what is then needed is
+> a method in the generic path building code, to recognise these
+> amppings and filter the output ports that are searched based on the
+> input port in use.
+
+Agreed. We could mark this as a property of the
+port/coresight_connection.
+
+> 
+> On standard components, where the mapping is not present, then the
+> code will continue as it does now, for these compound funnels, the
+> mappings will be present and the output filtering will occur.
+
+Agreed
+
+> This removes the need for the labels / extra connection attributes on
+> devices other than the funnel, and also removes the need to specify
+> the internal connections as part of the device tree.
+
+I am still not clear how we map the input-output ports. Rest is what
+exactly I had in mind. So, once we sort out the port mapping
+we could proceed to the prototyping.
+
+Kind regards
+Suzuki
+
+
+> 
+> Regards
+> 
+> Mike
+> 
+>> Rob/Krzysztof,
+>>
+>> Do you have any recommendations for describing the 'hard wired
+>> ports' ?
+>>
+>> e.g:
+>>
+>> component {
+>>      input_ports {
+>>         component_input_port0: port@0 {
+>>             ...
+>>             <hard-wired-to*> = &component_output_port0;
+>>         };
+>>         ...
+>>     };
+>>
+>>     output_ports {
+>>       componentne_output_port0: port@0 {
+>>           ...
+>>           <hard-wired-to> = &component_input_port0;
+>>       };
+>>       ...
+>>     };
+>>
+>> };
+>>
+>> *Need a better suitable property than "hard-wired-to".
+>>
+>>
+>> Suzuki
+>>
+>>
+>>>
+>>>
+>>> Best,
+>>>
+>>> Tao
+>>>
+>>>>
+>>>>
+>>>>>
+>>>>> "If they are simply acting as a "LINK" (or HWFIFO ?) " I'm not sure
+>>>>> what's the meaning
+>>>>
+>>>> i.e, Like TMC-ETF in HWFIFO mode. In this mode, the TMC-ETF is acting
+>>>> like a cache for easing ATB data load, by providing h/w buffering.
+>>>> (In your case, it may not be providing any buffering, it doesn't matter
+>>>> either way, as it is not visible to the driver).
+>>>>
+>>>> Suzuki
+>>>>
+>>>>>
+>>>>> of this. Could you describe it in detail?
+>>>>>
+>>>>>
+>>>>> Best,
+>>>>>
+>>>>> Tao
+>>>>>
+>>>>>>
+>>>>>> Suzuki
+>>>>>>
+>>>>>>>
+>>>>>>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+>>>>>>> ---
+>>>>>>>    drivers/hwtracing/coresight/coresight-core.c  | 81
+>>>>>>> ++++++++++++++++---
+>>>>>>>    .../hwtracing/coresight/coresight-platform.c  |  5 ++
+>>>>>>>    include/linux/coresight.h                     |  2 +
+>>>>>>>    3 files changed, 75 insertions(+), 13 deletions(-)
+>>>>>>>
+>>>>>>> diff --git a/drivers/hwtracing/coresight/coresight-core.c
+>>>>>>> b/drivers/hwtracing/coresight/coresight-core.c
+>>>>>>> index 5dde597403b3..b1b5e6d9ec7a 100644
+>>>>>>> --- a/drivers/hwtracing/coresight/coresight-core.c
+>>>>>>> +++ b/drivers/hwtracing/coresight/coresight-core.c
+>>>>>>> @@ -113,15 +113,63 @@ struct coresight_device
+>>>>>>> *coresight_get_percpu_sink(int cpu)
+>>>>>>>    }
+>>>>>>>    EXPORT_SYMBOL_GPL(coresight_get_percpu_sink);
+>>>>>>>    +static struct coresight_device *coresight_get_source(struct
+>>>>>>> list_head *path)
+>>>>>>> +{
+>>>>>>> +    struct coresight_device *csdev;
+>>>>>>> +
+>>>>>>> +    if (!path)
+>>>>>>> +        return NULL;
+>>>>>>> +
+>>>>>>> +    csdev = list_first_entry(path, struct coresight_node,
+>>>>>>> link)->csdev;
+>>>>>>> +    if (csdev->type != CORESIGHT_DEV_TYPE_SOURCE)
+>>>>>>> +        return NULL;
+>>>>>>> +
+>>>>>>> +    return csdev;
+>>>>>>> +}
+>>>>>>> +
+>>>>>>> +/**
+>>>>>>> + * coresight_source_filter - checks whether the connection matches
+>>>>>>> the source
+>>>>>>> + * of path if connection is binded to specific source.
+>>>>>>> + * @path:    The list of devices
+>>>>>>> + * @conn:    The connection of one outport
+>>>>>>> + *
+>>>>>>> + * Return zero if the connection doesn't have a source binded or
+>>>>>>> source of the
+>>>>>>> + * path matches the source binds to connection.
+>>>>>>> + */
+>>>>>>> +static int coresight_source_filter(struct list_head *path,
+>>>>>>> +            struct coresight_connection *conn)
+>>>>>>> +{
+>>>>>>> +    int ret = 0;
+>>>>>>> +    struct coresight_device *source = NULL;
+>>>>>>> +
+>>>>>>> +    if (conn->source_label == NULL)
+>>>>>>> +        return ret;
+>>>>>>> +
+>>>>>>> +    source = coresight_get_source(path);
+>>>>>>> +    if (source == NULL)
+>>>>>>> +        return ret;
+>>>>>>> +
+>>>>>>> +    if (strstr(kobject_get_path(&source->dev.kobj, GFP_KERNEL),
+>>>>>>> +            conn->source_label))
+>>>>>>> +        ret = 0;
+>>>>>>> +    else
+>>>>>>> +        ret = -1;
+>>>>>>> +
+>>>>>>> +    return ret;
+>>>>>>> +}
+>>>>>>> +
+>>>>>>>    static struct coresight_connection *
+>>>>>>>    coresight_find_out_connection(struct coresight_device *src_dev,
+>>>>>>> -                  struct coresight_device *dest_dev)
+>>>>>>> +                  struct coresight_device *dest_dev,
+>>>>>>> +                  struct list_head *path)
+>>>>>>>    {
+>>>>>>>        int i;
+>>>>>>>        struct coresight_connection *conn;
+>>>>>>>          for (i = 0; i < src_dev->pdata->nr_outconns; i++) {
+>>>>>>>            conn = src_dev->pdata->out_conns[i];
+>>>>>>> +        if (coresight_source_filter(path, conn))
+>>>>>>> +            continue;
+>>>>>>>            if (conn->dest_dev == dest_dev)
+>>>>>>>                return conn;
+>>>>>>>        }
+>>>>>>> @@ -312,7 +360,8 @@ static void coresight_disable_sink(struct
+>>>>>>> coresight_device *csdev)
+>>>>>>>      static int coresight_enable_link(struct coresight_device *csdev,
+>>>>>>>                     struct coresight_device *parent,
+>>>>>>> -                 struct coresight_device *child)
+>>>>>>> +                 struct coresight_device *child,
+>>>>>>> +                 struct list_head *path)
+>>>>>>>    {
+>>>>>>>        int ret = 0;
+>>>>>>>        int link_subtype;
+>>>>>>> @@ -321,8 +370,8 @@ static int coresight_enable_link(struct
+>>>>>>> coresight_device *csdev,
+>>>>>>>        if (!parent || !child)
+>>>>>>>            return -EINVAL;
+>>>>>>>    -    inconn = coresight_find_out_connection(parent, csdev);
+>>>>>>> -    outconn = coresight_find_out_connection(csdev, child);
+>>>>>>> +    inconn = coresight_find_out_connection(parent, csdev, path);
+>>>>>>> +    outconn = coresight_find_out_connection(csdev, child, path);
+>>>>>>>        link_subtype = csdev->subtype.link_subtype;
+>>>>>>>          if (link_subtype == CORESIGHT_DEV_SUBTYPE_LINK_MERG &&
+>>>>>>> IS_ERR(inconn))
+>>>>>>> @@ -341,7 +390,8 @@ static int coresight_enable_link(struct
+>>>>>>> coresight_device *csdev,
+>>>>>>>      static void coresight_disable_link(struct coresight_device *csdev,
+>>>>>>>                       struct coresight_device *parent,
+>>>>>>> -                   struct coresight_device *child)
+>>>>>>> +                   struct coresight_device *child,
+>>>>>>> +                   struct list_head *path)
+>>>>>>>    {
+>>>>>>>        int i;
+>>>>>>>        int link_subtype;
+>>>>>>> @@ -350,8 +400,8 @@ static void coresight_disable_link(struct
+>>>>>>> coresight_device *csdev,
+>>>>>>>        if (!parent || !child)
+>>>>>>>            return;
+>>>>>>>    -    inconn = coresight_find_out_connection(parent, csdev);
+>>>>>>> -    outconn = coresight_find_out_connection(csdev, child);
+>>>>>>> +    inconn = coresight_find_out_connection(parent, csdev, path);
+>>>>>>> +    outconn = coresight_find_out_connection(csdev, child, path);
+>>>>>>>        link_subtype = csdev->subtype.link_subtype;
+>>>>>>>          if (link_ops(csdev)->disable) {
+>>>>>>> @@ -507,7 +557,7 @@ static void coresight_disable_path_from(struct
+>>>>>>> list_head *path,
+>>>>>>>            case CORESIGHT_DEV_TYPE_LINK:
+>>>>>>>                parent = list_prev_entry(nd, link)->csdev;
+>>>>>>>                child = list_next_entry(nd, link)->csdev;
+>>>>>>> -            coresight_disable_link(csdev, parent, child);
+>>>>>>> +            coresight_disable_link(csdev, parent, child, path);
+>>>>>>>                break;
+>>>>>>>            default:
+>>>>>>>                break;
+>>>>>>> @@ -588,7 +638,7 @@ int coresight_enable_path(struct list_head
+>>>>>>> *path, enum cs_mode mode,
+>>>>>>>            case CORESIGHT_DEV_TYPE_LINK:
+>>>>>>>                parent = list_prev_entry(nd, link)->csdev;
+>>>>>>>                child = list_next_entry(nd, link)->csdev;
+>>>>>>> -            ret = coresight_enable_link(csdev, parent, child);
+>>>>>>> +            ret = coresight_enable_link(csdev, parent, child, path);
+>>>>>>>                if (ret)
+>>>>>>>                    goto err;
+>>>>>>>                break;
+>>>>>>> @@ -802,7 +852,8 @@ static void coresight_drop_device(struct
+>>>>>>> coresight_device *csdev)
+>>>>>>>     */
+>>>>>>>    static int _coresight_build_path(struct coresight_device *csdev,
+>>>>>>>                     struct coresight_device *sink,
+>>>>>>> -                 struct list_head *path)
+>>>>>>> +                 struct list_head *path,
+>>>>>>> +                 struct coresight_device *source)
+>>>>>>>    {
+>>>>>>>        int i, ret;
+>>>>>>>        bool found = false;
+>>>>>>> @@ -814,7 +865,7 @@ static int _coresight_build_path(struct
+>>>>>>> coresight_device *csdev,
+>>>>>>>          if (coresight_is_percpu_source(csdev) &&
+>>>>>>> coresight_is_percpu_sink(sink) &&
+>>>>>>>            sink == per_cpu(csdev_sink,
+>>>>>>> source_ops(csdev)->cpu_id(csdev))) {
+>>>>>>> -        if (_coresight_build_path(sink, sink, path) == 0) {
+>>>>>>> +        if (_coresight_build_path(sink, sink, path, source) == 0) {
+>>>>>>>                found = true;
+>>>>>>>                goto out;
+>>>>>>>            }
+>>>>>>> @@ -825,8 +876,12 @@ static int _coresight_build_path(struct
+>>>>>>> coresight_device *csdev,
+>>>>>>>            struct coresight_device *child_dev;
+>>>>>>>              child_dev = csdev->pdata->out_conns[i]->dest_dev;
+>>>>>>> +        if (csdev->pdata->out_conns[i]->source_label &&
+>>>>>>> + !strstr(kobject_get_path(&source->dev.kobj, GFP_KERNEL),
+>>>>>>> + csdev->pdata->out_conns[i]->source_label))
+>>>>>>> +            continue;
+>>>>>>>            if (child_dev &&
+>>>>>>> -            _coresight_build_path(child_dev, sink, path) == 0) {
+>>>>>>> +            _coresight_build_path(child_dev, sink, path, source)
+>>>>>>> == 0) {
+>>>>>>>                found = true;
+>>>>>>>                break;
+>>>>>>>            }
+>>>>>>> @@ -871,7 +926,7 @@ struct list_head *coresight_build_path(struct
+>>>>>>> coresight_device *source,
+>>>>>>>          INIT_LIST_HEAD(path);
+>>>>>>>    -    rc = _coresight_build_path(source, sink, path);
+>>>>>>> +    rc = _coresight_build_path(source, sink, path, source);
+>>>>>>>        if (rc) {
+>>>>>>>            kfree(path);
+>>>>>>>            return ERR_PTR(rc);
+>>>>>>> diff --git a/drivers/hwtracing/coresight/coresight-platform.c
+>>>>>>> b/drivers/hwtracing/coresight/coresight-platform.c
+>>>>>>> index 9d550f5697fa..f553fb20966d 100644
+>>>>>>> --- a/drivers/hwtracing/coresight/coresight-platform.c
+>>>>>>> +++ b/drivers/hwtracing/coresight/coresight-platform.c
+>>>>>>> @@ -205,6 +205,7 @@ static int of_coresight_parse_endpoint(struct
+>>>>>>> device *dev,
+>>>>>>>        struct fwnode_handle *rdev_fwnode;
+>>>>>>>        struct coresight_connection conn = {};
+>>>>>>>        struct coresight_connection *new_conn;
+>>>>>>> +    const char *label;
+>>>>>>>          do {
+>>>>>>>            /* Parse the local port details */
+>>>>>>> @@ -243,6 +244,10 @@ static int of_coresight_parse_endpoint(struct
+>>>>>>> device *dev,
+>>>>>>>            conn.dest_fwnode = fwnode_handle_get(rdev_fwnode);
+>>>>>>>            conn.dest_port = rendpoint.port;
+>>>>>>>    +        conn.source_label = NULL;
+>>>>>>> +        if (!of_property_read_string(ep, "label", &label))
+>>>>>>> +            conn.source_label = label;
+>>>>>>> +
+>>>>>>>            new_conn = coresight_add_out_conn(dev, pdata, &conn);
+>>>>>>>            if (IS_ERR_VALUE(new_conn)) {
+>>>>>>>                fwnode_handle_put(conn.dest_fwnode);
+>>>>>>> diff --git a/include/linux/coresight.h b/include/linux/coresight.h
+>>>>>>> index e8b6e388218c..a9c06ef9bbb2 100644
+>>>>>>> --- a/include/linux/coresight.h
+>>>>>>> +++ b/include/linux/coresight.h
+>>>>>>> @@ -167,6 +167,7 @@ struct coresight_desc {
+>>>>>>>     * struct coresight_connection - representation of a single
+>>>>>>> connection
+>>>>>>>     * @src_port:    a connection's output port number.
+>>>>>>>     * @dest_port:    destination's input port number @src_port is
+>>>>>>> connected to.
+>>>>>>> + * @source_label: source component's label.
+>>>>>>>     * @dest_fwnode: destination component's fwnode handle.
+>>>>>>>     * @dest_dev:    a @coresight_device representation of the component
+>>>>>>>            connected to @src_port. NULL until the device is created
+>>>>>>> @@ -195,6 +196,7 @@ struct coresight_desc {
+>>>>>>>    struct coresight_connection {
+>>>>>>>        int src_port;
+>>>>>>>        int dest_port;
+>>>>>>> +    const char *source_label;
+>>>>>>>        struct fwnode_handle *dest_fwnode;
+>>>>>>>        struct coresight_device *dest_dev;
+>>>>>>>        struct coresight_sysfs_link *link;
+>>>>>>
+>>>>
+>>
+> 
+> 
 
 
