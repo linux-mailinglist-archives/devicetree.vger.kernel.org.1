@@ -1,118 +1,155 @@
-Return-Path: <devicetree+bounces-59947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54AF28A7C06
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 08:03:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FDA78A7C09
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 08:05:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0FED52829CB
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 06:03:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0ABCD2850CA
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 06:05:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5306D5339F;
-	Wed, 17 Apr 2024 06:03:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9E0A535A4;
+	Wed, 17 Apr 2024 06:05:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r1Y1CQib"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KXmNwQd2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B2D42209B;
-	Wed, 17 Apr 2024 06:03:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F5A14EB5F
+	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 06:05:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713333826; cv=none; b=FYUKP2so5Z79Dqs82qP1jkRQUkXbuwMKLAhRBN/MkIxxoON0NxgTtGwLXcIxgaGDW9XIzAR9SNKkmVZj5pS9N7sOOoznwx6Zj9JPnR99A0OGKzjJYLhc4ePEPIeBJkTlmJA+/7pkEkzr0rZ6i+YuLeAMbyMjKkJwpS3bM+x6v8U=
+	t=1713333932; cv=none; b=EXhtXPNJTtKY6hWXBc0KAdzI0TdogoRSWJztUBh3UH0PTNuHzUou9UyFTEkkZj+dFPlXJS4R0iNjzUrge03pG5vehHdG5pOgcuVcm3Gi5hOzktYMBhch8WzXQKZ4ccvg09oYeJZyHN+115S9l9vi8wIW0AiymV6u/dqhL8D6R/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713333826; c=relaxed/simple;
-	bh=+Eq3FWKGrjqS7seNZKXEpLlxTviRiT6+OZ9xQJRqG4U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OWuhKfyxkxNJIZzYx9aduBXWAGPVVdxNPFSlakuE4CIuRtdjBlSgc9FR+T+Ii20ohH5Hsz6o3Fi167dgyahStD5rvOx4D9WVJdK8s3kcnOQIp2ks2HQodXQ+8P3JWeMAmnud272wkLnFkTBYVUCLJ5/Xh7pN99F92EPEUvr+yuo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r1Y1CQib; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC58CC072AA;
-	Wed, 17 Apr 2024 06:03:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713333825;
-	bh=+Eq3FWKGrjqS7seNZKXEpLlxTviRiT6+OZ9xQJRqG4U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=r1Y1CQibHTdcudeq5dwRUa2vqa/wiYnKE6l4s7SxAT9G3vk5VhpLBiKTYvFBMhJeP
-	 K8tGsbHguWZi1NE4p0IymTKorSlCRAz86GUra+tCkGeVW/LfGIzdzDm3tpePhvBjZn
-	 4x67S+iZcpUHPVcAH03gFvPsIYznEGerpBYt+SQl4Oo/SvQCPzh8H1rwqaQgWKy+rm
-	 w5hfRMrDxD5sRn9UZW0xOhUJkkvub4lJYOd3DU4Acj4WDSaenNL2RKiWDBE9wJ5n/3
-	 8ekXq+wxbUqdoKd7QVf8HsvFbahBuA0TUGx4KvLfXVnnMizJ75ZnDllOJpQz5O8K2A
-	 qC/e9wFfzWBQA==
-Date: Wed, 17 Apr 2024 09:02:36 +0300
-From: Mike Rapoport <rppt@kernel.org>
-To: skseofh@gmail.com
-Cc: robh@kernel.org, saravanak@google.com, akpm@linux-foundation.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mm@kvack.org, Daero Lee <daero_le.lee@samsung.com>
-Subject: Re: [PATCH v2] memblock: add no-map alloc functions
-Message-ID: <Zh9l_LpThq9aFUR7@kernel.org>
-References: <linux-mm@kvack.org>
- <20240416120635.361838-1-skseofh@gmail.com>
- <20240416120635.361838-2-skseofh@gmail.com>
+	s=arc-20240116; t=1713333932; c=relaxed/simple;
+	bh=UC1sIFq1cP6r9vbQzk3FdwM8StBdT3LSYUFiXCYAAz8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kuERUv7V//nCU5mFV5Sf1VdjPejAXDrUqWU6g1Gvc/RuKNvjByi3gRY8YIxB7D4ij1EdEXwtUiL1lBulCjs1VQ1qOSy/zl5PUXqNwRpV060h7cFXAFlpwLFDf4E+jiK6CPrx+u2frQuHyLu71qUBZQTZMSvP0SmWGh3Fq0B1AG4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KXmNwQd2; arc=none smtp.client-ip=209.85.219.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-dc6d9a8815fso5275705276.3
+        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 23:05:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1713333930; x=1713938730; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=1J/3E5E/mDz2QdtRZ5VOE2JUZN+fe6PP/1m29WJY37Y=;
+        b=KXmNwQd22J4B9EdcFY0dB7E9HjmHlMjn21b3pcegO5r9tO1wTkb5Vj9LwgVj3gEs+t
+         8cikhrY82407GGFyt6nNF0CqGv86cHRja8CvRMGRZ6LTtchTzAmdMSfmhhkPDsh62hHI
+         eGK56xUleRv1GmFUiq1ZfzYVsEZYm7sx9n5O6htlxXEvvnSmEZIvPbM6ONFH2X9+e+25
+         P5rTL0A25g7EB6BC3B8yDCQj4WKoAiuPyL1PakkTi7/RZWMxpVIYxtdI4ucTq67/CZUs
+         RHaen943paLbhBvqn2p2kKYsWL6dNJbI7qB6QafJGYjj+odvIqxD6L9IgDcjEJrRthjo
+         nhgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713333930; x=1713938730;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1J/3E5E/mDz2QdtRZ5VOE2JUZN+fe6PP/1m29WJY37Y=;
+        b=QWnfnkUyVXZqdEtwmKl3ywFNKzXwnEWwxkU0re/Zn2m95t3mRjVz/E6lVtOkDUWdfx
+         alq1+koAOnbBKDTwSRXfPdykrwt0+5XqalF8zUgUScH4ciCnkv5SUYCjQTItyZvU3/I3
+         bEi+NmUNgyM+HNIP9hg0B/7ZkM0iUnsC8ZFDAJKLV3lPVoVX0CLtspMvjCPmKTOe6rfl
+         GLeEutI/vyt6I9G1Iz4NgM9yeI8jpjqXX9ENY97DXZR05YPuWFWNlJt9pTkuLc+YNS6o
+         t4VFZV/g229bJGL6zidsysfD+7FKvERsjk3Lm/L488YmiJV7ZLMSKIe7GPfv0ZGokHpv
+         cY5w==
+X-Forwarded-Encrypted: i=1; AJvYcCUSMLNtjxCMebRmhtHzTyXzSUoEpu4fqGLOGg5lQH7vfkAHKRDS5tk/bunJAyiKP7nici9pqJRdwyq1ATF968UrN1OemTLYMxs5cA==
+X-Gm-Message-State: AOJu0Yx8BFOW9xEa0GEzz0LHLi61XLZUFPCBsqYnWCxxYlKL5AlBBwlJ
+	5TP+y6Zua04I0yZcrHWB+vGKOWFzr5VECMX3qMO6SwY3ZGHhoqxtltErOw67sPIWxSXeROmVJud
+	O0EriFATCtWkm+rMV6gPQcC/oulKpHAZuxuWyFQ==
+X-Google-Smtp-Source: AGHT+IG+zoMzQqQ/q6dE6vRDF4nodM3ANPMJAehmBQIdP7EryRcFqpoupwSxnU0cMOL78CpmhaUMLsaVKv/Pqf0CWmM=
+X-Received: by 2002:a25:b9cb:0:b0:dcc:9e88:b15 with SMTP id
+ y11-20020a25b9cb000000b00dcc9e880b15mr14409265ybj.41.1713333930018; Tue, 16
+ Apr 2024 23:05:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240416120635.361838-2-skseofh@gmail.com>
+References: <20240416182005.75422-1-quic_ajipan@quicinc.com> <20240416182005.75422-8-quic_ajipan@quicinc.com>
+In-Reply-To: <20240416182005.75422-8-quic_ajipan@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Wed, 17 Apr 2024 09:05:19 +0300
+Message-ID: <CAA8EJpqwrKcgm7c57=LpxS7+CfrN2UxNg8k_46auBrdZG7vQnA@mail.gmail.com>
+Subject: Re: [PATCH V2 7/8] clk: qcom: Add GPUCC driver support for SM4450
+To: Ajit Pandey <quic_ajipan@quicinc.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>, 
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, linux-arm-msm@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Taniya Das <quic_tdas@quicinc.com>, 
+	Jagadeesh Kona <quic_jkona@quicinc.com>, Imran Shaik <quic_imrashai@quicinc.com>, 
+	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, Apr 16, 2024 at 09:06:35PM +0900, skseofh@gmail.com wrote:
-> From: Daero Lee <daero_le.lee@samsung.com>
-> 
-> Like reserved-memory with the 'no-map' property and only 'size' property
-> (w/o 'reg' property), there are memory regions need to be allocated in
-> memblock.memory marked with the MEMBLOCK_NOMAP flag, but should not be
-> allocated in memblock.reserved.
+On Tue, 16 Apr 2024 at 21:23, Ajit Pandey <quic_ajipan@quicinc.com> wrote:
+>
+> Add Graphics Clock Controller (GPUCC) support for SM4450 platform.
+>
+> Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
+> ---
+>  drivers/clk/qcom/Kconfig        |   9 +
+>  drivers/clk/qcom/Makefile       |   1 +
+>  drivers/clk/qcom/gpucc-sm4450.c | 805 ++++++++++++++++++++++++++++++++
+>  3 files changed, 815 insertions(+)
+>  create mode 100644 drivers/clk/qcom/gpucc-sm4450.c
 
-This still does not explain why you need such regions.
+[skipped]
 
-As Wei Yang explained, memblock does not allocate memory from
-memblock.reserved. The memblock.reserved array represents memory that is in
-use by firmware or by early kernel allocations and cannot be freed to page
-allocator.
+> +
+> +static int gpu_cc_sm4450_probe(struct platform_device *pdev)
+> +{
+> +       struct regmap *regmap;
+> +
+> +       regmap = qcom_cc_map(pdev, &gpu_cc_sm4450_desc);
+> +       if (IS_ERR(regmap))
+> +               return PTR_ERR(regmap);
+> +
+> +       clk_lucid_evo_pll_configure(&gpu_cc_pll0, regmap, &gpu_cc_pll0_config);
+> +       clk_lucid_evo_pll_configure(&gpu_cc_pll1, regmap, &gpu_cc_pll1_config);
+> +
+> +       /* Keep some clocks always enabled */
+> +       qcom_branch_set_clk_en(regmap, 0x93a4); /* GPU_CC_CB_CLK */
+> +       qcom_branch_set_clk_en(regmap, 0x9004); /* GPU_CC_CXO_AON_CLK */
+> +       qcom_branch_set_clk_en(regmap, 0x900c); /* GPU_CC_DEMET_CLK */
 
-If you have a region that's _NOMAP in memblock.memory and is absent in
-memblock.reserved it will not be mapped by the kernel page tables, but it
-will be considered as free memory by the core mm. 
+My main concern here is the AON clocks. If we don't model
+gpu_cc_demet_clk as a leaf clock, then gpu_cc_demet_div_clk_src
+becomes a clock without children and can be disabled by Linux.
+Likewise not modelling gpu_cc_cxo_aon_clk removes one of the voters on
+gpu_cc_xo_clk_src, which can now be turned off by Linux.
+Our usual recommendation is to model such clocks properly and to use
+CLK_IS_CRITICAL or CLK_IGNORE_UNUSED to mark then as aon.
 
-Is this really what you want?
- 
-> example : arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
->         reserved-memory {
->                 #address-cells = <2>;
->                 #size-cells = <2>;
->                 ranges;
-> 
->                 bman_fbpr: bman-fbpr {
->                         compatible = "shared-dma-pool";
->                         size = <0 0x1000000>;
->                         alignment = <0 0x1000000>;
->                         no-map;
->                 };
-> 
->                 qman_fqd: qman-fqd {
->                         compatible = "shared-dma-pool";
->                         size = <0 0x400000>;
->                         alignment = <0 0x400000>;
->                         no-map;
->                 };
-> 
->                 qman_pfdr: qman-pfdr {
->                         compatible = "shared-dma-pool";
->                         size = <0 0x2000000>;
->                         alignment = <0 0x2000000>;
->                         no-map;
->                 };
->         };
-> 
+> +
+> +       return qcom_cc_really_probe(pdev, &gpu_cc_sm4450_desc, regmap);
+> +}
+> +
+> +static struct platform_driver gpu_cc_sm4450_driver = {
+> +       .probe = gpu_cc_sm4450_probe,
+> +       .driver = {
+> +               .name = "gpucc-sm4450",
+> +               .of_match_table = gpu_cc_sm4450_match_table,
+> +       },
+> +};
+> +
+> +module_platform_driver(gpu_cc_sm4450_driver);
+> +
+> +MODULE_DESCRIPTION("QTI GPUCC SM4450 Driver");
+> +MODULE_LICENSE("GPL");
+> --
+> 2.25.1
+>
+>
+
 
 -- 
-Sincerely yours,
-Mike.
+With best wishes
+Dmitry
 
