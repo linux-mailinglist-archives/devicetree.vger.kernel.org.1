@@ -1,114 +1,116 @@
-Return-Path: <devicetree+bounces-60268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3ED78A8A18
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 19:20:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 097E58A8A4A
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 19:34:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D5AF28545B
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 17:20:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A3F91C2169E
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 17:34:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 607AA171672;
-	Wed, 17 Apr 2024 17:20:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C07A7172798;
+	Wed, 17 Apr 2024 17:34:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="UBIdhrcf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YRiKEA7F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41EC016FF48;
-	Wed, 17 Apr 2024 17:20:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 919C117278D;
+	Wed, 17 Apr 2024 17:34:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713374442; cv=none; b=RD6Lc7CvY8OdsBxaMxQFJ+6lVjd2YURKZpHF+FtLsYnuL6BMr0wk9oEi5lIV7J4o6U3kmoSzFrnnF5xkg5JJGue/7P4KGUX5+RgtTeerOBHQC3psGJNqZcMHAYVPBba3KGRRI0lvj0EvTquVbughXwUq4QJ8yK1GMfeVwUH+FiA=
+	t=1713375288; cv=none; b=XTLC/d9hS4Otsr3mEW/Zkpbzuf/qSphXhh7PSYvWFdi3Csg84r7VIkoe2484pyjWPdBXkg6YWS9qdTOTdhm3NfUMcVDhTd+ekdf4F8c/lrWNGqwIR8bdaIrKhHYV61hHZVy0Gs5cdTdP8WW1/RSXCbh0H/ZYZxwDBaQQWdfCS6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713374442; c=relaxed/simple;
-	bh=Kv5FPRBx5aI4mDE57tTTrqSLGgwSbiupSBg9tz9cq3k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hOKD5d507/fIekJZmk7dgSicboaJN6s6bnqhXupHgr8o0LFVg3vbExdJug8wiZM87E4XlbzH/FlrxGIkk8H46CeIO3QOjbl5LlfnNPfe/Dq72d9/sZp05Pc9lwVdYHQs4B9rN1GHTuANGhLigR1LBsPOc8lzARJpttzMcQ3E3y4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=UBIdhrcf; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 5E7E81FE67;
-	Wed, 17 Apr 2024 19:20:35 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1713374435;
-	bh=CcpFXlllLfas3Vp8HTMypgb0mIEXJNssixFuak86tvw=; h=From:To:Subject;
-	b=UBIdhrcfKD/1kNjDhFs790ModI2esqNg9lKcIYrtVdtg0l4RCNWdHOXChg4WYtHsB
-	 iVH5kUoThuwE59U13LFf5kUYHko8RmRQ0zcJYmYx0K2Eu7pOuTAQl97G77BbprjUub
-	 P/H4dOIoiVMF/XwA3X7tkd6MwiYOiZrUdlmeTooLBMKe5H0NwWmzpDcV5yvEnv48lH
-	 /8MGuHe13KCUTcZL78J7vcA0wCJf435bhUf2acDSxKhbYuJz0nEpFYSE57w+ZDxN7F
-	 cfYCoXTsgMWopx6+VRfGnh2yOxes+q8xexhmpzR6oCsJQktnwcej/B05bmkbpQMiP0
-	 CpScNnQO2Gx9w==
-Date: Wed, 17 Apr 2024 19:20:31 +0200
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Francesco Dolcini <francesco@dolcini.it>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 02/10] arm64: dts: imx8qm-ss-audio: add audio nodes
-Message-ID: <20240417172031.GA4100@francesco-nb>
-References: <20240415-dts_8qm_audio-v1-0-2976c35a0c52@nxp.com>
- <20240415-dts_8qm_audio-v1-2-2976c35a0c52@nxp.com>
- <20240416065026.GA4165@francesco-nb>
- <Zh/yZ2HyF+G8bty7@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1713375288; c=relaxed/simple;
+	bh=0mamoAWMRqdNOuzh3qJgUZiw7KIeI9yNypr5Bt7zRJw=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=O4vcYJWqf4a5bnGquheC3HcOrY4QfdONLUpefK01PBb7qa+qOL6z/KG1H6GWs10F6vZqRnIHsp066EeENF5f/XhlZXUgwUCR1UgCR+ipfhlQ/i3PqJJ8w91tfqOWB5yL9mrcps2qKTn8eP/2kcmUA4Z2Ii0J/p/+L1l64qwMxSs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YRiKEA7F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 323A5C072AA;
+	Wed, 17 Apr 2024 17:34:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713375288;
+	bh=0mamoAWMRqdNOuzh3qJgUZiw7KIeI9yNypr5Bt7zRJw=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=YRiKEA7FxGNzBKrpLe07tbJCxjnSb+L7rxhU7fequhEwf/+DHaD7nIzEfURunA6i2
+	 Vt/scLW+dd9kC3iEhJn0TsfXX+b4gzGT+d1yQnJwjX56EJymhlxnZmD3o9ycS9Pjhk
+	 fuE4IYK3AbPL9g7aNSQ3oCzIWWg9L7sBIe7GxZsmd3j5N9fQQE7MLA0vwjVfgv7MWb
+	 J0K1Lo7uV+mOIIRMSjqj+b8Di77Hu/tUbkVcP5G9F/MhLVazKQFq6Se7uzDyLIlfdX
+	 SIz3b/Rspm3QNFoo8uDT+6gNSEEgQlAnZrO+59kHFbQLEocmQx9iDhQn2YeezAZeqE
+	 JNzDg5TU17KxA==
+Date: Wed, 17 Apr 2024 12:34:47 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zh/yZ2HyF+G8bty7@lizhi-Precision-Tower-5810>
+From: Rob Herring <robh@kernel.org>
+To: David Wronek <david@mainlining.org>
+Cc: Maxime Ripard <mripard@kernel.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, devicetree@vger.kernel.org, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ Sam Ravnborg <sam@ravnborg.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, linux-kernel@vger.kernel.org, 
+ phone-devel@vger.kernel.org, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+ ~postmarketos/upstreaming@lists.sr.ht, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, dri-devel@lists.freedesktop.org, 
+ Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>
+In-Reply-To: <20240417-raydium-rm69380-driver-v4-1-e9c2337d0049@mainlining.org>
+References: <20240417-raydium-rm69380-driver-v4-0-e9c2337d0049@mainlining.org>
+ <20240417-raydium-rm69380-driver-v4-1-e9c2337d0049@mainlining.org>
+Message-Id: <171337528609.2818677.10969972561314017105.robh@kernel.org>
+Subject: Re: [PATCH v4 1/2] dt-bindings: display: panel: Add Raydium
+ RM69380
 
-Hello Frank,
 
-On Wed, Apr 17, 2024 at 12:01:43PM -0400, Frank Li wrote:
-> On Tue, Apr 16, 2024 at 08:50:26AM +0200, Francesco Dolcini wrote:
-> > On Mon, Apr 15, 2024 at 03:46:38PM -0400, Frank Li wrote:
-> > > Add i.MX8QM audio related nodes and update eDMA[0,1]'s information.
-> > > 
-> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > ---
-> > >  arch/arm64/boot/dts/freescale/imx8qm-ss-audio.dtsi | 473 +++++++++++++++++++++
-> > >  arch/arm64/boot/dts/freescale/imx8qm.dtsi          |  86 ++++
-> > >  2 files changed, 559 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx8qm-ss-audio.dtsi b/arch/arm64/boot/dts/freescale/imx8qm-ss-audio.dtsi
-> > > new file mode 100644
-> > > index 0000000000000..ed5a1b4af1d76
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/freescale/imx8qm-ss-audio.dtsi
-
-...
-
-> > > +/delete-node/ &acm;
-> > > +/delete-node/ &sai4;
-> > > +/delete-node/ &sai5;
-> > > +/delete-node/ &sai4_lpcg;
-> > > +/delete-node/ &sai5_lpcg;
-> > 
-> > Can you explain these delete-node ? This is something that I would
-> > expect when a dtsi is previously included, not in this case.
+On Wed, 17 Apr 2024 18:29:33 +0200, David Wronek wrote:
+> Raydium RM69380 is a display driver IC used to drive OLED DSI panels.
+> Add a dt-binding for it.
 > 
-> We want to avoid some property inherent from parent dtsi file because it is
-> big difference with common one.
+> Signed-off-by: David Wronek <david@mainlining.org>
+> ---
+> Note:
+> Depends on commit 48a516363e29 ("dt-bindings: display: panel: add common dual-link schema")
+> ---
+>  .../bindings/display/panel/raydium,rm69380.yaml    | 89 ++++++++++++++++++++++
+>  1 file changed, 89 insertions(+)
 > 
-> This node will be rewrite totally in this files.
 
-imx8qm-ss-audio.dtsi does not include any file. From where these
-inherited properties are coming from? Which file is the "parent dtsi" ?
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Thanks,
-Francesco
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/panel/raydium,rm69380.yaml:
+Error in referenced schema matching $id: http://devicetree.org/schemas/display/panel/panel-common-dual.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/panel/raydium,rm69380.example.dtb: panel@0: False schema does not allow {'compatible': ['lenovo,j716f-edo-rm69380', 'raydium,rm69380'], 'reg': [[0]], 'avdd-supply': [[4294967295]], 'vddio-supply': [[4294967295]], 'reset-gpios': [[4294967295, 75, 1]], 'ports': {'#address-cells': [[1]], '#size-cells': [[0]], 'port@0': {'reg': [[0]], 'endpoint': {'remote-endpoint': [[4294967295]]}}, 'port@1': {'reg': [[1]], 'endpoint': {'remote-endpoint': [[4294967295]]}}}, '$nodename': ['panel@0']}
+	from schema $id: http://devicetree.org/schemas/display/panel/raydium,rm69380.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/panel/raydium,rm69380.example.dtb: panel@0: Unevaluated properties are not allowed ('ports' was unexpected)
+	from schema $id: http://devicetree.org/schemas/display/panel/raydium,rm69380.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240417-raydium-rm69380-driver-v4-1-e9c2337d0049@mainlining.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
