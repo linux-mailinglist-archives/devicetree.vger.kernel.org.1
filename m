@@ -1,55 +1,40 @@
-Return-Path: <devicetree+bounces-60045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25AB78A8079
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 12:14:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DD108A8080
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 12:15:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 56DF41C214C0
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 10:14:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0A4E1B216E7
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 10:15:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ABDC13BAFA;
-	Wed, 17 Apr 2024 10:14:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ZRCz0NtO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAB6013B7AF;
+	Wed, 17 Apr 2024 10:15:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E338513AD14;
-	Wed, 17 Apr 2024 10:14:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5065613AD19
+	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 10:15:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713348880; cv=none; b=XQjvxekTqebJ4a2Nce3KIckyiCBVHXKqqG7KY9Z1TjIwA4Gd0Ujsr5wOL4WJZL2415VgsI33qtLFHOua8nRcKCkzwJGDRqkm/Yv6p9rGWKuB5Xcj1ue4HWNE8MEQyG47waUWWLrAliUiAxhwucbvPsFHaNgx1a97UfYS7w0c9Vw=
+	t=1713348909; cv=none; b=GsPlMgtT4Aezr3N1AXFUPeOdC1yWv/zXhray/bYM9kahEGZxPBd3aa0U0PZsV4uGutrxpCsstGA30zjkZkaozp6Mwj5koyVipb9cyEWvmQNZdDRjotpOM+cBsNzj44Kf3fsF5kffEmCbYDBI3K0ij5bCH0idtjYyY1UIeRWkDck=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713348880; c=relaxed/simple;
-	bh=YvVBQEYNETjnryX3V3rRszU6fJ5mSGyMpP5/6fWcdx0=;
+	s=arc-20240116; t=1713348909; c=relaxed/simple;
+	bh=QGWe+amBAZzWV9gRaAbbm3NPOnMa2F/UdNO4TT/URkg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nH79UEyextzik5Wt3026Ot3Esog/iy8Abb4rNEfwuVVbrvDK+uLLfqtiNxPmb6A8IVjWi9BWuThAQfd98KGqlBPMe59plPy8HLkB7lZBSeeKIkNcKf25EPyWtKYfX99L1521h7Zbo3wMIHaplMFWpP2Yl4+mxeku3lrPed/fGec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ZRCz0NtO; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1713348877;
-	bh=YvVBQEYNETjnryX3V3rRszU6fJ5mSGyMpP5/6fWcdx0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZRCz0NtOmGL19dZ/AZdo/eQy9yQ/QLs/EgbA8ahuojL/37QEyFW/BCKJYkFjZy3x/
-	 q9Ammmd57wt4pdsZfcbnDam3UveEKyWuDwOgxPUqd/BoGzRBke/cPeyuRuQ4lI3DGL
-	 UKFDrnWF5J4xbfrW6UuFUMZZDiNrGwMpX6RPmFNHZqEAnmaRvlN5aTS2N6UE9dc78d
-	 iWoe5AFsSG0un1IExZ5Gd2YI5S9PuLzKCDdqyG6iQfNFfZhv28KHPlOfppszSx1hJa
-	 ATLyLerogfrBucrR0WZ+Gjq1/L4Ay3hmdnhAaP9EmZa+vCM0iAn2+zXPvMIRbtpllT
-	 pj7RwG5VkGNRQ==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id B84D437820F9;
-	Wed, 17 Apr 2024 10:14:35 +0000 (UTC)
-Message-ID: <2550d65a-7963-40d1-b360-8ce7a2aff1a8@collabora.com>
-Date: Wed, 17 Apr 2024 12:14:35 +0200
+	 In-Reply-To:Content-Type; b=bd3/FbZIxppY07SXBIoDgpK8JKKRdg0SsQloNQGG1f9sizALMtERiwBQ57viJgMEbmSeQdA83ZXFSc1/S8BfhcNq4p1yhvazoyMNRN6f9AriS4D1IJVCYlnY8mMPiHkuiM1UBuq6fhqgyNfQqeD4IeJS6lngaPWF5w3Sg+FkTLw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <a.fatoum@pengutronix.de>)
+	id 1rx2Jf-0006pF-HD; Wed, 17 Apr 2024 12:14:59 +0200
+Message-ID: <352388ee-a267-4c1f-b968-e1a7709d46ea@pengutronix.de>
+Date: Wed, 17 Apr 2024 12:14:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,110 +42,76 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 14/18] drm/mediatek: add mt8365 dpi support
-To: Alexandre Mergnat <amergnat@baylibre.com>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Jitao Shi <jitao.shi@mediatek.com>,
- CK Hu <ck.hu@mediatek.com>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
- <u.kleine-koenig@pengutronix.de>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
- linux-clk@vger.kernel.org
-References: <20231023-display-support-v2-0-33ce8864b227@baylibre.com>
- <20231023-display-support-v2-14-33ce8864b227@baylibre.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v2] arm64: dts: imx8mp: Align both CSI2 pixel clock
 Content-Language: en-US
-In-Reply-To: <20231023-display-support-v2-14-33ce8864b227@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Marek Vasut <marex@denx.de>, linux-arm-kernel@lists.infradead.org
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>, devicetree@vger.kernel.org,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Paul Elder <paul.elder@ideasonboard.com>, imx@lists.linux.dev,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Fabio Estevam <festevam@gmail.com>
+References: <20240416141914.9375-1-marex@denx.de>
+From: Ahmad Fatoum <a.fatoum@pengutronix.de>
+In-Reply-To: <20240416141914.9375-1-marex@denx.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Il 16/04/24 17:53, Alexandre Mergnat ha scritto:
-> - Add compatibles and platform data into the Mediatek DPI driver.
-> - Fix the DPI0 parent clock to be consistent.
+On 16.04.24 16:19, Marek Vasut wrote:
+> Configure both CSI2 assigned-clock-rates the same way.
+> There does not seem to be any reason for keeping the
+> two CSI2 pixel clock set to different frequencies.
 > 
-> This SoC is compatible with the mt8183 calculate factor.
+> This also reduces first CSI2 clock from overdrive mode
+> frequency which is 500 MHz down below the regular mode
+> frequency of 400 MHz.
 > 
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> Signed-off-by: Marek Vasut <marex@denx.de>
+
+Reviewed-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+
 > ---
->   drivers/clk/mediatek/clk-mt8365-mm.c |  2 +-
->   drivers/gpu/drm/mediatek/mtk_dpi.c   | 18 ++++++++++++++++++
->   2 files changed, 19 insertions(+), 1 deletion(-)
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Paul Elder <paul.elder@ideasonboard.com>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: imx@lists.linux.dev
+> Cc: linux-arm-kernel@lists.infradead.org
+> ---
+> V2: Align both clock to 266 MHz and update commit message
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/drivers/clk/mediatek/clk-mt8365-mm.c b/drivers/clk/mediatek/clk-mt8365-mm.c
-> index 01a2ef8f594e..3f62ec750733 100644
-> --- a/drivers/clk/mediatek/clk-mt8365-mm.c
-> +++ b/drivers/clk/mediatek/clk-mt8365-mm.c
-> @@ -53,7 +53,7 @@ static const struct mtk_gate mm_clks[] = {
->   	GATE_MM0(CLK_MM_MM_DSI0, "mm_dsi0", "mm_sel", 17),
->   	GATE_MM0(CLK_MM_MM_DISP_RDMA1, "mm_disp_rdma1", "mm_sel", 18),
->   	GATE_MM0(CLK_MM_MM_MDP_RDMA1, "mm_mdp_rdma1", "mm_sel", 19),
-> -	GATE_MM0(CLK_MM_DPI0_DPI0, "mm_dpi0_dpi0", "vpll_dpix", 20),
-> +	GATE_MM0(CLK_MM_DPI0_DPI0, "mm_dpi0_dpi0", "dpi0_sel", 20),
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> index 1bb96e96639f2..7883f5c056f4e 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> @@ -1667,7 +1667,7 @@ mipi_csi_0: csi@32e40000 {
+>  						  <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF>;
+>  				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>,
+>  							 <&clk IMX8MP_CLK_24M>;
+> -				assigned-clock-rates = <500000000>;
+> +				assigned-clock-rates = <266000000>;
+>  				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_MIPI_CSI2_1>;
+>  				status = "disabled";
+>  
 
-While I can agree with that change, this needs a Fixes tag and needs a commit on
-its own.
-
->   	GATE_MM0(CLK_MM_MM_FAKE, "mm_fake", "mm_sel", 21),
->   	GATE_MM0(CLK_MM_MM_SMI_COMMON, "mm_smi_common", "mm_sel", 22),
->   	GATE_MM0(CLK_MM_MM_SMI_LARB0, "mm_smi_larb0", "mm_sel", 23),
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> index beb7d9d08e97..a4f9376ee472 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> @@ -997,6 +997,23 @@ static const struct mtk_dpi_conf mt8195_dpintf_conf = {
->   	.csc_enable_bit = DPINTF_CSC_ENABLE,
->   };
->   
-> +static const struct mtk_dpi_conf mt8365_conf = {
-> +	.cal_factor = mt8183_calculate_factor,
-> +	.reg_h_fre_con = 0xe0,
-> +	.max_clock_khz = 150000,
-> +	.output_fmts = mt8183_output_fmts,
-> +	.num_output_fmts = ARRAY_SIZE(mt8183_output_fmts),
-> +	.pixels_per_iter = 1,
-> +	.is_ck_de_pol = true,
-> +	.swap_input_support = true,
-> +	.support_direct_pin = true,
-> +	.dimension_mask = HPW_MASK,
-> +	.hvsize_mask = HSIZE_MASK,
-> +	.channel_swap_shift = CH_SWAP,
-> +	.yuv422_en_bit = YUV422_EN,
-> +	.csc_enable_bit = CSC_ENABLE,
-> +};
-
-You don't need this, as that's a direct copy of `mt8192_conf`.
-
-> +
->   static int mtk_dpi_probe(struct platform_device *pdev)
->   {
->   	struct device *dev = &pdev->dev;
-> @@ -1092,6 +1109,7 @@ static const struct of_device_id mtk_dpi_of_ids[] = {
->   	{ .compatible = "mediatek,mt8188-dp-intf", .data = &mt8195_dpintf_conf },
->   	{ .compatible = "mediatek,mt8192-dpi", .data = &mt8192_conf },
->   	{ .compatible = "mediatek,mt8195-dp-intf", .data = &mt8195_dpintf_conf },
-> +	{ .compatible = "mediatek,mt8365-dpi", .data = &mt8365_conf },
-
-...and you don't need to add any mt8365 specific compatible in there as well,
-as you can simply add the node as
-
-compatible = "mediatek,mt8365-dpi", "mediatek,mt8192-dpi";
-
-Cheers,
-Angelo
-
->   	{ /* sentinel */ },
->   };
->   MODULE_DEVICE_TABLE(of, mtk_dpi_of_ids);
-> 
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
 
