@@ -1,124 +1,254 @@
-Return-Path: <devicetree+bounces-59923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC70B8A7AAF
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 04:46:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 633078A7AC5
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 04:54:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3A011C20D67
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 02:46:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA9E0B21872
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 02:54:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAD521FA3;
-	Wed, 17 Apr 2024 02:46:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 460AD5680;
+	Wed, 17 Apr 2024 02:54:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fpW4vqh0"
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=amperemail.onmicrosoft.com header.i=@amperemail.onmicrosoft.com header.b="k20Cvit/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2106.outbound.protection.outlook.com [40.107.236.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91C64187F;
-	Wed, 17 Apr 2024 02:46:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713321963; cv=none; b=g+nKTEsEgFLnrARyEEkV6M2XNt93OXLxCHjdM/bKKU4UN1XxUI5E2PnXr97OgTKsw/0vr4fBGNSWkmAWKfkOfdb5aa5/NtaBPdnIISq1qrUPrAops4883MVnknLvtIIVQ2W4hufjgfF9ksMUYSSh1RPgeEiVc5aZS2teV9GgDcQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713321963; c=relaxed/simple;
-	bh=oRtdwcXfjYROqHZ+bXnWxLq9Cp1snZlo3O4Podnjrow=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=RxonZy8AfajPp+H/mtc5Rgr4wpBFYLJGv7Af+8rRhUOjZ3MUaLj0p/wEyBju66ezuSm8Ql3LBLMRKcQWQvuonAeVtW6TBobDp8YVKZDlaqYos9DLdHopB+m9G/6CFsAxKuPBGWshqXCOkORmqUTsJd8AORVuE2JEl4U5lBWS8tg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fpW4vqh0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92545C113CE;
-	Wed, 17 Apr 2024 02:46:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713321963;
-	bh=oRtdwcXfjYROqHZ+bXnWxLq9Cp1snZlo3O4Podnjrow=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=fpW4vqh0BjpWsLCUBevhTAyL3ZG+QFur7d8HIWX6Yl7PECKnUaJzZcqEd5Ajg8CBU
-	 K7HvNhnlbXjf7UZJtI4CaVPZcDS0xmFpBGVy30SX5YP41IDLBxKGeOOUpg0F0DYFEI
-	 bOKY/MzExNwizaQjM7QQYUETz6XvNP5uEgTME7XokykGI2UWrI5jnRaupWxBct/vYK
-	 MML/15VIOedxSUXFFbbdLapD66lSgkXCrdhZFGEOS7lgI1kTd/afdl1RA6XdAY1J6z
-	 P36J6UIiGar0gzwO1eOYczLSgdXW5A7V4CkC3+Bi978ODdvCJjR4aBYRcmTGwv18z7
-	 7pK1Huo2rX3iw==
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shengjiu Wang <shengjiu.wang@nxp.com>, 
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20240416-esai_arm_dts_warning-v2-0-879e59c0c3b8@nxp.com>
-References: <20240416-esai_arm_dts_warning-v2-0-879e59c0c3b8@nxp.com>
-Subject: Re: (subset) [PATCH v2 0/4] arm: dts: nxp: imx6: fix esai related
- dtb_check warning
-Message-Id: <171332196061.1698800.11762670932468430918.b4-ty@kernel.org>
-Date: Wed, 17 Apr 2024 11:46:00 +0900
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63AE579C0;
+	Wed, 17 Apr 2024 02:54:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.236.106
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713322465; cv=fail; b=ixkuBn1/Cybz6pB5ryr12OxT1v6TC+KO4K2sbTjHbBCTBdQhUUof/zzhPpU7+ssc8ijtTEUM/Uy2+gzgVKpzGS2qmYZT8Nf3b9/Iw2tH1oCGGQSYOIocfGXUAgRPV51egCiiueGWQ5OBcmJ8qz86yBjF3ebYBXmYUhqM8LSmHOs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713322465; c=relaxed/simple;
+	bh=j2WXg8cYGwt6SVYpRKrhTkCEFojyUCdHuTKngh48yAo=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=Irh4rhRac8YfTlhdDrLmGDv22vRh66EQY7hmKFipoHU2ZzbDctvIJVK/QdZx1s1Ka77nf/lj8HmEoso38DJPRy9D6Slwnz10PoRvz8MH3iLanZ0g0vXAPDTWbeEyB8CehgWLGpEi0f4rstqiQkOcKuG+4QJqEFTCFXnF/BwT17k=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=amperemail.onmicrosoft.com; spf=pass smtp.mailfrom=os.amperecomputing.com; dkim=fail (0-bit key) header.d=amperemail.onmicrosoft.com header.i=@amperemail.onmicrosoft.com header.b=k20Cvit/ reason="key not found in DNS"; arc=fail smtp.client-ip=40.107.236.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=amperemail.onmicrosoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=os.amperecomputing.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=J1a/5McrpOV5lcfCB98MJ3qjQAjUZv1B8I1bZKK91og6sUrt7VIgCS7mX6lkqB83mYPo+ajmOs1kVShzQNGqmEEmZ4WDjcv+3ZYPN/Bq5osFvcrrFER8Ug3HyPu0HOfVca9w+FjHySOV7nzh+5jf0bP4RBuPYPxTDloMZXF50+I7+VJDUbVlyqK4oGdha17ZMSOEpiyLtiUfoRHk8MeJROSZBzvlBN+TFVBxnSnqiH3ARg5pspmLd4FKDqpNrmehUd1+v3zJwc0i52VS+wpP44yxpX/5PnSZ3/l6fSB3Usvd+16rs9CYo4tmS581bz4y0NExieApODHAA7O9mML81g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QvGKNw4lYWjAOSNCzGrpqOwmynRYmMy5OMgWuAWKiys=;
+ b=WI2eAxajrp39vJhm9YtCjoiNG2wWREfrPJy00ZZlKqlcwjj+yISqDKpmvezKx8AQEdYaoTPkzbLDtFGECJ716SPh4uBTksNeSXE16zkQPiXKcCwW2fShBvReRUz27kOlysDp7GuKDa5w08nGyohOtmxr0KjO1tnYq5wtawJ+n/b4DNi5XuLGzijqrr11uIoAf64ja7qQTDXoBbbQzn6PtGRlLe3UCOvN6QZOQugEy09BpRmrkTQ1aB7doswHts5LfYSp6MTn6DORQn0bNQL6EwgNyuC0UyXqOOb1KB5VX21HGpBs7EIHBVzWOzD93wwUmaSrvEGHsnlJYNDctJdffQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=amperemail.onmicrosoft.com; dkim=pass
+ header.d=amperemail.onmicrosoft.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amperemail.onmicrosoft.com; s=selector1-amperemail-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QvGKNw4lYWjAOSNCzGrpqOwmynRYmMy5OMgWuAWKiys=;
+ b=k20Cvit/uHLWZq7hcorEc12Bf0bXZeGbvd7JqSJtebGALWalq+YC4uV+Vc5/Kq2dzOryyZlGqwWM6u7ijqWsSIV4d7u52JQACxTFkZdkrXYpqMQ8rSNZYH8AfH2FnHjKTu10DhVpuYVBXM5SisDVLChGxQoz0t/8PSa8Pc4joPo=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amperemail.onmicrosoft.com;
+Received: from BY5PR01MB5938.prod.exchangelabs.com (2603:10b6:a03:1bd::12) by
+ BN0PR01MB7168.prod.exchangelabs.com (2603:10b6:408:157::13) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7452.50; Wed, 17 Apr 2024 02:54:19 +0000
+Received: from BY5PR01MB5938.prod.exchangelabs.com
+ ([fe80::66a0:fe74:f7f:6baf]) by BY5PR01MB5938.prod.exchangelabs.com
+ ([fe80::66a0:fe74:f7f:6baf%4]) with mapi id 15.20.7452.049; Wed, 17 Apr 2024
+ 02:54:19 +0000
+Message-ID: <8ff7df9e-9ca7-47d3-a1b0-4997a0713341@amperemail.onmicrosoft.com>
+Date: Wed, 17 Apr 2024 09:54:03 +0700
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] hwmon: (max31790): Support config PWM output
+ becomes TACH
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Chanh Nguyen <chanh@os.amperecomputing.com>, Jean Delvare
+ <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Justin Ledford
+ <justinledford@google.com>, devicetree@vger.kernel.org,
+ linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+ OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+ Open Source Submission <patches@amperecomputing.com>
+Cc: Phong Vo <phong@os.amperecomputing.com>,
+ Thang Nguyen <thang@os.amperecomputing.com>,
+ Quan Nguyen <quan@os.amperecomputing.com>
+References: <20240414042246.8681-1-chanh@os.amperecomputing.com>
+ <20240414042246.8681-3-chanh@os.amperecomputing.com>
+ <79bef664-b191-4905-896c-afab341b982b@wanadoo.fr>
+ <9bc38f67-01e0-4a38-8db8-4086a215b474@amperemail.onmicrosoft.com>
+ <3a4e0543-fc40-41dc-8aaa-19811b96f1cb@wanadoo.fr>
+Content-Language: en-US
+From: Chanh Nguyen <chanh@amperemail.onmicrosoft.com>
+In-Reply-To: <3a4e0543-fc40-41dc-8aaa-19811b96f1cb@wanadoo.fr>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: CY8PR12CA0014.namprd12.prod.outlook.com
+ (2603:10b6:930:4e::16) To BY5PR01MB5938.prod.exchangelabs.com
+ (2603:10b6:a03:1bd::12)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14-dev
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BY5PR01MB5938:EE_|BN0PR01MB7168:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7c7955e9-f49f-49db-1b39-08dc5e89abac
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?OEhEY2RuOHNPdkQzOEVMcURjT0JVaWtYQmhhS3paUGkzYUNFR2psb2YvdXlu?=
+ =?utf-8?B?azZFRlloN0VHUU5rbThCRjk3TTk0Z1g5TVV4N3ZYOHNFRkZNcTZxZytOYWtr?=
+ =?utf-8?B?SzRzMCtFWVlLa0pJNXpqWExCQzdWbFpjb3RFWnV0cVJhMnVRdEFRM2I2Mk5v?=
+ =?utf-8?B?QXdQS284aWEwZE1zdCtVR2JoRXE1WXdnbXhNZDR1NnJJR0ZrUStTTEtuekg0?=
+ =?utf-8?B?djNBaDBHOVp2RlM0RTlNUGsvMHRGNThZU1lQU0JBd0tXOHppV2ZCbUpkajlB?=
+ =?utf-8?B?MS9TWlR1V3pyK3pqdDg0b05xQjJJakJGaUVheXZmVXR4TUoxWlJzOXlwSUJY?=
+ =?utf-8?B?cDlNZVQ3eXF4WWNkWTQwZFp6WnZ4TDZjbVFpb2xvVkF1OHBGY1hNa1dnc0M4?=
+ =?utf-8?B?RnJsUEdLQmJ1L1hReWxuQ3NaK2xEc1FJWnhXbHRMdDFROGt1ZE9xenlab1dz?=
+ =?utf-8?B?eWtvZTFmVXFEQlp6TnZrVkNhZWluK0sycFpJSTZPV05nKzhQRGpTbEh5c1o1?=
+ =?utf-8?B?eE1UU1lYQWVseWtDZkkyT2lGbnVSVUVrK1BSdHBSTmFrb2pHQ2FMTlZOa0RX?=
+ =?utf-8?B?Y3NUL1U3YUx3N1ZMenQ4Nm9aNnlFWnVmZUI5WXZ6WkhEQ1ZTNng4Vyt6bWRk?=
+ =?utf-8?B?QXRvcDAxRHRodzVkbU9YT3ZzOTc0dGk1d3Rzb0NsUXNjNVJqQWpmVDZncFBy?=
+ =?utf-8?B?amg4Rkl6dERmSmovU1llZ2J6YVNPRmJOQ3lQTlVLdUVnQWlIWnhrdHQrWmhP?=
+ =?utf-8?B?QkdTT0xPMnZzYjU2aDA5RUc4UlkyNTlpNDlyOUFCcnRHa2c3Y2ZBYlJiMHF4?=
+ =?utf-8?B?bW9QQ2szb3NXWVVRWGxKTS96TFNuZjZ3T21SZmFnaWNxSEdMZ3c0U251Y3c2?=
+ =?utf-8?B?eTA5TU1mcDBvY3FGeW8xR1dpR0NDekFrcHVYOUJLenNBZXVsRnA5R2xMbk5s?=
+ =?utf-8?B?eTg5WnQvbnMvMDhwYjJETnBSc1k1QmZ3bmpNVUljV01rWDNiZy8vb2RtbXpq?=
+ =?utf-8?B?SnJSQlZENk9wN2JVY09FV2NLNkRKcklQSVBPdTQzYkRycTNUbEJGL0VDb3BV?=
+ =?utf-8?B?L0ZDbU1ZaytSaTk3akxXNzJNMVVieG9WSFk1NEh4TmhZWkUrdG14M2xMNUM1?=
+ =?utf-8?B?U0Q3RlpDQ0VCYlJFR1RkQWhPaUFwMGMvWjlHSHdVN01jL25sczk1WEM2aEJM?=
+ =?utf-8?B?T0grMGxoWmg1eU50MEdZOXQ2Y0lvalhrT3BSK0puNlphcFdreTI2WTZTZW52?=
+ =?utf-8?B?UTFGL0ZNc1N5YlNFUys3ZzdwT3ZNamhoMytmSTdWY0pNZ1ZBZjIwc0VKSUg5?=
+ =?utf-8?B?TWk1aFFQNkNVVmRlUXR4a0lwTGErbzFpbHUyMWRjNWszY0tkOFNKQ2NZMjJY?=
+ =?utf-8?B?R0dtdmQyRVUra3NranNWdVpYKzVHUmdheGVJc1RySkc5b0RHVG1FcFIrdnQ2?=
+ =?utf-8?B?ODdTY2xOMjFvcWpSTFZ5RVgybXV4Q1lYRnNSVHNKY1hjN3crMTg5dDdza1F5?=
+ =?utf-8?B?N2ZySUEvMm11b2xOdUxySXQzbHVueDZ4T2gxMTA3Uy9CQlZrUFRPNEFUZGk4?=
+ =?utf-8?B?K3R0VzVRVDNKUXBaVDhhaHROeklBQlJxWmIyRlhiZ1pTMnIvOC9NZHFITjVs?=
+ =?utf-8?B?bGJUSXExeC9LaTRtUDZ1WjVRb0tjbVIyWTVTbDZ4WitJQnM1N1FyenlEeWxz?=
+ =?utf-8?B?U2Nzd2VBUmtNWUdoRnRYNllQdk5RTHdWRzVDSW42RVVlTExCYnlrQlBqa29p?=
+ =?utf-8?Q?8FrrGs3axbu3ZL27OxhfMWgbluG/1WxNHo0gE7R?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR01MB5938.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(7416005)(366007)(1800799015)(921011);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?Vm8zUTNiOUQvZWp2U21xZXgrZXBvWEVZdklJazdlV1ZaZnJDWCtESGhUN1Rl?=
+ =?utf-8?B?aHY3ZEp1NXp4OEtFUTFtRnRQSnZwNVd3TnMwYzhEclNxQWhvRWpaZFJRQkgx?=
+ =?utf-8?B?Rm0ybGI4OVpUakpidlVQbmRVUmMweXNBdTlUK0RETXFWQlFWSzlDVUg3K3pv?=
+ =?utf-8?B?ZmNBUm04NWZkVVVuSytiUDNrcCtrS2JpaTJnQWZVaHkxSmVJVFhCenRFdHJr?=
+ =?utf-8?B?NkdVdmlrVThhWlkxcTNJbk53N1pnai9yNDMvR1pDK1BlN3prbnRDbG5HVXBB?=
+ =?utf-8?B?M202UDQrR2lyeFZTTmxpNzBQeHVONTJydFpLb2tuUmVkRFBsNkc4aWlRcXpx?=
+ =?utf-8?B?K3JPVTFGc0dsYitadkRWRTBNUlEzNnFPZ3B6MFZUNDM0cGZxcWFZbVE4OWFu?=
+ =?utf-8?B?dEppUDBCWkxZSEVhVk5YMDJ5ZWJtdmM3dUIxV2JyajhiQllVUmZwUEVaSjBs?=
+ =?utf-8?B?cUoyVmQ5SW5jRFNaYktmVGV5RER3Qy9JQkpWbWg0NzlmMlQ2UEVyOEF0UmJR?=
+ =?utf-8?B?dEdEd0lUMW1RSUhHcmJCNkhnRUswakQxUkdIWkRQMk5kZlpFNGZSbkdQZ1RK?=
+ =?utf-8?B?TDA3bmdSREEzSmFoSmI0dTJBYjVuaDI0Uk9rQWRRRGdURU80SExtZStsK3Bu?=
+ =?utf-8?B?ZysyclhZUE00aGhHZU9WOUJVOW9PTWc3d2NiTjJDejNnSWY4VE0rVXZsbG1G?=
+ =?utf-8?B?Rm9DR1pyelhMbFdFeFFINDFSMnlzNXkvYkZXNDM2RUFUeU5WeEpMNzUzb29w?=
+ =?utf-8?B?bW5UZzkwSUZxeFhSZXhQY1NIaytXa2NaS3VBVUdseDZMalFSdGl3WjFuMzNw?=
+ =?utf-8?B?aDl0dFR1MzdzWW1wazZJUVpFY3dONjBobE9oQ0NoWkxzRGdlT3hDTTFJK1Fh?=
+ =?utf-8?B?emJhQXdWMjlQWUZXNWVKL25mak9OTDJPSDduWUlqMXUwWTE5WVVWTmhiVUhj?=
+ =?utf-8?B?ajRkZTdIN0dDdGJyaFZXbDFFT21vaU9BMHlUQ0tMa3c3ZzR6UnJCaDlLTE9Q?=
+ =?utf-8?B?LzNBcm9Hd1ROVXA0ajJJa0pGOStLNml1ZDU2Sm5kYnAvTjNRQi9ieHI1SG9K?=
+ =?utf-8?B?c0VhcituNTlRWnZTWE1jVmJOelBZTVBnUkZJVWIyL0Rjcm9DbndiTyt1WnhC?=
+ =?utf-8?B?V1FQakJSOVZaYzhwb3ZUVFR4TnhsVjhDTnZJOXdLZG96cENWS1hkOWtwUXBH?=
+ =?utf-8?B?d0Q3dFJpVFZLSzBTUjcxRlhDVGlHUnVoMHYzRm8yK3gwVitJSGJEYW8waGtl?=
+ =?utf-8?B?UkVYZXV0RUlxMndkRkEwVkJaZkZGS2cyaWVqOGt1ZVlPM2c5azYwRXNkcGhY?=
+ =?utf-8?B?UHNoTm44cGcwMjhnSmFCUEplSnVsL01GSkErWjZ6UHlJZHhXdkgyclhCR1BK?=
+ =?utf-8?B?WGZ2TE5TeTdWZ1pMSEhyV1RZUVRHbzJOVEg2Z2NkMVIxNWErVnNlZjFKKzlZ?=
+ =?utf-8?B?aXlLRGQ4d0Y4bHMrWU5ZTVhMbmNKZjVBWloyWXhieUZscVdPbVNIQkk1dGVQ?=
+ =?utf-8?B?NDdJWW1LNmp1cWNWRkJYTzZHZnBmZmNWVlZJUWdQMTQ0eVY5SlFjZmFUa1VQ?=
+ =?utf-8?B?U3hGT3E3S3AvbFRqRHlFNWt5TXJ1VllHNWhRcnF3REk0ek0yUUI3TGl1Y01T?=
+ =?utf-8?B?RTFjUXhFSWFDMjExQ0JzNGViUC96WDE1TWhYdTR2RnNCR09wY2V2WTJNb25o?=
+ =?utf-8?B?TEdnZkF5L1E0d1VqMTcxa2pHTUNrb0NkTmRwUzVKeDRDYlVqS00xWFNKeHFN?=
+ =?utf-8?B?cTNseTIyWEVpQWtWYWVyZDd0cFlvaWRiVG5WS21KV2dnMXBjNUJiVG42MkRi?=
+ =?utf-8?B?cVBaeEdoNzhlSThRcFZlV3llN1pLREpxdFNaSGlVSmdKRlRFY1dFRy9EQis5?=
+ =?utf-8?B?NVZDZ21IbUhJN3FUQm5OVm5yK1Z5cEZ0ZkF4TFBPTUlDNWZuT2R6Mk9kMkpF?=
+ =?utf-8?B?K2xjT0dOVDZFRHRvTCtnaDJOT0I3dlFTR0RmUkxGdC8waUIrUnFhb0R0OUpt?=
+ =?utf-8?B?bUlsZXRXcnBqYjNPS2lhQWRnOUFhS1k4MGgzQ1RsNXg1RWlWaXp6N05HSk5l?=
+ =?utf-8?B?TjIrSHNOK0svOUdxTFJJaytlelpZbC9jYkk0T1BNUnFneFkwQ1BVQmYxNkdp?=
+ =?utf-8?B?Smp2dmdTSG9vbUZQMDd6L2RUZURxakJZeC8xSVhkOHgvbWZDcmtsL1BETXFN?=
+ =?utf-8?Q?pCm1zO85pvW9iWP/xku84gU=3D?=
+X-OriginatorOrg: amperemail.onmicrosoft.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7c7955e9-f49f-49db-1b39-08dc5e89abac
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR01MB5938.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2024 02:54:19.0810
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: x508rOswtbkkDVyeqcDKO5fYEWpIjkG7hwxGlB+Pinmnwrreuvvq4inf1vU//zJI3tdcKMIq/DKDwVWakyxGxWoWuK8Ifli6ytF8SE25EgWgBVBLfb+fqcb9+Zq5hWAM
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR01MB7168
 
-On Tue, 16 Apr 2024 10:47:46 -0400, Frank Li wrote:
-> two patches update binding doc. two patches fix dts file.
+
+
+On 17/04/2024 00:39, Christophe JAILLET wrote:
+> Le 16/04/2024 à 07:27, Chanh Nguyen a écrit :
+>>
+>>
+>> On 14/04/2024 15:03, Christophe JAILLET wrote:
+>>> Le 14/04/2024 à 06:22, Chanh Nguyen a écrit :
+>>>> PWMOUT pins on MAX31790 can be configured as a tachometer input pin by
+>>>> setting bit[0] in the Configuration Register. When the bit[0] of a 
+>>>> channel
+>>>> is set, the PWMOUT pin becomes the tach input pin for the channel 
+>>>> plus six.
+>>>>
+>>>> This commit allows the kernel to set those pins when necessary if the
+>>>> maxim,pwmout-pin-as-tach-input DT property exists.
+>>>>
+>>>> Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
+>>>> ---
+>>>> Changes in v2:
+>>>>   - Update the vendor property name to 
+>>>> "maxim,pwmout-pin-as-tach-input"   [Rob]
+>>>
+>>> ...
+>>
+>> Hi CJ, what does it mean?
 > 
-> dt_binding_check each patch.
+> Hi,
+> just a shortcut of my name : Christophe Jaillet.
 > 
-> git rebase -i aa8a0e0038936 --exec "make ARCH=arm CROSS_COMPILE=aarch64-linux-gnu- -j8  dt_binding_check DT_SCHEMA_FILES=fsl,esai.yaml"
-> Executing: make ARCH=arm CROSS_COMPILE=aarch64-linux-gnu- -j8  dt_binding_check DT_SCHEMA_FILES=fsl,esai.yaml
->   LINT    Documentation/devicetree/bindings
->   DTEX    Documentation/devicetree/bindings/sound/fsl,esai.example.dts
->   CHKDT   Documentation/devicetree/bindings/processed-schema.json
->   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
->   DTC_CHK Documentation/devicetree/bindings/sound/fsl,esai.example.dtb
-> Executing: make ARCH=arm CROSS_COMPILE=aarch64-linux-gnu- -j8  dt_binding_check DT_SCHEMA_FILES=fsl,esai.yaml
->   DTEX    Documentation/devicetree/bindings/sound/fsl,esai.example.dts
->   LINT    Documentation/devicetree/bindings
->   CHKDT   Documentation/devicetree/bindings/processed-schema.json
->   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
->   DTC_CHK Documentation/devicetree/bindings/sound/fsl,esai.example.dtb
-> Executing: make ARCH=arm CROSS_COMPILE=aarch64-linux-gnu- -j8  dt_binding_check DT_SCHEMA_FILES=fsl,esai.yaml
-> Executing: make ARCH=arm CROSS_COMPILE=aarch64-linux-gnu- -j8  dt_binding_check DT_SCHEMA_FILES=fsl,esai.yaml
-> Successfully rebased and updated refs/heads/b4/esai_arm_dts_warning.
+
+Thank CJ! It's a pleasure to see your comments. I'm happy to meet your 
+review in the next patches.
+
+Best Regards,
+Chanh Ng
+
+> CJ
 > 
-> [...]
-
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/4] ASoC: dt-bindings: fsl-esai: Remove 'fsl,*' from required list
-      commit: 5894ff6c4707af645f2faa36cf07cc2745e1658f
-[2/4] ASoC: dt-bindings: fsl-esai: Add ref: dai-common.yaml
-      commit: 9aea6d64bb3acbff6b2f33cb5bbff65e824ab9a7
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+>>>
+>>>> @@ -528,6 +532,33 @@ static int max31790_probe(struct i2c_client 
+>>>> *client)
+>>>>       if (err)
+>>>>           return err;
+>>>> +    if (device_property_present(dev, 
+>>>> "maxim,pwmout-pin-as-tach-input")) {
+>>>> +        err = device_property_read_u8_array(dev, 
+>>>> "maxim,pwmout-pin-as-tach-input",
+>>>> +                            pwmout_to_tach, NR_CHANNEL);
+>>>> +        if (err) {
+>>>> +            /* The maxim,pwmout-pin-as-tach-input is an array of 
+>>>> six values */
+>>>> +            dev_warn(dev, "The maxim,pwmout-pin-as-tach-input 
+>>>> property exist but malform");
+>>>
+>>> Nit: exists
+>>> Nit: malformed or "is malformed"
+>>>
+>>
+>> Thank CJ,
+>>
+>> I'll update that in the patch v3
+>>
+>>> CJ
+>>
+>>
+> 
 
