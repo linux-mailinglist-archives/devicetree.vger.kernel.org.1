@@ -1,146 +1,115 @@
-Return-Path: <devicetree+bounces-59910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F04368A7A08
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 03:07:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E135D8A7A69
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 04:15:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ACA0A2847AB
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 01:07:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6F63FB21A24
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 02:15:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AB69EBB;
-	Wed, 17 Apr 2024 01:07:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AEF81C02;
+	Wed, 17 Apr 2024 02:15:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YaP22WSH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o5wayfYw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0E596FA8;
-	Wed, 17 Apr 2024 01:07:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52D9A4430;
+	Wed, 17 Apr 2024 02:15:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713316067; cv=none; b=msznVla24ZHC/C2xRTEscY0e2m15WKiwU+15b8awnksEu91lFi7eh5wTjNB8HkBjIX/Zn/HfaYMAAVqmlPOEG4jOHBbsygcEP0lHYlCawZEyPcV9qrs1urnWUIAZv2r38QbXVWSr4SDRc5aNPBAw5NSxHnxiGCAGbZNEiXDq+js=
+	t=1713320120; cv=none; b=N+/XXfn8U2B/mRbH8pllcTfPs+UY1Q4MPUoj4L4CPL4Xi6jyEQS2dsv+WgL8Idt3DO56HhQOUKylgJg1A/7Dp2XO3DG9MIsHBEkTBQEWm86JULhIJODTMTWZmRjbd3Lo0ZtrOkyG2wX3501BxZpuYQLRjikBtF4U310qTZEe9QQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713316067; c=relaxed/simple;
-	bh=PqaHR/bHt9hKVQUfh175qxpXqBSt6Cu+r6+m3wImr+0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Ybh3zGJHLZ4jI5TWdf9hXuXyotos5BYHTEq9X9M+o342G+FBJwsv28bLG0BlyYBdtOGAb+Jk4uBn/NiJR/DQq6IycynabU2APKEftWHvqDZNYslsIXMo3tDVkkLN60uJwS1eqoYfy886Xwl68/U/0jk9lLzQ8hrU59jySNYHiL4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YaP22WSH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EB06C113CE;
-	Wed, 17 Apr 2024 01:07:39 +0000 (UTC)
+	s=arc-20240116; t=1713320120; c=relaxed/simple;
+	bh=KcjW4v9LPhuP/rC4Hb0v6FD940Tv/do/SHcz+AsZO6g=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=I+n/tQb1DvmUCrR3hqwsYblNITcUiFSzpsZfK5NNapVRa2A8GnitZ4XH9MHnHsGPBLFsmReAASJySrBSH4OBvqymMQV1e/oLCnk1eo+cHbJPD3jG4Qsune+LXDRJO36XYjYXO/u1hqrJdxwtx+SoJFsnBcK8WLlkQjaDoJ+ctsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o5wayfYw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACA29C113CE;
+	Wed, 17 Apr 2024 02:15:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713316066;
-	bh=PqaHR/bHt9hKVQUfh175qxpXqBSt6Cu+r6+m3wImr+0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=YaP22WSH2mFF16qmU38TX/WfL40595sQMUWuh4SjGjdDwDI9syN8U72AZSWGZX9sj
-	 CPRQghPIneIqYVv4x6Cb84PJfP0o0hrudvZ7rmfgkgUHVcVor0qjheufH31W8vEX8K
-	 30oyOFpWVMcggnnPvtaNlk5azFoz8wIJnpcqGp1Lm0+MUIdnX8JSO1IALZ2RwarEJ9
-	 w4Fpv6IO/u+XyNqVZqXowT2Y5Cgb7aY9jTNFz21NHsktiWUboix2pM241AcvC3YYVm
-	 Sn6Ax1nBXGXg0J+6EgTk2MxlZjteCZUEyNFTF8lG1rgSMp/nLCfTpQC1N5y64X3fXd
-	 uoWm9iilI0Eug==
-From: Mark Brown <broonie@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: wenst@chromium.org, lgirdwood@gmail.com, robh@kernel.org, 
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
- matthias.bgg@gmail.com, perex@perex.cz, tiwai@suse.com, 
- trevor.wu@mediatek.com, maso.huang@mediatek.com, 
- xiazhengqiao@huaqin.corp-partner.google.com, arnd@arndb.de, 
- kuninori.morimoto.gx@renesas.com, shraash@google.com, amergnat@baylibre.com, 
- nicolas.ferre@microchip.com, u.kleine-koenig@pengutronix.de, 
- dianders@chromium.org, frank.li@vivo.com, allen-kh.cheng@mediatek.com, 
- eugen.hristev@collabora.com, claudiu.beznea@tuxon.dev, 
- jarkko.nikula@bitmer.com, jiaxin.yu@mediatek.com, alpernebiyasak@gmail.com, 
- ckeepax@opensource.cirrus.com, zhourui@huaqin.corp-partner.google.com, 
- nfraprado@collabora.com, alsa-devel@alsa-project.org, 
- shane.chien@mediatek.com, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- kernel@collabora.com
-In-Reply-To: <20240416071410.75620-1-angelogioacchino.delregno@collabora.com>
-References: <20240416071410.75620-1-angelogioacchino.delregno@collabora.com>
-Subject: Re: (subset) [PATCH v5 00/18] ASoC: Cleanup MediaTek soundcard
- machine drivers
-Message-Id: <171331605897.1695927.18052173831276369230.b4-ty@kernel.org>
-Date: Wed, 17 Apr 2024 10:07:38 +0900
+	s=k20201202; t=1713320119;
+	bh=KcjW4v9LPhuP/rC4Hb0v6FD940Tv/do/SHcz+AsZO6g=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=o5wayfYwbiuwQnVYrPQlpT72jghBvBMQC6rckXjnlBaNiTaRmHcoR8vmJ5oz8Nx9X
+	 Js+6FebnrF9YaP+4rDpGNQVtDOiFvhHaS6ggMkuwFUwvUimaawBbhEvqZyiFzq2S8l
+	 CWzB483BmU7R+fWbigPbXvlqLeJONF3zfS3O9BCsB5EgUHJfVG0/NTgkmh+I2sfsyv
+	 W/dN7gw9gF11ciLXU5fthI/js3PrMcdqFP17WYrV3kL1qJ1sEWa8vM4C65lwgPAi57
+	 VVyJ28M/BuTt2H7t44+/BLabCrxQkbVd68hw/q5oLMQUyr5wXqrCA4uDKomH/uTHMV
+	 sePX1d+1W0ZyQ==
+Date: Tue, 16 Apr 2024 19:15:17 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Jonathan Corbet
+ <corbet@lwn.net>, Luis Chamberlain <mcgrof@kernel.org>, Russ Weight
+ <russ.weight@linux.dev>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Oleksij Rempel <o.rempel@pengutronix.de>, Mark Brown
+ <broonie@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Andrew Lunn
+ <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+ <linux@armlinux.org.uk>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, devicetree@vger.kernel.org, Dent Project
+ <dentproject@linuxfoundation.org>, kernel@pengutronix.de, Maxime Chevallier
+ <maxime.chevallier@bootlin.com>
+Subject: Re: [PATCH net-next v8 10/17] net: pse-pd: Add support for PSE PIs
+Message-ID: <20240416191517.65c63e21@kernel.org>
+In-Reply-To: <20240414-feature_poe-v8-10-e4bf1e860da5@bootlin.com>
+References: <20240414-feature_poe-v8-0-e4bf1e860da5@bootlin.com>
+	<20240414-feature_poe-v8-10-e4bf1e860da5@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14-dev
 
-On Tue, 16 Apr 2024 09:13:52 +0200, AngeloGioacchino Del Regno wrote:
-> Changes in v5:
->  - Cleaned up MT8186 soundcard migration commit which erroneously
->    had leftovers from development
->  - Changed the mtk_pcm_constraints_data structure to hold pointers
->    to snd_pcm_hw_constraint_list, as to really reuse the const data
->  - Tested again on all of the listed MTK platforms.
-> 
-> [...]
+On Sun, 14 Apr 2024 16:21:59 +0200 Kory Maincent wrote:
+> +/**
+> + * of_pse_match_pi - Return the PSE PI id of the device node phandle
+> + * @pcdev: a pointer to the PSE controller device
+> + * @np: a pointer to the device node
+> + */
+> +static int of_pse_match_pi(struct pse_controller_dev *pcdev,
 
-Applied to
+There's new nitpick from kernel-doc - if the function returns something
+the kdoc needs to document Return:  ..
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Sorry I missed this check failing because the fact that the series is
+17 patches lights it up as red in patchwork :( I'll apply the first
+3 patches to make v9 smaller.
 
-Thanks!
+> +			   struct device_node *np)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i <= pcdev->nr_lines; i++) {
+> +		if (pcdev->pi[i].np == np)
+> +			return i;
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +/**
+> + * psec_id_xlate - translate pse_spec to the PSE line number according
+> + *		   to the number of pse-cells in case of no pse_pi node
+> + * @pcdev: a pointer to the PSE controller device
+> + * @pse_spec: PSE line specifier as found in the device tree
+> + *
+> + * Return 0 if #pse-cells = <0>. Return PSE line number otherwise.
 
-[01/18] ASoC: mediatek: Add common machine soundcard driver probe mechanism
-        commit: bce93a162505f0bc0499888ace2f66bd56fb94b3
-[02/18] ASoC: mediatek: common: Constify struct mtk_sof_priv
-        commit: f8782f776db33066a9b1cd14d319142c4175561f
-[03/18] ASoC: mediatek: mt8188: Migrate to mtk_soundcard_common_probe
-        commit: aad45b8aa973a863dee2f256cea8c527acaaf56e
-[04/18] ASoC: mediatek: mt8195: Migrate to mtk_soundcard_common_probe
-        commit: 6718e1ed93cc28f0faefe21b7d21679ff0b04020
-[05/18] ASoC: mediatek: mt8192: Migrate to mtk_soundcard_common_probe
-        commit: 2d72cbb56327205ae04a9376c5b78a35b6347294
-[06/18] ASoC: mediatek: mt8186: Migrate to mtk_soundcard_common_probe
-        commit: 44a53c8ec9cad02ce7dfd55094e8d7aeb48eb73c
-[07/18] ASoC: mediatek: Add common snd_soc_ops .startup() callback
-        commit: fe071237dee6d617e5cb0eb4856b23576a877479
-[08/18] ASoC: mediatek: mt8195: Migrate to the common mtk_soundcard_startup
-        commit: 386fe4ceaf196360ef96cbd68d045ed2730251a7
-[09/18] ASoC: mediatek: mt8192: Migrate to the common mtk_soundcard_startup
-        commit: 94142cc1ffd959aa8e83857515a75779e8ba8064
-[10/18] ASoC: mediatek: mt8186-rt1019: Migrate to the common mtk_soundcard_startup
-        commit: f103ce4ff6932b6991e1922d1a39c29971ab2938
-[11/18] ASoC: mediatek: Add common mtk_afe_component_probe callback
-        commit: 9d9b182876a249b393158e9f43c255aeee4ef898
-[12/18] ASoC: mediatek: Use common mtk_afe_pcm_platform with common probe cb
-        commit: 1d2a6b3b5189b6c3e51f29e050aa9b2337b774e8
-[13/18] ASoC: mediatek: mt8186: Unify mt8186-mt6366 machine drivers
-        commit: 6ed619b348bf0a490e70dea7a330cf44dc81c16d
-[14/18] ASoC: dt-bindings: mt8195: Document audio-routing and dai-link subnode
-        commit: dc7a31300a8f28af282974512c2d403ada0658b5
-[15/18] ASoC: dt-bindings: mt8192: Document audio-routing and dai-link subnode
-        commit: 5a50483c47b8cf3066eb151fa21e195f3dfab5a8
-[16/18] ASoC: dt-bindings: mt8186: Document audio-routing and dai-link subnode
-        commit: 787f190cd1cd3123555e33a3400f3e919ec94a81
+here missing ":"
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+> + */
+> +static int psec_id_xlate(struct pse_controller_dev *pcdev,
+> +			 const struct of_phandle_args *pse_spec)
 
