@@ -1,178 +1,211 @@
-Return-Path: <devicetree+bounces-60195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DAF58A86BB
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 16:53:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E1FD8A86C4
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 16:54:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CBAF0286ECD
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 14:53:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 905231C21AF4
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 14:54:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0A0B14290C;
-	Wed, 17 Apr 2024 14:52:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 108531411CE;
+	Wed, 17 Apr 2024 14:54:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g49HwvnD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gm94Q50I"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81DD1142625;
-	Wed, 17 Apr 2024 14:52:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA9A7132807;
+	Wed, 17 Apr 2024 14:54:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713365560; cv=none; b=A+sNBkm8SIz/VwfST1Qru6urcelCsY2Jozb5tiMEk5gMxR6/ibHzwq1O2Ge8Mcuw0qJp5g0oBeIQKllFz5xB3H8K5tp3qCtunsHqgAluR8Yn/+JnG9JipGUcptjvcQrH7Ubff9UjkBDkUVRizYuLY+sXmJcVG9UI5rFVCekEI+0=
+	t=1713365645; cv=none; b=GkYrGZVnAz7t60yd22CLnoicibwG/xi6fhZn+a4JWjb90F9t4ZgIAgkFMN4Z1vdDASncnT81GtKegi0WXsk2RqtbuGw86Lz+dglIfiTazp4b5HGr+9RgmWydDkAm7g9zPlhphzabMwlJ8R5uQ9Gct7Z2FQJozvfsoiYBmoeWjKY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713365560; c=relaxed/simple;
-	bh=N/Kc5Ck+n/MV7oq1Wn9zhitTGVylQb+Utd6qvo1Q1h8=;
+	s=arc-20240116; t=1713365645; c=relaxed/simple;
+	bh=KXoRcIdsjepxSU6ZzJ4NvcTWctTLBqKZBlDxeAr8ABI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oeJJjiu2T++q0xVKdS5IOPco3aHHFMr7ypLuYkdbLuxKFv4GslTPYH+odX+THV09p5UBBc7PSY2+ejg//PrUbScV4t51G1xBhEYYa8GdUhKf+fv6EiOKUF/HxJsID/7FKc+M8LRZrDjxbs/HHjbOE1cml3I2UDn0vDkD8kL2RWY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g49HwvnD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 263C9C072AA;
-	Wed, 17 Apr 2024 14:52:40 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=qWob64/V4l2D0/oq/MkW5LdMVl1dYPLYogSnrcdHoD0fLqyAlFlJ3xeelGmNv0uWBtgr1inONLnl6vgckRCmoPLHgYTuWRq+MF/MXkedyE3Dq0FwxbWT9VN3Nlnhy314Rwq2hnfo9poQVbY5pgf5D/vt7CNKwcD8rc2qlhVvkBw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gm94Q50I; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FB8CC072AA;
+	Wed, 17 Apr 2024 14:54:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713365560;
-	bh=N/Kc5Ck+n/MV7oq1Wn9zhitTGVylQb+Utd6qvo1Q1h8=;
+	s=k20201202; t=1713365644;
+	bh=KXoRcIdsjepxSU6ZzJ4NvcTWctTLBqKZBlDxeAr8ABI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=g49HwvnDCP5I3WlHXrUM9ilJmC/qjtLqO8tAWQY/bZuYUZ94xZPW9ZfDZpfbeWuMc
-	 v5jixX2SwPc4JgOXF43vI8bkftCCt+Rjr5GuKq4hzSasSgfY2RLx/y+7yWD4xR6arl
-	 ELlsthg5adF+JAciW1xRuF2DThehy6OYCIPkWuoJvkAZZlzFOByp7/PoISevfQBpWi
-	 9ikMpLYwWiyaNPVFBjCvuDMMqWhOJW1WnF7xjcVg06G+s4ZLlxzp6on607hp9j6RAo
-	 IpRweKiynWVjHsJ75Cye0CVyC/VJaZOwXO5jwi77a76C4WU7aK1OT1gEwmtG0qwZim
-	 5kcb95YqrbUhw==
-Date: Wed, 17 Apr 2024 09:52:38 -0500
-From: Rob Herring <robh@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: djakov@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com,
-	broonie@kernel.org, keescook@chromium.org, gustavoars@kernel.org,
-	henryc.chen@mediatek.com, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, kernel@collabora.com,
-	wenst@chromium.org, amergnat@baylibre.com
-Subject: Re: [PATCH v2 1/7] dt-bindings: regulator: Add bindings for MediaTek
- DVFSRC Regulators
-Message-ID: <20240417145238.GA2348962-robh@kernel.org>
-References: <20240417091442.170505-1-angelogioacchino.delregno@collabora.com>
- <20240417091442.170505-2-angelogioacchino.delregno@collabora.com>
+	b=Gm94Q50I1K8dNBm81Zb/69btVaVgZXrO+r9ncFacD1fPL1GgkThbxsp1pVL6AGRDQ
+	 KzUKo56OiWKmYKkOTQOxnH0zu41LIHJ284kQR11uM5yqR1KFv6fKHwdzBi3Md+J0qK
+	 mOBtuRQOjEpZHjAyVxCx0dcjTpaGaULJh4V8aI9TPVpcg0zXiwsgDpIleIh+3RnRa4
+	 M4/Eg2q5IgEHETq5LvwQKarykXUyrMRmL3GK8AWxFbBI/LHg0JQjWkQ8xoMFbIZOGB
+	 Ra0ebBzm54lQ+mlZxk1/uBE57SN3V3g+vDd9sbhTT23PwNAplzps4b3/WNfAzNoAsi
+	 MiDxnEBesu2cw==
+Date: Wed, 17 Apr 2024 15:53:59 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Pratik Farkase <pratikfarkase94@gmail.com>
+Cc: Pratik Farkase <pratik.farkase@wsisweden.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Stefan Wahren <wahrenst@gmx.net>, linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2] dt-bindings: serial: brcm,bcm2835-aux-uart: convert
+ to dtschema
+Message-ID: <20240417-obscure-denial-ae7c53d0e321@spud>
+References: <20240417135111.20375-1-pratik.farkase@wsisweden.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="knnuLnAQI4vYAM9c"
+Content-Disposition: inline
+In-Reply-To: <20240417135111.20375-1-pratik.farkase@wsisweden.com>
+
+
+--knnuLnAQI4vYAM9c
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240417091442.170505-2-angelogioacchino.delregno@collabora.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Apr 17, 2024 at 11:14:36AM +0200, AngeloGioacchino Del Regno wrote:
-> The Dynamic Voltage and Frequency Scaling Resource Collector Regulators
-> are controlled with votes to the DVFSRC hardware.
-> 
-> This adds support for the regulators found in MT6873, MT8183, MT8192
-> and MT8195 SoCs.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+On Wed, Apr 17, 2024 at 03:51:10PM +0200, Pratik Farkase wrote:
+> Convert the Broadcom BCM2835 Auxiliary UART to newer DT schema.
+> Created DT schema based on the .txt file which had
+> `compatible`, `reg` `clocks` and `interrupts` as the
+> required properties. This binding is used by Broadcom BCM2835
+> SOC used in some Raspberry PI boards.
+> Changes from original file:
+> Implemented complete example which the original txt binding lacked.
+>=20
+> Signed-off-by: Pratik Farkase <pratik.farkase@wsisweden.com>
 > ---
->  .../mediatek,mt6873-dvfsrc-regulator.yaml     | 71 +++++++++++++++++++
->  1 file changed, 71 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6873-dvfsrc-regulator.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6873-dvfsrc-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt6873-dvfsrc-regulator.yaml
+> Changes in v2
+> - Updated Maintainers list according to feedback
+> - Fixed typo `Auxiliar` to `Auxiliary`
+> ---
+> ---
+>  .../bindings/serial/brcm,bcm2835-aux-uart.txt | 18 -------
+>  .../serial/brcm,bcm2835-aux-uart.yaml         | 48 +++++++++++++++++++
+>  2 files changed, 48 insertions(+), 18 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/serial/brcm,bcm2835=
+-aux-uart.txt
+>  create mode 100644 Documentation/devicetree/bindings/serial/brcm,bcm2835=
+-aux-uart.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-ua=
+rt.txt b/Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.txt
+> deleted file mode 100644
+> index b5cc6297cd1b..000000000000
+> --- a/Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.txt
+> +++ /dev/null
+> @@ -1,18 +0,0 @@
+> -* BCM2835 AUXILIAR UART
+> -
+> -Required properties:
+> -
+> -- compatible: "brcm,bcm2835-aux-uart"
+> -- reg: The base address of the UART register bank.
+> -- interrupts: A single interrupt specifier.
+> -- clocks: Clock driving the hardware; used to figure out the baud rate
+> -  divisor.
+> -
+> -Example:
+> -
+> -	uart1: serial@7e215040 {
+> -		compatible =3D "brcm,bcm2835-aux-uart";
+> -		reg =3D <0x7e215040 0x40>;
+> -		interrupts =3D <1 29>;
+> -		clocks =3D <&aux BCM2835_AUX_CLOCK_UART>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-ua=
+rt.yaml b/Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.ya=
+ml
 > new file mode 100644
-> index 000000000000..446f1dab4d2e
+> index 000000000000..5d4d37371d6b
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6873-dvfsrc-regulator.yaml
-> @@ -0,0 +1,71 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +++ b/Documentation/devicetree/bindings/serial/brcm,bcm2835-aux-uart.yaml
+> @@ -0,0 +1,48 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/regulator/mediatek,mt6873-dvfsrc-regulator.yaml#
+> +$id: http://devicetree.org/schemas/serial/brcm,bcm2835-aux-uart.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: MediaTek DVFSRC-controlled Regulators
-> +
-> +description:
-> +  The Dynamic Voltage and Frequency Scaling Resource Collector Regulators
-> +  are controlled with votes to the DVFSRC hardware.
+> +title: BCM2835 AUXILIARY UART
 > +
 > +maintainers:
-> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> +  - Pratik Farkase <pratikfarkase94@gmail.com>
+> +  - Florian Fainelli <florian.fainelli@broadcom.com>
+> +  - Stefan Wahren <wahrenst@gmx.net>
+> +
+> +allOf:
+> +  - $ref: serial.yaml
 > +
 > +properties:
 > +  compatible:
-> +    enum:
-> +      - mediatek,mt6873-dvfsrc-regulator
-> +      - mediatek,mt8183-dvfsrc-regulator
-> +      - mediatek,mt8192-dvfsrc-regulator
-> +      - mediatek,mt8195-dvfsrc-regulator
+> +    const: brcm,bcm2835-aux-uart
 > +
 > +  reg:
 > +    maxItems: 1
 > +
-> +  dvfsrc-vcore:
-> +    description: DVFSRC-controlled SoC Vcore regulator
-> +    $ref: regulator.yaml#
-
-       unevaluatedProperties: false
-
+> +  interrupts:
+> +    maxItems: 1
 > +
-> +  dvfsrc-vscp:
-> +    description: DVFSRC-controlled System Control Processor regulator
-> +    $ref: regulator.yaml#
-
-ditto
-
+> +  clocks:
+> +    maxItems: 1
 > +
 > +required:
 > +  - compatible
-
-'reg' is never optional. And how is no regulators at all valid?
-
+> +  - reg
+> +  - interrupts
+> +  - clocks
 > +
-> +additionalProperties: false
+> +unevaluatedProperties: false
 > +
 > +examples:
 > +  - |
+> +    #include <dt-bindings/clock/bcm2835.h>
+> +    #include <dt-bindings/clock/bcm2835-aux.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
 
-Drop the example here. Just one complete example in the MFD doc.
+Only 1 of these headers seems used, there's only one define below.
 
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        system-controller@10012000 {
-> +            compatible = "mediatek,mt8195-dvfsrc";
-> +            reg = <0 0x10012000 0 0x1000>;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            regulators@0 {
-> +                compatible = "mediatek,mt8195-dvfsrc-regulator";
-> +                reg = <0>;
+> +    uart1: serial@7e215040 {
 
-What does 'reg' value represent here? 0 and 1 seem pretty much made up.
+The label is unused and can be dropped.
 
-> +
-> +                dvfsrc_vcore: dvfsrc-vcore {
-> +                        regulator-name = "dvfsrc-vcore";
-> +                        regulator-min-microvolt = <550000>;
-> +                        regulator-max-microvolt = <750000>;
-> +                        regulator-always-on;
-> +                };
-> +
-> +                dvfsrc_vscp: dvfsrc-vscp {
-> +                        regulator-name = "dvfsrc-vscp";
-> +                        regulator-min-microvolt = <550000>;
-> +                        regulator-max-microvolt = <750000>;
-> +                        regulator-always-on;
-> +                };
-> +            };
-> +        };
+Otherwise,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+
+> +        compatible =3D "brcm,bcm2835-aux-uart";
+> +        reg =3D <0x7e215040 0x40>;
+> +        interrupts =3D <1 29>;
+> +        clocks =3D <&aux BCM2835_AUX_CLOCK_UART>;
 > +    };
-> -- 
-> 2.44.0
-> 
+> --=20
+> 2.34.1
+>=20
+
+--knnuLnAQI4vYAM9c
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZh/ihwAKCRB4tDGHoIJi
+0imwAP9/Is48Rdr8Ve/PrA6TGNes1do/R5ztpGZ9dIDeSWgULQEAiUqD0ir6iPVP
+x6UGbzh4csXpoErw8rW9Z1s6E1VC7wU=
+=kk4e
+-----END PGP SIGNATURE-----
+
+--knnuLnAQI4vYAM9c--
 
