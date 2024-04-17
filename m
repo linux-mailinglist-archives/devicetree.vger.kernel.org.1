@@ -1,158 +1,124 @@
-Return-Path: <devicetree+bounces-60201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60202-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23C0C8A86FE
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 17:06:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16C278A8709
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 17:08:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 96E9DB2224A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 15:06:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C064B1F22F00
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 15:08:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D03E14291F;
-	Wed, 17 Apr 2024 15:06:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WWbx16Co"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EF5F146D42;
+	Wed, 17 Apr 2024 15:07:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46A6713C3EF;
-	Wed, 17 Apr 2024 15:06:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 139E0146D71;
+	Wed, 17 Apr 2024 15:07:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713366394; cv=none; b=dGzWG4Kdb9w0yks/zgk0EY/1ZUTmrxCAfW9U5SZIgWfdSsrNklavvglFLJrDpdd9DseUeOab6FWwfXsvdI4VuRXzPetd/4b1FZlLo+Oa7fw+9yb0mq8TtlHJxJM+0dD/uWg8jhENUcqqWDLGOulvWKQnSZiiZF7TIiufvvbF0Fw=
+	t=1713366467; cv=none; b=K+g7uHQtlS70apqqlrrlxTJkAlt3uMyH3plJQYRHfajnnNtj3DncP6IfiKRL98NHA93ch/hebXl7qafyVzKCqGI0S1iANB5+ZwKDyt6Z6KPcJ00/rvE/IwT+XV1gLybKTqniOXaRbqwNcZqa1TRlL1oS+cV+FMu5c1SlMeyCfEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713366394; c=relaxed/simple;
-	bh=csO/QBIY5zA9U55g4bmdwzHQOXGd09d6ZZbozBhSl4k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VF0E8Yb7d6NxZUic0q0Qj6GWPFezWUS8XsYx/wEjVAxu3wmYEeSZ+2by1Uhc89NdETYy9lgKmLsUCwjgxSkDQ14iTPwceTQwc82RjkOMiY0MkOWSB8xcbsB65JPUpZ7ZEhW8Rf9DCnIzV7DOZJqXJbtVGCEikLLNp2WtBsW251w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WWbx16Co; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67620C072AA;
-	Wed, 17 Apr 2024 15:06:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713366393;
-	bh=csO/QBIY5zA9U55g4bmdwzHQOXGd09d6ZZbozBhSl4k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WWbx16CozNaA6xrWLXzFjR3qfMbBP2psA8necDIweTlfJOzHkeCWSIs0UfQstgqxm
-	 D6B572ou01naWEDwbo/TJYW8VJxw53oDsAyBv9/DptJ42ri4yEhUBEwvStUXt7B+Tu
-	 01QoTScXr7YvGckqHEYzfm5QjLeY3eVV/KA6Ozp1spGnZvUWWoscoNYb8L1BRbWVVJ
-	 cHgsrGg7ei51FkYVIoToGWyBGkyTEyy/aeMEgffHXaaEnpYkjBlF6sUd+D+8IJVd4L
-	 +sx92YX9tvwz4ucnxrqCRjUm86f0rEmA7+WYBNH/YS+yAW07xfeHxJqgpO6h6GUO6i
-	 YTgnKq+fwcOcA==
-Date: Wed, 17 Apr 2024 16:06:29 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Inochi Amaoto <inochiama@outlook.com>
-Cc: michael.opdenacker@bootlin.com, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] riscv: dts: sophgo: add initial Milk-V Duo S
- board support
-Message-ID: <20240417-guts-overture-b04cd1b8565a@spud>
-References: <20240417065311.3881023-1-michael.opdenacker@bootlin.com>
- <20240417065311.3881023-3-michael.opdenacker@bootlin.com>
- <IA1PR20MB49539A380E44459ACE19DEB6BB0F2@IA1PR20MB4953.namprd20.prod.outlook.com>
+	s=arc-20240116; t=1713366467; c=relaxed/simple;
+	bh=cGUDXpqRyTtoJVCTkzWt1ExYguS6miyazDkf3wMlAY0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gXNa17erHSTOjR2bAOniHnXOQLC6fKuEEbvKPs7bEg6jTIlFxBddn5TmjYLMtEiDyJel/5+B3etbYgNGRYn6GzeueGqgvrn0q3cofxkGZ8lvKuGYIWgCp8uyVewPEdlPmFcrVwE+/O3I0hhjyI5pI8WXsXWmeuHp+wZlCl3AAaw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-de45e596a05so61590276.1;
+        Wed, 17 Apr 2024 08:07:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713366462; x=1713971262;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pcm0f6cgY9tqOKkBlWhGvnzcvnieDLUDH/xJHhGRlvs=;
+        b=Yy0mld4E/WlYouZT6+ok5eUAoIUMJF/zuMbRfc8yRxXmwx6la7uFE5hjJvL4J1YuCY
+         Xeez48cRkc1q4TTLYnI4B3JZijoyrmWfu7zj5d0UOhMo/JKUSaQERKNJeGKpEY+zMO0Y
+         APHQvrEWhMQOhGpyn6omoHNTJunKtnScmKR3D0iI39mfKONlbH6fS+oWSl8RadYqm3UH
+         0hnOd+feQ8Wa0OO+ZryO5zfIKodm2cp84AaX4z9aNSd7wfZFLMnwaavghHlrwgFjbv+X
+         MtAGy8t/BH+/aD6wszKJDZIpPW/cIpOoYrcLyUKqzWIq0TeQBlx6lV3xIxPq8OBv/aYv
+         PaCA==
+X-Forwarded-Encrypted: i=1; AJvYcCV1f9KSALGvVPPXGZzcIAt0R0Y9TI5NEtwQOken46hn7+O4HPF0EmLLdzSjKXxMG2uy++ohyYVAysbjnzLwHD4EmuVPySrpIgTy3MAtaq5lq3mkVYJC4yTU4sJPzvkg418Zb8dVk11YZUqupPBe14klnG2J7BIKg9WwDa+hS+pIoKRsdW7FnW1joGVy
+X-Gm-Message-State: AOJu0YzS2Q0z+z1PnsW8ITg2SomeXmkLkFmBMp9/KC9sfL5GRydR4PqY
+	gd7lt1eAFY3m/fnJrijIkesBbnzZZo8+JjX74h3hgKYP/ipdQ40pLTLP8p8asF0=
+X-Google-Smtp-Source: AGHT+IGfFr8duULCgklTts62aOhQumuuAyumbWGz69P7MrBZtdoDeB6xxu+IyUoWJzzukCcUi7rLvw==
+X-Received: by 2002:a81:8d02:0:b0:615:2ed7:59e with SMTP id d2-20020a818d02000000b006152ed7059emr15070616ywg.14.1713366461807;
+        Wed, 17 Apr 2024 08:07:41 -0700 (PDT)
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
+        by smtp.gmail.com with ESMTPSA id y15-20020a81ca4f000000b0061ada21ac4dsm1129380ywk.25.2024.04.17.08.07.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Apr 2024 08:07:40 -0700 (PDT)
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-61500da846fso41913257b3.1;
+        Wed, 17 Apr 2024 08:07:40 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUI0acZkYHLGDtmnCsyqBwZpgw558Izil7Ud1sEWegrRdT7u4gRGASYBh7wzFjUaWmjuNPZTOspAfiXlbAu7VjyXInXvbL1dxxoHvaT8eujBt/cTsH2bg/n16rzca9a2LYRLWojv4VA4oziRYz3ggWp8DQN3c8iv07SiHwp5ueXncTFpfj5Diw1JMum
+X-Received: by 2002:a81:b54b:0:b0:61a:e3fc:512e with SMTP id
+ c11-20020a81b54b000000b0061ae3fc512emr7181123ywk.25.1713366460625; Wed, 17
+ Apr 2024 08:07:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="lXrJLg2sMSILQKj3"
-Content-Disposition: inline
-In-Reply-To: <IA1PR20MB49539A380E44459ACE19DEB6BB0F2@IA1PR20MB4953.namprd20.prod.outlook.com>
-
-
---lXrJLg2sMSILQKj3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20240322151219.885832-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240322151219.885832-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240322151219.885832-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 17 Apr 2024 17:07:29 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWCttb=ze27vfHs7LtjADU7v-nXimH8mm2zj5D6Uyvstg@mail.gmail.com>
+Message-ID: <CAMuHMdWCttb=ze27vfHs7LtjADU7v-nXimH8mm2zj5D6Uyvstg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] clocksource/drivers/renesas-ostm: Allow OSTM
+ driver to reprobe for RZ/V2H(P) SoC
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chris Brandt <chris.brandt@renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Apr 17, 2024 at 05:34:44PM +0800, Inochi Amaoto wrote:
-> On Wed, Apr 17, 2024 at 08:53:11AM GMT, michael.opdenacker@bootlin.com wr=
-ote:
-> > From: Michael Opdenacker <michael.opdenacker@bootlin.com>
-> >=20
-> > This adds initial support for the Milk-V Duo S board
-> > (https://milkv.io/duo-s), enabling the serial port,
-> > making it possible to boot Linux to the command line.
-> >=20
-> > Link: https://lore.kernel.org/linux-riscv/171266958507.1032617.94607491=
-36730849811.robh@kernel.org/T/#t
-> >=20
-> > Signed-off-by: Michael Opdenacker <michael.opdenacker@bootlin.com>
-> > ---
-> >  arch/riscv/boot/dts/sophgo/Makefile           |  1 +
-> >  .../boot/dts/sophgo/sg2000-milkv-duos.dts     | 34 +++++++++++++++++++
-> >  2 files changed, 35 insertions(+)
-> >  create mode 100644 arch/riscv/boot/dts/sophgo/sg2000-milkv-duos.dts
-> >=20
-> > diff --git a/arch/riscv/boot/dts/sophgo/Makefile b/arch/riscv/boot/dts/=
-sophgo/Makefile
-> > index 57ad82a61ea6..e008acb5240f 100644
-> > --- a/arch/riscv/boot/dts/sophgo/Makefile
-> > +++ b/arch/riscv/boot/dts/sophgo/Makefile
-> > @@ -1,4 +1,5 @@
-> >  # SPDX-License-Identifier: GPL-2.0
-> >  dtb-$(CONFIG_ARCH_SOPHGO) +=3D cv1800b-milkv-duo.dtb
-> >  dtb-$(CONFIG_ARCH_SOPHGO) +=3D cv1812h-huashan-pi.dtb
-> > +dtb-$(CONFIG_ARCH_SOPHGO) +=3D sg2000-milkv-duos.dtb
-> >  dtb-$(CONFIG_ARCH_SOPHGO) +=3D sg2042-milkv-pioneer.dtb
-> > diff --git a/arch/riscv/boot/dts/sophgo/sg2000-milkv-duos.dts b/arch/ri=
-scv/boot/dts/sophgo/sg2000-milkv-duos.dts
-> > new file mode 100644
-> > index 000000000000..c1ecf97d5e93
-> > --- /dev/null
-> > +++ b/arch/riscv/boot/dts/sophgo/sg2000-milkv-duos.dts
-> > @@ -0,0 +1,34 @@
-> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> > +/*
-> > + * Copyright (C) 2024 Michael Opdenacker <michael.opdenacker@bootlin.c=
-om>
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "cv1812h.dtsi"
-> > +
-> > +/ {
-> > +	model =3D "Milk-V Duo S";
-> > +	compatible =3D "milkv,duos", "sophgo,cv1812h";
-> > +
-> > +	aliases {
-> > +		serial0 =3D &uart0;
-> > +	};
-> > +
-> > +	chosen {
-> > +		stdout-path =3D "serial0:115200n8";
-> > +	};
-> > +
-> > +	memory@80000000 {
-> > +		device_type =3D "memory";
-> > +		reg =3D <0x80000000 0x20000000>;
-> > +	};
->=20
-> Add a cpu specific file, and move this to it.
+On Fri, Mar 22, 2024 at 4:13=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
+om> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> The RZ/V2H(P) (R9A09G057) SoC is equipped with the Generic Timer Module,
+> also known as OSTM. Similar to the RZ/G2L SoC, the OSTM on the RZ/V2H(P)
+> SoC requires the reset line to be deasserted before accessing any
+> registers.
+>
+> Early call to ostm_init() happens through TIMER_OF_DECLARE() which always
+> fails with -EPROBE_DEFER, as resets are not available that early in the
+> boot process.  To address this issue on the RZ/V2H(P) SoC, enable the OST=
+M
+> driver to be reprobed through the platform driver probe mechanism.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v1->v2
+> - Updated commit description
+> - Dropped usage of IS_ENABLED() and used defined() instead
 
-I take it that the memory is integrated into the package then?
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
---lXrJLg2sMSILQKj3
-Content-Type: application/pgp-signature; name="signature.asc"
+Gr{oetje,eeting}s,
 
------BEGIN PGP SIGNATURE-----
+                        Geert
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZh/ldQAKCRB4tDGHoIJi
-0iovAQCARQaWa7RNYeDT5gcMiHGFrrlUp4jfG1PWfDEvDUPcHQEA0kweLkHMyqlV
-Z8fNVOz8ExbRPorZsQGP0jhPfhdVRwg=
-=xsp0
------END PGP SIGNATURE-----
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
---lXrJLg2sMSILQKj3--
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
