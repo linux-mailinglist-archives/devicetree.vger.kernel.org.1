@@ -1,55 +1,64 @@
-Return-Path: <devicetree+bounces-60005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 868E68A7E48
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 10:31:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBD8C8A7E63
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 10:35:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 14435B20FEC
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 08:31:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 093B51C20AC8
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 08:35:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A40C7EF0F;
-	Wed, 17 Apr 2024 08:31:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 994CA6CDA8;
+	Wed, 17 Apr 2024 08:35:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="PEot3oHS"
+	dkim=pass (1024-bit key) header.d=amazon.de header.i=@amazon.de header.b="v1MAYQBG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp-fw-52004.amazon.com (smtp-fw-52004.amazon.com [52.119.213.154])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 325F2139F;
-	Wed, 17 Apr 2024 08:30:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AA0F7E799;
+	Wed, 17 Apr 2024 08:35:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.119.213.154
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713342660; cv=none; b=StrP4qdmr0mUoEtNkwnD1E816MuWGJTk7tMZXWafnT1Nf1sERuLydg0NelEIGgUczhpGDjgSdJCDrnLok7FTCbi8qXsKXlkA/xJpzis4O7eku5vKEv7TpKxsMm6GaPnXsRcdwgGSa+muI3BYPDp0fjzDX7j8tUstPmUcCQMjICE=
+	t=1713342946; cv=none; b=UgrJxyXS3v09WaDQw/XXX73PulGpRiiGJxnVgDMp5p8w4DpeoDTXJXfoS7SzKwatCcpfAprvyTfqcaqEVZdJZlKU/wRgVHkhq+Fl1Unifn26VYzNFr9LwAOPWDi1IF5cv5ibvj+XfNAJbRo3P7xaowmUyHbBchjhd9iWMAq6b+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713342660; c=relaxed/simple;
-	bh=hAKoZHGRwe5oOR+gYjYRmI7U+/iTL7eq3fs9/Xu1aqU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=c6xoi2AvzPNASF4LTK8ofusFUUS8iA1E7KxsHfrol2HAgnBDwVZHeLRUV8WMaoXx6sdZQ6DpCE1Y3sd/pNNxACJJ+EMB1ScR2R7YindPWqzZ7eg60s6qu5x26TlzRZcD/eQwc024dPkjZctpuC/D1cMtVlj9xEl0XlhPlpFQUH4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=PEot3oHS; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1713342657;
-	bh=hAKoZHGRwe5oOR+gYjYRmI7U+/iTL7eq3fs9/Xu1aqU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PEot3oHSw4wT5loY0dZpFv8eiXYny753dDhAVZKZBGyksPkHRuacYII0BK9ALD0dD
-	 DebbtnNXmKla5szZK45nxT4sWD+rEyD4i59/JWeB6LEm+tMmwFCDN8U+WBdE5u2ucG
-	 mQ5JTOJc2nZ3tbCbv3AZiLwhUvnXVy5YGB8PDm8dkiPy/CdsiWReM+8GjXTcMMw+Dq
-	 oETXqmldu52IL/9sXB0/+QjrP3ZevN8A75ItxzP47rmkYzKdxuaTDyKlom+s0jpeI/
-	 FuzSDf9TYqz+dVDbKulHemdsjmr9wnMrrGxqDA55pPMnlEO2vEWYEvbLpHp+qemspe
-	 pfNE+h722qR9A==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 713E537820F9;
-	Wed, 17 Apr 2024 08:30:56 +0000 (UTC)
-Message-ID: <f8cd2b23-f5e0-4692-a149-3ec98adb94b8@collabora.com>
-Date: Wed, 17 Apr 2024 10:30:55 +0200
+	s=arc-20240116; t=1713342946; c=relaxed/simple;
+	bh=17OBlsmVxnMXJBquq78bQRB1wlvVeTZA49R24BCyT2M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=lDoP7iSpNvlmjiw0EevhPmGNARR82wuNAc42qiH9ghmlbwvaOKOQdiXrKdIlmq9/1rqXlI/YomnjyvoyndZ5LmBckdLzGGaLgcCRu8x/uuW1IF5jg8ZwjareroWSNV1Nwq1tbTHR0sLirLnWbFbb6NqDJfk9X4m7V1Yvl2S/qpU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.de; spf=pass smtp.mailfrom=amazon.de; dkim=pass (1024-bit key) header.d=amazon.de header.i=@amazon.de header.b=v1MAYQBG; arc=none smtp.client-ip=52.119.213.154
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.de; i=@amazon.de; q=dns/txt; s=amazon201209;
+  t=1713342945; x=1744878945;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=17OBlsmVxnMXJBquq78bQRB1wlvVeTZA49R24BCyT2M=;
+  b=v1MAYQBGAoRJVNxzy0uJ6cwoOugG8Kkq8qrZqLq0mp2cQ4fun8IlQYqy
+   63E5r1gc70cNjm1KeWGzFD/zhf4bD2Jd2ltRNj5HVSvO7a6RXZ2HZga0V
+   x/ssMNQ9fytc67z5Rbxi94uUXFBk1DOy544KNb5qc9jFPNBY2OApiNp4n
+   4=;
+X-IronPort-AV: E=Sophos;i="6.07,208,1708387200"; 
+   d="scan'208";a="199145512"
+Received: from iad12-co-svc-p1-lb1-vlan2.amazon.com (HELO smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev) ([10.43.8.2])
+  by smtp-border-fw-52004.iad7.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2024 08:35:42 +0000
+Received: from EX19MTAUWB002.ant.amazon.com [10.0.38.20:5397]
+ by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.59.158:2525] with esmtp (Farcaster)
+ id 1676a3ad-f3c1-4105-85bf-4096eab9f7d9; Wed, 17 Apr 2024 08:35:40 +0000 (UTC)
+X-Farcaster-Flow-ID: 1676a3ad-f3c1-4105-85bf-4096eab9f7d9
+Received: from EX19D020UWC004.ant.amazon.com (10.13.138.149) by
+ EX19MTAUWB002.ant.amazon.com (10.250.64.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.28; Wed, 17 Apr 2024 08:35:35 +0000
+Received: from [0.0.0.0] (10.253.83.51) by EX19D020UWC004.ant.amazon.com
+ (10.13.138.149) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.28; Wed, 17 Apr
+ 2024 08:35:32 +0000
+Message-ID: <10d41e7e-87b1-4036-a740-da36270a4325@amazon.de>
+Date: Wed, 17 Apr 2024 10:35:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,44 +66,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 5/6] regulator: mtk-dvfsrc-regulator: Refactor and add
- MT8192/MT8195 vregs
-To: Mark Brown <broonie@kernel.org>
-Cc: djakov@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com,
- keescook@chromium.org, gustavoars@kernel.org, henryc.chen@mediatek.com,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, kernel@collabora.com,
- wenst@chromium.org, amergnat@baylibre.com
-References: <20240416153805.431118-1-angelogioacchino.delregno@collabora.com>
- <20240416153805.431118-6-angelogioacchino.delregno@collabora.com>
- <Zh8dWdE8V8-GhNlF@finisterre.sirena.org.uk>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v5 1/5] virt: vmgenid: rearrange code to make review
+ easier
 Content-Language: en-US
-In-Reply-To: <Zh8dWdE8V8-GhNlF@finisterre.sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+To: Babis Chalios <bchalios@amazon.es>, <tytso@mit.edu>, <Jason@zx2c4.com>,
+	<olivia@selenic.com>, <herbert@gondor.apana.org.au>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <linux-crypto@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <sudanl@amazon.com>, <xmarcalx@amazon.co.uk>, <dwmw@amazon.co.uk>
+References: <20240417081212.99657-1-bchalios@amazon.es>
+ <20240417081212.99657-2-bchalios@amazon.es>
+From: Alexander Graf <graf@amazon.de>
+In-Reply-To: <20240417081212.99657-2-bchalios@amazon.es>
+X-ClientProxiedBy: EX19D035UWB001.ant.amazon.com (10.13.138.33) To
+ EX19D020UWC004.ant.amazon.com (10.13.138.149)
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
-Il 17/04/24 02:52, Mark Brown ha scritto:
-> On Tue, Apr 16, 2024 at 05:38:04PM +0200, AngeloGioacchino Del Regno wrote:
->> This driver never worked, and never got even compiled, because it was
->> missing the DVFSRC driver entirely, including headers it relies on!
->>
->> Perform a full (or nearly full) refactoring of the MediaTek DVFSRC
->> controlled Regulators driver: this retains support for the MT6873,
->> MT8183 and MT8192 SoCs, and adds MT8195.
->>
->> As part of the refactoring, this driver is now probed using its own
->> devicetree compatible, as this is a child of the main DVFSRC driver
->> and gets probed as a subnode of that.
-> 
-> Given what you're doing this would probably be easier to review as
-> two commits, one removing the existing driver and another adding the new
-> code.
+Ck9uIDE3LjA0LjI0IDEwOjEyLCBCYWJpcyBDaGFsaW9zIHdyb3RlOgo+IEZyb206IFN1ZGFuIExh
+bmRnZSA8c3VkYW5sQGFtYXpvbi5jb20+Cj4KPiBSZWFycmFnZSB0aGUgZnVuY3Rpb25zIG9mIHZt
+Z2VuaWQgdG8gbWFrZSB0aGUgbmV4dCBjb21taXQsCj4gd2hpY2ggcmUtaW1wbGVtZW50cyB2bWdl
+bmlkIGFzIGEgcGxhdGZvcm0gZHJpdmVyLCBlYXNpZXIgdG8gcmV2aWV3Lgo+Cj4gU2lnbmVkLW9m
+Zi1ieTogU3VkYW4gTGFuZGdlIDxzdWRhbmxAYW1hem9uLmNvbT4KCgpZb3UgY2FuJ3Qgc2lnbiBv
+ZmYgb24gYmVoYWxmIG9mIHNvbWVvbmUgZWxzZS4gVGhlIFNvQiBoZXJlIG5lZWRzIHRvIGJlIAp5
+b3Vycy4gSWYgeW91IGFyZSB0YWtpbmcgb3ZlciB0aGlzIGNvZGUgZnJvbSBTdWRhbiwgSSdkIHN1
+Z2dlc3QgdG8gdGFrZSAKb3ZlciBmdWxsIG93bmVyc2hpcCBvZiBpdCBhbmQgcHV0IHlvdXIgb3du
+IG5hbWUgYXMgYXV0aG9yIGFuZCBTb0IgaW4gYWxsIApwYXRjaGVzLgoKCkFsZXgKCgoKCgpBbWF6
+b24gRGV2ZWxvcG1lbnQgQ2VudGVyIEdlcm1hbnkgR21iSApLcmF1c2Vuc3RyLiAzOAoxMDExNyBC
+ZXJsaW4KR2VzY2hhZWZ0c2Z1ZWhydW5nOiBDaHJpc3RpYW4gU2NobGFlZ2VyLCBKb25hdGhhbiBX
+ZWlzcwpFaW5nZXRyYWdlbiBhbSBBbXRzZ2VyaWNodCBDaGFybG90dGVuYnVyZyB1bnRlciBIUkIg
+MTQ5MTczIEIKU2l0ejogQmVybGluClVzdC1JRDogREUgMjg5IDIzNyA4NzkKCgo=
 
-Yeah, definitely.... I'll do that for v2.
-
-Cheers,
-Angelo
 
