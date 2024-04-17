@@ -1,228 +1,154 @@
-Return-Path: <devicetree+bounces-60114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60115-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B99678A831A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 14:25:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 801E28A8346
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 14:42:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7065B282439
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 12:25:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B23D282563
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 12:42:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01B2013D2BA;
-	Wed, 17 Apr 2024 12:25:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DA8913A24A;
+	Wed, 17 Apr 2024 12:42:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h0QedpGj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tORP0eiw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD5DD13D295;
-	Wed, 17 Apr 2024 12:25:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB83085C7A
+	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 12:42:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713356700; cv=none; b=SCfJCzFzuiM66Mrmu13bmw/y3pFXf9ES9p+wTmDPYiEm4ZrtsB0mpX04T3jyLKB/ehOoJub36/fT6zJbNdbDqIMdoD1lqaM2XA4q77/EqfY7VCtbJK06TM28820rharnSRAkqRt/qFNlhkQe3jB/aqUEPuLX7yY9siWDxGp4LC0=
+	t=1713357739; cv=none; b=S2rk+nHzgKWz+71OYia8jwY5faYqiWroHwnciB74qVxPGeAk04SFeBtSdCSyDkbos/E0HR8dR3QTI95e3Q4WWEMlPZ07n37AB+F5WqyC8xL//4hNZueskOgaJEByUGFh76qzqGCz6p/z9Kz7F4shMV8bYE3lRn1vIIww2ocKtzU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713356700; c=relaxed/simple;
-	bh=Q8zT258WQRDiwJmPtFZzZIyJIR1jdZVS+ZzaCdOE9JI=;
+	s=arc-20240116; t=1713357739; c=relaxed/simple;
+	bh=AwKyjiWJRzagWC2MbqX3hFlf49pQyQ5paXVC/+7FW6w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R02+U87ua6PRL8QJiha44WF+C3nC8tl+Y1sxmRyt4c4kwMIxLDZCTWjkMsZ9sxClvSSGCPYes+Q+na5UulaDwGN4J7qJs2DV99TN3Ok0gK7MPPfYrtaJzPnpiahJvg70PliDEajgHACsZOpNSdZp5GumQqm9nBEN7kyEw2leEyw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h0QedpGj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C983C072AA;
-	Wed, 17 Apr 2024 12:24:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713356700;
-	bh=Q8zT258WQRDiwJmPtFZzZIyJIR1jdZVS+ZzaCdOE9JI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=h0QedpGjj8RNmOqZMuHdkWOw1mh0PWamjez5Zq/LUjHsHnN8lLUFYpt9r7HF6zDyU
-	 U6kdycDZ+zKka5PgDsOIoPodGOy0JIpRNqDQ/nBqtBxcQn0Nd+6LfLMCx9mXpVlSKN
-	 OenkBaLJNzBsHVK+JDiqWNAvKYBLua0mJE2fz8n1LcHErcEkV6hOsQWvw3SivP+nUz
-	 pTt9FJs96J7FswU9Ru6XkyCmJeiBmUURrzlpxGhiPyGHmlPzFCDjHZx+MxMBOXA5eI
-	 q0VzeO8Kg2hh+x4/linpnOCPbOsR9BFrxJ8bfiMjt5NilkOo/TdyHeIuEYoU4hJMzC
-	 76GNDNcExvjpA==
-Date: Wed, 17 Apr 2024 13:24:54 +0100
-From: Lee Jones <lee@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=n1fxC2l3zh7ZFM+1FEC3Ywu2VHSyEv4iQDlx1tlfgj4Ktk/cxT227YTJNlzZm1I7GYP7K0rwY2EA4fnS4DrfWewf6oLc1r5fyETVos7LT6EXYezIjjw1PzyUWefbHMtsy3VlCIMTP9JVH4EvS66Gyq5saMpSAMQR9QKpQGL7Rl0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tORP0eiw; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-56e477db7fbso9131230a12.3
+        for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 05:42:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1713357736; x=1713962536; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=hGxJr1eT1juIaCt0B8kVSHBgvMQ9mE5owuvsY4aMzkc=;
+        b=tORP0eiwqw+a1r6TOse4RmmZ/RQ4NSz2P6C0H73xLpyIuqI8C4jppxyWdmFBB7L2sZ
+         yhzgWAChJ29NdffoMaORYRKud2OHlWSPwv/4GoZ/IGgac1FfSzbT84UK4+7YEdMkQ4cR
+         yZfKTCXCOZMAJB9gSulLQNDpTpYlRp4h5yhJSsksUn47qvC3c7F94rkEWibkNECp5SWD
+         RboL9a4MJFOKfNjxv5liqS7gkuwHdaA0l3S/NKj8Y+NJ+BHm1mc97TspML3RivLRhn1p
+         F1hU0f1261tHfSuhVZEnoN/NqsZVuNt0ldTvoz2pnPtSndCxMJvEixdESpfsM5DG90qD
+         rH/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713357736; x=1713962536;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hGxJr1eT1juIaCt0B8kVSHBgvMQ9mE5owuvsY4aMzkc=;
+        b=TqIvAEQY9PQKFgnufpq7YjBZfA4awYup7YH/PntC0sTCEABXqyu9bGmQh07nlrF3N4
+         epkhujuIJFc7EUNieK6cyZdV/sw0Sg+Z6U5uQPKuu/TleC33D9zpOa6P95iJ8MNshjAf
+         miiq3H1XvIFqqLvym42IZnBq+dY7pL5VMj7EpfQGr0Yf3jg30HtlEd34h4yhyAkjSDhy
+         mbn4PlH6oDDhrpdF+ROisW4l/wrva8UYcAykQ9jUuJnfBFK+FbJ0gENdOCEXNf7j7VcC
+         Uh+9ZNfOdgr9fL7mRootiSfc/akA/2VRZXAzfk977pWwPLj22w1jFJgIiLdNpXWReoY3
+         dm/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVZLXZ3xDY6kN6BUwUPLBlqAKiZjg3ktPaI2Nj1Upynm7NJpfiYj5HAvaYQjNMCHX5eXLY1Iv3//q1Z3ai3O/MTEcsnYWiSOB+N8g==
+X-Gm-Message-State: AOJu0YxLFyBSrnruXIoQ8Bgg8z4VMJOSqeQKOY1mvtLwlOjBihgTUxNz
+	I5alEqwFQUy630dhDzmVzphOULURf1F9LqrahgMTmHZRtMWTb7dZMNX13ai33Lc=
+X-Google-Smtp-Source: AGHT+IE7pfXIfIVm1oVxaQaBU9J4TOarr6VsYEeyJ2uNUE4J8Yrala0tsc/J6hnG5NT5hKmDzgbjdQ==
+X-Received: by 2002:a50:d75b:0:b0:56e:2ab1:c803 with SMTP id i27-20020a50d75b000000b0056e2ab1c803mr11948542edj.0.1713357735666;
+        Wed, 17 Apr 2024 05:42:15 -0700 (PDT)
+Received: from localhost ([102.222.70.76])
+        by smtp.gmail.com with ESMTPSA id en8-20020a056402528800b0056e2432d10bsm7248586edb.70.2024.04.17.05.42.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Apr 2024 05:42:15 -0700 (PDT)
+Date: Wed, 17 Apr 2024 15:42:11 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Peng Fan <peng.fan@nxp.com>
+Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
-Subject: Re: [RFC PATCH 3/6] mfd: support ROHM BD96801 PMIC core
-Message-ID: <20240417122454.GY2399047@google.com>
-References: <cover.1712058690.git.mazziesaccount@gmail.com>
- <b86b7a73968810339b6cea7701bc3b6f626b4086.1712058690.git.mazziesaccount@gmail.com>
- <20240411143856.GD2399047@google.com>
- <25c959bc-fb02-42d9-b973-4a74cebd7208@gmail.com>
- <20240412072347.GM2399047@google.com>
- <700b63a1-ce91-4d91-9db7-43c195ba7a6f@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, Dhruva Gole <d-gole@ti.com>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+	Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+Subject: Re: [PATCH v10 0/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
+ protocol basic support
+Message-ID: <2c608b57-fe0b-40dd-a1f8-8f0808605ae3@moroto.mountain>
+References: <20240415-pinctrl-scmi-v10-0-59c6e7a586ee@nxp.com>
+ <6c652af8-151e-4d8b-9587-8eae1254a4fe@moroto.mountain>
+ <DU0PR04MB941737BD9ACF18526D8A50C7880F2@DU0PR04MB9417.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <700b63a1-ce91-4d91-9db7-43c195ba7a6f@gmail.com>
+In-Reply-To: <DU0PR04MB941737BD9ACF18526D8A50C7880F2@DU0PR04MB9417.eurprd04.prod.outlook.com>
 
-On Fri, 12 Apr 2024, Matti Vaittinen wrote:
-
-> On 4/12/24 10:23, Lee Jones wrote:
-> > On Fri, 12 Apr 2024, Matti Vaittinen wrote:
-> > 
-> > > Hi deee Ho Lee!
-> > > 
-> > > Thanks a ton for taking a look at this :) I already sent the V2 yesterday,
-> > > briefly before receiving your comments. I think all of the comments are
-> > > relevant for the V2 as well, I will fix them for the V3 when I get to that.
-> > > If you find the time to take a look at V2, then the major things are
-> > > addition of a watchdog IRQ + a work-around for the debugFS name collision
-> > > for IRQ domains.
-> > > 
-> > > On 4/11/24 17:38, Lee Jones wrote:
-> > > > On Tue, 02 Apr 2024, Matti Vaittinen wrote:
-> > > > 
-> > > > > The ROHM BD96801 PMIC is highly customizable automotive grade PMIC
-> > > > > which integrates regulator and watchdog funtionalities.
-> > > > > 
-> > > > > Provide IRQ and register accesses for regulator/watchdog drivers.
-> > > > > 
-> > > > > Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> > > > > ---
-> > > > >    drivers/mfd/Kconfig              |  13 +
-> > > > >    drivers/mfd/Makefile             |   1 +
-> > > > >    drivers/mfd/rohm-bd96801.c       | 454 +++++++++++++++++++++++++++++++
-> > > > >    include/linux/mfd/rohm-bd96801.h | 212 +++++++++++++++
-> > > > >    include/linux/mfd/rohm-generic.h |   1 +
-> > > > >    5 files changed, 681 insertions(+)
-> > > > >    create mode 100644 drivers/mfd/rohm-bd96801.c
-> > > > >    create mode 100644 include/linux/mfd/rohm-bd96801.h
-> > > > > 
-> > > > > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> > > > > index 4b023ee229cf..947045eb3a8e 100644
-> > > > > --- a/drivers/mfd/Kconfig
-> > > > > +++ b/drivers/mfd/Kconfig
-> > > > > @@ -2089,6 +2089,19 @@ config MFD_ROHM_BD957XMUF
-> > > > >    	  BD9573MUF Power Management ICs. BD9576 and BD9573 are primarily
-> > > > >    	  designed to be used to power R-Car series processors.
-> > > > > +config MFD_ROHM_BD96801
-> > > > > +	tristate "ROHM BD96801 Power Management IC"
-> > > > > +	depends on I2C=y
-> > > > > +	depends on OF
-> > > > > +	select REGMAP_I2C
-> > > > > +	select REGMAP_IRQ
-> > > > > +	select MFD_CORE
-> > > > > +	help
-> > > > > +	  Select this option to get support for the ROHM BD96801 Power
-> > > > > +	  Management IC. The ROHM BD96801 is a highly scalable power management
-> > > > 
-> > > > Power Management
-> > > 
-> > > Out of the curiosity, why is the "Power Management IC" written with
-> > > capitals, when speaking of a class of devices instead of a model? (I am 100%
-> > > fine with the change, just curious).
-> > 
-> > It's no different to how its expressed in the tristate section above.
-> > 
-> > Power Management IC or PMIC.
-> > 
-> >    "provides power management capabilities" describes its function?
-> > 
-> >    "is a scalable Power Management IC", describes the device?
-> > 
-> > But actually, it just looks odd when both are used in the same section.
-> > 
-> > /me likes uniformity and consistency.
+On Wed, Apr 17, 2024 at 12:15:57PM +0000, Peng Fan wrote:
+> Hi Dan,
 > 
-> It's okay, thanks for the explanation :)
+> > Subject: Re: [PATCH v10 0/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
+> > protocol basic support
+> >
+> > I'm trying to re-base AKASHI Takahiro's gpio driver on top of your scmi pinctrl
+> > driver.
+> > https://lore.ke/
+> > rnel.org%2Fall%2F20231005025843.508689-1-
+> > takahiro.akashi%40linaro.org%2F&data=05%7C02%7Cpeng.fan%40nxp.com%
+> > 7C342dd6eb0463456d0d6608dc5e41de1c%7C686ea1d3bc2b4c6fa92cd99c5
+> > c301635%7C0%7C0%7C638488884186606528%7CUnknown%7CTWFpbGZs
+> > b3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn
+> > 0%3D%7C0%7C%7C%7C&sdata=DMJZ2uwuJigkEnEcY7JdBw6DMPjHxcUvvh7
+> > 2fsaep50%3D&reserved=0
+> > I need to do something like this below to save the gpio information.
+> >
+> > So now, great, I have the information but I'm not sure how to export it from
+> > the scmi pinctrl driver to the gpio driver...  (This is a probably a stupid
+> > question but I am real newbie with regards to gpio).
+> >
+> > The other thing is that the SCMI spec says:
+> >
+> >     4.11.2.7
+> >     PINCTRL_SETTINGS_GET
+> >
+> >     This command can be used by an agent to get the pin or group
+> >     configuration, and the function selected to be enabled. It can also
+> >     be used to read the value of a pin when it is set to GPIO mode.
+> >
+> > What does that mean?  Is that right, or is it something left over from a
+> > previous revision of the spec.
+> >
+> > regards,
+> > dan carpenter
+> >
+> > diff --git a/drivers/firmware/arm_scmi/pinctrl.c
+> > b/drivers/firmware/arm_scmi/pinctrl.c
 > 
-> > > > > +	  IC for industrial and automotive use. The BD96801 can be used as a
-> > > > > +	  master PMIC in a chained PMIC solutions with suitable companion PMICs
-> > > ...
-> > > 
-> > > > > +static int bd96801_i2c_probe(struct i2c_client *i2c)
-> > > > > +{
-> > > > > +	int i, ret, intb_irq, errb_irq, num_regu_irqs, num_intb, num_errb = 0;
-> > > > > +	struct regmap_irq_chip_data *intb_irq_data, *errb_irq_data;
-> > > > > +	struct irq_domain *intb_domain, *errb_domain;
-> > > > > +	const struct fwnode_handle *fwnode;
-> > > > > +	struct resource *regulator_res;
-> > > > > +	struct regmap *regmap;
-> > > > > +
-> > > > > +	fwnode = dev_fwnode(&i2c->dev);
-> > > > > +	if (!fwnode) {
-> > > > > +		dev_err(&i2c->dev, "no fwnode\n");
-> > > > > +		return -EINVAL;
-> > > > 
-> > > > Why not dev_err_probe() here for uniformity?
-> > > 
-> > > I can change it to dev_err_probe() if it's strongly preferred. It just feels
-> > > silly to use dev_err_probe() when the return value is hardcoded.
-> > 
-> > Not at all:
-> > 
-> > git grep dev_err_probe | grep "\-[A-Z]"
+> Just a short question, you will make this a standalone
+> patch part of your gpio pinctrl patchset, right?
 > 
-> Yes, I know people do use the dev_err_probe() with hardcoded errors but it
-> does not make me feel any better about it :)
-
-<look into my swirling eyes> Uniformity within the function!
-
-> > > Intentionally writing code like
-> > > 
-> > > err = -EINVAL;
-> > > if (err == ...)
-> > > 
-> > > just makes me feel a bit sick.
-> > 
-> > Why would you want to do that?
+> Or you wanna include this change in my v11 patch?
 > 
-> This is what the dev_err_probe() with a hardcoded err does, right?
-> 
-> int dev_err_probe(const struct device *dev, int err, const char *fmt, ...)
-> {
-> 	...
-> 	if (err != -EPROBE_DEFER) {
-> 		dev_err(dev, "error %pe: %pV", ERR_PTR(err), &vaf);
-> 	} else {
-> 		device_set_deferred_probe_reason(dev, &vaf);
-> 		dev_dbg(dev, "error %pe: %pV", ERR_PTR(err), &vaf);
-> 	}
-> 	...
-> }
+> I hope v11 + imx oem patches could land in 6.10,
+> so I would not expect big changes to v11.
 
-Attempt to purge this info from you brain!
+Yeah.  Let's get your patches merged.  I don't think there is anything
+in mine which conflict with yours.  It's just addon.
 
-> > > > > +	}
-> > > > > +
-> > > > > +	intb_irq = fwnode_irq_get_byname(fwnode, "intb");
-> > > > > +	if (intb_irq < 0)
-> > > > > +		return dev_err_probe(&i2c->dev, intb_irq,
-> > > > > +				     "No INTB IRQ configured\n");
-> > > > 
-> > > > This function would look nicer if you expanded to 100-chars.
-> > > 
-> > > The reason why I still prefer the good old 80-chars for files I work with,
-> > > is that I am often having 3 terminal windows parallel on my laptop screen.
-> > > (Or, when I have my wide mofnitor connected it is 3 editor windows +
-> > > minicom). I need to keep the terminals small enough. Besides... I hate to
-> > > admit this, but the time is finally taking it's toll. My eyes aren't quite
-> > > the same they were 2 years ago...
-> > 
-> > Upgrade your 14" CRT monitor to something more modern. :)
-> 
-> But those things were built to last! And throwing away perfectly working
-> stuff... :)
+regards,
+dan carpenter
 
-Can't argue with that!  Maybe put 2 side-by-side or 4 in a matrix!
-
--- 
-Lee Jones [李琼斯]
 
