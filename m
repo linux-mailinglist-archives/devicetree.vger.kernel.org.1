@@ -1,94 +1,99 @@
-Return-Path: <devicetree+bounces-60204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69F138A871A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 17:10:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B48AA8A871F
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 17:11:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B4B71C215C9
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 15:10:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CD58FB21A1B
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 15:11:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13CE4146A6D;
-	Wed, 17 Apr 2024 15:10:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32712146A9C;
+	Wed, 17 Apr 2024 15:11:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mXN+IYIh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VWFqdRSb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6DD4146A6B;
-	Wed, 17 Apr 2024 15:10:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AF6B146A99;
+	Wed, 17 Apr 2024 15:11:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713366608; cv=none; b=gvTlO3Y1gN+Mfa+CV3U2HmfuG/bUfQJX/WOKJkXpVlV0EHX/NMVsvWjK0IkEMfP5ppOyCREVIuw0J/YBmZdXQi4vYLtMVhHpAvMqAeOJocpefTsRiyqufp6qLR+7pi0KLR0DgvUNzwaFXv/lzQwUvpLbl+7ou7IIGdwq0bl25wA=
+	t=1713366689; cv=none; b=o5IJd09OYNvkMy/hgNOy66JdqwhBHASvnX36RVVgxr5Kwert4z6090rhtXUGS15KuS1jmNe3g6pfSgOvWRSRkqHuv8VtkWnRG+VkS7tdbNC9R8z38qgv6Kheh8zaLW+NfblK7zUc5vrWUDYjO/P8H19dw9j1bb5pgwiI4bn5GGk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713366608; c=relaxed/simple;
-	bh=2iH29Kr9a60rYZ7alX/OpeMmfoox0uyeGvUK0iNJJpY=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=Qy0R6D/38k6IKOH2pEChB1PjEQJdVz2fY5YYci50PsZ+itY0WvoWVsRAuzBmgc3i0y385755uX4RjBp9q0WXEEo3CPiOhuk/SqW1Q+OyN2teyfDo7g9PUq7GF/3wrUVTxEkeZMoAom3aUGpkh0Md294ZePSh+/pC0UWbSPMXl24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mXN+IYIh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CB22C072AA;
-	Wed, 17 Apr 2024 15:10:07 +0000 (UTC)
+	s=arc-20240116; t=1713366689; c=relaxed/simple;
+	bh=vs8zeQ3uu0Gvfz+X8EO/BsEowJtDXKz4XbgC6f/o/SA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NKrkFj4yMdYK9q//EHVq9XNdgObqukpQ+74osANl0RtVpyBI+xb7fX/0/uwHnsH3MLF+OvIv81vCER2MjUs9hkRdbWC6UEmenooK8uXxLdXfCaBUSrPrn14e1G5bUYrG3SQoYfVGUFY02TOB6DfFmbnXngD0lUTWZGJEr60wmeE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VWFqdRSb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92B6DC072AA;
+	Wed, 17 Apr 2024 15:11:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713366607;
-	bh=2iH29Kr9a60rYZ7alX/OpeMmfoox0uyeGvUK0iNJJpY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=mXN+IYIha8UjXHnSux0XtuNr2JVta+xWLsBARh9PMKPDNcRGFyYlHheo/cFBsQezS
-	 /H4F3RT6okPPgwNvH14/E7r46v0wjeZOX68dMgyu/E5NPFiPMR3rSSgl6Yh+vljx/t
-	 +G0Pg3nDnB7IxIXp7h+NlPHtcQvebKZTj3e+TN9C3WfoL3p5jFpyxv+WtieZmWkbtk
-	 nqM+FQInNEPtd6E1Im6irNC9RiRHtcWF60V58+ureU+JalQGjfLAkPfm8BpYTxZFgD
-	 ECaO/usrliaX8vMJM5k+BJu31IKiJKJlMcP2F+zyGgRQrLBXsy1vBTkT7l+UJwkyoI
-	 d3vGQizUBIEJA==
-Date: Wed, 17 Apr 2024 10:10:04 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev,
-	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 5/5] PCI: dwc: Add generic MSG TLP support for sending
- PME_Turn_Off when system suspend
-Message-ID: <20240417151004.GA202039@bhelgaas>
+	s=k20201202; t=1713366688;
+	bh=vs8zeQ3uu0Gvfz+X8EO/BsEowJtDXKz4XbgC6f/o/SA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VWFqdRSbZoOJT0Fwjy+fjTNZs8n6UlMbdYCjPCc04lsr7ax1KghRj+WmmKwKZn/+X
+	 FaLkCp1n3z5I3Qy37yfiHl13ccDsQwEdzviPI4R4f/tMYYv2w85PY0eGlJSV8Cm10e
+	 bNFQkVEJiUNNzVKStqU6kVKMMNCg9WzzJaAI8HDK4/hZGpsxqUhnCaReVZxuIAjZO+
+	 Yi6WjKTmXWDVdyU5qdiTdKd1VfBIBI55mp5TK94F16vhZD3H1E6A07dBG90Om4u68I
+	 jBobF55LORhAIsuM2QsdeaOExWnaYdU82rkEAHbSSesOMWZCpl1m0TP6ZSmiGhbI0n
+	 TvbUAVned+qMA==
+Date: Wed, 17 Apr 2024 16:11:23 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: linux-spi@vger.kernel.org, broonie@kernel.org,
+	lorenzo.bianconi83@gmail.com, linux-arm-kernel@lists.infradead.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org, nbd@nbd.name,
+	john@phrozen.org, dd@embedd.com, catalin.marinas@arm.com,
+	will@kernel.org, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com
+Subject: Re: [PATCH v2 1/3] dt-bindings: spi: airoha: Add YAML schema for
+ SNFI controller
+Message-ID: <20240417-unmanned-wildland-e7cbd2d3845f@spud>
+References: <cover.1713335916.git.lorenzo@kernel.org>
+ <361a447b86eb71951af206d4081c2e7985811a57.1713335916.git.lorenzo@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="aNj7dxjvwqiyJzzz"
+Content-Disposition: inline
+In-Reply-To: <361a447b86eb71951af206d4081c2e7985811a57.1713335916.git.lorenzo@kernel.org>
+
+
+--aNj7dxjvwqiyJzzz
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Zh/ezLdct9sisvhc@lizhi-Precision-Tower-5810>
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Apr 17, 2024 at 10:38:04AM -0400, Frank Li wrote:
-> On Wed, Apr 17, 2024 at 03:49:44PM +0530, Manivannan Sadhasivam wrote:
-> > On Mon, Apr 15, 2024 at 03:33:29PM -0400, Frank Li wrote:
-> > > +	/*
-> > > +	 * Allocate the resource for MSG TLP before programming the iATU outbound window in
-> > > +	 * dw_pcie_setup_rc(). Since the allocation depends on the value of 'region_align', this has
-> > > +	 * to be done after dw_pcie_iatu_detect().
-> > 
-> > Please wrap the comments to 80 columns.
-> 
-> New code style is 100 columns. does comments still stick to 80 columns?
+On Wed, Apr 17, 2024 at 08:45:50AM +0200, Lorenzo Bianconi wrote:
+> Introduce Airoha EN7581 SPI NAND controller binding
+>=20
+> Tested-by: Rajeev Kumar <Rajeev.Kumar@airoha.com>
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 
-I care more about files being consistent internally than I do about
-adhering to a new 100 column rule.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-With very few exceptions, pcie-designware-host.c fits in 80 columns.
-I think there's no point in adding a comment using 100 columns.  That
-leadds to either a window sized to accommodate 100 columns, where 20
-columns are wasted for all the existing code and comments, or a window
-sized for 80 columns, where the new comment looks ugly.  Neither is
-attractive.
+Thanks,
+Conor
 
-Bjorn
+--aNj7dxjvwqiyJzzz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZh/mmwAKCRB4tDGHoIJi
+0kbRAP9tRY8YCT7dwetxNBX0Ui4C+gJb6yv3bIQUZ2+B16xs/gEArzWt31UiufP5
+nkBB2zcB/NlavOB+Wt/izaf2GPfLPgQ=
+=j4da
+-----END PGP SIGNATURE-----
+
+--aNj7dxjvwqiyJzzz--
 
