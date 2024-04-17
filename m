@@ -1,71 +1,71 @@
-Return-Path: <devicetree+bounces-59931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD1948A7AEE
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 05:15:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AF098A7AFD
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 05:18:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 32896B223B8
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 03:15:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A063CB2220F
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 03:18:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6626079C2;
-	Wed, 17 Apr 2024 03:15:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0E911878;
+	Wed, 17 Apr 2024 03:18:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="LctKcdn8"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="HLh07MId"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B925748F
-	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 03:15:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ADFF79EA
+	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 03:18:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713323713; cv=none; b=OrZ1t1GbTLpHTQ4zsM8yBRknfEcTgPkX6qeTI45OHFp0X3IDGwtprr7eEmWG0mEzo4fVROgbWzp675JeD/eePt/rtg3e6cXuQzMxCTvL30KEajs6btnrq2JvhIsiLG2jHYEHhPRmTtsan/lPFxF1HJ47fkZLL01XwbCGou/AkEE=
+	t=1713323915; cv=none; b=jxbn50X9yyYHnfVMawLnRtMczBRlEZsNsOhWM7Ly/yivDkUqzp5xpFQS4SF28rTGtDXgm1yAyrqd9scp+HW7GYsCsusrpMqDTZVoG4dzaX/cP+oAndhkwNUYEVEze3PooDlzZin+JwgIpVTd9ZDE6ei+J3hugQABXi9RIr3c8co=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713323713; c=relaxed/simple;
-	bh=2xdPBIufOLYFcPxKUYKQHtXi19FUKSt8gz12hms8SWk=;
+	s=arc-20240116; t=1713323915; c=relaxed/simple;
+	bh=C8HCxnNwVdkMBfJ+59rEr/7zcnKEUWoy4lXSwG/SEIM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TndIwxoPnIlzlugcZY3q97L8Ba69ACSS3fWTmD18npN+8L0qu2ElwnWM671O8zqVUfSylg6cN0BvnWMkpR+xvW0BkLzWh1SIg/FCs2P5B9mVJo/msz1COgEyF2oitNFilrBtXrAFDMgkDqLWd9N+1a9cO+BkBziUs2+ZIyRcTHA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=LctKcdn8; arc=none smtp.client-ip=209.85.210.172
+	 In-Reply-To:Content-Type; b=E74JRA/+aNHnDJXKYN1CJzWOaN01oeo8lZLwtEVNYCC5/cimp8AB01fQz9CWpzCuiIXVCZsOGKCbzVMIzygsmU7vqk3b9F5NHCeAHKXBgQtV/vytapSK4zii0PKJOEQhME/lXCf6MyTD8hV4tCu6Y3rduKYy/8xgpVlyDsHAUF8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=HLh07MId; arc=none smtp.client-ip=209.85.167.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-6ed01c63657so4586112b3a.2
-        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 20:15:11 -0700 (PDT)
+Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-3c728a83de3so292036b6e.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 20:18:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1713323711; x=1713928511; darn=vger.kernel.org;
+        d=broadcom.com; s=google; t=1713323913; x=1713928713; darn=vger.kernel.org;
         h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=BKdU9kVAQe5ba6Gg6WYiWXUer75Gr5NPpQpaS/+vwLE=;
-        b=LctKcdn8kBzOv4ffFz18UX/+KaMBKYLUs3zWlLGpRwkIyl1C3AWFAEzv/LXH5rIwS3
-         uRJE/qkeALsxwc8mGsPXI0HhCezzbciwAHivsrRPGWp64370ddB+ideP1qjma4YYw4LX
-         3OWJOTF8r/EDqPnk7+pGJMTm/Z7F5AbtTgZZ8=
+        bh=LxvVXNH7tW8CIlrEoiTru/0kNA239f5z9GbjEbU75vc=;
+        b=HLh07MIde2avA1Bdr10f2DcPJc7Yz29ouHMdsUuYDI8GrWFpA8EpTyE5lBR0POPjys
+         Esfib4ciQd1f3h9+ALQ5W6SO7NxzRwiteP0XbO5ZtYNh7xySvo5zCqs+PjzUYfKzHZmf
+         SBcXqpdrB/X7OFNAQDUrTQFuBIXJeR27OZVzk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713323711; x=1713928511;
+        d=1e100.net; s=20230601; t=1713323913; x=1713928713;
         h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=BKdU9kVAQe5ba6Gg6WYiWXUer75Gr5NPpQpaS/+vwLE=;
-        b=pOOhQSRIocY+NGL30Z5IjAudyffhCXtCwzGdyppP27NvGLHorXb7A2qAqCm3kQv2FK
-         MtSf5h0W2635PYqU7fwrpNowpGFVvj+WFGSVbkIORSZII5nJ32Pqd6n/iOjaqQ/fd8Tf
-         6CsNk6hvVqhXMuf5xH78XD1vsIocMpA1Jmh1368LBt+KQ7agWjYKWkeYXF2pzVGPrFXk
-         alFdbiskvEGJko9738f2T9qUJBUe6s2bp9MxJxezfypryAkPiOv1lSHKLc9E0+alueWC
-         QOXVBaYmEz07pVFNHob+/pw2ohEl/JM5OiIINqWjy/2KGyWCVeyfmrEeuEB0w80kktR5
-         afDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWASFXDLBfcXGkOE523I93oup3R2tO8yE+O3sGv0ksqgY8C3zVNTO+I2XF2iW/JlOI57XWOUw1pG2XSA4r7A5n2EEWfZ6bphb19DQ==
-X-Gm-Message-State: AOJu0Yxl0NVbOlvnunCInk89zmkkwCmDCEEImspl9ZxszX/QtsninNG2
-	x/bEhzJJVU19dG2EK75Ig2IRLYg5PpRo3N395ukjmbw9Xu8F+8IYGusvS53vCg==
-X-Google-Smtp-Source: AGHT+IFjC/luh0HqH1Epr0Vv/iN2i/GQ0swehTb6RFrsbpSQMAGBfwWvI/BUv7COnb/a9rb+RvoU5w==
-X-Received: by 2002:a05:6a00:a87:b0:6ed:4a80:133c with SMTP id b7-20020a056a000a8700b006ed4a80133cmr15817679pfl.1.1713323710985;
-        Tue, 16 Apr 2024 20:15:10 -0700 (PDT)
-Received: from [10.230.29.214] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id hq6-20020a056a00680600b006ed14fed3a5sm9758366pfb.154.2024.04.16.20.15.08
+        bh=LxvVXNH7tW8CIlrEoiTru/0kNA239f5z9GbjEbU75vc=;
+        b=siIF3ZPcv63FXdrTfxWrtm+m8ewhHpc8CULumWT6Fp67gfAzHkoKupbRxF79INyO/9
+         24T1we83oLeflNj9nN46yZWsFaEKghHpOBOQChkUoJXeHUe3tKmQ9oGxqB3GJru8ltBf
+         LcYj06rZiH5bRT4/vGh4ngvmGw0o63lB+hG3HcMv9nLWa2RjG8xwvf5lbWLZ1e7stt/7
+         GDjoQnBGoDsH/x5Fcmx2MMnwGrxSg41dtxleVtSXaiq93/QLSBw93D+FQzlCcJuNy2jz
+         waWqnwndnOWHrCSj9Q1VMsCXBzVWIdHYPRTDaMkkkU/3OFbqWLVsdMf4hYi83410nv8C
+         Bciw==
+X-Forwarded-Encrypted: i=1; AJvYcCXUYcCaVsxPLEqpIYSY3kfSRfK04XpprWW7QDqk9deyGfkCGT63yxxsa3F1i//jYDLAjdZunUfFBxER0FSftUhZrViQwRoayUV9NQ==
+X-Gm-Message-State: AOJu0YxPO90ISXov5+YRfKfk5U1JtXGQ3ZON5LvLhjbBIHqO4QR7GOw/
+	Vo/XzFBKXOCN0Yi88a1puvRkZcjfQVChflksnxHHT0VgWjd1W6wAHpOsZMXcWQ==
+X-Google-Smtp-Source: AGHT+IENy/EPlq2AL5TdgbAWijWWMSvsp2drj0JjiTM/kirvMBADlMQEHv98ybAvohDEPB6k6wieqg==
+X-Received: by 2002:a05:6808:183:b0:3c5:f851:d09b with SMTP id w3-20020a056808018300b003c5f851d09bmr15483491oic.29.1713323913497;
+        Tue, 16 Apr 2024 20:18:33 -0700 (PDT)
+Received: from [192.168.1.3] (ip68-4-215-93.oc.oc.cox.net. [68.4.215.93])
+        by smtp.gmail.com with ESMTPSA id gs23-20020a056a004d9700b006ed4f616ec4sm9686289pfb.57.2024.04.16.20.18.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Apr 2024 20:15:10 -0700 (PDT)
-Message-ID: <7b465ddb-2b18-4e7f-8b03-d4e51006e1cb@broadcom.com>
-Date: Tue, 16 Apr 2024 20:15:07 -0700
+        Tue, 16 Apr 2024 20:18:32 -0700 (PDT)
+Message-ID: <c3f1773a-b65b-4ccc-a684-e5e57b325777@broadcom.com>
+Date: Tue, 16 Apr 2024 20:18:30 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,23 +73,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] ARM: dts: BCM5301X: Add DT for ASUS RT-AC3200
-To: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>,
- Hauke Mehrtens <hauke@hauke-m.de>, Rafal Milecki <zajec5@gmail.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: Tom Brautaset <tbrautaset@gmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20240414-for-soc-asus-rt-ac3200-ac5300-v1-0-118c90bae6e5@arinc9.com>
- <20240414-for-soc-asus-rt-ac3200-ac5300-v1-3-118c90bae6e5@arinc9.com>
- <a88385a4-afad-4bd8-afc1-37e185e781f4@kernel.org>
- <85261d11-d6cb-4718-88d9-95a7efe5c0ab@arinc9.com>
- <e6cfe735-0a46-4c07-90ee-4ae25c921b03@kernel.org>
- <335cdd4b-7309-4633-9b4f-6487c72c395c@arinc9.com>
- <07c9c5f5-c4b9-44d6-b909-5aa306f56898@kernel.org>
- <00ba4593-d720-419a-a97d-37c402c91e44@arinc9.com>
+Subject: Re: [PATCH v9 06/10] ARM: dts: bcm2835: Add Unicam CSI nodes
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ linux-media@vger.kernel.org
+Cc: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ David Plowman <david.plowman@raspberrypi.com>,
+ Jean-Michel Hautbois <jeanmichel.hautbois@yoseli.org>,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+ Naushir Patuck <naush@raspberrypi.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, kernel-list@raspberrypi.com,
+ linux-rpi-kernel@lists.infradead.org, Ray Jui <rjui@broadcom.com>,
+ Scott Branden <sbranden@broadcom.com>,
+ bcm-kernel-feedback-list@broadcom.com, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20240402000424.4650-1-laurent.pinchart@ideasonboard.com>
+ <20240402000424.4650-7-laurent.pinchart@ideasonboard.com>
 From: Florian Fainelli <florian.fainelli@broadcom.com>
 Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
  xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
@@ -123,60 +123,35 @@ Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
  MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
  7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
  95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <00ba4593-d720-419a-a97d-37c402c91e44@arinc9.com>
+In-Reply-To: <20240402000424.4650-7-laurent.pinchart@ideasonboard.com>
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="00000000000036b28606164243e4"
+	boundary="00000000000043e53a0616424f42"
 
---00000000000036b28606164243e4
+--00000000000043e53a0616424f42
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
+Hi Laurent,
 
-
-On 4/15/2024 2:10 AM, Arınç ÜNAL wrote:
-> On 15.04.2024 10:57, Krzysztof Kozlowski wrote:
->> On 14/04/2024 22:21, Arınç ÜNAL wrote:
->>> NVRAM is described as both flash device partition and memory mapped 
->>> NVMEM.
->>> This platform stores NVRAM on flash but makes it also memory accessible.
->>>
->>> As device partitions are described in board DTS, the nvram node must 
->>> also
->>
->> Sorry, but we do not talk about partitions. Partitions are indeed board
->> property. But the piece of hardware, so NVMEM, is provided by SoC.
->>
->>> be defined there as its address and size will be different by board. 
->>> It has
->>> been widely described on at least bcm4709 and bcm47094 SoC board DTS 
->>> files
->>> here.
->>
->> These not proper arguments. What you are saying here is that SoC does no
->> have nvram at address 0x1c08000. Instead you are saying there some sort
->> of bus going out of SoC to the board and on the board physically there
->> is some NVRAM sort of memory attached to this bus.
+On 4/1/2024 5:04 PM, Laurent Pinchart wrote:
+> From: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
 > 
-> Yes that is the case. NVRAM is stored on a partition on the flash. On the
-> Broadcom NorthStar platform, the NAND flash base is 0x1c000000, the NOR
-> flash base is 0x1e000000.
+> Add both MIPI CSI-2 nodes in the bcm283x tree and take care of the
+> Raspberry Pi / BCM2711 specific in the related files.
 > 
-> For the board in this patch, the flash is a NAND flash. The NVRAM partition
-> starts at address 0x00080000. Therefore, the NVRAM component's address is
-> 0x1c080000.
+> Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
 
-Because the flash is memory mapped into the CPU's address space, a 
-separate node was defined since it is not part of the "soc" node which 
-describes the bridge that connects all of the peripherals.
-
-Whether we should create an additional bus node which describes the 
-bridge being used to access the flash devices using the MMIO windows is 
-debatable. Rafal, what do you think?
+Should I be taking this patch for the upcoming merge window as well or 
+do you anticipate more changes to be needed? AFAICT the binding has been 
+approved by Rob, so we should be good to go with the basic node proposed 
+here?
 -- 
 Florian
 
---00000000000036b28606164243e4
+--00000000000043e53a0616424f42
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -247,15 +222,15 @@ kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
 NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
 AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
 LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIESeGUcSZtm6fWzj
-iusaHPeABiKFdv63CB/TRVV6rQ1OMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTI0MDQxNzAzMTUxMVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIJxRwUoumRkH5Om1
+/6HNpAX6YiVNwYPra8YyMrUAGG46MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTI0MDQxNzAzMTgzM1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
 AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQCE4Owk3LL9mosedYgwNkc3OgnQCZwTofam
-abEj5xIL5cBdWALg9dAbXmHUzInrgI/7iELL4dHGN0LMRzpDcoj13Wne2XPlLxFAUVzk8G5ko/3E
-EtBRX7yDVnEhDv4bdl+nfvnNNnByd7hm/HVXf09Xko8ofaccpgtqeF0rihWstdgGLmD5YVe8VvvT
-5TecR2cUC2cQwWx0UXe4wBOvC+TI2VqvBGbSvBfPjH5A/i+JH/NXZ5r5vo0i93ie2GxjYSDL+urA
-1U5bCYjIyKMHvmLnxV7FPzRwnZjQO8dwKOtWfp7lEcBthdNwltBmfEVGFBtVC5EVxUZaZwVmTwbT
-gp+g
---00000000000036b28606164243e4--
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQAshwyflOn28ge3i4mJOuFrcuepNQCakPCs
+ZPz/M7SrDwaklGV5Q4L3x3WHWJt72qGmdRcOiB0ytriTdleHj1rXmE4Ivmqwropl/7lrBdQ92cRX
+RmzyFTaVK73GzDkUxKeG4lym1TEzOccDMprAgI/YiF/CBwgsiLYylAvl/iRggXs891x6k/c9MyIE
+r8GhUeR3JGYtC5fM/M0SDrzfJ4U9yNUUcQ3K2xibL/TlupwpFIf7T7hWHpFLZb+Bq6YYDZAh11rU
+3up49AOciBUDwVb3LZv4q9IE3VlWXdKUCYjviYo4dcfzrf0Hcv4ZBQ7OIdWXUl/kTGitmnVIIF7W
+dXZW
+--00000000000043e53a0616424f42--
 
