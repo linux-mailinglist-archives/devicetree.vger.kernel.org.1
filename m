@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-60125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67CC58A842B
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 15:20:07 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9769E8A845D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 15:24:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E245283FA2
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 13:20:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DFEF4B26B36
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 13:24:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB26D13DDD8;
-	Wed, 17 Apr 2024 13:19:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E73DF140399;
+	Wed, 17 Apr 2024 13:23:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oBgP00qI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eP4UM0+N"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFC4513DDC1;
-	Wed, 17 Apr 2024 13:19:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD0B614038A;
+	Wed, 17 Apr 2024 13:23:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713359985; cv=none; b=LHhsrtQMGEAjebqEtcxwqAPNx7/nd3MPCMhtgHkj9NVGfijp9rMPKwTHfoWhEFpcM+zX8j1ozGBQ8iYgjzndn7yYhWhEUkvr1/J2bvQ0/wqAFsHfueSetqIK5DZfjbpF5KgcqVdsDcfSGPe9Tc6w4/D1fNkIzavrPNdFnMMCPk8=
+	t=1713360200; cv=none; b=A/ye9vFume7j5Mjls9sNcEr35MqNZKVo2TYXXvKzG5N+4LkXO3oatKDSwpdMxHRrDu/1GZHjRYWNroznK5eB8jzWz+cvg5pMTP8/Zy7tISmawEtGIg+iCC3IfOsXOs/SY/zdAA/S5vHdWr5s+DZKR6hVGYf756A14WEUTccFe/0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713359985; c=relaxed/simple;
-	bh=ifTod5t0Y3zdQxoTHX+qb4Ly20Qs+/JrsNxAdRyT8cI=;
+	s=arc-20240116; t=1713360200; c=relaxed/simple;
+	bh=tcnQKu88XTy8wDaU4LOAQDFClMImiR13+BGl1UeDOcw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=itIjnsptW1+Ho1xV3TBebEvsV0igzpiX1bPyRzYQqjkd+o9XUS628ZuKSLe+uEjhQ3VbDNLLuXeBcxLzEm/Ay6a9ok0Ayxc790pJGBcKxX3GCz7NQg7G+KqWf/mJURTRh6mItnWgfOqlDrsfcyIWf9e6TIkanKqrgcbWq4YfHY4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oBgP00qI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F00AEC3277B;
-	Wed, 17 Apr 2024 13:19:44 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Qo1+TeH7iwU1nIYTwTGCbmLZ2F/2qtiPgmWEwlY0oKxuHBm/xNxb9wSgzjSsZiZGwnyaszGaV4paP229z47XxWn2vLVAWT5mGE+/ESfxGdHEME0dPeO6EZpOBjqScuFQs+QV2jc+2IYhWMsE6hww8VmybLcvwxScfnsDNUx2vJo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eP4UM0+N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 230D8C4AF0D;
+	Wed, 17 Apr 2024 13:23:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713359985;
-	bh=ifTod5t0Y3zdQxoTHX+qb4Ly20Qs+/JrsNxAdRyT8cI=;
+	s=k20201202; t=1713360200;
+	bh=tcnQKu88XTy8wDaU4LOAQDFClMImiR13+BGl1UeDOcw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oBgP00qIAs+tK0HzWCwC435B8SLinKSR/VeDfmQ+Nd839ZXRXCHfkvSridLxWvQHb
-	 Z7q1+6k6ZT9vzHM0JarNfRXJCAgdlYeRWG6AZ21MGt9cAIjo0rHUX6vj+Pmx5IMmM4
-	 XT03P8SEezA4lg0DGgTfXqDqYfLXbrF1ivmeIwVZ90EIzcST4gJE55NlvBwozbDxqi
-	 wx9g9ByITh9mYRBHnmxLKHlDhTCmGW1plOe8d52O26ZXN1Zsfk7VnEVrQJewiHrJmS
-	 UQ946Q0c+jJWu5q5VZywZ8M7fqYvnsLsi1NPtJ/hFYDF2cLiDKcbAl2CXRgIU/H3Zw
-	 S6Z6SaFxzxLyQ==
-Message-ID: <3b469d35-ee27-42d4-8768-fc2ce9235196@kernel.org>
-Date: Wed, 17 Apr 2024 15:19:44 +0200
+	b=eP4UM0+NtCz0XOTbVtZ9hq4GdFytAqHlxVyBQGYbKRgFkjK/pn+0tVmHifavrNm95
+	 zOClKjmZkDB9T2wTq540cBavx9obd5Z6JpoO104EMkKZwlG/5sDK9v89YOUUDVXmnn
+	 z8xiP70oY0hPB9GtGuRfETx435RMpKcfyOz/qxi4cif5JBJvF51Hm2SGJACyetP5/A
+	 X42B53ZE2/BVc3pbKtJEhhIxhpqoGEQ9fXJBeHQPKVL50H7e7AT2uOJ5DP4IrzIGU1
+	 qc8BsVB+XhJ5Wn3Us2BhIDColZMm+oM9oCGHw018ffHOJ/xyt3ssDZOBCFFvMmWaz0
+	 TH8p9747PcjcA==
+Message-ID: <48b2e0fd-4d7f-4bb6-aadd-804847e3250c@kernel.org>
+Date: Wed, 17 Apr 2024 15:23:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/5] virt: vmgenid: rearrange code to make review
- easier
-To: "Jason A. Donenfeld" <Jason@zx2c4.com>, Babis Chalios <bchalios@amazon.es>
-Cc: Alexander Graf <graf@amazon.de>, tytso@mit.edu, olivia@selenic.com,
- herbert@gondor.apana.org.au, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-crypto@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, sudanl@amazon.com,
- xmarcalx@amazon.co.uk, dwmw@amazon.co.uk
-References: <20240417081212.99657-1-bchalios@amazon.es>
- <20240417081212.99657-2-bchalios@amazon.es>
- <10d41e7e-87b1-4036-a740-da36270a4325@amazon.de>
- <2838b126-ad87-4642-9223-e24f3fdb2c63@amazon.es> <Zh_Dpi630-LXJkJm@zx2c4.com>
+Subject: Re: [PATCH 3/4] ARM: dts: BCM5301X: Add DT for ASUS RT-AC3200
+To: Florian Fainelli <florian.fainelli@broadcom.com>,
+ =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>,
+ Hauke Mehrtens <hauke@hauke-m.de>, Rafal Milecki <zajec5@gmail.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: Tom Brautaset <tbrautaset@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20240414-for-soc-asus-rt-ac3200-ac5300-v1-0-118c90bae6e5@arinc9.com>
+ <20240414-for-soc-asus-rt-ac3200-ac5300-v1-3-118c90bae6e5@arinc9.com>
+ <a88385a4-afad-4bd8-afc1-37e185e781f4@kernel.org>
+ <85261d11-d6cb-4718-88d9-95a7efe5c0ab@arinc9.com>
+ <e6cfe735-0a46-4c07-90ee-4ae25c921b03@kernel.org>
+ <335cdd4b-7309-4633-9b4f-6487c72c395c@arinc9.com>
+ <07c9c5f5-c4b9-44d6-b909-5aa306f56898@kernel.org>
+ <00ba4593-d720-419a-a97d-37c402c91e44@arinc9.com>
+ <7b465ddb-2b18-4e7f-8b03-d4e51006e1cb@broadcom.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,50 +113,59 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <Zh_Dpi630-LXJkJm@zx2c4.com>
+In-Reply-To: <7b465ddb-2b18-4e7f-8b03-d4e51006e1cb@broadcom.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 17/04/2024 14:42, Jason A. Donenfeld wrote:
-> On Wed, Apr 17, 2024 at 11:05:27AM +0200, Babis Chalios wrote:
->>
->>
->> On 17/4/24 10:35, Alexander Graf wrote:
->>>
->>> On 17.04.24 10:12, Babis Chalios wrote:
->>>> From: Sudan Landge <sudanl@amazon.com>
->>>>
->>>> Rearrage the functions of vmgenid to make the next commit,
->>>> which re-implements vmgenid as a platform driver, easier to review.
->>>>
->>>> Signed-off-by: Sudan Landge <sudanl@amazon.com>
->>>
->>>
->>> You can't sign off on behalf of someone else. The SoB here needs to be 
->>> yours. If you are taking over this code from Sudan, I'd suggest to 
->>> take over full ownership of it and put your own name as author and SoB 
->>> in all patches.
->>>
->>
->> I thought about it and it seemed weird to me that I take over SoB and 
->> authorship since I only touched one line in one of
->> the patches, but I will be taking over the patches, so I can do that if 
->> that's the way we things are done.
->>
->> Does it make sense to at least add "Co-authored-by Sudan Landge 
->> <sudanl@amazon.com>" here?
+On 17/04/2024 05:15, Florian Fainelli wrote:
 > 
-> Wait, what? No. If you didn't write these patches, you're not the
-> author. Sudan is the author. However, if they passed through you, it's
-> fine to add your S-o-b. You can even mention the trivial change you made
-> between Sudan's S-o-b and your own.
 > 
+> On 4/15/2024 2:10 AM, Arınç ÜNAL wrote:
+>> On 15.04.2024 10:57, Krzysztof Kozlowski wrote:
+>>> On 14/04/2024 22:21, Arınç ÜNAL wrote:
+>>>> NVRAM is described as both flash device partition and memory mapped 
+>>>> NVMEM.
+>>>> This platform stores NVRAM on flash but makes it also memory accessible.
+>>>>
+>>>> As device partitions are described in board DTS, the nvram node must 
+>>>> also
+>>>
+>>> Sorry, but we do not talk about partitions. Partitions are indeed board
+>>> property. But the piece of hardware, so NVMEM, is provided by SoC.
+>>>
+>>>> be defined there as its address and size will be different by board. 
+>>>> It has
+>>>> been widely described on at least bcm4709 and bcm47094 SoC board DTS 
+>>>> files
+>>>> here.
+>>>
+>>> These not proper arguments. What you are saying here is that SoC does no
+>>> have nvram at address 0x1c08000. Instead you are saying there some sort
+>>> of bus going out of SoC to the board and on the board physically there
+>>> is some NVRAM sort of memory attached to this bus.
+>>
+>> Yes that is the case. NVRAM is stored on a partition on the flash. On the
+>> Broadcom NorthStar platform, the NAND flash base is 0x1c000000, the NOR
+>> flash base is 0x1e000000.
+>>
+>> For the board in this patch, the flash is a NAND flash. The NVRAM partition
+>> starts at address 0x00080000. Therefore, the NVRAM component's address is
+>> 0x1c080000.
+> 
+> Because the flash is memory mapped into the CPU's address space, a 
+> separate node was defined since it is not part of the "soc" node which 
+> describes the bridge that connects all of the peripherals.
+> 
+> Whether we should create an additional bus node which describes the 
+> bridge being used to access the flash devices using the MMIO windows is 
+> debatable. Rafal, what do you think?
 
-It is not "fine" but it is a must. Regardless if you changed something
-or not, you *must* provide your SoB since you generated the patch.
-Babis, please read carefully submitting patches. Especially the DCO
-part, but entire document is important.
+Sorry guys, I don't get. I don't know the addresses neither the names
+like Broadcom Northstar, so this does not clarify me at all.
 
+Please answer the simple questions:
+1. Is NAND flash part of SoC?
+2. If not, is NAND flash provided by Broadcom or anyone else?
 
 Best regards,
 Krzysztof
