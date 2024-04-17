@@ -1,356 +1,180 @@
-Return-Path: <devicetree+bounces-60251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C10A88A899A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 19:01:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DD2B8A899C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 19:02:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2627DB2538E
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 17:01:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 214051F251B1
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 17:02:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54C29172BA2;
-	Wed, 17 Apr 2024 17:00:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A0FF17107F;
+	Wed, 17 Apr 2024 17:01:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="VIPJn7ml"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IlN5N42p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2047.outbound.protection.outlook.com [40.107.241.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99B0E171647;
-	Wed, 17 Apr 2024 17:00:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.241.47
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713373229; cv=fail; b=FQwUu4hwr76M30iiQV0dVQCC1rGMEDt0bHHOM/qgsySccJGhnp3hJJitBtd/UPENMvwPgCKtneXTsYvU0hVxgXrIWfutlim0z4N3MYqmHlZBALSN+AoUPyzyq9o6kO6u381L7M5z3znrhxCWkX/KeCisFfPDOpCsIZzLZcyv1lw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713373229; c=relaxed/simple;
-	bh=WYnwvMsizIBjI0dsvib/vHgErqffgHMQFqLXx05KeyI=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=CduqD8dc5M9LlsoZLx2c4mT1xtxdNsjco3DyE44xmoLlcTl8DCdM0hwUk0ziGLkJtzQUYHrx3pc7DCSyF48Hn+BWw1J7WyGANu4lbduXz24ZomZeZ+G0+mDfqRL43o3LbepP77hYI/xph/XlPWydXidasGLdlI6Wj2FA6xQs9z0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=VIPJn7ml; arc=fail smtp.client-ip=40.107.241.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Jqqf/wKpih4G2yv4Rdz3ffY/kt1hTD7h9BSaOe0YgjETVPSm9mh7k0HhMp0QsnHZMolYk19pSRPbtisRzRrjfIFuvDga9CRiSlaoEqp4Ohgy+wXF7ikKyuOvL1gX4/KVUqE7s0+UdSVpFWbzjsCgycfCP+JF0DpkmTjg/rlOL0eUWPdGdXQzoRl64cxOvW9kGwRJ/tjSixguzUmAfMCAkLYFfKEok2o7iAVwPLy74gsbMiIiGJhJgWNmdjOHBkdwk32akQ3vl9X12RoAf5BcRSDTiuui/TRyD/BWJJsNHHlstihlzI9yzqDxJQ9Qwl3fgjadLR2GGf4miWTn6tGBeA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5eGDa6Oi5FpOqvaJybgmzVETHo6HCdbgKB/yOCCnyqY=;
- b=GGDFTA/pWG8UPFrTbXxYTovODMcax9gf6SL9EXDlbdzm35s89Bcq0SZY0mLAylGMpbwSPuWlcLowIqF0bQmbKUw9DcH1iCMV7S5LmmsyslLDrDxU6YMINoY8gcOLwA+hBwStOcywuCkdg49MGwL1fFkPtZj/nGQ53VTtxhweUjWtkimJaMSCGiRGH+ylft0aTR+OWuY/MtjyTsVN0P/wwIoXRWXmsPaH+fVwt2EK57/47qAbiBCQO5h+h9QS1NIY/vrz2PQe/Ftecp+u4rm+y1o19HBijSR2cx40tGiKYeIf9Z9+gPHHZzvu1Oc1bT+3wO/5xgEPaffWYd4/yYfXZg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5eGDa6Oi5FpOqvaJybgmzVETHo6HCdbgKB/yOCCnyqY=;
- b=VIPJn7mlO9f+iwPEs2Jjr7jXdH6Bp49V8J5pn4HfQLAOYT7wfIdg/6CD8n3VVmSa3L0tgc0wS1ZfLPD+PHhMc8uQ6EPKABpXsGd5Rb1yHJ5c8uRQGr+4ppjyJt22NIDtxHjnJFP+EqKIQRObQ/35nI534dNS6m2VpbP03b8MG7Y=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PAXPR04MB8080.eurprd04.prod.outlook.com (2603:10a6:102:1c9::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.51; Wed, 17 Apr
- 2024 17:00:23 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::1e67:dfc9:d0c1:fe58]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::1e67:dfc9:d0c1:fe58%7]) with mapi id 15.20.7452.049; Wed, 17 Apr 2024
- 17:00:23 +0000
-From: Frank Li <Frank.Li@nxp.com>
-Date: Wed, 17 Apr 2024 12:59:43 -0400
-Subject: [PATCH v7 5/5] PCI: dwc: Add generic MSG TLP support for sending
- PME_Turn_Off when system suspend
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240417-pme_msg-v7-5-9c6208cda90f@nxp.com>
-References: <20240417-pme_msg-v7-0-9c6208cda90f@nxp.com>
-In-Reply-To: <20240417-pme_msg-v7-0-9c6208cda90f@nxp.com>
-To: Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>, 
- Gustavo Pimentel <gustavo.pimentel@synopsys.com>, 
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
- Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev
-Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Frank Li <Frank.Li@nxp.com>
-X-Mailer: b4 0.13-dev-e586c
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1713373200; l=6369;
- i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
- bh=WYnwvMsizIBjI0dsvib/vHgErqffgHMQFqLXx05KeyI=;
- b=iw75DLzDPH8t4Y5PLnGGaj8MTEJfzsqPoMH2wtnRfVk3JOXDlb+FySLw+bi6nlSz0A+N1yUa/
- 5xUCzF5/EJABF4ZSeOE1c6oJe7/Y776lVy7r5SXRiQV2FHKDkeyp9i6
-X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
- pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
-X-ClientProxiedBy: SJ0PR05CA0012.namprd05.prod.outlook.com
- (2603:10b6:a03:33b::17) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE53A17106C;
+	Wed, 17 Apr 2024 17:01:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713373265; cv=none; b=ri9tnouN7nX7VxBffNzNwFPxgrCqpgkDlBFuNuKS6o6bsiI82nNWwj1RMWFCRcScEtmQWqGS7SgZixoUEGxGYYaksZNw0/kNyFN/Lnwle75JsUUsrWw02vjg5jx5vZmsnW3emSFvrZnck0q+Nr4j/xhXChO15cQl/WJI3R1wXd0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713373265; c=relaxed/simple;
+	bh=g7bYmI9z5WPpy0G5QsJtGrJukZj5hsolIddTlKoRjF8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=AgT89SrZtvmPdQtqCz5KiJ1wxAuP2smdB2ksZiYjpuU53vplx+krqnpcifBTFTDBQyEQqx5tFXm5XURIkf/KHWKst59qpEl9ctn7veksUip7ikn1FK66r9jeXdVewiqNWCgvda9VSwtQ5US6EG6wYNFRKs8hP5ehU6Z+MOcHNM4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IlN5N42p; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-349545c3eb8so1342817f8f.2;
+        Wed, 17 Apr 2024 10:01:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1713373262; x=1713978062; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=B521hDt7nLJljyJEdIYozlEz0F5MRo++dHaSN5wbsNY=;
+        b=IlN5N42pYCBD7r5qrrTdiHHWkFjXx9bUS1fSPvBX7LeMwKcpVQkb482lLLUURV13dB
+         WHa9c59FrtbwhFiaNbYnZfXKZ//6TBAanV0sDpErUhxe1SJDwRevSPUCKmTbgdxegqEf
+         aZcuMU2YAhi1yWWZanJlqSvMWnlzHchp2ynjzXh8yGJS8lcqsddvGR88ZVRGF+Jusaa+
+         0rMV0zMYhNLLAbwl7oZRuzRybcq/uD6KTIW+n9eP4k8f6d2tEQLp8JcYf0Xbu4zBqRSo
+         w0keQ4P4z0qTwts9xObWrgfGYYK9JFwHcgCVImI1gC4tdI5Vof+3D1QlJEhO9qdpgzU2
+         W3Jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713373262; x=1713978062;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=B521hDt7nLJljyJEdIYozlEz0F5MRo++dHaSN5wbsNY=;
+        b=fSvg3qDqYKaJobwhFf7g6DkZqbWYOspekAL5CBk/3HH7snoedXJhoG+UujKiMqhsDK
+         6zzMC/njLMvPF1rOo8BIcfzGjBRpf4VC1W3W1zSwpLEb481PeZQWp/HGv7KqGXMC9npk
+         8/AMR/k1CR+q7rtrRfZlmzYyk/GC9WPGfXKy7IVF217QWGpbpd1V8w8+PC56BbMkdFBx
+         liM0lzRZlwAheVHYOrobefp6Z++26+h9V5FJFfLiZD8xryMdwzUKEUDjB+WIzLUbqKSu
+         8EP2wsNFPZFaZ2fo2B2+YoRCaBjH8W1n4tdLqqnwdWu/qj6IcvA93Dcf84oJjPKy6pB/
+         0Ggg==
+X-Forwarded-Encrypted: i=1; AJvYcCV2uNSPxc54xmknGv91QNV9VkCT5YKD2n+rfZKu1DghwveQjgNUfQXWG1rHaGCCUFKmyjNiW4q9WDrGkFj1svqOxDRZiK/ASGDL6cU3J9OPHtdWRDEJMlbx6xjXYNstleVs/28Gna3nwipJXm3UqSd+XEsbBiYvePsq6XvlXzm/QffKjA==
+X-Gm-Message-State: AOJu0Yw6++KrxJYAKd2vzio+bTJkXOEsEaXwSADV9dYB7eVsqBTdkUSv
+	9UWy62+Wr7tN07NduhtJmEc2h2FhVyFjMsMMCcugnHL+X9c38aLP
+X-Google-Smtp-Source: AGHT+IFBgSLAKnJWy/yoYt0incQcA2cye6eZ9TR41TnhlVmKVN8AHeJkao9bG1Wzye1H+2dHmrT4yA==
+X-Received: by 2002:a5d:4104:0:b0:343:bb25:82f0 with SMTP id l4-20020a5d4104000000b00343bb2582f0mr10374571wrp.11.1713373262076;
+        Wed, 17 Apr 2024 10:01:02 -0700 (PDT)
+Received: from spiri.. ([86.124.122.31])
+        by smtp.gmail.com with ESMTPSA id g2-20020adff3c2000000b00343300a4eb8sm17949441wrp.49.2024.04.17.10.00.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Apr 2024 10:01:01 -0700 (PDT)
+From: Alisa-Dariana Roman <alisadariana@gmail.com>
+X-Google-Original-From: Alisa-Dariana Roman <alisa.roman@analog.com>
+To: michael.hennerich@analog.com,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: alexandru.tachici@analog.com,
+	lars@metafoo.de,
+	Michael.Hennerich@analog.com,
+	jic23@kernel.org,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	lgirdwood@gmail.com,
+	broonie@kernel.org,
+	andy@kernel.org,
+	nuno.sa@analog.com,
+	marcelo.schmitt@analog.com,
+	bigunclemax@gmail.com,
+	dlechner@baylibre.com,
+	okan.sahin@analog.com,
+	fr0st61te@gmail.com,
+	alisa.roman@analog.com,
+	marcus.folkesson@gmail.com,
+	schnelle@linux.ibm.com,
+	liambeguin@gmail.com
+Subject: [PATCH v6 0/5] iio: adc: ad7192: Add AD7194 support
+Date: Wed, 17 Apr 2024 20:00:49 +0300
+Message-Id: <20240417170054.140587-1-alisa.roman@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAXPR04MB8080:EE_
-X-MS-Office365-Filtering-Correlation-Id: 95ec8319-b82f-4c92-8d55-08dc5effdf72
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	jJnPLp5TDBST08NRXyaGHn4HM5C651Owobc79+SeWQ6Gy5iLzQc4X6rritiNCPdsqmGDajgKKaGbxoNt2NcTiNZbf+TVN/wkHOyZ4j2ZFBIqtq+4C+iLvc//NcSIJcUhPgOcNlGgmZ/HPBy7wrsEzVoPd90hc8RFHUcVWMlrY3c4Z4HfH0qJw7rS3cYVlFuer8+1kO0swRYbsk3qFmfC+vkXyRemDQJp2IImTTct+uoWwU/BBDtfjMiQNegacnZNdNKxHAkMhYmx3t7dJ/oU8amxXUXLJTzQDu1VQg0ZXn4UXSM3tbPNLO3j5J5cQsyPhJ+pfu0lgfu64X2THZLquq7jS7pXxrSCOgRdRIta9POsywcM5L21jLH1DzQRb7bwUVJB1BSdnr0RFdBhC2EkrxpB3W2jpViKb+O/LgTDQX+kPvMhAzgxL3vxB1ZC8qDMIbb77Jqvf/CFHRWhB7oqYUk5huQwXpc5oP6sGWewxpj7OnlzKZo9L7mimeNufAtxvJ51PqqZ0qQlTi41nQbBMwSvQxocbyaK225uAECG3TpfAUkPl0/n3ELS5bk4BpDDjgirL+qeNnM/Fzc+mARG9w3Yd/JLUs7sAgzS0dCnZDPs/T3LphSkIZ8YBqPQgZ7hljldsZW2XbFsWyo32txNkeqVBDh/ruq4nhIHi40AzXSeFIOAw4RyLWDNT9VKimGiLl5H+n7hF2MPOeg38WtC4oolOb21Q44b+Xb67W3zCU4=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(366007)(7416005)(376005)(52116005)(921011)(38350700005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?WkkrdHAyNDd6QUdJaWRUa0NMTFYwQ3drNVY2My9KSUs4dVE2aDhJRXBKRUJI?=
- =?utf-8?B?aFVPZDVPcWkzdDdDTXcvekhxTGlsZ0ROWkViL3AvbXRsTXFPOUMxQW52WWNk?=
- =?utf-8?B?bENhcEszUTN1RUFFVzhkclNZWDBuejZzODlJU3BnODMyN29rVHBZUFZwZVR3?=
- =?utf-8?B?TGNZZno1OW1RcWE0MzkyZjdQQ2dVVDVTbWlhMEVWMjZ4RFAvL29QNm1IVWJM?=
- =?utf-8?B?bExobU90dVo3dGs1Y3dXNE5zTytxSnd6clkzSitLaFBJMWVrTVNnbkRtT2tj?=
- =?utf-8?B?aVpnNCt5MWlMMjdONW5LMGU4TysyWlptMld5NzFTYmpna1E4Vkppc2NFV2dR?=
- =?utf-8?B?M0NVSVVYWFNIV0lMb2pnT0NlU21LLyt3bFJ2bityWlpmaCtlaEZRN2JzcENP?=
- =?utf-8?B?WG1sM1g1M1dGTUp4RnFBekw2MnJMN3NHSFEwbmdMbGNQdXY5T1JxekVFY05q?=
- =?utf-8?B?ZEd5NjIvTktDaDlXK3lDcm91SlRvaVZtcGJEakNtSDJHNUlHdGxOUFJaUTN0?=
- =?utf-8?B?K3BXNkc3UFY4aTBEYzFQTjg2bTNBRkxOWmttakVMNlp0UlBoU3F0TUZubUJB?=
- =?utf-8?B?amdQSjZtblRhdkpsK0FGdTZNY3J6WU01bnk2QlFPMjE4MGh2djhHUDJONW5s?=
- =?utf-8?B?Ukl6R1hJK09FcURXMFdDYUZldXI3TmZZcTc1dVFqbG0wVnJQTy9wcUh0WGdl?=
- =?utf-8?B?QTZOZnJFZkI0Wnp0T3ZBM1hobll3VHNhMEJadkpMVExlYlNOUkFSKytDRll1?=
- =?utf-8?B?NlpnRHRETmdVa0R0N0djV3JVUkkvLzZySFg5akoybk4rZzRMS01lR3RwVENh?=
- =?utf-8?B?b2RYMmlkZktZdVR2K3hPSEhUdi90SENRaU9MWGVucGZFOUllZjltODc5bUk4?=
- =?utf-8?B?cnhHQVpMUVM5YkN0RVFmUk96d29zUnFHV1piRGtIRUE1TFdJTytzVEg4VnhQ?=
- =?utf-8?B?bk82L0RQRDh0eUhhK0FTbmNBQ211ZVhPTkhJNjFBS3lRK0prbFBETEhqRkg3?=
- =?utf-8?B?TTYwTEJFQW5pR0luNG1vRHRkaEZ2TGFualpEYVkxamlZREdEMFl5dUhRU0xu?=
- =?utf-8?B?SkZvR0FBaVNkN3l1SkNsK3RBQjBveU1WZDhPS0NtWTVvMmNYN1ZkTUNXNWFs?=
- =?utf-8?B?K1dmb1d2R1dkZjBwbllwNnNSUEl6Y2RZaSs2VnlrMmlGOGNJTXNVQWQ4dEtm?=
- =?utf-8?B?bGsxSUk5QlpUQnd6WjY0K0kwcVo3S2VrbnhLWEtOZGNYdHo5YlN0UjQ4b2dj?=
- =?utf-8?B?bWZ2am5oZHdIMjhTS3lxVmt0NXFlWTQyRVB5UkhUSXZYdld4NmpuWEFCMjRr?=
- =?utf-8?B?eWtWM0h2NXBUaE56bkVrL2lMS04zZWpBM3ZqNUtuMlZmdmxOL3FiSWo4bzFO?=
- =?utf-8?B?Mi9pM1MxdzlxbFdaYlkzcmt4Wm41TnhqbWphV1dTdm9ucndsNzk0MFczdzRi?=
- =?utf-8?B?M1ZXYy96by9IV2RLRXJ3V01HSFRDaUcrNjZYUFJTMGJwTTJlejJST05TMUN1?=
- =?utf-8?B?NHlQN3JuRm1uSkJXZFNnRyt1KzFiUlFiSlE5VUgzOUZnb0VxYlYzQ3BobkRM?=
- =?utf-8?B?S3FtTHJYR1RCVzE1SEtzeEdDTmRoUjFJZ3hsVnN3dmQ1WHNEQUlVejdXMTdo?=
- =?utf-8?B?RndGQU5xOWloZVU2Q3gvcmZucVUyUU9Cd0xXOS9ScDM0bnhTWG5qaHRaYkRY?=
- =?utf-8?B?REswK1M2eG5MV0QxalIveWNad1h6VFp2UmhHenFLaFNYVjhPRFRTSXk1cGlF?=
- =?utf-8?B?UktTVkk3dUVtUmhWREVraW9RZ2N1NmRzMGY2UnBkS0FkT1hnYTNUNkRLWFh5?=
- =?utf-8?B?eGQxclNVbHBCTjRhREt0Sk55ZHgvNDdPN0huSG1jVW91S0pQam9JT0dQNXNW?=
- =?utf-8?B?TU4rK0IyaWxoUVdVcmlSMmJRL2NyQUxiNUU1eFlFREpyMXVxV2dmaTZvL1dH?=
- =?utf-8?B?N1NXUExaY1k3VGt3UGxFZit4SGJGVWdBTDN5d0dzUG54ampydHdMTWtBbUlG?=
- =?utf-8?B?MzBmUExHSnRObXlzY0ZUK0tXNDVOM1JDWFN2aFM4RHI1eEhSTk1JT1JueHNE?=
- =?utf-8?B?Q2ZLaXU3cXlhZGFBQ0psOXFxbXRybFpnZW9sMjhQVEJxUmFyRW9xUGEweU1U?=
- =?utf-8?Q?PFnLrbJafFeoAxiTzCAsegy4F?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 95ec8319-b82f-4c92-8d55-08dc5effdf72
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2024 17:00:23.8954
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 19hHVRk8W3H+IGuYldYxRgveWbV6I+D+C7TPHmeQ/JKT/37M5kB/ijDW+5CBMOSPS9ac3QMNwkyl1yPC0jD1TQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8080
+Content-Transfer-Encoding: 8bit
 
-Instead of relying on the vendor specific implementations to send the
-PME_Turn_Off message, let's introduce a generic way of sending the message
-using the MSG TLP.
+Dear maintainers,
 
-This is achieved by reserving a region for MSG TLP of size
-'pci->region_align', at the end of the first IORESOURCE_MEM window of the
-host bridge. And then sending the PME_Turn_Off message during system
-suspend with the help of iATU.
+Thank you all for the feedback!
 
-The reason for reserving the MSG TLP region at the end of the
-IORESOURCE_MEM is to avoid generating holes in between. Because, when the
-region is allocated using allocate_resource(), memory will be allocated
-from the start of the window. Later, if memory gets allocated for an
-endpoint of size bigger than 'region_align', there will be a hole between
-MSG TLP region and endpoint memory.
+I am submitting the upgraded series of patches for the ad7192 driver.
 
-It should be noted that this generic implementation is optional for the
-glue drivers and can be overridden by a custom 'pme_turn_off' callback.
+Please consider applying in order.
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- drivers/pci/controller/dwc/pcie-designware-host.c | 102 ++++++++++++++++++++--
- drivers/pci/controller/dwc/pcie-designware.h      |   3 +
- 2 files changed, 100 insertions(+), 5 deletions(-)
+Thank you!
 
-diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-index 3a9cb4be22ab2..f57805b21ef53 100644
---- a/drivers/pci/controller/dwc/pcie-designware-host.c
-+++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-@@ -398,6 +398,34 @@ static int dw_pcie_msi_host_init(struct dw_pcie_rp *pp)
- 	return 0;
- }
- 
-+static void dw_pcie_host_request_msg_tlp_res(struct dw_pcie_rp *pp)
-+{
-+	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-+	struct resource_entry *win;
-+	struct resource *res;
-+
-+	win = resource_list_first_type(&pp->bridge->windows, IORESOURCE_MEM);
-+	if (win) {
-+		res = devm_kzalloc(pci->dev, sizeof(*res), GFP_KERNEL);
-+		if (!res)
-+			return;
-+
-+		/*
-+		 * Allocate MSG TLP region of size 'region_align' at the end of
-+		 * the host bridge window.
-+		 */
-+		res->start = win->res->end - pci->region_align + 1;
-+		res->end = win->res->end;
-+		res->name = "msg";
-+		res->flags = win->res->flags | IORESOURCE_BUSY;
-+
-+		if (!request_resource(win->res, res))
-+			pp->msg_res = res;
-+		else
-+			devm_kfree(pci->dev, res);
-+	}
-+}
-+
- int dw_pcie_host_init(struct dw_pcie_rp *pp)
- {
- 	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-@@ -484,6 +512,18 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
- 
- 	dw_pcie_iatu_detect(pci);
- 
-+	/*
-+	 * Allocate the resource for MSG TLP before programming the iATU
-+	 * outbound window in dw_pcie_setup_rc(). Since the allocation depends
-+	 * on the value of 'region_align', this has to be done after
-+	 * dw_pcie_iatu_detect().
-+	 *
-+	 * Glue drivers need to set 'use_atu_msg' before dw_pcie_host_init() to
-+	 * make use of the generic MSG TLP implementation.
-+	 */
-+	if (pp->use_atu_msg)
-+		dw_pcie_host_request_msg_tlp_res(pp);
-+
- 	ret = dw_pcie_edma_detect(pci);
- 	if (ret)
- 		goto err_free_msi;
-@@ -541,6 +581,11 @@ void dw_pcie_host_deinit(struct dw_pcie_rp *pp)
- 
- 	dw_pcie_edma_remove(pci);
- 
-+	if (pp->msg_res) {
-+		release_resource(pp->msg_res);
-+		devm_kfree(pci->dev, pp->msg_res);
-+	}
-+
- 	if (pp->has_msi_ctrl)
- 		dw_pcie_free_msi(pp);
- 
-@@ -700,7 +745,13 @@ static int dw_pcie_iatu_setup(struct dw_pcie_rp *pp)
- 		atu.type = PCIE_ATU_TYPE_MEM;
- 		atu.cpu_addr = entry->res->start;
- 		atu.pci_addr = entry->res->start - entry->offset;
--		atu.size = resource_size(entry->res);
-+
-+		/* Adjust iATU size if MSG TLP region was allocated before */
-+		if (pp->msg_res && pp->msg_res->parent == entry->res)
-+			atu.size = resource_size(entry->res) -
-+					resource_size(pp->msg_res);
-+		else
-+			atu.size = resource_size(entry->res);
- 
- 		ret = dw_pcie_prog_outbound_atu(pci, &atu);
- 		if (ret) {
-@@ -733,6 +784,8 @@ static int dw_pcie_iatu_setup(struct dw_pcie_rp *pp)
- 		dev_warn(pci->dev, "Ranges exceed outbound iATU size (%d)\n",
- 			 pci->num_ob_windows);
- 
-+	pp->msg_atu_index = i;
-+
- 	i = 0;
- 	resource_list_for_each_entry(entry, &pp->bridge->dma_ranges) {
- 		if (resource_type(entry->res) != IORESOURCE_MEM)
-@@ -838,11 +891,47 @@ int dw_pcie_setup_rc(struct dw_pcie_rp *pp)
- }
- EXPORT_SYMBOL_GPL(dw_pcie_setup_rc);
- 
-+static int dw_pcie_pme_turn_off(struct dw_pcie *pci)
-+{
-+	struct dw_pcie_ob_atu_cfg atu = { 0 };
-+	void __iomem *mem;
-+	int ret;
-+
-+	if (pci->num_ob_windows <= pci->pp.msg_atu_index)
-+		return -ENOSPC;
-+
-+	if (!pci->pp.msg_res)
-+		return -ENOSPC;
-+
-+	atu.code = PCIE_MSG_CODE_PME_TURN_OFF;
-+	atu.routing = PCIE_MSG_TYPE_R_BC;
-+	atu.type = PCIE_ATU_TYPE_MSG;
-+	atu.size = resource_size(pci->pp.msg_res);
-+	atu.index = pci->pp.msg_atu_index;
-+
-+	atu.cpu_addr = pci->pp.msg_res->start;
-+
-+	ret = dw_pcie_prog_outbound_atu(pci, &atu);
-+	if (ret)
-+		return ret;
-+
-+	mem = ioremap(atu.cpu_addr, pci->region_align);
-+	if (!mem)
-+		return -ENOMEM;
-+
-+	/* A dummy write is converted to a Msg TLP */
-+	writel(0, mem);
-+
-+	iounmap(mem);
-+
-+	return 0;
-+}
-+
- int dw_pcie_suspend_noirq(struct dw_pcie *pci)
- {
- 	u8 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
- 	u32 val;
--	int ret;
-+	int ret = 0;
- 
- 	/*
- 	 * If L1SS is supported, then do not put the link into L2 as some
-@@ -854,10 +943,13 @@ int dw_pcie_suspend_noirq(struct dw_pcie *pci)
- 	if (dw_pcie_get_ltssm(pci) <= DW_PCIE_LTSSM_DETECT_ACT)
- 		return 0;
- 
--	if (!pci->pp.ops->pme_turn_off)
--		return 0;
-+	if (pci->pp.ops->pme_turn_off)
-+		pci->pp.ops->pme_turn_off(&pci->pp);
-+	else
-+		ret = dw_pcie_pme_turn_off(pci);
- 
--	pci->pp.ops->pme_turn_off(&pci->pp);
-+	if (ret)
-+		return ret;
- 
- 	ret = read_poll_timeout(dw_pcie_get_ltssm, val, val == DW_PCIE_LTSSM_L2_IDLE,
- 				PCIE_PME_TO_L2_TIMEOUT_US/10,
-diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-index 703b50bc5e0f1..dca5de4c6e877 100644
---- a/drivers/pci/controller/dwc/pcie-designware.h
-+++ b/drivers/pci/controller/dwc/pcie-designware.h
-@@ -341,6 +341,9 @@ struct dw_pcie_rp {
- 	struct pci_host_bridge  *bridge;
- 	raw_spinlock_t		lock;
- 	DECLARE_BITMAP(msi_irq_in_use, MAX_MSI_IRQS);
-+	bool			use_atu_msg;
-+	int			msg_atu_index;
-+	struct resource		*msg_res;
- };
- 
- struct dw_pcie_ep_ops {
+v5 -> v6
+  - protect ad7192_update_filter_freq_avail with lock
+  - better bindings description for AINCOM
+  - the pseudo-differential channels are no longer configured as differential
+    when aincom supply is not present in devicetree, in this case the offset for
+    the channels is set to 0
+  - because of the above change, there is no longer a need for multiple channel
+    options
+  - correct channels regex in bindings
+  - no need to move chip_info anymore
+  - change names to ad7194_parse_channel/s
+  - add else statement to highlight parse_channels effect
+
+v4 -> v5
+  - add aincom supply as discussed previously
+    https://lore.kernel.org/all/CAMknhBF5mAsN1c-194Qwa5oKmqKzef2khXnqA1cSdKpWHKWp0w@mail.gmail.com/#t
+  - ad7194 differential channels are now dynamically configured in the
+    devicetree
+
+v3 -> v4
+  - drop device properties patch, changes already applied to tree
+  - change bindings and driver such that for AD7194 there are 16
+    differential channels, by default set to AINx - AINCOM, which can be
+    configured in devicetree however the user likes
+  - corrected mistake regarding positive and negative channel macros:
+    subtract 1 from the number corresponding to AIN input
+
+v2 -> v3
+  - add precursor patch to simply functions to only pass
+    ad7192_state
+  - add patch to replace custom attribute
+  - bindings patch: correct use of allOf and some minor changes to
+    the ad7194 example
+  - add ad7194 patch:
+    - use "ad7192 and similar"
+    - ad7194 no longer needs attribute group
+    - use callback function in chip_info to parse channels
+    - move struct ad7192_chip_info
+    - change position of parse functions
+  - drop clock bindings patch
+
+v1 -> v2
+  - new commit with missing documentation for properties
+  - add constraint for channels in binding
+  - correct pattern for channels
+  - correct commit message by adding "()" to functions
+  - use in_range
+  - use preferred structure in Kconfig
+
+Kind regards,
+
+Alisa-Dariana Roman (5):
+  iio: adc: ad7192: Use standard attribute
+  dt-bindings: iio: adc: ad7192: Add aincom supply
+  iio: adc: ad7192: Add aincom supply
+  dt-bindings: iio: adc: ad7192: Add AD7194 support
+  iio: adc: ad7192: Add AD7194 support
+
+ .../bindings/iio/adc/adi,ad7192.yaml          |  83 +++++++
+ drivers/iio/adc/Kconfig                       |  11 +-
+ drivers/iio/adc/ad7192.c                      | 226 ++++++++++++++----
+ 3 files changed, 274 insertions(+), 46 deletions(-)
 
 -- 
 2.34.1
