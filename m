@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-60305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE19F8A8C0B
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 21:23:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A91DD8A8C0D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 21:26:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D9909B20F19
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 19:23:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DBCF8B211E1
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 19:26:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA14C24B34;
-	Wed, 17 Apr 2024 19:22:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D82DA25632;
+	Wed, 17 Apr 2024 19:26:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="htKUL6uE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yD4vJBB+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D481241E7
-	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 19:22:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C3A524B34
+	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 19:26:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713381779; cv=none; b=DxOc9s9LBnd6Bjm7gIMDy+nLYeB+oevbmeRGK/uKBxYPxkny+A8qB4FEQm5IXI0nNfdsVCsNo8fAMlP9v8p3DBzAoRZlXEmwla2XnhOqsFTPcBqRLtAoIaMrY4YBQtAQ5ROBZtaR9bVX1jISwmHb8buQ0H5QyxA45aknZlTBmZs=
+	t=1713381984; cv=none; b=m7viaiPZzkamxqyvKIMSvWmnNf9lS30zdxswxHM0mfSDHBNF3X1781hA+FP7b//wQlFUSLvyZg+glpclzhJQMGM21BeVwdm/URNhofPjf8SvTIzbY3eF59Ig+lq4ZKUd7GDfn9ZmEdiO5H/ZAmUQFtJRtQ5RVGTZzNZuPindVco=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713381779; c=relaxed/simple;
-	bh=nJnNEQdeQQ57jDWZibkD9rYJD8GKCztN4yUoTC0ua3Q=;
+	s=arc-20240116; t=1713381984; c=relaxed/simple;
+	bh=0TzEJdZ2NxceRDINkoJ2/uX5f1Kn/odwnxX/NF4rU1c=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KeJqUtYbXpwA1+jMVMiP10NAyU6PWtK04lzAo7GBSvhm5QUsBME4W8NWADLahnLc6mxoJROI4yk/D/DwNthxrlXwn9SmxTB60cedN01LggAQEerZZ/dW9m8N1xZaZfMN/JOR/Tc2HOBPP6qxm6R3uNYyRgwfO2/g0o57LW+9Bx0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=htKUL6uE; arc=none smtp.client-ip=209.85.210.180
+	 In-Reply-To:Content-Type; b=IP4J3GhnA1+iCPAmZKjeeQT5xEVdXKSd3t6oFaEVm2pQ1r7csBZPSM7PuG0GTwyHjOktGGpDFbZAStABEVzca6LIJ5MTywAQHPk/dKzz0d6k+P13hR0CbQy1mCfI4evvIH7nRTwtsd62ZdZ9Qa47QVedsGYPwp6I7VOm7Xy8S7o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yD4vJBB+; arc=none smtp.client-ip=209.85.210.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-6ece8991654so128498b3a.3
-        for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 12:22:58 -0700 (PDT)
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-6ecf05fd12fso134713b3a.2
+        for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 12:26:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713381778; x=1713986578; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1713381983; x=1713986783; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Wq9xVwLabUIp4c6ZmP5uA7mSaarqFyL70j0nvluua5U=;
-        b=htKUL6uEFGPF/UN2jlwq7ewZxxf5zO1GZ+cIJmhvhA76jpGFULRp9GWRymmqvOIWAw
-         FCxxnPYIF3XssI6zPvSxEfi+ze5LwolCfOViRgIBaUxjukvXv+59S+jp4lLzjf1748hG
-         Y4fst7vZDdzQcWIxNbbduq3HlAHNrBmB95BQsHZPhG81nYvd+ZYixA7MZxEEvyt5gR8N
-         Xp2EUJrc3ekNp11SYJFRgQ66g+aYfCqjEJuaHI5j51RRIQ4RrnXpFS/ztqNaa5umAI5v
-         VP1JEgOQ1J64ZdU/tdWmg4z0xgS+1Fe3fOzrL/csCtt9zVsA5ui2+MUjJf7AVYyW12HJ
-         mtGA==
+        bh=zojspO2lZSHjCc9gZRhsdBn+ZERiEMTcnc15s2GdMOA=;
+        b=yD4vJBB+RDSm+vP7Xcio76vgU8mp9HbIPq/3yAfd9OeUZUuhf2tRJc+sXIwYvhyIWW
+         OWofKlxD3rxJIzhQP+7Mjf2jFCaDzeJtlJKriy+UPeX+8gsRwFtU2TTQefSXhH8qsjaP
+         nF50eZgqaaTw97hMMW1O0MqmfIMO3RICSmmL9osOrIDUDony7gxbmRXmgHlbZE1AOEsx
+         BObfSOypM55WFn2YQrSxCRxoRXWK6xKcS+SfVPtQicJYv8A3azIsBcVw/IRQM/KM2vLg
+         H+q2B336mHjA/PqMaOUy0nk8kCpZKcZrXycBZToOkxAUePhkJQF8ZNTjLrViLtG5wnM2
+         EAMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713381778; x=1713986578;
+        d=1e100.net; s=20230601; t=1713381983; x=1713986783;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Wq9xVwLabUIp4c6ZmP5uA7mSaarqFyL70j0nvluua5U=;
-        b=AtIep93an7LHGXVQog9Q9vC0T7+CkgdTDKDDXaaFC7qY5GptDLYpNZdPBBy2AswdFz
-         1noGEg3qvOT8Dens+S0m9+JoEbJBpA50v4Wnuhy43EqvC++VWwxawsq1TjZ2ZpuhsOXM
-         8K0mVopp8ZXcbtdy9pUoEyURzd5FiUfBlJ4Z5XSEtcD2yGzKgtgZw4IjIU21BAt5vDSr
-         8dfVBsz6zD5KR3Rc1U3OlAGzgB4XeeKNu8PMAWFvGFsrFB4S4DkDkayuR+HIG2Rj+Hoa
-         juh+MaPlpBX77zd6lyt4zHWjk/GLuT5mITEUy9cFivItlHugppbgKERtrXJew4RUJf/l
-         wkBw==
-X-Gm-Message-State: AOJu0YxOLRPTsroR1b5fVdMlkseaQhxDMfaxljsBTBdSirnLQFnnW/6g
-	V7sB4gGAVQsxv1lOjbdWBItoT2hoHvMDzBVn9rHKVTFlZws2m4YUgukGv932EkM=
-X-Google-Smtp-Source: AGHT+IHpCZ9iorWUckM+AfY914yJi7UOR8EUvyEahSdKSnOn9Tc9Fyj1s44EVltsOqBrhQ29U5OmkQ==
-X-Received: by 2002:a05:6a00:2d05:b0:6ed:de86:be57 with SMTP id fa5-20020a056a002d0500b006edde86be57mr599948pfb.25.1713381777740;
-        Wed, 17 Apr 2024 12:22:57 -0700 (PDT)
-Received: from [10.36.51.174] ([24.75.208.147])
-        by smtp.gmail.com with ESMTPSA id r13-20020aa79ecd000000b006ed045af796sm13383pfq.88.2024.04.17.12.22.57
+        bh=zojspO2lZSHjCc9gZRhsdBn+ZERiEMTcnc15s2GdMOA=;
+        b=hukmpRR3Yw2FsFWr1eyGJBw9bZNzlZRgp7i2PdHnGwelF8BIEnvomQXdLw31K+G9Eh
+         gHCHNk0LaB4/J2dVsemGyWgHaSLUwcYL2U4T9d2vYT27OpLarsjvgw0DehRGcdTZfogs
+         /3LtTxNy+/nFx6/V5TvbN6K0jO0WbxINQ60er6+GGE64IuVrPravpGUhVaf4f30mgIPe
+         NON6pYuqnreP9f/9iNkge9fEZibssmgO7fkJkpczO5MENEXm8bXowPmOW6b7nwBz4+4w
+         NOg+rjvHCVc5XtyG8YFoEqXehUfOr6fH62/BQu4SeKDgLbmN12ZpMzalzP/zcdNI5Krr
+         AzzQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWE5jiqGww4Luv0IfG8XIEw4f+z2Ln+3/GOdrwjqvrNyqFDSYEk1w9g/TANAwa7OYnMRLm1+zgMdBSydw6PV4t5zFQv4Tv6qo+TeA==
+X-Gm-Message-State: AOJu0Ywhele56sEA50Io3w1jQy4R9kGwH+65p0j/fV+wSgRJtxJjApZN
+	EiLWkDLM5R54ncHvk1qZ+AKN9asn6LEqL1PW30R+octnPBRRBx6hvY9s3NU5eFo=
+X-Google-Smtp-Source: AGHT+IFqjtYlJ5fnyTEkurB6bDl0zodumgYQZIjV7B18xMiiBUVgBKV6f7SrhsQDaPlULoBKMYcOxg==
+X-Received: by 2002:a05:6a00:1146:b0:6ed:4a97:5dec with SMTP id b6-20020a056a00114600b006ed4a975decmr690567pfm.20.1713381982800;
+        Wed, 17 Apr 2024 12:26:22 -0700 (PDT)
+Received: from [10.36.51.174] ([24.75.208.145])
+        by smtp.gmail.com with ESMTPSA id i20-20020a632214000000b005cd835182c5sm10754476pgi.79.2024.04.17.12.26.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Apr 2024 12:22:57 -0700 (PDT)
-Message-ID: <a31f5422-f668-4302-a563-0f5b9190259d@linaro.org>
-Date: Wed, 17 Apr 2024 21:22:56 +0200
+        Wed, 17 Apr 2024 12:26:22 -0700 (PDT)
+Message-ID: <951b34d6-f465-42f7-b39d-eedd649f3c5b@linaro.org>
+Date: Wed, 17 Apr 2024 21:26:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,18 +77,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: arm: sunxi: document Anbernic RG35XX
- handheld gaming device variants
-To: Ryan Walklin <ryan@testtoast.com>, Andre Przywara
- <andre.przywara@arm.com>, Chen-Yu Tsai <wens@csie.org>,
- Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH V2 6/8] dt-bindings: clock: qcom: add bindings for gpucc
+ on SM4450
+To: Ajit Pandey <quic_ajipan@quicinc.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec
- <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
- Chris Morgan <macromorgan@hotmail.com>
-Cc: devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev
-References: <20240414083347.131724-2-ryan@testtoast.com>
- <20240414083347.131724-3-ryan@testtoast.com>
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Taniya Das <quic_tdas@quicinc.com>, Jagadeesh Kona <quic_jkona@quicinc.com>,
+ Imran Shaik <quic_imrashai@quicinc.com>,
+ Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+References: <20240416182005.75422-1-quic_ajipan@quicinc.com>
+ <20240416182005.75422-7-quic_ajipan@quicinc.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -134,24 +139,23 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240414083347.131724-3-ryan@testtoast.com>
+In-Reply-To: <20240416182005.75422-7-quic_ajipan@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/04/2024 10:33, Ryan Walklin wrote:
-> From: Ryan Walklin <ryan@testtoast.com>
+On 16/04/2024 20:20, Ajit Pandey wrote:
+> Add device tree bindings for the graphics clock controller on
+> Qualcomm SM4450 platform.
 > 
-> RG35XX 2024: Base version with Allwinner H700
-> RG35XX Plus: Adds Wifi/BT
-> RG35XX H: Adds second USB port and analog sticks to -Plus in horizontal
->           altered form factor,
-> 
-> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+> Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
 > ---
+>  .../bindings/clock/qcom,sm8450-gpucc.yaml     |  2 +
+>  include/dt-bindings/clock/qcom,sm4450-gpucc.h | 62 +++++++++++++++++++
 
-With the assumption this matches existing coding style for sunxi:
+I wrote you even instruction what to do with the tag and it was still
+ignored. Do you read the replies?
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I give up on this, good luck.
 
 Best regards,
 Krzysztof
