@@ -1,101 +1,94 @@
-Return-Path: <devicetree+bounces-59925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D20E18A7AD3
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 05:01:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA8DE8A7ADE
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 05:09:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DF06282A1F
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 03:01:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B1F31C215F1
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 03:09:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D819C6FB9;
-	Wed, 17 Apr 2024 03:01:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35B6D6FBF;
+	Wed, 17 Apr 2024 03:09:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JjtC0VZm"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="M1uEL4WU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.207])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 984F5747F
-	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 03:01:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EF086FB9;
+	Wed, 17 Apr 2024 03:09:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.207
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713322867; cv=none; b=mpUuiUYejv/xKHlTPIEl1FPSWVlCQDvWpjXdcd309ie0Dlv0mIxNk9vnHHLflW7++7De49FCsubIY4FtXm+bbshsu2LqUlDfqbUFDKxIjuZ7B5X45rLXXpayYMGB62Ouxcw2XYSarmcDub+xS6AeODE545AOmKSi4+WjTcwB57A=
+	t=1713323363; cv=none; b=nFj2gkjP0lecWF4VrPxGu6pMTU6Ick5ZfQ9v0fENJgZRHxqhnP7r9KBUbWJSut05g9VkH/b8PvYwelW1VTGHBWqTxX17S5wZ0Y0EzthJV5pCn2aqbmDmtr2bKlTrVfiabZxcw/E6LZMsKeiRD06xE8P7tBnsRe4q+Eciwj12VZw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713322867; c=relaxed/simple;
-	bh=3dcef40osgm+WNL3Un0dMoU5Efciu1Hqwptf1yE7UW0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DILr9o/gSL6RKHFeEszBc7G/+E4kv1F9XQPhQXsUb97o9Czzx1QTNSQrW8wrs+rv7AYG/oHrIw2Iy6okS3BOaqc61DzPvui93QTDuOId+CVANXPuJFpRCEBFfarNYqs74xWAzAmVJkGpakW3HvvLrj10/9mEYJ0Tp8UwS3/kRVo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JjtC0VZm; arc=none smtp.client-ip=209.85.216.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-2aa0f3625aeso715425a91.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 20:01:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713322866; x=1713927666; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3dcef40osgm+WNL3Un0dMoU5Efciu1Hqwptf1yE7UW0=;
-        b=JjtC0VZmIkKSJbFFRExGyOu6LrLVwtbg11t5UB4F3T8q88MsPk9kfJ/cmXWE2HIXMk
-         R2/7R5I1A8E+9Bm6by7cDixyxQ94U9Hs5NB1kcwHHgmbRWP8aw+tGyDk1Huq4C/CY53y
-         N4MeML8JDP6HgGbhlWN8fvLKPAhJ6mREsya6pMwEa/wKlNnKlj9/ZSORiQAJUSlZKUvz
-         ID3ydZKFuLeAhZzouQhdgIliIIY0x+5w0pOP1pa5Y39wIX8FG+RbZSwZvRayEhnJt1ow
-         nX+6osVIswjEK1haiKcra7x3vcLzTCScywgxn1cltB02rd0tWOZ1nAtSKYXJxE13wAS2
-         ktbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713322866; x=1713927666;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3dcef40osgm+WNL3Un0dMoU5Efciu1Hqwptf1yE7UW0=;
-        b=bZFuLx9J5NZ0SuLlvImwyK4DEAzrgOiUG9EAWl0wdinzAzmyERhLE1KOEMXFYv+GT6
-         PMG4cJvOhPUOJc+dyyxMDSYA9EOCGjEoVq7GQvjZYHCYZbFWQAIorYvDMOFONwxHwDy3
-         92PI+IvKJfvBCTTXsYYdij8Qr0LhfGtS1zY8UFJtaAuIKE6EDnxZ4L/zg74OUnuggUTk
-         /p90R61Icbw50n6H7O0UJsHZuaSlJRAiIwTFWFH75jbdheNxztD+sjE4+djSA8okP6Wr
-         347wVV810lYeizB0+AZs2ns5lgPRXuLYRXFGdZYpui8+t1d6S97R7AnNA7QhPWyiLef0
-         3zbw==
-X-Forwarded-Encrypted: i=1; AJvYcCU4BU2/SIscIjP9MowQxs/MAp5u9+rnWj9ULHpT9/uXdzGdBFjFaeMwxkGS3/0DxiVJ5dsRPhPYPQE1Ka036AbFUk8vy7eDwNngjw==
-X-Gm-Message-State: AOJu0YzCc6biQO+9URSSA0h+ArQkzKfzlrkGLnNMPPRFwc0O51vcBF23
-	SNVnbwBPhzklVVRKe3mM5dLHzxEfzYlwUDD7AQaQDcHTMmgJERXB4axNFeC4yxzmps7RCW2v3Lo
-	ek0xlCghxNdmfW10Yr+cSEZifSB4=
-X-Google-Smtp-Source: AGHT+IGoFzpKM2GBjy2HLaM220rTX5lMUE7KlwkCXfWJFeox+mJNj88qw1rqVTQ7uBs6ir6T5i3BSgzeaV1+D2oly2E=
-X-Received: by 2002:a05:6a20:8405:b0:1a7:703e:ee24 with SMTP id
- c5-20020a056a20840500b001a7703eee24mr18939600pzd.0.1713322865601; Tue, 16 Apr
- 2024 20:01:05 -0700 (PDT)
+	s=arc-20240116; t=1713323363; c=relaxed/simple;
+	bh=3qrfbpId+r+8Pf56kTzyLtPFA5qAA/c1McUZnD127z8=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=XhIhkT4VuIBrKOXOUO3/LEqeFYD+1rFjr+9sCThNtYL5jcC0K+pPSzxkkSxUI+lde8CLmPTIBpapwTpfbfW3bEcr8HdcQ7+ilUsT9hQ/HvcCBvhHpyavzsb1ruYFNO3P6XbGrSHwm4c6gHKVHHUR1L+PUZZ8IVT43i9BmCPyL8Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=M1uEL4WU; arc=none smtp.client-ip=192.19.144.207
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: from mail-lvn-it-01.lvn.broadcom.net (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
+	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 4C7BEC0000F3;
+	Tue, 16 Apr 2024 20:09:20 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 4C7BEC0000F3
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
+	s=dkimrelay; t=1713323360;
+	bh=3qrfbpId+r+8Pf56kTzyLtPFA5qAA/c1McUZnD127z8=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=M1uEL4WUlLeeDhxMz4z3huKUT5tnuc+Ky3AnUO0dy8IPNb5moDNCAVZiCnbxcUI8I
+	 E6ArlXfbcdp/VGjqGqHA/9WBvgcUT+HfAVDElbLOQjNFVN1ygtnu92wbjOZNt4pxQZ
+	 0Kk8blBEB6MFx30IFhdhLWuEF994B/sF0xJXE7Hk=
+Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id 55B9718041CAC4;
+	Tue, 16 Apr 2024 20:09:18 -0700 (PDT)
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+To: bcm-kernel-feedback-list@broadcom.com,
+	=?iso-8859-9?b?QXL9bucg3E5BTA==?= via B4 Relay <devnull+arinc.unal.arinc9.com@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Hauke Mehrtens <hauke@hauke-m.de>,
+	=?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Florian Fainelli <f.fainelli@gmail.com>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	=?iso-8859-9?b?QXL9bucg3E5BTA==?= <arinc.unal@arinc9.com>
+Subject: Re: [PATCH 1/4] ARM: dts: BCM5301X: use color and function on ASUS RT-AC3100 and RT-AC88U
+Date: Tue, 16 Apr 2024 20:09:19 -0700
+Message-Id: <20240417030919.919118-1-florian.fainelli@broadcom.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240414-for-soc-asus-rt-ac3100-improvements-v1-1-0e40caf1a70a@arinc9.com>
+References: <20240414-for-soc-asus-rt-ac3100-improvements-v1-0-0e40caf1a70a@arinc9.com> <20240414-for-soc-asus-rt-ac3100-improvements-v1-1-0e40caf1a70a@arinc9.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240416190659.15430-1-wahrenst@gmx.net> <20240416190659.15430-3-wahrenst@gmx.net>
-In-Reply-To: <20240416190659.15430-3-wahrenst@gmx.net>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Wed, 17 Apr 2024 00:00:53 -0300
-Message-ID: <CAOMZO5BA0f9Y9knYm3MPbZ-t0=v2V3kkLTa7111tUndNep7moQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] ARM: dts: imx6ull-tarragon: Reduce SPI clock for QCA7000
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, kernel@pengutronix.de, 
-	imx@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Stefan,
+From: Florian Fainelli <f.fainelli@gmail.com>
 
-On Tue, Apr 16, 2024 at 4:07=E2=80=AFPM Stefan Wahren <wahrenst@gmx.net> wr=
-ote:
->
-> Our hardware department recently informed us that, according to
-> the specification, the QCA7000 should be operated with a
-> maximum SPI clock frequency of 12 MHz. Even if it appears to work
-> at a higher frequency, we should not take any risks here. A short
-> performance test showed no measurable loss of speed.
+On Sun, 14 Apr 2024 20:01:21 +0300, Arınç ÜNAL via B4 Relay <devnull+arinc.unal.arinc9.com@kernel.org> wrote:
+> From: Arınç ÜNAL <arinc.unal@arinc9.com>
+> 
+> As the label property for LEDs is deprecated, use the color and function
+> properties to describe the LEDs on the device tree file for ASUS RT-AC3100
+> and ASUS RT-AC88U. Reorder the LED and button nodes in alphabetical order.
+> 
+> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+> ---
 
-Should this one have a Fixes tag?
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
+--
+Florian
 
