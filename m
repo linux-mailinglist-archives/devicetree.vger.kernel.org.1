@@ -1,110 +1,149 @@
-Return-Path: <devicetree+bounces-59941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59942-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69C278A7B94
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 06:52:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9CC78A7B9E
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 06:57:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 951771C21147
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 04:52:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5AE6A1F215A2
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 04:57:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC1542CCB4;
-	Wed, 17 Apr 2024 04:52:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=herrie.org header.i=@herrie.org header.b="YnKe5vYw"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B80C14EB56;
+	Wed, 17 Apr 2024 04:57:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from outbound9.mail.transip.nl (outbound9.mail.transip.nl [136.144.136.11])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 086A4BE4E;
-	Wed, 17 Apr 2024 04:52:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=136.144.136.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A185D4C3CD
+	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 04:57:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713329545; cv=none; b=mXqwzBgSBqmwAgiIdB78l6czeN5DXutUrbzW1sQRvhi0C6iC265f+u4Q0QV5uiMErqNoa1o0UvFakxHXa4oo+uQho2/zE5Xme5SUljg/vR4wXnVPWRiRS7oJ+sjRLZYM1k+FE9bNkCYIt/MjCXYfvIIDmJLA7EHX0eVDQDUGUzI=
+	t=1713329860; cv=none; b=hNM47+gtCcGnbaT7rljYUyzcqKFwTLZdy9C0Wg976ZsRy2uB2s5RE10RwhXw1a2i84lhdEkfO4rrTpxpZNIIpUY8lX6wS2HKuX85MJH2w7CrIYByvuTfzB85/MmW8fz6nzUYBD3r+dw8Rri19LaxS5r0u2O1pYyVTC5Hz4JwhJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713329545; c=relaxed/simple;
-	bh=RsNmmksocaUHd5jF/DJhTq8Xf2uynyEKdVh2S3aGhqE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=W6RMO9xwMai3hVa33dzJPAHk0X6BINDWRSQphaxLLIGlt85NJUQ1iG1xaGWASaCo9h7svlYb7tpXY6di4cfFGvenzhauptOB+rmb28pGNLAO3LUAzQYMA+ksXB+EPrUrmIf7J5LxbYExiGsChffUlsqBZ//AmPbeq7x0UJEMIdg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=herrie.org; spf=pass smtp.mailfrom=herrie.org; dkim=pass (2048-bit key) header.d=herrie.org header.i=@herrie.org header.b=YnKe5vYw; arc=none smtp.client-ip=136.144.136.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=herrie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=herrie.org
-Received: from submission1.mail.transip.nl (unknown [10.100.4.70])
-	by outbound9.mail.transip.nl (Postfix) with ESMTP id 4VK7mp4KnRzTPNDc;
-	Wed, 17 Apr 2024 06:52:10 +0200 (CEST)
-Received: from herrie-desktop.. (110-31-146-85.ftth.glasoperator.nl [85.146.31.110])
-	by submission1.mail.transip.nl (Postfix) with ESMTPA id 4VK7mn5xCzz1nsPv;
-	Wed, 17 Apr 2024 06:52:09 +0200 (CEST)
-From: Herman van Hazendonk <github.com@herrie.org>
-To: github.com@herrie.org
-Cc: andersson@kernel.org,
-	benwolsieffer@gmail.com,
-	chris.chapuis@gmail.com,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	kishon@kernel.org,
-	konrad.dybcio@linaro.org,
-	krzk+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org,
-	me@herrie.org,
-	robh@kernel.org,
-	vkoul@kernel.org
-Subject: [PATCH v2] dt-bindings: phy: qcom,usb-hs-phy: Add compatible
-Date: Wed, 17 Apr 2024 06:52:07 +0200
-Message-Id: <20240417045207.3594931-1-github.com@herrie.org>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20240415115603.1523974-1-github.com@herrie.org>
-References: <20240415115603.1523974-1-github.com@herrie.org>
+	s=arc-20240116; t=1713329860; c=relaxed/simple;
+	bh=Gz7JeDyKCo7wyll/YSOuGCHs56+MF71ICnHL00/yOJ8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=exGBQekgx6yeUzgczV7ewCCrI8S+qks5hMTTLLewW84LsoC5MaqHT1OYOEBEpgeE11yg+rocK1twe4XhDbNRT00hOSWmwjGYKiTqLaSMzMF67mls9HAmx1/p9YDu/YTukMBgmuFtBGPIWB0RXUi3JnNCCSNeu587wxjBI+B/pM0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rwxMI-0005Id-1E; Wed, 17 Apr 2024 06:57:22 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rwxMG-00CjGo-Qe; Wed, 17 Apr 2024 06:57:20 +0200
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rwxMG-00HNee-2L;
+	Wed, 17 Apr 2024 06:57:20 +0200
+Date: Wed, 17 Apr 2024 06:57:20 +0200
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Joy Zou <joy.zou@nxp.com>
+Cc: frank.li@nxp.com, ping.bai@nxp.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/1] arm64: dts: imx93-11x11-evk: add rtc PCF2131
+ support
+Message-ID: <20240417045720.hk3y6m6roiqtuvfz@pengutronix.de>
+References: <20240417031455.3177778-1-joy.zou@nxp.com>
+ <20240417031455.3177778-2-joy.zou@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: ClueGetter at submission1.mail.transip.nl
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- s=transip-a; d=herrie.org; t=1713329530; h=from:subject:to:cc:
- references:in-reply-to:date:mime-version;
- bh=ozEXOanBkuPb3pLYR7X9fOyvv86uTWm4XhOrIbW4kLU=;
- b=YnKe5vYwIKSu3CqiydaIVwZH6V+iKwQCGmyoTDaoKvamMJcSxfiYQOJ7dNPCGXU0tejJDT
- Ek2NThMe+9MV7S+niVKHseAaQzouvF02ThOuPwLPc3/+W73/rz0LNWSZikJyoLyQIwrl4D
- PYQgq6TTgq0cY2Bia09X8wQr6SiJXmRgc4k8MyJzZqfrW6m7x+aGBZ0NyE2wtWSlcgoX54
- g+USocZpS5Os23xxbgPbklOhdFxlyy8OI3bkdsKQOcpU7syKFepBfwJ4q6ogL/rZe1yxao
- /04KihqM+bpXF4WrFRwnpDwzG3fnq7x+Y3NlGU1yMePlrRC7qE/9V1ftr7B+kw==
-X-Report-Abuse-To: abuse@transip.nl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240417031455.3177778-2-joy.zou@nxp.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Adds qcom,usb-hs-phy-msm8660 compatible
+Hi Joy,
 
-Used by HP Touchpad (tenderloin) for example.
+On 24-04-17, Joy Zou wrote:
+> Support rtc PCF2131 on imx93-11x11-evk.
+> 
+> Signed-off-by: Joy Zou <joy.zou@nxp.com>
+> ---
+> Changes in v4:
+> 1. remove the sleep from the pinctrl-names.
+> 
+> Changes in v3:
+> 1.adjust the indentation.
+> 
+> Changes in v2:
+> 1. remove unnecessary status property.
+> ---
+>  .../boot/dts/freescale/imx93-11x11-evk.dts    | 24 +++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
+> index 07e85a30a25f..bc3c9271d747 100644
+> --- a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
+> @@ -281,6 +281,23 @@ ldo5: LDO5 {
+>  	};
+>  };
+>  
+> +&lpi2c3 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
 
-Signed-off-by: Herman van Hazendonk <github.com@herrie.org>
----
- Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+while reading your patch I also noticed that you had to specify these
+cells here. It is very common to specify it within the base dtsi file
+imx93.dtsi. Can you please provde an extra patch which adds this to the
+base dtsi followed by this patch, which of course do need to specify it
+again.
 
-diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
-index f042d6af1594..ccf23170cd17 100644
---- a/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
-@@ -15,6 +15,7 @@ if:
-       contains:
-         enum:
-           - qcom,usb-hs-phy-apq8064
-+          - qcom,usb-hs-phy-msm8660
-           - qcom,usb-hs-phy-msm8960
- then:
-   properties:
-@@ -41,6 +42,7 @@ properties:
-       - enum:
-           - qcom,usb-hs-phy-apq8064
-           - qcom,usb-hs-phy-msm8226
-+          - qcom,usb-hs-phy-msm8960
-           - qcom,usb-hs-phy-msm8916
-           - qcom,usb-hs-phy-msm8960
-           - qcom,usb-hs-phy-msm8974
+Thanks you,
+  Marco
+
+> +	clock-frequency = <400000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_lpi2c3>;
+> +	pinctrl-1 = <&pinctrl_lpi2c3>;
+> +	status = "okay";
+> +
+> +	pcf2131: rtc@53 {
+> +		compatible = "nxp,pcf2131";
+> +		reg = <0x53>;
+> +		interrupt-parent = <&pcal6524>;
+> +		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
+> +	};
+> +};
+> +
+>  &iomuxc {
+>  	pinctrl_eqos: eqosgrp {
+>  		fsl,pins = <
+> @@ -343,6 +360,13 @@ MX93_PAD_I2C2_SDA__LPI2C2_SDA			0x40000b9e
+>  		>;
+>  	};
+>  
+> +	pinctrl_lpi2c3: lpi2c3grp {
+> +		fsl,pins = <
+> +			MX93_PAD_GPIO_IO28__LPI2C3_SDA			0x40000b9e
+> +			MX93_PAD_GPIO_IO29__LPI2C3_SCL			0x40000b9e
+> +		>;
+> +	};
+> +
+>  	pinctrl_pcal6524: pcal6524grp {
+>  		fsl,pins = <
+>  			MX93_PAD_CCM_CLKO2__GPIO3_IO27			0x31e
+> -- 
+> 2.37.1
+> 
+> 
 
