@@ -1,206 +1,123 @@
-Return-Path: <devicetree+bounces-59965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AB418A7C9B
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 08:55:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98F9B8A7CA4
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 09:02:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DFC01C20B7F
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 06:55:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA6BE1C20D64
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 07:02:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF81869DF1;
-	Wed, 17 Apr 2024 06:55:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB7106A00C;
+	Wed, 17 Apr 2024 07:02:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="TVsER2kn"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="IhnlJG9Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A8EB657C3
-	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 06:55:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE9BA2AF0A
+	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 07:02:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713336936; cv=none; b=qtW3nyXE0R3xSNtudNyS5hLj1nXkCy2ixbtbLSCEU095caMJ+TRdJvEc3g/6ANXs5CpCLzUFgYaTSLCwX9emSOhEeOzE6Tpyo9rbyhqCqGNl35y++0dPRNZclGeKrrw2ExrLI5ClUwz8tLdb8sXS9LRa+AueEVAb9IqFUXqQbp4=
+	t=1713337337; cv=none; b=FGZtasb0LKlWD7VmPSEg6x4Tcrxylal/SC0xJXzMDWB0HBladfXdE01hkzbE7jOlovk2J7uvaYcusm8kVPDMlCi98KGqXyZlpfC7ZIHGQZmFWJzfEwXewlHu19rxg3jxQpL/Ixif5WxRaybD0GcOYsy0/oAb3yfKw7T078vYCjw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713336936; c=relaxed/simple;
-	bh=J/5WdNXiH+xHiAy5PvoJmYo9TGP4hl9SHOTN5CBH+b4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Y6of5TOT6+01ZNq2k/PfuCj4LAXBocVe5wNiDevncVlzBPpewcbPtrpvJmaE8aM1+agDc3XbOZmjSmi6yHYyr4gARIea+S3QYLrMYGnDHDIWF19W4mgWhRG+41WZyK6xT3FsnqQVb0WrJChLZFuqyLcHxULl7aMA0L300zsmeUk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=TVsER2kn; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2d4a8bddc21so61462181fa.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 23:55:34 -0700 (PDT)
+	s=arc-20240116; t=1713337337; c=relaxed/simple;
+	bh=DD5qYQS2ORih2v1XSmvL62QDHWR3X2dkj7Wm7FOBTi0=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=RdY0M/T8Jg//QY/j9W0vPcG/e3YyS4kRSTka6YhQWNSjn9O4bzYxiUKRuByTY52xQn7zN5o99Ci3Wi7PjNgLIxOywbKhFtcWN1PhzmL/h86g3aPb2IG1CzaUyTrk4Hm2Ibva7TeQCi0dHOBlueU+Vr3ctaNoszn5eWDfFoAtv1I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=IhnlJG9Q; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+Received: from [192.168.68.112] (ppp14-2-127-66.adl-apt-pir-bras32.tpg.internode.on.net [14.2.127.66])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id AD9D62014E;
+	Wed, 17 Apr 2024 15:02:03 +0800 (AWST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1713336933; x=1713941733; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sZGbmlRk8OYQ6Kpz+Jg/xu+IlJYAq+3AXIsG/wFcBY0=;
-        b=TVsER2knIM6Cl/nrl/4UK7g05JsFLstuf9zJ/0xVgrVuF2oE6mLDi65/XvSfS2hWMa
-         4tsNP4UM93HikvF6qrqU6B/TcvCWFOPfstw74Lr+vRlNCyjXziRrpdzl/lc24saK8odj
-         X6TMfTVZDsf/15pTt+yJkgeRW9/PSymOe1O2z7zD765tJcp9dSj2WZWW4IiEZpZp2YV3
-         NpiuNQGk8ezjvXtOdiRFkM/45Zo1RP7ihElBryG0ib2plZVaqqSPG2hv1qdzHr8/K8OS
-         G6YgngjJLrBNXIpCTBk/a7sYNiduEQ/kuijZeQqkFw1CKqfXv3bAvaZ5esjQXx/ASiXA
-         GiLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713336933; x=1713941733;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sZGbmlRk8OYQ6Kpz+Jg/xu+IlJYAq+3AXIsG/wFcBY0=;
-        b=SUHVMxQ4zyJghlufNqIiGrm39RSjF3xlTK2pEB7h+vr/69TRFl6UAvuohFj46Jfb+n
-         WsPbCriftTZ4HE/yg6FVUfoqP13g8egDWhl5IMSMLybWBW3xhGAb+Q2mqVL506Adi+Sh
-         vphd8bXaqJ6rRlTCb4Pcf4T+asjXiqo1yMUxA4ClZ6usPBRXTmyTcGuMD/6zEqwh8jha
-         fY/l0rjZgEwb/ocSRbmCIz4xpoUwYLTIwwvFxgnT5CZoGw5144icFMAubyXKTjjlJmRw
-         eu5iScABezpI61q5wYY7ibJ43Pa2ljS2SC5sj+qCRpC7Ps1vBzRdm3Gim3XCRC7uVbAX
-         4xDA==
-X-Forwarded-Encrypted: i=1; AJvYcCWkl/ppSYFxS57W0/0OLSagqmq070oix+5f5E7QbbkSCFnBAs42L5rhBxp/9Hh8XA6L0nirKD9IftORABwt3wGZ/TbnyGEE6nCp0A==
-X-Gm-Message-State: AOJu0YwA5o0uHANxF6HYv3N3FxheqLJiyh1yok1Qu2Ixyrp6zkY1Nivf
-	5D4Kik/qfN9hqRSYW3JgRexvqSBXVSRkDmvX+ew/QQZkYdeGNVhG+csCXwDRY16RF4oLwQNDLYo
-	8Y7qz/W9c8euR/yVRJ2i5zpDWt69G4VoisQNhjw==
-X-Google-Smtp-Source: AGHT+IEioRgn3J/gIQgGJ6OV7a95PpbKKQjOpe3lYUOLcWBAqxQqpmiBxRuuipgOwmaEqZd2NFkYzR85tc5xMM0UkRc=
-X-Received: by 2002:a2e:8049:0:b0:2d9:f7f8:3e88 with SMTP id
- p9-20020a2e8049000000b002d9f7f83e88mr7913210ljg.33.1713336933078; Tue, 16 Apr
- 2024 23:55:33 -0700 (PDT)
+	d=codeconstruct.com.au; s=2022a; t=1713337326;
+	bh=ZxepRbuU81znKKBJUp2an9YnHRJEcdcrvB5/JBfkBzc=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=IhnlJG9QuuY++62V4r6ZIvAabso2ciO40kxF5/EipC4mSAph3Yo6yuvZNTSOH27Nu
+	 80qpLqBSdJtHHvytffJeIZRufLdXguUy0PMwzM5fwBGRYyalXiOWuTPdPiqtJ2VpMh
+	 9WjT0HZAyTSzDTbi6VfQdTaT/MryGKNeNBS+z/24icWi3TDbv2QcfOmcIO3B6StNe7
+	 aT3msUfqQUfqL72SIV5XjwRlHbE1P3yXLex9EoSN7uZkk7/sgxADyulPs3r9CWDjCV
+	 MdiXt57U6zhI/xbfDzT4NI384gsv6HCNzv4Is3o6sRTsUMLL+MhDtQJKkLQbp+IO8h
+	 6GKSbvqUCgmrw==
+Message-ID: <a935d2a6ec3b0ab847b662d05bcea8408077511d.camel@codeconstruct.com.au>
+Subject: Re: [PATCH 3/3] ARM: dts: aspeed: Update Odyssey SBEFIFO compatible
+ strings
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Eddie James <eajames@linux.ibm.com>, linux-aspeed@lists.ozlabs.org
+Cc: joel@jms.id.au, devicetree@vger.kernel.org, linux-fsi@lists.ozlabs.org, 
+	robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org, jk@ozlabs.org, 
+	alistair@popple.id.au, lakshmiy@us.ibm.com
+Date: Wed, 17 Apr 2024 16:32:01 +0930
+In-Reply-To: <2ee4084d-1891-4ea4-ba3d-b99ee1d7b5fb@linux.ibm.com>
+References: <20240412144358.204129-1-eajames@linux.ibm.com>
+	 <20240412144358.204129-4-eajames@linux.ibm.com>
+	 <5c6f58cc13492988d307504d55cc5d31a512ab8c.camel@codeconstruct.com.au>
+	 <0363badd-f5b0-42bd-bdd5-de6e7b5ee8c6@linux.ibm.com>
+	 <90ced7e271213da481f7c0ec883d0189671563e8.camel@codeconstruct.com.au>
+	 <2ee4084d-1891-4ea4-ba3d-b99ee1d7b5fb@linux.ibm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240413091942.316054-1-apatel@ventanamicro.com> <20240416141049.GA2148267-robh@kernel.org>
-In-Reply-To: <20240416141049.GA2148267-robh@kernel.org>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Wed, 17 Apr 2024 12:25:20 +0530
-Message-ID: <CAK9=C2WXrgr21mLxynQZ51gfP+PUzFkNmz3VJ9ODVS+b-ecLwQ@mail.gmail.com>
-Subject: Re: [PATCH v2] of: property: Add fw_devlink support for interrupt-map property
-To: Rob Herring <robh@kernel.org>
-Cc: Saravana Kannan <saravanak@google.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Atish Patra <atishp@atishpatra.org>, 
-	Andrew Jones <ajones@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Anup Patel <anup@brainfault.org>, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 16, 2024 at 7:41=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
->
-> On Sat, Apr 13, 2024 at 02:49:42PM +0530, Anup Patel wrote:
-> > Some of the PCI controllers (such as generic PCI host controller)
-> > use "interrupt-map" DT property to describe the mapping between
-> > PCI endpoints and PCI interrupt pins. This the only case where
-> > the interrupts are not described in DT.
-> >
-> > Currently, there is no fw_devlink created based on "interrupt-map"
-> > DT property so interrupt controller is not guaranteed to be probed
-> > before PCI host controller. This affects every platform where both
-> > PCI host controller and interrupt controllers are probed as regular
-> > platform devices.
-> >
-> > This creates fw_devlink between consumers (PCI host controller) and
-> > supplier (interrupt controller) based on "interrupt-map" DT property.
-> >
-> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> > ---
-> > Changes since v1:
-> > - Updated commit description based on Rob's suggestion
-> > - Use of_irq_parse_raw() for parsing interrupt-map DT property
-> > ---
-> >  drivers/of/property.c | 58 +++++++++++++++++++++++++++++++++++++++++++
-> >  1 file changed, 58 insertions(+)
-> >
-> > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > index a6358ee99b74..67be66384dac 100644
-> > --- a/drivers/of/property.c
-> > +++ b/drivers/of/property.c
-> > @@ -1311,6 +1311,63 @@ static struct device_node *parse_interrupts(stru=
-ct device_node *np,
-> >       return of_irq_parse_one(np, index, &sup_args) ? NULL : sup_args.n=
-p;
-> >  }
-> >
-> > +static struct device_node *parse_interrupt_map(struct device_node *np,
-> > +                                            const char *prop_name, int=
- index)
-> > +{
-> > +     const __be32 *imap, *imap_end, *addr;
-> > +     struct of_phandle_args sup_args;
-> > +     struct device_node *tn, *ipar;
-> > +     u32 addrcells, intcells;
-> > +     int i, j, imaplen;
-> > +
-> > +     if (!IS_ENABLED(CONFIG_OF_IRQ))
-> > +             return NULL;
-> > +
-> > +     if (strcmp(prop_name, "interrupt-map"))
-> > +             return NULL;
-> > +
-> > +     ipar =3D of_node_get(np);
-> > +     do {
-> > +             if (!of_property_read_u32(ipar, "#interrupt-cells", &intc=
-ells))
-> > +                     break;
-> > +             tn =3D ipar;
-> > +             ipar =3D of_irq_find_parent(ipar);
-> > +             of_node_put(tn);
-> > +     } while (ipar);
->
-> No need for this loop. We've only gotten here if 'interrupt-map' is
-> present in the node and '#interrupt-cells' is required if
-> 'interrupt-map' is present.
+On Tue, 2024-04-16 at 09:48 -0500, Eddie James wrote:
+> On 4/15/24 19:06, Andrew Jeffery wrote:
+> > On Mon, 2024-04-15 at 09:59 -0500, Eddie James wrote:
+> > > On 4/14/24 19:54, Andrew Jeffery wrote:
+> > > > On Fri, 2024-04-12 at 09:43 -0500, Eddie James wrote:
+> > > > > Set the new compatible string for Odyssey SBEFIFOs so that they
+> > > > > don't collect async FFDC.
+> > > > >=20
+> > > > > Signed-off-by: Eddie James <eajames@linux.ibm.com>
+> > > > > ---
+> > > > >    .../dts/aspeed/aspeed-bmc-ibm-everest.dts     | 64 +++++++++--=
+--------
+> > > > >    .../arm/boot/dts/aspeed/ibm-power10-quad.dtsi | 64 +++++++++--=
+--------
+> > > > >    2 files changed, 64 insertions(+), 64 deletions(-)
+> > > > >=20
+> > > > > diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts =
+b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
+> > > > > index 214b2e6a4c6d..3a2bfdf035cb 100644
+> > > > > --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
+> > > > > +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
+> > > > > @@ -2545,7 +2545,7 @@ scom500: scom@1000 {
+> > > > >    						};
+> > > > >   =20
+> > > > >    						sbefifo500: sbefifo@2400 {
+> > > > > -							compatible =3D "ibm,p9-sbefifo";
+> > > > > +							compatible =3D "ibm,ody-sbefifo";
+> > > > >    							reg =3D <0x2400 0x400>;
+> > > > >    							#address-cells =3D <1>;
+> > > > >    							#size-cells =3D <0>;
+> > > > Bit of a drive-by comment as I'm not really holding any stakes here=
+,
+> > > > but did the hardware actually change?
+> > >=20
+> > > Yes, the hardware did change in the Odyssey version.
+> > Should there not be a new platform DTS then? Seems a bit puzzling, but
+> > again this is a bit of a drive-by comment.
+>=20
+>=20
+> Ah, I should clarify. The SBE hardware was changed between P9/P10 and=20
+> Odyssey versions. The Odyssey hasn't changed. The difference in the SBE=
+=20
+> wasn't apparent when we initially added support for Odyssey, so this is=
+=20
+> effectively a bug fix on the new hardware. There is no new platform.
 
-Ahh, okay. I will update.
+That sounds like good info for the commit message. Do you mind updating
+it?
 
->
-> > +     if (!ipar)
-> > +             return NULL;
-> > +     addrcells =3D of_bus_n_addr_cells(ipar);
-> > +     of_node_put(ipar);
-> > +
-> > +     imap =3D of_get_property(np, "interrupt-map", &imaplen);
-> > +     if (!imap || imaplen <=3D (addrcells + intcells))
-> > +             return NULL;
-> > +     imap_end =3D imap + imaplen;
-> > +
-> > +     sup_args.np =3D NULL;
-> > +     for (i =3D 0; i <=3D index && imap < imap_end; i++) {
-> > +             if (sup_args.np) {
-> > +                     of_node_put(sup_args.np);
-> > +                     sup_args.np =3D NULL;
-> > +             }
-> > +
-> > +             addr =3D imap;
-> > +             imap +=3D addrcells;
-> > +
-> > +             sup_args.np =3D np;
-> > +             sup_args.args_count =3D intcells;
-> > +             for (j =3D 0; j < intcells; j++)
-> > +                     sup_args.args[j] =3D be32_to_cpu(imap[j]);
-> > +             imap +=3D intcells;
-> > +
-> > +             if (of_irq_parse_raw(addr, &sup_args))
-> > +                     return NULL;
-> > +             imap +=3D sup_args.args_count + 1;
-> > +     }
->
-> Doesn't this leak a ref on the last time the function is invoked? For
-> example, if we have 2 entries and index is 2. We'll get index=3D1, but
-> then exit because imap=3D=3Dimap_end. We need a put on index=3D=3D1 node.
-
-Okay, I will update.
-
->
-> Look at my next branch where I've converted things to use __free()
-> cleanups. I don't see it helping here as-is, but maybe when it is
-> correct.
->
-
-Okay, I will check your next branch.
-
-Thanks,
-Anup
+Andrew
 
