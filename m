@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-60127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59DA88A8464
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 15:25:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB9968A8472
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 15:26:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72EBE1C21881
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 13:25:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 093081C21971
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 13:26:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC62813FD63;
-	Wed, 17 Apr 2024 13:23:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B71013F44C;
+	Wed, 17 Apr 2024 13:24:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nEB6FuFL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bl1V080Z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9219613F00C;
-	Wed, 17 Apr 2024 13:23:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62A9513C3F5;
+	Wed, 17 Apr 2024 13:24:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713360238; cv=none; b=hhQT7q4Y9Gt7FLL2cqRCgCHD2/3Qw4TlFANDPt/wa7VQB87BoaLEa4k9eAz8SJoRgvgJcx63EtDfV5s7+UBrrUbOyd7R2Kf8HUQokE8AphPQf77eznyaf17knoh3fW6VsNheURRo3UFwf92xI8d7s4eKq2UEgC+1eesamLPsymM=
+	t=1713360297; cv=none; b=rToo/8WESePWbd4UFAoNgQDROfQiVMDxMzwEOznA6i/UtxbPnpnK4KgivoTO01PdoHbnddemRCsvdki/TLBmOQKxYMHvXeTeorsP+eotYuRT2aGHT93gBNx1NPp3fkYprHmzUmANZyl5Hm+p1GsJsl3IBuQA2sS6Q+U5iUxnedg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713360238; c=relaxed/simple;
-	bh=JSCkvU4mUWsadZRODNiRRuHtCgBOJJNgWumAcR1e2Qo=;
+	s=arc-20240116; t=1713360297; c=relaxed/simple;
+	bh=uphtWyL4Vdav4pHrPyDm5t6wcResh5pkONc4k4dfnNY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uJ0y3cX2RkPluYbeDvqqNEywq+WFJ9hPqDLzHg0BI/h235RaBxggf9JplVtY72Y6gyOO+AyhzQGWpM08H/tBo21HR03Z1VcqGYbH6dvHNoH8MXTnLTyj3mTmt3hSsgyoamPBloDpciUvzPJo3M+UKAXpjHkLWlBgvbGv+sX2p9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nEB6FuFL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D83CFC072AA;
-	Wed, 17 Apr 2024 13:23:57 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=J7Xy9MUzv68Rf+qBlU+Dw0a/clJj4f7a0Vo+CiLZRtv01nLx65XbP1/pfp10l50J/Nu1FCsG5iq8iRJLbJEpShizZytooDM1a2tEVpLSc8xHnULZm5fcIm5AwuUJ73GgtZuvWt0F+I6VtXetuKKsuBopNJtOTUUwMnYJTTMSz/I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bl1V080Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B44A7C072AA;
+	Wed, 17 Apr 2024 13:24:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713360238;
-	bh=JSCkvU4mUWsadZRODNiRRuHtCgBOJJNgWumAcR1e2Qo=;
+	s=k20201202; t=1713360296;
+	bh=uphtWyL4Vdav4pHrPyDm5t6wcResh5pkONc4k4dfnNY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nEB6FuFLc3EhGLKatBirbpvmAA9YKNV5eG7c8EDn1Z0S8rQoObzxrhyjgeszo3i26
-	 CUjq/iQVDgM55Kw8I9XokUt+HocJIpngD97esfUkP++3N8cmNGpeybrwTSPfdErovs
-	 ElLZ29dyEBy7sQrtCFg2n3FIj8sthvwb7xar4puCmUwb/yKbxqEO0qTtSYsiFiK68B
-	 Avs34Oi9JymMcL9Eb9QQmIumA8lF7/3La7WkR19Cj98YDTxQf4n+48wneZfpqJmuap
-	 F2w5E//3hwxTV2GkQ2OrZO/QafkREqOPgY5gZ25Tr5LUyZ6OE33UC2HJ+kd6IekmOW
-	 bFaSY2BEMqV7g==
-Message-ID: <b215bc1e-a7d3-477a-899d-59c3c313c74a@kernel.org>
-Date: Wed, 17 Apr 2024 15:23:57 +0200
+	b=Bl1V080Z/Brh3SaLd7k+Y5SGafjuopXU3nAM/f117Ci08cbKMC8KFvVqlwlN05Ffs
+	 sDkqMlqP8AmpUM4YjhHdo5Azq9DMwCs7mGe1jqHrMZ9IcTjHpKJkU6QSOBThHUvGCA
+	 YGN+vKls8antpHp56mo/wBLqd5rnwziAIU1Ho04kVVcZaWhhya28hDGHom2catEFW9
+	 ZDrW4+JiHws719yvCpF2AtmciaIW3BFY7xRy/oxhdT7HwUt0h444YCjWYGqp6YToM8
+	 KU6zf7627hmrHmIXLv5DHgJkqGxiRajwn4wJdpxqeD1HuPJCasgXPSwCAIXPtdhmff
+	 ilHlMz0MRcXYA==
+Message-ID: <81f692c1-87cb-4bd8-8bff-db50ccd9e16c@kernel.org>
+Date: Wed, 17 Apr 2024 15:24:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] ARM: dts: BCM5301X: Add DT for ASUS RT-AC3200
-To: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>,
- Hauke Mehrtens <hauke@hauke-m.de>, Rafal Milecki <zajec5@gmail.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: Tom Brautaset <tbrautaset@gmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20240414-for-soc-asus-rt-ac3200-ac5300-v1-0-118c90bae6e5@arinc9.com>
- <20240414-for-soc-asus-rt-ac3200-ac5300-v1-3-118c90bae6e5@arinc9.com>
- <a88385a4-afad-4bd8-afc1-37e185e781f4@kernel.org>
- <85261d11-d6cb-4718-88d9-95a7efe5c0ab@arinc9.com>
- <e6cfe735-0a46-4c07-90ee-4ae25c921b03@kernel.org>
- <335cdd4b-7309-4633-9b4f-6487c72c395c@arinc9.com>
- <07c9c5f5-c4b9-44d6-b909-5aa306f56898@kernel.org>
- <00ba4593-d720-419a-a97d-37c402c91e44@arinc9.com>
- <7b465ddb-2b18-4e7f-8b03-d4e51006e1cb@broadcom.com>
- <29f098cb-db41-4d4f-9033-a88d70ebdd0f@arinc9.com>
+Subject: Re: [PATCH v4 2/3] dt-bindings: arm: rockchip: Add ArmSoM Sige7
+To: Weizhao Ouyang <o451686892@gmail.com>,
+ Jianfeng Liu <liujianfeng1994@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+ sfr@canb.auug.org.au, weizhao.ouyang@arm.com
+References: <20240416034626.317823-1-liujianfeng1994@gmail.com>
+ <20240416034626.317823-3-liujianfeng1994@gmail.com>
+ <CAHk0Hosivk8=2LNC6Pz1qAGFg1791z12tYRf-cEZNLZb7HaQVQ@mail.gmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,51 +105,21 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <29f098cb-db41-4d4f-9033-a88d70ebdd0f@arinc9.com>
+In-Reply-To: <CAHk0Hosivk8=2LNC6Pz1qAGFg1791z12tYRf-cEZNLZb7HaQVQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 17/04/2024 10:24, Arınç ÜNAL wrote:
-> On 17/04/2024 06:15, Florian Fainelli wrote:
+On 16/04/2024 13:11, Weizhao Ouyang wrote:
+> On Tue, Apr 16, 2024 at 11:46 AM Jianfeng Liu <liujianfeng1994@gmail.com> wrote:
 >>
+>> Add devicetree binding for ArmSoM Sige7 board
 >>
->> On 4/15/2024 2:10 AM, Arınç ÜNAL wrote:
->>> On 15.04.2024 10:57, Krzysztof Kozlowski wrote:
->>>> On 14/04/2024 22:21, Arınç ÜNAL wrote:
->>>>> NVRAM is described as both flash device partition and memory mapped NVMEM.
->>>>> This platform stores NVRAM on flash but makes it also memory accessible.
->>>>>
->>>>> As device partitions are described in board DTS, the nvram node must also
->>>>
->>>> Sorry, but we do not talk about partitions. Partitions are indeed board
->>>> property. But the piece of hardware, so NVMEM, is provided by SoC.
->>>>
->>>>> be defined there as its address and size will be different by board. It has
->>>>> been widely described on at least bcm4709 and bcm47094 SoC board DTS files
->>>>> here.
->>>>
->>>> These not proper arguments. What you are saying here is that SoC does no
->>>> have nvram at address 0x1c08000. Instead you are saying there some sort
->>>> of bus going out of SoC to the board and on the board physically there
->>>> is some NVRAM sort of memory attached to this bus.
->>>
->>> Yes that is the case. NVRAM is stored on a partition on the flash. On the
->>> Broadcom NorthStar platform, the NAND flash base is 0x1c000000, the NOR
->>> flash base is 0x1e000000.
->>>
->>> For the board in this patch, the flash is a NAND flash. The NVRAM partition
->>> starts at address 0x00080000. Therefore, the NVRAM component's address is
->>> 0x1c080000.
->>
->> Because the flash is memory mapped into the CPU's address space, a separate node was defined since it is not part of the "soc" node which describes the bridge that connects all of the peripherals.
->>
->> Whether we should create an additional bus node which describes the bridge being used to access the flash devices using the MMIO windows is debatable. Rafal, what do you think?
+>> Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
+>> Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 > 
-> Will this block this patch series? If not, I'd like to submit the next
-> version with Krzysztof's comments on earlycon and stdout-path addressed.
+> Reviewed-by: Weizhao Ouyang <weizhao.ouyang@arm.com>
 
-Why are you so impatient? The review process takes time and your
-reluctance to take responsibility for issues here are no helping.
+This does not match your email. What did you exactly review here?
 
 Best regards,
 Krzysztof
