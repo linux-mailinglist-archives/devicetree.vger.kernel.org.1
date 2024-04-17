@@ -1,487 +1,192 @@
-Return-Path: <devicetree+bounces-60223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D4598A87CB
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 17:37:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1C0C8A87EE
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 17:41:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E71431F24C99
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 15:37:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 394301F27227
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 15:41:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0EFA14831C;
-	Wed, 17 Apr 2024 15:35:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03FED152187;
+	Wed, 17 Apr 2024 15:39:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.b="lH/Ib74T"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="hmincq7d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpcmd13146.aruba.it (smtpcmd13146.aruba.it [62.149.156.146])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 824D71482E5
-	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 15:35:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.149.156.146
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D7133E493;
+	Wed, 17 Apr 2024 15:39:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713368146; cv=none; b=SeYCqfC1BRDUcxJotM3tDOm4Ox49blK0Th3glGEy5t7cNVF5AcDXzBg2A7gjD3eXty6ooG5MU8H5DImv87V8jY70XeF4FZI51eKVD/pM/JsO8LoFmoaLEbqN5PR28JPS2yhbZrfgyQstJKlFYL2Qy2GqtlhK3e5bgzeS0FCDStE=
+	t=1713368357; cv=none; b=uAx7pV4bhAgy31QacDohxkRuJx0i9zqcXZl5RGkwwJDWnhVZLt/0mLtGIVax16Q+DR/PQvQ3dsyAaIyxgoi8MmCkAXzv4vu7MU/FSwavFwWPhITsWFsSkV4ac9ymCQyFpvmyWsb0Si3wtouvoRkKrHr/etWV311fnAoo9EX8PB0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713368146; c=relaxed/simple;
-	bh=3WdPb55kxtbLuvTnzw39RxHrxBf21qrRKLhUgwhA2oU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=iS3PxVLoNZOc+Ra7r1Vm/qfl3jNv5iufeDJ/q4XKy6GCkIpWR4kkagHcVWMm+sqvTJsVLR+mp358x+NE+OGLyAMJ7kGMoVD23VkgFrts5JVUGaO2f6TvJPZqrDxFpO+qnWEHo5yolY780BXHJOsdvZ/gVFMz0YcuH3fJ1rdDD1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=engicam.com; spf=pass smtp.mailfrom=engicam.com; dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.b=lH/Ib74T; arc=none smtp.client-ip=62.149.156.146
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=engicam.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=engicam.com
-Received: from engicam.com ([77.32.9.15])
-	by Aruba Outgoing Smtp  with ESMTPSA
-	id x7JrrIqgbiznzx7JvrXawt; Wed, 17 Apr 2024 17:35:35 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
-	t=1713368135; bh=3WdPb55kxtbLuvTnzw39RxHrxBf21qrRKLhUgwhA2oU=;
-	h=From:To:Subject:Date:MIME-Version;
-	b=lH/Ib74TLVixczaKgb4sgz7wzGY5rwfoMmD6ladwDyM7ufxiP3Ttpily63EdmwFX7
-	 2KoLyv9+UHHPYIpCMsHSxK/fI5h6UyoyU4KdGlAZIBgEQu9es91LmXcgpI4XhpEqDS
-	 N3P+wtJWUsavWoe1LOsXeZiOEew8NKalY+4PyM9sKzgm6LlI7Rnf237Vehmjmiv3M2
-	 NimI3gXHpDK5L21mDIF7UulmFbyBTNNJVc1QHSkhKCTBXJRI0L+hv7Wtu0AUWYyG/g
-	 TRhrFmDKu8R+c1PhJdiZJjZ0BVZXW69j+I4LRwQoyswNSbpBILjs6R+kVBy5EC2e0x
-	 X9D/02YXii7nQ==
-From: Fabio Aiuto <fabio.aiuto@engicam.com>
-To: Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Fabio Aiuto <fabio.aiuto@engicam.com>,
-	Matteo Lisi <matteo.lisi@engicam.com>,
-	Mirko Ardinghi <mirko.ardinghi@engicam.com>
-Subject: [PATCH 4/4] arm64: dts: imx93: Add Engicam i.Core MX93 EDIMM 2.0 Starter Kit
-Date: Wed, 17 Apr 2024 17:35:28 +0200
-Message-Id: <20240417153528.7838-5-fabio.aiuto@engicam.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240417153528.7838-1-fabio.aiuto@engicam.com>
-References: <20240417153528.7838-1-fabio.aiuto@engicam.com>
+	s=arc-20240116; t=1713368357; c=relaxed/simple;
+	bh=I5hIRtUrBrDsG+h5jPN51ir1mk5P5T2b5m9gyZaZzmg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MMNqa6JFSSl2MEQwnJH2dDlBZtPoJ/qBRjg6VnmdGmp7fLWwNjUSHdNOJu1SM0rZrdrMf9hiHu+Mk3tc9ZZ5wWMIiHHjZzB13B+Ff+WTGPwgMroist8ymXFjIUI/vjL9r7Grk5u6sPFek0kCfL144QqgH6Dp7BlY+Y1TH4vIGe4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=hmincq7d; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1713368354;
+	bh=I5hIRtUrBrDsG+h5jPN51ir1mk5P5T2b5m9gyZaZzmg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=hmincq7dtHvoqMye61mzj+V5WEVKSIUpZh581SxDvrE5HZRosL7ef6VdLEsNenLC9
+	 +c5680W/rLZjaqGTsrV3q0KvkAsPTpL4UHiJaAhki7uJJBA0wH2TPNOjeEaL2D93Ja
+	 zittO0N3e/ytrc6hf1BfFV8NyA56jm+kxAaRojPcJTLR5a8vqmybHMNdF8IByHpvXm
+	 FOyh1UvJ9OaISUFUur90F8Hx/uBl26jqPYUVjRFvzScQP0uZ5O62La2wLjY/JuONJn
+	 NZK6I2z5GK/VI39wAq7gSjCFblL1jYv0TW8AGzy5isdvuK4dLLsOkuAnDIUmBHreTM
+	 MMpMHxJ0sfhNg==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 76BB83780629;
+	Wed, 17 Apr 2024 15:39:13 +0000 (UTC)
+Message-ID: <b728478d-d9c9-4256-aeab-a234316d81cc@collabora.com>
+Date: Wed, 17 Apr 2024 17:39:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CMAE-Envelope: MS4xfLSIkSHVmK5WbucNRItkLZTPk0XCz1Y/ut7Uz2onWVlfG1XT0EDbMNhuKCdHP05au5A/xz5cioc1GRkRixcLN6rnb6EewZM/ZbJ6raMaBFAQZbY71luj
- 1XXtSzfNVJtc6JQ/q1cD6pV7wv16iYLvK/tpthq1YAiB5MqtkS5Se+76co0NjtPUVCHg5Sn0sYnvME65fXTwy4zT3x5+mQBFpIasfzpnakKJpvolzFx4D955
- q0BGCLd/TK5oZikyo9H+nF40OVQ1IYKYcOuK9BJzCmp0uZpBto5I7etQZwpHcYkDWE5uMRjJJTYRnAdM+oLkNJAFUQ6uAOYb5RgmStEjAsCyQILYcMHJbjbi
- P7taF2pjsaSt6pHLgQdlVtfQVX0YNPzXkL2LNWjSFZpERgsW6tNYWn0v1l/8pI8YO93aeZXlVYBoNryqaNPzOWO5cTh9XbODoEOxwEBdj87uOUWEmsV/YjHb
- gsIAjZvlffTFrcPvLpBWugbeVv/K5WxT/ARpB+MsFHcfgxUCfPz1YzJdYOD0li+D8OLVvYyua/E65Xsh+/lsAq+O/lttXTPaGXGkKE9CYD9QC+GEzm2vc449
- 2KfsCSHEj34Fhllb0bow53o3DxFTX/Zu8ZYKVg45Jl8WQw==
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/7] dt-bindings: regulator: Add bindings for MediaTek
+ DVFSRC Regulators
+To: Rob Herring <robh@kernel.org>
+Cc: djakov@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com,
+ broonie@kernel.org, keescook@chromium.org, gustavoars@kernel.org,
+ henryc.chen@mediatek.com, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ kernel@collabora.com, wenst@chromium.org, amergnat@baylibre.com
+References: <20240417091442.170505-1-angelogioacchino.delregno@collabora.com>
+ <20240417091442.170505-2-angelogioacchino.delregno@collabora.com>
+ <20240417145238.GA2348962-robh@kernel.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20240417145238.GA2348962-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-i.Core MX93 is a NXP i.MX93 based SoM by Enigcam which
-needs to be mounted on top of Engicam baseboards.
+Il 17/04/24 16:52, Rob Herring ha scritto:
+> On Wed, Apr 17, 2024 at 11:14:36AM +0200, AngeloGioacchino Del Regno wrote:
+>> The Dynamic Voltage and Frequency Scaling Resource Collector Regulators
+>> are controlled with votes to the DVFSRC hardware.
+>>
+>> This adds support for the regulators found in MT6873, MT8183, MT8192
+>> and MT8195 SoCs.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   .../mediatek,mt6873-dvfsrc-regulator.yaml     | 71 +++++++++++++++++++
+>>   1 file changed, 71 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6873-dvfsrc-regulator.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6873-dvfsrc-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt6873-dvfsrc-regulator.yaml
+>> new file mode 100644
+>> index 000000000000..446f1dab4d2e
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6873-dvfsrc-regulator.yaml
+>> @@ -0,0 +1,71 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/regulator/mediatek,mt6873-dvfsrc-regulator.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: MediaTek DVFSRC-controlled Regulators
+>> +
+>> +description:
+>> +  The Dynamic Voltage and Frequency Scaling Resource Collector Regulators
+>> +  are controlled with votes to the DVFSRC hardware.
+>> +
+>> +maintainers:
+>> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - mediatek,mt6873-dvfsrc-regulator
+>> +      - mediatek,mt8183-dvfsrc-regulator
+>> +      - mediatek,mt8192-dvfsrc-regulator
+>> +      - mediatek,mt8195-dvfsrc-regulator
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  dvfsrc-vcore:
+>> +    description: DVFSRC-controlled SoC Vcore regulator
+>> +    $ref: regulator.yaml#
+> 
+>         unevaluatedProperties: false
+> 
 
-Add support for EDIMM 2.0 Starter Kit hosting
-i.Core MX93.
+Will do!
 
-Starter Kit main features:
+>> +
+>> +  dvfsrc-vscp:
+>> +    description: DVFSRC-controlled System Control Processor regulator
+>> +    $ref: regulator.yaml#
+> 
+> ditto
+> 
+>> +
+>> +required:
+>> +  - compatible
+> 
+> 'reg' is never optional. And how is no regulators at all valid?
+> 
 
-2x LVDS interfaces
-HDMI output
-Audio out
-Mic in
-Micro SD card slot
-USB 3.0 A port
-3x USB 2.0 A port
-Gb Ethernet
-2x CAN bus, 3x UART interfaces
-SIM card slot
-M.2 KEY_B slot
+The two nodes that I'm adding with this series don't need reg, but others
+that are not present in this do... but anyway, let's postpone that problem
+for the future me, or the future-anyone-else implementing the rest, I will
+remove the 'reg' property as it is indeed not needed for this node.
 
-Cc: Matteo Lisi <matteo.lisi@engicam.com>
-Cc: Mirko Ardinghi <mirko.ardinghi@engicam.com>
-Signed-off-by: Fabio Aiuto <fabio.aiuto@engicam.com>
----
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../dts/freescale/imx93-icore-mx93-edimm2.dts | 356 ++++++++++++++++++
- 2 files changed, 357 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx93-icore-mx93-edimm2.dts
+And yeah it's invalid to add that node without any regulator. Will check the
+other regulator bindings on how they're doing it.
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 045250d0a040..d26c0a458a44 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -226,6 +226,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8qxp-mek.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8qxp-tqma8xqp-mba8xx.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8ulp-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-evk.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx93-icore-mx93-edimm2.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxca.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxla.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx93-icore-mx93-edimm2.dts b/arch/arm64/boot/dts/freescale/imx93-icore-mx93-edimm2.dts
-new file mode 100644
-index 000000000000..75cac97d919c
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx93-icore-mx93-edimm2.dts
-@@ -0,0 +1,356 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2022 NXP
-+ * Copyright 2024 Engicam s.r.l.
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/usb/pd.h>
-+#include "imx93-icore-mx93.dtsi"
-+
-+/ {
-+	model = "Engicam i.Core MX93 - EDIMM 2 Starterkit";
-+	compatible = "engicam,icore-mx93-edimm2", "engicam,icore-mx93",
-+		     "fsl,imx93";
-+
-+	aliases {
-+		rtc1= &bbnsm_rtc;
-+	};
-+
-+	bt_reg_on: regulator-btregon {
-+		compatible = "regulator-gpio";
-+		regulator-name = "BT_REG_ON";
-+		pinctrl-names = "default";
-+		regulator-min-microvolt = <100000>;
-+		regulator-max-microvolt = <3300000>;
-+		states = <3300000 0x1>,
-+				 <100000 0x0>;
-+		gpios = <&gpio2 19 GPIO_ACTIVE_HIGH>;
-+		regulator-always-on;
-+	};
-+
-+	chosen {
-+		stdout-path = &lpuart1;
-+	};
-+
-+	reg_1v8_sgtl: reg_1v8_sgtl_regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "1v8_sgtl";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		always-on;
-+	};
-+
-+	reg_3v3_avdd_sgtl: reg_3v3_avdd_regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3v3_avdd_sgtl";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		always-on;
-+	};
-+
-+	reg_3v3_sgtl: reg_3v3_sgtl_regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3v3_sgtl";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		always-on;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		linux,cma {
-+			compatible = "shared-dma-pool";
-+			reusable;
-+			alloc-ranges = <0 0x80000000 0 0x40000000>;
-+			size = <0 0x10000000>;
-+			linux,cma-default;
-+		};
-+
-+		rsc_table: rsc-table@2021f000 {
-+			reg = <0 0x2021f000 0 0x1000>;
-+			no-map;
-+		};
-+
-+		vdevbuffer: vdevbuffer@a4020000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0 0xa4020000 0 0x100000>;
-+			no-map;
-+		};
-+
-+		vdev0vring0: vdev0vring0@a4000000 {
-+			reg = <0 0xa4000000 0 0x8000>;
-+			no-map;
-+		};
-+
-+		vdev0vring1: vdev0vring1@a4008000 {
-+			reg = <0 0xa4008000 0 0x8000>;
-+			no-map;
-+		};
-+
-+		vdev1vring0: vdev1vring0@a4000000 {
-+			reg = <0 0xa4010000 0 0x8000>;
-+			no-map;
-+		};
-+
-+		vdev1vring1: vdev1vring1@a4018000 {
-+			reg = <0 0xa4018000 0 0x8000>;
-+			no-map;
-+		};
-+	};
-+
-+	sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "imx93-sgtl5000";
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,bitclock-master = <&dailink_master>;
-+		simple-audio-card,frame-master = <&dailink_master>;
-+		/*simple-audio-card,mclk-fs = <1>;*/
-+		simple-audio-card,cpu {
-+			sound-dai = <&sai3>;
-+		};
-+
-+		dailink_master: simple-audio-card,codec {
-+			sound-dai = <&sgtl5000>;
-+			clocks = <&clk IMX93_CLK_SAI3_IPG>;
-+		};
-+	};
-+
-+	usdhc3_pwrseq: usdhc3_pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+	};
-+
-+	wl_reg_on: regulator-wlregon {
-+		compatible = "regulator-gpio";
-+		pinctrl-names = "default";
-+		regulator-name = "WL_REG_ON";
-+		regulator-min-microvolt = <100000>;
-+		regulator-max-microvolt = <3300000>;
-+		states = <3300000 0x1>,
-+				 <100000 0x0>;
-+		gpios = <&gpio2 22 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		vin-supply = <&bt_reg_on>;
-+	};
-+};
-+
-+&cm33 {
-+	mbox-names = "tx", "rx", "rxdb";
-+	mboxes = <&mu1 0 1>,
-+		 <&mu1 1 1>,
-+		 <&mu1 3 1>;
-+	memory-region = <&vdevbuffer>, <&vdev0vring0>, <&vdev0vring1>,
-+			<&vdev1vring0>, <&vdev1vring1>, <&rsc_table>;
-+	status = "okay";
-+};
-+
-+&flexcan1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_flexcan1>;
-+	fsl,stop-mode = <&aonmix_ns_gpr 0x10 4>;
-+	status = "okay";
-+};
-+
-+&flexcan2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_flexcan2>;
-+	fsl,stop-mode = <&aonmix_ns_gpr 0x10 4>;
-+	status = "okay";
-+};
-+
-+&lpi2c1 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&pinctrl_lpi2c1>;
-+	pinctrl-1 = <&pinctrl_lpi2c1>;
-+	status = "okay";
-+
-+	pcf8523: rtc@68 {
-+		compatible = "nxp,pcf8523";
-+		reg = <0x68>;
-+	};
-+
-+	sgtl5000: codec@a {
-+		compatible = "fsl,sgtl5000";
-+		status = "okay";
-+		#sound-dai-cells = <0>;
-+		reg = <0x0a>;
-+		clocks = <&clk IMX93_CLK_SAI3_GATE>;
-+		clock-names = "mclk";
-+		assigned-clock-rates = <12000000>, <12000000>;
-+		VDDA-supply = <&reg_3v3_avdd_sgtl>;
-+		VDDIO-supply = <&reg_3v3_sgtl>;
-+		VDDD-supply = <&reg_1v8_sgtl>;
-+	};
-+};
-+
-+&lpuart1 { /* console */
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	status = "okay";
-+};
-+
-+&lpuart5 { /* RS485 */
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart5>;
-+	status = "okay";
-+};
-+
-+&lpuart8 { /* RS232 */
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart8>;
-+	status = "okay";
-+};
-+
-+&micfil {
-+	#sound-dai-cells = <0>;
-+	pinctrl-names = "default";
-+	assigned-clocks = <&clk IMX93_CLK_PDM>;
-+	assigned-clock-parents = <&clk IMX93_CLK_AUDIO_PLL>;
-+	assigned-clock-rates = <196608000>;
-+	status = "okay";
-+};
-+
-+&mu1 {
-+	status = "okay";
-+};
-+
-+&mu2 {
-+	status = "okay";
-+};
-+
-+&sai1 {
-+	#sound-dai-cells = <0>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_sai1>;
-+	assigned-clocks = <&clk IMX93_CLK_SAI1>;
-+	assigned-clock-parents = <&clk IMX93_CLK_AUDIO_PLL>;
-+	assigned-clock-rates = <12288000>;
-+	status = "okay";
-+};
-+
-+&sai3 {
-+	pinctrl-names = "default";
-+	#sound-dai-cells = <0>;
-+	pinctrl-0 = <&pinctrl_sai3>;
-+	assigned-clocks = <&clk IMX93_CLK_SAI3>;
-+	assigned-clock-parents = <&clk IMX93_CLK_AUDIO_PLL>;
-+	assigned-clock-rates = <24576000>;
-+	fsl,sai-mclk-direction-output;
-+	status = "okay";
-+};
-+
-+&usdhc3 { /* WiFi */
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc3>, <&pinctrl_laird>;
-+	pinctrl-1 = <&pinctrl_usdhc3>, <&pinctrl_laird>;
-+	pinctrl-2 = <&pinctrl_usdhc3>, <&pinctrl_laird>;
-+	vmmc-supply = <&wl_reg_on>;
-+	bus-width = <4>;
-+	no-1-8-v;
-+	non-removable;
-+	max-frequency = <25000000>;
-+	status = "okay";
-+
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	brcmf: bcrmf@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+	};
-+};
-+
-+&wdog3 {
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+
-+	pinctrl_flexcan1: flexcan1grp {
-+		fsl,pins = <
-+			MX93_PAD_PDM_CLK__CAN1_TX		0x139e
-+			MX93_PAD_PDM_BIT_STREAM0__CAN1_RX	0x139e
-+		>;
-+	};
-+
-+	pinctrl_flexcan2: flexcan2grp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO25__CAN2_TX	0x139e
-+			MX93_PAD_GPIO_IO27__CAN2_RX	0x139e
-+		>;
-+	};
-+
-+	pinctrl_laird: lairdgrp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO22__GPIO2_IO22		0x31e // WL_REG_ON
-+			MX93_PAD_GPIO_IO19__GPIO2_IO19		0x31e // BT_REG_ON
-+		>;
-+	};
-+
-+	pinctrl_lpi2c1: lpi2c1grp {
-+		fsl,pins = <
-+			MX93_PAD_I2C1_SCL__LPI2C1_SCL		0x40000b9e
-+			MX93_PAD_I2C1_SDA__LPI2C1_SDA		0x40000b9e
-+		>;
-+	};
-+
-+	pinctrl_sai1: sai1grp {
-+		fsl,pins = <
-+			MX93_PAD_SAI1_TXC__SAI1_TX_BCLK		0x31e
-+			MX93_PAD_SAI1_TXFS__SAI1_TX_SYNC	0x31e
-+			MX93_PAD_SAI1_TXD0__SAI1_TX_DATA00	0x31e
-+			MX93_PAD_SAI1_RXD0__SAI1_RX_DATA00	0x31e
-+		>;
-+	};
-+
-+	pinctrl_sai3: sai3grp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO26__SAI3_TX_SYNC	0x31e
-+			MX93_PAD_GPIO_IO16__SAI3_TX_BCLK	0x31e
-+			MX93_PAD_GPIO_IO17__SAI3_MCLK		0x31e
-+			MX93_PAD_GPIO_IO21__SAI3_TX_DATA00	0x31e
-+			MX93_PAD_GPIO_IO20__SAI3_RX_DATA00	0x31e
-+		>;
-+	};
-+
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX93_PAD_UART1_RXD__LPUART1_RX		0x31e
-+			MX93_PAD_UART1_TXD__LPUART1_TX		0x31e
-+		>;
-+	};
-+
-+	pinctrl_uart5: uart5grp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO01__LPUART5_RX		0x31e
-+			MX93_PAD_GPIO_IO00__LPUART5_TX		0x31e
-+			MX93_PAD_GPIO_IO02__LPUART5_CTS_B	0x31e
-+			MX93_PAD_GPIO_IO03__LPUART5_RTS_B	0x31e
-+		>;
-+	};
-+
-+	pinctrl_uart8: uart8grp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO13__LPUART8_RX		0x31e
-+			MX93_PAD_GPIO_IO12__LPUART8_TX		0x31e
-+		>;
-+	};
-+
-+	pinctrl_usdhc3: usdhc3grp {
-+		fsl,pins = <
-+			MX93_PAD_SD3_CLK__USDHC3_CLK		0x17fe
-+			MX93_PAD_SD3_CMD__USDHC3_CMD		0x13fe
-+			MX93_PAD_SD3_DATA0__USDHC3_DATA0	0x13fe
-+			MX93_PAD_SD3_DATA1__USDHC3_DATA1        0x13fe
-+			MX93_PAD_SD3_DATA2__USDHC3_DATA2        0x13fe
-+			MX93_PAD_SD3_DATA3__USDHC3_DATA3        0x13fe
-+		>;
-+	};
-+};
--- 
-2.34.1
+
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+> 
+> Drop the example here. Just one complete example in the MFD doc.
+> 
+
+Oki, dropping in v3! That also resolves the circular dependency thing, so
+that's even better.
+
+>> +    soc {
+>> +        #address-cells = <2>;
+>> +        #size-cells = <2>;
+>> +
+>> +        system-controller@10012000 {
+>> +            compatible = "mediatek,mt8195-dvfsrc";
+>> +            reg = <0 0x10012000 0 0x1000>;
+>> +            #address-cells = <1>;
+>> +            #size-cells = <0>;
+>> +
+>> +            regulators@0 {
+>> +                compatible = "mediatek,mt8195-dvfsrc-regulator";
+>> +                reg = <0>;
+> 
+> What does 'reg' value represent here? 0 and 1 seem pretty much made up.
+> 
+
+Gets removed in v3, tomorrow.
+
+Cheers,
+Angelo
+
 
 
