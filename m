@@ -1,65 +1,66 @@
-Return-Path: <devicetree+bounces-60275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60276-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99ECF8A8AD2
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 20:09:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1EBA8A8AE0
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 20:13:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CB50D1C22546
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 18:09:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7775C1F23C4C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 18:13:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBDA9172BD2;
-	Wed, 17 Apr 2024 18:09:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B399172BD7;
+	Wed, 17 Apr 2024 18:13:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tOOzaQVY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qs7s/U33"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B452A129A7F;
-	Wed, 17 Apr 2024 18:09:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22AA4146D7F;
+	Wed, 17 Apr 2024 18:12:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713377356; cv=none; b=Z0AIoX7TvR6MCH6x9KXjaHsGgfq0xhdx+qISqay1hVOKR4iqIhdrziQ6hZ8THRgsQhYtMg71gVdBXj8vVI4u5EDVXqm9l5+nTGT6UcPEvWhgmgkvSsgYmTc7ukHwvkuecbscMdHidrG1ETKK2yYiLy/bwa0h6JyzICRH2CBndgY=
+	t=1713377580; cv=none; b=TjZ4JVNt3fjM/J7LS+U+beSTxwlYKDsywkGZZro9wt+qJXFA8zgvryv06EbY/lHpuVuWAfejzNiHkT+Pe53+NpuyFkEx18+OxAeorqIHIGoiwnOBFiLWwq88nS1U4Kiv9dl2kralwXMKLpi+1yOS1+lGBITRMNfSj+liRKy+sXw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713377356; c=relaxed/simple;
-	bh=LsqwIAcZ9xcslbdJWJ70Q/boOMwoOC+KtWr2ruc17ho=;
+	s=arc-20240116; t=1713377580; c=relaxed/simple;
+	bh=+QqZIxQ8UlhnEmUdS1HJUIQc1KETk2//TWOKmBcq1yw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pIonBG1jftxmgibikh1Z3FKSmq1augrRjN/hHgTvy2CDHEzkMX/OQkrMG+Rc641ybuzkgt4GhndzUeaEMoFtuIRGvQS9a6aXKTa9BfHgThGb+qGISlFKcVlWSKKPw31nRbqVna+WBxtZC5NKz91b0TVDthHak2ELGVISt4WRkiU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tOOzaQVY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FC76C072AA;
-	Wed, 17 Apr 2024 18:09:15 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=me2Udq1ePNbHy2X38qgOdLqL7VkdvIghyO9qKrlVTcna7M6EEU2PyW7BfDN0hW7jHwjq0fHvKqtgLI2OXoBgy7VRFz+7J+yNrjxmOhRA9nwM4HFsidaarcg8ctrYedultiIzQK76mDiryPG9nsiQdGRGAZYXzIyLVTNaFESLeGU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qs7s/U33; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64067C072AA;
+	Wed, 17 Apr 2024 18:12:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713377356;
-	bh=LsqwIAcZ9xcslbdJWJ70Q/boOMwoOC+KtWr2ruc17ho=;
+	s=k20201202; t=1713377579;
+	bh=+QqZIxQ8UlhnEmUdS1HJUIQc1KETk2//TWOKmBcq1yw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tOOzaQVY7IKpmitflD7aGK/iY/ASXphAdImXLfa6QAfAbfMVwINXSPAO4cHn3UalV
-	 R4uZmQYNu+egtGbtC+03z0Zw5QZWvjOhaDRl3VE+kleWvVZmzGUTHYD+NI7X7c4BT9
-	 xYFA3wcq0D/EjBROFS/bqwyoSaxIXyXKNskkczk3+/4dtVUWzCeLZyNZhhHDV3XAgE
-	 rd69uifcKflEwLSaU4/ruoGhRN2dWxW5tn0sK22l4k45dxB5y8/5c0FgluyfZMM1SU
-	 AnOwzU6R2lO3HylDgmNFPqOhPYvSNjsEaXz4lNyWujAi54fdO4UiTb6+RMTG0qgew/
-	 ERKLx3R0CxktQ==
-Date: Wed, 17 Apr 2024 13:09:14 -0500
+	b=Qs7s/U33jKkoO6fTSIvWPF98FJeWk9FRSo6ex2nV7//YcFOfYLle3tz42e3PyHo1K
+	 73MkXeI4MUUnqClLeVpdd3+PSkjp15ZdoetD6qpr3MJDoYlwpN+56vi8B30gB7xOSY
+	 AeezwTtpZ7LNNa+uI8RGOHS1IgrPuBlQMDO8xsMSKFczvJ0NLdTTXRycx1QUxWZWY7
+	 Vd1Ep+JZ7mOPAZZlorwnJd3eKifgKbVJ0lzMibz1s1k2zBeJDjQ4VZEfetj3X8zM4Q
+	 4Eljj+C90Eu/ySegZOnD9uAWewMrVlDP8UtzYgerKppJOoaK8VWz5gsq27XoNUFkif
+	 Dv+9crxRcKLSQ==
+Date: Wed, 17 Apr 2024 13:12:57 -0500
 From: Rob Herring <robh@kernel.org>
-To: Antonio Borneo <antonio.borneo@foss.st.com>
-Cc: Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-	linux-stm32@st-md-mailman.stormreply.com,
+To: Arseniy Krasnov <avkrasnov@salutedevices.com>
+Cc: oxffffaa@gmail.com, Kevin Hilman <khilman@baylibre.com>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Thomas Gleixner <tglx@linutronix.de>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Richard Weinberger <richard@nod.at>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Subject: Re: [PATCH v2 02/11] dt-bindings: interrupt-controller: stm32-exti:
- Add irq mapping to parent
-Message-ID: <171337733789.2907077.14650412956995048525.robh@kernel.org>
-References: <20240216094758.916722-1-antonio.borneo@foss.st.com>
- <20240415134926.1254428-3-antonio.borneo@foss.st.com>
+	Jerome Brunet <jbrunet@baylibre.com>, linux-mtd@lists.infradead.org,
+	Neil Armstrong <neil.armstrong@linaro.org>, kernel@sberdevices.ru,
+	linux-amlogic@lists.infradead.org,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v5 1/2] dt-bindings: mtd: amlogic,meson-nand: support
+ fields for boot ROM code
+Message-ID: <171337756287.2947093.12060380819740476831.robh@kernel.org>
+References: <20240416085101.740458-1-avkrasnov@salutedevices.com>
+ <20240416085101.740458-2-avkrasnov@salutedevices.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,24 +69,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240415134926.1254428-3-antonio.borneo@foss.st.com>
+In-Reply-To: <20240416085101.740458-2-avkrasnov@salutedevices.com>
 
 
-On Mon, 15 Apr 2024 15:49:17 +0200, Antonio Borneo wrote:
-> The mapping of EXTI events to its parent interrupt controller is
-> both SoC and instance dependent.
-> The current implementation requires adding a new mapping table to
-> the driver's code and a new compatible for each new EXTI instance.
+On Tue, 16 Apr 2024 11:51:00 +0300, Arseniy Krasnov wrote:
+> Boot ROM code on Meson requires that some pages on NAND must be written
+> in special mode: "short" ECC mode where each block is 384 bytes and
+> scrambling mode is on. Such pages located with the specified interval
+> within specified offset. Both interval and offset are located in the
+> device tree and used by driver if 'nand-is-boot-medium' is set for
+> NAND chip.
 > 
-> Use the interrupts-extended property to list, for each EXTI event,
-> the associated parent interrupt.
-> 
-> Co-developed-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-> Signed-off-by: Antonio Borneo <antonio.borneo@foss.st.com>
+> Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
 > ---
->  .../interrupt-controller/st,stm32-exti.yaml     | 17 ++++++++++++++++-
->  1 file changed, 16 insertions(+), 1 deletion(-)
+>  .../bindings/mtd/amlogic,meson-nand.yaml           | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
