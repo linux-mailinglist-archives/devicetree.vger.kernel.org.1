@@ -1,126 +1,154 @@
-Return-Path: <devicetree+bounces-60221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8FB48A87AD
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 17:33:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83CCE8A87B5
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 17:34:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 597051F243EC
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 15:33:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 376FD1F22D56
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 15:34:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71F0F147C9F;
-	Wed, 17 Apr 2024 15:33:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 955F0146D4B;
+	Wed, 17 Apr 2024 15:34:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="2Nw0ur49"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i4T6AISh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38B2213EFEC;
-	Wed, 17 Apr 2024 15:33:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 651C113C3EF;
+	Wed, 17 Apr 2024 15:34:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713367984; cv=none; b=WBamnpM/JWzeC51CR7A2wzDSKSHUApsYI6hrkCUHQXtuosLa6qen+osDPwb7H6bPsNxMRIBQ2S8bm+vi+k2B9OaO69STk9m3CXDJBSKnICfJ4qCN4f7xI2lIK47RvuieV0qgXZko3ZkpCtRg188MJUhYYIUo6dzqS2JhSEA9JSg=
+	t=1713368068; cv=none; b=ARFys+a6ITm7aw+zHvcO88YYbb08f5aTUGdKeCPLJxtxGyPkcmIZa+EdWnkQRZYinsYKRO8JJYRq+InxkAqmFoY0VOmOkEOwhY+SJeFGNIQ2Rls1zKLrDEvEviKS+Ai2mzgxuuzdBjMiEVAa70W/sToC2wenLEKW7uEDUv/+1/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713367984; c=relaxed/simple;
-	bh=2xn4oP5qSf+gAMTht/g7tss9ReK+HcgndLYujyEm8Ac=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J1jkrR7o2MGGm3yQJ+hB2h3SBeIl5GcOA59rtmva4MkGQV74zDSUv5ujHZVmgTIIcNtWVKCQQiKSfOQva0CXavsqSWkn1M9yppXtdZg6wgtxCaE+3VRp33YFK59fCKJ1RbnKHXrMC8/DxaKHZaWKtxjaKNTiNOCL6/C8c+Y9WNc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=2Nw0ur49; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1713367979;
-	bh=2xn4oP5qSf+gAMTht/g7tss9ReK+HcgndLYujyEm8Ac=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=2Nw0ur492Zb/y4Fr0BxzxP5YKMPjw99hkTQ/6oQaqB3+TKVKQgGYBrzJ5jJjUK5C+
-	 rqnfaLCAzZS6Y4lwooVAe3tkIF4Y/j+3RFx0r/OkjAxhnAjoLyHcQKycQoRGZrfvtn
-	 gBV2oZMyRtPJa4Z+YL8ANtXiuZOG4m/dsN7DoTDSKiPLVdmd06Kpq5kjkMa2of9vWJ
-	 YJxdniLjhP02rYUR5TRcTzi0GUJ36xaHfNGAuhi5HEXi7Pi15z13hmap5zqT4ThXlV
-	 8obhAOg9xFFA0U3O+BI6GWy2CQ1Dyn2vvv4E0tkNotlFeikZaXdEvGRL7dcHhPlQpl
-	 AdHfXY7lei2/w==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 329843782144;
-	Wed, 17 Apr 2024 15:32:58 +0000 (UTC)
-Message-ID: <59edbcc4-fcd2-4de7-a275-1d10e0c35155@collabora.com>
-Date: Wed, 17 Apr 2024 17:32:58 +0200
+	s=arc-20240116; t=1713368068; c=relaxed/simple;
+	bh=IaRbObB5dEEIBtmpY4TQrQpfkbKo3yd2zwxXbfaJry0=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=jcS+eTpuaZWeVijKeU8wGzXirr/TzjuVnRf6vuvOTyySPhANT2/7qE9a31rq7CyYoztjjdnMseZOteXJdOG1qYreKfY7aiP+GkMOiscNyQfi7nc/4sIZQY0gdmz8z1SYJ+E23pEMu5YeqVZGk3SpxauCsLDcSvGR5NbgiHuQ+A8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i4T6AISh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCB6DC072AA;
+	Wed, 17 Apr 2024 15:34:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713368068;
+	bh=IaRbObB5dEEIBtmpY4TQrQpfkbKo3yd2zwxXbfaJry0=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=i4T6AIShq8iv6NzCQXuiVcBRjXys+gIu07VpRelIM/4VXfkxa3i1aKygFMcqTfTIP
+	 AxI1eScM8ogH6mCi0qFjCiT8MznN+YC6bE97ooKRydobQsZBEBBPl14dFQ/xJn7HcJ
+	 WhAUpXTxxQ+2Ln9OGR3rqkl/aitwNGoa5G5ULy5RqNdc8NReBC8F7Aw/raXUAR5Vla
+	 sVdUqc4laN664krEG2iJfuh8vTv5eP5X/Cd5kMpYf6dUmdG1Ce3KMwmHj+zgdDoFUO
+	 jLR33YbSwCQZlA1pjaR0uIv/IyOSNecht8uQWZ1RfasrybthQd67T+YCEJKhb1akT9
+	 aqEUnB1f0DATQ==
+Date: Wed, 17 Apr 2024 10:34:26 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/7] dt-bindings: regulator: Add bindings for MediaTek
- DVFSRC Regulators
-To: Rob Herring <robh@kernel.org>
-Cc: henryc.chen@mediatek.com, wenst@chromium.org, keescook@chromium.org,
- gustavoars@kernel.org, linux-mediatek@lists.infradead.org,
- amergnat@baylibre.com, broonie@kernel.org, devicetree@vger.kernel.org,
- krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org,
- conor+dt@kernel.org, matthias.bgg@gmail.com, djakov@kernel.org,
- linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
- kernel@collabora.com
-References: <20240417091442.170505-1-angelogioacchino.delregno@collabora.com>
- <20240417091442.170505-2-angelogioacchino.delregno@collabora.com>
- <171336511790.2347768.12360106374334104584.robh@kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <171336511790.2347768.12360106374334104584.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-
-Il 17/04/24 16:46, Rob Herring ha scritto:
-> 
-> On Wed, 17 Apr 2024 11:14:36 +0200, AngeloGioacchino Del Regno wrote:
->> The Dynamic Voltage and Frequency Scaling Resource Collector Regulators
->> are controlled with votes to the DVFSRC hardware.
->>
->> This adds support for the regulators found in MT6873, MT8183, MT8192
->> and MT8195 SoCs.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   .../mediatek,mt6873-dvfsrc-regulator.yaml     | 71 +++++++++++++++++++
->>   1 file changed, 71 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6873-dvfsrc-regulator.yaml
->>
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/regulator/mediatek,mt6873-dvfsrc-regulator.example.dtb: /example-0/soc/system-controller@10012000: failed to match any schema with compatible: ['mediatek,mt8195-dvfsrc']
-> 
-
-This is a circular dependency with patch [3/7], so I think that the bot complaining
-is expected?
+From: Rob Herring <robh@kernel.org>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: Luis Chamberlain <mcgrof@kernel.org>, 
+ Dent Project <dentproject@linuxfoundation.org>, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ kernel@pengutronix.de, "Rafael J. Wysocki" <rafael@kernel.org>, 
+ linux-doc@vger.kernel.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Russell King <linux@armlinux.org.uk>, Russ Weight <russ.weight@linux.dev>, 
+ Jakub Kicinski <kuba@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, 
+ Andrew Lunn <andrew@lunn.ch>, Mark Brown <broonie@kernel.org>, 
+ Eric Dumazet <edumazet@google.com>, 
+ Oleksij Rempel <o.rempel@pengutronix.de>, 
+ Frank Rowand <frowand.list@gmail.com>, Paolo Abeni <pabeni@redhat.com>, 
+ "David S. Miller" <davem@davemloft.net>, 
+ Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Jonathan Corbet <corbet@lwn.net>, netdev@vger.kernel.org, 
+ Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20240417-feature_poe-v9-8-242293fd1900@bootlin.com>
+References: <20240417-feature_poe-v9-0-242293fd1900@bootlin.com>
+ <20240417-feature_poe-v9-8-242293fd1900@bootlin.com>
+Message-Id: <171336806575.2618779.157615998420721814.robh@kernel.org>
+Subject: Re: [PATCH net-next v9 08/14] dt-bindings: net: pse-pd: Add
+ another way of describing several PSE PIs
 
 
-> doc reference errors (make refcheckdocs):
+On Wed, 17 Apr 2024 16:39:56 +0200, Kory Maincent wrote:
+> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
 > 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240417091442.170505-2-angelogioacchino.delregno@collabora.com
+> PSE PI setup may encompass multiple PSE controllers or auxiliary circuits
+> that collectively manage power delivery to one Ethernet port.
+> Such configurations might support a range of PoE standards and require
+> the capability to dynamically configure power delivery based on the
+> operational mode (e.g., PoE2 versus PoE4) or specific requirements of
+> connected devices. In these instances, a dedicated PSE PI node becomes
+> essential for accurately documenting the system architecture. This node
+> would serve to detail the interactions between different PSE controllers,
+> the support for various PoE modes, and any additional logic required to
+> coordinate power delivery across the network infrastructure.
 > 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
+> The old usage of "#pse-cells" is unsuficient as it carries only the PSE PI
+> index information.
 > 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
+> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+> ---
 > 
-> pip3 install dtschema --upgrade
+> Changes in v3:
+> - New patch
 > 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
+> Changes in v4:
+> - Remove $def
+> - Fix pairset-names item list
+> - Upgrade few properties description
+> - Update the commit message
+> 
+> Changes in v5:
+> - Fix yamllint error.
+> - Replace underscore by dash in properties names.
+> - Add polarity-supported property.
+> 
+> Changes in v6:
+> - Reorder the pairset pinout table documentation to shrink the lines size.
+> - Remove pairset and polarity as required fields.
+> - Add vpwr-supply regulator supply.
+> 
+> Changes in v7:
+> - Fix weird characters issue.
+> - Fix documentation nit.
+> ---
+>  .../bindings/net/pse-pd/pse-controller.yaml        | 101 ++++++++++++++++++++-
+>  1 file changed, 98 insertions(+), 3 deletions(-)
 > 
 
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+
+
+doc reference errors (make refcheckdocs):
+Warning: Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml references a file that doesn't exist: Documentation/networking/pse-pd/pse-pi.rst
+Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml: Documentation/networking/pse-pd/pse-pi.rst
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240417-feature_poe-v9-8-242293fd1900@bootlin.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
