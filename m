@@ -1,140 +1,111 @@
-Return-Path: <devicetree+bounces-60022-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60023-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7DA98A7F52
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 11:12:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E6E28A7F57
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 11:13:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 56653B21E66
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 09:12:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3FE441C213DE
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 09:13:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E40FC12BF30;
-	Wed, 17 Apr 2024 09:12:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39A1D12B170;
+	Wed, 17 Apr 2024 09:13:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="GT8A1lfV";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="q/UG8DAU"
+	dkim=pass (1024-bit key) header.d=amazon.de header.i=@amazon.de header.b="eeJ+Rzqv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from smtp-fw-33001.amazon.com (smtp-fw-33001.amazon.com [207.171.190.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CBC712AAE3
-	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 09:12:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BC2757898;
+	Wed, 17 Apr 2024 09:13:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.171.190.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713345136; cv=none; b=oyFl0jPjI0uAV+S4kYDdIFeYZmAmBFlcXmIu7fQzTOl8O/R9UMezWeUQmYGSRxrGbpCq+M7boNYrWknW0kgREAmZuctRmuoRVRAZY4R6fS/Im00HkBjA9uoE4QpyNJvvfZmU6suBgjTYMcyS4u2WoI4AEsKY2pRH4H5gNXMYMCw=
+	t=1713345182; cv=none; b=k7D1QUJQGtnmHBXBNoH8Tn+NSfEt0bzCGMIfMQ6inmaxc2dhuwDceMTYd0z+N6aPR7scdegWRaE0EQr8hf/G8n94qkxi8L7hhQgklwIIXk/K1LQlVQgljV4bWD+NDwTjby12TJs6faFSdOAUETvCjMVCjFaGv6LmZFkVynL5WOU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713345136; c=relaxed/simple;
-	bh=s+oA79rozNKbEdCS8EDNeATMYSzbbJ1tGkLt+Y+RLnQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XFzuKB5qUImI4d2kRelv3HTJEhWqGOrTPwVSLGRvRilcFsVYRtXHE7zABsgReBEaaQCsf93O/uBk6xMTzhT+WLUYjdlgYJF+eWhpG7+W5ZGPfkiH91osdl/ehUnzqBbG+UIvm4R9RT/etFA05F/d/s0m0TGN3J7dB+VbzVbtGrw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=GT8A1lfV; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=q/UG8DAU reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+	s=arc-20240116; t=1713345182; c=relaxed/simple;
+	bh=9ZnFyt9EnaFn4kkSCLK7jpsiIIqRXRrmN39V9djcWKY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=DKBzxXMiEziowyITcsljcvjngzPNf6bEzWxgH7xm8qFv0WtYPweo0nd0I77nfK+NXGgQHS7zOgr1jdWXJkYSP4tYP5B6nNZvqEh/n2oyy3EHgmAA6BhU+5md0gEnTY/SUX2BTvB76XDiHvxDohr6z8IMdVII3TkI41R8Y2cBO6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.de; spf=pass smtp.mailfrom=amazon.de; dkim=pass (1024-bit key) header.d=amazon.de header.i=@amazon.de header.b=eeJ+Rzqv; arc=none smtp.client-ip=207.171.190.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1713345133; x=1744881133;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=lF4tmDu4GI9aEs4Mh8KJn0WdInCsh2CXUX6g0XK0ZGM=;
-  b=GT8A1lfVLVQeora8EyMtZf/eBu9T2N/R1zxccLZI7j0bGwCmW/InRpzV
-   ++0p97Sjb2dhSPbDbbNEXeyJie6LABQtGdg38KDVv34ZSKGAbx+UY2OPe
-   u8SqBF6GZdoUyxcdH0w9w+WU8N5XZ/klsE6U/Z+Af7aOFa1Yp82upIwaU
-   hYisIJm4Q60BOpcAMhSgOrxCtq0W9WIMP+g/0hMDgMY278xcdOpk2/6oY
-   DK4vtCECHzYEgYHjjFzxpiz3dIezJhwrOLMsvoopmHl3aZihyGojRnZ62
-   MoLqfOug+6m6Xz7T+R7T95LXIu/cwYoGaUVGjqw9pEYdAc05bGbVjrZlI
-   w==;
-X-IronPort-AV: E=Sophos;i="6.07,208,1708383600"; 
-   d="scan'208";a="36462618"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 17 Apr 2024 11:12:10 +0200
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5DD97175E76;
-	Wed, 17 Apr 2024 11:12:05 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1713345126;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=lF4tmDu4GI9aEs4Mh8KJn0WdInCsh2CXUX6g0XK0ZGM=;
-	b=q/UG8DAUHWYjq8aFI9lw09UJZzhLoumjoboCuCKudXiDrE44Z8d3zqyH4v8HNjJDZg0brZ
-	Ri6vtJnkLSwpqk4RI81pPVBmkYZnE/4sG5skRVhCat/wBJSSfAlmaicWWq3PPItaardZo3
-	ulePIBWXWlaZHlN3SoQMd8zKkNXSJyOmncaSi276iYNwI6KXitTNMb57Cha3C9FYheVc/J
-	7k2ERb/fzSvtHNn95kjHBDxAHqgBaGUHwhGYAekDElsq6IdiPnTKSLR5I5apDDQ45fVML1
-	RWvHhkNJu6x6AANS8c4GkHa94+txcxCs7ZrGMzzTVxdq1owRiD4DpHhXTrP1kg==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marex@denx.de>, Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Paul Elder <paul.elder@ideasonboard.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org, imx@lists.linux.dev, Marek Vasut <marex@denx.de>
-Subject: Re: [PATCH v2] arm64: dts: imx8mp: Align both CSI2 pixel clock
-Date: Wed, 17 Apr 2024 11:12:04 +0200
-Message-ID: <2327389.ElGaqSPkdT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20240416141914.9375-1-marex@denx.de>
-References: <20240416141914.9375-1-marex@denx.de>
+  d=amazon.de; i=@amazon.de; q=dns/txt; s=amazon201209;
+  t=1713345181; x=1744881181;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=9ZnFyt9EnaFn4kkSCLK7jpsiIIqRXRrmN39V9djcWKY=;
+  b=eeJ+RzqvQzt9P4nHC81stHiXqi/tht/MWRnSUKjSZvaT0G5zRcSaXANR
+   BG1Bi5BdPPlkf2ZB3fBp2vrGV20/C35qd8IX0Iu27jEo+T7OLKE71TW7y
+   l/dATiGPugEYT5WkXxX1MeZthVWR1iqgJbJFdJY5qmJw4+qWXIY237zsk
+   w=;
+X-IronPort-AV: E=Sophos;i="6.07,208,1708387200"; 
+   d="scan'208";a="339290797"
+Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev) ([10.43.8.6])
+  by smtp-border-fw-33001.sea14.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2024 09:12:52 +0000
+Received: from EX19MTAUWB001.ant.amazon.com [10.0.21.151:24771]
+ by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.59.40:2525] with esmtp (Farcaster)
+ id ca7a4c02-a734-4bba-bd1a-9e90b51c919c; Wed, 17 Apr 2024 09:12:50 +0000 (UTC)
+X-Farcaster-Flow-ID: ca7a4c02-a734-4bba-bd1a-9e90b51c919c
+Received: from EX19D020UWC004.ant.amazon.com (10.13.138.149) by
+ EX19MTAUWB001.ant.amazon.com (10.250.64.248) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.28; Wed, 17 Apr 2024 09:12:50 +0000
+Received: from [0.0.0.0] (10.253.83.51) by EX19D020UWC004.ant.amazon.com
+ (10.13.138.149) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.28; Wed, 17 Apr
+ 2024 09:12:47 +0000
+Message-ID: <5351cd46-7228-48d8-b1a2-8ab91dce24f7@amazon.de>
+Date: Wed, 17 Apr 2024 11:12:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/5] virt: vmgenid: rearrange code to make review
+ easier
+Content-Language: en-US
+To: Babis Chalios <bchalios@amazon.es>, <tytso@mit.edu>, <Jason@zx2c4.com>,
+	<olivia@selenic.com>, <herbert@gondor.apana.org.au>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <linux-crypto@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <sudanl@amazon.com>, <xmarcalx@amazon.co.uk>, <dwmw@amazon.co.uk>
+References: <20240417081212.99657-1-bchalios@amazon.es>
+ <20240417081212.99657-2-bchalios@amazon.es>
+ <10d41e7e-87b1-4036-a740-da36270a4325@amazon.de>
+ <2838b126-ad87-4642-9223-e24f3fdb2c63@amazon.es>
+From: Alexander Graf <graf@amazon.de>
+In-Reply-To: <2838b126-ad87-4642-9223-e24f3fdb2c63@amazon.es>
+X-ClientProxiedBy: EX19D046UWA003.ant.amazon.com (10.13.139.18) To
+ EX19D020UWC004.ant.amazon.com (10.13.138.149)
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
-Am Dienstag, 16. April 2024, 16:19:10 CEST schrieb Marek Vasut:
-> Configure both CSI2 assigned-clock-rates the same way.
-> There does not seem to be any reason for keeping the
-> two CSI2 pixel clock set to different frequencies.
->=20
-> This also reduces first CSI2 clock from overdrive mode
-> frequency which is 500 MHz down below the regular mode
-> frequency of 400 MHz.
->=20
-> Signed-off-by: Marek Vasut <marex@denx.de>
-
-Apparently there is no difference when using imx415 (3840x2160) sensor.
-Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-
-> ---
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Paul Elder <paul.elder@ideasonboard.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: imx@lists.linux.dev
-> Cc: linux-arm-kernel@lists.infradead.org
-> ---
-> V2: Align both clock to 266 MHz and update commit message
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/=
-dts/freescale/imx8mp.dtsi
-> index 1bb96e96639f2..7883f5c056f4e 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -1667,7 +1667,7 @@ mipi_csi_0: csi@32e40000 {
->  						  <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF>;
->  				assigned-clock-parents =3D <&clk IMX8MP_SYS_PLL2_1000M>,
->  							 <&clk IMX8MP_CLK_24M>;
-> -				assigned-clock-rates =3D <500000000>;
-> +				assigned-clock-rates =3D <266000000>;
->  				power-domains =3D <&media_blk_ctrl IMX8MP_MEDIABLK_PD_MIPI_CSI2_1>;
->  				status =3D "disabled";
-> =20
->=20
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
+Ck9uIDE3LjA0LjI0IDExOjA1LCBCYWJpcyBDaGFsaW9zIHdyb3RlOgo+Cj4KPiBPbiAxNy80LzI0
+IDEwOjM1LCBBbGV4YW5kZXIgR3JhZiB3cm90ZToKPj4KPj4gT24gMTcuMDQuMjQgMTA6MTIsIEJh
+YmlzIENoYWxpb3Mgd3JvdGU6Cj4+PiBGcm9tOiBTdWRhbiBMYW5kZ2UgPHN1ZGFubEBhbWF6b24u
+Y29tPgo+Pj4KPj4+IFJlYXJyYWdlIHRoZSBmdW5jdGlvbnMgb2Ygdm1nZW5pZCB0byBtYWtlIHRo
+ZSBuZXh0IGNvbW1pdCwKPj4+IHdoaWNoIHJlLWltcGxlbWVudHMgdm1nZW5pZCBhcyBhIHBsYXRm
+b3JtIGRyaXZlciwgZWFzaWVyIHRvIHJldmlldy4KPj4+Cj4+PiBTaWduZWQtb2ZmLWJ5OiBTdWRh
+biBMYW5kZ2UgPHN1ZGFubEBhbWF6b24uY29tPgo+Pgo+Pgo+PiBZb3UgY2FuJ3Qgc2lnbiBvZmYg
+b24gYmVoYWxmIG9mIHNvbWVvbmUgZWxzZS4gVGhlIFNvQiBoZXJlIG5lZWRzIHRvIAo+PiBiZSB5
+b3Vycy4gSWYgeW91IGFyZSB0YWtpbmcgb3ZlciB0aGlzIGNvZGUgZnJvbSBTdWRhbiwgSSdkIHN1
+Z2dlc3QgdG8gCj4+IHRha2Ugb3ZlciBmdWxsIG93bmVyc2hpcCBvZiBpdCBhbmQgcHV0IHlvdXIg
+b3duIG5hbWUgYXMgYXV0aG9yIGFuZCAKPj4gU29CIGluIGFsbCBwYXRjaGVzLgo+Pgo+Cj4gSSB0
+aG91Z2h0IGFib3V0IGl0IGFuZCBpdCBzZWVtZWQgd2VpcmQgdG8gbWUgdGhhdCBJIHRha2Ugb3Zl
+ciBTb0IgYW5kIAo+IGF1dGhvcnNoaXAgc2luY2UgSSBvbmx5IHRvdWNoZWQgb25lIGxpbmUgaW4g
+b25lIG9mCj4gdGhlIHBhdGNoZXMsIGJ1dCBJIHdpbGwgYmUgdGFraW5nIG92ZXIgdGhlIHBhdGNo
+ZXMsIHNvIEkgY2FuIGRvIHRoYXQgCj4gaWYgdGhhdCdzIHRoZSB3YXkgd2UgdGhpbmdzIGFyZSBk
+b25lLgo+Cj4gRG9lcyBpdCBtYWtlIHNlbnNlIHRvIGF0IGxlYXN0IGFkZCAiQ28tYXV0aG9yZWQt
+YnkgU3VkYW4gTGFuZGdlIAo+IDxzdWRhbmxAYW1hem9uLmNvbT4iIGhlcmU/CgoKWW91IGNhbiBj
+ZXJ0YWlubHkgZG8gdGhhdCwgeWVzLgoKCkFsZXgKCgoKCgpBbWF6b24gRGV2ZWxvcG1lbnQgQ2Vu
+dGVyIEdlcm1hbnkgR21iSApLcmF1c2Vuc3RyLiAzOAoxMDExNyBCZXJsaW4KR2VzY2hhZWZ0c2Z1
+ZWhydW5nOiBDaHJpc3RpYW4gU2NobGFlZ2VyLCBKb25hdGhhbiBXZWlzcwpFaW5nZXRyYWdlbiBh
+bSBBbXRzZ2VyaWNodCBDaGFybG90dGVuYnVyZyB1bnRlciBIUkIgMTQ5MTczIEIKU2l0ejogQmVy
+bGluClVzdC1JRDogREUgMjg5IDIzNyA4NzkKCgo=
 
 
