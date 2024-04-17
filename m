@@ -1,110 +1,209 @@
-Return-Path: <devicetree+bounces-59908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0ABAC8A79F8
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 02:52:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0B1D8A79FE
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 03:04:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E8851F22452
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 00:52:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05EF9284AA4
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 01:04:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94224A47;
-	Wed, 17 Apr 2024 00:52:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A6001877;
+	Wed, 17 Apr 2024 01:04:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eYx9gupW"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="O0XGnpC5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CCBA63A9;
-	Wed, 17 Apr 2024 00:52:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CD4717CD
+	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 01:04:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713315165; cv=none; b=rr77Depjq7TuwV9VF9zWgvt7gEWbGTMyheNmsz9gAhfLit5FV+9R4bgMYEHAeAuK8IbntRzKdhYwz/jR1p8hAiDjSBit0AJDE9MdRVrGmdRAWa8ggO7A4jcGKXoUcHePS6AKCEn5mc/bp8JxVT2n0UaEgKw8keV+qQw55ZDf5+8=
+	t=1713315845; cv=none; b=udXdWRMv/tRqN3olCiV5K15hiX/uqfoqIDyGkQ3nq53d6QQ1SiFhekkqZ9ybIRPsytDIqAimMEK89OKviab0LdGVbTCwOJ6jFNdCEN+RXDA9a4yizHEUh4KqI+keLEZvr4e09hPCwmfoIxyM26+sNXzdI2QWl1D1H1Ekb8CTNu4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713315165; c=relaxed/simple;
-	bh=YVAp4IOd+ftXbliGWV6sMKzUBLNAQxl+/AiTbHPv/7U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f5oFjoqbg1HKoP50eeSQbnvNXH1/EQL2y/Q/nUi6TVnXIhwIePVxMcj6os8BpuaGh2W9X33PgcUyHZb+m9sFImmHXPv17KlaQ2YBBr/2aO0clO8yEP5dKjyjPVIGRTH+1MifSK7A95iNeQEwLG5mCTJRA7LuoYT9XNNmto3UhJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eYx9gupW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE1D6C113CE;
-	Wed, 17 Apr 2024 00:52:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713315164;
-	bh=YVAp4IOd+ftXbliGWV6sMKzUBLNAQxl+/AiTbHPv/7U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eYx9gupWYdoBX48zuNmRYqbVMANTV4V5eoBnl0zec5YHRT5vP3OS/snMGTUITWR6v
-	 UwNhFLOpi1owo/qPKqdAN12YSjIO+DY6Giu1LUUlc5Djo18W/050eEaHV+CtzAQgnF
-	 /MiiWPfD8sQQBKHdxwSioWzPJS7d9M2QM0V0XDocEW6dhHPosDxPWRcbt69rarTom1
-	 Dcl5ItCAYOMs5rnWplVDZVpbX5IxENDBJeC/8NSSi9XKcMSsMBoTsbBpvMbZuCz6T3
-	 9rdR8dVwHTrZyXSN1hUs3hXllTbxRp8KTkeBMu3MBhy7QKt8xkCIXB5nC5G95NE/VQ
-	 pQY4eIHZOBIeQ==
-Date: Wed, 17 Apr 2024 09:52:41 +0900
-From: Mark Brown <broonie@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: djakov@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com,
-	keescook@chromium.org, gustavoars@kernel.org,
-	henryc.chen@mediatek.com, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, kernel@collabora.com,
-	wenst@chromium.org, amergnat@baylibre.com
-Subject: Re: [PATCH v1 5/6] regulator: mtk-dvfsrc-regulator: Refactor and add
- MT8192/MT8195 vregs
-Message-ID: <Zh8dWdE8V8-GhNlF@finisterre.sirena.org.uk>
-References: <20240416153805.431118-1-angelogioacchino.delregno@collabora.com>
- <20240416153805.431118-6-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1713315845; c=relaxed/simple;
+	bh=ApJLZ2EuaU+5tyeB65wbduCgQyBQGakeHaRYXMUkuU0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Aya8SNq4uFiB5l3TRSA4CZrLVSap64rnI+9i47OAJNp8uLID8xShENpCuGVNwv7UqE1uNa4MUd2kak45IXbY7frOwiPG2Gl34xA0WaYPeMmrrdhHKz8bcMM61Oyy+caXYggR/iKB33VxTvw7u+rjx20mCwMDMH8jMg3Uint2UxI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=O0XGnpC5; arc=none smtp.client-ip=209.85.160.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qt1-f179.google.com with SMTP id d75a77b69052e-434b5abbb0dso109761cf.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Apr 2024 18:04:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1713315843; x=1713920643; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DkfTVjPD3XwT0FdLWkEiWLmQxyUXEV4QDw4WnoToh/k=;
+        b=O0XGnpC5xHpB/ELquYIE7CoxT64vcA2wP8AFshYA2WmUiP6dQlidHbUGdjPXuJ70gb
+         3oDiZVBD6pBFBoALm1Jv52DuBxPrO7dl9uieQYea9hthODtJpURhHzmgJa1lb2+cxCv4
+         sM3FVbhBfDohpX3Iyze7zt2ZYLBMqIf0+BC46hA4BYZ9VdU4DxV11rHpLPmt3sr9wdH2
+         feJNgxffQZTio+rVGEXg2vYT/4HCGR/v8uv1kbdRQsNIbGrOG6URmZW048ZQIamEt/RZ
+         Rg2tqeX+Rf81vmwYt+MBjjqpPXo8HwF+mdCtj0J5ZJOyplAFtVasmFnCjTy65XWhtgSd
+         qrCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713315843; x=1713920643;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=DkfTVjPD3XwT0FdLWkEiWLmQxyUXEV4QDw4WnoToh/k=;
+        b=uSDKGniuwnVLnT8aWxr4WOQZ96d1OG1BOJdhwRxdNBIxUGbHOiMLXQy08dhro8xkus
+         O/gyBxb/rTLaYNY5vTnMcJJPZ99HIsWVIYY6GOteAV+XwdUe9esF8qh3GYpe1Hcuygw+
+         szr/zaMAJWiDcvHUbwTufXnLP1pgPEhwYc8fdmSvS5hSQF3wW109TloUu7FP8/rrhnb8
+         4N/s+8T5G8ByAOBLx9vJDDk3m9bXB28KDeYPfdWh8N0FpuKUuPTCSEkrWxyhuG6dk6FJ
+         DxpBJSXprb+760piXu40q7kbk7gfE9KXLAnEx0ysosV4pQ0hJeLbXbFBwb0+sp296cP2
+         XvZQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWcnWXxrLXmnKTyZJVnyyzFZz/DqRdn4km4An/HdlcxRR044MCjjK+hPOPOA1+UsuRk1BjA3OSG+E0bNFWf6uFDwArRQqWVoQzQZg==
+X-Gm-Message-State: AOJu0YxDNqY0nQs33yMeU0NaeEroAf9KutkCFQTQluc6YePQ7+vppe8M
+	S7QL7YsYny/yor7fcJO+znyem5uIgqgyLO15NFfiGuQL4f6/iHZp4mL10KiPwPfwKFUFAkXihPO
+	h68Nx6xViI624ifabqCIubWtrvAJ34KM89CKB
+X-Google-Smtp-Source: AGHT+IFf/DbEiUMrNE3+3h0tNx17EZOn9EV/2/1uYIxpd1cVsA33zTZAoAPdkuvZ4k9AuW9caLh6SDxCdS61jKH0I7c=
+X-Received: by 2002:ac8:580c:0:b0:436:9f37:f5e4 with SMTP id
+ g12-20020ac8580c000000b004369f37f5e4mr144572qtg.8.1713315837611; Tue, 16 Apr
+ 2024 18:03:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="whh3nrJglfd7igwd"
-Content-Disposition: inline
-In-Reply-To: <20240416153805.431118-6-angelogioacchino.delregno@collabora.com>
-X-Cookie: TANSTAAFL
-
-
---whh3nrJglfd7igwd
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20240413091942.316054-1-apatel@ventanamicro.com> <20240416141049.GA2148267-robh@kernel.org>
+In-Reply-To: <20240416141049.GA2148267-robh@kernel.org>
+From: Saravana Kannan <saravanak@google.com>
+Date: Tue, 16 Apr 2024 18:03:17 -0700
+Message-ID: <CAGETcx_Ni3MjwVHDOdre1nSqQP07=gaUtCDj31ndKcMFtm+xjg@mail.gmail.com>
+Subject: Re: [PATCH v2] of: property: Add fw_devlink support for interrupt-map property
+To: Rob Herring <robh@kernel.org>
+Cc: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Atish Patra <atishp@atishpatra.org>, 
+	Andrew Jones <ajones@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>, 
+	Anup Patel <anup@brainfault.org>, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 16, 2024 at 05:38:04PM +0200, AngeloGioacchino Del Regno wrote:
-> This driver never worked, and never got even compiled, because it was
-> missing the DVFSRC driver entirely, including headers it relies on!
->=20
-> Perform a full (or nearly full) refactoring of the MediaTek DVFSRC
-> controlled Regulators driver: this retains support for the MT6873,
-> MT8183 and MT8192 SoCs, and adds MT8195.
->=20
-> As part of the refactoring, this driver is now probed using its own
-> devicetree compatible, as this is a child of the main DVFSRC driver
-> and gets probed as a subnode of that.
+On Tue, Apr 16, 2024 at 7:11=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> On Sat, Apr 13, 2024 at 02:49:42PM +0530, Anup Patel wrote:
+> > Some of the PCI controllers (such as generic PCI host controller)
+> > use "interrupt-map" DT property to describe the mapping between
+> > PCI endpoints and PCI interrupt pins. This the only case where
+> > the interrupts are not described in DT.
+> >
+> > Currently, there is no fw_devlink created based on "interrupt-map"
+> > DT property
 
-Given what you're doing this would probably be easier to review as
-two commits, one removing the existing driver and another adding the new
-code.
+parse_interrupts() calls of_irq_parse_one() that in turn calls
+of_irq_parse_one() that does the "interrupts-map" handling. In fact
+of_irq_parse_pci() also calls of_irq_parse_one() if the PCI device has
+a DT node. So I don't think any new functionality needs to be added.
+If I'm not mistaken we just need parse_interrupts to not ignore
+interrupts-map? A one line change?
 
---whh3nrJglfd7igwd
-Content-Type: application/pgp-signature; name="signature.asc"
+Why do we need all of this code you wrote below?
 
------BEGIN PGP SIGNATURE-----
+-Saravana
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmYfHVgACgkQJNaLcl1U
-h9DwsQgAgK6OWXJu6ieNWkutjauhJjUe5+l5WxV0KrzASn7I8CFbXNeSgxtx8AZ/
-Wv1MYw70APANEtgwkVwwwzu9dxHg+NCPglVwkhmhCevxOvAx8klLFChvsfzjCvmq
-pvke+sh5Y/A+8ryIisIA7btD1obFfxLXFQm17W4JggKi47e+QDiah3sQqVzpfDPr
-G17pX6KxNc/S+YzkT/BmWcT9uGKucU10R082NScoBU5lsdrAyGnowwhJVNcL5N4J
-tUJJXB1VnSi1Q4fOXB4wpxihXwGDZnwb2kgLp2hgRAMXaQv2BbCfk0IAy8DE69yr
-lEi56TB4d1sxHrvVO/RTnarkSfcfMQ==
-=+F1c
------END PGP SIGNATURE-----
-
---whh3nrJglfd7igwd--
+> >  so interrupt controller is not guaranteed to be probed
+> > before PCI host controller. This affects every platform where both
+> > PCI host controller and interrupt controllers are probed as regular
+> > platform devices.
+> >
+> > This creates fw_devlink between consumers (PCI host controller) and
+> > supplier (interrupt controller) based on "interrupt-map" DT property.
+> >
+> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > ---
+> > Changes since v1:
+> > - Updated commit description based on Rob's suggestion
+> > - Use of_irq_parse_raw() for parsing interrupt-map DT property
+> > ---
+> >  drivers/of/property.c | 58 +++++++++++++++++++++++++++++++++++++++++++
+> >  1 file changed, 58 insertions(+)
+> >
+> > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > index a6358ee99b74..67be66384dac 100644
+> > --- a/drivers/of/property.c
+> > +++ b/drivers/of/property.c
+> > @@ -1311,6 +1311,63 @@ static struct device_node *parse_interrupts(stru=
+ct device_node *np,
+> >       return of_irq_parse_one(np, index, &sup_args) ? NULL : sup_args.n=
+p;
+> >  }
+> >
+> > +static struct device_node *parse_interrupt_map(struct device_node *np,
+> > +                                            const char *prop_name, int=
+ index)
+> > +{
+> > +     const __be32 *imap, *imap_end, *addr;
+> > +     struct of_phandle_args sup_args;
+> > +     struct device_node *tn, *ipar;
+> > +     u32 addrcells, intcells;
+> > +     int i, j, imaplen;
+> > +
+> > +     if (!IS_ENABLED(CONFIG_OF_IRQ))
+> > +             return NULL;
+> > +
+> > +     if (strcmp(prop_name, "interrupt-map"))
+> > +             return NULL;
+> > +
+> > +     ipar =3D of_node_get(np);
+> > +     do {
+> > +             if (!of_property_read_u32(ipar, "#interrupt-cells", &intc=
+ells))
+> > +                     break;
+> > +             tn =3D ipar;
+> > +             ipar =3D of_irq_find_parent(ipar);
+> > +             of_node_put(tn);
+> > +     } while (ipar);
+>
+> No need for this loop. We've only gotten here if 'interrupt-map' is
+> present in the node and '#interrupt-cells' is required if
+> 'interrupt-map' is present.
+>
+> > +     if (!ipar)
+> > +             return NULL;
+> > +     addrcells =3D of_bus_n_addr_cells(ipar);
+> > +     of_node_put(ipar);
+> > +
+> > +     imap =3D of_get_property(np, "interrupt-map", &imaplen);
+> > +     if (!imap || imaplen <=3D (addrcells + intcells))
+> > +             return NULL;
+> > +     imap_end =3D imap + imaplen;
+> > +
+> > +     sup_args.np =3D NULL;
+> > +     for (i =3D 0; i <=3D index && imap < imap_end; i++) {
+> > +             if (sup_args.np) {
+> > +                     of_node_put(sup_args.np);
+> > +                     sup_args.np =3D NULL;
+> > +             }
+> > +
+> > +             addr =3D imap;
+> > +             imap +=3D addrcells;
+> > +
+> > +             sup_args.np =3D np;
+> > +             sup_args.args_count =3D intcells;
+> > +             for (j =3D 0; j < intcells; j++)
+> > +                     sup_args.args[j] =3D be32_to_cpu(imap[j]);
+> > +             imap +=3D intcells;
+> > +
+> > +             if (of_irq_parse_raw(addr, &sup_args))
+> > +                     return NULL;
+> > +             imap +=3D sup_args.args_count + 1;
+> > +     }
+>
+> Doesn't this leak a ref on the last time the function is invoked? For
+> example, if we have 2 entries and index is 2. We'll get index=3D1, but
+> then exit because imap=3D=3Dimap_end. We need a put on index=3D=3D1 node.
+>
+> Look at my next branch where I've converted things to use __free()
+> cleanups. I don't see it helping here as-is, but maybe when it is
+> correct.
+>
+> Rob
 
