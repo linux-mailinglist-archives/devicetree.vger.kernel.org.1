@@ -1,101 +1,189 @@
-Return-Path: <devicetree+bounces-60328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21CA38A8CDC
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 22:25:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B62C48A8CE1
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 22:27:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52F591C21B72
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 20:25:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EC0EDB221B9
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 20:26:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B74337703;
-	Wed, 17 Apr 2024 20:25:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4F9938F82;
+	Wed, 17 Apr 2024 20:26:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="ATOnx/2w"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GtuUWmcC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-180.mta0.migadu.com (out-180.mta0.migadu.com [91.218.175.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 811C1364AA
-	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 20:25:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1426C171A1;
+	Wed, 17 Apr 2024 20:26:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713385521; cv=none; b=t+uljPPqCwFE+DAiLk2k/P0wcAdPkRoWwnLB1Ji1p0ihiD3EfxPQ3rYEGNXymB0KeTUDpYxm1d99GpS2k99eih2Y7y7NHqq5jrhW3Lnj2VItCpiHedzHc3rLAvs7iNMeOevFfs9itotoIoIliyq8IXX52JUJk5z419n7lQMReFQ=
+	t=1713385613; cv=none; b=ITLTW6kHjHB41ZoxQKfDppPOmnHQ+Yd20I/bNipBBzrgtf1a1Xa8LqRdGk+wQBu/05/Jc10fv6x1cf93iOxV3eNXUzzKd0i8JGiQz9uYH8G0srrN6q/ynGaJcKiY0rc5wgcbL3ycUmbYmwOiRNgMewW1KAIjPQXO7MUyklLqNbY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713385521; c=relaxed/simple;
-	bh=pWXBe/vHkE5ouscTtZT8KCIjeqHGRYUlLlnF5gAbhJU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f/saCKDRbaX7aIRgkBB1kyQFoEUkoQyW0oCwbGN1/uFhYp6rUAz10Cmss+ODzY3zgZAR1/30pNn9hcx02oG3b93DMqc2cUbybbdVcxVB+swQSV7KNJVjlPKjYLRlR1NpLHjMJdirc36XbYSLg9fXXFtB7yxmMJje7bzoj8t3TqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=ATOnx/2w; arc=none smtp.client-ip=91.218.175.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
-Message-ID: <587b3cff-a8b6-4412-8cff-79eb48d9556b@postmarketos.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1713385516;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=h6rUr9bTJkPoASfG3Y7dLkjBo8BzVRWb+gB92W3GbXg=;
-	b=ATOnx/2wn9QuqErvMnHfiPTY09lnC1ZLFHM5UvwAOfSAHgvRB4d/DGSrfKkrKlEwVByGYd
-	4mHoyTcGU+BLIiQQi0/kBhMHLE9Ee8J+xTIueClUcSef/cglpyAAM12PRi9IRvi+55m4fS
-	Utn03zR6n6SyQzbd5MWGKSBJ1VNjX1/5h4+ASlMqsVjVr6s4cO0R4TR5iv4L2NGRLuwMEa
-	STUCTv9A+iWMhJjleADcOhtjaNUC25OPTRFf8sXmKDPFMdSUJT0+UPBycAOvIuaNRWBuIT
-	MM+8gSolkbMneBnSSqZwUHosgwA+TtQGu3Iq8jGttLX0O3KxRLxFPiY2IGlg/w==
-Date: Wed, 17 Apr 2024 23:25:12 +0300
+	s=arc-20240116; t=1713385613; c=relaxed/simple;
+	bh=+lNHKE0CaXaeti88Mcg9KuAjPlZ39ncXXzPcS1CG6NQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=C2ErmXJfhSJOwGzDu6J4ugbJp2fVTo5aFfgLLbH1MaJgJrViezL6+vfjnwwnQaueaoFjoFUZZgS2bE2i3JtIJoFzMEFJS3HfkhbP+87Obx6QU/rqHhI66CjxPouRTuq+FexJeEiKt5PIyyz8InZgi4qcx4EcXyu8X0UiJTn2l28=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GtuUWmcC; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a526a200879so5128766b.1;
+        Wed, 17 Apr 2024 13:26:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1713385610; x=1713990410; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5U51YIjOmDSTgBiQt57h68n6X/0b/4LWP9m/+t2oBzw=;
+        b=GtuUWmcClfclXst3IkxNyoLyVLRR4QBUrrcFHe7UM+mWgE11zs/5d2JrVux3ZBFkWl
+         KD8/Bl/DsbFkBvTBzyKwX8aQKzxmEk8QA8Zp6kXSGWmx0cX4bFffjDWdbBy/aF8ex6OL
+         faLX/KzjA930p+2bpfy/VtPnBbDhykW7m7UVtcfdPW22ulwulTDSFFR3vajxD/qezuFb
+         bgWO1rDrw8SsBKqqTUS81UgQKXqZCQ5sKDEnsKaUg9uXwSvmNvj5Cf//rtMbOmvG5Bdv
+         dHZGo+pIxPvzbXcqQMXrkwNZTPCMIhVZByn+IKh5wda5vZtGwagEgMH8JfeXYXqzAjh/
+         ZoIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713385610; x=1713990410;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5U51YIjOmDSTgBiQt57h68n6X/0b/4LWP9m/+t2oBzw=;
+        b=MAWnBPBwd4pKAPor/gIaoyhIBQUThQT9Qt8CoE3Uxuun+dkhLIx48uR3dbPsdsM26t
+         L+Lmfjezzt9lMsfHFyQkl1hChbmsYfFQmSMwAccgPCGMvo438mmDSMwAE28VlLMIde5g
+         C3w7c0VNH83X1fS+c3impmw8P8JpcIG8Zv9t+gvvfH3H1ztsDPMAiA6elxVxSfuo6Ubm
+         1Ghw64h2jOYvJ5thzsivxFDBmXG59R7gBeqa1hYvK2x4rPkcqcVVBqTi01lq114EbOMw
+         /CPlk3yMhqKESw6glzqd41yTcMaVlYxatoQYM2QofB9YIFZEazXYmABNHZTmpjiPQpYV
+         OjJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV36Z03UGEoAu+eQdQtXc8XAFEIzmZHdYStSVLBPBU2cvC7tMg6C9eXw6LQsaDpdXf9TNyhrrrXvGESvFOyf5PeCXoLyYiRCNvFtF4H8QdyPPx7srfck3lLMCxyuZ1HMoRQHjmmjw==
+X-Gm-Message-State: AOJu0YwOX1xq9OqBFjXC2sRIKJlFpZUL/UsxJfUzEGoY4VbOru2ARVEc
+	CJ7aPZ6tpV+hx0bj1u1qywF3i+03OJusBwvX/n5eltk1uiyNrXtK
+X-Google-Smtp-Source: AGHT+IEAo/QrH12scC72S248kd5Y6GLG8Q9TLINPS2vee1HJzaNUUHtsuvxbgHyGKRtcge78y8kbZg==
+X-Received: by 2002:a17:906:af17:b0:a51:f915:bf5a with SMTP id lx23-20020a170906af1700b00a51f915bf5amr317027ejb.75.1713385610141;
+        Wed, 17 Apr 2024 13:26:50 -0700 (PDT)
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id z6-20020a170906434600b00a518c69c4e3sm14430ejm.23.2024.04.17.13.26.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Apr 2024 13:26:49 -0700 (PDT)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: linux-sunxi@lists.linux.dev, Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org, p.zabel@pengutronix.de, sboyd@kernel.org,
+ mturquette@baylibre.com, samuel@sholland.org, wens@csie.org,
+ conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+ Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH 1/3] clk: sunxi-ng: h616: Add clock/reset for GPADC
+Date: Wed, 17 Apr 2024 22:26:48 +0200
+Message-ID: <3616000.R56niFO833@jernej-laptop>
+In-Reply-To: <20240417170423.20640-2-macroalpha82@gmail.com>
+References:
+ <20240417170423.20640-1-macroalpha82@gmail.com>
+ <20240417170423.20640-2-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v3 1/4] ARM: dts: qcom: msm8974: Split out common part of
- samsung-klte
-To: Rong Zhang <i@rong.moe>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>
-References: <20240213110137.122737-1-i@rong.moe>
- <20240213110137.122737-2-i@rong.moe>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Alexey Minnekhanov <alexeymin@postmarketos.org>
-In-Reply-To: <20240213110137.122737-2-i@rong.moe>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-
-
-On 13.02.2024 13:58, Rong Zhang wrote:
-> Samsung Galaxy S5 has many variants. Variants that support LTE use klte*
-> as their codename. Currently, the only supported one is the one without
-> any suffix, namely, klte. It is known that other klte* variants have
-> only minor differences compared to klte and can mostly work with the
-> klte DTB.
+Dne sreda, 17. april 2024 ob 19:04:21 GMT +2 je Chris Morgan napisal(a):
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Split the common part into a common DTSI so that it can be imported in
-> the DTS of klte and other klte* variants.
+> Add the GPADC required clock and reset which is used for the onboard
+> GPADC.
 > 
-> Signed-off-by: Rong Zhang <i@rong.moe>
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+
+Best regards,
+Jernej
+
 > ---
->   ... qcom-msm8974pro-samsung-klte-common.dtsi} |   7 +-
->   .../dts/qcom/qcom-msm8974pro-samsung-klte.dts | 833 +-----------------
->   2 files changed, 17 insertions(+), 823 deletions(-)
->   copy arch/arm/boot/dts/qcom/{qcom-msm8974pro-samsung-klte.dts => qcom-msm8974pro-samsung-klte-common.dtsi} (98%)
->   rewrite arch/arm/boot/dts/qcom/qcom-msm8974pro-samsung-klte.dts (99%)
+>  drivers/clk/sunxi-ng/ccu-sun50i-h616.c      | 5 +++++
+>  drivers/clk/sunxi-ng/ccu-sun50i-h616.h      | 2 +-
+>  include/dt-bindings/clock/sun50i-h616-ccu.h | 1 +
+>  include/dt-bindings/reset/sun50i-h616-ccu.h | 1 +
+>  4 files changed, 8 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/clk/sunxi-ng/ccu-sun50i-h616.c b/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
+> index 21e918582aa5..3646be2b88ab 100644
+> --- a/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
+> +++ b/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
+> @@ -489,6 +489,8 @@ static SUNXI_CCU_MP_WITH_MUX_GATE(ts_clk, "ts", ts_parents, 0x9b0,
+>  
+>  static SUNXI_CCU_GATE(bus_ts_clk, "bus-ts", "ahb3", 0x9bc, BIT(0), 0);
+>  
+> +static SUNXI_CCU_GATE(bus_gpadc_clk, "bus-gpadc", "apb1", 0x9ec, BIT(0), 0);
+> +
+>  static SUNXI_CCU_GATE(bus_ths_clk, "bus-ths", "apb1", 0x9fc, BIT(0), 0);
+>  
+>  static const char * const audio_parents[] = { "pll-audio-1x", "pll-audio-2x",
+> @@ -807,6 +809,7 @@ static struct ccu_common *sun50i_h616_ccu_clks[] = {
+>  	&bus_emac1_clk.common,
+>  	&ts_clk.common,
+>  	&bus_ts_clk.common,
+> +	&bus_gpadc_clk.common,
+>  	&bus_ths_clk.common,
+>  	&spdif_clk.common,
+>  	&bus_spdif_clk.common,
+> @@ -940,6 +943,7 @@ static struct clk_hw_onecell_data sun50i_h616_hw_clks = {
+>  		[CLK_BUS_EMAC1]		= &bus_emac1_clk.common.hw,
+>  		[CLK_TS]		= &ts_clk.common.hw,
+>  		[CLK_BUS_TS]		= &bus_ts_clk.common.hw,
+> +		[CLK_BUS_GPADC]		= &bus_gpadc_clk.common.hw,
+>  		[CLK_BUS_THS]		= &bus_ths_clk.common.hw,
+>  		[CLK_SPDIF]		= &spdif_clk.common.hw,
+>  		[CLK_BUS_SPDIF]		= &bus_spdif_clk.common.hw,
+> @@ -1021,6 +1025,7 @@ static struct ccu_reset_map sun50i_h616_ccu_resets[] = {
+>  	[RST_BUS_EMAC0]		= { 0x97c, BIT(16) },
+>  	[RST_BUS_EMAC1]		= { 0x97c, BIT(17) },
+>  	[RST_BUS_TS]		= { 0x9bc, BIT(16) },
+> +	[RST_BUS_GPADC]		= { 0x9ec, BIT(16) },
+>  	[RST_BUS_THS]		= { 0x9fc, BIT(16) },
+>  	[RST_BUS_SPDIF]		= { 0xa2c, BIT(16) },
+>  	[RST_BUS_DMIC]		= { 0xa4c, BIT(16) },
+> diff --git a/drivers/clk/sunxi-ng/ccu-sun50i-h616.h b/drivers/clk/sunxi-ng/ccu-sun50i-h616.h
+> index fdd2f4d5103f..a75803b49f6a 100644
+> --- a/drivers/clk/sunxi-ng/ccu-sun50i-h616.h
+> +++ b/drivers/clk/sunxi-ng/ccu-sun50i-h616.h
+> @@ -51,6 +51,6 @@
+>  
+>  #define CLK_BUS_DRAM		56
+>  
+> -#define CLK_NUMBER		(CLK_PLL_SYSTEM_32K + 1)
+> +#define CLK_NUMBER		(CLK_BUS_GPADC + 1)
+>  
+>  #endif /* _CCU_SUN50I_H616_H_ */
+> diff --git a/include/dt-bindings/clock/sun50i-h616-ccu.h b/include/dt-bindings/clock/sun50i-h616-ccu.h
+> index 6f8f01e67628..ebb146ab7f8c 100644
+> --- a/include/dt-bindings/clock/sun50i-h616-ccu.h
+> +++ b/include/dt-bindings/clock/sun50i-h616-ccu.h
+> @@ -112,5 +112,6 @@
+>  #define CLK_HDCP		126
+>  #define CLK_BUS_HDCP		127
+>  #define CLK_PLL_SYSTEM_32K	128
+> +#define CLK_BUS_GPADC		129
+>  
+>  #endif /* _DT_BINDINGS_CLK_SUN50I_H616_H_ */
+> diff --git a/include/dt-bindings/reset/sun50i-h616-ccu.h b/include/dt-bindings/reset/sun50i-h616-ccu.h
+> index 1bd8bb0a11be..ed177c04afdd 100644
+> --- a/include/dt-bindings/reset/sun50i-h616-ccu.h
+> +++ b/include/dt-bindings/reset/sun50i-h616-ccu.h
+> @@ -66,5 +66,6 @@
+>  #define RST_BUS_TVE0		57
+>  #define RST_BUS_HDCP		58
+>  #define RST_BUS_KEYADC		59
+> +#define RST_BUS_GPADC		60
+>  
+>  #endif /* _DT_BINDINGS_RESET_SUN50I_H616_H_ */
 > 
 
-Tested on regular Samsung Galaxy S5 (qcom-msm8974pro-samsung-klte).
 
-Tested-by: Alexey Minnekhanov <alexeymin@postmarketos.org>
 
--- 
-Regards,
-Alexey Minnekhanov
-postmarketOS developer
+
 
