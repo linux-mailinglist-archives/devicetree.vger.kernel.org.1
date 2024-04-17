@@ -1,158 +1,110 @@
-Return-Path: <devicetree+bounces-59940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84DB28A7B78
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 06:40:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69C278A7B94
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 06:52:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 409232840AC
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 04:39:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 951771C21147
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 04:52:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E6C6249FF;
-	Wed, 17 Apr 2024 04:39:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC1542CCB4;
+	Wed, 17 Apr 2024 04:52:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="CQSLpV4P"
+	dkim=pass (2048-bit key) header.d=herrie.org header.i=@herrie.org header.b="YnKe5vYw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from outbound9.mail.transip.nl (outbound9.mail.transip.nl [136.144.136.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C42DB1170F;
-	Wed, 17 Apr 2024 04:39:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 086A4BE4E;
+	Wed, 17 Apr 2024 04:52:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=136.144.136.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713328796; cv=none; b=ePygW5kMwlnO+2d5oGSxXuRs5pgIliWeGR1Gh/IaIhNStr8AMsl5L7ZbrN1Fe+KvlCuUK+YqLeg2+G26iMAHRKa1fHec7dz5Ch0r7Im6H5tcp75qC1QRUyW0yTRX/b/ljsUMn20vcUKJ+g4/R/jG7wy5f4dShgzP5bE1XsUUzxE=
+	t=1713329545; cv=none; b=mXqwzBgSBqmwAgiIdB78l6czeN5DXutUrbzW1sQRvhi0C6iC265f+u4Q0QV5uiMErqNoa1o0UvFakxHXa4oo+uQho2/zE5Xme5SUljg/vR4wXnVPWRiRS7oJ+sjRLZYM1k+FE9bNkCYIt/MjCXYfvIIDmJLA7EHX0eVDQDUGUzI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713328796; c=relaxed/simple;
-	bh=S3KeYWcnN7CaKj31q1rVFlks67eURbkzfUZxaWtCpkQ=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IzddBH8SOqCae8bBPgsWp77aMMTW2iGtH3NVlPL7BNYGaPMfoEVXq1agrsSTOcOF+TGe0BpMS/ZSxum3lQjWiVtAkFl2ezdH6KnWRrw5FI077RCjssevoO44L7l8acikLYxKHNtsy+AAmNtsGN0xRcUxBjnZqIerDntZiAP0G6c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=CQSLpV4P; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43H4cdDH029196;
-	Wed, 17 Apr 2024 04:39:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=qcppdkim1; bh=zxcprYMTZyoW0dZd3NOUX
-	x8buyKspwXVHAPOYBlbg04=; b=CQSLpV4PVErXpXoo9GmDQ6nKTTj472zLKlxDz
-	R0h/fu45FxEviv+xyps0w4ZLRuFzD7FOjBrelOuz+iR19xa3EPETsN7SvezU5EFM
-	XJ2y9GUYOB61tZZL+9ohFOQD4L28o4LBxfjhhMgggtX9M2hKA35cXfqyG5zmbLlE
-	EndNZvHhzPU0K3qr7/y9Ri98yNj+BKD5nKb8kOcoH4QdkLHqBVHlZOTLVEEg815A
-	8eDJPooKLh1rxxESTyBmQslw3EHW0FU1giRoEkUyt3Euh5aS/ZHt9IZ764DM2coA
-	CP3M1cxPM8KSteDzenbhS8FNwCFHK3Uj/1XUsz+WycsXdjiDA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xj7j90055-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 17 Apr 2024 04:39:22 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43H4dKUr028471
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 17 Apr 2024 04:39:20 GMT
-Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 16 Apr 2024 21:39:20 -0700
-Date: Tue, 16 Apr 2024 21:39:19 -0700
-From: Bjorn Andersson <quic_bjorande@quicinc.com>
-To: Viken Dadhaniya <quic_vdadhani@quicinc.com>
-CC: <cros-qcom-dts-watchers@chromium.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <swboyd@chromium.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <rajpat@codeaurora.org>,
-        <mka@chromium.org>, <rojay@codeaurora.org>,
-        <quic_msavaliy@quicinc.com>, <quic_anupkulk@quicinc.com>
-Subject: Re: [PATCH v1] arm64: dts: qcom: sc7280: Remove CTS/RTS configuration
-Message-ID: <Zh9Sd4QVsN9TWomO@hu-bjorande-lv.qualcomm.com>
-References: <20240416105650.2626-1-quic_vdadhani@quicinc.com>
+	s=arc-20240116; t=1713329545; c=relaxed/simple;
+	bh=RsNmmksocaUHd5jF/DJhTq8Xf2uynyEKdVh2S3aGhqE=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=W6RMO9xwMai3hVa33dzJPAHk0X6BINDWRSQphaxLLIGlt85NJUQ1iG1xaGWASaCo9h7svlYb7tpXY6di4cfFGvenzhauptOB+rmb28pGNLAO3LUAzQYMA+ksXB+EPrUrmIf7J5LxbYExiGsChffUlsqBZ//AmPbeq7x0UJEMIdg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=herrie.org; spf=pass smtp.mailfrom=herrie.org; dkim=pass (2048-bit key) header.d=herrie.org header.i=@herrie.org header.b=YnKe5vYw; arc=none smtp.client-ip=136.144.136.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=herrie.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=herrie.org
+Received: from submission1.mail.transip.nl (unknown [10.100.4.70])
+	by outbound9.mail.transip.nl (Postfix) with ESMTP id 4VK7mp4KnRzTPNDc;
+	Wed, 17 Apr 2024 06:52:10 +0200 (CEST)
+Received: from herrie-desktop.. (110-31-146-85.ftth.glasoperator.nl [85.146.31.110])
+	by submission1.mail.transip.nl (Postfix) with ESMTPA id 4VK7mn5xCzz1nsPv;
+	Wed, 17 Apr 2024 06:52:09 +0200 (CEST)
+From: Herman van Hazendonk <github.com@herrie.org>
+To: github.com@herrie.org
+Cc: andersson@kernel.org,
+	benwolsieffer@gmail.com,
+	chris.chapuis@gmail.com,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	kishon@kernel.org,
+	konrad.dybcio@linaro.org,
+	krzk+dt@kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	me@herrie.org,
+	robh@kernel.org,
+	vkoul@kernel.org
+Subject: [PATCH v2] dt-bindings: phy: qcom,usb-hs-phy: Add compatible
+Date: Wed, 17 Apr 2024 06:52:07 +0200
+Message-Id: <20240417045207.3594931-1-github.com@herrie.org>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20240415115603.1523974-1-github.com@herrie.org>
+References: <20240415115603.1523974-1-github.com@herrie.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240416105650.2626-1-quic_vdadhani@quicinc.com>
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: qnZpEUul22HLGWytuiikdhWlsQ09LK6J
-X-Proofpoint-ORIG-GUID: qnZpEUul22HLGWytuiikdhWlsQ09LK6J
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-17_04,2024-04-16_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 priorityscore=1501
- adultscore=0 clxscore=1011 impostorscore=0 mlxlogscore=999 malwarescore=0
- phishscore=0 suspectscore=0 spamscore=0 bulkscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2404010003
- definitions=main-2404170029
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: ClueGetter at submission1.mail.transip.nl
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ s=transip-a; d=herrie.org; t=1713329530; h=from:subject:to:cc:
+ references:in-reply-to:date:mime-version;
+ bh=ozEXOanBkuPb3pLYR7X9fOyvv86uTWm4XhOrIbW4kLU=;
+ b=YnKe5vYwIKSu3CqiydaIVwZH6V+iKwQCGmyoTDaoKvamMJcSxfiYQOJ7dNPCGXU0tejJDT
+ Ek2NThMe+9MV7S+niVKHseAaQzouvF02ThOuPwLPc3/+W73/rz0LNWSZikJyoLyQIwrl4D
+ PYQgq6TTgq0cY2Bia09X8wQr6SiJXmRgc4k8MyJzZqfrW6m7x+aGBZ0NyE2wtWSlcgoX54
+ g+USocZpS5Os23xxbgPbklOhdFxlyy8OI3bkdsKQOcpU7syKFepBfwJ4q6ogL/rZe1yxao
+ /04KihqM+bpXF4WrFRwnpDwzG3fnq7x+Y3NlGU1yMePlrRC7qE/9V1ftr7B+kw==
+X-Report-Abuse-To: abuse@transip.nl
 
-On Tue, Apr 16, 2024 at 04:26:50PM +0530, Viken Dadhaniya wrote:
-> Remove CTS and RTS pinctrl configuration for UART5 node as
-> it's designed for debug UART for all the board variants of the
-> sc7280 chipset.
-> 
-> Also change compatible string to debug UART.
-> 
+Adds qcom,usb-hs-phy-msm8660 compatible
 
-Why are you posting this on the public mailing list without first
-addressing the feedback and questions I gave you on the internal review
-list?
+Used by HP Touchpad (tenderloin) for example.
 
-Now you wasted the time of our community members, just to receive the
-same feedback I gave you last week.
+Signed-off-by: Herman van Hazendonk <github.com@herrie.org>
+---
+ Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Regards,
-Bjorn
-
-> Fixes: 38cd93f413fd ("arm64: dts: qcom: sc7280: Update QUPv3 UART5 DT node")
-> Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 14 ++------------
->  1 file changed, 2 insertions(+), 12 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 38c183b2bb26..2a6b4c4639d1 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -1440,12 +1440,12 @@
->  			};
->  
->  			uart5: serial@994000 {
-> -				compatible = "qcom,geni-uart";
-> +				compatible = "qcom,geni-debug-uart";
->  				reg = <0 0x00994000 0 0x4000>;
->  				clocks = <&gcc GCC_QUPV3_WRAP0_S5_CLK>;
->  				clock-names = "se";
->  				pinctrl-names = "default";
-> -				pinctrl-0 = <&qup_uart5_cts>, <&qup_uart5_rts>, <&qup_uart5_tx>, <&qup_uart5_rx>;
-> +				pinctrl-0 = <&qup_uart5_tx>, <&qup_uart5_rx>;
->  				interrupts = <GIC_SPI 606 IRQ_TYPE_LEVEL_HIGH>;
->  				power-domains = <&rpmhpd SC7280_CX>;
->  				operating-points-v2 = <&qup_opp_table>;
-> @@ -5397,16 +5397,6 @@
->  				function = "qup04";
->  			};
->  
-> -			qup_uart5_cts: qup-uart5-cts-state {
-> -				pins = "gpio20";
-> -				function = "qup05";
-> -			};
-> -
-> -			qup_uart5_rts: qup-uart5-rts-state {
-> -				pins = "gpio21";
-> -				function = "qup05";
-> -			};
-> -
->  			qup_uart5_tx: qup-uart5-tx-state {
->  				pins = "gpio22";
->  				function = "qup05";
-> -- 
-> 2.17.1
-> 
+diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
+index f042d6af1594..ccf23170cd17 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
+@@ -15,6 +15,7 @@ if:
+       contains:
+         enum:
+           - qcom,usb-hs-phy-apq8064
++          - qcom,usb-hs-phy-msm8660
+           - qcom,usb-hs-phy-msm8960
+ then:
+   properties:
+@@ -41,6 +42,7 @@ properties:
+       - enum:
+           - qcom,usb-hs-phy-apq8064
+           - qcom,usb-hs-phy-msm8226
++          - qcom,usb-hs-phy-msm8960
+           - qcom,usb-hs-phy-msm8916
+           - qcom,usb-hs-phy-msm8960
+           - qcom,usb-hs-phy-msm8974
 
