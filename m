@@ -1,152 +1,130 @@
-Return-Path: <devicetree+bounces-60064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28B298A8107
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 12:35:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C19B8A8121
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 12:39:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 78B52B20D00
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 10:35:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0AF9F1F23DBE
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 10:39:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78FB2139CEF;
-	Wed, 17 Apr 2024 10:35:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA6B113C3FB;
+	Wed, 17 Apr 2024 10:39:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ltts.com header.i=@ltts.com header.b="BI6QR0uj";
-	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="g1xXHKQ1"
+	dkim=pass (2048-bit key) header.d=ltts.com header.i=@ltts.com header.b="iDw0+Ko4";
+	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="LIzpgBeT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from c180-18.smtp-out.ap-south-1.amazonses.com (c180-18.smtp-out.ap-south-1.amazonses.com [76.223.180.18])
+Received: from c180-15.smtp-out.ap-south-1.amazonses.com (c180-15.smtp-out.ap-south-1.amazonses.com [76.223.180.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB81D80BE0;
-	Wed, 17 Apr 2024 10:35:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=76.223.180.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95AF84685;
+	Wed, 17 Apr 2024 10:39:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=76.223.180.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713350144; cv=none; b=V9QFYReWWASkz44IZLISJyujeWZ2uw6KCZ5vk+mr5qdxRDjJsdT0eCnTMSYVv9ZDXmjCBFOd+W6BU/TXhqVyt4VB70Gp7dGZkzvXwyh9rCiUR4QAghh1gt4VakRTPctqJjQ+YkIh+7ePlBqbRfEowyHXqmvfWvuxdPECIpbXdew=
+	t=1713350363; cv=none; b=DYfRNW8ZlV0eSZJAObj6eXdMLcRYBBhQuM43Ozc29InBxPkPA8RJWUziSMm3OiDyxGDDlEwbB+7DivmJFRUU/g4sX3O971GO79JEodzNRCLuqYZX/OwH062TUBU17WaV3+vZ7YI2S8VYrLXZCFsvrwpEzknAU0tMXW1A5EiXNtc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713350144; c=relaxed/simple;
-	bh=MPA/yCGAeV9r3zQj7UZwA1/FORgOEaCJc7t+9vex2kY=;
+	s=arc-20240116; t=1713350363; c=relaxed/simple;
+	bh=NWxt9d6qlEYlWK8ONuEubNI6cEEiqQEqAs1/YysiTXc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cKubOoKu27fKs5r5z03jfRGBP6x+spsiHd4SzcxEoTT1GijJMePXEQXzswTOTHhxTGGZy3K/gZp7MvuovFNTSfLtuItVL7tTTOzch8Lyzq6TTY4QEVr3YdMptMiIWwLPviFAjKSaPYE9drjaiXKFAZ6w4051YZBVTHlnBL5KiqU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ltts.com; spf=pass smtp.mailfrom=ap-south-1.amazonses.com; dkim=pass (2048-bit key) header.d=ltts.com header.i=@ltts.com header.b=BI6QR0uj; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=g1xXHKQ1; arc=none smtp.client-ip=76.223.180.18
+	 MIME-Version; b=rn/11TfDgWFDI/6ThbON3gPBxtykCurQboF42gqsK8tv/Dr5TRePg0Y1M79ecCmZt2Q83IRIe9suzGY1hR3nKvKVYodgVmMdmzXjQcv37III3en97/S5r0//Vhdr+JIRyufNhZtvk6J9b9uw+QBw4aDTgPVqjIfIo3HtPodM6bM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ltts.com; spf=pass smtp.mailfrom=ap-south-1.amazonses.com; dkim=pass (2048-bit key) header.d=ltts.com header.i=@ltts.com header.b=iDw0+Ko4; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=LIzpgBeT; arc=none smtp.client-ip=76.223.180.15
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ltts.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ap-south-1.amazonses.com
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=i3fe3efcd4pbz7ipgssfqjhzqx347xbc; d=ltts.com; t=1713350138;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:MIME-Version:Content-Type:Content-Transfer-Encoding;
-	bh=MPA/yCGAeV9r3zQj7UZwA1/FORgOEaCJc7t+9vex2kY=;
-	b=BI6QR0ujVVqAvr+8gEtHK+VZQxEiwpZB74n8cBP7ctcA8BW/qjQxmFEuFKEH2x3Q
-	I0Nt1zPwyyxknt8rCtMnELyTNbWvtoDI9TGqVNoYcvgRR8S/eChyZ+yeflBIPdsade/
-	+XZJAUTgskd3kabFLEuqqoy7kbmFr+pkrYzCIJzm6cyAy/gEv9A/ZeGIDVIVG0sycEn
-	rWE7QzD5gNFGkHEfrq4xdOV6kozY7wJreDAAJX4TXnKVCe/8RBLhIfv9XPDY6yr4GjB
-	0ytMfU6zRWPTvCTCrJPNiNQEDMg//qeIvx2yWOBWar/+cmVl7PScsiAw2BXicHr8NR3
-	WneEsE9eaA==
+	s=i3fe3efcd4pbz7ipgssfqjhzqx347xbc; d=ltts.com; t=1713350359;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding;
+	bh=NWxt9d6qlEYlWK8ONuEubNI6cEEiqQEqAs1/YysiTXc=;
+	b=iDw0+Ko4VjjNSOLAqtbkxxSW4kWOmku+JNmuqlam4SazW4E757F2+T1UPRMQf+Vv
+	gwDGl9l+IRdcc+oBfazWBWYDXjOH3xNOciWI956r00FYT6eCPHi8233jbyHt4JIaCoZ
+	60j5IsQc9LNNbLQgbNEfgiRnMd8KR/5xcHxefMbGgg1KSHr9r8OKDZkBQhJlZxng88K
+	Vg2Q3dvdRZzry3Jy0E5qUNzh2pUA/SPueG6gfiks113lCOMXHdjWwVzNgfJ7bSeH2eK
+	jfYlTC8j1bYeKduKp1tAb5qXIbvyv0zQ7vrtLEVk4pu++RdX/1Rm2bOxhGBiWWR/BVL
+	P+1hg62FmQ==
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=rlntogby6xsxlfnvyxwnvvhttakdsqto; d=amazonses.com; t=1713350138;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:MIME-Version:Content-Type:Content-Transfer-Encoding:Feedback-ID;
-	bh=MPA/yCGAeV9r3zQj7UZwA1/FORgOEaCJc7t+9vex2kY=;
-	b=g1xXHKQ1vAtrtjihxlrA6d7AQPBE/IEEz3uez8vIIqiX+lONosMproEb/sYQTj4J
-	g4A54PqyPxUEfMc4SXTht8W/+SDxg336Ys0boWR2kfpQIEfZ8qIknizraNbgthTKdvA
-	6SmKiOSgqM4mAFy0BNVh3+wDWRnCwCU7CRJMQXS0=
+	s=rlntogby6xsxlfnvyxwnvvhttakdsqto; d=amazonses.com; t=1713350359;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Feedback-ID;
+	bh=NWxt9d6qlEYlWK8ONuEubNI6cEEiqQEqAs1/YysiTXc=;
+	b=LIzpgBeTCWEWB5WNJnCh9aTyItQegEqFPWzULF+5NjwWCOIJiOkwy2cP9ZrIDZoH
+	fAw8skjRXHGzJuWyEvI4vzJ2wz+cDYqe1ikxWdDHhHjJ6HjVBEj2Erhc9o/tVQJbjGS
+	jznsQSMvHm8VBjpqI4dIk03VMLY2LO8E7s7R7lH8=
 From: Bhargav Raviprakash <bhargav.r@ltts.com>
-To: lee@kernel.org
+To: eblanc@baylibre.com
 Cc: arnd@arndb.de, bhargav.r@ltts.com, broonie@kernel.org, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org, eblanc@baylibre.com, 
+	conor+dt@kernel.org, devicetree@vger.kernel.org, 
 	gregkh@linuxfoundation.org, jpanis@baylibre.com, kristo@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, lgirdwood@gmail.com, 
-	linus.walleij@linaro.org, linux-arm-kernel@lists.infradead.org, 
-	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	m.nirmaladevi@ltts.com, nm@ti.com, robh+dt@kernel.org, 
-	vigneshr@ti.com
-Subject: Re: [PATCH v6 03/11] mfd: tps6594: add regmap config in match data
-Date: Wed, 17 Apr 2024 10:35:38 +0000
-Message-ID: <0109018eeba05ad9-f837b6c7-70cf-4a2a-9aeb-3ef245e18862-000000@ap-south-1.amazonses.com>
+	krzysztof.kozlowski+dt@linaro.org, lee@kernel.org, 
+	lgirdwood@gmail.com, linus.walleij@linaro.org, 
+	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, m.nirmaladevi@ltts.com, nm@ti.com, 
+	robh+dt@kernel.org, vigneshr@ti.com
+Subject: Re: [PATCH v6 10/11] pinctrl: pinctrl-tps6594: Add TPS65224 PMIC pinctrl and GPIO
+Date: Wed, 17 Apr 2024 10:39:19 +0000
+Message-ID: <0109018eeba3b870-adff6d96-6d05-45e3-b2ef-1b5ec0b034e0-000000@ap-south-1.amazonses.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240411170344.GK2399047@google.com>
-References: <20240411170344.GK2399047@google.com>
+In-Reply-To: <D0I0M4T4O9G1.UUESU247CE42@baylibre.com>
+References: <D0I0M4T4O9G1.UUESU247CE42@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Feedback-ID: 1.ap-south-1./RC/PI2M8xOxQmTMPi0M1Q8h2FX69egpT62QKSaMPIA=:AmazonSES
-X-SES-Outgoing: 2024.04.17-76.223.180.18
+X-SES-Outgoing: 2024.04.17-76.223.180.15
 
-Hello,
-
-On Tue, 16 Apr 2024 13:25:04 +0100, Lee Jones wrote:
-
-> > Hello,
-> > 
-> > On Wed, 14 Feb 2024 10:10:17 -0800, Lee Jones wrote:
-> > > On Mon, 08 Apr 2024, Bhargav Raviprakash wrote:
-> > > 
-> > > > Introduces a new struct tps6594_match_data. This struct holds fields for
-> > > > chip id and regmap config. Using this struct in of_device_id data field.
-> > > > This helps in adding support for TPS65224 PMIC.
-> > > > 
-> > > > Signed-off-by: Bhargav Raviprakash <bhargav.r@ltts.com>
-> > > > Acked-by: Julien Panis <jpanis@baylibre.com>
-> > > > ---
-> > > >  drivers/mfd/tps6594-i2c.c   | 24 ++++++++++++++++--------
-> > > >  drivers/mfd/tps6594-spi.c   | 24 ++++++++++++++++--------
-> > > >  include/linux/mfd/tps6594.h | 11 +++++++++++
-> > > >  3 files changed, 43 insertions(+), 16 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/mfd/tps6594-i2c.c b/drivers/mfd/tps6594-i2c.c
-> > > > index c125b474b..9e2ed48b7 100644
-> > > > --- a/drivers/mfd/tps6594-i2c.c
-> > > > +++ b/drivers/mfd/tps6594-i2c.c
-> > > > @@ -192,10 +192,16 @@ static const struct regmap_config tps6594_i2c_regmap_config = {
-> > > >  	.write = tps6594_i2c_write,
-> > > >  };
-> > > >  
-> > > > +static const struct tps6594_match_data match_data[] = {
-> > > > +	[TPS6594] = {TPS6594, &tps6594_i2c_regmap_config},
-> > > > +	[TPS6593] = {TPS6593, &tps6594_i2c_regmap_config},
-> > > > +	[LP8764] = {LP8764, &tps6594_i2c_regmap_config},
-> > > 
-> > > Nit: There should be spaces after the '{' and before the '}'.
-> > > 
-> > 
-> > Sure! will fix it in the next version.
-> > 
-> > > > +};
-> > > > +
-> > > >  static const struct of_device_id tps6594_i2c_of_match_table[] = {
-> > > > -	{ .compatible = "ti,tps6594-q1", .data = (void *)TPS6594, },
-> > > > -	{ .compatible = "ti,tps6593-q1", .data = (void *)TPS6593, },
-> > > > -	{ .compatible = "ti,lp8764-q1",  .data = (void *)LP8764,  },
-> > > > +	{ .compatible = "ti,tps6594-q1", .data = &match_data[TPS6594], },
-> > > > +	{ .compatible = "ti,tps6593-q1", .data = &match_data[TPS6593], },
-> > > > +	{ .compatible = "ti,lp8764-q1",  .data = &match_data[LP8764], },
-> > > 
-> > > Not keen on this.  Why do you pass the regmap data through here and
-> > > leave everything else to be matched on device ID?  It would be better to
-> > > keep passing the device ID through and match everything off of that.
-> > > 
-> > > 
-> > > -- 
-> > > Lee Jones [李琼斯]
-> > 
-> > Thanks for the feedback!
-> > 
-> > These changes were made because of the following message:
-> > https://lore.kernel.org/all/7hcysy6ho6.fsf@baylibre.com/
-> > 
-> > Please let us know which one to follow.
+On Fri, 12 Apr 2024 10:52:43 +0200, Esteban Blanc wrote:
+> On Mon Apr 8, 2024 at 2:40 PM CEST, Bhargav Raviprakash wrote:
+> > From: Nirmala Devi Mal Nadar <m.nirmaladevi@ltts.com>
+> >
+> > Add support for TPS65224 pinctrl and GPIOs to TPS6594 driver as they have
+> > significant functional overlap.
+> > TPS65224 PMIC has 6 GPIOS which can be configured as GPIO or other
+> > dedicated device functions.
+> >
+> > Signed-off-by: Nirmala Devi Mal Nadar <m.nirmaladevi@ltts.com>
+> > Signed-off-by: Bhargav Raviprakash <bhargav.r@ltts.com>
+> > Acked-by: Linus Walleij <linus.walleij@linaro.org>
+> > ---
+> >  drivers/pinctrl/pinctrl-tps6594.c | 275 +++++++++++++++++++++++++-----
+> >  1 file changed, 228 insertions(+), 47 deletions(-)
+> >
+> > diff --git a/drivers/pinctrl/pinctrl-tps6594.c b/drivers/pinctrl/pinctrl-tps6594.c
+> > index 66985e54b..f3d1c1518 100644
+> > --- a/drivers/pinctrl/pinctrl-tps6594.c
+> > +++ b/drivers/pinctrl/pinctrl-tps6594.c
+> > @@ -338,8 +506,20 @@ static int tps6594_pinctrl_probe(struct platform_device *pdev)
+> >  	config.parent = tps->dev;
+> >  	config.regmap = tps->regmap;
+> > -	config.ngpio = TPS6594_PINCTRL_PINS_NB;
+> > -	config.ngpio_per_reg = 8;
+> > +	switch (tps->chip_id) {
+> > +	case TPS65224:
+> > +		config.ngpio = ARRAY_SIZE(tps65224_gpio_func_group_names);
+> > +		config.ngpio_per_reg = TPS65224_NGPIO_PER_REG;
+> > +		break;
+> > +	case TPS6593:
+> > +	case TPS6594:
+> > +		config.ngpio = ARRAY_SIZE(tps6594_gpio_func_group_names);
+> > +		config.ngpio_per_reg = TPS6594_NGPIO_PER_REG;
+> > +		break;
+> > +	default:
+> > +		break;
+> > +	}
 > 
-> Right, except this doesn't eliminate "any \"if (chip_id)\" checking".
-> Instead you have a hodge-podge of passing a little bit of (Regmap) data
-> via match and the rest via "if (chip_id)".  So either pass all platform
-> type data via .data or just the chip ID.  My suggestion 99% of the time
-> is the latter.
+> Please merge the two switch case. 
+> 
+> Other than that I think it's ok.
+> 
+> Best regards,
+> 
+> -- 
+> Esteban "Skallwar" Blanc
+> BayLibre
 
-Got it. Thanks! Will revert back to .data having chip_id.
+Thanks! I will merge those switch cases in the next version.
 
 Regards,
 Bhargav
