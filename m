@@ -1,168 +1,218 @@
-Return-Path: <devicetree+bounces-59997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F56E8A7DE6
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 10:15:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B12728A7DF0
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 10:17:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B4DE3B21109
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 08:15:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69CC5283C30
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 08:17:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 309247EF13;
-	Wed, 17 Apr 2024 08:14:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C1BD7E563;
+	Wed, 17 Apr 2024 08:17:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="RkLV/o1P"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ivKuyAT5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D2CA7D07E;
-	Wed, 17 Apr 2024 08:14:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFBEE7D3E4;
+	Wed, 17 Apr 2024 08:17:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713341679; cv=none; b=MCPFHP+WahtUAjYdfi7MKsjSxHC7mWQBZqlYOAUPwbPbjEBA4gJPTcoBTnt76z0rTLSyAHUrk/XTHlOEqmC0WeirwoEBnU/UoBDRK9hUgiKxR7w3GRcQT5RURiSkLUZ8BpMcObn1O5XcE7NULCo2sNI7j5M+G1YYlLHTqygu8r4=
+	t=1713341847; cv=none; b=GUGLQEwEKwCXYI0lxiw6+KgrPKrQwivtZkNqZ5XNcrHW7l6SbK0iPpCQcQVJlO2GocNWBvaU+iOC0vUHinLdfisJKyDFl5Ta44B1nlM2bXo9+JdNGwBfKjRJ4eb+v7cpqn18ZI900be2X5Wm2bMLtpBAWW1vDvoKytar9bZJau0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713341679; c=relaxed/simple;
-	bh=nxKyq4H0ET8o57EUkk9BeFnAgDxkoDenfHs8BMo7Gwc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Bycw3nihI86PPAwWsY1JRbW25s828Vhyz40oMtJ3aHEKc8V+dJrnGRL9FEp/4DjDHi5hUGq9dr7G7Yv7C2qe946msh4NvdAOD9KJuwCWEuZCSALckC7mx+84yhnHOVc8oXCOZElhVWBtkT1Lia1HpM2MMyK7kDfRBjPL5dAggPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=RkLV/o1P; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1713341669;
-	bh=nxKyq4H0ET8o57EUkk9BeFnAgDxkoDenfHs8BMo7Gwc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RkLV/o1PU9ese6veoTStGg4K/NZagOdBE6LolLHaXNkrnLu/YEag41lL2b3bdSr37
-	 Wh86fihPy7t3RocZmjM4JxFj080dJXzwuKOKMQohdyQAhfxnNx7wDlHFOT90mlCgqW
-	 /hXnYC462KYH89DE2Tx+Oavowvd7RNcp0LXlcYJ9UyAQeL56BZK4WLW/JI2dkCrdJg
-	 pciBYIEo/3AHBXF17BXKSmnhzALaMatAJ7lNRuXY8NdpevP1Z5dbWGCec4JlO73+L8
-	 sZ1JCNimKuKWPqqGI4H+5aggw8DGG7JRzbtCSuFbTgbiVDeIKbr/vKs3ikzyEXFdf+
-	 3Y0aQxTbbaA8Q==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id B6E033780629;
-	Wed, 17 Apr 2024 08:14:28 +0000 (UTC)
-Message-ID: <ecd7c691-db47-42aa-ab19-f554c20774af@collabora.com>
-Date: Wed, 17 Apr 2024 10:14:28 +0200
+	s=arc-20240116; t=1713341847; c=relaxed/simple;
+	bh=RM9ZBHtvZ8LTwszIbZZWTkb98vredc/IQ7JGaF2pg7I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ltLxWYI6J/3Xf2dY5Za1Gt0I2cF4YnxwQ55bkKh3FUv5jjZrErrq9FX/1zruR0DuGt6ygqnRIJ3cs5BJa1ggOfOwt4ApbBecS2A7XR27yxVw/PRoAglySKsDy46KuFlZ3G7s3RWhpMctKbrlSzrsTAGiUxUjzSw6qKvr7BYqaNg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ivKuyAT5; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43H6pNTJ005096;
+	Wed, 17 Apr 2024 08:17:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=Htu9QXA5aLlbaAxRyDgW1Hl5A5etbp7+sMkhoF3/F+k=; b=iv
+	KuyAT5kwmF+JgfSVVFVVg9RlSOiK0WPriR1IYBxryrfPHv/qrEPfgc/Fzi7VwoQk
+	yk+c05xdPvWpMjUq4Ihu6w05qzojExFLCPPFxFZ/o1a7ubQ7VlQegaoyVnDeTfjT
+	oJQTSP6yZM9xqvWXLhUlD63Bt6VNv2Wn5mwZAZ+v0d3Bprg+lyPswhm2x9bu8nja
+	Jir3aCKrkRkJ7yZQiF2T+TRviFRMkKqoNmv9/eC9+3NqfcIqFpV7qxDxmEKDP2YB
+	cIaHfNxILBxJoD7gC+Q/MFdY87DbVjpSr9UZf92wVYhjhP3yA1anup+7TOv+BcXs
+	HPTqQ6A8NSGP8r1eT79g==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xj2sxs1wj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 17 Apr 2024 08:17:09 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43H8H8uX007517
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 17 Apr 2024 08:17:08 GMT
+Received: from [10.216.25.227] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 17 Apr
+ 2024 01:17:03 -0700
+Message-ID: <13bff1dd-d134-e5ab-6691-b2bcb0a786c8@quicinc.com>
+Date: Wed, 17 Apr 2024 13:47:00 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/8] scsi: ufs: ufs-mediatek: Remove useless
- mediatek,ufs-boost-crypt property
-To: =?UTF-8?B?UGV0ZXIgV2FuZyAo546L5L+h5Y+LKQ==?= <peter.wang@mediatek.com>,
- "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
- "jejb@linux.ibm.com" <jejb@linux.ibm.com>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "avri.altman@wdc.com" <avri.altman@wdc.com>,
- "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
- "bvanassche@acm.org" <bvanassche@acm.org>,
- "broonie@kernel.org" <broonie@kernel.org>,
- "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>,
- "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- Chen-Yu Tsai <wenst@chromium.org>, Alexandre Mergnat <amergnat@baylibre.com>
-References: <20240415110012.148871-1-angelogioacchino.delregno@collabora.com>
- <20240415110012.148871-4-angelogioacchino.delregno@collabora.com>
- <c9634a286fbdb4c98a7fe6703a4eb10d66dfcb9e.camel@mediatek.com>
- <4d60e9e4-9eae-4b0a-abb2-b1ad3d278fc9@collabora.com>
- <93db93aa7eb24a255f97a1a1e8e8d936dc908258.camel@mediatek.com>
- <f3920433-b0fa-4a64-9653-e385bf1eb5c7@collabora.com>
- <d11e174d85c7f5a9b4ffe5fb2bb15dfd5823f83e.camel@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v2 3/8] ASoC: dt-bindings: wcd937x-sdw: add bindings for
+ wcd937x-sdw
 Content-Language: en-US
-In-Reply-To: <d11e174d85c7f5a9b4ffe5fb2bb15dfd5823f83e.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To: Rob Herring <robh@kernel.org>
+CC: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami
+	<bgoswami@quicinc.com>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+	<broonie@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai
+	<tiwai@suse.com>, <alsa-devel@alsa-project.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-sound@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_rohkumar@quicinc.com>, <quic_pkumpatl@quicinc.com>
+References: <20240416063600.309747-1-quic_mohs@quicinc.com>
+ <20240416063600.309747-4-quic_mohs@quicinc.com>
+ <20240416143237.GA2250258-robh@kernel.org>
+From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+In-Reply-To: <20240416143237.GA2250258-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 0HHyvM2ank2fxScBe0q2l6VEcz40MkiC
+X-Proofpoint-ORIG-GUID: 0HHyvM2ank2fxScBe0q2l6VEcz40MkiC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-17_07,2024-04-16_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
+ impostorscore=0 mlxscore=0 priorityscore=1501 mlxlogscore=999
+ lowpriorityscore=0 clxscore=1015 spamscore=0 adultscore=0 bulkscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404170056
 
-Il 16/04/24 15:05, Peter Wang (王信友) ha scritto:
-> On Tue, 2024-04-16 at 12:38 +0200, AngeloGioacchino Del Regno wrote:
->> Il 16/04/24 12:31, Peter Wang (王信友) ha scritto:
->>>
->>>> Yes this causes -> less than half of a millisecond <- of
->>>> additional
->>>> boot time
->>>> if the dvfsrc-supply is present but boost-microvolt is not.
->>>>
->>>> I really don't see the problem with that :-)
->>>>
->>>
->>> Adding a little bit of boot time to one smartphone might not be a
->>> problem, but when you consider a billion smartphones each adding a
->>> little bit, the cumulative effect becomes significant. The power
->>> consumption of these accumulated times will continue to increase,
->>> contributing to the Earth's carbon emissions. Moreover, removing
->>> the
->>> master switch for this feature doesn't seem to have any benefits
->>> other
->>> than not having to set it in the DTS. Similarly, the master switch
->>> for
->>> VA09 seems to have more disadvantage.
->>>
+On 4/16/2024 8:02 PM, Rob Herring wrote:
+> On Tue, Apr 16, 2024 at 12:05:55PM +0530, Mohammad Rafi Shaik wrote:
+>> From: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
 >>
->> Sorry, but I still don't see how a few *microseconds* more of boot
->> time can
->> be significant, even related to power consumption during boot.
+>> Qualcomm WCD9370/WCD9375 Codec is a standalone Hi-Fi audio codec IC
+>> connected over SoundWire. This device has two SoundWire devices RX and
+>> TX respectively.
+>> This binding is for those slave devices on WCD9370/WCD9375.
 >>
->> If that was a few milliseconds, then I'd agree with you, but that's
->> not the case.
+>> Co-developed-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+>> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+>> Signed-off-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+>> ---
+>>   .../bindings/sound/qcom,wcd937x-sdw.yaml      | 71 +++++++++++++++++++
+>>   1 file changed, 71 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.yaml
 >>
->> Removing the master switch has a benefit: you *lose* a few
->> microseconds of boot
->> time (so, boots in *few microseconds LESS*) on platforms that would
->> have this set
->> in devicetree, as this property is redundant with the other
->> activation checks
->> for those features.
->>
->> So, there you go: if the majority of MediaTek platforms are already
->> using this
->> crypt boost feature, then this commit reduces carbon emissions, as
->> those would
->> boot in a few less microseconds.
->>
+>> diff --git a/Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.yaml b/Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.yaml
+>> new file mode 100644
+>> index 000000000000..2b7358e266ba
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.yaml
+>> @@ -0,0 +1,71 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/sound/qcom,wcd937x-sdw.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm SoundWire Slave devices on WCD9370
+>> +
+>> +maintainers:
+>> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>> +
+>> +description: |
 > 
-> But the majority platfomrs dosen't need this feature.
-> This feature is only for legacy chip which at least 4 years ago.
+> Don't need '|' if no formatting.
 > 
+>> +  Qualcomm WCD9370 Codec is a standalone Hi-Fi audio codec IC.
+>> +  It has RX and TX Soundwire slave devices. This bindings is for the
+>> +  slave devices.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: sdw20217010a00
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  qcom,tx-port-mapping:
+>> +    description: |
+>> +      Specifies static port mapping between slave and master tx ports.
+>> +      In the order of slave port index.
+> 
+> Are there constraints on the values of the entries?
 
-Upstream supports platforms that do and don't need this feature, and having
-redundant device tree properties performing the same checks is not just
-suboptimal but plain wrong.
+The port mapping entries are fixed values.
+There is no constraints.
 
-Adding to this, devicetree describes the hardware - and there is no physical
-hardware switch that needs this redundant property, this means that the
-property that is getting removed in this commit (and the va09 one in another
-commit of this series) is a *software switch*, not HW.
+Thanks
+Rafi
+> 
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +    minItems: 4
+>> +    maxItems: 4
+>> +
+>> +  qcom,rx-port-mapping:
+>> +    description: |
+>> +      Specifies static port mapping between slave and master rx ports.
+>> +      In the order of slave port index.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +    minItems: 5
+>> +    maxItems: 5
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - qcom,port-mapping
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    soundwire@3210000 {
+>> +        #address-cells = <2>;
+>> +        #size-cells = <0>;
+>> +        reg = <0x03210000 0x2000>;
+>> +        wcd937x_rx: codec@0,4 {
+>> +            compatible = "sdw20217010a00";
+>> +            reg  = <0 4>;
+>> +            qcom,rx-port-mapping = <1 2 3 4 5>;
+>> +        };
+>> +    };
+>> +
+>> +    soundwire@3230000 {
+>> +        #address-cells = <2>;
+>> +        #size-cells = <0>;
+>> +        reg = <0x03230000 0x2000>;
+>> +        wcd937x_tx: codec@0,3 {
+>> +            compatible = "sdw20217010a00";
+>> +            reg  = <0 3>;
+>> +            qcom,tx-port-mapping = <2 3 4 5>;
+>> +        };
+>> +    };
+>> +
+>> +...
+>> -- 
+>> 2.25.1
+>>
 
-Keep in mind, also, that this feature (and again, the va09 one as well) has
-a specific requirement to be supported - and this is what the code does even
-without the software switch to add it.
-
-In case there's any need to disallow such feature from a specific SoC, the DT
-bindings can be modified such that a specific compatible string would disallow
-adding the required regulator and/or boost-microvolt properties.
-
-Besides, I want to remind you that there is no reason to drop support, or have
-them unreliably working, or use hacks, for SoCs that are "old" - especially
-when this is a driver that works on both old and new ones.
-
-Regards,
-Angelo
 
