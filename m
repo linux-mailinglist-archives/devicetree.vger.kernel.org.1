@@ -1,165 +1,114 @@
-Return-Path: <devicetree+bounces-60267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00AFE8A89E9
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 19:09:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3ED78A8A18
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 19:20:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 323571C22249
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 17:09:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D5AF28545B
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 17:20:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AC6917165C;
-	Wed, 17 Apr 2024 17:09:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 607AA171672;
+	Wed, 17 Apr 2024 17:20:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VlWIee21"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="UBIdhrcf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B35117109B;
-	Wed, 17 Apr 2024 17:09:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41EC016FF48;
+	Wed, 17 Apr 2024 17:20:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713373756; cv=none; b=jmIyR2rfksrmltuOEYXnC/+1fYZ5dp4YF/jrCfK4rkzWduBNQxdXAakaNUBOdRit7EI3yUMrT9gTgcmMYdinyRmtHVOUe+9mUQk3hrT65mSerYj53XphHxmjJLm4s+i3ZPTLe1ZMCPpJKgKgWAjQxnJVuGtrZ2fPY7YBvELLCBM=
+	t=1713374442; cv=none; b=RD6Lc7CvY8OdsBxaMxQFJ+6lVjd2YURKZpHF+FtLsYnuL6BMr0wk9oEi5lIV7J4o6U3kmoSzFrnnF5xkg5JJGue/7P4KGUX5+RgtTeerOBHQC3psGJNqZcMHAYVPBba3KGRRI0lvj0EvTquVbughXwUq4QJ8yK1GMfeVwUH+FiA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713373756; c=relaxed/simple;
-	bh=9crrGJWSO/pmgfGBhncc5oXIfUwpP6oo0bwAmhis4mY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Lbz/C7FjaVwJn5FNj4+C2DXfFSOGOjA5ZrFDcc3t5y4RAiaj/y3tX9AeNDLP3zBFjZfvGpqJgbfX1ilC+ZkQ0FCJSvCFvWrk7U0pfOeKZkfSSpvO3DPtYYfTLbLFFin4L/wc380lPeOt0WBrqQDBrbSY3FoQTVSuxHwNjYYnLsk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VlWIee21; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a555b203587so108472766b.3;
-        Wed, 17 Apr 2024 10:09:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713373754; x=1713978554; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oPwBYmncLO39M6iuxDIL5VGVqta8zUBMbRZjwo+JNAI=;
-        b=VlWIee21uT0QrqUl9xZO7cAsP8jC1gn9p6/fo8r80y8Tfo5WRSXX5vSoaE4YeKlJFF
-         WD6HaHrPcaGDYA/4cHnv9NO7mf2XlNsSX/SOTuWYG6s1uqC9c60mjX7StNYZ0kxdWdHd
-         RdAEkTXrlFA38m8l8owhwexvzaSJhw+tt+y3QgXXxdV+bFEJESsgsNhfc76C85C/BeK/
-         QRkWJ7s0ZLjzRNKpQf1Rso6Z8H2Vg7Qn1rd+r8JTVfMQ8fWN/nmh9PvDWyI/NoyTm80v
-         M62bceD6o/4KQgjAKbjO2LupRBgw8TVm+ACMPb7xw9Xt/PLU0Vtp3IM+FkInonQUTFAp
-         bNSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713373754; x=1713978554;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oPwBYmncLO39M6iuxDIL5VGVqta8zUBMbRZjwo+JNAI=;
-        b=fxcNwGRXMz9T3SIQBkjszmMLUrVrzVHugqzwp8MZR2fZPi+7ERVnq6E/HKs/tlnn0u
-         VHXPw3jk5oInLerDvdFJokmE2YAYqhEU4c1quFfXPeW3Pbpgz8gefcxBxagZfvWvtY+M
-         IH5EirX/EVnKPdjAvRM4P58XvGISyCSxrAsJPlHLq9HwTYdkCRLuIIKid+ghaTx3ccF/
-         +uCiDezSPBcRAEgRwfgpQ2kurV6aDJz/scUlvDqFHQOMJvFjhSRM0RGgcsBlnYT0SeE6
-         hXJYsNyev+7Bglm8P26noVgUwq07uLE//ikh22ecw7VtRzKvsCM6M2WT8QXi+dyTPHyY
-         hfVA==
-X-Forwarded-Encrypted: i=1; AJvYcCWok/GPNcMqSYEDuk0KbJ6dC1kbSKGRSJyPk68xbE/OeJWUVBQFGIs7FdqhwtxCgca32O/5wPk8yy0dNLVmdKpaFhV13xvAkP32oLFMBldgbrwHmJAxOSkNluaQZeQHIMltSGoXBzM5794y5E/mcYa/CsfCmFhZZ1yhMm9brIaWHuQBlA==
-X-Gm-Message-State: AOJu0YyVF7Tvf32wz/QkJUE7laATbEVHN6s8TQt3YfiK5OhCPtDoovRX
-	C03xY6MRbGjhljvdZBMUfyD9gCArYuXh7fWWPUMLKKNNoYBTyVTnED7i/LnYLlXKOw9iznd1xJA
-	UPN5abcLPi6wqMU7d1apydFUAIOI=
-X-Google-Smtp-Source: AGHT+IGr2IF61Tq5V2UoeP6NsqjvosuELY8jr+3LLYgQOP9eBfScgTsWuXwRjeksq/gzaCVFXN++KM9eLd0ViexGnK0=
-X-Received: by 2002:a17:906:28d6:b0:a55:41fd:a013 with SMTP id
- p22-20020a17090628d600b00a5541fda013mr97880ejd.23.1713373753535; Wed, 17 Apr
- 2024 10:09:13 -0700 (PDT)
+	s=arc-20240116; t=1713374442; c=relaxed/simple;
+	bh=Kv5FPRBx5aI4mDE57tTTrqSLGgwSbiupSBg9tz9cq3k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hOKD5d507/fIekJZmk7dgSicboaJN6s6bnqhXupHgr8o0LFVg3vbExdJug8wiZM87E4XlbzH/FlrxGIkk8H46CeIO3QOjbl5LlfnNPfe/Dq72d9/sZp05Pc9lwVdYHQs4B9rN1GHTuANGhLigR1LBsPOc8lzARJpttzMcQ3E3y4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=UBIdhrcf; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 5E7E81FE67;
+	Wed, 17 Apr 2024 19:20:35 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1713374435;
+	bh=CcpFXlllLfas3Vp8HTMypgb0mIEXJNssixFuak86tvw=; h=From:To:Subject;
+	b=UBIdhrcfKD/1kNjDhFs790ModI2esqNg9lKcIYrtVdtg0l4RCNWdHOXChg4WYtHsB
+	 iVH5kUoThuwE59U13LFf5kUYHko8RmRQ0zcJYmYx0K2Eu7pOuTAQl97G77BbprjUub
+	 P/H4dOIoiVMF/XwA3X7tkd6MwiYOiZrUdlmeTooLBMKe5H0NwWmzpDcV5yvEnv48lH
+	 /8MGuHe13KCUTcZL78J7vcA0wCJf435bhUf2acDSxKhbYuJz0nEpFYSE57w+ZDxN7F
+	 cfYCoXTsgMWopx6+VRfGnh2yOxes+q8xexhmpzR6oCsJQktnwcej/B05bmkbpQMiP0
+	 CpScNnQO2Gx9w==
+Date: Wed, 17 Apr 2024 19:20:31 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Francesco Dolcini <francesco@dolcini.it>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 02/10] arm64: dts: imx8qm-ss-audio: add audio nodes
+Message-ID: <20240417172031.GA4100@francesco-nb>
+References: <20240415-dts_8qm_audio-v1-0-2976c35a0c52@nxp.com>
+ <20240415-dts_8qm_audio-v1-2-2976c35a0c52@nxp.com>
+ <20240416065026.GA4165@francesco-nb>
+ <Zh/yZ2HyF+G8bty7@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240417170054.140587-1-alisa.roman@analog.com> <20240417170054.140587-4-alisa.roman@analog.com>
-In-Reply-To: <20240417170054.140587-4-alisa.roman@analog.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Wed, 17 Apr 2024 20:08:37 +0300
-Message-ID: <CAHp75VcT3VHcA8YVjc02PBXUxErnWg56Wyn1iiJshYVWv1YWxQ@mail.gmail.com>
-Subject: Re: [PATCH v6 3/5] iio: adc: ad7192: Add aincom supply
-To: Alisa-Dariana Roman <alisadariana@gmail.com>
-Cc: michael.hennerich@analog.com, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	alexandru.tachici@analog.com, lars@metafoo.de, jic23@kernel.org, 
-	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	lgirdwood@gmail.com, broonie@kernel.org, andy@kernel.org, nuno.sa@analog.com, 
-	marcelo.schmitt@analog.com, bigunclemax@gmail.com, dlechner@baylibre.com, 
-	okan.sahin@analog.com, fr0st61te@gmail.com, alisa.roman@analog.com, 
-	marcus.folkesson@gmail.com, schnelle@linux.ibm.com, liambeguin@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Zh/yZ2HyF+G8bty7@lizhi-Precision-Tower-5810>
 
-On Wed, Apr 17, 2024 at 8:01=E2=80=AFPM Alisa-Dariana Roman
-<alisadariana@gmail.com> wrote:
->
-> AINCOM should actually be a supply. AINx inputs are referenced to AINCOM
-> in pseduo-differential operation mode. AINCOM voltage represets the
+Hello Frank,
 
-pseudo
-
-> offset of corresponding channels.
+On Wed, Apr 17, 2024 at 12:01:43PM -0400, Frank Li wrote:
+> On Tue, Apr 16, 2024 at 08:50:26AM +0200, Francesco Dolcini wrote:
+> > On Mon, Apr 15, 2024 at 03:46:38PM -0400, Frank Li wrote:
+> > > Add i.MX8QM audio related nodes and update eDMA[0,1]'s information.
+> > > 
+> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > ---
+> > >  arch/arm64/boot/dts/freescale/imx8qm-ss-audio.dtsi | 473 +++++++++++++++++++++
+> > >  arch/arm64/boot/dts/freescale/imx8qm.dtsi          |  86 ++++
+> > >  2 files changed, 559 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx8qm-ss-audio.dtsi b/arch/arm64/boot/dts/freescale/imx8qm-ss-audio.dtsi
+> > > new file mode 100644
+> > > index 0000000000000..ed5a1b4af1d76
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/freescale/imx8qm-ss-audio.dtsi
 
 ...
 
-> +               case IIO_VOLTAGE:
-> +                       if (st->aincom_mv && !chan->differential)
-> +                               *val +=3D DIV_ROUND_CLOSEST_ULL((u64)st->=
-aincom_mv * 1000000000,
+> > > +/delete-node/ &acm;
+> > > +/delete-node/ &sai4;
+> > > +/delete-node/ &sai5;
+> > > +/delete-node/ &sai4_lpcg;
+> > > +/delete-node/ &sai5_lpcg;
+> > 
+> > Can you explain these delete-node ? This is something that I would
+> > expect when a dtsi is previously included, not in this case.
+> 
+> We want to avoid some property inherent from parent dtsi file because it is
+> big difference with common one.
+> 
+> This node will be rewrite totally in this files.
 
-It's quite easy to make a mistake in this long constant. Can you use
-an appropriate one from units.h?
+imx8qm-ss-audio.dtsi does not include any file. From where these
+inherited properties are coming from? Which file is the "parent dtsi" ?
 
-> +                                                             st->scale_a=
-vail[gain][1]);
-> +                       return IIO_VAL_INT;
+Thanks,
+Francesco
 
-...
-
-> +       aincom =3D devm_regulator_get_optional(&spi->dev, "aincom");
-> +       if (!IS_ERR(aincom)) {
-
-Why not a positive condition?
-
-> +               ret =3D regulator_enable(aincom);
-> +               if (ret) {
-
-> +                       dev_err(&spi->dev, "Failed to enable specified AI=
-NCOM supply\n");
-
-return dev_err_probe();
-
-> +                       return ret;
-> +               }
-> +
-> +               ret =3D devm_add_action_or_reset(&spi->dev, ad7192_reg_di=
-sable, aincom);
-> +               if (ret)
-> +                       return ret;
-> +
-> +               ret =3D regulator_get_voltage(aincom);
-> +               if (ret < 0)
-> +                       return dev_err_probe(&spi->dev, ret,
-> +                                            "Device tree error, AINCOM v=
-oltage undefined\n");
-> +               st->aincom_mv =3D ret / 1000;
-> +       } else {
-> +               st->aincom_mv =3D 0;
-> +       }
-
-...
-
-> @@ -1113,6 +1145,7 @@ static int ad7192_probe(struct spi_device *spi)
->         st->int_vref_mv =3D ret / 1000;
->
->         st->chip_info =3D spi_get_device_match_data(spi);
-> +
->         indio_dev->name =3D st->chip_info->name;
->         indio_dev->modes =3D INDIO_DIRECT_MODE;
->         indio_dev->channels =3D st->chip_info->channels;
-
-Stray change.
-
---=20
-With Best Regards,
-Andy Shevchenko
 
