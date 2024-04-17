@@ -1,100 +1,124 @@
-Return-Path: <devicetree+bounces-60006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBD8C8A7E63
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 10:35:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DC8F8A7E7A
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 10:40:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 093B51C20AC8
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 08:35:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 092E81F21712
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 08:40:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 994CA6CDA8;
-	Wed, 17 Apr 2024 08:35:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5936E126F0A;
+	Wed, 17 Apr 2024 08:40:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amazon.de header.i=@amazon.de header.b="v1MAYQBG"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="AdlsAK4A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-fw-52004.amazon.com (smtp-fw-52004.amazon.com [52.119.213.154])
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AA0F7E799;
-	Wed, 17 Apr 2024 08:35:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.119.213.154
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78F8E8529D;
+	Wed, 17 Apr 2024 08:40:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713342946; cv=none; b=UgrJxyXS3v09WaDQw/XXX73PulGpRiiGJxnVgDMp5p8w4DpeoDTXJXfoS7SzKwatCcpfAprvyTfqcaqEVZdJZlKU/wRgVHkhq+Fl1Unifn26VYzNFr9LwAOPWDi1IF5cv5ibvj+XfNAJbRo3P7xaowmUyHbBchjhd9iWMAq6b+g=
+	t=1713343222; cv=none; b=tyiTDS5sO6q96xCdvwSr5luetJQNxZ9+hzGjsbhZQjYJWdGJM5Kno3BPON4e9oPdnUAwRh5p9+qXPTQGfjASRc/G1XRYAGnzLPYgH5rD0RQ/61OF/4U1qRHpiCNUnhorItAQGZoYds+bccVO0Prsz1moCkKK+vcJwD81jKmONk0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713342946; c=relaxed/simple;
-	bh=17OBlsmVxnMXJBquq78bQRB1wlvVeTZA49R24BCyT2M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=lDoP7iSpNvlmjiw0EevhPmGNARR82wuNAc42qiH9ghmlbwvaOKOQdiXrKdIlmq9/1rqXlI/YomnjyvoyndZ5LmBckdLzGGaLgcCRu8x/uuW1IF5jg8ZwjareroWSNV1Nwq1tbTHR0sLirLnWbFbb6NqDJfk9X4m7V1Yvl2S/qpU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.de; spf=pass smtp.mailfrom=amazon.de; dkim=pass (1024-bit key) header.d=amazon.de header.i=@amazon.de header.b=v1MAYQBG; arc=none smtp.client-ip=52.119.213.154
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.de; i=@amazon.de; q=dns/txt; s=amazon201209;
-  t=1713342945; x=1744878945;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=17OBlsmVxnMXJBquq78bQRB1wlvVeTZA49R24BCyT2M=;
-  b=v1MAYQBGAoRJVNxzy0uJ6cwoOugG8Kkq8qrZqLq0mp2cQ4fun8IlQYqy
-   63E5r1gc70cNjm1KeWGzFD/zhf4bD2Jd2ltRNj5HVSvO7a6RXZ2HZga0V
-   x/ssMNQ9fytc67z5Rbxi94uUXFBk1DOy544KNb5qc9jFPNBY2OApiNp4n
-   4=;
-X-IronPort-AV: E=Sophos;i="6.07,208,1708387200"; 
-   d="scan'208";a="199145512"
-Received: from iad12-co-svc-p1-lb1-vlan2.amazon.com (HELO smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev) ([10.43.8.2])
-  by smtp-border-fw-52004.iad7.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2024 08:35:42 +0000
-Received: from EX19MTAUWB002.ant.amazon.com [10.0.38.20:5397]
- by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.59.158:2525] with esmtp (Farcaster)
- id 1676a3ad-f3c1-4105-85bf-4096eab9f7d9; Wed, 17 Apr 2024 08:35:40 +0000 (UTC)
-X-Farcaster-Flow-ID: 1676a3ad-f3c1-4105-85bf-4096eab9f7d9
-Received: from EX19D020UWC004.ant.amazon.com (10.13.138.149) by
- EX19MTAUWB002.ant.amazon.com (10.250.64.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.28; Wed, 17 Apr 2024 08:35:35 +0000
-Received: from [0.0.0.0] (10.253.83.51) by EX19D020UWC004.ant.amazon.com
- (10.13.138.149) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.28; Wed, 17 Apr
- 2024 08:35:32 +0000
-Message-ID: <10d41e7e-87b1-4036-a740-da36270a4325@amazon.de>
-Date: Wed, 17 Apr 2024 10:35:29 +0200
+	s=arc-20240116; t=1713343222; c=relaxed/simple;
+	bh=zEiPERZJKSDRCkJgHODqJT/l8hNbR0wSJNM5rQn2U9s=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HmrWaa/woSrAimj+cJJYeLMifK21yD/JE018FlvXZ8ER4Tr5gAmnFie7CxctUnRV1936a9hITDQGQpFR/cqIcG6OZYF2b4oj2U9gnXa6jBNsQ2zo2SiXrMqCO3LFXKa/m+yAtG8QChjHDAOSiJ4YdIk/p5TwsGNqAQKyXDq/zwM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=AdlsAK4A; arc=none smtp.client-ip=37.18.73.165
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 97559100004;
+	Wed, 17 Apr 2024 11:40:08 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 97559100004
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1713343208;
+	bh=vzd5CRR2cDvfBR88K8Vu/kXje8h9WcD3OB/r8NxbU0A=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
+	b=AdlsAK4Awszbn81O4XFpoLY26dLzLtGQfpXe0DiZTXrtT1pF7tYsME626ZVBohY0G
+	 U0LM8iwzaisfPW2dWWQEhQI/RDLP0dQKgfrx/WzCVldyErmpvwn1MfE4AdagB7GcW5
+	 RhYpnMKeYCvfxJYdmX08kO7XY2Kaodg1o3w/vUgbr0N1zcn3u9lDCr9Tzdh5d7G+yq
+	 Ujo2uxes4/VAfYx/lKVXhorm76xRDkply7agqIcbF+Sotde1zv1qC6rmPyBGOMxts/
+	 Tao5pwd/9g/mArcsHLoQl/dkiipqLl2FQ5p5Ltl6b08kgWvCqB/avWZJnUoEs8y8v3
+	 CdG3cIHrBsHKg==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Wed, 17 Apr 2024 11:40:08 +0300 (MSK)
+Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
+ (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 17 Apr
+ 2024 11:40:08 +0300
+Date: Wed, 17 Apr 2024 11:40:07 +0300
+From: Dmitry Rokosov <ddrokosov@salutedevices.com>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+CC: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
+	<mturquette@baylibre.com>, <khilman@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <glaroque@baylibre.com>,
+	<rafael@kernel.org>, <rui.zhang@intel.com>, <lukasz.luba@arm.com>,
+	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <kernel@salutedevices.com>, <rockosov@gmail.com>,
+	<linux-amlogic@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 0/2] thermal: amlogic: introduce A1 SoC family Thermal
+ Sensor controller
+Message-ID: <20240417084007.uzg2uc7gwb6mi7bi@CAB-WSD-L081021>
+References: <20240328191322.17551-1-ddrokosov@salutedevices.com>
+ <38ba3618-2a67-4e21-b08d-7e382411e51a@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/5] virt: vmgenid: rearrange code to make review
- easier
-Content-Language: en-US
-To: Babis Chalios <bchalios@amazon.es>, <tytso@mit.edu>, <Jason@zx2c4.com>,
-	<olivia@selenic.com>, <herbert@gondor.apana.org.au>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <linux-crypto@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <sudanl@amazon.com>, <xmarcalx@amazon.co.uk>, <dwmw@amazon.co.uk>
-References: <20240417081212.99657-1-bchalios@amazon.es>
- <20240417081212.99657-2-bchalios@amazon.es>
-From: Alexander Graf <graf@amazon.de>
-In-Reply-To: <20240417081212.99657-2-bchalios@amazon.es>
-X-ClientProxiedBy: EX19D035UWB001.ant.amazon.com (10.13.138.33) To
- EX19D020UWC004.ant.amazon.com (10.13.138.149)
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <38ba3618-2a67-4e21-b08d-7e382411e51a@linaro.org>
+User-Agent: NeoMutt/20220415
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 184751 [Apr 17 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 17 0.3.17 f2153f38d75b12894d9cf445f96cd15c9ef63a9d, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;100.64.160.123:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/16 18:45:00 #24828684
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-Ck9uIDE3LjA0LjI0IDEwOjEyLCBCYWJpcyBDaGFsaW9zIHdyb3RlOgo+IEZyb206IFN1ZGFuIExh
-bmRnZSA8c3VkYW5sQGFtYXpvbi5jb20+Cj4KPiBSZWFycmFnZSB0aGUgZnVuY3Rpb25zIG9mIHZt
-Z2VuaWQgdG8gbWFrZSB0aGUgbmV4dCBjb21taXQsCj4gd2hpY2ggcmUtaW1wbGVtZW50cyB2bWdl
-bmlkIGFzIGEgcGxhdGZvcm0gZHJpdmVyLCBlYXNpZXIgdG8gcmV2aWV3Lgo+Cj4gU2lnbmVkLW9m
-Zi1ieTogU3VkYW4gTGFuZGdlIDxzdWRhbmxAYW1hem9uLmNvbT4KCgpZb3UgY2FuJ3Qgc2lnbiBv
-ZmYgb24gYmVoYWxmIG9mIHNvbWVvbmUgZWxzZS4gVGhlIFNvQiBoZXJlIG5lZWRzIHRvIGJlIAp5
-b3Vycy4gSWYgeW91IGFyZSB0YWtpbmcgb3ZlciB0aGlzIGNvZGUgZnJvbSBTdWRhbiwgSSdkIHN1
-Z2dlc3QgdG8gdGFrZSAKb3ZlciBmdWxsIG93bmVyc2hpcCBvZiBpdCBhbmQgcHV0IHlvdXIgb3du
-IG5hbWUgYXMgYXV0aG9yIGFuZCBTb0IgaW4gYWxsIApwYXRjaGVzLgoKCkFsZXgKCgoKCgpBbWF6
-b24gRGV2ZWxvcG1lbnQgQ2VudGVyIEdlcm1hbnkgR21iSApLcmF1c2Vuc3RyLiAzOAoxMDExNyBC
-ZXJsaW4KR2VzY2hhZWZ0c2Z1ZWhydW5nOiBDaHJpc3RpYW4gU2NobGFlZ2VyLCBKb25hdGhhbiBX
-ZWlzcwpFaW5nZXRyYWdlbiBhbSBBbXRzZ2VyaWNodCBDaGFybG90dGVuYnVyZyB1bnRlciBIUkIg
-MTQ5MTczIEIKU2l0ejogQmVybGluClVzdC1JRDogREUgMjg5IDIzNyA4NzkKCgo=
+Hello Daniel,
 
+Could you please let me know in which repository you have applied this
+change? I am trying to cherry-pick the original applied commit and apply
+it to our internal mainline branch instead of the internal commit.
+However, I am unable to find the applied series in any of the
+repositories on git.kernel.org.
+
+On Thu, Apr 04, 2024 at 02:23:21PM +0200, Daniel Lezcano wrote:
+> On 28/03/2024 20:13, Dmitry Rokosov wrote:
+> > It is primarily based on the G12A thermal controller, with only a slight
+> > variation in the offset value of the efuse parameters. Therefore, this
+> > patch series provides appropriate platform data and dt-bindings to
+> > ensure proper support.
+> 
+> 
+> Applied, thanks
+
+-- 
+Thank you,
+Dmitry
 
