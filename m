@@ -1,101 +1,151 @@
-Return-Path: <devicetree+bounces-60131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60132-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C1038A849E
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 15:30:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FBCF8A84A4
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 15:30:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B6E271F21C53
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 13:30:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B97D280AB9
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 13:30:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EE9A13FD8A;
-	Wed, 17 Apr 2024 13:28:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7061113F453;
+	Wed, 17 Apr 2024 13:29:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RfMBHhlA"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SpivlUkN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FC0D1411CC;
-	Wed, 17 Apr 2024 13:28:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B821013C3F5;
+	Wed, 17 Apr 2024 13:29:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713360522; cv=none; b=tnDFfd1mnoNuhwcB9AFqDO4ZVIjDDzTyg3cPhMdbfDMBpY49IT+B2WkpjjCcvZQ4//yZGjhBY4qgGxart+B9fIYjP7PJw05fweks2zvb39UKLGCqdfUHZKTSGdEtYuzBcYD+rMpYISmhxhvVAw2CFCfAaFRHbq18tCZrasyCThU=
+	t=1713360572; cv=none; b=k9r0UhQrfwFqEhRAld+aoWU53ldpM9z40caGhETBORbwEAXk6T/klUFiFvLJDXPGguazUm/jSndIMOeYQsfFkVxlw/0YXrLqVnMc+nUSVBRj4PsTwy63DKV81YaXVjPSYV7LuBxT+vRK5xJt96iimp7odvJEkxl1+pgA68hfYG4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713360522; c=relaxed/simple;
-	bh=lqa4Juxf0WEfUGXrAzHfnxrI0oFVoAKGZcOv04ym5QM=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=nRa0HvfnEB4R4CEebi8ncPOKlFzsqQ2V7twA5iS4IUMEPLZrY7ofQp1AVcxh4YuaPPsy9vztNX8x3AfzUEFnZnMeCcz7RF9u/OY3jmtGM3mXg/WawBUYXLwA/4CQwOglFQTBXqAOLABKWKod1XqQhB7Jn7xbPaVvKozJCbRd1Pw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RfMBHhlA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D145C072AA;
-	Wed, 17 Apr 2024 13:28:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713360521;
-	bh=lqa4Juxf0WEfUGXrAzHfnxrI0oFVoAKGZcOv04ym5QM=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=RfMBHhlAwhaPav6Uml+GXDYvv5KFLB/HI4W2ZJVwARdmN++jQIFqkch7arcjVokOg
-	 uBz+3DUIYznrZALSLp9llVz/frSy6WYmlT+YfkbYW7K7kFpx//47loo6WELzfh7oxn
-	 CYC0GqC/RUUOHJLFgQExOt0O2p/F5a1AFK2vOIgLxf9QXVfXn7kTJCeKBtLYhDpZPW
-	 1pss//6fKWW+77RYHM9DA9l0vqARJnVfcEvpPg/nsZQmGN/aOk815aqTcaGhoLl+p1
-	 Gu+fwGaNxVMQiaymCKQh3wJAw1tRenzKx3qit7y+chtzewWsMHY2dxOssK6j+kC/e5
-	 kzaCD6vV/CYOA==
-From: Mark Brown <broonie@kernel.org>
-To: Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-renesas-soc@vger.kernel.org
-In-Reply-To: <68a4d8ad8638c1133e21d0eef87e8982ddea3dd8.1713279687.git.geert+renesas@glider.be>
-References: <68a4d8ad8638c1133e21d0eef87e8982ddea3dd8.1713279687.git.geert+renesas@glider.be>
-Subject: Re: [PATCH dt-bindings] spi: renesas,sh-msiof: Add r8a779h0
- support
-Message-Id: <171336052029.1701161.15301025990181660561.b4-ty@kernel.org>
-Date: Wed, 17 Apr 2024 22:28:40 +0900
+	s=arc-20240116; t=1713360572; c=relaxed/simple;
+	bh=gljJFEn66M8hgPTKOBSllPjFyni28a4vgRlQTT3iQzs=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gyJNCMqvVgjSBZ9LPjodJI9DRWfrPnV/DsCXAulipebKxXMozpxY0q7pBVO6s2GlPQAkAbULiK04uCmsXvBJSPSKPpMU1rDK+GTpXJPhVMLgo4PCSA9/haANPbs57TaOu8H2e8lLmiSmQui5M115JwMlwtUWgjJSOKkqqgiDGag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SpivlUkN; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43H6tKC9018492;
+	Wed, 17 Apr 2024 13:29:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=l9zlRFE
+	m3QGjLfcYxaGcKoQGUUV+ls+q1ephwRCckHE=; b=SpivlUkND+HfbBV5BnhaYAK
+	G+N0hx33xpak0WzlNmm1wfWXUC0htyPLR7NPcb4ZETvbTdc2p8qp1pO1+P7pZdgC
+	6ZHyGEvocv7DIR8w5Bsra/iyrica0XshYwxhDLkcwtPMAnqtR0PbJyiBj+sIXX5+
+	qrnjLc1krQaPxujdUnQ48DqYt8DbZph/HahlLDlBR/zLqso6BjAbEkb26Cg6xuV1
+	G6XsMoTJjDwpyBZ1x5jyb3oUk9tBcazIW21skLbxAJH1jcSQXDr2YKknZjzspyAh
+	1hDrV+6CESBiOEBuNuLmLvhfEx73kF2yFQhOEG6TfZ7xBsdU8Cqq8tN9Ryp+YAA=
+	=
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xj8aus2bx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 17 Apr 2024 13:29:23 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43HDTMVV019722
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 17 Apr 2024 13:29:22 GMT
+Received: from hu-sibis-blr.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 17 Apr 2024 06:29:16 -0700
+From: Sibi Sankar <quic_sibis@quicinc.com>
+To: <sudeep.holla@arm.com>, <cristian.marussi@arm.com>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <jassisinghbrar@gmail.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <dmitry.baryshkov@linaro.org>
+CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <quic_rgottimu@quicinc.com>,
+        <quic_kshivnan@quicinc.com>, <quic_sibis@quicinc.com>,
+        <conor+dt@kernel.org>, <quic_gkohli@quicinc.com>,
+        <quic_nkela@quicinc.com>, <quic_psodagud@quicinc.com>
+Subject: [PATCH V3 0/5] qcom: x1e80100: Enable CPUFreq
+Date: Wed, 17 Apr 2024 18:58:51 +0530
+Message-ID: <20240417132856.1106250-1-quic_sibis@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14-dev
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: PdTBPzOArFvI-72PPK1UpWcYdG9hHT77
+X-Proofpoint-GUID: PdTBPzOArFvI-72PPK1UpWcYdG9hHT77
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-17_10,2024-04-16_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
+ bulkscore=0 priorityscore=1501 mlxlogscore=999 clxscore=1015 mlxscore=0
+ suspectscore=0 adultscore=0 impostorscore=0 malwarescore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404170092
 
-On Tue, 16 Apr 2024 17:11:48 +0200, Geert Uytterhoeven wrote:
-> Document support for the Clock-Synchronized Serial Interface with FIFO
-> (MSIOF) in the Renesas R-Car V4M (R8A779H0) SoC.
-> 
-> 
+This series enables CPUFreq support on the X1E SoC using the SCMI perf
+protocol. This was originally part of the RFC: firmware: arm_scmi:
+Qualcomm Vendor Protocol [1]. I've split it up so that this part can
+land earlier.
 
-Applied to
+V2:
+* Fix series version number [Rob]
+* Pickup Rbs from Dimitry and Rob.
+* Use power-domain instead of clocks. [Sudeep/Ulf]
+* Rename sram sub-nodes according to schema. [Dmitry]
+* Use BIT() instead of manual shift. [Dmitry]
+* Define RX_MBOX_CMD to account for chan calculation. [Dmitry]
+* Clear the bit instead of the entire status within the spinlock. [Dmitry]
+* Use dev_err_probe instead. [Dmitry]
+* Drop superfluous error message while handling errors from get_irq. [Dmitry]
+* Use devm_mbox_controller_register and drop remove path. [Dmitry]
+* Define TX_MBOX_CMD to account for chan calculation.
+* Use cpucp->dev in probe path for conformity.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+RFC V1:
+* Use x1e80100 as the fallback for future SoCs using the cpucp-mbox
+  controller. [Krzysztoff/Konrad/Rob]
+* Use chan->lock and chan->cl to detect if the channel is no longer
+  Available. [Dmitry]
+* Use BIT() instead of using manual shifts. [Dmitry]
+* Don't use integer as a pointer value. [Dmitry]
+* Allow it to default to of_mbox_index_xlate. [Dmitry]
+* Use devm_of_iomap. [Dmitry]
+* Use module_platform_driver instead of module init/exit. [Dmitry]
+* Get channel number using mailbox core (like other drivers) and
+  further simplify the driver by dropping setup_mbox func.
 
-Thanks!
+[1]: https://lore.kernel.org/lkml/20240117173458.2312669-1-quic_sibis@quicinc.com/#r
 
-[1/1] spi: renesas,sh-msiof: Add r8a779h0 support
-      commit: 1f48cbd6f00f2d1442ac8757ae8c32b672073927
+Other relevant Links:
+https://lore.kernel.org/lkml/be2e475a-349f-4e98-b238-262dd7117a4e@linaro.org/
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Sibi Sankar (5):
+  dt-bindings: mailbox: qcom: Add CPUCP mailbox controller bindings
+  mailbox: Add support for QTI CPUCP mailbox controller
+  arm64: dts: qcom: x1e80100: Resize GIC Redistributor register region
+  arm64: dts: qcom: x1e80100: Add cpucp mailbox and sram nodes
+  arm64: dts: qcom: x1e80100: Enable cpufreq
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+ .../bindings/mailbox/qcom,cpucp-mbox.yaml     |  49 +++++
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi        |  91 ++++++---
+ drivers/mailbox/Kconfig                       |   8 +
+ drivers/mailbox/Makefile                      |   2 +
+ drivers/mailbox/qcom-cpucp-mbox.c             | 188 ++++++++++++++++++
+ 5 files changed, 313 insertions(+), 25 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
+ create mode 100644 drivers/mailbox/qcom-cpucp-mbox.c
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+-- 
+2.34.1
 
 
