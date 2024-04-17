@@ -1,137 +1,164 @@
-Return-Path: <devicetree+bounces-60093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB57E8A8254
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 13:47:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C5638A825F
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 13:50:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7287281267
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 11:47:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BB5CFB251FE
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 11:50:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 994D113CF87;
-	Wed, 17 Apr 2024 11:47:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA26813D2A7;
+	Wed, 17 Apr 2024 11:49:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=ltts.com header.i=@ltts.com header.b="M9D7V4Nc";
+	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="BSF0n8QH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from c180-39.smtp-out.ap-south-1.amazonses.com (c180-39.smtp-out.ap-south-1.amazonses.com [76.223.180.39])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FEFB13C838
-	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 11:47:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ED0713D26C;
+	Wed, 17 Apr 2024 11:49:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=76.223.180.39
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713354473; cv=none; b=PaGD27rcA1+ecQCotxhUE3oNCMl1VcIHMjbCQ0bNH0Uy2vtaTuFgCUTXMVxEMzsRxR1zg46+d9RvEUORWbH+2aE+2hNXalL0t/QUFmXy62jKZRVKFwwB9pYIukO45IsyfVNGaXOnssQCYlK9d/fn5/a3skbrLhpvEJ6Cd1/P/oE=
+	t=1713354595; cv=none; b=fFqkQm4wFnVHHRbEVQGzwnAsWeWu2DnOC8HyiMVU59spXhPGWQDzsm6ZMmfdK3CEbyf+nYj2NGDEzoGr5ki/7zydsSIJkkK6J230sR104qyJVeFMuHVeIf9VWAyHSDXecBAR21j+4y1U7AyX75xxylrZobOVqZ00esLezhVAZQc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713354473; c=relaxed/simple;
-	bh=iDWuzD3inCfODBkWjMmHehtkg7fsYRDRg5Yj+P1zeAw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=t9Qnk0mOCtPUG/+yub/GHcxCYPU3haq5p8P4hepk+hc9KHrDhb8AODMTUQs1mwLg0kob3dgYxSCKOumYq4xt1J8g59XGO2Cs0Ke6h5doCnUgoiOw2EWHnQVRJp42wwrDJUAzzZkic1PfSsmMgmm7whyEiEPJ1jK+AAasVb4FBlQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1rx3lH-0008Rr-FI; Wed, 17 Apr 2024 13:47:35 +0200
-Message-ID: <4fdb7940-02ce-45bd-ab2d-f43c02b16b2d@pengutronix.de>
-Date: Wed, 17 Apr 2024 13:47:34 +0200
+	s=arc-20240116; t=1713354595; c=relaxed/simple;
+	bh=oVUEuuI42bWsaxNke/YXHgwDq1nx6otvSpOTGbkwhds=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=a6l8fgt8Crxzd7aoPSApLDREhlDP4rGTZuAmXCXPVdAUwHsQkHxS1/hFKLkHPAoQhKriMFu7htZeCvt81O1QDf9KzUpLcLf4os2ltzD8GFuvaKwc8eSLaQseVK0qZ0kRWod1VPOrfoAOJRh9074FBc/MrKyyA/O6mPIbxW9XAgI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ltts.com; spf=pass smtp.mailfrom=ap-south-1.amazonses.com; dkim=pass (2048-bit key) header.d=ltts.com header.i=@ltts.com header.b=M9D7V4Nc; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=BSF0n8QH; arc=none smtp.client-ip=76.223.180.39
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ltts.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ap-south-1.amazonses.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=i3fe3efcd4pbz7ipgssfqjhzqx347xbc; d=ltts.com; t=1713354591;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Transfer-Encoding;
+	bh=oVUEuuI42bWsaxNke/YXHgwDq1nx6otvSpOTGbkwhds=;
+	b=M9D7V4NcXJoBiQmfQRjA3oeYN1Hudpb8Vm8j0xpRiyDZsew2rUNBvC8Esxpmx7/F
+	wwzVri8NdoixmfiBCowfxMb0ivOAAKiIVKuDQMt32O9uVfp+zbCqkQGCzWKPfLD52vX
+	rodjKF0+du/qoBOiNh5MOexnNa/4HTiuLC6Hc9IjvM0ZIAP17IoJMbipu+c4ImEauxf
+	vPsLnohpjbQYoD3PewCbeKsjRPq0c3dZmXeoBHtCTWPlQTuM/dn/XNuMxNVD+HtR6lA
+	edNsYxYsFVFDg4meH8n0xgb80ooCDfqbvGGLT+opT7bK1k2qxhWK+RdgRV1nNdhVo5b
+	SmgyZByNYA==
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=rlntogby6xsxlfnvyxwnvvhttakdsqto; d=amazonses.com; t=1713354591;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Transfer-Encoding:Feedback-ID;
+	bh=oVUEuuI42bWsaxNke/YXHgwDq1nx6otvSpOTGbkwhds=;
+	b=BSF0n8QHHC0TuLLD6LWAbWjJj1fydn9gP0Az80XBzaxuROM8dVI4S8mZ0k2CnAVI
+	abCaUN6eVUNTz+7PSFqI4eJU+NqQm9SK6vQq5TGi082zRQRhppYYerNC6Q51q+YHM9g
+	cLsRPanlGLiK6ns6oglLSHu3YOhq7BrnAWwuLsrE=
+From: Bhargav Raviprakash <bhargav.r@ltts.com>
+To: linux-kernel@vger.kernel.org
+Cc: m.nirmaladevi@ltts.com, lee@kernel.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	jpanis@baylibre.com, devicetree@vger.kernel.org, arnd@arndb.de, 
+	gregkh@linuxfoundation.org, lgirdwood@gmail.com, broonie@kernel.org, 
+	linus.walleij@linaro.org, linux-gpio@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, nm@ti.com, vigneshr@ti.com, 
+	kristo@kernel.org, eblanc@baylibre.com, 
+	Bhargav Raviprakash <bhargav.r@ltts.com>
+Subject: [PATCH v7 00/10]  Add support for TI TPS65224 PMIC
+Date: Wed, 17 Apr 2024 11:49:50 +0000
+Message-ID: <0109018eebe44ad2-cb18c65f-25e5-4b3b-a85c-038286600d34-000000@ap-south-1.amazonses.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] arm64: dts: imx8mp: Align both CSI2 pixel clock
-Content-Language: en-US
-To: Marek Vasut <marex@denx.de>, linux-arm-kernel@lists.infradead.org
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
- Peng Fan <peng.fan@nxp.com>, Conor Dooley <conor+dt@kernel.org>,
- Fabio Estevam <festevam@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Paul Elder <paul.elder@ideasonboard.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
- imx@lists.linux.dev
-References: <20240417114231.7044-1-marex@denx.de>
-From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <20240417114231.7044-1-marex@denx.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+Feedback-ID: 1.ap-south-1./RC/PI2M8xOxQmTMPi0M1Q8h2FX69egpT62QKSaMPIA=:AmazonSES
+X-SES-Outgoing: 2024.04.17-76.223.180.39
 
-On 17.04.24 13:42, Marek Vasut wrote:
-> Configure both CSI2 clock-frequency and assigned-clock-rates
-> the same way. There does not seem to be any reason for keeping
-> the two CSI2 pixel clock set to different frequencies.
-> 
-> This also reduces first CSI2 clock from overdrive mode
-> frequency which is 500 MHz down below the regular mode
-> frequency of 400 MHz.
-> 
-> Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Reviewed-by: Peng Fan <peng.fan@nxp.com>
+This series modifies the existing TPS6594 drivers to add support for the
+TPS65224 PMIC device that is a derivative of TPS6594. TPS65224 has a
+similar register map to TPS6594 with a few differences. SPI, I2C, ESM,
+PFSM, Regulators and GPIO features overlap between the two devices.
 
-Reviewed-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+TPS65224 is a Power Management IC (PMIC) which provides regulators and
+other features like GPIOs, Watchdog, Error Signal Monitor (ESM) and
+Pre-configurable Finite State Machine (PFSM). The SoC and the PMIC can
+communicate through the I2C or SPI interfaces. The PMIC TPS65224
+additionally has a 12-bit ADC.
+Data Sheet for TPS65224: https://www.ti.com/product/TPS65224-Q1
 
-Thanks,
-Ahmad
+Driver re-use is applied following the advice of the following series:
+https://lore.kernel.org/lkml/2f467b0a-1d11-4ec7-8ca6-6c4ba66e5887@baylibre.com/
 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Ahmad Fatoum <a.fatoum@pengutronix.de>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Paul Elder <paul.elder@ideasonboard.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: imx@lists.linux.dev
-> Cc: linux-arm-kernel@lists.infradead.org
-> ---
-> V2: Align both clock to 266 MHz and update commit message
-> V3: - Fix up clock-frequency to 266 MHz as well, update commit message
->     - Add RB from Peng and Alexander, but maybe those need to be updated?
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> index 1bb96e96639f2..b92abb5a5c536 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -1657,7 +1657,7 @@ mipi_csi_0: csi@32e40000 {
->  				compatible = "fsl,imx8mp-mipi-csi2", "fsl,imx8mm-mipi-csi2";
->  				reg = <0x32e40000 0x10000>;
->  				interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
-> -				clock-frequency = <500000000>;
-> +				clock-frequency = <266000000>;
->  				clocks = <&clk IMX8MP_CLK_MEDIA_APB_ROOT>,
->  					 <&clk IMX8MP_CLK_MEDIA_CAM1_PIX_ROOT>,
->  					 <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF_ROOT>,
-> @@ -1667,7 +1667,7 @@ mipi_csi_0: csi@32e40000 {
->  						  <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF>;
->  				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>,
->  							 <&clk IMX8MP_CLK_24M>;
-> -				assigned-clock-rates = <500000000>;
-> +				assigned-clock-rates = <266000000>;
->  				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_MIPI_CSI2_1>;
->  				status = "disabled";
->  
+The features implemented in this series are:
+- TPS65224 Register definitions
+- Core (MFD I2C and SPI entry points)
+- PFSM	
+- Regulators
+- Pinctrl
 
+TPS65224 Register definitions:
+This patch adds macros for register field definitions of TPS65224
+to the existing TPS6594 driver.  
+
+Core description:
+I2C and SPI interface protocols are implemented, with and without
+the bit-integrity error detection feature (CRC mode).
+
+PFSM description:
+Strictly speaking, PFSM is not hardware. It is a piece of code.
+PMIC integrates a state machine which manages operational modes.
+Depending on the current operational mode, some voltage domains
+remain energized while others can be off.
+PFSM driver can be used to trigger transitions between configured
+states.
+
+Regulators description:
+4 BUCKs and 3 LDOs.
+BUCK12 can be used in dual-phase mode.
+
+Pinctrl description:
+TPS65224 family has 6 GPIOs. Those GPIOs can also serve different
+functions such as I2C or SPI interface or watchdog disable functions.
+The driver provides both pinmuxing for the functions and GPIO capability.
+
+This series was tested on linux-next tag: next-20240118
+
+Test logs can be found here:
+https://gist.github.com/LeonardMH/58ec135921fb1062ffd4a8b384831eb0
+
+Changelog v6 -> v7:
+- of_match_table data field now contains only chip_id
+- Refactoring pinctrl driver: combining two switch cases into one in
+  probe function. 
+
+Bhargav Raviprakash (7):
+  mfd: tps6594: use volatile_table instead of volatile_reg
+  dt-bindings: mfd: ti,tps6594: Add TI TPS65224 PMIC
+  mfd: tps6594-i2c: Add TI TPS65224 PMIC I2C
+  mfd: tps6594-spi: Add TI TPS65224 PMIC SPI
+  mfd: tps6594-core: Add TI TPS65224 PMIC core
+  misc: tps6594-pfsm: Add TI TPS65224 PMIC PFSM
+  arch: arm64: dts: ti: k3-am62p5-sk: Add TPS65224 PMIC support in AM62P
+    dts
+
+Nirmala Devi Mal Nadar (3):
+  mfd: tps6594: Add register definitions for TI TPS65224 PMIC
+  regulator: tps6594-regulator: Add TI TPS65224 PMIC regulators
+  pinctrl: pinctrl-tps6594: Add TPS65224 PMIC pinctrl and GPIO
+
+ .../devicetree/bindings/mfd/ti,tps6594.yaml   |   1 +
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts       |  95 +++++
+ drivers/mfd/tps6594-core.c                    | 253 +++++++++++--
+ drivers/mfd/tps6594-i2c.c                     |  20 +-
+ drivers/mfd/tps6594-spi.c                     |  20 +-
+ drivers/misc/tps6594-pfsm.c                   |  48 ++-
+ drivers/pinctrl/pinctrl-tps6594.c             | 277 +++++++++++---
+ drivers/regulator/Kconfig                     |   4 +-
+ drivers/regulator/tps6594-regulator.c         | 243 ++++++++++--
+ include/linux/mfd/tps6594.h                   | 351 +++++++++++++++++-
+ 10 files changed, 1169 insertions(+), 143 deletions(-)
+
+
+base-commit: 2863b714f3ad0a9686f2de1b779228ad8c7a8052
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.25.1
 
 
