@@ -1,69 +1,65 @@
-Return-Path: <devicetree+bounces-59956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-59961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC5428A7C79
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 08:46:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 783AB8A7C8B
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 08:50:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA0D3281C4E
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 06:46:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DBCD828125C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 06:50:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D7116A026;
-	Wed, 17 Apr 2024 06:46:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E00A7657DE;
+	Wed, 17 Apr 2024 06:50:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ngZuXvb3"
+	dkim=pass (2048-bit key) header.d=herrie.org header.i=@herrie.org header.b="rkwPnbca"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from outbound9.mail.transip.nl (outbound9.mail.transip.nl [136.144.136.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DB64657DE;
-	Wed, 17 Apr 2024 06:46:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBD5F29D06;
+	Wed, 17 Apr 2024 06:50:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=136.144.136.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713336407; cv=none; b=W4fKdkazTXisghmV4rI7O8do+zhF7GgYAqMq/+guka426SwBsndnGSrzTAvm8q93C9yQpplKP9OKks1gOszlvYJGJl98tR9H1+NOIy5bfowYfqhBBXfLZgRvYYUeYk59rMVrg2WR3599KhNVibPUBFydxpxM4+WDAh22AtOcLBw=
+	t=1713336631; cv=none; b=ELU1HgAFkvKILRcAfVTkE+Twxs759ubFlzDK5Cjt5jIyRD1BZw9A2BOBOkV0jCt5m0NmeUAkneHaWmV0JoO9XeeK+nvcUzNeMI1j8GZqdir0skRYG/+fEUK19hZJ6i1WTgQFj18P8bJ/EePqcTTcxvfNxTR6eGV0JeiWFJ07XgM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713336407; c=relaxed/simple;
-	bh=w/SXVWUZYtkAezIFy680Te8XnbCW/FXU8HE5AxYWEes=;
+	s=arc-20240116; t=1713336631; c=relaxed/simple;
+	bh=3HxzvJ6OuwW8NkKZkqYr3vTgSjlJhi1guy2LIVfXoeY=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=SXmjU4GgYdJgagZKNUcwsmbKyVchCqAUmCQjgIdRGU4felYFEcuOt7F8APl6Axi6xW7PVXTdIZPqfK8ItFtFIz7oA3LHQ+8HZUjMt8lDm7qjWiwNzIMkSmF/sQG4bmcyTm1Dezh0s8I1JFOjEo/3np8jTAj5lIPaTrKi+yBoFnk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ngZuXvb3; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id B226A1C0002;
-	Wed, 17 Apr 2024 06:46:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1713336403;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=EqkgWIyDKkih5KvWmO3x4/Hkqstn+AwghBylqA8sGnQ=;
-	b=ngZuXvb3cBj769QbU85Vtuk8TrMbj390Ed0WAYxItWdtUB1MUy037aBQRO6qrAz8LVqe6f
-	Ecngh4xGeCRrT2dkbEkDilibPrU544nSQUWipJGw0XxAltaqNqDOtNXgEBNQzcFvvQQHuz
-	XAvXRaQc1U4sfElmcYIXHjlGtE0ZJ+zs+SP2zQ91zP2QebTBJU1U2oLoHCOiqpJC0uq6F+
-	WecBx6RTFAfCX1Ilv1+oxf+fOnnkHuu7XKQlFaUDdmybH7Wcse+/dZO3hUUYaRxjIq9J/J
-	DrI0dscHXV+YC/9vqJ9qzlAv9zkyYrNBoWPzVdUJHA2YjKg9xnPN+wN0TvT0Fg==
-From: michael.opdenacker@bootlin.com
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@outlook.com>
-Cc: Michael Opdenacker <michael.opdenacker@bootlin.com>,
+	 MIME-Version; b=u9BXx507s5yIpjQhOP/AHKQs/yr9nAoform7wiRnJUG+kBkY+UPj8nu3WU2xaxvHmtLLzL0LMZ/nYS6HpwJZOo/iEMjyZwiDqCi5rz+a0v+r1Hct9uIOqSJcwhvKc3JSQyI7u+OZFBDZnAflwnhRMmXGxNmF63WSPrsbYIUlRVU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=herrie.org; spf=pass smtp.mailfrom=herrie.org; dkim=pass (2048-bit key) header.d=herrie.org header.i=@herrie.org header.b=rkwPnbca; arc=none smtp.client-ip=136.144.136.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=herrie.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=herrie.org
+Received: from submission14.mail.transip.nl (unknown [10.103.8.165])
+	by outbound9.mail.transip.nl (Postfix) with ESMTP id 4VKBPB0Mf8zTPNMs;
+	Wed, 17 Apr 2024 08:50:22 +0200 (CEST)
+Received: from herrie-desktop.. (110-31-146-85.ftth.glasoperator.nl [85.146.31.110])
+	by submission14.mail.transip.nl (Postfix) with ESMTPA id 4VKBP917Nqz2ST2q;
+	Wed, 17 Apr 2024 08:50:21 +0200 (CEST)
+From: Herman van Hazendonk <github.com@herrie.org>
+To: dmitry.baryshkov@linaro.org
+Cc: andersson@kernel.org,
+	benwolsieffer@gmail.com,
+	chris.chapuis@gmail.com,
+	conor+dt@kernel.org,
 	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 2/2] riscv: dts: sophgo: add initial Milk-V Duo S board support
-Date: Wed, 17 Apr 2024 08:46:26 +0200
-Message-Id: <20240417064626.3880187-3-michael.opdenacker@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240417064626.3880187-1-michael.opdenacker@bootlin.com>
-References: <20240417064626.3880187-1-michael.opdenacker@bootlin.com>
+	github.com@herrie.org,
+	kishon@kernel.org,
+	konrad.dybcio@linaro.org,
+	krzk+dt@kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	me@herrie.org,
+	robh@kernel.org,
+	vkoul@kernel.org
+Subject: Re: [PATCH v2] dt-bindings: phy: qcom,usb-hs-phy: Add compatible
+Date: Wed, 17 Apr 2024 08:50:20 +0200
+Message-Id: <20240417065020.3599755-1-github.com@herrie.org>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <CAA8EJpo=nd8ywUzz2e42p7WAyuFm439yvNf6H=MD63LCV0xTnw@mail.gmail.com>
+References: <CAA8EJpo=nd8ywUzz2e42p7WAyuFm439yvNf6H=MD63LCV0xTnw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,74 +67,75 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: michael.opdenacker@bootlin.com
+X-Scanned-By: ClueGetter at submission14.mail.transip.nl
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ s=transip-a; d=herrie.org; t=1713336621; h=from:subject:to:cc:
+ references:in-reply-to:date:mime-version;
+ bh=yitk1PINuG+ZttWDjmHS+5CUubvYDjED2MOpSUGliao=;
+ b=rkwPnbcaVbl+/j7vxyR4afo2tfgaVt3k5zO2AvGRlhzkPONCWrLPe4gUiCEe32ZY9aDYMJ
+ 4j0VAiiYxB+cC3qUwWhoWx74XbrUYLzwSvo+c3hl4EH5bFalLOyLmcs/mOXXppNsGC7arg
+ Zl5y3oRs2PMbtBYakdaFuKLA3C7x4zDjczQeOKaE9vLMrDPzI4Ms3k6bOYS1UnQniGcImK
+ 6qH+0YGNgclTXewTp52AOSWd3jp+MBltoMoRs4thW7+uVPZ/6gWlG8Ac2SJStO0Pyp2XGT
+ 8LPe2kelD5JtYpH2QsU2YSwqZG7/NGJKQj1EKBsJY1F7PuiuynIgR+wa5RvvSg==
+X-Report-Abuse-To: abuse@transip.nl
 
-From: Michael Opdenacker <michael.opdenacker@bootlin.com>
+On Wed, 17 Apr 2024 at 07:52, Herman van Hazendonk
+<github.com@herrie.org> wrote:
+>>
+>> Adds qcom,usb-hs-phy-msm8660 compatible
+>>
+>> Used by HP Touchpad (tenderloin) for example.
+>>
+>> Signed-off-by: Herman van Hazendonk <github.com@herrie.org>
+>> ---
+>>  Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml | 2 ++
+>>  1 file changed, 2 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
+>> index f042d6af1594..ccf23170cd17 100644
+>> --- a/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
+>> +++ b/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
+>> @@ -15,6 +15,7 @@ if:
+>>        contains:
+>>          enum:
+>>            - qcom,usb-hs-phy-apq8064
+>> +          - qcom,usb-hs-phy-msm8660
+>>            - qcom,usb-hs-phy-msm8960
+>>  then:
+>>    properties:
+>> @@ -41,6 +42,7 @@ properties:
+>>        - enum:
+>>            - qcom,usb-hs-phy-apq8064
+>>            - qcom,usb-hs-phy-msm8226
+>> +          - qcom,usb-hs-phy-msm8960
 
-This adds initial support for the Milk-V Duo S board
-(https://milkv.io/duo-s), enabling the serial port and
-SD card support, allowing to boot Linux to the command line.
+> This should probably be msm8660 rather than 8960
+Hi Dmitry,
 
-Link: https://lore.kernel.org/linux-riscv/171266958507.1032617.9460749136730849811.robh@kernel.org/T/#t
+Thanks for the swift feedback. I'll send a v3.
+I need more coffee before doing this in the morning
 
-Signed-off-by: Michael Opdenacker <michael.opdenacker@bootlin.com>
----
- arch/riscv/boot/dts/sophgo/Makefile           |  1 +
- .../boot/dts/sophgo/sg2000-milkv-duos.dts     | 34 +++++++++++++++++++
- 2 files changed, 35 insertions(+)
- create mode 100644 arch/riscv/boot/dts/sophgo/sg2000-milkv-duos.dts
+> Note, nowadays the rule would be to use qcom,msm8660-usb-hs-phy
+> compatible, but I wonder if we should enforce this for such an old
+> platform or whether similarity wins.
 
-diff --git a/arch/riscv/boot/dts/sophgo/Makefile b/arch/riscv/boot/dts/sophgo/Makefile
-index 57ad82a61ea6..e008acb5240f 100644
---- a/arch/riscv/boot/dts/sophgo/Makefile
-+++ b/arch/riscv/boot/dts/sophgo/Makefile
-@@ -1,4 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_SOPHGO) += cv1800b-milkv-duo.dtb
- dtb-$(CONFIG_ARCH_SOPHGO) += cv1812h-huashan-pi.dtb
-+dtb-$(CONFIG_ARCH_SOPHGO) += sg2000-milkv-duos.dtb
- dtb-$(CONFIG_ARCH_SOPHGO) += sg2042-milkv-pioneer.dtb
-diff --git a/arch/riscv/boot/dts/sophgo/sg2000-milkv-duos.dts b/arch/riscv/boot/dts/sophgo/sg2000-milkv-duos.dts
-new file mode 100644
-index 000000000000..c1ecf97d5e93
---- /dev/null
-+++ b/arch/riscv/boot/dts/sophgo/sg2000-milkv-duos.dts
-@@ -0,0 +1,34 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2024 Michael Opdenacker <michael.opdenacker@bootlin.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "cv1812h.dtsi"
-+
-+/ {
-+	model = "Milk-V Duo S";
-+	compatible = "milkv,duos", "sophgo,cv1812h";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x80000000 0x20000000>;
-+	};
-+};
-+
-+&osc {
-+	clock-frequency = <25000000>;
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
--- 
-2.34.1
+>>            - qcom,usb-hs-phy-msm8916
+>>            - qcom,usb-hs-phy-msm8960
+>>            - qcom,usb-hs-phy-msm8974
+>>
 
+I plan to send more patches for the msm8660, so happy to understand what
+is the preferred approach, because it doesn't seem consistent.
+
+These are my first patches, so learning mainly from what I see in commit
+history (which might be outdated)
+It's indeed ancient platform, we just would like to get HP TouchPad
+(tenderloin) running with a mainline kernel, hence these patches.
+
+Best regards,
+Herman
+
+> --
+> With best wishes
+> Dmitry
 
