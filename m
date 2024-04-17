@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-60303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D2068A8C02
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 21:21:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62F958A8C0A
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 21:22:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F7E51C21458
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 19:21:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE6531F2254C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 19:22:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6012925569;
-	Wed, 17 Apr 2024 19:20:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C75C924B33;
+	Wed, 17 Apr 2024 19:22:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ThUs+zBK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JWsLvzYo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3BEE24B2F
-	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 19:20:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62FAF1E48A
+	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 19:22:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713381658; cv=none; b=K6JN/4pRJhSgFaz3pdHVRW++NywUSVLRqDiv1ukp1x6BKyv4VBGfyxbTRiKWCXgSMuvUXAqmMuYHBp131i4KmJPWT3g58JnrN7HEU8l84xSKhLF8G8DiFaq2nbHoQ6QrnQqOHLB//aGiGj8atZN264CsxD/Xwx58DPsmhAd85HQ=
+	t=1713381746; cv=none; b=OkeaHAgbRfDpDuxaXtmWlrLxOXgS0iRhpngAL+Md1kB3IsU1FTHARmvSRy8QTximvfyzMe5BDt0krP7a6WUjcbNv3ejGyTu3Kr5VUG/lebGCM/44dtH1hpApnha2rrp+QS2pJ6DiWGA0QPVa8OD7LQoinYmOuR7Tnrzi0gLR/sg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713381658; c=relaxed/simple;
-	bh=Z3bCMaGhwbj6srUu4nYse27BveBCdxJ6ls99+RXNmvI=;
+	s=arc-20240116; t=1713381746; c=relaxed/simple;
+	bh=z+Ce9DbnjRsePR4jNOyZRoMgYnx9XHKosZ8nhT+BWAw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NcjWPqGbLi88NEe4gZHtBrMenprMBVdffIHDZdJufmEQllRbNm7snUuHaQ1tMXgTtUklw7fSGk8pC+94T4gP9+jqRecXjyDvqTegwjgDxvQU37+UMjK1O58m+sxgNMVfLbOG8W1yfBzUtTpWrBBxc7c8DpFihkpPWHqMkx0C5l8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ThUs+zBK; arc=none smtp.client-ip=209.85.210.174
+	 In-Reply-To:Content-Type; b=Gv9KmsR4QSnNqci5GFDTZzQt0oLns4p18vYPJJMtR9SR+CXaLhoj1h/CmU1kln/pWcf/HdKtllsa5RGzxNxE7H3ROBSYBALzMubjhP33R2BnWmRBy6evex8bG5CAmRsGL+e/xsqxxVIpt7hkioLSEqV+PAh1XlHL18HW2aPasXk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JWsLvzYo; arc=none smtp.client-ip=209.85.214.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-6ecff9df447so144478b3a.1
-        for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 12:20:56 -0700 (PDT)
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-1e50a04c317so724505ad.1
+        for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 12:22:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713381656; x=1713986456; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1713381745; x=1713986545; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ORRZpXUfxr9ItRDDr0g7BO8pI4LaWWkmIOzOV1lUjes=;
-        b=ThUs+zBKSaponbb58Dod6Z1IGSmlxw4Jpi+7ppdNpbhVobZZfXcwvIlBUzj+QnxvBG
-         kwj+XCcOvud8clC5wr/3MmbXBZr+l+OHAbupDcSvfkEJ3ynDAl9BUikip+WbrjFVIg7V
-         b774TsOVcobqdEYTexydbT9MDoawO2vPpHum9ZcI7/upqCNARAgNCcqJDVETFl8Kl1nz
-         15ASyQBLSEN7sX9YO8AnGppQZsuK9OdYmanZz3NGTL+0ExqiSVM4GRwduLimHtY1Ev33
-         dqGoKDpvjR6fycJ61phEwiwgfKsw5w4ECcPBz8jOYtj5dpK/yo6cPx8cwSnUIAi2vQKl
-         k4lQ==
+        bh=e07lLC3xipl/CxUox78LWe7AXy9rb8hp7FKMwF6DNOA=;
+        b=JWsLvzYoZpnrEDNYMLX3+TyFWyxXfkakNI3MUjgLMo+gM1dLJmJphiB5qJchjmtAKv
+         +Eomd4Jb4ySBEQqCbT8ibJScrBzYzmbaWPf765oEirY/DDUbsU1h+rM5pgEKvYOD0oLO
+         GDuKdd1VZGMwK83z33TqiyJ7UI2OUqXPJxsuLQY8ZGfTARhxtLkGiXeGscFHxsOFSyuV
+         uPPC5db9BBUC+clzNnyWv9gSwGBCWHnFTY51Swd7+IRxd1dddXjtT6C4q12iZ16MZ4E/
+         zy1b/a08N8Ptz2maUuIHyWfSwC7HycYkIuHy3usMAVcSTipx5qD8+SsYtdJcRpPZuHRh
+         V8Dw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713381656; x=1713986456;
+        d=1e100.net; s=20230601; t=1713381745; x=1713986545;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ORRZpXUfxr9ItRDDr0g7BO8pI4LaWWkmIOzOV1lUjes=;
-        b=PlTia1EMPAqshwt1Bhln2GUGOFEyWGAwIphwn6HOljF/dNbO6lybwA/Mx6JdOmf3+A
-         G2Z/pQWovvUCUfkSX3ZiWS2ehTOqzDyHTo9RzmblimvP5vMSJwhemOTVumtncv7rp327
-         PWdxTxe7Mo4R48OO8LM6IVdbGzoM30EEM48wbugaN+J7/pQQ0xxD/SDyIlws9odQMQDe
-         cunx+2GPj7oohP78A89KHgGF8NlE4I3HxEMHXZvo3J4SpamX+57mPUvUtB4UPrOvb5v/
-         /ZEgBw9+WnZRT4n0N34Cx5WbOarO+NW+G5bGNlOOk11EPj0eaifGS6irgwLiWlHBPPCn
-         m3HQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV+ydMBTbg+IOOYEp3NIE+47z4nyeyzcCCXwgb/AExNoh32hFje+xgY1BvDj0q+8A9v0PA0GlbJJl/1C/YWmy9EbnS0nAXwAYyETA==
-X-Gm-Message-State: AOJu0YyLoVuxsiVR3qa9pSW3got+W+CFR9qzRL4fpfRXz1ZoLJCYWoLW
-	wOWx6VjcI5dKbm6nAH1zRJPE0BDUGQaUeXpfAEA9edo1MpErDUKWcazPG/PS0Ok=
-X-Google-Smtp-Source: AGHT+IFFegkq8waqKyMERwq6fCuZal4ckYIGZjxrkGrrejjVKhdDcv8GCWbIasobPrTueNDkPh41oA==
-X-Received: by 2002:a05:6a21:27a8:b0:1aa:5f1f:79d1 with SMTP id rn40-20020a056a2127a800b001aa5f1f79d1mr709847pzb.1.1713381656202;
-        Wed, 17 Apr 2024 12:20:56 -0700 (PDT)
+        bh=e07lLC3xipl/CxUox78LWe7AXy9rb8hp7FKMwF6DNOA=;
+        b=P27/H2RZr0eR8uYmwVBYVjXavShqM9547xX3FYJ8EoPRgP+KfovEjr1gb0+PYPe1tk
+         /LD3dqHF2rfS6n/4h5OIeLuEylM/FncokGCpGHy0Lt3vtvbvjLiBqmYD7qZsTMWKnTzM
+         zRJLeOMVV1TqtR+RTTZK97suh1X8loHJezegmFrfosAc4kakpdRNWCzjndcb2Qb1B+25
+         NXKXiEc8d730NBpaLa09SQ0b8WHPGxOhWXsk1O44dthEKf3BESin1qs8nzcnkmx0saoS
+         DZeQQuIL04qoNTVyxblwY8auun12VRzmSr6QhYi2AuoxTSOKxhdHeYKWtEXAQ/jw2Tn4
+         mQqw==
+X-Forwarded-Encrypted: i=1; AJvYcCWSl1bWhbeC3j9Go3O1Z2DUPPQoJ7ESoAJFAB4WPQXwbPet3glKcsq2VaYRKWtWC05tq1EHXtcx0E0pkeKtYb/8hRFoO1gMaS1jPQ==
+X-Gm-Message-State: AOJu0YzU8hZOfPEmNNzOqePfhgih8ptdg7SS4QKj2hZghEDL03jWZBPh
+	eZ/w4iy0wPMsAi4sfAnJFxbd76UPW7ApH/u0MVAutCKrHM2BUG8fUKfHUVYPkx9GGteYk3qHOsN
+	m1I8=
+X-Google-Smtp-Source: AGHT+IEVYdUoem9o49l8lNKaUbCYC2Wzvl1sVqsckB/9PMVpehsVMx48aEA/tVd4qDvcw6UlD6hIig==
+X-Received: by 2002:a17:902:eccd:b0:1e5:9390:8437 with SMTP id a13-20020a170902eccd00b001e593908437mr383503plh.32.1713381744632;
+        Wed, 17 Apr 2024 12:22:24 -0700 (PDT)
 Received: from [10.36.51.174] ([24.75.208.145])
-        by smtp.gmail.com with ESMTPSA id r13-20020aa79ecd000000b006ed045af796sm11536pfq.88.2024.04.17.12.20.54
+        by smtp.gmail.com with ESMTPSA id a20-20020a170902b59400b001dddbb58d5esm11902045pls.109.2024.04.17.12.22.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Apr 2024 12:20:55 -0700 (PDT)
-Message-ID: <7eeef2c6-7375-4e41-aad6-ca0a39e95e2e@linaro.org>
-Date: Wed, 17 Apr 2024 21:20:53 +0200
+        Wed, 17 Apr 2024 12:22:24 -0700 (PDT)
+Message-ID: <32d6c63f-7350-4445-a10f-2d89ef9e52f4@linaro.org>
+Date: Wed, 17 Apr 2024 21:22:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,52 +78,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v2 30/31] kvx: Add power controller driver
-To: Yann Sionneau <ysionneau@kalrayinc.com>,
- Yann Sionneau <ysionneau@kalray.eu>, Arnd Bergmann <arnd@arndb.de>,
- Jonathan Corbet <corbet@lwn.net>, Thomas Gleixner <tglx@linutronix.de>,
- Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH 1/4] dt-bindings: arm: sunxi: document Anbernic RG35XX
+ handheld gaming device variants
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Ryan Walklin <ryan@testtoast.com>, Chen-Yu Tsai <wens@csie.org>,
+ Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Will Deacon <will@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
- Boqun Feng <boqun.feng@gmail.com>, Mark Rutland <mark.rutland@arm.com>,
- Eric Biederman <ebiederm@xmission.com>, Kees Cook <keescook@chromium.org>,
- Oleg Nesterov <oleg@redhat.com>, Ingo Molnar <mingo@redhat.com>,
- Waiman Long <longman@redhat.com>,
- "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
- Andrew Morton <akpm@linux-foundation.org>, Nick Piggin <npiggin@gmail.com>,
- Paul Moore <paul@paul-moore.com>, Eric Paris <eparis@redhat.com>,
- Christian Brauner <brauner@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Jules Maselbas <jmaselbas@kalray.eu>,
- Guillaume Thouvenin <gthouvenin@kalray.eu>,
- Clement Leger <clement@clement-leger.fr>,
- Vincent Chardon <vincent.chardon@elsys-design.com>,
- =?UTF-8?Q?Marc_Poulhi=C3=A8s?= <dkm@kataplop.net>,
- Julian Vetter <jvetter@kalray.eu>, Samuel Jones <sjones@kalray.eu>,
- Ashley Lesdalons <alesdalons@kalray.eu>, Thomas Costis <tcostis@kalray.eu>,
- Marius Gligor <mgligor@kalray.eu>, Jonathan Borne <jborne@kalray.eu>,
- Julien Villette <jvillette@kalray.eu>, Luc Michel <lmichel@kalray.eu>,
- Louis Morhet <lmorhet@kalray.eu>, Julien Hascoet <jhascoet@kalray.eu>,
- Jean-Christophe Pince <jcpince@gmail.com>,
- Guillaume Missonnier <gmissonnier@kalray.eu>, Alex Michon
- <amichon@kalray.eu>, Huacai Chen <chenhuacai@kernel.org>,
- WANG Xuerui <git@xen0n.name>, Shaokun Zhang <zhangshaokun@hisilicon.com>,
- John Garry <john.garry@huawei.com>,
- Guangbin Huang <huangguangbin2@huawei.com>,
- Bharat Bhushan <bbhushan2@marvell.com>, Bibo Mao <maobibo@loongson.cn>,
- Atish Patra <atishp@atishpatra.org>, "Jason A. Donenfeld" <Jason@zx2c4.com>,
- Qi Liu <liuqi115@huawei.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Mark Brown <broonie@kernel.org>,
- Janosch Frank <frankja@linux.ibm.com>, Alexey Dobriyan <adobriyan@gmail.com>
-Cc: Benjamin Mugnier <mugnier.benjamin@gmail.com>, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-mm@kvack.org, linux-arch@vger.kernel.org, linux-audit@redhat.com,
- linux-riscv@lists.infradead.org, bpf@vger.kernel.org
-References: <20230120141002.2442-1-ysionneau@kalray.eu>
- <20230120141002.2442-31-ysionneau@kalray.eu>
- <f69adaf2-6582-c134-5671-4d6fd100fcf1@linaro.org>
- <c20b433f-97ef-7faa-5122-9949af41f2fb@kalrayinc.com>
+ Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
+ Chris Morgan <macromorgan@hotmail.com>, devicetree@vger.kernel.org,
+ linux-sunxi@lists.linux.dev
+References: <20240414083347.131724-2-ryan@testtoast.com>
+ <20240414083347.131724-3-ryan@testtoast.com>
+ <78b5de01-150e-4537-b6a6-8ca0067a8359@linaro.org>
+ <f0b5aea5-54f6-4c3b-9c16-f7e97c58ea6d@app.fastmail.com>
+ <ec2be6d0-68ea-41b5-a12c-5f926c7a8f81@linaro.org>
+ <20240417145854.46827456@donnerap.manchester.arm.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -169,72 +140,43 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <c20b433f-97ef-7faa-5122-9949af41f2fb@kalrayinc.com>
+In-Reply-To: <20240417145854.46827456@donnerap.manchester.arm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/04/2024 16:08, Yann Sionneau wrote:
-> Hello Krzysztof, Arnd, all,
+On 17/04/2024 15:58, Andre Przywara wrote:
+> On Wed, 17 Apr 2024 15:33:13 +0200
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 > 
-> On 1/22/23 12:54, Krzysztof Kozlowski wrote:
->> On 20/01/2023 15:10, Yann Sionneau wrote:
->>> From: Jules Maselbas <jmaselbas@kalray.eu>
+> Hi,
+> 
+>> On 17/04/2024 11:05, Ryan Walklin wrote:
+>>> Thanks for the review and feedback.
+>>>   
+>>>> Any reason these are not just one enum with three entires?  
 >>>
->>> The Power Controller (pwr-ctrl) control cores reset and wake-up
->>> procedure.
->>> +
->>> +int __init kvx_pwr_ctrl_probe(void)
->>> +{
->>> +	struct device_node *ctrl;
->>> +
->>> +	ctrl = get_pwr_ctrl_node();
->>> +	if (!ctrl) {
->>> +		pr_err("Failed to get power controller node\n");
->>> +		return -EINVAL;
->>> +	}
->>> +
->>> +	if (!of_device_is_compatible(ctrl, "kalray,kvx-pwr-ctrl")) {
->>> +		pr_err("Failed to get power controller node\n");
->> No. Drivers go to drivers, not to arch directory. This should be a
->> proper driver instead of some fake stub doing its own driver matching.
->> You need to rework this.
+>>> No, this is just to match the existing devices, are you able to point to an example elsewhere?
+>>>   
+>>
+>> Even for variants of same boards?
+>>
+>> The examples are everywhere, e.g. Qualcomm or NXP.
 > 
-> I am working on a v3 patchset, therefore I am working on a solution for 
-> this "pwr-ctrl" driver that needs to go somewhere else than arch/kvx/.
-> 
-> The purpose of this "driver" is just to expose a void 
-> kvx_pwr_ctrl_cpu_poweron(unsigned int cpu) function, used by 
-> kernel/smpboot.c function __cpu_up() in order to start secondary CPUs in 
-> SMP config.
-
-I might be missing here some bigger picture and maybe my original
-comment was no appropriate, but IIUC, you might now create dependencies
-between arch code and drivers. That's also fragile.
-
-> 
-> Doing this, on our SoC, requires writing 3 registers in a memory-mapped 
-> device named "power controller".
-> 
-> I made some researches in drivers/ but I am not sure yet what's a good 
-> place that fits what our device is doing (booting secondary CPUs).
-> 
-> * drivers/power/reset seems to be for resetting the entire SoC
-> 
-> * drivers/power/supply seems to be to control power supplies ICs/periph.
-> 
-> * drivers/reset seems to be for device reset
-> 
-> * drivers/pmdomain maybe ?
-> 
-> * drivers/soc ?
+> We have separate entries for closely related boards (Pine64 H64 model A
+> and B), and also indeed for updated variants (the various PinePhone
+> revisions).
+> That doesn't need the stay this way, of course. We would lose a quite
+> natural way of putting a descriptive name to each compatible string (cf.
+> "Pine64 PinePhone Developer Batch (1.0)"), but if the main purpose of this
+> file is to *reserve* the compatible strings, it would indeed be shorter to
+> use enums for related boards.
+> Don't know if this would a real advantage, though.
 > 
 
-Bringup of CPU? Then I would vote for here. You also have existing
-example: r9a06g032-smp.c
-
-But anyway the point is to make it clear - either it is a driver or core
-code. Not both. The original code was not looking like any other CPU
-bringup code.
+If this matches your existing practice, then it is perfectly fine for
+me. I will probably still be bringing up this question from time to
+time, because for me it blows the binding unnecessarily making it harder
+to maintain/read, but that's only matter of taste.
 
 Best regards,
 Krzysztof
