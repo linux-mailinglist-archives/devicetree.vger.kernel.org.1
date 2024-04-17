@@ -1,244 +1,282 @@
-Return-Path: <devicetree+bounces-60357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 382718A8F8E
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 01:41:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 483DF8A8F98
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 01:43:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CBA26282175
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 23:41:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B9BD1C20E9F
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 23:43:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91EF085948;
-	Wed, 17 Apr 2024 23:41:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61F2C86126;
+	Wed, 17 Apr 2024 23:43:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ebHDLHww"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aZ4Z2g1/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EB3A81748;
-	Wed, 17 Apr 2024 23:41:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77DFE85945
+	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 23:43:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713397313; cv=none; b=EwTnulc5nhmTOOk6yQscSbTvP5bfZT3aHIPX8z13V6J+SWxpAty8eUcoYuj6++UcjgQgNvmPePb1K38CHE5LPf7GQAVpF31ZDRTEKKj5fWfBrxIoyh0bS7n+dOl02k7m4tlGPW6R1g51SYbOsU/N5ONXEbhij7kInXpPcB0EXc4=
+	t=1713397390; cv=none; b=hqqDFFDoxuuO/FjptI39Z0V0PgDy4KHC9l530A3ubdyErL0jRvuLmTBPr5QK9QdFZVK1ys0do5lfBjTUnmukL6APH94n99Y6h6/0B1gvk4RbbuajvGTWUXZPgGVGO/zGEkcPgJ1zjD1qTycb+i0/n1saYFumAb89UbE1vLwBWMs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713397313; c=relaxed/simple;
-	bh=Nfp4Bt/UB3lYOjUFF0rfs/aN8U0aosIdPb074abhs2o=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=c5rj/chMcuQPYBb9GbQ9DqkKbzusvcADg9T4XPIcrJDVQc/PW/ISMbToB9mJeHu9hPJxVX6Cv4JZctO2ozD59ZATIux5SuVrwvBnPx6RpqbNa8P0UjhNYgLQghi7fnTIZOSJsWhVhnYCKh0/SrEo071tY6vv/2b2u+34fONNft0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ebHDLHww; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDD35C3277B;
-	Wed, 17 Apr 2024 23:41:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713397312;
-	bh=Nfp4Bt/UB3lYOjUFF0rfs/aN8U0aosIdPb074abhs2o=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=ebHDLHww1sRu0/F4b2uaU6+v4ZNFQlqOEV5l5dHioS9xgrLfSAh/eVxz8a6AmGTcS
-	 8sQ069W4VNHVEItjcYazb+m6p2mLxHyjRSuU/fsX5GCr5tMcUnVWhpmb7RAddtbmJr
-	 q/KkvTy52wBOq7mNs24PM2PCBd1y8DxKIJXmXhOj2/W1f32qgWnxORCTEj3XFChIDU
-	 kvnTh3MQpCj6zD4uCZIkhEgXJeyZCzIuLQo6Pl/HGxTr2A0vGMNHJoIkkIIzCwfkoR
-	 ChI/5SoIXiflj+wCDHcjfl/nY0HTRfFlNkJyYylq5531zV4sO8MT1eNgs8I0bobfpX
-	 C+NkyTW909qEg==
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-56e6583942dso63594a12.1;
-        Wed, 17 Apr 2024 16:41:52 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVUs0Hmu6MJQcIPxYBarU3aFPr41rC0n8+g8yWZ15eBIUW1wGBYo+cVZOwhhvSMdpjOGZ5+oZFapChDO/s1+72EnTUaRdB2JSp05evTLtdi5xwUGlpX0EZUwhHOCkYRYD7+t2VWVP+rdbUgnm4vaeuLdeWR2du8IYBo42bxO0K9yw8VeRsOAAG2vQLbLvqCq1nMQ2XhO+5j0QHSNWyh00JHTA==
-X-Gm-Message-State: AOJu0YyZpp5LS67JHctIYJFm2cik424UzgaqKgrkQj5C2CIYY0lpyWXa
-	RDjTM6i24mTUjyawM2Qzg/87DUsHMuJgvuZ1Ah9goVa19YGD2qU1pU5thSUiYEiTWmw07R2zmwq
-	kXVcqTLprhNKwAZATcJ55w4sM48c=
-X-Google-Smtp-Source: AGHT+IF4viARxx3GZxQCpGS5aZWzP8rCaswrtzXJWmo/s4eeUGc8cWg9XndNIL6tihZSuLbHwQq+1pEMz/4p7hGte/k=
-X-Received: by 2002:a17:906:cd0f:b0:a55:144a:adc2 with SMTP id
- oz15-20020a170906cd0f00b00a55144aadc2mr473106ejb.6.1713397311258; Wed, 17 Apr
- 2024 16:41:51 -0700 (PDT)
+	s=arc-20240116; t=1713397390; c=relaxed/simple;
+	bh=NBzj+erYFX0uj1VyOeMr+BZ1UuhXzSFJxjrqIXu64ts=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=F0kVaqq50BgpEoRWJLI8WT5TirK4eAYCKrJCX8oZgpVVBN8fs++pAFIOSsNJ+kUOgD/mGyu8XPfv5MHe5qxipz96N95IMin++0FGgqdtjJBAO6ZGAfqHM79av3eP/BgDqDGnIcozHHw19J0jQowpCLfjkwPsihGf294uJZR8z28=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aZ4Z2g1/; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-518b9527c60so264980e87.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 16:43:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1713397387; x=1714002187; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Nqgl0cJ22faq0OLfGdwsUXUHBSiO8IFgnMRlpAUtFnY=;
+        b=aZ4Z2g1/9K3jXN0onwgGXTwD818Abf393SVjPA04He1IRl86yqMW/aA1hi5QB4KpY9
+         IQF7doKD+986RLE15HsViytMZijSUqZIxWsWkMt2ltaI0rnWXF+6MbH5cMEHnCNq10e4
+         QcGCKcbLeAYMcQ7NQHml1j/SZsXfJKKcS6m/uV+ymxSwfpvspLy+lMvulRUPfxtAqAW3
+         kJJEekbHYoTsxCpngkAgxHcs8hJ2drbPVGg3pUhj7855BR1MXHevfepGejBP4ihY5kCd
+         MMy4//dZp8nGmFuBTqIyMjqdY829d59d/pEzJevOXnJOBVoTbr3rkcMh3PMdlkXa1/BU
+         IE/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713397387; x=1714002187;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Nqgl0cJ22faq0OLfGdwsUXUHBSiO8IFgnMRlpAUtFnY=;
+        b=KuxgXFOcbYpcoT8GLp6OxfS97ZqfI7ljj5e56vkYvw8BQcwF3+tXf3HFjc8mPLw6zZ
+         WIMz85Ko+5PBfQBQzoijfGE485+O6zGtzEQaCqfz8R4M2zzQXThGfY3uboHdmHZogZYX
+         cQZgTs4yPMZs5cIKZmYHYgZxHiVyiI0iZU2Vq45FMAEL454if4mhEm7BOX76tWvVn8mv
+         I7u/9KgRFMw03B5QwzGgD4o7xC605viBm0QqIlJTkNEMIn7M+g7GG2rhUZ1GAAgtnIFz
+         gCC8yhi2el5ZaH8goDEKy/eVnDLMG4zwmGQ+JcvPnYbKFFlOsI1b0kmm4HFKvzUv0Zmr
+         5cew==
+X-Forwarded-Encrypted: i=1; AJvYcCUOZW6VHUDAH1KNQIbzD7iPE6Hi7wyNZ7ieYhLErkNEK7Un4LsykqSG2YaGhRRLFf68M1Cb9OD3BP/fFl2ScVe/99Iok/dn0Xlhzw==
+X-Gm-Message-State: AOJu0YyTs0EIOKeyw4HA0oqkHjqkHs3U7a3iMkooJmVH1laMIxtudJiQ
+	klQ4Bvlr0X3jfzi8cOT5UuA2hL+CO1SidPW2Rm7VckywXtjy+PqoXijSeE15Iw8=
+X-Google-Smtp-Source: AGHT+IF9i4Z68hDQSut7wIF9JggheG5n5zLw3Jk7ObfMTXNDdwdfqQA4zyvf70wg2xXSQWrGdof4LQ==
+X-Received: by 2002:ac2:4859:0:b0:516:c8e5:db35 with SMTP id 25-20020ac24859000000b00516c8e5db35mr522976lfy.18.1713397386612;
+        Wed, 17 Apr 2024 16:43:06 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
+        by smtp.gmail.com with ESMTPSA id w1-20020ac254a1000000b00516d264366fsm35066lfk.245.2024.04.17.16.43.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Apr 2024 16:43:06 -0700 (PDT)
+Date: Thu, 18 Apr 2024 02:43:04 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2 3/7] drm/msm/adreno: Implement SMEM-based speed bin
+Message-ID: <hi7vzqm5ebypzs6m6bw64ghgfwsdzuaxy65jpah37iw5ww7fku@n3c5sucic27i>
+References: <20240404-topic-smem_speedbin-v2-0-c84f820b7e5b@linaro.org>
+ <20240404-topic-smem_speedbin-v2-3-c84f820b7e5b@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240412073046.1192744-1-wenst@chromium.org> <20240412073046.1192744-2-wenst@chromium.org>
- <CAGp9Lzp=MKNYc70ZeGCAEgWfFVPOAOZQQ86BXukk+EQQM_C+OA@mail.gmail.com> <CAGXv+5FeRwYm7x+fYS9KPXW-0tQ-zSuk5nU6AZ-=yU07wXnJ9w@mail.gmail.com>
-In-Reply-To: <CAGXv+5FeRwYm7x+fYS9KPXW-0tQ-zSuk5nU6AZ-=yU07wXnJ9w@mail.gmail.com>
-From: Sean Wang <sean.wang@kernel.org>
-Date: Wed, 17 Apr 2024 16:41:39 -0700
-X-Gmail-Original-Message-ID: <CAGp9Lzrm6GDdm61FZR60aqmnSVg7k1+NJ=UfNwr6x8Y5RUwOKA@mail.gmail.com>
-Message-ID: <CAGp9Lzrm6GDdm61FZR60aqmnSVg7k1+NJ=UfNwr6x8Y5RUwOKA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: net: bluetooth: Add MediaTek MT7921S
- SDIO Bluetooth
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Sean Wang <sean.wang@mediatek.com>, linux-bluetooth@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-mediatek@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240404-topic-smem_speedbin-v2-3-c84f820b7e5b@linaro.org>
 
-Hi Chen-Yu,
+On Wed, Apr 17, 2024 at 10:02:55PM +0200, Konrad Dybcio wrote:
+> On recent (SM8550+) Snapdragon platforms, the GPU speed bin data is
+> abstracted through SMEM, instead of being directly available in a fuse.
+> 
+> Add support for SMEM-based speed binning, which includes getting
+> "feature code" and "product code" from said source and parsing them
+> to form something that lets us match OPPs against.
+> 
+> Due to the product code being ignored in the context of Adreno on
+> production parts (as of SM8650), hardcode it to SOCINFO_PC_UNKNOWN.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  drivers/gpu/drm/msm/adreno/a6xx_gpu.c      |  8 +++---
+>  drivers/gpu/drm/msm/adreno/adreno_device.c |  2 ++
+>  drivers/gpu/drm/msm/adreno/adreno_gpu.c    | 41 +++++++++++++++++++++++++++---
+>  drivers/gpu/drm/msm/adreno/adreno_gpu.h    | 12 ++++++---
+>  4 files changed, 53 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+> index d10323f15d40..60708c23ae4c 100644
+> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+> @@ -2890,13 +2890,15 @@ static u32 fuse_to_supp_hw(const struct adreno_info *info, u32 fuse)
+>  	return UINT_MAX;
+>  }
+>  
+> -static int a6xx_set_supported_hw(struct device *dev, const struct adreno_info *info)
+> +static int a6xx_set_supported_hw(struct adreno_gpu *adreno_gpu,
+> +				 struct device *dev,
+> +				 const struct adreno_info *info)
+>  {
+>  	u32 supp_hw;
+>  	u32 speedbin;
+>  	int ret;
+>  
+> -	ret = adreno_read_speedbin(dev, &speedbin);
+> +	ret = adreno_read_speedbin(adreno_gpu, dev, &speedbin);
+>  	/*
+>  	 * -ENOENT means that the platform doesn't support speedbin which is
+>  	 * fine
+> @@ -3056,7 +3058,7 @@ struct msm_gpu *a6xx_gpu_init(struct drm_device *dev)
+>  
+>  	a6xx_llc_slices_init(pdev, a6xx_gpu, is_a7xx);
+>  
+> -	ret = a6xx_set_supported_hw(&pdev->dev, config->info);
+> +	ret = a6xx_set_supported_hw(adreno_gpu, &pdev->dev, config->info);
+>  	if (ret) {
+>  		a6xx_llc_slices_destroy(a6xx_gpu);
+>  		kfree(a6xx_gpu);
+> diff --git a/drivers/gpu/drm/msm/adreno/adreno_device.c b/drivers/gpu/drm/msm/adreno/adreno_device.c
+> index c3703a51287b..901ef767e491 100644
+> --- a/drivers/gpu/drm/msm/adreno/adreno_device.c
+> +++ b/drivers/gpu/drm/msm/adreno/adreno_device.c
+> @@ -6,6 +6,8 @@
+>   * Copyright (c) 2014,2017 The Linux Foundation. All rights reserved.
+>   */
+>  
+> +#include <linux/soc/qcom/socinfo.h>
+> +
 
-okay, we will add it once we have implemented it in the driver. thanks
-for adding the dt-binding.
+Stray leftover?
 
-     Sean
+>  #include "adreno_gpu.h"
+>  
+>  bool hang_debug = false;
+> diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.c b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
+> index 074fb498706f..58fd70140685 100644
+> --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.c
+> +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
+> @@ -21,6 +21,9 @@
+>  #include "msm_gem.h"
+>  #include "msm_mmu.h"
+>  
+> +#include <linux/soc/qcom/smem.h>
+> +#include <linux/soc/qcom/socinfo.h>
+> +
+>  static u64 address_space_size = 0;
+>  MODULE_PARM_DESC(address_space_size, "Override for size of processes private GPU address space");
+>  module_param(address_space_size, ullong, 0600);
+> @@ -1057,9 +1060,39 @@ void adreno_gpu_ocmem_cleanup(struct adreno_ocmem *adreno_ocmem)
+>  			   adreno_ocmem->hdl);
+>  }
+>  
+> -int adreno_read_speedbin(struct device *dev, u32 *speedbin)
+> +int adreno_read_speedbin(struct adreno_gpu *adreno_gpu,
+> +			 struct device *dev, u32 *fuse)
+>  {
+> -	return nvmem_cell_read_variable_le_u32(dev, "speed_bin", speedbin);
+> +	u32 fcode;
+> +	int ret;
+> +
+> +	/*
+> +	 * Try reading the speedbin via a nvmem cell first
+> +	 * -ENOENT means "no nvmem-cells" and essentially means "old DT" or
+> +	 * "nvmem fuse is irrelevant", simply assume it's fine.
+> +	 */
+> +	ret = nvmem_cell_read_variable_le_u32(dev, "speed_bin", fuse);
+> +	if (!ret)
+> +		return 0;
+> +	else if (ret != -ENOENT)
+> +		return dev_err_probe(dev, ret, "Couldn't read the speed bin fuse value\n");
+> +
+> +#ifdef CONFIG_QCOM_SMEM
 
-On Wed, Apr 17, 2024 at 4:32=E2=80=AFPM Chen-Yu Tsai <wenst@chromium.org> w=
-rote:
->
-> On Wed, Apr 17, 2024 at 4:04=E2=80=AFPM Sean Wang <sean.wang@kernel.org> =
-wrote:
-> >
-> > Hi Chen-Yu,
-> >
-> > On Fri, Apr 12, 2024 at 12:31=E2=80=AFAM Chen-Yu Tsai <wenst@chromium.o=
-rg> wrote:
-> > >
-> > > The MediaTek MT7921S is a WiFi/Bluetooth combo chip that works over
-> > > SDIO. WiFi and Bluetooth are separate SDIO functions within the chip.
-> > > While the Bluetooth SDIO function is fully discoverable, the chip has
-> > > a pin that can reset just the Bluetooth core, as opposed to the full
-> > > chip. This should be described in the device tree.
-> > >
-> > > Add a device tree binding for the Bluetooth SDIO function of the MT79=
-21S
-> > > specifically to document the reset line. This binding is based on the=
- MMC
-> > > controller binding, which specifies one device node per SDIO function=
-.
-> > >
-> > > Cc: Sean Wang <sean.wang@mediatek.com>
-> > > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> > > ---
-> > > Changes since v2:
-> > > - Expand description and commit message to clearly state that WiFi an=
-d
-> > >   Bluetooth are separate SDIO functions, and that each function shoul=
-d
-> > >   be a separate device node, as specified by the MMC binding.
-> > > - Change 'additionalProperties' to 'unevaluatedProperties'
-> > > - Add missing separating new line
-> > > - s/ot/to/
-> > >
-> > > Angelo's reviewed-by was not picked up due to the above changes.
-> > >
-> > > Changes since v1:
-> > > - Reworded descriptions
-> > > - Moved binding maintainer section before description
-> > > - Added missing reference to bluetooth-controller.yaml
-> > > - Added missing GPIO header to example
-> > > ---
-> > >  .../bluetooth/mediatek,mt7921s-bluetooth.yaml | 55 +++++++++++++++++=
-++
-> > >  MAINTAINERS                                   |  1 +
-> > >  2 files changed, 56 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/net/bluetooth/m=
-ediatek,mt7921s-bluetooth.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/net/bluetooth/mediatek=
-,mt7921s-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/m=
-ediatek,mt7921s-bluetooth.yaml
-> > > new file mode 100644
-> > > index 000000000000..67ff7caad599
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7921=
-s-bluetooth.yaml
-> > > @@ -0,0 +1,55 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/net/bluetooth/mediatek,mt7921s-bl=
-uetooth.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: MediaTek MT7921S Bluetooth
-> > > +
-> > > +maintainers:
-> > > +  - Sean Wang <sean.wang@mediatek.com>
-> > > +
-> > > +description:
-> > > +  MT7921S is an SDIO-attached dual-radio WiFi+Bluetooth Combo chip; =
-each
-> > > +  function is its own SDIO function on a shared SDIO interface. The =
-chip
-> > > +  has two dedicated reset lines, one for each function core.
-> > > +  This binding only covers the Bluetooth SDIO function, with one dev=
-ice
-> > > +  node describing only this SDIO function.
-> > > +
-> > > +allOf:
-> > > +  - $ref: bluetooth-controller.yaml#
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - mediatek,mt7921s-bluetooth
-> > > +
-> > > +  reg:
-> > > +    const: 2
-> > > +
-> > > +  reset-gpios:
-> > > +    maxItems: 1
-> > > +    description:
-> > > +      An active-low reset line for the Bluetooth core; on typical M.=
-2
-> > > +      key E modules this is the W_DISABLE2# pin.
-> > > +
-> >
-> > Thanks for adding the new setup for the MT7921S devices. They look good=
- to me.
-> > Sometimes, the MT7921S might be set up to wake up the host when it's
-> > asleep using a sideband signal.
-> > This might need an extra pin called "wakeup" to make it happen. Can
-> > you help add this pin to the settings in the same update, or should I
-> > do it later?
->
-> I suggest you send a patch on top of this one? I'm not sure if you
-> would model it as a GPIO or interrupt. And there doesn't seem to be
-> any code in the driver expecting it.
->
->
-> ChenYu
->
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +
-> > > +unevaluatedProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/gpio/gpio.h>
-> > > +
-> > > +    mmc {
-> > > +        #address-cells =3D <1>;
-> > > +        #size-cells =3D <0>;
-> > > +
-> > > +        bluetooth@2 {
-> > > +            compatible =3D "mediatek,mt7921s-bluetooth";
-> > > +            reg =3D <2>;
-> > > +            reset-gpios =3D <&pio 8 GPIO_ACTIVE_LOW>;
-> > > +        };
-> > > +    };
-> > > diff --git a/MAINTAINERS b/MAINTAINERS
-> > > index 88981d9f3958..218bc2a21207 100644
-> > > --- a/MAINTAINERS
-> > > +++ b/MAINTAINERS
-> > > @@ -13818,6 +13818,7 @@ M:      Sean Wang <sean.wang@mediatek.com>
-> > >  L:     linux-bluetooth@vger.kernel.org
-> > >  L:     linux-mediatek@lists.infradead.org (moderated for non-subscri=
-bers)
-> > >  S:     Maintained
-> > > +F:     Documentation/devicetree/bindings/net/bluetooth/mediatek,mt79=
-21s-bluetooth.yaml
-> > >  F:     Documentation/devicetree/bindings/net/mediatek-bluetooth.txt
-> > >  F:     drivers/bluetooth/btmtkuart.c
-> > >
-> > > --
-> > > 2.44.0.683.g7961c838ac-goog
-> > >
-> > >
+Please extract to a separate function and put the function under ifdef
+(providing a stub otherwise). Having #ifndefs inside funciton body is
+frowned upon.
+
+> +	/*
+> +	 * Only check the feature code - the product code only matters for
+> +	 * proto SoCs unavailable outside Qualcomm labs, as far as GPU bin
+> +	 * matching is concerned.
+> +	 *
+> +	 * Ignore EOPNOTSUPP, as not all SoCs expose this info through SMEM.
+> +	 */
+> +	ret = qcom_smem_get_feature_code(&fcode);
+> +	if (!ret)
+> +		*fuse = ADRENO_SKU_ID(fcode);
+> +	else if (ret != -EOPNOTSUPP)
+> +		return dev_err_probe(dev, ret, "Couldn't get feature code from SMEM\n");
+> +#endif
+> +
+> +	return 0;
+>  }
+>  
+>  int adreno_gpu_init(struct drm_device *drm, struct platform_device *pdev,
+> @@ -1098,9 +1131,9 @@ int adreno_gpu_init(struct drm_device *drm, struct platform_device *pdev,
+>  			devm_pm_opp_set_clkname(dev, "core");
+>  	}
+>  
+> -	if (adreno_read_speedbin(dev, &speedbin) || !speedbin)
+> +	if (adreno_read_speedbin(adreno_gpu, dev, &speedbin) || !speedbin)
+>  		speedbin = 0xffff;
+> -	adreno_gpu->speedbin = (uint16_t) (0xffff & speedbin);
+> +	adreno_gpu->speedbin = speedbin;
+>  
+>  	gpu_name = devm_kasprintf(dev, GFP_KERNEL, "%"ADRENO_CHIPID_FMT,
+>  			ADRENO_CHIPID_ARGS(config->chip_id));
+> diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.h b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+> index 77526892eb8c..8f2b70eaf6ad 100644
+> --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+> +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+> @@ -81,7 +81,12 @@ extern const struct adreno_reglist a612_hwcg[], a615_hwcg[], a630_hwcg[], a640_h
+>  extern const struct adreno_reglist a660_hwcg[], a690_hwcg[], a702_hwcg[], a730_hwcg[], a740_hwcg[];
+>  
+>  struct adreno_speedbin {
+> -	uint16_t fuse;
+> +	/* <= 16-bit for NVMEM fuses, 32b for SOCID values */
+> +	uint32_t fuse;
+> +/* As of SM8650, PCODE on production SoCs is meaningless wrt the GPU bin */
+> +#define ADRENO_SKU_ID_FCODE		GENMASK(15, 0)
+> +#define ADRENO_SKU_ID(fcode)	(SOCINFO_PC_UNKNOWN << 16 | fcode)
+
+If we got rid of PCode matching, is there a need to actually use
+SOCINFO_PC_UNKNOWN here? Or just 0 would be fine?
+
+> +
+>  	uint16_t speedbin;
+>  };
+>  
+> @@ -136,7 +141,7 @@ struct adreno_gpu {
+>  	struct msm_gpu base;
+>  	const struct adreno_info *info;
+>  	uint32_t chip_id;
+> -	uint16_t speedbin;
+> +	uint32_t speedbin;
+>  	const struct adreno_gpu_funcs *funcs;
+>  
+>  	/* interesting register offsets to dump: */
+> @@ -519,7 +524,8 @@ int adreno_fault_handler(struct msm_gpu *gpu, unsigned long iova, int flags,
+>  			 struct adreno_smmu_fault_info *info, const char *block,
+>  			 u32 scratch[4]);
+>  
+> -int adreno_read_speedbin(struct device *dev, u32 *speedbin);
+> +int adreno_read_speedbin(struct adreno_gpu *adreno_gpu,
+> +			 struct device *dev, u32 *speedbin);
+>  
+>  /*
+>   * For a5xx and a6xx targets load the zap shader that is used to pull the GPU
+> 
+> -- 
+> 2.44.0
+> 
+
+-- 
+With best wishes
+Dmitry
 
