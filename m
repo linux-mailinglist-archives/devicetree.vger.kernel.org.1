@@ -1,199 +1,242 @@
-Return-Path: <devicetree+bounces-60302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EAA38A8BE5
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 21:15:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D2068A8C02
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 21:21:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51DB71C21755
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 19:14:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F7E51C21458
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 19:21:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09DF528DC1;
-	Wed, 17 Apr 2024 19:14:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6012925569;
+	Wed, 17 Apr 2024 19:20:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N2CJEN5G"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ThUs+zBK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C92D122324;
-	Wed, 17 Apr 2024 19:14:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3BEE24B2F
+	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 19:20:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713381288; cv=none; b=tj2glhTmyvVrbW6qcnABoT7ZXWrebhADf0SzELkEkv5DMtz2rbYBNriW4RkMGvViZGYgWFqL1p9fXTzatamj/jhJFaTVnoD4Lz1nkLermjseGnExz515oGeGXBlx6r8al0eOQl1ok7o43ntCbqTu3lEf/lHdAz3ZqKiYhWRz1Iw=
+	t=1713381658; cv=none; b=K6JN/4pRJhSgFaz3pdHVRW++NywUSVLRqDiv1ukp1x6BKyv4VBGfyxbTRiKWCXgSMuvUXAqmMuYHBp131i4KmJPWT3g58JnrN7HEU8l84xSKhLF8G8DiFaq2nbHoQ6QrnQqOHLB//aGiGj8atZN264CsxD/Xwx58DPsmhAd85HQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713381288; c=relaxed/simple;
-	bh=a/flBp7hYPf0Kun3Ragy74rejtcqB40x2SVCVKa4trY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DyZd9kQ8oBHnx1lcIi1na2duMvcXIE3LJNbkrZc/kohnRCS7uXLeD2SorSOKgGc2ybzVkAZVD6zMryi6nOS5xKprKHSQhcyUwUc45o1k9IOXH4JtenN5moXNbUo7r4/5mpN02iQ28k6A1rxJS5Jft29RHEDHh5ELmo27/j5r3e0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N2CJEN5G; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14948C072AA;
-	Wed, 17 Apr 2024 19:14:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713381287;
-	bh=a/flBp7hYPf0Kun3Ragy74rejtcqB40x2SVCVKa4trY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=N2CJEN5G5R5VAfeGdC+EDkUa4TYHpR24KnWWRGW+FFjvGYB9MU/zKdhXpQ+vbBRdl
-	 nrGYFWA6qWS0wxkzGyxcLDi7BG86Qf4yhrYpVzobvGKrL6CChXUr62i+nKEZ7itVJr
-	 xC3eSlZF47jp6VgvaGGpk5TIJrS5ps2M+31qb83XZmCSv+ozdUCMKAxBJJNFu+VYXU
-	 Pic75JU77c/EnWnxYp246/xeWh/Heqc7dpcW+DG8pNT2bbQiifPJu1PET4Q1+FHcZi
-	 yOOrKfxsINGG+tiAQ7KyJvHIHCIC3IUYobsslx1DY2WNVVILO7Sm+XF++37BWarfl4
-	 sgEZilsJx+bQQ==
-Date: Wed, 17 Apr 2024 14:14:45 -0500
-From: Rob Herring <robh@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: djakov@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com,
-	broonie@kernel.org, keescook@chromium.org, gustavoars@kernel.org,
-	henryc.chen@mediatek.com, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, kernel@collabora.com,
-	wenst@chromium.org, amergnat@baylibre.com
-Subject: Re: [PATCH v2 2/7] dt-bindings: interconnect: Add MediaTek EMI
- Interconnect bindings
-Message-ID: <20240417191445.GB3101736-robh@kernel.org>
-References: <20240417091442.170505-1-angelogioacchino.delregno@collabora.com>
- <20240417091442.170505-3-angelogioacchino.delregno@collabora.com>
- <20240417145402.GA2355631-robh@kernel.org>
- <207eb8d7-1a40-4114-a84b-26616dc39fcc@collabora.com>
+	s=arc-20240116; t=1713381658; c=relaxed/simple;
+	bh=Z3bCMaGhwbj6srUu4nYse27BveBCdxJ6ls99+RXNmvI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NcjWPqGbLi88NEe4gZHtBrMenprMBVdffIHDZdJufmEQllRbNm7snUuHaQ1tMXgTtUklw7fSGk8pC+94T4gP9+jqRecXjyDvqTegwjgDxvQU37+UMjK1O58m+sxgNMVfLbOG8W1yfBzUtTpWrBBxc7c8DpFihkpPWHqMkx0C5l8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ThUs+zBK; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-6ecff9df447so144478b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 12:20:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1713381656; x=1713986456; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=ORRZpXUfxr9ItRDDr0g7BO8pI4LaWWkmIOzOV1lUjes=;
+        b=ThUs+zBKSaponbb58Dod6Z1IGSmlxw4Jpi+7ppdNpbhVobZZfXcwvIlBUzj+QnxvBG
+         kwj+XCcOvud8clC5wr/3MmbXBZr+l+OHAbupDcSvfkEJ3ynDAl9BUikip+WbrjFVIg7V
+         b774TsOVcobqdEYTexydbT9MDoawO2vPpHum9ZcI7/upqCNARAgNCcqJDVETFl8Kl1nz
+         15ASyQBLSEN7sX9YO8AnGppQZsuK9OdYmanZz3NGTL+0ExqiSVM4GRwduLimHtY1Ev33
+         dqGoKDpvjR6fycJ61phEwiwgfKsw5w4ECcPBz8jOYtj5dpK/yo6cPx8cwSnUIAi2vQKl
+         k4lQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713381656; x=1713986456;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ORRZpXUfxr9ItRDDr0g7BO8pI4LaWWkmIOzOV1lUjes=;
+        b=PlTia1EMPAqshwt1Bhln2GUGOFEyWGAwIphwn6HOljF/dNbO6lybwA/Mx6JdOmf3+A
+         G2Z/pQWovvUCUfkSX3ZiWS2ehTOqzDyHTo9RzmblimvP5vMSJwhemOTVumtncv7rp327
+         PWdxTxe7Mo4R48OO8LM6IVdbGzoM30EEM48wbugaN+J7/pQQ0xxD/SDyIlws9odQMQDe
+         cunx+2GPj7oohP78A89KHgGF8NlE4I3HxEMHXZvo3J4SpamX+57mPUvUtB4UPrOvb5v/
+         /ZEgBw9+WnZRT4n0N34Cx5WbOarO+NW+G5bGNlOOk11EPj0eaifGS6irgwLiWlHBPPCn
+         m3HQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV+ydMBTbg+IOOYEp3NIE+47z4nyeyzcCCXwgb/AExNoh32hFje+xgY1BvDj0q+8A9v0PA0GlbJJl/1C/YWmy9EbnS0nAXwAYyETA==
+X-Gm-Message-State: AOJu0YyLoVuxsiVR3qa9pSW3got+W+CFR9qzRL4fpfRXz1ZoLJCYWoLW
+	wOWx6VjcI5dKbm6nAH1zRJPE0BDUGQaUeXpfAEA9edo1MpErDUKWcazPG/PS0Ok=
+X-Google-Smtp-Source: AGHT+IFFegkq8waqKyMERwq6fCuZal4ckYIGZjxrkGrrejjVKhdDcv8GCWbIasobPrTueNDkPh41oA==
+X-Received: by 2002:a05:6a21:27a8:b0:1aa:5f1f:79d1 with SMTP id rn40-20020a056a2127a800b001aa5f1f79d1mr709847pzb.1.1713381656202;
+        Wed, 17 Apr 2024 12:20:56 -0700 (PDT)
+Received: from [10.36.51.174] ([24.75.208.145])
+        by smtp.gmail.com with ESMTPSA id r13-20020aa79ecd000000b006ed045af796sm11536pfq.88.2024.04.17.12.20.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Apr 2024 12:20:55 -0700 (PDT)
+Message-ID: <7eeef2c6-7375-4e41-aad6-ca0a39e95e2e@linaro.org>
+Date: Wed, 17 Apr 2024 21:20:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <207eb8d7-1a40-4114-a84b-26616dc39fcc@collabora.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH v2 30/31] kvx: Add power controller driver
+To: Yann Sionneau <ysionneau@kalrayinc.com>,
+ Yann Sionneau <ysionneau@kalray.eu>, Arnd Bergmann <arnd@arndb.de>,
+ Jonathan Corbet <corbet@lwn.net>, Thomas Gleixner <tglx@linutronix.de>,
+ Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Will Deacon <will@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
+ Boqun Feng <boqun.feng@gmail.com>, Mark Rutland <mark.rutland@arm.com>,
+ Eric Biederman <ebiederm@xmission.com>, Kees Cook <keescook@chromium.org>,
+ Oleg Nesterov <oleg@redhat.com>, Ingo Molnar <mingo@redhat.com>,
+ Waiman Long <longman@redhat.com>,
+ "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
+ Andrew Morton <akpm@linux-foundation.org>, Nick Piggin <npiggin@gmail.com>,
+ Paul Moore <paul@paul-moore.com>, Eric Paris <eparis@redhat.com>,
+ Christian Brauner <brauner@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Jules Maselbas <jmaselbas@kalray.eu>,
+ Guillaume Thouvenin <gthouvenin@kalray.eu>,
+ Clement Leger <clement@clement-leger.fr>,
+ Vincent Chardon <vincent.chardon@elsys-design.com>,
+ =?UTF-8?Q?Marc_Poulhi=C3=A8s?= <dkm@kataplop.net>,
+ Julian Vetter <jvetter@kalray.eu>, Samuel Jones <sjones@kalray.eu>,
+ Ashley Lesdalons <alesdalons@kalray.eu>, Thomas Costis <tcostis@kalray.eu>,
+ Marius Gligor <mgligor@kalray.eu>, Jonathan Borne <jborne@kalray.eu>,
+ Julien Villette <jvillette@kalray.eu>, Luc Michel <lmichel@kalray.eu>,
+ Louis Morhet <lmorhet@kalray.eu>, Julien Hascoet <jhascoet@kalray.eu>,
+ Jean-Christophe Pince <jcpince@gmail.com>,
+ Guillaume Missonnier <gmissonnier@kalray.eu>, Alex Michon
+ <amichon@kalray.eu>, Huacai Chen <chenhuacai@kernel.org>,
+ WANG Xuerui <git@xen0n.name>, Shaokun Zhang <zhangshaokun@hisilicon.com>,
+ John Garry <john.garry@huawei.com>,
+ Guangbin Huang <huangguangbin2@huawei.com>,
+ Bharat Bhushan <bbhushan2@marvell.com>, Bibo Mao <maobibo@loongson.cn>,
+ Atish Patra <atishp@atishpatra.org>, "Jason A. Donenfeld" <Jason@zx2c4.com>,
+ Qi Liu <liuqi115@huawei.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Mark Brown <broonie@kernel.org>,
+ Janosch Frank <frankja@linux.ibm.com>, Alexey Dobriyan <adobriyan@gmail.com>
+Cc: Benjamin Mugnier <mugnier.benjamin@gmail.com>, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-mm@kvack.org, linux-arch@vger.kernel.org, linux-audit@redhat.com,
+ linux-riscv@lists.infradead.org, bpf@vger.kernel.org
+References: <20230120141002.2442-1-ysionneau@kalray.eu>
+ <20230120141002.2442-31-ysionneau@kalray.eu>
+ <f69adaf2-6582-c134-5671-4d6fd100fcf1@linaro.org>
+ <c20b433f-97ef-7faa-5122-9949af41f2fb@kalrayinc.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <c20b433f-97ef-7faa-5122-9949af41f2fb@kalrayinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Apr 17, 2024 at 05:32:54PM +0200, AngeloGioacchino Del Regno wrote:
-> Il 17/04/24 16:54, Rob Herring ha scritto:
-> > On Wed, Apr 17, 2024 at 11:14:37AM +0200, AngeloGioacchino Del Regno wrote:
-> > > Add bindings for the MediaTek External Memory Interface Interconnect,
-> > > which providers support system bandwidth requirements through Dynamic
-> > > Voltage Frequency Scaling Resource Collector (DVFSRC) hardware.
-> > > 
-> > > This adds bindings for MediaTek MT8183 and MT8195 SoCs.
-> > > 
-> > > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> > > ---
-> > >   .../interconnect/mediatek,mt8183-emi.yaml     | 76 +++++++++++++++++++
-> > >   .../interconnect/mediatek,mt8183.h            | 23 ++++++
-> > >   .../interconnect/mediatek,mt8195.h            | 44 +++++++++++
-> > >   3 files changed, 143 insertions(+)
-> > >   create mode 100644 Documentation/devicetree/bindings/interconnect/mediatek,mt8183-emi.yaml
-> > >   create mode 100644 include/dt-bindings/interconnect/mediatek,mt8183.h
-> > >   create mode 100644 include/dt-bindings/interconnect/mediatek,mt8195.h
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/interconnect/mediatek,mt8183-emi.yaml b/Documentation/devicetree/bindings/interconnect/mediatek,mt8183-emi.yaml
-> > > new file mode 100644
-> > > index 000000000000..3ad60fd21f83
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/interconnect/mediatek,mt8183-emi.yaml
-> > > @@ -0,0 +1,76 @@
-> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/interconnect/mediatek,mt8183-emi.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: MediaTek External Memory Interface (EMI) Interconnect
-> > > +
-> > > +maintainers:
-> > > +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> > > +
-> > > +description: |
-> > > +  EMI interconnect providers support system bandwidth requirements through
-> > > +  Dynamic Voltage Frequency Scaling Resource Collector (DVFSRC) hardware.
-> > > +  The provider is able to communicate with the DVFSRC through Secure Monitor
-> > > +  Call (SMC).
-> > > +
-> > > +             ICC provider         ICC Nodes
-> > > +                              ----          ----
-> > > +             _________       |CPU |   |--- |VPU |
-> > > +    _____   |         |-----  ----    |     ----
-> > > +   |     |->|  DRAM   |       ----    |     ----
-> > > +   |DRAM |->|scheduler|----- |GPU |   |--- |DISP|
-> > > +   |     |->|  (EMI)  |       ----    |     ----
-> > > +   |_____|->|_________|---.   -----   |     ----
-> > > +               /|\         `-|MMSYS|--|--- |VDEC|
-> > > +                |             -----   |     ----
-> > > +                |                     |     ----
-> > > +                | change DRAM freq    |--- |VENC|
-> > > +             --------                 |     ----
-> > > +    SMC --> | DVFSRC |                |     ----
-> > > +             --------                 |--- |IMG |
-> > > +                                      |     ----
-> > > +                                      |     ----
-> > > +                                      |--- |CAM |
-> > > +                                            ----
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - mediatek,mt8183-emi
-> > > +      - mediatek,mt8195-emi
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  '#interconnect-cells':
-> > > +    const: 1
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - '#interconnect-cells'
-> > > +
-> > > +unevaluatedProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/interconnect/mediatek,mt8195.h>
-> > > +
-> > > +    soc {
-> > > +        #address-cells = <2>;
-> > > +        #size-cells = <2>;
-> > > +
-> > > +        system-controller@10012000 {
-> > > +            compatible = "mediatek,mt8195-dvfsrc";
-> > > +            reg = <0 0x10012000 0 0x1000>;
-> > > +            #address-cells = <1>;
-> > > +            #size-cells = <0>;
-> > > +
-> > > +            emi_icc: interconnect@1 {
-> > > +                compatible = "mediatek,mt8195-emi";
-> > > +                reg = <1>;
-> > > +                #interconnect-cells = <1>;
-> > 
-> > 
-> > There's not really any need for this node. Just put #interconnect-cells
-> > in the parent.
-> > 
+On 15/04/2024 16:08, Yann Sionneau wrote:
+> Hello Krzysztof, Arnd, all,
 > 
-> Actually, I modeled it to be a subnode of the DVFSRC for multiple reasons:
+> On 1/22/23 12:54, Krzysztof Kozlowski wrote:
+>> On 20/01/2023 15:10, Yann Sionneau wrote:
+>>> From: Jules Maselbas <jmaselbas@kalray.eu>
+>>>
+>>> The Power Controller (pwr-ctrl) control cores reset and wake-up
+>>> procedure.
+>>> +
+>>> +int __init kvx_pwr_ctrl_probe(void)
+>>> +{
+>>> +	struct device_node *ctrl;
+>>> +
+>>> +	ctrl = get_pwr_ctrl_node();
+>>> +	if (!ctrl) {
+>>> +		pr_err("Failed to get power controller node\n");
+>>> +		return -EINVAL;
+>>> +	}
+>>> +
+>>> +	if (!of_device_is_compatible(ctrl, "kalray,kvx-pwr-ctrl")) {
+>>> +		pr_err("Failed to get power controller node\n");
+>> No. Drivers go to drivers, not to arch directory. This should be a
+>> proper driver instead of some fake stub doing its own driver matching.
+>> You need to rework this.
 > 
-> 1. Some SoCs have more than one interconnect on the DVFSRC (two different kinds
->    of EMI interconnect, and then also a SMI interconnect); and
+> I am working on a v3 patchset, therefore I am working on a solution for 
+> this "pwr-ctrl" driver that needs to go somewhere else than arch/kvx/.
 > 
-> 2. Some boards will want to not enable the interconnect driver because some of
->    those are not battery powered (so they just keep the knobs at full thrust
->    from the bootloader and never care scaling busses); and
-> 
-> 3. Some DVFSRC interconnect features may depend on firmware (but I'm not
->    sure which ones and which SoCs, as there are lots of SMI/EMI ICC things that
->    are not implemented yet with this series).
-> 
-> The alternative would've been to add a property to enable, or disable, the SMI ICC
-> (not present in this series), and/or one, or the other kind of EMI ICC (this series
-> implements only the simpler EMI ICC, and I keep saying "the other" because I
-> currently don't remember the name).... which is really ugly.
-> 
-> Ideas? :-)
+> The purpose of this "driver" is just to expose a void 
+> kvx_pwr_ctrl_cpu_poweron(unsigned int cpu) function, used by 
+> kernel/smpboot.c function __cpu_up() in order to start secondary CPUs in 
+> SMP config.
 
-Just provide that reasoning in the commit msg.
+I might be missing here some bigger picture and maybe my original
+comment was no appropriate, but IIUC, you might now create dependencies
+between arch code and drivers. That's also fragile.
 
-Rob
+> 
+> Doing this, on our SoC, requires writing 3 registers in a memory-mapped 
+> device named "power controller".
+> 
+> I made some researches in drivers/ but I am not sure yet what's a good 
+> place that fits what our device is doing (booting secondary CPUs).
+> 
+> * drivers/power/reset seems to be for resetting the entire SoC
+> 
+> * drivers/power/supply seems to be to control power supplies ICs/periph.
+> 
+> * drivers/reset seems to be for device reset
+> 
+> * drivers/pmdomain maybe ?
+> 
+> * drivers/soc ?
+> 
+
+Bringup of CPU? Then I would vote for here. You also have existing
+example: r9a06g032-smp.c
+
+But anyway the point is to make it clear - either it is a driver or core
+code. Not both. The original code was not looking like any other CPU
+bringup code.
+
+Best regards,
+Krzysztof
+
 
