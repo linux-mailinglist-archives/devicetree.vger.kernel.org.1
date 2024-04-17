@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-60306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A91DD8A8C0D
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 21:26:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CA788A8C18
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 21:27:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DBCF8B211E1
-	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 19:26:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9AA76B22CA8
+	for <lists+devicetree@lfdr.de>; Wed, 17 Apr 2024 19:27:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D82DA25632;
-	Wed, 17 Apr 2024 19:26:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 022722BB16;
+	Wed, 17 Apr 2024 19:27:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yD4vJBB+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dWDBrcS4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C3A524B34
-	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 19:26:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6429125619
+	for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 19:27:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713381984; cv=none; b=m7viaiPZzkamxqyvKIMSvWmnNf9lS30zdxswxHM0mfSDHBNF3X1781hA+FP7b//wQlFUSLvyZg+glpclzhJQMGM21BeVwdm/URNhofPjf8SvTIzbY3eF59Ig+lq4ZKUd7GDfn9ZmEdiO5H/ZAmUQFtJRtQ5RVGTZzNZuPindVco=
+	t=1713382042; cv=none; b=joI89LGCgFLsnTN0SqBLWdORDaFYh2dmfaKmJMUlU25ebOszPXCvS4T8QiLLSPxr/KY1xlKqywx87/0XE9Z/F6g1phdEDXGMbGgkjIYPwmP1L4jBBXw0qXew9xY0Tu2FnfWg8QzgroPW5Z+UNP3IWl8+bNSQcy0tNfbIl5nnODo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713381984; c=relaxed/simple;
-	bh=0TzEJdZ2NxceRDINkoJ2/uX5f1Kn/odwnxX/NF4rU1c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IP4J3GhnA1+iCPAmZKjeeQT5xEVdXKSd3t6oFaEVm2pQ1r7csBZPSM7PuG0GTwyHjOktGGpDFbZAStABEVzca6LIJ5MTywAQHPk/dKzz0d6k+P13hR0CbQy1mCfI4evvIH7nRTwtsd62ZdZ9Qa47QVedsGYPwp6I7VOm7Xy8S7o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yD4vJBB+; arc=none smtp.client-ip=209.85.210.176
+	s=arc-20240116; t=1713382042; c=relaxed/simple;
+	bh=aqOfVeBPswxhVCc3J6CwUOIh4JXUwQUGg780kjI9G7s=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=P955VOnsvS3KE0s3m9cygMXOkdyvA5QGqSS5qO/bSpe2vPuI4wMaWLfkoa4jAsEWlB34JdQUU3BYqFfOkCpvsY2FqUFJI92a3fSlbwfpu32AoTM+1CX8K7kpvPXVc2m+TGtv50zA2MbBbBfcJvhHLkqh1EXDfBEFf/F6RCTBB9A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dWDBrcS4; arc=none smtp.client-ip=209.85.216.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-6ecf05fd12fso134713b3a.2
-        for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 12:26:23 -0700 (PDT)
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-2a6fa7773d3so117501a91.3
+        for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 12:27:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713381983; x=1713986783; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=zojspO2lZSHjCc9gZRhsdBn+ZERiEMTcnc15s2GdMOA=;
-        b=yD4vJBB+RDSm+vP7Xcio76vgU8mp9HbIPq/3yAfd9OeUZUuhf2tRJc+sXIwYvhyIWW
-         OWofKlxD3rxJIzhQP+7Mjf2jFCaDzeJtlJKriy+UPeX+8gsRwFtU2TTQefSXhH8qsjaP
-         nF50eZgqaaTw97hMMW1O0MqmfIMO3RICSmmL9osOrIDUDony7gxbmRXmgHlbZE1AOEsx
-         BObfSOypM55WFn2YQrSxCRxoRXWK6xKcS+SfVPtQicJYv8A3azIsBcVw/IRQM/KM2vLg
-         H+q2B336mHjA/PqMaOUy0nk8kCpZKcZrXycBZToOkxAUePhkJQF8ZNTjLrViLtG5wnM2
-         EAMQ==
+        d=linaro.org; s=google; t=1713382040; x=1713986840; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :references:cc:to:from:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=SnaJGOhddJK2BKaTGnWEWd0CrbXPn1eAGhst2WKABfc=;
+        b=dWDBrcS4qOigE2N2KfTGfjhtfEuAY5oYoclREJqRBG5XEaxCZBm07rlzzPJReMiF/U
+         bTmiY2cMiNefBT+Qw6Bvh5vdcgiwI5D6HpS4cl0gxw1oQJ1eDzdj3SSS/NZY0vs3m8lW
+         7VZ2Q/0Jjgn3sf/ZW+WPJfilDPfnW3pytg1O5NqanWmqOnSwgiZDMWt7yxKDmk/5Ezjt
+         XSBLHuUIAaI7bFsCiwrIIsb4kEyvM1IR9Es/sSqBErLga/INOuC4dS4PEaVT0iYNx5Fd
+         kJjQxffgiZgXfxhFNIUqQ5VlaMGww1dFDecXMI5y+mj2WOvuDVZsGiH5gIc2QPfPPLZG
+         0D0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713381983; x=1713986783;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zojspO2lZSHjCc9gZRhsdBn+ZERiEMTcnc15s2GdMOA=;
-        b=hukmpRR3Yw2FsFWr1eyGJBw9bZNzlZRgp7i2PdHnGwelF8BIEnvomQXdLw31K+G9Eh
-         gHCHNk0LaB4/J2dVsemGyWgHaSLUwcYL2U4T9d2vYT27OpLarsjvgw0DehRGcdTZfogs
-         /3LtTxNy+/nFx6/V5TvbN6K0jO0WbxINQ60er6+GGE64IuVrPravpGUhVaf4f30mgIPe
-         NON6pYuqnreP9f/9iNkge9fEZibssmgO7fkJkpczO5MENEXm8bXowPmOW6b7nwBz4+4w
-         NOg+rjvHCVc5XtyG8YFoEqXehUfOr6fH62/BQu4SeKDgLbmN12ZpMzalzP/zcdNI5Krr
-         AzzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWE5jiqGww4Luv0IfG8XIEw4f+z2Ln+3/GOdrwjqvrNyqFDSYEk1w9g/TANAwa7OYnMRLm1+zgMdBSydw6PV4t5zFQv4Tv6qo+TeA==
-X-Gm-Message-State: AOJu0Ywhele56sEA50Io3w1jQy4R9kGwH+65p0j/fV+wSgRJtxJjApZN
-	EiLWkDLM5R54ncHvk1qZ+AKN9asn6LEqL1PW30R+octnPBRRBx6hvY9s3NU5eFo=
-X-Google-Smtp-Source: AGHT+IFqjtYlJ5fnyTEkurB6bDl0zodumgYQZIjV7B18xMiiBUVgBKV6f7SrhsQDaPlULoBKMYcOxg==
-X-Received: by 2002:a05:6a00:1146:b0:6ed:4a97:5dec with SMTP id b6-20020a056a00114600b006ed4a975decmr690567pfm.20.1713381982800;
-        Wed, 17 Apr 2024 12:26:22 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1713382040; x=1713986840;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :references:cc:to:from:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SnaJGOhddJK2BKaTGnWEWd0CrbXPn1eAGhst2WKABfc=;
+        b=VZQSRQJRwioDI/209D92vlqlhltIt3ssMtgFinD1xXj22z3MGDaHWbDQDEwb/cIZQF
+         3MJwCIOahzZrAkR+hN0MvoAzmIhF5j/eC9sG991gurlo7ijWhEelEASiBWW5xpUDYT8H
+         VkFXaAvLfSeyg3LOvv/GmlYBPAAYthhz3rephwa+UjEcJXnOeadq2+mZSTWqVzUhHUCP
+         WuJwebZ2xtT90uB7BO8XqhkS3n7vul6fUXWt+vrOMi4WVJBVWhVXcs+fA05vbROwlcGo
+         d1h0RFECqwJfG4t0IsABZ+tkSnjfUTmlPo/30DhRjbmxRuDIhsUwi5pQkueYFkiKfvX4
+         goCA==
+X-Forwarded-Encrypted: i=1; AJvYcCVgKMDxjZwd8IFnaQ/KuAphKbT3+ejqFJs4RHkonDP11Rl7O6vQBtwxWxn192iNKCmrZGCThsy2vlYNlNStROi7v4VffgnVYyhWCQ==
+X-Gm-Message-State: AOJu0YwBbXW7BYCzhZzYtu5vTgfZdQjjIF6J8o+VhlSnNqMFg1BKPhE9
+	0nQxOXN5dUaY9Ui8kBK4nI1DsAsi8UWX03rZ7yA3qnKMnsvvjT3U3M8liGxbJrw=
+X-Google-Smtp-Source: AGHT+IF8fF8MgUQZSDQuDJz+9pWnQOWBMT932iqd8T/RMY+MsdGt56ZWnoPGo8LC/LxCTjZAXjHjpA==
+X-Received: by 2002:a17:90a:3d4a:b0:2a5:fff9:686e with SMTP id o10-20020a17090a3d4a00b002a5fff9686emr368756pjf.16.1713382039768;
+        Wed, 17 Apr 2024 12:27:19 -0700 (PDT)
 Received: from [10.36.51.174] ([24.75.208.145])
-        by smtp.gmail.com with ESMTPSA id i20-20020a632214000000b005cd835182c5sm10754476pgi.79.2024.04.17.12.26.21
+        by smtp.gmail.com with ESMTPSA id y10-20020a17090ad70a00b002a63e966fd7sm10622pju.47.2024.04.17.12.27.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Apr 2024 12:26:22 -0700 (PDT)
-Message-ID: <951b34d6-f465-42f7-b39d-eedd649f3c5b@linaro.org>
-Date: Wed, 17 Apr 2024 21:26:20 +0200
+        Wed, 17 Apr 2024 12:27:19 -0700 (PDT)
+Message-ID: <884579f5-8dec-43ba-9919-a9914ea85c3f@linaro.org>
+Date: Wed, 17 Apr 2024 21:27:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,6 +79,7 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH V2 6/8] dt-bindings: clock: qcom: add bindings for gpucc
  on SM4450
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Ajit Pandey <quic_ajipan@quicinc.com>,
  Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
  <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -93,8 +94,8 @@ Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
  Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
 References: <20240416182005.75422-1-quic_ajipan@quicinc.com>
  <20240416182005.75422-7-quic_ajipan@quicinc.com>
+ <951b34d6-f465-42f7-b39d-eedd649f3c5b@linaro.org>
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -139,23 +140,27 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240416182005.75422-7-quic_ajipan@quicinc.com>
+In-Reply-To: <951b34d6-f465-42f7-b39d-eedd649f3c5b@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/04/2024 20:20, Ajit Pandey wrote:
-> Add device tree bindings for the graphics clock controller on
-> Qualcomm SM4450 platform.
+On 17/04/2024 21:26, Krzysztof Kozlowski wrote:
+> On 16/04/2024 20:20, Ajit Pandey wrote:
+>> Add device tree bindings for the graphics clock controller on
+>> Qualcomm SM4450 platform.
+>>
+>> Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
+>> ---
+>>  .../bindings/clock/qcom,sm8450-gpucc.yaml     |  2 +
+>>  include/dt-bindings/clock/qcom,sm4450-gpucc.h | 62 +++++++++++++++++++
 > 
-> Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
-> ---
->  .../bindings/clock/qcom,sm8450-gpucc.yaml     |  2 +
->  include/dt-bindings/clock/qcom,sm4450-gpucc.h | 62 +++++++++++++++++++
+> I wrote you even instruction what to do with the tag and it was still
+> ignored. Do you read the replies?
+> 
+> I give up on this, good luck.
 
-I wrote you even instruction what to do with the tag and it was still
-ignored. Do you read the replies?
-
-I give up on this, good luck.
+Uh, my bad, apologies. I un-reviewed it, so your action was correct. I
+am sorry.
 
 Best regards,
 Krzysztof
