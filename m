@@ -1,119 +1,214 @@
-Return-Path: <devicetree+bounces-60604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97D388A9C6B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 16:16:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DD008A9C8E
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 16:18:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9C291C21410
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 14:16:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4D0C28670B
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 14:18:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA10E16C683;
-	Thu, 18 Apr 2024 14:15:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3677D168AF7;
+	Thu, 18 Apr 2024 14:17:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HVizdDv9"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="0Om46ci8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16ACC168AEC;
-	Thu, 18 Apr 2024 14:15:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 923F1165FCE
+	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 14:17:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713449735; cv=none; b=p59Nze+E0kNqYaqgTX2BYE/h40I88yR5VC/NYj7jPfvN+6DKhB+EFHUaobPXfL2b3pgI/jo9YowisV/3OFmOOIeECPpp7sXwG9T6JgmKMG4QbCpapgdggcrQQkeHkytPvXvDh/iAmcR5WPhAvjy1f5vax4QfxNpuJJcHb5QnVxo=
+	t=1713449834; cv=none; b=XHCijk6MpKzLOSWIciXwY7Mj7Wfpal5L8Eq2eNjv32ArSOEKOrjmgxnUmxNogsc44Ms65ZtBJreHYg/5jwCd0ThjVwfrhqPH2oSqXfT1qIODTPCIh75FZO5zB1dfHh/c+3DQF70yJlRp1K1wVL1oZRKqzPh6bcv/pCH1IOLVQMM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713449735; c=relaxed/simple;
-	bh=D/6CKRz9vtbz2zHovt0ctEJHyndLcbRGWPyqRG8nd6E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fl7/KehBUmLWQ8pxo1yXCmQ0Mo/cAHDrta/SjAsNAJvuwF+zMwxczfLLyq41DmnGyqn+uTkm9xeKO7nMOa8okeyds1ZxGlqCHL0KIzOYGDypdhdtilbITOmtWM69qy6rBsNLLitKY4qkX9G3/VWT47WVShMEE1Zv/NqtbLlaHdw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HVizdDv9; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1713449734; x=1744985734;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=D/6CKRz9vtbz2zHovt0ctEJHyndLcbRGWPyqRG8nd6E=;
-  b=HVizdDv94qu5vTXUyvjE5Tu5dH4XGbvwfeT4JRGXyAo3lWG0EMJiYPVU
-   2kXAeZAQSV3zQ186fIH+/TaWQNQsZz0x54Hgi/XcrWttu3eV5XPKatXhU
-   lDsMqPxVK9uAPwAaUBIvW+79srIacwR+/DYJjDuT1aMXb7gnMhxkJNti2
-   v1z+Wxu8hBfJRXVGXzPqnmmAjY+p2xlPPvEHxGoGuwSnHSJbw9ZQPnMtv
-   egoSar2JZClLbfeeN7dEKg5pZJTMa4wS85Ho0Mm0+sgMqA/rQPjUyl/s5
-   Kel+21NYJWUqXAA+vfCoEBAKQJBBdanqXc8MCF2K/NeDicXWvjzWfCGoz
-   Q==;
-X-CSE-ConnectionGUID: m2xaYCfySAabwvazSZpdmQ==
-X-CSE-MsgGUID: UB0Izb9CQ2q7OtJu1pOFhQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="9169566"
-X-IronPort-AV: E=Sophos;i="6.07,212,1708416000"; 
-   d="scan'208";a="9169566"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Apr 2024 07:15:33 -0700
-X-CSE-ConnectionGUID: 4k8z2oa0T9C0tyDuLMmMKw==
-X-CSE-MsgGUID: BVXsXf+ORvyMogrEhpp6Cw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,212,1708416000"; 
-   d="scan'208";a="27773079"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Apr 2024 07:15:29 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1rxSXu-00000000Lfk-0Afm;
-	Thu, 18 Apr 2024 17:15:26 +0300
-Date: Thu, 18 Apr 2024 17:15:25 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Konstantin Pugin <rilian.la.te@ya.ru>
-Cc: Konstantin Pugin <ria.freelander@gmail.com>,
-	Vladimir Zapolskiy <vz@mleia.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Lech Perczak <lech.perczak@camlingroup.com>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] serial: sc16is7xx: Add bindings documentation for
- EXAR XR20M1172 UART
-Message-ID: <ZiEq_dXgxrRBWDSo@smile.fi.intel.com>
-References: <20240418135737.3659498-1-rilian.la.te@ya.ru>
- <20240418135737.3659498-3-rilian.la.te@ya.ru>
+	s=arc-20240116; t=1713449834; c=relaxed/simple;
+	bh=iWyHmrvi91xVl8ESknpnnskQ0bzxK0EmmpfVyEtSIeU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Z8DPSSr4vgX8l86PLm/K68FPQRQG2VF2jqNiPPen8mUZNgIdMgzZUJx529lc1C2csEXIXLJA5S8laTDVrpda0KqVO6L0mm+Mqb72ZmN0l+IS4n4LUuoRHnyobnQWi22KvczAJESwRPLBOP2PbD6+Cp+x2Vm18GvwkgQZhUi6iqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=0Om46ci8; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-418a02562b3so7527495e9.3
+        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 07:17:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1713449829; x=1714054629; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=O4qQ3BMswui5iA/lahEt8yxPrfztwgwq30rSThlaR7E=;
+        b=0Om46ci8lcC/51F8e8C+C4ioAQ5WwG9QKFAvZ1zF7jngqz2zvAn2D1dw/zSbf+Al2H
+         e2EnhI0Zcxy9Ptl4SzPA6FF+FO7Wvg73Tme5BXbG8zTYcEqF6RKl2XuiidD4t74N+sgM
+         ghTyY5D6zjmv4tODcHmPpjFz0zVechCMgKXPH9pQkoB1eo2NWINh0faXi9oj/S4WG+PK
+         Jl+Fjw4AA7YSIdhnfTIpXa3KGar4DmSnK21te1q7qJHfUQCOsTSzrXx8oxiHb7l3O6cb
+         54iFx2KmK6N8yzH8HzWKHgU5ewWok/RukXQQMhB8BOV3tKzJNuNaWTlbHwLZ2TsrXA/m
+         3Fpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713449829; x=1714054629;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=O4qQ3BMswui5iA/lahEt8yxPrfztwgwq30rSThlaR7E=;
+        b=p+13Qg/Y5+Qkv9GY7ZrgFLL+Twu1gcVlJS1Oso1QNY2BTcSXYkGTnQhR0UwKUWl3Ns
+         PvY0bGGvOMsGN1PyYqmZSbAWO6nHciJOzROUAS9UrDWFKnGursVHXtE9dHyqAo5hkJgw
+         Ymt++nZ5h67yVolktdmDbJe/A7z8zzpVcAgHt9kKv7vtxE0X/h0KzgB7O0xRrwiVVU3b
+         47a6YvEWxxhkIcYb/bYPCTdOxiJiHVdpPOS4znGi0T8KkVIag3Uv2nHt0gc6AG3TcaEB
+         xp/FZfQaSghpNwPf72KTOfgKjgJoerqpN1uwj7f4iRQNtea6yp8Rf5/7y3SZ0JgvxQXA
+         mCKg==
+X-Forwarded-Encrypted: i=1; AJvYcCVJHDjzgOyer/2byW1bvl3OA2c85nI3n1Pn+Shgs31hhlbVG9/ulliuLfMxHX/RiW8CfO42g3bt3NMV/hank0+EFEpVGgu0HQjfpQ==
+X-Gm-Message-State: AOJu0YyjqVON+xKK33U1s1JwjVOScnrKsJSFn5a6pnGnjuDtTCETU2Hp
+	HKHL3iCfVoI1vMnbEVcpq+HjRXnzzxJvi64gooAgjlbwtL6GUbAVCP/mEPHySq0=
+X-Google-Smtp-Source: AGHT+IGVpb9Ci2p5M2/Njc+fC5gHT3nWfNz2iG6ShInHy82wcrtLmmoA8+qGrmtDPDbBpbRZRHxZLQ==
+X-Received: by 2002:a05:600c:1d9f:b0:418:fb6f:5fb3 with SMTP id p31-20020a05600c1d9f00b00418fb6f5fb3mr231339wms.3.1713449828814;
+        Thu, 18 Apr 2024 07:17:08 -0700 (PDT)
+Received: from [127.0.1.1] ([93.5.22.158])
+        by smtp.googlemail.com with ESMTPSA id i9-20020a05600c354900b004180c6a26b4sm6267510wmq.1.2024.04.18.07.17.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Apr 2024 07:17:08 -0700 (PDT)
+From: Alexandre Mergnat <amergnat@baylibre.com>
+Subject: [PATCH v3 00/17] Add display support for the MT8365-EVK board
+Date: Thu, 18 Apr 2024 16:16:48 +0200
+Message-Id: <20231023-display-support-v3-0-53388f3ed34b@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240418135737.3659498-3-rilian.la.te@ya.ru>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFErIWYC/4WNyw7CIBREf8WwFsOjrejK/zAugF7tTWohgMSm6
+ b8LXZoYF7M4k8yZhUQICJGcdwsJkDGimwrI/Y7YQU8PoNgXJoIJyUtoj9GPeqbx5b0Lidqu4cp
+ IBg0/kbIyOgI1QU92qLsEMfHa+wB3fG9P11vhAWNyYd6OM6/t74/MKaOtVR2DvrVSmovR84gmw
+ MG6J6m6LP4oRFFIaUGprjFCHL8U67p+AJXgYVoMAQAA
+To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Jitao Shi <jitao.shi@mediatek.com>, CK Hu <ck.hu@mediatek.com>, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Fabien Parent <fparent@baylibre.com>, 
+ Markus Schneider-Pargmann <msp@baylibre.com>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org, 
+ linux-clk@vger.kernel.org, Alexandre Mergnat <amergnat@baylibre.com>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4094; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=iWyHmrvi91xVl8ESknpnnskQ0bzxK0EmmpfVyEtSIeU=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBmIStiDXn1Y76NsQCVXp2PgP1cU00kHkVfB6KmCx1+
+ ZS5ACLWJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZiErYgAKCRArRkmdfjHURZacD/
+ wNigbamUMpZ+kDSd8kSTVcAUnAHnBfhlQxARr20EYEsdJvr0dxAvYPFGzqy7D3V9JymwmbVdCSWV5v
+ AmBgZO0Y+9lq0n+HHvGunQdRPjD6FeZkk5FOR93No/AdVsjkEisrZiZfUorTmIUe2jFLEZBY1PjKWp
+ cq8eKYi7OQr2jjzgWEQTCwz4c2peq+05lAG8EBGa65mZiGR1At2etEN/mFE9L+KSBHrD3ye6Xhb9rX
+ RePvXJTY8g4Ei5f3OIlYTyMXKbFBqhXYWfnIerD99LnhCqP8phhK4R9GPMM1FgzEKXaHhsarHj/hU5
+ 3G3dlhjbCy8zbHehVNeoDW6dYE8XLyGSxcsmvkoP8mk0u6QSmPYeddRqNjBiiiB8Dyt3+Gw2gfWZiA
+ 9brSdizNF3kil+S7N/MOyueiFY5+TNOf/LHgamwQuVP8tvpr1GKcMNM/CuB0pHIV93cCJPwORGHoUX
+ YsVflyh1cjCYKeoM9HtjNht4psmHG7gQyJA4XQ6+2BzwAaO7sYjGvVY5b0rlYakZjENpKjMTGsjhdV
+ SK0hiEfDk+Lg628vPNfN9cNoRF8tGIFHbtIyi8DUpHYzFNdpnALxR+JIKA65JIrjnNuj+C7zO6O3x7
+ l7B1vhm0t8sNymp0uo5e2+CY2fbcUuqEnAQOMRq41K74P7V1VirFehKL7WLA==
+X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
+ fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
 
-On Thu, Apr 18, 2024 at 04:57:33PM +0300, Konstantin Pugin wrote:
-> From: Konstantin Pugin <ria.freelander@gmail.com>
-> 
-> This patch adds the devicetree documentation for the XR20M1172 UART.
+The purpose of this series is to add the display support for the mt8365-evk.
 
-Submitting Patches document says something about "imperative mood", please
-read that document in full anyway as it has a lot of nice requirements and
-recommendations.
+This is the list of HWs / IPs support added:
+- Connectors (HW):
+  - HDMI
+  - MIPI DSI (Mobile Industry Processor Interface Display Serial Interface)
+- HDMI bridge (it66121)
+- DSI pannel (startek,kd070fhfid015)
+- SoC display blocks (IP):
+  - OVL0 (Overlay)
+  - RDMA0 (Data Path Read DMA)
+  - Color0
+  - CCorr0 (Color Correction)
+  - AAL0 (Adaptive Ambient Light)
+  - GAMMA0
+  - Dither0
+  - DSI0 (Display Serial Interface)
+  - RDMA1 (Data Path Read DMA)
+  - DPI0 (Display Parallel Interface)
 
-...
+The Mediatek DSI, DPI and DRM drivers are also improved.
 
->        - nxp,sc16is752
->        - nxp,sc16is760
->        - nxp,sc16is762
-> +      - exar,xr20m1172
+Regards,
+Alex
 
-Wouldn't it be better to keep it alphabetically ordered (at least avoid
-bringing more chaos if it's not ordered originally)?
+Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+---
+Changes in v3:
+- Drop "drm/mediatek: add mt8365 dpi support" because it's the same
+  config as mt8192 SoC
+- Drop "dt-bindings: pwm: mediatek,pwm-disp: add power-domains property"
+  because an equivalent patch has been merge already.
+- Add DPI clock fix in a separate commit.
+- Improve DTS(I) readability.
+- Link to v2: https://lore.kernel.org/r/20231023-display-support-v2-0-33ce8864b227@baylibre.com
 
+Changes in v2:
+- s/binding/compatible/ in commit messages/titles.
+- Improve commit messages as Conor suggest.
+- pwm-disp: Set power domain property for MT8365. This one is optionnal
+  and can be used for other SoC.
+- Fix mediatek,dsi.yaml issue.
+- Remove the extra clock in the DPI node/driver and fix the dpi clock
+  parenting to be consistent with the DPI clock assignement.
+- Link to v1: https://lore.kernel.org/r/20231023-display-support-v1-0-5c860ed5c33b@baylibre.com
+
+---
+Alexandre Mergnat (15):
+      dt-bindings: display: mediatek: aal: add compatible for MT8365 SoC
+      dt-bindings: display: mediatek: ccorr: add compatible for MT8365 SoC
+      dt-bindings: display: mediatek: color: add compatible for MT8365 SoC
+      dt-bindings: display: mediatek: dither: add compatible for MT8365 SoC
+      dt-bindings: display: mediatek: dsi: add compatible for MT8365 SoC
+      dt-bindings: display: mediatek: dpi: add compatible for MT8365
+      dt-bindings: display: mediatek: gamma: add compatible for MT8365 SoC
+      dt-bindings: display: mediatek: ovl: add compatible for MT8365 SoC
+      dt-bindings: display: mediatek: rdma: add compatible for MT8365 SoC
+      dt-bindings: pwm: mediatek,pwm-disp: add compatible for mt8365 SoC
+      clk: mediatek: mt8365-mm: fix DPI0 parent
+      drm/mediatek: dsi: Improves the DSI lane setup robustness
+      arm64: defconfig: enable display connector support
+      arm64: dts: mediatek: add display blocks support for the MT8365 SoC
+      arm64: dts: mediatek: add display support for mt8365-evk
+
+Fabien Parent (2):
+      dt-bindings: display: mediatek: dpi: add power-domains property
+      drm/mediatek: add MT8365 SoC support
+
+ .../bindings/display/mediatek/mediatek,aal.yaml    |   1 +
+ .../bindings/display/mediatek/mediatek,ccorr.yaml  |   3 +
+ .../bindings/display/mediatek/mediatek,color.yaml  |   1 +
+ .../bindings/display/mediatek/mediatek,dither.yaml |   1 +
+ .../bindings/display/mediatek/mediatek,dpi.yaml    |   9 ++
+ .../bindings/display/mediatek/mediatek,dsi.yaml    |   1 +
+ .../bindings/display/mediatek/mediatek,gamma.yaml  |   1 +
+ .../bindings/display/mediatek/mediatek,ovl.yaml    |   1 +
+ .../bindings/display/mediatek/mediatek,rdma.yaml   |   1 +
+ .../devicetree/bindings/pwm/mediatek,pwm-disp.yaml |   1 +
+ arch/arm64/boot/dts/mediatek/mt8365-evk.dts        | 180 +++++++++++++++++++++
+ arch/arm64/boot/dts/mediatek/mt8365.dtsi           | 133 +++++++++++++++
+ arch/arm64/configs/defconfig                       |   1 +
+ drivers/clk/mediatek/clk-mt8365-mm.c               |   2 +-
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c             |  30 ++++
+ drivers/gpu/drm/mediatek/mtk_dsi.c                 |   2 +
+ 16 files changed, 367 insertions(+), 1 deletion(-)
+---
+base-commit: be0c499a5c5ff8eab746f36e2aa1e920edcb7e37
+change-id: 20231023-display-support-c6418b30e419
+
+Best regards,
 -- 
-With Best Regards,
-Andy Shevchenko
-
+Alexandre Mergnat <amergnat@baylibre.com>
 
 
