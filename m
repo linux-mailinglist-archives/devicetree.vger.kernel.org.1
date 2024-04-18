@@ -1,427 +1,122 @@
-Return-Path: <devicetree+bounces-60631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 305308A9D1D
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 16:30:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AD458A9D33
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 16:34:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B19FA1F24624
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 14:30:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CB3831C213FA
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 14:34:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A90016DEB6;
-	Thu, 18 Apr 2024 14:27:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="3MZjJB0p"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FFF76E61A;
+	Thu, 18 Apr 2024 14:34:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF34816D4CA
-	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 14:27:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 213E9168AE6;
+	Thu, 18 Apr 2024 14:34:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713450441; cv=none; b=LE8dVsAlfaaHRZcV+uzPR0HBRgi7T6VICWFIsbxRqanY6jikzo88vX3OT0zDsn1Bhm2dpGOUksb0sSbP5eOnKcokBn2RO1T8XffbFooz0lEAjiB3bTVOGbUJcSgRvpwYjtLXjXevkkOvBdJih2EBHbXxyUIOI1ldEz20vDeFZSs=
+	t=1713450883; cv=none; b=VTaxoLAT5hivtVC/pso3rTaLlA48szlw1j8TWnieCQKwfNfNSGv5hLxqp1gZQmTlir6wMI0Zab07l/ARZZO3bR1D267EaA71K0Hn2grtGZLbWjP/Sfme1gkUM0xR+O54Vg3+G9E8ZhHTgy7y37atUVRxRLjSQEJzdozgkDcxD1A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713450441; c=relaxed/simple;
-	bh=UNrY7ZJ8C+87BdlHqGuS8vMwNElY+SOB7mPxe2CzPOw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QmSbY3p7Ut+QAWNfxilKkl/9QdIwv/L7RtWErQEBhbZ6FbNv+fd0MC2Z57Hm/kpCFUfz9orFmM/F2b7lSbGLByLpdPVz4fhZ4JOCXoQnXmeu0RxbdmIl9xBTVKJjpgRwtoDrWuMk+EIqvfLlxII4tX/5F3TKBdrd8/du2FUsYLk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=3MZjJB0p; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-34801b1bc4aso170237f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 07:27:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1713450437; x=1714055237; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ux6Z0dvHS0AaHNoD8WJhlnEKIxWvWWXWdBe+6rPnELc=;
-        b=3MZjJB0pWmx/OSPyEgGXXLZNAsETw4gjaia2ZieZZ1Ruxa+PUWIa39m4gY3qA3il11
-         sNvuKyp8UaChSogJp1YpgyTDBya/Sn/CEDSaviPmoHaHBm2mS8kIfyriXYtYOlSEzlbo
-         3PEWWiB3uBcxJt5ESGWwWjWPQ01kycjumCd+QptXLXtljutMaJ1BqMD153SXohP/eiK3
-         mnJPgSeY8UpC4TKQL/VuOkKwoiBYcY4EoAckxpU7gtoxIAnAxW30toCbI3KOtG5rIco1
-         0EGGvi1ONMEb/LzVubWEQmkZ9QRLHlsVHdZxzQgVBQSstiDjhMwjkOcV09FCo1L4hpNQ
-         Ee2w==
+	s=arc-20240116; t=1713450883; c=relaxed/simple;
+	bh=lFEhPvk18dl4N7zV23MlFHhVbDsGmOEDL6eGyAMEQRw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sO/3qoMGAB7Aat2O242Ac8e8Zvt4pl3pHjGyj40NxAbt1W0T2fKcgrlFkPCOj6AMA9MfkEe7CytazMBIPt8NdLOVkXjeLu8qPRepWiumJxWwb23rKzMgU8RsO180zk8guTIEewLU9QfypX9rl5lFS2VAArXCJW5KyVhtoftDsQg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-de466c641aaso745120276.3;
+        Thu, 18 Apr 2024 07:34:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713450437; x=1714055237;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1713450877; x=1714055677;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ux6Z0dvHS0AaHNoD8WJhlnEKIxWvWWXWdBe+6rPnELc=;
-        b=oiC9jNm7u5O+XLeWym/oWZxdXYxmS8W1UnTipaCDDG2a3IhwqkuGZmpoKKpXpHo/uz
-         Y6wwzkC5GopH7GsUUC6gXer4+IhtZOhM0ndNrBzjnjf85x+aFdJhx/Yfo+Mh3WiLYOb7
-         Kd1+nG1vZANHY+Hn8V5pcBKUcJS3nMDnMxj0lXiSsU8cPLThE4wsYGl6l2ibO0ZiLCQH
-         /UnlLMBWXB3Ujz9VCrqTlqMzOEeyd7AULRT+nuSHRfGg5yyNJnxAUsAwvZj0wwHg+nmC
-         N/thUNtfuVaN4XByevU6oHDuxUT0B2EMSURPF+QcbhqLenC4Odho2Scr0trgKzdM8TiS
-         6Wpg==
-X-Forwarded-Encrypted: i=1; AJvYcCVyK/IygkGOD+WSIE6fcZFN9VIg/Wsa5sYjsPplnOJ0xHjQmUxQRiUjTRJkMW9qq2IaY9uqePbaE3TDu9X/saR+R2eJ26gm1RE1gw==
-X-Gm-Message-State: AOJu0YxN+QaIA6duo1D/0vZSOSL35VBtUYv/8Il8T4f7ooMbrnVCxuIf
-	mTjwiZ0ZaPkgDvnSgo/iAWwMtKGt9r0ufX7j4/t/x8HJ7GlO8OFGxZNDjw4o+vo=
-X-Google-Smtp-Source: AGHT+IGBKkRXPRGYPrNf2xynAaVp5CuMPioqb/sz3tcbUIZ90ojHCdGDsQ+aqJS0cvtdtDhHjXauZw==
-X-Received: by 2002:a05:600c:5101:b0:416:a773:7d18 with SMTP id o1-20020a05600c510100b00416a7737d18mr2062486wms.0.1713450437373;
-        Thu, 18 Apr 2024 07:27:17 -0700 (PDT)
-Received: from carbon-x1.. ([2a01:e0a:999:a3a0:7b64:4d1d:16d8:e38b])
-        by smtp.gmail.com with ESMTPSA id v10-20020a05600c470a00b00418a386c059sm2873645wmo.42.2024.04.18.07.27.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Apr 2024 07:27:16 -0700 (PDT)
-From: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>
-To: Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Anup Patel <anup@brainfault.org>,
-	Atish Patra <atishp@atishpatra.org>
-Cc: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	kvm@vger.kernel.org,
-	kvm-riscv@lists.infradead.org,
-	Ved Shanbhogue <ved@rivosinc.com>
-Subject: [RFC PATCH 7/7] RISC-V: KVM: add support for double trap exception
-Date: Thu, 18 Apr 2024 16:26:46 +0200
-Message-ID: <20240418142701.1493091-8-cleger@rivosinc.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240418142701.1493091-1-cleger@rivosinc.com>
-References: <20240418142701.1493091-1-cleger@rivosinc.com>
+        bh=l4qMhjuBqY7JwfLnRM9VZooBQ1VsIWFaDYIE/bOR1ec=;
+        b=sDjOKojwqlbIe56AGxzofrEOLgR2pVCALmKM77/aXaepNHQMgOss9ayi6h14znWmAT
+         V75CevMZlq+TboFzhV6Q7P4Za3aLXqhqtqf+x5l6g+DwP61LjAkFAIziJYojImZLeoSb
+         RYfd4hRrjkpRjL03nvE3o2p/0+eSHc8Vyg0aGwKYfBlnHPNic2sA0IIX29/3rTCio6lk
+         pqtL9jYlWsEKpsTG/MNL/siCac1eKbe+rvyv38apvFOwIdUIl1rjcPN/6jnB6ORRW+Tf
+         aLJJ+yZaro3kmHevV6AwQXm0Y/yh8epW9U3GWaHeu0u3muAAmRKpRW3xBY65vZm+f3Ed
+         69jQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUCjlIKidWJXE7MnXVGsMemAXoysk3UI252eoH9x3kzH0IB6zYnRcAsMKXKP4Cw116breijCyxJjw3S3WYKi8dpiEhhqWNgZRJqfdVBYx9wi3+nfCAThG5OJAXLo3jn28XYZJetVcOZ7plhbSBG5xG648wwavJv4F9R9JTwW9Kn4UvqVX0SsMyTkQmV
+X-Gm-Message-State: AOJu0Yxek1vEesbPpg+5/T2nMBpE2wjcbWwK24Eit5VyJpysG13haSNp
+	9ZZTZ58CKkR9nWKXkbwum0WVaCGuYjG/J/Otf4no1v+Kt2t38qvUHArtXjvU
+X-Google-Smtp-Source: AGHT+IFH+s1XB4/ulKiA43Bo/LRnLJ9TxopCHKWiSVlnWoryyJkwzCeGE+kzyAVPfHHlK99bJAyR6Q==
+X-Received: by 2002:a5b:18c:0:b0:dc7:5cb3:256a with SMTP id r12-20020a5b018c000000b00dc75cb3256amr2937512ybl.42.1713450876832;
+        Thu, 18 Apr 2024 07:34:36 -0700 (PDT)
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com. [209.85.128.170])
+        by smtp.gmail.com with ESMTPSA id t1-20020a056902124100b00dc254858399sm376653ybu.2.2024.04.18.07.34.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Apr 2024 07:34:36 -0700 (PDT)
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-6150670d372so8653337b3.1;
+        Thu, 18 Apr 2024 07:34:36 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV6Lzg7yo8mZcB/lkuVxKS4grXI84mw/+vYIgwOqkue5KxmUHrOOvTqDxWJ4G7ieKepjthtMffnlwl9H90QLdzCWliD7bi8T2+kLweBActyzuVCRpj0+w9Fm/2bMe+NIgG5sOV5n9GtgeZvlU0Ta+P7h/Sn3IUjx4C5iH9UO+I45ppXneA5X60U9mgt
+X-Received: by 2002:a25:df11:0:b0:de4:16b0:c8f6 with SMTP id
+ w17-20020a25df11000000b00de416b0c8f6mr2918064ybg.14.1713450876072; Thu, 18
+ Apr 2024 07:34:36 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20240403203503.634465-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240403203503.634465-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240403203503.634465-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 18 Apr 2024 16:34:23 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWUooMrm2GjGwoK4xo-BfOmX+mwvT-62KHqPcCg8kBMEw@mail.gmail.com>
+Message-ID: <CAMuHMdWUooMrm2GjGwoK4xo-BfOmX+mwvT-62KHqPcCg8kBMEw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: interrupt-controller:
+ renesas,rzg2l-irqc: Document RZ/Five SoC
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-When a double trap exception is generated from VS-mode, it should be
-delivered to M-mode which might redirect it to S-mode. Currently, the
-kvm double trap exception handling simply prints an error and returns
--EOPNOTSUPP to stop VM execution. In future, this might use KVM SBI SSE
-extension implementation to actually send an SSE event to the guest VM.
+On Wed, Apr 3, 2024 at 10:36=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
+om> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Document RZ/Five (R9A07G043F) IRQC bindings. The IRQC block on the RZ/Fiv=
+e
+> SoC is almost identical to the one found on the RZ/G2L SoC, with the only
+> difference being that it has additional mask control registers for
+> NMI/IRQ/TINT.
+>
+> Hence new compatible string "renesas,r9a07g043f-irqc" is added for RZ/Fiv=
+e
+> SoC.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v1->v2
+> - Dropped the checks for interrupts as its already handled
+> - Added SoC specific compat string
 
-Signed-off-by: Clément Léger <cleger@rivosinc.com>
----
- arch/riscv/include/asm/kvm_host.h |  7 ++++---
- arch/riscv/include/uapi/asm/kvm.h |  1 +
- arch/riscv/kvm/vcpu.c             | 23 +++++++++------------
- arch/riscv/kvm/vcpu_exit.c        | 33 +++++++++++++++++++++++++------
- arch/riscv/kvm/vcpu_insn.c        | 15 +++++---------
- arch/riscv/kvm/vcpu_onereg.c      |  2 ++
- arch/riscv/kvm/vcpu_sbi.c         |  4 +---
- arch/riscv/kvm/vcpu_switch.S      | 19 +++++++++++++++---
- 8 files changed, 65 insertions(+), 39 deletions(-)
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-diff --git a/arch/riscv/include/asm/kvm_host.h b/arch/riscv/include/asm/kvm_host.h
-index be60aaa07f57..1d699bf44c45 100644
---- a/arch/riscv/include/asm/kvm_host.h
-+++ b/arch/riscv/include/asm/kvm_host.h
-@@ -358,12 +358,13 @@ unsigned long kvm_riscv_vcpu_unpriv_read(struct kvm_vcpu *vcpu,
- 					 bool read_insn,
- 					 unsigned long guest_addr,
- 					 struct kvm_cpu_trap *trap);
--void kvm_riscv_vcpu_trap_redirect(struct kvm_vcpu *vcpu,
--				  struct kvm_cpu_trap *trap);
-+int kvm_riscv_vcpu_trap_redirect(struct kvm_vcpu *vcpu,
-+				 struct kvm_cpu_trap *trap);
- int kvm_riscv_vcpu_exit(struct kvm_vcpu *vcpu, struct kvm_run *run,
- 			struct kvm_cpu_trap *trap);
- 
--void __kvm_riscv_switch_to(struct kvm_vcpu_arch *vcpu_arch);
-+void __kvm_riscv_switch_to(struct kvm_vcpu_arch *vcpu_arch,
-+			   struct kvm_cpu_trap *trap);
- 
- void kvm_riscv_vcpu_setup_isa(struct kvm_vcpu *vcpu);
- unsigned long kvm_riscv_vcpu_num_regs(struct kvm_vcpu *vcpu);
-diff --git a/arch/riscv/include/uapi/asm/kvm.h b/arch/riscv/include/uapi/asm/kvm.h
-index fa3097da91c0..323f4e8380d2 100644
---- a/arch/riscv/include/uapi/asm/kvm.h
-+++ b/arch/riscv/include/uapi/asm/kvm.h
-@@ -166,6 +166,7 @@ enum KVM_RISCV_ISA_EXT_ID {
- 	KVM_RISCV_ISA_EXT_ZVFH,
- 	KVM_RISCV_ISA_EXT_ZVFHMIN,
- 	KVM_RISCV_ISA_EXT_ZFA,
-+	KVM_RISCV_ISA_EXT_SSDBLTRP,
- 	KVM_RISCV_ISA_EXT_MAX,
- };
- 
-diff --git a/arch/riscv/kvm/vcpu.c b/arch/riscv/kvm/vcpu.c
-index 461ef60d4eda..89e663defe14 100644
---- a/arch/riscv/kvm/vcpu.c
-+++ b/arch/riscv/kvm/vcpu.c
-@@ -121,6 +121,8 @@ int kvm_arch_vcpu_create(struct kvm_vcpu *vcpu)
- 	/* Setup reset state of shadow SSTATUS and HSTATUS CSRs */
- 	cntx = &vcpu->arch.guest_reset_context;
- 	cntx->sstatus = SR_SPP | SR_SPIE;
-+	if (riscv_isa_extension_available(vcpu->arch.isa, SSDBLTRP))
-+		cntx->sstatus |= SR_SDT;
- 	cntx->hstatus = 0;
- 	cntx->hstatus |= HSTATUS_VTW;
- 	cntx->hstatus |= HSTATUS_SPVP;
-@@ -579,6 +581,9 @@ void kvm_arch_vcpu_put(struct kvm_vcpu *vcpu)
- 	csr->hvip = csr_read(CSR_HVIP);
- 	csr->vsatp = csr_read(CSR_VSATP);
- 	cfg->hedeleg = csr_read(CSR_HEDELEG);
-+	cfg->henvcfg = csr_read(CSR_HENVCFG);
-+	if (IS_ENABLED(CONFIG_32BIT))
-+		cfg->henvcfg = csr_read(CSR_HENVCFGH) << 32;
- }
- 
- static void kvm_riscv_check_vcpu_requests(struct kvm_vcpu *vcpu)
-@@ -670,11 +675,12 @@ static __always_inline void kvm_riscv_vcpu_swap_in_host_state(struct kvm_vcpu *v
-  * This must be noinstr as instrumentation may make use of RCU, and this is not
-  * safe during the EQS.
-  */
--static void noinstr kvm_riscv_vcpu_enter_exit(struct kvm_vcpu *vcpu)
-+static void noinstr kvm_riscv_vcpu_enter_exit(struct kvm_vcpu *vcpu,
-+					      struct kvm_cpu_trap *trap)
- {
- 	kvm_riscv_vcpu_swap_in_guest_state(vcpu);
- 	guest_state_enter_irqoff();
--	__kvm_riscv_switch_to(&vcpu->arch);
-+	__kvm_riscv_switch_to(&vcpu->arch, trap);
- 	vcpu->arch.last_exit_cpu = vcpu->cpu;
- 	guest_state_exit_irqoff();
- 	kvm_riscv_vcpu_swap_in_host_state(vcpu);
-@@ -789,22 +795,11 @@ int kvm_arch_vcpu_ioctl_run(struct kvm_vcpu *vcpu)
- 
- 		guest_timing_enter_irqoff();
- 
--		kvm_riscv_vcpu_enter_exit(vcpu);
-+		kvm_riscv_vcpu_enter_exit(vcpu, &trap);
- 
- 		vcpu->mode = OUTSIDE_GUEST_MODE;
- 		vcpu->stat.exits++;
- 
--		/*
--		 * Save SCAUSE, STVAL, HTVAL, and HTINST because we might
--		 * get an interrupt between __kvm_riscv_switch_to() and
--		 * local_irq_enable() which can potentially change CSRs.
--		 */
--		trap.sepc = vcpu->arch.guest_context.sepc;
--		trap.scause = csr_read(CSR_SCAUSE);
--		trap.stval = csr_read(CSR_STVAL);
--		trap.htval = csr_read(CSR_HTVAL);
--		trap.htinst = csr_read(CSR_HTINST);
--
- 		/* Syncup interrupts state with HW */
- 		kvm_riscv_vcpu_sync_interrupts(vcpu);
- 
-diff --git a/arch/riscv/kvm/vcpu_exit.c b/arch/riscv/kvm/vcpu_exit.c
-index 2415722c01b8..892c6df97eaf 100644
---- a/arch/riscv/kvm/vcpu_exit.c
-+++ b/arch/riscv/kvm/vcpu_exit.c
-@@ -126,17 +126,34 @@ unsigned long kvm_riscv_vcpu_unpriv_read(struct kvm_vcpu *vcpu,
- 	return val;
- }
- 
-+static int kvm_riscv_double_trap(struct kvm_vcpu *vcpu,
-+				 struct kvm_cpu_trap *trap)
-+{
-+	pr_err("Guest double trap");
-+	/* TODO: Implement SSE support */
-+
-+	return -EOPNOTSUPP;
-+}
-+
- /**
-  * kvm_riscv_vcpu_trap_redirect -- Redirect trap to Guest
-  *
-  * @vcpu: The VCPU pointer
-  * @trap: Trap details
-  */
--void kvm_riscv_vcpu_trap_redirect(struct kvm_vcpu *vcpu,
--				  struct kvm_cpu_trap *trap)
-+int kvm_riscv_vcpu_trap_redirect(struct kvm_vcpu *vcpu,
-+				 struct kvm_cpu_trap *trap)
- {
- 	unsigned long vsstatus = csr_read(CSR_VSSTATUS);
- 
-+	if (riscv_isa_extension_available(vcpu->arch.isa, SSDBLTRP)) {
-+		if (vsstatus & SR_SDT)
-+			return kvm_riscv_double_trap(vcpu, trap);
-+
-+		/* Set Double Trap bit to enable double trap detection */
-+		vsstatus |= SR_SDT;
-+	}
-+
- 	/* Change Guest SSTATUS.SPP bit */
- 	vsstatus &= ~SR_SPP;
- 	if (vcpu->arch.guest_context.sstatus & SR_SPP)
-@@ -163,6 +180,8 @@ void kvm_riscv_vcpu_trap_redirect(struct kvm_vcpu *vcpu,
- 
- 	/* Set Guest privilege mode to supervisor */
- 	vcpu->arch.guest_context.sstatus |= SR_SPP;
-+
-+	return 1;
- }
- 
- /*
-@@ -185,10 +204,8 @@ int kvm_riscv_vcpu_exit(struct kvm_vcpu *vcpu, struct kvm_run *run,
- 	case EXC_INST_ILLEGAL:
- 	case EXC_LOAD_MISALIGNED:
- 	case EXC_STORE_MISALIGNED:
--		if (vcpu->arch.guest_context.hstatus & HSTATUS_SPV) {
--			kvm_riscv_vcpu_trap_redirect(vcpu, trap);
--			ret = 1;
--		}
-+		if (vcpu->arch.guest_context.hstatus & HSTATUS_SPV)
-+			ret = kvm_riscv_vcpu_trap_redirect(vcpu, trap);
- 		break;
- 	case EXC_VIRTUAL_INST_FAULT:
- 		if (vcpu->arch.guest_context.hstatus & HSTATUS_SPV)
-@@ -204,6 +221,10 @@ int kvm_riscv_vcpu_exit(struct kvm_vcpu *vcpu, struct kvm_run *run,
- 		if (vcpu->arch.guest_context.hstatus & HSTATUS_SPV)
- 			ret = kvm_riscv_vcpu_sbi_ecall(vcpu, run);
- 		break;
-+	case EXC_DOUBLE_TRAP:
-+		if (vcpu->arch.guest_context.hstatus & HSTATUS_SPV)
-+			ret = kvm_riscv_double_trap(vcpu, trap);
-+		break;
- 	default:
- 		break;
- 	}
-diff --git a/arch/riscv/kvm/vcpu_insn.c b/arch/riscv/kvm/vcpu_insn.c
-index 7a6abed41bc1..050e811204f2 100644
---- a/arch/riscv/kvm/vcpu_insn.c
-+++ b/arch/riscv/kvm/vcpu_insn.c
-@@ -159,9 +159,8 @@ static int truly_illegal_insn(struct kvm_vcpu *vcpu, struct kvm_run *run,
- 	utrap.stval = insn;
- 	utrap.htval = 0;
- 	utrap.htinst = 0;
--	kvm_riscv_vcpu_trap_redirect(vcpu, &utrap);
- 
--	return 1;
-+	return kvm_riscv_vcpu_trap_redirect(vcpu, &utrap);
- }
- 
- static int truly_virtual_insn(struct kvm_vcpu *vcpu, struct kvm_run *run,
-@@ -175,9 +174,8 @@ static int truly_virtual_insn(struct kvm_vcpu *vcpu, struct kvm_run *run,
- 	utrap.stval = insn;
- 	utrap.htval = 0;
- 	utrap.htinst = 0;
--	kvm_riscv_vcpu_trap_redirect(vcpu, &utrap);
- 
--	return 1;
-+	return kvm_riscv_vcpu_trap_redirect(vcpu, &utrap);
- }
- 
- /**
-@@ -422,8 +420,7 @@ int kvm_riscv_vcpu_virtual_insn(struct kvm_vcpu *vcpu, struct kvm_run *run,
- 							  &utrap);
- 			if (utrap.scause) {
- 				utrap.sepc = ct->sepc;
--				kvm_riscv_vcpu_trap_redirect(vcpu, &utrap);
--				return 1;
-+				return kvm_riscv_vcpu_trap_redirect(vcpu, &utrap);
- 			}
- 		}
- 		if (INSN_IS_16BIT(insn))
-@@ -478,8 +475,7 @@ int kvm_riscv_vcpu_mmio_load(struct kvm_vcpu *vcpu, struct kvm_run *run,
- 		if (utrap.scause) {
- 			/* Redirect trap if we failed to read instruction */
- 			utrap.sepc = ct->sepc;
--			kvm_riscv_vcpu_trap_redirect(vcpu, &utrap);
--			return 1;
-+			return kvm_riscv_vcpu_trap_redirect(vcpu, &utrap);
- 		}
- 		insn_len = INSN_LEN(insn);
- 	}
-@@ -604,8 +600,7 @@ int kvm_riscv_vcpu_mmio_store(struct kvm_vcpu *vcpu, struct kvm_run *run,
- 		if (utrap.scause) {
- 			/* Redirect trap if we failed to read instruction */
- 			utrap.sepc = ct->sepc;
--			kvm_riscv_vcpu_trap_redirect(vcpu, &utrap);
--			return 1;
-+			return kvm_riscv_vcpu_trap_redirect(vcpu, &utrap);
- 		}
- 		insn_len = INSN_LEN(insn);
- 	}
-diff --git a/arch/riscv/kvm/vcpu_onereg.c b/arch/riscv/kvm/vcpu_onereg.c
-index 5f7355e96008..fece0043871c 100644
---- a/arch/riscv/kvm/vcpu_onereg.c
-+++ b/arch/riscv/kvm/vcpu_onereg.c
-@@ -36,6 +36,7 @@ static const unsigned long kvm_isa_ext_arr[] = {
- 	/* Multi letter extensions (alphabetically sorted) */
- 	KVM_ISA_EXT_ARR(SMSTATEEN),
- 	KVM_ISA_EXT_ARR(SSAIA),
-+	KVM_ISA_EXT_ARR(SSDBLTRP),
- 	KVM_ISA_EXT_ARR(SSTC),
- 	KVM_ISA_EXT_ARR(SVINVAL),
- 	KVM_ISA_EXT_ARR(SVNAPOT),
-@@ -153,6 +154,7 @@ static bool kvm_riscv_vcpu_isa_disable_allowed(unsigned long ext)
- 	case KVM_RISCV_ISA_EXT_ZVKSED:
- 	case KVM_RISCV_ISA_EXT_ZVKSH:
- 	case KVM_RISCV_ISA_EXT_ZVKT:
-+	case KVM_RISCV_ISA_EXT_SSDBLTRP:
- 		return false;
- 	/* Extensions which can be disabled using Smstateen */
- 	case KVM_RISCV_ISA_EXT_SSAIA:
-diff --git a/arch/riscv/kvm/vcpu_sbi.c b/arch/riscv/kvm/vcpu_sbi.c
-index 76901f0f34b7..b839d578dc26 100644
---- a/arch/riscv/kvm/vcpu_sbi.c
-+++ b/arch/riscv/kvm/vcpu_sbi.c
-@@ -456,10 +456,8 @@ int kvm_riscv_vcpu_sbi_ecall(struct kvm_vcpu *vcpu, struct kvm_run *run)
- 
- 	/* Handle special error cases i.e trap, exit or userspace forward */
- 	if (sbi_ret.utrap->scause) {
--		/* No need to increment sepc or exit ioctl loop */
--		ret = 1;
- 		sbi_ret.utrap->sepc = cp->sepc;
--		kvm_riscv_vcpu_trap_redirect(vcpu, sbi_ret.utrap);
-+		ret = kvm_riscv_vcpu_trap_redirect(vcpu, sbi_ret.utrap);
- 		next_sepc = false;
- 		goto ecall_done;
- 	}
-diff --git a/arch/riscv/kvm/vcpu_switch.S b/arch/riscv/kvm/vcpu_switch.S
-index 0c26189aa01c..94d5eb9da788 100644
---- a/arch/riscv/kvm/vcpu_switch.S
-+++ b/arch/riscv/kvm/vcpu_switch.S
-@@ -154,7 +154,6 @@ SYM_FUNC_START(__kvm_riscv_switch_to)
- 	REG_L	t2, (KVM_ARCH_HOST_SSCRATCH)(a0)
- 	REG_L	t3, (KVM_ARCH_HOST_SCOUNTEREN)(a0)
- 	REG_L	t4, (KVM_ARCH_HOST_HSTATUS)(a0)
--	REG_L	t5, (KVM_ARCH_HOST_SSTATUS)(a0)
- 
- 	/* Save Guest SEPC */
- 	csrr	t0, CSR_SEPC
-@@ -171,8 +170,8 @@ SYM_FUNC_START(__kvm_riscv_switch_to)
- 	/* Save Guest and Restore Host HSTATUS */
- 	csrrw	t4, CSR_HSTATUS, t4
- 
--	/* Save Guest and Restore Host SSTATUS */
--	csrrw	t5, CSR_SSTATUS, t5
-+	/* Save Guest SSTATUS */
-+	csrr	t5, CSR_SSTATUS
- 
- 	/* Store Guest CSR values */
- 	REG_S	t0, (KVM_ARCH_GUEST_SEPC)(a0)
-@@ -206,6 +205,20 @@ SYM_FUNC_START(__kvm_riscv_switch_to)
- 	REG_L	s10, (KVM_ARCH_HOST_S10)(a0)
- 	REG_L	s11, (KVM_ARCH_HOST_S11)(a0)
- 
-+	csrr	t1, CSR_SCAUSE
-+	csrr	t2, CSR_STVAL
-+	csrr	t3, CSR_HTVAL
-+	csrr	t4, CSR_HTINST
-+	REG_S	t0, (KVM_ARCH_TRAP_SEPC)(a1)
-+	REG_S	t1, (KVM_ARCH_TRAP_SCAUSE)(a1)
-+	REG_S	t2, (KVM_ARCH_TRAP_STVAL)(a1)
-+	REG_S	t3, (KVM_ARCH_TRAP_HTVAL)(a1)
-+	REG_S	t4, (KVM_ARCH_TRAP_HTINST)(a1)
-+
-+	/* Restore Host SSTATUS */
-+	REG_L	t5, (KVM_ARCH_HOST_SSTATUS)(a0)
-+	csrw	CSR_SSTATUS, t5
-+
- 	/* Return to C code */
- 	ret
- SYM_FUNC_END(__kvm_riscv_switch_to)
--- 
-2.43.0
+Gr{oetje,eeting}s,
 
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
