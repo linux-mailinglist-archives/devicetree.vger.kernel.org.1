@@ -1,115 +1,100 @@
-Return-Path: <devicetree+bounces-60368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D51168A8FDA
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 02:08:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCFDB8A9017
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 02:38:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 716901F220D1
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 00:08:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 788AD282ADA
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 00:38:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 269FB1EB45;
-	Thu, 18 Apr 2024 00:08:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C65F817;
+	Thu, 18 Apr 2024 00:38:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="plN4Fvkg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEAAB184E;
-	Thu, 18 Apr 2024 00:08:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C58A628;
+	Thu, 18 Apr 2024 00:38:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713398882; cv=none; b=kCXpKHk0KOSoilsDaQEW0kW7RWW2WLYZLZOn5Y8+vUdpkRj6EXG7vpUNZduUH6HwMq0xUEzMrQG68iw9gK0EdfaHWXhY79PCkDNMExtgjZgV4Lm4Bx7zEiatMrYFcl1xfi4hypweM+ROjCFDjMGkx5cZhc0X7tYCRGCvkOQeQGY=
+	t=1713400690; cv=none; b=GHN3e81eDXo0McVsgV/WjMuj31eRTLJlr79DymiivmqeRwETfWYnGQst9bkCEtRQaCdmwO1dDPIuulKkO853fEo5a/Achm7P2ayv1PGMBj3KRtvpr+Rkc9kBSoGBnaeHpBBpimrBYUgbf0Wiq3UaI3wKowRS/x/64LhMw8RB5SI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713398882; c=relaxed/simple;
-	bh=pNMLP2XljnVQrqZ2lrSd7qiYZqdaEDsGRxIUHbQ8coc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=JtRBJBNQKo23rFyUWvn8XM5ZE4SvTEt2FksK/SA7ve8tcfTsNGYuI6NMgN5FE2M/ztlmjQij46ebvnRMttMQIbbtGue+iwH8F7Nlc7XYLXdZgWgZhFn6mNgQVj+i0t9wD4PO/2MRFK5vCCXYAIN2qJrE0tT2Phw9Y5I2YbQL3dw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 25912DA7;
-	Wed, 17 Apr 2024 17:08:28 -0700 (PDT)
-Received: from localhost.localdomain (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 622763F64C;
-	Wed, 17 Apr 2024 17:07:58 -0700 (PDT)
-From: Andre Przywara <andre.przywara@arm.com>
-To: Chen-Yu Tsai <wens@csie.org>,
-	Lee Jones <lee@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-sunxi@lists.linux.dev,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Ryan Walklin <ryan@testtoast.com>,
-	Chris Morgan <macroalpha82@gmail.com>
-Subject: [PATCH v2 5/5] regulator: axp20x: AXP717: Add boost regulator
-Date: Thu, 18 Apr 2024 01:07:36 +0100
-Message-Id: <20240418000736.24338-6-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.35.8
-In-Reply-To: <20240418000736.24338-1-andre.przywara@arm.com>
-References: <20240418000736.24338-1-andre.przywara@arm.com>
+	s=arc-20240116; t=1713400690; c=relaxed/simple;
+	bh=EWWSe6x4qhSDklZv8YTkkIt93xdetH43wC9mZrPXeQU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=n5mO8a54EVWGxTKRNOSld9AB/6A2jRwaI90tKbim/hXvaOV1Pk1pYQNdo4UpcUBPq4+1Khq+tGXJn+fI0M/kQH675DP+Iu5LQKGWOEArMUNRTodpwMopuMTTovgbzvPfvqkNGy8pIAxnuowSkxRYe8kh9sMYbn0griqRxNXPBa8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=plN4Fvkg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A37DC072AA;
+	Thu, 18 Apr 2024 00:38:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713400689;
+	bh=EWWSe6x4qhSDklZv8YTkkIt93xdetH43wC9mZrPXeQU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=plN4FvkgAq4UvhaDEv+dsWthNazEOjQckDCKYogPLvbIL+s6RO/YmeNyY3gJ0w6g/
+	 l4cHljJX1nh/yh2f/Gff7vkj3YHNP7fAb0TnTjrJ8CfXgiPV0dqm+3Blb+sqWnb+GQ
+	 7yL9VxTU3EeSBZNbraHNbtrB5OEdJ4/MJEOgMGZAqiesBqF6ZC+7JgMouo2tx5CXoQ
+	 V+rXcVc8s9jOBaf7tJhfNbi98pyPlOfJnt5tIIhjSR4q5lTsDfkqO7As9Gb5sNhbt2
+	 nXaKo9Bjhh25bCD6/O0JebQM8Kq744vc43UxjWBk97kI+SSLdiPiWNxvg87pIvFWtz
+	 BDS0Cv0vaO28Q==
+Date: Thu, 18 Apr 2024 09:38:06 +0900
+From: Mark Brown <broonie@kernel.org>
+To: Fabio Aiuto <fabio.aiuto@engicam.com>
+Cc: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Matteo Lisi <matteo.lisi@engicam.com>,
+	Mirko Ardinghi <mirko.ardinghi@engicam.com>
+Subject: Re: [PATCH 2/4] regulator: dt-bindings: pca9450: add pca9451a support
+Message-ID: <ZiBrbghc510G02tx@finisterre.sirena.org.uk>
+References: <20240417153528.7838-1-fabio.aiuto@engicam.com>
+ <20240417153528.7838-3-fabio.aiuto@engicam.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="1K8DqkjjS4/eYr78"
+Content-Disposition: inline
+In-Reply-To: <20240417153528.7838-3-fabio.aiuto@engicam.com>
+X-Cookie: To the landlord belongs the doorknobs.
 
-The AXP717 also contains an adjustable boost regulator, to provide the
-5V USB VBUS rail when running on battery.
 
-Add the regulator description that states the voltage range this
-regulator can cover.
+--1K8DqkjjS4/eYr78
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-Reviewed-by: John Watts <contact@jookia.org>
----
- drivers/regulator/axp20x-regulator.c | 4 ++++
- include/linux/mfd/axp20x.h           | 1 +
- 2 files changed, 5 insertions(+)
+On Wed, Apr 17, 2024 at 05:35:26PM +0200, Fabio Aiuto wrote:
+> Update bindings for pca9451a support.
 
-diff --git a/drivers/regulator/axp20x-regulator.c b/drivers/regulator/axp20x-regulator.c
-index f3c447ecdc3bf..20bef3971feca 100644
---- a/drivers/regulator/axp20x-regulator.c
-+++ b/drivers/regulator/axp20x-regulator.c
-@@ -143,6 +143,7 @@
- #define AXP717_DCDC3_NUM_VOLTAGES	103
- #define AXP717_DCDC_V_OUT_MASK		GENMASK(6, 0)
- #define AXP717_LDO_V_OUT_MASK		GENMASK(4, 0)
-+#define AXP717_BOOST_V_OUT_MASK		GENMASK(7, 4)
- 
- #define AXP803_PWR_OUT_DCDC1_MASK	BIT_MASK(0)
- #define AXP803_PWR_OUT_DCDC2_MASK	BIT_MASK(1)
-@@ -834,6 +835,9 @@ static const struct regulator_desc axp717_regulators[] = {
- 	AXP_DESC(AXP717, CPUSLDO, "cpusldo", "vin1", 500, 1400, 50,
- 		 AXP717_CPUSLDO_CONTROL, AXP717_LDO_V_OUT_MASK,
- 		 AXP717_LDO1_OUTPUT_CONTROL, BIT(4)),
-+	AXP_DESC(AXP717, BOOST, "boost", "vin1", 4550, 5510, 64,
-+		 AXP717_BOOST_CONTROL, AXP717_BOOST_V_OUT_MASK,
-+		 AXP717_MODULE_EN_CONTROL, BIT(4)),
- };
- 
- /* DCDC ranges shared with AXP813 */
-diff --git a/include/linux/mfd/axp20x.h b/include/linux/mfd/axp20x.h
-index 4dad54fdf67ee..5e86b976c4caa 100644
---- a/include/linux/mfd/axp20x.h
-+++ b/include/linux/mfd/axp20x.h
-@@ -486,6 +486,7 @@ enum {
- 	AXP717_CLDO3,
- 	AXP717_CLDO4,
- 	AXP717_CPUSLDO,
-+	AXP717_BOOST,
- 	AXP717_REG_ID_MAX,
- };
- 
--- 
-2.35.8
+Please do not submit new versions of already applied patches, please
+submit incremental updates to the existing code.  Modifying existing
+commits creates problems for other users building on top of those
+commits so it's best practice to only change pubished git commits if
+absolutely essential.
 
+--1K8DqkjjS4/eYr78
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmYga20ACgkQJNaLcl1U
+h9D6RAf+N4RZNwSw3Wma2095eiTrwMaGS0mna3eIDZ8cNN3b759Cmmnl5Gmmxf/7
+cnqaM7Hwjto3/Q58bi+FkwhdnT2+IDHrMSnpO5Ib7kIsApncwrDOzV6+78FxynT3
+qEGLUUwE6XNi55rfPJWbFSI/bcGuHX93CSTFyYVKrm8p7PP8GLO7HcYN5z/1x5sq
+U6jcRikwKckc5BLYi6GtfGryWnd8taqZL7cKH1f8nIo6XPklelelkjg3sc38IPZi
+yF9iEXaozRF5bQZreeUTrExqiE8pEhZcTFw+3cgG85oUDuCSqtM5OIwolAmlS2RS
+gWFCdIFpi9GwRDIddrCGP47QWpSJjA==
+=ZkrE
+-----END PGP SIGNATURE-----
+
+--1K8DqkjjS4/eYr78--
 
