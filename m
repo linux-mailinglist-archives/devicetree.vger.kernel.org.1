@@ -1,771 +1,174 @@
-Return-Path: <devicetree+bounces-60519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F4948A98E4
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 13:46:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E97858A98F0
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 13:48:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8212B1C212F7
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 11:46:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A88532840AE
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 11:48:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA05A15E80D;
-	Thu, 18 Apr 2024 11:46:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8611E15F405;
+	Thu, 18 Apr 2024 11:48:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="snTaMkS4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vsNt5fbK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CB8515E5DA
-	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 11:46:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4F6F15F3E1
+	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 11:48:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713440784; cv=none; b=hauXkTHaEWpgZb294HAMMSshVaetEIyFwl5wSnfIqkK3Fe47AIH7UjgX8YYA9SkwUon/7TP1OO/E53ERhJ3EhfqDr2Q4q5VNvch2KA8JabCN6cgxyhRBFz6XPtoMG3YqI5kg0MOo9WjSwIGhrChBboWD2LNuEuYRP3GOYKhdrmY=
+	t=1713440907; cv=none; b=JwKDJL5RlS5P+7AcyHMScNJy/EcU+N2Vykr7vkCMQ7fn61NixTDnxI8G9ruX7eS3yvlSSO+XxJ+kg+vdJoUOIWSf9AXcPNt8rwW0yo8PrrvmUbWEpHCHLPT8Z+WDsPboAbzbhVcIGKAkVDL5OuuJ0nw8Ed6hS94UrvKESMuLnIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713440784; c=relaxed/simple;
-	bh=iBG0vX9yUUnSc7xJLa95UFSBEe7L8q4kvAMhXz/Ogj8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tvOSQnWPmfeoFz8+PG8iypR1mUKhR9v+CPBcYAaKALLXnm66wfjGaYpp7D2NjzJb+aTF5Vef6+mibUswrjVFEVDufkp1Gm+PhbgGeW5ZQAIYt6NSvPCkUCwA0exxJ5Ca+6Ca7pApW/pjGr0CYVXO8tonEMyItvZnrwWIgrN84m0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=snTaMkS4; arc=none smtp.client-ip=209.85.208.182
+	s=arc-20240116; t=1713440907; c=relaxed/simple;
+	bh=gE136ijLAtKzyRYGVhVe2CMoT2C2wSdXn/ajEG1GWyU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HpJ5/SAxQU6526Eh0KmEdi9j9sT1pVyKmvdxSglSixKBpri6Ntup1WUWZXNKomuFGsRMI/ukg/izxOeRzoeAJ7MwHWpwRCbK3ZEqlXyUdP5biz3UjnEpvSkhrsa6sHZQX8pP4ACqfj7Qcv4dMSEw3+xKSIE4h6F/2iojW+c0cpU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vsNt5fbK; arc=none smtp.client-ip=209.85.219.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2d8b194341eso6972741fa.3
-        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 04:46:22 -0700 (PDT)
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-dc25e12cc63so1814417276.0
+        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 04:48:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713440780; x=1714045580; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=kdwIu52RYxxnxQn1jup15BiJTAHdx+Mu7Xc73+wxa64=;
-        b=snTaMkS48iFaIXf4rXMjYmSVJzghaIv3f03dXiZNa6GFA1jTrVu3Uua3QOIAuyK5JM
-         kRmlwHz53FGGTAEuHw+bPl4iqi9Sd0xVUJBDMP0tadXbXuGZ6DviaPQWAAyjMthD1AK+
-         JbXI3fUT9abwYfNYyB4Pvcv3Ok0cs/duWzaY/N+EV9eagK56/+oWn7bkvIS+6oeXzHIf
-         chfiATNSr5maSLbq023kC2uLvU4hmsQpV4KIcVSFBVaDX50FTWz16WX3UT4C9d+yBLdQ
-         J52CKpJOM1xzRzHb9MleANLb0NYcheyt+WQ83jgcv4kEJvPsuubSGVJEtcUspf0FrQgq
-         zL0A==
+        d=linaro.org; s=google; t=1713440905; x=1714045705; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=NuxTFXDlrm+BFnpHmLBiKm3zNo8+3C9CrzDgCHuzRNk=;
+        b=vsNt5fbKOxQkX010Y7B0jwogqFOgePEz+AGFZqPHSmeQeVOrlEEzKl0hO76Amvsgal
+         u5r3LP4eECgjWFfcpzb1WXottf2q0j0Guicou9cmWr/eMkcFlz3Z36hIRDrYna8OXzMN
+         XDty0nq04+OmzrtmoYhZ3PnBC3gBPdKAS17/67qiBSZ6AsArf2a85CruazPsx075v9a2
+         iPXaSOXj97eSc9qBn4xj3QeVwkAIxx1kPiilbhz9R8sw4SRMRZvC7L6/peb7gKWYXf9x
+         zTvcvrjjbEC6mlaf8RAYf8IhZ8nCTHkXToozwom+fqc0YB63v43gMgkZuyL45CqI4Ruh
+         V+zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713440780; x=1714045580;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kdwIu52RYxxnxQn1jup15BiJTAHdx+Mu7Xc73+wxa64=;
-        b=Btv+rk1dVPxbMJT7FEl33Qtj2Lwwpl2u85Qv/4FY3Gg87ckjDRPYqCx/T9WQzU4AR6
-         ix1R6vk1HmHubmJ/I7pC3q7rwK+ExYLRVViyM4f04ZddjozRRojrxlVP8fooEH9PVmoM
-         gsc0E4z7qKrx6g5DKuFWqDLKFyuhjDLskNUKpBBVzUDJbJz3BiGhynC/kkANm0Ydmoqq
-         SDtZlWXmtekzhVW6hQMZWkY6ozWPK2Uc+in+Xae5k7+lQcZmNhIP9pz8pQTF4+eaLX3k
-         8Zbh8dmaASO+BS+8HXdLEg8gvPolQJ3Qqer5ssbs5Mc7Bra6gpOae4hSwExEiPMfz+kU
-         tNbA==
-X-Forwarded-Encrypted: i=1; AJvYcCX6oAr8h6qC4qxCoCDlgOOLeTrgkctQc8p3lLZpMjtKvagdAbo7DgvPc5H3BmAytu6IS8wnHDdEeWvMTXRWgQQ+a5PkBh6pjY6/Ew==
-X-Gm-Message-State: AOJu0YywAWsCK4F4SfJEm4WRgArodSGJbnzmX5b44lLC85YTyND976a0
-	HyC2XBkgG8YxD8QLzA+eQ3BMswNxkhjChkITg/bBNUS7CXLVyayVXcfc8aQwL7U=
-X-Google-Smtp-Source: AGHT+IHC9evG3iVOAR/9dup4WnMVkwL//miS+ldULBPFnLP3KGutR4g4oMui+yMZNTVUGJfVfAGevQ==
-X-Received: by 2002:a2e:9003:0:b0:2d8:9c43:e7ce with SMTP id h3-20020a2e9003000000b002d89c43e7cemr1345029ljg.10.1713440780278;
-        Thu, 18 Apr 2024 04:46:20 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
-        by smtp.gmail.com with ESMTPSA id y18-20020a05651c021200b002d9f3bed88dsm163296ljn.77.2024.04.18.04.46.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Apr 2024 04:46:19 -0700 (PDT)
-Date: Thu, 18 Apr 2024 14:46:18 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: lvzhaoxiong <lvzhaoxiong@huaqin.corp-partner.google.com>
-Cc: mripard@kernel.org, airlied@gmail.com, daniel@ffwll.ch, 
-	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	dianders@google.com, hsinyi@google.com, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] drm/panel: kd101ne3: add new panel driver
-Message-ID: <zanx5y3obqmewnbooovf52hx6vh7tpi4zsbse2dyzcqzddmzhw@kewxoa6n3mja>
-References: <20240418081548.12160-1-lvzhaoxiong@huaqin.corp-partner.google.com>
- <20240418081548.12160-3-lvzhaoxiong@huaqin.corp-partner.google.com>
+        d=1e100.net; s=20230601; t=1713440905; x=1714045705;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NuxTFXDlrm+BFnpHmLBiKm3zNo8+3C9CrzDgCHuzRNk=;
+        b=fQ4WFtBEKM9qeR8zxx/csTK8t+UNuNqhOZcS6ORc6P4IPxt2NObWF4ysc62iT9CzGu
+         rjMd7hrQVjTz4HpXYh52MdANBlZTU1wBHfTUhYbwSYkwtSReVbvoMX7ft4VrFdAsAeVK
+         wk22DTNt7mob5MuIg9VXOfCt39jQvemFCuN+VTjUzKiCdt5FDd6zs9rWbI+dZikTJau+
+         of6AQuo8uJ7pVRIqs7EnPBjsVxrNjy9wlBYtG98DJb3aa88TzUztzUwqZhfu5soe0FLZ
+         Wn+UswUYe3PbNECWNPjRqP9lepS2VmfmJwzs6HdqDu6nvPUL5ESksHuDeoxs50QuGsKw
+         DJaw==
+X-Forwarded-Encrypted: i=1; AJvYcCXz3TH34vgXYFFjLMCSYSxGibzM7mTish8pNVJrN0zk287ajrhN4d3i9VLDtw01E0eElOgua6MCc3SQxBtQLUAHD9PaW/MDMIF4lQ==
+X-Gm-Message-State: AOJu0YxvbFGwfRpNY6efO5TD9lN+EfgS45SiifBXeTA6mTTGVWWKEaEx
+	kD9anNFCOo8HKXmNW8I42BqE0Ns68LxlarYZ4itBpRpRwAfMSPNpuFgkGDZ3KgUL41Ol3d+g++Z
+	aTxzpezYlAgtfN3xnARfA3VHeuVGkGmq74y0qUA==
+X-Google-Smtp-Source: AGHT+IGKBPlfH5drQwVfSarXKWibHJIXInY29SG6VZ1jJJB3cdumDdDbAMYX6JlD836WHkNKoYSwv0xG3WG+/ElPO7w=
+X-Received: by 2002:a25:b121:0:b0:dc6:d1a9:d858 with SMTP id
+ g33-20020a25b121000000b00dc6d1a9d858mr1686669ybj.8.1713440904861; Thu, 18 Apr
+ 2024 04:48:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240418081548.12160-3-lvzhaoxiong@huaqin.corp-partner.google.com>
+References: <20240404-topic-smem_speedbin-v2-0-c84f820b7e5b@linaro.org>
+ <20240404-topic-smem_speedbin-v2-3-c84f820b7e5b@linaro.org>
+ <hi7vzqm5ebypzs6m6bw64ghgfwsdzuaxy65jpah37iw5ww7fku@n3c5sucic27i>
+ <bfd6aa32-a28e-47a4-82c7-76c5dd99a44d@linaro.org> <7ynodjzjuxwwqkjgns5jtnkckw52qyldfpsqpjh7645swva4xk@7wucftyjyyy3>
+ <2b5f33ba-2108-464c-b4d2-eff2cc6e59cf@linaro.org>
+In-Reply-To: <2b5f33ba-2108-464c-b4d2-eff2cc6e59cf@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 18 Apr 2024 14:48:13 +0300
+Message-ID: <CAA8EJpqW-YxJdw-+QDEdhqjwAPK1dzmW1dW6=18wcRQgp+Oq6w@mail.gmail.com>
+Subject: Re: [PATCH v2 3/7] drm/msm/adreno: Implement SMEM-based speed bin
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Clark <robdclark@gmail.com>, 
+	Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	Neil Armstrong <neil.armstrong@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On Thu, Apr 18, 2024 at 04:15:48PM +0800, lvzhaoxiong wrote:
-> The kingdisplay panel is based on JD9365DA controller.
-> Add a driver for it.
-> 
-> Signed-off-by: lvzhaoxiong <lvzhaoxiong@huaqin.corp-partner.google.com>
-> ---
->  drivers/gpu/drm/panel/Kconfig                 |   9 +
->  drivers/gpu/drm/panel/Makefile                |   1 +
->  .../drm/panel/panel-kingdisplay-kd101ne3.c    | 607 ++++++++++++++++++
->  3 files changed, 617 insertions(+)
->  create mode 100644 drivers/gpu/drm/panel/panel-kingdisplay-kd101ne3.c
-> 
-> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-> index 154f5bf82980..2c73086cf102 100644
-> --- a/drivers/gpu/drm/panel/Kconfig
-> +++ b/drivers/gpu/drm/panel/Kconfig
-> @@ -297,6 +297,15 @@ config DRM_PANEL_KINGDISPLAY_KD097D04
->  	  24 bit RGB per pixel. It provides a MIPI DSI interface to
->  	  the host and has a built-in LED backlight.
->  
-> +config DRM_PANEL_KINGDISPLAY_KD101NE3
-> +	tristate "Kingdisplay kd101ne3 panel"
-> +	depends on OF
-> +	depends on DRM_MIPI_DSI
-> +	depends on BACKLIGHT_CLASS_DEVICE
-> +	help
-> +	  Say Y if you want to enable support for panels based on the
-> +	  Kingdisplay kd101ne3 controller.
-> +
->  config DRM_PANEL_LEADTEK_LTK050H3146W
->  	tristate "Leadtek LTK050H3146W panel"
->  	depends on OF
-> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-> index 24a02655d726..cbd414b98bb0 100644
-> --- a/drivers/gpu/drm/panel/Makefile
-> +++ b/drivers/gpu/drm/panel/Makefile
-> @@ -30,6 +30,7 @@ obj-$(CONFIG_DRM_PANEL_JDI_LPM102A188A) += panel-jdi-lpm102a188a.o
->  obj-$(CONFIG_DRM_PANEL_JDI_R63452) += panel-jdi-fhd-r63452.o
->  obj-$(CONFIG_DRM_PANEL_KHADAS_TS050) += panel-khadas-ts050.o
->  obj-$(CONFIG_DRM_PANEL_KINGDISPLAY_KD097D04) += panel-kingdisplay-kd097d04.o
-> +obj-$(CONFIG_DRM_PANEL_KINGDISPLAY_KD101NE3) += panel-kingdisplay-kd101ne3.o
->  obj-$(CONFIG_DRM_PANEL_LEADTEK_LTK050H3146W) += panel-leadtek-ltk050h3146w.o
->  obj-$(CONFIG_DRM_PANEL_LEADTEK_LTK500HD1829) += panel-leadtek-ltk500hd1829.o
->  obj-$(CONFIG_DRM_PANEL_LG_LB035Q02) += panel-lg-lb035q02.o
-> diff --git a/drivers/gpu/drm/panel/panel-kingdisplay-kd101ne3.c b/drivers/gpu/drm/panel/panel-kingdisplay-kd101ne3.c
-> new file mode 100644
-> index 000000000000..dbf0992f8b81
-> --- /dev/null
-> +++ b/drivers/gpu/drm/panel/panel-kingdisplay-kd101ne3.c
-> @@ -0,0 +1,607 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Panels based on the JD9365DA display controller.
-> + * Author: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
-> + */
-> +
-> +#include <linux/delay.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/regulator/consumer.h>
-> +
-> +#include <drm/drm_connector.h>
-> +#include <drm/drm_crtc.h>
-> +#include <drm/drm_mipi_dsi.h>
-> +#include <drm/drm_panel.h>
-> +
-> +#include <video/mipi_display.h>
-> +
-> +struct panel_desc {
-> +	const struct drm_display_mode *modes;
-> +	unsigned int bpc;
-> +
-> +	/**
-> +	 * @width_mm: width of the panel's active display area
-> +	 * @height_mm: height of the panel's active display area
-> +	 */
-> +	struct {
-> +		unsigned int width_mm;
-> +		unsigned int height_mm;
+On Thu, 18 Apr 2024 at 14:31, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+> On 18.04.2024 1:07 PM, Dmitry Baryshkov wrote:
+> > On Thu, Apr 18, 2024 at 11:51:16AM +0200, Konrad Dybcio wrote:
+> >> On 18.04.2024 1:43 AM, Dmitry Baryshkov wrote:
+> >>> On Wed, Apr 17, 2024 at 10:02:55PM +0200, Konrad Dybcio wrote:
+> >>>> On recent (SM8550+) Snapdragon platforms, the GPU speed bin data is
+> >>>> abstracted through SMEM, instead of being directly available in a fuse.
+> >>>>
+> >>>> Add support for SMEM-based speed binning, which includes getting
+> >>>> "feature code" and "product code" from said source and parsing them
+> >>>> to form something that lets us match OPPs against.
+> >>>>
+> >>>> Due to the product code being ignored in the context of Adreno on
+> >>>> production parts (as of SM8650), hardcode it to SOCINFO_PC_UNKNOWN.
+> >>>>
+> >>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> >>>> ---
+> >>
+> >> [...]
+> >>
+> >>>> --- a/drivers/gpu/drm/msm/adreno/adreno_device.c
+> >>>> +++ b/drivers/gpu/drm/msm/adreno/adreno_device.c
+> >>>> @@ -6,6 +6,8 @@
+> >>>>   * Copyright (c) 2014,2017 The Linux Foundation. All rights reserved.
+> >>>>   */
+> >>>>
+> >>>> +#include <linux/soc/qcom/socinfo.h>
+> >>>> +
+> >>>
+> >>> Stray leftover?
+> >>
+> >> Looks like
+> >>
+> >> [...]
+> >>
+> >>>> +
+> >>>> +#ifdef CONFIG_QCOM_SMEM
+> >>>
+> >>> Please extract to a separate function and put the function under ifdef
+> >>> (providing a stub otherwise). Having #ifndefs inside funciton body is
+> >>> frowned upon.
+> >>
+> >> Hm, this looked quite sparse and straightforward, but I can do that.
+> >>
+> >> [...]
+> >>
+> >>>> +/* As of SM8650, PCODE on production SoCs is meaningless wrt the GPU bin */
+> >>>> +#define ADRENO_SKU_ID_FCODE               GENMASK(15, 0)
+> >>>> +#define ADRENO_SKU_ID(fcode)      (SOCINFO_PC_UNKNOWN << 16 | fcode)
+> >>>
+> >>> If we got rid of PCode matching, is there a need to actually use
+> >>> SOCINFO_PC_UNKNOWN here? Or just 0 would be fine?
+> >>
+> >> The IDs need to stay constant for mesa
+> >>
+> >> I used the define here to:
+> >>
+> >> a) define the SKU_ID structure so that it's clear what it's comprised of
+> >> b) make it easy to add back Pcode in case it becomes useful with future SoCs
+> >> c) avoid mistakes - PC_UNKNOWN happens to be zero, but that's a lucky
+> >>    coincidence
+> >>
+> >> We don't *match* based on PCODE, but still need to construct the ID properly
+> >>
+> >> Another option would be to pass the real pcode and add some sort of
+> >> "pcode_invalid" property that if found would ignore this part of the
+> >> SKU_ID in mesa, but that sounds overly and unnecessarily complex.
+> >
+> > It's fine, just add a comment please. Maybe we can rename PC_UNKNOWN to
+> > PC_PRODUCTION?
+>
+> I don't think that's right. The SoC "product code" may actually mean something
+> (again, not necessarily for Adreno specifically), and with Adreno in mind, it
+> being only meaningful for engineering samples may change in the future.
 
-Please move to the declared mode;
+Ack
 
-> +	} size;
-> +
-> +	unsigned long mode_flags;
-> +	enum mipi_dsi_pixel_format format;
-> +	const struct panel_init_cmd *init_cmds;
-> +	unsigned int lanes;
-> +	bool discharge_on_disable;
-> +	bool lp11_before_reset;
-> +};
-> +
-> +struct kingdisplay_panel {
-> +	struct drm_panel base;
-> +	struct mipi_dsi_device *dsi;
-> +
-> +	const struct panel_desc *desc;
-> +
-> +	enum drm_panel_orientation orientation;
-> +	struct regulator *pp3300;
-> +	struct gpio_desc *enable_gpio;
-> +};
-> +
-> +enum dsi_cmd_type {
-> +	INIT_DCS_CMD,
-> +	DELAY_CMD,
-> +};
-> +
-> +struct panel_init_cmd {
-> +	enum dsi_cmd_type type;
-> +	size_t len;
-> +	const char *data;
-> +};
-> +
-> +#define _INIT_DCS_CMD(...) { \
-> +	.type = INIT_DCS_CMD, \
-> +	.len = sizeof((char[]){__VA_ARGS__}), \
-> +	.data = (char[]){__VA_ARGS__} }
-> +
-> +#define _INIT_DELAY_CMD(...) { \
-> +	.type = DELAY_CMD,\
-> +	.len = sizeof((char[]){__VA_ARGS__}), \
-> +	.data = (char[]){__VA_ARGS__} }
-
-This is the third panel driver using the same appoach. Can you use
-mipi_dsi_generic_write_seq() instead of the huge table? Or if you prefer
-the table, we should extract this framework to a common helper.
-(my preference is shifted towards mipi_dsi_generic_write_seq()).
-
-> +
-> +static const struct panel_init_cmd kingdisplay_kd101ne3_init_cmd[] = {
-> +	_INIT_DELAY_CMD(50),
-> +	_INIT_DCS_CMD(0xE0, 0x00),
-> +	_INIT_DCS_CMD(0xE1, 0x93),
-> +	_INIT_DCS_CMD(0xE2, 0x65),
-> +	_INIT_DCS_CMD(0xE3, 0xF8),
-> +	_INIT_DCS_CMD(0x80, 0x03),
-> +	_INIT_DCS_CMD(0xE0, 0x01),
-> +	_INIT_DCS_CMD(0x0C, 0x74),
-> +	_INIT_DCS_CMD(0x17, 0x00),
-> +	_INIT_DCS_CMD(0x18, 0xC7),
-> +	_INIT_DCS_CMD(0x19, 0x01),
-> +	_INIT_DCS_CMD(0x1A, 0x00),
-> +	_INIT_DCS_CMD(0x1B, 0xC7),
-> +	_INIT_DCS_CMD(0x1C, 0x01),
-> +	_INIT_DCS_CMD(0x24, 0xFE),
-> +	_INIT_DCS_CMD(0x37, 0x19),
-> +	_INIT_DCS_CMD(0x35, 0x28),
-> +	_INIT_DCS_CMD(0x38, 0x05),
-> +	_INIT_DCS_CMD(0x39, 0x08),
-> +	_INIT_DCS_CMD(0x3A, 0x12),
-> +	_INIT_DCS_CMD(0x3C, 0x7E),
-> +	_INIT_DCS_CMD(0x3D, 0xFF),
-> +	_INIT_DCS_CMD(0x3E, 0xFF),
-> +	_INIT_DCS_CMD(0x3F, 0x7F),
-> +	_INIT_DCS_CMD(0x40, 0x06),
-> +	_INIT_DCS_CMD(0x41, 0xA0),
-> +	_INIT_DCS_CMD(0x43, 0x1E),
-> +	_INIT_DCS_CMD(0x44, 0x0B),
-> +	_INIT_DCS_CMD(0x55, 0x02),
-> +	_INIT_DCS_CMD(0x57, 0x6A),
-> +	_INIT_DCS_CMD(0x59, 0x0A),
-> +	_INIT_DCS_CMD(0x5A, 0x2E),
-> +	_INIT_DCS_CMD(0x5B, 0x1A),
-> +	_INIT_DCS_CMD(0x5C, 0x15),
-> +	_INIT_DCS_CMD(0x5D, 0x7F),
-> +	_INIT_DCS_CMD(0x5E, 0x61),
-> +	_INIT_DCS_CMD(0x5F, 0x50),
-> +	_INIT_DCS_CMD(0x60, 0x43),
-> +	_INIT_DCS_CMD(0x61, 0x3F),
-> +	_INIT_DCS_CMD(0x62, 0x32),
-> +	_INIT_DCS_CMD(0x63, 0x35),
-> +	_INIT_DCS_CMD(0x64, 0x1F),
-> +	_INIT_DCS_CMD(0x65, 0x38),
-> +	_INIT_DCS_CMD(0x66, 0x36),
-> +	_INIT_DCS_CMD(0x67, 0x36),
-> +	_INIT_DCS_CMD(0x68, 0x54),
-> +	_INIT_DCS_CMD(0x69, 0x42),
-> +	_INIT_DCS_CMD(0x6A, 0x48),
-> +	_INIT_DCS_CMD(0x6B, 0x39),
-> +	_INIT_DCS_CMD(0x6C, 0x34),
-> +	_INIT_DCS_CMD(0x6D, 0x26),
-> +	_INIT_DCS_CMD(0x6E, 0x14),
-> +	_INIT_DCS_CMD(0x6F, 0x02),
-> +	_INIT_DCS_CMD(0x70, 0x7F),
-> +	_INIT_DCS_CMD(0x71, 0x61),
-> +	_INIT_DCS_CMD(0x72, 0x50),
-> +	_INIT_DCS_CMD(0x73, 0x43),
-> +	_INIT_DCS_CMD(0x74, 0x3F),
-> +	_INIT_DCS_CMD(0x75, 0x32),
-> +	_INIT_DCS_CMD(0x76, 0x35),
-> +	_INIT_DCS_CMD(0x77, 0x1F),
-> +	_INIT_DCS_CMD(0x78, 0x38),
-> +	_INIT_DCS_CMD(0x79, 0x36),
-> +	_INIT_DCS_CMD(0x7A, 0x36),
-> +	_INIT_DCS_CMD(0x7B, 0x54),
-> +	_INIT_DCS_CMD(0x7C, 0x42),
-> +	_INIT_DCS_CMD(0x7D, 0x48),
-> +	_INIT_DCS_CMD(0x7E, 0x39),
-> +	_INIT_DCS_CMD(0x7F, 0x34),
-> +	_INIT_DCS_CMD(0x80, 0x26),
-> +	_INIT_DCS_CMD(0x81, 0x14),
-> +	_INIT_DCS_CMD(0x82, 0x02),
-> +	_INIT_DCS_CMD(0xE0, 0x02),
-> +	_INIT_DCS_CMD(0x00, 0x52),
-> +	_INIT_DCS_CMD(0x01, 0x5F),
-> +	_INIT_DCS_CMD(0x02, 0x5F),
-> +	_INIT_DCS_CMD(0x03, 0x50),
-> +	_INIT_DCS_CMD(0x04, 0x77),
-> +	_INIT_DCS_CMD(0x05, 0x57),
-> +	_INIT_DCS_CMD(0x06, 0x5F),
-> +	_INIT_DCS_CMD(0x07, 0x4E),
-> +	_INIT_DCS_CMD(0x08, 0x4C),
-> +	_INIT_DCS_CMD(0x09, 0x5F),
-> +	_INIT_DCS_CMD(0x0A, 0x4A),
-> +	_INIT_DCS_CMD(0x0B, 0x48),
-> +	_INIT_DCS_CMD(0x0C, 0x5F),
-> +	_INIT_DCS_CMD(0x0D, 0x46),
-> +	_INIT_DCS_CMD(0x0E, 0x44),
-> +	_INIT_DCS_CMD(0x0F, 0x40),
-> +	_INIT_DCS_CMD(0x10, 0x5F),
-> +	_INIT_DCS_CMD(0x11, 0x5F),
-> +	_INIT_DCS_CMD(0x12, 0x5F),
-> +	_INIT_DCS_CMD(0x13, 0x5F),
-> +	_INIT_DCS_CMD(0x14, 0x5F),
-> +	_INIT_DCS_CMD(0x15, 0x5F),
-> +	_INIT_DCS_CMD(0x16, 0x53),
-> +	_INIT_DCS_CMD(0x17, 0x5F),
-> +	_INIT_DCS_CMD(0x18, 0x5F),
-> +	_INIT_DCS_CMD(0x19, 0x51),
-> +	_INIT_DCS_CMD(0x1A, 0x77),
-> +	_INIT_DCS_CMD(0x1B, 0x57),
-> +	_INIT_DCS_CMD(0x1C, 0x5F),
-> +	_INIT_DCS_CMD(0x1D, 0x4F),
-> +	_INIT_DCS_CMD(0x1E, 0x4D),
-> +	_INIT_DCS_CMD(0x1F, 0x5F),
-> +	_INIT_DCS_CMD(0x20, 0x4B),
-> +	_INIT_DCS_CMD(0x21, 0x49),
-> +	_INIT_DCS_CMD(0x22, 0x5F),
-> +	_INIT_DCS_CMD(0x23, 0x47),
-> +	_INIT_DCS_CMD(0x24, 0x45),
-> +	_INIT_DCS_CMD(0x25, 0x41),
-> +	_INIT_DCS_CMD(0x26, 0x5F),
-> +	_INIT_DCS_CMD(0x27, 0x5F),
-> +	_INIT_DCS_CMD(0x28, 0x5F),
-> +	_INIT_DCS_CMD(0x29, 0x5F),
-> +	_INIT_DCS_CMD(0x2A, 0x5F),
-> +	_INIT_DCS_CMD(0x2B, 0x5F),
-> +	_INIT_DCS_CMD(0x2C, 0x13),
-> +	_INIT_DCS_CMD(0x2D, 0x1F),
-> +	_INIT_DCS_CMD(0x2E, 0x1F),
-> +	_INIT_DCS_CMD(0x2F, 0x01),
-> +	_INIT_DCS_CMD(0x30, 0x17),
-> +	_INIT_DCS_CMD(0x31, 0x17),
-> +	_INIT_DCS_CMD(0x32, 0x1F),
-> +	_INIT_DCS_CMD(0x33, 0x0D),
-> +	_INIT_DCS_CMD(0x34, 0x0F),
-> +	_INIT_DCS_CMD(0x35, 0x1F),
-> +	_INIT_DCS_CMD(0x36, 0x05),
-> +	_INIT_DCS_CMD(0x37, 0x07),
-> +	_INIT_DCS_CMD(0x38, 0x1F),
-> +	_INIT_DCS_CMD(0x39, 0x09),
-> +	_INIT_DCS_CMD(0x3A, 0x0B),
-> +	_INIT_DCS_CMD(0x3B, 0x11),
-> +	_INIT_DCS_CMD(0x3C, 0x1F),
-> +	_INIT_DCS_CMD(0x3D, 0x1F),
-> +	_INIT_DCS_CMD(0x3E, 0x1F),
-> +	_INIT_DCS_CMD(0x3F, 0x1F),
-> +	_INIT_DCS_CMD(0x40, 0x1F),
-> +	_INIT_DCS_CMD(0x41, 0x1F),
-> +	_INIT_DCS_CMD(0x42, 0x12),
-> +	_INIT_DCS_CMD(0x43, 0x1F),
-> +	_INIT_DCS_CMD(0x44, 0x1F),
-> +	_INIT_DCS_CMD(0x45, 0x00),
-> +	_INIT_DCS_CMD(0x46, 0x17),
-> +	_INIT_DCS_CMD(0x47, 0x17),
-> +	_INIT_DCS_CMD(0x48, 0x1F),
-> +	_INIT_DCS_CMD(0x49, 0x0C),
-> +	_INIT_DCS_CMD(0x4A, 0x0E),
-> +	_INIT_DCS_CMD(0x4B, 0x1F),
-> +	_INIT_DCS_CMD(0x4C, 0x04),
-> +	_INIT_DCS_CMD(0x4D, 0x06),
-> +	_INIT_DCS_CMD(0x4E, 0x1F),
-> +	_INIT_DCS_CMD(0x4F, 0x08),
-> +	_INIT_DCS_CMD(0x50, 0x0A),
-> +	_INIT_DCS_CMD(0x51, 0x10),
-> +	_INIT_DCS_CMD(0x52, 0x1F),
-> +	_INIT_DCS_CMD(0x53, 0x1F),
-> +	_INIT_DCS_CMD(0x54, 0x1F),
-> +	_INIT_DCS_CMD(0x55, 0x1F),
-> +	_INIT_DCS_CMD(0x56, 0x1F),
-> +	_INIT_DCS_CMD(0x57, 0x1F),
-> +	_INIT_DCS_CMD(0x58, 0x40),
-> +	_INIT_DCS_CMD(0x5B, 0x10),
-> +	_INIT_DCS_CMD(0x5C, 0x06),
-> +	_INIT_DCS_CMD(0x5D, 0x40),
-> +	_INIT_DCS_CMD(0x5E, 0x00),
-> +	_INIT_DCS_CMD(0x5F, 0x00),
-> +	_INIT_DCS_CMD(0x60, 0x40),
-> +	_INIT_DCS_CMD(0x61, 0x03),
-> +	_INIT_DCS_CMD(0x62, 0x04),
-> +	_INIT_DCS_CMD(0x63, 0x6C),
-> +	_INIT_DCS_CMD(0x64, 0x6C),
-> +	_INIT_DCS_CMD(0x65, 0x75),
-> +	_INIT_DCS_CMD(0x66, 0x08),
-> +	_INIT_DCS_CMD(0x67, 0xB4),
-> +	_INIT_DCS_CMD(0x68, 0x08),
-> +	_INIT_DCS_CMD(0x69, 0x6C),
-> +	_INIT_DCS_CMD(0x6A, 0x6C),
-> +	_INIT_DCS_CMD(0x6B, 0x0C),
-> +	_INIT_DCS_CMD(0x6D, 0x00),
-> +	_INIT_DCS_CMD(0x6E, 0x00),
-> +	_INIT_DCS_CMD(0x6F, 0x88),
-> +	_INIT_DCS_CMD(0x75, 0xBB),
-> +	_INIT_DCS_CMD(0x76, 0x00),
-> +	_INIT_DCS_CMD(0x77, 0x05),
-> +	_INIT_DCS_CMD(0x78, 0x2A),
-> +	_INIT_DCS_CMD(0xE0, 0x04),
-> +	_INIT_DCS_CMD(0x00, 0x0E),
-> +	_INIT_DCS_CMD(0x02, 0xB3),
-> +	_INIT_DCS_CMD(0x09, 0x61),
-> +	_INIT_DCS_CMD(0x0E, 0x48),
-> +
-> +	_INIT_DCS_CMD(0xE0, 0x00),
-> +	_INIT_DCS_CMD(0X11),
-> +	/* T6: 120ms */
-> +	_INIT_DELAY_CMD(120),
-> +	_INIT_DCS_CMD(0X29),
-> +	_INIT_DELAY_CMD(20),
-> +	{},
-> +};
-> +
-> +static inline struct kingdisplay_panel *to_kingdisplay_panel(struct drm_panel *panel)
-> +{
-> +	return container_of(panel, struct kingdisplay_panel, base);
-> +}
-> +
-> +static int kingdisplay_panel_init_dcs_cmd(struct kingdisplay_panel *kingdisplay)
-> +{
-> +	struct mipi_dsi_device *dsi = kingdisplay->dsi;
-> +	struct drm_panel *panel = &kingdisplay->base;
-> +	int i, err = 0;
-> +
-> +	if (kingdisplay->desc->init_cmds) {
-> +		const struct panel_init_cmd *init_cmds = kingdisplay->desc->init_cmds;
-> +
-> +		for (i = 0; init_cmds[i].len != 0; i++) {
-> +			const struct panel_init_cmd *cmd = &init_cmds[i];
-> +
-> +			switch (cmd->type) {
-> +			case DELAY_CMD:
-> +				msleep(cmd->data[0]);
-> +				err = 0;
-> +				break;
-> +
-> +			case INIT_DCS_CMD:
-> +				err = mipi_dsi_dcs_write(dsi, cmd->data[0],
-> +							 cmd->len <= 1 ? NULL :
-> +							 &cmd->data[1],
-> +							 cmd->len - 1);
-> +				break;
-> +
-> +			default:
-> +				err = -EINVAL;
-> +			}
-> +
-> +			if (err < 0) {
-> +				dev_err(panel->dev,
-> +					"failed to write command %u\n", i);
-> +				return err;
-> +			}
-> +		}
-> +	}
-> +	return 0;
-> +}
-> +
-> +static int kingdisplay_panel_enter_sleep_mode(struct kingdisplay_panel *kingdisplay)
-> +{
-> +	struct mipi_dsi_device *dsi = kingdisplay->dsi;
-> +	int ret;
-> +
-> +	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
-> +
-> +	usleep_range(1000, 2000);
-> +	ret = mipi_dsi_dcs_set_display_off(dsi);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	msleep(50);
-> +
-> +	ret = mipi_dsi_dcs_enter_sleep_mode(dsi);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static int kingdisplay_panel_disable(struct drm_panel *panel)
-> +{
-> +	struct kingdisplay_panel *kingdisplay = to_kingdisplay_panel(panel);
-> +	int ret;
-> +
-> +	ret = kingdisplay_panel_enter_sleep_mode(kingdisplay);
-> +	if (ret < 0) {
-> +		dev_err(panel->dev, "failed to set panel off: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	msleep(100);
-> +
-> +	return 0;
-> +}
-> +
-> +static int kingdisplay_panel_unprepare(struct drm_panel *panel)
-> +{
-> +	struct kingdisplay_panel *kingdisplay = to_kingdisplay_panel(panel);
-> +	int err;
-> +
-> +	gpiod_set_value_cansleep(kingdisplay->enable_gpio, 0);
-> +
-> +	/* T15: 2ms */
-> +	usleep_range(1000, 2000);
-> +
-> +	err = regulator_disable(kingdisplay->pp3300);
-> +	if (err < 0)
-> +		return err;
-> +
-> +	return 0;
-> +}
-> +
-> +static int kingdisplay_panel_prepare(struct drm_panel *panel)
-> +{
-> +	struct kingdisplay_panel *kingdisplay = to_kingdisplay_panel(panel);
-> +	int ret;
-> +
-> +	gpiod_set_value(kingdisplay->enable_gpio, 0);
-> +
-> +	ret = regulator_enable(kingdisplay->pp3300);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* T1: 5ms */
-> +	usleep_range(5000, 6000);
-> +
-> +	if (kingdisplay->desc->lp11_before_reset) {
-> +		mipi_dsi_dcs_nop(kingdisplay->dsi);
-> +		usleep_range(1000, 2000);
-> +	}
-> +
-> +	/* T2: 10ms, T1 + T2 > 5ms*/
-> +	usleep_range(10000, 11000);
-> +
-> +	gpiod_set_value_cansleep(kingdisplay->enable_gpio, 1);
-> +
-> +	ret = kingdisplay_panel_init_dcs_cmd(kingdisplay);
-> +	if (ret < 0) {
-> +		dev_err(panel->dev, "failed to init panel: %d\n", ret);
-> +		goto poweroff;
-> +	}
-> +
-> +	return 0;
-> +
-> +poweroff:
-> +	regulator_disable(kingdisplay->pp3300);
-> +		/* T6: 2ms */
-> +	usleep_range(1000, 2000);
-> +	gpiod_set_value(kingdisplay->enable_gpio, 0);
-> +
-> +	return ret;
-> +}
-> +
-> +static int kingdisplay_panel_enable(struct drm_panel *panel)
-> +{
-> +	msleep(130);
-> +	return 0;
-> +}
-> +
-> +static const struct drm_display_mode kingdisplay_kd101ne3_40ti_default_mode = {
-> +	.clock = 70595,
-> +	.hdisplay = 800,
-> +	.hsync_start = 800 + 30,
-> +	.hsync_end = 800 + 30 + 30,
-> +	.htotal = 800 + 30 + 30 + 30,
-> +	.vdisplay = 1280,
-> +	.vsync_start = 1280 + 30,
-> +	.vsync_end = 1280 + 30 + 4,
-> +	.vtotal = 1280 + 30 + 4 + 8,
-> +	.type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
-> +};
-> +
-> +static const struct panel_desc kingdisplay_kd101ne3_40ti_desc = {
-> +	.modes = &kingdisplay_kd101ne3_40ti_default_mode,
-> +	.bpc = 8,
-> +	.size = {
-> +		.width_mm = 135,
-> +		.height_mm = 216,
-> +	},
-> +	.lanes = 4,
-> +	.format = MIPI_DSI_FMT_RGB888,
-> +	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_SYNC_PULSE |
-> +		      MIPI_DSI_MODE_LPM,
-> +	.init_cmds = kingdisplay_kd101ne3_init_cmd,
-> +	.lp11_before_reset = true,
-> +};
-> +
-> +static int kingdisplay_panel_get_modes(struct drm_panel *panel,
-> +			       struct drm_connector *connector)
-> +{
-> +	struct kingdisplay_panel *kingdisplay = to_kingdisplay_panel(panel);
-> +	const struct drm_display_mode *m = kingdisplay->desc->modes;
-> +	struct drm_display_mode *mode;
-> +
-> +	mode = drm_mode_duplicate(connector->dev, m);
-> +	if (!mode) {
-> +		dev_err(panel->dev, "failed to add mode %ux%u@%u\n",
-> +			m->hdisplay, m->vdisplay, drm_mode_vrefresh(m));
-> +		return -ENOMEM;
-> +	}
-> +
-> +	mode->type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
-> +	drm_mode_set_name(mode);
-> +	drm_mode_probed_add(connector, mode);
-> +
-> +	connector->display_info.width_mm = kingdisplay->desc->size.width_mm;
-> +	connector->display_info.height_mm = kingdisplay->desc->size.height_mm;
-
-Please use drm_connector_helper_get_modes_fixed()
-
-> +	connector->display_info.bpc = kingdisplay->desc->bpc;
-> +	/*
-> +	 * TODO: Remove once all drm drivers call
-> +	 * drm_connector_set_orientation_from_panel()
-
-What is your usecase / platform? Are you using drm_bridge_connector? If not, why?
-
-> +	 */
-> +	drm_connector_set_panel_orientation(connector, kingdisplay->orientation);
-> +
-> +	return 1;
-> +}
-> +
-> +static enum drm_panel_orientation kingdisplay_panel_get_orientation(struct drm_panel *panel)
-> +{
-> +	struct kingdisplay_panel *kingdisplay = to_kingdisplay_panel(panel);
-> +
-> +	return kingdisplay->orientation;
-> +}
-> +
-> +static const struct drm_panel_funcs kingdisplay_panel_funcs = {
-> +	.disable = kingdisplay_panel_disable,
-> +	.unprepare = kingdisplay_panel_unprepare,
-> +	.prepare = kingdisplay_panel_prepare,
-> +	.enable = kingdisplay_panel_enable,
-> +	.get_modes = kingdisplay_panel_get_modes,
-> +	.get_orientation = kingdisplay_panel_get_orientation,
-> +};
-> +
-> +static int kingdisplay_panel_add(struct kingdisplay_panel *kingdisplay)
-> +{
-> +	struct device *dev = &kingdisplay->dsi->dev;
-> +	int err;
-> +
-> +	kingdisplay->pp3300 = devm_regulator_get(dev, "pp3300");
-> +	if (IS_ERR(kingdisplay->pp3300))
-> +		return PTR_ERR(kingdisplay->pp3300);
-> +
-> +
-> +	kingdisplay->enable_gpio = devm_gpiod_get(dev, "enable", GPIOD_OUT_LOW);
-> +	if (IS_ERR(kingdisplay->enable_gpio)) {
-> +		dev_err(dev, "cannot get reset-gpios %ld\n",
-> +			PTR_ERR(kingdisplay->enable_gpio));
-> +		return PTR_ERR(kingdisplay->enable_gpio);
-> +	}
-> +
-> +	gpiod_set_value(kingdisplay->enable_gpio, 0);
-> +
-> +	drm_panel_init(&kingdisplay->base, dev, &kingdisplay_panel_funcs,
-> +		       DRM_MODE_CONNECTOR_DSI);
-> +	err = of_drm_get_panel_orientation(dev->of_node, &kingdisplay->orientation);
-> +	if (err < 0) {
-> +		dev_err(dev, "%pOF: failed to get orientation %d\n", dev->of_node, err);
-> +		return err;
-> +	}
-> +
-> +	err = drm_panel_of_backlight(&kingdisplay->base);
-> +	if (err)
-> +		return err;
-> +
-> +	kingdisplay->base.funcs = &kingdisplay_panel_funcs;
-> +	kingdisplay->base.dev = &kingdisplay->dsi->dev;
-> +
-> +	drm_panel_add(&kingdisplay->base);
-> +
-> +	return 0;
-> +}
-> +
-> +static int kingdisplay_panel_probe(struct mipi_dsi_device *dsi)
-> +{
-> +	struct kingdisplay_panel *kingdisplay;
-> +	int ret;
-> +	const struct panel_desc *desc;
-> +
-> +	kingdisplay = devm_kzalloc(&dsi->dev, sizeof(*kingdisplay), GFP_KERNEL);
-> +	if (!kingdisplay)
-> +		return -ENOMEM;
-> +
-> +	desc = of_device_get_match_data(&dsi->dev);
-> +	dsi->lanes = desc->lanes;
-> +	dsi->format = desc->format;
-> +	dsi->mode_flags = desc->mode_flags;
-> +	kingdisplay->desc = desc;
-> +	kingdisplay->dsi = dsi;
-> +	ret = kingdisplay_panel_add(kingdisplay);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	mipi_dsi_set_drvdata(dsi, kingdisplay);
-> +
-> +	ret = mipi_dsi_attach(dsi);
-> +	if (ret)
-> +		drm_panel_remove(&kingdisplay->base);
-> +
-> +	return ret;
-> +}
-> +
-> +static void kingdisplay_panel_shutdown(struct mipi_dsi_device *dsi)
-> +{
-> +	struct kingdisplay_panel *kingdisplay = mipi_dsi_get_drvdata(dsi);
-> +
-> +	drm_panel_disable(&kingdisplay->base);
-> +	drm_panel_unprepare(&kingdisplay->base);
-> +}
-> +
-> +static void kingdisplay_panel_remove(struct mipi_dsi_device *dsi)
-> +{
-> +	struct kingdisplay_panel *kingdisplay = mipi_dsi_get_drvdata(dsi);
-> +	int ret;
-> +
-> +	kingdisplay_panel_shutdown(dsi);
-> +
-> +	ret = mipi_dsi_detach(dsi);
-> +	if (ret < 0)
-> +		dev_err(&dsi->dev, "failed to detach from DSI host: %d\n", ret);
-> +
-> +	if (kingdisplay->base.dev)
-> +		drm_panel_remove(&kingdisplay->base);
-
-You are adding it unconditionally, so there should be no condition on
-removal of the panel.
-
-> +}
-> +
-> +static const struct of_device_id kingdisplay_of_match[] = {
-> +	{ .compatible = "kingdisplay,kd101ne3-40ti",
-> +	  .data = &kingdisplay_kd101ne3_40ti_desc
-> +	},
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, kingdisplay_of_match);
-> +
-> +static struct mipi_dsi_driver kingdisplay_panel_driver = {
-> +	.driver = {
-> +		.name = "panel-kingdisplay-kd101ne3",
-> +		.of_match_table = kingdisplay_of_match,
-> +	},
-> +	.probe = kingdisplay_panel_probe,
-> +	.remove = kingdisplay_panel_remove,
-> +	.shutdown = kingdisplay_panel_shutdown,
-> +};
-> +module_mipi_dsi_driver(kingdisplay_panel_driver);
-> +
-> +MODULE_AUTHOR("Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>");
-> +MODULE_DESCRIPTION("kingdisplay kd101ne3-40ti 800x1280 video mode panel driver");
-> +MODULE_LICENSE("GPL v2");
-> -- 
-> 2.17.1
-> 
 
 -- 
 With best wishes
