@@ -1,125 +1,156 @@
-Return-Path: <devicetree+bounces-60495-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2D4A8A9765
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 12:30:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E45F88A979C
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 12:41:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4CF8E1F23817
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 10:30:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6ED601F2241C
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 10:41:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 583E654FAB;
-	Thu, 18 Apr 2024 10:30:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 955CA15D5CC;
+	Thu, 18 Apr 2024 10:41:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="z00elmWE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Em9goE19"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D94F8821;
-	Thu, 18 Apr 2024 10:30:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82C3D127B57
+	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 10:41:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713436249; cv=none; b=u2ilw5EoqyrUsSD8cOmgjcUyS6/hmh84OtXq/LCz3hUMsaHjZlO8wtFKiRPkhBMX1pgeDfYD6Ftt4M7c4e0EZmzFgaMgTKMpeInma9gWj8FcLKlh9qZOsMn9Sh2Arng+12JvOmUC3PhZzEq/iRfOx9WdI7SclTFryuLzpi1zQvM=
+	t=1713436874; cv=none; b=bEDoi3LwiC2M8uxqmaW5LK6UIjNGAHrWNg7LahE/qz7TQcun5h4Cm6xYd/tl/5Fpa+xnHP4FOSAytF8f7xqh9GF6E8iQfhCKYmP1g2Idq1w7OAXH5S82qZ8Uqp1ANIdpdQM44M5mOkXaxe5ouNK20xTfT3BCVT+QaU9wBH3KqWA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713436249; c=relaxed/simple;
-	bh=Kx/O3NbYmmye71xw/73E2GXjtvhWZUZ9V2RPXla/lMw=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lIC6xWzJeor+eSlvEijC+hXqYsJYoIEM3ZHxgewX3chTnwge1s6c6nPo3d/1X2FWozKusGMsTgdBWhQ+VzYBtoHjA5Lt9xnPxixMkiNlzJidtuHDi+Gr5QHVOSt0wVt5vHw+Upt0IPpYCp9LUzUgWizfQ14tziyMAETnr/k9EaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=z00elmWE; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1713436246; x=1744972246;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Kx/O3NbYmmye71xw/73E2GXjtvhWZUZ9V2RPXla/lMw=;
-  b=z00elmWELtbcPeTB4DKGS+v09AG49WHfYDhBaHLFLTU5mYA+7bb22pDv
-   r89yMsjVfiUsjGO+maTI1mi4SHPFs7HvoCyJiv2twFV6kWCouLI7CqsDY
-   R1qrWulswX0qmbmUbgJR4FAxOE08O6uDxBue8wWvmWyfIuGtaNvopPD3E
-   BQ5Vh/88zb9g3fEsYdi4PegRCKlTiFGiWDJUSlcVOHs5GAnL8YE7MAcev
-   CAikYsWt61SDoXyn/JvOw6x094pcSpVNRGrbgLACNnhwOVzDU2YPd61mC
-   ln2voPf2W0feQ7hrQEn0E7w8nRDX9AQ9jk00nAfFjsOa5/lz1cNkDcSrU
-   g==;
-X-CSE-ConnectionGUID: IwiwC4InSEmNg7Dv2twxMA==
-X-CSE-MsgGUID: noxMaoaySkiucyrpesccLQ==
-X-IronPort-AV: E=Sophos;i="6.07,211,1708412400"; 
-   d="asc'?scan'208";a="21540872"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 18 Apr 2024 03:30:44 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 18 Apr 2024 03:30:18 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Thu, 18 Apr 2024 03:30:14 -0700
-Date: Thu, 18 Apr 2024 11:29:59 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Andy Chiu <andy.chiu@sifive.com>
-CC: Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
-	<palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Heiko Stuebner
-	<heiko@sntech.de>, Guo Ren <guoren@kernel.org>, Conor Dooley
-	<conor@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Jonathan Corbet <corbet@lwn.net>, Evan
- Green <evan@rivosinc.com>, =?iso-8859-1?Q?Cl=E9ment_L=E9ger?=
-	<cleger@rivosinc.com>, Shuah Khan <shuah@kernel.org>,
-	<linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>, Palmer
- Dabbelt <palmer@rivosinc.com>, Vincent Chen <vincent.chen@sifive.com>,
-	Greentime Hu <greentime.hu@sifive.com>, <devicetree@vger.kernel.org>,
-	<linux-doc@vger.kernel.org>, <linux-kselftest@vger.kernel.org>
-Subject: Re: [PATCH v4 3/9] riscv: cpufeature: call match_isa_ext() for
- single-letter extensions
-Message-ID: <20240418-twirl-aground-a581d6e45854@wendy>
-References: <20240412-zve-detection-v4-0-e0c45bb6b253@sifive.com>
- <20240412-zve-detection-v4-3-e0c45bb6b253@sifive.com>
+	s=arc-20240116; t=1713436874; c=relaxed/simple;
+	bh=5MJVQNnAltPPYqR5fyLaSzpKAs8uzJVa87qLnasz6V0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lFJe4ym0tqCdkabDl4QyvfQ6r+EfXvDuF8mzvnC/XQbKea4QrzZl+sKR+JmDmKvRepulby11kaFVvVfLrjKX6xg5MjOe80eBOMxxPQpV8X/WUa/hDpPjlUHp27CoXa96XUwDeHw92p/dJGB4SN3J1MrDEAv9D5S+OgAcORitSTg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Em9goE19; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a44f2d894b7so62200566b.1
+        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 03:41:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1713436870; x=1714041670; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=JpEL1BhH93BClNIFFrPrHPyrE8+P1tWWO3Nmmetb4EM=;
+        b=Em9goE19qb89MzWqTsGULgIKqT+JdERk22AwaCX4lreNaPuYqy7QuDxxDhypIHwKLA
+         3XRdFeBz0p0/m/4fSgO+dD9bRiQ1+IPMerUVeoqybLCFC45lHjgtJ4DQuAO+1q9I/HIW
+         xzqL2nqwliyd0bOgiFoLbFdb+stHJkrOkjiQrlev8Y2iNjbB/C+hmOfZ2ZL3yio32Q6J
+         pX9bYo87H1zjlkdNNYCpe1lNZybMXo3dEt59NdAfAfDhL9vu9sDTmeJNBi7foneieHpu
+         /Z6RwWSFG3Id23H6H/oVvbv698RZ6VIYVRprENegu13CogMqNocDKkwWNS4wm1Z4GwsP
+         Wjvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713436870; x=1714041670;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JpEL1BhH93BClNIFFrPrHPyrE8+P1tWWO3Nmmetb4EM=;
+        b=uVSAZxWRNmB12P7UHkbgIeU1L1IBjCANXn+tB7Od2Umuo4wzpKSXRa5iFDOcfV3pjW
+         CnexjFW4ULRlBDYcZW2gDxfEQwwUI/Qw8+vv0ZbO9BdTkcjYIMiWjfonBXhk1RGY3ofD
+         Y6x2UjCMM0kfu5w2uQUVE2B0yJqwfSLLSj7KdNY7yoQuK8tnWq1XCagDXjy9iz5UUQjJ
+         I2Ek31M/l7WMXUXASrBBoVyX/BPnKqjvozWN6kM7xgAK1DIDn9VlutOMvtCjmMkP1+NW
+         +femYBgirNi2ia1T2y0dK2lHVQZe/bfsdwfNn2fpsoqJrvtfD+lTbQCZjBkyErMR8FSE
+         d3Mg==
+X-Forwarded-Encrypted: i=1; AJvYcCXmeqPGziB97/+vTt+Mpf1gg4PfXxYOe5bIg8tTu9erS+PMiLo7BFpppECEH5zZRtuwDPuyeu3evRsPihqeenL53Rit3OLSf3ZG8A==
+X-Gm-Message-State: AOJu0YySTmA7NId/JzcP3W99g4LVXEGUw0zJc7POKzEHpiXfPHc5tM9W
+	Vn2SIavTH6uGQVa/TAI+nQ/1ky9ITPz1Aq6x2VvAM9cqrCOjYWD30WisPXIxyYc=
+X-Google-Smtp-Source: AGHT+IGP8wIbtJpzHlE1x37VglufZhBU+bgRMQJEShZuRY/hV07VpN1vJRjHdubUU+DzjU2mONQwbQ==
+X-Received: by 2002:a17:906:2418:b0:a55:61cc:7337 with SMTP id z24-20020a170906241800b00a5561cc7337mr1787730eja.43.1713436869811;
+        Thu, 18 Apr 2024 03:41:09 -0700 (PDT)
+Received: from [192.168.45.55] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
+        by smtp.gmail.com with ESMTPSA id gu6-20020a170906f28600b00a4e44f724e8sm708558ejb.186.2024.04.18.03.41.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Apr 2024 03:41:08 -0700 (PDT)
+Message-ID: <fdc820f5-f7e3-43ab-8077-b5fc55035052@linaro.org>
+Date: Thu, 18 Apr 2024 12:41:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="+kb/Lbwm7h/0iKfQ"
-Content-Disposition: inline
-In-Reply-To: <20240412-zve-detection-v4-3-e0c45bb6b253@sifive.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: x1e80100: Drop the link-frequencies
+ from mdss_dp3_in
+To: Abel Vesa <abel.vesa@linaro.org>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Rajendra Nayak
+ <quic_rjendra@quicinc.com>, Sibi Sankar <quic_sibis@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240418-x1e80100-dts-fix-mdss-dp3-v1-0-9f8420e395d4@linaro.org>
+ <20240418-x1e80100-dts-fix-mdss-dp3-v1-1-9f8420e395d4@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240418-x1e80100-dts-fix-mdss-dp3-v1-1-9f8420e395d4@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---+kb/Lbwm7h/0iKfQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 18.04.2024 12:22 PM, Abel Vesa wrote:
+> The link-frequences belong in mdss_dp3_out. Display is broken because of
+> this. Drop them from mdss_dp3_in.
+> 
+> Fixes: 1940c25eaa63 ("arm64: dts: qcom: x1e80100: Add display nodes")
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> index f5a3b39ae70e..0642b5e88639 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> @@ -4096,7 +4096,6 @@ port@0 {
+>  						mdss_dp3_in: endpoint {
+>  							remote-endpoint = <&mdss_intf5_out>;
+>  
+> -							link-frequencies = /bits/ 64 <8100000000>;
 
-On Fri, Apr 12, 2024 at 02:48:59PM +0800, Andy Chiu wrote:
-> Single-letter extensions may also imply multiple subextensions. For
-> example, Vector extension implies zve64d, and zve64d implies zve64f.
->=20
-> Extension parsing for "riscv,isa-extensions" has the ability to resolve
-> the dependency by calling match_isa_ext(). This patch makes deprecated
-> parser call the same function for single letter extensions.
+Could you also remove the stray blank line above?
 
-Sure, why not..
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Thanks,
-Conor.
-
---+kb/Lbwm7h/0iKfQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZiD2JwAKCRB4tDGHoIJi
-0lSLAP9etZ2WCMHmao3TIOEA8ZgOo2OTJ3ipe9slmFEM10nxuwD/Zi2J1xel+G8Q
-uSuqYeiY5lSCD4TaQEPHlc1Aa2nRgwQ=
-=7adE
------END PGP SIGNATURE-----
-
---+kb/Lbwm7h/0iKfQ--
+Konrad
 
