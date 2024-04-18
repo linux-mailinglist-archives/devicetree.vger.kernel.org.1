@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-60478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4A7C8A96B1
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 11:51:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C18178A96C3
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 11:53:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 399701F2268B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 09:51:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 384721F2360A
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 09:53:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2833815B542;
-	Thu, 18 Apr 2024 09:51:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAD9815B54A;
+	Thu, 18 Apr 2024 09:53:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Jtd1XF+U"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tEB8BLmT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91FFB15B13E
-	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 09:51:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07C9015B14D
+	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 09:53:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713433884; cv=none; b=B5vbOjOZXLtaRD3uXLdqIwVsWNBpaLTVgplN4AkWECCcWDtdaK2fYktDFXbLa9EmjLcB4Tyq+qwdmToax8UnygV6QH7E8ke0zAAbwfE6kea8rfldKD9jkmLL7IZixIK3LfE+PBYNjTOP77ndnUCF81r53gAmepH7I23ETLE4bO4=
+	t=1713434018; cv=none; b=XA+y+qs8K7mfJK02mygI9zbv15Ga5GXmE9aFo8cI1zQ3S+SPZf61LCr/Rt8er2h4KdoLsQeXZ9xenz9ZsdJn4Wod1YC2eXcK9ScrhS6BVbumhF+WQyKa5LPoHEX/v1QzBSSW+rFQ4SLsDsvKmabbDJBIkJaE/MfYwDsuRsYOR0w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713433884; c=relaxed/simple;
-	bh=CmkAx09d7unD9qOUxiMbRZMA780DM6Gi/Z/Ysdz0BIY=;
+	s=arc-20240116; t=1713434018; c=relaxed/simple;
+	bh=Ol7MBBNXfsfudRNvI/1+uyPhECVqgRb4C7elmYU1isI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HMC2QN0uFfaP1TxpgyftCi/lOJTgh8BG9bQU5cJYKMiJTdYSp/uyBb1Zdxbd0q8wEL947Tyv74wh7f/LQh3rd87Ik/aKfh2JU0BZONWHxFSpqHvvOcXsdrbt6YtcWBpnxlhzS5kh9qOJ7XNV1Gy949BstMIiHU/7mgqlE1GlOHE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Jtd1XF+U; arc=none smtp.client-ip=209.85.218.50
+	 In-Reply-To:Content-Type; b=L28JUSEZbop9dTnacPBXocvDbPYQNQCUALem7kocSReXnuJqYk0pAm/kohjx0SbPRBx6lHvvWzJKFKq38JOSSFkggoAL8HxcuCBW5ztFOUgvGciNSrdfubGmFCbFfY47S8fIL/5h4MRkCv8GiVvO5HbuPBNJotjD3J8juhWUk9E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tEB8BLmT; arc=none smtp.client-ip=209.85.208.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a51addddbd4so57817466b.0
-        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 02:51:21 -0700 (PDT)
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-571ba432477so548809a12.1
+        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 02:53:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713433880; x=1714038680; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1713434015; x=1714038815; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=OGBY5n0lkuic0XzOyZry0BISQT6Vj4C0SqZCz5uX33M=;
-        b=Jtd1XF+UC11q92Vf1ok4gytCI42vyCt93cIX689IBUYr5XtTkIIrJyUD9njzGDdU8r
-         eYBQgJRPx92dhB9V7Jv0SDIoJEyzrHIU0UG1vI2JnYTj4zIr2jpSeNooNYVaUAqD5u3F
-         rR3fFrrlLk1EwAnBf0IILrgUYMrH8FFeWCxYCrr06h4zqB6g0kRTrBd+/o5KlD41U+Mr
-         qzQC7JTPkozO1F6yXGCOoCiQRQMcZY31zB5l0UlPmdS3aN0H4RqnRkPOKiEDdAd3dZD1
-         YEKyVGhuc2Php1YNE6VjS9cwDJKKGXKdUu3TaUibHSrENU57Op/2uL85MAp9T78AjdmK
-         bNAw==
+        bh=VLkgZOZ90U32RSTtgOrkaBwhPTaXy2bpzcFJ6tojey4=;
+        b=tEB8BLmTrqIt7lFft50mbT4YVlUOe/LAG+01SodHsbJajB8blguHEAQ/C4KRr8UkTk
+         78laMQz1o/8FQgh3nBSyeVi794IXbDQV9USv7OkXllZJzbhmSRwtLk9VV5SzSTz8ESMi
+         0BRQZ3HhS7huPcHQoVfCu7Bp9OUY8rk4IEseGt9xjuci41qfSFMU8fO4O6wbcsnQy5Hn
+         Qsd1g7n09hqsv8gXFcWpeHJydHzRb0M6eiwATRY6A+6DKnYTKwdfVDi+02V+CRm2IUns
+         rdqHDNK9BFnlSQFPkuMtmKGEawHJhKqn7j6/zhI2Om9e83Im1tc9YDlLxNs5cVZ1W+Iz
+         k2OQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713433880; x=1714038680;
+        d=1e100.net; s=20230601; t=1713434015; x=1714038815;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=OGBY5n0lkuic0XzOyZry0BISQT6Vj4C0SqZCz5uX33M=;
-        b=V9lEwkQ6m9Wo+aO7L8q3kJ8asK5u4AkLYJmBuwE9XC/ZLPwWJc2Tn0loH1GcFKYDqJ
-         Ma53IhpZyxwb09RYhfGhQ4876wkG8NO/UFeE0g3qY/02DLhk0LOUKtmRLcRlOoo7yMin
-         gHVn7qv6BhkB+irqBKoWxp8ZUVsn7HmgWI6BKl7YTtzD8QNDafPMmg7GBZYM/yIi1vlY
-         HhHyROhWcx3EZj9txW4bkde+e57TFLHa6DVlRG4dsTsPwSawhbenLKsVyNPtejy8CncN
-         xL1dUBJQtMk3zGYTzbOsT0ctxHkUj0VDKAof7ZW46X8At2PwZXEBR+gChRrpRQ2g85aE
-         9YGw==
-X-Forwarded-Encrypted: i=1; AJvYcCXdMzj/Lw5YcXviHVmHesD52ZLaLsNARr76PGYHV3CbsjwVz1nLRmBvGwx1BP3GEYhX9KtZqCIxA7pYoZgZFB1WpUq8yHQo7SFCxg==
-X-Gm-Message-State: AOJu0YzB4gwYZh0RLSLDDxUv3mYbz9g4FPVtsz1OLPDVLMVZPupjtVz/
-	Zyqbe2D3diJvmvA8pscGowwxuBwy6glrH6RyvZ/TEiCGhjTgMBVXm7h+CXIQcDQ=
-X-Google-Smtp-Source: AGHT+IEEkKZPQY7QzwTKRJ0bNeVqexAdC7M3xSccRFnfmZoQdKknEIXHCT2bcHYHrhmFkBAsMjYF1w==
-X-Received: by 2002:a17:906:4151:b0:a52:c873:a66 with SMTP id l17-20020a170906415100b00a52c8730a66mr1316386ejk.34.1713433879768;
-        Thu, 18 Apr 2024 02:51:19 -0700 (PDT)
+        bh=VLkgZOZ90U32RSTtgOrkaBwhPTaXy2bpzcFJ6tojey4=;
+        b=LO1jQZy72+WeyRYpNy0f0GjMZqgTpGdRUimuDFmZEOHCRn9mntedb7XiCJA+p3AKxH
+         0mOpL4qjrXi1tyjTSlsPPpJyor+I4QBpFG7vjzI/911FtTM1WkybKlhPIddSrhOa21/D
+         bVE0avg60r3yNqrDNPz/rCAFomGj7PfB+93IzEGOrpelDyWM3iysmnkcUcrZAB2/YHUz
+         hnrfYg/0ZCh8gadHFxP/F9gSsSL3SWEMoXWj7dOokEK+KMn9VplMb8hsWuCMc8CKk0UK
+         TjEdE2IHjzxcYfbmaIy+mAT1kheXiW/WjaS2WfhgQdo4gWwjniaFvLCG1ELg9y42n8BP
+         mhmw==
+X-Forwarded-Encrypted: i=1; AJvYcCXp1nrn1vpQgLD5m//UB16OGk9rjizoSEZz4akpIAeyAhZAk/lWY2cL9PaHRxnBRNnTCuBB8Us+SDPlGP5Dq3yZMRy+z5npvhUlhg==
+X-Gm-Message-State: AOJu0Yzqsd+lQEnhOqbUy/4VCUCI4LRgSvKgvlILpBZ09/CaUrrBLgwl
+	xdz0GYrK/5Rhxsc+uVtI+I2S63u1KJB3DnqUNNZNgtvESbBBP1rLiQ657iedCvo=
+X-Google-Smtp-Source: AGHT+IGqguX6zc1dY53s7tQdvvJIHYrELOBLXEo4pkndtUrRrRSjHC6R2HouIgqmWsQT+z+tey7clw==
+X-Received: by 2002:a17:906:851:b0:a55:6606:bbf7 with SMTP id f17-20020a170906085100b00a556606bbf7mr1276700ejd.35.1713434015231;
+        Thu, 18 Apr 2024 02:53:35 -0700 (PDT)
 Received: from [192.168.45.55] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
-        by smtp.gmail.com with ESMTPSA id f5-20020a1709067f8500b00a5559f0f9dcsm669994ejr.79.2024.04.18.02.51.17
+        by smtp.gmail.com with ESMTPSA id j18-20020a170906051200b00a51ba0be887sm662128eja.192.2024.04.18.02.53.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Apr 2024 02:51:18 -0700 (PDT)
-Message-ID: <bfd6aa32-a28e-47a4-82c7-76c5dd99a44d@linaro.org>
-Date: Thu, 18 Apr 2024 11:51:16 +0200
+        Thu, 18 Apr 2024 02:53:33 -0700 (PDT)
+Message-ID: <89eccb1f-c527-4820-a084-7fc4ad3f0ab4@linaro.org>
+Date: Thu, 18 Apr 2024 11:53:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,7 +77,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/7] drm/msm/adreno: Implement SMEM-based speed bin
+Subject: Re: [PATCH v2 2/7] soc: qcom: smem: Add a feature code getter
 To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Cc: Bjorn Andersson <andersson@kernel.org>, Rob Clark <robdclark@gmail.com>,
  Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
@@ -89,8 +89,8 @@ Cc: Bjorn Andersson <andersson@kernel.org>, Rob Clark <robdclark@gmail.com>,
  freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
  Neil Armstrong <neil.armstrong@linaro.org>
 References: <20240404-topic-smem_speedbin-v2-0-c84f820b7e5b@linaro.org>
- <20240404-topic-smem_speedbin-v2-3-c84f820b7e5b@linaro.org>
- <hi7vzqm5ebypzs6m6bw64ghgfwsdzuaxy65jpah37iw5ww7fku@n3c5sucic27i>
+ <20240404-topic-smem_speedbin-v2-2-c84f820b7e5b@linaro.org>
+ <mg6ojmzl3snj3k6fuyi6opkbdovs7xna6sn65pjh52ii4yy7u6@ny2spvjjbfpu>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
@@ -128,76 +128,48 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <hi7vzqm5ebypzs6m6bw64ghgfwsdzuaxy65jpah37iw5ww7fku@n3c5sucic27i>
+In-Reply-To: <mg6ojmzl3snj3k6fuyi6opkbdovs7xna6sn65pjh52ii4yy7u6@ny2spvjjbfpu>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18.04.2024 1:43 AM, Dmitry Baryshkov wrote:
-> On Wed, Apr 17, 2024 at 10:02:55PM +0200, Konrad Dybcio wrote:
->> On recent (SM8550+) Snapdragon platforms, the GPU speed bin data is
->> abstracted through SMEM, instead of being directly available in a fuse.
+On 18.04.2024 1:39 AM, Dmitry Baryshkov wrote:
+> On Wed, Apr 17, 2024 at 10:02:54PM +0200, Konrad Dybcio wrote:
+>> Recent (SM8550+ ish) Qualcomm SoCs have a new mechanism for precisely
+>> identifying the specific SKU and the precise speed bin (in the general
+>> meaning of this word, anyway): a pair of values called Product Code
+>> and Feature Code.
 >>
->> Add support for SMEM-based speed binning, which includes getting
->> "feature code" and "product code" from said source and parsing them
->> to form something that lets us match OPPs against.
+>> Based on this information, we can deduce the available frequencies for
+>> things such as Adreno. In the case of Adreno specifically, Pcode is
+>> useless for non-prototype SoCs.
 >>
->> Due to the product code being ignored in the context of Adreno on
->> production parts (as of SM8650), hardcode it to SOCINFO_PC_UNKNOWN.
+>> Introduce a getter for the feature code and export it.
 >>
 >> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 >> ---
 
 [...]
 
->> --- a/drivers/gpu/drm/msm/adreno/adreno_device.c
->> +++ b/drivers/gpu/drm/msm/adreno/adreno_device.c
->> @@ -6,6 +6,8 @@
->>   * Copyright (c) 2014,2017 The Linux Foundation. All rights reserved.
->>   */
->>  
->> +#include <linux/soc/qcom/socinfo.h>
+>> +/* Internal feature codes */
+>> +/* Valid values: 0 <= n <= 0xf */
+>> +#define SOCINFO_FC_Yn(n)		(0xf1 + n)
+>> +#define SOCINFO_FC_INT_MAX		SOCINFO_FC_Yn(0x10)
+> 
+> This is 0x101 rather than 0x100 or 0xff. Is that expected?
+
+Yes, this is "the first invalid one", similar to ENUMNAME_NUM
+
+> 
 >> +
+>> +/* Product codes */
+>> +#define SOCINFO_PC_UNKNOWN		0
+>> +#define SOCINFO_PCn(n)			(n + 1)
+>> +#define SOCINFO_PC_RESERVE		(BIT(31) - 1)
 > 
-> Stray leftover?
+> This patch works on fcodes, why do we have PCode defines here?
 
-Looks like
-
-[...]
-
->> +
->> +#ifdef CONFIG_QCOM_SMEM
-> 
-> Please extract to a separate function and put the function under ifdef
-> (providing a stub otherwise). Having #ifndefs inside funciton body is
-> frowned upon.
-
-Hm, this looked quite sparse and straightforward, but I can do that.
-
-[...]
-
->> +/* As of SM8650, PCODE on production SoCs is meaningless wrt the GPU bin */
->> +#define ADRENO_SKU_ID_FCODE		GENMASK(15, 0)
->> +#define ADRENO_SKU_ID(fcode)	(SOCINFO_PC_UNKNOWN << 16 | fcode)
-> 
-> If we got rid of PCode matching, is there a need to actually use
-> SOCINFO_PC_UNKNOWN here? Or just 0 would be fine?
-
-The IDs need to stay constant for mesa
-
-I used the define here to:
-
-a) define the SKU_ID structure so that it's clear what it's comprised of
-b) make it easy to add back Pcode in case it becomes useful with future SoCs
-c) avoid mistakes - PC_UNKNOWN happens to be zero, but that's a lucky
-   coincidence
-
-We don't *match* based on PCODE, but still need to construct the ID properly
-
-Another option would be to pass the real pcode and add some sort of
-"pcode_invalid" property that if found would ignore this part of the
-SKU_ID in mesa, but that sounds overly and unnecessarily complex.
-
-Konrad
+I decided they're useful to keep.. Didn't want to split them to a separate
+patch for no reason.
 
 Konrad
 
