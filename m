@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-60782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63D888AA58E
-	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 00:55:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19B5E8AA594
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 00:59:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D02721F22A65
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 22:55:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CCDCB282374
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 22:59:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34E7F3FB81;
-	Thu, 18 Apr 2024 22:55:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C284141A92;
+	Thu, 18 Apr 2024 22:59:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i+a+MSxx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="v5GKLzf8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEE5E36AFB
-	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 22:55:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BBC7224D1
+	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 22:59:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713480950; cv=none; b=NyxJ0evpdhVCAmiz8tlZMc4d4ZrMsMV5Cl7jSmpJcagRoZcQxanglaExcAGjbFJyd3HGtPqKHVwCz5aD46AIJw9fOUq3ckSYRpZ41vsEQFmq//6vPd22hDqNmCHvTT0v4anwdmgCbO+EPImzHQALqgezhUwUWMPmDMHWsO+N0Ws=
+	t=1713481164; cv=none; b=gvOwOJ2l0B4JzEqbdaWD7COEJLivbIFnpS8uqhk5tmCCRjvGfjCp2ojDC5QclCJwIm9X7AWrnGJhZNEuImZEKvkqG1kBKtqW6Jmh71KFNKMO+3O9NBmkJ28rY5wxsRbWHHwUBsE0kPn6aYFJXgeXKDdRb/MHxoFWTqtP8YgdSK4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713480950; c=relaxed/simple;
-	bh=cPe9F+1uPtYL1EyBRc5Pqrbp18H/tVCOotQUZelZlhk=;
+	s=arc-20240116; t=1713481164; c=relaxed/simple;
+	bh=D7fTlCHxbzizfcGJL3wob3PQR41wlpCaKsPqy4FDhWg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=slGhfj8ym+HzwcwgjqtlxG/ktOCjsTw1tXXdsIFSdn2WiKzjO0kVcToubBf58HZWr85dkd4x5Z4IlWO2ahlQ2q1OGzDCzRIPIu3wkDJ44lBGTtfzqF/9UFXxm10bSCFImm8G9WRx5d7VKn0EZKtXF66bVRgsfBxnWNOTHCPsNrg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=i+a+MSxx; arc=none smtp.client-ip=209.85.216.47
+	 In-Reply-To:Content-Type; b=g77RRH7p7ju4ADaXttlFrZgSb1qjIEFViKLO3X7HZsMFGVaZbLfN/8W6F80DMzNYBb7IrJXHZfj6yRmSIElspexl8kbK2pgDNPyksrvrZ7u5cjRbitcY4aKNFhvsGtxXDTE9Zfwd4vnMq53NEb1tq2sVKOtEeVKN5apfXrA4DDA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=v5GKLzf8; arc=none smtp.client-ip=209.85.214.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-2a78c2e253aso1218684a91.3
-        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 15:55:48 -0700 (PDT)
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-1e2bbc2048eso12629415ad.3
+        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 15:59:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713480948; x=1714085748; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1713481162; x=1714085962; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=j/AgmAZ6+RAasgCGPbj9vxrfH+4BA1gKwCa1XaUTckY=;
-        b=i+a+MSxxvwxSYq9qHjSPB+n8QAhiKAi3uV/p1Pxuy+eQCHm8JHWsDpQZs+Wsql5z/l
-         nR9W2Ara0BxLO0Zyw3pUe2y0zEgggameOSxCGPrEMoWAx2Smapx7J3d0YX8xQpxqJNJR
-         tCSNCU2XYiX9RRPULY/8VnV0AxmgWVqd9s8w25dcjMCU4wrAdOn+CRsAMCjUGSdldFRr
-         iShvN7Zzz0+0byUzRx8z2HibzV8kXs2FMH7D5FwAo4YqjZCZvPIiFfl1dqgtaXJjEulA
-         g9Aow24Ca/TU4rF6pKoO8PI6ZFChx1kuIJow14pzwwLeR4WP4FkG+CkgBHs8AGd3S1qY
-         S59g==
+        bh=DdL3HzCb+5J1PYorhrvryxPtw9PH/EG3K3drRBpUY2s=;
+        b=v5GKLzf8Fztmg9kxAwKYNFG/BAEMNz9cBJ24+8RadTvhJhtcV8ZgCVYVIv2RpfoVsC
+         qpYdm+xhoMIbdztCIUUaAMWO28w0SDNCetUtRGOQT70smtX7Pg6jhEToZSV/QUep6zHs
+         +YjZ7SjfsN54cRmMHDPa7VyYfh0I4U7jgtQkT8B8dTFNd7BPBv+Jx/wUeL3/+Gwz6yIC
+         otU4dR6ibmjcdBHO/uEE0M9QVLisqvXeWPqNhLRP1Awu2/ENhRJS+p01ByIdT6Y/t07L
+         +aUZVSIh0A3ESA1DYvBgvOWexbenV0KwspijUHD2vekF8zp1ohKwI8p7h0OmCS24My12
+         KKGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713480948; x=1714085748;
+        d=1e100.net; s=20230601; t=1713481162; x=1714085962;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=j/AgmAZ6+RAasgCGPbj9vxrfH+4BA1gKwCa1XaUTckY=;
-        b=qxSSl4IT0dvz9Hn9CghDYZ9P0nqpqnueKEBH+EF9eMp27km7AmvxeG05ZrdIugd3uK
-         PV3vHZSgvLq7umcz0qA2KJU0I4nrtEIYo6e7MM+mOOdn/yPKC86bg0u7LTQsg0qviXcb
-         aTp5EpAHQdovC3qhMLM+sftLWFAnv5udZIXZI8pN4bcgL4fRe4VcYrWssvq4JVCSOm51
-         1Luwp2g8jdEEiwX1IbF/bRGiRsoac9t/MfgBUkPHF3jFHLAJW/Gh5aG5C/WmM/oG7qy3
-         cmCaAMuNx/6OQe6ZPBHw+va5hvkFUUj5kw4oix0sNvPARXnhXI0ZychNo24607h3U/ZG
-         esiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVjW38r+M0hDNHKdSrHd94Qqvf4xywuMfDYon24cUZYRmOKT3a7P2u1cJ5M6rj6t6DdcQppDpQlZmVGO5CrL9RaEfqwcLZqxGNtyw==
-X-Gm-Message-State: AOJu0YzTADOgez/3IjBsjhou2iNVL+KgsS3ncktBPldKH/I8ifm4vnrm
-	lSlfp10qXjtv2bvv+RTOmvYf7iuxRfpxCCSFF8Crcz3JpStL6VxcvCIngIGWRY0=
-X-Google-Smtp-Source: AGHT+IFS6dDxC2D+6Tvg/9J9cHYpZDpn5UX5r6bXsft6wNHl1PtvfxAL+kEVmFKphnwqwSrUUkUbJw==
-X-Received: by 2002:a17:90a:bb81:b0:2ac:9ee:5250 with SMTP id v1-20020a17090abb8100b002ac09ee5250mr606727pjr.35.1713480948032;
-        Thu, 18 Apr 2024 15:55:48 -0700 (PDT)
+        bh=DdL3HzCb+5J1PYorhrvryxPtw9PH/EG3K3drRBpUY2s=;
+        b=YGxPPb3Fg2pNTvYZfda5QWMDxPnHIWB/Ga7y7g5J3s/xcjFNLpDga4sYmYhdaXCl6D
+         jOyr7ZtaIBvfw3g+J4q9hUjSgXRZi1mZaY7jGj8o+5cuVJMK3fU+cUZ2Vhte6Sd7pcer
+         SLV5gxDtTxDYh45/DJJoerPy5Fi9Pnb0qzV3TdmkpYTAE+qcD1oFyUlbjU/ONoQlqQO+
+         Hd7CaCOKBAp50sOzZWqcELRDKE5qhrDjY2xyknViNykTK4jWdLZ/MwKKUwQVBAXzge5r
+         njn6rXwiNBGsQQPJj1TPRzn0+igixHqwruOhghx1B1JorJE7FBkj2HCM6VNUSu82h1re
+         nvAg==
+X-Forwarded-Encrypted: i=1; AJvYcCV+91KzhgsHyEjHIsLCSg+SYJp9Z9lifgMfiuAhTsISWmd5twU/xwJ03wGYB/Yrsw6NXy3Ht9uS2jJDv7Wt43deuRr7x3DkZ1SKnw==
+X-Gm-Message-State: AOJu0YzjN6VfSlnYoUItSC7iqokqOX7EgK/z42aV8oQlIhrfi+79fz38
+	qZmE2ibgQeXcaSUFhLgybCJ/jiDX8Dn1Rv6wDFup6TidmiXoVTbZLNE3o6vwKyM=
+X-Google-Smtp-Source: AGHT+IGApT+hk2W1hlIDYOgCV0D14ijYcg4EQ8LzX3CAhRR+ar44aUioTQl9gQA+S9JbjymjV0Q5GA==
+X-Received: by 2002:a17:902:f681:b0:1e0:c0dd:c5eb with SMTP id l1-20020a170902f68100b001e0c0ddc5ebmr636265plg.9.1713481162482;
+        Thu, 18 Apr 2024 15:59:22 -0700 (PDT)
 Received: from [10.36.51.174] ([24.75.208.147])
-        by smtp.gmail.com with ESMTPSA id gk1-20020a17090b118100b002a5290ad3d4sm1994328pjb.3.2024.04.18.15.55.39
+        by smtp.gmail.com with ESMTPSA id r11-20020a170902c60b00b001e54f250ca9sm2044761plr.212.2024.04.18.15.59.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Apr 2024 15:55:47 -0700 (PDT)
-Message-ID: <086f2bb6-c8d7-477b-9048-bce12961d20e@linaro.org>
-Date: Fri, 19 Apr 2024 00:55:37 +0200
+        Thu, 18 Apr 2024 15:59:21 -0700 (PDT)
+Message-ID: <e0cc524b-82f2-4343-a1a8-9244464824f6@linaro.org>
+Date: Fri, 19 Apr 2024 00:59:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,16 +77,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: input: i2c-hid: Introduce Ilitek
- ili2900
+Subject: Re: [PATCH v1 1/2] dt-bindings: display: panel: Add KD101NE3-40TI
+ support
 To: lvzhaoxiong <lvzhaoxiong@huaqin.corp-partner.google.com>,
- dmitry.torokhov@gmail.com, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jikos@kernel.org,
- benjamin.tissoires@redhat.co, dianders@google.com, hsinyi@google.com
+ mripard@kernel.org, airlied@gmail.com, daniel@ffwll.ch, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, dianders@google.com,
+ hsinyi@google.com
 Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20240418124815.31897-1-lvzhaoxiong@huaqin.corp-partner.google.com>
- <20240418124815.31897-2-lvzhaoxiong@huaqin.corp-partner.google.com>
+References: <20240418081548.12160-1-lvzhaoxiong@huaqin.corp-partner.google.com>
+ <20240418081548.12160-2-lvzhaoxiong@huaqin.corp-partner.google.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -133,18 +133,95 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240418124815.31897-2-lvzhaoxiong@huaqin.corp-partner.google.com>
+In-Reply-To: <20240418081548.12160-2-lvzhaoxiong@huaqin.corp-partner.google.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/04/2024 14:48, lvzhaoxiong wrote:
-> The ili2900 touch screen chip same as ilitek ili9882t controller
-> has a reset gpio.
+On 18/04/2024 10:15, lvzhaoxiong wrote:
+> Create a new dt-scheam for the kd101ne3-40ti.
+
+There is another thread like this, which is confusing. Please version
+your patches. patman solves it. b4 as well.
+
+Read the guidelines provided to you by Google.
+
 > 
 > Signed-off-by: lvzhaoxiong <lvzhaoxiong@huaqin.corp-partner.google.com>
 
-Except that this was not tested, please use full name, not login, if
-possible.
+Same comment as for all your other patches: please use full name.
+
+> ---
+>  .../panel/kingdisplay,kd101ne3-40ti.yaml      | 63 +++++++++++++++++++
+>  1 file changed, 63 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/kingdisplay,kd101ne3-40ti.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/kingdisplay,kd101ne3-40ti.yaml b/Documentation/devicetree/bindings/display/panel/kingdisplay,kd101ne3-40ti.yaml
+> new file mode 100644
+> index 000000000000..dc79a49eea3b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/kingdisplay,kd101ne3-40ti.yaml
+> @@ -0,0 +1,63 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/kingdisplay,kd101ne3-40ti.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: King Display KD035G6-40TI based MIPI-DSI panels
+> +
+> +description: |
+> +  -This binding is for display panels using an JD9365DA controller
+> +
+> +maintainers:
+> +  - Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: kingdisplay,kd101ne3-40ti
+> +
+> +  backlight: true
+> +  port: true
+
+Drop both
+
+> +  pp3300-supply: true
+> +  reg: true
+> +  enable-gpios: true
+> +  rotation: true
+
+Drop these three. panel-common defines them.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - enable-gpios
+> +  - pp3300-supply
+> +  - backlight
+> +  - port
+
+These can stay.
+
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    dsi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        panel: panel@0 {
+> +            compatible = "kingdisplay,kd101ne3-40ti";
+> +            reg = <0>;
+> +            enable-gpios = <&pio 98 0>;
+
+You included the header, so use it.
+
 
 
 Best regards,
