@@ -1,110 +1,133 @@
-Return-Path: <devicetree+bounces-60396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60397-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC04B8A92D8
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 08:14:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44EC58A92F6
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 08:20:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4B394B213CF
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 06:14:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B98B1C20BC6
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 06:20:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D69A5651B1;
-	Thu, 18 Apr 2024 06:14:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A5D169E1C;
+	Thu, 18 Apr 2024 06:20:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gJ6GF1zn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgeu2.qq.com (smtpbgeu2.qq.com [18.194.254.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98FBF60260;
-	Thu, 18 Apr 2024 06:14:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.194.254.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96ACA5B217
+	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 06:20:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713420872; cv=none; b=q+yTgaNiRixIepdFGviSdw8g7M/Gj3iWWRlgSg7O3B8IoNapk5ijHuNcNDIaiFIKPONg2QAxpRmlcf+/fCEBx42mXBr2yKBohMAC/HJq++SSb2tZACsWWBgq6EFNZmAoO5rx4yAn8f1aduhFeeLbEHrp61dNtkAQmzOnP0ZlLiQ=
+	t=1713421220; cv=none; b=hrgKpEkQPnN7L61m1svW7ol00N/fOaZgzD7twPOjaoUy/YwdGZPSga7xpPdubV43DIbN49jiv/r6y3pf4l3XPCK6jomC3KegMTloWntP4IlIZTalL/Ske9fVX4Ypqa6WjYMu+DO6FCIKrSQh6KpQ0NmIoVy1EsOtvTq2ci26Nnk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713420872; c=relaxed/simple;
-	bh=3YTW1YqXYoumCOynPRD9UuIXLnp+hwGKvOmiBl56/vo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=egXyiuR0PeFo6KO+vV1Tmn9/GNXPIEjAtxyXDKhhjp0/Gd+a2ejwvbbGuPrbD098DmLamEO3xBU8Siqu+Fo2mWoNVgew1/HFkyp/oxsxytNveM+mxNmkdkZ5AGWbfkChbBgELdo2pPELPOthFudkVhc80Y/a8xqWCz1nJwYGEq4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=18.194.254.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: bizesmtpsz7t1713420800tgm1cll
-X-QQ-Originating-IP: r/ejyZvgSRLvHsenLKM5xIQ9Ri/IXB9uPybLXv/mbNk=
-Received: from [192.168.159.131] ( [106.150.157.243])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Thu, 18 Apr 2024 14:13:17 +0800 (CST)
-X-QQ-SSF: 01100000000000C0G000000A0000000
-X-QQ-FEAT: r/cTxDoDoiH1Bc56LytD5jHVqtEDUAmA6aiMrRAEKAdMlrveYx4SbJi/4uT5M
-	g6dLDzYLUNd4PDN/sm2r/upe7uy83xRpSvCeDnoXEFHNSQUBh8gziUn/kz9gG2oDqEwwwiO
-	ipp/UUAE14D4yLjZUEvC3yWOc++7XxvvdhLGEoHBQKjm+qAvvItsnwVG1P5dkYtr2+DqPe6
-	vmiJdwdaDK7OEYk/bg98ezjn5KA88NwIhvfB/tyUT4TogJK1lZhuxi1UuAXb0RQ5C5zbH3/
-	I6Az/Ss/H9QhxmEoAQg/cskMU9bMK1d5b48ysLMoP20ukSsTStBKnsE1R+QwsO+T4zA+uKd
-	OEKIjCa1rzvXcZRnmdrr75oYiy5RCzcBdXoXWWG7TIuH9YNqW54GQThHvQ4dv+qYVALU6nv
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 2346405261263451864
-Message-ID: <54A57FB24C5E1752+669a5f22-b9fc-4cb6-8df5-367331dc4658@radxa.com>
-Date: Thu, 18 Apr 2024 15:13:17 +0900
+	s=arc-20240116; t=1713421220; c=relaxed/simple;
+	bh=ioUowZ4DOFzP0N/qgT9D4k4N1wRxG9niaft+g/nCSIY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CT2cwBgyN37MGppB+WyRBb2EHjQmCeEXZuofkK0cr3lcfZLdSkJF+VgPN5ODA1CB5ZWeHED3ZFLOSkA/SWIgfGcvV6iHnyXUmkcUQMKCaCTJe9v3ZHrtWeizLjjLI6oQrJX5vEXJwMQVfT2X0MQ3mshbGZGIcEm79NKmMKQXz9w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gJ6GF1zn; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-1e4f341330fso4639815ad.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 23:20:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1713421217; x=1714026017; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=eC0jjvQDPobd97rKZ4kcPj9ytdXbP5Fo1R6tB5tlq9k=;
+        b=gJ6GF1znWZyEuwRDdA+uya92POSmz5n6eodlWz4RiooNiYXEDy43kceiWN1kvS2+vV
+         ElUKnjYvBAAW+cLlwZxn8R34QwaiRvrJOuodDZrukurQVJFLVlxzVn/wSI1nshz2xS8U
+         nBRtNjNEMmfRq8diyz0anD5geW1/WAKKJT/QNt2ad7jxp4PJt3JMS1E5bRr0fSq302VY
+         cYGGEu/h+O7b5LWV1E472PEirnUZ5nht7RXeAK29fgcXD3PsiBRcvr02RkPLbPq0Pm2r
+         KTro1HLU07bNh7ScLV3Qt2y9Ve7S1P1TSw3xN9dXdN28Tn33ewTxA2ksOAD7cyKwTVkL
+         tU2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713421217; x=1714026017;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eC0jjvQDPobd97rKZ4kcPj9ytdXbP5Fo1R6tB5tlq9k=;
+        b=Jz9LlQwKEOSCOTjn8ylO/hjJCvCactvVoSYtmhn42xPQ9QbtyL1ieeNArgu85O+eEb
+         ts/vJ9sV7AY4/LYPGRwfpe6DrjuEBeAWUACfAiwMID28mBrRUa71HIdezeNaNW3/iPFe
+         m9CIWM4lk53IRoM+vvNGCWA4Ui679YYqWJ1sooE4woXwEBke+IUdAfE/37k7vR/MZI2a
+         MDrBFpI+s03oqclE9Iux1Bs6V1m4YjNC4JTur8Jp2VWmUzpZgR5uDyXFnns8qrBOi6NG
+         gXQsc19Z6Km2W9Aynl0uNZbxXSyQn7lHB6UHPSI8M1JpiL8CFZt40KFWCdYnSX9e1l9N
+         pS6w==
+X-Forwarded-Encrypted: i=1; AJvYcCX0/+gzzBbnMlxYKvBNI/rSO6adBUw4HxLVY1uCToi2MK0UvEb6uPAItEMelgUagt85Pf82j2rKYu1E8nZJwL4cL027hHtppcXkHQ==
+X-Gm-Message-State: AOJu0YzOtlqNL1GJsh1yL+0MDTxLBiXQtlMnWaADLJw+JVCLryHHCrxR
+	RLYS/U2IhMosvTcunj3XFDp0kIcUF63gR4N0p1RmHVz+hYPJYCVH67xOvJbMrg==
+X-Google-Smtp-Source: AGHT+IGdfM7ZRhJKbLTZ3yVa5ET1b0iJCVoUvItzdBrd7Ol9ksqn1v2z6enDdZegm9UydZGVy5biZQ==
+X-Received: by 2002:a17:903:48f:b0:1e4:24bc:426e with SMTP id jj15-20020a170903048f00b001e424bc426emr1861087plb.28.1713421216842;
+        Wed, 17 Apr 2024 23:20:16 -0700 (PDT)
+Received: from thinkpad ([120.56.197.253])
+        by smtp.gmail.com with ESMTPSA id h10-20020a170902b94a00b001e088a9e2bcsm691770pls.292.2024.04.17.23.20.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Apr 2024 23:20:15 -0700 (PDT)
+Date: Thu, 18 Apr 2024 11:50:09 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
+	Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev,
+	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 4/5] PCI: Add PCIE_MSG_CODE_PME_TURN_OFF message macro
+Message-ID: <20240418062009.GD2861@thinkpad>
+References: <20240417-pme_msg-v7-0-9c6208cda90f@nxp.com>
+ <20240417-pme_msg-v7-4-9c6208cda90f@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm: rockchip: add Radxa ROCK3 Model C
-To: Chukun Pan <amadeus@jmu.edu.cn>, Heiko Stuebner <heiko@sntech.de>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240416130010.379705-1-amadeus@jmu.edu.cn>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <20240416130010.379705-1-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtpsz:radxa.com:qybglogicsvrgz:qybglogicsvrgz6a-0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240417-pme_msg-v7-4-9c6208cda90f@nxp.com>
 
-Hi,
-
-On 4/16/24 22:00, Chukun Pan wrote:
-> The Radxa ROCK3 Model C is a similar board to
-> the Radxa ROCK3 Model A with the RK3566 SoC.
-> Add devicetree binding documentation for it.
+On Wed, Apr 17, 2024 at 12:59:42PM -0400, Frank Li wrote:
+> Add PCIE_MSG_CODE_PME_TURN_OFF macros to enable a PCIe host driver to send
+> PME_Turn_Off messages.
 > 
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+> Acked-by: Bjorn Helgaas <bhelgaas@google.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
+- Mani
+
 > ---
->   Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
->   1 file changed, 5 insertions(+)
+>  drivers/pci/pci.h | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> index 99bd5e2c76a0..dc3847bd67fe 100644
-> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> @@ -777,6 +777,11 @@ properties:
->             - const: radxa,rock3a
->             - const: rockchip,rk3568
->   
-> +      - description: Radxa ROCK3 Model C
-
-please use "Radxa ROCK 3C" here too.
-
-> +        items:
-> +          - const: radxa,rock3c
-
-and "rock-3c" here.
-
-> +          - const: rockchip,rk3566
+> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
+> index 02f46875fe2d9..36381fc7ebd32 100644
+> --- a/drivers/pci/pci.h
+> +++ b/drivers/pci/pci.h
+> @@ -30,6 +30,9 @@
+>  #define PCIE_MSG_TYPE_R_LOCAL	4
+>  #define PCIE_MSG_TYPE_R_GATHER	5
+>  
+> +/* Power Management Messages; PCIe r6.0, sec 2.2.8.2 */
+> +#define PCIE_MSG_CODE_PME_TURN_OFF	0x19
 > +
->         - description: Radxa ROCK 5 Model A
->           items:
->             - const: radxa,rock-5a
+>  /* INTx Mechanism Messages; PCIe r6.0, sec 2.2.8.1 */
+>  #define PCIE_MSG_CODE_ASSERT_INTA	0x20
+>  #define PCIE_MSG_CODE_ASSERT_INTB	0x21
+> 
+> -- 
+> 2.34.1
+> 
 
-Best regards,
-
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
+-- 
+மணிவண்ணன் சதாசிவம்
 
