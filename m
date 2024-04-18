@@ -1,105 +1,160 @@
-Return-Path: <devicetree+bounces-60646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 740858A9E3B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 17:22:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A1568A9E3F
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 17:22:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EA710B25F35
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 15:22:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D7511C2017B
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 15:22:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2638516C6A2;
-	Thu, 18 Apr 2024 15:21:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D241F16D320;
+	Thu, 18 Apr 2024 15:22:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="DTNgL942"
+	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="ErrhPbxu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12olkn2089.outbound.protection.outlook.com [40.92.23.89])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B3F4165FDF;
-	Thu, 18 Apr 2024 15:21:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713453714; cv=none; b=WajEzu8Z9lkMVp1f0n7HyNg+gIILx9aplSJoadhYJ9gNmTq0gVKvsbTrI72RCVzOWJqhvfGBZAlOC3zHxhgfAAivfMZ4JeScZLwrvoE4nNP5MCtps3RFUgGAclvgOW1YvfNNsFTZYR9X0dCc4GHAmItdv1n0X+PGv3qTe7MM0XA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713453714; c=relaxed/simple;
-	bh=Sj2T2GqmIXzYV36d3EH7j3YeXoPD5SdRIQ7jgKqJp9I=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=YuGbCABmpGzVzSsku1e8kAXeUQp8ISmTHRXiCcpkbcLlOq/PZL6nLG59izsSolfN0W61NrXOlfgaE7cxQUtsFoQPWLD4P7Bzx+7+sm+hA65zEZ2JCN3bZRCdXzKt8n/7jLOS1L+9gGlkJrbAK30CoHQuHKguElB3I9BFIe+b0EA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=DTNgL942; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4558516ABEE;
+	Thu, 18 Apr 2024 15:22:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.23.89
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1713453725; cv=fail; b=PmshDpP9ntQX2TMbQ9edPZjba4YtDv2TaF5vydI+rxfxxNs107NnogveV4LKNi5dTGPaxCVHkC6OSYy64RlyYQ/P5XyKf0y/4I2HxwWTJvIIhz1/m9Jm9ZsuCt5IirFthQqWwOwTO2MJFBgxJV/Naei4syGnMRCrmoxHDAvQkYY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1713453725; c=relaxed/simple;
+	bh=6nEnePp0Ld6EyteoeD6jjDNGKcySXPFzqihydlieu9Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=Mhi0Zi3LqHbKmclgAfq55A7qQUUbsYYhodLndGVUxtahjfVqh4QZS9InYTqSenZXRAcQEiLJ5J85aMjWFqSryTlS+5WUFD4t5p1C67vsNZrK49wAAjPVGxfYbUQL7+cDpNnGcXg+n4hcVEScEsvpAYlqRv1y708ELXwCf2i/SEQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com; spf=pass smtp.mailfrom=hotmail.com; dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b=ErrhPbxu; arc=fail smtp.client-ip=40.92.23.89
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hotmail.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Kj2cPjeHuuyZGarHYBMZYpCJ4CGv79ZVWxjHHAZuiHN4/sa6HvuXZrby5df9V9U4uJIR0w19p3EURiskXeLnuDmuzTX8opB7/PgG8GhNCfNtrgrOP7+lUsp5c45Mh4TWTv0yu8jdD5NEIX3sHmMy1hctcuCHofPItFFgihj5TlocSqhY3Zgvugen3zUtL754nE9MfRCiWoAw/JLPsetsuX6Lwz/jmkZiaMj4e1jf/OzMBTfNPbGesRA7yfmtMLFnoFFsahMzq9f7aOm/yEW6WvHDhJuerWqeJcXb7gVMwsiSU+bMA65f77nAWdnXJB5MNJcuf41Ay70/mymKcUIqZw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8IxiV5t6usA7D9F0EmSLqND0VEC/srdFemvbh+cbZgA=;
+ b=JVmzXjITmsB0bhkgVXT4C1eqUN80oPSoXFGfrSRwuF0mZjgmD9ONfAmA0iSw9mUj5TS3FvFf1xoKtifKH/oNhvTNwyvC/CC/T3rgCGpxpPs58KGkgtjDAdhlyFnSAfYP6vS6i1hMzzqlDocUkww06y8+EiJEmsQSFVsV2+aUnht9oJMyoTfgtFWbDEiAvWQJ+2ZWenb0DrTeNiuTgpbDjlBRp6p1ZlcdTcobYGyQSpORrbrbIcvuXPmdbFqir7i53j2m5J2WQZcBsbUVcy/Behlp+ezeZrFetqovPpHpGYZHPwRytKhRQ6Lzu+quYA2uU+T71MmbBdlzNHv1sbjMgw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8IxiV5t6usA7D9F0EmSLqND0VEC/srdFemvbh+cbZgA=;
+ b=ErrhPbxuvM4OcRKlzhTqUIb3wBUcF/OFOxm/qmb6kZ4IBNuit4Os6NMW4ls5zMBeMCH0HZ4emFYlt+5uPt+KzSR47lrk5EeGJXhhHbf7sESqIJod/V2UDQNLEwwbGg1IpuipjzI2F49Ky9FXV+bv+r5S83Dyef1zuH8uYlPG+8k90v7dEqp2qZqM3JgougqQGFLfrRcUe6rgi1TkzeHcFbQkLHbbuBQHtestJAs32M0mkmZNG/GzY+dYp/drydtw+bObeEsQgJyjzQN3zu2mqWkwQkmpdjQEDpnH0AVrthn9Qh/GPBq1oCTsMKS9lzzOAkHYhHZaPYnqYO4UFni1uw==
+Received: from DM4PR05MB9229.namprd05.prod.outlook.com (2603:10b6:8:88::20) by
+ SJ0PR05MB9302.namprd05.prod.outlook.com (2603:10b6:a03:44c::5) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7472.37; Thu, 18 Apr 2024 15:22:01 +0000
+Received: from DM4PR05MB9229.namprd05.prod.outlook.com
+ ([fe80::12a8:4f88:32b0:9407]) by DM4PR05MB9229.namprd05.prod.outlook.com
+ ([fe80::12a8:4f88:32b0:9407%6]) with mapi id 15.20.7472.037; Thu, 18 Apr 2024
+ 15:22:01 +0000
+Date: Thu, 18 Apr 2024 10:21:58 -0500
+From: Chris Morgan <macromorgan@hotmail.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Andre Przywara <andre.przywara@arm.com>,
+	Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-iio@vger.kernel.org, p.zabel@pengutronix.de, sboyd@kernel.org,
+	mturquette@baylibre.com, samuel@sholland.org,
+	jernej.skrabec@gmail.com, wens@csie.org, conor+dt@kernel.org,
+	krzk+dt@kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: iio: adc: Add GPADC for Allwinner H616
+Message-ID:
+ <DM4PR05MB92297515415B77F307DFB46DA50E2@DM4PR05MB9229.namprd05.prod.outlook.com>
+References: <20240417170423.20640-1-macroalpha82@gmail.com>
+ <20240417170423.20640-3-macroalpha82@gmail.com>
+ <20240417234957.2fcd14bb@minigeek.lan>
+ <20240418151650.GA1824475-robh@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240418151650.GA1824475-robh@kernel.org>
+X-TMN: [+xLSvDM7Y2rYkhBmdQ3RFgm+oM2MVh+Y]
+X-ClientProxiedBy: DS0PR17CA0006.namprd17.prod.outlook.com
+ (2603:10b6:8:191::22) To DM4PR05MB9229.namprd05.prod.outlook.com
+ (2603:10b6:8:88::20)
+X-Microsoft-Original-Message-ID: <ZiE6lizBcJrA28Kg@wintermute.localhost.fail>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1713453710;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=7fMWbqaFsM/KieslA1BmEyHQ9S+JXnIJSHWI/V0HmwY=;
-	b=DTNgL942/Wl+ESKEy5T4jd5tiyNq98yzPLKFVmAjoOiafOhRweIifgH5G5h9BzErnZD4jO
-	qXf/GrNGGrBE/rL6WnmDA26kBoQQxcz9IWcgMvyQmhtRuSVMDcl+9z7fezhZ2RnJJ8armz
-	vDOAy1VPZMHXCiRmDlv3jdkkcXzTeXgTBkZkU/QxYFbm58SqGCTU3iCZTITn4jbPylEz0J
-	ps1WORSL7vBbliWPSTUMo6/17ACwAd6frS+VxQKwQ7vjwnIDjbkqELT9N/p9miqMihCIKz
-	8wmIqPalOVcpur0S9uzYCWWUq1pxeJ+MIp4YcmTpiC1btN4TpDkYlgUgAsA2wg==
-Date: Thu, 18 Apr 2024 17:21:49 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: Heiko Stuebner <heiko@sntech.de>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Rob Herring
- <robh@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, FUKAUMI Naoki <naoki@radxa.com>
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: correct the model name for
- Radxa ROCK 3A
-In-Reply-To: <20240418130120.67663-2-amadeus@jmu.edu.cn>
-References: <20240418130120.67663-1-amadeus@jmu.edu.cn>
- <20240418130120.67663-2-amadeus@jmu.edu.cn>
-Message-ID: <39e73428856a6fdf698a5efe6311af0f@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR05MB9229:EE_|SJ0PR05MB9302:EE_
+X-MS-Office365-Filtering-Correlation-Id: 91c3e420-f62e-4e93-2a10-08dc5fbb4b7c
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	vJEmduisCrWkyOcn+gr8aXQbjO4ns75JCUCala0I/FM9SWDNIPu2MHE012xnXmKpds0Fx2TKE4RVSV/LXBW4U4dqO2jEvyWDe9RlvufV9TufdUclszmOHBrSyF9TnaR7te31TAmgM2qc/Cf+g2jDxe8h3RY7x7Qfj4Xrj0wrDaKR/RTNOGG0kK++EOKTnnSPOdM70tXnOV6Fn0dVPVuiNqtbuYxUHttMfhGF7AvAHqkZ8Ufzlc22ca3nz21j4CiuRa3My5MYZKhRBM3Wt3J+4XabuuuDY34nyWrbCa6ldoOtQSjUUfSL/O71TRtaOS7ilLsOuepjZIMmCeUyCXlvh8TUMT+ENtzthbb2uwNKMmaxeFIt5R3avk1nQUhc+Jwrdil2C2E0e0/xk+Uov6xIIlP4Aizhud6qfCkW37ONXqJw9zM542UxRJUaBa2O7z/TYy0JusK79l9kThW2+aK6AT8Ehz/K3laSKnXc1OKm/SnnCqcwt5DOujCa35+DH3SX9duNPHbeMP7tACjBe1DKnCLUXIbffzwewidUharPFcd6sHDAqSP2GZ+rIIB1Z2Iz
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?KjlirQv1bSpsRHI6rMSr4VCXJA7G9SoGZXQCUU/79qAJ0AgqX++1qNwjPgcf?=
+ =?us-ascii?Q?5Pe+n3FUyxSUYfe1tk3X0Arwn2FILsXrAcvACyQzgPmxN+p7G0y00kXQRxDp?=
+ =?us-ascii?Q?jqYdFRpKZc1hphFkrlrQEcSvkJ3QtRm/3FzT1BFLf/+STn8T1kImzjm2GF0H?=
+ =?us-ascii?Q?q3RkZ69gzA20lTGjEzmpTg4FECUIfrMG2hEhFX763WTey5ZKkyxedbdGQDHp?=
+ =?us-ascii?Q?kSUA7as+x93pTKNZH2Y7fr8BafzY4X2GSaDFnRhu0JRNyxeWti0/tNBNm5J8?=
+ =?us-ascii?Q?Ie5b8957g1szm8fXPd409T0SlsBxf7OjsoiV1LJ1r00tPPELqaJFCmeQ+/JO?=
+ =?us-ascii?Q?dMO4wqMuv4suwbThhxIzqhbYZSrN0al+OuDZljHPHrI/QunxMhzlFvkybszD?=
+ =?us-ascii?Q?50nJdJx/LmcezxmbmDF/06UJ7tNuLzV5n3a2iIlMC0oIF+X2o7NDtsq4cn2v?=
+ =?us-ascii?Q?0zZc0cHnm4IXo/uhFQXxEJnl3Z1ffYn/5x9JR/oumerbxwNLJ749lKMkgxa+?=
+ =?us-ascii?Q?tR4VX0sMBQ4RVtXOALXJWqhclmCyYHmJYSWlyhm7BWI9SYm1l/KKDQ4OAgug?=
+ =?us-ascii?Q?TqkK+YWv7HAJDJdedZjnahOj0JF/lTReuZku0TlcJhzbCJ4CzspXV+SSnsvO?=
+ =?us-ascii?Q?4gDOAa5mPiABwD+jgidCjey0siPvvIhTREntwpTLNqZZeSZgU1XiYZABvJGn?=
+ =?us-ascii?Q?JjkZEWkvDPqpdRtwbbTN09jsSUrdvL+TXfrtulKCBQcRhujjtcyBP/8Foiyb?=
+ =?us-ascii?Q?fTR3Vsc/MpRAp3PzU5de7GSFP+rehdY5Dkz2l0xKpALlGJywKRh7Z0gAA13D?=
+ =?us-ascii?Q?Mh3Kh08cLr19COpM9MzEOR9a+MwObl4R9xh4DIAi0+5HzLB1CurAPDHgC/Ft?=
+ =?us-ascii?Q?64j5rihv0IuOmYh+ruUJCTdKbhJXiKctKcj7haGW3v68pa0U4yzLTF8OoFpS?=
+ =?us-ascii?Q?x/+MFKo19KvgAU9v5nI1/fuBwfM8goUIVf0ZjnefRaMh2N8jxgRzMASiVlkF?=
+ =?us-ascii?Q?+MkxCZ3FKJT0Q8Ca5A1zgJyv1UgP368z1tlM5GsQd65Iw4gyBNaYCAvk896/?=
+ =?us-ascii?Q?Wj+IQyr72DVkXB//GnY/oL4OoukSbpsJDE3hb99f4agUKFgdQdAoJR1qd2IQ?=
+ =?us-ascii?Q?zZul3027QfGXAXsgXPN+1P8vm/+DKearwGgZPP4t4/+jiC7EEUXQAD7Pl4Qb?=
+ =?us-ascii?Q?ehL9FZmYPfOcCxGYRP0PZrcq6Vs8v5qCnFK9svQlThuQ4Y9/0OItfVysPYo?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: sct-15-20-4823-7-msonline-outlook-84f76.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 91c3e420-f62e-4e93-2a10-08dc5fbb4b7c
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR05MB9229.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Apr 2024 15:22:01.3202
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR05MB9302
 
-On 2024-04-18 15:01, Chukun Pan wrote:
-> According to https://radxa.com/products/rock3/3a,
-> the name of this board should be "Radxa ROCK 3A".
-> Also update compatible to match the model name.
+On Thu, Apr 18, 2024 at 10:16:50AM -0500, Rob Herring wrote:
+> On Wed, Apr 17, 2024 at 11:49:57PM +0100, Andre Przywara wrote:
+> > On Wed, 17 Apr 2024 12:04:22 -0500
+> > Chris Morgan <macroalpha82@gmail.com> wrote:
+> > 
+> > Hi,
+> > 
+> > > From: Chris Morgan <macromorgan@hotmail.com>
+> > > 
+> > > Add support for the GPADC for the Allwinner H616. It is identical to
+> > > the existing ADC for the D1/T113s/R329/T507 SoCs.
+> > 
+> > The H616 is using the same die as the T507 and the H700, and since the
+> > T507 is already mentioned in the commit message for the original
+> > binding, I wonder if we actually need a new compatible?
 > 
-> Suggested-by: FUKAUMI Naoki <naoki@radxa.com>
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+> For same die, I would say no you don't. But adding a compatible is fine, 
+> too.
+> 
+> Rob
 
-Looking good to me.
+I've been burned before, if it's just the same to you I'd like to do a
+compatible. But I will defer to the experts on this matter.
 
-Reviewed-by: Dragan Simic <dsimic@manjaro.org>
+Also if there is a more compact way of expressing this while still
+maintaining backwards compatibility please let me know. Otherwise,
+I'm okay with this if you all are (it passes dt_binding_check,
+yamllint, and checkpatch.pl so I'm okay with it if you are).
 
-> ---
->  arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-> b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-> index c62230308457..e859c075bd46 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-> @@ -8,8 +8,8 @@
->  #include "rk3568.dtsi"
-> 
->  / {
-> -	model = "Radxa ROCK3 Model A";
-> -	compatible = "radxa,rock3a", "rockchip,rk3568";
-> +	model = "Radxa ROCK 3A";
-> +	compatible = "radxa,rock-3a", "rockchip,rk3568";
-> 
->  	aliases {
->  		ethernet0 = &gmac1;
+Chris
 
