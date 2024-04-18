@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-60726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0267E8AA132
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 19:36:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAC7B8AA13D
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 19:39:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33CA31C20974
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 17:36:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 712831F21DF3
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 17:39:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41EEE174EFA;
-	Thu, 18 Apr 2024 17:36:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F053F176FC5;
+	Thu, 18 Apr 2024 17:39:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g9e6EOjQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ee6ScVtO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ABF7174ECD;
-	Thu, 18 Apr 2024 17:36:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6ADA16191A;
+	Thu, 18 Apr 2024 17:39:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713461811; cv=none; b=XeLJcZe+GuksJwWFOUfZXtJWjpZfYPGIZgEK6aoYMwjO4qmriaBNHpr0etrzADd9YvlTTpCyPg9VDmoHbBBP2g/97DabTtUES0mh+jr/iRfWsH3fXpjU/QyBdH0hO107O/PldssCFx1evlsIskc2BT1tAOirVVDmlqGh1bFMGug=
+	t=1713461950; cv=none; b=GD2DDp2flaEmTXZeTB+AzKPMeAGkMHMFS6DprLacrFKTTHFxpDTogIoS5NEdVkdFxKO5/qElKv9ZLABYYNu/9itLBdnaN61z6RspxpbbCqpcANpc4Zq9zl18/2Vzw/mvk7jsAAbWXPOV00cw/qIGHTPL8jC0bZh8+xBbGsLiV5s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713461811; c=relaxed/simple;
-	bh=7Fg4qmfyav8W8DJA7fUVWkxlTH5YJKwrM/ZlOrI7cKQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DfcWXss/uU1r4I1huQNr03GvS5DoBhhm2XvsF+190ceONPb3CQE9z72VKy4+3FlKqNUu3cH/rUUuNHxVPnykOEsYOdwzipVAdThwD1qJDztGCaMgvJJRoCTljkht2ZjTDTAVeZaGa5smJ+os3m6LPFVl0fnUCG7XDqzOM7TcQ3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g9e6EOjQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3CFEC113CC;
-	Thu, 18 Apr 2024 17:36:49 +0000 (UTC)
+	s=arc-20240116; t=1713461950; c=relaxed/simple;
+	bh=FAHI99o3/qIUZzGqglZBZTI/az3nq3RPVxtdG60ysmk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=DvaKkOa+mHM5ZHk5BY3rfOcUI8s8S81tlZbmChERQtmq22QGOF9SgcW7ISygoovaASvGdfXSc+Fftxj3c42olEMj3hZfLR12Z4UZdYO+LyP3dOplxGd3uZnRG4ny2FzOnZXrd9cxIqXKBQ8rZdJXjlDzCWK8z24BYZeV3h2zJsU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ee6ScVtO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23825C32782;
+	Thu, 18 Apr 2024 17:39:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713461810;
-	bh=7Fg4qmfyav8W8DJA7fUVWkxlTH5YJKwrM/ZlOrI7cKQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=g9e6EOjQEl9d81+ImxD5y4to60yBX99x2cq0BJkyLMP4yKrAToif9oDEO8oIeKbdI
-	 9vN0ZjWRwpMqZyFLkMZtwRxmZnlUzFTCAlDQsbGOUjZrXyPeDfj2kMN4sNwJdQ1ylk
-	 89eIsuskFUPawrjTdtfmUgd3Ailah2ukj1xRCyHtOFO7EZDPKOGST36tBaF62Yj3+C
-	 h9k+tekrMTi77VVUW4W4gW4mUwNONT/eygnwFyXor+XAuk6dZN8oWXmtDgl8j+Pzeo
-	 hzUpg0qyiyTZ9Nrn5gDaS9kYmF+Ge1w+VJ1cUHTJ9Zv0UhflUrxhwBj48Y0at9Blw8
-	 /1dKokqpHXSFA==
-Message-ID: <5dd56713-74fa-46bd-a76f-1839c1800e88@kernel.org>
-Date: Thu, 18 Apr 2024 19:36:46 +0200
+	s=k20201202; t=1713461950;
+	bh=FAHI99o3/qIUZzGqglZBZTI/az3nq3RPVxtdG60ysmk=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=ee6ScVtOC9dHPT6B1cHR9LbGZF5n66Z6tE4FHnzLSX8AnCtVVWdyBFpTglVQ6H7FT
+	 JUT97832b8pjDqQapHY1a3Q1FYULM9/AS5AyrrH40M3rNb7FPUi44KAEpAJsYGYto+
+	 kn556JiqoaiPWjiSZRqaXWxTx4ImfVjpTUmDNnZxtMMYmu6V8a9TH8/4iqd3k/Z1cZ
+	 RfLRJOlIh8bSowCU3WZa7EyKl3LmRGHkjaJK8JQiJb8nyNZiGtHoAT4eLvQ4UsPfyF
+	 divk1fPA+/ItNt5MepwAWsZRQQ9ozMy/zH0+o1+jRwYT15y8cBNba9nNZGvXM2dwlL
+	 fCldAwaCLQkkA==
+Message-ID: <2f94f990-77d2-43ec-9773-4ee0e9c0870a@kernel.org>
+Date: Thu, 18 Apr 2024 19:39:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ASoC: dt-bindings: tegra20-das: Convert to schema
-To: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>
-Cc: Thierry Reding <treding@nvidia.com>, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240418163326.58365-1-sheharyaar48@gmail.com>
+Subject: Re: [PATCH v9 2/6] dt-bindings: interconnect: Add Qualcomm IPQ9574
+ support
+To: Varadarajan Narayanan <quic_varada@quicinc.com>, andersson@kernel.org,
+ mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, konrad.dybcio@linaro.org,
+ djakov@kernel.org, dmitry.baryshkov@linaro.org, quic_anusha@quicinc.com,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org
+References: <20240418092305.2337429-1-quic_varada@quicinc.com>
+ <20240418092305.2337429-3-quic_varada@quicinc.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,34 +106,36 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240418163326.58365-1-sheharyaar48@gmail.com>
+In-Reply-To: <20240418092305.2337429-3-quic_varada@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/04/2024 18:33, Mohammad Shehar Yaar Tausif wrote:
-> Convert NVIDIA Tegra20 DAS (Digital Audio Switch) binding to schema.
+On 18/04/2024 11:23, Varadarajan Narayanan wrote:
+> Add interconnect-cells to clock provider so that it can be
+> used as icc provider.
 > 
-> Signed-off-by: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>
+> Add master/slave ids for Qualcomm IPQ9574 Network-On-Chip
+> interfaces. This will be used by the gcc-ipq9574 driver
+> that will for providing interconnect services using the
+> icc-clk framework.
+> 
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> ---
+> v8:
+> Remove ICC_xxx macros
+> Fix macro defines to be consistent with other bindings
+> v7:
+> Fix macro names to be consistent with other bindings
+> v6:
+> Removed Reviewed-by: Krzysztof Kozlowski
+> Redefine the bindings such that driver and DT can share them
+> 
+> v3:
+> Squash Documentation/ and include/ changes into same patch
 
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-
----
-
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
