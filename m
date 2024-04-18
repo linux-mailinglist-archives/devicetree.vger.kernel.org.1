@@ -1,74 +1,40 @@
-Return-Path: <devicetree+bounces-60770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 763258AA4CD
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 23:42:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F2058AA543
+	for <lists+devicetree@lfdr.de>; Fri, 19 Apr 2024 00:07:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3381028225B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 21:42:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD0781F2146D
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 22:07:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C48CD194C96;
-	Thu, 18 Apr 2024 21:42:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jFVDf/Ih"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38252199E8B;
+	Thu, 18 Apr 2024 22:07:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E455180A67
-	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 21:42:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 192042F30;
+	Thu, 18 Apr 2024 22:07:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713476532; cv=none; b=PXElb2Xx7XpCTYBlpxMqCayjgX9Z/2c4kBVj0EWwtoQEqNHV33pUVVpO0o8KdSigotpcRKBDSOF5nBWFvxfcqhv5K5l0aGaH40C+PrdWhWn0hxjfZZin5VKc+VpVkiIahOgG5JkTp96RP544CgvaP0eK16OMPVJqUHge9u9deeQ=
+	t=1713478059; cv=none; b=NC51hRgU8344D/KHhLI/c6XCSC58erEsYgjumQKLRhYqKkApwWlgQCmMJAdYYPSLOpBmrnxgYbTjzhSHCyF4NhqmaaChKQk+l2/v8bze0bdWel1Go0Kwuj1t4X+GnFp+dEM9k9P/xnrZNRhvVZzAoUPsLThHLz0S3+VaKFGe1c8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713476532; c=relaxed/simple;
-	bh=WtskFcXhMjR7KGLa/EybzEvTmBKO55rE+m+2o5mVVAY=;
+	s=arc-20240116; t=1713478059; c=relaxed/simple;
+	bh=fTO83B9lWQ2Ur2tqdGc4yty66F7+uoKHWYHtE+j6Jis=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IcNh7FXHdTSUF0APIzbvvZDzIQlUTWVLbko+KV+onFUyVHPcvil30iCDSkQwky54g+bhRwGObmd3/y34NoNVwdoHs8JgWOGZSI5kUdfR3PV5KGCNf+9sZ6UoV8rgTOnbkyo+od/6b/Pm6apaJ5KFnIJ9iBfQ30YAtyN3A7FRLqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jFVDf/Ih; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2dac628f081so3218191fa.2
-        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 14:42:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713476529; x=1714081329; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=G6qLjV1IiGoZYxcFKtlSSeHOWF32/4pQhZyX3MS3EUg=;
-        b=jFVDf/Ihqgnj+G4kU6xEPVzTUP3QQy1VeeazEg2cJMC/YE1JfjzDNf00+qCScSIqT0
-         a3pknSFQFDciWwxyrsHFLCzXBlDEFuYP7OhWlMJ9venwnxxRsS2ZmiP3X6Iwg7qxog2m
-         OZGxzBuBi8fcuaTwojknUtrFP1Bh4LpZuW+ueLyzmuvUUAAANxxjwmxKAQpV+RWglr73
-         /3//Bl8Ai1aPXxcfkuG0Y6O0dmIyRmowXXJcOjbdektHisbB5T+p576PtXx514i36cYi
-         3c3HZlU1V2Fqs4k/L+sEhqGSRJX5iDL1qleuqAsR+Ayja6xsZqADJrS9XOmTOJx65v8z
-         4oEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713476529; x=1714081329;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=G6qLjV1IiGoZYxcFKtlSSeHOWF32/4pQhZyX3MS3EUg=;
-        b=vqOsFkhm1QqhP1Uj+NyWtcR6DSK6a/4m43u9PaHJXxQp99oDwiAr6kPpxuRgHyGjgk
-         jbXWYrpJhwkJkdsDLJZcLi6dqlAtdMid/3ytHMLBQBPvvRl9R+fff/4v0pf/nRvzG/oU
-         kbcVWds4qJWmfB2QAGzG4MMAS1/7CzTNssWwqJGey0C8k9Bw0wwKwb3WOLcIP52Z74Z6
-         BZcSwa8Dyidpls3LY1BfKd4EfPgVB9+7hHcwNyalzDmSmafyaZmZHWSPP0xeWAcoU2hF
-         6a7rfhE3WWce+8JOcAddolATvrP7ACRBQyZpOyArWAjL6xgE53qp2nd7TXnvHu7rYgtf
-         7Z0A==
-X-Forwarded-Encrypted: i=1; AJvYcCVHLCXhhTZPt8Oko2r/iSnuNbpA3bWS/98DbOflQ+aP/R5hEZ9WJMPzyPy/Rxp5+1FiRn+9rcdYXC+dDnk2+JsBo4Ks4nMD9mchfw==
-X-Gm-Message-State: AOJu0Yzwax3V+JpGcZ2xBuRDtkUwPZaUzw86wgk9zmtycH5Hsca2uXDW
-	WU+LZOsao/5S+o+v1nGo/4/Rs3UMvN52x4lnWrzobKskGhQ90PbjUq5DS3KToeA=
-X-Google-Smtp-Source: AGHT+IH2I/USjtrfvmfKW7EtgYLZUP/ZOZOUPQorVrLEVUig0k54+C3W3JPLbQZmqa5pzt9F+omNFw==
-X-Received: by 2002:a19:e05d:0:b0:516:d6b5:7caf with SMTP id g29-20020a19e05d000000b00516d6b57cafmr134304lfj.6.1713476529028;
-        Thu, 18 Apr 2024 14:42:09 -0700 (PDT)
-Received: from [192.168.1.102] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id q12-20020a056512210c00b00516a25e9ce1sm400171lfr.294.2024.04.18.14.42.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Apr 2024 14:42:08 -0700 (PDT)
-Message-ID: <3fb64c9f-615c-42f0-9d89-7b8964c9303b@linaro.org>
-Date: Fri, 19 Apr 2024 00:42:07 +0300
+	 In-Reply-To:Content-Type; b=uh4kpRainsT0vu4Yiy8EuO0Okf45RQs0U2BSobGTIIsZBSB2gH1NWn+XNCKM8z2G9lXam4OWWb9X0O4m3C8nhwiMbtrhsskDh0/xpdwpIk7I4zjcKDr0Eanc5iJ8QTmokTbyAfc4XgjkF/mjQ1AK2fL8/olLlSI/YryFPehSQtE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4A8332F;
+	Thu, 18 Apr 2024 15:08:03 -0700 (PDT)
+Received: from [10.57.20.187] (unknown [10.57.20.187])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3717E3F738;
+	Thu, 18 Apr 2024 15:07:32 -0700 (PDT)
+Message-ID: <08e12daa-3fcc-4ab2-ac55-dee8f69c429a@arm.com>
+Date: Thu, 18 Apr 2024 23:07:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,88 +42,257 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sm8650: add description of CCI
- controllers
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Jagadeesh Kona <quic_jkona@quicinc.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240410074951.447898-1-vladimir.zapolskiy@linaro.org>
- <d8dc2a6b-4797-4829-9581-1a9e3fce069a@linaro.org>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <d8dc2a6b-4797-4829-9581-1a9e3fce069a@linaro.org>
+Subject: Re: [PATCH v2 3/7] iommu/riscv: Add RISC-V IOMMU PCIe device driver
+To: Tomasz Jeznach <tjeznach@rivosinc.com>, Joerg Roedel <joro@8bytes.org>,
+ Will Deacon <will@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Anup Patel <apatel@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>,
+ Nick Kossifidis <mick@ics.forth.gr>, Sebastien Boeuf <seb@rivosinc.com>,
+ Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ iommu@lists.linux.dev, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux@rivosinc.com
+References: <cover.1713456597.git.tjeznach@rivosinc.com>
+ <4a068da7a7a984a43d419c52310f8ab7d91da46e.1713456598.git.tjeznach@rivosinc.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <4a068da7a7a984a43d419c52310f8ab7d91da46e.1713456598.git.tjeznach@rivosinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Hi Konrad,
-
-thank you for review.
-
-On 4/16/24 02:34, Konrad Dybcio wrote:
+On 2024-04-18 5:32 pm, Tomasz Jeznach wrote:
+> Introduce device driver for PCIe implementation
+> of RISC-V IOMMU architected hardware.
 > 
+> IOMMU hardware and system support for MSI or MSI-X is
+> required by this implementation.
 > 
-> On 4/10/24 09:49, Vladimir Zapolskiy wrote:
->> Qualcomm SM8650 SoC has three CCI controllers with two I2C busses
->> connected to each of them.
->>
->> The CCI controllers on SM8650 are compatible with the ones found on
->> many other older generations of Qualcomm SoCs.
->>
->> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
->> ---
+> Vendor and device identifiers used in this patch
+> matches QEMU implementation of the RISC-V IOMMU PCIe
+> device, from Rivos VID (0x1efd) range allocated by the PCI-SIG.
 > 
-> [...]
+> Link: https://lore.kernel.org/qemu-devel/20240307160319.675044-1-dbarboza@ventanamicro.com/
+> Co-developed-by: Nick Kossifidis <mick@ics.forth.gr>
+> Signed-off-by: Nick Kossifidis <mick@ics.forth.gr>
+> Signed-off-by: Tomasz Jeznach <tjeznach@rivosinc.com>
+> ---
+>   MAINTAINERS                     |   1 +
+>   drivers/iommu/riscv/Kconfig     |   6 ++
+>   drivers/iommu/riscv/Makefile    |   1 +
+>   drivers/iommu/riscv/iommu-pci.c | 154 ++++++++++++++++++++++++++++++++
+>   4 files changed, 162 insertions(+)
+>   create mode 100644 drivers/iommu/riscv/iommu-pci.c
 > 
->>    
->> +		cci0: cci@ac15000 {
->> +			compatible = "qcom,sm8650-cci", "qcom,msm8996-cci";
->> +			reg = <0 0x0ac15000 0 0x1000>;
->> +			interrupts = <GIC_SPI 426 IRQ_TYPE_EDGE_RISING>;
->> +			power-domains = <&camcc CAM_CC_TITAN_TOP_GDSC>;
->> +			clocks = <&camcc CAM_CC_CAMNOC_AXI_NRT_CLK>,
->> +				 <&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-> The DT should never ever touch the _SRC clocks directly, especially since
-> you're referencing the branch downstream of it right below
-> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 051599c76585..4da290d5e9db 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -18975,6 +18975,7 @@ F:	Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
+>   F:	drivers/iommu/riscv/Kconfig
+>   F:	drivers/iommu/riscv/Makefile
+>   F:	drivers/iommu/riscv/iommu-bits.h
+> +F:	drivers/iommu/riscv/iommu-pci.c
+>   F:	drivers/iommu/riscv/iommu-platform.c
+>   F:	drivers/iommu/riscv/iommu.c
+>   F:	drivers/iommu/riscv/iommu.h
+> diff --git a/drivers/iommu/riscv/Kconfig b/drivers/iommu/riscv/Kconfig
+> index d02326bddb4c..711326992585 100644
+> --- a/drivers/iommu/riscv/Kconfig
+> +++ b/drivers/iommu/riscv/Kconfig
+> @@ -14,3 +14,9 @@ config RISCV_IOMMU
+>   
+>   	  Say Y here if your SoC includes an IOMMU device implementing
+>   	  the RISC-V IOMMU architecture.
+> +
+> +config RISCV_IOMMU_PCI
+> +	def_bool y if RISCV_IOMMU && PCI_MSI
+> +	depends on RISCV_IOMMU && PCI_MSI
+> +	help
+> +	  Support for the PCI implementation of RISC-V IOMMU architecture.
 
-Totally agree, this will go away.
+Similar comments as before.
 
->> +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
->> +				 <&camcc CAM_CC_CCI_0_CLK>;
->> +			clock-names = "camnoc_axi",
->> +				      "slow_ahb_src",
->> +				      "cpas_ahb",
->> +				      "cci";
->> +			pinctrl-0 = <&cci0_default &cci1_default>;
->> +			pinctrl-1 = <&cci0_sleep &cci1_sleep>;
->> +			pinctrl-names = "default", "sleep";
->> +			status = "disabled";
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +
->> +			assigned-clocks = <&camcc CAM_CC_CCI_0_CLK_SRC>;
->> +			assigned-clock-rates = <37500000>;
-> 
-> Why?
+> diff --git a/drivers/iommu/riscv/Makefile b/drivers/iommu/riscv/Makefile
+> index e4c189de58d3..f54c9ed17d41 100644
+> --- a/drivers/iommu/riscv/Makefile
+> +++ b/drivers/iommu/riscv/Makefile
+> @@ -1,2 +1,3 @@
+>   # SPDX-License-Identifier: GPL-2.0-only
+>   obj-$(CONFIG_RISCV_IOMMU) += iommu.o iommu-platform.o
+> +obj-$(CONFIG_RISCV_IOMMU_PCI) += iommu-pci.o
+> diff --git a/drivers/iommu/riscv/iommu-pci.c b/drivers/iommu/riscv/iommu-pci.c
+> new file mode 100644
+> index 000000000000..9263c6e475be
+> --- /dev/null
+> +++ b/drivers/iommu/riscv/iommu-pci.c
+> @@ -0,0 +1,154 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +
+> +/*
+> + * Copyright © 2022-2024 Rivos Inc.
+> + * Copyright © 2023 FORTH-ICS/CARV
+> + *
+> + * RISCV IOMMU as a PCIe device
+> + *
+> + * Authors
+> + *	Tomasz Jeznach <tjeznach@rivosinc.com>
+> + *	Nick Kossifidis <mick@ics.forth.gr>
+> + */
+> +
+> +#include <linux/compiler.h>
+> +#include <linux/init.h>
+> +#include <linux/iommu.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/pci.h>
+> +
+> +#include "iommu-bits.h"
+> +#include "iommu.h"
+> +
+> +/* Rivos Inc. assigned PCI Vendor and Device IDs */
+> +#ifndef PCI_VENDOR_ID_RIVOS
+> +#define PCI_VENDOR_ID_RIVOS             0x1efd
+> +#endif
+> +
+> +#ifndef PCI_DEVICE_ID_RIVOS_IOMMU
+> +#define PCI_DEVICE_ID_RIVOS_IOMMU       0xedf1
+> +#endif
+> +
+> +static int riscv_iommu_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct riscv_iommu_device *iommu;
+> +	int rc, vec;
+> +
+> +	rc = pci_enable_device_mem(pdev);
+> +	if (rc)
+> +		return rc;
+> +
+> +	rc = pci_request_mem_regions(pdev, KBUILD_MODNAME);
+> +	if (rc)
+> +		goto fail;
+> +
+> +	pci_set_master(pdev);
+> +
+> +	if (!(pci_resource_flags(pdev, 0) & IORESOURCE_MEM))
+> +		goto fail;
+> +
+> +	if (pci_resource_len(pdev, 0) < RISCV_IOMMU_REG_SIZE)
+> +		goto fail;
+> +
+> +	iommu = devm_kzalloc(dev, sizeof(*iommu), GFP_KERNEL);
+> +	if (!iommu)
+> +		goto fail;
+> +
+> +	iommu->dev = dev;
+> +	iommu->reg = pci_iomap(pdev, 0, RISCV_IOMMU_REG_SIZE);
 
-That's a leftover for silencing a loud complain in the kernel log on
-driver initialization, will remove the frequency assignement, thank you!
+Maybe consider some of the pcim_* devres helpers, to simplify 
+cleanup/remove?
 
-> [...]
-> 
->> +			pinctrl-0 = <&cci2_default &cci3_default>;
->> +			pinctrl-1 = <&cci2_sleep &cci3_sleep>;
-> 
-> Please stick to a single naming scheme (cciX_Y or csiN)
+> +
+> +	if (!iommu->reg)
+> +		goto fail;
+> +
+> +	dev_set_drvdata(dev, iommu);
+> +
+> +	/* Check device reported capabilities / features. */
+> +	iommu->caps = riscv_iommu_readq(iommu, RISCV_IOMMU_REG_CAP);
+> +	iommu->fctl = riscv_iommu_readl(iommu, RISCV_IOMMU_REG_FCTL);
+> +
+> +	/* The PCI driver only uses MSIs, make sure the IOMMU supports this */
+> +	switch (FIELD_GET(RISCV_IOMMU_CAP_IGS, iommu->caps)) {
+> +	case RISCV_IOMMU_CAP_IGS_MSI:
+> +	case RISCV_IOMMU_CAP_IGS_BOTH:
+> +		break;
+> +	default:
+> +		dev_err(dev, "unable to use message-signaled interrupts\n");
+> +		rc = -ENODEV;
+> +		goto fail_unmap;
+> +	}
+> +
+> +	/* Allocate and assign IRQ vectors for the various events */
+> +	rc = pci_alloc_irq_vectors(pdev, 1, RISCV_IOMMU_INTR_COUNT,
+> +				   PCI_IRQ_MSIX | PCI_IRQ_MSI);
+> +	if (rc <= 0) {
+> +		dev_err(dev, "unable to allocate irq vectors\n");
+> +		goto fail_unmap;
+> +	}
+> +	for (vec = 0; vec < rc; vec++) {
+> +		iommu->irqs[vec] = msi_get_virq(dev, vec);
+> +		if (!iommu->irqs[vec])
 
-Agreed. It may meet objections, but my preference is to force cciX_Y naming
-scheme, and at some point in future I hope pin controls will enter I2C bus
-subnodes.
+Can that ever fail if the loop is already bounded to the number of 
+vectors successfully allocated?
 
---
-Best wishes,
-Vladimir
+> +			break;
+> +	}
+> +	iommu->irqs_count = vec;
+> +
+> +	/* Enable message-signaled interrupts, fctl.WSI */
+> +	if (iommu->fctl & RISCV_IOMMU_FCTL_WSI) {
+> +		iommu->fctl ^= RISCV_IOMMU_FCTL_WSI;
+> +		riscv_iommu_writel(iommu, RISCV_IOMMU_REG_FCTL, iommu->fctl);
+> +	}
+> +
+> +	rc = riscv_iommu_init(iommu);
+> +	if (!rc)
+> +		return 0;
+> +
+> +fail_unmap:
+> +	iounmap(iommu->reg);
+> +	pci_free_irq_vectors(pdev);
+> +fail:
+> +	pci_release_regions(pdev);
+> +	pci_clear_master(pdev);
+> +	pci_disable_device(pdev);
+> +	return rc;
+> +}
+> +
+> +static void riscv_iommu_pci_remove(struct pci_dev *pdev)
+> +{
+> +	struct riscv_iommu_device *iommu = dev_get_drvdata(&pdev->dev);
+> +
+> +	riscv_iommu_remove(iommu);
+> +	iounmap(iommu->reg);
+> +	pci_free_irq_vectors(pdev);
+> +	pci_release_regions(pdev);
+> +	pci_clear_master(pdev);
+> +	pci_disable_device(pdev);
+> +}
+> +
+> +static const struct pci_device_id riscv_iommu_pci_tbl[] = {
+> +	{PCI_VENDOR_ID_RIVOS, PCI_DEVICE_ID_RIVOS_IOMMU,
+> +	 PCI_ANY_ID, PCI_ANY_ID, 0, 0, 0},
+> +	{0,}
+> +};
+> +
+> +MODULE_DEVICE_TABLE(pci, riscv_iommu_pci_tbl);
+> +
+> +static const struct of_device_id riscv_iommu_of_match[] = {
+> +	{.compatible = "riscv,pci-iommu",},
+> +	{},
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, riscv_iommu_of_match);
+> +
+> +static struct pci_driver riscv_iommu_pci_driver = {
+> +	.name = KBUILD_MODNAME,
+> +	.id_table = riscv_iommu_pci_tbl,
+> +	.probe = riscv_iommu_pci_probe,
+> +	.remove = riscv_iommu_pci_remove,
+> +	.driver = {
+> +		.of_match_table = riscv_iommu_of_match,
+
+Does an of_match_table serve any functional purpose for a PCI driver? I 
+can't find any other examples of this being done.
+
+Thanks,
+Robin.
+
+> +		.suppress_bind_attrs = true,
+> +	},
+> +};
+> +
+> +module_pci_driver(riscv_iommu_pci_driver);
 
