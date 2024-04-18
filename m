@@ -1,298 +1,283 @@
-Return-Path: <devicetree+bounces-60599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1D078A9C50
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 16:11:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E419D8A9C54
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 16:11:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C49191C20B6C
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 14:11:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EACF81C21107
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 14:11:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2150165FBC;
-	Thu, 18 Apr 2024 14:10:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2BC1165FD6;
+	Thu, 18 Apr 2024 14:11:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PIc6TCg3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VEopHl0I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44A261649DE;
-	Thu, 18 Apr 2024 14:10:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28367165FC5
+	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 14:11:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713449458; cv=none; b=Y3Gu9YZUUtIwXL6hTyHpNbQ1yBlWJL3iCrr9FS+bUKGvDV/SdPOk+CGcVLOdGURIgEaKC+ehcbQ77sTnZnc7bGHUKfq/vKP2cYu5sFzC+EeZC0+AIvF/QW4PAptxBvX1haAUzj6vJOSyUREb8jKKkWFUTB2ixZdcGdHHhIec2s8=
+	t=1713449469; cv=none; b=S+CJBfYpxMJa8JxMQpigUJ4EHy9PnDOt/X+LwoEF3/fFU+GS6bWI++z3/PAiQ2dCi5bT4vu/P2aN//da+SDORoxljsJbr8Q6CYz9e17Gk8+XiHCKbwK2MH8LqmXNCyj/XN0dPEPhuhIvsJtJzB7JSpQstl6dP1V5dy6xzE4tL3E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713449458; c=relaxed/simple;
-	bh=+T4Gbz0d0WDWqpCdnwHViVzIhKHhKRV2SeC9eULkFI8=;
+	s=arc-20240116; t=1713449469; c=relaxed/simple;
+	bh=jKALt9KU/3y3wSFJZ2ycSc2VQe6xOqIlYBfJCm88MNA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tNG3rZovKhnaEF/Vly1fpmScMT7zt0qt18+lxkGv9fi+izaJEyZAZ03HCCc9ihWC2PPjrYsrcJl72iXzGwiyWWoSJOcMAY57n+xBks/86M7+zdakYAcICXxsddcgYf82J8jc9ZJG2gR7k7lKI/UsZvB8/sKsTWi09aO46/cQhEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PIc6TCg3; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1713449455; x=1744985455;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=+T4Gbz0d0WDWqpCdnwHViVzIhKHhKRV2SeC9eULkFI8=;
-  b=PIc6TCg3kjFDUeEIlpo5c6gF1M9HRWEwWvW2DcGrUECSHmcJTTeyJwXi
-   t3ozW61b8IwvF5Wnv5RXbMGAlB01TzUefxbiWLl5F518b7EeBbTqxk1wy
-   4B3+GQOHfajRI2plQksBnt6ryahthn+wxvfwayYkvfaT3nFjpKROgaD47
-   e9mSFTMvofpTjvj3J3y4aiBuXFFsbD7EvHq7UCTpT4PTGQz6RAsK3qsPZ
-   mxCsDLx7S7nBFhp/qu/HWWzXogL+jd0MxtJ5OMbn4w8kWDtNsdyrkYNg7
-   419nx1R5rqSKuaWrftVm9fOI4cA5VBfdSPKvg72z+2qfJt8YvhPEnVlvQ
-   w==;
-X-CSE-ConnectionGUID: zjwjpYKvSly4O4dh+ZaEsw==
-X-CSE-MsgGUID: p+4yzLcjSF69QfAU3RbhLA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="26456683"
-X-IronPort-AV: E=Sophos;i="6.07,212,1708416000"; 
-   d="scan'208";a="26456683"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Apr 2024 07:10:54 -0700
-X-CSE-ConnectionGUID: zcIgliynSJW6Sz2cXS0D+w==
-X-CSE-MsgGUID: jj4Bonx3Tnq9dPuBz/qaOQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,212,1708416000"; 
-   d="scan'208";a="27441373"
-Received: from unknown (HELO 23c141fc0fd8) ([10.239.97.151])
-  by fmviesa005.fm.intel.com with ESMTP; 18 Apr 2024 07:10:49 -0700
-Received: from kbuild by 23c141fc0fd8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rxSTO-0007mK-2y;
-	Thu, 18 Apr 2024 14:10:46 +0000
-Date: Thu, 18 Apr 2024 22:10:35 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lorenzo Bianconi <lorenzo@kernel.org>, linux-spi@vger.kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev, broonie@kernel.org,
-	lorenzo.bianconi83@gmail.com, linux-arm-kernel@lists.infradead.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org, nbd@nbd.name,
-	john@phrozen.org, dd@embedd.com, catalin.marinas@arm.com,
-	will@kernel.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com
-Subject: Re: [PATCH v2 3/3] spi: airoha: add SPI-NAND Flash controller driver
-Message-ID: <202404182252.YtOmaTWG-lkp@intel.com>
-References: <25dd4334e3b37eaa628c20265841f251968c2b75.1713335916.git.lorenzo@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=KmlatH6t0LqFNY06NiZw4WYB8VXY+Poz75z/M0nlzpaWEPPbtUdOnX4ArGOzr5SwJP6IzgckW9lFjvgfD1EmpxQCfehD3mxNGgpQIzV1v//mvR8tL2LAb+Wc3gj7Eh6HI5nsj2h3FBhytIl6oeCmrkhyqQbTxWNIbF5PDZTw4N8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VEopHl0I; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2d8863d8a6eso13896541fa.3
+        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 07:11:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1713449464; x=1714054264; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=LNtnra4jIvx0MSD1gfimaj73u3w4g6I0rnPlaCiirlk=;
+        b=VEopHl0InSjaQIJ62V7YRn3gCHa8nC1i2S63q1C0HKCHpP6nHI17VII7ifpsDektq+
+         Skh6VHK7tdGUCdpFDdfUaoanOcB59HpCkjPEGM5utzg9idIapJOKkCljHxBsv5I+u+oA
+         rSmw9Nhx6t+9RZPDuFu+R1S3QOM0bL/nNmolGZMun4/ZgGKKYDdjbW4yzUKU4KLvwkdd
+         ow2nI6u5avM+jWduPRiGqtiK4haP4U8TPXuAI7oAvBB4v9++uC0FuPBt5dIb91cas+5A
+         XhgiSY4SUzdzbu+a1YPpzLKpXU053Cqg8oUGNwdaZCwk3ck7s3fwWA1W5RsM8U5GGoeB
+         sXNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713449464; x=1714054264;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LNtnra4jIvx0MSD1gfimaj73u3w4g6I0rnPlaCiirlk=;
+        b=FP3CV0ZDidPdBm1vbrNKO/Sr23aenAq2zXVjRA4R8kV34T9GBqGeolxbZ/D8tbTW6G
+         TLp9OPlY6jrhhp5v8gquf3Tihfb2p5K187e2XajFQL8YZTN//LxpAMBxHgm+sY8m/eCG
+         cvnwEtacpyxmHQvyV61ixkxk8AxC1O1argC7oKSOdBTmdISGdQMkkKfSFTQef0x8S10M
+         DZRYrbwAuDrGDVSUmw/jFHgAQB/he9EyZ34ry1oubN7pjeeVwY2kzCYJxwVlS7XooR7g
+         A7k5Olw2ipjRNEm2PDlea3/mwjnUlhxCds/460C2rYkf+BumaL6RvG+JwKEx6LD8jH/A
+         iiiQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWWjymxbq2YQahhtyEMNSIVRwbW21RcgU1Q58hoNBd/SNMj2Cq4FkZc8GaaK/O3/Qbaqs9cIVyOMvu+UrhipBPFM9KImV7tgdd0mQ==
+X-Gm-Message-State: AOJu0YwM80Q1cqEru2qJTaVhHJrdsmJh3HbJdbjqsbzV5yrfr027h6By
+	bVia1KBaErxUt2DL9fc3qCEHGMTCFrV7TzexeZuDdepdaE2M7QEKGD074dkUKNtzDGDx9Y6eEfx
+	P
+X-Google-Smtp-Source: AGHT+IFdCUq3VqS+paDye/Ke7ewPYXel2f5bzxTKTI331K5OcS+VUSO1hNgDYfa3ldwMDWUI512s/Q==
+X-Received: by 2002:a2e:9789:0:b0:2da:5f41:10c8 with SMTP id y9-20020a2e9789000000b002da5f4110c8mr2170989lji.3.1713449464276;
+        Thu, 18 Apr 2024 07:11:04 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
+        by smtp.gmail.com with ESMTPSA id z28-20020a2eb53c000000b002d6c88b9addsm213024ljm.50.2024.04.18.07.11.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Apr 2024 07:11:03 -0700 (PDT)
+Date: Thu, 18 Apr 2024 17:11:02 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Hsin-Yi Wang <hsinyi@google.com>
+Cc: lvzhaoxiong <lvzhaoxiong@huaqin.corp-partner.google.com>, 
+	mripard@kernel.org, airlied@gmail.com, daniel@ffwll.ch, robh@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, dianders@google.com, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/2] drm/panel: kd101ne3: add new panel driver
+Message-ID: <vbt2nxddw2dc7hkreq4iybv5zv5xyp32oajybeqsphgfrhzmn7@tskvckljmxpe>
+References: <20240418081548.12160-1-lvzhaoxiong@huaqin.corp-partner.google.com>
+ <20240418081548.12160-3-lvzhaoxiong@huaqin.corp-partner.google.com>
+ <zanx5y3obqmewnbooovf52hx6vh7tpi4zsbse2dyzcqzddmzhw@kewxoa6n3mja>
+ <CACb=7PURWtS8bwT5EcAFHhu7deHd2Y8cNOattfdwyEYpOUcbnQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <25dd4334e3b37eaa628c20265841f251968c2b75.1713335916.git.lorenzo@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CACb=7PURWtS8bwT5EcAFHhu7deHd2Y8cNOattfdwyEYpOUcbnQ@mail.gmail.com>
 
-Hi Lorenzo,
+On Thu, Apr 18, 2024 at 09:11:37PM +0800, Hsin-Yi Wang wrote:
+> On Thu, Apr 18, 2024 at 7:46 PM Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
+> >
+> > On Thu, Apr 18, 2024 at 04:15:48PM +0800, lvzhaoxiong wrote:
+> > > The kingdisplay panel is based on JD9365DA controller.
+> > > Add a driver for it.
+> > >
+> > > Signed-off-by: lvzhaoxiong <lvzhaoxiong@huaqin.corp-partner.google.com>
+> > > ---
+> > >  drivers/gpu/drm/panel/Kconfig                 |   9 +
+> > >  drivers/gpu/drm/panel/Makefile                |   1 +
+> > >  .../drm/panel/panel-kingdisplay-kd101ne3.c    | 607 ++++++++++++++++++
+> > >  3 files changed, 617 insertions(+)
+> > >  create mode 100644 drivers/gpu/drm/panel/panel-kingdisplay-kd101ne3.c
+> > >
+> > > diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+> > > index 154f5bf82980..2c73086cf102 100644
+> > > --- a/drivers/gpu/drm/panel/Kconfig
+> > > +++ b/drivers/gpu/drm/panel/Kconfig
+> > > @@ -297,6 +297,15 @@ config DRM_PANEL_KINGDISPLAY_KD097D04
+> > >         24 bit RGB per pixel. It provides a MIPI DSI interface to
+> > >         the host and has a built-in LED backlight.
+> > >
+> > > +config DRM_PANEL_KINGDISPLAY_KD101NE3
+> > > +     tristate "Kingdisplay kd101ne3 panel"
+> > > +     depends on OF
+> > > +     depends on DRM_MIPI_DSI
+> > > +     depends on BACKLIGHT_CLASS_DEVICE
+> > > +     help
+> > > +       Say Y if you want to enable support for panels based on the
+> > > +       Kingdisplay kd101ne3 controller.
+> > > +
+> > >  config DRM_PANEL_LEADTEK_LTK050H3146W
+> > >       tristate "Leadtek LTK050H3146W panel"
+> > >       depends on OF
+> > > diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
+> > > index 24a02655d726..cbd414b98bb0 100644
+> > > --- a/drivers/gpu/drm/panel/Makefile
+> > > +++ b/drivers/gpu/drm/panel/Makefile
+> > > @@ -30,6 +30,7 @@ obj-$(CONFIG_DRM_PANEL_JDI_LPM102A188A) += panel-jdi-lpm102a188a.o
+> > >  obj-$(CONFIG_DRM_PANEL_JDI_R63452) += panel-jdi-fhd-r63452.o
+> > >  obj-$(CONFIG_DRM_PANEL_KHADAS_TS050) += panel-khadas-ts050.o
+> > >  obj-$(CONFIG_DRM_PANEL_KINGDISPLAY_KD097D04) += panel-kingdisplay-kd097d04.o
+> > > +obj-$(CONFIG_DRM_PANEL_KINGDISPLAY_KD101NE3) += panel-kingdisplay-kd101ne3.o
+> > >  obj-$(CONFIG_DRM_PANEL_LEADTEK_LTK050H3146W) += panel-leadtek-ltk050h3146w.o
+> > >  obj-$(CONFIG_DRM_PANEL_LEADTEK_LTK500HD1829) += panel-leadtek-ltk500hd1829.o
+> > >  obj-$(CONFIG_DRM_PANEL_LG_LB035Q02) += panel-lg-lb035q02.o
+> > > diff --git a/drivers/gpu/drm/panel/panel-kingdisplay-kd101ne3.c b/drivers/gpu/drm/panel/panel-kingdisplay-kd101ne3.c
+> > > new file mode 100644
+> > > index 000000000000..dbf0992f8b81
+> > > --- /dev/null
+> > > +++ b/drivers/gpu/drm/panel/panel-kingdisplay-kd101ne3.c
+> > > @@ -0,0 +1,607 @@
+> > > +// SPDX-License-Identifier: GPL-2.0
+> > > +/*
+> > > + * Panels based on the JD9365DA display controller.
+> > > + * Author: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
+> > > + */
+> > > +
+> > > +#include <linux/delay.h>
+> > > +#include <linux/gpio/consumer.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/of.h>
+> > > +#include <linux/of_device.h>
+> > > +#include <linux/regulator/consumer.h>
+> > > +
+> > > +#include <drm/drm_connector.h>
+> > > +#include <drm/drm_crtc.h>
+> > > +#include <drm/drm_mipi_dsi.h>
+> > > +#include <drm/drm_panel.h>
+> > > +
+> > > +#include <video/mipi_display.h>
+> > > +
+> > > +struct panel_desc {
+> > > +     const struct drm_display_mode *modes;
+> > > +     unsigned int bpc;
+> > > +
+> > > +     /**
+> > > +      * @width_mm: width of the panel's active display area
+> > > +      * @height_mm: height of the panel's active display area
+> > > +      */
+> > > +     struct {
+> > > +             unsigned int width_mm;
+> > > +             unsigned int height_mm;
+> >
+> > Please move to the declared mode;
+> >
+> > > +     } size;
+> > > +
+> > > +     unsigned long mode_flags;
+> > > +     enum mipi_dsi_pixel_format format;
+> > > +     const struct panel_init_cmd *init_cmds;
+> > > +     unsigned int lanes;
+> > > +     bool discharge_on_disable;
+> > > +     bool lp11_before_reset;
+> > > +};
+> > > +
+> > > +struct kingdisplay_panel {
+> > > +     struct drm_panel base;
+> > > +     struct mipi_dsi_device *dsi;
+> > > +
+> > > +     const struct panel_desc *desc;
+> > > +
+> > > +     enum drm_panel_orientation orientation;
+> > > +     struct regulator *pp3300;
+> > > +     struct gpio_desc *enable_gpio;
+> > > +};
+> > > +
+> > > +enum dsi_cmd_type {
+> > > +     INIT_DCS_CMD,
+> > > +     DELAY_CMD,
+> > > +};
+> > > +
+> > > +struct panel_init_cmd {
+> > > +     enum dsi_cmd_type type;
+> > > +     size_t len;
+> > > +     const char *data;
+> > > +};
+> > > +
+> > > +#define _INIT_DCS_CMD(...) { \
+> > > +     .type = INIT_DCS_CMD, \
+> > > +     .len = sizeof((char[]){__VA_ARGS__}), \
+> > > +     .data = (char[]){__VA_ARGS__} }
+> > > +
+> > > +#define _INIT_DELAY_CMD(...) { \
+> > > +     .type = DELAY_CMD,\
+> > > +     .len = sizeof((char[]){__VA_ARGS__}), \
+> > > +     .data = (char[]){__VA_ARGS__} }
+> >
+> > This is the third panel driver using the same appoach. Can you use
+> > mipi_dsi_generic_write_seq() instead of the huge table? Or if you prefer
+> > the table, we should extract this framework to a common helper.
+> > (my preference is shifted towards mipi_dsi_generic_write_seq()).
+> >
+> The drawback of mipi_dsi_generic_write_seq() is that it can cause the
+> kernel size grows a lot since every sequence will be expanded.
+> 
+> Similar discussion in here:
+> https://lore.kernel.org/dri-devel/CAD=FV=Wju3WS45=EpXMUg7FjYDh3-=mvm_jS7TF1tsaAzbb4Uw@mail.gmail.com/
+> 
+> This patch would increase the module size from 157K to 572K.
+> scripts/bloat-o-meter shows chg +235.95%.
+> 
+> So maybe the common helper is better regarding the kernel module size?
 
-kernel test robot noticed the following build errors:
+Yes, let's get a framework done in a useful way.
+I'd say, drop the _INIT_DELAY_CMD. msleep() and usleep_range() should be
+used instead (and it's up to the developer to select correct delay
+function).
 
-[auto build test ERROR on next-20240416]
-[cannot apply to broonie-spi/for-next robh/for-next arm/for-next arm/fixes arm64/for-next/core kvmarm/next rockchip/for-next shawnguo/for-next soc/for-next linus/master v6.9-rc4 v6.9-rc3 v6.9-rc2 v6.9-rc4]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> 
+> > > +
+> > > +static const struct panel_init_cmd kingdisplay_kd101ne3_init_cmd[] = {
+> > > +     _INIT_DELAY_CMD(50),
+> > > +     _INIT_DCS_CMD(0xE0, 0x00),
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Lorenzo-Bianconi/dt-bindings-spi-airoha-Add-YAML-schema-for-SNFI-controller/20240417-144847
-base:   next-20240416
-patch link:    https://lore.kernel.org/r/25dd4334e3b37eaa628c20265841f251968c2b75.1713335916.git.lorenzo%40kernel.org
-patch subject: [PATCH v2 3/3] spi: airoha: add SPI-NAND Flash controller driver
-config: hexagon-allyesconfig (https://download.01.org/0day-ci/archive/20240418/202404182252.YtOmaTWG-lkp@intel.com/config)
-compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project 7089c359a3845323f6f30c44a47dd901f2edfe63)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240418/202404182252.YtOmaTWG-lkp@intel.com/reproduce)
+[skipped the body of the table]
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202404182252.YtOmaTWG-lkp@intel.com/
+> > > +     _INIT_DCS_CMD(0x0E, 0x48),
+> > > +
+> > > +     _INIT_DCS_CMD(0xE0, 0x00),
 
-All errors (new ones prefixed by >>):
+> > > +     _INIT_DCS_CMD(0X11),
 
-   In file included from drivers/spi/spi-airoha-snfi.c:10:
-   In file included from include/linux/dma-mapping.h:11:
-   In file included from include/linux/scatterlist.h:8:
-   In file included from include/linux/mm.h:2254:
-   include/linux/vmstat.h:514:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
-     514 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
-         |                               ~~~~~~~~~~~ ^ ~~~
-   In file included from drivers/spi/spi-airoha-snfi.c:10:
-   In file included from include/linux/dma-mapping.h:11:
-   In file included from include/linux/scatterlist.h:9:
-   In file included from arch/hexagon/include/asm/io.h:328:
-   include/asm-generic/io.h:548:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     548 |         val = __raw_readb(PCI_IOBASE + addr);
-         |                           ~~~~~~~~~~ ^
-   include/asm-generic/io.h:561:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     561 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
-      37 | #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
-         |                                                   ^
-   In file included from drivers/spi/spi-airoha-snfi.c:10:
-   In file included from include/linux/dma-mapping.h:11:
-   In file included from include/linux/scatterlist.h:9:
-   In file included from arch/hexagon/include/asm/io.h:328:
-   include/asm-generic/io.h:574:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     574 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
-      35 | #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
-         |                                                   ^
-   In file included from drivers/spi/spi-airoha-snfi.c:10:
-   In file included from include/linux/dma-mapping.h:11:
-   In file included from include/linux/scatterlist.h:9:
-   In file included from arch/hexagon/include/asm/io.h:328:
-   include/asm-generic/io.h:585:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     585 |         __raw_writeb(value, PCI_IOBASE + addr);
-         |                             ~~~~~~~~~~ ^
-   include/asm-generic/io.h:595:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     595 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
-   include/asm-generic/io.h:605:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     605 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
->> drivers/spi/spi-airoha-snfi.c:233:7: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     233 |                            FIELD_PREP(SPI_CTRL_OPFIFO_LEN, op_len) |
-         |                            ^
-   drivers/spi/spi-airoha-snfi.c:281:8: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     281 |                                    FIELD_PREP(SPI_CTRL_DFIFO_WDATA, data[i]));
-         |                                    ^
->> drivers/spi/spi-airoha-snfi.c:320:12: error: call to undeclared function 'FIELD_GET'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     320 |                 ptr[i] = FIELD_GET(SPI_CTRL_DFIFO_RDATA, val);
-         |                          ^
-   drivers/spi/spi-airoha-snfi.c:487:9: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     487 |                 val = FIELD_PREP(SPI_NFI_SPARE_SIZE, 0x1);
-         |                       ^
-   drivers/spi/spi-airoha-snfi.c:507:9: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     507 |                 val = FIELD_PREP(SPI_NFI_PAGE_SIZE, 0x1);
-         |                       ^
-   drivers/spi/spi-airoha-snfi.c:523:8: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     523 |         val = FIELD_PREP(SPI_NFI_SEC_NUM, as_ctrl->nfi_cfg.sec_num);
-         |               ^
-   drivers/spi/spi-airoha-snfi.c:694:8: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     694 |         val = FIELD_PREP(SPI_NFI_READ_DATA_BYTE_NUM, val);
-         |               ^
-   drivers/spi/spi-airoha-snfi.c:819:8: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     819 |         val = FIELD_PREP(SPI_NFI_PROG_LOAD_BYTE_NUM, val);
-         |               ^
-   drivers/spi/spi-airoha-snfi.c:1034:12: error: call to undeclared function 'FIELD_GET'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-    1034 |         sec_num = FIELD_GET(SPI_NFI_SEC_NUM, val);
-         |                   ^
-   7 warnings and 9 errors generated.
+Also, at least this is mipi_dsi_dcs_exit_sleep_mode().
 
+> > > +     /* T6: 120ms */
+> > > +     _INIT_DELAY_CMD(120),
+> > > +     _INIT_DCS_CMD(0X29),
 
-vim +/FIELD_PREP +233 drivers/spi/spi-airoha-snfi.c
+And this is mipi_dsi_dcs_set_display_on().
 
-   225	
-   226	static int airoha_snand_set_fifo_op(struct airoha_snand_ctrl *as_ctrl,
-   227					    u8 op_cmd, int op_len)
-   228	{
-   229		int err;
-   230		u32 val;
-   231	
-   232		err = regmap_write(as_ctrl->regmap_ctrl, REG_SPI_CTRL_OPFIFO_WDATA,
- > 233				   FIELD_PREP(SPI_CTRL_OPFIFO_LEN, op_len) |
-   234				   FIELD_PREP(SPI_CTRL_OPFIFO_OP, op_cmd));
-   235		if (err)
-   236			return err;
-   237	
-   238		err = regmap_read_poll_timeout(as_ctrl->regmap_ctrl,
-   239					       REG_SPI_CTRL_OPFIFO_FULL,
-   240					       val, !(val & SPI_CTRL_OPFIFO_FULL),
-   241					       0, 250 * USEC_PER_MSEC);
-   242		if (err)
-   243			return err;
-   244	
-   245		err = regmap_write(as_ctrl->regmap_ctrl, REG_SPI_CTRL_OPFIFO_WR,
-   246				   SPI_CTRL_OPFIFO_WR);
-   247		if (err)
-   248			return err;
-   249	
-   250		return regmap_read_poll_timeout(as_ctrl->regmap_ctrl,
-   251						REG_SPI_CTRL_OPFIFO_EMPTY,
-   252						val, (val & SPI_CTRL_OPFIFO_EMPTY),
-   253						0, 250 * USEC_PER_MSEC);
-   254	}
-   255	
-   256	static int airoha_snand_set_cs(struct airoha_snand_ctrl *as_ctrl, u8 cs)
-   257	{
-   258		return airoha_snand_set_fifo_op(as_ctrl, cs, sizeof(cs));
-   259	}
-   260	
-   261	static int airoha_snand_write_data_to_fifo(struct airoha_snand_ctrl *as_ctrl,
-   262						   const u8 *data, int len)
-   263	{
-   264		int i;
-   265	
-   266		for (i = 0; i < len; i++) {
-   267			int err;
-   268			u32 val;
-   269	
-   270			/* 1. Wait until dfifo is not full */
-   271			err = regmap_read_poll_timeout(as_ctrl->regmap_ctrl,
-   272						       REG_SPI_CTRL_DFIFO_FULL, val,
-   273						       !(val & SPI_CTRL_DFIFO_FULL),
-   274						       0, 250 * USEC_PER_MSEC);
-   275			if (err)
-   276				return err;
-   277	
-   278			/* 2. Write data to register DFIFO_WDATA */
-   279			err = regmap_write(as_ctrl->regmap_ctrl,
-   280					   REG_SPI_CTRL_DFIFO_WDATA,
-   281					   FIELD_PREP(SPI_CTRL_DFIFO_WDATA, data[i]));
-   282			if (err)
-   283				return err;
-   284	
-   285			/* 3. Wait until dfifo is not full */
-   286			err = regmap_read_poll_timeout(as_ctrl->regmap_ctrl,
-   287						       REG_SPI_CTRL_DFIFO_FULL, val,
-   288						       !(val & SPI_CTRL_DFIFO_FULL),
-   289						       0, 250 * USEC_PER_MSEC);
-   290			if (err)
-   291				return err;
-   292		}
-   293	
-   294		return 0;
-   295	}
-   296	
-   297	static int airoha_snand_read_data_from_fifo(struct airoha_snand_ctrl *as_ctrl,
-   298						    u8 *ptr, int len)
-   299	{
-   300		int i;
-   301	
-   302		for (i = 0; i < len; i++) {
-   303			int err;
-   304			u32 val;
-   305	
-   306			/* 1. wait until dfifo is not empty */
-   307			err = regmap_read_poll_timeout(as_ctrl->regmap_ctrl,
-   308						       REG_SPI_CTRL_DFIFO_EMPTY, val,
-   309						       !(val & SPI_CTRL_DFIFO_EMPTY),
-   310						       0, 250 * USEC_PER_MSEC);
-   311			if (err)
-   312				return err;
-   313	
-   314			/* 2. read from dfifo to register DFIFO_RDATA */
-   315			err = regmap_read(as_ctrl->regmap_ctrl,
-   316					  REG_SPI_CTRL_DFIFO_RDATA, &val);
-   317			if (err)
-   318				return err;
-   319	
- > 320			ptr[i] = FIELD_GET(SPI_CTRL_DFIFO_RDATA, val);
-   321			/* 3. enable register DFIFO_RD to read next byte */
-   322			err = regmap_write(as_ctrl->regmap_ctrl,
-   323					   REG_SPI_CTRL_DFIFO_RD, SPI_CTRL_DFIFO_RD);
-   324			if (err)
-   325				return err;
-   326		}
-   327	
-   328		return 0;
-   329	}
-   330	
+Having a single table enourages people to put known commands into the
+table, the practice that must be frowned upon and forbidden.
+
+We have functions for some of the standard DCS commands. So, maybe
+instead of adding a single-table based approach we can improve
+mipi_dsi_generic_write_seq() to reduce the bloat. E.g. by moving the
+error handling to a common part of enable() / prepare() function.
+
+> > > +     _INIT_DELAY_CMD(20),
+> > > +     {},
+> > > +};
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With best wishes
+Dmitry
 
