@@ -1,313 +1,162 @@
-Return-Path: <devicetree+bounces-60400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60401-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D70EE8A9318
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 08:31:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C961A8A9323
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 08:34:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D8ED1F21AB0
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 06:31:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB5531C20A9C
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 06:34:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC576200DD;
-	Thu, 18 Apr 2024 06:31:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9024200DD;
+	Thu, 18 Apr 2024 06:34:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wScxRXYa"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="HuxvxZ+v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 377FA63C
-	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 06:31:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E16B8111BB;
+	Thu, 18 Apr 2024 06:34:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713421868; cv=none; b=J/7pvjVh2YQ9sKT1XGQrxMUYvVKC20UlL9yGSALNioqAUL+TL/LgshuoHK9vO5GKgwpWwv9qSNWBby3EZRkFfSt4NbIjf4ebJEJLrOmI159ydRSJos0XwQ39IN4JljADqwoPG/bokBn2BnTNUhHFwSXwBJ1JSx9r+K+tjMGnvZM=
+	t=1713422043; cv=none; b=APWeRf+geb+d/Ve3y3wkyrTWqWeCRk50qjaYaShyz+DJQXjg2Cq+v0YWnj9fynULPWf5Mrc8gR2OuFu3hhkw/eQGXztFQiQ6m2LUwTssiJkkQF186jwZoFGyvxGuTwoCOMXPsOqv4lKVInyRCPr//q1dwKdREULfCwqi6EnI46I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713421868; c=relaxed/simple;
-	bh=LrdjjpkgLeF0jdIA8AVj8K1IxOyKL2qV2D+llcvgDbM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZCvXzyBUmx80IZCb7hwhnAIc5RZoeqv6vx5bh5apoVJ42B3L0zZO9bRabMwpJpe63iTbnJfON+rFmmBkyh3tdnKgLmVoAsqFGiXzUEtDwkPe7v7xESyCvOlqbo+0sEwtJRyBa4YnI3QnMupFLo79MbP5H3WxYKdLdlwF/EThS2E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wScxRXYa; arc=none smtp.client-ip=209.85.210.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-6eced6fd98aso540471b3a.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 23:31:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713421865; x=1714026665; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=DqP++inW+493cGi/mRUROkxqqlY1ajss2gCH0VtYow8=;
-        b=wScxRXYaUcc0QILXsonJaBgFuptPSFVLSK9dbuQ+qGGwxt2YnWHDHfSdfcnJDJUhwg
-         Dzooy01Anq9LDWDC/WdywbxTnLZxR1/ioWu9r2h61zkEDkmPDTPrd5gvtl0OlkrNet4O
-         gVQbstsO++daFin0SjJJEcgcd4SbAZDoAROuWgrQNGlzorLZyuw5OEf5lLDi5z0n+Jzx
-         /X8Wk6fwmKvQFJUGhE8jPJJDtXdF50InTLTpsynXUDlfmOqrjM12mBYcZIzzKPMRg8p6
-         9frwPMNR5qeHgY9gFyOHWQnaiA1/yvaXsRFI8CRrsbkxymL0jiN9X+dw/IXzOaPHpy4m
-         lcWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713421865; x=1714026665;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DqP++inW+493cGi/mRUROkxqqlY1ajss2gCH0VtYow8=;
-        b=hPIZ4T4kkCzbm5kS17ZNE5jn7mq/nn51hYscR1mlrQqakFNhCWoACjFx+HMIObsLOD
-         WSkbEOAC2qlTncXvdkEOiuCINM9cHNkFHJajbn/kL84CEE8yYvLcuFrILqtqBefuIGAw
-         ZGYSWI5nZQnt1LFmkbBYDJsRk+/OmFoMPUdqRstLj3rDt5qqBKNZiRm4fRBJDekF+zqi
-         HUeCYE5ppA16zKN1YRRKCM/9qjTyifP4xRM1Iso2BmhJopkr/T2KaugaCQ/d7B0SpiST
-         y189Od5DLSGMf88b3jYicpFDwwUSlsya/d2/aW0CWaDeXqu8kY/K1oejKfX7eLVd7d7N
-         BjQA==
-X-Forwarded-Encrypted: i=1; AJvYcCWoVkusb4Ga9iCftP6eOw8m06Bb7b0jKO+J1Lt4i3S0NqPe1twQAycIKiwXWpBZyitMzMQ5q7qfzq703ZCZ7jwNL0INkL1eFA4R1g==
-X-Gm-Message-State: AOJu0YwlgltrsJrj5hKC1v1e9JWxHaL+DDQOabVqYiv7ZXT+/L07xy5a
-	p+QRJzahcdJ1fSq547uJbqRZ+hikmZk5Acr6D09wNuXbxApynMgORDgEd/Km7A==
-X-Google-Smtp-Source: AGHT+IHU2IZ95oWdl4Gw7bDq+Ljx6zIQbhqOlRJBQg/8BN9QEjiDfRMdMv1HRveIcGbjy2nMWY0z0Q==
-X-Received: by 2002:a05:6a21:3a48:b0:1a7:88c3:85ed with SMTP id zu8-20020a056a213a4800b001a788c385edmr2823336pzb.1.1713421865380;
-        Wed, 17 Apr 2024 23:31:05 -0700 (PDT)
-Received: from thinkpad ([120.56.197.253])
-        by smtp.gmail.com with ESMTPSA id g13-20020a62e30d000000b006ecfd2ad4ddsm743339pfh.146.2024.04.17.23.31.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Apr 2024 23:31:04 -0700 (PDT)
-Date: Thu, 18 Apr 2024 12:00:58 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
-	Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev,
-	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 5/5] PCI: dwc: Add generic MSG TLP support for sending
- PME_Turn_Off when system suspend
-Message-ID: <20240418063058.GE2861@thinkpad>
-References: <20240417-pme_msg-v7-0-9c6208cda90f@nxp.com>
- <20240417-pme_msg-v7-5-9c6208cda90f@nxp.com>
+	s=arc-20240116; t=1713422043; c=relaxed/simple;
+	bh=RHIejf4V54iNzGlOs7usTAyAIGAlOA/ZaJt8Mf4ep/w=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=CB3VCLvd3Qs5w22QQLqSgtIKATFjH+01mw/zQO7ds4EgIB9xb8/rMCe6Rz/MElVoxYKwgLb+o4ZZ5t8qePNLrTMX88xPb97En7ReJtfJ+FQyFweTyQevfAoOTMSIjTmP+6Wahpv6a9ygGXPkN6mZxonrweNN3mcf/R10sdbc9Pg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=HuxvxZ+v; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1713422038;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=FJfHenXGscRQCfMOH93v/ydARNP1MmiUsLyM1PnpdpI=;
+	b=HuxvxZ+vIQDChoGpBAoPM4zf+SQyTRodNZa4WDHc57jd0ZUM/VJWKclmWAsxiZJuLXa+ct
+	M5m1O3JiEw1m4cjZ2Gs8fwdV2qP7VYXnl4p4e82vFQfnKdHU4nfwiwzRPOh9YIcJMYxcfP
+	7QsT+PypYWMtnaAmV+lZVzeXTWvQBB/CBqJux2cGtCNB0UIn5X/UhAvOGJDcObD3LWccoc
+	TKrTFyM0C8mPtyUn4pOetsyAkYMxQSj3IQQoB4i+MWRpb4kG4VZTfEObXflmCf6MxYRiaj
+	AerknqM00o7STOBNGTl+A5GWcZ9V8X0pVYVuC4lP7bUW/ast1hQQZcbpUJuNLQ==
+Date: Thu, 18 Apr 2024 08:33:55 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: FUKAUMI Naoki <naoki@radxa.com>
+Cc: Chukun Pan <amadeus@jmu.edu.cn>, jonas@kwiboo.se, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, heiko@sntech.de, krzk+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, robh@kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add Radxa ROCK3 Model C
+In-Reply-To: <9e915ef29a2b49ce56446ec9d474eb64@manjaro.org>
+References: <d7de2213-8dd2-42ec-9a30-a569ac71be3e@kwiboo.se>
+ <20240417133016.62753-1-amadeus@jmu.edu.cn>
+ <a144c052fcc2460a615a754a64a8f739@manjaro.org>
+ <B26C732A4DCEA9B3+282b8775-601b-4d4a-a513-4924b7940076@radxa.com>
+ <9e915ef29a2b49ce56446ec9d474eb64@manjaro.org>
+Message-ID: <ebf7b5f5ff4cd3c8cbee36f35df6ef5d@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240417-pme_msg-v7-5-9c6208cda90f@nxp.com>
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Wed, Apr 17, 2024 at 12:59:43PM -0400, Frank Li wrote:
-> Instead of relying on the vendor specific implementations to send the
-> PME_Turn_Off message, let's introduce a generic way of sending the message
-> using the MSG TLP.
-> 
-> This is achieved by reserving a region for MSG TLP of size
-> 'pci->region_align', at the end of the first IORESOURCE_MEM window of the
-> host bridge. And then sending the PME_Turn_Off message during system
-> suspend with the help of iATU.
-> 
-> The reason for reserving the MSG TLP region at the end of the
-> IORESOURCE_MEM is to avoid generating holes in between. Because, when the
-> region is allocated using allocate_resource(), memory will be allocated
-> from the start of the window. Later, if memory gets allocated for an
-> endpoint of size bigger than 'region_align', there will be a hole between
-> MSG TLP region and endpoint memory.
-> 
-> It should be noted that this generic implementation is optional for the
-> glue drivers and can be overridden by a custom 'pme_turn_off' callback.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  drivers/pci/controller/dwc/pcie-designware-host.c | 102 ++++++++++++++++++++--
->  drivers/pci/controller/dwc/pcie-designware.h      |   3 +
->  2 files changed, 100 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> index 3a9cb4be22ab2..f57805b21ef53 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> @@ -398,6 +398,34 @@ static int dw_pcie_msi_host_init(struct dw_pcie_rp *pp)
->  	return 0;
->  }
->  
-> +static void dw_pcie_host_request_msg_tlp_res(struct dw_pcie_rp *pp)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	struct resource_entry *win;
-> +	struct resource *res;
-> +
-> +	win = resource_list_first_type(&pp->bridge->windows, IORESOURCE_MEM);
-> +	if (win) {
-> +		res = devm_kzalloc(pci->dev, sizeof(*res), GFP_KERNEL);
-> +		if (!res)
-> +			return;
-> +
-> +		/*
-> +		 * Allocate MSG TLP region of size 'region_align' at the end of
-> +		 * the host bridge window.
-> +		 */
-> +		res->start = win->res->end - pci->region_align + 1;
-> +		res->end = win->res->end;
-> +		res->name = "msg";
-> +		res->flags = win->res->flags | IORESOURCE_BUSY;
-> +
-> +		if (!request_resource(win->res, res))
-> +			pp->msg_res = res;
-> +		else
-> +			devm_kfree(pci->dev, res);
+Hello all,
 
-You still haven't resolved my earlier comment:
-
-"You are explicitly freeing 'msg_res' everywhere. So either drop devm_ or rely
-on devm to free the memory."
-
-- Mani
-
-> +	}
-> +}
-> +
->  int dw_pcie_host_init(struct dw_pcie_rp *pp)
->  {
->  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> @@ -484,6 +512,18 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
->  
->  	dw_pcie_iatu_detect(pci);
->  
-> +	/*
-> +	 * Allocate the resource for MSG TLP before programming the iATU
-> +	 * outbound window in dw_pcie_setup_rc(). Since the allocation depends
-> +	 * on the value of 'region_align', this has to be done after
-> +	 * dw_pcie_iatu_detect().
-> +	 *
-> +	 * Glue drivers need to set 'use_atu_msg' before dw_pcie_host_init() to
-> +	 * make use of the generic MSG TLP implementation.
-> +	 */
-> +	if (pp->use_atu_msg)
-> +		dw_pcie_host_request_msg_tlp_res(pp);
-> +
->  	ret = dw_pcie_edma_detect(pci);
->  	if (ret)
->  		goto err_free_msi;
-> @@ -541,6 +581,11 @@ void dw_pcie_host_deinit(struct dw_pcie_rp *pp)
->  
->  	dw_pcie_edma_remove(pci);
->  
-> +	if (pp->msg_res) {
-> +		release_resource(pp->msg_res);
-> +		devm_kfree(pci->dev, pp->msg_res);
-> +	}
-> +
->  	if (pp->has_msi_ctrl)
->  		dw_pcie_free_msi(pp);
->  
-> @@ -700,7 +745,13 @@ static int dw_pcie_iatu_setup(struct dw_pcie_rp *pp)
->  		atu.type = PCIE_ATU_TYPE_MEM;
->  		atu.cpu_addr = entry->res->start;
->  		atu.pci_addr = entry->res->start - entry->offset;
-> -		atu.size = resource_size(entry->res);
-> +
-> +		/* Adjust iATU size if MSG TLP region was allocated before */
-> +		if (pp->msg_res && pp->msg_res->parent == entry->res)
-> +			atu.size = resource_size(entry->res) -
-> +					resource_size(pp->msg_res);
-> +		else
-> +			atu.size = resource_size(entry->res);
->  
->  		ret = dw_pcie_prog_outbound_atu(pci, &atu);
->  		if (ret) {
-> @@ -733,6 +784,8 @@ static int dw_pcie_iatu_setup(struct dw_pcie_rp *pp)
->  		dev_warn(pci->dev, "Ranges exceed outbound iATU size (%d)\n",
->  			 pci->num_ob_windows);
->  
-> +	pp->msg_atu_index = i;
-> +
->  	i = 0;
->  	resource_list_for_each_entry(entry, &pp->bridge->dma_ranges) {
->  		if (resource_type(entry->res) != IORESOURCE_MEM)
-> @@ -838,11 +891,47 @@ int dw_pcie_setup_rc(struct dw_pcie_rp *pp)
->  }
->  EXPORT_SYMBOL_GPL(dw_pcie_setup_rc);
->  
-> +static int dw_pcie_pme_turn_off(struct dw_pcie *pci)
-> +{
-> +	struct dw_pcie_ob_atu_cfg atu = { 0 };
-> +	void __iomem *mem;
-> +	int ret;
-> +
-> +	if (pci->num_ob_windows <= pci->pp.msg_atu_index)
-> +		return -ENOSPC;
-> +
-> +	if (!pci->pp.msg_res)
-> +		return -ENOSPC;
-> +
-> +	atu.code = PCIE_MSG_CODE_PME_TURN_OFF;
-> +	atu.routing = PCIE_MSG_TYPE_R_BC;
-> +	atu.type = PCIE_ATU_TYPE_MSG;
-> +	atu.size = resource_size(pci->pp.msg_res);
-> +	atu.index = pci->pp.msg_atu_index;
-> +
-> +	atu.cpu_addr = pci->pp.msg_res->start;
-> +
-> +	ret = dw_pcie_prog_outbound_atu(pci, &atu);
-> +	if (ret)
-> +		return ret;
-> +
-> +	mem = ioremap(atu.cpu_addr, pci->region_align);
-> +	if (!mem)
-> +		return -ENOMEM;
-> +
-> +	/* A dummy write is converted to a Msg TLP */
-> +	writel(0, mem);
-> +
-> +	iounmap(mem);
-> +
-> +	return 0;
-> +}
-> +
->  int dw_pcie_suspend_noirq(struct dw_pcie *pci)
->  {
->  	u8 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
->  	u32 val;
-> -	int ret;
-> +	int ret = 0;
->  
->  	/*
->  	 * If L1SS is supported, then do not put the link into L2 as some
-> @@ -854,10 +943,13 @@ int dw_pcie_suspend_noirq(struct dw_pcie *pci)
->  	if (dw_pcie_get_ltssm(pci) <= DW_PCIE_LTSSM_DETECT_ACT)
->  		return 0;
->  
-> -	if (!pci->pp.ops->pme_turn_off)
-> -		return 0;
-> +	if (pci->pp.ops->pme_turn_off)
-> +		pci->pp.ops->pme_turn_off(&pci->pp);
-> +	else
-> +		ret = dw_pcie_pme_turn_off(pci);
->  
-> -	pci->pp.ops->pme_turn_off(&pci->pp);
-> +	if (ret)
-> +		return ret;
->  
->  	ret = read_poll_timeout(dw_pcie_get_ltssm, val, val == DW_PCIE_LTSSM_L2_IDLE,
->  				PCIE_PME_TO_L2_TIMEOUT_US/10,
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index 703b50bc5e0f1..dca5de4c6e877 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -341,6 +341,9 @@ struct dw_pcie_rp {
->  	struct pci_host_bridge  *bridge;
->  	raw_spinlock_t		lock;
->  	DECLARE_BITMAP(msi_irq_in_use, MAX_MSI_IRQS);
-> +	bool			use_atu_msg;
-> +	int			msg_atu_index;
-> +	struct resource		*msg_res;
->  };
->  
->  struct dw_pcie_ep_ops {
+On 2024-04-18 07:55, Dragan Simic wrote:
+> On 2024-04-18 07:52, FUKAUMI Naoki wrote:
+>> this is Naoki @ Radxa.
+>> 
+>> thank you for your great work!
+>> 
+>> On 4/18/24 02:02, Dragan Simic wrote:
+>>> Hello Chukun,
+>>> 
+>>> On 2024-04-17 15:30, Chukun Pan wrote:
+>>>> Hi Jonas,
+>>>>>> +    model = "Radxa ROCK3 Model C";
+>>>>> 
+>>>>> The marketing name seems to be "Radxa ROCK 3C" according to the 
+>>>>> product
+>>>>> page at [1].
+>>>>> 
+>>>>> [1] https://radxa.com/products/rock3/3c
+>>>> 
+>>>> According to https://wiki.radxa.com/Rock3/3c , it should be called
+>>>> "Radxa ROCK 3 Model C". I copied rock3a here without paying 
+>>>> attention.
+>> 
+>> sorry, wiki.radxa.com is outdated.
+>> 
+>> docs.radxa.com is correct one and maintained.
+>> (but it still has some errors, sorry)
+>> 
+>>> If I may interject, here's the result of a quick qrep:
+>>> 
+>>> ./rk3399pro-rock-pi-n10.dts:    model = "Radxa ROCK Pi N10";
+>>> ./rk3399-rock-pi-4a-plus.dts:    model = "Radxa ROCK Pi 4A+";
+>>> ./rk3588s-rock-5a.dts:    model = "Radxa ROCK 5 Model A";
+>>> ./rk3588-rock-5b.dts:    model = "Radxa ROCK 5 Model B";
+>>> ./rk3399-rock-4c-plus.dts:    model = "Radxa ROCK 4C+";
+>>> ./rk3399-rock-pi-4b-plus.dts:    model = "Radxa ROCK Pi 4B+";
+>>> ./rk3399-rock-pi-4b.dts:    model = "Radxa ROCK Pi 4B";
+>>> ./rk3399-rock-pi-4c.dts:    model = "Radxa ROCK Pi 4C";
+>>> ./rk3308-rock-pi-s.dts:    model = "Radxa ROCK Pi S";
+>>> ./rk3399-rock-pi-4a.dts:    model = "Radxa ROCK Pi 4A";
+>>> ./rk3399-rock-4se.dts:    model = "Radxa ROCK 4SE";
+>>> ./rk3328-rock-pi-e.dts:    model = "Radxa ROCK Pi E";
+>>> ./rk3568-rock-3a.dts:    model = "Radxa ROCK3 Model A";
+>>> 
+>>> Based on that, I think that "Radxa ROCK 3 Model C" would actually
+>>> be the preferred name...  Perhaps?
+>>> 
+>>> If we end up following that approach, the last board dts on the list
+>>> above should also be fixed to read "Radxa ROCK 3 Model A".
+>>> 
+>>> Either that, or all "Model " strings should be stripped out from
+>>> all board dts files that currently contain it.
+>> 
+>> we have a document named "Radxa Product Naming Convention".
+>> there are "full name" and "short name". "Model" is used in "full
+>> name", but it's not used in "short name". both are correct.
+>> 
+>> but, we preferred to use "short name" for "model = " in mainline 
+>> linux/u-boot.
+>> 
+>> for ROCK 3C, please use
+>> 
+>>  model = "Radxa ROCK 3C";
+>> 
+>> for ROCK 5A/5B and ROCK 3A,
+>> 
+>>  model = "Radxa ROCK 5A";
+>>  model = "Radxa ROCK 5B";
+>>  model = "Radxa ROCK 3A";
+>> 
+>> are preferred.
+>> 
+>> we need to fix this inconsistency. (include our docs)
 > 
-> -- 
-> 2.34.1
-> 
+> Great, thanks for this detailed clarification!
 
--- 
-மணிவண்ணன் சதாசிவம்
+I went ahead and prepared a patch that cleans up currently present
+naming inconsistencies for the Radxa boards.  AFAICT, there should
+be no issues arising from the changes in the "model" and "compatible"
+strings, because they aren't used anywhere in the drivers.  There
+are no board-specific ALSA UCM2 profiles, which could be affected
+by those changes.  U-Boot is also fine.
+
+I'll think a bit more about it, and I'll send the patch over a bit
+later.  If it goes well, I'll prepare and send one more similar patch,
+for some other boards.
 
