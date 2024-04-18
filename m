@@ -1,130 +1,139 @@
-Return-Path: <devicetree+bounces-60743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA1F48AA1E9
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 20:16:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6D078AA1F0
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 20:20:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 49B201F22301
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 18:16:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99EF01F22084
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 18:20:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 716D017A938;
-	Thu, 18 Apr 2024 18:16:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 613DA17AD80;
+	Thu, 18 Apr 2024 18:20:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y/fe5brr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TjAaH3rT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2954179204
-	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 18:16:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6ED117AD78;
+	Thu, 18 Apr 2024 18:20:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713464185; cv=none; b=bNpeFjQxAWgbFZaFUL3wOWJMaGfREDdi8FbIgr3c+alJrcbD+8jJtH//wDrMwquELyXfSAtnTP5QcV0PoCx+zARKYgEl/oUl+GgUqKiEIYfyyoEOB1YWY+xY8HCMaIl8S3qQGy3hWGZTv1k9n61eZ891xQRFKrJbiaLyWYoNRAU=
+	t=1713464405; cv=none; b=JTl5T136aYViEtvjP05htcCDkxO1NLqJ+NtqPrM6oj2NDymFAP6qriHe6TT3lgBUvU9+HoBrykoTZOSMhb7/AqsDC5IzfjnhLKX1U2rqinOwDmm/VUT+MdcJ4gBPl6bvQHRh2fF0teeosg6VRTS4ldKEXKwxsspNlR4yNJXhccU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713464185; c=relaxed/simple;
-	bh=RzT85hTZeN5q66RZ4B6RgueToMFBVh5kpGMKsjlp1w0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Q61/iAB5H21g9aoQzbU9ZQQjxCaufiilP20uDSqKa/QqF4wVtvsSxsbZre+ELwzux1AwR+H52H6Mr20jA9lqQa5WdSHptxwwHIYbcva7O21FpqaRAggBEuKA8qgHBuIZ0SgyA/QQWffPe86ca4cbDhvfQf/YcYtAvpJKikJWUrs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y/fe5brr; arc=none smtp.client-ip=209.85.161.50
+	s=arc-20240116; t=1713464405; c=relaxed/simple;
+	bh=eG3q+zpUjWVOdPOZkaSjqo0usEFxFJPlILtnK4zyysA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qfmKTG2ZNGM98SuYB+yHL5FSToNSnwhONOHGuvktWLGl9vzshp+VmPTFsnQEWki0bLSoh9o7J9tZ4q2Q5nd0kQb41/S3UVM+8TckDe+NUbaN9Bkt2gBJcKuZlNGu3LrV0QVZelYD7lpK6lsd3EfJJ5xSBabEGecTBYbtwIR03Jc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TjAaH3rT; arc=none smtp.client-ip=209.85.167.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f50.google.com with SMTP id 006d021491bc7-5acfba298d5so401936eaf.2
-        for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 11:16:23 -0700 (PDT)
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5196c755e82so1527929e87.0;
+        Thu, 18 Apr 2024 11:20:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713464183; x=1714068983; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1713464402; x=1714069202; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=zHyhjFHfFHzvzihg5eoivzzLdrAJ2c6i2qTZ2T7TSG8=;
-        b=Y/fe5brrnbYpgjDJ7SvsW3Gsv9MOwaI2jq7EMCyO3trmnktNyyJT7YwOdwgrsgjFDK
-         0dQ1Iqh5nnBpYpyBH3pEapz9iqhYNin4kP5vCXFSTNQ0tRcLZvbONEm0NxSD4BbUdV8N
-         tecP9nG/7S7jibOc1Qs3cUyF7RnRY+dT7MeoZPPZ9HisK5dk2c22dSRR8DYRDGVnagum
-         m9xiGiEIdBZ2erzx1W7iO9zf1gxXwjRmfE3HdkxOojxDVf6YmmqyZZGRtU/Joqb5lZ1W
-         sgAUjXUVoiWaIqIrso0hrwccBPeSV0/1QPCGHFd/cHcUDnfcJ2oikMnqQt3JYgp+WZDW
-         U1Yg==
+        bh=eG3q+zpUjWVOdPOZkaSjqo0usEFxFJPlILtnK4zyysA=;
+        b=TjAaH3rTcwZ6baENl3JUClYjXuNMYAGnHMc2Do0UqNcXq6iKXfphcPn/YEuiQc04EH
+         r6sovmdLq36+sYpiocEw/AYX493w5HBFxWxMhLbMf4NCEenXNb7/nK8BLX4Hn1hyVUJ0
+         2DNQgSS06phU3tEYhDk5M0MqfTThvqeCrKofEvivuqxdWuCzYq3dKdZW4Sgvjij15cel
+         vJTx7B7SmymBG36jrkDD5tZM/NVcSA6jCBVIVXN4n9g3BkMjWNq3Xvf9QaKTlZ5CZVxk
+         wHuD6QAhNceA5HmJpltl4RRjs+yqh9nrjDT30v5N6GeUrfhAeRzgIIIfpW1/GM+f5dS5
+         9dfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713464183; x=1714068983;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1713464402; x=1714069202;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=zHyhjFHfFHzvzihg5eoivzzLdrAJ2c6i2qTZ2T7TSG8=;
-        b=Njt88Evw4KlS84X775pl4ul+AwTtU1iqViirJXHoEhuZ6ZSfEZ24jEg0Gdh32X85uT
-         WRWUHqDIMmnia6pTZ9yfMTZkM6I2gMKoYvgNZk5N1k631mPxn/XHz6axgZINkbmwJ5Ry
-         kYtD7YV3XFBb2yLkDbZ2FVwtywwTbo+Y10va2Dys+4l0M548p8u70DUtDOJ58sPiF/dM
-         903NW8Xv2o00tQrdVK4uSu7QS+gW2oUj/IA1buq5c0AR5Jz4jKEtHNgCAY92nAlDCDxg
-         5vb9egi7O/GL/ewqhvExaFlYoWbRnuBqJuKx/RcXnRQxntWgUyVMcKqPzpYO+a49zX95
-         trBQ==
-X-Gm-Message-State: AOJu0Yyk5+CxHKUek5SPsy5jZBe1e3aanz0cnVeqblE+DF1BIbfLY7HD
-	Ii42GU45IalwQxXCU+Zjvg5kH2W4WUBpiaOLVx7nTfELui22oIh8
-X-Google-Smtp-Source: AGHT+IF/xxsFAXOVULwipIHPYV5m8OTjxJDNGmnozeAK8EPa9oYeztB33aXPbh2kYtBBgWYsJJ7f6w==
-X-Received: by 2002:a4a:5102:0:b0:5ac:bdc0:2bee with SMTP id s2-20020a4a5102000000b005acbdc02beemr3946595ooa.8.1713464183009;
-        Thu, 18 Apr 2024 11:16:23 -0700 (PDT)
-Received: from localhost.localdomain ([75.28.21.198])
-        by smtp.gmail.com with ESMTPSA id dh4-20020a0568201e0400b005aa77c0fe49sm483419oob.24.2024.04.18.11.16.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Apr 2024 11:16:22 -0700 (PDT)
-From: Chris Morgan <macroalpha82@gmail.com>
-To: linux-sunxi@lists.linux.dev
-Cc: devicetree@vger.kernel.org,
-	mripard@kernel.org,
-	jernej.skrabec@gmail.com,
-	wens@csie.org,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	tglx@linutronix.de,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Andre Przywara <andre.przywara@arm.com>
-Subject: [PATCH V2 2/2] arm64: dts: allwinner: h616: Add NMI device node
-Date: Thu, 18 Apr 2024 13:16:15 -0500
-Message-Id: <20240418181615.1370179-3-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240418181615.1370179-1-macroalpha82@gmail.com>
-References: <20240418181615.1370179-1-macroalpha82@gmail.com>
+        bh=eG3q+zpUjWVOdPOZkaSjqo0usEFxFJPlILtnK4zyysA=;
+        b=k8HN+lQxyRGtaAmPcO8s5w6Fj+NU0E77E1VuDSlAcaP/P3hrlNIqb1Qx5R5DkKZLlC
+         ZkK/FJsvCoQHo815a9tk6LZR7CQreeQ4sgcWQddOqOohefi7eK/f2cCdoELGFpwsA58m
+         21T52ez7ahVoAUTNsF+SG9Nzp9xd6Icqg16CldY0pgG489+674McEO7nn+7s2Xisl/vh
+         k5uQDejpeTMpA6OGWEDuTEvQz2DdytvXW//tIMItMvX/WYEh+LnaefehhhBPt7z/rnvm
+         nfFRs0jodqN8OrAX/HBMWp+9e73V+sFjQ+Z74Pr9r1ZxGIBSQ2CrB2wtt0f7V1nRQre5
+         TMLQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWQ+3tBJQz6CLSEWc0ibw4jvg1KDXrqR8jP0nQyTCoMjmmvCWu3tvkynShwBExFvtoUekEmlBoc25AUoxiDbV7dqiqRhUZvxJZbCUvok4bk8rxGVzmgzkVNfEfej72orIacBZ8TathXlSt0hFhmFht+QqBXwaxpE8G4/v1K6nLyE8bV10ht+6KY4Zhnrq65YebLYAZt4SybWFBCSlqmtdxD
+X-Gm-Message-State: AOJu0Yw0M5oi82PgzpNaD4YKRgpGI3SuKSnfOdIbr16GWHWK2NCSCD6i
+	Rr6FJb+Te5wwp6o+7k4wK79RQw1hVcnFtsQircUMeFBz398tSDKeRbLABiTnlUU58HgyCqqF5ZQ
+	wOLWlntBPhgWM34pdjte+VNuLprI=
+X-Google-Smtp-Source: AGHT+IHalOQ/s3NxiyYDgT5G+ca4oEPzuDrE48u3GmuLSNbZCinbhI/Pfbda9fQysbueYW+MPNlitEcynwqbQEQ4c54=
+X-Received: by 2002:a05:6512:3b1e:b0:515:9185:652f with SMTP id
+ f30-20020a0565123b1e00b005159185652fmr2480035lfv.33.1713464401599; Thu, 18
+ Apr 2024 11:20:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240414175300.956243-1-aren@peacevolution.org>
+ <20240414175716.958831-1-aren@peacevolution.org> <20240414175716.958831-2-aren@peacevolution.org>
+ <CAHp75VdZavToGYqLYnkKYt53HXoQxXnRER5Cn5b2==gWTvkAWQ@mail.gmail.com>
+ <xxeg3as5m5vmmu6fbjujcnvchrerxs2rr42nloirwsktbv4r57@vpxtxblxmspl>
+ <CAHp75Veoibnk2pYuAY-T+u=8t7ackQ8zBjxSHcWb1AeHnq84yQ@mail.gmail.com> <fvuaq2yo4jh6jc3cklkvatr5r5du2jzmqblvvkpkpmxdt7e2ys@345lrhtnipfw>
+In-Reply-To: <fvuaq2yo4jh6jc3cklkvatr5r5du2jzmqblvvkpkpmxdt7e2ys@345lrhtnipfw>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Thu, 18 Apr 2024 21:19:24 +0300
+Message-ID: <CAHp75VdvbQzwqTBzioqVkiV4vHrQFX6UpoDce1t6whWYHcXYKw@mail.gmail.com>
+Subject: Re: [PATCH 2/4] iio: light: stk3310: Implement vdd supply and power
+ it off during suspend
+To: Aren <aren@peacevolution.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Ondrej Jirman <megi@xff.cz>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+	linux-iio@vger.kernel.org, phone-devel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	Willow Barraco <contact@willowbarraco.fr>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Chris Morgan <macromorgan@hotmail.com>
+On Thu, Apr 18, 2024 at 8:50=E2=80=AFPM Aren <aren@peacevolution.org> wrote=
+:
+> On Thu, Apr 18, 2024 at 06:56:09PM +0300, Andy Shevchenko wrote:
+> > On Thu, Apr 18, 2024 at 6:06=E2=80=AFPM Aren <aren@peacevolution.org> w=
+rote:
+> > > On Mon, Apr 15, 2024 at 05:04:53PM +0300, Andy Shevchenko wrote:
+> > > > On Sun, Apr 14, 2024 at 8:57=E2=80=AFPM Aren Moynihan <aren@peacevo=
+lution.org> wrote:
 
-Add device node for the H616 Non Maskable Interrupt (NMI) controller.
-This controller is present on all H616 boards and derivatives such as
-the T507 and H700. Note that on the H616 no NMI pad is exposed.
+...
 
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+> > > > I forgot to check the order of freeing resources, be sure you have =
+no
+> > > > devm_*() releases happening before this call.
+> > >
+> > > If I understand what you're saying, this should be fine. The driver j=
+ust
+> > > uses devm to clean up acquired resources after remove is called. Or a=
+m I
+> > > missing something and resources could be freed before calling
+> > > stk3310_remove?
+> >
+> > I'm not objecting to that. The point here is that the resources should
+> > be freed in the reversed order. devm-allocated resources are deferred
+> > to be freed after the explicit driver ->remove() callback. At the end
+> > it should not interleave with each other, i.o.w. it should be
+> > probe: devm followed by non-devm
+> > remove: non-devm only.
+>
+> I think what you're describing is already the case, with the exception
+> of parts of the probe function not changed in this patch mixing
+> acquiring resources through devm with configuring the device.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-index b2e85e52d1a1..1e066f3057be 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-@@ -775,6 +775,15 @@ r_ccu: clock@7010000 {
- 			#reset-cells = <1>;
- 		};
- 
-+		nmi_intc: interrupt-controller@7010320 {
-+			compatible = "allwinner,sun50i-h616-nmi",
-+				     "allwinner,sun9i-a80-nmi";
-+			reg = <0x07010320 0xc>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+			interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-+		};
-+
- 		r_pio: pinctrl@7022000 {
- 			compatible = "allwinner,sun50i-h616-r-pinctrl";
- 			reg = <0x07022000 0x400>;
--- 
-2.34.1
+Okay, then we are fine!
 
+> I hope I'm not being dense, thanks for the clarification
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
