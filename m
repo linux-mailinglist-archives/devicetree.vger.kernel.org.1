@@ -1,155 +1,150 @@
-Return-Path: <devicetree+bounces-60679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1DDD8A9F8D
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 18:06:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B9FC8A9F96
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 18:08:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1A9C5B25D72
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 16:06:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8CA291C20BDB
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 16:08:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6743E16F859;
-	Thu, 18 Apr 2024 16:06:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7131E16F84F;
+	Thu, 18 Apr 2024 16:08:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TftbM3dO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BACB216F855
-	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 16:06:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D502168B0D;
+	Thu, 18 Apr 2024 16:08:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713456367; cv=none; b=HmSZ9lvoIgzX4BRQwfHy1Yf5oEHtfXoDMXNftP6JnzF05Vr2R+ODTnwoylIM22H8tZuYnPEJ3aePd5OJPFnzdWlp+Piy4OMZU9u60ZHGkZiMFpNK6rVdhTfNFi1ntLO1uvhUJx6MhYdI1kXn+gVqMk3sK2tfC4Ps3gpD8d0d2GE=
+	t=1713456494; cv=none; b=EeZExZnEcgmrBecOFjm7+PiXz5nma5A9URP2Tyw+xwlHlFl376wsgJ5d11LNUqv7s4Gn6enr/1W88T1pThGkOMgEZY9+7KGu102CIr6icwbzJoemU45m4Rw40pRf+Wt4lSat80olu7dUaeB0SCLtdlF5zu0WB3xIOwMBQI9FoZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713456367; c=relaxed/simple;
-	bh=K2i9PH1Tjt5ygesnFTera/THUySdqfcQsNtai9oF11E=;
+	s=arc-20240116; t=1713456494; c=relaxed/simple;
+	bh=rkrTpsLO+50r5ibEQOEvU3vQMmfUVtgFiQ5k83m5StM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IRQ8Vt+RVO9sjhqyU7CRuGUJNtTFoyPr1B8HOVlr+Gy9DBVjZ3ZC/PGcgw+pxNwjtDNvJpiF1ggDcmgIfUtfEL+dfnc9ep1Bm41FlJTC8wTO8wFH6Q8CFinE+PRoZ95IDo4OFLMr7pduX2GAJ7BC+I60+O2NrXQzGaqBc8UW7Tk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rxUGd-0005Td-JP; Thu, 18 Apr 2024 18:05:43 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rxUGb-00D0SL-EP; Thu, 18 Apr 2024 18:05:41 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rxUGb-003Ydn-13;
-	Thu, 18 Apr 2024 18:05:41 +0200
-Date: Thu, 18 Apr 2024 18:05:41 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Alexandre Mergnat <amergnat@baylibre.com>
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Jitao Shi <jitao.shi@mediatek.com>, CK Hu <ck.hu@mediatek.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, dri-devel@lists.freedesktop.org, 
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v2 12/18] dt-bindings: pwm: mediatek,pwm-disp: add
- compatible for mt8365 SoC
-Message-ID: <jl35q23p7axlxaxxwo7652qke5luft4x6zsz3ldntegdpvmdom@ge6taosuwtnj>
-References: <20231023-display-support-v2-0-33ce8864b227@baylibre.com>
- <20231023-display-support-v2-12-33ce8864b227@baylibre.com>
- <vasuzy7cf5x6p5rnrmdrk5z54oncu2yuutupf25h5fgd5y6fpl@mnkf67agw64g>
- <286945bc-f207-4373-9589-0a9b62df1b36@baylibre.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=jUPuHCssJyNBmxoAzQ84znEBOrxRUvArwW73t6gj8WZ4f2p4+j5jQJ2YyBZL7fGtFlKNGJigXJutBMbUM/lLkSaA+qsYk9LHpHZuONGQ9/th+Y8AWP9QIyFlMfvHd3Kjf/eGX7OWDcbczQVSMEkwpF46syhC2n45wYV5MUZxFNU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TftbM3dO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C54FC113CC;
+	Thu, 18 Apr 2024 16:08:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713456493;
+	bh=rkrTpsLO+50r5ibEQOEvU3vQMmfUVtgFiQ5k83m5StM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TftbM3dOE3svEIaqrs8h/enmkXGrctoHLiseUF3xQMbQvYuNBYPYXtIAbtEonZ5b1
+	 41TO3gaVUdFt3J52keySYXF+cB4AfcNmvXY4z2m/R31WbwOFgffs3GuPoagJqG+PWk
+	 1YDt8QAR76YXXN5ZOy6B5Q9TXC3cX+UBFZSHUb2RAVsYzUREmpv3qGMzyCizDLjUi8
+	 F6O9Pyj0boTNTgetVQOl58vEVR/ZoQshLTyHAIbiibz/7uC61KyIy1tfU+Mfe4TcMV
+	 AheGu7QrCaOrVlc+1rBv1za5Y03RUdUGODesrbMktYMEdOOiHdGZzmh+lvBP1YJne2
+	 hgJ2wfppFkKZg==
+Date: Thu, 18 Apr 2024 17:08:08 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Diederik de Haas <didi.debian@cknow.org>
+Cc: liujianfeng1994@gmail.com, krzk@kernel.org,
+	linux-rockchip@lists.infradead.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, ezequiel@vanguardiasur.com.ar,
+	heiko@sntech.de, krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org, mchehab@kernel.org,
+	p.zabel@pengutronix.de, robh@kernel.org, sfr@canb.auug.org.au,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v5 2/2] dt-bindings: media: rockchip-vpu: Add rk3588
+ vdpu121 compatible string
+Message-ID: <20240418-tipoff-neon-8c1fa60385cb@spud>
+References: <2a516484-ea87-444e-a89d-9fe33d08148f@kernel.org>
+ <20240413155709.802362-1-liujianfeng1994@gmail.com>
+ <1774986.o0yEF5yP89@bagend>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ykmah4osu23j5yfl"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="sKET8aOPU1iKBZV1"
 Content-Disposition: inline
-In-Reply-To: <286945bc-f207-4373-9589-0a9b62df1b36@baylibre.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <1774986.o0yEF5yP89@bagend>
 
 
---ykmah4osu23j5yfl
-Content-Type: text/plain; charset=iso-8859-1
+--sKET8aOPU1iKBZV1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hello Alexandre,
-
-On Thu, Apr 18, 2024 at 11:46:11AM +0200, Alexandre Mergnat wrote:
-> On 17/04/2024 10:06, Uwe Kleine-K=F6nig wrote:
-> > On Tue, Apr 16, 2024 at 05:53:13PM +0200, Alexandre Mergnat wrote:
-> > > Add a compatible string for MediaTek Genio 350 MT8365's display PWM
-> > > block: this is the same as MT8183.
-> > >=20
-> > > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@co=
-llabora.com>
-> > > Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
-> > > Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+On Thu, Apr 18, 2024 at 11:19:56AM +0200, Diederik de Haas wrote:
+> On Saturday, 13 April 2024 17:57:09 CEST Jianfeng Liu wrote:
+> > I'm sorry for my unkonwing about the kernel patching process. And I'm
+> > sorry to let maintainers do extra work. Thank you for teaching me this.
+> > I will do this right in future patches.
 > >=20
-> > I already asked in reply to v1 what the merge plan is here. There are
-> > changes in my pwm tree to the mediatek,pwm-disp binding already. I don't
-> > think they conflict with this patch, but maybe it's still easier to take
-> > this via pwm?!
+> > I did received a Acked-by tag from Conor in v4:
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> >=20
+> > I note it here in case someone forgets this tag.
 >=20
-> Sorry, I though the merge strategy wasn't addressed to me because I'm not=
- a maintainer.
+> I think it's beneficial to send a v6 with the following changes:
+> 1) Make this dt-bindings patch the first in the series
+> 2) Make sure you've collected all the tags you've received to all the pat=
+ches
+> 3) Specify the base commit
+>=20
+> ad 1) I don't know if it's a hard rule, but I've seen a consistent patter=
+n=20
+> where the dt-binding changes come before those changes being applied to=
+=20
+> DeviceTree files. It also makes sense as when the dt-binding change hasn'=
+t been=20
+> applied, then the DT file is technically invalid.
 
-Well, you're the canonical person who has an interest to get this series
-in, so you can at least have and express an idea. In my experience it's
-good to be proactive and suggest a merge plan. Maintainers are triggered
-more to reply by a presented plan they don't agree with than with
-suggesting a plan themselves. And this way at least there is less
-surprise for you as submitter.
+It is definitely preferred, since there is tooling that checks for
+undocumented compatibles etc that would see spurious errors during
+bisection, were that to be done. Generally I wouldn't suggest resending
+for the order though if it were the only thing amiss.
 
-> It's fine for me to merge it in the PWM tree.
-> IMO, this change [1] shouldn't conflict with this patch.
+> ad 2) You shouldn't make maintainers do extra work to get your patch(es)=
+=20
+> merged; you want to make their work as easy as possible. Thus you do the=
+=20
+> (extra) work and provide a new version of the patch(es).
+> Sending multiple versions in a single day is generally not recommended as=
+ you=20
+> should give reviewers some time to do the review. But it should be fine n=
+ow as=20
+> several days have past without new reviews.
 
-FTR: [1] is in Linus's tree already now.
+I dunno, the best way to save our time is to not omit the tags in the
+first place (or give a reason as to why you did) as we'll likely pull up
+the previous version of the series to see if all comments were
+addressed, if made by another maintainer (at least I do that and Krzysztof
+must have here). In my workflow sending another ack takes much less time
+than looking up previous versions and checking to see if things were
+dealt with - probably that's in-part to me lacking automation for dfn:
+lore search from mutt though..
 
-> Can you add the "Acked-by: Rob Herring (Arm) <robh@kernel.org>" please if=
- you merge this version ?
+>=20
+> ad 3) The `git format-patch` command has a `--base=3D<commit>` parameter =
+with=20
+> which you can make explicit upon which commit the patch is based.
+> That works a lot better/easier then a textual description.
+>=20
+> HTH
 
-I picked the one from your v3 series now where you included Rob's Ack. I
-was a bit grumpy because I only spotted your reply here afterwards.
-(Everything fine now on my side now.)
 
-Best regards
-Uwe
 
-> [1]: https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git/c=
-ommit/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml?h=3Dpwm/=
-for-next&id=3Dfb7c3d8ba039df877886fd457538d8b24ca9c84b
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---ykmah4osu23j5yfl
+--sKET8aOPU1iKBZV1
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmYhRNQACgkQj4D7WH0S
-/k7izAf/ZH/1sIKEwdV67ngUMbYN2YbYsH4wSHdDVJV5ff1vLlHu+FM6cf1DG8WK
-fvW4BiQnriG3n5IIr/dPh+mKVoOqnxMEmynyp3v5tXo0MrwBC5Cf9cgOCq9KqMYq
-KQ/8/mMyhMnIKuUIrkcFKPDX84dGIKkH86EMvsif1H6VhV+03jLmfcKg27RqGaIf
-31s6IqjCpztCXjkA3menVz7AmxyIx39Vyt6CzVkq/kQfJ0NY/lXq49OhKFwZ/ZbD
-bB49IiLJwEM47KX5WrgYRsgLMbSYigkwwhcX350+A0RtLHHhkz6Zmr65uIxsJQ9K
-Mm+Tx8Dq7W4/dhAGg9I86+z045CayA==
-=Fdj5
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZiFFaAAKCRB4tDGHoIJi
+0o0pAP9fk55H5h1zSZnxIKk23cdN+HBXKww/TkXCqriIsMnC6gD9F54oAW2uS2/S
+BilcF9zkehoRlEKSh4CiiY5wD9hLGAM=
+=YI8b
 -----END PGP SIGNATURE-----
 
---ykmah4osu23j5yfl--
+--sKET8aOPU1iKBZV1--
 
