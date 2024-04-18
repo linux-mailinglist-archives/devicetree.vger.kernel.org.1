@@ -1,130 +1,96 @@
-Return-Path: <devicetree+bounces-60751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60752-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58F7C8AA3AF
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 22:04:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B197A8AA3D6
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 22:10:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D60EDB256FB
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 20:00:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 51C6D1F214AD
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 20:10:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C74631802A1;
-	Thu, 18 Apr 2024 20:00:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 359471836CC;
+	Thu, 18 Apr 2024 20:10:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eY4rQTR0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pwMahGrJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92C6F16D314;
-	Thu, 18 Apr 2024 20:00:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06694181BB4;
+	Thu, 18 Apr 2024 20:10:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713470408; cv=none; b=nqg9TR9hkFsjJ1+BZnpOjQBZEzBH6iZduhEFQiUSGi5D3vUw6rnvhAAh2UdD988pVp+/fTfS1K8/F2yRNE7U1lLMUUhULg8mxgqtlwj6JMjrhyu7aXPs3C0RbACJkgi8DrIFxFwtxNwhlJBBIg4oZD2wuOvdae3Z/7TVU9tq2pQ=
+	t=1713471007; cv=none; b=kl8NgjGJ+lKShNHfpths5K576LmqpM/JYq/v2eZs6RRKCbUrYUcDJ8nkZiYCGIqHfNRfLzgbWTB9ekONq0nJbEJmSISsGRoV4H78LMS71bpo4lzFSGoNcDFfkMSEdXkaCQyIsCrQHxCXUcFEmo0GLQUZkZgPBuBl5MnmbsuhqdQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713470408; c=relaxed/simple;
-	bh=HWefGnwQI2HwNz4Knpy1Fh114LZYu0wgCLBTdlxtmUM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G+tkgY+fvZtBuM+ENr0k0NIhjhFuMoia0wjM7de6oC5nPQLeab0L4kERid5AuOYxFghLc6FvsR7UuXlhG2JRnGtkBgVOAsgJuwGf3qWUdX0gx9wEJEgXFiV1H1m+81kO1UvcjGXRqMkGyy31QYL6ayZ+jySJyU7DNDAEbum0xuo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eY4rQTR0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6AAFC113CC;
-	Thu, 18 Apr 2024 20:00:03 +0000 (UTC)
+	s=arc-20240116; t=1713471007; c=relaxed/simple;
+	bh=qRoYmSL0DQSLl2Yl7BjLTHnNTQJGudUCPAZpXc4XmB0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Ap69I8TsPKFaTCZZh4l12MlQHm9kdoAZkzcz2u0OqJykuoS+kWZLkK0AqCpQ/8nDD3Pk6RWmy9C53l90npDJtWLwioysTTPzP6Wpo/H4GkpQuDhy+EX2IS2haxx794U/2ibESKXbP/qYKIRfR9bgwTXFDbssEvNFTQqRdd72oQE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pwMahGrJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EEC5C32781;
+	Thu, 18 Apr 2024 20:10:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713470408;
-	bh=HWefGnwQI2HwNz4Knpy1Fh114LZYu0wgCLBTdlxtmUM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eY4rQTR0vB3nF31du2IEDKNwwn+Arhad3fDAJYF8yZ1FJh3Dhu/OomZi51qGz0+xm
-	 yra/nkWPz4cFawkghV0gdBKi6ECmIsqrPWj3/SQU3/50UuGZrAWlq2RS2efp5kTKhn
-	 sEsyCi98quhg615KvU+4ANrTH8KbscCy6oiuVNXuib7kuD0Id9WX3lNppWvtA90Im5
-	 0AKhCGhrvZTB2b9mhHgqt6RU8CbmlUzz8j1iWRciRpAczvqRefIU8Dz3FAeIcL/OOI
-	 zD8tMN5uEBWYh68fDMPlqOQL0e7l0KYx5v22crgl35DzYqXvHmF+v+qdFjxzsYhJvr
-	 6SFqrgLNKRXPw==
-Date: Thu, 18 Apr 2024 21:00:01 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Eric Biggers <ebiggers@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Andy Chiu <andy.chiu@sifive.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Heiko Stuebner <heiko@sntech.de>,
-	Guo Ren <guoren@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Jonathan Corbet <corbet@lwn.net>, Evan Green <evan@rivosinc.com>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
-	Shuah Khan <shuah@kernel.org>, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
-	Vincent Chen <vincent.chen@sifive.com>,
-	Greentime Hu <greentime.hu@sifive.com>, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
-	Joel Granados <j.granados@samsung.com>,
-	Jerry Shih <jerry.shih@sifive.com>
-Subject: Re: [PATCH v4 7/9] riscv: vector: adjust minimum Vector requirement
- to ZVE32X
-Message-ID: <20240418-dolphin-epileptic-749c9628e5a9@spud>
-References: <20240412-zve-detection-v4-0-e0c45bb6b253@sifive.com>
- <20240412-zve-detection-v4-7-e0c45bb6b253@sifive.com>
- <20240418-brook-chili-4d3e61d1a55c@wendy>
- <20240418155256.GA2410@sol.localdomain>
- <20240418-ultimatum-yam-11de4b063b83@spud>
- <20240418173203.GA1081@sol.localdomain>
- <20240418173946.GB1081@sol.localdomain>
- <20240418-sterling-sanding-d59c3b0a2aaa@spud>
- <20240418184129.GA1071@sol.localdomain>
+	s=k20201202; t=1713471006;
+	bh=qRoYmSL0DQSLl2Yl7BjLTHnNTQJGudUCPAZpXc4XmB0=;
+	h=From:Subject:Date:To:Cc:From;
+	b=pwMahGrJT3FspVu8/X/7nvzrlxkrA5P5tsNLYqt8NnkEBzagU5/ScHiRT99ZChZxE
+	 uQXw4PtfMFQYPSQ4+AQ6fhhWybbgdHCrFqneUHGlqVSsOKSCwEIzgf0hB/DV3iwlnJ
+	 CY4APq7QOjFx4jwIqnrHP6tfsU9ymlv5TaKnQwfMUf9uyz37ZgzXUlBYu5YoFCB4Jz
+	 snA7eiyKsRiI+LWtJnM+rx3t1QXxidQLJeg6ApTDiQBmKbdOmFPTsEHhjvmyvQx2/E
+	 r43IS5pQG5K0dV1jHqS0AnmWbiYlrMXK2Mzd5HopAtRD/2e2uOdd1+3C9IbByqhzGw
+	 6+DfssY9fz7PQ==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Subject: [PATCH 0/2] arm64: dts: freescale: LS1028a PCI fixes
+Date: Thu, 18 Apr 2024 15:09:24 -0500
+Message-Id: <20240418-dt-ls1028a-pci-fixes-v1-0-95f17405e481@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="MEYWdzN/KoxvaYBs"
-Content-Disposition: inline
-In-Reply-To: <20240418184129.GA1071@sol.localdomain>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPR9IWYC/x3LQQqAIBBA0avErBtQMbCuEi3MphoICyciEO+et
+ Hx8fgahxCQwNBkSPSx8xgrdNhB2HzdCXqrBKGOV1Q6XGw/RyjiPV2Bc+SXBzq7BBDv3znmo65X
+ oD/Ucp1I+myJnZGYAAAA=
+To: Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Richard Cochran <richardcochran@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+X-Mailer: b4 0.14-dev
 
+This short series addresses a couple of schema warnings with the 
+embedded PCI devices in the LS1028a:
 
---MEYWdzN/KoxvaYBs
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+pcie@1f0000000: rcec@1f,0:interrupts:0:0: 0 is not one of [1, 2, 3, 4]
+pcie@1f0000000: rcec@1f,0:interrupts:0: [0, 94, 4] is too long
+pcie@1f0000000: mdio@0,3:compatible: ['fsl,enetc-mdio'] does not contain items matching the given schema
+pcie@1f0000000: ethernet@0,6:compatible: ['fsl,enetc'] does not contain items matching the given schema
+pcie@1f0000000: ethernet@0,4:compatible: ['fsl,enetc-ptp'] does not contain items matching the given schema
+pcie@1f0000000: ethernet@0,2:compatible: ['fsl,enetc'] does not contain items matching the given schema
+pcie@1f0000000: ethernet@0,1:compatible: ['fsl,enetc'] does not contain items matching the given schema
+pcie@1f0000000: ethernet@0,0:compatible: ['fsl,enetc'] does not contain items matching the given schema
+pcie@1f0000000: ethernet-switch@0,5:interrupts:0:0: 0 is not one of [1, 2, 3, 4]
+pcie@1f0000000: ethernet-switch@0,5:interrupts:0: [0, 95, 4] is too long
 
-On Thu, Apr 18, 2024 at 11:41:29AM -0700, Eric Biggers wrote:
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+Rob Herring (Arm) (2):
+      arm64: dts: freescale: ls1028a: Fix embedded PCI interrupt mapping
+      arm64: dts: freescale: ls1028a: Add standard PCI device compatible strings to ENETC
 
-> If the RISC-V kernel ever disables V, then it should also disable everyth=
-ing
-> that depends on V.
->=20
-> This would be similar to how on x86, if the kernel decides to disable AVX=
- to
-> mitigate the Gather Data Sampling vulnerability, it also disables AVX2, A=
-VX512,
-> VAES, VPCLMULQDQ, etc.  See cpuid_deps[] in arch/x86/kernel/cpu/cpuid-dep=
-s.c.
->=20
-> Sometimes CPU features depend on other ones.  That's just the way things =
-work.
+ arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 20 ++++++++++++--------
+ 1 file changed, 12 insertions(+), 8 deletions(-)
+---
+base-commit: 4cece764965020c22cff7665b18a012006359095
+change-id: 20240418-dt-ls1028a-pci-fixes-54fc2c4b988a
 
-=F0=9F=A4=A8
+Best regards,
+-- 
+Rob Herring (Arm) <robh@kernel.org>
 
-> Whenever possible that should be handled centrally, not pushed down to ev=
-ery
-> user both in-kernel and userspace.
-
-FWIW, anything detected but rejected while probing the DT or ACPI tables
-will cause riscv_isa_extension_available() (or other APIs) to return false.
-
-
---MEYWdzN/KoxvaYBs
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZiF7wQAKCRB4tDGHoIJi
-0lrQAP0ZnhY2j8dAgcGtM2slb23/HOfAFrbbsZhuBfSx0uoWSAEAubVPWlDs59pJ
-eFvw6AB3RzfrfggfMB1wA9nLHCZYzQs=
-=Ogch
------END PGP SIGNATURE-----
-
---MEYWdzN/KoxvaYBs--
 
