@@ -1,149 +1,313 @@
-Return-Path: <devicetree+bounces-60399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-60400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E1CC8A9311
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 08:27:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D70EE8A9318
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 08:31:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 493E3281840
-	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 06:27:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D8ED1F21AB0
+	for <lists+devicetree@lfdr.de>; Thu, 18 Apr 2024 06:31:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA83C6A8D2;
-	Thu, 18 Apr 2024 06:27:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC576200DD;
+	Thu, 18 Apr 2024 06:31:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="i/Kw3dy2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wScxRXYa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C0228C11;
-	Thu, 18 Apr 2024 06:27:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 377FA63C
+	for <devicetree@vger.kernel.org>; Thu, 18 Apr 2024 06:31:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1713421654; cv=none; b=h72GvjAxidnBSnsMFiPmdRfTeDCXNv/S3Vj1l/6E3QDkRq9xRx9ztdDSmXCFYpcf57TlU8NvLSqEvhUjVb2qYyXZ7QKZbvLdR5+OXHnqkvMaqRCfoAk10HcdjGAWWuc2Hf0RZRFhVnddG94gp6hhg0hKPNJZKI4Kb+pa4amOk+0=
+	t=1713421868; cv=none; b=J/7pvjVh2YQ9sKT1XGQrxMUYvVKC20UlL9yGSALNioqAUL+TL/LgshuoHK9vO5GKgwpWwv9qSNWBby3EZRkFfSt4NbIjf4ebJEJLrOmI159ydRSJos0XwQ39IN4JljADqwoPG/bokBn2BnTNUhHFwSXwBJ1JSx9r+K+tjMGnvZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1713421654; c=relaxed/simple;
-	bh=ck6D+u1yHGSMSsvI+farJRo08q/q17J/RdpWxcYLUzU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=V88VafIgtlU15OJ66JDzEFgI59Sct4BCBnK9odoIOZJql1WM+LLB3OorkxQgEV6VRAlWYWbdh06gJbh4kjmFRCSjP1wSRNAGv2I2dSdc03fgJ/8d3kIIH39jrCm/Vq0mSPzS1A/u5203NJZee3GKQO9DXRc/X2hHer9g6h0rLvI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=i/Kw3dy2; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43HNrE0P018338;
-	Thu, 18 Apr 2024 06:27:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=tbWp83ngc6+C04lMqJmQF5eKNNcGbKVIZblsmEVEZDk=; b=i/
-	Kw3dy2+SLlBMkynWa4ccWUpbylndODYMvO/yknuuebbdm/N5JASvLAjc1ZzkXaXy
-	wwCVNdDoIDPSNX+b8vabYIT22lK/OUo8tflP6MZsqbXJdJjZwCioaOPDzqImcSPh
-	TUUlM7CjVsWUfyMPQxWum54UwUzelmXQlJnq0vWK2z0Z2ojeohNH3SSdXXAufciX
-	n9n2zFx+OhJs1G3/KCeWjvE7XgGqIQoDI4FCgswnYU371iMF+B4RzmA5mIRra/tS
-	Q4Tz1+RZxtpwMS9BQLs7Kx9Jz57Owz4fGr22nUDl+2l4XY6u0n3lkW25egFxsA+Y
-	1Bed6WS9/govow426Gqg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xjrfxgv25-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 18 Apr 2024 06:27:25 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43I6RNZO027974
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 18 Apr 2024 06:27:23 GMT
-Received: from [10.131.33.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 17 Apr
- 2024 23:27:18 -0700
-Message-ID: <1e334bd5-6d90-8ac7-084f-8b7928072c17@quicinc.com>
-Date: Thu, 18 Apr 2024 11:57:14 +0530
+	s=arc-20240116; t=1713421868; c=relaxed/simple;
+	bh=LrdjjpkgLeF0jdIA8AVj8K1IxOyKL2qV2D+llcvgDbM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZCvXzyBUmx80IZCb7hwhnAIc5RZoeqv6vx5bh5apoVJ42B3L0zZO9bRabMwpJpe63iTbnJfON+rFmmBkyh3tdnKgLmVoAsqFGiXzUEtDwkPe7v7xESyCvOlqbo+0sEwtJRyBa4YnI3QnMupFLo79MbP5H3WxYKdLdlwF/EThS2E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wScxRXYa; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-6eced6fd98aso540471b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Apr 2024 23:31:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1713421865; x=1714026665; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=DqP++inW+493cGi/mRUROkxqqlY1ajss2gCH0VtYow8=;
+        b=wScxRXYaUcc0QILXsonJaBgFuptPSFVLSK9dbuQ+qGGwxt2YnWHDHfSdfcnJDJUhwg
+         Dzooy01Anq9LDWDC/WdywbxTnLZxR1/ioWu9r2h61zkEDkmPDTPrd5gvtl0OlkrNet4O
+         gVQbstsO++daFin0SjJJEcgcd4SbAZDoAROuWgrQNGlzorLZyuw5OEf5lLDi5z0n+Jzx
+         /X8Wk6fwmKvQFJUGhE8jPJJDtXdF50InTLTpsynXUDlfmOqrjM12mBYcZIzzKPMRg8p6
+         9frwPMNR5qeHgY9gFyOHWQnaiA1/yvaXsRFI8CRrsbkxymL0jiN9X+dw/IXzOaPHpy4m
+         lcWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713421865; x=1714026665;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DqP++inW+493cGi/mRUROkxqqlY1ajss2gCH0VtYow8=;
+        b=hPIZ4T4kkCzbm5kS17ZNE5jn7mq/nn51hYscR1mlrQqakFNhCWoACjFx+HMIObsLOD
+         WSkbEOAC2qlTncXvdkEOiuCINM9cHNkFHJajbn/kL84CEE8yYvLcuFrILqtqBefuIGAw
+         ZGYSWI5nZQnt1LFmkbBYDJsRk+/OmFoMPUdqRstLj3rDt5qqBKNZiRm4fRBJDekF+zqi
+         HUeCYE5ppA16zKN1YRRKCM/9qjTyifP4xRM1Iso2BmhJopkr/T2KaugaCQ/d7B0SpiST
+         y189Od5DLSGMf88b3jYicpFDwwUSlsya/d2/aW0CWaDeXqu8kY/K1oejKfX7eLVd7d7N
+         BjQA==
+X-Forwarded-Encrypted: i=1; AJvYcCWoVkusb4Ga9iCftP6eOw8m06Bb7b0jKO+J1Lt4i3S0NqPe1twQAycIKiwXWpBZyitMzMQ5q7qfzq703ZCZ7jwNL0INkL1eFA4R1g==
+X-Gm-Message-State: AOJu0YwlgltrsJrj5hKC1v1e9JWxHaL+DDQOabVqYiv7ZXT+/L07xy5a
+	p+QRJzahcdJ1fSq547uJbqRZ+hikmZk5Acr6D09wNuXbxApynMgORDgEd/Km7A==
+X-Google-Smtp-Source: AGHT+IHU2IZ95oWdl4Gw7bDq+Ljx6zIQbhqOlRJBQg/8BN9QEjiDfRMdMv1HRveIcGbjy2nMWY0z0Q==
+X-Received: by 2002:a05:6a21:3a48:b0:1a7:88c3:85ed with SMTP id zu8-20020a056a213a4800b001a788c385edmr2823336pzb.1.1713421865380;
+        Wed, 17 Apr 2024 23:31:05 -0700 (PDT)
+Received: from thinkpad ([120.56.197.253])
+        by smtp.gmail.com with ESMTPSA id g13-20020a62e30d000000b006ecfd2ad4ddsm743339pfh.146.2024.04.17.23.31.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Apr 2024 23:31:04 -0700 (PDT)
+Date: Thu, 18 Apr 2024 12:00:58 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
+	Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev,
+	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 5/5] PCI: dwc: Add generic MSG TLP support for sending
+ PME_Turn_Off when system suspend
+Message-ID: <20240418063058.GE2861@thinkpad>
+References: <20240417-pme_msg-v7-0-9c6208cda90f@nxp.com>
+ <20240417-pme_msg-v7-5-9c6208cda90f@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH V3 1/5] dt-bindings: mailbox: qcom: Add CPUCP mailbox
- controller bindings
-Content-Language: en-US
-To: Bjorn Andersson <quic_bjorande@quicinc.com>
-CC: <sudeep.holla@arm.com>, <cristian.marussi@arm.com>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <jassisinghbrar@gmail.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <dmitry.baryshkov@linaro.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <quic_rgottimu@quicinc.com>, <quic_kshivnan@quicinc.com>,
-        <conor+dt@kernel.org>, <quic_gkohli@quicinc.com>,
-        <quic_nkela@quicinc.com>, <quic_psodagud@quicinc.com>,
-        Rob Herring <robh@kernel.org>
-References: <20240417132856.1106250-1-quic_sibis@quicinc.com>
- <20240417132856.1106250-2-quic_sibis@quicinc.com>
- <ZiA0hOkpGVlVFp5u@hu-bjorande-lv.qualcomm.com>
-From: Sibi Sankar <quic_sibis@quicinc.com>
-In-Reply-To: <ZiA0hOkpGVlVFp5u@hu-bjorande-lv.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: CBqy4x_L3vRJwV6AY0rDmH2Iand2eEA2
-X-Proofpoint-GUID: CBqy4x_L3vRJwV6AY0rDmH2Iand2eEA2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-18_04,2024-04-17_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
- priorityscore=1501 spamscore=0 mlxscore=0 phishscore=0 suspectscore=0
- adultscore=0 mlxlogscore=908 clxscore=1015 malwarescore=0 impostorscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404180042
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240417-pme_msg-v7-5-9c6208cda90f@nxp.com>
 
-
-
-On 4/18/24 02:13, Bjorn Andersson wrote:
-> On Wed, Apr 17, 2024 at 06:58:52PM +0530, Sibi Sankar wrote:
->> Add devicetree binding for CPUSS Control Processor (CPUCP) mailbox
->> controller.
->>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
->> ---
->>
->> v2:
->> * Pickup Rb from Dimitry.
->>
->>   .../bindings/mailbox/qcom,cpucp-mbox.yaml     | 49 +++++++++++++++++++
->>   1 file changed, 49 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml b/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
->> new file mode 100644
->> index 000000000000..491b0a05e630
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
->> @@ -0,0 +1,49 @@
->> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/mailbox/qcom,cpucp-mbox.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm Technologies, Inc. CPUCP Mailbox Controller
->> +
->> +maintainers:
->> +  - Sibi Sankar <quic_sibis@qti.qualcomm.com>
+On Wed, Apr 17, 2024 at 12:59:43PM -0400, Frank Li wrote:
+> Instead of relying on the vendor specific implementations to send the
+> PME_Turn_Off message, let's introduce a generic way of sending the message
+> using the MSG TLP.
 > 
-> That doesn't look like the correct domain.
-
-Thanks, I don't know how I even constructed this chimera of an email-id
-lol.
-
--Sibi
-
+> This is achieved by reserving a region for MSG TLP of size
+> 'pci->region_align', at the end of the first IORESOURCE_MEM window of the
+> host bridge. And then sending the PME_Turn_Off message during system
+> suspend with the help of iATU.
 > 
-> Regards,
-> Bjorn
+> The reason for reserving the MSG TLP region at the end of the
+> IORESOURCE_MEM is to avoid generating holes in between. Because, when the
+> region is allocated using allocate_resource(), memory will be allocated
+> from the start of the window. Later, if memory gets allocated for an
+> endpoint of size bigger than 'region_align', there will be a hole between
+> MSG TLP region and endpoint memory.
+> 
+> It should be noted that this generic implementation is optional for the
+> glue drivers and can be overridden by a custom 'pme_turn_off' callback.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  drivers/pci/controller/dwc/pcie-designware-host.c | 102 ++++++++++++++++++++--
+>  drivers/pci/controller/dwc/pcie-designware.h      |   3 +
+>  2 files changed, 100 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+> index 3a9cb4be22ab2..f57805b21ef53 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> @@ -398,6 +398,34 @@ static int dw_pcie_msi_host_init(struct dw_pcie_rp *pp)
+>  	return 0;
+>  }
+>  
+> +static void dw_pcie_host_request_msg_tlp_res(struct dw_pcie_rp *pp)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	struct resource_entry *win;
+> +	struct resource *res;
+> +
+> +	win = resource_list_first_type(&pp->bridge->windows, IORESOURCE_MEM);
+> +	if (win) {
+> +		res = devm_kzalloc(pci->dev, sizeof(*res), GFP_KERNEL);
+> +		if (!res)
+> +			return;
+> +
+> +		/*
+> +		 * Allocate MSG TLP region of size 'region_align' at the end of
+> +		 * the host bridge window.
+> +		 */
+> +		res->start = win->res->end - pci->region_align + 1;
+> +		res->end = win->res->end;
+> +		res->name = "msg";
+> +		res->flags = win->res->flags | IORESOURCE_BUSY;
+> +
+> +		if (!request_resource(win->res, res))
+> +			pp->msg_res = res;
+> +		else
+> +			devm_kfree(pci->dev, res);
+
+You still haven't resolved my earlier comment:
+
+"You are explicitly freeing 'msg_res' everywhere. So either drop devm_ or rely
+on devm to free the memory."
+
+- Mani
+
+> +	}
+> +}
+> +
+>  int dw_pcie_host_init(struct dw_pcie_rp *pp)
+>  {
+>  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> @@ -484,6 +512,18 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
+>  
+>  	dw_pcie_iatu_detect(pci);
+>  
+> +	/*
+> +	 * Allocate the resource for MSG TLP before programming the iATU
+> +	 * outbound window in dw_pcie_setup_rc(). Since the allocation depends
+> +	 * on the value of 'region_align', this has to be done after
+> +	 * dw_pcie_iatu_detect().
+> +	 *
+> +	 * Glue drivers need to set 'use_atu_msg' before dw_pcie_host_init() to
+> +	 * make use of the generic MSG TLP implementation.
+> +	 */
+> +	if (pp->use_atu_msg)
+> +		dw_pcie_host_request_msg_tlp_res(pp);
+> +
+>  	ret = dw_pcie_edma_detect(pci);
+>  	if (ret)
+>  		goto err_free_msi;
+> @@ -541,6 +581,11 @@ void dw_pcie_host_deinit(struct dw_pcie_rp *pp)
+>  
+>  	dw_pcie_edma_remove(pci);
+>  
+> +	if (pp->msg_res) {
+> +		release_resource(pp->msg_res);
+> +		devm_kfree(pci->dev, pp->msg_res);
+> +	}
+> +
+>  	if (pp->has_msi_ctrl)
+>  		dw_pcie_free_msi(pp);
+>  
+> @@ -700,7 +745,13 @@ static int dw_pcie_iatu_setup(struct dw_pcie_rp *pp)
+>  		atu.type = PCIE_ATU_TYPE_MEM;
+>  		atu.cpu_addr = entry->res->start;
+>  		atu.pci_addr = entry->res->start - entry->offset;
+> -		atu.size = resource_size(entry->res);
+> +
+> +		/* Adjust iATU size if MSG TLP region was allocated before */
+> +		if (pp->msg_res && pp->msg_res->parent == entry->res)
+> +			atu.size = resource_size(entry->res) -
+> +					resource_size(pp->msg_res);
+> +		else
+> +			atu.size = resource_size(entry->res);
+>  
+>  		ret = dw_pcie_prog_outbound_atu(pci, &atu);
+>  		if (ret) {
+> @@ -733,6 +784,8 @@ static int dw_pcie_iatu_setup(struct dw_pcie_rp *pp)
+>  		dev_warn(pci->dev, "Ranges exceed outbound iATU size (%d)\n",
+>  			 pci->num_ob_windows);
+>  
+> +	pp->msg_atu_index = i;
+> +
+>  	i = 0;
+>  	resource_list_for_each_entry(entry, &pp->bridge->dma_ranges) {
+>  		if (resource_type(entry->res) != IORESOURCE_MEM)
+> @@ -838,11 +891,47 @@ int dw_pcie_setup_rc(struct dw_pcie_rp *pp)
+>  }
+>  EXPORT_SYMBOL_GPL(dw_pcie_setup_rc);
+>  
+> +static int dw_pcie_pme_turn_off(struct dw_pcie *pci)
+> +{
+> +	struct dw_pcie_ob_atu_cfg atu = { 0 };
+> +	void __iomem *mem;
+> +	int ret;
+> +
+> +	if (pci->num_ob_windows <= pci->pp.msg_atu_index)
+> +		return -ENOSPC;
+> +
+> +	if (!pci->pp.msg_res)
+> +		return -ENOSPC;
+> +
+> +	atu.code = PCIE_MSG_CODE_PME_TURN_OFF;
+> +	atu.routing = PCIE_MSG_TYPE_R_BC;
+> +	atu.type = PCIE_ATU_TYPE_MSG;
+> +	atu.size = resource_size(pci->pp.msg_res);
+> +	atu.index = pci->pp.msg_atu_index;
+> +
+> +	atu.cpu_addr = pci->pp.msg_res->start;
+> +
+> +	ret = dw_pcie_prog_outbound_atu(pci, &atu);
+> +	if (ret)
+> +		return ret;
+> +
+> +	mem = ioremap(atu.cpu_addr, pci->region_align);
+> +	if (!mem)
+> +		return -ENOMEM;
+> +
+> +	/* A dummy write is converted to a Msg TLP */
+> +	writel(0, mem);
+> +
+> +	iounmap(mem);
+> +
+> +	return 0;
+> +}
+> +
+>  int dw_pcie_suspend_noirq(struct dw_pcie *pci)
+>  {
+>  	u8 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
+>  	u32 val;
+> -	int ret;
+> +	int ret = 0;
+>  
+>  	/*
+>  	 * If L1SS is supported, then do not put the link into L2 as some
+> @@ -854,10 +943,13 @@ int dw_pcie_suspend_noirq(struct dw_pcie *pci)
+>  	if (dw_pcie_get_ltssm(pci) <= DW_PCIE_LTSSM_DETECT_ACT)
+>  		return 0;
+>  
+> -	if (!pci->pp.ops->pme_turn_off)
+> -		return 0;
+> +	if (pci->pp.ops->pme_turn_off)
+> +		pci->pp.ops->pme_turn_off(&pci->pp);
+> +	else
+> +		ret = dw_pcie_pme_turn_off(pci);
+>  
+> -	pci->pp.ops->pme_turn_off(&pci->pp);
+> +	if (ret)
+> +		return ret;
+>  
+>  	ret = read_poll_timeout(dw_pcie_get_ltssm, val, val == DW_PCIE_LTSSM_L2_IDLE,
+>  				PCIE_PME_TO_L2_TIMEOUT_US/10,
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+> index 703b50bc5e0f1..dca5de4c6e877 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.h
+> +++ b/drivers/pci/controller/dwc/pcie-designware.h
+> @@ -341,6 +341,9 @@ struct dw_pcie_rp {
+>  	struct pci_host_bridge  *bridge;
+>  	raw_spinlock_t		lock;
+>  	DECLARE_BITMAP(msi_irq_in_use, MAX_MSI_IRQS);
+> +	bool			use_atu_msg;
+> +	int			msg_atu_index;
+> +	struct resource		*msg_res;
+>  };
+>  
+>  struct dw_pcie_ep_ops {
+> 
+> -- 
+> 2.34.1
+> 
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
